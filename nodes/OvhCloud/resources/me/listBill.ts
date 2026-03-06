@@ -3,7 +3,7 @@ import { OvhCloudApiSecretName, OvhCredentialsType, signRequestOptions } from ".
 
 const showOnlyForMeBills = {
     resource: ['me'],
-    operation: ['listBills'],
+    operation: ['listBill'],
 };
 
 export const listBillsDescription: INodeProperties[] = [
@@ -61,7 +61,7 @@ export const listBillsDescription: INodeProperties[] = [
 
 export const getMethods = {};
 
-export async function listBills(
+export async function listBill(
     this: IExecuteFunctions,
     option: IDataObject = {}
 ) {
@@ -99,7 +99,7 @@ export async function listBills(
     );
 
     const bills = [];
-    
+
     for (const billId of billIds) {
         const billData = await this.helpers.httpRequestWithAuthentication.call(
             this,
