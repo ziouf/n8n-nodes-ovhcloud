@@ -1,15 +1,15 @@
 import {
     IExecuteFunctions,
+    NodeApiError,
     NodeConnectionTypes,
     type INodeExecutionData,
     type INodeType,
     type INodeTypeDescription,
 } from 'n8n-workflow';
-import { servicesDescription, servicesMethods } from './resources/services';
-import { listServices } from './resources/services/list';
+import { servicesDescription, servicesExecute, servicesMethods } from './resources/services';
 import { OvhCloudApiSecretName } from '../../credentials/OvhCloudApi.credentials';
-import { getService } from './resources/services/get';
 import { domainMethods } from './resources/domain';
+import { meDescription, meExecute } from './resources/me';
 
 export class OvhCloud implements INodeType {
     description: INodeTypeDescription = {
@@ -48,10 +48,15 @@ export class OvhCloud implements INodeType {
                         name: 'Service',
                         value: 'services',
                     },
+                    {
+                        name: 'Me',
+                        value: 'me',
+                    },
                 ],
                 default: 'services',
             },
             ...servicesDescription,
+            ...meDescription,
         ],
     };
 
@@ -64,29 +69,17 @@ export class OvhCloud implements INodeType {
     }
 
     async execute(this: IExecuteFunctions): Promise<INodeExecutionData[][]> {
-        const items = this.getInputData();
-
         const resource = this.getNodeParameter('resource', 0);
-        const operation = this.getNodeParameter('operation', 0);
 
         switch (resource) {
             case 'services':
-                switch (operation) {
-                    case 'list':
-                        return [this.helpers.returnJsonArray(await listServices.call(this))];
-                    case 'get':
-                        return [this.helpers.returnJsonArray(await getService.call(this))];
-                }
+                return await servicesExecute.call(this);
+            case 'domain':
                 break;
-            // case 'domain':
-            //     switch (operation) {
-            //         case 'listDomains':
-            //             return this.helpers.returnJsonArray(await listDomains.call(this));
-            //             break;
-            //     }
-            //     break;
+            case 'me':
+                return await meExecute.call(this);
         }
 
-        return [items];
+        throw new NodeApiError(this.getNode(), { message: `The resource "${resource}" cannot be executed directly. Please select an operation to execute.` });
     }
 }

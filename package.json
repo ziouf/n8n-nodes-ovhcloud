@@ -46,5 +46,8 @@
   },
   "peerDependencies": {
     "n8n-workflow": "*"
+  },
+  "dependencies": {
+    "luxon": "^3.7.2"
   }
 }
