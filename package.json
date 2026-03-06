@@ -31,10 +31,10 @@
     "n8nNodesApiVersion": 1,
     "strict": true,
     "credentials": [
-      "dist/credentials/OvhApi.credentials.js"
+      "dist/credentials/OvhCloudApi.credentials.js"
     ],
     "nodes": [
-      "dist/nodes/OvhServices/OvhServices.node.js"
+      "dist/nodes/OvhCloud/OvhCloud.node.js"
     ]
   },
   "devDependencies": {
