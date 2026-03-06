@@ -15,7 +15,7 @@ export class OvhCloud implements INodeType {
     description: INodeTypeDescription = {
         displayName: 'OVH Cloud',
         name: 'ovhCloud',
-        icon: 'file:../../icons/ovh.svg',
+        icon: 'file:../../icons/ovh_vertical.svg',
         group: ['input'],
         version: 1,
         subtitle: '={{$parameter["operation"] + ": " + $parameter["resource"]}}',

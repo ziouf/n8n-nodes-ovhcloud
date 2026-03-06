@@ -17,7 +17,6 @@
 	},
 	"remoteEnv": {
 		"N8N_LOG_LEVEL": "debug"
-		// "N8N_CUSTOM_EXTENSIONS": "${containerWorkspaceFolder}/dist/nodes;${containerWorkspaceFolder}/dist/credentials"
 	}
 
 	// Use 'forwardPorts' to make a list of ports inside the container available locally.

@@ -21,7 +21,7 @@ export const OvhCloudApiSecretName = 'ovhCloud-Api';
 export class OvhCloudApi implements ICredentialType {
     name = OvhCloudApiSecretName;
     displayName = 'OVH API';
-    icon = 'file:../icons/ovh.svg' as Icon;
+    icon = 'file:../icons/ovh_vertical.svg' as Icon;
     documentationUrl = 'https://api.ovh.com/console/';
     properties: INodeProperties[] = [
         {
