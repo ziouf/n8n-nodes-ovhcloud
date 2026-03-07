@@ -1,52 +1,58 @@
-import { IExecuteFunctions, INodeExecutionData, INodeProperties } from "n8n-workflow"
-import { listDescription, listMethods, listServices } from "./list"
-import { getDescription, getMethods, getService } from "./get"
+import { IDisplayOptions, IExecuteFunctions, INodeExecutionData, INodeProperties } from "n8n-workflow"
+import {
+    description as descriptionGet,
+    execute as executeGet,
+    methodsListSearch as methodsListSearchGet,
+} from "./get";
+import {
+    description as descriptionList,
+    execute as executeList,
+    methodsListSearch as methodsListSearchList,
+} from "./list";
 
-
-const showOnlyForServices = {
-    resource: ['services'],
+export function description(displayOptions: IDisplayOptions): INodeProperties[] {
+    return [
+        {
+            displayName: 'Operation',
+            name: 'operation',
+            type: 'options',
+            noDataExpression: true,
+            displayOptions,
+            options: [
+                {
+                    name: 'List Services',
+                    value: 'list',
+                    action: 'List all available services',
+                },
+                {
+                    name: 'Get Service',
+                    value: 'get',
+                    action: 'Get a specific service by ID',
+                },
+            ],
+            default: 'list',
+        },
+        ...descriptionList({ show: {...displayOptions.show, operation: ['list'] } }),
+        ...descriptionGet({ show: {...displayOptions.show, operation: ['get'] } }),
+    ]
 };
 
-export const servicesDescription: INodeProperties[] = [
-    {
-        displayName: 'Operation',
-        name: 'operation',
-        type: 'options',
-        noDataExpression: true,
-        displayOptions: {
-            show: showOnlyForServices,
-        },
-        options: [
-            {
-                name: 'List Services',
-                value: 'list',
-                action: 'List all available services',
-            },
-            {
-                name: 'Get Service',
-                value: 'get',
-                action: 'Get a specific service by ID',
-            },
-        ],
-        default: 'list',
-    },
-    ...listDescription,
-    ...getDescription,
-];
+export const methodsListSearch = {
+    ...methodsListSearchGet,
+    ...methodsListSearchList,
+};
 
-export const servicesMethods = Object.assign({}, getMethods, listMethods);
-
-export async function servicesExecute(
+export async function execute(
     this: IExecuteFunctions
-): Promise<INodeExecutionData[][]> {
+): Promise<INodeExecutionData[]> {
     const operation = this.getNodeParameter('operation', 0);
 
     switch (operation) {
         case 'list':
-            return [this.helpers.returnJsonArray(await listServices.call(this))];
+            return executeList.call(this);
         case 'get':
-            return [this.helpers.returnJsonArray(await getService.call(this))];
+            return executeGet.call(this);
     }
 
     throw new Error('The resource "services" cannot be executed directly. Please select an operation to execute.');
-}
+};

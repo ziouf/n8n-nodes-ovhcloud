@@ -1,38 +1,31 @@
-import { IDataObject, IExecuteFunctions, INodeProperties } from "n8n-workflow";
-import { OvhCloudApiSecretName, OvhCredentialsType, signRequestOptions } from "../../../../credentials/OvhCloudApi.credentials";
+import { IDataObject, IDisplayOptions, IExecuteFunctions, INodeExecutionData, INodeProperties } from "n8n-workflow";
+import { OvhCloudApiSecretName, OvhCredentialsType, signRequestOptions } from "../../../../../credentials/OvhCloudApi.credentials";
 
-const showOnlyForMeOrder = {
-    resource: ['me'],
-    operation: ['getOrder'],
-};
-
-export const getOrderDescription: INodeProperties[] = [
-    {
-        displayName: 'From Date',
-        name: 'fromDate',
-        type: 'dateTime',
-        default: '',
-        description: 'Filter orders created after this date',
-        displayOptions: {
-            show: showOnlyForMeOrder,
+export function getDescription(displayOptions: IDisplayOptions): INodeProperties[] {
+    return [
+        {
+            displayName: 'From Date',
+            name: 'fromDate',
+            type: 'dateTime',
+            default: '',
+            description: 'Filter orders created after this date',
+            displayOptions,
         },
-    },
-    {
-        displayName: 'To Date',
-        name: 'toDate',
-        type: 'dateTime',
-        default: '',
-        description: 'Filter orders created before this date',
-        displayOptions: {
-            show: showOnlyForMeOrder,
+        {
+            displayName: 'To Date',
+            name: 'toDate',
+            type: 'dateTime',
+            default: '',
+            description: 'Filter orders created before this date',
+            displayOptions,
         },
-    },
-];
+    ]
+}
 
-export async function getOrder(
+export async function execute(
     this: IExecuteFunctions,
     option: IDataObject = {}
-): Promise<IDataObject[]> {
+): Promise<INodeExecutionData[]> {
     const credentials = await this.getCredentials(OvhCloudApiSecretName) as OvhCredentialsType;
     
     const fromDate = this.getNodeParameter('fromDate', 0) as string;
@@ -60,7 +53,7 @@ export async function getOrder(
         options,
     );
 
-    const detailedOrders: IDataObject[] = [];
+    const detailedOrders: INodeExecutionData[] = [];
 
     for (const orderId of orderIDs) {
         const orderDetails = await this.helpers.httpRequestWithAuthentication.call(

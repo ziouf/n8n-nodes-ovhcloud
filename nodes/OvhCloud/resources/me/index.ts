@@ -1,70 +1,78 @@
-import { IExecuteFunctions, INodeExecutionData, INodeProperties } from "n8n-workflow";
-import { getDescription, getMe } from "./get";
-import { listBill, listBillsDescription } from "./listBill";
-import { getDebtAccount, getDebtAccountDescription } from "./debtAccount";
-import { getOrder, getOrderDescription } from "./getOrder";
+import { IExecuteFunctions, INodeExecutionData, INodeProperties, IDisplayOptions } from "n8n-workflow";
+import { 
+    description as descriptionMe,
+    execute as executeMe,
+} from "./me";
+import { 
+    description as descriptionBill,
+    execute as executeBill
+ } from "./bill/index";
+import { 
+    description as descriptionDebtAccount,
+    execute as executeDebtAccount,
+} from "./debtAccount/index";
+import {
+    description as descriptionOrder,
+    execute as executeOrder,
+} from "./order/index";
 
 
-const showOnlyForMe = {
-    resource: ['me'],
-};
-
-export const meDescription: INodeProperties[] = [
-    {
-        displayName: 'Operation',
-        name: 'operation',
-        type: 'options',
-        noDataExpression: true,
-        displayOptions: {
-            show: showOnlyForMe,
+export function description(displayOptions: IDisplayOptions): INodeProperties[] {
+    return [
+        {
+            displayName: 'Sub-Resource',
+            name: 'subResource',
+            type: 'options',
+            noDataExpression: true,
+            displayOptions,
+            options: [
+                {
+                    name: 'Me',
+                    value: 'me',
+                    action: 'Operations about the authenticated user',
+                },
+                {
+                    name: 'Bills',
+                    value: 'bills',
+                    action: 'Operations about bills',
+                },
+                {
+                    name: 'Debt Account',
+                    value: 'debtAccount',
+                    action: 'Operations about debt account',
+                },
+                {
+                    name: 'Orders',
+                    value: 'orders',
+                    action: 'Operations about orders',
+                },
+            ],
+            default: 'me',
         },
-        options: [
-            {
-                name: 'Get Me',
-                value: 'get',
-                action: 'Get details about the authenticated user',
-            },
-            {
-                name: 'List Bills',
-                value: 'listBill',
-                action: 'List all available bills',
-            },
-            {
-                name: 'Get Debt Account',
-                value: 'getDebtAccount',
-                action: 'Get details about debt account',
-            },
-            {
-                name: 'Get Order',
-                value: 'getOrder',
-                action: 'Get details about orders',
-            },
-        ],
-        default: 'get',
-    },
-    ...getDescription,
-    ...listBillsDescription,
-    ...getDebtAccountDescription,
-    ...getOrderDescription,
-]
+        // Me operations
+        ...descriptionMe({ show: {...displayOptions.show, subResource: ['me'] } }),
+        ...descriptionBill({ show: {...displayOptions.show, subResource: ['bills'] } }),
+        ...descriptionDebtAccount({ show: {...displayOptions.show, subResource: ['debtAccount'] } }),
+        ...descriptionOrder({ show: {...displayOptions.show, subResource: ['orders'] } }),
+    ];
+}
 
-export const meMethods = {};
+export const methodsListSearch = {};
 
-export async function meExecute(
+export async function execute(
     this: IExecuteFunctions
-): Promise<INodeExecutionData[][]> {
-    const operation = this.getNodeParameter('operation', 0);
+): Promise<INodeExecutionData[]> {
+    const subResource = this.getNodeParameter('subResource', 0);
 
-    switch (operation) {
-        case 'get':
-            return [this.helpers.returnJsonArray(await getMe.call(this))];
-        case 'listBill':
-            return [this.helpers.returnJsonArray(await listBill.call(this))];
-        case 'getDebtAccount':
-            return [this.helpers.returnJsonArray(await getDebtAccount.call(this))];
-        case 'getOrder':
-            return [this.helpers.returnJsonArray(await getOrder.call(this))];
+    switch (subResource) {
+        case 'me':
+            return executeMe.call(this);
+        case 'bills':
+            return executeBill.call(this);
+        case 'debtAccount':
+            return executeDebtAccount.call(this);
+        case 'orders':
+            return executeOrder.call(this);
     }
-
-    throw new Error(`Unsupported operation "${operation}" for resource "me"`);
+    throw new Error(`Unsupported operation "${subResource}" for resource "me"`);
 }
