@@ -1,6 +1,6 @@
 {
   "name": "n8n-nodes-ovhcloud",
-  "version": "0.0.4",
+  "version": "0.0.5",
   "description": "n8n nodes for OVH Cloud services",
   "license": "MIT",
   "homepage": "",
