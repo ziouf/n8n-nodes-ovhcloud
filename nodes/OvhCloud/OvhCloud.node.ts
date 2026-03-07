@@ -22,6 +22,11 @@ import {
     execute as executeServices,
     methodsListSearch as methodsListSearchServices,
  } from './resources/services';
+ import {
+    description as descriptionVps,
+    execute as executeVps,
+    methodsListSearch as methodsListSearchVps,
+ } from './resources/vps';
 
 export class OvhCloud implements INodeType {
     description: INodeTypeDescription = {
@@ -64,20 +69,27 @@ export class OvhCloud implements INodeType {
                         name: 'Me',
                         value: 'me',
                     },
+                    {
+                        // eslint-disable-next-line n8n-nodes-base/node-param-resource-with-plural-option
+                        name: 'VPS',
+                        value: 'vps',
+                    }
                 ],
                 default: 'services',
             },
             ...descriptionDomain({ show: { resource: ['domain'] } }),
             ...descriptionMe({show: { resource: ['me'] }}),
             ...descriptionServices({ show: { resource: ['services'] } }),
+            ...descriptionVps({ show: { resource: ['vps'] } }),
         ],
     };
 
-    methods = {
+    methods: INodeType['methods'] = {
         listSearch: {
             ...methodsListSearchDomain,
             ...methodsListSearchMe,
             ...methodsListSearchServices,
+            ...methodsListSearchVps,
         },
     }
 
@@ -91,6 +103,8 @@ export class OvhCloud implements INodeType {
                 return [this.helpers.returnJsonArray(await executeMe.call(this))];
             case 'services':
                 return [this.helpers.returnJsonArray(await executeServices.call(this))];
+            case 'vps':
+                return [this.helpers.returnJsonArray(await executeVps.call(this))];
         }
 
         throw new NodeApiError(this.getNode(), { message: `The resource "${resource}" cannot be executed directly. Please select an operation to execute.` });
