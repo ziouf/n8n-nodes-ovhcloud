@@ -5,7 +5,24 @@
   "license": "MIT",
   "homepage": "",
   "keywords": [
-    "n8n-community-node-package"
+    "n8n-community-node-package",
+    "n8n",
+    "n8n-node",
+    "n8n-nodes",
+    "n8n-community",
+    "ovh",
+    "ovhcloud",
+    "ovh-cloud",
+    "ovh-api",
+    "cloud",
+    "cloud-services",
+    "api",
+    "rest-api",
+    "automation",
+    "workflow-automation",
+    "integration",
+    "typescript",
+    "nodejs"
   ],
   "author": {
     "name": "Cyril MARIN",
