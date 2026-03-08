@@ -1,4 +1,4 @@
-import { IDisplayOptions, IExecuteFunctions, ILoadOptionsFunctions, INodeExecutionData, INodeListSearchResult, INodeProperties } from "n8n-workflow";
+import { IDataObject, IDisplayOptions, IExecuteFunctions, ILoadOptionsFunctions, INodeExecutionData, INodeListSearchResult, INodeProperties } from "n8n-workflow";
 import { OvhCloudApiSecretName, OvhCredentialsType, signRequestOptions } from "../../../../credentials/OvhCloudApi.credentials";
 
 
@@ -41,6 +41,16 @@ export function description(displayOptions: IDisplayOptions): INodeProperties[] 
                 { name: 'Available Upgrade', value: 'availableUpgrade' },
                 { name: 'Backup FTP', value: 'backupftp' },
                 { name: 'Datacenter', value: 'datacenter' },
+                { name: 'Disks', value: 'disks' },
+                { name: 'Distribution', value: 'distribution' },
+                { name: 'IP Country Available', value: 'ipCountryAvailable' },
+                { name: 'IPs', value: 'ips' },
+                { name: 'Models', value: 'models' },
+                { name: 'Option', value: 'option' },
+                { name: 'Secondary DNS Domains', value: 'secondaryDnsDomains' },
+                { name: 'Service Infos', value: 'serviceInfos' },
+                { name: 'Snapshot', value: 'snapshot' },
+                { name: 'Status', value: 'status' },
                 { name: 'VPS', value: 'vps' },
             ],
             default: 'vps',
@@ -74,47 +84,52 @@ export const methodsListSearch = {
 export async function execute(
     this: IExecuteFunctions
 ): Promise<INodeExecutionData[]> {
-    const credentials = await this.getCredentials(OvhCloudApiSecretName) as OvhCredentialsType;
     const serviceName = this.getNodeParameter('serviceName', 0, { extractValue: true });
     const subResource = this.getNodeParameter('subResource', 0, { extractValue: true });
 
     switch (subResource) {
         case 'automatedBackup':
-            return await this.helpers.httpRequestWithAuthentication.call(this, OvhCloudApiSecretName, signRequestOptions.call(this, credentials, {
-                method: 'GET',
-                url: `/vps/${serviceName}/automatedBackup`,
-                qs: {},
-                json: true,
-            }));
+            return httpGet.call(this, `/vps/${serviceName}/automatedBackup`);
         case 'availableUpgrade':
-            return await this.helpers.httpRequestWithAuthentication.call(this, OvhCloudApiSecretName, signRequestOptions.call(this, credentials, {
-                method: 'GET',
-                url: `/vps/${serviceName}/availableUpgrade`,
-                qs: {},
-                json: true,
-            }));
+            return httpGet.call(this, `/vps/${serviceName}/availableUpgrade`);
         case 'backupftp':
-            return await this.helpers.httpRequestWithAuthentication.call(this, OvhCloudApiSecretName, signRequestOptions.call(this, credentials, {
-                method: 'GET',
-                url: `/vps/${serviceName}/backupftp`,
-                qs: {},
-                json: true,
-            }));
+            return httpGet.call(this, `/vps/${serviceName}/backupftp`);
         case 'datacenter':
-            return await this.helpers.httpRequestWithAuthentication.call(this, OvhCloudApiSecretName, signRequestOptions.call(this, credentials, {
-                method: 'GET',
-                url: `/vps/${serviceName}/datacenter`,
-                qs: {},
-                json: true,
-            }));
+            return httpGet.call(this, `/vps/${serviceName}/datacenter`);
+        case 'disks':
+            return httpGet.call(this, `/vps/${serviceName}/disks`);
+        case 'distribution':
+            return httpGet.call(this, `/vps/${serviceName}/distribution`);
+        case 'ipCountryAvailable':
+            return httpGet.call(this, `/vps/${serviceName}/ipCountryAvailable`);
+        case 'ips':
+            return httpGet.call(this, `/vps/${serviceName}/ips`);
+        case 'models':
+            return httpGet.call(this, `/vps/${serviceName}/models`);
+        case 'option':
+            return httpGet.call(this, `/vps/${serviceName}/option`);
+        case 'secondaryDnsDomains':
+            return httpGet.call(this, `/vps/${serviceName}/secondaryDnsDomains`);
+        case 'serviceInfos':
+            return httpGet.call(this, `/vps/${serviceName}/serviceInfos`);
+        case 'snapshot':
+            return httpGet.call(this, `/vps/${serviceName}/snapshot`);
+        case 'status':
+            return httpGet.call(this, `/vps/${serviceName}/status`);
         case 'vps':
-            return await this.helpers.httpRequestWithAuthentication.call(this, OvhCloudApiSecretName, signRequestOptions.call(this, credentials, {
-                method: 'GET',
-                url: `/vps/${serviceName}`,
-                qs: {},
-                json: true,
-            }));
+            return httpGet.call(this, `/vps/${serviceName}`);
     }
 
     throw new Error('Invalid sub resource selected');
+}
+
+async function httpGet(
+    this: IExecuteFunctions, 
+    url: string,
+    qs: IDataObject = {}
+): Promise<INodeExecutionData[]> {
+    const credentials = await this.getCredentials(OvhCloudApiSecretName) as OvhCredentialsType;
+    return this.helpers.httpRequestWithAuthentication.call(this, OvhCloudApiSecretName, 
+        signRequestOptions.call(this, credentials, { method: 'GET', url, qs, json: true,})
+    );
 }
