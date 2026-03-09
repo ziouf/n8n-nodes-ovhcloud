@@ -1,16 +1,20 @@
-import { IDisplayOptions, IExecuteFunctions, INodeExecutionData, INodeProperties } from "n8n-workflow";
+import { IDisplayOptions, IExecuteFunctions, ILoadOptionsFunctions, INodeExecutionData, INodeListSearchResult, INodeProperties } from "n8n-workflow";
+import { OvhCloudApiClient } from "../../shared/OvhCloudApiClient";
 
 import {
     description as descriptionList,
     execute as executeList,
-    methodsListSearch as methodsListSearchList,
 } from "./list";
 
 import {
     description as descriptionGet,
     execute as executeGet,
-    methodsListSearch as methodsListSearchGet,
 } from "./get";
+
+import {
+    description as descriptionCreateSnapshot,
+    execute as executeCreateSnapshot,
+} from "./createSnapshot";
 
 export function description(displayOptions: IDisplayOptions): INodeProperties[] {
     return [
@@ -22,26 +26,36 @@ export function description(displayOptions: IDisplayOptions): INodeProperties[] 
             displayOptions,
             options: [
                 {
-                    name: 'Get All VPS',
+                    name: 'List All VPS',
                     value: 'list',
-                    action: 'Get all VPS of the authenticated user',
+                    action: 'List all VPS of the authenticated user',
                 },
                 {
                     name: 'Get VPS Details',
                     value: 'get',
                     action: 'Get details of a VPS',
                 },
+                // TODO: replace by Snapshot resource with create and list operations
+                {
+                    name: 'Create VPS Snapshot',
+                    value: 'createSnapshot',
+                    action: 'Create a snapshot of a VPS',
+                },
             ],
             default: 'list',
         },
         ...descriptionList({ show: {...displayOptions.show, vpsOperation: ['list'] } }),
         ...descriptionGet({ show: {...displayOptions.show, vpsOperation: ['get'] } }),
+        ...descriptionCreateSnapshot({ show: {...displayOptions.show, vpsOperation: ['createSnapshot'] } }),
     ];
 }
 
 export const methodsListSearch = {
-    ...methodsListSearchList,
-    ...methodsListSearchGet,
+    getVpsServices: async function (this: ILoadOptionsFunctions): Promise<INodeListSearchResult> {
+        const client = new OvhCloudApiClient(this);
+        const data = await client.httpGet(`/vps`);
+        return { results: data.map((service: string) => ({ name: service, value: service })) };
+    }
 };
 
 export async function execute(
@@ -54,6 +68,8 @@ export async function execute(
             return executeList.call(this);
         case 'get':
             return executeGet.call(this);
+        case 'createSnapshot':
+            return executeCreateSnapshot.call(this);
     }
 
     throw new Error('The resource "vps" cannot be executed directly. Please select an operation to execute.');

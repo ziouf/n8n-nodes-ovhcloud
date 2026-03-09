@@ -1,14 +1,13 @@
-import { IDisplayOptions, IExecuteFunctions, INodeExecutionData, INodeProperties } from "n8n-workflow"
+import { IDisplayOptions, IExecuteFunctions, ILoadOptionsFunctions, INodeExecutionData, INodeListSearchResult, INodeProperties } from "n8n-workflow"
 import {
     description as descriptionGet,
     execute as executeGet,
-    methodsListSearch as methodsListSearchGet,
 } from "./get";
 import {
     description as descriptionList,
     execute as executeList,
-    methodsListSearch as methodsListSearchList,
 } from "./list";
+import { OvhCloudApiClient } from "../../shared/OvhCloudApiClient";
 
 export function description(displayOptions: IDisplayOptions): INodeProperties[] {
     return [
@@ -38,8 +37,24 @@ export function description(displayOptions: IDisplayOptions): INodeProperties[] 
 };
 
 export const methodsListSearch = {
-    ...methodsListSearchGet,
-    ...methodsListSearchList,
+    getServices: async function (this: ILoadOptionsFunctions): Promise<INodeListSearchResult> {
+        const client = new OvhCloudApiClient(this);
+        const type = this.getNodeParameter('type', 0, { extractValue: true }) as string;
+        const serviceIds = await client.httpGet(`/services`, { routes: type });
+    
+        const results: INodeListSearchResult = { results: [] };
+    
+        for (const serviceId of serviceIds) {
+            const service = await client.httpGet(`/services/${serviceId}`);
+    
+            results.results.push({
+                name: `${service.resource.product.name} - ${service.resource.displayName}`,
+                value: service.serviceId,
+            });
+        }
+    
+        return results;
+    },
 };
 
 export async function execute(

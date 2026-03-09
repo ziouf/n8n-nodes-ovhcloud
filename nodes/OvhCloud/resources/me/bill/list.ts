@@ -1,5 +1,5 @@
 import { IDataObject, IDisplayOptions, IExecuteFunctions, INodeExecutionData, INodeProperties } from "n8n-workflow";
-import { OvhCloudApiSecretName, OvhCredentialsType, signRequestOptions } from "../../../../../credentials/OvhCloudApi.credentials";
+import { OvhCloudApiClient } from "../../../shared/OvhCloudApiClient";
 
 export function description(displayOptions: IDisplayOptions): INodeProperties[] {
     return [
@@ -51,10 +51,10 @@ export function description(displayOptions: IDisplayOptions): INodeProperties[] 
 
 export async function execute(
     this: IExecuteFunctions,
-    option: IDataObject = {}
 ): Promise<INodeExecutionData[]> {
-    const credentials = await this.getCredentials(OvhCloudApiSecretName) as OvhCredentialsType;
-    let qs = {};
+    const client = new OvhCloudApiClient(this);
+    
+    let qs: IDataObject = {};
 
     const category = this.getNodeParameter('category', 0, { extractValue: true }) as string;
     if (category?.length > 0) {
@@ -73,30 +73,11 @@ export async function execute(
         qs = Object.assign(qs, { orderId });
     }
 
-    const options = Object.assign(signRequestOptions.call(this, credentials, {
-        method: 'GET',
-        url: `/me/bill`,
-        qs,
-        json: true,
-    }), option);
-
-    const billIds = await this.helpers.httpRequestWithAuthentication.call(
-        this,
-        OvhCloudApiSecretName,
-        options,
-    );
-
+    const billIDs = await client.httpGet(`/me/bill`, qs) as string[];
     const bills = [];
 
-    for (const billId of billIds) {
-        const billData = await this.helpers.httpRequestWithAuthentication.call(
-            this,
-            OvhCloudApiSecretName,
-            Object.assign(options, {
-                url: `/me/bill/${billId}`,
-            }),
-        );
-
+    for (const billID of billIDs) {
+        const billData = await client.httpGet(`/me/bill/${billID}`);
         bills.push(billData);
     }
 

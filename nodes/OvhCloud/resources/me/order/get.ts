@@ -1,5 +1,5 @@
 import { IDataObject, IDisplayOptions, IExecuteFunctions, INodeExecutionData, INodeProperties } from "n8n-workflow";
-import { OvhCloudApiSecretName, OvhCredentialsType, signRequestOptions } from "../../../../../credentials/OvhCloudApi.credentials";
+import { OvhCloudApiClient } from "../../../shared/OvhCloudApiClient";
 
 export function getDescription(displayOptions: IDisplayOptions): INodeProperties[] {
     return [
@@ -24,14 +24,13 @@ export function getDescription(displayOptions: IDisplayOptions): INodeProperties
 
 export async function execute(
     this: IExecuteFunctions,
-    option: IDataObject = {}
 ): Promise<INodeExecutionData[]> {
-    const credentials = await this.getCredentials(OvhCloudApiSecretName) as OvhCredentialsType;
+    const client = new OvhCloudApiClient(this);
     
     const fromDate = this.getNodeParameter('fromDate', 0) as string;
     const toDate = this.getNodeParameter('toDate', 0) as string;
     
-    let qs = {};
+    let qs: IDataObject = {};
     if (fromDate) {
         qs = Object.assign(qs, { 'date.from': fromDate });
     }
@@ -40,32 +39,11 @@ export async function execute(
         qs = Object.assign(qs, { 'date.to': toDate });
     }
 
-    const options = Object.assign(signRequestOptions.call(this, credentials, {
-        method: 'GET',
-        url: `/me/order`,
-        qs,
-        json: true,
-    }), option);
-
-    const orderIDs = await this.helpers.httpRequestWithAuthentication.call(
-        this,
-        OvhCloudApiSecretName,
-        options,
-    );
-
+    const orderIDs = await client.httpGet(`/me/order`, qs);
     const detailedOrders: INodeExecutionData[] = [];
 
     for (const orderId of orderIDs) {
-        const orderDetails = await this.helpers.httpRequestWithAuthentication.call(
-            this,
-            OvhCloudApiSecretName,
-            Object.assign(signRequestOptions.call(this, credentials, {
-                method: 'GET',
-                url: `/me/order/${orderId}`,
-                json: true,
-            }), option)
-        );
-
+        const orderDetails = await client.httpGet(`/me/order/${orderId}`);
         detailedOrders.push(orderDetails);
     }
 

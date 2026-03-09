@@ -1,18 +1,10 @@
 import {
-    IDataObject,
     IDisplayOptions,
     IExecuteFunctions,
-    ILoadOptionsFunctions,
     INodeExecutionData,
-    INodeListSearchItems,
-    INodeListSearchResult,
     INodeProperties
 } from "n8n-workflow"
-import {
-    type OvhCredentialsType,
-    OvhCloudApiSecretName,
-    signRequestOptions
-} from "../../../../credentials/OvhCloudApi.credentials";
+import { OvhCloudApiClient } from "../../shared/OvhCloudApiClient";
 
 export function description(displayOptions: IDisplayOptions): INodeProperties[] {
     return [
@@ -92,64 +84,10 @@ export function description(displayOptions: IDisplayOptions): INodeProperties[] 
     ]
 };
 
-export const methodsListSearch = {
-    getServices: async function (this: ILoadOptionsFunctions): Promise<INodeListSearchResult> {
-        const credentials = await this.getCredentials(OvhCloudApiSecretName) as OvhCredentialsType;
-        const type = this.getNodeParameter('type', 0, { extractValue: true }) as string;
-    
-        const serviceIds = await this.helpers.httpRequestWithAuthentication.call(
-            this, 
-            OvhCloudApiSecretName, 
-            signRequestOptions.call(this, credentials, {
-                method: 'GET',
-                url: `/services`,
-                qs: {
-                    routes: type,
-                },
-                json: true,
-            })
-        );
-    
-        const results: INodeListSearchItems[] = [];
-    
-        for (const serviceId of serviceIds) {
-            const service = await this.helpers.httpRequestWithAuthentication.call(
-                this, 
-                OvhCloudApiSecretName, 
-                signRequestOptions.call(this, credentials, {
-                    method: 'GET',
-                    url: `/services/${serviceId}`,
-                    json: true,
-                })
-            );
-    
-            results.push({
-                name: `${service.resource.product.name} - ${service.resource.displayName}`,
-                value: service.serviceId,
-            });
-        }
-    
-        return { results };
-    },
-};
-
 export async function execute(
     this: IExecuteFunctions,
-    option: IDataObject = {}
 ): Promise<INodeExecutionData[]> {
-    const credentials = await this.getCredentials(OvhCloudApiSecretName) as OvhCredentialsType;
+    const client = new OvhCloudApiClient(this);
     const serviceID = this.getNodeParameter('serviceID', 0, { extractValue: true }) as { name: string, value: string };
-
-    const options = Object.assign(signRequestOptions.call(this, credentials, {
-        method: 'GET',
-        url: `/services/${serviceID.value}`,
-        qs: {},
-        json: true,
-    }), option)
-
-    return await this.helpers.httpRequestWithAuthentication.call(
-        this,
-        OvhCloudApiSecretName,
-        options,
-    );
+    return await client.httpGet(`/services/${serviceID.value}`);
 }

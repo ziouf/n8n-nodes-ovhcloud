@@ -1,15 +1,10 @@
 import { 
-    IDataObject,
     IDisplayOptions,
     IExecuteFunctions,
     INodeExecutionData,
     INodeProperties,
 } from "n8n-workflow"
-import { 
-    type OvhCredentialsType, 
-    OvhCloudApiSecretName,
-    signRequestOptions,
-} from "../../../../credentials/OvhCloudApi.credentials";
+import { OvhCloudApiClient } from "../../shared/OvhCloudApiClient";
 
 
 export function description(displayOptions: IDisplayOptions): INodeProperties[] {
@@ -75,46 +70,21 @@ export function description(displayOptions: IDisplayOptions): INodeProperties[] 
     ];
 };
 
-export const methodsListSearch = {};
-
 export async function execute(
     this: IExecuteFunctions, 
-    option: IDataObject = {}
 ): Promise<INodeExecutionData[]> {
-    const credentials = await this.getCredentials(OvhCloudApiSecretName) as OvhCredentialsType;
+    const client = new OvhCloudApiClient(this);
     const orderBy = this.getNodeParameter('orderBy', 0, { extractValue: true });
     const sort = this.getNodeParameter('sort', 0, { extractValue: true });
     const resourceName = this.getNodeParameter('resourceName', 0, { extractValue: true });
     const routes = this.getNodeParameter('routes', 0, { extractValue: true });
-
-    const serviceIDs = await this.helpers.httpRequestWithAuthentication.call(
-        this, 
-        OvhCloudApiSecretName, 
-        Object.assign(signRequestOptions.call(this, credentials, {
-            method: 'GET',
-            url: `/services`,
-            qs: {
-                orderBy,
-                sort,
-                resourceName,
-                routes,
-            },
-            json: true,
-        }), option)
-    );
+    
+    const serviceIds = await client.httpGet(`/services`, { orderBy, sort, resourceName, routes });
 
     const results: INodeExecutionData[] = [];
 
-    for (const serviceID of serviceIDs) {
-        const serviceData = await this.helpers.httpRequestWithAuthentication.call(
-            this, 
-            OvhCloudApiSecretName, 
-            Object.assign(signRequestOptions.call(this, credentials, {
-                method: 'GET',
-                url: `/services/${serviceID}`,
-                json: true,
-            }), option)
-        );        
+    for (const serviceId of serviceIds) {
+        const serviceData = await client.httpGet(`/services/${serviceId}`);
 
         results.push(serviceData);
     }
