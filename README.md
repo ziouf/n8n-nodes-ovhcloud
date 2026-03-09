@@ -20,6 +20,7 @@ Nœud communautaire n8n pour interagir avec les APIs OVHcloud.
 
 - Ressource **Services** : lister les services, récupérer un service par ID, obtenir les formulaires, options et upgrades disponibles
 - Ressource **Me** : informations du compte, factures, dette, commandes
+- Ressource **Email** : lister les domaines email, obtenir les détails d'un domaine email
 - Ressource **VPS** : lister les VPS, obtenir les détails d'un VPS, lister les datacenters, créer des snapshots, gérer les disques
 - Authentification OVH via signature (`Application Key`, `Application Secret`, `Consumer Key`)
 - Support multi-endpoints : OVH Europe/Canada/USA, SoYouStart, Kimsufi
@@ -67,6 +68,8 @@ GET /me/order
 GET /me/order/*
 GET /services
 GET /services/*
+GET /email/domain
+GET /email/domain/*
 GET /vps
 GET /vps/*
 GET /vps/*/snapshot
@@ -78,7 +81,6 @@ GET /dedicated/cluster/*
 GET /dedicated/housing/*
 GET /dedicated/server/*
 GET /domain/*
-GET /email/domain/*
 GET /email/pro/*
 GET /hosting/web/*
 ```
@@ -115,6 +117,14 @@ GET /hosting/web/*
    - **List Orders** : liste toutes les commandes
    - **Get Order** : récupère une commande spécifique par ID
    - Filtres disponibles : `date.from`, `date.to`
+
+### Resource: Email
+
+- **List Domains**
+   - Liste tous les domaines email disponibles
+- **Get Domain**
+   - Récupère les détails d'un domaine email spécifique
+   - Sélection du domaine depuis une liste dynamique ou saisie manuelle
 
 ### Resource: VPS
 
@@ -171,6 +181,7 @@ npm run release
 │   └── OvhCloud/
 │       ├── OvhCloud.node.ts
 │       ├── resources/
+│       │   ├── email.ts
 │       │   ├── me.ts
 │       │   ├── services.ts
 │       │   └── vps.ts
