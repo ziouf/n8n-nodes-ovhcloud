@@ -18,8 +18,9 @@ Nœud communautaire n8n pour interagir avec les APIs OVHcloud.
 
 ## Fonctionnalités
 
-- Ressource **Services** : lister les services et récupérer un service par ID
+- Ressource **Services** : lister les services, récupérer un service par ID, obtenir les formulaires, options et upgrades disponibles
 - Ressource **Me** : informations du compte, factures, dette, commandes
+- Ressource **VPS** : lister les VPS, obtenir les détails d'un VPS, lister les datacenters, créer des snapshots, gérer les disques
 - Authentification OVH via signature (`Application Key`, `Application Secret`, `Consumer Key`)
 - Support multi-endpoints : OVH Europe/Canada/USA, SoYouStart, Kimsufi
 
@@ -66,6 +67,20 @@ GET /me/order
 GET /me/order/*
 GET /services
 GET /services/*
+GET /vps
+GET /vps/*
+GET /vps/*/snapshot
+POST /vps/*/snapshot
+GET /vps/*/disks
+GET /vps/*/disks/*
+GET /dedicated/ceph/*
+GET /dedicated/cluster/*
+GET /dedicated/housing/*
+GET /dedicated/server/*
+GET /domain/*
+GET /email/domain/*
+GET /email/pro/*
+GET /hosting/web/*
 ```
 
 ## Opérations disponibles
@@ -77,28 +92,45 @@ GET /services/*
    - Filtre par nom de service (`resourceName`)
    - Filtre par route (`routes`, liste séparée par virgules)
 - **Get Service**
-   - Sélection du type de service (Dedicated Server, Domain, Email, Hosting, ...)
+   - Sélection du type de service (Dedicated Ceph, Dedicated Cluster, Dedicated Housing, Dedicated Server, Domain, Email, Email Pro, Hosting)
    - Sélection du service depuis une liste dynamique
+- **Get Service Forms**
+   - Récupère les formulaires disponibles pour un service spécifique
+- **Get Service Options**
+   - Récupère les options disponibles pour un service spécifique
+- **Get Service Upgrades**
+   - Liste les offres vers lesquelles un service peut être converti
 
 ### Resource: Me
 
 - **Sub-resource Me**
-   - **Get My Info** (`GET /me`)
+   - **Get My Info** (`GET /me`) : informations du compte authentifié
 - **Sub-resource Bills**
-   - **List Bills** (`GET /me/bill` puis détails)
-   - Filtres disponibles : catégorie, `date.from`, `date.to`, `orderId`
+   - **List Bills** : liste toutes les factures avec détails
+   - **Get Bill** : récupère une facture spécifique par ID
+   - Filtres disponibles : catégorie (autorenew, earlyrenewal, purchase, purchase-cloud, purchase-servers, purchase-telecom, purchase-web), `orderId`
 - **Sub-resource Debt Account**
-   - **Get Debt Account** (`GET /me/debtAccount`)
+   - **Get Debt Account** (`GET /me/debtAccount`) : informations sur le compte de dette
 - **Sub-resource Orders**
-   - **Get Order** (liste + détails via `GET /me/order` et `GET /me/order/{id}`)
+   - **List Orders** : liste toutes les commandes
+   - **Get Order** : récupère une commande spécifique par ID
    - Filtres disponibles : `date.from`, `date.to`
 
-### Resource: Domain
+### Resource: VPS
 
-- **List Domains**
-- **Get Domain**
-
-Statut actuel : ces opérations sont déclarées mais pas encore implémentées.
+- **List VPS**
+   - Liste tous les VPS disponibles
+- **List Datacenters**
+   - Liste tous les datacenters disponibles pour l'utilisateur authentifié
+- **Get VPS Details**
+   - Récupère les détails d'un VPS spécifique
+   - Sous-ressources disponibles : Automated Backup, Available Upgrade, Backup FTP, Datacenter, Disks, Distribution, IP Country Available, IPs, Models, Option, Secondary DNS Domains, Service Infos, Snapshot, Status, VPS
+   - **Disks Operations** :
+     - List Disks : liste tous les disques d'un VPS
+     - Get Disk : récupère les détails d'un disque spécifique
+- **Create VPS Snapshot**
+   - Crée un snapshot d'un VPS
+   - Description personnalisable du snapshot
 
 ## Compatibilité
 
@@ -133,16 +165,20 @@ npm run release
 ```text
 .
 ├── credentials/
-│   └── OvhCloudApi.credentials.ts
+│   ├── OvhCloudApi.credentials.ts
+│   └── OvhCloudApi.credentials.js
 ├── nodes/
 │   └── OvhCloud/
 │       ├── OvhCloud.node.ts
-│       ├── listSearch/
-│       └── resources/
-│           ├── services/
-│           ├── domain/
-│           └── me/
+│       ├── resources/
+│       │   ├── me.ts
+│       │   ├── services.ts
+│       │   └── vps.ts
+│       └── shared/
+│           └── OvhCloudApiClient.ts
 ├── icons/
+│   ├── ovh.svg
+│   └── ovh_vertical.svg
 └── dist/
 ```
 
