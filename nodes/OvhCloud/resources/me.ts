@@ -238,9 +238,7 @@ export function description(displayOptions: IDisplayOptions): INodeProperties[] 
 
 export const methodsListSearch = {};
 
-export async function execute(
-    this: IExecuteFunctions
-): Promise<INodeExecutionData[]> {
+export async function execute(this: IExecuteFunctions): Promise<INodeExecutionData[]> {
     const subResource = this.getNodeParameter('subResource', 0);
 
     switch (subResource) {

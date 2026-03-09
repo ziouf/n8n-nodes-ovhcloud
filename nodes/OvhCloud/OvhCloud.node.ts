@@ -18,6 +18,11 @@ import {
     methodsListSearch as methodsListSearchServices,
 } from './resources/services';
 import {
+    description as descriptionEmail,
+    execute as executeEmail,
+    methodsListSearch as methodsListSearchEmail,
+} from './resources/email';
+import {
     description as descriptionVps,
     execute as executeVps,
     methodsListSearch as methodsListSearchVps,
@@ -61,6 +66,10 @@ export class OvhCloud implements INodeType {
                         value: 'me',
                     },
                     {
+                        name: 'Email',
+                        value: 'email',
+                    },
+                    {
                         // eslint-disable-next-line n8n-nodes-base/node-param-resource-with-plural-option
                         name: 'VPS',
                         value: 'vps',
@@ -70,6 +79,7 @@ export class OvhCloud implements INodeType {
             },
             ...descriptionMe({ show: { resource: ['me'] } }),
             ...descriptionServices({ show: { resource: ['services'] } }),
+            ...descriptionEmail({ show: { resource: ['email'] } }),
             ...descriptionVps({ show: { resource: ['vps'] } }),
         ],
     };
@@ -78,6 +88,7 @@ export class OvhCloud implements INodeType {
         listSearch: {
             ...methodsListSearchMe,
             ...methodsListSearchServices,
+            ...methodsListSearchEmail,
             ...methodsListSearchVps,
         },
     }
@@ -93,6 +104,9 @@ export class OvhCloud implements INodeType {
                 break;
             case 'services':
                 responseData = await executeServices.call(this);
+                break;
+            case 'email':
+                responseData = await executeEmail.call(this);
                 break;
             case 'vps':
                 responseData = await executeVps.call(this);
