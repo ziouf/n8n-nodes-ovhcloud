@@ -8,25 +8,20 @@ import {
 } from 'n8n-workflow';
 import { OvhCloudApiSecretName } from '../../credentials/OvhCloudApi.credentials';
 import {
-    description as descriptionDomain,
-    execute as executeDomain,
-    methodsListSearch as methodsListSearchDomain,
-} from './resources/domain';
-import { 
-    description as descriptionMe, 
+    description as descriptionMe,
     execute as executeMe,
     methodsListSearch as methodsListSearchMe,
 } from './resources/me';
-import { 
+import {
     description as descriptionServices,
     execute as executeServices,
     methodsListSearch as methodsListSearchServices,
- } from './resources/services';
- import {
+} from './resources/services';
+import {
     description as descriptionVps,
     execute as executeVps,
     methodsListSearch as methodsListSearchVps,
- } from './resources/vps';
+} from './resources/vps';
 
 export class OvhCloud implements INodeType {
     description: INodeTypeDescription = {
@@ -58,10 +53,6 @@ export class OvhCloud implements INodeType {
                 noDataExpression: true,
                 options: [
                     {
-                        name: 'Domain',
-                        value: 'domain',
-                    },
-                    {
                         name: 'Service',
                         value: 'services',
                     },
@@ -77,8 +68,7 @@ export class OvhCloud implements INodeType {
                 ],
                 default: 'services',
             },
-            ...descriptionDomain({ show: { resource: ['domain'] } }),
-            ...descriptionMe({show: { resource: ['me'] }}),
+            ...descriptionMe({ show: { resource: ['me'] } }),
             ...descriptionServices({ show: { resource: ['services'] } }),
             ...descriptionVps({ show: { resource: ['vps'] } }),
         ],
@@ -86,7 +76,6 @@ export class OvhCloud implements INodeType {
 
     methods: INodeType['methods'] = {
         listSearch: {
-            ...methodsListSearchDomain,
             ...methodsListSearchMe,
             ...methodsListSearchServices,
             ...methodsListSearchVps,
@@ -96,17 +85,22 @@ export class OvhCloud implements INodeType {
     async execute(this: IExecuteFunctions): Promise<INodeExecutionData[][]> {
         const resource = this.getNodeParameter('resource', 0);
 
+        let responseData: INodeExecutionData[];
+
         switch (resource) {
-            case 'domain':
-                return [this.helpers.returnJsonArray(await executeDomain.call(this))];
             case 'me':
-                return [this.helpers.returnJsonArray(await executeMe.call(this))];
+                responseData = await executeMe.call(this);
+                break;
             case 'services':
-                return [this.helpers.returnJsonArray(await executeServices.call(this))];
+                responseData = await executeServices.call(this);
+                break;
             case 'vps':
-                return [this.helpers.returnJsonArray(await executeVps.call(this))];
+                responseData = await executeVps.call(this);
+                break;
+            default:
+                throw new NodeApiError(this.getNode(), { message: `The resource "${resource}" cannot be executed directly. Please select an operation to execute.` });
         }
 
-        throw new NodeApiError(this.getNode(), { message: `The resource "${resource}" cannot be executed directly. Please select an operation to execute.` });
+        return [this.helpers.returnJsonArray(responseData)];
     }
 }

@@ -36,19 +36,23 @@ export class OvhCloudApiClient {
     }
 
     public async httpGet(url: string, qs: IDataObject = {}) {
-        const options = await this.signRequestOptions({ method: 'GET', url, qs, json: true });
-        return await this.fn.helpers.httpRequestWithAuthentication.call(this.fn, OvhCloudApiSecretName, options);
+        return await this.fn.helpers.httpRequestWithAuthentication.call(this.fn, OvhCloudApiSecretName, 
+            await this.signRequestOptions({ method: 'GET', url, qs, json: true })
+        );
     }
     public async httpPost(url: string, body: IDataObject = {}, qs: IDataObject = {}) {
-        const options = await this.signRequestOptions({ method: 'POST', url, body, qs, json: true });
-        return await this.fn.helpers.httpRequestWithAuthentication.call(this.fn, OvhCloudApiSecretName, options);
+        return await this.fn.helpers.httpRequestWithAuthentication.call(this.fn, OvhCloudApiSecretName, 
+            await this.signRequestOptions({ method: 'POST', url, body, qs, json: true })
+        );
     }
     public async httpPut(url: string, body: IDataObject = {}, qs: IDataObject = {}) {
-        const options = await this.signRequestOptions({ method: 'PUT', url, body, qs, json: true });
-        return await this.fn.helpers.httpRequestWithAuthentication.call(this.fn, OvhCloudApiSecretName, options);
+        return await this.fn.helpers.httpRequestWithAuthentication.call(this.fn, OvhCloudApiSecretName, 
+            await this.signRequestOptions({ method: 'PUT', url, body, qs, json: true })
+        );
     }
     public async httpDelete(url: string, qs: IDataObject = {}) {
-        const options = await this.signRequestOptions({ method: 'DELETE', url, qs, json: true });
-        return await this.fn.helpers.httpRequestWithAuthentication.call(this.fn, OvhCloudApiSecretName, options);
+        return await this.fn.helpers.httpRequestWithAuthentication.call(this.fn, OvhCloudApiSecretName, 
+            await this.signRequestOptions({ method: 'DELETE', url, qs, json: true })
+        );
     }
 }
