@@ -1,0 +1,15 @@
+export * as automatedBackup from './automatedBackup';
+export * as availableUpgrade from './availableUpgrade';
+export * as backupftp from './backupftp';
+export * as datacenter from './datacenter';
+export * as disks from './disks';
+export * as distribution from './distribution';
+export * as ipCountryAvailable from './ipCountryAvailable';
+export * as ips from './ips';
+export * as models from './models';
+export * as option from './option';
+export * as secondaryDnsDomains from './secondaryDnsDomains';
+export * as serviceInfos from './serviceInfos';
+export * as snapshot from './snapshot';
+export * as status from './status';
+export * as vps from './vps';

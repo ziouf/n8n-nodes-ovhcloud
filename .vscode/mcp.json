@@ -1,0 +1,9 @@
+{
+	"servers": {
+		"n8n-docs": {
+			"type": "http",
+			"url": "https://n8n.mcp.kapa.ai/"
+		}
+	},
+	"inputs": []
+}
