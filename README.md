@@ -1,63 +1,131 @@
 # n8n-nodes-ovhcloud
 
-Nœud communautaire n8n pour interagir avec les APIs OVHcloud.
+[![n8n Nodes Base](https://img.shields.io/badge/n8n-nodes_base-orange.svg)](https://docs.n8n.io/integrations/#community-nodes)
+[![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
 
-[n8n](https://n8n.io/) est une plateforme d’automatisation de workflows sous [licence fair-code](https://docs.n8n.io/sustainable-use-license/).
+**n8n-nodes-ovhcloud** is a community node for [n8n](https://n8n.io/) that enables seamless integration with OVHcloud APIs. It provides comprehensive functionality for managing OVH services including dedicated servers, VPS, email domains, and more—all from within your n8n workflows.
 
-## Sommaire
+> **Note**: n8n is a workflow automation platform released under the [FairCode license](https://docs.n8n.io/sustainable-use-license/).
 
-- [Fonctionnalités](#fonctionnalités)
+---
+
+## Table of Contents
+
+- [Features](#features)
+- [Prerequisites](#prerequisites)
 - [Installation](#installation)
-- [Configuration des credentials OVH](#configuration-des-credentials-ovh)
-- [Opérations disponibles](#opérations-disponibles)
-- [Compatibilité](#compatibilité)
-- [Développement](#développement)
-- [Contribution](#contribution)
-- [Licence](#licence)
-- [Ressources](#ressources)
+- [Configuration](#configuration)
+- [Usage Examples](#usage-examples)
+- [Troubleshooting](#troubleshooting)
+- [Development](#development)
+- [Project Structure](#project-structure)
+- [Contributing](#contributing)
+- [License](#license)
+- [Resources](#resources)
 
-## Fonctionnalités
+---
 
-- Ressource **Services** : lister les services, récupérer un service par ID, obtenir les formulaires, options et upgrades disponibles
-- Ressource **Me** : informations du compte, factures, dette, commandes
-- Ressource **Email** : lister les domaines email, obtenir les détails d'un domaine email
-- Ressource **VPS** : lister les VPS, obtenir les détails d'un VPS, lister les datacenters, créer des snapshots, gérer les disques
-- Authentification OVH via signature (`Application Key`, `Application Secret`, `Consumer Key`)
-- Support multi-endpoints : OVH Europe/Canada/USA, SoYouStart, Kimsufi
+## Features
+
+| Resource     | Operations                                                               | Description                                                                 |
+| ------------ | ------------------------------------------------------------------------ | --------------------------------------------------------------------------- |
+| **Services** | List, Get, Get Options, Get Forms, Get Upgrades                          | Manage OVH services (dedicated servers, domains, hosting, etc.)             |
+| **Me**       | Get Info, List Bills, Get Bill, Get Debt Account, List Orders, Get Order | Manage your OVH account and billing                                         |
+| **Email**    | List Domains, Get Domain                                                 | Manage email domains and configurations                                     |
+| **VPS**      | List, Get, Snapshots, Disks, Backup, IPs, Datacenter, Options, and more  | Full VPS management including snapshots, disk operations, and sub-resources |
+
+### Additional Capabilities
+
+- **Multi-endpoint support**: OVH Europe/Canada/USA, SoYouStart, Kimsufi
+- **OAuth signature authentication**: Secure SHA1-based signature algorithm
+- **Dynamic list selection**:自动 populate dropdowns with live data (service IDs, domains, VPS names)
+- **Extensive API coverage**: Over 30+ sub-resources for VPS management
+
+---
+
+## Prerequisites
+
+Before using this node, ensure you have:
+
+1. **OVHcloud Account**: A valid OVHcloud account with API access enabled
+2. **API Credentials**: Application Key, Application Secret, and Consumer Key (see [Configuration](#configuration))
+3. **n8n Installation**: n8n version 1.60.0 or higher
+
+---
 
 ## Installation
 
-Suivez le [guide d'installation des community nodes n8n](https://docs.n8n.io/integrations/community-nodes/installation/).
+### Method 1: Using n8n UI
 
-### Depuis l’interface n8n
+1. Open n8n and navigate to **Settings** > **Community Nodes**
+2. Click **Install**
+3. Search for `n8n-nodes-ovhcloud`
+4. Click **Install** and restart n8n when prompted
 
-1. Ouvrez **Settings** > **Community Nodes**
-2. Cliquez sur **Install**
-3. Recherchez `n8n-nodes-ovhcloud`
-4. Installez le package
-
-### Installation manuelle
+### Method 2: Manual Installation
 
 ```bash
+# In your n8n installation directory
 npm install n8n-nodes-ovhcloud
 ```
 
-## Configuration des credentials OVH
+> **Restart n8n** after installation for changes to take effect.
 
-Le nœud utilise le credential **OVH API** avec :
+### Method 3: Development Installation
 
-- `Endpoint`
-- `Application Key`
-- `Application Secret`
-- `Consumer Key`
+For contributing or development purposes:
 
-Portails de création d’application OVHcloud :
+```bash
+git clone https://github.com/cyril-marin/n8n-nodes-ovhcloud.git
+cd n8n-nodes-ovhcloud
+npm install
+npm run build
+```
 
-- Europe : https://eu.api.ovh.com/createApp/
-- Canada : https://ca.api.ovh.com/createApp/
-- USA : https://api.us.ovhcloud.com/createApp/
+---
 
-### Permissions API recommandées
+## Configuration
+
+### Step 1: Create an OVH API Application
+
+1. Visit the [OVH API Console](https://api.ovh.com/console/)
+2. Click **Create Application**
+3. Fill in:
+   - **Application Name**: Descriptive name (e.g., "n8n-integration")
+   - **Application Description**: Brief description of usage
+   - **Access rights**: Select the permissions you need (see [Permissions](#permissions))
+
+4. Click **Create Application**
+5. **Note down your credentials**:
+   - `Application Key` (starts with `...`)
+   - `Application Secret` (starts with `...`)
+
+### Step 2: Authorize Your Application
+
+1. In the application details, click **Create a Consumer Key**
+2. Select the desired permissions (see [Permissions](#permissions))
+3. Click **Create**
+4. Authorize the request in your browser
+5. **Note down your `Consumer Key`**
+
+### Step 3: Configure Credentials in n8n
+
+1. In n8n, go to **Settings** > **Credentials** > **New**
+2. Select **OVH API**
+3. Fill in the fields:
+
+| Field                  | Value                | Description        |
+| ---------------------- | -------------------- | ------------------ |
+| **Endpoint**           | `eu.api.ovh.com/1.0` | OVH cloud endpoint |
+| **Application Key**    | `...`                | From Step 1        |
+| **Application Secret** | `...`                | From Step 1        |
+| **Consumer Key**       | `...`                | From Step 2        |
+
+4. Click **Save**
+
+### Permissions
+
+The following permissions are typically required for full functionality:
 
 ```text
 GET /me
@@ -66,152 +134,447 @@ GET /me/bill/*
 GET /me/debtAccount
 GET /me/order
 GET /me/order/*
+
 GET /services
 GET /services/*
+
 GET /email/domain
 GET /email/domain/*
+
 GET /vps
 GET /vps/*
 GET /vps/*/snapshot
 POST /vps/*/snapshot
 GET /vps/*/disks
 GET /vps/*/disks/*
-GET /dedicated/ceph/*
-GET /dedicated/cluster/*
-GET /dedicated/housing/*
-GET /dedicated/server/*
-GET /domain/*
-GET /email/pro/*
-GET /hosting/web/*
 ```
 
-## Opérations disponibles
+> **Tip**: Start with minimal permissions and add more as needed following the principle of least privilege.
 
-### Resource: Services
+### Endpoints
 
-- **List Services**
-   - Tri par `serviceId` (asc/desc)
-   - Filtre par nom de service (`resourceName`)
-   - Filtre par route (`routes`, liste séparée par virgules)
-- **Get Service**
-   - Sélection du type de service (Dedicated Ceph, Dedicated Cluster, Dedicated Housing, Dedicated Server, Domain, Email, Email Pro, Hosting)
-   - Sélection du service depuis une liste dynamique
-- **Get Service Forms**
-   - Récupère les formulaires disponibles pour un service spécifique
-- **Get Service Options**
-   - Récupère les options disponibles pour un service spécifique
-- **Get Service Upgrades**
-   - Liste les offres vers lesquelles un service peut être converti
+Choose the appropriate endpoint based on your OVH account region:
 
-### Resource: Me
+| Endpoint                    | Region                   |
+| --------------------------- | ------------------------ |
+| `eu.api.ovh.com/1.0`        | OVH Europe               |
+| `ca.api.ovh.com/1.0`        | OVH Canada               |
+| `api.us.ovhcloud.com/1.0`   | OVH USA                  |
+| `eu.api.soyoustart.com/1.0` | SoYouStart Europe        |
+| `ca.api.soyoustart.com/1.0` | SoYouStart North America |
+| `eu.api.kimsufi.com/1.0`    | Kimsufi Europe           |
+| `ca.api.kimsufi.com/1.0`    | Kimsufi North America    |
 
-- **Sub-resource Me**
-   - **Get My Info** (`GET /me`) : informations du compte authentifié
-- **Sub-resource Bills**
-   - **List Bills** : liste toutes les factures avec détails
-   - **Get Bill** : récupère une facture spécifique par ID
-   - Filtres disponibles : catégorie (autorenew, earlyrenewal, purchase, purchase-cloud, purchase-servers, purchase-telecom, purchase-web), `orderId`
-- **Sub-resource Debt Account**
-   - **Get Debt Account** (`GET /me/debtAccount`) : informations sur le compte de dette
-- **Sub-resource Orders**
-   - **List Orders** : liste toutes les commandes
-   - **Get Order** : récupère une commande spécifique par ID
-   - Filtres disponibles : `date.from`, `date.to`
+---
 
-### Resource: Email
+## Usage Examples
 
-- **List Domains**
-   - Liste tous les domaines email disponibles
-- **Get Domain**
-   - Récupère les détails d'un domaine email spécifique
-   - Sélection du domaine depuis une liste dynamique ou saisie manuelle
+### Example 1: List All VPS Services
 
-### Resource: VPS
+**Use Case**: Automatically discover your VPS instances for monitoring or backup workflows.
 
-- **List VPS**
-   - Liste tous les VPS disponibles
-- **List Datacenters**
-   - Liste tous les datacenters disponibles pour l'utilisateur authentifié
-- **Get VPS Details**
-   - Récupère les détails d'un VPS spécifique
-   - Sous-ressources disponibles : Automated Backup, Available Upgrade, Backup FTP, Datacenter, Disks, Distribution, IP Country Available, IPs, Models, Option, Secondary DNS Domains, Service Infos, Snapshot, Status, VPS
-   - **Disks Operations** :
-     - List Disks : liste tous les disques d'un VPS
-     - Get Disk : récupère les détails d'un disque spécifique
-- **Create VPS Snapshot**
-   - Crée un snapshot d'un VPS
-   - Description personnalisable du snapshot
+#### Configuration
 
-## Compatibilité
+1. **Node**: Add "OVH Cloud" node to workflow
+2. **Resource**: `VPS`
+3. **Operation**: `List`
+4. **Credentials**: Select your OVH API credentials
 
-- n8n `>= 1.60.0`
+#### Expected Output
 
-## Développement
+```json
+[
+	{
+		"json": {
+			"serviceId": "vps1234567",
+			"displayName": "vps-display-name",
+			"cloudProject": "project-name",
+			"state": "running",
+			"plan": "vps-2024-virtual-2"
+		}
+	},
+	{
+		"json": {
+			"serviceId": "vps8901234",
+			"displayName": "vps-second",
+			"cloudProject": "project-name",
+			"state": "stopped",
+			"plan": "vps-2024-virtual-4"
+		}
+	}
+]
+```
 
-### Prérequis
+---
 
-- Node.js
-- npm
+### Example 2: Get VPS Details and Create Snapshot
 
-### Installation des dépendances
+**Use Case**: Create daily snapshots of critical VPS instances.
+
+#### Configuration
+
+1. **Node**: `OVH Cloud` > `VPS` > `Get`
+   - **Service Name**: Select from list (e.g., `vps1234567`)
+   - **Credentials**: OVH API credentials
+
+2. **Node**: `OVH Cloud` > `VPS` > `Snapshot` > `Create`
+   - **Service Name**: Use expression `={{ $json.serviceId }}` to reuse VPS ID
+   - **Description**: `Daily backup - {{ $datetime.now().toISODate() }}`
+   - **Credentials**: OVH API credentials
+
+#### Output Structure
+
+**Get VPS Details**:
+
+```json
+{
+	"json": {
+		"serviceId": "vps1234567",
+		"displayName": "vps-display-name",
+		"state": "running",
+		"plan": "vps-2024-virtual-2",
+		"ipAddresses": ["123.456.789.012"]
+	}
+}
+```
+
+**Create Snapshot**:
+
+```json
+{
+	"json": {
+		"description": "Daily backup - 2026-03-26",
+		"id": "snap-abcdef12",
+		"state": "in_progress",
+		"size": 0
+	}
+}
+```
+
+---
+
+### Example 3: List All Email Domains
+
+**Use Case**: Audit email domains owned by your OVH account.
+
+#### Configuration
+
+1. **Node**: `OVH Cloud` > `Email` > `List Domains`
+2. **Credentials**: OVH API credentials
+
+#### Expected Output
+
+```json
+[
+	{
+		"json": {
+			"displayName": "example.com",
+			"domain": "example.com",
+			"techContact": "user123"
+		}
+	},
+	{
+		"json": {
+			"displayName": "my-business.net",
+			"domain": "my-business.net",
+			"techContact": "user456"
+		}
+	}
+]
+```
+
+---
+
+### Example 4: Get YourOVH Account Information
+
+**Use Case**: Retrieve account details for notifications or monitoring.
+
+#### Configuration
+
+1. **Node**: `OVH Cloud` > `Me` > `My Account` > `Get My Info`
+2. **Credentials**: OVH API credentials
+
+#### Output
+
+```json
+{
+	"json": {
+		"email": "user@example.com",
+		"country": "fr",
+		"currency": "eur",
+		"lang": "fr"
+	}
+}
+```
+
+---
+
+### Example 5: List All Bills with Filtering
+
+**Use Case**: Create monthly expense reports.
+
+#### Configuration
+
+1. **Node**: `OVH Cloud` > `Me` > `Bills` > `List Bills`
+2. **Filters**:
+   - **Category**: `purchase-web` (web hosting bills only)
+   - **Date From**: `2026-03-01`
+   - **Date To**: `2026-03-31`
+3. **Credentials**: OVH API credentials
+
+#### Output Structure
+
+```json
+[
+	{
+		"json": {
+			"billId": "bill-123456",
+			"creationDate": "2026-03-01T00:00:00Z",
+			"date": "2026-03-01T00:00:00Z",
+			"description": "Web hosting - March 2026",
+			"totalWithTax": {
+				"value": 12.99,
+				"currency": "EUR"
+			},
+			"status": "paid"
+		}
+	}
+]
+```
+
+---
+
+### Example 6: List Services by Route
+
+**Use Case**: Find all hosting web services for maintenance.
+
+#### Configuration
+
+1. **Node**: `OVH Cloud` > `Services` > `List Services`
+2. **Filters**:
+   - **Route**: `/hosting/web`
+   - **Sort By**: `serviceId` (ascending)
+3. **Credentials**: OVH API credentials
+
+#### Output
+
+```json
+[
+	{
+		"json": {
+			"serviceId": "webhosting123",
+			"displayName": "webhosting123.ovh.net",
+			"routes": ["/hosting/web"]
+		}
+	}
+]
+```
+
+---
+
+## Troubleshooting
+
+### Common Errors
+
+| Error                     | Cause                          | Solution                                              |
+| ------------------------- | ------------------------------ | ----------------------------------------------------- |
+| `401 Unauthorized`        | Invalid or expired credentials | Regenerate API credentials and update in n8n          |
+| `403 Forbidden`           | Insufficient permissions       | Add required permissions to your API application      |
+| `404 Not Found`           | Service ID does not exist      | Verify service ID and ensure service is active in OVH |
+| `429 Too Many Requests`   | Rate limit exceeded            | Implement delay nodes between API calls               |
+| `503 Service Unavailable` | OVH API maintenance            | Retry after some time or check OVH status page        |
+
+### Debug Tips
+
+1. **Enable Logging**: Use n8n's **Debug Node** to inspect intermediate outputs
+2. **Test Credentials**: Use the test button in credential configuration
+3. **Check OVH Status**: Visit [OVH Status](https://status.ovhcloud.com/) for outages
+4. **Review Permissions**: Ensure your Consumer Key has the correct permissions
+
+### API Rate Limits
+
+OVH API enforces rate limits. If you encounter `429` errors:
+
+- Add **Wait** nodes between API calls (recommended: 100ms+)
+- Use **Batching** to group similar operations
+- Implement **Retry** logic for transient failures
+
+---
+
+## Development
+
+### Prerequisites
+
+- Node.js >= 18.x
+- npm >= 9.x
+- n8n CLI
+
+### Setup
 
 ```bash
+# Clone the repository
+git clone https://github.com/cyril-marin/n8n-nodes-ovhcloud.git
+cd n8n-nodes-ovhcloud
+
+# Install dependencies
 npm install
-```
 
-### Scripts
-
-```bash
+# Build the project
 npm run build
-npm run build:watch
+
+# Start development mode (with hot reload)
 npm run dev
-npm run lint
-npm run lint:fix
-npm run release
 ```
 
-### Structure du projet
+### Available Scripts
 
-```text
-.
+| Command               | Description                           |
+| --------------------- | ------------------------------------- |
+| `npm run build`       | Compile TypeScript to `dist/`         |
+| `npm run build:watch` | Watch mode for TypeScript             |
+| `npm run dev`         | Development mode with hot reload      |
+| `npm run lint`        | Run ESLint                            |
+| `npm run lint:fix`    | Auto-fix linting issues               |
+| `npm run release`     | Release new version (uses release-it) |
+
+### Testing
+
+1. Start development mode: `npm run dev`
+2. Open n8n and add the OVH Cloud node
+3. Configure your credentials
+4. Test operations using sample workflows
+
+> **Note**: Automated tests are currently not configured. Manual testing in n8n is required.
+
+### Code Style
+
+This project follows the [n8n Node Developer Guidelines](https://docs.n8n.io/integrations/creating-nodes/) with the following specific rules:
+
+- **Indentation**: 2-space tabs (`useTabs: true`)
+- **Semicolons**: Required (`semi: true`)
+- **Quotes**: Single quotes preferred (`singleQuote: true`)
+- **Line Width**: 100 characters max
+- **TypeScript**: Strict mode enabled
+
+---
+
+## Project Structure
+
+```
+n8n-nodes-ovhcloud/
 ├── credentials/
-│   ├── OvhCloudApi.credentials.ts
-│   └── OvhCloudApi.credentials.js
+│   └── OvhCloudApi.credentials.ts     # OVH API credential type
 ├── nodes/
 │   └── OvhCloud/
-│       ├── OvhCloud.node.ts
-│       ├── resources/
-│       │   ├── email.ts
-│       │   ├── me.ts
-│       │   ├── services.ts
-│       │   └── vps.ts
-│       └── shared/
-│           └── OvhCloudApiClient.ts
-├── icons/
-│   ├── ovh.svg
-│   └── ovh_vertical.svg
-└── dist/
+│       ├── OvhCloud.node.ts           # Main node definition
+│       ├── actions/                   # Resource operation handlers
+│       │   ├── email/                 # Email resource actions
+│       │   ├── me/                    # Account/Me resource actions
+│       │   ├── services/              # Services resource actions
+│       │   └── vps/                   # VPS resource actions
+│       ├── methods/                   # Dynamic list search methods
+│       │   ├── getServiceIds.method.ts
+│       │   ├── getEmailDomains.method.ts
+│       │   └── getVpsServices.method.ts
+│       └── transport/                 # API communication layer
+│           ├── ApiClient.ts           # API client interface
+│           ├── ApiClientImpl.ts       # API client implementation
+│           └── CredentialHolder.ts    # OVH signature authentication
+├── icons/                             # Node and credential icons
+├── dist/                              # Compiled output (generated)
+├── .eslintrc.js                       # ESLint configuration
+├── .prettierrc                        # Prettier configuration
+└── package.json                       # Project metadata and dependencies
 ```
 
-## Contribution
+---
 
-Les contributions sont bienvenues.
+## Contributing
 
-1. Fork du dépôt
-2. Création d’une branche (`git checkout -b feature/ma-feature`)
-3. Commit (`git commit -m "feat: ..."`)
-4. Push
-5. Ouverture d’une Pull Request
+Contributions are welcome! Here's how you can help:
 
-## Licence
+1. **Fork the repository**
+
+   ```bash
+   git fork https://github.com/cyril-marin/n8n-nodes-ovhcloud
+   ```
+
+2. **Create a feature branch**
+
+   ```bash
+   git checkout -b feature/amazing-feature
+   ```
+
+3. **Make your changes**
+   - Follow the code style guidelines
+   - Add comprehensive JSDoc comments
+   - Update documentation as needed
+
+4. **Commit your changes**
+
+   ```bash
+   git commit -m "feat: add amazing feature"
+   ```
+
+5. **Push to your branch**
+
+   ```bash
+   git push origin feature/amazing-feature
+   ```
+
+6. **Open a Pull Request**
+   - Provide a clear description of your changes
+   - Include examples if applicable
+   - Reference any related issues
+
+### Development Guidelines
+
+- **Testing**: Ensure all operations work manually in n8n before submitting
+- **Documentation**: Update this README with any new features or changes
+- **Code Quality**: Run `npm run lint:fix` before committing
+- **Commit Messages**: Use [Conventional Commits](https://www.conventionalcommits.org/) format
+
+---
+
+## License
 
 [MIT](LICENSE)
 
 Copyright (c) 2026 Cyril MARIN
 
-## Ressources
+This project is licensed under the MIT License. See the [LICENSE](LICENSE) file for details.
 
-- [Documentation n8n community nodes](https://docs.n8n.io/integrations/#community-nodes)
-- [Documentation API OVHcloud](https://api.ovh.com/)
-- [API Console OVHcloud](https://api.ovh.com/console/)
-- [Guide OVHcloud - API tokens](https://help.ovhcloud.com/csm/en-manage-ovhcloud-api-tokens?id=kb_article_view&sysparm_article=KB0042784)
+---
+
+## Resources
+
+### Official Documentation
+
+- [n8n Community Nodes Documentation](https://docs.n8n.io/integrations/#community-nodes)
+- [OVHcloud API Documentation](https://docs.ovh.com/gb/en/api/)
+- [OVH API Console](https://api.ovh.com/console/)
+- [Manage OVHcloud API Tokens](https://help.ovhcloud.com/csm/en-manage-ovhcloud-api-tokens?id=kb_article_view&sysparm_article=KB0042784)
+
+### Related Links
+
+- [n8n Website](https://n8n.io/)
+- [n8n Documentation](https://docs.n8n.io/)
+- [n8n Community](https://community.n8n.io/)
+- [OVHcloud Status](https://status.ovhcloud.com/)
+
+### Community Nodes
+
+- [n8n Nodes GitHub](https://github.com/n8n-nodes)
+- [Community Node Templates](https://github.com/n8n-nodes/base)
+
+---
+
+## Acknowledgments
+
+- Thanks to the n8n team for making this ecosystem possible
+- OVHcloud API team for their comprehensive documentation
+- Community contributors and users of this node
+
+---
+
+**Found this node useful?** 🌟 Star the repository on GitHub!

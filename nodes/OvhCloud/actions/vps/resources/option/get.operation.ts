@@ -48,5 +48,5 @@ export async function execute(this: IExecuteFunctions): Promise<INodeExecutionDa
 
 	const option = (await client.httpGet(`/vps/${serviceName}/option`)) as IDataObject;
 
-	return [{ json: option }];
+	return this.helpers.returnJsonArray(option);
 }

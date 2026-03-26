@@ -50,5 +50,5 @@ export async function execute(this: IExecuteFunctions): Promise<INodeExecutionDa
 		`/vps/${serviceName}/ipCountryAvailable`,
 	)) as IDataObject;
 
-	return [{ json: ipCountryAvailable }];
+	return this.helpers.returnJsonArray(ipCountryAvailable);
 }

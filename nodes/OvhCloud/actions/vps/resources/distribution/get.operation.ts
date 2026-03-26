@@ -48,5 +48,5 @@ export async function execute(this: IExecuteFunctions): Promise<INodeExecutionDa
 
 	const distribution = (await client.httpGet(`/vps/${serviceName}/distribution`)) as IDataObject;
 
-	return [{ json: distribution }];
+	return this.helpers.returnJsonArray(distribution);
 }

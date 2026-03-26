@@ -1,3 +1,30 @@
+/**
+ * @brief Email resource operations for n8n node
+ *
+ * Provides operations for managing OVH email domains including:
+ * - List all email domains for the authenticated account
+ * - Get detailed information about a specific email domain
+ *
+ * Available operations:
+ * - `list`: ListEmailDomains - List all email domains
+ * - `get`: GetEmailDomain - Get details of a specific email domain
+ *
+ * @remarks
+ * Email domains are managed under `/email/domain` route.
+ * Domain name can be entered manually or selected from dynamic dropdown.
+ *
+ * @example
+ * // Configure in n8n node
+ * Resource: Email
+ * Operation: List Domains
+ * Output: Array of email domain details with state, plan, options, etc.
+ *
+ * @example
+ * // Get specific domain details
+ * // Resource: Email -> Get Domain
+ * // domainName = 'example.com' (or from dynamic list)
+ * // Output: Domain details with state, plan, options, redirects, MX records, etc.
+ */
 import type {
 	IDisplayOptions,
 	IExecuteFunctions,
@@ -10,7 +37,7 @@ import { execute as executeEmailGet, description as descriptionEmailGet } from '
 export function description(displayOptions: IDisplayOptions): INodeProperties[] {
 	const operationProperties: INodeProperties[] = [
 		{
-			displayName: 'Operation',
+			displayName: 'Email Operation',
 			name: 'emailOperation',
 			type: 'options',
 			noDataExpression: true,
@@ -33,11 +60,25 @@ export function description(displayOptions: IDisplayOptions): INodeProperties[] 
 
 	return [
 		...operationProperties,
-		...descriptionEmailList({ ...displayOptions, show: { ...displayOptions?.show, emailOperation: ['list'] } }),
-		...descriptionEmailGet({ ...displayOptions, show: { ...displayOptions?.show, emailOperation: ['get'] } }),
+		...descriptionEmailList({
+			...displayOptions,
+			show: { ...displayOptions?.show, emailOperation: ['list'] },
+		}),
+		...descriptionEmailGet({
+			...displayOptions,
+			show: { ...displayOptions?.show, emailOperation: ['get'] },
+		}),
 	];
 }
 
+/**
+ * Executes the selected email operation (list, get).
+ *
+ * Routes execution to the appropriate handler based on the selected operation.
+ *
+ * @param this - The n8n execute function context
+ * @returns Array of execution results for the selected operation
+ */
 export async function execute(this: IExecuteFunctions): Promise<INodeExecutionData[]> {
 	const operation = this.getNodeParameter('emailOperation', 0, { extractValue: true });
 

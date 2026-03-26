@@ -50,5 +50,5 @@ export async function execute(this: IExecuteFunctions): Promise<INodeExecutionDa
 		`/vps/${serviceName}/secondaryDnsDomains`,
 	)) as IDataObject[];
 
-	return secondaryDnsDomains.map((item) => ({ json: item }));
+	return this.helpers.returnJsonArray(secondaryDnsDomains);
 }

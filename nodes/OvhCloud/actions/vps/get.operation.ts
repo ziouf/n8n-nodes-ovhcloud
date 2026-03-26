@@ -1,24 +1,21 @@
 import type {
+	IDataObject,
 	IDisplayOptions,
 	IExecuteFunctions,
 	INodeExecutionData,
 	INodeProperties,
 } from 'n8n-workflow';
-import { execute as executeAutomatedBackup } from './resources/automatedBackup';
-import { execute as executeAvailableUpgrade } from './resources/availableUpgrade';
-import { execute as executeBackupftp } from './resources/backupftp';
-import { execute as executeDatacenter } from './resources/datacenter';
-import { execute as executeDistribution } from './resources/distribution';
-import { execute as executeIpCountryAvailable } from './resources/ipCountryAvailable';
-import { execute as executeIps } from './resources/ips';
-import { execute as executeModels } from './resources/models';
-import { execute as executeOption } from './resources/option';
-import { execute as executeSecondaryDnsDomains } from './resources/secondaryDnsDomains';
-import { execute as executeServiceInfos } from './resources/serviceInfos';
-import { executeSnapshotGet } from './resources/snapshot';
-import { execute as executeStatus } from './resources/status';
-import { execute as executeVps } from './resources/vps';
+import { ApiClient } from '../../transport/ApiClientImpl';
 
+/**
+ * Returns the UI property definitions for the Get VPS Details operation.
+ *
+ * Defines the VPS service ID input with support for both manual entry
+ * and dynamic selection from available VPS instances.
+ *
+ * @param displayOptions - Controls when these properties should be displayed
+ * @returns Array of node properties for the Get VPS operation
+ */
 export function description(displayOptions: IDisplayOptions): INodeProperties[] {
 	return [
 		{
@@ -42,7 +39,7 @@ export function description(displayOptions: IDisplayOptions): INodeProperties[] 
 					displayName: 'From List',
 					name: 'list',
 					type: 'list',
-					placeholder: 'Select a service...',
+					placeholder: 'Select a VPS service...',
 					typeOptions: {
 						searchListMethod: 'getVpsServices',
 						searchable: true,
@@ -51,122 +48,28 @@ export function description(displayOptions: IDisplayOptions): INodeProperties[] 
 			],
 			displayOptions,
 		},
-		{
-			displayName: 'Sub-Resource',
-			name: 'subResource',
-			type: 'options',
-			noDataExpression: true,
-			options: [
-				{
-					name: 'Automated Backup',
-					value: 'automatedBackup',
-					action: 'Get automated backup configuration',
-				},
-				{
-					name: 'Available Upgrade',
-					value: 'availableUpgrade',
-					action: 'Get available upgrades',
-				},
-				{
-					name: 'Backup FTP',
-					value: 'backupftp',
-					action: 'Get backup FTP configuration',
-				},
-				{
-					name: 'Datacenter',
-					value: 'datacenter',
-					action: 'Get datacenter information',
-				},
-				{
-					name: 'Distribution',
-					value: 'distribution',
-					action: 'Get OS distribution',
-				},
-				{
-					name: 'IP Country Available',
-					value: 'ipCountryAvailable',
-					action: 'Get available IP countries',
-				},
-				{
-					name: 'IPs',
-					value: 'ips',
-					action: 'List IP addresses',
-				},
-				{
-					name: 'Models',
-					value: 'models',
-					action: 'List VPS models',
-				},
-				{
-					name: 'Option',
-					value: 'option',
-					action: 'Get options',
-				},
-				{
-					name: 'Secondary DNS Domains',
-					value: 'secondaryDnsDomains',
-					action: 'List secondary DNS domains',
-				},
-				{
-					name: 'Service Infos',
-					value: 'serviceInfos',
-					action: 'Get service information',
-				},
-				{
-					name: 'Snapshot',
-					value: 'snapshot',
-					action: 'Get snapshot',
-				},
-				{
-					name: 'Status',
-					value: 'status',
-					action: 'Get status',
-				},
-				{
-					name: 'VPS',
-					value: 'vps',
-					action: 'Get VPS details',
-				},
-			],
-			default: 'status',
-			displayOptions,
-		},
 	];
 }
 
+/**
+ * Executes the Get VPS Details operation.
+ *
+ * Retrieves the details of a specific VPS instance by its service name.
+ *
+ * @param this - The n8n execute function context
+ * @returns Array of execution results containing the VPS details
+ * @throws NodeApiError if the VPS is not found or credentials are invalid
+ *
+ * @example
+ * ```typescript
+ * // Input: serviceName = "vps1234567"
+ * // Output: VPS details with state, plan, IP addresses, etc.
+ * ```
+ */
 export async function execute(this: IExecuteFunctions): Promise<INodeExecutionData[]> {
-	const subResource = this.getNodeParameter('subResource', 0, { extractValue: true }) as string;
+	const client = new ApiClient(this);
+	const serviceName = this.getNodeParameter('serviceName', 0, { extractValue: true }) as string;
 
-	switch (subResource) {
-		case 'automatedBackup':
-			return await executeAutomatedBackup.call(this);
-		case 'availableUpgrade':
-			return await executeAvailableUpgrade.call(this);
-		case 'backupftp':
-			return await executeBackupftp.call(this);
-		case 'datacenter':
-			return await executeDatacenter.call(this);
-		case 'distribution':
-			return await executeDistribution.call(this);
-		case 'ipCountryAvailable':
-			return await executeIpCountryAvailable.call(this);
-		case 'ips':
-			return await executeIps.call(this);
-		case 'models':
-			return await executeModels.call(this);
-		case 'option':
-			return await executeOption.call(this);
-		case 'secondaryDnsDomains':
-			return await executeSecondaryDnsDomains.call(this);
-		case 'serviceInfos':
-			return await executeServiceInfos.call(this);
-		case 'snapshot':
-			return await executeSnapshotGet.call(this);
-		case 'status':
-			return await executeStatus.call(this);
-		case 'vps':
-			return await executeVps.call(this);
-	}
-
-	throw new Error(`Unsupported sub-resource "${subResource}" for VPS resource`);
+	const response = (await client.httpGet(`/vps/${serviceName}`)) as IDataObject;
+	return this.helpers.returnJsonArray(response);
 }

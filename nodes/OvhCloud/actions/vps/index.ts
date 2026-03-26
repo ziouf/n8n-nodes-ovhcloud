@@ -1,3 +1,31 @@
+/**
+ * @brief VPS resource operations for n8n node
+ *
+ * Provides comprehensive operations for managing OVH Virtual Private Servers including:
+ * - VPS instances: List and get with dynamic service selection
+ * - Disks: List and get individual disk details
+ * - Snapshot management: Create and get snapshots
+ * - Datacenter information: Get specific datacenter or list by country
+ * - Service information: Get service status, models, distribution, options
+ * - Network resources: IPs, secondary DNS domains
+ *
+ * @remarks
+ * All VPS operations require specification of a service name.
+ * Service names can be entered manually or selected from dynamic dropdown using getVpsServices.
+ *
+ * @example
+ * // Configure in n8n node
+ * Resource: VPS
+ * Operation: List VPS
+ * Output: Array of VPS details with plan, state, IP addresses, etc.
+ *
+ * @example
+ * // Create snapshot for a VPS
+ * // Resource: VPS -> Snapshot
+ * // snapshotOperation = "Create"
+ * // serviceName = "vps1234567" (or from dynamic list)
+ * // Output: Snapshot details with id, description, status, etc.
+ */
 import type {
 	IDisplayOptions,
 	IExecuteFunctions,
@@ -229,6 +257,14 @@ export function description(displayOptions: IDisplayOptions): INodeProperties[] 
 	];
 }
 
+/**
+ * Executes the selected VPS resource operation.
+ *
+ * Routes execution to the appropriate handler based on the selected resource.
+ *
+ * @param this - The n8n execute function context
+ * @returns Array of execution results for the selected operation
+ */
 export async function execute(this: IExecuteFunctions): Promise<INodeExecutionData[]> {
 	const resource = this.getNodeParameter('vpsResource', 0, { extractValue: true }) as string;
 

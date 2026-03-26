@@ -15,6 +15,11 @@
 			"type": "bind",
 			"source": "${localEnv:HOME}/.config/opencode",
 			"target": "/home/node/.config/opencode"
+		},
+		{
+			"type": "bind",
+			"source": "${localEnv:HOME}/.local/share/opencode",
+			"target": "/home/node/.local/share/opencode"
 		}
 	],
 	"customizations": {

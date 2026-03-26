@@ -7,13 +7,21 @@ import {
 } from 'n8n-workflow';
 import { ApiClient } from '../../../../transport/ApiClient';
 
+/**
+ * Returns the UI property definitions for the List VPS Disks operation.
+ *
+ * Defines the VPS service selector for listing all disks attached to a VPS.
+ *
+ * @param displayOptions - Controls when these properties should be displayed in the n8n UI
+ * @returns Array of node properties configuring the service name input
+ */
 export function descriptionDisksList(displayOptions: IDisplayOptions): INodeProperties[] {
 	return [
 		{
 			displayName: 'Service Name',
 			name: 'disk.serviceName',
 			description:
-				'The name of the VPS service to retrieve. This can be set manually or selected from the list of services.',
+				'The name of the VPS service whose disks you want to list. This can be set manually or selected from the list of services.',
 			type: 'resourceLocator',
 			required: true,
 			default: {
@@ -30,7 +38,7 @@ export function descriptionDisksList(displayOptions: IDisplayOptions): INodeProp
 					displayName: 'From List',
 					name: 'list',
 					type: 'list',
-					placeholder: 'Select a service...',
+					placeholder: 'Select a VPS service...',
 					typeOptions: {
 						searchListMethod: 'getVpsServices',
 						searchable: true,
@@ -42,6 +50,21 @@ export function descriptionDisksList(displayOptions: IDisplayOptions): INodeProp
 	];
 }
 
+/**
+ * Executes the List VPS Disks operation.
+ *
+ * Retrieves all disks attached to a specific VPS instance.
+ *
+ * @param this - The n8n execute function context
+ * @returns Array of execution data containing the list of disks
+ * @throws NodeApiError if the VPS service is not found
+ *
+ * @example
+ * ```typescript
+ * // Input: serviceName = "vps1234567"
+ * // Output: Array of disk details with size, status, type, etc.
+ * ```
+ */
 export async function executeDisksList(this: IExecuteFunctions): Promise<INodeExecutionData[]> {
 	const client = new ApiClient(this);
 	const serviceName = this.getNodeParameter('disk.serviceName', 0, {

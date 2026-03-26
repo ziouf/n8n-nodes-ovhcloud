@@ -7,7 +7,7 @@ import {
 } from 'n8n-workflow';
 import { ApiClient } from '../../../../transport/ApiClient';
 
-export function description(displayOptions: IDisplayOptions): INodeProperties[] {
+export function description(displayOptions?: IDisplayOptions): INodeProperties[] {
 	return [
 		{
 			displayName: 'Service Name',
@@ -45,8 +45,7 @@ export function description(displayOptions: IDisplayOptions): INodeProperties[] 
 export async function execute(this: IExecuteFunctions): Promise<INodeExecutionData[]> {
 	const client = new ApiClient(this);
 	const serviceName = this.getNodeParameter('serviceName', 0, { extractValue: true }) as string;
-
 	const snapshot = (await client.httpGet(`/vps/${serviceName}/snapshot`)) as IDataObject;
 
-	return [{ json: snapshot }];
+	return this.helpers.returnJsonArray(snapshot);
 }

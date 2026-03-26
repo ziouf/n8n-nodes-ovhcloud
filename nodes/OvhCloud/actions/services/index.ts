@@ -1,3 +1,42 @@
+/**
+ * @brief Services resource operations for n8n node
+ *
+ * Provides operations for managing various OVH services including:
+ * - List all services (with filtering by route, resource name, and sorting)
+ * - Get service details (web hosting, domain, email, VPS, dedicated servers, etc.)
+ * - Get available options for upgrades and configurations
+ * - Get available upgrade paths with pricing information
+ * - Get configuration forms for service setup
+ *
+ * Available operations:
+ * - `getForms`: GetServiceForms - Retrieve configuration forms for a service
+ * - `getOptions`: GetServiceOptions - List available options for a service
+ * - `get`: GetService - Retrieve details of a specific service
+ * - `getUpgrades`: GetServiceUpgrades - List available upgrade offers
+ * - `list`: ListServices - Query all services with filtering and sorting
+ *
+ * Supported service types:
+ * - Dedicated Ceph, Cluster, Housing, Server
+ * - Domain, Email, Email Pro, Hosting
+ *
+ * @remarks
+ * Service type selection is required for non-list operations.
+ * Available routes include: `/dedicated/ceph`, `/dedicated/cluster`, `/dedicated/housing`,
+ * `/dedicated/server`, `/domain`, `/email/domain`, `/email/pro`, `/hosting/web`.
+ *
+ * @example
+ * // Configure in n8n node
+ * Resource: Services
+ * Operation: List Services
+ * Filter: Route = "/hosting/web", orderBy = "serviceId", sort = "asc"
+ * Output: Array of service details with serviceId, state, options, etc.
+ *
+ * @example
+ * // Get specific service details
+ * // Resource: Services -> Get Service
+ * // svcType = "/hosting/web", svcID = "web123456"
+ * // Output: Service details with state, options, upgrades, forms, etc.
+ */
 import type {
 	IDisplayOptions,
 	IExecuteFunctions,
@@ -6,14 +45,47 @@ import type {
 } from 'n8n-workflow';
 import { execute as executeList, description as descriptionList } from './list.operation';
 import { execute as executeGet, description as descriptionGet } from './get.operation';
-import { execute as executeGetOptions, description as descriptionGetOptions } from './getOptions.operation';
-import { execute as executeGetForms, description as descriptionGetForms } from './getForms.operation';
+import {
+	execute as executeGetOptions,
+	description as descriptionGetOptions,
+} from './getOptions.operation';
+import {
+	execute as executeGetForms,
+	description as descriptionGetForms,
+} from './getForms.operation';
 import { execute as executeGetUpgrades } from './getUpgrades.operation';
 
 export function description(displayOptions: IDisplayOptions): INodeProperties[] {
+	/**
+	 * @brief Services resource operations for n8n node
+	 *
+	 * Provides operations for managing various OVH services including:
+	 * - List all services
+	 * - Get service details (web hosting, domain, email, VPS, etc.)
+	 * - Get available options for upgrades and configurations
+	 * - Get available upgrade paths
+	 *
+	 * Available operations:
+	 * - `list`: ListServices - Query all services with filtering and sorting
+	 * - `get`: GetService - Retrieve details of a specific service
+	 * - `getOptions`: GetServiceOptions - List available options for a service
+	 * - `getForms`: GetServiceForms - Retrieve configuration forms for a service
+	 * - `getUpgrades`: GetServiceUpgrades - List available upgrade offers
+	 *
+	 * Supported service types:
+	 * - Dedicated Ceph, Cluster, Housing, Server
+	 * - Domain, Email, Email Pro, Hosting
+	 *
+	 * @example
+	 * // Configure in n8n node
+	 * Resource: Services
+	 * Operation: List Services
+	 * Filter: Route = "/hosting/web", orderBy = "serviceId", sort = "asc"
+	 * Output: Array of service IDs and details
+	 */
 	const operationProperties: INodeProperties[] = [
 		{
-			displayName: 'Operation',
+			displayName: 'Services Operation',
 			name: 'svcOperation',
 			type: 'options',
 			noDataExpression: true,
@@ -48,7 +120,7 @@ export function description(displayOptions: IDisplayOptions): INodeProperties[] 
 			displayOptions,
 		},
 		{
-			displayName: 'Type',
+			displayName: 'Service Type',
 			name: 'svcType',
 			type: 'options',
 			options: [
@@ -86,7 +158,7 @@ export function description(displayOptions: IDisplayOptions): INodeProperties[] 
 				},
 			],
 			default: '/hosting/web',
-			description: 'The type of service to retrieve',
+			description: 'The type of service to retrieve (used when listing or getting services).',
 			displayOptions: {
 				show: {
 					svcOperation: ['get', 'getOptions', 'getForms', 'getUpgrades'],
@@ -130,13 +202,33 @@ export function description(displayOptions: IDisplayOptions): INodeProperties[] 
 
 	return [
 		...operationProperties,
-		...descriptionList({ ...displayOptions, show: { ...displayOptions?.show, svcOperation: ['list'] } }),
-		...descriptionGet({ ...displayOptions, show: { ...displayOptions?.show, svcOperation: ['get'] } }),
-		...descriptionGetOptions({ ...displayOptions, show: { ...displayOptions?.show, svcOperation: ['getOptions'] } }),
-		...descriptionGetForms({ ...displayOptions, show: { ...displayOptions?.show, svcOperation: ['getForms'] } }),
+		...descriptionList({
+			...displayOptions,
+			show: { ...displayOptions?.show, svcOperation: ['list'] },
+		}),
+		...descriptionGet({
+			...displayOptions,
+			show: { ...displayOptions?.show, svcOperation: ['get'] },
+		}),
+		...descriptionGetOptions({
+			...displayOptions,
+			show: { ...displayOptions?.show, svcOperation: ['getOptions'] },
+		}),
+		...descriptionGetForms({
+			...displayOptions,
+			show: { ...displayOptions?.show, svcOperation: ['getForms'] },
+		}),
 	];
 }
 
+/**
+ * Executes the selected services operation (list, get, getOptions, getForms, getUpgrades).
+ *
+ * Routes execution to the appropriate handler based on the selected operation.
+ *
+ * @param this - The n8n execute function context
+ * @returns Array of execution results for the selected operation
+ */
 export async function execute(this: IExecuteFunctions): Promise<INodeExecutionData[]> {
 	const operation = this.getNodeParameter('svcOperation', 0, { extractValue: true });
 

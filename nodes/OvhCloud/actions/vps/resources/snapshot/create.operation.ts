@@ -7,7 +7,15 @@ import {
 } from 'n8n-workflow';
 import { ApiClient } from '../../../../transport/ApiClient';
 
-export function description(displayOptions: IDisplayOptions): INodeProperties[] {
+/**
+ * Returns the UI property definitions for the Create VPS Snapshot operation.
+ *
+ * Defines the VPS service selector and supports manual or dynamic input.
+ *
+ * @param displayOptions - Controls when these properties should be displayed
+ * @returns Array of node properties for the Create Snapshot operation
+ */
+export function description(displayOptions?: IDisplayOptions): INodeProperties[] {
 	return [
 		{
 			displayName: 'Service Name',
@@ -30,7 +38,7 @@ export function description(displayOptions: IDisplayOptions): INodeProperties[] 
 					displayName: 'From List',
 					name: 'list',
 					type: 'list',
-					placeholder: 'Select a service...',
+					placeholder: 'Select a VPS service...',
 					typeOptions: {
 						searchListMethod: 'getVpsServices',
 						searchable: true,
@@ -42,11 +50,25 @@ export function description(displayOptions: IDisplayOptions): INodeProperties[] 
 	];
 }
 
+/**
+ * Executes the Create VPS Snapshot operation.
+ *
+ * Creates a new snapshot of the specified VPS instance.
+ *
+ * @param this - The n8n execute function context
+ * @returns Array of execution results containing the snapshot details
+ * @throws NodeApiError if the VPS is not found or snapshot creation fails
+ *
+ * @example
+ * ```typescript
+ * // Input: serviceName = "vps1234567"
+ * // Output: Snapshot details with ID, description, status, etc.
+ * ```
+ */
 export async function execute(this: IExecuteFunctions): Promise<INodeExecutionData[]> {
 	const client = new ApiClient(this);
 	const serviceName = this.getNodeParameter('serviceName', 0, { extractValue: true }) as string;
-
 	const data = (await client.httpPost(`/vps/${serviceName}/snapshot`)) as IDataObject;
 
-	return [{ json: data }];
+	return this.helpers.returnJsonArray(data);
 }

@@ -45,8 +45,7 @@ export function description(displayOptions: IDisplayOptions): INodeProperties[] 
 export async function execute(this: IExecuteFunctions): Promise<INodeExecutionData[]> {
 	const client = new ApiClient(this);
 	const serviceName = this.getNodeParameter('serviceName', 0, { extractValue: true }) as string;
-
 	const serviceInfos = (await client.httpGet(`/vps/${serviceName}/serviceInfos`)) as IDataObject;
 
-	return [{ json: serviceInfos }];
+	return this.helpers.returnJsonArray(serviceInfos);
 }

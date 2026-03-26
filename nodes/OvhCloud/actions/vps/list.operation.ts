@@ -14,6 +14,6 @@ export function description(displayOptions: IDisplayOptions): INodeProperties[] 
 
 export async function execute(this: IExecuteFunctions): Promise<INodeExecutionData[]> {
 	const client = new ApiClient(this);
-	const vpsList = (await client.httpGet(`/vps`)) as IDataObject[];
-	return vpsList.map((item) => ({ json: item }));
+	const response = (await client.httpGet(`/vps`)) as IDataObject[];
+	return response.map((item) => ({ json: item }));
 }
