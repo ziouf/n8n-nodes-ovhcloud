@@ -4,100 +4,286 @@ import type {
 	INodeExecutionData,
 	INodeProperties,
 } from 'n8n-workflow';
-import { execute as executeList, description as descriptionList } from './list.operation';
 import {
-	executeDatacenterList as executeListDatacenters,
-	descriptionDatacenterList as descriptionListDatacenters,
-} from './resources/datacenter/list.operation';
-import { execute as executeGet, description as descriptionGet } from './get.operation';
+	automatedBackup,
+	availableUpgrade,
+	backupftp,
+	datacenter,
+	distribution,
+	ipCountryAvailable,
+	ips,
+	models,
+	option,
+	secondaryDnsDomains,
+	serviceInfos,
+	snapshot,
+	status,
+} from './resources';
+import { description as descriptionVpsGet, execute as executeVpsGet } from './get.operation';
+import { description as descriptionVpsList, execute as executeVpsList } from './list.operation';
 import {
-	descriptionSnapshotCreate as descriptionCreateSnapshot,
-	executeSnapshotCreate as executeCreateSnapshot,
-} from './resources/snapshot';
-import {
-	executeDisksList as executeDisks,
-	descriptionDisksList as descriptionDisks,
-} from './resources/disks';
+	description as descriptionDisksGet,
+	execute as executeDisksGet,
+} from './resources/disks/get.operation';
+import { descriptionDisksList, executeDisksList } from './resources/disks/list.operation';
 
 export function description(displayOptions: IDisplayOptions): INodeProperties[] {
 	const description: INodeProperties[] = [
 		{
-			displayName: 'Operation',
+			displayName: 'VPS Resource',
+			name: 'vpsResource',
+			type: 'options',
+			noDataExpression: true,
+			options: [
+				{
+					name: 'Automated Backup',
+					value: 'automatedBackup',
+				},
+				{
+					name: 'Available Upgrade',
+					value: 'availableUpgrade',
+				},
+				{
+					name: 'Backup FTP',
+					value: 'backupftp',
+				},
+				{
+					name: 'Datacenter',
+					value: 'datacenter',
+				},
+				{
+					name: 'Distribution',
+					value: 'distribution',
+				},
+				{
+					name: 'IP Country Available',
+					value: 'ipCountryAvailable',
+				},
+				{
+					name: 'IPs',
+					value: 'ips',
+				},
+				{
+					name: 'Models',
+					value: 'models',
+				},
+				{
+					name: 'Option',
+					value: 'option',
+				},
+				{
+					name: 'Secondary DNS Domains',
+					value: 'secondaryDnsDomains',
+				},
+				{
+					name: 'Service Infos',
+					value: 'serviceInfos',
+				},
+				{
+					name: 'Snapshot',
+					value: 'snapshot',
+				},
+				{
+					name: 'Status',
+					value: 'status',
+				},
+				{
+					name: 'VPS',
+					value: 'vps',
+				},
+			],
+			default: 'vps',
+		},
+		{
+			displayName: 'VPS Operation',
 			name: 'vpsOperation',
 			type: 'options',
 			noDataExpression: true,
 			options: [
 				{
-					name: 'Create VPS Snapshot',
-					value: 'createSnapshot',
-					action: 'Create a snapshot of a VPS',
-				},
-				{
-					name: 'Get VPS Details',
+					name: 'Get',
 					value: 'get',
-					action: 'Get details of a VPS',
+					action: 'Get details of a VPS service',
 				},
 				{
-					name: 'List Datacenters',
-					value: 'listDatacenters',
-					action: 'List all datacenters of the authenticated user',
-				},
-				{
-					name: 'List VPS',
+					name: 'List',
 					value: 'list',
-					action: 'List VPS',
-				},
-				{
-					name: 'Manage Disks',
-					value: 'disks',
-					action: 'Manage VPS disks',
+					action: 'List all VPS services',
 				},
 			],
 			default: 'list',
-			displayOptions,
+			displayOptions: {
+				...displayOptions,
+				show: {
+					...displayOptions?.show,
+					vpsResource: ['vps'],
+				},
+			},
+		},
+		{
+			displayName: 'Disks Operation',
+			name: 'vpsDisksOperation',
+			type: 'options',
+			noDataExpression: true,
+			options: [
+				{
+					name: 'List Disks',
+					value: 'list',
+					action: 'Get all disks of a VPS',
+				},
+				{
+					name: 'Get Disk',
+					value: 'get',
+					action: 'Get details of a disk of a VPS',
+				},
+			],
+			default: 'list',
+			displayOptions: {
+				...displayOptions,
+				show: {
+					...displayOptions?.show,
+					vpsResource: ['disks'],
+				},
+			},
 		},
 	];
 
 	return [
 		...description,
-		...descriptionList({
+		...descriptionVpsGet({
 			...displayOptions,
-			show: { ...displayOptions?.show, vpsOperation: ['list'] },
+			show: { ...displayOptions?.show, vpsResource: ['vps'], vpsOperation: ['get'] },
 		}),
-		...descriptionListDatacenters({
+		...descriptionVpsList({
 			...displayOptions,
-			show: { ...displayOptions?.show, vpsOperation: ['listDatacenters'] },
+			show: { ...displayOptions?.show, vpsResource: ['vps'], vpsOperation: ['list'] },
 		}),
-		...descriptionGet({
+		...automatedBackup.description({
 			...displayOptions,
-			show: { ...displayOptions?.show, vpsOperation: ['get'] },
+			show: { ...displayOptions?.show, vpsResource: ['automatedBackup'] },
 		}),
-		...descriptionCreateSnapshot({
+		...availableUpgrade.description({
 			...displayOptions,
-			show: { ...displayOptions?.show, vpsOperation: ['createSnapshot'] },
+			show: { ...displayOptions?.show, vpsResource: ['availableUpgrade'] },
 		}),
-		...descriptionDisks({
+		...backupftp.description({
 			...displayOptions,
-			show: { ...displayOptions?.show, vpsOperation: ['disks'] },
+			show: { ...displayOptions?.show, vpsResource: ['backupftp'] },
+		}),
+		...datacenter.description({
+			...displayOptions,
+			show: { ...displayOptions?.show, vpsResource: ['datacenter'] },
+		}),
+		...descriptionDisksGet({
+			...displayOptions,
+			show: {
+				...displayOptions?.show,
+				vpsResource: ['disks'],
+				vpsDisksOperation: ['get'],
+			},
+		}),
+		...descriptionDisksList({
+			...displayOptions,
+			show: {
+				...displayOptions?.show,
+				vpsResource: ['disks'],
+				vpsDisksOperation: ['list'],
+			},
+		}),
+		...distribution.description({
+			...displayOptions,
+			show: { ...displayOptions?.show, vpsResource: ['distribution'] },
+		}),
+		...ipCountryAvailable.description({
+			...displayOptions,
+			show: { ...displayOptions?.show, vpsResource: ['ipCountryAvailable'] },
+		}),
+		...ips.description({
+			...displayOptions,
+			show: { ...displayOptions?.show, vpsResource: ['ips'] },
+		}),
+		...models.description({
+			...displayOptions,
+			show: { ...displayOptions?.show, vpsResource: ['models'] },
+		}),
+		...option.description({
+			...displayOptions,
+			show: { ...displayOptions?.show, vpsResource: ['option'] },
+		}),
+		...secondaryDnsDomains.description({
+			...displayOptions,
+			show: { ...displayOptions?.show, vpsResource: ['secondaryDnsDomains'] },
+		}),
+		...serviceInfos.description({
+			...displayOptions,
+			show: { ...displayOptions?.show, vpsResource: ['serviceInfos'] },
+		}),
+		...snapshot.description({
+			...displayOptions,
+			show: { ...displayOptions?.show, vpsResource: ['snapshot'] },
+		}),
+		...status.description({
+			...displayOptions,
+			show: { ...displayOptions?.show, vpsResource: ['status'] },
 		}),
 	];
 }
 
 export async function execute(this: IExecuteFunctions): Promise<INodeExecutionData[]> {
-	const operation = this.getNodeParameter('vpsOperation', 0, { extractValue: true }) as string;
+	const resource = this.getNodeParameter('vpsResource', 0, { extractValue: true }) as string;
 
-	switch (operation) {
-		case 'list':
-			return await executeList.call(this);
-		case 'listDatacenters':
-			return await executeListDatacenters.call(this);
-		case 'get':
-			return await executeGet.call(this);
-		case 'createSnapshot':
-			return await executeCreateSnapshot.call(this);
-		case 'disks':
-			return await executeDisks.call(this);
+	switch (resource) {
+		case 'vps': {
+			const operation = this.getNodeParameter('vpsOperation', 0, { extractValue: true }) as string;
+			switch (operation) {
+				case 'get':
+					return await executeVpsGet.call(this);
+				case 'list':
+					return await executeVpsList.call(this);
+				default:
+					throw new Error(`Unsupported operation "${operation}" for resource "vps"`);
+			}
+		}
+		case 'automatedBackup':
+			return await automatedBackup.execute.call(this);
+		case 'availableUpgrade':
+			return await availableUpgrade.execute.call(this);
+		case 'backupftp':
+			return await backupftp.execute.call(this);
+		case 'datacenter':
+			return await datacenter.execute.call(this);
+		case 'disks': {
+			const operation = this.getNodeParameter('vpsDisksOperation', 0, {
+				extractValue: true,
+			}) as string;
+			switch (operation) {
+				case 'get':
+					return await executeDisksGet.call(this);
+				case 'list':
+					return await executeDisksList.call(this);
+				default:
+					throw new Error(`Unsupported operation "${operation}" for resource "disks"`);
+			}
+		}
+		case 'distribution':
+			return await distribution.execute.call(this);
+		case 'ipCountryAvailable':
+			return await ipCountryAvailable.execute.call(this);
+		case 'ips':
+			return await ips.execute.call(this);
+		case 'models':
+			return await models.execute.call(this);
+		case 'option':
+			return await option.execute.call(this);
+		case 'secondaryDnsDomains':
+			return await secondaryDnsDomains.execute.call(this);
+		case 'serviceInfos':
+			return await serviceInfos.execute.call(this);
+		case 'snapshot':
+			return await snapshot.execute.call(this);
+		case 'status':
+			return await status.execute.call(this);
 	}
 
-	throw new Error(`Unsupported operation "${operation}" for resource "vps"`);
+	throw new Error(`Unsupported resource "${resource}" for VPS operations`);
 }

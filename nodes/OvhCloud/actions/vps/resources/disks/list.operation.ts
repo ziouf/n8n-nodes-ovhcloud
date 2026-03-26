@@ -10,28 +10,8 @@ import { ApiClient } from '../../../../transport/ApiClient';
 export function descriptionDisksList(displayOptions: IDisplayOptions): INodeProperties[] {
 	return [
 		{
-			displayName: 'Operation',
-			name: 'vpsDisksOperation',
-			type: 'options',
-			noDataExpression: true,
-			options: [
-				{
-					name: 'List Disks',
-					value: 'list',
-					action: 'Get all disks of a VPS',
-				},
-				{
-					name: 'Get Disk',
-					value: 'get',
-					action: 'Get details of a disk of a VPS',
-				},
-			],
-			default: 'list',
-			displayOptions,
-		},
-		{
 			displayName: 'Service Name',
-			name: 'serviceName',
+			name: 'disk.serviceName',
 			description:
 				'The name of the VPS service to retrieve. This can be set manually or selected from the list of services.',
 			type: 'resourceLocator',
@@ -59,31 +39,15 @@ export function descriptionDisksList(displayOptions: IDisplayOptions): INodeProp
 			],
 			displayOptions,
 		},
-		{
-			displayName: 'Disk ID',
-			name: 'diskId',
-			type: 'string',
-			required: true,
-			default: '',
-			displayOptions,
-		},
 	];
 }
 
 export async function executeDisksList(this: IExecuteFunctions): Promise<INodeExecutionData[]> {
 	const client = new ApiClient(this);
-	const serviceName = this.getNodeParameter('serviceName', 0, { extractValue: true }) as string;
-	const operation = this.getNodeParameter('vpsDisksOperation', 0, { extractValue: true }) as string;
-	const id = this.getNodeParameter('diskId', 0, { extractValue: true }) as string;
+	const serviceName = this.getNodeParameter('disk.serviceName', 0, {
+		extractValue: true,
+	}) as string;
 
-	switch (operation) {
-		case 'list':
-			const disks = (await client.httpGet(`/vps/${serviceName}/disks`)) as IDataObject[];
-			return disks.map((item) => ({ json: item }));
-		case 'get':
-			const disk = (await client.httpGet(`/vps/${serviceName}/disks/${id}`)) as IDataObject;
-			return [{ json: disk }];
-	}
-
-	throw new Error('Invalid operation for VPS Disks resource');
+	const disks = (await client.httpGet(`/vps/${serviceName}/disks`)) as IDataObject[];
+	return this.helpers.returnJsonArray(disks);
 }
