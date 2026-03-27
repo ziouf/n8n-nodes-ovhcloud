@@ -38,6 +38,7 @@
 		"N8N_LOG_LEVEL": "debug"
 	},
 	"postStartCommand": {
+		"home-local-owner": "sudo chown -R node:node /home/node/.local",
 		"n8n-volume": "sudo chown -R node:node /home/node/.n8n-node-cli"
 	}
 }
