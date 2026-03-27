@@ -11,6 +11,7 @@
 		}
 	},
 	"mounts": [
+		{ "type": "volume", "source": "n8n-data", "target": "/home/node/.n8n-node-cli" },
 		{
 			"type": "bind",
 			"source": "${localEnv:HOME}/.config/opencode",
@@ -35,5 +36,8 @@
 	},
 	"remoteEnv": {
 		"N8N_LOG_LEVEL": "debug"
+	},
+	"postStartCommand": {
+		"n8n-volume": "sudo chown -R node:node /home/node/.n8n-node-cli"
 	}
 }

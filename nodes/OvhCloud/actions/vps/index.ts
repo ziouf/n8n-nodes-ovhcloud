@@ -121,6 +121,7 @@ export function description(displayOptions: IDisplayOptions): INodeProperties[] 
 				},
 			],
 			default: 'vps',
+			displayOptions,
 		},
 		{
 			displayName: 'VPS Operation',
