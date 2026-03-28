@@ -12,24 +12,22 @@
 	},
 	"mounts": [
 		{ "type": "volume", "source": "n8n-data", "target": "/home/node/.n8n-node-cli" },
+		{ "type": "volume", "source": "opencode-data", "target": "/home/node/.local/share/opencode" },
 		{
 			"type": "bind",
 			"source": "${localEnv:HOME}/.config/opencode",
 			"target": "/home/node/.config/opencode"
-		},
-		{
-			"type": "bind",
-			"source": "${localEnv:HOME}/.local/share/opencode",
-			"target": "/home/node/.local/share/opencode"
 		}
 	],
 	"customizations": {
 		"vscode": {
 			"extensions": [
 				"github.vscode-github-actions",
-				"lemonade-sdk.lemonade-sdk"
+				"lemonade-sdk.lemonade-sdk",
+				"Gruntfuggly.todo-tree"
 			],
 			"settings": {
+				"editor.experimentalGpuAcceleration": "off",
 				"terminal.integrated.gpuAcceleration": "off"
 			}
 		}
@@ -38,7 +36,7 @@
 		"N8N_LOG_LEVEL": "debug"
 	},
 	"postStartCommand": {
-		"home-local-owner": "sudo chown -R node:node /home/node/.local",
-		"n8n-volume": "sudo chown -R node:node /home/node/.n8n-node-cli"
+		"n8n-volume": "sudo chown -R node:node /home/node/.n8n-node-cli",
+		"local-owner": "sudo chown -R node:node /home/node/.local"
 	}
 }
