@@ -32,7 +32,7 @@ export function description(displayOptions: IDisplayOptions): INodeProperties[] 
 			type: 'string',
 			default: '',
 			required: true,
-			description: 'The unique identifier of the order to retrieve (e.g., `order-123456`).',
+			description: 'The unique identifier of the order to retrieve (e.g., `order-123456`)',
 			displayOptions,
 		},
 	];

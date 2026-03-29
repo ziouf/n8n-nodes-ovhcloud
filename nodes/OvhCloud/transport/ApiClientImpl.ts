@@ -1,5 +1,4 @@
-import type { IDataObject, IHttpRequestOptions } from 'n8n-workflow';
-import type { IExecuteFunctions, ILoadOptionsFunctions } from 'n8n-workflow';
+import type { IDataObject, IHttpRequestOptions, IExecuteFunctions, ILoadOptionsFunctions  } from 'n8n-workflow';
 import type { OvhCredentialsType } from './CredentialHolder';
 import { CredentialHolder } from './CredentialHolder';
 

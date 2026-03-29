@@ -158,7 +158,7 @@ export function description(displayOptions: IDisplayOptions): INodeProperties[] 
 				},
 			],
 			default: '/hosting/web',
-			description: 'The type of service to retrieve (used when listing or getting services).',
+			description: 'The type of service to retrieve (used when listing or getting services)',
 			displayOptions: {
 				show: {
 					svcOperation: ['get', 'getOptions', 'getForms', 'getUpgrades'],

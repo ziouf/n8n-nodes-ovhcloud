@@ -53,7 +53,7 @@ export function description(displayOptions: IDisplayOptions): INodeProperties[] 
 			type: 'string',
 			required: true,
 			default: '',
-			description: 'The unique identifier of the disk to retrieve (e.g., `disk-123456`).',
+			description: 'The unique identifier of the disk to retrieve (e.g., `disk-123456`)',
 			displayOptions,
 		},
 	];
