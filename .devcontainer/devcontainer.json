@@ -33,7 +33,7 @@
 			],
 			"settings": {
 				"editor.experimentalGpuAcceleration": "off",
-				"terminal.integrated.gpuAcceleration": "off"
+				"terminal.integrated.gpuAcceleration": "auto"
 			}
 		}
 	},
