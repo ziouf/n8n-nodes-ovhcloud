@@ -1,0 +1,589 @@
+{
+  "apiVersion": "1.0",
+  "apis": [
+    {
+      "path": "/supply/mondialRelay",
+      "operations": [
+        {
+          "apiStatus": {
+            "description": "Stable production version",
+            "value": "PRODUCTION"
+          },
+          "httpMethod": "POST",
+          "parameters": [
+            {
+              "name": "address",
+              "dataType": "string",
+              "paramType": "body",
+              "fullType": "string",
+              "required": false,
+              "description": "Address"
+            },
+            {
+              "name": "city",
+              "dataType": "string",
+              "paramType": "body",
+              "fullType": "string",
+              "required": false,
+              "description": "City"
+            },
+            {
+              "name": "country",
+              "dataType": "coreTypes.CountryEnum",
+              "paramType": "body",
+              "fullType": "coreTypes.CountryEnum",
+              "required": true,
+              "description": "ISO country code"
+            },
+            {
+              "name": "zipcode",
+              "dataType": "string",
+              "paramType": "body",
+              "fullType": "string",
+              "required": false,
+              "description": "Zip Code"
+            }
+          ],
+          "responseType": "supply.MondialRelayReturn",
+          "noAuthentication": false,
+          "description": "Find the 10 nearest MondialRelay points from address or city.",
+          "iamActions": [
+            {
+              "name": "account:apiovh:supplyMondialRelay/create",
+              "required": true
+            }
+          ]
+        }
+      ],
+      "description": "Find the 10 nearest MondialRelay points from address or city."
+    }
+  ],
+  "resourcePath": "/supply/mondialRelay",
+  "basePath": "https://eu.api.ovh.com/v1",
+  "models": {
+    "coreTypes.CountryEnum": {
+      "id": "CountryEnum",
+      "namespace": "coreTypes",
+      "description": "ISO country codes",
+      "enum": [
+        "ac",
+        "ad",
+        "ae",
+        "af",
+        "ag",
+        "ai",
+        "al",
+        "am",
+        "an",
+        "ao",
+        "aq",
+        "ar",
+        "as",
+        "at",
+        "au",
+        "aw",
+        "ax",
+        "az",
+        "ba",
+        "bb",
+        "bd",
+        "be",
+        "bf",
+        "bg",
+        "bh",
+        "bi",
+        "bj",
+        "bl",
+        "bm",
+        "bn",
+        "bo",
+        "bq",
+        "br",
+        "bs",
+        "bt",
+        "bv",
+        "bw",
+        "by",
+        "bz",
+        "ca",
+        "cc",
+        "cd",
+        "cf",
+        "cg",
+        "ch",
+        "ci",
+        "ck",
+        "cl",
+        "cm",
+        "cn",
+        "co",
+        "cr",
+        "cs",
+        "cu",
+        "cv",
+        "cw",
+        "cx",
+        "cy",
+        "cz",
+        "de",
+        "dj",
+        "dk",
+        "dm",
+        "do",
+        "dz",
+        "ec",
+        "ee",
+        "eg",
+        "eh",
+        "er",
+        "es",
+        "et",
+        "fc",
+        "fd",
+        "fi",
+        "fj",
+        "fk",
+        "fm",
+        "fo",
+        "fr",
+        "fx",
+        "ga",
+        "gb",
+        "gd",
+        "ge",
+        "gf",
+        "gg",
+        "gh",
+        "gi",
+        "gl",
+        "gm",
+        "gn",
+        "gp",
+        "gq",
+        "gr",
+        "gs",
+        "gt",
+        "gu",
+        "gw",
+        "gy",
+        "hk",
+        "hm",
+        "hn",
+        "hr",
+        "ht",
+        "hu",
+        "id",
+        "ie",
+        "il",
+        "im",
+        "in",
+        "io",
+        "iq",
+        "ir",
+        "is",
+        "it",
+        "je",
+        "jm",
+        "jo",
+        "jp",
+        "ke",
+        "kg",
+        "kh",
+        "ki",
+        "km",
+        "kn",
+        "kp",
+        "kr",
+        "kw",
+        "ky",
+        "kz",
+        "la",
+        "lb",
+        "lc",
+        "li",
+        "lk",
+        "lr",
+        "ls",
+        "lt",
+        "lu",
+        "lv",
+        "ly",
+        "ma",
+        "mc",
+        "md",
+        "me",
+        "mf",
+        "mg",
+        "mh",
+        "mk",
+        "ml",
+        "mm",
+        "mn",
+        "mo",
+        "mp",
+        "mq",
+        "mr",
+        "ms",
+        "mt",
+        "mu",
+        "mv",
+        "mw",
+        "mx",
+        "my",
+        "mz",
+        "na",
+        "nc",
+        "ne",
+        "nf",
+        "ng",
+        "ni",
+        "nl",
+        "no",
+        "np",
+        "nr",
+        "nu",
+        "nz",
+        "om",
+        "pa",
+        "pe",
+        "pf",
+        "pg",
+        "ph",
+        "pk",
+        "pl",
+        "pm",
+        "pn",
+        "pr",
+        "ps",
+        "pt",
+        "pw",
+        "py",
+        "qa",
+        "qc",
+        "re",
+        "ro",
+        "rs",
+        "ru",
+        "rw",
+        "sa",
+        "sb",
+        "sc",
+        "sd",
+        "se",
+        "sg",
+        "sh",
+        "si",
+        "sj",
+        "sk",
+        "sl",
+        "sm",
+        "sn",
+        "so",
+        "sr",
+        "ss",
+        "st",
+        "sv",
+        "sx",
+        "sy",
+        "sz",
+        "tc",
+        "td",
+        "tf",
+        "tg",
+        "th",
+        "tj",
+        "tk",
+        "tl",
+        "tm",
+        "tn",
+        "to",
+        "tp",
+        "tr",
+        "tt",
+        "tv",
+        "tw",
+        "tz",
+        "ua",
+        "ug",
+        "uk",
+        "um",
+        "us",
+        "uy",
+        "uz",
+        "va",
+        "vc",
+        "ve",
+        "vg",
+        "vi",
+        "vn",
+        "vu",
+        "we",
+        "wf",
+        "ws",
+        "ye",
+        "yt",
+        "yu",
+        "za",
+        "zm",
+        "zw"
+      ],
+      "enumType": "string"
+    },
+    "supply.MondialRelay": {
+      "id": "MondialRelay",
+      "namespace": "supply",
+      "description": "Mondial Relay Point Details",
+      "properties": {
+        "address": {
+          "type": "string",
+          "canBeNull": false,
+          "readOnly": false,
+          "description": "Relay point address",
+          "required": false
+        },
+        "city": {
+          "type": "string",
+          "canBeNull": false,
+          "readOnly": false,
+          "description": "City",
+          "required": false
+        },
+        "closing": {
+          "type": "supply.MondialRelayClosingPeriod[]",
+          "canBeNull": true,
+          "readOnly": false,
+          "description": "Relay point closing dates",
+          "required": false
+        },
+        "country": {
+          "type": "coreTypes.CountryEnum",
+          "canBeNull": false,
+          "readOnly": false,
+          "description": "Relay country",
+          "required": false
+        },
+        "distance": {
+          "type": "double",
+          "canBeNull": true,
+          "readOnly": false,
+          "description": "Distance between address and relay point",
+          "required": false
+        },
+        "id": {
+          "type": "string",
+          "canBeNull": false,
+          "readOnly": false,
+          "description": "Mondial Relay point ID",
+          "required": false
+        },
+        "lat": {
+          "type": "double",
+          "canBeNull": false,
+          "readOnly": false,
+          "description": "Relay point latitude",
+          "required": false
+        },
+        "lng": {
+          "type": "double",
+          "canBeNull": false,
+          "readOnly": false,
+          "description": "Relay point longitude",
+          "required": false
+        },
+        "mapUrl": {
+          "type": "string",
+          "canBeNull": true,
+          "readOnly": false,
+          "description": "URL of short map",
+          "required": false
+        },
+        "name": {
+          "type": "string",
+          "canBeNull": false,
+          "readOnly": false,
+          "description": "Relay point name",
+          "required": false
+        },
+        "opening": {
+          "type": "supply.MondialRelayOpening",
+          "canBeNull": false,
+          "readOnly": false,
+          "description": "Relay point opening hours",
+          "required": false
+        },
+        "pictureUrl": {
+          "type": "string",
+          "canBeNull": true,
+          "readOnly": false,
+          "description": "Relay point picture\\s URL",
+          "required": false
+        },
+        "zipcode": {
+          "type": "string",
+          "canBeNull": false,
+          "readOnly": false,
+          "description": "Zipcode",
+          "required": false
+        }
+      }
+    },
+    "supply.MondialRelayClosingPeriod": {
+      "id": "MondialRelayClosingPeriod",
+      "namespace": "supply",
+      "description": "Closing period for mondial relay point",
+      "properties": {
+        "end": {
+          "type": "datetime",
+          "canBeNull": false,
+          "readOnly": false,
+          "description": "Ending of closing period",
+          "required": false
+        },
+        "start": {
+          "type": "datetime",
+          "canBeNull": false,
+          "readOnly": false,
+          "description": "Beginning of closing period",
+          "required": false
+        }
+      }
+    },
+    "supply.MondialRelayDayPeriod": {
+      "id": "MondialRelayDayPeriod",
+      "namespace": "supply",
+      "description": "Opening range for mondial relay point",
+      "properties": {
+        "end": {
+          "type": "string",
+          "canBeNull": false,
+          "readOnly": false,
+          "description": "Ending time (00:00 format)",
+          "required": false
+        },
+        "start": {
+          "type": "string",
+          "canBeNull": false,
+          "readOnly": false,
+          "description": "Starting time (00:00 format)",
+          "required": false
+        }
+      }
+    },
+    "supply.MondialRelayOpening": {
+      "id": "MondialRelayOpening",
+      "namespace": "supply",
+      "description": "Day with schedule for mondial relay point opening",
+      "properties": {
+        "friday": {
+          "type": "supply.MondialRelayDayPeriod[]",
+          "canBeNull": true,
+          "readOnly": false,
+          "description": "Opening range",
+          "required": false
+        },
+        "monday": {
+          "type": "supply.MondialRelayDayPeriod[]",
+          "canBeNull": true,
+          "readOnly": false,
+          "description": "Opening range",
+          "required": false
+        },
+        "saturday": {
+          "type": "supply.MondialRelayDayPeriod[]",
+          "canBeNull": true,
+          "readOnly": false,
+          "description": "Opening range",
+          "required": false
+        },
+        "sunday": {
+          "type": "supply.MondialRelayDayPeriod[]",
+          "canBeNull": true,
+          "readOnly": false,
+          "description": "Opening range",
+          "required": false
+        },
+        "thursday": {
+          "type": "supply.MondialRelayDayPeriod[]",
+          "canBeNull": true,
+          "readOnly": false,
+          "description": "Opening range",
+          "required": false
+        },
+        "tuesday": {
+          "type": "supply.MondialRelayDayPeriod[]",
+          "canBeNull": true,
+          "readOnly": false,
+          "description": "Opening range",
+          "required": false
+        },
+        "wednesday": {
+          "type": "supply.MondialRelayDayPeriod[]",
+          "canBeNull": true,
+          "readOnly": false,
+          "description": "Opening range",
+          "required": false
+        }
+      }
+    },
+    "supply.MondialRelayResult": {
+      "id": "MondialRelayResult",
+      "namespace": "supply",
+      "description": "Status and Mondial Relay Point Details",
+      "properties": {
+        "referenceAddress": {
+          "type": "string",
+          "canBeNull": false,
+          "readOnly": false,
+          "description": "Reference address for finding RelayPoints",
+          "required": false
+        },
+        "relayPoints": {
+          "type": "supply.MondialRelay[]",
+          "canBeNull": false,
+          "readOnly": false,
+          "description": "Array of relay points",
+          "required": false
+        }
+      }
+    },
+    "supply.MondialRelayReturn": {
+      "id": "MondialRelayReturn",
+      "namespace": "supply",
+      "description": "Status and Mondial Relay Point Details",
+      "properties": {
+        "error": {
+          "type": "string",
+          "canBeNull": true,
+          "readOnly": false,
+          "description": "Error",
+          "required": false
+        },
+        "result": {
+          "type": "supply.MondialRelayResult",
+          "canBeNull": true,
+          "readOnly": false,
+          "description": "Relay points list and reference address",
+          "required": false
+        },
+        "status": {
+          "type": "supply.Status",
+          "canBeNull": false,
+          "readOnly": false,
+          "description": "Request status",
+          "required": false
+        }
+      }
+    },
+    "supply.Status": {
+      "id": "Status",
+      "namespace": "supply",
+      "description": "Request status",
+      "enum": [
+        "error",
+        "ok",
+        "pending"
+      ],
+      "enumType": "string"
+    }
+  }
+}

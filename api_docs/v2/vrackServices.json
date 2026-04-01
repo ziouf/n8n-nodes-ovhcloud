@@ -1,0 +1,1190 @@
+{
+  "apiVersion": "1.0",
+  "apis": [
+    {
+      "path": "/vrackServices/reference/compatibleManagedServiceType",
+      "operations": [
+        {
+          "apiStatus": {
+            "description": "Stable production version",
+            "value": "PRODUCTION"
+          },
+          "httpMethod": "GET",
+          "parameters": [
+            {
+              "name": "X-Pagination-Cursor",
+              "dataType": "string",
+              "paramType": "header",
+              "fullType": "string",
+              "required": false,
+              "description": "Pagination cursor"
+            },
+            {
+              "name": "X-Pagination-Size",
+              "dataType": "long",
+              "paramType": "header",
+              "fullType": "long",
+              "required": false,
+              "description": "Pagination size"
+            }
+          ],
+          "responseType": "string[]",
+          "noAuthentication": false,
+          "description": "List all managed service types that are compatible with vRack Services (IAM resource types)",
+          "longDescription": "The compatible managed service types are represented here by their IAM resource types."
+        }
+      ],
+      "description": ""
+    },
+    {
+      "path": "/vrackServices/reference/region",
+      "operations": [
+        {
+          "apiStatus": {
+            "description": "Stable production version",
+            "value": "PRODUCTION"
+          },
+          "httpMethod": "GET",
+          "parameters": [
+            {
+              "name": "X-Pagination-Cursor",
+              "dataType": "string",
+              "paramType": "header",
+              "fullType": "string",
+              "required": false,
+              "description": "Pagination cursor"
+            },
+            {
+              "name": "X-Pagination-Size",
+              "dataType": "long",
+              "paramType": "header",
+              "fullType": "long",
+              "required": false,
+              "description": "Pagination size"
+            }
+          ],
+          "responseType": "vrackServices.Region[]",
+          "noAuthentication": false,
+          "description": "List all vRack Services regions"
+        }
+      ],
+      "description": ""
+    },
+    {
+      "path": "/vrackServices/resource",
+      "operations": [
+        {
+          "apiStatus": {
+            "description": "Stable production version",
+            "value": "PRODUCTION"
+          },
+          "httpMethod": "GET",
+          "parameters": [
+            {
+              "name": "X-Pagination-Cursor",
+              "dataType": "string",
+              "paramType": "header",
+              "fullType": "string",
+              "required": false,
+              "description": "Pagination cursor"
+            },
+            {
+              "name": "X-Pagination-Size",
+              "dataType": "long",
+              "paramType": "header",
+              "fullType": "long",
+              "required": false,
+              "description": "Pagination size"
+            },
+            {
+              "name": "iamTags",
+              "dataType": "map[string][]iam.resource.TagFilter",
+              "paramType": "query",
+              "required": false,
+              "description": "Filter resources on IAM tags"
+            }
+          ],
+          "responseType": "vrackServices.VrackServicesWithIAM[]",
+          "noAuthentication": false,
+          "description": "List all vRack Services",
+          "iamActions": [
+            {
+              "name": "vrackServices:apiovh:resource/get",
+              "required": true
+            }
+          ]
+        }
+      ],
+      "description": "Operations on vRack Services"
+    },
+    {
+      "path": "/vrackServices/resource/{vrackServicesId}",
+      "operations": [
+        {
+          "apiStatus": {
+            "description": "Stable production version",
+            "value": "PRODUCTION"
+          },
+          "httpMethod": "GET",
+          "parameters": [
+            {
+              "name": "vrackServicesId",
+              "dataType": "string",
+              "paramType": "path",
+              "fullType": "string",
+              "required": true,
+              "description": "Vrack services ID"
+            }
+          ],
+          "responseType": "vrackServices.VrackServicesWithIAM",
+          "noAuthentication": false,
+          "description": "Retrieve a vRack Services",
+          "errors": [
+            "Client::NotFound::VrackServicesNotFound"
+          ],
+          "iamActions": [
+            {
+              "name": "vrackServices:apiovh:resource/get",
+              "required": true
+            }
+          ]
+        },
+        {
+          "apiStatus": {
+            "description": "Stable production version",
+            "value": "PRODUCTION"
+          },
+          "httpMethod": "PUT",
+          "parameters": [
+            {
+              "dataType": "vrackServices.VrackServicesInput",
+              "paramType": "body",
+              "fullType": "vrackServices.VrackServicesInput",
+              "required": true,
+              "description": "Request Body"
+            },
+            {
+              "name": "vrackServicesId",
+              "dataType": "string",
+              "paramType": "path",
+              "fullType": "string",
+              "required": true,
+              "description": "Vrack services ID"
+            }
+          ],
+          "responseType": "vrackServices.VrackServices",
+          "noAuthentication": false,
+          "description": "Request updates on the vRack Services configuration",
+          "longDescription": "It is the unique route handling any update on the vRack Services configuration. It works as following:\n1. You define a new target specification in the request payload,\n2. If this specification is validated, you get the resource with updated `targetSpec` and `checksum` values in return,\n3. The request is processed by one or several **asynchronous** tasks that aims to reconciliate the `currentState` with the `targetSpec`\n\n### Asynchronous processing\n* To follow this processing, the VrackServices resource can be polled with `GET /vrackServices/resource/{vrackServicesId}`<br>As soon as its `resourceStatus` is *READY*, the requested specification can be considered as applied to the vRack Services.\n* The `checksum` helps on detecting concurrency cases on update requests. If the polled `checksum` value differs from the one returned in response of your initial request, it means that processing of your request is completed and another request is being processed.\n* In case of processing error (i.e. `resourceStatus` in *ERROR*), the current vRack Services configuration is still active, but modification requests will be refused until the intervention of the support.\n* An overview on the asynchronous task(s) is available via the `currentTasks` attribute.<br>More details on a task are provided by the route `GET /vrackServices/resource/{vrackServicesId}/task/{taskId}`\n\n### Seamless configuration actions\nThe request can combine any of the following seamless actions (meaning there won't be any cut of the service while updating):\n* create a Subnet\n* delete a Subnet without any Service Endpoint\n* update a Subnet:\n  * create one or several Service Endpoints\n\n**Note** that a Subnet with several Service Endpoints can be created in the same payload\n\n### Not seamless configuration actions\nThe modification of the Subnet characteristics listed below **WILL** result in a service cut while processing the update as they are interpreted as the deletion of the existing Subnet and creation of a new Subnet with provided characteristics. The IPs that were given to the Managed Services will be reelected and may as a result change:\n* modifications on the Subnet `ServiceRange`\n* modifications on the Subnet `Vlan`\n* modifications on the Subnet `CIDR` \n\nThe embedded Service Endpoints will be also deleted and re-created which implies a flapping accessibility in the vRack for every related managed services.  \n**Note** that deleting a Subnet will also delete embedded Service Endpoints\n\nThe `vrackId` is a read-only attribute as the association vRack/vRackServices is handled by the [vRack API](console-preview/?section=%2Fvrack&branch=v1)",
+          "errors": [
+            "Client::BadRequest::ChecksumBadFormat",
+            "Client::BadRequest::InvalidJSON",
+            "Client::BadRequest::ManagedServiceAlreadyAttached",
+            "Client::BadRequest::ManagedServiceDuplicated",
+            "Client::BadRequest::ManagedServiceIncompatibleType",
+            "Client::BadRequest::ManagedServiceNotAvailable",
+            "Client::BadRequest::ManagedServiceRegionMismatch",
+            "Client::BadRequest::ManagedServiceURNBadFormat",
+            "Client::BadRequest::ServiceRangeCIDRNotInSubnetCIDR",
+            "Client::BadRequest::ServiceRangeCIDRNotNetworkIP",
+            "Client::BadRequest::ServiceRangeCIDRNotPrivateNetwork",
+            "Client::BadRequest::ServiceRangeCIDRPrefixLengthOutOfRange",
+            "Client::BadRequest::ServiceRangeIPsCapacityExceeded",
+            "Client::BadRequest::SubnetCIDRNotNetworkIP",
+            "Client::BadRequest::SubnetCIDRNotPrivateNetwork",
+            "Client::BadRequest::SubnetCIDROverlap",
+            "Client::BadRequest::SubnetCIDRPrefixLengthIncorrect",
+            "Client::BadRequest::SubnetDisplayNameBadFormat",
+            "Client::BadRequest::SubnetLimitExceeded",
+            "Client::BadRequest::SubnetVLANOutOfRange",
+            "Client::NotFound::ManagedServiceNotFound",
+            "Client::NotFound::VrackServicesNotFound",
+            "Client::PreconditionFailed::ChecksumMismatch",
+            "Client::Locked::ManagedServiceLocked",
+            "Client::Locked::VrackServicesLocked"
+          ],
+          "iamActions": [
+            {
+              "name": "vrackServices:apiovh:resource/edit",
+              "description": "Update the vRack Services configuration",
+              "required": true
+            },
+            {
+              "name": "vrackServices:apiovh:storageNetApp/attach",
+              "description": "Required to add an Enterprise File Storage into the vRack Services",
+              "required": false
+            },
+            {
+              "name": "vrackServices:apiovh:storageNetApp/detach",
+              "description": "Required to remove an Enterprise File Storage from the vRack Services",
+              "required": false
+            },
+            {
+              "name": "storageNetApp:apiovh:vrackServices/attach",
+              "description": "Attach an Enterprise File Storage service to a vRack Services",
+              "required": false
+            }
+          ]
+        }
+      ],
+      "description": "Operations on vRack Services"
+    },
+    {
+      "path": "/vrackServices/resource/{vrackServicesId}/eligibleManagedService",
+      "operations": [
+        {
+          "apiStatus": {
+            "description": "Stable production version",
+            "value": "PRODUCTION"
+          },
+          "httpMethod": "GET",
+          "parameters": [
+            {
+              "name": "X-Pagination-Cursor",
+              "dataType": "string",
+              "paramType": "header",
+              "fullType": "string",
+              "required": false,
+              "description": "Pagination cursor"
+            },
+            {
+              "name": "X-Pagination-Size",
+              "dataType": "long",
+              "paramType": "header",
+              "fullType": "long",
+              "required": false,
+              "description": "Pagination size"
+            },
+            {
+              "name": "vrackServicesId",
+              "dataType": "string",
+              "paramType": "path",
+              "fullType": "string",
+              "required": true,
+              "description": "Vrack services ID"
+            }
+          ],
+          "responseType": "vrackServices.EligibleManagedService[]",
+          "noAuthentication": false,
+          "description": "List every managed service eligible to the requested vRack Services",
+          "iamActions": [
+            {
+              "name": "vrackServices:apiovh:resource/eligibleManagedService/get",
+              "required": true
+            },
+            {
+              "name": "vrackServices:apiovh:storageNetApp/attach",
+              "description": "Action required on a vrack Services to add an Enterprise File Storage in it",
+              "required": false
+            },
+            {
+              "name": "storageNetApp:apiovh:vrackServices/attach",
+              "description": "Action required on an Enterprise File Storage service to be added into a vRack Services",
+              "required": false
+            }
+          ]
+        }
+      ],
+      "description": ""
+    },
+    {
+      "path": "/vrackServices/resource/{vrackServicesId}/task",
+      "operations": [
+        {
+          "apiStatus": {
+            "description": "Stable production version",
+            "value": "PRODUCTION"
+          },
+          "httpMethod": "GET",
+          "parameters": [
+            {
+              "name": "X-Pagination-Cursor",
+              "dataType": "string",
+              "paramType": "header",
+              "fullType": "string",
+              "required": false,
+              "description": "Pagination cursor"
+            },
+            {
+              "name": "X-Pagination-Size",
+              "dataType": "long",
+              "paramType": "header",
+              "fullType": "long",
+              "required": false,
+              "description": "Pagination size"
+            },
+            {
+              "name": "vrackServicesId",
+              "dataType": "string",
+              "paramType": "path",
+              "fullType": "string",
+              "required": true,
+              "description": "Vrack services ID"
+            }
+          ],
+          "responseType": "common.Task[]",
+          "noAuthentication": false,
+          "description": "List all asynchronous operations related to the vRack Services",
+          "iamActions": [
+            {
+              "name": "vrackServices:apiovh:resource/task/get",
+              "required": true
+            }
+          ]
+        }
+      ],
+      "description": "vRack Services tasks"
+    },
+    {
+      "path": "/vrackServices/resource/{vrackServicesId}/task/{taskId}",
+      "operations": [
+        {
+          "apiStatus": {
+            "description": "Stable production version",
+            "value": "PRODUCTION"
+          },
+          "httpMethod": "GET",
+          "parameters": [
+            {
+              "name": "taskId",
+              "dataType": "uuid",
+              "paramType": "path",
+              "fullType": "uuid",
+              "required": true,
+              "description": "Task ID"
+            },
+            {
+              "name": "vrackServicesId",
+              "dataType": "string",
+              "paramType": "path",
+              "fullType": "string",
+              "required": true,
+              "description": "Vrack services ID"
+            }
+          ],
+          "responseType": "common.Task",
+          "noAuthentication": false,
+          "description": "Get the task",
+          "errors": [
+            "Client::BadRequest::VrackServicesNotFound"
+          ],
+          "iamActions": [
+            {
+              "name": "vrackServices:apiovh:resource/task/get",
+              "required": true
+            }
+          ]
+        }
+      ],
+      "description": "vRack Services tasks"
+    }
+  ],
+  "resourcePath": "/vrackServices",
+  "basePath": "https://eu.api.ovh.com/v2",
+  "models": {
+    "common.CurrentTask": {
+      "id": "CurrentTask",
+      "namespace": "common",
+      "description": "Asynchronous operation currently running",
+      "properties": {
+        "errors": {
+          "type": "common.TaskError[]",
+          "fullType": "common.TaskError[]",
+          "canBeNull": true,
+          "readOnly": true,
+          "description": "Errors that occured on the task",
+          "required": false
+        },
+        "id": {
+          "type": "uuid",
+          "fullType": "uuid",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "Identifier of the current task",
+          "required": false
+        },
+        "link": {
+          "type": "string",
+          "fullType": "string",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "Link to the task details",
+          "required": false
+        },
+        "status": {
+          "type": "common.CurrentTaskStatusEnum",
+          "fullType": "common.CurrentTaskStatusEnum",
+          "canBeNull": true,
+          "readOnly": true,
+          "description": "Current global status of the current task",
+          "required": false
+        },
+        "type": {
+          "type": "string",
+          "fullType": "string",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "Type of the current task",
+          "required": false
+        }
+      }
+    },
+    "common.CurrentTaskStatusEnum": {
+      "id": "CurrentTaskStatusEnum",
+      "namespace": "common",
+      "description": "Current status of a task. A task in ERROR cannot be retried without your inputs. PENDING tasks will be executed as soon as possible. A RUNNING task is currently executing your original request. SCHEDULED is used for tasks that will be executed in the future",
+      "enum": [
+        "ERROR",
+        "PENDING",
+        "RUNNING",
+        "SCHEDULED",
+        "WAITING_USER_INPUT"
+      ],
+      "enumType": "string"
+    },
+    "common.Task": {
+      "id": "Task",
+      "namespace": "common",
+      "description": "Asynchronous operation",
+      "properties": {
+        "createdAt": {
+          "type": "datetime",
+          "fullType": "datetime",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "Creation date of the task",
+          "required": false
+        },
+        "errors": {
+          "type": "common.TaskError[]",
+          "fullType": "common.TaskError[]",
+          "canBeNull": true,
+          "readOnly": true,
+          "description": "Errors that occured on the task",
+          "required": false
+        },
+        "finishedAt": {
+          "type": "datetime",
+          "fullType": "datetime",
+          "canBeNull": true,
+          "readOnly": true,
+          "description": "Ending date of the task",
+          "required": false
+        },
+        "id": {
+          "type": "uuid",
+          "fullType": "uuid",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "Identifier of the task",
+          "required": false
+        },
+        "link": {
+          "type": "string",
+          "fullType": "string",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "Link to the related resource",
+          "required": false
+        },
+        "message": {
+          "type": "string",
+          "fullType": "string",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "Description of the task",
+          "required": false
+        },
+        "progress": {
+          "type": "common.TaskProgress[]",
+          "fullType": "common.TaskProgress[]",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "Progress steps of the asynchronous operation",
+          "required": false
+        },
+        "startedAt": {
+          "type": "datetime",
+          "fullType": "datetime",
+          "canBeNull": true,
+          "readOnly": true,
+          "description": "Starting date of the task",
+          "required": false
+        },
+        "status": {
+          "type": "common.TaskStatusEnum",
+          "fullType": "common.TaskStatusEnum",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "Current global status of the task",
+          "required": false
+        },
+        "type": {
+          "type": "string",
+          "fullType": "string",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "Type of the task",
+          "required": false
+        },
+        "updatedAt": {
+          "type": "datetime",
+          "fullType": "datetime",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "Last update of the task",
+          "required": false
+        }
+      }
+    },
+    "common.TaskError": {
+      "id": "TaskError",
+      "namespace": "common",
+      "description": "Errors that occured on the task",
+      "properties": {
+        "message": {
+          "type": "string",
+          "fullType": "string",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "Error description",
+          "required": false
+        }
+      }
+    },
+    "common.TaskProgress": {
+      "id": "TaskProgress",
+      "namespace": "common",
+      "description": "Detailed information about an asynchronous operation progress steps",
+      "properties": {
+        "name": {
+          "type": "string",
+          "fullType": "string",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "Progress step name",
+          "required": false
+        },
+        "status": {
+          "type": "common.TaskStatusEnum",
+          "fullType": "common.TaskStatusEnum",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "Current status of the progress step",
+          "required": false
+        }
+      }
+    },
+    "common.TaskStatusEnum": {
+      "id": "TaskStatusEnum",
+      "namespace": "common",
+      "description": "TaskStatusEnum",
+      "enum": [
+        "DONE",
+        "ERROR",
+        "PENDING",
+        "RUNNING",
+        "SCHEDULED",
+        "WAITING_USER_INPUT"
+      ],
+      "enumType": "string"
+    },
+    "iam.ResourceMetadata": {
+      "id": "ResourceMetadata",
+      "namespace": "iam",
+      "description": "IAM resource metadata embedded in services models",
+      "properties": {
+        "displayName": {
+          "type": "string",
+          "fullType": "string",
+          "canBeNull": true,
+          "readOnly": true,
+          "description": "Resource display name",
+          "required": false
+        },
+        "id": {
+          "type": "uuid",
+          "fullType": "uuid",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "Unique identifier of the resource",
+          "required": false
+        },
+        "state": {
+          "type": "iam.ResourceMetadata.StateEnum",
+          "fullType": "iam.ResourceMetadata.StateEnum",
+          "canBeNull": true,
+          "readOnly": true,
+          "description": "Resource state",
+          "required": false
+        },
+        "tags": {
+          "type": "map[string]string",
+          "fullType": "map[string]string",
+          "canBeNull": true,
+          "readOnly": true,
+          "description": "Resource tags. Tags that were internally computed are prefixed with ovh:",
+          "required": false
+        },
+        "urn": {
+          "type": "string",
+          "fullType": "string",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "Unique resource name used in policies",
+          "required": false
+        }
+      }
+    },
+    "iam.ResourceMetadata.StateEnum": {
+      "id": "StateEnum",
+      "namespace": "iam.ResourceMetadata",
+      "description": "Resource state",
+      "enum": [
+        "EXPIRED",
+        "IN_CREATION",
+        "OK",
+        "SUSPENDED"
+      ],
+      "enumType": "string"
+    },
+    "iam.resource.TagFilter": {
+      "id": "TagFilter",
+      "namespace": "iam.resource",
+      "description": "Resource tag filter",
+      "properties": {
+        "operator": {
+          "type": "iam.resource.TagFilter.OperatorEnum",
+          "fullType": "iam.resource.TagFilter.OperatorEnum",
+          "canBeNull": true,
+          "readOnly": true,
+          "description": "Operator to use in order to filter on the value (defaults to 'EQ')",
+          "required": false
+        },
+        "value": {
+          "type": "string",
+          "fullType": "string",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "Value to use in order to filter tags",
+          "required": false
+        }
+      }
+    },
+    "iam.resource.TagFilter.OperatorEnum": {
+      "id": "OperatorEnum",
+      "namespace": "iam.resource.TagFilter",
+      "description": "Operator that can be used in order to filter resources tags",
+      "enum": [
+        "EQ",
+        "EXISTS",
+        "ILIKE",
+        "LIKE",
+        "NEQ",
+        "NEXISTS"
+      ],
+      "enumType": "string"
+    },
+    "vrackServices.EligibleManagedService": {
+      "id": "EligibleManagedService",
+      "namespace": "vrackServices",
+      "description": "List of managed services eligible to the requested vRack Services",
+      "properties": {
+        "managedServiceType": {
+          "type": "string",
+          "fullType": "string",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "IAM resource type. Compatible managed service types are listed by /reference/compatibleManagedServiceType call.",
+          "required": false
+        },
+        "managedServiceURNs": {
+          "type": "string[]",
+          "fullType": "string[]",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "List of IAM resource URNs",
+          "required": false
+        }
+      }
+    },
+    "vrackServices.Endpoint": {
+      "id": "Endpoint",
+      "namespace": "vrackServices",
+      "description": "Endpoint holding a managed service IP",
+      "properties": {
+        "description": {
+          "type": "string",
+          "fullType": "string",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "IP description defined in the managed service",
+          "required": false
+        },
+        "ip": {
+          "type": "ipv4",
+          "fullType": "ipv4",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "IP address assigned by OVHcloud",
+          "required": false
+        }
+      }
+    },
+    "vrackServices.ProductStatusEnum": {
+      "id": "ProductStatusEnum",
+      "namespace": "vrackServices",
+      "description": "ProductStatusEnum",
+      "enum": [
+        "ACTIVE",
+        "DRAFT",
+        "SUSPENDED"
+      ],
+      "enumType": "string"
+    },
+    "vrackServices.Region": {
+      "id": "Region",
+      "namespace": "vrackServices",
+      "description": "A vRack Services compatible localization",
+      "properties": {
+        "name": {
+          "type": "string",
+          "fullType": "string",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "Region name",
+          "required": false
+        }
+      }
+    },
+    "vrackServices.ResourceStatusEnum": {
+      "id": "ResourceStatusEnum",
+      "namespace": "vrackServices",
+      "description": "It reflects the readiness of the vRack Services resource. The status `READY` indicates that the vRack Services state is stable. It guarantees that the `currentState` is fully aligned with the `targetSpec`. A new target specification request will be accepted only in this status.",
+      "enum": [
+        "CREATING",
+        "DELETING",
+        "ERROR",
+        "READY",
+        "UPDATING"
+      ],
+      "enumType": "string"
+    },
+    "vrackServices.ServiceEndpoint": {
+      "id": "ServiceEndpoint",
+      "namespace": "vrackServices",
+      "description": "A Service Endpoint provides an access to managed services directly from one or several private IPs in the associated vRack",
+      "properties": {
+        "endpoints": {
+          "type": "vrackServices.Endpoint[]",
+          "fullType": "vrackServices.Endpoint[]",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "Endpoints representing the IPs assigned to the managed services",
+          "required": false
+        },
+        "managedServiceURN": {
+          "type": "string",
+          "fullType": "string",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "IAM Resource URN of the managed service. Compatible managed service types are listed by /reference/compatibleManagedServiceType call.",
+          "required": false
+        }
+      }
+    },
+    "vrackServices.ServiceRange": {
+      "id": "ServiceRange",
+      "namespace": "vrackServices",
+      "description": "Definition of the range dedicated to the subnet's services",
+      "properties": {
+        "cidr": {
+          "type": "ipv4Block",
+          "fullType": "ipv4Block",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "CIDR dedicated to the subnet's services",
+          "required": false
+        },
+        "remainingIps": {
+          "type": "long",
+          "fullType": "long",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "Number of remaining IPs in the service range",
+          "required": false
+        },
+        "reservedIps": {
+          "type": "long",
+          "fullType": "long",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "Number of service range IPs reserved by OVHcloud",
+          "required": false
+        },
+        "usedIps": {
+          "type": "long",
+          "fullType": "long",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "Number of service range IPs assigned to the managed services",
+          "required": false
+        }
+      }
+    },
+    "vrackServices.Subnet": {
+      "id": "Subnet",
+      "namespace": "vrackServices",
+      "description": "A network segment of the associated vRack. It represents an IP addressing scheme inside the private network",
+      "properties": {
+        "cidr": {
+          "type": "ipv4Block",
+          "fullType": "ipv4Block",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "IP address range of the subnet in CIDR format",
+          "required": false
+        },
+        "displayName": {
+          "type": "string",
+          "fullType": "string",
+          "canBeNull": true,
+          "readOnly": true,
+          "description": "Display name of the subnet",
+          "required": false
+        },
+        "serviceEndpoints": {
+          "type": "vrackServices.ServiceEndpoint[]",
+          "fullType": "vrackServices.ServiceEndpoint[]",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "Service endpoints of the subnet",
+          "required": false
+        },
+        "serviceRange": {
+          "type": "vrackServices.ServiceRange",
+          "fullType": "vrackServices.ServiceRange",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "Defines a smaller subnet dedicated to the managed services IPs",
+          "required": false
+        },
+        "vlan": {
+          "type": "long",
+          "fullType": "long",
+          "canBeNull": true,
+          "readOnly": true,
+          "description": "Unique inner VLAN that allows subnets segregation",
+          "required": false
+        }
+      }
+    },
+    "vrackServices.TargetServiceEndpoint": {
+      "id": "TargetServiceEndpoint",
+      "namespace": "vrackServices",
+      "description": "Target specification of a Service Endpoint. A Service Endpoint provides an access to a managed service directly from one or several private IPs in the associated vRack",
+      "properties": {
+        "managedServiceURN": {
+          "type": "string",
+          "fullType": "string",
+          "canBeNull": false,
+          "readOnly": false,
+          "description": "IAM Resource URN of the managed service. Managed service Region must match vRack Services Region. Compatible managed service types are listed by /reference/compatibleManagedServiceType call",
+          "required": true
+        }
+      }
+    },
+    "vrackServices.TargetServiceRange": {
+      "id": "TargetServiceRange",
+      "namespace": "vrackServices",
+      "description": "Target specification of the range dedicated to the subnet's services",
+      "properties": {
+        "cidr": {
+          "type": "ipv4Block",
+          "fullType": "ipv4Block",
+          "canBeNull": false,
+          "readOnly": false,
+          "description": "IP address range dedicated to the subnet's services in CIDR format. Must be a private network address (RFC1918). Must be a sub-network of the subnet. Authorized range for prefix length: /27 to /29",
+          "required": true
+        }
+      }
+    },
+    "vrackServices.TargetSubnet": {
+      "id": "TargetSubnet",
+      "namespace": "vrackServices",
+      "description": "Target specification of a subnet",
+      "properties": {
+        "cidr": {
+          "type": "ipv4Block",
+          "fullType": "ipv4Block",
+          "canBeNull": false,
+          "readOnly": false,
+          "description": "IP address range of the subnet in CIDR format. Must be a private network address (RFC1918). Authorized range for prefix length: /16 to /24",
+          "required": true
+        },
+        "displayName": {
+          "type": "string",
+          "fullType": "string",
+          "canBeNull": true,
+          "readOnly": false,
+          "description": "Display name of the subnet. Format must follow `^[ a-zA-Z0-9-_.]{0,40}$`",
+          "required": false
+        },
+        "serviceEndpoints": {
+          "type": "vrackServices.TargetServiceEndpoint[]",
+          "fullType": "vrackServices.TargetServiceEndpoint[]",
+          "canBeNull": false,
+          "readOnly": false,
+          "description": "Target specification of the Service Endpoints",
+          "required": true
+        },
+        "serviceRange": {
+          "type": "vrackServices.TargetServiceRange",
+          "fullType": "vrackServices.TargetServiceRange",
+          "canBeNull": false,
+          "readOnly": false,
+          "description": "Defines a smaller subnet dedicated to the managed service IPs",
+          "required": true
+        },
+        "vlan": {
+          "type": "long",
+          "fullType": "long",
+          "canBeNull": true,
+          "readOnly": false,
+          "description": "Unique inner VLAN that allows subnets segregation. Authorized values: [2 - 4094] and `null` (untagged traffic)",
+          "required": false
+        }
+      }
+    },
+    "vrackServices.VrackServices": {
+      "id": "VrackServices",
+      "namespace": "vrackServices",
+      "description": "A vRack Services",
+      "properties": {
+        "checksum": {
+          "type": "string",
+          "fullType": "string",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "Computed hash used to control concurrent modification requests. Here, it represents the current target specification value",
+          "required": false
+        },
+        "createdAt": {
+          "type": "datetime",
+          "fullType": "datetime",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "Date of the vRack Services delivery",
+          "required": false
+        },
+        "currentState": {
+          "type": "vrackServices.VrackServicesCurrentState",
+          "fullType": "vrackServices.VrackServicesCurrentState",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "Current configuration applied to the vRack Services",
+          "required": false
+        },
+        "currentTasks": {
+          "type": "common.CurrentTask[]",
+          "fullType": "common.CurrentTask[]",
+          "canBeNull": true,
+          "readOnly": true,
+          "description": "Asynchronous operations ongoing on the vRack Services",
+          "required": false
+        },
+        "id": {
+          "type": "string",
+          "fullType": "string",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "Unique identifier",
+          "required": false
+        },
+        "resourceStatus": {
+          "type": "vrackServices.ResourceStatusEnum",
+          "fullType": "vrackServices.ResourceStatusEnum",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "Reflects the readiness of the vRack Services. A new target specification request will be accepted only in `READY` status",
+          "required": false
+        },
+        "targetSpec": {
+          "type": "vrackServices.VrackServicesTargetSpec",
+          "fullType": "vrackServices.VrackServicesTargetSpec",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "Last target specification of the vRack Services",
+          "required": false
+        },
+        "updatedAt": {
+          "type": "datetime",
+          "fullType": "datetime",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "Date of the Last vRack Services update",
+          "required": false
+        }
+      }
+    },
+    "vrackServices.VrackServicesCurrentState": {
+      "id": "VrackServicesCurrentState",
+      "namespace": "vrackServices",
+      "description": "Current state of the vRack Services",
+      "properties": {
+        "productStatus": {
+          "type": "vrackServices.ProductStatusEnum",
+          "fullType": "vrackServices.ProductStatusEnum",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "Product status of the vRack Services",
+          "required": false
+        },
+        "region": {
+          "type": "string",
+          "fullType": "string",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "Region of the vRack Services. List of compatible regions can be retrieved from /reference/region",
+          "required": false
+        },
+        "subnets": {
+          "type": "vrackServices.Subnet[]",
+          "fullType": "vrackServices.Subnet[]",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "Subnets of the current vRack Services",
+          "required": false
+        },
+        "vrackId": {
+          "type": "string",
+          "fullType": "string",
+          "canBeNull": true,
+          "readOnly": true,
+          "description": "vRack associated to the vRack Services",
+          "required": false
+        }
+      }
+    },
+    "vrackServices.VrackServicesInput": {
+      "id": "VrackServicesInput",
+      "namespace": "vrackServices",
+      "description": "A vRack Services input payload",
+      "properties": {
+        "checksum": {
+          "type": "string",
+          "fullType": "string",
+          "canBeNull": false,
+          "readOnly": false,
+          "description": "Computed hash used to control concurrent modification requests. Here, it represents the target specification value the request is based on",
+          "required": true
+        },
+        "targetSpec": {
+          "type": "vrackServices.VrackServicesTargetSpec",
+          "fullType": "vrackServices.VrackServicesTargetSpec",
+          "canBeNull": false,
+          "readOnly": false,
+          "description": "Requested target specification",
+          "required": true
+        }
+      }
+    },
+    "vrackServices.VrackServicesTargetSpec": {
+      "id": "VrackServicesTargetSpec",
+      "namespace": "vrackServices",
+      "description": "Target specification of the vRack Services",
+      "properties": {
+        "subnets": {
+          "type": "vrackServices.TargetSubnet[]",
+          "fullType": "vrackServices.TargetSubnet[]",
+          "canBeNull": false,
+          "readOnly": false,
+          "description": "Target specification of the subnets. Maximum one subnet per vRack Services",
+          "required": true
+        }
+      }
+    },
+    "vrackServices.VrackServicesWithIAM": {
+      "id": "VrackServices",
+      "namespace": "vrackServices",
+      "description": "A vRack Services",
+      "properties": {
+        "checksum": {
+          "type": "string",
+          "fullType": "string",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "Computed hash used to control concurrent modification requests. Here, it represents the current target specification value",
+          "required": false
+        },
+        "createdAt": {
+          "type": "datetime",
+          "fullType": "datetime",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "Date of the vRack Services delivery",
+          "required": false
+        },
+        "currentState": {
+          "type": "vrackServices.VrackServicesCurrentState",
+          "fullType": "vrackServices.VrackServicesCurrentState",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "Current configuration applied to the vRack Services",
+          "required": false
+        },
+        "currentTasks": {
+          "type": "common.CurrentTask[]",
+          "fullType": "common.CurrentTask[]",
+          "canBeNull": true,
+          "readOnly": true,
+          "description": "Asynchronous operations ongoing on the vRack Services",
+          "required": false
+        },
+        "iam": {
+          "type": "iam.ResourceMetadata",
+          "canBeNull": true,
+          "readOnly": true,
+          "description": "IAM resource metadata",
+          "required": false
+        },
+        "id": {
+          "type": "string",
+          "fullType": "string",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "Unique identifier",
+          "required": false
+        },
+        "resourceStatus": {
+          "type": "vrackServices.ResourceStatusEnum",
+          "fullType": "vrackServices.ResourceStatusEnum",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "Reflects the readiness of the vRack Services. A new target specification request will be accepted only in `READY` status",
+          "required": false
+        },
+        "targetSpec": {
+          "type": "vrackServices.VrackServicesTargetSpec",
+          "fullType": "vrackServices.VrackServicesTargetSpec",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "Last target specification of the vRack Services",
+          "required": false
+        },
+        "updatedAt": {
+          "type": "datetime",
+          "fullType": "datetime",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "Date of the Last vRack Services update",
+          "required": false
+        }
+      }
+    }
+  },
+  "subsections": {
+    "Reference": "This section contains reference data used across the vRack Services.",
+    "Resource": "A <b>resource</b> represents an available vRack Services."
+  }
+}

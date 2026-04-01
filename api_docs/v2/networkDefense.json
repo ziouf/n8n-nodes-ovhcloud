@@ -1,0 +1,296 @@
+{
+  "apiVersion": "1.0",
+  "apis": [
+    {
+      "path": "/networkDefense/vac/event",
+      "operations": [
+        {
+          "apiStatus": {
+            "description": "Stable production version",
+            "value": "PRODUCTION"
+          },
+          "httpMethod": "GET",
+          "parameters": [
+            {
+              "name": "X-Pagination-Cursor",
+              "dataType": "string",
+              "paramType": "header",
+              "fullType": "string",
+              "required": false,
+              "description": "Pagination cursor"
+            },
+            {
+              "name": "X-Pagination-Size",
+              "dataType": "long",
+              "paramType": "header",
+              "fullType": "long",
+              "required": false,
+              "description": "Pagination size"
+            },
+            {
+              "name": "after",
+              "dataType": "datetime",
+              "paramType": "query",
+              "fullType": "datetime",
+              "required": false,
+              "description": "Query events which started after the given date"
+            },
+            {
+              "name": "before",
+              "dataType": "datetime",
+              "paramType": "query",
+              "fullType": "datetime",
+              "required": false,
+              "description": "Query events which ended before the given date"
+            },
+            {
+              "name": "ongoingOnly",
+              "dataType": "boolean",
+              "paramType": "query",
+              "fullType": "boolean",
+              "required": false,
+              "description": "Query for ongoing events only. If this is set, 'after' and 'before' parameters are ignored"
+            },
+            {
+              "name": "region",
+              "dataType": "networkDefense.RegionEnum",
+              "paramType": "query",
+              "fullType": "networkDefense.RegionEnum",
+              "required": false,
+              "description": "Query events for the given region"
+            },
+            {
+              "name": "subnets",
+              "dataType": "ipBlock[]",
+              "paramType": "query",
+              "fullType": "ipBlock[]",
+              "required": false,
+              "description": "Query events for the given subnets"
+            }
+          ],
+          "responseType": "networkDefense.Vac.EventsResponse",
+          "noAuthentication": false,
+          "description": "Get all Network Defense events",
+          "iamActions": [
+            {
+              "name": "ip:apiovh:networkDefense/vac/event/get",
+              "required": false
+            }
+          ]
+        }
+      ],
+      "description": "Operations on the Network Defense events"
+    },
+    {
+      "path": "/networkDefense/vac/traffic",
+      "operations": [
+        {
+          "apiStatus": {
+            "description": "Stable production version",
+            "value": "PRODUCTION"
+          },
+          "httpMethod": "GET",
+          "parameters": [
+            {
+              "name": "X-Pagination-Cursor",
+              "dataType": "string",
+              "paramType": "header",
+              "fullType": "string",
+              "required": false,
+              "description": "Pagination cursor"
+            },
+            {
+              "name": "X-Pagination-Size",
+              "dataType": "long",
+              "paramType": "header",
+              "fullType": "long",
+              "required": false,
+              "description": "Pagination size"
+            },
+            {
+              "name": "after",
+              "dataType": "datetime",
+              "paramType": "query",
+              "fullType": "datetime",
+              "required": true,
+              "description": "Query statistics after the given date"
+            },
+            {
+              "name": "before",
+              "dataType": "datetime",
+              "paramType": "query",
+              "fullType": "datetime",
+              "required": false,
+              "description": "Query statistics before the given date"
+            },
+            {
+              "name": "subnet",
+              "dataType": "ipBlock",
+              "paramType": "query",
+              "fullType": "ipBlock",
+              "required": true,
+              "description": "Query statistics for the given subnet (currently, only IPv4/32 or IPv6/64 are supported)"
+            }
+          ],
+          "responseType": "networkDefense.Vac.TrafficResponse",
+          "noAuthentication": false,
+          "description": "Get all Network Defense traffic statistics",
+          "iamActions": [
+            {
+              "name": "ip:apiovh:networkDefense/vac/traffic/get",
+              "required": false
+            }
+          ]
+        }
+      ],
+      "description": "Operations on the Network Defense traffic statistics"
+    }
+  ],
+  "resourcePath": "/networkDefense",
+  "basePath": "https://eu.api.ovh.com/v2",
+  "models": {
+    "networkDefense.RegionEnum": {
+      "id": "RegionEnum",
+      "namespace": "networkDefense",
+      "description": "Representation of a Region",
+      "enum": [
+        "CA",
+        "EU",
+        "US"
+      ],
+      "enumType": "string"
+    },
+    "networkDefense.Vac.Event": {
+      "id": "Event",
+      "namespace": "networkDefense.Vac",
+      "description": "DDoS mitigation event. It typically starts when the DDoS detection system sends an alert, and the traffic of the subnet is routed through the mitigation system (VAC)",
+      "properties": {
+        "endedAt": {
+          "type": "datetime",
+          "fullType": "datetime",
+          "canBeNull": true,
+          "readOnly": true,
+          "description": "End date of the event. It can be null if the event is ongoing.",
+          "required": false
+        },
+        "startedAt": {
+          "type": "datetime",
+          "fullType": "datetime",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "Start date of the event",
+          "required": false
+        },
+        "subnet": {
+          "type": "ipBlock",
+          "fullType": "ipBlock",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "IP subnet affected by the event",
+          "required": false
+        },
+        "vectors": {
+          "type": "networkDefense.VectorsEnum[]",
+          "fullType": "networkDefense.VectorsEnum[]",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "Attack vector",
+          "required": false
+        }
+      }
+    },
+    "networkDefense.Vac.EventsResponse": {
+      "id": "EventsResponse",
+      "namespace": "networkDefense.Vac",
+      "description": "List of DDoS mitigation events.",
+      "properties": {
+        "events": {
+          "type": "networkDefense.Vac.Event[]",
+          "fullType": "networkDefense.Vac.Event[]",
+          "canBeNull": true,
+          "readOnly": true,
+          "description": "List of events",
+          "required": false
+        }
+      }
+    },
+    "networkDefense.Vac.TrafficResponse": {
+      "id": "TrafficResponse",
+      "namespace": "networkDefense.Vac",
+      "description": "DDoS mitigation traffic statistics. All arrays have the same length. The Nth item of the dropped or passed arrays matches the Nth timestamp",
+      "properties": {
+        "bps": {
+          "type": "networkDefense.Vac.TrafficResponseData",
+          "fullType": "networkDefense.Vac.TrafficResponseData",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "Bits per seconds statistics",
+          "required": false
+        },
+        "pps": {
+          "type": "networkDefense.Vac.TrafficResponseData",
+          "fullType": "networkDefense.Vac.TrafficResponseData",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "Packets per seconds statistics",
+          "required": false
+        },
+        "timestamps": {
+          "type": "datetime[]",
+          "fullType": "datetime[]",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "Timestamps of the statistics points",
+          "required": false
+        }
+      }
+    },
+    "networkDefense.Vac.TrafficResponseData": {
+      "id": "TrafficResponseData",
+      "namespace": "networkDefense.Vac",
+      "description": "DDoS mitigation traffic statistics",
+      "properties": {
+        "dropped": {
+          "type": "string[]",
+          "fullType": "string[]",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "Volume of traffic dropped by the VAC (DDoS protection)",
+          "required": false
+        },
+        "passed": {
+          "type": "string[]",
+          "fullType": "string[]",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "Volume of traffic which was not dropped by the VAC (DDoS protection)",
+          "required": false
+        }
+      }
+    },
+    "networkDefense.VectorsEnum": {
+      "id": "VectorsEnum",
+      "namespace": "networkDefense",
+      "description": "Network Defense DDoS attack vectors",
+      "enum": [
+        "CHARGEN",
+        "DNS",
+        "DNS_TO_OVH",
+        "FRAGMENT",
+        "ICMP",
+        "IP_NULL",
+        "NTP",
+        "OTHER",
+        "TCP_ACK",
+        "TCP_FIN",
+        "TCP_NULL",
+        "TCP_PSH",
+        "TCP_RST",
+        "TCP_SYN",
+        "UDP",
+        "VECTOR_TYPE_UNSPECIFIED"
+      ],
+      "enumType": "string"
+    }
+  }
+}

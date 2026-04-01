@@ -1,0 +1,1140 @@
+{
+  "apiVersion": "1.0",
+  "apis": [
+    {
+      "path": "/license/worklight",
+      "operations": [
+        {
+          "apiStatus": {
+            "description": "Stable production version",
+            "value": "PRODUCTION"
+          },
+          "httpMethod": "GET",
+          "parameters": [
+            {
+              "name": "iamTags",
+              "dataType": "map[string][]iam.resource.TagFilter",
+              "paramType": "query",
+              "required": false,
+              "description": "Filter resources on IAM tags"
+            }
+          ],
+          "responseType": "string[]",
+          "noAuthentication": false,
+          "description": "List available services",
+          "iamActions": [
+            {
+              "name": "licenseWorklight:apiovh:get",
+              "required": true
+            }
+          ]
+        }
+      ],
+      "description": "Operations about the LICENSE service"
+    },
+    {
+      "path": "/license/worklight/orderableVersions",
+      "operations": [
+        {
+          "apiStatus": {
+            "description": "Stable production version",
+            "value": "PRODUCTION"
+          },
+          "httpMethod": "GET",
+          "parameters": [
+            {
+              "name": "ip",
+              "dataType": "ipv4",
+              "paramType": "query",
+              "fullType": "ipv4",
+              "required": true,
+              "description": "Your license Ip"
+            }
+          ],
+          "responseType": "license.WorkLightOrderConfiguration[]",
+          "noAuthentication": false,
+          "description": "Get the orderable WorkLight versions",
+          "iamActions": [
+            {
+              "name": "account:apiovh:licenseWorklight/orderableVersions/get",
+              "required": true
+            }
+          ]
+        }
+      ],
+      "description": "Get the orderable WorkLight versions"
+    },
+    {
+      "path": "/license/worklight/{serviceName}",
+      "operations": [
+        {
+          "apiStatus": {
+            "description": "Stable production version",
+            "value": "PRODUCTION"
+          },
+          "httpMethod": "GET",
+          "parameters": [
+            {
+              "name": "serviceName",
+              "dataType": "string",
+              "paramType": "path",
+              "fullType": "string",
+              "required": true,
+              "description": "The name of your WorkLight license"
+            }
+          ],
+          "responseType": "license.worklight.WorkLightWithIAM",
+          "noAuthentication": false,
+          "description": "Get this object properties",
+          "iamActions": [
+            {
+              "name": "licenseWorklight:apiovh:get",
+              "required": true
+            }
+          ]
+        },
+        {
+          "apiStatus": {
+            "description": "Stable production version",
+            "value": "PRODUCTION"
+          },
+          "httpMethod": "PUT",
+          "parameters": [
+            {
+              "dataType": "license.worklight.WorkLight",
+              "paramType": "body",
+              "fullType": "license.worklight.WorkLight",
+              "required": true,
+              "description": "New object properties"
+            },
+            {
+              "name": "serviceName",
+              "dataType": "string",
+              "paramType": "path",
+              "fullType": "string",
+              "required": true,
+              "description": "The name of your WorkLight license"
+            }
+          ],
+          "responseType": "void",
+          "noAuthentication": false,
+          "description": "Alter this object properties",
+          "iamActions": [
+            {
+              "name": "licenseWorklight:apiovh:put",
+              "required": true
+            }
+          ]
+        }
+      ],
+      "description": "Your WorkLight license"
+    },
+    {
+      "path": "/license/worklight/{serviceName}/allowedDestinationIp",
+      "operations": [
+        {
+          "apiStatus": {
+            "description": "Stable production version",
+            "value": "PRODUCTION"
+          },
+          "httpMethod": "GET",
+          "parameters": [
+            {
+              "name": "serviceName",
+              "dataType": "string",
+              "paramType": "path",
+              "fullType": "string",
+              "required": true,
+              "description": "The name of your WorkLight license"
+            }
+          ],
+          "responseType": "ipBlock[]",
+          "noAuthentication": false,
+          "description": "Returns an array of ips where the license can be moved to",
+          "iamActions": [
+            {
+              "name": "licenseWorklight:apiovh:allowedDestinationIp/get",
+              "required": true
+            }
+          ]
+        }
+      ],
+      "description": "allowedDestinationIp operations"
+    },
+    {
+      "path": "/license/worklight/{serviceName}/canLicenseBeMovedTo",
+      "operations": [
+        {
+          "apiStatus": {
+            "description": "Stable production version",
+            "value": "PRODUCTION"
+          },
+          "httpMethod": "GET",
+          "parameters": [
+            {
+              "name": "destinationIp",
+              "dataType": "ipv4",
+              "paramType": "query",
+              "fullType": "ipv4",
+              "required": true,
+              "description": "The Ip on which you want to move this license"
+            },
+            {
+              "name": "serviceName",
+              "dataType": "string",
+              "paramType": "path",
+              "fullType": "string",
+              "required": true,
+              "description": "The name of your WorkLight license"
+            }
+          ],
+          "responseType": "license.ChangeIpStatus",
+          "noAuthentication": false,
+          "description": "Will tell if the ip can accept the license",
+          "iamActions": [
+            {
+              "name": "licenseWorklight:apiovh:canLicenseBeMovedTo/get",
+              "required": true
+            }
+          ]
+        }
+      ],
+      "description": "canLicenseBeMovedTo operations"
+    },
+    {
+      "path": "/license/worklight/{serviceName}/changeIp",
+      "operations": [
+        {
+          "apiStatus": {
+            "description": "Stable production version",
+            "value": "PRODUCTION"
+          },
+          "httpMethod": "POST",
+          "parameters": [
+            {
+              "name": "destinationIp",
+              "dataType": "ipv4",
+              "paramType": "body",
+              "fullType": "ipv4",
+              "required": true,
+              "description": "The Ip on which you want to move this license"
+            },
+            {
+              "name": "serviceName",
+              "dataType": "string",
+              "paramType": "path",
+              "fullType": "string",
+              "required": true,
+              "description": "The name of your WorkLight license"
+            }
+          ],
+          "responseType": "license.Task",
+          "noAuthentication": false,
+          "description": "Move this license to another Ip",
+          "iamActions": [
+            {
+              "name": "licenseWorklight:apiovh:changeIp",
+              "required": true
+            }
+          ]
+        }
+      ],
+      "description": "changeIp operations"
+    },
+    {
+      "path": "/license/worklight/{serviceName}/confirmTermination",
+      "operations": [
+        {
+          "apiStatus": {
+            "description": "Stable production version",
+            "value": "PRODUCTION"
+          },
+          "httpMethod": "POST",
+          "parameters": [
+            {
+              "name": "commentary",
+              "dataType": "string",
+              "paramType": "body",
+              "fullType": "string",
+              "required": false,
+              "description": "Commentary about your termination request"
+            },
+            {
+              "name": "futureUse",
+              "dataType": "service.TerminationFutureUseEnum",
+              "paramType": "body",
+              "fullType": "service.TerminationFutureUseEnum",
+              "required": false,
+              "description": "What next after your termination request"
+            },
+            {
+              "name": "reason",
+              "dataType": "service.TerminationReasonEnum",
+              "paramType": "body",
+              "fullType": "service.TerminationReasonEnum",
+              "required": false,
+              "description": "Reason of your termination request"
+            },
+            {
+              "name": "serviceName",
+              "dataType": "string",
+              "paramType": "path",
+              "fullType": "string",
+              "required": true,
+              "description": "The name of your WorkLight license"
+            },
+            {
+              "name": "token",
+              "dataType": "string",
+              "paramType": "body",
+              "fullType": "string",
+              "required": true,
+              "description": "The termination token sent by email to the admin contact"
+            }
+          ],
+          "responseType": "string",
+          "noAuthentication": false,
+          "description": "Confirm service termination",
+          "iamActions": [
+            {
+              "name": "licenseWorklight:apiovh:confirmTermination",
+              "required": true
+            }
+          ]
+        }
+      ],
+      "description": "Confirm service termination"
+    },
+    {
+      "path": "/license/worklight/{serviceName}/serviceInfos",
+      "operations": [
+        {
+          "apiStatus": {
+            "description": "Stable production version",
+            "value": "PRODUCTION"
+          },
+          "httpMethod": "GET",
+          "parameters": [
+            {
+              "name": "serviceName",
+              "dataType": "string",
+              "paramType": "path",
+              "fullType": "string",
+              "required": true,
+              "description": "The name of your WorkLight license"
+            }
+          ],
+          "responseType": "services.Service",
+          "noAuthentication": false,
+          "description": "Get service information",
+          "iamActions": [
+            {
+              "name": "licenseWorklight:apiovh:serviceInfos/get",
+              "required": true
+            }
+          ]
+        },
+        {
+          "apiStatus": {
+            "description": "Stable production version",
+            "value": "PRODUCTION"
+          },
+          "httpMethod": "PUT",
+          "parameters": [
+            {
+              "dataType": "services.Service",
+              "paramType": "body",
+              "fullType": "services.Service",
+              "required": true,
+              "description": "New object properties"
+            },
+            {
+              "name": "serviceName",
+              "dataType": "string",
+              "paramType": "path",
+              "fullType": "string",
+              "required": true,
+              "description": "The name of your WorkLight license"
+            }
+          ],
+          "responseType": "void",
+          "noAuthentication": false,
+          "description": "Update service information",
+          "iamActions": [
+            {
+              "name": "licenseWorklight:apiovh:serviceInfos/edit",
+              "required": true
+            }
+          ]
+        }
+      ],
+      "description": "Details about a Service"
+    },
+    {
+      "path": "/license/worklight/{serviceName}/tasks",
+      "operations": [
+        {
+          "apiStatus": {
+            "description": "Stable production version",
+            "value": "PRODUCTION"
+          },
+          "httpMethod": "GET",
+          "parameters": [
+            {
+              "name": "action",
+              "dataType": "license.ActionType",
+              "paramType": "query",
+              "fullType": "license.ActionType",
+              "required": false,
+              "description": "Filter the value of action property (=)"
+            },
+            {
+              "name": "serviceName",
+              "dataType": "string",
+              "paramType": "path",
+              "fullType": "string",
+              "required": true,
+              "description": "The name of your WorkLight license"
+            },
+            {
+              "name": "status",
+              "dataType": "license.TaskStateEnum",
+              "paramType": "query",
+              "fullType": "license.TaskStateEnum",
+              "required": false,
+              "description": "Filter the value of status property (=)"
+            }
+          ],
+          "responseType": "long[]",
+          "noAuthentication": false,
+          "description": "Tasks linked to this license",
+          "iamActions": [
+            {
+              "name": "licenseWorklight:apiovh:tasks/get",
+              "required": true
+            }
+          ]
+        }
+      ],
+      "description": "List the license.Task objects"
+    },
+    {
+      "path": "/license/worklight/{serviceName}/tasks/{taskId}",
+      "operations": [
+        {
+          "apiStatus": {
+            "description": "Stable production version",
+            "value": "PRODUCTION"
+          },
+          "httpMethod": "GET",
+          "parameters": [
+            {
+              "name": "serviceName",
+              "dataType": "string",
+              "paramType": "path",
+              "fullType": "string",
+              "required": true,
+              "description": "The name of your WorkLight license"
+            },
+            {
+              "name": "taskId",
+              "dataType": "long",
+              "paramType": "path",
+              "fullType": "long",
+              "required": true,
+              "description": "This Task id"
+            }
+          ],
+          "responseType": "license.Task",
+          "noAuthentication": false,
+          "description": "Get this object properties",
+          "iamActions": [
+            {
+              "name": "licenseWorklight:apiovh:tasks/get",
+              "required": true
+            }
+          ]
+        }
+      ],
+      "description": "licenses Todos"
+    },
+    {
+      "path": "/license/worklight/{serviceName}/terminate",
+      "operations": [
+        {
+          "apiStatus": {
+            "description": "Stable production version",
+            "value": "PRODUCTION"
+          },
+          "httpMethod": "POST",
+          "parameters": [
+            {
+              "name": "serviceName",
+              "dataType": "string",
+              "paramType": "path",
+              "fullType": "string",
+              "required": true,
+              "description": "The name of your WorkLight license"
+            }
+          ],
+          "responseType": "string",
+          "noAuthentication": false,
+          "description": "Ask for the termination of your service",
+          "longDescription": "Ask for the termination of your service. Admin contact of this service will receive a termination token by email in order to confirm its termination with /confirmTermination endpoint.",
+          "iamActions": [
+            {
+              "name": "licenseWorklight:apiovh:terminate",
+              "required": true
+            }
+          ]
+        }
+      ],
+      "description": "Ask for the termination of your service. Admin contact of this service will receive a termination token in order to confirm its termination with /confirmTermination endpoint."
+    }
+  ],
+  "resourcePath": "/license/worklight",
+  "basePath": "https://eu.api.ovh.com/v1",
+  "models": {
+    "iam.ResourceMetadata": {
+      "id": "ResourceMetadata",
+      "namespace": "iam",
+      "description": "IAM resource metadata embedded in services models",
+      "properties": {
+        "displayName": {
+          "type": "string",
+          "fullType": "string",
+          "canBeNull": true,
+          "readOnly": true,
+          "description": "Resource display name",
+          "required": false
+        },
+        "id": {
+          "type": "uuid",
+          "fullType": "uuid",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "Unique identifier of the resource",
+          "required": false
+        },
+        "state": {
+          "type": "iam.ResourceMetadata.StateEnum",
+          "fullType": "iam.ResourceMetadata.StateEnum",
+          "canBeNull": true,
+          "readOnly": true,
+          "description": "Resource state",
+          "required": false
+        },
+        "tags": {
+          "type": "map[string]string",
+          "fullType": "map[string]string",
+          "canBeNull": true,
+          "readOnly": true,
+          "description": "Resource tags. Tags that were internally computed are prefixed with ovh:",
+          "required": false
+        },
+        "urn": {
+          "type": "string",
+          "fullType": "string",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "Unique resource name used in policies",
+          "required": false
+        }
+      }
+    },
+    "iam.ResourceMetadata.StateEnum": {
+      "id": "StateEnum",
+      "namespace": "iam.ResourceMetadata",
+      "description": "Resource state",
+      "enum": [
+        "EXPIRED",
+        "IN_CREATION",
+        "OK",
+        "SUSPENDED"
+      ],
+      "enumType": "string"
+    },
+    "iam.resource.TagFilter": {
+      "id": "TagFilter",
+      "namespace": "iam.resource",
+      "description": "Resource tag filter",
+      "properties": {
+        "operator": {
+          "type": "iam.resource.TagFilter.OperatorEnum",
+          "fullType": "iam.resource.TagFilter.OperatorEnum",
+          "canBeNull": true,
+          "readOnly": true,
+          "description": "Operator to use in order to filter on the value (defaults to 'EQ')",
+          "required": false
+        },
+        "value": {
+          "type": "string",
+          "fullType": "string",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "Value to use in order to filter tags",
+          "required": false
+        }
+      }
+    },
+    "iam.resource.TagFilter.OperatorEnum": {
+      "id": "OperatorEnum",
+      "namespace": "iam.resource.TagFilter",
+      "description": "Operator that can be used in order to filter resources tags",
+      "enum": [
+        "EQ",
+        "EXISTS",
+        "ILIKE",
+        "LIKE",
+        "NEQ",
+        "NEXISTS"
+      ],
+      "enumType": "string"
+    },
+    "license.ActionType": {
+      "id": "ActionType",
+      "namespace": "license",
+      "description": "A short description of what does the Task on your license",
+      "enum": [
+        "addWindowFromExistingSerial",
+        "changeIp",
+        "changeOs",
+        "installLicense",
+        "optionUpgrade",
+        "releaseOption",
+        "versionUpgrade"
+      ],
+      "enumType": "string"
+    },
+    "license.ChangeIpMessageEnum": {
+      "id": "ChangeIpMessageEnum",
+      "namespace": "license",
+      "description": "Messages from change IP",
+      "enum": [
+        "OK",
+        "destinationNotAllowed",
+        "licenseAlreadyExists",
+        "notAllowedToHandleThis",
+        "notSameType",
+        "sameIp",
+        "versionNotAllowed"
+      ],
+      "enumType": "string"
+    },
+    "license.ChangeIpStatus": {
+      "id": "ChangeIpStatus",
+      "namespace": "license",
+      "description": "License change ip status return",
+      "properties": {
+        "message": {
+          "type": "license.ChangeIpMessageEnum",
+          "canBeNull": false,
+          "readOnly": false,
+          "required": false
+        },
+        "success": {
+          "type": "boolean",
+          "canBeNull": false,
+          "readOnly": false,
+          "required": false
+        }
+      }
+    },
+    "license.LicenseTypeEnum": {
+      "id": "LicenseTypeEnum",
+      "namespace": "license",
+      "description": "Possible values for license type",
+      "enum": [
+        "dedicated",
+        "dedicatedCloud",
+        "dedicatedFailover",
+        "failover",
+        "vm",
+        "vps",
+        "vps_ceph",
+        "vps_classic",
+        "vps_cloud",
+        "vps_cloud_2016",
+        "vps_ssd"
+      ],
+      "enumType": "string"
+    },
+    "license.OrderableWorkLightCompatibilityInfos": {
+      "id": "OrderableWorkLightCompatibilityInfos",
+      "namespace": "license",
+      "description": "All versions available for WorkLight products",
+      "properties": {
+        "version": {
+          "type": "license.WorkLightVersionEnum",
+          "canBeNull": false,
+          "readOnly": false,
+          "required": false
+        }
+      }
+    },
+    "license.StateEnum": {
+      "id": "StateEnum",
+      "namespace": "license",
+      "description": "All states a license can be in",
+      "enum": [
+        "ok",
+        "released",
+        "terminated",
+        "toDeliver"
+      ],
+      "enumType": "string"
+    },
+    "license.Task": {
+      "id": "Task",
+      "namespace": "license",
+      "description": "licenses Todos",
+      "properties": {
+        "action": {
+          "type": "license.ActionType",
+          "fullType": "license.ActionType",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "This Task description",
+          "required": false
+        },
+        "doneDate": {
+          "type": "datetime",
+          "fullType": "datetime",
+          "canBeNull": true,
+          "readOnly": true,
+          "description": "When was this Task done",
+          "required": false
+        },
+        "lastUpdate": {
+          "type": "datetime",
+          "fullType": "datetime",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "The last time this Task was updated",
+          "required": false
+        },
+        "name": {
+          "type": "string",
+          "fullType": "string",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "This Task name",
+          "required": false
+        },
+        "status": {
+          "type": "license.TaskStateEnum",
+          "fullType": "license.TaskStateEnum",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "Current Taks status",
+          "required": false
+        },
+        "taskId": {
+          "type": "long",
+          "fullType": "long",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "This Task id",
+          "required": false
+        },
+        "todoDate": {
+          "type": "datetime",
+          "fullType": "datetime",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "When was this Task created",
+          "required": false
+        }
+      }
+    },
+    "license.TaskStateEnum": {
+      "id": "TaskStateEnum",
+      "namespace": "license",
+      "description": "All states a license Task can be in",
+      "enum": [
+        "cancelled",
+        "doing",
+        "done",
+        "error",
+        "todo"
+      ],
+      "enumType": "string"
+    },
+    "license.WorkLightOrderConfiguration": {
+      "id": "WorkLightOrderConfiguration",
+      "namespace": "license",
+      "description": "Allowed WorkLight versions per matching serviceTypes",
+      "properties": {
+        "orderableVersions": {
+          "type": "license.OrderableWorkLightCompatibilityInfos[]",
+          "canBeNull": false,
+          "readOnly": false,
+          "required": false
+        },
+        "serviceType": {
+          "type": "license.LicenseTypeEnum",
+          "canBeNull": false,
+          "readOnly": false,
+          "required": false
+        }
+      }
+    },
+    "license.WorkLightVersionEnum": {
+      "id": "WorkLightVersionEnum",
+      "namespace": "license",
+      "description": "All versions for WorkLight product",
+      "enum": [
+        "VERSION-6.1U.1CPU",
+        "VERSION-6.1U.2CPU",
+        "VERSION-6.2U.1CPU",
+        "VERSION-6.2U.2CPU",
+        "VERSION-6.EVALUATION",
+        "worklight-license-version-6-1cpu-1u",
+        "worklight-license-version-6-1cpu-2u",
+        "worklight-license-version-6-2cpu-1u",
+        "worklight-license-version-6-2cpu-2u"
+      ],
+      "enumType": "string"
+    },
+    "license.worklight.WorkLight": {
+      "id": "WorkLight",
+      "namespace": "license.worklight",
+      "description": "Your WorkLight license",
+      "properties": {
+        "creation": {
+          "type": "datetime",
+          "fullType": "datetime",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "This license creation date",
+          "required": false
+        },
+        "deleteAtExpiration": {
+          "type": "boolean",
+          "fullType": "boolean",
+          "canBeNull": false,
+          "readOnly": false,
+          "description": "Shall we delete this on expiration ?",
+          "required": false
+        },
+        "domain": {
+          "type": "string",
+          "fullType": "string",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "The internal name of your license",
+          "required": false
+        },
+        "ip": {
+          "type": "ipv4",
+          "fullType": "ipv4",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "The ip on which this license is attached",
+          "required": false
+        },
+        "licenseId": {
+          "type": "string",
+          "fullType": "string",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "The license id on license provider side",
+          "required": false
+        },
+        "status": {
+          "type": "license.StateEnum",
+          "fullType": "license.StateEnum",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "This license state",
+          "required": false
+        },
+        "version": {
+          "type": "license.WorkLightVersionEnum",
+          "fullType": "license.WorkLightVersionEnum",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "This license version",
+          "required": false
+        }
+      }
+    },
+    "license.worklight.WorkLightWithIAM": {
+      "id": "WorkLight",
+      "namespace": "license.worklight",
+      "description": "Your WorkLight license",
+      "properties": {
+        "creation": {
+          "type": "datetime",
+          "fullType": "datetime",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "This license creation date",
+          "required": false
+        },
+        "deleteAtExpiration": {
+          "type": "boolean",
+          "fullType": "boolean",
+          "canBeNull": false,
+          "readOnly": false,
+          "description": "Shall we delete this on expiration ?",
+          "required": false
+        },
+        "domain": {
+          "type": "string",
+          "fullType": "string",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "The internal name of your license",
+          "required": false
+        },
+        "iam": {
+          "type": "iam.ResourceMetadata",
+          "canBeNull": true,
+          "readOnly": true,
+          "description": "IAM resource metadata",
+          "required": false
+        },
+        "ip": {
+          "type": "ipv4",
+          "fullType": "ipv4",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "The ip on which this license is attached",
+          "required": false
+        },
+        "licenseId": {
+          "type": "string",
+          "fullType": "string",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "The license id on license provider side",
+          "required": false
+        },
+        "status": {
+          "type": "license.StateEnum",
+          "fullType": "license.StateEnum",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "This license state",
+          "required": false
+        },
+        "version": {
+          "type": "license.WorkLightVersionEnum",
+          "fullType": "license.WorkLightVersionEnum",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "This license version",
+          "required": false
+        }
+      }
+    },
+    "service.RenewType": {
+      "id": "RenewType",
+      "namespace": "service",
+      "description": "Map a possible renew for a specific service",
+      "properties": {
+        "automatic": {
+          "type": "boolean",
+          "canBeNull": false,
+          "readOnly": false,
+          "description": "The service is automatically renewed",
+          "required": false
+        },
+        "deleteAtExpiration": {
+          "type": "boolean",
+          "canBeNull": false,
+          "readOnly": false,
+          "description": "The service will be deleted at expiration",
+          "required": false
+        },
+        "forced": {
+          "type": "boolean",
+          "canBeNull": false,
+          "readOnly": false,
+          "description": "The service forced to be renewed",
+          "required": false
+        },
+        "manualPayment": {
+          "type": "boolean",
+          "canBeNull": true,
+          "readOnly": false,
+          "description": "The service needs to be manually renewed and paid",
+          "required": false
+        },
+        "period": {
+          "type": "long",
+          "canBeNull": true,
+          "readOnly": false,
+          "description": "period of renew in month",
+          "required": false
+        }
+      }
+    },
+    "service.RenewalTypeEnum": {
+      "id": "RenewalTypeEnum",
+      "namespace": "service",
+      "description": "Detailed renewal type of a service",
+      "enum": [
+        "automaticForcedProduct",
+        "automaticV2012",
+        "automaticV2014",
+        "automaticV2016",
+        "automaticV2024",
+        "manual",
+        "oneShot",
+        "option"
+      ],
+      "enumType": "string"
+    },
+    "service.StateEnum": {
+      "id": "StateEnum",
+      "namespace": "service",
+      "enum": [
+        "autorenewInProgress",
+        "expired",
+        "inCreation",
+        "ok",
+        "pendingDebt",
+        "unPaid"
+      ],
+      "enumType": "string"
+    },
+    "service.TerminationFutureUseEnum": {
+      "id": "TerminationFutureUseEnum",
+      "namespace": "service",
+      "description": "All future uses you can provide for a service termination",
+      "enum": [
+        "NOT_REPLACING_SERVICE",
+        "OTHER",
+        "SUBSCRIBE_AN_OTHER_SERVICE",
+        "SUBSCRIBE_OTHER_KIND_OF_SERVICE_WITH_COMPETITOR",
+        "SUBSCRIBE_SIMILAR_SERVICE_WITH_COMPETITOR"
+      ],
+      "enumType": "string"
+    },
+    "service.TerminationReasonEnum": {
+      "id": "TerminationReasonEnum",
+      "namespace": "service",
+      "description": "All reasons you can provide for a service termination",
+      "enum": [
+        "FEATURES_DONT_SUIT_ME",
+        "LACK_OF_PERFORMANCES",
+        "MIGRATED_TO_ANOTHER_OVH_PRODUCT",
+        "MIGRATED_TO_COMPETITOR",
+        "NOT_ENOUGH_RECOGNITION",
+        "NOT_NEEDED_ANYMORE",
+        "NOT_RELIABLE",
+        "NO_ANSWER",
+        "OTHER",
+        "PRODUCT_DIMENSION_DONT_SUIT_ME",
+        "PRODUCT_TOOLS_DONT_SUIT_ME",
+        "TOO_EXPENSIVE",
+        "TOO_HARD_TO_USE",
+        "UNSATIFIED_BY_CUSTOMER_SUPPORT"
+      ],
+      "enumType": "string"
+    },
+    "services.Service": {
+      "id": "Service",
+      "namespace": "services",
+      "description": "Details about a Service",
+      "properties": {
+        "canDeleteAtExpiration": {
+          "type": "boolean",
+          "fullType": "boolean",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "Indicates that the service can be set up to be deleted at expiration",
+          "required": false
+        },
+        "contactAdmin": {
+          "type": "string",
+          "fullType": "coreTypes.AccountId:string",
+          "canBeNull": false,
+          "readOnly": true,
+          "required": false
+        },
+        "contactBilling": {
+          "type": "string",
+          "fullType": "coreTypes.AccountId:string",
+          "canBeNull": false,
+          "readOnly": true,
+          "required": false
+        },
+        "contactTech": {
+          "type": "string",
+          "fullType": "coreTypes.AccountId:string",
+          "canBeNull": false,
+          "readOnly": true,
+          "required": false
+        },
+        "creation": {
+          "type": "date",
+          "fullType": "date",
+          "canBeNull": false,
+          "readOnly": true,
+          "required": false
+        },
+        "domain": {
+          "type": "string",
+          "fullType": "string",
+          "canBeNull": false,
+          "readOnly": true,
+          "required": false
+        },
+        "engagedUpTo": {
+          "type": "date",
+          "fullType": "date",
+          "canBeNull": true,
+          "readOnly": true,
+          "required": false
+        },
+        "expiration": {
+          "type": "date",
+          "fullType": "date",
+          "canBeNull": false,
+          "readOnly": true,
+          "required": false
+        },
+        "possibleRenewPeriod": {
+          "type": "long[]",
+          "fullType": "long[]",
+          "canBeNull": true,
+          "readOnly": true,
+          "description": "All the possible renew period of your service in month",
+          "required": false
+        },
+        "renew": {
+          "type": "service.RenewType",
+          "fullType": "service.RenewType",
+          "canBeNull": true,
+          "readOnly": false,
+          "description": "Way of handling the renew",
+          "required": false
+        },
+        "renewalType": {
+          "type": "service.RenewalTypeEnum",
+          "fullType": "service.RenewalTypeEnum",
+          "canBeNull": false,
+          "readOnly": true,
+          "required": false
+        },
+        "serviceId": {
+          "type": "long",
+          "fullType": "coreTypes.ServiceId:long",
+          "canBeNull": false,
+          "readOnly": true,
+          "required": false
+        },
+        "status": {
+          "type": "service.StateEnum",
+          "fullType": "service.StateEnum",
+          "canBeNull": false,
+          "readOnly": true,
+          "required": false
+        }
+      }
+    }
+  }
+}

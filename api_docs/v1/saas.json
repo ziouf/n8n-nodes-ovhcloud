@@ -1,0 +1,1611 @@
+{
+  "apiVersion": "1.0",
+  "apis": [
+    {
+      "path": "/saas/csp2",
+      "operations": [
+        {
+          "apiStatus": {
+            "description": "Alpha version",
+            "value": "ALPHA"
+          },
+          "httpMethod": "GET",
+          "parameters": [
+            {
+              "name": "iamTags",
+              "dataType": "map[string][]iam.resource.TagFilter",
+              "paramType": "query",
+              "required": false,
+              "description": "Filter resources on IAM tags"
+            }
+          ],
+          "responseType": "string[]",
+          "noAuthentication": false,
+          "description": "List available services",
+          "iamActions": [
+            {
+              "name": "cspReseller:apiovh:get",
+              "required": true
+            }
+          ]
+        }
+      ],
+      "description": "Operations about the CSP2 service"
+    },
+    {
+      "path": "/saas/csp2/{serviceName}",
+      "operations": [
+        {
+          "apiStatus": {
+            "description": "Alpha version",
+            "value": "ALPHA"
+          },
+          "httpMethod": "GET",
+          "parameters": [
+            {
+              "name": "serviceName",
+              "dataType": "string",
+              "paramType": "path",
+              "fullType": "string",
+              "required": true,
+              "description": "Service name"
+            }
+          ],
+          "responseType": "saas.csp2.OfficeTenantWithIAM",
+          "noAuthentication": false,
+          "description": "Get this object properties",
+          "iamActions": [
+            {
+              "name": "cspReseller:apiovh:get",
+              "required": true
+            }
+          ]
+        },
+        {
+          "apiStatus": {
+            "description": "Alpha version",
+            "value": "ALPHA"
+          },
+          "httpMethod": "PUT",
+          "parameters": [
+            {
+              "dataType": "saas.csp2.OfficeTenant",
+              "paramType": "body",
+              "fullType": "saas.csp2.OfficeTenant",
+              "required": true,
+              "description": "Request Body"
+            },
+            {
+              "name": "serviceName",
+              "dataType": "string",
+              "paramType": "path",
+              "fullType": "string",
+              "required": true,
+              "description": "Service name"
+            }
+          ],
+          "responseType": "void",
+          "noAuthentication": false,
+          "description": "Alter this object properties",
+          "iamActions": [
+            {
+              "name": "cspReseller:apiovh:put",
+              "required": true
+            }
+          ]
+        }
+      ],
+      "description": "Operations about the CSP2 service"
+    },
+    {
+      "path": "/saas/csp2/{serviceName}/billingPeriodPeaks",
+      "operations": [
+        {
+          "apiStatus": {
+            "description": "Alpha version",
+            "value": "ALPHA"
+          },
+          "httpMethod": "GET",
+          "parameters": [
+            {
+              "name": "serviceName",
+              "dataType": "string",
+              "paramType": "path",
+              "fullType": "string",
+              "required": true,
+              "description": "Service name"
+            }
+          ],
+          "responseType": "saas.csp2.BillingStatistics",
+          "noAuthentication": false,
+          "description": "Get the current billing period's usage peak for each subscription",
+          "iamActions": [
+            {
+              "name": "cspReseller:apiovh:billingPeriodPeaks/get",
+              "required": true
+            }
+          ]
+        }
+      ],
+      "description": "billingPeriodPeaks operations"
+    },
+    {
+      "path": "/saas/csp2/{serviceName}/orderableLicenses",
+      "operations": [
+        {
+          "apiStatus": {
+            "description": "Alpha version",
+            "value": "ALPHA"
+          },
+          "httpMethod": "GET",
+          "parameters": [
+            {
+              "name": "serviceName",
+              "dataType": "string",
+              "paramType": "path",
+              "fullType": "string",
+              "required": true,
+              "description": "Service name"
+            }
+          ],
+          "responseType": "long[]",
+          "noAuthentication": false,
+          "description": "Licenses available for order",
+          "iamActions": [
+            {
+              "name": "cspReseller:apiovh:orderableLicenses/get",
+              "required": true
+            }
+          ]
+        }
+      ],
+      "description": "List the saas.csp2.OfficeLicence objects"
+    },
+    {
+      "path": "/saas/csp2/{serviceName}/orderableLicenses/{id}",
+      "operations": [
+        {
+          "apiStatus": {
+            "description": "Alpha version",
+            "value": "ALPHA"
+          },
+          "httpMethod": "GET",
+          "parameters": [
+            {
+              "name": "serviceName",
+              "dataType": "string",
+              "paramType": "path",
+              "fullType": "string",
+              "required": true,
+              "description": "Service name"
+            },
+            {
+              "name": "id",
+              "dataType": "long",
+              "paramType": "path",
+              "fullType": "long",
+              "required": true,
+              "description": "Id"
+            }
+          ],
+          "responseType": "saas.csp2.OfficeLicence",
+          "noAuthentication": false,
+          "description": "Get this object properties",
+          "iamActions": [
+            {
+              "name": "cspReseller:apiovh:orderableLicenses/get",
+              "required": true
+            }
+          ]
+        }
+      ],
+      "description": "List the saas.csp2.OfficeLicence objects"
+    },
+    {
+      "path": "/saas/csp2/{serviceName}/serviceInfos",
+      "operations": [
+        {
+          "apiStatus": {
+            "description": "Beta version",
+            "value": "BETA"
+          },
+          "httpMethod": "GET",
+          "parameters": [
+            {
+              "name": "serviceName",
+              "dataType": "string",
+              "paramType": "path",
+              "fullType": "string",
+              "required": true,
+              "description": "The unique identifier of your Office service"
+            }
+          ],
+          "responseType": "services.Service",
+          "noAuthentication": false,
+          "description": "Get service information",
+          "iamActions": [
+            {
+              "name": "cspReseller:apiovh:serviceInfos/get",
+              "required": true
+            }
+          ]
+        },
+        {
+          "apiStatus": {
+            "description": "Beta version",
+            "value": "BETA"
+          },
+          "httpMethod": "PUT",
+          "parameters": [
+            {
+              "dataType": "services.Service",
+              "paramType": "body",
+              "fullType": "services.Service",
+              "required": true,
+              "description": "New object properties"
+            },
+            {
+              "name": "serviceName",
+              "dataType": "string",
+              "paramType": "path",
+              "fullType": "string",
+              "required": true,
+              "description": "The unique identifier of your Office service"
+            }
+          ],
+          "responseType": "void",
+          "noAuthentication": false,
+          "description": "Update service information",
+          "iamActions": [
+            {
+              "name": "cspReseller:apiovh:serviceInfos/edit",
+              "required": true
+            }
+          ]
+        }
+      ],
+      "description": "Details about a Service"
+    },
+    {
+      "path": "/saas/csp2/{serviceName}/subscription",
+      "operations": [
+        {
+          "apiStatus": {
+            "description": "Alpha version",
+            "value": "ALPHA"
+          },
+          "httpMethod": "GET",
+          "parameters": [
+            {
+              "name": "serviceName",
+              "dataType": "string",
+              "paramType": "path",
+              "fullType": "string",
+              "required": true,
+              "description": "Service name"
+            }
+          ],
+          "responseType": "long[]",
+          "noAuthentication": false,
+          "description": "Subscriptions associated to this office tenant",
+          "iamActions": [
+            {
+              "name": "cspReseller:apiovh:subscription/get",
+              "required": true
+            }
+          ]
+        },
+        {
+          "apiStatus": {
+            "description": "Alpha version",
+            "value": "ALPHA"
+          },
+          "httpMethod": "POST",
+          "parameters": [
+            {
+              "name": "serviceName",
+              "dataType": "string",
+              "paramType": "path",
+              "fullType": "string",
+              "required": true,
+              "description": "Service name"
+            },
+            {
+              "dataType": "saas.csp2.SubscriptionCreation",
+              "paramType": "body",
+              "fullType": "saas.csp2.SubscriptionCreation",
+              "required": true,
+              "description": "Request Body"
+            }
+          ],
+          "responseType": "saas.csp2.OfficeTask",
+          "noAuthentication": false,
+          "description": "Add a subscription to this tenant",
+          "iamActions": [
+            {
+              "name": "cspReseller:apiovh:subscription/create",
+              "required": true
+            }
+          ]
+        }
+      ],
+      "description": "List the saas.csp2.OfficeSubscription objects"
+    },
+    {
+      "path": "/saas/csp2/{serviceName}/subscription/{id}",
+      "operations": [
+        {
+          "apiStatus": {
+            "description": "Alpha version",
+            "value": "ALPHA"
+          },
+          "httpMethod": "DELETE",
+          "parameters": [
+            {
+              "name": "serviceName",
+              "dataType": "string",
+              "paramType": "path",
+              "fullType": "string",
+              "required": true,
+              "description": "Service name"
+            },
+            {
+              "name": "id",
+              "dataType": "long",
+              "paramType": "path",
+              "fullType": "long",
+              "required": true,
+              "description": "Id"
+            }
+          ],
+          "responseType": "saas.csp2.OfficeTask",
+          "noAuthentication": false,
+          "description": "Delete a subscription from this tenant",
+          "iamActions": [
+            {
+              "name": "cspReseller:apiovh:subscription/delete",
+              "required": true
+            }
+          ]
+        },
+        {
+          "apiStatus": {
+            "description": "Alpha version",
+            "value": "ALPHA"
+          },
+          "httpMethod": "GET",
+          "parameters": [
+            {
+              "name": "serviceName",
+              "dataType": "string",
+              "paramType": "path",
+              "fullType": "string",
+              "required": true,
+              "description": "Service name"
+            },
+            {
+              "name": "id",
+              "dataType": "long",
+              "paramType": "path",
+              "fullType": "long",
+              "required": true,
+              "description": "Id"
+            }
+          ],
+          "responseType": "saas.csp2.OfficeSubscription",
+          "noAuthentication": false,
+          "description": "Get this object properties",
+          "iamActions": [
+            {
+              "name": "cspReseller:apiovh:subscription/get",
+              "required": true
+            }
+          ]
+        }
+      ],
+      "description": "List the saas.csp2.OfficeSubscription objects"
+    },
+    {
+      "path": "/saas/csp2/{serviceName}/subscription/{id}/addonsSubscriptionIds",
+      "operations": [
+        {
+          "apiStatus": {
+            "description": "Alpha version",
+            "value": "ALPHA"
+          },
+          "httpMethod": "GET",
+          "parameters": [
+            {
+              "name": "serviceName",
+              "dataType": "string",
+              "paramType": "path",
+              "fullType": "string",
+              "required": true,
+              "description": "Service name"
+            },
+            {
+              "name": "id",
+              "dataType": "long",
+              "paramType": "path",
+              "fullType": "long",
+              "required": true,
+              "description": "Id"
+            }
+          ],
+          "responseType": "long[]",
+          "noAuthentication": false,
+          "description": "Addon subscriptions associated to this office subscription",
+          "iamActions": [
+            {
+              "name": "cspReseller:apiovh:subscription/addonsSubscriptionIds/get",
+              "required": true
+            }
+          ]
+        }
+      ],
+      "description": "addonsSubscriptionIds operations"
+    },
+    {
+      "path": "/saas/csp2/{serviceName}/subscription/{id}/availableAddonLicenses",
+      "operations": [
+        {
+          "apiStatus": {
+            "description": "Alpha version",
+            "value": "ALPHA"
+          },
+          "httpMethod": "GET",
+          "parameters": [
+            {
+              "name": "serviceName",
+              "dataType": "string",
+              "paramType": "path",
+              "fullType": "string",
+              "required": true,
+              "description": "Service name"
+            },
+            {
+              "name": "id",
+              "dataType": "long",
+              "paramType": "path",
+              "fullType": "long",
+              "required": true,
+              "description": "Id"
+            }
+          ],
+          "responseType": "long[]",
+          "noAuthentication": false,
+          "description": "Gives a list of licenses ids that can be ordered as an addon for this subscription",
+          "iamActions": [
+            {
+              "name": "cspReseller:apiovh:subscription/availableAddonLicenses/get",
+              "required": true
+            }
+          ]
+        }
+      ],
+      "description": "availableAddonLicenses operations"
+    },
+    {
+      "path": "/saas/csp2/{serviceName}/subscription/{id}/changeQuantity",
+      "operations": [
+        {
+          "apiStatus": {
+            "description": "Alpha version",
+            "value": "ALPHA"
+          },
+          "httpMethod": "POST",
+          "parameters": [
+            {
+              "name": "serviceName",
+              "dataType": "string",
+              "paramType": "path",
+              "fullType": "string",
+              "required": true,
+              "description": "Service name"
+            },
+            {
+              "dataType": "saas.csp2.SubscriptionChangeQuantityCreation",
+              "paramType": "body",
+              "fullType": "saas.csp2.SubscriptionChangeQuantityCreation",
+              "required": true,
+              "description": "Request Body"
+            },
+            {
+              "name": "id",
+              "dataType": "long",
+              "paramType": "path",
+              "fullType": "long",
+              "required": true,
+              "description": "Id"
+            }
+          ],
+          "responseType": "saas.csp2.OfficeTask",
+          "noAuthentication": false,
+          "description": "Change the quantity of seats in the subscription",
+          "iamActions": [
+            {
+              "name": "cspReseller:apiovh:subscription/changeQuantity",
+              "required": true
+            }
+          ]
+        }
+      ],
+      "description": "changeQuantity operations"
+    },
+    {
+      "path": "/saas/csp2/{serviceName}/subscription/{id}/orderAddon",
+      "operations": [
+        {
+          "apiStatus": {
+            "description": "Alpha version",
+            "value": "ALPHA"
+          },
+          "httpMethod": "POST",
+          "parameters": [
+            {
+              "name": "serviceName",
+              "dataType": "string",
+              "paramType": "path",
+              "fullType": "string",
+              "required": true,
+              "description": "Service name"
+            },
+            {
+              "dataType": "saas.csp2.SubscriptionOrderAddonCreation",
+              "paramType": "body",
+              "fullType": "saas.csp2.SubscriptionOrderAddonCreation",
+              "required": true,
+              "description": "Request Body"
+            },
+            {
+              "name": "id",
+              "dataType": "long",
+              "paramType": "path",
+              "fullType": "long",
+              "required": true,
+              "description": "Id"
+            }
+          ],
+          "responseType": "saas.csp2.OfficeTask",
+          "noAuthentication": false,
+          "description": "Creates a new subscription as an addon for this subscription",
+          "iamActions": [
+            {
+              "name": "cspReseller:apiovh:subscription/orderAddon",
+              "required": true
+            }
+          ]
+        }
+      ],
+      "description": "orderAddon operations"
+    },
+    {
+      "path": "/saas/csp2/{serviceName}/task",
+      "operations": [
+        {
+          "apiStatus": {
+            "description": "Alpha version",
+            "value": "ALPHA"
+          },
+          "httpMethod": "GET",
+          "parameters": [
+            {
+              "name": "serviceName",
+              "dataType": "string",
+              "paramType": "path",
+              "fullType": "string",
+              "required": true,
+              "description": "Service name"
+            }
+          ],
+          "responseType": "long[]",
+          "noAuthentication": false,
+          "description": "Pending tasks of this tenant",
+          "iamActions": [
+            {
+              "name": "cspReseller:apiovh:task/get",
+              "required": true
+            }
+          ]
+        }
+      ],
+      "description": "List the saas.csp2.OfficeTask objects"
+    },
+    {
+      "path": "/saas/csp2/{serviceName}/task/{id}",
+      "operations": [
+        {
+          "apiStatus": {
+            "description": "Alpha version",
+            "value": "ALPHA"
+          },
+          "httpMethod": "GET",
+          "parameters": [
+            {
+              "name": "serviceName",
+              "dataType": "string",
+              "paramType": "path",
+              "fullType": "string",
+              "required": true,
+              "description": "Service name"
+            },
+            {
+              "name": "id",
+              "dataType": "long",
+              "paramType": "path",
+              "fullType": "long",
+              "required": true,
+              "description": "Id"
+            }
+          ],
+          "responseType": "saas.csp2.OfficeTask",
+          "noAuthentication": false,
+          "description": "Get this object properties",
+          "iamActions": [
+            {
+              "name": "cspReseller:apiovh:task/get",
+              "required": true
+            }
+          ]
+        }
+      ],
+      "description": "List the saas.csp2.OfficeTask objects"
+    },
+    {
+      "path": "/saas/csp2/{serviceName}/usageStatistics",
+      "operations": [
+        {
+          "apiStatus": {
+            "description": "Alpha version",
+            "value": "ALPHA"
+          },
+          "httpMethod": "GET",
+          "parameters": [
+            {
+              "name": "serviceName",
+              "dataType": "string",
+              "paramType": "path",
+              "fullType": "string",
+              "required": true,
+              "description": "Service name"
+            },
+            {
+              "name": "timePeriod",
+              "dataType": "msServices.LicensePeriodEnum",
+              "paramType": "query",
+              "fullType": "msServices.LicensePeriodEnum",
+              "required": true,
+              "description": "The period to query"
+            }
+          ],
+          "responseType": "saas.csp2.Statistics[]",
+          "noAuthentication": false,
+          "description": "Get the usage statistics over the chosen period",
+          "iamActions": [
+            {
+              "name": "cspReseller:apiovh:usageStatistics/get",
+              "required": true
+            }
+          ]
+        }
+      ],
+      "description": "usageStatistics operations"
+    }
+  ],
+  "resourcePath": "/saas/csp2",
+  "basePath": "https://eu.api.ovh.com/v1",
+  "models": {
+    "iam.ResourceMetadata": {
+      "id": "ResourceMetadata",
+      "namespace": "iam",
+      "description": "IAM resource metadata embedded in services models",
+      "properties": {
+        "displayName": {
+          "type": "string",
+          "fullType": "string",
+          "canBeNull": true,
+          "readOnly": true,
+          "description": "Resource display name",
+          "required": false
+        },
+        "id": {
+          "type": "uuid",
+          "fullType": "uuid",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "Unique identifier of the resource",
+          "required": false
+        },
+        "state": {
+          "type": "iam.ResourceMetadata.StateEnum",
+          "fullType": "iam.ResourceMetadata.StateEnum",
+          "canBeNull": true,
+          "readOnly": true,
+          "description": "Resource state",
+          "required": false
+        },
+        "tags": {
+          "type": "map[string]string",
+          "fullType": "map[string]string",
+          "canBeNull": true,
+          "readOnly": true,
+          "description": "Resource tags. Tags that were internally computed are prefixed with ovh:",
+          "required": false
+        },
+        "urn": {
+          "type": "string",
+          "fullType": "string",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "Unique resource name used in policies",
+          "required": false
+        }
+      }
+    },
+    "iam.ResourceMetadata.StateEnum": {
+      "id": "StateEnum",
+      "namespace": "iam.ResourceMetadata",
+      "description": "Resource state",
+      "enum": [
+        "EXPIRED",
+        "IN_CREATION",
+        "OK",
+        "SUSPENDED"
+      ],
+      "enumType": "string"
+    },
+    "iam.resource.TagFilter": {
+      "id": "TagFilter",
+      "namespace": "iam.resource",
+      "description": "Resource tag filter",
+      "properties": {
+        "operator": {
+          "type": "iam.resource.TagFilter.OperatorEnum",
+          "fullType": "iam.resource.TagFilter.OperatorEnum",
+          "canBeNull": true,
+          "readOnly": true,
+          "description": "Operator to use in order to filter on the value (defaults to 'EQ')",
+          "required": false
+        },
+        "value": {
+          "type": "string",
+          "fullType": "string",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "Value to use in order to filter tags",
+          "required": false
+        }
+      }
+    },
+    "iam.resource.TagFilter.OperatorEnum": {
+      "id": "OperatorEnum",
+      "namespace": "iam.resource.TagFilter",
+      "description": "Operator that can be used in order to filter resources tags",
+      "enum": [
+        "EQ",
+        "EXISTS",
+        "ILIKE",
+        "LIKE",
+        "NEQ",
+        "NEXISTS"
+      ],
+      "enumType": "string"
+    },
+    "msServices.LicensePeriodEnum": {
+      "id": "LicensePeriodEnum",
+      "namespace": "msServices",
+      "description": "Period of time used to determine license statistics",
+      "enum": [
+        "lastMonth",
+        "lastQuarter",
+        "lastWeek",
+        "lastYear"
+      ],
+      "enumType": "string"
+    },
+    "saas.csp2.BillingStatistics": {
+      "id": "BillingStatistics",
+      "namespace": "saas.csp2",
+      "description": "Billing statistics for the current period",
+      "properties": {
+        "endDate": {
+          "type": "date",
+          "fullType": "date",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "End of the billing period",
+          "required": false
+        },
+        "lines": {
+          "type": "saas.csp2.BillingStatisticsLine[]",
+          "fullType": "saas.csp2.BillingStatisticsLine[]",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "List of lines associated to this statistics entity.",
+          "required": false
+        },
+        "startDate": {
+          "type": "date",
+          "fullType": "date",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "Start of the billing period",
+          "required": false
+        }
+      }
+    },
+    "saas.csp2.BillingStatisticsLine": {
+      "id": "BillingStatisticsLine",
+      "namespace": "saas.csp2",
+      "description": "Billing statistics line.",
+      "properties": {
+        "licenceId": {
+          "type": "long",
+          "fullType": "long",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "Id of the Office license.",
+          "required": false
+        },
+        "licenceName": {
+          "type": "string",
+          "fullType": "string",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "Name of the Office license.",
+          "required": false
+        },
+        "peakCount": {
+          "type": "long",
+          "fullType": "long",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "Maximum count of simultaneous activated licences.",
+          "required": false
+        }
+      }
+    },
+    "saas.csp2.LicenseTypeEnum": {
+      "id": "LicenseTypeEnum",
+      "namespace": "saas.csp2",
+      "description": "Office license's type",
+      "enum": [
+        "ADDON",
+        "NON-SPECIFIC"
+      ],
+      "enumType": "string"
+    },
+    "saas.csp2.OfficeLicence": {
+      "id": "OfficeLicence",
+      "namespace": "saas.csp2",
+      "description": "Office licence",
+      "properties": {
+        "id": {
+          "type": "long",
+          "fullType": "long",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "License unique identifier",
+          "required": false
+        },
+        "licenceType": {
+          "type": "saas.csp2.LicenseTypeEnum",
+          "fullType": "saas.csp2.LicenseTypeEnum",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "License's type, indicates if the licence is standalone or an addon",
+          "required": false
+        },
+        "limit": {
+          "type": "long",
+          "fullType": "long",
+          "canBeNull": true,
+          "readOnly": true,
+          "description": "Maximum purchasable license",
+          "required": false
+        },
+        "name": {
+          "type": "string",
+          "fullType": "string",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "License name",
+          "required": false
+        },
+        "newSeatsAllowed": {
+          "type": "boolean",
+          "fullType": "boolean",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "Whether or not it is possible to add new seats on subscriptions of this licence type",
+          "required": false
+        },
+        "newSubscriptionsAllowed": {
+          "type": "boolean",
+          "fullType": "boolean",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "Whether or not this licence type is allowed for new subscriptions",
+          "required": false
+        }
+      }
+    },
+    "saas.csp2.OfficeSubscription": {
+      "id": "OfficeSubscription",
+      "namespace": "saas.csp2",
+      "description": "Office subscription",
+      "properties": {
+        "creationDate": {
+          "type": "datetime",
+          "fullType": "datetime",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "Creation date",
+          "required": false
+        },
+        "id": {
+          "type": "long",
+          "fullType": "long",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "Subscription's unique identifier",
+          "required": false
+        },
+        "lastUpdate": {
+          "type": "datetime",
+          "fullType": "datetime",
+          "canBeNull": true,
+          "readOnly": true,
+          "description": "Last update date",
+          "required": false
+        },
+        "licenseId": {
+          "type": "long",
+          "fullType": "long",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "License's type id",
+          "required": false
+        },
+        "quantity": {
+          "type": "long",
+          "fullType": "long",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "Number of available licenses",
+          "required": false
+        },
+        "status": {
+          "type": "string",
+          "fullType": "string",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "Subscription's status",
+          "required": false
+        },
+        "taskPendingId": {
+          "type": "long",
+          "fullType": "long",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "Pending task's unique identifier",
+          "required": false
+        }
+      }
+    },
+    "saas.csp2.OfficeTask": {
+      "id": "OfficeTask",
+      "namespace": "saas.csp2",
+      "description": "Office task",
+      "properties": {
+        "finishDate": {
+          "type": "datetime",
+          "fullType": "datetime",
+          "canBeNull": true,
+          "readOnly": true,
+          "description": "Completion date",
+          "required": false
+        },
+        "function": {
+          "type": "string",
+          "fullType": "string",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "Function name",
+          "required": false
+        },
+        "id": {
+          "type": "long",
+          "fullType": "long",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "Unique identifier of the task",
+          "required": false
+        },
+        "status": {
+          "type": "saas.csp2.TaskStatusEnum",
+          "fullType": "saas.csp2.TaskStatusEnum",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "Task state",
+          "required": false
+        },
+        "todoDate": {
+          "type": "datetime",
+          "fullType": "datetime",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "Creation date",
+          "required": false
+        }
+      }
+    },
+    "saas.csp2.OfficeTenant": {
+      "id": "OfficeTenant",
+      "namespace": "saas.csp2",
+      "description": "Office tenant",
+      "properties": {
+        "address": {
+          "type": "string",
+          "fullType": "string",
+          "canBeNull": false,
+          "readOnly": false,
+          "description": "Contact's address line",
+          "required": false
+        },
+        "city": {
+          "type": "string",
+          "fullType": "string",
+          "canBeNull": false,
+          "readOnly": false,
+          "description": "Contact's city",
+          "required": false
+        },
+        "creationDate": {
+          "type": "datetime",
+          "fullType": "datetime",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "Creation date",
+          "required": false
+        },
+        "displayName": {
+          "type": "string",
+          "fullType": "string",
+          "canBeNull": false,
+          "readOnly": false,
+          "description": "Tenant's display name",
+          "required": false
+        },
+        "email": {
+          "type": "string",
+          "fullType": "string",
+          "canBeNull": false,
+          "readOnly": false,
+          "description": "Contact's email address",
+          "required": false
+        },
+        "firstName": {
+          "type": "string",
+          "fullType": "string",
+          "canBeNull": false,
+          "readOnly": false,
+          "description": "Contact's first name",
+          "required": false
+        },
+        "hasAcceptedNewMCA": {
+          "type": "boolean",
+          "fullType": "boolean",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "Whether or not the 2025 Microsoft Customer Agreement was properly accepted",
+          "required": false
+        },
+        "lastName": {
+          "type": "string",
+          "fullType": "string",
+          "canBeNull": false,
+          "readOnly": false,
+          "description": "Contact's last name",
+          "required": false
+        },
+        "mpnId": {
+          "type": "string",
+          "fullType": "string",
+          "canBeNull": true,
+          "readOnly": false,
+          "description": "Microsoft Partner Network identifier linked to this tenant",
+          "required": false
+        },
+        "mpnIssueFlag": {
+          "type": "string",
+          "fullType": "string",
+          "canBeNull": true,
+          "readOnly": true,
+          "description": "Code of any detected issue regarding the MPN Id",
+          "required": false
+        },
+        "phone": {
+          "type": "phoneNumber",
+          "fullType": "phoneNumber",
+          "canBeNull": false,
+          "readOnly": false,
+          "description": "Primary phone number",
+          "required": false
+        },
+        "serviceName": {
+          "type": "string",
+          "fullType": "string",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "Internal service name",
+          "required": false
+        },
+        "status": {
+          "type": "saas.csp2.ServiceStateEnum",
+          "fullType": "saas.csp2.ServiceStateEnum",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "Tenant's status",
+          "required": false
+        },
+        "zipCode": {
+          "type": "string",
+          "fullType": "string",
+          "canBeNull": false,
+          "readOnly": false,
+          "description": "Contact's zip code",
+          "required": false
+        }
+      }
+    },
+    "saas.csp2.OfficeTenantWithIAM": {
+      "id": "OfficeTenant",
+      "namespace": "saas.csp2",
+      "description": "Office tenant",
+      "properties": {
+        "address": {
+          "type": "string",
+          "fullType": "string",
+          "canBeNull": false,
+          "readOnly": false,
+          "description": "Contact's address line",
+          "required": false
+        },
+        "city": {
+          "type": "string",
+          "fullType": "string",
+          "canBeNull": false,
+          "readOnly": false,
+          "description": "Contact's city",
+          "required": false
+        },
+        "creationDate": {
+          "type": "datetime",
+          "fullType": "datetime",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "Creation date",
+          "required": false
+        },
+        "displayName": {
+          "type": "string",
+          "fullType": "string",
+          "canBeNull": false,
+          "readOnly": false,
+          "description": "Tenant's display name",
+          "required": false
+        },
+        "email": {
+          "type": "string",
+          "fullType": "string",
+          "canBeNull": false,
+          "readOnly": false,
+          "description": "Contact's email address",
+          "required": false
+        },
+        "firstName": {
+          "type": "string",
+          "fullType": "string",
+          "canBeNull": false,
+          "readOnly": false,
+          "description": "Contact's first name",
+          "required": false
+        },
+        "hasAcceptedNewMCA": {
+          "type": "boolean",
+          "fullType": "boolean",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "Whether or not the 2025 Microsoft Customer Agreement was properly accepted",
+          "required": false
+        },
+        "iam": {
+          "type": "iam.ResourceMetadata",
+          "canBeNull": true,
+          "readOnly": true,
+          "description": "IAM resource metadata",
+          "required": false
+        },
+        "lastName": {
+          "type": "string",
+          "fullType": "string",
+          "canBeNull": false,
+          "readOnly": false,
+          "description": "Contact's last name",
+          "required": false
+        },
+        "mpnId": {
+          "type": "string",
+          "fullType": "string",
+          "canBeNull": true,
+          "readOnly": false,
+          "description": "Microsoft Partner Network identifier linked to this tenant",
+          "required": false
+        },
+        "mpnIssueFlag": {
+          "type": "string",
+          "fullType": "string",
+          "canBeNull": true,
+          "readOnly": true,
+          "description": "Code of any detected issue regarding the MPN Id",
+          "required": false
+        },
+        "phone": {
+          "type": "phoneNumber",
+          "fullType": "phoneNumber",
+          "canBeNull": false,
+          "readOnly": false,
+          "description": "Primary phone number",
+          "required": false
+        },
+        "serviceName": {
+          "type": "string",
+          "fullType": "string",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "Internal service name",
+          "required": false
+        },
+        "status": {
+          "type": "saas.csp2.ServiceStateEnum",
+          "fullType": "saas.csp2.ServiceStateEnum",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "Tenant's status",
+          "required": false
+        },
+        "zipCode": {
+          "type": "string",
+          "fullType": "string",
+          "canBeNull": false,
+          "readOnly": false,
+          "description": "Contact's zip code",
+          "required": false
+        }
+      }
+    },
+    "saas.csp2.ServiceStateEnum": {
+      "id": "ServiceStateEnum",
+      "namespace": "saas.csp2",
+      "description": "Office tenant state",
+      "enum": [
+        "creating",
+        "inMaintenance",
+        "ok",
+        "reopening",
+        "suspended",
+        "suspending"
+      ],
+      "enumType": "string"
+    },
+    "saas.csp2.Statistics": {
+      "id": "Statistics",
+      "namespace": "saas.csp2",
+      "description": "License usage statistics.",
+      "properties": {
+        "date": {
+          "type": "date",
+          "fullType": "date",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "Date of the statistics.",
+          "required": false
+        },
+        "lines": {
+          "type": "saas.csp2.StatisticsLine[]",
+          "fullType": "saas.csp2.StatisticsLine[]",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "List of lines associated to this statistics entity.",
+          "required": false
+        }
+      }
+    },
+    "saas.csp2.StatisticsLine": {
+      "id": "StatisticsLine",
+      "namespace": "saas.csp2",
+      "description": "License usage statistics line.",
+      "properties": {
+        "endOfDayCount": {
+          "type": "long",
+          "fullType": "long",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "Count of activated licenses at the end of the day.",
+          "required": false
+        },
+        "licenceId": {
+          "type": "long",
+          "fullType": "long",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "Id of the Office license.",
+          "required": false
+        },
+        "licenceName": {
+          "type": "string",
+          "fullType": "string",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "Name of the Office license.",
+          "required": false
+        },
+        "peakCount": {
+          "type": "long",
+          "fullType": "long",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "Maximum count of simultaneous activated licences.",
+          "required": false
+        }
+      }
+    },
+    "saas.csp2.SubscriptionChangeQuantityCreation": {
+      "id": "SubscriptionChangeQuantityCreation",
+      "namespace": "saas.csp2",
+      "description": "Change subscription quantity",
+      "properties": {
+        "quantity": {
+          "type": "long",
+          "fullType": "long",
+          "canBeNull": false,
+          "readOnly": false,
+          "description": "New seat quantity",
+          "required": true
+        }
+      }
+    },
+    "saas.csp2.SubscriptionCreation": {
+      "id": "SubscriptionCreation",
+      "namespace": "saas.csp2",
+      "description": "Create subscription",
+      "properties": {
+        "licenseId": {
+          "type": "long",
+          "fullType": "long",
+          "canBeNull": false,
+          "readOnly": false,
+          "description": "License's type unique identifier",
+          "required": true
+        },
+        "quantity": {
+          "type": "long",
+          "fullType": "long",
+          "canBeNull": false,
+          "readOnly": false,
+          "description": "Quantity of licenses to order",
+          "required": true
+        }
+      }
+    },
+    "saas.csp2.SubscriptionOrderAddonCreation": {
+      "id": "SubscriptionOrderAddonCreation",
+      "namespace": "saas.csp2",
+      "description": "Create subscription order addon",
+      "properties": {
+        "licenseId": {
+          "type": "long",
+          "fullType": "long",
+          "canBeNull": false,
+          "readOnly": false,
+          "description": "License id associated to this addon subscription (see subscription/<id>/availableAddonLicenses)",
+          "required": true
+        },
+        "quantity": {
+          "type": "long",
+          "fullType": "long",
+          "canBeNull": false,
+          "readOnly": false,
+          "description": "Seat quantity of the new subscription",
+          "required": true
+        }
+      }
+    },
+    "saas.csp2.TaskStatusEnum": {
+      "id": "TaskStatusEnum",
+      "namespace": "saas.csp2",
+      "description": "Office CSP2 task status",
+      "enum": [
+        "cancelled",
+        "doing",
+        "done",
+        "error",
+        "todo"
+      ],
+      "enumType": "string"
+    },
+    "service.RenewType": {
+      "id": "RenewType",
+      "namespace": "service",
+      "description": "Map a possible renew for a specific service",
+      "properties": {
+        "automatic": {
+          "type": "boolean",
+          "canBeNull": false,
+          "readOnly": false,
+          "description": "The service is automatically renewed",
+          "required": false
+        },
+        "deleteAtExpiration": {
+          "type": "boolean",
+          "canBeNull": false,
+          "readOnly": false,
+          "description": "The service will be deleted at expiration",
+          "required": false
+        },
+        "forced": {
+          "type": "boolean",
+          "canBeNull": false,
+          "readOnly": false,
+          "description": "The service forced to be renewed",
+          "required": false
+        },
+        "manualPayment": {
+          "type": "boolean",
+          "canBeNull": true,
+          "readOnly": false,
+          "description": "The service needs to be manually renewed and paid",
+          "required": false
+        },
+        "period": {
+          "type": "long",
+          "canBeNull": true,
+          "readOnly": false,
+          "description": "period of renew in month",
+          "required": false
+        }
+      }
+    },
+    "service.RenewalTypeEnum": {
+      "id": "RenewalTypeEnum",
+      "namespace": "service",
+      "description": "Detailed renewal type of a service",
+      "enum": [
+        "automaticForcedProduct",
+        "automaticV2012",
+        "automaticV2014",
+        "automaticV2016",
+        "automaticV2024",
+        "manual",
+        "oneShot",
+        "option"
+      ],
+      "enumType": "string"
+    },
+    "service.StateEnum": {
+      "id": "StateEnum",
+      "namespace": "service",
+      "enum": [
+        "autorenewInProgress",
+        "expired",
+        "inCreation",
+        "ok",
+        "pendingDebt",
+        "unPaid"
+      ],
+      "enumType": "string"
+    },
+    "services.Service": {
+      "id": "Service",
+      "namespace": "services",
+      "description": "Details about a Service",
+      "properties": {
+        "canDeleteAtExpiration": {
+          "type": "boolean",
+          "fullType": "boolean",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "Indicates that the service can be set up to be deleted at expiration",
+          "required": false
+        },
+        "contactAdmin": {
+          "type": "string",
+          "fullType": "coreTypes.AccountId:string",
+          "canBeNull": false,
+          "readOnly": true,
+          "required": false
+        },
+        "contactBilling": {
+          "type": "string",
+          "fullType": "coreTypes.AccountId:string",
+          "canBeNull": false,
+          "readOnly": true,
+          "required": false
+        },
+        "contactTech": {
+          "type": "string",
+          "fullType": "coreTypes.AccountId:string",
+          "canBeNull": false,
+          "readOnly": true,
+          "required": false
+        },
+        "creation": {
+          "type": "date",
+          "fullType": "date",
+          "canBeNull": false,
+          "readOnly": true,
+          "required": false
+        },
+        "domain": {
+          "type": "string",
+          "fullType": "string",
+          "canBeNull": false,
+          "readOnly": true,
+          "required": false
+        },
+        "engagedUpTo": {
+          "type": "date",
+          "fullType": "date",
+          "canBeNull": true,
+          "readOnly": true,
+          "required": false
+        },
+        "expiration": {
+          "type": "date",
+          "fullType": "date",
+          "canBeNull": false,
+          "readOnly": true,
+          "required": false
+        },
+        "possibleRenewPeriod": {
+          "type": "long[]",
+          "fullType": "long[]",
+          "canBeNull": true,
+          "readOnly": true,
+          "description": "All the possible renew period of your service in month",
+          "required": false
+        },
+        "renew": {
+          "type": "service.RenewType",
+          "fullType": "service.RenewType",
+          "canBeNull": true,
+          "readOnly": false,
+          "description": "Way of handling the renew",
+          "required": false
+        },
+        "renewalType": {
+          "type": "service.RenewalTypeEnum",
+          "fullType": "service.RenewalTypeEnum",
+          "canBeNull": false,
+          "readOnly": true,
+          "required": false
+        },
+        "serviceId": {
+          "type": "long",
+          "fullType": "coreTypes.ServiceId:long",
+          "canBeNull": false,
+          "readOnly": true,
+          "required": false
+        },
+        "status": {
+          "type": "service.StateEnum",
+          "fullType": "service.StateEnum",
+          "canBeNull": false,
+          "readOnly": true,
+          "required": false
+        }
+      }
+    }
+  }
+}

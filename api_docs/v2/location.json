@@ -1,0 +1,348 @@
+{
+  "apiVersion": "1.0",
+  "apis": [
+    {
+      "path": "/location",
+      "operations": [
+        {
+          "apiStatus": {
+            "description": "Stable production version",
+            "value": "PRODUCTION"
+          },
+          "httpMethod": "GET",
+          "parameters": [
+            {
+              "name": "X-Pagination-Cursor",
+              "dataType": "string",
+              "paramType": "header",
+              "fullType": "string",
+              "required": false,
+              "description": "Pagination cursor"
+            },
+            {
+              "name": "X-Pagination-Size",
+              "dataType": "long",
+              "paramType": "header",
+              "fullType": "long",
+              "required": false,
+              "description": "Pagination size"
+            },
+            {
+              "name": "availabilityZone",
+              "dataType": "string",
+              "paramType": "query",
+              "fullType": "string",
+              "required": false,
+              "description": "Filter by availability zone. Returns locations having this availability zone"
+            },
+            {
+              "name": "cityCode",
+              "dataType": "string",
+              "paramType": "query",
+              "fullType": "string",
+              "required": false,
+              "description": "Filter by city ISO code"
+            },
+            {
+              "name": "cityName",
+              "dataType": "string",
+              "paramType": "query",
+              "fullType": "string",
+              "required": false,
+              "description": "Filter by city name"
+            },
+            {
+              "name": "code",
+              "dataType": "string",
+              "paramType": "query",
+              "fullType": "string",
+              "required": false,
+              "description": "Filter by region code"
+            },
+            {
+              "name": "countryCode",
+              "dataType": "string",
+              "paramType": "query",
+              "fullType": "string",
+              "required": false,
+              "description": "Filter by country ISO code"
+            },
+            {
+              "name": "countryName",
+              "dataType": "string",
+              "paramType": "query",
+              "fullType": "string",
+              "required": false,
+              "description": "Filter by country name"
+            },
+            {
+              "name": "geographyCode",
+              "dataType": "string",
+              "paramType": "query",
+              "fullType": "string",
+              "required": false,
+              "description": "Filter by geography code"
+            },
+            {
+              "name": "geographyName",
+              "dataType": "string",
+              "paramType": "query",
+              "fullType": "string",
+              "required": false,
+              "description": "Filter by geography name"
+            },
+            {
+              "name": "ids",
+              "dataType": "long[]",
+              "paramType": "query",
+              "fullType": "long[]",
+              "required": false,
+              "description": "Filter by region IDs"
+            },
+            {
+              "name": "location",
+              "dataType": "string",
+              "paramType": "query",
+              "fullType": "string",
+              "required": false,
+              "description": "Filter by region location"
+            },
+            {
+              "name": "name",
+              "dataType": "string",
+              "paramType": "query",
+              "fullType": "string",
+              "required": false,
+              "description": "Filter by region name"
+            },
+            {
+              "name": "specificType",
+              "dataType": "location.SpecificTypeEnum",
+              "paramType": "query",
+              "fullType": "location.SpecificTypeEnum",
+              "required": false,
+              "description": "Filter by specific region type"
+            },
+            {
+              "name": "type",
+              "dataType": "location.TypeEnum",
+              "paramType": "query",
+              "fullType": "location.TypeEnum",
+              "required": false,
+              "description": "Filter by general region type"
+            }
+          ],
+          "responseType": "location.Location[]",
+          "noAuthentication": false,
+          "description": "List available regions and their availability zones"
+        }
+      ],
+      "description": "Get available region and its availability zones"
+    },
+    {
+      "path": "/location/{name}",
+      "operations": [
+        {
+          "apiStatus": {
+            "description": "Stable production version",
+            "value": "PRODUCTION"
+          },
+          "httpMethod": "GET",
+          "parameters": [
+            {
+              "name": "name",
+              "dataType": "string",
+              "paramType": "path",
+              "fullType": "string",
+              "required": true,
+              "description": "Name"
+            }
+          ],
+          "responseType": "location.Location",
+          "noAuthentication": false,
+          "description": "Get available region and its availability zones"
+        }
+      ],
+      "description": "Get available region and its availability zones"
+    }
+  ],
+  "resourcePath": "/location",
+  "basePath": "https://eu.api.ovh.com/v2",
+  "models": {
+    "location.CardinalPointEnum": {
+      "id": "CardinalPointEnum",
+      "namespace": "location",
+      "description": "Cardinal direction of the region",
+      "enum": [
+        "CENTRAL",
+        "EAST",
+        "NORTH",
+        "NORTHEAST",
+        "NORTHWEST",
+        "SOUTH",
+        "SOUTHEAST",
+        "SOUTHWEST",
+        "WEST"
+      ],
+      "enumType": "string"
+    },
+    "location.Location": {
+      "id": "Location",
+      "namespace": "location",
+      "description": "Region and its availability zones",
+      "properties": {
+        "availabilityZones": {
+          "type": "string[]",
+          "fullType": "string[]",
+          "canBeNull": true,
+          "readOnly": true,
+          "description": "List of availability zones for the region",
+          "required": false
+        },
+        "cardinalPoint": {
+          "type": "location.CardinalPointEnum",
+          "fullType": "location.CardinalPointEnum",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "Cardinal direction where the region is located",
+          "required": false
+        },
+        "cityCode": {
+          "type": "string",
+          "fullType": "string",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "ISO code of the city",
+          "required": false
+        },
+        "cityLatitude": {
+          "type": "double",
+          "fullType": "double",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "Geographical latitude of the city",
+          "required": false
+        },
+        "cityLongitude": {
+          "type": "double",
+          "fullType": "double",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "Geographical longitude of the city",
+          "required": false
+        },
+        "cityName": {
+          "type": "string",
+          "fullType": "string",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "Full name of the city",
+          "required": false
+        },
+        "code": {
+          "type": "string",
+          "fullType": "string",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "Region's short code",
+          "required": false
+        },
+        "countryCode": {
+          "type": "string",
+          "fullType": "string",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "ISO code of the country",
+          "required": false
+        },
+        "countryName": {
+          "type": "string",
+          "fullType": "string",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "Full name of the country",
+          "required": false
+        },
+        "geographyCode": {
+          "type": "string",
+          "fullType": "string",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "Short code representing the geographical area",
+          "required": false
+        },
+        "geographyName": {
+          "type": "string",
+          "fullType": "string",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "Name of the geographical area",
+          "required": false
+        },
+        "location": {
+          "type": "string",
+          "fullType": "string",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "Location of the region",
+          "required": false
+        },
+        "name": {
+          "type": "string",
+          "fullType": "string",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "Name of the region",
+          "required": false
+        },
+        "openingYear": {
+          "type": "long",
+          "fullType": "long",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "Year the region was opened",
+          "required": false
+        },
+        "specificType": {
+          "type": "location.SpecificTypeEnum",
+          "fullType": "location.SpecificTypeEnum",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "Specific typology of the region",
+          "required": false
+        },
+        "type": {
+          "type": "location.TypeEnum",
+          "fullType": "location.TypeEnum",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "General typology of the region",
+          "required": false
+        }
+      }
+    },
+    "location.SpecificTypeEnum": {
+      "id": "SpecificTypeEnum",
+      "namespace": "location",
+      "description": "Typology of the region for non-standard types",
+      "enum": [
+        "BACKUP",
+        "LZ",
+        "SNC",
+        "STANDARD"
+      ],
+      "enumType": "string"
+    },
+    "location.TypeEnum": {
+      "id": "TypeEnum",
+      "namespace": "location",
+      "description": "Typology of the region",
+      "enum": [
+        "LOCAL-ZONE",
+        "REGION-1-AZ",
+        "REGION-3-AZ"
+      ],
+      "enumType": "string"
+    }
+  }
+}

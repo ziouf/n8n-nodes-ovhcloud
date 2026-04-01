@@ -1,0 +1,635 @@
+{
+  "apis": [
+    {
+      "path": "/allDom",
+      "schema": "{path}.{format}",
+      "format": [
+        "json",
+        "yaml"
+      ],
+      "description": ""
+    },
+    {
+      "path": "/auth",
+      "schema": "{path}.{format}",
+      "format": [
+        "json",
+        "yaml"
+      ],
+      "description": ""
+    },
+    {
+      "path": "/cdn/dedicated",
+      "schema": "{path}.{format}",
+      "format": [
+        "json",
+        "yaml"
+      ],
+      "description": ""
+    },
+    {
+      "path": "/cloud",
+      "schema": "{path}.{format}",
+      "format": [
+        "json",
+        "yaml"
+      ],
+      "description": ""
+    },
+    {
+      "path": "/cluster/hadoop",
+      "schema": "{path}.{format}",
+      "format": [
+        "json",
+        "yaml"
+      ],
+      "description": ""
+    },
+    {
+      "path": "/connectivity",
+      "schema": "{path}.{format}",
+      "format": [
+        "json",
+        "yaml"
+      ],
+      "description": ""
+    },
+    {
+      "path": "/contact",
+      "schema": "{path}.{format}",
+      "format": [
+        "json",
+        "yaml"
+      ],
+      "description": ""
+    },
+    {
+      "path": "/dbaas/logs",
+      "schema": "{path}.{format}",
+      "format": [
+        "json",
+        "yaml"
+      ],
+      "description": ""
+    },
+    {
+      "path": "/dedicated/ceph",
+      "schema": "{path}.{format}",
+      "format": [
+        "json",
+        "yaml"
+      ],
+      "description": ""
+    },
+    {
+      "path": "/dedicated/cluster",
+      "schema": "{path}.{format}",
+      "format": [
+        "json",
+        "yaml"
+      ],
+      "description": ""
+    },
+    {
+      "path": "/dedicated/housing",
+      "schema": "{path}.{format}",
+      "format": [
+        "json",
+        "yaml"
+      ],
+      "description": ""
+    },
+    {
+      "path": "/dedicated/installationTemplate",
+      "schema": "{path}.{format}",
+      "format": [
+        "json",
+        "yaml"
+      ],
+      "description": ""
+    },
+    {
+      "path": "/dedicated/nasha",
+      "schema": "{path}.{format}",
+      "format": [
+        "json",
+        "yaml"
+      ],
+      "description": ""
+    },
+    {
+      "path": "/dedicated/server",
+      "schema": "{path}.{format}",
+      "format": [
+        "json",
+        "yaml"
+      ],
+      "description": ""
+    },
+    {
+      "path": "/dedicatedCloud",
+      "schema": "{path}.{format}",
+      "format": [
+        "json",
+        "yaml"
+      ],
+      "description": ""
+    },
+    {
+      "path": "/domain",
+      "schema": "{path}.{format}",
+      "format": [
+        "json",
+        "yaml"
+      ],
+      "description": ""
+    },
+    {
+      "path": "/email/domain",
+      "schema": "{path}.{format}",
+      "format": [
+        "json",
+        "yaml"
+      ],
+      "description": ""
+    },
+    {
+      "path": "/email/exchange",
+      "schema": "{path}.{format}",
+      "format": [
+        "json",
+        "yaml"
+      ],
+      "description": ""
+    },
+    {
+      "path": "/email/mxplan",
+      "schema": "{path}.{format}",
+      "format": [
+        "json",
+        "yaml"
+      ],
+      "description": ""
+    },
+    {
+      "path": "/email/pro",
+      "schema": "{path}.{format}",
+      "format": [
+        "json",
+        "yaml"
+      ],
+      "description": ""
+    },
+    {
+      "path": "/freefax",
+      "schema": "{path}.{format}",
+      "format": [
+        "json",
+        "yaml"
+      ],
+      "description": ""
+    },
+    {
+      "path": "/horizonView",
+      "schema": "{path}.{format}",
+      "format": [
+        "json",
+        "yaml"
+      ],
+      "description": ""
+    },
+    {
+      "path": "/hosting/privateDatabase",
+      "schema": "{path}.{format}",
+      "format": [
+        "json",
+        "yaml"
+      ],
+      "description": ""
+    },
+    {
+      "path": "/hosting/web",
+      "schema": "{path}.{format}",
+      "format": [
+        "json",
+        "yaml"
+      ],
+      "description": ""
+    },
+    {
+      "path": "/ip",
+      "schema": "{path}.{format}",
+      "format": [
+        "json",
+        "yaml"
+      ],
+      "description": ""
+    },
+    {
+      "path": "/ipLoadbalancing",
+      "schema": "{path}.{format}",
+      "format": [
+        "json",
+        "yaml"
+      ],
+      "description": ""
+    },
+    {
+      "path": "/license/cloudLinux",
+      "schema": "{path}.{format}",
+      "format": [
+        "json",
+        "yaml"
+      ],
+      "description": ""
+    },
+    {
+      "path": "/license/cpanel",
+      "schema": "{path}.{format}",
+      "format": [
+        "json",
+        "yaml"
+      ],
+      "description": ""
+    },
+    {
+      "path": "/license/directadmin",
+      "schema": "{path}.{format}",
+      "format": [
+        "json",
+        "yaml"
+      ],
+      "description": ""
+    },
+    {
+      "path": "/license/hycu",
+      "schema": "{path}.{format}",
+      "format": [
+        "json",
+        "yaml"
+      ],
+      "description": ""
+    },
+    {
+      "path": "/license/office",
+      "schema": "{path}.{format}",
+      "format": [
+        "json",
+        "yaml"
+      ],
+      "description": ""
+    },
+    {
+      "path": "/license/officePrepaid",
+      "schema": "{path}.{format}",
+      "format": [
+        "json",
+        "yaml"
+      ],
+      "description": ""
+    },
+    {
+      "path": "/license/plesk",
+      "schema": "{path}.{format}",
+      "format": [
+        "json",
+        "yaml"
+      ],
+      "description": ""
+    },
+    {
+      "path": "/license/redhat",
+      "schema": "{path}.{format}",
+      "format": [
+        "json",
+        "yaml"
+      ],
+      "description": ""
+    },
+    {
+      "path": "/license/sqlserver",
+      "schema": "{path}.{format}",
+      "format": [
+        "json",
+        "yaml"
+      ],
+      "description": ""
+    },
+    {
+      "path": "/license/virtuozzo",
+      "schema": "{path}.{format}",
+      "format": [
+        "json",
+        "yaml"
+      ],
+      "description": ""
+    },
+    {
+      "path": "/license/windows",
+      "schema": "{path}.{format}",
+      "format": [
+        "json",
+        "yaml"
+      ],
+      "description": ""
+    },
+    {
+      "path": "/license/worklight",
+      "schema": "{path}.{format}",
+      "format": [
+        "json",
+        "yaml"
+      ],
+      "description": ""
+    },
+    {
+      "path": "/me",
+      "schema": "{path}.{format}",
+      "format": [
+        "json",
+        "yaml"
+      ],
+      "description": ""
+    },
+    {
+      "path": "/metrics",
+      "schema": "{path}.{format}",
+      "format": [
+        "json",
+        "yaml"
+      ],
+      "description": ""
+    },
+    {
+      "path": "/msServices",
+      "schema": "{path}.{format}",
+      "format": [
+        "json",
+        "yaml"
+      ],
+      "description": ""
+    },
+    {
+      "path": "/newAccount",
+      "schema": "{path}.{format}",
+      "format": [
+        "json",
+        "yaml"
+      ],
+      "description": ""
+    },
+    {
+      "path": "/nutanix",
+      "schema": "{path}.{format}",
+      "format": [
+        "json",
+        "yaml"
+      ],
+      "description": ""
+    },
+    {
+      "path": "/order",
+      "schema": "{path}.{format}",
+      "format": [
+        "json",
+        "yaml"
+      ],
+      "description": ""
+    },
+    {
+      "path": "/overTheBox",
+      "schema": "{path}.{format}",
+      "format": [
+        "json",
+        "yaml"
+      ],
+      "description": ""
+    },
+    {
+      "path": "/ovhCloudConnect",
+      "schema": "{path}.{format}",
+      "format": [
+        "json",
+        "yaml"
+      ],
+      "description": ""
+    },
+    {
+      "path": "/pack/siptrunk",
+      "schema": "{path}.{format}",
+      "format": [
+        "json",
+        "yaml"
+      ],
+      "description": ""
+    },
+    {
+      "path": "/pack/xdsl",
+      "schema": "{path}.{format}",
+      "format": [
+        "json",
+        "yaml"
+      ],
+      "description": ""
+    },
+    {
+      "path": "/partner",
+      "schema": "{path}.{format}",
+      "format": [
+        "json",
+        "yaml"
+      ],
+      "description": ""
+    },
+    {
+      "path": "/price",
+      "schema": "{path}.{format}",
+      "format": [
+        "json",
+        "yaml"
+      ],
+      "description": ""
+    },
+    {
+      "path": "/products",
+      "schema": "{path}.{format}",
+      "format": [
+        "json",
+        "yaml"
+      ],
+      "description": ""
+    },
+    {
+      "path": "/saas/csp2",
+      "schema": "{path}.{format}",
+      "format": [
+        "json",
+        "yaml"
+      ],
+      "description": ""
+    },
+    {
+      "path": "/secret",
+      "schema": "{path}.{format}",
+      "format": [
+        "json",
+        "yaml"
+      ],
+      "description": ""
+    },
+    {
+      "path": "/service",
+      "schema": "{path}.{format}",
+      "format": [
+        "json",
+        "yaml"
+      ],
+      "description": ""
+    },
+    {
+      "path": "/services",
+      "schema": "{path}.{format}",
+      "format": [
+        "json",
+        "yaml"
+      ],
+      "description": ""
+    },
+    {
+      "path": "/sms",
+      "schema": "{path}.{format}",
+      "format": [
+        "json",
+        "yaml"
+      ],
+      "description": ""
+    },
+    {
+      "path": "/ssl",
+      "schema": "{path}.{format}",
+      "format": [
+        "json",
+        "yaml"
+      ],
+      "description": ""
+    },
+    {
+      "path": "/sslGateway",
+      "schema": "{path}.{format}",
+      "format": [
+        "json",
+        "yaml"
+      ],
+      "description": ""
+    },
+    {
+      "path": "/stack/mis",
+      "schema": "{path}.{format}",
+      "format": [
+        "json",
+        "yaml"
+      ],
+      "description": ""
+    },
+    {
+      "path": "/startup",
+      "schema": "{path}.{format}",
+      "format": [
+        "json",
+        "yaml"
+      ],
+      "description": ""
+    },
+    {
+      "path": "/storage",
+      "schema": "{path}.{format}",
+      "format": [
+        "json",
+        "yaml"
+      ],
+      "description": ""
+    },
+    {
+      "path": "/supply/mondialRelay",
+      "schema": "{path}.{format}",
+      "format": [
+        "json",
+        "yaml"
+      ],
+      "description": ""
+    },
+    {
+      "path": "/support",
+      "schema": "{path}.{format}",
+      "format": [
+        "json",
+        "yaml"
+      ],
+      "description": ""
+    },
+    {
+      "path": "/telephony",
+      "schema": "{path}.{format}",
+      "format": [
+        "json",
+        "yaml"
+      ],
+      "description": ""
+    },
+    {
+      "path": "/veeam/veeamEnterprise",
+      "schema": "{path}.{format}",
+      "format": [
+        "json",
+        "yaml"
+      ],
+      "description": ""
+    },
+    {
+      "path": "/veeamCloudConnect",
+      "schema": "{path}.{format}",
+      "format": [
+        "json",
+        "yaml"
+      ],
+      "description": ""
+    },
+    {
+      "path": "/vip",
+      "schema": "{path}.{format}",
+      "format": [
+        "json",
+        "yaml"
+      ],
+      "description": ""
+    },
+    {
+      "path": "/vps",
+      "schema": "{path}.{format}",
+      "format": [
+        "json",
+        "yaml"
+      ],
+      "description": ""
+    },
+    {
+      "path": "/vrack",
+      "schema": "{path}.{format}",
+      "format": [
+        "json",
+        "yaml"
+      ],
+      "description": ""
+    },
+    {
+      "path": "/xdsl",
+      "schema": "{path}.{format}",
+      "format": [
+        "json",
+        "yaml"
+      ],
+      "description": ""
+    }
+  ],
+  "basePath": "https://eu.api.ovh.com/v1"
+}

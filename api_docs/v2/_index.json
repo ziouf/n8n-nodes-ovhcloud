@@ -1,0 +1,131 @@
+{
+  "apis": [
+    {
+      "path": "/backupServices",
+      "schema": "{path}.{format}",
+      "format": [
+        "json",
+        "yaml"
+      ],
+      "description": ""
+    },
+    {
+      "path": "/commercialCatalog",
+      "schema": "{path}.{format}",
+      "format": [
+        "json",
+        "yaml"
+      ],
+      "description": ""
+    },
+    {
+      "path": "/domain",
+      "schema": "{path}.{format}",
+      "format": [
+        "json",
+        "yaml"
+      ],
+      "description": ""
+    },
+    {
+      "path": "/iam",
+      "schema": "{path}.{format}",
+      "format": [
+        "json",
+        "yaml"
+      ],
+      "description": ""
+    },
+    {
+      "path": "/location",
+      "schema": "{path}.{format}",
+      "format": [
+        "json",
+        "yaml"
+      ],
+      "description": ""
+    },
+    {
+      "path": "/managedCMS",
+      "schema": "{path}.{format}",
+      "format": [
+        "json",
+        "yaml"
+      ],
+      "description": ""
+    },
+    {
+      "path": "/networkDefense",
+      "schema": "{path}.{format}",
+      "format": [
+        "json",
+        "yaml"
+      ],
+      "description": ""
+    },
+    {
+      "path": "/notification",
+      "schema": "{path}.{format}",
+      "format": [
+        "json",
+        "yaml"
+      ],
+      "description": ""
+    },
+    {
+      "path": "/okms",
+      "schema": "{path}.{format}",
+      "format": [
+        "json",
+        "yaml"
+      ],
+      "description": ""
+    },
+    {
+      "path": "/publicCloud",
+      "schema": "{path}.{format}",
+      "format": [
+        "json",
+        "yaml"
+      ],
+      "description": ""
+    },
+    {
+      "path": "/vmwareCloudDirector",
+      "schema": "{path}.{format}",
+      "format": [
+        "json",
+        "yaml"
+      ],
+      "description": ""
+    },
+    {
+      "path": "/vrackServices",
+      "schema": "{path}.{format}",
+      "format": [
+        "json",
+        "yaml"
+      ],
+      "description": ""
+    },
+    {
+      "path": "/webhosting",
+      "schema": "{path}.{format}",
+      "format": [
+        "json",
+        "yaml"
+      ],
+      "description": ""
+    },
+    {
+      "path": "/zimbra",
+      "schema": "{path}.{format}",
+      "format": [
+        "json",
+        "yaml"
+      ],
+      "description": ""
+    }
+  ],
+  "basePath": "https://eu.api.ovh.com/v2"
+}

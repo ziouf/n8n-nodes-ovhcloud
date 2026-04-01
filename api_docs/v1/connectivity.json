@@ -1,0 +1,3255 @@
+{
+  "apiVersion": "1.0",
+  "apis": [
+    {
+      "path": "/connectivity/eligibility/recall",
+      "operations": [
+        {
+          "apiStatus": {
+            "description": "Stable production version",
+            "value": "PRODUCTION"
+          },
+          "httpMethod": "GET",
+          "parameters": [],
+          "responseType": "connectivity.eligibility.EligibilityRecall[]",
+          "noAuthentication": false,
+          "description": "List eligibility recalls",
+          "iamActions": [
+            {
+              "name": "account:apiovh:connectivity/eligibility/recall/list",
+              "required": true
+            }
+          ]
+        },
+        {
+          "apiStatus": {
+            "description": "Stable production version",
+            "value": "PRODUCTION"
+          },
+          "httpMethod": "POST",
+          "parameters": [
+            {
+              "dataType": "connectivity.eligibility.EligibilityRecall.post",
+              "paramType": "body",
+              "fullType": "connectivity.eligibility.EligibilityRecall.post",
+              "required": true,
+              "description": "Request Body"
+            }
+          ],
+          "responseType": "connectivity.eligibility.EligibilityRecall",
+          "noAuthentication": false,
+          "description": "Create an eligibility recall",
+          "iamActions": [
+            {
+              "name": "account:apiovh:connectivity/eligibility/recall/create",
+              "required": true
+            }
+          ]
+        }
+      ],
+      "description": ""
+    },
+    {
+      "path": "/connectivity/eligibility/recall/{id}",
+      "operations": [
+        {
+          "apiStatus": {
+            "description": "Stable production version",
+            "value": "PRODUCTION"
+          },
+          "httpMethod": "DELETE",
+          "parameters": [
+            {
+              "name": "id",
+              "dataType": "long",
+              "paramType": "path",
+              "fullType": "long",
+              "required": true,
+              "description": "Id"
+            }
+          ],
+          "responseType": "void",
+          "noAuthentication": false,
+          "description": "Delete an eligibility recall",
+          "iamActions": [
+            {
+              "name": "account:apiovh:connectivity/eligibility/recall/delete",
+              "required": true
+            }
+          ]
+        },
+        {
+          "apiStatus": {
+            "description": "Stable production version",
+            "value": "PRODUCTION"
+          },
+          "httpMethod": "GET",
+          "parameters": [
+            {
+              "name": "id",
+              "dataType": "long",
+              "paramType": "path",
+              "fullType": "long",
+              "required": true,
+              "description": "Id"
+            }
+          ],
+          "responseType": "connectivity.eligibility.EligibilityRecall",
+          "noAuthentication": false,
+          "description": "Get an eligibility recall",
+          "iamActions": [
+            {
+              "name": "account:apiovh:connectivity/eligibility/recall/get",
+              "required": true
+            }
+          ]
+        },
+        {
+          "apiStatus": {
+            "description": "Stable production version",
+            "value": "PRODUCTION"
+          },
+          "httpMethod": "PUT",
+          "parameters": [
+            {
+              "dataType": "connectivity.eligibility.EligibilityRecall.post",
+              "paramType": "body",
+              "fullType": "connectivity.eligibility.EligibilityRecall.post",
+              "required": true,
+              "description": "Request Body"
+            },
+            {
+              "name": "id",
+              "dataType": "long",
+              "paramType": "path",
+              "fullType": "long",
+              "required": true,
+              "description": "Id"
+            }
+          ],
+          "responseType": "connectivity.eligibility.EligibilityRecall",
+          "noAuthentication": false,
+          "description": "Edit an eligibility recall",
+          "iamActions": [
+            {
+              "name": "account:apiovh:connectivity/eligibility/recall/edit",
+              "required": true
+            }
+          ]
+        }
+      ],
+      "description": ""
+    },
+    {
+      "path": "/connectivity/eligibility/search/addresses",
+      "operations": [
+        {
+          "apiStatus": {
+            "description": "Stable production version",
+            "value": "PRODUCTION"
+          },
+          "operationId": "eligibilitySearchAddresses",
+          "httpMethod": "POST",
+          "parameters": [
+            {
+              "dataType": "connectivity.eligibility.search.addresses.post",
+              "paramType": "body",
+              "fullType": "connectivity.eligibility.search.addresses.post",
+              "required": true,
+              "description": "Request Body"
+            }
+          ],
+          "responseType": "xdsl.AsyncTaskArray_connectivity.eligibility.AddressWithCoordinates",
+          "noAuthentication": true,
+          "description": "Search for nearby addresses"
+        }
+      ],
+      "description": ""
+    },
+    {
+      "path": "/connectivity/eligibility/search/buildingDetails",
+      "operations": [
+        {
+          "apiStatus": {
+            "description": "Stable production version",
+            "value": "PRODUCTION"
+          },
+          "operationId": "getBuildingDetails",
+          "httpMethod": "POST",
+          "parameters": [
+            {
+              "dataType": "connectivity.eligibility.search.buildingDetails.post",
+              "paramType": "body",
+              "fullType": "connectivity.eligibility.search.buildingDetails.post",
+              "required": true,
+              "description": "Request Body"
+            }
+          ],
+          "responseType": "xdsl.AsyncTask_connectivity.eligibility.Building",
+          "noAuthentication": true,
+          "description": "Get the details for a building"
+        }
+      ],
+      "description": ""
+    },
+    {
+      "path": "/connectivity/eligibility/search/buildings",
+      "operations": [
+        {
+          "apiStatus": {
+            "description": "Stable production version",
+            "value": "PRODUCTION"
+          },
+          "operationId": "getBuildings",
+          "httpMethod": "POST",
+          "parameters": [
+            {
+              "dataType": "connectivity.eligibility.search.buildings.post",
+              "paramType": "body",
+              "fullType": "connectivity.eligibility.search.buildings.post",
+              "required": true,
+              "description": "Request Body"
+            }
+          ],
+          "responseType": "xdsl.AsyncTaskArray_connectivity.eligibility.Building",
+          "noAuthentication": true,
+          "description": "Get all buildings for a specific address (require at least a couple streetCode/streetNumber or an hexacle)"
+        }
+      ],
+      "description": ""
+    },
+    {
+      "path": "/connectivity/eligibility/search/buildingsByLine",
+      "operations": [
+        {
+          "apiStatus": {
+            "description": "Stable production version",
+            "value": "PRODUCTION"
+          },
+          "operationId": "getBuildingsByLine",
+          "httpMethod": "POST",
+          "parameters": [
+            {
+              "dataType": "connectivity.eligibility.search.buildingsByLine.post",
+              "paramType": "body",
+              "fullType": "connectivity.eligibility.search.buildingsByLine.post",
+              "required": true,
+              "description": "Request Body"
+            }
+          ],
+          "responseType": "xdsl.AsyncTaskArray_connectivity.eligibility.Building",
+          "noAuthentication": true,
+          "description": "Get building references from a given line number"
+        }
+      ],
+      "description": ""
+    },
+    {
+      "path": "/connectivity/eligibility/search/cities",
+      "operations": [
+        {
+          "apiStatus": {
+            "description": "Stable production version",
+            "value": "PRODUCTION"
+          },
+          "operationId": "getCities",
+          "httpMethod": "POST",
+          "parameters": [
+            {
+              "dataType": "connectivity.eligibility.search.Cities",
+              "paramType": "body",
+              "fullType": "connectivity.eligibility.search.Cities",
+              "required": true,
+              "description": "Request Body"
+            }
+          ],
+          "responseType": "xdsl.AsyncTaskArray_connectivity.eligibility.City",
+          "noAuthentication": true,
+          "description": "Get all localities linked to a zip code"
+        }
+      ],
+      "description": ""
+    },
+    {
+      "path": "/connectivity/eligibility/search/lines",
+      "operations": [
+        {
+          "apiStatus": {
+            "description": "Stable production version",
+            "value": "PRODUCTION"
+          },
+          "operationId": "getLines",
+          "httpMethod": "POST",
+          "parameters": [
+            {
+              "dataType": "connectivity.eligibility.search.lines.post",
+              "paramType": "body",
+              "fullType": "connectivity.eligibility.search.lines.post",
+              "required": true,
+              "description": "Request Body"
+            }
+          ],
+          "responseType": "xdsl.AsyncTaskArray_connectivity.eligibility.Line",
+          "noAuthentication": true,
+          "description": "Search for active and inactive lines at an address"
+        }
+      ],
+      "description": ""
+    },
+    {
+      "path": "/connectivity/eligibility/search/meetings",
+      "operations": [
+        {
+          "apiStatus": {
+            "description": "Stable production version",
+            "value": "PRODUCTION"
+          },
+          "operationId": "getMeetings",
+          "httpMethod": "POST",
+          "parameters": [
+            {
+              "dataType": "connectivity.eligibility.search.meetings.post",
+              "paramType": "body",
+              "fullType": "connectivity.eligibility.search.meetings.post",
+              "required": true,
+              "description": "Request Body"
+            }
+          ],
+          "responseType": "xdsl.AsyncTask_connectivity.eligibility.Meetings",
+          "noAuthentication": true,
+          "description": "Search for available copper line creation or fiber installation meeting time slots"
+        }
+      ],
+      "description": ""
+    },
+    {
+      "path": "/connectivity/eligibility/search/streetNumbers",
+      "operations": [
+        {
+          "apiStatus": {
+            "description": "Stable production version",
+            "value": "PRODUCTION"
+          },
+          "operationId": "getStreetNumbers",
+          "httpMethod": "POST",
+          "parameters": [
+            {
+              "dataType": "connectivity.eligibility.search.streetNumbers.post",
+              "paramType": "body",
+              "fullType": "connectivity.eligibility.search.streetNumbers.post",
+              "required": true,
+              "description": "Request Body"
+            }
+          ],
+          "responseType": "xdsl.AsyncTaskArray_string",
+          "noAuthentication": true,
+          "description": "Get the available street numbers for a given street code (you can get the unique identifier of a street using the method POST /connectivity/eligibility/search/streets)"
+        }
+      ],
+      "description": ""
+    },
+    {
+      "path": "/connectivity/eligibility/search/streetNumbers/details",
+      "operations": [
+        {
+          "apiStatus": {
+            "description": "Stable production version",
+            "value": "PRODUCTION"
+          },
+          "operationId": "getStreetNumbersDetails",
+          "httpMethod": "POST",
+          "parameters": [
+            {
+              "dataType": "connectivity.eligibility.search.streetNumbers.details.post",
+              "paramType": "body",
+              "fullType": "connectivity.eligibility.search.streetNumbers.details.post",
+              "required": true,
+              "description": "Request Body"
+            }
+          ],
+          "responseType": "xdsl.AsyncTaskArray_connectivity.eligibility.StreetNumberDetails",
+          "noAuthentication": true,
+          "description": "Get the available street numbers and their details for a given street code (you can get the unique identifier of a street you can get using the method POST /connectivity/eligibility/search/streets)"
+        }
+      ],
+      "description": ""
+    },
+    {
+      "path": "/connectivity/eligibility/search/streets",
+      "operations": [
+        {
+          "apiStatus": {
+            "description": "Stable production version",
+            "value": "PRODUCTION"
+          },
+          "operationId": "getStreets",
+          "httpMethod": "POST",
+          "parameters": [
+            {
+              "dataType": "connectivity.eligibility.search.streets.post",
+              "paramType": "body",
+              "fullType": "connectivity.eligibility.search.streets.post",
+              "required": true,
+              "description": "Request Body"
+            }
+          ],
+          "responseType": "xdsl.AsyncTaskArray_connectivity.eligibility.Street",
+          "noAuthentication": true,
+          "description": "Get all street linked to a locality"
+        }
+      ],
+      "description": ""
+    },
+    {
+      "path": "/connectivity/eligibility/test",
+      "operations": [
+        {
+          "apiStatus": {
+            "description": "Stable production version",
+            "value": "PRODUCTION"
+          },
+          "operationId": "getEligibility",
+          "httpMethod": "GET",
+          "parameters": [
+            {
+              "name": "eligibilityReference",
+              "dataType": "string",
+              "paramType": "query",
+              "fullType": "string",
+              "required": true,
+              "description": "Eligibility reference"
+            }
+          ],
+          "responseType": "connectivity.eligibility.EligibilityTest",
+          "noAuthentication": true,
+          "description": "Get an eligibility by its reference"
+        }
+      ],
+      "description": ""
+    },
+    {
+      "path": "/connectivity/eligibility/test/address",
+      "operations": [
+        {
+          "apiStatus": {
+            "description": "Stable production version",
+            "value": "PRODUCTION"
+          },
+          "operationId": "testAddressEligibility",
+          "httpMethod": "POST",
+          "parameters": [
+            {
+              "dataType": "connectivity.eligibility.test.address.post",
+              "paramType": "body",
+              "fullType": "connectivity.eligibility.test.address.post",
+              "required": true,
+              "description": "Request Body"
+            }
+          ],
+          "responseType": "xdsl.AsyncTask_connectivity.eligibility.EligibilityTest",
+          "noAuthentication": true,
+          "description": "Do an eligibility for an address"
+        }
+      ],
+      "description": ""
+    },
+    {
+      "path": "/connectivity/eligibility/test/address/partners",
+      "operations": [
+        {
+          "apiStatus": {
+            "description": "Stable production version",
+            "value": "PRODUCTION"
+          },
+          "operationId": "testPartnersAddressEligibility",
+          "httpMethod": "POST",
+          "parameters": [
+            {
+              "dataType": "connectivity.eligibility.test.address.partners.post",
+              "paramType": "body",
+              "fullType": "connectivity.eligibility.test.address.partners.post",
+              "required": true,
+              "description": "Request Body"
+            }
+          ],
+          "responseType": "xdsl.AsyncTask_connectivity.eligibility.EligibilityTest",
+          "noAuthentication": false,
+          "description": "Do an eligibility for an address. For partners only",
+          "iamActions": [
+            {
+              "name": "account:apiovh:connectivity/eligibility/test/address/partners/create",
+              "required": true
+            }
+          ]
+        }
+      ],
+      "description": ""
+    },
+    {
+      "path": "/connectivity/eligibility/test/building",
+      "operations": [
+        {
+          "apiStatus": {
+            "description": "Stable production version",
+            "value": "PRODUCTION"
+          },
+          "operationId": "testBuildingEligibility",
+          "httpMethod": "POST",
+          "parameters": [
+            {
+              "dataType": "connectivity.eligibility.test.building.post",
+              "paramType": "body",
+              "fullType": "connectivity.eligibility.test.building.post",
+              "required": true,
+              "description": "Request Body"
+            }
+          ],
+          "responseType": "xdsl.AsyncTask_connectivity.eligibility.EligibilityTest",
+          "noAuthentication": true,
+          "description": "Do an eligibility test on a building, for fiber only"
+        }
+      ],
+      "description": ""
+    },
+    {
+      "path": "/connectivity/eligibility/test/building/partners",
+      "operations": [
+        {
+          "apiStatus": {
+            "description": "Beta version",
+            "value": "BETA"
+          },
+          "operationId": "testPartnersBuildingEligibility",
+          "httpMethod": "POST",
+          "parameters": [
+            {
+              "dataType": "connectivity.eligibility.test.building.partners.post",
+              "paramType": "body",
+              "fullType": "connectivity.eligibility.test.building.partners.post",
+              "required": true,
+              "description": "Request Body"
+            }
+          ],
+          "responseType": "xdsl.AsyncTask_connectivity.eligibility.EligibilityTest",
+          "noAuthentication": false,
+          "description": "Do an eligibility test on a building, for fiber only. Partners only.",
+          "iamActions": [
+            {
+              "name": "account:apiovh:connectivity/eligibility/test/building/partners/create",
+              "required": true
+            }
+          ]
+        }
+      ],
+      "description": ""
+    },
+    {
+      "path": "/connectivity/eligibility/test/line",
+      "operations": [
+        {
+          "apiStatus": {
+            "description": "Stable production version",
+            "value": "PRODUCTION"
+          },
+          "operationId": "testLineEligibility",
+          "httpMethod": "POST",
+          "parameters": [
+            {
+              "dataType": "connectivity.eligibility.test.line.post",
+              "paramType": "body",
+              "fullType": "connectivity.eligibility.test.line.post",
+              "required": true,
+              "description": "Request Body"
+            }
+          ],
+          "responseType": "xdsl.AsyncTask_connectivity.eligibility.EligibilityTest",
+          "noAuthentication": true,
+          "description": "Do an eligibility test on a line number, for copper only"
+        }
+      ],
+      "description": ""
+    },
+    {
+      "path": "/connectivity/eligibility/test/line/partners",
+      "operations": [
+        {
+          "apiStatus": {
+            "description": "Stable production version",
+            "value": "PRODUCTION"
+          },
+          "operationId": "testPartnersLineEligibility",
+          "httpMethod": "POST",
+          "parameters": [
+            {
+              "dataType": "connectivity.eligibility.test.line.partners.post",
+              "paramType": "body",
+              "fullType": "connectivity.eligibility.test.line.partners.post",
+              "required": true,
+              "description": "Request Body"
+            }
+          ],
+          "responseType": "xdsl.AsyncTask_connectivity.eligibility.EligibilityTest",
+          "noAuthentication": false,
+          "description": "Do an eligibility test on a line number, for copper only. Partners only.",
+          "iamActions": [
+            {
+              "name": "account:apiovh:connectivity/eligibility/test/line/partners/create",
+              "required": true
+            }
+          ]
+        }
+      ],
+      "description": ""
+    },
+    {
+      "path": "/connectivity/eligibility/test/otp",
+      "operations": [
+        {
+          "apiStatus": {
+            "description": "Stable production version",
+            "value": "PRODUCTION"
+          },
+          "operationId": "testOTPEligibility",
+          "httpMethod": "POST",
+          "parameters": [
+            {
+              "dataType": "connectivity.eligibility.test.otp.post",
+              "paramType": "body",
+              "fullType": "connectivity.eligibility.test.otp.post",
+              "required": true,
+              "description": "Request Body"
+            }
+          ],
+          "responseType": "xdsl.AsyncTask_connectivity.eligibility.EligibilityTest",
+          "noAuthentication": true,
+          "description": "Do an eligibility test on an OTP (Optical Termination Panel), for fiber only"
+        }
+      ],
+      "description": ""
+    },
+    {
+      "path": "/connectivity/eligibility/test/otp/partners",
+      "operations": [
+        {
+          "apiStatus": {
+            "description": "Beta version",
+            "value": "BETA"
+          },
+          "operationId": "testPartnersOtpEligibility",
+          "httpMethod": "POST",
+          "parameters": [
+            {
+              "dataType": "connectivity.eligibility.test.otp.partners.post",
+              "paramType": "body",
+              "fullType": "connectivity.eligibility.test.otp.partners.post",
+              "required": true,
+              "description": "Request Body"
+            }
+          ],
+          "responseType": "xdsl.AsyncTask_connectivity.eligibility.EligibilityTest",
+          "noAuthentication": false,
+          "description": "Do an eligibility test on an OTP (Optical Termination Panel), for fiber only. Partners only",
+          "iamActions": [
+            {
+              "name": "account:apiovh:connectivity/eligibility/test/otp/partners/create",
+              "required": true
+            }
+          ]
+        }
+      ],
+      "description": ""
+    },
+    {
+      "path": "/connectivity/maintenance/workPlanned/partners",
+      "operations": [
+        {
+          "apiStatus": {
+            "description": "Stable production version",
+            "value": "PRODUCTION"
+          },
+          "operationId": "getPartnersPlannedWork",
+          "httpMethod": "GET",
+          "parameters": [],
+          "responseType": "connectivity.maintenance.WorkPlanned[]",
+          "noAuthentication": false,
+          "description": "List work planned by operators. For partners only",
+          "iamActions": [
+            {
+              "name": "account:apiovh:connectivity/maintenance/workPlanned/partners/get",
+              "required": true
+            }
+          ]
+        }
+      ],
+      "description": ""
+    },
+    {
+      "path": "/connectivity/maintenance/workPlanned/public",
+      "operations": [
+        {
+          "apiStatus": {
+            "description": "Stable production version",
+            "value": "PRODUCTION"
+          },
+          "operationId": "getPlannedWork",
+          "httpMethod": "GET",
+          "parameters": [
+            {
+              "name": "beginDate",
+              "dataType": "datetime",
+              "paramType": "query",
+              "fullType": "datetime",
+              "required": false,
+              "description": "List only work planned started after this date"
+            },
+            {
+              "name": "endDate",
+              "dataType": "datetime",
+              "paramType": "query",
+              "fullType": "datetime",
+              "required": false,
+              "description": "List only work planned ending prior to this date"
+            }
+          ],
+          "responseType": "connectivity.maintenance.WorkPlanned[]",
+          "noAuthentication": true,
+          "description": "List work planned by operators"
+        }
+      ],
+      "description": ""
+    },
+    {
+      "path": "/connectivity/monitoring/genericIncident/partners",
+      "operations": [
+        {
+          "apiStatus": {
+            "description": "Stable production version",
+            "value": "PRODUCTION"
+          },
+          "operationId": "getPartnersGenericIncident",
+          "httpMethod": "GET",
+          "parameters": [
+            {
+              "name": "creationDate",
+              "dataType": "datetime",
+              "paramType": "query",
+              "fullType": "datetime",
+              "required": false,
+              "description": "List only incidents created after this date"
+            },
+            {
+              "name": "endDate",
+              "dataType": "datetime",
+              "paramType": "query",
+              "fullType": "datetime",
+              "required": false,
+              "description": "List only incidents closed prior to this date"
+            },
+            {
+              "name": "status",
+              "dataType": "connectivity.monitoring.GenericIncidentStatusEnum",
+              "paramType": "query",
+              "fullType": "connectivity.monitoring.GenericIncidentStatusEnum",
+              "required": false,
+              "description": "Filter by the status of the incident (detected, validated or closed)"
+            }
+          ],
+          "responseType": "connectivity.monitoring.GenericIncident[]",
+          "noAuthentication": false,
+          "description": "List detected, validated and recently closed generic incidents. For partners only",
+          "iamActions": [
+            {
+              "name": "account:apiovh:connectivity/monitoring/genericIncident/partners/get",
+              "required": true
+            }
+          ]
+        }
+      ],
+      "description": ""
+    },
+    {
+      "path": "/connectivity/monitoring/genericIncident/public",
+      "operations": [
+        {
+          "apiStatus": {
+            "description": "Stable production version",
+            "value": "PRODUCTION"
+          },
+          "operationId": "getGenericIncident",
+          "httpMethod": "GET",
+          "parameters": [
+            {
+              "name": "creationDate",
+              "dataType": "datetime",
+              "paramType": "query",
+              "fullType": "datetime",
+              "required": false,
+              "description": "List only incidents created after this date"
+            },
+            {
+              "name": "endDate",
+              "dataType": "datetime",
+              "paramType": "query",
+              "fullType": "datetime",
+              "required": false,
+              "description": "List only incidents closed prior to this date"
+            },
+            {
+              "name": "status",
+              "dataType": "connectivity.monitoring.GenericIncidentStatusEnum",
+              "paramType": "query",
+              "fullType": "connectivity.monitoring.GenericIncidentStatusEnum",
+              "required": false,
+              "description": "Filter by the status of the incident (validated or closed)"
+            }
+          ],
+          "responseType": "connectivity.monitoring.GenericIncident[]",
+          "noAuthentication": true,
+          "description": "List validated and recently closed generic incidents"
+        }
+      ],
+      "description": ""
+    }
+  ],
+  "resourcePath": "/connectivity",
+  "basePath": "https://eu.api.ovh.com/v1",
+  "models": {
+    "connectivity.OperatorEnum": {
+      "id": "OperatorEnum",
+      "namespace": "connectivity",
+      "description": "Operator",
+      "enum": [
+        "AXIONE",
+        "BOUYGUES",
+        "KOSC",
+        "ORANGE",
+        "OVH",
+        "SFR"
+      ],
+      "enumType": "string"
+    },
+    "connectivity.eligibility.ActivationTypeEnum": {
+      "id": "ActivationTypeEnum",
+      "namespace": "connectivity.eligibility",
+      "description": "Activation type, for copper only",
+      "enum": [
+        "activate",
+        "create",
+        "createNeighbour"
+      ],
+      "enumType": "string"
+    },
+    "connectivity.eligibility.Address": {
+      "id": "Address",
+      "namespace": "connectivity.eligibility",
+      "description": "Address",
+      "properties": {
+        "building": {
+          "type": "string",
+          "fullType": "string",
+          "canBeNull": true,
+          "readOnly": true,
+          "description": "Name of the building, if any",
+          "required": false
+        },
+        "city": {
+          "type": "string",
+          "fullType": "string",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "City name",
+          "required": false
+        },
+        "door": {
+          "type": "string",
+          "fullType": "string",
+          "canBeNull": true,
+          "readOnly": true,
+          "description": "Identifier of the door, if any",
+          "required": false
+        },
+        "floor": {
+          "type": "string",
+          "fullType": "string",
+          "canBeNull": true,
+          "readOnly": true,
+          "description": "Identifier of the floor, if any",
+          "required": false
+        },
+        "housingComplex": {
+          "type": "string",
+          "fullType": "string",
+          "canBeNull": true,
+          "readOnly": true,
+          "description": "Name of the housing complex, if any",
+          "required": false
+        },
+        "inseeCode": {
+          "type": "string",
+          "fullType": "string",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "INSEE code",
+          "required": false
+        },
+        "ownerName": {
+          "type": "string",
+          "fullType": "string",
+          "canBeNull": true,
+          "readOnly": true,
+          "description": "Owner name, this information can be restricted",
+          "required": false
+        },
+        "stairs": {
+          "type": "string",
+          "fullType": "string",
+          "canBeNull": true,
+          "readOnly": true,
+          "description": "Identifier of the stair, if any",
+          "required": false
+        },
+        "streetCode": {
+          "type": "string",
+          "fullType": "string",
+          "canBeNull": true,
+          "readOnly": true,
+          "description": "Street code, an unique identifier of the street, hidden for unlisted number",
+          "required": false
+        },
+        "streetName": {
+          "type": "string",
+          "fullType": "string",
+          "canBeNull": true,
+          "readOnly": true,
+          "description": "Street name, hidden for unlisted number",
+          "required": false
+        },
+        "streetNumber": {
+          "type": "string",
+          "fullType": "string",
+          "canBeNull": true,
+          "readOnly": true,
+          "description": "Street number, usually a number and an indication if applicable (B for bis, T for ter, etc...) and hidden for unlisted number",
+          "required": false
+        },
+        "zipCode": {
+          "type": "string",
+          "fullType": "string",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "ZIP code",
+          "required": false
+        }
+      }
+    },
+    "connectivity.eligibility.AddressWithCoordinates": {
+      "id": "AddressWithCoordinates",
+      "namespace": "connectivity.eligibility",
+      "description": "Address with GPS coordinates",
+      "properties": {
+        "buildingName": {
+          "type": "string",
+          "fullType": "string",
+          "canBeNull": true,
+          "readOnly": true,
+          "description": "Building name",
+          "required": false
+        },
+        "buildingReference": {
+          "type": "string",
+          "fullType": "string",
+          "canBeNull": true,
+          "readOnly": true,
+          "description": "Building reference",
+          "required": false
+        },
+        "city": {
+          "type": "string",
+          "fullType": "string",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "City name",
+          "required": false
+        },
+        "distance": {
+          "type": "string",
+          "fullType": "string",
+          "canBeNull": true,
+          "readOnly": true,
+          "description": "Distance from original source, if applicable",
+          "required": false
+        },
+        "inseeCode": {
+          "type": "string",
+          "fullType": "string",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "INSEE code",
+          "required": false
+        },
+        "latitude": {
+          "type": "string",
+          "fullType": "string",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "Latitude",
+          "required": false
+        },
+        "longitude": {
+          "type": "string",
+          "fullType": "string",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "Longitude",
+          "required": false
+        },
+        "streetCode": {
+          "type": "string",
+          "fullType": "string",
+          "canBeNull": true,
+          "readOnly": true,
+          "description": "Street code, an unique identifier of the street",
+          "required": false
+        },
+        "streetName": {
+          "type": "string",
+          "fullType": "string",
+          "canBeNull": true,
+          "readOnly": true,
+          "description": "Street name",
+          "required": false
+        },
+        "streetNumber": {
+          "type": "string",
+          "fullType": "string",
+          "canBeNull": true,
+          "readOnly": true,
+          "description": "Street number, usually a number and an indication if applicable (B for bis, T for ter, etc...) and hidden for unlisted number",
+          "required": false
+        },
+        "zipCode": {
+          "type": "string",
+          "fullType": "string",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "ZIP code",
+          "required": false
+        }
+      }
+    },
+    "connectivity.eligibility.Building": {
+      "id": "Building",
+      "namespace": "connectivity.eligibility",
+      "description": "Details of a Building",
+      "properties": {
+        "name": {
+          "type": "string",
+          "fullType": "string",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "Building name",
+          "required": false
+        },
+        "nro": {
+          "type": "string",
+          "fullType": "string",
+          "canBeNull": true,
+          "readOnly": true,
+          "description": "Building NRO (Optical main distribution frame)",
+          "required": false
+        },
+        "reference": {
+          "type": "string",
+          "fullType": "string",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "Identifier which refer to a building uniquely",
+          "required": false
+        },
+        "stairs": {
+          "type": "connectivity.eligibility.BuildingStair[]",
+          "fullType": "connectivity.eligibility.BuildingStair[]",
+          "canBeNull": true,
+          "readOnly": true,
+          "description": "Stairs for this building",
+          "required": false
+        },
+        "type": {
+          "type": "connectivity.eligibility.BuildingTypeEnum",
+          "fullType": "connectivity.eligibility.BuildingTypeEnum",
+          "canBeNull": true,
+          "readOnly": true,
+          "description": "Building type",
+          "required": false
+        }
+      }
+    },
+    "connectivity.eligibility.BuildingStair": {
+      "id": "BuildingStair",
+      "namespace": "connectivity.eligibility",
+      "description": "Stair details of a Building",
+      "properties": {
+        "floors": {
+          "type": "string[]",
+          "fullType": "string[]",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "List of floor indentifier, \"_NA_\" if no identifier is available",
+          "required": false
+        },
+        "stair": {
+          "type": "string",
+          "fullType": "string",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "Stair identifier, \"_NA_\" if no identifier is available",
+          "required": false
+        }
+      }
+    },
+    "connectivity.eligibility.BuildingTypeEnum": {
+      "id": "BuildingTypeEnum",
+      "namespace": "connectivity.eligibility",
+      "description": "Building type",
+      "enum": [
+        "BUILDING",
+        "HOUSE"
+      ],
+      "enumType": "string"
+    },
+    "connectivity.eligibility.City": {
+      "id": "City",
+      "namespace": "connectivity.eligibility",
+      "description": "Represent a city",
+      "properties": {
+        "city": {
+          "type": "string",
+          "fullType": "string",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "Name of the city",
+          "required": false
+        },
+        "inseeCode": {
+          "type": "string",
+          "fullType": "string",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "INSEE code of the city",
+          "required": false
+        },
+        "locality": {
+          "type": "string",
+          "fullType": "string",
+          "canBeNull": true,
+          "readOnly": true,
+          "description": "Locality (subset of a city)",
+          "required": false
+        },
+        "zipCode": {
+          "type": "string",
+          "fullType": "string",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "Zip code of the city",
+          "required": false
+        }
+      }
+    },
+    "connectivity.eligibility.CopperInfo": {
+      "id": "CopperInfo",
+      "namespace": "connectivity.eligibility",
+      "description": "Copper information",
+      "properties": {
+        "availablePairs": {
+          "type": "long",
+          "fullType": "long",
+          "canBeNull": true,
+          "readOnly": true,
+          "description": "Number of available pairs. This is given only for an eligibility test.",
+          "required": false
+        },
+        "maxAvailablePairs": {
+          "type": "long",
+          "fullType": "long",
+          "canBeNull": true,
+          "readOnly": true,
+          "description": "Number of maximun available pairs using desaturation. This is given only for an eligibility test.",
+          "required": false
+        },
+        "nra": {
+          "type": "string",
+          "fullType": "string",
+          "canBeNull": true,
+          "readOnly": true,
+          "description": "NRA (\"Nœud de raccordement abonné\" in french) is an identifier of the building where is the Main Distribution Frames for the copper line. This is given only for an eligibility test.",
+          "required": false
+        },
+        "sectionsLengths": {
+          "type": "connectivity.eligibility.SectionLength[]",
+          "fullType": "connectivity.eligibility.SectionLength[]",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "Sections lengths of the copper line. This is given only for an eligibility test.",
+          "required": false
+        },
+        "status": {
+          "type": "connectivity.eligibility.LineStatusEnum",
+          "fullType": "connectivity.eligibility.LineStatusEnum",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "Line status",
+          "required": false
+        },
+        "underConstruction": {
+          "type": "boolean",
+          "fullType": "boolean",
+          "canBeNull": true,
+          "readOnly": true,
+          "description": "Is the line under construction ? This is given only for an eligibility test.",
+          "required": false
+        },
+        "unlistedNumber": {
+          "type": "boolean",
+          "fullType": "boolean",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "Is the number unlisted ? (\"sur liste rouge\" in french)",
+          "required": false
+        }
+      }
+    },
+    "connectivity.eligibility.EligibilityRecall": {
+      "id": "EligibilityRecall",
+      "namespace": "connectivity.eligibility",
+      "description": "Eligibility recall",
+      "properties": {
+        "completed": {
+          "type": "boolean",
+          "fullType": "boolean",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "Is the recall completed ?",
+          "required": false
+        },
+        "completedDate": {
+          "type": "datetime",
+          "fullType": "datetime",
+          "canBeNull": true,
+          "readOnly": true,
+          "description": "Completed date",
+          "required": false
+        },
+        "creationDate": {
+          "type": "datetime",
+          "fullType": "datetime",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "Creation date",
+          "required": false
+        },
+        "customer": {
+          "type": "string",
+          "fullType": "string",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "customer ID",
+          "required": false
+        },
+        "dedicatedfiberRequest": {
+          "type": "boolean",
+          "fullType": "boolean",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "Check for Dedicated Fiber FTTO/FTTE eligibility ?",
+          "required": false
+        },
+        "id": {
+          "type": "long",
+          "fullType": "long",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "ID",
+          "required": false
+        },
+        "profiberRequest": {
+          "type": "boolean",
+          "fullType": "boolean",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "Check for Pro Fiber FTTH eligibility ?",
+          "required": false
+        },
+        "reference": {
+          "type": "string",
+          "fullType": "string",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "Reference",
+          "required": false
+        },
+        "referenceType": {
+          "type": "connectivity.eligibility.ReferenceTypeEnum",
+          "fullType": "connectivity.eligibility.ReferenceTypeEnum",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "Reference type",
+          "required": false
+        },
+        "updatedDate": {
+          "type": "datetime",
+          "fullType": "datetime",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "Updated date",
+          "required": false
+        }
+      }
+    },
+    "connectivity.eligibility.EligibilityRecall.post": {
+      "id": "post",
+      "namespace": "connectivity.eligibility.EligibilityRecall",
+      "description": "Eligibility recall POST request body",
+      "properties": {
+        "dedicatedfiberRequest": {
+          "type": "boolean",
+          "fullType": "boolean",
+          "canBeNull": false,
+          "readOnly": false,
+          "description": "Check for Dedicated Fiber FTTO/FTTE eligibility ?",
+          "required": false
+        },
+        "profiberRequest": {
+          "type": "boolean",
+          "fullType": "boolean",
+          "canBeNull": false,
+          "readOnly": false,
+          "description": "Check for Pro Fiber FTTH eligibility ?",
+          "required": false
+        },
+        "reference": {
+          "type": "string",
+          "fullType": "string",
+          "canBeNull": false,
+          "readOnly": false,
+          "description": "Reference",
+          "required": true
+        },
+        "referenceType": {
+          "type": "connectivity.eligibility.ReferenceTypeEnum",
+          "fullType": "connectivity.eligibility.ReferenceTypeEnum",
+          "canBeNull": false,
+          "readOnly": false,
+          "description": "Reference type",
+          "required": true
+        }
+      }
+    },
+    "connectivity.eligibility.EligibilityTest": {
+      "id": "EligibilityTest",
+      "namespace": "connectivity.eligibility",
+      "description": "Eligibility test results",
+      "properties": {
+        "eligibilityReference": {
+          "type": "string",
+          "fullType": "string",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "Eligibility unique reference",
+          "required": false
+        },
+        "endpoint": {
+          "type": "connectivity.eligibility.Endpoint",
+          "fullType": "connectivity.eligibility.Endpoint",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "Endpoint information",
+          "required": false
+        },
+        "offers": {
+          "type": "connectivity.eligibility.Offer[]",
+          "fullType": "connectivity.eligibility.Offer[]",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "Offers information",
+          "required": false
+        }
+      }
+    },
+    "connectivity.eligibility.Endpoint": {
+      "id": "Endpoint",
+      "namespace": "connectivity.eligibility",
+      "description": "Endpoint information",
+      "properties": {
+        "address": {
+          "type": "connectivity.eligibility.Address",
+          "fullType": "connectivity.eligibility.Address",
+          "canBeNull": true,
+          "readOnly": true,
+          "description": "Address",
+          "required": false
+        },
+        "copperInfo": {
+          "type": "connectivity.eligibility.CopperInfo",
+          "fullType": "connectivity.eligibility.CopperInfo",
+          "canBeNull": true,
+          "readOnly": true,
+          "description": "Copper information",
+          "required": false
+        },
+        "fiberInfo": {
+          "type": "connectivity.eligibility.FiberInfo",
+          "fullType": "connectivity.eligibility.FiberInfo",
+          "canBeNull": true,
+          "readOnly": true,
+          "description": "Fiber information",
+          "required": false
+        },
+        "portability": {
+          "type": "connectivity.eligibility.Portability",
+          "fullType": "connectivity.eligibility.Portability",
+          "canBeNull": true,
+          "readOnly": true,
+          "description": "Portability details of the line number",
+          "required": false
+        },
+        "reference": {
+          "type": "string",
+          "fullType": "string",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "Reference of the endpoint",
+          "required": false
+        },
+        "referenceType": {
+          "type": "connectivity.eligibility.EndpointReferenceTypeEnum",
+          "fullType": "connectivity.eligibility.EndpointReferenceTypeEnum",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "Endpoint reference type",
+          "required": false
+        }
+      }
+    },
+    "connectivity.eligibility.EndpointReferenceTypeEnum": {
+      "id": "EndpointReferenceTypeEnum",
+      "namespace": "connectivity.eligibility",
+      "description": "Endpoint reference type",
+      "enum": [
+        "address",
+        "building",
+        "hexacle",
+        "lineNumber",
+        "otp"
+      ],
+      "enumType": "string"
+    },
+    "connectivity.eligibility.FiberInfo": {
+      "id": "FiberInfo",
+      "namespace": "connectivity.eligibility",
+      "description": "Fiber information",
+      "properties": {
+        "buildingName": {
+          "type": "string",
+          "fullType": "string",
+          "canBeNull": true,
+          "readOnly": true,
+          "description": "Building name",
+          "required": false
+        },
+        "buildingReference": {
+          "type": "string",
+          "fullType": "string",
+          "canBeNull": true,
+          "readOnly": true,
+          "description": "Building unique identifier",
+          "required": false
+        },
+        "buildingType": {
+          "type": "connectivity.eligibility.BuildingTypeEnum",
+          "fullType": "connectivity.eligibility.BuildingTypeEnum",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "Building type",
+          "required": false
+        },
+        "latitude": {
+          "type": "string",
+          "fullType": "string",
+          "canBeNull": true,
+          "readOnly": true,
+          "description": "Latitude",
+          "required": false
+        },
+        "longitude": {
+          "type": "string",
+          "fullType": "string",
+          "canBeNull": true,
+          "readOnly": true,
+          "description": "Longitude",
+          "required": false
+        },
+        "nro": {
+          "type": "string",
+          "fullType": "string",
+          "canBeNull": true,
+          "readOnly": true,
+          "description": "NRO (\"Nœud de raccordement optique\" in french) is an identifier of the building where is the Optical Distribution Frame (ODF) of the fiber",
+          "required": false
+        },
+        "operatorCode": {
+          "type": "string",
+          "fullType": "string",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "Operator code",
+          "required": false
+        },
+        "operatorName": {
+          "type": "string",
+          "fullType": "string",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "Operator name",
+          "required": false
+        },
+        "pmReference": {
+          "type": "string",
+          "fullType": "string",
+          "canBeNull": true,
+          "readOnly": true,
+          "description": "Reference of the mutualisation point (PM)",
+          "required": false
+        }
+      }
+    },
+    "connectivity.eligibility.InstallationTypeEnum": {
+      "id": "InstallationTypeEnum",
+      "namespace": "connectivity.eligibility",
+      "description": "Installation type, for fiber only",
+      "enum": [
+        "activate",
+        "activate_undefined",
+        "create",
+        "multiOtp"
+      ],
+      "enumType": "string"
+    },
+    "connectivity.eligibility.Line": {
+      "id": "Line",
+      "namespace": "connectivity.eligibility",
+      "description": "Copper line details",
+      "properties": {
+        "address": {
+          "type": "connectivity.eligibility.Address",
+          "fullType": "connectivity.eligibility.Address",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "Address",
+          "required": false
+        },
+        "copperInfo": {
+          "type": "connectivity.eligibility.CopperInfo",
+          "fullType": "connectivity.eligibility.CopperInfo",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "Copper information",
+          "required": false
+        },
+        "lineNumber": {
+          "type": "string",
+          "fullType": "string",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "Line number",
+          "required": false
+        }
+      }
+    },
+    "connectivity.eligibility.LineStatusEnum": {
+      "id": "LineStatusEnum",
+      "namespace": "connectivity.eligibility",
+      "description": "Line status",
+      "enum": [
+        "active",
+        "inactive"
+      ],
+      "enumType": "string"
+    },
+    "connectivity.eligibility.MeetingCapacities": {
+      "id": "MeetingCapacities",
+      "namespace": "connectivity.eligibility",
+      "description": "Represents meeting booking options",
+      "properties": {
+        "eRdv": {
+          "type": "boolean",
+          "fullType": "boolean",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "Whether or not it is possible to book a meeting online",
+          "required": false
+        },
+        "phoneCall": {
+          "type": "boolean",
+          "fullType": "boolean",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "Whether or not it is possible to be be called by phone to book a meeting",
+          "required": false
+        }
+      }
+    },
+    "connectivity.eligibility.MeetingSlot": {
+      "id": "MeetingSlot",
+      "namespace": "connectivity.eligibility",
+      "description": "Represents a time slot for a meeting",
+      "properties": {
+        "endDate": {
+          "type": "datetime",
+          "fullType": "datetime",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "End date",
+          "required": false
+        },
+        "slotId": {
+          "type": "string",
+          "fullType": "string",
+          "canBeNull": true,
+          "readOnly": true,
+          "description": "Represent a meeting id for a fiber collect operator",
+          "required": false
+        },
+        "startDate": {
+          "type": "datetime",
+          "fullType": "datetime",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "Start date",
+          "required": false
+        },
+        "uiCode": {
+          "type": "string",
+          "fullType": "string",
+          "canBeNull": true,
+          "readOnly": true,
+          "description": "An opaque string that represents an intervention unit",
+          "required": false
+        }
+      }
+    },
+    "connectivity.eligibility.Meetings": {
+      "id": "Meetings",
+      "namespace": "connectivity.eligibility",
+      "description": "List of available meeting time slots",
+      "properties": {
+        "canBookFakeMeeting": {
+          "type": "boolean",
+          "fullType": "boolean",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "Whether or not it is possible to book a fake meeting",
+          "required": false
+        },
+        "capacities": {
+          "type": "connectivity.eligibility.MeetingCapacities",
+          "fullType": "connectivity.eligibility.MeetingCapacities",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "Represents meeting booking options",
+          "required": false
+        },
+        "meetingSlots": {
+          "type": "connectivity.eligibility.MeetingSlot[]",
+          "fullType": "connectivity.eligibility.MeetingSlot[]",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "A time slot",
+          "required": false
+        }
+      }
+    },
+    "connectivity.eligibility.Message": {
+      "id": "Message",
+      "namespace": "connectivity.eligibility",
+      "description": "Message",
+      "properties": {
+        "availabilityDate": {
+          "type": "datetime",
+          "fullType": "datetime",
+          "canBeNull": true,
+          "readOnly": true,
+          "description": "Availability date of the offer (if code of non eligibility is COPPER_NOT_YET_AVAILABLE, FIBER_NOT_YET_AVAILABLE or PRODUCT_NOT_YET_AVAILABLE)",
+          "required": false
+        },
+        "code": {
+          "type": "connectivity.eligibility.MessageCodeEnum",
+          "fullType": "connectivity.eligibility.MessageCodeEnum",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "Message codes",
+          "required": false
+        },
+        "message": {
+          "type": "string",
+          "fullType": "string",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "Message",
+          "required": false
+        }
+      }
+    },
+    "connectivity.eligibility.MessageCodeEnum": {
+      "id": "MessageCodeEnum",
+      "namespace": "connectivity.eligibility",
+      "description": "Message codes",
+      "enum": [
+        "2006",
+        "2011",
+        "2102",
+        "2103",
+        "2104",
+        "2105",
+        "3009",
+        "3011",
+        "3012",
+        "3013",
+        "3014",
+        "3031",
+        "3040",
+        "3041",
+        "3043",
+        "3044",
+        "3045",
+        "3046",
+        "3047",
+        "3048",
+        "3049",
+        "ATTENUATION_LIMIT",
+        "COMPATIBILITY_CHECK",
+        "COPPER_NOT_AVAILABLE",
+        "COPPER_NOT_YET_AVAILABLE",
+        "DELAY_30",
+        "DELAY_7",
+        "EXTERNAL_WS_UNREACHABLE",
+        "FIBER_NOT_AVAILABLE",
+        "FIBER_NOT_DEPLOYED_IN_BUILDING",
+        "FIBER_NOT_YET_AVAILABLE",
+        "FIBER_NOT_YET_DEPLOYED",
+        "INCOMPATIBLE_LOCAL_LOOP",
+        "NETWORK_SATURATED",
+        "OTP_NOT_CONNECTABLE",
+        "OTP_NOT_MARKETABLE",
+        "PAIRS_SATURATION",
+        "PRODUCT_NOT_AVAILABLE",
+        "PRODUCT_NOT_YET_AVAILABLE",
+        "TOO_MUCH_ATTENUATION",
+        "UNCERTAIN_DATA"
+      ],
+      "enumType": "string"
+    },
+    "connectivity.eligibility.Offer": {
+      "id": "Offer",
+      "namespace": "connectivity.eligibility",
+      "description": "Offer",
+      "properties": {
+        "eligibility": {
+          "type": "connectivity.eligibility.OfferEligibility",
+          "fullType": "connectivity.eligibility.OfferEligibility",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "Offer eligibility",
+          "required": false
+        },
+        "product": {
+          "type": "connectivity.eligibility.OfferProduct",
+          "fullType": "connectivity.eligibility.OfferProduct",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "Offer product",
+          "required": false
+        }
+      }
+    },
+    "connectivity.eligibility.OfferEligibility": {
+      "id": "OfferEligibility",
+      "namespace": "connectivity.eligibility",
+      "description": "Offer eligibility",
+      "properties": {
+        "activationTypes": {
+          "type": "connectivity.eligibility.ActivationTypeEnum[]",
+          "fullType": "connectivity.eligibility.ActivationTypeEnum[]",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "Activation type list, for copper only",
+          "required": false
+        },
+        "eligible": {
+          "type": "boolean",
+          "fullType": "boolean",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "Is the endpoint eligible to this offer ?",
+          "required": false
+        },
+        "estimatedDownloadRate": {
+          "type": "double",
+          "fullType": "double",
+          "canBeNull": true,
+          "readOnly": true,
+          "description": "Estimated download rate, for copper and non guaranteed offers only",
+          "required": false
+        },
+        "estimatedUploadRate": {
+          "type": "double",
+          "fullType": "double",
+          "canBeNull": true,
+          "readOnly": true,
+          "description": "Estimated upload rate, for copper and non guaranteed offers only",
+          "required": false
+        },
+        "multiOtp": {
+          "type": "boolean",
+          "fullType": "boolean",
+          "canBeNull": true,
+          "readOnly": true,
+          "description": "Is eligible to multiple Optical Termination Points (OTP) ? For fiber only",
+          "required": false
+        },
+        "reasons": {
+          "type": "connectivity.eligibility.Message[]",
+          "fullType": "connectivity.eligibility.Message[]",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "Reasons when not eligible, if any",
+          "required": false
+        },
+        "underConditions": {
+          "type": "connectivity.eligibility.Message[]",
+          "fullType": "connectivity.eligibility.Message[]",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "Warnings to consider when eligible, if any",
+          "required": false
+        }
+      }
+    },
+    "connectivity.eligibility.OfferProduct": {
+      "id": "OfferProduct",
+      "namespace": "connectivity.eligibility",
+      "description": "Offer product",
+      "properties": {
+        "code": {
+          "type": "string",
+          "fullType": "string",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "Product code, an unique identifier for the product",
+          "required": false
+        },
+        "downloadRate": {
+          "type": "double",
+          "fullType": "double",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "Download rate in Mb",
+          "required": false
+        },
+        "grt": {
+          "type": "string[]",
+          "fullType": "string[]",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "GRT (Guaranteed Restoration Time) available list",
+          "required": false
+        },
+        "guaranteed": {
+          "type": "boolean",
+          "fullType": "boolean",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "Is the rates guaranteed ?",
+          "required": false
+        },
+        "name": {
+          "type": "string",
+          "fullType": "string",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "Name",
+          "required": false
+        },
+        "operator": {
+          "type": "string",
+          "fullType": "string",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "Offer product provider",
+          "required": false
+        },
+        "pairs": {
+          "type": "long",
+          "fullType": "long",
+          "canBeNull": true,
+          "readOnly": true,
+          "description": "Number of copper pairs required, for copper only",
+          "required": false
+        },
+        "provider": {
+          "type": "string",
+          "fullType": "string",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "Offer product provider",
+          "required": false
+        },
+        "type": {
+          "type": "connectivity.eligibility.OfferProductTypeEnum",
+          "fullType": "connectivity.eligibility.OfferProductTypeEnum",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "Offer product type",
+          "required": false
+        },
+        "unbundlingType": {
+          "type": "connectivity.eligibility.OfferProductUnbundlingTypeEnum",
+          "fullType": "connectivity.eligibility.OfferProductUnbundlingTypeEnum",
+          "canBeNull": true,
+          "readOnly": true,
+          "description": "Offer product unbundling type",
+          "required": false
+        },
+        "uploadRate": {
+          "type": "double",
+          "fullType": "double",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "Upload rate in Mb",
+          "required": false
+        }
+      }
+    },
+    "connectivity.eligibility.OfferProductTypeEnum": {
+      "id": "OfferProductTypeEnum",
+      "namespace": "connectivity.eligibility",
+      "description": "Offer product type",
+      "enum": [
+        "ADSL",
+        "FTTE",
+        "FTTH",
+        "FTTO",
+        "SDSL",
+        "VDSL"
+      ],
+      "enumType": "string"
+    },
+    "connectivity.eligibility.OfferProductUnbundlingTypeEnum": {
+      "id": "OfferProductUnbundlingTypeEnum",
+      "namespace": "connectivity.eligibility",
+      "description": "Offer product unbundling type",
+      "enum": [
+        "full",
+        "partial"
+      ],
+      "enumType": "string"
+    },
+    "connectivity.eligibility.Portability": {
+      "id": "Portability",
+      "namespace": "connectivity.eligibility",
+      "description": "Portability details of the line number",
+      "properties": {
+        "eligibility": {
+          "type": "connectivity.eligibility.PortabilityEligibility",
+          "fullType": "connectivity.eligibility.PortabilityEligibility",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "Portability eligibility",
+          "required": false
+        },
+        "quarantineEndDate": {
+          "type": "datetime",
+          "fullType": "datetime",
+          "canBeNull": true,
+          "readOnly": true,
+          "description": "Date of the end of quarantine, if any",
+          "required": false
+        },
+        "type": {
+          "type": "connectivity.eligibility.PortabilityTypeEnum",
+          "fullType": "connectivity.eligibility.PortabilityTypeEnum",
+          "canBeNull": true,
+          "readOnly": true,
+          "description": "Portability type",
+          "required": false
+        }
+      }
+    },
+    "connectivity.eligibility.PortabilityEligibility": {
+      "id": "PortabilityEligibility",
+      "namespace": "connectivity.eligibility",
+      "description": "Portability eligibility",
+      "properties": {
+        "eligible": {
+          "type": "boolean",
+          "fullType": "boolean",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "Is the portability eligible for this line ?",
+          "required": false
+        },
+        "reasons": {
+          "type": "connectivity.eligibility.Message[]",
+          "fullType": "connectivity.eligibility.Message[]",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "Reasons when not eligible, if any",
+          "required": false
+        },
+        "underConditions": {
+          "type": "connectivity.eligibility.Message[]",
+          "fullType": "connectivity.eligibility.Message[]",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "Warnings to consider when eligible, if any",
+          "required": false
+        }
+      }
+    },
+    "connectivity.eligibility.PortabilityTypeEnum": {
+      "id": "PortabilityTypeEnum",
+      "namespace": "connectivity.eligibility",
+      "description": "Portability type",
+      "enum": [
+        "portin",
+        "portinback",
+        "portout",
+        "subsequent",
+        "subsquentportin"
+      ],
+      "enumType": "string"
+    },
+    "connectivity.eligibility.ReferenceTypeEnum": {
+      "id": "ReferenceTypeEnum",
+      "namespace": "connectivity.eligibility",
+      "description": "Reference type",
+      "enum": [
+        "address",
+        "building"
+      ],
+      "enumType": "string"
+    },
+    "connectivity.eligibility.SectionLength": {
+      "id": "SectionLength",
+      "namespace": "connectivity.eligibility",
+      "description": "Section length of a copper line",
+      "properties": {
+        "diameter": {
+          "type": "long",
+          "fullType": "long",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "Diameter in millimeters of the copper line section",
+          "required": false
+        },
+        "length": {
+          "type": "long",
+          "fullType": "long",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "Lenght in meters of the copper line section",
+          "required": false
+        }
+      }
+    },
+    "connectivity.eligibility.Street": {
+      "id": "Street",
+      "namespace": "connectivity.eligibility",
+      "description": "Details of a street",
+      "properties": {
+        "streetAltCode": {
+          "type": "string",
+          "fullType": "string",
+          "canBeNull": true,
+          "readOnly": true,
+          "description": "Street alternative code, a possible alternative identifier of the street",
+          "required": false
+        },
+        "streetCode": {
+          "type": "string",
+          "fullType": "string",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "Street code, an unique identifier of the street",
+          "required": false
+        },
+        "streetName": {
+          "type": "string",
+          "fullType": "string",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "Street name",
+          "required": false
+        }
+      }
+    },
+    "connectivity.eligibility.StreetNumberDetails": {
+      "id": "StreetNumberDetails",
+      "namespace": "connectivity.eligibility",
+      "description": "Details of a street number struct",
+      "properties": {
+        "hexacle": {
+          "type": "string",
+          "fullType": "string",
+          "canBeNull": true,
+          "readOnly": true,
+          "description": "Hexacle is a French unique identifier of the address",
+          "required": false
+        },
+        "number": {
+          "type": "string",
+          "fullType": "string",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "Street number",
+          "required": false
+        }
+      }
+    },
+    "connectivity.eligibility.TechnicalVisitTypeEnum": {
+      "id": "TechnicalVisitTypeEnum",
+      "namespace": "connectivity.eligibility",
+      "description": "Technical Visit type",
+      "enum": [
+        "complex",
+        "simple"
+      ],
+      "enumType": "string"
+    },
+    "connectivity.eligibility.search.Cities": {
+      "id": "Cities",
+      "namespace": "connectivity.eligibility.search",
+      "description": "Search cities",
+      "properties": {
+        "zipCode": {
+          "type": "string",
+          "fullType": "string",
+          "canBeNull": false,
+          "readOnly": false,
+          "description": "Zip code",
+          "required": true
+        }
+      }
+    },
+    "connectivity.eligibility.search.addresses.post": {
+      "id": "post",
+      "namespace": "connectivity.eligibility.search.addresses",
+      "description": "connectivity.eligibility.search.addresses.post",
+      "properties": {
+        "distance": {
+          "type": "long",
+          "fullType": "long",
+          "canBeNull": false,
+          "readOnly": false,
+          "description": "Distance in meters to search for from initial location (default is 10 meters)",
+          "required": false
+        },
+        "latitude": {
+          "type": "string",
+          "fullType": "string",
+          "canBeNull": false,
+          "readOnly": false,
+          "description": "Latitude",
+          "required": true
+        },
+        "longitude": {
+          "type": "string",
+          "fullType": "string",
+          "canBeNull": false,
+          "readOnly": false,
+          "description": "Longitude",
+          "required": true
+        }
+      }
+    },
+    "connectivity.eligibility.search.buildingDetails.post": {
+      "id": "post",
+      "namespace": "connectivity.eligibility.search.buildingDetails",
+      "description": "Building details",
+      "properties": {
+        "building": {
+          "type": "string",
+          "fullType": "string",
+          "canBeNull": false,
+          "readOnly": false,
+          "description": "Building identifier, that can be found using /connectivity/eligibility/search/building* methods",
+          "required": true
+        },
+        "forceProvider": {
+          "type": "string",
+          "fullType": "string",
+          "canBeNull": false,
+          "readOnly": false,
+          "description": "If possible, force to use a particular provider repository",
+          "required": false
+        }
+      }
+    },
+    "connectivity.eligibility.search.buildings.post": {
+      "id": "post",
+      "namespace": "connectivity.eligibility.search.buildings",
+      "description": "connectivity.eligibility.search.buildings.post",
+      "properties": {
+        "hexacle": {
+          "type": "string",
+          "fullType": "string",
+          "canBeNull": false,
+          "readOnly": false,
+          "description": "Hexacle is a French unique identifier of the address (you can get it with POST /connectivity/eligibility/search/streetNumbers/details)",
+          "required": false
+        },
+        "streetAltCode": {
+          "type": "string",
+          "fullType": "string",
+          "canBeNull": false,
+          "readOnly": false,
+          "description": "A possible alternative identifier of the street (you can get it with POST /connectivity/eligibility/search/streets)",
+          "required": false
+        },
+        "streetCode": {
+          "type": "string",
+          "fullType": "string",
+          "canBeNull": false,
+          "readOnly": false,
+          "description": "Unique identifier of the street (you can get it with POST /connectivity/eligibility/search/streets)",
+          "required": false
+        },
+        "streetNumber": {
+          "type": "string",
+          "fullType": "string",
+          "canBeNull": false,
+          "readOnly": false,
+          "description": "Street number",
+          "required": false
+        }
+      }
+    },
+    "connectivity.eligibility.search.buildingsByLine.post": {
+      "id": "post",
+      "namespace": "connectivity.eligibility.search.buildingsByLine",
+      "description": "connectivity.eligibility.search.buildingsByLine.post",
+      "properties": {
+        "lineNumber": {
+          "type": "string",
+          "fullType": "string",
+          "canBeNull": false,
+          "readOnly": false,
+          "description": "Line number",
+          "required": true
+        },
+        "status": {
+          "type": "connectivity.eligibility.LineStatusEnum",
+          "fullType": "connectivity.eligibility.LineStatusEnum",
+          "canBeNull": false,
+          "readOnly": false,
+          "description": "Line status",
+          "required": true
+        }
+      }
+    },
+    "connectivity.eligibility.search.lines.post": {
+      "id": "post",
+      "namespace": "connectivity.eligibility.search.lines",
+      "description": "connectivity.eligibility.search.lines.post",
+      "properties": {
+        "ownerName": {
+          "type": "string",
+          "fullType": "string",
+          "canBeNull": false,
+          "readOnly": false,
+          "description": "Owner name, at least the first three chars",
+          "required": false
+        },
+        "streetCode": {
+          "type": "string",
+          "fullType": "string",
+          "canBeNull": false,
+          "readOnly": false,
+          "description": "Street code, that can be found using /connectivity/eligibility/search/streets method",
+          "required": true
+        },
+        "streetNumber": {
+          "type": "string",
+          "fullType": "string",
+          "canBeNull": false,
+          "readOnly": false,
+          "description": "Street number, that can be found using /connectivity/eligibility/search/streetNumbers method",
+          "required": true
+        }
+      }
+    },
+    "connectivity.eligibility.search.meetings.post": {
+      "id": "post",
+      "namespace": "connectivity.eligibility.search.meetings",
+      "description": "connectivity.eligibility.search.meetings.post",
+      "properties": {
+        "eligibilityReference": {
+          "type": "string",
+          "fullType": "string",
+          "canBeNull": false,
+          "readOnly": false,
+          "description": "Eligibility test reference",
+          "required": true
+        },
+        "installationType": {
+          "type": "connectivity.eligibility.InstallationTypeEnum",
+          "fullType": "connectivity.eligibility.InstallationTypeEnum",
+          "canBeNull": false,
+          "readOnly": false,
+          "description": "Installation type, for fiber only",
+          "required": false
+        },
+        "otp": {
+          "type": "string",
+          "fullType": "string",
+          "canBeNull": false,
+          "readOnly": false,
+          "description": "Fill in this field with your OTP reference if you have one",
+          "required": false
+        },
+        "planCode": {
+          "type": "string",
+          "fullType": "string",
+          "canBeNull": false,
+          "readOnly": false,
+          "description": "Offer plan code",
+          "required": false
+        },
+        "productCode": {
+          "type": "string",
+          "fullType": "string",
+          "canBeNull": false,
+          "readOnly": false,
+          "description": "Choosen offer product code",
+          "required": false
+        },
+        "siteCompanyName": {
+          "type": "string",
+          "fullType": "string",
+          "canBeNull": false,
+          "readOnly": false,
+          "description": "Site company name, please use the name and firstname for an individual",
+          "required": false
+        },
+        "technicalVisit": {
+          "type": "connectivity.eligibility.TechnicalVisitTypeEnum",
+          "fullType": "connectivity.eligibility.TechnicalVisitTypeEnum",
+          "canBeNull": false,
+          "readOnly": false,
+          "description": "Special case to ask a technical visit on Fiber installation",
+          "required": false
+        },
+        "type": {
+          "type": "connectivity.eligibility.OfferProductTypeEnum",
+          "fullType": "connectivity.eligibility.OfferProductTypeEnum",
+          "canBeNull": false,
+          "readOnly": false,
+          "description": "Offer product type",
+          "required": false
+        },
+        "unbundlingType": {
+          "type": "connectivity.eligibility.OfferProductUnbundlingTypeEnum",
+          "fullType": "connectivity.eligibility.OfferProductUnbundlingTypeEnum",
+          "canBeNull": false,
+          "readOnly": false,
+          "description": "Offer product unbundling type",
+          "required": false
+        }
+      }
+    },
+    "connectivity.eligibility.search.streetNumbers.details.post": {
+      "id": "post",
+      "namespace": "connectivity.eligibility.search.streetNumbers.details",
+      "description": "connectivity.eligibility.search.streetNumbers.details.post",
+      "properties": {
+        "streetAltCode": {
+          "type": "string",
+          "fullType": "string",
+          "canBeNull": false,
+          "readOnly": false,
+          "description": "Street alternative code, a possible alternative identifier of the street",
+          "required": false
+        },
+        "streetCode": {
+          "type": "string",
+          "fullType": "string",
+          "canBeNull": false,
+          "readOnly": false,
+          "description": "Street code, an unique identifier of the street",
+          "required": true
+        }
+      }
+    },
+    "connectivity.eligibility.search.streetNumbers.post": {
+      "id": "post",
+      "namespace": "connectivity.eligibility.search.streetNumbers",
+      "description": "connectivity.eligibility.search.streetNumbers.post",
+      "properties": {
+        "streetAltCode": {
+          "type": "string",
+          "fullType": "string",
+          "canBeNull": false,
+          "readOnly": false,
+          "description": "Street alternative code, a possible alternative identifier of the street",
+          "required": false
+        },
+        "streetCode": {
+          "type": "string",
+          "fullType": "string",
+          "canBeNull": false,
+          "readOnly": false,
+          "description": "Street code, an unique identifier of the street",
+          "required": true
+        }
+      }
+    },
+    "connectivity.eligibility.search.streets.post": {
+      "id": "post",
+      "namespace": "connectivity.eligibility.search.streets",
+      "description": "connectivity.eligibility.search.streets.post",
+      "properties": {
+        "inseeCode": {
+          "type": "string",
+          "fullType": "string",
+          "canBeNull": false,
+          "readOnly": false,
+          "description": "French INSEE identifier (you can get it with POST /connectivity/eligibility/search/cities)",
+          "required": true
+        }
+      }
+    },
+    "connectivity.eligibility.test.address.partners.post": {
+      "id": "post",
+      "namespace": "connectivity.eligibility.test.address.partners",
+      "description": "connectivity.eligibility.test.address.partners.post",
+      "properties": {
+        "hexacle": {
+          "type": "string",
+          "fullType": "string",
+          "canBeNull": false,
+          "readOnly": false,
+          "description": "A Hexacle is a French unique identifier of the address",
+          "required": false
+        },
+        "streetAltCode": {
+          "type": "string",
+          "fullType": "string",
+          "canBeNull": false,
+          "readOnly": false,
+          "description": "A possible alternative identifier of the street (you can get it with POST /connectivity/eligibility/search/streets)",
+          "required": false
+        },
+        "streetCode": {
+          "type": "string",
+          "fullType": "string",
+          "canBeNull": false,
+          "readOnly": false,
+          "description": "Unique identifier of the street (you can get it with POST /connectivity/eligibility/search/streets)",
+          "required": false
+        },
+        "streetNumber": {
+          "type": "string",
+          "fullType": "string",
+          "canBeNull": false,
+          "readOnly": false,
+          "description": "Street number",
+          "required": false
+        }
+      }
+    },
+    "connectivity.eligibility.test.address.post": {
+      "id": "post",
+      "namespace": "connectivity.eligibility.test.address",
+      "description": "connectivity.eligibility.test.address.post",
+      "properties": {
+        "hexacle": {
+          "type": "string",
+          "fullType": "string",
+          "canBeNull": false,
+          "readOnly": false,
+          "description": "A Hexacle is a French unique identifier of the address",
+          "required": false
+        },
+        "streetAltCode": {
+          "type": "string",
+          "fullType": "string",
+          "canBeNull": false,
+          "readOnly": false,
+          "description": "A possible alternative identifier of the street (you can get it with POST /connectivity/eligibility/search/streets)",
+          "required": false
+        },
+        "streetCode": {
+          "type": "string",
+          "fullType": "string",
+          "canBeNull": false,
+          "readOnly": false,
+          "description": "Unique identifier of the street (you can get it with POST /connectivity/eligibility/search/streets)",
+          "required": false
+        },
+        "streetNumber": {
+          "type": "string",
+          "fullType": "string",
+          "canBeNull": false,
+          "readOnly": false,
+          "description": "Street number",
+          "required": false
+        }
+      }
+    },
+    "connectivity.eligibility.test.building.partners.post": {
+      "id": "post",
+      "namespace": "connectivity.eligibility.test.building.partners",
+      "description": "connectivity.eligibility.test.building.partners.post",
+      "properties": {
+        "building": {
+          "type": "string",
+          "fullType": "string",
+          "canBeNull": false,
+          "readOnly": false,
+          "description": "Building identifier, that can be found using /connectivity/eligibility/search/building* methods",
+          "required": true
+        }
+      }
+    },
+    "connectivity.eligibility.test.building.post": {
+      "id": "post",
+      "namespace": "connectivity.eligibility.test.building",
+      "description": "connectivity.eligibility.test.building.post",
+      "properties": {
+        "building": {
+          "type": "string",
+          "fullType": "string",
+          "canBeNull": false,
+          "readOnly": false,
+          "description": "Building identifier, that can be found using /connectivity/eligibility/search/building* methods",
+          "required": true
+        }
+      }
+    },
+    "connectivity.eligibility.test.line.partners.post": {
+      "id": "post",
+      "namespace": "connectivity.eligibility.test.line.partners",
+      "description": "connectivity.eligibility.test.line.partners.post",
+      "properties": {
+        "lineNumber": {
+          "type": "string",
+          "fullType": "string",
+          "canBeNull": false,
+          "readOnly": false,
+          "description": "Line number",
+          "required": true
+        },
+        "status": {
+          "type": "connectivity.eligibility.LineStatusEnum",
+          "fullType": "connectivity.eligibility.LineStatusEnum",
+          "canBeNull": false,
+          "readOnly": false,
+          "description": "Line status",
+          "required": true
+        },
+        "streetCode": {
+          "type": "string",
+          "fullType": "string",
+          "canBeNull": false,
+          "readOnly": false,
+          "description": "Unique identifier of the street (you can get it with POST /connectivity/eligibility/search/streets)",
+          "required": false
+        },
+        "streetNumber": {
+          "type": "string",
+          "fullType": "string",
+          "canBeNull": false,
+          "readOnly": false,
+          "description": "Street number",
+          "required": false
+        }
+      }
+    },
+    "connectivity.eligibility.test.line.post": {
+      "id": "post",
+      "namespace": "connectivity.eligibility.test.line",
+      "description": "connectivity.eligibility.test.line.post",
+      "properties": {
+        "lineNumber": {
+          "type": "string",
+          "fullType": "string",
+          "canBeNull": false,
+          "readOnly": false,
+          "description": "Line number",
+          "required": true
+        },
+        "status": {
+          "type": "connectivity.eligibility.LineStatusEnum",
+          "fullType": "connectivity.eligibility.LineStatusEnum",
+          "canBeNull": false,
+          "readOnly": false,
+          "description": "Line status",
+          "required": true
+        },
+        "streetCode": {
+          "type": "string",
+          "fullType": "string",
+          "canBeNull": false,
+          "readOnly": false,
+          "description": "Unique identifier of the street (you can get it with POST /connectivity/eligibility/search/streets)",
+          "required": false
+        },
+        "streetNumber": {
+          "type": "string",
+          "fullType": "string",
+          "canBeNull": false,
+          "readOnly": false,
+          "description": "Street number",
+          "required": false
+        }
+      }
+    },
+    "connectivity.eligibility.test.otp.partners.post": {
+      "id": "post",
+      "namespace": "connectivity.eligibility.test.otp.partners",
+      "description": "connectivity.eligibility.test.otp.partners.post",
+      "properties": {
+        "otp": {
+          "type": "string",
+          "fullType": "string",
+          "canBeNull": false,
+          "readOnly": false,
+          "description": "OTP (Optical Termination Panel) identifier",
+          "required": true
+        }
+      }
+    },
+    "connectivity.eligibility.test.otp.post": {
+      "id": "post",
+      "namespace": "connectivity.eligibility.test.otp",
+      "description": "connectivity.eligibility.test.otp.post",
+      "properties": {
+        "otp": {
+          "type": "string",
+          "fullType": "string",
+          "canBeNull": false,
+          "readOnly": false,
+          "description": "OTP (Optical Termination Panel) identifier",
+          "required": true
+        }
+      }
+    },
+    "connectivity.maintenance.InterventionTypeEnum": {
+      "id": "InterventionTypeEnum",
+      "namespace": "connectivity.maintenance",
+      "description": "Intervention type",
+      "enum": [
+        "BACKBONE_MAINTENANCE",
+        "CARD_SWAP_WITH_IMPACT",
+        "CLUSTER_AN_ROUTER_MIGRATION",
+        "CORRECTIVE_MAINTENANCE",
+        "DSLAM_LINK_UPGRADE_WITHOUT_CARD_SWAP",
+        "DSLAM_UPGRADE_WITH_IMPACT",
+        "FIBER_CABLE_LINK_SWAP",
+        "FIBER_CONNECTION_WITH_IMPACT",
+        "FIBER_MAINTENANCE",
+        "FIBER_THIRD_PARTY_WORK_WITH_IMPACT",
+        "IP_BACKBONE_LINK_MIGRATION_WITH_IMPACT",
+        "IP_BACKBONE_SWITCH_UPGRADE_WITH_IMPACT",
+        "IP_MAINTENANCE",
+        "LEVEL2_DSLAM_MIGRATION",
+        "LINK_MIGRATION_WITH_DSL_IMPACT",
+        "LL_THIRD_PARTY_MAINTENANCE_WITH_IMPACT",
+        "LOOP_AN_ROUTER_MIGRATION",
+        "LOOP_AN_ROUTER_UPGRADE",
+        "MAINTENANCE",
+        "OPTIC_FIBER_WORK_WITH_OUTAGE_DURING_NON_WORKING_HOURS",
+        "PLANNED_CORRECTIVE_MAINTENANCE",
+        "SENSITIVE_LOOP_LINK_UPGRADE",
+        "TRANSMISSION_CORRECTIVE_MAINTENANCE",
+        "TRANSMISSION_CUSTOMER_TRANSFERT_MIGRATION_WITH_IMPACT",
+        "TRANSMISSION_FIBRE_MAINTENANCE",
+        "TRANSMISSION_LINK_COMMISSIONING_PRODUCTION_DECOMMISSIONING_WORK_WITH_IMPACT",
+        "TRANSMISSION_LINK_TRANSFERT_MIGRATION_WITH_IMPACT",
+        "TRANSMISSION_MAINTENANCE",
+        "TRANSMISSION_MOVING_WITH_IMPACT",
+        "TRANSMISSION_SWITCH_UPGRADE_WITH_IMPACT",
+        "WITH_IMPACT"
+      ],
+      "enumType": "string"
+    },
+    "connectivity.maintenance.WorkPlanned": {
+      "id": "WorkPlanned",
+      "namespace": "connectivity.maintenance",
+      "description": "Work Planned operation structure",
+      "properties": {
+        "dateBegin": {
+          "type": "string",
+          "fullType": "string",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "Begin date, the work planned operation starts at this time",
+          "required": false
+        },
+        "dateEnd": {
+          "type": "string",
+          "fullType": "string",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "End date, the work planned operation finishes at the time",
+          "required": false
+        },
+        "departments": {
+          "type": "string[]",
+          "fullType": "string[]",
+          "canBeNull": true,
+          "readOnly": true,
+          "description": "List of impacted department codes",
+          "required": false
+        },
+        "description": {
+          "type": "string",
+          "fullType": "string",
+          "canBeNull": true,
+          "readOnly": true,
+          "description": "Description of the work planned operation",
+          "required": false
+        },
+        "duration": {
+          "type": "duration",
+          "fullType": "duration",
+          "canBeNull": true,
+          "readOnly": true,
+          "description": "Duration of the work planned operation",
+          "required": false
+        },
+        "fallback": {
+          "type": "boolean",
+          "fullType": "boolean",
+          "canBeNull": true,
+          "readOnly": true,
+          "description": "Fallback planned for the operation",
+          "required": false
+        },
+        "fallbackDateBegin": {
+          "type": "datetime",
+          "fullType": "datetime",
+          "canBeNull": true,
+          "readOnly": true,
+          "description": "Fallback operation starts at this time",
+          "required": false
+        },
+        "fallbackDateEnd": {
+          "type": "datetime",
+          "fullType": "datetime",
+          "canBeNull": true,
+          "readOnly": true,
+          "description": "Fallback operation ends at this time",
+          "required": false
+        },
+        "id": {
+          "type": "long",
+          "fullType": "long",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "Work Planned operation id",
+          "required": false
+        },
+        "impact": {
+          "type": "string",
+          "fullType": "string",
+          "canBeNull": true,
+          "readOnly": true,
+          "description": "Impact of the work planned operation",
+          "required": false
+        },
+        "interventionType": {
+          "type": "connectivity.maintenance.InterventionTypeEnum",
+          "fullType": "connectivity.maintenance.InterventionTypeEnum",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "Intervention type",
+          "required": false
+        },
+        "nras": {
+          "type": "string[]",
+          "fullType": "string[]",
+          "canBeNull": true,
+          "readOnly": true,
+          "description": "List of impacted NRA/NRO",
+          "required": false
+        },
+        "operator": {
+          "type": "connectivity.OperatorEnum",
+          "fullType": "connectivity.OperatorEnum",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "Operator",
+          "required": false
+        },
+        "technology": {
+          "type": "string",
+          "fullType": "string",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "Technology impacted by the work planned operation",
+          "required": false
+        },
+        "zone": {
+          "type": "string",
+          "fullType": "string",
+          "canBeNull": true,
+          "readOnly": true,
+          "description": "Zone of the work planned operation",
+          "required": false
+        }
+      }
+    },
+    "connectivity.monitoring.GenericIncident": {
+      "id": "GenericIncident",
+      "namespace": "connectivity.monitoring",
+      "description": "Generic incident structure",
+      "properties": {
+        "comment": {
+          "type": "string",
+          "fullType": "string",
+          "canBeNull": true,
+          "readOnly": true,
+          "description": "Optional comment, that contains some information and updates about the generic incident",
+          "required": false
+        },
+        "creationDate": {
+          "type": "string",
+          "fullType": "string",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "Creation date, the generic incident has been detected",
+          "required": false
+        },
+        "default": {
+          "type": "string",
+          "fullType": "string",
+          "canBeNull": true,
+          "readOnly": true,
+          "description": "Type of fault",
+          "required": false
+        },
+        "departments": {
+          "type": "string[]",
+          "fullType": "string[]",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "List of impacted department codes",
+          "required": false
+        },
+        "endDate": {
+          "type": "string",
+          "fullType": "string",
+          "canBeNull": true,
+          "readOnly": true,
+          "description": "End date, the generic incident is resolved and closed",
+          "required": false
+        },
+        "estimatedResolutionDate": {
+          "type": "string",
+          "fullType": "string",
+          "canBeNull": true,
+          "readOnly": true,
+          "description": "Estimated resolution date for generic incident",
+          "required": false
+        },
+        "id": {
+          "type": "long",
+          "fullType": "long",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "Generic incident id",
+          "required": false
+        },
+        "isNational": {
+          "type": "boolean",
+          "fullType": "boolean",
+          "canBeNull": true,
+          "readOnly": true,
+          "description": "Identify a national generic incident",
+          "required": false
+        },
+        "nature": {
+          "type": "string",
+          "fullType": "string",
+          "canBeNull": true,
+          "readOnly": true,
+          "description": "Details about the consequence of the default",
+          "required": false
+        },
+        "nra": {
+          "type": "string[]",
+          "fullType": "string[]",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "List of impacted NRA/NRO",
+          "required": false
+        },
+        "operators": {
+          "type": "connectivity.OperatorEnum[]",
+          "fullType": "connectivity.OperatorEnum[]",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "List of impacted operators",
+          "required": false
+        },
+        "status": {
+          "type": "connectivity.monitoring.GenericIncidentStatusEnum",
+          "fullType": "connectivity.monitoring.GenericIncidentStatusEnum",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "Generic incident status",
+          "required": false
+        },
+        "taskId": {
+          "type": "long",
+          "fullType": "long",
+          "canBeNull": true,
+          "readOnly": true,
+          "description": "Task id",
+          "required": false
+        },
+        "taskReference": {
+          "type": "string",
+          "fullType": "string",
+          "canBeNull": true,
+          "readOnly": true,
+          "description": "Task reference created on Ovhcloud status web page",
+          "required": false
+        },
+        "technologies": {
+          "type": "string[]",
+          "fullType": "string[]",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "Impacted technologies",
+          "required": false
+        }
+      }
+    },
+    "connectivity.monitoring.GenericIncidentStatusEnum": {
+      "id": "GenericIncidentStatusEnum",
+      "namespace": "connectivity.monitoring",
+      "description": "Generic incident status",
+      "enum": [
+        "closed",
+        "detected",
+        "validated"
+      ],
+      "enumType": "string"
+    },
+    "xdsl.AsyncTaskArray_connectivity.eligibility.AddressWithCoordinates": {
+      "id": "AddressWithCoordinates",
+      "namespace": "xdsl.AsyncTaskArray_connectivity.eligibility",
+      "description": "xdsl.AsyncTaskArray_connectivity.eligibility.AddressWithCoordinates",
+      "properties": {
+        "error": {
+          "type": "string",
+          "fullType": "string",
+          "canBeNull": true,
+          "readOnly": true,
+          "required": false
+        },
+        "result": {
+          "type": "connectivity.eligibility.AddressWithCoordinates[]",
+          "fullType": "connectivity.eligibility.AddressWithCoordinates[]",
+          "canBeNull": true,
+          "readOnly": true,
+          "required": false
+        },
+        "status": {
+          "type": "xdsl.AsyncTaskStatusEnum",
+          "fullType": "xdsl.AsyncTaskStatusEnum",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "AsyncTask status",
+          "required": false
+        }
+      }
+    },
+    "xdsl.AsyncTaskArray_connectivity.eligibility.Building": {
+      "id": "Building",
+      "namespace": "xdsl.AsyncTaskArray_connectivity.eligibility",
+      "description": "xdsl.AsyncTaskArray_connectivity.eligibility.Building",
+      "properties": {
+        "error": {
+          "type": "string",
+          "fullType": "string",
+          "canBeNull": true,
+          "readOnly": true,
+          "required": false
+        },
+        "result": {
+          "type": "connectivity.eligibility.Building[]",
+          "fullType": "connectivity.eligibility.Building[]",
+          "canBeNull": true,
+          "readOnly": true,
+          "required": false
+        },
+        "status": {
+          "type": "xdsl.AsyncTaskStatusEnum",
+          "fullType": "xdsl.AsyncTaskStatusEnum",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "AsyncTask status",
+          "required": false
+        }
+      }
+    },
+    "xdsl.AsyncTaskArray_connectivity.eligibility.City": {
+      "id": "City",
+      "namespace": "xdsl.AsyncTaskArray_connectivity.eligibility",
+      "description": "xdsl.AsyncTaskArray_connectivity.eligibility.City",
+      "properties": {
+        "error": {
+          "type": "string",
+          "fullType": "string",
+          "canBeNull": true,
+          "readOnly": true,
+          "required": false
+        },
+        "result": {
+          "type": "connectivity.eligibility.City[]",
+          "fullType": "connectivity.eligibility.City[]",
+          "canBeNull": true,
+          "readOnly": true,
+          "required": false
+        },
+        "status": {
+          "type": "xdsl.AsyncTaskStatusEnum",
+          "fullType": "xdsl.AsyncTaskStatusEnum",
+          "canBeNull": false,
+          "readOnly": true,
+          "required": false
+        }
+      }
+    },
+    "xdsl.AsyncTaskArray_connectivity.eligibility.Line": {
+      "id": "Line",
+      "namespace": "xdsl.AsyncTaskArray_connectivity.eligibility",
+      "description": "xdsl.AsyncTaskArray_connectivity.eligibility.Line",
+      "properties": {
+        "error": {
+          "type": "string",
+          "fullType": "string",
+          "canBeNull": true,
+          "readOnly": true,
+          "required": false
+        },
+        "result": {
+          "type": "connectivity.eligibility.Line[]",
+          "fullType": "connectivity.eligibility.Line[]",
+          "canBeNull": true,
+          "readOnly": true,
+          "required": false
+        },
+        "status": {
+          "type": "xdsl.AsyncTaskStatusEnum",
+          "fullType": "xdsl.AsyncTaskStatusEnum",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "AsyncTask status",
+          "required": false
+        }
+      }
+    },
+    "xdsl.AsyncTaskArray_connectivity.eligibility.Street": {
+      "id": "Street",
+      "namespace": "xdsl.AsyncTaskArray_connectivity.eligibility",
+      "description": "xdsl.AsyncTaskArray_connectivity.eligibility.Street",
+      "properties": {
+        "error": {
+          "type": "string",
+          "fullType": "string",
+          "canBeNull": true,
+          "readOnly": true,
+          "required": false
+        },
+        "result": {
+          "type": "connectivity.eligibility.Street[]",
+          "fullType": "connectivity.eligibility.Street[]",
+          "canBeNull": true,
+          "readOnly": true,
+          "required": false
+        },
+        "status": {
+          "type": "xdsl.AsyncTaskStatusEnum",
+          "fullType": "xdsl.AsyncTaskStatusEnum",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "AsyncTask status",
+          "required": false
+        }
+      }
+    },
+    "xdsl.AsyncTaskArray_connectivity.eligibility.StreetNumberDetails": {
+      "id": "StreetNumberDetails",
+      "namespace": "xdsl.AsyncTaskArray_connectivity.eligibility",
+      "description": "xdsl.AsyncTaskArray_connectivity.eligibility.StreetNumberDetails",
+      "properties": {
+        "error": {
+          "type": "string",
+          "fullType": "string",
+          "canBeNull": true,
+          "readOnly": true,
+          "required": false
+        },
+        "result": {
+          "type": "connectivity.eligibility.StreetNumberDetails[]",
+          "fullType": "connectivity.eligibility.StreetNumberDetails[]",
+          "canBeNull": true,
+          "readOnly": true,
+          "required": false
+        },
+        "status": {
+          "type": "xdsl.AsyncTaskStatusEnum",
+          "fullType": "xdsl.AsyncTaskStatusEnum",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "AsyncTask status",
+          "required": false
+        }
+      }
+    },
+    "xdsl.AsyncTaskArray_string": {
+      "id": "AsyncTaskArray_string",
+      "namespace": "xdsl",
+      "description": "xdsl.AsyncTaskArray_string",
+      "properties": {
+        "error": {
+          "type": "string",
+          "fullType": "string",
+          "canBeNull": true,
+          "readOnly": true,
+          "required": false
+        },
+        "result": {
+          "type": "string[]",
+          "fullType": "string[]",
+          "canBeNull": true,
+          "readOnly": true,
+          "required": false
+        },
+        "status": {
+          "type": "xdsl.AsyncTaskStatusEnum",
+          "fullType": "xdsl.AsyncTaskStatusEnum",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "AsyncTask status",
+          "required": false
+        }
+      }
+    },
+    "xdsl.AsyncTaskStatusEnum": {
+      "id": "AsyncTaskStatusEnum",
+      "namespace": "xdsl",
+      "description": "AsyncTask status",
+      "enum": [
+        "error",
+        "ok",
+        "pending"
+      ],
+      "enumType": "string"
+    },
+    "xdsl.AsyncTask_connectivity.eligibility.Building": {
+      "id": "Building",
+      "namespace": "xdsl.AsyncTask_connectivity.eligibility",
+      "description": "xdsl.AsyncTask_connectivity.eligibility.Building",
+      "properties": {
+        "error": {
+          "type": "string",
+          "fullType": "string",
+          "canBeNull": true,
+          "readOnly": true,
+          "required": false
+        },
+        "result": {
+          "type": "connectivity.eligibility.Building",
+          "fullType": "connectivity.eligibility.Building",
+          "canBeNull": true,
+          "readOnly": true,
+          "description": "Details of a Building",
+          "required": false
+        },
+        "status": {
+          "type": "xdsl.AsyncTaskStatusEnum",
+          "fullType": "xdsl.AsyncTaskStatusEnum",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "AsyncTask status",
+          "required": false
+        }
+      }
+    },
+    "xdsl.AsyncTask_connectivity.eligibility.EligibilityTest": {
+      "id": "EligibilityTest",
+      "namespace": "xdsl.AsyncTask_connectivity.eligibility",
+      "description": "xdsl.AsyncTask_connectivity.eligibility.EligibilityTest",
+      "properties": {
+        "error": {
+          "type": "string",
+          "fullType": "string",
+          "canBeNull": true,
+          "readOnly": true,
+          "required": false
+        },
+        "result": {
+          "type": "connectivity.eligibility.EligibilityTest",
+          "fullType": "connectivity.eligibility.EligibilityTest",
+          "canBeNull": true,
+          "readOnly": true,
+          "description": "Eligibility test results",
+          "required": false
+        },
+        "status": {
+          "type": "xdsl.AsyncTaskStatusEnum",
+          "fullType": "xdsl.AsyncTaskStatusEnum",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "AsyncTask status",
+          "required": false
+        }
+      }
+    },
+    "xdsl.AsyncTask_connectivity.eligibility.Meetings": {
+      "id": "Meetings",
+      "namespace": "xdsl.AsyncTask_connectivity.eligibility",
+      "description": "xdsl.AsyncTask_connectivity.eligibility.Meetings",
+      "properties": {
+        "error": {
+          "type": "string",
+          "fullType": "string",
+          "canBeNull": true,
+          "readOnly": true,
+          "required": false
+        },
+        "result": {
+          "type": "connectivity.eligibility.Meetings",
+          "fullType": "connectivity.eligibility.Meetings",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "List of available meeting time slots",
+          "required": false
+        },
+        "status": {
+          "type": "xdsl.AsyncTaskStatusEnum",
+          "fullType": "xdsl.AsyncTaskStatusEnum",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "AsyncTask status",
+          "required": false
+        }
+      }
+    }
+  }
+}

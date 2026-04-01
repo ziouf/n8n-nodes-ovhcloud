@@ -1,0 +1,944 @@
+{
+  "apiVersion": "1.0",
+  "apis": [
+    {
+      "path": "/service",
+      "operations": [
+        {
+          "apiStatus": {
+            "description": "Beta version",
+            "value": "BETA"
+          },
+          "httpMethod": "GET",
+          "parameters": [],
+          "responseType": "long[]",
+          "noAuthentication": false,
+          "description": "Services",
+          "iamActions": [
+            {
+              "name": "account:apiovh:service/get",
+              "required": true
+            }
+          ]
+        }
+      ],
+      "description": "Operations about the services"
+    },
+    {
+      "path": "/service/{serviceId}",
+      "operations": [
+        {
+          "apiStatus": {
+            "description": "Beta version",
+            "value": "BETA"
+          },
+          "httpMethod": "GET",
+          "parameters": [
+            {
+              "name": "serviceId",
+              "dataType": "long",
+              "paramType": "path",
+              "fullType": "coreTypes.ServiceId:long",
+              "required": true,
+              "description": "The internal ID of your service"
+            }
+          ],
+          "responseType": "serviceList.Service",
+          "noAuthentication": false,
+          "description": "Get this object properties",
+          "iamActions": [
+            {
+              "name": "account:apiovh:service/get",
+              "required": true
+            }
+          ]
+        },
+        {
+          "apiStatus": {
+            "description": "Beta version",
+            "value": "BETA"
+          },
+          "httpMethod": "PUT",
+          "parameters": [
+            {
+              "dataType": "serviceList.Service",
+              "paramType": "body",
+              "fullType": "serviceList.Service",
+              "required": true,
+              "description": "New object properties"
+            },
+            {
+              "name": "serviceId",
+              "dataType": "long",
+              "paramType": "path",
+              "fullType": "coreTypes.ServiceId:long",
+              "required": true,
+              "description": "The internal ID of your service"
+            }
+          ],
+          "responseType": "void",
+          "noAuthentication": false,
+          "description": "Alter this object properties",
+          "iamActions": [
+            {
+              "name": "account:apiovh:service/edit",
+              "required": true
+            }
+          ]
+        }
+      ],
+      "description": "Details about a Service"
+    },
+    {
+      "path": "/service/{serviceId}/renew",
+      "operations": [
+        {
+          "apiStatus": {
+            "description": "Beta version",
+            "value": "BETA"
+          },
+          "httpMethod": "GET",
+          "parameters": [
+            {
+              "name": "includeOptions",
+              "dataType": "boolean",
+              "paramType": "query",
+              "fullType": "boolean",
+              "required": false,
+              "description": "Include service's option(s)"
+            },
+            {
+              "name": "serviceId",
+              "dataType": "string",
+              "paramType": "path",
+              "fullType": "string",
+              "required": true,
+              "description": "Service Id"
+            }
+          ],
+          "responseType": "service.renew.RenewDescription[]",
+          "noAuthentication": false,
+          "description": "List possible renews for this service",
+          "iamActions": [
+            {
+              "name": "account:apiovh:service/renew/get",
+              "required": true
+            }
+          ]
+        },
+        {
+          "apiStatus": {
+            "description": "Beta version",
+            "value": "BETA"
+          },
+          "httpMethod": "POST",
+          "parameters": [
+            {
+              "name": "dryRun",
+              "dataType": "boolean",
+              "paramType": "body",
+              "fullType": "boolean",
+              "required": false,
+              "description": "Indicates if renew order is generated"
+            },
+            {
+              "name": "duration",
+              "dataType": "string",
+              "paramType": "body",
+              "fullType": "duration",
+              "required": true,
+              "description": "Renew duration"
+            },
+            {
+              "name": "serviceId",
+              "dataType": "string",
+              "paramType": "path",
+              "fullType": "string",
+              "required": true,
+              "description": "Service Id"
+            },
+            {
+              "name": "services",
+              "dataType": "long[]",
+              "paramType": "body",
+              "fullType": "coreTypes.ServiceId[]:long[]",
+              "required": true,
+              "description": "List of services to renew"
+            }
+          ],
+          "responseType": "service.renew.RenewOrder",
+          "noAuthentication": false,
+          "description": "Create a renew order",
+          "iamActions": [
+            {
+              "name": "account:apiovh:service/renew/create",
+              "required": true
+            }
+          ]
+        }
+      ],
+      "description": "Missing description"
+    },
+    {
+      "path": "/service/{serviceId}/reopen",
+      "operations": [
+        {
+          "apiStatus": {
+            "description": "Beta version",
+            "value": "BETA"
+          },
+          "httpMethod": "POST",
+          "parameters": [
+            {
+              "name": "serviceId",
+              "dataType": "long",
+              "paramType": "path",
+              "fullType": "coreTypes.ServiceId:long",
+              "required": true,
+              "description": "The internal ID of your service"
+            }
+          ],
+          "responseType": "void",
+          "noAuthentication": false,
+          "description": "Reopen a suspended service",
+          "iamActions": [
+            {
+              "name": "account:apiovh:service/reopen",
+              "required": true
+            }
+          ]
+        }
+      ],
+      "description": "reopen operations"
+    },
+    {
+      "path": "/service/{serviceId}/suspend",
+      "operations": [
+        {
+          "apiStatus": {
+            "description": "Beta version",
+            "value": "BETA"
+          },
+          "httpMethod": "POST",
+          "parameters": [
+            {
+              "name": "serviceId",
+              "dataType": "long",
+              "paramType": "path",
+              "fullType": "coreTypes.ServiceId:long",
+              "required": true,
+              "description": "The internal ID of your service"
+            }
+          ],
+          "responseType": "void",
+          "noAuthentication": false,
+          "description": "Suspend the service. The service won't be accessible, but you will still be charged for it",
+          "iamActions": [
+            {
+              "name": "account:apiovh:service/suspend",
+              "required": true
+            }
+          ]
+        }
+      ],
+      "description": "suspend operations"
+    },
+    {
+      "path": "/service/{serviceId}/terminate",
+      "operations": [
+        {
+          "apiStatus": {
+            "description": "Beta version",
+            "value": "BETA"
+          },
+          "httpMethod": "POST",
+          "parameters": [
+            {
+              "name": "serviceId",
+              "dataType": "long",
+              "paramType": "path",
+              "fullType": "coreTypes.ServiceId:long",
+              "required": true,
+              "description": "The internal ID of your service"
+            }
+          ],
+          "responseType": "void",
+          "noAuthentication": false,
+          "description": "Terminates a suspended service",
+          "iamActions": [
+            {
+              "name": "account:apiovh:service/terminate",
+              "required": true
+            }
+          ]
+        }
+      ],
+      "description": "terminate operations"
+    }
+  ],
+  "resourcePath": "/service",
+  "basePath": "https://eu.api.ovh.com/v1",
+  "models": {
+    "complexType.SafeKeyValue<T>": {
+      "id": "SafeKeyValue",
+      "namespace": "complexType",
+      "description": "Key and value, with proper key strings",
+      "generics": [
+        "T"
+      ],
+      "properties": {
+        "key": {
+          "type": "string",
+          "canBeNull": false,
+          "readOnly": false,
+          "required": false
+        },
+        "value": {
+          "type": "T",
+          "canBeNull": false,
+          "readOnly": false,
+          "required": false
+        }
+      }
+    },
+    "complexType.SafeKeyValue<string>": {
+      "id": "SafeKeyValue",
+      "namespace": "complexType",
+      "description": "Key and value, with proper key strings",
+      "generics": [
+        "T"
+      ],
+      "properties": {
+        "key": {
+          "type": "string",
+          "canBeNull": false,
+          "readOnly": false,
+          "required": false
+        },
+        "value": {
+          "type": "T",
+          "canBeNull": false,
+          "readOnly": false,
+          "required": false
+        }
+      }
+    },
+    "order.CurrencyCodeEnum": {
+      "id": "CurrencyCodeEnum",
+      "namespace": "order",
+      "enum": [
+        "AUD",
+        "CAD",
+        "CZK",
+        "EUR",
+        "GBP",
+        "INR",
+        "LTL",
+        "MAD",
+        "N/A",
+        "PLN",
+        "SGD",
+        "TND",
+        "USD",
+        "XOF",
+        "points"
+      ],
+      "enumType": "string"
+    },
+    "order.Price": {
+      "id": "Price",
+      "namespace": "order",
+      "description": "Price with it's currency and textual representation",
+      "properties": {
+        "currencyCode": {
+          "type": "order.CurrencyCodeEnum",
+          "canBeNull": false,
+          "readOnly": false,
+          "required": false
+        },
+        "text": {
+          "type": "string",
+          "canBeNull": false,
+          "readOnly": false,
+          "required": false
+        },
+        "value": {
+          "type": "double",
+          "canBeNull": false,
+          "readOnly": false,
+          "required": false
+        }
+      }
+    },
+    "service.BillingStateEnum": {
+      "id": "BillingStateEnum",
+      "namespace": "service",
+      "description": "Possible billing states",
+      "enum": [
+        "expired",
+        "ok",
+        "pending",
+        "unpaid"
+      ],
+      "enumType": "string"
+    },
+    "service.Plan": {
+      "id": "Plan",
+      "namespace": "service",
+      "description": "Plan information",
+      "properties": {
+        "code": {
+          "type": "string",
+          "canBeNull": true,
+          "readOnly": false,
+          "description": "Product code",
+          "required": false
+        },
+        "product": {
+          "type": "service.plan.Product",
+          "canBeNull": false,
+          "readOnly": false,
+          "description": "Product plan information",
+          "required": false
+        }
+      }
+    },
+    "service.Renew": {
+      "id": "Renew",
+      "namespace": "service",
+      "description": "Renew information",
+      "properties": {
+        "dayOfMonth": {
+          "type": "long",
+          "canBeNull": true,
+          "readOnly": false,
+          "description": "Renew day number",
+          "required": false
+        },
+        "interval": {
+          "type": "service.renew.Interval",
+          "canBeNull": true,
+          "readOnly": false,
+          "description": "Interval between each renewal",
+          "required": false
+        },
+        "mode": {
+          "type": "service.renew.Mode",
+          "canBeNull": false,
+          "readOnly": false,
+          "description": "Renewal mode",
+          "required": false
+        },
+        "possibleIntervals": {
+          "type": "service.renew.Interval[]",
+          "canBeNull": true,
+          "readOnly": false,
+          "description": "Possible interval between each renewal",
+          "required": false
+        },
+        "possibleModes": {
+          "type": "service.renew.Mode[]",
+          "canBeNull": false,
+          "readOnly": false,
+          "description": "Possible renewal mode",
+          "required": false
+        }
+      }
+    },
+    "service.Resource": {
+      "id": "Resource",
+      "namespace": "service",
+      "description": "Resource service informations",
+      "properties": {
+        "displayName": {
+          "type": "string",
+          "canBeNull": false,
+          "readOnly": false,
+          "description": "Custom display name of the service",
+          "required": false
+        },
+        "name": {
+          "type": "string",
+          "canBeNull": true,
+          "readOnly": false,
+          "description": "Name of the service",
+          "required": false
+        },
+        "state": {
+          "type": "service.ResourceStateEnum",
+          "canBeNull": true,
+          "readOnly": false,
+          "description": "Resource state",
+          "required": false
+        }
+      }
+    },
+    "service.ResourceStateEnum": {
+      "id": "ResourceStateEnum",
+      "namespace": "service",
+      "description": "Possible resource states",
+      "enum": [
+        "deleted",
+        "deleting",
+        "ok",
+        "opening",
+        "suspended",
+        "suspending",
+        "toDelete",
+        "toOpen",
+        "toSuspend"
+      ],
+      "enumType": "string"
+    },
+    "service.Route": {
+      "id": "Route",
+      "namespace": "service",
+      "description": "route of this service",
+      "properties": {
+        "path": {
+          "type": "string",
+          "canBeNull": true,
+          "readOnly": false,
+          "description": "Path to use in API",
+          "required": false
+        },
+        "url": {
+          "type": "string",
+          "canBeNull": true,
+          "readOnly": false,
+          "description": "Path with variables applyed",
+          "required": false
+        },
+        "vars": {
+          "type": "complexType.SafeKeyValue<string>[]",
+          "canBeNull": false,
+          "readOnly": false,
+          "description": "Variables to use in the path",
+          "required": false
+        }
+      }
+    },
+    "service.plan.Product": {
+      "id": "Product",
+      "namespace": "service.plan",
+      "description": "Product plan information",
+      "properties": {
+        "name": {
+          "type": "string",
+          "canBeNull": true,
+          "readOnly": false,
+          "description": "Product name",
+          "required": false
+        }
+      }
+    },
+    "service.renew.Interval": {
+      "id": "Interval",
+      "namespace": "service.renew",
+      "description": "Interval enum information",
+      "enum": [
+        "P1M",
+        "P1Y",
+        "P2Y",
+        "P3M",
+        "P3Y",
+        "P6M"
+      ],
+      "enumType": "string"
+    },
+    "service.renew.Mode": {
+      "id": "Mode",
+      "namespace": "service.renew",
+      "description": "Mode enum informations",
+      "enum": [
+        "automaticForcedProduct",
+        "automaticV2012",
+        "automaticV2014",
+        "automaticV2016",
+        "automaticV2024",
+        "deleteAtEndEngagement",
+        "deleteAtExpiration",
+        "manual",
+        "oneShot",
+        "option"
+      ],
+      "enumType": "string"
+    },
+    "service.renew.RenewDescription": {
+      "id": "RenewDescription",
+      "namespace": "service.renew",
+      "description": "List possible renews for service",
+      "properties": {
+        "renewPeriod": {
+          "type": "string",
+          "fullType": "duration:string",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "ISO8601 formatted renewal duration",
+          "required": false
+        },
+        "strategies": {
+          "type": "service.renew.RenewStrategy[]",
+          "fullType": "service.renew.RenewStrategy[]",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "List possible strategies",
+          "required": false
+        }
+      }
+    },
+    "service.renew.RenewForecast": {
+      "id": "RenewForecast",
+      "namespace": "service.renew",
+      "description": "Representation of service's renew forecasting",
+      "properties": {
+        "details": {
+          "type": "service.renew.RenewForecastDetail[]",
+          "fullType": "service.renew.RenewForecastDetail[]",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "Forecast details",
+          "required": false
+        },
+        "prices": {
+          "type": "service.renew.RenewForecastPrices",
+          "fullType": "service.renew.RenewForecastPrices",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "Prices for renew forecasting",
+          "required": false
+        }
+      }
+    },
+    "service.renew.RenewForecastDetail": {
+      "id": "RenewForecastDetail",
+      "namespace": "service.renew",
+      "description": "Representation of a product renew pricing",
+      "properties": {
+        "description": {
+          "type": "string",
+          "fullType": "string",
+          "canBeNull": true,
+          "readOnly": true,
+          "description": "Detail description",
+          "required": false
+        },
+        "quantity": {
+          "type": "long",
+          "fullType": "long",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "Quantity",
+          "required": false
+        },
+        "serviceName": {
+          "type": "string",
+          "fullType": "string",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "Associated service name",
+          "required": false
+        },
+        "totalPrice": {
+          "type": "order.Price",
+          "fullType": "order.Price",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "Total price",
+          "required": false
+        },
+        "unitPrice": {
+          "type": "order.Price",
+          "fullType": "order.Price",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "Price for one unit",
+          "required": false
+        }
+      }
+    },
+    "service.renew.RenewForecastPrices": {
+      "id": "RenewForecastDetailPrices",
+      "namespace": "service.renew",
+      "description": "Prices for renew forecasting",
+      "properties": {
+        "tax": {
+          "type": "order.Price",
+          "fullType": "order.Price",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "Tax",
+          "required": false
+        },
+        "withTax": {
+          "type": "order.Price",
+          "fullType": "order.Price",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "Total price with tax",
+          "required": false
+        },
+        "withoutTax": {
+          "type": "order.Price",
+          "fullType": "order.Price",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "Total price without tax",
+          "required": false
+        }
+      }
+    },
+    "service.renew.RenewOrder": {
+      "id": "RenewOrder",
+      "namespace": "service.renew",
+      "description": "Details about a renew Order",
+      "properties": {
+        "date": {
+          "type": "datetime",
+          "fullType": "datetime",
+          "canBeNull": true,
+          "readOnly": true,
+          "description": "Creation date of the renew Order",
+          "required": false
+        },
+        "expirationDate": {
+          "type": "datetime",
+          "fullType": "datetime",
+          "canBeNull": true,
+          "readOnly": true,
+          "description": "Expiration date of the renew Order",
+          "required": false
+        },
+        "orderId": {
+          "type": "long",
+          "fullType": "long",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "ID of the renew Order",
+          "required": false
+        },
+        "password": {
+          "type": "string",
+          "fullType": "string",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "Password",
+          "required": false
+        },
+        "pdfUrl": {
+          "type": "string",
+          "fullType": "string",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "Public pdf URL of the generated renew Order",
+          "required": false
+        },
+        "priceWithTax": {
+          "type": "order.Price",
+          "fullType": "order.Price",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "Price of the product with tax",
+          "required": false
+        },
+        "priceWithoutTax": {
+          "type": "order.Price",
+          "fullType": "order.Price",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "Price of the product without tax",
+          "required": false
+        },
+        "retractionDate": {
+          "type": "datetime",
+          "fullType": "datetime",
+          "canBeNull": true,
+          "readOnly": true,
+          "description": "Retraction date",
+          "required": false
+        },
+        "tax": {
+          "type": "order.Price",
+          "fullType": "order.Price",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "Value of the tax",
+          "required": false
+        },
+        "url": {
+          "type": "string",
+          "fullType": "string",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "Public URL to display generated renew Order",
+          "required": false
+        }
+      }
+    },
+    "service.renew.RenewStrategy": {
+      "id": "RenewStrategy",
+      "namespace": "service.renew",
+      "description": "Representation of a product renew pricing",
+      "properties": {
+        "price": {
+          "type": "order.Price",
+          "fullType": "order.Price",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "Price of the product",
+          "required": false
+        },
+        "priceInUcents": {
+          "type": "long",
+          "fullType": "long",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "Price of the product in micro-centims",
+          "required": false
+        },
+        "services": {
+          "type": "long[]",
+          "fullType": "coreTypes.ServiceId[]:long[]",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "Services renewed by strategy",
+          "required": false
+        },
+        "servicesDetails": {
+          "type": "service.renew.Service[]",
+          "fullType": "service.renew.Service[]",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "Details of services renewed by strategy",
+          "required": false
+        }
+      }
+    },
+    "service.renew.Service": {
+      "id": "Service",
+      "namespace": "service.renew",
+      "description": "Description of a service",
+      "properties": {
+        "serviceId": {
+          "type": "long",
+          "fullType": "coreTypes.ServiceId:long",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "ID of the service",
+          "required": false
+        },
+        "serviceName": {
+          "type": "string",
+          "fullType": "string",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "Name of the service",
+          "required": false
+        },
+        "serviceType": {
+          "type": "string",
+          "fullType": "string",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "Type of the service",
+          "required": false
+        }
+      }
+    },
+    "serviceList.Service": {
+      "id": "Service",
+      "namespace": "serviceList",
+      "description": "Details about a Service",
+      "properties": {
+        "creationDate": {
+          "type": "date",
+          "fullType": "date",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "Creation date",
+          "required": false
+        },
+        "details": {
+          "type": "complexType.SafeKeyValue<string>[]",
+          "fullType": "complexType.SafeKeyValue<string>[]",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "Resource details",
+          "required": false
+        },
+        "engagementDate": {
+          "type": "date",
+          "fullType": "date",
+          "canBeNull": true,
+          "readOnly": true,
+          "description": "Engagement date",
+          "required": false
+        },
+        "expirationDate": {
+          "type": "date",
+          "fullType": "date",
+          "canBeNull": true,
+          "readOnly": true,
+          "description": "Expiration date",
+          "required": false
+        },
+        "nextBillingDate": {
+          "type": "date",
+          "fullType": "date",
+          "canBeNull": true,
+          "readOnly": true,
+          "description": "The next billing date",
+          "required": false
+        },
+        "plan": {
+          "type": "service.Plan",
+          "fullType": "service.Plan",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "Plan service description",
+          "required": false
+        },
+        "quantity": {
+          "type": "long",
+          "fullType": "long",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "Quantity",
+          "required": false
+        },
+        "renew": {
+          "type": "service.Renew",
+          "fullType": "service.Renew",
+          "canBeNull": true,
+          "readOnly": true,
+          "description": "Renew service description",
+          "required": false
+        },
+        "resource": {
+          "type": "service.Resource",
+          "fullType": "service.Resource",
+          "canBeNull": false,
+          "readOnly": false,
+          "description": "Resource service description",
+          "required": false
+        },
+        "route": {
+          "type": "service.Route",
+          "fullType": "service.Route",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "Route to use in API",
+          "required": false
+        },
+        "state": {
+          "type": "service.BillingStateEnum",
+          "fullType": "service.BillingStateEnum",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "Billing state of your service",
+          "required": false
+        }
+      }
+    }
+  }
+}

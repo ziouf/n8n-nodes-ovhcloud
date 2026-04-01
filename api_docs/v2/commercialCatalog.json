@@ -1,0 +1,1341 @@
+{
+  "apiVersion": "1.0",
+  "apis": [
+    {
+      "path": "/commercialCatalog/offers",
+      "operations": [
+        {
+          "apiStatus": {
+            "description": "Stable production version",
+            "value": "PRODUCTION"
+          },
+          "httpMethod": "GET",
+          "parameters": [
+            {
+              "name": "X-Pagination-Cursor",
+              "dataType": "string",
+              "paramType": "header",
+              "fullType": "string",
+              "required": false,
+              "description": "Pagination cursor"
+            },
+            {
+              "name": "X-Pagination-Size",
+              "dataType": "long",
+              "paramType": "header",
+              "fullType": "long",
+              "required": false,
+              "description": "Pagination size"
+            },
+            {
+              "name": "merchants",
+              "dataType": "commercialCatalog.MerchantEnum[]",
+              "paramType": "query",
+              "fullType": "commercialCatalog.MerchantEnum[]",
+              "required": false,
+              "description": "Offer merchant"
+            },
+            {
+              "name": "nature",
+              "dataType": "commercialCatalog.OfferNatureEnum",
+              "paramType": "query",
+              "fullType": "commercialCatalog.OfferNatureEnum",
+              "required": false,
+              "description": "Offer nature"
+            },
+            {
+              "name": "productCode",
+              "dataType": "string",
+              "paramType": "query",
+              "fullType": "string",
+              "required": false,
+              "description": "Commercial product code"
+            },
+            {
+              "name": "state",
+              "dataType": "commercialCatalog.OfferStateEnum[]",
+              "paramType": "query",
+              "fullType": "commercialCatalog.OfferStateEnum[]",
+              "required": false,
+              "description": "Offer state"
+            },
+            {
+              "name": "technicalRequirements",
+              "dataType": "string[]",
+              "paramType": "query",
+              "fullType": "string[]",
+              "required": false,
+              "description": "Offer config fields"
+            },
+            {
+              "name": "type",
+              "dataType": "commercialCatalog.OfferTypeEnum",
+              "paramType": "query",
+              "fullType": "commercialCatalog.OfferTypeEnum",
+              "required": false,
+              "description": "Offer type"
+            }
+          ],
+          "responseType": "commercialCatalog.Offer[]",
+          "noAuthentication": false,
+          "description": "List all offers"
+        }
+      ],
+      "description": "Get commercial catalog offers"
+    },
+    {
+      "path": "/commercialCatalog/offers/{id}",
+      "operations": [
+        {
+          "apiStatus": {
+            "description": "Stable production version",
+            "value": "PRODUCTION"
+          },
+          "httpMethod": "GET",
+          "parameters": [
+            {
+              "name": "id",
+              "dataType": "string",
+              "paramType": "path",
+              "fullType": "string",
+              "required": true,
+              "description": "Id"
+            }
+          ],
+          "responseType": "commercialCatalog.Offer",
+          "noAuthentication": false,
+          "description": "Get details of an offer"
+        }
+      ],
+      "description": "Get commercial catalog offers"
+    }
+  ],
+  "resourcePath": "/commercialCatalog",
+  "basePath": "https://eu.api.ovh.com/v2",
+  "models": {
+    "commercialCatalog.Blob": {
+      "id": "Blob",
+      "namespace": "commercialCatalog",
+      "description": "Describes additional information of an offer, kept for transition from legacy model",
+      "properties": {
+        "content": {
+          "type": "commercialCatalog.BlobContent",
+          "fullType": "commercialCatalog.BlobContent",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "Blob content",
+          "required": false
+        }
+      }
+    },
+    "commercialCatalog.BlobContent": {
+      "id": "BlobContent",
+      "namespace": "commercialCatalog",
+      "description": "Describes blob content",
+      "properties": {
+        "technical": {
+          "type": "commercialCatalog.BlobContentTechnical",
+          "fullType": "commercialCatalog.BlobContentTechnical",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "Technical information",
+          "required": false
+        }
+      }
+    },
+    "commercialCatalog.BlobContentTechnical": {
+      "id": "BlobContentTechnical",
+      "namespace": "commercialCatalog",
+      "description": "Describes offer technical information",
+      "properties": {
+        "bandwidth": {
+          "type": "commercialCatalog.BlobContentTechnicalNetwork",
+          "fullType": "commercialCatalog.BlobContentTechnicalNetwork",
+          "canBeNull": true,
+          "readOnly": true,
+          "description": "Bandwidth information",
+          "required": false
+        },
+        "connection": {
+          "type": "commercialCatalog.BlobContentTechnicalConnection",
+          "fullType": "commercialCatalog.BlobContentTechnicalConnection",
+          "canBeNull": true,
+          "readOnly": true,
+          "description": "Connection information",
+          "required": false
+        },
+        "connectionPerSeconds": {
+          "type": "commercialCatalog.BlobContentTechnicalPerSeconds",
+          "fullType": "commercialCatalog.BlobContentTechnicalPerSeconds",
+          "canBeNull": true,
+          "readOnly": true,
+          "description": "Connection per seconds",
+          "required": false
+        },
+        "cpu": {
+          "type": "commercialCatalog.BlobContentTechnicalCPU",
+          "fullType": "commercialCatalog.BlobContentTechnicalCPU",
+          "canBeNull": true,
+          "readOnly": true,
+          "description": "CPU information",
+          "required": false
+        },
+        "ephemeralLocalStorage": {
+          "type": "commercialCatalog.BlobContentTechnicalEphemeralStorage",
+          "fullType": "commercialCatalog.BlobContentTechnicalEphemeralStorage",
+          "canBeNull": true,
+          "readOnly": true,
+          "description": "Ephemeral local storage",
+          "required": false
+        },
+        "gpu": {
+          "type": "commercialCatalog.BlobContentTechnicalGPU",
+          "fullType": "commercialCatalog.BlobContentTechnicalGPU",
+          "canBeNull": true,
+          "readOnly": true,
+          "description": "GPU information",
+          "required": false
+        },
+        "memory": {
+          "type": "commercialCatalog.BlobContentTechnicalMemory",
+          "fullType": "commercialCatalog.BlobContentTechnicalMemory",
+          "canBeNull": true,
+          "readOnly": true,
+          "description": "Memory information",
+          "required": false
+        },
+        "name": {
+          "type": "string",
+          "fullType": "string",
+          "canBeNull": true,
+          "readOnly": true,
+          "description": "Name",
+          "required": false
+        },
+        "nodes": {
+          "type": "commercialCatalog.BlobContentTechnicalNodes",
+          "fullType": "commercialCatalog.BlobContentTechnicalNodes",
+          "canBeNull": true,
+          "readOnly": true,
+          "description": "Nodes",
+          "required": false
+        },
+        "nvme": {
+          "type": "commercialCatalog.BlobContentTechnicalNvme",
+          "fullType": "commercialCatalog.BlobContentTechnicalNvme",
+          "canBeNull": true,
+          "readOnly": true,
+          "description": "NVME",
+          "required": false
+        },
+        "os": {
+          "type": "commercialCatalog.BlobContentTechnicalOS",
+          "fullType": "commercialCatalog.BlobContentTechnicalOS",
+          "canBeNull": true,
+          "readOnly": true,
+          "description": "OS",
+          "required": false
+        },
+        "requestPerSeconds": {
+          "type": "commercialCatalog.BlobContentTechnicalPerSeconds",
+          "fullType": "commercialCatalog.BlobContentTechnicalPerSeconds",
+          "canBeNull": true,
+          "readOnly": true,
+          "description": "Connection per seconds",
+          "required": false
+        },
+        "storage": {
+          "type": "commercialCatalog.BlobContentTechnicalStorage",
+          "fullType": "commercialCatalog.BlobContentTechnicalStorage",
+          "canBeNull": true,
+          "readOnly": true,
+          "description": "Disks information",
+          "required": false
+        },
+        "throughput": {
+          "type": "commercialCatalog.BlobContentTechnicalThroughput",
+          "fullType": "commercialCatalog.BlobContentTechnicalThroughput",
+          "canBeNull": true,
+          "readOnly": true,
+          "description": "Throughput",
+          "required": false
+        },
+        "volume": {
+          "type": "commercialCatalog.BlobContentTechnicalVolume",
+          "fullType": "commercialCatalog.BlobContentTechnicalVolume",
+          "canBeNull": true,
+          "readOnly": true,
+          "description": "Volume",
+          "required": false
+        },
+        "vrack": {
+          "type": "commercialCatalog.BlobContentTechnicalNetwork",
+          "fullType": "commercialCatalog.BlobContentTechnicalNetwork",
+          "canBeNull": true,
+          "readOnly": true,
+          "description": "vRack information",
+          "required": false
+        }
+      }
+    },
+    "commercialCatalog.BlobContentTechnicalCPU": {
+      "id": "BlobContentTechnicalCPU",
+      "namespace": "commercialCatalog",
+      "description": "Describes a CPU technical details",
+      "properties": {
+        "brand": {
+          "type": "string",
+          "fullType": "string",
+          "canBeNull": true,
+          "readOnly": true,
+          "description": "CPU Brand",
+          "required": false
+        },
+        "cores": {
+          "type": "long",
+          "fullType": "long",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "Number of cores",
+          "required": false
+        },
+        "frequency": {
+          "type": "double",
+          "fullType": "double",
+          "canBeNull": true,
+          "readOnly": true,
+          "description": "Frequency of CPU in GHz",
+          "required": false
+        },
+        "maxFrequency": {
+          "type": "double",
+          "fullType": "double",
+          "canBeNull": true,
+          "readOnly": true,
+          "description": "Maximum frequency of CPU in GHz",
+          "required": false
+        },
+        "model": {
+          "type": "string",
+          "fullType": "string",
+          "canBeNull": true,
+          "readOnly": true,
+          "description": "Displayable name",
+          "required": false
+        },
+        "threads": {
+          "type": "long",
+          "fullType": "long",
+          "canBeNull": true,
+          "readOnly": true,
+          "description": "Number of threads",
+          "required": false
+        },
+        "type": {
+          "type": "string",
+          "fullType": "string",
+          "canBeNull": true,
+          "readOnly": true,
+          "description": "Type of CPU",
+          "required": false
+        }
+      }
+    },
+    "commercialCatalog.BlobContentTechnicalConnection": {
+      "id": "BlobContentTechnicalConnection",
+      "namespace": "commercialCatalog",
+      "description": "Describes connection information",
+      "properties": {
+        "clients": {
+          "type": "commercialCatalog.BlobContentTechnicalConnectionClients",
+          "fullType": "commercialCatalog.BlobContentTechnicalConnectionClients",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "Connection information per client",
+          "required": false
+        },
+        "total": {
+          "type": "long",
+          "fullType": "long",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "Total of allowed connections",
+          "required": false
+        }
+      }
+    },
+    "commercialCatalog.BlobContentTechnicalConnectionClients": {
+      "id": "BlobContentTechnicalConnectionClients",
+      "namespace": "commercialCatalog",
+      "description": "Describes connection information for concurrent clients",
+      "properties": {
+        "concurrency": {
+          "type": "long",
+          "fullType": "long",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "Number of allowed concurrent clients",
+          "required": false
+        },
+        "number": {
+          "type": "long",
+          "fullType": "long",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "Number of allowed concurrent connections per client",
+          "required": false
+        }
+      }
+    },
+    "commercialCatalog.BlobContentTechnicalDisk": {
+      "id": "BlobContentTechnicalDisk",
+      "namespace": "commercialCatalog",
+      "description": "Describes disk technical details",
+      "properties": {
+        "capacity": {
+          "type": "double",
+          "fullType": "double",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "Disk capacity in Gb",
+          "required": false
+        },
+        "interface": {
+          "type": "string",
+          "fullType": "string",
+          "canBeNull": true,
+          "readOnly": true,
+          "description": "Disk interface",
+          "required": false
+        },
+        "iops": {
+          "type": "long",
+          "fullType": "long",
+          "canBeNull": true,
+          "readOnly": true,
+          "description": "Input/Output operations per second",
+          "required": false
+        },
+        "maximumCapacity": {
+          "type": "double",
+          "fullType": "double",
+          "canBeNull": true,
+          "readOnly": true,
+          "description": "Maximum disk capacity (GB if sizeUnit not defined)",
+          "required": false
+        },
+        "number": {
+          "type": "long",
+          "fullType": "long",
+          "canBeNull": true,
+          "readOnly": true,
+          "description": "Number of disks",
+          "required": false
+        },
+        "sizeUnit": {
+          "type": "string",
+          "fullType": "string",
+          "canBeNull": true,
+          "readOnly": true,
+          "description": "Size unit",
+          "required": false
+        },
+        "technology": {
+          "type": "string",
+          "fullType": "string",
+          "canBeNull": true,
+          "readOnly": true,
+          "description": "Disk technology",
+          "required": false
+        }
+      }
+    },
+    "commercialCatalog.BlobContentTechnicalEphemeralStorage": {
+      "id": "BlobContentTechnicalEphemeralStorage",
+      "namespace": "commercialCatalog",
+      "description": "Describes ephemeral storage information",
+      "properties": {
+        "disks": {
+          "type": "commercialCatalog.BlobContentTechnicalDisk[]",
+          "fullType": "commercialCatalog.BlobContentTechnicalDisk[]",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "Disk properties",
+          "required": false
+        }
+      }
+    },
+    "commercialCatalog.BlobContentTechnicalGPU": {
+      "id": "BlobContentTechnicalGPU",
+      "namespace": "commercialCatalog",
+      "description": "Describes GPU information",
+      "properties": {
+        "memory": {
+          "type": "commercialCatalog.BlobContentTechnicalMemory",
+          "fullType": "commercialCatalog.BlobContentTechnicalMemory",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "GPU memory size",
+          "required": false
+        },
+        "model": {
+          "type": "string",
+          "fullType": "string",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "GPU model",
+          "required": false
+        },
+        "number": {
+          "type": "long",
+          "fullType": "long",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "GPU number",
+          "required": false
+        },
+        "performance": {
+          "type": "double",
+          "fullType": "double",
+          "canBeNull": true,
+          "readOnly": true,
+          "description": "GPU performance",
+          "required": false
+        }
+      }
+    },
+    "commercialCatalog.BlobContentTechnicalMemory": {
+      "id": "BlobContentTechnicalMemory",
+      "namespace": "commercialCatalog",
+      "description": "Describes memory information",
+      "properties": {
+        "interface": {
+          "type": "string",
+          "fullType": "string",
+          "canBeNull": true,
+          "readOnly": true,
+          "description": "Interface type",
+          "required": false
+        },
+        "size": {
+          "type": "double",
+          "fullType": "double",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "Size of the RAM (GB if sizeUnit not defined)",
+          "required": false
+        },
+        "sizeUnit": {
+          "type": "string",
+          "fullType": "string",
+          "canBeNull": true,
+          "readOnly": true,
+          "description": "Size unit",
+          "required": false
+        }
+      }
+    },
+    "commercialCatalog.BlobContentTechnicalNetwork": {
+      "id": "BlobContentTechnicalNetwork",
+      "namespace": "commercialCatalog",
+      "description": "Describes network information",
+      "properties": {
+        "guaranteed": {
+          "type": "boolean",
+          "fullType": "boolean",
+          "canBeNull": true,
+          "readOnly": true,
+          "description": "Guaranteed Network",
+          "required": false
+        },
+        "isMax": {
+          "type": "boolean",
+          "fullType": "boolean",
+          "canBeNull": true,
+          "readOnly": true,
+          "description": "Whether it is the maximum value",
+          "required": false
+        },
+        "level": {
+          "type": "double",
+          "fullType": "double",
+          "canBeNull": true,
+          "readOnly": true,
+          "description": "Network level",
+          "required": false
+        },
+        "max": {
+          "type": "double",
+          "fullType": "double",
+          "canBeNull": true,
+          "readOnly": true,
+          "description": "Maximum bandwidth",
+          "required": false
+        },
+        "maxUnit": {
+          "type": "string",
+          "fullType": "string",
+          "canBeNull": true,
+          "readOnly": true,
+          "description": "Unit of max field",
+          "required": false
+        },
+        "unit": {
+          "type": "string",
+          "fullType": "string",
+          "canBeNull": true,
+          "readOnly": true,
+          "description": "Unit",
+          "required": false
+        },
+        "unlimited": {
+          "type": "boolean",
+          "fullType": "boolean",
+          "canBeNull": true,
+          "readOnly": true,
+          "description": "Whether usage is unlimited",
+          "required": false
+        }
+      }
+    },
+    "commercialCatalog.BlobContentTechnicalNodes": {
+      "id": "BlobContentTechnicalNodes",
+      "namespace": "commercialCatalog",
+      "description": "Describes node information",
+      "properties": {
+        "number": {
+          "type": "long",
+          "fullType": "long",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "Number of nodes",
+          "required": false
+        }
+      }
+    },
+    "commercialCatalog.BlobContentTechnicalNvme": {
+      "id": "BlobContentTechnicalNvme",
+      "namespace": "commercialCatalog",
+      "description": "Describes NVME storage information",
+      "properties": {
+        "disks": {
+          "type": "commercialCatalog.BlobContentTechnicalDisk[]",
+          "fullType": "commercialCatalog.BlobContentTechnicalDisk[]",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "Disk properties",
+          "required": false
+        }
+      }
+    },
+    "commercialCatalog.BlobContentTechnicalOS": {
+      "id": "BlobContentTechnicalOS",
+      "namespace": "commercialCatalog",
+      "description": "Describes operating system information",
+      "properties": {
+        "family": {
+          "type": "string",
+          "fullType": "string",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "Family",
+          "required": false
+        }
+      }
+    },
+    "commercialCatalog.BlobContentTechnicalPerSeconds": {
+      "id": "BlobContentTechnicalPerSeconds",
+      "namespace": "commercialCatalog",
+      "description": "Describes a connection or request per seconds for a technical blob",
+      "properties": {
+        "total": {
+          "type": "long",
+          "fullType": "long",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "Total",
+          "required": false
+        },
+        "unit": {
+          "type": "string",
+          "fullType": "string",
+          "canBeNull": true,
+          "readOnly": true,
+          "description": "Unit",
+          "required": false
+        }
+      }
+    },
+    "commercialCatalog.BlobContentTechnicalStorage": {
+      "id": "BlobContentTechnicalStorage",
+      "namespace": "commercialCatalog",
+      "description": "Describes storage information",
+      "properties": {
+        "disks": {
+          "type": "commercialCatalog.BlobContentTechnicalDisk[]",
+          "fullType": "commercialCatalog.BlobContentTechnicalDisk[]",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "Disk properties",
+          "required": false
+        },
+        "raid": {
+          "type": "string",
+          "fullType": "string",
+          "canBeNull": true,
+          "readOnly": true,
+          "description": "Raid",
+          "required": false
+        }
+      }
+    },
+    "commercialCatalog.BlobContentTechnicalThroughput": {
+      "id": "BlobContentTechnicalThroughput",
+      "namespace": "commercialCatalog",
+      "description": "Describes throughput information",
+      "properties": {
+        "level": {
+          "type": "long",
+          "fullType": "long",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "Level",
+          "required": false
+        }
+      }
+    },
+    "commercialCatalog.BlobContentTechnicalVolume": {
+      "id": "BlobContentTechnicalVolume",
+      "namespace": "commercialCatalog",
+      "description": "Describes volume information",
+      "properties": {
+        "capacity": {
+          "type": "commercialCatalog.BlobContentTechnicalVolumeCapacity",
+          "fullType": "commercialCatalog.BlobContentTechnicalVolumeCapacity",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "Disk capacity details",
+          "required": false
+        },
+        "iops": {
+          "type": "commercialCatalog.BlobContentTechnicalVolumeIops",
+          "fullType": "commercialCatalog.BlobContentTechnicalVolumeIops",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "Input/Output operations per second details",
+          "required": false
+        }
+      }
+    },
+    "commercialCatalog.BlobContentTechnicalVolumeCapacity": {
+      "id": "BlobContentTechnicalVolumeCapacity",
+      "namespace": "commercialCatalog",
+      "description": "Describes volume capacity",
+      "properties": {
+        "max": {
+          "type": "long",
+          "fullType": "long",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "Maximum volume capacity in GB",
+          "required": false
+        }
+      }
+    },
+    "commercialCatalog.BlobContentTechnicalVolumeIops": {
+      "id": "BlobContentTechnicalVolumeIops",
+      "namespace": "commercialCatalog",
+      "description": "Describes volume IOPS information",
+      "properties": {
+        "guaranteed": {
+          "type": "boolean",
+          "fullType": "boolean",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "Whether level is guaranteed",
+          "required": false
+        },
+        "level": {
+          "type": "long",
+          "fullType": "long",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "Level",
+          "required": false
+        },
+        "max": {
+          "type": "long",
+          "fullType": "long",
+          "canBeNull": true,
+          "readOnly": true,
+          "description": "Maximum value",
+          "required": false
+        },
+        "maxUnit": {
+          "type": "string",
+          "fullType": "string",
+          "canBeNull": true,
+          "readOnly": true,
+          "description": "Unit of maximum value",
+          "required": false
+        },
+        "unit": {
+          "type": "string",
+          "fullType": "string",
+          "canBeNull": true,
+          "readOnly": true,
+          "description": "Unit",
+          "required": false
+        }
+      }
+    },
+    "commercialCatalog.CommercialProduct": {
+      "id": "CommercialProduct",
+      "namespace": "commercialCatalog",
+      "description": "Product sold by the offer it is attached to",
+      "properties": {
+        "code": {
+          "type": "string",
+          "fullType": "string",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "Product code",
+          "required": false
+        },
+        "descriptions": {
+          "type": "commercialCatalog.Description[]",
+          "fullType": "commercialCatalog.Description[]",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "Description of the commercial product",
+          "required": false
+        }
+      }
+    },
+    "commercialCatalog.CommercialRatingValue": {
+      "id": "CommercialRatingValue",
+      "namespace": "commercialCatalog",
+      "description": "Defines the applicable rating values",
+      "properties": {
+        "invoiceLabels": {
+          "type": "commercialCatalog.InvoiceLabel[]",
+          "fullType": "commercialCatalog.InvoiceLabel[]",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "Label of the invoice",
+          "required": false
+        },
+        "ratingValue": {
+          "type": "commercialCatalog.RatingValue",
+          "fullType": "commercialCatalog.RatingValue",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "Rating value to link the offer to",
+          "required": false
+        }
+      }
+    },
+    "commercialCatalog.CompositeOfferCommercialOffer": {
+      "id": "CompositeOfferCommercialOffer",
+      "namespace": "commercialCatalog",
+      "description": "Describes offers composition",
+      "properties": {
+        "commercialOffer": {
+          "type": "string",
+          "fullType": "string",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "Offer embedded in the composite offer, represented by its id",
+          "required": false
+        },
+        "max": {
+          "type": "long",
+          "fullType": "long",
+          "canBeNull": true,
+          "readOnly": true,
+          "description": "Maximum number of commercial offers which may compose the composite offer. min = max means the quantity is forced",
+          "required": false
+        },
+        "min": {
+          "type": "long",
+          "fullType": "long",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "Minimum number of commercial offers which may compose the composite offer",
+          "required": false
+        }
+      }
+    },
+    "commercialCatalog.CurrencyCodeEnum": {
+      "id": "CurrencyCodeEnum",
+      "namespace": "commercialCatalog",
+      "description": "Currency code following ISO4217 format",
+      "enum": [
+        "AUD",
+        "CAD",
+        "CZK",
+        "EUR",
+        "GBP",
+        "INR",
+        "LTL",
+        "MAD",
+        "PLN",
+        "SGD",
+        "TND",
+        "USD",
+        "XOF"
+      ],
+      "enumType": "string"
+    },
+    "commercialCatalog.Description": {
+      "id": "Description",
+      "namespace": "commercialCatalog",
+      "description": "Translated description",
+      "properties": {
+        "language": {
+          "type": "common.LanguageEnum",
+          "fullType": "common.LanguageEnum",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "Language of the description",
+          "required": false
+        },
+        "longLabel": {
+          "type": "string",
+          "fullType": "string",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "Long label",
+          "required": false
+        },
+        "shortLabel": {
+          "type": "string",
+          "fullType": "string",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "Short label",
+          "required": false
+        }
+      }
+    },
+    "commercialCatalog.Engagement": {
+      "id": "Engagement",
+      "namespace": "commercialCatalog",
+      "description": "Describes engagement information",
+      "properties": {
+        "autoReactivation": {
+          "type": "boolean",
+          "fullType": "boolean",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "Whether the engagement reactivates itself",
+          "required": false
+        },
+        "validDuration": {
+          "type": "duration",
+          "fullType": "duration",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "Engagement duration following ISO8601 format",
+          "required": false
+        }
+      }
+    },
+    "commercialCatalog.InvoiceLabel": {
+      "id": "InvoiceLabel",
+      "namespace": "commercialCatalog",
+      "description": "Translated invoice label",
+      "properties": {
+        "label": {
+          "type": "string",
+          "fullType": "string",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "Invoice label",
+          "required": false
+        },
+        "language": {
+          "type": "common.LanguageEnum",
+          "fullType": "common.LanguageEnum",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "Label language",
+          "required": false
+        }
+      }
+    },
+    "commercialCatalog.Legacy": {
+      "id": "Legacy",
+      "namespace": "commercialCatalog",
+      "description": "Describes legacy information, used for transition between offer models",
+      "properties": {
+        "blobs": {
+          "type": "commercialCatalog.Blob",
+          "fullType": "commercialCatalog.Blob",
+          "canBeNull": true,
+          "readOnly": true,
+          "description": "Contains content from previous model",
+          "required": false
+        },
+        "plan": {
+          "type": "string",
+          "fullType": "string",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "Previous model identifier",
+          "required": false
+        }
+      }
+    },
+    "commercialCatalog.MerchantEnum": {
+      "id": "MerchantEnum",
+      "namespace": "commercialCatalog",
+      "description": "Merchants where offers are available",
+      "enum": [
+        "ASIA",
+        "AU",
+        "CA",
+        "DE",
+        "ES",
+        "FR",
+        "GB",
+        "IE",
+        "IN",
+        "IT",
+        "MA",
+        "NL",
+        "PL",
+        "PT",
+        "QC",
+        "SG",
+        "SN",
+        "TN",
+        "WE",
+        "WS"
+      ],
+      "enumType": "string"
+    },
+    "commercialCatalog.Offer": {
+      "id": "Offer",
+      "namespace": "commercialCatalog",
+      "description": "Defines a commercial catalog offer",
+      "properties": {
+        "code": {
+          "type": "string",
+          "fullType": "string",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "Unique code for the offer",
+          "required": false
+        },
+        "commercialRatingValues": {
+          "type": "commercialCatalog.CommercialRatingValue[]",
+          "fullType": "commercialCatalog.CommercialRatingValue[]",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "Applicable commercial rating values",
+          "required": false
+        },
+        "descriptions": {
+          "type": "commercialCatalog.Description[]",
+          "fullType": "commercialCatalog.Description[]",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "Offer description",
+          "required": false
+        },
+        "engagements": {
+          "type": "commercialCatalog.Engagement[]",
+          "fullType": "commercialCatalog.Engagement[]",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "List of engagements available to subscribe the offer to",
+          "required": false
+        },
+        "id": {
+          "type": "string",
+          "fullType": "string",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "Offer identifier",
+          "required": false
+        },
+        "legacy": {
+          "type": "commercialCatalog.Legacy",
+          "fullType": "commercialCatalog.Legacy",
+          "canBeNull": true,
+          "readOnly": true,
+          "description": "Offer information based on previous model used for migration to the new model",
+          "required": false
+        },
+        "nature": {
+          "type": "commercialCatalog.OfferNatureEnum",
+          "fullType": "commercialCatalog.OfferNatureEnum",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "Offer nature",
+          "required": false
+        },
+        "offers": {
+          "type": "commercialCatalog.CompositeOfferCommercialOffer[]",
+          "fullType": "commercialCatalog.CompositeOfferCommercialOffer[]",
+          "canBeNull": true,
+          "readOnly": true,
+          "description": "Sub offers when type is composite",
+          "required": false
+        },
+        "product": {
+          "type": "commercialCatalog.OfferCommercialProduct",
+          "fullType": "commercialCatalog.OfferCommercialProduct",
+          "canBeNull": true,
+          "readOnly": true,
+          "description": "Product linked to the offer",
+          "required": false
+        },
+        "technicalRequirements": {
+          "type": "commercialCatalog.TechnicalRequirement[]",
+          "fullType": "commercialCatalog.TechnicalRequirement[]",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "List of technical requirements of the product linked to the offer",
+          "required": false
+        },
+        "type": {
+          "type": "commercialCatalog.OfferTypeEnum",
+          "fullType": "commercialCatalog.OfferTypeEnum",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "Offer type",
+          "required": false
+        },
+        "validity": {
+          "type": "commercialCatalog.Validity",
+          "fullType": "commercialCatalog.Validity",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "Offer validity information",
+          "required": false
+        },
+        "version": {
+          "type": "long",
+          "fullType": "long",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "Offer version, increase on update",
+          "required": false
+        }
+      }
+    },
+    "commercialCatalog.OfferCommercialProduct": {
+      "id": "OfferCommercialProduct",
+      "namespace": "commercialCatalog",
+      "description": "Object to link a commercial product to an commercial offer",
+      "properties": {
+        "commercialProduct": {
+          "type": "commercialCatalog.CommercialProduct",
+          "fullType": "commercialCatalog.CommercialProduct",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "Commercial product to be linked",
+          "required": false
+        },
+        "max": {
+          "type": "long",
+          "fullType": "long",
+          "canBeNull": true,
+          "readOnly": true,
+          "description": "Maximum number of product to be included in the offer",
+          "required": false
+        },
+        "min": {
+          "type": "long",
+          "fullType": "long",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "Minimum number of product to be included in the offer",
+          "required": false
+        }
+      }
+    },
+    "commercialCatalog.OfferNatureEnum": {
+      "id": "OfferNatureEnum",
+      "namespace": "commercialCatalog",
+      "description": "Nature of a commercial catalog offer. It represents the commercial purpose of the offer. REGULAR represents an offer with standard pricing on product consumption. BILLING_PLAN represents an offer which allows savings on product consumption. STRUCTURAL represents an offer to hold a list of offers and information to share across them, which can't be purchased by itself.",
+      "enum": [
+        "BILLING_PLAN",
+        "REGULAR",
+        "STRUCTURAL"
+      ],
+      "enumType": "string"
+    },
+    "commercialCatalog.OfferStateEnum": {
+      "id": "OfferStateEnum",
+      "namespace": "commercialCatalog",
+      "description": "Offer state. DEPRECATED means that offer is not sold anymore but services are still active",
+      "enum": [
+        "ACTIVE",
+        "DEPRECATED"
+      ],
+      "enumType": "string"
+    },
+    "commercialCatalog.OfferTypeEnum": {
+      "id": "OfferTypeEnum",
+      "namespace": "commercialCatalog",
+      "description": "Type of a commercial catalog offer. An atomic offer is a basic commercial offer (e.g.: C3-8 instance offer with 1 month commitment). A composite offer is a kind of offer composed by multiple atomic offers.",
+      "enum": [
+        "ATOMIC",
+        "COMPOSITE"
+      ],
+      "enumType": "string"
+    },
+    "commercialCatalog.Price": {
+      "id": "Price",
+      "namespace": "commercialCatalog",
+      "description": "Price to apply on billing computation",
+      "properties": {
+        "amount": {
+          "type": "long",
+          "fullType": "long",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "Price amount in microcentimes",
+          "required": false
+        },
+        "currencyCode": {
+          "type": "commercialCatalog.CurrencyCodeEnum",
+          "fullType": "commercialCatalog.CurrencyCodeEnum",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "Price currency",
+          "required": false
+        }
+      }
+    },
+    "commercialCatalog.RatingValue": {
+      "id": "RatingValue",
+      "namespace": "commercialCatalog",
+      "description": "Price or percentage to apply",
+      "properties": {
+        "prices": {
+          "type": "commercialCatalog.Price[]",
+          "fullType": "commercialCatalog.Price[]",
+          "canBeNull": true,
+          "readOnly": true,
+          "description": "Price list",
+          "required": false
+        },
+        "type": {
+          "type": "commercialCatalog.RatingValueTypeEnum",
+          "fullType": "commercialCatalog.RatingValueTypeEnum",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "Type of type rating value",
+          "required": false
+        }
+      }
+    },
+    "commercialCatalog.RatingValueTypeEnum": {
+      "id": "RatingValueTypeEnum",
+      "namespace": "commercialCatalog",
+      "description": "Rating value type",
+      "enum": [
+        "PRICE"
+      ],
+      "enumType": "string"
+    },
+    "commercialCatalog.TechnicalRequirement": {
+      "id": "TechnicalRequirement",
+      "namespace": "commercialCatalog",
+      "description": "Technical requirement of the product linked to the offer",
+      "properties": {
+        "default": {
+          "type": "string",
+          "fullType": "string",
+          "canBeNull": true,
+          "readOnly": true,
+          "description": "Value by default",
+          "required": false
+        },
+        "name": {
+          "type": "string",
+          "fullType": "string",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "Name of the configuration field",
+          "required": false
+        },
+        "values": {
+          "type": "string[]",
+          "fullType": "string[]",
+          "canBeNull": true,
+          "readOnly": true,
+          "description": "List of possible values the technical requirement may have",
+          "required": false
+        }
+      }
+    },
+    "commercialCatalog.Validity": {
+      "id": "Validity",
+      "namespace": "commercialCatalog",
+      "description": "Describes offer validity",
+      "properties": {
+        "eolDate": {
+          "type": "datetime",
+          "fullType": "datetime",
+          "canBeNull": true,
+          "readOnly": true,
+          "description": "End-of-life datetime of the offer upon which nor offer or service is active",
+          "required": false
+        },
+        "eosDate": {
+          "type": "datetime",
+          "fullType": "datetime",
+          "canBeNull": true,
+          "readOnly": true,
+          "description": "End-of-sale datetime of the offer upon which offer is not sold anymore but associated service stays active",
+          "required": false
+        },
+        "startDate": {
+          "type": "datetime",
+          "fullType": "datetime",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "Start datetime of the offer upon which offer and service is available",
+          "required": false
+        }
+      }
+    },
+    "common.LanguageEnum": {
+      "id": "LanguageEnum",
+      "namespace": "common",
+      "description": "List of all values to define a language",
+      "enum": [
+        "cs_CZ",
+        "de_DE",
+        "en_AS",
+        "en_AU",
+        "en_CA",
+        "en_GB",
+        "en_IE",
+        "en_IN",
+        "en_SG",
+        "en_US",
+        "en_WW",
+        "es_ES",
+        "es_SA",
+        "fi_FI",
+        "fr_CA",
+        "fr_FR",
+        "fr_MA",
+        "fr_SN",
+        "fr_TN",
+        "it_IT",
+        "lt_LT",
+        "nl_NL",
+        "pl_PL",
+        "pt_PT"
+      ],
+      "enumType": "string"
+    }
+  }
+}

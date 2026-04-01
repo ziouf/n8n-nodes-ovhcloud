@@ -1,0 +1,1727 @@
+{
+  "apiVersion": "1.0",
+  "apis": [
+    {
+      "path": "/notification/contactMean",
+      "operations": [
+        {
+          "apiStatus": {
+            "description": "Stable production version",
+            "value": "PRODUCTION"
+          },
+          "httpMethod": "GET",
+          "parameters": [
+            {
+              "name": "X-Pagination-Cursor",
+              "dataType": "string",
+              "paramType": "header",
+              "fullType": "string",
+              "required": false,
+              "description": "Pagination cursor"
+            },
+            {
+              "name": "X-Pagination-Size",
+              "dataType": "long",
+              "paramType": "header",
+              "fullType": "long",
+              "required": false,
+              "description": "Pagination size"
+            }
+          ],
+          "responseType": "notification.contactMean.ContactMean[]",
+          "noAuthentication": false,
+          "description": "Retrieve every contact mean",
+          "errors": [
+            "Client::BadRequest::CursorParametersConflict",
+            "Client::BadRequest::InvalidCursor"
+          ],
+          "iamActions": [
+            {
+              "name": "account:apiovh:notification/contactMean/get",
+              "required": true
+            }
+          ]
+        },
+        {
+          "apiStatus": {
+            "description": "Stable production version",
+            "value": "PRODUCTION"
+          },
+          "httpMethod": "POST",
+          "parameters": [
+            {
+              "dataType": "notification.contactMean.PostInput",
+              "paramType": "body",
+              "fullType": "notification.contactMean.PostInput",
+              "required": true,
+              "description": "Request Body"
+            }
+          ],
+          "responseType": "notification.contactMean.ContactMean",
+          "noAuthentication": false,
+          "description": "Create a contact mean",
+          "errors": [
+            "Client::BadRequest::ContactMeanAlreadyExists",
+            "Client::BadRequest::ContactMeanCreationMissingDestination",
+            "Client::BadRequest::ContactMeanInvalidDescription",
+            "Client::BadRequest::ContactMeanValidationThresholdReached",
+            "Client::BadRequest::InvalidEmailAddress"
+          ],
+          "iamActions": [
+            {
+              "name": "account:apiovh:notification/contactMean/create",
+              "required": true
+            }
+          ]
+        }
+      ],
+      "description": "Notification contact means"
+    },
+    {
+      "path": "/notification/contactMean/{contactMeanId}",
+      "operations": [
+        {
+          "apiStatus": {
+            "description": "Stable production version",
+            "value": "PRODUCTION"
+          },
+          "httpMethod": "DELETE",
+          "parameters": [
+            {
+              "name": "contactMeanId",
+              "dataType": "uuid",
+              "paramType": "path",
+              "fullType": "uuid",
+              "required": true,
+              "description": "Contact mean ID"
+            }
+          ],
+          "responseType": "void",
+          "noAuthentication": false,
+          "description": "Delete the contact mean",
+          "errors": [
+            "Client::BadRequest::ContactMeanDefaultRO",
+            "Client::NotFound::ContactMeanNotFound"
+          ],
+          "iamActions": [
+            {
+              "name": "account:apiovh:notification/contactMean/delete",
+              "required": true
+            }
+          ]
+        },
+        {
+          "apiStatus": {
+            "description": "Stable production version",
+            "value": "PRODUCTION"
+          },
+          "httpMethod": "GET",
+          "parameters": [
+            {
+              "name": "contactMeanId",
+              "dataType": "uuid",
+              "paramType": "path",
+              "fullType": "uuid",
+              "required": true,
+              "description": "Contact mean ID"
+            }
+          ],
+          "responseType": "notification.contactMean.ContactMean",
+          "noAuthentication": false,
+          "description": "Retrieve information about a contact mean",
+          "errors": [
+            "Client::NotFound::ContactMeanNotFound"
+          ],
+          "iamActions": [
+            {
+              "name": "account:apiovh:notification/contactMean/get",
+              "required": true
+            }
+          ]
+        },
+        {
+          "apiStatus": {
+            "description": "Stable production version",
+            "value": "PRODUCTION"
+          },
+          "httpMethod": "PUT",
+          "parameters": [
+            {
+              "dataType": "notification.contactMean.ContactMean",
+              "paramType": "body",
+              "fullType": "notification.contactMean.ContactMean",
+              "required": true,
+              "description": "Request Body"
+            },
+            {
+              "name": "contactMeanId",
+              "dataType": "uuid",
+              "paramType": "path",
+              "fullType": "uuid",
+              "required": true,
+              "description": "Contact mean ID"
+            }
+          ],
+          "responseType": "notification.contactMean.ContactMean",
+          "noAuthentication": false,
+          "description": "Update a contact mean",
+          "errors": [
+            "Client::BadRequest::ContactMeanDefaultRO",
+            "Client::BadRequest::ContactMeanInvalidDescription",
+            "Client::BadRequest::ContactMeanStatusChangeForbidden",
+            "Client::NotFound::ContactMeanNotFound"
+          ],
+          "iamActions": [
+            {
+              "name": "account:apiovh:notification/contactMean/edit",
+              "required": true
+            }
+          ]
+        }
+      ],
+      "description": "Notification contact means"
+    },
+    {
+      "path": "/notification/contactMean/{contactMeanId}/restartValidation",
+      "operations": [
+        {
+          "apiStatus": {
+            "description": "Stable production version",
+            "value": "PRODUCTION"
+          },
+          "httpMethod": "POST",
+          "parameters": [
+            {
+              "name": "contactMeanId",
+              "dataType": "uuid",
+              "paramType": "path",
+              "fullType": "uuid",
+              "required": true,
+              "description": "Contact mean ID"
+            }
+          ],
+          "responseType": "notification.contactMean.ContactMean",
+          "noAuthentication": false,
+          "description": "Restart the validation process for this contact mean, if you did not receive the OTP",
+          "errors": [
+            "Client::BadRequest::ContactMeanDefaultRO",
+            "Client::BadRequest::ContactMeanInvalidStatus",
+            "Client::BadRequest::ContactMeanValidationThresholdReached",
+            "Client::BadRequest::ContactMeanWaitBetweenValidations",
+            "Client::NotFound::ContactMeanNotFound"
+          ],
+          "iamActions": [
+            {
+              "name": "account:apiovh:notification/contactMean/restartValidation",
+              "required": true
+            }
+          ]
+        }
+      ],
+      "description": "Restart the validation process for this contact mean"
+    },
+    {
+      "path": "/notification/contactMean/{contactMeanId}/task",
+      "operations": [
+        {
+          "apiStatus": {
+            "description": "Stable production version",
+            "value": "PRODUCTION"
+          },
+          "httpMethod": "GET",
+          "parameters": [
+            {
+              "name": "X-Pagination-Cursor",
+              "dataType": "string",
+              "paramType": "header",
+              "fullType": "string",
+              "required": false,
+              "description": "Pagination cursor"
+            },
+            {
+              "name": "X-Pagination-Size",
+              "dataType": "long",
+              "paramType": "header",
+              "fullType": "long",
+              "required": false,
+              "description": "Pagination size"
+            },
+            {
+              "name": "contactMeanId",
+              "dataType": "uuid",
+              "paramType": "path",
+              "fullType": "uuid",
+              "required": true,
+              "description": "Contact mean ID"
+            }
+          ],
+          "responseType": "common.Task[]",
+          "noAuthentication": false,
+          "description": "Get the list of tasks on a contact mean",
+          "errors": [
+            "Client::BadRequest::InvalidCursor",
+            "Client::NotFound::ContactMeanNotFound"
+          ],
+          "iamActions": [
+            {
+              "name": "account:apiovh:notification/contactMean/task/get",
+              "required": true
+            }
+          ]
+        }
+      ],
+      "description": ""
+    },
+    {
+      "path": "/notification/contactMean/{contactMeanId}/task/{taskId}",
+      "operations": [
+        {
+          "apiStatus": {
+            "description": "Stable production version",
+            "value": "PRODUCTION"
+          },
+          "httpMethod": "GET",
+          "parameters": [
+            {
+              "name": "contactMeanId",
+              "dataType": "uuid",
+              "paramType": "path",
+              "fullType": "uuid",
+              "required": true,
+              "description": "Contact mean ID"
+            },
+            {
+              "name": "taskId",
+              "dataType": "uuid",
+              "paramType": "path",
+              "fullType": "uuid",
+              "required": true,
+              "description": "Task ID"
+            }
+          ],
+          "responseType": "common.Task",
+          "noAuthentication": false,
+          "description": "Get a task on a contact mean",
+          "errors": [
+            "Client::NotFound::ContactMeanNotFound",
+            "Client::NotFound::ContactMeanTaskNotFound"
+          ],
+          "iamActions": [
+            {
+              "name": "account:apiovh:notification/contactMean/task/get",
+              "required": true
+            }
+          ]
+        },
+        {
+          "apiStatus": {
+            "description": "Stable production version",
+            "value": "PRODUCTION"
+          },
+          "httpMethod": "PUT",
+          "parameters": [
+            {
+              "dataType": "common.TaskWithInputs<notification.contactMean.TaskInputs>",
+              "paramType": "body",
+              "fullType": "common.TaskWithInputs<notification.contactMean.TaskInputs>",
+              "required": true,
+              "description": "Request Body"
+            },
+            {
+              "name": "contactMeanId",
+              "dataType": "uuid",
+              "paramType": "path",
+              "fullType": "uuid",
+              "required": true,
+              "description": "Contact mean ID"
+            },
+            {
+              "name": "taskId",
+              "dataType": "uuid",
+              "paramType": "path",
+              "fullType": "uuid",
+              "required": true,
+              "description": "Task ID"
+            }
+          ],
+          "responseType": "common.Task",
+          "noAuthentication": false,
+          "description": "Update a task on a contact mean",
+          "errors": [
+            "Client::BadRequest::ContactMeanValidationExpired",
+            "Client::BadRequest::ContactMeanValidationFailed",
+            "Client::BadRequest::ContactMeanValidationThresholdReached",
+            "Client::BadRequest::ContactMeanWaitBetweenValidations",
+            "Client::BadRequest::InvalidResendOTP",
+            "Client::BadRequest::MissingInput",
+            "Client::NotFound::ContactMeanNotFound",
+            "Client::NotFound::ContactMeanTaskNotFound"
+          ],
+          "iamActions": [
+            {
+              "name": "account:apiovh:notification/contactMean/task/edit",
+              "required": true
+            }
+          ]
+        }
+      ],
+      "description": ""
+    },
+    {
+      "path": "/notification/contactMean/{contactMeanId}/validate",
+      "operations": [
+        {
+          "apiStatus": {
+            "description": "Stable production version",
+            "value": "PRODUCTION"
+          },
+          "httpMethod": "POST",
+          "parameters": [
+            {
+              "dataType": "notification.contactMean.ValidateInput",
+              "paramType": "body",
+              "fullType": "notification.contactMean.ValidateInput",
+              "required": true,
+              "description": "Request Body"
+            },
+            {
+              "name": "contactMeanId",
+              "dataType": "uuid",
+              "paramType": "path",
+              "fullType": "uuid",
+              "required": true,
+              "description": "Contact mean ID"
+            }
+          ],
+          "responseType": "notification.contactMean.ContactMean",
+          "noAuthentication": false,
+          "description": "Validate this contact mean",
+          "errors": [
+            "Client::BadRequest::ContactMeanDefaultRO",
+            "Client::BadRequest::ContactMeanInvalidStatus",
+            "Client::BadRequest::ContactMeanValidationExpired",
+            "Client::BadRequest::ContactMeanValidationFailed",
+            "Client::NotFound::ContactMeanNotFound"
+          ],
+          "iamActions": [
+            {
+              "name": "account:apiovh:notification/contactMean/validate",
+              "required": true
+            }
+          ]
+        }
+      ],
+      "description": "Validate this contact mean"
+    },
+    {
+      "path": "/notification/history",
+      "operations": [
+        {
+          "apiStatus": {
+            "description": "Stable production version",
+            "value": "PRODUCTION"
+          },
+          "httpMethod": "GET",
+          "parameters": [
+            {
+              "name": "X-Pagination-Cursor",
+              "dataType": "string",
+              "paramType": "header",
+              "fullType": "string",
+              "required": false,
+              "description": "Pagination cursor"
+            },
+            {
+              "name": "X-Pagination-Size",
+              "dataType": "long",
+              "paramType": "header",
+              "fullType": "long",
+              "required": false,
+              "description": "Pagination size"
+            },
+            {
+              "name": "category",
+              "dataType": "string[]",
+              "paramType": "query",
+              "fullType": "string[]",
+              "required": false,
+              "description": "Select notifications belonging to one of these categories"
+            },
+            {
+              "name": "createdAfter",
+              "dataType": "datetime",
+              "paramType": "query",
+              "fullType": "datetime",
+              "required": false,
+              "description": "Select notifications created after this date"
+            },
+            {
+              "name": "createdBefore",
+              "dataType": "datetime",
+              "paramType": "query",
+              "fullType": "datetime",
+              "required": false,
+              "description": "Select notifications created before this date"
+            },
+            {
+              "name": "priority",
+              "dataType": "notification.history.NotificationPriorityEnum[]",
+              "paramType": "query",
+              "fullType": "notification.history.NotificationPriorityEnum[]",
+              "required": false,
+              "description": "Select notifications matching one of these priorities"
+            },
+            {
+              "name": "sortCreatedAt",
+              "dataType": "notification.SortOrderEnum",
+              "paramType": "query",
+              "fullType": "notification.SortOrderEnum",
+              "required": false,
+              "description": "Sort by createdAt field (default DESC)"
+            },
+            {
+              "name": "titleContains",
+              "dataType": "string",
+              "paramType": "query",
+              "fullType": "string",
+              "required": false,
+              "description": "Select notifications which title contains this text"
+            }
+          ],
+          "responseType": "notification.history.Notification[]",
+          "noAuthentication": false,
+          "description": "Retrieve every notification sent to you",
+          "errors": [
+            "Client::BadRequest::CursorParametersConflict",
+            "Client::BadRequest::InvalidCursor"
+          ],
+          "iamActions": [
+            {
+              "name": "account:apiovh:notification/history/get",
+              "required": true
+            }
+          ]
+        }
+      ],
+      "description": "Notification history"
+    },
+    {
+      "path": "/notification/history/{notificationId}",
+      "operations": [
+        {
+          "apiStatus": {
+            "description": "Stable production version",
+            "value": "PRODUCTION"
+          },
+          "httpMethod": "GET",
+          "parameters": [
+            {
+              "name": "notificationId",
+              "dataType": "uuid",
+              "paramType": "path",
+              "fullType": "uuid",
+              "required": true,
+              "description": "Notification ID"
+            }
+          ],
+          "responseType": "notification.history.Notification",
+          "noAuthentication": false,
+          "description": "Retrieve information about a notification sent to you",
+          "errors": [
+            "Client::NotFound::NotificationNotFound"
+          ],
+          "iamActions": [
+            {
+              "name": "account:apiovh:notification/history/get",
+              "required": true
+            }
+          ]
+        }
+      ],
+      "description": "Notification history"
+    },
+    {
+      "path": "/notification/history/{notificationId}/attachment/{attachmentName}",
+      "operations": [
+        {
+          "apiStatus": {
+            "description": "Stable production version",
+            "value": "PRODUCTION"
+          },
+          "httpMethod": "GET",
+          "parameters": [
+            {
+              "name": "attachmentName",
+              "dataType": "string",
+              "paramType": "path",
+              "fullType": "string",
+              "required": true,
+              "description": "Attachment name"
+            },
+            {
+              "name": "notificationId",
+              "dataType": "uuid",
+              "paramType": "path",
+              "fullType": "uuid",
+              "required": true,
+              "description": "Notification ID"
+            }
+          ],
+          "responseType": "notification.history.Attachment",
+          "noAuthentication": false,
+          "description": "Get a notification attachment",
+          "errors": [
+            "Client::NotFound::AttachmentNotFound"
+          ],
+          "iamActions": [
+            {
+              "name": "account:apiovh:notification/history/attachment/get",
+              "required": true
+            }
+          ]
+        }
+      ],
+      "description": "Notification attachments"
+    },
+    {
+      "path": "/notification/reference",
+      "operations": [
+        {
+          "apiStatus": {
+            "description": "Stable production version",
+            "value": "PRODUCTION"
+          },
+          "httpMethod": "GET",
+          "parameters": [],
+          "responseType": "notification.reference.Reference",
+          "noAuthentication": false,
+          "description": "Retrieve data referential for /notification endpoints"
+        }
+      ],
+      "description": "Notification reference"
+    },
+    {
+      "path": "/notification/routing",
+      "operations": [
+        {
+          "apiStatus": {
+            "description": "Stable production version",
+            "value": "PRODUCTION"
+          },
+          "httpMethod": "GET",
+          "parameters": [
+            {
+              "name": "X-Pagination-Cursor",
+              "dataType": "string",
+              "paramType": "header",
+              "fullType": "string",
+              "required": false,
+              "description": "Pagination cursor"
+            },
+            {
+              "name": "X-Pagination-Size",
+              "dataType": "long",
+              "paramType": "header",
+              "fullType": "long",
+              "required": false,
+              "description": "Pagination size"
+            }
+          ],
+          "responseType": "notification.routing.Routing[]",
+          "noAuthentication": false,
+          "description": "Retrieve every routing",
+          "errors": [
+            "Client::BadRequest::CursorParametersConflict",
+            "Client::BadRequest::InvalidCursor"
+          ],
+          "iamActions": [
+            {
+              "name": "account:apiovh:notification/routing/get",
+              "required": true
+            }
+          ]
+        },
+        {
+          "apiStatus": {
+            "description": "Stable production version",
+            "value": "PRODUCTION"
+          },
+          "httpMethod": "POST",
+          "parameters": [
+            {
+              "dataType": "notification.routing.PostInput",
+              "paramType": "body",
+              "fullType": "notification.routing.PostInput",
+              "required": true,
+              "description": "Request Body"
+            }
+          ],
+          "responseType": "notification.routing.Routing",
+          "noAuthentication": false,
+          "description": "Create a routing",
+          "errors": [
+            "Client::BadRequest::InvalidEmailAddress",
+            "Client::BadRequest::RoutingAlreadyExists"
+          ],
+          "iamActions": [
+            {
+              "name": "account:apiovh:notification/routing/create",
+              "required": true
+            }
+          ]
+        }
+      ],
+      "description": "Notification routings"
+    },
+    {
+      "path": "/notification/routing/{routingId}",
+      "operations": [
+        {
+          "apiStatus": {
+            "description": "Stable production version",
+            "value": "PRODUCTION"
+          },
+          "httpMethod": "DELETE",
+          "parameters": [
+            {
+              "name": "routingId",
+              "dataType": "uuid",
+              "paramType": "path",
+              "fullType": "uuid",
+              "required": true,
+              "description": "Routing ID"
+            }
+          ],
+          "responseType": "void",
+          "noAuthentication": false,
+          "description": "Delete the routing",
+          "errors": [
+            "Client::NotFound::RoutingNotFound"
+          ],
+          "iamActions": [
+            {
+              "name": "account:apiovh:notification/routing/delete",
+              "required": true
+            }
+          ]
+        },
+        {
+          "apiStatus": {
+            "description": "Stable production version",
+            "value": "PRODUCTION"
+          },
+          "httpMethod": "GET",
+          "parameters": [
+            {
+              "name": "routingId",
+              "dataType": "uuid",
+              "paramType": "path",
+              "fullType": "uuid",
+              "required": true,
+              "description": "Routing ID"
+            }
+          ],
+          "responseType": "notification.routing.Routing",
+          "noAuthentication": false,
+          "description": "Retrieve information about a routing",
+          "errors": [
+            "Client::NotFound::RoutingNotFound"
+          ],
+          "iamActions": [
+            {
+              "name": "account:apiovh:notification/routing/get",
+              "required": true
+            }
+          ]
+        },
+        {
+          "apiStatus": {
+            "description": "Stable production version",
+            "value": "PRODUCTION"
+          },
+          "httpMethod": "PUT",
+          "parameters": [
+            {
+              "dataType": "notification.routing.Routing",
+              "paramType": "body",
+              "fullType": "notification.routing.Routing",
+              "required": true,
+              "description": "Request Body"
+            },
+            {
+              "name": "routingId",
+              "dataType": "uuid",
+              "paramType": "path",
+              "fullType": "uuid",
+              "required": true,
+              "description": "Routing ID"
+            }
+          ],
+          "responseType": "notification.routing.Routing",
+          "noAuthentication": false,
+          "description": "Update a routing",
+          "errors": [
+            "Client::NotFound::RoutingNotFound"
+          ],
+          "iamActions": [
+            {
+              "name": "account:apiovh:notification/routing/edit",
+              "required": true
+            }
+          ]
+        }
+      ],
+      "description": "Notification routings"
+    }
+  ],
+  "resourcePath": "/notification",
+  "basePath": "https://eu.api.ovh.com/v2",
+  "models": {
+    "common.CurrentTask": {
+      "id": "CurrentTask",
+      "namespace": "common",
+      "description": "Asynchronous operation currently running",
+      "properties": {
+        "errors": {
+          "type": "common.TaskError[]",
+          "fullType": "common.TaskError[]",
+          "canBeNull": true,
+          "readOnly": true,
+          "description": "Errors that occured on the task",
+          "required": false
+        },
+        "id": {
+          "type": "uuid",
+          "fullType": "uuid",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "Identifier of the current task",
+          "required": false
+        },
+        "link": {
+          "type": "string",
+          "fullType": "string",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "Link to the task details",
+          "required": false
+        },
+        "status": {
+          "type": "common.CurrentTaskStatusEnum",
+          "fullType": "common.CurrentTaskStatusEnum",
+          "canBeNull": true,
+          "readOnly": true,
+          "description": "Current global status of the current task",
+          "required": false
+        },
+        "type": {
+          "type": "string",
+          "fullType": "string",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "Type of the current task",
+          "required": false
+        }
+      }
+    },
+    "common.CurrentTaskStatusEnum": {
+      "id": "CurrentTaskStatusEnum",
+      "namespace": "common",
+      "description": "Current status of a task. A task in ERROR cannot be retried without your inputs. PENDING tasks will be executed as soon as possible. A RUNNING task is currently executing your original request. SCHEDULED is used for tasks that will be executed in the future",
+      "enum": [
+        "ERROR",
+        "PENDING",
+        "RUNNING",
+        "SCHEDULED",
+        "WAITING_USER_INPUT"
+      ],
+      "enumType": "string"
+    },
+    "common.Task": {
+      "id": "Task",
+      "namespace": "common",
+      "description": "Asynchronous operation",
+      "properties": {
+        "createdAt": {
+          "type": "datetime",
+          "fullType": "datetime",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "Creation date of the task",
+          "required": false
+        },
+        "errors": {
+          "type": "common.TaskError[]",
+          "fullType": "common.TaskError[]",
+          "canBeNull": true,
+          "readOnly": true,
+          "description": "Errors that occured on the task",
+          "required": false
+        },
+        "finishedAt": {
+          "type": "datetime",
+          "fullType": "datetime",
+          "canBeNull": true,
+          "readOnly": true,
+          "description": "Ending date of the task",
+          "required": false
+        },
+        "id": {
+          "type": "uuid",
+          "fullType": "uuid",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "Identifier of the task",
+          "required": false
+        },
+        "link": {
+          "type": "string",
+          "fullType": "string",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "Link to the related resource",
+          "required": false
+        },
+        "message": {
+          "type": "string",
+          "fullType": "string",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "Description of the task",
+          "required": false
+        },
+        "progress": {
+          "type": "common.TaskProgress[]",
+          "fullType": "common.TaskProgress[]",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "Progress steps of the asynchronous operation",
+          "required": false
+        },
+        "startedAt": {
+          "type": "datetime",
+          "fullType": "datetime",
+          "canBeNull": true,
+          "readOnly": true,
+          "description": "Starting date of the task",
+          "required": false
+        },
+        "status": {
+          "type": "common.TaskStatusEnum",
+          "fullType": "common.TaskStatusEnum",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "Current global status of the task",
+          "required": false
+        },
+        "type": {
+          "type": "string",
+          "fullType": "string",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "Type of the task",
+          "required": false
+        },
+        "updatedAt": {
+          "type": "datetime",
+          "fullType": "datetime",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "Last update of the task",
+          "required": false
+        }
+      }
+    },
+    "common.TaskError": {
+      "id": "TaskError",
+      "namespace": "common",
+      "description": "Errors that occured on the task",
+      "properties": {
+        "message": {
+          "type": "string",
+          "fullType": "string",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "Error description",
+          "required": false
+        }
+      }
+    },
+    "common.TaskProgress": {
+      "id": "TaskProgress",
+      "namespace": "common",
+      "description": "Detailed information about an asynchronous operation progress steps",
+      "properties": {
+        "name": {
+          "type": "string",
+          "fullType": "string",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "Progress step name",
+          "required": false
+        },
+        "status": {
+          "type": "common.TaskStatusEnum",
+          "fullType": "common.TaskStatusEnum",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "Current status of the progress step",
+          "required": false
+        }
+      }
+    },
+    "common.TaskStatusEnum": {
+      "id": "TaskStatusEnum",
+      "namespace": "common",
+      "description": "TaskStatusEnum",
+      "enum": [
+        "DONE",
+        "ERROR",
+        "PENDING",
+        "RUNNING",
+        "SCHEDULED",
+        "WAITING_USER_INPUT"
+      ],
+      "enumType": "string"
+    },
+    "common.TaskWithInputs<T>": {
+      "id": "TaskWithInputs",
+      "namespace": "common",
+      "description": "Asynchronous operation",
+      "generics": [
+        "T"
+      ],
+      "properties": {
+        "createdAt": {
+          "type": "datetime",
+          "fullType": "datetime",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "Creation date of the task",
+          "required": false
+        },
+        "errors": {
+          "type": "common.TaskError[]",
+          "fullType": "common.TaskError[]",
+          "canBeNull": true,
+          "readOnly": true,
+          "description": "Errors that occured on the task",
+          "required": false
+        },
+        "finishedAt": {
+          "type": "datetime",
+          "fullType": "datetime",
+          "canBeNull": true,
+          "readOnly": true,
+          "description": "Ending date of the task",
+          "required": false
+        },
+        "id": {
+          "type": "uuid",
+          "fullType": "uuid",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "Identifier of the task",
+          "required": false
+        },
+        "inputs": {
+          "type": "T",
+          "fullType": "T",
+          "canBeNull": false,
+          "readOnly": false,
+          "description": "User inputs needed to unlock the task when status is 'WAITING_USER_INPUT'",
+          "required": true
+        },
+        "link": {
+          "type": "string",
+          "fullType": "string",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "Link to the related resource",
+          "required": false
+        },
+        "message": {
+          "type": "string",
+          "fullType": "string",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "Description of the task",
+          "required": false
+        },
+        "progress": {
+          "type": "common.TaskProgress[]",
+          "fullType": "common.TaskProgress[]",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "Progress steps of the asynchronous operation",
+          "required": false
+        },
+        "startedAt": {
+          "type": "datetime",
+          "fullType": "datetime",
+          "canBeNull": true,
+          "readOnly": true,
+          "description": "Starting date of the task",
+          "required": false
+        },
+        "status": {
+          "type": "common.TaskStatusEnum",
+          "fullType": "common.TaskStatusEnum",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "Current global status of the task",
+          "required": false
+        },
+        "type": {
+          "type": "string",
+          "fullType": "string",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "Type of the task",
+          "required": false
+        },
+        "updatedAt": {
+          "type": "datetime",
+          "fullType": "datetime",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "Last update of the task",
+          "required": false
+        }
+      }
+    },
+    "notification.SortOrderEnum": {
+      "id": "SortOrderEnum",
+      "namespace": "notification",
+      "description": "Choose how to order some results",
+      "enum": [
+        "ASC",
+        "DESC"
+      ],
+      "enumType": "string"
+    },
+    "notification.contactMean.ContactMean": {
+      "id": "ContactMean",
+      "namespace": "notification.contactMean",
+      "description": "A contact mean",
+      "properties": {
+        "createdAt": {
+          "type": "datetime",
+          "fullType": "datetime",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "Date at which the contact mean was created",
+          "required": false
+        },
+        "currentTasks": {
+          "type": "common.CurrentTask[]",
+          "fullType": "common.CurrentTask[]",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "Task to do on this contact mean",
+          "required": false
+        },
+        "default": {
+          "type": "boolean",
+          "fullType": "boolean",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "Is this the default contact mean",
+          "required": false
+        },
+        "description": {
+          "type": "string",
+          "fullType": "string",
+          "canBeNull": true,
+          "readOnly": false,
+          "description": "Arbitrary description for this contact mean",
+          "required": false
+        },
+        "email": {
+          "type": "string",
+          "fullType": "string",
+          "canBeNull": true,
+          "readOnly": true,
+          "description": "When type is EMAIL, the email address this contact mean uses",
+          "required": false
+        },
+        "error": {
+          "type": "string",
+          "fullType": "string",
+          "canBeNull": true,
+          "readOnly": true,
+          "description": "When status is ERROR, details about the error",
+          "required": false
+        },
+        "id": {
+          "type": "uuid",
+          "fullType": "uuid",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "ID of the contact mean",
+          "required": false
+        },
+        "status": {
+          "type": "notification.contactMean.StatusEnum",
+          "fullType": "notification.contactMean.StatusEnum",
+          "canBeNull": false,
+          "readOnly": false,
+          "description": "Status of the contact mean",
+          "required": false
+        },
+        "type": {
+          "type": "notification.contactMean.TypeEnum",
+          "fullType": "notification.contactMean.TypeEnum",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "Type of the contact mean",
+          "required": false
+        }
+      }
+    },
+    "notification.contactMean.ContactMeanTypeEnum": {
+      "id": "ContactMeanTypeEnum",
+      "namespace": "notification.contactMean",
+      "description": "Type of a contact mean",
+      "enum": [
+        "EMAIL"
+      ],
+      "enumType": "string"
+    },
+    "notification.contactMean.PostInput": {
+      "id": "PostInput",
+      "namespace": "notification.contactMean",
+      "description": "Payload to create a new contact mean",
+      "properties": {
+        "description": {
+          "type": "string",
+          "fullType": "string",
+          "canBeNull": true,
+          "readOnly": false,
+          "description": "Arbitrary description for this contact mean",
+          "required": false
+        },
+        "email": {
+          "type": "string",
+          "fullType": "string",
+          "canBeNull": false,
+          "readOnly": false,
+          "description": "When type is EMAIL, the email address that will be used",
+          "required": false
+        },
+        "type": {
+          "type": "notification.contactMean.TypeEnum",
+          "fullType": "notification.contactMean.TypeEnum",
+          "canBeNull": false,
+          "readOnly": false,
+          "description": "Type of the contact mean to create",
+          "required": true
+        }
+      }
+    },
+    "notification.contactMean.StatusEnum": {
+      "id": "StatusEnum",
+      "namespace": "notification.contactMean",
+      "description": "Status of a contact mean",
+      "enum": [
+        "DISABLED",
+        "ERROR",
+        "TO_VALIDATE",
+        "VALID"
+      ],
+      "enumType": "string"
+    },
+    "notification.contactMean.TaskInputs": {
+      "id": "TaskInputs",
+      "namespace": "notification.contactMean",
+      "description": "Contact mean task input",
+      "properties": {
+        "otp": {
+          "type": "string",
+          "fullType": "string",
+          "canBeNull": false,
+          "readOnly": false,
+          "description": "The OTP received by your contact mean to validate it",
+          "required": false
+        },
+        "resendOTP": {
+          "type": "datetime",
+          "fullType": "datetime",
+          "canBeNull": false,
+          "readOnly": false,
+          "description": "Specify a new date in order to request a new OTP (for terraform compatibility)",
+          "required": false
+        }
+      }
+    },
+    "notification.contactMean.TypeEnum": {
+      "id": "TypeEnum",
+      "namespace": "notification.contactMean",
+      "description": "Type of a contact mean",
+      "enum": [
+        "EMAIL"
+      ],
+      "enumType": "string"
+    },
+    "notification.contactMean.ValidateInput": {
+      "id": "ValidateInput",
+      "namespace": "notification.contactMean",
+      "description": "Payload to validate the contact mean",
+      "properties": {
+        "otp": {
+          "type": "string",
+          "fullType": "string",
+          "canBeNull": false,
+          "readOnly": false,
+          "description": "The OTP received by your contact mean to validate it",
+          "required": true
+        }
+      }
+    },
+    "notification.history.Attachment": {
+      "id": "Attachment",
+      "namespace": "notification.history",
+      "description": "Attachment linked to a notification (full version)",
+      "properties": {
+        "contentType": {
+          "type": "string",
+          "fullType": "string",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "Content type of the attachment",
+          "required": false
+        },
+        "name": {
+          "type": "text",
+          "fullType": "text",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "Name of the attachment",
+          "required": false
+        },
+        "sizeBytes": {
+          "type": "long",
+          "fullType": "long",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "Size of the attachment, in bytes",
+          "required": false
+        },
+        "url": {
+          "type": "string",
+          "fullType": "string",
+          "canBeNull": true,
+          "readOnly": true,
+          "description": "URL to use to download the attachment",
+          "required": false
+        }
+      }
+    },
+    "notification.history.Contact": {
+      "id": "Contact",
+      "namespace": "notification.history",
+      "description": "Contact attempt made for a notification",
+      "properties": {
+        "error": {
+          "type": "string",
+          "fullType": "string",
+          "canBeNull": true,
+          "readOnly": true,
+          "description": "Error encountered when attempting this contact",
+          "required": false
+        },
+        "id": {
+          "type": "uuid",
+          "fullType": "uuid",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "ID of the contact",
+          "required": false
+        },
+        "sentAt": {
+          "type": "datetime",
+          "fullType": "datetime",
+          "canBeNull": true,
+          "readOnly": true,
+          "description": "Date at which this contact happened",
+          "required": false
+        },
+        "status": {
+          "type": "notification.history.ContactStatusEnum",
+          "fullType": "notification.history.ContactStatusEnum",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "Status of the contact",
+          "required": false
+        },
+        "to": {
+          "type": "string",
+          "fullType": "string",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "Destination of this contact attempt",
+          "required": false
+        },
+        "type": {
+          "type": "notification.contactMean.ContactMeanTypeEnum",
+          "fullType": "notification.contactMean.ContactMeanTypeEnum",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "Type of the contact mean used",
+          "required": false
+        }
+      }
+    },
+    "notification.history.ContactStatusEnum": {
+      "id": "ContactStatusEnum",
+      "namespace": "notification.history",
+      "description": "Status of a notification contact attempt",
+      "enum": [
+        "BOUNCED",
+        "DELIVERED",
+        "DROPPED",
+        "QUEUED",
+        "SENT"
+      ],
+      "enumType": "string"
+    },
+    "notification.history.Notification": {
+      "id": "Notification",
+      "namespace": "notification.history",
+      "description": "Notification sent to this account",
+      "properties": {
+        "attachments": {
+          "type": "notification.history.Attachment[]",
+          "fullType": "notification.history.Attachment[]",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "Attachments linked to this notification",
+          "required": false
+        },
+        "categories": {
+          "type": "string[]",
+          "fullType": "string[]",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "Categories of the notification",
+          "required": false
+        },
+        "contacts": {
+          "type": "notification.history.Contact[]",
+          "fullType": "notification.history.Contact[]",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "Contact attempts made for this notification",
+          "required": false
+        },
+        "createdAt": {
+          "type": "datetime",
+          "fullType": "datetime",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "Date at which the notification was sent",
+          "required": false
+        },
+        "html": {
+          "type": "string",
+          "fullType": "string",
+          "canBeNull": true,
+          "readOnly": true,
+          "description": "HTML text of the notification",
+          "required": false
+        },
+        "id": {
+          "type": "uuid",
+          "fullType": "uuid",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "ID of the notification",
+          "required": false
+        },
+        "priority": {
+          "type": "notification.history.NotificationPriorityEnum",
+          "fullType": "notification.history.NotificationPriorityEnum",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "Priority of the notification",
+          "required": false
+        },
+        "text": {
+          "type": "string",
+          "fullType": "string",
+          "canBeNull": true,
+          "readOnly": true,
+          "description": "Raw text of the notification",
+          "required": false
+        },
+        "title": {
+          "type": "string",
+          "fullType": "string",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "Title of the notification",
+          "required": false
+        }
+      }
+    },
+    "notification.history.NotificationPriorityEnum": {
+      "id": "NotificationPriorityEnum",
+      "namespace": "notification.history",
+      "description": "Priority of a notification",
+      "enum": [
+        "HIGH",
+        "LOW",
+        "MEDIUM"
+      ],
+      "enumType": "string"
+    },
+    "notification.reference.Reference": {
+      "id": "Reference",
+      "namespace": "notification.reference",
+      "description": "Reference data for /notification",
+      "properties": {
+        "categories": {
+          "type": "notification.reference.ReferenceCategory[]",
+          "fullType": "notification.reference.ReferenceCategory[]",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "Available notification categories",
+          "required": false
+        },
+        "priorities": {
+          "type": "notification.reference.ReferencePriority[]",
+          "fullType": "notification.reference.ReferencePriority[]",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "Available notification priorities",
+          "required": false
+        }
+      }
+    },
+    "notification.reference.ReferenceCategory": {
+      "id": "ReferenceCategory",
+      "namespace": "notification.reference",
+      "description": "Category of a notification",
+      "properties": {
+        "description": {
+          "type": "string",
+          "fullType": "string",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "Category description",
+          "required": false
+        },
+        "name": {
+          "type": "string",
+          "fullType": "string",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "Category name",
+          "required": false
+        }
+      }
+    },
+    "notification.reference.ReferencePriority": {
+      "id": "ReferencePriority",
+      "namespace": "notification.reference",
+      "description": "Priority of a notification",
+      "properties": {
+        "description": {
+          "type": "string",
+          "fullType": "string",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "Priority description",
+          "required": false
+        },
+        "name": {
+          "type": "notification.history.NotificationPriorityEnum",
+          "fullType": "notification.history.NotificationPriorityEnum",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "Priority name",
+          "required": false
+        }
+      }
+    },
+    "notification.routing.PostInput": {
+      "id": "PostInput",
+      "namespace": "notification.routing",
+      "description": "A routing",
+      "properties": {
+        "active": {
+          "type": "boolean",
+          "fullType": "boolean",
+          "canBeNull": false,
+          "readOnly": false,
+          "description": "Whether this routing is currently active",
+          "required": true
+        },
+        "name": {
+          "type": "string",
+          "fullType": "string",
+          "canBeNull": false,
+          "readOnly": false,
+          "description": "Name of the routing",
+          "required": true
+        },
+        "rules": {
+          "type": "notification.routing.Rule[]",
+          "fullType": "notification.routing.Rule[]",
+          "canBeNull": false,
+          "readOnly": false,
+          "description": "Type of the contact mean",
+          "required": true
+        }
+      }
+    },
+    "notification.routing.Routing": {
+      "id": "Routing",
+      "namespace": "notification.routing",
+      "description": "A routing",
+      "properties": {
+        "active": {
+          "type": "boolean",
+          "fullType": "boolean",
+          "canBeNull": false,
+          "readOnly": false,
+          "description": "Whether this routing is currently active",
+          "required": false
+        },
+        "createdAt": {
+          "type": "datetime",
+          "fullType": "datetime",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "Date at which the routing was created",
+          "required": false
+        },
+        "id": {
+          "type": "uuid",
+          "fullType": "uuid",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "ID of the routing",
+          "required": false
+        },
+        "name": {
+          "type": "string",
+          "fullType": "string",
+          "canBeNull": false,
+          "readOnly": false,
+          "description": "Name of the routing",
+          "required": false
+        },
+        "rules": {
+          "type": "notification.routing.Rule[]",
+          "fullType": "notification.routing.Rule[]",
+          "canBeNull": false,
+          "readOnly": false,
+          "description": "Type of the contact mean",
+          "required": false
+        }
+      }
+    },
+    "notification.routing.Rule": {
+      "id": "Rule",
+      "namespace": "notification.routing",
+      "description": "A routing",
+      "properties": {
+        "condition": {
+          "type": "notification.routing.RuleCondition",
+          "fullType": "notification.routing.RuleCondition",
+          "canBeNull": false,
+          "readOnly": false,
+          "description": "Condition for the route to match",
+          "required": true
+        },
+        "contactMeans": {
+          "type": "notification.routing.RuleContactMean[]",
+          "fullType": "notification.routing.RuleContactMean[]",
+          "canBeNull": false,
+          "readOnly": false,
+          "description": "Contact means to route the nofitications to",
+          "required": true
+        },
+        "continue": {
+          "type": "boolean",
+          "fullType": "boolean",
+          "canBeNull": false,
+          "readOnly": false,
+          "description": "Wheter the processing stops at this rule, if it matches",
+          "required": true
+        }
+      }
+    },
+    "notification.routing.RuleCondition": {
+      "id": "RuleCondition",
+      "namespace": "notification.routing",
+      "description": "A routing",
+      "properties": {
+        "category": {
+          "type": "string[]",
+          "fullType": "string[]",
+          "canBeNull": false,
+          "readOnly": false,
+          "description": "Notification categories, the rule will be valid if one of the categories matches, if not empty",
+          "required": false
+        },
+        "priority": {
+          "type": "string[]",
+          "fullType": "string[]",
+          "canBeNull": false,
+          "readOnly": false,
+          "description": "Notification priorities, the rule will be valid if one of the priorities matches, if not empty",
+          "required": false
+        }
+      }
+    },
+    "notification.routing.RuleContactMean": {
+      "id": "RuleContactMean",
+      "namespace": "notification.routing",
+      "description": "A routing",
+      "properties": {
+        "email": {
+          "type": "string",
+          "fullType": "string",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "When type is EMAIL, the email address this contact mean uses",
+          "required": false
+        },
+        "error": {
+          "type": "string",
+          "fullType": "string",
+          "canBeNull": true,
+          "readOnly": true,
+          "description": "When status is ERROR, details about the error",
+          "required": false
+        },
+        "id": {
+          "type": "uuid",
+          "fullType": "uuid",
+          "canBeNull": false,
+          "readOnly": false,
+          "description": "ID of the contact mean",
+          "required": true
+        },
+        "status": {
+          "type": "notification.contactMean.StatusEnum",
+          "fullType": "notification.contactMean.StatusEnum",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "Status of the contact mean",
+          "required": false
+        },
+        "type": {
+          "type": "notification.contactMean.TypeEnum",
+          "fullType": "notification.contactMean.TypeEnum",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "Type of the contact mean",
+          "required": false
+        }
+      }
+    }
+  }
+}

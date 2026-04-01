@@ -1,0 +1,3755 @@
+{
+  "apiVersion": "1.0",
+  "apis": [
+    {
+      "path": "/okms/reference/regions",
+      "operations": [
+        {
+          "apiStatus": {
+            "description": "Stable production version",
+            "value": "PRODUCTION"
+          },
+          "httpMethod": "GET",
+          "parameters": [
+            {
+              "name": "X-Pagination-Cursor",
+              "dataType": "string",
+              "paramType": "header",
+              "fullType": "string",
+              "required": false,
+              "description": "Pagination cursor"
+            },
+            {
+              "name": "X-Pagination-Size",
+              "dataType": "long",
+              "paramType": "header",
+              "fullType": "long",
+              "required": false,
+              "description": "Pagination size"
+            }
+          ],
+          "responseType": "okms.reference.Region[]",
+          "noAuthentication": false,
+          "description": "List available regions"
+        }
+      ],
+      "description": ""
+    },
+    {
+      "path": "/okms/reference/secretConfig",
+      "operations": [
+        {
+          "apiStatus": {
+            "description": "Stable production version",
+            "value": "PRODUCTION"
+          },
+          "httpMethod": "GET",
+          "parameters": [
+            {
+              "name": "region",
+              "dataType": "okms.RegionEnum",
+              "paramType": "query",
+              "fullType": "okms.RegionEnum",
+              "required": true,
+              "description": "OKMS Region"
+            }
+          ],
+          "responseType": "okms.reference.secretConfig.Response",
+          "noAuthentication": false,
+          "description": "Get secret engine default configuration"
+        }
+      ],
+      "description": ""
+    },
+    {
+      "path": "/okms/reference/serviceKey",
+      "operations": [
+        {
+          "apiStatus": {
+            "description": "Stable production version",
+            "value": "PRODUCTION"
+          },
+          "httpMethod": "GET",
+          "parameters": [
+            {
+              "name": "X-Pagination-Cursor",
+              "dataType": "string",
+              "paramType": "header",
+              "fullType": "string",
+              "required": false,
+              "description": "Pagination cursor"
+            },
+            {
+              "name": "X-Pagination-Size",
+              "dataType": "long",
+              "paramType": "header",
+              "fullType": "long",
+              "required": false,
+              "description": "Pagination size"
+            },
+            {
+              "name": "region",
+              "dataType": "okms.RegionEnum",
+              "paramType": "query",
+              "fullType": "okms.RegionEnum",
+              "required": true,
+              "description": "OKMS Region"
+            }
+          ],
+          "responseType": "okms.reference.serviceKey.Response[]",
+          "noAuthentication": false,
+          "description": "Get service key type, size, curve and operations combination"
+        }
+      ],
+      "description": ""
+    },
+    {
+      "path": "/okms/resource",
+      "operations": [
+        {
+          "apiStatus": {
+            "description": "Stable production version",
+            "value": "PRODUCTION"
+          },
+          "httpMethod": "GET",
+          "parameters": [
+            {
+              "name": "X-Pagination-Cursor",
+              "dataType": "string",
+              "paramType": "header",
+              "fullType": "string",
+              "required": false,
+              "description": "Pagination cursor"
+            },
+            {
+              "name": "X-Pagination-Size",
+              "dataType": "long",
+              "paramType": "header",
+              "fullType": "long",
+              "required": false,
+              "description": "Pagination size"
+            },
+            {
+              "name": "iamTags",
+              "dataType": "map[string][]iam.resource.TagFilter",
+              "paramType": "query",
+              "required": false,
+              "description": "Filter resources on IAM tags"
+            }
+          ],
+          "responseType": "okms.resource.ResponseWithIAM[]",
+          "noAuthentication": false,
+          "description": "List OVHcloud KMS services",
+          "iamActions": [
+            {
+              "name": "okms:apiovh:resource/get",
+              "required": true
+            }
+          ]
+        }
+      ],
+      "description": "Manage OKMS services"
+    },
+    {
+      "path": "/okms/resource/{okmsId}",
+      "operations": [
+        {
+          "apiStatus": {
+            "description": "Stable production version",
+            "value": "PRODUCTION"
+          },
+          "httpMethod": "GET",
+          "parameters": [
+            {
+              "name": "okmsId",
+              "dataType": "uuid",
+              "paramType": "path",
+              "fullType": "uuid",
+              "required": true,
+              "description": "Okms ID"
+            },
+            {
+              "name": "publicCA",
+              "dataType": "boolean",
+              "paramType": "query",
+              "fullType": "boolean",
+              "required": false,
+              "description": "Add KMS public CA (Certificate Authority) in the output"
+            }
+          ],
+          "responseType": "okms.resource.ResponseWithIAM",
+          "noAuthentication": false,
+          "description": "Get an OVHcloud KMS service",
+          "iamActions": [
+            {
+              "name": "okms:apiovh:resource/get",
+              "required": true
+            }
+          ]
+        }
+      ],
+      "description": "Manage OKMS services"
+    },
+    {
+      "path": "/okms/resource/{okmsId}/credential",
+      "operations": [
+        {
+          "apiStatus": {
+            "description": "Stable production version",
+            "value": "PRODUCTION"
+          },
+          "httpMethod": "GET",
+          "parameters": [
+            {
+              "name": "X-Pagination-Cursor",
+              "dataType": "string",
+              "paramType": "header",
+              "fullType": "string",
+              "required": false,
+              "description": "Pagination cursor"
+            },
+            {
+              "name": "X-Pagination-Size",
+              "dataType": "long",
+              "paramType": "header",
+              "fullType": "long",
+              "required": false,
+              "description": "Pagination size"
+            },
+            {
+              "name": "okmsId",
+              "dataType": "uuid",
+              "paramType": "path",
+              "fullType": "uuid",
+              "required": true,
+              "description": "Okms ID"
+            }
+          ],
+          "responseType": "okms.credential.GetResponse[]",
+          "noAuthentication": false,
+          "description": "List all access credentials",
+          "errors": [
+            "Client::BadRequest::CredentialPaginationCursorInvalidValue"
+          ],
+          "iamActions": [
+            {
+              "name": "okms:apiovh:credential/get",
+              "required": true
+            }
+          ]
+        },
+        {
+          "apiStatus": {
+            "description": "Stable production version",
+            "value": "PRODUCTION"
+          },
+          "httpMethod": "POST",
+          "parameters": [
+            {
+              "dataType": "okms.credential.Creation",
+              "paramType": "body",
+              "fullType": "okms.credential.Creation",
+              "required": true,
+              "description": "Request Body"
+            },
+            {
+              "name": "okmsId",
+              "dataType": "uuid",
+              "paramType": "path",
+              "fullType": "uuid",
+              "required": true,
+              "description": "Okms ID"
+            }
+          ],
+          "responseType": "okms.credential.CreationResponse",
+          "noAuthentication": false,
+          "description": "Request a new access credential",
+          "errors": [
+            "Client::BadRequest::CredentialCSRInvalidCharacter",
+            "Client::BadRequest::CredentialCSRMaximumExceeded",
+            "Client::BadRequest::CredentialCertificateTypeIncompatibleFields",
+            "Client::BadRequest::CredentialCertificateTypeInvalidEnum",
+            "Client::BadRequest::CredentialDescriptionInvalidCharacter",
+            "Client::BadRequest::CredentialDescriptionMaximumExceeded",
+            "Client::BadRequest::CredentialIdentityURNsInvalidSize",
+            "Client::BadRequest::CredentialIdentityURNsInvalidURN",
+            "Client::BadRequest::CredentialIdentityURNsMaximumExceeded",
+            "Client::BadRequest::CredentialIdentityURNsMinimumRequired",
+            "Client::BadRequest::CredentialNameInvalidCharacter",
+            "Client::BadRequest::CredentialNameMaximumExceeded",
+            "Client::BadRequest::CredentialStatusInvalid",
+            "Client::BadRequest::CredentialValidityMaximumExceeded",
+            "Client::BadRequest::CredentialValidityMinimumRequired"
+          ],
+          "iamActions": [
+            {
+              "name": "okms:apiovh:credential/create",
+              "required": true
+            }
+          ]
+        }
+      ],
+      "description": "Manage OKMS service access credentials"
+    },
+    {
+      "path": "/okms/resource/{okmsId}/credential/{credentialId}",
+      "operations": [
+        {
+          "apiStatus": {
+            "description": "Stable production version",
+            "value": "PRODUCTION"
+          },
+          "httpMethod": "DELETE",
+          "parameters": [
+            {
+              "name": "credentialId",
+              "dataType": "uuid",
+              "paramType": "path",
+              "fullType": "uuid",
+              "required": true,
+              "description": "Credential ID"
+            },
+            {
+              "name": "okmsId",
+              "dataType": "uuid",
+              "paramType": "path",
+              "fullType": "uuid",
+              "required": true,
+              "description": "Okms ID"
+            }
+          ],
+          "responseType": "okms.credential.GetResponse",
+          "noAuthentication": false,
+          "description": "Revoke and delete an access credential",
+          "errors": [
+            "Client::BadRequest::CredentialStatusInvalid"
+          ],
+          "iamActions": [
+            {
+              "name": "okms:apiovh:credential/delete",
+              "required": true
+            }
+          ]
+        },
+        {
+          "apiStatus": {
+            "description": "Stable production version",
+            "value": "PRODUCTION"
+          },
+          "httpMethod": "GET",
+          "parameters": [
+            {
+              "name": "credentialId",
+              "dataType": "uuid",
+              "paramType": "path",
+              "fullType": "uuid",
+              "required": true,
+              "description": "Credential ID"
+            },
+            {
+              "name": "okmsId",
+              "dataType": "uuid",
+              "paramType": "path",
+              "fullType": "uuid",
+              "required": true,
+              "description": "Okms ID"
+            }
+          ],
+          "responseType": "okms.credential.GetResponse",
+          "noAuthentication": false,
+          "description": "Get an access credential",
+          "iamActions": [
+            {
+              "name": "okms:apiovh:credential/get",
+              "required": true
+            }
+          ]
+        }
+      ],
+      "description": "Manage OKMS service access credentials"
+    },
+    {
+      "path": "/okms/resource/{okmsId}/log/kind",
+      "operations": [
+        {
+          "apiStatus": {
+            "description": "Beta version",
+            "value": "BETA"
+          },
+          "httpMethod": "GET",
+          "parameters": [
+            {
+              "name": "X-Pagination-Cursor",
+              "dataType": "string",
+              "paramType": "header",
+              "fullType": "string",
+              "required": false,
+              "description": "Pagination cursor"
+            },
+            {
+              "name": "X-Pagination-Size",
+              "dataType": "long",
+              "paramType": "header",
+              "fullType": "long",
+              "required": false,
+              "description": "Pagination size"
+            },
+            {
+              "name": "okmsId",
+              "dataType": "uuid",
+              "paramType": "path",
+              "fullType": "uuid",
+              "required": true,
+              "description": "Okms ID"
+            }
+          ],
+          "responseType": "dbaas.logs.LogKind[]",
+          "noAuthentication": false,
+          "description": "List available log kinds",
+          "iamActions": [
+            {
+              "name": "okms:apiovh:log/kind/get",
+              "required": true
+            }
+          ]
+        }
+      ],
+      "description": "Access to available log kind"
+    },
+    {
+      "path": "/okms/resource/{okmsId}/log/kind/{name}",
+      "operations": [
+        {
+          "apiStatus": {
+            "description": "Beta version",
+            "value": "BETA"
+          },
+          "httpMethod": "GET",
+          "parameters": [
+            {
+              "name": "name",
+              "dataType": "string",
+              "paramType": "path",
+              "fullType": "string",
+              "required": true,
+              "description": "Name"
+            },
+            {
+              "name": "okmsId",
+              "dataType": "uuid",
+              "paramType": "path",
+              "fullType": "uuid",
+              "required": true,
+              "description": "Okms ID"
+            }
+          ],
+          "responseType": "dbaas.logs.LogKind",
+          "noAuthentication": false,
+          "description": "Get a log kind",
+          "iamActions": [
+            {
+              "name": "okms:apiovh:log/kind/get",
+              "required": true
+            }
+          ]
+        }
+      ],
+      "description": "Access to available log kind"
+    },
+    {
+      "path": "/okms/resource/{okmsId}/log/subscription",
+      "operations": [
+        {
+          "apiStatus": {
+            "description": "Beta version",
+            "value": "BETA"
+          },
+          "httpMethod": "GET",
+          "parameters": [
+            {
+              "name": "X-Pagination-Cursor",
+              "dataType": "string",
+              "paramType": "header",
+              "fullType": "string",
+              "required": false,
+              "description": "Pagination cursor"
+            },
+            {
+              "name": "X-Pagination-Size",
+              "dataType": "long",
+              "paramType": "header",
+              "fullType": "long",
+              "required": false,
+              "description": "Pagination size"
+            },
+            {
+              "name": "kind",
+              "dataType": "string",
+              "paramType": "query",
+              "fullType": "string",
+              "required": false,
+              "description": "Filter on a specific kind (e.g., audit)"
+            },
+            {
+              "name": "okmsId",
+              "dataType": "uuid",
+              "paramType": "path",
+              "fullType": "uuid",
+              "required": true,
+              "description": "Okms ID"
+            }
+          ],
+          "responseType": "dbaas.logs.LogSubscription[]",
+          "noAuthentication": false,
+          "description": "List subscription IDs for a cluster",
+          "iamActions": [
+            {
+              "name": "okms:apiovh:log/subscription/get",
+              "required": true
+            }
+          ]
+        },
+        {
+          "apiStatus": {
+            "description": "Beta version",
+            "value": "BETA"
+          },
+          "httpMethod": "POST",
+          "parameters": [
+            {
+              "dataType": "dbaas.logs.LogSubscriptionCreation",
+              "paramType": "body",
+              "fullType": "dbaas.logs.LogSubscriptionCreation",
+              "required": true,
+              "description": "Request Body"
+            },
+            {
+              "name": "okmsId",
+              "dataType": "uuid",
+              "paramType": "path",
+              "fullType": "uuid",
+              "required": true,
+              "description": "Okms ID"
+            }
+          ],
+          "responseType": "dbaas.logs.LogSubscriptionResponse",
+          "noAuthentication": false,
+          "description": "Create a subscription from logs to a pre-existing LDP stream",
+          "iamActions": [
+            {
+              "name": "okms:apiovh:log/subscription/create",
+              "required": true
+            },
+            {
+              "name": "ldp:apiovh:output/graylog/stream/forwardTo",
+              "description": "Required on the targeted LDP service",
+              "required": true
+            }
+          ]
+        }
+      ],
+      "description": "Create a subscription from okms logs to a pre-existing LDP stream"
+    },
+    {
+      "path": "/okms/resource/{okmsId}/log/subscription/{subscriptionId}",
+      "operations": [
+        {
+          "apiStatus": {
+            "description": "Beta version",
+            "value": "BETA"
+          },
+          "httpMethod": "DELETE",
+          "parameters": [
+            {
+              "name": "okmsId",
+              "dataType": "uuid",
+              "paramType": "path",
+              "fullType": "uuid",
+              "required": true,
+              "description": "Okms ID"
+            },
+            {
+              "name": "subscriptionId",
+              "dataType": "uuid",
+              "paramType": "path",
+              "fullType": "uuid",
+              "required": true,
+              "description": "Subscription ID"
+            }
+          ],
+          "responseType": "dbaas.logs.LogSubscriptionResponse",
+          "noAuthentication": false,
+          "description": "Delete a subscription",
+          "iamActions": [
+            {
+              "name": "okms:apiovh:log/subscription/delete",
+              "required": true
+            }
+          ]
+        },
+        {
+          "apiStatus": {
+            "description": "Beta version",
+            "value": "BETA"
+          },
+          "httpMethod": "GET",
+          "parameters": [
+            {
+              "name": "okmsId",
+              "dataType": "uuid",
+              "paramType": "path",
+              "fullType": "uuid",
+              "required": true,
+              "description": "Okms ID"
+            },
+            {
+              "name": "subscriptionId",
+              "dataType": "uuid",
+              "paramType": "path",
+              "fullType": "uuid",
+              "required": true,
+              "description": "Subscription ID"
+            }
+          ],
+          "responseType": "dbaas.logs.LogSubscription",
+          "noAuthentication": false,
+          "description": "Get subscription details",
+          "iamActions": [
+            {
+              "name": "okms:apiovh:log/subscription/get",
+              "required": true
+            }
+          ]
+        }
+      ],
+      "description": "Create a subscription from okms logs to a pre-existing LDP stream"
+    },
+    {
+      "path": "/okms/resource/{okmsId}/log/url",
+      "operations": [
+        {
+          "apiStatus": {
+            "description": "Beta version",
+            "value": "BETA"
+          },
+          "httpMethod": "POST",
+          "parameters": [
+            {
+              "dataType": "dbaas.logs.LogUrlCreation",
+              "paramType": "body",
+              "fullType": "dbaas.logs.LogUrlCreation",
+              "required": true,
+              "description": "Request Body"
+            },
+            {
+              "name": "okmsId",
+              "dataType": "uuid",
+              "paramType": "path",
+              "fullType": "uuid",
+              "required": true,
+              "description": "Okms ID"
+            }
+          ],
+          "responseType": "dbaas.logs.TemporaryLogsLink",
+          "noAuthentication": false,
+          "description": "Generate a temporary URL to retrieve logs",
+          "iamActions": [
+            {
+              "name": "okms:apiovh:log/url/create",
+              "required": true
+            }
+          ]
+        }
+      ],
+      "description": "Generate a temporary URL to retrieve logs"
+    },
+    {
+      "path": "/okms/resource/{okmsId}/secret",
+      "operations": [
+        {
+          "apiStatus": {
+            "description": "Stable production version",
+            "value": "PRODUCTION"
+          },
+          "httpMethod": "GET",
+          "parameters": [
+            {
+              "name": "X-Pagination-Cursor",
+              "dataType": "string",
+              "paramType": "header",
+              "fullType": "string",
+              "required": false,
+              "description": "Pagination cursor"
+            },
+            {
+              "name": "X-Pagination-Size",
+              "dataType": "long",
+              "paramType": "header",
+              "fullType": "long",
+              "required": false,
+              "description": "Pagination size"
+            },
+            {
+              "name": "iamTags",
+              "dataType": "map[string][]iam.resource.TagFilter",
+              "paramType": "query",
+              "required": false,
+              "description": "Filter resources on IAM tags"
+            },
+            {
+              "name": "okmsId",
+              "dataType": "uuid",
+              "paramType": "path",
+              "fullType": "uuid",
+              "required": true,
+              "description": "Okms ID"
+            }
+          ],
+          "responseType": "okms.secret.GetResponseWithIAM[]",
+          "noAuthentication": false,
+          "description": "List all secrets",
+          "errors": [
+            "Client::BadRequest::OKMSExpired"
+          ],
+          "iamActions": [
+            {
+              "name": "okms:apiovh:secret/get",
+              "required": true
+            }
+          ]
+        },
+        {
+          "apiStatus": {
+            "description": "Stable production version",
+            "value": "PRODUCTION"
+          },
+          "httpMethod": "POST",
+          "parameters": [
+            {
+              "dataType": "okms.secret.Creation",
+              "paramType": "body",
+              "fullType": "okms.secret.Creation",
+              "required": true,
+              "description": "Request Body"
+            },
+            {
+              "name": "okmsId",
+              "dataType": "uuid",
+              "paramType": "path",
+              "fullType": "uuid",
+              "required": true,
+              "description": "Okms ID"
+            }
+          ],
+          "responseType": "okms.secret.PostResponse",
+          "noAuthentication": false,
+          "description": "Create a secret",
+          "errors": [
+            "Client::BadRequest::OKMSExpired",
+            "Client::BadRequest::SecretCasMaxExceeded",
+            "Client::BadRequest::SecretCasMinRequired",
+            "Client::BadRequest::SecretCustomMetadataKeyInvalidCharacter",
+            "Client::BadRequest::SecretCustomMetadataKeyMaxExceeded",
+            "Client::BadRequest::SecretCustomMetadataKeyMinRequired",
+            "Client::BadRequest::SecretCustomMetadataMaxExceeded",
+            "Client::BadRequest::SecretDataInvalidKeyValueJson",
+            "Client::BadRequest::SecretDataMaxExceeded",
+            "Client::BadRequest::SecretDeactivateVersionAfterInvalidDuration",
+            "Client::BadRequest::SecretMaxVersionsMaxExceeded",
+            "Client::BadRequest::SecretMaxVersionsMinRequired",
+            "Client::BadRequest::SecretPathInvalidCharacter",
+            "Client::BadRequest::SecretPathMaxExceeded"
+          ],
+          "iamActions": [
+            {
+              "name": "okms:apiovh:secret/create",
+              "required": true
+            }
+          ]
+        }
+      ],
+      "description": "Manage OKMS secrets"
+    },
+    {
+      "path": "/okms/resource/{okmsId}/secret/{path}",
+      "operations": [
+        {
+          "apiStatus": {
+            "description": "Stable production version",
+            "value": "PRODUCTION"
+          },
+          "httpMethod": "DELETE",
+          "parameters": [
+            {
+              "name": "okmsId",
+              "dataType": "uuid",
+              "paramType": "path",
+              "fullType": "uuid",
+              "required": true,
+              "description": "Okms ID"
+            },
+            {
+              "name": "path",
+              "dataType": "string",
+              "paramType": "path",
+              "fullType": "string",
+              "required": true,
+              "description": "Path"
+            }
+          ],
+          "responseType": "void",
+          "noAuthentication": false,
+          "description": "Delete a secret and all its versions",
+          "errors": [
+            "Client::BadRequest::OKMSExpired",
+            "Client::BadRequest::SecretPathInvalidCharacter",
+            "Client::BadRequest::SecretPathMaxExceeded"
+          ],
+          "iamActions": [
+            {
+              "name": "okms:apiovh:secret/delete",
+              "required": true
+            }
+          ]
+        },
+        {
+          "apiStatus": {
+            "description": "Stable production version",
+            "value": "PRODUCTION"
+          },
+          "httpMethod": "GET",
+          "parameters": [
+            {
+              "name": "includeData",
+              "dataType": "boolean",
+              "paramType": "query",
+              "fullType": "boolean",
+              "required": false,
+              "description": "Secret data"
+            },
+            {
+              "name": "okmsId",
+              "dataType": "uuid",
+              "paramType": "path",
+              "fullType": "uuid",
+              "required": true,
+              "description": "Okms ID"
+            },
+            {
+              "name": "path",
+              "dataType": "string",
+              "paramType": "path",
+              "fullType": "string",
+              "required": true,
+              "description": "Path"
+            },
+            {
+              "name": "version",
+              "dataType": "long",
+              "paramType": "query",
+              "fullType": "long",
+              "required": false,
+              "description": "Secret version. If not set, the latest version will be returned"
+            }
+          ],
+          "responseType": "okms.secret.GetResponseWithIAM",
+          "noAuthentication": false,
+          "description": "Retrieve a secret",
+          "errors": [
+            "Client::BadRequest::OKMSExpired",
+            "Client::BadRequest::SecretPathInvalidCharacter",
+            "Client::BadRequest::SecretPathMaxExceeded",
+            "Client::BadRequest::SecretVersionMaxExceeded",
+            "Client::BadRequest::SecretVersionMinRequired"
+          ],
+          "iamActions": [
+            {
+              "name": "okms:apiovh:secret/get",
+              "required": true
+            },
+            {
+              "name": "okms:apiovh:secret/version/getData",
+              "description": "Required to get version data",
+              "required": false
+            }
+          ]
+        },
+        {
+          "apiStatus": {
+            "description": "Stable production version",
+            "value": "PRODUCTION"
+          },
+          "httpMethod": "PUT",
+          "parameters": [
+            {
+              "dataType": "okms.secret.UpdateRequest",
+              "paramType": "body",
+              "fullType": "okms.secret.UpdateRequest",
+              "required": true,
+              "description": "Request Body"
+            },
+            {
+              "name": "cas",
+              "dataType": "long",
+              "paramType": "query",
+              "fullType": "long",
+              "required": false,
+              "description": "Current secret version number. When the “cas” (Check and set) is specified, the current version of the secret is verified before updating it. In order for a write to be successful,“cas” must be set to the current version of the secret."
+            },
+            {
+              "name": "okmsId",
+              "dataType": "uuid",
+              "paramType": "path",
+              "fullType": "uuid",
+              "required": true,
+              "description": "Okms ID"
+            },
+            {
+              "name": "path",
+              "dataType": "string",
+              "paramType": "path",
+              "fullType": "string",
+              "required": true,
+              "description": "Path"
+            }
+          ],
+          "responseType": "okms.secret.PostResponse",
+          "noAuthentication": false,
+          "description": "Update a secret",
+          "errors": [
+            "Client::BadRequest::OKMSExpired",
+            "Client::BadRequest::SecretCasMaxExceeded",
+            "Client::BadRequest::SecretCasMinRequired",
+            "Client::BadRequest::SecretCustomMetadataKeyInvalidCharacter",
+            "Client::BadRequest::SecretCustomMetadataKeyMaxExceeded",
+            "Client::BadRequest::SecretCustomMetadataKeyMinRequired",
+            "Client::BadRequest::SecretCustomMetadataMaxExceeded",
+            "Client::BadRequest::SecretDataInvalidKeyValueJson",
+            "Client::BadRequest::SecretDataMaxExceeded",
+            "Client::BadRequest::SecretDeactivateVersionAfterInvalidDuration",
+            "Client::BadRequest::SecretFieldRequired",
+            "Client::BadRequest::SecretMaxVersionsMaxExceeded",
+            "Client::BadRequest::SecretMaxVersionsMinRequired",
+            "Client::BadRequest::SecretPathInvalidCharacter",
+            "Client::BadRequest::SecretPathMaxExceeded"
+          ],
+          "iamActions": [
+            {
+              "name": "okms:apiovh:secret/edit",
+              "required": true
+            },
+            {
+              "name": "okms:apiovh:secret/version/create",
+              "description": "Required to update secret data",
+              "required": false
+            },
+            {
+              "name": "okms:apiovh:secret/updateMetadata",
+              "description": "Required to update secret metadata",
+              "required": false
+            }
+          ]
+        }
+      ],
+      "description": "Manage OKMS secrets"
+    },
+    {
+      "path": "/okms/resource/{okmsId}/secret/{path}/version",
+      "operations": [
+        {
+          "apiStatus": {
+            "description": "Stable production version",
+            "value": "PRODUCTION"
+          },
+          "httpMethod": "GET",
+          "parameters": [
+            {
+              "name": "X-Pagination-Cursor",
+              "dataType": "string",
+              "paramType": "header",
+              "fullType": "string",
+              "required": false,
+              "description": "Pagination cursor"
+            },
+            {
+              "name": "X-Pagination-Size",
+              "dataType": "long",
+              "paramType": "header",
+              "fullType": "long",
+              "required": false,
+              "description": "Pagination size"
+            },
+            {
+              "name": "okmsId",
+              "dataType": "uuid",
+              "paramType": "path",
+              "fullType": "uuid",
+              "required": true,
+              "description": "Okms ID"
+            },
+            {
+              "name": "path",
+              "dataType": "string",
+              "paramType": "path",
+              "fullType": "string",
+              "required": true,
+              "description": "Path"
+            }
+          ],
+          "responseType": "okms.secret.Version[]",
+          "noAuthentication": false,
+          "description": "List the versions of a secret",
+          "errors": [
+            "Client::BadRequest::OKMSExpired",
+            "Client::BadRequest::SecretPathInvalidCharacter",
+            "Client::BadRequest::SecretPathMaxExceeded"
+          ],
+          "iamActions": [
+            {
+              "name": "okms:apiovh:secret/get",
+              "required": true
+            }
+          ]
+        },
+        {
+          "apiStatus": {
+            "description": "Stable production version",
+            "value": "PRODUCTION"
+          },
+          "httpMethod": "POST",
+          "parameters": [
+            {
+              "dataType": "okms.secret.version.Creation",
+              "paramType": "body",
+              "fullType": "okms.secret.version.Creation",
+              "required": true,
+              "description": "Request Body"
+            },
+            {
+              "name": "cas",
+              "dataType": "long",
+              "paramType": "query",
+              "fullType": "long",
+              "required": false,
+              "description": "Current secret version number. When the “cas” (Check and set) is specified, the current version of the secret is verified before updating it. In order for a write to be successful,“cas” must be set to the current version of the secret."
+            },
+            {
+              "name": "okmsId",
+              "dataType": "uuid",
+              "paramType": "path",
+              "fullType": "uuid",
+              "required": true,
+              "description": "Okms ID"
+            },
+            {
+              "name": "path",
+              "dataType": "string",
+              "paramType": "path",
+              "fullType": "string",
+              "required": true,
+              "description": "Path"
+            }
+          ],
+          "responseType": "okms.secret.Version",
+          "noAuthentication": false,
+          "description": "Create a secret version",
+          "errors": [
+            "Client::BadRequest::OKMSExpired",
+            "Client::BadRequest::SecretCasMaxExceeded",
+            "Client::BadRequest::SecretCasMinRequired",
+            "Client::BadRequest::SecretDataInvalidKeyValueJson",
+            "Client::BadRequest::SecretDataMaxExceeded",
+            "Client::BadRequest::SecretPathInvalidCharacter",
+            "Client::BadRequest::SecretPathMaxExceeded"
+          ],
+          "iamActions": [
+            {
+              "name": "okms:apiovh:secret/version/create",
+              "required": true
+            }
+          ]
+        }
+      ],
+      "description": "Manage OKMS secrets"
+    },
+    {
+      "path": "/okms/resource/{okmsId}/secret/{path}/version/{version}",
+      "operations": [
+        {
+          "apiStatus": {
+            "description": "Stable production version",
+            "value": "PRODUCTION"
+          },
+          "httpMethod": "GET",
+          "parameters": [
+            {
+              "name": "includeData",
+              "dataType": "boolean",
+              "paramType": "query",
+              "fullType": "boolean",
+              "required": false,
+              "description": "Secret version data"
+            },
+            {
+              "name": "okmsId",
+              "dataType": "uuid",
+              "paramType": "path",
+              "fullType": "uuid",
+              "required": true,
+              "description": "Okms ID"
+            },
+            {
+              "name": "path",
+              "dataType": "string",
+              "paramType": "path",
+              "fullType": "string",
+              "required": true,
+              "description": "Path"
+            },
+            {
+              "name": "version",
+              "dataType": "long",
+              "paramType": "path",
+              "fullType": "long",
+              "required": true,
+              "description": "Version"
+            }
+          ],
+          "responseType": "okms.secret.Version",
+          "noAuthentication": false,
+          "description": "Retrieve a secret version",
+          "errors": [
+            "Client::BadRequest::OKMSExpired",
+            "Client::BadRequest::SecretPathInvalidCharacter",
+            "Client::BadRequest::SecretPathMaxExceeded",
+            "Client::BadRequest::SecretVersionMaxExceeded",
+            "Client::BadRequest::SecretVersionMinRequired"
+          ],
+          "iamActions": [
+            {
+              "name": "okms:apiovh:secret/get",
+              "required": true
+            },
+            {
+              "name": "okms:apiovh:secret/version/getData",
+              "description": "Required to get version data",
+              "required": false
+            }
+          ]
+        },
+        {
+          "apiStatus": {
+            "description": "Stable production version",
+            "value": "PRODUCTION"
+          },
+          "httpMethod": "PUT",
+          "parameters": [
+            {
+              "dataType": "okms.secret.version.UpdateRequest",
+              "paramType": "body",
+              "fullType": "okms.secret.version.UpdateRequest",
+              "required": true,
+              "description": "Request Body"
+            },
+            {
+              "name": "okmsId",
+              "dataType": "uuid",
+              "paramType": "path",
+              "fullType": "uuid",
+              "required": true,
+              "description": "Okms ID"
+            },
+            {
+              "name": "path",
+              "dataType": "string",
+              "paramType": "path",
+              "fullType": "string",
+              "required": true,
+              "description": "Path"
+            },
+            {
+              "name": "version",
+              "dataType": "long",
+              "paramType": "path",
+              "fullType": "long",
+              "required": true,
+              "description": "Version"
+            }
+          ],
+          "responseType": "okms.secret.version.UpdateResponse",
+          "noAuthentication": false,
+          "description": "Update the state of a secret version",
+          "errors": [
+            "Client::BadRequest::OKMSExpired",
+            "Client::BadRequest::SecretPathInvalidCharacter",
+            "Client::BadRequest::SecretPathMaxExceeded",
+            "Client::BadRequest::SecretVersionMaxExceeded",
+            "Client::BadRequest::SecretVersionMinRequired"
+          ],
+          "iamActions": [
+            {
+              "name": "okms:apiovh:secret/version/edit",
+              "description": "Required to delete/deactivate/activate a secret version",
+              "required": true
+            },
+            {
+              "name": "okms:apiovh:secret/version/delete",
+              "description": "Required to delete a secret version",
+              "required": false
+            },
+            {
+              "name": "okms:apiovh:secret/version/activate",
+              "description": "Required to activate a secret version",
+              "required": false
+            },
+            {
+              "name": "okms:apiovh:secret/version/deactivate",
+              "description": "Required to deactivate a secret version",
+              "required": false
+            }
+          ]
+        }
+      ],
+      "description": "Manage OKMS secrets"
+    },
+    {
+      "path": "/okms/resource/{okmsId}/secretConfig",
+      "operations": [
+        {
+          "apiStatus": {
+            "description": "Stable production version",
+            "value": "PRODUCTION"
+          },
+          "httpMethod": "GET",
+          "parameters": [
+            {
+              "name": "okmsId",
+              "dataType": "uuid",
+              "paramType": "path",
+              "fullType": "uuid",
+              "required": true,
+              "description": "Okms ID"
+            }
+          ],
+          "responseType": "okms.secretConfig.Response",
+          "noAuthentication": false,
+          "description": "Retrieve secrets configuration",
+          "errors": [
+            "Client::BadRequest::OKMSExpired"
+          ],
+          "iamActions": [
+            {
+              "name": "okms:apiovh:secretConfig/get",
+              "required": true
+            }
+          ]
+        },
+        {
+          "apiStatus": {
+            "description": "Stable production version",
+            "value": "PRODUCTION"
+          },
+          "httpMethod": "PUT",
+          "parameters": [
+            {
+              "dataType": "okms.secretConfig.UpdateRequest",
+              "paramType": "body",
+              "fullType": "okms.secretConfig.UpdateRequest",
+              "required": true,
+              "description": "Request Body"
+            },
+            {
+              "name": "okmsId",
+              "dataType": "uuid",
+              "paramType": "path",
+              "fullType": "uuid",
+              "required": true,
+              "description": "Okms ID"
+            }
+          ],
+          "responseType": "okms.secretConfig.Response",
+          "noAuthentication": false,
+          "description": "Update secrets configuration",
+          "errors": [
+            "Client::BadRequest::OKMSExpired",
+            "Client::BadRequest::SecretDeactivateVersionAfterInvalidDuration",
+            "Client::BadRequest::SecretFieldRequired",
+            "Client::BadRequest::SecretMaxVersionsMaxExceeded",
+            "Client::BadRequest::SecretMaxVersionsMinRequired"
+          ],
+          "iamActions": [
+            {
+              "name": "okms:apiovh:secretConfig/update",
+              "required": true
+            }
+          ]
+        }
+      ],
+      "description": "Manage OKMS secrets configuration"
+    },
+    {
+      "path": "/okms/resource/{okmsId}/serviceKey",
+      "operations": [
+        {
+          "apiStatus": {
+            "description": "Stable production version",
+            "value": "PRODUCTION"
+          },
+          "httpMethod": "GET",
+          "parameters": [
+            {
+              "name": "X-Pagination-Cursor",
+              "dataType": "string",
+              "paramType": "header",
+              "fullType": "string",
+              "required": false,
+              "description": "Pagination cursor"
+            },
+            {
+              "name": "X-Pagination-Size",
+              "dataType": "long",
+              "paramType": "header",
+              "fullType": "long",
+              "required": false,
+              "description": "Pagination size"
+            },
+            {
+              "name": "iamTags",
+              "dataType": "map[string][]iam.resource.TagFilter",
+              "paramType": "query",
+              "required": false,
+              "description": "Filter resources on IAM tags"
+            },
+            {
+              "name": "okmsId",
+              "dataType": "uuid",
+              "paramType": "path",
+              "fullType": "uuid",
+              "required": true,
+              "description": "Okms ID"
+            }
+          ],
+          "responseType": "okms.serviceKey.ResponseWithIAM[]",
+          "noAuthentication": false,
+          "description": "List all keys",
+          "errors": [
+            "Client::BadRequest::OKMSExpired"
+          ],
+          "iamActions": [
+            {
+              "name": "okms:apiovh:serviceKey/get",
+              "required": true
+            }
+          ]
+        },
+        {
+          "apiStatus": {
+            "description": "Stable production version",
+            "value": "PRODUCTION"
+          },
+          "httpMethod": "POST",
+          "parameters": [
+            {
+              "dataType": "okms.serviceKey.Creation",
+              "paramType": "body",
+              "fullType": "okms.serviceKey.Creation",
+              "required": true,
+              "description": "Request Body"
+            },
+            {
+              "name": "okmsId",
+              "dataType": "uuid",
+              "paramType": "path",
+              "fullType": "uuid",
+              "required": true,
+              "description": "Okms ID"
+            }
+          ],
+          "responseType": "okms.serviceKey.Response",
+          "noAuthentication": false,
+          "description": "Create or import a service key",
+          "errors": [
+            "Client::BadRequest::OKMSExpired",
+            "Client::BadRequest::ServiceKeyContextInvalidCharacter",
+            "Client::BadRequest::ServiceKeyContextMaxExceeded",
+            "Client::BadRequest::ServiceKeyCrvRequired",
+            "Client::BadRequest::ServiceKeyCurveIncompatible",
+            "Client::BadRequest::ServiceKeyCurveRequired",
+            "Client::BadRequest::ServiceKeyDInvalidFormat",
+            "Client::BadRequest::ServiceKeyDRequired",
+            "Client::BadRequest::ServiceKeyDpRequired",
+            "Client::BadRequest::ServiceKeyDqRequired",
+            "Client::BadRequest::ServiceKeyEInvalidFormat",
+            "Client::BadRequest::ServiceKeyERequired",
+            "Client::BadRequest::ServiceKeyKInvalidFormat",
+            "Client::BadRequest::ServiceKeyKRequired",
+            "Client::BadRequest::ServiceKeyKeyOpsInvalidUsage",
+            "Client::BadRequest::ServiceKeyKeyOpsRequired",
+            "Client::BadRequest::ServiceKeyKeysIncompatible",
+            "Client::BadRequest::ServiceKeyKeysMaxExceeded",
+            "Client::BadRequest::ServiceKeyKeysMinRequired",
+            "Client::BadRequest::ServiceKeyKidRequired",
+            "Client::BadRequest::ServiceKeyKtyRequired",
+            "Client::BadRequest::ServiceKeyNInvalidFormat",
+            "Client::BadRequest::ServiceKeyNInvalidSize",
+            "Client::BadRequest::ServiceKeyNRequired",
+            "Client::BadRequest::ServiceKeyNameInvalidCharacter",
+            "Client::BadRequest::ServiceKeyNameMaxExceeded",
+            "Client::BadRequest::ServiceKeyNameMinRequired",
+            "Client::BadRequest::ServiceKeyOperationsIncompatible",
+            "Client::BadRequest::ServiceKeyOperationsInvalid",
+            "Client::BadRequest::ServiceKeyOperationsRequired",
+            "Client::BadRequest::ServiceKeyPInvalidFormat",
+            "Client::BadRequest::ServiceKeyPRequired",
+            "Client::BadRequest::ServiceKeyQInvalidFormat",
+            "Client::BadRequest::ServiceKeyQRequired",
+            "Client::BadRequest::ServiceKeyQiRequired",
+            "Client::BadRequest::ServiceKeySizeIncompatible",
+            "Client::BadRequest::ServiceKeySizeInvalid",
+            "Client::BadRequest::ServiceKeySizeRequired",
+            "Client::BadRequest::ServiceKeyTypeIncompatible",
+            "Client::BadRequest::ServiceKeyTypeRequired",
+            "Client::BadRequest::ServiceKeyUseInconsistentUsage",
+            "Client::BadRequest::ServiceKeyXInvalidFormat",
+            "Client::BadRequest::ServiceKeyXRequired",
+            "Client::BadRequest::ServiceKeyYInvalidFormat",
+            "Client::BadRequest::ServiceKeyYRequired"
+          ],
+          "iamActions": [
+            {
+              "name": "okms:apiovh:serviceKey/create",
+              "required": true
+            },
+            {
+              "name": "okms:apiovh:serviceKey/import",
+              "description": "Required when importing a service key",
+              "required": false
+            }
+          ]
+        }
+      ],
+      "description": "Manage OKMS service keys"
+    },
+    {
+      "path": "/okms/resource/{okmsId}/serviceKey/{keyId}",
+      "operations": [
+        {
+          "apiStatus": {
+            "description": "Stable production version",
+            "value": "PRODUCTION"
+          },
+          "httpMethod": "DELETE",
+          "parameters": [
+            {
+              "name": "keyId",
+              "dataType": "uuid",
+              "paramType": "path",
+              "fullType": "uuid",
+              "required": true,
+              "description": "Key ID"
+            },
+            {
+              "name": "okmsId",
+              "dataType": "uuid",
+              "paramType": "path",
+              "fullType": "uuid",
+              "required": true,
+              "description": "Okms ID"
+            }
+          ],
+          "responseType": "void",
+          "noAuthentication": false,
+          "description": "Delete the given service key",
+          "errors": [
+            "Client::BadRequest::OKMSExpired"
+          ],
+          "iamActions": [
+            {
+              "name": "okms:apiovh:serviceKey/delete",
+              "required": true
+            }
+          ]
+        },
+        {
+          "apiStatus": {
+            "description": "Stable production version",
+            "value": "PRODUCTION"
+          },
+          "httpMethod": "GET",
+          "parameters": [
+            {
+              "name": "format",
+              "dataType": "okms.KeyFormatEnum",
+              "paramType": "query",
+              "fullType": "okms.KeyFormatEnum",
+              "required": false,
+              "description": "Optional additional output format of the key"
+            },
+            {
+              "name": "keyId",
+              "dataType": "uuid",
+              "paramType": "path",
+              "fullType": "uuid",
+              "required": true,
+              "description": "Key ID"
+            },
+            {
+              "name": "okmsId",
+              "dataType": "uuid",
+              "paramType": "path",
+              "fullType": "uuid",
+              "required": true,
+              "description": "Okms ID"
+            }
+          ],
+          "responseType": "okms.serviceKey.ResponseWithIAM",
+          "noAuthentication": false,
+          "description": "Retrieve a key",
+          "errors": [
+            "Client::BadRequest::OKMSExpired"
+          ],
+          "iamActions": [
+            {
+              "name": "okms:apiovh:serviceKey/get",
+              "required": true
+            }
+          ]
+        },
+        {
+          "apiStatus": {
+            "description": "Stable production version",
+            "value": "PRODUCTION"
+          },
+          "httpMethod": "PUT",
+          "parameters": [
+            {
+              "dataType": "okms.serviceKey.Update",
+              "paramType": "body",
+              "fullType": "okms.serviceKey.Update",
+              "required": true,
+              "description": "Request Body"
+            },
+            {
+              "name": "keyId",
+              "dataType": "uuid",
+              "paramType": "path",
+              "fullType": "uuid",
+              "required": true,
+              "description": "Key ID"
+            },
+            {
+              "name": "okmsId",
+              "dataType": "uuid",
+              "paramType": "path",
+              "fullType": "uuid",
+              "required": true,
+              "description": "Okms ID"
+            }
+          ],
+          "responseType": "okms.serviceKey.Response",
+          "noAuthentication": false,
+          "description": "Update a service key",
+          "errors": [
+            "Client::BadRequest::OKMSExpired",
+            "Client::BadRequest::ServiceKeyDeactivationReasonIncompatible",
+            "Client::BadRequest::ServiceKeyDeactivationReasonIncompatibleReason",
+            "Client::BadRequest::ServiceKeyDeactivationReasonRequired",
+            "Client::BadRequest::ServiceKeyNameInvalidCharacter",
+            "Client::BadRequest::ServiceKeyNameMaxExceeded",
+            "Client::BadRequest::ServiceKeyNameMinRequired"
+          ],
+          "iamActions": [
+            {
+              "name": "okms:apiovh:serviceKey/update",
+              "required": true
+            },
+            {
+              "name": "okms:apiovh:serviceKey/activate",
+              "description": "Required when activating the service key",
+              "required": false
+            },
+            {
+              "name": "okms:apiovh:serviceKey/deactivate",
+              "description": "Required when deactivating the service key",
+              "required": false
+            }
+          ]
+        }
+      ],
+      "description": "Manage OKMS service keys"
+    }
+  ],
+  "resourcePath": "/okms",
+  "basePath": "https://eu.api.ovh.com/v2",
+  "models": {
+    "dbaas.logs.LogKind": {
+      "id": "LogKind",
+      "namespace": "dbaas.logs",
+      "description": "Log kind",
+      "properties": {
+        "additionalReturnedFields": {
+          "type": "string[]",
+          "fullType": "string[]",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "List of additional log fields managed in this log kind",
+          "required": false
+        },
+        "createdAt": {
+          "type": "datetime",
+          "fullType": "datetime",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "Creation date of the log kind",
+          "required": false
+        },
+        "displayName": {
+          "type": "string",
+          "fullType": "string",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "Log kind display name",
+          "required": false
+        },
+        "kindId": {
+          "type": "uuid",
+          "fullType": "uuid",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "Log kind ID",
+          "required": false
+        },
+        "name": {
+          "type": "string",
+          "fullType": "string",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "Log kind name",
+          "required": false
+        },
+        "updatedAt": {
+          "type": "datetime",
+          "fullType": "datetime",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "Last update date of the log kind",
+          "required": false
+        }
+      }
+    },
+    "dbaas.logs.LogSubscription": {
+      "id": "LogSubscription",
+      "namespace": "dbaas.logs",
+      "description": "Log subscription",
+      "properties": {
+        "createdAt": {
+          "type": "datetime",
+          "fullType": "datetime",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "Creation date of the subscription",
+          "required": false
+        },
+        "kind": {
+          "type": "string",
+          "fullType": "string",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "Log kind name of this subscription",
+          "required": false
+        },
+        "resource": {
+          "type": "dbaas.logs.LogSubscriptionResource",
+          "fullType": "dbaas.logs.LogSubscriptionResource",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "Subscribed resource, where the logs come from",
+          "required": false
+        },
+        "serviceName": {
+          "type": "string",
+          "fullType": "string",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "Name of the destination log service",
+          "required": false
+        },
+        "streamId": {
+          "type": "string",
+          "fullType": "string",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "Id of the destination log stream",
+          "required": false
+        },
+        "subscriptionId": {
+          "type": "uuid",
+          "fullType": "uuid",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "Subscription ID",
+          "required": false
+        },
+        "updatedAt": {
+          "type": "datetime",
+          "fullType": "datetime",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "Last update date of the subscription",
+          "required": false
+        }
+      }
+    },
+    "dbaas.logs.LogSubscriptionCreation": {
+      "id": "LogSubscriptionCreation",
+      "namespace": "dbaas.logs",
+      "description": "Log subscription creation payload",
+      "properties": {
+        "kind": {
+          "type": "string",
+          "fullType": "string",
+          "canBeNull": false,
+          "readOnly": false,
+          "description": "Log kind name to subscribe to",
+          "required": true
+        },
+        "streamId": {
+          "type": "uuid",
+          "fullType": "uuid",
+          "canBeNull": false,
+          "readOnly": false,
+          "description": "Customer log stream ID",
+          "required": true
+        }
+      }
+    },
+    "dbaas.logs.LogSubscriptionResource": {
+      "id": "LogSubscriptionResource",
+      "namespace": "dbaas.logs",
+      "description": "Log subscription resource",
+      "properties": {
+        "name": {
+          "type": "string",
+          "fullType": "string",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "Name of subscribed resource",
+          "required": false
+        },
+        "type": {
+          "type": "string",
+          "fullType": "string",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "Type of subscribed resource",
+          "required": false
+        }
+      }
+    },
+    "dbaas.logs.LogSubscriptionResponse": {
+      "id": "LogSubscriptionResponse",
+      "namespace": "dbaas.logs",
+      "description": "Asynchronous operation after subscribing or unsubscribing to a resource logs",
+      "properties": {
+        "operationId": {
+          "type": "uuid",
+          "fullType": "uuid",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "Identifier of the operation",
+          "required": false
+        },
+        "serviceName": {
+          "type": "string",
+          "fullType": "string",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "Operation owner's service name",
+          "required": false
+        }
+      }
+    },
+    "dbaas.logs.LogUrlCreation": {
+      "id": "LogUrlCreation",
+      "namespace": "dbaas.logs",
+      "description": "Log temporary URL creation payload",
+      "properties": {
+        "kind": {
+          "type": "string",
+          "fullType": "string",
+          "canBeNull": false,
+          "readOnly": false,
+          "description": "Log kind name",
+          "required": true
+        }
+      }
+    },
+    "dbaas.logs.TemporaryLogsLink": {
+      "id": "TemporaryLogsLink",
+      "namespace": "dbaas.logs",
+      "description": "Temporary url information",
+      "properties": {
+        "expirationDate": {
+          "type": "datetime",
+          "fullType": "datetime",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "Temporary url expiration date",
+          "required": false
+        },
+        "url": {
+          "type": "string",
+          "fullType": "string",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "Temporary url",
+          "required": false
+        }
+      }
+    },
+    "iam.ResourceMetadata": {
+      "id": "ResourceMetadata",
+      "namespace": "iam",
+      "description": "IAM resource metadata embedded in services models",
+      "properties": {
+        "displayName": {
+          "type": "string",
+          "fullType": "string",
+          "canBeNull": true,
+          "readOnly": true,
+          "description": "Resource display name",
+          "required": false
+        },
+        "id": {
+          "type": "uuid",
+          "fullType": "uuid",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "Unique identifier of the resource",
+          "required": false
+        },
+        "state": {
+          "type": "iam.ResourceMetadata.StateEnum",
+          "fullType": "iam.ResourceMetadata.StateEnum",
+          "canBeNull": true,
+          "readOnly": true,
+          "description": "Resource state",
+          "required": false
+        },
+        "tags": {
+          "type": "map[string]string",
+          "fullType": "map[string]string",
+          "canBeNull": true,
+          "readOnly": true,
+          "description": "Resource tags. Tags that were internally computed are prefixed with ovh:",
+          "required": false
+        },
+        "urn": {
+          "type": "string",
+          "fullType": "string",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "Unique resource name used in policies",
+          "required": false
+        }
+      }
+    },
+    "iam.ResourceMetadata.StateEnum": {
+      "id": "StateEnum",
+      "namespace": "iam.ResourceMetadata",
+      "description": "Resource state",
+      "enum": [
+        "EXPIRED",
+        "IN_CREATION",
+        "OK",
+        "SUSPENDED"
+      ],
+      "enumType": "string"
+    },
+    "iam.resource.TagFilter": {
+      "id": "TagFilter",
+      "namespace": "iam.resource",
+      "description": "Resource tag filter",
+      "properties": {
+        "operator": {
+          "type": "iam.resource.TagFilter.OperatorEnum",
+          "fullType": "iam.resource.TagFilter.OperatorEnum",
+          "canBeNull": true,
+          "readOnly": true,
+          "description": "Operator to use in order to filter on the value (defaults to 'EQ')",
+          "required": false
+        },
+        "value": {
+          "type": "string",
+          "fullType": "string",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "Value to use in order to filter tags",
+          "required": false
+        }
+      }
+    },
+    "iam.resource.TagFilter.OperatorEnum": {
+      "id": "OperatorEnum",
+      "namespace": "iam.resource.TagFilter",
+      "description": "Operator that can be used in order to filter resources tags",
+      "enum": [
+        "EQ",
+        "EXISTS",
+        "ILIKE",
+        "LIKE",
+        "NEQ",
+        "NEXISTS"
+      ],
+      "enumType": "string"
+    },
+    "location.TypeEnum": {
+      "id": "TypeEnum",
+      "namespace": "location",
+      "description": "Typology of the region",
+      "enum": [
+        "LOCAL-ZONE",
+        "REGION-1-AZ",
+        "REGION-3-AZ"
+      ],
+      "enumType": "string"
+    },
+    "observability.CertificationLevelEnum": {
+      "id": "CertificationLevelEnum",
+      "namespace": "observability",
+      "description": "Certification level",
+      "enum": [
+        "HDS",
+        "PCI_DSS",
+        "SNC",
+        "SOC2",
+        "STANDARD",
+        "TRUSTED_ZONE"
+      ],
+      "enumType": "string"
+    },
+    "okms.CertificateTypeEnum": {
+      "id": "CertificateTypeEnum",
+      "namespace": "okms",
+      "description": "Valid type of certificate",
+      "enum": [
+        "ECDSA",
+        "RSA"
+      ],
+      "enumType": "string"
+    },
+    "okms.CredentialStatusEnum": {
+      "id": "CredentialStatusEnum",
+      "namespace": "okms",
+      "description": "Valid states of credential",
+      "enum": [
+        "CREATING",
+        "DELETING",
+        "ERROR",
+        "EXPIRED",
+        "READY"
+      ],
+      "enumType": "string"
+    },
+    "okms.KeyAlgEnum": {
+      "id": "KeyAlgEnum",
+      "namespace": "okms",
+      "description": "Key algorithm",
+      "enum": [
+        "ES256",
+        "ES384",
+        "ES512",
+        "PS256",
+        "PS384",
+        "PS512",
+        "RS256",
+        "RS384",
+        "RS512"
+      ],
+      "enumType": "string"
+    },
+    "okms.KeyCurveEnum": {
+      "id": "KeyCurveEnum",
+      "namespace": "okms",
+      "description": "Key curve",
+      "enum": [
+        "P-256",
+        "P-384",
+        "P-521"
+      ],
+      "enumType": "string"
+    },
+    "okms.KeyDeactivationReasonEnum": {
+      "id": "KeyDeactivationReasonEnum",
+      "namespace": "okms",
+      "description": "Key deactivation reason",
+      "enum": [
+        "AFFILIATION_CHANGED",
+        "CA_COMPROMISE",
+        "CESSATION_OF_OPERATION",
+        "KEY_COMPROMISE",
+        "PRIVILEGE_WITHDRAWN",
+        "SUPERSEDED",
+        "UNSPECIFIED"
+      ],
+      "enumType": "string"
+    },
+    "okms.KeyFormatEnum": {
+      "id": "KeyFormatEnum",
+      "namespace": "okms",
+      "description": "Key format",
+      "enum": [
+        "JWK",
+        "PEM"
+      ],
+      "enumType": "string"
+    },
+    "okms.KeyOpsEnum": {
+      "id": "KeyOpsEnum",
+      "namespace": "okms",
+      "description": "Key operations",
+      "enum": [
+        "decrypt",
+        "encrypt",
+        "sign",
+        "unwrapKey",
+        "verify",
+        "wrapKey"
+      ],
+      "enumType": "string"
+    },
+    "okms.KeySizeEnum": {
+      "id": "KeySizeEnum",
+      "namespace": "okms",
+      "description": "The size of a key",
+      "enum": [
+        128,
+        192,
+        256,
+        384,
+        521,
+        2048,
+        3072,
+        4096
+      ],
+      "enumType": "long"
+    },
+    "okms.KeyStateEnum": {
+      "id": "KeyStateEnum",
+      "namespace": "okms",
+      "description": "The state of a key",
+      "enum": [
+        "ACTIVE",
+        "ALL",
+        "COMPROMISED",
+        "DEACTIVATED",
+        "DESTROYED",
+        "DESTROYED_COMPROMISED",
+        "PRE_ACTIVE"
+      ],
+      "enumType": "string"
+    },
+    "okms.KeyStateUpdateEnum": {
+      "id": "KeyStateUpdateEnum",
+      "namespace": "okms",
+      "description": "The desired state of a key",
+      "enum": [
+        "ACTIVE",
+        "COMPROMISED",
+        "DEACTIVATED"
+      ],
+      "enumType": "string"
+    },
+    "okms.KeyTypeEnum": {
+      "id": "KeyTypeEnum",
+      "namespace": "okms",
+      "description": "Cryptographic algorithm family used with the key",
+      "enum": [
+        "EC",
+        "RSA",
+        "oct"
+      ],
+      "enumType": "string"
+    },
+    "okms.KeyUseEnum": {
+      "id": "KeyUseEnum",
+      "namespace": "okms",
+      "description": "Key usage",
+      "enum": [
+        "enc",
+        "sig"
+      ],
+      "enumType": "string"
+    },
+    "okms.RegionEnum": {
+      "id": "RegionEnum",
+      "namespace": "okms",
+      "description": "Region",
+      "enum": [
+        "ap-south-mum",
+        "ap-southeast-sgp",
+        "ap-southeast-syd",
+        "ca-east-bhs",
+        "ca-east-tor",
+        "eu-central-waw",
+        "eu-south-mil",
+        "eu-west-eri",
+        "eu-west-gra",
+        "eu-west-lim",
+        "eu-west-par",
+        "eu-west-rbx",
+        "eu-west-sbg"
+      ],
+      "enumType": "string"
+    },
+    "okms.SecretStateEnum": {
+      "id": "SecretStateEnum",
+      "namespace": "okms",
+      "description": "State of the secret version",
+      "enum": [
+        "ACTIVE",
+        "DEACTIVATED",
+        "DELETED"
+      ],
+      "enumType": "string"
+    },
+    "okms.credential.Creation": {
+      "id": "Creation",
+      "namespace": "okms.credential",
+      "description": "Request an OKMS service access credential",
+      "properties": {
+        "certificateType": {
+          "type": "okms.CertificateTypeEnum",
+          "fullType": "okms.CertificateTypeEnum",
+          "canBeNull": true,
+          "readOnly": false,
+          "description": "Type of the certificate (ECDSA or RSA, incompatible with CSR)",
+          "required": false
+        },
+        "csr": {
+          "type": "text",
+          "fullType": "text",
+          "canBeNull": true,
+          "readOnly": false,
+          "description": "Valid Certificate Signing Request",
+          "required": false
+        },
+        "description": {
+          "type": "string",
+          "fullType": "string",
+          "canBeNull": true,
+          "readOnly": false,
+          "description": "Description of the credential (max 200)",
+          "required": false
+        },
+        "identityURNs": {
+          "type": "string[]",
+          "fullType": "string[]",
+          "canBeNull": false,
+          "readOnly": false,
+          "description": "List of identity URNs associated with the credential (max 25)",
+          "required": true
+        },
+        "name": {
+          "type": "string",
+          "fullType": "string",
+          "canBeNull": false,
+          "readOnly": false,
+          "description": "Name of the credential (max 50)",
+          "required": true
+        },
+        "validity": {
+          "type": "long",
+          "fullType": "long",
+          "canBeNull": true,
+          "readOnly": false,
+          "description": "Validity in days (default 365, max 365)",
+          "required": false
+        }
+      }
+    },
+    "okms.credential.CreationResponse": {
+      "id": "CreationResponse",
+      "namespace": "okms.credential",
+      "description": "An OKMS service access credential",
+      "properties": {
+        "certificateType": {
+          "type": "okms.CertificateTypeEnum",
+          "fullType": "okms.CertificateTypeEnum",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "Type of the certificate (ECDSA or RSA)",
+          "required": false
+        },
+        "createdAt": {
+          "type": "datetime",
+          "fullType": "datetime",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "Creation time of the credential",
+          "required": false
+        },
+        "description": {
+          "type": "string",
+          "fullType": "string",
+          "canBeNull": true,
+          "readOnly": true,
+          "description": "Description of the credential",
+          "required": false
+        },
+        "expiredAt": {
+          "type": "datetime",
+          "fullType": "datetime",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "Expiration time of the credential",
+          "required": false
+        },
+        "fromCSR": {
+          "type": "boolean",
+          "fullType": "boolean",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "Is the credential generated from CSR",
+          "required": false
+        },
+        "id": {
+          "type": "uuid",
+          "fullType": "uuid",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "ID of the credential",
+          "required": false
+        },
+        "identityURNs": {
+          "type": "string[]",
+          "fullType": "string[]",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "List of identity URNs associated with the credential",
+          "required": false
+        },
+        "name": {
+          "type": "string",
+          "fullType": "string",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "Name of the credential",
+          "required": false
+        },
+        "privateKeyPEM": {
+          "type": "password",
+          "fullType": "password",
+          "canBeNull": true,
+          "readOnly": true,
+          "description": "Private Key PEM of the credential if no CSR is provided (cannot be retrieve later)",
+          "required": false
+        },
+        "status": {
+          "type": "okms.CredentialStatusEnum",
+          "fullType": "okms.CredentialStatusEnum",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "Status of the credential",
+          "required": false
+        }
+      }
+    },
+    "okms.credential.GetResponse": {
+      "id": "GetResponse",
+      "namespace": "okms.credential",
+      "description": "An OKMS service access credential",
+      "properties": {
+        "certificatePEM": {
+          "type": "text",
+          "fullType": "text",
+          "canBeNull": true,
+          "readOnly": true,
+          "description": "Certificate PEM of the credential",
+          "required": false
+        },
+        "certificateType": {
+          "type": "okms.CertificateTypeEnum",
+          "fullType": "okms.CertificateTypeEnum",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "Type of the certificate (ECDSA or RSA)",
+          "required": false
+        },
+        "createdAt": {
+          "type": "datetime",
+          "fullType": "datetime",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "Creation time of the credential",
+          "required": false
+        },
+        "description": {
+          "type": "string",
+          "fullType": "string",
+          "canBeNull": true,
+          "readOnly": true,
+          "description": "Description of the credential",
+          "required": false
+        },
+        "expiredAt": {
+          "type": "datetime",
+          "fullType": "datetime",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "Expiration time of the credential",
+          "required": false
+        },
+        "fromCSR": {
+          "type": "boolean",
+          "fullType": "boolean",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "Is the credential generated from CSR",
+          "required": false
+        },
+        "id": {
+          "type": "uuid",
+          "fullType": "uuid",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "ID of the credential",
+          "required": false
+        },
+        "identityURNs": {
+          "type": "string[]",
+          "fullType": "string[]",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "List of identity URNs associated with the credential",
+          "required": false
+        },
+        "name": {
+          "type": "string",
+          "fullType": "string",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "Name of the credential",
+          "required": false
+        },
+        "status": {
+          "type": "okms.CredentialStatusEnum",
+          "fullType": "okms.CredentialStatusEnum",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "Status of the credential",
+          "required": false
+        }
+      }
+    },
+    "okms.reference.Region": {
+      "id": "Region",
+      "namespace": "okms.reference",
+      "description": "Region information",
+      "properties": {
+        "certifications": {
+          "type": "observability.CertificationLevelEnum[]",
+          "fullType": "observability.CertificationLevelEnum[]",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "Certifications of the region",
+          "required": false
+        },
+        "id": {
+          "type": "okms.RegionEnum",
+          "fullType": "okms.RegionEnum",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "Name of the region",
+          "required": false
+        },
+        "kmipEndpoint": {
+          "type": "string",
+          "fullType": "string",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "KMS kmip API endpoint",
+          "required": false
+        },
+        "restEndpoint": {
+          "type": "string",
+          "fullType": "string",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "KMS rest API endpoint",
+          "required": false
+        },
+        "type": {
+          "type": "location.TypeEnum",
+          "fullType": "location.TypeEnum",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "General typology of the region",
+          "required": false
+        }
+      }
+    },
+    "okms.reference.secretConfig.Response": {
+      "id": "Response",
+      "namespace": "okms.reference.secretConfig",
+      "description": "Secret engine default configuration",
+      "properties": {
+        "casRequired": {
+          "type": "boolean",
+          "fullType": "boolean",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "The cas parameter will be required for all write requests if set to true",
+          "required": false
+        },
+        "maxVersions": {
+          "type": "long",
+          "fullType": "long",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "The number of versions to keep",
+          "required": false
+        }
+      }
+    },
+    "okms.reference.serviceKey.Curve": {
+      "id": "Curve",
+      "namespace": "okms.reference.serviceKey",
+      "description": "Service key curve reference",
+      "properties": {
+        "default": {
+          "type": "boolean",
+          "fullType": "boolean",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "Is default service key curve for type?",
+          "required": false
+        },
+        "value": {
+          "type": "okms.KeyCurveEnum",
+          "fullType": "okms.KeyCurveEnum",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "Service key curve for type",
+          "required": false
+        }
+      }
+    },
+    "okms.reference.serviceKey.Operations": {
+      "id": "Operations",
+      "namespace": "okms.reference.serviceKey",
+      "description": "Service key operations reference",
+      "properties": {
+        "default": {
+          "type": "boolean",
+          "fullType": "boolean",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "Is default service key operations for type?",
+          "required": false
+        },
+        "value": {
+          "type": "okms.KeyOpsEnum[]",
+          "fullType": "okms.KeyOpsEnum[]",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "Service key operations for type",
+          "required": false
+        }
+      }
+    },
+    "okms.reference.serviceKey.Response": {
+      "id": "Response",
+      "namespace": "okms.reference.serviceKey",
+      "description": "Service key type, size, curve and operations combination",
+      "properties": {
+        "curves": {
+          "type": "okms.reference.serviceKey.Curve[]",
+          "fullType": "okms.reference.serviceKey.Curve[]",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "Allowed service key curves for type",
+          "required": false
+        },
+        "default": {
+          "type": "boolean",
+          "fullType": "boolean",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "Is default service key type?",
+          "required": false
+        },
+        "operations": {
+          "type": "okms.reference.serviceKey.Operations[]",
+          "fullType": "okms.reference.serviceKey.Operations[]",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "Allowed service key operations for type",
+          "required": false
+        },
+        "sizes": {
+          "type": "okms.reference.serviceKey.Size[]",
+          "fullType": "okms.reference.serviceKey.Size[]",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "Allowed service key sizes for type",
+          "required": false
+        },
+        "type": {
+          "type": "okms.KeyTypeEnum",
+          "fullType": "okms.KeyTypeEnum",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "Service key type",
+          "required": false
+        }
+      }
+    },
+    "okms.reference.serviceKey.Size": {
+      "id": "Size",
+      "namespace": "okms.reference.serviceKey",
+      "description": "Service key size reference",
+      "properties": {
+        "default": {
+          "type": "boolean",
+          "fullType": "boolean",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "Is default service key size for type?",
+          "required": false
+        },
+        "value": {
+          "type": "okms.KeySizeEnum",
+          "fullType": "okms.KeySizeEnum",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "Service key size for type",
+          "required": false
+        }
+      }
+    },
+    "okms.resource.Response": {
+      "id": "Response",
+      "namespace": "okms.resource",
+      "description": "An OKMS service",
+      "properties": {
+        "id": {
+          "type": "uuid",
+          "fullType": "uuid",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "OKMS ID",
+          "required": false
+        },
+        "kmipEndpoint": {
+          "type": "string",
+          "fullType": "string",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "KMS kmip API endpoint",
+          "required": false
+        },
+        "kmipObjectCount": {
+          "type": "long",
+          "fullType": "long",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "Number of KMIP objects (non destroyed)",
+          "required": false
+        },
+        "kmipRsaEndpoint": {
+          "type": "string",
+          "fullType": "string",
+          "canBeNull": true,
+          "readOnly": true,
+          "description": "KMS kmip RSA API endpoint",
+          "required": false
+        },
+        "publicCA": {
+          "type": "text",
+          "fullType": "text",
+          "canBeNull": true,
+          "readOnly": true,
+          "description": "KMS public CA (Certificate Authority)",
+          "required": false
+        },
+        "publicRsaCA": {
+          "type": "text",
+          "fullType": "text",
+          "canBeNull": true,
+          "readOnly": true,
+          "description": "KMS public RSA CA (Certificate Authority)",
+          "required": false
+        },
+        "region": {
+          "type": "okms.RegionEnum",
+          "fullType": "okms.RegionEnum",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "Region",
+          "required": false
+        },
+        "restEndpoint": {
+          "type": "string",
+          "fullType": "string",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "KMS rest API endpoint",
+          "required": false
+        },
+        "secretCount": {
+          "type": "long",
+          "fullType": "long",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "Number of secrets",
+          "required": false
+        },
+        "secretVersionCount": {
+          "type": "long",
+          "fullType": "long",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "Number of secret versions",
+          "required": false
+        },
+        "serviceKeyCount": {
+          "type": "long",
+          "fullType": "long",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "Number of service keys",
+          "required": false
+        },
+        "swaggerEndpoint": {
+          "type": "string",
+          "fullType": "string",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "KMS rest API swagger UI",
+          "required": false
+        }
+      }
+    },
+    "okms.resource.ResponseWithIAM": {
+      "id": "Response",
+      "namespace": "okms.resource",
+      "description": "An OKMS service",
+      "properties": {
+        "iam": {
+          "type": "iam.ResourceMetadata",
+          "canBeNull": true,
+          "readOnly": true,
+          "description": "IAM resource metadata",
+          "required": false
+        },
+        "id": {
+          "type": "uuid",
+          "fullType": "uuid",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "OKMS ID",
+          "required": false
+        },
+        "kmipEndpoint": {
+          "type": "string",
+          "fullType": "string",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "KMS kmip API endpoint",
+          "required": false
+        },
+        "kmipObjectCount": {
+          "type": "long",
+          "fullType": "long",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "Number of KMIP objects (non destroyed)",
+          "required": false
+        },
+        "kmipRsaEndpoint": {
+          "type": "string",
+          "fullType": "string",
+          "canBeNull": true,
+          "readOnly": true,
+          "description": "KMS kmip RSA API endpoint",
+          "required": false
+        },
+        "publicCA": {
+          "type": "text",
+          "fullType": "text",
+          "canBeNull": true,
+          "readOnly": true,
+          "description": "KMS public CA (Certificate Authority)",
+          "required": false
+        },
+        "publicRsaCA": {
+          "type": "text",
+          "fullType": "text",
+          "canBeNull": true,
+          "readOnly": true,
+          "description": "KMS public RSA CA (Certificate Authority)",
+          "required": false
+        },
+        "region": {
+          "type": "okms.RegionEnum",
+          "fullType": "okms.RegionEnum",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "Region",
+          "required": false
+        },
+        "restEndpoint": {
+          "type": "string",
+          "fullType": "string",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "KMS rest API endpoint",
+          "required": false
+        },
+        "secretCount": {
+          "type": "long",
+          "fullType": "long",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "Number of secrets",
+          "required": false
+        },
+        "secretVersionCount": {
+          "type": "long",
+          "fullType": "long",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "Number of secret versions",
+          "required": false
+        },
+        "serviceKeyCount": {
+          "type": "long",
+          "fullType": "long",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "Number of service keys",
+          "required": false
+        },
+        "swaggerEndpoint": {
+          "type": "string",
+          "fullType": "string",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "KMS rest API swagger UI",
+          "required": false
+        }
+      }
+    },
+    "okms.secret.Creation": {
+      "id": "Creation",
+      "namespace": "okms.secret",
+      "description": "Create an OKMS secret",
+      "properties": {
+        "metadata": {
+          "type": "okms.secret.MetadataRequest",
+          "fullType": "okms.secret.MetadataRequest",
+          "canBeNull": true,
+          "readOnly": false,
+          "description": "Secret metadata",
+          "required": false
+        },
+        "path": {
+          "type": "string",
+          "fullType": "string",
+          "canBeNull": false,
+          "readOnly": false,
+          "description": "Secret path",
+          "required": true
+        },
+        "version": {
+          "type": "okms.secret.version.Creation",
+          "fullType": "okms.secret.version.Creation",
+          "canBeNull": false,
+          "readOnly": false,
+          "description": "Data of the secret version",
+          "required": true
+        }
+      }
+    },
+    "okms.secret.GetResponse": {
+      "id": "GetResponse",
+      "namespace": "okms.secret",
+      "description": "An OKMS secret",
+      "properties": {
+        "metadata": {
+          "type": "okms.secret.Metadata",
+          "fullType": "okms.secret.Metadata",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "Secret metadata",
+          "required": false
+        },
+        "path": {
+          "type": "string",
+          "fullType": "string",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "Secret identifier",
+          "required": false
+        },
+        "version": {
+          "type": "okms.secret.Version",
+          "fullType": "okms.secret.Version",
+          "canBeNull": true,
+          "readOnly": true,
+          "description": "Data of the secret version",
+          "required": false
+        }
+      }
+    },
+    "okms.secret.GetResponseWithIAM": {
+      "id": "GetResponse",
+      "namespace": "okms.secret",
+      "description": "An OKMS secret",
+      "properties": {
+        "iam": {
+          "type": "iam.ResourceMetadata",
+          "canBeNull": true,
+          "readOnly": true,
+          "description": "IAM resource metadata",
+          "required": false
+        },
+        "metadata": {
+          "type": "okms.secret.Metadata",
+          "fullType": "okms.secret.Metadata",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "Secret metadata",
+          "required": false
+        },
+        "path": {
+          "type": "string",
+          "fullType": "string",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "Secret identifier",
+          "required": false
+        },
+        "version": {
+          "type": "okms.secret.Version",
+          "fullType": "okms.secret.Version",
+          "canBeNull": true,
+          "readOnly": true,
+          "description": "Data of the secret version",
+          "required": false
+        }
+      }
+    },
+    "okms.secret.Metadata": {
+      "id": "Metadata",
+      "namespace": "okms.secret",
+      "description": "Secret metadata",
+      "properties": {
+        "casRequired": {
+          "type": "boolean",
+          "fullType": "boolean",
+          "canBeNull": true,
+          "readOnly": true,
+          "description": "If set to true, the “Cas” (Check And Set) parameter will be required and verified for each secret update. If set to false, OKMS domain configuration is applied.",
+          "required": false
+        },
+        "createdAt": {
+          "type": "datetime",
+          "fullType": "datetime",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "Time of creation of the secret",
+          "required": false
+        },
+        "currentVersion": {
+          "type": "long",
+          "fullType": "long",
+          "canBeNull": true,
+          "readOnly": true,
+          "description": "The secret version",
+          "required": false
+        },
+        "customMetadata": {
+          "type": "map[string]string",
+          "fullType": "map[string]string",
+          "canBeNull": true,
+          "readOnly": true,
+          "description": "Custom metadata",
+          "required": false
+        },
+        "deactivateVersionAfter": {
+          "type": "string",
+          "fullType": "string",
+          "canBeNull": true,
+          "readOnly": true,
+          "description": "Time duration before a version is deactivated. If 0s, OKMS domain configuration is applied.",
+          "required": false
+        },
+        "maxVersions": {
+          "type": "long",
+          "fullType": "long",
+          "canBeNull": true,
+          "readOnly": true,
+          "description": "The number of versions to keep. If 0, OKMS domain configuration is applied.",
+          "required": false
+        },
+        "oldestVersion": {
+          "type": "long",
+          "fullType": "long",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "The secret oldest version",
+          "required": false
+        },
+        "updatedAt": {
+          "type": "datetime",
+          "fullType": "datetime",
+          "canBeNull": true,
+          "readOnly": true,
+          "description": "Time of the last update of the secret",
+          "required": false
+        }
+      }
+    },
+    "okms.secret.MetadataRequest": {
+      "id": "MetadataRequest",
+      "namespace": "okms.secret",
+      "description": "Create a secret metadata",
+      "properties": {
+        "casRequired": {
+          "type": "boolean",
+          "fullType": "boolean",
+          "canBeNull": true,
+          "readOnly": false,
+          "description": "If set to true, the “Cas” (Check And Set) parameter will be required and verified for each secret update. If set to false, OKMS domain configuration is applied.",
+          "required": false
+        },
+        "customMetadata": {
+          "type": "map[string]string",
+          "fullType": "map[string]string",
+          "canBeNull": true,
+          "readOnly": false,
+          "description": "Custom metadata",
+          "required": false
+        },
+        "deactivateVersionAfter": {
+          "type": "string",
+          "fullType": "string",
+          "canBeNull": true,
+          "readOnly": false,
+          "description": "Time duration before a version is deactivated. If 0s, OKMS domain configuration is applied.",
+          "required": false
+        },
+        "maxVersions": {
+          "type": "long",
+          "fullType": "long",
+          "canBeNull": true,
+          "readOnly": false,
+          "description": "The number of versions to keep. If 0, OKMS domain configuration is applied.",
+          "required": false
+        }
+      }
+    },
+    "okms.secret.PostResponse": {
+      "id": "PostResponse",
+      "namespace": "okms.secret",
+      "description": "An OKMS secret",
+      "properties": {
+        "metadata": {
+          "type": "okms.secret.Metadata",
+          "fullType": "okms.secret.Metadata",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "Secret metadata",
+          "required": false
+        },
+        "path": {
+          "type": "string",
+          "fullType": "string",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "Secret identifier",
+          "required": false
+        }
+      }
+    },
+    "okms.secret.UpdateRequest": {
+      "id": "UpdateRequest",
+      "namespace": "okms.secret",
+      "description": "Update an OKMS secret",
+      "properties": {
+        "metadata": {
+          "type": "okms.secret.MetadataRequest",
+          "fullType": "okms.secret.MetadataRequest",
+          "canBeNull": true,
+          "readOnly": false,
+          "description": "Secret metadata",
+          "required": false
+        },
+        "version": {
+          "type": "okms.secret.version.Creation",
+          "fullType": "okms.secret.version.Creation",
+          "canBeNull": true,
+          "readOnly": false,
+          "description": "Secret version",
+          "required": false
+        }
+      }
+    },
+    "okms.secret.Version": {
+      "id": "Version",
+      "namespace": "okms.secret",
+      "description": "An OKMS secret version",
+      "properties": {
+        "createdAt": {
+          "type": "datetime",
+          "fullType": "datetime",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "Time of creation of the secret version",
+          "required": false
+        },
+        "data": {
+          "type": "any",
+          "fullType": "any",
+          "canBeNull": true,
+          "readOnly": true,
+          "description": "Secret version data",
+          "required": false
+        },
+        "deactivatedAt": {
+          "type": "datetime",
+          "fullType": "datetime",
+          "canBeNull": true,
+          "readOnly": true,
+          "description": "Time of deactivation of the secret version",
+          "required": false
+        },
+        "id": {
+          "type": "long",
+          "fullType": "long",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "Secret version",
+          "required": false
+        },
+        "state": {
+          "type": "okms.SecretStateEnum",
+          "fullType": "okms.SecretStateEnum",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "State of the secret version",
+          "required": false
+        }
+      }
+    },
+    "okms.secret.version.Creation": {
+      "id": "Creation",
+      "namespace": "okms.secret.version",
+      "description": "Create an OKMS secret version",
+      "properties": {
+        "data": {
+          "type": "any",
+          "fullType": "any",
+          "canBeNull": false,
+          "readOnly": false,
+          "description": "Secret version data in key value json format",
+          "required": true
+        }
+      }
+    },
+    "okms.secret.version.UpdateRequest": {
+      "id": "UpdateRequest",
+      "namespace": "okms.secret.version",
+      "description": "Update an OKMS secret",
+      "properties": {
+        "state": {
+          "type": "okms.SecretStateEnum",
+          "fullType": "okms.SecretStateEnum",
+          "canBeNull": false,
+          "readOnly": false,
+          "description": "State of the secret version",
+          "required": true
+        }
+      }
+    },
+    "okms.secret.version.UpdateResponse": {
+      "id": "UpdateResponse",
+      "namespace": "okms.secret.version",
+      "description": "An OKMS secret version",
+      "properties": {
+        "createdAt": {
+          "type": "datetime",
+          "fullType": "datetime",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "Time of creation of the secret version",
+          "required": false
+        },
+        "deactivatedAt": {
+          "type": "datetime",
+          "fullType": "datetime",
+          "canBeNull": true,
+          "readOnly": true,
+          "description": "Time of deactivation of the secret version",
+          "required": false
+        },
+        "id": {
+          "type": "long",
+          "fullType": "long",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "Secret version",
+          "required": false
+        },
+        "state": {
+          "type": "okms.SecretStateEnum",
+          "fullType": "okms.SecretStateEnum",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "State of the secret version",
+          "required": false
+        }
+      }
+    },
+    "okms.secretConfig.Response": {
+      "id": "Response",
+      "namespace": "okms.secretConfig",
+      "description": "Secrets configuration settings",
+      "properties": {
+        "casRequired": {
+          "type": "boolean",
+          "fullType": "boolean",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "If set to true, the “Cas” (Check And Set) parameter will be required and verified for each secret update.",
+          "required": false
+        },
+        "deactivateVersionAfter": {
+          "type": "string",
+          "fullType": "string",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "Time duration before a version is deactivated. If 0s, default configuration (unlimited) is applied.",
+          "required": false
+        },
+        "maxVersions": {
+          "type": "long",
+          "fullType": "long",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "The number of versions to keep. If 0, default configuration (10) is applied.",
+          "required": false
+        }
+      }
+    },
+    "okms.secretConfig.UpdateRequest": {
+      "id": "UpdateRequest",
+      "namespace": "okms.secretConfig",
+      "description": "Secrets configuration settings",
+      "properties": {
+        "casRequired": {
+          "type": "boolean",
+          "fullType": "boolean",
+          "canBeNull": true,
+          "readOnly": false,
+          "description": "If set to true, the “Cas” (Check And Set) parameter will be required and verified for each secret update.",
+          "required": false
+        },
+        "deactivateVersionAfter": {
+          "type": "string",
+          "fullType": "string",
+          "canBeNull": true,
+          "readOnly": false,
+          "description": "Time duration before a version is deactivated. If 0s, default configuration (unlimited) is applied.",
+          "required": false
+        },
+        "maxVersions": {
+          "type": "long",
+          "fullType": "long",
+          "canBeNull": true,
+          "readOnly": false,
+          "description": "The number of versions to keep. If 0, default configuration (10) is applied.",
+          "required": false
+        }
+      }
+    },
+    "okms.serviceKey.Creation": {
+      "id": "Creation",
+      "namespace": "okms.serviceKey",
+      "description": "Create an OKMS service key",
+      "properties": {
+        "context": {
+          "type": "string",
+          "fullType": "string",
+          "canBeNull": true,
+          "readOnly": false,
+          "description": "Context of the key",
+          "required": false
+        },
+        "curve": {
+          "type": "okms.KeyCurveEnum",
+          "fullType": "okms.KeyCurveEnum",
+          "canBeNull": true,
+          "readOnly": false,
+          "description": "Curve type for Elliptic Curve (EC) keys",
+          "required": false
+        },
+        "keys": {
+          "type": "okms.serviceKey.JsonWebKeyRequest[]",
+          "fullType": "okms.serviceKey.JsonWebKeyRequest[]",
+          "canBeNull": true,
+          "readOnly": false,
+          "description": "Set of JSON Web Keys in case of import, incompatible with type,size,curve and operations",
+          "required": false
+        },
+        "name": {
+          "type": "string",
+          "fullType": "string",
+          "canBeNull": false,
+          "readOnly": false,
+          "description": "Key name",
+          "required": false
+        },
+        "operations": {
+          "type": "okms.KeyOpsEnum[]",
+          "fullType": "okms.KeyOpsEnum[]",
+          "canBeNull": true,
+          "readOnly": false,
+          "description": "The operations for which the key is intended to be used",
+          "required": false
+        },
+        "size": {
+          "type": "okms.KeySizeEnum",
+          "fullType": "okms.KeySizeEnum",
+          "canBeNull": true,
+          "readOnly": false,
+          "description": "Size of the key to be created",
+          "required": false
+        },
+        "type": {
+          "type": "okms.KeyTypeEnum",
+          "fullType": "okms.KeyTypeEnum",
+          "canBeNull": true,
+          "readOnly": false,
+          "description": "Type of the key to be created",
+          "required": false
+        }
+      }
+    },
+    "okms.serviceKey.JsonWebKeyRequest": {
+      "id": "JsonWebKeyRequest",
+      "namespace": "okms.serviceKey",
+      "description": "A JSON Web Key (JWK) object",
+      "properties": {
+        "alg": {
+          "type": "okms.KeyAlgEnum",
+          "fullType": "okms.KeyAlgEnum",
+          "canBeNull": true,
+          "readOnly": false,
+          "description": "The algorithm intended to be used with the key",
+          "required": false
+        },
+        "crv": {
+          "type": "okms.KeyCurveEnum",
+          "fullType": "okms.KeyCurveEnum",
+          "canBeNull": true,
+          "readOnly": false,
+          "description": "The cryptographic curve used with the key",
+          "required": false
+        },
+        "d": {
+          "type": "password",
+          "fullType": "password",
+          "canBeNull": true,
+          "readOnly": false,
+          "description": "The RSA or EC private exponent",
+          "required": false
+        },
+        "dp": {
+          "type": "password",
+          "fullType": "password",
+          "canBeNull": true,
+          "readOnly": false,
+          "description": "The RSA private key's first factor CRT exponent",
+          "required": false
+        },
+        "dq": {
+          "type": "password",
+          "fullType": "password",
+          "canBeNull": true,
+          "readOnly": false,
+          "description": "The RSA private key's second factor CRT exponent",
+          "required": false
+        },
+        "e": {
+          "type": "string",
+          "fullType": "string",
+          "canBeNull": true,
+          "readOnly": false,
+          "description": "The exponent value for the RSA public key",
+          "required": false
+        },
+        "k": {
+          "type": "password",
+          "fullType": "password",
+          "canBeNull": true,
+          "readOnly": false,
+          "description": "The value of the symmetric (or other single-valued) key",
+          "required": false
+        },
+        "key_ops": {
+          "type": "okms.KeyOpsEnum[]",
+          "fullType": "okms.KeyOpsEnum[]",
+          "canBeNull": true,
+          "readOnly": false,
+          "description": "The operation for which the key is intended to be used",
+          "required": false
+        },
+        "kid": {
+          "type": "string",
+          "fullType": "string",
+          "canBeNull": true,
+          "readOnly": false,
+          "description": "key ID parameter used to match a specific key",
+          "required": false
+        },
+        "kty": {
+          "type": "okms.KeyTypeEnum",
+          "fullType": "okms.KeyTypeEnum",
+          "canBeNull": false,
+          "readOnly": false,
+          "description": "Key type parameter identifies the cryptographic algorithm family used with the key, such as RSA or EC",
+          "required": true
+        },
+        "n": {
+          "type": "text",
+          "fullType": "text",
+          "canBeNull": true,
+          "readOnly": false,
+          "description": "The modulus value for the RSA public key",
+          "required": false
+        },
+        "p": {
+          "type": "password",
+          "fullType": "password",
+          "canBeNull": true,
+          "readOnly": false,
+          "description": "The first prime factor of the RSA private key",
+          "required": false
+        },
+        "q": {
+          "type": "password",
+          "fullType": "password",
+          "canBeNull": true,
+          "readOnly": false,
+          "description": "The second prime factor of the RSA private key",
+          "required": false
+        },
+        "qi": {
+          "type": "password",
+          "fullType": "password",
+          "canBeNull": true,
+          "readOnly": false,
+          "description": "The CRT coefficient of the second factor of the RSA private key",
+          "required": false
+        },
+        "use": {
+          "type": "okms.KeyUseEnum",
+          "fullType": "okms.KeyUseEnum",
+          "canBeNull": true,
+          "readOnly": false,
+          "description": "The intended use of the public key",
+          "required": false
+        },
+        "x": {
+          "type": "string",
+          "fullType": "string",
+          "canBeNull": true,
+          "readOnly": false,
+          "description": "The x coordinate for the Elliptic Curve point",
+          "required": false
+        },
+        "y": {
+          "type": "string",
+          "fullType": "string",
+          "canBeNull": true,
+          "readOnly": false,
+          "description": "The y coordinate for the Elliptic Curve point",
+          "required": false
+        }
+      }
+    },
+    "okms.serviceKey.JsonWebKeyResponse": {
+      "id": "JsonWebKeyResponse",
+      "namespace": "okms.serviceKey",
+      "description": "A JSON Web Key (JWK) object",
+      "properties": {
+        "alg": {
+          "type": "okms.KeyAlgEnum",
+          "fullType": "okms.KeyAlgEnum",
+          "canBeNull": true,
+          "readOnly": true,
+          "description": "The algorithm intended to be used with the key",
+          "required": false
+        },
+        "crv": {
+          "type": "okms.KeyCurveEnum",
+          "fullType": "okms.KeyCurveEnum",
+          "canBeNull": true,
+          "readOnly": true,
+          "description": "The cryptographic curve used with the key",
+          "required": false
+        },
+        "d": {
+          "type": "password",
+          "fullType": "password",
+          "canBeNull": true,
+          "readOnly": true,
+          "description": "The RSA or EC private exponent",
+          "required": false
+        },
+        "dp": {
+          "type": "password",
+          "fullType": "password",
+          "canBeNull": true,
+          "readOnly": true,
+          "description": "The RSA private key's first factor CRT exponent",
+          "required": false
+        },
+        "dq": {
+          "type": "password",
+          "fullType": "password",
+          "canBeNull": true,
+          "readOnly": true,
+          "description": "The RSA private key's second factor CRT exponent",
+          "required": false
+        },
+        "e": {
+          "type": "string",
+          "fullType": "string",
+          "canBeNull": true,
+          "readOnly": true,
+          "description": "The exponent value for the RSA public key",
+          "required": false
+        },
+        "k": {
+          "type": "password",
+          "fullType": "password",
+          "canBeNull": true,
+          "readOnly": true,
+          "description": "The value of the symmetric (or other single-valued) key",
+          "required": false
+        },
+        "key_ops": {
+          "type": "okms.KeyOpsEnum[]",
+          "fullType": "okms.KeyOpsEnum[]",
+          "canBeNull": true,
+          "readOnly": true,
+          "description": "The operation for which the key is intended to be used",
+          "required": false
+        },
+        "kid": {
+          "type": "string",
+          "fullType": "string",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "key ID parameter used to match a specific key",
+          "required": false
+        },
+        "kty": {
+          "type": "okms.KeyTypeEnum",
+          "fullType": "okms.KeyTypeEnum",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "Key type parameter identifies the cryptographic algorithm family used with the key, such as RSA or EC",
+          "required": false
+        },
+        "n": {
+          "type": "text",
+          "fullType": "text",
+          "canBeNull": true,
+          "readOnly": true,
+          "description": "The modulus value for the RSA public key",
+          "required": false
+        },
+        "p": {
+          "type": "password",
+          "fullType": "password",
+          "canBeNull": true,
+          "readOnly": true,
+          "description": "The first prime factor of the RSA private key",
+          "required": false
+        },
+        "q": {
+          "type": "password",
+          "fullType": "password",
+          "canBeNull": true,
+          "readOnly": true,
+          "description": "The second prime factor of the RSA private key",
+          "required": false
+        },
+        "qi": {
+          "type": "password",
+          "fullType": "password",
+          "canBeNull": true,
+          "readOnly": true,
+          "description": "The CRT coefficient of the second factor of the RSA private key",
+          "required": false
+        },
+        "use": {
+          "type": "okms.KeyUseEnum",
+          "fullType": "okms.KeyUseEnum",
+          "canBeNull": true,
+          "readOnly": true,
+          "description": "The intended use of the public key",
+          "required": false
+        },
+        "x": {
+          "type": "string",
+          "fullType": "string",
+          "canBeNull": true,
+          "readOnly": true,
+          "description": "The x coordinate for the Elliptic Curve point",
+          "required": false
+        },
+        "y": {
+          "type": "string",
+          "fullType": "string",
+          "canBeNull": true,
+          "readOnly": true,
+          "description": "The y coordinate for the Elliptic Curve point",
+          "required": false
+        }
+      }
+    },
+    "okms.serviceKey.PEM": {
+      "id": "PEM",
+      "namespace": "okms.serviceKey",
+      "description": "A PEM (Privacy-Enhanced Mail) object",
+      "properties": {
+        "pem": {
+          "type": "string",
+          "fullType": "string",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "Data in PEM format",
+          "required": false
+        }
+      }
+    },
+    "okms.serviceKey.Response": {
+      "id": "Response",
+      "namespace": "okms.serviceKey",
+      "description": "An OKMS service key",
+      "properties": {
+        "createdAt": {
+          "type": "datetime",
+          "fullType": "datetime",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "Creation time of the key",
+          "required": false
+        },
+        "curve": {
+          "type": "okms.KeyCurveEnum",
+          "fullType": "okms.KeyCurveEnum",
+          "canBeNull": true,
+          "readOnly": true,
+          "description": "Curve type for Elliptic Curve (EC) keys",
+          "required": false
+        },
+        "id": {
+          "type": "uuid",
+          "fullType": "uuid",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "Key ID",
+          "required": false
+        },
+        "keys": {
+          "type": "okms.serviceKey.JsonWebKeyResponse[]",
+          "fullType": "okms.serviceKey.JsonWebKeyResponse[]",
+          "canBeNull": true,
+          "readOnly": true,
+          "description": "The key in JWK format",
+          "required": false
+        },
+        "keysPEM": {
+          "type": "okms.serviceKey.PEM[]",
+          "fullType": "okms.serviceKey.PEM[]",
+          "canBeNull": true,
+          "readOnly": true,
+          "description": "The key in PEM format",
+          "required": false
+        },
+        "name": {
+          "type": "string",
+          "fullType": "string",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "Key name",
+          "required": false
+        },
+        "operations": {
+          "type": "okms.KeyOpsEnum[]",
+          "fullType": "okms.KeyOpsEnum[]",
+          "canBeNull": true,
+          "readOnly": true,
+          "description": "The operations for which the key is intended to be used",
+          "required": false
+        },
+        "size": {
+          "type": "okms.KeySizeEnum",
+          "fullType": "okms.KeySizeEnum",
+          "canBeNull": true,
+          "readOnly": true,
+          "description": "Size of the key",
+          "required": false
+        },
+        "state": {
+          "type": "okms.KeyStateEnum",
+          "fullType": "okms.KeyStateEnum",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "State of the key",
+          "required": false
+        },
+        "type": {
+          "type": "okms.KeyTypeEnum",
+          "fullType": "okms.KeyTypeEnum",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "Key type",
+          "required": false
+        }
+      }
+    },
+    "okms.serviceKey.ResponseWithIAM": {
+      "id": "Response",
+      "namespace": "okms.serviceKey",
+      "description": "An OKMS service key",
+      "properties": {
+        "createdAt": {
+          "type": "datetime",
+          "fullType": "datetime",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "Creation time of the key",
+          "required": false
+        },
+        "curve": {
+          "type": "okms.KeyCurveEnum",
+          "fullType": "okms.KeyCurveEnum",
+          "canBeNull": true,
+          "readOnly": true,
+          "description": "Curve type for Elliptic Curve (EC) keys",
+          "required": false
+        },
+        "iam": {
+          "type": "iam.ResourceMetadata",
+          "canBeNull": true,
+          "readOnly": true,
+          "description": "IAM resource metadata",
+          "required": false
+        },
+        "id": {
+          "type": "uuid",
+          "fullType": "uuid",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "Key ID",
+          "required": false
+        },
+        "keys": {
+          "type": "okms.serviceKey.JsonWebKeyResponse[]",
+          "fullType": "okms.serviceKey.JsonWebKeyResponse[]",
+          "canBeNull": true,
+          "readOnly": true,
+          "description": "The key in JWK format",
+          "required": false
+        },
+        "keysPEM": {
+          "type": "okms.serviceKey.PEM[]",
+          "fullType": "okms.serviceKey.PEM[]",
+          "canBeNull": true,
+          "readOnly": true,
+          "description": "The key in PEM format",
+          "required": false
+        },
+        "name": {
+          "type": "string",
+          "fullType": "string",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "Key name",
+          "required": false
+        },
+        "operations": {
+          "type": "okms.KeyOpsEnum[]",
+          "fullType": "okms.KeyOpsEnum[]",
+          "canBeNull": true,
+          "readOnly": true,
+          "description": "The operations for which the key is intended to be used",
+          "required": false
+        },
+        "size": {
+          "type": "okms.KeySizeEnum",
+          "fullType": "okms.KeySizeEnum",
+          "canBeNull": true,
+          "readOnly": true,
+          "description": "Size of the key",
+          "required": false
+        },
+        "state": {
+          "type": "okms.KeyStateEnum",
+          "fullType": "okms.KeyStateEnum",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "State of the key",
+          "required": false
+        },
+        "type": {
+          "type": "okms.KeyTypeEnum",
+          "fullType": "okms.KeyTypeEnum",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "Key type",
+          "required": false
+        }
+      }
+    },
+    "okms.serviceKey.Update": {
+      "id": "Update",
+      "namespace": "okms.serviceKey",
+      "description": "Update an OKMS service key",
+      "properties": {
+        "deactivationReason": {
+          "type": "okms.KeyDeactivationReasonEnum",
+          "fullType": "okms.KeyDeactivationReasonEnum",
+          "canBeNull": true,
+          "readOnly": false,
+          "description": "Key deactivation reason",
+          "required": false
+        },
+        "name": {
+          "type": "string",
+          "fullType": "string",
+          "canBeNull": true,
+          "readOnly": false,
+          "description": "Key Name",
+          "required": false
+        },
+        "state": {
+          "type": "okms.KeyStateUpdateEnum",
+          "fullType": "okms.KeyStateUpdateEnum",
+          "canBeNull": true,
+          "readOnly": false,
+          "description": "Key desired state for activation, deactivation and compromise (specific case of deactivation)",
+          "required": false
+        }
+      }
+    }
+  }
+}
