@@ -1,0 +1,53 @@
+{
+    "$schema": "https://opencode.ai/config.json",
+    "watcher": {
+        "ignore": [
+            ".git/**",
+            "node_modules/**",
+            "dist/**",
+        ]
+    },
+    "formatter": {
+        "markdown": {
+            "command": [
+                "npx",
+                "-y",
+                "mdlint",
+                "check",
+                "--fix",
+                "$FILE"
+            ],
+            "extensions": [
+                ".md"
+            ]
+        }
+    },
+    "tools": {
+        "n8n-docs_*": true
+    },
+    "permission": {
+        "n8n-docs_*": "allow"
+    },
+    "agent": {},
+    "mcp": {
+        // Login with : opencode mcp auth n8n-docs
+        "n8n-docs": {
+            "type": "remote",
+            "url": "https://n8n.mcp.kapa.ai/",
+            "enabled": true
+        },
+        "puppeteer": {
+            "type": "local",
+            "command": [
+                "npx",
+                "-y",
+                "@modelcontextprotocol/server-puppeteer"
+            ],
+            "environment": {
+                "PUPPETEER_LAUNCH_OPTIONS": "{\"headless\": true, \"args\": [\"--no-sandbox\"]}",
+                "ALLOW_DANGEROUS": "true"
+            },
+            "enabled": false
+        }
+    }
+}
