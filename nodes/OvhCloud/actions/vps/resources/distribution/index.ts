@@ -5,7 +5,7 @@
  *
  * @remarks
  * Distribution information helps determine which operating systems can be deployed.
- * This resource only supports the get operation.
+ * This resource supports get, listSoftware, and getSoftware operations.
  *
  * @example
  * // Resource: VPS -> Distribution
@@ -13,3 +13,11 @@
  * // Output: List of available distributions with name, version, architecture, etc.
  */
 export { description, execute } from './get.operation';
+export {
+	descriptionDistributionListSoftware,
+	executeDistributionListSoftware,
+} from './listSoftware.operation';
+export {
+	descriptionDistributionGetSoftware,
+	executeDistributionGetSoftware,
+} from './getSoftware.operation';

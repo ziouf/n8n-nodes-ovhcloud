@@ -27,19 +27,65 @@
 
 ## Features
 
-| Resource     | Operations                                                               | Description                                                                 |
-| ------------ | ------------------------------------------------------------------------ | --------------------------------------------------------------------------- |
-| **Services** | List, Get, Get Options, Get Forms, Get Upgrades                          | Manage OVH services (dedicated servers, domains, hosting, etc.)             |
-| **Me**       | Get Info, List Bills, Get Bill, Get Debt Account, List Orders, Get Order | Manage your OVH account and billing                                         |
-| **Email**    | List Domains, Get Domain                                                 | Manage email domains and configurations                                     |
-| **VPS**      | List, Get, Snapshots, Disks, Backup, IPs, Datacenter, Options, and more  | Full VPS management including snapshots, disk operations, and sub-resources |
+### Core Resources
+
+| Resource              | Operations                                                               | Description                                                       |
+| --------------------- | ------------------------------------------------------------------------ | ----------------------------------------------------------------- |
+| **Me**                | Get Info, List Bills, Get Bill, Get Debt Account, List Orders, Get Order | Manage your OVH account, billing, and orders                      |
+| **Services**          | List, Get, Get Options, Get Forms, Get Upgrades                          | Discover and manage OVH services across all product lines         |
+| **Email**             | List Domains, Get Domain                                                 | Manage email domains and configurations                           |
+| **VPS**               | List, Get, Edit, Abort Snapshot, and 26+ sub-resources                   | Full VPS management — see [VPS Sub-Resources](#vps-sub-resources) |
+| **Domain**            | List, Get                                                                | List and retrieve domain details                                  |
+| **Dedicated**         | List, Get                                                                | List and retrieve dedicated server details                        |
+| **IP Load Balancing** | List, Get                                                                | List and retrieve IP Load Balancer details                        |
+| **IP**                | List, Get                                                                | List and retrieve IP block details                                |
+| **vRack**             | List, Get                                                                | List and retrieve vRack private network details                   |
+| **SMS**               | List, Get                                                                | List and retrieve SMS service details                             |
+| **SSL**               | List, Get                                                                | List and retrieve SSL gateway service details                     |
+| **Hosting**           | List, Get                                                                | List and retrieve private database hosting details                |
+| **Dedicated Cloud**   | List, Get                                                                | List and retrieve Dedicated Cloud (VMware) details                |
+| **DBaaS**             | List, Get                                                                | List and retrieve DBaaS log service details                       |
+
+### VPS Sub-Resources
+
+The VPS resource includes 26+ sub-resources for comprehensive virtual server management:
+
+| Sub-Resource              | Operations                                                                                          |
+| ------------------------- | --------------------------------------------------------------------------------------------------- |
+| **VPS**                   | List, Get, Edit, Abort Snapshot                                                                     |
+| **Disks**                 | List, Get, Update, Get Monitoring, Get Usage                                                        |
+| **Snapshot**              | Create, Get, Update, Delete, Revert, Download                                                       |
+| **Power**                 | Start, Stop, Reboot                                                                                 |
+| **IPs**                   | List, Get, Release, Update                                                                          |
+| **Automated Backup**      | Get, List Attached, Detach, Reschedule, Restore, List Restore Points                                |
+| **Backup FTP**            | Get, List ACLs, Create ACL, Delete ACL, Get ACL, Update ACL, Set Password, List Authorizable Blocks |
+| **Console**               | Get Console URL, Open VNC Access                                                                    |
+| **Datacenter**            | Get, List by Country                                                                                |
+| **Distribution**          | Get, List Software, Get Software                                                                    |
+| **Images**                | List Available, Get Current, Get Details                                                            |
+| **Migration 2020**        | Get Status, Cancel, Request, Update                                                                 |
+| **Models**                | List                                                                                                |
+| **Option**                | List Options, Get Option                                                                            |
+| **Password**              | Set Root Password                                                                                   |
+| **Reinstall**             | Reinstall VPS                                                                                       |
+| **Secondary DNS Domains** | List, Create, Get, Delete, Get Name Server, Get Available Name Server                               |
+| **Service Infos**         | Get, Update                                                                                         |
+| **Status**                | Get Status                                                                                          |
+| **Tasks**                 | List, Get                                                                                           |
+| **Templates**             | List, Get, List Software, Get Software                                                              |
+| **Termination**           | Request Termination                                                                                 |
+| **Confirm Termination**   | Confirm Termination                                                                                 |
+| **Contact Change**        | Change Admin, Billing, or Tech Contact                                                              |
+| **Veeam Backup**          | Get, List Restore Points, Get Restore Point, Restore, Get Restored Backup, Delete Restored Backup   |
+| **IP Country Available**  | Get Available Countries                                                                             |
+| **Available Upgrade**     | Get Available Upgrades                                                                              |
 
 ### Additional Capabilities
 
 - **Multi-endpoint support**: OVH Europe/Canada/USA, SoYouStart, Kimsufi
 - **OAuth signature authentication**: Secure SHA1-based signature algorithm
-- **Dynamic list selection**:自动 populate dropdowns with live data (service IDs, domains, VPS names)
-- **Extensive API coverage**: Over 30+ sub-resources for VPS management
+- **Dynamic list selection**: Auto-populate dropdowns with live data (service IDs, domains, VPS names)
+- **Extensive API coverage**: 14 top-level resources with 60+ total operations
 
 ---
 
@@ -121,7 +167,7 @@ npm run build
 | **Application Secret** | `...`                | From Step 1        |
 | **Consumer Key**       | `...`                | From Step 2        |
 
-4. Click **Save**
+1. Click **Save**
 
 ### Permissions
 
@@ -147,6 +193,36 @@ GET /vps/*/snapshot
 POST /vps/*/snapshot
 GET /vps/*/disks
 GET /vps/*/disks/*
+
+GET /domain
+GET /domain/*
+
+GET /dedicated/server
+GET /dedicated/server/*
+
+GET /ipLoadbalancing
+GET /ipLoadbalancing/*
+
+GET /ip
+GET /ip/*
+
+GET /vrack
+GET /vrack/*
+
+GET /sms
+GET /sms/*
+
+GET /ssl
+GET /ssl/*
+
+GET /hosting/privateDatabase
+GET /hosting/privateDatabase/*
+
+GET /dedicatedCloud
+GET /dedicatedCloud/*
+
+GET /dbaas/logs
+GET /dbaas/logs/*
 ```
 
 > **Tip**: Start with minimal permissions and add more as needed following the principle of least privilege.
@@ -184,24 +260,24 @@ Choose the appropriate endpoint based on your OVH account region:
 
 ```json
 [
-	{
-		"json": {
-			"serviceId": "vps1234567",
-			"displayName": "vps-display-name",
-			"cloudProject": "project-name",
-			"state": "running",
-			"plan": "vps-2024-virtual-2"
-		}
-	},
-	{
-		"json": {
-			"serviceId": "vps8901234",
-			"displayName": "vps-second",
-			"cloudProject": "project-name",
-			"state": "stopped",
-			"plan": "vps-2024-virtual-4"
-		}
-	}
+    {
+        "json": {
+            "serviceId": "vps1234567",
+            "displayName": "vps-display-name",
+            "cloudProject": "project-name",
+            "state": "running",
+            "plan": "vps-2024-virtual-2"
+        }
+    },
+    {
+        "json": {
+            "serviceId": "vps8901234",
+            "displayName": "vps-second",
+            "cloudProject": "project-name",
+            "state": "stopped",
+            "plan": "vps-2024-virtual-4"
+        }
+    }
 ]
 ```
 
@@ -228,13 +304,13 @@ Choose the appropriate endpoint based on your OVH account region:
 
 ```json
 {
-	"json": {
-		"serviceId": "vps1234567",
-		"displayName": "vps-display-name",
-		"state": "running",
-		"plan": "vps-2024-virtual-2",
-		"ipAddresses": ["123.456.789.012"]
-	}
+    "json": {
+        "serviceId": "vps1234567",
+        "displayName": "vps-display-name",
+        "state": "running",
+        "plan": "vps-2024-virtual-2",
+        "ipAddresses": ["123.456.789.012"]
+    }
 }
 ```
 
@@ -242,12 +318,12 @@ Choose the appropriate endpoint based on your OVH account region:
 
 ```json
 {
-	"json": {
-		"description": "Daily backup - 2026-03-26",
-		"id": "snap-abcdef12",
-		"state": "in_progress",
-		"size": 0
-	}
+    "json": {
+        "description": "Daily backup - 2026-03-26",
+        "id": "snap-abcdef12",
+        "state": "in_progress",
+        "size": 0
+    }
 }
 ```
 
@@ -266,20 +342,20 @@ Choose the appropriate endpoint based on your OVH account region:
 
 ```json
 [
-	{
-		"json": {
-			"displayName": "example.com",
-			"domain": "example.com",
-			"techContact": "user123"
-		}
-	},
-	{
-		"json": {
-			"displayName": "my-business.net",
-			"domain": "my-business.net",
-			"techContact": "user456"
-		}
-	}
+    {
+        "json": {
+            "displayName": "example.com",
+            "domain": "example.com",
+            "techContact": "user123"
+        }
+    },
+    {
+        "json": {
+            "displayName": "my-business.net",
+            "domain": "my-business.net",
+            "techContact": "user456"
+        }
+    }
 ]
 ```
 
@@ -298,12 +374,12 @@ Choose the appropriate endpoint based on your OVH account region:
 
 ```json
 {
-	"json": {
-		"email": "user@example.com",
-		"country": "fr",
-		"currency": "eur",
-		"lang": "fr"
-	}
+    "json": {
+        "email": "user@example.com",
+        "country": "fr",
+        "currency": "eur",
+        "lang": "fr"
+    }
 }
 ```
 
@@ -326,19 +402,19 @@ Choose the appropriate endpoint based on your OVH account region:
 
 ```json
 [
-	{
-		"json": {
-			"billId": "bill-123456",
-			"creationDate": "2026-03-01T00:00:00Z",
-			"date": "2026-03-01T00:00:00Z",
-			"description": "Web hosting - March 2026",
-			"totalWithTax": {
-				"value": 12.99,
-				"currency": "EUR"
-			},
-			"status": "paid"
-		}
-	}
+    {
+        "json": {
+            "billId": "bill-123456",
+            "creationDate": "2026-03-01T00:00:00Z",
+            "date": "2026-03-01T00:00:00Z",
+            "description": "Web hosting - March 2026",
+            "totalWithTax": {
+                "value": 12.99,
+                "currency": "EUR"
+            },
+            "status": "paid"
+        }
+    }
 ]
 ```
 
@@ -360,13 +436,13 @@ Choose the appropriate endpoint based on your OVH account region:
 
 ```json
 [
-	{
-		"json": {
-			"serviceId": "webhosting123",
-			"displayName": "webhosting123.ovh.net",
-			"routes": ["/hosting/web"]
-		}
-	}
+    {
+        "json": {
+            "serviceId": "webhosting123",
+            "displayName": "webhosting123.ovh.net",
+            "routes": ["/hosting/web"]
+        }
+    }
 ]
 ```
 
@@ -468,10 +544,20 @@ n8n-nodes-ovhcloud/
 │   └── OvhCloud/
 │       ├── OvhCloud.node.ts           # Main node definition
 │       ├── actions/                   # Resource operation handlers
+│       │   ├── dbaas/                 # DBaaS log service actions
+│       │   ├── dedicated/             # Dedicated server actions
+│       │   ├── dedicatedCloud/        # Dedicated Cloud actions
+│       │   ├── domain/                # Domain actions
 │       │   ├── email/                 # Email resource actions
+│       │   ├── hosting/               # Private database hosting actions
+│       │   ├── ip/                    # IP block actions
+│       │   ├── ipLoadbalancing/       # IP Load Balancing actions
 │       │   ├── me/                    # Account/Me resource actions
 │       │   ├── services/              # Services resource actions
-│       │   └── vps/                   # VPS resource actions
+│       │   ├── sms/                   # SMS service actions
+│       │   ├── ssl/                   # SSL service actions
+│       │   ├── vps/                   # VPS resource actions (26+ sub-resources)
+│       │   └── vrack/                 # vRack actions
 │       ├── methods/                   # Dynamic list search methods
 │       │   ├── getServiceIds.method.ts
 │       │   ├── getEmailDomains.method.ts

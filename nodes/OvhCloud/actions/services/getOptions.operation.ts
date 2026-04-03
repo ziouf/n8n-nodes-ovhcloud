@@ -24,6 +24,7 @@ import { ApiClient } from '../../transport/ApiClient';
  * // svcID = { name: 'my-service', value: 'my-service-id' }
  * // Output: List of available options with prices, descriptions, etc.
  */
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
 export function description(displayOptions: IDisplayOptions): INodeProperties[] {
 	return [];
 }

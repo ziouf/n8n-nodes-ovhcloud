@@ -1,70 +1,75 @@
 {
-  "name": "n8n-nodes-ovhcloud",
-  "version": "0.0.7",
-  "description": "n8n nodes for OVH Cloud services",
-  "license": "MIT",
-  "homepage": "",
-  "keywords": [
-    "n8n-community-node-package",
-    "n8n",
-    "n8n-node",
-    "n8n-nodes",
-    "n8n-community",
-    "ovh",
-    "ovhcloud",
-    "ovh-cloud",
-    "ovh-api",
-    "cloud",
-    "cloud-services",
-    "api",
-    "rest-api",
-    "automation",
-    "workflow-automation",
-    "integration",
-    "typescript",
-    "nodejs"
-  ],
-  "author": {
-    "name": "Cyril MARIN",
-    "email": "marin.cyril@gmail.com"
-  },
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/ziouf/n8n-nodes-ovhcloud.git"
-  },
-  "scripts": {
-    "build": "n8n-node build",
-    "build:watch": "tsc --watch",
-    "dev": "n8n-node dev",
-    "lint": "n8n-node lint",
-    "lint:fix": "n8n-node lint --fix",
-    "release": "n8n-node release",
-    "prepublishOnly": "n8n-node prerelease"
-  },
-  "files": [
-    "dist"
-  ],
-  "n8n": {
-    "n8nNodesApiVersion": 1,
-    "strict": true,
-    "credentials": [
-      "dist/credentials/OvhCloudApi.credentials.js"
-    ],
-    "nodes": [
-      "dist/nodes/OvhCloud/OvhCloud.node.js"
-    ]
-  },
-  "devDependencies": {
-    "@n8n/node-cli": "*",
-    "eslint": "9.32.0",
-    "prettier": "3.6.2",
-    "release-it": "^19.0.4",
-    "typescript": "5.9.2"
-  },
-  "peerDependencies": {
-    "n8n-workflow": "*"
-  },
-  "dependencies": {
-    "luxon": "^3.7.2"
-  }
+	"name": "n8n-nodes-ovhcloud",
+	"version": "0.0.7",
+	"description": "n8n nodes for OVH Cloud services",
+	"license": "MIT",
+	"homepage": "",
+	"keywords": [
+		"n8n-community-node-package",
+		"n8n",
+		"n8n-node",
+		"n8n-nodes",
+		"n8n-community",
+		"ovh",
+		"ovhcloud",
+		"ovh-cloud",
+		"ovh-api",
+		"cloud",
+		"cloud-services",
+		"api",
+		"rest-api",
+		"automation",
+		"workflow-automation",
+		"integration",
+		"typescript",
+		"nodejs"
+	],
+	"author": {
+		"name": "Cyril MARIN",
+		"email": "marin.cyril@gmail.com"
+	},
+	"repository": {
+		"type": "git",
+		"url": "https://github.com/ziouf/n8n-nodes-ovhcloud.git"
+	},
+	"scripts": {
+		"build": "n8n-node build",
+		"build:watch": "tsc --watch",
+		"dev": "n8n-node dev",
+		"lint": "n8n-node lint",
+		"lint:fix": "n8n-node lint --fix",
+		"release": "n8n-node release",
+		"prepublishOnly": "n8n-node prerelease",
+		"test": "jest",
+		"test:coverage": "jest --coverage"
+	},
+	"files": [
+		"dist"
+	],
+	"n8n": {
+		"n8nNodesApiVersion": 1,
+		"strict": false,
+		"credentials": [
+			"dist/credentials/OvhCloudApi.credentials.js"
+		],
+		"nodes": [
+			"dist/nodes/OvhCloud/OvhCloud.node.js"
+		]
+	},
+	"devDependencies": {
+		"@n8n/node-cli": "*",
+		"@types/jest": "^30.0.0",
+		"eslint": "9.32.0",
+		"jest": "^30.3.0",
+		"prettier": "3.6.2",
+		"release-it": "^19.0.4",
+		"ts-jest": "^29.4.9",
+		"typescript": "5.9.2"
+	},
+	"peerDependencies": {
+		"n8n-workflow": "*"
+	},
+	"dependencies": {
+		"luxon": "^3.7.2"
+	}
 }

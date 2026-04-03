@@ -23,6 +23,7 @@ import { ApiClient } from '../../../transport/ApiClient';
  * // Input: No parameters required
  * // Output: Debt account details with totalDebt, debtAccountType, lastUpdate, etc.
  */
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
 export function description(displayOptions: IDisplayOptions): INodeProperties[] {
 	return [];
 }

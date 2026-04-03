@@ -47,6 +47,14 @@ export function description(displayOptions?: IDisplayOptions): INodeProperties[]
 			],
 			displayOptions,
 		},
+		{
+			displayName: 'Description',
+			name: 'description',
+			description: 'Optional description for the snapshot',
+			type: 'string',
+			default: '',
+			displayOptions,
+		},
 	];
 }
 
@@ -68,7 +76,16 @@ export function description(displayOptions?: IDisplayOptions): INodeProperties[]
 export async function execute(this: IExecuteFunctions): Promise<INodeExecutionData[]> {
 	const client = new ApiClient(this);
 	const serviceName = this.getNodeParameter('serviceName', 0, { extractValue: true }) as string;
-	const data = (await client.httpPost(`/vps/${serviceName}/snapshot`)) as IDataObject;
+	const description = this.getNodeParameter('description', 0, '') as string;
+
+	const body: IDataObject = {};
+	if (description) {
+		body.description = description;
+	}
+
+	const data = (await client.httpPost(`/vps/${serviceName}/createSnapshot`, {
+		body,
+	})) as IDataObject;
 
 	return this.helpers.returnJsonArray(data);
 }
