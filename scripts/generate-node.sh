@@ -3,7 +3,7 @@ set -euo pipefail
 
 RESOURCE_NAME="$1"
 DISPLAY_NAME="$2"
-NODE_DIR="nodes/OvhCloud_${RESOURCE_NAME}"
+NODE_DIR="nodes/OvhCloud${RESOURCE_NAME}"
 ACTION_DIR="nodes/OvhCloud/actions/${RESOURCE_NAME}"
 
 # Check if source exists

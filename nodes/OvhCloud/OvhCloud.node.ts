@@ -288,6 +288,8 @@ import {
  * // Resource: Domain -> Operation: List
  * // Resource: Dedicated -> Operation: Get -> Server Name: ns1234567
  * ```
+ *
+ * @deprecated This node is being refactored into multiple custom nodes for better maintainability and scalability. Please use the new nodes for specific OVH Cloud services (e.g., OvhCloudAllDom, OvhCloudAuth, etc.) instead of this monolithic node.
  */
 export class OvhCloud implements INodeType {
 	/** @inheritdoc */
