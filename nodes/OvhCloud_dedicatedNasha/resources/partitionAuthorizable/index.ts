@@ -1,0 +1,8 @@
+export {
+	descriptionDedicatedNashaPartitionAuthorizableBlocks as descriptionListPartitionAuthorizableBlocks,
+	executeDedicatedNashaPartitionAuthorizableBlocks as executeListPartitionAuthorizableBlocks,
+} from './listAuthorizableBlocks.operation';
+export {
+	descriptionDedicatedNashaPartitionAuthorizableIps as descriptionListPartitionAuthorizableIps,
+	executeDedicatedNashaPartitionAuthorizableIps as executeListPartitionAuthorizableIps,
+} from './listAuthorizableIps.operation';

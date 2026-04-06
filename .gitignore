@@ -1,7 +1,8 @@
-node_modules
-dist
-.npmrc
-.tmp/
 coverage/
+dist/
+node_modules/
+.tmp/
+
+.npmrc
 *.log
 *.cache

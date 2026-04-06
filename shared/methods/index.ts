@@ -1,0 +1,9 @@
+export { getServiceIds } from './getServiceIds.method';
+export { getEmailDomains } from './getEmailDomains.method';
+export { getVpsServices } from './getVpsServices.method';
+export { getDedicatedCloudServices } from './getDedicatedCloudServices.method';
+export { getDedicatedCephServices } from './getDedicatedCephServices.method';
+export { getDedicatedClusterServices } from './getDedicatedClusterServices.method';
+export { getDedicatedHousingServices } from './getDedicatedHousingServices.method';
+export { getDedicatedNashaServices } from './getDedicatedNashaServices.method';
+export { getDedicatedServerServices } from './getDedicatedServerServices.method';

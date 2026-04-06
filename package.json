@@ -1,75 +1,149 @@
 {
-	"name": "n8n-nodes-ovhcloud",
-	"version": "0.0.7",
-	"description": "n8n nodes for OVH Cloud services",
-	"license": "MIT",
-	"homepage": "",
-	"keywords": [
-		"n8n-community-node-package",
-		"n8n",
-		"n8n-node",
-		"n8n-nodes",
-		"n8n-community",
-		"ovh",
-		"ovhcloud",
-		"ovh-cloud",
-		"ovh-api",
-		"cloud",
-		"cloud-services",
-		"api",
-		"rest-api",
-		"automation",
-		"workflow-automation",
-		"integration",
-		"typescript",
-		"nodejs"
-	],
-	"author": {
-		"name": "Cyril MARIN",
-		"email": "marin.cyril@gmail.com"
-	},
-	"repository": {
-		"type": "git",
-		"url": "https://github.com/ziouf/n8n-nodes-ovhcloud.git"
-	},
-	"scripts": {
-		"build": "n8n-node build",
-		"build:watch": "tsc --watch",
-		"dev": "n8n-node dev",
-		"lint": "n8n-node lint",
-		"lint:fix": "n8n-node lint --fix",
-		"release": "n8n-node release",
-		"prepublishOnly": "n8n-node prerelease",
-		"test": "jest",
-		"test:coverage": "jest --coverage"
-	},
-	"files": [
-		"dist"
-	],
-	"n8n": {
-		"n8nNodesApiVersion": 1,
-		"strict": false,
-		"credentials": [
-			"dist/credentials/OvhCloudApi.credentials.js"
-		],
-		"nodes": [
-			"dist/nodes/OvhCloud/OvhCloud.node.js"
-		]
-	},
-	"devDependencies": {
-		"@n8n/node-cli": "*",
-		"@types/jest": "^30.0.0",
-		"eslint": "9.32.0",
-		"jest": "^30.3.0",
-		"prettier": "3.6.2",
-		"release-it": "^19.0.4",
-		"ts-jest": "^29.4.9",
-		"typescript": "5.9.2"
-	},
-	"peerDependencies": {
-		"n8n-workflow": "*"
-	},
-	"dependencies": {
-		"luxon": "^3.7.2"
-	}
+  "name": "n8n-nodes-ovhcloud",
+  "version": "0.0.7",
+  "description": "n8n nodes for OVH Cloud services",
+  "license": "MIT",
+  "homepage": "",
+  "keywords": [
+    "n8n-community-node-package",
+    "n8n",
+    "n8n-node",
+    "n8n-nodes",
+    "n8n-community",
+    "ovh",
+    "ovhcloud",
+    "ovh-cloud",
+    "ovh-api",
+    "cloud",
+    "cloud-services",
+    "api",
+    "rest-api",
+    "automation",
+    "workflow-automation",
+    "integration",
+    "typescript",
+    "nodejs"
+  ],
+  "author": {
+    "name": "Cyril MARIN",
+    "email": "marin.cyril@gmail.com"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/ziouf/n8n-nodes-ovhcloud.git"
+  },
+  "scripts": {
+    "build": "n8n-node build",
+    "build:watch": "tsc --watch",
+    "dev": "n8n-node dev",
+    "lint": "n8n-node lint",
+    "lint:fix": "n8n-node lint --fix",
+    "release": "n8n-node release",
+    "prepublishOnly": "n8n-node prerelease",
+    "test": "jest",
+    "test:coverage": "jest --coverage"
+  },
+  "files": [
+    "dist"
+  ],
+  "n8n": {
+    "n8nNodesApiVersion": 1,
+    "strict": false,
+    "credentials": [
+      "dist/credentials/OvhCloudApi.credentials.js"
+    ],
+    "nodes": [
+      "dist/nodes/OvhCloud/OvhCloud.node.js",
+      "dist/nodes/OvhCloud_allDom/OvhCloudAllDom.node.js",
+      "dist/nodes/OvhCloud_auth/OvhCloudAuth.node.js",
+      "dist/nodes/OvhCloud_backupServices/OvhCloudBackupServices.node.js",
+      "dist/nodes/OvhCloud_cdn/OvhCloudCdn.node.js",
+      "dist/nodes/OvhCloud_cloud/OvhCloudCloud.node.js",
+      "dist/nodes/OvhCloud_commercialCatalog/OvhCloudCommercialCatalog.node.js",
+      "dist/nodes/OvhCloud_connectivity/OvhCloudConnectivity.node.js",
+      "dist/nodes/OvhCloud_contact/OvhCloudContact.node.js",
+      "dist/nodes/OvhCloud_dbaas/OvhCloudDbaas.node.js",
+      "dist/nodes/OvhCloud_dedicated/OvhCloudDedicated.node.js",
+      "dist/nodes/OvhCloud_dedicatedCeph/OvhCloudDedicatedCeph.node.js",
+      "dist/nodes/OvhCloud_dedicatedCluster/OvhCloudDedicatedCluster.node.js",
+      "dist/nodes/OvhCloud_dedicatedHousing/OvhCloudDedicatedHousing.node.js",
+      "dist/nodes/OvhCloud_dedicatedInstallationTemplate/OvhCloudDedicatedInstallationTemplate.node.js",
+      "dist/nodes/OvhCloud_dedicatedNasha/OvhCloudDedicatedNasha.node.js",
+      "dist/nodes/OvhCloud_dedicatedServer/OvhCloudDedicatedServer.node.js",
+      "dist/nodes/OvhCloud_domain/OvhCloudDomain.node.js",
+      "dist/nodes/OvhCloud_email/OvhCloudEmail.node.js",
+      "dist/nodes/OvhCloud_emailExchange/OvhCloudEmailExchange.node.js",
+      "dist/nodes/OvhCloud_emailMxplan/OvhCloudEmailMxplan.node.js",
+      "dist/nodes/OvhCloud_emailPro/OvhCloudEmailPro.node.js",
+      "dist/nodes/OvhCloud_freefax/OvhCloudFreefax.node.js",
+      "dist/nodes/OvhCloud_horizonView/OvhCloudHorizonView.node.js",
+      "dist/nodes/OvhCloud_hosting/OvhCloudHosting.node.js",
+      "dist/nodes/OvhCloud_iam/OvhCloudIam.node.js",
+      "dist/nodes/OvhCloud_ip/OvhCloudIp.node.js",
+      "dist/nodes/OvhCloud_ipLoadbalancing/OvhCloudIpLoadbalancing.node.js",
+      "dist/nodes/OvhCloud_licenseCloudLinux/OvhCloudLicenseCloudLinux.node.js",
+      "dist/nodes/OvhCloud_licenseCpanel/OvhCloudLicenseCpanel.node.js",
+      "dist/nodes/OvhCloud_licenseDirectadmin/OvhCloudLicenseDirectadmin.node.js",
+      "dist/nodes/OvhCloud_licenseHycu/OvhCloudLicenseHycu.node.js",
+      "dist/nodes/OvhCloud_licenseOffice/OvhCloudLicenseOffice.node.js",
+      "dist/nodes/OvhCloud_licenseOfficePrepaid/OvhCloudLicenseOfficePrepaid.node.js",
+      "dist/nodes/OvhCloud_licensePlesk/OvhCloudLicensePlesk.node.js",
+      "dist/nodes/OvhCloud_licenseRedhat/OvhCloudLicenseRedhat.node.js",
+      "dist/nodes/OvhCloud_licenseSqlserver/OvhCloudLicenseSqlserver.node.js",
+      "dist/nodes/OvhCloud_licenseVirtuozzo/OvhCloudLicenseVirtuozzo.node.js",
+      "dist/nodes/OvhCloud_licenseWindows/OvhCloudLicenseWindows.node.js",
+      "dist/nodes/OvhCloud_licenseWorklight/OvhCloudLicenseWorklight.node.js",
+      "dist/nodes/OvhCloud_location/OvhCloudLocation.node.js",
+      "dist/nodes/OvhCloud_managedCMS/OvhCloudManagedCMS.node.js",
+      "dist/nodes/OvhCloud_me/OvhCloudMe.node.js",
+      "dist/nodes/OvhCloud_metrics/OvhCloudMetrics.node.js",
+      "dist/nodes/OvhCloud_msServices/OvhCloudMsServices.node.js",
+      "dist/nodes/OvhCloud_networkDefense/OvhCloudNetworkDefense.node.js",
+      "dist/nodes/OvhCloud_newAccount/OvhCloudNewAccount.node.js",
+      "dist/nodes/OvhCloud_notification/OvhCloudNotification.node.js",
+      "dist/nodes/OvhCloud_nutanix/OvhCloudNutanix.node.js",
+      "dist/nodes/OvhCloud_okms/OvhCloudOkms.node.js",
+      "dist/nodes/OvhCloud_order/OvhCloudOrder.node.js",
+      "dist/nodes/OvhCloud_overTheBox/OvhCloudOverTheBox.node.js",
+      "dist/nodes/OvhCloud_ovhCloudConnect/OvhCloudOvhCloudConnect.node.js",
+      "dist/nodes/OvhCloud_packXdsl/OvhCloudPackXdsl.node.js",
+      "dist/nodes/OvhCloud_partner/OvhCloudPartner.node.js",
+      "dist/nodes/OvhCloud_price/OvhCloudPrice.node.js",
+      "dist/nodes/OvhCloud_publicCloud/OvhCloudPublicCloud.node.js",
+      "dist/nodes/OvhCloud_secret/OvhCloudSecret.node.js",
+      "dist/nodes/OvhCloud_service/OvhCloudService.node.js",
+      "dist/nodes/OvhCloud_services/OvhCloudServices.node.js",
+      "dist/nodes/OvhCloud_sms/OvhCloudSms.node.js",
+      "dist/nodes/OvhCloud_ssl/OvhCloudSsl.node.js",
+      "dist/nodes/OvhCloud_sslGateway/OvhCloudSslGateway.node.js",
+      "dist/nodes/OvhCloud_startup/OvhCloudStartup.node.js",
+      "dist/nodes/OvhCloud_storage/OvhCloudStorage.node.js",
+      "dist/nodes/OvhCloud_support/OvhCloudSupport.node.js",
+      "dist/nodes/OvhCloud_telephony/OvhCloudTelephony.node.js",
+      "dist/nodes/OvhCloud_vip/OvhCloudVip.node.js",
+      "dist/nodes/OvhCloud_vmwareCloudDirector/OvhCloudVmwareCloudDirector.node.js",
+      "dist/nodes/OvhCloud_vps/OvhCloudVps.node.js",
+      "dist/nodes/OvhCloud_vrack/OvhCloudVrack.node.js",
+      "dist/nodes/OvhCloud_vrackServices/OvhCloudVrackServices.node.js",
+      "dist/nodes/OvhCloud_webhosting/OvhCloudWebhosting.node.js",
+      "dist/nodes/OvhCloud_xdsl/OvhCloudXdsl.node.js",
+      "dist/nodes/OvhCloud_zimbra/OvhCloudZimbra.node.js"
+    ]
+  },
+  "devDependencies": {
+    "@n8n/node-cli": "*",
+    "@types/jest": "^30.0.0",
+    "eslint": "9.32.0",
+    "jest": "^30.3.0",
+    "prettier": "3.6.2",
+    "release-it": "^19.0.4",
+    "ts-jest": "^29.4.9",
+    "typescript": "5.9.2"
+  },
+  "peerDependencies": {
+    "n8n-workflow": "*"
+  },
+  "dependencies": {
+    "luxon": "^3.7.2"
+  }
 }
