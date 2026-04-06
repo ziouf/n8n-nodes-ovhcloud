@@ -13,18 +13,49 @@ import { ApiClient } from '../../../../transport/ApiClient';
  * Retrieves all tasks for a specific private database hosting service.
  *
  * @param displayOptions - Controls when these properties should be displayed
- * @returns Empty array (no additional UI properties needed)
+ * @returns Array of node properties for the List Hosting Tasks operation
  */
-// eslint-disable-next-line @typescript-eslint/no-unused-vars
 export function description(displayOptions: IDisplayOptions): INodeProperties[] {
-	return [];
+	return [
+		{
+			displayName: 'Service Name',
+			name: 'serviceName',
+			type: 'string',
+			default: '',
+			required: true,
+			description: 'The name of the hosting service',
+			displayOptions,
+		},
+		{
+			displayName: 'Function',
+			name: 'function',
+			type: 'string',
+			default: '',
+			description: 'Filter tasks by function name',
+			displayOptions,
+		},
+		{
+			displayName: 'Status',
+			name: 'status',
+			type: 'options',
+			options: [
+				{ name: 'Todo', value: 'todo' },
+				{ name: 'Doing', value: 'doing' },
+				{ name: 'Done', value: 'done' },
+				{ name: 'Error', value: 'error' },
+			],
+			default: 'todo',
+			description: 'Filter tasks by status',
+			displayOptions,
+		},
+	];
 }
 
 /**
  * Executes the List Hosting Tasks operation.
  *
  * HTTP method: GET
- * Endpoint: /hosting/privateDatabase/{serviceName}/task
+ * Endpoint: /hosting/privateDatabase/{serviceName}/tasks
  *
  * @param this - n8n IExecuteFunctions context
  * @returns Array of execution results containing task IDs
@@ -32,8 +63,15 @@ export function description(displayOptions: IDisplayOptions): INodeProperties[] 
 export async function execute(this: IExecuteFunctions): Promise<INodeExecutionData[]> {
 	const client = new ApiClient(this);
 	const serviceName = this.getNodeParameter('serviceName', 0) as string;
-	const data = (await client.httpGet(
-		`/hosting/privateDatabase/${serviceName}/task`,
-	)) as IDataObject[];
+	const functionFilter = this.getNodeParameter('function', 0, undefined) as string | undefined;
+	const statusFilter = this.getNodeParameter('status', 0, undefined) as string | undefined;
+
+	const qs: IDataObject = {};
+	if (functionFilter) qs.function = functionFilter;
+	if (statusFilter) qs.status = statusFilter;
+
+	const data = (await client.httpGet(`/hosting/privateDatabase/${serviceName}/tasks`, {
+		qs,
+	})) as IDataObject[];
 	return data.map((item) => ({ json: item }));
 }

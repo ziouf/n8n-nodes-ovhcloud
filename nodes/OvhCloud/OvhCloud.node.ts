@@ -7,7 +7,12 @@ import {
 	type INodeTypeDescription,
 } from 'n8n-workflow';
 import { OvhCloudApiSecretName } from '../../credentials/OvhCloudApi.credentials';
-import { getServiceIds, getEmailDomains, getVpsServices } from './methods/index';
+import {
+	getServiceIds,
+	getEmailDomains,
+	getVpsServices,
+	getDedicatedCloudServices,
+} from './methods/index';
 
 // Existing resources
 import { description as meDescription, execute as meExecute } from './actions/me/index';
@@ -18,10 +23,6 @@ import {
 import { description as emailDescription, execute as emailExecute } from './actions/email/index';
 import { description as vpsDescription, execute as vpsExecute } from './actions/vps/index';
 import { description as domainDescription, execute as domainExecute } from './actions/domain/index';
-import {
-	description as dedicatedDescription,
-	execute as dedicatedExecute,
-} from './actions/dedicated/index';
 import {
 	description as ipLoadbalancingDescription,
 	execute as ipLoadbalancingExecute,
@@ -35,9 +36,37 @@ import {
 	execute as hostingExecute,
 } from './actions/hosting/index';
 import {
+	description as dedicatedDescription,
+	execute as dedicatedExecute,
+} from './actions/dedicated/index';
+import {
 	description as dedicatedCloudDescription,
 	execute as dedicatedCloudExecute,
-} from './actions/dedicatedCloud/index';
+} from './actions/dedicated/resources/dedicatedCloud/index';
+import {
+	description as dedicatedCephDescription,
+	execute as dedicatedCephExecute,
+} from './actions/dedicated/resources/dedicatedCeph/index';
+import {
+	description as dedicatedClusterDescription,
+	execute as dedicatedClusterExecute,
+} from './actions/dedicated/resources/dedicatedCluster/index';
+import {
+	description as dedicatedHousingDescription,
+	execute as dedicatedHousingExecute,
+} from './actions/dedicated/resources/dedicatedHousing/index';
+import {
+	description as dedicatedInstallationTemplateDescription,
+	execute as dedicatedInstallationTemplateExecute,
+} from './actions/dedicated/resources/dedicatedInstallationTemplate/index';
+import {
+	description as dedicatedNashaDescription,
+	execute as dedicatedNashaExecute,
+} from './actions/dedicated/resources/dedicatedNasha/index';
+import {
+	description as dedicatedServerDescription,
+	execute as dedicatedServerExecute,
+} from './actions/dedicated/resources/dedicatedServer/index';
 import { description as dbaasDescription, execute as dbaasExecute } from './actions/dbaas/index';
 
 // New V1 resources (batch 1-3)
@@ -53,26 +82,6 @@ import {
 	description as contactDescription,
 	execute as contactExecute,
 } from './actions/contact/index';
-import {
-	description as dedicatedCephDescription,
-	execute as dedicatedCephExecute,
-} from './actions/dedicatedCeph/index';
-import {
-	description as dedicatedClusterDescription,
-	execute as dedicatedClusterExecute,
-} from './actions/dedicatedCluster/index';
-import {
-	description as dedicatedHousingDescription,
-	execute as dedicatedHousingExecute,
-} from './actions/dedicatedHousing/index';
-import {
-	description as dedicatedNashaDescription,
-	execute as dedicatedNashaExecute,
-} from './actions/dedicatedNasha/index';
-import {
-	description as dedicatedInstallationTemplateDescription,
-	execute as dedicatedInstallationTemplateExecute,
-} from './actions/dedicatedInstallationTemplate/index';
 import {
 	description as emailExchangeDescription,
 	execute as emailExchangeExecute,
@@ -96,51 +105,51 @@ import {
 import {
 	description as licenseCloudLinuxDescription,
 	execute as licenseCloudLinuxExecute,
-} from './actions/licenseCloudLinux/index';
+} from './actions/license/resources/licenseCloudLinux/index';
 import {
 	description as licenseCpanelDescription,
 	execute as licenseCpanelExecute,
-} from './actions/licenseCpanel/index';
+} from './actions/license/resources/licenseCpanel/index';
 import {
 	description as licenseDirectadminDescription,
 	execute as licenseDirectadminExecute,
-} from './actions/licenseDirectadmin/index';
+} from './actions/license/resources/licenseDirectadmin/index';
 import {
 	description as licenseHycuDescription,
 	execute as licenseHycuExecute,
-} from './actions/licenseHycu/index';
+} from './actions/license/resources/licenseHycu/index';
 import {
 	description as licenseOfficeDescription,
 	execute as licenseOfficeExecute,
-} from './actions/licenseOffice/index';
+} from './actions/license/resources/licenseOffice/index';
 import {
 	description as licenseOfficePrepaidDescription,
 	execute as licenseOfficePrepaidExecute,
-} from './actions/licenseOfficePrepaid/index';
+} from './actions/license/resources/licenseOfficePrepaid/index';
 import {
 	description as licensePleskDescription,
 	execute as licensePleskExecute,
-} from './actions/licensePlesk/index';
+} from './actions/license/resources/licensePlesk/index';
 import {
 	description as licenseRedhatDescription,
 	execute as licenseRedhatExecute,
-} from './actions/licenseRedhat/index';
+} from './actions/license/resources/licenseRedhat/index';
 import {
 	description as licenseSqlserverDescription,
 	execute as licenseSqlserverExecute,
-} from './actions/licenseSqlserver/index';
+} from './actions/license/resources/licenseSqlserver/index';
 import {
 	description as licenseVirtuozzoDescription,
 	execute as licenseVirtuozzoExecute,
-} from './actions/licenseVirtuozzo/index';
+} from './actions/license/resources/licenseVirtuozzo/index';
 import {
 	description as licenseWindowsDescription,
 	execute as licenseWindowsExecute,
-} from './actions/licenseWindows/index';
+} from './actions/license/resources/licenseWindows/index';
 import {
 	description as licenseWorklightDescription,
 	execute as licenseWorklightExecute,
-} from './actions/licenseWorklight/index';
+} from './actions/license/resources/licenseWorklight/index';
 import {
 	description as metricsDescription,
 	execute as metricsExecute,
@@ -167,10 +176,6 @@ import {
 	execute as ovhCloudConnectExecute,
 } from './actions/ovhCloudConnect/index';
 import {
-	description as packSiptrunkDescription,
-	execute as packSiptrunkExecute,
-} from './actions/packSiptrunk/index';
-import {
 	description as packXdslDescription,
 	execute as packXdslExecute,
 } from './actions/packXdsl/index';
@@ -179,11 +184,6 @@ import {
 	execute as partnerExecute,
 } from './actions/partner/index';
 import { description as priceDescription, execute as priceExecute } from './actions/price/index';
-import {
-	description as productsDescription,
-	execute as productsExecute,
-} from './actions/products/index';
-import { description as saasDescription, execute as saasExecute } from './actions/saas/index';
 import { description as secretDescription, execute as secretExecute } from './actions/secret/index';
 import {
 	description as serviceDescription,
@@ -193,7 +193,6 @@ import {
 	description as sslGatewayDescription,
 	execute as sslGatewayExecute,
 } from './actions/sslGateway/index';
-import { description as stackDescription, execute as stackExecute } from './actions/stack/index';
 import {
 	description as startupDescription,
 	execute as startupExecute,
@@ -202,7 +201,6 @@ import {
 	description as storageDescription,
 	execute as storageExecute,
 } from './actions/storage/index';
-import { description as supplyDescription, execute as supplyExecute } from './actions/supply/index';
 import {
 	description as supportDescription,
 	execute as supportExecute,
@@ -211,67 +209,56 @@ import {
 	description as telephonyDescription,
 	execute as telephonyExecute,
 } from './actions/telephony/index';
-import {
-	description as veeamCloudConnectDescription,
-	execute as veeamCloudConnectExecute,
-} from './actions/veeamCloudConnect/index';
-import {
-	description as veeamEnterpriseDescription,
-	execute as veeamEnterpriseExecute,
-} from './actions/veeamEnterprise/index';
 import { description as vipDescription, execute as vipExecute } from './actions/vip/index';
 import { description as xdslDescription, execute as xdslExecute } from './actions/xdsl/index';
 
 // New V2 resources (batch 12)
 import {
-	description as v2BackupServicesDescription,
-	execute as v2BackupServicesExecute,
-} from './actionsV2/v2BackupServices/index';
+	description as backupServicesDescription,
+	execute as backupServicesExecute,
+} from './actionsV2/backupServices/index';
 import {
-	description as v2CommercialCatalogDescription,
-	execute as v2CommercialCatalogExecute,
-} from './actionsV2/v2CommercialCatalog/index';
-import { description as v2IamDescription, execute as v2IamExecute } from './actionsV2/v2Iam/index';
+	description as commercialCatalogDescription,
+	execute as commercialCatalogExecute,
+} from './actionsV2/commercialCatalog/index';
+import { description as iamDescription, execute as iamExecute } from './actionsV2/iam/index';
 import {
-	description as v2LocationDescription,
-	execute as v2LocationExecute,
-} from './actionsV2/v2Location/index';
+	description as locationDescription,
+	execute as locationExecute,
+} from './actionsV2/location/index';
 import {
-	description as v2ManagedCMSDescription,
-	execute as v2ManagedCMSExecute,
-} from './actionsV2/v2ManagedCMS/index';
+	description as managedCMSDescription,
+	execute as managedCMSExecute,
+} from './actionsV2/managedCMS/index';
 import {
-	description as v2NetworkDefenseDescription,
-	execute as v2NetworkDefenseExecute,
-} from './actionsV2/v2NetworkDefense/index';
+	description as networkDefenseDescription,
+	execute as networkDefenseExecute,
+} from './actionsV2/networkDefense/index';
 import {
-	description as v2NotificationDescription,
-	execute as v2NotificationExecute,
-} from './actionsV2/v2Notification/index';
+	description as notificationDescription,
+	execute as notificationExecute,
+} from './actionsV2/notification/index';
+import { description as okmsDescription, execute as okmsExecute } from './actionsV2/okms/index';
 import {
-	description as v2OkmsDescription,
-	execute as v2OkmsExecute,
-} from './actionsV2/v2Okms/index';
+	description as publicCloudDescription,
+	execute as publicCloudExecute,
+} from './actionsV2/publicCloud/index';
 import {
-	description as v2PublicCloudDescription,
-	execute as v2PublicCloudExecute,
-} from './actionsV2/v2PublicCloud/index';
+	description as vmwareCloudDirectorDescription,
+	execute as vmwareCloudDirectorExecute,
+} from './actionsV2/vmwareCloudDirector/index';
 import {
-	description as v2VmwareCloudDirectorDescription,
-	execute as v2VmwareCloudDirectorExecute,
-} from './actionsV2/v2VmwareCloudDirector/index';
+	description as vrackServicesDescription,
+	execute as vrackServicesExecute,
+} from './actionsV2/vrackServices/index';
 import {
-	description as v2VrackServicesDescription,
-	execute as v2VrackServicesExecute,
-} from './actionsV2/v2VrackServices/index';
+	description as webhostingDescription,
+	execute as webhostingExecute,
+} from './actionsV2/webhosting/index';
 import {
-	description as v2WebhostingDescription,
-	execute as v2WebhostingExecute,
-} from './actionsV2/v2Webhosting/index';
-import {
-	description as v2ZimbraDescription,
-	execute as v2ZimbraExecute,
-} from './actionsV2/v2Zimbra/index';
+	description as zimbraDescription,
+	execute as zimbraExecute,
+} from './actionsV2/zimbra/index';
 
 /**
  * Main OVH Cloud n8n node for interacting with the OVHcloud API.
@@ -397,12 +384,17 @@ export class OvhCloud implements INodeType {
 					{
 						name: 'Dedicated Installation Template',
 						value: 'dedicatedInstallationTemplate',
-						action: 'Manage OVH Dedicated Installation Templates',
+						action: 'Manage OVH Dedicated Installation Template services',
 					},
 					{
 						name: 'Dedicated Nasha',
 						value: 'dedicatedNasha',
 						action: 'Manage OVH Dedicated Nasha services',
+					},
+					{
+						name: 'Dedicated Server',
+						value: 'dedicatedServer',
+						action: 'Manage OVH Dedicated Server services',
 					},
 					{
 						name: 'Domain',
@@ -555,11 +547,6 @@ export class OvhCloud implements INodeType {
 						action: 'Manage OVH Cloud Connect services',
 					},
 					{
-						name: 'Pack Siptrunk',
-						value: 'packSiptrunk',
-						action: 'Manage OVH Pack Siptrunk services',
-					},
-					{
 						name: 'Pack Xdsl',
 						value: 'packXdsl',
 						action: 'Manage OVH Pack Xdsl services',
@@ -573,16 +560,6 @@ export class OvhCloud implements INodeType {
 						name: 'Price',
 						value: 'price',
 						action: 'Manage OVH Price services',
-					},
-					{
-						name: 'Products',
-						value: 'products',
-						action: 'Manage OVH Products',
-					},
-					{
-						name: 'SaaS',
-						value: 'saas',
-						action: 'Manage OVH SaaS services',
 					},
 					{
 						name: 'Secret',
@@ -615,11 +592,6 @@ export class OvhCloud implements INodeType {
 						action: 'Manage OVH SSL Gateway services',
 					},
 					{
-						name: 'Stack',
-						value: 'stack',
-						action: 'Manage OVH Stack services',
-					},
-					{
 						name: 'Startup',
 						value: 'startup',
 						action: 'Manage OVH Startup services',
@@ -628,11 +600,6 @@ export class OvhCloud implements INodeType {
 						name: 'Storage',
 						value: 'storage',
 						action: 'Manage OVH Storage services',
-					},
-					{
-						name: 'Supply',
-						value: 'supply',
-						action: 'Manage OVH Supply services',
 					},
 					{
 						name: 'Support',
@@ -646,78 +613,68 @@ export class OvhCloud implements INodeType {
 					},
 					{
 						name: 'V2 Backup Services',
-						value: 'v2BackupServices',
+						value: 'backupServices',
 						action: 'Manage OVH V2 Backup Services',
 					},
 					{
 						name: 'V2 Commercial Catalog',
-						value: 'v2CommercialCatalog',
+						value: 'commercialCatalog',
 						action: 'Manage OVH V2 Commercial Catalog',
 					},
 					{
 						name: 'V2 IAM',
-						value: 'v2Iam',
+						value: 'iam',
 						action: 'Manage OVH V2 IAM resources',
 					},
 					{
 						name: 'V2 Location',
-						value: 'v2Location',
+						value: 'location',
 						action: 'Manage OVH V2 Location services',
 					},
 					{
 						name: 'V2 Managed CMS',
-						value: 'v2ManagedCMS',
+						value: 'managedCMS',
 						action: 'Manage OVH V2 Managed CMS services',
 					},
 					{
 						name: 'V2 Network Defense',
-						value: 'v2NetworkDefense',
+						value: 'networkDefense',
 						action: 'Manage OVH V2 Network Defense services',
 					},
 					{
 						name: 'V2 Notification',
-						value: 'v2Notification',
+						value: 'notification',
 						action: 'Manage OVH V2 Notification services',
 					},
 					{
 						name: 'V2 OKMS',
-						value: 'v2Okms',
+						value: 'okms',
 						action: 'Manage OVH V2 OKMS services',
 					},
 					{
 						name: 'V2 Public Cloud',
-						value: 'v2PublicCloud',
+						value: 'publicCloud',
 						action: 'Manage OVH V2 Public Cloud services',
 					},
 					{
 						name: 'V2 VMware Cloud Director',
-						value: 'v2VmwareCloudDirector',
+						value: 'vmwareCloudDirector',
 						action: 'Manage OVH V2 VMware Cloud Director services',
 					},
 					{
 						name: 'V2 vRack Services',
-						value: 'v2VrackServices',
+						value: 'vrackServices',
 						action: 'Manage OVH V2 vRack Services',
 					},
 					{
 						name: 'V2 Webhosting',
-						value: 'v2Webhosting',
+						value: 'webhosting',
 						action: 'Manage OVH V2 Webhosting services',
 					},
 					{
 						name: 'V2 Zimbra',
-						value: 'v2Zimbra',
+						value: 'zimbra',
 						action: 'Manage OVH V2 Zimbra services',
-					},
-					{
-						name: 'Veeam Cloud Connect',
-						value: 'veeamCloudConnect',
-						action: 'Manage OVH Veeam Cloud Connect services',
-					},
-					{
-						name: 'Veeam Enterprise',
-						value: 'veeamEnterprise',
-						action: 'Manage OVH Veeam Enterprise services',
 					},
 					{
 						name: 'VIP',
@@ -752,13 +709,14 @@ export class OvhCloud implements INodeType {
 			...dbaasDescription({ show: { resource: ['dbaas'] } }),
 			...dedicatedDescription({ show: { resource: ['dedicated'] } }),
 			...dedicatedCephDescription({ show: { resource: ['dedicatedCeph'] } }),
-			...dedicatedClusterDescription({ show: { resource: ['dedicatedCluster'] } }),
 			...dedicatedCloudDescription({ show: { resource: ['dedicatedCloud'] } }),
+			...dedicatedClusterDescription({ show: { resource: ['dedicatedCluster'] } }),
 			...dedicatedHousingDescription({ show: { resource: ['dedicatedHousing'] } }),
 			...dedicatedInstallationTemplateDescription({
 				show: { resource: ['dedicatedInstallationTemplate'] },
 			}),
 			...dedicatedNashaDescription({ show: { resource: ['dedicatedNasha'] } }),
+			...dedicatedServerDescription({ show: { resource: ['dedicatedServer'] } }),
 			...domainDescription({ show: { resource: ['domain'] } }),
 			...emailDescription({ show: { resource: ['email'] } }),
 			...emailExchangeDescription({ show: { resource: ['emailExchange'] } }),
@@ -789,39 +747,32 @@ export class OvhCloud implements INodeType {
 			...orderDescription({ show: { resource: ['order'] } }),
 			...overTheBoxDescription({ show: { resource: ['overTheBox'] } }),
 			...ovhCloudConnectDescription({ show: { resource: ['ovhCloudConnect'] } }),
-			...packSiptrunkDescription({ show: { resource: ['packSiptrunk'] } }),
 			...packXdslDescription({ show: { resource: ['packXdsl'] } }),
 			...partnerDescription({ show: { resource: ['partner'] } }),
 			...priceDescription({ show: { resource: ['price'] } }),
-			...productsDescription({ show: { resource: ['products'] } }),
-			...saasDescription({ show: { resource: ['saas'] } }),
 			...secretDescription({ show: { resource: ['secret'] } }),
 			...serviceDescription({ show: { resource: ['service'] } }),
 			...servicesDescription({ show: { resource: ['services'] } }),
 			...smsDescription({ show: { resource: ['sms'] } }),
 			...sslDescription({ show: { resource: ['ssl'] } }),
 			...sslGatewayDescription({ show: { resource: ['sslGateway'] } }),
-			...stackDescription({ show: { resource: ['stack'] } }),
 			...startupDescription({ show: { resource: ['startup'] } }),
 			...storageDescription({ show: { resource: ['storage'] } }),
-			...supplyDescription({ show: { resource: ['supply'] } }),
 			...supportDescription({ show: { resource: ['support'] } }),
 			...telephonyDescription({ show: { resource: ['telephony'] } }),
-			...v2BackupServicesDescription({ show: { resource: ['v2BackupServices'] } }),
-			...v2CommercialCatalogDescription({ show: { resource: ['v2CommercialCatalog'] } }),
-			...v2IamDescription({ show: { resource: ['v2Iam'] } }),
-			...v2LocationDescription({ show: { resource: ['v2Location'] } }),
-			...v2ManagedCMSDescription({ show: { resource: ['v2ManagedCMS'] } }),
-			...v2NetworkDefenseDescription({ show: { resource: ['v2NetworkDefense'] } }),
-			...v2NotificationDescription({ show: { resource: ['v2Notification'] } }),
-			...v2OkmsDescription({ show: { resource: ['v2Okms'] } }),
-			...v2PublicCloudDescription({ show: { resource: ['v2PublicCloud'] } }),
-			...v2VmwareCloudDirectorDescription({ show: { resource: ['v2VmwareCloudDirector'] } }),
-			...v2VrackServicesDescription({ show: { resource: ['v2VrackServices'] } }),
-			...v2WebhostingDescription({ show: { resource: ['v2Webhosting'] } }),
-			...v2ZimbraDescription({ show: { resource: ['v2Zimbra'] } }),
-			...veeamCloudConnectDescription({ show: { resource: ['veeamCloudConnect'] } }),
-			...veeamEnterpriseDescription({ show: { resource: ['veeamEnterprise'] } }),
+			...backupServicesDescription({ show: { resource: ['backupServices'] } }),
+			...commercialCatalogDescription({ show: { resource: ['commercialCatalog'] } }),
+			...iamDescription({ show: { resource: ['iam'] } }),
+			...locationDescription({ show: { resource: ['location'] } }),
+			...managedCMSDescription({ show: { resource: ['managedCMS'] } }),
+			...networkDefenseDescription({ show: { resource: ['networkDefense'] } }),
+			...notificationDescription({ show: { resource: ['notification'] } }),
+			...okmsDescription({ show: { resource: ['okms'] } }),
+			...publicCloudDescription({ show: { resource: ['publicCloud'] } }),
+			...vmwareCloudDirectorDescription({ show: { resource: ['vmwareCloudDirector'] } }),
+			...vrackServicesDescription({ show: { resource: ['vrackServices'] } }),
+			...webhostingDescription({ show: { resource: ['webhosting'] } }),
+			...zimbraDescription({ show: { resource: ['zimbra'] } }),
 			...vipDescription({ show: { resource: ['vip'] } }),
 			...vpsDescription({ show: { resource: ['vps'] } }),
 			...vrackDescription({ show: { resource: ['vrack'] } }),
@@ -840,6 +791,7 @@ export class OvhCloud implements INodeType {
 			getServiceIds, // Dynamic list search for service IDs
 			getEmailDomains, // Dynamic list search for email domains
 			getVpsServices, // Dynamic list search for VPS service names
+			getDedicatedCloudServices, // Dynamic list search for Dedicated Cloud services
 		},
 	};
 
@@ -898,6 +850,24 @@ export class OvhCloud implements INodeType {
 			case 'dedicatedCloud':
 				responseData = await dedicatedCloudExecute.call(this);
 				break;
+			case 'dedicatedCeph':
+				responseData = await dedicatedCephExecute.call(this);
+				break;
+			case 'dedicatedCluster':
+				responseData = await dedicatedClusterExecute.call(this);
+				break;
+			case 'dedicatedHousing':
+				responseData = await dedicatedHousingExecute.call(this);
+				break;
+			case 'dedicatedInstallationTemplate':
+				responseData = await dedicatedInstallationTemplateExecute.call(this);
+				break;
+			case 'dedicatedNasha':
+				responseData = await dedicatedNashaExecute.call(this);
+				break;
+			case 'dedicatedServer':
+				responseData = await dedicatedServerExecute.call(this);
+				break;
 			case 'dbaas':
 				responseData = await dbaasExecute.call(this);
 				break;
@@ -919,21 +889,6 @@ export class OvhCloud implements INodeType {
 				break;
 			case 'contact':
 				responseData = await contactExecute.call(this);
-				break;
-			case 'dedicatedCeph':
-				responseData = await dedicatedCephExecute.call(this);
-				break;
-			case 'dedicatedCluster':
-				responseData = await dedicatedClusterExecute.call(this);
-				break;
-			case 'dedicatedHousing':
-				responseData = await dedicatedHousingExecute.call(this);
-				break;
-			case 'dedicatedNasha':
-				responseData = await dedicatedNashaExecute.call(this);
-				break;
-			case 'dedicatedInstallationTemplate':
-				responseData = await dedicatedInstallationTemplateExecute.call(this);
 				break;
 			case 'emailExchange':
 				responseData = await emailExchangeExecute.call(this);
@@ -1007,9 +962,6 @@ export class OvhCloud implements INodeType {
 			case 'ovhCloudConnect':
 				responseData = await ovhCloudConnectExecute.call(this);
 				break;
-			case 'packSiptrunk':
-				responseData = await packSiptrunkExecute.call(this);
-				break;
 			case 'packXdsl':
 				responseData = await packXdslExecute.call(this);
 				break;
@@ -1018,12 +970,6 @@ export class OvhCloud implements INodeType {
 				break;
 			case 'price':
 				responseData = await priceExecute.call(this);
-				break;
-			case 'products':
-				responseData = await productsExecute.call(this);
-				break;
-			case 'saas':
-				responseData = await saasExecute.call(this);
 				break;
 			case 'secret':
 				responseData = await secretExecute.call(this);
@@ -1034,29 +980,17 @@ export class OvhCloud implements INodeType {
 			case 'sslGateway':
 				responseData = await sslGatewayExecute.call(this);
 				break;
-			case 'stack':
-				responseData = await stackExecute.call(this);
-				break;
 			case 'startup':
 				responseData = await startupExecute.call(this);
 				break;
 			case 'storage':
 				responseData = await storageExecute.call(this);
 				break;
-			case 'supply':
-				responseData = await supplyExecute.call(this);
-				break;
 			case 'support':
 				responseData = await supportExecute.call(this);
 				break;
 			case 'telephony':
 				responseData = await telephonyExecute.call(this);
-				break;
-			case 'veeamCloudConnect':
-				responseData = await veeamCloudConnectExecute.call(this);
-				break;
-			case 'veeamEnterprise':
-				responseData = await veeamEnterpriseExecute.call(this);
 				break;
 			case 'vip':
 				responseData = await vipExecute.call(this);
@@ -1065,44 +999,44 @@ export class OvhCloud implements INodeType {
 				responseData = await xdslExecute.call(this);
 				break;
 			// New V2 resources
-			case 'v2BackupServices':
-				responseData = await v2BackupServicesExecute.call(this);
+			case 'backupServices':
+				responseData = await backupServicesExecute.call(this);
 				break;
-			case 'v2CommercialCatalog':
-				responseData = await v2CommercialCatalogExecute.call(this);
+			case 'commercialCatalog':
+				responseData = await commercialCatalogExecute.call(this);
 				break;
-			case 'v2Iam':
-				responseData = await v2IamExecute.call(this);
+			case 'iam':
+				responseData = await iamExecute.call(this);
 				break;
-			case 'v2Location':
-				responseData = await v2LocationExecute.call(this);
+			case 'location':
+				responseData = await locationExecute.call(this);
 				break;
-			case 'v2ManagedCMS':
-				responseData = await v2ManagedCMSExecute.call(this);
+			case 'managedCMS':
+				responseData = await managedCMSExecute.call(this);
 				break;
-			case 'v2NetworkDefense':
-				responseData = await v2NetworkDefenseExecute.call(this);
+			case 'networkDefense':
+				responseData = await networkDefenseExecute.call(this);
 				break;
-			case 'v2Notification':
-				responseData = await v2NotificationExecute.call(this);
+			case 'notification':
+				responseData = await notificationExecute.call(this);
 				break;
-			case 'v2Okms':
-				responseData = await v2OkmsExecute.call(this);
+			case 'okms':
+				responseData = await okmsExecute.call(this);
 				break;
-			case 'v2PublicCloud':
-				responseData = await v2PublicCloudExecute.call(this);
+			case 'publicCloud':
+				responseData = await publicCloudExecute.call(this);
 				break;
-			case 'v2VmwareCloudDirector':
-				responseData = await v2VmwareCloudDirectorExecute.call(this);
+			case 'vmwareCloudDirector':
+				responseData = await vmwareCloudDirectorExecute.call(this);
 				break;
-			case 'v2VrackServices':
-				responseData = await v2VrackServicesExecute.call(this);
+			case 'vrackServices':
+				responseData = await vrackServicesExecute.call(this);
 				break;
-			case 'v2Webhosting':
-				responseData = await v2WebhostingExecute.call(this);
+			case 'webhosting':
+				responseData = await webhostingExecute.call(this);
 				break;
-			case 'v2Zimbra':
-				responseData = await v2ZimbraExecute.call(this);
+			case 'zimbra':
+				responseData = await zimbraExecute.call(this);
 				break;
 			default:
 				throw new NodeApiError(this.getNode(), {

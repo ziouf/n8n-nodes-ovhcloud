@@ -42,7 +42,7 @@ export function description(displayOptions: IDisplayOptions): INodeProperties[] 
  * Executes the Get Hosting Task operation.
  *
  * HTTP method: GET
- * Endpoint: /hosting/privateDatabase/{serviceName}/task/{taskId}
+ * Endpoint: /hosting/privateDatabase/{serviceName}/tasks/{id}
  *
  * @param this - n8n IExecuteFunctions context
  * @returns Array of execution results containing task details
@@ -52,7 +52,7 @@ export async function execute(this: IExecuteFunctions): Promise<INodeExecutionDa
 	const serviceName = this.getNodeParameter('serviceName', 0) as string;
 	const taskId = this.getNodeParameter('taskId', 0) as string;
 	const data = (await client.httpGet(
-		`/hosting/privateDatabase/${serviceName}/task/${taskId}`,
+		`/hosting/privateDatabase/${serviceName}/tasks/${taskId}`,
 	)) as IDataObject;
 	return [{ json: data }];
 }

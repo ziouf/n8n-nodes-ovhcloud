@@ -1,0 +1,88 @@
+import type {
+	IDataObject,
+	IDisplayOptions,
+	IExecuteFunctions,
+	INodeExecutionData,
+	INodeProperties,
+} from 'n8n-workflow';
+import { ApiClient } from '../../../../transport/ApiClient';
+
+/**
+ * @brief Update Name Servers operation
+ *
+ * Updates name servers for a domain.
+ *
+ * HTTP method: POST
+ * Endpoint: /domain/{serviceName}/nameServers/update
+ */
+export function description(displayOptions: IDisplayOptions): INodeProperties[] {
+	return [
+		{
+			displayName: 'Service Name',
+			name: 'serviceName',
+			description:
+				'The name of the domain. This can be set manually or selected from the list of services.',
+			type: 'resourceLocator',
+			required: true,
+			default: { mode: 'str', value: '' },
+			modes: [
+				{ displayName: 'By Name', name: 'str', type: 'string' },
+				{
+					displayName: 'From List',
+					name: 'list',
+					type: 'list',
+					placeholder: 'Select a domain...',
+					typeOptions: { searchListMethod: 'getDomainServices', searchable: true },
+				},
+			],
+			displayOptions,
+		},
+		{
+			displayName: 'Name Servers',
+			name: 'nameServers',
+			type: 'fixedCollection',
+			typeOptions: {
+				multipleValues: true,
+			},
+			default: {},
+			description: 'List of name servers to set',
+			displayOptions,
+			options: [
+				{
+					name: 'servers',
+					displayName: 'Servers',
+					values: [
+						{
+							displayName: 'Server',
+							name: 'server',
+							type: 'string',
+							default: '',
+							required: true,
+							description: 'The name server hostname',
+						},
+						{
+							displayName: 'IP',
+							name: 'ip',
+							type: 'string',
+							default: '',
+							description: 'Optional IP address',
+						},
+					],
+				},
+			],
+		},
+	];
+}
+
+/**
+ * Executes the Update Name Servers operation.
+ */
+export async function execute(this: IExecuteFunctions): Promise<INodeExecutionData[]> {
+	const client = new ApiClient(this);
+	const serviceName = this.getNodeParameter('serviceName', 0, { extractValue: true }) as string;
+	const nameServers = this.getNodeParameter('nameServers', 0) as { servers: IDataObject[] };
+
+	const body: IDataObject = { nameServers: nameServers.servers };
+	const data = (await client.httpPost(`/domain/${serviceName}/nameServers/update`, body)) as IDataObject;
+	return [{ json: data }];
+}

@@ -13,11 +13,20 @@ import { ApiClient } from '../../../../transport/ApiClient';
  * Retrieves all users for a specific private database hosting service.
  *
  * @param displayOptions - Controls when these properties should be displayed
- * @returns Empty array (no additional UI properties needed)
+ * @returns Array of node properties for the List Hosting Users operation
  */
-// eslint-disable-next-line @typescript-eslint/no-unused-vars
 export function description(displayOptions: IDisplayOptions): INodeProperties[] {
-	return [];
+	return [
+		{
+			displayName: 'Service Name',
+			name: 'serviceName',
+			type: 'string',
+			default: '',
+			required: true,
+			description: 'The name of the hosting service',
+			displayOptions,
+		},
+	];
 }
 
 /**

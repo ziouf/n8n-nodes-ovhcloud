@@ -2,16 +2,16 @@
  * @brief Startup resource operations for n8n node
  *
  * Provides operations for managing OVHcloud startup services including:
- * - List all startup services for the authenticated account
- * - Get detailed information about a specific startup service
+ * - Get startup status
+ * - Register a startup
  *
  * Available operations:
- * - `list`: ListStartups - List all startup services
- * - `get`: GetStartup - Get details of a specific startup service
+ * - `get`: GetStartup - Get startup status
+ * - `register`: RegisterStartup - Register a startup
  *
  * @remarks
  * Startup services are managed under `/startup` route.
- * Service name can be entered manually.
+ * Only 2 endpoints exist: GET /startup and POST /startup.
  */
 import type {
 	IDisplayOptions,
@@ -19,8 +19,11 @@ import type {
 	INodeExecutionData,
 	INodeProperties,
 } from 'n8n-workflow';
-import { execute as executeList, description as descriptionList } from './list.operation';
 import { execute as executeGet, description as descriptionGet } from './get.operation';
+import {
+	execute as executeRegister,
+	description as descriptionRegister,
+} from './register.operation';
 
 export function description(displayOptions: IDisplayOptions): INodeProperties[] {
 	const operationProperties: INodeProperties[] = [
@@ -31,36 +34,36 @@ export function description(displayOptions: IDisplayOptions): INodeProperties[] 
 			noDataExpression: true,
 			options: [
 				{
-					name: 'List',
-					value: 'list',
-					action: 'List all startup services',
-				},
-				{
 					name: 'Get',
 					value: 'get',
-					action: 'Get details of a startup service',
+					action: 'Get startup status',
+				},
+				{
+					name: 'Register',
+					value: 'register',
+					action: 'Register a startup',
 				},
 			],
-			default: 'list',
+			default: 'get',
 			displayOptions,
 		},
 	];
 
 	return [
 		...operationProperties,
-		...descriptionList({
-			...displayOptions,
-			show: { ...displayOptions?.show, startupOperation: ['list'] },
-		}),
 		...descriptionGet({
 			...displayOptions,
 			show: { ...displayOptions?.show, startupOperation: ['get'] },
+		}),
+		...descriptionRegister({
+			...displayOptions,
+			show: { ...displayOptions?.show, startupOperation: ['register'] },
 		}),
 	];
 }
 
 /**
- * Executes the selected startup operation (list, get).
+ * Executes the selected startup operation.
  *
  * Routes execution to the appropriate handler based on the selected operation.
  *
@@ -71,10 +74,10 @@ export async function execute(this: IExecuteFunctions): Promise<INodeExecutionDa
 	const operation = this.getNodeParameter('startupOperation', 0, { extractValue: true });
 
 	switch (operation) {
-		case 'list':
-			return await executeList.call(this);
 		case 'get':
 			return await executeGet.call(this);
+		case 'register':
+			return await executeRegister.call(this);
 	}
 
 	throw new Error(`Unsupported operation "${operation}" for resource "startup"`);

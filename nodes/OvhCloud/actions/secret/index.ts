@@ -2,16 +2,14 @@
  * @brief Secret resource operations for n8n node
  *
  * Provides operations for managing OVHcloud secrets including:
- * - List all secret services for the authenticated account
- * - Get detailed information about a specific secret service
+ * - Retrieve a secret sent by email
  *
  * Available operations:
- * - `list`: ListSecrets - List all secret services
- * - `get`: GetSecret - Get details of a specific secret service
+ * - `retrieve`: RetrieveSecret - Retrieve a secret sent by email
  *
  * @remarks
  * Secret services are managed under `/secret` route.
- * Service name can be entered manually.
+ * Only one endpoint exists: POST /secret/retrieve (no authentication required).
  */
 import type {
 	IDisplayOptions,
@@ -19,8 +17,10 @@ import type {
 	INodeExecutionData,
 	INodeProperties,
 } from 'n8n-workflow';
-import { execute as executeList, description as descriptionList } from './list.operation';
-import { execute as executeGet, description as descriptionGet } from './get.operation';
+import {
+	execute as executeRetrieve,
+	description as descriptionRetrieve,
+} from './retrieve.operation';
 
 export function description(displayOptions: IDisplayOptions): INodeProperties[] {
 	const operationProperties: INodeProperties[] = [
@@ -31,36 +31,27 @@ export function description(displayOptions: IDisplayOptions): INodeProperties[] 
 			noDataExpression: true,
 			options: [
 				{
-					name: 'List',
-					value: 'list',
-					action: 'List all secret services',
-				},
-				{
-					name: 'Get',
-					value: 'get',
-					action: 'Get details of a secret service',
+					name: 'Retrieve',
+					value: 'retrieve',
+					action: 'Retrieve a secret sent by email',
 				},
 			],
-			default: 'list',
+			default: 'retrieve',
 			displayOptions,
 		},
 	];
 
 	return [
 		...operationProperties,
-		...descriptionList({
+		...descriptionRetrieve({
 			...displayOptions,
-			show: { ...displayOptions?.show, secretOperation: ['list'] },
-		}),
-		...descriptionGet({
-			...displayOptions,
-			show: { ...displayOptions?.show, secretOperation: ['get'] },
+			show: { ...displayOptions?.show, secretOperation: ['retrieve'] },
 		}),
 	];
 }
 
 /**
- * Executes the selected secret operation (list, get).
+ * Executes the selected secret operation.
  *
  * Routes execution to the appropriate handler based on the selected operation.
  *
@@ -71,10 +62,8 @@ export async function execute(this: IExecuteFunctions): Promise<INodeExecutionDa
 	const operation = this.getNodeParameter('secretOperation', 0, { extractValue: true });
 
 	switch (operation) {
-		case 'list':
-			return await executeList.call(this);
-		case 'get':
-			return await executeGet.call(this);
+		case 'retrieve':
+			return await executeRetrieve.call(this);
 	}
 
 	throw new Error(`Unsupported operation "${operation}" for resource "secret"`);

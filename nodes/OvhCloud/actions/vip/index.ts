@@ -2,28 +2,20 @@
  * @brief VIP resource operations for n8n node
  *
  * Provides operations for managing OVH VIP services including:
- * - List all VIP services for the authenticated account
- * - Get detailed information about a specific VIP service
+ * - List all VIP services
+ * - Get VIP service details
+ * - Get service information
+ * - Update service information
  *
  * Available operations:
  * - `list`: ListVipServices - List all VIP services
- * - `get`: GetVipService - Get details of a specific VIP service
+ * - `get`: GetVipService - Get VIP service details
+ * - `getServiceInfos`: GetServiceInfos - Get service information
+ * - `updateServiceInfos`: UpdateServiceInfos - Update service information
  *
  * @remarks
  * VIP services are managed under `/vip` route.
  * Service name can be entered manually or selected from dynamic dropdown.
- *
- * @example
- * // Configure in n8n node
- * Resource: VIP
- * Operation: List Services
- * Output: Array of VIP service details
- *
- * @example
- * // Get specific service details
- * // Resource: VIP -> Get Service
- * // serviceName = 'vip-123' (or from dynamic list)
- * // Output: Service details
  */
 import type {
 	IDisplayOptions,
@@ -31,14 +23,16 @@ import type {
 	INodeExecutionData,
 	INodeProperties,
 } from 'n8n-workflow';
+import { execute as executeVipList, description as descriptionVipList } from './list.operation';
+import { execute as executeVipGet, description as descriptionVipGet } from './get.operation';
 import {
-	execute as executeVipList,
-	description as descriptionVipList,
-} from './list.operation';
+	execute as executeGetServiceInfos,
+	description as descriptionGetServiceInfos,
+} from './getServiceInfos.operation';
 import {
-	execute as executeVipGet,
-	description as descriptionVipGet,
-} from './get.operation';
+	execute as executeUpdateServiceInfos,
+	description as descriptionUpdateServiceInfos,
+} from './updateServiceInfos.operation';
 
 export function description(displayOptions: IDisplayOptions): INodeProperties[] {
 	const operationProperties: INodeProperties[] = [
@@ -58,6 +52,16 @@ export function description(displayOptions: IDisplayOptions): INodeProperties[] 
 					value: 'get',
 					action: 'Get details of a VIP service',
 				},
+				{
+					name: 'Get Service Infos',
+					value: 'getServiceInfos',
+					action: 'Get service information',
+				},
+				{
+					name: 'Update Service Infos',
+					value: 'updateServiceInfos',
+					action: 'Update service information',
+				},
 			],
 			default: 'list',
 			displayOptions,
@@ -74,11 +78,19 @@ export function description(displayOptions: IDisplayOptions): INodeProperties[] 
 			...displayOptions,
 			show: { ...displayOptions?.show, vipOperation: ['get'] },
 		}),
+		...descriptionGetServiceInfos({
+			...displayOptions,
+			show: { ...displayOptions?.show, vipOperation: ['getServiceInfos'] },
+		}),
+		...descriptionUpdateServiceInfos({
+			...displayOptions,
+			show: { ...displayOptions?.show, vipOperation: ['updateServiceInfos'] },
+		}),
 	];
 }
 
 /**
- * Executes the selected VIP operation (list, get).
+ * Executes the selected VIP operation.
  *
  * Routes execution to the appropriate handler based on the selected operation.
  *
@@ -93,6 +105,10 @@ export async function execute(this: IExecuteFunctions): Promise<INodeExecutionDa
 			return await executeVipList.call(this);
 		case 'get':
 			return await executeVipGet.call(this);
+		case 'getServiceInfos':
+			return await executeGetServiceInfos.call(this);
+		case 'updateServiceInfos':
+			return await executeUpdateServiceInfos.call(this);
 	}
 
 	throw new Error(`Unsupported operation "${operation}" for resource "vip"`);

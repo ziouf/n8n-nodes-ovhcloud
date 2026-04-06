@@ -2,16 +2,16 @@
  * @brief Partner resource operations for n8n node
  *
  * Provides operations for managing OVHcloud partner information including:
- * - List all partners for the authenticated account
- * - Get detailed information about a specific partner
+ * - Get partner status
+ * - Register as a partner
  *
  * Available operations:
- * - `list`: ListPartners - List all partners
- * - `get`: GetPartner - Get details of a specific partner
+ * - `get`: GetPartner - Get partner status
+ * - `register`: RegisterPartner - Register as a partner
  *
  * @remarks
  * Partners are managed under `/partner` route.
- * Partner ID can be entered manually.
+ * Only 2 endpoints exist: GET /partner and POST /partner.
  */
 import type {
 	IDisplayOptions,
@@ -19,8 +19,11 @@ import type {
 	INodeExecutionData,
 	INodeProperties,
 } from 'n8n-workflow';
-import { execute as executeList, description as descriptionList } from './list.operation';
 import { execute as executeGet, description as descriptionGet } from './get.operation';
+import {
+	execute as executeRegister,
+	description as descriptionRegister,
+} from './register.operation';
 
 export function description(displayOptions: IDisplayOptions): INodeProperties[] {
 	const operationProperties: INodeProperties[] = [
@@ -31,36 +34,36 @@ export function description(displayOptions: IDisplayOptions): INodeProperties[] 
 			noDataExpression: true,
 			options: [
 				{
-					name: 'List',
-					value: 'list',
-					action: 'List all partners',
-				},
-				{
 					name: 'Get',
 					value: 'get',
-					action: 'Get details of a partner',
+					action: 'Get partner status',
+				},
+				{
+					name: 'Register',
+					value: 'register',
+					action: 'Register as a partner',
 				},
 			],
-			default: 'list',
+			default: 'get',
 			displayOptions,
 		},
 	];
 
 	return [
 		...operationProperties,
-		...descriptionList({
-			...displayOptions,
-			show: { ...displayOptions?.show, partnerOperation: ['list'] },
-		}),
 		...descriptionGet({
 			...displayOptions,
 			show: { ...displayOptions?.show, partnerOperation: ['get'] },
+		}),
+		...descriptionRegister({
+			...displayOptions,
+			show: { ...displayOptions?.show, partnerOperation: ['register'] },
 		}),
 	];
 }
 
 /**
- * Executes the selected partner operation (list, get).
+ * Executes the selected partner operation.
  *
  * Routes execution to the appropriate handler based on the selected operation.
  *
@@ -71,10 +74,10 @@ export async function execute(this: IExecuteFunctions): Promise<INodeExecutionDa
 	const operation = this.getNodeParameter('partnerOperation', 0, { extractValue: true });
 
 	switch (operation) {
-		case 'list':
-			return await executeList.call(this);
 		case 'get':
 			return await executeGet.call(this);
+		case 'register':
+			return await executeRegister.call(this);
 	}
 
 	throw new Error(`Unsupported operation "${operation}" for resource "partner"`);

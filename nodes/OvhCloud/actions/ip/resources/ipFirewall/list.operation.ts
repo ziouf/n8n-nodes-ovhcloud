@@ -1,19 +1,19 @@
-import {
+import type {
+	IDataObject,
+	IDisplayOptions,
 	IExecuteFunctions,
 	INodeExecutionData,
-	IDataObject,
 	INodeProperties,
-	IDisplayOptions,
 } from 'n8n-workflow';
 import { ApiClient } from '../../../../transport/ApiClient';
 
 /**
- * @brief List IP Firewall rules operation
+ * List IP Firewall rules for an IP block.
  *
- * Retrieves all firewall rules for a specific IP block:
- * - HTTP GET request to `/ip/{ipBlock}/firewall` endpoint
- * - IP block parameter is required
- * - Returns list of firewall rule identifiers
+ * Retrieves all firewall rules for a specific IP block.
+ *
+ * HTTP method: GET
+ * Endpoint: /ip/{ipBlock}/firewall
  *
  * @param displayOptions - Controls when these properties should be displayed
  * @returns Empty array (no additional UI properties needed)
@@ -38,5 +38,5 @@ export async function execute(this: IExecuteFunctions): Promise<INodeExecutionDa
 	const client = new ApiClient(this);
 	const ipBlock = this.getNodeParameter('ipBlock', 0) as string;
 	const data = (await client.httpGet(`/ip/${ipBlock}/firewall`)) as IDataObject[];
-	return data.map((item) => ({ json: item }));
+	return this.helpers.returnJsonArray(data);
 }

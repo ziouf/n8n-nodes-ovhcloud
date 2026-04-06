@@ -2,28 +2,22 @@
  * @brief New Account resource operations for n8n node
  *
  * Provides operations for managing OVH New Account services including:
- * - List all New Account services for the authenticated account
- * - Get detailed information about a specific New Account service
+ * - Create account, get areas, contracts, corporation types, countries,
+ *   creation rules, legal forms, and rules validation.
  *
  * Available operations:
- * - `list`: ListNewAccountServices - List all New Account services
- * - `get`: GetNewAccountService - Get details of a specific New Account service
+ * - `createAccount`: Create a new OVH account
+ * - `getAreas`: Get available areas
+ * - `getContracts`: Get available contracts
+ * - `getCorporationTypes`: Get corporation types
+ * - `getCountries`: Get available countries
+ * - `getCreationRules`: Get creation rules
+ * - `getLegalForms`: Get legal forms
+ * - `getRules`: Get rules by providing account details
  *
  * @remarks
- * New Account services are managed under `/newAccount` route.
- * Service name can be entered manually or selected from dynamic dropdown.
- *
- * @example
- * // Configure in n8n node
- * Resource: New Account
- * Operation: List Services
- * Output: Array of New Account service details
- *
- * @example
- * // Get specific service details
- * // Resource: New Account -> Get Service
- * // serviceName = 'newaccount-123' (or from dynamic list)
- * // Output: Service details
+ * New Account operations are managed under `/newAccount` route.
+ * No authentication required for these endpoints.
  */
 import type {
 	IDisplayOptions,
@@ -32,53 +26,113 @@ import type {
 	INodeProperties,
 } from 'n8n-workflow';
 import {
-	execute as executeNewAccountList,
-	description as descriptionNewAccountList,
-} from './list.operation';
+	descriptionCreateAccount,
+	executeCreateAccount,
+} from './resources/createAccount';
+import { descriptionGetAreas, executeGetAreas } from './resources/area';
+import { descriptionGetContracts, executeGetContracts } from './resources/contracts';
 import {
-	execute as executeNewAccountGet,
-	description as descriptionNewAccountGet,
-} from './get.operation';
+	descriptionGetCorporationTypes,
+	executeGetCorporationTypes,
+} from './resources/corporationType';
+import { descriptionGetCountries, executeGetCountries } from './resources/countries';
+import { descriptionGetCreationRules, executeGetCreationRules } from './resources/creationRules';
+import { descriptionGetLegalForms, executeGetLegalForms } from './resources/legalform';
+import { descriptionGetRules, executeGetRules } from './resources/rules';
 
 export function description(displayOptions: IDisplayOptions): INodeProperties[] {
 	const operationProperties: INodeProperties[] = [
 		{
-			displayName: 'New Account Operation',
-			name: 'newAccountOperation',
+			displayName: 'Operation',
+			name: 'operation',
 			type: 'options',
 			noDataExpression: true,
 			options: [
 				{
-					name: 'List Services',
-					value: 'list',
-					action: 'List New Account services',
+					name: 'Create Account',
+					value: 'createAccount',
+					action: 'Create a new OVH account',
 				},
 				{
-					name: 'Get Service',
-					value: 'get',
-					action: 'Get details of a New Account service',
+					name: 'Get Areas',
+					value: 'getAreas',
+					action: 'Get available areas',
+				},
+				{
+					name: 'Get Contracts',
+					value: 'getContracts',
+					action: 'Get available contracts',
+				},
+				{
+					name: 'Get Corporation Types',
+					value: 'getCorporationTypes',
+					action: 'Get corporation types',
+				},
+				{
+					name: 'Get Countries',
+					value: 'getCountries',
+					action: 'Get available countries',
+				},
+				{
+					name: 'Get Creation Rules',
+					value: 'getCreationRules',
+					action: 'Get creation rules',
+				},
+				{
+					name: 'Get Legal Forms',
+					value: 'getLegalForms',
+					action: 'Get legal forms',
+				},
+				{
+					name: 'Get Rules',
+					value: 'getRules',
+					action: 'Get rules by providing account details',
 				},
 			],
-			default: 'list',
+			default: 'createAccount',
 			displayOptions,
 		},
 	];
 
 	return [
 		...operationProperties,
-		...descriptionNewAccountList({
+		...descriptionCreateAccount({
 			...displayOptions,
-			show: { ...displayOptions?.show, newAccountOperation: ['list'] },
+			show: { ...displayOptions?.show, operation: ['createAccount'] },
 		}),
-		...descriptionNewAccountGet({
+		...descriptionGetAreas({
 			...displayOptions,
-			show: { ...displayOptions?.show, newAccountOperation: ['get'] },
+			show: { ...displayOptions?.show, operation: ['getAreas'] },
+		}),
+		...descriptionGetContracts({
+			...displayOptions,
+			show: { ...displayOptions?.show, operation: ['getContracts'] },
+		}),
+		...descriptionGetCorporationTypes({
+			...displayOptions,
+			show: { ...displayOptions?.show, operation: ['getCorporationTypes'] },
+		}),
+		...descriptionGetCountries({
+			...displayOptions,
+			show: { ...displayOptions?.show, operation: ['getCountries'] },
+		}),
+		...descriptionGetCreationRules({
+			...displayOptions,
+			show: { ...displayOptions?.show, operation: ['getCreationRules'] },
+		}),
+		...descriptionGetLegalForms({
+			...displayOptions,
+			show: { ...displayOptions?.show, operation: ['getLegalForms'] },
+		}),
+		...descriptionGetRules({
+			...displayOptions,
+			show: { ...displayOptions?.show, operation: ['getRules'] },
 		}),
 	];
 }
 
 /**
- * Executes the selected New Account operation (list, get).
+ * Executes the selected New Account operation.
  *
  * Routes execution to the appropriate handler based on the selected operation.
  *
@@ -86,13 +140,25 @@ export function description(displayOptions: IDisplayOptions): INodeProperties[] 
  * @returns Array of execution results for the selected operation
  */
 export async function execute(this: IExecuteFunctions): Promise<INodeExecutionData[]> {
-	const operation = this.getNodeParameter('newAccountOperation', 0, { extractValue: true });
+	const operation = this.getNodeParameter('operation', 0, { extractValue: true });
 
 	switch (operation) {
-		case 'list':
-			return await executeNewAccountList.call(this);
-		case 'get':
-			return await executeNewAccountGet.call(this);
+		case 'createAccount':
+			return await executeCreateAccount.call(this);
+		case 'getAreas':
+			return await executeGetAreas.call(this);
+		case 'getContracts':
+			return await executeGetContracts.call(this);
+		case 'getCorporationTypes':
+			return await executeGetCorporationTypes.call(this);
+		case 'getCountries':
+			return await executeGetCountries.call(this);
+		case 'getCreationRules':
+			return await executeGetCreationRules.call(this);
+		case 'getLegalForms':
+			return await executeGetLegalForms.call(this);
+		case 'getRules':
+			return await executeGetRules.call(this);
 	}
 
 	throw new Error(`Unsupported operation "${operation}" for resource "newAccount"`);

@@ -71,7 +71,7 @@ jest.mock('../nodes/OvhCloud/actions/hosting/index', () => ({
 	execute: jest.fn().mockResolvedValue([{ json: { resource: 'hosting' } }]),
 }));
 
-jest.mock('../nodes/OvhCloud/actions/dedicatedCloud/index', () => ({
+jest.mock('../nodes/OvhCloud/actions/dedicated/resources/dedicatedCloud/index', () => ({
 	description: jest.fn().mockReturnValue([]),
 	execute: jest.fn().mockResolvedValue([{ json: { resource: 'dedicatedCloud' } }]),
 }));
@@ -94,7 +94,7 @@ import { execute as vrackExecute } from '../nodes/OvhCloud/actions/vrack/index';
 import { execute as smsExecute } from '../nodes/OvhCloud/actions/sms/index';
 import { execute as sslExecute } from '../nodes/OvhCloud/actions/ssl/index';
 import { execute as hostingExecute } from '../nodes/OvhCloud/actions/hosting/index';
-import { execute as dedicatedCloudExecute } from '../nodes/OvhCloud/actions/dedicatedCloud/index';
+import { execute as dedicatedCloudExecute } from '../nodes/OvhCloud/actions/dedicated/resources/dedicatedCloud/index';
 import { execute as dbaasExecute } from '../nodes/OvhCloud/actions/dbaas/index';
 
 // Import the node class after mocks
@@ -134,14 +134,14 @@ describe('OvhCloud Node', () => {
 			expect(node.description.version).toBe(2);
 		});
 
-		it('should have all 81 resources defined', () => {
+		it('should have all 75 resources defined', () => {
 			const resourceProperty = node.description.properties.find((prop) => prop.name === 'resource');
 
 			expect(resourceProperty).toBeDefined();
 			expect(resourceProperty?.type).toBe('options');
 
 			const options = resourceProperty?.options ?? [];
-			expect(options).toHaveLength(81);
+			expect(options).toHaveLength(75);
 		});
 
 		it('should include all expected resource options', () => {
@@ -178,6 +178,7 @@ describe('OvhCloud Node', () => {
 				'dedicatedHousing',
 				'dedicatedNasha',
 				'dedicatedInstallationTemplate',
+				'dedicatedServer',
 				'emailExchange',
 				'emailMxplan',
 				'emailPro',
@@ -202,39 +203,32 @@ describe('OvhCloud Node', () => {
 				'order',
 				'overTheBox',
 				'ovhCloudConnect',
-				'packSiptrunk',
 				'packXdsl',
 				'partner',
 				'price',
-				'products',
-				'saas',
 				'secret',
 				'service',
 				'sslGateway',
-				'stack',
 				'startup',
 				'storage',
-				'supply',
 				'support',
 				'telephony',
-				'veeamEnterprise',
-				'veeamCloudConnect',
 				'vip',
 				'xdsl',
 				// V2 New Resources
-				'v2BackupServices',
-				'v2CommercialCatalog',
-				'v2Iam',
-				'v2Location',
-				'v2ManagedCMS',
-				'v2NetworkDefense',
-				'v2Notification',
-				'v2Okms',
-				'v2PublicCloud',
-				'v2VmwareCloudDirector',
-				'v2VrackServices',
-				'v2Webhosting',
-				'v2Zimbra',
+				'backupServices',
+				'commercialCatalog',
+				'iam',
+				'location',
+				'managedCMS',
+				'networkDefense',
+				'notification',
+				'okms',
+				'publicCloud',
+				'vmwareCloudDirector',
+				'vrackServices',
+				'webhosting',
+				'zimbra',
 			];
 
 			for (const resource of expectedResources) {
