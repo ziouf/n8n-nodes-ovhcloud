@@ -294,7 +294,7 @@ import {
 export class OvhCloud implements INodeType {
 	/** @inheritdoc */
 	description: INodeTypeDescription = {
-		displayName: 'OVH Cloud',
+		displayName: 'OVH Cloud (deprecated)',
 		name: 'ovhCloud',
 		icon: 'file:../../icons/ovh_vertical.svg',
 		group: ['input'],
