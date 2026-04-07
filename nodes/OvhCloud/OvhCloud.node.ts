@@ -294,11 +294,12 @@ import {
 export class OvhCloud implements INodeType {
 	/** @inheritdoc */
 	description: INodeTypeDescription = {
+		hidden: true,
 		displayName: 'OVH Cloud (deprecated)',
 		name: 'ovhCloud',
 		icon: 'file:../../icons/ovh_vertical.svg',
 		group: ['input'],
-		version: 2,
+		version: 1,
 		subtitle: '={{$parameter["operation"] + ": " + $parameter["resource"]}}',
 		description:
 			'Manage OVH Cloud services. Supports 80+ resources including Services, Me, Email, VPS, Domain, Dedicated, IP Load Balancing, IP, vRack, SMS, SSL, Hosting, Dedicated Cloud, DBaaS, and many more.',
