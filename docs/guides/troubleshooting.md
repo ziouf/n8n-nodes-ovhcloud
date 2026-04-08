@@ -189,7 +189,7 @@ If you cannot resolve your issue using this guide, consult the following resourc
 
 ### Project Resources
 
-- **[GitHub Repository](https://github.com/cyril-marin/n8n-nodes-ovhcloud)** -- Source code, issues, and discussions.
+- **[GitHub Repository](https://github.com/ziouf/n8n-nodes-ovhcloud)** -- Source code, issues, and discussions.
 - **[Getting Started Guide](./getting-started.md)** -- Installation and configuration.
 - **[Authentication Guide](./authentication-guide.md)** -- API credential setup and security.
 - **[Examples Guide](./examples.md)** -- Ready-to-use workflow examples.

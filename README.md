@@ -63,7 +63,7 @@ npm install n8n-nodes-ovhcloud
 
 ### 2. Configure
 
-1. Create API credentials at [api.ovh.com/console](https://api.ovh.com/console/)
+1. Create API credentials at [auth.eu.ovhcloud.com/api/createToken](https://auth.eu.ovhcloud.com/api/createToken)
 2. Add **OVH API** credentials in n8n (Application Key, Application Secret, Consumer Key)
 3. Choose your endpoint (Europe, Canada, USA, SoYouStart, Kimsufi)
 
@@ -108,7 +108,7 @@ n8n-nodes-ovhcloud/
 │   └── OvhCloudApi.credentials.ts      # OVH API credential type
 ├── nodes/
 │   ├── OvhCloudVps/                    # Example: complex node (27 sub-resources)
-│   │   ├── OvhCloudvps.node.ts         #   n8n node class
+│   │   ├── OvhCloudVps.node.ts          #   n8n node class
 │   │   ├── index.ts                    #   description() + execute() router
 │   │   ├── *.operation.ts              #   top-level operations (get, list, edit…)
 │   │   └── resources/                  #   sub-resource directories
@@ -117,7 +117,7 @@ n8n-nodes-ovhcloud/
 │   │       ├── disks/
 │   │       └── …                       #     (27 sub-resources total)
 │   ├── OvhCloudDomain/                 # Example: mid-complexity node (24 sub-resources)
-│   │   ├── OvhClouddomain.node.ts
+│   │   ├── OvhCloudDomain.node.ts
 │   │   ├── index.ts
 │   │   ├── *.operation.ts
 │   │   └── resources/
@@ -176,6 +176,7 @@ Contributions welcome! See our [development guidelines](#development) and follow
 
 ## Resources
 
+- [OVH API - Create Token](https://auth.eu.ovhcloud.com/api/createToken)
 - [OVH API Console](https://api.ovh.com/console/)
 - [OVHcloud API Documentation](https://docs.ovh.com/gb/en/api/)
 - [n8n Community Nodes](https://docs.n8n.io/integrations/#community-nodes)

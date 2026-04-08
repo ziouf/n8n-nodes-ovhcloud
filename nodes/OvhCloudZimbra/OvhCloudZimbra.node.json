@@ -1,0 +1,20 @@
+{
+	"node": "n8n-nodes-ovhcloud.ovhCloudZimbra",
+	"nodeVersion": "1.0",
+	"codexVersion": "1.0",
+	"categories": [
+		"Communication"
+	],
+	"resources": {
+		"credentialDocumentation": [
+			{
+				"url": "https://github.com/ziouf/n8n-nodes-ovhcloud/blob/main/docs/guides/authentication-guide.md"
+			}
+		],
+		"primaryDocumentation": [
+			{
+				"url": "https://github.com/ziouf/n8n-nodes-ovhcloud"
+			}
+		]
+	}
+}

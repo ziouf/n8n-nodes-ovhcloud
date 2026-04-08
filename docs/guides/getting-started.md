@@ -62,7 +62,7 @@ For contributors or developers who want to modify the node source code:
 
 ```bash
 # Clone the repository
-git clone https://github.com/cyril-marin/n8n-nodes-ovhcloud.git
+git clone https://github.com/ziouf/n8n-nodes-ovhcloud.git
 cd n8n-nodes-ovhcloud
 
 # Install dependencies
@@ -84,7 +84,7 @@ After installing the node, you must configure your OVH API credentials so the no
 
 ### Step 1: Create an OVH API Application
 
-1. Visit the [OVH API Console](https://api.ovh.com/console/).
+1. Visit the [OVH API Token Creation](https://auth.eu.ovhcloud.com/api/createToken) page.
 2. Click **Create Application**.
 3. Fill in the required fields:
    - **Application Name**: A descriptive name (e.g., `n8n-integration`).

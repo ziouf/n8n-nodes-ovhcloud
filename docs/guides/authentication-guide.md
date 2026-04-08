@@ -33,7 +33,7 @@ Each API request is signed using the **SHA1** algorithm. The `n8n-nodes-ovhcloud
 
 ### Step-by-Step
 
-1. Navigate to the [OVH API Console](https://api.ovh.com/console/).
+1. Navigate to the [OVH API Token Creation](https://auth.eu.ovhcloud.com/api/createToken) page.
 2. Click **Create Application**.
 3. Fill in the following fields:
 
@@ -58,7 +58,7 @@ The Consumer Key links your application to a specific OVH account and defines wh
 
 ### Step-by-Step
 
-1. Open your application details in the [OVH API Console](https://api.ovh.com/console/).
+1. Open your application details in the [OVH API Token Creation](https://auth.eu.ovhcloud.com/api/createToken) page.
 2. Click **Create a Consumer Key**.
 3. Select the permissions you want to grant. These should match (or be a subset of) the access rights you defined for the application.
 4. Click **Create**.
@@ -286,7 +286,7 @@ If the test fails, refer to the [Troubleshooting Guide](./troubleshooting.md) fo
 
 ## Additional Resources
 
-- [OVH API Console](https://api.ovh.com/console/) -- Create applications and manage keys.
+- [OVH API Token Creation](https://auth.eu.ovhcloud.com/api/createToken) -- Create applications and manage keys.
 - [Manage OVHcloud API Tokens](https://help.ovhcloud.com/csm/en-manage-ovhcloud-api-tokens?id=kb_article_view&sysparm_article=KB0042784) -- Official OVH documentation.
 - [OVHcloud API Documentation](https://docs.ovh.com/gb/en/api/) -- Comprehensive API reference.
 - [Getting Started Guide](./getting-started.md) -- Installation and first workflow.
