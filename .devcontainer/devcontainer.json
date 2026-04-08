@@ -15,21 +15,9 @@
 		}
 	},
 	"mounts": [
-		{
-			"type": "volume",
-			"source": "n8n-data",
-			"target": "/home/node/.n8n-node-cli"
-		},
-		{
-			"type": "volume",
-			"source": "opencode-data",
-			"target": "/home/node/.local/share/opencode"
-		},
-		{
-			"type": "bind",
-			"source": "${localEnv:HOME}/.config/opencode",
-			"target": "/home/node/.config/opencode"
-		}
+		"source=n8n-data,target=/home/node/.n8n-node-cli,type=volume",
+		"source=opencode-data,target=/home/node/.local/share/opencode,type=volume",
+		"source=${localEnv:HOME}/.config/opencode,target=/home/node/.config/opencode,type=bind"
 	],
 	"customizations": {
 		"vscode": {
