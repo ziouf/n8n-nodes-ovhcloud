@@ -12,6 +12,11 @@
  * - VPS get (GET with resourceLocator parameter)
  * - VPS power start (POST operation)
  * - Me get (simple account info)
+ *
+ * Uses the new per-node architecture:
+ * - nodes/OvhCloudDomain/ for domain operations
+ * - nodes/OvhCloudVps/ for VPS operations
+ * - nodes/OvhCloudMe/ for Me operations
  */
 
 import type { IExecuteFunctions, INodeExecutionData, IDataObject } from 'n8n-workflow';
@@ -23,7 +28,7 @@ const mockHttpPost = jest.fn();
 const mockHttpPut = jest.fn();
 const mockHttpDelete = jest.fn();
 
-jest.mock('../nodes/OvhCloud/transport/ApiClientImpl', () => ({
+jest.mock('../shared/transport/ApiClientImpl', () => ({
 	ApiClient: jest.fn().mockImplementation(() => ({
 		httpGet: mockHttpGet,
 		httpPost: mockHttpPost,
@@ -34,11 +39,11 @@ jest.mock('../nodes/OvhCloud/transport/ApiClientImpl', () => ({
 
 // ─── Import operations under test ────────────────────────────────────────────
 
-import { execute as domainListExecute } from '../nodes/OvhCloud/actions/domain/list.operation';
-import { execute as domainGetExecute } from '../nodes/OvhCloud/actions/domain/get.operation';
-import { execute as vpsGetExecute } from '../nodes/OvhCloud/actions/vps/get.operation';
-import { executePowerStart } from '../nodes/OvhCloud/actions/vps/resources/power/start.operation';
-import { execute as meGetExecute } from '../nodes/OvhCloud/actions/me/get.operation';
+import { execute as domainListExecute } from '../nodes/OvhCloudDomain/list.operation';
+import { execute as domainGetExecute } from '../nodes/OvhCloudDomain/get.operation';
+import { execute as vpsGetExecute } from '../nodes/OvhCloudVps/get.operation';
+import { executePowerStart } from '../nodes/OvhCloudVps/resources/power/start.operation';
+import { execute as meGetExecute } from '../nodes/OvhCloudMe/get.operation';
 
 // ─── Helpers ─────────────────────────────────────────────────────────────────
 
@@ -82,7 +87,7 @@ describe('Operation Executions', () => {
 	describe('Domain — List operation', () => {
 		it('should call httpGet with /domain endpoint', async () => {
 			mockHttpGet.mockResolvedValue(['example.com', 'test.org']);
-			const mockCtx = createMockExecuteFunctions();
+			const mockCtx = createMockExecuteFunctions({ domainWithDetails: false });
 
 			await domainListExecute.call(mockCtx);
 
@@ -92,18 +97,18 @@ describe('Operation Executions', () => {
 
 		it('should return array of domain names wrapped in json objects', async () => {
 			mockHttpGet.mockResolvedValue(['example.com', 'test.org']);
-			const mockCtx = createMockExecuteFunctions();
+			const mockCtx = createMockExecuteFunctions({ domainWithDetails: false });
 
 			const result = await domainListExecute.call(mockCtx);
 
 			expect(result).toHaveLength(2);
-			expect(result[0]).toEqual({ json: 'example.com' });
-			expect(result[1]).toEqual({ json: 'test.org' });
+			expect(result[0]).toEqual({ json: { domain: 'example.com' } });
+			expect(result[1]).toEqual({ json: { domain: 'test.org' } });
 		});
 
 		it('should handle empty domain list', async () => {
 			mockHttpGet.mockResolvedValue([]);
-			const mockCtx = createMockExecuteFunctions();
+			const mockCtx = createMockExecuteFunctions({ domainWithDetails: false });
 
 			const result = await domainListExecute.call(mockCtx);
 
@@ -239,7 +244,7 @@ describe('Operation Executions', () => {
 	describe('Error propagation', () => {
 		it('should propagate ApiClient errors from domain list', async () => {
 			mockHttpGet.mockRejectedValue(new Error('API connection failed'));
-			const mockCtx = createMockExecuteFunctions();
+			const mockCtx = createMockExecuteFunctions({ domainWithDetails: false });
 
 			await expect(domainListExecute.call(mockCtx)).rejects.toThrow('API connection failed');
 		});

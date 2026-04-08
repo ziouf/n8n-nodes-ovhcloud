@@ -3,9 +3,11 @@
  *
  * Verifies that all expected resources are properly exported
  * and each export has the required `description` and `execute` functions.
+ *
+ * Uses the new per-node architecture: nodes/OvhCloudVps/resources/index.ts
  */
 
-import * as resources from '../nodes/OvhCloud/actions/vps/resources';
+import * as resources from '../nodes/OvhCloudVps/resources';
 
 describe('VPS Resources - barrel exports', () => {
 	const expectedResources = [
