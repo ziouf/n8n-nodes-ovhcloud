@@ -40,7 +40,7 @@
 	},
 	"postCreateCommand": {
 		"n8n-volume": "sudo chown -R node:node /home/node/.n8n-node-cli",
-		"local-owner": "sudo chown -R node:node /home/node/.local"
+		"opencode-owner": "sudo chown -R node:node /home/node/.local/share/opencode"
 	},
 	"postStartCommand": {
 		"oh-my-opencode": "npx -y oh-my-opencode install --no-tui --skip-auth --claude=no --openai=no --gemini=no --copilot=yes --opencode-zen=yes"
