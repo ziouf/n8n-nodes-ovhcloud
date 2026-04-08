@@ -7,7 +7,7 @@
  */
 
 import { createHash } from 'crypto';
-import { CredentialHolder } from '../nodes/OvhCloud/transport/CredentialHolder';
+import { CredentialHolder } from '../shared/transport/CredentialHolder';
 import type { IHttpRequestOptions } from 'n8n-workflow';
 
 describe('CredentialHolder', () => {

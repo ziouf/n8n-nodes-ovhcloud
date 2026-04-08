@@ -7,7 +7,7 @@
  */
 
 import type { IExecuteFunctions, IHttpRequestOptions } from 'n8n-workflow';
-import { ApiClient } from '../nodes/OvhCloud/transport/ApiClientImpl';
+import { ApiClient } from '../shared/transport/ApiClientImpl';
 
 // Module-level mock so we can access .mock directly
 const mockHttpRequest = jest.fn().mockResolvedValue({ data: 'mocked-response' });
