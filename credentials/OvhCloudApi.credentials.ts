@@ -1,140 +1,174 @@
 import {
-    ICredentialTestRequest,
-    type ICredentialDataDecryptedObject,
-    type ICredentialType,
-    type IDataObject,
-    type IHttpRequestOptions,
-    type INodeProperties,
-    type Icon,
+	ICredentialTestRequest,
+	type ICredentialDataDecryptedObject,
+	type ICredentialType,
+	type IHttpRequestOptions,
+	type INodeProperties,
+	type Icon,
 } from 'n8n-workflow';
-import { createHash } from 'crypto';
+import { CredentialHolder, OvhCredentialsType } from '../shared/transport/CredentialHolder';
 
-export type OvhCredentialsType = {
-    endpoint: string;
-    appKey: string;
-    appSecret: string;
-    consumerKey: string;
-} & IDataObject;
-
+/**
+ * The credential secret name used to reference this OVH API credential type.
+ *
+ * Used to identify the credential when retrieving it in n8n nodes.
+ */
 export const OvhCloudApiSecretName = 'ovhCloud-Api';
 
+/**
+ * @brief OVHcloud API credential type for n8n
+ *
+ * Handles the SHA1-based signature authentication for OVHcloud API requests.
+ * Uses the signature algorithm with timestamp, application keys, and consumer
+ * keys to sign each API request according to OVH API specifications.
+ *
+ * @details
+ * - Implements ICredentialType interface for n8n credential management
+ * - Generates SHA1 signatures using appSecret + consumerKey + HTTP method + URL + body + timestamp
+ * - Provides test request for credential validation against `/me` endpoint
+ * - Supports all OVHcloud endpoints (Europe, Canada, USA, SoYouStart, Kimsufi)
+ * - Signs requests with X-Ovh-Application, X-Ovh-Consumer, X-Ovh-Timestamp, and X-Ovh-Signature headers
+ *
+ * @see https://api.ovh.com/console/ OVH API Documentation
+ * @see CredentialHolder for the signature algorithm implementation
+ * @see OvhCredentialsType for credential data structure
+ *
+ * @example
+ * ```typescript
+ * // In n8n node, credentials are automatically used via:
+ * const rawCredentials = await this.getCredentials('ovhCloud-Api');
+ * const credentialHolder = new CredentialHolder(rawCredentials);
+ * // CredentialHolder automatically signs requests
+ * ```
+ */
 export class OvhCloudApi implements ICredentialType {
-    name = OvhCloudApiSecretName;
-    displayName = 'OVH API';
-    icon = 'file:../icons/ovh_vertical.svg' as Icon;
-    documentationUrl = 'https://api.ovh.com/console/';
-    properties: INodeProperties[] = [
-        {
-            displayName: 'Endpoint',
-            name: 'endpoint',
-            type: 'options',
-            options: [
-                {
-                    name: 'OVH Europe',
-                    value: 'eu.api.ovh.com/1.0',
-                },
-                {
-                    name: 'OVH Canada',
-                    value: 'ca.api.ovh.com/1.0',
-                },
-                {
-                    name: 'OVH USA',
-                    value: 'api.us.ovhcloud.com/1.0',
-                },
-                {
-                    name: 'SoYouStart Europe',
-                    value: 'eu.api.soyoustart.com/1.0',
-                },
-                {
-                    name: 'SoYouStart North-America',
-                    value: 'ca.api.soyoustart.com/1.0',
-                },
-                {
-                    name: 'Kimsufi Europe',
-                    value: 'eu.api.kimsufi.com/1.0',
-                },
-                {
-                    name: 'Kimsufi North-America',
-                    value: 'ca.api.kimsufi.com/1.0',
-                },
-            ],
-            default: 'eu.api.ovh.com/1.0',
-            description: 'The OVH API endpoint to use.',
-        },
-        {
-            displayName: 'Application Key',
-            name: 'appKey',
-            type: 'string',
-            typeOptions: { password: true },
-            default: '',
-            description: 'Your OVH application key.',
-            required: true,
-        },
-        {
-            displayName: 'Application Secret',
-            name: 'appSecret',
-            type: 'string',
-            typeOptions: { password: true },
-            default: '',
-            description: 'Your OVH application secret.',
-            required: true,
-        },
-        {
-            displayName: 'Consumer Key',
-            name: 'consumerKey',
-            type: 'string',
-            typeOptions: { password: true },
-            default: '',
-            description: 'Your OVH consumer key.',
-            required: true,
-        },
-    ];
+	/** @inheritdoc */
+	name = OvhCloudApiSecretName;
+	/** @inheritdoc */
+	displayName = 'OVH API';
+	/** @inheritdoc */
+	icon = 'file:../icons/ovh_vertical.svg' as Icon;
+	/** @inheritdoc */
+	documentationUrl = 'https://api.ovh.com/console/';
 
-    async authenticate(
-        rawCredentials: ICredentialDataDecryptedObject,
-        requestOptions: IHttpRequestOptions,
-    ): Promise<IHttpRequestOptions> {
-        return signRequestOptions(rawCredentials as OvhCredentialsType, requestOptions);
-    };
+	/** @inheritdoc */
+	properties: INodeProperties[] = [
+		/**
+		 * The OVHcloud API endpoint to use.
+		 *
+		 * Different endpoints are available for Europe, Canada, USA, SoYouStart, and Kimsufi.
+		 */
+		{
+			displayName: 'Endpoint',
+			name: 'endpoint',
+			type: 'options',
+			options: [
+				{
+					name: 'OVH Europe',
+					value: 'eu.api.ovh.com/1.0',
+				},
+				{
+					name: 'OVH Canada',
+					value: 'ca.api.ovh.com/1.0',
+				},
+				{
+					name: 'OVH USA',
+					value: 'api.us.ovhcloud.com/1.0',
+				},
+				{
+					name: 'SoYouStart Europe',
+					value: 'eu.api.soyoustart.com/1.0',
+				},
+				{
+					name: 'SoYouStart North-America',
+					value: 'ca.api.soyoustart.com/1.0',
+				},
+				{
+					name: 'Kimsufi Europe',
+					value: 'eu.api.kimsufi.com/1.0',
+				},
+				{
+					name: 'Kimsufi North-America',
+					value: 'ca.api.kimsufi.com/1.0',
+				},
+			],
+			default: 'eu.api.ovh.com/1.0',
+			description: 'The OVH API endpoint to use (Europe, Canada, USA, SoYouStart, Kimsufi).',
+		},
+		{
+			displayName: 'Application Key',
+			name: 'appKey',
+			type: 'string',
+			typeOptions: { password: true },
+			default: '',
+			description: 'Your OVH application key (generated when creating an OVH API application).',
+			required: true,
+		},
+		{
+			displayName: 'Application Secret',
+			name: 'appSecret',
+			type: 'string',
+			typeOptions: { password: true },
+			default: '',
+			description: 'Your OVH application secret (generated when creating an OVH API application).',
+			required: true,
+		},
+		{
+			displayName: 'Consumer Key',
+			name: 'consumerKey',
+			type: 'string',
+			typeOptions: { password: true },
+			default: '',
+			description:
+				'Your OVH consumer key (generated by authorizing your application with the desired permissions).',
+			required: true,
+		},
+	];
 
-    test: ICredentialTestRequest = {
-        request: {
-            url: '/me',
-            method: 'GET',
-        },
-        rules: [
-            {
-                type: 'responseCode',
-                properties: {
-                    value: 200,
-                    message: 'Authentication successful',
-                }
-            }
-        ]
-    };
-}
+	/**
+	 * Signs the HTTP request using the OVH signature algorithm.
+	 *
+	 * The OVH signature algorithm creates a SHA1 hash from the following fields combined with '+':
+	 * - Application Secret
+	 * - Consumer Key
+	 * - HTTP Method
+	 * - Full URL (including query parameters)
+	 * - Request Body (JSON stringified for POST/PUT)
+	 * - Timestamp (Unix epoch seconds)
+	 *
+	 * The signature is added to the request headers as `X-Ovh-Signature`.
+	 *
+	 * @param rawCredentials - Decrypted credential object containing all OVH credentials
+	 * @param requestOptions - HTTP request options to be signed (method, url, body, etc.)
+	 * @returns The signed request options with authentication headers added
+	 */
+	async authenticate(
+		rawCredentials: ICredentialDataDecryptedObject,
+		requestOptions: IHttpRequestOptions,
+	): Promise<IHttpRequestOptions> {
+		const credentials = new CredentialHolder(rawCredentials as OvhCredentialsType);
+		return credentials.sign(requestOptions);
+	}
 
-export const signRequestOptions = (
-    credentials: OvhCredentialsType, 
-    requestOptions: IHttpRequestOptions
-): IHttpRequestOptions => {
-    const { endpoint, appKey, appSecret, consumerKey } = credentials;
-    const { qs } = requestOptions;
-    const baseURL = `https://${endpoint}`;
-    const url = baseURL + requestOptions.url + (qs && Object.keys(qs).length ? '?' + new URLSearchParams(qs as Record<string, string>).toString() : '');
-    const method = requestOptions.method || 'GET';
-    const body = typeof requestOptions.body === 'object' ? JSON.stringify(requestOptions.body) : (requestOptions.body as string) || '';
-    const ts = Math.floor(Date.now() / 1000);
-    const signatureFields = [appSecret, consumerKey, method, url, body, ts];
-
-    return Object.assign({}, requestOptions, {
-        baseURL,
-        headers: {
-            'Content-Type': 'application/json',
-            'X-Ovh-Application': appKey,
-            'X-Ovh-Consumer': consumerKey,
-            'X-Ovh-Timestamp': ts,
-            'X-Ovh-Signature': '$1$' + createHash('sha1').update(signatureFields.join('+')).digest('hex') ,
-        },
-    });
+	/**
+	 * Test request configuration for credential validation.
+	 *
+	 * Makes a simple GET request to `/me` endpoint to verify credentials are valid.
+	 * Success is determined by a 200 HTTP response code.
+	 */
+	test: ICredentialTestRequest = {
+		request: {
+			url: '/me',
+			method: 'GET',
+		},
+		rules: [
+			{
+				type: 'responseCode',
+				properties: {
+					value: 200,
+					message: 'Authentication successful',
+				},
+			},
+		],
+	};
 }

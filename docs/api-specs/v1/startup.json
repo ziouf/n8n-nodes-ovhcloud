@@ -1,0 +1,822 @@
+{
+  "apiVersion": "1.0",
+  "apis": [
+    {
+      "path": "/startup",
+      "operations": [
+        {
+          "apiStatus": {
+            "description": "Stable production version",
+            "value": "PRODUCTION"
+          },
+          "httpMethod": "GET",
+          "parameters": [],
+          "responseType": "startup.startup",
+          "noAuthentication": false,
+          "description": "Get startup status",
+          "errors": [
+            "Server::NoContent::StartupError",
+            "Client::NotFound::StartupNotFound"
+          ],
+          "iamActions": [
+            {
+              "name": "account:apiovh:startup/get",
+              "required": true
+            }
+          ]
+        },
+        {
+          "apiStatus": {
+            "description": "Stable production version",
+            "value": "PRODUCTION"
+          },
+          "httpMethod": "POST",
+          "parameters": [
+            {
+              "dataType": "startup.startup",
+              "paramType": "body",
+              "fullType": "startup.startup",
+              "required": true,
+              "description": "Request Body"
+            }
+          ],
+          "responseType": "void",
+          "noAuthentication": false,
+          "description": "Register a startup",
+          "iamActions": [
+            {
+              "name": "account:apiovh:startup/create",
+              "required": true
+            }
+          ]
+        }
+      ],
+      "description": "Startup registration"
+    }
+  ],
+  "resourcePath": "/startup",
+  "basePath": "https://eu.api.ovh.com/v1",
+  "models": {
+    "nichandle.CountryEnum": {
+      "id": "CountryEnum",
+      "namespace": "nichandle",
+      "description": "Countries a nichandle can choose",
+      "enum": [
+        "AC",
+        "AD",
+        "AE",
+        "AF",
+        "AG",
+        "AI",
+        "AL",
+        "AM",
+        "AO",
+        "AQ",
+        "AR",
+        "AS",
+        "AT",
+        "AU",
+        "AW",
+        "AX",
+        "AZ",
+        "BA",
+        "BB",
+        "BD",
+        "BE",
+        "BF",
+        "BG",
+        "BH",
+        "BI",
+        "BJ",
+        "BL",
+        "BM",
+        "BN",
+        "BO",
+        "BQ",
+        "BR",
+        "BS",
+        "BT",
+        "BW",
+        "BY",
+        "BZ",
+        "CA",
+        "CC",
+        "CD",
+        "CF",
+        "CG",
+        "CH",
+        "CI",
+        "CK",
+        "CL",
+        "CM",
+        "CN",
+        "CO",
+        "CR",
+        "CU",
+        "CV",
+        "CW",
+        "CX",
+        "CY",
+        "CZ",
+        "DE",
+        "DG",
+        "DJ",
+        "DK",
+        "DM",
+        "DO",
+        "DZ",
+        "EA",
+        "EC",
+        "EE",
+        "EG",
+        "EH",
+        "ER",
+        "ES",
+        "ET",
+        "FI",
+        "FJ",
+        "FK",
+        "FM",
+        "FO",
+        "FR",
+        "GA",
+        "GB",
+        "GD",
+        "GE",
+        "GF",
+        "GG",
+        "GH",
+        "GI",
+        "GL",
+        "GM",
+        "GN",
+        "GP",
+        "GQ",
+        "GR",
+        "GS",
+        "GT",
+        "GU",
+        "GW",
+        "GY",
+        "HK",
+        "HN",
+        "HR",
+        "HT",
+        "HU",
+        "IC",
+        "ID",
+        "IE",
+        "IL",
+        "IM",
+        "IN",
+        "IO",
+        "IQ",
+        "IR",
+        "IS",
+        "IT",
+        "JE",
+        "JM",
+        "JO",
+        "JP",
+        "KE",
+        "KG",
+        "KH",
+        "KI",
+        "KM",
+        "KN",
+        "KP",
+        "KR",
+        "KW",
+        "KY",
+        "KZ",
+        "LA",
+        "LB",
+        "LC",
+        "LI",
+        "LK",
+        "LR",
+        "LS",
+        "LT",
+        "LU",
+        "LV",
+        "LY",
+        "MA",
+        "MC",
+        "MD",
+        "ME",
+        "MF",
+        "MG",
+        "MH",
+        "MK",
+        "ML",
+        "MM",
+        "MN",
+        "MO",
+        "MP",
+        "MQ",
+        "MR",
+        "MS",
+        "MT",
+        "MU",
+        "MV",
+        "MW",
+        "MX",
+        "MY",
+        "MZ",
+        "NA",
+        "NC",
+        "NE",
+        "NF",
+        "NG",
+        "NI",
+        "NL",
+        "NO",
+        "NP",
+        "NR",
+        "NU",
+        "NZ",
+        "OM",
+        "PA",
+        "PE",
+        "PF",
+        "PG",
+        "PH",
+        "PK",
+        "PL",
+        "PM",
+        "PN",
+        "PR",
+        "PS",
+        "PT",
+        "PW",
+        "PY",
+        "QA",
+        "RE",
+        "RO",
+        "RS",
+        "RU",
+        "RW",
+        "SA",
+        "SB",
+        "SC",
+        "SD",
+        "SE",
+        "SG",
+        "SH",
+        "SI",
+        "SJ",
+        "SK",
+        "SL",
+        "SM",
+        "SN",
+        "SO",
+        "SR",
+        "SS",
+        "ST",
+        "SV",
+        "SX",
+        "SY",
+        "SZ",
+        "TA",
+        "TC",
+        "TD",
+        "TF",
+        "TG",
+        "TH",
+        "TJ",
+        "TK",
+        "TL",
+        "TM",
+        "TN",
+        "TO",
+        "TR",
+        "TT",
+        "TV",
+        "TW",
+        "TZ",
+        "UA",
+        "UG",
+        "UM",
+        "UNKNOWN",
+        "US",
+        "UY",
+        "UZ",
+        "VA",
+        "VC",
+        "VE",
+        "VG",
+        "VI",
+        "VN",
+        "VU",
+        "WF",
+        "WS",
+        "XK",
+        "YE",
+        "YT",
+        "ZA",
+        "ZM",
+        "ZW"
+      ],
+      "enumType": "string"
+    },
+    "startup.acceptanceStatusEnum": {
+      "id": "acceptanceStatusEnum",
+      "namespace": "startup",
+      "description": "Acceptance status",
+      "enum": [
+        "Advanced",
+        "AdvancedHandOperated",
+        "AdvancedQualified",
+        "Banned",
+        "Open",
+        "Registered",
+        "RegisteredQualified",
+        "Rejected"
+      ],
+      "enumType": "string"
+    },
+    "startup.awarnessEnum": {
+      "id": "awarnessEnum",
+      "namespace": "startup",
+      "description": "Where did you hear about OVHcloud",
+      "enum": [
+        "Email",
+        "EmpactVenture",
+        "Event",
+        "Facebook",
+        "InternetSearch",
+        "LinkedIn",
+        "OnlineAdvert",
+        "Partner",
+        "Twitter",
+        "Website",
+        "WordOfMouth"
+      ],
+      "enumType": "string"
+    },
+    "startup.employeesNumberEnum": {
+      "id": "employeesNumberEnum",
+      "namespace": "startup",
+      "description": "employeesNumber",
+      "enum": [
+        "100To199",
+        "10To19",
+        "1Or2",
+        "200To249",
+        "20To49",
+        "250To499",
+        "3To5",
+        "50To99",
+        "6To9"
+      ],
+      "enumType": "string"
+    },
+    "startup.infrastructureUsingEnum": {
+      "id": "infrastructureUsingEnum",
+      "namespace": "startup",
+      "description": "When do you plan to start using cloud infrastructure ? (months)",
+      "enum": [
+        "1To6",
+        "6To12",
+        "DontKnow",
+        "Less1",
+        "Over12"
+      ],
+      "enumType": "string"
+    },
+    "startup.lastFundraisingEnum": {
+      "id": "lastFundraisingEnum",
+      "namespace": "startup",
+      "description": "last Fundraising",
+      "enum": [
+        "Crowdfunding",
+        "DontShare",
+        "More",
+        "No",
+        "PreSeed",
+        "Seed",
+        "Series_A",
+        "Series_B",
+        "Series_C"
+      ],
+      "enumType": "string"
+    },
+    "startup.plannedFundRaisingEnum": {
+      "id": "plannedFundRaisingEnum",
+      "namespace": "startup",
+      "description": "Planned Fund Raising",
+      "enum": [
+        "DontShare",
+        "No",
+        "Yes"
+      ],
+      "enumType": "string"
+    },
+    "startup.relatedIndustryEnum": {
+      "id": "relatedIndustryEnum",
+      "namespace": "startup",
+      "description": "Society Industries",
+      "enum": [
+        "AI_Wholesale",
+        "ARTISANAT",
+        "ASP_SI_ITServices",
+        "Accommodation_and_FoodServices",
+        "Agriculture",
+        "Agro_industry",
+        "Art_Sport_Entertainment",
+        "Automotive",
+        "Banking",
+        "Construction_and_Architecture",
+        "Databases_Wholesale",
+        "DigitalServices",
+        "E_Retail",
+        "EducationalServices",
+        "Energy_and_Water",
+        "Game_Wholesale",
+        "HeadOffice",
+        "Healthcare",
+        "Host_the_Hoster_Wholesale",
+        "Human_Resources",
+        "IAASproviders_WebHosters_Data",
+        "Life_Sciences",
+        "Manufacturing_Industry",
+        "Mining_Industry",
+        "NonProfit",
+        "Other_Services_Business",
+        "Other_Services_Personal",
+        "Others",
+        "PublicSector",
+        "Real_Estate",
+        "Retail_and_Trade",
+        "ScienceR&D",
+        "Software Editors",
+        "Storage_Wholesale",
+        "TV_Media",
+        "Telecommunication_Internet",
+        "Transportation_Logistics",
+        "Ventures_for_Good",
+        "Virtualization_Wholesale",
+        "WebAgencies"
+      ],
+      "enumType": "string"
+    },
+    "startup.relatedTechnologyEnum": {
+      "id": "relatedTechnologyEnum",
+      "namespace": "startup",
+      "description": "Related Technologies",
+      "enum": [
+        "3dPrinting",
+        "API",
+        "ArtificialIntelligence",
+        "AugmentedReality",
+        "BankingDataInfrastructure",
+        "Big_Data",
+        "Blockchain",
+        "CRM_ERP",
+        "Chatbot",
+        "CloudGaming",
+        "ContainersDockers",
+        "CyberSecurity",
+        "Drones",
+        "ElearningPlatform",
+        "GeoLocalization",
+        "Healthcareinfrastructure",
+        "IoT",
+        "MachineLearningDeepLearning",
+        "Marketplace",
+        "MobileApplications",
+        "Orchestration",
+        "Other",
+        "PredictiveAnalyticAlgorithms",
+        "Robotics",
+        "ScientificComputation",
+        "Storage",
+        "Streaming",
+        "VirtualDesktop",
+        "VirtualMachines",
+        "VoIP"
+      ],
+      "enumType": "string"
+    },
+    "startup.startup": {
+      "id": "startup",
+      "namespace": "startup",
+      "description": "Startup Entity",
+      "properties": {
+        "acceptanceStatus": {
+          "type": "startup.acceptanceStatusEnum",
+          "fullType": "startup.acceptanceStatusEnum",
+          "canBeNull": true,
+          "readOnly": true,
+          "description": "Acceptance Status",
+          "required": false
+        },
+        "awarness": {
+          "type": "startup.awarnessEnum",
+          "fullType": "startup.awarnessEnum",
+          "canBeNull": false,
+          "readOnly": false,
+          "description": "Where did you hear about OVHcloud",
+          "required": true
+        },
+        "company": {
+          "type": "startup.startup.company",
+          "fullType": "startup.startup.company",
+          "canBeNull": false,
+          "readOnly": false,
+          "description": "Company information",
+          "required": true
+        },
+        "eventCode": {
+          "type": "string",
+          "fullType": "string",
+          "canBeNull": true,
+          "readOnly": false,
+          "description": "Code given to startups during events or partnerships.",
+          "required": false
+        },
+        "fundRaising": {
+          "type": "startup.startup.fundRaising",
+          "fullType": "startup.startup.fundRaising",
+          "canBeNull": false,
+          "readOnly": false,
+          "description": "Fund raising info",
+          "required": true
+        },
+        "project": {
+          "type": "startup.startup.project",
+          "fullType": "startup.startup.project",
+          "canBeNull": false,
+          "readOnly": false,
+          "description": "Project information",
+          "required": true
+        }
+      }
+    },
+    "startup.startup.company": {
+      "id": "company",
+      "namespace": "startup.startup",
+      "description": "Company info",
+      "properties": {
+        "detail": {
+          "type": "startup.startup.company.detail",
+          "fullType": "startup.startup.company.detail",
+          "canBeNull": true,
+          "readOnly": false,
+          "description": "Company detail",
+          "required": false
+        },
+        "employeesNumber": {
+          "type": "startup.employeesNumberEnum",
+          "fullType": "startup.employeesNumberEnum",
+          "canBeNull": false,
+          "readOnly": false,
+          "description": "Number of employees",
+          "required": true
+        },
+        "incubator": {
+          "type": "startup.startup.company.incubator",
+          "fullType": "startup.startup.company.incubator",
+          "canBeNull": true,
+          "readOnly": false,
+          "description": "Incubator",
+          "required": false
+        },
+        "name": {
+          "type": "string",
+          "fullType": "string",
+          "canBeNull": false,
+          "readOnly": false,
+          "description": "Company Name",
+          "required": true
+        },
+        "relatedIndustry": {
+          "type": "startup.relatedIndustryEnum",
+          "fullType": "startup.relatedIndustryEnum",
+          "canBeNull": false,
+          "readOnly": false,
+          "description": "Society Industries",
+          "required": true
+        },
+        "socialNetwork": {
+          "type": "startup.startup.company.socialNetwork",
+          "fullType": "startup.startup.company.socialNetwork",
+          "canBeNull": true,
+          "readOnly": false,
+          "description": "Social Network info",
+          "required": false
+        },
+        "societyWebsite": {
+          "type": "string",
+          "fullType": "string",
+          "canBeNull": false,
+          "readOnly": false,
+          "description": "Company website",
+          "required": true
+        }
+      }
+    },
+    "startup.startup.company.detail": {
+      "id": "detail",
+      "namespace": "startup.startup.company",
+      "description": "Details that relates to the company",
+      "properties": {
+        "creationdate": {
+          "type": "date",
+          "fullType": "date",
+          "canBeNull": true,
+          "readOnly": false,
+          "description": "Creation date of the company, madatory if the company is created",
+          "required": true
+        },
+        "lastYearTurnover": {
+          "type": "double",
+          "fullType": "double",
+          "canBeNull": true,
+          "readOnly": false,
+          "description": "Last 12mth turnover, madatory if the company is created",
+          "required": true
+        },
+        "vatNumber": {
+          "type": "string",
+          "fullType": "string",
+          "canBeNull": true,
+          "readOnly": false,
+          "description": "vat number, madatory if the company is created",
+          "required": true
+        }
+      }
+    },
+    "startup.startup.company.incubator": {
+      "id": "incubator",
+      "namespace": "startup.startup.company",
+      "description": "Incubator infos",
+      "properties": {
+        "city": {
+          "type": "string",
+          "fullType": "string",
+          "canBeNull": true,
+          "readOnly": false,
+          "description": "Ecosystem support city",
+          "required": true
+        },
+        "country": {
+          "type": "nichandle.CountryEnum",
+          "fullType": "nichandle.CountryEnum",
+          "canBeNull": true,
+          "readOnly": false,
+          "description": "Ecosystem support country",
+          "required": true
+        },
+        "name": {
+          "type": "string",
+          "fullType": "string",
+          "canBeNull": true,
+          "readOnly": false,
+          "description": "Do you have startup ecosystem support from any of these",
+          "required": true
+        }
+      }
+    },
+    "startup.startup.company.socialNetwork": {
+      "id": "socialNetwork",
+      "namespace": "startup.startup.company",
+      "description": "Company social networks",
+      "properties": {
+        "linkedin": {
+          "type": "string",
+          "fullType": "string",
+          "canBeNull": true,
+          "readOnly": false,
+          "description": "Linkedin link",
+          "required": false
+        },
+        "twitter": {
+          "type": "string",
+          "fullType": "string",
+          "canBeNull": true,
+          "readOnly": false,
+          "description": "Twitter link",
+          "required": false
+        }
+      }
+    },
+    "startup.startup.fundRaising": {
+      "id": "fundRaising",
+      "namespace": "startup.startup",
+      "description": "Fundraising infos",
+      "properties": {
+        "lastFundraising": {
+          "type": "startup.lastFundraisingEnum",
+          "fullType": "startup.lastFundraisingEnum",
+          "canBeNull": false,
+          "readOnly": false,
+          "description": "Last fundraising",
+          "required": true
+        },
+        "plannedFundRaising": {
+          "type": "startup.plannedFundRaisingEnum",
+          "fullType": "startup.plannedFundRaisingEnum",
+          "canBeNull": false,
+          "readOnly": false,
+          "description": "Next fundraising",
+          "required": true
+        }
+      }
+    },
+    "startup.startup.project": {
+      "id": "project",
+      "namespace": "startup.startup",
+      "description": "Project info",
+      "properties": {
+        "businessModel": {
+          "type": "text",
+          "fullType": "text",
+          "canBeNull": false,
+          "readOnly": false,
+          "description": "Describe your business model",
+          "required": true
+        },
+        "description": {
+          "type": "text",
+          "fullType": "text",
+          "canBeNull": false,
+          "readOnly": false,
+          "description": "What problem are you solving",
+          "required": true
+        },
+        "developmentStage": {
+          "type": "text",
+          "fullType": "text",
+          "canBeNull": false,
+          "readOnly": false,
+          "description": "Stage of development description",
+          "required": true
+        },
+        "productName": {
+          "type": "string",
+          "fullType": "string",
+          "canBeNull": false,
+          "readOnly": false,
+          "description": "Product / Solution name",
+          "required": true
+        },
+        "relatedTechnology": {
+          "type": "startup.relatedTechnologyEnum[]",
+          "fullType": "startup.relatedTechnologyEnum[]",
+          "canBeNull": false,
+          "readOnly": false,
+          "description": "Fund raising info",
+          "required": true
+        },
+        "requirements": {
+          "type": "startup.startup.project.technicalNeed",
+          "fullType": "startup.startup.project.technicalNeed",
+          "canBeNull": false,
+          "readOnly": false,
+          "description": "Technical requirements description",
+          "required": true
+        }
+      }
+    },
+    "startup.startup.project.technicalNeed": {
+      "id": "technicalNeed",
+      "namespace": "startup.startup.project",
+      "description": "Project technical need info",
+      "properties": {
+        "infrastructureUsing": {
+          "type": "startup.infrastructureUsingEnum",
+          "fullType": "startup.infrastructureUsingEnum",
+          "canBeNull": false,
+          "readOnly": false,
+          "description": "When do you plan to start using cloud infrastructure?",
+          "required": true
+        },
+        "otherCloudProvider": {
+          "type": "boolean",
+          "fullType": "boolean",
+          "canBeNull": true,
+          "readOnly": false,
+          "description": "Are you currently using another cloud provider",
+          "required": false
+        },
+        "otherCloudProviderInfo": {
+          "type": "string",
+          "fullType": "string",
+          "canBeNull": true,
+          "readOnly": false,
+          "description": "Other cloud provider info",
+          "required": false
+        },
+        "technicalNeeds": {
+          "type": "text",
+          "fullType": "text",
+          "canBeNull": false,
+          "readOnly": false,
+          "description": "Technical requirements description",
+          "required": true
+        }
+      }
+    }
+  }
+}

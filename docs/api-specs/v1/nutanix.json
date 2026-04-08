@@ -1,0 +1,2186 @@
+{
+  "apiVersion": "1.0",
+  "apis": [
+    {
+      "path": "/nutanix",
+      "operations": [
+        {
+          "apiStatus": {
+            "description": "Stable production version",
+            "value": "PRODUCTION"
+          },
+          "httpMethod": "GET",
+          "parameters": [
+            {
+              "name": "iamTags",
+              "dataType": "map[string][]iam.resource.TagFilter",
+              "paramType": "query",
+              "required": false,
+              "description": "Filter resources on IAM tags"
+            }
+          ],
+          "responseType": "string[]",
+          "noAuthentication": false,
+          "description": "Get list of owned Nutanix Clusters",
+          "iamActions": [
+            {
+              "name": "nutanix:apiovh:get",
+              "required": true
+            }
+          ]
+        }
+      ],
+      "description": "Manage nutanix clusters"
+    },
+    {
+      "path": "/nutanix/availabilities",
+      "operations": [
+        {
+          "apiStatus": {
+            "description": "Stable production version",
+            "value": "PRODUCTION"
+          },
+          "httpMethod": "GET",
+          "parameters": [
+            {
+              "name": "erasureCoding",
+              "dataType": "boolean",
+              "paramType": "query",
+              "fullType": "boolean",
+              "required": false,
+              "description": ""
+            },
+            {
+              "name": "memory",
+              "dataType": "string",
+              "paramType": "query",
+              "fullType": "string",
+              "required": false,
+              "description": "The name of the memory hardware part"
+            },
+            {
+              "name": "planCode",
+              "dataType": "string",
+              "paramType": "query",
+              "fullType": "string",
+              "required": false,
+              "description": "The plan code in which the hardware is involved"
+            },
+            {
+              "name": "quantity",
+              "dataType": "long",
+              "paramType": "query",
+              "fullType": "long",
+              "required": true,
+              "description": "Node quantity"
+            },
+            {
+              "name": "rackAwareness",
+              "dataType": "boolean",
+              "paramType": "query",
+              "fullType": "boolean",
+              "required": false,
+              "description": ""
+            },
+            {
+              "name": "redundancyFactor",
+              "dataType": "nutanix.RedundancyFactorEnum",
+              "paramType": "query",
+              "fullType": "nutanix.RedundancyFactorEnum",
+              "required": false,
+              "description": ""
+            },
+            {
+              "name": "server",
+              "dataType": "string",
+              "paramType": "query",
+              "fullType": "string",
+              "required": false,
+              "description": "The name of the base hardware"
+            },
+            {
+              "name": "storage",
+              "dataType": "string",
+              "paramType": "query",
+              "fullType": "string",
+              "required": false,
+              "description": "The name of the storage hardware part"
+            },
+            {
+              "name": "systemStorage",
+              "dataType": "string",
+              "paramType": "query",
+              "fullType": "string",
+              "required": false,
+              "description": "The name of the system storage hardware part"
+            }
+          ],
+          "responseType": "nutanix.availability[]",
+          "noAuthentication": true,
+          "description": "Fetch the availabilities for a given cluster configuration"
+        }
+      ],
+      "description": "Fetch the availabilities for a given cluster configuration"
+    },
+    {
+      "path": "/nutanix/availabilities/raw",
+      "operations": [
+        {
+          "apiStatus": {
+            "description": "Stable production version",
+            "value": "PRODUCTION"
+          },
+          "httpMethod": "GET",
+          "parameters": [
+            {
+              "name": "datacenters",
+              "dataType": "string",
+              "paramType": "query",
+              "fullType": "string",
+              "required": false,
+              "description": "The names of datacenters separated by commas"
+            },
+            {
+              "name": "deploymentType",
+              "dataType": "nutanix.DeploymentTypeEnum",
+              "paramType": "query",
+              "fullType": "nutanix.DeploymentTypeEnum",
+              "required": false,
+              "description": ""
+            },
+            {
+              "name": "erasureCoding",
+              "dataType": "boolean",
+              "paramType": "query",
+              "fullType": "boolean",
+              "required": false,
+              "description": ""
+            },
+            {
+              "name": "excludeDatacenters",
+              "dataType": "boolean",
+              "paramType": "query",
+              "fullType": "boolean",
+              "required": false,
+              "description": "If true, all datacenters are returned except those listed in datacenters parameter"
+            },
+            {
+              "name": "excludeRegions",
+              "dataType": "boolean",
+              "paramType": "query",
+              "fullType": "boolean",
+              "required": false,
+              "description": "If true, all regions are returned except those listed in regions parameter"
+            },
+            {
+              "name": "memory",
+              "dataType": "string",
+              "paramType": "query",
+              "fullType": "string",
+              "required": false,
+              "description": "The name of the memory hardware part"
+            },
+            {
+              "name": "planCode",
+              "dataType": "string",
+              "paramType": "query",
+              "fullType": "string",
+              "required": false,
+              "description": "The plan code in which the hardware is involved"
+            },
+            {
+              "name": "quantity",
+              "dataType": "long",
+              "paramType": "query",
+              "fullType": "long",
+              "required": true,
+              "description": "Node quantity"
+            },
+            {
+              "name": "redundancyFactor",
+              "dataType": "nutanix.RedundancyFactorEnum",
+              "paramType": "query",
+              "fullType": "nutanix.RedundancyFactorEnum",
+              "required": false,
+              "description": ""
+            },
+            {
+              "name": "regions",
+              "dataType": "string",
+              "paramType": "query",
+              "fullType": "string",
+              "required": false,
+              "description": "The names of regions separated by commas"
+            },
+            {
+              "name": "server",
+              "dataType": "string",
+              "paramType": "query",
+              "fullType": "string",
+              "required": false,
+              "description": "The name of the base hardware"
+            },
+            {
+              "name": "storage",
+              "dataType": "string",
+              "paramType": "query",
+              "fullType": "string",
+              "required": false,
+              "description": "The name of the storage hardware part"
+            },
+            {
+              "name": "systemStorage",
+              "dataType": "string",
+              "paramType": "query",
+              "fullType": "string",
+              "required": false,
+              "description": "The name of the system storage hardware part"
+            }
+          ],
+          "responseType": "nutanix.AvailabilitiesRaw[]",
+          "noAuthentication": false,
+          "description": "List the raw availability for Nutanix cluster"
+        }
+      ],
+      "description": ""
+    },
+    {
+      "path": "/nutanix/availableVersions",
+      "operations": [
+        {
+          "apiStatus": {
+            "description": "Stable production version",
+            "value": "PRODUCTION"
+          },
+          "httpMethod": "GET",
+          "parameters": [
+            {
+              "name": "fqn",
+              "dataType": "string",
+              "paramType": "query",
+              "fullType": "string",
+              "required": false,
+              "description": "Fully qualified name and unique name of the hardware"
+            }
+          ],
+          "responseType": "string[]",
+          "noAuthentication": true,
+          "description": "Fetch the available Nutanix versions to install"
+        }
+      ],
+      "description": "Fetch the available Nutanix versions to install"
+    },
+    {
+      "path": "/nutanix/requirements",
+      "operations": [
+        {
+          "apiStatus": {
+            "description": "Stable production version",
+            "value": "PRODUCTION"
+          },
+          "httpMethod": "GET",
+          "parameters": [
+            {
+              "name": "erasureCoding",
+              "dataType": "boolean",
+              "paramType": "query",
+              "fullType": "boolean",
+              "required": true,
+              "description": ""
+            },
+            {
+              "name": "rackAwareness",
+              "dataType": "boolean",
+              "paramType": "query",
+              "fullType": "boolean",
+              "required": true,
+              "description": ""
+            },
+            {
+              "name": "redundancyFactor",
+              "dataType": "nutanix.RedundancyFactorEnum",
+              "paramType": "query",
+              "fullType": "nutanix.RedundancyFactorEnum",
+              "required": true,
+              "description": ""
+            }
+          ],
+          "responseType": "nutanix.Requirements",
+          "noAuthentication": true,
+          "description": "Fetch the requirements for a given cluster configuration"
+        }
+      ],
+      "description": "Fetch the requirements for a given cluster configuration"
+    },
+    {
+      "path": "/nutanix/{serviceName}",
+      "operations": [
+        {
+          "apiStatus": {
+            "description": "Stable production version",
+            "value": "PRODUCTION"
+          },
+          "httpMethod": "GET",
+          "parameters": [
+            {
+              "name": "serviceName",
+              "dataType": "string",
+              "paramType": "path",
+              "fullType": "string",
+              "required": true,
+              "description": "Service name"
+            }
+          ],
+          "responseType": "nutanix.stateDetailsWithIAM",
+          "noAuthentication": false,
+          "description": "Get nutanix cluster info",
+          "iamActions": [
+            {
+              "name": "nutanix:apiovh:get",
+              "required": true
+            }
+          ]
+        },
+        {
+          "apiStatus": {
+            "description": "Stable production version",
+            "value": "PRODUCTION"
+          },
+          "httpMethod": "PUT",
+          "parameters": [
+            {
+              "dataType": "nutanix.cluster",
+              "paramType": "body",
+              "fullType": "nutanix.cluster",
+              "required": true,
+              "description": "Request Body"
+            },
+            {
+              "name": "redeploycluster",
+              "dataType": "boolean",
+              "paramType": "query",
+              "fullType": "boolean",
+              "required": false,
+              "description": "I am aware that I am going to make changes that will reinstall my cluster"
+            },
+            {
+              "name": "scaleOut",
+              "dataType": "boolean",
+              "paramType": "query",
+              "fullType": "boolean",
+              "required": false,
+              "description": "I am aware that I am going to make changes that will scale-out my cluster"
+            },
+            {
+              "name": "serviceName",
+              "dataType": "string",
+              "paramType": "path",
+              "fullType": "string",
+              "required": true,
+              "description": "Service name"
+            }
+          ],
+          "responseType": "nutanix.state",
+          "noAuthentication": false,
+          "description": "Update nutanix cluster info",
+          "iamActions": [
+            {
+              "name": "nutanix:apiovh:edit",
+              "required": true
+            }
+          ]
+        }
+      ],
+      "description": "Manage nutanix clusters"
+    },
+    {
+      "path": "/nutanix/{serviceName}/changeContact",
+      "operations": [
+        {
+          "apiStatus": {
+            "description": "Stable production version",
+            "value": "PRODUCTION"
+          },
+          "httpMethod": "POST",
+          "parameters": [
+            {
+              "dataType": "services.changeContact",
+              "paramType": "body",
+              "fullType": "services.changeContact",
+              "required": true,
+              "description": "Request Body"
+            },
+            {
+              "name": "serviceName",
+              "dataType": "string",
+              "paramType": "path",
+              "fullType": "string",
+              "required": true,
+              "description": "Service name"
+            }
+          ],
+          "responseType": "long[]",
+          "noAuthentication": false,
+          "description": "Launch a contact change procedure",
+          "iamActions": [
+            {
+              "name": "nutanix:apiovh:changeContact",
+              "required": true
+            }
+          ]
+        }
+      ],
+      "description": ""
+    },
+    {
+      "path": "/nutanix/{serviceName}/confirmTermination",
+      "operations": [
+        {
+          "apiStatus": {
+            "description": "Stable production version",
+            "value": "PRODUCTION"
+          },
+          "httpMethod": "POST",
+          "parameters": [
+            {
+              "dataType": "services.confirmTermination",
+              "paramType": "body",
+              "fullType": "services.confirmTermination",
+              "required": true,
+              "description": "Request Body"
+            },
+            {
+              "name": "serviceName",
+              "dataType": "string",
+              "paramType": "path",
+              "fullType": "string",
+              "required": true,
+              "description": "Service name"
+            }
+          ],
+          "responseType": "string",
+          "noAuthentication": false,
+          "description": "Confirm service termination",
+          "iamActions": [
+            {
+              "name": "nutanix:apiovh:confirmTermination",
+              "required": true
+            }
+          ]
+        }
+      ],
+      "description": ""
+    },
+    {
+      "path": "/nutanix/{serviceName}/nodes",
+      "operations": [
+        {
+          "apiStatus": {
+            "description": "Stable production version",
+            "value": "PRODUCTION"
+          },
+          "httpMethod": "GET",
+          "parameters": [
+            {
+              "name": "serviceName",
+              "dataType": "string",
+              "paramType": "path",
+              "fullType": "string",
+              "required": true,
+              "description": "Service name"
+            }
+          ],
+          "responseType": "nutanix.nodeDetails[]",
+          "noAuthentication": false,
+          "description": "Get all nodes in a cluster",
+          "iamActions": [
+            {
+              "name": "nutanix:apiovh:nodes/get",
+              "required": true
+            }
+          ]
+        }
+      ],
+      "description": ""
+    },
+    {
+      "path": "/nutanix/{serviceName}/nodes/{server}",
+      "operations": [
+        {
+          "apiStatus": {
+            "description": "Stable production version",
+            "value": "PRODUCTION"
+          },
+          "httpMethod": "GET",
+          "parameters": [
+            {
+              "name": "server",
+              "dataType": "string",
+              "paramType": "path",
+              "fullType": "string",
+              "required": true,
+              "description": "Server"
+            },
+            {
+              "name": "serviceName",
+              "dataType": "string",
+              "paramType": "path",
+              "fullType": "string",
+              "required": true,
+              "description": "Service name"
+            }
+          ],
+          "responseType": "nutanix.nodeDetails",
+          "noAuthentication": false,
+          "description": "Get a node details in a cluster",
+          "iamActions": [
+            {
+              "name": "nutanix:apiovh:nodes/get",
+              "required": true
+            }
+          ]
+        },
+        {
+          "apiStatus": {
+            "description": "Stable production version",
+            "value": "PRODUCTION"
+          },
+          "httpMethod": "PUT",
+          "parameters": [
+            {
+              "dataType": "nutanix.reinstall",
+              "paramType": "body",
+              "fullType": "nutanix.reinstall",
+              "required": true,
+              "description": "Request Body"
+            },
+            {
+              "name": "server",
+              "dataType": "string",
+              "paramType": "path",
+              "fullType": "string",
+              "required": true,
+              "description": "Server"
+            },
+            {
+              "name": "serviceName",
+              "dataType": "string",
+              "paramType": "path",
+              "fullType": "string",
+              "required": true,
+              "description": "Service name"
+            }
+          ],
+          "responseType": "void",
+          "noAuthentication": false,
+          "description": "Reinstall a node in a cluster",
+          "iamActions": [
+            {
+              "name": "nutanix:apiovh:node/edit",
+              "required": true
+            }
+          ]
+        }
+      ],
+      "description": ""
+    },
+    {
+      "path": "/nutanix/{serviceName}/nodes/{server}/deploy",
+      "operations": [
+        {
+          "apiStatus": {
+            "description": "Stable production version",
+            "value": "PRODUCTION"
+          },
+          "httpMethod": "PUT",
+          "parameters": [
+            {
+              "dataType": "nutanix.deploy",
+              "paramType": "body",
+              "fullType": "nutanix.deploy",
+              "required": true,
+              "description": "Request Body"
+            },
+            {
+              "name": "server",
+              "dataType": "string",
+              "paramType": "path",
+              "fullType": "string",
+              "required": true,
+              "description": "Server"
+            },
+            {
+              "name": "serviceName",
+              "dataType": "string",
+              "paramType": "path",
+              "fullType": "string",
+              "required": true,
+              "description": "Service name"
+            }
+          ],
+          "responseType": "void",
+          "noAuthentication": false,
+          "iamActions": [
+            {
+              "name": "nutanix:apiovh:deploy",
+              "required": true
+            }
+          ]
+        }
+      ],
+      "description": ""
+    },
+    {
+      "path": "/nutanix/{serviceName}/nodes/{server}/terminate",
+      "operations": [
+        {
+          "apiStatus": {
+            "description": "Stable production version",
+            "value": "PRODUCTION"
+          },
+          "httpMethod": "POST",
+          "parameters": [
+            {
+              "name": "server",
+              "dataType": "string",
+              "paramType": "path",
+              "fullType": "string",
+              "required": true,
+              "description": "Server"
+            },
+            {
+              "name": "serviceName",
+              "dataType": "string",
+              "paramType": "path",
+              "fullType": "string",
+              "required": true,
+              "description": "Service name"
+            }
+          ],
+          "responseType": "void",
+          "noAuthentication": false,
+          "description": "Terminate a node",
+          "iamActions": [
+            {
+              "name": "nutanix:apiovh:node/terminate",
+              "required": true
+            }
+          ]
+        }
+      ],
+      "description": ""
+    },
+    {
+      "path": "/nutanix/{serviceName}/serviceInfos",
+      "operations": [
+        {
+          "apiStatus": {
+            "description": "Stable production version",
+            "value": "PRODUCTION"
+          },
+          "httpMethod": "GET",
+          "parameters": [
+            {
+              "name": "serviceName",
+              "dataType": "string",
+              "paramType": "path",
+              "fullType": "string",
+              "required": true,
+              "description": "Service name"
+            }
+          ],
+          "responseType": "services.Service",
+          "noAuthentication": false,
+          "description": "Get service information",
+          "iamActions": [
+            {
+              "name": "nutanix:apiovh:serviceInfos/get",
+              "required": true
+            }
+          ]
+        },
+        {
+          "apiStatus": {
+            "description": "Stable production version",
+            "value": "PRODUCTION"
+          },
+          "httpMethod": "PUT",
+          "parameters": [
+            {
+              "dataType": "services.Service",
+              "paramType": "body",
+              "fullType": "services.Service",
+              "required": true,
+              "description": "Request Body"
+            },
+            {
+              "name": "serviceName",
+              "dataType": "string",
+              "paramType": "path",
+              "fullType": "string",
+              "required": true,
+              "description": "Service name"
+            }
+          ],
+          "responseType": "void",
+          "noAuthentication": false,
+          "description": "Update service information",
+          "iamActions": [
+            {
+              "name": "nutanix:apiovh:serviceInfos/edit",
+              "required": true
+            }
+          ]
+        }
+      ],
+      "description": ""
+    },
+    {
+      "path": "/nutanix/{serviceName}/terminate",
+      "operations": [
+        {
+          "apiStatus": {
+            "description": "Stable production version",
+            "value": "PRODUCTION"
+          },
+          "httpMethod": "POST",
+          "parameters": [
+            {
+              "name": "serviceName",
+              "dataType": "string",
+              "paramType": "path",
+              "fullType": "string",
+              "required": true,
+              "description": "Service name"
+            }
+          ],
+          "responseType": "string",
+          "noAuthentication": false,
+          "description": "Ask for the termination of your service",
+          "iamActions": [
+            {
+              "name": "nutanix:apiovh:terminate",
+              "required": true
+            }
+          ]
+        }
+      ],
+      "description": ""
+    }
+  ],
+  "resourcePath": "/nutanix",
+  "basePath": "https://eu.api.ovh.com/v1",
+  "models": {
+    "iam.ResourceMetadata": {
+      "id": "ResourceMetadata",
+      "namespace": "iam",
+      "description": "IAM resource metadata embedded in services models",
+      "properties": {
+        "displayName": {
+          "type": "string",
+          "fullType": "string",
+          "canBeNull": true,
+          "readOnly": true,
+          "description": "Resource display name",
+          "required": false
+        },
+        "id": {
+          "type": "uuid",
+          "fullType": "uuid",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "Unique identifier of the resource",
+          "required": false
+        },
+        "state": {
+          "type": "iam.ResourceMetadata.StateEnum",
+          "fullType": "iam.ResourceMetadata.StateEnum",
+          "canBeNull": true,
+          "readOnly": true,
+          "description": "Resource state",
+          "required": false
+        },
+        "tags": {
+          "type": "map[string]string",
+          "fullType": "map[string]string",
+          "canBeNull": true,
+          "readOnly": true,
+          "description": "Resource tags. Tags that were internally computed are prefixed with ovh:",
+          "required": false
+        },
+        "urn": {
+          "type": "string",
+          "fullType": "string",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "Unique resource name used in policies",
+          "required": false
+        }
+      }
+    },
+    "iam.ResourceMetadata.StateEnum": {
+      "id": "StateEnum",
+      "namespace": "iam.ResourceMetadata",
+      "description": "Resource state",
+      "enum": [
+        "EXPIRED",
+        "IN_CREATION",
+        "OK",
+        "SUSPENDED"
+      ],
+      "enumType": "string"
+    },
+    "iam.resource.TagFilter": {
+      "id": "TagFilter",
+      "namespace": "iam.resource",
+      "description": "Resource tag filter",
+      "properties": {
+        "operator": {
+          "type": "iam.resource.TagFilter.OperatorEnum",
+          "fullType": "iam.resource.TagFilter.OperatorEnum",
+          "canBeNull": true,
+          "readOnly": true,
+          "description": "Operator to use in order to filter on the value (defaults to 'EQ')",
+          "required": false
+        },
+        "value": {
+          "type": "string",
+          "fullType": "string",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "Value to use in order to filter tags",
+          "required": false
+        }
+      }
+    },
+    "iam.resource.TagFilter.OperatorEnum": {
+      "id": "OperatorEnum",
+      "namespace": "iam.resource.TagFilter",
+      "description": "Operator that can be used in order to filter resources tags",
+      "enum": [
+        "EQ",
+        "EXISTS",
+        "ILIKE",
+        "LIKE",
+        "NEQ",
+        "NEXISTS"
+      ],
+      "enumType": "string"
+    },
+    "nutanix.AvailabilitiesRaw": {
+      "id": "AvailabilitiesRaw",
+      "namespace": "nutanix",
+      "description": "Cluster availability",
+      "properties": {
+        "datacenters": {
+          "type": "nutanix.AvailabilitiesRawDatacenter[]",
+          "fullType": "nutanix.AvailabilitiesRawDatacenter[]",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "A structure describing the hardware availability for each datacenter",
+          "required": false
+        },
+        "deploymentType": {
+          "type": "nutanix.DeploymentTypeEnum",
+          "fullType": "nutanix.DeploymentTypeEnum",
+          "canBeNull": true,
+          "readOnly": true,
+          "description": "Deployment type",
+          "required": false
+        },
+        "erasureCoding": {
+          "type": "boolean",
+          "fullType": "boolean",
+          "canBeNull": true,
+          "readOnly": true,
+          "description": "Erasure coding activation",
+          "required": false
+        },
+        "fqn": {
+          "type": "string",
+          "fullType": "string",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "Fully qualified name and unique name of the hardware",
+          "required": false
+        },
+        "memory": {
+          "type": "string",
+          "fullType": "string",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "Name of the memory hardware part",
+          "required": false
+        },
+        "planCode": {
+          "type": "string",
+          "fullType": "string",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "Plan code in which the hardware is involved",
+          "required": false
+        },
+        "redundancyFactor": {
+          "type": "nutanix.RedundancyFactorEnum",
+          "fullType": "nutanix.RedundancyFactorEnum",
+          "canBeNull": true,
+          "readOnly": true,
+          "description": "Redundancy factor",
+          "required": false
+        },
+        "server": {
+          "type": "string",
+          "fullType": "string",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "Name of the base hardware",
+          "required": false
+        },
+        "storage": {
+          "type": "string",
+          "fullType": "string",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "Name of the storage hardware part",
+          "required": false
+        },
+        "systemStorage": {
+          "type": "string",
+          "fullType": "string",
+          "canBeNull": true,
+          "readOnly": true,
+          "description": "Name of the system storage hardware part",
+          "required": false
+        }
+      }
+    },
+    "nutanix.AvailabilitiesRawDatacenter": {
+      "id": "AvailabilitiesRawDatacenter",
+      "namespace": "nutanix",
+      "description": "A structure describing the hardware raw availability for each datacenter",
+      "properties": {
+        "availability": {
+          "type": "nutanix.AvailabilityEnum",
+          "fullType": "nutanix.AvailabilityEnum",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "The availability",
+          "required": false
+        },
+        "datacenter": {
+          "type": "string",
+          "fullType": "string",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "The datacenter code",
+          "required": false
+        },
+        "lastRule": {
+          "type": "string",
+          "fullType": "string",
+          "canBeNull": true,
+          "readOnly": true,
+          "description": "Last availability rule applied",
+          "required": false
+        },
+        "parentAvailable": {
+          "type": "long",
+          "fullType": "long",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "Real stock including parent references",
+          "required": false
+        },
+        "trueAvailable": {
+          "type": "long",
+          "fullType": "long",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "Real stock",
+          "required": false
+        }
+      }
+    },
+    "nutanix.AvailabilityEnum": {
+      "id": "AvailabilityEnum",
+      "namespace": "nutanix",
+      "description": "Cluster availability",
+      "enum": [
+        "1440H",
+        "240H",
+        "2880H",
+        "480H",
+        "720H",
+        "72H",
+        "comingSoon",
+        "unavailable"
+      ],
+      "enumType": "string"
+    },
+    "nutanix.DatacenterAvailability": {
+      "id": "DatacenterAvailability",
+      "namespace": "nutanix",
+      "description": "Cluster datacenter availability",
+      "properties": {
+        "availability": {
+          "type": "nutanix.AvailabilityEnum",
+          "fullType": "nutanix.AvailabilityEnum",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "Availability status",
+          "required": false
+        },
+        "datacenter": {
+          "type": "string",
+          "fullType": "string",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "Datacenter code",
+          "required": false
+        }
+      }
+    },
+    "nutanix.DeploymentTypeEnum": {
+      "id": "DeploymentTypeEnum",
+      "namespace": "nutanix",
+      "description": "Cluster deployment type",
+      "enum": [
+        "NodeAwareness"
+      ],
+      "enumType": "string"
+    },
+    "nutanix.PossibleActionsEnum": {
+      "id": "PossibleActionsEnum",
+      "namespace": "nutanix",
+      "description": "Possible actions",
+      "enum": [
+        "INSTALL",
+        "POWER_OFF",
+        "POWER_ON",
+        "REINSTALL",
+        "TERMINATE",
+        "UNINSTALL"
+      ],
+      "enumType": "string"
+    },
+    "nutanix.RedundancyFactorEnum": {
+      "id": "RedundancyFactorEnum",
+      "namespace": "nutanix",
+      "description": "Cluster redundancy factor",
+      "enum": [
+        2,
+        3
+      ],
+      "enumType": "long"
+    },
+    "nutanix.Requirements": {
+      "id": "Requirements",
+      "namespace": "nutanix",
+      "description": "Return the needed requirements for a given cluster configuration",
+      "properties": {
+        "maxNodes": {
+          "type": "long",
+          "fullType": "long",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "Maximum number of nodes",
+          "required": false
+        },
+        "minNodes": {
+          "type": "long",
+          "fullType": "long",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "Minimum number of nodes",
+          "required": false
+        },
+        "scaleFactor": {
+          "type": "long",
+          "fullType": "long",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "Number of added/removed nodes in case of scaling up/down",
+          "required": false
+        }
+      }
+    },
+    "nutanix.availability": {
+      "id": "availability",
+      "namespace": "nutanix",
+      "description": "Cluster availability",
+      "properties": {
+        "datacenters": {
+          "type": "nutanix.DatacenterAvailability[]",
+          "fullType": "nutanix.DatacenterAvailability[]",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "A structure describing the hardware availability for each datacenter",
+          "required": false
+        },
+        "deploymentType": {
+          "type": "nutanix.DeploymentTypeEnum",
+          "fullType": "nutanix.DeploymentTypeEnum",
+          "canBeNull": true,
+          "readOnly": true,
+          "description": "Deployment type",
+          "required": false
+        },
+        "erasureCoding": {
+          "type": "boolean",
+          "fullType": "boolean",
+          "canBeNull": true,
+          "readOnly": true,
+          "description": "Erasure coding activation",
+          "required": false
+        },
+        "fqn": {
+          "type": "string",
+          "fullType": "string",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "Fully qualified name and unique name of the hardware",
+          "required": false
+        },
+        "memory": {
+          "type": "string",
+          "fullType": "string",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "Name of the memory hardware part",
+          "required": false
+        },
+        "planCode": {
+          "type": "string",
+          "fullType": "string",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "Plan code in which the hardware is involved",
+          "required": false
+        },
+        "redundancyFactor": {
+          "type": "nutanix.RedundancyFactorEnum",
+          "fullType": "nutanix.RedundancyFactorEnum",
+          "canBeNull": true,
+          "readOnly": true,
+          "description": "Redundancy factor",
+          "required": false
+        },
+        "server": {
+          "type": "string",
+          "fullType": "string",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "Name of the base hardware",
+          "required": false
+        },
+        "storage": {
+          "type": "string",
+          "fullType": "string",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "Name of the storage hardware part",
+          "required": false
+        },
+        "systemStorage": {
+          "type": "string",
+          "fullType": "string",
+          "canBeNull": true,
+          "readOnly": true,
+          "description": "Name of the system storage hardware part",
+          "required": false
+        }
+      }
+    },
+    "nutanix.cluster": {
+      "id": "cluster",
+      "namespace": "nutanix",
+      "description": "Cluster configuration",
+      "properties": {
+        "controlPanelURL": {
+          "type": "string",
+          "fullType": "string",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "Control Panel URL",
+          "required": false
+        },
+        "dataserviceIp": {
+          "type": "ip",
+          "fullType": "ip",
+          "canBeNull": false,
+          "readOnly": false,
+          "description": "Dataservice IP",
+          "required": false
+        },
+        "erasureCoding": {
+          "type": "boolean",
+          "fullType": "boolean",
+          "canBeNull": false,
+          "readOnly": false,
+          "description": "Erasure coding activation",
+          "required": false
+        },
+        "gatewayCidr": {
+          "type": "ipBlock",
+          "fullType": "ipBlock",
+          "canBeNull": false,
+          "readOnly": false,
+          "description": "Internal Gateway IP, with mask",
+          "required": false
+        },
+        "infraVlanNumber": {
+          "type": "long",
+          "fullType": "long",
+          "canBeNull": false,
+          "readOnly": false,
+          "description": "Infra-Vlan number",
+          "required": false
+        },
+        "ipfo": {
+          "type": "ipBlock",
+          "fullType": "ipBlock",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "External Gateway IP, with mask",
+          "required": false
+        },
+        "iplb": {
+          "type": "string",
+          "fullType": "string",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "IPLB ID",
+          "required": false
+        },
+        "name": {
+          "type": "string",
+          "fullType": "string",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "Cluster name",
+          "required": false
+        },
+        "nodes": {
+          "type": "nutanix.nodes[]",
+          "fullType": "nutanix.nodes[]",
+          "canBeNull": false,
+          "readOnly": false,
+          "description": "Cluster node list",
+          "required": false
+        },
+        "prismCentral": {
+          "type": "nutanix.prismcentral",
+          "fullType": "nutanix.prismcentral",
+          "canBeNull": false,
+          "readOnly": false,
+          "description": "Prism Central Configuration",
+          "required": false
+        },
+        "prismElementVip": {
+          "type": "ipv4",
+          "fullType": "ipv4",
+          "canBeNull": false,
+          "readOnly": false,
+          "description": "Prism Element IP",
+          "required": false
+        },
+        "prismSecretId": {
+          "type": "uuid",
+          "fullType": "uuid",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "UUID for secret",
+          "required": false
+        },
+        "rackAwareness": {
+          "type": "boolean",
+          "fullType": "boolean",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "Rack Awareness activation",
+          "required": false
+        },
+        "redundancyFactor": {
+          "type": "long",
+          "fullType": "long",
+          "canBeNull": false,
+          "readOnly": false,
+          "description": "Redundancy Factor",
+          "required": false
+        },
+        "version": {
+          "type": "string",
+          "fullType": "string",
+          "canBeNull": false,
+          "readOnly": false,
+          "description": "AOS Version",
+          "required": false
+        },
+        "vrack": {
+          "type": "string",
+          "fullType": "string",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "vRack name",
+          "required": false
+        }
+      }
+    },
+    "nutanix.clusterDetails": {
+      "id": "clusterDetails",
+      "namespace": "nutanix",
+      "description": "Cluster configuration",
+      "properties": {
+        "controlPanelURL": {
+          "type": "string",
+          "fullType": "string",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "Control Panel URL",
+          "required": false
+        },
+        "dataserviceIp": {
+          "type": "ip",
+          "fullType": "ip",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "dataservice IP",
+          "required": false
+        },
+        "erasureCoding": {
+          "type": "boolean",
+          "fullType": "boolean",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "Erasure coding activation",
+          "required": false
+        },
+        "gatewayCidr": {
+          "type": "ipBlock",
+          "fullType": "ipBlock",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "Internal Gateway IP, with mask",
+          "required": false
+        },
+        "infraVlanNumber": {
+          "type": "long",
+          "fullType": "long",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "Infra-Vlan number",
+          "required": false
+        },
+        "ipfo": {
+          "type": "ipBlock",
+          "fullType": "ipBlock",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "External Gateway IP, with mask",
+          "required": false
+        },
+        "iplb": {
+          "type": "string",
+          "fullType": "string",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "IPLB ID",
+          "required": false
+        },
+        "license": {
+          "type": "string",
+          "fullType": "string",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "Cluster license",
+          "required": false
+        },
+        "metadata": {
+          "type": "nutanix.metadata",
+          "fullType": "nutanix.metadata",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "Cluster metadata",
+          "required": false
+        },
+        "name": {
+          "type": "string",
+          "fullType": "string",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "Cluster name",
+          "required": false
+        },
+        "nodes": {
+          "type": "nutanix.nodeDetails[]",
+          "fullType": "nutanix.nodeDetails[]",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "Cluster node list",
+          "required": false
+        },
+        "prismCentral": {
+          "type": "nutanix.prismcentral",
+          "fullType": "nutanix.prismcentral",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "Prism Central Configuration",
+          "required": false
+        },
+        "prismElementVip": {
+          "type": "ipv4",
+          "fullType": "ipv4",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "Prism Element IP",
+          "required": false
+        },
+        "prismSecretId": {
+          "type": "uuid",
+          "fullType": "uuid",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "UUID for secret",
+          "required": false
+        },
+        "rackAwareness": {
+          "type": "boolean",
+          "fullType": "boolean",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "Rack Awareness activation",
+          "required": false
+        },
+        "redundancyFactor": {
+          "type": "long",
+          "fullType": "long",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "Redundancy Factor",
+          "required": false
+        },
+        "version": {
+          "type": "string",
+          "fullType": "string",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "AOS Version",
+          "required": false
+        },
+        "vrack": {
+          "type": "string",
+          "fullType": "string",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "vRack name",
+          "required": false
+        }
+      }
+    },
+    "nutanix.deploy": {
+      "id": "deploy",
+      "namespace": "nutanix",
+      "description": "Node deployment payload",
+      "properties": {
+        "ahvIp": {
+          "type": "ipv4",
+          "fullType": "ipv4",
+          "canBeNull": false,
+          "readOnly": false,
+          "description": "Hypervisor IP",
+          "required": false
+        },
+        "cvmIp": {
+          "type": "ipv4",
+          "fullType": "ipv4",
+          "canBeNull": false,
+          "readOnly": false,
+          "description": "Controler VM IP",
+          "required": false
+        },
+        "version": {
+          "type": "string",
+          "fullType": "string",
+          "canBeNull": false,
+          "readOnly": false,
+          "description": "AOS Version",
+          "required": false
+        }
+      }
+    },
+    "nutanix.metadata": {
+      "id": "metadata",
+      "namespace": "nutanix",
+      "description": "Cluster metadata",
+      "properties": {
+        "initialCommitmentSize": {
+          "type": "long",
+          "fullType": "long",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "Cluster initial commitment size",
+          "required": false
+        }
+      }
+    },
+    "nutanix.nodeDetails": {
+      "id": "nodeDetails",
+      "namespace": "nutanix",
+      "description": "Node details in a nutanix cluster",
+      "properties": {
+        "ahvIp": {
+          "type": "ipv4",
+          "fullType": "ipv4",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "Hypervisor IP",
+          "required": false
+        },
+        "cvmIp": {
+          "type": "ipv4",
+          "fullType": "ipv4",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "Controler VM IP",
+          "required": false
+        },
+        "possibleActions": {
+          "type": "nutanix.possibleActions[]",
+          "fullType": "nutanix.possibleActions[]",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "Node possible actions",
+          "required": false
+        },
+        "server": {
+          "type": "string",
+          "fullType": "string",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "Name of the associated server",
+          "required": false
+        },
+        "status": {
+          "type": "nutanix.nodeStatusEnum",
+          "fullType": "nutanix.nodeStatusEnum",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "Node status",
+          "required": false
+        }
+      }
+    },
+    "nutanix.nodeStatusEnum": {
+      "id": "nodeStatusEnum",
+      "namespace": "nutanix",
+      "description": "Node status",
+      "enum": [
+        "DEPLOYED",
+        "DEPLOYING",
+        "DEPLOY_CANCELLED",
+        "DEPLOY_FAILURE",
+        "UNDEPLOYED",
+        "UNDEPLOYING",
+        "UNDEPLOY_CANCELLED",
+        "UNDEPLOY_FAILURE",
+        "UNKNOWN"
+      ],
+      "enumType": "string"
+    },
+    "nutanix.nodes": {
+      "id": "nodes",
+      "namespace": "nutanix",
+      "description": "Nodes in nutanix cluster",
+      "properties": {
+        "ahvIp": {
+          "type": "ipv4",
+          "fullType": "ipv4",
+          "canBeNull": false,
+          "readOnly": false,
+          "description": "Hypervisor IP",
+          "required": false
+        },
+        "cvmIp": {
+          "type": "ipv4",
+          "fullType": "ipv4",
+          "canBeNull": false,
+          "readOnly": false,
+          "description": "Controler VM IP",
+          "required": false
+        },
+        "server": {
+          "type": "string",
+          "fullType": "string",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "Name of the associated server",
+          "required": false
+        }
+      }
+    },
+    "nutanix.pcsizeEnum": {
+      "id": "pcsizeEnum",
+      "namespace": "nutanix",
+      "description": "Prism central size",
+      "enum": [
+        "large",
+        "small",
+        "xlarge",
+        "xsmall"
+      ],
+      "enumType": "string"
+    },
+    "nutanix.pctypeEnum": {
+      "id": "pctypeEnum",
+      "namespace": "nutanix",
+      "description": "Prism Central deployment type",
+      "enum": [
+        "alone",
+        "scale"
+      ],
+      "enumType": "string"
+    },
+    "nutanix.possibleActions": {
+      "id": "possibleActions",
+      "namespace": "nutanix",
+      "description": "Node possible actions",
+      "properties": {
+        "action": {
+          "type": "nutanix.PossibleActionsEnum",
+          "fullType": "nutanix.PossibleActionsEnum",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "A string representation of the action to be performed",
+          "required": false
+        },
+        "isPossible": {
+          "type": "boolean",
+          "fullType": "boolean",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "Is the action currently possible to perform",
+          "required": false
+        },
+        "reason": {
+          "type": "string",
+          "fullType": "string",
+          "canBeNull": true,
+          "readOnly": true,
+          "description": "Reason the action is not possible",
+          "required": false
+        }
+      }
+    },
+    "nutanix.prismcentral": {
+      "id": "prismcentral",
+      "namespace": "nutanix",
+      "description": "Prism Central Config",
+      "properties": {
+        "ips": {
+          "type": "ipv4[]",
+          "fullType": "ipv4[]",
+          "canBeNull": false,
+          "readOnly": false,
+          "description": "Prism Central IPs",
+          "required": false
+        },
+        "size": {
+          "type": "nutanix.pcsizeEnum",
+          "fullType": "nutanix.pcsizeEnum",
+          "canBeNull": false,
+          "readOnly": false,
+          "description": "Prism Central size",
+          "required": false
+        },
+        "type": {
+          "type": "nutanix.pctypeEnum",
+          "fullType": "nutanix.pctypeEnum",
+          "canBeNull": false,
+          "readOnly": false,
+          "description": "Prism Central type",
+          "required": false
+        },
+        "vip": {
+          "type": "ipv4",
+          "fullType": "ipv4",
+          "canBeNull": false,
+          "readOnly": false,
+          "description": "Prism Central IP",
+          "required": false
+        }
+      }
+    },
+    "nutanix.reinstall": {
+      "id": "reinstall",
+      "namespace": "nutanix",
+      "description": "Node reinstall payload",
+      "properties": {
+        "version": {
+          "type": "string",
+          "fullType": "string",
+          "canBeNull": false,
+          "readOnly": false,
+          "description": "AOS Version",
+          "required": true
+        }
+      }
+    },
+    "nutanix.state": {
+      "id": "state",
+      "namespace": "nutanix",
+      "description": "Nutanix Cluster State",
+      "properties": {
+        "allowedRedundancyFactor": {
+          "type": "long[]",
+          "fullType": "long[]",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "Available redundancy Factor",
+          "required": false
+        },
+        "availableVersions": {
+          "type": "string[]",
+          "fullType": "string[]",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "Available versions to install",
+          "required": false
+        },
+        "serviceName": {
+          "type": "string",
+          "fullType": "string",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "Cluster name",
+          "required": false
+        },
+        "status": {
+          "type": "nutanix.statusEnum",
+          "fullType": "nutanix.statusEnum",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "Current cluster's status",
+          "required": false
+        },
+        "targetSpec": {
+          "type": "nutanix.cluster",
+          "fullType": "nutanix.cluster",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "Target Spec after deployment",
+          "required": false
+        }
+      }
+    },
+    "nutanix.stateDetails": {
+      "id": "stateDetails",
+      "namespace": "nutanix",
+      "description": "Nutanix Cluster State",
+      "properties": {
+        "allowedRedundancyFactor": {
+          "type": "long[]",
+          "fullType": "long[]",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "Available redundancy Factor",
+          "required": false
+        },
+        "availableVersions": {
+          "type": "string[]",
+          "fullType": "string[]",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "Available versions to install",
+          "required": false
+        },
+        "serviceName": {
+          "type": "string",
+          "fullType": "string",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "Cluster name",
+          "required": false
+        },
+        "status": {
+          "type": "nutanix.statusEnum",
+          "fullType": "nutanix.statusEnum",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "Current cluster's status",
+          "required": false
+        },
+        "targetSpec": {
+          "type": "nutanix.clusterDetails",
+          "fullType": "nutanix.clusterDetails",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "Target Spec after deployment",
+          "required": false
+        }
+      }
+    },
+    "nutanix.stateDetailsWithIAM": {
+      "id": "stateDetails",
+      "namespace": "nutanix",
+      "description": "Nutanix Cluster State",
+      "properties": {
+        "allowedRedundancyFactor": {
+          "type": "long[]",
+          "fullType": "long[]",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "Available redundancy Factor",
+          "required": false
+        },
+        "availableVersions": {
+          "type": "string[]",
+          "fullType": "string[]",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "Available versions to install",
+          "required": false
+        },
+        "iam": {
+          "type": "iam.ResourceMetadata",
+          "canBeNull": true,
+          "readOnly": true,
+          "description": "IAM resource metadata",
+          "required": false
+        },
+        "serviceName": {
+          "type": "string",
+          "fullType": "string",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "Cluster name",
+          "required": false
+        },
+        "status": {
+          "type": "nutanix.statusEnum",
+          "fullType": "nutanix.statusEnum",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "Current cluster's status",
+          "required": false
+        },
+        "targetSpec": {
+          "type": "nutanix.clusterDetails",
+          "fullType": "nutanix.clusterDetails",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "Target Spec after deployment",
+          "required": false
+        }
+      }
+    },
+    "nutanix.statusEnum": {
+      "id": "statusEnum",
+      "namespace": "nutanix",
+      "description": "Cluster status",
+      "enum": [
+        "Active",
+        "Deploying",
+        "Error"
+      ],
+      "enumType": "string"
+    },
+    "service.RenewType": {
+      "id": "RenewType",
+      "namespace": "service",
+      "description": "Map a possible renew for a specific service",
+      "properties": {
+        "automatic": {
+          "type": "boolean",
+          "fullType": "boolean",
+          "canBeNull": false,
+          "readOnly": false,
+          "description": "The service is automatically renewed",
+          "required": false
+        },
+        "deleteAtExpiration": {
+          "type": "boolean",
+          "fullType": "boolean",
+          "canBeNull": false,
+          "readOnly": false,
+          "description": "The service will be deleted at expiration",
+          "required": false
+        },
+        "forced": {
+          "type": "boolean",
+          "fullType": "boolean",
+          "canBeNull": false,
+          "readOnly": false,
+          "description": "The service forced to be renewed",
+          "required": false
+        },
+        "manualPayment": {
+          "type": "boolean",
+          "fullType": "boolean",
+          "canBeNull": true,
+          "readOnly": false,
+          "description": "The service needs to be manually renewed and paid",
+          "required": false
+        },
+        "period": {
+          "type": "long",
+          "fullType": "long",
+          "canBeNull": true,
+          "readOnly": false,
+          "description": "period of renew in month",
+          "required": false
+        }
+      }
+    },
+    "service.RenewalTypeEnum": {
+      "id": "RenewalTypeEnum",
+      "namespace": "service",
+      "description": "Detailed renewal type of a service",
+      "enum": [
+        "automaticForcedProduct",
+        "automaticV2012",
+        "automaticV2014",
+        "automaticV2016",
+        "manual",
+        "oneShot",
+        "option"
+      ],
+      "enumType": "string"
+    },
+    "service.StateEnum": {
+      "id": "StateEnum",
+      "namespace": "service",
+      "description": "service.StateEnum",
+      "enum": [
+        "autorenewInProgress",
+        "expired",
+        "inCreation",
+        "ok",
+        "pendingDebt",
+        "unPaid"
+      ],
+      "enumType": "string"
+    },
+    "service.TerminationFutureUseEnum": {
+      "id": "TerminationFutureUseEnum",
+      "namespace": "service",
+      "description": "All future uses you can provide for a service termination",
+      "enum": [
+        "NOT_REPLACING_SERVICE",
+        "OTHER",
+        "SUBSCRIBE_AN_OTHER_SERVICE",
+        "SUBSCRIBE_OTHER_KIND_OF_SERVICE_WITH_COMPETITOR",
+        "SUBSCRIBE_SIMILAR_SERVICE_WITH_COMPETITOR"
+      ],
+      "enumType": "string"
+    },
+    "service.TerminationReasonEnum": {
+      "id": "TerminationReasonEnum",
+      "namespace": "service",
+      "description": "All reasons you can provide for a service termination",
+      "enum": [
+        "FEATURES_DONT_SUIT_ME",
+        "LACK_OF_PERFORMANCES",
+        "MIGRATED_TO_ANOTHER_OVH_PRODUCT",
+        "MIGRATED_TO_COMPETITOR",
+        "NOT_ENOUGH_RECOGNITION",
+        "NOT_NEEDED_ANYMORE",
+        "NOT_RELIABLE",
+        "NO_ANSWER",
+        "OTHER",
+        "PRODUCT_DIMENSION_DONT_SUIT_ME",
+        "PRODUCT_TOOLS_DONT_SUIT_ME",
+        "TOO_EXPENSIVE",
+        "TOO_HARD_TO_USE",
+        "UNSATIFIED_BY_CUSTOMER_SUPPORT"
+      ],
+      "enumType": "string"
+    },
+    "services.Service": {
+      "id": "Service",
+      "namespace": "services",
+      "description": "Details about a Service",
+      "properties": {
+        "canDeleteAtExpiration": {
+          "type": "boolean",
+          "fullType": "boolean",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "Indicates that the service can be set up to be deleted at expiration",
+          "required": false
+        },
+        "contactAdmin": {
+          "type": "string",
+          "fullType": "string",
+          "canBeNull": false,
+          "readOnly": true,
+          "required": false
+        },
+        "contactBilling": {
+          "type": "string",
+          "fullType": "string",
+          "canBeNull": false,
+          "readOnly": true,
+          "required": false
+        },
+        "contactTech": {
+          "type": "string",
+          "fullType": "string",
+          "canBeNull": false,
+          "readOnly": true,
+          "required": false
+        },
+        "creation": {
+          "type": "date",
+          "fullType": "date",
+          "canBeNull": false,
+          "readOnly": true,
+          "required": false
+        },
+        "domain": {
+          "type": "string",
+          "fullType": "string",
+          "canBeNull": false,
+          "readOnly": true,
+          "required": false
+        },
+        "engagedUpTo": {
+          "type": "date",
+          "fullType": "date",
+          "canBeNull": true,
+          "readOnly": true,
+          "required": false
+        },
+        "expiration": {
+          "type": "date",
+          "fullType": "date",
+          "canBeNull": false,
+          "readOnly": true,
+          "required": false
+        },
+        "possibleRenewPeriod": {
+          "type": "long[]",
+          "fullType": "long[]",
+          "canBeNull": true,
+          "readOnly": true,
+          "description": "All the possible renew period of your service in month",
+          "required": false
+        },
+        "renew": {
+          "type": "service.RenewType",
+          "fullType": "service.RenewType",
+          "canBeNull": true,
+          "readOnly": false,
+          "description": "Way of handling the renew",
+          "required": false
+        },
+        "renewalType": {
+          "type": "service.RenewalTypeEnum",
+          "fullType": "service.RenewalTypeEnum",
+          "canBeNull": false,
+          "readOnly": true,
+          "required": false
+        },
+        "serviceId": {
+          "type": "long",
+          "fullType": "long",
+          "canBeNull": false,
+          "readOnly": true,
+          "required": false
+        },
+        "status": {
+          "type": "service.StateEnum",
+          "fullType": "service.StateEnum",
+          "canBeNull": false,
+          "readOnly": true,
+          "required": false
+        }
+      }
+    },
+    "services.changeContact": {
+      "id": "changeContact",
+      "namespace": "services",
+      "description": "Service change contact payload",
+      "properties": {
+        "contactAdmin": {
+          "type": "string",
+          "fullType": "string",
+          "canBeNull": false,
+          "readOnly": false,
+          "description": "The contact to set as admin contact",
+          "required": false
+        },
+        "contactBilling": {
+          "type": "string",
+          "fullType": "string",
+          "canBeNull": false,
+          "readOnly": false,
+          "description": "The contact to set as billing contact",
+          "required": false
+        },
+        "contactTech": {
+          "type": "string",
+          "fullType": "string",
+          "canBeNull": false,
+          "readOnly": false,
+          "description": "The contact to set as tech contact",
+          "required": false
+        }
+      }
+    },
+    "services.confirmTermination": {
+      "id": "confirmTermination",
+      "namespace": "services",
+      "description": "Service confirm termination payload",
+      "properties": {
+        "commentary": {
+          "type": "string",
+          "fullType": "string",
+          "canBeNull": false,
+          "readOnly": false,
+          "description": "Commentary about your termination request",
+          "required": false
+        },
+        "commentaryFutureUse": {
+          "type": "string",
+          "fullType": "string",
+          "canBeNull": false,
+          "readOnly": false,
+          "description": "Commentary about your future use",
+          "required": false
+        },
+        "commentaryReason": {
+          "type": "string",
+          "fullType": "string",
+          "canBeNull": false,
+          "readOnly": false,
+          "description": "Commentary about your reason for termination request",
+          "required": false
+        },
+        "futureUse": {
+          "type": "service.TerminationFutureUseEnum",
+          "fullType": "service.TerminationFutureUseEnum",
+          "canBeNull": false,
+          "readOnly": false,
+          "description": "All future uses you can provide for a service termination",
+          "required": false
+        },
+        "reason": {
+          "type": "service.TerminationReasonEnum",
+          "fullType": "service.TerminationReasonEnum",
+          "canBeNull": false,
+          "readOnly": false,
+          "description": "All reasons you can provide for a service termination",
+          "required": false
+        },
+        "token": {
+          "type": "string",
+          "fullType": "string",
+          "canBeNull": false,
+          "readOnly": false,
+          "description": "The termination token sent by email to the admin contact",
+          "required": true
+        }
+      }
+    }
+  }
+}

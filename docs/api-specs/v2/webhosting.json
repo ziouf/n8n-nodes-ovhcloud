@@ -1,0 +1,1971 @@
+{
+  "apiVersion": "1.0",
+  "apis": [
+    {
+      "path": "/webhosting/attachedDomain",
+      "operations": [
+        {
+          "apiStatus": {
+            "description": "Beta version",
+            "value": "BETA"
+          },
+          "httpMethod": "GET",
+          "parameters": [
+            {
+              "name": "X-Pagination-Cursor",
+              "dataType": "string",
+              "paramType": "header",
+              "fullType": "string",
+              "required": false,
+              "description": "Pagination cursor"
+            },
+            {
+              "name": "X-Pagination-Size",
+              "dataType": "long",
+              "paramType": "header",
+              "fullType": "long",
+              "required": false,
+              "description": "Pagination size"
+            },
+            {
+              "name": "domain",
+              "dataType": "string",
+              "paramType": "query",
+              "fullType": "string",
+              "required": false,
+              "description": "Optional query param to only filter domain name"
+            }
+          ],
+          "responseType": "webhosting.AttachedDomain[]",
+          "noAuthentication": false,
+          "iamActions": [
+            {
+              "name": "account:apiovh:webHosting/attachedDomain/get",
+              "required": true
+            }
+          ]
+        }
+      ],
+      "description": ""
+    },
+    {
+      "path": "/webhosting/resource",
+      "operations": [
+        {
+          "apiStatus": {
+            "description": "Beta version",
+            "value": "BETA"
+          },
+          "httpMethod": "GET",
+          "parameters": [
+            {
+              "name": "X-Pagination-Cursor",
+              "dataType": "string",
+              "paramType": "header",
+              "fullType": "string",
+              "required": false,
+              "description": "Pagination cursor"
+            },
+            {
+              "name": "X-Pagination-Size",
+              "dataType": "long",
+              "paramType": "header",
+              "fullType": "long",
+              "required": false,
+              "description": "Pagination size"
+            },
+            {
+              "name": "iamTags",
+              "dataType": "map[string][]iam.resource.TagFilter",
+              "paramType": "query",
+              "required": false,
+              "description": "Filter resources on IAM tags"
+            }
+          ],
+          "responseType": "webhosting.WebWithIAM[]",
+          "noAuthentication": false,
+          "iamActions": [
+            {
+              "name": "webHosting:apiovh:get",
+              "required": true
+            }
+          ]
+        }
+      ],
+      "description": ""
+    },
+    {
+      "path": "/webhosting/resource/{name}",
+      "operations": [
+        {
+          "apiStatus": {
+            "description": "Beta version",
+            "value": "BETA"
+          },
+          "httpMethod": "GET",
+          "parameters": [
+            {
+              "name": "name",
+              "dataType": "string",
+              "paramType": "path",
+              "fullType": "string",
+              "required": true,
+              "description": "Name"
+            }
+          ],
+          "responseType": "webhosting.WebWithIAM",
+          "noAuthentication": false,
+          "iamActions": [
+            {
+              "name": "webHosting:apiovh:get",
+              "required": true
+            }
+          ]
+        }
+      ],
+      "description": ""
+    },
+    {
+      "path": "/webhosting/resource/{name}/attachedDomain",
+      "operations": [
+        {
+          "apiStatus": {
+            "description": "Beta version",
+            "value": "BETA"
+          },
+          "httpMethod": "GET",
+          "parameters": [
+            {
+              "name": "X-Pagination-Cursor",
+              "dataType": "string",
+              "paramType": "header",
+              "fullType": "string",
+              "required": false,
+              "description": "Pagination cursor"
+            },
+            {
+              "name": "X-Pagination-Size",
+              "dataType": "long",
+              "paramType": "header",
+              "fullType": "long",
+              "required": false,
+              "description": "Pagination size"
+            },
+            {
+              "name": "name",
+              "dataType": "string",
+              "paramType": "path",
+              "fullType": "string",
+              "required": true,
+              "description": "Name"
+            }
+          ],
+          "responseType": "webhosting.AttachedDomain[]",
+          "noAuthentication": false,
+          "iamActions": [
+            {
+              "name": "webHosting:apiovh:attachedDomain/get",
+              "required": true
+            }
+          ]
+        }
+      ],
+      "description": ""
+    },
+    {
+      "path": "/webhosting/resource/{name}/certificate",
+      "operations": [
+        {
+          "apiStatus": {
+            "description": "Beta version",
+            "value": "BETA"
+          },
+          "httpMethod": "GET",
+          "parameters": [
+            {
+              "name": "X-Pagination-Cursor",
+              "dataType": "string",
+              "paramType": "header",
+              "fullType": "string",
+              "required": false,
+              "description": "Pagination cursor"
+            },
+            {
+              "name": "X-Pagination-Size",
+              "dataType": "long",
+              "paramType": "header",
+              "fullType": "long",
+              "required": false,
+              "description": "Pagination size"
+            },
+            {
+              "name": "name",
+              "dataType": "string",
+              "paramType": "path",
+              "fullType": "string",
+              "required": true,
+              "description": "Name"
+            }
+          ],
+          "responseType": "webhosting.SSL[]",
+          "noAuthentication": false,
+          "iamActions": [
+            {
+              "name": "webHosting:apiovh:ssl/get",
+              "required": true
+            }
+          ]
+        }
+      ],
+      "description": ""
+    },
+    {
+      "path": "/webhosting/resource/{name}/website",
+      "operations": [
+        {
+          "apiStatus": {
+            "description": "Beta version",
+            "value": "BETA"
+          },
+          "httpMethod": "GET",
+          "parameters": [
+            {
+              "name": "X-Pagination-Cursor",
+              "dataType": "string",
+              "paramType": "header",
+              "fullType": "string",
+              "required": false,
+              "description": "Pagination cursor"
+            },
+            {
+              "name": "X-Pagination-Size",
+              "dataType": "long",
+              "paramType": "header",
+              "fullType": "long",
+              "required": false,
+              "description": "Pagination size"
+            },
+            {
+              "name": "name",
+              "dataType": "string",
+              "paramType": "path",
+              "fullType": "string",
+              "required": true,
+              "description": "Name"
+            }
+          ],
+          "responseType": "webhosting.Website[]",
+          "noAuthentication": false,
+          "iamActions": [
+            {
+              "name": "webHosting:apiovh:website/get",
+              "required": true
+            }
+          ]
+        },
+        {
+          "apiStatus": {
+            "description": "Beta version",
+            "value": "BETA"
+          },
+          "httpMethod": "POST",
+          "parameters": [
+            {
+              "dataType": "webhosting.WebsitePostPayload",
+              "paramType": "body",
+              "fullType": "webhosting.WebsitePostPayload",
+              "required": true,
+              "description": "Request Body"
+            },
+            {
+              "name": "name",
+              "dataType": "string",
+              "paramType": "path",
+              "fullType": "string",
+              "required": true,
+              "description": "Name"
+            }
+          ],
+          "responseType": "webhosting.Website",
+          "noAuthentication": false,
+          "description": "Create a website",
+          "iamActions": [
+            {
+              "name": "webHosting:apiovh:website/create",
+              "required": true
+            }
+          ]
+        }
+      ],
+      "description": ""
+    },
+    {
+      "path": "/webhosting/resource/{name}/website/{websiteId}",
+      "operations": [
+        {
+          "apiStatus": {
+            "description": "Beta version",
+            "value": "BETA"
+          },
+          "httpMethod": "GET",
+          "parameters": [
+            {
+              "name": "name",
+              "dataType": "string",
+              "paramType": "path",
+              "fullType": "string",
+              "required": true,
+              "description": "Name"
+            },
+            {
+              "name": "websiteId",
+              "dataType": "uuid",
+              "paramType": "path",
+              "fullType": "uuid",
+              "required": true,
+              "description": "Website ID"
+            }
+          ],
+          "responseType": "webhosting.Website",
+          "noAuthentication": false,
+          "iamActions": [
+            {
+              "name": "webHosting:apiovh:website/get",
+              "required": true
+            }
+          ]
+        },
+        {
+          "apiStatus": {
+            "description": "Beta version",
+            "value": "BETA"
+          },
+          "httpMethod": "PUT",
+          "parameters": [
+            {
+              "dataType": "webhosting.WebsitePutPayload",
+              "paramType": "body",
+              "fullType": "webhosting.WebsitePutPayload",
+              "required": true,
+              "description": "Request Body"
+            },
+            {
+              "name": "name",
+              "dataType": "string",
+              "paramType": "path",
+              "fullType": "string",
+              "required": true,
+              "description": "Name"
+            },
+            {
+              "name": "websiteId",
+              "dataType": "uuid",
+              "paramType": "path",
+              "fullType": "uuid",
+              "required": true,
+              "description": "Website ID"
+            }
+          ],
+          "responseType": "webhosting.Website",
+          "noAuthentication": false,
+          "description": "Update an existing website",
+          "iamActions": [
+            {
+              "name": "webHosting:apiovh:website/edit",
+              "required": true
+            }
+          ]
+        }
+      ],
+      "description": ""
+    },
+    {
+      "path": "/webhosting/resource/{name}/website/{websiteId}/domain",
+      "operations": [
+        {
+          "apiStatus": {
+            "description": "Beta version",
+            "value": "BETA"
+          },
+          "httpMethod": "GET",
+          "parameters": [
+            {
+              "name": "X-Pagination-Cursor",
+              "dataType": "string",
+              "paramType": "header",
+              "fullType": "string",
+              "required": false,
+              "description": "Pagination cursor"
+            },
+            {
+              "name": "X-Pagination-Size",
+              "dataType": "long",
+              "paramType": "header",
+              "fullType": "long",
+              "required": false,
+              "description": "Pagination size"
+            },
+            {
+              "name": "name",
+              "dataType": "string",
+              "paramType": "path",
+              "fullType": "string",
+              "required": true,
+              "description": "Name"
+            },
+            {
+              "name": "websiteId",
+              "dataType": "uuid",
+              "paramType": "path",
+              "fullType": "uuid",
+              "required": true,
+              "description": "Website ID"
+            }
+          ],
+          "responseType": "webhosting.Domain[]",
+          "noAuthentication": false,
+          "iamActions": [
+            {
+              "name": "webHosting:apiovh:website/domain/get",
+              "required": true
+            }
+          ]
+        }
+      ],
+      "description": ""
+    }
+  ],
+  "resourcePath": "/webhosting",
+  "basePath": "https://eu.api.ovh.com/v2",
+  "models": {
+    "common.CurrentTask": {
+      "id": "CurrentTask",
+      "namespace": "common",
+      "description": "Asynchronous operation currently running",
+      "properties": {
+        "errors": {
+          "type": "common.TaskError[]",
+          "fullType": "common.TaskError[]",
+          "canBeNull": true,
+          "readOnly": true,
+          "description": "Errors that occured on the task",
+          "required": false
+        },
+        "id": {
+          "type": "uuid",
+          "fullType": "uuid",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "Identifier of the current task",
+          "required": false
+        },
+        "link": {
+          "type": "string",
+          "fullType": "string",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "Link to the task details",
+          "required": false
+        },
+        "status": {
+          "type": "common.CurrentTaskStatusEnum",
+          "fullType": "common.CurrentTaskStatusEnum",
+          "canBeNull": true,
+          "readOnly": true,
+          "description": "Current global status of the current task",
+          "required": false
+        },
+        "type": {
+          "type": "string",
+          "fullType": "string",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "Type of the current task",
+          "required": false
+        }
+      }
+    },
+    "common.CurrentTaskStatusEnum": {
+      "id": "CurrentTaskStatusEnum",
+      "namespace": "common",
+      "description": "Current status of a task. A task in ERROR cannot be retried without your inputs. PENDING tasks will be executed as soon as possible. A RUNNING task is currently executing your original request. SCHEDULED is used for tasks that will be executed in the future",
+      "enum": [
+        "ERROR",
+        "PENDING",
+        "RUNNING",
+        "SCHEDULED",
+        "WAITING_USER_INPUT"
+      ],
+      "enumType": "string"
+    },
+    "common.ResourceStatusEnum": {
+      "id": "ResourceStatusEnum",
+      "namespace": "common",
+      "description": "ResourceStatusEnum",
+      "enum": [
+        "CREATING",
+        "DELETING",
+        "ERROR",
+        "OUT_OF_SYNC",
+        "READY",
+        "SUSPENDED",
+        "UPDATING"
+      ],
+      "enumType": "string"
+    },
+    "common.TaskError": {
+      "id": "TaskError",
+      "namespace": "common",
+      "description": "Errors that occured on the task",
+      "properties": {
+        "message": {
+          "type": "string",
+          "fullType": "string",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "Error description",
+          "required": false
+        }
+      }
+    },
+    "iam.ResourceMetadata": {
+      "id": "ResourceMetadata",
+      "namespace": "iam",
+      "description": "IAM resource metadata embedded in services models",
+      "properties": {
+        "displayName": {
+          "type": "string",
+          "fullType": "string",
+          "canBeNull": true,
+          "readOnly": true,
+          "description": "Resource display name",
+          "required": false
+        },
+        "id": {
+          "type": "uuid",
+          "fullType": "uuid",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "Unique identifier of the resource",
+          "required": false
+        },
+        "state": {
+          "type": "iam.ResourceMetadata.StateEnum",
+          "fullType": "iam.ResourceMetadata.StateEnum",
+          "canBeNull": true,
+          "readOnly": true,
+          "description": "Resource state",
+          "required": false
+        },
+        "tags": {
+          "type": "map[string]string",
+          "fullType": "map[string]string",
+          "canBeNull": true,
+          "readOnly": true,
+          "description": "Resource tags. Tags that were internally computed are prefixed with ovh:",
+          "required": false
+        },
+        "urn": {
+          "type": "string",
+          "fullType": "string",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "Unique resource name used in policies",
+          "required": false
+        }
+      }
+    },
+    "iam.ResourceMetadata.StateEnum": {
+      "id": "StateEnum",
+      "namespace": "iam.ResourceMetadata",
+      "description": "Resource state",
+      "enum": [
+        "EXPIRED",
+        "IN_CREATION",
+        "OK",
+        "SUSPENDED"
+      ],
+      "enumType": "string"
+    },
+    "iam.resource.TagFilter": {
+      "id": "TagFilter",
+      "namespace": "iam.resource",
+      "description": "Resource tag filter",
+      "properties": {
+        "operator": {
+          "type": "iam.resource.TagFilter.OperatorEnum",
+          "fullType": "iam.resource.TagFilter.OperatorEnum",
+          "canBeNull": true,
+          "readOnly": true,
+          "description": "Operator to use in order to filter on the value (defaults to 'EQ')",
+          "required": false
+        },
+        "value": {
+          "type": "string",
+          "fullType": "string",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "Value to use in order to filter tags",
+          "required": false
+        }
+      }
+    },
+    "iam.resource.TagFilter.OperatorEnum": {
+      "id": "OperatorEnum",
+      "namespace": "iam.resource.TagFilter",
+      "description": "Operator that can be used in order to filter resources tags",
+      "enum": [
+        "EQ",
+        "EXISTS",
+        "ILIKE",
+        "LIKE",
+        "NEQ",
+        "NEXISTS"
+      ],
+      "enumType": "string"
+    },
+    "webhosting.AttachedDomain": {
+      "id": "AttachedDomain",
+      "namespace": "webhosting",
+      "description": "Webhosting attached domain",
+      "properties": {
+        "checksum": {
+          "type": "string",
+          "fullType": "string",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "Computed hash used to control concurrent modification requests. Here, it represents the current target specification value",
+          "required": false
+        },
+        "currentState": {
+          "type": "webhosting.AttachedDomainCurrentState",
+          "fullType": "webhosting.AttachedDomainCurrentState",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "Current state of the attached domain",
+          "required": false
+        },
+        "currentTasks": {
+          "type": "common.CurrentTask[]",
+          "fullType": "common.CurrentTask[]",
+          "canBeNull": true,
+          "readOnly": true,
+          "description": "Ongoing asynchronous tasks related to the attached domain",
+          "required": false
+        },
+        "id": {
+          "type": "uuid",
+          "fullType": "uuid",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "Unique identifier of the attached domain",
+          "required": false
+        },
+        "resourceStatus": {
+          "type": "common.ResourceStatusEnum",
+          "fullType": "common.ResourceStatusEnum",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "Webhosting attached domain readiness in the system",
+          "required": false
+        }
+      }
+    },
+    "webhosting.AttachedDomainCurrentState": {
+      "id": "AttachedDomainCurrentState",
+      "namespace": "webhosting",
+      "description": "Current state of the hosting web attached domain",
+      "properties": {
+        "cdn": {
+          "type": "webhosting.CdnStatus",
+          "fullType": "webhosting.CdnStatus",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "CDN related to the attached domain",
+          "required": false
+        },
+        "firewall": {
+          "type": "webhosting.FirewallStatus",
+          "fullType": "webhosting.FirewallStatus",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "Firewall of the attached domain",
+          "required": false
+        },
+        "fqdn": {
+          "type": "string",
+          "fullType": "string",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "FQDN of the attached domain",
+          "required": false
+        },
+        "git": {
+          "type": "webhosting.Git",
+          "fullType": "webhosting.Git",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "Git details of the attached domain",
+          "required": false
+        },
+        "hosting": {
+          "type": "webhosting.AttachedDomainHosting",
+          "fullType": "webhosting.AttachedDomainHosting",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "Hosting details of the attached domain",
+          "required": false
+        },
+        "isDefault": {
+          "type": "boolean",
+          "fullType": "boolean",
+          "canBeNull": true,
+          "readOnly": true,
+          "description": "Default attached domain can't be updated and can't support SSL",
+          "required": false
+        },
+        "ownLog": {
+          "type": "string",
+          "fullType": "string",
+          "canBeNull": true,
+          "readOnly": true,
+          "description": "Domain to separate the logs from the others attached domains",
+          "required": false
+        },
+        "path": {
+          "type": "string",
+          "fullType": "string",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "Path of the attached domain",
+          "required": false
+        },
+        "ssl": {
+          "type": "webhosting.AttachedDomainSsl",
+          "fullType": "webhosting.AttachedDomainSsl",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "SSL details",
+          "required": false
+        }
+      }
+    },
+    "webhosting.AttachedDomainHosting": {
+      "id": "AttachedDomainHosting",
+      "namespace": "webhosting",
+      "description": "Hosting details of the attached domain",
+      "properties": {
+        "boostOffer": {
+          "type": "string",
+          "fullType": "string",
+          "canBeNull": true,
+          "readOnly": true,
+          "description": "Boost offer of the hosting related to the attached domain",
+          "required": false
+        },
+        "displayName": {
+          "type": "string",
+          "fullType": "string",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "Display name of the hosting related to the attached domain",
+          "required": false
+        },
+        "offer": {
+          "type": "string",
+          "fullType": "string",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "Offer of the hosting related to the attached domain",
+          "required": false
+        },
+        "serviceName": {
+          "type": "string",
+          "fullType": "string",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "Service name of the hosting related to the attached domain",
+          "required": false
+        }
+      }
+    },
+    "webhosting.AttachedDomainSsl": {
+      "id": "AttachedDomainSsl",
+      "namespace": "webhosting",
+      "description": "SSL details of the attached domain",
+      "properties": {
+        "status": {
+          "type": "webhosting.SslStatusEnum",
+          "fullType": "webhosting.SslStatusEnum",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "SSL status",
+          "required": false
+        }
+      }
+    },
+    "webhosting.CdnStatus": {
+      "id": "CdnStatus",
+      "namespace": "webhosting",
+      "description": "CDN details",
+      "properties": {
+        "status": {
+          "type": "webhosting.CdnStatusEnum",
+          "fullType": "webhosting.CdnStatusEnum",
+          "canBeNull": false,
+          "readOnly": false,
+          "description": "CDN status",
+          "required": true
+        }
+      }
+    },
+    "webhosting.CdnStatusEnum": {
+      "id": "CdnStatusEnum",
+      "namespace": "webhosting",
+      "description": "Cdn status enum",
+      "enum": [
+        "ACTIVE",
+        "NONE"
+      ],
+      "enumType": "string"
+    },
+    "webhosting.DatabaseConfiguration": {
+      "id": "DatabaseConfiguration",
+      "namespace": "webhosting",
+      "description": "Database Configuration",
+      "properties": {
+        "databaseName": {
+          "type": "string",
+          "fullType": "string",
+          "canBeNull": false,
+          "readOnly": false,
+          "description": "Name of the database to use during the module installation",
+          "required": true
+        },
+        "password": {
+          "type": "string",
+          "fullType": "string",
+          "canBeNull": false,
+          "readOnly": false,
+          "description": "Database password used for authentication",
+          "required": true
+        },
+        "port": {
+          "type": "long",
+          "fullType": "long",
+          "canBeNull": false,
+          "readOnly": false,
+          "description": "Port used to connect to the database server",
+          "required": true
+        },
+        "server": {
+          "type": "string",
+          "fullType": "string",
+          "canBeNull": false,
+          "readOnly": false,
+          "description": "Hostname or address of the database server (e.g. mydb.mysql.db)",
+          "required": true
+        },
+        "user": {
+          "type": "string",
+          "fullType": "string",
+          "canBeNull": false,
+          "readOnly": false,
+          "description": "Database username used for authentication",
+          "required": true
+        }
+      }
+    },
+    "webhosting.Domain": {
+      "id": "Domain",
+      "namespace": "webhosting",
+      "description": "Webhosting Domain",
+      "properties": {
+        "checksum": {
+          "type": "string",
+          "fullType": "string",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "Computed hash used to control concurrent modification requests. Here, it represents the current target specification value",
+          "required": false
+        },
+        "currentState": {
+          "type": "webhosting.DomainCurrentState",
+          "fullType": "webhosting.DomainCurrentState",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "Current state of the domain",
+          "required": false
+        },
+        "currentTasks": {
+          "type": "common.CurrentTask[]",
+          "fullType": "common.CurrentTask[]",
+          "canBeNull": true,
+          "readOnly": true,
+          "description": "Ongoing asynchronous tasks related to the website's domain",
+          "required": false
+        },
+        "id": {
+          "type": "string",
+          "fullType": "string",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "Unique identifier of the domain",
+          "required": false
+        },
+        "resourceStatus": {
+          "type": "common.ResourceStatusEnum",
+          "fullType": "common.ResourceStatusEnum",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "Webhosting Domain readiness in the system",
+          "required": false
+        }
+      }
+    },
+    "webhosting.DomainCurrentState": {
+      "id": "DomainCurrentState",
+      "namespace": "webhosting",
+      "description": "Current state of the website's domain",
+      "properties": {
+        "cdn": {
+          "type": "webhosting.CdnStatus",
+          "fullType": "webhosting.CdnStatus",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "CDN status for domain",
+          "required": false
+        },
+        "firewall": {
+          "type": "webhosting.FirewallStatus",
+          "fullType": "webhosting.FirewallStatus",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "Firewall status for domain",
+          "required": false
+        },
+        "fqdn": {
+          "type": "string",
+          "fullType": "string",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "FQDN of the domain",
+          "required": false
+        },
+        "path": {
+          "type": "string",
+          "fullType": "string",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "Target specification of the domain path",
+          "required": false
+        },
+        "websiteId": {
+          "type": "string",
+          "fullType": "string",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "Unique identifier of the website the domain belongs to",
+          "required": false
+        }
+      }
+    },
+    "webhosting.FirewallStatus": {
+      "id": "FirewallStatus",
+      "namespace": "webhosting",
+      "description": "Firewall details",
+      "properties": {
+        "status": {
+          "type": "webhosting.FirewallStatusEnum",
+          "fullType": "webhosting.FirewallStatusEnum",
+          "canBeNull": false,
+          "readOnly": false,
+          "description": "Firewall status",
+          "required": true
+        }
+      }
+    },
+    "webhosting.FirewallStatusEnum": {
+      "id": "FirewallStatusEnum",
+      "namespace": "webhosting",
+      "description": "Firewall status enum",
+      "enum": [
+        "ACTIVE",
+        "NONE"
+      ],
+      "enumType": "string"
+    },
+    "webhosting.Git": {
+      "id": "Git",
+      "namespace": "webhosting",
+      "description": "Git details",
+      "properties": {
+        "status": {
+          "type": "webhosting.GitStatusEnum",
+          "fullType": "webhosting.GitStatusEnum",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "Git status",
+          "required": false
+        },
+        "vcsBranch": {
+          "type": "string",
+          "fullType": "string",
+          "canBeNull": true,
+          "readOnly": true,
+          "description": "Branch of the repository containing the website source code to deploy",
+          "required": false
+        },
+        "vcsUrl": {
+          "type": "string",
+          "fullType": "string",
+          "canBeNull": true,
+          "readOnly": true,
+          "description": "URL of the repository containing the website source code to deploy",
+          "required": false
+        }
+      }
+    },
+    "webhosting.GitStatusEnum": {
+      "id": "GitStatusEnum",
+      "namespace": "webhosting",
+      "description": "Git status",
+      "enum": [
+        "CREATED",
+        "CREATING",
+        "DELETING",
+        "DEPLOYING",
+        "DISABLED",
+        "ERROR",
+        "INITIAL_ERROR"
+      ],
+      "enumType": "string"
+    },
+    "webhosting.IpLocationCountryEnum": {
+      "id": "IpLocationCountryEnum",
+      "namespace": "webhosting",
+      "description": "Available cluster countries",
+      "enum": [
+        "BE",
+        "CA",
+        "CZ",
+        "DE",
+        "ES",
+        "FI",
+        "FR",
+        "IE",
+        "IT",
+        "LT",
+        "NL",
+        "PL",
+        "PT",
+        "UK"
+      ],
+      "enumType": "string"
+    },
+    "webhosting.Module": {
+      "id": "Module",
+      "namespace": "webhosting",
+      "description": "Module details",
+      "properties": {
+        "name": {
+          "type": "webhosting.ModuleNameEnum",
+          "fullType": "webhosting.ModuleNameEnum",
+          "canBeNull": false,
+          "readOnly": false,
+          "description": "Module name",
+          "required": true
+        }
+      }
+    },
+    "webhosting.ModuleAdminConfiguration": {
+      "id": "ModuleAdminConfiguration",
+      "namespace": "webhosting",
+      "description": "Administrator credentials and settings for module deployment",
+      "properties": {
+        "adminLogin": {
+          "type": "string",
+          "fullType": "string",
+          "canBeNull": false,
+          "readOnly": false,
+          "description": "Administrator username for accessing the module backend",
+          "required": true
+        },
+        "adminPassword": {
+          "type": "string",
+          "fullType": "string",
+          "canBeNull": false,
+          "readOnly": false,
+          "description": "Password for the module administrator account",
+          "required": true
+        },
+        "domain": {
+          "type": "string",
+          "fullType": "string",
+          "canBeNull": false,
+          "readOnly": false,
+          "description": "Domain name on which the module will be installed",
+          "required": true
+        },
+        "installPath": {
+          "type": "string",
+          "fullType": "string",
+          "canBeNull": true,
+          "readOnly": false,
+          "description": "Directory path where the module will be installed inside the hosting",
+          "required": false
+        },
+        "language": {
+          "type": "webhosting.ModuleLanguageEnum",
+          "fullType": "webhosting.ModuleLanguageEnum",
+          "canBeNull": false,
+          "readOnly": false,
+          "description": "Language selected for module installation",
+          "required": true
+        }
+      }
+    },
+    "webhosting.ModuleLanguageEnum": {
+      "id": "ModuleLanguageEnum",
+      "namespace": "webhosting",
+      "description": "Available languages",
+      "enum": [
+        "cz",
+        "de",
+        "en",
+        "es",
+        "fi",
+        "fr",
+        "it",
+        "lt",
+        "nl",
+        "pl",
+        "pt"
+      ],
+      "enumType": "string"
+    },
+    "webhosting.ModuleNameEnum": {
+      "id": "ModuleNameEnum",
+      "namespace": "webhosting",
+      "description": "Module name",
+      "enum": [
+        "DRUPAL",
+        "JOOMLA",
+        "PRESTASHOP",
+        "WORDPRESS"
+      ],
+      "enumType": "string"
+    },
+    "webhosting.ModuleStatus": {
+      "id": "ModuleStatus",
+      "namespace": "webhosting",
+      "description": "Module enabled status",
+      "properties": {
+        "enabled": {
+          "type": "boolean",
+          "fullType": "boolean",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "module enabled status",
+          "required": false
+        }
+      }
+    },
+    "webhosting.SSL": {
+      "id": "SSL",
+      "namespace": "webhosting",
+      "description": "Webhosting SSL",
+      "properties": {
+        "checksum": {
+          "type": "string",
+          "fullType": "string",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "Computed hash used to control concurrent modification requests. Here, it represents the current target specification value",
+          "required": false
+        },
+        "currentState": {
+          "type": "webhosting.SSLCurrentState",
+          "fullType": "webhosting.SSLCurrentState",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "Current state of the SSL",
+          "required": false
+        },
+        "currentTasks": {
+          "type": "common.CurrentTask[]",
+          "fullType": "common.CurrentTask[]",
+          "canBeNull": true,
+          "readOnly": true,
+          "description": "Ongoing asynchronous tasks related to the SSL",
+          "required": false
+        },
+        "id": {
+          "type": "uuid",
+          "fullType": "uuid",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "Unique identifier of the SSL",
+          "required": false
+        },
+        "resourceStatus": {
+          "type": "common.ResourceStatusEnum",
+          "fullType": "common.ResourceStatusEnum",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "Webhosting SSL readiness in the system",
+          "required": false
+        }
+      }
+    },
+    "webhosting.SSLCertificateTypeEnum": {
+      "id": "SSLCertificateTypeEnum",
+      "namespace": "webhosting",
+      "description": "SSL certificate type enum",
+      "enum": [
+        "COMODO",
+        "CUSTOM",
+        "LETSENCRYPT",
+        "SECTIGO"
+      ],
+      "enumType": "string"
+    },
+    "webhosting.SSLCurrentState": {
+      "id": "SSLCurrentState",
+      "namespace": "webhosting",
+      "description": "Current state of the web hosting SSL certificate",
+      "properties": {
+        "additionalDomains": {
+          "type": "string[]",
+          "fullType": "string[]",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "Additional domains of the SSL",
+          "required": false
+        },
+        "certificateType": {
+          "type": "webhosting.SSLCertificateTypeEnum",
+          "fullType": "webhosting.SSLCertificateTypeEnum",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "Certificate type of the SSL",
+          "required": false
+        },
+        "createdAt": {
+          "type": "datetime",
+          "fullType": "datetime",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "Date of creation of the SSL",
+          "required": false
+        },
+        "expiredAt": {
+          "type": "datetime",
+          "fullType": "datetime",
+          "canBeNull": true,
+          "readOnly": true,
+          "description": "Date of expiration of the SSL",
+          "required": false
+        },
+        "mainDomain": {
+          "type": "string",
+          "fullType": "string",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "Main domain of the SSL",
+          "required": false
+        },
+        "state": {
+          "type": "webhosting.SSLStateEnum",
+          "fullType": "webhosting.SSLStateEnum",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "State of the SSL",
+          "required": false
+        }
+      }
+    },
+    "webhosting.SSLStateEnum": {
+      "id": "SSLStateEnum",
+      "namespace": "webhosting",
+      "description": "SSL state enum",
+      "enum": [
+        "ACTIVE",
+        "CREATING",
+        "DELETING",
+        "EXPIRED",
+        "IMPORTING",
+        "REGENERATING"
+      ],
+      "enumType": "string"
+    },
+    "webhosting.SslStatusEnum": {
+      "id": "SslStatusEnum",
+      "namespace": "webhosting",
+      "description": "SSL status enum",
+      "enum": [
+        "ACTIVE",
+        "NONE"
+      ],
+      "enumType": "string"
+    },
+    "webhosting.User": {
+      "id": "User",
+      "namespace": "webhosting",
+      "description": "Webhosting User",
+      "properties": {
+        "checksum": {
+          "type": "string",
+          "fullType": "string",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "Computed hash used to control concurrent modification requests. Here, it represents the current target specification value",
+          "required": false
+        },
+        "currentState": {
+          "type": "webhosting.UserCurrentState",
+          "fullType": "webhosting.UserCurrentState",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "Current state of the User",
+          "required": false
+        },
+        "currentTasks": {
+          "type": "common.CurrentTask[]",
+          "fullType": "common.CurrentTask[]",
+          "canBeNull": true,
+          "readOnly": true,
+          "description": "Ongoing asynchronous tasks related to the User",
+          "required": false
+        },
+        "id": {
+          "type": "uuid",
+          "fullType": "uuid",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "Unique identifier of the User",
+          "required": false
+        },
+        "resourceStatus": {
+          "type": "common.ResourceStatusEnum",
+          "fullType": "common.ResourceStatusEnum",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "Webhosting User readiness in the system",
+          "required": false
+        },
+        "targetSpec": {
+          "type": "webhosting.UserTargetSpec",
+          "fullType": "webhosting.UserTargetSpec",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "Latest target specification of the user",
+          "required": false
+        }
+      }
+    },
+    "webhosting.UserCurrentState": {
+      "id": "UserCurrentState",
+      "namespace": "webhosting",
+      "description": "Current state of the web hosting User",
+      "properties": {
+        "home": {
+          "type": "string",
+          "fullType": "string",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "Home of the User",
+          "required": false
+        },
+        "login": {
+          "type": "string",
+          "fullType": "string",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "Login of the User",
+          "required": false
+        },
+        "sshState": {
+          "type": "webhosting.UserSSHStateEnum",
+          "fullType": "webhosting.UserSSHStateEnum",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "SSH state of the User",
+          "required": false
+        },
+        "state": {
+          "type": "webhosting.UserStateEnum",
+          "fullType": "webhosting.UserStateEnum",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "State of the User",
+          "required": false
+        }
+      }
+    },
+    "webhosting.UserPatchPayload": {
+      "id": "UserPatchPayload",
+      "namespace": "webhosting",
+      "description": "Object representing PATCH user route payload",
+      "properties": {
+        "targetSpec": {
+          "type": "webhosting.UserPatchTargetSpec",
+          "fullType": "webhosting.UserPatchTargetSpec",
+          "canBeNull": false,
+          "readOnly": false,
+          "description": "Patch target specification of the user",
+          "required": false
+        }
+      }
+    },
+    "webhosting.UserPatchTargetSpec": {
+      "id": "UserPatchTargetSpec",
+      "namespace": "webhosting",
+      "description": "User patch payload target specification",
+      "properties": {
+        "home": {
+          "type": "string",
+          "fullType": "string",
+          "canBeNull": true,
+          "readOnly": false,
+          "description": "User home",
+          "required": false
+        },
+        "password": {
+          "type": "string",
+          "fullType": "string",
+          "canBeNull": true,
+          "readOnly": false,
+          "description": "User password",
+          "required": false
+        },
+        "sshState": {
+          "type": "webhosting.UserSSHStateEnum",
+          "fullType": "webhosting.UserSSHStateEnum",
+          "canBeNull": true,
+          "readOnly": false,
+          "description": "SSH state of the User",
+          "required": false
+        },
+        "state": {
+          "type": "webhosting.UserStateEnum",
+          "fullType": "webhosting.UserStateEnum",
+          "canBeNull": true,
+          "readOnly": false,
+          "description": "State of the User",
+          "required": false
+        }
+      }
+    },
+    "webhosting.UserPostPayload": {
+      "id": "UserPostPayload",
+      "namespace": "webhosting",
+      "description": "Object representing POST user route payload",
+      "properties": {
+        "targetSpec": {
+          "type": "webhosting.UserPostTargetSpec",
+          "fullType": "webhosting.UserPostTargetSpec",
+          "canBeNull": false,
+          "readOnly": false,
+          "description": "Post target specification of the user",
+          "required": true
+        }
+      }
+    },
+    "webhosting.UserPostTargetSpec": {
+      "id": "UserPostTargetSpec",
+      "namespace": "webhosting",
+      "description": "User post payload target specification",
+      "properties": {
+        "home": {
+          "type": "string",
+          "fullType": "string",
+          "canBeNull": false,
+          "readOnly": false,
+          "description": "User home",
+          "required": true
+        },
+        "login": {
+          "type": "string",
+          "fullType": "string",
+          "canBeNull": false,
+          "readOnly": false,
+          "description": "User login",
+          "required": true
+        },
+        "password": {
+          "type": "string",
+          "fullType": "string",
+          "canBeNull": false,
+          "readOnly": false,
+          "description": "User password",
+          "required": true
+        },
+        "sshState": {
+          "type": "webhosting.UserSSHStateEnum",
+          "fullType": "webhosting.UserSSHStateEnum",
+          "canBeNull": false,
+          "readOnly": false,
+          "description": "SSH state of the User",
+          "required": true
+        }
+      }
+    },
+    "webhosting.UserPutPayload": {
+      "id": "UserPutPayload",
+      "namespace": "webhosting",
+      "description": "Object representing PUT user route payload",
+      "properties": {
+        "targetSpec": {
+          "type": "webhosting.UserPutTargetSpec",
+          "fullType": "webhosting.UserPutTargetSpec",
+          "canBeNull": false,
+          "readOnly": false,
+          "description": "Put target specification of the user",
+          "required": true
+        }
+      }
+    },
+    "webhosting.UserPutTargetSpec": {
+      "id": "UserPutTargetSpec",
+      "namespace": "webhosting",
+      "description": "User put payload target specification",
+      "properties": {
+        "home": {
+          "type": "string",
+          "fullType": "string",
+          "canBeNull": false,
+          "readOnly": false,
+          "description": "User home",
+          "required": true
+        },
+        "password": {
+          "type": "string",
+          "fullType": "string",
+          "canBeNull": false,
+          "readOnly": false,
+          "description": "User password",
+          "required": true
+        },
+        "sshState": {
+          "type": "webhosting.UserSSHStateEnum",
+          "fullType": "webhosting.UserSSHStateEnum",
+          "canBeNull": false,
+          "readOnly": false,
+          "description": "SSH state of the User",
+          "required": true
+        },
+        "state": {
+          "type": "webhosting.UserStateEnum",
+          "fullType": "webhosting.UserStateEnum",
+          "canBeNull": false,
+          "readOnly": false,
+          "description": "State of the User",
+          "required": true
+        }
+      }
+    },
+    "webhosting.UserSSHStateEnum": {
+      "id": "UserSSHStateEnum",
+      "namespace": "webhosting",
+      "description": "User SSH state enum",
+      "enum": [
+        "ACTIVE",
+        "NONE",
+        "SFTP_ONLY"
+      ],
+      "enumType": "string"
+    },
+    "webhosting.UserStateEnum": {
+      "id": "UserStateEnum",
+      "namespace": "webhosting",
+      "description": "User state enum",
+      "enum": [
+        "OFF",
+        "RW"
+      ],
+      "enumType": "string"
+    },
+    "webhosting.UserTargetSpec": {
+      "id": "UserTargetSpec",
+      "namespace": "webhosting",
+      "description": "Target specification of the user",
+      "properties": {
+        "home": {
+          "type": "string",
+          "fullType": "string",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "User home",
+          "required": false
+        },
+        "sshState": {
+          "type": "webhosting.UserSSHStateEnum",
+          "fullType": "webhosting.UserSSHStateEnum",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "SSH state of the User",
+          "required": false
+        },
+        "state": {
+          "type": "webhosting.UserStateEnum",
+          "fullType": "webhosting.UserStateEnum",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "State of the User",
+          "required": false
+        }
+      }
+    },
+    "webhosting.Web": {
+      "id": "Web",
+      "namespace": "webhosting",
+      "description": "Webhosting Web",
+      "properties": {
+        "checksum": {
+          "type": "string",
+          "fullType": "string",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "Computed hash used to control concurrent modification requests. Here, it represents the current target specification value",
+          "required": false
+        },
+        "currentState": {
+          "type": "webhosting.WebCurrentState",
+          "fullType": "webhosting.WebCurrentState",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "Current state of the hosting plan",
+          "required": false
+        },
+        "currentTasks": {
+          "type": "common.CurrentTask[]",
+          "fullType": "common.CurrentTask[]",
+          "canBeNull": true,
+          "readOnly": true,
+          "description": "Ongoing asynchronous tasks related to the hosting plan",
+          "required": false
+        },
+        "id": {
+          "type": "string",
+          "fullType": "string",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "Unique identifier for the resource. Here, the service name is used as an identifier",
+          "required": false
+        },
+        "resourceStatus": {
+          "type": "common.ResourceStatusEnum",
+          "fullType": "common.ResourceStatusEnum",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "Webhosting resource readiness in the system",
+          "required": false
+        }
+      }
+    },
+    "webhosting.WebCurrentState": {
+      "id": "WebCurrentState",
+      "namespace": "webhosting",
+      "description": "Current state of the Web",
+      "properties": {
+        "name": {
+          "type": "string",
+          "fullType": "string",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "Name of the hosting",
+          "required": false
+        }
+      }
+    },
+    "webhosting.WebWithIAM": {
+      "id": "Web",
+      "namespace": "webhosting",
+      "description": "Webhosting Web",
+      "properties": {
+        "checksum": {
+          "type": "string",
+          "fullType": "string",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "Computed hash used to control concurrent modification requests. Here, it represents the current target specification value",
+          "required": false
+        },
+        "currentState": {
+          "type": "webhosting.WebCurrentState",
+          "fullType": "webhosting.WebCurrentState",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "Current state of the hosting plan",
+          "required": false
+        },
+        "currentTasks": {
+          "type": "common.CurrentTask[]",
+          "fullType": "common.CurrentTask[]",
+          "canBeNull": true,
+          "readOnly": true,
+          "description": "Ongoing asynchronous tasks related to the hosting plan",
+          "required": false
+        },
+        "iam": {
+          "type": "iam.ResourceMetadata",
+          "canBeNull": true,
+          "readOnly": true,
+          "description": "IAM resource metadata",
+          "required": false
+        },
+        "id": {
+          "type": "string",
+          "fullType": "string",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "Unique identifier for the resource. Here, the service name is used as an identifier",
+          "required": false
+        },
+        "resourceStatus": {
+          "type": "common.ResourceStatusEnum",
+          "fullType": "common.ResourceStatusEnum",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "Webhosting resource readiness in the system",
+          "required": false
+        }
+      }
+    },
+    "webhosting.Website": {
+      "id": "Website",
+      "namespace": "webhosting",
+      "description": "Webhosting Website",
+      "properties": {
+        "checksum": {
+          "type": "string",
+          "fullType": "string",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "Computed hash used to control concurrent modification requests. Here, it represents the current target specification value",
+          "required": false
+        },
+        "currentState": {
+          "type": "webhosting.WebsiteCurrentState",
+          "fullType": "webhosting.WebsiteCurrentState",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "Current state of the website",
+          "required": false
+        },
+        "currentTasks": {
+          "type": "common.CurrentTask[]",
+          "fullType": "common.CurrentTask[]",
+          "canBeNull": true,
+          "readOnly": true,
+          "description": "Ongoing asynchronous tasks related to the website",
+          "required": false
+        },
+        "id": {
+          "type": "uuid",
+          "fullType": "uuid",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "Unique identifier of the website",
+          "required": false
+        },
+        "resourceStatus": {
+          "type": "common.ResourceStatusEnum",
+          "fullType": "common.ResourceStatusEnum",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "Webhosting Website readiness in the system",
+          "required": false
+        },
+        "targetSpec": {
+          "type": "webhosting.WebsiteTargetSpec",
+          "fullType": "webhosting.WebsiteTargetSpec",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "Webhosting Website target specification",
+          "required": false
+        }
+      }
+    },
+    "webhosting.WebsiteCurrentState": {
+      "id": "WebsiteCurrentState",
+      "namespace": "webhosting",
+      "description": "Current state of the website",
+      "properties": {
+        "git": {
+          "type": "webhosting.Git",
+          "fullType": "webhosting.Git",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "Git details of the website",
+          "required": false
+        },
+        "linkedDomains": {
+          "type": "long",
+          "fullType": "long",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "Number of domain linked to a website",
+          "required": false
+        },
+        "module": {
+          "type": "webhosting.ModuleStatus",
+          "fullType": "webhosting.ModuleStatus",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "module status of the website",
+          "required": false
+        },
+        "name": {
+          "type": "string",
+          "fullType": "string",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "Name of the website",
+          "required": false
+        },
+        "path": {
+          "type": "string",
+          "fullType": "string",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "Path of the website",
+          "required": false
+        }
+      }
+    },
+    "webhosting.WebsitePostPayload": {
+      "id": "WebsitePostPayload",
+      "namespace": "webhosting",
+      "description": "website post payload target specification",
+      "properties": {
+        "targetSpec": {
+          "type": "webhosting.WebsitePostTargetSpec",
+          "fullType": "webhosting.WebsitePostTargetSpec",
+          "canBeNull": false,
+          "readOnly": false,
+          "description": "Target specification of the website",
+          "required": true
+        }
+      }
+    },
+    "webhosting.WebsitePostTargetSpec": {
+      "id": "WebsitePostTargetSpec",
+      "namespace": "webhosting",
+      "description": "Post payload of the website",
+      "properties": {
+        "adminConfiguration": {
+          "type": "webhosting.ModuleAdminConfiguration",
+          "fullType": "webhosting.ModuleAdminConfiguration",
+          "canBeNull": true,
+          "readOnly": false,
+          "description": "Configuration of the admin account for module installation",
+          "required": false
+        },
+        "bypassDNSConfiguration": {
+          "type": "boolean",
+          "fullType": "boolean",
+          "canBeNull": true,
+          "readOnly": false,
+          "description": "If set to true, DNS zone will not be updated by the operation",
+          "required": false
+        },
+        "cdn": {
+          "type": "webhosting.CdnStatus",
+          "fullType": "webhosting.CdnStatus",
+          "canBeNull": true,
+          "readOnly": false,
+          "description": "CDN related to the domain",
+          "required": false
+        },
+        "databaseConfiguration": {
+          "type": "webhosting.DatabaseConfiguration",
+          "fullType": "webhosting.DatabaseConfiguration",
+          "canBeNull": true,
+          "readOnly": false,
+          "description": "Configuration of the database for module installation",
+          "required": false
+        },
+        "firewall": {
+          "type": "webhosting.FirewallStatus",
+          "fullType": "webhosting.FirewallStatus",
+          "canBeNull": true,
+          "readOnly": false,
+          "description": "Firewall of the domain",
+          "required": false
+        },
+        "fqdn": {
+          "type": "string",
+          "fullType": "string",
+          "canBeNull": false,
+          "readOnly": false,
+          "description": "FQDN of the domain",
+          "required": true
+        },
+        "ipLocation": {
+          "type": "webhosting.IpLocationCountryEnum",
+          "fullType": "webhosting.IpLocationCountryEnum",
+          "canBeNull": true,
+          "readOnly": false,
+          "description": "Change domain's DNS to the IP of the country",
+          "required": false
+        },
+        "module": {
+          "type": "webhosting.Module",
+          "fullType": "webhosting.Module",
+          "canBeNull": true,
+          "readOnly": false,
+          "description": "Type of module to install on the domain",
+          "required": false
+        },
+        "name": {
+          "type": "string",
+          "fullType": "string",
+          "canBeNull": false,
+          "readOnly": false,
+          "description": "Target specification of the website name",
+          "required": true
+        },
+        "path": {
+          "type": "string",
+          "fullType": "string",
+          "canBeNull": true,
+          "readOnly": false,
+          "description": "Path of the domain",
+          "required": false
+        }
+      }
+    },
+    "webhosting.WebsitePutPayload": {
+      "id": "WebsitePutPayload",
+      "namespace": "webhosting",
+      "description": "website put payload target specification",
+      "properties": {
+        "targetSpec": {
+          "type": "webhosting.WebsiteTargetSpec",
+          "fullType": "webhosting.WebsiteTargetSpec",
+          "canBeNull": false,
+          "readOnly": false,
+          "description": "Target specification of the resource",
+          "required": true
+        }
+      }
+    },
+    "webhosting.WebsiteTargetSpec": {
+      "id": "WebsiteTargetSpec",
+      "namespace": "webhosting",
+      "description": "Target specification of a webhosting website",
+      "properties": {
+        "name": {
+          "type": "string",
+          "fullType": "string",
+          "canBeNull": false,
+          "readOnly": false,
+          "description": "Target specification of the website name",
+          "required": true
+        }
+      }
+    }
+  }
+}

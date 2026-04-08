@@ -1,0 +1,3724 @@
+{
+  "apiVersion": "1.0",
+  "apis": [
+    {
+      "path": "/overTheBox",
+      "operations": [
+        {
+          "apiStatus": {
+            "description": "Stable production version",
+            "value": "PRODUCTION"
+          },
+          "httpMethod": "GET",
+          "parameters": [
+            {
+              "name": "iamTags",
+              "dataType": "map[string][]iam.resource.TagFilter",
+              "paramType": "query",
+              "required": false,
+              "description": "Filter resources on IAM tags"
+            }
+          ],
+          "responseType": "string[]",
+          "noAuthentication": false,
+          "description": "List available services",
+          "iamActions": [
+            {
+              "name": "overTheBox:apiovh:get",
+              "required": true
+            }
+          ]
+        }
+      ],
+      "description": "Operations about the OVERTHEBOX service"
+    },
+    {
+      "path": "/overTheBox/availableOffers",
+      "operations": [
+        {
+          "apiStatus": {
+            "description": "Stable production version",
+            "value": "PRODUCTION"
+          },
+          "httpMethod": "GET",
+          "parameters": [],
+          "responseType": "price.OverTheBox.OfferEnum[]",
+          "noAuthentication": false,
+          "description": "List the available offers for the new call",
+          "iamActions": [
+            {
+              "name": "account:apiovh:overTheBox/availableOffers/get",
+              "required": true
+            }
+          ]
+        }
+      ],
+      "description": "List the available offers for the new call"
+    },
+    {
+      "path": "/overTheBox/devices",
+      "operations": [
+        {
+          "apiStatus": {
+            "description": "Stable production version",
+            "value": "PRODUCTION"
+          },
+          "httpMethod": "POST",
+          "parameters": [],
+          "responseType": "overTheBox.DeviceForRegistration[]",
+          "noAuthentication": false,
+          "description": "Get the list of devices connected from the same IP address",
+          "iamActions": [
+            {
+              "name": "account:apiovh:overTheBox/devices/create",
+              "required": true
+            }
+          ]
+        }
+      ],
+      "description": "Get the list of devices connected from the same IP address"
+    },
+    {
+      "path": "/overTheBox/hardware",
+      "operations": [
+        {
+          "apiStatus": {
+            "description": "Stable production version",
+            "value": "PRODUCTION"
+          },
+          "httpMethod": "GET",
+          "parameters": [
+            {
+              "name": "iamTags",
+              "dataType": "map[string][]iam.resource.TagFilter",
+              "paramType": "query",
+              "required": false,
+              "description": "Filter resources on IAM tags"
+            }
+          ],
+          "responseType": "string[]",
+          "noAuthentication": false,
+          "description": "List available services",
+          "iamActions": [
+            {
+              "name": "overTheBoxHardware:apiovh:get",
+              "required": true
+            }
+          ]
+        }
+      ],
+      "description": "Operations about the OVERTHEBOX service"
+    },
+    {
+      "path": "/overTheBox/hardware/available",
+      "operations": [
+        {
+          "apiStatus": {
+            "description": "Stable production version",
+            "value": "PRODUCTION"
+          },
+          "httpMethod": "GET",
+          "parameters": [],
+          "responseType": "string[]",
+          "noAuthentication": false,
+          "description": "List hardware that can be linked to a service",
+          "iamActions": [
+            {
+              "name": "account:apiovh:overTheBoxHardware/available/get",
+              "required": true
+            }
+          ]
+        }
+      ],
+      "description": "List hardware that can be linked to a service"
+    },
+    {
+      "path": "/overTheBox/hardware/{hardwareName}",
+      "operations": [
+        {
+          "apiStatus": {
+            "description": "Stable production version",
+            "value": "PRODUCTION"
+          },
+          "httpMethod": "GET",
+          "parameters": [
+            {
+              "name": "hardwareName",
+              "dataType": "string",
+              "paramType": "path",
+              "fullType": "string",
+              "required": true,
+              "description": "The internal name of your hardware"
+            }
+          ],
+          "responseType": "overTheBox.HardwareWithIAM",
+          "noAuthentication": false,
+          "description": "Get this object properties",
+          "iamActions": [
+            {
+              "name": "overTheBoxHardware:apiovh:get",
+              "required": true
+            }
+          ]
+        }
+      ],
+      "description": "Hardware properties"
+    },
+    {
+      "path": "/overTheBox/{serviceName}",
+      "operations": [
+        {
+          "apiStatus": {
+            "description": "Stable production version",
+            "value": "PRODUCTION"
+          },
+          "httpMethod": "DELETE",
+          "parameters": [
+            {
+              "name": "serviceName",
+              "dataType": "string",
+              "paramType": "path",
+              "fullType": "string",
+              "required": true,
+              "description": "The internal name of your overTheBox offer"
+            }
+          ],
+          "responseType": "void",
+          "noAuthentication": false,
+          "description": "Resiliate a service",
+          "iamActions": [
+            {
+              "name": "overTheBox:apiovh:delete",
+              "required": true
+            }
+          ]
+        },
+        {
+          "apiStatus": {
+            "description": "Stable production version",
+            "value": "PRODUCTION"
+          },
+          "httpMethod": "GET",
+          "parameters": [
+            {
+              "name": "serviceName",
+              "dataType": "string",
+              "paramType": "path",
+              "fullType": "string",
+              "required": true,
+              "description": "The internal name of your overTheBox offer"
+            }
+          ],
+          "responseType": "overTheBox.ServiceWithIAM",
+          "noAuthentication": false,
+          "description": "Get this object properties",
+          "iamActions": [
+            {
+              "name": "overTheBox:apiovh:get",
+              "required": true
+            }
+          ]
+        },
+        {
+          "apiStatus": {
+            "description": "Stable production version",
+            "value": "PRODUCTION"
+          },
+          "httpMethod": "PUT",
+          "parameters": [
+            {
+              "dataType": "overTheBox.Service",
+              "paramType": "body",
+              "fullType": "overTheBox.Service",
+              "required": true,
+              "description": "New object properties"
+            },
+            {
+              "name": "serviceName",
+              "dataType": "string",
+              "paramType": "path",
+              "fullType": "string",
+              "required": true,
+              "description": "The internal name of your overTheBox offer"
+            }
+          ],
+          "responseType": "void",
+          "noAuthentication": false,
+          "description": "Alter this object properties",
+          "iamActions": [
+            {
+              "name": "overTheBox:apiovh:put",
+              "required": true
+            }
+          ]
+        }
+      ],
+      "description": "Service"
+    },
+    {
+      "path": "/overTheBox/{serviceName}/autoMTU",
+      "operations": [
+        {
+          "apiStatus": {
+            "description": "Stable production version",
+            "value": "PRODUCTION"
+          },
+          "httpMethod": "PUT",
+          "parameters": [
+            {
+              "name": "mtuAuto",
+              "dataType": "overTheBox.AvailableStatusEnum",
+              "paramType": "body",
+              "fullType": "overTheBox.AvailableStatusEnum",
+              "required": true,
+              "description": "Enable or disable autoMTU"
+            },
+            {
+              "name": "serviceName",
+              "dataType": "string",
+              "paramType": "path",
+              "fullType": "string",
+              "required": true,
+              "description": "The internal name of your overTheBox offer"
+            }
+          ],
+          "responseType": "void",
+          "noAuthentication": false,
+          "description": "Change the value of autoMTU",
+          "iamActions": [
+            {
+              "name": "overTheBox:apiovh:autoMTU/edit",
+              "required": true
+            }
+          ]
+        }
+      ],
+      "description": "autoMTU operations"
+    },
+    {
+      "path": "/overTheBox/{serviceName}/availableReleaseChannels",
+      "operations": [
+        {
+          "apiStatus": {
+            "description": "Stable production version",
+            "value": "PRODUCTION"
+          },
+          "httpMethod": "GET",
+          "parameters": [
+            {
+              "name": "serviceName",
+              "dataType": "string",
+              "paramType": "path",
+              "fullType": "string",
+              "required": true,
+              "description": "The internal name of your overTheBox offer"
+            }
+          ],
+          "responseType": "string[]",
+          "noAuthentication": false,
+          "description": "List available release channels for this service",
+          "iamActions": [
+            {
+              "name": "overTheBox:apiovh:availableReleaseChannels/get",
+              "required": true
+            }
+          ]
+        }
+      ],
+      "description": "availableReleaseChannels operations"
+    },
+    {
+      "path": "/overTheBox/{serviceName}/backups",
+      "operations": [
+        {
+          "apiStatus": {
+            "description": "Stable production version",
+            "value": "PRODUCTION"
+          },
+          "httpMethod": "GET",
+          "parameters": [
+            {
+              "name": "serviceName",
+              "dataType": "string",
+              "paramType": "path",
+              "fullType": "string",
+              "required": true,
+              "description": "The internal name of your overTheBox offer"
+            }
+          ],
+          "responseType": "string[]",
+          "noAuthentication": false,
+          "description": "List of backups for this service",
+          "iamActions": [
+            {
+              "name": "overTheBox:apiovh:backups/get",
+              "required": true
+            }
+          ]
+        }
+      ],
+      "description": "List the overTheBox.Backup objects"
+    },
+    {
+      "path": "/overTheBox/{serviceName}/backups/{backupId}",
+      "operations": [
+        {
+          "apiStatus": {
+            "description": "Stable production version",
+            "value": "PRODUCTION"
+          },
+          "httpMethod": "DELETE",
+          "parameters": [
+            {
+              "name": "backupId",
+              "dataType": "string",
+              "paramType": "path",
+              "fullType": "string",
+              "required": true,
+              "description": "The id of the backup"
+            },
+            {
+              "name": "serviceName",
+              "dataType": "string",
+              "paramType": "path",
+              "fullType": "string",
+              "required": true,
+              "description": "The internal name of your overTheBox offer"
+            }
+          ],
+          "responseType": "void",
+          "noAuthentication": false,
+          "description": "Delete a backup",
+          "iamActions": [
+            {
+              "name": "overTheBox:apiovh:backups/delete",
+              "required": true
+            }
+          ]
+        },
+        {
+          "apiStatus": {
+            "description": "Stable production version",
+            "value": "PRODUCTION"
+          },
+          "httpMethod": "GET",
+          "parameters": [
+            {
+              "name": "backupId",
+              "dataType": "string",
+              "paramType": "path",
+              "fullType": "string",
+              "required": true,
+              "description": "The id of the backup"
+            },
+            {
+              "name": "serviceName",
+              "dataType": "string",
+              "paramType": "path",
+              "fullType": "string",
+              "required": true,
+              "description": "The internal name of your overTheBox offer"
+            }
+          ],
+          "responseType": "overTheBox.Backup",
+          "noAuthentication": false,
+          "description": "Get this object properties",
+          "iamActions": [
+            {
+              "name": "overTheBox:apiovh:backups/get",
+              "required": true
+            }
+          ]
+        }
+      ],
+      "description": "Backup"
+    },
+    {
+      "path": "/overTheBox/{serviceName}/cancelResiliation",
+      "operations": [
+        {
+          "apiStatus": {
+            "description": "Stable production version",
+            "value": "PRODUCTION"
+          },
+          "httpMethod": "POST",
+          "parameters": [
+            {
+              "name": "serviceName",
+              "dataType": "string",
+              "paramType": "path",
+              "fullType": "string",
+              "required": true,
+              "description": "The internal name of your overTheBox offer"
+            }
+          ],
+          "responseType": "void",
+          "noAuthentication": false,
+          "description": "Cancel the resiliation of the Service",
+          "iamActions": [
+            {
+              "name": "overTheBox:apiovh:cancelResiliation",
+              "required": true
+            }
+          ]
+        }
+      ],
+      "description": "cancelResiliation operations"
+    },
+    {
+      "path": "/overTheBox/{serviceName}/changeContact",
+      "operations": [
+        {
+          "apiStatus": {
+            "description": "Stable production version",
+            "value": "PRODUCTION"
+          },
+          "httpMethod": "POST",
+          "parameters": [
+            {
+              "name": "contactAdmin",
+              "dataType": "string",
+              "paramType": "body",
+              "fullType": "coreTypes.AccountId:string",
+              "required": false,
+              "description": "The contact to set as admin contact"
+            },
+            {
+              "name": "contactBilling",
+              "dataType": "string",
+              "paramType": "body",
+              "fullType": "coreTypes.AccountId:string",
+              "required": false,
+              "description": "The contact to set as billing contact"
+            },
+            {
+              "name": "contactTech",
+              "dataType": "string",
+              "paramType": "body",
+              "fullType": "coreTypes.AccountId:string",
+              "required": false,
+              "description": "The contact to set as tech contact"
+            },
+            {
+              "name": "serviceName",
+              "dataType": "string",
+              "paramType": "path",
+              "fullType": "string",
+              "required": true,
+              "description": "The internal name of your overTheBox offer"
+            }
+          ],
+          "responseType": "long[]",
+          "noAuthentication": false,
+          "description": "Launch a contact change procedure",
+          "iamActions": [
+            {
+              "name": "overTheBox:apiovh:changeContact",
+              "required": true
+            }
+          ]
+        }
+      ],
+      "description": "Change the contacts of this service"
+    },
+    {
+      "path": "/overTheBox/{serviceName}/device",
+      "operations": [
+        {
+          "apiStatus": {
+            "description": "Stable production version",
+            "value": "PRODUCTION"
+          },
+          "httpMethod": "DELETE",
+          "parameters": [
+            {
+              "name": "serviceName",
+              "dataType": "string",
+              "paramType": "path",
+              "fullType": "string",
+              "required": true,
+              "description": "The internal name of your overTheBox offer"
+            }
+          ],
+          "responseType": "void",
+          "noAuthentication": false,
+          "description": "Unlink a device from a service",
+          "iamActions": [
+            {
+              "name": "overTheBox:apiovh:device/delete",
+              "required": true
+            }
+          ]
+        },
+        {
+          "apiStatus": {
+            "description": "Stable production version",
+            "value": "PRODUCTION"
+          },
+          "httpMethod": "GET",
+          "parameters": [
+            {
+              "name": "serviceName",
+              "dataType": "string",
+              "paramType": "path",
+              "fullType": "string",
+              "required": true,
+              "description": "The internal name of your overTheBox offer"
+            }
+          ],
+          "responseType": "overTheBox.Device",
+          "noAuthentication": false,
+          "description": "Get this object properties",
+          "iamActions": [
+            {
+              "name": "overTheBox:apiovh:device/get",
+              "required": true
+            }
+          ]
+        }
+      ],
+      "description": "Device"
+    },
+    {
+      "path": "/overTheBox/{serviceName}/device/actions",
+      "operations": [
+        {
+          "apiStatus": {
+            "description": "Stable production version",
+            "value": "PRODUCTION"
+          },
+          "httpMethod": "GET",
+          "parameters": [
+            {
+              "name": "name",
+              "dataType": "string",
+              "paramType": "query",
+              "fullType": "string",
+              "required": false,
+              "description": "Filter the value of name property (=)"
+            },
+            {
+              "name": "serviceName",
+              "dataType": "string",
+              "paramType": "path",
+              "fullType": "string",
+              "required": true,
+              "description": "The internal name of your overTheBox offer"
+            },
+            {
+              "name": "status",
+              "dataType": "overTheBox.ActionStatusEnum",
+              "paramType": "query",
+              "fullType": "overTheBox.ActionStatusEnum",
+              "required": false,
+              "description": "Filter the value of status property (=)"
+            }
+          ],
+          "responseType": "string[]",
+          "noAuthentication": false,
+          "description": "List of actions scheduled for this device",
+          "iamActions": [
+            {
+              "name": "overTheBox:apiovh:device/actions/get",
+              "required": true
+            }
+          ]
+        },
+        {
+          "apiStatus": {
+            "description": "Stable production version",
+            "value": "PRODUCTION"
+          },
+          "httpMethod": "POST",
+          "parameters": [
+            {
+              "name": "name",
+              "dataType": "string",
+              "paramType": "body",
+              "fullType": "string",
+              "required": true,
+              "description": "Name of the action"
+            },
+            {
+              "name": "serviceName",
+              "dataType": "string",
+              "paramType": "path",
+              "fullType": "string",
+              "required": true,
+              "description": "The internal name of your overTheBox offer"
+            }
+          ],
+          "responseType": "overTheBox.DeviceAction",
+          "noAuthentication": false,
+          "description": "Create a device action on the device",
+          "iamActions": [
+            {
+              "name": "overTheBox:apiovh:device/actions/create",
+              "required": true
+            }
+          ]
+        }
+      ],
+      "description": "List the overTheBox.DeviceAction objects"
+    },
+    {
+      "path": "/overTheBox/{serviceName}/device/actions/{actionId}",
+      "operations": [
+        {
+          "apiStatus": {
+            "description": "Stable production version",
+            "value": "PRODUCTION"
+          },
+          "httpMethod": "GET",
+          "parameters": [
+            {
+              "name": "actionId",
+              "dataType": "string",
+              "paramType": "path",
+              "fullType": "string",
+              "required": true,
+              "description": "The id of the action"
+            },
+            {
+              "name": "serviceName",
+              "dataType": "string",
+              "paramType": "path",
+              "fullType": "string",
+              "required": true,
+              "description": "The internal name of your overTheBox offer"
+            }
+          ],
+          "responseType": "overTheBox.DeviceAction",
+          "noAuthentication": false,
+          "description": "Get this object properties",
+          "iamActions": [
+            {
+              "name": "overTheBox:apiovh:device/actions/get",
+              "required": true
+            }
+          ]
+        }
+      ],
+      "description": "Device action"
+    },
+    {
+      "path": "/overTheBox/{serviceName}/device/availableActions",
+      "operations": [
+        {
+          "apiStatus": {
+            "description": "Stable production version",
+            "value": "PRODUCTION"
+          },
+          "httpMethod": "GET",
+          "parameters": [
+            {
+              "name": "serviceName",
+              "dataType": "string",
+              "paramType": "path",
+              "fullType": "string",
+              "required": true,
+              "description": "The internal name of your overTheBox offer"
+            }
+          ],
+          "responseType": "overTheBox.AvailableDeviceAction[]",
+          "noAuthentication": false,
+          "description": "List the available device actions",
+          "iamActions": [
+            {
+              "name": "overTheBox:apiovh:device/availableActions/get",
+              "required": true
+            }
+          ]
+        }
+      ],
+      "description": "availableActions operations"
+    },
+    {
+      "path": "/overTheBox/{serviceName}/device/backup",
+      "operations": [
+        {
+          "apiStatus": {
+            "description": "Stable production version",
+            "value": "PRODUCTION"
+          },
+          "httpMethod": "POST",
+          "parameters": [
+            {
+              "name": "serviceName",
+              "dataType": "string",
+              "paramType": "path",
+              "fullType": "string",
+              "required": true,
+              "description": "The internal name of your overTheBox offer"
+            }
+          ],
+          "responseType": "overTheBox.DeviceAction",
+          "noAuthentication": false,
+          "description": "Create an action to generate a backup",
+          "iamActions": [
+            {
+              "name": "overTheBox:apiovh:device/backup/create",
+              "required": true
+            }
+          ]
+        }
+      ],
+      "description": "backup operations"
+    },
+    {
+      "path": "/overTheBox/{serviceName}/device/hardware",
+      "operations": [
+        {
+          "apiStatus": {
+            "description": "Stable production version",
+            "value": "PRODUCTION"
+          },
+          "httpMethod": "GET",
+          "parameters": [
+            {
+              "name": "serviceName",
+              "dataType": "string",
+              "paramType": "path",
+              "fullType": "string",
+              "required": true,
+              "description": "The internal name of your overTheBox offer"
+            }
+          ],
+          "responseType": "overTheBox.Hardware",
+          "noAuthentication": false,
+          "description": "Get this object properties",
+          "iamActions": [
+            {
+              "name": "overTheBox:apiovh:device/hardware/get",
+              "required": true
+            }
+          ]
+        }
+      ],
+      "description": "Hardware properties"
+    },
+    {
+      "path": "/overTheBox/{serviceName}/device/logs",
+      "operations": [
+        {
+          "apiStatus": {
+            "description": "Stable production version",
+            "value": "PRODUCTION"
+          },
+          "httpMethod": "POST",
+          "parameters": [
+            {
+              "name": "serviceName",
+              "dataType": "string",
+              "paramType": "path",
+              "fullType": "string",
+              "required": true,
+              "description": "The internal name of your overTheBox offer"
+            }
+          ],
+          "responseType": "overTheBox.TemporaryLogsLink",
+          "noAuthentication": false,
+          "description": "Generate a temporary url to retrieve device logs",
+          "iamActions": [
+            {
+              "name": "overTheBox:apiovh:device/logs/create",
+              "required": true
+            }
+          ]
+        }
+      ],
+      "description": "logs operations"
+    },
+    {
+      "path": "/overTheBox/{serviceName}/device/restoreBackup",
+      "operations": [
+        {
+          "apiStatus": {
+            "description": "Stable production version",
+            "value": "PRODUCTION"
+          },
+          "httpMethod": "POST",
+          "parameters": [
+            {
+              "name": "backupId",
+              "dataType": "string",
+              "paramType": "body",
+              "fullType": "string",
+              "required": true,
+              "description": "The id of the backup to restore"
+            },
+            {
+              "name": "serviceName",
+              "dataType": "string",
+              "paramType": "path",
+              "fullType": "string",
+              "required": true,
+              "description": "The internal name of your overTheBox offer"
+            }
+          ],
+          "responseType": "overTheBox.DeviceAction[]",
+          "noAuthentication": false,
+          "description": "Create a group of actions to restore a given backup",
+          "iamActions": [
+            {
+              "name": "overTheBox:apiovh:device/restoreBackup",
+              "required": true
+            }
+          ]
+        }
+      ],
+      "description": "restoreBackup operations"
+    },
+    {
+      "path": "/overTheBox/{serviceName}/ips",
+      "operations": [
+        {
+          "apiStatus": {
+            "description": "Beta version",
+            "value": "BETA"
+          },
+          "httpMethod": "GET",
+          "parameters": [
+            {
+              "name": "serviceName",
+              "dataType": "string",
+              "paramType": "path",
+              "fullType": "string",
+              "required": true,
+              "description": "The internal name of your overTheBox offer"
+            }
+          ],
+          "responseType": "ip[]",
+          "noAuthentication": false,
+          "description": "List IP assigned to an OverTheBox service",
+          "iamActions": [
+            {
+              "name": "overTheBox:apiovh:ips/get",
+              "required": true
+            }
+          ]
+        }
+      ],
+      "description": ""
+    },
+    {
+      "path": "/overTheBox/{serviceName}/ips/{ip}",
+      "operations": [
+        {
+          "apiStatus": {
+            "description": "Beta version",
+            "value": "BETA"
+          },
+          "httpMethod": "GET",
+          "parameters": [
+            {
+              "name": "serviceName",
+              "dataType": "string",
+              "paramType": "path",
+              "fullType": "string",
+              "required": true,
+              "description": "The internal name of your overTheBox offer"
+            },
+            {
+              "name": "ip",
+              "dataType": "ip",
+              "paramType": "path",
+              "fullType": "ip",
+              "required": true,
+              "description": "Ip"
+            }
+          ],
+          "responseType": "otb.service.ip",
+          "noAuthentication": false,
+          "description": "Get details IP assigned to an OverTheBox service",
+          "iamActions": [
+            {
+              "name": "overTheBox:apiovh:ips/get",
+              "required": true
+            }
+          ]
+        }
+      ],
+      "description": ""
+    },
+    {
+      "path": "/overTheBox/{serviceName}/ipv6",
+      "operations": [
+        {
+          "apiStatus": {
+            "description": "Beta version",
+            "value": "BETA"
+          },
+          "httpMethod": "PUT",
+          "parameters": [
+            {
+              "name": "enabled",
+              "dataType": "boolean",
+              "paramType": "body",
+              "fullType": "boolean",
+              "required": true,
+              "description": "Enabled/disabled IPv6"
+            },
+            {
+              "name": "serviceName",
+              "dataType": "string",
+              "paramType": "path",
+              "fullType": "string",
+              "required": true,
+              "description": "The internal name of your overTheBox offer"
+            }
+          ],
+          "responseType": "overTheBox.Task",
+          "noAuthentication": false,
+          "description": "Change the status of IPv6 on this service",
+          "iamActions": [
+            {
+              "name": "overTheBox:apiovh:ipv6/edit",
+              "required": true
+            }
+          ]
+        }
+      ],
+      "description": "ipv6 operations"
+    },
+    {
+      "path": "/overTheBox/{serviceName}/linkDevice",
+      "operations": [
+        {
+          "apiStatus": {
+            "description": "Stable production version",
+            "value": "PRODUCTION"
+          },
+          "httpMethod": "POST",
+          "parameters": [
+            {
+              "name": "deviceId",
+              "dataType": "string",
+              "paramType": "body",
+              "fullType": "string",
+              "required": true,
+              "description": "The id of the device"
+            },
+            {
+              "name": "serviceName",
+              "dataType": "string",
+              "paramType": "path",
+              "fullType": "string",
+              "required": true,
+              "description": "The internal name of your overTheBox offer"
+            }
+          ],
+          "responseType": "void",
+          "noAuthentication": false,
+          "description": "Link a device to this service",
+          "iamActions": [
+            {
+              "name": "overTheBox:apiovh:linkDevice",
+              "required": true
+            }
+          ]
+        }
+      ],
+      "description": "linkDevice operations"
+    },
+    {
+      "path": "/overTheBox/{serviceName}/linkHardware",
+      "operations": [
+        {
+          "apiStatus": {
+            "description": "Stable production version",
+            "value": "PRODUCTION"
+          },
+          "httpMethod": "POST",
+          "parameters": [
+            {
+              "name": "hardwareName",
+              "dataType": "string",
+              "paramType": "body",
+              "fullType": "string",
+              "required": true,
+              "description": "The internal name of your hardware"
+            },
+            {
+              "name": "serviceName",
+              "dataType": "string",
+              "paramType": "path",
+              "fullType": "string",
+              "required": true,
+              "description": "The internal name of your overTheBox offer"
+            }
+          ],
+          "responseType": "void",
+          "noAuthentication": false,
+          "description": "Link an available hardware to this service",
+          "iamActions": [
+            {
+              "name": "overTheBox:apiovh:linkHardware",
+              "required": true
+            }
+          ]
+        }
+      ],
+      "description": "linkHardware operations"
+    },
+    {
+      "path": "/overTheBox/{serviceName}/log/kind",
+      "operations": [
+        {
+          "apiStatus": {
+            "description": "Alpha version",
+            "value": "ALPHA"
+          },
+          "httpMethod": "GET",
+          "parameters": [
+            {
+              "name": "serviceName",
+              "dataType": "string",
+              "paramType": "path",
+              "fullType": "string",
+              "required": true,
+              "description": "The internal name of your overTheBox offer"
+            }
+          ],
+          "responseType": "string[]",
+          "noAuthentication": false,
+          "description": "List available log kinds",
+          "iamActions": [
+            {
+              "name": "overTheBox:apiovh:log/kind/get",
+              "required": true
+            }
+          ]
+        }
+      ],
+      "description": "Access to available log kind"
+    },
+    {
+      "path": "/overTheBox/{serviceName}/log/kind/{name}",
+      "operations": [
+        {
+          "apiStatus": {
+            "description": "Alpha version",
+            "value": "ALPHA"
+          },
+          "httpMethod": "GET",
+          "parameters": [
+            {
+              "name": "serviceName",
+              "dataType": "string",
+              "paramType": "path",
+              "fullType": "string",
+              "required": true,
+              "description": "The internal name of your overTheBox offer"
+            },
+            {
+              "name": "name",
+              "dataType": "string",
+              "paramType": "path",
+              "fullType": "string",
+              "required": true,
+              "description": "Name"
+            }
+          ],
+          "responseType": "dbaas.logs.LogKind",
+          "noAuthentication": false,
+          "description": "Get a log kind",
+          "iamActions": [
+            {
+              "name": "overTheBox:apiovh:log/kind/get",
+              "required": true
+            }
+          ]
+        }
+      ],
+      "description": "Access to available log kind"
+    },
+    {
+      "path": "/overTheBox/{serviceName}/log/subscription",
+      "operations": [
+        {
+          "apiStatus": {
+            "description": "Alpha version",
+            "value": "ALPHA"
+          },
+          "httpMethod": "GET",
+          "parameters": [
+            {
+              "name": "serviceName",
+              "dataType": "string",
+              "paramType": "path",
+              "fullType": "string",
+              "required": true,
+              "description": "The internal name of your overTheBox offer"
+            },
+            {
+              "name": "kind",
+              "dataType": "string",
+              "paramType": "query",
+              "fullType": "string",
+              "required": false,
+              "description": "Filter on a specific kind (e.g., audit)"
+            }
+          ],
+          "responseType": "uuid[]",
+          "noAuthentication": false,
+          "description": "List subscription IDs for a cluster",
+          "iamActions": [
+            {
+              "name": "overTheBox:apiovh:log/subscription/get",
+              "required": true
+            }
+          ]
+        },
+        {
+          "apiStatus": {
+            "description": "Alpha version",
+            "value": "ALPHA"
+          },
+          "httpMethod": "POST",
+          "parameters": [
+            {
+              "name": "serviceName",
+              "dataType": "string",
+              "paramType": "path",
+              "fullType": "string",
+              "required": true,
+              "description": "The internal name of your overTheBox offer"
+            },
+            {
+              "dataType": "dbaas.logs.LogSubscriptionCreation",
+              "paramType": "body",
+              "fullType": "dbaas.logs.LogSubscriptionCreation",
+              "required": true,
+              "description": "Request Body"
+            }
+          ],
+          "responseType": "dbaas.logs.LogSubscriptionResponse",
+          "noAuthentication": false,
+          "description": "Create a subscription from logs to a pre-existing LDP stream",
+          "iamActions": [
+            {
+              "name": "overTheBox:apiovh:log/subscription/create",
+              "required": true
+            },
+            {
+              "name": "ldp:apiovh:output/graylog/stream/forwardTo",
+              "description": "Required on the targeted LDP service",
+              "required": true
+            }
+          ]
+        }
+      ],
+      "description": "Create a subscription from overthebox logs to a pre-existing LDP stream"
+    },
+    {
+      "path": "/overTheBox/{serviceName}/log/subscription/{subscriptionId}",
+      "operations": [
+        {
+          "apiStatus": {
+            "description": "Alpha version",
+            "value": "ALPHA"
+          },
+          "httpMethod": "DELETE",
+          "parameters": [
+            {
+              "name": "serviceName",
+              "dataType": "string",
+              "paramType": "path",
+              "fullType": "string",
+              "required": true,
+              "description": "The internal name of your overTheBox offer"
+            },
+            {
+              "name": "subscriptionId",
+              "dataType": "uuid",
+              "paramType": "path",
+              "fullType": "uuid",
+              "required": true,
+              "description": "Subscription ID"
+            }
+          ],
+          "responseType": "dbaas.logs.LogSubscriptionResponse",
+          "noAuthentication": false,
+          "description": "Delete a subscription",
+          "iamActions": [
+            {
+              "name": "overTheBox:apiovh:log/subscription/delete",
+              "required": true
+            }
+          ]
+        },
+        {
+          "apiStatus": {
+            "description": "Alpha version",
+            "value": "ALPHA"
+          },
+          "httpMethod": "GET",
+          "parameters": [
+            {
+              "name": "serviceName",
+              "dataType": "string",
+              "paramType": "path",
+              "fullType": "string",
+              "required": true,
+              "description": "The internal name of your overTheBox offer"
+            },
+            {
+              "name": "subscriptionId",
+              "dataType": "uuid",
+              "paramType": "path",
+              "fullType": "uuid",
+              "required": true,
+              "description": "Subscription ID"
+            }
+          ],
+          "responseType": "dbaas.logs.LogSubscription",
+          "noAuthentication": false,
+          "description": "Get subscription details",
+          "iamActions": [
+            {
+              "name": "overTheBox:apiovh:log/subscription/get",
+              "required": true
+            }
+          ]
+        }
+      ],
+      "description": "Create a subscription from overthebox logs to a pre-existing LDP stream"
+    },
+    {
+      "path": "/overTheBox/{serviceName}/log/url",
+      "operations": [
+        {
+          "apiStatus": {
+            "description": "Alpha version",
+            "value": "ALPHA"
+          },
+          "httpMethod": "POST",
+          "parameters": [
+            {
+              "name": "serviceName",
+              "dataType": "string",
+              "paramType": "path",
+              "fullType": "string",
+              "required": true,
+              "description": "The internal name of your overTheBox offer"
+            },
+            {
+              "dataType": "dbaas.logs.LogUrlCreation",
+              "paramType": "body",
+              "fullType": "dbaas.logs.LogUrlCreation",
+              "required": true,
+              "description": "Request Body"
+            }
+          ],
+          "responseType": "dbaas.logs.TemporaryLogsLink",
+          "noAuthentication": false,
+          "description": "Generate a temporary URL to retrieve logs",
+          "iamActions": [
+            {
+              "name": "overTheBox:apiovh:log/url/create",
+              "required": true
+            }
+          ]
+        }
+      ],
+      "description": "Generate a temporary URL to retrieve logs"
+    },
+    {
+      "path": "/overTheBox/{serviceName}/migration/changeOffers",
+      "operations": [
+        {
+          "apiStatus": {
+            "description": "Stable production version",
+            "value": "PRODUCTION"
+          },
+          "httpMethod": "POST",
+          "parameters": [
+            {
+              "name": "hardwareName",
+              "dataType": "string",
+              "paramType": "body",
+              "fullType": "string",
+              "required": false,
+              "description": "Name of the hardware"
+            },
+            {
+              "name": "offer",
+              "dataType": "string",
+              "paramType": "body",
+              "fullType": "string",
+              "required": true,
+              "description": "Offer name to migrate to"
+            },
+            {
+              "name": "serviceName",
+              "dataType": "string",
+              "paramType": "path",
+              "fullType": "string",
+              "required": true,
+              "description": "The internal name of your overTheBox offer"
+            },
+            {
+              "name": "shippingContactID",
+              "dataType": "string",
+              "paramType": "body",
+              "fullType": "string",
+              "required": false,
+              "description": "In case of hardware and if a shipping custom address is desired"
+            }
+          ],
+          "responseType": "overTheBox.OrderMigration",
+          "noAuthentication": false,
+          "description": "Migrate to the selected overTheBox offer",
+          "iamActions": [
+            {
+              "name": "overTheBox:apiovh:migration/changeOffers",
+              "required": true
+            }
+          ]
+        }
+      ],
+      "description": "changeOffers operations"
+    },
+    {
+      "path": "/overTheBox/{serviceName}/migration/offers",
+      "operations": [
+        {
+          "apiStatus": {
+            "description": "Stable production version",
+            "value": "PRODUCTION"
+          },
+          "httpMethod": "GET",
+          "parameters": [
+            {
+              "name": "serviceName",
+              "dataType": "string",
+              "paramType": "path",
+              "fullType": "string",
+              "required": true,
+              "description": "The internal name of your overTheBox offer"
+            }
+          ],
+          "responseType": "overTheBox.AvailableMigrationOffer[]",
+          "noAuthentication": false,
+          "description": "List all available offers one can migrate to",
+          "iamActions": [
+            {
+              "name": "overTheBox:apiovh:migration/offers/get",
+              "required": true
+            }
+          ]
+        }
+      ],
+      "description": "offers operations"
+    },
+    {
+      "path": "/overTheBox/{serviceName}/remoteAccesses",
+      "operations": [
+        {
+          "apiStatus": {
+            "description": "Stable production version",
+            "value": "PRODUCTION"
+          },
+          "httpMethod": "GET",
+          "parameters": [
+            {
+              "name": "serviceName",
+              "dataType": "string",
+              "paramType": "path",
+              "fullType": "string",
+              "required": true,
+              "description": "The internal name of your overTheBox offer"
+            }
+          ],
+          "responseType": "string[]",
+          "noAuthentication": false,
+          "description": "List of remote accesses for the service",
+          "iamActions": [
+            {
+              "name": "overTheBox:apiovh:remoteAccesses/get",
+              "required": true
+            }
+          ]
+        },
+        {
+          "apiStatus": {
+            "description": "Stable production version",
+            "value": "PRODUCTION"
+          },
+          "httpMethod": "POST",
+          "parameters": [
+            {
+              "name": "allowedIp",
+              "dataType": "ipBlock",
+              "paramType": "body",
+              "fullType": "ipBlock",
+              "required": false,
+              "description": "IP block from which the remote access will be allowed (the default value is the IP from which the call is made)"
+            },
+            {
+              "name": "expirationDate",
+              "dataType": "datetime",
+              "paramType": "body",
+              "fullType": "datetime",
+              "required": false,
+              "description": "The expirationDate of the remote access (default 1 day)"
+            },
+            {
+              "name": "exposedPort",
+              "dataType": "long",
+              "paramType": "body",
+              "fullType": "long",
+              "required": true,
+              "description": "The port that the device will expose"
+            },
+            {
+              "name": "publicKey",
+              "dataType": "string",
+              "paramType": "body",
+              "fullType": "string",
+              "required": false,
+              "description": "The remote user public key authorized on the device (for SSH purpose)"
+            },
+            {
+              "name": "serviceName",
+              "dataType": "string",
+              "paramType": "path",
+              "fullType": "string",
+              "required": true,
+              "description": "The internal name of your overTheBox offer"
+            }
+          ],
+          "responseType": "overTheBox.RemoteAccess",
+          "noAuthentication": false,
+          "description": "Create a new remote access for the service",
+          "iamActions": [
+            {
+              "name": "overTheBox:apiovh:remoteAccesses/create",
+              "required": true
+            }
+          ]
+        }
+      ],
+      "description": "List the overTheBox.RemoteAccess objects"
+    },
+    {
+      "path": "/overTheBox/{serviceName}/remoteAccesses/{remoteAccessId}",
+      "operations": [
+        {
+          "apiStatus": {
+            "description": "Stable production version",
+            "value": "PRODUCTION"
+          },
+          "httpMethod": "DELETE",
+          "parameters": [
+            {
+              "name": "remoteAccessId",
+              "dataType": "string",
+              "paramType": "path",
+              "fullType": "string",
+              "required": true,
+              "description": "The id of the remote access"
+            },
+            {
+              "name": "serviceName",
+              "dataType": "string",
+              "paramType": "path",
+              "fullType": "string",
+              "required": true,
+              "description": "The internal name of your overTheBox offer"
+            }
+          ],
+          "responseType": "void",
+          "noAuthentication": false,
+          "description": "Delete a remote access",
+          "iamActions": [
+            {
+              "name": "overTheBox:apiovh:remoteAccesses/delete",
+              "required": true
+            }
+          ]
+        },
+        {
+          "apiStatus": {
+            "description": "Stable production version",
+            "value": "PRODUCTION"
+          },
+          "httpMethod": "GET",
+          "parameters": [
+            {
+              "name": "remoteAccessId",
+              "dataType": "string",
+              "paramType": "path",
+              "fullType": "string",
+              "required": true,
+              "description": "The id of the remote access"
+            },
+            {
+              "name": "serviceName",
+              "dataType": "string",
+              "paramType": "path",
+              "fullType": "string",
+              "required": true,
+              "description": "The internal name of your overTheBox offer"
+            }
+          ],
+          "responseType": "overTheBox.RemoteAccess",
+          "noAuthentication": false,
+          "description": "Get this object properties",
+          "iamActions": [
+            {
+              "name": "overTheBox:apiovh:remoteAccesses/get",
+              "required": true
+            }
+          ]
+        }
+      ],
+      "description": "If authorized, a remote access will expose a port, allowing an access to the device remotely"
+    },
+    {
+      "path": "/overTheBox/{serviceName}/remoteAccesses/{remoteAccessId}/authorize",
+      "operations": [
+        {
+          "apiStatus": {
+            "description": "Stable production version",
+            "value": "PRODUCTION"
+          },
+          "httpMethod": "POST",
+          "parameters": [
+            {
+              "name": "remoteAccessId",
+              "dataType": "string",
+              "paramType": "path",
+              "fullType": "string",
+              "required": true,
+              "description": "The id of the remote access"
+            },
+            {
+              "name": "serviceName",
+              "dataType": "string",
+              "paramType": "path",
+              "fullType": "string",
+              "required": true,
+              "description": "The internal name of your overTheBox offer"
+            }
+          ],
+          "responseType": "void",
+          "noAuthentication": false,
+          "description": "Authorize the remote access",
+          "iamActions": [
+            {
+              "name": "overTheBox:apiovh:remoteAccesses/authorize",
+              "required": true
+            }
+          ]
+        }
+      ],
+      "description": "authorize operations"
+    },
+    {
+      "path": "/overTheBox/{serviceName}/serviceInfos",
+      "operations": [
+        {
+          "apiStatus": {
+            "description": "Stable production version",
+            "value": "PRODUCTION"
+          },
+          "httpMethod": "GET",
+          "parameters": [
+            {
+              "name": "serviceName",
+              "dataType": "string",
+              "paramType": "path",
+              "fullType": "string",
+              "required": true,
+              "description": "The internal name of your overTheBox offer"
+            }
+          ],
+          "responseType": "services.Service",
+          "noAuthentication": false,
+          "description": "Get service information",
+          "iamActions": [
+            {
+              "name": "overTheBox:apiovh:serviceInfos/get",
+              "required": true
+            }
+          ]
+        },
+        {
+          "apiStatus": {
+            "description": "Stable production version",
+            "value": "PRODUCTION"
+          },
+          "httpMethod": "PUT",
+          "parameters": [
+            {
+              "dataType": "services.Service",
+              "paramType": "body",
+              "fullType": "services.Service",
+              "required": true,
+              "description": "New object properties"
+            },
+            {
+              "name": "serviceName",
+              "dataType": "string",
+              "paramType": "path",
+              "fullType": "string",
+              "required": true,
+              "description": "The internal name of your overTheBox offer"
+            }
+          ],
+          "responseType": "void",
+          "noAuthentication": false,
+          "description": "Update service information",
+          "iamActions": [
+            {
+              "name": "overTheBox:apiovh:serviceInfos/edit",
+              "required": true
+            }
+          ]
+        }
+      ],
+      "description": "Details about a Service"
+    },
+    {
+      "path": "/overTheBox/{serviceName}/statistics",
+      "operations": [
+        {
+          "apiStatus": {
+            "description": "Beta version",
+            "value": "BETA"
+          },
+          "httpMethod": "GET",
+          "parameters": [
+            {
+              "name": "serviceName",
+              "dataType": "string",
+              "paramType": "path",
+              "fullType": "string",
+              "required": true,
+              "description": "The internal name of your overTheBox offer"
+            },
+            {
+              "name": "metricsType",
+              "dataType": "otb.DeviceStatisticsTypeEnum",
+              "paramType": "query",
+              "fullType": "otb.DeviceStatisticsTypeEnum",
+              "required": true,
+              "description": "Type of metrics you want to retrieve"
+            },
+            {
+              "name": "period",
+              "dataType": "otb.DeviceStatisticsPeriodEnum",
+              "paramType": "query",
+              "fullType": "otb.DeviceStatisticsPeriodEnum",
+              "required": false,
+              "description": "Period (default is daily)"
+            }
+          ],
+          "responseType": "otb.device.statistics[]",
+          "noAuthentication": false,
+          "description": "Get statistics for an OTB device",
+          "iamActions": [
+            {
+              "name": "overTheBox:apiovh:statistics/get",
+              "required": true
+            }
+          ]
+        }
+      ],
+      "description": "Get statistics for an OTB device"
+    },
+    {
+      "path": "/overTheBox/{serviceName}/tasks",
+      "operations": [
+        {
+          "apiStatus": {
+            "description": "Stable production version",
+            "value": "PRODUCTION"
+          },
+          "httpMethod": "GET",
+          "parameters": [
+            {
+              "name": "name",
+              "dataType": "string",
+              "paramType": "query",
+              "fullType": "string",
+              "required": false,
+              "description": "Filter the value of name property (=)"
+            },
+            {
+              "name": "serviceName",
+              "dataType": "string",
+              "paramType": "path",
+              "fullType": "string",
+              "required": true,
+              "description": "The internal name of your overTheBox offer"
+            },
+            {
+              "name": "status",
+              "dataType": "overTheBox.TaskStatusEnum",
+              "paramType": "query",
+              "fullType": "overTheBox.TaskStatusEnum",
+              "required": false,
+              "description": "Filter the value of status property (=)"
+            }
+          ],
+          "responseType": "string[]",
+          "noAuthentication": false,
+          "description": "List of tasks scheduled for this service",
+          "iamActions": [
+            {
+              "name": "overTheBox:apiovh:tasks/get",
+              "required": true
+            }
+          ]
+        }
+      ],
+      "description": "List the overTheBox.Task objects"
+    },
+    {
+      "path": "/overTheBox/{serviceName}/tasks/{taskId}",
+      "operations": [
+        {
+          "apiStatus": {
+            "description": "Stable production version",
+            "value": "PRODUCTION"
+          },
+          "httpMethod": "GET",
+          "parameters": [
+            {
+              "name": "serviceName",
+              "dataType": "string",
+              "paramType": "path",
+              "fullType": "string",
+              "required": true,
+              "description": "The internal name of your overTheBox offer"
+            },
+            {
+              "name": "taskId",
+              "dataType": "string",
+              "paramType": "path",
+              "fullType": "string",
+              "required": true,
+              "description": "The id of the task"
+            }
+          ],
+          "responseType": "overTheBox.Task",
+          "noAuthentication": false,
+          "description": "Get this object properties",
+          "iamActions": [
+            {
+              "name": "overTheBox:apiovh:tasks/get",
+              "required": true
+            }
+          ]
+        }
+      ],
+      "description": "Task"
+    }
+  ],
+  "resourcePath": "/overTheBox",
+  "basePath": "https://eu.api.ovh.com/v1",
+  "models": {
+    "dbaas.logs.LogKind": {
+      "id": "LogKind",
+      "namespace": "dbaas.logs",
+      "description": "Log kind",
+      "properties": {
+        "additionalReturnedFields": {
+          "type": "string[]",
+          "fullType": "string[]",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "List of additional log fields managed in this log kind",
+          "required": false
+        },
+        "createdAt": {
+          "type": "datetime",
+          "fullType": "datetime",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "Creation date of the log kind",
+          "required": false
+        },
+        "displayName": {
+          "type": "string",
+          "fullType": "string",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "Log kind display name",
+          "required": false
+        },
+        "kindId": {
+          "type": "uuid",
+          "fullType": "uuid",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "Log kind ID",
+          "required": false
+        },
+        "name": {
+          "type": "string",
+          "fullType": "string",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "Log kind name",
+          "required": false
+        },
+        "updatedAt": {
+          "type": "datetime",
+          "fullType": "datetime",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "Last update date of the log kind",
+          "required": false
+        }
+      }
+    },
+    "dbaas.logs.LogSubscription": {
+      "id": "LogSubscription",
+      "namespace": "dbaas.logs",
+      "description": "Log subscription",
+      "properties": {
+        "createdAt": {
+          "type": "datetime",
+          "fullType": "datetime",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "Creation date of the subscription",
+          "required": false
+        },
+        "kind": {
+          "type": "string",
+          "fullType": "string",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "Log kind name of this subscription",
+          "required": false
+        },
+        "resource": {
+          "type": "dbaas.logs.SubscriptionResource",
+          "fullType": "dbaas.logs.SubscriptionResource",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "Subscribed resource, where the logs come from",
+          "required": false
+        },
+        "serviceName": {
+          "type": "string",
+          "fullType": "string",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "Name of the destination log service",
+          "required": false
+        },
+        "streamId": {
+          "type": "string",
+          "fullType": "string",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "Id of the destination log stream",
+          "required": false
+        },
+        "subscriptionId": {
+          "type": "uuid",
+          "fullType": "uuid",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "Subscription ID",
+          "required": false
+        },
+        "updatedAt": {
+          "type": "datetime",
+          "fullType": "datetime",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "Last update date of the subscription",
+          "required": false
+        }
+      }
+    },
+    "dbaas.logs.LogSubscriptionCreation": {
+      "id": "LogSubscriptionCreation",
+      "namespace": "dbaas.logs",
+      "description": "Log subscription creation payload",
+      "properties": {
+        "kind": {
+          "type": "string",
+          "fullType": "string",
+          "canBeNull": false,
+          "readOnly": false,
+          "description": "Log kind name to subscribe to",
+          "required": true
+        },
+        "streamId": {
+          "type": "uuid",
+          "fullType": "uuid",
+          "canBeNull": false,
+          "readOnly": false,
+          "description": "Customer log stream ID",
+          "required": true
+        }
+      }
+    },
+    "dbaas.logs.LogSubscriptionResponse": {
+      "id": "LogSubscriptionResponse",
+      "namespace": "dbaas.logs",
+      "description": "Asynchronous operation after subscribing or unsubscribing to a resource logs",
+      "properties": {
+        "operationId": {
+          "type": "uuid",
+          "fullType": "uuid",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "Identifier of the operation",
+          "required": false
+        },
+        "serviceName": {
+          "type": "string",
+          "fullType": "string",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "Operation owner's service name",
+          "required": false
+        }
+      }
+    },
+    "dbaas.logs.LogUrlCreation": {
+      "id": "LogUrlCreation",
+      "namespace": "dbaas.logs",
+      "description": "Log temporary URL creation payload",
+      "properties": {
+        "kind": {
+          "type": "string",
+          "fullType": "string",
+          "canBeNull": false,
+          "readOnly": false,
+          "description": "Log kind name",
+          "required": true
+        }
+      }
+    },
+    "dbaas.logs.SubscriptionResource": {
+      "id": "SubscriptionResource",
+      "namespace": "dbaas.logs",
+      "description": "Log subscription resource",
+      "properties": {
+        "name": {
+          "type": "string",
+          "fullType": "string",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "Name of subscribed resource",
+          "required": false
+        },
+        "type": {
+          "type": "string",
+          "fullType": "string",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "Type of subscribed resource",
+          "required": false
+        }
+      }
+    },
+    "dbaas.logs.TemporaryLogsLink": {
+      "id": "TemporaryLogsLink",
+      "namespace": "dbaas.logs",
+      "description": "Temporary url information",
+      "properties": {
+        "expirationDate": {
+          "type": "datetime",
+          "fullType": "datetime",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "Temporary url expiration date",
+          "required": false
+        },
+        "url": {
+          "type": "string",
+          "fullType": "string",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "Temporary url",
+          "required": false
+        }
+      }
+    },
+    "iam.ResourceMetadata": {
+      "id": "ResourceMetadata",
+      "namespace": "iam",
+      "description": "IAM resource metadata embedded in services models",
+      "properties": {
+        "displayName": {
+          "type": "string",
+          "fullType": "string",
+          "canBeNull": true,
+          "readOnly": true,
+          "description": "Resource display name",
+          "required": false
+        },
+        "id": {
+          "type": "uuid",
+          "fullType": "uuid",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "Unique identifier of the resource",
+          "required": false
+        },
+        "state": {
+          "type": "iam.ResourceMetadata.StateEnum",
+          "fullType": "iam.ResourceMetadata.StateEnum",
+          "canBeNull": true,
+          "readOnly": true,
+          "description": "Resource state",
+          "required": false
+        },
+        "tags": {
+          "type": "map[string]string",
+          "fullType": "map[string]string",
+          "canBeNull": true,
+          "readOnly": true,
+          "description": "Resource tags. Tags that were internally computed are prefixed with ovh:",
+          "required": false
+        },
+        "urn": {
+          "type": "string",
+          "fullType": "string",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "Unique resource name used in policies",
+          "required": false
+        }
+      }
+    },
+    "iam.ResourceMetadata.StateEnum": {
+      "id": "StateEnum",
+      "namespace": "iam.ResourceMetadata",
+      "description": "Resource state",
+      "enum": [
+        "EXPIRED",
+        "IN_CREATION",
+        "OK",
+        "SUSPENDED"
+      ],
+      "enumType": "string"
+    },
+    "iam.resource.TagFilter": {
+      "id": "TagFilter",
+      "namespace": "iam.resource",
+      "description": "Resource tag filter",
+      "properties": {
+        "operator": {
+          "type": "iam.resource.TagFilter.OperatorEnum",
+          "fullType": "iam.resource.TagFilter.OperatorEnum",
+          "canBeNull": true,
+          "readOnly": true,
+          "description": "Operator to use in order to filter on the value (defaults to 'EQ')",
+          "required": false
+        },
+        "value": {
+          "type": "string",
+          "fullType": "string",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "Value to use in order to filter tags",
+          "required": false
+        }
+      }
+    },
+    "iam.resource.TagFilter.OperatorEnum": {
+      "id": "OperatorEnum",
+      "namespace": "iam.resource.TagFilter",
+      "description": "Operator that can be used in order to filter resources tags",
+      "enum": [
+        "EQ",
+        "EXISTS",
+        "ILIKE",
+        "LIKE",
+        "NEQ",
+        "NEXISTS"
+      ],
+      "enumType": "string"
+    },
+    "order.CurrencyCodeEnum": {
+      "id": "CurrencyCodeEnum",
+      "namespace": "order",
+      "enum": [
+        "AUD",
+        "CAD",
+        "CZK",
+        "EUR",
+        "GBP",
+        "INR",
+        "LTL",
+        "MAD",
+        "N/A",
+        "PLN",
+        "SGD",
+        "TND",
+        "USD",
+        "XOF",
+        "points"
+      ],
+      "enumType": "string"
+    },
+    "order.Price": {
+      "id": "Price",
+      "namespace": "order",
+      "description": "Price with it's currency and textual representation",
+      "properties": {
+        "currencyCode": {
+          "type": "order.CurrencyCodeEnum",
+          "canBeNull": false,
+          "readOnly": false,
+          "required": false
+        },
+        "text": {
+          "type": "string",
+          "canBeNull": false,
+          "readOnly": false,
+          "required": false
+        },
+        "value": {
+          "type": "double",
+          "canBeNull": false,
+          "readOnly": false,
+          "required": false
+        }
+      }
+    },
+    "otb.DeviceStatisticsPeriodEnum": {
+      "id": "DeviceStatisticsPeriodEnum",
+      "namespace": "otb",
+      "description": "Statistics Period",
+      "enum": [
+        "daily",
+        "hourly",
+        "monthly",
+        "weekly"
+      ],
+      "enumType": "string"
+    },
+    "otb.DeviceStatisticsTypeEnum": {
+      "id": "DeviceStatisticsTypeEnum",
+      "namespace": "otb",
+      "description": "Serie Name",
+      "enum": [
+        "load",
+        "memory_free",
+        "traffic"
+      ],
+      "enumType": "string"
+    },
+    "otb.DeviceStatisticsUnitEnum": {
+      "id": "DeviceStatisticsUnitEnum",
+      "namespace": "otb",
+      "description": "Serie Unit",
+      "enum": [
+        "bps",
+        "byte",
+        "n/a"
+      ],
+      "enumType": "string"
+    },
+    "otb.device.statistics": {
+      "id": "statistics",
+      "namespace": "otb.device",
+      "description": "Device Statistics Datapoints",
+      "properties": {
+        "name": {
+          "type": "string",
+          "fullType": "string",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "Name of the serie",
+          "required": false
+        },
+        "points": {
+          "type": "otb.device.statistics.point[]",
+          "fullType": "otb.device.statistics.point[]",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "List of point",
+          "required": false
+        },
+        "tags": {
+          "type": "otb.device.statistics.tag[]",
+          "fullType": "otb.device.statistics.tag[]",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "List of tags",
+          "required": false
+        },
+        "unit": {
+          "type": "otb.DeviceStatisticsUnitEnum",
+          "fullType": "otb.DeviceStatisticsUnitEnum",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "Unit of the serie",
+          "required": false
+        }
+      }
+    },
+    "otb.device.statistics.point": {
+      "id": "point",
+      "namespace": "otb.device.statistics",
+      "description": "Statistics Datapoint",
+      "properties": {
+        "timestamp": {
+          "type": "long",
+          "fullType": "long",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "Timestamp",
+          "required": false
+        },
+        "value": {
+          "type": "double",
+          "fullType": "double",
+          "canBeNull": true,
+          "readOnly": true,
+          "description": "Datapoint value",
+          "required": false
+        }
+      }
+    },
+    "otb.device.statistics.tag": {
+      "id": "tag",
+      "namespace": "otb.device.statistics",
+      "description": "Tags for the metrics",
+      "properties": {
+        "name": {
+          "type": "string",
+          "fullType": "string",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "Name of tag",
+          "required": false
+        },
+        "value": {
+          "type": "string",
+          "fullType": "string",
+          "canBeNull": true,
+          "readOnly": true,
+          "description": "Value of tag",
+          "required": false
+        }
+      }
+    },
+    "otb.service.ip": {
+      "id": "ip",
+      "namespace": "otb.service",
+      "description": "Service IP details",
+      "properties": {
+        "geolocation": {
+          "type": "otb.service.ip.geolocationEnum",
+          "fullType": "otb.service.ip.geolocationEnum",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "IP geolocation",
+          "required": false
+        },
+        "ip": {
+          "type": "ip",
+          "fullType": "ip",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "IP address",
+          "required": false
+        },
+        "range": {
+          "type": "long",
+          "fullType": "long",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "IP cidr prefix",
+          "required": false
+        },
+        "status": {
+          "type": "otb.service.ip.statusEnum",
+          "fullType": "otb.service.ip.statusEnum",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "IP status",
+          "required": false
+        },
+        "version": {
+          "type": "otb.service.ip.versionEnum",
+          "fullType": "otb.service.ip.versionEnum",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "IP version",
+          "required": false
+        }
+      }
+    },
+    "otb.service.ip.geolocationEnum": {
+      "id": "geolocationEnum",
+      "namespace": "otb.service.ip",
+      "description": "IP geolocation",
+      "enum": [
+        "fr"
+      ],
+      "enumType": "string"
+    },
+    "otb.service.ip.statusEnum": {
+      "id": "statusEnum",
+      "namespace": "otb.service.ip",
+      "description": "IP status",
+      "enum": [
+        "active",
+        "free",
+        "pendingRelease",
+        "released",
+        "reserved"
+      ],
+      "enumType": "string"
+    },
+    "otb.service.ip.versionEnum": {
+      "id": "versionEnum",
+      "namespace": "otb.service.ip",
+      "description": "IP version",
+      "enum": [
+        "v4",
+        "v6"
+      ],
+      "enumType": "string"
+    },
+    "overTheBox.ActionStatusEnum": {
+      "id": "ActionStatusEnum",
+      "namespace": "overTheBox",
+      "description": "Status of a task.",
+      "enum": [
+        "doing",
+        "done",
+        "error",
+        "todo"
+      ],
+      "enumType": "string"
+    },
+    "overTheBox.AvailableDeviceAction": {
+      "id": "AvailableDeviceAction",
+      "namespace": "overTheBox",
+      "description": "Device action",
+      "properties": {
+        "description": {
+          "type": "string",
+          "canBeNull": false,
+          "readOnly": false,
+          "description": "Description of the action",
+          "required": false
+        },
+        "name": {
+          "type": "string",
+          "canBeNull": false,
+          "readOnly": false,
+          "description": "Name of the action",
+          "required": false
+        }
+      }
+    },
+    "overTheBox.AvailableMigrationOffer": {
+      "id": "AvailableMigrationOffer",
+      "namespace": "overTheBox",
+      "description": "Migration offer",
+      "properties": {
+        "currentOfferPrice": {
+          "type": "order.Price",
+          "canBeNull": false,
+          "readOnly": false,
+          "description": "Monthly price of the current offer",
+          "required": false
+        },
+        "description": {
+          "type": "string",
+          "canBeNull": false,
+          "readOnly": false,
+          "description": "Description of the offer",
+          "required": false
+        },
+        "engagementMonths": {
+          "type": "long",
+          "canBeNull": false,
+          "readOnly": false,
+          "description": "Number of months of engagement",
+          "required": false
+        },
+        "hardwareAvailable": {
+          "type": "boolean",
+          "canBeNull": false,
+          "readOnly": false,
+          "description": "Specify if a hardware is available",
+          "required": false
+        },
+        "hardwareName": {
+          "type": "string",
+          "canBeNull": true,
+          "readOnly": false,
+          "description": "Name of the hardware",
+          "required": false
+        },
+        "hardwarePrice": {
+          "type": "order.Price",
+          "canBeNull": true,
+          "readOnly": false,
+          "description": "Hardware purchase price",
+          "required": false
+        },
+        "hardwares": {
+          "type": "overTheBox.HardwareDetails[]",
+          "canBeNull": false,
+          "readOnly": false,
+          "description": "Details of available hardwares",
+          "required": false
+        },
+        "offer": {
+          "type": "string",
+          "canBeNull": false,
+          "readOnly": false,
+          "description": "Name of the offer",
+          "required": false
+        },
+        "price": {
+          "type": "order.Price",
+          "canBeNull": false,
+          "readOnly": false,
+          "description": "Monthly price of the new offer",
+          "required": false
+        }
+      }
+    },
+    "overTheBox.AvailableStatusEnum": {
+      "id": "AvailableStatusEnum",
+      "namespace": "overTheBox",
+      "description": "Status of the service",
+      "enum": [
+        "disabled",
+        "enabled"
+      ],
+      "enumType": "string"
+    },
+    "overTheBox.Backup": {
+      "id": "Backup",
+      "namespace": "overTheBox",
+      "description": "Backup",
+      "properties": {
+        "backupId": {
+          "type": "string",
+          "fullType": "string",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "The id of the backup",
+          "required": false
+        },
+        "createdAt": {
+          "type": "datetime",
+          "fullType": "datetime",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "Date of the creation of the backup",
+          "required": false
+        },
+        "deviceActionId": {
+          "type": "string",
+          "fullType": "string",
+          "canBeNull": true,
+          "readOnly": true,
+          "description": "The id of the device action that triggered the backup",
+          "required": false
+        }
+      }
+    },
+    "overTheBox.Device": {
+      "id": "Device",
+      "namespace": "overTheBox",
+      "description": "Device",
+      "properties": {
+        "activated": {
+          "type": "boolean",
+          "fullType": "boolean",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "Whether or not this device is associated to a service",
+          "required": false
+        },
+        "availableUpdate": {
+          "type": "boolean",
+          "fullType": "boolean",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "Whether or not an upate is available for this device",
+          "required": false
+        },
+        "deviceId": {
+          "type": "string",
+          "fullType": "string",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "The id of the device",
+          "required": false
+        },
+        "lastSeen": {
+          "type": "datetime",
+          "fullType": "datetime",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "Last time the device has been seen on the provisionning servers",
+          "required": false
+        },
+        "networkInterfaces": {
+          "type": "overTheBox.DeviceInterface[]",
+          "fullType": "overTheBox.DeviceInterface[]",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "Network interfaces of the device",
+          "required": false
+        },
+        "publicIp": {
+          "type": "ip",
+          "fullType": "ip",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "The public IP of the device",
+          "required": false
+        },
+        "system": {
+          "type": "overTheBox.DeviceSystem",
+          "fullType": "overTheBox.DeviceSystem",
+          "canBeNull": true,
+          "readOnly": true,
+          "description": "Device system information",
+          "required": false
+        },
+        "systemVersion": {
+          "type": "string",
+          "fullType": "string",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "System version of the device",
+          "required": false
+        },
+        "version": {
+          "type": "string",
+          "fullType": "string",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "Version of the device",
+          "required": false
+        }
+      }
+    },
+    "overTheBox.DeviceAction": {
+      "id": "DeviceAction",
+      "namespace": "overTheBox",
+      "description": "Device action",
+      "properties": {
+        "actionId": {
+          "type": "string",
+          "fullType": "string",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "The id of the action",
+          "required": false
+        },
+        "createdAt": {
+          "type": "datetime",
+          "fullType": "datetime",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "Date of creation of the action",
+          "required": false
+        },
+        "details": {
+          "type": "string",
+          "fullType": "string",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "The details of the action",
+          "required": false
+        },
+        "name": {
+          "type": "string",
+          "fullType": "string",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "The name of the action",
+          "required": false
+        },
+        "status": {
+          "type": "overTheBox.ActionStatusEnum",
+          "fullType": "overTheBox.ActionStatusEnum",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "The status of the action",
+          "required": false
+        },
+        "todoDate": {
+          "type": "datetime",
+          "fullType": "datetime",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "Date of execution of the action",
+          "required": false
+        },
+        "updatedAt": {
+          "type": "datetime",
+          "fullType": "datetime",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "Last time the action was updated",
+          "required": false
+        }
+      }
+    },
+    "overTheBox.DeviceForRegistration": {
+      "id": "DeviceForRegistration",
+      "namespace": "overTheBox",
+      "description": "A device for registration",
+      "properties": {
+        "activated": {
+          "type": "boolean",
+          "canBeNull": false,
+          "readOnly": false,
+          "description": "Whether or not this device is actived",
+          "required": false
+        },
+        "deviceId": {
+          "type": "string",
+          "canBeNull": false,
+          "readOnly": false,
+          "required": false
+        },
+        "lastSeen": {
+          "type": "datetime",
+          "canBeNull": false,
+          "readOnly": false,
+          "description": "The last time this device was seen on the provisionning servers",
+          "required": false
+        }
+      }
+    },
+    "overTheBox.DeviceInterface": {
+      "id": "DeviceInterface",
+      "namespace": "overTheBox",
+      "description": "Infos about a network interface",
+      "properties": {
+        "device": {
+          "type": "string",
+          "canBeNull": true,
+          "readOnly": false,
+          "description": "Device of the interface",
+          "required": false
+        },
+        "dnsServers": {
+          "type": "ip[]",
+          "canBeNull": true,
+          "readOnly": false,
+          "description": "The DNS servers of this interface",
+          "required": false
+        },
+        "gateway": {
+          "type": "ip",
+          "canBeNull": true,
+          "readOnly": false,
+          "description": "Gateway of the interface",
+          "required": false
+        },
+        "ip": {
+          "type": "ip",
+          "canBeNull": true,
+          "readOnly": false,
+          "description": "IP of the interface",
+          "required": false
+        },
+        "multipathStatus": {
+          "type": "overTheBox.MultipathStatusEnum",
+          "canBeNull": false,
+          "readOnly": false,
+          "description": "Status of MPTCP on this interface",
+          "required": false
+        },
+        "name": {
+          "type": "string",
+          "canBeNull": false,
+          "readOnly": false,
+          "description": "Name of the interface",
+          "required": false
+        },
+        "netmask": {
+          "type": "ip",
+          "canBeNull": true,
+          "readOnly": false,
+          "description": "Netmask of the interface",
+          "required": false
+        },
+        "publicIp": {
+          "type": "ip",
+          "canBeNull": true,
+          "readOnly": false,
+          "description": "Public IP of the interface",
+          "required": false
+        }
+      }
+    },
+    "overTheBox.DeviceSystem": {
+      "id": "DeviceSystem",
+      "namespace": "overTheBox",
+      "description": "Infos about a device system",
+      "properties": {
+        "cpu": {
+          "type": "string",
+          "canBeNull": true,
+          "readOnly": false,
+          "description": "Device CPU",
+          "required": false
+        },
+        "hostname": {
+          "type": "string",
+          "canBeNull": true,
+          "readOnly": false,
+          "description": "Device hostname",
+          "required": false
+        },
+        "kernel": {
+          "type": "string",
+          "canBeNull": true,
+          "readOnly": false,
+          "description": "Device linux kernel version",
+          "required": false
+        },
+        "mac": {
+          "type": "string",
+          "canBeNull": true,
+          "readOnly": false,
+          "description": "Device mac address (first interface mac)",
+          "required": false
+        },
+        "model": {
+          "type": "string",
+          "canBeNull": true,
+          "readOnly": false,
+          "description": "Device model",
+          "required": false
+        },
+        "name": {
+          "type": "string",
+          "canBeNull": true,
+          "readOnly": false,
+          "description": "Name of the device board",
+          "required": false
+        },
+        "offerName": {
+          "type": "string",
+          "canBeNull": true,
+          "readOnly": false,
+          "description": "OVH offer name of the device board",
+          "required": false
+        },
+        "ovhName": {
+          "type": "string",
+          "canBeNull": true,
+          "readOnly": false,
+          "description": "OVH name of the device board",
+          "required": false
+        }
+      }
+    },
+    "overTheBox.GraphEndpoint": {
+      "id": "GraphEndpoint",
+      "namespace": "overTheBox",
+      "description": "Parameters required to query metrics from OpenTSDB",
+      "properties": {
+        "host": {
+          "type": "string",
+          "canBeNull": false,
+          "readOnly": false,
+          "description": "The OpenTSDB host",
+          "required": false
+        },
+        "readToken": {
+          "type": "string",
+          "canBeNull": false,
+          "readOnly": false,
+          "description": "A read-only token",
+          "required": false
+        },
+        "readTokenID": {
+          "type": "string",
+          "canBeNull": false,
+          "readOnly": false,
+          "description": "The read-only token ID",
+          "required": false
+        }
+      }
+    },
+    "overTheBox.Hardware": {
+      "id": "Hardware",
+      "namespace": "overTheBox",
+      "description": "Hardware properties",
+      "properties": {
+        "canBeLinkedToService": {
+          "type": "boolean",
+          "fullType": "boolean",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "True if hardware can be linked to a service without deviceID",
+          "required": false
+        },
+        "mac": {
+          "type": "macAddress",
+          "fullType": "macAddress",
+          "canBeNull": true,
+          "readOnly": true,
+          "description": "Hardware MAC address",
+          "required": false
+        },
+        "model": {
+          "type": "string",
+          "fullType": "string",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "Hardware model",
+          "required": false
+        },
+        "name": {
+          "type": "string",
+          "fullType": "string",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "Hardware name",
+          "required": false
+        },
+        "prettyModelName": {
+          "type": "string",
+          "fullType": "string",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "The hardware pretty model name",
+          "required": false
+        },
+        "serial": {
+          "type": "string",
+          "fullType": "string",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "Hardware serial",
+          "required": false
+        }
+      }
+    },
+    "overTheBox.HardwareDetails": {
+      "id": "HardwareDetails",
+      "namespace": "overTheBox",
+      "description": "Details of available hardwares",
+      "properties": {
+        "hardwareDisplayName": {
+          "type": "string",
+          "canBeNull": true,
+          "readOnly": false,
+          "description": "Pretty hardware model name",
+          "required": false
+        },
+        "hardwareName": {
+          "type": "string",
+          "canBeNull": true,
+          "readOnly": false,
+          "description": "Name of the hardware",
+          "required": false
+        },
+        "hardwarePrice": {
+          "type": "order.Price",
+          "canBeNull": true,
+          "readOnly": false,
+          "description": "Hardware purchase price",
+          "required": false
+        }
+      }
+    },
+    "overTheBox.HardwareWithIAM": {
+      "id": "Hardware",
+      "namespace": "overTheBox",
+      "description": "Hardware properties",
+      "properties": {
+        "canBeLinkedToService": {
+          "type": "boolean",
+          "fullType": "boolean",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "True if hardware can be linked to a service without deviceID",
+          "required": false
+        },
+        "iam": {
+          "type": "iam.ResourceMetadata",
+          "canBeNull": true,
+          "readOnly": true,
+          "description": "IAM resource metadata",
+          "required": false
+        },
+        "mac": {
+          "type": "macAddress",
+          "fullType": "macAddress",
+          "canBeNull": true,
+          "readOnly": true,
+          "description": "Hardware MAC address",
+          "required": false
+        },
+        "model": {
+          "type": "string",
+          "fullType": "string",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "Hardware model",
+          "required": false
+        },
+        "name": {
+          "type": "string",
+          "fullType": "string",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "Hardware name",
+          "required": false
+        },
+        "prettyModelName": {
+          "type": "string",
+          "fullType": "string",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "The hardware pretty model name",
+          "required": false
+        },
+        "serial": {
+          "type": "string",
+          "fullType": "string",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "Hardware serial",
+          "required": false
+        }
+      }
+    },
+    "overTheBox.MultipathStatusEnum": {
+      "id": "MultipathStatusEnum",
+      "namespace": "overTheBox",
+      "description": "Status of a MPTCP Interface.",
+      "enum": [
+        "backup",
+        "handover",
+        "master",
+        "off",
+        "on"
+      ],
+      "enumType": "string"
+    },
+    "overTheBox.OrderMigration": {
+      "id": "OrderMigration",
+      "namespace": "overTheBox",
+      "description": "Migration order",
+      "properties": {
+        "orderId": {
+          "type": "string",
+          "canBeNull": false,
+          "readOnly": false,
+          "description": "Id of the migration order",
+          "required": false
+        },
+        "orderUrl": {
+          "type": "string",
+          "canBeNull": false,
+          "readOnly": false,
+          "description": "URL of the migration order",
+          "required": false
+        }
+      }
+    },
+    "overTheBox.RemoteAccess": {
+      "id": "RemoteAccess",
+      "namespace": "overTheBox",
+      "description": "If authorized, a remote access will expose a port, allowing an access to the device remotely",
+      "properties": {
+        "accepted": {
+          "type": "boolean",
+          "fullType": "boolean",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "If the remote access was accepted by the remote user",
+          "required": false
+        },
+        "askDate": {
+          "type": "datetime",
+          "fullType": "datetime",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "The date of the remote access demand",
+          "required": false
+        },
+        "authorizedBy": {
+          "type": "string",
+          "fullType": "string",
+          "canBeNull": true,
+          "readOnly": true,
+          "description": "The user that authorized the remote access",
+          "required": false
+        },
+        "connectionInfos": {
+          "type": "overTheBox.RemoteAccessConnectionInfos",
+          "fullType": "overTheBox.RemoteAccessConnectionInfos",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "All the infos needed to connect yourself to your OTB",
+          "required": false
+        },
+        "deletedAt": {
+          "type": "datetime",
+          "fullType": "datetime",
+          "canBeNull": true,
+          "readOnly": true,
+          "description": "When the remote access was deleted",
+          "required": false
+        },
+        "dockerVersion": {
+          "type": "string",
+          "fullType": "string",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "Info about the docker version",
+          "required": false
+        },
+        "expirationDate": {
+          "type": "datetime",
+          "fullType": "datetime",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "When the remote access will be automatically deleted",
+          "required": false
+        },
+        "exposedPort": {
+          "type": "long",
+          "fullType": "long",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "The device's port which will be exposed",
+          "required": false
+        },
+        "remoteAccessId": {
+          "type": "string",
+          "fullType": "string",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "The id of the remote access",
+          "required": false
+        },
+        "remoteUserInfos": {
+          "type": "overTheBox.RemoteAccessUserInfos",
+          "fullType": "overTheBox.RemoteAccessUserInfos",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "Infos about the remote user",
+          "required": false
+        },
+        "status": {
+          "type": "overTheBox.RemoteAccessStatusEnum",
+          "fullType": "overTheBox.RemoteAccessStatusEnum",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "Status of the remote access",
+          "required": false
+        }
+      }
+    },
+    "overTheBox.RemoteAccessConnectionInfos": {
+      "id": "RemoteAccessConnectionInfos",
+      "namespace": "overTheBox",
+      "description": "All the infos needed to connect yourself to your OTB",
+      "properties": {
+        "ip": {
+          "type": "ip",
+          "canBeNull": true,
+          "readOnly": false,
+          "description": "IP to connect to when accessing the device remotely",
+          "required": false
+        },
+        "port": {
+          "type": "long",
+          "canBeNull": true,
+          "readOnly": false,
+          "description": "Port to connect to when accessing the device remotely",
+          "required": false
+        }
+      }
+    },
+    "overTheBox.RemoteAccessStatusEnum": {
+      "id": "RemoteAccessStatusEnum",
+      "namespace": "overTheBox",
+      "description": "Status of the remote access.",
+      "enum": [
+        "active",
+        "creating",
+        "deleted",
+        "deleting",
+        "pendingValidation",
+        "recreating",
+        "toDelete",
+        "toRecreate"
+      ],
+      "enumType": "string"
+    },
+    "overTheBox.RemoteAccessUserInfos": {
+      "id": "RemoteAccessUserInfos",
+      "namespace": "overTheBox",
+      "description": "Infos about the remote user",
+      "properties": {
+        "ip": {
+          "type": "ipBlock",
+          "canBeNull": false,
+          "readOnly": false,
+          "description": "IP from which the remote access will be allowed",
+          "required": false
+        },
+        "publicKey": {
+          "type": "string",
+          "canBeNull": true,
+          "readOnly": false,
+          "description": "The public key authorized on the device (for SSH purpose)",
+          "required": false
+        },
+        "user": {
+          "type": "string",
+          "canBeNull": false,
+          "readOnly": false,
+          "description": "The user that will access the device remotely",
+          "required": false
+        }
+      }
+    },
+    "overTheBox.Service": {
+      "id": "Service",
+      "namespace": "overTheBox",
+      "description": "Service",
+      "properties": {
+        "SOCKSProxyEnabled": {
+          "type": "boolean",
+          "fullType": "boolean",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "If the socks proxy is enabled",
+          "required": false
+        },
+        "autoMTU": {
+          "type": "overTheBox.AvailableStatusEnum",
+          "fullType": "overTheBox.AvailableStatusEnum",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "The status of the autoMTU",
+          "required": false
+        },
+        "autoUpgrade": {
+          "type": "boolean",
+          "fullType": "boolean",
+          "canBeNull": false,
+          "readOnly": false,
+          "description": "Enable device auto upgrade",
+          "required": false
+        },
+        "bandwidth": {
+          "type": "long",
+          "fullType": "long",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "The service maximum bandwidth in bits",
+          "required": false
+        },
+        "configurationMode": {
+          "type": "overTheBox.ServiceConfigurationModeEnum",
+          "fullType": "overTheBox.ServiceConfigurationModeEnum",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "Configuration mode of the service",
+          "required": false
+        },
+        "customerDescription": {
+          "type": "string",
+          "fullType": "string",
+          "canBeNull": true,
+          "readOnly": false,
+          "description": "Editable field for customer",
+          "required": false
+        },
+        "graphEndpoint": {
+          "type": "overTheBox.GraphEndpoint",
+          "fullType": "overTheBox.GraphEndpoint",
+          "canBeNull": true,
+          "readOnly": true,
+          "description": "Parameters needed to fetch metrics",
+          "required": false
+        },
+        "ipv6Enabled": {
+          "type": "boolean",
+          "fullType": "boolean",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "Indicates if IPv6 is enabled",
+          "required": false
+        },
+        "offer": {
+          "type": "string",
+          "fullType": "string",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "The service offer",
+          "required": false
+        },
+        "prettyOfferName": {
+          "type": "string",
+          "fullType": "string",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "The service pretty offer name",
+          "required": false
+        },
+        "releaseChannel": {
+          "type": "string",
+          "fullType": "string",
+          "canBeNull": false,
+          "readOnly": false,
+          "description": "Release channel of the service",
+          "required": false
+        },
+        "serviceName": {
+          "type": "string",
+          "fullType": "string",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "The name of the service",
+          "required": false
+        },
+        "status": {
+          "type": "overTheBox.ServiceStatusEnum",
+          "fullType": "overTheBox.ServiceStatusEnum",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "The status of the service",
+          "required": false
+        },
+        "tunnelMode": {
+          "type": "overTheBox.TunnelModeEnum",
+          "fullType": "overTheBox.TunnelModeEnum",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "The tunnel mode of the service",
+          "required": false
+        }
+      }
+    },
+    "overTheBox.ServiceConfigurationModeEnum": {
+      "id": "ServiceConfigurationModeEnum",
+      "namespace": "overTheBox",
+      "description": "Configuration mode of the service",
+      "enum": [
+        "autoconfigure",
+        "local"
+      ],
+      "enumType": "string"
+    },
+    "overTheBox.ServiceStatusEnum": {
+      "id": "ServiceStatusEnum",
+      "namespace": "overTheBox",
+      "description": "Status of the service.",
+      "enum": [
+        "active",
+        "creating",
+        "deleted",
+        "suspended",
+        "toCreate",
+        "toDelete"
+      ],
+      "enumType": "string"
+    },
+    "overTheBox.ServiceWithIAM": {
+      "id": "Service",
+      "namespace": "overTheBox",
+      "description": "Service",
+      "properties": {
+        "SOCKSProxyEnabled": {
+          "type": "boolean",
+          "fullType": "boolean",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "If the socks proxy is enabled",
+          "required": false
+        },
+        "autoMTU": {
+          "type": "overTheBox.AvailableStatusEnum",
+          "fullType": "overTheBox.AvailableStatusEnum",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "The status of the autoMTU",
+          "required": false
+        },
+        "autoUpgrade": {
+          "type": "boolean",
+          "fullType": "boolean",
+          "canBeNull": false,
+          "readOnly": false,
+          "description": "Enable device auto upgrade",
+          "required": false
+        },
+        "bandwidth": {
+          "type": "long",
+          "fullType": "long",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "The service maximum bandwidth in bits",
+          "required": false
+        },
+        "configurationMode": {
+          "type": "overTheBox.ServiceConfigurationModeEnum",
+          "fullType": "overTheBox.ServiceConfigurationModeEnum",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "Configuration mode of the service",
+          "required": false
+        },
+        "customerDescription": {
+          "type": "string",
+          "fullType": "string",
+          "canBeNull": true,
+          "readOnly": false,
+          "description": "Editable field for customer",
+          "required": false
+        },
+        "graphEndpoint": {
+          "type": "overTheBox.GraphEndpoint",
+          "fullType": "overTheBox.GraphEndpoint",
+          "canBeNull": true,
+          "readOnly": true,
+          "description": "Parameters needed to fetch metrics",
+          "required": false
+        },
+        "iam": {
+          "type": "iam.ResourceMetadata",
+          "canBeNull": true,
+          "readOnly": true,
+          "description": "IAM resource metadata",
+          "required": false
+        },
+        "ipv6Enabled": {
+          "type": "boolean",
+          "fullType": "boolean",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "Indicates if IPv6 is enabled",
+          "required": false
+        },
+        "offer": {
+          "type": "string",
+          "fullType": "string",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "The service offer",
+          "required": false
+        },
+        "prettyOfferName": {
+          "type": "string",
+          "fullType": "string",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "The service pretty offer name",
+          "required": false
+        },
+        "releaseChannel": {
+          "type": "string",
+          "fullType": "string",
+          "canBeNull": false,
+          "readOnly": false,
+          "description": "Release channel of the service",
+          "required": false
+        },
+        "serviceName": {
+          "type": "string",
+          "fullType": "string",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "The name of the service",
+          "required": false
+        },
+        "status": {
+          "type": "overTheBox.ServiceStatusEnum",
+          "fullType": "overTheBox.ServiceStatusEnum",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "The status of the service",
+          "required": false
+        },
+        "tunnelMode": {
+          "type": "overTheBox.TunnelModeEnum",
+          "fullType": "overTheBox.TunnelModeEnum",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "The tunnel mode of the service",
+          "required": false
+        }
+      }
+    },
+    "overTheBox.Task": {
+      "id": "Task",
+      "namespace": "overTheBox",
+      "description": "Task",
+      "properties": {
+        "name": {
+          "type": "string",
+          "fullType": "string",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "The name of the task",
+          "required": false
+        },
+        "status": {
+          "type": "overTheBox.TaskStatusEnum",
+          "fullType": "overTheBox.TaskStatusEnum",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "The status of the task",
+          "required": false
+        },
+        "taskId": {
+          "type": "string",
+          "fullType": "string",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "The id of the task",
+          "required": false
+        }
+      }
+    },
+    "overTheBox.TaskStatusEnum": {
+      "id": "TaskStatusEnum",
+      "namespace": "overTheBox",
+      "description": "Status of a task.",
+      "enum": [
+        "doing",
+        "done",
+        "error",
+        "todo"
+      ],
+      "enumType": "string"
+    },
+    "overTheBox.TemporaryLogsLink": {
+      "id": "TemporaryLogsLink",
+      "namespace": "overTheBox",
+      "description": "Temporary url informations",
+      "properties": {
+        "expirationDate": {
+          "type": "datetime",
+          "canBeNull": false,
+          "readOnly": false,
+          "description": "Temporary url expiration date",
+          "required": false
+        },
+        "url": {
+          "type": "string",
+          "canBeNull": false,
+          "readOnly": false,
+          "description": "Temporary url",
+          "required": false
+        }
+      }
+    },
+    "overTheBox.TunnelModeEnum": {
+      "id": "TunnelModeEnum",
+      "namespace": "overTheBox",
+      "description": "Tunnel mode of the service.",
+      "enum": [
+        "glorytun",
+        "glorytun_hybrid",
+        "glorytun_mud"
+      ],
+      "enumType": "string"
+    },
+    "price.OverTheBox.OfferEnum": {
+      "id": "OfferEnum",
+      "namespace": "price.OverTheBox",
+      "description": "Enum of Offers",
+      "enum": [
+        "business.v1",
+        "plus.v1",
+        "starter.v1"
+      ],
+      "enumType": "string"
+    },
+    "service.RenewType": {
+      "id": "RenewType",
+      "namespace": "service",
+      "description": "Map a possible renew for a specific service",
+      "properties": {
+        "automatic": {
+          "type": "boolean",
+          "canBeNull": false,
+          "readOnly": false,
+          "description": "The service is automatically renewed",
+          "required": false
+        },
+        "deleteAtExpiration": {
+          "type": "boolean",
+          "canBeNull": false,
+          "readOnly": false,
+          "description": "The service will be deleted at expiration",
+          "required": false
+        },
+        "forced": {
+          "type": "boolean",
+          "canBeNull": false,
+          "readOnly": false,
+          "description": "The service forced to be renewed",
+          "required": false
+        },
+        "manualPayment": {
+          "type": "boolean",
+          "canBeNull": true,
+          "readOnly": false,
+          "description": "The service needs to be manually renewed and paid",
+          "required": false
+        },
+        "period": {
+          "type": "long",
+          "canBeNull": true,
+          "readOnly": false,
+          "description": "period of renew in month",
+          "required": false
+        }
+      }
+    },
+    "service.RenewalTypeEnum": {
+      "id": "RenewalTypeEnum",
+      "namespace": "service",
+      "description": "Detailed renewal type of a service",
+      "enum": [
+        "automaticForcedProduct",
+        "automaticV2012",
+        "automaticV2014",
+        "automaticV2016",
+        "automaticV2024",
+        "manual",
+        "oneShot",
+        "option"
+      ],
+      "enumType": "string"
+    },
+    "service.StateEnum": {
+      "id": "StateEnum",
+      "namespace": "service",
+      "enum": [
+        "autorenewInProgress",
+        "expired",
+        "inCreation",
+        "ok",
+        "pendingDebt",
+        "unPaid"
+      ],
+      "enumType": "string"
+    },
+    "services.Service": {
+      "id": "Service",
+      "namespace": "services",
+      "description": "Details about a Service",
+      "properties": {
+        "canDeleteAtExpiration": {
+          "type": "boolean",
+          "fullType": "boolean",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "Indicates that the service can be set up to be deleted at expiration",
+          "required": false
+        },
+        "contactAdmin": {
+          "type": "string",
+          "fullType": "coreTypes.AccountId:string",
+          "canBeNull": false,
+          "readOnly": true,
+          "required": false
+        },
+        "contactBilling": {
+          "type": "string",
+          "fullType": "coreTypes.AccountId:string",
+          "canBeNull": false,
+          "readOnly": true,
+          "required": false
+        },
+        "contactTech": {
+          "type": "string",
+          "fullType": "coreTypes.AccountId:string",
+          "canBeNull": false,
+          "readOnly": true,
+          "required": false
+        },
+        "creation": {
+          "type": "date",
+          "fullType": "date",
+          "canBeNull": false,
+          "readOnly": true,
+          "required": false
+        },
+        "domain": {
+          "type": "string",
+          "fullType": "string",
+          "canBeNull": false,
+          "readOnly": true,
+          "required": false
+        },
+        "engagedUpTo": {
+          "type": "date",
+          "fullType": "date",
+          "canBeNull": true,
+          "readOnly": true,
+          "required": false
+        },
+        "expiration": {
+          "type": "date",
+          "fullType": "date",
+          "canBeNull": false,
+          "readOnly": true,
+          "required": false
+        },
+        "possibleRenewPeriod": {
+          "type": "long[]",
+          "fullType": "long[]",
+          "canBeNull": true,
+          "readOnly": true,
+          "description": "All the possible renew period of your service in month",
+          "required": false
+        },
+        "renew": {
+          "type": "service.RenewType",
+          "fullType": "service.RenewType",
+          "canBeNull": true,
+          "readOnly": false,
+          "description": "Way of handling the renew",
+          "required": false
+        },
+        "renewalType": {
+          "type": "service.RenewalTypeEnum",
+          "fullType": "service.RenewalTypeEnum",
+          "canBeNull": false,
+          "readOnly": true,
+          "required": false
+        },
+        "serviceId": {
+          "type": "long",
+          "fullType": "coreTypes.ServiceId:long",
+          "canBeNull": false,
+          "readOnly": true,
+          "required": false
+        },
+        "status": {
+          "type": "service.StateEnum",
+          "fullType": "service.StateEnum",
+          "canBeNull": false,
+          "readOnly": true,
+          "required": false
+        }
+      }
+    }
+  }
+}

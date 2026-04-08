@@ -1,0 +1,5612 @@
+{
+  "apiVersion": "1.0",
+  "apis": [
+    {
+      "path": "/ip",
+      "operations": [
+        {
+          "apiStatus": {
+            "description": "Stable production version",
+            "value": "PRODUCTION"
+          },
+          "httpMethod": "GET",
+          "parameters": [
+            {
+              "name": "campus",
+              "dataType": "string",
+              "paramType": "query",
+              "fullType": "string",
+              "required": false,
+              "description": "Filter the value of campus property (ilike) (alpha)"
+            },
+            {
+              "name": "description",
+              "dataType": "string",
+              "paramType": "query",
+              "fullType": "string",
+              "required": false,
+              "description": "Filter the value of description property (like)"
+            },
+            {
+              "name": "iamTags",
+              "dataType": "map[string][]iam.resource.TagFilter",
+              "paramType": "query",
+              "required": false,
+              "description": "Filter resources on IAM tags"
+            },
+            {
+              "name": "ip",
+              "dataType": "ipBlock",
+              "paramType": "query",
+              "fullType": "ipBlock",
+              "required": false,
+              "description": "Filter the value of ip property (contains or equals)"
+            },
+            {
+              "name": "isAdditionalIp",
+              "dataType": "boolean",
+              "paramType": "query",
+              "fullType": "boolean",
+              "required": false,
+              "description": "Filter the value of isAdditionalIp property (=) (alpha)"
+            },
+            {
+              "name": "routedTo.serviceName",
+              "dataType": "string",
+              "paramType": "query",
+              "fullType": "string",
+              "required": false,
+              "description": "Filter the value of routedTo.serviceName property (like)"
+            },
+            {
+              "name": "type",
+              "dataType": "ip.IpTypeEnum",
+              "paramType": "query",
+              "fullType": "ip.IpTypeEnum",
+              "required": false,
+              "description": "Filter the value of type property (=)"
+            },
+            {
+              "name": "version",
+              "dataType": "ip.IpVersionEnum",
+              "paramType": "query",
+              "fullType": "ip.IpVersionEnum",
+              "required": false,
+              "description": "Filter the value of version property (=) (alpha)"
+            }
+          ],
+          "responseType": "ipBlock[]",
+          "noAuthentication": false,
+          "description": "Your OVH IPs",
+          "iamActions": [
+            {
+              "name": "ip:apiovh:get",
+              "required": true
+            }
+          ]
+        }
+      ],
+      "description": "List the ip.Ip objects"
+    },
+    {
+      "path": "/ip/campus",
+      "operations": [
+        {
+          "apiStatus": {
+            "description": "Beta version",
+            "value": "BETA"
+          },
+          "httpMethod": "GET",
+          "parameters": [],
+          "responseType": "ip.Campus[]",
+          "noAuthentication": true,
+          "description": "Get IP campuses"
+        }
+      ],
+      "description": "Get IP campuses"
+    },
+    {
+      "path": "/ip/service",
+      "operations": [
+        {
+          "apiStatus": {
+            "description": "Beta version",
+            "value": "BETA"
+          },
+          "httpMethod": "GET",
+          "parameters": [
+            {
+              "name": "iamTags",
+              "dataType": "map[string][]iam.resource.TagFilter",
+              "paramType": "query",
+              "required": false,
+              "description": "Filter resources on IAM tags"
+            }
+          ],
+          "responseType": "string[]",
+          "noAuthentication": false,
+          "description": "Your ip services",
+          "iamActions": [
+            {
+              "name": "ip:apiovh:service/get",
+              "required": true
+            }
+          ]
+        }
+      ],
+      "description": "Operations about the IP service"
+    },
+    {
+      "path": "/ip/service/{serviceName}",
+      "operations": [
+        {
+          "apiStatus": {
+            "description": "Beta version",
+            "value": "BETA"
+          },
+          "httpMethod": "GET",
+          "parameters": [
+            {
+              "name": "serviceName",
+              "dataType": "string",
+              "paramType": "path",
+              "fullType": "string",
+              "required": true,
+              "description": "The internal name of your IP services"
+            }
+          ],
+          "responseType": "ip.ServiceIpWithIAM",
+          "noAuthentication": false,
+          "description": "Get this object properties",
+          "iamActions": [
+            {
+              "name": "ip:apiovh:service/get",
+              "required": true
+            }
+          ]
+        },
+        {
+          "apiStatus": {
+            "description": "Beta version",
+            "value": "BETA"
+          },
+          "httpMethod": "PUT",
+          "parameters": [
+            {
+              "dataType": "ip.ServiceIp",
+              "paramType": "body",
+              "fullType": "ip.ServiceIp",
+              "required": true,
+              "description": "New object properties"
+            },
+            {
+              "name": "serviceName",
+              "dataType": "string",
+              "paramType": "path",
+              "fullType": "string",
+              "required": true,
+              "description": "The internal name of your IP services"
+            }
+          ],
+          "responseType": "void",
+          "noAuthentication": false,
+          "description": "Alter this object properties",
+          "iamActions": [
+            {
+              "name": "ip:apiovh:service/edit",
+              "required": true
+            }
+          ]
+        }
+      ],
+      "description": "Your IP linked to service"
+    },
+    {
+      "path": "/ip/service/{serviceName}/changeContact",
+      "operations": [
+        {
+          "apiStatus": {
+            "description": "Beta version",
+            "value": "BETA"
+          },
+          "httpMethod": "POST",
+          "parameters": [
+            {
+              "name": "contactAdmin",
+              "dataType": "string",
+              "paramType": "body",
+              "fullType": "coreTypes.AccountId:string",
+              "required": false,
+              "description": "The contact to set as admin contact"
+            },
+            {
+              "name": "contactBilling",
+              "dataType": "string",
+              "paramType": "body",
+              "fullType": "coreTypes.AccountId:string",
+              "required": false,
+              "description": "The contact to set as billing contact"
+            },
+            {
+              "name": "contactTech",
+              "dataType": "string",
+              "paramType": "body",
+              "fullType": "coreTypes.AccountId:string",
+              "required": false,
+              "description": "The contact to set as tech contact"
+            },
+            {
+              "name": "serviceName",
+              "dataType": "string",
+              "paramType": "path",
+              "fullType": "string",
+              "required": true,
+              "description": "The internal name of your IP services"
+            }
+          ],
+          "responseType": "long[]",
+          "noAuthentication": false,
+          "description": "Launch a contact change procedure",
+          "iamActions": [
+            {
+              "name": "ip:apiovh:service/changeContact",
+              "required": true
+            }
+          ]
+        }
+      ],
+      "description": "Change the contacts of this service"
+    },
+    {
+      "path": "/ip/service/{serviceName}/confirmTermination",
+      "operations": [
+        {
+          "apiStatus": {
+            "description": "Beta version",
+            "value": "BETA"
+          },
+          "httpMethod": "POST",
+          "parameters": [
+            {
+              "name": "commentary",
+              "dataType": "string",
+              "paramType": "body",
+              "fullType": "string",
+              "required": false,
+              "description": "Commentary about your termination request"
+            },
+            {
+              "name": "futureUse",
+              "dataType": "service.TerminationFutureUseEnum",
+              "paramType": "body",
+              "fullType": "service.TerminationFutureUseEnum",
+              "required": false,
+              "description": "What next after your termination request"
+            },
+            {
+              "name": "reason",
+              "dataType": "service.TerminationReasonEnum",
+              "paramType": "body",
+              "fullType": "service.TerminationReasonEnum",
+              "required": false,
+              "description": "Reason of your termination request"
+            },
+            {
+              "name": "serviceName",
+              "dataType": "string",
+              "paramType": "path",
+              "fullType": "string",
+              "required": true,
+              "description": "The internal name of your IP services"
+            },
+            {
+              "name": "token",
+              "dataType": "string",
+              "paramType": "body",
+              "fullType": "string",
+              "required": true,
+              "description": "The termination token sent by email to the admin contact"
+            }
+          ],
+          "responseType": "string",
+          "noAuthentication": false,
+          "description": "Confirm service termination",
+          "iamActions": [
+            {
+              "name": "ip:apiovh:service/confirmTermination",
+              "required": true
+            }
+          ]
+        }
+      ],
+      "description": "Confirm service termination"
+    },
+    {
+      "path": "/ip/service/{serviceName}/serviceInfos",
+      "operations": [
+        {
+          "apiStatus": {
+            "description": "Beta version",
+            "value": "BETA"
+          },
+          "httpMethod": "GET",
+          "parameters": [
+            {
+              "name": "serviceName",
+              "dataType": "string",
+              "paramType": "path",
+              "fullType": "string",
+              "required": true,
+              "description": "The internal name of your IP services"
+            }
+          ],
+          "responseType": "services.Service",
+          "noAuthentication": false,
+          "description": "Get service information",
+          "iamActions": [
+            {
+              "name": "ip:apiovh:service/serviceInfos/get",
+              "required": true
+            }
+          ]
+        },
+        {
+          "apiStatus": {
+            "description": "Beta version",
+            "value": "BETA"
+          },
+          "httpMethod": "PUT",
+          "parameters": [
+            {
+              "dataType": "services.Service",
+              "paramType": "body",
+              "fullType": "services.Service",
+              "required": true,
+              "description": "New object properties"
+            },
+            {
+              "name": "serviceName",
+              "dataType": "string",
+              "paramType": "path",
+              "fullType": "string",
+              "required": true,
+              "description": "The internal name of your IP services"
+            }
+          ],
+          "responseType": "void",
+          "noAuthentication": false,
+          "description": "Update service information",
+          "iamActions": [
+            {
+              "name": "ip:apiovh:service/serviceInfos/edit",
+              "required": true
+            }
+          ]
+        }
+      ],
+      "description": "Details about a Service"
+    },
+    {
+      "path": "/ip/service/{serviceName}/terminate",
+      "operations": [
+        {
+          "apiStatus": {
+            "description": "Beta version",
+            "value": "BETA"
+          },
+          "httpMethod": "POST",
+          "parameters": [
+            {
+              "name": "serviceName",
+              "dataType": "string",
+              "paramType": "path",
+              "fullType": "string",
+              "required": true,
+              "description": "The internal name of your IP services"
+            }
+          ],
+          "responseType": "string",
+          "noAuthentication": false,
+          "description": "Ask for the termination of your service",
+          "longDescription": "Ask for the termination of your service. Admin contact of this service will receive a termination token by email in order to confirm its termination with /confirmTermination endpoint.",
+          "iamActions": [
+            {
+              "name": "ip:apiovh:service/terminate",
+              "required": true
+            }
+          ]
+        }
+      ],
+      "description": "Ask for the termination of your service. Admin contact of this service will receive a termination token in order to confirm its termination with /confirmTermination endpoint."
+    },
+    {
+      "path": "/ip/{ip}",
+      "operations": [
+        {
+          "apiStatus": {
+            "description": "Stable production version",
+            "value": "PRODUCTION"
+          },
+          "httpMethod": "GET",
+          "parameters": [
+            {
+              "name": "ip",
+              "dataType": "ipBlock",
+              "paramType": "path",
+              "fullType": "ipBlock",
+              "required": true,
+              "description": ""
+            }
+          ],
+          "responseType": "ip.IpWithIAM",
+          "noAuthentication": false,
+          "description": "Get this object properties",
+          "iamActions": [
+            {
+              "name": "ip:apiovh:get",
+              "required": true
+            }
+          ]
+        },
+        {
+          "apiStatus": {
+            "description": "Stable production version",
+            "value": "PRODUCTION"
+          },
+          "httpMethod": "PUT",
+          "parameters": [
+            {
+              "dataType": "ip.Ip",
+              "paramType": "body",
+              "fullType": "ip.Ip",
+              "required": true,
+              "description": "New object properties"
+            },
+            {
+              "name": "ip",
+              "dataType": "ipBlock",
+              "paramType": "path",
+              "fullType": "ipBlock",
+              "required": true,
+              "description": ""
+            }
+          ],
+          "responseType": "void",
+          "noAuthentication": false,
+          "description": "Alter this object properties",
+          "iamActions": [
+            {
+              "name": "ip:apiovh:edit",
+              "required": true
+            }
+          ]
+        }
+      ],
+      "description": "Your IP"
+    },
+    {
+      "path": "/ip/{ip}/antihack",
+      "operations": [
+        {
+          "apiStatus": {
+            "description": "Stable production version",
+            "value": "PRODUCTION"
+          },
+          "httpMethod": "GET",
+          "parameters": [
+            {
+              "name": "ip",
+              "dataType": "ipBlock",
+              "paramType": "path",
+              "fullType": "ipBlock",
+              "required": true,
+              "description": ""
+            },
+            {
+              "name": "state",
+              "dataType": "ip.BlockedIpStateEnum",
+              "paramType": "query",
+              "fullType": "ip.BlockedIpStateEnum",
+              "required": false,
+              "description": "Filter the value of state property (=)"
+            }
+          ],
+          "responseType": "ipv4[]",
+          "noAuthentication": false,
+          "description": "Anti-Hack blocked IP",
+          "iamActions": [
+            {
+              "name": "ip:apiovh:antihack/get",
+              "required": true
+            }
+          ]
+        }
+      ],
+      "description": "List the ip.BlockedIp objects"
+    },
+    {
+      "path": "/ip/{ip}/antihack/{ipBlocked}",
+      "operations": [
+        {
+          "apiStatus": {
+            "description": "Stable production version",
+            "value": "PRODUCTION"
+          },
+          "httpMethod": "GET",
+          "parameters": [
+            {
+              "name": "ip",
+              "dataType": "ipBlock",
+              "paramType": "path",
+              "fullType": "ipBlock",
+              "required": true,
+              "description": ""
+            },
+            {
+              "name": "ipBlocked",
+              "dataType": "ipv4",
+              "paramType": "path",
+              "fullType": "ipv4",
+              "required": true,
+              "description": "your IP"
+            }
+          ],
+          "responseType": "ip.BlockedIp",
+          "noAuthentication": false,
+          "description": "Get this object properties",
+          "iamActions": [
+            {
+              "name": "ip:apiovh:antihack/get",
+              "required": true
+            }
+          ]
+        }
+      ],
+      "description": "Blocked IP information"
+    },
+    {
+      "path": "/ip/{ip}/antihack/{ipBlocked}/unblock",
+      "operations": [
+        {
+          "apiStatus": {
+            "description": "Stable production version",
+            "value": "PRODUCTION"
+          },
+          "httpMethod": "POST",
+          "parameters": [
+            {
+              "name": "ip",
+              "dataType": "ipBlock",
+              "paramType": "path",
+              "fullType": "ipBlock",
+              "required": true,
+              "description": ""
+            },
+            {
+              "name": "ipBlocked",
+              "dataType": "ipv4",
+              "paramType": "path",
+              "fullType": "ipv4",
+              "required": true,
+              "description": "your IP"
+            }
+          ],
+          "responseType": "void",
+          "noAuthentication": false,
+          "description": "Unblock this IP",
+          "iamActions": [
+            {
+              "name": "ip:apiovh:antihack/unblock",
+              "required": true
+            }
+          ]
+        }
+      ],
+      "description": "unblock operations"
+    },
+    {
+      "path": "/ip/{ip}/arp",
+      "operations": [
+        {
+          "apiStatus": {
+            "description": "Stable production version",
+            "value": "PRODUCTION"
+          },
+          "httpMethod": "GET",
+          "parameters": [
+            {
+              "name": "ip",
+              "dataType": "ipBlock",
+              "paramType": "path",
+              "fullType": "ipBlock",
+              "required": true,
+              "description": ""
+            },
+            {
+              "name": "state",
+              "dataType": "ip.ArpStateEnum",
+              "paramType": "query",
+              "fullType": "ip.ArpStateEnum",
+              "required": false,
+              "description": "Filter the value of state property (=)"
+            }
+          ],
+          "responseType": "ipv4[]",
+          "noAuthentication": false,
+          "description": "ARP blocked IP",
+          "iamActions": [
+            {
+              "name": "ip:apiovh:arp/get",
+              "required": true
+            }
+          ]
+        }
+      ],
+      "description": "List the ip.ArpBlockedIp objects"
+    },
+    {
+      "path": "/ip/{ip}/arp/{ipBlocked}",
+      "operations": [
+        {
+          "apiStatus": {
+            "description": "Stable production version",
+            "value": "PRODUCTION"
+          },
+          "httpMethod": "GET",
+          "parameters": [
+            {
+              "name": "ip",
+              "dataType": "ipBlock",
+              "paramType": "path",
+              "fullType": "ipBlock",
+              "required": true,
+              "description": ""
+            },
+            {
+              "name": "ipBlocked",
+              "dataType": "ipv4",
+              "paramType": "path",
+              "fullType": "ipv4",
+              "required": true,
+              "description": "your IP"
+            }
+          ],
+          "responseType": "ip.ArpBlockedIp",
+          "noAuthentication": false,
+          "description": "Get this object properties",
+          "iamActions": [
+            {
+              "name": "ip:apiovh:arp/get",
+              "required": true
+            }
+          ]
+        }
+      ],
+      "description": "ARP blocked IP information"
+    },
+    {
+      "path": "/ip/{ip}/arp/{ipBlocked}/unblock",
+      "operations": [
+        {
+          "apiStatus": {
+            "description": "Stable production version",
+            "value": "PRODUCTION"
+          },
+          "httpMethod": "POST",
+          "parameters": [
+            {
+              "name": "ip",
+              "dataType": "ipBlock",
+              "paramType": "path",
+              "fullType": "ipBlock",
+              "required": true,
+              "description": ""
+            },
+            {
+              "name": "ipBlocked",
+              "dataType": "ipv4",
+              "paramType": "path",
+              "fullType": "ipv4",
+              "required": true,
+              "description": "your IP"
+            }
+          ],
+          "responseType": "void",
+          "noAuthentication": false,
+          "description": "Unblock this IP",
+          "iamActions": [
+            {
+              "name": "ip:apiovh:arp/unblock",
+              "required": true
+            }
+          ]
+        }
+      ],
+      "description": "unblock operations"
+    },
+    {
+      "path": "/ip/{ip}/bringYourOwnIp/aggregate",
+      "operations": [
+        {
+          "apiStatus": {
+            "description": "Beta version",
+            "value": "BETA"
+          },
+          "httpMethod": "GET",
+          "parameters": [
+            {
+              "name": "ip",
+              "dataType": "ipBlock",
+              "paramType": "path",
+              "fullType": "ipBlock",
+              "required": true,
+              "description": ""
+            }
+          ],
+          "responseType": "ip.ByoipAggregationPreview[]",
+          "noAuthentication": false,
+          "description": "Get available aggregation configurations for this BYOIP Additional IP and it's neighbor(s)",
+          "iamActions": [
+            {
+              "name": "ip:apiovh:bringYourOwnIp/aggregate/get",
+              "required": true
+            }
+          ]
+        },
+        {
+          "apiStatus": {
+            "description": "Beta version",
+            "value": "BETA"
+          },
+          "httpMethod": "POST",
+          "parameters": [
+            {
+              "name": "aggregationIp",
+              "dataType": "ipBlock",
+              "paramType": "body",
+              "fullType": "ipBlock",
+              "required": true,
+              "description": "IP range to create by aggregation of all it's children"
+            },
+            {
+              "name": "ip",
+              "dataType": "ipBlock",
+              "paramType": "path",
+              "fullType": "ipBlock",
+              "required": true,
+              "description": ""
+            }
+          ],
+          "responseType": "ip.IpTask",
+          "noAuthentication": false,
+          "description": "Aggregate a sliced BYOIP Additional IPs and it's neighbor(s) into a single bigger Additional IP parent",
+          "iamActions": [
+            {
+              "name": "ip:apiovh:bringYourOwnIp/aggregate/create",
+              "required": true
+            }
+          ]
+        }
+      ],
+      "description": "aggregate operations"
+    },
+    {
+      "path": "/ip/{ip}/bringYourOwnIp/slice",
+      "operations": [
+        {
+          "apiStatus": {
+            "description": "Beta version",
+            "value": "BETA"
+          },
+          "httpMethod": "GET",
+          "parameters": [
+            {
+              "name": "ip",
+              "dataType": "ipBlock",
+              "paramType": "path",
+              "fullType": "ipBlock",
+              "required": true,
+              "description": ""
+            }
+          ],
+          "responseType": "ip.ByoipSlicingPreview[]",
+          "noAuthentication": false,
+          "description": "Get available slicing configurations for this BYOIP Additional IP",
+          "iamActions": [
+            {
+              "name": "ip:apiovh:bringYourOwnIp/slice/get",
+              "required": true
+            }
+          ]
+        },
+        {
+          "apiStatus": {
+            "description": "Beta version",
+            "value": "BETA"
+          },
+          "httpMethod": "POST",
+          "parameters": [
+            {
+              "name": "ip",
+              "dataType": "ipBlock",
+              "paramType": "path",
+              "fullType": "ipBlock",
+              "required": true,
+              "description": ""
+            },
+            {
+              "name": "slicingSize",
+              "dataType": "long",
+              "paramType": "body",
+              "fullType": "long",
+              "required": true,
+              "description": "Size (ip mask) of the IPs to create inside given IP"
+            }
+          ],
+          "responseType": "ip.IpTask",
+          "noAuthentication": false,
+          "description": "Slice a BYOIP Additional IP into smaller Additional IPs",
+          "iamActions": [
+            {
+              "name": "ip:apiovh:bringYourOwnIp/slice/create",
+              "required": true
+            }
+          ]
+        }
+      ],
+      "description": "slice operations"
+    },
+    {
+      "path": "/ip/{ip}/changeOrg",
+      "operations": [
+        {
+          "apiStatus": {
+            "description": "Stable production version",
+            "value": "PRODUCTION"
+          },
+          "httpMethod": "POST",
+          "parameters": [
+            {
+              "name": "ip",
+              "dataType": "ipBlock",
+              "paramType": "path",
+              "fullType": "ipBlock",
+              "required": true,
+              "description": ""
+            },
+            {
+              "name": "organisation",
+              "dataType": "string",
+              "paramType": "body",
+              "fullType": "string",
+              "required": true,
+              "description": "Your organisation id (RIPE_XXXX) to add on block informations"
+            }
+          ],
+          "responseType": "ip.IpTask",
+          "noAuthentication": false,
+          "description": "Change organisation of this IP",
+          "iamActions": [
+            {
+              "name": "ip:apiovh:changeOrg",
+              "required": true
+            }
+          ]
+        }
+      ],
+      "description": "changeOrg operations"
+    },
+    {
+      "path": "/ip/{ip}/delegation",
+      "operations": [
+        {
+          "apiStatus": {
+            "description": "Stable production version",
+            "value": "PRODUCTION"
+          },
+          "httpMethod": "GET",
+          "parameters": [
+            {
+              "name": "ip",
+              "dataType": "ipBlock",
+              "paramType": "path",
+              "fullType": "ipBlock",
+              "required": true,
+              "description": ""
+            }
+          ],
+          "responseType": "string[]",
+          "noAuthentication": false,
+          "description": "Reverse delegation on IPv6 subnet",
+          "iamActions": [
+            {
+              "name": "ip:apiovh:delegation/get",
+              "required": true
+            }
+          ]
+        },
+        {
+          "apiStatus": {
+            "description": "Stable production version",
+            "value": "PRODUCTION"
+          },
+          "httpMethod": "POST",
+          "parameters": [
+            {
+              "name": "ip",
+              "dataType": "ipBlock",
+              "paramType": "path",
+              "fullType": "ipBlock",
+              "required": true,
+              "description": ""
+            },
+            {
+              "name": "target",
+              "dataType": "string",
+              "paramType": "body",
+              "fullType": "string",
+              "required": true,
+              "description": "Target for reverse delegation on IPv6"
+            }
+          ],
+          "responseType": "ip.ReverseDelegation",
+          "noAuthentication": false,
+          "description": "Add target for reverse delegation on IPv6 subnet",
+          "iamActions": [
+            {
+              "name": "ip:apiovh:delegation/create",
+              "required": true
+            }
+          ]
+        }
+      ],
+      "description": "List the ip.ReverseDelegation objects"
+    },
+    {
+      "path": "/ip/{ip}/delegation/{target}",
+      "operations": [
+        {
+          "apiStatus": {
+            "description": "Stable production version",
+            "value": "PRODUCTION"
+          },
+          "httpMethod": "DELETE",
+          "parameters": [
+            {
+              "name": "ip",
+              "dataType": "ipBlock",
+              "paramType": "path",
+              "fullType": "ipBlock",
+              "required": true,
+              "description": ""
+            },
+            {
+              "name": "target",
+              "dataType": "string",
+              "paramType": "path",
+              "fullType": "string",
+              "required": true,
+              "description": "NS target for delegation"
+            }
+          ],
+          "responseType": "void",
+          "noAuthentication": false,
+          "description": "Delete a target for reverse delegation on IPv6 subnet",
+          "iamActions": [
+            {
+              "name": "ip:apiovh:delegation/delete",
+              "required": true
+            }
+          ]
+        },
+        {
+          "apiStatus": {
+            "description": "Stable production version",
+            "value": "PRODUCTION"
+          },
+          "httpMethod": "GET",
+          "parameters": [
+            {
+              "name": "ip",
+              "dataType": "ipBlock",
+              "paramType": "path",
+              "fullType": "ipBlock",
+              "required": true,
+              "description": ""
+            },
+            {
+              "name": "target",
+              "dataType": "string",
+              "paramType": "path",
+              "fullType": "string",
+              "required": true,
+              "description": "NS target for delegation"
+            }
+          ],
+          "responseType": "ip.ReverseDelegation",
+          "noAuthentication": false,
+          "description": "Get this object properties",
+          "iamActions": [
+            {
+              "name": "ip:apiovh:delegation/get",
+              "required": true
+            }
+          ]
+        }
+      ],
+      "description": "Your reverse delegations on IPv6 subnet"
+    },
+    {
+      "path": "/ip/{ip}/firewall",
+      "operations": [
+        {
+          "apiStatus": {
+            "description": "Stable production version",
+            "value": "PRODUCTION"
+          },
+          "httpMethod": "GET",
+          "parameters": [
+            {
+              "name": "enabled",
+              "dataType": "boolean",
+              "paramType": "query",
+              "fullType": "boolean",
+              "required": false,
+              "description": "Filter the value of enabled property (=)"
+            },
+            {
+              "name": "ip",
+              "dataType": "ipBlock",
+              "paramType": "path",
+              "fullType": "ipBlock",
+              "required": true,
+              "description": ""
+            },
+            {
+              "name": "state",
+              "dataType": "ip.FirewallStateEnum",
+              "paramType": "query",
+              "fullType": "ip.FirewallStateEnum",
+              "required": false,
+              "description": "Filter the value of state property (=)"
+            }
+          ],
+          "responseType": "ipv4[]",
+          "noAuthentication": false,
+          "description": "Ip under firewall",
+          "iamActions": [
+            {
+              "name": "ip:apiovh:firewall/get",
+              "required": true
+            }
+          ]
+        },
+        {
+          "apiStatus": {
+            "description": "Stable production version",
+            "value": "PRODUCTION"
+          },
+          "httpMethod": "POST",
+          "parameters": [
+            {
+              "name": "ip",
+              "dataType": "ipBlock",
+              "paramType": "path",
+              "fullType": "ipBlock",
+              "required": true,
+              "description": ""
+            },
+            {
+              "name": "ipOnFirewall",
+              "dataType": "ipv4",
+              "paramType": "body",
+              "fullType": "ipv4",
+              "required": true,
+              "description": ""
+            }
+          ],
+          "responseType": "ip.FirewallIp",
+          "noAuthentication": false,
+          "description": "AntiDDOS option. Add new IP on firewall",
+          "iamActions": [
+            {
+              "name": "ip:apiovh:firewall/create",
+              "required": true
+            }
+          ]
+        }
+      ],
+      "description": "List the ip.FirewallIp objects"
+    },
+    {
+      "path": "/ip/{ip}/firewall/{ipOnFirewall}",
+      "operations": [
+        {
+          "apiStatus": {
+            "description": "Stable production version",
+            "value": "PRODUCTION"
+          },
+          "httpMethod": "DELETE",
+          "parameters": [
+            {
+              "name": "ip",
+              "dataType": "ipBlock",
+              "paramType": "path",
+              "fullType": "ipBlock",
+              "required": true,
+              "description": ""
+            },
+            {
+              "name": "ipOnFirewall",
+              "dataType": "ipv4",
+              "paramType": "path",
+              "fullType": "ipv4",
+              "required": true,
+              "description": ""
+            }
+          ],
+          "responseType": "string",
+          "noAuthentication": false,
+          "description": "AntiDDOS option. Delete IP and rules from firewall",
+          "iamActions": [
+            {
+              "name": "ip:apiovh:firewall/delete",
+              "required": true
+            }
+          ]
+        },
+        {
+          "apiStatus": {
+            "description": "Stable production version",
+            "value": "PRODUCTION"
+          },
+          "httpMethod": "GET",
+          "parameters": [
+            {
+              "name": "ip",
+              "dataType": "ipBlock",
+              "paramType": "path",
+              "fullType": "ipBlock",
+              "required": true,
+              "description": ""
+            },
+            {
+              "name": "ipOnFirewall",
+              "dataType": "ipv4",
+              "paramType": "path",
+              "fullType": "ipv4",
+              "required": true,
+              "description": ""
+            }
+          ],
+          "responseType": "ip.FirewallIp",
+          "noAuthentication": false,
+          "description": "Get this object properties",
+          "iamActions": [
+            {
+              "name": "ip:apiovh:firewall/get",
+              "required": true
+            }
+          ]
+        },
+        {
+          "apiStatus": {
+            "description": "Stable production version",
+            "value": "PRODUCTION"
+          },
+          "httpMethod": "PUT",
+          "parameters": [
+            {
+              "dataType": "ip.FirewallIp",
+              "paramType": "body",
+              "fullType": "ip.FirewallIp",
+              "required": true,
+              "description": "New object properties"
+            },
+            {
+              "name": "ip",
+              "dataType": "ipBlock",
+              "paramType": "path",
+              "fullType": "ipBlock",
+              "required": true,
+              "description": ""
+            },
+            {
+              "name": "ipOnFirewall",
+              "dataType": "ipv4",
+              "paramType": "path",
+              "fullType": "ipv4",
+              "required": true,
+              "description": ""
+            }
+          ],
+          "responseType": "void",
+          "noAuthentication": false,
+          "description": "Alter this object properties",
+          "iamActions": [
+            {
+              "name": "ip:apiovh:firewall/edit",
+              "required": true
+            }
+          ]
+        }
+      ],
+      "description": "Your IP on firewall"
+    },
+    {
+      "path": "/ip/{ip}/firewall/{ipOnFirewall}/rule",
+      "operations": [
+        {
+          "apiStatus": {
+            "description": "Stable production version",
+            "value": "PRODUCTION"
+          },
+          "httpMethod": "GET",
+          "parameters": [
+            {
+              "name": "ip",
+              "dataType": "ipBlock",
+              "paramType": "path",
+              "fullType": "ipBlock",
+              "required": true,
+              "description": ""
+            },
+            {
+              "name": "ipOnFirewall",
+              "dataType": "ipv4",
+              "paramType": "path",
+              "fullType": "ipv4",
+              "required": true,
+              "description": ""
+            },
+            {
+              "name": "state",
+              "dataType": "ip.FirewallRuleStateEnum",
+              "paramType": "query",
+              "fullType": "ip.FirewallRuleStateEnum",
+              "required": false,
+              "description": "Filter the value of state property (=)"
+            }
+          ],
+          "responseType": "long[]",
+          "noAuthentication": false,
+          "description": "Rules for this IP",
+          "iamActions": [
+            {
+              "name": "ip:apiovh:firewall/rule/get",
+              "required": true
+            }
+          ]
+        },
+        {
+          "apiStatus": {
+            "description": "Stable production version",
+            "value": "PRODUCTION"
+          },
+          "httpMethod": "POST",
+          "parameters": [
+            {
+              "name": "action",
+              "dataType": "ip.FirewallActionEnum",
+              "paramType": "body",
+              "fullType": "ip.FirewallActionEnum",
+              "required": true,
+              "description": "Action on this rule"
+            },
+            {
+              "name": "destinationPort",
+              "dataType": "long",
+              "paramType": "body",
+              "fullType": "long",
+              "required": false,
+              "description": "Destination port for your rule. Only with TCP/UDP protocol"
+            },
+            {
+              "name": "destinationPortRange",
+              "dataType": "complexType.Range<long>",
+              "paramType": "body",
+              "fullType": "complexType.Range<long>",
+              "required": false,
+              "description": "Destination port range for your rule. Only with TCP/UDP protocol. Cannot be set alongside destinationPort."
+            },
+            {
+              "name": "ip",
+              "dataType": "ipBlock",
+              "paramType": "path",
+              "fullType": "ipBlock",
+              "required": true,
+              "description": ""
+            },
+            {
+              "name": "ipOnFirewall",
+              "dataType": "ipv4",
+              "paramType": "path",
+              "fullType": "ipv4",
+              "required": true,
+              "description": ""
+            },
+            {
+              "name": "l3PacketLength",
+              "dataType": "complexType.Range<long>",
+              "paramType": "body",
+              "fullType": "complexType.Range<long>",
+              "required": false,
+              "description": "IP packet's total length"
+            },
+            {
+              "name": "protocol",
+              "dataType": "ip.FirewallProtocolEnum",
+              "paramType": "body",
+              "fullType": "ip.FirewallProtocolEnum",
+              "required": true,
+              "description": "Network protocol"
+            },
+            {
+              "name": "sequence",
+              "dataType": "ip.FirewallSequenceRangeEnum",
+              "paramType": "body",
+              "fullType": "ip.FirewallSequenceRangeEnum",
+              "required": true,
+              "description": "Sequence number of your rule"
+            },
+            {
+              "name": "source",
+              "dataType": "ipv4Block",
+              "paramType": "body",
+              "fullType": "ipv4Block",
+              "required": false,
+              "description": "Source ip for your rule. Any if not set"
+            },
+            {
+              "name": "sourcePort",
+              "dataType": "long",
+              "paramType": "body",
+              "fullType": "long",
+              "required": false,
+              "description": "Source port for your rule. Only with TCP/UDP protocol"
+            },
+            {
+              "name": "sourcePortRange",
+              "dataType": "complexType.Range<long>",
+              "paramType": "body",
+              "fullType": "complexType.Range<long>",
+              "required": false,
+              "description": "Source port range for your rule. Only with TCP/UDP protocol. Cannot be set alongside sourcePort."
+            },
+            {
+              "name": "tcpOption",
+              "dataType": "ip.FirewallOptionTCP",
+              "paramType": "body",
+              "fullType": "ip.FirewallOptionTCP",
+              "required": false,
+              "description": "Option on your rule. Can only be used with TCP protocol"
+            }
+          ],
+          "responseType": "ip.FirewallNetworkRule",
+          "noAuthentication": false,
+          "description": "AntiDDOS option. Add new rule on your IP",
+          "iamActions": [
+            {
+              "name": "ip:apiovh:firewall/rule/create",
+              "required": true
+            }
+          ]
+        }
+      ],
+      "description": "List the ip.FirewallNetworkRule objects"
+    },
+    {
+      "path": "/ip/{ip}/firewall/{ipOnFirewall}/rule/{sequence}",
+      "operations": [
+        {
+          "apiStatus": {
+            "description": "Stable production version",
+            "value": "PRODUCTION"
+          },
+          "httpMethod": "DELETE",
+          "parameters": [
+            {
+              "name": "ip",
+              "dataType": "ipBlock",
+              "paramType": "path",
+              "fullType": "ipBlock",
+              "required": true,
+              "description": ""
+            },
+            {
+              "name": "ipOnFirewall",
+              "dataType": "ipv4",
+              "paramType": "path",
+              "fullType": "ipv4",
+              "required": true,
+              "description": ""
+            },
+            {
+              "name": "sequence",
+              "dataType": "long",
+              "paramType": "path",
+              "fullType": "long",
+              "required": true,
+              "description": ""
+            }
+          ],
+          "responseType": "ip.FirewallNetworkRule",
+          "noAuthentication": false,
+          "description": "AntiDDOS option. Delete rule",
+          "iamActions": [
+            {
+              "name": "ip:apiovh:firewall/rule/delete",
+              "required": true
+            }
+          ]
+        },
+        {
+          "apiStatus": {
+            "description": "Stable production version",
+            "value": "PRODUCTION"
+          },
+          "httpMethod": "GET",
+          "parameters": [
+            {
+              "name": "ip",
+              "dataType": "ipBlock",
+              "paramType": "path",
+              "fullType": "ipBlock",
+              "required": true,
+              "description": ""
+            },
+            {
+              "name": "ipOnFirewall",
+              "dataType": "ipv4",
+              "paramType": "path",
+              "fullType": "ipv4",
+              "required": true,
+              "description": ""
+            },
+            {
+              "name": "sequence",
+              "dataType": "long",
+              "paramType": "path",
+              "fullType": "long",
+              "required": true,
+              "description": ""
+            }
+          ],
+          "responseType": "ip.FirewallNetworkRule",
+          "noAuthentication": false,
+          "description": "Get this object properties",
+          "iamActions": [
+            {
+              "name": "ip:apiovh:firewall/rule/get",
+              "required": true
+            }
+          ]
+        }
+      ],
+      "description": "Rule on ip"
+    },
+    {
+      "path": "/ip/{ip}/game",
+      "operations": [
+        {
+          "apiStatus": {
+            "description": "Stable production version",
+            "value": "PRODUCTION"
+          },
+          "httpMethod": "GET",
+          "parameters": [
+            {
+              "name": "ip",
+              "dataType": "ipBlock",
+              "paramType": "path",
+              "fullType": "ipBlock",
+              "required": true,
+              "description": ""
+            }
+          ],
+          "responseType": "ipv4[]",
+          "noAuthentication": false,
+          "description": "Ip under game anti-ddos",
+          "iamActions": [
+            {
+              "name": "ip:apiovh:game/get",
+              "required": true
+            }
+          ]
+        }
+      ],
+      "description": "List the ip.GameMitigation objects"
+    },
+    {
+      "path": "/ip/{ip}/game/{ipOnGame}",
+      "operations": [
+        {
+          "apiStatus": {
+            "description": "Stable production version",
+            "value": "PRODUCTION"
+          },
+          "httpMethod": "GET",
+          "parameters": [
+            {
+              "name": "ip",
+              "dataType": "ipBlock",
+              "paramType": "path",
+              "fullType": "ipBlock",
+              "required": true,
+              "description": ""
+            },
+            {
+              "name": "ipOnGame",
+              "dataType": "ipv4",
+              "paramType": "path",
+              "fullType": "ipv4",
+              "required": true,
+              "description": ""
+            }
+          ],
+          "responseType": "ip.GameMitigation",
+          "noAuthentication": false,
+          "description": "Get this object properties",
+          "iamActions": [
+            {
+              "name": "ip:apiovh:game/get",
+              "required": true
+            }
+          ]
+        },
+        {
+          "apiStatus": {
+            "description": "Stable production version",
+            "value": "PRODUCTION"
+          },
+          "httpMethod": "PUT",
+          "parameters": [
+            {
+              "dataType": "ip.GameMitigation",
+              "paramType": "body",
+              "fullType": "ip.GameMitigation",
+              "required": true,
+              "description": "New object properties"
+            },
+            {
+              "name": "ip",
+              "dataType": "ipBlock",
+              "paramType": "path",
+              "fullType": "ipBlock",
+              "required": true,
+              "description": ""
+            },
+            {
+              "name": "ipOnGame",
+              "dataType": "ipv4",
+              "paramType": "path",
+              "fullType": "ipv4",
+              "required": true,
+              "description": ""
+            }
+          ],
+          "responseType": "void",
+          "noAuthentication": false,
+          "description": "Alter this object properties",
+          "iamActions": [
+            {
+              "name": "ip:apiovh:game/edit",
+              "required": true
+            }
+          ]
+        }
+      ],
+      "description": "GAME Anti-DDoS"
+    },
+    {
+      "path": "/ip/{ip}/game/{ipOnGame}/rule",
+      "operations": [
+        {
+          "apiStatus": {
+            "description": "Stable production version",
+            "value": "PRODUCTION"
+          },
+          "httpMethod": "GET",
+          "parameters": [
+            {
+              "name": "ip",
+              "dataType": "ipBlock",
+              "paramType": "path",
+              "fullType": "ipBlock",
+              "required": true,
+              "description": ""
+            },
+            {
+              "name": "ipOnGame",
+              "dataType": "ipv4",
+              "paramType": "path",
+              "fullType": "ipv4",
+              "required": true,
+              "description": ""
+            }
+          ],
+          "responseType": "long[]",
+          "noAuthentication": false,
+          "description": "IDs of rules configured for this IP",
+          "iamActions": [
+            {
+              "name": "ip:apiovh:game/rule/get",
+              "required": true
+            }
+          ]
+        },
+        {
+          "apiStatus": {
+            "description": "Stable production version",
+            "value": "PRODUCTION"
+          },
+          "httpMethod": "POST",
+          "parameters": [
+            {
+              "name": "ip",
+              "dataType": "ipBlock",
+              "paramType": "path",
+              "fullType": "ipBlock",
+              "required": true,
+              "description": ""
+            },
+            {
+              "name": "ipOnGame",
+              "dataType": "ipv4",
+              "paramType": "path",
+              "fullType": "ipv4",
+              "required": true,
+              "description": ""
+            },
+            {
+              "name": "ports",
+              "dataType": "complexType.Range<long>",
+              "paramType": "body",
+              "fullType": "complexType.Range<long>",
+              "required": true,
+              "description": "The UDP port range to apply the rule on"
+            },
+            {
+              "name": "protocol",
+              "dataType": "ip.GameMitigationRuleProtocolEnum",
+              "paramType": "body",
+              "fullType": "ip.GameMitigationRuleProtocolEnum",
+              "required": true,
+              "description": "The protocol running behind the given port(s). See supportedProtocols on the IP to know which values are valid here"
+            }
+          ],
+          "responseType": "ip.GameMitigationRule",
+          "noAuthentication": false,
+          "description": "Add new rule on your IP",
+          "iamActions": [
+            {
+              "name": "ip:apiovh:game/rule/create",
+              "required": true
+            }
+          ]
+        }
+      ],
+      "description": "List the ip.GameMitigationRule objects"
+    },
+    {
+      "path": "/ip/{ip}/game/{ipOnGame}/rule/{id}",
+      "operations": [
+        {
+          "apiStatus": {
+            "description": "Stable production version",
+            "value": "PRODUCTION"
+          },
+          "httpMethod": "DELETE",
+          "parameters": [
+            {
+              "name": "id",
+              "dataType": "long",
+              "paramType": "path",
+              "fullType": "long",
+              "required": true,
+              "description": "ID of the rule"
+            },
+            {
+              "name": "ip",
+              "dataType": "ipBlock",
+              "paramType": "path",
+              "fullType": "ipBlock",
+              "required": true,
+              "description": ""
+            },
+            {
+              "name": "ipOnGame",
+              "dataType": "ipv4",
+              "paramType": "path",
+              "fullType": "ipv4",
+              "required": true,
+              "description": ""
+            }
+          ],
+          "responseType": "ip.GameMitigationRule",
+          "noAuthentication": false,
+          "description": "Delete rule",
+          "iamActions": [
+            {
+              "name": "ip:apiovh:game/rule/delete",
+              "required": true
+            }
+          ]
+        },
+        {
+          "apiStatus": {
+            "description": "Stable production version",
+            "value": "PRODUCTION"
+          },
+          "httpMethod": "GET",
+          "parameters": [
+            {
+              "name": "id",
+              "dataType": "long",
+              "paramType": "path",
+              "fullType": "long",
+              "required": true,
+              "description": "ID of the rule"
+            },
+            {
+              "name": "ip",
+              "dataType": "ipBlock",
+              "paramType": "path",
+              "fullType": "ipBlock",
+              "required": true,
+              "description": ""
+            },
+            {
+              "name": "ipOnGame",
+              "dataType": "ipv4",
+              "paramType": "path",
+              "fullType": "ipv4",
+              "required": true,
+              "description": ""
+            }
+          ],
+          "responseType": "ip.GameMitigationRule",
+          "noAuthentication": false,
+          "description": "Get this object properties",
+          "iamActions": [
+            {
+              "name": "ip:apiovh:game/rule/get",
+              "required": true
+            }
+          ]
+        }
+      ],
+      "description": "Rule on ip:ports"
+    },
+    {
+      "path": "/ip/{ip}/license/cloudLinux",
+      "operations": [
+        {
+          "apiStatus": {
+            "description": "Stable production version",
+            "value": "PRODUCTION"
+          },
+          "httpMethod": "GET",
+          "parameters": [
+            {
+              "name": "ip",
+              "dataType": "ipBlock",
+              "paramType": "path",
+              "fullType": "ipBlock",
+              "required": true,
+              "description": ""
+            },
+            {
+              "name": "ipAddress",
+              "dataType": "ipv4",
+              "paramType": "query",
+              "fullType": "ipv4",
+              "required": false,
+              "description": "Filter the value of ipAddress property (=)"
+            }
+          ],
+          "responseType": "string[]",
+          "noAuthentication": false,
+          "description": "Cloud Linux licenses associated to this IP",
+          "iamActions": [
+            {
+              "name": "ip:apiovh:license/cloudLinux/get",
+              "required": true
+            }
+          ]
+        }
+      ],
+      "description": "List the license.cloudLinux.CloudLinux objects"
+    },
+    {
+      "path": "/ip/{ip}/license/cpanel",
+      "operations": [
+        {
+          "apiStatus": {
+            "description": "Stable production version",
+            "value": "PRODUCTION"
+          },
+          "httpMethod": "GET",
+          "parameters": [
+            {
+              "name": "ip",
+              "dataType": "ipBlock",
+              "paramType": "path",
+              "fullType": "ipBlock",
+              "required": true,
+              "description": ""
+            },
+            {
+              "name": "ipAddress",
+              "dataType": "ipv4",
+              "paramType": "query",
+              "fullType": "ipv4",
+              "required": false,
+              "description": "Filter the value of ipAddress property (=)"
+            }
+          ],
+          "responseType": "string[]",
+          "noAuthentication": false,
+          "description": "Cpanel licenses associated to this IP",
+          "iamActions": [
+            {
+              "name": "ip:apiovh:license/cpanel/get",
+              "required": true
+            }
+          ]
+        }
+      ],
+      "description": "List the license.cpanel.Cpanel objects"
+    },
+    {
+      "path": "/ip/{ip}/license/directadmin",
+      "operations": [
+        {
+          "apiStatus": {
+            "description": "Stable production version",
+            "value": "PRODUCTION"
+          },
+          "httpMethod": "GET",
+          "parameters": [
+            {
+              "name": "ip",
+              "dataType": "ipBlock",
+              "paramType": "path",
+              "fullType": "ipBlock",
+              "required": true,
+              "description": ""
+            },
+            {
+              "name": "ipAddress",
+              "dataType": "ipv4",
+              "paramType": "query",
+              "fullType": "ipv4",
+              "required": false,
+              "description": "Filter the value of ipAddress property (=)"
+            }
+          ],
+          "responseType": "string[]",
+          "noAuthentication": false,
+          "description": "DirectAdmin licenses associated to this IP",
+          "iamActions": [
+            {
+              "name": "ip:apiovh:license/directadmin/get",
+              "required": true
+            }
+          ]
+        }
+      ],
+      "description": "List the license.directadmin.DirectAdmin objects"
+    },
+    {
+      "path": "/ip/{ip}/license/plesk",
+      "operations": [
+        {
+          "apiStatus": {
+            "description": "Stable production version",
+            "value": "PRODUCTION"
+          },
+          "httpMethod": "GET",
+          "parameters": [
+            {
+              "name": "ip",
+              "dataType": "ipBlock",
+              "paramType": "path",
+              "fullType": "ipBlock",
+              "required": true,
+              "description": ""
+            },
+            {
+              "name": "ipAddress",
+              "dataType": "ipv4",
+              "paramType": "query",
+              "fullType": "ipv4",
+              "required": false,
+              "description": "Filter the value of ipAddress property (=)"
+            }
+          ],
+          "responseType": "string[]",
+          "noAuthentication": false,
+          "description": "Plesk licenses associated to this IP",
+          "iamActions": [
+            {
+              "name": "ip:apiovh:license/plesk/get",
+              "required": true
+            }
+          ]
+        }
+      ],
+      "description": "List the license.plesk.Plesk objects"
+    },
+    {
+      "path": "/ip/{ip}/license/sqlserver",
+      "operations": [
+        {
+          "apiStatus": {
+            "description": "Stable production version",
+            "value": "PRODUCTION"
+          },
+          "httpMethod": "GET",
+          "parameters": [
+            {
+              "name": "ip",
+              "dataType": "ipBlock",
+              "paramType": "path",
+              "fullType": "ipBlock",
+              "required": true,
+              "description": ""
+            },
+            {
+              "name": "ipAddress",
+              "dataType": "ipv4",
+              "paramType": "query",
+              "fullType": "ipv4",
+              "required": false,
+              "description": "Filter the value of ipAddress property (=)"
+            }
+          ],
+          "responseType": "string[]",
+          "noAuthentication": false,
+          "description": "SQL Server licenses associated to this IP",
+          "iamActions": [
+            {
+              "name": "ip:apiovh:license/sqlserver/get",
+              "required": true
+            }
+          ]
+        }
+      ],
+      "description": "List the license.sqlserver.SqlServer objects"
+    },
+    {
+      "path": "/ip/{ip}/license/virtuozzo",
+      "operations": [
+        {
+          "apiStatus": {
+            "description": "Stable production version",
+            "value": "PRODUCTION"
+          },
+          "httpMethod": "GET",
+          "parameters": [
+            {
+              "name": "ip",
+              "dataType": "ipBlock",
+              "paramType": "path",
+              "fullType": "ipBlock",
+              "required": true,
+              "description": ""
+            },
+            {
+              "name": "ipAddress",
+              "dataType": "ipv4",
+              "paramType": "query",
+              "fullType": "ipv4",
+              "required": false,
+              "description": "Filter the value of ipAddress property (=)"
+            }
+          ],
+          "responseType": "string[]",
+          "noAuthentication": false,
+          "description": "Virtuozzo licenses associated to this IP",
+          "iamActions": [
+            {
+              "name": "ip:apiovh:license/virtuozzo/get",
+              "required": true
+            }
+          ]
+        }
+      ],
+      "description": "List the license.virtuozzo.Virtuozzo objects"
+    },
+    {
+      "path": "/ip/{ip}/license/windows",
+      "operations": [
+        {
+          "apiStatus": {
+            "description": "Stable production version",
+            "value": "PRODUCTION"
+          },
+          "httpMethod": "GET",
+          "parameters": [
+            {
+              "name": "ip",
+              "dataType": "ipBlock",
+              "paramType": "path",
+              "fullType": "ipBlock",
+              "required": true,
+              "description": ""
+            },
+            {
+              "name": "ipAddress",
+              "dataType": "ipv4",
+              "paramType": "query",
+              "fullType": "ipv4",
+              "required": false,
+              "description": "Filter the value of ipAddress property (=)"
+            }
+          ],
+          "responseType": "string[]",
+          "noAuthentication": false,
+          "description": "Windows licenses associated to this IP",
+          "iamActions": [
+            {
+              "name": "ip:apiovh:license/windows/get",
+              "required": true
+            }
+          ]
+        }
+      ],
+      "description": "List the license.windows.Windows objects"
+    },
+    {
+      "path": "/ip/{ip}/license/worklight",
+      "operations": [
+        {
+          "apiStatus": {
+            "description": "Stable production version",
+            "value": "PRODUCTION"
+          },
+          "httpMethod": "GET",
+          "parameters": [
+            {
+              "name": "ip",
+              "dataType": "ipBlock",
+              "paramType": "path",
+              "fullType": "ipBlock",
+              "required": true,
+              "description": ""
+            },
+            {
+              "name": "ipAddress",
+              "dataType": "ipv4",
+              "paramType": "query",
+              "fullType": "ipv4",
+              "required": false,
+              "description": "Filter the value of ipAddress property (=)"
+            }
+          ],
+          "responseType": "string[]",
+          "noAuthentication": false,
+          "description": "WorkLight licenses associated to this IP",
+          "iamActions": [
+            {
+              "name": "ip:apiovh:license/worklight/get",
+              "required": true
+            }
+          ]
+        }
+      ],
+      "description": "List the license.worklight.WorkLight objects"
+    },
+    {
+      "path": "/ip/{ip}/migrationToken",
+      "operations": [
+        {
+          "apiStatus": {
+            "description": "Stable production version",
+            "value": "PRODUCTION"
+          },
+          "httpMethod": "GET",
+          "parameters": [
+            {
+              "name": "ip",
+              "dataType": "ipBlock",
+              "paramType": "path",
+              "fullType": "ipBlock",
+              "required": true,
+              "description": ""
+            }
+          ],
+          "responseType": "ip.IpMigrationToken",
+          "noAuthentication": false,
+          "description": "Get this object properties",
+          "iamActions": [
+            {
+              "name": "ip:apiovh:migrationToken/get",
+              "required": true
+            }
+          ]
+        },
+        {
+          "apiStatus": {
+            "description": "Stable production version",
+            "value": "PRODUCTION"
+          },
+          "httpMethod": "POST",
+          "parameters": [
+            {
+              "name": "customerId",
+              "dataType": "string",
+              "paramType": "body",
+              "fullType": "string",
+              "required": true,
+              "description": "destination customer ID"
+            },
+            {
+              "name": "ip",
+              "dataType": "ipBlock",
+              "paramType": "path",
+              "fullType": "ipBlock",
+              "required": true,
+              "description": ""
+            }
+          ],
+          "responseType": "ip.IpMigrationToken",
+          "noAuthentication": false,
+          "description": "Generate a migration token",
+          "iamActions": [
+            {
+              "name": "ip:apiovh:migrationToken/create",
+              "required": true
+            }
+          ]
+        }
+      ],
+      "description": "IP migration to OVH"
+    },
+    {
+      "path": "/ip/{ip}/mitigation",
+      "operations": [
+        {
+          "apiStatus": {
+            "description": "Stable production version",
+            "value": "PRODUCTION"
+          },
+          "httpMethod": "GET",
+          "parameters": [
+            {
+              "name": "auto",
+              "dataType": "boolean",
+              "paramType": "query",
+              "fullType": "boolean",
+              "required": false,
+              "description": "Filter the value of auto property (=)"
+            },
+            {
+              "name": "ip",
+              "dataType": "ipBlock",
+              "paramType": "path",
+              "fullType": "ipBlock",
+              "required": true,
+              "description": ""
+            },
+            {
+              "name": "state",
+              "dataType": "ip.MitigationStateEnum",
+              "paramType": "query",
+              "fullType": "ip.MitigationStateEnum",
+              "required": false,
+              "description": "Filter the value of state property (=)"
+            }
+          ],
+          "responseType": "ipv4[]",
+          "noAuthentication": false,
+          "description": "Ip under mitigation",
+          "iamActions": [
+            {
+              "name": "ip:apiovh:mitigation/get",
+              "required": true
+            }
+          ]
+        },
+        {
+          "apiStatus": {
+            "description": "Stable production version",
+            "value": "PRODUCTION"
+          },
+          "httpMethod": "POST",
+          "parameters": [
+            {
+              "name": "ip",
+              "dataType": "ipBlock",
+              "paramType": "path",
+              "fullType": "ipBlock",
+              "required": true,
+              "description": ""
+            },
+            {
+              "name": "ipOnMitigation",
+              "dataType": "ipv4",
+              "paramType": "body",
+              "fullType": "ipv4",
+              "required": true,
+              "description": ""
+            }
+          ],
+          "responseType": "ip.MitigationIp",
+          "noAuthentication": false,
+          "description": "MitigationIp objects reflect the state of DDoS mitigation for a given IP address and are created automatically when auto mitigation is enabled; manual creation is unnecessary as it no longer enables permanent mitigation.",
+          "iamActions": [
+            {
+              "name": "ip:apiovh:mitigation/create",
+              "required": true
+            }
+          ]
+        }
+      ],
+      "description": "List the ip.MitigationIp objects"
+    },
+    {
+      "path": "/ip/{ip}/mitigation/{ipOnMitigation}",
+      "operations": [
+        {
+          "apiStatus": {
+            "description": "Stable production version",
+            "value": "PRODUCTION"
+          },
+          "httpMethod": "DELETE",
+          "parameters": [
+            {
+              "name": "ip",
+              "dataType": "ipBlock",
+              "paramType": "path",
+              "fullType": "ipBlock",
+              "required": true,
+              "description": ""
+            },
+            {
+              "name": "ipOnMitigation",
+              "dataType": "ipv4",
+              "paramType": "path",
+              "fullType": "ipv4",
+              "required": true,
+              "description": ""
+            }
+          ],
+          "responseType": "ip.MitigationIp",
+          "noAuthentication": false,
+          "description": "AntiDDOS option. Delete IP from mitigation",
+          "iamActions": [
+            {
+              "name": "ip:apiovh:mitigation/delete",
+              "required": true
+            }
+          ]
+        },
+        {
+          "apiStatus": {
+            "description": "Stable production version",
+            "value": "PRODUCTION"
+          },
+          "httpMethod": "GET",
+          "parameters": [
+            {
+              "name": "ip",
+              "dataType": "ipBlock",
+              "paramType": "path",
+              "fullType": "ipBlock",
+              "required": true,
+              "description": ""
+            },
+            {
+              "name": "ipOnMitigation",
+              "dataType": "ipv4",
+              "paramType": "path",
+              "fullType": "ipv4",
+              "required": true,
+              "description": ""
+            }
+          ],
+          "responseType": "ip.MitigationIp",
+          "noAuthentication": false,
+          "description": "Get this object properties",
+          "iamActions": [
+            {
+              "name": "ip:apiovh:mitigation/get",
+              "required": true
+            }
+          ]
+        },
+        {
+          "apiStatus": {
+            "description": "Deprecated, will be removed",
+            "value": "DEPRECATED",
+            "deletionDate": "2025-09-08T00:00:00Z",
+            "deprecatedDate": "2025-07-29T00:00:00Z"
+          },
+          "httpMethod": "PUT",
+          "parameters": [
+            {
+              "dataType": "ip.MitigationIp",
+              "paramType": "body",
+              "fullType": "ip.MitigationIp",
+              "required": true,
+              "description": "New object properties"
+            },
+            {
+              "name": "ip",
+              "dataType": "ipBlock",
+              "paramType": "path",
+              "fullType": "ipBlock",
+              "required": true,
+              "description": ""
+            },
+            {
+              "name": "ipOnMitigation",
+              "dataType": "ipv4",
+              "paramType": "path",
+              "fullType": "ipv4",
+              "required": true,
+              "description": ""
+            }
+          ],
+          "responseType": "void",
+          "noAuthentication": false,
+          "description": "Alter this object properties",
+          "iamActions": [
+            {
+              "name": "ip:apiovh:mitigation/edit",
+              "required": true
+            }
+          ]
+        }
+      ],
+      "description": "Your IP on mitigation"
+    },
+    {
+      "path": "/ip/{ip}/mitigationProfiles",
+      "operations": [
+        {
+          "apiStatus": {
+            "description": "Stable production version",
+            "value": "PRODUCTION"
+          },
+          "httpMethod": "GET",
+          "parameters": [
+            {
+              "name": "ip",
+              "dataType": "ipBlock",
+              "paramType": "path",
+              "fullType": "ipBlock",
+              "required": true,
+              "description": ""
+            }
+          ],
+          "responseType": "ipv4[]",
+          "noAuthentication": false,
+          "description": "Manage mitigation profile on your IPs",
+          "iamActions": [
+            {
+              "name": "ip:apiovh:mitigationProfiles/get",
+              "required": true
+            }
+          ]
+        },
+        {
+          "apiStatus": {
+            "description": "Stable production version",
+            "value": "PRODUCTION"
+          },
+          "httpMethod": "POST",
+          "parameters": [
+            {
+              "name": "autoMitigationTimeOut",
+              "dataType": "ip.MitigationProfileAutoMitigationTimeOutEnum",
+              "paramType": "body",
+              "fullType": "ip.MitigationProfileAutoMitigationTimeOutEnum",
+              "required": true,
+              "description": "Delay to wait before remove ip from auto mitigation after an attack"
+            },
+            {
+              "name": "ip",
+              "dataType": "ipBlock",
+              "paramType": "path",
+              "fullType": "ipBlock",
+              "required": true,
+              "description": ""
+            },
+            {
+              "name": "ipMitigationProfile",
+              "dataType": "ipv4",
+              "paramType": "body",
+              "fullType": "ipv4",
+              "required": true,
+              "description": ""
+            }
+          ],
+          "responseType": "ip.MitigationProfile",
+          "noAuthentication": false,
+          "description": "Create new profile for one of your ip",
+          "iamActions": [
+            {
+              "name": "ip:apiovh:mitigationProfiles/create",
+              "required": true
+            }
+          ]
+        }
+      ],
+      "description": "List the ip.MitigationProfile objects"
+    },
+    {
+      "path": "/ip/{ip}/mitigationProfiles/{ipMitigationProfile}",
+      "operations": [
+        {
+          "apiStatus": {
+            "description": "Stable production version",
+            "value": "PRODUCTION"
+          },
+          "httpMethod": "DELETE",
+          "parameters": [
+            {
+              "name": "ip",
+              "dataType": "ipBlock",
+              "paramType": "path",
+              "fullType": "ipBlock",
+              "required": true,
+              "description": ""
+            },
+            {
+              "name": "ipMitigationProfile",
+              "dataType": "ipv4",
+              "paramType": "path",
+              "fullType": "ipv4",
+              "required": true,
+              "description": ""
+            }
+          ],
+          "responseType": "void",
+          "noAuthentication": false,
+          "description": "Delete mitigation profile",
+          "iamActions": [
+            {
+              "name": "ip:apiovh:mitigationProfiles/delete",
+              "required": true
+            }
+          ]
+        },
+        {
+          "apiStatus": {
+            "description": "Stable production version",
+            "value": "PRODUCTION"
+          },
+          "httpMethod": "GET",
+          "parameters": [
+            {
+              "name": "ip",
+              "dataType": "ipBlock",
+              "paramType": "path",
+              "fullType": "ipBlock",
+              "required": true,
+              "description": ""
+            },
+            {
+              "name": "ipMitigationProfile",
+              "dataType": "ipv4",
+              "paramType": "path",
+              "fullType": "ipv4",
+              "required": true,
+              "description": ""
+            }
+          ],
+          "responseType": "ip.MitigationProfile",
+          "noAuthentication": false,
+          "description": "Get this object properties",
+          "iamActions": [
+            {
+              "name": "ip:apiovh:mitigationProfiles/get",
+              "required": true
+            }
+          ]
+        },
+        {
+          "apiStatus": {
+            "description": "Stable production version",
+            "value": "PRODUCTION"
+          },
+          "httpMethod": "PUT",
+          "parameters": [
+            {
+              "dataType": "ip.MitigationProfile",
+              "paramType": "body",
+              "fullType": "ip.MitigationProfile",
+              "required": true,
+              "description": "New object properties"
+            },
+            {
+              "name": "ip",
+              "dataType": "ipBlock",
+              "paramType": "path",
+              "fullType": "ipBlock",
+              "required": true,
+              "description": ""
+            },
+            {
+              "name": "ipMitigationProfile",
+              "dataType": "ipv4",
+              "paramType": "path",
+              "fullType": "ipv4",
+              "required": true,
+              "description": ""
+            }
+          ],
+          "responseType": "void",
+          "noAuthentication": false,
+          "description": "Alter this object properties",
+          "iamActions": [
+            {
+              "name": "ip:apiovh:mitigationProfiles/edit",
+              "required": true
+            }
+          ]
+        }
+      ],
+      "description": "Mitigation profile for your ip"
+    },
+    {
+      "path": "/ip/{ip}/move",
+      "operations": [
+        {
+          "apiStatus": {
+            "description": "Beta version",
+            "value": "BETA"
+          },
+          "httpMethod": "GET",
+          "parameters": [
+            {
+              "name": "ip",
+              "dataType": "ipBlock",
+              "paramType": "path",
+              "fullType": "ipBlock",
+              "required": true,
+              "description": ""
+            }
+          ],
+          "responseType": "ip.Destinations",
+          "noAuthentication": false,
+          "description": "List services available as a destination",
+          "iamActions": [
+            {
+              "name": "ip:apiovh:move/get",
+              "required": true
+            },
+            {
+              "name": "dedicatedServer:apiovh:ip/additionalIp/move",
+              "description": "Needed on a Dedicated Server for it to be available as a move destination",
+              "required": false
+            },
+            {
+              "name": "pccVMware:apiovh:ip/additionalIp/move",
+              "description": "Needed on a PCC VMware for it to be available as a move destination",
+              "required": false
+            },
+            {
+              "name": "publicCloudProject:apiovh:ip/additionalIp/move",
+              "description": "Needed on a Cloud Project for it to be available as a move destination",
+              "required": false
+            },
+            {
+              "name": "vps:apiovh:ip/additionalIp/move",
+              "description": "Needed on a Virtual Server for it to be available as a move destination",
+              "required": false
+            },
+            {
+              "name": "loadbalancer:apiovh:ip/additionalIp/move",
+              "description": "Needed on an IP Load Balancer for it to be available as a move destination",
+              "required": false
+            },
+            {
+              "name": "vrack:apiovh:ip/additionalIp/move",
+              "description": "Needed on a vRack for it to be available as a move destination",
+              "required": false
+            },
+            {
+              "name": "vmwareCloudDirector:apiovh:organization/ip/additionalIp/move",
+              "description": "Needed on a VMware Cloud Director organization for it to be available as a move destination",
+              "required": false
+            }
+          ]
+        },
+        {
+          "apiStatus": {
+            "description": "Stable production version",
+            "value": "PRODUCTION"
+          },
+          "httpMethod": "POST",
+          "parameters": [
+            {
+              "name": "ip",
+              "dataType": "ipBlock",
+              "paramType": "path",
+              "fullType": "ipBlock",
+              "required": true,
+              "description": ""
+            },
+            {
+              "name": "nexthop",
+              "dataType": "string",
+              "paramType": "body",
+              "fullType": "string",
+              "required": false,
+              "description": "Nexthop of destination service"
+            },
+            {
+              "name": "to",
+              "dataType": "string",
+              "paramType": "body",
+              "fullType": "string",
+              "required": true,
+              "description": "Service destination"
+            }
+          ],
+          "responseType": "ip.IpTask",
+          "noAuthentication": false,
+          "description": "Move this IP to another service",
+          "iamActions": [
+            {
+              "name": "ip:apiovh:move",
+              "required": true
+            },
+            {
+              "name": "dedicatedServer:apiovh:ip/additionalIp/move",
+              "description": "Needed on a Dedicated Server for it to be available as a move destination",
+              "required": false
+            },
+            {
+              "name": "pccVMware:apiovh:ip/additionalIp/move",
+              "description": "Needed on a PCC VMware for it to be available as a move destination",
+              "required": false
+            },
+            {
+              "name": "publicCloudProject:apiovh:ip/additionalIp/move",
+              "description": "Needed on a Cloud Project for it to be available as a move destination",
+              "required": false
+            },
+            {
+              "name": "vps:apiovh:ip/additionalIp/move",
+              "description": "Needed on a Virtual Server for it to be available as a move destination",
+              "required": false
+            },
+            {
+              "name": "loadbalancer:apiovh:ip/additionalIp/move",
+              "description": "Needed on an IP Load Balancer for it to be available as a move destination",
+              "required": false
+            },
+            {
+              "name": "vrack:apiovh:ip/additionalIp/move",
+              "description": "Needed on a vRack for it to be available as a move destination",
+              "required": false
+            },
+            {
+              "name": "vmwareCloudDirector:apiovh:organization/ip/additionalIp/move",
+              "description": "Needed on a VMware Cloud Director organization for it to be available as a move destination",
+              "required": false
+            }
+          ]
+        }
+      ],
+      "description": "move operations"
+    },
+    {
+      "path": "/ip/{ip}/park",
+      "operations": [
+        {
+          "apiStatus": {
+            "description": "Stable production version",
+            "value": "PRODUCTION"
+          },
+          "httpMethod": "POST",
+          "parameters": [
+            {
+              "name": "ip",
+              "dataType": "ipBlock",
+              "paramType": "path",
+              "fullType": "ipBlock",
+              "required": true,
+              "description": ""
+            }
+          ],
+          "responseType": "ip.IpTask",
+          "noAuthentication": false,
+          "description": "Park this IP",
+          "iamActions": [
+            {
+              "name": "ip:apiovh:park",
+              "required": true
+            }
+          ]
+        }
+      ],
+      "description": "park operations"
+    },
+    {
+      "path": "/ip/{ip}/phishing",
+      "operations": [
+        {
+          "apiStatus": {
+            "description": "Stable production version",
+            "value": "PRODUCTION"
+          },
+          "httpMethod": "GET",
+          "parameters": [
+            {
+              "name": "ip",
+              "dataType": "ipBlock",
+              "paramType": "path",
+              "fullType": "ipBlock",
+              "required": true,
+              "description": ""
+            },
+            {
+              "name": "ipOnAntiphishing",
+              "dataType": "ipv4",
+              "paramType": "query",
+              "fullType": "ipv4",
+              "required": false,
+              "description": "Filter the value of ipOnAntiphishing property (within or equals)"
+            },
+            {
+              "name": "state",
+              "dataType": "ip.AntiphishingStateEnum",
+              "paramType": "query",
+              "fullType": "ip.AntiphishingStateEnum",
+              "required": false,
+              "description": "Filter the value of state property (=)"
+            }
+          ],
+          "responseType": "long[]",
+          "noAuthentication": false,
+          "description": "Ip under anti-phishing",
+          "iamActions": [
+            {
+              "name": "ip:apiovh:phishing/get",
+              "required": true
+            }
+          ]
+        }
+      ],
+      "description": "List the ip.Antiphishing objects"
+    },
+    {
+      "path": "/ip/{ip}/phishing/{id}",
+      "operations": [
+        {
+          "apiStatus": {
+            "description": "Stable production version",
+            "value": "PRODUCTION"
+          },
+          "httpMethod": "GET",
+          "parameters": [
+            {
+              "name": "id",
+              "dataType": "long",
+              "paramType": "path",
+              "fullType": "long",
+              "required": true,
+              "description": "Internal ID of the phishing entry"
+            },
+            {
+              "name": "ip",
+              "dataType": "ipBlock",
+              "paramType": "path",
+              "fullType": "ipBlock",
+              "required": true,
+              "description": ""
+            }
+          ],
+          "responseType": "ip.Antiphishing",
+          "noAuthentication": false,
+          "description": "Get this object properties",
+          "iamActions": [
+            {
+              "name": "ip:apiovh:phishing/get",
+              "required": true
+            }
+          ]
+        }
+      ],
+      "description": "Phishing URLs hosted on your IP"
+    },
+    {
+      "path": "/ip/{ip}/reverse",
+      "operations": [
+        {
+          "apiStatus": {
+            "description": "Stable production version",
+            "value": "PRODUCTION"
+          },
+          "httpMethod": "GET",
+          "parameters": [
+            {
+              "name": "ip",
+              "dataType": "ipBlock",
+              "paramType": "path",
+              "fullType": "ipBlock",
+              "required": true,
+              "description": ""
+            }
+          ],
+          "responseType": "ip[]",
+          "noAuthentication": false,
+          "description": "Reverse on your ip",
+          "iamActions": [
+            {
+              "name": "ip:apiovh:reverse/get",
+              "required": true
+            }
+          ]
+        },
+        {
+          "apiStatus": {
+            "description": "Stable production version",
+            "value": "PRODUCTION"
+          },
+          "httpMethod": "POST",
+          "parameters": [
+            {
+              "name": "ip",
+              "dataType": "ipBlock",
+              "paramType": "path",
+              "fullType": "ipBlock",
+              "required": true,
+              "description": ""
+            },
+            {
+              "name": "ipReverse",
+              "dataType": "ip",
+              "paramType": "body",
+              "fullType": "ip",
+              "required": true,
+              "description": ""
+            },
+            {
+              "name": "reverse",
+              "dataType": "string",
+              "paramType": "body",
+              "fullType": "string",
+              "required": true,
+              "description": ""
+            }
+          ],
+          "responseType": "ip.ReverseIp",
+          "noAuthentication": false,
+          "description": "Add reverse on an ip",
+          "iamActions": [
+            {
+              "name": "ip:apiovh:reverse/create",
+              "required": true
+            }
+          ]
+        }
+      ],
+      "description": "List the ip.ReverseIp objects"
+    },
+    {
+      "path": "/ip/{ip}/reverse/{ipReverse}",
+      "operations": [
+        {
+          "apiStatus": {
+            "description": "Stable production version",
+            "value": "PRODUCTION"
+          },
+          "httpMethod": "DELETE",
+          "parameters": [
+            {
+              "name": "ip",
+              "dataType": "ipBlock",
+              "paramType": "path",
+              "fullType": "ipBlock",
+              "required": true,
+              "description": ""
+            },
+            {
+              "name": "ipReverse",
+              "dataType": "ip",
+              "paramType": "path",
+              "fullType": "ip",
+              "required": true,
+              "description": ""
+            }
+          ],
+          "responseType": "void",
+          "noAuthentication": false,
+          "description": "Delete a reverse on one IP",
+          "iamActions": [
+            {
+              "name": "ip:apiovh:reverse/delete",
+              "required": true
+            }
+          ]
+        },
+        {
+          "apiStatus": {
+            "description": "Stable production version",
+            "value": "PRODUCTION"
+          },
+          "httpMethod": "GET",
+          "parameters": [
+            {
+              "name": "ip",
+              "dataType": "ipBlock",
+              "paramType": "path",
+              "fullType": "ipBlock",
+              "required": true,
+              "description": ""
+            },
+            {
+              "name": "ipReverse",
+              "dataType": "ip",
+              "paramType": "path",
+              "fullType": "ip",
+              "required": true,
+              "description": ""
+            }
+          ],
+          "responseType": "ip.ReverseIp",
+          "noAuthentication": false,
+          "description": "Get this object properties",
+          "iamActions": [
+            {
+              "name": "ip:apiovh:reverse/get",
+              "required": true
+            }
+          ]
+        }
+      ],
+      "description": "Your reverse records on IP"
+    },
+    {
+      "path": "/ip/{ip}/ripe",
+      "operations": [
+        {
+          "apiStatus": {
+            "description": "Stable production version",
+            "value": "PRODUCTION"
+          },
+          "httpMethod": "GET",
+          "parameters": [
+            {
+              "name": "ip",
+              "dataType": "ipBlock",
+              "paramType": "path",
+              "fullType": "ipBlock",
+              "required": true,
+              "description": ""
+            }
+          ],
+          "responseType": "ip.RipeInfos",
+          "noAuthentication": false,
+          "description": "Get this object properties",
+          "iamActions": [
+            {
+              "name": "ip:apiovh:ripe/get",
+              "required": true
+            }
+          ]
+        },
+        {
+          "apiStatus": {
+            "description": "Stable production version",
+            "value": "PRODUCTION"
+          },
+          "httpMethod": "PUT",
+          "parameters": [
+            {
+              "dataType": "ip.RipeInfos",
+              "paramType": "body",
+              "fullType": "ip.RipeInfos",
+              "required": true,
+              "description": "New object properties"
+            },
+            {
+              "name": "ip",
+              "dataType": "ipBlock",
+              "paramType": "path",
+              "fullType": "ipBlock",
+              "required": true,
+              "description": ""
+            }
+          ],
+          "responseType": "void",
+          "noAuthentication": false,
+          "description": "Alter this object properties",
+          "iamActions": [
+            {
+              "name": "ip:apiovh:ripe/edit",
+              "required": true
+            }
+          ]
+        }
+      ],
+      "description": "IP block RIPE informations"
+    },
+    {
+      "path": "/ip/{ip}/spam",
+      "operations": [
+        {
+          "apiStatus": {
+            "description": "Stable production version",
+            "value": "PRODUCTION"
+          },
+          "httpMethod": "GET",
+          "parameters": [
+            {
+              "name": "ip",
+              "dataType": "ipBlock",
+              "paramType": "path",
+              "fullType": "ipBlock",
+              "required": true,
+              "description": ""
+            },
+            {
+              "name": "state",
+              "dataType": "ip.SpamStateEnum",
+              "paramType": "query",
+              "fullType": "ip.SpamStateEnum",
+              "required": false,
+              "description": "Filter the value of state property (=)"
+            }
+          ],
+          "responseType": "ipv4[]",
+          "noAuthentication": false,
+          "description": "Ip spamming",
+          "iamActions": [
+            {
+              "name": "ip:apiovh:spam/get",
+              "required": true
+            }
+          ]
+        }
+      ],
+      "description": "List the ip.SpamIp objects"
+    },
+    {
+      "path": "/ip/{ip}/spam/{ipSpamming}",
+      "operations": [
+        {
+          "apiStatus": {
+            "description": "Stable production version",
+            "value": "PRODUCTION"
+          },
+          "httpMethod": "GET",
+          "parameters": [
+            {
+              "name": "ip",
+              "dataType": "ipBlock",
+              "paramType": "path",
+              "fullType": "ipBlock",
+              "required": true,
+              "description": ""
+            },
+            {
+              "name": "ipSpamming",
+              "dataType": "ipv4",
+              "paramType": "path",
+              "fullType": "ipv4",
+              "required": true,
+              "description": "IP address which is sending spam"
+            }
+          ],
+          "responseType": "ip.SpamIp",
+          "noAuthentication": false,
+          "description": "Get this object properties",
+          "iamActions": [
+            {
+              "name": "ip:apiovh:spam/get",
+              "required": true
+            }
+          ]
+        }
+      ],
+      "description": "Your IP spam stats"
+    },
+    {
+      "path": "/ip/{ip}/spam/{ipSpamming}/stats",
+      "operations": [
+        {
+          "apiStatus": {
+            "description": "Stable production version",
+            "value": "PRODUCTION"
+          },
+          "httpMethod": "GET",
+          "parameters": [
+            {
+              "name": "from",
+              "dataType": "datetime",
+              "paramType": "query",
+              "fullType": "datetime",
+              "required": true,
+              "description": "Start date"
+            },
+            {
+              "name": "ip",
+              "dataType": "ipBlock",
+              "paramType": "path",
+              "fullType": "ipBlock",
+              "required": true,
+              "description": ""
+            },
+            {
+              "name": "ipSpamming",
+              "dataType": "ipv4",
+              "paramType": "path",
+              "fullType": "ipv4",
+              "required": true,
+              "description": "IP address which is sending spam"
+            },
+            {
+              "name": "to",
+              "dataType": "datetime",
+              "paramType": "query",
+              "fullType": "datetime",
+              "required": true,
+              "description": "End date"
+            }
+          ],
+          "responseType": "ip.SpamStats[]",
+          "noAuthentication": false,
+          "description": "Get statistics about the email traffic",
+          "iamActions": [
+            {
+              "name": "ip:apiovh:spam/stats/get",
+              "required": true
+            }
+          ]
+        }
+      ],
+      "description": "stats operations"
+    },
+    {
+      "path": "/ip/{ip}/spam/{ipSpamming}/unblock",
+      "operations": [
+        {
+          "apiStatus": {
+            "description": "Stable production version",
+            "value": "PRODUCTION"
+          },
+          "httpMethod": "POST",
+          "parameters": [
+            {
+              "name": "ip",
+              "dataType": "ipBlock",
+              "paramType": "path",
+              "fullType": "ipBlock",
+              "required": true,
+              "description": ""
+            },
+            {
+              "name": "ipSpamming",
+              "dataType": "ipv4",
+              "paramType": "path",
+              "fullType": "ipv4",
+              "required": true,
+              "description": "IP address which is sending spam"
+            }
+          ],
+          "responseType": "ip.SpamIp",
+          "noAuthentication": false,
+          "description": "Release the ip from anti-spam system",
+          "iamActions": [
+            {
+              "name": "ip:apiovh:spam/unblock",
+              "required": true
+            }
+          ]
+        }
+      ],
+      "description": "unblock operations"
+    },
+    {
+      "path": "/ip/{ip}/task",
+      "operations": [
+        {
+          "apiStatus": {
+            "description": "Stable production version",
+            "value": "PRODUCTION"
+          },
+          "httpMethod": "GET",
+          "parameters": [
+            {
+              "name": "function",
+              "dataType": "ip.TaskFunctionEnum",
+              "paramType": "query",
+              "fullType": "ip.TaskFunctionEnum",
+              "required": false,
+              "description": "Filter the value of function property (=)"
+            },
+            {
+              "name": "ip",
+              "dataType": "ipBlock",
+              "paramType": "path",
+              "fullType": "ipBlock",
+              "required": true,
+              "description": ""
+            },
+            {
+              "name": "status",
+              "dataType": "ip.TaskStatusEnum",
+              "paramType": "query",
+              "fullType": "ip.TaskStatusEnum",
+              "required": false,
+              "description": "Filter the value of status property (=)"
+            }
+          ],
+          "responseType": "long[]",
+          "noAuthentication": false,
+          "description": "IP tasks",
+          "iamActions": [
+            {
+              "name": "ip:apiovh:task/get",
+              "required": true
+            }
+          ]
+        }
+      ],
+      "description": "List the ip.IpTask objects"
+    },
+    {
+      "path": "/ip/{ip}/task/{taskId}",
+      "operations": [
+        {
+          "apiStatus": {
+            "description": "Stable production version",
+            "value": "PRODUCTION"
+          },
+          "httpMethod": "GET",
+          "parameters": [
+            {
+              "name": "ip",
+              "dataType": "ipBlock",
+              "paramType": "path",
+              "fullType": "ipBlock",
+              "required": true,
+              "description": ""
+            },
+            {
+              "name": "taskId",
+              "dataType": "long",
+              "paramType": "path",
+              "fullType": "long",
+              "required": true,
+              "description": "the id of the task"
+            }
+          ],
+          "responseType": "ip.IpTask",
+          "noAuthentication": false,
+          "description": "Get this object properties",
+          "iamActions": [
+            {
+              "name": "ip:apiovh:task/get",
+              "required": true
+            }
+          ]
+        }
+      ],
+      "description": "IP tasks"
+    },
+    {
+      "path": "/ip/{ip}/terminate",
+      "operations": [
+        {
+          "apiStatus": {
+            "description": "Deprecated, will be removed",
+            "value": "DEPRECATED",
+            "deletionDate": "2017-01-21T00:00:00+01:00",
+            "deprecatedDate": "2016-07-21T00:00:00+01:00",
+            "replacement": "/ip/service/{serviceName}/terminate"
+          },
+          "httpMethod": "POST",
+          "parameters": [
+            {
+              "name": "ip",
+              "dataType": "ipBlock",
+              "paramType": "path",
+              "fullType": "ipBlock",
+              "required": true,
+              "description": ""
+            }
+          ],
+          "responseType": "ip.IpTask",
+          "noAuthentication": false,
+          "description": "Delete a failover IP",
+          "iamActions": [
+            {
+              "name": "ip:apiovh:terminate",
+              "required": true
+            }
+          ]
+        }
+      ],
+      "description": "terminate operations"
+    }
+  ],
+  "resourcePath": "/ip",
+  "basePath": "https://eu.api.ovh.com/v1",
+  "models": {
+    "complexType.Range<T>": {
+      "id": "Range",
+      "namespace": "complexType",
+      "description": "Start and end points (inclusive) of a range",
+      "generics": [
+        "T"
+      ],
+      "properties": {
+        "from": {
+          "type": "T",
+          "canBeNull": false,
+          "readOnly": false,
+          "description": "Start point of the range",
+          "required": false
+        },
+        "to": {
+          "type": "T",
+          "canBeNull": false,
+          "readOnly": false,
+          "description": "End point of the range",
+          "required": false
+        }
+      }
+    },
+    "complexType.Range<long>": {
+      "id": "Range",
+      "namespace": "complexType",
+      "description": "Start and end points (inclusive) of a range",
+      "generics": [
+        "T"
+      ],
+      "properties": {
+        "from": {
+          "type": "T",
+          "canBeNull": false,
+          "readOnly": false,
+          "description": "Start point of the range",
+          "required": false
+        },
+        "to": {
+          "type": "T",
+          "canBeNull": false,
+          "readOnly": false,
+          "description": "End point of the range",
+          "required": false
+        }
+      }
+    },
+    "coreTypes.CountryEnum": {
+      "id": "CountryEnum",
+      "namespace": "coreTypes",
+      "description": "ISO country codes",
+      "enum": [
+        "ac",
+        "ad",
+        "ae",
+        "af",
+        "ag",
+        "ai",
+        "al",
+        "am",
+        "an",
+        "ao",
+        "aq",
+        "ar",
+        "as",
+        "at",
+        "au",
+        "aw",
+        "ax",
+        "az",
+        "ba",
+        "bb",
+        "bd",
+        "be",
+        "bf",
+        "bg",
+        "bh",
+        "bi",
+        "bj",
+        "bl",
+        "bm",
+        "bn",
+        "bo",
+        "bq",
+        "br",
+        "bs",
+        "bt",
+        "bv",
+        "bw",
+        "by",
+        "bz",
+        "ca",
+        "cc",
+        "cd",
+        "cf",
+        "cg",
+        "ch",
+        "ci",
+        "ck",
+        "cl",
+        "cm",
+        "cn",
+        "co",
+        "cr",
+        "cs",
+        "cu",
+        "cv",
+        "cw",
+        "cx",
+        "cy",
+        "cz",
+        "de",
+        "dj",
+        "dk",
+        "dm",
+        "do",
+        "dz",
+        "ec",
+        "ee",
+        "eg",
+        "eh",
+        "er",
+        "es",
+        "et",
+        "fc",
+        "fd",
+        "fi",
+        "fj",
+        "fk",
+        "fm",
+        "fo",
+        "fr",
+        "fx",
+        "ga",
+        "gb",
+        "gd",
+        "ge",
+        "gf",
+        "gg",
+        "gh",
+        "gi",
+        "gl",
+        "gm",
+        "gn",
+        "gp",
+        "gq",
+        "gr",
+        "gs",
+        "gt",
+        "gu",
+        "gw",
+        "gy",
+        "hk",
+        "hm",
+        "hn",
+        "hr",
+        "ht",
+        "hu",
+        "id",
+        "ie",
+        "il",
+        "im",
+        "in",
+        "io",
+        "iq",
+        "ir",
+        "is",
+        "it",
+        "je",
+        "jm",
+        "jo",
+        "jp",
+        "ke",
+        "kg",
+        "kh",
+        "ki",
+        "km",
+        "kn",
+        "kp",
+        "kr",
+        "kw",
+        "ky",
+        "kz",
+        "la",
+        "lb",
+        "lc",
+        "li",
+        "lk",
+        "lr",
+        "ls",
+        "lt",
+        "lu",
+        "lv",
+        "ly",
+        "ma",
+        "mc",
+        "md",
+        "me",
+        "mf",
+        "mg",
+        "mh",
+        "mk",
+        "ml",
+        "mm",
+        "mn",
+        "mo",
+        "mp",
+        "mq",
+        "mr",
+        "ms",
+        "mt",
+        "mu",
+        "mv",
+        "mw",
+        "mx",
+        "my",
+        "mz",
+        "na",
+        "nc",
+        "ne",
+        "nf",
+        "ng",
+        "ni",
+        "nl",
+        "no",
+        "np",
+        "nr",
+        "nu",
+        "nz",
+        "om",
+        "pa",
+        "pe",
+        "pf",
+        "pg",
+        "ph",
+        "pk",
+        "pl",
+        "pm",
+        "pn",
+        "pr",
+        "ps",
+        "pt",
+        "pw",
+        "py",
+        "qa",
+        "qc",
+        "re",
+        "ro",
+        "rs",
+        "ru",
+        "rw",
+        "sa",
+        "sb",
+        "sc",
+        "sd",
+        "se",
+        "sg",
+        "sh",
+        "si",
+        "sj",
+        "sk",
+        "sl",
+        "sm",
+        "sn",
+        "so",
+        "sr",
+        "ss",
+        "st",
+        "sv",
+        "sx",
+        "sy",
+        "sz",
+        "tc",
+        "td",
+        "tf",
+        "tg",
+        "th",
+        "tj",
+        "tk",
+        "tl",
+        "tm",
+        "tn",
+        "to",
+        "tp",
+        "tr",
+        "tt",
+        "tv",
+        "tw",
+        "tz",
+        "ua",
+        "ug",
+        "uk",
+        "um",
+        "us",
+        "uy",
+        "uz",
+        "va",
+        "vc",
+        "ve",
+        "vg",
+        "vi",
+        "vn",
+        "vu",
+        "we",
+        "wf",
+        "ws",
+        "ye",
+        "yt",
+        "yu",
+        "za",
+        "zm",
+        "zw"
+      ],
+      "enumType": "string"
+    },
+    "coreTypes.RegionCodenameEnum": {
+      "id": "RegionCodenameEnum",
+      "namespace": "coreTypes",
+      "description": "Region names",
+      "enum": [
+        "af-central-lz-abj",
+        "af-north-lz-rba",
+        "ap-south-lz-akl",
+        "ap-south-lz-blr",
+        "ap-south-lz-icd",
+        "ap-south-mum",
+        "ap-southeast-sgp",
+        "ap-southeast-syd",
+        "ca-east-bhs",
+        "ca-east-tor",
+        "eu-central-lz-buh",
+        "eu-central-lz-sof",
+        "eu-central-waw",
+        "eu-east-lz-prg",
+        "eu-north-lz-cph",
+        "eu-north-lz-hel",
+        "eu-north-lz-osl",
+        "eu-north-lz-sto",
+        "eu-south-lz-lis",
+        "eu-south-lz-mad",
+        "eu-south-lz-mil",
+        "eu-south-mil",
+        "eu-west-eri",
+        "eu-west-gra",
+        "eu-west-lim",
+        "eu-west-lz-ams",
+        "eu-west-lz-bru",
+        "eu-west-lz-dln",
+        "eu-west-lz-lux",
+        "eu-west-lz-mnc",
+        "eu-west-lz-mrs",
+        "eu-west-lz-vie",
+        "eu-west-lz-zrh",
+        "eu-west-par",
+        "eu-west-rbx",
+        "eu-west-sbg",
+        "me-south-lz-dxb",
+        "sa-central-lz-mex",
+        "sa-east-lz-sao",
+        "sa-west-lz-bue",
+        "sa-west-lz-scl",
+        "us-central-lz-slc",
+        "us-central-lz-stl",
+        "us-east-lz-atl",
+        "us-east-lz-bos",
+        "us-east-lz-chi",
+        "us-east-lz-dal",
+        "us-east-lz-mia",
+        "us-east-lz-nyc",
+        "us-east-vin",
+        "us-west-hil",
+        "us-west-lz-den",
+        "us-west-lz-lax",
+        "us-west-lz-pao",
+        "us-west-lz-phx",
+        "us-west-lz-sea"
+      ],
+      "enumType": "string"
+    },
+    "dedicated.DatacenterEnum": {
+      "id": "DatacenterEnum",
+      "namespace": "dedicated",
+      "description": "ovh datacenter",
+      "enum": [
+        "bhs1",
+        "bhs2",
+        "bhs3",
+        "bhs4",
+        "bhs5",
+        "bhs6",
+        "bhs7",
+        "bhs8",
+        "cch01",
+        "crx1",
+        "crx2",
+        "dc1",
+        "eri1",
+        "eri2",
+        "gra04",
+        "gra1",
+        "gra2",
+        "gra3",
+        "gsw",
+        "hdf01",
+        "hil1",
+        "ieb01",
+        "itbsi01",
+        "itmil01",
+        "itzvf01",
+        "lil1-int1",
+        "lim1",
+        "lim2",
+        "lim3",
+        "mr901",
+        "p19",
+        "rbx",
+        "rbx-hz",
+        "rbx1",
+        "rbx10",
+        "rbx2",
+        "rbx3",
+        "rbx4",
+        "rbx5",
+        "rbx6",
+        "rbx7",
+        "rbx8",
+        "rbx9",
+        "sbg1",
+        "sbg2",
+        "sbg3",
+        "sbg4",
+        "sbg5",
+        "sgp02",
+        "sgp1",
+        "syd03",
+        "syd1",
+        "syd2",
+        "vin1",
+        "waw1",
+        "ynm1",
+        "yyz01"
+      ],
+      "enumType": "string"
+    },
+    "iam.ResourceMetadata": {
+      "id": "ResourceMetadata",
+      "namespace": "iam",
+      "description": "IAM resource metadata embedded in services models",
+      "properties": {
+        "displayName": {
+          "type": "string",
+          "fullType": "string",
+          "canBeNull": true,
+          "readOnly": true,
+          "description": "Resource display name",
+          "required": false
+        },
+        "id": {
+          "type": "uuid",
+          "fullType": "uuid",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "Unique identifier of the resource",
+          "required": false
+        },
+        "state": {
+          "type": "iam.ResourceMetadata.StateEnum",
+          "fullType": "iam.ResourceMetadata.StateEnum",
+          "canBeNull": true,
+          "readOnly": true,
+          "description": "Resource state",
+          "required": false
+        },
+        "tags": {
+          "type": "map[string]string",
+          "fullType": "map[string]string",
+          "canBeNull": true,
+          "readOnly": true,
+          "description": "Resource tags. Tags that were internally computed are prefixed with ovh:",
+          "required": false
+        },
+        "urn": {
+          "type": "string",
+          "fullType": "string",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "Unique resource name used in policies",
+          "required": false
+        }
+      }
+    },
+    "iam.ResourceMetadata.StateEnum": {
+      "id": "StateEnum",
+      "namespace": "iam.ResourceMetadata",
+      "description": "Resource state",
+      "enum": [
+        "EXPIRED",
+        "IN_CREATION",
+        "OK",
+        "SUSPENDED"
+      ],
+      "enumType": "string"
+    },
+    "iam.resource.TagFilter": {
+      "id": "TagFilter",
+      "namespace": "iam.resource",
+      "description": "Resource tag filter",
+      "properties": {
+        "operator": {
+          "type": "iam.resource.TagFilter.OperatorEnum",
+          "fullType": "iam.resource.TagFilter.OperatorEnum",
+          "canBeNull": true,
+          "readOnly": true,
+          "description": "Operator to use in order to filter on the value (defaults to 'EQ')",
+          "required": false
+        },
+        "value": {
+          "type": "string",
+          "fullType": "string",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "Value to use in order to filter tags",
+          "required": false
+        }
+      }
+    },
+    "iam.resource.TagFilter.OperatorEnum": {
+      "id": "OperatorEnum",
+      "namespace": "iam.resource.TagFilter",
+      "description": "Operator that can be used in order to filter resources tags",
+      "enum": [
+        "EQ",
+        "EXISTS",
+        "ILIKE",
+        "LIKE",
+        "NEQ",
+        "NEXISTS"
+      ],
+      "enumType": "string"
+    },
+    "ip.Antiphishing": {
+      "id": "Antiphishing",
+      "namespace": "ip",
+      "description": "Phishing URLs hosted on your IP",
+      "properties": {
+        "creationDate": {
+          "type": "datetime",
+          "fullType": "datetime",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "Date of the event",
+          "required": false
+        },
+        "id": {
+          "type": "long",
+          "fullType": "long",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "Internal ID of the phishing entry",
+          "required": false
+        },
+        "ipOnAntiphishing": {
+          "type": "ipv4",
+          "fullType": "ipv4",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "IP address hosting the phishing URL",
+          "required": false
+        },
+        "state": {
+          "type": "ip.AntiphishingStateEnum",
+          "fullType": "ip.AntiphishingStateEnum",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "Current state of the phishing",
+          "required": false
+        },
+        "urlPhishing": {
+          "type": "string",
+          "fullType": "string",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "Phishing URL",
+          "required": false
+        }
+      }
+    },
+    "ip.AntiphishingStateEnum": {
+      "id": "AntiphishingStateEnum",
+      "namespace": "ip",
+      "description": "Possible values for antiphishing state",
+      "enum": [
+        "blocked",
+        "blocking",
+        "unblocked",
+        "unblocking"
+      ],
+      "enumType": "string"
+    },
+    "ip.ArpBlockedIp": {
+      "id": "ArpBlockedIp",
+      "namespace": "ip",
+      "description": "ARP blocked IP information",
+      "properties": {
+        "blockedSince": {
+          "type": "datetime",
+          "fullType": "datetime",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "The last blocking date",
+          "required": false
+        },
+        "ipBlocked": {
+          "type": "ipv4",
+          "fullType": "ipv4",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "your IP",
+          "required": false
+        },
+        "logs": {
+          "type": "text",
+          "fullType": "text",
+          "canBeNull": true,
+          "readOnly": true,
+          "description": "ARP logs",
+          "required": false
+        },
+        "state": {
+          "type": "ip.ArpStateEnum",
+          "fullType": "ip.ArpStateEnum",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "this IP address state",
+          "required": false
+        },
+        "time": {
+          "type": "long",
+          "fullType": "long",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "Time (in seconds) remaining before you can request your IP to be unblocked",
+          "required": false
+        }
+      }
+    },
+    "ip.ArpStateEnum": {
+      "id": "ArpStateEnum",
+      "namespace": "ip",
+      "description": "Possible values for IP state",
+      "enum": [
+        "blocked",
+        "unblocking"
+      ],
+      "enumType": "string"
+    },
+    "ip.BlockedIp": {
+      "id": "BlockedIp",
+      "namespace": "ip",
+      "description": "Blocked IP information",
+      "properties": {
+        "blockedSince": {
+          "type": "datetime",
+          "fullType": "datetime",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "The last blocking date",
+          "required": false
+        },
+        "ipBlocked": {
+          "type": "ipv4",
+          "fullType": "ipv4",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "your IP",
+          "required": false
+        },
+        "logs": {
+          "type": "text",
+          "fullType": "text",
+          "canBeNull": true,
+          "readOnly": true,
+          "description": "Logs",
+          "required": false
+        },
+        "state": {
+          "type": "ip.BlockedIpStateEnum",
+          "fullType": "ip.BlockedIpStateEnum",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "this IP address state",
+          "required": false
+        },
+        "time": {
+          "type": "long",
+          "fullType": "long",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "Time (in seconds) remaining before you can request your IP to be unblocked",
+          "required": false
+        }
+      }
+    },
+    "ip.BlockedIpStateEnum": {
+      "id": "BlockedIpStateEnum",
+      "namespace": "ip",
+      "description": "Possible values for IP state",
+      "enum": [
+        "blocked",
+        "unblocking"
+      ],
+      "enumType": "string"
+    },
+    "ip.ByoipAggregationPreview": {
+      "id": "ByoipAggregationPreview",
+      "namespace": "ip",
+      "description": "Preview of an IP aggregation on BYOIP Additional IPs",
+      "properties": {
+        "aggregationIp": {
+          "type": "ipBlock",
+          "canBeNull": false,
+          "readOnly": false,
+          "description": "Aggregation Additional IP that will be created",
+          "required": false
+        },
+        "childrenIps": {
+          "type": "ipBlock[]",
+          "canBeNull": false,
+          "readOnly": false,
+          "description": "Existing Additional IP(s) that will be aggregated",
+          "required": false
+        }
+      }
+    },
+    "ip.ByoipSlicingPreview": {
+      "id": "ByoipSlicingPreview",
+      "namespace": "ip",
+      "description": "Preview of an IP slicing on BYOIP Additional IPs",
+      "properties": {
+        "childrenIps": {
+          "type": "ipBlock[]",
+          "canBeNull": false,
+          "readOnly": false,
+          "description": "Additional IP(s) that will be created",
+          "required": false
+        },
+        "slicingSize": {
+          "type": "long",
+          "canBeNull": false,
+          "readOnly": false,
+          "description": "Slicing size",
+          "required": false
+        }
+      }
+    },
+    "ip.Campus": {
+      "id": "Campus",
+      "namespace": "ip",
+      "description": "Campus of an IP address",
+      "properties": {
+        "bringYourOwnIpSupportedRirForIp": {
+          "type": "string[]",
+          "canBeNull": false,
+          "readOnly": false,
+          "description": "List of RIRs whose IPs can be imported in the campus",
+          "required": false
+        },
+        "datacenters": {
+          "type": "dedicated.DatacenterEnum[]",
+          "canBeNull": false,
+          "readOnly": false,
+          "description": "List of datacenters in the campus",
+          "required": false
+        },
+        "description": {
+          "type": "string",
+          "canBeNull": false,
+          "readOnly": false,
+          "description": "Description of the campus",
+          "required": false
+        },
+        "name": {
+          "type": "ip.CampusEnum",
+          "canBeNull": false,
+          "readOnly": false,
+          "description": "Campus name",
+          "required": false
+        }
+      }
+    },
+    "ip.CampusEnum": {
+      "id": "CampusEnum",
+      "namespace": "ip",
+      "description": "Possible values for IP campuses' names",
+      "enum": [
+        "BHS",
+        "ERI",
+        "GRA",
+        "HIL",
+        "LIM",
+        "MIL",
+        "PAR",
+        "RBX",
+        "SBG",
+        "SGP",
+        "SYD",
+        "VIN",
+        "WAW",
+        "YNM",
+        "YYZ"
+      ],
+      "enumType": "string"
+    },
+    "ip.Destination": {
+      "id": "Destination",
+      "namespace": "ip",
+      "description": "A structure given service and its nexthops as a destination for failover ips",
+      "properties": {
+        "nexthop": {
+          "type": "string[]",
+          "canBeNull": true,
+          "readOnly": false,
+          "description": "Nexthops available on this service",
+          "required": false
+        },
+        "service": {
+          "type": "string",
+          "canBeNull": false,
+          "readOnly": false,
+          "description": "Service destination",
+          "required": false
+        }
+      }
+    },
+    "ip.Destinations": {
+      "id": "Destinations",
+      "namespace": "ip",
+      "description": "A structure given all services allowed as a destination for this ip",
+      "properties": {
+        "cloudProject": {
+          "type": "ip.Destination[]",
+          "canBeNull": true,
+          "readOnly": false,
+          "description": "list of public cloud projects",
+          "required": false
+        },
+        "dedicatedCloud": {
+          "type": "ip.Destination[]",
+          "canBeNull": true,
+          "readOnly": false,
+          "description": "list of dedicated clouds",
+          "required": false
+        },
+        "dedicatedServer": {
+          "type": "ip.Destination[]",
+          "canBeNull": true,
+          "readOnly": false,
+          "description": "list of dedicated servers",
+          "required": false
+        },
+        "hostingReseller": {
+          "type": "ip.Destination[]",
+          "canBeNull": true,
+          "readOnly": false,
+          "description": "list of hosting reseller services",
+          "required": false
+        },
+        "ipLoadbalancing": {
+          "type": "ip.Destination[]",
+          "canBeNull": true,
+          "readOnly": false,
+          "description": "list of load balancing services",
+          "required": false
+        },
+        "vmwareCloudDirector": {
+          "type": "ip.Destination[]",
+          "canBeNull": true,
+          "readOnly": false,
+          "description": "list of VMware Cloud Director organization services",
+          "required": false
+        },
+        "vps": {
+          "type": "ip.Destination[]",
+          "canBeNull": true,
+          "readOnly": false,
+          "description": "list of vps",
+          "required": false
+        }
+      }
+    },
+    "ip.FirewallActionEnum": {
+      "id": "FirewallActionEnum",
+      "namespace": "ip",
+      "description": "Possible values for action",
+      "enum": [
+        "deny",
+        "permit"
+      ],
+      "enumType": "string"
+    },
+    "ip.FirewallIp": {
+      "id": "FirewallIp",
+      "namespace": "ip",
+      "description": "Your IP on firewall",
+      "properties": {
+        "enabled": {
+          "type": "boolean",
+          "fullType": "boolean",
+          "canBeNull": false,
+          "readOnly": false,
+          "required": false
+        },
+        "ipOnFirewall": {
+          "type": "ipv4",
+          "fullType": "ipv4",
+          "canBeNull": false,
+          "readOnly": true,
+          "required": false
+        },
+        "state": {
+          "type": "ip.FirewallStateEnum",
+          "fullType": "ip.FirewallStateEnum",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "Current state of your ip on firewall",
+          "required": false
+        }
+      }
+    },
+    "ip.FirewallNetworkRule": {
+      "id": "FirewallNetworkRule",
+      "namespace": "ip",
+      "description": "Rule on ip",
+      "properties": {
+        "action": {
+          "type": "ip.FirewallActionEnum",
+          "fullType": "ip.FirewallActionEnum",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "Action on this rule",
+          "required": false
+        },
+        "creationDate": {
+          "type": "datetime",
+          "fullType": "datetime",
+          "canBeNull": false,
+          "readOnly": true,
+          "required": false
+        },
+        "destination": {
+          "type": "string",
+          "fullType": "string",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "Destination ip for your rule",
+          "required": false
+        },
+        "destinationPort": {
+          "type": "string",
+          "fullType": "string",
+          "canBeNull": true,
+          "readOnly": true,
+          "description": "Destination port range for your rule. Only with TCP/UDP protocol",
+          "required": false
+        },
+        "fragments": {
+          "type": "boolean",
+          "fullType": "boolean",
+          "canBeNull": true,
+          "readOnly": true,
+          "description": "Fragments option",
+          "required": false
+        },
+        "l3PacketLength": {
+          "type": "string",
+          "fullType": "string",
+          "canBeNull": true,
+          "readOnly": true,
+          "description": "IP packet's total length",
+          "required": false
+        },
+        "protocol": {
+          "type": "ip.FirewallProtocolEnum",
+          "fullType": "ip.FirewallProtocolEnum",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "Network protocol",
+          "required": false
+        },
+        "rule": {
+          "type": "string",
+          "fullType": "string",
+          "canBeNull": false,
+          "readOnly": true,
+          "required": false
+        },
+        "sequence": {
+          "type": "long",
+          "fullType": "long",
+          "canBeNull": false,
+          "readOnly": true,
+          "required": false
+        },
+        "source": {
+          "type": "string",
+          "fullType": "string",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "Source ip for your rule",
+          "required": false
+        },
+        "sourcePort": {
+          "type": "string",
+          "fullType": "string",
+          "canBeNull": true,
+          "readOnly": true,
+          "description": "Source port range for your rule. Only with TCP/UDP protocol",
+          "required": false
+        },
+        "state": {
+          "type": "ip.FirewallRuleStateEnum",
+          "fullType": "ip.FirewallRuleStateEnum",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "Current state of your rule",
+          "required": false
+        },
+        "tcpOption": {
+          "type": "string",
+          "fullType": "string",
+          "canBeNull": true,
+          "readOnly": true,
+          "description": "TCP option on your rule",
+          "required": false
+        }
+      }
+    },
+    "ip.FirewallOptionTCP": {
+      "id": "FirewallOptionTCP",
+      "namespace": "ip",
+      "description": "Possible option for TCP",
+      "properties": {
+        "fragments": {
+          "type": "boolean",
+          "canBeNull": true,
+          "readOnly": false,
+          "description": "TCP fragments",
+          "required": false
+        },
+        "option": {
+          "type": "ip.FirewallTCPOptionEnum",
+          "canBeNull": true,
+          "readOnly": false,
+          "description": "TCP option",
+          "required": false
+        }
+      }
+    },
+    "ip.FirewallProtocolEnum": {
+      "id": "FirewallProtocolEnum",
+      "namespace": "ip",
+      "description": "Possible values for protocol",
+      "enum": [
+        "ah",
+        "esp",
+        "gre",
+        "icmp",
+        "ipv4",
+        "tcp",
+        "udp"
+      ],
+      "enumType": "string"
+    },
+    "ip.FirewallRuleStateEnum": {
+      "id": "FirewallRuleStateEnum",
+      "namespace": "ip",
+      "description": "Possible values for firewall rule state",
+      "enum": [
+        "creationPending",
+        "ok",
+        "removalPending"
+      ],
+      "enumType": "string"
+    },
+    "ip.FirewallSequenceRangeEnum": {
+      "id": "FirewallSequenceRangeEnum",
+      "namespace": "ip",
+      "description": "Possible values for action",
+      "enum": [
+        "0",
+        "1",
+        "2",
+        "3",
+        "4",
+        "5",
+        "6",
+        "7",
+        "8",
+        "9",
+        "10",
+        "11",
+        "12",
+        "13",
+        "14",
+        "15",
+        "16",
+        "17",
+        "18",
+        "19"
+      ],
+      "enumType": "long"
+    },
+    "ip.FirewallStateEnum": {
+      "id": "FirewallStateEnum",
+      "namespace": "ip",
+      "description": "Possible values for firewall ip state",
+      "enum": [
+        "disableFirewallPending",
+        "enableFirewallPending",
+        "ok"
+      ],
+      "enumType": "string"
+    },
+    "ip.FirewallTCPOptionEnum": {
+      "id": "FirewallTCPOptionEnum",
+      "namespace": "ip",
+      "description": "Possible values for TCP option - only for TCP protocol",
+      "enum": [
+        "established",
+        "syn"
+      ],
+      "enumType": "string"
+    },
+    "ip.GameMitigation": {
+      "id": "GameMitigation",
+      "namespace": "ip",
+      "description": "GAME Anti-DDoS",
+      "properties": {
+        "firewallModeEnabled": {
+          "type": "boolean",
+          "fullType": "boolean",
+          "canBeNull": false,
+          "readOnly": false,
+          "description": "Firewall mode : in UDP, only allow traffic matching your rules (as well as established traffic). If not enabled, traffic to ports not defined in your rules will be permited. TCP traffic is unaffected by this.",
+          "required": false
+        },
+        "ipOnGame": {
+          "type": "ipv4",
+          "fullType": "ipv4",
+          "canBeNull": false,
+          "readOnly": true,
+          "required": false
+        },
+        "maxRules": {
+          "type": "long",
+          "fullType": "long",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "Maximum number of rules for this IP",
+          "required": false
+        },
+        "state": {
+          "type": "ip.GameMitigationStateEnum",
+          "fullType": "ip.GameMitigationStateEnum",
+          "canBeNull": false,
+          "readOnly": true,
+          "required": false
+        },
+        "supportedProtocols": {
+          "type": "ip.GameMitigationRuleProtocolEnum[]",
+          "fullType": "ip.GameMitigationRuleProtocolEnum[]",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "List of protocols available on this IP",
+          "required": false
+        }
+      }
+    },
+    "ip.GameMitigationRule": {
+      "id": "GameMitigationRule",
+      "namespace": "ip",
+      "description": "Rule on ip:ports",
+      "properties": {
+        "id": {
+          "type": "long",
+          "fullType": "long",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "ID of the rule",
+          "required": false
+        },
+        "ports": {
+          "type": "complexType.Range<long>",
+          "fullType": "complexType.Range<long>",
+          "canBeNull": false,
+          "readOnly": true,
+          "required": false
+        },
+        "protocol": {
+          "type": "ip.GameMitigationRuleProtocolEnum",
+          "fullType": "ip.GameMitigationRuleProtocolEnum",
+          "canBeNull": false,
+          "readOnly": true,
+          "required": false
+        },
+        "state": {
+          "type": "ip.GameMitigationRuleStateEnum",
+          "fullType": "ip.GameMitigationRuleStateEnum",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "Current state of your rule",
+          "required": false
+        }
+      }
+    },
+    "ip.GameMitigationRuleProtocolEnum": {
+      "id": "GameMitigationRuleProtocolEnum",
+      "namespace": "ip",
+      "description": "Possible values for game rule protocol",
+      "enum": [
+        "arkSurvivalAscended",
+        "arkSurvivalEvolved",
+        "arkSurvivalEvolvedV311.78+",
+        "arma",
+        "counterStrike2",
+        "fiveM",
+        "gtaMultiTheftAutoSanAndreas",
+        "gtaSanAndreasMultiplayerMod",
+        "hl2Source",
+        "minecraftBedrockWithRacknetCookie",
+        "minecraftJava",
+        "minecraftPocketEdition",
+        "minecraftQuery",
+        "mumble",
+        "other",
+        "rust",
+        "teamspeak2",
+        "teamspeak3",
+        "trackmaniaShootmania",
+        "valheim"
+      ],
+      "enumType": "string"
+    },
+    "ip.GameMitigationRuleStateEnum": {
+      "id": "GameMitigationRuleStateEnum",
+      "namespace": "ip",
+      "description": "Possible values for game mitigation rule state",
+      "enum": [
+        "createRulePending",
+        "deleteRulePending",
+        "ok"
+      ],
+      "enumType": "string"
+    },
+    "ip.GameMitigationStateEnum": {
+      "id": "GameMitigationStateEnum",
+      "namespace": "ip",
+      "description": "Possible values for udp mitigation rule state",
+      "enum": [
+        "cleanRulesPending",
+        "firewallModeDisablePending",
+        "firewallModeEnablePending",
+        "ok"
+      ],
+      "enumType": "string"
+    },
+    "ip.Ip": {
+      "id": "Ip",
+      "namespace": "ip",
+      "description": "Your IP",
+      "properties": {
+        "bringYourOwnIp": {
+          "type": "boolean",
+          "fullType": "boolean",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "Is this IP part of the Bring your own IP program (alpha)",
+          "required": false
+        },
+        "campus": {
+          "type": "string",
+          "fullType": "string",
+          "canBeNull": true,
+          "readOnly": true,
+          "description": "Where is the IP used/usable (alpha)",
+          "required": false
+        },
+        "canBeTerminated": {
+          "type": "boolean",
+          "fullType": "boolean",
+          "canBeNull": false,
+          "readOnly": true,
+          "required": false
+        },
+        "country": {
+          "type": "coreTypes.CountryEnum",
+          "fullType": "coreTypes.CountryEnum",
+          "canBeNull": true,
+          "readOnly": true,
+          "required": false
+        },
+        "description": {
+          "type": "string",
+          "fullType": "string",
+          "canBeNull": true,
+          "readOnly": false,
+          "description": "Custom description on your ip",
+          "required": false
+        },
+        "ip": {
+          "type": "ipBlock",
+          "fullType": "ipBlock",
+          "canBeNull": false,
+          "readOnly": true,
+          "required": false
+        },
+        "isAdditionalIp": {
+          "type": "boolean",
+          "fullType": "boolean",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "Is this IP an Additional IP (alpha)",
+          "required": false
+        },
+        "organisationId": {
+          "type": "string",
+          "fullType": "string",
+          "canBeNull": true,
+          "readOnly": true,
+          "description": "IP block organisation Id",
+          "required": false
+        },
+        "regions": {
+          "type": "coreTypes.RegionCodenameEnum[]",
+          "fullType": "coreTypes.RegionCodenameEnum[]",
+          "canBeNull": true,
+          "readOnly": true,
+          "description": "Where is the IP used/usable, in the form of region codenames (alpha)",
+          "required": false
+        },
+        "rir": {
+          "type": "string",
+          "fullType": "string",
+          "canBeNull": true,
+          "readOnly": true,
+          "description": "Regional Internet Registry of the IP (alpha)",
+          "required": false
+        },
+        "routedTo": {
+          "type": "ip.RoutedTo",
+          "fullType": "ip.RoutedTo",
+          "canBeNull": true,
+          "readOnly": true,
+          "description": "Routage information",
+          "required": false
+        },
+        "type": {
+          "type": "ip.IpTypeEnum",
+          "fullType": "ip.IpTypeEnum",
+          "canBeNull": false,
+          "readOnly": true,
+          "required": false
+        },
+        "version": {
+          "type": "ip.IpVersionEnum",
+          "fullType": "ip.IpVersionEnum",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "Version of the IP (alpha)",
+          "required": false
+        }
+      }
+    },
+    "ip.IpMigrationToken": {
+      "id": "IpMigrationToken",
+      "namespace": "ip",
+      "description": "IP migration to OVH",
+      "properties": {
+        "customerId": {
+          "type": "string",
+          "fullType": "string",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "destination customer ID",
+          "required": false
+        },
+        "token": {
+          "type": "string",
+          "fullType": "string",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "migration token",
+          "required": false
+        }
+      }
+    },
+    "ip.IpTask": {
+      "id": "IpTask",
+      "namespace": "ip",
+      "description": "IP tasks",
+      "properties": {
+        "comment": {
+          "type": "string",
+          "fullType": "string",
+          "canBeNull": true,
+          "readOnly": true,
+          "description": "Details of this task",
+          "required": false
+        },
+        "destination": {
+          "type": "ip.RoutedTo",
+          "fullType": "ip.RoutedTo",
+          "canBeNull": true,
+          "readOnly": true,
+          "description": "Destination for moveFloatingIp tasks",
+          "required": false
+        },
+        "doneDate": {
+          "type": "datetime",
+          "fullType": "datetime",
+          "canBeNull": true,
+          "readOnly": true,
+          "description": "Completion date",
+          "required": false
+        },
+        "function": {
+          "type": "ip.TaskFunctionEnum",
+          "fullType": "ip.TaskFunctionEnum",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "Function name",
+          "required": false
+        },
+        "lastUpdate": {
+          "type": "datetime",
+          "fullType": "datetime",
+          "canBeNull": true,
+          "readOnly": true,
+          "description": "last update",
+          "required": false
+        },
+        "startDate": {
+          "type": "datetime",
+          "fullType": "datetime",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "Task Creation date",
+          "required": false
+        },
+        "status": {
+          "type": "ip.TaskStatusEnum",
+          "fullType": "ip.TaskStatusEnum",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "Task status",
+          "required": false
+        },
+        "taskId": {
+          "type": "long",
+          "fullType": "long",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "the id of the task",
+          "required": false
+        }
+      }
+    },
+    "ip.IpTypeEnum": {
+      "id": "IpTypeEnum",
+      "namespace": "ip",
+      "description": "Possible values for ip type",
+      "enum": [
+        "cdn",
+        "cloud",
+        "dedicated",
+        "failover",
+        "hosted_ssl",
+        "housing",
+        "loadBalancing",
+        "mail",
+        "overthebox",
+        "pcc",
+        "pci",
+        "private",
+        "vpn",
+        "vps",
+        "vrack",
+        "xdsl"
+      ],
+      "enumType": "string"
+    },
+    "ip.IpVersionEnum": {
+      "id": "IpVersionEnum",
+      "namespace": "ip",
+      "description": "Possible values for IP version",
+      "enum": [
+        "4",
+        "6"
+      ],
+      "enumType": "long"
+    },
+    "ip.IpWithIAM": {
+      "id": "Ip",
+      "namespace": "ip",
+      "description": "Your IP",
+      "properties": {
+        "bringYourOwnIp": {
+          "type": "boolean",
+          "fullType": "boolean",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "Is this IP part of the Bring your own IP program (alpha)",
+          "required": false
+        },
+        "campus": {
+          "type": "string",
+          "fullType": "string",
+          "canBeNull": true,
+          "readOnly": true,
+          "description": "Where is the IP used/usable (alpha)",
+          "required": false
+        },
+        "canBeTerminated": {
+          "type": "boolean",
+          "fullType": "boolean",
+          "canBeNull": false,
+          "readOnly": true,
+          "required": false
+        },
+        "country": {
+          "type": "coreTypes.CountryEnum",
+          "fullType": "coreTypes.CountryEnum",
+          "canBeNull": true,
+          "readOnly": true,
+          "required": false
+        },
+        "description": {
+          "type": "string",
+          "fullType": "string",
+          "canBeNull": true,
+          "readOnly": false,
+          "description": "Custom description on your ip",
+          "required": false
+        },
+        "iam": {
+          "type": "iam.ResourceMetadata",
+          "canBeNull": true,
+          "readOnly": true,
+          "description": "IAM resource metadata",
+          "required": false
+        },
+        "ip": {
+          "type": "ipBlock",
+          "fullType": "ipBlock",
+          "canBeNull": false,
+          "readOnly": true,
+          "required": false
+        },
+        "isAdditionalIp": {
+          "type": "boolean",
+          "fullType": "boolean",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "Is this IP an Additional IP (alpha)",
+          "required": false
+        },
+        "organisationId": {
+          "type": "string",
+          "fullType": "string",
+          "canBeNull": true,
+          "readOnly": true,
+          "description": "IP block organisation Id",
+          "required": false
+        },
+        "regions": {
+          "type": "coreTypes.RegionCodenameEnum[]",
+          "fullType": "coreTypes.RegionCodenameEnum[]",
+          "canBeNull": true,
+          "readOnly": true,
+          "description": "Where is the IP used/usable, in the form of region codenames (alpha)",
+          "required": false
+        },
+        "rir": {
+          "type": "string",
+          "fullType": "string",
+          "canBeNull": true,
+          "readOnly": true,
+          "description": "Regional Internet Registry of the IP (alpha)",
+          "required": false
+        },
+        "routedTo": {
+          "type": "ip.RoutedTo",
+          "fullType": "ip.RoutedTo",
+          "canBeNull": true,
+          "readOnly": true,
+          "description": "Routage information",
+          "required": false
+        },
+        "type": {
+          "type": "ip.IpTypeEnum",
+          "fullType": "ip.IpTypeEnum",
+          "canBeNull": false,
+          "readOnly": true,
+          "required": false
+        },
+        "version": {
+          "type": "ip.IpVersionEnum",
+          "fullType": "ip.IpVersionEnum",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "Version of the IP (alpha)",
+          "required": false
+        }
+      }
+    },
+    "ip.MitigationIp": {
+      "id": "MitigationIp",
+      "namespace": "ip",
+      "description": "Your IP on mitigation",
+      "properties": {
+        "auto": {
+          "type": "boolean",
+          "fullType": "boolean",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "Set on true if your ip is on auto-mitigation",
+          "required": false
+        },
+        "ipOnMitigation": {
+          "type": "ipv4",
+          "fullType": "ipv4",
+          "canBeNull": false,
+          "readOnly": true,
+          "required": false
+        },
+        "permanent": {
+          "type": "boolean",
+          "fullType": "boolean",
+          "canBeNull": false,
+          "readOnly": false,
+          "description": "DEPRECATED: this field is kept for backward compatibility of the API, changing its value has no operational impact",
+          "required": false
+        },
+        "state": {
+          "type": "ip.MitigationStateEnum",
+          "fullType": "ip.MitigationStateEnum",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "Current state of your ip on mitigation",
+          "required": false
+        }
+      }
+    },
+    "ip.MitigationProfile": {
+      "id": "MitigationProfile",
+      "namespace": "ip",
+      "description": "Mitigation profile for your ip",
+      "properties": {
+        "autoMitigationTimeOut": {
+          "type": "ip.MitigationProfileAutoMitigationTimeOutEnum",
+          "fullType": "ip.MitigationProfileAutoMitigationTimeOutEnum",
+          "canBeNull": false,
+          "readOnly": false,
+          "description": "Delay to wait before remove ip from auto mitigation after an attack",
+          "required": false
+        },
+        "ipMitigationProfile": {
+          "type": "ipv4",
+          "fullType": "ipv4",
+          "canBeNull": false,
+          "readOnly": true,
+          "required": false
+        },
+        "state": {
+          "type": "ip.MitigationProfileStateEnum",
+          "fullType": "ip.MitigationProfileStateEnum",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "Current state of your mitigation profile",
+          "required": false
+        }
+      }
+    },
+    "ip.MitigationProfileAutoMitigationTimeOutEnum": {
+      "id": "MitigationProfileAutoMitigationTimeOutEnum",
+      "namespace": "ip",
+      "description": "Possible values for auto mitigation timeout (minutes)",
+      "enum": [
+        "0",
+        "15",
+        "60",
+        "360",
+        "1560"
+      ],
+      "enumType": "long"
+    },
+    "ip.MitigationProfileStateEnum": {
+      "id": "MitigationProfileStateEnum",
+      "namespace": "ip",
+      "description": "Possible values for mitigation profile state",
+      "enum": [
+        "ok",
+        "tasksPending"
+      ],
+      "enumType": "string"
+    },
+    "ip.MitigationStateEnum": {
+      "id": "MitigationStateEnum",
+      "namespace": "ip",
+      "description": "Possible values for mitigation state",
+      "enum": [
+        "creationPending",
+        "ok",
+        "removalPending"
+      ],
+      "enumType": "string"
+    },
+    "ip.ReverseDelegation": {
+      "id": "ReverseDelegation",
+      "namespace": "ip",
+      "description": "Your reverse delegations on IPv6 subnet",
+      "properties": {
+        "target": {
+          "type": "string",
+          "fullType": "string",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "NS target for delegation",
+          "required": false
+        }
+      }
+    },
+    "ip.ReverseIp": {
+      "id": "ReverseIp",
+      "namespace": "ip",
+      "description": "Your reverse records on IP",
+      "properties": {
+        "ipReverse": {
+          "type": "ip",
+          "fullType": "ip",
+          "canBeNull": false,
+          "readOnly": true,
+          "required": false
+        },
+        "reverse": {
+          "type": "string",
+          "fullType": "string",
+          "canBeNull": false,
+          "readOnly": true,
+          "required": false
+        }
+      }
+    },
+    "ip.RipeInfos": {
+      "id": "RipeInfos",
+      "namespace": "ip",
+      "description": "IP block RIPE informations",
+      "properties": {
+        "description": {
+          "type": "string",
+          "fullType": "string",
+          "canBeNull": true,
+          "readOnly": false,
+          "required": false
+        },
+        "netname": {
+          "type": "string",
+          "fullType": "string",
+          "canBeNull": true,
+          "readOnly": false,
+          "required": false
+        }
+      }
+    },
+    "ip.RoutedTo": {
+      "id": "RoutedTo",
+      "namespace": "ip",
+      "description": "Information about routing",
+      "properties": {
+        "serviceName": {
+          "type": "string",
+          "canBeNull": true,
+          "readOnly": false,
+          "description": "Service where ip is routed to",
+          "required": false
+        }
+      }
+    },
+    "ip.ServiceIp": {
+      "id": "ServiceIp",
+      "namespace": "ip",
+      "description": "Your IP linked to service",
+      "properties": {
+        "canBeTerminated": {
+          "type": "boolean",
+          "fullType": "boolean",
+          "canBeNull": false,
+          "readOnly": true,
+          "required": false
+        },
+        "country": {
+          "type": "coreTypes.CountryEnum",
+          "fullType": "coreTypes.CountryEnum",
+          "canBeNull": true,
+          "readOnly": true,
+          "required": false
+        },
+        "description": {
+          "type": "string",
+          "fullType": "string",
+          "canBeNull": true,
+          "readOnly": false,
+          "description": "Custom description on your ip",
+          "required": false
+        },
+        "ip": {
+          "type": "ipBlock",
+          "fullType": "ipBlock",
+          "canBeNull": false,
+          "readOnly": true,
+          "required": false
+        },
+        "organisationId": {
+          "type": "string",
+          "fullType": "string",
+          "canBeNull": true,
+          "readOnly": true,
+          "description": "IP block organisation Id",
+          "required": false
+        },
+        "routedTo": {
+          "type": "ip.RoutedTo",
+          "fullType": "ip.RoutedTo",
+          "canBeNull": true,
+          "readOnly": true,
+          "description": "Routage information",
+          "required": false
+        },
+        "type": {
+          "type": "ip.IpTypeEnum",
+          "fullType": "ip.IpTypeEnum",
+          "canBeNull": false,
+          "readOnly": true,
+          "required": false
+        }
+      }
+    },
+    "ip.ServiceIpWithIAM": {
+      "id": "ServiceIp",
+      "namespace": "ip",
+      "description": "Your IP linked to service",
+      "properties": {
+        "canBeTerminated": {
+          "type": "boolean",
+          "fullType": "boolean",
+          "canBeNull": false,
+          "readOnly": true,
+          "required": false
+        },
+        "country": {
+          "type": "coreTypes.CountryEnum",
+          "fullType": "coreTypes.CountryEnum",
+          "canBeNull": true,
+          "readOnly": true,
+          "required": false
+        },
+        "description": {
+          "type": "string",
+          "fullType": "string",
+          "canBeNull": true,
+          "readOnly": false,
+          "description": "Custom description on your ip",
+          "required": false
+        },
+        "iam": {
+          "type": "iam.ResourceMetadata",
+          "canBeNull": true,
+          "readOnly": true,
+          "description": "IAM resource metadata",
+          "required": false
+        },
+        "ip": {
+          "type": "ipBlock",
+          "fullType": "ipBlock",
+          "canBeNull": false,
+          "readOnly": true,
+          "required": false
+        },
+        "organisationId": {
+          "type": "string",
+          "fullType": "string",
+          "canBeNull": true,
+          "readOnly": true,
+          "description": "IP block organisation Id",
+          "required": false
+        },
+        "routedTo": {
+          "type": "ip.RoutedTo",
+          "fullType": "ip.RoutedTo",
+          "canBeNull": true,
+          "readOnly": true,
+          "description": "Routage information",
+          "required": false
+        },
+        "type": {
+          "type": "ip.IpTypeEnum",
+          "fullType": "ip.IpTypeEnum",
+          "canBeNull": false,
+          "readOnly": true,
+          "required": false
+        }
+      }
+    },
+    "ip.SpamIp": {
+      "id": "SpamIp",
+      "namespace": "ip",
+      "description": "Your IP spam stats",
+      "properties": {
+        "date": {
+          "type": "datetime",
+          "fullType": "datetime",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "Last date the ip was blocked",
+          "required": false
+        },
+        "ipSpamming": {
+          "type": "ipv4",
+          "fullType": "ipv4",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "IP address which is sending spam",
+          "required": false
+        },
+        "state": {
+          "type": "ip.SpamStateEnum",
+          "fullType": "ip.SpamStateEnum",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "Current state of the ip",
+          "required": false
+        },
+        "time": {
+          "type": "long",
+          "fullType": "long",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "Time (in seconds) while the IP will be blocked",
+          "required": false
+        }
+      }
+    },
+    "ip.SpamStateEnum": {
+      "id": "SpamStateEnum",
+      "namespace": "ip",
+      "description": "Possible values for spam state",
+      "enum": [
+        "blockedForSpam",
+        "unblocked",
+        "unblocking"
+      ],
+      "enumType": "string"
+    },
+    "ip.SpamStats": {
+      "id": "SpamStats",
+      "namespace": "ip",
+      "description": "Spam statistics about an IP address",
+      "properties": {
+        "averageSpamscore": {
+          "type": "long",
+          "canBeNull": true,
+          "readOnly": false,
+          "description": "Average spam score.",
+          "required": false
+        },
+        "detectedSpams": {
+          "type": "ip.SpamTarget[]",
+          "canBeNull": true,
+          "readOnly": false,
+          "description": "Detailed list of the spams",
+          "required": false
+        },
+        "numberOfSpams": {
+          "type": "long",
+          "canBeNull": false,
+          "readOnly": false,
+          "description": "Number of spams sent",
+          "required": false
+        },
+        "timestamp": {
+          "type": "long",
+          "canBeNull": false,
+          "readOnly": false,
+          "description": "Time when the IP address was blocked",
+          "required": false
+        },
+        "total": {
+          "type": "long",
+          "canBeNull": false,
+          "readOnly": false,
+          "description": "Number of emails sent",
+          "required": false
+        }
+      }
+    },
+    "ip.SpamTarget": {
+      "id": "SpamTarget",
+      "namespace": "ip",
+      "description": "Spam's target information",
+      "properties": {
+        "date": {
+          "type": "long",
+          "canBeNull": false,
+          "readOnly": false,
+          "description": "Timestamp when the email was sent",
+          "required": false
+        },
+        "destinationIp": {
+          "type": "ipv4",
+          "canBeNull": false,
+          "readOnly": false,
+          "description": "IP address of the target",
+          "required": false
+        },
+        "messageId": {
+          "type": "string",
+          "canBeNull": false,
+          "readOnly": false,
+          "description": "The message-id of the email",
+          "required": false
+        },
+        "spamscore": {
+          "type": "long",
+          "canBeNull": false,
+          "readOnly": false,
+          "description": "Spam score for the email",
+          "required": false
+        }
+      }
+    },
+    "ip.TaskFunctionEnum": {
+      "id": "TaskFunctionEnum",
+      "namespace": "ip",
+      "description": "different task operation",
+      "enum": [
+        "arinBlockReassign",
+        "changeRipeOrg",
+        "checkAndReleaseIp",
+        "genericMoveFloatingIp",
+        "supernetByoipFailoverPartitioning"
+      ],
+      "enumType": "string"
+    },
+    "ip.TaskStatusEnum": {
+      "id": "TaskStatusEnum",
+      "namespace": "ip",
+      "description": "different task status",
+      "enum": [
+        "cancelled",
+        "customerError",
+        "doing",
+        "done",
+        "init",
+        "ovhError",
+        "todo"
+      ],
+      "enumType": "string"
+    },
+    "service.RenewType": {
+      "id": "RenewType",
+      "namespace": "service",
+      "description": "Map a possible renew for a specific service",
+      "properties": {
+        "automatic": {
+          "type": "boolean",
+          "canBeNull": false,
+          "readOnly": false,
+          "description": "The service is automatically renewed",
+          "required": false
+        },
+        "deleteAtExpiration": {
+          "type": "boolean",
+          "canBeNull": false,
+          "readOnly": false,
+          "description": "The service will be deleted at expiration",
+          "required": false
+        },
+        "forced": {
+          "type": "boolean",
+          "canBeNull": false,
+          "readOnly": false,
+          "description": "The service forced to be renewed",
+          "required": false
+        },
+        "manualPayment": {
+          "type": "boolean",
+          "canBeNull": true,
+          "readOnly": false,
+          "description": "The service needs to be manually renewed and paid",
+          "required": false
+        },
+        "period": {
+          "type": "long",
+          "canBeNull": true,
+          "readOnly": false,
+          "description": "period of renew in month",
+          "required": false
+        }
+      }
+    },
+    "service.RenewalTypeEnum": {
+      "id": "RenewalTypeEnum",
+      "namespace": "service",
+      "description": "Detailed renewal type of a service",
+      "enum": [
+        "automaticForcedProduct",
+        "automaticV2012",
+        "automaticV2014",
+        "automaticV2016",
+        "automaticV2024",
+        "manual",
+        "oneShot",
+        "option"
+      ],
+      "enumType": "string"
+    },
+    "service.StateEnum": {
+      "id": "StateEnum",
+      "namespace": "service",
+      "enum": [
+        "autorenewInProgress",
+        "expired",
+        "inCreation",
+        "ok",
+        "pendingDebt",
+        "unPaid"
+      ],
+      "enumType": "string"
+    },
+    "service.TerminationFutureUseEnum": {
+      "id": "TerminationFutureUseEnum",
+      "namespace": "service",
+      "description": "All future uses you can provide for a service termination",
+      "enum": [
+        "NOT_REPLACING_SERVICE",
+        "OTHER",
+        "SUBSCRIBE_AN_OTHER_SERVICE",
+        "SUBSCRIBE_OTHER_KIND_OF_SERVICE_WITH_COMPETITOR",
+        "SUBSCRIBE_SIMILAR_SERVICE_WITH_COMPETITOR"
+      ],
+      "enumType": "string"
+    },
+    "service.TerminationReasonEnum": {
+      "id": "TerminationReasonEnum",
+      "namespace": "service",
+      "description": "All reasons you can provide for a service termination",
+      "enum": [
+        "FEATURES_DONT_SUIT_ME",
+        "LACK_OF_PERFORMANCES",
+        "MIGRATED_TO_ANOTHER_OVH_PRODUCT",
+        "MIGRATED_TO_COMPETITOR",
+        "NOT_ENOUGH_RECOGNITION",
+        "NOT_NEEDED_ANYMORE",
+        "NOT_RELIABLE",
+        "NO_ANSWER",
+        "OTHER",
+        "PRODUCT_DIMENSION_DONT_SUIT_ME",
+        "PRODUCT_TOOLS_DONT_SUIT_ME",
+        "TOO_EXPENSIVE",
+        "TOO_HARD_TO_USE",
+        "UNSATIFIED_BY_CUSTOMER_SUPPORT"
+      ],
+      "enumType": "string"
+    },
+    "services.Service": {
+      "id": "Service",
+      "namespace": "services",
+      "description": "Details about a Service",
+      "properties": {
+        "canDeleteAtExpiration": {
+          "type": "boolean",
+          "fullType": "boolean",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "Indicates that the service can be set up to be deleted at expiration",
+          "required": false
+        },
+        "contactAdmin": {
+          "type": "string",
+          "fullType": "coreTypes.AccountId:string",
+          "canBeNull": false,
+          "readOnly": true,
+          "required": false
+        },
+        "contactBilling": {
+          "type": "string",
+          "fullType": "coreTypes.AccountId:string",
+          "canBeNull": false,
+          "readOnly": true,
+          "required": false
+        },
+        "contactTech": {
+          "type": "string",
+          "fullType": "coreTypes.AccountId:string",
+          "canBeNull": false,
+          "readOnly": true,
+          "required": false
+        },
+        "creation": {
+          "type": "date",
+          "fullType": "date",
+          "canBeNull": false,
+          "readOnly": true,
+          "required": false
+        },
+        "domain": {
+          "type": "string",
+          "fullType": "string",
+          "canBeNull": false,
+          "readOnly": true,
+          "required": false
+        },
+        "engagedUpTo": {
+          "type": "date",
+          "fullType": "date",
+          "canBeNull": true,
+          "readOnly": true,
+          "required": false
+        },
+        "expiration": {
+          "type": "date",
+          "fullType": "date",
+          "canBeNull": false,
+          "readOnly": true,
+          "required": false
+        },
+        "possibleRenewPeriod": {
+          "type": "long[]",
+          "fullType": "long[]",
+          "canBeNull": true,
+          "readOnly": true,
+          "description": "All the possible renew period of your service in month",
+          "required": false
+        },
+        "renew": {
+          "type": "service.RenewType",
+          "fullType": "service.RenewType",
+          "canBeNull": true,
+          "readOnly": false,
+          "description": "Way of handling the renew",
+          "required": false
+        },
+        "renewalType": {
+          "type": "service.RenewalTypeEnum",
+          "fullType": "service.RenewalTypeEnum",
+          "canBeNull": false,
+          "readOnly": true,
+          "required": false
+        },
+        "serviceId": {
+          "type": "long",
+          "fullType": "coreTypes.ServiceId:long",
+          "canBeNull": false,
+          "readOnly": true,
+          "required": false
+        },
+        "status": {
+          "type": "service.StateEnum",
+          "fullType": "service.StateEnum",
+          "canBeNull": false,
+          "readOnly": true,
+          "required": false
+        }
+      }
+    }
+  }
+}

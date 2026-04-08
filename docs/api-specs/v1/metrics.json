@@ -1,0 +1,1426 @@
+{
+  "apiVersion": "1.0",
+  "apis": [
+    {
+      "path": "/metrics",
+      "operations": [
+        {
+          "apiStatus": {
+            "description": "Beta version",
+            "value": "BETA"
+          },
+          "operationId": "listMetricsServices",
+          "httpMethod": "GET",
+          "parameters": [
+            {
+              "name": "iamTags",
+              "dataType": "map[string][]iam.resource.TagFilter",
+              "paramType": "query",
+              "required": false,
+              "description": "Filter resources on IAM tags"
+            }
+          ],
+          "responseType": "string[]",
+          "noAuthentication": false,
+          "description": "List available services",
+          "iamActions": [
+            {
+              "name": "metrics:apiovh:get",
+              "required": true
+            }
+          ]
+        }
+      ],
+      "description": "Operations about the METRICS service"
+    },
+    {
+      "path": "/metrics/{serviceName}",
+      "operations": [
+        {
+          "apiStatus": {
+            "description": "Beta version",
+            "value": "BETA"
+          },
+          "operationId": "getMetricsService",
+          "httpMethod": "GET",
+          "parameters": [
+            {
+              "name": "serviceName",
+              "dataType": "string",
+              "paramType": "path",
+              "fullType": "string",
+              "required": true,
+              "description": "Service name"
+            }
+          ],
+          "responseType": "metrics.api.ServiceWithIAM",
+          "noAuthentication": false,
+          "description": "Get service",
+          "iamActions": [
+            {
+              "name": "metrics:apiovh:get",
+              "required": true
+            }
+          ]
+        },
+        {
+          "apiStatus": {
+            "description": "Beta version",
+            "value": "BETA"
+          },
+          "operationId": "editMetricsService",
+          "httpMethod": "PUT",
+          "parameters": [
+            {
+              "dataType": "metrics.Update",
+              "paramType": "body",
+              "fullType": "metrics.Update",
+              "required": true,
+              "description": "Request Body"
+            },
+            {
+              "name": "serviceName",
+              "dataType": "string",
+              "paramType": "path",
+              "fullType": "string",
+              "required": true,
+              "description": "Service name"
+            }
+          ],
+          "responseType": "metrics.api.Service",
+          "noAuthentication": false,
+          "description": "Modify service",
+          "iamActions": [
+            {
+              "name": "metrics:apiovh:put",
+              "required": true
+            }
+          ]
+        }
+      ],
+      "description": "Operations about the METRICS service"
+    },
+    {
+      "path": "/metrics/{serviceName}/changeContact",
+      "operations": [
+        {
+          "apiStatus": {
+            "description": "Beta version",
+            "value": "BETA"
+          },
+          "httpMethod": "POST",
+          "parameters": [
+            {
+              "dataType": "services.changeContact",
+              "paramType": "body",
+              "fullType": "services.changeContact",
+              "required": true,
+              "description": "Request Body"
+            },
+            {
+              "name": "serviceName",
+              "dataType": "string",
+              "paramType": "path",
+              "fullType": "string",
+              "required": true,
+              "description": "Service name"
+            }
+          ],
+          "responseType": "long[]",
+          "noAuthentication": false,
+          "description": "Launch a contact change procedure",
+          "iamActions": [
+            {
+              "name": "metrics:apiovh:changeContact",
+              "required": true
+            }
+          ]
+        }
+      ],
+      "description": ""
+    },
+    {
+      "path": "/metrics/{serviceName}/confirmTermination",
+      "operations": [
+        {
+          "apiStatus": {
+            "description": "Beta version",
+            "value": "BETA"
+          },
+          "httpMethod": "POST",
+          "parameters": [
+            {
+              "dataType": "services.confirmTermination",
+              "paramType": "body",
+              "fullType": "services.confirmTermination",
+              "required": true,
+              "description": "Request Body"
+            },
+            {
+              "name": "serviceName",
+              "dataType": "string",
+              "paramType": "path",
+              "fullType": "string",
+              "required": true,
+              "description": "Service name"
+            }
+          ],
+          "responseType": "string",
+          "noAuthentication": false,
+          "description": "Confirm service termination",
+          "iamActions": [
+            {
+              "name": "metrics:apiovh:confirmTermination",
+              "required": true
+            }
+          ]
+        }
+      ],
+      "description": ""
+    },
+    {
+      "path": "/metrics/{serviceName}/consumption",
+      "operations": [
+        {
+          "apiStatus": {
+            "description": "Beta version",
+            "value": "BETA"
+          },
+          "operationId": "getMetricsServiceConsumption",
+          "httpMethod": "GET",
+          "parameters": [
+            {
+              "name": "duration",
+              "dataType": "long",
+              "paramType": "query",
+              "fullType": "long",
+              "required": false,
+              "description": "Last 'm' minutes. Default is 60min"
+            },
+            {
+              "name": "serviceName",
+              "dataType": "string",
+              "paramType": "path",
+              "fullType": "string",
+              "required": true,
+              "description": "Service name"
+            }
+          ],
+          "responseType": "metrics.api.Consumption",
+          "noAuthentication": false,
+          "description": "Get consumption for your service",
+          "iamActions": [
+            {
+              "name": "metrics:apiovh:consumption/get",
+              "required": true
+            }
+          ]
+        }
+      ],
+      "description": "Metrics service consumption"
+    },
+    {
+      "path": "/metrics/{serviceName}/lookup/token",
+      "operations": [
+        {
+          "apiStatus": {
+            "description": "Beta version",
+            "value": "BETA"
+          },
+          "operationId": "lookupMetricsToken",
+          "httpMethod": "POST",
+          "parameters": [
+            {
+              "dataType": "metrics.LookupTokenCreation",
+              "paramType": "body",
+              "fullType": "metrics.LookupTokenCreation",
+              "required": true,
+              "description": "Request Body"
+            },
+            {
+              "name": "serviceName",
+              "dataType": "string",
+              "paramType": "path",
+              "fullType": "string",
+              "required": true,
+              "description": "Service name"
+            }
+          ],
+          "responseType": "string[]",
+          "noAuthentication": false,
+          "description": "Find TokenID for a specific token",
+          "iamActions": [
+            {
+              "name": "metrics:apiovh:lookup/token/create",
+              "required": true
+            }
+          ]
+        }
+      ],
+      "description": "Look for service/token"
+    },
+    {
+      "path": "/metrics/{serviceName}/quota",
+      "operations": [
+        {
+          "apiStatus": {
+            "description": "Beta version",
+            "value": "BETA"
+          },
+          "operationId": "setMetricsServiceQuota",
+          "httpMethod": "PUT",
+          "parameters": [
+            {
+              "dataType": "metrics.QuotaUpdate",
+              "paramType": "body",
+              "fullType": "metrics.QuotaUpdate",
+              "required": true,
+              "description": "Request Body"
+            },
+            {
+              "name": "serviceName",
+              "dataType": "string",
+              "paramType": "path",
+              "fullType": "string",
+              "required": true,
+              "description": "Service name"
+            }
+          ],
+          "responseType": "string",
+          "noAuthentication": false,
+          "description": "Set overquota",
+          "iamActions": [
+            {
+              "name": "metrics:apiovh:quota/edit",
+              "required": true
+            }
+          ]
+        }
+      ],
+      "description": "Metrics service quota management"
+    },
+    {
+      "path": "/metrics/{serviceName}/serviceInfos",
+      "operations": [
+        {
+          "apiStatus": {
+            "description": "Beta version",
+            "value": "BETA"
+          },
+          "httpMethod": "GET",
+          "parameters": [
+            {
+              "name": "serviceName",
+              "dataType": "string",
+              "paramType": "path",
+              "fullType": "string",
+              "required": true,
+              "description": "Service name"
+            }
+          ],
+          "responseType": "services.Service",
+          "noAuthentication": false,
+          "description": "Get service information",
+          "iamActions": [
+            {
+              "name": "metrics:apiovh:serviceInfos/get",
+              "required": true
+            }
+          ]
+        },
+        {
+          "apiStatus": {
+            "description": "Beta version",
+            "value": "BETA"
+          },
+          "httpMethod": "PUT",
+          "parameters": [
+            {
+              "dataType": "services.Service",
+              "paramType": "body",
+              "fullType": "services.Service",
+              "required": true,
+              "description": "Request Body"
+            },
+            {
+              "name": "serviceName",
+              "dataType": "string",
+              "paramType": "path",
+              "fullType": "string",
+              "required": true,
+              "description": "Service name"
+            }
+          ],
+          "responseType": "void",
+          "noAuthentication": false,
+          "description": "Update service information",
+          "iamActions": [
+            {
+              "name": "metrics:apiovh:serviceInfos/edit",
+              "required": true
+            }
+          ]
+        }
+      ],
+      "description": ""
+    },
+    {
+      "path": "/metrics/{serviceName}/terminate",
+      "operations": [
+        {
+          "apiStatus": {
+            "description": "Beta version",
+            "value": "BETA"
+          },
+          "httpMethod": "POST",
+          "parameters": [
+            {
+              "name": "serviceName",
+              "dataType": "string",
+              "paramType": "path",
+              "fullType": "string",
+              "required": true,
+              "description": "Service name"
+            }
+          ],
+          "responseType": "string",
+          "noAuthentication": false,
+          "description": "Ask for the termination of your service",
+          "iamActions": [
+            {
+              "name": "metrics:apiovh:terminate",
+              "required": true
+            }
+          ]
+        }
+      ],
+      "description": ""
+    },
+    {
+      "path": "/metrics/{serviceName}/token",
+      "operations": [
+        {
+          "apiStatus": {
+            "description": "Beta version",
+            "value": "BETA"
+          },
+          "operationId": "listMetricsTokens",
+          "httpMethod": "GET",
+          "parameters": [
+            {
+              "name": "serviceName",
+              "dataType": "string",
+              "paramType": "path",
+              "fullType": "string",
+              "required": true,
+              "description": "Service name"
+            }
+          ],
+          "responseType": "string[]",
+          "noAuthentication": false,
+          "description": "Get list of tokens",
+          "iamActions": [
+            {
+              "name": "metrics:apiovh:token/get",
+              "required": true
+            }
+          ]
+        },
+        {
+          "apiStatus": {
+            "description": "Beta version",
+            "value": "BETA"
+          },
+          "operationId": "createMetricsToken",
+          "httpMethod": "POST",
+          "parameters": [
+            {
+              "dataType": "metrics.TokenCreation",
+              "paramType": "body",
+              "fullType": "metrics.TokenCreation",
+              "required": true,
+              "description": "Request Body"
+            },
+            {
+              "name": "serviceName",
+              "dataType": "string",
+              "paramType": "path",
+              "fullType": "string",
+              "required": true,
+              "description": "Service name"
+            }
+          ],
+          "responseType": "metrics.api.Token",
+          "noAuthentication": false,
+          "description": "Create a token",
+          "iamActions": [
+            {
+              "name": "metrics:apiovh:token/create",
+              "required": true
+            }
+          ]
+        }
+      ],
+      "description": "Metrics service token operations"
+    },
+    {
+      "path": "/metrics/{serviceName}/token/{tokenId}",
+      "operations": [
+        {
+          "apiStatus": {
+            "description": "Beta version",
+            "value": "BETA"
+          },
+          "operationId": "deleteMetricsToken",
+          "httpMethod": "DELETE",
+          "parameters": [
+            {
+              "name": "serviceName",
+              "dataType": "string",
+              "paramType": "path",
+              "fullType": "string",
+              "required": true,
+              "description": "Service name"
+            },
+            {
+              "name": "tokenId",
+              "dataType": "string",
+              "paramType": "path",
+              "fullType": "string",
+              "required": true,
+              "description": "Token ID"
+            }
+          ],
+          "responseType": "void",
+          "noAuthentication": false,
+          "description": "Revoke a token",
+          "iamActions": [
+            {
+              "name": "metrics:apiovh:token/delete",
+              "required": true
+            }
+          ]
+        },
+        {
+          "apiStatus": {
+            "description": "Beta version",
+            "value": "BETA"
+          },
+          "operationId": "getMetricsToken",
+          "httpMethod": "GET",
+          "parameters": [
+            {
+              "name": "serviceName",
+              "dataType": "string",
+              "paramType": "path",
+              "fullType": "string",
+              "required": true,
+              "description": "Service name"
+            },
+            {
+              "name": "tokenId",
+              "dataType": "string",
+              "paramType": "path",
+              "fullType": "string",
+              "required": true,
+              "description": "Token ID"
+            }
+          ],
+          "responseType": "metrics.api.Token",
+          "noAuthentication": false,
+          "description": "Get a specific token",
+          "iamActions": [
+            {
+              "name": "metrics:apiovh:token/get",
+              "required": true
+            }
+          ]
+        },
+        {
+          "apiStatus": {
+            "description": "Beta version",
+            "value": "BETA"
+          },
+          "operationId": "editMetricsToken",
+          "httpMethod": "PUT",
+          "parameters": [
+            {
+              "dataType": "metrics.TokenUpdate",
+              "paramType": "body",
+              "fullType": "metrics.TokenUpdate",
+              "required": true,
+              "description": "Request Body"
+            },
+            {
+              "name": "serviceName",
+              "dataType": "string",
+              "paramType": "path",
+              "fullType": "string",
+              "required": true,
+              "description": "Service name"
+            },
+            {
+              "name": "tokenId",
+              "dataType": "string",
+              "paramType": "path",
+              "fullType": "string",
+              "required": true,
+              "description": "Token ID"
+            }
+          ],
+          "responseType": "metrics.api.Token",
+          "noAuthentication": false,
+          "description": "Modify a token",
+          "iamActions": [
+            {
+              "name": "metrics:apiovh:token/edit",
+              "required": true
+            }
+          ]
+        }
+      ],
+      "description": "Metrics service token operations"
+    }
+  ],
+  "resourcePath": "/metrics",
+  "basePath": "https://eu.api.ovh.com/v1",
+  "models": {
+    "iam.ResourceMetadata": {
+      "id": "ResourceMetadata",
+      "namespace": "iam",
+      "description": "IAM resource metadata embedded in services models",
+      "properties": {
+        "displayName": {
+          "type": "string",
+          "fullType": "string",
+          "canBeNull": true,
+          "readOnly": true,
+          "description": "Resource display name",
+          "required": false
+        },
+        "id": {
+          "type": "uuid",
+          "fullType": "uuid",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "Unique identifier of the resource",
+          "required": false
+        },
+        "state": {
+          "type": "iam.ResourceMetadata.StateEnum",
+          "fullType": "iam.ResourceMetadata.StateEnum",
+          "canBeNull": true,
+          "readOnly": true,
+          "description": "Resource state",
+          "required": false
+        },
+        "tags": {
+          "type": "map[string]string",
+          "fullType": "map[string]string",
+          "canBeNull": true,
+          "readOnly": true,
+          "description": "Resource tags. Tags that were internally computed are prefixed with ovh:",
+          "required": false
+        },
+        "urn": {
+          "type": "string",
+          "fullType": "string",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "Unique resource name used in policies",
+          "required": false
+        }
+      }
+    },
+    "iam.ResourceMetadata.StateEnum": {
+      "id": "StateEnum",
+      "namespace": "iam.ResourceMetadata",
+      "description": "Resource state",
+      "enum": [
+        "EXPIRED",
+        "IN_CREATION",
+        "OK",
+        "SUSPENDED"
+      ],
+      "enumType": "string"
+    },
+    "iam.resource.TagFilter": {
+      "id": "TagFilter",
+      "namespace": "iam.resource",
+      "description": "Resource tag filter",
+      "properties": {
+        "operator": {
+          "type": "iam.resource.TagFilter.OperatorEnum",
+          "fullType": "iam.resource.TagFilter.OperatorEnum",
+          "canBeNull": true,
+          "readOnly": true,
+          "description": "Operator to use in order to filter on the value (defaults to 'EQ')",
+          "required": false
+        },
+        "value": {
+          "type": "string",
+          "fullType": "string",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "Value to use in order to filter tags",
+          "required": false
+        }
+      }
+    },
+    "iam.resource.TagFilter.OperatorEnum": {
+      "id": "OperatorEnum",
+      "namespace": "iam.resource.TagFilter",
+      "description": "Operator that can be used in order to filter resources tags",
+      "enum": [
+        "EQ",
+        "EXISTS",
+        "ILIKE",
+        "LIKE",
+        "NEQ",
+        "NEXISTS"
+      ],
+      "enumType": "string"
+    },
+    "metrics.LookupTokenCreation": {
+      "id": "LookupTokenCreation",
+      "namespace": "metrics",
+      "description": "Missing description",
+      "properties": {
+        "accessToken": {
+          "type": "string",
+          "fullType": "string",
+          "canBeNull": false,
+          "readOnly": false,
+          "description": "access token",
+          "required": true
+        }
+      }
+    },
+    "metrics.QuotaUpdate": {
+      "id": "QuotaUpdate",
+      "namespace": "metrics",
+      "description": "Missing description",
+      "properties": {
+        "quota": {
+          "type": "long",
+          "fullType": "long",
+          "canBeNull": false,
+          "readOnly": false,
+          "description": "New value for overquota",
+          "required": true
+        }
+      }
+    },
+    "metrics.TokenCreation": {
+      "id": "TokenCreation",
+      "namespace": "metrics",
+      "description": "Missing description",
+      "properties": {
+        "description": {
+          "type": "string",
+          "fullType": "string",
+          "canBeNull": true,
+          "readOnly": false,
+          "description": "Description for the new token",
+          "required": false
+        },
+        "labels": {
+          "type": "metrics.api.Label[]",
+          "fullType": "metrics.api.Label[]",
+          "canBeNull": true,
+          "readOnly": false,
+          "description": "Labels for the new token",
+          "required": false
+        },
+        "permission": {
+          "type": "metrics.api.PermissionEnum",
+          "fullType": "metrics.api.PermissionEnum",
+          "canBeNull": false,
+          "readOnly": false,
+          "description": "Type of the new token. Read or Write",
+          "required": true
+        }
+      }
+    },
+    "metrics.TokenUpdate": {
+      "id": "TokenUpdate",
+      "namespace": "metrics",
+      "description": "Missing description",
+      "properties": {
+        "description": {
+          "type": "string",
+          "fullType": "string",
+          "canBeNull": true,
+          "readOnly": false,
+          "description": "New description for your token",
+          "required": false
+        }
+      }
+    },
+    "metrics.Update": {
+      "id": "Update",
+      "namespace": "metrics",
+      "description": "Missing description",
+      "properties": {
+        "description": {
+          "type": "string",
+          "fullType": "string",
+          "canBeNull": true,
+          "readOnly": false,
+          "description": "New description for your service",
+          "required": false
+        }
+      }
+    },
+    "metrics.api.Consumption": {
+      "id": "Consumption",
+      "namespace": "metrics.api",
+      "description": "Structure holding the consumption",
+      "properties": {
+        "ddp": {
+          "type": "long",
+          "fullType": "long",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "Current Daily data points",
+          "required": false
+        },
+        "mads": {
+          "type": "long",
+          "fullType": "long",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "Current monthly active data streams",
+          "required": false
+        }
+      }
+    },
+    "metrics.api.Label": {
+      "id": "Label",
+      "namespace": "metrics.api",
+      "description": "Structure holding the elements about a label",
+      "properties": {
+        "key": {
+          "type": "string",
+          "fullType": "string",
+          "canBeNull": false,
+          "readOnly": false,
+          "description": "Label key",
+          "required": false
+        },
+        "value": {
+          "type": "string",
+          "fullType": "string",
+          "canBeNull": false,
+          "readOnly": false,
+          "description": "Label value",
+          "required": false
+        }
+      }
+    },
+    "metrics.api.OfferTypeEnum": {
+      "id": "OfferTypeEnum",
+      "namespace": "metrics.api",
+      "description": "Type of the service",
+      "enum": [
+        "cloud",
+        "live"
+      ],
+      "enumType": "string"
+    },
+    "metrics.api.Option": {
+      "id": "Option",
+      "namespace": "metrics.api",
+      "description": "Structure holding the options for a service",
+      "properties": {
+        "ddp": {
+          "type": "long",
+          "fullType": "long",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "Daily data points",
+          "required": false
+        },
+        "lastModification": {
+          "type": "datetime",
+          "fullType": "datetime",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "Time of last modification",
+          "required": false
+        },
+        "mads": {
+          "type": "long",
+          "fullType": "long",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "Monthly active device streams",
+          "required": false
+        }
+      }
+    },
+    "metrics.api.PermissionEnum": {
+      "id": "PermissionEnum",
+      "namespace": "metrics.api",
+      "description": "Metrics service token permissions",
+      "enum": [
+        "read",
+        "write"
+      ],
+      "enumType": "string"
+    },
+    "metrics.api.Region": {
+      "id": "Region",
+      "namespace": "metrics.api",
+      "description": "Structure holding the elements about a region",
+      "properties": {
+        "description": {
+          "type": "string",
+          "fullType": "string",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "Description of a region",
+          "required": false
+        },
+        "name": {
+          "type": "string",
+          "fullType": "string",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "Name of a region",
+          "required": false
+        }
+      }
+    },
+    "metrics.api.Service": {
+      "id": "Service",
+      "namespace": "metrics.api",
+      "description": "Structure holding the elements about a service",
+      "properties": {
+        "description": {
+          "type": "string",
+          "fullType": "string",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "Description of a service",
+          "required": false
+        },
+        "name": {
+          "type": "string",
+          "fullType": "string",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "Name of a service",
+          "required": false
+        },
+        "offer": {
+          "type": "string",
+          "fullType": "string",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "Offer used for the service",
+          "required": false
+        },
+        "quota": {
+          "type": "metrics.api.Option",
+          "fullType": "metrics.api.Option",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "Quota used for the service",
+          "required": false
+        },
+        "region": {
+          "type": "metrics.api.Region",
+          "fullType": "metrics.api.Region",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "Region holding the service",
+          "required": false
+        },
+        "shouldUpgrade": {
+          "type": "boolean",
+          "fullType": "boolean",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "Indicator if the service should be upgraded based on current quota and offer",
+          "required": false
+        },
+        "status": {
+          "type": "metrics.api.ServiceStatusEnum",
+          "fullType": "metrics.api.ServiceStatusEnum",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "Status of a service",
+          "required": false
+        },
+        "type": {
+          "type": "metrics.api.OfferTypeEnum",
+          "fullType": "metrics.api.OfferTypeEnum",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "Type of the service: cloud or live",
+          "required": false
+        }
+      }
+    },
+    "metrics.api.ServiceStatusEnum": {
+      "id": "ServiceStatusEnum",
+      "namespace": "metrics.api",
+      "description": "Status of of the service",
+      "enum": [
+        "alive",
+        "dead",
+        "disabled",
+        "new"
+      ],
+      "enumType": "string"
+    },
+    "metrics.api.ServiceWithIAM": {
+      "id": "Service",
+      "namespace": "metrics.api",
+      "description": "Structure holding the elements about a service",
+      "properties": {
+        "description": {
+          "type": "string",
+          "fullType": "string",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "Description of a service",
+          "required": false
+        },
+        "iam": {
+          "type": "iam.ResourceMetadata",
+          "canBeNull": true,
+          "readOnly": true,
+          "description": "IAM resource metadata",
+          "required": false
+        },
+        "name": {
+          "type": "string",
+          "fullType": "string",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "Name of a service",
+          "required": false
+        },
+        "offer": {
+          "type": "string",
+          "fullType": "string",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "Offer used for the service",
+          "required": false
+        },
+        "quota": {
+          "type": "metrics.api.Option",
+          "fullType": "metrics.api.Option",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "Quota used for the service",
+          "required": false
+        },
+        "region": {
+          "type": "metrics.api.Region",
+          "fullType": "metrics.api.Region",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "Region holding the service",
+          "required": false
+        },
+        "shouldUpgrade": {
+          "type": "boolean",
+          "fullType": "boolean",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "Indicator if the service should be upgraded based on current quota and offer",
+          "required": false
+        },
+        "status": {
+          "type": "metrics.api.ServiceStatusEnum",
+          "fullType": "metrics.api.ServiceStatusEnum",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "Status of a service",
+          "required": false
+        },
+        "type": {
+          "type": "metrics.api.OfferTypeEnum",
+          "fullType": "metrics.api.OfferTypeEnum",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "Type of the service: cloud or live",
+          "required": false
+        }
+      }
+    },
+    "metrics.api.Token": {
+      "id": "Token",
+      "namespace": "metrics.api",
+      "description": "Structure holding the elements about a token",
+      "properties": {
+        "access": {
+          "type": "password",
+          "fullType": "password",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "The actual access token",
+          "required": false
+        },
+        "createdAt": {
+          "type": "datetime",
+          "fullType": "datetime",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "Token creation date",
+          "required": false
+        },
+        "description": {
+          "type": "string",
+          "fullType": "string",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "Description of the token",
+          "required": false
+        },
+        "expiryAt": {
+          "type": "datetime",
+          "fullType": "datetime",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "Token expiration date",
+          "required": false
+        },
+        "id": {
+          "type": "string",
+          "fullType": "string",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "Id of the token",
+          "required": false
+        },
+        "isRevoked": {
+          "type": "boolean",
+          "fullType": "boolean",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "Is your token revoked?",
+          "required": false
+        },
+        "labels": {
+          "type": "metrics.api.Label[]",
+          "fullType": "metrics.api.Label[]",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "Labels for the token if set",
+          "required": false
+        },
+        "permission": {
+          "type": "metrics.api.PermissionEnum",
+          "fullType": "metrics.api.PermissionEnum",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "Token permission: read or write",
+          "required": false
+        }
+      }
+    },
+    "service.RenewType": {
+      "id": "RenewType",
+      "namespace": "service",
+      "description": "Map a possible renew for a specific service",
+      "properties": {
+        "automatic": {
+          "type": "boolean",
+          "fullType": "boolean",
+          "canBeNull": false,
+          "readOnly": false,
+          "description": "The service is automatically renewed",
+          "required": false
+        },
+        "deleteAtExpiration": {
+          "type": "boolean",
+          "fullType": "boolean",
+          "canBeNull": false,
+          "readOnly": false,
+          "description": "The service will be deleted at expiration",
+          "required": false
+        },
+        "forced": {
+          "type": "boolean",
+          "fullType": "boolean",
+          "canBeNull": false,
+          "readOnly": false,
+          "description": "The service forced to be renewed",
+          "required": false
+        },
+        "manualPayment": {
+          "type": "boolean",
+          "fullType": "boolean",
+          "canBeNull": true,
+          "readOnly": false,
+          "description": "The service needs to be manually renewed and paid",
+          "required": false
+        },
+        "period": {
+          "type": "long",
+          "fullType": "long",
+          "canBeNull": true,
+          "readOnly": false,
+          "description": "period of renew in month",
+          "required": false
+        }
+      }
+    },
+    "service.RenewalTypeEnum": {
+      "id": "RenewalTypeEnum",
+      "namespace": "service",
+      "description": "Detailed renewal type of a service",
+      "enum": [
+        "automaticForcedProduct",
+        "automaticV2012",
+        "automaticV2014",
+        "automaticV2016",
+        "manual",
+        "oneShot",
+        "option"
+      ],
+      "enumType": "string"
+    },
+    "service.StateEnum": {
+      "id": "StateEnum",
+      "namespace": "service",
+      "description": "service.StateEnum",
+      "enum": [
+        "autorenewInProgress",
+        "expired",
+        "inCreation",
+        "ok",
+        "pendingDebt",
+        "unPaid"
+      ],
+      "enumType": "string"
+    },
+    "service.TerminationFutureUseEnum": {
+      "id": "TerminationFutureUseEnum",
+      "namespace": "service",
+      "description": "All future uses you can provide for a service termination",
+      "enum": [
+        "NOT_REPLACING_SERVICE",
+        "OTHER",
+        "SUBSCRIBE_AN_OTHER_SERVICE",
+        "SUBSCRIBE_OTHER_KIND_OF_SERVICE_WITH_COMPETITOR",
+        "SUBSCRIBE_SIMILAR_SERVICE_WITH_COMPETITOR"
+      ],
+      "enumType": "string"
+    },
+    "service.TerminationReasonEnum": {
+      "id": "TerminationReasonEnum",
+      "namespace": "service",
+      "description": "All reasons you can provide for a service termination",
+      "enum": [
+        "FEATURES_DONT_SUIT_ME",
+        "LACK_OF_PERFORMANCES",
+        "MIGRATED_TO_ANOTHER_OVH_PRODUCT",
+        "MIGRATED_TO_COMPETITOR",
+        "NOT_ENOUGH_RECOGNITION",
+        "NOT_NEEDED_ANYMORE",
+        "NOT_RELIABLE",
+        "NO_ANSWER",
+        "OTHER",
+        "PRODUCT_DIMENSION_DONT_SUIT_ME",
+        "PRODUCT_TOOLS_DONT_SUIT_ME",
+        "TOO_EXPENSIVE",
+        "TOO_HARD_TO_USE",
+        "UNSATIFIED_BY_CUSTOMER_SUPPORT"
+      ],
+      "enumType": "string"
+    },
+    "services.Service": {
+      "id": "Service",
+      "namespace": "services",
+      "description": "Details about a Service",
+      "properties": {
+        "canDeleteAtExpiration": {
+          "type": "boolean",
+          "fullType": "boolean",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "Indicates that the service can be set up to be deleted at expiration",
+          "required": false
+        },
+        "contactAdmin": {
+          "type": "string",
+          "fullType": "string",
+          "canBeNull": false,
+          "readOnly": true,
+          "required": false
+        },
+        "contactBilling": {
+          "type": "string",
+          "fullType": "string",
+          "canBeNull": false,
+          "readOnly": true,
+          "required": false
+        },
+        "contactTech": {
+          "type": "string",
+          "fullType": "string",
+          "canBeNull": false,
+          "readOnly": true,
+          "required": false
+        },
+        "creation": {
+          "type": "date",
+          "fullType": "date",
+          "canBeNull": false,
+          "readOnly": true,
+          "required": false
+        },
+        "domain": {
+          "type": "string",
+          "fullType": "string",
+          "canBeNull": false,
+          "readOnly": true,
+          "required": false
+        },
+        "engagedUpTo": {
+          "type": "date",
+          "fullType": "date",
+          "canBeNull": true,
+          "readOnly": true,
+          "required": false
+        },
+        "expiration": {
+          "type": "date",
+          "fullType": "date",
+          "canBeNull": false,
+          "readOnly": true,
+          "required": false
+        },
+        "possibleRenewPeriod": {
+          "type": "long[]",
+          "fullType": "long[]",
+          "canBeNull": true,
+          "readOnly": true,
+          "description": "All the possible renew period of your service in month",
+          "required": false
+        },
+        "renew": {
+          "type": "service.RenewType",
+          "fullType": "service.RenewType",
+          "canBeNull": true,
+          "readOnly": false,
+          "description": "Way of handling the renew",
+          "required": false
+        },
+        "renewalType": {
+          "type": "service.RenewalTypeEnum",
+          "fullType": "service.RenewalTypeEnum",
+          "canBeNull": false,
+          "readOnly": true,
+          "required": false
+        },
+        "serviceId": {
+          "type": "long",
+          "fullType": "long",
+          "canBeNull": false,
+          "readOnly": true,
+          "required": false
+        },
+        "status": {
+          "type": "service.StateEnum",
+          "fullType": "service.StateEnum",
+          "canBeNull": false,
+          "readOnly": true,
+          "required": false
+        }
+      }
+    },
+    "services.changeContact": {
+      "id": "changeContact",
+      "namespace": "services",
+      "description": "Service change contact payload",
+      "properties": {
+        "contactAdmin": {
+          "type": "string",
+          "fullType": "string",
+          "canBeNull": false,
+          "readOnly": false,
+          "description": "The contact to set as admin contact",
+          "required": false
+        },
+        "contactBilling": {
+          "type": "string",
+          "fullType": "string",
+          "canBeNull": false,
+          "readOnly": false,
+          "description": "The contact to set as billing contact",
+          "required": false
+        },
+        "contactTech": {
+          "type": "string",
+          "fullType": "string",
+          "canBeNull": false,
+          "readOnly": false,
+          "description": "The contact to set as tech contact",
+          "required": false
+        }
+      }
+    },
+    "services.confirmTermination": {
+      "id": "confirmTermination",
+      "namespace": "services",
+      "description": "Service confirm termination payload",
+      "properties": {
+        "commentary": {
+          "type": "string",
+          "fullType": "string",
+          "canBeNull": false,
+          "readOnly": false,
+          "description": "Commentary about your termination request",
+          "required": false
+        },
+        "commentaryFutureUse": {
+          "type": "string",
+          "fullType": "string",
+          "canBeNull": false,
+          "readOnly": false,
+          "description": "Commentary about your future use",
+          "required": false
+        },
+        "commentaryReason": {
+          "type": "string",
+          "fullType": "string",
+          "canBeNull": false,
+          "readOnly": false,
+          "description": "Commentary about your reason for termination request",
+          "required": false
+        },
+        "futureUse": {
+          "type": "service.TerminationFutureUseEnum",
+          "fullType": "service.TerminationFutureUseEnum",
+          "canBeNull": false,
+          "readOnly": false,
+          "description": "All future uses you can provide for a service termination",
+          "required": false
+        },
+        "reason": {
+          "type": "service.TerminationReasonEnum",
+          "fullType": "service.TerminationReasonEnum",
+          "canBeNull": false,
+          "readOnly": false,
+          "description": "All reasons you can provide for a service termination",
+          "required": false
+        },
+        "token": {
+          "type": "string",
+          "fullType": "string",
+          "canBeNull": false,
+          "readOnly": false,
+          "description": "The termination token sent by email to the admin contact",
+          "required": true
+        }
+      }
+    }
+  }
+}

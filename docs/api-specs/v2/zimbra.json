@@ -1,0 +1,4816 @@
+{
+  "apiVersion": "1.0",
+  "apis": [
+    {
+      "path": "/zimbra/platform",
+      "operations": [
+        {
+          "apiStatus": {
+            "description": "Stable production version",
+            "value": "PRODUCTION"
+          },
+          "httpMethod": "GET",
+          "parameters": [
+            {
+              "name": "X-Pagination-Cursor",
+              "dataType": "string",
+              "paramType": "header",
+              "fullType": "string",
+              "required": false,
+              "description": "Pagination cursor"
+            },
+            {
+              "name": "X-Pagination-Size",
+              "dataType": "long",
+              "paramType": "header",
+              "fullType": "long",
+              "required": false,
+              "description": "Pagination size"
+            },
+            {
+              "name": "iamTags",
+              "dataType": "map[string][]iam.resource.TagFilter",
+              "paramType": "query",
+              "required": false,
+              "description": "Filter resources on IAM tags"
+            },
+            {
+              "name": "projectId",
+              "dataType": "uuid",
+              "paramType": "query",
+              "fullType": "uuid",
+              "required": false,
+              "description": "Project identifier"
+            }
+          ],
+          "responseType": "zimbra.PlatformResponseWithIAM[]",
+          "noAuthentication": false,
+          "description": "Get a list of Zimbra Platforms",
+          "iamActions": [
+            {
+              "name": "zimbra:apiovh:platform/get",
+              "required": true
+            }
+          ]
+        }
+      ],
+      "description": ""
+    },
+    {
+      "path": "/zimbra/platform/{platformId}",
+      "operations": [
+        {
+          "apiStatus": {
+            "description": "Stable production version",
+            "value": "PRODUCTION"
+          },
+          "httpMethod": "GET",
+          "parameters": [
+            {
+              "name": "platformId",
+              "dataType": "uuid",
+              "paramType": "path",
+              "fullType": "uuid",
+              "required": true,
+              "description": "Platform ID"
+            }
+          ],
+          "responseType": "zimbra.PlatformResponseWithIAM",
+          "noAuthentication": false,
+          "description": "Get a Zimbra Platform",
+          "errors": [
+            "Client::NotFound::PlatformNotFound"
+          ],
+          "iamActions": [
+            {
+              "name": "zimbra:apiovh:platform/get",
+              "required": true
+            }
+          ]
+        },
+        {
+          "apiStatus": {
+            "description": "Stable production version",
+            "value": "PRODUCTION"
+          },
+          "httpMethod": "PUT",
+          "parameters": [
+            {
+              "dataType": "zimbra.PlatformPutPayload",
+              "paramType": "body",
+              "fullType": "zimbra.PlatformPutPayload",
+              "required": true,
+              "description": "Request Body"
+            },
+            {
+              "name": "platformId",
+              "dataType": "uuid",
+              "paramType": "path",
+              "fullType": "uuid",
+              "required": true,
+              "description": "Platform ID"
+            }
+          ],
+          "responseType": "zimbra.PlatformResponse",
+          "noAuthentication": false,
+          "description": "Modify a platform",
+          "errors": [
+            "Client::NotFound::PlatformNotFound",
+            "Client::Conflict::UndesiredObjectStatus",
+            "Client::PreconditionFailed::InvalidChecksum"
+          ],
+          "iamActions": [
+            {
+              "name": "zimbra:apiovh:platform/edit",
+              "required": true
+            }
+          ]
+        }
+      ],
+      "description": ""
+    },
+    {
+      "path": "/zimbra/platform/{platformId}/account",
+      "operations": [
+        {
+          "apiStatus": {
+            "description": "Stable production version",
+            "value": "PRODUCTION"
+          },
+          "httpMethod": "GET",
+          "parameters": [
+            {
+              "name": "X-Pagination-Cursor",
+              "dataType": "string",
+              "paramType": "header",
+              "fullType": "string",
+              "required": false,
+              "description": "Pagination cursor"
+            },
+            {
+              "name": "X-Pagination-Size",
+              "dataType": "long",
+              "paramType": "header",
+              "fullType": "long",
+              "required": false,
+              "description": "Pagination size"
+            },
+            {
+              "name": "domainId",
+              "dataType": "uuid",
+              "paramType": "query",
+              "fullType": "uuid",
+              "required": false,
+              "description": "Filter by Domain identifier"
+            },
+            {
+              "name": "email",
+              "dataType": "string",
+              "paramType": "query",
+              "fullType": "string",
+              "required": false,
+              "description": "Filter by email"
+            },
+            {
+              "name": "offer",
+              "dataType": "zimbra.OfferEnum",
+              "paramType": "query",
+              "fullType": "zimbra.OfferEnum",
+              "required": false,
+              "description": "Filter by offer"
+            },
+            {
+              "name": "organizationId",
+              "dataType": "uuid",
+              "paramType": "query",
+              "fullType": "uuid",
+              "required": false,
+              "description": "Filter by organization identifier"
+            },
+            {
+              "name": "organizationLabel",
+              "dataType": "string",
+              "paramType": "query",
+              "fullType": "string",
+              "required": false,
+              "description": "Filter by organization label"
+            },
+            {
+              "name": "platformId",
+              "dataType": "uuid",
+              "paramType": "path",
+              "fullType": "uuid",
+              "required": true,
+              "description": "Platform ID"
+            }
+          ],
+          "responseType": "zimbra.AccountResponse[]",
+          "noAuthentication": false,
+          "description": "Get list of accounts",
+          "errors": [
+            "Client::BadRequest::CannotFilterByOffer",
+            "Client::NotFound::PlatformNotFound"
+          ],
+          "iamActions": [
+            {
+              "name": "zimbra:apiovh:platform/account/get",
+              "required": true
+            }
+          ]
+        },
+        {
+          "apiStatus": {
+            "description": "Stable production version",
+            "value": "PRODUCTION"
+          },
+          "httpMethod": "POST",
+          "parameters": [
+            {
+              "dataType": "zimbra.AccountPostPayload",
+              "paramType": "body",
+              "fullType": "zimbra.AccountPostPayload",
+              "required": true,
+              "description": "Request Body"
+            },
+            {
+              "name": "platformId",
+              "dataType": "uuid",
+              "paramType": "path",
+              "fullType": "uuid",
+              "required": true,
+              "description": "Platform ID"
+            }
+          ],
+          "responseType": "zimbra.AccountResponse",
+          "noAuthentication": false,
+          "description": "Create an account",
+          "errors": [
+            "Client::BadRequest::AccountEmailContainForbiddenCharacter",
+            "Client::BadRequest::AccountSlotHasWrongOffer",
+            "Client::BadRequest::DomainNotReady",
+            "Client::BadRequest::InvalidPasswordNotMatchingPolicy",
+            "Client::BadRequest::NoSlotAvailable",
+            "Client::NotFound::DomainNotFound",
+            "Client::NotFound::OrganizationNotFound",
+            "Client::NotFound::SlotNotFound",
+            "Client::Conflict::AccountEmailAddressAlreadyUsed",
+            "Client::Conflict::AccountSlotInUndesiredStatus",
+            "Client::Conflict::AccountSlotIsAlreadyUsed"
+          ],
+          "iamActions": [
+            {
+              "name": "zimbra:apiovh:platform/account/create",
+              "required": true
+            }
+          ]
+        }
+      ],
+      "description": ""
+    },
+    {
+      "path": "/zimbra/platform/{platformId}/account/{accountId}",
+      "operations": [
+        {
+          "apiStatus": {
+            "description": "Stable production version",
+            "value": "PRODUCTION"
+          },
+          "httpMethod": "DELETE",
+          "parameters": [
+            {
+              "name": "accountId",
+              "dataType": "uuid",
+              "paramType": "path",
+              "fullType": "uuid",
+              "required": true,
+              "description": "Account ID"
+            },
+            {
+              "name": "platformId",
+              "dataType": "uuid",
+              "paramType": "path",
+              "fullType": "uuid",
+              "required": true,
+              "description": "Platform ID"
+            }
+          ],
+          "responseType": "void",
+          "noAuthentication": false,
+          "description": "Delete an account",
+          "errors": [
+            "Client::NotFound::AccountCannotBeDeletedDueToSpam",
+            "Client::NotFound::AccountNotFound",
+            "Client::NotFound::PlatformNotFound",
+            "Client::Conflict::UndesiredObjectStatus",
+            "Client::PreconditionFailed::InvalidChecksum"
+          ],
+          "iamActions": [
+            {
+              "name": "zimbra:apiovh:platform/account/delete",
+              "required": true
+            }
+          ]
+        },
+        {
+          "apiStatus": {
+            "description": "Stable production version",
+            "value": "PRODUCTION"
+          },
+          "httpMethod": "GET",
+          "parameters": [
+            {
+              "name": "accountId",
+              "dataType": "uuid",
+              "paramType": "path",
+              "fullType": "uuid",
+              "required": true,
+              "description": "Account ID"
+            },
+            {
+              "name": "platformId",
+              "dataType": "uuid",
+              "paramType": "path",
+              "fullType": "uuid",
+              "required": true,
+              "description": "Platform ID"
+            }
+          ],
+          "responseType": "zimbra.AccountResponse",
+          "noAuthentication": false,
+          "description": "Get an account",
+          "errors": [
+            "Client::BadRequest::MultipleAccountsFoundWithSameID",
+            "Client::NotFound::AccountNotFound",
+            "Client::NotFound::PlatformNotFound"
+          ],
+          "iamActions": [
+            {
+              "name": "zimbra:apiovh:platform/account/get",
+              "required": true
+            }
+          ]
+        },
+        {
+          "apiStatus": {
+            "description": "Stable production version",
+            "value": "PRODUCTION"
+          },
+          "httpMethod": "PUT",
+          "parameters": [
+            {
+              "dataType": "zimbra.AccountPutPayload",
+              "paramType": "body",
+              "fullType": "zimbra.AccountPutPayload",
+              "required": true,
+              "description": "Request Body"
+            },
+            {
+              "name": "accountId",
+              "dataType": "uuid",
+              "paramType": "path",
+              "fullType": "uuid",
+              "required": true,
+              "description": "Account ID"
+            },
+            {
+              "name": "platformId",
+              "dataType": "uuid",
+              "paramType": "path",
+              "fullType": "uuid",
+              "required": true,
+              "description": "Platform ID"
+            }
+          ],
+          "responseType": "zimbra.AccountResponse",
+          "noAuthentication": false,
+          "description": "Modify an account",
+          "errors": [
+            "Client::BadRequets::PasswordDoesNotMeetRequirements",
+            "Client::BadRequest::MultipleDomainsFound",
+            "Client::NotFound::AccountNotFound",
+            "Client::NotFound::DomainNotFound",
+            "Client::Conflict::AccountEmailAddressAlreadyUsed",
+            "Client::Conflict::DomainNotReady",
+            "Client::Conflict::UndesiredObjectStatus",
+            "Client::PreconditionFailed::InvalidChecksum"
+          ],
+          "iamActions": [
+            {
+              "name": "zimbra:apiovh:platform/account/edit",
+              "required": true
+            }
+          ]
+        }
+      ],
+      "description": ""
+    },
+    {
+      "path": "/zimbra/platform/{platformId}/alias",
+      "operations": [
+        {
+          "apiStatus": {
+            "description": "Stable production version",
+            "value": "PRODUCTION"
+          },
+          "httpMethod": "GET",
+          "parameters": [
+            {
+              "name": "X-Pagination-Cursor",
+              "dataType": "string",
+              "paramType": "header",
+              "fullType": "string",
+              "required": false,
+              "description": "Pagination cursor"
+            },
+            {
+              "name": "X-Pagination-Size",
+              "dataType": "long",
+              "paramType": "header",
+              "fullType": "long",
+              "required": false,
+              "description": "Pagination size"
+            },
+            {
+              "name": "alias",
+              "dataType": "string",
+              "paramType": "query",
+              "fullType": "string",
+              "required": false,
+              "description": "Filter by the alias email"
+            },
+            {
+              "name": "aliasOrganizationId",
+              "dataType": "string",
+              "paramType": "query",
+              "fullType": "string",
+              "required": false,
+              "description": "Filter by organization identifier of the aliases"
+            },
+            {
+              "name": "aliasOrganizationLabel",
+              "dataType": "string",
+              "paramType": "query",
+              "fullType": "string",
+              "required": false,
+              "description": "Filter by organization label of the aliases"
+            },
+            {
+              "name": "aliasTargetId",
+              "dataType": "string",
+              "paramType": "query",
+              "fullType": "string",
+              "required": false,
+              "description": "Filter by the targeted email account identifier"
+            },
+            {
+              "name": "platformId",
+              "dataType": "uuid",
+              "paramType": "path",
+              "fullType": "uuid",
+              "required": true,
+              "description": "Platform ID"
+            }
+          ],
+          "responseType": "zimbra.AliasResponse[]",
+          "noAuthentication": false,
+          "description": "Retrieve the list of platform aliases",
+          "errors": [
+            "Client::NotFound::OrganizationNotFound",
+            "Client::NotFound::PlatformNotFound"
+          ],
+          "iamActions": [
+            {
+              "name": "zimbra:apiovh:platform/alias/get",
+              "required": true
+            }
+          ]
+        },
+        {
+          "apiStatus": {
+            "description": "Stable production version",
+            "value": "PRODUCTION"
+          },
+          "httpMethod": "POST",
+          "parameters": [
+            {
+              "dataType": "zimbra.AliasPostPayload",
+              "paramType": "body",
+              "fullType": "zimbra.AliasPostPayload",
+              "required": true,
+              "description": "Request Body"
+            },
+            {
+              "name": "platformId",
+              "dataType": "uuid",
+              "paramType": "path",
+              "fullType": "uuid",
+              "required": true,
+              "description": "Platform ID"
+            }
+          ],
+          "responseType": "zimbra.AliasResponse",
+          "noAuthentication": false,
+          "description": "Create an alias",
+          "errors": [
+            "Client::BadRequest::AliasAlreadyUsed",
+            "Client::BadRequest::AliasDomainOrganizationDiffers",
+            "Client::NotFound::AliasDomainNotFound",
+            "Client::NotFound::AliasTargetNotFound",
+            "Client::NotFound::OrganizationNotFound",
+            "Client::NotFound::PlatformNotFound",
+            "Client::Conflict::AliasDomainNotReady  ",
+            "Client::Conflict::AliasTargetObjectNotReady"
+          ],
+          "iamActions": [
+            {
+              "name": "zimbra:apiovh:platform/alias/create",
+              "required": true
+            }
+          ]
+        }
+      ],
+      "description": ""
+    },
+    {
+      "path": "/zimbra/platform/{platformId}/alias/{aliasId}",
+      "operations": [
+        {
+          "apiStatus": {
+            "description": "Stable production version",
+            "value": "PRODUCTION"
+          },
+          "httpMethod": "DELETE",
+          "parameters": [
+            {
+              "name": "aliasId",
+              "dataType": "uuid",
+              "paramType": "path",
+              "fullType": "uuid",
+              "required": true,
+              "description": "Alias ID"
+            },
+            {
+              "name": "platformId",
+              "dataType": "uuid",
+              "paramType": "path",
+              "fullType": "uuid",
+              "required": true,
+              "description": "Platform ID"
+            }
+          ],
+          "responseType": "void",
+          "noAuthentication": false,
+          "description": "Delete an alias",
+          "errors": [
+            "Client::NotFound::AccountNotFound",
+            "Client::NotFound::AliasDomainNotFound",
+            "Client::NotFound::AliasNotFound",
+            "Client::NotFound::AliasTargetNotFound",
+            "Client::NotFound::PlatformNotFound",
+            "Client::Conflict::AliasDomainNotReady",
+            "Client::Conflict::AliasObjectNotReady",
+            "Client::Conflict::AliasTargetObjectNotReady",
+            "Client::Conflict::UndesiredObjectStatus",
+            "Client::PreconditionFailed::InvalidChecksum"
+          ],
+          "iamActions": [
+            {
+              "name": "zimbra:apiovh:platform/alias/delete",
+              "required": true
+            }
+          ]
+        },
+        {
+          "apiStatus": {
+            "description": "Stable production version",
+            "value": "PRODUCTION"
+          },
+          "httpMethod": "GET",
+          "parameters": [
+            {
+              "name": "aliasId",
+              "dataType": "uuid",
+              "paramType": "path",
+              "fullType": "uuid",
+              "required": true,
+              "description": "Alias ID"
+            },
+            {
+              "name": "platformId",
+              "dataType": "uuid",
+              "paramType": "path",
+              "fullType": "uuid",
+              "required": true,
+              "description": "Platform ID"
+            }
+          ],
+          "responseType": "zimbra.AliasResponse",
+          "noAuthentication": false,
+          "description": "Retrieve a platform alias",
+          "errors": [
+            "Client::BadRequest::MultipleAliasesFoundWithSameID",
+            "Client::NotFound::AliasNotFound",
+            "Client::NotFound::PlatformNotFound"
+          ],
+          "iamActions": [
+            {
+              "name": "zimbra:apiovh:platform/alias/get",
+              "required": true
+            }
+          ]
+        }
+      ],
+      "description": ""
+    },
+    {
+      "path": "/zimbra/platform/{platformId}/diagnostic/domain",
+      "operations": [
+        {
+          "apiStatus": {
+            "description": "Stable production version",
+            "value": "PRODUCTION"
+          },
+          "httpMethod": "POST",
+          "parameters": [
+            {
+              "dataType": "zimbra.DomainDiagnosisPostPayload",
+              "paramType": "body",
+              "fullType": "zimbra.DomainDiagnosisPostPayload",
+              "required": true,
+              "description": "Request Body"
+            },
+            {
+              "name": "X-Pagination-Cursor",
+              "dataType": "string",
+              "paramType": "header",
+              "fullType": "string",
+              "required": false,
+              "description": "Pagination cursor"
+            },
+            {
+              "name": "X-Pagination-Size",
+              "dataType": "long",
+              "paramType": "header",
+              "fullType": "long",
+              "required": false,
+              "description": "Pagination size"
+            },
+            {
+              "name": "platformId",
+              "dataType": "uuid",
+              "paramType": "path",
+              "fullType": "uuid",
+              "required": true,
+              "description": "Platform ID"
+            }
+          ],
+          "responseType": "zimbra.DomainDiagnosisResponse[]",
+          "noAuthentication": false,
+          "errors": [
+            "Client::NotFound::PlatformNotFound"
+          ],
+          "iamActions": [
+            {
+              "name": "zimbra:apiovh:platform/diagnostic/domain/get",
+              "required": true
+            }
+          ]
+        }
+      ],
+      "description": ""
+    },
+    {
+      "path": "/zimbra/platform/{platformId}/domain",
+      "operations": [
+        {
+          "apiStatus": {
+            "description": "Stable production version",
+            "value": "PRODUCTION"
+          },
+          "httpMethod": "GET",
+          "parameters": [
+            {
+              "name": "X-Pagination-Cursor",
+              "dataType": "string",
+              "paramType": "header",
+              "fullType": "string",
+              "required": false,
+              "description": "Pagination cursor"
+            },
+            {
+              "name": "X-Pagination-Size",
+              "dataType": "long",
+              "paramType": "header",
+              "fullType": "long",
+              "required": false,
+              "description": "Pagination size"
+            },
+            {
+              "name": "domainName",
+              "dataType": "string",
+              "paramType": "query",
+              "fullType": "string",
+              "required": false,
+              "description": "Filter by domain name"
+            },
+            {
+              "name": "organizationId",
+              "dataType": "uuid",
+              "paramType": "query",
+              "fullType": "uuid",
+              "required": false,
+              "description": "Filter by organization identifier"
+            },
+            {
+              "name": "organizationLabel",
+              "dataType": "string",
+              "paramType": "query",
+              "fullType": "string",
+              "required": false,
+              "description": "Filter by organization label"
+            },
+            {
+              "name": "platformId",
+              "dataType": "uuid",
+              "paramType": "path",
+              "fullType": "uuid",
+              "required": true,
+              "description": "Platform ID"
+            }
+          ],
+          "responseType": "zimbra.DomainResponse[]",
+          "noAuthentication": false,
+          "description": "Get list of domains",
+          "errors": [
+            "Client::NotFound::PlatformNotFound"
+          ],
+          "iamActions": [
+            {
+              "name": "zimbra:apiovh:platform/domain/get",
+              "required": true
+            }
+          ]
+        },
+        {
+          "apiStatus": {
+            "description": "Stable production version",
+            "value": "PRODUCTION"
+          },
+          "httpMethod": "POST",
+          "parameters": [
+            {
+              "dataType": "zimbra.DomainPostPayload",
+              "paramType": "body",
+              "fullType": "zimbra.DomainPostPayload",
+              "required": true,
+              "description": "Request Body"
+            },
+            {
+              "name": "platformId",
+              "dataType": "uuid",
+              "paramType": "path",
+              "fullType": "uuid",
+              "required": true,
+              "description": "Platform ID"
+            }
+          ],
+          "responseType": "zimbra.DomainResponse",
+          "noAuthentication": false,
+          "description": "Create a domain",
+          "errors": [
+            "Client::BadRequest::InvalidDomainFormat",
+            "Client::NotFound::PlatformNotFound"
+          ],
+          "iamActions": [
+            {
+              "name": "zimbra:apiovh:platform/domain/create",
+              "required": true
+            }
+          ]
+        }
+      ],
+      "description": ""
+    },
+    {
+      "path": "/zimbra/platform/{platformId}/domain/{domainId}",
+      "operations": [
+        {
+          "apiStatus": {
+            "description": "Stable production version",
+            "value": "PRODUCTION"
+          },
+          "httpMethod": "DELETE",
+          "parameters": [
+            {
+              "name": "domainId",
+              "dataType": "uuid",
+              "paramType": "path",
+              "fullType": "uuid",
+              "required": true,
+              "description": "Domain ID"
+            },
+            {
+              "name": "platformId",
+              "dataType": "uuid",
+              "paramType": "path",
+              "fullType": "uuid",
+              "required": true,
+              "description": "Platform ID"
+            }
+          ],
+          "responseType": "void",
+          "noAuthentication": false,
+          "description": "Delete a domain",
+          "errors": [
+            "Client::NotFound::DomainNotFound",
+            "Client::NotFound::PlatformNotFound",
+            "Client::Conflict::UndesiredObjectStatus",
+            "Client::PreconditionFailed::InvalidChecksum"
+          ],
+          "iamActions": [
+            {
+              "name": "zimbra:apiovh:platform/domain/delete",
+              "required": true
+            }
+          ]
+        },
+        {
+          "apiStatus": {
+            "description": "Stable production version",
+            "value": "PRODUCTION"
+          },
+          "httpMethod": "GET",
+          "parameters": [
+            {
+              "name": "domainId",
+              "dataType": "uuid",
+              "paramType": "path",
+              "fullType": "uuid",
+              "required": true,
+              "description": "Domain ID"
+            },
+            {
+              "name": "platformId",
+              "dataType": "uuid",
+              "paramType": "path",
+              "fullType": "uuid",
+              "required": true,
+              "description": "Platform ID"
+            }
+          ],
+          "responseType": "zimbra.DomainResponse",
+          "noAuthentication": false,
+          "description": "Get a domain",
+          "errors": [
+            "Client::NotFound::DomainNotFound",
+            "Client::NotFound::PlatformNotFound"
+          ],
+          "iamActions": [
+            {
+              "name": "zimbra:apiovh:platform/domain/get",
+              "required": true
+            }
+          ]
+        },
+        {
+          "apiStatus": {
+            "description": "Stable production version",
+            "value": "PRODUCTION"
+          },
+          "httpMethod": "PUT",
+          "parameters": [
+            {
+              "dataType": "zimbra.DomainPutPayload",
+              "paramType": "body",
+              "fullType": "zimbra.DomainPutPayload",
+              "required": true,
+              "description": "Request Body"
+            },
+            {
+              "name": "domainId",
+              "dataType": "uuid",
+              "paramType": "path",
+              "fullType": "uuid",
+              "required": true,
+              "description": "Domain ID"
+            },
+            {
+              "name": "platformId",
+              "dataType": "uuid",
+              "paramType": "path",
+              "fullType": "uuid",
+              "required": true,
+              "description": "Platform ID"
+            }
+          ],
+          "responseType": "zimbra.DomainResponse",
+          "noAuthentication": false,
+          "description": "Modify a domain",
+          "errors": [
+            "Client::NotFound::DomainNotFound",
+            "Client::NotFound::PlatformNotFound",
+            "Client::PreconditionFailed::InvalidChecksum"
+          ],
+          "iamActions": [
+            {
+              "name": "zimbra:apiovh:platform/domain/edit",
+              "required": true
+            }
+          ]
+        }
+      ],
+      "description": ""
+    },
+    {
+      "path": "/zimbra/platform/{platformId}/organization",
+      "operations": [
+        {
+          "apiStatus": {
+            "description": "Stable production version",
+            "value": "PRODUCTION"
+          },
+          "httpMethod": "GET",
+          "parameters": [
+            {
+              "name": "X-Pagination-Cursor",
+              "dataType": "string",
+              "paramType": "header",
+              "fullType": "string",
+              "required": false,
+              "description": "Pagination cursor"
+            },
+            {
+              "name": "X-Pagination-Size",
+              "dataType": "long",
+              "paramType": "header",
+              "fullType": "long",
+              "required": false,
+              "description": "Pagination size"
+            },
+            {
+              "name": "organizationName",
+              "dataType": "string",
+              "paramType": "query",
+              "fullType": "string",
+              "required": false,
+              "description": "Filter by organization name"
+            },
+            {
+              "name": "platformId",
+              "dataType": "uuid",
+              "paramType": "path",
+              "fullType": "uuid",
+              "required": true,
+              "description": "Platform ID"
+            }
+          ],
+          "responseType": "zimbra.OrganizationResponse[]",
+          "noAuthentication": false,
+          "description": "Get list of organizations",
+          "errors": [
+            "Client::NotFound::PlatformNotFound"
+          ],
+          "iamActions": [
+            {
+              "name": "zimbra:apiovh:platform/organization/get",
+              "required": true
+            }
+          ]
+        },
+        {
+          "apiStatus": {
+            "description": "Stable production version",
+            "value": "PRODUCTION"
+          },
+          "httpMethod": "POST",
+          "parameters": [
+            {
+              "dataType": "zimbra.OrganizationPostPayload",
+              "paramType": "body",
+              "fullType": "zimbra.OrganizationPostPayload",
+              "required": true,
+              "description": "Request Body"
+            },
+            {
+              "name": "platformId",
+              "dataType": "uuid",
+              "paramType": "path",
+              "fullType": "uuid",
+              "required": true,
+              "description": "Platform ID"
+            }
+          ],
+          "responseType": "zimbra.OrganizationResponse",
+          "noAuthentication": false,
+          "description": "Create an organization",
+          "errors": [
+            "Client::BadRequest::LabelExceedsMaxLength",
+            "Client::NotFound::PlatformNotFound",
+            "Client::Conflict::LabelAlreadyExistInThisPlatform",
+            "Client::Conflict::OrganizationExists"
+          ],
+          "iamActions": [
+            {
+              "name": "zimbra:apiovh:platform/organization/create",
+              "required": true
+            }
+          ]
+        }
+      ],
+      "description": ""
+    },
+    {
+      "path": "/zimbra/platform/{platformId}/organization/{organizationId}",
+      "operations": [
+        {
+          "apiStatus": {
+            "description": "Stable production version",
+            "value": "PRODUCTION"
+          },
+          "httpMethod": "DELETE",
+          "parameters": [
+            {
+              "name": "organizationId",
+              "dataType": "uuid",
+              "paramType": "path",
+              "fullType": "uuid",
+              "required": true,
+              "description": "Organization ID"
+            },
+            {
+              "name": "platformId",
+              "dataType": "uuid",
+              "paramType": "path",
+              "fullType": "uuid",
+              "required": true,
+              "description": "Platform ID"
+            }
+          ],
+          "responseType": "void",
+          "noAuthentication": false,
+          "description": "Delete an organization",
+          "errors": [
+            "Client::NotFound::OrganizationNotFound",
+            "Client::NotFound::PlatformNotFound",
+            "Client::Conflict::OrganizationContainsLinkedResources",
+            "Client::Conflict::UndesiredObjectStatus"
+          ],
+          "iamActions": [
+            {
+              "name": "zimbra:apiovh:platform/organization/delete",
+              "required": true
+            }
+          ]
+        },
+        {
+          "apiStatus": {
+            "description": "Stable production version",
+            "value": "PRODUCTION"
+          },
+          "httpMethod": "GET",
+          "parameters": [
+            {
+              "name": "organizationId",
+              "dataType": "uuid",
+              "paramType": "path",
+              "fullType": "uuid",
+              "required": true,
+              "description": "Organization ID"
+            },
+            {
+              "name": "platformId",
+              "dataType": "uuid",
+              "paramType": "path",
+              "fullType": "uuid",
+              "required": true,
+              "description": "Platform ID"
+            }
+          ],
+          "responseType": "zimbra.OrganizationResponse",
+          "noAuthentication": false,
+          "description": "Get an organization",
+          "errors": [
+            "Client::NotFound::OrganizationNotFound",
+            "Client::NotFound::PlatformNotFound"
+          ],
+          "iamActions": [
+            {
+              "name": "zimbra:apiovh:platform/organization/get",
+              "required": true
+            }
+          ]
+        },
+        {
+          "apiStatus": {
+            "description": "Stable production version",
+            "value": "PRODUCTION"
+          },
+          "httpMethod": "PUT",
+          "parameters": [
+            {
+              "dataType": "zimbra.OrganizationPutPayload",
+              "paramType": "body",
+              "fullType": "zimbra.OrganizationPutPayload",
+              "required": true,
+              "description": "Request Body"
+            },
+            {
+              "name": "organizationId",
+              "dataType": "uuid",
+              "paramType": "path",
+              "fullType": "uuid",
+              "required": true,
+              "description": "Organization ID"
+            },
+            {
+              "name": "platformId",
+              "dataType": "uuid",
+              "paramType": "path",
+              "fullType": "uuid",
+              "required": true,
+              "description": "Platform ID"
+            }
+          ],
+          "responseType": "zimbra.OrganizationResponse",
+          "noAuthentication": false,
+          "description": "Modify an organization",
+          "errors": [
+            "Client::BadRequest::LabelExceedsMaxLength",
+            "Client::NotFound::InvalidOrganizationOwnership",
+            "Client::NotFound::OrganizationNotFound",
+            "Client::NotFound::PlatformNotFound",
+            "Client::Conflict::LabelAlreadyExistInThisPlatform",
+            "Client::Conflict::UndesiredObjectStatus",
+            "Client::PreconditionFailed::InvalidChecksum"
+          ],
+          "iamActions": [
+            {
+              "name": "zimbra:apiovh:platform/organization/edit",
+              "required": true
+            }
+          ]
+        }
+      ],
+      "description": ""
+    },
+    {
+      "path": "/zimbra/platform/{platformId}/redirection",
+      "operations": [
+        {
+          "apiStatus": {
+            "description": "Beta version",
+            "value": "BETA"
+          },
+          "httpMethod": "GET",
+          "parameters": [
+            {
+              "name": "X-Pagination-Cursor",
+              "dataType": "string",
+              "paramType": "header",
+              "fullType": "string",
+              "required": false,
+              "description": "Pagination cursor"
+            },
+            {
+              "name": "X-Pagination-Size",
+              "dataType": "long",
+              "paramType": "header",
+              "fullType": "long",
+              "required": false,
+              "description": "Pagination size"
+            },
+            {
+              "name": "destination",
+              "dataType": "string",
+              "paramType": "query",
+              "fullType": "string",
+              "required": false,
+              "description": "Filter by destination"
+            },
+            {
+              "name": "domainId",
+              "dataType": "string",
+              "paramType": "query",
+              "fullType": "string",
+              "required": false,
+              "description": "Filter by domain id"
+            },
+            {
+              "name": "organizationId",
+              "dataType": "string",
+              "paramType": "query",
+              "fullType": "string",
+              "required": false,
+              "description": "Filter by organization id"
+            },
+            {
+              "name": "platformId",
+              "dataType": "uuid",
+              "paramType": "path",
+              "fullType": "uuid",
+              "required": true,
+              "description": "Platform ID"
+            },
+            {
+              "name": "source",
+              "dataType": "string",
+              "paramType": "query",
+              "fullType": "string",
+              "required": false,
+              "description": "Filter by source"
+            }
+          ],
+          "responseType": "zimbra.RedirectionResponse[]",
+          "noAuthentication": false,
+          "description": "Get a platform redirection list",
+          "errors": [
+            "Client::NotFound::OrganizationNotFound",
+            "Client::NotFound::PlatformNotFound"
+          ],
+          "iamActions": [
+            {
+              "name": "zimbra:apiovh:platform/redirection/get",
+              "required": true
+            }
+          ]
+        },
+        {
+          "apiStatus": {
+            "description": "Beta version",
+            "value": "BETA"
+          },
+          "httpMethod": "POST",
+          "parameters": [
+            {
+              "dataType": "zimbra.RedirectionPostPayload",
+              "paramType": "body",
+              "fullType": "zimbra.RedirectionPostPayload",
+              "required": true,
+              "description": "Request Body"
+            },
+            {
+              "name": "platformId",
+              "dataType": "uuid",
+              "paramType": "path",
+              "fullType": "uuid",
+              "required": true,
+              "description": "Platform ID"
+            }
+          ],
+          "responseType": "zimbra.RedirectionResponse",
+          "noAuthentication": false,
+          "description": "Create an redirection",
+          "errors": [
+            "Client::NotFound::OrganizationNotFound",
+            "Client::NotFound::PlatformNotFound"
+          ],
+          "iamActions": [
+            {
+              "name": "zimbra:apiovh:platform/redirection/create",
+              "required": true
+            }
+          ]
+        }
+      ],
+      "description": ""
+    },
+    {
+      "path": "/zimbra/platform/{platformId}/redirection/{redirectionId}",
+      "operations": [
+        {
+          "apiStatus": {
+            "description": "Beta version",
+            "value": "BETA"
+          },
+          "httpMethod": "DELETE",
+          "parameters": [
+            {
+              "name": "platformId",
+              "dataType": "uuid",
+              "paramType": "path",
+              "fullType": "uuid",
+              "required": true,
+              "description": "Platform ID"
+            },
+            {
+              "name": "redirectionId",
+              "dataType": "uuid",
+              "paramType": "path",
+              "fullType": "uuid",
+              "required": true,
+              "description": "Redirection ID"
+            }
+          ],
+          "responseType": "void",
+          "noAuthentication": false,
+          "description": "Delete an redirection",
+          "errors": [
+            "Client::NotFound::AccountNotFound",
+            "Client::NotFound::PlatformNotFound",
+            "Client::NotFound::RedirectionNotFound",
+            "Client::Conflict::UndesiredObjectStatus",
+            "Client::PreconditionFailed::InvalidChecksum"
+          ],
+          "iamActions": [
+            {
+              "name": "zimbra:apiovh:platform/redirection/delete",
+              "required": true
+            }
+          ]
+        },
+        {
+          "apiStatus": {
+            "description": "Beta version",
+            "value": "BETA"
+          },
+          "httpMethod": "GET",
+          "parameters": [
+            {
+              "name": "platformId",
+              "dataType": "uuid",
+              "paramType": "path",
+              "fullType": "uuid",
+              "required": true,
+              "description": "Platform ID"
+            },
+            {
+              "name": "redirectionId",
+              "dataType": "uuid",
+              "paramType": "path",
+              "fullType": "uuid",
+              "required": true,
+              "description": "Redirection ID"
+            }
+          ],
+          "responseType": "zimbra.RedirectionResponse",
+          "noAuthentication": false,
+          "description": "Get a platform redirection",
+          "errors": [
+            "Client::NotFound::PlatformNotFound",
+            "Client::NotFound::RedirectionNotFound"
+          ],
+          "iamActions": [
+            {
+              "name": "zimbra:apiovh:platform/redirection/get",
+              "required": true
+            }
+          ]
+        }
+      ],
+      "description": ""
+    },
+    {
+      "path": "/zimbra/platform/{platformId}/slot",
+      "operations": [
+        {
+          "apiStatus": {
+            "description": "Stable production version",
+            "value": "PRODUCTION"
+          },
+          "httpMethod": "GET",
+          "parameters": [
+            {
+              "name": "X-Pagination-Cursor",
+              "dataType": "string",
+              "paramType": "header",
+              "fullType": "string",
+              "required": false,
+              "description": "Pagination cursor"
+            },
+            {
+              "name": "X-Pagination-Size",
+              "dataType": "long",
+              "paramType": "header",
+              "fullType": "long",
+              "required": false,
+              "description": "Pagination size"
+            },
+            {
+              "name": "accountId",
+              "dataType": "string",
+              "paramType": "query",
+              "fullType": "string",
+              "required": false,
+              "description": "Filter by account identifier of the slots"
+            },
+            {
+              "name": "billingStatus",
+              "dataType": "string",
+              "paramType": "query",
+              "fullType": "string",
+              "required": false,
+              "description": "Filter by the billing status of the slots"
+            },
+            {
+              "name": "email",
+              "dataType": "string",
+              "paramType": "query",
+              "fullType": "string",
+              "required": false,
+              "description": "Filter slot by an email"
+            },
+            {
+              "name": "offer",
+              "dataType": "string",
+              "paramType": "query",
+              "fullType": "string",
+              "required": false,
+              "description": "Filter by offer of the slots"
+            },
+            {
+              "name": "platformId",
+              "dataType": "uuid",
+              "paramType": "path",
+              "fullType": "uuid",
+              "required": true,
+              "description": "Platform ID"
+            },
+            {
+              "name": "used",
+              "dataType": "boolean",
+              "paramType": "query",
+              "fullType": "boolean",
+              "required": false,
+              "description": "Filter by the empty account id of the slots"
+            }
+          ],
+          "responseType": "zimbra.SlotResponse[]",
+          "noAuthentication": false,
+          "description": "Get a platform slot list",
+          "errors": [
+            "Client::BadRequest::IncorrectFilterUsedType",
+            "Client::BadRequest::OfferIsIncorrect",
+            "Client::NotFound::PlatformNotFound"
+          ],
+          "iamActions": [
+            {
+              "name": "zimbra:apiovh:platform/slot/get",
+              "required": true
+            }
+          ]
+        }
+      ],
+      "description": ""
+    },
+    {
+      "path": "/zimbra/platform/{platformId}/slot/{slotId}",
+      "operations": [
+        {
+          "apiStatus": {
+            "description": "Stable production version",
+            "value": "PRODUCTION"
+          },
+          "httpMethod": "GET",
+          "parameters": [
+            {
+              "name": "platformId",
+              "dataType": "uuid",
+              "paramType": "path",
+              "fullType": "uuid",
+              "required": true,
+              "description": "Platform ID"
+            },
+            {
+              "name": "slotId",
+              "dataType": "uuid",
+              "paramType": "path",
+              "fullType": "uuid",
+              "required": true,
+              "description": "Slot ID"
+            }
+          ],
+          "responseType": "zimbra.SlotResponse",
+          "noAuthentication": false,
+          "description": "Get a platform slot",
+          "errors": [
+            "Client::BadRequest::MultipleSlotsFoundWithSameID",
+            "Client::NotFound::PlatformNotFound",
+            "Client::NotFound::SlotNotFound"
+          ],
+          "iamActions": [
+            {
+              "name": "zimbra:apiovh:platform/slot/get",
+              "required": true
+            }
+          ]
+        }
+      ],
+      "description": ""
+    },
+    {
+      "path": "/zimbra/platform/{platformId}/task",
+      "operations": [
+        {
+          "apiStatus": {
+            "description": "Stable production version",
+            "value": "PRODUCTION"
+          },
+          "httpMethod": "GET",
+          "parameters": [
+            {
+              "name": "X-Pagination-Cursor",
+              "dataType": "string",
+              "paramType": "header",
+              "fullType": "string",
+              "required": false,
+              "description": "Pagination cursor"
+            },
+            {
+              "name": "X-Pagination-Size",
+              "dataType": "long",
+              "paramType": "header",
+              "fullType": "long",
+              "required": false,
+              "description": "Pagination size"
+            },
+            {
+              "name": "organizationId",
+              "dataType": "uuid",
+              "paramType": "query",
+              "fullType": "uuid",
+              "required": false,
+              "description": "Filter by organization identifier"
+            },
+            {
+              "name": "organizationLabel",
+              "dataType": "string",
+              "paramType": "query",
+              "fullType": "string",
+              "required": false,
+              "description": "Filter by organization label"
+            },
+            {
+              "name": "platformId",
+              "dataType": "uuid",
+              "paramType": "path",
+              "fullType": "uuid",
+              "required": true,
+              "description": "Platform ID"
+            }
+          ],
+          "responseType": "common.Task[]",
+          "noAuthentication": false,
+          "description": "Get a list of platform tasks",
+          "errors": [
+            "Client::NotFound::PlatformNotFound"
+          ],
+          "iamActions": [
+            {
+              "name": "zimbra:apiovh:platform/task/get",
+              "required": true
+            }
+          ]
+        }
+      ],
+      "description": ""
+    }
+  ],
+  "resourcePath": "/zimbra",
+  "basePath": "https://eu.api.ovh.com/v2",
+  "models": {
+    "common.CurrentTask": {
+      "id": "CurrentTask",
+      "namespace": "common",
+      "description": "Asynchronous operation currently running",
+      "properties": {
+        "errors": {
+          "type": "common.TaskError[]",
+          "fullType": "common.TaskError[]",
+          "canBeNull": true,
+          "readOnly": true,
+          "description": "Errors that occured on the task",
+          "required": false
+        },
+        "id": {
+          "type": "uuid",
+          "fullType": "uuid",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "Identifier of the current task",
+          "required": false
+        },
+        "link": {
+          "type": "string",
+          "fullType": "string",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "Link to the task details",
+          "required": false
+        },
+        "status": {
+          "type": "common.CurrentTaskStatusEnum",
+          "fullType": "common.CurrentTaskStatusEnum",
+          "canBeNull": true,
+          "readOnly": true,
+          "description": "Current global status of the current task",
+          "required": false
+        },
+        "type": {
+          "type": "string",
+          "fullType": "string",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "Type of the current task",
+          "required": false
+        }
+      }
+    },
+    "common.CurrentTaskStatusEnum": {
+      "id": "CurrentTaskStatusEnum",
+      "namespace": "common",
+      "description": "Current status of a task. A task in ERROR cannot be retried without your inputs. PENDING tasks will be executed as soon as possible. A RUNNING task is currently executing your original request. SCHEDULED is used for tasks that will be executed in the future",
+      "enum": [
+        "ERROR",
+        "PENDING",
+        "RUNNING",
+        "SCHEDULED",
+        "WAITING_USER_INPUT"
+      ],
+      "enumType": "string"
+    },
+    "common.Event": {
+      "id": "Event",
+      "namespace": "common",
+      "description": "Represents an event for an async envelope",
+      "properties": {
+        "createdAt": {
+          "type": "datetime",
+          "fullType": "datetime",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "Creation date of the event",
+          "required": false
+        },
+        "kind": {
+          "type": "string",
+          "fullType": "string",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "Nature of the event",
+          "required": false
+        },
+        "link": {
+          "type": "string",
+          "fullType": "string",
+          "canBeNull": true,
+          "readOnly": true,
+          "description": "Link to the event related resource",
+          "required": false
+        },
+        "message": {
+          "type": "string",
+          "fullType": "string",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "Description of what happened on the event",
+          "required": false
+        },
+        "type": {
+          "type": "common.EventTypeEnum",
+          "fullType": "common.EventTypeEnum",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "Type of the event",
+          "required": false
+        }
+      }
+    },
+    "common.EventTypeEnum": {
+      "id": "EventTypeEnum",
+      "namespace": "common",
+      "description": "List all defined values for an event type field",
+      "enum": [
+        "TARGET_SPEC_UPDATE",
+        "TASK_ERROR",
+        "TASK_START",
+        "TASK_SUCCESS"
+      ],
+      "enumType": "string"
+    },
+    "common.ResourceStatusEnum": {
+      "id": "ResourceStatusEnum",
+      "namespace": "common",
+      "description": "ResourceStatusEnum",
+      "enum": [
+        "CREATING",
+        "DELETING",
+        "ERROR",
+        "OUT_OF_SYNC",
+        "READY",
+        "SUSPENDED",
+        "UPDATING"
+      ],
+      "enumType": "string"
+    },
+    "common.Task": {
+      "id": "Task",
+      "namespace": "common",
+      "description": "Asynchronous operation",
+      "properties": {
+        "createdAt": {
+          "type": "datetime",
+          "fullType": "datetime",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "Creation date of the task",
+          "required": false
+        },
+        "errors": {
+          "type": "common.TaskError[]",
+          "fullType": "common.TaskError[]",
+          "canBeNull": true,
+          "readOnly": true,
+          "description": "Errors that occured on the task",
+          "required": false
+        },
+        "finishedAt": {
+          "type": "datetime",
+          "fullType": "datetime",
+          "canBeNull": true,
+          "readOnly": true,
+          "description": "Ending date of the task",
+          "required": false
+        },
+        "id": {
+          "type": "uuid",
+          "fullType": "uuid",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "Identifier of the task",
+          "required": false
+        },
+        "link": {
+          "type": "string",
+          "fullType": "string",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "Link to the related resource",
+          "required": false
+        },
+        "message": {
+          "type": "string",
+          "fullType": "string",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "Description of the task",
+          "required": false
+        },
+        "progress": {
+          "type": "common.TaskProgress[]",
+          "fullType": "common.TaskProgress[]",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "Progress steps of the asynchronous operation",
+          "required": false
+        },
+        "startedAt": {
+          "type": "datetime",
+          "fullType": "datetime",
+          "canBeNull": true,
+          "readOnly": true,
+          "description": "Starting date of the task",
+          "required": false
+        },
+        "status": {
+          "type": "common.TaskStatusEnum",
+          "fullType": "common.TaskStatusEnum",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "Current global status of the task",
+          "required": false
+        },
+        "type": {
+          "type": "string",
+          "fullType": "string",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "Type of the task",
+          "required": false
+        },
+        "updatedAt": {
+          "type": "datetime",
+          "fullType": "datetime",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "Last update of the task",
+          "required": false
+        }
+      }
+    },
+    "common.TaskError": {
+      "id": "TaskError",
+      "namespace": "common",
+      "description": "Errors that occured on the task",
+      "properties": {
+        "message": {
+          "type": "string",
+          "fullType": "string",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "Error description",
+          "required": false
+        }
+      }
+    },
+    "common.TaskProgress": {
+      "id": "TaskProgress",
+      "namespace": "common",
+      "description": "Detailed information about an asynchronous operation progress steps",
+      "properties": {
+        "name": {
+          "type": "string",
+          "fullType": "string",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "Progress step name",
+          "required": false
+        },
+        "status": {
+          "type": "common.TaskStatusEnum",
+          "fullType": "common.TaskStatusEnum",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "Current status of the progress step",
+          "required": false
+        }
+      }
+    },
+    "common.TaskStatusEnum": {
+      "id": "TaskStatusEnum",
+      "namespace": "common",
+      "description": "TaskStatusEnum",
+      "enum": [
+        "DONE",
+        "ERROR",
+        "PENDING",
+        "RUNNING",
+        "SCHEDULED",
+        "WAITING_USER_INPUT"
+      ],
+      "enumType": "string"
+    },
+    "iam.ResourceMetadata": {
+      "id": "ResourceMetadata",
+      "namespace": "iam",
+      "description": "IAM resource metadata embedded in services models",
+      "properties": {
+        "displayName": {
+          "type": "string",
+          "fullType": "string",
+          "canBeNull": true,
+          "readOnly": true,
+          "description": "Resource display name",
+          "required": false
+        },
+        "id": {
+          "type": "uuid",
+          "fullType": "uuid",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "Unique identifier of the resource",
+          "required": false
+        },
+        "state": {
+          "type": "iam.ResourceMetadata.StateEnum",
+          "fullType": "iam.ResourceMetadata.StateEnum",
+          "canBeNull": true,
+          "readOnly": true,
+          "description": "Resource state",
+          "required": false
+        },
+        "tags": {
+          "type": "map[string]string",
+          "fullType": "map[string]string",
+          "canBeNull": true,
+          "readOnly": true,
+          "description": "Resource tags. Tags that were internally computed are prefixed with ovh:",
+          "required": false
+        },
+        "urn": {
+          "type": "string",
+          "fullType": "string",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "Unique resource name used in policies",
+          "required": false
+        }
+      }
+    },
+    "iam.ResourceMetadata.StateEnum": {
+      "id": "StateEnum",
+      "namespace": "iam.ResourceMetadata",
+      "description": "Resource state",
+      "enum": [
+        "EXPIRED",
+        "IN_CREATION",
+        "OK",
+        "SUSPENDED"
+      ],
+      "enumType": "string"
+    },
+    "iam.resource.TagFilter": {
+      "id": "TagFilter",
+      "namespace": "iam.resource",
+      "description": "Resource tag filter",
+      "properties": {
+        "operator": {
+          "type": "iam.resource.TagFilter.OperatorEnum",
+          "fullType": "iam.resource.TagFilter.OperatorEnum",
+          "canBeNull": true,
+          "readOnly": true,
+          "description": "Operator to use in order to filter on the value (defaults to 'EQ')",
+          "required": false
+        },
+        "value": {
+          "type": "string",
+          "fullType": "string",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "Value to use in order to filter tags",
+          "required": false
+        }
+      }
+    },
+    "iam.resource.TagFilter.OperatorEnum": {
+      "id": "OperatorEnum",
+      "namespace": "iam.resource.TagFilter",
+      "description": "Operator that can be used in order to filter resources tags",
+      "enum": [
+        "EQ",
+        "EXISTS",
+        "ILIKE",
+        "LIKE",
+        "NEQ",
+        "NEXISTS"
+      ],
+      "enumType": "string"
+    },
+    "zimbra.AccountCurrentState": {
+      "id": "AccountCurrentState",
+      "namespace": "zimbra",
+      "description": "Object representing account",
+      "properties": {
+        "contactInformation": {
+          "type": "zimbra.ContactInformation",
+          "fullType": "zimbra.ContactInformation",
+          "canBeNull": true,
+          "readOnly": true,
+          "description": "Object representing contact information which extends account object",
+          "required": false
+        },
+        "createdAt": {
+          "type": "datetime",
+          "fullType": "datetime",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "Date of creation",
+          "required": false
+        },
+        "description": {
+          "type": "string",
+          "fullType": "string",
+          "canBeNull": true,
+          "readOnly": true,
+          "description": "Description of the account",
+          "required": false
+        },
+        "detailedStatus": {
+          "type": "zimbra.AccountDetailedStatus[]",
+          "fullType": "zimbra.AccountDetailedStatus[]",
+          "canBeNull": false,
+          "readOnly": true,
+          "required": false
+        },
+        "displayName": {
+          "type": "string",
+          "fullType": "string",
+          "canBeNull": true,
+          "readOnly": true,
+          "description": "Display name of the account",
+          "required": false
+        },
+        "domainId": {
+          "type": "uuid",
+          "fullType": "uuid",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "Domain ID related to the account",
+          "required": false
+        },
+        "email": {
+          "type": "string",
+          "fullType": "string",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "Email address of the account",
+          "required": false
+        },
+        "firstName": {
+          "type": "string",
+          "fullType": "string",
+          "canBeNull": true,
+          "readOnly": true,
+          "description": "First name of the account user",
+          "required": false
+        },
+        "hideInGal": {
+          "type": "boolean",
+          "fullType": "boolean",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "Whether to hide email address in GAL or not",
+          "required": false
+        },
+        "lastConnectionAt": {
+          "type": "datetime",
+          "fullType": "datetime",
+          "canBeNull": true,
+          "readOnly": true,
+          "description": "Last connection date",
+          "required": false
+        },
+        "lastName": {
+          "type": "string",
+          "fullType": "string",
+          "canBeNull": true,
+          "readOnly": true,
+          "description": "Last name of the account user",
+          "required": false
+        },
+        "offer": {
+          "type": "zimbra.OfferEnum",
+          "fullType": "zimbra.OfferEnum",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "Offer of the account",
+          "required": false
+        },
+        "organizationId": {
+          "type": "uuid",
+          "fullType": "uuid",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "ID of the organization to which the account belongs",
+          "required": false
+        },
+        "organizationLabel": {
+          "type": "string",
+          "fullType": "string",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "Label of the organization to which the account belongs",
+          "required": false
+        },
+        "quota": {
+          "type": "zimbra.Quota",
+          "fullType": "zimbra.Quota",
+          "canBeNull": true,
+          "readOnly": true,
+          "description": "Maximum account capacity",
+          "required": false
+        },
+        "slotId": {
+          "type": "uuid",
+          "fullType": "uuid",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "Slot id of the account",
+          "required": false
+        },
+        "updatedAt": {
+          "type": "datetime",
+          "fullType": "datetime",
+          "canBeNull": true,
+          "readOnly": true,
+          "description": "Date of update",
+          "required": false
+        }
+      }
+    },
+    "zimbra.AccountDetailedStatus": {
+      "id": "AccountDetailedStatus",
+      "namespace": "zimbra",
+      "description": "Detailed Status of an Account",
+      "properties": {
+        "details": {
+          "type": "string",
+          "fullType": "string",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "Further details if the code is not sufficient",
+          "required": false
+        },
+        "link": {
+          "type": "string",
+          "fullType": "string",
+          "canBeNull": true,
+          "readOnly": true,
+          "description": "A link to a document that provides more information on the status",
+          "required": false
+        },
+        "status": {
+          "type": "zimbra.AccountStatusEnum",
+          "fullType": "zimbra.AccountStatusEnum",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "Current account status",
+          "required": false
+        }
+      }
+    },
+    "zimbra.AccountPostPayload": {
+      "id": "AccountPostPayload",
+      "namespace": "zimbra",
+      "description": "Object representing POST account route payload",
+      "properties": {
+        "targetSpec": {
+          "type": "zimbra.AccountPostTargetSpec",
+          "fullType": "zimbra.AccountPostTargetSpec",
+          "canBeNull": false,
+          "readOnly": false,
+          "description": "Target organization specification",
+          "required": true
+        }
+      }
+    },
+    "zimbra.AccountPostTargetSpec": {
+      "id": "AccountPostTargetSpec",
+      "namespace": "zimbra",
+      "description": "Object representing POST account route payload",
+      "properties": {
+        "contactInformation": {
+          "type": "zimbra.ContactInformation",
+          "fullType": "zimbra.ContactInformation",
+          "canBeNull": false,
+          "readOnly": false,
+          "description": "Object representing contact information which extends account object",
+          "required": false
+        },
+        "description": {
+          "type": "string",
+          "fullType": "string",
+          "canBeNull": false,
+          "readOnly": false,
+          "description": "Description of the account",
+          "required": false
+        },
+        "displayName": {
+          "type": "string",
+          "fullType": "string",
+          "canBeNull": false,
+          "readOnly": false,
+          "description": "Display name of the account",
+          "required": false
+        },
+        "email": {
+          "type": "string",
+          "fullType": "string",
+          "canBeNull": false,
+          "readOnly": false,
+          "description": "Email address of the account",
+          "required": true
+        },
+        "firstName": {
+          "type": "string",
+          "fullType": "string",
+          "canBeNull": false,
+          "readOnly": false,
+          "description": "First name of the account user",
+          "required": false
+        },
+        "forceChangePasswordAfterLogin": {
+          "type": "boolean",
+          "fullType": "boolean",
+          "canBeNull": false,
+          "readOnly": false,
+          "description": "Force a change password after user logs into webmail",
+          "required": false
+        },
+        "hideInGal": {
+          "type": "boolean",
+          "fullType": "boolean",
+          "canBeNull": false,
+          "readOnly": false,
+          "description": "Boolean value representing if email address should be hidden in GAL",
+          "required": false
+        },
+        "lastName": {
+          "type": "string",
+          "fullType": "string",
+          "canBeNull": false,
+          "readOnly": false,
+          "description": "Last name of the account user",
+          "required": false
+        },
+        "offer": {
+          "type": "zimbra.OfferEnum",
+          "fullType": "zimbra.OfferEnum",
+          "canBeNull": false,
+          "readOnly": false,
+          "description": "Offer type of the account",
+          "required": true
+        },
+        "password": {
+          "type": "password",
+          "fullType": "password",
+          "canBeNull": false,
+          "readOnly": false,
+          "description": "Password of the account",
+          "required": true
+        },
+        "quota": {
+          "type": "zimbra.Quota",
+          "fullType": "zimbra.Quota",
+          "canBeNull": true,
+          "readOnly": false,
+          "description": "Number representation of account capacity",
+          "required": false
+        },
+        "slotId": {
+          "type": "uuid",
+          "fullType": "uuid",
+          "canBeNull": false,
+          "readOnly": false,
+          "description": "Slot ID to be linked to the account",
+          "required": false
+        }
+      }
+    },
+    "zimbra.AccountPutPayload": {
+      "id": "AccountPutPayload",
+      "namespace": "zimbra",
+      "description": "Object representing PUT account route payload",
+      "properties": {
+        "checksum": {
+          "type": "string",
+          "fullType": "string",
+          "canBeNull": false,
+          "readOnly": false,
+          "description": "Known checksum of the resource, allowing to prevent unwanted side effects",
+          "required": false
+        },
+        "targetSpec": {
+          "type": "zimbra.AccountPutTargetSpec",
+          "fullType": "zimbra.AccountPutTargetSpec",
+          "canBeNull": false,
+          "readOnly": false,
+          "description": "Target account specification",
+          "required": true
+        }
+      }
+    },
+    "zimbra.AccountPutTargetSpec": {
+      "id": "AccountPutTargetSpec",
+      "namespace": "zimbra",
+      "description": "Base object of the account",
+      "properties": {
+        "contactInformation": {
+          "type": "zimbra.ContactInformation",
+          "fullType": "zimbra.ContactInformation",
+          "canBeNull": true,
+          "readOnly": false,
+          "description": "Object representing contact information which extends account object",
+          "required": false
+        },
+        "description": {
+          "type": "string",
+          "fullType": "string",
+          "canBeNull": true,
+          "readOnly": false,
+          "description": "Description of the account",
+          "required": false
+        },
+        "displayName": {
+          "type": "string",
+          "fullType": "string",
+          "canBeNull": true,
+          "readOnly": false,
+          "description": "Display name of the account",
+          "required": false
+        },
+        "email": {
+          "type": "string",
+          "fullType": "string",
+          "canBeNull": false,
+          "readOnly": false,
+          "description": "Email address of the account",
+          "required": false
+        },
+        "firstName": {
+          "type": "string",
+          "fullType": "string",
+          "canBeNull": true,
+          "readOnly": false,
+          "description": "First name of the account user",
+          "required": false
+        },
+        "forceChangePasswordAfterLogin": {
+          "type": "boolean",
+          "fullType": "boolean",
+          "canBeNull": false,
+          "readOnly": false,
+          "description": "Force a change password after user logs into webmail",
+          "required": false
+        },
+        "hideInGal": {
+          "type": "boolean",
+          "fullType": "boolean",
+          "canBeNull": false,
+          "readOnly": false,
+          "description": "Boolean value representing if email address should be hidden in GAL",
+          "required": false
+        },
+        "lastName": {
+          "type": "string",
+          "fullType": "string",
+          "canBeNull": true,
+          "readOnly": false,
+          "description": "Last name of the account user",
+          "required": false
+        },
+        "password": {
+          "type": "string",
+          "fullType": "string",
+          "canBeNull": false,
+          "readOnly": false,
+          "description": "Password of the account",
+          "required": false
+        },
+        "quota": {
+          "type": "zimbra.Quota",
+          "fullType": "zimbra.Quota",
+          "canBeNull": true,
+          "readOnly": false,
+          "description": "Number representation of account capacity",
+          "required": false
+        }
+      }
+    },
+    "zimbra.AccountResponse": {
+      "id": "AccountResponse",
+      "namespace": "zimbra",
+      "description": "Response for a Zimbra Account",
+      "properties": {
+        "checksum": {
+          "type": "string",
+          "fullType": "string",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "Checksum hash in MD5 representation",
+          "required": false
+        },
+        "currentState": {
+          "type": "zimbra.AccountCurrentState",
+          "fullType": "zimbra.AccountCurrentState",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "Object representing account",
+          "required": false
+        },
+        "currentTasks": {
+          "type": "common.CurrentTask[]",
+          "fullType": "common.CurrentTask[]",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "An array containing tasks responses pending on resource extends AsyncResourceBase object",
+          "required": false
+        },
+        "id": {
+          "type": "uuid",
+          "fullType": "uuid",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "Resource identifier in UUID representation",
+          "required": false
+        },
+        "resourceStatus": {
+          "type": "common.ResourceStatusEnum",
+          "fullType": "common.ResourceStatusEnum",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "Current resource status",
+          "required": false
+        },
+        "targetSpec": {
+          "type": "zimbra.AccountTargetSpec",
+          "fullType": "zimbra.AccountTargetSpec",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "Object representing account",
+          "required": false
+        }
+      }
+    },
+    "zimbra.AccountStatusEnum": {
+      "id": "AccountStatusEnum",
+      "namespace": "zimbra",
+      "description": "Current account status",
+      "enum": [
+        "BILLINGLOCKED",
+        "BLOCKEDFORSPAM"
+      ],
+      "enumType": "string"
+    },
+    "zimbra.AccountTargetSpec": {
+      "id": "AccountTargetSpec",
+      "namespace": "zimbra",
+      "description": "Base object of the account",
+      "properties": {
+        "contactInformation": {
+          "type": "zimbra.ContactInformation",
+          "fullType": "zimbra.ContactInformation",
+          "canBeNull": true,
+          "readOnly": true,
+          "description": "Object representing contact information which extends account object",
+          "required": false
+        },
+        "description": {
+          "type": "string",
+          "fullType": "string",
+          "canBeNull": true,
+          "readOnly": true,
+          "description": "Description of the account",
+          "required": false
+        },
+        "displayName": {
+          "type": "string",
+          "fullType": "string",
+          "canBeNull": true,
+          "readOnly": true,
+          "description": "Display name of the account",
+          "required": false
+        },
+        "email": {
+          "type": "string",
+          "fullType": "string",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "Email address of the account",
+          "required": false
+        },
+        "firstName": {
+          "type": "string",
+          "fullType": "string",
+          "canBeNull": true,
+          "readOnly": true,
+          "description": "First name of the account user",
+          "required": false
+        },
+        "hideInGal": {
+          "type": "boolean",
+          "fullType": "boolean",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "Boolean value representing if email address should be hidden in GAL",
+          "required": false
+        },
+        "lastName": {
+          "type": "string",
+          "fullType": "string",
+          "canBeNull": true,
+          "readOnly": true,
+          "description": "Last name of the account user",
+          "required": false
+        }
+      }
+    },
+    "zimbra.Alias": {
+      "id": "Alias",
+      "namespace": "zimbra",
+      "description": "Object representing Alias",
+      "properties": {
+        "alias": {
+          "type": "zimbra.AliasSource",
+          "fullType": "zimbra.AliasSource",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "The alias",
+          "required": false
+        },
+        "target": {
+          "type": "zimbra.AliasTarget",
+          "fullType": "zimbra.AliasTarget",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "The alias's target",
+          "required": false
+        }
+      }
+    },
+    "zimbra.AliasBase": {
+      "id": "AliasBase",
+      "namespace": "zimbra",
+      "description": "Object representing Alias",
+      "properties": {
+        "alias": {
+          "type": "string",
+          "fullType": "string",
+          "canBeNull": false,
+          "readOnly": false,
+          "description": "The alias",
+          "required": true
+        },
+        "targetId": {
+          "type": "uuid",
+          "fullType": "uuid",
+          "canBeNull": false,
+          "readOnly": false,
+          "description": "The target object of the alias",
+          "required": true
+        }
+      }
+    },
+    "zimbra.AliasPostPayload": {
+      "id": "AliasPostPayload",
+      "namespace": "zimbra",
+      "description": "Payload for creating new Zimbra alias",
+      "properties": {
+        "targetSpec": {
+          "type": "zimbra.AliasBase",
+          "fullType": "zimbra.AliasBase",
+          "canBeNull": false,
+          "readOnly": false,
+          "description": "Target alias specification",
+          "required": true
+        }
+      }
+    },
+    "zimbra.AliasResponse": {
+      "id": "AliasResponse",
+      "namespace": "zimbra",
+      "description": "Response for get Alias",
+      "properties": {
+        "checksum": {
+          "type": "string",
+          "fullType": "string",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "Checksum hash in MD5 representation",
+          "required": false
+        },
+        "currentState": {
+          "type": "zimbra.Alias",
+          "fullType": "zimbra.Alias",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "Object representing Alias",
+          "required": false
+        },
+        "currentTasks": {
+          "type": "common.CurrentTask[]",
+          "fullType": "common.CurrentTask[]",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "An array containing tasks responses pending on resource extends AsyncResourceBase object",
+          "required": false
+        },
+        "id": {
+          "type": "uuid",
+          "fullType": "uuid",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "Resource identifier in UUID representation",
+          "required": false
+        },
+        "resourceStatus": {
+          "type": "common.ResourceStatusEnum",
+          "fullType": "common.ResourceStatusEnum",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "Current resource status",
+          "required": false
+        },
+        "targetSpec": {
+          "type": "zimbra.AliasBase",
+          "fullType": "zimbra.AliasBase",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "Object representing Alias",
+          "required": false
+        }
+      }
+    },
+    "zimbra.AliasSource": {
+      "id": "AliasSource",
+      "namespace": "zimbra",
+      "description": "Object representing an alias",
+      "properties": {
+        "domainId": {
+          "type": "uuid",
+          "fullType": "uuid",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "The domain's id to which alias belong",
+          "required": false
+        },
+        "name": {
+          "type": "string",
+          "fullType": "string",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "The email used for the alias",
+          "required": false
+        },
+        "organizationId": {
+          "type": "uuid",
+          "fullType": "uuid",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "The organization's id to which alias belong",
+          "required": false
+        },
+        "organizationLabel": {
+          "type": "string",
+          "fullType": "string",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "The organization's label to which alias belong",
+          "required": false
+        }
+      }
+    },
+    "zimbra.AliasTarget": {
+      "id": "AliasTarget",
+      "namespace": "zimbra",
+      "description": "Object representing the target of an alias",
+      "properties": {
+        "domainId": {
+          "type": "uuid",
+          "fullType": "uuid",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "The id of the domain id to which the target account belongs",
+          "required": false
+        },
+        "id": {
+          "type": "uuid",
+          "fullType": "uuid",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "The id of target object of the alias",
+          "required": false
+        },
+        "type": {
+          "type": "zimbra.AliasTypeEnum",
+          "fullType": "zimbra.AliasTypeEnum",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "The type of target object of the alias",
+          "required": false
+        }
+      }
+    },
+    "zimbra.AliasTypeEnum": {
+      "id": "AliasTypeEnum",
+      "namespace": "zimbra",
+      "description": "Type of alias target or source object",
+      "enum": [
+        "ACCOUNT",
+        "MAILING_LIST"
+      ],
+      "enumType": "string"
+    },
+    "zimbra.BillingStatusEnum": {
+      "id": "BillingStatusEnum",
+      "namespace": "zimbra",
+      "description": "Current billing status of a slot",
+      "enum": [
+        "CREATING",
+        "DELETED",
+        "DELETING",
+        "OK",
+        "REOPENING",
+        "SUSPENDED",
+        "SUSPENDING",
+        "UPDATING"
+      ],
+      "enumType": "string"
+    },
+    "zimbra.CName": {
+      "id": "CName",
+      "namespace": "zimbra",
+      "description": "Object representing a DNS CName entry",
+      "properties": {
+        "name": {
+          "type": "string",
+          "fullType": "string",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "Name of the CName entry on customer DNS.",
+          "required": false
+        },
+        "value": {
+          "type": "string",
+          "fullType": "string",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "Value of the CName entry on customer DNS.",
+          "required": false
+        }
+      }
+    },
+    "zimbra.ContactInformation": {
+      "id": "ContactInformation",
+      "namespace": "zimbra",
+      "description": "Object representing contact information which extends account object",
+      "properties": {
+        "city": {
+          "type": "string",
+          "fullType": "string",
+          "canBeNull": true,
+          "readOnly": false,
+          "description": "City of the account user",
+          "required": false
+        },
+        "company": {
+          "type": "string",
+          "fullType": "string",
+          "canBeNull": true,
+          "readOnly": false,
+          "description": "Company name of the account user",
+          "required": false
+        },
+        "country": {
+          "type": "string",
+          "fullType": "string",
+          "canBeNull": true,
+          "readOnly": false,
+          "description": "Company name of the account user",
+          "required": false
+        },
+        "faxNumber": {
+          "type": "string",
+          "fullType": "string",
+          "canBeNull": true,
+          "readOnly": false,
+          "description": "Fax number of the account user",
+          "required": false
+        },
+        "mobileNumber": {
+          "type": "string",
+          "fullType": "string",
+          "canBeNull": true,
+          "readOnly": false,
+          "description": "Mobile number of the account user",
+          "required": false
+        },
+        "office": {
+          "type": "string",
+          "fullType": "string",
+          "canBeNull": true,
+          "readOnly": false,
+          "description": "Office location of the account user",
+          "required": false
+        },
+        "phoneNumber": {
+          "type": "string",
+          "fullType": "string",
+          "canBeNull": true,
+          "readOnly": false,
+          "description": "Phone number of the account user",
+          "required": false
+        },
+        "postcode": {
+          "type": "string",
+          "fullType": "string",
+          "canBeNull": true,
+          "readOnly": false,
+          "description": "Postal code of the account user",
+          "required": false
+        },
+        "profession": {
+          "type": "string",
+          "fullType": "string",
+          "canBeNull": true,
+          "readOnly": false,
+          "description": "Profession of the account user",
+          "required": false
+        },
+        "service": {
+          "type": "string",
+          "fullType": "string",
+          "canBeNull": true,
+          "readOnly": false,
+          "description": "Department of the account user",
+          "required": false
+        },
+        "street": {
+          "type": "string",
+          "fullType": "string",
+          "canBeNull": true,
+          "readOnly": false,
+          "description": "Street name of the account user",
+          "required": false
+        }
+      }
+    },
+    "zimbra.DKIMSelectors": {
+      "id": "DKIMSelectors",
+      "namespace": "zimbra",
+      "description": "Object representing a DKIM selector objet which is a CName entry.",
+      "properties": {
+        "cnames": {
+          "type": "zimbra.CName[]",
+          "fullType": "zimbra.CName[]",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "List of CName to configure for DKIM.",
+          "required": false
+        }
+      }
+    },
+    "zimbra.DNSOwnership": {
+      "id": "DNSOwnership",
+      "namespace": "zimbra",
+      "description": "Object representing a DNS configuration that should be applied to verify ownership",
+      "properties": {
+        "cname": {
+          "type": "string",
+          "fullType": "string",
+          "canBeNull": true,
+          "readOnly": true,
+          "description": "Identifier on zone of domain for verification",
+          "required": false
+        }
+      }
+    },
+    "zimbra.DomainCurrentState": {
+      "id": "DomainCurrentState",
+      "namespace": "zimbra",
+      "description": "Object representing domain",
+      "properties": {
+        "accountsStatistics": {
+          "type": "zimbra.OfferStatistics[]",
+          "fullType": "zimbra.OfferStatistics[]",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "Statistics of accounts on the domain",
+          "required": false
+        },
+        "createdAt": {
+          "type": "datetime",
+          "fullType": "datetime",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "Date of creation",
+          "required": false
+        },
+        "expectedDNSConfig": {
+          "type": "zimbra.ExpectedDNSConfig",
+          "fullType": "zimbra.ExpectedDNSConfig",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "DNS configuration that should be applied",
+          "required": false
+        },
+        "name": {
+          "type": "string",
+          "fullType": "string",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "Name of the domain",
+          "required": false
+        },
+        "organizationId": {
+          "type": "uuid",
+          "fullType": "uuid",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "ID of the organization to which the domain belongs",
+          "required": false
+        },
+        "organizationLabel": {
+          "type": "string",
+          "fullType": "string",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "Label of the organization to which the domain belongs",
+          "required": false
+        },
+        "status": {
+          "type": "zimbra.DomainStatusEnum",
+          "fullType": "zimbra.DomainStatusEnum",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "Current domain status",
+          "required": false
+        },
+        "updatedAt": {
+          "type": "datetime",
+          "fullType": "datetime",
+          "canBeNull": true,
+          "readOnly": true,
+          "description": "Last update date",
+          "required": false
+        }
+      }
+    },
+    "zimbra.DomainDiagnosisError": {
+      "id": "DomainDiagnosisError",
+      "namespace": "zimbra",
+      "description": "Errors of failed diagnostic",
+      "properties": {
+        "code": {
+          "type": "zimbra.DomainDiagnosisErrorCodeEnum",
+          "fullType": "zimbra.DomainDiagnosisErrorCodeEnum",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "Status of performed diagnostic process for given domain",
+          "required": false
+        },
+        "message": {
+          "type": "string",
+          "fullType": "string",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "Diagnosis message",
+          "required": false
+        }
+      }
+    },
+    "zimbra.DomainDiagnosisErrorCodeEnum": {
+      "id": "DomainDiagnosisErrorCodeEnum",
+      "namespace": "zimbra",
+      "description": "Status of performed diagnostic process for given domain",
+      "enum": [
+        "BAD_CONFIGURATION",
+        "DOMAIN_IN_TRANSIENT_STATE",
+        "DOMAIN_NOT_FOUND",
+        "DOMAIN_NOT_VALIDATED",
+        "INTERNAL_ERROR"
+      ],
+      "enumType": "string"
+    },
+    "zimbra.DomainDiagnosisPostPayload": {
+      "id": "DomainDiagnosisPostPayload",
+      "namespace": "zimbra",
+      "description": "Payload for diagnosing domains",
+      "properties": {
+        "domains": {
+          "type": "uuid[]",
+          "fullType": "uuid[]",
+          "canBeNull": false,
+          "readOnly": false,
+          "description": "List of domains to diagnose",
+          "required": true
+        }
+      }
+    },
+    "zimbra.DomainDiagnosisRecommendations": {
+      "id": "DomainDiagnosisRecommendations",
+      "namespace": "zimbra",
+      "description": "Recommendations on how to configure a domain",
+      "properties": {
+        "expectedDNSConfig": {
+          "type": "zimbra.ExpectedDNSConfig",
+          "fullType": "zimbra.ExpectedDNSConfig",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "Expected configuration of a domain",
+          "required": false
+        }
+      }
+    },
+    "zimbra.DomainDiagnosisResponse": {
+      "id": "DomainDiagnosisResponse",
+      "namespace": "zimbra",
+      "description": "Object representing domain",
+      "properties": {
+        "domainId": {
+          "type": "uuid",
+          "fullType": "uuid",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "Id of the domain",
+          "required": false
+        },
+        "domainName": {
+          "type": "string",
+          "fullType": "string",
+          "canBeNull": true,
+          "readOnly": true,
+          "description": "Name of the domain",
+          "required": false
+        },
+        "error": {
+          "type": "zimbra.DomainDiagnosisError",
+          "fullType": "zimbra.DomainDiagnosisError",
+          "canBeNull": true,
+          "readOnly": true,
+          "description": "List of errors when doing diagnostics",
+          "required": false
+        },
+        "isExternal": {
+          "type": "boolean",
+          "fullType": "boolean",
+          "canBeNull": true,
+          "readOnly": true,
+          "description": "True if domain is not managed by OVHcloud, it allows autoconfiguration of the domain",
+          "required": false
+        },
+        "recommendations": {
+          "type": "zimbra.DomainDiagnosisRecommendations",
+          "fullType": "zimbra.DomainDiagnosisRecommendations",
+          "canBeNull": true,
+          "readOnly": true,
+          "description": "Recommendations on how to configure a domain",
+          "required": false
+        },
+        "result": {
+          "type": "zimbra.DomainDiagnosisResult",
+          "fullType": "zimbra.DomainDiagnosisResult",
+          "canBeNull": true,
+          "readOnly": true,
+          "description": "Result of the diagnosis",
+          "required": false
+        },
+        "status": {
+          "type": "zimbra.DomainDiagnosisStatusEnum",
+          "fullType": "zimbra.DomainDiagnosisStatusEnum",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "Status of the diagnosis",
+          "required": false
+        }
+      }
+    },
+    "zimbra.DomainDiagnosisResult": {
+      "id": "DomainDiagnosisResult",
+      "namespace": "zimbra",
+      "description": "The result of the diagnosis",
+      "properties": {
+        "autodiscover": {
+          "type": "zimbra.DomainDiagnosisTestAutodiscoverResult",
+          "fullType": "zimbra.DomainDiagnosisTestAutodiscoverResult",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "The result of the Autodiscover diagnosis",
+          "required": false
+        },
+        "dkim": {
+          "type": "zimbra.DomainDiagnosisTestDKIMResult",
+          "fullType": "zimbra.DomainDiagnosisTestDKIMResult",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "The result of the DKIM diagnosis",
+          "required": false
+        },
+        "mx": {
+          "type": "zimbra.DomainDiagnosisTestMXResult",
+          "fullType": "zimbra.DomainDiagnosisTestMXResult",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "The result of the MX diagnosis",
+          "required": false
+        },
+        "spf": {
+          "type": "zimbra.DomainDiagnosisTestSPFResult",
+          "fullType": "zimbra.DomainDiagnosisTestSPFResult",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "The result of the SPF diagnosis",
+          "required": false
+        }
+      }
+    },
+    "zimbra.DomainDiagnosisStatusEnum": {
+      "id": "DomainDiagnosisStatusEnum",
+      "namespace": "zimbra",
+      "description": "Status of performed diagnostic process for given domain",
+      "enum": [
+        "ERROR",
+        "OK",
+        "PARTIAL"
+      ],
+      "enumType": "string"
+    },
+    "zimbra.DomainDiagnosisTestAutodiscoverError": {
+      "id": "DomainDiagnosisTestAutodiscoverError",
+      "namespace": "zimbra",
+      "description": "Details on the Autodiscover error diagnosis error",
+      "properties": {
+        "code": {
+          "type": "zimbra.DomainDiagnosisTestAutodiscoverErrorCodeEnum",
+          "fullType": "zimbra.DomainDiagnosisTestAutodiscoverErrorCodeEnum",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "The error code for the Autodiscover error",
+          "required": false
+        },
+        "message": {
+          "type": "string",
+          "fullType": "string",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "The error message for the Autodiscover error",
+          "required": false
+        }
+      }
+    },
+    "zimbra.DomainDiagnosisTestAutodiscoverErrorCodeEnum": {
+      "id": "DomainDiagnosisTestAutodiscoverErrorCodeEnum",
+      "namespace": "zimbra",
+      "description": "Error code of Autodiscover Diagnosis",
+      "enum": [
+        "INCORRECT_SRV_RECORD",
+        "INTERNAL_ERROR",
+        "MULTIPLE_SRV_RECORDS",
+        "NO_SRV_RECORD",
+        "TASK_FAILED",
+        "TASK_RUNNING"
+      ],
+      "enumType": "string"
+    },
+    "zimbra.DomainDiagnosisTestAutodiscoverResult": {
+      "id": "DomainDiagnosisTestAutodiscoverResult",
+      "namespace": "zimbra",
+      "description": "Autodiscover Diagnosis test result",
+      "properties": {
+        "errors": {
+          "type": "zimbra.DomainDiagnosisTestAutodiscoverError[]",
+          "fullType": "zimbra.DomainDiagnosisTestAutodiscoverError[]",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "List of errors during Autodiscover diagnosis",
+          "required": false
+        },
+        "recordsFound": {
+          "type": "string[]",
+          "fullType": "string[]",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "Found Autodiscover record",
+          "required": false
+        },
+        "status": {
+          "type": "zimbra.DomainDiagnosisTestStatusEnum",
+          "fullType": "zimbra.DomainDiagnosisTestStatusEnum",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "Status of performed diagnostic process for Autodiscover test",
+          "required": false
+        }
+      }
+    },
+    "zimbra.DomainDiagnosisTestDKIMError": {
+      "id": "DomainDiagnosisTestDKIMError",
+      "namespace": "zimbra",
+      "description": "Details on the DKIM error diagnosis error",
+      "properties": {
+        "code": {
+          "type": "zimbra.DomainDiagnosisTestDKIMErrorCodeEnum",
+          "fullType": "zimbra.DomainDiagnosisTestDKIMErrorCodeEnum",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "The error code for the DKIM error",
+          "required": false
+        },
+        "message": {
+          "type": "string",
+          "fullType": "string",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "The error message for the DKIM error",
+          "required": false
+        }
+      }
+    },
+    "zimbra.DomainDiagnosisTestDKIMErrorCodeEnum": {
+      "id": "DomainDiagnosisTestDKIMErrorCodeEnum",
+      "namespace": "zimbra",
+      "description": "Error code of DKIM Diagnosis",
+      "enum": [
+        "DKIM_DISABLED",
+        "INCORRECT_CNAME_RECORD",
+        "INTERNAL_ERROR",
+        "MISSING_ONE_SELECTOR",
+        "OVH_NOT_INCLUDED",
+        "TASK_FAILED",
+        "TASK_RUNNING"
+      ],
+      "enumType": "string"
+    },
+    "zimbra.DomainDiagnosisTestDKIMResult": {
+      "id": "DomainDiagnosisTestDKIMResult",
+      "namespace": "zimbra",
+      "description": "DKIM Diagnosis test result",
+      "properties": {
+        "errors": {
+          "type": "zimbra.DomainDiagnosisTestDKIMError[]",
+          "fullType": "zimbra.DomainDiagnosisTestDKIMError[]",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "List of error during DKIM diagnosis",
+          "required": false
+        },
+        "recordsFound": {
+          "type": "zimbra.CName[]",
+          "fullType": "zimbra.CName[]",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "Found DKIM records",
+          "required": false
+        },
+        "status": {
+          "type": "zimbra.DomainDiagnosisTestStatusEnum",
+          "fullType": "zimbra.DomainDiagnosisTestStatusEnum",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "Status of performed diagnostic process for DKIM test",
+          "required": false
+        }
+      }
+    },
+    "zimbra.DomainDiagnosisTestMXError": {
+      "id": "DomainDiagnosisTestMXError",
+      "namespace": "zimbra",
+      "description": "Details on the MX error diagnosis error",
+      "properties": {
+        "code": {
+          "type": "zimbra.DomainDiagnosisTestMXErrorCodeEnum",
+          "fullType": "zimbra.DomainDiagnosisTestMXErrorCodeEnum",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "The error code for the MX error",
+          "required": false
+        },
+        "message": {
+          "type": "string",
+          "fullType": "string",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "The error message for the MX error",
+          "required": false
+        }
+      }
+    },
+    "zimbra.DomainDiagnosisTestMXErrorCodeEnum": {
+      "id": "DomainDiagnosisTestMXErrorCodeEnum",
+      "namespace": "zimbra",
+      "description": "Error code of the MX diagnosis",
+      "enum": [
+        "EXTERNAL_MX_RECORD",
+        "INTERNAL_ERROR",
+        "MISSING_OVH_SERVER",
+        "NO_MX_RECORD",
+        "OVH_MX_LOW_PRIORITY"
+      ],
+      "enumType": "string"
+    },
+    "zimbra.DomainDiagnosisTestMXResult": {
+      "id": "DomainDiagnosisTestMXResult",
+      "namespace": "zimbra",
+      "description": "MX Diagnosis test result",
+      "properties": {
+        "errors": {
+          "type": "zimbra.DomainDiagnosisTestMXError[]",
+          "fullType": "zimbra.DomainDiagnosisTestMXError[]",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "List of errors during MX diagnosis",
+          "required": false
+        },
+        "recordsFound": {
+          "type": "zimbra.MXRecord[]",
+          "fullType": "zimbra.MXRecord[]",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "Found MX records",
+          "required": false
+        },
+        "status": {
+          "type": "zimbra.DomainDiagnosisTestStatusEnum",
+          "fullType": "zimbra.DomainDiagnosisTestStatusEnum",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "Status of performed diagnostic process for MX test",
+          "required": false
+        }
+      }
+    },
+    "zimbra.DomainDiagnosisTestSPFError": {
+      "id": "DomainDiagnosisTestSPFError",
+      "namespace": "zimbra",
+      "description": "Details on the SPF error diagnosis error",
+      "properties": {
+        "code": {
+          "type": "zimbra.DomainDiagnosisTestSPFErrorCodeEnum",
+          "fullType": "zimbra.DomainDiagnosisTestSPFErrorCodeEnum",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "The error code for the SPF error",
+          "required": false
+        },
+        "message": {
+          "type": "string",
+          "fullType": "string",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "The error message for the SPF error",
+          "required": false
+        }
+      }
+    },
+    "zimbra.DomainDiagnosisTestSPFErrorCodeEnum": {
+      "id": "DomainDiagnosisTestSPFErrorCodeEnum",
+      "namespace": "zimbra",
+      "description": "Error code of the SPF diagnosis",
+      "enum": [
+        "DANGEROUS_SPF_POLICY",
+        "INTERNAL_ERROR",
+        "INVALID_SPF_RECORD",
+        "MISSING_OVH_SERVER",
+        "MISSING_SPF_POLICY",
+        "MULTIPLE_SPF_RECORDS",
+        "NOT_RECOMMENDED_SPF_POLICY",
+        "NO_SPF_RECORD"
+      ],
+      "enumType": "string"
+    },
+    "zimbra.DomainDiagnosisTestSPFResult": {
+      "id": "DomainDiagnosisTestSPFResult",
+      "namespace": "zimbra",
+      "description": "SPF Diagnosis test result",
+      "properties": {
+        "errors": {
+          "type": "zimbra.DomainDiagnosisTestSPFError[]",
+          "fullType": "zimbra.DomainDiagnosisTestSPFError[]",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "List of errors during SPF diagnosis",
+          "required": false
+        },
+        "recordsFound": {
+          "type": "string[]",
+          "fullType": "string[]",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "Found SPF record",
+          "required": false
+        },
+        "status": {
+          "type": "zimbra.DomainDiagnosisTestStatusEnum",
+          "fullType": "zimbra.DomainDiagnosisTestStatusEnum",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "Status of performed diagnostic process for SPF test",
+          "required": false
+        }
+      }
+    },
+    "zimbra.DomainDiagnosisTestStatusEnum": {
+      "id": "DomainDiagnosisTestStatusEnum",
+      "namespace": "zimbra",
+      "description": "Status of performed diagnostic process for given test",
+      "enum": [
+        "ERROR",
+        "OK",
+        "WARNING"
+      ],
+      "enumType": "string"
+    },
+    "zimbra.DomainPostPayload": {
+      "id": "DomainPostPayload",
+      "namespace": "zimbra",
+      "description": "Object representing POST domain route payload",
+      "properties": {
+        "targetSpec": {
+          "type": "zimbra.DomainPostTargetSpec",
+          "fullType": "zimbra.DomainPostTargetSpec",
+          "canBeNull": false,
+          "readOnly": false,
+          "description": "Target organization specification",
+          "required": true
+        }
+      }
+    },
+    "zimbra.DomainPostTargetSpec": {
+      "id": "DomainPostTargetSpec",
+      "namespace": "zimbra",
+      "description": "Object representing POST domain payload",
+      "properties": {
+        "autoConfigureAutodiscover": {
+          "type": "boolean",
+          "fullType": "boolean",
+          "canBeNull": false,
+          "readOnly": false,
+          "description": "Whether to automatically configure autodiscover if the DNS zone is hosted by OVH.",
+          "required": false
+        },
+        "autoConfigureDKIM": {
+          "type": "boolean",
+          "fullType": "boolean",
+          "canBeNull": false,
+          "readOnly": false,
+          "description": "Whether to automatically configure DKIM if the DNS zone is hosted by OVH. Even if false, will pre-configure (external and internal domain)",
+          "required": true
+        },
+        "autoConfigureMX": {
+          "type": "boolean",
+          "fullType": "boolean",
+          "canBeNull": false,
+          "readOnly": false,
+          "description": "Whether to automatically configure MX if the DNS zone is hosted by OVH",
+          "required": true
+        },
+        "autoConfigureSPF": {
+          "type": "boolean",
+          "fullType": "boolean",
+          "canBeNull": false,
+          "readOnly": false,
+          "description": "Whether to automatically configure SPF if the DNS zone is hosted by OVH",
+          "required": true
+        },
+        "name": {
+          "type": "string",
+          "fullType": "string",
+          "canBeNull": false,
+          "readOnly": false,
+          "description": "Name of the domain",
+          "required": true
+        },
+        "organizationId": {
+          "type": "uuid",
+          "fullType": "uuid",
+          "canBeNull": false,
+          "readOnly": false,
+          "description": "Organization in which domain is",
+          "required": true
+        }
+      }
+    },
+    "zimbra.DomainPutPayload": {
+      "id": "DomainPutPayload",
+      "namespace": "zimbra",
+      "description": "Object representing PUT domain route payload",
+      "properties": {
+        "checksum": {
+          "type": "string",
+          "fullType": "string",
+          "canBeNull": false,
+          "readOnly": false,
+          "description": "Known checksum of the resource, allowing to prevent unwanted side effects",
+          "required": false
+        },
+        "targetSpec": {
+          "type": "zimbra.DomainPutTargetSpec",
+          "fullType": "zimbra.DomainPutTargetSpec",
+          "canBeNull": false,
+          "readOnly": false,
+          "description": "Target domain specification",
+          "required": true
+        }
+      }
+    },
+    "zimbra.DomainPutTargetSpec": {
+      "id": "DomainPutTargetSpec",
+      "namespace": "zimbra",
+      "description": "target spec for PUT payload on domain",
+      "properties": {
+        "dkimEnabled": {
+          "type": "boolean",
+          "fullType": "boolean",
+          "canBeNull": false,
+          "readOnly": false,
+          "description": "Set to true to enable DKIM or false to disable",
+          "required": false
+        },
+        "organizationId": {
+          "type": "uuid",
+          "fullType": "uuid",
+          "canBeNull": false,
+          "readOnly": false,
+          "description": "ID of the organization to which the domain belongs",
+          "required": false
+        }
+      }
+    },
+    "zimbra.DomainResponse": {
+      "id": "DomainResponse",
+      "namespace": "zimbra",
+      "description": "Response for get Domain",
+      "properties": {
+        "checksum": {
+          "type": "string",
+          "fullType": "string",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "Checksum hash in MD5 representation",
+          "required": false
+        },
+        "currentState": {
+          "type": "zimbra.DomainCurrentState",
+          "fullType": "zimbra.DomainCurrentState",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "Object representing domain",
+          "required": false
+        },
+        "currentTasks": {
+          "type": "common.CurrentTask[]",
+          "fullType": "common.CurrentTask[]",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "An array containing tasks responses pending on resource extends AsyncResourceBase object",
+          "required": false
+        },
+        "id": {
+          "type": "uuid",
+          "fullType": "uuid",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "Resource identifier in UUID representation",
+          "required": false
+        },
+        "resourceStatus": {
+          "type": "common.ResourceStatusEnum",
+          "fullType": "common.ResourceStatusEnum",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "Current resource status",
+          "required": false
+        },
+        "targetSpec": {
+          "type": "zimbra.DomainResponseTargetSpec",
+          "fullType": "zimbra.DomainResponseTargetSpec",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "Object representing domain",
+          "required": false
+        }
+      }
+    },
+    "zimbra.DomainResponseTargetSpec": {
+      "id": "DomainResponseTargetSpec",
+      "namespace": "zimbra",
+      "description": "Target spec property for domain responses",
+      "properties": {
+        "dkimEnabled": {
+          "type": "boolean",
+          "fullType": "boolean",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "Set to true to enable DKIM or false to disable",
+          "required": false
+        },
+        "organizationId": {
+          "type": "uuid",
+          "fullType": "uuid",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "ID of the organization to which the domain belongs",
+          "required": false
+        }
+      }
+    },
+    "zimbra.DomainStatusEnum": {
+      "id": "DomainStatusEnum",
+      "namespace": "zimbra",
+      "description": "Current domain status",
+      "enum": [
+        "READY"
+      ],
+      "enumType": "string"
+    },
+    "zimbra.ExpectedDNSConfig": {
+      "id": "ExpectedDNSConfig",
+      "namespace": "zimbra",
+      "description": "Object representing a DNS configuration that should be applied",
+      "properties": {
+        "autodiscover": {
+          "type": "string",
+          "fullType": "string",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "Recommended autodiscover value",
+          "required": false
+        },
+        "dkim": {
+          "type": "zimbra.DKIMSelectors",
+          "fullType": "zimbra.DKIMSelectors",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "Recommended DKIM selectors",
+          "required": false
+        },
+        "mx": {
+          "type": "zimbra.MXRecord[]",
+          "fullType": "zimbra.MXRecord[]",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "Recommended MX records for efficient mail delivery",
+          "required": false
+        },
+        "ownership": {
+          "type": "zimbra.DNSOwnership",
+          "fullType": "zimbra.DNSOwnership",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "DNS configuration to apply to verify ownership",
+          "required": false
+        },
+        "spf": {
+          "type": "string",
+          "fullType": "string",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "Recommended SPF value",
+          "required": false
+        }
+      }
+    },
+    "zimbra.MXRecord": {
+      "id": "MXRecord",
+      "namespace": "zimbra",
+      "description": "Object representing an MX record",
+      "properties": {
+        "priority": {
+          "type": "long",
+          "fullType": "long",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "Priority for that target server",
+          "required": false
+        },
+        "target": {
+          "type": "string",
+          "fullType": "string",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "Target server",
+          "required": false
+        }
+      }
+    },
+    "zimbra.MailingList": {
+      "id": "MailingList",
+      "namespace": "zimbra",
+      "description": "Object representing mailing list",
+      "properties": {
+        "defaultReplyTo": {
+          "type": "string",
+          "fullType": "string",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "Configuration of the default ReplyTo",
+          "required": false
+        },
+        "email": {
+          "type": "string",
+          "fullType": "string",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "Email address of the mailing list",
+          "required": false
+        },
+        "language": {
+          "type": "string",
+          "fullType": "string",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "Language used on the mailing list correspondence",
+          "required": false
+        },
+        "members": {
+          "type": "uuid[]",
+          "fullType": "uuid[]",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "Members of the mailing list",
+          "required": false
+        },
+        "moderationOption": {
+          "type": "string",
+          "fullType": "string",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "What moderation option is picked. TBD : detail moderation options.",
+          "required": false
+        },
+        "organizationId": {
+          "type": "uuid",
+          "fullType": "uuid",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "ID of the organization to which the mailing list belongs",
+          "required": false
+        },
+        "organizationLabel": {
+          "type": "string",
+          "fullType": "string",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "Label of the organization to which the mailing list belongs",
+          "required": false
+        },
+        "owner": {
+          "type": "uuid",
+          "fullType": "uuid",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "ID of the account that owns the mailing list",
+          "required": false
+        }
+      }
+    },
+    "zimbra.MailingListBase": {
+      "id": "MailingListBase",
+      "namespace": "zimbra",
+      "description": "Base object of a mailing list",
+      "properties": {
+        "defaultReplyTo": {
+          "type": "string",
+          "fullType": "string",
+          "canBeNull": false,
+          "readOnly": false,
+          "description": "Configuration of the default ReplyTo",
+          "required": false
+        },
+        "email": {
+          "type": "string",
+          "fullType": "string",
+          "canBeNull": false,
+          "readOnly": false,
+          "description": "Email address of the mailing list",
+          "required": false
+        },
+        "language": {
+          "type": "string",
+          "fullType": "string",
+          "canBeNull": false,
+          "readOnly": false,
+          "description": "Language used on the mailing list correspondence",
+          "required": false
+        },
+        "members": {
+          "type": "uuid[]",
+          "fullType": "uuid[]",
+          "canBeNull": false,
+          "readOnly": false,
+          "description": "Members of the mailing list",
+          "required": false
+        },
+        "moderationOption": {
+          "type": "string",
+          "fullType": "string",
+          "canBeNull": false,
+          "readOnly": false,
+          "description": "What moderation option is picked. TBD : detail moderation options.",
+          "required": false
+        },
+        "organizationId": {
+          "type": "uuid",
+          "fullType": "uuid",
+          "canBeNull": false,
+          "readOnly": false,
+          "description": "Organization in which mailing list is",
+          "required": false
+        },
+        "owner": {
+          "type": "uuid",
+          "fullType": "uuid",
+          "canBeNull": false,
+          "readOnly": false,
+          "description": "Id of the account that owns the mailing list",
+          "required": false
+        }
+      }
+    },
+    "zimbra.MailingListPostPayload": {
+      "id": "MailingListPostPayload",
+      "namespace": "zimbra",
+      "description": "Object representing POST mailing list route payload",
+      "properties": {
+        "targetSpec": {
+          "type": "zimbra.MailingListBase",
+          "fullType": "zimbra.MailingListBase",
+          "canBeNull": false,
+          "readOnly": false,
+          "description": "Target organization specification",
+          "required": true
+        }
+      }
+    },
+    "zimbra.MailingListPutPayload": {
+      "id": "MailingListPutPayload",
+      "namespace": "zimbra",
+      "description": "Object representing PUT mailing list route payload",
+      "properties": {
+        "checksum": {
+          "type": "string",
+          "fullType": "string",
+          "canBeNull": false,
+          "readOnly": false,
+          "description": "Known checksum of the resource, allowing to prevent unwanted side effects",
+          "required": false
+        },
+        "targetSpec": {
+          "type": "zimbra.MailingListBase",
+          "fullType": "zimbra.MailingListBase",
+          "canBeNull": false,
+          "readOnly": false,
+          "description": "Target mailing list specification",
+          "required": false
+        }
+      }
+    },
+    "zimbra.MailingListResponse": {
+      "id": "MailingListResponse",
+      "namespace": "zimbra",
+      "description": "Response for get mailing list",
+      "properties": {
+        "checksum": {
+          "type": "string",
+          "fullType": "string",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "Checksum hash in MD5 representation",
+          "required": false
+        },
+        "currentState": {
+          "type": "zimbra.MailingList",
+          "fullType": "zimbra.MailingList",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "Object representing mailing list",
+          "required": false
+        },
+        "currentTasks": {
+          "type": "common.CurrentTask[]",
+          "fullType": "common.CurrentTask[]",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "An array containing tasks responses pending on resource extends AsyncResourceBase object",
+          "required": false
+        },
+        "id": {
+          "type": "uuid",
+          "fullType": "uuid",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "Resource identifier in UUID representation",
+          "required": false
+        },
+        "resourceStatus": {
+          "type": "common.ResourceStatusEnum",
+          "fullType": "common.ResourceStatusEnum",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "Current resource status",
+          "required": false
+        },
+        "targetSpec": {
+          "type": "zimbra.MailingList",
+          "fullType": "zimbra.MailingList",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "Object representing mailing list",
+          "required": false
+        }
+      }
+    },
+    "zimbra.OfferEnum": {
+      "id": "OfferEnum",
+      "namespace": "zimbra",
+      "description": "Commercial name of the offer",
+      "enum": [
+        "PRO",
+        "STARTER"
+      ],
+      "enumType": "string"
+    },
+    "zimbra.OfferStatistics": {
+      "id": "OfferStatistics",
+      "namespace": "zimbra",
+      "description": "Statistics per offer",
+      "properties": {
+        "availableAccountsCount": {
+          "type": "long",
+          "fullType": "long",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "Total number of accounts on this offer that can be configured",
+          "required": false
+        },
+        "configuredAccountsCount": {
+          "type": "long",
+          "fullType": "long",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "Number of accounts on the offer that are configured",
+          "required": false
+        },
+        "offer": {
+          "type": "zimbra.OfferEnum",
+          "fullType": "zimbra.OfferEnum",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "Commercial name of the offer",
+          "required": false
+        }
+      }
+    },
+    "zimbra.OrganizationCurrentState": {
+      "id": "OrganizationCurrentState",
+      "namespace": "zimbra",
+      "description": "Object representing organization",
+      "properties": {
+        "accountsStatistics": {
+          "type": "zimbra.OfferStatistics[]",
+          "fullType": "zimbra.OfferStatistics[]",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "Statistics of accounts on the organization",
+          "required": false
+        },
+        "createdAt": {
+          "type": "datetime",
+          "fullType": "datetime",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "Date of creation",
+          "required": false
+        },
+        "description": {
+          "type": "string",
+          "fullType": "string",
+          "canBeNull": true,
+          "readOnly": true,
+          "description": "Description of the organization",
+          "required": false
+        },
+        "label": {
+          "type": "string",
+          "fullType": "string",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "Short name of the organization",
+          "required": false
+        },
+        "name": {
+          "type": "string",
+          "fullType": "string",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "Name of the organization",
+          "required": false
+        },
+        "storageConsumed": {
+          "type": "double",
+          "fullType": "double",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "Size of consumed storage by all accounts",
+          "required": false
+        },
+        "updatedAt": {
+          "type": "datetime",
+          "fullType": "datetime",
+          "canBeNull": true,
+          "readOnly": true,
+          "description": "Last update date",
+          "required": false
+        }
+      }
+    },
+    "zimbra.OrganizationPostPayload": {
+      "id": "OrganizationPostPayload",
+      "namespace": "zimbra",
+      "description": "Object representing POST organization route payload",
+      "properties": {
+        "targetSpec": {
+          "type": "zimbra.OrganizationPostTargetSpec",
+          "fullType": "zimbra.OrganizationPostTargetSpec",
+          "canBeNull": false,
+          "readOnly": false,
+          "description": "Target organization specification",
+          "required": true
+        }
+      }
+    },
+    "zimbra.OrganizationPostTargetSpec": {
+      "id": "OrganizationPostTargetSpec",
+      "namespace": "zimbra",
+      "description": "Object representing organization",
+      "properties": {
+        "description": {
+          "type": "string",
+          "fullType": "string",
+          "canBeNull": true,
+          "readOnly": false,
+          "description": "Description of the organization",
+          "required": false
+        },
+        "label": {
+          "type": "string",
+          "fullType": "string",
+          "canBeNull": false,
+          "readOnly": false,
+          "description": "Short name of the organization",
+          "required": true
+        },
+        "name": {
+          "type": "string",
+          "fullType": "string",
+          "canBeNull": false,
+          "readOnly": false,
+          "description": "Name of the organization",
+          "required": true
+        }
+      }
+    },
+    "zimbra.OrganizationPutPayload": {
+      "id": "OrganizationPutPayload",
+      "namespace": "zimbra",
+      "description": "Object representing PUT account route payload",
+      "properties": {
+        "checksum": {
+          "type": "string",
+          "fullType": "string",
+          "canBeNull": false,
+          "readOnly": false,
+          "description": "Known checksum of the resource, allowing to prevent unwanted side effects",
+          "required": false
+        },
+        "targetSpec": {
+          "type": "zimbra.OrganizationPutTargetSpec",
+          "fullType": "zimbra.OrganizationPutTargetSpec",
+          "canBeNull": false,
+          "readOnly": false,
+          "description": "Target organization specification",
+          "required": true
+        }
+      }
+    },
+    "zimbra.OrganizationPutTargetSpec": {
+      "id": "OrganizationPutTargetSpec",
+      "namespace": "zimbra",
+      "description": "Object representing organization",
+      "properties": {
+        "description": {
+          "type": "string",
+          "fullType": "string",
+          "canBeNull": true,
+          "readOnly": false,
+          "description": "Description of the organization",
+          "required": false
+        },
+        "label": {
+          "type": "string",
+          "fullType": "string",
+          "canBeNull": false,
+          "readOnly": false,
+          "description": "Short name of the organization",
+          "required": false
+        },
+        "name": {
+          "type": "string",
+          "fullType": "string",
+          "canBeNull": false,
+          "readOnly": false,
+          "description": "Name of the organization",
+          "required": false
+        }
+      }
+    },
+    "zimbra.OrganizationResponse": {
+      "id": "OrganizationResponse",
+      "namespace": "zimbra",
+      "description": "Response for get organization",
+      "properties": {
+        "checksum": {
+          "type": "string",
+          "fullType": "string",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "Checksum hash in MD5 representation",
+          "required": false
+        },
+        "currentState": {
+          "type": "zimbra.OrganizationCurrentState",
+          "fullType": "zimbra.OrganizationCurrentState",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "Object representing organization",
+          "required": false
+        },
+        "currentTasks": {
+          "type": "common.CurrentTask[]",
+          "fullType": "common.CurrentTask[]",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "An array containing tasks responses pending on resource extends AsyncResourceBase object",
+          "required": false
+        },
+        "id": {
+          "type": "uuid",
+          "fullType": "uuid",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "Resource identifier in UUID representation",
+          "required": false
+        },
+        "resourceStatus": {
+          "type": "common.ResourceStatusEnum",
+          "fullType": "common.ResourceStatusEnum",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "Current resource status",
+          "required": false
+        },
+        "targetSpec": {
+          "type": "zimbra.OrganizationPutTargetSpec",
+          "fullType": "zimbra.OrganizationPutTargetSpec",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "Object representing organization",
+          "required": false
+        }
+      }
+    },
+    "zimbra.PlatformCurrentState": {
+      "id": "PlatformCurrentState",
+      "namespace": "zimbra",
+      "description": "Object representing platform",
+      "properties": {
+        "accountsStatistics": {
+          "type": "zimbra.OfferStatistics[]",
+          "fullType": "zimbra.OfferStatistics[]",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "Statistics of accounts on the platform",
+          "required": false
+        },
+        "description": {
+          "type": "string",
+          "fullType": "string",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "Description of the platform",
+          "required": false
+        },
+        "name": {
+          "type": "string",
+          "fullType": "string",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "Name of the platform",
+          "required": false
+        },
+        "numberOfOrganizations": {
+          "type": "long",
+          "fullType": "long",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "Total number of created organizations in the platform",
+          "required": false
+        },
+        "quota": {
+          "type": "double",
+          "fullType": "double",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "Maximum storage capacity per account allowed on the platform",
+          "required": false
+        }
+      }
+    },
+    "zimbra.PlatformPostPayload": {
+      "id": "PlatformPostPayload",
+      "namespace": "zimbra",
+      "description": "Object representing POST platform route payload",
+      "properties": {
+        "targetSpec": {
+          "type": "zimbra.PlatformPostTargetSpec",
+          "fullType": "zimbra.PlatformPostTargetSpec",
+          "canBeNull": false,
+          "readOnly": false,
+          "description": "Target organization specification",
+          "required": true
+        }
+      }
+    },
+    "zimbra.PlatformPostTargetSpec": {
+      "id": "PlatformPostTargetSpec",
+      "namespace": "zimbra",
+      "description": "Object representing platform",
+      "properties": {
+        "description": {
+          "type": "string",
+          "fullType": "string",
+          "canBeNull": false,
+          "readOnly": false,
+          "description": "Description of the platform",
+          "required": true
+        },
+        "name": {
+          "type": "string",
+          "fullType": "string",
+          "canBeNull": false,
+          "readOnly": false,
+          "description": "Name of the platform",
+          "required": true
+        }
+      }
+    },
+    "zimbra.PlatformPutPayload": {
+      "id": "PlatformPutPayload",
+      "namespace": "zimbra",
+      "description": "Object representing Put platform route payload",
+      "properties": {
+        "checksum": {
+          "type": "string",
+          "fullType": "string",
+          "canBeNull": false,
+          "readOnly": false,
+          "description": "Known checksum of the resource, allowing to prevent unwanted side effects",
+          "required": false
+        },
+        "targetSpec": {
+          "type": "zimbra.PlatformPutTargetSpec",
+          "fullType": "zimbra.PlatformPutTargetSpec",
+          "canBeNull": false,
+          "readOnly": false,
+          "description": "Target platform specification",
+          "required": true
+        }
+      }
+    },
+    "zimbra.PlatformPutTargetSpec": {
+      "id": "PlatformPutTargetSpec",
+      "namespace": "zimbra",
+      "description": "Object representing platform",
+      "properties": {
+        "description": {
+          "type": "string",
+          "fullType": "string",
+          "canBeNull": false,
+          "readOnly": false,
+          "description": "Description of the platform",
+          "required": false
+        },
+        "name": {
+          "type": "string",
+          "fullType": "string",
+          "canBeNull": false,
+          "readOnly": false,
+          "description": "Name of the platform",
+          "required": false
+        }
+      }
+    },
+    "zimbra.PlatformResponse": {
+      "id": "PlatformResponse",
+      "namespace": "zimbra",
+      "description": "Response for get platform",
+      "properties": {
+        "checksum": {
+          "type": "string",
+          "fullType": "string",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "Checksum hash in MD5 representation",
+          "required": false
+        },
+        "currentState": {
+          "type": "zimbra.PlatformCurrentState",
+          "fullType": "zimbra.PlatformCurrentState",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "Object representing platform",
+          "required": false
+        },
+        "currentTasks": {
+          "type": "common.CurrentTask[]",
+          "fullType": "common.CurrentTask[]",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "An array containing tasks responses pending on resource extends AsyncResourceBase object",
+          "required": false
+        },
+        "id": {
+          "type": "uuid",
+          "fullType": "uuid",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "Resource identifier in UUID representation",
+          "required": false
+        },
+        "resourceStatus": {
+          "type": "common.ResourceStatusEnum",
+          "fullType": "common.ResourceStatusEnum",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "Current resource status",
+          "required": false
+        },
+        "targetSpec": {
+          "type": "zimbra.PlatformPutTargetSpec",
+          "fullType": "zimbra.PlatformPutTargetSpec",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "Object representing platform",
+          "required": false
+        }
+      }
+    },
+    "zimbra.PlatformResponseWithIAM": {
+      "id": "PlatformResponse",
+      "namespace": "zimbra",
+      "description": "Response for get platform",
+      "properties": {
+        "checksum": {
+          "type": "string",
+          "fullType": "string",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "Checksum hash in MD5 representation",
+          "required": false
+        },
+        "currentState": {
+          "type": "zimbra.PlatformCurrentState",
+          "fullType": "zimbra.PlatformCurrentState",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "Object representing platform",
+          "required": false
+        },
+        "currentTasks": {
+          "type": "common.CurrentTask[]",
+          "fullType": "common.CurrentTask[]",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "An array containing tasks responses pending on resource extends AsyncResourceBase object",
+          "required": false
+        },
+        "iam": {
+          "type": "iam.ResourceMetadata",
+          "canBeNull": true,
+          "readOnly": true,
+          "description": "IAM resource metadata",
+          "required": false
+        },
+        "id": {
+          "type": "uuid",
+          "fullType": "uuid",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "Resource identifier in UUID representation",
+          "required": false
+        },
+        "resourceStatus": {
+          "type": "common.ResourceStatusEnum",
+          "fullType": "common.ResourceStatusEnum",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "Current resource status",
+          "required": false
+        },
+        "targetSpec": {
+          "type": "zimbra.PlatformPutTargetSpec",
+          "fullType": "zimbra.PlatformPutTargetSpec",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "Object representing platform",
+          "required": false
+        }
+      }
+    },
+    "zimbra.Project": {
+      "id": "Project",
+      "namespace": "zimbra",
+      "description": "Object representing project",
+      "properties": {
+        "description": {
+          "type": "string",
+          "fullType": "string",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "Description of the project",
+          "required": false
+        },
+        "name": {
+          "type": "string",
+          "fullType": "string",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "Name of the project",
+          "required": false
+        },
+        "numberOfPlatforms": {
+          "type": "long",
+          "fullType": "long",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "Total number of created platforms for wholesale end-customers by wholesale customer",
+          "required": false
+        },
+        "totalStorage": {
+          "type": "long",
+          "fullType": "long",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "Total storage used by end-customers in bytes",
+          "required": false
+        }
+      }
+    },
+    "zimbra.ProjectResponse": {
+      "id": "ProjectResponse",
+      "namespace": "zimbra",
+      "description": "Response for get project",
+      "properties": {
+        "checksum": {
+          "type": "string",
+          "fullType": "string",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "Checksum hash in MD5 representation",
+          "required": false
+        },
+        "currentState": {
+          "type": "zimbra.Project",
+          "fullType": "zimbra.Project",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "Object representing project",
+          "required": false
+        },
+        "currentTasks": {
+          "type": "common.CurrentTask[]",
+          "fullType": "common.CurrentTask[]",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "An array containing tasks responses pending on resource extends AsyncResourceBase object",
+          "required": false
+        },
+        "id": {
+          "type": "uuid",
+          "fullType": "uuid",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "Resource identifier in UUID representation",
+          "required": false
+        },
+        "resourceStatus": {
+          "type": "common.ResourceStatusEnum",
+          "fullType": "common.ResourceStatusEnum",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "Current resource status",
+          "required": false
+        },
+        "targetSpec": {
+          "type": "zimbra.Project",
+          "fullType": "zimbra.Project",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "Object representing project",
+          "required": false
+        }
+      }
+    },
+    "zimbra.ProjectResponseWithIAM": {
+      "id": "ProjectResponse",
+      "namespace": "zimbra",
+      "description": "Response for get project",
+      "properties": {
+        "checksum": {
+          "type": "string",
+          "fullType": "string",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "Checksum hash in MD5 representation",
+          "required": false
+        },
+        "currentState": {
+          "type": "zimbra.Project",
+          "fullType": "zimbra.Project",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "Object representing project",
+          "required": false
+        },
+        "currentTasks": {
+          "type": "common.CurrentTask[]",
+          "fullType": "common.CurrentTask[]",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "An array containing tasks responses pending on resource extends AsyncResourceBase object",
+          "required": false
+        },
+        "iam": {
+          "type": "iam.ResourceMetadata",
+          "canBeNull": true,
+          "readOnly": true,
+          "description": "IAM resource metadata",
+          "required": false
+        },
+        "id": {
+          "type": "uuid",
+          "fullType": "uuid",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "Resource identifier in UUID representation",
+          "required": false
+        },
+        "resourceStatus": {
+          "type": "common.ResourceStatusEnum",
+          "fullType": "common.ResourceStatusEnum",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "Current resource status",
+          "required": false
+        },
+        "targetSpec": {
+          "type": "zimbra.Project",
+          "fullType": "zimbra.Project",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "Object representing project",
+          "required": false
+        }
+      }
+    },
+    "zimbra.Quota": {
+      "id": "Quota",
+      "namespace": "zimbra",
+      "description": "Number representation of account capacity",
+      "properties": {
+        "available": {
+          "type": "double",
+          "fullType": "double",
+          "canBeNull": false,
+          "readOnly": false,
+          "description": "Remaining space",
+          "required": false
+        },
+        "used": {
+          "type": "double",
+          "fullType": "double",
+          "canBeNull": false,
+          "readOnly": false,
+          "description": "Space already taken",
+          "required": false
+        }
+      }
+    },
+    "zimbra.Redirection": {
+      "id": "Redirection",
+      "namespace": "zimbra",
+      "description": "Object representing Redirection",
+      "properties": {
+        "createdAt": {
+          "type": "datetime",
+          "fullType": "datetime",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "Date of creation",
+          "required": false
+        },
+        "destination": {
+          "type": "string",
+          "fullType": "string",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "Destination email address to redirect to",
+          "required": false
+        },
+        "domainId": {
+          "type": "uuid",
+          "fullType": "uuid",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "Domain identifier",
+          "required": false
+        },
+        "organizationId": {
+          "type": "uuid",
+          "fullType": "uuid",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "Organization identifier",
+          "required": false
+        },
+        "source": {
+          "type": "string",
+          "fullType": "string",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "Source email address to redirect",
+          "required": false
+        },
+        "updatedAt": {
+          "type": "datetime",
+          "fullType": "datetime",
+          "canBeNull": true,
+          "readOnly": true,
+          "description": "Date of update",
+          "required": false
+        }
+      }
+    },
+    "zimbra.RedirectionBase": {
+      "id": "RedirectionBase",
+      "namespace": "zimbra",
+      "description": "Object representing Redirection",
+      "properties": {
+        "destination": {
+          "type": "string",
+          "fullType": "string",
+          "canBeNull": false,
+          "readOnly": false,
+          "description": "Destination email address to redirect to",
+          "required": true
+        },
+        "source": {
+          "type": "string",
+          "fullType": "string",
+          "canBeNull": false,
+          "readOnly": false,
+          "description": "Source email address to redirect",
+          "required": true
+        }
+      }
+    },
+    "zimbra.RedirectionPostPayload": {
+      "id": "RedirectionPostPayload",
+      "namespace": "zimbra",
+      "description": "Payload for creating new Zimbra Redirection",
+      "properties": {
+        "targetSpec": {
+          "type": "zimbra.RedirectionBase",
+          "fullType": "zimbra.RedirectionBase",
+          "canBeNull": false,
+          "readOnly": false,
+          "description": "Target redirection specification",
+          "required": true
+        }
+      }
+    },
+    "zimbra.RedirectionResponse": {
+      "id": "RedirectionResponse",
+      "namespace": "zimbra",
+      "description": "Response for get redirection",
+      "properties": {
+        "checksum": {
+          "type": "string",
+          "fullType": "string",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "Checksum hash in MD5 representation",
+          "required": false
+        },
+        "currentState": {
+          "type": "zimbra.Redirection",
+          "fullType": "zimbra.Redirection",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "Object representing Redirection",
+          "required": false
+        },
+        "currentTasks": {
+          "type": "common.CurrentTask[]",
+          "fullType": "common.CurrentTask[]",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "An array containing tasks responses pending on resource extends AsyncResourceBase object",
+          "required": false
+        },
+        "id": {
+          "type": "uuid",
+          "fullType": "uuid",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "Resource identifier in UUID representation",
+          "required": false
+        },
+        "resourceStatus": {
+          "type": "common.ResourceStatusEnum",
+          "fullType": "common.ResourceStatusEnum",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "Current resource status",
+          "required": false
+        },
+        "targetSpec": {
+          "type": "zimbra.RedirectionBase",
+          "fullType": "zimbra.RedirectionBase",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "Object representing Redirection Target Spec",
+          "required": false
+        }
+      }
+    },
+    "zimbra.SlotCurrentState": {
+      "id": "SlotCurrentState",
+      "namespace": "zimbra",
+      "description": "Object representing slot",
+      "properties": {
+        "accountId": {
+          "type": "uuid",
+          "fullType": "uuid",
+          "canBeNull": true,
+          "readOnly": true,
+          "description": "ID of the account to which the slot is tied",
+          "required": false
+        },
+        "billingStatus": {
+          "type": "zimbra.BillingStatusEnum",
+          "fullType": "zimbra.BillingStatusEnum",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "Current billing status of a slot",
+          "required": false
+        },
+        "createdAt": {
+          "type": "datetime",
+          "fullType": "datetime",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "Date of creation",
+          "required": false
+        },
+        "email": {
+          "type": "string",
+          "fullType": "string",
+          "canBeNull": true,
+          "readOnly": true,
+          "description": "Email address of the account tied to the slot",
+          "required": false
+        },
+        "offer": {
+          "type": "zimbra.OfferEnum",
+          "fullType": "zimbra.OfferEnum",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "Offer of the slot",
+          "required": false
+        },
+        "platformId": {
+          "type": "uuid",
+          "fullType": "uuid",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "ID of the platform to which the slot belongs",
+          "required": false
+        }
+      }
+    },
+    "zimbra.SlotResponse": {
+      "id": "SlotResponse",
+      "namespace": "zimbra",
+      "description": "Response for a Zimbra Slot",
+      "properties": {
+        "checksum": {
+          "type": "string",
+          "fullType": "string",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "Checksum hash in MD5 representation",
+          "required": false
+        },
+        "currentState": {
+          "type": "zimbra.SlotCurrentState",
+          "fullType": "zimbra.SlotCurrentState",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "Object representing slot",
+          "required": false
+        },
+        "currentTasks": {
+          "type": "common.CurrentTask[]",
+          "fullType": "common.CurrentTask[]",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "An array containing tasks responses pending on resource extends AsyncResourceBase object",
+          "required": false
+        },
+        "id": {
+          "type": "uuid",
+          "fullType": "uuid",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "Resource identifier in UUID representation",
+          "required": false
+        },
+        "resourceStatus": {
+          "type": "common.ResourceStatusEnum",
+          "fullType": "common.ResourceStatusEnum",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "Current resource status",
+          "required": false
+        }
+      }
+    }
+  },
+  "subsections": {
+    "Account": "All routes related to zimbra accounts, including aliases and redirections",
+    "Domain": "All routes relaated to zimbra domains",
+    "Organization": "All routes related to organizations",
+    "Platform": "All routes related to platforms",
+    "Slot": "All routes related to slots"
+  }
+}

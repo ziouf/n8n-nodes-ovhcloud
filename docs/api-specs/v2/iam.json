@@ -1,0 +1,2623 @@
+{
+  "apiVersion": "1.0",
+  "apis": [
+    {
+      "path": "/iam/authorization/check",
+      "operations": [
+        {
+          "apiStatus": {
+            "description": "Stable production version",
+            "value": "PRODUCTION"
+          },
+          "httpMethod": "POST",
+          "parameters": [
+            {
+              "dataType": "iam.AuthorizeBatchRequest",
+              "paramType": "body",
+              "fullType": "iam.AuthorizeBatchRequest",
+              "required": true,
+              "description": "Request Body"
+            },
+            {
+              "name": "X-Pagination-Cursor",
+              "dataType": "string",
+              "paramType": "header",
+              "fullType": "string",
+              "required": false,
+              "description": "Pagination cursor"
+            },
+            {
+              "name": "X-Pagination-Size",
+              "dataType": "long",
+              "paramType": "header",
+              "fullType": "long",
+              "required": false,
+              "description": "Pagination size"
+            }
+          ],
+          "responseType": "iam.AuthorizeBatchResponse[]",
+          "noAuthentication": false,
+          "description": "Validate your authorizations on given resources"
+        }
+      ],
+      "description": ""
+    },
+    {
+      "path": "/iam/log/kind",
+      "operations": [
+        {
+          "apiStatus": {
+            "description": "Beta version",
+            "value": "BETA"
+          },
+          "httpMethod": "GET",
+          "parameters": [
+            {
+              "name": "X-Pagination-Cursor",
+              "dataType": "string",
+              "paramType": "header",
+              "fullType": "string",
+              "required": false,
+              "description": "Pagination cursor"
+            },
+            {
+              "name": "X-Pagination-Size",
+              "dataType": "long",
+              "paramType": "header",
+              "fullType": "long",
+              "required": false,
+              "description": "Pagination size"
+            }
+          ],
+          "responseType": "string[]",
+          "noAuthentication": false,
+          "description": "List available log kinds",
+          "iamActions": [
+            {
+              "name": "account:apiovh:iam/log/kind/get",
+              "required": true
+            }
+          ]
+        }
+      ],
+      "description": "Access to available log kind"
+    },
+    {
+      "path": "/iam/log/kind/{name}",
+      "operations": [
+        {
+          "apiStatus": {
+            "description": "Beta version",
+            "value": "BETA"
+          },
+          "httpMethod": "GET",
+          "parameters": [
+            {
+              "name": "name",
+              "dataType": "string",
+              "paramType": "path",
+              "fullType": "string",
+              "required": true,
+              "description": "Name"
+            }
+          ],
+          "responseType": "dbaas.logs.LogKind",
+          "noAuthentication": false,
+          "description": "Get a log kind",
+          "iamActions": [
+            {
+              "name": "account:apiovh:iam/log/kind/get",
+              "required": true
+            }
+          ]
+        }
+      ],
+      "description": "Access to available log kind"
+    },
+    {
+      "path": "/iam/log/subscription",
+      "operations": [
+        {
+          "apiStatus": {
+            "description": "Beta version",
+            "value": "BETA"
+          },
+          "httpMethod": "GET",
+          "parameters": [
+            {
+              "name": "X-Pagination-Cursor",
+              "dataType": "string",
+              "paramType": "header",
+              "fullType": "string",
+              "required": false,
+              "description": "Pagination cursor"
+            },
+            {
+              "name": "X-Pagination-Size",
+              "dataType": "long",
+              "paramType": "header",
+              "fullType": "long",
+              "required": false,
+              "description": "Pagination size"
+            },
+            {
+              "name": "kind",
+              "dataType": "string",
+              "paramType": "query",
+              "fullType": "string",
+              "required": false,
+              "description": "Filter on a specific kind (e.g., default)"
+            }
+          ],
+          "responseType": "uuid[]",
+          "noAuthentication": false,
+          "description": "List subscription IDs for a cluster",
+          "iamActions": [
+            {
+              "name": "account:apiovh:iam/log/subscription/get",
+              "required": true
+            }
+          ]
+        },
+        {
+          "apiStatus": {
+            "description": "Beta version",
+            "value": "BETA"
+          },
+          "httpMethod": "POST",
+          "parameters": [
+            {
+              "dataType": "dbaas.logs.LogSubscriptionCreation",
+              "paramType": "body",
+              "fullType": "dbaas.logs.LogSubscriptionCreation",
+              "required": true,
+              "description": "Request Body"
+            }
+          ],
+          "responseType": "dbaas.logs.LogSubscriptionResponse",
+          "noAuthentication": false,
+          "description": "Create a subscription from logs to a pre-existing LDP stream",
+          "iamActions": [
+            {
+              "name": "account:apiovh:iam/log/subscription/create",
+              "required": true
+            },
+            {
+              "name": "ldp:apiovh:output/graylog/stream/forwardTo",
+              "description": "Required on the targeted LDP service",
+              "required": true
+            }
+          ]
+        }
+      ],
+      "description": "Create a subscription from account iam logs to a pre-existing LDP stream"
+    },
+    {
+      "path": "/iam/log/subscription/{subscriptionId}",
+      "operations": [
+        {
+          "apiStatus": {
+            "description": "Beta version",
+            "value": "BETA"
+          },
+          "httpMethod": "DELETE",
+          "parameters": [
+            {
+              "name": "subscriptionId",
+              "dataType": "uuid",
+              "paramType": "path",
+              "fullType": "uuid",
+              "required": true,
+              "description": "Subscription ID"
+            }
+          ],
+          "responseType": "dbaas.logs.LogSubscriptionResponse",
+          "noAuthentication": false,
+          "description": "Delete a subscription",
+          "iamActions": [
+            {
+              "name": "account:apiovh:iam/log/subscription/delete",
+              "required": true
+            }
+          ]
+        },
+        {
+          "apiStatus": {
+            "description": "Beta version",
+            "value": "BETA"
+          },
+          "httpMethod": "GET",
+          "parameters": [
+            {
+              "name": "subscriptionId",
+              "dataType": "uuid",
+              "paramType": "path",
+              "fullType": "uuid",
+              "required": true,
+              "description": "Subscription ID"
+            }
+          ],
+          "responseType": "dbaas.logs.LogSubscription",
+          "noAuthentication": false,
+          "description": "Get subscription details",
+          "iamActions": [
+            {
+              "name": "account:apiovh:iam/log/subscription/get",
+              "required": true
+            }
+          ]
+        }
+      ],
+      "description": "Create a subscription from account iam logs to a pre-existing LDP stream"
+    },
+    {
+      "path": "/iam/log/url",
+      "operations": [
+        {
+          "apiStatus": {
+            "description": "Beta version",
+            "value": "BETA"
+          },
+          "httpMethod": "POST",
+          "parameters": [
+            {
+              "dataType": "dbaas.logs.LogUrlCreation",
+              "paramType": "body",
+              "fullType": "dbaas.logs.LogUrlCreation",
+              "required": true,
+              "description": "Request Body"
+            }
+          ],
+          "responseType": "dbaas.logs.TemporaryLogsLink",
+          "noAuthentication": false,
+          "description": "Generate a temporary URL to retrieve logs",
+          "iamActions": [
+            {
+              "name": "account:apiovh:iam/log/url/create",
+              "required": true
+            }
+          ]
+        }
+      ],
+      "description": "Generate a temporary URL to retrieve logs"
+    },
+    {
+      "path": "/iam/permissionsGroup",
+      "operations": [
+        {
+          "apiStatus": {
+            "description": "Stable production version",
+            "value": "PRODUCTION"
+          },
+          "httpMethod": "GET",
+          "parameters": [
+            {
+              "name": "X-Pagination-Cursor",
+              "dataType": "string",
+              "paramType": "header",
+              "fullType": "string",
+              "required": false,
+              "description": "Pagination cursor"
+            },
+            {
+              "name": "X-Pagination-Size",
+              "dataType": "long",
+              "paramType": "header",
+              "fullType": "long",
+              "required": false,
+              "description": "Pagination size"
+            }
+          ],
+          "responseType": "iam.PermissionsGroup[]",
+          "noAuthentication": false,
+          "description": "Retrieve all permissions groups",
+          "iamActions": [
+            {
+              "name": "account:apiovh:iam/permissionsGroup/get",
+              "required": true
+            }
+          ]
+        },
+        {
+          "apiStatus": {
+            "description": "Stable production version",
+            "value": "PRODUCTION"
+          },
+          "httpMethod": "POST",
+          "parameters": [
+            {
+              "dataType": "iam.PermissionsGroup",
+              "paramType": "body",
+              "fullType": "iam.PermissionsGroup",
+              "required": true,
+              "description": "Request Body"
+            }
+          ],
+          "responseType": "iam.PermissionsGroup",
+          "noAuthentication": false,
+          "description": "Create a permissions group",
+          "iamActions": [
+            {
+              "name": "account:apiovh:iam/permissionsGroup/create",
+              "required": true
+            }
+          ]
+        }
+      ],
+      "description": ""
+    },
+    {
+      "path": "/iam/permissionsGroup/{permissionsGroupURN}",
+      "operations": [
+        {
+          "apiStatus": {
+            "description": "Stable production version",
+            "value": "PRODUCTION"
+          },
+          "httpMethod": "DELETE",
+          "parameters": [
+            {
+              "name": "permissionsGroupURN",
+              "dataType": "string",
+              "paramType": "path",
+              "fullType": "string",
+              "required": true,
+              "description": "Permissions groupurn"
+            }
+          ],
+          "responseType": "void",
+          "noAuthentication": false,
+          "description": "Delete the given permissions group",
+          "iamActions": [
+            {
+              "name": "account:apiovh:iam/permissionsGroup/delete",
+              "required": true
+            }
+          ]
+        },
+        {
+          "apiStatus": {
+            "description": "Stable production version",
+            "value": "PRODUCTION"
+          },
+          "httpMethod": "GET",
+          "parameters": [
+            {
+              "name": "permissionsGroupURN",
+              "dataType": "string",
+              "paramType": "path",
+              "fullType": "string",
+              "required": true,
+              "description": "Permissions groupurn"
+            }
+          ],
+          "responseType": "iam.PermissionsGroup",
+          "noAuthentication": false,
+          "description": "Retrieve the given permissions group",
+          "iamActions": [
+            {
+              "name": "account:apiovh:iam/permissionsGroup/get",
+              "required": true
+            }
+          ]
+        },
+        {
+          "apiStatus": {
+            "description": "Stable production version",
+            "value": "PRODUCTION"
+          },
+          "httpMethod": "PUT",
+          "parameters": [
+            {
+              "dataType": "iam.PermissionsGroup",
+              "paramType": "body",
+              "fullType": "iam.PermissionsGroup",
+              "required": true,
+              "description": "Request Body"
+            },
+            {
+              "name": "permissionsGroupURN",
+              "dataType": "string",
+              "paramType": "path",
+              "fullType": "string",
+              "required": true,
+              "description": "Permissions groupurn"
+            }
+          ],
+          "responseType": "iam.PermissionsGroup",
+          "noAuthentication": false,
+          "description": "Update a permissions group",
+          "iamActions": [
+            {
+              "name": "account:apiovh:iam/permissionsGroup/edit",
+              "required": true
+            }
+          ]
+        }
+      ],
+      "description": ""
+    },
+    {
+      "path": "/iam/policy",
+      "operations": [
+        {
+          "apiStatus": {
+            "description": "Stable production version",
+            "value": "PRODUCTION"
+          },
+          "httpMethod": "GET",
+          "parameters": [
+            {
+              "name": "X-Pagination-Cursor",
+              "dataType": "string",
+              "paramType": "header",
+              "fullType": "string",
+              "required": false,
+              "description": "Pagination cursor"
+            },
+            {
+              "name": "X-Pagination-Size",
+              "dataType": "long",
+              "paramType": "header",
+              "fullType": "long",
+              "required": false,
+              "description": "Pagination size"
+            },
+            {
+              "name": "action",
+              "dataType": "string[]",
+              "paramType": "query",
+              "fullType": "string[]",
+              "required": false,
+              "description": "Filter on policies embedding the given IAM action"
+            },
+            {
+              "name": "details",
+              "dataType": "boolean",
+              "paramType": "query",
+              "fullType": "boolean",
+              "required": false,
+              "description": "Add extra information about resources in output"
+            },
+            {
+              "name": "identity",
+              "dataType": "string[]",
+              "paramType": "query",
+              "fullType": "string[]",
+              "required": false,
+              "description": "Filter on policies embedding the given identity"
+            },
+            {
+              "name": "readOnly",
+              "dataType": "boolean",
+              "paramType": "query",
+              "fullType": "boolean",
+              "required": false,
+              "description": "Filter on the readOnly attribute"
+            },
+            {
+              "name": "resourceURN",
+              "dataType": "string[]",
+              "paramType": "query",
+              "fullType": "string[]",
+              "required": false,
+              "description": "Filter on policies embedding the given resource URN"
+            }
+          ],
+          "responseType": "iam.policy.Response[]",
+          "noAuthentication": false,
+          "description": "Retrieve all policies",
+          "iamActions": [
+            {
+              "name": "account:apiovh:iam/policy/get",
+              "required": true
+            }
+          ]
+        },
+        {
+          "apiStatus": {
+            "description": "Stable production version",
+            "value": "PRODUCTION"
+          },
+          "httpMethod": "POST",
+          "parameters": [
+            {
+              "dataType": "iam.policy.Creation",
+              "paramType": "body",
+              "fullType": "iam.policy.Creation",
+              "required": true,
+              "description": "Request Body"
+            }
+          ],
+          "responseType": "iam.policy.Response",
+          "noAuthentication": false,
+          "description": "Create a new policy",
+          "iamActions": [
+            {
+              "name": "account:apiovh:iam/policy/create",
+              "required": true
+            }
+          ]
+        }
+      ],
+      "description": ""
+    },
+    {
+      "path": "/iam/policy/{policyId}",
+      "operations": [
+        {
+          "apiStatus": {
+            "description": "Stable production version",
+            "value": "PRODUCTION"
+          },
+          "httpMethod": "DELETE",
+          "parameters": [
+            {
+              "name": "policyId",
+              "dataType": "uuid",
+              "paramType": "path",
+              "fullType": "uuid",
+              "required": true,
+              "description": "Policy ID"
+            }
+          ],
+          "responseType": "void",
+          "noAuthentication": false,
+          "description": "Delete the given policy",
+          "iamActions": [
+            {
+              "name": "account:apiovh:iam/policy/delete",
+              "required": true
+            }
+          ]
+        },
+        {
+          "apiStatus": {
+            "description": "Stable production version",
+            "value": "PRODUCTION"
+          },
+          "httpMethod": "GET",
+          "parameters": [
+            {
+              "name": "details",
+              "dataType": "boolean",
+              "paramType": "query",
+              "fullType": "boolean",
+              "required": false,
+              "description": "Add extra information about resources in output"
+            },
+            {
+              "name": "policyId",
+              "dataType": "uuid",
+              "paramType": "path",
+              "fullType": "uuid",
+              "required": true,
+              "description": "Policy ID"
+            }
+          ],
+          "responseType": "iam.policy.Response",
+          "noAuthentication": false,
+          "description": "Retrieve the given policy",
+          "iamActions": [
+            {
+              "name": "account:apiovh:iam/policy/get",
+              "required": true
+            }
+          ]
+        },
+        {
+          "apiStatus": {
+            "description": "Stable production version",
+            "value": "PRODUCTION"
+          },
+          "httpMethod": "PUT",
+          "parameters": [
+            {
+              "dataType": "iam.policy.Update",
+              "paramType": "body",
+              "fullType": "iam.policy.Update",
+              "required": true,
+              "description": "Request Body"
+            },
+            {
+              "name": "policyId",
+              "dataType": "uuid",
+              "paramType": "path",
+              "fullType": "uuid",
+              "required": true,
+              "description": "Policy ID"
+            }
+          ],
+          "responseType": "iam.policy.Response",
+          "noAuthentication": false,
+          "description": "Update an existing policy",
+          "iamActions": [
+            {
+              "name": "account:apiovh:iam/policy/edit",
+              "required": true
+            }
+          ]
+        }
+      ],
+      "description": ""
+    },
+    {
+      "path": "/iam/reference/action",
+      "operations": [
+        {
+          "apiStatus": {
+            "description": "Stable production version",
+            "value": "PRODUCTION"
+          },
+          "httpMethod": "GET",
+          "parameters": [
+            {
+              "name": "X-Pagination-Cursor",
+              "dataType": "string",
+              "paramType": "header",
+              "fullType": "string",
+              "required": false,
+              "description": "Pagination cursor"
+            },
+            {
+              "name": "X-Pagination-Size",
+              "dataType": "long",
+              "paramType": "header",
+              "fullType": "long",
+              "required": false,
+              "description": "Pagination size"
+            },
+            {
+              "name": "resourceType",
+              "dataType": "string[]",
+              "paramType": "query",
+              "fullType": "string[]",
+              "required": false,
+              "description": "Filter actions for specific resource types"
+            }
+          ],
+          "responseType": "iam.reference.Action[]",
+          "noAuthentication": false,
+          "description": "Retrieve all actions"
+        }
+      ],
+      "description": ""
+    },
+    {
+      "path": "/iam/reference/resource/type",
+      "operations": [
+        {
+          "apiStatus": {
+            "description": "Stable production version",
+            "value": "PRODUCTION"
+          },
+          "httpMethod": "GET",
+          "parameters": [
+            {
+              "name": "X-Pagination-Cursor",
+              "dataType": "string",
+              "paramType": "header",
+              "fullType": "string",
+              "required": false,
+              "description": "Pagination cursor"
+            },
+            {
+              "name": "X-Pagination-Size",
+              "dataType": "long",
+              "paramType": "header",
+              "fullType": "long",
+              "required": false,
+              "description": "Pagination size"
+            }
+          ],
+          "responseType": "string[]",
+          "noAuthentication": false,
+          "description": "Retrieve all resource types"
+        }
+      ],
+      "description": ""
+    },
+    {
+      "path": "/iam/resource",
+      "operations": [
+        {
+          "apiStatus": {
+            "description": "Stable production version",
+            "value": "PRODUCTION"
+          },
+          "httpMethod": "GET",
+          "parameters": [
+            {
+              "name": "X-Pagination-Cursor",
+              "dataType": "string",
+              "paramType": "header",
+              "fullType": "string",
+              "required": false,
+              "description": "Pagination cursor"
+            },
+            {
+              "name": "X-Pagination-Size",
+              "dataType": "long",
+              "paramType": "header",
+              "fullType": "long",
+              "required": false,
+              "description": "Pagination size"
+            },
+            {
+              "name": "resourceName",
+              "dataType": "string[]",
+              "paramType": "query",
+              "fullType": "string[]",
+              "required": false,
+              "description": "Filter resources for specific resource names"
+            },
+            {
+              "name": "resourceType",
+              "dataType": "string[]",
+              "paramType": "query",
+              "fullType": "string[]",
+              "required": false,
+              "description": "Filter resources for specific resource types"
+            },
+            {
+              "name": "resourceURN",
+              "dataType": "string[]",
+              "paramType": "query",
+              "fullType": "string[]",
+              "required": false,
+              "description": "Filter resources for specific resource URN patterns"
+            },
+            {
+              "name": "tags",
+              "dataType": "map[string][]iam.resource.TagFilter",
+              "paramType": "query",
+              "fullType": "map[string][]iam.resource.TagFilter",
+              "required": false,
+              "description": "Filter resources using tag filters"
+            }
+          ],
+          "responseType": "iam.resource.Resource[]",
+          "noAuthentication": false,
+          "description": "List all resources"
+        }
+      ],
+      "description": ""
+    },
+    {
+      "path": "/iam/resource/{resourceURN}",
+      "operations": [
+        {
+          "apiStatus": {
+            "description": "Stable production version",
+            "value": "PRODUCTION"
+          },
+          "httpMethod": "GET",
+          "parameters": [
+            {
+              "name": "resourceURN",
+              "dataType": "string",
+              "paramType": "path",
+              "fullType": "string",
+              "required": true,
+              "description": "ResourceURN"
+            }
+          ],
+          "responseType": "iam.resource.Resource",
+          "noAuthentication": false,
+          "description": "Retrieve a resource"
+        },
+        {
+          "apiStatus": {
+            "description": "Stable production version",
+            "value": "PRODUCTION"
+          },
+          "httpMethod": "PUT",
+          "parameters": [
+            {
+              "dataType": "iam.resource.Resource",
+              "paramType": "body",
+              "fullType": "iam.resource.Resource",
+              "required": true,
+              "description": "Request Body"
+            },
+            {
+              "name": "resourceURN",
+              "dataType": "string",
+              "paramType": "path",
+              "fullType": "string",
+              "required": true,
+              "description": "ResourceURN"
+            }
+          ],
+          "responseType": "iam.resource.Resource",
+          "noAuthentication": false,
+          "description": "Update an existing resource",
+          "longDescription": "Update an existing resource\\\nDepending on the update, you will require specific grants on this resource:\n- Adding tag(s) requires action '$resourceType:apiovh:iam/resource/tag/add'\n- Removing tag(s) requires action '$resourceType:apiovh:iam/resource/tag/remove'\n\n(with $resourceType the type of the updated resource)",
+          "iamActions": [
+            {
+              "name": "account:apiovh:iam/resource/edit",
+              "required": true
+            }
+          ]
+        }
+      ],
+      "description": ""
+    },
+    {
+      "path": "/iam/resource/{resourceURN}/authorization/check",
+      "operations": [
+        {
+          "apiStatus": {
+            "description": "Stable production version",
+            "value": "PRODUCTION"
+          },
+          "httpMethod": "POST",
+          "parameters": [
+            {
+              "dataType": "iam.AuthorizeRequest",
+              "paramType": "body",
+              "fullType": "iam.AuthorizeRequest",
+              "required": true,
+              "description": "Request Body"
+            },
+            {
+              "name": "resourceURN",
+              "dataType": "string",
+              "paramType": "path",
+              "fullType": "string",
+              "required": true,
+              "description": "ResourceURN"
+            }
+          ],
+          "responseType": "iam.AuthorizeResponse",
+          "noAuthentication": false,
+          "description": "Validate authorizations on a given resource"
+        }
+      ],
+      "description": ""
+    },
+    {
+      "path": "/iam/resource/{resourceURN}/tag/{key}",
+      "operations": [
+        {
+          "apiStatus": {
+            "description": "Stable production version",
+            "value": "PRODUCTION"
+          },
+          "httpMethod": "DELETE",
+          "parameters": [
+            {
+              "name": "key",
+              "dataType": "string",
+              "paramType": "path",
+              "fullType": "string",
+              "required": true,
+              "description": "Key"
+            },
+            {
+              "name": "resourceURN",
+              "dataType": "string",
+              "paramType": "path",
+              "fullType": "string",
+              "required": true,
+              "description": "ResourceURN"
+            }
+          ],
+          "responseType": "void",
+          "noAuthentication": false,
+          "description": "Remove a tag from a resource",
+          "longDescription": "Remove a tag from a resource\\\nThis action requires to be granted on action '$resourceType:apiovh:iam/resource/tag/remove' (with $resourceType the type of the updated resource)",
+          "iamActions": [
+            {
+              "name": "account:apiovh:iam/resource/tag/remove",
+              "required": true
+            }
+          ]
+        }
+      ],
+      "description": "IAM resources tag management"
+    },
+    {
+      "path": "/iam/resource/{resourceURN}/tag",
+      "operations": [
+        {
+          "apiStatus": {
+            "description": "Stable production version",
+            "value": "PRODUCTION"
+          },
+          "httpMethod": "POST",
+          "parameters": [
+            {
+              "dataType": "iam.resource.AddTag",
+              "paramType": "body",
+              "fullType": "iam.resource.AddTag",
+              "required": true,
+              "description": "Request Body"
+            },
+            {
+              "name": "resourceURN",
+              "dataType": "string",
+              "paramType": "path",
+              "fullType": "string",
+              "required": true,
+              "description": "ResourceURN"
+            }
+          ],
+          "responseType": "void",
+          "noAuthentication": false,
+          "description": "Add a tag to a resource",
+          "longDescription": "Add a tag to a resource\\\nThis action requires to be granted on action '$resourceType:apiovh:iam/resource/tag/add' (with $resourceType the type of the updated resource)",
+          "iamActions": [
+            {
+              "name": "account:apiovh:iam/resource/tag/add",
+              "required": true
+            }
+          ]
+        }
+      ],
+      "description": "IAM resources tag management"
+    },
+    {
+      "path": "/iam/resourceGroup",
+      "operations": [
+        {
+          "apiStatus": {
+            "description": "Stable production version",
+            "value": "PRODUCTION"
+          },
+          "httpMethod": "GET",
+          "parameters": [
+            {
+              "name": "X-Pagination-Cursor",
+              "dataType": "string",
+              "paramType": "header",
+              "fullType": "string",
+              "required": false,
+              "description": "Pagination cursor"
+            },
+            {
+              "name": "X-Pagination-Size",
+              "dataType": "long",
+              "paramType": "header",
+              "fullType": "long",
+              "required": false,
+              "description": "Pagination size"
+            },
+            {
+              "name": "details",
+              "dataType": "boolean",
+              "paramType": "query",
+              "fullType": "boolean",
+              "required": false,
+              "description": "Add extra information about resources in output"
+            }
+          ],
+          "responseType": "iam.group.Response[]",
+          "noAuthentication": false,
+          "description": "Retrieve all resource groups",
+          "iamActions": [
+            {
+              "name": "account:apiovh:iam/resourceGroup/get",
+              "required": true
+            }
+          ]
+        },
+        {
+          "apiStatus": {
+            "description": "Stable production version",
+            "value": "PRODUCTION"
+          },
+          "httpMethod": "POST",
+          "parameters": [
+            {
+              "dataType": "iam.group.Creation",
+              "paramType": "body",
+              "fullType": "iam.group.Creation",
+              "required": true,
+              "description": "Request Body"
+            }
+          ],
+          "responseType": "iam.group.Response",
+          "noAuthentication": false,
+          "description": "Create a new resource group",
+          "iamActions": [
+            {
+              "name": "account:apiovh:iam/resourceGroup/create",
+              "required": true
+            }
+          ]
+        }
+      ],
+      "description": ""
+    },
+    {
+      "path": "/iam/resourceGroup/{groupId}",
+      "operations": [
+        {
+          "apiStatus": {
+            "description": "Stable production version",
+            "value": "PRODUCTION"
+          },
+          "httpMethod": "DELETE",
+          "parameters": [
+            {
+              "name": "groupId",
+              "dataType": "uuid",
+              "paramType": "path",
+              "fullType": "uuid",
+              "required": true,
+              "description": "Group ID"
+            }
+          ],
+          "responseType": "void",
+          "noAuthentication": false,
+          "description": "Delete the given resource group",
+          "iamActions": [
+            {
+              "name": "account:apiovh:iam/resourceGroup/delete",
+              "required": true
+            }
+          ]
+        },
+        {
+          "apiStatus": {
+            "description": "Stable production version",
+            "value": "PRODUCTION"
+          },
+          "httpMethod": "GET",
+          "parameters": [
+            {
+              "name": "details",
+              "dataType": "boolean",
+              "paramType": "query",
+              "fullType": "boolean",
+              "required": false,
+              "description": "Add extra information about resources in output"
+            },
+            {
+              "name": "groupId",
+              "dataType": "uuid",
+              "paramType": "path",
+              "fullType": "uuid",
+              "required": true,
+              "description": "Group ID"
+            }
+          ],
+          "responseType": "iam.group.Response",
+          "noAuthentication": false,
+          "description": "Retrieve the given resource group",
+          "iamActions": [
+            {
+              "name": "account:apiovh:iam/resourceGroup/get",
+              "required": true
+            }
+          ]
+        },
+        {
+          "apiStatus": {
+            "description": "Stable production version",
+            "value": "PRODUCTION"
+          },
+          "httpMethod": "PUT",
+          "parameters": [
+            {
+              "dataType": "iam.group.Update",
+              "paramType": "body",
+              "fullType": "iam.group.Update",
+              "required": true,
+              "description": "Request Body"
+            },
+            {
+              "name": "groupId",
+              "dataType": "uuid",
+              "paramType": "path",
+              "fullType": "uuid",
+              "required": true,
+              "description": "Group ID"
+            }
+          ],
+          "responseType": "iam.group.Response",
+          "noAuthentication": false,
+          "description": "Update an existing resource group",
+          "iamActions": [
+            {
+              "name": "account:apiovh:iam/resourceGroup/edit",
+              "required": true
+            }
+          ]
+        }
+      ],
+      "description": ""
+    }
+  ],
+  "resourcePath": "/iam",
+  "basePath": "https://eu.api.ovh.com/v2",
+  "models": {
+    "dbaas.logs.LogKind": {
+      "id": "LogKind",
+      "namespace": "dbaas.logs",
+      "description": "Log kind",
+      "properties": {
+        "additionalReturnedFields": {
+          "type": "string[]",
+          "fullType": "string[]",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "List of additional log fields managed in this log kind",
+          "required": false
+        },
+        "createdAt": {
+          "type": "datetime",
+          "fullType": "datetime",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "Creation date of the log kind",
+          "required": false
+        },
+        "displayName": {
+          "type": "string",
+          "fullType": "string",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "Log kind display name",
+          "required": false
+        },
+        "kindId": {
+          "type": "uuid",
+          "fullType": "uuid",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "Log kind ID",
+          "required": false
+        },
+        "name": {
+          "type": "string",
+          "fullType": "string",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "Log kind name",
+          "required": false
+        },
+        "updatedAt": {
+          "type": "datetime",
+          "fullType": "datetime",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "Last update date of the log kind",
+          "required": false
+        }
+      }
+    },
+    "dbaas.logs.LogSubscription": {
+      "id": "LogSubscription",
+      "namespace": "dbaas.logs",
+      "description": "Log subscription",
+      "properties": {
+        "createdAt": {
+          "type": "datetime",
+          "fullType": "datetime",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "Creation date of the subscription",
+          "required": false
+        },
+        "kind": {
+          "type": "string",
+          "fullType": "string",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "Log kind name of this subscription",
+          "required": false
+        },
+        "resource": {
+          "type": "dbaas.logs.LogSubscriptionResource",
+          "fullType": "dbaas.logs.LogSubscriptionResource",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "Subscribed resource, where the logs come from",
+          "required": false
+        },
+        "serviceName": {
+          "type": "string",
+          "fullType": "string",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "Name of the destination log service",
+          "required": false
+        },
+        "streamId": {
+          "type": "string",
+          "fullType": "string",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "Id of the destination log stream",
+          "required": false
+        },
+        "subscriptionId": {
+          "type": "uuid",
+          "fullType": "uuid",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "Subscription ID",
+          "required": false
+        },
+        "updatedAt": {
+          "type": "datetime",
+          "fullType": "datetime",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "Last update date of the subscription",
+          "required": false
+        }
+      }
+    },
+    "dbaas.logs.LogSubscriptionCreation": {
+      "id": "LogSubscriptionCreation",
+      "namespace": "dbaas.logs",
+      "description": "Log subscription creation payload",
+      "properties": {
+        "kind": {
+          "type": "string",
+          "fullType": "string",
+          "canBeNull": false,
+          "readOnly": false,
+          "description": "Log kind name to subscribe to",
+          "required": true
+        },
+        "streamId": {
+          "type": "uuid",
+          "fullType": "uuid",
+          "canBeNull": false,
+          "readOnly": false,
+          "description": "Customer log stream ID",
+          "required": true
+        }
+      }
+    },
+    "dbaas.logs.LogSubscriptionResource": {
+      "id": "LogSubscriptionResource",
+      "namespace": "dbaas.logs",
+      "description": "Log subscription resource",
+      "properties": {
+        "name": {
+          "type": "string",
+          "fullType": "string",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "Name of subscribed resource",
+          "required": false
+        },
+        "type": {
+          "type": "string",
+          "fullType": "string",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "Type of subscribed resource",
+          "required": false
+        }
+      }
+    },
+    "dbaas.logs.LogSubscriptionResponse": {
+      "id": "LogSubscriptionResponse",
+      "namespace": "dbaas.logs",
+      "description": "Asynchronous operation after subscribing or unsubscribing to a resource logs",
+      "properties": {
+        "operationId": {
+          "type": "uuid",
+          "fullType": "uuid",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "Identifier of the operation",
+          "required": false
+        },
+        "serviceName": {
+          "type": "string",
+          "fullType": "string",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "Operation owner's service name",
+          "required": false
+        }
+      }
+    },
+    "dbaas.logs.LogUrlCreation": {
+      "id": "LogUrlCreation",
+      "namespace": "dbaas.logs",
+      "description": "Log temporary URL creation payload",
+      "properties": {
+        "kind": {
+          "type": "string",
+          "fullType": "string",
+          "canBeNull": false,
+          "readOnly": false,
+          "description": "Log kind name",
+          "required": true
+        }
+      }
+    },
+    "dbaas.logs.TemporaryLogsLink": {
+      "id": "TemporaryLogsLink",
+      "namespace": "dbaas.logs",
+      "description": "Temporary url information",
+      "properties": {
+        "expirationDate": {
+          "type": "datetime",
+          "fullType": "datetime",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "Temporary url expiration date",
+          "required": false
+        },
+        "url": {
+          "type": "string",
+          "fullType": "string",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "Temporary url",
+          "required": false
+        }
+      }
+    },
+    "iam.AuthorizeBatchRequest": {
+      "id": "AuthorizeBatchRequest",
+      "namespace": "iam",
+      "description": "Authorization request",
+      "properties": {
+        "actions": {
+          "type": "string[]",
+          "fullType": "string[]",
+          "canBeNull": false,
+          "readOnly": false,
+          "description": "List of actions to check authorizations for",
+          "required": true
+        },
+        "resourceURNs": {
+          "type": "string[]",
+          "fullType": "string[]",
+          "canBeNull": false,
+          "readOnly": false,
+          "description": "Resources on which accesses should be checked",
+          "required": true
+        }
+      }
+    },
+    "iam.AuthorizeBatchResponse": {
+      "id": "AuthorizeBatchResponse",
+      "namespace": "iam",
+      "description": "Result of an authorization request",
+      "properties": {
+        "authorizedActions": {
+          "type": "string[]",
+          "fullType": "string[]",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "Authorized actions",
+          "required": false
+        },
+        "resourceURN": {
+          "type": "string",
+          "fullType": "string",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "URN of the resource",
+          "required": false
+        },
+        "unauthorizedActions": {
+          "type": "string[]",
+          "fullType": "string[]",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "Unauthorized actions",
+          "required": false
+        }
+      }
+    },
+    "iam.AuthorizeRequest": {
+      "id": "AuthorizeRequest",
+      "namespace": "iam",
+      "description": "Authorization request",
+      "properties": {
+        "actions": {
+          "type": "string[]",
+          "fullType": "string[]",
+          "canBeNull": false,
+          "readOnly": false,
+          "description": "List of actions to check authorizations for",
+          "required": true
+        }
+      }
+    },
+    "iam.AuthorizeResponse": {
+      "id": "AuthorizeResponse",
+      "namespace": "iam",
+      "description": "Result of an authorization request",
+      "properties": {
+        "authorizedActions": {
+          "type": "string[]",
+          "fullType": "string[]",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "Authorized actions",
+          "required": false
+        },
+        "unauthorizedActions": {
+          "type": "string[]",
+          "fullType": "string[]",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "Unauthorized actions",
+          "required": false
+        }
+      }
+    },
+    "iam.PermissionsGroup": {
+      "id": "PermissionsGroup",
+      "namespace": "iam",
+      "description": "Permissions group defines a re-usable set of permissions",
+      "properties": {
+        "createdAt": {
+          "type": "datetime",
+          "fullType": "datetime",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "Creation time",
+          "required": false
+        },
+        "description": {
+          "type": "string",
+          "fullType": "string",
+          "canBeNull": false,
+          "readOnly": false,
+          "description": "Description of the permissions group",
+          "required": true
+        },
+        "id": {
+          "type": "uuid",
+          "fullType": "uuid",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "Unique identifier of the permissions group",
+          "required": false
+        },
+        "name": {
+          "type": "string",
+          "fullType": "string",
+          "canBeNull": false,
+          "readOnly": false,
+          "description": "Name of the permissions group",
+          "required": true
+        },
+        "owner": {
+          "type": "string",
+          "fullType": "string",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "Owner of the permissions group",
+          "required": false
+        },
+        "permissions": {
+          "type": "iam.policy.Permissions",
+          "fullType": "iam.policy.Permissions",
+          "canBeNull": false,
+          "readOnly": false,
+          "description": "Permissions granted when using this permissions group",
+          "required": true
+        },
+        "updatedAt": {
+          "type": "datetime",
+          "fullType": "datetime",
+          "canBeNull": true,
+          "readOnly": true,
+          "description": "Last update time",
+          "required": false
+        },
+        "urn": {
+          "type": "string",
+          "fullType": "string",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "Unique resource name used in policies to include this permissions group",
+          "required": false
+        }
+      }
+    },
+    "iam.ResourceMetadata": {
+      "id": "ResourceMetadata",
+      "namespace": "iam",
+      "description": "IAM resource metadata embedded in services models",
+      "properties": {
+        "displayName": {
+          "type": "string",
+          "fullType": "string",
+          "canBeNull": true,
+          "readOnly": true,
+          "description": "Resource display name",
+          "required": false
+        },
+        "id": {
+          "type": "uuid",
+          "fullType": "uuid",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "Unique identifier of the resource",
+          "required": false
+        },
+        "state": {
+          "type": "iam.ResourceMetadata.StateEnum",
+          "fullType": "iam.ResourceMetadata.StateEnum",
+          "canBeNull": true,
+          "readOnly": true,
+          "description": "Resource state",
+          "required": false
+        },
+        "tags": {
+          "type": "map[string]string",
+          "fullType": "map[string]string",
+          "canBeNull": true,
+          "readOnly": true,
+          "description": "Resource tags. Tags that were internally computed are prefixed with ovh:",
+          "required": false
+        },
+        "urn": {
+          "type": "string",
+          "fullType": "string",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "Unique resource name used in policies",
+          "required": false
+        }
+      }
+    },
+    "iam.ResourceMetadata.StateEnum": {
+      "id": "StateEnum",
+      "namespace": "iam.ResourceMetadata",
+      "description": "Resource state",
+      "enum": [
+        "EXPIRED",
+        "IN_CREATION",
+        "OK",
+        "SUSPENDED"
+      ],
+      "enumType": "string"
+    },
+    "iam.group.Creation": {
+      "id": "Creation",
+      "namespace": "iam.group",
+      "description": "Properties needed to create a group",
+      "properties": {
+        "name": {
+          "type": "string",
+          "fullType": "string",
+          "canBeNull": false,
+          "readOnly": false,
+          "description": "Name of the group",
+          "required": true
+        },
+        "resources": {
+          "type": "iam.group.Resource[]",
+          "fullType": "iam.group.Resource[]",
+          "canBeNull": false,
+          "readOnly": false,
+          "description": "Resources to add in the created group",
+          "required": false
+        }
+      }
+    },
+    "iam.group.Resource": {
+      "id": "Resource",
+      "namespace": "iam.group",
+      "description": "Resource is an entity standing for a product. It is used for right delegation",
+      "properties": {
+        "displayName": {
+          "type": "string",
+          "fullType": "string",
+          "canBeNull": true,
+          "readOnly": true,
+          "description": "Resource display name",
+          "required": false
+        },
+        "id": {
+          "type": "uuid",
+          "fullType": "uuid",
+          "canBeNull": false,
+          "readOnly": false,
+          "description": "Unique identifier of the resource",
+          "required": false
+        },
+        "name": {
+          "type": "string",
+          "fullType": "string",
+          "canBeNull": true,
+          "readOnly": true,
+          "description": "Resource name",
+          "required": false
+        },
+        "owner": {
+          "type": "string",
+          "fullType": "string",
+          "canBeNull": true,
+          "readOnly": true,
+          "description": "Resource owner",
+          "required": false
+        },
+        "tags": {
+          "type": "map[string]string",
+          "fullType": "map[string]string",
+          "canBeNull": true,
+          "readOnly": true,
+          "description": "Resource tags. Tags that were internally computed are prefixed with ovh:",
+          "required": false
+        },
+        "type": {
+          "type": "string",
+          "fullType": "string",
+          "canBeNull": true,
+          "readOnly": true,
+          "description": "Resource type. All types can be retrieved at /reference/resource/type",
+          "required": false
+        },
+        "urn": {
+          "type": "string",
+          "fullType": "string",
+          "canBeNull": true,
+          "readOnly": false,
+          "description": "Unique resource name used in policies",
+          "required": false
+        }
+      }
+    },
+    "iam.group.Response": {
+      "id": "Response",
+      "namespace": "iam.group",
+      "description": "Group defines a set of resources",
+      "properties": {
+        "createdAt": {
+          "type": "datetime",
+          "fullType": "datetime",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "Creation time",
+          "required": false
+        },
+        "id": {
+          "type": "uuid",
+          "fullType": "uuid",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "Unique identifier of the group",
+          "required": false
+        },
+        "name": {
+          "type": "string",
+          "fullType": "string",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "Name of the group",
+          "required": false
+        },
+        "owner": {
+          "type": "string",
+          "fullType": "string",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "Owner of the group",
+          "required": false
+        },
+        "readOnly": {
+          "type": "boolean",
+          "fullType": "boolean",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "Whether you can add or remove resources",
+          "required": false
+        },
+        "resources": {
+          "type": "iam.group.Resource[]",
+          "fullType": "iam.group.Resource[]",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "Resources included in the group",
+          "required": false
+        },
+        "updatedAt": {
+          "type": "datetime",
+          "fullType": "datetime",
+          "canBeNull": true,
+          "readOnly": true,
+          "description": "Last update time",
+          "required": false
+        },
+        "urn": {
+          "type": "string",
+          "fullType": "string",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "Unique resource name used in policies",
+          "required": false
+        }
+      }
+    },
+    "iam.group.Update": {
+      "id": "Update",
+      "namespace": "iam.group",
+      "description": "Fields to update for a given group",
+      "properties": {
+        "name": {
+          "type": "string",
+          "fullType": "string",
+          "canBeNull": false,
+          "readOnly": false,
+          "description": "New name of the group",
+          "required": true
+        },
+        "resources": {
+          "type": "iam.group.Resource[]",
+          "fullType": "iam.group.Resource[]",
+          "canBeNull": false,
+          "readOnly": false,
+          "description": "New list of resources of the group",
+          "required": true
+        }
+      }
+    },
+    "iam.policy.Action": {
+      "id": "Action",
+      "namespace": "iam.policy",
+      "description": "Action that can be allowed or denied on a resource",
+      "properties": {
+        "action": {
+          "type": "string",
+          "fullType": "string",
+          "canBeNull": false,
+          "readOnly": false,
+          "description": "Name of the action",
+          "required": true
+        }
+      }
+    },
+    "iam.policy.Condition": {
+      "id": "Condition",
+      "namespace": "iam.policy",
+      "description": "Condition included in a policy",
+      "properties": {
+        "conditions": {
+          "type": "iam.policy.Condition[]",
+          "fullType": "iam.policy.Condition[]",
+          "canBeNull": true,
+          "readOnly": false,
+          "description": "conditions",
+          "required": false
+        },
+        "operator": {
+          "type": "iam.policy.Condition.OperatorEnum",
+          "fullType": "iam.policy.Condition.OperatorEnum",
+          "canBeNull": false,
+          "readOnly": false,
+          "description": "Operator used with conditions",
+          "required": true
+        },
+        "values": {
+          "type": "map[string]string",
+          "fullType": "map[string]string",
+          "canBeNull": true,
+          "readOnly": false,
+          "description": "Conditions to apply",
+          "required": false
+        }
+      }
+    },
+    "iam.policy.Condition.OperatorEnum": {
+      "id": "OperatorEnum",
+      "namespace": "iam.policy.Condition",
+      "description": "Operator that can be used in order to restrict policy",
+      "enum": [
+        "AND",
+        "MATCH",
+        "NOT",
+        "OR"
+      ],
+      "enumType": "string"
+    },
+    "iam.policy.Creation": {
+      "id": "Creation",
+      "namespace": "iam.policy",
+      "description": "Policy definition",
+      "properties": {
+        "conditions": {
+          "type": "iam.policy.Condition",
+          "fullType": "iam.policy.Condition",
+          "canBeNull": true,
+          "readOnly": false,
+          "description": "Conditions restrict permissions following resources, date or customer's information",
+          "required": false
+        },
+        "description": {
+          "type": "string",
+          "fullType": "string",
+          "canBeNull": false,
+          "readOnly": false,
+          "description": "Description of the policy",
+          "required": false
+        },
+        "expiredAt": {
+          "type": "datetime",
+          "fullType": "datetime",
+          "canBeNull": true,
+          "readOnly": false,
+          "description": "Expiration date of the policy, after this date it will no longer be applied",
+          "required": false
+        },
+        "identities": {
+          "type": "string[]",
+          "fullType": "string[]",
+          "canBeNull": false,
+          "readOnly": false,
+          "description": "Recipients of the delegated resources",
+          "required": true
+        },
+        "name": {
+          "type": "string",
+          "fullType": "string",
+          "canBeNull": false,
+          "readOnly": false,
+          "description": "Name of the policy",
+          "required": true
+        },
+        "permissions": {
+          "type": "iam.policy.Permissions",
+          "fullType": "iam.policy.Permissions",
+          "canBeNull": false,
+          "readOnly": false,
+          "description": "Permissions accorded to the recipients on the given resources",
+          "required": true
+        },
+        "permissionsGroups": {
+          "type": "iam.policy.PermissionsGroup[]",
+          "fullType": "iam.policy.PermissionsGroup[]",
+          "canBeNull": true,
+          "readOnly": false,
+          "description": "Permissions groups accorded to the recipients on the given resources",
+          "required": false
+        },
+        "resources": {
+          "type": "iam.policy.Resource[]",
+          "fullType": "iam.policy.Resource[]",
+          "canBeNull": false,
+          "readOnly": false,
+          "description": "Resources to delegate",
+          "required": true
+        }
+      }
+    },
+    "iam.policy.Group": {
+      "id": "Group",
+      "namespace": "iam.policy",
+      "description": "Group defines a set of resources",
+      "properties": {
+        "id": {
+          "type": "uuid",
+          "fullType": "uuid",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "Unique identifier of the group",
+          "required": false
+        },
+        "name": {
+          "type": "string",
+          "fullType": "string",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "Name of the group",
+          "required": false
+        },
+        "readOnly": {
+          "type": "boolean",
+          "fullType": "boolean",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "Whether you can add or remove resources",
+          "required": false
+        }
+      }
+    },
+    "iam.policy.Permissions": {
+      "id": "Permissions",
+      "namespace": "iam.policy",
+      "description": "Permissions included in a policy",
+      "properties": {
+        "allow": {
+          "type": "iam.policy.Action[]",
+          "fullType": "iam.policy.Action[]",
+          "canBeNull": true,
+          "readOnly": false,
+          "description": "List of allowed actions",
+          "required": false
+        },
+        "deny": {
+          "type": "iam.policy.Action[]",
+          "fullType": "iam.policy.Action[]",
+          "canBeNull": true,
+          "readOnly": false,
+          "description": "Actions to deny the access to",
+          "required": false
+        },
+        "except": {
+          "type": "iam.policy.Action[]",
+          "fullType": "iam.policy.Action[]",
+          "canBeNull": true,
+          "readOnly": false,
+          "description": "Actions to filter from the allowed list",
+          "required": false
+        }
+      }
+    },
+    "iam.policy.PermissionsGroup": {
+      "id": "PermissionsGroup",
+      "namespace": "iam.policy",
+      "description": "Permissions group linked to a policy",
+      "properties": {
+        "name": {
+          "type": "string",
+          "fullType": "string",
+          "canBeNull": true,
+          "readOnly": true,
+          "description": "Name of the permissions group",
+          "required": false
+        },
+        "owner": {
+          "type": "string",
+          "fullType": "string",
+          "canBeNull": true,
+          "readOnly": true,
+          "description": "Owner of the permissions group",
+          "required": false
+        },
+        "permissions": {
+          "type": "iam.policy.Permissions",
+          "fullType": "iam.policy.Permissions",
+          "canBeNull": true,
+          "readOnly": true,
+          "description": "Permissions embedded in the permissions group",
+          "required": false
+        },
+        "urn": {
+          "type": "string",
+          "fullType": "string",
+          "canBeNull": false,
+          "readOnly": false,
+          "description": "URN of the permissions group",
+          "required": false
+        }
+      }
+    },
+    "iam.policy.Resource": {
+      "id": "Resource",
+      "namespace": "iam.policy",
+      "description": "Resource in a policy",
+      "properties": {
+        "group": {
+          "type": "iam.policy.Group",
+          "fullType": "iam.policy.Group",
+          "canBeNull": true,
+          "readOnly": true,
+          "description": "Group object, if resource is a group",
+          "required": false
+        },
+        "resource": {
+          "type": "iam.policy.SingleResource",
+          "fullType": "iam.policy.SingleResource",
+          "canBeNull": true,
+          "readOnly": true,
+          "description": "Resource object, if resource is a single resource",
+          "required": false
+        },
+        "urn": {
+          "type": "string",
+          "fullType": "string",
+          "canBeNull": false,
+          "readOnly": false,
+          "description": "URN of the resource",
+          "required": true
+        }
+      }
+    },
+    "iam.policy.Response": {
+      "id": "Response",
+      "namespace": "iam.policy",
+      "description": "Policy definition",
+      "properties": {
+        "conditions": {
+          "type": "iam.policy.Condition",
+          "fullType": "iam.policy.Condition",
+          "canBeNull": true,
+          "readOnly": true,
+          "description": "Conditions restrict permissions following resources, date or customer's information",
+          "required": false
+        },
+        "createdAt": {
+          "type": "datetime",
+          "fullType": "datetime",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "Creation time",
+          "required": false
+        },
+        "description": {
+          "type": "string",
+          "fullType": "string",
+          "canBeNull": true,
+          "readOnly": true,
+          "description": "Description of the policy",
+          "required": false
+        },
+        "expiredAt": {
+          "type": "datetime",
+          "fullType": "datetime",
+          "canBeNull": true,
+          "readOnly": true,
+          "description": "Expiration date of the policy, after this date it will no longer be applied",
+          "required": false
+        },
+        "id": {
+          "type": "uuid",
+          "fullType": "uuid",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "Unique identifier of the policy",
+          "required": false
+        },
+        "identities": {
+          "type": "string[]",
+          "fullType": "string[]",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "Recipients of the delegated resources",
+          "required": false
+        },
+        "name": {
+          "type": "string",
+          "fullType": "string",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "Name of the policy",
+          "required": false
+        },
+        "owner": {
+          "type": "string",
+          "fullType": "string",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "Owner of the policy",
+          "required": false
+        },
+        "permissions": {
+          "type": "iam.policy.Permissions",
+          "fullType": "iam.policy.Permissions",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "Permissions accorded to the recipients on the given resources",
+          "required": false
+        },
+        "permissionsGroups": {
+          "type": "iam.policy.PermissionsGroup[]",
+          "fullType": "iam.policy.PermissionsGroup[]",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "Permissions groups accorded to the recipients on the given resources",
+          "required": false
+        },
+        "readOnly": {
+          "type": "boolean",
+          "fullType": "boolean",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "Whether you can update policy",
+          "required": false
+        },
+        "resources": {
+          "type": "iam.policy.Resource[]",
+          "fullType": "iam.policy.Resource[]",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "Resources to delegate",
+          "required": false
+        },
+        "updatedAt": {
+          "type": "datetime",
+          "fullType": "datetime",
+          "canBeNull": true,
+          "readOnly": true,
+          "description": "Last update time",
+          "required": false
+        }
+      }
+    },
+    "iam.policy.SingleResource": {
+      "id": "SingleResource",
+      "namespace": "iam.policy",
+      "description": "Single resource in a policy",
+      "properties": {
+        "displayName": {
+          "type": "string",
+          "fullType": "string",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "Display name of the resource",
+          "required": false
+        },
+        "id": {
+          "type": "uuid",
+          "fullType": "uuid",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "Unique identifier of the resource",
+          "required": false
+        },
+        "name": {
+          "type": "string",
+          "fullType": "string",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "Name of the resource",
+          "required": false
+        },
+        "owner": {
+          "type": "string",
+          "fullType": "string",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "Owner of the resource",
+          "required": false
+        },
+        "tags": {
+          "type": "map[string]string",
+          "fullType": "map[string]string",
+          "canBeNull": true,
+          "readOnly": true,
+          "description": "Resource tags. Tags that were internally computed are prefixed with ovh:",
+          "required": false
+        },
+        "type": {
+          "type": "string",
+          "fullType": "string",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "Resource type. All types can be retrieved at /reference/resource/type",
+          "required": false
+        }
+      }
+    },
+    "iam.policy.Update": {
+      "id": "Update",
+      "namespace": "iam.policy",
+      "description": "Properties needed to update a policy",
+      "properties": {
+        "conditions": {
+          "type": "iam.policy.Condition",
+          "fullType": "iam.policy.Condition",
+          "canBeNull": true,
+          "readOnly": false,
+          "description": "Conditions restrict permissions following resources, date or customer's information",
+          "required": false
+        },
+        "description": {
+          "type": "string",
+          "fullType": "string",
+          "canBeNull": false,
+          "readOnly": false,
+          "description": "Description of the policy",
+          "required": false
+        },
+        "expiredAt": {
+          "type": "datetime",
+          "fullType": "datetime",
+          "canBeNull": true,
+          "readOnly": false,
+          "description": "Expiration date of the policy, after this date it will no longer be applied",
+          "required": false
+        },
+        "identities": {
+          "type": "string[]",
+          "fullType": "string[]",
+          "canBeNull": false,
+          "readOnly": false,
+          "description": "Recipients of the delegated resources",
+          "required": true
+        },
+        "name": {
+          "type": "string",
+          "fullType": "string",
+          "canBeNull": false,
+          "readOnly": false,
+          "description": "Name of the policy",
+          "required": true
+        },
+        "permissions": {
+          "type": "iam.policy.Permissions",
+          "fullType": "iam.policy.Permissions",
+          "canBeNull": false,
+          "readOnly": false,
+          "description": "Permissions accorded to the recipients on the given resources",
+          "required": true
+        },
+        "permissionsGroups": {
+          "type": "iam.policy.PermissionsGroup[]",
+          "fullType": "iam.policy.PermissionsGroup[]",
+          "canBeNull": true,
+          "readOnly": false,
+          "description": "Permissions groups accorded to the recipients on the given resources",
+          "required": false
+        },
+        "resources": {
+          "type": "iam.policy.Resource[]",
+          "fullType": "iam.policy.Resource[]",
+          "canBeNull": false,
+          "readOnly": false,
+          "description": "Resources to delegate",
+          "required": true
+        }
+      }
+    },
+    "iam.policy.conditions.CombinatorOperator": {
+      "id": "CombinatorOperator",
+      "namespace": "iam.policy.conditions",
+      "description": "Object describing a combinator operator (AND / OR etc ...)",
+      "properties": {
+        "contract": {
+          "type": "iam.policy.conditions.CombinatorOperatorContract",
+          "fullType": "iam.policy.conditions.CombinatorOperatorContract",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "Describe the contract of this operator, that is how it must be written",
+          "required": false
+        },
+        "description": {
+          "type": "string",
+          "fullType": "string",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "Describes how the operators works in human readable sentence",
+          "required": false
+        },
+        "operatorName": {
+          "type": "iam.policy.Condition.OperatorEnum",
+          "fullType": "iam.policy.Condition.OperatorEnum",
+          "canBeNull": false,
+          "readOnly": true,
+          "required": false
+        }
+      }
+    },
+    "iam.policy.conditions.CombinatorOperatorContract": {
+      "id": "CombinatorOperatorContract",
+      "namespace": "iam.policy.conditions",
+      "description": "Object describing the contract of this operator, that is how it be written",
+      "properties": {
+        "conditions": {
+          "type": "boolean",
+          "fullType": "boolean",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "Tells if the operator can take sub conditions or not",
+          "required": false
+        },
+        "maxConditions": {
+          "type": "string",
+          "fullType": "string",
+          "canBeNull": true,
+          "readOnly": true,
+          "description": "If the operator can take conditions describes what is the maximum number of sub conditions it can takes",
+          "required": false
+        },
+        "minConditions": {
+          "type": "string",
+          "fullType": "string",
+          "canBeNull": true,
+          "readOnly": true,
+          "description": "If the operator can take conditions describes how much it must at least take",
+          "required": false
+        },
+        "values": {
+          "type": "boolean",
+          "fullType": "boolean",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "Tells if the operator can take values",
+          "required": false
+        }
+      }
+    },
+    "iam.policy.conditions.ComparatorOperator": {
+      "id": "ComparatorOperator",
+      "namespace": "iam.policy.conditions",
+      "description": "Object describing how to write a comparator operator, that is a final condition that should match OK/KO or not for a specific condition",
+      "properties": {
+        "description": {
+          "type": "string",
+          "fullType": "string",
+          "canBeNull": true,
+          "readOnly": true,
+          "description": "Description field of the operator",
+          "required": false
+        },
+        "example": {
+          "type": "string",
+          "fullType": "string",
+          "canBeNull": true,
+          "readOnly": true,
+          "description": "Real world human readable example of the operator",
+          "required": false
+        },
+        "functionDefinitions": {
+          "type": "iam.policy.conditions.ComparatorOperatorFunctionDefinition[]",
+          "fullType": "iam.policy.conditions.ComparatorOperatorFunctionDefinition[]",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "Describe all the function handled by the current key",
+          "required": false
+        },
+        "key": {
+          "type": "string",
+          "fullType": "string",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "The key of the comparator, it is the identifier of the comparator, acting like its name",
+          "required": false
+        },
+        "matchingValuesFormat": {
+          "type": "string",
+          "fullType": "string",
+          "canBeNull": true,
+          "readOnly": true,
+          "description": "Describe the type (date / string ...) in which the matching against value must be written",
+          "required": false
+        },
+        "parameterType": {
+          "type": "string",
+          "fullType": "string",
+          "canBeNull": true,
+          "readOnly": true,
+          "description": "Describe the type (TZ / string) in which the parameter value if the operator has one must be written",
+          "required": false
+        },
+        "template": {
+          "type": "string",
+          "fullType": "string",
+          "canBeNull": true,
+          "readOnly": true,
+          "description": "Template on how the operator string must be written",
+          "required": false
+        }
+      }
+    },
+    "iam.policy.conditions.ComparatorOperatorFunctionDefinition": {
+      "id": "ComparatorOperatorFunctionDefinition",
+      "namespace": "iam.policy.conditions",
+      "description": "Object describing how a specific comparator operator must be written",
+      "properties": {
+        "functionName": {
+          "type": "string",
+          "fullType": "string",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "Name of the function",
+          "required": false
+        },
+        "maxArgs": {
+          "type": "string",
+          "fullType": "string",
+          "canBeNull": true,
+          "readOnly": true,
+          "description": "Maximum number of arguments the function can take, if null then it can take infinite number of argument",
+          "required": false
+        },
+        "minArgs": {
+          "type": "string",
+          "fullType": "string",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "Minimum number of arguments the function must take",
+          "required": false
+        }
+      }
+    },
+    "iam.policy.conditions.Schema": {
+      "id": "Schema",
+      "namespace": "iam.policy.conditions",
+      "description": "Get all the acl conditions existing and usable",
+      "properties": {
+        "combinator": {
+          "type": "iam.policy.conditions.CombinatorOperator[]",
+          "fullType": "iam.policy.conditions.CombinatorOperator[]",
+          "canBeNull": false,
+          "readOnly": true,
+          "required": false
+        },
+        "comparator": {
+          "type": "iam.policy.conditions.ComparatorOperator[]",
+          "fullType": "iam.policy.conditions.ComparatorOperator[]",
+          "canBeNull": false,
+          "readOnly": true,
+          "required": false
+        }
+      }
+    },
+    "iam.reference.Action": {
+      "id": "Action",
+      "namespace": "iam.reference",
+      "description": "Action that can be allowed or denied on a resource",
+      "properties": {
+        "action": {
+          "type": "string",
+          "fullType": "string",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "Name of the action",
+          "required": false
+        },
+        "categories": {
+          "type": "string[]",
+          "fullType": "string[]",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "List of categories the action belongs to",
+          "required": false
+        },
+        "description": {
+          "type": "string",
+          "fullType": "string",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "Description of the action",
+          "required": false
+        },
+        "hasQueryParameters": {
+          "type": "boolean",
+          "fullType": "boolean",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "Whether you can use the action with additional parameters",
+          "required": false
+        },
+        "resourceType": {
+          "type": "string",
+          "fullType": "string",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "Resource type related to the action",
+          "required": false
+        }
+      }
+    },
+    "iam.resource.AddTag": {
+      "id": "AddTag",
+      "namespace": "iam.resource",
+      "description": "Fields to add a tag to a resource",
+      "properties": {
+        "key": {
+          "type": "string",
+          "fullType": "string",
+          "canBeNull": false,
+          "readOnly": false,
+          "description": "Resource tag key. It must comply with '^[a-zA-Z0-9_.:/=+@-]{1,128}\\z'",
+          "required": true
+        },
+        "value": {
+          "type": "string",
+          "fullType": "string",
+          "canBeNull": false,
+          "readOnly": false,
+          "description": "Resource tag value. It must comply with '^[a-zA-Z0-9_.:/=+@-]{0,256}\\z'",
+          "required": true
+        }
+      }
+    },
+    "iam.resource.Resource": {
+      "id": "Resource",
+      "namespace": "iam.resource",
+      "description": "Resource is an entity standing for a product. It is used for right delegation",
+      "properties": {
+        "displayName": {
+          "type": "string",
+          "fullType": "string",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "Resource display name",
+          "required": false
+        },
+        "id": {
+          "type": "uuid",
+          "fullType": "uuid",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "Unique identifier of the resource",
+          "required": false
+        },
+        "name": {
+          "type": "string",
+          "fullType": "string",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "Resource name",
+          "required": false
+        },
+        "owner": {
+          "type": "string",
+          "fullType": "string",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "Resource owner",
+          "required": false
+        },
+        "tags": {
+          "type": "map[string]string",
+          "fullType": "map[string]string",
+          "canBeNull": true,
+          "readOnly": false,
+          "description": "Resource tags. Tags that were internally computed are prefixed with ovh:",
+          "required": false
+        },
+        "type": {
+          "type": "string",
+          "fullType": "string",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "Resource type. All types can be retrieved at /reference/resource/type",
+          "required": false
+        },
+        "urn": {
+          "type": "string",
+          "fullType": "string",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "Unique resource name used in policies",
+          "required": false
+        }
+      }
+    },
+    "iam.resource.TagFilter": {
+      "id": "TagFilter",
+      "namespace": "iam.resource",
+      "description": "Resource tag filter",
+      "properties": {
+        "operator": {
+          "type": "iam.resource.TagFilter.OperatorEnum",
+          "fullType": "iam.resource.TagFilter.OperatorEnum",
+          "canBeNull": true,
+          "readOnly": true,
+          "description": "Operator to use in order to filter on the value (defaults to 'EQ')",
+          "required": false
+        },
+        "value": {
+          "type": "string",
+          "fullType": "string",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "Value to use in order to filter tags",
+          "required": false
+        }
+      }
+    },
+    "iam.resource.TagFilter.OperatorEnum": {
+      "id": "OperatorEnum",
+      "namespace": "iam.resource.TagFilter",
+      "description": "Operator that can be used in order to filter resources tags",
+      "enum": [
+        "EQ",
+        "EXISTS",
+        "ILIKE",
+        "LIKE",
+        "NEQ",
+        "NEXISTS"
+      ],
+      "enumType": "string"
+    }
+  },
+  "subsections": {
+    "Authorization": "These routes allow to validate authorizations granted on resources.",
+    "Logs": "Routes allowing to forward IAM logs to a given log stream.",
+    "Permissions & policies": "A policy is a document that describes what actions an account, user and/or group of users can perform, on which resources and under what conditions.",
+    "Reference": "This section contains reference data used across the IAM.",
+    "Resources": "A <b>resource</b> represents any service bought by a customer and any asset that can be delegated in the IAM. A resource group is a set of <b>resources</b> belonging to a specific <b>owner</b>. <br/> These routes allow to create and manage your groups."
+  }
+}

@@ -1,0 +1,1999 @@
+{
+  "apiVersion": "1.0",
+  "apis": [
+    {
+      "path": "/domain/alldom",
+      "operations": [
+        {
+          "apiStatus": {
+            "description": "Beta version",
+            "value": "BETA"
+          },
+          "httpMethod": "GET",
+          "parameters": [
+            {
+              "name": "X-Pagination-Cursor",
+              "dataType": "string",
+              "paramType": "header",
+              "fullType": "string",
+              "required": false,
+              "description": "Pagination cursor"
+            },
+            {
+              "name": "X-Pagination-Size",
+              "dataType": "long",
+              "paramType": "header",
+              "fullType": "long",
+              "required": false,
+              "description": "Pagination size"
+            },
+            {
+              "name": "iamTags",
+              "dataType": "map[string][]iam.resource.TagFilter",
+              "paramType": "query",
+              "required": false,
+              "description": "Filter resources on IAM tags"
+            }
+          ],
+          "responseType": "domain.AlldomWithIAM[]",
+          "noAuthentication": false,
+          "description": "List all the AllDom resources",
+          "iamActions": [
+            {
+              "name": "domain:apiovh:alldom/get",
+              "required": true
+            }
+          ]
+        }
+      ],
+      "description": "Retrieve AllDom resources"
+    },
+    {
+      "path": "/domain/alldom/{alldomName}",
+      "operations": [
+        {
+          "apiStatus": {
+            "description": "Beta version",
+            "value": "BETA"
+          },
+          "httpMethod": "GET",
+          "parameters": [
+            {
+              "name": "alldomName",
+              "dataType": "string",
+              "paramType": "path",
+              "fullType": "string",
+              "required": true,
+              "description": "Alldom name"
+            }
+          ],
+          "responseType": "domain.AlldomWithIAM",
+          "noAuthentication": false,
+          "description": "Get an AllDom resource",
+          "iamActions": [
+            {
+              "name": "domain:apiovh:alldom/get",
+              "required": true
+            }
+          ]
+        }
+      ],
+      "description": "Retrieve AllDom resources"
+    },
+    {
+      "path": "/domain/alldom/{alldomName}/task",
+      "operations": [
+        {
+          "apiStatus": {
+            "description": "Beta version",
+            "value": "BETA"
+          },
+          "httpMethod": "GET",
+          "parameters": [
+            {
+              "name": "X-Pagination-Cursor",
+              "dataType": "string",
+              "paramType": "header",
+              "fullType": "string",
+              "required": false,
+              "description": "Pagination cursor"
+            },
+            {
+              "name": "X-Pagination-Size",
+              "dataType": "long",
+              "paramType": "header",
+              "fullType": "long",
+              "required": false,
+              "description": "Pagination size"
+            },
+            {
+              "name": "alldomName",
+              "dataType": "string",
+              "paramType": "path",
+              "fullType": "string",
+              "required": true,
+              "description": "Alldom name"
+            }
+          ],
+          "responseType": "common.Task[]",
+          "noAuthentication": false,
+          "description": "List tasks related to a managed AllDom resource",
+          "iamActions": [
+            {
+              "name": "domain:apiovh:alldom/task/get",
+              "required": true
+            }
+          ]
+        }
+      ],
+      "description": "Manage AllDom tasks"
+    },
+    {
+      "path": "/domain/alldom/{alldomName}/task/{taskId}",
+      "operations": [
+        {
+          "apiStatus": {
+            "description": "Beta version",
+            "value": "BETA"
+          },
+          "httpMethod": "GET",
+          "parameters": [
+            {
+              "name": "alldomName",
+              "dataType": "string",
+              "paramType": "path",
+              "fullType": "string",
+              "required": true,
+              "description": "Alldom name"
+            },
+            {
+              "name": "taskId",
+              "dataType": "uuid",
+              "paramType": "path",
+              "fullType": "uuid",
+              "required": true,
+              "description": "Task ID"
+            }
+          ],
+          "responseType": "common.Task",
+          "noAuthentication": false,
+          "description": "Get a specific task related to a managed AllDom resource",
+          "iamActions": [
+            {
+              "name": "domain:apiovh:alldom/task/get",
+              "required": true
+            }
+          ]
+        }
+      ],
+      "description": "Manage AllDom tasks"
+    },
+    {
+      "path": "/domain/name",
+      "operations": [
+        {
+          "apiStatus": {
+            "description": "Beta version",
+            "value": "BETA"
+          },
+          "httpMethod": "GET",
+          "parameters": [
+            {
+              "name": "X-Pagination-Cursor",
+              "dataType": "string",
+              "paramType": "header",
+              "fullType": "string",
+              "required": false,
+              "description": "Pagination cursor"
+            },
+            {
+              "name": "X-Pagination-Size",
+              "dataType": "long",
+              "paramType": "header",
+              "fullType": "long",
+              "required": false,
+              "description": "Pagination size"
+            },
+            {
+              "name": "additionalStates",
+              "dataType": "domain.resource.currentState.AdditionalStatesEnum[]",
+              "paramType": "query",
+              "fullType": "domain.resource.currentState.AdditionalStatesEnum[]",
+              "required": false,
+              "description": "Filter the results having all these additional states"
+            },
+            {
+              "name": "contactAdministrator",
+              "dataType": "string[]",
+              "paramType": "query",
+              "fullType": "string[]",
+              "required": false,
+              "description": "Filter the results by administrator contact id"
+            },
+            {
+              "name": "contactBilling",
+              "dataType": "string[]",
+              "paramType": "query",
+              "fullType": "string[]",
+              "required": false,
+              "description": "Filter the results by billing contact id"
+            },
+            {
+              "name": "contactOwner",
+              "dataType": "string[]",
+              "paramType": "query",
+              "fullType": "string[]",
+              "required": false,
+              "description": "Filter the results by owner contact id"
+            },
+            {
+              "name": "contactTechnical",
+              "dataType": "string[]",
+              "paramType": "query",
+              "fullType": "string[]",
+              "required": false,
+              "description": "Filter the results by technical contact id"
+            },
+            {
+              "name": "iamTags",
+              "dataType": "map[string][]iam.resource.TagFilter",
+              "paramType": "query",
+              "required": false,
+              "description": "Filter resources on IAM tags"
+            },
+            {
+              "name": "mainState",
+              "dataType": "domain.resource.currentState.MainStateEnum[]",
+              "paramType": "query",
+              "fullType": "domain.resource.currentState.MainStateEnum[]",
+              "required": false,
+              "description": "Filter the results having all these main states"
+            },
+            {
+              "name": "searchValue",
+              "dataType": "string",
+              "paramType": "query",
+              "fullType": "string",
+              "required": false,
+              "description": "Filter the results with the search value on resource id"
+            },
+            {
+              "name": "suspensionState",
+              "dataType": "domain.resource.currentState.SuspensionStateEnum[]",
+              "paramType": "query",
+              "fullType": "domain.resource.currentState.SuspensionStateEnum[]",
+              "required": false,
+              "description": "Filter the results having all these suspension states"
+            }
+          ],
+          "responseType": "domain.DomainWithIAM[]",
+          "noAuthentication": false,
+          "description": "List all domain name resources",
+          "iamActions": [
+            {
+              "name": "domain:apiovh:name/get",
+              "required": true
+            }
+          ]
+        }
+      ],
+      "description": "List domain resources"
+    },
+    {
+      "path": "/domain/name/{domainName}",
+      "operations": [
+        {
+          "apiStatus": {
+            "description": "Beta version",
+            "value": "BETA"
+          },
+          "httpMethod": "GET",
+          "parameters": [
+            {
+              "name": "domainName",
+              "dataType": "string",
+              "paramType": "path",
+              "fullType": "string",
+              "required": true,
+              "description": "Domain name"
+            }
+          ],
+          "responseType": "domain.DomainWithIAM",
+          "noAuthentication": false,
+          "description": "Get a domain name resource",
+          "iamActions": [
+            {
+              "name": "domain:apiovh:name/get",
+              "required": true
+            }
+          ]
+        },
+        {
+          "apiStatus": {
+            "description": "Beta version",
+            "value": "BETA"
+          },
+          "httpMethod": "PUT",
+          "parameters": [
+            {
+              "dataType": "domain.Domain",
+              "paramType": "body",
+              "fullType": "domain.Domain",
+              "required": true,
+              "description": "Request Body"
+            },
+            {
+              "name": "domainName",
+              "dataType": "string",
+              "paramType": "path",
+              "fullType": "string",
+              "required": true,
+              "description": "Domain name"
+            }
+          ],
+          "responseType": "domain.Domain",
+          "noAuthentication": false,
+          "description": "Update an existing domain name by modifying various configurations through the targetSpec",
+          "iamActions": [
+            {
+              "name": "domain:apiovh:name/edit",
+              "required": true
+            }
+          ]
+        }
+      ],
+      "description": "List domain resources"
+    },
+    {
+      "path": "/domain/name/{domainName}/task",
+      "operations": [
+        {
+          "apiStatus": {
+            "description": "Beta version",
+            "value": "BETA"
+          },
+          "httpMethod": "GET",
+          "parameters": [
+            {
+              "name": "X-Pagination-Cursor",
+              "dataType": "string",
+              "paramType": "header",
+              "fullType": "string",
+              "required": false,
+              "description": "Pagination cursor"
+            },
+            {
+              "name": "X-Pagination-Size",
+              "dataType": "long",
+              "paramType": "header",
+              "fullType": "long",
+              "required": false,
+              "description": "Pagination size"
+            },
+            {
+              "name": "domainName",
+              "dataType": "string",
+              "paramType": "path",
+              "fullType": "string",
+              "required": true,
+              "description": "Domain name"
+            }
+          ],
+          "responseType": "common.Task[]",
+          "noAuthentication": false,
+          "description": "List tasks related to a managed domain name resource",
+          "iamActions": [
+            {
+              "name": "domain:apiovh:name/task/get",
+              "required": true
+            }
+          ]
+        }
+      ],
+      "description": "Manage domain name tasks"
+    },
+    {
+      "path": "/domain/name/{domainName}/task/{taskId}",
+      "operations": [
+        {
+          "apiStatus": {
+            "description": "Beta version",
+            "value": "BETA"
+          },
+          "httpMethod": "GET",
+          "parameters": [
+            {
+              "name": "domainName",
+              "dataType": "string",
+              "paramType": "path",
+              "fullType": "string",
+              "required": true,
+              "description": "Domain name"
+            },
+            {
+              "name": "taskId",
+              "dataType": "uuid",
+              "paramType": "path",
+              "fullType": "uuid",
+              "required": true,
+              "description": "Task ID"
+            }
+          ],
+          "responseType": "common.Task",
+          "noAuthentication": false,
+          "description": "Get a specific task related to a managed domain name resource",
+          "iamActions": [
+            {
+              "name": "domain:apiovh:name/task/get",
+              "required": true
+            }
+          ]
+        }
+      ],
+      "description": "Manage domain name tasks"
+    }
+  ],
+  "resourcePath": "/domain",
+  "basePath": "https://eu.api.ovh.com/v2",
+  "models": {
+    "common.CurrentTask": {
+      "id": "CurrentTask",
+      "namespace": "common",
+      "description": "Asynchronous operation currently running",
+      "properties": {
+        "errors": {
+          "type": "common.TaskError[]",
+          "fullType": "common.TaskError[]",
+          "canBeNull": true,
+          "readOnly": true,
+          "description": "Errors that occured on the task",
+          "required": false
+        },
+        "id": {
+          "type": "uuid",
+          "fullType": "uuid",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "Identifier of the current task",
+          "required": false
+        },
+        "link": {
+          "type": "string",
+          "fullType": "string",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "Link to the task details",
+          "required": false
+        },
+        "status": {
+          "type": "common.CurrentTaskStatusEnum",
+          "fullType": "common.CurrentTaskStatusEnum",
+          "canBeNull": true,
+          "readOnly": true,
+          "description": "Current global status of the current task",
+          "required": false
+        },
+        "type": {
+          "type": "string",
+          "fullType": "string",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "Type of the current task",
+          "required": false
+        }
+      }
+    },
+    "common.CurrentTaskStatusEnum": {
+      "id": "CurrentTaskStatusEnum",
+      "namespace": "common",
+      "description": "Current status of a task. A task in ERROR cannot be retried without your inputs. PENDING tasks will be executed as soon as possible. A RUNNING task is currently executing your original request. SCHEDULED is used for tasks that will be executed in the future",
+      "enum": [
+        "ERROR",
+        "PENDING",
+        "RUNNING",
+        "SCHEDULED",
+        "WAITING_USER_INPUT"
+      ],
+      "enumType": "string"
+    },
+    "common.ResourceStatusEnum": {
+      "id": "ResourceStatusEnum",
+      "namespace": "common",
+      "description": "ResourceStatusEnum",
+      "enum": [
+        "CREATING",
+        "DELETING",
+        "ERROR",
+        "OUT_OF_SYNC",
+        "READY",
+        "SUSPENDED",
+        "UPDATING"
+      ],
+      "enumType": "string"
+    },
+    "common.Task": {
+      "id": "Task",
+      "namespace": "common",
+      "description": "Asynchronous operation",
+      "properties": {
+        "createdAt": {
+          "type": "datetime",
+          "fullType": "datetime",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "Creation date of the task",
+          "required": false
+        },
+        "errors": {
+          "type": "common.TaskError[]",
+          "fullType": "common.TaskError[]",
+          "canBeNull": true,
+          "readOnly": true,
+          "description": "Errors that occured on the task",
+          "required": false
+        },
+        "finishedAt": {
+          "type": "datetime",
+          "fullType": "datetime",
+          "canBeNull": true,
+          "readOnly": true,
+          "description": "Ending date of the task",
+          "required": false
+        },
+        "id": {
+          "type": "uuid",
+          "fullType": "uuid",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "Identifier of the task",
+          "required": false
+        },
+        "link": {
+          "type": "string",
+          "fullType": "string",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "Link to the related resource",
+          "required": false
+        },
+        "message": {
+          "type": "string",
+          "fullType": "string",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "Description of the task",
+          "required": false
+        },
+        "progress": {
+          "type": "common.TaskProgress[]",
+          "fullType": "common.TaskProgress[]",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "Progress steps of the asynchronous operation",
+          "required": false
+        },
+        "startedAt": {
+          "type": "datetime",
+          "fullType": "datetime",
+          "canBeNull": true,
+          "readOnly": true,
+          "description": "Starting date of the task",
+          "required": false
+        },
+        "status": {
+          "type": "common.TaskStatusEnum",
+          "fullType": "common.TaskStatusEnum",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "Current global status of the task",
+          "required": false
+        },
+        "type": {
+          "type": "string",
+          "fullType": "string",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "Type of the task",
+          "required": false
+        },
+        "updatedAt": {
+          "type": "datetime",
+          "fullType": "datetime",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "Last update of the task",
+          "required": false
+        }
+      }
+    },
+    "common.TaskError": {
+      "id": "TaskError",
+      "namespace": "common",
+      "description": "Errors that occured on the task",
+      "properties": {
+        "message": {
+          "type": "string",
+          "fullType": "string",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "Error description",
+          "required": false
+        }
+      }
+    },
+    "common.TaskProgress": {
+      "id": "TaskProgress",
+      "namespace": "common",
+      "description": "Detailed information about an asynchronous operation progress steps",
+      "properties": {
+        "name": {
+          "type": "string",
+          "fullType": "string",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "Progress step name",
+          "required": false
+        },
+        "status": {
+          "type": "common.TaskStatusEnum",
+          "fullType": "common.TaskStatusEnum",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "Current status of the progress step",
+          "required": false
+        }
+      }
+    },
+    "common.TaskStatusEnum": {
+      "id": "TaskStatusEnum",
+      "namespace": "common",
+      "description": "TaskStatusEnum",
+      "enum": [
+        "DONE",
+        "ERROR",
+        "PENDING",
+        "RUNNING",
+        "SCHEDULED",
+        "WAITING_USER_INPUT"
+      ],
+      "enumType": "string"
+    },
+    "domain.Alldom": {
+      "id": "Alldom",
+      "namespace": "domain",
+      "description": "An AllDom resource",
+      "properties": {
+        "checksum": {
+          "type": "string",
+          "fullType": "string",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "Computed hash used to control concurrent modification requests.",
+          "required": false
+        },
+        "currentState": {
+          "type": "domain.AlldomCurrentState",
+          "fullType": "domain.AlldomCurrentState",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "The representation of the AllDom's current state",
+          "required": false
+        },
+        "currentTasks": {
+          "type": "common.CurrentTask[]",
+          "fullType": "common.CurrentTask[]",
+          "canBeNull": true,
+          "readOnly": true,
+          "description": "Ongoing asynchronous tasks related to the AllDom resource",
+          "required": false
+        },
+        "id": {
+          "type": "string",
+          "fullType": "string",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "Unique identifier for the resource. Here, the AllDom name itself is used as an identifier",
+          "required": false
+        },
+        "resourceStatus": {
+          "type": "common.ResourceStatusEnum",
+          "fullType": "common.ResourceStatusEnum",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "Reflects the readiness of the AllDom resource.",
+          "required": false
+        }
+      }
+    },
+    "domain.AlldomCurrentState": {
+      "id": "AlldomCurrentState",
+      "namespace": "domain",
+      "description": "Current state of the AllDom service",
+      "properties": {
+        "domains": {
+          "type": "domain.resource.currentState.AlldomDomain[]",
+          "fullType": "domain.resource.currentState.AlldomDomain[]",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "The list of domain names that can be managed by the AllDom",
+          "required": false
+        },
+        "extensions": {
+          "type": "domain.resource.currentState.ExtensionsEnum[]",
+          "fullType": "domain.resource.currentState.ExtensionsEnum[]",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "The list of domain names extensions used by the AllDom",
+          "required": false
+        },
+        "name": {
+          "type": "string",
+          "fullType": "string",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "The name of the AllDom",
+          "required": false
+        },
+        "type": {
+          "type": "domain.resource.currentState.AlldomTypesEnum",
+          "fullType": "domain.resource.currentState.AlldomTypesEnum",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "The type of the AllDom",
+          "required": false
+        }
+      }
+    },
+    "domain.AlldomWithIAM": {
+      "id": "Alldom",
+      "namespace": "domain",
+      "description": "An AllDom resource",
+      "properties": {
+        "checksum": {
+          "type": "string",
+          "fullType": "string",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "Computed hash used to control concurrent modification requests.",
+          "required": false
+        },
+        "currentState": {
+          "type": "domain.AlldomCurrentState",
+          "fullType": "domain.AlldomCurrentState",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "The representation of the AllDom's current state",
+          "required": false
+        },
+        "currentTasks": {
+          "type": "common.CurrentTask[]",
+          "fullType": "common.CurrentTask[]",
+          "canBeNull": true,
+          "readOnly": true,
+          "description": "Ongoing asynchronous tasks related to the AllDom resource",
+          "required": false
+        },
+        "iam": {
+          "type": "iam.ResourceMetadata",
+          "canBeNull": true,
+          "readOnly": true,
+          "description": "IAM resource metadata",
+          "required": false
+        },
+        "id": {
+          "type": "string",
+          "fullType": "string",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "Unique identifier for the resource. Here, the AllDom name itself is used as an identifier",
+          "required": false
+        },
+        "resourceStatus": {
+          "type": "common.ResourceStatusEnum",
+          "fullType": "common.ResourceStatusEnum",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "Reflects the readiness of the AllDom resource.",
+          "required": false
+        }
+      }
+    },
+    "domain.Domain": {
+      "id": "Domain",
+      "namespace": "domain",
+      "description": "A domain name resource",
+      "properties": {
+        "checksum": {
+          "type": "string",
+          "fullType": "string",
+          "canBeNull": false,
+          "readOnly": false,
+          "description": "Computed hash used to control concurrent modification requests. Here, it represents the current target specification value",
+          "required": false
+        },
+        "currentState": {
+          "type": "domain.DomainCurrentState",
+          "fullType": "domain.DomainCurrentState",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "Current state of the domain name",
+          "required": false
+        },
+        "currentTasks": {
+          "type": "common.CurrentTask[]",
+          "fullType": "common.CurrentTask[]",
+          "canBeNull": true,
+          "readOnly": true,
+          "description": "Ongoing asynchronous tasks related to the domain name resource",
+          "required": false
+        },
+        "id": {
+          "type": "string",
+          "fullType": "string",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "Unique identifier for the resource. Here, the domain name itself is used as an identifier",
+          "required": false
+        },
+        "resourceStatus": {
+          "type": "common.ResourceStatusEnum",
+          "fullType": "common.ResourceStatusEnum",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "Reflects the readiness of the domain name resource. A new target specification request will be accepted only in `READY`, `UPDATING` or `ERROR` status",
+          "required": false
+        },
+        "targetSpec": {
+          "type": "domain.DomainTargetSpec",
+          "fullType": "domain.DomainTargetSpec",
+          "canBeNull": false,
+          "readOnly": false,
+          "description": "Latest target specification of the domain name resource.",
+          "required": true
+        }
+      }
+    },
+    "domain.DomainCurrentState": {
+      "id": "DomainCurrentState",
+      "namespace": "domain",
+      "description": "Current state of the domain name",
+      "properties": {
+        "additionalStates": {
+          "type": "domain.resource.currentState.AdditionalStatesEnum[]",
+          "fullType": "domain.resource.currentState.AdditionalStatesEnum[]",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "Additional states of your domain",
+          "required": false
+        },
+        "authInfoManagedByOVHcloud": {
+          "type": "boolean",
+          "fullType": "boolean",
+          "canBeNull": true,
+          "readOnly": true,
+          "description": "Indicates whether OVHcloud manages your authinfo",
+          "required": false
+        },
+        "authInfoSupported": {
+          "type": "boolean",
+          "fullType": "boolean",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "Indicates whether the registry uses authinfo to secure your domain name",
+          "required": false
+        },
+        "contactsConfiguration": {
+          "type": "domain.resource.currentState.ContactsConfiguration",
+          "fullType": "domain.resource.currentState.ContactsConfiguration",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "Configuration of your domain contacts",
+          "required": false
+        },
+        "createdAt": {
+          "type": "datetime",
+          "fullType": "datetime",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "Date when your domain name was created",
+          "required": false
+        },
+        "dnsConfiguration": {
+          "type": "domain.resource.currentState.DnsConfiguration",
+          "fullType": "domain.resource.currentState.DnsConfiguration",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "DNS configuration of your domain",
+          "required": false
+        },
+        "dnssecConfiguration": {
+          "type": "domain.resource.currentState.DnssecConfiguration",
+          "fullType": "domain.resource.currentState.DnssecConfiguration",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "DNSSEC configuration of your domain",
+          "required": false
+        },
+        "extension": {
+          "type": "string",
+          "fullType": "string",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "Extension of your domain name",
+          "required": false
+        },
+        "hostsConfiguration": {
+          "type": "domain.resource.currentState.HostsConfiguration",
+          "fullType": "domain.resource.currentState.HostsConfiguration",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "Host configuration of your domain",
+          "required": false
+        },
+        "mainState": {
+          "type": "domain.resource.currentState.MainStateEnum",
+          "fullType": "domain.resource.currentState.MainStateEnum",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "Main state of your domain",
+          "required": false
+        },
+        "name": {
+          "type": "string",
+          "fullType": "string",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "Your domain name",
+          "required": false
+        },
+        "protectionState": {
+          "type": "domain.resource.ProtectionStateEnum",
+          "fullType": "domain.resource.ProtectionStateEnum",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "Protection state of your domain",
+          "required": false
+        },
+        "suspensionState": {
+          "type": "domain.resource.currentState.SuspensionStateEnum",
+          "fullType": "domain.resource.currentState.SuspensionStateEnum",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "Suspension state of your domain",
+          "required": false
+        }
+      }
+    },
+    "domain.DomainTargetSpec": {
+      "id": "DomainTargetSpec",
+      "namespace": "domain",
+      "description": "Specifies the target configuration for your domain name service",
+      "properties": {
+        "contactsConfiguration": {
+          "type": "domain.resource.targetSpec.ContactsConfiguration",
+          "fullType": "domain.resource.targetSpec.ContactsConfiguration",
+          "canBeNull": true,
+          "readOnly": false,
+          "description": "Provides the configuration for your domain contacts",
+          "required": false
+        },
+        "dnsConfiguration": {
+          "type": "domain.resource.targetSpec.DnsConfiguration",
+          "fullType": "domain.resource.targetSpec.DnsConfiguration",
+          "canBeNull": true,
+          "readOnly": false,
+          "description": "Provides the DNS configuration for your domain",
+          "required": false
+        },
+        "dnssecConfiguration": {
+          "type": "domain.resource.targetSpec.DnssecConfiguration",
+          "fullType": "domain.resource.targetSpec.DnssecConfiguration",
+          "canBeNull": true,
+          "readOnly": false,
+          "description": "Provides the DNSSEC configuration for your domain",
+          "required": false
+        },
+        "hostsConfiguration": {
+          "type": "domain.resource.targetSpec.HostsConfiguration",
+          "fullType": "domain.resource.targetSpec.HostsConfiguration",
+          "canBeNull": true,
+          "readOnly": false,
+          "description": "Provides the host configuration for your domain",
+          "required": false
+        },
+        "protectionState": {
+          "type": "domain.resource.ProtectionStateEnum",
+          "fullType": "domain.resource.ProtectionStateEnum",
+          "canBeNull": true,
+          "readOnly": false,
+          "description": "Indicates the protection state of your domain",
+          "required": false
+        }
+      }
+    },
+    "domain.DomainWithIAM": {
+      "id": "Domain",
+      "namespace": "domain",
+      "description": "A domain name resource",
+      "properties": {
+        "checksum": {
+          "type": "string",
+          "fullType": "string",
+          "canBeNull": false,
+          "readOnly": false,
+          "description": "Computed hash used to control concurrent modification requests. Here, it represents the current target specification value",
+          "required": false
+        },
+        "currentState": {
+          "type": "domain.DomainCurrentState",
+          "fullType": "domain.DomainCurrentState",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "Current state of the domain name",
+          "required": false
+        },
+        "currentTasks": {
+          "type": "common.CurrentTask[]",
+          "fullType": "common.CurrentTask[]",
+          "canBeNull": true,
+          "readOnly": true,
+          "description": "Ongoing asynchronous tasks related to the domain name resource",
+          "required": false
+        },
+        "iam": {
+          "type": "iam.ResourceMetadata",
+          "canBeNull": true,
+          "readOnly": true,
+          "description": "IAM resource metadata",
+          "required": false
+        },
+        "id": {
+          "type": "string",
+          "fullType": "string",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "Unique identifier for the resource. Here, the domain name itself is used as an identifier",
+          "required": false
+        },
+        "resourceStatus": {
+          "type": "common.ResourceStatusEnum",
+          "fullType": "common.ResourceStatusEnum",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "Reflects the readiness of the domain name resource. A new target specification request will be accepted only in `READY`, `UPDATING` or `ERROR` status",
+          "required": false
+        },
+        "targetSpec": {
+          "type": "domain.DomainTargetSpec",
+          "fullType": "domain.DomainTargetSpec",
+          "canBeNull": false,
+          "readOnly": false,
+          "description": "Latest target specification of the domain name resource.",
+          "required": true
+        }
+      }
+    },
+    "domain.resource.DisclosedFieldsEnum": {
+      "id": "DisclosedFieldsEnum",
+      "namespace": "domain.resource",
+      "description": "The fields that can be displayed in plain text via RDDS",
+      "enum": [
+        "ADDRESS",
+        "CITY",
+        "COUNTRY",
+        "EMAIL",
+        "FAX",
+        "NAME",
+        "ORGANIZATION",
+        "PHONE",
+        "PROVINCE",
+        "ZIP"
+      ],
+      "enumType": "string"
+    },
+    "domain.resource.DisclosureConfigurationEnum": {
+      "id": "DisclosureConfigurationEnum",
+      "namespace": "domain.resource",
+      "description": "Authorized disclosure configurations",
+      "enum": [
+        "DISCLOSED",
+        "REDACTED"
+      ],
+      "enumType": "string"
+    },
+    "domain.resource.ProtectionStateEnum": {
+      "id": "ProtectionStateEnum",
+      "namespace": "domain.resource",
+      "description": "Authorized values for protectionState field",
+      "enum": [
+        "PROTECTED",
+        "UNPROTECTED"
+      ],
+      "enumType": "string"
+    },
+    "domain.resource.currentState.AdditionalStatesEnum": {
+      "id": "AdditionalStatesEnum",
+      "namespace": "domain.resource.currentState",
+      "description": "Authorized values for additionalStates field",
+      "enum": [
+        "DGCCRF_ABUSE",
+        "DISPUTE",
+        "FORCED_DELETION",
+        "OVH_ABUSE",
+        "REGISTRY_ABUSE",
+        "TECHNICAL_SUSPENDED"
+      ],
+      "enumType": "string"
+    },
+    "domain.resource.currentState.AlgorithmNameEnum": {
+      "id": "AlgorithmNameEnum",
+      "namespace": "domain.resource.currentState",
+      "description": "The list of supported cryptographic algorithms for DNSSEC keys",
+      "enum": [
+        "DSA",
+        "DSA-NSEC3-SHA1",
+        "ECC-GOST",
+        "ECDSAP256SHA256",
+        "ECDSAP384SHA384",
+        "ED25519",
+        "ED448",
+        "RSASHA1",
+        "RSASHA1-NSEC3-SHA1",
+        "RSASHA256",
+        "RSASHA512"
+      ],
+      "enumType": "string"
+    },
+    "domain.resource.currentState.AlldomDomain": {
+      "id": "AlldomDomain",
+      "namespace": "domain.resource.currentState",
+      "description": "Main information about the AllDom's domain names",
+      "properties": {
+        "dnssecActivated": {
+          "type": "boolean",
+          "fullType": "boolean",
+          "canBeNull": true,
+          "readOnly": true,
+          "description": "Whether the DNSSEC is activated for the domain or not",
+          "required": false
+        },
+        "expiresAt": {
+          "type": "datetime",
+          "fullType": "datetime",
+          "canBeNull": true,
+          "readOnly": true,
+          "description": "expiresAt date of the domain name registration",
+          "required": false
+        },
+        "extension": {
+          "type": "string",
+          "fullType": "string",
+          "canBeNull": true,
+          "readOnly": true,
+          "description": "The extension of the domain name",
+          "required": false
+        },
+        "mainState": {
+          "type": "domain.resource.currentState.MainStateEnum",
+          "fullType": "domain.resource.currentState.MainStateEnum",
+          "canBeNull": true,
+          "readOnly": true,
+          "description": "The domain's main state",
+          "required": false
+        },
+        "name": {
+          "type": "string",
+          "fullType": "string",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "The domain name",
+          "required": false
+        },
+        "nameServers": {
+          "type": "domain.resource.currentState.dnsConfiguration.NameServer[]",
+          "fullType": "domain.resource.currentState.dnsConfiguration.NameServer[]",
+          "canBeNull": true,
+          "readOnly": true,
+          "description": "The name servers used by the domain name",
+          "required": false
+        },
+        "protectionState": {
+          "type": "domain.resource.ProtectionStateEnum",
+          "fullType": "domain.resource.ProtectionStateEnum",
+          "canBeNull": true,
+          "readOnly": true,
+          "description": "The domain's protection state",
+          "required": false
+        },
+        "registrationStatus": {
+          "type": "domain.resource.currentState.RegistrationStatusEnum",
+          "fullType": "domain.resource.currentState.RegistrationStatusEnum",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "Whether the domain is registered and attached to the AllDom pack or not",
+          "required": false
+        },
+        "suspensionState": {
+          "type": "domain.resource.currentState.SuspensionStateEnum",
+          "fullType": "domain.resource.currentState.SuspensionStateEnum",
+          "canBeNull": true,
+          "readOnly": true,
+          "description": "The domain's suspension state",
+          "required": false
+        }
+      }
+    },
+    "domain.resource.currentState.AlldomTypesEnum": {
+      "id": "AlldomTypesEnum",
+      "namespace": "domain.resource.currentState",
+      "description": "Authorized types of AllDom services",
+      "enum": [
+        "FRENCH",
+        "FRENCH+INTERNATIONAL",
+        "INTERNATIONAL"
+      ],
+      "enumType": "string"
+    },
+    "domain.resource.currentState.ContactsConfiguration": {
+      "id": "ContactsConfiguration",
+      "namespace": "domain.resource.currentState",
+      "description": "Overview of the contacts related to the domain name",
+      "properties": {
+        "contactAdministrator": {
+          "type": "domain.resource.currentState.contactsConfiguration.ContactConfiguration",
+          "fullType": "domain.resource.currentState.contactsConfiguration.ContactConfiguration",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "The configuration of the administrator contact",
+          "required": false
+        },
+        "contactBilling": {
+          "type": "domain.resource.currentState.contactsConfiguration.ContactConfiguration",
+          "fullType": "domain.resource.currentState.contactsConfiguration.ContactConfiguration",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "The configuration of the billing contact",
+          "required": false
+        },
+        "contactOwner": {
+          "type": "domain.resource.currentState.contactsConfiguration.ContactConfiguration",
+          "fullType": "domain.resource.currentState.contactsConfiguration.ContactConfiguration",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "The configuration of the owner contact",
+          "required": false
+        },
+        "contactTechnical": {
+          "type": "domain.resource.currentState.contactsConfiguration.ContactConfiguration",
+          "fullType": "domain.resource.currentState.contactsConfiguration.ContactConfiguration",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "The configuration of the technical contact",
+          "required": false
+        }
+      }
+    },
+    "domain.resource.currentState.DnsConfiguration": {
+      "id": "DnsConfiguration",
+      "namespace": "domain.resource.currentState",
+      "description": "Information about the domain DNS configuration",
+      "properties": {
+        "configurationType": {
+          "type": "domain.resource.currentState.dnsConfiguration.NameServerTypeEnum",
+          "fullType": "domain.resource.currentState.dnsConfiguration.NameServerTypeEnum",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "Specifies the DNS configuration type for your domain",
+          "required": false
+        },
+        "dnssecSupported": {
+          "type": "boolean",
+          "fullType": "boolean",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "Deprecated: use dnssecSupported from dnssecConfiguration node instead",
+          "required": false
+        },
+        "glueRecordIPv6Supported": {
+          "type": "boolean",
+          "fullType": "boolean",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "Deprecated: use ipv6Supported from hostsConfiguration instead",
+          "required": false
+        },
+        "hostSupported": {
+          "type": "boolean",
+          "fullType": "boolean",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "Deprecated: use hostSupported from hostsConfiguration instead",
+          "required": false
+        },
+        "maxDNS": {
+          "type": "long",
+          "fullType": "long",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "Specifies the maximum number of name servers allowed by the registry",
+          "required": false
+        },
+        "minDNS": {
+          "type": "long",
+          "fullType": "long",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "Specifies the minimum number of name servers allowed by the registry",
+          "required": false
+        },
+        "nameServers": {
+          "type": "domain.resource.currentState.dnsConfiguration.NameServer[]",
+          "fullType": "domain.resource.currentState.dnsConfiguration.NameServer[]",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "Lists the name servers used by your domain",
+          "required": false
+        }
+      }
+    },
+    "domain.resource.currentState.DnssecConfiguration": {
+      "id": "DnssecConfiguration",
+      "namespace": "domain.resource.currentState",
+      "description": "Provides information about the domain's DNSSEC configuration",
+      "properties": {
+        "dnssecSupported": {
+          "type": "boolean",
+          "fullType": "boolean",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "Indicates whether the registry supports DNSSEC",
+          "required": false
+        },
+        "dsData": {
+          "type": "domain.resource.currentState.dnssecConfiguration.DsData[]",
+          "fullType": "domain.resource.currentState.dnssecConfiguration.DsData[]",
+          "canBeNull": true,
+          "readOnly": true,
+          "description": "Contains the registered DS data for your domain name",
+          "required": false
+        },
+        "supportedAlgorithms": {
+          "type": "domain.resource.currentState.dnssecConfiguration.SupportedAlgorithm[]",
+          "fullType": "domain.resource.currentState.dnssecConfiguration.SupportedAlgorithm[]",
+          "canBeNull": true,
+          "readOnly": true,
+          "description": "Specifies all cryptographic algorithms that you can use to define DS data",
+          "required": false
+        }
+      }
+    },
+    "domain.resource.currentState.ExtensionsEnum": {
+      "id": "ExtensionsEnum",
+      "namespace": "domain.resource.currentState",
+      "description": "The extensions that can be used by AllDom services",
+      "enum": [
+        "be",
+        "biz",
+        "com",
+        "eu",
+        "fr",
+        "info",
+        "net",
+        "org"
+      ],
+      "enumType": "string"
+    },
+    "domain.resource.currentState.HostsConfiguration": {
+      "id": "HostsConfiguration",
+      "namespace": "domain.resource.currentState",
+      "description": "Information about the domain host configuration",
+      "properties": {
+        "hostSupported": {
+          "type": "boolean",
+          "fullType": "boolean",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "Indicates if the registry supports host management",
+          "required": false
+        },
+        "hosts": {
+          "type": "domain.resource.currentState.hostsConfiguration.Host[]",
+          "fullType": "domain.resource.currentState.hostsConfiguration.Host[]",
+          "canBeNull": true,
+          "readOnly": true,
+          "description": "Contains the registered host configuration",
+          "required": false
+        },
+        "ipv4Supported": {
+          "type": "boolean",
+          "fullType": "boolean",
+          "canBeNull": true,
+          "readOnly": true,
+          "description": "Indicates if the registry supports IPv4",
+          "required": false
+        },
+        "ipv6Supported": {
+          "type": "boolean",
+          "fullType": "boolean",
+          "canBeNull": true,
+          "readOnly": true,
+          "description": "Indicates if the registry supports IPv6",
+          "required": false
+        },
+        "multipleIPsSupported": {
+          "type": "boolean",
+          "fullType": "boolean",
+          "canBeNull": true,
+          "readOnly": true,
+          "description": "Indicates if the registry supports multiple IPs",
+          "required": false
+        }
+      }
+    },
+    "domain.resource.currentState.MainStateEnum": {
+      "id": "MainStateEnum",
+      "namespace": "domain.resource.currentState",
+      "description": "Authorized values for mainState field",
+      "enum": [
+        "DELETED",
+        "EXPIRED",
+        "OK",
+        "PENDING_CREATE",
+        "PENDING_DELETE",
+        "PENDING_INTERNAL_TRANSFER",
+        "PENDING_OUTGOING_TRANSFER",
+        "RESTORABLE",
+        "TO_DELETE"
+      ],
+      "enumType": "string"
+    },
+    "domain.resource.currentState.RegistrationStatusEnum": {
+      "id": "RegistrationStatusEnum",
+      "namespace": "domain.resource.currentState",
+      "description": "The registration status of a domain name, from an AllDom point of view",
+      "enum": [
+        "REGISTERED",
+        "UNREGISTERED"
+      ],
+      "enumType": "string"
+    },
+    "domain.resource.currentState.SuspensionStateEnum": {
+      "id": "SuspensionStateEnum",
+      "namespace": "domain.resource.currentState",
+      "description": "Authorized values for suspensionState field",
+      "enum": [
+        "NOT_SUSPENDED",
+        "SUSPENDED"
+      ],
+      "enumType": "string"
+    },
+    "domain.resource.currentState.contactsConfiguration.ContactConfiguration": {
+      "id": "ContactConfiguration",
+      "namespace": "domain.resource.currentState.contactsConfiguration",
+      "description": "The configuration of the contact",
+      "properties": {
+        "disclosurePolicy": {
+          "type": "domain.resource.currentState.contactsConfiguration.contactConfiguration.DisclosurePolicy",
+          "fullType": "domain.resource.currentState.contactsConfiguration.contactConfiguration.DisclosurePolicy",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "The data disclosure policy of the contact",
+          "required": false
+        },
+        "id": {
+          "type": "string",
+          "fullType": "string",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "The ID of the contact",
+          "required": false
+        }
+      }
+    },
+    "domain.resource.currentState.contactsConfiguration.contactConfiguration.DisclosurePolicy": {
+      "id": "DisclosurePolicy",
+      "namespace": "domain.resource.currentState.contactsConfiguration.contactConfiguration",
+      "description": "Information about the disclosure policy of a contact",
+      "properties": {
+        "disclosedFields": {
+          "type": "domain.resource.DisclosedFieldsEnum[]",
+          "fullType": "domain.resource.DisclosedFieldsEnum[]",
+          "canBeNull": true,
+          "readOnly": true,
+          "description": "The fields that will be displayed in plain text if the configuration is disclosed",
+          "required": false
+        },
+        "disclosureConfiguration": {
+          "type": "domain.resource.DisclosureConfigurationEnum",
+          "fullType": "domain.resource.DisclosureConfigurationEnum",
+          "canBeNull": true,
+          "readOnly": true,
+          "description": "Whether the contact data are disclosed or redacted",
+          "required": false
+        },
+        "forcedDisclosureConfiguration": {
+          "type": "boolean",
+          "fullType": "boolean",
+          "canBeNull": true,
+          "readOnly": true,
+          "description": "Whether the configuration is forced by the registry",
+          "required": false
+        },
+        "visibleViaRdds": {
+          "type": "boolean",
+          "fullType": "boolean",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "Whether the contact is visible via RDDS (displayed in WHOIS and RDAP directories)",
+          "required": false
+        }
+      }
+    },
+    "domain.resource.currentState.dnsConfiguration.NameServer": {
+      "id": "NameServer",
+      "namespace": "domain.resource.currentState.dnsConfiguration",
+      "description": "Information about a name server",
+      "properties": {
+        "ipv4": {
+          "type": "ipv4",
+          "fullType": "ipv4",
+          "canBeNull": true,
+          "readOnly": true,
+          "description": "The IPv4 associated to the name server",
+          "required": false
+        },
+        "ipv6": {
+          "type": "ipv6",
+          "fullType": "ipv6",
+          "canBeNull": true,
+          "readOnly": true,
+          "description": "The IPv6 associated to the name server",
+          "required": false
+        },
+        "nameServer": {
+          "type": "string",
+          "fullType": "string",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "The host name",
+          "required": false
+        },
+        "nameServerType": {
+          "type": "domain.resource.currentState.dnsConfiguration.NameServerTypeEnum",
+          "fullType": "domain.resource.currentState.dnsConfiguration.NameServerTypeEnum",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "The type of name server",
+          "required": false
+        }
+      }
+    },
+    "domain.resource.currentState.dnsConfiguration.NameServerTypeEnum": {
+      "id": "NameServerTypeEnum",
+      "namespace": "domain.resource.currentState.dnsConfiguration",
+      "description": "Possible name server types",
+      "enum": [
+        "ANYCAST",
+        "DEDICATED",
+        "EMPTY",
+        "EXTERNAL",
+        "HOLD",
+        "HOSTING",
+        "MIXED",
+        "PARKING"
+      ],
+      "enumType": "string"
+    },
+    "domain.resource.currentState.dnssecConfiguration.DsData": {
+      "id": "DsData",
+      "namespace": "domain.resource.currentState.dnssecConfiguration",
+      "description": "Provides information about the domain DS data",
+      "properties": {
+        "algorithm": {
+          "type": "long",
+          "fullType": "long",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "Identifies the cryptographic algorithm used for the public key",
+          "required": false
+        },
+        "flags": {
+          "type": "long",
+          "fullType": "long",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "Indicates the type of the key (e.g., 257 for KSK, 256 for ZSK)",
+          "required": false
+        },
+        "keyTag": {
+          "type": "long",
+          "fullType": "long",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "Provides a unique identifier for the public key, ranging from 0 to 65535",
+          "required": false
+        },
+        "publicKey": {
+          "type": "string",
+          "fullType": "string",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "Contains the base64‑encoded representation of the public key",
+          "required": false
+        }
+      }
+    },
+    "domain.resource.currentState.dnssecConfiguration.SupportedAlgorithm": {
+      "id": "SupportedAlgorithm",
+      "namespace": "domain.resource.currentState.dnssecConfiguration",
+      "description": "Describes a supported DNSSEC algorithm with its name and corresponding number",
+      "properties": {
+        "name": {
+          "type": "domain.resource.currentState.AlgorithmNameEnum",
+          "fullType": "domain.resource.currentState.AlgorithmNameEnum",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "Specifies the name of the cryptographic algorithm",
+          "required": false
+        },
+        "number": {
+          "type": "long",
+          "fullType": "long",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "Specifies the numeric value of the cryptographic algorithm",
+          "required": false
+        }
+      }
+    },
+    "domain.resource.currentState.hostsConfiguration.Host": {
+      "id": "Host",
+      "namespace": "domain.resource.currentState.hostsConfiguration",
+      "description": "Information about a host",
+      "properties": {
+        "host": {
+          "type": "string",
+          "fullType": "string",
+          "canBeNull": true,
+          "readOnly": true,
+          "description": "The host name",
+          "required": false
+        },
+        "ips": {
+          "type": "ip[]",
+          "fullType": "ip[]",
+          "canBeNull": true,
+          "readOnly": true,
+          "description": "IPs linked to a host",
+          "required": false
+        }
+      }
+    },
+    "domain.resource.targetSpec.ContactsConfiguration": {
+      "id": "ContactsConfiguration",
+      "namespace": "domain.resource.targetSpec",
+      "description": "Provides the configuration of the domain contacts",
+      "properties": {
+        "contactAdministrator": {
+          "type": "domain.resource.targetSpec.contactsConfiguration.ContactConfiguration",
+          "fullType": "domain.resource.targetSpec.contactsConfiguration.ContactConfiguration",
+          "canBeNull": true,
+          "readOnly": false,
+          "description": "Indicates the configuration of the administrator contact",
+          "required": false
+        },
+        "contactBilling": {
+          "type": "domain.resource.targetSpec.contactsConfiguration.ContactConfiguration",
+          "fullType": "domain.resource.targetSpec.contactsConfiguration.ContactConfiguration",
+          "canBeNull": true,
+          "readOnly": false,
+          "description": "Indicates the configuration of the billing contact",
+          "required": false
+        },
+        "contactOwner": {
+          "type": "domain.resource.targetSpec.contactsConfiguration.OwnerConfiguration",
+          "fullType": "domain.resource.targetSpec.contactsConfiguration.OwnerConfiguration",
+          "canBeNull": true,
+          "readOnly": false,
+          "description": "Indicates the configuration of the owner contact",
+          "required": false
+        },
+        "contactTechnical": {
+          "type": "domain.resource.targetSpec.contactsConfiguration.ContactConfiguration",
+          "fullType": "domain.resource.targetSpec.contactsConfiguration.ContactConfiguration",
+          "canBeNull": true,
+          "readOnly": false,
+          "description": "Indicates the configuration of the technical contact",
+          "required": false
+        }
+      }
+    },
+    "domain.resource.targetSpec.DnsConfiguration": {
+      "id": "DnsConfiguration",
+      "namespace": "domain.resource.targetSpec",
+      "description": "Provides information about the domain DNS configuration",
+      "properties": {
+        "nameServers": {
+          "type": "domain.resource.targetSpec.dnsConfiguration.NameServer[]",
+          "fullType": "domain.resource.targetSpec.dnsConfiguration.NameServer[]",
+          "canBeNull": true,
+          "readOnly": false,
+          "description": "The name servers to update",
+          "required": false
+        }
+      }
+    },
+    "domain.resource.targetSpec.DnssecConfiguration": {
+      "id": "DnssecConfiguration",
+      "namespace": "domain.resource.targetSpec",
+      "description": "Provides information about the domain's DNSSEC configuration",
+      "properties": {
+        "dsData": {
+          "type": "domain.resource.targetSpec.dnssecConfiguration.DsData[]",
+          "fullType": "domain.resource.targetSpec.dnssecConfiguration.DsData[]",
+          "canBeNull": true,
+          "readOnly": false,
+          "description": "Contains the DS data to update",
+          "required": false
+        }
+      }
+    },
+    "domain.resource.targetSpec.HostsConfiguration": {
+      "id": "HostsConfiguration",
+      "namespace": "domain.resource.targetSpec",
+      "description": "Provides information about the domain hosts configuration",
+      "properties": {
+        "hosts": {
+          "type": "domain.resource.targetSpec.hostsConfiguration.Host[]",
+          "fullType": "domain.resource.targetSpec.hostsConfiguration.Host[]",
+          "canBeNull": true,
+          "readOnly": false,
+          "description": "The hosts you update",
+          "required": false
+        }
+      }
+    },
+    "domain.resource.targetSpec.contactsConfiguration.ContactConfiguration": {
+      "id": "ContactConfiguration",
+      "namespace": "domain.resource.targetSpec.contactsConfiguration",
+      "description": "Configuration of the administator, billing and technical contacts",
+      "properties": {
+        "disclosurePolicy": {
+          "type": "domain.resource.targetSpec.contactsConfiguration.contactConfiguration.DisclosurePolicy",
+          "fullType": "domain.resource.targetSpec.contactsConfiguration.contactConfiguration.DisclosurePolicy",
+          "canBeNull": false,
+          "readOnly": false,
+          "description": "Indicates the data disclosure policy of the contact",
+          "required": false
+        }
+      }
+    },
+    "domain.resource.targetSpec.contactsConfiguration.OwnerConfiguration": {
+      "id": "OwnerConfiguration",
+      "namespace": "domain.resource.targetSpec.contactsConfiguration",
+      "description": "Configuration for the owner contact",
+      "properties": {
+        "disclosurePolicy": {
+          "type": "domain.resource.targetSpec.contactsConfiguration.contactConfiguration.DisclosurePolicy",
+          "fullType": "domain.resource.targetSpec.contactsConfiguration.contactConfiguration.DisclosurePolicy",
+          "canBeNull": true,
+          "readOnly": false,
+          "description": "Indicates the data disclosure policy of the contact",
+          "required": false
+        },
+        "id": {
+          "type": "string",
+          "fullType": "string",
+          "canBeNull": true,
+          "readOnly": false,
+          "description": "The identifier of the contact",
+          "required": false
+        }
+      }
+    },
+    "domain.resource.targetSpec.contactsConfiguration.contactConfiguration.DisclosurePolicy": {
+      "id": "DisclosurePolicy",
+      "namespace": "domain.resource.targetSpec.contactsConfiguration.contactConfiguration",
+      "description": "Information about the disclosure policy of a contact",
+      "properties": {
+        "disclosureConfiguration": {
+          "type": "domain.resource.DisclosureConfigurationEnum",
+          "fullType": "domain.resource.DisclosureConfigurationEnum",
+          "canBeNull": false,
+          "readOnly": false,
+          "description": "Indicates whether the contact data are disclosed or redacted",
+          "required": true
+        }
+      }
+    },
+    "domain.resource.targetSpec.dnsConfiguration.NameServer": {
+      "id": "NameServer",
+      "namespace": "domain.resource.targetSpec.dnsConfiguration",
+      "description": "Information about a name server",
+      "properties": {
+        "ipv4": {
+          "type": "ipv4",
+          "fullType": "ipv4",
+          "canBeNull": true,
+          "readOnly": false,
+          "description": "IPv4 address of the name server",
+          "required": false
+        },
+        "ipv6": {
+          "type": "ipv6",
+          "fullType": "ipv6",
+          "canBeNull": true,
+          "readOnly": false,
+          "description": "IPv6 address of the name server",
+          "required": false
+        },
+        "nameServer": {
+          "type": "string",
+          "fullType": "string",
+          "canBeNull": false,
+          "readOnly": false,
+          "description": "Host name of the name server",
+          "required": true
+        }
+      }
+    },
+    "domain.resource.targetSpec.dnssecConfiguration.DsData": {
+      "id": "DsData",
+      "namespace": "domain.resource.targetSpec.dnssecConfiguration",
+      "description": "The DS data used in your DNSSEC configuration",
+      "properties": {
+        "algorithm": {
+          "type": "long",
+          "fullType": "long",
+          "canBeNull": false,
+          "readOnly": false,
+          "description": "Identifies the cryptographic algorithm used for the public key",
+          "required": true
+        },
+        "flags": {
+          "type": "long",
+          "fullType": "long",
+          "canBeNull": false,
+          "readOnly": false,
+          "description": "Indicates the type of the key (e.g., 257 for KSK, 256 for ZSK)",
+          "required": true
+        },
+        "keyTag": {
+          "type": "long",
+          "fullType": "long",
+          "canBeNull": false,
+          "readOnly": false,
+          "description": "Provides a unique identifier for the public key, ranging from 0 to 65535",
+          "required": true
+        },
+        "publicKey": {
+          "type": "string",
+          "fullType": "string",
+          "canBeNull": false,
+          "readOnly": false,
+          "description": "Contains the base64‑encoded representation of the public key",
+          "required": true
+        }
+      }
+    },
+    "domain.resource.targetSpec.hostsConfiguration.Host": {
+      "id": "Host",
+      "namespace": "domain.resource.targetSpec.hostsConfiguration",
+      "description": "Provides information about a host",
+      "properties": {
+        "host": {
+          "type": "string",
+          "fullType": "string",
+          "canBeNull": false,
+          "readOnly": false,
+          "description": "Specifies the host name",
+          "required": true
+        },
+        "ips": {
+          "type": "ip[]",
+          "fullType": "ip[]",
+          "canBeNull": false,
+          "readOnly": false,
+          "description": "Lists the IP addresses linked to the host",
+          "required": true
+        }
+      }
+    },
+    "iam.ResourceMetadata": {
+      "id": "ResourceMetadata",
+      "namespace": "iam",
+      "description": "IAM resource metadata embedded in services models",
+      "properties": {
+        "displayName": {
+          "type": "string",
+          "fullType": "string",
+          "canBeNull": true,
+          "readOnly": true,
+          "description": "Resource display name",
+          "required": false
+        },
+        "id": {
+          "type": "uuid",
+          "fullType": "uuid",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "Unique identifier of the resource",
+          "required": false
+        },
+        "state": {
+          "type": "iam.ResourceMetadata.StateEnum",
+          "fullType": "iam.ResourceMetadata.StateEnum",
+          "canBeNull": true,
+          "readOnly": true,
+          "description": "Resource state",
+          "required": false
+        },
+        "tags": {
+          "type": "map[string]string",
+          "fullType": "map[string]string",
+          "canBeNull": true,
+          "readOnly": true,
+          "description": "Resource tags. Tags that were internally computed are prefixed with ovh:",
+          "required": false
+        },
+        "urn": {
+          "type": "string",
+          "fullType": "string",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "Unique resource name used in policies",
+          "required": false
+        }
+      }
+    },
+    "iam.ResourceMetadata.StateEnum": {
+      "id": "StateEnum",
+      "namespace": "iam.ResourceMetadata",
+      "description": "Resource state",
+      "enum": [
+        "EXPIRED",
+        "IN_CREATION",
+        "OK",
+        "SUSPENDED"
+      ],
+      "enumType": "string"
+    },
+    "iam.resource.TagFilter": {
+      "id": "TagFilter",
+      "namespace": "iam.resource",
+      "description": "Resource tag filter",
+      "properties": {
+        "operator": {
+          "type": "iam.resource.TagFilter.OperatorEnum",
+          "fullType": "iam.resource.TagFilter.OperatorEnum",
+          "canBeNull": true,
+          "readOnly": true,
+          "description": "Operator to use in order to filter on the value (defaults to 'EQ')",
+          "required": false
+        },
+        "value": {
+          "type": "string",
+          "fullType": "string",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "Value to use in order to filter tags",
+          "required": false
+        }
+      }
+    },
+    "iam.resource.TagFilter.OperatorEnum": {
+      "id": "OperatorEnum",
+      "namespace": "iam.resource.TagFilter",
+      "description": "Operator that can be used in order to filter resources tags",
+      "enum": [
+        "EQ",
+        "EXISTS",
+        "ILIKE",
+        "LIKE",
+        "NEQ",
+        "NEXISTS"
+      ],
+      "enumType": "string"
+    }
+  }
+}

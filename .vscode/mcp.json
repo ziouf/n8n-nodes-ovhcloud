@@ -1,0 +1,17 @@
+{
+	"servers": {
+		"n8n-docs": {
+			"type": "http",
+			"url": "https://n8n.mcp.kapa.ai/"
+		},
+		"exa": {
+			"type": "http",
+			"url": "https://mcp.exa.ai/mcp",
+		},
+		"semgrep": {
+			"type": "http",
+			"url": "https://mcp.semgrep.ai/mcp"
+		}
+	},
+	"inputs": []
+}
