@@ -25,6 +25,7 @@ npm run prepublishOnly # Pre-release preparation
 
 ### Testing
 
+- For linting: run `npm run lint`
 - No automated test framework configured
 - Manual testing required via n8n instance
 - Test directory exists but is empty
