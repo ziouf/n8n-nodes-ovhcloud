@@ -29,9 +29,9 @@ export function description(displayOptions: IDisplayOptions): INodeProperties[] 
 			name: 'balance',
 			type: 'options',
 			options: [
-				{ name: 'Round Robin', value: 'roundrobin' },
-				{ name: 'Least Connections', value: 'leastconn' },
 				{ name: 'First', value: 'first' },
+				{ name: 'Least Connections', value: 'leastconn' },
+				{ name: 'Round Robin', value: 'roundrobin' },
 				{ name: 'Source IP Hash', value: 'source' },
 				{ name: 'URI', value: 'uri' },
 				{ name: 'URI Path', value: 'uri_path' },

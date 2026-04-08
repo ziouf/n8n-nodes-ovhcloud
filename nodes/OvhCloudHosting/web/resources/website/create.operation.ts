@@ -45,7 +45,7 @@ export function description(displayOptions: IDisplayOptions): INodeProperties[] 
 			name: 'ssl',
 			type: 'boolean',
 			default: false,
-			description: 'Enable SSL for the website',
+			description: 'Whether to enable SSL for the website',
 			displayOptions,
 		},
 	];
@@ -62,9 +62,8 @@ export async function execute(this: IExecuteFunctions): Promise<INodeExecutionDa
 	if (alias) body.alias = alias;
 	body.ssl = ssl;
 
-	const data = (await client.httpPost(
-		`/hosting/web/${serviceName}/website`,
-		{ body },
-	)) as IDataObject;
+	const data = (await client.httpPost(`/hosting/web/${serviceName}/website`, {
+		body,
+	})) as IDataObject;
 	return [{ json: data }];
 }

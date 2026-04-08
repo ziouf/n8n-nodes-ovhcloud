@@ -34,61 +34,6 @@ export function description(displayOptions: IDisplayOptions): INodeProperties[] 
 			noDataExpression: true,
 			options: [
 				{
-					name: 'List',
-					value: 'list',
-					action: 'List all Worklight License services',
-				},
-				{
-					name: 'Get',
-					value: 'get',
-					action: 'Get details of a Worklight License service',
-				},
-				{
-					name: 'Get Service Infos',
-					value: 'getServiceInfos',
-					action: 'Get service information for a Worklight License',
-				},
-				{
-					name: 'Update Service Infos',
-					value: 'updateServiceInfos',
-					action: 'Update service information for a Worklight License',
-				},
-				{
-					name: 'List Tasks',
-					value: 'listTasks',
-					action: 'List tasks for a Worklight License',
-				},
-				{
-					name: 'Get Task',
-					value: 'getTask',
-					action: 'Get a specific task for a Worklight License',
-				},
-				{
-					name: 'Terminate',
-					value: 'terminate',
-					action: 'Terminate a Worklight License service',
-				},
-				{
-					name: 'Confirm Termination',
-					value: 'confirmTermination',
-					action: 'Confirm termination of a Worklight License service',
-				},
-				{
-					name: 'Get Orderable Versions',
-					value: 'getOrderableVersions',
-					action: 'Get orderable Worklight versions',
-				},
-				{
-					name: 'Update',
-					value: 'update',
-					action: 'Update a Worklight License service',
-				},
-				{
-					name: 'Get Allowed Destination IP',
-					value: 'getAllowedDestinationIp',
-					action: 'Get allowed destination IPs for a Worklight License',
-				},
-				{
 					name: 'Can License Be Moved To',
 					value: 'canLicenseBeMovedTo',
 					action: 'Check if a Worklight License can be moved to another IP',
@@ -97,6 +42,61 @@ export function description(displayOptions: IDisplayOptions): INodeProperties[] 
 					name: 'Change IP',
 					value: 'changeIp',
 					action: 'Change the IP of a Worklight License',
+				},
+				{
+					name: 'Confirm Termination',
+					value: 'confirmTermination',
+					action: 'Confirm termination of a Worklight License service',
+				},
+				{
+					name: 'Get',
+					value: 'get',
+					action: 'Get details of a Worklight License service',
+				},
+				{
+					name: 'Get Allowed Destination IP',
+					value: 'getAllowedDestinationIp',
+					action: 'Get allowed destination IPs for a Worklight License',
+				},
+				{
+					name: 'Get Orderable Versions',
+					value: 'getOrderableVersions',
+					action: 'Get orderable Worklight versions',
+				},
+				{
+					name: 'Get Service Infos',
+					value: 'getServiceInfos',
+					action: 'Get service information for a Worklight License',
+				},
+				{
+					name: 'Get Task',
+					value: 'getTask',
+					action: 'Get a specific task for a Worklight License',
+				},
+				{
+					name: 'List',
+					value: 'list',
+					action: 'List all Worklight License services',
+				},
+				{
+					name: 'List Tasks',
+					value: 'listTasks',
+					action: 'List tasks for a Worklight License',
+				},
+				{
+					name: 'Terminate',
+					value: 'terminate',
+					action: 'Terminate a Worklight License service',
+				},
+				{
+					name: 'Update',
+					value: 'update',
+					action: 'Update a Worklight License service',
+				},
+				{
+					name: 'Update Service Infos',
+					value: 'updateServiceInfos',
+					action: 'Update service information for a Worklight License',
 				},
 			],
 			default: 'list',

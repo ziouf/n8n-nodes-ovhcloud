@@ -45,19 +45,9 @@ export function description(displayOptions: IDisplayOptions): INodeProperties[] 
 			noDataExpression: true,
 			options: [
 				{
-					name: 'List',
-					value: 'list',
-					action: 'List all IAM resources',
-				},
-				{
 					name: 'Get',
 					value: 'get',
 					action: 'Get details of an IAM resource',
-				},
-				{
-					name: 'List Authorizations',
-					value: 'listAuthorizations',
-					action: 'List IAM authorizations',
 				},
 				{
 					name: 'Get Authorization',
@@ -65,19 +55,9 @@ export function description(displayOptions: IDisplayOptions): INodeProperties[] 
 					action: 'Get a specific authorization',
 				},
 				{
-					name: 'List Logs',
-					value: 'listLogs',
-					action: 'List IAM logs',
-				},
-				{
 					name: 'Get Log',
 					value: 'getLog',
 					action: 'Get a specific log',
-				},
-				{
-					name: 'List Permissions Groups',
-					value: 'listPermissionsGroups',
-					action: 'List IAM permissions groups',
 				},
 				{
 					name: 'Get Permissions Group',
@@ -85,24 +65,9 @@ export function description(displayOptions: IDisplayOptions): INodeProperties[] 
 					action: 'Get a specific permissions group',
 				},
 				{
-					name: 'List Policies',
-					value: 'listPolicies',
-					action: 'List IAM policies',
-				},
-				{
 					name: 'Get Policy',
 					value: 'getPolicy',
 					action: 'Get a specific policy',
-				},
-				{
-					name: 'List References',
-					value: 'listReferences',
-					action: 'List IAM references',
-				},
-				{
-					name: 'List Resources',
-					value: 'listResources',
-					action: 'List IAM resources',
 				},
 				{
 					name: 'Get Resource',
@@ -110,14 +75,49 @@ export function description(displayOptions: IDisplayOptions): INodeProperties[] 
 					action: 'Get a specific resource',
 				},
 				{
+					name: 'Get Resource Group',
+					value: 'getResourceGroup',
+					action: 'Get a specific resource group',
+				},
+				{
+					name: 'List',
+					value: 'list',
+					action: 'List all IAM resources',
+				},
+				{
+					name: 'List Authorizations',
+					value: 'listAuthorizations',
+					action: 'List IAM authorizations',
+				},
+				{
+					name: 'List Logs',
+					value: 'listLogs',
+					action: 'List IAM logs',
+				},
+				{
+					name: 'List Permissions Groups',
+					value: 'listPermissionsGroups',
+					action: 'List IAM permissions groups',
+				},
+				{
+					name: 'List Policies',
+					value: 'listPolicies',
+					action: 'List IAM policies',
+				},
+				{
+					name: 'List References',
+					value: 'listReferences',
+					action: 'List IAM references',
+				},
+				{
 					name: 'List Resource Groups',
 					value: 'listResourceGroups',
 					action: 'List IAM resource groups',
 				},
 				{
-					name: 'Get Resource Group',
-					value: 'getResourceGroup',
-					action: 'Get a specific resource group',
+					name: 'List Resources',
+					value: 'listResources',
+					action: 'List IAM resources',
 				},
 			],
 			default: 'list',

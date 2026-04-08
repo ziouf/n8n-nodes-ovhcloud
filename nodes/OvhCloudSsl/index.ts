@@ -52,11 +52,6 @@ export function description(displayOptions: IDisplayOptions): INodeProperties[] 
 			noDataExpression: true,
 			options: [
 				{
-					name: 'List',
-					value: 'list',
-					action: 'List all SSL services',
-				},
-				{
 					name: 'Get',
 					value: 'get',
 					action: 'Get details of an SSL service',
@@ -67,9 +62,14 @@ export function description(displayOptions: IDisplayOptions): INodeProperties[] 
 					action: 'Get service information',
 				},
 				{
-					name: 'Update Service Infos',
-					value: 'updateServiceInfos',
-					action: 'Update service information',
+					name: 'Get Task',
+					value: 'getTask',
+					action: 'Get a task of an SSL',
+				},
+				{
+					name: 'List',
+					value: 'list',
+					action: 'List all SSL services',
 				},
 				{
 					name: 'List Tasks',
@@ -77,9 +77,9 @@ export function description(displayOptions: IDisplayOptions): INodeProperties[] 
 					action: 'List tasks of an SSL',
 				},
 				{
-					name: 'Get Task',
-					value: 'getTask',
-					action: 'Get a task of an SSL',
+					name: 'Update Service Infos',
+					value: 'updateServiceInfos',
+					action: 'Update service information',
 				},
 			],
 			default: 'list',

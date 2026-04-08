@@ -6,7 +6,7 @@ import {
 	type INodeProperties,
 	type Icon,
 } from 'n8n-workflow';
-import { CredentialHolder, OvhCredentialsType } from '../nodes/OvhCloud/transport/CredentialHolder';
+import { CredentialHolder, OvhCredentialsType } from '../shared/transport/CredentialHolder';
 
 /**
  * The credential secret name used to reference this OVH API credential type.

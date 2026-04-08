@@ -118,79 +118,9 @@ export function description(displayOptions: IDisplayOptions): INodeProperties[] 
 			noDataExpression: true,
 			options: [
 				{
-					name: 'List',
-					value: 'list',
-					action: 'List all Freefax services',
-				},
-				{
-					name: 'Get',
-					value: 'get',
-					action: 'Get details of a Freefax service',
-				},
-				{
-					name: 'Update',
-					value: 'update',
-					action: 'Update a Freefax service',
-				},
-				{
-					name: 'Get Credits',
-					value: 'getCredits',
-					action: 'Get Freefax credits',
-				},
-				{
 					name: 'Change Password',
 					value: 'changePassword',
 					action: 'Change Freefax password',
-				},
-				{
-					name: 'Get Directory',
-					value: 'getDirectory',
-					action: 'Get Freefax directory information',
-				},
-				{
-					name: 'Update Directory',
-					value: 'updateDirectory',
-					action: 'Update Freefax directory information',
-				},
-				{
-					name: 'Fetch Entreprise Informations',
-					value: 'fetchEntrepriseInformations',
-					action: 'Fetch entreprise informations for directory',
-				},
-				{
-					name: 'Get Directory Service Code',
-					value: 'getDirectoryServiceCode',
-					action: 'Get directory service code by APE code',
-				},
-				{
-					name: 'Get Way Types',
-					value: 'getWayTypes',
-					action: 'Get available way types for directory',
-				},
-				{
-					name: 'Get Main Service',
-					value: 'getMainService',
-					action: 'Get main service for a Freefax',
-				},
-				{
-					name: 'Get Service Infos',
-					value: 'getServiceInfos',
-					action: 'Get service information',
-				},
-				{
-					name: 'Update Service Infos',
-					value: 'updateServiceInfos',
-					action: 'Update service information',
-				},
-				{
-					name: 'Get Voicemail',
-					value: 'getVoicemail',
-					action: 'Get voicemail settings',
-				},
-				{
-					name: 'Update Voicemail',
-					value: 'updateVoicemail',
-					action: 'Update voicemail settings',
 				},
 				{
 					name: 'Change Voicemail Password',
@@ -203,14 +133,84 @@ export function description(displayOptions: IDisplayOptions): INodeProperties[] 
 					action: 'Change voicemail routing',
 				},
 				{
-					name: 'Get Voicemail Routing',
-					value: 'getVoicemailRouting',
-					action: 'Get voicemail routing',
+					name: 'Fetch Entreprise Informations',
+					value: 'fetchEntrepriseInformations',
+					action: 'Fetch entreprise informations for directory',
+				},
+				{
+					name: 'Get',
+					value: 'get',
+					action: 'Get details of a Freefax service',
+				},
+				{
+					name: 'Get Credits',
+					value: 'getCredits',
+					action: 'Get Freefax credits',
+				},
+				{
+					name: 'Get Directory',
+					value: 'getDirectory',
+					action: 'Get Freefax directory information',
+				},
+				{
+					name: 'Get Directory Service Code',
+					value: 'getDirectoryServiceCode',
+					action: 'Get directory service code by APE code',
+				},
+				{
+					name: 'Get Main Service',
+					value: 'getMainService',
+					action: 'Get main service for a Freefax',
+				},
+				{
+					name: 'Get Service Infos',
+					value: 'getServiceInfos',
+					action: 'Get service information',
+				},
+				{
+					name: 'Get Voicemail',
+					value: 'getVoicemail',
+					action: 'Get voicemail settings',
 				},
 				{
 					name: 'Get Voicemail Numbers',
 					value: 'getVoicemailNumbers',
 					action: 'Get voicemail numbers',
+				},
+				{
+					name: 'Get Voicemail Routing',
+					value: 'getVoicemailRouting',
+					action: 'Get voicemail routing',
+				},
+				{
+					name: 'Get Way Types',
+					value: 'getWayTypes',
+					action: 'Get available way types for directory',
+				},
+				{
+					name: 'List',
+					value: 'list',
+					action: 'List all Freefax services',
+				},
+				{
+					name: 'Update',
+					value: 'update',
+					action: 'Update a Freefax service',
+				},
+				{
+					name: 'Update Directory',
+					value: 'updateDirectory',
+					action: 'Update Freefax directory information',
+				},
+				{
+					name: 'Update Service Infos',
+					value: 'updateServiceInfos',
+					action: 'Update service information',
+				},
+				{
+					name: 'Update Voicemail',
+					value: 'updateVoicemail',
+					action: 'Update voicemail settings',
 				},
 			],
 			default: 'list',

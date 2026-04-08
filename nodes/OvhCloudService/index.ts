@@ -58,9 +58,9 @@ export function description(displayOptions: IDisplayOptions): INodeProperties[] 
 			noDataExpression: true,
 			options: [
 				{
-					name: 'List',
-					value: 'list',
-					action: 'List all services',
+					name: 'Create Renew',
+					value: 'createRenew',
+					action: 'Create a renew order',
 				},
 				{
 					name: 'Get',
@@ -68,19 +68,14 @@ export function description(displayOptions: IDisplayOptions): INodeProperties[] 
 					action: 'Get service details',
 				},
 				{
-					name: 'Update',
-					value: 'update',
-					action: 'Update service',
+					name: 'List',
+					value: 'list',
+					action: 'List all services',
 				},
 				{
 					name: 'List Renews',
 					value: 'listRenews',
 					action: 'List possible renews for a service',
-				},
-				{
-					name: 'Create Renew',
-					value: 'createRenew',
-					action: 'Create a renew order',
 				},
 				{
 					name: 'Reopen',
@@ -96,6 +91,11 @@ export function description(displayOptions: IDisplayOptions): INodeProperties[] 
 					name: 'Terminate',
 					value: 'terminate',
 					action: 'Terminate a suspended service',
+				},
+				{
+					name: 'Update',
+					value: 'update',
+					action: 'Update service',
 				},
 			],
 			default: 'list',

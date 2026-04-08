@@ -276,39 +276,9 @@ export function description(displayOptions: IDisplayOptions): INodeProperties[] 
 			noDataExpression: true,
 			options: [
 				{
-					name: 'List',
-					value: 'list',
-					action: 'List all IP blocks',
-				},
-				{
-					name: 'Get',
-					value: 'get',
-					action: 'Get details of an IP block',
-				},
-				{
-					name: 'Update',
-					value: 'update',
-					action: 'Update an IP block',
-				},
-				{
-					name: 'Terminate',
-					value: 'terminate',
-					action: 'Terminate an IP block',
-				},
-				{
-					name: 'Park',
-					value: 'park',
-					action: 'Park an IP block',
-				},
-				{
-					name: 'Move',
-					value: 'move',
-					action: 'Move an IP block to another service',
-				},
-				{
-					name: 'Move List',
-					value: 'moveList',
-					action: 'List available move destinations',
+					name: 'Campus List',
+					value: 'campusList',
+					action: 'List IP campuses',
 				},
 				{
 					name: 'Change Organisation',
@@ -316,54 +286,9 @@ export function description(displayOptions: IDisplayOptions): INodeProperties[] 
 					action: 'Change organisation of an IP block',
 				},
 				{
-					name: 'Campus List',
-					value: 'campusList',
-					action: 'List IP campuses',
-				},
-				{
-					name: 'Service List',
-					value: 'serviceList',
-					action: 'List IP services',
-				},
-				{
-					name: 'Service Get',
-					value: 'serviceGet',
-					action: 'Get IP service details',
-				},
-				{
-					name: 'Service Update',
-					value: 'serviceUpdate',
-					action: 'Update an IP service',
-				},
-				{
-					name: 'Service Change Contact',
-					value: 'serviceChangeContact',
-					action: 'Change contact for an IP service',
-				},
-				{
-					name: 'Service Confirm Termination',
-					value: 'serviceConfirmTermination',
-					action: 'Confirm IP service termination',
-				},
-				{
-					name: 'Service Terminate',
-					value: 'serviceTerminate',
-					action: 'Terminate an IP service',
-				},
-				{
-					name: 'Service Infos Get',
-					value: 'serviceInfosGet',
-					action: 'Get IP service information',
-				},
-				{
-					name: 'Service Infos Update',
-					value: 'serviceInfosUpdate',
-					action: 'Update IP service information',
-				},
-				{
-					name: 'IP Antihack List',
-					value: 'ipAntihackList',
-					action: 'List antihack entries',
+					name: 'Get',
+					value: 'get',
+					action: 'Get details of an IP block',
 				},
 				{
 					name: 'IP Antihack Get',
@@ -371,14 +296,14 @@ export function description(displayOptions: IDisplayOptions): INodeProperties[] 
 					action: 'Get antihack entry details',
 				},
 				{
+					name: 'IP Antihack List',
+					value: 'ipAntihackList',
+					action: 'List antihack entries',
+				},
+				{
 					name: 'IP Antihack Unblock',
 					value: 'ipAntihackUnblock',
 					action: 'Unblock an IP from antihack',
-				},
-				{
-					name: 'IP ARP List',
-					value: 'ipArpList',
-					action: 'List ARP entries',
 				},
 				{
 					name: 'IP ARP Get',
@@ -386,19 +311,19 @@ export function description(displayOptions: IDisplayOptions): INodeProperties[] 
 					action: 'Get ARP entry details',
 				},
 				{
+					name: 'IP ARP List',
+					value: 'ipArpList',
+					action: 'List ARP entries',
+				},
+				{
 					name: 'IP ARP Unblock',
 					value: 'ipArpUnblock',
 					action: 'Unblock an IP from ARP',
 				},
 				{
-					name: 'IP Delegation List',
-					value: 'ipDelegationList',
-					action: 'List delegation targets',
-				},
-				{
-					name: 'IP Delegation Get',
-					value: 'ipDelegationGet',
-					action: 'Get delegation target details',
+					name: 'IP BYOIP List Slicing',
+					value: 'ipBringYourOwnIpListSlicing',
+					action: 'List BYOIP slicing configurations',
 				},
 				{
 					name: 'IP Delegation Create',
@@ -411,14 +336,14 @@ export function description(displayOptions: IDisplayOptions): INodeProperties[] 
 					action: 'Delete a delegation target',
 				},
 				{
-					name: 'IP Firewall List',
-					value: 'ipFirewallList',
-					action: 'List firewall entries',
+					name: 'IP Delegation Get',
+					value: 'ipDelegationGet',
+					action: 'Get delegation target details',
 				},
 				{
-					name: 'IP Firewall Get',
-					value: 'ipFirewallGet',
-					action: 'Get firewall entry details',
+					name: 'IP Delegation List',
+					value: 'ipDelegationList',
+					action: 'List delegation targets',
 				},
 				{
 					name: 'IP Firewall Create',
@@ -431,19 +356,14 @@ export function description(displayOptions: IDisplayOptions): INodeProperties[] 
 					action: 'Delete a firewall entry',
 				},
 				{
-					name: 'IP Firewall Update',
-					value: 'ipFirewallUpdate',
-					action: 'Update a firewall entry',
+					name: 'IP Firewall Get',
+					value: 'ipFirewallGet',
+					action: 'Get firewall entry details',
 				},
 				{
-					name: 'IP Firewall Rule List',
-					value: 'ipFirewallRuleList',
-					action: 'List firewall rules',
-				},
-				{
-					name: 'IP Firewall Rule Get',
-					value: 'ipFirewallRuleGet',
-					action: 'Get firewall rule details',
+					name: 'IP Firewall List',
+					value: 'ipFirewallList',
+					action: 'List firewall entries',
 				},
 				{
 					name: 'IP Firewall Rule Create',
@@ -456,9 +376,19 @@ export function description(displayOptions: IDisplayOptions): INodeProperties[] 
 					action: 'Delete a firewall rule',
 				},
 				{
-					name: 'IP Game List',
-					value: 'ipGameList',
-					action: 'List game protection entries',
+					name: 'IP Firewall Rule Get',
+					value: 'ipFirewallRuleGet',
+					action: 'Get firewall rule details',
+				},
+				{
+					name: 'IP Firewall Rule List',
+					value: 'ipFirewallRuleList',
+					action: 'List firewall rules',
+				},
+				{
+					name: 'IP Firewall Update',
+					value: 'ipFirewallUpdate',
+					action: 'Update a firewall entry',
 				},
 				{
 					name: 'IP Game Get',
@@ -466,14 +396,9 @@ export function description(displayOptions: IDisplayOptions): INodeProperties[] 
 					action: 'Get game protection entry details',
 				},
 				{
-					name: 'IP Game Rule List',
-					value: 'ipGameRuleList',
-					action: 'List game protection rules',
-				},
-				{
-					name: 'IP Game Rule Get',
-					value: 'ipGameRuleGet',
-					action: 'Get game protection rule details',
+					name: 'IP Game List',
+					value: 'ipGameList',
+					action: 'List game protection entries',
 				},
 				{
 					name: 'IP Game Rule Create',
@@ -486,9 +411,14 @@ export function description(displayOptions: IDisplayOptions): INodeProperties[] 
 					action: 'Delete a game protection rule',
 				},
 				{
-					name: 'IP Migration Token Get',
-					value: 'ipMigrationTokenGet',
-					action: 'Get migration token',
+					name: 'IP Game Rule Get',
+					value: 'ipGameRuleGet',
+					action: 'Get game protection rule details',
+				},
+				{
+					name: 'IP Game Rule List',
+					value: 'ipGameRuleList',
+					action: 'List game protection rules',
 				},
 				{
 					name: 'IP Migration Token Create',
@@ -496,49 +426,14 @@ export function description(displayOptions: IDisplayOptions): INodeProperties[] 
 					action: 'Generate a migration token',
 				},
 				{
+					name: 'IP Migration Token Get',
+					value: 'ipMigrationTokenGet',
+					action: 'Get migration token',
+				},
+				{
 					name: 'IP Mitigation Get',
 					value: 'ipMitigationGet',
 					action: 'Get mitigation details',
-				},
-				{
-					name: 'IP Phishing List',
-					value: 'ipPhishingList',
-					action: 'List anti-phishing entries',
-				},
-				{
-					name: 'IP Phishing Get',
-					value: 'ipPhishingGet',
-					action: 'Get anti-phishing entry details',
-				},
-				{
-					name: 'IP Reverse List',
-					value: 'ipReverseList',
-					action: 'List reverse DNS entries',
-				},
-				{
-					name: 'IP RIPE Get',
-					value: 'ipRipeGet',
-					action: 'Get RIPE information',
-				},
-				{
-					name: 'IP Spam List',
-					value: 'ipSpamList',
-					action: 'List spam entries',
-				},
-				{
-					name: 'IP Spam Get',
-					value: 'ipSpamGet',
-					action: 'Get spam entry details',
-				},
-				{
-					name: 'IP Spam Get Stats',
-					value: 'ipSpamGetStats',
-					action: 'Get spam statistics',
-				},
-				{
-					name: 'IP Spam Unblock',
-					value: 'ipSpamUnblock',
-					action: 'Unblock IP from anti-spam system',
 				},
 				{
 					name: 'IP Mitigation Profiles Delete',
@@ -551,14 +446,119 @@ export function description(displayOptions: IDisplayOptions): INodeProperties[] 
 					action: 'Update a mitigation profile',
 				},
 				{
+					name: 'IP Phishing Get',
+					value: 'ipPhishingGet',
+					action: 'Get anti-phishing entry details',
+				},
+				{
+					name: 'IP Phishing List',
+					value: 'ipPhishingList',
+					action: 'List anti-phishing entries',
+				},
+				{
+					name: 'IP Reverse List',
+					value: 'ipReverseList',
+					action: 'List reverse DNS entries',
+				},
+				{
+					name: 'IP RIPE Get',
+					value: 'ipRipeGet',
+					action: 'Get RIPE information',
+				},
+				{
 					name: 'IP RIPE Update',
 					value: 'ipRipeUpdate',
 					action: 'Update RIPE information',
 				},
 				{
-					name: 'IP BYOIP List Slicing',
-					value: 'ipBringYourOwnIpListSlicing',
-					action: 'List BYOIP slicing configurations',
+					name: 'IP Spam Get',
+					value: 'ipSpamGet',
+					action: 'Get spam entry details',
+				},
+				{
+					name: 'IP Spam Get Stats',
+					value: 'ipSpamGetStats',
+					action: 'Get spam statistics',
+				},
+				{
+					name: 'IP Spam List',
+					value: 'ipSpamList',
+					action: 'List spam entries',
+				},
+				{
+					name: 'IP Spam Unblock',
+					value: 'ipSpamUnblock',
+					action: 'Unblock IP from anti-spam system',
+				},
+				{
+					name: 'List',
+					value: 'list',
+					action: 'List all IP blocks',
+				},
+				{
+					name: 'Move',
+					value: 'move',
+					action: 'Move an IP block to another service',
+				},
+				{
+					name: 'Move List',
+					value: 'moveList',
+					action: 'List available move destinations',
+				},
+				{
+					name: 'Park',
+					value: 'park',
+					action: 'Park an IP block',
+				},
+				{
+					name: 'Service Change Contact',
+					value: 'serviceChangeContact',
+					action: 'Change contact for an IP service',
+				},
+				{
+					name: 'Service Confirm Termination',
+					value: 'serviceConfirmTermination',
+					action: 'Confirm IP service termination',
+				},
+				{
+					name: 'Service Get',
+					value: 'serviceGet',
+					action: 'Get IP service details',
+				},
+				{
+					name: 'Service Infos Get',
+					value: 'serviceInfosGet',
+					action: 'Get IP service information',
+				},
+				{
+					name: 'Service Infos Update',
+					value: 'serviceInfosUpdate',
+					action: 'Update IP service information',
+				},
+				{
+					name: 'Service List',
+					value: 'serviceList',
+					action: 'List IP services',
+				},
+				{
+					name: 'Service Terminate',
+					value: 'serviceTerminate',
+					action: 'Terminate an IP service',
+				},
+				{
+					name: 'Service Update',
+					value: 'serviceUpdate',
+					action: 'Update an IP service',
+				},
+				{
+					name: 'Terminate',
+					value: 'terminate',
+					action: 'Terminate an IP block',
+				},
+				{
+					name: 'Update',
+					value: 'update',
+					action: 'Update an IP block',
 				},
 			],
 			default: 'list',

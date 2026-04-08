@@ -16,7 +16,8 @@ import { ApiClient } from '../../../../../shared/transport/ApiClient';
  * @returns Array of node properties for the operation
  */
 export function description(displayOptions: IDisplayOptions): INodeProperties[] {
-	return [		{
+	return [
+		{
 			displayName: 'Name',
 			name: 'name',
 			type: 'string',
@@ -39,7 +40,8 @@ export function description(displayOptions: IDisplayOptions): INodeProperties[] 
 			name: 'flushDatabase',
 			type: 'boolean',
 			default: false,
-			description: 'If database will be flushed before importing the dump. Default: false.',
+			description:
+				'Whether the database will be flushed before importing the dump. Default: false.',
 			displayOptions,
 		},
 	];
@@ -60,6 +62,8 @@ export async function execute(this: IExecuteFunctions): Promise<INodeExecutionDa
 	const serviceName = this.getNodeParameter('serviceName', 0) as string;
 	const copyId = this.getNodeParameter('copyId', 0) as string;
 	const flushDatabase = this.getNodeParameter('flushDatabase', 0) as boolean;
-	const data = (await client.httpPost(`/hosting/web/${serviceName}/database/${name}/copyRestore`, { body: { copyId: copyId, flushDatabase: flushDatabase } })) as IDataObject;
+	const data = (await client.httpPost(`/hosting/web/${serviceName}/database/${name}/copyRestore`, {
+		body: { copyId: copyId, flushDatabase: flushDatabase },
+	})) as IDataObject;
 	return [{ json: data }];
 }

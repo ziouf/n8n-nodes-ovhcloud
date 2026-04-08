@@ -35,61 +35,6 @@ export function description(displayOptions: IDisplayOptions): INodeProperties[] 
 			noDataExpression: true,
 			options: [
 				{
-					name: 'List',
-					value: 'list',
-					action: 'List all Virtuozzo License services',
-				},
-				{
-					name: 'Get',
-					value: 'get',
-					action: 'Get details of a Virtuozzo License service',
-				},
-				{
-					name: 'Get Service Infos',
-					value: 'getServiceInfos',
-					action: 'Get service information for a Virtuozzo License',
-				},
-				{
-					name: 'Update Service Infos',
-					value: 'updateServiceInfos',
-					action: 'Update service information for a Virtuozzo License',
-				},
-				{
-					name: 'List Tasks',
-					value: 'listTasks',
-					action: 'List tasks for a Virtuozzo License',
-				},
-				{
-					name: 'Get Task',
-					value: 'getTask',
-					action: 'Get a specific task for a Virtuozzo License',
-				},
-				{
-					name: 'Terminate',
-					value: 'terminate',
-					action: 'Terminate a Virtuozzo License service',
-				},
-				{
-					name: 'Confirm Termination',
-					value: 'confirmTermination',
-					action: 'Confirm termination of a Virtuozzo License service',
-				},
-				{
-					name: 'Get Orderable Versions',
-					value: 'getOrderableVersions',
-					action: 'Get orderable Virtuozzo versions',
-				},
-				{
-					name: 'Update',
-					value: 'update',
-					action: 'Update a Virtuozzo License service',
-				},
-				{
-					name: 'Get Allowed Destination IP',
-					value: 'getAllowedDestinationIp',
-					action: 'Get allowed destination IPs for a Virtuozzo License',
-				},
-				{
 					name: 'Can License Be Moved To',
 					value: 'canLicenseBeMovedTo',
 					action: 'Check if a Virtuozzo License can be moved to another IP',
@@ -100,9 +45,24 @@ export function description(displayOptions: IDisplayOptions): INodeProperties[] 
 					action: 'Change the IP of a Virtuozzo License',
 				},
 				{
-					name: 'List Options',
-					value: 'listOptions',
-					action: 'List options for a Virtuozzo License',
+					name: 'Confirm Termination',
+					value: 'confirmTermination',
+					action: 'Confirm termination of a Virtuozzo License service',
+				},
+				{
+					name: 'Delete Option',
+					value: 'deleteOption',
+					action: 'Delete an option from a Virtuozzo License',
+				},
+				{
+					name: 'Get',
+					value: 'get',
+					action: 'Get details of a Virtuozzo License service',
+				},
+				{
+					name: 'Get Allowed Destination IP',
+					value: 'getAllowedDestinationIp',
+					action: 'Get allowed destination IPs for a Virtuozzo License',
 				},
 				{
 					name: 'Get Option',
@@ -110,9 +70,49 @@ export function description(displayOptions: IDisplayOptions): INodeProperties[] 
 					action: 'Get a specific option for a Virtuozzo License',
 				},
 				{
-					name: 'Delete Option',
-					value: 'deleteOption',
-					action: 'Delete an option from a Virtuozzo License',
+					name: 'Get Orderable Versions',
+					value: 'getOrderableVersions',
+					action: 'Get orderable Virtuozzo versions',
+				},
+				{
+					name: 'Get Service Infos',
+					value: 'getServiceInfos',
+					action: 'Get service information for a Virtuozzo License',
+				},
+				{
+					name: 'Get Task',
+					value: 'getTask',
+					action: 'Get a specific task for a Virtuozzo License',
+				},
+				{
+					name: 'List',
+					value: 'list',
+					action: 'List all Virtuozzo License services',
+				},
+				{
+					name: 'List Options',
+					value: 'listOptions',
+					action: 'List options for a Virtuozzo License',
+				},
+				{
+					name: 'List Tasks',
+					value: 'listTasks',
+					action: 'List tasks for a Virtuozzo License',
+				},
+				{
+					name: 'Terminate',
+					value: 'terminate',
+					action: 'Terminate a Virtuozzo License service',
+				},
+				{
+					name: 'Update',
+					value: 'update',
+					action: 'Update a Virtuozzo License service',
+				},
+				{
+					name: 'Update Service Infos',
+					value: 'updateServiceInfos',
+					action: 'Update service information for a Virtuozzo License',
 				},
 			],
 			default: 'list',

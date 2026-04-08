@@ -149,29 +149,9 @@ export function description(displayOptions: IDisplayOptions): INodeProperties[] 
 			noDataExpression: true,
 			options: [
 				{
-					name: 'List',
-					value: 'list',
-					action: 'List all IP Load Balancers',
-				},
-				{
-					name: 'Get',
-					value: 'get',
-					action: 'Get details of an IP Load Balancer',
-				},
-				{
-					name: 'Update',
-					value: 'update',
-					action: 'Update an IP Load Balancer',
-				},
-				{
-					name: 'Get Service Infos',
-					value: 'getServiceInfos',
-					action: 'Get service information for an IP Load Balancer',
-				},
-				{
-					name: 'Update Service Infos',
-					value: 'updateServiceInfos',
-					action: 'Update service information for an IP Load Balancer',
+					name: 'Cancel Termination Zone',
+					value: 'cancelTerminationZone',
+					action: 'Cancel termination of a zone for an IP Load Balancer',
 				},
 				{
 					name: 'Change Contact',
@@ -179,124 +159,9 @@ export function description(displayOptions: IDisplayOptions): INodeProperties[] 
 					action: 'Change contact for an IP Load Balancer',
 				},
 				{
-					name: 'Terminate',
-					value: 'terminate',
-					action: 'Terminate an IP Load Balancer service',
-				},
-				{
 					name: 'Confirm Termination',
 					value: 'confirmTermination',
 					action: 'Confirm termination of an IP Load Balancer service',
-				},
-				{
-					name: 'Refresh',
-					value: 'refresh',
-					action: 'Apply configuration to an IP Load Balancer',
-				},
-				{
-					name: 'Get Status',
-					value: 'status',
-					action: 'Get global status of an IP Load Balancer',
-				},
-				{
-					name: 'List Failover IPs',
-					value: 'listFailover',
-					action: 'List failover IPs for an IP Load Balancer',
-				},
-				{
-					name: 'Get Instances State',
-					value: 'instancesState',
-					action: 'Get instances state of an IP Load Balancer',
-				},
-				{
-					name: 'Get Metrics Token',
-					value: 'metricsToken',
-					action: 'Get metrics token for an IP Load Balancer',
-				},
-				{
-					name: 'List NAT IPs',
-					value: 'listNatIp',
-					action: 'List NAT IPs for an IP Load Balancer',
-				},
-				{
-					name: 'List Pending Changes',
-					value: 'listPendingChanges',
-					action: 'List pending changes for an IP Load Balancer',
-				},
-				{
-					name: 'List Quotas',
-					value: 'listQuota',
-					action: 'List quotas for an IP Load Balancer',
-				},
-				{
-					name: 'Get Quota',
-					value: 'getQuota',
-					action: 'Get quota for an IP Load Balancer',
-				},
-				{
-					name: 'Update Quota',
-					value: 'updateQuota',
-					action: 'Update quota for an IP Load Balancer',
-				},
-				{
-					name: 'List Quota History',
-					value: 'listQuotaHistory',
-					action: 'List quota history for an IP Load Balancer',
-				},
-				{
-					name: 'Get Quota History',
-					value: 'getQuotaHistory',
-					action: 'Get quota history for an IP Load Balancer',
-				},
-				{
-					name: 'List Zones',
-					value: 'listZone',
-					action: 'List zones for an IP Load Balancer',
-				},
-				{
-					name: 'Get Zone',
-					value: 'getZone',
-					action: 'Get a zone for an IP Load Balancer',
-				},
-				{
-					name: 'Terminate Zone',
-					value: 'terminateZone',
-					action: 'Terminate a zone for an IP Load Balancer',
-				},
-				{
-					name: 'Cancel Termination Zone',
-					value: 'cancelTerminationZone',
-					action: 'Cancel termination of a zone for an IP Load Balancer',
-				},
-				{
-					name: 'List SSL Certificates',
-					value: 'listSsl',
-					action: 'List SSL certificates for an IP Load Balancer',
-				},
-				{
-					name: 'Create SSL Certificate',
-					value: 'createSsl',
-					action: 'Create an SSL certificate for an IP Load Balancer',
-				},
-				{
-					name: 'Get SSL Certificate',
-					value: 'getSsl',
-					action: 'Get an SSL certificate for an IP Load Balancer',
-				},
-				{
-					name: 'Delete SSL Certificate',
-					value: 'deleteSsl',
-					action: 'Delete an SSL certificate for an IP Load Balancer',
-				},
-				{
-					name: 'Update SSL Certificate',
-					value: 'updateSsl',
-					action: 'Update an SSL certificate for an IP Load Balancer',
-				},
-				{
-					name: 'List HTTP Farms',
-					value: 'listHttpFarms',
-					action: 'List HTTP farms for an IP Load Balancer',
 				},
 				{
 					name: 'Create HTTP Farm',
@@ -304,49 +169,9 @@ export function description(displayOptions: IDisplayOptions): INodeProperties[] 
 					action: 'Create an HTTP farm for an IP Load Balancer',
 				},
 				{
-					name: 'Get HTTP Farm',
-					value: 'getHttpFarm',
-					action: 'Get an HTTP farm for an IP Load Balancer',
-				},
-				{
-					name: 'Update HTTP Farm',
-					value: 'updateHttpFarm',
-					action: 'Update an HTTP farm for an IP Load Balancer',
-				},
-				{
-					name: 'Delete HTTP Farm',
-					value: 'deleteHttpFarm',
-					action: 'Delete an HTTP farm for an IP Load Balancer',
-				},
-				{
-					name: 'List HTTP Farm Servers',
-					value: 'listHttpFarmServers',
-					action: 'List HTTP farm servers for an IP Load Balancer',
-				},
-				{
 					name: 'Create HTTP Farm Server',
 					value: 'createHttpFarmServer',
 					action: 'Create an HTTP farm server for an IP Load Balancer',
-				},
-				{
-					name: 'Get HTTP Farm Server',
-					value: 'getHttpFarmServer',
-					action: 'Get an HTTP farm server for an IP Load Balancer',
-				},
-				{
-					name: 'Delete HTTP Farm Server',
-					value: 'deleteHttpFarmServer',
-					action: 'Delete an HTTP farm server for an IP Load Balancer',
-				},
-				{
-					name: 'Update HTTP Farm Server',
-					value: 'updateHttpFarmServer',
-					action: 'Update an HTTP farm server for an IP Load Balancer',
-				},
-				{
-					name: 'List HTTP Frontends',
-					value: 'listHttpFrontends',
-					action: 'List HTTP frontends for an IP Load Balancer',
 				},
 				{
 					name: 'Create HTTP Frontend',
@@ -354,49 +179,9 @@ export function description(displayOptions: IDisplayOptions): INodeProperties[] 
 					action: 'Create an HTTP frontend for an IP Load Balancer',
 				},
 				{
-					name: 'Get HTTP Frontend',
-					value: 'getHttpFrontend',
-					action: 'Get an HTTP frontend for an IP Load Balancer',
-				},
-				{
-					name: 'Delete HTTP Frontend',
-					value: 'deleteHttpFrontend',
-					action: 'Delete an HTTP frontend for an IP Load Balancer',
-				},
-				{
-					name: 'Update HTTP Frontend',
-					value: 'updateHttpFrontend',
-					action: 'Update an HTTP frontend for an IP Load Balancer',
-				},
-				{
-					name: 'List HTTP Routes',
-					value: 'listHttpRoutes',
-					action: 'List HTTP routes for an IP Load Balancer',
-				},
-				{
 					name: 'Create HTTP Route',
 					value: 'createHttpRoute',
 					action: 'Create an HTTP route for an IP Load Balancer',
-				},
-				{
-					name: 'Get HTTP Route',
-					value: 'getHttpRoute',
-					action: 'Get an HTTP route for an IP Load Balancer',
-				},
-				{
-					name: 'Delete HTTP Route',
-					value: 'deleteHttpRoute',
-					action: 'Delete an HTTP route for an IP Load Balancer',
-				},
-				{
-					name: 'Update HTTP Route',
-					value: 'updateHttpRoute',
-					action: 'Update an HTTP route for an IP Load Balancer',
-				},
-				{
-					name: 'List HTTP Route Rules',
-					value: 'listHttpRouteRules',
-					action: 'List HTTP route rules for an IP Load Balancer',
 				},
 				{
 					name: 'Create HTTP Route Rule',
@@ -404,24 +189,14 @@ export function description(displayOptions: IDisplayOptions): INodeProperties[] 
 					action: 'Create an HTTP route rule for an IP Load Balancer',
 				},
 				{
-					name: 'Get HTTP Route Rule',
-					value: 'getHttpRouteRule',
-					action: 'Get an HTTP route rule for an IP Load Balancer',
+					name: 'Create Log Subscription',
+					value: 'createLogSubscription',
+					action: 'Create a log subscription for an IP Load Balancer',
 				},
 				{
-					name: 'Delete HTTP Route Rule',
-					value: 'deleteHttpRouteRule',
-					action: 'Delete an HTTP route rule for an IP Load Balancer',
-				},
-				{
-					name: 'Update HTTP Route Rule',
-					value: 'updateHttpRouteRule',
-					action: 'Update an HTTP route rule for an IP Load Balancer',
-				},
-				{
-					name: 'List TCP Farms',
-					value: 'listTcpFarms',
-					action: 'List TCP farms for an IP Load Balancer',
+					name: 'Create SSL Certificate',
+					value: 'createSsl',
+					action: 'Create an SSL certificate for an IP Load Balancer',
 				},
 				{
 					name: 'Create TCP Farm',
@@ -429,49 +204,9 @@ export function description(displayOptions: IDisplayOptions): INodeProperties[] 
 					action: 'Create a TCP farm for an IP Load Balancer',
 				},
 				{
-					name: 'Get TCP Farm',
-					value: 'getTcpFarm',
-					action: 'Get a TCP farm for an IP Load Balancer',
-				},
-				{
-					name: 'Delete TCP Farm',
-					value: 'deleteTcpFarm',
-					action: 'Delete a TCP farm for an IP Load Balancer',
-				},
-				{
-					name: 'Update TCP Farm',
-					value: 'updateTcpFarm',
-					action: 'Update a TCP farm for an IP Load Balancer',
-				},
-				{
-					name: 'List TCP Farm Servers',
-					value: 'listTcpFarmServers',
-					action: 'List TCP farm servers for an IP Load Balancer',
-				},
-				{
 					name: 'Create TCP Farm Server',
 					value: 'createTcpFarmServer',
 					action: 'Create a TCP farm server for an IP Load Balancer',
-				},
-				{
-					name: 'Get TCP Farm Server',
-					value: 'getTcpFarmServer',
-					action: 'Get a TCP farm server for an IP Load Balancer',
-				},
-				{
-					name: 'Delete TCP Farm Server',
-					value: 'deleteTcpFarmServer',
-					action: 'Delete a TCP farm server for an IP Load Balancer',
-				},
-				{
-					name: 'Update TCP Farm Server',
-					value: 'updateTcpFarmServer',
-					action: 'Update a TCP farm server for an IP Load Balancer',
-				},
-				{
-					name: 'List TCP Frontends',
-					value: 'listTcpFrontends',
-					action: 'List TCP frontends for an IP Load Balancer',
 				},
 				{
 					name: 'Create TCP Frontend',
@@ -479,49 +214,9 @@ export function description(displayOptions: IDisplayOptions): INodeProperties[] 
 					action: 'Create a TCP frontend for an IP Load Balancer',
 				},
 				{
-					name: 'Get TCP Frontend',
-					value: 'getTcpFrontend',
-					action: 'Get a TCP frontend for an IP Load Balancer',
-				},
-				{
-					name: 'Delete TCP Frontend',
-					value: 'deleteTcpFrontend',
-					action: 'Delete a TCP frontend for an IP Load Balancer',
-				},
-				{
-					name: 'Update TCP Frontend',
-					value: 'updateTcpFrontend',
-					action: 'Update a TCP frontend for an IP Load Balancer',
-				},
-				{
-					name: 'List TCP Routes',
-					value: 'listTcpRoutes',
-					action: 'List TCP routes for an IP Load Balancer',
-				},
-				{
 					name: 'Create TCP Route',
 					value: 'createTcpRoute',
 					action: 'Create a TCP route for an IP Load Balancer',
-				},
-				{
-					name: 'Get TCP Route',
-					value: 'getTcpRoute',
-					action: 'Get a TCP route for an IP Load Balancer',
-				},
-				{
-					name: 'Delete TCP Route',
-					value: 'deleteTcpRoute',
-					action: 'Delete a TCP route for an IP Load Balancer',
-				},
-				{
-					name: 'Update TCP Route',
-					value: 'updateTcpRoute',
-					action: 'Update a TCP route for an IP Load Balancer',
-				},
-				{
-					name: 'List TCP Route Rules',
-					value: 'listTcpRouteRules',
-					action: 'List TCP route rules for an IP Load Balancer',
 				},
 				{
 					name: 'Create TCP Route Rule',
@@ -529,49 +224,9 @@ export function description(displayOptions: IDisplayOptions): INodeProperties[] 
 					action: 'Create a TCP route rule for an IP Load Balancer',
 				},
 				{
-					name: 'Get TCP Route Rule',
-					value: 'getTcpRouteRule',
-					action: 'Get a TCP route rule for an IP Load Balancer',
-				},
-				{
-					name: 'Delete TCP Route Rule',
-					value: 'deleteTcpRouteRule',
-					action: 'Delete a TCP route rule for an IP Load Balancer',
-				},
-				{
-					name: 'Update TCP Route Rule',
-					value: 'updateTcpRouteRule',
-					action: 'Update a TCP route rule for an IP Load Balancer',
-				},
-				{
-					name: 'List UDP Farms',
-					value: 'listUdpFarms',
-					action: 'List UDP farms for an IP Load Balancer',
-				},
-				{
 					name: 'Create UDP Farm',
 					value: 'createUdpFarm',
 					action: 'Create a UDP farm for an IP Load Balancer',
-				},
-				{
-					name: 'Get UDP Farm',
-					value: 'getUdpFarm',
-					action: 'Get a UDP farm for an IP Load Balancer',
-				},
-				{
-					name: 'Delete UDP Farm',
-					value: 'deleteUdpFarm',
-					action: 'Delete a UDP farm for an IP Load Balancer',
-				},
-				{
-					name: 'Update UDP Farm',
-					value: 'updateUdpFarm',
-					action: 'Update a UDP farm for an IP Load Balancer',
-				},
-				{
-					name: 'List UDP Farm Servers',
-					value: 'listUdpFarmServers',
-					action: 'List UDP farm servers for an IP Load Balancer',
 				},
 				{
 					name: 'Create UDP Farm Server',
@@ -579,49 +234,9 @@ export function description(displayOptions: IDisplayOptions): INodeProperties[] 
 					action: 'Create a UDP farm server for an IP Load Balancer',
 				},
 				{
-					name: 'Get UDP Farm Server',
-					value: 'getUdpFarmServer',
-					action: 'Get a UDP farm server for an IP Load Balancer',
-				},
-				{
-					name: 'Delete UDP Farm Server',
-					value: 'deleteUdpFarmServer',
-					action: 'Delete a UDP farm server for an IP Load Balancer',
-				},
-				{
-					name: 'Update UDP Farm Server',
-					value: 'updateUdpFarmServer',
-					action: 'Update a UDP farm server for an IP Load Balancer',
-				},
-				{
-					name: 'List UDP Frontends',
-					value: 'listUdpFrontends',
-					action: 'List UDP frontends for an IP Load Balancer',
-				},
-				{
 					name: 'Create UDP Frontend',
 					value: 'createUdpFrontend',
 					action: 'Create a UDP frontend for an IP Load Balancer',
-				},
-				{
-					name: 'Get UDP Frontend',
-					value: 'getUdpFrontend',
-					action: 'Get a UDP frontend for an IP Load Balancer',
-				},
-				{
-					name: 'Delete UDP Frontend',
-					value: 'deleteUdpFrontend',
-					action: 'Delete a UDP frontend for an IP Load Balancer',
-				},
-				{
-					name: 'Update UDP Frontend',
-					value: 'updateUdpFrontend',
-					action: 'Update a UDP frontend for an IP Load Balancer',
-				},
-				{
-					name: 'List vRack Networks',
-					value: 'listVrackNetworks',
-					action: 'List vRack networks for an IP Load Balancer',
 				},
 				{
 					name: 'Create vRack Network',
@@ -629,59 +244,29 @@ export function description(displayOptions: IDisplayOptions): INodeProperties[] 
 					action: 'Create a vRack network for an IP Load Balancer',
 				},
 				{
-					name: 'Get vRack Network',
-					value: 'getVrackNetwork',
-					action: 'Get a vRack network for an IP Load Balancer',
+					name: 'Delete HTTP Farm',
+					value: 'deleteHttpFarm',
+					action: 'Delete an HTTP farm for an IP Load Balancer',
 				},
 				{
-					name: 'Delete vRack Network',
-					value: 'deleteVrackNetwork',
-					action: 'Delete a vRack network for an IP Load Balancer',
+					name: 'Delete HTTP Farm Server',
+					value: 'deleteHttpFarmServer',
+					action: 'Delete an HTTP farm server for an IP Load Balancer',
 				},
 				{
-					name: 'Update vRack Network',
-					value: 'updateVrackNetwork',
-					action: 'Update a vRack network for an IP Load Balancer',
+					name: 'Delete HTTP Frontend',
+					value: 'deleteHttpFrontend',
+					action: 'Delete an HTTP frontend for an IP Load Balancer',
 				},
 				{
-					name: 'Update vRack Network Farm IDs',
-					value: 'updateVrackNetworkFarmId',
-					action: 'Update farm IDs for a vRack network',
+					name: 'Delete HTTP Route',
+					value: 'deleteHttpRoute',
+					action: 'Delete an HTTP route for an IP Load Balancer',
 				},
 				{
-					name: 'Get vRack Status',
-					value: 'vrackStatus',
-					action: 'Get vRack status for an IP Load Balancer',
-				},
-				{
-					name: 'Get vRack Network Creation Rules',
-					value: 'vrackNetworkCreationRules',
-					action: 'Get vRack network creation rules',
-				},
-				{
-					name: 'List Tasks',
-					value: 'listTasks',
-					action: 'List tasks for an IP Load Balancer',
-				},
-				{
-					name: 'Get Task',
-					value: 'getTask',
-					action: 'Get a task for an IP Load Balancer',
-				},
-				{
-					name: 'List Log Subscriptions',
-					value: 'listLogSubscriptions',
-					action: 'List log subscriptions for an IP Load Balancer',
-				},
-				{
-					name: 'Create Log Subscription',
-					value: 'createLogSubscription',
-					action: 'Create a log subscription for an IP Load Balancer',
-				},
-				{
-					name: 'Get Log Subscription',
-					value: 'getLogSubscription',
-					action: 'Get a log subscription for an IP Load Balancer',
+					name: 'Delete HTTP Route Rule',
+					value: 'deleteHttpRouteRule',
+					action: 'Delete an HTTP route rule for an IP Load Balancer',
 				},
 				{
 					name: 'Delete Log Subscription',
@@ -689,14 +274,54 @@ export function description(displayOptions: IDisplayOptions): INodeProperties[] 
 					action: 'Delete a log subscription for an IP Load Balancer',
 				},
 				{
-					name: 'List Log Kinds',
-					value: 'listLogKind',
-					action: 'List log kinds for an IP Load Balancer',
+					name: 'Delete SSL Certificate',
+					value: 'deleteSsl',
+					action: 'Delete an SSL certificate for an IP Load Balancer',
 				},
 				{
-					name: 'Get Log Kind',
-					value: 'getLogKind',
-					action: 'Get a log kind for an IP Load Balancer',
+					name: 'Delete TCP Farm',
+					value: 'deleteTcpFarm',
+					action: 'Delete a TCP farm for an IP Load Balancer',
+				},
+				{
+					name: 'Delete TCP Farm Server',
+					value: 'deleteTcpFarmServer',
+					action: 'Delete a TCP farm server for an IP Load Balancer',
+				},
+				{
+					name: 'Delete TCP Frontend',
+					value: 'deleteTcpFrontend',
+					action: 'Delete a TCP frontend for an IP Load Balancer',
+				},
+				{
+					name: 'Delete TCP Route',
+					value: 'deleteTcpRoute',
+					action: 'Delete a TCP route for an IP Load Balancer',
+				},
+				{
+					name: 'Delete TCP Route Rule',
+					value: 'deleteTcpRouteRule',
+					action: 'Delete a TCP route rule for an IP Load Balancer',
+				},
+				{
+					name: 'Delete UDP Farm',
+					value: 'deleteUdpFarm',
+					action: 'Delete a UDP farm for an IP Load Balancer',
+				},
+				{
+					name: 'Delete UDP Farm Server',
+					value: 'deleteUdpFarmServer',
+					action: 'Delete a UDP farm server for an IP Load Balancer',
+				},
+				{
+					name: 'Delete UDP Frontend',
+					value: 'deleteUdpFrontend',
+					action: 'Delete a UDP frontend for an IP Load Balancer',
+				},
+				{
+					name: 'Delete vRack Network',
+					value: 'deleteVrackNetwork',
+					action: 'Delete a vRack network for an IP Load Balancer',
 				},
 				{
 					name: 'Generate Log URL',
@@ -704,24 +329,149 @@ export function description(displayOptions: IDisplayOptions): INodeProperties[] 
 					action: 'Generate a log URL for an IP Load Balancer',
 				},
 				{
-					name: 'Order Free Certificate',
-					value: 'freeCertificate',
-					action: 'Order a free certificate for an IP Load Balancer',
+					name: 'Get',
+					value: 'get',
+					action: 'Get details of an IP Load Balancer',
 				},
 				{
-					name: 'List Defined Farms',
-					value: 'listDefinedFarms',
-					action: 'List defined farms for an IP Load Balancer',
+					name: 'Get HTTP Farm',
+					value: 'getHttpFarm',
+					action: 'Get an HTTP farm for an IP Load Balancer',
 				},
 				{
-					name: 'List Defined Frontends',
-					value: 'listDefinedFrontends',
-					action: 'List defined frontends for an IP Load Balancer',
+					name: 'Get HTTP Farm Server',
+					value: 'getHttpFarmServer',
+					action: 'Get an HTTP farm server for an IP Load Balancer',
 				},
 				{
-					name: 'List Defined Routes',
-					value: 'listDefinedRoutes',
-					action: 'List defined routes for an IP Load Balancer',
+					name: 'Get HTTP Frontend',
+					value: 'getHttpFrontend',
+					action: 'Get an HTTP frontend for an IP Load Balancer',
+				},
+				{
+					name: 'Get HTTP Route',
+					value: 'getHttpRoute',
+					action: 'Get an HTTP route for an IP Load Balancer',
+				},
+				{
+					name: 'Get HTTP Route Rule',
+					value: 'getHttpRouteRule',
+					action: 'Get an HTTP route rule for an IP Load Balancer',
+				},
+				{
+					name: 'Get Instances State',
+					value: 'instancesState',
+					action: 'Get instances state of an IP Load Balancer',
+				},
+				{
+					name: 'Get Log Kind',
+					value: 'getLogKind',
+					action: 'Get a log kind for an IP Load Balancer',
+				},
+				{
+					name: 'Get Log Subscription',
+					value: 'getLogSubscription',
+					action: 'Get a log subscription for an IP Load Balancer',
+				},
+				{
+					name: 'Get Metrics Token',
+					value: 'metricsToken',
+					action: 'Get metrics token for an IP Load Balancer',
+				},
+				{
+					name: 'Get Quota',
+					value: 'getQuota',
+					action: 'Get quota for an IP Load Balancer',
+				},
+				{
+					name: 'Get Quota History',
+					value: 'getQuotaHistory',
+					action: 'Get quota history for an IP Load Balancer',
+				},
+				{
+					name: 'Get Service Infos',
+					value: 'getServiceInfos',
+					action: 'Get service information for an IP Load Balancer',
+				},
+				{
+					name: 'Get SSL Certificate',
+					value: 'getSsl',
+					action: 'Get an SSL certificate for an IP Load Balancer',
+				},
+				{
+					name: 'Get Status',
+					value: 'status',
+					action: 'Get global status of an IP Load Balancer',
+				},
+				{
+					name: 'Get Task',
+					value: 'getTask',
+					action: 'Get a task for an IP Load Balancer',
+				},
+				{
+					name: 'Get TCP Farm',
+					value: 'getTcpFarm',
+					action: 'Get a TCP farm for an IP Load Balancer',
+				},
+				{
+					name: 'Get TCP Farm Server',
+					value: 'getTcpFarmServer',
+					action: 'Get a TCP farm server for an IP Load Balancer',
+				},
+				{
+					name: 'Get TCP Frontend',
+					value: 'getTcpFrontend',
+					action: 'Get a TCP frontend for an IP Load Balancer',
+				},
+				{
+					name: 'Get TCP Route',
+					value: 'getTcpRoute',
+					action: 'Get a TCP route for an IP Load Balancer',
+				},
+				{
+					name: 'Get TCP Route Rule',
+					value: 'getTcpRouteRule',
+					action: 'Get a TCP route rule for an IP Load Balancer',
+				},
+				{
+					name: 'Get UDP Farm',
+					value: 'getUdpFarm',
+					action: 'Get a UDP farm for an IP Load Balancer',
+				},
+				{
+					name: 'Get UDP Farm Server',
+					value: 'getUdpFarmServer',
+					action: 'Get a UDP farm server for an IP Load Balancer',
+				},
+				{
+					name: 'Get UDP Frontend',
+					value: 'getUdpFrontend',
+					action: 'Get a UDP frontend for an IP Load Balancer',
+				},
+				{
+					name: 'Get vRack Network',
+					value: 'getVrackNetwork',
+					action: 'Get a vRack network for an IP Load Balancer',
+				},
+				{
+					name: 'Get vRack Network Creation Rules',
+					value: 'vrackNetworkCreationRules',
+					action: 'Get vRack network creation rules',
+				},
+				{
+					name: 'Get vRack Status',
+					value: 'vrackStatus',
+					action: 'Get vRack status for an IP Load Balancer',
+				},
+				{
+					name: 'Get Zone',
+					value: 'getZone',
+					action: 'Get a zone for an IP Load Balancer',
+				},
+				{
+					name: 'List',
+					value: 'list',
+					action: 'List all IP Load Balancers',
 				},
 				{
 					name: 'List Available Farm Probes',
@@ -747,6 +497,256 @@ export function description(displayOptions: IDisplayOptions): INodeProperties[] 
 					name: 'List Available Route Rules',
 					value: 'listAvailableRouteRules',
 					action: 'List available route rules for an IP Load Balancer',
+				},
+				{
+					name: 'List Defined Farms',
+					value: 'listDefinedFarms',
+					action: 'List defined farms for an IP Load Balancer',
+				},
+				{
+					name: 'List Defined Frontends',
+					value: 'listDefinedFrontends',
+					action: 'List defined frontends for an IP Load Balancer',
+				},
+				{
+					name: 'List Defined Routes',
+					value: 'listDefinedRoutes',
+					action: 'List defined routes for an IP Load Balancer',
+				},
+				{
+					name: 'List Failover IPs',
+					value: 'listFailover',
+					action: 'List failover IPs for an IP Load Balancer',
+				},
+				{
+					name: 'List HTTP Farm Servers',
+					value: 'listHttpFarmServers',
+					action: 'List HTTP farm servers for an IP Load Balancer',
+				},
+				{
+					name: 'List HTTP Farms',
+					value: 'listHttpFarms',
+					action: 'List HTTP farms for an IP Load Balancer',
+				},
+				{
+					name: 'List HTTP Frontends',
+					value: 'listHttpFrontends',
+					action: 'List HTTP frontends for an IP Load Balancer',
+				},
+				{
+					name: 'List HTTP Route Rules',
+					value: 'listHttpRouteRules',
+					action: 'List HTTP route rules for an IP Load Balancer',
+				},
+				{
+					name: 'List HTTP Routes',
+					value: 'listHttpRoutes',
+					action: 'List HTTP routes for an IP Load Balancer',
+				},
+				{
+					name: 'List Log Kinds',
+					value: 'listLogKind',
+					action: 'List log kinds for an IP Load Balancer',
+				},
+				{
+					name: 'List Log Subscriptions',
+					value: 'listLogSubscriptions',
+					action: 'List log subscriptions for an IP Load Balancer',
+				},
+				{
+					name: 'List NAT IPs',
+					value: 'listNatIp',
+					action: 'List NAT IPs for an IP Load Balancer',
+				},
+				{
+					name: 'List Pending Changes',
+					value: 'listPendingChanges',
+					action: 'List pending changes for an IP Load Balancer',
+				},
+				{
+					name: 'List Quota History',
+					value: 'listQuotaHistory',
+					action: 'List quota history for an IP Load Balancer',
+				},
+				{
+					name: 'List Quotas',
+					value: 'listQuota',
+					action: 'List quotas for an IP Load Balancer',
+				},
+				{
+					name: 'List SSL Certificates',
+					value: 'listSsl',
+					action: 'List SSL certificates for an IP Load Balancer',
+				},
+				{
+					name: 'List Tasks',
+					value: 'listTasks',
+					action: 'List tasks for an IP Load Balancer',
+				},
+				{
+					name: 'List TCP Farm Servers',
+					value: 'listTcpFarmServers',
+					action: 'List TCP farm servers for an IP Load Balancer',
+				},
+				{
+					name: 'List TCP Farms',
+					value: 'listTcpFarms',
+					action: 'List TCP farms for an IP Load Balancer',
+				},
+				{
+					name: 'List TCP Frontends',
+					value: 'listTcpFrontends',
+					action: 'List TCP frontends for an IP Load Balancer',
+				},
+				{
+					name: 'List TCP Route Rules',
+					value: 'listTcpRouteRules',
+					action: 'List TCP route rules for an IP Load Balancer',
+				},
+				{
+					name: 'List TCP Routes',
+					value: 'listTcpRoutes',
+					action: 'List TCP routes for an IP Load Balancer',
+				},
+				{
+					name: 'List UDP Farm Servers',
+					value: 'listUdpFarmServers',
+					action: 'List UDP farm servers for an IP Load Balancer',
+				},
+				{
+					name: 'List UDP Farms',
+					value: 'listUdpFarms',
+					action: 'List UDP farms for an IP Load Balancer',
+				},
+				{
+					name: 'List UDP Frontends',
+					value: 'listUdpFrontends',
+					action: 'List UDP frontends for an IP Load Balancer',
+				},
+				{
+					name: 'List vRack Networks',
+					value: 'listVrackNetworks',
+					action: 'List vRack networks for an IP Load Balancer',
+				},
+				{
+					name: 'List Zones',
+					value: 'listZone',
+					action: 'List zones for an IP Load Balancer',
+				},
+				{
+					name: 'Order Free Certificate',
+					value: 'freeCertificate',
+					action: 'Order a free certificate for an IP Load Balancer',
+				},
+				{
+					name: 'Refresh',
+					value: 'refresh',
+					action: 'Apply configuration to an IP Load Balancer',
+				},
+				{
+					name: 'Terminate',
+					value: 'terminate',
+					action: 'Terminate an IP Load Balancer service',
+				},
+				{
+					name: 'Terminate Zone',
+					value: 'terminateZone',
+					action: 'Terminate a zone for an IP Load Balancer',
+				},
+				{
+					name: 'Update',
+					value: 'update',
+					action: 'Update an IP Load Balancer',
+				},
+				{
+					name: 'Update HTTP Farm',
+					value: 'updateHttpFarm',
+					action: 'Update an HTTP farm for an IP Load Balancer',
+				},
+				{
+					name: 'Update HTTP Farm Server',
+					value: 'updateHttpFarmServer',
+					action: 'Update an HTTP farm server for an IP Load Balancer',
+				},
+				{
+					name: 'Update HTTP Frontend',
+					value: 'updateHttpFrontend',
+					action: 'Update an HTTP frontend for an IP Load Balancer',
+				},
+				{
+					name: 'Update HTTP Route',
+					value: 'updateHttpRoute',
+					action: 'Update an HTTP route for an IP Load Balancer',
+				},
+				{
+					name: 'Update HTTP Route Rule',
+					value: 'updateHttpRouteRule',
+					action: 'Update an HTTP route rule for an IP Load Balancer',
+				},
+				{
+					name: 'Update Quota',
+					value: 'updateQuota',
+					action: 'Update quota for an IP Load Balancer',
+				},
+				{
+					name: 'Update Service Infos',
+					value: 'updateServiceInfos',
+					action: 'Update service information for an IP Load Balancer',
+				},
+				{
+					name: 'Update SSL Certificate',
+					value: 'updateSsl',
+					action: 'Update an SSL certificate for an IP Load Balancer',
+				},
+				{
+					name: 'Update TCP Farm',
+					value: 'updateTcpFarm',
+					action: 'Update a TCP farm for an IP Load Balancer',
+				},
+				{
+					name: 'Update TCP Farm Server',
+					value: 'updateTcpFarmServer',
+					action: 'Update a TCP farm server for an IP Load Balancer',
+				},
+				{
+					name: 'Update TCP Frontend',
+					value: 'updateTcpFrontend',
+					action: 'Update a TCP frontend for an IP Load Balancer',
+				},
+				{
+					name: 'Update TCP Route',
+					value: 'updateTcpRoute',
+					action: 'Update a TCP route for an IP Load Balancer',
+				},
+				{
+					name: 'Update TCP Route Rule',
+					value: 'updateTcpRouteRule',
+					action: 'Update a TCP route rule for an IP Load Balancer',
+				},
+				{
+					name: 'Update UDP Farm',
+					value: 'updateUdpFarm',
+					action: 'Update a UDP farm for an IP Load Balancer',
+				},
+				{
+					name: 'Update UDP Farm Server',
+					value: 'updateUdpFarmServer',
+					action: 'Update a UDP farm server for an IP Load Balancer',
+				},
+				{
+					name: 'Update UDP Frontend',
+					value: 'updateUdpFrontend',
+					action: 'Update a UDP frontend for an IP Load Balancer',
+				},
+				{
+					name: 'Update vRack Network',
+					value: 'updateVrackNetwork',
+					action: 'Update a vRack network for an IP Load Balancer',
+				},
+				{
+					name: 'Update vRack Network Farm IDs',
+					value: 'updateVrackNetworkFarmId',
+					action: 'Update farm IDs for a vRack network',
 				},
 			],
 			default: 'list',

@@ -106,21 +106,6 @@ export function description(displayOptions: IDisplayOptions): INodeProperties[] 
 			noDataExpression: true,
 			options: [
 				{
-					name: 'List',
-					value: 'list',
-					action: 'List all metrics services',
-				},
-				{
-					name: 'Get',
-					value: 'get',
-					action: 'Get details of a metrics service',
-				},
-				{
-					name: 'Update',
-					value: 'update',
-					action: 'Update a metrics service',
-				},
-				{
 					name: 'Change Contact',
 					value: 'changeContact',
 					action: 'Change admin, billing, or tech contact',
@@ -131,9 +116,44 @@ export function description(displayOptions: IDisplayOptions): INodeProperties[] 
 					action: 'Confirm service termination',
 				},
 				{
+					name: 'Create Token',
+					value: 'tokenCreate',
+					action: 'Create a token',
+				},
+				{
+					name: 'Delete Token',
+					value: 'tokenDelete',
+					action: 'Delete a token',
+				},
+				{
+					name: 'Get',
+					value: 'get',
+					action: 'Get details of a metrics service',
+				},
+				{
 					name: 'Get Consumption',
 					value: 'consumption',
 					action: 'Get consumption data',
+				},
+				{
+					name: 'Get Service Infos',
+					value: 'serviceInfosGet',
+					action: 'Get service information',
+				},
+				{
+					name: 'Get Token',
+					value: 'tokenGet',
+					action: 'Get a specific token',
+				},
+				{
+					name: 'List',
+					value: 'list',
+					action: 'List all metrics services',
+				},
+				{
+					name: 'List Tokens',
+					value: 'tokenList',
+					action: 'List tokens',
 				},
 				{
 					name: 'Lookup Token',
@@ -146,9 +166,14 @@ export function description(displayOptions: IDisplayOptions): INodeProperties[] 
 					action: 'Set quota',
 				},
 				{
-					name: 'Get Service Infos',
-					value: 'serviceInfosGet',
-					action: 'Get service information',
+					name: 'Terminate',
+					value: 'terminate',
+					action: 'Terminate service',
+				},
+				{
+					name: 'Update',
+					value: 'update',
+					action: 'Update a metrics service',
 				},
 				{
 					name: 'Update Service Infos',
@@ -156,34 +181,9 @@ export function description(displayOptions: IDisplayOptions): INodeProperties[] 
 					action: 'Update service information',
 				},
 				{
-					name: 'Terminate',
-					value: 'terminate',
-					action: 'Terminate service',
-				},
-				{
-					name: 'List Tokens',
-					value: 'tokenList',
-					action: 'List tokens',
-				},
-				{
-					name: 'Get Token',
-					value: 'tokenGet',
-					action: 'Get a specific token',
-				},
-				{
-					name: 'Create Token',
-					value: 'tokenCreate',
-					action: 'Create a token',
-				},
-				{
 					name: 'Update Token',
 					value: 'tokenUpdate',
 					action: 'Update a token',
-				},
-				{
-					name: 'Delete Token',
-					value: 'tokenDelete',
-					action: 'Delete a token',
 				},
 			],
 			default: 'list',

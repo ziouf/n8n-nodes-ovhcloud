@@ -41,19 +41,9 @@ export function description(displayOptions: IDisplayOptions): INodeProperties[] 
 			noDataExpression: true,
 			options: [
 				{
-					name: 'List',
-					value: 'list',
-					action: 'List all managed CMS services',
-				},
-				{
 					name: 'Get',
 					value: 'get',
 					action: 'Get details of a managed CMS service',
-				},
-				{
-					name: 'List References',
-					value: 'listReferences',
-					action: 'List Managed CMS references',
 				},
 				{
 					name: 'Get Reference',
@@ -61,19 +51,9 @@ export function description(displayOptions: IDisplayOptions): INodeProperties[] 
 					action: 'Get a specific reference',
 				},
 				{
-					name: 'List Resources',
-					value: 'listResources',
-					action: 'List Managed CMS resources',
-				},
-				{
 					name: 'Get Resource',
 					value: 'getResource',
 					action: 'Get a specific resource',
-				},
-				{
-					name: 'List Tasks',
-					value: 'listTasks',
-					action: 'List Managed CMS tasks',
 				},
 				{
 					name: 'Get Task',
@@ -81,14 +61,34 @@ export function description(displayOptions: IDisplayOptions): INodeProperties[] 
 					action: 'Get a specific task',
 				},
 				{
-					name: 'List Websites',
-					value: 'listWebsites',
-					action: 'List Managed CMS websites',
-				},
-				{
 					name: 'Get Website',
 					value: 'getWebsite',
 					action: 'Get a specific website',
+				},
+				{
+					name: 'List',
+					value: 'list',
+					action: 'List all managed CMS services',
+				},
+				{
+					name: 'List References',
+					value: 'listReferences',
+					action: 'List Managed CMS references',
+				},
+				{
+					name: 'List Resources',
+					value: 'listResources',
+					action: 'List Managed CMS resources',
+				},
+				{
+					name: 'List Tasks',
+					value: 'listTasks',
+					action: 'List Managed CMS tasks',
+				},
+				{
+					name: 'List Websites',
+					value: 'listWebsites',
+					action: 'List Managed CMS websites',
 				},
 			],
 			default: 'list',

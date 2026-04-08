@@ -34,61 +34,6 @@ export function description(displayOptions: IDisplayOptions): INodeProperties[] 
 			noDataExpression: true,
 			options: [
 				{
-					name: 'List',
-					value: 'list',
-					action: 'List all Cpanel License services',
-				},
-				{
-					name: 'Get',
-					value: 'get',
-					action: 'Get details of a Cpanel License service',
-				},
-				{
-					name: 'Get Service Infos',
-					value: 'getServiceInfos',
-					action: 'Get service information for a Cpanel License',
-				},
-				{
-					name: 'Update Service Infos',
-					value: 'updateServiceInfos',
-					action: 'Update service information for a Cpanel License',
-				},
-				{
-					name: 'List Tasks',
-					value: 'listTasks',
-					action: 'List tasks for a Cpanel License',
-				},
-				{
-					name: 'Get Task',
-					value: 'getTask',
-					action: 'Get a specific task for a Cpanel License',
-				},
-				{
-					name: 'Terminate',
-					value: 'terminate',
-					action: 'Terminate a Cpanel License service',
-				},
-				{
-					name: 'Confirm Termination',
-					value: 'confirmTermination',
-					action: 'Confirm termination of a Cpanel License service',
-				},
-				{
-					name: 'Get Orderable Versions',
-					value: 'getOrderableVersions',
-					action: 'Get orderable Cpanel versions',
-				},
-				{
-					name: 'Update',
-					value: 'update',
-					action: 'Update a Cpanel License service',
-				},
-				{
-					name: 'Get Allowed Destination IP',
-					value: 'getAllowedDestinationIp',
-					action: 'Get allowed destination IPs for a Cpanel License',
-				},
-				{
 					name: 'Can License Be Moved To',
 					value: 'canLicenseBeMovedTo',
 					action: 'Check if a Cpanel License can be moved to another IP',
@@ -97,6 +42,61 @@ export function description(displayOptions: IDisplayOptions): INodeProperties[] 
 					name: 'Change IP',
 					value: 'changeIp',
 					action: 'Change the IP of a Cpanel License',
+				},
+				{
+					name: 'Confirm Termination',
+					value: 'confirmTermination',
+					action: 'Confirm termination of a Cpanel License service',
+				},
+				{
+					name: 'Get',
+					value: 'get',
+					action: 'Get details of a Cpanel License service',
+				},
+				{
+					name: 'Get Allowed Destination IP',
+					value: 'getAllowedDestinationIp',
+					action: 'Get allowed destination IPs for a Cpanel License',
+				},
+				{
+					name: 'Get Orderable Versions',
+					value: 'getOrderableVersions',
+					action: 'Get orderable Cpanel versions',
+				},
+				{
+					name: 'Get Service Infos',
+					value: 'getServiceInfos',
+					action: 'Get service information for a Cpanel License',
+				},
+				{
+					name: 'Get Task',
+					value: 'getTask',
+					action: 'Get a specific task for a Cpanel License',
+				},
+				{
+					name: 'List',
+					value: 'list',
+					action: 'List all Cpanel License services',
+				},
+				{
+					name: 'List Tasks',
+					value: 'listTasks',
+					action: 'List tasks for a Cpanel License',
+				},
+				{
+					name: 'Terminate',
+					value: 'terminate',
+					action: 'Terminate a Cpanel License service',
+				},
+				{
+					name: 'Update',
+					value: 'update',
+					action: 'Update a Cpanel License service',
+				},
+				{
+					name: 'Update Service Infos',
+					value: 'updateServiceInfos',
+					action: 'Update service information for a Cpanel License',
 				},
 			],
 			default: 'list',

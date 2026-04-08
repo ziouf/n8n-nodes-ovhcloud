@@ -30,9 +30,9 @@ export function description(displayOptions: IDisplayOptions): INodeProperties[] 
 			noDataExpression: true,
 			options: [
 				{
-					name: 'List',
-					value: 'list',
-					action: 'List all CloudLinux License services',
+					name: 'Confirm Termination',
+					value: 'confirmTermination',
+					action: 'Confirm termination of a CloudLinux License service',
 				},
 				{
 					name: 'Get',
@@ -40,19 +40,14 @@ export function description(displayOptions: IDisplayOptions): INodeProperties[] 
 					action: 'Get details of a CloudLinux License service',
 				},
 				{
+					name: 'Get Orderable Versions',
+					value: 'getOrderableVersions',
+					action: 'Get orderable CloudLinux versions',
+				},
+				{
 					name: 'Get Service Infos',
 					value: 'getServiceInfos',
 					action: 'Get service information for a CloudLinux License',
-				},
-				{
-					name: 'Update Service Infos',
-					value: 'updateServiceInfos',
-					action: 'Update service information for a CloudLinux License',
-				},
-				{
-					name: 'List Tasks',
-					value: 'listTasks',
-					action: 'List tasks for a CloudLinux License',
 				},
 				{
 					name: 'Get Task',
@@ -60,19 +55,24 @@ export function description(displayOptions: IDisplayOptions): INodeProperties[] 
 					action: 'Get a specific task for a CloudLinux License',
 				},
 				{
+					name: 'List',
+					value: 'list',
+					action: 'List all CloudLinux License services',
+				},
+				{
+					name: 'List Tasks',
+					value: 'listTasks',
+					action: 'List tasks for a CloudLinux License',
+				},
+				{
 					name: 'Terminate',
 					value: 'terminate',
 					action: 'Terminate a CloudLinux License service',
 				},
 				{
-					name: 'Confirm Termination',
-					value: 'confirmTermination',
-					action: 'Confirm termination of a CloudLinux License service',
-				},
-				{
-					name: 'Get Orderable Versions',
-					value: 'getOrderableVersions',
-					action: 'Get orderable CloudLinux versions',
+					name: 'Update Service Infos',
+					value: 'updateServiceInfos',
+					action: 'Update service information for a CloudLinux License',
 				},
 			],
 			default: 'list',

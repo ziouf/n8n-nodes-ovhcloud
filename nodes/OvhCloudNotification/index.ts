@@ -40,19 +40,9 @@ export function description(displayOptions: IDisplayOptions): INodeProperties[] 
 			noDataExpression: true,
 			options: [
 				{
-					name: 'List',
-					value: 'list',
-					action: 'List all notifications',
-				},
-				{
 					name: 'Get',
 					value: 'get',
 					action: 'Get details of a notification',
-				},
-				{
-					name: 'List Contact Means',
-					value: 'listContactMeans',
-					action: 'List notification contact means',
 				},
 				{
 					name: 'Get Contact Mean',
@@ -60,19 +50,9 @@ export function description(displayOptions: IDisplayOptions): INodeProperties[] 
 					action: 'Get a specific contact mean',
 				},
 				{
-					name: 'List Histories',
-					value: 'listHistories',
-					action: 'List notification histories',
-				},
-				{
 					name: 'Get History',
 					value: 'getHistory',
 					action: 'Get a specific history',
-				},
-				{
-					name: 'List References',
-					value: 'listReferences',
-					action: 'List notification references',
 				},
 				{
 					name: 'Get Reference',
@@ -80,14 +60,34 @@ export function description(displayOptions: IDisplayOptions): INodeProperties[] 
 					action: 'Get a specific reference',
 				},
 				{
-					name: 'List Routings',
-					value: 'listRoutings',
-					action: 'List notification routings',
-				},
-				{
 					name: 'Get Routing',
 					value: 'getRouting',
 					action: 'Get a specific routing',
+				},
+				{
+					name: 'List',
+					value: 'list',
+					action: 'List all notifications',
+				},
+				{
+					name: 'List Contact Means',
+					value: 'listContactMeans',
+					action: 'List notification contact means',
+				},
+				{
+					name: 'List Histories',
+					value: 'listHistories',
+					action: 'List notification histories',
+				},
+				{
+					name: 'List References',
+					value: 'listReferences',
+					action: 'List notification references',
+				},
+				{
+					name: 'List Routings',
+					value: 'listRoutings',
+					action: 'List notification routings',
 				},
 			],
 			default: 'list',

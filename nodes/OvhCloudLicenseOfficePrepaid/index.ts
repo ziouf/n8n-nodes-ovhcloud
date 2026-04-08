@@ -34,39 +34,9 @@ export function description(displayOptions: IDisplayOptions): INodeProperties[] 
 			noDataExpression: true,
 			options: [
 				{
-					name: 'List',
-					value: 'list',
-					action: 'List all Office Prepaid License services',
-				},
-				{
-					name: 'Get',
-					value: 'get',
-					action: 'Get details of an Office Prepaid License service',
-				},
-				{
-					name: 'Get Service Infos',
-					value: 'getServiceInfos',
-					action: 'Get service information for an Office Prepaid License',
-				},
-				{
-					name: 'Update Service Infos',
-					value: 'updateServiceInfos',
-					action: 'Update service information for an Office Prepaid License',
-				},
-				{
-					name: 'Terminate',
-					value: 'terminate',
-					action: 'Terminate an Office Prepaid License service',
-				},
-				{
-					name: 'Confirm Termination',
-					value: 'confirmTermination',
-					action: 'Confirm termination of an Office Prepaid License service',
-				},
-				{
-					name: 'Update',
-					value: 'update',
-					action: 'Update an Office Prepaid License service',
+					name: 'Accept Agreement',
+					value: 'acceptAgreement',
+					action: 'Accept agreement for parent tenant of an Office Prepaid License',
 				},
 				{
 					name: 'Change Password',
@@ -74,19 +44,9 @@ export function description(displayOptions: IDisplayOptions): INodeProperties[] 
 					action: 'Change password for an Office Prepaid License',
 				},
 				{
-					name: 'Get Parent Tenant',
-					value: 'getParentTenant',
-					action: 'Get parent tenant for an Office Prepaid License',
-				},
-				{
-					name: 'Update Parent Tenant',
-					value: 'updateParentTenant',
-					action: 'Update parent tenant for an Office Prepaid License',
-				},
-				{
-					name: 'Accept Agreement',
-					value: 'acceptAgreement',
-					action: 'Accept agreement for parent tenant of an Office Prepaid License',
+					name: 'Confirm Termination',
+					value: 'confirmTermination',
+					action: 'Confirm termination of an Office Prepaid License service',
 				},
 				{
 					name: 'Create Attestation',
@@ -94,9 +54,19 @@ export function description(displayOptions: IDisplayOptions): INodeProperties[] 
 					action: 'Create attestation for parent tenant of an Office Prepaid License',
 				},
 				{
-					name: 'List Tenant Pending Tasks',
-					value: 'listTenantPendingTasks',
-					action: 'List tenant pending tasks for an Office Prepaid License',
+					name: 'Get',
+					value: 'get',
+					action: 'Get details of an Office Prepaid License service',
+				},
+				{
+					name: 'Get Parent Tenant',
+					value: 'getParentTenant',
+					action: 'Get parent tenant for an Office Prepaid License',
+				},
+				{
+					name: 'Get Service Infos',
+					value: 'getServiceInfos',
+					action: 'Get service information for an Office Prepaid License',
 				},
 				{
 					name: 'Get Tenant Pending Task',
@@ -109,9 +79,39 @@ export function description(displayOptions: IDisplayOptions): INodeProperties[] 
 					action: 'Get tenant usage statistics for an Office Prepaid License',
 				},
 				{
+					name: 'List',
+					value: 'list',
+					action: 'List all Office Prepaid License services',
+				},
+				{
+					name: 'List Tenant Pending Tasks',
+					value: 'listTenantPendingTasks',
+					action: 'List tenant pending tasks for an Office Prepaid License',
+				},
+				{
+					name: 'Terminate',
+					value: 'terminate',
+					action: 'Terminate an Office Prepaid License service',
+				},
+				{
 					name: 'Unconfigure',
 					value: 'unconfigure',
 					action: 'Unconfigure an Office Prepaid License',
+				},
+				{
+					name: 'Update',
+					value: 'update',
+					action: 'Update an Office Prepaid License service',
+				},
+				{
+					name: 'Update Parent Tenant',
+					value: 'updateParentTenant',
+					action: 'Update parent tenant for an Office Prepaid License',
+				},
+				{
+					name: 'Update Service Infos',
+					value: 'updateServiceInfos',
+					action: 'Update service information for an Office Prepaid License',
 				},
 			],
 			default: 'list',

@@ -64,9 +64,19 @@ export function description(displayOptions: IDisplayOptions): INodeProperties[] 
 			noDataExpression: true,
 			options: [
 				{
-					name: 'List',
-					value: 'list',
-					action: 'List all Nutanix services',
+					name: 'Change Contact',
+					value: 'changeContact',
+					action: 'Change contact',
+				},
+				{
+					name: 'Confirm Termination',
+					value: 'confirmTermination',
+					action: 'Confirm termination',
+				},
+				{
+					name: 'Deploy Node',
+					value: 'deployNode',
+					action: 'Deploy a node',
 				},
 				{
 					name: 'Get',
@@ -79,39 +89,9 @@ export function description(displayOptions: IDisplayOptions): INodeProperties[] 
 					action: 'Get cluster availabilities',
 				},
 				{
-					name: 'Get Raw Availabilities',
-					value: 'getRawAvailabilities',
-					action: 'Get raw availabilities',
-				},
-				{
 					name: 'Get Available Versions',
 					value: 'getAvailableVersions',
 					action: 'Get available versions',
-				},
-				{
-					name: 'Get Requirements',
-					value: 'getRequirements',
-					action: 'Get requirements',
-				},
-				{
-					name: 'Update Cluster',
-					value: 'updateCluster',
-					action: 'Update a Nutanix cluster',
-				},
-				{
-					name: 'Change Contact',
-					value: 'changeContact',
-					action: 'Change contact',
-				},
-				{
-					name: 'Confirm Termination',
-					value: 'confirmTermination',
-					action: 'Confirm termination',
-				},
-				{
-					name: 'List Nodes',
-					value: 'listNodes',
-					action: 'List nodes',
 				},
 				{
 					name: 'Get Node',
@@ -119,19 +99,14 @@ export function description(displayOptions: IDisplayOptions): INodeProperties[] 
 					action: 'Get node details',
 				},
 				{
-					name: 'Reinstall Node',
-					value: 'reinstallNode',
-					action: 'Reinstall a node',
+					name: 'Get Raw Availabilities',
+					value: 'getRawAvailabilities',
+					action: 'Get raw availabilities',
 				},
 				{
-					name: 'Deploy Node',
-					value: 'deployNode',
-					action: 'Deploy a node',
-				},
-				{
-					name: 'Terminate Node',
-					value: 'terminateNode',
-					action: 'Terminate a node',
+					name: 'Get Requirements',
+					value: 'getRequirements',
+					action: 'Get requirements',
 				},
 				{
 					name: 'Get Service Infos',
@@ -139,14 +114,39 @@ export function description(displayOptions: IDisplayOptions): INodeProperties[] 
 					action: 'Get service information',
 				},
 				{
-					name: 'Update Service Infos',
-					value: 'updateServiceInfos',
-					action: 'Update service information',
+					name: 'List',
+					value: 'list',
+					action: 'List all Nutanix services',
+				},
+				{
+					name: 'List Nodes',
+					value: 'listNodes',
+					action: 'List nodes',
+				},
+				{
+					name: 'Reinstall Node',
+					value: 'reinstallNode',
+					action: 'Reinstall a node',
 				},
 				{
 					name: 'Terminate',
 					value: 'terminate',
 					action: 'Terminate cluster',
+				},
+				{
+					name: 'Terminate Node',
+					value: 'terminateNode',
+					action: 'Terminate a node',
+				},
+				{
+					name: 'Update Cluster',
+					value: 'updateCluster',
+					action: 'Update a Nutanix cluster',
+				},
+				{
+					name: 'Update Service Infos',
+					value: 'updateServiceInfos',
+					action: 'Update service information',
 				},
 			],
 			default: 'list',

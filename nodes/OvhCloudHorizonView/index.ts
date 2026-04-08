@@ -175,191 +175,6 @@ export function description(displayOptions: IDisplayOptions): INodeProperties[] 
 			noDataExpression: true,
 			options: [
 				{
-					name: 'List',
-					value: 'list',
-					action: 'List all HorizonView services',
-				},
-				{
-					name: 'Get',
-					value: 'get',
-					action: 'Get details of a HorizonView service',
-				},
-				{
-					name: 'Get Service Infos',
-					value: 'getServiceInfos',
-					action: 'Get service information',
-				},
-				{
-					name: 'Update Service Infos',
-					value: 'updateServiceInfos',
-					action: 'Update service information',
-				},
-				{
-					name: 'List Access Points',
-					value: 'listAccessPoints',
-					action: 'List access points (pools)',
-				},
-				{
-					name: 'Get Access Point',
-					value: 'getAccessPoint',
-					action: 'Get access point details',
-				},
-				{
-					name: 'Create Access Point',
-					value: 'createAccessPoint',
-					action: 'Create a new access point',
-				},
-				{
-					name: 'Delete Access Point',
-					value: 'deleteAccessPoint',
-					action: 'Delete an access point',
-				},
-				{
-					name: 'Change Session Timeout',
-					value: 'changeSessionTimeout',
-					action: 'Change session timeout on UAG',
-				},
-				{
-					name: 'Disable Two FA',
-					value: 'disableTwoFA',
-					action: 'Disable two factor authentication',
-				},
-				{
-					name: 'Enable Two FA',
-					value: 'enableTwoFA',
-					action: 'Enable two factor authentication',
-				},
-				{
-					name: 'Disable Windows Username Option',
-					value: 'disableWindowsUsernameOption',
-					action: 'Disable Windows username option',
-				},
-				{
-					name: 'Enable Windows Username Option',
-					value: 'enableWindowsUsernameOption',
-					action: 'Enable Windows username option',
-				},
-				{
-					name: 'List Access Point Customer Networks',
-					value: 'listAccessPointCustomerNetworks',
-					action: 'List customer networks on access point',
-				},
-				{
-					name: 'Get Access Point Customer Network',
-					value: 'getAccessPointCustomerNetwork',
-					action: 'Get customer network details on access point',
-				},
-				{
-					name: 'Create Access Point Customer Network',
-					value: 'createAccessPointCustomerNetwork',
-					action: 'Add customer network to access point',
-				},
-				{
-					name: 'Delete Access Point Customer Network',
-					value: 'deleteAccessPointCustomerNetwork',
-					action: 'Delete customer network from access point',
-				},
-				{
-					name: 'List Customer Networks',
-					value: 'listCustomerNetworks',
-					action: 'List customer networks',
-				},
-				{
-					name: 'Get Customer Network',
-					value: 'getCustomerNetwork',
-					action: 'Get customer network details',
-				},
-				{
-					name: 'Create Customer Network',
-					value: 'createCustomerNetwork',
-					action: 'Add a new customer network',
-				},
-				{
-					name: 'Delete Customer Network',
-					value: 'deleteCustomerNetwork',
-					action: 'Delete a customer network',
-				},
-				{
-					name: 'Get Dedicated Horizon',
-					value: 'getDedicatedHorizon',
-					action: 'Get dedicated Horizon properties',
-				},
-				{
-					name: 'Enable Storage Accelerator',
-					value: 'enableStorageAccelerator',
-					action: 'Enable storage accelerator',
-				},
-				{
-					name: 'Disable Storage Accelerator',
-					value: 'disableStorageAccelerator',
-					action: 'Disable storage accelerator',
-				},
-				{
-					name: 'List Dedicated Horizon Customer Users',
-					value: 'listDedicatedHorizonCustomerUsers',
-					action: 'List customer users',
-				},
-				{
-					name: 'Get Dedicated Horizon Customer User',
-					value: 'getDedicatedHorizonCustomerUser',
-					action: 'Get customer user details',
-				},
-				{
-					name: 'Create Dedicated Horizon Customer User',
-					value: 'createDedicatedHorizonCustomerUser',
-					action: 'Create a customer user',
-				},
-				{
-					name: 'Delete Dedicated Horizon Customer User',
-					value: 'deleteDedicatedHorizonCustomerUser',
-					action: 'Delete a customer user',
-				},
-				{
-					name: 'Change Dedicated Horizon Customer User Password',
-					value: 'changeDedicatedHorizonCustomerUserPassword',
-					action: 'Change customer user password',
-				},
-				{
-					name: 'List Dedicated Horizon Tasks',
-					value: 'listDedicatedHorizonTasks',
-					action: 'List tasks',
-				},
-				{
-					name: 'Get Dedicated Horizon Task',
-					value: 'getDedicatedHorizonTask',
-					action: 'Get task details',
-				},
-				{
-					name: 'Get Dedicated Horizon User',
-					value: 'getDedicatedHorizonUser',
-					action: 'Get user properties',
-				},
-				{
-					name: 'Change Dedicated Horizon User Password',
-					value: 'changeDedicatedHorizonUserPassword',
-					action: 'Change user password',
-				},
-				{
-					name: 'Change Dedicated Horizon User Properties',
-					value: 'changeDedicatedHorizonUserProperties',
-					action: 'Change user properties',
-				},
-				{
-					name: 'List Domain Trusts',
-					value: 'listDomainTrusts',
-					action: 'List domain trusts',
-				},
-				{
-					name: 'Get Domain Trust',
-					value: 'getDomainTrust',
-					action: 'Get domain trust details',
-				},
-				{
-					name: 'Create Domain Trust',
-					value: 'createDomainTrust',
-					action: 'Link an Active Directory',
-				},
-				{
 					name: 'Add Child Domain',
 					value: 'addChildDomain',
 					action: 'Add a child domain',
@@ -375,9 +190,24 @@ export function description(displayOptions: IDisplayOptions): INodeProperties[] 
 					action: 'Add a domain user on composer',
 				},
 				{
-					name: 'Create Trust',
-					value: 'createTrust',
-					action: 'Create a trust relationship',
+					name: 'Change Dedicated Horizon Customer User Password',
+					value: 'changeDedicatedHorizonCustomerUserPassword',
+					action: 'Change customer user password',
+				},
+				{
+					name: 'Change Dedicated Horizon User Password',
+					value: 'changeDedicatedHorizonUserPassword',
+					action: 'Change user password',
+				},
+				{
+					name: 'Change Dedicated Horizon User Properties',
+					value: 'changeDedicatedHorizonUserProperties',
+					action: 'Change user properties',
+				},
+				{
+					name: 'Change Session Timeout',
+					value: 'changeSessionTimeout',
+					action: 'Change session timeout on UAG',
 				},
 				{
 					name: 'Confirm Termination',
@@ -385,9 +215,179 @@ export function description(displayOptions: IDisplayOptions): INodeProperties[] 
 					action: 'Confirm service termination',
 				},
 				{
+					name: 'Create Access Point',
+					value: 'createAccessPoint',
+					action: 'Create a new access point',
+				},
+				{
+					name: 'Create Access Point Customer Network',
+					value: 'createAccessPointCustomerNetwork',
+					action: 'Add customer network to access point',
+				},
+				{
+					name: 'Create Customer Network',
+					value: 'createCustomerNetwork',
+					action: 'Add a new customer network',
+				},
+				{
+					name: 'Create Dedicated Horizon Customer User',
+					value: 'createDedicatedHorizonCustomerUser',
+					action: 'Create a customer user',
+				},
+				{
+					name: 'Create Domain Trust',
+					value: 'createDomainTrust',
+					action: 'Link an Active Directory',
+				},
+				{
+					name: 'Create Trust',
+					value: 'createTrust',
+					action: 'Create a trust relationship',
+				},
+				{
+					name: 'Delete Access Point',
+					value: 'deleteAccessPoint',
+					action: 'Delete an access point',
+				},
+				{
+					name: 'Delete Access Point Customer Network',
+					value: 'deleteAccessPointCustomerNetwork',
+					action: 'Delete customer network from access point',
+				},
+				{
+					name: 'Delete Customer Network',
+					value: 'deleteCustomerNetwork',
+					action: 'Delete a customer network',
+				},
+				{
+					name: 'Delete Dedicated Horizon Customer User',
+					value: 'deleteDedicatedHorizonCustomerUser',
+					action: 'Delete a customer user',
+				},
+				{
+					name: 'Disable Storage Accelerator',
+					value: 'disableStorageAccelerator',
+					action: 'Disable storage accelerator',
+				},
+				{
+					name: 'Disable Two FA',
+					value: 'disableTwoFA',
+					action: 'Disable two factor authentication',
+				},
+				{
+					name: 'Disable Windows Username Option',
+					value: 'disableWindowsUsernameOption',
+					action: 'Disable Windows username option',
+				},
+				{
+					name: 'Enable Storage Accelerator',
+					value: 'enableStorageAccelerator',
+					action: 'Enable storage accelerator',
+				},
+				{
+					name: 'Enable Two FA',
+					value: 'enableTwoFA',
+					action: 'Enable two factor authentication',
+				},
+				{
+					name: 'Enable Windows Username Option',
+					value: 'enableWindowsUsernameOption',
+					action: 'Enable Windows username option',
+				},
+				{
+					name: 'Get',
+					value: 'get',
+					action: 'Get details of a HorizonView service',
+				},
+				{
+					name: 'Get Access Point',
+					value: 'getAccessPoint',
+					action: 'Get access point details',
+				},
+				{
+					name: 'Get Access Point Customer Network',
+					value: 'getAccessPointCustomerNetwork',
+					action: 'Get customer network details on access point',
+				},
+				{
+					name: 'Get Customer Network',
+					value: 'getCustomerNetwork',
+					action: 'Get customer network details',
+				},
+				{
+					name: 'Get Dedicated Horizon',
+					value: 'getDedicatedHorizon',
+					action: 'Get dedicated Horizon properties',
+				},
+				{
+					name: 'Get Dedicated Horizon Customer User',
+					value: 'getDedicatedHorizonCustomerUser',
+					action: 'Get customer user details',
+				},
+				{
+					name: 'Get Dedicated Horizon Task',
+					value: 'getDedicatedHorizonTask',
+					action: 'Get task details',
+				},
+				{
+					name: 'Get Dedicated Horizon User',
+					value: 'getDedicatedHorizonUser',
+					action: 'Get user properties',
+				},
+				{
+					name: 'Get Domain Trust',
+					value: 'getDomainTrust',
+					action: 'Get domain trust details',
+				},
+				{
+					name: 'Get Service Infos',
+					value: 'getServiceInfos',
+					action: 'Get service information',
+				},
+				{
+					name: 'List',
+					value: 'list',
+					action: 'List all HorizonView services',
+				},
+				{
+					name: 'List Access Point Customer Networks',
+					value: 'listAccessPointCustomerNetworks',
+					action: 'List customer networks on access point',
+				},
+				{
+					name: 'List Access Points',
+					value: 'listAccessPoints',
+					action: 'List access points (pools)',
+				},
+				{
+					name: 'List Customer Networks',
+					value: 'listCustomerNetworks',
+					action: 'List customer networks',
+				},
+				{
+					name: 'List Dedicated Horizon Customer Users',
+					value: 'listDedicatedHorizonCustomerUsers',
+					action: 'List customer users',
+				},
+				{
+					name: 'List Dedicated Horizon Tasks',
+					value: 'listDedicatedHorizonTasks',
+					action: 'List tasks',
+				},
+				{
+					name: 'List Domain Trusts',
+					value: 'listDomainTrusts',
+					action: 'List domain trusts',
+				},
+				{
 					name: 'Terminate',
 					value: 'terminate',
 					action: 'Request service termination',
+				},
+				{
+					name: 'Update Service Infos',
+					value: 'updateServiceInfos',
+					action: 'Update service information',
 				},
 			],
 			default: 'list',

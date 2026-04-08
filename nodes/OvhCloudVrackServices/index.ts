@@ -40,19 +40,9 @@ export function description(displayOptions: IDisplayOptions): INodeProperties[] 
 			noDataExpression: true,
 			options: [
 				{
-					name: 'List',
-					value: 'list',
-					action: 'List all vRack services',
-				},
-				{
 					name: 'Get',
 					value: 'get',
 					action: 'Get details of a vRack service',
-				},
-				{
-					name: 'List References',
-					value: 'listReferences',
-					action: 'List vRack Services references',
 				},
 				{
 					name: 'Get Reference',
@@ -60,14 +50,19 @@ export function description(displayOptions: IDisplayOptions): INodeProperties[] 
 					action: 'Get a specific reference',
 				},
 				{
-					name: 'List Resources',
-					value: 'listResources',
-					action: 'List vRack Services resources',
-				},
-				{
 					name: 'Get Resource',
 					value: 'getResource',
 					action: 'Get a specific resource',
+				},
+				{
+					name: 'Get Task',
+					value: 'getTask',
+					action: 'Get a specific task',
+				},
+				{
+					name: 'List',
+					value: 'list',
+					action: 'List all vRack services',
 				},
 				{
 					name: 'List Eligible Managed Services',
@@ -75,14 +70,19 @@ export function description(displayOptions: IDisplayOptions): INodeProperties[] 
 					action: 'List eligible managed services',
 				},
 				{
+					name: 'List References',
+					value: 'listReferences',
+					action: 'List vRack Services references',
+				},
+				{
+					name: 'List Resources',
+					value: 'listResources',
+					action: 'List vRack Services resources',
+				},
+				{
 					name: 'List Tasks',
 					value: 'listTasks',
 					action: 'List vRack Services tasks',
-				},
-				{
-					name: 'Get Task',
-					value: 'getTask',
-					action: 'Get a specific task',
 				},
 			],
 			default: 'list',

@@ -51,29 +51,9 @@ export function description(displayOptions: IDisplayOptions): INodeProperties[] 
 			noDataExpression: true,
 			options: [
 				{
-					name: 'List',
-					value: 'list',
-					action: 'List all OKMS resources',
-				},
-				{
 					name: 'Get',
 					value: 'get',
 					action: 'Get details of an OKMS resource',
-				},
-				{
-					name: 'List Resources',
-					value: 'listResources',
-					action: 'List OKMS resources',
-				},
-				{
-					name: 'Get Resource',
-					value: 'getResource',
-					action: 'Get a specific OKMS resource',
-				},
-				{
-					name: 'List Credentials',
-					value: 'listCredentials',
-					action: 'List OKMS credentials',
 				},
 				{
 					name: 'Get Credential',
@@ -81,19 +61,9 @@ export function description(displayOptions: IDisplayOptions): INodeProperties[] 
 					action: 'Get a specific credential',
 				},
 				{
-					name: 'List Log Kinds',
-					value: 'listLogKinds',
-					action: 'List OKMS log kinds',
-				},
-				{
 					name: 'Get Log Kind',
 					value: 'getLogKind',
 					action: 'Get a specific log kind',
-				},
-				{
-					name: 'List Log Subscriptions',
-					value: 'listLogSubscriptions',
-					action: 'List OKMS log subscriptions',
 				},
 				{
 					name: 'Get Log Subscription',
@@ -106,9 +76,9 @@ export function description(displayOptions: IDisplayOptions): INodeProperties[] 
 					action: 'Get OKMS log URL',
 				},
 				{
-					name: 'List Secrets',
-					value: 'listSecrets',
-					action: 'List OKMS secrets',
+					name: 'Get Resource',
+					value: 'getResource',
+					action: 'Get a specific OKMS resource',
 				},
 				{
 					name: 'Get Secret',
@@ -116,9 +86,9 @@ export function description(displayOptions: IDisplayOptions): INodeProperties[] 
 					action: 'Get a specific secret',
 				},
 				{
-					name: 'List Secret Versions',
-					value: 'listSecretVersions',
-					action: 'List OKMS secret versions',
+					name: 'Get Secret Config',
+					value: 'getSecretConfig',
+					action: 'Get OKMS secret config',
 				},
 				{
 					name: 'Get Secret Version',
@@ -126,19 +96,29 @@ export function description(displayOptions: IDisplayOptions): INodeProperties[] 
 					action: 'Get a specific secret version',
 				},
 				{
-					name: 'Get Secret Config',
-					value: 'getSecretConfig',
-					action: 'Get OKMS secret config',
-				},
-				{
-					name: 'List Service Keys',
-					value: 'listServiceKeys',
-					action: 'List OKMS service keys',
-				},
-				{
 					name: 'Get Service Key',
 					value: 'getServiceKey',
 					action: 'Get a specific service key',
+				},
+				{
+					name: 'List',
+					value: 'list',
+					action: 'List all OKMS resources',
+				},
+				{
+					name: 'List Credentials',
+					value: 'listCredentials',
+					action: 'List OKMS credentials',
+				},
+				{
+					name: 'List Log Kinds',
+					value: 'listLogKinds',
+					action: 'List OKMS log kinds',
+				},
+				{
+					name: 'List Log Subscriptions',
+					value: 'listLogSubscriptions',
+					action: 'List OKMS log subscriptions',
 				},
 				{
 					name: 'List Reference Regions',
@@ -154,6 +134,26 @@ export function description(displayOptions: IDisplayOptions): INodeProperties[] 
 					name: 'List Reference Service Keys',
 					value: 'listReferenceServiceKeys',
 					action: 'List OKMS reference service keys',
+				},
+				{
+					name: 'List Resources',
+					value: 'listResources',
+					action: 'List OKMS resources',
+				},
+				{
+					name: 'List Secret Versions',
+					value: 'listSecretVersions',
+					action: 'List OKMS secret versions',
+				},
+				{
+					name: 'List Secrets',
+					value: 'listSecrets',
+					action: 'List OKMS secrets',
+				},
+				{
+					name: 'List Service Keys',
+					value: 'listServiceKeys',
+					action: 'List OKMS service keys',
 				},
 			],
 			default: 'list',

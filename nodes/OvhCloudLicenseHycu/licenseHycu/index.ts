@@ -32,29 +32,9 @@ export function description(displayOptions: IDisplayOptions): INodeProperties[] 
 			noDataExpression: true,
 			options: [
 				{
-					name: 'List',
-					value: 'list',
-					action: 'List all Hycu License services',
-				},
-				{
-					name: 'Get',
-					value: 'get',
-					action: 'Get details of a Hycu License service',
-				},
-				{
-					name: 'Get Service Infos',
-					value: 'getServiceInfos',
-					action: 'Get service information for a Hycu License',
-				},
-				{
-					name: 'Update Service Infos',
-					value: 'updateServiceInfos',
-					action: 'Update service information for a Hycu License',
-				},
-				{
-					name: 'Terminate',
-					value: 'terminate',
-					action: 'Terminate a Hycu License service',
+					name: 'Activate',
+					value: 'activate',
+					action: 'Activate a Hycu License',
 				},
 				{
 					name: 'Confirm Termination',
@@ -62,14 +42,9 @@ export function description(displayOptions: IDisplayOptions): INodeProperties[] 
 					action: 'Confirm termination of a Hycu License service',
 				},
 				{
-					name: 'Update',
-					value: 'update',
-					action: 'Update a Hycu License service',
-				},
-				{
-					name: 'Activate',
-					value: 'activate',
-					action: 'Activate a Hycu License',
+					name: 'Get',
+					value: 'get',
+					action: 'Get details of a Hycu License service',
 				},
 				{
 					name: 'Get License',
@@ -77,9 +52,34 @@ export function description(displayOptions: IDisplayOptions): INodeProperties[] 
 					action: 'Get license information for a Hycu License',
 				},
 				{
+					name: 'Get Service Infos',
+					value: 'getServiceInfos',
+					action: 'Get service information for a Hycu License',
+				},
+				{
+					name: 'List',
+					value: 'list',
+					action: 'List all Hycu License services',
+				},
+				{
 					name: 'Refresh',
 					value: 'refresh',
 					action: 'Refresh a Hycu License',
+				},
+				{
+					name: 'Terminate',
+					value: 'terminate',
+					action: 'Terminate a Hycu License service',
+				},
+				{
+					name: 'Update',
+					value: 'update',
+					action: 'Update a Hycu License service',
+				},
+				{
+					name: 'Update Service Infos',
+					value: 'updateServiceInfos',
+					action: 'Update service information for a Hycu License',
 				},
 			],
 			default: 'list',

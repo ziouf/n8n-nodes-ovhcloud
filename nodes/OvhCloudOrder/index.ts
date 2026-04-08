@@ -53,59 +53,9 @@ export function description(displayOptions: IDisplayOptions): INodeProperties[] 
 			noDataExpression: true,
 			options: [
 				{
-					name: 'List Carts',
-					value: 'listCarts',
-					action: 'List all order carts',
-				},
-				{
-					name: 'Create Cart',
-					value: 'createCart',
-					action: 'Create a new order cart',
-				},
-				{
-					name: 'Get Cart',
-					value: 'getCart',
-					action: 'Get cart details',
-				},
-				{
-					name: 'Update Cart',
-					value: 'updateCart',
-					action: 'Update a cart',
-				},
-				{
-					name: 'Delete Cart',
-					value: 'deleteCart',
-					action: 'Delete a cart',
-				},
-				{
-					name: 'List Cart Items',
-					value: 'listCartItems',
-					action: 'List all items in a cart',
-				},
-				{
-					name: 'Get Cart Item',
-					value: 'getCartItem',
-					action: 'Get cart item details',
-				},
-				{
-					name: 'Update Cart Item',
-					value: 'updateCartItem',
-					action: 'Update a cart item',
-				},
-				{
-					name: 'Delete Cart Item',
-					value: 'deleteCartItem',
-					action: 'Delete a cart item',
-				},
-				{
-					name: 'Get Checkout',
-					value: 'getCheckout',
-					action: 'Get checkout information',
-				},
-				{
-					name: 'Validate Cart',
-					value: 'validateCart',
-					action: 'Validate cart and create order',
+					name: 'Add Coupon',
+					value: 'addCoupon',
+					action: 'Add a coupon to cart',
 				},
 				{
 					name: 'Assign Cart',
@@ -113,14 +63,19 @@ export function description(displayOptions: IDisplayOptions): INodeProperties[] 
 					action: 'Assign cart to account',
 				},
 				{
-					name: 'List Coupons',
-					value: 'listCoupons',
-					action: 'List cart coupons',
+					name: 'Create Cart',
+					value: 'createCart',
+					action: 'Create a new order cart',
 				},
 				{
-					name: 'Add Coupon',
-					value: 'addCoupon',
-					action: 'Add a coupon to cart',
+					name: 'Delete Cart',
+					value: 'deleteCart',
+					action: 'Delete a cart',
+				},
+				{
+					name: 'Delete Cart Item',
+					value: 'deleteCartItem',
+					action: 'Delete a cart item',
 				},
 				{
 					name: 'Delete Coupon',
@@ -128,9 +83,54 @@ export function description(displayOptions: IDisplayOptions): INodeProperties[] 
 					action: 'Delete a coupon from cart',
 				},
 				{
+					name: 'Get Cart',
+					value: 'getCart',
+					action: 'Get cart details',
+				},
+				{
+					name: 'Get Cart Item',
+					value: 'getCartItem',
+					action: 'Get cart item details',
+				},
+				{
 					name: 'Get Cart Summary',
 					value: 'getCartSummary',
 					action: 'Get cart summary',
+				},
+				{
+					name: 'Get Checkout',
+					value: 'getCheckout',
+					action: 'Get checkout information',
+				},
+				{
+					name: 'List Cart Items',
+					value: 'listCartItems',
+					action: 'List all items in a cart',
+				},
+				{
+					name: 'List Carts',
+					value: 'listCarts',
+					action: 'List all order carts',
+				},
+				{
+					name: 'List Coupons',
+					value: 'listCoupons',
+					action: 'List cart coupons',
+				},
+				{
+					name: 'Update Cart',
+					value: 'updateCart',
+					action: 'Update a cart',
+				},
+				{
+					name: 'Update Cart Item',
+					value: 'updateCartItem',
+					action: 'Update a cart item',
+				},
+				{
+					name: 'Validate Cart',
+					value: 'validateCart',
+					action: 'Validate cart and create order',
 				},
 			],
 			default: 'listCarts',

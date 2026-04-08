@@ -35,61 +35,6 @@ export function description(displayOptions: IDisplayOptions): INodeProperties[] 
 			noDataExpression: true,
 			options: [
 				{
-					name: 'List',
-					value: 'list',
-					action: 'List all Plesk License services',
-				},
-				{
-					name: 'Get',
-					value: 'get',
-					action: 'Get details of a Plesk License service',
-				},
-				{
-					name: 'Get Service Infos',
-					value: 'getServiceInfos',
-					action: 'Get service information for a Plesk License',
-				},
-				{
-					name: 'Update Service Infos',
-					value: 'updateServiceInfos',
-					action: 'Update service information for a Plesk License',
-				},
-				{
-					name: 'List Tasks',
-					value: 'listTasks',
-					action: 'List tasks for a Plesk License',
-				},
-				{
-					name: 'Get Task',
-					value: 'getTask',
-					action: 'Get a specific task for a Plesk License',
-				},
-				{
-					name: 'Terminate',
-					value: 'terminate',
-					action: 'Terminate a Plesk License service',
-				},
-				{
-					name: 'Confirm Termination',
-					value: 'confirmTermination',
-					action: 'Confirm termination of a Plesk License service',
-				},
-				{
-					name: 'Get Orderable Versions',
-					value: 'getOrderableVersions',
-					action: 'Get orderable Plesk versions',
-				},
-				{
-					name: 'Update',
-					value: 'update',
-					action: 'Update a Plesk License service',
-				},
-				{
-					name: 'Get Allowed Destination IP',
-					value: 'getAllowedDestinationIp',
-					action: 'Get allowed destination IPs for a Plesk License',
-				},
-				{
 					name: 'Can License Be Moved To',
 					value: 'canLicenseBeMovedTo',
 					action: 'Check if a Plesk License can be moved to another IP',
@@ -100,9 +45,24 @@ export function description(displayOptions: IDisplayOptions): INodeProperties[] 
 					action: 'Change the IP of a Plesk License',
 				},
 				{
-					name: 'List Options',
-					value: 'listOptions',
-					action: 'List options for a Plesk License',
+					name: 'Confirm Termination',
+					value: 'confirmTermination',
+					action: 'Confirm termination of a Plesk License service',
+				},
+				{
+					name: 'Delete Option',
+					value: 'deleteOption',
+					action: 'Delete an option from a Plesk License',
+				},
+				{
+					name: 'Get',
+					value: 'get',
+					action: 'Get details of a Plesk License service',
+				},
+				{
+					name: 'Get Allowed Destination IP',
+					value: 'getAllowedDestinationIp',
+					action: 'Get allowed destination IPs for a Plesk License',
 				},
 				{
 					name: 'Get Option',
@@ -110,9 +70,49 @@ export function description(displayOptions: IDisplayOptions): INodeProperties[] 
 					action: 'Get a specific option for a Plesk License',
 				},
 				{
-					name: 'Delete Option',
-					value: 'deleteOption',
-					action: 'Delete an option from a Plesk License',
+					name: 'Get Orderable Versions',
+					value: 'getOrderableVersions',
+					action: 'Get orderable Plesk versions',
+				},
+				{
+					name: 'Get Service Infos',
+					value: 'getServiceInfos',
+					action: 'Get service information for a Plesk License',
+				},
+				{
+					name: 'Get Task',
+					value: 'getTask',
+					action: 'Get a specific task for a Plesk License',
+				},
+				{
+					name: 'List',
+					value: 'list',
+					action: 'List all Plesk License services',
+				},
+				{
+					name: 'List Options',
+					value: 'listOptions',
+					action: 'List options for a Plesk License',
+				},
+				{
+					name: 'List Tasks',
+					value: 'listTasks',
+					action: 'List tasks for a Plesk License',
+				},
+				{
+					name: 'Terminate',
+					value: 'terminate',
+					action: 'Terminate a Plesk License service',
+				},
+				{
+					name: 'Update',
+					value: 'update',
+					action: 'Update a Plesk License service',
+				},
+				{
+					name: 'Update Service Infos',
+					value: 'updateServiceInfos',
+					action: 'Update service information for a Plesk License',
 				},
 			],
 			default: 'list',

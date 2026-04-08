@@ -35,61 +35,6 @@ export function description(displayOptions: IDisplayOptions): INodeProperties[] 
 			noDataExpression: true,
 			options: [
 				{
-					name: 'List',
-					value: 'list',
-					action: 'List all Directadmin License services',
-				},
-				{
-					name: 'Get',
-					value: 'get',
-					action: 'Get details of a Directadmin License service',
-				},
-				{
-					name: 'Get Service Infos',
-					value: 'getServiceInfos',
-					action: 'Get service information for a Directadmin License',
-				},
-				{
-					name: 'Update Service Infos',
-					value: 'updateServiceInfos',
-					action: 'Update service information for a Directadmin License',
-				},
-				{
-					name: 'List Tasks',
-					value: 'listTasks',
-					action: 'List tasks for a Directadmin License',
-				},
-				{
-					name: 'Get Task',
-					value: 'getTask',
-					action: 'Get a specific task for a Directadmin License',
-				},
-				{
-					name: 'Terminate',
-					value: 'terminate',
-					action: 'Terminate a Directadmin License service',
-				},
-				{
-					name: 'Confirm Termination',
-					value: 'confirmTermination',
-					action: 'Confirm termination of a Directadmin License service',
-				},
-				{
-					name: 'Get Orderable Versions',
-					value: 'getOrderableVersions',
-					action: 'Get orderable Directadmin versions',
-				},
-				{
-					name: 'Update',
-					value: 'update',
-					action: 'Update a Directadmin License service',
-				},
-				{
-					name: 'Get Allowed Destination IP',
-					value: 'getAllowedDestinationIp',
-					action: 'Get allowed destination IPs for a Directadmin License',
-				},
-				{
 					name: 'Can License Be Moved To',
 					value: 'canLicenseBeMovedTo',
 					action: 'Check if a Directadmin License can be moved to another IP',
@@ -103,6 +48,61 @@ export function description(displayOptions: IDisplayOptions): INodeProperties[] 
 					name: 'Change OS',
 					value: 'changeOs',
 					action: 'Change the OS of a Directadmin License',
+				},
+				{
+					name: 'Confirm Termination',
+					value: 'confirmTermination',
+					action: 'Confirm termination of a Directadmin License service',
+				},
+				{
+					name: 'Get',
+					value: 'get',
+					action: 'Get details of a Directadmin License service',
+				},
+				{
+					name: 'Get Allowed Destination IP',
+					value: 'getAllowedDestinationIp',
+					action: 'Get allowed destination IPs for a Directadmin License',
+				},
+				{
+					name: 'Get Orderable Versions',
+					value: 'getOrderableVersions',
+					action: 'Get orderable Directadmin versions',
+				},
+				{
+					name: 'Get Service Infos',
+					value: 'getServiceInfos',
+					action: 'Get service information for a Directadmin License',
+				},
+				{
+					name: 'Get Task',
+					value: 'getTask',
+					action: 'Get a specific task for a Directadmin License',
+				},
+				{
+					name: 'List',
+					value: 'list',
+					action: 'List all Directadmin License services',
+				},
+				{
+					name: 'List Tasks',
+					value: 'listTasks',
+					action: 'List tasks for a Directadmin License',
+				},
+				{
+					name: 'Terminate',
+					value: 'terminate',
+					action: 'Terminate a Directadmin License service',
+				},
+				{
+					name: 'Update',
+					value: 'update',
+					action: 'Update a Directadmin License service',
+				},
+				{
+					name: 'Update Service Infos',
+					value: 'updateServiceInfos',
+					action: 'Update service information for a Directadmin License',
 				},
 			],
 			default: 'list',

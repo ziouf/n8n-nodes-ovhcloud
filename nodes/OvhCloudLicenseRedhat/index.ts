@@ -30,9 +30,9 @@ export function description(displayOptions: IDisplayOptions): INodeProperties[] 
 			noDataExpression: true,
 			options: [
 				{
-					name: 'List',
-					value: 'list',
-					action: 'List all Redhat License services',
+					name: 'Confirm Termination',
+					value: 'confirmTermination',
+					action: 'Confirm termination of a Redhat License service',
 				},
 				{
 					name: 'Get',
@@ -45,9 +45,14 @@ export function description(displayOptions: IDisplayOptions): INodeProperties[] 
 					action: 'Get service information for a Redhat License',
 				},
 				{
-					name: 'Update Service Infos',
-					value: 'updateServiceInfos',
-					action: 'Update service information for a Redhat License',
+					name: 'Get Task',
+					value: 'getTask',
+					action: 'Get a specific task for a Redhat License',
+				},
+				{
+					name: 'List',
+					value: 'list',
+					action: 'List all Redhat License services',
 				},
 				{
 					name: 'List Tasks',
@@ -55,24 +60,19 @@ export function description(displayOptions: IDisplayOptions): INodeProperties[] 
 					action: 'List tasks for a Redhat License',
 				},
 				{
-					name: 'Get Task',
-					value: 'getTask',
-					action: 'Get a specific task for a Redhat License',
-				},
-				{
 					name: 'Terminate',
 					value: 'terminate',
 					action: 'Terminate a Redhat License service',
 				},
 				{
-					name: 'Confirm Termination',
-					value: 'confirmTermination',
-					action: 'Confirm termination of a Redhat License service',
-				},
-				{
 					name: 'Update',
 					value: 'update',
 					action: 'Update a Redhat License service',
+				},
+				{
+					name: 'Update Service Infos',
+					value: 'updateServiceInfos',
+					action: 'Update service information for a Redhat License',
 				},
 			],
 			default: 'list',

@@ -12,7 +12,7 @@ import { getServiceIds } from '../../shared/methods/getServiceIds.method';
 export class OvhCloudManagedCMS implements INodeType {
 	description: INodeTypeDescription = {
 		displayName: 'OVH Cloud V2 Managed CMS',
-		name: 'ovhCloudmanagedCMS',
+		name: 'ovhCloudmanagedCms',
 		icon: OvhCloudIcon,
 		group: ['input'],
 		version: 1,

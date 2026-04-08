@@ -81,7 +81,11 @@ export function description(displayOptions: IDisplayOptions): INodeProperties[] 
 			type: 'options',
 			noDataExpression: true,
 			options: [
-				// Private Database - Main operations
+				{
+					name: 'Available Order Capacities List',
+					value: 'availableOrderCapacitiesList',
+					action: 'List available order capacities',
+				},
 				{
 					name: 'Available Versions List',
 					value: 'availableVersionsList',
@@ -98,132 +102,10 @@ export function description(displayOptions: IDisplayOptions): INodeProperties[] 
 					action: 'Update database configuration',
 				},
 				{
-					name: 'Database Create',
-					value: 'hostingDatabaseCreate',
-					action: 'Create a new database',
+					name: 'CPU Throttle Get',
+					value: 'cpuThrottleGet',
+					action: 'Get CPU throttle status',
 				},
-				{
-					name: 'Database Delete',
-					value: 'hostingDatabaseDelete',
-					action: 'Delete a database',
-				},
-				{
-					name: 'Database Get',
-					value: 'hostingDatabaseGet',
-					action: 'Get database details',
-				},
-				{
-					name: 'Database List',
-					value: 'hostingDatabaseList',
-					action: 'List all databases',
-				},
-				{
-					name: 'Get',
-					value: 'get',
-					action: 'Get details of a private database',
-				},
-				{
-					name: 'List',
-					value: 'list',
-					action: 'List all private database hosting services',
-				},
-				{
-					name: 'Restart',
-					value: 'restart',
-					action: 'Restart a private database',
-				},
-				{
-					name: 'Service Infos Get',
-					value: 'serviceInfosGet',
-					action: 'Get service information',
-				},
-				{
-					name: 'Service Infos Update',
-					value: 'serviceInfosUpdate',
-					action: 'Update service information',
-				},
-				{
-					name: 'Task Get',
-					value: 'hostingTaskGet',
-					action: 'Get task details',
-				},
-				{
-					name: 'Task List',
-					value: 'hostingTaskList',
-					action: 'List all tasks',
-				},
-				{
-					name: 'Update',
-					value: 'update',
-					action: 'Update a private database',
-				},
-				{
-					name: 'User Create',
-					value: 'hostingUserCreate',
-					action: 'Create a new user',
-				},
-				{
-					name: 'User Delete',
-					value: 'hostingUserDelete',
-					action: 'Delete a user',
-				},
-				{
-					name: 'User Get',
-					value: 'hostingUserGet',
-					action: 'Get user details',
-				},
-				{
-					name: 'User List',
-					value: 'hostingUserList',
-					action: 'List all users',
-				},
-				{
-					name: 'Whitelist Create',
-					value: 'hostingWhitelistCreate',
-					action: 'Create a new whitelist entry',
-				},
-				{
-					name: 'Whitelist Delete',
-					value: 'hostingWhitelistDelete',
-					action: 'Delete a whitelist entry',
-				},
-				{
-					name: 'Whitelist Get',
-					value: 'hostingWhitelistGet',
-					action: 'Get whitelist entry details',
-				},
-				{
-					name: 'Whitelist List',
-					value: 'hostingWhitelistList',
-					action: 'List all whitelisted IPs',
-				},
-				// Lifecycle operations
-				{
-					name: 'Lifecycle Change Contact',
-					value: 'lifecycleChangeContact',
-					action: 'Change contact for a private database',
-				},
-				{
-					name: 'Lifecycle Change FTP Password',
-					value: 'lifecycleChangeFtpPassword',
-					action: 'Change FTP password for a private database',
-				},
-				{
-					name: 'Lifecycle Change Version',
-					value: 'lifecycleChangeVersion',
-					action: 'Change version for a private database',
-				},
-				{
-					name: 'Lifecycle Confirm Termination',
-					value: 'lifecycleConfirmTermination',
-					action: 'Confirm termination of a private database',
-				},
-				{
-					name: 'Lifecycle Terminate',
-					value: 'lifecycleTerminate',
-					action: 'Terminate a private database',
-				},
-				// Database Copy operations
 				{
 					name: 'Database Copy Create',
 					value: 'databaseCopyCreate',
@@ -249,7 +131,16 @@ export function description(displayOptions: IDisplayOptions): INodeProperties[] 
 					value: 'databaseCopyRestore',
 					action: 'Restore a database copy',
 				},
-				// Database Dump operations
+				{
+					name: 'Database Create',
+					value: 'hostingDatabaseCreate',
+					action: 'Create a new database',
+				},
+				{
+					name: 'Database Delete',
+					value: 'hostingDatabaseDelete',
+					action: 'Delete a database',
+				},
 				{
 					name: 'Database Dump Create',
 					value: 'databaseDumpCreate',
@@ -275,7 +166,6 @@ export function description(displayOptions: IDisplayOptions): INodeProperties[] 
 					value: 'databaseDumpRestore',
 					action: 'Restore a database dump',
 				},
-				// Database Extension operations
 				{
 					name: 'Database Extension Disable',
 					value: 'databaseExtensionDisable',
@@ -296,19 +186,26 @@ export function description(displayOptions: IDisplayOptions): INodeProperties[] 
 					value: 'databaseExtensionList',
 					action: 'List database extensions',
 				},
-				// Database Import operations
+				{
+					name: 'Database Get',
+					value: 'hostingDatabaseGet',
+					action: 'Get database details',
+				},
 				{
 					name: 'Database Import Create',
 					value: 'databaseImportCreate',
 					action: 'Create a database import',
 				},
-				// Database Wizard operations
+				{
+					name: 'Database List',
+					value: 'hostingDatabaseList',
+					action: 'List all databases',
+				},
 				{
 					name: 'Database Wizard Create',
 					value: 'databaseWizardCreate',
 					action: 'Create a database via wizard',
 				},
-				// Dump operations
 				{
 					name: 'Dump Delete',
 					value: 'dumpDelete',
@@ -329,39 +226,46 @@ export function description(displayOptions: IDisplayOptions): INodeProperties[] 
 					value: 'dumpRestore',
 					action: 'Restore a dump',
 				},
-				// User Grant operations
 				{
-					name: 'User Grant Create',
-					value: 'userGrantCreate',
-					action: 'Create a user grant',
+					name: 'Generate Temporary Logs Link',
+					value: 'generateTemporaryLogsLinkCreate',
+					action: 'Generate temporary logs link',
 				},
 				{
-					name: 'User Grant Delete',
-					value: 'userGrantDelete',
-					action: 'Delete a user grant',
+					name: 'Get',
+					value: 'get',
+					action: 'Get details of a private database',
 				},
 				{
-					name: 'User Grant Get',
-					value: 'userGrantGet',
-					action: 'Get user grant details',
+					name: 'Lifecycle Change Contact',
+					value: 'lifecycleChangeContact',
+					action: 'Change contact for a private database',
 				},
 				{
-					name: 'User Grant List',
-					value: 'userGrantList',
-					action: 'List user grants',
+					name: 'Lifecycle Change FTP Password',
+					value: 'lifecycleChangeFtpPassword',
+					action: 'Change FTP password for a private database',
 				},
 				{
-					name: 'User Grant Update',
-					value: 'userGrantUpdate',
-					action: 'Update a user grant',
+					name: 'Lifecycle Change Version',
+					value: 'lifecycleChangeVersion',
+					action: 'Change version for a private database',
 				},
-				// User Change Password
 				{
-					name: 'User Change Password',
-					value: 'userChangePassword',
-					action: 'Change user password',
+					name: 'Lifecycle Confirm Termination',
+					value: 'lifecycleConfirmTermination',
+					action: 'Confirm termination of a private database',
 				},
-				// Log operations
+				{
+					name: 'Lifecycle Terminate',
+					value: 'lifecycleTerminate',
+					action: 'Terminate a private database',
+				},
+				{
+					name: 'List',
+					value: 'list',
+					action: 'List all private database hosting services',
+				},
 				{
 					name: 'Log Create Subscription',
 					value: 'logCreateSubscription',
@@ -397,94 +301,111 @@ export function description(displayOptions: IDisplayOptions): INodeProperties[] 
 					value: 'logListSubscriptions',
 					action: 'List log subscriptions',
 				},
-				// Metrics Token
 				{
 					name: 'Metrics Token Get',
 					value: 'metricsTokenGet',
 					action: 'Get metrics token',
 				},
-				// CPU Throttle
-				{
-					name: 'CPU Throttle Get',
-					value: 'cpuThrottleGet',
-					action: 'Get CPU throttle status',
-				},
-				// OOM
 				{
 					name: 'OOM List',
 					value: 'oomList',
 					action: 'List OOM events',
 				},
-				// Webhosting Network
-				{
-					name: 'Webhosting Network Create',
-					value: 'webhostingNetworkCreate',
-					action: 'Create webhosting network',
-				},
-				{
-					name: 'Webhosting Network Delete',
-					value: 'webhostingNetworkDelete',
-					action: 'Delete webhosting network',
-				},
-				{
-					name: 'Webhosting Network List',
-					value: 'webhostingNetworkList',
-					action: 'List webhosting networks',
-				},
-				// Webs
-				{
-					name: 'Webs List',
-					value: 'websList',
-					action: 'List webs',
-				},
-				// Quota Refresh
 				{
 					name: 'Quota Refresh Create',
 					value: 'quotaRefreshCreate',
 					action: 'Refresh quota',
 				},
-				// Generate Temporary Logs Link
 				{
-					name: 'Generate Temporary Logs Link',
-					value: 'generateTemporaryLogsLinkCreate',
-					action: 'Generate temporary logs link',
+					name: 'Restart',
+					value: 'restart',
+					action: 'Restart a private database',
 				},
-				// Available Order Capacities
 				{
-					name: 'Available Order Capacities List',
-					value: 'availableOrderCapacitiesList',
-					action: 'List available order capacities',
+					name: 'Service Infos Get',
+					value: 'serviceInfosGet',
+					action: 'Get service information',
 				},
-				// Tasks
+				{
+					name: 'Service Infos Update',
+					value: 'serviceInfosUpdate',
+					action: 'Update service information',
+				},
+				{
+					name: 'Task Get',
+					value: 'hostingTaskGet',
+					action: 'Get task details',
+				},
+				{
+					name: 'Task List',
+					value: 'hostingTaskList',
+					action: 'List all tasks',
+				},
 				{
 					name: 'Tasks Get',
 					value: 'tasksGet',
 					action: 'Get task details',
 				},
-				// Whitelist Update
 				{
-					name: 'Whitelist Update',
-					value: 'whitelistUpdate',
-					action: 'Update a whitelist entry',
-				},
-				// Web - Service Infos
-				{
-					name: 'Web Service Infos Get',
-					value: 'webServiceInfosGet',
-					action: 'Get web service information',
+					name: 'Update',
+					value: 'update',
+					action: 'Update a private database',
 				},
 				{
-					name: 'Web Service Infos Update',
-					value: 'webServiceInfosUpdate',
-					action: 'Update web service information',
+					name: 'User Change Password',
+					value: 'userChangePassword',
+					action: 'Change user password',
 				},
-				// Web - Attached Domain
+				{
+					name: 'User Create',
+					value: 'hostingUserCreate',
+					action: 'Create a new user',
+				},
+				{
+					name: 'User Delete',
+					value: 'hostingUserDelete',
+					action: 'Delete a user',
+				},
+				{
+					name: 'User Get',
+					value: 'hostingUserGet',
+					action: 'Get user details',
+				},
+				{
+					name: 'User Grant Create',
+					value: 'userGrantCreate',
+					action: 'Create a user grant',
+				},
+				{
+					name: 'User Grant Delete',
+					value: 'userGrantDelete',
+					action: 'Delete a user grant',
+				},
+				{
+					name: 'User Grant Get',
+					value: 'userGrantGet',
+					action: 'Get user grant details',
+				},
+				{
+					name: 'User Grant List',
+					value: 'userGrantList',
+					action: 'List user grants',
+				},
+				{
+					name: 'User Grant Update',
+					value: 'userGrantUpdate',
+					action: 'Update a user grant',
+				},
+				{
+					name: 'User List',
+					value: 'hostingUserList',
+					action: 'List all users',
+				},
 				{
 					name: 'Web Attached Domain Delete',
 					value: 'webAttachedDomainDelete',
 					action: 'Delete an attached domain',
 				},
-				// Web - Attached Domain SSL
 				{
 					name: 'Web Attached Domain SSL Create',
 					value: 'webAttachedDomainSslCreate',
@@ -500,7 +421,6 @@ export function description(displayOptions: IDisplayOptions): INodeProperties[] 
 					value: 'webAttachedDomainSslList',
 					action: 'List SSL for attached domain',
 				},
-				// Web - CDN Domain Options
 				{
 					name: 'Web CDN Domain Option Create',
 					value: 'webCdnDomainOptionsCreate',
@@ -526,7 +446,6 @@ export function description(displayOptions: IDisplayOptions): INodeProperties[] 
 					value: 'webCdnDomainOptionsUpdate',
 					action: 'Update CDN domain option',
 				},
-				// Web - Configuration
 				{
 					name: 'Web Configuration List',
 					value: 'webConfigurationList',
@@ -537,7 +456,6 @@ export function description(displayOptions: IDisplayOptions): INodeProperties[] 
 					value: 'webConfigurationUpdate',
 					action: 'Update web configuration',
 				},
-				// Web - Cron
 				{
 					name: 'Web Cron Create',
 					value: 'webCronCreate',
@@ -563,7 +481,16 @@ export function description(displayOptions: IDisplayOptions): INodeProperties[] 
 					value: 'webCronUpdate',
 					action: 'Update a cron job',
 				},
-				// Web - Database
+				{
+					name: 'Web Database Copy Delete',
+					value: 'webDatabaseCopyDelete',
+					action: 'Delete a web database copy',
+				},
+				{
+					name: 'Web Database Copy List',
+					value: 'webDatabaseCopyList',
+					action: 'List web database copies',
+				},
 				{
 					name: 'Web Database Create',
 					value: 'webDatabaseCreate',
@@ -573,6 +500,16 @@ export function description(displayOptions: IDisplayOptions): INodeProperties[] 
 					name: 'Web Database Delete',
 					value: 'webDatabaseDelete',
 					action: 'Delete a web database',
+				},
+				{
+					name: 'Web Database Dump Delete',
+					value: 'webDatabaseDumpDelete',
+					action: 'Delete a web database dump',
+				},
+				{
+					name: 'Web Database Dump List',
+					value: 'webDatabaseDumpList',
+					action: 'List web database dumps',
 				},
 				{
 					name: 'Web Database Get',
@@ -589,29 +526,6 @@ export function description(displayOptions: IDisplayOptions): INodeProperties[] 
 					value: 'webDatabaseUpdate',
 					action: 'Update a web database',
 				},
-				// Web - Database Copy
-				{
-					name: 'Web Database Copy Delete',
-					value: 'webDatabaseCopyDelete',
-					action: 'Delete a web database copy',
-				},
-				{
-					name: 'Web Database Copy List',
-					value: 'webDatabaseCopyList',
-					action: 'List web database copies',
-				},
-				// Web - Database Dump
-				{
-					name: 'Web Database Dump Delete',
-					value: 'webDatabaseDumpDelete',
-					action: 'Delete a web database dump',
-				},
-				{
-					name: 'Web Database Dump List',
-					value: 'webDatabaseDumpList',
-					action: 'List web database dumps',
-				},
-				// Web - Dump
 				{
 					name: 'Web Dump Delete',
 					value: 'webDumpDelete',
@@ -627,13 +541,11 @@ export function description(displayOptions: IDisplayOptions): INodeProperties[] 
 					value: 'webDumpList',
 					action: 'List web dumps',
 				},
-				// Web - Email
 				{
 					name: 'Web Email List',
 					value: 'webEmailList',
 					action: 'List web emails',
 				},
-				// Web - Environment Variable
 				{
 					name: 'Web Env Var Create',
 					value: 'webEnvVarCreate',
@@ -659,13 +571,6 @@ export function description(displayOptions: IDisplayOptions): INodeProperties[] 
 					value: 'webEnvVarUpdate',
 					action: 'Update an environment variable',
 				},
-				// Web - SSH Key
-				{
-					name: 'Web SSH Key List',
-					value: 'webSshKeyList',
-					action: 'List SSH keys',
-				},
-				// Web - Log Subscription
 				{
 					name: 'Web Log Subscription Delete',
 					value: 'webLogSubscriptionDelete',
@@ -676,7 +581,6 @@ export function description(displayOptions: IDisplayOptions): INodeProperties[] 
 					value: 'webLogSubscriptionList',
 					action: 'List log subscriptions',
 				},
-				// Web - Module
 				{
 					name: 'Web Module Delete',
 					value: 'webModuleDelete',
@@ -687,7 +591,6 @@ export function description(displayOptions: IDisplayOptions): INodeProperties[] 
 					value: 'webModuleList',
 					action: 'List modules',
 				},
-				// Web - Own Logs
 				{
 					name: 'Web Own Logs Delete User',
 					value: 'webOwnLogsDeleteUser',
@@ -703,7 +606,6 @@ export function description(displayOptions: IDisplayOptions): INodeProperties[] 
 					value: 'webOwnLogsListUsers',
 					action: 'List own logs users',
 				},
-				// Web - Runtime
 				{
 					name: 'Web Runtime Create',
 					value: 'webRuntimeCreate',
@@ -729,7 +631,21 @@ export function description(displayOptions: IDisplayOptions): INodeProperties[] 
 					value: 'webRuntimeUpdate',
 					action: 'Update a runtime',
 				},
-				// Web - SSL
+				{
+					name: 'Web Service Infos Get',
+					value: 'webServiceInfosGet',
+					action: 'Get web service information',
+				},
+				{
+					name: 'Web Service Infos Update',
+					value: 'webServiceInfosUpdate',
+					action: 'Update web service information',
+				},
+				{
+					name: 'Web SSH Key List',
+					value: 'webSshKeyList',
+					action: 'List SSH keys',
+				},
 				{
 					name: 'Web SSL Delete',
 					value: 'webSslDelete',
@@ -740,7 +656,6 @@ export function description(displayOptions: IDisplayOptions): INodeProperties[] 
 					value: 'webSslList',
 					action: 'List SSL certificates',
 				},
-				// Web - User
 				{
 					name: 'Web User Create',
 					value: 'webUserCreate',
@@ -762,12 +677,6 @@ export function description(displayOptions: IDisplayOptions): INodeProperties[] 
 					action: 'List users',
 				},
 				{
-					name: 'Web User Update',
-					value: 'webUserUpdate',
-					action: 'Update a user',
-				},
-				// Web - User Logs
-				{
 					name: 'Web User Logs Delete',
 					value: 'webUserLogsDelete',
 					action: 'Delete user logs',
@@ -782,7 +691,11 @@ export function description(displayOptions: IDisplayOptions): INodeProperties[] 
 					value: 'webUserLogsList',
 					action: 'List user logs',
 				},
-				// Web - Website
+				{
+					name: 'Web User Update',
+					value: 'webUserUpdate',
+					action: 'Update a user',
+				},
 				{
 					name: 'Web Website Create',
 					value: 'webWebsiteCreate',
@@ -807,6 +720,51 @@ export function description(displayOptions: IDisplayOptions): INodeProperties[] 
 					name: 'Web Website Update',
 					value: 'webWebsiteUpdate',
 					action: 'Update a website',
+				},
+				{
+					name: 'Webhosting Network Create',
+					value: 'webhostingNetworkCreate',
+					action: 'Create webhosting network',
+				},
+				{
+					name: 'Webhosting Network Delete',
+					value: 'webhostingNetworkDelete',
+					action: 'Delete webhosting network',
+				},
+				{
+					name: 'Webhosting Network List',
+					value: 'webhostingNetworkList',
+					action: 'List webhosting networks',
+				},
+				{
+					name: 'Webs List',
+					value: 'websList',
+					action: 'List webs',
+				},
+				{
+					name: 'Whitelist Create',
+					value: 'hostingWhitelistCreate',
+					action: 'Create a new whitelist entry',
+				},
+				{
+					name: 'Whitelist Delete',
+					value: 'hostingWhitelistDelete',
+					action: 'Delete a whitelist entry',
+				},
+				{
+					name: 'Whitelist Get',
+					value: 'hostingWhitelistGet',
+					action: 'Get whitelist entry details',
+				},
+				{
+					name: 'Whitelist List',
+					value: 'hostingWhitelistList',
+					action: 'List all whitelisted IPs',
+				},
+				{
+					name: 'Whitelist Update',
+					value: 'whitelistUpdate',
+					action: 'Update a whitelist entry',
 				},
 			],
 			default: 'list',

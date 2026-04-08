@@ -126,26 +126,6 @@ export function description(displayOptions: IDisplayOptions): INodeProperties[] 
 			displayOptions,
 			options: [
 				{
-					name: 'My Account',
-					value: 'me',
-					action: 'Operations about the authenticated user',
-				},
-				{
-					name: 'Bills',
-					value: 'bills',
-					action: 'Operations about bills',
-				},
-				{
-					name: 'Debt Account',
-					value: 'debtAccount',
-					action: 'Operations about debt account',
-				},
-				{
-					name: 'Orders',
-					value: 'orders',
-					action: 'Operations about orders',
-				},
-				{
 					name: 'API Applications',
 					value: 'meApiApplication',
 					action: 'Operations about API applications',
@@ -156,9 +136,29 @@ export function description(displayOptions: IDisplayOptions): INodeProperties[] 
 					action: 'Operations about API credentials',
 				},
 				{
+					name: 'Bills',
+					value: 'bills',
+					action: 'Operations about bills',
+				},
+				{
 					name: 'Contacts',
 					value: 'meContact',
 					action: 'Operations about contacts',
+				},
+				{
+					name: 'Debt Account',
+					value: 'debtAccount',
+					action: 'Operations about debt account',
+				},
+				{
+					name: 'My Account',
+					value: 'me',
+					action: 'Operations about the authenticated user',
+				},
+				{
+					name: 'Orders',
+					value: 'orders',
+					action: 'Operations about orders',
 				},
 				{
 					name: 'SSH Keys',
@@ -215,14 +215,14 @@ export function description(displayOptions: IDisplayOptions): INodeProperties[] 
 			noDataExpression: true,
 			options: [
 				{
-					name: 'List Bills',
-					value: 'list',
-					action: 'List bills',
-				},
-				{
 					name: 'Get Bill',
 					value: 'get',
 					action: 'Get a specific bill',
+				},
+				{
+					name: 'List Bills',
+					value: 'list',
+					action: 'List bills',
 				},
 			],
 			default: 'list',
@@ -280,14 +280,14 @@ export function description(displayOptions: IDisplayOptions): INodeProperties[] 
 			noDataExpression: true,
 			options: [
 				{
-					name: 'List Orders',
-					value: 'list',
-					action: 'List all orders',
-				},
-				{
 					name: 'Get Order',
 					value: 'get',
 					action: 'Get a specific order by ID',
+				},
+				{
+					name: 'List Orders',
+					value: 'list',
+					action: 'List all orders',
 				},
 			],
 			default: 'get',
@@ -317,9 +317,9 @@ export function description(displayOptions: IDisplayOptions): INodeProperties[] 
 			noDataExpression: true,
 			options: [
 				{
-					name: 'List',
-					value: 'list',
-					action: 'List all API applications',
+					name: 'Delete',
+					value: 'delete',
+					action: 'Delete an API application',
 				},
 				{
 					name: 'Get',
@@ -327,9 +327,9 @@ export function description(displayOptions: IDisplayOptions): INodeProperties[] 
 					action: 'Get details of an API application',
 				},
 				{
-					name: 'Delete',
-					value: 'delete',
-					action: 'Delete an API application',
+					name: 'List',
+					value: 'list',
+					action: 'List all API applications',
 				},
 			],
 			default: 'list',
@@ -375,9 +375,9 @@ export function description(displayOptions: IDisplayOptions): INodeProperties[] 
 			noDataExpression: true,
 			options: [
 				{
-					name: 'List',
-					value: 'list',
-					action: 'List all API credentials',
+					name: 'Delete',
+					value: 'delete',
+					action: 'Delete an API credential',
 				},
 				{
 					name: 'Get',
@@ -385,14 +385,14 @@ export function description(displayOptions: IDisplayOptions): INodeProperties[] 
 					action: 'Get details of an API credential',
 				},
 				{
+					name: 'List',
+					value: 'list',
+					action: 'List all API credentials',
+				},
+				{
 					name: 'Update',
 					value: 'update',
 					action: 'Update an API credential',
-				},
-				{
-					name: 'Delete',
-					value: 'delete',
-					action: 'Delete an API credential',
 				},
 			],
 			default: 'list',
@@ -446,14 +446,14 @@ export function description(displayOptions: IDisplayOptions): INodeProperties[] 
 			noDataExpression: true,
 			options: [
 				{
-					name: 'List',
-					value: 'list',
-					action: 'List all contacts',
-				},
-				{
 					name: 'Get',
 					value: 'get',
 					action: 'Get details of a contact',
+				},
+				{
+					name: 'List',
+					value: 'list',
+					action: 'List all contacts',
 				},
 			],
 			default: 'list',
@@ -483,16 +483,6 @@ export function description(displayOptions: IDisplayOptions): INodeProperties[] 
 			noDataExpression: true,
 			options: [
 				{
-					name: 'List',
-					value: 'list',
-					action: 'List all SSH keys',
-				},
-				{
-					name: 'Get',
-					value: 'get',
-					action: 'Get details of an SSH key',
-				},
-				{
 					name: 'Create',
 					value: 'create',
 					action: 'Create a new SSH key',
@@ -501,6 +491,16 @@ export function description(displayOptions: IDisplayOptions): INodeProperties[] 
 					name: 'Delete',
 					value: 'delete',
 					action: 'Delete an SSH key',
+				},
+				{
+					name: 'Get',
+					value: 'get',
+					action: 'Get details of an SSH key',
+				},
+				{
+					name: 'List',
+					value: 'list',
+					action: 'List all SSH keys',
 				},
 			],
 			default: 'list',

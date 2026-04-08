@@ -31,59 +31,9 @@ export function description(displayOptions: IDisplayOptions): INodeProperties[] 
 			noDataExpression: true,
 			options: [
 				{
-					name: 'List',
-					value: 'list',
-					action: 'List all Office License services',
-				},
-				{
-					name: 'Get',
-					value: 'get',
-					action: 'Get details of an Office License service',
-				},
-				{
-					name: 'Get Service Infos',
-					value: 'getServiceInfos',
-					action: 'Get service information for an Office License',
-				},
-				{
-					name: 'Update Service Infos',
-					value: 'updateServiceInfos',
-					action: 'Update service information for an Office License',
-				},
-				{
-					name: 'Update',
-					value: 'update',
-					action: 'Update an Office License service',
-				},
-				{
-					name: 'List Domains',
-					value: 'listDomains',
-					action: 'List domains for an Office License',
-				},
-				{
-					name: 'Get Domain',
-					value: 'getDomain',
-					action: 'Get a specific domain for an Office License',
-				},
-				{
-					name: 'List Pending Tasks',
-					value: 'listPendingTasks',
-					action: 'List pending tasks for an Office License',
-				},
-				{
-					name: 'Get Pending Task',
-					value: 'getPendingTask',
-					action: 'Get a specific pending task for an Office License',
-				},
-				{
-					name: 'Get Usage Statistics',
-					value: 'getUsageStatistics',
-					action: 'Get usage statistics for an Office License',
-				},
-				{
-					name: 'List Users',
-					value: 'listUsers',
-					action: 'List users for an Office License',
+					name: 'Change User Password',
+					value: 'changeUserPassword',
+					action: 'Change password for an Office License user',
 				},
 				{
 					name: 'Create User',
@@ -91,24 +41,74 @@ export function description(displayOptions: IDisplayOptions): INodeProperties[] 
 					action: 'Create a user for an Office License',
 				},
 				{
-					name: 'Get User',
-					value: 'getUser',
-					action: 'Get a specific user for an Office License',
-				},
-				{
-					name: 'Update User',
-					value: 'updateUser',
-					action: 'Update a user for an Office License',
-				},
-				{
 					name: 'Delete User',
 					value: 'deleteUser',
 					action: 'Delete a user from an Office License',
 				},
 				{
-					name: 'Change User Password',
-					value: 'changeUserPassword',
-					action: 'Change password for an Office License user',
+					name: 'Get',
+					value: 'get',
+					action: 'Get details of an Office License service',
+				},
+				{
+					name: 'Get Domain',
+					value: 'getDomain',
+					action: 'Get a specific domain for an Office License',
+				},
+				{
+					name: 'Get Pending Task',
+					value: 'getPendingTask',
+					action: 'Get a specific pending task for an Office License',
+				},
+				{
+					name: 'Get Service Infos',
+					value: 'getServiceInfos',
+					action: 'Get service information for an Office License',
+				},
+				{
+					name: 'Get Usage Statistics',
+					value: 'getUsageStatistics',
+					action: 'Get usage statistics for an Office License',
+				},
+				{
+					name: 'Get User',
+					value: 'getUser',
+					action: 'Get a specific user for an Office License',
+				},
+				{
+					name: 'List',
+					value: 'list',
+					action: 'List all Office License services',
+				},
+				{
+					name: 'List Domains',
+					value: 'listDomains',
+					action: 'List domains for an Office License',
+				},
+				{
+					name: 'List Pending Tasks',
+					value: 'listPendingTasks',
+					action: 'List pending tasks for an Office License',
+				},
+				{
+					name: 'List Users',
+					value: 'listUsers',
+					action: 'List users for an Office License',
+				},
+				{
+					name: 'Update',
+					value: 'update',
+					action: 'Update an Office License service',
+				},
+				{
+					name: 'Update Service Infos',
+					value: 'updateServiceInfos',
+					action: 'Update service information for an Office License',
+				},
+				{
+					name: 'Update User',
+					value: 'updateUser',
+					action: 'Update a user for an Office License',
 				},
 			],
 			default: 'list',

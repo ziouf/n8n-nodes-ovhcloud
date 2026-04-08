@@ -16,7 +16,8 @@ import { ApiClient } from '../../../../../shared/transport/ApiClient';
  * @returns Array of node properties for the operation
  */
 export function description(displayOptions: IDisplayOptions): INodeProperties[] {
-	return [		{
+	return [
+		{
 			displayName: 'Name',
 			name: 'name',
 			type: 'string',
@@ -39,7 +40,7 @@ export function description(displayOptions: IDisplayOptions): INodeProperties[] 
 			name: 'sendEmail',
 			type: 'boolean',
 			default: false,
-			description: 'Send an email when dump will be available? Default: true',
+			description: 'Whether to send an email when dump will be available. Default: true.',
 			displayOptions,
 		},
 	];
@@ -60,6 +61,8 @@ export async function execute(this: IExecuteFunctions): Promise<INodeExecutionDa
 	const serviceName = this.getNodeParameter('serviceName', 0) as string;
 	const date = this.getNodeParameter('date', 0) as string;
 	const sendEmail = this.getNodeParameter('sendEmail', 0) as boolean;
-	const data = (await client.httpPost(`/hosting/web/${serviceName}/database/${name}/dump`, { body: { date: date, sendEmail: sendEmail } })) as IDataObject;
+	const data = (await client.httpPost(`/hosting/web/${serviceName}/database/${name}/dump`, {
+		body: { date: date, sendEmail: sendEmail },
+	})) as IDataObject;
 	return [{ json: data }];
 }

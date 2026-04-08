@@ -33,39 +33,9 @@ export function description(displayOptions: IDisplayOptions): INodeProperties[] 
 			noDataExpression: true,
 			options: [
 				{
-					name: 'List',
-					value: 'list',
-					action: 'List all Windows License services',
-				},
-				{
-					name: 'Get',
-					value: 'get',
-					action: 'Get details of a Windows License service',
-				},
-				{
-					name: 'Get Service Infos',
-					value: 'getServiceInfos',
-					action: 'Get service information for a Windows License',
-				},
-				{
-					name: 'Update Service Infos',
-					value: 'updateServiceInfos',
-					action: 'Update service information for a Windows License',
-				},
-				{
-					name: 'List Tasks',
-					value: 'listTasks',
-					action: 'List tasks for a Windows License',
-				},
-				{
-					name: 'Get Task',
-					value: 'getTask',
-					action: 'Get a specific task for a Windows License',
-				},
-				{
-					name: 'Terminate',
-					value: 'terminate',
-					action: 'Terminate a Windows License service',
+					name: 'Add SQL Server',
+					value: 'addSqlServer',
+					action: 'Add SQL Server to a Windows License',
 				},
 				{
 					name: 'Confirm Termination',
@@ -73,19 +43,14 @@ export function description(displayOptions: IDisplayOptions): INodeProperties[] 
 					action: 'Confirm termination of a Windows License service',
 				},
 				{
-					name: 'Get Orderable Versions',
-					value: 'getOrderableVersions',
-					action: 'Get orderable Windows versions',
+					name: 'Delete Option',
+					value: 'deleteOption',
+					action: 'Delete an option from a Windows License',
 				},
 				{
-					name: 'Update',
-					value: 'update',
-					action: 'Update a Windows License service',
-				},
-				{
-					name: 'List Options',
-					value: 'listOptions',
-					action: 'List options for a Windows License',
+					name: 'Get',
+					value: 'get',
+					action: 'Get details of a Windows License service',
 				},
 				{
 					name: 'Get Option',
@@ -93,14 +58,49 @@ export function description(displayOptions: IDisplayOptions): INodeProperties[] 
 					action: 'Get a specific option for a Windows License',
 				},
 				{
-					name: 'Delete Option',
-					value: 'deleteOption',
-					action: 'Delete an option from a Windows License',
+					name: 'Get Orderable Versions',
+					value: 'getOrderableVersions',
+					action: 'Get orderable Windows versions',
 				},
 				{
-					name: 'Add SQL Server',
-					value: 'addSqlServer',
-					action: 'Add SQL Server to a Windows License',
+					name: 'Get Service Infos',
+					value: 'getServiceInfos',
+					action: 'Get service information for a Windows License',
+				},
+				{
+					name: 'Get Task',
+					value: 'getTask',
+					action: 'Get a specific task for a Windows License',
+				},
+				{
+					name: 'List',
+					value: 'list',
+					action: 'List all Windows License services',
+				},
+				{
+					name: 'List Options',
+					value: 'listOptions',
+					action: 'List options for a Windows License',
+				},
+				{
+					name: 'List Tasks',
+					value: 'listTasks',
+					action: 'List tasks for a Windows License',
+				},
+				{
+					name: 'Terminate',
+					value: 'terminate',
+					action: 'Terminate a Windows License service',
+				},
+				{
+					name: 'Update',
+					value: 'update',
+					action: 'Update a Windows License service',
+				},
+				{
+					name: 'Update Service Infos',
+					value: 'updateServiceInfos',
+					action: 'Update service information for a Windows License',
 				},
 			],
 			default: 'list',

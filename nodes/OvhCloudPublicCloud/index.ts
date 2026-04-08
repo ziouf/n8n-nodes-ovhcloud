@@ -44,29 +44,14 @@ export function description(displayOptions: IDisplayOptions): INodeProperties[] 
 			noDataExpression: true,
 			options: [
 				{
-					name: 'List',
-					value: 'list',
-					action: 'List all Public Cloud projects',
-				},
-				{
 					name: 'Get',
 					value: 'get',
 					action: 'Get details of a Public Cloud project',
 				},
 				{
-					name: 'List Projects',
-					value: 'listProjects',
-					action: 'List Public Cloud projects',
-				},
-				{
 					name: 'Get Project',
 					value: 'getProject',
 					action: 'Get a specific project',
-				},
-				{
-					name: 'List Ranchers',
-					value: 'listRanchers',
-					action: 'List Rancher services',
 				},
 				{
 					name: 'Get Rancher',
@@ -89,6 +74,21 @@ export function description(displayOptions: IDisplayOptions): INodeProperties[] 
 					action: 'Get Rancher capabilities version',
 				},
 				{
+					name: 'Get Rancher Task',
+					value: 'getRancherTask',
+					action: 'Get a specific Rancher task',
+				},
+				{
+					name: 'List',
+					value: 'list',
+					action: 'List all Public Cloud projects',
+				},
+				{
+					name: 'List Projects',
+					value: 'listProjects',
+					action: 'List Public Cloud projects',
+				},
+				{
 					name: 'List Rancher Events',
 					value: 'listRancherEvents',
 					action: 'List Rancher events',
@@ -99,9 +99,9 @@ export function description(displayOptions: IDisplayOptions): INodeProperties[] 
 					action: 'List Rancher tasks',
 				},
 				{
-					name: 'Get Rancher Task',
-					value: 'getRancherTask',
-					action: 'Get a specific Rancher task',
+					name: 'List Ranchers',
+					value: 'listRanchers',
+					action: 'List Rancher services',
 				},
 				{
 					name: 'List Reference Rancher Plans',

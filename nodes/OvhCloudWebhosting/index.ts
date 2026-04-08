@@ -41,19 +41,9 @@ export function description(displayOptions: IDisplayOptions): INodeProperties[] 
 			noDataExpression: true,
 			options: [
 				{
-					name: 'List',
-					value: 'list',
-					action: 'List all web hosting services',
-				},
-				{
 					name: 'Get',
 					value: 'get',
 					action: 'Get details of a web hosting service',
-				},
-				{
-					name: 'List Attached Domains',
-					value: 'listAttachedDomains',
-					action: 'List web hosting attached domains',
 				},
 				{
 					name: 'Get Attached Domain',
@@ -61,9 +51,9 @@ export function description(displayOptions: IDisplayOptions): INodeProperties[] 
 					action: 'Get a specific attached domain',
 				},
 				{
-					name: 'List Resources',
-					value: 'listResources',
-					action: 'List web hosting resources',
+					name: 'Get Certificate',
+					value: 'getCertificate',
+					action: 'Get a specific certificate',
 				},
 				{
 					name: 'Get Resource',
@@ -71,24 +61,34 @@ export function description(displayOptions: IDisplayOptions): INodeProperties[] 
 					action: 'Get a specific resource',
 				},
 				{
+					name: 'Get Website',
+					value: 'getWebsite',
+					action: 'Get a specific website',
+				},
+				{
+					name: 'List',
+					value: 'list',
+					action: 'List all web hosting services',
+				},
+				{
+					name: 'List Attached Domains',
+					value: 'listAttachedDomains',
+					action: 'List web hosting attached domains',
+				},
+				{
 					name: 'List Certificates',
 					value: 'listCertificates',
 					action: 'List web hosting certificates',
 				},
 				{
-					name: 'Get Certificate',
-					value: 'getCertificate',
-					action: 'Get a specific certificate',
+					name: 'List Resources',
+					value: 'listResources',
+					action: 'List web hosting resources',
 				},
 				{
 					name: 'List Websites',
 					value: 'listWebsites',
 					action: 'List web hosting websites',
-				},
-				{
-					name: 'Get Website',
-					value: 'getWebsite',
-					action: 'Get a specific website',
 				},
 			],
 			default: 'list',

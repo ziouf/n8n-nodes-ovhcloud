@@ -24,9 +24,14 @@ export function description(displayOptions: IDisplayOptions): INodeProperties[] 
 			noDataExpression: true,
 			options: [
 				{
-					name: 'List',
-					value: 'list',
-					action: 'List mitigation profiles',
+					name: 'Create',
+					value: 'create',
+					action: 'Create mitigation profile',
+				},
+				{
+					name: 'Delete',
+					value: 'delete',
+					action: 'Delete mitigation profile',
 				},
 				{
 					name: 'Get',
@@ -34,19 +39,14 @@ export function description(displayOptions: IDisplayOptions): INodeProperties[] 
 					action: 'Get mitigation profile details',
 				},
 				{
-					name: 'Create',
-					value: 'create',
-					action: 'Create mitigation profile',
+					name: 'List',
+					value: 'list',
+					action: 'List mitigation profiles',
 				},
 				{
 					name: 'Update',
 					value: 'update',
 					action: 'Update mitigation profile',
-				},
-				{
-					name: 'Delete',
-					value: 'delete',
-					action: 'Delete mitigation profile',
 				},
 			],
 			default: 'list',

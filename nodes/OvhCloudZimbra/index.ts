@@ -48,19 +48,9 @@ export function description(displayOptions: IDisplayOptions): INodeProperties[] 
 			noDataExpression: true,
 			options: [
 				{
-					name: 'List',
-					value: 'list',
-					action: 'List all Zimbra platforms',
-				},
-				{
 					name: 'Get',
 					value: 'get',
 					action: 'Get details of a Zimbra platform',
-				},
-				{
-					name: 'List Platforms',
-					value: 'listPlatforms',
-					action: 'List Zimbra platforms',
 				},
 				{
 					name: 'Get Platform',
@@ -68,19 +58,9 @@ export function description(displayOptions: IDisplayOptions): INodeProperties[] 
 					action: 'Get a specific platform',
 				},
 				{
-					name: 'List Platform Accounts',
-					value: 'listPlatformAccounts',
-					action: 'List platform accounts',
-				},
-				{
 					name: 'Get Platform Account',
 					value: 'getPlatformAccount',
 					action: 'Get a specific account',
-				},
-				{
-					name: 'List Platform Aliases',
-					value: 'listPlatformAliases',
-					action: 'List platform aliases',
 				},
 				{
 					name: 'Get Platform Alias',
@@ -88,19 +68,9 @@ export function description(displayOptions: IDisplayOptions): INodeProperties[] 
 					action: 'Get a specific alias',
 				},
 				{
-					name: 'List Platform Domains',
-					value: 'listPlatformDomains',
-					action: 'List platform domains',
-				},
-				{
 					name: 'Get Platform Domain',
 					value: 'getPlatformDomain',
 					action: 'Get a specific domain',
-				},
-				{
-					name: 'List Platform Organizations',
-					value: 'listPlatformOrganizations',
-					action: 'List platform organizations',
 				},
 				{
 					name: 'Get Platform Organization',
@@ -108,19 +78,9 @@ export function description(displayOptions: IDisplayOptions): INodeProperties[] 
 					action: 'Get a specific organization',
 				},
 				{
-					name: 'List Platform Redirections',
-					value: 'listPlatformRedirections',
-					action: 'List platform redirections',
-				},
-				{
 					name: 'Get Platform Redirection',
 					value: 'getPlatformRedirection',
 					action: 'Get a specific redirection',
-				},
-				{
-					name: 'List Platform Slots',
-					value: 'listPlatformSlots',
-					action: 'List platform slots',
 				},
 				{
 					name: 'Get Platform Slot',
@@ -128,14 +88,54 @@ export function description(displayOptions: IDisplayOptions): INodeProperties[] 
 					action: 'Get a specific slot',
 				},
 				{
-					name: 'List Platform Tasks',
-					value: 'listPlatformTasks',
-					action: 'List platform tasks',
+					name: 'List',
+					value: 'list',
+					action: 'List all Zimbra platforms',
+				},
+				{
+					name: 'List Platform Accounts',
+					value: 'listPlatformAccounts',
+					action: 'List platform accounts',
+				},
+				{
+					name: 'List Platform Aliases',
+					value: 'listPlatformAliases',
+					action: 'List platform aliases',
 				},
 				{
 					name: 'List Platform Diagnostic Domains',
 					value: 'listPlatformDiagnosticDomains',
 					action: 'List platform diagnostic domains',
+				},
+				{
+					name: 'List Platform Domains',
+					value: 'listPlatformDomains',
+					action: 'List platform domains',
+				},
+				{
+					name: 'List Platform Organizations',
+					value: 'listPlatformOrganizations',
+					action: 'List platform organizations',
+				},
+				{
+					name: 'List Platform Redirections',
+					value: 'listPlatformRedirections',
+					action: 'List platform redirections',
+				},
+				{
+					name: 'List Platform Slots',
+					value: 'listPlatformSlots',
+					action: 'List platform slots',
+				},
+				{
+					name: 'List Platform Tasks',
+					value: 'listPlatformTasks',
+					action: 'List platform tasks',
+				},
+				{
+					name: 'List Platforms',
+					value: 'listPlatforms',
+					action: 'List Zimbra platforms',
 				},
 			],
 			default: 'list',

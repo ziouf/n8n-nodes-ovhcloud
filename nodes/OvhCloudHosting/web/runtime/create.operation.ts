@@ -16,7 +16,8 @@ import { ApiClient } from '../../../../shared/transport/ApiClient';
  * @returns Array of node properties for the operation
  */
 export function description(displayOptions: IDisplayOptions): INodeProperties[] {
-	return [		{
+	return [
+		{
 			displayName: 'App Bootstrap',
 			name: 'appBootstrap',
 			type: 'string',
@@ -45,7 +46,7 @@ export function description(displayOptions: IDisplayOptions): INodeProperties[] 
 			name: 'isDefault',
 			type: 'boolean',
 			default: false,
-			description: 'Set if the runtime configuration is the one by default for the hosting',
+			description: 'Whether the runtime configuration is the one by default for the hosting',
 			displayOptions,
 		},
 		{
@@ -94,6 +95,16 @@ export async function execute(this: IExecuteFunctions): Promise<INodeExecutionDa
 	const name = this.getNodeParameter('name', 0) as string;
 	const publicDir = this.getNodeParameter('publicDir', 0) as string;
 	const type = this.getNodeParameter('type', 0) as string;
-	const data = (await client.httpPost(`/hosting/web/${serviceName}/runtime`, { body: { appBootstrap: appBootstrap, appEnv: appEnv, attachedDomains: attachedDomains, isDefault: isDefault, name: name, publicDir: publicDir, type: type } })) as IDataObject;
+	const data = (await client.httpPost(`/hosting/web/${serviceName}/runtime`, {
+		body: {
+			appBootstrap: appBootstrap,
+			appEnv: appEnv,
+			attachedDomains: attachedDomains,
+			isDefault: isDefault,
+			name: name,
+			publicDir: publicDir,
+			type: type,
+		},
+	})) as IDataObject;
 	return [{ json: data }];
 }

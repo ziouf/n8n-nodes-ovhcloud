@@ -75,10 +75,10 @@ export function description(displayOptions: IDisplayOptions): INodeProperties[] 
 					value: 'MIGRATED_TO_ANOTHER_OVH_PRODUCT',
 				},
 				{ name: 'Migrated to Competitor', value: 'MIGRATED_TO_COMPETITOR' },
+				{ name: 'No Answer', value: 'NO_ANSWER' },
 				{ name: 'Not Enough Recognition', value: 'NOT_ENOUGH_RECOGNITION' },
 				{ name: 'Not Needed Anymore', value: 'NOT_NEEDED_ANYMORE' },
 				{ name: 'Not Reliable', value: 'NOT_RELIABLE' },
-				{ name: 'No Answer', value: 'NO_ANSWER' },
 				{ name: 'Other', value: 'OTHER' },
 				{
 					name: "Product Dimension Don't Suit Me",

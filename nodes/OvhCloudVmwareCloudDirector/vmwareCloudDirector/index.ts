@@ -57,19 +57,9 @@ export function description(displayOptions: IDisplayOptions): INodeProperties[] 
 			noDataExpression: true,
 			options: [
 				{
-					name: 'List',
-					value: 'list',
-					action: 'List all VMware Cloud Director services',
-				},
-				{
 					name: 'Get',
 					value: 'get',
 					action: 'Get details of a VMware Cloud Director service',
-				},
-				{
-					name: 'List Backups',
-					value: 'listBackups',
-					action: 'List VMware Cloud Director backups',
 				},
 				{
 					name: 'Get Backup',
@@ -77,19 +67,9 @@ export function description(displayOptions: IDisplayOptions): INodeProperties[] 
 					action: 'Get a specific backup',
 				},
 				{
-					name: 'List Backup Tasks',
-					value: 'listBackupTasks',
-					action: 'List backup tasks',
-				},
-				{
 					name: 'Get Backup Task',
 					value: 'getBackupTask',
 					action: 'Get a specific backup task',
-				},
-				{
-					name: 'List Organizations',
-					value: 'listOrganizations',
-					action: 'List VMware Cloud Director organizations',
 				},
 				{
 					name: 'Get Organization',
@@ -97,14 +77,14 @@ export function description(displayOptions: IDisplayOptions): INodeProperties[] 
 					action: 'Get a specific organization',
 				},
 				{
+					name: 'Get Organization Network ACL',
+					value: 'getOrganizationNetworkAcl',
+					action: 'Get a specific network ACL',
+				},
+				{
 					name: 'Get Organization Password',
 					value: 'getOrganizationPassword',
 					action: 'Get organization password',
-				},
-				{
-					name: 'List Organization Tasks',
-					value: 'listOrganizationTasks',
-					action: 'List organization tasks',
 				},
 				{
 					name: 'Get Organization Task',
@@ -112,49 +92,9 @@ export function description(displayOptions: IDisplayOptions): INodeProperties[] 
 					action: 'Get a specific organization task',
 				},
 				{
-					name: 'List Organization Network ACLs',
-					value: 'listOrganizationNetworkAcls',
-					action: 'List organization network ACLs',
-				},
-				{
-					name: 'Get Organization Network ACL',
-					value: 'getOrganizationNetworkAcl',
-					action: 'Get a specific network ACL',
-				},
-				{
-					name: 'List Organization Virtual Data Centers',
-					value: 'listOrganizationVirtualDataCenters',
-					action: 'List organization virtual data centers',
-				},
-				{
-					name: 'Get Organization Virtual Data Center',
-					value: 'getOrganizationVirtualDataCenter',
-					action: 'Get a specific virtual data center',
-				},
-				{
-					name: 'List Organization VDC Tasks',
-					value: 'listOrganizationVdcTasks',
-					action: 'List VDC tasks',
-				},
-				{
-					name: 'Get Organization VDC Task',
-					value: 'getOrganizationVdcTask',
-					action: 'Get a specific VDC task',
-				},
-				{
-					name: 'List Organization VDC Computes',
-					value: 'listOrganizationVdcComputes',
-					action: 'List VDC computes',
-				},
-				{
 					name: 'Get Organization VDC Compute',
 					value: 'getOrganizationVdcCompute',
 					action: 'Get a specific VDC compute',
-				},
-				{
-					name: 'List Organization VDC Storages',
-					value: 'listOrganizationVdcStorages',
-					action: 'List VDC storages',
 				},
 				{
 					name: 'Get Organization VDC Storage',
@@ -162,14 +102,9 @@ export function description(displayOptions: IDisplayOptions): INodeProperties[] 
 					action: 'Get a specific VDC storage',
 				},
 				{
-					name: 'List Organization VDC Orderable Resources',
-					value: 'listOrganizationVdcOrderableResources',
-					action: 'List VDC orderable resources',
-				},
-				{
-					name: 'List Organization VDC vRack Segments',
-					value: 'listOrganizationVdcVrackSegments',
-					action: 'List VDC vRack segments',
+					name: 'Get Organization VDC Task',
+					value: 'getOrganizationVdcTask',
+					action: 'Get a specific VDC task',
 				},
 				{
 					name: 'Get Organization VDC vRack Segment',
@@ -177,14 +112,79 @@ export function description(displayOptions: IDisplayOptions): INodeProperties[] 
 					action: 'Get a specific vRack segment',
 				},
 				{
+					name: 'Get Organization VDC vRack Segment Task',
+					value: 'getOrganizationVdcVrackSegmentTask',
+					action: 'Get a specific vRack segment task',
+				},
+				{
+					name: 'Get Organization Virtual Data Center',
+					value: 'getOrganizationVirtualDataCenter',
+					action: 'Get a specific virtual data center',
+				},
+				{
+					name: 'List',
+					value: 'list',
+					action: 'List all VMware Cloud Director services',
+				},
+				{
+					name: 'List Backup Tasks',
+					value: 'listBackupTasks',
+					action: 'List backup tasks',
+				},
+				{
+					name: 'List Backups',
+					value: 'listBackups',
+					action: 'List VMware Cloud Director backups',
+				},
+				{
+					name: 'List Organization Network ACLs',
+					value: 'listOrganizationNetworkAcls',
+					action: 'List organization network ACLs',
+				},
+				{
+					name: 'List Organization Tasks',
+					value: 'listOrganizationTasks',
+					action: 'List organization tasks',
+				},
+				{
+					name: 'List Organization VDC Computes',
+					value: 'listOrganizationVdcComputes',
+					action: 'List VDC computes',
+				},
+				{
+					name: 'List Organization VDC Orderable Resources',
+					value: 'listOrganizationVdcOrderableResources',
+					action: 'List VDC orderable resources',
+				},
+				{
+					name: 'List Organization VDC Storages',
+					value: 'listOrganizationVdcStorages',
+					action: 'List VDC storages',
+				},
+				{
+					name: 'List Organization VDC Tasks',
+					value: 'listOrganizationVdcTasks',
+					action: 'List VDC tasks',
+				},
+				{
 					name: 'List Organization VDC vRack Segment Tasks',
 					value: 'listOrganizationVdcVrackSegmentTasks',
 					action: 'List vRack segment tasks',
 				},
 				{
-					name: 'Get Organization VDC vRack Segment Task',
-					value: 'getOrganizationVdcVrackSegmentTask',
-					action: 'Get a specific vRack segment task',
+					name: 'List Organization VDC vRack Segments',
+					value: 'listOrganizationVdcVrackSegments',
+					action: 'List VDC vRack segments',
+				},
+				{
+					name: 'List Organization Virtual Data Centers',
+					value: 'listOrganizationVirtualDataCenters',
+					action: 'List organization virtual data centers',
+				},
+				{
+					name: 'List Organizations',
+					value: 'listOrganizations',
+					action: 'List VMware Cloud Director organizations',
 				},
 				{
 					name: 'List Reference Regions',

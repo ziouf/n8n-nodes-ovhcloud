@@ -30,9 +30,9 @@ export function description(displayOptions: IDisplayOptions): INodeProperties[] 
 			noDataExpression: true,
 			options: [
 				{
-					name: 'List',
-					value: 'list',
-					action: 'List all Sqlserver License services',
+					name: 'Confirm Termination',
+					value: 'confirmTermination',
+					action: 'Confirm termination of a Sqlserver License service',
 				},
 				{
 					name: 'Get',
@@ -40,19 +40,14 @@ export function description(displayOptions: IDisplayOptions): INodeProperties[] 
 					action: 'Get details of a Sqlserver License service',
 				},
 				{
+					name: 'Get Orderable Versions',
+					value: 'getOrderableVersions',
+					action: 'Get orderable Sqlserver versions',
+				},
+				{
 					name: 'Get Service Infos',
 					value: 'getServiceInfos',
 					action: 'Get service information for a Sqlserver License',
-				},
-				{
-					name: 'Update Service Infos',
-					value: 'updateServiceInfos',
-					action: 'Update service information for a Sqlserver License',
-				},
-				{
-					name: 'List Tasks',
-					value: 'listTasks',
-					action: 'List tasks for a Sqlserver License',
 				},
 				{
 					name: 'Get Task',
@@ -60,19 +55,24 @@ export function description(displayOptions: IDisplayOptions): INodeProperties[] 
 					action: 'Get a specific task for a Sqlserver License',
 				},
 				{
+					name: 'List',
+					value: 'list',
+					action: 'List all Sqlserver License services',
+				},
+				{
+					name: 'List Tasks',
+					value: 'listTasks',
+					action: 'List tasks for a Sqlserver License',
+				},
+				{
 					name: 'Terminate',
 					value: 'terminate',
 					action: 'Terminate a Sqlserver License service',
 				},
 				{
-					name: 'Confirm Termination',
-					value: 'confirmTermination',
-					action: 'Confirm termination of a Sqlserver License service',
-				},
-				{
-					name: 'Get Orderable Versions',
-					value: 'getOrderableVersions',
-					action: 'Get orderable Sqlserver versions',
+					name: 'Update Service Infos',
+					value: 'updateServiceInfos',
+					action: 'Update service information for a Sqlserver License',
 				},
 			],
 			default: 'list',

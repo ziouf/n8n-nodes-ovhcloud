@@ -57,21 +57,6 @@ export function description(displayOptions: IDisplayOptions): INodeProperties[] 
 			noDataExpression: true,
 			options: [
 				{
-					name: 'List Tickets',
-					value: 'list',
-					action: 'List support tickets',
-				},
-				{
-					name: 'Create Ticket',
-					value: 'create',
-					action: 'Create a new ticket',
-				},
-				{
-					name: 'Get Ticket',
-					value: 'get',
-					action: 'Get ticket details',
-				},
-				{
 					name: 'Can Be Scored',
 					value: 'canBeScored',
 					action: 'Check if ticket can be scored',
@@ -82,9 +67,24 @@ export function description(displayOptions: IDisplayOptions): INodeProperties[] 
 					action: 'Close ticket',
 				},
 				{
+					name: 'Create Ticket',
+					value: 'create',
+					action: 'Create a new ticket',
+				},
+				{
 					name: 'Get Messages',
 					value: 'getMessages',
 					action: 'Get ticket messages',
+				},
+				{
+					name: 'Get Ticket',
+					value: 'get',
+					action: 'Get ticket details',
+				},
+				{
+					name: 'List Tickets',
+					value: 'list',
+					action: 'List support tickets',
 				},
 				{
 					name: 'Reopen Ticket',

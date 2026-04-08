@@ -103,7 +103,7 @@ export function description(displayOptions: IDisplayOptions): INodeProperties[] 
 			type: 'boolean',
 			default: false,
 			required: true,
-			description: 'Accept the support agreement statement',
+			description: 'Whether to accept the support agreement statement',
 			displayOptions,
 		},
 		{
@@ -111,7 +111,7 @@ export function description(displayOptions: IDisplayOptions): INodeProperties[] 
 			name: 'emailCommunication',
 			type: 'boolean',
 			default: false,
-			description: 'GDPR - email/communication opt in',
+			description: 'Whether to opt in for GDPR email/communication',
 			displayOptions,
 		},
 	];

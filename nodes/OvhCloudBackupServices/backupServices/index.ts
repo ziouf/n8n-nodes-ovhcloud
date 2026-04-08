@@ -45,49 +45,9 @@ export function description(displayOptions: IDisplayOptions): INodeProperties[] 
 			noDataExpression: true,
 			options: [
 				{
-					name: 'List',
-					value: 'list',
-					action: 'List all backup services',
-				},
-				{
 					name: 'Get',
 					value: 'get',
 					action: 'Get details of a backup service',
-				},
-				{
-					name: 'List Tenants',
-					value: 'listTenants',
-					action: 'List backup service tenants',
-				},
-				{
-					name: 'Get Tenant',
-					value: 'getTenant',
-					action: 'Get a specific tenant',
-				},
-				{
-					name: 'List Vaults',
-					value: 'listVaults',
-					action: 'List backup service vaults',
-				},
-				{
-					name: 'Get Vault',
-					value: 'getVault',
-					action: 'Get a specific vault',
-				},
-				{
-					name: 'List VSPCs',
-					value: 'listVspcs',
-					action: 'List backup service VSPCs',
-				},
-				{
-					name: 'Get VSPC',
-					value: 'getVspc',
-					action: 'Get a specific VSPC',
-				},
-				{
-					name: 'List Backup Agents',
-					value: 'listBackupAgents',
-					action: 'List backup service agents',
 				},
 				{
 					name: 'Get Backup Agent',
@@ -95,14 +55,44 @@ export function description(displayOptions: IDisplayOptions): INodeProperties[] 
 					action: 'Get a specific backup agent',
 				},
 				{
-					name: 'List Backup Policies',
-					value: 'listBackupPolicies',
-					action: 'List backup service policies',
-				},
-				{
 					name: 'Get Backup Policy',
 					value: 'getBackupPolicy',
 					action: 'Get a specific backup policy',
+				},
+				{
+					name: 'Get Management Agent',
+					value: 'getManagementAgent',
+					action: 'Get a specific management agent',
+				},
+				{
+					name: 'Get Tenant',
+					value: 'getTenant',
+					action: 'Get a specific tenant',
+				},
+				{
+					name: 'Get Vault',
+					value: 'getVault',
+					action: 'Get a specific vault',
+				},
+				{
+					name: 'Get VSPC',
+					value: 'getVspc',
+					action: 'Get a specific VSPC',
+				},
+				{
+					name: 'List',
+					value: 'list',
+					action: 'List all backup services',
+				},
+				{
+					name: 'List Backup Agents',
+					value: 'listBackupAgents',
+					action: 'List backup service agents',
+				},
+				{
+					name: 'List Backup Policies',
+					value: 'listBackupPolicies',
+					action: 'List backup service policies',
 				},
 				{
 					name: 'List Management Agents',
@@ -110,9 +100,19 @@ export function description(displayOptions: IDisplayOptions): INodeProperties[] 
 					action: 'List backup service management agents',
 				},
 				{
-					name: 'Get Management Agent',
-					value: 'getManagementAgent',
-					action: 'Get a specific management agent',
+					name: 'List Tenants',
+					value: 'listTenants',
+					action: 'List backup service tenants',
+				},
+				{
+					name: 'List Vaults',
+					value: 'listVaults',
+					action: 'List backup service vaults',
+				},
+				{
+					name: 'List VSPCs',
+					value: 'listVspcs',
+					action: 'List backup service VSPCs',
 				},
 			],
 			default: 'list',
