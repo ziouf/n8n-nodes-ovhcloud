@@ -51,25 +51,27 @@ cat > "$NODE_DIR/${CLASS_NAME}.node.ts" << NODEOF
 import {
 	IExecuteFunctions,
 	NodeConnectionTypes,
+	NodeApiError,
 	type INodeExecutionData,
 	type INodeType,
 	type INodeTypeDescription,
+	type JsonObject,
 } from 'n8n-workflow';
 import { OvhCloudApiSecretName, OvhCloudIcon } from '../../shared/constants';
 import { description, execute } from './index';
-import { ${SEARCH_METHOD} } from '../../shared/methods/${SEARCH_METHOD}.method';
+import { \${SEARCH_METHOD} } from '../../shared/methods/\${SEARCH_METHOD}.method';
 
-export class ${CLASS_NAME} implements INodeType {
+export class \${CLASS_NAME} implements INodeType {
 	description: INodeTypeDescription = {
-		displayName: 'OVH Cloud ${DISPLAY_NAME}',
-		name: 'ovhCloud${CAMEL_NAME}',
+		displayName: 'OVH Cloud \${DISPLAY_NAME}',
+		name: 'ovhCloud\${CAMEL_NAME}',
 		icon: OvhCloudIcon,
 		group: ['input'],
 		version: 1,
-		subtitle: '={{\$parameter["${OPERATION_PARAM}"]}}',
-		description: 'Manage OVH ${DISPLAY_NAME} services',
+		subtitle: '={{\$parameter["\${OPERATION_PARAM}"]}}',
+		description: 'Manage OVH \${DISPLAY_NAME} services',
 		defaults: {
-			name: 'OVH Cloud ${DISPLAY_NAME}',
+			name: 'OVH Cloud \${DISPLAY_NAME}',
 		},
 		usableAsTool: true,
 		inputs: [NodeConnectionTypes.Main],
@@ -87,7 +89,7 @@ export class ${CLASS_NAME} implements INodeType {
 
 	methods = {
 		listSearch: {
-			${SEARCH_METHOD},
+			\${SEARCH_METHOD},
 		},
 	};
 
@@ -96,8 +98,19 @@ export class ${CLASS_NAME} implements INodeType {
 		const returnData: INodeExecutionData[] = [];
 
 		for (let i = 0; i < items.length; i++) {
-			const result = await execute.call(this);
-			returnData.push(...Array.isArray(result) ? result : [result]);
+			try {
+				const result = await execute.call(this);
+				returnData.push(...Array.isArray(result) ? result : [result]);
+			} catch (error) {
+				if (this.continueOnFail()) {
+					returnData.push({
+						json: { error: error instanceof Error ? error.message : String(error) },
+						pairedItem: { item: i },
+					});
+					continue;
+				}
+				throw new NodeApiError(this.getNode(), error as unknown as JsonObject, { itemIndex: i });
+			}
 		}
 
 		return [returnData];
@@ -105,4 +118,4 @@ export class ${CLASS_NAME} implements INodeType {
 }
 NODEOF
 
-echo "✓ Created node: $NODE_DIR/${CLASS_NAME}.node.ts"
+echo "Created node: \$NODE_DIR/\${CLASS_NAME}.node.ts"
