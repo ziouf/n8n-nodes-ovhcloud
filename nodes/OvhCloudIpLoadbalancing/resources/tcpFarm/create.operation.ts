@@ -73,5 +73,5 @@ export async function execute(this: IExecuteFunctions): Promise<INodeExecutionDa
 		`/ipLoadbalancing/${serviceName}/tcp/farm`,
 		{ body },
 	)) as IDataObject;
-	return [{ json: data }];
+	return this.helpers.returnJsonArray(data);
 }

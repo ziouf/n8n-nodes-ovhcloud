@@ -68,5 +68,5 @@ export async function execute(this: IExecuteFunctions): Promise<INodeExecutionDa
 		`/email/exchange/${organizationName}/service/${exchangeService}/sharedAccount/${sharedEmailAddress}/sendAs`,
 		{ body },
 	)) as IDataObject;
-	return [{ json: data }];
+	return this.helpers.returnJsonArray(data);
 }

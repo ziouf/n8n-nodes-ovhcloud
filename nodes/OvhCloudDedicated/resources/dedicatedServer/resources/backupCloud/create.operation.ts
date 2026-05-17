@@ -67,5 +67,5 @@ export async function execute(this: IExecuteFunctions): Promise<INodeExecutionDa
 	if (projectDescription) body.projectDescription = projectDescription;
 
 	const response = (await client.httpPost(`/dedicated/server/${serviceName}/features/backupCloud`, body)) as IDataObject;
-	return [{ json: response }];
+	return this.helpers.returnJsonArray(response);
 }

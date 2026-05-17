@@ -46,5 +46,5 @@ export async function execute(this: IExecuteFunctions): Promise<INodeExecutionDa
 	const client = new ApiClient(this);
 	const serviceName = this.getNodeParameter('serviceName', 0, { extractValue: true }) as string;
 	const status = (await client.httpGet(`/vps/${serviceName}/status`)) as IDataObject;
-	return [{ json: status }];
+	return this.helpers.returnJsonArray(status);
 }

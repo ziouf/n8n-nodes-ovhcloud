@@ -47,5 +47,5 @@ export async function execute(this: IExecuteFunctions): Promise<INodeExecutionDa
 	const client = new ApiClient(this);
 	const serviceName = this.getNodeParameter('serviceName', 0) as string;
 	const data = (await client.httpGet(`/dedicatedCloud/${serviceName}`)) as IDataObject;
-	return [{ json: data }];
+	return this.helpers.returnJsonArray(data);
 }

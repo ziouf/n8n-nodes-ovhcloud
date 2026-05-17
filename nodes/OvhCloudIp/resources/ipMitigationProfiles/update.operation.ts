@@ -79,5 +79,5 @@ export async function execute(this: IExecuteFunctions): Promise<INodeExecutionDa
 		body: updateFields,
 	});
 
-	return [{ json: { success: true, ipBlock, ipMitigationProfile } }];
+	return this.helpers.returnJsonArray({ success: true, ipBlock, ipMitigationProfile });
 }

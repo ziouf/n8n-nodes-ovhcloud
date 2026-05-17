@@ -74,5 +74,5 @@ export async function execute(this: IExecuteFunctions): Promise<INodeExecutionDa
 	if (description) body.description = description;
 
 	const data = (await client.httpPost(`/cloud/project/${serviceName}/acl`, body)) as IDataObject;
-	return [{ json: data }];
+	return this.helpers.returnJsonArray(data);
 }

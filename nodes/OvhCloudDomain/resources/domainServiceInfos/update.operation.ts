@@ -48,5 +48,5 @@ export async function execute(this: IExecuteFunctions): Promise<INodeExecutionDa
 	const serviceName = this.getNodeParameter('serviceName', 0, { extractValue: true }) as string;
 
 	const data = (await client.httpPut(`/domain/${serviceName}/serviceInfos`)) as IDataObject;
-	return [{ json: data }];
+	return this.helpers.returnJsonArray(data);
 }

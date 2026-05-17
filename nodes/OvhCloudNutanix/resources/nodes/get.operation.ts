@@ -44,5 +44,5 @@ export async function execute(this: IExecuteFunctions): Promise<INodeExecutionDa
 	const serviceName = this.getNodeParameter('serviceName', 0) as string;
 	const server = this.getNodeParameter('server', 0) as string;
 	const data = (await client.httpGet(`/nutanix/${serviceName}/nodes/${server}`)) as IDataObject;
-	return [{ json: data }];
+	return this.helpers.returnJsonArray(data);
 }

@@ -47,5 +47,5 @@ export async function execute(this: IExecuteFunctions): Promise<INodeExecutionDa
 		`/license/plesk/${serviceName}/changeIp`,
 		{ body: { ip } },
 	)) as IDataObject;
-	return [{ json: data }];
+	return this.helpers.returnJsonArray(data);
 }

@@ -75,5 +75,5 @@ export async function execute(this: IExecuteFunctions): Promise<INodeExecutionDa
 		`/domain/${serviceName}/glueRecord/${host}/update`,
 		body,
 	)) as IDataObject;
-	return [{ json: data }];
+	return this.helpers.returnJsonArray(data);
 }

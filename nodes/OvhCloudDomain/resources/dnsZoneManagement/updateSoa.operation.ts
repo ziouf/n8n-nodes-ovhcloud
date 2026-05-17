@@ -90,5 +90,5 @@ export async function execute(this: IExecuteFunctions): Promise<INodeExecutionDa
 	if (minimum > 0) body.minimum = minimum;
 
 	const data = (await client.httpPut(`/domain/zone/${zoneName}/soa`, body)) as IDataObject;
-	return [{ json: data }];
+	return this.helpers.returnJsonArray(data);
 }

@@ -101,5 +101,5 @@ export async function execute(this: IExecuteFunctions): Promise<INodeExecutionDa
 	if (commercialRange) body.commercialRange = commercialRange;
 
 	const data = (await client.httpPut(`/dedicated/server/${serviceName}`, body)) as IDataObject;
-	return [{ json: data }];
+	return this.helpers.returnJsonArray(data);
 }

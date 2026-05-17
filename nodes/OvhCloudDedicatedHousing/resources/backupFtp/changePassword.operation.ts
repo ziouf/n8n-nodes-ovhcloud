@@ -82,5 +82,5 @@ export async function executeBackupFtpChangePassword(
 		{ password },
 	)) as IDataObject;
 
-	return [{ json: response }];
+	return this.helpers.returnJsonArray(response);
 }

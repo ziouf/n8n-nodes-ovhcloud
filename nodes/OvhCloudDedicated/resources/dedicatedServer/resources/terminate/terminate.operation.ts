@@ -59,5 +59,5 @@ export async function execute(this: IExecuteFunctions): Promise<INodeExecutionDa
 
 	const response = (await client.httpPost(`/dedicated/server/${serviceName}/terminate`)) as IDataObject;
 
-	return [{ json: response }];
+	return this.helpers.returnJsonArray(response);
 }

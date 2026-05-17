@@ -46,5 +46,5 @@ export async function execute(this: IExecuteFunctions): Promise<INodeExecutionDa
 	const client = new ApiClient(this);
 	const serviceId = this.getNodeParameter('serviceId', 0) as string;
 	const data = (await client.httpPost(`/service/${serviceId}/reopen`, { body: {} })) as IDataObject;
-	return [{ json: data }];
+	return this.helpers.returnJsonArray(data);
 }

@@ -52,5 +52,5 @@ export async function execute(this: IExecuteFunctions): Promise<INodeExecutionDa
 	const ipBlock = this.getNodeParameter('ipBlock', 0) as string;
 	const to = this.getNodeParameter('to', 0) as string;
 	const data = (await client.httpPost(`/ip/${ipBlock}/move`, { body: { to } })) as IDataObject;
-	return [{ json: data }];
+	return this.helpers.returnJsonArray(data);
 }

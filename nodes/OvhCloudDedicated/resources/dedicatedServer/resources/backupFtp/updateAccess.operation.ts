@@ -105,5 +105,5 @@ export async function execute(this: IExecuteFunctions): Promise<INodeExecutionDa
 		body,
 	)) as IDataObject;
 
-	return [{ json: response }];
+	return this.helpers.returnJsonArray(response);
 }

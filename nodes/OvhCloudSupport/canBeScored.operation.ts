@@ -45,5 +45,5 @@ export async function execute(this: IExecuteFunctions): Promise<INodeExecutionDa
 	const client = new ApiClient(this);
 	const ticketId = this.getNodeParameter('ticketId', 0) as string;
 	const data = (await client.httpGet(`/support/tickets/${ticketId}/canBeScored`)) as IDataObject;
-	return [{ json: data }];
+	return this.helpers.returnJsonArray(data);
 }

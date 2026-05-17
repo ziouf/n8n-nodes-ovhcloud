@@ -71,5 +71,5 @@ export async function execute(this: IExecuteFunctions): Promise<INodeExecutionDa
 		`/dbaas/logs/${serviceName}/output/graylog/dashboard`,
 		{ body },
 	)) as IDataObject;
-	return [{ json: data }];
+	return this.helpers.returnJsonArray(data);
 }

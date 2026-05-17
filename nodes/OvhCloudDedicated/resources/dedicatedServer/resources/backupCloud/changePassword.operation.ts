@@ -44,5 +44,5 @@ export async function execute(this: IExecuteFunctions): Promise<INodeExecutionDa
 	const client = new ApiClient(this);
 	const serviceName = this.getNodeParameter('serviceName', 0, { extractValue: true }) as string;
 	const response = (await client.httpPost(`/dedicated/server/${serviceName}/features/backupCloud/password`)) as IDataObject;
-	return [{ json: response }];
+	return this.helpers.returnJsonArray(response);
 }

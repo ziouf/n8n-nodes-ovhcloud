@@ -44,5 +44,5 @@ export async function execute(this: IExecuteFunctions): Promise<INodeExecutionDa
 	const cartId = this.getNodeParameter('cartId', 0) as string;
 	const itemId = this.getNodeParameter('itemId', 0) as string;
 	const data = (await client.httpDelete(`/order/cart/${cartId}/item/${itemId}`)) as IDataObject;
-	return [{ json: data }];
+	return this.helpers.returnJsonArray(data);
 }

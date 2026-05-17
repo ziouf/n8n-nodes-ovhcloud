@@ -58,5 +58,5 @@ export async function execute(this: IExecuteFunctions): Promise<INodeExecutionDa
 
 	await client.httpDelete(`/ip/${ipBlock}/delegation/${target}`);
 
-	return [{ json: { success: true, ipBlock, target } }];
+	return this.helpers.returnJsonArray({ success: true, ipBlock, target });
 }

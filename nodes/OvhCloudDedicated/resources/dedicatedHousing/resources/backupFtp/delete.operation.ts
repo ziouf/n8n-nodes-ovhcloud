@@ -63,5 +63,5 @@ export async function executeBackupFtpDelete(
 
 	await client.httpDelete(`/dedicated/housing/${serviceName}/features/backupFTP`);
 
-	return [{ json: { success: true } }];
+	return this.helpers.returnJsonArray({ success: true });
 }

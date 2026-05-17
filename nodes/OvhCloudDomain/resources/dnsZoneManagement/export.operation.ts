@@ -37,5 +37,5 @@ export async function execute(this: IExecuteFunctions): Promise<INodeExecutionDa
 	const zoneName = this.getNodeParameter('zoneName', 0) as string;
 
 	const data = (await client.httpGet(`/domain/zone/${zoneName}/export`)) as IDataObject;
-	return [{ json: data }];
+	return this.helpers.returnJsonArray(data);
 }

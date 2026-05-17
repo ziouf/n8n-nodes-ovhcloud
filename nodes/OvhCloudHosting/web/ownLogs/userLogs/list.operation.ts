@@ -82,5 +82,5 @@ export async function execute(this: IExecuteFunctions): Promise<INodeExecutionDa
 	const ownLogsId = this.getNodeParameter('ownLogsId', 0) as number;
 	const password = this.getNodeParameter('password', 0) as string;
 	const data = (await client.httpPost(`/hosting/web/${serviceName}/ownLogs/${id}/userLogs`, { body: { description: description, login: login, ownLogsId: ownLogsId, password: password } })) as IDataObject;
-	return [{ json: data }];
+	return this.helpers.returnJsonArray(data);
 }

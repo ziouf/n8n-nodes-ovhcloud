@@ -66,5 +66,5 @@ export async function execute(this: IExecuteFunctions): Promise<INodeExecutionDa
 
 	const body: IDataObject = { prmrr, status };
 	const response = (await client.httpPost(`/dedicated/server/${serviceName}/biosSettings/sgx/configure`, body)) as IDataObject;
-	return [{ json: response }];
+	return this.helpers.returnJsonArray(response);
 }

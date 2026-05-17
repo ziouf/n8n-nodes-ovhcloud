@@ -48,5 +48,5 @@ export async function execute(this: IExecuteFunctions): Promise<INodeExecutionDa
 		`/ipLoadbalancing/${serviceName}/freeCertificate`,
 		{ body: domains },
 	)) as IDataObject;
-	return [{ json: data }];
+	return this.helpers.returnJsonArray(data);
 }

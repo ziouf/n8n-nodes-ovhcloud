@@ -39,5 +39,5 @@ export async function execute(this: IExecuteFunctions): Promise<INodeExecutionDa
 		`/dedicated/server/${serviceName}/firewall/${ip}`,
 	)) as IDataObject;
 
-	return [{ json: data }];
+	return this.helpers.returnJsonArray(data);
 }

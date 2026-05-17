@@ -35,5 +35,5 @@ export function description(displayOptions: IDisplayOptions): INodeProperties[] 
 export async function execute(this: IExecuteFunctions): Promise<INodeExecutionData[]> {
 	const client = new ApiClient(this);
 	const data = (await client.httpGet('/auth/details')) as IDataObject;
-	return [{ json: data }];
+	return this.helpers.returnJsonArray(data);
 }

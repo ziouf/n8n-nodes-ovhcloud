@@ -76,5 +76,5 @@ export async function execute(this: IExecuteFunctions): Promise<INodeExecutionDa
 	if (dedicatedFiber) body.dedicatedfiberRequest = dedicatedFiber;
 	if (proFiber) body.profiberRequest = proFiber;
 	const data = (await client.httpPost('/connectivity/eligibility/recall', { body })) as IDataObject;
-	return [{ json: data }];
+	return this.helpers.returnJsonArray(data);
 }

@@ -46,5 +46,5 @@ export async function execute(this: IExecuteFunctions): Promise<INodeExecutionDa
 		`/ipLoadbalancing/${serviceName}/log/url`,
 		{ body: kind || undefined },
 	)) as IDataObject;
-	return [{ json: data }];
+	return this.helpers.returnJsonArray(data);
 }

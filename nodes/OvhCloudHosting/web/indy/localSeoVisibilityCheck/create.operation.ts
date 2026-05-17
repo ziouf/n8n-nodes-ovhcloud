@@ -71,5 +71,5 @@ export async function execute(this: IExecuteFunctions): Promise<INodeExecutionDa
 	const street = this.getNodeParameter('street', 0) as string;
 	const zip = this.getNodeParameter('zip', 0) as string;
 	const data = (await client.httpPost(`/hosting/web/localSeo/visibilityCheck`, { body: { country: country, name: name, street: street, zip: zip } })) as IDataObject;
-	return [{ json: data }];
+	return this.helpers.returnJsonArray(data);
 }

@@ -32,5 +32,5 @@ export async function execute(this: IExecuteFunctions): Promise<INodeExecutionDa
 	const client = new ApiClient(this);
 	const ipBlock = this.getNodeParameter('ipBlock', 0) as string;
 	const data = (await client.httpGet(`/ip/${ipBlock}/move`)) as IDataObject[];
-	return data.map((item) => ({ json: item }));
+	return this.helpers.returnJsonArray(data);
 }

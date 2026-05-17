@@ -81,5 +81,5 @@ export async function execute(this: IExecuteFunctions): Promise<INodeExecutionDa
 		value: string;
 	};
 	const data = (await client.httpGet(`/vip/${serviceName}`)) as IDataObject;
-	return [{ json: data }];
+	return this.helpers.returnJsonArray(data);
 }

@@ -109,5 +109,5 @@ export async function executeBackupFtpCreateAccess(
 		{ ipBlock, cifs, nfs, ftp },
 	)) as IDataObject;
 
-	return [{ json: response }];
+	return this.helpers.returnJsonArray(response);
 }

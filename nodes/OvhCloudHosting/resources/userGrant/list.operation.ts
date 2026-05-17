@@ -43,5 +43,5 @@ export async function execute(this: IExecuteFunctions): Promise<INodeExecutionDa
 	const data = (await client.httpGet(
 		`/hosting/privateDatabase/${serviceName}/user/${userName}/grant`,
 	)) as IDataObject[];
-	return data.map((item) => ({ json: item }));
+	return this.helpers.returnJsonArray(data);
 }

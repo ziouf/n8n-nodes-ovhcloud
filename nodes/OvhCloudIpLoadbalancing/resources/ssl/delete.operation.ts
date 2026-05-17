@@ -43,5 +43,5 @@ export async function execute(this: IExecuteFunctions): Promise<INodeExecutionDa
 	const serviceName = this.getNodeParameter('serviceName', 0) as string;
 	const sslId = this.getNodeParameter('sslId', 0) as number;
 	await client.httpDelete(`/ipLoadbalancing/${serviceName}/ssl/${sslId}`);
-	return [{ json: { success: true } }];
+	return this.helpers.returnJsonArray({ success: true });
 }

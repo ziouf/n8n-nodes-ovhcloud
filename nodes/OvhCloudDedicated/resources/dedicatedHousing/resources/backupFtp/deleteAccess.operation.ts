@@ -75,5 +75,5 @@ export async function executeBackupFtpDeleteAccess(
 
 	await client.httpDelete(`/dedicated/housing/${serviceName}/features/backupFTP/access/${ipBlock}`);
 
-	return [{ json: { success: true } }];
+	return this.helpers.returnJsonArray({ success: true });
 }

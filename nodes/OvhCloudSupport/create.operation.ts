@@ -60,5 +60,5 @@ export async function execute(this: IExecuteFunctions): Promise<INodeExecutionDa
 		description: this.getNodeParameter('description', 0) as string,
 	};
 	const data = (await client.httpPost('/support/tickets/create', { body })) as IDataObject;
-	return [{ json: data }];
+	return this.helpers.returnJsonArray(data);
 }

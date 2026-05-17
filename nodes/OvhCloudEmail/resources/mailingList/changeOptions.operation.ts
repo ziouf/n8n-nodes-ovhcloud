@@ -56,5 +56,5 @@ export async function execute(this: IExecuteFunctions): Promise<INodeExecutionDa
 		`/email/domain/${domainParam.value}/mailingList/${mailingListName}/changeOptions`,
 		{ options },
 	)) as IDataObject;
-	return [{ json: data }];
+	return this.helpers.returnJsonArray(data);
 }

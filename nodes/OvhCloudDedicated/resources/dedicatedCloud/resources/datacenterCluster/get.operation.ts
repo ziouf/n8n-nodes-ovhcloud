@@ -73,5 +73,5 @@ export async function execute(this: IExecuteFunctions): Promise<INodeExecutionDa
 	const data = (await client.httpGet(
 		`/dedicatedCloud/${serviceName}/datacenter/${datacenterId}/cluster/${clusterId}`,
 	)) as IDataObject;
-	return [{ json: data }];
+	return this.helpers.returnJsonArray(data);
 }

@@ -47,5 +47,5 @@ export async function execute(this: IExecuteFunctions): Promise<INodeExecutionDa
 		`/license/office/${serviceName}/user`,
 		{ body },
 	)) as IDataObject;
-	return [{ json: data }];
+	return this.helpers.returnJsonArray(data);
 }

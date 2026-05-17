@@ -38,5 +38,5 @@ export async function execute(this: IExecuteFunctions): Promise<INodeExecutionDa
 		`/dedicated/ceph/${serviceName}/health`,
 	)) as IDataObject;
 
-	return [{ json: data }];
+	return this.helpers.returnJsonArray(data);
 }

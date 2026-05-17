@@ -13,5 +13,5 @@ export async function execute(this: IExecuteFunctions): Promise<INodeExecutionDa
 	const serviceName = this.getNodeParameter('serviceName', 0) as string;
 	const name = this.getNodeParameter('name', 0) as string;
 	const data = (await client.httpGet(`/overTheBox/${serviceName}/log/kind/${name}`)) as IDataObject;
-	return [{ json: data }];
+	return this.helpers.returnJsonArray(data);
 }

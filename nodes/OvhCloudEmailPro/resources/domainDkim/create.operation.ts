@@ -77,5 +77,5 @@ export async function execute(this: IExecuteFunctions): Promise<INodeExecutionDa
 		`/email/pro/${serviceName}/domain/${domainName}/dkim`,
 		body,
 	)) as IDataObject;
-	return [{ json: data }];
+	return this.helpers.returnJsonArray(data);
 }

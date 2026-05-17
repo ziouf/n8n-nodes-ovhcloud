@@ -44,5 +44,5 @@ export async function execute(this: IExecuteFunctions): Promise<INodeExecutionDa
 	const projectId = this.getNodeParameter('projectId', 0) as string;
 	const rancherId = this.getNodeParameter('rancherId', 0) as string;
 	const data = (await client.httpGet(`/v2/publicCloud/project/${projectId}/rancher/${rancherId}/adminCredentials`)) as IDataObject;
-	return [{ json: data }];
+	return this.helpers.returnJsonArray(data);
 }

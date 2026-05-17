@@ -42,5 +42,5 @@ export async function execute(this: IExecuteFunctions): Promise<INodeExecutionDa
 	const client = new ApiClient(this);
 	const email = this.getNodeParameter('email', 0) as string;
 	const data = (await client.httpGet(`/hosting/web/localSeo/emailAvailability`, { qs: { email } })) as IDataObject;
-	return [{ json: data }];
+	return this.helpers.returnJsonArray(data);
 }

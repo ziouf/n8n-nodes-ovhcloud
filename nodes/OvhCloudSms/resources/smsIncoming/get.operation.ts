@@ -35,5 +35,5 @@ export async function execute(this: IExecuteFunctions): Promise<INodeExecutionDa
 	const serviceName = this.getNodeParameter('serviceName', 0) as string;
 	const id = this.getNodeParameter('id', 0) as string;
 	const data = (await client.httpGet(`/sms/${serviceName}/incoming/${id}`)) as IDataObject;
-	return [{ json: data }];
+	return this.helpers.returnJsonArray(data);
 }

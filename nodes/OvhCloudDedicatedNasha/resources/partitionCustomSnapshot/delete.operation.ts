@@ -93,5 +93,5 @@ export async function executeDedicatedNashaPartitionCustomSnapshotDelete(
 		`/dedicated/nasha/${serviceName}/partition/${partitionName}/customSnapshot/${name}`,
 	)) as IDataObject;
 
-	return [{ json: response }];
+	return this.helpers.returnJsonArray(response);
 }

@@ -57,5 +57,5 @@ export async function execute(this: IExecuteFunctions): Promise<INodeExecutionDa
 		`/msServices/${serviceName}/account/${userPrincipalName}/changePassword`,
 		{ body: { password } },
 	)) as IDataObject;
-	return [{ json: data }];
+	return this.helpers.returnJsonArray(data);
 }

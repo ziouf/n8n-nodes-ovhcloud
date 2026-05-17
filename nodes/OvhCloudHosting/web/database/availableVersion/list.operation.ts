@@ -42,5 +42,5 @@ export async function execute(this: IExecuteFunctions): Promise<INodeExecutionDa
 	const serviceName = this.getNodeParameter('serviceName', 0) as string;
 	const type = this.getNodeParameter('type', 0) as string;
 	const data = (await client.httpGet(`/hosting/web/${serviceName}/databaseAvailableVersion`, { qs: { type } })) as IDataObject;
-	return [{ json: data }];
+	return this.helpers.returnJsonArray(data);
 }

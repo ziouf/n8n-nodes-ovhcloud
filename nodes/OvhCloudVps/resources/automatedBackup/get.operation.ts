@@ -50,5 +50,5 @@ export async function execute(this: IExecuteFunctions): Promise<INodeExecutionDa
 		`/vps/${serviceName}/automatedBackup`,
 	)) as IDataObject;
 
-	return [{ json: automatedBackup }];
+	return this.helpers.returnJsonArray(automatedBackup);
 }

@@ -47,5 +47,5 @@ export async function execute(this: IExecuteFunctions): Promise<INodeExecutionDa
 	const data = (await client.httpGet(
 		`/dbaas/logs/${serviceName}/token/${tokenId}`,
 	)) as IDataObject;
-	return [{ json: data }];
+	return this.helpers.returnJsonArray(data);
 }

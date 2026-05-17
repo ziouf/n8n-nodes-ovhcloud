@@ -73,5 +73,5 @@ export async function execute(this: IExecuteFunctions): Promise<INodeExecutionDa
 
 	await client.httpDelete(`/dedicated/ceph/${serviceName}/user/${userName}`);
 
-	return [{ json: { success: true } }];
+	return this.helpers.returnJsonArray({ success: true });
 }

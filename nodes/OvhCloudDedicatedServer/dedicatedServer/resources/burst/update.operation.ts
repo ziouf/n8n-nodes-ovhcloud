@@ -55,5 +55,5 @@ export async function execute(this: IExecuteFunctions): Promise<INodeExecutionDa
 
 	const body: IDataObject = { enabled };
 	const response = (await client.httpPut(`/dedicated/server/${serviceName}/burst`, body)) as IDataObject;
-	return [{ json: response }];
+	return this.helpers.returnJsonArray(response);
 }

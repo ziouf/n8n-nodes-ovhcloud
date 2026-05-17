@@ -62,5 +62,5 @@ export async function execute(this: IExecuteFunctions): Promise<INodeExecutionDa
 		`/email/domain/${domainParam.value}/responder`,
 		body,
 	)) as IDataObject;
-	return [{ json: data }];
+	return this.helpers.returnJsonArray(data);
 }

@@ -34,5 +34,5 @@ export async function execute(this: IExecuteFunctions): Promise<INodeExecutionDa
 	const client = new ApiClient(this);
 	const domain = this.getNodeParameter('domain', 0) as string;
 	const data = (await client.httpGet(`/msServices/sharepoint/${domain}`)) as IDataObject;
-	return [{ json: data }];
+	return this.helpers.returnJsonArray(data);
 }

@@ -71,5 +71,5 @@ export async function execute(this: IExecuteFunctions): Promise<INodeExecutionDa
 	const data = (await client.httpPost(`/ip/service/${serviceName}/changeContact`, {
 		body: { contactAdmin, contactBilling, contactTech },
 	})) as IDataObject;
-	return [{ json: data }];
+	return this.helpers.returnJsonArray(data);
 }

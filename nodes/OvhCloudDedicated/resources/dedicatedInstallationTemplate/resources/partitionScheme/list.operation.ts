@@ -37,5 +37,5 @@ export async function execute(this: IExecuteFunctions): Promise<INodeExecutionDa
 	const data = (await client.httpGet(
 		`/dedicated/installationTemplate/${templateName}/partitionScheme`,
 	)) as IDataObject[];
-	return data.map((item) => ({ json: item }));
+	return this.helpers.returnJsonArray(data);
 }

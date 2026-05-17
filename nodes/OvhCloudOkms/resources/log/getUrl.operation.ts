@@ -34,5 +34,5 @@ export async function execute(this: IExecuteFunctions): Promise<INodeExecutionDa
 	const client = new ApiClient(this);
 	const okmsId = this.getNodeParameter('okmsId', 0) as string;
 	const data = (await client.httpGet(`/v2/okms/resource/${okmsId}/log/url`)) as IDataObject;
-	return [{ json: data }];
+	return this.helpers.returnJsonArray(data);
 }

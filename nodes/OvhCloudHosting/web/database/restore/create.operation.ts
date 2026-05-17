@@ -64,5 +64,5 @@ export async function execute(this: IExecuteFunctions): Promise<INodeExecutionDa
 	const data = (await client.httpPost(`/hosting/web/${serviceName}/database/${name}/restore`, {
 		body: { date: date, sendEmail: sendEmail },
 	})) as IDataObject;
-	return [{ json: data }];
+	return this.helpers.returnJsonArray(data);
 }

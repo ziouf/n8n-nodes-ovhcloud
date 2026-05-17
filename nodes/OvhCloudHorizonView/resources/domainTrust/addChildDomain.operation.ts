@@ -89,5 +89,5 @@ export async function execute(this: IExecuteFunctions): Promise<INodeExecutionDa
 		`/horizonView/${serviceName}/domainTrust/${domainTrustId}/addChildDomain`,
 		{ body },
 	)) as IDataObject;
-	return [{ json: data }];
+	return this.helpers.returnJsonArray(data);
 }

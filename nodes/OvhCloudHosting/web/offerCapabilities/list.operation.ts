@@ -41,5 +41,5 @@ export async function execute(this: IExecuteFunctions): Promise<INodeExecutionDa
 	const client = new ApiClient(this);
 	const offer = this.getNodeParameter('offer', 0) as string;
 	const data = (await client.httpGet(`/hosting/web/offerCapabilities`, { qs: { offer } })) as IDataObject;
-	return [{ json: data }];
+	return this.helpers.returnJsonArray(data);
 }

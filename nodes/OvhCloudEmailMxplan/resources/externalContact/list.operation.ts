@@ -101,5 +101,5 @@ export async function execute(this: IExecuteFunctions): Promise<INodeExecutionDa
 		`/email/mxplan/${service}/externalContact`,
 		qs,
 	)) as IDataObject[];
-	return data.map((item) => ({ json: item }));
+	return this.helpers.returnJsonArray(data);
 }

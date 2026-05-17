@@ -74,5 +74,5 @@ export async function executeTasksGet(this: IExecuteFunctions): Promise<INodeExe
 		`/dedicated/housing/${serviceName}/task/${taskId}`,
 	)) as IDataObject;
 
-	return [{ json: task }];
+	return this.helpers.returnJsonArray(task);
 }

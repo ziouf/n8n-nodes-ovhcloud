@@ -48,5 +48,5 @@ export async function execute(this: IExecuteFunctions): Promise<INodeExecutionDa
 		`/dbaas/logs/${serviceName}/output/graylog/stream`,
 		qs,
 	)) as IDataObject[];
-	return data.map((item) => ({ json: item }));
+	return this.helpers.returnJsonArray(data);
 }

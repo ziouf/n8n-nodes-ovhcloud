@@ -54,5 +54,5 @@ export async function execute(this: IExecuteFunctions): Promise<INodeExecutionDa
 	const data = (await client.httpGet(
 		`/email/exchange/${organizationName}/service/${exchangeService}/resourceAccount/{resourceEmailAddress}`,
 	)) as IDataObject;
-	return [{ json: data }];
+	return this.helpers.returnJsonArray(data);
 }

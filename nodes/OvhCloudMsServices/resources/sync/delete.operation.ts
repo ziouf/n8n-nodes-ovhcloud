@@ -24,5 +24,5 @@ export async function execute(this: IExecuteFunctions): Promise<INodeExecutionDa
 	const client = new ApiClient(this);
 	const serviceName = this.getNodeParameter('serviceName', 0) as string;
 	await client.httpDelete(`/msServices/${serviceName}/sync`);
-	return [{ json: { success: true, serviceName } }];
+	return this.helpers.returnJsonArray({ success: true, serviceName });
 }

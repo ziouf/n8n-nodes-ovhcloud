@@ -58,5 +58,5 @@ export async function execute(this: IExecuteFunctions): Promise<INodeExecutionDa
 	const id = this.getNodeParameter('id', 0) as string;
 
 	const data = (await client.httpDelete(`/domain/${serviceName}/nameServer/${id}`)) as IDataObject;
-	return [{ json: data }];
+	return this.helpers.returnJsonArray(data);
 }

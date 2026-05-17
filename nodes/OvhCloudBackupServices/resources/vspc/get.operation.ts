@@ -34,5 +34,5 @@ export async function execute(this: IExecuteFunctions): Promise<INodeExecutionDa
 	const client = new ApiClient(this);
 	const vspcId = this.getNodeParameter('vspcId', 0) as string;
 	const data = (await client.httpGet(`/v2/backupServices/vspc/${vspcId}`)) as IDataObject;
-	return [{ json: data }];
+	return this.helpers.returnJsonArray(data);
 }

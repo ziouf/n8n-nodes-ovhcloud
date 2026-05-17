@@ -37,5 +37,5 @@ export async function execute(this: IExecuteFunctions): Promise<INodeExecutionDa
 		`/dedicated/ceph/${serviceName}/changeContact`,
 	);
 
-	return [{ json: data as IDataObject }];
+	return this.helpers.returnJsonArray(data as IDataObject);
 }

@@ -54,5 +54,5 @@ export async function execute(this: IExecuteFunctions): Promise<INodeExecutionDa
 	const data = (await client.httpPost(`/hosting/privateDatabase/${serviceName}/database`, {
 		body: { databaseName },
 	})) as IDataObject;
-	return [{ json: data }];
+	return this.helpers.returnJsonArray(data);
 }

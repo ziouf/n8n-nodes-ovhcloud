@@ -84,5 +84,5 @@ export async function execute(this: IExecuteFunctions): Promise<INodeExecutionDa
 	if (region) body.region = region;
 
 	const data = (await client.httpPost(`/cloud/project/${serviceName}/sshkey`, body)) as IDataObject;
-	return [{ json: data }];
+	return this.helpers.returnJsonArray(data);
 }

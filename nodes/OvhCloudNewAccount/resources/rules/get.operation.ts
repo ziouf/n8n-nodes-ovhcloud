@@ -35,5 +35,5 @@ export async function execute(this: IExecuteFunctions): Promise<INodeExecutionDa
 	const rawBody = this.getNodeParameter('accountDetails', 0, '{}') as string;
 	const body = typeof rawBody === 'string' ? JSON.parse(rawBody) : rawBody;
 	const data = (await client.httpPost('/newAccount/rules', { body })) as IDataObject;
-	return [{ json: data }];
+	return this.helpers.returnJsonArray(data);
 }

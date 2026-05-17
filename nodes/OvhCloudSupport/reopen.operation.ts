@@ -47,5 +47,5 @@ export async function execute(this: IExecuteFunctions): Promise<INodeExecutionDa
 	const data = (await client.httpPost(`/support/tickets/${ticketId}/reopen`, {
 		body: {},
 	})) as IDataObject;
-	return [{ json: data }];
+	return this.helpers.returnJsonArray(data);
 }

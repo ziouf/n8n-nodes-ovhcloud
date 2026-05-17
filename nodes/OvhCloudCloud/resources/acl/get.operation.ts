@@ -61,5 +61,5 @@ export async function execute(this: IExecuteFunctions): Promise<INodeExecutionDa
 	const serviceName = this.getNodeParameter('serviceName', 0, { extractValue: true }) as string;
 	const rule = this.getNodeParameter('rule', 0) as string;
 	const data = (await client.httpGet(`/cloud/project/${serviceName}/acl/${rule}`)) as IDataObject;
-	return [{ json: data }];
+	return this.helpers.returnJsonArray(data);
 }

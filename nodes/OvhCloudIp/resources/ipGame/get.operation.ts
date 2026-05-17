@@ -57,5 +57,5 @@ export async function execute(this: IExecuteFunctions): Promise<INodeExecutionDa
 	const ipBlock = this.getNodeParameter('ipBlock', 0) as string;
 	const ipOnGame = this.getNodeParameter('ipOnGame', 0) as string;
 	const data = (await client.httpGet(`/ip/${ipBlock}/game/${ipOnGame}`)) as IDataObject;
-	return [{ json: data }];
+	return this.helpers.returnJsonArray(data);
 }

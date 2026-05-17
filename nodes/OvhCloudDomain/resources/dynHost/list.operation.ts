@@ -26,5 +26,5 @@ export async function execute(this: IExecuteFunctions): Promise<INodeExecutionDa
 	const client = new ApiClient(this);
 	const zoneName = this.getNodeParameter('zoneName', 0) as string;
 	const data = (await client.httpGet(`/domain/zone/${zoneName}/dynHost/record`)) as IDataObject[];
-	return data.map((item) => ({ json: item }));
+	return this.helpers.returnJsonArray(data);
 }

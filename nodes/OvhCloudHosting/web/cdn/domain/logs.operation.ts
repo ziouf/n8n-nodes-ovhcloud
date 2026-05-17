@@ -50,5 +50,5 @@ export async function execute(this: IExecuteFunctions): Promise<INodeExecutionDa
 	const domainName = this.getNodeParameter('domainName', 0) as string;
 	const date = this.getNodeParameter('date', 0) as string;
 	const data = (await client.httpGet(`/hosting/web/${serviceName}/cdn/domain/${domainName}/logs`, { qs: { date } })) as IDataObject;
-	return [{ json: data }];
+	return this.helpers.returnJsonArray(data);
 }

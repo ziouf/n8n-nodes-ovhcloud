@@ -56,5 +56,5 @@ export async function execute(this: IExecuteFunctions): Promise<INodeExecutionDa
 		role: this.getNodeParameter('role', 0) as string,
 	};
 	const data = (await client.httpPost(`/dbaas/logs/${serviceName}/token`, { body })) as IDataObject;
-	return [{ json: data }];
+	return this.helpers.returnJsonArray(data);
 }

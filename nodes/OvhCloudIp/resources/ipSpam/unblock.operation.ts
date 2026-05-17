@@ -49,5 +49,5 @@ export async function execute(this: IExecuteFunctions): Promise<INodeExecutionDa
 	const ipBlock = this.getNodeParameter('ipBlock', 0) as string;
 	const ipSpamming = this.getNodeParameter('ipSpamming', 0) as string;
 	const data = (await client.httpPost(`/ip/${ipBlock}/spam/${ipSpamming}/unblock`)) as IDataObject;
-	return [{ json: data }];
+	return this.helpers.returnJsonArray(data);
 }

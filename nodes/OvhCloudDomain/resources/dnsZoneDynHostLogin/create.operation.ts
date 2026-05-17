@@ -59,5 +59,5 @@ export async function execute(this: IExecuteFunctions): Promise<INodeExecutionDa
 
 	const body: IDataObject = { login, password };
 	const data = (await client.httpPost(`/domain/zone/${zoneName}/dynHost/login`, body)) as IDataObject;
-	return [{ json: data }];
+	return this.helpers.returnJsonArray(data);
 }

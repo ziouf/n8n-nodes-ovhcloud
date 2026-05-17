@@ -154,5 +154,5 @@ export async function execute(this: IExecuteFunctions): Promise<INodeExecutionDa
 		`/email/pro/${serviceName}/domain`,
 		body,
 	)) as IDataObject;
-	return [{ json: data }];
+	return this.helpers.returnJsonArray(data);
 }

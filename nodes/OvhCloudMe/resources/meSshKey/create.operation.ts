@@ -58,5 +58,5 @@ export async function execute(this: IExecuteFunctions): Promise<INodeExecutionDa
 		default: this.getNodeParameter('default', 0, false) as boolean,
 	};
 	const data = (await client.httpPost('/me/sshKey', { body })) as IDataObject;
-	return [{ json: data }];
+	return this.helpers.returnJsonArray(data);
 }

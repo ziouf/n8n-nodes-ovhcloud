@@ -53,5 +53,5 @@ export async function execute(this: IExecuteFunctions): Promise<INodeExecutionDa
 		`/hosting/web/${serviceName}/configuration`,
 		{ body: { configurationName, value } },
 	)) as IDataObject;
-	return [{ json: data }];
+	return this.helpers.returnJsonArray(data);
 }

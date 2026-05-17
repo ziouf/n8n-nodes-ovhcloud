@@ -72,5 +72,5 @@ export async function execute(this: IExecuteFunctions): Promise<INodeExecutionDa
 		'/connectivity/monitoring/genericIncident/partners',
 		qs,
 	)) as IDataObject[];
-	return data.map((item) => ({ json: item }));
+	return this.helpers.returnJsonArray(data);
 }

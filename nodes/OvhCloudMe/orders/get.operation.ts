@@ -59,5 +59,5 @@ export async function execute(this: IExecuteFunctions): Promise<INodeExecutionDa
 	const client = new ApiClient(this);
 	const orderId = this.getNodeParameter('orderId', 0, { extractValue: true }) as string;
 	const data = (await client.httpGet(`/me/order/${orderId}`)) as IDataObject;
-	return [{ json: data }];
+	return this.helpers.returnJsonArray(data);
 }

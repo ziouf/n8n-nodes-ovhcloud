@@ -38,5 +38,5 @@ export async function execute(this: IExecuteFunctions): Promise<INodeExecutionDa
 		`/dedicated/ceph/${serviceName}/user`,
 	)) as IDataObject[];
 
-	return data.map((item) => ({ json: item }));
+	return this.helpers.returnJsonArray(data);
 }

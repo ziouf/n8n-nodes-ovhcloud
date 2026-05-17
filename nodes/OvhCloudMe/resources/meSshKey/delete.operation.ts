@@ -33,5 +33,5 @@ export async function execute(this: IExecuteFunctions): Promise<INodeExecutionDa
 	const client = new ApiClient(this);
 	const keyName = this.getNodeParameter('keyName', 0) as string;
 	await client.httpDelete(`/me/sshKey/${keyName}`);
-	return [{ json: { success: true, keyName } }];
+	return this.helpers.returnJsonArray({ success: true, keyName });
 }

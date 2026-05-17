@@ -54,5 +54,5 @@ export async function execute(this: IExecuteFunctions): Promise<INodeExecutionDa
 	const serviceName = this.getNodeParameter('serviceName', 0, { extractValue: true }) as string;
 	const domain = this.getNodeParameter('domain', 0) as string;
 	const data = (await client.httpGet(`/dedicated/server/${serviceName}/secondaryDnsDomains/${domain}`)) as IDataObject;
-	return [{ json: data }];
+	return this.helpers.returnJsonArray(data);
 }

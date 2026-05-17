@@ -34,5 +34,5 @@ export async function execute(this: IExecuteFunctions): Promise<INodeExecutionDa
 	const client = new ApiClient(this);
 	const tenantId = this.getNodeParameter('tenantId', 0) as string;
 	const data = (await client.httpGet(`/v2/backupServices/tenant/${tenantId}`)) as IDataObject;
-	return [{ json: data }];
+	return this.helpers.returnJsonArray(data);
 }

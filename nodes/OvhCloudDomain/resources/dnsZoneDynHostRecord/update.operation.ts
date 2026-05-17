@@ -80,5 +80,5 @@ export async function execute(this: IExecuteFunctions): Promise<INodeExecutionDa
 	if (ttl > 0) body.ttl = ttl;
 
 	const data = (await client.httpPut(`/domain/zone/${zoneName}/dynHost/record/${id}`, body)) as IDataObject;
-	return [{ json: data }];
+	return this.helpers.returnJsonArray(data);
 }

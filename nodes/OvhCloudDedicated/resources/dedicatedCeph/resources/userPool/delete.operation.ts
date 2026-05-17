@@ -84,5 +84,5 @@ export async function execute(this: IExecuteFunctions): Promise<INodeExecutionDa
 		`/dedicated/ceph/${serviceName}/user/${userName}/pool/${poolName}`,
 	);
 
-	return [{ json: { success: true } }];
+	return this.helpers.returnJsonArray({ success: true });
 }

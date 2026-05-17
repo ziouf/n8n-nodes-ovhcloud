@@ -34,5 +34,5 @@ export async function execute(this: IExecuteFunctions): Promise<INodeExecutionDa
 	const serviceName = this.getNodeParameter('serviceName', 0) as string;
 	const taskId = this.getNodeParameter('taskId', 0) as string;
 	const data = (await client.httpGet(`/msServices/${serviceName}/sharepoint/task/${taskId}`)) as IDataObject;
-	return [{ json: data }];
+	return this.helpers.returnJsonArray(data);
 }

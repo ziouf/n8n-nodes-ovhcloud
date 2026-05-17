@@ -44,5 +44,5 @@ export async function execute(this: IExecuteFunctions): Promise<INodeExecutionDa
 	const client = new ApiClient(this);
 	const serviceName = this.getNodeParameter('serviceName', 0, { extractValue: true }) as string;
 	const data = (await client.httpGet(`/dedicated/server/${serviceName}/intervention`)) as IDataObject[];
-	return data.map((item) => ({ json: item }));
+	return this.helpers.returnJsonArray(data);
 }

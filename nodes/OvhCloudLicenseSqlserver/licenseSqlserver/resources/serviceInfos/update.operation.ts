@@ -43,5 +43,5 @@ export async function execute(this: IExecuteFunctions): Promise<INodeExecutionDa
 	const rawBody = this.getNodeParameter('rawBody', 0, '{}') as string;
 	const body = typeof rawBody === 'string' ? JSON.parse(rawBody) : rawBody;
 	await client.httpPut(`/license/sqlserver/${serviceName}/serviceInfos`, { body });
-	return [{ json: { success: true } }];
+	return this.helpers.returnJsonArray({ success: true });
 }

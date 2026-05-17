@@ -61,5 +61,5 @@ export async function execute(this: IExecuteFunctions): Promise<INodeExecutionDa
 		`/dedicated/server/${serviceName}/install/compatibleTemplates`,
 	)) as IDataObject[];
 
-	return data.map((item) => ({ json: item }));
+	return this.helpers.returnJsonArray(data);
 }

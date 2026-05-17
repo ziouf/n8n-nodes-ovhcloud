@@ -58,5 +58,5 @@ export async function execute(this: IExecuteFunctions): Promise<INodeExecutionDa
 
 	await client.httpPost(`/ip/${ipBlock}/antihack/${ipBlocked}/unblock`);
 
-	return [{ json: { success: true, ipBlock, ipBlocked } }];
+	return this.helpers.returnJsonArray({ success: true, ipBlock, ipBlocked });
 }

@@ -47,5 +47,5 @@ export async function execute(this: IExecuteFunctions): Promise<INodeExecutionDa
 	const id = this.getNodeParameter('id', 0) as string;
 
 	const data = (await client.httpPost(`/domain/zone/${zoneName}/task/${id}/relaunch`)) as IDataObject;
-	return [{ json: data }];
+	return this.helpers.returnJsonArray(data);
 }

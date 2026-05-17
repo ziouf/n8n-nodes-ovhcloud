@@ -48,5 +48,5 @@ export async function execute(this: IExecuteFunctions): Promise<INodeExecutionDa
 
 	const backupftp = (await client.httpGet(`/vps/${serviceName}/backupftp`)) as IDataObject;
 
-	return [{ json: backupftp }];
+	return this.helpers.returnJsonArray(backupftp);
 }

@@ -97,5 +97,5 @@ export async function execute(this: IExecuteFunctions): Promise<INodeExecutionDa
 	const moduleId = this.getNodeParameter('moduleId', 0) as number;
 	const path = this.getNodeParameter('path', 0) as string;
 	const data = (await client.httpPost(`/hosting/web/${serviceName}/module`, { body: { adminName: adminName, adminPassword: adminPassword, dependencies: dependencies, domain: domain, language: language, moduleId: moduleId, path: path } })) as IDataObject;
-	return [{ json: data }];
+	return this.helpers.returnJsonArray(data);
 }

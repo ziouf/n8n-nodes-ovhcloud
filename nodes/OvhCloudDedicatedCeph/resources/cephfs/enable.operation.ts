@@ -38,5 +38,5 @@ export async function execute(this: IExecuteFunctions): Promise<INodeExecutionDa
 		`/dedicated/ceph/${serviceName}/cephfs/${fsName}/enable`,
 	);
 
-	return [{ json: data as IDataObject }];
+	return this.helpers.returnJsonArray(data as IDataObject);
 }

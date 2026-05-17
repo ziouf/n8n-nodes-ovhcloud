@@ -44,5 +44,5 @@ export async function execute(this: IExecuteFunctions): Promise<INodeExecutionDa
 	const platformId = this.getNodeParameter('platformId', 0) as string;
 	const aliasId = this.getNodeParameter('aliasId', 0) as string;
 	const data = (await client.httpGet(`/v2/zimbra/platform/${platformId}/alias/${aliasId}`)) as IDataObject;
-	return [{ json: data }];
+	return this.helpers.returnJsonArray(data);
 }

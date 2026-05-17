@@ -68,5 +68,5 @@ export async function execute(this: IExecuteFunctions): Promise<INodeExecutionDa
 	const qs: IDataObject = {};
 	if (state) qs.state = state;
 	const data = (await client.httpGet(`/email/mxplan/${service}/domain`, qs)) as IDataObject[];
-	return data.map((item) => ({ json: item }));
+	return this.helpers.returnJsonArray(data);
 }

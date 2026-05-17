@@ -56,5 +56,5 @@ export async function execute(this: IExecuteFunctions): Promise<INodeExecutionDa
 	const data = (await client.httpPost(`/hosting/web/${serviceName}/user/${login}/changePassword`, {
 		body: { password: password },
 	})) as IDataObject;
-	return [{ json: data }];
+	return this.helpers.returnJsonArray(data);
 }

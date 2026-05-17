@@ -131,5 +131,5 @@ export async function executeDedicatedNashaPartitionCreate(
 		body,
 	)) as IDataObject;
 
-	return [{ json: response }];
+	return this.helpers.returnJsonArray(response);
 }

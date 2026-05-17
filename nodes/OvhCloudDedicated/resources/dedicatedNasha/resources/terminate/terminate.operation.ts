@@ -73,5 +73,5 @@ export async function executeDedicatedNashaTerminate(
 		`/dedicated/nasha/${serviceName}/terminate`,
 	)) as IDataObject;
 
-	return [{ json: response }];
+	return this.helpers.returnJsonArray(response);
 }

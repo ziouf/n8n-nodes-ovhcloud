@@ -70,5 +70,5 @@ export async function execute(this: IExecuteFunctions): Promise<INodeExecutionDa
 	const data = (await client.httpGet(`/freefax/${serviceName}/directory/getDirectoryServiceCode`, {
 		qs: { apeCode },
 	})) as IDataObject;
-	return [{ json: data }];
+	return this.helpers.returnJsonArray(data);
 }

@@ -51,5 +51,5 @@ export async function execute(this: IExecuteFunctions): Promise<INodeExecutionDa
 	const country = this.getNodeParameter('country', 0) as string;
 	const offer = this.getNodeParameter('offer', 0) as string;
 	const data = (await client.httpGet(`/hosting/web/localSeo/directoriesList`, { qs: { country, offer } })) as IDataObject;
-	return [{ json: data }];
+	return this.helpers.returnJsonArray(data);
 }

@@ -103,5 +103,5 @@ export async function execute(this: IExecuteFunctions): Promise<INodeExecutionDa
 	if (country) body.country = country;
 
 	const data = (await client.httpPost('/domain/contact', body)) as IDataObject;
-	return [{ json: data }];
+	return this.helpers.returnJsonArray(data);
 }

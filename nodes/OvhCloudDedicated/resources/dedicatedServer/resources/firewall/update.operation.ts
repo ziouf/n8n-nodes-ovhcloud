@@ -59,5 +59,5 @@ export async function execute(this: IExecuteFunctions): Promise<INodeExecutionDa
 
 	const body: IDataObject = { state };
 	const response = (await client.httpPut(`/dedicated/server/${serviceName}/features/firewall`, body)) as IDataObject;
-	return [{ json: response }];
+	return this.helpers.returnJsonArray(response);
 }

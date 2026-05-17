@@ -49,5 +49,5 @@ export async function execute(this: IExecuteFunctions): Promise<INodeExecutionDa
 	const ipBlock = this.getNodeParameter('ipBlock', 0) as string;
 	const phishingId = this.getNodeParameter('phishingId', 0) as string;
 	const data = (await client.httpGet(`/ip/${ipBlock}/phishing/${phishingId}`)) as IDataObject;
-	return [{ json: data }];
+	return this.helpers.returnJsonArray(data);
 }

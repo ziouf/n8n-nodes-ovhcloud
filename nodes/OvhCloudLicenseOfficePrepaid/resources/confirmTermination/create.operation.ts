@@ -116,5 +116,5 @@ export async function execute(this: IExecuteFunctions): Promise<INodeExecutionDa
 		`/license/officePrepaid/${serviceName}/confirmTermination`,
 		{ body },
 	)) as IDataObject;
-	return [{ json: data }];
+	return this.helpers.returnJsonArray(data);
 }

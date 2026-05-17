@@ -66,5 +66,5 @@ export async function execute(this: IExecuteFunctions): Promise<INodeExecutionDa
 	}) as { value: string };
 	const taskId = this.getNodeParameter('taskId', 0) as string;
 	const data = (await client.httpGet(`/email/mxplan/${service}/task/${taskId}`)) as IDataObject;
-	return [{ json: data }];
+	return this.helpers.returnJsonArray(data);
 }

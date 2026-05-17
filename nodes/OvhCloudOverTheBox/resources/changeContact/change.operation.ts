@@ -14,5 +14,5 @@ export async function execute(this: IExecuteFunctions): Promise<INodeExecutionDa
 	const rawBody = this.getNodeParameter('contactDetails', 0, '{}') as string;
 	const body = typeof rawBody === 'string' ? JSON.parse(rawBody) : rawBody;
 	const data = (await client.httpPost(`/overTheBox/${serviceName}/changeContact`, { body })) as IDataObject;
-	return [{ json: data }];
+	return this.helpers.returnJsonArray(data);
 }

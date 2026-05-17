@@ -43,5 +43,5 @@ export async function execute(this: IExecuteFunctions): Promise<INodeExecutionDa
 	const serviceName = this.getNodeParameter('serviceName', 0) as string;
 	const vrackNetworkId = this.getNodeParameter('vrackNetworkId', 0) as number;
 	await client.httpDelete(`/ipLoadbalancing/${serviceName}/vrack/network/${vrackNetworkId}`);
-	return [{ json: { success: true } }];
+	return this.helpers.returnJsonArray({ success: true });
 }

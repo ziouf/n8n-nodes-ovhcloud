@@ -47,5 +47,5 @@ export async function execute(this: IExecuteFunctions): Promise<INodeExecutionDa
 	const login = this.getNodeParameter('login', 0) as string;
 
 	const data = (await client.httpGet(`/domain/zone/${zoneName}/dynHost/login/${login}`)) as IDataObject;
-	return [{ json: data }];
+	return this.helpers.returnJsonArray(data);
 }

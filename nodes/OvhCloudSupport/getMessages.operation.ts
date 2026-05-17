@@ -45,5 +45,5 @@ export async function execute(this: IExecuteFunctions): Promise<INodeExecutionDa
 	const client = new ApiClient(this);
 	const ticketId = this.getNodeParameter('ticketId', 0) as string;
 	const data = (await client.httpGet(`/support/tickets/${ticketId}/messages`)) as IDataObject[];
-	return data.map((item) => ({ json: item }));
+	return this.helpers.returnJsonArray(data);
 }

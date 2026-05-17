@@ -54,5 +54,5 @@ export async function execute(this: IExecuteFunctions): Promise<INodeExecutionDa
 	const virtualDataCenterId = this.getNodeParameter('virtualDataCenterId', 0) as string;
 	const id = this.getNodeParameter('id', 0) as string;
 	const data = (await client.httpGet(`/v2/vmwareCloudDirector/organization/${organizationId}/virtualDataCenter/${virtualDataCenterId}/vrackSegment/${id}`)) as IDataObject;
-	return [{ json: data }];
+	return this.helpers.returnJsonArray(data);
 }

@@ -61,5 +61,5 @@ export async function execute(this: IExecuteFunctions): Promise<INodeExecutionDa
 	const login = this.getNodeParameter('login', 0) as string;
 	const serviceName = this.getNodeParameter('serviceName', 0) as string;
 	const data = (await client.httpPut(`/hosting/web/${serviceName}/ownLogs/${id}/userLogs/${login}`, { body: {} })) as IDataObject;
-	return [{ json: data }];
+	return this.helpers.returnJsonArray(data);
 }

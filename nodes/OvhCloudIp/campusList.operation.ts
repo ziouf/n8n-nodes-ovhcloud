@@ -29,5 +29,5 @@ export function description(displayOptions: IDisplayOptions): INodeProperties[] 
 export async function execute(this: IExecuteFunctions): Promise<INodeExecutionData[]> {
 	const client = new ApiClient(this);
 	const data = (await client.httpGet('/ip/campus')) as IDataObject[];
-	return data.map((item) => ({ json: item }));
+	return this.helpers.returnJsonArray(data);
 }

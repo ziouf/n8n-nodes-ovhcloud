@@ -67,5 +67,5 @@ export async function execute(this: IExecuteFunctions): Promise<INodeExecutionDa
 	if (ip) body.ip = ip;
 
 	const response = (await client.httpPost(`/dedicated/server/${serviceName}/secondaryDnsDomains`, body)) as IDataObject;
-	return [{ json: response }];
+	return this.helpers.returnJsonArray(response);
 }

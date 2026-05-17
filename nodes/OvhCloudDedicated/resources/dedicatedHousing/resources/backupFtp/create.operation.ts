@@ -66,5 +66,5 @@ export async function executeBackupFtpCreate(
 		`/dedicated/housing/${serviceName}/features/backupFTP`,
 	)) as IDataObject;
 
-	return [{ json: response }];
+	return this.helpers.returnJsonArray(response);
 }

@@ -49,5 +49,5 @@ export async function execute(this: IExecuteFunctions): Promise<INodeExecutionDa
 		`/email/domain/delegatedAccount/${email}/changePassword`,
 		{ password },
 	)) as IDataObject;
-	return [{ json: data }];
+	return this.helpers.returnJsonArray(data);
 }

@@ -136,5 +136,5 @@ export async function execute(this: IExecuteFunctions): Promise<INodeExecutionDa
 		{ poolName, read, write, execute, classRead, classWrite },
 	);
 
-	return [{ json: data as IDataObject }];
+	return this.helpers.returnJsonArray(data as IDataObject);
 }

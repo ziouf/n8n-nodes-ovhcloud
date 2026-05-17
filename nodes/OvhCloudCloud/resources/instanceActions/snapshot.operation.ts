@@ -87,5 +87,5 @@ export async function execute(this: IExecuteFunctions): Promise<INodeExecutionDa
 		`/cloud/project/${serviceName}/instance/${instanceId}/snapshot`,
 		body,
 	)) as IDataObject;
-	return [{ json: data }];
+	return this.helpers.returnJsonArray(data);
 }

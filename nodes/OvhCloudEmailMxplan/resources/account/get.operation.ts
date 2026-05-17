@@ -67,5 +67,5 @@ export async function execute(this: IExecuteFunctions): Promise<INodeExecutionDa
 	}) as { value: string };
 	const email = this.getNodeParameter('email', 0) as string;
 	const data = (await client.httpGet(`/email/mxplan/${service}/account/${email}`)) as IDataObject;
-	return [{ json: data }];
+	return this.helpers.returnJsonArray(data);
 }

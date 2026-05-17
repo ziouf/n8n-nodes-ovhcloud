@@ -46,5 +46,5 @@ export async function execute(this: IExecuteFunctions): Promise<INodeExecutionDa
 		quota: this.getNodeParameter('quota', 0) as number,
 	};
 	const data = (await client.httpPut(`/metrics/${serviceName}/quota`, { body })) as IDataObject;
-	return [{ json: data }];
+	return this.helpers.returnJsonArray(data);
 }

@@ -64,5 +64,5 @@ export async function execute(this: IExecuteFunctions): Promise<INodeExecutionDa
 		`/dedicated/housing/${serviceName}/features/backupFTP`,
 	)) as IDataObject;
 
-	return [{ json: backupFtp }];
+	return this.helpers.returnJsonArray(backupFtp);
 }

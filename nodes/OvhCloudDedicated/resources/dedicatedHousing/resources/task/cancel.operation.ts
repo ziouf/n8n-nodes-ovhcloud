@@ -74,5 +74,5 @@ export async function executeTasksCancel(this: IExecuteFunctions): Promise<INode
 		`/dedicated/housing/${serviceName}/task/${taskId}/cancel`,
 	)) as IDataObject;
 
-	return [{ json: response }];
+	return this.helpers.returnJsonArray(response);
 }

@@ -38,5 +38,5 @@ export async function execute(this: IExecuteFunctions): Promise<INodeExecutionDa
 	const data = (await client.httpGet(
 		`/dedicated/installationTemplate/${templateName}/partitionScheme/${schemeName}/hardwareRaid`,
 	)) as IDataObject[];
-	return data.map((item) => ({ json: item }));
+	return this.helpers.returnJsonArray(data);
 }

@@ -64,5 +64,5 @@ export async function execute(this: IExecuteFunctions): Promise<INodeExecutionDa
 		`/dedicated/housing/${serviceName}/serviceInfos`,
 	)) as IDataObject;
 
-	return [{ json: serviceInfos }];
+	return this.helpers.returnJsonArray(serviceInfos);
 }

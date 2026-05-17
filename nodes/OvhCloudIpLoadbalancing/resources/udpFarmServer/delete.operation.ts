@@ -53,5 +53,5 @@ export async function execute(this: IExecuteFunctions): Promise<INodeExecutionDa
 	const farmId = this.getNodeParameter('farmId', 0) as number;
 	const serverId = this.getNodeParameter('serverId', 0) as number;
 	await client.httpDelete(`/ipLoadbalancing/${serviceName}/udp/farm/${farmId}/server/${serverId}`);
-	return [{ json: { success: true } }];
+	return this.helpers.returnJsonArray({ success: true });
 }

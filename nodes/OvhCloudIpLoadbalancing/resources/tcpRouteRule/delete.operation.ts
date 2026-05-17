@@ -53,5 +53,5 @@ export async function execute(this: IExecuteFunctions): Promise<INodeExecutionDa
 	const routeId = this.getNodeParameter('routeId', 0) as number;
 	const ruleId = this.getNodeParameter('ruleId', 0) as number;
 	await client.httpDelete(`/ipLoadbalancing/${serviceName}/tcp/route/${routeId}/rule/${ruleId}`);
-	return [{ json: { success: true } }];
+	return this.helpers.returnJsonArray({ success: true });
 }

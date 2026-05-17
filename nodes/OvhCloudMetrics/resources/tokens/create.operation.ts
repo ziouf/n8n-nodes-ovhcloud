@@ -56,5 +56,5 @@ export async function execute(this: IExecuteFunctions): Promise<INodeExecutionDa
 	const description = this.getNodeParameter('description', 0, '') as string;
 	if (description) body.description = description;
 	const data = (await client.httpPost(`/metrics/${serviceName}/token`, { body })) as IDataObject;
-	return [{ json: data }];
+	return this.helpers.returnJsonArray(data);
 }

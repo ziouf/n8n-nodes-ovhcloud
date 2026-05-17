@@ -33,5 +33,5 @@ export async function execute(this: IExecuteFunctions): Promise<INodeExecutionDa
 	const client = new ApiClient(this);
 	const applicationId = this.getNodeParameter('applicationId', 0) as string;
 	await client.httpDelete(`/me/api/application/${applicationId}`);
-	return [{ json: { success: true, applicationId } }];
+	return this.helpers.returnJsonArray({ success: true, applicationId });
 }

@@ -59,5 +59,5 @@ export async function execute(this: IExecuteFunctions): Promise<INodeExecutionDa
 	const remoteCheck = this.getNodeParameter('remoteCheck', 0) as string;
 	const ttl = this.getNodeParameter('ttl', 0) as string;
 	const data = (await client.httpGet(`/hosting/web/${serviceName}/userLogsToken`, { qs: { attachedDomain, remoteCheck, ttl } })) as IDataObject;
-	return [{ json: data }];
+	return this.helpers.returnJsonArray(data);
 }

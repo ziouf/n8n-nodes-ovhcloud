@@ -76,5 +76,5 @@ export async function executeBackupFtpGetAccess(
 		`/dedicated/housing/${serviceName}/features/backupFTP/access/${ipBlock}`,
 	)) as IDataObject;
 
-	return [{ json: acl }];
+	return this.helpers.returnJsonArray(acl);
 }

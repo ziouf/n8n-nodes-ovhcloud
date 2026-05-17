@@ -48,5 +48,5 @@ export async function execute(this: IExecuteFunctions): Promise<INodeExecutionDa
 
 	const datacenter = (await client.httpGet(`/vps/${serviceName}/datacenter`)) as IDataObject;
 
-	return [{ json: datacenter }];
+	return this.helpers.returnJsonArray(datacenter);
 }

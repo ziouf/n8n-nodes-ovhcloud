@@ -71,5 +71,5 @@ export async function execute(this: IExecuteFunctions): Promise<INodeExecutionDa
 		`/freefax/${serviceName}/directory/fetchEntrepriseInformations`,
 		{ body: { entrepriseNumber } },
 	)) as IDataObject;
-	return [{ json: data }];
+	return this.helpers.returnJsonArray(data);
 }

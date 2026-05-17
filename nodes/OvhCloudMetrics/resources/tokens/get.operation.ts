@@ -45,5 +45,5 @@ export async function execute(this: IExecuteFunctions): Promise<INodeExecutionDa
 	const serviceName = this.getNodeParameter('serviceName', 0) as string;
 	const tokenId = this.getNodeParameter('tokenId', 0) as string;
 	const data = (await client.httpGet(`/metrics/${serviceName}/token/${tokenId}`)) as IDataObject;
-	return [{ json: data }];
+	return this.helpers.returnJsonArray(data);
 }

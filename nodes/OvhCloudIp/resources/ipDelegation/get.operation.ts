@@ -57,5 +57,5 @@ export async function execute(this: IExecuteFunctions): Promise<INodeExecutionDa
 	const ipBlock = this.getNodeParameter('ipBlock', 0) as string;
 	const target = this.getNodeParameter('target', 0) as string;
 	const data = (await client.httpGet(`/ip/${ipBlock}/delegation/${target}`)) as IDataObject;
-	return [{ json: data }];
+	return this.helpers.returnJsonArray(data);
 }

@@ -73,5 +73,5 @@ export async function execute(this: IExecuteFunctions): Promise<INodeExecutionDa
 	if (type) body.type = type;
 
 	const data = (await client.httpPost(`/domain/zone/${zoneName}/redirection`, body)) as IDataObject;
-	return [{ json: data }];
+	return this.helpers.returnJsonArray(data);
 }

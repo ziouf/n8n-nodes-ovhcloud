@@ -42,5 +42,5 @@ export async function execute(this: IExecuteFunctions): Promise<INodeExecutionDa
 	const data = (await client.httpPut(`/msServices/sharepoint/${domain}/serviceInfos`, {
 		body: updateFields,
 	})) as IDataObject;
-	return [{ json: data }];
+	return this.helpers.returnJsonArray(data);
 }

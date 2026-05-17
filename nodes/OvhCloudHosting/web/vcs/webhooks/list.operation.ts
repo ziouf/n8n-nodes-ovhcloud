@@ -52,5 +52,5 @@ export async function execute(this: IExecuteFunctions): Promise<INodeExecutionDa
 	const path = this.getNodeParameter('path', 0) as string;
 	const vcs = this.getNodeParameter('vcs', 0) as string;
 	const data = (await client.httpGet(`/hosting/web/${serviceName}/vcs/webhooks`, { qs: { path, vcs } })) as IDataObject;
-	return [{ json: data }];
+	return this.helpers.returnJsonArray(data);
 }

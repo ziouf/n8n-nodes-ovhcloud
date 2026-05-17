@@ -45,5 +45,5 @@ export async function execute(this: IExecuteFunctions): Promise<INodeExecutionDa
 	const qs: IDataObject = {};
 	if (namePattern) qs.namePattern = namePattern;
 	const data = (await client.httpGet(`/dbaas/logs/${serviceName}/role`, qs)) as IDataObject[];
-	return data.map((item) => ({ json: item }));
+	return this.helpers.returnJsonArray(data);
 }

@@ -88,5 +88,5 @@ export async function execute(this: IExecuteFunctions): Promise<INodeExecutionDa
 	if (vrack) qs.vrack = vrack;
 
 	const data = (await client.httpGet(`/dedicated/server/${serviceName}/virtualNetworkInterface`, qs)) as IDataObject[];
-	return data.map((item) => ({ json: item }));
+	return this.helpers.returnJsonArray(data);
 }

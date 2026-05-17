@@ -74,5 +74,5 @@ export async function execute(this: IExecuteFunctions): Promise<INodeExecutionDa
 
 	await client.httpPut(`/ip/${ipBlock}`, { body: updateFields });
 
-	return [{ json: { success: true, ipBlock } }];
+	return this.helpers.returnJsonArray({ success: true, ipBlock });
 }

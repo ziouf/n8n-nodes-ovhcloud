@@ -14,5 +14,5 @@ export async function execute(this: IExecuteFunctions): Promise<INodeExecutionDa
 	const organizationName = this.getNodeParameter('organizationName', 0) as string;
 	const exchangeService = this.getNodeParameter('exchangeService', 0) as string;
 	const data = (await client.httpPost(`/email/exchange/${organizationName}/service/${exchangeService}/log/url`)) as IDataObject;
-	return [{ json: data }];
+	return this.helpers.returnJsonArray(data);
 }

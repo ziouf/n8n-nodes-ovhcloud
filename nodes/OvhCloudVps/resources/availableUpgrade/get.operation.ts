@@ -50,5 +50,5 @@ export async function execute(this: IExecuteFunctions): Promise<INodeExecutionDa
 		`/vps/${serviceName}/availableUpgrade`,
 	)) as IDataObject;
 
-	return [{ json: availableUpgrade }];
+	return this.helpers.returnJsonArray(availableUpgrade);
 }

@@ -46,5 +46,5 @@ export async function execute(this: IExecuteFunctions): Promise<INodeExecutionDa
 	const body: IDataObject = typeof rawBody === 'string' ? JSON.parse(rawBody) : rawBody;
 
 	await client.httpPut(`/horizonView/${serviceName}/serviceInfos`, { body });
-	return [{ json: { success: true } }];
+	return this.helpers.returnJsonArray({ success: true });
 }

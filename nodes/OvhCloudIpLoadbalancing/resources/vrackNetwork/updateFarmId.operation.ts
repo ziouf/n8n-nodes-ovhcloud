@@ -58,5 +58,5 @@ export async function execute(this: IExecuteFunctions): Promise<INodeExecutionDa
 		`/ipLoadbalancing/${serviceName}/vrack/network/${vrackNetworkId}/updateFarmId`,
 		{ body: farmIds },
 	)) as IDataObject;
-	return [{ json: data }];
+	return this.helpers.returnJsonArray(data);
 }

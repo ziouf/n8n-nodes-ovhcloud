@@ -33,5 +33,5 @@ export async function execute(this: IExecuteFunctions): Promise<INodeExecutionDa
 	const client = new ApiClient(this);
 	const credentialId = this.getNodeParameter('credentialId', 0) as string;
 	await client.httpDelete(`/me/api/credential/${credentialId}`);
-	return [{ json: { success: true, credentialId } }];
+	return this.helpers.returnJsonArray({ success: true, credentialId });
 }

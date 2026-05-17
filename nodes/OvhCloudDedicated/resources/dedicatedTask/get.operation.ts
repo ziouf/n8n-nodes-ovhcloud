@@ -39,5 +39,5 @@ export async function execute(this: IExecuteFunctions): Promise<INodeExecutionDa
 		`/dedicated/server/${serviceName}/task/${taskId}`,
 	)) as IDataObject;
 
-	return [{ json: data }];
+	return this.helpers.returnJsonArray(data);
 }

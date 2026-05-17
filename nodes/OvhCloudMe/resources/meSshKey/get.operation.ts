@@ -25,5 +25,5 @@ export async function execute(this: IExecuteFunctions): Promise<INodeExecutionDa
 	const client = new ApiClient(this);
 	const keyId = this.getNodeParameter('keyId', 0) as string;
 	const data = (await client.httpGet(`/me/sshKey/${keyId}`)) as IDataObject;
-	return [{ json: data }];
+	return this.helpers.returnJsonArray(data);
 }

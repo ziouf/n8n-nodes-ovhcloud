@@ -55,5 +55,5 @@ export async function execute(this: IExecuteFunctions): Promise<INodeExecutionDa
 	if (from) qs.from = from;
 	if (to) qs.to = to;
 	const data = (await client.httpGet(`/metrics/${serviceName}/consumption`, qs)) as IDataObject[];
-	return data.map((item) => ({ json: item }));
+	return this.helpers.returnJsonArray(data);
 }

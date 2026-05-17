@@ -34,5 +34,5 @@ export async function execute(this: IExecuteFunctions): Promise<INodeExecutionDa
 	const client = new ApiClient(this);
 	const taskId = this.getNodeParameter('taskId', 0) as string;
 	const data = (await client.httpGet(`/v2/managedCMS/task/${taskId}`)) as IDataObject;
-	return [{ json: data }];
+	return this.helpers.returnJsonArray(data);
 }

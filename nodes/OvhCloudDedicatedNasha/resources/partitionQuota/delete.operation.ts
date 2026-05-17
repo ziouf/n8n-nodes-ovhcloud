@@ -93,5 +93,5 @@ export async function executeDedicatedNashaPartitionQuotaDelete(
 		`/dedicated/nasha/${serviceName}/partition/${partitionName}/quota/${uid}`,
 	)) as IDataObject;
 
-	return [{ json: response }];
+	return this.helpers.returnJsonArray(response);
 }

@@ -84,5 +84,5 @@ export async function execute(this: IExecuteFunctions): Promise<INodeExecutionDa
 
 	const body: IDataObject = { nameServers: nameServers.servers };
 	const data = (await client.httpPost(`/domain/${serviceName}/nameServers/update`, body)) as IDataObject;
-	return [{ json: data }];
+	return this.helpers.returnJsonArray(data);
 }

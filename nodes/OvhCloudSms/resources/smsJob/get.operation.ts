@@ -43,5 +43,5 @@ export async function execute(this: IExecuteFunctions): Promise<INodeExecutionDa
 	const serviceName = this.getNodeParameter('serviceName', 0) as string;
 	const jobId = this.getNodeParameter('jobId', 0) as string;
 	const data = (await client.httpGet(`/sms/${serviceName}/jobs/${jobId}`)) as IDataObject;
-	return [{ json: data }];
+	return this.helpers.returnJsonArray(data);
 }

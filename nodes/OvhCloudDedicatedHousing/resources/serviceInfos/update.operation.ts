@@ -66,5 +66,5 @@ export async function executeServiceInfosUpdate(
 		`/dedicated/housing/${serviceName}/serviceInfos`,
 	)) as IDataObject;
 
-	return [{ json: response }];
+	return this.helpers.returnJsonArray(response);
 }

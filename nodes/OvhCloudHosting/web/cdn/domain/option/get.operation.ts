@@ -59,5 +59,5 @@ export async function execute(this: IExecuteFunctions): Promise<INodeExecutionDa
 	const domainName = this.getNodeParameter('domainName', 0) as string;
 	const optionName = this.getNodeParameter('optionName', 0) as string;
 	const data = (await client.httpPut(`/hosting/web/${serviceName}/cdn/domain/${domainName}/option/${optionName}`, { body: {} })) as IDataObject;
-	return [{ json: data }];
+	return this.helpers.returnJsonArray(data);
 }

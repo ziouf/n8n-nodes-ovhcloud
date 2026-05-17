@@ -44,5 +44,5 @@ export async function execute(this: IExecuteFunctions): Promise<INodeExecutionDa
 	const serviceName = this.getNodeParameter('serviceName', 0) as string;
 	const tokenId = this.getNodeParameter('tokenId', 0) as string;
 	await client.httpDelete(`/metrics/${serviceName}/token/${tokenId}`);
-	return [{ json: { success: true, serviceName, tokenId } }];
+	return this.helpers.returnJsonArray({ success: true, serviceName, tokenId });
 }

@@ -75,5 +75,5 @@ export async function execute(this: IExecuteFunctions): Promise<INodeExecutionDa
 	const sslDh = this.getNodeParameter('sslDh', 0, '') as string;
 	if (sslDh) body.sslDh = sslDh;
 	const data = (await client.httpPut(`/ipLoadbalancing/${serviceName}`, { body })) as IDataObject;
-	return [{ json: data }];
+	return this.helpers.returnJsonArray(data);
 }

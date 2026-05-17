@@ -86,5 +86,5 @@ export async function executeDedicatedNashaChangeContact(
 		body,
 	)) as IDataObject;
 
-	return [{ json: response }];
+	return this.helpers.returnJsonArray(response);
 }

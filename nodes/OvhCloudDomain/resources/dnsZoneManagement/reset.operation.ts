@@ -49,5 +49,5 @@ export async function execute(this: IExecuteFunctions): Promise<INodeExecutionDa
 	if (zone) body.zone = zone;
 
 	const data = (await client.httpPost(`/domain/zone/${zoneName}/reset`, body)) as IDataObject;
-	return [{ json: data }];
+	return this.helpers.returnJsonArray(data);
 }

@@ -13,5 +13,5 @@ export async function execute(this: IExecuteFunctions): Promise<INodeExecutionDa
 	const serviceName = this.getNodeParameter('serviceName', 0) as string;
 	const backupId = this.getNodeParameter('backupId', 0) as string;
 	const data = (await client.httpDelete(`/overTheBox/${serviceName}/backups/${backupId}`)) as IDataObject;
-	return [{ json: data }];
+	return this.helpers.returnJsonArray(data);
 }

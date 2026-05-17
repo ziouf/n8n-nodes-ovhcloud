@@ -118,5 +118,5 @@ export async function executeDedicatedNashaConfirmTermination(
 		body,
 	)) as IDataObject;
 
-	return [{ json: response }];
+	return this.helpers.returnJsonArray(response);
 }

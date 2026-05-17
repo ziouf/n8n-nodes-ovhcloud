@@ -71,5 +71,5 @@ export async function execute(this: IExecuteFunctions): Promise<INodeExecutionDa
 	if (ovhSubsidiary) body.ovhSubsidiary = ovhSubsidiary;
 
 	const data = (await client.httpPut(`/domain/${serviceName}`, body)) as IDataObject;
-	return [{ json: data }];
+	return this.helpers.returnJsonArray(data);
 }

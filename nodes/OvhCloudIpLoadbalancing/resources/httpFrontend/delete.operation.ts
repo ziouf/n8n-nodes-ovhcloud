@@ -45,5 +45,5 @@ export async function execute(this: IExecuteFunctions): Promise<INodeExecutionDa
 	await client.httpDelete(
 		`/ipLoadbalancing/${serviceName}/http/frontend/${frontendId}`,
 	);
-	return [{ json: { success: true } }];
+	return this.helpers.returnJsonArray({ success: true });
 }

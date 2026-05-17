@@ -24,5 +24,5 @@ export async function execute(this: IExecuteFunctions): Promise<INodeExecutionDa
 	if (license) qs.license = license;
 	if (toDate) qs.toDate = toDate;
 	const data = (await client.httpGet(`/email/exchange/${organizationName}/service/${exchangeService}/license`, { qs })) as IDataObject;
-	return [{ json: data }];
+	return this.helpers.returnJsonArray(data);
 }

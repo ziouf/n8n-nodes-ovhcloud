@@ -14,5 +14,5 @@ export async function execute(this: IExecuteFunctions): Promise<INodeExecutionDa
 	const rawBody = this.getNodeParameter('ipv6Status', 0, '{}') as string;
 	const body = typeof rawBody === 'string' ? JSON.parse(rawBody) : rawBody;
 	const data = (await client.httpPut(`/overTheBox/${serviceName}/ipv6`, { body })) as IDataObject;
-	return [{ json: data }];
+	return this.helpers.returnJsonArray(data);
 }

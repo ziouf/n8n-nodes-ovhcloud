@@ -57,5 +57,5 @@ export async function execute(this: IExecuteFunctions): Promise<INodeExecutionDa
 	}) as { value: string };
 
 	const data = (await client.httpGet(`/freefax/${serviceName}/directory`)) as IDataObject;
-	return [{ json: data }];
+	return this.helpers.returnJsonArray(data);
 }

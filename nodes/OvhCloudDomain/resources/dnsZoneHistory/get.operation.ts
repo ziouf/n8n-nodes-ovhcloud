@@ -47,5 +47,5 @@ export async function execute(this: IExecuteFunctions): Promise<INodeExecutionDa
 	const creationDate = this.getNodeParameter('creationDate', 0) as string;
 
 	const data = (await client.httpGet(`/domain/zone/${zoneName}/history/${creationDate}`)) as IDataObject;
-	return [{ json: data }];
+	return this.helpers.returnJsonArray(data);
 }

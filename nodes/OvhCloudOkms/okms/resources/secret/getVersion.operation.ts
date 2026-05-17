@@ -54,5 +54,5 @@ export async function execute(this: IExecuteFunctions): Promise<INodeExecutionDa
 	const path = this.getNodeParameter('path', 0) as string;
 	const version = this.getNodeParameter('version', 0) as string;
 	const data = (await client.httpGet(`/v2/okms/resource/${okmsId}/secret/${path}/version/${version}`)) as IDataObject;
-	return [{ json: data }];
+	return this.helpers.returnJsonArray(data);
 }

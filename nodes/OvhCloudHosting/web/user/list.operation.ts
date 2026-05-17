@@ -71,5 +71,5 @@ export async function execute(this: IExecuteFunctions): Promise<INodeExecutionDa
 	const password = this.getNodeParameter('password', 0) as string;
 	const sshState = this.getNodeParameter('sshState', 0) as string;
 	const data = (await client.httpPost(`/hosting/web/${serviceName}/user`, { body: { home: home, login: login, password: password, sshState: sshState } })) as IDataObject;
-	return [{ json: data }];
+	return this.helpers.returnJsonArray(data);
 }

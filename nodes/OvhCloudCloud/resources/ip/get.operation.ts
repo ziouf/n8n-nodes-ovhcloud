@@ -61,5 +61,5 @@ export async function execute(this: IExecuteFunctions): Promise<INodeExecutionDa
 	const serviceName = this.getNodeParameter('serviceName', 0, { extractValue: true }) as string;
 	const ipId = this.getNodeParameter('ipId', 0) as string;
 	const data = (await client.httpGet(`/cloud/project/${serviceName}/ip/${ipId}`)) as IDataObject;
-	return [{ json: data }];
+	return this.helpers.returnJsonArray(data);
 }

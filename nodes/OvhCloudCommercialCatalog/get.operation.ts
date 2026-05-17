@@ -47,5 +47,5 @@ export async function execute(this: IExecuteFunctions): Promise<INodeExecutionDa
 	const client = new ApiClient(this);
 	const offerId = this.getNodeParameter('offerId', 0) as string;
 	const data = (await client.httpGet(`/v2/commercialCatalog/${offerId}`)) as IDataObject;
-	return [{ json: data }];
+	return this.helpers.returnJsonArray(data);
 }

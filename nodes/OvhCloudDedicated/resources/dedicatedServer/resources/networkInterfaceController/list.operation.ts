@@ -57,5 +57,5 @@ export async function execute(this: IExecuteFunctions): Promise<INodeExecutionDa
 	if (linkType) qs.linkType = linkType;
 
 	const data = (await client.httpGet(`/dedicated/server/${serviceName}/networkInterfaceController`, qs)) as IDataObject[];
-	return data.map((item) => ({ json: item }));
+	return this.helpers.returnJsonArray(data);
 }

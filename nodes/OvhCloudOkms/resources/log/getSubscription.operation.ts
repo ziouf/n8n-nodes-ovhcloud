@@ -44,5 +44,5 @@ export async function execute(this: IExecuteFunctions): Promise<INodeExecutionDa
 	const okmsId = this.getNodeParameter('okmsId', 0) as string;
 	const subscriptionId = this.getNodeParameter('subscriptionId', 0) as string;
 	const data = (await client.httpGet(`/v2/okms/resource/${okmsId}/log/subscription/${subscriptionId}`)) as IDataObject;
-	return [{ json: data }];
+	return this.helpers.returnJsonArray(data);
 }

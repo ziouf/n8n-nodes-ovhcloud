@@ -34,5 +34,5 @@ export async function execute(this: IExecuteFunctions): Promise<INodeExecutionDa
 	const client = new ApiClient(this);
 	const contactMeanId = this.getNodeParameter('contactMeanId', 0) as string;
 	const data = (await client.httpGet(`/v2/notification/contactMean/${contactMeanId}`)) as IDataObject;
-	return [{ json: data }];
+	return this.helpers.returnJsonArray(data);
 }

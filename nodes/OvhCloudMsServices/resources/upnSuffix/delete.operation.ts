@@ -34,5 +34,5 @@ export async function execute(this: IExecuteFunctions): Promise<INodeExecutionDa
 	const serviceName = this.getNodeParameter('serviceName', 0) as string;
 	const suffix = this.getNodeParameter('suffix', 0) as string;
 	await client.httpDelete(`/msServices/${serviceName}/upnSuffix/${suffix}`);
-	return [{ json: { success: true, serviceName, suffix } }];
+	return this.helpers.returnJsonArray({ success: true, serviceName, suffix });
 }

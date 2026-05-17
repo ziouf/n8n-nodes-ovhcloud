@@ -34,5 +34,5 @@ export async function execute(this: IExecuteFunctions): Promise<INodeExecutionDa
 	const client = new ApiClient(this);
 	const certificateId = this.getNodeParameter('certificateId', 0) as string;
 	const data = (await client.httpGet(`/v2/webhosting/certificate/${certificateId}`)) as IDataObject;
-	return [{ json: data }];
+	return this.helpers.returnJsonArray(data);
 }

@@ -74,5 +74,5 @@ export async function execute(this: IExecuteFunctions): Promise<INodeExecutionDa
 		`/cloud/project/${serviceName}/user/${userId}/s3Credentials`,
 		{ region },
 	)) as IDataObject;
-	return [{ json: data }];
+	return this.helpers.returnJsonArray(data);
 }

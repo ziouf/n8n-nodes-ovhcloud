@@ -107,5 +107,5 @@ export async function executeDedicatedNashaPartitionCustomSnapshotCreate(
 		body,
 	)) as IDataObject;
 
-	return [{ json: response }];
+	return this.helpers.returnJsonArray(response);
 }

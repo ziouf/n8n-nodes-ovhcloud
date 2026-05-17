@@ -47,5 +47,5 @@ export async function execute(this: IExecuteFunctions): Promise<INodeExecutionDa
 	const creationDate = this.getNodeParameter('creationDate', 0) as string;
 
 	const data = (await client.httpPost(`/domain/zone/${zoneName}/history/${creationDate}/restore`)) as IDataObject;
-	return [{ json: data }];
+	return this.helpers.returnJsonArray(data);
 }

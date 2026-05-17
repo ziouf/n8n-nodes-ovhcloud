@@ -76,5 +76,5 @@ export async function execute(this: IExecuteFunctions): Promise<INodeExecutionDa
 
 	const body: IDataObject = { ipAddress, type, virtualMachineName };
 	const response = (await client.httpPost(`/dedicated/server/${serviceName}/virtualMac`, body)) as IDataObject;
-	return [{ json: response }];
+	return this.helpers.returnJsonArray(response);
 }

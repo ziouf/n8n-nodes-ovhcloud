@@ -34,5 +34,5 @@ export async function execute(this: IExecuteFunctions): Promise<INodeExecutionDa
 	const client = new ApiClient(this);
 	const resourceId = this.getNodeParameter('resourceId', 0) as string;
 	const data = (await client.httpGet(`/v2/vrackServices/resource/${resourceId}`)) as IDataObject;
-	return [{ json: data }];
+	return this.helpers.returnJsonArray(data);
 }

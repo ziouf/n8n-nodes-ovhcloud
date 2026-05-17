@@ -106,5 +106,5 @@ export async function executeBackupFtpUpdateAccess(
 		{ cifs, nfs, ftp },
 	)) as IDataObject;
 
-	return [{ json: response }];
+	return this.helpers.returnJsonArray(response);
 }

@@ -93,5 +93,5 @@ export async function executeDedicatedNashaPartitionAccessDelete(
 		`/dedicated/nasha/${serviceName}/partition/${partitionName}/access/${ip}`,
 	)) as IDataObject;
 
-	return [{ json: response }];
+	return this.helpers.returnJsonArray(response);
 }

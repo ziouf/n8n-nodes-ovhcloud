@@ -53,5 +53,5 @@ export async function execute(this: IExecuteFunctions): Promise<INodeExecutionDa
 		`/hosting/privateDatabase/${serviceName}/log/subscription`,
 		{ body: { subscriptionName, streamName } },
 	)) as IDataObject;
-	return [{ json: data }];
+	return this.helpers.returnJsonArray(data);
 }
