@@ -5,12 +5,11 @@ module.exports = {
 	testMatch: ['**/*.test.ts'],
 	moduleFileExtensions: ['ts', 'js', 'json'],
 	collectCoverageFrom: [
-		'nodes/OvhCloud/actions/vps/**/*.ts',
-		'nodes/OvhCloud/transport/*.ts',
-		'nodes/OvhCloud/OvhCloud.node.ts',
-		'nodes/OvhCloud/actions/domain/*.operation.ts',
-		'nodes/OvhCloud/actions/me/*.operation.ts',
-		'!**/index.ts',
+		'shared/**/*.ts',
+		'credentials/**/*.ts',
+		'nodes/**/*.operation.ts',
+		'nodes/**/index.ts',
+		'!**/node_modules/**',
 		'!**/*.d.ts',
 	],
 	globals: {
