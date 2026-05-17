@@ -3,7 +3,7 @@
 	"version": "1.0.3",
 	"description": "n8n nodes for OVH Cloud services",
 	"license": "MIT",
-	"homepage": "",
+	"homepage": "https://github.com/ziouf/n8n-nodes-ovhcloud",
 	"keywords": [
 		"n8n-community-node-package",
 		"n8n",
