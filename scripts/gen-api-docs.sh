@@ -2,12 +2,12 @@
 set -euo pipefail
 
 if ! command -v opencode >/dev/null 2>&1; then
-    echo "Erreur: la commande 'opencode' est introuvable dans le PATH." >&2
+    echo "Error: 'opencode' command not found in PATH." >&2
     exit 1
 fi
 
 if [ ! -d "api_docs" ]; then
-    echo "Erreur: le dossier 'api_docs' est introuvable." >&2
+    echo "Error: 'api_docs' directory not found." >&2
     exit 1
 fi
 
@@ -25,14 +25,14 @@ for json_file in api_docs/*/*.json; do
         continue
     fi
 
-    echo "Run for file : ${json_file}"
+    echo "Processing file: ${json_file}"
 
     prompt=(
-        "Rédige la documentation technique au format Markdown à partir du fichier JSON donné en entrée."
-        "Le fichier de sortie est 'docs/${version}/${basename}.md'."
-        "Tu ne lis aucun autre fichier que le JSON spécifié en entrée."
-        "INTERDICTION d'écrire du code."
-        "Ne fais pas de rapport, écris directement dans le fichier de sortie."
+        "Write technical documentation in Markdown format from the given JSON input file."
+        "The output file is 'docs/${version}/${basename}.md'."
+        "Do not read any other files than the specified JSON input file."
+        "DO NOT write code."
+        "Do not produce a report, write directly to the output file."
     )
 
     opencode run --pure --agent "${AGENT:-technical-writer}" --model "${MODEL:-lemonade/user.OmniCoder-9B-GGUF}" \
