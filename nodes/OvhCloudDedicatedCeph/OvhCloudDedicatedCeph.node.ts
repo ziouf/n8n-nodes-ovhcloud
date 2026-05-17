@@ -4,8 +4,9 @@ import {
 	type INodeExecutionData,
 	type INodeType,
 	type INodeTypeDescription,
+	type JsonObject,
+	NodeApiError,
 } from 'n8n-workflow';
-import { NodeOperationError } from 'n8n-workflow';
 import { OvhCloudApiSecretName, OvhCloudIcon } from '../../shared/constants';
 import { description, execute } from './index';
 import { getDedicatedCephServices } from '../../shared/methods/getDedicatedCephServices.method';
@@ -58,7 +59,7 @@ export class OvhCloudDedicatedCeph implements INodeType {
 					});
 					continue;
 				}
-				throw new NodeOperationError(this.getNode(), error as Error, { itemIndex: i });
+				throw new NodeApiError(this.getNode(), error as unknown as JsonObject, { itemIndex: i });
 			}
 		}
 
