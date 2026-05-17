@@ -19,6 +19,7 @@
 		"declaration": true,
 		"sourceMap": true,
 		"skipLibCheck": true,
+		"isolatedModules": true,
 		"outDir": "./dist/"
 	},
 	"include": ["credentials/**/*", "nodes/**/*", "nodes/**/*.json", "package.json", "shared/**/*"]
