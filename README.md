@@ -85,14 +85,14 @@ cd n8n-nodes-ovhcloud
 npm install
 npm run build
 npm run dev          # Development mode with hot reload
-npm test             # Run 177 unit tests
+npm test             # Run 213 unit tests
 npm run lint         # Check code quality
 npm run lint:fix     # Auto-fix linting issues
 ```
 
 ### Testing
 
-The project includes **177 unit tests** across 7 test suites with 100% coverage on critical files (ApiClient, CredentialHolder, node routing):
+The project includes **213 unit tests** across 9 test suites with coverage on critical files (ApiClient, CredentialHolder, node routing):
 
 ```bash
 npm test
@@ -144,7 +144,7 @@ n8n-nodes-ovhcloud/
 │   ├── generate-node.sh                 # Scaffold a new node
 │   ├── gen-api-docs.sh                  # Generate API documentation
 │   └── get-api-description.sh           # Fetch OVH API specs
-├── tests/                               # 177 unit tests across 7 suites
+├── tests/                               # 213 unit tests across 9 suites
 ├── docs/
 │   ├── README.md                        # Documentation index
 │   ├── guides/                          # User-facing guides
