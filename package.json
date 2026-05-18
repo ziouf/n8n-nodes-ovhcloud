@@ -33,7 +33,7 @@
 		"url": "https://github.com/ziouf/n8n-nodes-ovhcloud.git"
 	},
 	"scripts": {
-		"build": "n8n-node build",
+		"build": "n8n-node build && node scripts/generate-nodes-manifest.js",
 		"build:watch": "tsc --watch",
 		"dev": "n8n-node dev",
 		"lint": "n8n-node lint",
@@ -41,7 +41,8 @@
 		"release": "n8n-node release",
 		"prepublishOnly": "n8n-node prerelease",
 		"test": "jest",
-		"test:coverage": "jest --coverage"
+		"test:coverage": "jest --coverage",
+		"generate:nodes-manifest": "node scripts/generate-nodes-manifest.js"
 	},
 	"files": [
 		"dist"
