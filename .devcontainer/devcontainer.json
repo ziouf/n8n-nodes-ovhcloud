@@ -10,6 +10,11 @@
 				"ripgrep"
 			]
 		},
+		"ghcr.io/devcontainers/features/python": {
+			"version": "latest",
+			"installTools": true,
+			"toolsToInstall": [ "uv" ]
+		},
 		"ghcr.io/devcontainers/features/github-cli:1": {},
 		"ghcr.io/devcontainers-extra/features/npm-packages:1": {
 			"packages": [
