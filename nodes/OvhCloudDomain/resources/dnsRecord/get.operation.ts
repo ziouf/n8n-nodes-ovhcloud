@@ -6,6 +6,7 @@ import type {
 	INodeProperties,
 } from 'n8n-workflow';
 import { ApiClient } from '../../../../shared/transport/ApiClient';
+import { createError } from '../../../../shared/nodes/createError';
 
 export function description(displayOptions: IDisplayOptions): INodeProperties[] {
 	return [
@@ -31,9 +32,15 @@ export function description(displayOptions: IDisplayOptions): INodeProperties[] 
 }
 
 export async function execute(this: IExecuteFunctions): Promise<INodeExecutionData[]> {
-	const client = new ApiClient(this);
-	const zoneName = this.getNodeParameter('zoneName', 0) as string;
-	const recordId = this.getNodeParameter('recordId', 0) as string;
-	const data = (await client.httpGet(`/domain/zone/${zoneName}/record/${recordId}`)) as IDataObject;
-	return this.helpers.returnJsonArray(data);
+	try {
+		const client = new ApiClient(this);
+		const zoneName = this.getNodeParameter('zoneName', 0) as string;
+		const recordId = this.getNodeParameter('recordId', 0) as string;
+		const data = (await client.httpGet(
+			`/domain/zone/${zoneName}/record/${recordId}`,
+		)) as IDataObject;
+		return this.helpers.returnJsonArray(data);
+	} catch (error) {
+		throw createError(this, error, 'domain/dnsRecord', 'get');
+	}
 }

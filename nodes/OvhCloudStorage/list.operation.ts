@@ -6,6 +6,7 @@ import {
 	IDisplayOptions,
 } from 'n8n-workflow';
 import { ApiClient } from '../../shared/transport/ApiClient';
+import { createError } from '../../shared/nodes/createError';
 
 /**
  * @brief List Storage Services operation for Storage resource
@@ -35,7 +36,11 @@ export function description(displayOptions: IDisplayOptions): INodeProperties[] 
  * @returns Array of execution results containing storage service names
  */
 export async function execute(this: IExecuteFunctions): Promise<INodeExecutionData[]> {
-	const client = new ApiClient(this);
-	const data = (await client.httpGet('/storage')) as IDataObject[];
-	return this.helpers.returnJsonArray(data);
+	try {
+		const client = new ApiClient(this);
+		const data = (await client.httpGet('/storage')) as IDataObject[];
+		return this.helpers.returnJsonArray(data);
+	} catch (error) {
+		throw createError(this, error, 'storage', 'list');
+	}
 }

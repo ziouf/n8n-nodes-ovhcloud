@@ -6,6 +6,7 @@ import {
 	IDisplayOptions,
 } from 'n8n-workflow';
 import { ApiClient } from '../../shared/transport/ApiClient';
+import { createError } from '../../shared/nodes/createError';
 
 /**
  * @brief Get AllDom Service operation for AllDom resource
@@ -61,10 +62,14 @@ export function description(displayOptions: IDisplayOptions): INodeProperties[] 
  * @returns Array of execution results containing service details
  */
 export async function execute(this: IExecuteFunctions): Promise<INodeExecutionData[]> {
-	const client = new ApiClient(this);
-	const { value: serviceName } = this.getNodeParameter('serviceName', 0, {
-		extractValue: true,
-	}) as { value: string };
-	const data = (await client.httpGet(`/allDom/${serviceName}`)) as IDataObject;
-	return this.helpers.returnJsonArray(data);
+	try {
+		const client = new ApiClient(this);
+		const { value: serviceName } = this.getNodeParameter('serviceName', 0, {
+			extractValue: true,
+		}) as { value: string };
+		const data = (await client.httpGet(`/allDom/${serviceName}`)) as IDataObject;
+		return this.helpers.returnJsonArray(data);
+	} catch (error) {
+		throw createError(this, error, 'allDom', 'get');
+	}
 }
