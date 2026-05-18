@@ -139,17 +139,59 @@ Each resource file exports: `description`, `execute`, `methodsListSearch`
 ## Git Workflow
 
 - Feature branches: `git checkout -b feature/feature-name`
-- Commits: Conventional Commits format (`feat:`, `fix:`, `chore:`, etc.)
+- Commits: Conventional Commits format (`feat:`, `fix:`, `chore:`, `docs:`, `refactor:`, `test:`, `ci:`, `build:`, `perf:`, `revert:`)
 - No direct push to main; use pull requests
 - No rebasing with `-i` flag (interactive rebase not supported)
 - Avoid force push to main/master
 - Only amend commits if: (1) explicitly requested, (2) commit created by you, (3) not pushed
 
+### Atomic Commits
+
+- Each commit doit contenir **une seule modification logique** (un seul fichier ou un seul groupe de fichiers étroitement liés)
+- Ne jamais mélanger refactorisation, nouvelle fonctionnalité et correction de bug dans un seul commit
+- Ne jamais commit de code qui ne compile pas ou qui fait échouer les tests
+
+### Vérification des régressions (avant chaque commit)
+
+Avant de valider toute modification, exécuter **toujours** cette séquence :
+
+```bash
+npm run lint          # Vérifier que le linter passe
+npm run build         # Vérifier que la compilation TypeScript réussit
+npm test              # Vérifier que tous les tests passent
+```
+
+Si l'un de ces commands échoue, corriger le problème avant de committer. Ne jamais committer un état qui ne passe pas ces trois étapes.
+
+### Conventional Commits
+
+Les types autorisés :
+
+- `feat:` — nouvelle fonctionnalité
+- `fix:` — correction de bug
+- `docs:` — modification de la documentation uniquement
+- `style:` — modification de formatage (pas de code logic)
+- `refactor:` — refactoring de code (pas de nouvelle fonctionnalité ni bug fix)
+- `test:` — ajout ou modification de tests
+- `ci:` — modification des fichiers/ workflows CI/CD
+- `build:` — modification de la configuration de build ou des dépendances
+- `perf:` — amélioration de performance
+- `chore:` — autres modifications mineures (outillage, config, etc.)
+- `revert:` — annulation d'un commit précédent
+
+Format : `<type>(<scope>): <description>`
+
+Exemples :
+
+- `feat(vps): add disk snapshot operation`
+- `fix(api-client): handle 429 rate limiting`
+- `chore: remove unused luxon dependency`
+- `refactor(credential): extract SHA1 signing to CredentialHolder`
+
 ## Dependencies
 
 - **Peer**: `n8n-workflow`
 - **Dev**: `@n8n/node-cli`, `eslint` (9.32.0), `prettier` (3.6.2), `typescript` (5.9.2), `release-it`
-- **Runtime**: `luxon` (for date handling)
 
 ## n8n Node Specifics
 
