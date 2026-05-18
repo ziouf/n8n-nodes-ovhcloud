@@ -23,7 +23,9 @@ export interface PaginationOptions {
 	offset?: number;
 	/** Number of items per page (default: 100) */
 	limit?: number;
-	/** Maximum total items to fetch (default: 10000) */
+	/** Maximum total items to fetch (default: 1000).
+	 * Set higher for endpoints with many items, but be mindful of memory and API rate limits.
+	 */
 	maxItems?: number;
 	/** API endpoint to paginate (default: same as request endpoint) */
 	endpoint?: string;
@@ -227,7 +229,59 @@ export class ApiClient {
 	}
 
 	/**
+	 * Checks if an error is an HTTP 429 Rate Limit error.
+	 *
+	 * @param error - The error to check
+	 * @returns true if the error is a 429 rate limit error
+	 */
+	private isRateLimitError(error: unknown): boolean {
+		if (error && typeof error === 'object' && 'code' in error) {
+			return (error as { code?: number }).code === 429;
+		}
+		return false;
+	}
+
+	/**
+	 * Extracts the delay from a 429 rate limit error.
+	 *
+	 * Checks for Retry-After header in the error response.
+	 * Falls back to exponential backoff if not present.
+	 *
+	 * @param error - The 429 rate limit error
+	 * @param fallbackDelay - Default delay in ms if no Retry-After header
+	 * @returns Delay in milliseconds
+	 */
+	private getRateLimitDelay(error: unknown, fallbackDelay: number): number {
+		if (error && typeof error === 'object' && 'response' in error) {
+			const response = (error as { response?: { headers?: Record<string, string> } }).response;
+			if (response?.headers) {
+				const retryAfter = response.headers['retry-after'];
+				if (retryAfter) {
+					const seconds = parseInt(retryAfter, 10);
+					if (!isNaN(seconds) && seconds > 0) {
+						return Math.min(seconds * 1000, this.defaultRetryOptions.maxDelayMs);
+					}
+				}
+				const ovhReset = response.headers['x-ratelimit-reset'];
+				if (ovhReset) {
+					const resetTime = parseInt(ovhReset, 10);
+					if (!isNaN(resetTime) && resetTime > 0) {
+						const waitMs = resetTime * 1000 - Date.now();
+						if (waitMs > 0) {
+							return Math.min(waitMs, this.defaultRetryOptions.maxDelayMs);
+						}
+					}
+				}
+			}
+		}
+		return fallbackDelay;
+	}
+
+	/**
 	 * Executes an HTTP request with automatic retry on failure.
+	 *
+	 * Handles HTTP 429 Rate Limit errors specifically by respecting
+	 * Retry-After and X-Ratelimit-Reset headers.
 	 *
 	 * @param requestFn - Async function that performs the HTTP request
 	 * @param retryOptions - Retry configuration (overrides default)
@@ -252,8 +306,13 @@ export class ApiClient {
 					break;
 				}
 
+				if (this.isRateLimitError(error)) {
+					delayMs = this.getRateLimitDelay(error, delayMs);
+				} else {
+					delayMs = Math.min(delayMs * (options.backoffMultiplier ?? 2), options.maxDelayMs);
+				}
+
 				await this.delay(delayMs);
-				delayMs = Math.min(delayMs * (options.backoffMultiplier ?? 2), options.maxDelayMs);
 			}
 		}
 
@@ -371,7 +430,7 @@ export class ApiClient {
 		endpoint: string,
 		options?: PaginationOptions,
 	): Promise<T[]> {
-		const { offset = 0, limit = 100, maxItems = 10000 } = options ?? {};
+		const { offset = 0, limit = 100, maxItems = 1000 } = options ?? {};
 
 		const allItems: T[] = [];
 		let currentOffset = offset;

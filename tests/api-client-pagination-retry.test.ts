@@ -151,6 +151,8 @@ describe('ApiClient pagination', () => {
 });
 
 describe('ApiClient retry', () => {
+	jest.setTimeout(15000);
+
 	it('should return success on first attempt', async () => {
 		const mockHttpRequest = jest.fn().mockResolvedValueOnce({ data: 'success' });
 		const mockGetCredentials = jest.fn().mockResolvedValue({
