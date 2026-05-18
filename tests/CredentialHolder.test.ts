@@ -74,7 +74,37 @@ describe('CredentialHolder', () => {
 				expect(result.headers!['X-Ovh-Application']).toBe('test-app-key');
 				expect(result.headers!['X-Ovh-Consumer']).toBe('test-consumer-key');
 				expect(result.headers!['X-Ovh-Timestamp']).toBe('1704067200');
+			});
+
+			it('should not set Content-Type for GET request without body', () => {
+				const holder = new CredentialHolder(validCredentials);
+				const result = holder.sign({
+					method: 'GET',
+					url: '/vps',
+				});
+
+				expect(result.headers!['Content-Type']).toBeUndefined();
+			});
+
+			it('should set Content-Type for POST request with body', () => {
+				const holder = new CredentialHolder(validCredentials);
+				const result = holder.sign({
+					method: 'POST',
+					url: '/vps',
+					body: { name: 'test-vps' },
+				});
+
 				expect(result.headers!['Content-Type']).toBe('application/json');
+			});
+
+			it('should not set Content-Type for POST request without body', () => {
+				const holder = new CredentialHolder(validCredentials);
+				const result = holder.sign({
+					method: 'POST',
+					url: '/vps',
+				});
+
+				expect(result.headers!['Content-Type']).toBeUndefined();
 			});
 
 			it('should generate correct SHA1 signature for GET request', () => {

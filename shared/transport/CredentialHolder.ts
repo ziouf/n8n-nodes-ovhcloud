@@ -110,7 +110,9 @@ export class CredentialHolder implements OvhCredentialsType {
 		const ts = Math.floor(Date.now() / 1000);
 		const signatureFields = [appSecret, consumerKey, method, url, body, ts];
 
-		headers['Content-Type'] = 'application/json';
+		if (requestOptions.body !== undefined && requestOptions.body !== null) {
+			headers['Content-Type'] = 'application/json';
+		}
 		headers['X-Ovh-Application'] = appKey;
 		headers['X-Ovh-Consumer'] = consumerKey;
 		headers['X-Ovh-Timestamp'] = ts.toString();
