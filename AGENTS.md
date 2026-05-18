@@ -147,41 +147,41 @@ Each resource file exports: `description`, `execute`, `methodsListSearch`
 
 ### Atomic Commits
 
-- Each commit doit contenir **une seule modification logique** (un seul fichier ou un seul groupe de fichiers étroitement liés)
-- Ne jamais mélanger refactorisation, nouvelle fonctionnalité et correction de bug dans un seul commit
-- Ne jamais commit de code qui ne compile pas ou qui fait échouer les tests
+- Each commit must contain **only a single logical change** (one file or a tightly coupled group of files)
+- Never mix refactoring, new features, and bug fixes in a single commit
+- Never commit code that fails to compile or causes tests to fail
 
-### Vérification des régressions (avant chaque commit)
+### Regression Checks (before every commit)
 
-Avant de valider toute modification, exécuter **toujours** cette séquence :
+Before committing any change, **always** run this sequence:
 
 ```bash
-npm run lint          # Vérifier que le linter passe
-npm run build         # Vérifier que la compilation TypeScript réussit
-npm test              # Vérifier que tous les tests passent
+npm run lint          # Verify linter passes
+npm run build         # Verify TypeScript compilation succeeds
+npm test              # Verify all tests pass
 ```
 
-Si l'un de ces commands échoue, corriger le problème avant de committer. Ne jamais committer un état qui ne passe pas ces trois étapes.
+If any of these commands fail, fix the issue before committing. Never commit a state that fails these three steps.
 
 ### Conventional Commits
 
-Les types autorisés :
+Allowed commit types:
 
-- `feat:` — nouvelle fonctionnalité
-- `fix:` — correction de bug
-- `docs:` — modification de la documentation uniquement
-- `style:` — modification de formatage (pas de code logic)
-- `refactor:` — refactoring de code (pas de nouvelle fonctionnalité ni bug fix)
-- `test:` — ajout ou modification de tests
-- `ci:` — modification des fichiers/ workflows CI/CD
-- `build:` — modification de la configuration de build ou des dépendances
-- `perf:` — amélioration de performance
-- `chore:` — autres modifications mineures (outillage, config, etc.)
-- `revert:` — annulation d'un commit précédent
+- `feat:` — a new feature
+- `fix:` — a bug fix
+- `docs:` — documentation-only changes
+- `style:` — formatting changes (no logical code changes)
+- `refactor:` — code refactoring (no new feature or bug fix)
+- `test:` — adding or modifying tests
+- `ci:` — CI/CD configuration changes
+- `build:` — build system or dependency changes
+- `perf:` — performance improvements
+- `chore:` — other minor changes (tooling, config, etc.)
+- `revert:` — reverting a previous commit
 
-Format : `<type>(<scope>): <description>`
+Format: `<type>(<scope>): <description>`
 
-Exemples :
+Examples:
 
 - `feat(vps): add disk snapshot operation`
 - `fix(api-client): handle 429 rate limiting`
