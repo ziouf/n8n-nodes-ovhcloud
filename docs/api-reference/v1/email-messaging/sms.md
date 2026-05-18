@@ -20,7 +20,7 @@ Before using or developing the SMS Node:
 - **OVHcloud Account**: Valid OVHcloud account with SMS services enabled.
 - **API Credentials**: OVHcloud API application key, secret key, and consumer key.
 - **Node Installation**: The node must be installed in the n8n custom nodes directory.
-- **Node Dependencies**: Ensure all required dependencies are installed (`n8n-workflow`, `luxon`, etc.).
+- **Node Dependencies**: The node has no external runtime dependencies beyond `n8n-workflow`.
 
 ---
 
@@ -838,5 +838,4 @@ The SMS Node is manually tested via the n8n UI. To test the node:
 
 - Ensure all required IAM actions are enabled in your OVHcloud API credential.
 - The node follows the OVHcloud API signature algorithm (SHA1).
-- Use `luxon` for date handling in workflows.
 - The node structure and naming conventions follow the project's guidelines.
