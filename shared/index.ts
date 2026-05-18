@@ -13,3 +13,5 @@ export {
 	getDedicatedNashaServices,
 	getDedicatedServerServices,
 } from './methods';
+export { BaseNode } from './nodes/BaseNode';
+export { createError } from './nodes/createError';
