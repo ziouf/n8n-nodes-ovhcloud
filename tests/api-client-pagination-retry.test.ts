@@ -5,7 +5,7 @@
 import type { IExecuteFunctions } from 'n8n-workflow';
 import { ApiClient } from '../shared/transport/ApiClientImpl';
 
-function createMockClient(response: any) {
+function createMockClient(response: unknown) {
 	const mockHttpRequest = jest.fn().mockResolvedValue(response);
 	const mockGetCredentials = jest.fn().mockResolvedValue({
 		endpoint: 'eu.api.ovh.com/1.0',
@@ -27,7 +27,7 @@ describe('ApiClient pagination', () => {
 		const { client, mockHttpRequest } = createMockClient(['vps-1', 'vps-2', 'vps-3']);
 		const result = await client.paginate('/vps', { limit: 10 });
 		expect(result).toEqual(['vps-1', 'vps-2', 'vps-3']);
-		const call = mockHttpRequest.mock.calls[0][0] as any;
+		const call = mockHttpRequest.mock.calls[0][0] as Record<string, unknown>;
 		expect(call.qs).toEqual({ offset: 0, limit: 10 });
 	});
 
@@ -133,7 +133,7 @@ describe('ApiClient pagination', () => {
 		const client = new ApiClient(mockCtx);
 		const result = await client.paginateResources('/vps', '/vps/{id}');
 		expect(result).toHaveLength(2);
-		expect(result.map((r: any) => r.serviceId)).toEqual(['vps-1', 'vps-3']);
+		expect(result.map((r: Record<string, unknown>) => r.serviceId)).toEqual(['vps-1', 'vps-3']);
 	});
 
 	it('should return count of items', async () => {
@@ -144,7 +144,7 @@ describe('ApiClient pagination', () => {
 	});
 
 	it('should return 0 when no items exist', async () => {
-		const { client, mockHttpRequest } = createMockClient([]);
+		const { client } = createMockClient([]);
 		const count = await client.getCount('/vps');
 		expect(count).toBe(0);
 	});

@@ -36,7 +36,7 @@ describe('VPS node description', () => {
 		const desc = descriptionVps({});
 		const resourceProp = desc.find((p) => p.name === 'vpsResource');
 		expect(resourceProp?.options).toBeDefined();
-		expect((resourceProp?.options as any[]).length).toBeGreaterThan(10);
+		expect((resourceProp?.options as INodeProperties[]).length).toBeGreaterThan(10);
 	});
 
 	it('should have displayOptions on operation properties', () => {
@@ -71,7 +71,7 @@ describe('Me node description', () => {
 		const desc = descriptionMe({});
 		const resourceProp = desc.find((p) => p.name === 'meResource');
 		expect(resourceProp?.options).toBeDefined();
-		expect((resourceProp?.options as any[]).length).toBeGreaterThan(5);
+		expect((resourceProp?.options as INodeProperties[]).length).toBeGreaterThan(5);
 	});
 });
 
@@ -93,7 +93,7 @@ describe('Domain node description', () => {
 		const desc = descriptionDomain({});
 		const operationProp = desc.find((p) => p.name === 'domainOperation');
 		expect(operationProp?.options).toBeDefined();
-		expect((operationProp?.options as any[]).length).toBeGreaterThanOrEqual(2);
+		expect((operationProp?.options as INodeProperties[]).length).toBeGreaterThanOrEqual(2);
 	});
 });
 
@@ -115,7 +115,7 @@ describe('Dbaas node description', () => {
 		const desc = descriptionDbaas({});
 		const operationProp = desc.find((p) => p.name === 'dbaasOperation');
 		expect(operationProp?.options).toBeDefined();
-		expect((operationProp?.options as any[]).length).toBeGreaterThanOrEqual(2);
+		expect((operationProp?.options as INodeProperties[]).length).toBeGreaterThanOrEqual(2);
 	});
 });
 

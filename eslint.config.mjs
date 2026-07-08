@@ -1,8 +1,11 @@
-import { config } from '@n8n/node-cli/eslint';
+import { configWithoutCloudSupport } from '@n8n/node-cli/eslint';
 
 export default [
-	...config,
+	...configWithoutCloudSupport,
 	{
-		ignores: ['coverage/**', 'scripts/**'],
+		files: ['tests/**/*.ts'],
+		rules: {
+			'import-x/no-unresolved': 'off',
+		},
 	},
 ];
