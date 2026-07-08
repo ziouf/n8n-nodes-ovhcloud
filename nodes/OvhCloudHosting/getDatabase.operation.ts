@@ -32,15 +32,26 @@ export function description(displayOptions: IDisplayOptions): INodeProperties[] 
 			],
 			displayOptions,
 		},
+		{
+			displayName: 'Database Name',
+			name: 'databaseName',
+			type: 'string',
+			default: '',
+			required: true,
+			description: 'The name of the database',
+			displayOptions,
+		},
 	];
 }
 
 export async function execute(this: IExecuteFunctions, itemIndex: number): Promise<INodeExecutionData[]> {
-	const inputData = this.getInputData()[itemIndex];
-    const client = new ApiClient(this);
+	const client = new ApiClient(this);
 	const serviceName = this.getNodeParameter('serviceName', itemIndex, '', {
 		extractValue: true,
 	}) as string;
-	const outputData = (await client.httpGet(`/hosting/web/${serviceName}`)) as IDataObject;
-	return this.helpers.returnJsonArray([{ ...inputData, ...outputData }]);
+	const databaseName = this.getNodeParameter('databaseName', itemIndex) as string;
+	const data = (await client.httpGet(
+		`/hosting/web/${serviceName}/database/${databaseName}`,
+	)) as IDataObject;
+	return this.helpers.returnJsonArray([data]);
 }

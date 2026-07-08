@@ -1,26 +1,26 @@
-import {
+import type {
 	IExecuteFunctions,
-	NodeConnectionTypes,
-	type INodeExecutionData,
-	type INodeType,
-	type INodeTypeDescription,
+	INodeExecutionData,
+	INodeType,
+	INodeTypeDescription,
 } from 'n8n-workflow';
+import { NodeConnectionTypes } from 'n8n-workflow';
 import { OvhCloudApiSecretName, OvhCloudIcon } from '../../shared/constants';
 import { description, execute } from './index';
-import { getServiceIds } from '../../shared/methods/getServiceIds.method';
-import { BaseNode } from '../../shared/nodes/BaseNode';
+import { getHostingWebServices } from '../../shared/methods/getHostingWebServices.method';
+import { BaseNode, executeTemplate } from '../../shared/nodes/BaseNode';
 
 export class OvhCloudHosting extends BaseNode implements INodeType {
 	description: INodeTypeDescription = {
-		displayName: 'OVH Cloud Hosting',
+		displayName: 'OVH Cloud Hosting Web',
 		name: 'ovhCloudHosting',
 		icon: OvhCloudIcon,
 		group: ['input'],
 		version: 1,
 		subtitle: '={{$parameter["hostingOperation"]}}',
-		description: 'Manage OVH Hosting services',
+		description: 'Manage OVH Cloud Web Hosting services via /hosting/web API',
 		defaults: {
-			name: 'OVH Cloud Hosting',
+			name: 'OVH Cloud Hosting Web',
 		},
 		usableAsTool: true,
 		inputs: [NodeConnectionTypes.Main],
@@ -31,17 +31,16 @@ export class OvhCloudHosting extends BaseNode implements INodeType {
 				required: true,
 			},
 		],
-		properties: [
-			...description({}),
-		],
-	}
+		properties: [...description({})],
+	};
+
 	methods = {
 		listSearch: {
-			getServiceIds,
+			getHostingWebServices,
 		},
-	}
+	};
 
-	async executeOperations(this: IExecuteFunctions): Promise<INodeExecutionData[]> {
-		return execute.call(this);
+	async execute(this: IExecuteFunctions): Promise<INodeExecutionData[][]> {
+		return executeTemplate.call(this, execute);
 	}
 }

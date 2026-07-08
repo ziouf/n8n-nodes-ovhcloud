@@ -1,7 +1,6 @@
 import type {
 	IExecuteFunctions,
 	INodeExecutionData,
-	IDataObject,
 	INodeProperties,
 	IDisplayOptions,
 } from 'n8n-workflow';
@@ -37,10 +36,11 @@ export function description(displayOptions: IDisplayOptions): INodeProperties[] 
 
 export async function execute(this: IExecuteFunctions, itemIndex: number): Promise<INodeExecutionData[]> {
 	const inputData = this.getInputData()[itemIndex];
-    const client = new ApiClient(this);
+	const client = new ApiClient(this);
 	const serviceName = this.getNodeParameter('serviceName', itemIndex, '', {
 		extractValue: true,
 	}) as string;
-	const outputData = (await client.httpGet(`/hosting/web/${serviceName}`)) as IDataObject;
-	return this.helpers.returnJsonArray([{ ...inputData, ...outputData }]);
+	const tasks = (await client.httpGet(`/hosting/web/${serviceName}/tasks`)) as number[];
+	const outputData = { ...inputData.json, tasks };
+	return this.helpers.returnJsonArray(outputData);
 }

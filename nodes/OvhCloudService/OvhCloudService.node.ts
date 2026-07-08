@@ -1,14 +1,13 @@
-import {
+import type {
 	IExecuteFunctions,
-	NodeConnectionTypes,
-	type INodeExecutionData,
-	type INodeType,
-	type INodeTypeDescription,
+	INodeExecutionData,
+	INodeType,
+	INodeTypeDescription,
 } from 'n8n-workflow';
+import { NodeConnectionTypes } from 'n8n-workflow';
 import { OvhCloudApiSecretName, OvhCloudIcon } from '../../shared/constants';
 import { description, execute } from './index';
-import { getServiceIds } from '../../shared/methods/getServiceIds.method';
-import { BaseNode } from '../../shared/nodes/BaseNode';
+import { BaseNode, executeTemplate } from '../../shared/nodes/BaseNode';
 
 export class OvhCloudService extends BaseNode implements INodeType {
 	description: INodeTypeDescription = {
@@ -18,7 +17,7 @@ export class OvhCloudService extends BaseNode implements INodeType {
 		group: ['input'],
 		version: 1,
 		subtitle: '={{$parameter["serviceOperation"]}}',
-		description: 'Manage OVH Service services',
+		description: 'Manage OVH Cloud services via /service API',
 		defaults: {
 			name: 'OVH Cloud Service',
 		},
@@ -31,17 +30,10 @@ export class OvhCloudService extends BaseNode implements INodeType {
 				required: true,
 			},
 		],
-		properties: [
-			...description({}),
-		],
-	}
-	methods = {
-		listSearch: {
-			getServiceIds,
-		},
-	}
+		properties: [...description({})],
+	};
 
-	async executeOperations(this: IExecuteFunctions): Promise<INodeExecutionData[]> {
-		return execute.call(this);
+	async execute(this: IExecuteFunctions): Promise<INodeExecutionData[][]> {
+		return executeTemplate.call(this, execute);
 	}
 }

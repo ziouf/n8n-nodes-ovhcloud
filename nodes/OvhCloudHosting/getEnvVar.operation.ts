@@ -32,15 +32,26 @@ export function description(displayOptions: IDisplayOptions): INodeProperties[] 
 			],
 			displayOptions,
 		},
+		{
+			displayName: 'Key',
+			name: 'envVarKey',
+			type: 'string',
+			default: '',
+			required: true,
+			description: 'The key of the environment variable',
+			displayOptions,
+		},
 	];
 }
 
 export async function execute(this: IExecuteFunctions, itemIndex: number): Promise<INodeExecutionData[]> {
-	const inputData = this.getInputData()[itemIndex];
-    const client = new ApiClient(this);
+	const client = new ApiClient(this);
 	const serviceName = this.getNodeParameter('serviceName', itemIndex, '', {
 		extractValue: true,
 	}) as string;
-	const outputData = (await client.httpGet(`/hosting/web/${serviceName}`)) as IDataObject;
-	return this.helpers.returnJsonArray([{ ...inputData, ...outputData }]);
+	const key = this.getNodeParameter('envVarKey', itemIndex) as string;
+	const data = (await client.httpGet(
+		`/hosting/web/${serviceName}/envVar/${key}`,
+	)) as IDataObject;
+	return this.helpers.returnJsonArray([data]);
 }

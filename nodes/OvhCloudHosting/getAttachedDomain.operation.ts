@@ -32,15 +32,27 @@ export function description(displayOptions: IDisplayOptions): INodeProperties[] 
 			],
 			displayOptions,
 		},
+		{
+			displayName: 'Domain',
+			name: 'domain',
+			type: 'string',
+			default: '',
+			required: true,
+			description: 'The attached domain name',
+			displayOptions,
+		},
 	];
 }
 
 export async function execute(this: IExecuteFunctions, itemIndex: number): Promise<INodeExecutionData[]> {
-	const inputData = this.getInputData()[itemIndex];
+    const inputData = this.getInputData()[itemIndex];
     const client = new ApiClient(this);
 	const serviceName = this.getNodeParameter('serviceName', itemIndex, '', {
 		extractValue: true,
 	}) as string;
-	const outputData = (await client.httpGet(`/hosting/web/${serviceName}`)) as IDataObject;
+	const domain = this.getNodeParameter('domain', itemIndex) as string;
+	const outputData = (await client.httpGet(
+		`/hosting/web/${serviceName}/attachedDomain/${domain}`,
+	)) as IDataObject;
 	return this.helpers.returnJsonArray([{ ...inputData, ...outputData }]);
 }

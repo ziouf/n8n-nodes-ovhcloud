@@ -1,7 +1,6 @@
 import type {
 	IExecuteFunctions,
 	INodeExecutionData,
-	IDataObject,
 	INodeProperties,
 	IDisplayOptions,
 } from 'n8n-workflow';
@@ -41,6 +40,7 @@ export async function execute(this: IExecuteFunctions, itemIndex: number): Promi
 	const serviceName = this.getNodeParameter('serviceName', itemIndex, '', {
 		extractValue: true,
 	}) as string;
-	const outputData = (await client.httpGet(`/hosting/web/${serviceName}`)) as IDataObject;
-	return this.helpers.returnJsonArray([{ ...inputData, ...outputData }]);
+	const domains = (await client.httpGet(`/hosting/web/${serviceName}/attachedDomain`)) as string[];
+    const outputData = { ...inputData.json, domains };
+	return this.helpers.returnJsonArray(outputData);
 }

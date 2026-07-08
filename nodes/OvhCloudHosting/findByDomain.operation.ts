@@ -6,12 +6,20 @@ import type {
 } from 'n8n-workflow';
 import { ApiClient } from '../../shared/transport/ApiClient';
 
-// eslint-disable-next-line @typescript-eslint/no-unused-vars
 export function description(displayOptions: IDisplayOptions): INodeProperties[] {
 	return [
 		{
-			displayName: "With Details",
-			name: "withDetails",
+			displayName: 'Domain',
+			name: 'domain',
+			type: 'string',
+			default: '',
+			required: true,
+			description: 'Domain used in web hosting attached domains',
+			displayOptions,
+		},
+		{
+			displayName: 'With Details',
+			name: 'withDetails',
 			type: 'boolean',
 			default: false,
 			description: 'Whether to return the service details or just the service IDs',
@@ -32,8 +40,9 @@ export async function execute(this: IExecuteFunctions, itemIndex: number): Promi
 	const withDetails = this.getNodeParameter('withDetails', itemIndex, false) as boolean;
 	const withAttachedDomains = this.getNodeParameter('withAttachedDomains', itemIndex, false) as boolean;
 	const client = new ApiClient(this);
-	const names = (await client.httpGet('/hosting/web')) as string[];
-    const outputData = names.map((serviceName) => ({ serviceName }));
+	const domain = this.getNodeParameter('domain', itemIndex) as string;
+	const names = (await client.httpGet('/hosting/web/attachedDomain', { domain })) as string[];
+	const outputData = names.map((serviceName) => ({ serviceName }));
 	if (withDetails) {
 		for (const d of outputData) {
 			const svcDetails = (await client.httpGet(`/hosting/web/${d.serviceName}`)) as Record<string, unknown>;

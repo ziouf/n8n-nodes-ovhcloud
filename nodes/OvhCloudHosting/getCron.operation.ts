@@ -32,15 +32,24 @@ export function description(displayOptions: IDisplayOptions): INodeProperties[] 
 			],
 			displayOptions,
 		},
+		{
+			displayName: 'Cron ID',
+			name: 'cronId',
+			type: 'number',
+			default: 0,
+			required: true,
+			description: 'The numeric ID of the cron',
+			displayOptions,
+		},
 	];
 }
 
 export async function execute(this: IExecuteFunctions, itemIndex: number): Promise<INodeExecutionData[]> {
-	const inputData = this.getInputData()[itemIndex];
-    const client = new ApiClient(this);
+	const client = new ApiClient(this);
 	const serviceName = this.getNodeParameter('serviceName', itemIndex, '', {
 		extractValue: true,
 	}) as string;
-	const outputData = (await client.httpGet(`/hosting/web/${serviceName}`)) as IDataObject;
-	return this.helpers.returnJsonArray([{ ...inputData, ...outputData }]);
+	const cronId = this.getNodeParameter('cronId', itemIndex) as number;
+	const data = (await client.httpGet(`/hosting/web/${serviceName}/cron/${cronId}`)) as IDataObject;
+	return this.helpers.returnJsonArray([data]);
 }
