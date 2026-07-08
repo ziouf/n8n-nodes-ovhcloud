@@ -7,3 +7,4 @@ export { getDedicatedClusterServices } from './getDedicatedClusterServices.metho
 export { getDedicatedHousingServices } from './getDedicatedHousingServices.method';
 export { getDedicatedNashaServices } from './getDedicatedNashaServices.method';
 export { getDedicatedServerServices } from './getDedicatedServerServices.method';
+export { getHostingWebServices } from './getHostingWebServices.method';
