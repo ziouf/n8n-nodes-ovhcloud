@@ -11,7 +11,7 @@ Welcome to the documentation for the **n8n-nodes-ovhcloud** community node.
 
 ## API Reference
 
-### V1 API (68 resources)
+### V1 API
 
 - [V1 API Index](api-reference/v1/_index.md) — Complete list of all V1 endpoints
 
@@ -20,8 +20,8 @@ Organized by category:
 - **Compute** — [VPS](api-reference/v1/compute/vps.md), [Dedicated Servers](api-reference/v1/compute/dedicated.md), [Dedicated Cloud](api-reference/v1/compute/dedicatedCloud.md), [Cloud](api-reference/v1/compute/cloud.md)
 - **Networking** — [Domain](api-reference/v1/networking/domain.md), [IP](api-reference/v1/networking/ip.md), [IP Load Balancing](api-reference/v1/networking/ipLoadbalancing.md), [vRack](api-reference/v1/networking/vrack.md), [Connectivity](api-reference/v1/networking/connectivity.md)
 - **Email & Messaging** — [Email](api-reference/v1/email-messaging/email.md), [SMS](api-reference/v1/email-messaging/sms.md), [Telephony](api-reference/v1/email-messaging/telephony.md), [FreeFax](api-reference/v1/email-messaging/freefax.md)
-- **Storage** — [Hosting](api-reference/v1/storage/hosting.md), [Storage](api-reference/v1/storage/storage.md), [DBaaS](api-reference/v1/storage/dbaas.md), [Veeam](api-reference/v1/storage/veeam.md)
-- **Account & Billing** — [Me](api-reference/v1/account-billing/me.md), [Services](api-reference/v1/account-billing/services.md), [Order](api-reference/v1/account-billing/order.md), [Price](api-reference/v1/account-billing/price.md)
+- **Storage** — [Hosting](api-reference/v1/storage/hosting.md), [Storage](api-reference/v1/storage/storage.md), [DBaaS](api-reference/v1/storage/dbaas.md), [Veeam](api-reference/v1/storage/veeam.md), [Veeam Cloud Connect](api-reference/v1/storage/veeamCloudConnect.md)
+- **Account & Billing** — [Me](api-reference/v1/account-billing/me.md), [Services](api-reference/v1/account-billing/services.md), [Service](api-reference/v1/account-billing/service.md), [Order](api-reference/v1/account-billing/order.md), [Price](api-reference/v1/account-billing/price.md)
 - **Security** — [Auth](api-reference/v1/security/auth.md), [SSL](api-reference/v1/security/ssl.md), [SSL Gateway](api-reference/v1/security/sslGateway.md), [Secret](api-reference/v1/security/secret.md)
 - **Other** — [All other V1 resources](api-reference/v1/other/)
 
