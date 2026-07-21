@@ -55,6 +55,7 @@
 		],
 		"nodes": [
 			"dist/nodes/OvhCloudHosting/OvhCloudHosting.node.js",
+			"dist/nodes/OvhCloudMe/OvhCloudMe.node.js",
 			"dist/nodes/OvhCloudService/OvhCloudService.node.js"
 		]
 	},

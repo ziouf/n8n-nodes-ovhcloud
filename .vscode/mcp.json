@@ -6,13 +6,7 @@
 		},
 		"exa": {
 			"type": "http",
-			"url": "https://mcp.exa.ai/mcp",
-		},
-		"ontomics": {
-			"sandboxEnabled": true,
-			"type": "stdio",
-			"command": "npx",
-			"args": ["-y", "@ontomics/ontomics", "--repo", "."]
+			"url": "https://mcp.exa.ai/mcp"
 		}
 	},
 	"inputs": []
