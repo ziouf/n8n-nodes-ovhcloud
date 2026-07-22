@@ -1,210 +1,41 @@
 # AGENTS.md
 
-Development guidelines for the n8n-nodes-ovhcloud repository.
+## Repo layout (verified)
 
-## Build, Lint & Test Commands
+- `credentials/` — credential type definitions (`OvhCloudApi`)
+- `nodes/OvhCloudDedicated|Hosting|Me|Service|Vps/` — five nodes, each with its own directory containing the `.node.ts`, a `resources/` folder, and shared utilities in `shared/shared/`
+- `scripts/generate-nodes-manifest.js` — regenerates `n8n.nodes` entries in package.json from directories under `nodes/`; runs automatically after build via postbuild hook. **Never edit the nodes list by hand.**
+- `docs/v1/`, `docs/v2/`, `docs/_shared/` — per-resource docs + shared boilerplate (auth, errors, type safety, testing checklist)
 
-### Available Scripts
-
-```bash
-npm run build          # Compile TypeScript to dist/
-npm run build:watch    # Watch mode for TypeScript compilation
-npm run dev            # Development mode with hot reload (uses n8n-node dev)
-npm run lint           # Run ESLint using @n8n/node-cli config
-npm run lint:fix       # Run ESLint with auto-fix
-npm run release        # Release new version (uses release-it)
-npm run prepublishOnly # Pre-release preparation
-```
-
-### Build Process
-
-- TypeScript compiles from `credentials/` and `nodes/` to `dist/`
-- Uses `@n8n/node-cli` for n8n-specific build operations
-- Declaration maps and source maps generated for debugging
-- Incremental compilation enabled for faster rebuilds
-
-### Testing
-
-- For linting: run `npm run lint`
-- No automated test framework configured
-- Manual testing required via n8n instance
-- Test directory exists but is empty
-- For single file testing: run `npm run dev` and test in n8n UI
-
-## Code Style Guidelines
-
-### Formatting (Prettier)
-
-- **Tabs**: 2 spaces width, use tabs for indentation (`useTabs: true`)
-- **Semicolons**: Required (`semi: true`)
-- **Trailing commas**: Always (`trailingComma: 'all'`)
-- **Quotes**: Single quotes preferred (`singleQuote: true`)
-- **Print width**: 100 characters
-- **End of line**: LF (`endOfLine: 'lf'`)
-- **Bracket spacing**: Enabled (`bracketSpacing: true`)
-- **Arrow parens**: Always (`arrowParens: 'always'`)
-- **Quote props**: As needed (`quoteProps: 'as-needed'`)
-
-### TypeScript Configuration
-
-- **Target**: ES2019 with ES2020/ES2022 error support
-- **Module**: CommonJS
-- **Strict mode**: Enabled (`strict: true`)
-- **Key compiler options**:
-  - `noImplicitAny`: true
-  - `noImplicitReturns`: true
-  - `noUnusedLocals`: true
-  - `strictNullChecks`: true
-  - `useUnknownInCatchVariables`: false
-  - `esModuleInterop`: true
-  - `forceConsistentCasingInFileNames`: true
-  - `skipLibCheck`: true
-  - `declaration`: true (generates .d.ts files)
-  - `sourceMap`: true
-
-### Imports
-
-- Use TypeScript `type` imports for type-only imports: `import type { X } from 'y'`
-- Named imports preferred over default imports
-- Group imports: n8n-workflow first, then local modules
-- Local imports use relative paths (`.ts` extension not required in source)
-- Import order: external packages, n8n-workflow, local modules
-
-### Naming Conventions
-
-- **Classes**: PascalCase (e.g., `OvhCloudApi`, `OvhCloudApiClient`)
-- **Functions**: camelCase (e.g., `executeList`, `getServices`)
-- **Constants**: camelCase with descriptive names (e.g., `OvhCloudApiSecretName`)
-- **Variables**: camelCase (e.g., `responseData`, `serviceId`)
-- **Type aliases**: PascalCase with type suffix when helpful (e.g., `OvhCredentialsType`)
-- **Node properties**: camelCase (e.g., `svcOperation`, `svcType`)
-- **Files**: PascalCase for classes, camelCase for utilities
-
-### File Structure
-
-```
-credentials/          # Credential type definitions
-nodes/               # Node implementations
-  OvhCloud/          # Main node directory
-    OvhCloud.node.ts # Main node entry point
-    resources/       # Resource operation definitions
-    shared/          # Shared utilities (API client)
-dist/                # Compiled output
-tests/               # Test files (currently empty)
-```
-
-Each resource file exports: `description`, `execute`, `methodsListSearch`
-
-### Error Handling
-
-- Use `NodeApiError` for n8n-specific errors
-- Throw descriptive error messages with context
-- Validate inputs before API calls
-- Handle API errors gracefully with meaningful messages
-- Catch blocks use `unknown` type (disabled `useUnknownInCatchVariables`)
-
-### Type Safety
-
-- Define explicit types for all parameters and returns
-- Use TypeScript type guards where appropriate
-- Prefer interfaces/types over `any`
-- Use `IDataObject` for n8n data structures
-- Leverage strict null checks
-
-### API Client Pattern
-
-- Use `OvhCloudApiClient` wrapper for HTTP requests
-- Authentication handled via `OvhCloudApi` credential type
-- Sign requests with OVH signature algorithm (SHA1)
-- HTTP methods: `httpGet`, `httpPost`, `httpPut`, `httpDelete`
-- Credentials provide: `host`, `applicationKey`, `applicationSecret`, `consumerKey`
-
-### Node Definition Pattern
-
-- Resources defined as separate files in `nodes/OvhCloud/resources/`
-- Operations use switch statements in `execute()` functions
-- Dynamic options via `listSearch` methods
-- Use `displayOptions` for conditional property visibility
-- Follow n8n node schema conventions
-- Node versioned via `n8nNodesApiVersion` in package.json
-
-### Comments & Documentation
-
-- JSDoc comments for public APIs
-- Inline comments for complex logic
-- TODO comments for future enhancements
-- Keep comments concise and actionable
-- Reference Prettier docs for formatting rules
-
-## Git Workflow
-
-- Feature branches: `git checkout -b feature/feature-name`
-- Commits: Conventional Commits format (`feat:`, `fix:`, `chore:`, `docs:`, `refactor:`, `test:`, `ci:`, `build:`, `perf:`, `revert:`)
-- No direct push to main; use pull requests
-- No rebasing with `-i` flag (interactive rebase not supported)
-- Avoid force push to main/master
-- Only amend commits if: (1) explicitly requested, (2) commit created by you, (3) not pushed
-
-### Atomic Commits
-
-- Each commit must contain **only a single logical change** (one file or a tightly coupled group of files)
-- Never mix refactoring, new features, and bug fixes in a single commit
-- Never commit code that fails to compile or causes tests to fail
-
-### Regression Checks (before every commit)
-
-Before committing any change, **always** run this sequence:
+## Commands (exact strings to use)
 
 ```bash
-npm run lint          # Verify linter passes
-npm run build         # Verify TypeScript compilation succeeds
-npm test              # Verify all tests pass
+npm run build          # n8n-node build AND regenerate nodes manifest
+npm run dev            # hot-reload dev server via @n8n/node-cli
+npm run lint           # ESLint via n8n-node-cli config
+npm run lint:fix       # auto-fixable issues only
+npm test               # Jest (ts-jest)
 ```
 
-If any of these commands fail, fix the issue before committing. Never commit a state that fails these three steps.
+`npm run build:watch`, `release-it`, and the pre-release hook are available but rarely needed during development. No codegen or migration tools exist in this project; don't invent them.
 
-### Conventional Commits
+## TypeScript / lint defaults to trust from config files
 
-Allowed commit types:
+- **Module**: node16 (not CommonJS)
+- **Strict mode on**, all strict checks enabled, `useUnknownInCatchVariables: true`, `noUnusedLocals: true`
+- Declaration + source maps emitted; incremental builds enabled via tsbuildinfo
+- ESLint 9.x flat config from @n8n/node-cli — do not add a separate `.eslintrc*`
 
-- `feat:` — a new feature
-- `fix:` — a bug fix
-- `docs:` — documentation-only changes
-- `style:` — formatting changes (no logical code changes)
-- `refactor:` — code refactoring (no new feature or bug fix)
-- `test:` — adding or modifying tests
-- `ci:` — CI/CD configuration changes
-- `build:` — build system or dependency changes
-- `perf:` — performance improvements
-- `chore:` — other minor changes (tooling, config, etc.)
-- `revert:` — reverting a previous commit
+## Coding conventions (verified, non-obvious)
 
-Format: `<type>(<scope>): <description>`
+- Use `NodeApiError` for n8n-specific errors. Catch blocks must handle the full catch type (`useUnknownInCatchVariables: true`).
+- API calls go through `OvhCloudApiClient` — never raw fetch/axios inside a resource file. Auth is signed with SHA1 before dispatch.
+- Resources follow a three-export pattern per file: `description`, `execute()`, and optionally `methodsListSearch()` for dynamic dropdowns (e.g., service IDs).
+- Operations in resources use switch statements on an input property; services are listed via the credential's consumer-key-scoped API path under `<host>/api/`.
 
-Examples:
+## What to avoid
 
-- `feat(vps): add disk snapshot operation`
-- `fix(api-client): handle 429 rate limiting`
-- `chore: remove unused luxon dependency`
-- `refactor(credential): extract SHA1 signing to CredentialHolder`
-
-## Dependencies
-
-- **Peer**: `n8n-workflow`
-- **Dev**: `@n8n/node-cli`, `eslint` (9.32.0), `prettier` (3.6.2), `typescript` (5.9.2), `release-it`
-
-## n8n Node Specifics
-
-- Package type: `n8n-nodes-base` compatible
-- Credentials defined in `package.json` under `n8n.credentials`
-- Nodes defined in `package.json` under `n8n.nodes`
-- Use `@n8n/node-cli` for all build operations
-- Node icons stored in `icons/` directory
-
-## Notes
-
-- Follow existing code patterns in resource files
-- Use existing `OvhCloudApiClient` for all API calls
-- Credential authentication via `OVH API` credential type
-- No Cursor or Copilot rules configured
-- Manual testing in n8n instance required
+- Don't claim there is no test framework — Jest + ts-jest are configured and `npm test` runs them.
+- Don't hard-code node entries in package.json; let the manifest script do it.
+- Don't bypass OvhCloudApiClient for HTTP requests, even inside tests of unrelated logic (use a proper mock when testing).
+- Don't add manual `.eslintrc*`, `tsconfig` overrides outside tsconfig.json, or Prettier config alongside existing tooling — everything is inherited from the @n8n/node-cli preset.
