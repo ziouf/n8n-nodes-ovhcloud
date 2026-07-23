@@ -13,5 +13,6 @@ export {
 	getDedicatedNashaServices,
 	getDedicatedServerServices,
 } from './methods';
+export { getDomainNames } from './methods/getDomainNames.method';
 export { BaseNode } from './nodes/BaseNode';
 export { createError } from './nodes/createError';

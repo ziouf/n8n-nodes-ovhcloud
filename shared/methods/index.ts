@@ -8,3 +8,4 @@ export { getDedicatedHousingServices } from './getDedicatedHousingServices.metho
 export { getDedicatedNashaServices } from './getDedicatedNashaServices.method';
 export { getDedicatedServerServices } from './getDedicatedServerServices.method';
 export { getHostingWebServices } from './getHostingWebServices.method';
+export { getDomainNames } from './getDomainNames.method';
