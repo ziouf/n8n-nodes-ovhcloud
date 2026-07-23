@@ -1,3 +1,4 @@
+export { getDomainNames } from './getDomainNames.method';
 export { getServiceIds } from './getServiceIds.method';
 export { getEmailDomains } from './getEmailDomains.method';
 export { getVpsServices } from './getVpsServices.method';
@@ -8,4 +9,8 @@ export { getDedicatedHousingServices } from './getDedicatedHousingServices.metho
 export { getDedicatedNashaServices } from './getDedicatedNashaServices.method';
 export { getDedicatedServerServices } from './getDedicatedServerServices.method';
 export { getHostingWebServices } from './getHostingWebServices.method';
-export { getDomainNames } from './getDomainNames.method';
+export { getPublicCloudProjects } from './getPublicCloudProjects.method';
+export { getPublicCloudRancherServices } from './getPublicCloudRancherServices.method';
+export { getPublicCloudBlockStorageVolumes } from './getPublicCloudBlockStorageVolumes.method';
+export { getPublicCloudBlockStorageBackups } from './getPublicCloudBlockStorageBackups.method';
+export { getPublicCloudBlockStorageSnapshots } from './getPublicCloudBlockStorageSnapshots.method';

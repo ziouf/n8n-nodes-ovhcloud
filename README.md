@@ -3,7 +3,7 @@
 [![n8n Nodes Base](https://img.shields.io/badge/n8n-nodes_base-orange.svg)](https://docs.n8n.io/integrations/#community-nodes)
 [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
 
-**n8n-nodes-ovhcloud** is a community node for [n8n](https://n8n.io/) that enables seamless integration with OVHcloud APIs. It provides **6 dedicated nodes** to manage your entire OVH Cloud infrastructure — from web hosting and virtual private servers to domain management, DNS zones, dedicated hardware, and account billing — all orchestrated directly inside your n8n workflows.
+**n8n-nodes-ovhcloud** is a community node for [n8n](https://n8n.io/) that enables seamless integration with OVHcloud APIs. It provides **7 dedicated nodes** to manage your entire OVH Cloud infrastructure — from web hosting and virtual private servers, public cloud projects with block storage management, domain management, DNS zones, dedicated hardware, and account billing — all orchestrated directly inside your n8n workflows.
 
 > **Note**: n8n is a workflow automation platform released under the [FairCode license](https://docs.n8n.io/sustainable-use-license/).
 
@@ -36,14 +36,15 @@ All nodes share common features across every OVH Cloud endpoint:
 
 ### Available Nodes
 
-| Node                           | Description                                                                      | Operations |
-| ------------------------------ | -------------------------------------------------------------------------------- | ---------- |
-| **OVH Cloud Dedicated Server** | Manage dedicated servers (get, list, BIOS settings, backups, firewall, etc.)     | 12         |
-| **OVH Cloud Domain**           | Manage domains — listing, extensions, contacts, auth info, DS records, DNS zones | 19         |
-| **OVH Cloud Hosting Web**      | Manage web hosting services (databases, crons, users, SSL, env vars, etc.)       | 22         |
-| **OVH Cloud Me**               | Manage your OVHcloud account details and billing                                 | 10         |
-| **OVH Cloud Service**          | Manage OVHcloud services (get, list, renews, reopen, suspend, terminate)         | 8          |
-| **OVH Cloud VPS**              | Manage virtual private servers — get, reboot, install OS images                  | 30         |
+| Node                           | Description                                                                                    | Operations |
+| ------------------------------ | ---------------------------------------------------------------------------------------------- | ---------- |
+| **OVH Cloud Dedicated Server** | Manage dedicated servers (get, list, BIOS settings, backups, firewall, etc.)                   | 12         |
+| **OVH Cloud Domain**           | Manage domains — listing, extensions, contacts, auth info, DS records, DNS zones               | 19         |
+| **OVH Cloud Hosting Web**      | Manage web hosting services (databases, crons, users, SSL, env vars, etc.)                     | 22         |
+| **OVH Cloud Me**               | Manage your OVHcloud account details and billing                                               | 10         |
+| **OVH Cloud Public Cloud**     | Manage public cloud projects, Rancher services, block storage volumes/backups/snapshots (CRUD) | 21         |
+| **OVH Cloud Service**          | Manage OVHcloud services (get, list, renews, reopen, suspend, terminate)                       | 8          |
+| **OVH Cloud VPS**              | Manage virtual private servers — get, reboot, install OS images                                | 30         |
 
 ---
 
@@ -136,6 +137,58 @@ The `OVH Cloud Domain` node covers the entire GET scope of `/domain` API v1, org
 | **BIOS Settings**             | Retrieve BIOS settings and SGX parameters           |
 | **Backup Cloud / FTP Access** | Manage cloud/FTP backup access control lists (ACLs) |
 
+### Public Cloud Operations (OvhCloudPublicCloud)
+
+The `OVH Cloud Public Cloud` node covers the full scope of `/publicCloud` API v2, organized by sub-resource categories:
+
+#### Projects (`project/`) — GET only
+
+| Operation               | Endpoint                               | Description                                           |
+| ----------------------- | -------------------------------------- | ----------------------------------------------------- |
+| **List Projects**       | `GET /publicCloud/project`             | List all Public Cloud projects (with IAM tags filter) |
+| **Get Project Details** | `GET /publicCloud/project/{projectId}` | Get full project info including IAM metadata          |
+
+#### Rancher Services (`rancher/`) — GET only
+
+| Operation                     | Endpoint                                       | Description                                     |
+| ----------------------------- | ---------------------------------------------- | ----------------------------------------------- |
+| **List Rancher Services**     | `GET /publicCloud/project/{projectId}/rancher` | List all managed Rancher services for a project |
+| **Get Rancher Service**       | `GET .../rancher/{rancherId}`                  | Get details of a specific Rancher service       |
+| **List Plan Capabilities**    | `GET .../capabilities/plan`                    | List available plans for a Rancher service      |
+| **List Version Capabilities** | `GET .../capabilities/version`                 | List available versions for a Rancher service   |
+
+#### Block Storage (`blockstorage/`) — Full CRUD (GET / POST / PUT / DELETE)
+
+##### Volumes
+
+| Operation              | Endpoint                       | Description                                 |
+| ---------------------- | ------------------------------ | ------------------------------------------- |
+| **List Volumes**       | `GET .../blockStorage/volume`  | List all block storage volumes in a project |
+| **Get Volume Details** | `GET .../volume/{volumeId}`    | Get details of a specific volume            |
+| **Create Volume**      | `POST .../blockStorage/volume` | Create a new block storage volume           |
+| **Update Volume**      | `PUT .../volume/{volumeId}`    | Update an existing volume (with checksum)   |
+| **Delete Volume**      | `DELETE .../volume/{volumeId}` | Delete a specific volume                    |
+
+##### Backups
+
+| Operation              | Endpoint                       | Description                                 |
+| ---------------------- | ------------------------------ | ------------------------------------------- |
+| **List Backups**       | `GET .../blockStorage/backup`  | List all block storage backups in a project |
+| **Get Backup Details** | `GET .../backup/{backupId}`    | Get details of a specific backup            |
+| **Create Backup**      | `POST .../blockStorage/backup` | Create a new block storage backup           |
+| **Update Backup**      | `PUT .../backup/{backupId}`    | Update an existing backup (with checksum)   |
+| **Delete Backup**      | `DELETE .../backup/{backupId}` | Delete a specific backup                    |
+
+##### Snapshots
+
+| Operation                | Endpoint                           | Description                                   |
+| ------------------------ | ---------------------------------- | --------------------------------------------- |
+| **List Snapshots**       | `GET .../blockStorage/snapshot`    | List all block storage snapshots in a project |
+| **Get Snapshot Details** | `GET .../snapshot/{snapshotId}`    | Get details of a specific snapshot            |
+| **Create Snapshot**      | `POST .../blockStorage/snapshot`   | Create a new block storage snapshot           |
+| **Update Snapshot**      | `PUT .../snapshot/{snapshotId}`    | Update an existing snapshot (with checksum)   |
+| **Delete Snapshot**      | `DELETE .../snapshot/{snapshotId}` | Delete a specific snapshot                    |
+
 ---
 
 ## Quick Start
@@ -158,16 +211,17 @@ See the [full authentication guide](docs/guides/authentication-guide.md) for det
 
 ### 3. Use
 
-Add any of the **6 available OVH Cloud nodes** to your workflow — select a resource, pick an operation from the dropdown, fill in parameters (resourceLocator for services with IDs), and execute:
+Add any of the **7 available OVH Cloud nodes** to your workflow — select a resource, pick an operation from the dropdown, fill in parameters (resourceLocator for services with IDs), and execute:
 
-| Node                           | Resource Locator Fields                       | Example Use Cases                                                                      |
-| ------------------------------ | --------------------------------------------- | -------------------------------------------------------------------------------------- |
-| **OVH Cloud Dedicated Server** | `serviceName` via list or name                | Get server BIOS settings, manage backup ACLs, check datacenter availability            |
-| **OVH Cloud Domain**           | Various (`domainOperation`, `zoneName`, etc.) | List domains & extensions, retrieve DS records and nameservers, monitor DNS zone tasks |
-| **OVH Cloud Hosting Web**      | `serviceName` via list or name                | Manage databases, crons, users, SSL certificates for web hosting accounts              |
-| **OVH Cloud Me**               | Account-level (no resourceLocator)            | Get billing summary, account details, and subscription info                            |
-| **OVH Cloud Service**          | `serviceName` via list or name                | List all services, reopen terminated ones, suspend/terminate resources                 |
-| **OVH Cloud VPS**              | `serviceName` via list or name                | Reboot VPS instances, install OS images from catalog                                   |
+| Node                           | Resource Locator Fields                                                          | Example Use Cases                                                                          |
+| ------------------------------ | -------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------ |
+| **OVH Cloud Dedicated Server** | `serviceName` via list or name                                                   | Get server BIOS settings, manage backup ACLs, check datacenter availability                |
+| **OVH Cloud Domain**           | Various (`domainOperation`, `zoneName`, etc.)                                    | List domains & extensions, retrieve DS records and nameservers, monitor DNS zone tasks     |
+| **OVH Cloud Hosting Web**      | `serviceName` via list or name                                                   | Manage databases, crons, users, SSL certificates for web hosting accounts                  |
+| **OVH Cloud Me**               | Account-level (no resourceLocator)                                               | Get billing summary, account details, and subscription info                                |
+| **OVH Cloud Public Cloud**     | `publicCloudProjectId`, `rancherId`, volume/backup/snapshot IDs via list or name | List cloud projects, manage Rancher services, CRUD block storage volumes/backups/snapshots |
+| **OVH Cloud Service**          | `serviceName` via list or name                                                   | List all services, reopen terminated ones, suspend/terminate resources                     |
+| **OVH Cloud VPS**              | `serviceName` via list or name                                                   | Reboot VPS instances, install OS images from catalog                                       |
 
 See [workflow examples](docs/guides/examples.md) for common use cases.
 
@@ -218,6 +272,12 @@ n8n-nodes-ovhcloud/
 │   │   ├── OvhCloudService.node.ts      # n8n node class
 │   │   ├── index.ts                    # description() + execute() router
 │   │   └── resources/*.operation.ts    # operation implementations
+│   ├── OvhCloudPublicCloud/            # Public Cloud node (21 operations) — uses sub-folder per category design pattern
+│   │   ├── OvhCloudPublicCloud.node.ts  # n8n node class
+│   │   ├── index.ts                    # description() + execute() router with switch dispatcher
+│   │   ├── project/*.operation.ts      # Project GET operations (list, get)
+│   │   ├── rancher/*.operation.ts      # Rancher Services GET operations (list, get, capabilities)
+│   │   └── blockstorage/*.operation.ts # Block Storage CRUD operations (volumes + backups + snapshots)
 │   ├── OvhCloudVps/                    # VPS management node (30 operations)
 │   │   ├── OvhCloudVps.node.ts          # n8n node class
 │   │   ├── index.ts                    # description() + execute() router
@@ -233,9 +293,10 @@ n8n-nodes-ovhcloud/
 │   ├── generate-nodes-manifest.js       # Regenerate nodes list in package.json after build
 │   ├── gen-api-docs.sh                  # Generate API documentation from specs
 │   └── get-api-description.sh           # Fetch OVH API JSON specifications
-├── tests/                               # Jest unit & non-regression tests (175+ tests)
+├── tests/                               # Jest unit & non-regression tests (219+ tests)
 │   ├── domain-lot1.test.ts              # Tests for all OvhCloudDomain GET operations
 │   ├── helpers.ts                       # Shared test utilities (createMockCtx, invokeOperation)
+│   ├── publicCloud.operation.test.ts    # Non-regression tests for Public Cloud backup & snapshot CRUD ops
 │   └── *.operation.test.ts              # Per-node operation coverage tests
 ├── docs/
 │   ├── README.md                        # Documentation index & structure overview

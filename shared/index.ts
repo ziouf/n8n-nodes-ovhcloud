@@ -14,5 +14,10 @@ export {
 	getDedicatedServerServices,
 } from './methods';
 export { getDomainNames } from './methods/getDomainNames.method';
+export { getPublicCloudProjects } from './methods/getPublicCloudProjects.method';
+export { getPublicCloudRancherServices } from './methods/getPublicCloudRancherServices.method';
+export { getPublicCloudBlockStorageVolumes } from './methods/getPublicCloudBlockStorageVolumes.method';
+export { getPublicCloudBlockStorageBackups } from './methods/getPublicCloudBlockStorageBackups.method';
+export { getPublicCloudBlockStorageSnapshots } from './methods/getPublicCloudBlockStorageSnapshots.method';
 export { BaseNode } from './nodes/BaseNode';
 export { createError } from './nodes/createError';

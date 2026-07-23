@@ -32,6 +32,7 @@ npm test               # Jest (ts-jest)
 - API calls go through `OvhCloudApiClient` — never raw fetch/axios inside a resource file. Auth is signed with SHA1 before dispatch.
 - Resources follow a three-export pattern per file: `description`, `execute()`, and optionally `methodsListSearch()` for dynamic dropdowns (e.g., service IDs).
 - Operations in resources use switch statements on an input property; services are listed via the credential's consumer-key-scoped API path under `<host>/api/`.
+- **Pattern de structure par catégorie** : Pour les nodes avec un grand nombre d'opérations (>10), utiliser des sous-dossiers par catégorie de ressources (ex: `nodes/OvhCloudPublicCloud/project/`, `rancher/`, `blockstorage/`) au lieu d'un seul dossier plat. Chaque sous-dossier contient ses propres fichiers `.operation.ts` avec les imports relatifs adaptés (`../../../shared/transport/ApiClient`).
 
 ## What to avoid
 
