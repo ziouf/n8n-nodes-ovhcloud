@@ -9,3 +9,7 @@ node_modules/
 
 .ontomics/
 
+# Dotenv files
+.env
+.env.*
+!.env.example

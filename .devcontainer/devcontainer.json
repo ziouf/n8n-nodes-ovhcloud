@@ -20,7 +20,8 @@
 			"packages": [
 				"opencode-ai",
 				"markdownlint-rs",
-				"@code-yeongyu/comment-checker"
+				"@code-yeongyu/comment-checker",
+				"@colbymchenry/codegraph"
 			]
 		}
 	},
@@ -43,7 +44,11 @@
 			}
 		}
 	},
-	"secrets": {},
+	"secrets": {
+		"GHCR_TOKEN": {
+			"description": "Token Github Container Registry"
+		}
+	},
 	"remoteEnv": {
 		"OPENCODE_ENABLE_EXA": "true",
 		"N8N_LOG_LEVEL": "debug"
