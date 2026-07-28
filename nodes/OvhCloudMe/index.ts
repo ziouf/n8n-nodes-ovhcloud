@@ -313,6 +313,42 @@ import {
 	executeGetAccessRestrictionU2f,
 } from './operations/partner.operation';
 
+// Phase 7c — Agreements Lifecycle (accept + contract details)
+import { executeAcceptAgreement, executeGetContract } from './operations/agreement.operation';
+
+// Phase 7d — Access Restriction Lifecycle (SOTP/IP/TOTP/U2F/SMS add/delete/enable/disable/sendCode)
+import {
+	executeAddSotpSecret,
+	executeDisableSotpAccount,
+	executeEnableSotpAccount,
+	executeValidateSotpAccount,
+	executeEditDeveloperModeRestriction,
+	executeAddIpRestriction,
+	executeDeleteIpRestriction,
+	executeEditIpRestriction,
+	executeEnableIpAccount,
+	executeDisableIpAccount,
+	executeAddSmsRestriction,
+	executeDeleteSmsRestriction,
+	executeEnableSmsAccount,
+	executeDisableSmsAccount,
+	executeSendSmsCode,
+	executeValidateSmsAccount,
+	executeAddTotpRestriction,
+	executeDeleteTotpRestriction,
+	executeEnableTotpAccount,
+	executeDisableTotpAccount,
+	executeValidateTotpAccount,
+	executeEditTotpRestriction,
+	executeAddU2fRestriction,
+	executeDeleteU2fRestriction,
+	executeEnableU2fAccount,
+	executeDisableU2fAccount,
+	executeGetU2fRestriction,
+	executeEditU2fRestriction,
+	executeGetTotpRestriction,
+} from './operations/accessRestriction.operation';
+
 // Phase 8 — Notification & Consumption
 import {
 	executeListEmailHistory,
@@ -1048,7 +1084,8 @@ export function description(displayOptions: IDisplayOptions): INodeProperties[] 
 					value: 'listWithdrawalDetails',
 					action: 'List withdrawal details',
 				},
-				{ name: 'List Withdrawals', value: 'listWithdrawals', action: 'List withdrawals' },],
+				{ name: 'List Withdrawals', value: 'listWithdrawals', action: 'List withdrawals' },
+			],
 			default: 'getAccount',
 			displayOptions,
 		},
@@ -1932,6 +1969,71 @@ export async function execute(
 			return await executeListAccessRestrictionU2f.call(this);
 		case 'getAccessRestrictionU2f':
 			return await executeGetAccessRestrictionU2f.call(this, itemIndex);
+		// Phase 7c — Agreements Lifecycle (accept + contract details)
+		case 'acceptAgreement':
+			return await executeAcceptAgreement.call(this, itemIndex);
+		case 'getContract':
+			return await executeGetContract.call(this, itemIndex);
+		// Phase 7d — Access Restriction Lifecycle (SOTP/IP/TOTP/U2F/SMS add/delete/enable/disable/sendCode)
+		case 'addSotpSecret':
+			return await executeAddSotpSecret.call(this);
+		case 'disableSotpAccount':
+			return await executeDisableSotpAccount.call(this);
+		case 'enableSotpAccount':
+			return await executeEnableSotpAccount.call(this);
+		case 'validateSotpAccount':
+			return await executeValidateSotpAccount.call(this);
+		case 'editDeveloperModeRestriction':
+			return await executeEditDeveloperModeRestriction.call(this);
+		case 'addIpRestriction':
+			return await executeAddIpRestriction.call(this);
+		case 'deleteIpRestriction':
+			return await executeDeleteIpRestriction.call(this);
+		case 'editIpRestriction':
+			return await executeEditIpRestriction.call(this);
+		case 'enableIpAccount':
+			return await executeEnableIpAccount.call(this);
+		case 'disableIpAccount':
+			return await executeDisableIpAccount.call(this);
+		case 'addSmsRestriction':
+			return await executeAddSmsRestriction.call(this);
+		case 'deleteSmsRestriction':
+			return await executeDeleteSmsRestriction.call(this);
+		case 'enableSmsAccount':
+			return await executeEnableSmsAccount.call(this);
+		case 'disableSmsAccount':
+			return await executeDisableSmsAccount.call(this);
+		case 'sendSmsCode':
+			return await executeSendSmsCode.call(this);
+		case 'validateSmsAccount':
+			return await executeValidateSmsAccount.call(this);
+		case 'addTotpRestriction':
+			return await executeAddTotpRestriction.call(this);
+		case 'deleteTotpRestriction':
+			return await executeDeleteTotpRestriction.call(this);
+		case 'enableTotpAccount':
+			return await executeEnableTotpAccount.call(this);
+		case 'disableTotpAccount':
+			return await executeDisableTotpAccount.call(this);
+		case 'validateTotpAccount':
+			return await executeValidateTotpAccount.call(this);
+		case 'editTotpRestriction':
+			return await executeEditTotpRestriction.call(this);
+		case 'addU2fRestriction':
+			return await executeAddU2fRestriction.call(this);
+		case 'deleteU2fRestriction':
+			return await executeDeleteU2fRestriction.call(this);
+		case 'enableU2fAccount':
+			return await executeEnableU2fAccount.call(this);
+		case 'disableU2fAccount':
+			return await executeDisableU2fAccount.call(this);
+		case 'getU2fRestriction':
+			return await executeGetU2fRestriction.call(this);
+		case 'editU2fRestriction':
+			return await executeEditU2fRestriction.call(this);
+		case 'getTotpRestriction':
+			return await executeGetTotpRestriction.call(this);
+
 		// Phase 8 — Notification & Consumption
 		case 'listEmailHistory':
 			return await executeListEmailHistory.call(this);

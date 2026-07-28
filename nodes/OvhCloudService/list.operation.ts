@@ -26,7 +26,7 @@ export async function execute(this: IExecuteFunctions, itemIndex: number): Promi
 	const outputData = ids.map((id) => ({ serviceId: id }));
 	if (withDetails) {
 		for (const d of outputData) {
-			const svcDetails = (await client.httpGet(`/service/${d.serviceId}`)) as Record<string, unknown>;
+			const svcDetails = (await client.httpGet(`/service/${d.serviceId}`)) as import('n8n-workflow').IDataObject;
 			Object.assign(d, svcDetails);
 		}
 	}

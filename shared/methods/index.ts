@@ -14,3 +14,4 @@ export { getPublicCloudRancherServices } from './getPublicCloudRancherServices.m
 export { getPublicCloudBlockStorageVolumes } from './getPublicCloudBlockStorageVolumes.method';
 export { getPublicCloudBlockStorageBackups } from './getPublicCloudBlockStorageBackups.method';
 export { getPublicCloudBlockStorageSnapshots } from './getPublicCloudBlockStorageSnapshots.method';
+export { getSupportTicketServices } from './getSupportTicketServices.method';

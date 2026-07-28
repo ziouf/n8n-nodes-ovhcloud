@@ -114,6 +114,91 @@ import {
 	description as descriptionAutomatedBackupList,
 } from './automatedBackupList.operation';
 
+import {
+	execute as executeAbortSnapshotPost,
+	description as descriptionAbortSnapshotPost,
+} from './abortSnapshotPost.operation';
+import {
+	execute as executeAutomatedBackupReschedulePost,
+	description as descriptionAutomatedBackupReschedulePost,
+} from './automatedBackupReschedulePost.operation';
+import {
+	execute as executeAutomatedBackupSetPost,
+	description as descriptionAutomatedBackupSetPost,
+} from './automatedBackupSetPost.operation';
+import {
+	execute as executeDatacenterAvailabilityRawGet,
+	description as descriptionDatacenterAvailabilityRawGet,
+} from './datacenterAvailabilityRawGet.operation';
+import {
+	execute as executeDiskCreatePost,
+	description as descriptionDiskCreatePost,
+} from './diskCreatePost.operation';
+import {
+	execute as executeDiskDetailGet,
+	description as descriptionDiskDetailGet,
+} from './diskGet.operation';
+import {
+	execute as executeDiskMonitoringStatsGet,
+	description as descriptionDiskMonitoringStatsGet,
+} from './diskMonitoringStatsGet.operation';
+import {
+	execute as executeDiskUpdatePut,
+	description as descriptionDiskUpdatePut,
+} from './diskUpdatePut.operation';
+import {
+	execute as executeDistributionUpdatePut,
+	description as descriptionDistributionUpdatePut,
+} from './distributionUpdatePut.operation';
+import {
+	execute as executeGetSnapshotImage,
+	description as descriptionGetSnapshotImage,
+} from './snapshotGetImageGet.operation';
+import {
+	execute as executeIpCountryAvailableGet,
+	description as descriptionIpCountryAvailableGet,
+} from './ipCountryAvailableGet.operation';
+import {
+	execute as executeIpReleasePut,
+	description as descriptionIpReleasePut,
+} from './ipReleasePut.operation';
+import {
+	execute as executeNetbootCreatePost,
+	description as descriptionNetbootCreatePost,
+} from './netbootCreatePost.operation';
+import {
+	execute as executeRestorePointListGet,
+	description as descriptionRestorePointListGet,
+} from './restorePointListGet.operation';
+import {
+	execute as executeServiceSecretGet,
+	description as descriptionServiceSecretGet,
+} from './serviceSecretGet.operation';
+import {
+	execute as executeSnapshotCreatePost,
+	description as descriptionSnapshotCreatePost,
+} from './snapshotCreatePost.operation';
+import {
+	execute as executeSnapshotRevertPut,
+	description as descriptionSnapshotRevertPut,
+} from './snapshotRevertPut.operation';
+import {
+	execute as executeTemplateApplyPost,
+	description as descriptionTemplateApplyPost,
+} from './templateApplyPost.operation';
+
+import {
+	execute as executePowerStartPost,
+	description as descriptionPowerStartPost,
+} from './powerStartPost.operation';
+import {
+	execute as executePowerStopDelete,
+	description as descriptionPowerStopDelete,
+} from './powerStopDelete.operation';
+import {
+	execute as executePowerRebootDelete,
+	description as descriptionPowerRebootDelete,
+} from './powerRebootDelete.operation';
 export function description(displayOptions: IDisplayOptions): INodeProperties[] {
 	const operationProperties: INodeProperties[] = [
 		{
@@ -122,10 +207,21 @@ export function description(displayOptions: IDisplayOptions): INodeProperties[] 
 			type: 'options',
 			noDataExpression: true,
 			options: [
+				{ name: 'Abort Snapshot', value: 'abortSnapshot' },
 				{
 					name: 'Automated Backup List',
 					value: 'automatedBackupList',
 					action: 'List automated backups for a VPS',
+				},
+				{
+					name: 'Automated Backup Reschedule',
+					value: 'automatedBackupReschedulePost',
+					action: 'Reschedule an automated backup for a VPS',
+				},
+				{
+					name: 'Automated Backup Restore Plan Set',
+					value: 'automatedBackupSetPost',
+					action: 'Set a backup restore plan for a VPS',
 				},
 				{
 					name: 'Available Upgrade List',
@@ -137,21 +233,48 @@ export function description(displayOptions: IDisplayOptions): INodeProperties[] 
 					value: 'backupFtpList',
 					action: 'List backup FTP configurations',
 				},
+				{ name: 'Create Disk', value: 'createDiskPost' },
+				{
+					name: 'Datacenter Availability Raw Get',
+					value: 'datacenterAvailabilityRawGet',
+					action: 'Check raw datacenter availability for a VPS',
+				},
 				{
 					name: 'Datacenter List',
 					value: 'datacenterList',
 					action: 'Get available datacenters for a VPS',
 				},
 				{ name: 'Disk List', value: 'diskList', action: 'List disks attached to a VPS' },
+				{
+					name: 'Disk Monitoring Stats Get',
+					value: 'diskMonitoringStatsGet',
+					action: 'Get monitoring stats for a disk',
+				},
 				{ name: 'Distribution Get', value: 'distributionGet', action: 'Get distribution details' },
 				{
 					name: 'Distribution List',
 					value: 'distributionList',
 					action: 'List available distributions for a VPS',
 				},
+				{ name: 'Distribution Update', value: 'distributionUpdatePut' },
 				{ name: 'Get', value: 'get', action: 'Get VPS service details' },
+				{
+					name: 'Get Disk Detail',
+					value: 'diskDetailGet',
+					action: 'Get detail of a specific VPS disk',
+				},
+				{
+					name: 'Get Snapshot Image',
+					value: 'getSnapshotImage',
+					action: 'Get image of a snapshot',
+				},
 				{ name: 'Image Get', value: 'imageGet', action: 'Get image details' },
 				{ name: 'Image List', value: 'imageList', action: 'List available images for a VPS' },
+				{
+					name: 'IP Country Available',
+					value: 'ipCountryAvailableGet',
+					action: 'List available IP countries per region',
+				},
 				{ name: 'IP Geolocation', value: 'ipGeolocationGet', action: 'Get IP geolocation info' },
 				{ name: 'IP Get', value: 'ipGet', action: 'Get IP address details' },
 				{ name: 'IP List', value: 'ipList', action: 'List IPs attached to a VPS' },
@@ -172,6 +295,7 @@ export function description(displayOptions: IDisplayOptions): INodeProperties[] 
 					action: 'Get migration step details',
 				},
 				{ name: 'Model List', value: 'modelList', action: 'List available VPS models' },
+				{ name: 'Netboot Create Order Config Post', value: 'netbootCreatePost' },
 				{
 					name: 'Netboot Order Config',
 					value: 'netbootOrderGet',
@@ -189,7 +313,37 @@ export function description(displayOptions: IDisplayOptions): INodeProperties[] 
 					value: 'powerOffGet',
 					action: 'Check power off status of a VPS',
 				},
+				{
+					name: 'Power Reboot Delete',
+					value: 'powerRebootDelete',
+					action: 'Request hard reboot for the VPS',
+				},
+				{
+					name: 'Power Start Post',
+					value: 'powerStartPost',
+					action: 'Request power on for the VPS',
+				},
+				{
+					name: 'Power Stop Delete',
+					value: 'powerStopDelete',
+					action: 'Request shutdown for the VPS',
+				},
 				{ name: 'Reboot Status', value: 'rebootHardGet', action: 'Check reboot status of a VPS' },
+				{
+					name: 'Release IP Address',
+					value: 'releaseIpPut',
+					action: 'Release an IP address from the VPS',
+				},
+				{
+					name: 'Restore Point List Get',
+					value: 'restorePointListGet',
+					action: 'List restore points for a backup',
+				},
+				{
+					name: 'Revert Snapshot',
+					value: 'revertSnapshot',
+					action: 'Revert the VPS to a specific snapshot',
+				},
 				{
 					name: 'Secondary DNS Domain List',
 					value: 'secondaryDnsDomainListDomains',
@@ -206,6 +360,16 @@ export function description(displayOptions: IDisplayOptions): INodeProperties[] 
 					action: 'Get service information for a VPS',
 				},
 				{
+					name: 'Service Secret Key Get',
+					value: 'serviceSecretGet',
+					action: 'Get authentication secret key for a VPS',
+				},
+				{
+					name: 'Snapshot Create Post',
+					value: 'snapshotCreatePost',
+					action: 'Create a new snapshot for the VPS',
+				},
+				{
 					name: 'Snapshot List Snapshots For Vps',
 					value: 'snapshotListSnapshotsForVps',
 					action: 'List snapshots for a VPS',
@@ -215,7 +379,17 @@ export function description(displayOptions: IDisplayOptions): INodeProperties[] 
 					value: 'statusTaskIdGet',
 					action: 'Check status of a task by ID',
 				},
+				{
+					name: 'Template Apply Netboot Config Post',
+					value: 'templateApplyPost',
+					action: 'Apply netboot template to the VPS',
+				},
 				{ name: 'Template Details', value: 'templateGet', action: 'Get template details' },
+				{
+					name: 'Update Disk Detail Put',
+					value: 'updateDiskPut',
+					action: 'Update a specific VPS disk (resize or rename)',
+				},
 			],
 			default: 'get',
 			displayOptions,
@@ -243,6 +417,18 @@ export function description(displayOptions: IDisplayOptions): INodeProperties[] 
 		...(descriptionDiskList({
 			...displayOptions,
 			show: { vpsOperation: ['diskList'] },
+		}) as INodeProperties[]),
+		...(descriptionPowerStartPost({
+			...displayOptions,
+			show: { vpsOperation: ['powerStartPost'] },
+		}) as INodeProperties[]),
+		...(descriptionPowerStopDelete({
+			...displayOptions,
+			show: { vpsOperation: ['powerStopDelete'] },
+		}) as INodeProperties[]),
+		...(descriptionPowerRebootDelete({
+			...displayOptions,
+			show: { vpsOperation: ['powerRebootDelete'] },
 		}) as INodeProperties[]),
 		...(descriptionDistributionGet({
 			...displayOptions,
@@ -341,6 +527,78 @@ export function description(displayOptions: IDisplayOptions): INodeProperties[] 
 			...displayOptions,
 			show: { vpsOperation: ['templateGet'] },
 		}) as INodeProperties[]),
+		...(descriptionAbortSnapshotPost({
+			...displayOptions,
+			show: { vpsOperation: ['abortSnapshot'] },
+		}) as INodeProperties[]),
+		...(descriptionAutomatedBackupReschedulePost({
+			...displayOptions,
+			show: { vpsOperation: ['automatedBackupReschedulePost'] },
+		}) as INodeProperties[]),
+		...(descriptionAutomatedBackupSetPost({
+			...displayOptions,
+			show: { vpsOperation: ['automatedBackupSetPost'] },
+		}) as INodeProperties[]),
+		...(descriptionDatacenterAvailabilityRawGet({
+			...displayOptions,
+			show: { vpsOperation: ['datacenterAvailabilityRawGet'] },
+		}) as INodeProperties[]),
+		...(descriptionDiskCreatePost({
+			...displayOptions,
+			show: { vpsOperation: ['createDiskPost'] },
+		}) as INodeProperties[]),
+		...(descriptionDiskDetailGet({
+			...displayOptions,
+			show: { vpsOperation: ['diskDetailGet'] },
+		}) as INodeProperties[]),
+		...(descriptionDiskMonitoringStatsGet({
+			...displayOptions,
+			show: { vpsOperation: ['diskMonitoringStatsGet'] },
+		}) as INodeProperties[]),
+		...(descriptionDiskUpdatePut({
+			...displayOptions,
+			show: { vpsOperation: ['updateDiskPut'] },
+		}) as INodeProperties[]),
+		...(descriptionDistributionUpdatePut({
+			...displayOptions,
+			show: { vpsOperation: ['distributionUpdatePut'] },
+		}) as INodeProperties[]),
+		...(descriptionGetSnapshotImage({
+			...displayOptions,
+			show: { vpsOperation: ['getSnapshotImage'] },
+		}) as INodeProperties[]),
+		...(descriptionIpCountryAvailableGet({
+			...displayOptions,
+			show: { vpsOperation: ['ipCountryAvailableGet'] },
+		}) as INodeProperties[]),
+		...(descriptionIpReleasePut({
+			...displayOptions,
+			show: { vpsOperation: ['releaseIpPut'] },
+		}) as INodeProperties[]),
+		...(descriptionNetbootCreatePost({
+			...displayOptions,
+			show: { vpsOperation: ['netbootCreatePost'] },
+		}) as INodeProperties[]),
+		...(descriptionRestorePointListGet({
+			...displayOptions,
+			show: { vpsOperation: ['restorePointListGet'] },
+		}) as INodeProperties[]),
+		...(descriptionServiceSecretGet({
+			...displayOptions,
+			show: { vpsOperation: ['serviceSecretGet'] },
+		}) as INodeProperties[]),
+		...(descriptionSnapshotCreatePost({
+			...displayOptions,
+			show: { vpsOperation: ['snapshotCreatePost'] },
+		}) as INodeProperties[]),
+		...(descriptionSnapshotRevertPut({
+			...displayOptions,
+			show: { vpsOperation: ['revertSnapshot'] },
+		}) as INodeProperties[]),
+		...(descriptionTemplateApplyPost({
+			...displayOptions,
+			show: { vpsOperation: ['templateApplyPost'] },
+		}) as INodeProperties[]),
 	];
 
 	return properties;
@@ -363,6 +621,12 @@ export async function execute(
 			return executeDatacenterList.call(this, itemIndex);
 		case 'diskList':
 			return executeDiskList.call(this, itemIndex);
+		case 'powerRebootDelete':
+			return executePowerRebootDelete.call(this, itemIndex);
+		case 'powerStartPost':
+			return executePowerStartPost.call(this, itemIndex);
+		case 'powerStopDelete':
+			return executePowerStopDelete.call(this, itemIndex);
 		case 'distributionGet':
 			return executeDistributionGet.call(this, itemIndex);
 		case 'distributionList':
@@ -413,6 +677,42 @@ export async function execute(
 			return executeStatusTaskIdGet.call(this, itemIndex);
 		case 'templateGet':
 			return executeTemplateGet.call(this, itemIndex);
+		case 'abortSnapshot':
+			return executeAbortSnapshotPost.call(this, itemIndex);
+		case 'automatedBackupReschedulePost':
+			return executeAutomatedBackupReschedulePost.call(this, itemIndex);
+		case 'automatedBackupSetPost':
+			return executeAutomatedBackupSetPost.call(this, itemIndex);
+		case 'datacenterAvailabilityRawGet':
+			return executeDatacenterAvailabilityRawGet.call(this, itemIndex);
+		case 'createDiskPost':
+			return executeDiskCreatePost.call(this, itemIndex);
+		case 'diskDetailGet':
+			return executeDiskDetailGet.call(this, itemIndex);
+		case 'diskMonitoringStatsGet':
+			return executeDiskMonitoringStatsGet.call(this, itemIndex);
+		case 'updateDiskPut':
+			return executeDiskUpdatePut.call(this, itemIndex);
+		case 'distributionUpdatePut':
+			return executeDistributionUpdatePut.call(this, itemIndex);
+		case 'getSnapshotImage':
+			return executeGetSnapshotImage.call(this, itemIndex);
+		case 'ipCountryAvailableGet':
+			return executeIpCountryAvailableGet.call(this, itemIndex);
+		case 'releaseIpPut':
+			return executeIpReleasePut.call(this, itemIndex);
+		case 'netbootCreatePost':
+			return executeNetbootCreatePost.call(this, itemIndex);
+		case 'restorePointListGet':
+			return executeRestorePointListGet.call(this, itemIndex);
+		case 'serviceSecretGet':
+			return executeServiceSecretGet.call(this, itemIndex);
+		case 'snapshotCreatePost':
+			return executeSnapshotCreatePost.call(this, itemIndex);
+		case 'revertSnapshot':
+			return executeSnapshotRevertPut.call(this, itemIndex);
+		case 'templateApplyPost':
+			return executeTemplateApplyPost.call(this, itemIndex);
 	}
 
 	throw new Error(`Unsupported operation "${operation}" for resource "vps"`);

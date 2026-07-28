@@ -72,6 +72,10 @@ import {
 	execute as executeTaskGet,
 	description as descriptionTaskGet,
 } from './resources/taskGet.operation';
+import {
+	execute as executeDomainUpdate,
+	description as descriptionDomainUpdate,
+} from './resources/domainUpdate.operation';
 
 export function description(displayOptions: IDisplayOptions): INodeProperties[] {
 	const operationProperties: INodeProperties[] = [
@@ -96,6 +100,7 @@ export function description(displayOptions: IDisplayOptions): INodeProperties[] 
 				{ name: 'Status Get', value: 'statusGet' },
 				{ name: 'Task Get', value: 'taskGet' },
 				{ name: 'Task List Get', value: 'taskListGet' },
+				{ name: 'Update Domain', value: 'domainUpdate' },
 				{ name: 'Zone List', value: 'zoneList' },
 			],
 			default: 'get',
@@ -156,6 +161,10 @@ export function description(displayOptions: IDisplayOptions): INodeProperties[] 
 			...displayOptions,
 			show: { domainOperation: ['taskGet'] },
 		}) as INodeProperties[]),
+		...(descriptionDomainUpdate({
+			...displayOptions,
+			show: { domainOperation: ['domainUpdate'] },
+		}) as INodeProperties[]),
 	];
 
 	return properties;
@@ -208,6 +217,8 @@ export async function execute(
 		case 'taskGet':
 			if (itemIndex === undefined) throw new Error('Missing itemIndex');
 			return executeTaskGet.call(this, itemIndex);
+		case 'domainUpdate':
+			return executeDomainUpdate.call(this);
 	}
 
 	throw new Error(`Unsupported operation "${operation}" for resource "domain"`);

@@ -72,7 +72,7 @@ export async function execute(this: IExecuteFunctions): Promise<INodeExecutionDa
 
 	const data = (await client.httpGet(
 		`/publicCloud/project/${projectId}/blockStorage/backup/${backupId}`,
-	)) as Record<string, unknown>;
+	)) as import('n8n-workflow').IDataObject;
 
 	return this.helpers.returnJsonArray([data as INodeExecutionData]);
 }

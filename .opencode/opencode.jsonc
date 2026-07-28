@@ -1,0 +1,25 @@
+{
+  "$schema": "https://opencode.ai/config.json",
+  "references": {
+    "docs": {
+      "path": "../docs/",
+      "description": "All OvhCloud api documentation"
+    },
+    "api-reference": {
+      "path": "../docs/api-reference/",
+      "description": "OvhCloud API reference"
+    },
+    "api-specs": {
+      "path": "../docs/api-specs/",
+      "description": "OvhCloud API specs"
+    },
+    "nodes": {
+      "path": "../nodes/",
+      "description": "Source directory of n8n custom nodes"
+    },
+    "credentials": {
+      "path": "../credentials",
+      "description": "Source directory of n8n custom credentials"
+    }
+  }
+}

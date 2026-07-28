@@ -30,6 +30,18 @@ import {
 	description as rancherVersionCapabilityListGetDescription,
 	execute as rancherVersionCapabilityListGetExecute,
 } from './rancher/versionCapabilityListGet.operation';
+import {
+	description as rancherServiceCreatePostDescription,
+	execute as rancherServiceCreatePostExecute,
+} from './rancher/serviceCreatePost.operation';
+import {
+	description as rancherServiceUpdatePutDescription,
+	execute as rancherServiceUpdatePutExecute,
+} from './rancher/serviceUpdatePut.operation';
+import {
+	description as rancherServiceDeleteDeleteDescription,
+	execute as rancherServiceDeleteDeleteExecute,
+} from './rancher/serviceDeleteDelete.operation';
 
 import {
 	description as volumeListGetDescription,
@@ -119,11 +131,21 @@ export function description(displayOptions: IDisplayOptions): INodeProperties[] 
 				value: 'createVolumePost',
 				action: 'Create a new block storage volume',
 			},
+			{
+				name: 'Create Rancher Service',
+				value: 'createRancherPost',
+				action: 'Create a new Rancher service for a project',
+			},
 			{ name: 'Delete Backup', value: 'deleteBackupDelete', action: 'Delete a specific backup' },
 			{
 				name: 'Delete Snapshot',
 				value: 'deleteSnapshotDelete',
 				action: 'Delete a specific snapshot',
+			},
+			{
+				name: 'Delete Rancher Service',
+				value: 'deleteRancherDelete',
+				action: 'Delete a specific Rancher service',
 			},
 			{ name: 'Delete Volume', value: 'deleteVolumeDelete', action: 'Delete a specific volume' },
 			{
@@ -189,6 +211,11 @@ export function description(displayOptions: IDisplayOptions): INodeProperties[] 
 				action: 'Update an existing snapshot',
 			},
 			{ name: 'Update Volume', value: 'updateVolumePut', action: 'Update an existing volume' },
+			{
+				name: 'Update Rancher Service',
+				value: 'updateRancherPut',
+				action: 'Update a specific Rancher service (plan change)',
+			},
 		],
 		default: 'projectListGet',
 		displayOptions,
@@ -311,6 +338,24 @@ export function description(displayOptions: IDisplayOptions): INodeProperties[] 
 		}) as INodeProperties[]),
 	);
 	properties.push(
+		...(rancherServiceCreatePostDescription({
+			...displayOptions,
+			show: { publicCloudOperation: ['createRancherPost'] },
+		}) as INodeProperties[]),
+	);
+	properties.push(
+		...(rancherServiceUpdatePutDescription({
+			...displayOptions,
+			show: { publicCloudOperation: ['updateRancherPut'] },
+		}) as INodeProperties[]),
+	);
+	properties.push(
+		...(rancherServiceDeleteDeleteDescription({
+			...displayOptions,
+			show: { publicCloudOperation: ['deleteRancherDelete'] },
+		}) as INodeProperties[]),
+	);
+	properties.push(
 		...(volumeListGetDescription({
 			...displayOptions,
 			show: { publicCloudOperation: ['volumeListGet'] },
@@ -339,10 +384,14 @@ export async function execute(
 			return snapshotCreatePostExecute.call(this);
 		case 'createVolumePost':
 			return volumeCreatePostExecute.call(this);
+		case 'createRancherPost':
+			return rancherServiceCreatePostExecute.call(this);
 		case 'deleteBackupDelete':
 			return backupDeleteDeleteExecute.call(this);
 		case 'deleteSnapshotDelete':
 			return snapshotDeleteDeleteExecute.call(this);
+		case 'deleteRancherDelete':
+			return rancherServiceDeleteDeleteExecute.call(this);
 		case 'deleteVolumeDelete':
 			return volumeDeleteDeleteExecute.call(this);
 		case 'getBackupDetail':
@@ -367,6 +416,8 @@ export async function execute(
 			return backupUpdatePutExecute.call(this);
 		case 'updateSnapshotPut':
 			return snapshotUpdatePutExecute.call(this);
+		case 'updateRancherPut':
+			return rancherServiceUpdatePutExecute.call(this);
 		case 'updateVolumePut':
 			return volumeUpdatePutExecute.call(this);
 		case 'volumeListGet':

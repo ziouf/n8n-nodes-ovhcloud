@@ -1,0 +1,58 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
+import { description, execute } from './update.operation';
+
+// Mock ApiClient
+jest.mock('../../shared/transport/ApiClient', () => {
+	const mockHttpClient = {
+		httpPut: jest.fn(),
+	};
+	return {
+		ApiClient: jest.fn().mockImplementation(() => mockHttpClient),
+	};
+});
+
+import { ApiClient } from '../../shared/transport/ApiClient';
+
+describe('update.operation', () => {
+	describe('description', () => {
+		it('should return serviceId param', () => {
+			const result = description({ show: {} });
+
+			expect(result).toHaveLength(1);
+			expect(result[0]).toEqual(
+				expect.objectContaining({
+					displayName: 'Service ID',
+					name: 'serviceId',
+					type: 'string',
+					default: '',
+					required: true,
+				}),
+			);
+		});
+	});
+
+	describe('execute', () => {
+		let mockExecuteFunctions: any;
+
+		beforeEach(() => {
+			mockExecuteFunctions = {
+				getNodeParameter: jest.fn(),
+				helpers: {
+					returnJsonArray: jest.fn((data: any) => data),
+				},
+			};
+		});
+
+		it('should update a service', async () => {
+			const mockData = { id: 123456, status: 'ACTIVE' };
+			const mockClient = new ApiClient(mockExecuteFunctions) as any;
+			(mockClient.httpPut as jest.Mock).mockResolvedValue(mockData);
+
+			mockExecuteFunctions.getNodeParameter.mockReturnValue('123456');
+
+			await execute.call(mockExecuteFunctions);
+
+			expect(mockClient.httpPut).toHaveBeenCalledWith('/service/123456', { body: {} });
+		});
+	});
+});
