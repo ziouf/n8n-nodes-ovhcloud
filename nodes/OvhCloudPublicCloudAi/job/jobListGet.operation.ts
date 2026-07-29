@@ -6,7 +6,9 @@ import type {
 } from 'n8n-workflow';
 import { ApiClient } from '../../../shared/transport/ApiClient';
 
-export function description(displayOptions: IDisplayOptions = {} as IDisplayOptions): INodeProperties[] {
+export function description(
+	displayOptions: IDisplayOptions = {} as IDisplayOptions,
+): INodeProperties[] {
 	return [
 		{
 			displayName: 'Public Cloud Project',
@@ -31,6 +33,21 @@ export function description(displayOptions: IDisplayOptions = {} as IDisplayOpti
 			],
 			displayOptions,
 		},
+		{
+			displayName: 'Status',
+			name: 'status',
+			type: 'options',
+			default: '',
+			description: 'Filter jobs by status (optional)',
+			options: [
+				{ name: 'All', value: '' },
+				{ name: 'COMPLETED', value: 'COMPLETED' },
+				{ name: 'FAILED', value: 'FAILED' },
+				{ name: 'PENDING', value: 'PENDING' },
+				{ name: 'RUNNING', value: 'RUNNING' },
+			],
+			displayOptions,
+		},
 	];
 }
 
@@ -45,7 +62,14 @@ export async function execute(this: IExecuteFunctions): Promise<INodeExecutionDa
 	const projectId = this.getNodeParameter('publicCloudProjectId', 0, '', {
 		extractValue: true,
 	}) as string;
-	const data = (await client.httpGet(`/publicCloud/project/${projectId}/ai/job`)) as unknown[];
+	const status = (this.getNodeParameter('status', 0) || '') as string;
+
+	const qs: Record<string, string> = {};
+	if (status) {
+		qs.status = status;
+	}
+
+	const data = (await client.httpGet(`/publicCloud/project/${projectId}/ai/job`, qs)) as unknown[];
 
 	if (!Array.isArray(data)) {
 		return this.helpers.returnJsonArray([data]);

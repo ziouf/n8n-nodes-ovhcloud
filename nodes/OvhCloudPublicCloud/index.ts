@@ -42,6 +42,24 @@ import {
 	description as rancherServiceDeleteDeleteDescription,
 	execute as rancherServiceDeleteDeleteExecute,
 } from './rancher/serviceDeleteDelete.operation';
+import {
+	descriptionGet as rancherAdminCredentialsGetDescription,
+	descriptionPost as rancherAdminCredentialsPostDescription,
+	executeGet as rancherAdminCredentialsGetExecute,
+	executePost as rancherAdminCredentialsPostExecute,
+} from './rancher/adminCredentials.operation';
+import {
+	description as rancherTaskListGetDescription,
+	execute as rancherTaskListGetExecute,
+} from './rancher/taskListGet.operation';
+import {
+	description as rancherTaskDetailGetDescription,
+	execute as rancherTaskDetailGetExecute,
+} from './rancher/taskDetailGet.operation';
+import {
+	description as rancherEventListGetDescription,
+	execute as rancherEventListGetExecute,
+} from './rancher/eventListGet.operation';
 
 import {
 	description as volumeListGetDescription,
@@ -188,6 +206,31 @@ export function description(displayOptions: IDisplayOptions): INodeProperties[] 
 				name: 'List Rancher Services',
 				value: 'rancherServiceListGet',
 				action: 'List Rancher services for a project',
+			},
+			{
+				name: 'List Tasks',
+				value: 'rancherTaskListGet',
+				action: 'List all tasks for a Rancher service',
+			},
+			{
+				name: 'Get Task',
+				value: 'rancherTaskDetailGet',
+				action: 'Get details of a specific Rancher task',
+			},
+			{
+				name: 'List Events',
+				value: 'rancherEventListGet',
+				action: 'List all events for a Rancher service',
+			},
+			{
+				name: 'Get Admin Credentials',
+				value: 'rancherAdminCredentialsGet',
+				action: 'Get admin credentials for a Rancher service',
+			},
+			{
+				name: 'Reset Admin Credentials',
+				value: 'rancherAdminCredentialsReset',
+				action: 'Reset admin password for a Rancher service',
 			},
 			{
 				name: 'List Snapshots',
@@ -356,6 +399,36 @@ export function description(displayOptions: IDisplayOptions): INodeProperties[] 
 		}) as INodeProperties[]),
 	);
 	properties.push(
+		...(rancherAdminCredentialsGetDescription({
+			...displayOptions,
+			show: { publicCloudOperation: ['rancherAdminCredentialsGet'] },
+		}) as INodeProperties[]),
+	);
+	properties.push(
+		...(rancherAdminCredentialsPostDescription({
+			...displayOptions,
+			show: { publicCloudOperation: ['rancherAdminCredentialsReset'] },
+		}) as INodeProperties[]),
+	);
+	properties.push(
+		...(rancherTaskListGetDescription({
+			...displayOptions,
+			show: { publicCloudOperation: ['rancherTaskListGet'] },
+		}) as INodeProperties[]),
+	);
+	properties.push(
+		...(rancherTaskDetailGetDescription({
+			...displayOptions,
+			show: { publicCloudOperation: ['rancherTaskDetailGet'] },
+		}) as INodeProperties[]),
+	);
+	properties.push(
+		...(rancherEventListGetDescription({
+			...displayOptions,
+			show: { publicCloudOperation: ['rancherEventListGet'] },
+		}) as INodeProperties[]),
+	);
+	properties.push(
 		...(volumeListGetDescription({
 			...displayOptions,
 			show: { publicCloudOperation: ['volumeListGet'] },
@@ -394,6 +467,16 @@ export async function execute(
 			return rancherServiceDeleteDeleteExecute.call(this);
 		case 'deleteVolumeDelete':
 			return volumeDeleteDeleteExecute.call(this);
+		case 'rancherAdminCredentialsGet':
+			return rancherAdminCredentialsGetExecute.call(this);
+		case 'rancherAdminCredentialsReset':
+			return rancherAdminCredentialsPostExecute.call(this);
+		case 'rancherTaskListGet':
+			return rancherTaskListGetExecute.call(this);
+		case 'rancherTaskDetailGet':
+			return rancherTaskDetailGetExecute.call(this);
+		case 'rancherEventListGet':
+			return rancherEventListGetExecute.call(this);
 		case 'getBackupDetail':
 			return backupGetExecute.call(this);
 		case 'getProjectDetail':

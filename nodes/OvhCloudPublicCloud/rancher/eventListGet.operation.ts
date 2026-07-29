@@ -1,14 +1,13 @@
 import type {
+	IDataObject,
 	IExecuteFunctions,
-	IDisplayOptions,
 	INodeExecutionData,
+	IDisplayOptions,
 	INodeProperties,
 } from 'n8n-workflow';
 import { ApiClient } from '../../../shared/transport/ApiClient';
 
-export function description(
-	displayOptions: IDisplayOptions = {} as IDisplayOptions,
-): INodeProperties[] {
+export function description(displayOptions: IDisplayOptions): INodeProperties[] {
 	return [
 		{
 			displayName: 'Public Cloud Project',
@@ -34,18 +33,25 @@ export function description(
 			displayOptions,
 		},
 		{
-			displayName: 'Status',
-			name: 'status',
-			type: 'options',
-			default: '',
-			description: 'Filter notebooks by status (optional)',
-			options: [
-				{ name: 'ACTIVE', value: 'ACTIVE' },
-				{ name: 'All', value: '' },
-				{ name: 'CREATING', value: 'CREATING' },
-				{ name: 'DELETING', value: 'DELETING' },
-				{ name: 'ERROR', value: 'ERROR' },
-				{ name: 'STOPPED', value: 'STOPPED' },
+			displayName: 'Rancher Service ID',
+			name: 'rancherServiceId',
+			type: 'resourceLocator',
+			default: { mode: 'list', value: '' },
+			required: true,
+			description: 'The Rancher service UUID (e.g. a1b2c3d4-e5f6-7890-abcd-ef1234567890)',
+			modes: [
+				{
+					displayName: 'From List',
+					name: 'list',
+					type: 'list',
+					typeOptions: { searchListMethod: 'getPublicCloudRancherServices' },
+				},
+				{
+					displayName: 'By ID',
+					name: 'name',
+					type: 'string',
+					placeholder: 'a1b2c3d4-e5f6-7890-abcd-ef1234567890',
+				},
 			],
 			displayOptions,
 		},
@@ -53,31 +59,23 @@ export function description(
 }
 
 /**
- * Executes the List AI Notebooks operation.
+ * Executes the List Rancher Events operation.
  *
  * HTTP method: GET
- * Endpoint: /publicCloud/project/{projectId}/ai/notebook
+ * Endpoint: /publicCloud/project/{projectId}/rancher/{rancherId}/event
  */
 export async function execute(this: IExecuteFunctions): Promise<INodeExecutionData[]> {
 	const client = new ApiClient(this);
 	const projectId = this.getNodeParameter('publicCloudProjectId', 0, '', {
 		extractValue: true,
 	}) as string;
-	const status = (this.getNodeParameter('status', 0) || '') as string;
-
-	const qs: Record<string, string> = {};
-	if (status) {
-		qs.status = status;
-	}
+	const rancherServiceId = this.getNodeParameter('rancherServiceId', 0, '', {
+		extractValue: true,
+	}) as string;
 
 	const data = (await client.httpGet(
-		`/publicCloud/project/${projectId}/ai/notebook`,
-		qs,
-	)) as unknown[];
+		`/publicCloud/project/${projectId}/rancher/${rancherServiceId}/event`,
+	)) as IDataObject[];
 
-	if (!Array.isArray(data)) {
-		return this.helpers.returnJsonArray([data]);
-	}
-
-	return this.helpers.returnJsonArray(data.map((item) => item as INodeExecutionData));
+	return this.helpers.returnJsonArray(data);
 }

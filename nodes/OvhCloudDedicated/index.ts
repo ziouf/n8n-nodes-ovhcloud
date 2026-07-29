@@ -119,6 +119,14 @@ import {
 	execute as executeNetbootOrderPut,
 	description as descriptionNetbootOrderPut,
 } from './resources/netbootOrderPut.operation';
+import {
+	execute as executeTaskListGet,
+	description as descriptionTaskListGet,
+} from './resources/taskListGet.operation';
+import {
+	execute as executeTaskDetailGet,
+	description as descriptionTaskDetailGet,
+} from './resources/taskDetailGet.operation';
 
 export function description(displayOptions: IDisplayOptions): INodeProperties[] {
 	const operationProperties: INodeProperties[] = [
@@ -244,11 +252,21 @@ export function description(displayOptions: IDisplayOptions): INodeProperties[] 
 					value: 'get',
 					action: 'Get properties of a dedicated server',
 				},
+				{
+					name: 'Get Task',
+					value: 'taskDetailGet',
+					action: 'Get details of a specific dedicated server task',
+				},
 				{ name: 'IPMI Get', value: 'ipmiGet', action: 'Get IPMI info of a dedicated server' },
 				{
 					name: 'List',
 					value: 'list',
 					action: 'List all dedicated servers',
+				},
+				{
+					name: 'List Tasks',
+					value: 'taskListGet',
+					action: 'List all tasks for a dedicated server',
 				},
 				{
 					name: 'Netboot Order Update',
@@ -392,6 +410,14 @@ export function description(displayOptions: IDisplayOptions): INodeProperties[] 
 			...displayOptions,
 			show: { dedicatedServerOperation: ['netbootOrderUpdate'] },
 		}) as INodeProperties[]),
+		...(descriptionTaskListGet({
+			...displayOptions,
+			show: { dedicatedServerOperation: ['taskListGet'] },
+		}) as INodeProperties[]),
+		...(descriptionTaskDetailGet({
+			...displayOptions,
+			show: { dedicatedServerOperation: ['taskDetailGet'] },
+		}) as INodeProperties[]),
 	];
 
 	return properties;
@@ -466,6 +492,10 @@ export async function execute(
 			return executeServerUpdate.call(this);
 		case 'netbootOrderUpdate':
 			return executeNetbootOrderPut.call(this);
+		case 'taskListGet':
+			return executeTaskListGet.call(this);
+		case 'taskDetailGet':
+			return executeTaskDetailGet.call(this);
 	}
 
 	throw new Error(`Unsupported operation "${operation}" for resource "dedicatedServer"`);

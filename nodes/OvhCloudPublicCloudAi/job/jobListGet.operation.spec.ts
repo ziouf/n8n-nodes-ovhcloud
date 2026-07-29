@@ -17,7 +17,7 @@ describe('job jobListGet.operation', () => {
 	describe('description', () => {
 		it('should return all required parameters', () => {
 			const result = description({ show: {} });
-			expect(result).toHaveLength(1 + 0);
+			expect(result).toHaveLength(2);
 		});
 
 		it('should have list and name modes for project locator', () => {
@@ -40,13 +40,11 @@ describe('job jobListGet.operation', () => {
 			const client = new ApiClient(mockExecuteFunctions) as any;
 			client.httpGet.mockResolvedValue(mockData);
 
-			mockExecuteFunctions.getNodeParameter.mockReturnValue(
-				(param: string): string | undefined => {
-					if (param === 'publicCloudProjectId') return '12345678-1234-1234-1234-1234567890ab';
+			mockExecuteFunctions.getNodeParameter.mockReturnValue((param: string): string | undefined => {
+				if (param === 'publicCloudProjectId') return '12345678-1234-1234-1234-1234567890ab';
 
-					return '';
-				},
-			);
+				return '';
+			});
 
 			const result = await execute.call(mockExecuteFunctions);
 			expect(client.httpGet).toHaveBeenCalled();
@@ -58,13 +56,11 @@ describe('job jobListGet.operation', () => {
 			const client = new ApiClient(mockExecuteFunctions) as any;
 			client.httpGet.mockResolvedValue(mockData);
 
-			mockExecuteFunctions.getNodeParameter.mockReturnValue(
-				(param: string): string | undefined => {
-					if (param === 'publicCloudProjectId') return '12345678-1234-1234-1234-1234567890ab';
+			mockExecuteFunctions.getNodeParameter.mockReturnValue((param: string): string | undefined => {
+				if (param === 'publicCloudProjectId') return '12345678-1234-1234-1234-1234567890ab';
 
-					return '';
-				},
-			);
+				return '';
+			});
 
 			const result = await execute.call(mockExecuteFunctions);
 			expect(result).toHaveLength(1);
