@@ -54,18 +54,23 @@
 			"dist/credentials/OvhCloudApi.credentials.js"
 		],
 		"nodes": [
-			"dist/nodes/OvhCloudCluster/OvhCloudCluster.node.js",
 			"dist/nodes/OvhCloudDedicated/OvhCloudDedicated.node.js",
+			"dist/nodes/OvhCloudDedicatedCloud/OvhCloudDedicatedCloud.node.js",
 			"dist/nodes/OvhCloudDomain/OvhCloudDomain.node.js",
+			"dist/nodes/OvhCloudEmailPro/OvhCloudEmailPro.node.js",
 			"dist/nodes/OvhCloudHosting/OvhCloudHosting.node.js",
 			"dist/nodes/OvhCloudHostingWebResource/OvhCloudHostingWebResource.node.js",
+			"dist/nodes/OvhCloudIPLoadbalancing/OvhCloudIPLoadbalancing.node.js",
 			"dist/nodes/OvhCloudMe/OvhCloudMe.node.js",
+			"dist/nodes/OvhCloudMxPlan/OvhCloudMxPlan.node.js",
 			"dist/nodes/OvhCloudPublicCloud/OvhCloudPublicCloud.node.js",
 			"dist/nodes/OvhCloudPublicCloudAi/OvhCloudPublicCloudAi.node.js",
 			"dist/nodes/OvhCloudPublicCloudBlockStorage/OvhCloudPublicCloudBlockStorage.node.js",
 			"dist/nodes/OvhCloudService/OvhCloudService.node.js",
+			"dist/nodes/OvhCloudSms/OvhCloudSms.node.js",
 			"dist/nodes/OvhCloudSsl/OvhCloudSsl.node.js",
 			"dist/nodes/OvhCloudSupport/OvhCloudSupport.node.js",
+			"dist/nodes/OvhCloudVeeamEnterprisePlus/OvhCloudVeeamEnterprisePlus.node.js",
 			"dist/nodes/OvhCloudVps/OvhCloudVps.node.js"
 		]
 	},

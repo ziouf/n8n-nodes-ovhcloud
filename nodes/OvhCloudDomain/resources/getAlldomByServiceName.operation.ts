@@ -1,7 +1,7 @@
 import type { IExecuteFunctions, INodeExecutionData } from 'n8n-workflow';
 import { ApiClient } from '../../../shared/transport/ApiClient';
 
-/** getTaskById operation. */
+/** Get a specific domain (alldom) by service name. */
 export function description() {
 	return [];
 }
@@ -9,9 +9,9 @@ export function description() {
 export async function execute(this: IExecuteFunctions): Promise<INodeExecutionData[]> {
 	const client = new ApiClient(this);
 	try {
-		const data: unknown[] = (await client.httpGet('/domain/getTaskById')) as unknown[];
+		const data: unknown[] = (await client.httpGet('/domain/getByServiceName')) as unknown[];
 		return this.helpers.returnJsonArray(data as INodeExecutionData[]) as INodeExecutionData[];
 	} catch (error) {
-		throw new Error(`Failed to get task by ID: ${error}`);
+		throw new Error(`Failed to get alldom by service name: ${error}`);
 	}
 }

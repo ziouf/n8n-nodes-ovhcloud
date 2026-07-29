@@ -1,4 +1,4 @@
-import type { IExecuteFunctions, INodeProperties } from 'n8n-workflow';
+import type { IExecuteFunctions, INodeExecutionData, INodeProperties } from 'n8n-workflow';
 
 // Email Pro operations
 import * as listServices from './resources/list.operation';
@@ -14,12 +14,13 @@ export function description() {
 		name: 'emailProOperation',
 		type: 'options',
 		noDataExpression: true,
-		default: 'listServices',
+		default: undefined,
 		options: [
-			{ displayName: 'Get Service By Name', value: 'getServiceByName' },
-			{ displayName: 'List Services', value: 'listServices' },
+			{ displayName: 'Get Service By Name', name: 'getServiceByName', value: 'getServiceByName' },
+			{ displayName: 'List Services', name: 'listServices', value: 'listServices' },
 			{
 				displayName: 'Update Suspend Status By Service Name',
+				name: 'updateSuspendStatusByServiceName',
 				value: 'updateSuspendStatusByServiceName',
 			},
 		],

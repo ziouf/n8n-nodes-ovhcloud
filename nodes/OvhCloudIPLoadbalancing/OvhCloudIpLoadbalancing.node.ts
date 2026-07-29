@@ -9,21 +9,28 @@ import { OvhCloudApiSecretName, OvhCloudIcon } from '../../shared/constants';
 import { description, execute } from './index';
 import { BaseNode, executeTemplate } from '../../shared/nodes/BaseNode';
 
-export class OvhCloudDomain extends BaseNode implements INodeType {
+export class OvhCloudIpLoadbalancing extends BaseNode implements INodeType {
 	description: INodeTypeDescription = {
-		displayName: 'OVH Cloud Domain',
-		name: 'ovhCloudDomain',
+		displayName: 'OVH IP Load Balancing',
+		name: 'ovhCloudIpLoadbalancing',
 		icon: OvhCloudIcon,
 		group: ['input'],
 		version: 1,
-		subtitle: '={{$parameter["domainOperation"]}} / {{$parameter["resourceType"] ?? "alldom"}}',
-		description: 'Manage OVH Cloud Domain services via /domain API v2 (GET/PUT operations)',
-		defaults: { name: 'OVH Cloud Domain' },
+		subtitle: '={{$parameter["ipLoadbalancingOperation"]}}',
+		description: 'Manage IP Load Balancing services via /ipLoadbalancing API',
+		defaults: {
+			name: 'OVH IP Load Balancing',
+		},
 		usableAsTool: true,
 		inputs: [NodeConnectionTypes.Main],
 		outputs: [NodeConnectionTypes.Main],
-		credentials: [{ name: OvhCloudApiSecretName, required: true }],
-		properties: [...description()],
+		credentials: [
+			{
+				name: OvhCloudApiSecretName,
+				required: true,
+			},
+		],
+		properties: [...description({})],
 	};
 
 	async execute(this: IExecuteFunctions): Promise<INodeExecutionData[][]> {

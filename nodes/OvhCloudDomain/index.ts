@@ -1,65 +1,43 @@
 import type { IExecuteFunctions, INodeExecutionData, INodeProperties } from 'n8n-workflow';
 
-// alldom operations
-import * as listAlldom from './resources/alldom/listAlldom.operation';
-import * as getAlldomByServiceName from './resources/alldom/getAlldomByServiceName.operation';
+// Domain operations - import all available resources
+import * as listAlldoms from './resources/listAlldoms.operation';
+import * as getAlldomByServiceName from './resources/getAlldomByServiceName.operation';
+import * as listDomains from './resources/listDomains.operation';
+import { execute as getDomainByServiceNameExecute } from './resources/getDomainByServiceName.operation';
+import { execute as updateDomainByServiceNameExecute } from './resources/updateDomainByServiceName.operation';
 
-// domain operations
-import * as listDomains from './resources/domain/listDomains.operation';
-import * as getDomainByServiceName from './resources/domain/getDomainByServiceName.operation';
-import * as updateDomainByServiceName from './resources/domain/updateDomainByServiceName.operation';
+export function description() {
+	const props: INodeProperties[] = [];
 
-// task operations
-import * as listTasksByResourceTypeAndName from './resources/task/listTasksByResourceTypeAndName.operation';
-import * as getTaskByResourceTypeNameAndId from './resources/task/getTaskByResourceTypeNameAndId.operation';
-
-export function description(): INodeProperties[] {
-	const props: INodeProperties[] = [
-		{
-			displayName: 'Resource Type',
-			name: 'domainOperation',
-			type: 'options',
-			default: 'searchAlldom',
-			options: [
-				{
-					name: 'All Domains (Alldom)',
-					value: 'searchAlldom',
-					description: 'List all alldoms for the account',
-				},
-				{
-					name: 'Get Alldom Details',
-					value: 'getAlldomByServiceName',
-					description: 'Get details of an specific alldom service',
-				},
-				{
-					name: 'Get Domain Details',
-					value: 'getDomainByServiceName',
-					description: 'Get details of an specific domain service',
-				},
-				{
-					name: 'List Domains (Name)',
-					value: 'listDomains',
-					description: 'List all domains for the account',
-				},
-				{
-					name: 'Update Domain',
-					value: 'updateDomainByServiceName',
-					description: 'Update a specific domain with new configuration',
-				},
-			],
-		},
-	];
-
-	// alldom operations params (only show when resourceType === 'alldom')
-	props.push(...listAlldom.description());
-	props.push(...getAlldomByServiceName.description());
-
-	// domain operations params (only show when resourceType === 'name')
-	props.push(...listDomains.description(), ...getDomainByServiceName.description());
-
-	// task operations params (always shown since they have their own resourceType selector)
-	props.push(...listTasksByResourceTypeAndName.description());
-	props.push(...getTaskByResourceTypeNameAndId.description());
+	// Operation picker (alphabetical)
+	props.push({
+		displayName: 'Operation',
+		name: 'domainOperation',
+		type: 'options',
+		noDataExpression: true,
+		default: undefined,
+		options: [
+			{
+				displayName: 'Get Alldom By Service Name',
+				name: 'getAlldomByServiceName',
+				value: 'getAlldomByServiceName',
+			},
+			{
+				displayName: 'Get Domain By Service Name',
+				name: 'getDomainByServiceName',
+				value: 'getDomainByServiceName',
+			},
+			{ displayName: 'List Domains', name: 'listDomains', value: 'listDomains' },
+			{ displayName: 'List Tasks', name: 'listTasks', value: 'listTasks' },
+			{ displayName: 'List All Domains (alldoms)', name: 'searchAlldom', value: 'searchAlldom' },
+			{
+				displayName: 'Update Domain By Service Name',
+				name: 'updateDomainByServiceName',
+				value: 'updateDomainByServiceName',
+			},
+		],
+	});
 
 	return props;
 }
@@ -69,15 +47,15 @@ export async function execute(this: IExecuteFunctions): Promise<INodeExecutionDa
 
 	switch (operation) {
 		case 'searchAlldom':
-			return listAlldom.execute.call(this);
+			return listAlldoms.execute.call(this);
 		case 'getAlldomByServiceName':
 			return getAlldomByServiceName.execute.call(this);
 		case 'listDomains':
 			return listDomains.execute.call(this);
 		case 'getDomainByServiceName':
-			return getDomainByServiceName.execute.call(this);
+			return getDomainByServiceNameExecute.call(this);
 		case 'updateDomainByServiceName':
-			return updateDomainByServiceName.execute.call(this);
+			return updateDomainByServiceNameExecute.call(this);
 		default: {
 			throw new Error(`No handler for operation '${operation}'`);
 		}

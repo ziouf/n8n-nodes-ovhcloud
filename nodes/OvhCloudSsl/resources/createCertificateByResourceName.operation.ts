@@ -1,4 +1,4 @@
-import type { IExecuteFunctions, IDisplayOptions } from 'n8n-workflow';
+import type { IDataObject, IExecuteFunctions, IDisplayOptions } from 'n8n-workflow';
 import { ApiClient } from '../../../shared/transport/ApiClient';
 
 export function description(displayOptions: IDisplayOptions) {
@@ -36,9 +36,9 @@ export async function execute(this: IExecuteFunctions, itemIndex?: number) {
 	}) as string;
 
 	return this.helpers.returnJsonArray([
-		await client.httpPost(
+		(await client.httpPost(
 			`/webhosting/resource/${encodeURIComponent(serviceName)}/certificate`,
 			{},
-		),
+		)) as IDataObject,
 	]);
 }
