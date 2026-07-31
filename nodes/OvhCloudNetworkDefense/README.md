@@ -2,13 +2,17 @@
 
 > Manage network defense services via /networkDefense API v2
 
+## Overview
+
+This node provides **2 operations** with **2 tests** for managing OVHcloud resources.
+
 ## Available Operations
 
-This node provides the following operations organized by resource category:
+### Root Operations
 
-| Category | Operations | Tests |
-|----------|-----------|-------|
-| `*` | 0 | 0 |
-| (root) | 2 | 2 |
+| Operation | Method | Endpoint | Tests |
+|-----------|--------|----------|-------|
+| [`networkDefensevaceventListGet`](./`networkDefensevaceventListGet`.ts) | GET | `...` | 1 |
+| [`networkDefensevactrafficListGet`](./`networkDefensevactrafficListGet`.ts) | GET | `...` | 1 |
 
 **Total:** 2 operations, 2 tests

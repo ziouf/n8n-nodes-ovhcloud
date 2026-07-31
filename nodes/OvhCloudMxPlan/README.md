@@ -2,12 +2,15 @@
 
 > Manage MX plan configurations via /email/mxplan API v1
 
+## Overview
+
+This node provides **4 operations** with **4 tests** for managing OVHcloud resources.
+
 ## Available Operations
 
-This node provides the following operations organized by resource category:
+### resources
 
-| Category | Operations | Tests |
-|----------|-----------|-------|
-| `resources` | 4 | 4 |
+| Operation | Method | Endpoint | Tests |
+|-----------|--------|----------|-------|
 
 **Total:** 4 operations, 4 tests

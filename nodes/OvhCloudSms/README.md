@@ -2,12 +2,15 @@
 
 > Manage SMS services — send, list, blacklist via /sms API v1
 
+## Overview
+
+This node provides **11 operations** with **11 tests** for managing OVHcloud resources.
+
 ## Available Operations
 
-This node provides the following operations organized by resource category:
+### resources
 
-| Category | Operations | Tests |
-|----------|-----------|-------|
-| `resources` | 11 | 11 |
+| Operation | Method | Endpoint | Tests |
+|-----------|--------|----------|-------|
 
 **Total:** 11 operations, 11 tests
