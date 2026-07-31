@@ -3,7 +3,7 @@
 [![n8n Nodes Base](https://img.shields.io/badge/n8n-nodes_base-orange.svg)](https://docs.n8n.io/integrations/#community-nodes)
 [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
 
-**n8n-nodes-ovhcloud** is a community node for [n8n](https://n8n.io/) that enables seamless integration with OVHcloud APIs. It provides **7 dedicated nodes** to manage your entire OVH Cloud infrastructure — from web hosting and virtual private servers, public cloud projects with block storage management, domain management, DNS zones, dedicated hardware, and account billing — all orchestrated directly inside your n8n workflows.
+**n8n-nodes-ovhcloud** is a community node for [n8n](https://n8n.io/) that enables seamless integration with OVHcloud APIs. It provides **43 dedicated nodes** to manage your entire OVH Cloud infrastructure — from web hosting and virtual private servers, public cloud projects with Kubernetes and AI services, domain management, dedicated hardware, billing, SMS, telephony, CDN, storage, and more — all orchestrated directly inside your n8n workflows.
 
 > **Note**: n8n is a workflow automation platform released under the [FairCode license](https://docs.n8n.io/sustainable-use-license/).
 
@@ -36,15 +36,90 @@ All nodes share common features across every OVH Cloud endpoint:
 
 ### Available Nodes
 
-| Node                           | Description                                                                                    | Operations |
-| ------------------------------ | ---------------------------------------------------------------------------------------------- | ---------- |
-| **OVH Cloud Dedicated Server** | Manage dedicated servers (get, list, BIOS settings, backups, firewall, etc.)                   | 12         |
-| **OVH Cloud Domain**           | Manage domains — listing, extensions, contacts, auth info, DS records, DNS zones               | 19         |
-| **OVH Cloud Hosting Web**      | Manage web hosting services (databases, crons, users, SSL, env vars, etc.)                     | 22         |
-| **OVH Cloud Me**               | Manage your OVHcloud account details and billing                                               | 10         |
-| **OVH Cloud Public Cloud**     | Manage public cloud projects, Rancher services, block storage volumes/backups/snapshots (CRUD) | 21         |
-| **OVH Cloud Service**          | Manage OVHcloud services (get, list, renews, reopen, suspend, terminate)                       | 8          |
-| **OVH Cloud VPS**              | Manage virtual private servers — get, reboot, install OS images                                | 30         |
+The plugin provides **43 nodes** organized by category:
+
+#### 🖥️ Compute & Infrastructure
+
+| Node                                | Description                                                                                                  | Sub-README                                       |
+| ----------------------------------- | ------------------------------------------------------------------------------------------------------------ | ------------------------------------------------ |
+| **OVH Cloud Dedicated Server**      | Manage dedicated servers (BIOS, backups, firewall, Ceph, cluster, housing, etc.)                             | [→](nodes/OvhCloudDedicated/README.md)           |
+| **OVH Cloud Dedicated Cloud**       | Manage dedicated cloud services                                                                              | [→](nodes/OvhCloudDedicatedCloud/README.md)      |
+| **OVH Cloud VPS**                   | Manage virtual private servers (get, reboot, install OS, snapshots, disks, netboot)                          | [→](nodes/OvhCloudVps/README.md)                 |
+| **OVH Cloud Public Cloud**          | Manage public cloud projects, Kubernetes, instances, regions, databases (14 engines), block storage, Rancher | [→](nodes/OvhCloudPublicCloud/README.md)         |
+| **OVH Cloud Public Cloud AI**       | Manage AI services — apps, jobs, notebooks, registries, data stores, alerting                                | [→](nodes/OvhCloudPublicCloudAi/README.md)       |
+| **OVH Cloud VMware Cloud Director** | Manage VMware Cloud Director services                                                                        | [→](nodes/OvhCloudVmwareCloudDirector/README.md) |
+| **OVH Cloud Cluster**               | Manage cluster services                                                                                      | [→](nodes/OvhCloudCluster/README.md)             |
+
+#### 🌐 Networking & Storage
+
+| Node                            | Description                                  | Sub-README                                   |
+| ------------------------------- | -------------------------------------------- | -------------------------------------------- |
+| **OVH Cloud vRack**             | Manage vRack networks                        | [→](nodes/OvhCloudVrack/README.md)           |
+| **OVH Cloud vRack Services**    | Manage vRack services (V2)                   | [→](nodes/OvhCloudVrackServices/README.md)   |
+| **OVH Cloud IP**                | Manage IP addresses, equilibriums, failovers | [→](nodes/OvhCloudIp/README.md)              |
+| **OVH Cloud IP Load Balancing** | Manage IP load balancing services            | [→](nodes/OvhCloudIPLoadbalancing/README.md) |
+| **OVH Cloud CDN**               | Manage CDN services                          | [→](nodes/OvhCloudCdn/README.md)             |
+| **OVH Cloud Storage**           | Manage object storage services               | [→](nodes/OvhCloudStorage/README.md)         |
+| **OVH Cloud Network Defense**   | Manage network defense services              | [→](nodes/OvhCloudNetworkDefense/README.md)  |
+
+#### 🌍 Domains & Hosting
+
+| Node                               | Description                                                                                        | Sub-README                                      |
+| ---------------------------------- | -------------------------------------------------------------------------------------------------- | ----------------------------------------------- |
+| **OVH Cloud Domain**               | Manage domains — listing, contacts, DNS zones, records, wildcards, pools, redirects, WHOIS privacy | [→](nodes/OvhCloudDomain/README.md)             |
+| **OVH Cloud Domain (V2)**          | Manage domains via API v2                                                                          | [→](nodes/OvhCloudDomainV2/README.md)           |
+| **OVH Cloud Hosting Web**          | Manage web hosting services (databases, crons, FTP, mail, PHP, statistics, users, SSL)             | [→](nodes/OvhCloudHosting/README.md)            |
+| **OVH Cloud Hosting Web Resource** | Manage web hosting resources (attached domains, SSL, users, websites)                              | [→](nodes/OvhCloudHostingWebResource/README.md) |
+| **OVH Cloud Web Hosting (V2)**     | Manage web hosting services via API v2                                                             | [→](nodes/OvhCloudWebhostingV2/README.md)       |
+| **OVH Cloud Managed CMS**          | Manage managed CMS services                                                                        | [→](nodes/OvhCloudManagedCMS/README.md)         |
+
+#### 📧 Email & Messaging
+
+| Node                    | Description                                 | Sub-README                            |
+| ----------------------- | ------------------------------------------- | ------------------------------------- |
+| **OVH Cloud Email Pro** | Manage email professional services          | [→](nodes/OvhCloudEmailPro/README.md) |
+| **OVH Cloud MX Plan**   | Manage MX plan configurations               | [→](nodes/OvhCloudMxPlan/README.md)   |
+| **OVH Cloud Zimbra**    | Manage Zimbra email services                | [→](nodes/OvhCloudZimbra/README.md)   |
+| **OVH Cloud SMS**       | Manage SMS services — send, list, blacklist | [→](nodes/OvhCloudSms/README.md)      |
+| **OVH Cloud SSL**       | Manage SSL certificates                     | [→](nodes/OvhCloudSsl/README.md)      |
+
+#### 💰 Billing & Orders
+
+| Node                   | Description                                                                            | Sub-README                            |
+| ---------------------- | -------------------------------------------------------------------------------------- | ------------------------------------- |
+| **OVH Cloud Me**       | Manage your OVHcloud account details, billing, and subscriptions                       | [→](nodes/OvhCloudMe/README.md)       |
+| **OVH Cloud Service**  | Manage OVHcloud services (get, list, renews, reopen, suspend, terminate)               | [→](nodes/OvhCloudService/README.md)  |
+| **OVH Cloud Services** | Manage generic services                                                                | [→](nodes/OvhCloudServices/README.md) |
+| **OVH Cloud Order**    | Manage orders — carts, catalogs, upgrades, dedicated, telephony, licenses, emails, VPS | [→](nodes/OvhCloudOrder/README.md)    |
+| **OVH Cloud Price**    | Consult prices for all OVH Cloud products                                              | [→](nodes/OvhCloudPrice/README.md)    |
+| **OVH Cloud Pack**     | Manage pack services                                                                   | [→](nodes/OvhCloudPack/README.md)     |
+
+#### 📞 Telephony & Microsoft
+
+| Node                                | Description                                                                          | Sub-README                                       |
+| ----------------------------------- | ------------------------------------------------------------------------------------ | ------------------------------------------------ |
+| **OVH Cloud Telephony**             | Manage telephony — aliases, lines, trunks, numbers, accessories, offers, directories | [→](nodes/OvhCloudTelephony/README.md)           |
+| **OVH Cloud Microsoft Services**    | Manage Microsoft services (Exchange, Office 365)                                     | [→](nodes/OvhCloudMsServices/README.md)          |
+| **OVH Cloud Veeam Enterprise Plus** | Manage Veeam Enterprise Plus services                                                | [→](nodes/OvhCloudVeeamEnterprisePlus/README.md) |
+
+#### 🔐 Security & Identity
+
+| Node                       | Description                                                       | Sub-README                                |
+| -------------------------- | ----------------------------------------------------------------- | ----------------------------------------- |
+| **OVH Cloud IAM**          | Manage identity and access management resources                   | [→](nodes/OvhCloudIam/README.md)          |
+| **OVH Cloud OKMS**         | Manage key management services                                    | [→](nodes/OvhCloudOkms/README.md)         |
+| **OVH Cloud Support**      | Manage support tickets — create, get, reply, score, close, reopen | [→](nodes/OvhCloudSupport/README.md)      |
+| **OVH Cloud Notification** | Manage notification services                                      | [→](nodes/OvhCloudNotification/README.md) |
+
+#### 💾 Database & Catalog
+
+| Node                                | Description                             | Sub-README                                     |
+| ----------------------------------- | --------------------------------------- | ---------------------------------------------- |
+| **OVH Cloud Database as a Service** | Manage database services                | [→](nodes/OvhCloudDbaas/README.md)             |
+| **OVH Cloud Backup Services**       | Manage backup services                  | [→](nodes/OvhCloudBackupServices/README.md)    |
+| **OVH Cloud Commercial Catalog**    | Browse commercial catalog               | [→](nodes/OvhCloudCommercialCatalog/README.md) |
+| **OVH Cloud Location**              | Browse location data                    | [→](nodes/OvhCloudLocation/README.md)          |
+| **OVH Cloud Public Cloud (V2)**     | Manage public cloud projects via API v2 | [→](nodes/OvhCloudPublicCloudV2/README.md)     |
 
 ---
 
@@ -211,17 +286,7 @@ See the [full authentication guide](docs/guides/authentication-guide.md) for det
 
 ### 3. Use
 
-Add any of the **7 available OVH Cloud nodes** to your workflow — select a resource, pick an operation from the dropdown, fill in parameters (resourceLocator for services with IDs), and execute:
-
-| Node                           | Resource Locator Fields                                                          | Example Use Cases                                                                          |
-| ------------------------------ | -------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------ |
-| **OVH Cloud Dedicated Server** | `serviceName` via list or name                                                   | Get server BIOS settings, manage backup ACLs, check datacenter availability                |
-| **OVH Cloud Domain**           | Various (`domainOperation`, `zoneName`, etc.)                                    | List domains & extensions, retrieve DS records and nameservers, monitor DNS zone tasks     |
-| **OVH Cloud Hosting Web**      | `serviceName` via list or name                                                   | Manage databases, crons, users, SSL certificates for web hosting accounts                  |
-| **OVH Cloud Me**               | Account-level (no resourceLocator)                                               | Get billing summary, account details, and subscription info                                |
-| **OVH Cloud Public Cloud**     | `publicCloudProjectId`, `rancherId`, volume/backup/snapshot IDs via list or name | List cloud projects, manage Rancher services, CRUD block storage volumes/backups/snapshots |
-| **OVH Cloud Service**          | `serviceName` via list or name                                                   | List all services, reopen terminated ones, suspend/terminate resources                     |
-| **OVH Cloud VPS**              | `serviceName` via list or name                                                   | Reboot VPS instances, install OS images from catalog                                       |
+Add any of the **43 available OVH Cloud nodes** to your workflow — select a resource, pick an operation from the dropdown, fill in parameters (resourceLocator for services with IDs), and execute.
 
 See [workflow examples](docs/guides/examples.md) for common use cases.
 
@@ -252,39 +317,73 @@ n8n-nodes-ovhcloud/
 ├── credentials/
 │   └── OvhCloudApi.credentials.ts      # OVH API credential type (SHA1 signing)
 ├── nodes/
-│   ├── OvhCloudDedicated/              # Dedicated servers node (12 operations)
+│   ├── OvhCloudBackupServices/         # Backup services node
+│   ├── OvhCloudCdn/                    # CDN services node
+│   ├── OvhCloudCluster/                # Cluster services node
+│   ├── OvhCloudCommercialCatalog/      # Commercial catalog node
+│   ├── OvhCloudDbaas/                  # Database as a Service node
+│   ├── OvhCloudDedicated/              # Dedicated servers node (65+ operations)
 │   │   ├── OvhCloudDedicated.node.ts    # n8n node class
 │   │   ├── index.ts                    # description() + execute() router
-│   │   └── resources/*.operation.ts    # operation implementations
-│   ├── OvhCloudDomain/                 # Domain management node (19 operations)
-│   │   ├── OvhCloudDomain.node.ts       # n8n node class
-│   │   ├── index.ts                    # description() + execute() router with resourceLocator dropdown
-│   │   └── resources/*.operation.ts    # operation implementations (extensions, contacts, zones...)
-│   ├── OvhCloudHosting/                # Web hosting node (22 operations)
-│   │   ├── OvhCloudHosting.node.ts      # n8n node class
-│   │   ├── index.ts                    # description() + execute() router
-│   │   └── resources/*.operation.ts    # operation implementations
+│   │   ├── README.md                   # Node documentation
+│   │   └── resources/
+│   │       ├── ceph/                   # Ceph/NAS operations
+│   │       ├── cluster/                # Cluster operations
+│   │       ├── housing/                # Housing operations
+│   │       ├── installation/           # Installation template operations
+│   │       ├── monitoring/             # Monitoring operations
+│   │       └── option/                 # Option operations
+│   ├── OvhCloudDedicatedCloud/         # Dedicated cloud node
+│   ├── OvhCloudDomain/                 # Domain management node (31 operations)
+│   ├── OvhCloudDomainV2/               # Domain V2 node
+│   ├── OvhCloudEmailPro/               # Email Pro node
+│   ├── OvhCloudHosting/                # Web hosting node (39 operations)
+│   ├── OvhCloudHostingWebResource/     # Web hosting resource node
+│   ├── OvhCloudIam/                    # IAM node (V2)
+│   ├── OvhCloudIp/                     # IP management node
+│   ├── OvhCloudIPLoadbalancing/        # IP Load Balancing node
+│   ├── OvhCloudLocation/               # Location node (V2)
+│   ├── OvhCloudManagedCMS/             # Managed CMS node (V2)
 │   ├── OvhCloudMe/                     # Account management node (10 operations)
-│   │   ├── OvhCloudMe.node.ts           # n8n node class
-│   │   ├── index.ts                    # description() + execute() router
-│   │   └── resources/*.operation.ts    # operation implementations
-│   ├── OvhCloudService/                # Service management node (8 operations)
-│   │   ├── OvhCloudService.node.ts      # n8n node class
-│   │   ├── index.ts                    # description() + execute() router
-│   │   └── resources/*.operation.ts    # operation implementations
-│   ├── OvhCloudPublicCloud/            # Public Cloud node (21 operations) — uses sub-folder per category design pattern
+│   ├── OvhCloudMsServices/             # Microsoft Services node
+│   ├── OvhCloudMxPlan/                 # MX Plan node
+│   ├── OvhCloudNetworkDefense/         # Network Defense node (V2)
+│   ├── OvhCloudNotification/           # Notification node (V2)
+│   ├── OvhCloudOkms/                   # OKMS node (V2)
+│   ├── OvhCloudOrder/                  # Order management node
+│   ├── OvhCloudPack/                   # Pack services node
+│   ├── OvhCloudPrice/                  # Price consultation node
+│   ├── OvhCloudPublicCloud/            # Public Cloud node (300+ operations)
 │   │   ├── OvhCloudPublicCloud.node.ts  # n8n node class
-│   │   ├── index.ts                    # description() + execute() router with switch dispatcher
-│   │   ├── project/*.operation.ts      # Project GET operations (list, get)
-│   │   ├── rancher/*.operation.ts      # Rancher Services GET operations (list, get, capabilities)
-│   │   └── blockstorage/*.operation.ts # Block Storage CRUD operations (volumes + backups + snapshots)
-│   ├── OvhCloudVps/                    # VPS management node (30 operations)
-│   │   ├── OvhCloudVps.node.ts          # n8n node class
 │   │   ├── index.ts                    # description() + execute() router
-│   │   └── resources/*.operation.ts    # operation implementations
+│   │   ├── README.md                   # Node documentation
+│   │   ├── blockstorage/               # Block Storage CRUD (volumes, backups, snapshots)
+│   │   ├── project/                    # Project GET operations
+│   │   ├── rancher/                    # Rancher Services GET operations
+│   │   ├── kube/                       # Kubernetes operations
+│   │   ├── instance/                   # Instance operations
+│   │   ├── region/                     # Region operations
+│   │   └── database/                   # Database engines (cassandra, clickhouse, grafana, kafka, etc.)
+│   ├── OvhCloudPublicCloudAi/          # Public Cloud AI node
+│   ├── OvhCloudPublicCloudV2/          # Public Cloud V2 node
+│   ├── OvhCloudService/                # Service management node (8 operations)
+│   ├── OvhCloudServices/               # Generic services node
+│   ├── OvhCloudSms/                    # SMS node
+│   ├── OvhCloudSsl/                    # SSL certificates node
+│   ├── OvhCloudStorage/                # Object storage node
+│   ├── OvhCloudSupport/                # Support tickets node
+│   ├── OvhCloudTelephony/              # Telephony node
+│   ├── OvhCloudVeeamEnterprisePlus/    # Veeam Enterprise Plus node
+│   ├── OvhCloudVmwareCloudDirector/    # VMware Cloud Director node (V2)
+│   ├── OvhCloudVps/                    # VPS management node (61 operations)
+│   ├── OvhCloudVrack/                  # vRack network node
+│   ├── OvhCloudVrackServices/          # vRack Services node (V2)
+│   ├── OvhCloudWebhostingV2/           # Web Hosting V2 node
+│   ├── OvhCloudZimbra/                 # Zimbra email node (V2)
 │   └── shared/
 │       ├── constants.ts                # Shared constants (icon path, credential name)
 │       ├── nodes/BaseNode.ts           # Abstract base class for all OVH Cloud nodes
+│       ├── methods/                    # Search list methods for dynamic dropdowns
 │       └── transport/                   # API client & authentication
 │           ├── ApiClient.ts             #   abstract interface
 │           ├── ApiClientImpl.ts         #   HTTP implementation (with retry + pagination)
@@ -293,7 +392,7 @@ n8n-nodes-ovhcloud/
 │   ├── generate-nodes-manifest.js       # Regenerate nodes list in package.json after build
 │   ├── gen-api-docs.sh                  # Generate API documentation from specs
 │   └── get-api-description.sh           # Fetch OVH API JSON specifications
-├── tests/                               # Jest unit & non-regression tests (219+ tests)
+├── tests/                               # Jest unit & non-regression tests (3000+ tests)
 │   ├── domain-lot1.test.ts              # Tests for all OvhCloudDomain GET operations
 │   ├── helpers.ts                       # Shared test utilities (createMockCtx, invokeOperation)
 │   ├── publicCloud.operation.test.ts    # Non-regression tests for Public Cloud backup & snapshot CRUD ops

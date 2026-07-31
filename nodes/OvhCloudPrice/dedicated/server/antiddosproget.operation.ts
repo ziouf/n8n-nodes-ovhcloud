@@ -1,0 +1,36 @@
+import type {
+    IDataObject,
+    IDisplayOptions,
+    IExecuteFunctions,
+    INodeExecutionData,
+    INodeProperties,
+} from 'n8n-workflow';
+import { ApiClient } from '../../../../shared/transport/ApiClient';
+
+export function description(displayOptions: IDisplayOptions): INodeProperties[] {
+    return [
+            {
+                displayName: 'Commercial Range',
+                name: 'commercialRange',
+                type: 'options',
+                options: [{ name: 'Any', value: '' }],
+                default: '',
+                required: true,
+                description: 'The commercialRange',
+                displayOptions,
+            }
+    ];
+}
+
+/**
+ * Get price of anti-DDos Pro option
+ *
+ * HTTP method: GET
+ * Endpoint: /price/dedicated/server/antiDDoSPro/{commercialRange}
+ */
+export async function execute(this: IExecuteFunctions): Promise<INodeExecutionData[]> {
+    const client = new ApiClient(this);
+    const commercialRange = this.getNodeParameter('commercialRange', 0) as string;
+    const data = (await client.httpGet(`/price/dedicated/server/antiDDoSPro/${commercialRange}`)) as IDataObject;
+    return this.helpers.returnJsonArray([data]);
+}

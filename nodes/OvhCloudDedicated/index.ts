@@ -128,6 +128,154 @@ import {
 	description as descriptionTaskDetailGet,
 } from './resources/taskDetailGet.operation';
 
+// Ceph (Nasha) operations
+import {
+	execute as executeNashaListGet,
+	description as descriptionNashaListGet,
+} from './resources/ceph/nashaListGet.operation';
+import {
+	execute as executeNashaGetGet,
+	description as descriptionNashaGetGet,
+} from './resources/ceph/nashaGetGet.operation';
+import {
+	execute as executeSnapshotListGet,
+	description as descriptionSnapshotListGet,
+} from './resources/ceph/snapshotListGet.operation';
+import {
+	execute as executeSnapshotCreatePost,
+	description as descriptionSnapshotCreatePost,
+} from './resources/ceph/snapshotCreatePost.operation';
+import {
+	execute as executeSnapshotGetGet,
+	description as descriptionSnapshotGetGet,
+} from './resources/ceph/snapshotGetGet.operation';
+import {
+	execute as executeSnapshotDeleteDelete,
+	description as descriptionSnapshotDeleteDelete,
+} from './resources/ceph/snapshotDeleteDelete.operation';
+import {
+	execute as executeShareListGet,
+	description as descriptionShareListGet,
+} from './resources/ceph/shareListGet.operation';
+import {
+	execute as executeShareCreatePost,
+	description as descriptionShareCreatePost,
+} from './resources/ceph/shareCreatePost.operation';
+import {
+	execute as executeShareGetGet,
+	description as descriptionShareGetGet,
+} from './resources/ceph/shareGetGet.operation';
+import {
+	execute as executeShareUpdatePut,
+	description as descriptionShareUpdatePut,
+} from './resources/ceph/shareUpdatePut.operation';
+import {
+	execute as executeShareDeleteDelete,
+	description as descriptionShareDeleteDelete,
+} from './resources/ceph/shareDeleteDelete.operation';
+
+// Cluster operations
+import {
+	execute as executeClusterListGet,
+	description as descriptionClusterListGet,
+} from './resources/cluster/clusterListGet.operation';
+import {
+	execute as executeClusterGetGet,
+	description as descriptionClusterGetGet,
+} from './resources/cluster/clusterGetGet.operation';
+import {
+	execute as executeClusterUpdatePut,
+	description as descriptionClusterUpdatePut,
+} from './resources/cluster/clusterUpdatePut.operation';
+import {
+	execute as executeClusterDeleteDelete,
+	description as descriptionClusterDeleteDelete,
+} from './resources/cluster/clusterDeleteDelete.operation';
+import {
+	execute as executeNodeListGet,
+	description as descriptionNodeListGet,
+} from './resources/cluster/nodeListGet.operation';
+import {
+	execute as executeNodeGetGet,
+	description as descriptionNodeGetGet,
+} from './resources/cluster/nodeGetGet.operation';
+import {
+	execute as executeNodeUpdatePut,
+	description as descriptionNodeUpdatePut,
+} from './resources/cluster/nodeUpdatePut.operation';
+import {
+	execute as executeNodeDeleteDelete,
+	description as descriptionNodeDeleteDelete,
+} from './resources/cluster/nodeDeleteDelete.operation';
+
+// Housing operations
+import {
+	execute as executeHousingListGet,
+	description as descriptionHousingListGet,
+} from './resources/housing/housingListGet.operation';
+import {
+	execute as executeHousingGetGet,
+	description as descriptionHousingGetGet,
+} from './resources/housing/housingGetGet.operation';
+import {
+	execute as executeHousingUpdatePut,
+	description as descriptionHousingUpdatePut,
+} from './resources/housing/housingUpdatePut.operation';
+import {
+	execute as executeBandwidthGetGet,
+	description as descriptionBandwidthGetGet,
+} from './resources/housing/bandwidthGetGet.operation';
+import {
+	execute as executeBandwidthCreatePost,
+	description as descriptionBandwidthCreatePost,
+} from './resources/housing/bandwidthCreatePost.operation';
+import {
+	execute as executeBandwidthVrackGetGet,
+	description as descriptionBandwidthVrackGetGet,
+} from './resources/housing/bandwidthVrackGetGet.operation';
+import {
+	execute as executeBandwidthVrackCreatePost,
+	description as descriptionBandwidthVrackCreatePost,
+} from './resources/housing/bandwidthVrackCreatePost.operation';
+
+// Installation Template operations
+import {
+	execute as executeTemplateListGet,
+	description as descriptionTemplateListGet,
+} from './resources/installation/templateListGet.operation';
+import {
+	execute as executeTemplateGetGet,
+	description as descriptionTemplateGetGet,
+} from './resources/installation/templateGetGet.operation';
+import {
+	execute as executeInstallPost,
+	description as descriptionInstallPost,
+} from './resources/installation/installPost.operation';
+
+// Option operations (list, get, create)
+import {
+	execute as executeOptionListGet,
+	description as descriptionOptionListGet,
+} from './resources/option/optionListGet.operation';
+import {
+	execute as executeOptionGetGet,
+	description as descriptionOptionGetGet,
+} from './resources/option/optionGetGet.operation';
+import {
+	execute as executeOptionCreatePost,
+	description as descriptionOptionCreatePost,
+} from './resources/option/optionCreatePost.operation';
+
+// Monitoring operations
+import {
+	execute as executeMonitoringGetGet,
+	description as descriptionMonitoringGetGet,
+} from './resources/monitoring/monitoringGetGet.operation';
+import {
+	execute as executeMonitoringMetricGetGet,
+	description as descriptionMonitoringMetricGetGet,
+} from './resources/monitoring/monitoringMetricGetGet.operation';
+
 export function description(displayOptions: IDisplayOptions): INodeProperties[] {
 	const operationProperties: INodeProperties[] = [
 		{
@@ -288,6 +436,182 @@ export function description(displayOptions: IDisplayOptions): INodeProperties[] 
 					value: 'serverUpdate',
 					action: "Modify a dedicated server's name and/or status",
 				},
+				// Ceph (Nasha) operations
+				{
+					name: 'Nasha List',
+					value: 'nashaListGet',
+					action: 'List Nasha (NAS) services',
+				},
+				{
+					name: 'Nasha Get',
+					value: 'nashaGetGet',
+					action: 'Get details of a Nasha (NAS) service',
+				},
+				{
+					name: 'Snapshot List',
+					value: 'snapshotListGet',
+					action: 'List snapshots of a Nasha (NAS) service',
+				},
+				{
+					name: 'Snapshot Create',
+					value: 'snapshotCreatePost',
+					action: 'Create a snapshot of a Nasha (NAS) service',
+				},
+				{
+					name: 'Snapshot Get',
+					value: 'snapshotGetGet',
+					action: 'Get details of a Nasha (NAS) snapshot',
+				},
+				{
+					name: 'Snapshot Delete',
+					value: 'snapshotDeleteDelete',
+					action: 'Delete a Nasha (NAS) snapshot',
+				},
+				{
+					name: 'Share List',
+					value: 'shareListGet',
+					action: 'List shares of a Nasha (NAS) service',
+				},
+				{
+					name: 'Share Create',
+					value: 'shareCreatePost',
+					action: 'Create a share on a Nasha (NAS) service',
+				},
+				{
+					name: 'Share Get',
+					value: 'shareGetGet',
+					action: 'Get details of a Nasha (NAS) share',
+				},
+				{
+					name: 'Share Update',
+					value: 'shareUpdatePut',
+					action: 'Update a Nasha (NAS) share',
+				},
+				{
+					name: 'Share Delete',
+					value: 'shareDeleteDelete',
+					action: 'Delete a Nasha (NAS) share',
+				},
+				// Cluster operations
+				{
+					name: 'Cluster List',
+					value: 'clusterListGet',
+					action: 'List clusters',
+				},
+				{
+					name: 'Cluster Get',
+					value: 'clusterGetGet',
+					action: 'Get details of a cluster',
+				},
+				{
+					name: 'Cluster Update',
+					value: 'clusterUpdatePut',
+					action: 'Update a cluster',
+				},
+				{
+					name: 'Cluster Delete',
+					value: 'clusterDeleteDelete',
+					action: 'Delete a cluster',
+				},
+				{
+					name: 'Node List',
+					value: 'nodeListGet',
+					action: 'List nodes of a cluster',
+				},
+				{
+					name: 'Node Get',
+					value: 'nodeGetGet',
+					action: 'Get details of a cluster node',
+				},
+				{
+					name: 'Node Update',
+					value: 'nodeUpdatePut',
+					action: 'Update a cluster node',
+				},
+				{
+					name: 'Node Delete',
+					value: 'nodeDeleteDelete',
+					action: 'Delete a cluster node',
+				},
+				// Housing operations
+				{
+					name: 'Housing List',
+					value: 'housingListGet',
+					action: 'List housing services',
+				},
+				{
+					name: 'Housing Get',
+					value: 'housingGetGet',
+					action: 'Get details of a housing service',
+				},
+				{
+					name: 'Housing Update',
+					value: 'housingUpdatePut',
+					action: 'Update a housing service',
+				},
+				{
+					name: 'Bandwidth Get',
+					value: 'bandwidthGetGet',
+					action: 'Get bandwidth details of a housing service',
+				},
+				{
+					name: 'Bandwidth Create',
+					value: 'bandwidthCreatePost',
+					action: 'Create bandwidth for a housing service',
+				},
+				{
+					name: 'Bandwidth vRack Get',
+					value: 'bandwidthVrackGetGet',
+					action: 'Get vRack bandwidth details of a housing service',
+				},
+				{
+					name: 'Bandwidth vRack Create',
+					value: 'bandwidthVrackCreatePost',
+					action: 'Create vRack bandwidth for a housing service',
+				},
+				// Installation Template operations
+				{
+					name: 'Template List',
+					value: 'templateListGet',
+					action: 'List installation templates',
+				},
+				{
+					name: 'Template Get',
+					value: 'templateGetGet',
+					action: 'Get details of an installation template',
+				},
+				{
+					name: 'Install Server',
+					value: 'installPost',
+					action: 'Install or reinstall an OS on a dedicated server',
+				},
+				// Option operations
+				{
+					name: 'Option List',
+					value: 'optionListGet',
+					action: 'List options of a dedicated server',
+				},
+				{
+					name: 'Option Get',
+					value: 'optionGetGet',
+					action: 'Get details of a dedicated server option',
+				},
+				{
+					name: 'Option Create',
+					value: 'optionCreatePost',
+					action: 'Add an option to a dedicated server',
+				},
+				// Monitoring operations
+				{
+					name: 'Monitoring Get',
+					value: 'monitoringGetGet',
+					action: 'Get monitoring data of a dedicated server',
+				},
+				{
+					name: 'Monitoring Metric Get',
+					value: 'monitoringMetricGetGet',
+					action: 'Get monitoring metric data of a dedicated server',
+				},
 			],
 			default: 'get',
 			displayOptions,
@@ -418,6 +742,148 @@ export function description(displayOptions: IDisplayOptions): INodeProperties[] 
 			...displayOptions,
 			show: { dedicatedServerOperation: ['taskDetailGet'] },
 		}) as INodeProperties[]),
+		// Ceph (Nasha) displayOptions
+		...(descriptionNashaListGet({
+			...displayOptions,
+			show: { dedicatedServerOperation: ['nashaListGet'] },
+		}) as INodeProperties[]),
+		...(descriptionNashaGetGet({
+			...displayOptions,
+			show: { dedicatedServerOperation: ['nashaGetGet'] },
+		}) as INodeProperties[]),
+		...(descriptionSnapshotListGet({
+			...displayOptions,
+			show: { dedicatedServerOperation: ['snapshotListGet'] },
+		}) as INodeProperties[]),
+		...(descriptionSnapshotCreatePost({
+			...displayOptions,
+			show: { dedicatedServerOperation: ['snapshotCreatePost'] },
+		}) as INodeProperties[]),
+		...(descriptionSnapshotGetGet({
+			...displayOptions,
+			show: { dedicatedServerOperation: ['snapshotGetGet'] },
+		}) as INodeProperties[]),
+		...(descriptionSnapshotDeleteDelete({
+			...displayOptions,
+			show: { dedicatedServerOperation: ['snapshotDeleteDelete'] },
+		}) as INodeProperties[]),
+		...(descriptionShareListGet({
+			...displayOptions,
+			show: { dedicatedServerOperation: ['shareListGet'] },
+		}) as INodeProperties[]),
+		...(descriptionShareCreatePost({
+			...displayOptions,
+			show: { dedicatedServerOperation: ['shareCreatePost'] },
+		}) as INodeProperties[]),
+		...(descriptionShareGetGet({
+			...displayOptions,
+			show: { dedicatedServerOperation: ['shareGetGet'] },
+		}) as INodeProperties[]),
+		...(descriptionShareUpdatePut({
+			...displayOptions,
+			show: { dedicatedServerOperation: ['shareUpdatePut'] },
+		}) as INodeProperties[]),
+		...(descriptionShareDeleteDelete({
+			...displayOptions,
+			show: { dedicatedServerOperation: ['shareDeleteDelete'] },
+		}) as INodeProperties[]),
+		// Cluster displayOptions
+		...(descriptionClusterListGet({
+			...displayOptions,
+			show: { dedicatedServerOperation: ['clusterListGet'] },
+		}) as INodeProperties[]),
+		...(descriptionClusterGetGet({
+			...displayOptions,
+			show: { dedicatedServerOperation: ['clusterGetGet'] },
+		}) as INodeProperties[]),
+		...(descriptionClusterUpdatePut({
+			...displayOptions,
+			show: { dedicatedServerOperation: ['clusterUpdatePut'] },
+		}) as INodeProperties[]),
+		...(descriptionClusterDeleteDelete({
+			...displayOptions,
+			show: { dedicatedServerOperation: ['clusterDeleteDelete'] },
+		}) as INodeProperties[]),
+		...(descriptionNodeListGet({
+			...displayOptions,
+			show: { dedicatedServerOperation: ['nodeListGet'] },
+		}) as INodeProperties[]),
+		...(descriptionNodeGetGet({
+			...displayOptions,
+			show: { dedicatedServerOperation: ['nodeGetGet'] },
+		}) as INodeProperties[]),
+		...(descriptionNodeUpdatePut({
+			...displayOptions,
+			show: { dedicatedServerOperation: ['nodeUpdatePut'] },
+		}) as INodeProperties[]),
+		...(descriptionNodeDeleteDelete({
+			...displayOptions,
+			show: { dedicatedServerOperation: ['nodeDeleteDelete'] },
+		}) as INodeProperties[]),
+		// Housing displayOptions
+		...(descriptionHousingListGet({
+			...displayOptions,
+			show: { dedicatedServerOperation: ['housingListGet'] },
+		}) as INodeProperties[]),
+		...(descriptionHousingGetGet({
+			...displayOptions,
+			show: { dedicatedServerOperation: ['housingGetGet'] },
+		}) as INodeProperties[]),
+		...(descriptionHousingUpdatePut({
+			...displayOptions,
+			show: { dedicatedServerOperation: ['housingUpdatePut'] },
+		}) as INodeProperties[]),
+		...(descriptionBandwidthGetGet({
+			...displayOptions,
+			show: { dedicatedServerOperation: ['bandwidthGetGet'] },
+		}) as INodeProperties[]),
+		...(descriptionBandwidthCreatePost({
+			...displayOptions,
+			show: { dedicatedServerOperation: ['bandwidthCreatePost'] },
+		}) as INodeProperties[]),
+		...(descriptionBandwidthVrackGetGet({
+			...displayOptions,
+			show: { dedicatedServerOperation: ['bandwidthVrackGetGet'] },
+		}) as INodeProperties[]),
+		...(descriptionBandwidthVrackCreatePost({
+			...displayOptions,
+			show: { dedicatedServerOperation: ['bandwidthVrackCreatePost'] },
+		}) as INodeProperties[]),
+		// Installation Template displayOptions
+		...(descriptionTemplateListGet({
+			...displayOptions,
+			show: { dedicatedServerOperation: ['templateListGet'] },
+		}) as INodeProperties[]),
+		...(descriptionTemplateGetGet({
+			...displayOptions,
+			show: { dedicatedServerOperation: ['templateGetGet'] },
+		}) as INodeProperties[]),
+		...(descriptionInstallPost({
+			...displayOptions,
+			show: { dedicatedServerOperation: ['installPost'] },
+		}) as INodeProperties[]),
+		// Option displayOptions
+		...(descriptionOptionListGet({
+			...displayOptions,
+			show: { dedicatedServerOperation: ['optionListGet'] },
+		}) as INodeProperties[]),
+		...(descriptionOptionGetGet({
+			...displayOptions,
+			show: { dedicatedServerOperation: ['optionGetGet'] },
+		}) as INodeProperties[]),
+		...(descriptionOptionCreatePost({
+			...displayOptions,
+			show: { dedicatedServerOperation: ['optionCreatePost'] },
+		}) as INodeProperties[]),
+		// Monitoring displayOptions
+		...(descriptionMonitoringGetGet({
+			...displayOptions,
+			show: { dedicatedServerOperation: ['monitoringGetGet'] },
+		}) as INodeProperties[]),
+		...(descriptionMonitoringMetricGetGet({
+			...displayOptions,
+			show: { dedicatedServerOperation: ['monitoringMetricGetGet'] },
+		}) as INodeProperties[]),
 	];
 
 	return properties;
@@ -496,6 +962,80 @@ export async function execute(
 			return executeTaskListGet.call(this);
 		case 'taskDetailGet':
 			return executeTaskDetailGet.call(this);
+		// Ceph (Nasha) operations
+		case 'nashaListGet':
+			return executeNashaListGet.call(this);
+		case 'nashaGetGet':
+			return executeNashaGetGet.call(this);
+		case 'snapshotListGet':
+			return executeSnapshotListGet.call(this);
+		case 'snapshotCreatePost':
+			return executeSnapshotCreatePost.call(this);
+		case 'snapshotGetGet':
+			return executeSnapshotGetGet.call(this);
+		case 'snapshotDeleteDelete':
+			return executeSnapshotDeleteDelete.call(this);
+		case 'shareListGet':
+			return executeShareListGet.call(this);
+		case 'shareCreatePost':
+			return executeShareCreatePost.call(this);
+		case 'shareGetGet':
+			return executeShareGetGet.call(this);
+		case 'shareUpdatePut':
+			return executeShareUpdatePut.call(this);
+		case 'shareDeleteDelete':
+			return executeShareDeleteDelete.call(this);
+		// Cluster operations
+		case 'clusterListGet':
+			return executeClusterListGet.call(this);
+		case 'clusterGetGet':
+			return executeClusterGetGet.call(this);
+		case 'clusterUpdatePut':
+			return executeClusterUpdatePut.call(this);
+		case 'clusterDeleteDelete':
+			return executeClusterDeleteDelete.call(this);
+		case 'nodeListGet':
+			return executeNodeListGet.call(this);
+		case 'nodeGetGet':
+			return executeNodeGetGet.call(this);
+		case 'nodeUpdatePut':
+			return executeNodeUpdatePut.call(this);
+		case 'nodeDeleteDelete':
+			return executeNodeDeleteDelete.call(this);
+		// Housing operations
+		case 'housingListGet':
+			return executeHousingListGet.call(this);
+		case 'housingGetGet':
+			return executeHousingGetGet.call(this);
+		case 'housingUpdatePut':
+			return executeHousingUpdatePut.call(this);
+		case 'bandwidthGetGet':
+			return executeBandwidthGetGet.call(this);
+		case 'bandwidthCreatePost':
+			return executeBandwidthCreatePost.call(this);
+		case 'bandwidthVrackGetGet':
+			return executeBandwidthVrackGetGet.call(this);
+		case 'bandwidthVrackCreatePost':
+			return executeBandwidthVrackCreatePost.call(this);
+		// Installation Template operations
+		case 'templateListGet':
+			return executeTemplateListGet.call(this);
+		case 'templateGetGet':
+			return executeTemplateGetGet.call(this);
+		case 'installPost':
+			return executeInstallPost.call(this);
+		// Option operations
+		case 'optionListGet':
+			return executeOptionListGet.call(this);
+		case 'optionGetGet':
+			return executeOptionGetGet.call(this);
+		case 'optionCreatePost':
+			return executeOptionCreatePost.call(this);
+		// Monitoring operations
+		case 'monitoringGetGet':
+			return executeMonitoringGetGet.call(this);
+		case 'monitoringMetricGetGet':
+			return executeMonitoringMetricGetGet.call(this);
 	}
 
 	throw new Error(`Unsupported operation "${operation}" for resource "dedicatedServer"`);

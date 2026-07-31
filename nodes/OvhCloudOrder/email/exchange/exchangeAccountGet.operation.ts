@@ -1,0 +1,55 @@
+import type {
+	IExecuteFunctions,
+	IDisplayOptions,
+	INodeExecutionData,
+	INodeProperties,
+} from 'n8n-workflow';
+import { ApiClient } from '../../../../shared/transport/ApiClient';
+
+export function description(displayOptions: IDisplayOptions): INodeProperties[] {
+	return [
+		{
+			displayName: 'Organization Name',
+			name: 'organizationName',
+			type: 'string',
+			default: '',
+			required: true,
+			description: 'The organization name',
+			displayOptions,
+		},
+		{
+			displayName: 'Service Name',
+			name: 'serviceName',
+			type: 'string',
+			default: '',
+			required: true,
+			description: 'The service name',
+			displayOptions,
+		},
+		{
+			displayName: 'Account ID',
+			name: 'accountId',
+			type: 'string',
+			default: '',
+			required: true,
+			description: 'The account ID',
+			displayOptions,
+		},
+	];
+}
+
+export async function execute(this: IExecuteFunctions): Promise<INodeExecutionData[]> {
+	const client = new ApiClient(this);
+	const organizationName = this.getNodeParameter('organizationName', 0) as string;
+	const serviceName = this.getNodeParameter('serviceName', 0) as string;
+	const accountId = this.getNodeParameter('accountId', 0) as string;
+	const data = (await client.httpGet(
+		`/order/email/exchange/${organizationName}/${serviceName}/account/${accountId}`,
+	)) as unknown[];
+
+	if (!Array.isArray(data)) {
+		return this.helpers.returnJsonArray([data]);
+	}
+
+	return this.helpers.returnJsonArray(data.map((item) => item as INodeExecutionData));
+}

@@ -123,6 +123,26 @@ import {
 	execute as executeEnvVarSetCreate,
 	description as descriptionEnvVarSetCreate,
 } from './envVarSetCreate.operation';
+import {
+	execute as executeCronCreatePost,
+	description as descriptionCronCreatePost,
+} from './cron/cronCreatePost.operation';
+import {
+	execute as executeCronUpdatePut,
+	description as descriptionCronUpdatePut,
+} from './cron/cronUpdatePut.operation';
+import {
+	execute as executeCronDeleteDelete,
+	description as descriptionCronDeleteDelete,
+} from './cron/cronDeleteDelete.operation';
+import {
+	execute as executeDatabaseUpdatePut,
+	description as descriptionDatabaseUpdatePut,
+} from './database/databaseUpdatePut.operation';
+import {
+	execute as executeStatisticsGet,
+	description as descriptionStatisticsGet,
+} from './statistics/statisticsGet.operation';
 
 export function description(displayOptions: IDisplayOptions): INodeProperties[] {
 	const operationProperties: INodeProperties[] = [
@@ -143,6 +163,11 @@ export function description(displayOptions: IDisplayOptions): INodeProperties[] 
 					action: 'Set PHP version configuration',
 				},
 				{
+					name: 'Create Cron Job',
+					value: 'cronCreatePost',
+					action: 'Create a new cron job on the hosting',
+				},
+				{
 					name: 'Create Default SSL Certificate',
 					value: 'defaultSslCertificateCreate',
 					action: 'Create a default OVH SSL certificate',
@@ -158,9 +183,19 @@ export function description(displayOptions: IDisplayOptions): INodeProperties[] 
 					action: 'Delete a database from the hosting service',
 				},
 				{
+					name: 'Database Update',
+					value: 'databaseUpdatePut',
+					action: 'Update a database on the hosting service',
+				},
+				{
 					name: 'Delete Attached Domain',
 					value: 'attachedDomainDelete',
 					action: 'Detach/delete an attached domain from hosting',
+				},
+				{
+					name: 'Delete Cron Job',
+					value: 'cronDeleteDelete',
+					action: 'Delete a cron job from the hosting',
 				},
 				{
 					name: 'Environment Variable Set',
@@ -191,6 +226,11 @@ export function description(displayOptions: IDisplayOptions): INodeProperties[] 
 				},
 				{ name: 'Get SSL', value: 'getSsl', action: 'Get SSL certificate info' },
 				{ name: 'Get Task', value: 'getTask', action: 'Get a task' },
+				{
+					name: 'Get Statistics',
+					value: 'statisticsGet',
+					action: 'Get hosting statistics (bandwidth, hits, errors)',
+				},
 				{ name: 'Get User', value: 'getUser', action: 'Get a user' },
 				{
 					name: 'Import Custom Certificate',
@@ -219,6 +259,11 @@ export function description(displayOptions: IDisplayOptions): INodeProperties[] 
 					name: 'Update Attached Domain',
 					value: 'attachedDomainUpdate',
 					action: 'Update properties of an attached domain',
+				},
+				{
+					name: 'Update Cron Job',
+					value: 'cronUpdatePut',
+					action: 'Update a cron job on the hosting',
 				},
 				{
 					name: 'Update Hosting Service',
@@ -370,6 +415,26 @@ export function description(displayOptions: IDisplayOptions): INodeProperties[] 
 			...displayOptions,
 			show: { ...displayOptions?.show, hostingOperation: ['envVarSetCreate'] },
 		}),
+		...descriptionCronCreatePost({
+			...displayOptions,
+			show: { ...displayOptions?.show, hostingOperation: ['cronCreatePost'] },
+		}),
+		...descriptionCronUpdatePut({
+			...displayOptions,
+			show: { ...displayOptions?.show, hostingOperation: ['cronUpdatePut'] },
+		}),
+		...descriptionCronDeleteDelete({
+			...displayOptions,
+			show: { ...displayOptions?.show, hostingOperation: ['cronDeleteDelete'] },
+		}),
+		...descriptionDatabaseUpdatePut({
+			...displayOptions,
+			show: { ...displayOptions?.show, hostingOperation: ['databaseUpdatePut'] },
+		}),
+		...descriptionStatisticsGet({
+			...displayOptions,
+			show: { ...displayOptions?.show, hostingOperation: ['statisticsGet'] },
+		}),
 	];
 }
 
@@ -448,6 +513,16 @@ export async function execute(
 			return executeImportCustomCertificateCreate.call(this, itemIndex);
 		case 'envVarSetCreate':
 			return executeEnvVarSetCreate.call(this, itemIndex);
+		case 'cronCreatePost':
+			return executeCronCreatePost.call(this, itemIndex);
+		case 'cronUpdatePut':
+			return executeCronUpdatePut.call(this, itemIndex);
+		case 'cronDeleteDelete':
+			return executeCronDeleteDelete.call(this, itemIndex);
+		case 'databaseUpdatePut':
+			return executeDatabaseUpdatePut.call(this, itemIndex);
+		case 'statisticsGet':
+			return executeStatisticsGet.call(this, itemIndex);
 	}
 
 	throw new Error(`Unsupported operation "${operation}" for resource "hosting/web"`);

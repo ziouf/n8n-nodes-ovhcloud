@@ -1,0 +1,28 @@
+import type {
+	IExecuteFunctions,
+	IDisplayOptions,
+	INodeExecutionData,
+	INodeProperties,
+} from 'n8n-workflow';
+import { ApiClient } from '../../../shared/transport/ApiClient';
+
+export function description(displayOptions: IDisplayOptions): INodeProperties[] {
+	return [
+		{
+			displayName: 'Order ID',
+			name: 'orderId',
+			type: 'string',
+			default: '',
+			required: true,
+			description: 'The order ID',
+			displayOptions,
+		},
+	];
+}
+
+export async function execute(this: IExecuteFunctions): Promise<INodeExecutionData[]> {
+	const client = new ApiClient(this);
+	const orderId = this.getNodeParameter('orderId', 0) as string;
+	const data = (await client.httpGet(`/order/overTheBox/${orderId}`)) as INodeExecutionData;
+	return this.helpers.returnJsonArray([data]);
+}

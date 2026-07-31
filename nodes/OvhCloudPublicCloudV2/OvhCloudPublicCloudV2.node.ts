@@ -1,0 +1,39 @@
+import type {
+	IExecuteFunctions,
+	INodeExecutionData,
+	INodeType,
+	INodeTypeDescription,
+} from 'n8n-workflow';
+import { NodeConnectionTypes } from 'n8n-workflow';
+import { OvhCloudApiSecretName, OvhCloudIcon } from '../../shared/constants';
+import { description, execute } from './index';
+import { BaseNode, executeTemplate } from '../../shared/nodes/BaseNode';
+
+export class OvhCloudPublicCloudV2 extends BaseNode implements INodeType {
+	description: INodeTypeDescription = {
+		displayName: 'OVH Cloud Public Cloud V2',
+		name: 'ovhCloudPublicCloudV2',
+		icon: OvhCloudIcon,
+		group: ['input'],
+		version: 1,
+		subtitle: '={{$parameter["publicCloudOperation"]}}',
+		description: 'Manage OVHcloud Public Cloud resources via /publicCloud API v2',
+		defaults: {
+			name: 'OVH Cloud Public Cloud V2',
+		},
+		usableAsTool: true,
+		inputs: [NodeConnectionTypes.Main],
+		outputs: [NodeConnectionTypes.Main],
+		credentials: [
+			{
+				name: OvhCloudApiSecretName,
+				required: true,
+			},
+		],
+		properties: [...description({})],
+	};
+
+	async execute(this: IExecuteFunctions): Promise<INodeExecutionData[][]> {
+		return executeTemplate.call(this, execute);
+	}
+}

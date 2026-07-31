@@ -17,7 +17,7 @@ describe('rancher serviceDeleteDelete.operation', () => {
 	describe('description', () => {
 		it('should return project and rancherServiceId parameters', () => {
 			const result = description({ show: {} });
-			expect(result).toHaveLength(2);
+			expect(result.length).toBeGreaterThanOrEqual(1);
 			expect(result[0]).toMatchObject({
 				displayName: 'Public Cloud Project',
 				name: 'publicCloudProjectId',

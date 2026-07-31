@@ -1,0 +1,39 @@
+import type {
+	IDataObject,
+	IExecuteFunctions,
+	IDisplayOptions,
+	INodeExecutionData,
+	INodeProperties,
+} from 'n8n-workflow';
+import { ApiClient } from '../../shared/transport/ApiClient';
+
+export function description(displayOptions: IDisplayOptions): INodeProperties[] {
+	return [
+		{
+			displayName: 'backup Id',
+			name: 'backupId',
+			type: 'string',
+			default: '',
+			required: true,
+			description: 'The backupId identifier',
+		},
+
+	];
+}
+
+/**
+ * Executes the Put Update VMware Cloud Director Backup service operation.
+ *
+ * HTTP method: PUT
+ * Endpoint: /vmwareCloudDirector/backup/{backupId}
+ */
+export async function execute(this: IExecuteFunctions, itemIndex: number): Promise<INodeExecutionData[]> {
+	const backupId = this.getNodeParameter('backupId', itemIndex) as string;
+
+	const body: IDataObject = {};
+
+	const client = new ApiClient(this);
+	const data = (await client.httpPut('/vmwareCloudDirector/backup/' + backupId, body)) as IDataObject;
+
+	return this.helpers.returnJsonArray([data]);
+}

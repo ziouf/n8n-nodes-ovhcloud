@@ -1,0 +1,36 @@
+import type {
+    IDataObject,
+    IDisplayOptions,
+    IExecuteFunctions,
+    INodeExecutionData,
+    INodeProperties,
+} from 'n8n-workflow';
+import { ApiClient } from '../../../../shared/transport/ApiClient';
+
+export function description(displayOptions: IDisplayOptions): INodeProperties[] {
+    return [
+            {
+                displayName: 'Capacity',
+                name: 'capacity',
+                type: 'options',
+                options: [{ name: 'Any', value: '' }],
+                default: '',
+                required: true,
+                description: 'The capacity',
+                displayOptions,
+            }
+    ];
+}
+
+/**
+ * Get price of backup storage offer
+ *
+ * HTTP method: GET
+ * Endpoint: /price/dedicated/server/backupStorage/{capacity}
+ */
+export async function execute(this: IExecuteFunctions): Promise<INodeExecutionData[]> {
+    const client = new ApiClient(this);
+    const capacity = this.getNodeParameter('capacity', 0) as string;
+    const data = (await client.httpGet(`/price/dedicated/server/backupStorage/${capacity}`)) as IDataObject;
+    return this.helpers.returnJsonArray([data]);
+}
