@@ -14,7 +14,6 @@ export function description(displayOptions: IDisplayOptions) {
 			type: 'resourceLocator',
 			default: { mode: 'list', value: '' },
 			required: true,
-			description: 'The cluster service name',
 			modes: [
 				{
 					displayName: 'From List',

@@ -10,7 +10,7 @@ import { ApiClient } from '../../../shared/transport/ApiClient';
 export function description(displayOptions: IDisplayOptions): INodeProperties[] {
 	return [
         {
-          displayName: 'country',
+          displayName: 'Country',
           name: 'country',
           type: 'string',
           default: '',
@@ -19,11 +19,10 @@ export function description(displayOptions: IDisplayOptions): INodeProperties[] 
           displayOptions,
         },
         {
-          displayName: 'type',
+          displayName: 'Type',
           name: 'type',
           type: 'string',
           default: '',
-          required: false,
           description: 'The type parameter',
           displayOptions,
         },

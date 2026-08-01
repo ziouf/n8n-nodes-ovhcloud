@@ -22,12 +22,14 @@ describe('recordFlushPost.operation', () => {
 				displayName: 'Domain Name',
 				name: 'domainName',
 				type: 'string',
+				default: '',
 				required: true,
 			});
 			expect(result[1]).toMatchObject({
 				displayName: 'Record ID',
 				name: 'recordId',
 				type: 'string',
+				default: '',
 				required: true,
 			});
 		});

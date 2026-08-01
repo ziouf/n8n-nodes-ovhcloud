@@ -19,7 +19,7 @@ export function description(displayOptions: IDisplayOptions): INodeProperties[] 
           displayOptions,
         },
         {
-          displayName: 'contact Admin',
+          displayName: 'Contact Admin',
           name: 'contactAdmin',
           type: 'string',
           default: '',
@@ -28,7 +28,7 @@ export function description(displayOptions: IDisplayOptions): INodeProperties[] 
           displayOptions,
         },
         {
-          displayName: 'contact Billing',
+          displayName: 'Contact Billing',
           name: 'contactBilling',
           type: 'string',
           default: '',
@@ -37,7 +37,7 @@ export function description(displayOptions: IDisplayOptions): INodeProperties[] 
           displayOptions,
         },
         {
-          displayName: 'contact Tech',
+          displayName: 'Contact Tech',
           name: 'contactTech',
           type: 'string',
           default: '',
@@ -46,7 +46,7 @@ export function description(displayOptions: IDisplayOptions): INodeProperties[] 
           displayOptions,
         },
         {
-          displayName: 'country',
+          displayName: 'Country',
           name: 'country',
           type: 'string',
           default: '',
@@ -55,11 +55,10 @@ export function description(displayOptions: IDisplayOptions): INodeProperties[] 
           displayOptions,
         },
         {
-          displayName: 'description',
+          displayName: 'Description',
           name: 'description',
           type: 'string',
           default: '',
-          required: false,
           description: 'The description parameter',
           displayOptions,
         },

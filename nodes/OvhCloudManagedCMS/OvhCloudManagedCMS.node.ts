@@ -12,7 +12,7 @@ import { BaseNode, executeTemplate } from '../../shared/nodes/BaseNode';
 export class OvhCloudManagedCMS extends BaseNode implements INodeType {
 	description: INodeTypeDescription = {
 		displayName: 'OVH Cloud Managed CMS',
-		name: 'ovhCloudManagedCMS',
+		name: 'ovhCloudManagedCms',
 		icon: OvhCloudIcon,
 		group: ['input'],
 		version: 1,

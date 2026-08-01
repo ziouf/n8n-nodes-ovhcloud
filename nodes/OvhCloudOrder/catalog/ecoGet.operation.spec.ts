@@ -22,6 +22,7 @@ describe('ecoGet operation', () => {
                 displayName: 'Product',
                 name: 'product',
                 type: 'string',
+																default: '',
             });
         });
     });

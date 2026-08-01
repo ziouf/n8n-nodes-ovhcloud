@@ -78,6 +78,10 @@ import {
 	description as descriptionSecondaryDnsServerList,
 } from './secondaryDnsServerList.operation';
 import {
+	execute as executeSecondaryDnsAttachPut,
+	description as descriptionSecondaryDnsAttachPut,
+} from './secondaryDnsAttachPut.operation';
+import {
 	execute as executeServiceInformationGet,
 	description as descriptionServiceInformationGet,
 } from './serviceInformationGet.operation';
@@ -199,6 +203,10 @@ import {
 	execute as executePowerRebootDelete,
 	description as descriptionPowerRebootDelete,
 } from './powerRebootDelete.operation';
+import {
+	execute as executeSshKeyListGet,
+	description as descriptionSshKeyListGet,
+} from './sshKeyListGet.operation';
 export function description(displayOptions: IDisplayOptions): INodeProperties[] {
 	const operationProperties: INodeProperties[] = [
 		{
@@ -208,6 +216,11 @@ export function description(displayOptions: IDisplayOptions): INodeProperties[] 
 			noDataExpression: true,
 			options: [
 				{ name: 'Abort Snapshot', value: 'abortSnapshot' },
+				{
+					name: 'Attach Secondary DNS',
+					value: 'attachSecondaryDns',
+					action: 'Attach a secondary DNS to a VPS',
+				},
 				{
 					name: 'Automated Backup List',
 					value: 'automatedBackupList',
@@ -284,6 +297,11 @@ export function description(displayOptions: IDisplayOptions): INodeProperties[] 
 					action: 'Get kernel/netboot config for a VPS',
 				},
 				{ name: 'List', value: 'list', action: 'List all VPS services' },
+				{
+					name: 'List SSH Keys',
+					value: 'listSshKeys',
+					action: 'List SSH keys for a VPS',
+				},
 				{
 					name: 'Migration Migration ID Get',
 					value: 'migrationMigrationIdGet',
@@ -467,6 +485,10 @@ export function description(displayOptions: IDisplayOptions): INodeProperties[] 
 			show: { vpsOperation: ['netbootConfigGet'] },
 		}) as INodeProperties[]),
 		...(descriptionList() as INodeProperties[]),
+		...(descriptionSshKeyListGet({
+			...displayOptions,
+			show: { vpsOperation: ['listSshKeys'] },
+		}) as INodeProperties[]),
 		...(descriptionMigrationMigrationIdGet({
 			...displayOptions,
 			show: { vpsOperation: ['migrationMigrationIdGet'] },
@@ -530,6 +552,10 @@ export function description(displayOptions: IDisplayOptions): INodeProperties[] 
 		...(descriptionAbortSnapshotPost({
 			...displayOptions,
 			show: { vpsOperation: ['abortSnapshot'] },
+		}) as INodeProperties[]),
+		...(descriptionSecondaryDnsAttachPut({
+			...displayOptions,
+			show: { vpsOperation: ['attachSecondaryDns'] },
 		}) as INodeProperties[]),
 		...(descriptionAutomatedBackupReschedulePost({
 			...displayOptions,
@@ -647,6 +673,8 @@ export async function execute(
 			return executeNetbootConfigGet.call(this, itemIndex);
 		case 'list':
 			return executeList.call(this);
+		case 'listSshKeys':
+			return executeSshKeyListGet.call(this, itemIndex);
 		case 'migrationMigrationIdGet':
 			return executeMigrationMigrationIdGet.call(this, itemIndex);
 		case 'migrationMigrationIdStepGet':
@@ -679,6 +707,8 @@ export async function execute(
 			return executeTemplateGet.call(this, itemIndex);
 		case 'abortSnapshot':
 			return executeAbortSnapshotPost.call(this, itemIndex);
+		case 'attachSecondaryDns':
+			return executeSecondaryDnsAttachPut.call(this, itemIndex);
 		case 'automatedBackupReschedulePost':
 			return executeAutomatedBackupReschedulePost.call(this, itemIndex);
 		case 'automatedBackupSetPost':

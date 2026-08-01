@@ -10,7 +10,7 @@ import { ApiClient } from '../../shared/transport/ApiClient';
 export function description(displayOptions: IDisplayOptions): INodeProperties[] {
 	return [
 		{
-			displayName: 'routing Id',
+			displayName: 'Routing ID',
 			name: 'routingId',
 			type: 'string',
 			default: '',

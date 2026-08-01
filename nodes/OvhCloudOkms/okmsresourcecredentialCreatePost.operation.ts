@@ -10,7 +10,7 @@ import { ApiClient } from '../../shared/transport/ApiClient';
 export function description(displayOptions: IDisplayOptions): INodeProperties[] {
 	return [
 		{
-			displayName: 'okms Id',
+			displayName: 'Okms ID',
 			name: 'okmsId',
 			type: 'string',
 			default: '',

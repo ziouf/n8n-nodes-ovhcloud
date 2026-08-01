@@ -14,7 +14,6 @@ export function description(displayOptions: IDisplayOptions) {
 			type: 'string',
 			default: '',
 			required: true,
-			description: 'The domain name',
 			displayOptions,
 		},
 		{

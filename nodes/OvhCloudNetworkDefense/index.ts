@@ -23,12 +23,12 @@ export function description(displayOptions: IDisplayOptions): INodeProperties[] 
 			noDataExpression: true,
 			options: [
 			{
-				name: 'Get all Network Defense events',
+				name: 'Get All Network Defense Events',
 				value: 'networkDefensevaceventListGet',
 				action: 'Get all Network Defense events',
 			},
 			{
-				name: 'Get all Network Defense traffic statistics',
+				name: 'Get All Network Defense Traffic Statistics',
 				value: 'networkDefensevactrafficListGet',
 				action: 'Get all Network Defense traffic statistics',
 			},

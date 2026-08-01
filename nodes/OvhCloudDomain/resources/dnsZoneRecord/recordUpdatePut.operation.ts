@@ -14,7 +14,6 @@ export function description(displayOptions: IDisplayOptions) {
 			type: 'string',
 			default: '',
 			required: true,
-			description: 'The domain name',
 			displayOptions,
 		},
 		{
@@ -39,7 +38,6 @@ export function description(displayOptions: IDisplayOptions) {
 			name: 'subdomain',
 			type: 'string',
 			default: '',
-			description: 'The subdomain',
 			displayOptions,
 		},
 		{

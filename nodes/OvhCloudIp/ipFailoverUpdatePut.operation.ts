@@ -10,7 +10,7 @@ import { ApiClient } from '../../shared/transport/ApiClient';
 export function description(displayOptions: IDisplayOptions): INodeProperties[] {
 	return [
 		{
-			displayName: 'ip',
+			displayName: 'Ip',
 			name: 'ip',
 			type: 'string',
 			default: '',
@@ -18,7 +18,7 @@ export function description(displayOptions: IDisplayOptions): INodeProperties[] 
 			description: 'The ip identifier',
 		},
 		{
-			displayName: 'failover',
+			displayName: 'Failover',
 			name: 'failover',
 			type: 'string',
 			default: '',

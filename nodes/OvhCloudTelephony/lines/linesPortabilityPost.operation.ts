@@ -19,7 +19,7 @@ export function description(displayOptions: IDisplayOptions): INodeProperties[] 
           displayOptions,
         },
         {
-          displayName: 'number',
+          displayName: 'Number',
           name: 'number',
           type: 'string',
           default: '',
@@ -28,11 +28,10 @@ export function description(displayOptions: IDisplayOptions): INodeProperties[] 
           displayOptions,
         },
         {
-          displayName: 'expire',
+          displayName: 'Expire',
           name: 'expire',
           type: 'string',
           default: '',
-          required: false,
           description: 'The expire parameter',
           displayOptions,
         },

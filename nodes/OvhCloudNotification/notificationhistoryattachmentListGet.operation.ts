@@ -10,7 +10,7 @@ import { ApiClient } from '../../shared/transport/ApiClient';
 export function description(displayOptions: IDisplayOptions): INodeProperties[] {
 	return [
 		{
-			displayName: 'notification Id',
+			displayName: 'Notification ID',
 			name: 'notificationId',
 			type: 'string',
 			default: '',
@@ -18,7 +18,7 @@ export function description(displayOptions: IDisplayOptions): INodeProperties[] 
 			description: 'The notificationId identifier',
 		},
 		{
-			displayName: 'attachment Name',
+			displayName: 'Attachment Name',
 			name: 'attachmentName',
 			type: 'string',
 			default: '',

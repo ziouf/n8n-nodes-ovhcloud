@@ -43,15 +43,71 @@ import { execute as executeWhoisPrivacyCreatePost } from './resources/whoisPriva
 import { execute as executeWhoisPrivacyUpdatePut } from './resources/whoisPrivacy/whoisPrivacyUpdatePut.operation';
 import { execute as executeWhoisPrivacyDeleteDelete } from './resources/whoisPrivacy/whoisPrivacyDeleteDelete.operation';
 
+// V2 Domain operations (fusion depuis OvhCloudDomainV2)
+import {
+	description as descriptionV2ListAllDomains,
+	execute as executeV2ListAllDomains,
+} from './resources/v2/domainalldomListGet.operation';
+import {
+	description as descriptionV2GetAllDomain,
+	execute as executeV2GetAllDomain,
+} from './resources/v2/domainalldomGetGet.operation';
+import {
+	description as descriptionV2ListAllDomainTasks,
+	execute as executeV2ListAllDomainTasks,
+} from './resources/v2/domainalldomTaskListGet.operation';
+import {
+	description as descriptionV2GetAllDomainTask,
+	execute as executeV2GetAllDomainTask,
+} from './resources/v2/domainalldomTaskGetGet.operation';
+import {
+	description as descriptionV2ListDomains,
+	execute as executeV2ListDomains,
+} from './resources/v2/domainNameListGet.operation';
+import {
+	description as descriptionV2GetDomain,
+	execute as executeV2GetDomain,
+} from './resources/v2/domainNameGetGet.operation';
+import {
+	description as descriptionV2UpdateDomain,
+	execute as executeV2UpdateDomain,
+} from './resources/v2/domainNameUpdatePut.operation';
+import {
+	description as descriptionV2ListDomainTasks,
+	execute as executeV2ListDomainTasks,
+} from './resources/v2/domainNameTaskListGet.operation';
+import {
+	description as descriptionV2GetDomainTask,
+	execute as executeV2GetDomainTask,
+} from './resources/v2/domainNameTaskGetGet.operation';
+
 export function description() {
 	const props: INodeProperties[] = [];
 
-	// Operation picker (alphabetical)
+	// API Version selector (parent)
+	props.push({
+		displayName: 'API Version',
+		name: 'apiVersion',
+		type: 'options',
+		options: [
+			{ name: 'V1 API', value: 'v1' },
+			{ name: 'V2 API', value: 'v2' },
+		],
+		default: 'v1',
+		description: 'Select the API version to use',
+	});
+
+	// Operation picker (alphabetical) - v1 only
 	props.push({
 		displayName: 'Operation',
 		name: 'domainOperation',
 		type: 'options',
 		noDataExpression: true,
+		displayOptions: {
+			show: {
+				apiVersion: ['v1'],
+			},
+		},
 		default: undefined,
 		options: [
 			{
@@ -66,26 +122,17 @@ export function description() {
 			},
 			{ displayName: 'List Domains', name: 'listDomains', value: 'listDomains' },
 			{ displayName: 'List Tasks', name: 'listTasks', value: 'listTasks' },
-			{ displayName: 'List All Domains (alldoms)', name: 'searchAlldom', value: 'searchAlldom' },
-			{
-				displayName: 'Update Domain By Service Name',
-				name: 'updateDomainByServiceName',
-				value: 'updateDomainByServiceName',
-			},
-			// DNS Zone Record operations
+			{ displayName: 'Pool Create', name: 'poolCreatePost', value: 'poolCreatePost' },
+			{ displayName: 'Pool Delete', name: 'poolDeleteDelete', value: 'poolDeleteDelete' },
+			{ displayName: 'Pool Get', name: 'poolGetGet', value: 'poolGetGet' },
+			{ displayName: 'Pool List', name: 'poolListGet', value: 'poolListGet' },
+			{ displayName: 'Pool Update', name: 'poolUpdatePut', value: 'poolUpdatePut' },
 			{ displayName: 'Record Create', name: 'recordCreatePost', value: 'recordCreatePost' },
 			{ displayName: 'Record Delete', name: 'recordDeleteDelete', value: 'recordDeleteDelete' },
 			{ displayName: 'Record Flush', name: 'recordFlushPost', value: 'recordFlushPost' },
 			{ displayName: 'Record Get', name: 'recordGetGet', value: 'recordGetGet' },
 			{ displayName: 'Record List', name: 'recordListGet', value: 'recordListGet' },
 			{ displayName: 'Record Update', name: 'recordUpdatePut', value: 'recordUpdatePut' },
-			// Pool operations
-			{ displayName: 'Pool Create', name: 'poolCreatePost', value: 'poolCreatePost' },
-			{ displayName: 'Pool Delete', name: 'poolDeleteDelete', value: 'poolDeleteDelete' },
-			{ displayName: 'Pool Get', name: 'poolGetGet', value: 'poolGetGet' },
-			{ displayName: 'Pool List', name: 'poolListGet', value: 'poolListGet' },
-			{ displayName: 'Pool Update', name: 'poolUpdatePut', value: 'poolUpdatePut' },
-			// Redirect operations
 			{ displayName: 'Redirect Create', name: 'redirectCreatePost', value: 'redirectCreatePost' },
 			{
 				displayName: 'Redirect Delete',
@@ -95,7 +142,12 @@ export function description() {
 			{ displayName: 'Redirect Get', name: 'redirectGetGet', value: 'redirectGetGet' },
 			{ displayName: 'Redirect List', name: 'redirectListGet', value: 'redirectListGet' },
 			{ displayName: 'Redirect Update', name: 'redirectUpdatePut', value: 'redirectUpdatePut' },
-			// Whois Privacy operations
+			{ displayName: 'List All Domains (alldoms)', name: 'searchAlldom', value: 'searchAlldom' },
+			{
+				displayName: 'Update Domain By Service Name',
+				name: 'updateDomainByServiceName',
+				value: 'updateDomainByServiceName',
+			},
 			{
 				displayName: 'Whois Privacy Create',
 				name: 'whoisPrivacyCreatePost',
@@ -112,7 +164,6 @@ export function description() {
 				name: 'whoisPrivacyUpdatePut',
 				value: 'whoisPrivacyUpdatePut',
 			},
-			// Wildcard operations
 			{ displayName: 'Wildcard Create', name: 'wildcardCreatePost', value: 'wildcardCreatePost' },
 			{
 				displayName: 'Wildcard Delete',
@@ -126,13 +177,113 @@ export function description() {
 		],
 	});
 
+	// Separate operation picker for v2
+	props.push({
+		displayName: 'Operation (v2)',
+		name: 'domainOperationV2',
+		type: 'options',
+		noDataExpression: true,
+		default: undefined,
+		displayOptions: {
+			show: {
+				apiVersion: ['v2'],
+			},
+		},
+		options: [
+			{ displayName: 'v2 - Get All Domain', name: 'v2GetAllDomain', value: 'v2GetAllDomain' },
+			{
+				displayName: 'v2 - Get All Domain Task',
+				name: 'v2GetAllDomainTask',
+				value: 'v2GetAllDomainTask',
+			},
+			{ displayName: 'v2 - Get Domain', name: 'v2GetDomain', value: 'v2GetDomain' },
+			{ displayName: 'v2 - Get Domain Task', name: 'v2GetDomainTask', value: 'v2GetDomainTask' },
+			{ displayName: 'v2 - List All Domains', name: 'v2ListAllDomains', value: 'v2ListAllDomains' },
+			{
+				displayName: 'v2 - List All Domain Tasks',
+				name: 'v2ListAllDomainTasks',
+				value: 'v2ListAllDomainTasks',
+			},
+			{ displayName: 'v2 - List Domains', name: 'v2ListDomains', value: 'v2ListDomains' },
+			{
+				displayName: 'v2 - List Domain Tasks',
+				name: 'v2ListDomainTasks',
+				value: 'v2ListDomainTasks',
+			},
+			{ displayName: 'v2 - Update Domain', name: 'v2UpdateDomain', value: 'v2UpdateDomain' },
+		],
+	});
+
+	// V2 Domain parameters (fusion depuis OvhCloudDomainV2)
+	props.push(
+		...(descriptionV2GetAllDomain({
+			show: {
+				apiVersion: ['v2'],
+				domainOperationV2: ['v2GetAllDomain'],
+			},
+		}) as INodeProperties[]),
+		...(descriptionV2GetAllDomainTask({
+			show: {
+				apiVersion: ['v2'],
+				domainOperationV2: ['v2GetAllDomainTask'],
+			},
+		}) as INodeProperties[]),
+		...(descriptionV2GetDomain({
+			show: {
+				apiVersion: ['v2'],
+				domainOperationV2: ['v2GetDomain'],
+			},
+		}) as INodeProperties[]),
+		...(descriptionV2GetDomainTask({
+			show: {
+				apiVersion: ['v2'],
+				domainOperationV2: ['v2GetDomainTask'],
+			},
+		}) as INodeProperties[]),
+		...(descriptionV2ListAllDomains({
+			show: {
+				apiVersion: ['v2'],
+				domainOperationV2: ['v2ListAllDomains'],
+			},
+		}) as INodeProperties[]),
+		...(descriptionV2ListAllDomainTasks({
+			show: {
+				apiVersion: ['v2'],
+				domainOperationV2: ['v2ListAllDomainTasks'],
+			},
+		}) as INodeProperties[]),
+		...(descriptionV2ListDomains({
+			show: {
+				apiVersion: ['v2'],
+				domainOperationV2: ['v2ListDomains'],
+			},
+		}) as INodeProperties[]),
+		...(descriptionV2ListDomainTasks({
+			show: {
+				apiVersion: ['v2'],
+				domainOperationV2: ['v2ListDomainTasks'],
+			},
+		}) as INodeProperties[]),
+		...(descriptionV2UpdateDomain({
+			show: {
+				apiVersion: ['v2'],
+				domainOperationV2: ['v2UpdateDomain'],
+			},
+		}) as INodeProperties[]),
+	);
+
 	return props;
 }
 
 export async function execute(this: IExecuteFunctions): Promise<INodeExecutionData[]> {
-	const operation = this.getNodeParameter('domainOperation', 0) as string;
+	const apiVersion = this.getNodeParameter('apiVersion', 0) as string;
+	const operation = this.getNodeParameter(
+		apiVersion === 'v2' ? 'domainOperationV2' : 'domainOperation',
+		0,
+	) as string;
 
 	switch (operation) {
+		// V1 Domain operations
 		case 'searchAlldom':
 			return listAlldoms.execute.call(this);
 		case 'getAlldomByServiceName':
@@ -200,6 +351,25 @@ export async function execute(this: IExecuteFunctions): Promise<INodeExecutionDa
 			return executeWhoisPrivacyUpdatePut.call(this);
 		case 'whoisPrivacyDeleteDelete':
 			return executeWhoisPrivacyDeleteDelete.call(this);
+		// V2 Domain operations (fusion depuis OvhCloudDomainV2)
+		case 'v2GetAllDomain':
+			return executeV2GetAllDomain.call(this, 0);
+		case 'v2GetAllDomainTask':
+			return executeV2GetAllDomainTask.call(this, 0);
+		case 'v2GetDomain':
+			return executeV2GetDomain.call(this, 0);
+		case 'v2GetDomainTask':
+			return executeV2GetDomainTask.call(this, 0);
+		case 'v2ListAllDomains':
+			return executeV2ListAllDomains.call(this, 0);
+		case 'v2ListAllDomainTasks':
+			return executeV2ListAllDomainTasks.call(this, 0);
+		case 'v2ListDomains':
+			return executeV2ListDomains.call(this, 0);
+		case 'v2ListDomainTasks':
+			return executeV2ListDomainTasks.call(this, 0);
+		case 'v2UpdateDomain':
+			return executeV2UpdateDomain.call(this, 0);
 		default: {
 			throw new Error(`No handler for operation '${operation}'`);
 		}

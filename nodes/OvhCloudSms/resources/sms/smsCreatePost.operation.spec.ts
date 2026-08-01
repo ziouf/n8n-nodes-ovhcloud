@@ -22,12 +22,14 @@ describe('smsCreatePost.operation', () => {
 				displayName: 'Recipients',
 				name: 'recipients',
 				type: 'string',
+				default: '',
 				required: true,
 			});
 			expect(result[1]).toMatchObject({
 				displayName: 'Content',
 				name: 'content',
 				type: 'string',
+				default: '',
 				required: true,
 			});
 		});

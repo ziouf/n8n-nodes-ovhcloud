@@ -23,12 +23,12 @@ export function description(displayOptions: IDisplayOptions): INodeProperties[] 
 			noDataExpression: true,
 			options: [
 			{
-				name: 'List all offers',
+				name: 'List All Offers',
 				value: 'commercialCatalogoffersListGet',
 				action: 'List all offers',
 			},
 			{
-				name: 'Get details of an offer',
+				name: 'Get Details of an Offer',
 				value: 'commercialCatalogoffersListGet2',
 				action: 'Get details of an offer',
 			},

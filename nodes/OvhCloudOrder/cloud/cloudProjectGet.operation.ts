@@ -14,7 +14,6 @@ export function description(displayOptions: IDisplayOptions): INodeProperties[] 
 			type: 'string',
 			default: '',
 			required: true,
-			description: 'The project ID',
 			displayOptions,
 		},
 	];

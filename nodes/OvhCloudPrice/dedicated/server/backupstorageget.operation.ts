@@ -16,7 +16,6 @@ export function description(displayOptions: IDisplayOptions): INodeProperties[] 
                 options: [{ name: 'Any', value: '' }],
                 default: '',
                 required: true,
-                description: 'The capacity',
                 displayOptions,
             }
     ];

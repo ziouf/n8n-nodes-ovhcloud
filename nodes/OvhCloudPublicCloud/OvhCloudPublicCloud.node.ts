@@ -16,9 +16,9 @@ export class OvhCloudPublicCloud extends BaseNode implements INodeType {
 		icon: OvhCloudIcon,
 		group: ['input'],
 		version: 1,
-		subtitle: '={{$parameter["publicCloudOperation"]}}',
-		description:
-			'Manage OVHcloud Public Cloud services via /publicCloud API v2 (GET/POST/PUT/DELETE)',
+		subtitle:
+			'={{$parameter["apiVersion"] === "v2" ? $parameter["publicCloudOperationV2"] : $parameter["publicCloudOperation"]}}',
+		description: 'Manage OVHcloud Public Cloud resources via /publicCloud API (v1 + v2)',
 		defaults: { name: 'OVH Cloud Public Cloud' },
 		usableAsTool: true,
 		inputs: [NodeConnectionTypes.Main],

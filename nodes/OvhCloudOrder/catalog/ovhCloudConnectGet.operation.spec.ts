@@ -22,6 +22,7 @@ describe('ovhCloudConnectGet operation', () => {
                 displayName: 'Product',
                 name: 'product',
                 type: 'string',
+																default: '',
             });
         });
     });

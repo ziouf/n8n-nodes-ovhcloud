@@ -10,7 +10,7 @@ import { ApiClient } from '../../shared/transport/ApiClient';
 export function description(displayOptions: IDisplayOptions): INodeProperties[] {
 	return [
 		{
-			displayName: 'storage Id',
+			displayName: 'Storage ID',
 			name: 'storageId',
 			type: 'string',
 			default: '',
@@ -18,7 +18,7 @@ export function description(displayOptions: IDisplayOptions): INodeProperties[] 
 			description: 'The storageId identifier',
 		},
 		{
-			displayName: 'container Id',
+			displayName: 'Container ID',
 			name: 'containerId',
 			type: 'string',
 			default: '',

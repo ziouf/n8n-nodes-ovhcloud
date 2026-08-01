@@ -22,6 +22,7 @@ describe('licenseSqlServerGet operation', () => {
                 displayName: 'Product',
                 name: 'product',
                 type: 'string',
+																default: '',
             });
         });
     });

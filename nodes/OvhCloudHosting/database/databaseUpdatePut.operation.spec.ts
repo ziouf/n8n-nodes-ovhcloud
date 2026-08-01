@@ -22,12 +22,14 @@ describe('hosting databaseUpdatePut operation', () => {
 				displayName: 'Service Name',
 				name: 'serviceName',
 				type: 'resourceLocator',
+				default: 'undefined',
 				required: true,
 			});
 			expect(result[1]).toMatchObject({
 				displayName: 'Database Name',
 				name: 'databaseName',
 				type: 'string',
+				default: '',
 				required: true,
 			});
 		});

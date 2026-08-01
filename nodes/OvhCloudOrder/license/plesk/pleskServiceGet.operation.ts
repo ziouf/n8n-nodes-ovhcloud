@@ -14,14 +14,13 @@ export function description(displayOptions: IDisplayOptions): INodeProperties[] 
 			type: 'options',
 			options: [
 				{ name: 'cPanel', value: 'cPanel' },
-				{ name: 'office', value: 'office' },
-				{ name: 'plesk', value: 'plesk' },
-				{ name: 'sqlserver', value: 'sqlserver' },
-				{ name: 'windows', value: 'windows' },
+				{ name: 'Office', value: 'office' },
+				{ name: 'Plesk', value: 'plesk' },
+				{ name: 'Sqlserver', value: 'sqlserver' },
+				{ name: 'Windows', value: 'windows' },
 			],
-			default: '',
+			default: 'cPanel',
 			required: true,
-			description: 'The license family',
 			displayOptions,
 		},
 		{
@@ -30,7 +29,6 @@ export function description(displayOptions: IDisplayOptions): INodeProperties[] 
 			type: 'string',
 			default: '',
 			required: true,
-			description: 'The service name',
 			displayOptions,
 		},
 	];

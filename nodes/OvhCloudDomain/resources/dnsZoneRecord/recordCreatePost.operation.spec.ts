@@ -22,24 +22,28 @@ describe('recordCreatePost.operation', () => {
 				displayName: 'Domain Name',
 				name: 'domainName',
 				type: 'string',
+				default: '',
 				required: true,
 			});
 			expect(result[1]).toMatchObject({
 				displayName: 'Field',
 				name: 'field',
 				type: 'string',
+				default: '',
 				required: true,
 			});
 			expect(result[3]).toMatchObject({
 				displayName: 'Type',
 				name: 'type',
 				type: 'options',
+				default: '',
 				required: true,
 			});
 			expect(result[4]).toMatchObject({
 				displayName: 'Value',
 				name: 'value',
 				type: 'string',
+				default: '',
 				required: true,
 			});
 		});

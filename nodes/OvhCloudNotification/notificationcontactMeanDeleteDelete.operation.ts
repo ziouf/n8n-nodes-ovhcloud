@@ -10,7 +10,7 @@ import { ApiClient } from '../../shared/transport/ApiClient';
 export function description(displayOptions: IDisplayOptions): INodeProperties[] {
 	return [
 		{
-			displayName: 'contact Mean Id',
+			displayName: 'Contact Mean ID',
 			name: 'contactMeanId',
 			type: 'string',
 			default: '',

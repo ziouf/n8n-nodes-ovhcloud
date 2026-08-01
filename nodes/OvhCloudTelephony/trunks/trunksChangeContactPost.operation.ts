@@ -19,7 +19,7 @@ export function description(displayOptions: IDisplayOptions): INodeProperties[] 
           displayOptions,
         },
         {
-          displayName: 'contact Admin',
+          displayName: 'Contact Admin',
           name: 'contactAdmin',
           type: 'string',
           default: '',
@@ -28,7 +28,7 @@ export function description(displayOptions: IDisplayOptions): INodeProperties[] 
           displayOptions,
         },
         {
-          displayName: 'contact Billing',
+          displayName: 'Contact Billing',
           name: 'contactBilling',
           type: 'string',
           default: '',
@@ -37,7 +37,7 @@ export function description(displayOptions: IDisplayOptions): INodeProperties[] 
           displayOptions,
         },
         {
-          displayName: 'contact Tech',
+          displayName: 'Contact Tech',
           name: 'contactTech',
           type: 'string',
           default: '',

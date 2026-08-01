@@ -16,8 +16,9 @@ export class OvhCloudDomain extends BaseNode implements INodeType {
 		icon: OvhCloudIcon,
 		group: ['input'],
 		version: 1,
-		subtitle: '={{$parameter["domainOperation"]}} / {{$parameter["resourceType"] ?? "alldom"}}',
-		description: 'Manage OVH Cloud Domain services via /domain API v2 (GET/PUT operations)',
+		subtitle:
+			'={{$parameter["apiVersion"] === "v2" ? $parameter["domainOperationV2"] : $parameter["domainOperation"]}} / {{$parameter["resourceType"] ?? "alldom"}}',
+		description: 'Manage OVH Cloud Domain services via /domain API (v1 + v2)',
 		defaults: { name: 'OVH Cloud Domain' },
 		usableAsTool: true,
 		inputs: [NodeConnectionTypes.Main],

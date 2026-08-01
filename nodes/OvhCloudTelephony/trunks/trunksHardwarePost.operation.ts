@@ -19,7 +19,7 @@ export function description(displayOptions: IDisplayOptions): INodeProperties[] 
           displayOptions,
         },
         {
-          displayName: 'mac Address',
+          displayName: 'Mac Address',
           name: 'macAddress',
           type: 'string',
           default: '',

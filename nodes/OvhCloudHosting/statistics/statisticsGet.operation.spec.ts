@@ -22,18 +22,21 @@ describe('hosting statisticsGet operation', () => {
 				displayName: 'Service Name',
 				name: 'serviceName',
 				type: 'resourceLocator',
+				default: 'undefined',
 				required: true,
 			});
 			expect(result[1]).toMatchObject({
 				displayName: 'Period',
 				name: 'period',
 				type: 'options',
+				default: '',
 				required: true,
 			});
 			expect(result[2]).toMatchObject({
 				displayName: 'Type',
 				name: 'type',
 				type: 'options',
+				default: '',
 				required: true,
 			});
 		});

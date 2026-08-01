@@ -10,7 +10,7 @@ import { ApiClient } from '../../shared/transport/ApiClient';
 export function description(displayOptions: IDisplayOptions): INodeProperties[] {
 	return [
 		{
-			displayName: 'vrack Services Id',
+			displayName: 'Vrack Services ID',
 			name: 'vrackServicesId',
 			type: 'string',
 			default: '',
@@ -18,7 +18,7 @@ export function description(displayOptions: IDisplayOptions): INodeProperties[] 
 			description: 'The vrackServicesId identifier',
 		},
 		{
-			displayName: 'task Id',
+			displayName: 'Task ID',
 			name: 'taskId',
 			type: 'string',
 			default: '',

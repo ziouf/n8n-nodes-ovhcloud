@@ -16,6 +16,22 @@ import {
 	execute as executeUpdateCertificateByResourceName,
 	description as descriptionUpdateCertificateByResourceName,
 } from './resources/updateCertificateByResourceName.operation';
+import {
+	execute as executeCertificateGetGet,
+	description as descriptionCertificateGetGet,
+} from './resources/certificateGetGet.operation';
+import {
+	execute as executeServiceInfosUpdatePut,
+	description as descriptionServiceInfosUpdatePut,
+} from './resources/serviceInfosUpdatePut.operation';
+import {
+	execute as executeTaskListGet,
+	description as descriptionTaskListGet,
+} from './resources/taskListGet.operation';
+import {
+	execute as executeTaskGetGet,
+	description as descriptionTaskGetGet,
+} from './resources/taskGetGet.operation';
 
 export function description(displayOptions: IDisplayOptions) {
 	const operationProperties = [
@@ -26,9 +42,14 @@ export function description(displayOptions: IDisplayOptions) {
 			noDataExpression: true as const,
 			options: [
 				{
-					name: 'List All Domains',
-					value: 'listAllDomains',
-					action: 'List all SSL certificate domains',
+					name: 'Create Certificate By Resource Name',
+					value: 'createCertificateByResourceName',
+					action: 'Create an SSL certificate for a web hosting resource (v2)',
+				},
+				{
+					name: 'Get Certificate',
+					value: 'getCertificate',
+					action: 'Get SSL certificate details',
 				},
 				{
 					name: 'Get Certificate By Resource Name',
@@ -36,14 +57,29 @@ export function description(displayOptions: IDisplayOptions) {
 					action: 'Get an SSL certificate for a web hosting resource by its name (v2)',
 				},
 				{
-					name: 'Create Certificate By Resource Name',
-					value: 'createCertificateByResourceName',
-					action: 'Create an SSL certificate for a web hosting resource (v2)',
+					name: 'Get Certificate Task',
+					value: 'getCertificateTask',
+					action: 'Get a specific SSL certificate task',
+				},
+				{
+					name: 'List All Domains',
+					value: 'listAllDomains',
+					action: 'List all SSL certificate domains',
+				},
+				{
+					name: 'List Certificate Tasks',
+					value: 'listCertificateTasks',
+					action: 'List SSL certificate tasks',
 				},
 				{
 					name: 'Update Certificate By Resource Name',
 					value: 'updateCertificateByResourceName',
 					action: 'Update an SSL certificate on a web hosting resource (v2)',
+				},
+				{
+					name: 'Update Service Infos',
+					value: 'updateServiceInfos',
+					action: 'Update SSL service information',
 				},
 			],
 			default: 'listAllDomains',
@@ -66,6 +102,22 @@ export function description(displayOptions: IDisplayOptions) {
 			...displayOptions,
 			show: { sslOperation: ['updateCertificateByResourceName'] },
 		}) || []),
+		...(descriptionCertificateGetGet({
+			...displayOptions,
+			show: { sslOperation: ['getCertificate'] },
+		}) || []),
+		...(descriptionServiceInfosUpdatePut({
+			...displayOptions,
+			show: { sslOperation: ['updateServiceInfos'] },
+		}) || []),
+		...(descriptionTaskListGet({
+			...displayOptions,
+			show: { sslOperation: ['listCertificateTasks'] },
+		}) || []),
+		...(descriptionTaskGetGet({
+			...displayOptions,
+			show: { sslOperation: ['getCertificateTask'] },
+		}) || []),
 	];
 }
 
@@ -73,14 +125,22 @@ export async function execute(this: IExecuteFunctions, itemIndex: number) {
 	const operation = this.getNodeParameter('sslOperation', itemIndex, { extractValue: true });
 
 	switch (operation) {
-		case 'listAllDomains':
-			return executeListAllDomains.call(this);
-		case 'getCertificateByResourceName':
-			return executeGetCertificateByResourceName.call(this, itemIndex);
 		case 'createCertificateByResourceName':
 			return executeCreateCertificateByResourceName.call(this, itemIndex);
+		case 'getCertificate':
+			return executeCertificateGetGet.call(this, itemIndex);
+		case 'getCertificateByResourceName':
+			return executeGetCertificateByResourceName.call(this, itemIndex);
+		case 'getCertificateTask':
+			return executeTaskGetGet.call(this, itemIndex);
+		case 'listAllDomains':
+			return executeListAllDomains.call(this);
+		case 'listCertificateTasks':
+			return executeTaskListGet.call(this, itemIndex);
 		case 'updateCertificateByResourceName':
 			return executeUpdateCertificateByResourceName.call(this, itemIndex);
+		case 'updateServiceInfos':
+			return executeServiceInfosUpdatePut.call(this, itemIndex);
 	}
 
 	throw new Error(`Unsupported operation "${operation}" for resource "ssl"`);

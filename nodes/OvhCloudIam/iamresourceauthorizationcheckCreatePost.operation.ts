@@ -10,7 +10,7 @@ import { ApiClient } from '../../shared/transport/ApiClient';
 export function description(displayOptions: IDisplayOptions): INodeProperties[] {
 	return [
 		{
-			displayName: 'resource U R N',
+			displayName: 'Resource U R N',
 			name: 'resourceURN',
 			type: 'string',
 			default: '',

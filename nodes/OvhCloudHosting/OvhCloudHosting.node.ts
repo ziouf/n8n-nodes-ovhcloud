@@ -12,15 +12,17 @@ import { BaseNode, executeTemplate } from '../../shared/nodes/BaseNode';
 
 export class OvhCloudHosting extends BaseNode implements INodeType {
 	description: INodeTypeDescription = {
-		displayName: 'OVH Cloud Hosting Web',
+		displayName: 'OVH Cloud Hosting',
 		name: 'ovhCloudHosting',
 		icon: OvhCloudIcon,
 		group: ['input'],
-		version: 1,
-		subtitle: '={{$parameter["hostingOperation"]}}',
-		description: 'Manage OVH Cloud Web Hosting services via /hosting/web API',
+		version: 2,
+		subtitle:
+			'={{$parameter["apiVersion"] === "v2" ? "v2 API: " + $parameter["hostingOperationV2"] : "v1 API: " + $parameter["hostingOperation"]}}',
+		description:
+			'Manage OVH Cloud Web Hosting services via /hosting/web API v1 and /webhosting API v2',
 		defaults: {
-			name: 'OVH Cloud Hosting Web',
+			name: 'OVH Cloud Hosting',
 		},
 		usableAsTool: true,
 		inputs: [NodeConnectionTypes.Main],

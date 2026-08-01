@@ -302,11 +302,6 @@ export function description(displayOptions: IDisplayOptions): INodeProperties[] 
 					action: 'Get line properties',
 				},
 				{
-					name: 'Change Contact',
-					value: 'linesChangeContactPost',
-					action: 'Launch a contact change procedure for a line',
-				},
-				{
 					name: 'Get Line Service Info',
 					value: 'linesServiceInfosGet',
 					action: 'Get service information for a line',
@@ -412,11 +407,6 @@ export function description(displayOptions: IDisplayOptions): INodeProperties[] 
 					action: 'Get trunk properties',
 				},
 				{
-					name: 'Change Contact',
-					value: 'trunksChangeContactPost',
-					action: 'Launch a contact change procedure for a trunk',
-				},
-				{
 					name: 'Get Trunk Service Info',
 					value: 'trunksServiceInfosGet',
 					action: 'Get service information for a trunk',
@@ -425,91 +415,6 @@ export function description(displayOptions: IDisplayOptions): INodeProperties[] 
 					name: 'Update Trunk Service Info',
 					value: 'trunksServiceInfosPut',
 					action: 'Update service information for a trunk',
-				},
-				{
-					name: 'List Hardware',
-					value: 'trunksHardwareListGet',
-					action: 'List hardware associated with a trunk',
-				},
-				{
-					name: 'Create Hardware',
-					value: 'trunksHardwarePost',
-					action: 'Add hardware to a trunk',
-				},
-				{
-					name: 'List Numbers',
-					value: 'trunksNumberListGet',
-					action: 'List numbers associated with a trunk',
-				},
-				{
-					name: 'Create Number',
-					value: 'trunksNumberPost',
-					action: 'Add a number to a trunk',
-				},
-				{
-					name: 'Get Number',
-					value: 'trunksNumberGet',
-					action: 'Get number properties',
-				},
-				{
-					name: 'Update Number',
-					value: 'trunksNumberPut',
-					action: 'Update number properties',
-				},
-				{
-					name: 'Delete Number',
-					value: 'trunksNumberDelete',
-					action: 'Delete a number from a trunk',
-				},
-				{
-					name: 'List Numbers',
-					value: 'numbersListGet',
-					action: 'List your telephony numbers',
-				},
-				{
-					name: 'Get Number',
-					value: 'numbersGet',
-					action: 'Get number properties',
-				},
-				{
-					name: 'Create Number',
-					value: 'numbersPost',
-					action: 'Create a new telephony number',
-				},
-				{
-					name: 'Update Number',
-					value: 'numbersPut',
-					action: 'Update number properties',
-				},
-				{
-					name: 'Delete Number',
-					value: 'numbersDelete',
-					action: 'Delete a telephony number',
-				},
-				{
-					name: 'List Portabilities',
-					value: 'numbersPortabilityListGet',
-					action: 'List portabilities for a number',
-				},
-				{
-					name: 'Create Portability',
-					value: 'numbersPortabilityPost',
-					action: 'Create a portability request for a number',
-				},
-				{
-					name: 'Get Portability',
-					value: 'numbersPortabilityGet',
-					action: 'Get portability details',
-				},
-				{
-					name: 'Update Portability',
-					value: 'numbersPortabilityPut',
-					action: 'Update portability properties',
-				},
-				{
-					name: 'Delete Portability',
-					value: 'numbersPortabilityDelete',
-					action: 'Delete a portability request',
 				},
 				{
 					name: 'List Accessories',

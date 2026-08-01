@@ -30,6 +30,10 @@ import {
 	description as descriptionVrackServiceOrderCreatePost,
 } from './vrackServiceOrderCreatePost.operation';
 import {
+	execute as executeServiceOrderGetGet,
+	description as descriptionServiceOrderGetGet,
+} from './serviceOrderGetGet.operation';
+import {
 	execute as executeIpSubListGet,
 	description as descriptionIpSubListGet,
 } from './ipSubListGet.operation';
@@ -58,62 +62,66 @@ export function description(displayOptions: IDisplayOptions): INodeProperties[] 
 			type: 'options',
 			noDataExpression: true,
 			options: [
-			{
-				name: 'List Vrack',
-				value: 'vrackListGet',
-				action: 'List all vRack networks',
-			},
-			{
-				name: 'Get Vrack',
-				value: 'vrackGetGet',
-				action: 'Get vRack details',
-			},
-			{
-				name: 'Update Vrack',
-				value: 'vrackUpdatePut',
-				action: 'Update vRack details',
-			},
-			{
-				name: 'Delete Vrack',
-				value: 'vrackDeleteDelete',
-				action: 'Delete a vRack network',
-			},
-			{
-				name: 'List Service Orders',
-				value: 'vrackServiceOrderListGet',
-				action: 'List service orders for a vRack',
-			},
-			{
-				name: 'Create Service Order',
-				value: 'vrackServiceOrderCreatePost',
-				action: 'Create a service order for a vRack',
-			},
-			{
-				name: 'List IPs on Vrack',
-				value: 'ipSubListGet',
-				action: 'List IPs attached to a vRack',
-			},
-			{
-				name: 'Add IP to Vrack',
-				value: 'ipSubCreatePost',
-				action: 'Add an IP to a vRack',
-			},
-			{
-				name: 'List Public Networks',
-				value: 'publicNetworkSubListGet',
-				action: 'List public networks in a vRack',
-			},
-			{
-				name: 'Add Public Network to Vrack',
-				value: 'publicNetworkSubCreatePost',
-				action: 'Add a public network to a vRack',
-			},
-			{
-				name: 'List Vrack Services',
-				value: 'vrackSubListGet',
-				action: 'List services attached to a vRack',
-			},
-
+				{
+					name: 'List Vrack',
+					value: 'vrackListGet',
+					action: 'List all vRack networks',
+				},
+				{
+					name: 'Get Vrack',
+					value: 'vrackGetGet',
+					action: 'Get vRack details',
+				},
+				{
+					name: 'Get Service Order',
+					value: 'vrackGetServiceOrder',
+					action: 'Get vRack service order details',
+				},
+				{
+					name: 'Update Vrack',
+					value: 'vrackUpdatePut',
+					action: 'Update vRack details',
+				},
+				{
+					name: 'Delete Vrack',
+					value: 'vrackDeleteDelete',
+					action: 'Delete a vRack network',
+				},
+				{
+					name: 'List Service Orders',
+					value: 'vrackServiceOrderListGet',
+					action: 'List service orders for a vRack',
+				},
+				{
+					name: 'Create Service Order',
+					value: 'vrackServiceOrderCreatePost',
+					action: 'Create a service order for a vRack',
+				},
+				{
+					name: 'List IPs on Vrack',
+					value: 'ipSubListGet',
+					action: 'List IPs attached to a vRack',
+				},
+				{
+					name: 'Add IP to Vrack',
+					value: 'ipSubCreatePost',
+					action: 'Add an IP to a vRack',
+				},
+				{
+					name: 'List Public Networks',
+					value: 'publicNetworkSubListGet',
+					action: 'List public networks in a vRack',
+				},
+				{
+					name: 'Add Public Network to Vrack',
+					value: 'publicNetworkSubCreatePost',
+					action: 'Add a public network to a vRack',
+				},
+				{
+					name: 'List Vrack Services',
+					value: 'vrackSubListGet',
+					action: 'List services attached to a vRack',
+				},
 			],
 			default: 'vrackListGet',
 			displayOptions,
@@ -129,6 +137,10 @@ export function description(displayOptions: IDisplayOptions): INodeProperties[] 
 		...(descriptionVrackGetGet({
 			...displayOptions,
 			show: { vrackOperation: ['vrackGetGet'] },
+		}) as INodeProperties[]),
+		...(descriptionServiceOrderGetGet({
+			...displayOptions,
+			show: { vrackOperation: ['vrackGetServiceOrder'] },
 		}) as INodeProperties[]),
 		...(descriptionVrackUpdatePut({
 			...displayOptions,
@@ -166,7 +178,6 @@ export function description(displayOptions: IDisplayOptions): INodeProperties[] 
 			...displayOptions,
 			show: { vrackOperation: ['vrackSubListGet'] },
 		}) as INodeProperties[]),
-
 	];
 
 	return properties;
@@ -185,6 +196,8 @@ export async function execute(
 			return executeVrackListGet.call(this, itemIndex);
 		case 'vrackGetGet':
 			return executeVrackGetGet.call(this, itemIndex);
+		case 'vrackGetServiceOrder':
+			return executeServiceOrderGetGet.call(this, itemIndex);
 		case 'vrackUpdatePut':
 			return executeVrackUpdatePut.call(this, itemIndex);
 		case 'vrackDeleteDelete':
@@ -203,7 +216,6 @@ export async function execute(
 			return executePublicNetworkSubCreatePost.call(this, itemIndex);
 		case 'vrackSubListGet':
 			return executeVrackSubListGet.call(this, itemIndex);
-
 	}
 
 	throw new Error(`Unsupported operation "${operation}" for resource "ovhCloudVrack"`);

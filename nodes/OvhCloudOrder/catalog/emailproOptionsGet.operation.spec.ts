@@ -22,6 +22,7 @@ describe('emailproOptionsGet operation', () => {
                 displayName: 'Product',
                 name: 'product',
                 type: 'string',
+																default: '',
             });
         });
     });

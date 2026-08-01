@@ -22,6 +22,7 @@ describe('telephonyOptionsGet operation', () => {
                 displayName: 'Product',
                 name: 'product',
                 type: 'string',
+																default: '',
             });
         });
     });

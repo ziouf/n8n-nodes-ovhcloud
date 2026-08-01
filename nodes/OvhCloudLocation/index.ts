@@ -23,12 +23,12 @@ export function description(displayOptions: IDisplayOptions): INodeProperties[] 
 			noDataExpression: true,
 			options: [
 			{
-				name: 'List available regions and their availability zones',
+				name: 'List Available Regions and Their Availability Zones',
 				value: 'locationListGet',
 				action: 'List available regions and their availability zones',
 			},
 			{
-				name: 'Get available region and its availability zones',
+				name: 'Get Available Region and Its Availability Zones',
 				value: 'locationListGet2',
 				action: 'Get available region and its availability zones',
 			},

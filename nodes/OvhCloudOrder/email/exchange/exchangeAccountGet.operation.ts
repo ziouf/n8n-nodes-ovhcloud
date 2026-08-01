@@ -14,7 +14,6 @@ export function description(displayOptions: IDisplayOptions): INodeProperties[] 
 			type: 'string',
 			default: '',
 			required: true,
-			description: 'The organization name',
 			displayOptions,
 		},
 		{
@@ -23,7 +22,6 @@ export function description(displayOptions: IDisplayOptions): INodeProperties[] 
 			type: 'string',
 			default: '',
 			required: true,
-			description: 'The service name',
 			displayOptions,
 		},
 		{
@@ -32,7 +30,6 @@ export function description(displayOptions: IDisplayOptions): INodeProperties[] 
 			type: 'string',
 			default: '',
 			required: true,
-			description: 'The account ID',
 			displayOptions,
 		},
 	];

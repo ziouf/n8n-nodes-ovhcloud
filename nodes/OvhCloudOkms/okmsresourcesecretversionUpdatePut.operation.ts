@@ -10,7 +10,7 @@ import { ApiClient } from '../../shared/transport/ApiClient';
 export function description(displayOptions: IDisplayOptions): INodeProperties[] {
 	return [
 		{
-			displayName: 'okms Id',
+			displayName: 'Okms ID',
 			name: 'okmsId',
 			type: 'string',
 			default: '',
@@ -18,7 +18,7 @@ export function description(displayOptions: IDisplayOptions): INodeProperties[] 
 			description: 'The okmsId identifier',
 		},
 		{
-			displayName: 'path',
+			displayName: 'Path',
 			name: 'path',
 			type: 'string',
 			default: '',
@@ -26,7 +26,7 @@ export function description(displayOptions: IDisplayOptions): INodeProperties[] 
 			description: 'The path identifier',
 		},
 		{
-			displayName: 'version',
+			displayName: 'Version',
 			name: 'version',
 			type: 'string',
 			default: '',

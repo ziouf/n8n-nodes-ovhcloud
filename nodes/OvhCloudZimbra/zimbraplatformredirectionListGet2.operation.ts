@@ -10,7 +10,7 @@ import { ApiClient } from '../../shared/transport/ApiClient';
 export function description(displayOptions: IDisplayOptions): INodeProperties[] {
 	return [
 		{
-			displayName: 'platform Id',
+			displayName: 'Platform ID',
 			name: 'platformId',
 			type: 'string',
 			default: '',
@@ -18,7 +18,7 @@ export function description(displayOptions: IDisplayOptions): INodeProperties[] 
 			description: 'The platformId identifier',
 		},
 		{
-			displayName: 'redirection Id',
+			displayName: 'Redirection ID',
 			name: 'redirectionId',
 			type: 'string',
 			default: '',

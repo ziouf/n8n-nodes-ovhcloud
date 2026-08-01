@@ -22,12 +22,14 @@ describe('hosting cronUpdatePut operation', () => {
 				displayName: 'Service Name',
 				name: 'serviceName',
 				type: 'resourceLocator',
+				default: 'undefined',
 				required: true,
 			});
 			expect(result[1]).toMatchObject({
 				displayName: 'Cron ID',
 				name: 'cronId',
 				type: 'number',
+				default: 0,
 				required: true,
 			});
 		});

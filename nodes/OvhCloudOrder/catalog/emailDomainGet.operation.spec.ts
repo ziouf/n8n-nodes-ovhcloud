@@ -22,6 +22,7 @@ describe('emailDomainGet operation', () => {
                 displayName: 'Product',
                 name: 'product',
                 type: 'string',
+																default: '',
             });
         });
     });

@@ -17,7 +17,7 @@ export class OvhCloudSsl extends BaseNode implements INodeType {
 		group: ['input'],
 		version: 1,
 		subtitle: '={{$parameter["sslOperation"]}}',
-		description: 'Manage OVH Cloud SSL certificates via /ssl API v2 (GET/POST/PUT operations)',
+		description: 'Manage OVH Cloud SSL certificates via /ssl API v1 and v2',
 		defaults: { name: 'OVH Cloud SSL Certificates' },
 		usableAsTool: true,
 		inputs: [NodeConnectionTypes.Main],

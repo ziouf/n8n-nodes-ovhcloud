@@ -22,6 +22,7 @@ describe('officePrepaidOptionsGet operation', () => {
                 displayName: 'Product',
                 name: 'product',
                 type: 'string',
+																default: '',
             });
         });
     });

@@ -15,6 +15,15 @@ import {
 } from './project/getDetailGet.operation';
 
 import {
+	description as listGetV2Description,
+	execute as listGetV2Execute,
+} from './project/listGetV2.operation';
+import {
+	description as getDetailGetV2Description,
+	execute as getDetailGetV2Execute,
+} from './project/getDetailGetV2.operation';
+
+import {
 	description as rancherServiceListGetDescription,
 	execute as rancherServiceListGetExecute,
 } from './rancher/serviceListGet.operation';
@@ -60,6 +69,67 @@ import {
 	description as rancherEventListGetDescription,
 	execute as rancherEventListGetExecute,
 } from './rancher/eventListGet.operation';
+
+import {
+	description as serviceListGetV2Description,
+	execute as serviceListGetV2Execute,
+} from './rancher/serviceListGetV2.operation';
+import {
+	description as serviceCreatePostV2Description,
+	execute as serviceCreatePostV2Execute,
+} from './rancher/serviceCreatePostV2.operation';
+import {
+	description as serviceDeleteDeleteV2Description,
+	execute as serviceDeleteDeleteV2Execute,
+} from './rancher/serviceDeleteDeleteV2.operation';
+import {
+	description as serviceGetGetV2Description,
+	execute as serviceGetGetV2Execute,
+} from './rancher/serviceGetGetV2.operation';
+import {
+	description as serviceUpdatePutV2Description,
+	execute as serviceUpdatePutV2Execute,
+} from './rancher/serviceUpdatePutV2.operation';
+import {
+	description as adminCredentialsResetV2Description,
+	execute as adminCredentialsResetV2Execute,
+} from './rancher/adminCredentialsResetV2.operation';
+import {
+	description as planCapabilityListGetV2Description,
+	execute as planCapabilityListGetV2Execute,
+} from './rancher/planCapabilityListGetV2.operation';
+import {
+	description as versionCapabilityListGetV2Description,
+	execute as versionCapabilityListGetV2Execute,
+} from './rancher/versionCapabilityListGetV2.operation';
+import {
+	description as eventListGetV2Description,
+	execute as eventListGetV2Execute,
+} from './rancher/eventListGetV2.operation';
+import {
+	description as taskListGetV2Description,
+	execute as taskListGetV2Execute,
+} from './rancher/taskListGetV2.operation';
+import {
+	description as taskDetailGetV2Description,
+	execute as taskDetailGetV2Execute,
+} from './rancher/taskDetailGetV2.operation';
+import {
+	description as referencePlanListGetV2Description,
+	execute as referencePlanListGetV2Execute,
+} from './rancher/referencePlanListGetV2.operation';
+import {
+	description as referenceVersionListGetV2Description,
+	execute as referenceVersionListGetV2Execute,
+} from './rancher/referenceVersionListGetV2.operation';
+import {
+	description as globalReferencePlanListGetV2Description,
+	execute as globalReferencePlanListGetV2Execute,
+} from './rancher/globalReferencePlanListGetV2.operation';
+import {
+	description as globalReferenceVersionListGetV2Description,
+	execute as globalReferenceVersionListGetV2Execute,
+} from './rancher/globalReferenceVersionListGetV2.operation';
 
 import {
 	description as volumeListGetDescription,
@@ -447,11 +517,29 @@ import {
 export function description(displayOptions: IDisplayOptions): INodeProperties[] {
 	const properties: INodeProperties[] = [];
 
+	// API Version selector (parent)
+	properties.push({
+		displayName: 'API Version',
+		name: 'apiVersion',
+		type: 'options',
+		options: [
+			{ name: 'V1 API', value: 'v1' },
+			{ name: 'V2 API', value: 'v2' },
+		],
+		default: 'v1',
+		description: 'Select the API version to use',
+	});
+
 	properties.push({
 		displayName: 'Operation',
 		name: 'publicCloudOperation',
 		type: 'options',
 		noDataExpression: true,
+		displayOptions: {
+			show: {
+				apiVersion: ['v1'],
+			},
+		},
 		// eslint-disable-next-line n8n-nodes-base/node-param-options-type-unsorted-items
 		options: [
 			{
@@ -739,19 +827,101 @@ export function description(displayOptions: IDisplayOptions): INodeProperties[] 
 				value: 'redisIntegrationCreatePost',
 				action: 'Create Redis integration',
 			},
-			{
-				name: 'integrationListGet',
-				value: 'valkeyIntegrationListGet',
-				action: 'List Valkey integrations',
-			},
-			{
-				name: 'integrationCreatePost',
-				value: 'valkeyIntegrationCreatePost',
-				action: 'Create Valkey integration',
-			},
 		],
 		default: 'projectListGet',
-		displayOptions,
+	});
+
+	// Separate operation picker for v2
+	properties.push({
+		displayName: 'Operation (v2)',
+		name: 'publicCloudOperationV2',
+		type: 'options',
+		noDataExpression: true,
+		default: 'listProjectsV2',
+		displayOptions: {
+			show: {
+				apiVersion: ['v2'],
+			},
+		},
+		options: [
+			{ displayName: 'v2 - List Projects', name: 'listProjectsV2', value: 'listProjectsV2' },
+			{
+				displayName: 'v2 - Get Project Detail',
+				name: 'getProjectDetailV2',
+				value: 'getProjectDetailV2',
+			},
+			{
+				displayName: 'v2 - List Rancher Services',
+				name: 'listRancherServicesV2',
+				value: 'listRancherServicesV2',
+			},
+			{
+				displayName: 'v2 - Create Rancher Service',
+				name: 'createRancherServiceV2',
+				value: 'createRancherServiceV2',
+			},
+			{
+				displayName: 'v2 - Delete Rancher Service',
+				name: 'deleteRancherServiceV2',
+				value: 'deleteRancherServiceV2',
+			},
+			{
+				displayName: 'v2 - Get Rancher Service',
+				name: 'getRancherServiceV2',
+				value: 'getRancherServiceV2',
+			},
+			{
+				displayName: 'v2 - Update Rancher Service',
+				name: 'updateRancherServiceV2',
+				value: 'updateRancherServiceV2',
+			},
+			{
+				displayName: 'v2 - Reset Rancher Admin Password',
+				name: 'resetRancherAdminPasswordV2',
+				value: 'resetRancherAdminPasswordV2',
+			},
+			{
+				displayName: 'v2 - List Rancher Plans',
+				name: 'listRancherPlansV2',
+				value: 'listRancherPlansV2',
+			},
+			{
+				displayName: 'v2 - List Rancher Versions',
+				name: 'listRancherVersionsV2',
+				value: 'listRancherVersionsV2',
+			},
+			{
+				displayName: 'v2 - List Rancher Events',
+				name: 'listRancherEventsV2',
+				value: 'listRancherEventsV2',
+			},
+			{
+				displayName: 'v2 - List Rancher Tasks',
+				name: 'listRancherTasksV2',
+				value: 'listRancherTasksV2',
+			},
+			{ displayName: 'v2 - Get Rancher Task', name: 'getRancherTaskV2', value: 'getRancherTaskV2' },
+			{
+				displayName: 'v2 - List Reference Plans',
+				name: 'listReferencePlansV2',
+				value: 'listReferencePlansV2',
+			},
+			{
+				displayName: 'v2 - List Reference Versions',
+				name: 'listReferenceVersionsV2',
+				value: 'listReferenceVersionsV2',
+			},
+			{
+				displayName: 'v2 - List Global Reference Plans',
+				name: 'listGlobalReferencePlansV2',
+				value: 'listGlobalReferencePlansV2',
+			},
+			{
+				displayName: 'v2 - List Global Reference Versions',
+				name: 'listGlobalReferenceVersionsV2',
+				value: 'listGlobalReferenceVersionsV2',
+			},
+		],
 	});
 
 	properties.push(...projectListGetDescription());
@@ -1309,6 +1479,110 @@ export function description(displayOptions: IDisplayOptions): INodeProperties[] 
 			show: { publicCloudOperation: ['valkeyIntegrationCreatePost'] },
 		}) as INodeProperties[]),
 	);
+
+	// v2 operation descriptions
+	properties.push(
+		...(listGetV2Description({
+			...displayOptions,
+			show: { apiVersion: ['v2'], publicCloudOperationV2: ['listProjectsV2'] },
+		}) as INodeProperties[]),
+	);
+	properties.push(
+		...(getDetailGetV2Description({
+			...displayOptions,
+			show: { apiVersion: ['v2'], publicCloudOperationV2: ['getProjectDetailV2'] },
+		}) as INodeProperties[]),
+	);
+	properties.push(
+		...(serviceListGetV2Description({
+			...displayOptions,
+			show: { apiVersion: ['v2'], publicCloudOperationV2: ['listRancherServicesV2'] },
+		}) as INodeProperties[]),
+	);
+	properties.push(
+		...(serviceCreatePostV2Description({
+			...displayOptions,
+			show: { apiVersion: ['v2'], publicCloudOperationV2: ['createRancherServiceV2'] },
+		}) as INodeProperties[]),
+	);
+	properties.push(
+		...(serviceDeleteDeleteV2Description({
+			...displayOptions,
+			show: { apiVersion: ['v2'], publicCloudOperationV2: ['deleteRancherServiceV2'] },
+		}) as INodeProperties[]),
+	);
+	properties.push(
+		...(serviceGetGetV2Description({
+			...displayOptions,
+			show: { apiVersion: ['v2'], publicCloudOperationV2: ['getRancherServiceV2'] },
+		}) as INodeProperties[]),
+	);
+	properties.push(
+		...(serviceUpdatePutV2Description({
+			...displayOptions,
+			show: { apiVersion: ['v2'], publicCloudOperationV2: ['updateRancherServiceV2'] },
+		}) as INodeProperties[]),
+	);
+	properties.push(
+		...(adminCredentialsResetV2Description({
+			...displayOptions,
+			show: { apiVersion: ['v2'], publicCloudOperationV2: ['resetRancherAdminPasswordV2'] },
+		}) as INodeProperties[]),
+	);
+	properties.push(
+		...(planCapabilityListGetV2Description({
+			...displayOptions,
+			show: { apiVersion: ['v2'], publicCloudOperationV2: ['listRancherPlansV2'] },
+		}) as INodeProperties[]),
+	);
+	properties.push(
+		...(versionCapabilityListGetV2Description({
+			...displayOptions,
+			show: { apiVersion: ['v2'], publicCloudOperationV2: ['listRancherVersionsV2'] },
+		}) as INodeProperties[]),
+	);
+	properties.push(
+		...(eventListGetV2Description({
+			...displayOptions,
+			show: { apiVersion: ['v2'], publicCloudOperationV2: ['listRancherEventsV2'] },
+		}) as INodeProperties[]),
+	);
+	properties.push(
+		...(taskListGetV2Description({
+			...displayOptions,
+			show: { apiVersion: ['v2'], publicCloudOperationV2: ['listRancherTasksV2'] },
+		}) as INodeProperties[]),
+	);
+	properties.push(
+		...(taskDetailGetV2Description({
+			...displayOptions,
+			show: { apiVersion: ['v2'], publicCloudOperationV2: ['getRancherTaskV2'] },
+		}) as INodeProperties[]),
+	);
+	properties.push(
+		...(referencePlanListGetV2Description({
+			...displayOptions,
+			show: { apiVersion: ['v2'], publicCloudOperationV2: ['listReferencePlansV2'] },
+		}) as INodeProperties[]),
+	);
+	properties.push(
+		...(referenceVersionListGetV2Description({
+			...displayOptions,
+			show: { apiVersion: ['v2'], publicCloudOperationV2: ['listReferenceVersionsV2'] },
+		}) as INodeProperties[]),
+	);
+	properties.push(
+		...(globalReferencePlanListGetV2Description({
+			...displayOptions,
+			show: { apiVersion: ['v2'], publicCloudOperationV2: ['listGlobalReferencePlansV2'] },
+		}) as INodeProperties[]),
+	);
+	properties.push(
+		...(globalReferenceVersionListGetV2Description({
+			...displayOptions,
+			show: { apiVersion: ['v2'], publicCloudOperationV2: ['listGlobalReferenceVersionsV2'] },
+		}) as INodeProperties[]),
+	);
 	return properties;
 }
 
@@ -1316,9 +1590,12 @@ export async function execute(
 	this: IExecuteFunctions,
 	itemIndex: number,
 ): Promise<INodeExecutionData[]> {
-	const operation = this.getNodeParameter('publicCloudOperation', itemIndex, {
-		extractValue: true,
-	});
+	const apiVersion = this.getNodeParameter('apiVersion', 0) as string;
+	const operation = this.getNodeParameter(
+		apiVersion === 'v2' ? 'publicCloudOperationV2' : 'publicCloudOperation',
+		itemIndex,
+		{ extractValue: true },
+	);
 
 	switch (operation) {
 		case 'projectListGet':
@@ -1508,6 +1785,42 @@ export async function execute(
 			return valkeyIntegrationListGetExecute.call(this);
 		case 'valkeyIntegrationCreatePost':
 			return valkeyIntegrationCreatePostExecute.call(this);
+
+		// v2 cases
+		case 'listProjectsV2':
+			return listGetV2Execute.call(this, itemIndex);
+		case 'getProjectDetailV2':
+			return getDetailGetV2Execute.call(this, itemIndex);
+		case 'listRancherServicesV2':
+			return serviceListGetV2Execute.call(this, itemIndex);
+		case 'createRancherServiceV2':
+			return serviceCreatePostV2Execute.call(this, itemIndex);
+		case 'deleteRancherServiceV2':
+			return serviceDeleteDeleteV2Execute.call(this, itemIndex);
+		case 'getRancherServiceV2':
+			return serviceGetGetV2Execute.call(this, itemIndex);
+		case 'updateRancherServiceV2':
+			return serviceUpdatePutV2Execute.call(this, itemIndex);
+		case 'resetRancherAdminPasswordV2':
+			return adminCredentialsResetV2Execute.call(this, itemIndex);
+		case 'listRancherPlansV2':
+			return planCapabilityListGetV2Execute.call(this, itemIndex);
+		case 'listRancherVersionsV2':
+			return versionCapabilityListGetV2Execute.call(this, itemIndex);
+		case 'listRancherEventsV2':
+			return eventListGetV2Execute.call(this, itemIndex);
+		case 'listRancherTasksV2':
+			return taskListGetV2Execute.call(this, itemIndex);
+		case 'getRancherTaskV2':
+			return taskDetailGetV2Execute.call(this, itemIndex);
+		case 'listReferencePlansV2':
+			return referencePlanListGetV2Execute.call(this, itemIndex);
+		case 'listReferenceVersionsV2':
+			return referenceVersionListGetV2Execute.call(this, itemIndex);
+		case 'listGlobalReferencePlansV2':
+			return globalReferencePlanListGetV2Execute.call(this, itemIndex);
+		case 'listGlobalReferenceVersionsV2':
+			return globalReferenceVersionListGetV2Execute.call(this, itemIndex);
 		default:
 			throw new Error(`Unsupported operation "${operation}" for resource "publicCloud"`);
 	}

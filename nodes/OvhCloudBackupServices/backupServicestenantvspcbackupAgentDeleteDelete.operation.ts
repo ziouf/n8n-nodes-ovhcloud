@@ -10,7 +10,7 @@ import { ApiClient } from '../../shared/transport/ApiClient';
 export function description(displayOptions: IDisplayOptions): INodeProperties[] {
 	return [
 		{
-			displayName: 'backup Services Id',
+			displayName: 'Backup Services ID',
 			name: 'backupServicesId',
 			type: 'string',
 			default: '',
@@ -18,7 +18,7 @@ export function description(displayOptions: IDisplayOptions): INodeProperties[] 
 			description: 'The backupServicesId identifier',
 		},
 		{
-			displayName: 'vspc Tenant Id',
+			displayName: 'Vspc Tenant ID',
 			name: 'vspcTenantId',
 			type: 'string',
 			default: '',
@@ -26,7 +26,7 @@ export function description(displayOptions: IDisplayOptions): INodeProperties[] 
 			description: 'The vspcTenantId identifier',
 		},
 		{
-			displayName: 'backup Agent Id',
+			displayName: 'Backup Agent ID',
 			name: 'backupAgentId',
 			type: 'string',
 			default: '',

@@ -10,7 +10,7 @@ import { ApiClient } from '../../shared/transport/ApiClient';
 export function description(displayOptions: IDisplayOptions): INodeProperties[] {
 	return [
 		{
-			displayName: 'organization Id',
+			displayName: 'Organization ID',
 			name: 'organizationId',
 			type: 'string',
 			default: '',
@@ -18,7 +18,7 @@ export function description(displayOptions: IDisplayOptions): INodeProperties[] 
 			description: 'The organizationId identifier',
 		},
 		{
-			displayName: 'virtual Data Center Id',
+			displayName: 'Virtual Data Center ID',
 			name: 'virtualDataCenterId',
 			type: 'string',
 			default: '',
@@ -26,15 +26,15 @@ export function description(displayOptions: IDisplayOptions): INodeProperties[] 
 			description: 'The virtualDataCenterId identifier',
 		},
 		{
-			displayName: 'id',
+			displayName: 'ID',
 			name: 'id',
 			type: 'string',
 			default: '',
 			required: true,
-			description: 'The id identifier',
+			description: 'The ID identifier',
 		},
 		{
-			displayName: 'task Id',
+			displayName: 'Task ID',
 			name: 'taskId',
 			type: 'string',
 			default: '',

@@ -10,7 +10,7 @@ import { ApiClient } from '../../shared/transport/ApiClient';
 export function description(displayOptions: IDisplayOptions): INodeProperties[] {
 	return [
 		{
-			displayName: 'permissions Group U R N',
+			displayName: 'Permissions Group U R N',
 			name: 'permissionsGroupURN',
 			type: 'string',
 			default: '',

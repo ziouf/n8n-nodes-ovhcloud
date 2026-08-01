@@ -10,20 +10,18 @@ import { ApiClient } from '../../../shared/transport/ApiClient';
 export function description(displayOptions: IDisplayOptions): INodeProperties[] {
 	return [
         {
-          displayName: 'domain',
+          displayName: 'Domain',
           name: 'domain',
           type: 'string',
           default: '',
-          required: false,
           description: 'The domain parameter',
           displayOptions,
         },
         {
-          displayName: 'domain',
+          displayName: 'Domain',
           name: 'domain',
           type: 'string',
           default: '',
-          required: false,
           description: 'The domain parameter',
           displayOptions,
         },

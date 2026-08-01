@@ -19,7 +19,7 @@ export function description(displayOptions: IDisplayOptions): INodeProperties[] 
           displayOptions,
         },
         {
-          displayName: 'iccid',
+          displayName: 'Iccid',
           name: 'iccid',
           type: 'string',
           default: '',

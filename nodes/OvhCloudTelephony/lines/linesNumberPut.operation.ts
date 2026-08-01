@@ -28,7 +28,7 @@ export function description(displayOptions: IDisplayOptions): INodeProperties[] 
           displayOptions,
         },
         {
-          displayName: 'country',
+          displayName: 'Country',
           name: 'country',
           type: 'string',
           default: '',
@@ -37,7 +37,7 @@ export function description(displayOptions: IDisplayOptions): INodeProperties[] 
           displayOptions,
         },
         {
-          displayName: 'number',
+          displayName: 'Number',
           name: 'number',
           type: 'string',
           default: '',

@@ -22,6 +22,7 @@ describe('wildcardListGet.operation', () => {
 				displayName: 'Domain Name',
 				name: 'domainName',
 				type: 'string',
+				default: '',
 				required: true,
 			});
 		});
