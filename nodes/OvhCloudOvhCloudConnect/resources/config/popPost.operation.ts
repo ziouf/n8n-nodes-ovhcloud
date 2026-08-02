@@ -1,0 +1,85 @@
+import type {
+	IExecuteFunctions,
+	INodeExecutionData,
+	INodeProperties,
+	IDisplayOptions,
+	IDataObject,
+} from 'n8n-workflow';
+import { ApiClient } from '../../../../shared/transport/ApiClient';
+
+export function description(displayOptions: IDisplayOptions): INodeProperties[] {
+	return [
+		{
+			displayName: 'OvhCloudConnect Service Name',
+			name: 'serviceName',
+			type: 'resourceLocator',
+			default: { mode: 'list', value: '' },
+			required: true,
+			description: 'The unique identifier of the service (e.g. 123e4567-e89b-12d3-a456-426614174000)',
+			modes: [
+				{
+					displayName: 'From List',
+					name: 'list',
+					type: 'list',
+					typeOptions: { searchListMethod: 'getOvhCloudConnectServices', searchable: true },
+				},
+				{
+					displayName: 'By Name',
+					name: 'name',
+					type: 'string',
+					placeholder: '123e4567-e89b-12d3-a456-426614174000',
+				},
+			],
+			displayOptions,
+		},
+		{
+			displayName: 'Datacenter',
+			name: 'datacenter',
+			type: 'string',
+			default: '',
+			required: true,
+			description: 'Datacenter of the POP configuration',
+			displayOptions,
+		},
+		{
+			displayName: 'Region',
+			name: 'region',
+			type: 'string',
+			default: '',
+			required: true,
+			description: 'Region of the POP configuration',
+			displayOptions,
+		},
+		{
+			displayName: 'Plan',
+			name: 'plan',
+			type: 'string',
+			default: '',
+			required: true,
+			description: 'Plan of the POP configuration',
+			displayOptions,
+		},
+	];
+}
+
+/**
+ * Create a new POP configuration for an OvhCloud Connect service.
+ *
+ * HTTP method: POST
+ * Endpoint: /ovhCloudConnect/{serviceName}/config/pop
+ */
+export async function execute(this: IExecuteFunctions): Promise<INodeExecutionData[]> {
+	const client = new ApiClient(this);
+	const serviceName = this.getNodeParameter('serviceName', 0, '', { extractValue: true }) as string;
+	const datacenter = (this.getNodeParameter('datacenter', 0, '') as string) || '';
+	const region = (this.getNodeParameter('region', 0, '') as string) || '';
+	const plan = (this.getNodeParameter('plan', 0, '') as string) || '';
+
+	const body: IDataObject = {};
+	if (datacenter) body.datacenter = datacenter;
+	if (region) body.region = region;
+	if (plan) body.plan = plan;
+
+	const data = (await client.httpPost(`/ovhCloudConnect/${encodeURIComponent(serviceName)}/config/pop`, body)) as IDataObject;
+	return this.helpers.returnJsonArray([data]);
+}

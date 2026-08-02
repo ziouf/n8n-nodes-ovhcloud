@@ -1,0 +1,49 @@
+import type {
+	IExecuteFunctions,
+	INodeExecutionData,
+	INodeProperties,
+	IDisplayOptions,
+	IDataObject,
+} from 'n8n-workflow';
+import { ApiClient } from '../../../../shared/transport/ApiClient';
+
+export function description(displayOptions: IDisplayOptions): INodeProperties[] {
+	return [
+		{
+			displayName: 'Street Code',
+			name: 'streetCode',
+			type: 'string',
+			default: '',
+			required: true,
+			description: 'Unique code of the street',
+			displayOptions,
+		},
+		{
+			displayName: 'Street Alt Code',
+			name: 'streetAltCode',
+			type: 'string',
+			default: '',
+			description: 'Alternative code of the street',
+			displayOptions,
+		},
+	];
+}
+
+/**
+ * Get the available street numbers for a street code.
+ *
+ * HTTP method: POST
+ * Endpoint: /connectivity/eligibility/search/streetNumbers
+ */
+export async function execute(this: IExecuteFunctions): Promise<INodeExecutionData[]> {
+	const client = new ApiClient(this);
+	const streetCode = (this.getNodeParameter('streetCode', 0, '') as string) || '';
+	const streetAltCode = (this.getNodeParameter('streetAltCode', 0, '') as string) || '';
+
+	const body: IDataObject = {};
+	if (streetCode) body.streetCode = streetCode;
+	if (streetAltCode) body.streetAltCode = streetAltCode;
+
+	const data = (await client.httpPost(`/connectivity/eligibility/search/streetNumbers`, body)) as IDataObject;
+	return this.helpers.returnJsonArray([data]);
+}

@@ -1,0 +1,83 @@
+import type {
+	IExecuteFunctions,
+	INodeExecutionData,
+	INodeProperties,
+	IDisplayOptions,
+	IDataObject,
+} from 'n8n-workflow';
+import { ApiClient } from '../../../../shared/transport/ApiClient';
+
+export function description(displayOptions: IDisplayOptions): INodeProperties[] {
+	return [
+		{
+			displayName: 'OvhCloudConnect Service Name',
+			name: 'serviceName',
+			type: 'resourceLocator',
+			default: { mode: 'list', value: '' },
+			required: true,
+			description: 'The unique identifier of the service (e.g. 123e4567-e89b-12d3-a456-426614174000)',
+			modes: [
+				{
+					displayName: 'From List',
+					name: 'list',
+					type: 'list',
+					typeOptions: { searchListMethod: 'getOvhCloudConnectServices', searchable: true },
+				},
+				{
+					displayName: 'By Name',
+					name: 'name',
+					type: 'string',
+					placeholder: '123e4567-e89b-12d3-a456-426614174000',
+				},
+			],
+			displayOptions,
+		},
+		{
+			displayName: 'POP ID',
+			name: 'popId',
+			type: 'number',
+			default: 0,
+			required: true,
+			description: 'Unique identifier of the POP configuration',
+			displayOptions,
+		},
+		{
+			displayName: 'OvhCloud Connect Service ID',
+			name: 'ovhCloudConnectServiceId',
+			type: 'string',
+			default: '',
+			required: true,
+			description: 'OVHcloud Connect service ID of the datacenter configuration',
+			displayOptions,
+		},
+		{
+			displayName: 'OvhCloud Connect Service Network',
+			name: 'ovhCloudConnectServiceNetwork',
+			type: 'string',
+			default: '',
+			description: 'OVHcloud Connect service network of the datacenter configuration',
+			displayOptions,
+		},
+	];
+}
+
+/**
+ * Create a new datacenter configuration for a POP configuration.
+ *
+ * HTTP method: POST
+ * Endpoint: /ovhCloudConnect/{serviceName}/config/pop/{popId}/datacenter
+ */
+export async function execute(this: IExecuteFunctions): Promise<INodeExecutionData[]> {
+	const client = new ApiClient(this);
+	const serviceName = this.getNodeParameter('serviceName', 0, '', { extractValue: true }) as string;
+	const popId = this.getNodeParameter('popId', 0) as number;
+	const ovhCloudConnectServiceId = (this.getNodeParameter('ovhCloudConnectServiceId', 0, '') as string) || '';
+	const ovhCloudConnectServiceNetwork = (this.getNodeParameter('ovhCloudConnectServiceNetwork', 0, '') as string) || '';
+
+	const body: IDataObject = {};
+	if (ovhCloudConnectServiceId) body.ovhCloudConnectServiceId = ovhCloudConnectServiceId;
+	if (ovhCloudConnectServiceNetwork) body.ovhCloudConnectServiceNetwork = ovhCloudConnectServiceNetwork;
+
+	const data = (await client.httpPost(`/ovhCloudConnect/${encodeURIComponent(serviceName)}/config/pop/${encodeURIComponent(popId)}/datacenter`, body)) as IDataObject;
+	return this.helpers.returnJsonArray([data]);
+}
