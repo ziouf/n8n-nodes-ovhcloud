@@ -4,24 +4,22 @@
 
 ## Overview
 
-This node provides **11 operations** with **11 tests** for managing OVHcloud resources.
+This node provides **9 operations** with **9 tests** for managing OVHcloud resources.
 
 ## Available Operations
 
 ### resources
 
-| Operation | Method | Endpoint | Tests |
-|-----------|--------|----------|-------|
-| [`close`](./`resources/close.ts`) | POST | `/supportTicket/{...}` | 1 |
-| [`contactUpdatePut`](./`resources/contactUpdatePut.ts`) | POST | `/supportTicket/{...}/contact/update` | 1 |
-| [`create`](./`resources/create.ts`) | POST | `...` | 1 |
-| [`getMessages`](./`resources/getMessages.ts`) | GET | `/supportTicket/{...}/messages` | 1 |
-| [`get`](./`resources/get.ts`) | GET | `/supportTicket/{...}` | 1 |
-| [`healthScoreGet`](./`resources/healthScoreGet.ts`) | GET | `...` | 1 |
-| [`list`](./`resources/list.ts`) | GET | `...` | 1 |
-| [`readAll`](./`resources/readAll.ts`) | POST | `/supportTicket/{...}/messages` | 1 |
-| [`reopen`](./`resources/reopen.ts`) | POST | `/supportTicket/{...}` | 1 |
-| [`reply`](./`resources/reply.ts`) | POST | `/supportTicket/{...}/messages` | 1 |
-| [`score`](./`resources/score.ts`) | POST | `/supportTicket/{...}/messages` | 1 |
+| Operation                                     | Method | Endpoint                             | Tests |
+| --------------------------------------------- | ------ | ------------------------------------ | ----- |
+| [`canBeScored`](./`resources/canBeScored.ts`) | GET    | `/support/tickets/{...}/canBeScored` | 1     |
+| [`close`](./`resources/close.ts`)             | POST   | `/support/tickets/{...}/close`       | 1     |
+| [`create`](./`resources/create.ts`)           | POST   | `/support/tickets/create`            | 1     |
+| [`getMessages`](./`resources/getMessages.ts`) | GET    | `/support/tickets/{...}/messages`    | 1     |
+| [`get`](./`resources/get.ts`)                 | GET    | `/support/tickets/{...}`             | 1     |
+| [`list`](./`resources/list.ts`)               | GET    | `/support/tickets`                   | 1     |
+| [`reopen`](./`resources/reopen.ts`)           | POST   | `/support/tickets/{...}/reopen`      | 1     |
+| [`reply`](./`resources/reply.ts`)             | POST   | `/support/tickets/{...}/reply`       | 1     |
+| [`score`](./`resources/score.ts`)             | POST   | `/support/tickets/{...}/score`       | 1     |
 
-**Total:** 11 operations, 11 tests
+**Total:** 9 operations, 9 tests

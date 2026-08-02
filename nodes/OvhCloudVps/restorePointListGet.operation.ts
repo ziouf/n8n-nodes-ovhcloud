@@ -51,7 +51,7 @@ export async function execute(
 	}) as string;
 	const backupId = this.getNodeParameter('backupId', itemIndex!) as string;
 
-	const data = (await client.httpGet(`/vps/${serviceName}/automatedBackup/listRestorePoints`, {
+	const data = (await client.httpGet(`/vps/${serviceName}/automatedBackup/restorePoints`, {
 		query: { backup: backupId },
 	})) as IDataObject[];
 	return this.helpers.returnJsonArray(data.map((item) => ({ ...item })));

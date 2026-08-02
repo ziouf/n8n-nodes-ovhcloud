@@ -1,5 +1,5 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import { description, execute } from './ipReleasePut.operation';
+import { description, execute } from './ipReleaseDelete.operation';
 
 jest.mock('../../shared/transport/ApiClient', () => {
 	const mockHttpClient = {
@@ -13,7 +13,7 @@ jest.mock('../../shared/transport/ApiClient', () => {
 
 import { ApiClient } from '../../shared/transport/ApiClient';
 
-describe('ipReleasePut.operation', () => {
+describe('ipReleaseDelete.operation', () => {
 	describe('description', () => {
 		it('should return serviceName and ipAddress parameters', () => {
 			const result = description({ show: {} });
@@ -32,10 +32,10 @@ describe('ipReleasePut.operation', () => {
 			};
 		});
 
-		it('should release IP via PUT', async () => {
+		it('should release IP via DELETE', async () => {
 			const mockData = {};
 			const client = new ApiClient(mockExecuteFunctions) as any;
-			client.httpPut.mockResolvedValue(mockData);
+			client.httpDelete.mockResolvedValue(mockData);
 
 			mockExecuteFunctions.getNodeParameter.mockImplementation((param: string): string =>
 				param === 'serviceName'
@@ -46,10 +46,20 @@ describe('ipReleasePut.operation', () => {
 			);
 
 			await execute.call(mockExecuteFunctions);
-			expect(client.httpPut).toHaveBeenCalledWith(
-				'/vps/vps1234567.ovh.net/ip/release',
-				{},
-				{ query: { ip: '198.51.100.1' } },
+			expect(client.httpDelete).toHaveBeenCalledWith('/vps/vps1234567.ovh.net/ips/198.51.100.1');
+		});
+
+		it('should encode special characters in the IP address path', async () => {
+			const client = new ApiClient(mockExecuteFunctions) as any;
+			client.httpDelete.mockResolvedValue({});
+
+			mockExecuteFunctions.getNodeParameter.mockImplementation((param: string): string =>
+				param === 'serviceName' ? 'vps1234567.ovh.net' : param === 'ipAddress' ? '2001:db8::1' : '',
+			);
+
+			await execute.call(mockExecuteFunctions);
+			expect(client.httpDelete).toHaveBeenCalledWith(
+				'/vps/vps1234567.ovh.net/ips/2001%3Adb8%3A%3A1',
 			);
 		});
 	});

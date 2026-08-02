@@ -63,6 +63,8 @@ describe('reply.operation', () => {
 						return '123456';
 					case 'message':
 						return 'Test message';
+					case 'isPrivate':
+						return false;
 					default:
 						return undefined;
 				}
@@ -70,6 +72,10 @@ describe('reply.operation', () => {
 
 			const result = await execute.call(mockExecuteFunctions, 0);
 
+			expect(mockClient.httpPost).toHaveBeenCalledWith('/support/tickets/123456/reply', {
+				body: 'Test message',
+				isPrivate: false,
+			});
 			expect(result).toEqual([mockData]);
 		});
 
@@ -84,6 +90,8 @@ describe('reply.operation', () => {
 						return '123456';
 					case 'message':
 						return 'Private reply';
+					case 'isPrivate':
+						return false;
 					default:
 						return undefined;
 				}
@@ -91,6 +99,10 @@ describe('reply.operation', () => {
 
 			const result = await execute.call(mockExecuteFunctions, 0);
 
+			expect(mockClient.httpPost).toHaveBeenCalledWith('/support/tickets/123456/reply', {
+				body: 'Private reply',
+				isPrivate: false,
+			});
 			expect(result).toEqual([mockData]);
 		});
 	});

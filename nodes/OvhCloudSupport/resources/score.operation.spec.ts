@@ -61,6 +61,10 @@ describe('score.operation', () => {
 				switch (param) {
 					case 'ticketId':
 						return '123456';
+					case 'score':
+						return 5;
+					case 'comment':
+						return '';
 					default:
 						return undefined;
 				}
@@ -68,6 +72,10 @@ describe('score.operation', () => {
 
 			const result = await execute.call(mockExecuteFunctions, 0);
 
+			expect(mockClient.httpPost).toHaveBeenCalledWith('/support/tickets/123456/score', {
+				score: 5,
+				comment: '',
+			});
 			expect(result).toEqual([mockData]);
 		});
 
@@ -80,6 +88,10 @@ describe('score.operation', () => {
 				switch (param) {
 					case 'ticketId':
 						return '123456';
+					case 'score':
+						return 5;
+					case 'comment':
+						return '';
 					default:
 						return undefined;
 				}
@@ -87,6 +99,10 @@ describe('score.operation', () => {
 
 			const result = await execute.call(mockExecuteFunctions, 0);
 
+			expect(mockClient.httpPost).toHaveBeenCalledWith('/support/tickets/123456/score', {
+				score: 5,
+				comment: '',
+			});
 			expect(result).toEqual([mockData]);
 		});
 	});

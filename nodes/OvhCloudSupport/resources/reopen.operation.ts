@@ -42,8 +42,6 @@ export async function execute(
 	const ticketId = this.getNodeParameter('ticketId', itemIndex, '', {
 		extractValue: true,
 	}) as string;
-	const data = (await client.httpPost(`/supportTicket/${ticketId}`, {
-		method: 'reopen',
-	})) as IDataObject;
+	const data = (await client.httpPost(`/support/tickets/${ticketId}/reopen`)) as IDataObject;
 	return this.helpers.returnJsonArray([data]);
 }

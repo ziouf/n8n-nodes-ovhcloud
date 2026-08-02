@@ -55,7 +55,7 @@ describe('get.operation', () => {
 
 			const result = await execute.call(mockExecuteFunctions, 0);
 
-			expect(mockClient.httpGet).toHaveBeenCalledWith('/supportTicket/123456');
+			expect(mockClient.httpGet).toHaveBeenCalledWith('/support/tickets/123456');
 			expect(mockExecuteFunctions.helpers.returnJsonArray).toHaveBeenCalledWith([mockData]);
 			expect(result).toEqual([mockData]);
 		});

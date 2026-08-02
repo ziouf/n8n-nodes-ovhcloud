@@ -1,5 +1,5 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import { description, execute } from './getMessages.operation';
+import { description, execute } from './canBeScored.operation';
 
 // Mock ApiClient
 jest.mock('../../../shared/transport/ApiClient', () => {
@@ -14,7 +14,7 @@ jest.mock('../../../shared/transport/ApiClient', () => {
 
 import { ApiClient } from '../../../shared/transport/ApiClient';
 
-describe('getMessages.operation', () => {
+describe('canBeScored.operation', () => {
 	describe('description', () => {
 		it('should return ticketId parameter', () => {
 			const result = description({ show: {} });
@@ -26,8 +26,17 @@ describe('getMessages.operation', () => {
 					name: 'ticketId',
 					type: 'resourceLocator',
 					default: { mode: 'list', value: '' },
+					required: true,
 				}),
 			);
+		});
+
+		it('should include list and id modes for ticketId', () => {
+			const result = description({ show: {} });
+			const ticketIdParam = result[0] as any;
+
+			expect(ticketIdParam.modes).toHaveLength(2);
+			expect(ticketIdParam.modes.map((m: any) => m.name)).toEqual(['list', 'id']);
 		});
 	});
 
@@ -43,34 +52,29 @@ describe('getMessages.operation', () => {
 			};
 		});
 
-		it('should get messages for a ticket', async () => {
-			const mockData = [
-				{ messageId: 1, body: 'First message', from: 'customer' },
-				{ messageId: 2, body: 'Response', from: 'support' },
-			];
+		it('should check whether a ticket can be scored', async () => {
 			const mockClient = new ApiClient(mockExecuteFunctions) as any;
-			(mockClient.httpGet as jest.Mock).mockResolvedValue(mockData);
+			(mockClient.httpGet as jest.Mock).mockResolvedValue(true);
 
 			mockExecuteFunctions.getNodeParameter.mockReturnValue('123456');
 
 			const result = await execute.call(mockExecuteFunctions, 0);
 
-			expect(mockClient.httpGet).toHaveBeenCalledWith('/support/tickets/123456/messages');
-			expect(mockExecuteFunctions.helpers.returnJsonArray).toHaveBeenCalledWith(mockData);
-			expect(result).toEqual(mockData);
+			expect(mockClient.httpGet).toHaveBeenCalledWith('/support/tickets/123456/canBeScored');
+			expect(mockExecuteFunctions.helpers.returnJsonArray).toHaveBeenCalledWith([true]);
+			expect(result).toEqual([true]);
 		});
 
-		it('should return empty array when no messages', async () => {
-			const mockData: any[] = [];
+		it('should return false when the ticket cannot be scored', async () => {
 			const mockClient = new ApiClient(mockExecuteFunctions) as any;
-			(mockClient.httpGet as jest.Mock).mockResolvedValue(mockData);
+			(mockClient.httpGet as jest.Mock).mockResolvedValue(false);
 
 			mockExecuteFunctions.getNodeParameter.mockReturnValue('123456');
 
 			const result = await execute.call(mockExecuteFunctions, 0);
 
-			expect(mockClient.httpGet).toHaveBeenCalledWith('/support/tickets/123456/messages');
-			expect(result).toEqual([]);
+			expect(mockClient.httpGet).toHaveBeenCalledWith('/support/tickets/123456/canBeScored');
+			expect(result).toEqual([false]);
 		});
 	});
 });

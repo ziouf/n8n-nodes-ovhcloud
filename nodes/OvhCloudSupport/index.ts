@@ -12,13 +12,9 @@ import {
 	description as descriptionCreate,
 } from './resources/create.operation';
 import {
-	execute as executeHealthScoreGet,
-	description as descriptionHealthScoreGet,
-} from './resources/healthScoreGet.operation';
-import {
-	execute as executeContactUpdatePut,
-	description as descriptionContactUpdatePut,
-} from './resources/contactUpdatePut.operation';
+	execute as executeCanBeScored,
+	description as descriptionCanBeScored,
+} from './resources/canBeScored.operation';
 import {
 	execute as executeGetMessages,
 	description as descriptionGetMessages,
@@ -39,10 +35,6 @@ import {
 	execute as executeScore,
 	description as descriptionScore,
 } from './resources/score.operation';
-import {
-	execute as executeReadAll,
-	description as descriptionReadAll,
-} from './resources/readAll.operation';
 
 export function description(displayOptions: IDisplayOptions): INodeProperties[] {
 	const operationProperties: INodeProperties[] = [
@@ -53,14 +45,14 @@ export function description(displayOptions: IDisplayOptions): INodeProperties[] 
 			noDataExpression: true,
 			options: [
 				{
+					name: 'Can Be Scored',
+					value: 'canBeScored',
+					action: 'Check whether a support ticket can be scored',
+				},
+				{
 					name: 'Close',
 					value: 'close',
 					action: 'Close a support ticket',
-				},
-				{
-					name: 'Contact Update',
-					value: 'contactUpdate',
-					action: 'Update the contact of a support ticket',
 				},
 				{
 					name: 'Create',
@@ -78,19 +70,9 @@ export function description(displayOptions: IDisplayOptions): INodeProperties[] 
 					action: 'Get messages of a support ticket',
 				},
 				{
-					name: 'Health Score Get',
-					value: 'healthScoreGet',
-					action: 'Get overall health score across all tickets',
-				},
-				{
 					name: 'List',
 					value: 'list',
 					action: 'List all support tickets',
-				},
-				{
-					name: 'Read All',
-					value: 'readAll',
-					action: 'Mark all messages as read',
 				},
 				{
 					name: 'Reopen',
@@ -115,13 +97,13 @@ export function description(displayOptions: IDisplayOptions): INodeProperties[] 
 
 	return [
 		...operationProperties,
+		...descriptionCanBeScored({
+			...displayOptions,
+			show: { ...displayOptions?.show, ovhCloudSupportTicketOperation: ['canBeScored'] },
+		}),
 		...descriptionClose({
 			...displayOptions,
 			show: { ...displayOptions?.show, ovhCloudSupportTicketOperation: ['close'] },
-		}),
-		...descriptionContactUpdatePut({
-			...displayOptions,
-			show: { ...displayOptions?.show, ovhCloudSupportTicketOperation: ['contactUpdate'] },
 		}),
 		...descriptionCreate({
 			...displayOptions,
@@ -135,12 +117,7 @@ export function description(displayOptions: IDisplayOptions): INodeProperties[] 
 			...displayOptions,
 			show: { ...displayOptions?.show, ovhCloudSupportTicketOperation: ['getMessages'] },
 		}),
-		...descriptionHealthScoreGet(),
 		...descriptionList(),
-		...descriptionReadAll({
-			...displayOptions,
-			show: { ...displayOptions?.show, ovhCloudSupportTicketOperation: ['readAll'] },
-		}),
 		...descriptionReopen({
 			...displayOptions,
 			show: { ...displayOptions?.show, ovhCloudSupportTicketOperation: ['reopen'] },
@@ -165,22 +142,18 @@ export async function execute(
 	});
 
 	switch (operation) {
+		case 'canBeScored':
+			return executeCanBeScored.call(this, itemIndex);
 		case 'close':
 			return executeClose.call(this, itemIndex);
-		case 'contactUpdate':
-			return executeContactUpdatePut.call(this, itemIndex);
 		case 'create':
 			return executeCreate.call(this, itemIndex);
 		case 'get':
 			return executeGet.call(this, itemIndex);
-		case 'healthScoreGet':
-			return executeHealthScoreGet.call(this);
 		case 'getMessages':
 			return executeGetMessages.call(this, itemIndex);
 		case 'list':
 			return executeList.call(this);
-		case 'readAll':
-			return executeReadAll.call(this, itemIndex);
 		case 'reopen':
 			return executeReopen.call(this, itemIndex);
 		case 'reply':

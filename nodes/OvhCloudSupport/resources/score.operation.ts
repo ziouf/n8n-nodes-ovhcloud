@@ -67,13 +67,10 @@ export async function execute(
 	const comment = this.getNodeParameter('comment', itemIndex, '') as string;
 
 	const body: IDataObject = {
-		method: 'POST',
-		data: {
-			score,
-			comment,
-		},
+		score,
+		comment,
 	};
 
-	const data = (await client.httpPost(`/supportTicket/${ticketId}/messages`, body)) as IDataObject;
+	const data = (await client.httpPost(`/support/tickets/${ticketId}/score`, body)) as IDataObject;
 	return this.helpers.returnJsonArray([data]);
 }

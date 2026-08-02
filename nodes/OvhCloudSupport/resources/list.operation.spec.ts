@@ -44,6 +44,7 @@ describe('list.operation', () => {
 
 			const result = await execute.call(mockExecuteFunctions);
 
+			expect(client.httpGet).toHaveBeenCalledWith('/support/tickets');
 			expect(result).toEqual(mockData);
 		});
 
@@ -54,6 +55,7 @@ describe('list.operation', () => {
 
 			const result = await execute.call(mockExecuteFunctions);
 
+			expect(client.httpGet).toHaveBeenCalledWith('/support/tickets');
 			expect(result).toEqual([]);
 		});
 	});

@@ -2,6 +2,8 @@ import type { IDisplayOptions, IExecuteFunctions, INodeExecutionData } from 'n8n
 import { ApiClient } from '../../../../shared/transport/ApiClient';
 
 export function description(displayOptions: IDisplayOptions) {
+	// No additional parameters are needed for this operation.
+	void displayOptions;
 	return [];
 }
 
@@ -9,10 +11,10 @@ export function description(displayOptions: IDisplayOptions) {
  * Executes the List Installation Template operation.
  *
  * HTTP method: GET
- * Endpoint: /dedicated/installation/template
+ * Endpoint: /dedicated/installationTemplate
  */
 export async function execute(this: IExecuteFunctions): Promise<INodeExecutionData[]> {
 	const client = new ApiClient(this);
-	const data = (await client.httpGet('/dedicated/installation/template')) as string[];
+	const data = (await client.httpGet('/dedicated/installationTemplate')) as string[];
 	return this.helpers.returnJsonArray(data.map((name) => ({ name })));
 }

@@ -61,7 +61,9 @@ describe('backupRestoreListGet.operation', () => {
 			);
 
 			const result = await execute.call(mockExecuteFunctions, 0);
-			expect(client.httpGet).toHaveBeenCalledWith('/vps/vps1234567.ovh.net/automatedBackup/list');
+			expect(client.httpGet).toHaveBeenCalledWith(
+				'/vps/vps1234567.ovh.net/automatedBackup/attachedBackup',
+			);
 			expect(result).toEqual([{ id: 'backup1' }, { id: 'backup2' }]);
 		});
 
@@ -81,7 +83,9 @@ describe('backupRestoreListGet.operation', () => {
 			);
 
 			const result = await execute.call(mockExecuteFunctions, 0);
-			expect(client.httpGet).toHaveBeenCalledWith('/vps/vps1234567.ovh.net/automatedBackup/list');
+			expect(client.httpGet).toHaveBeenCalledWith(
+				'/vps/vps1234567.ovh.net/automatedBackup/attachedBackup',
+			);
 			expect(result).toEqual([]);
 		});
 	});

@@ -7,7 +7,12 @@ import type {
 } from 'n8n-workflow';
 import { ApiClient } from '../../shared/transport/ApiClient';
 
-/** Release an IP address attached to the VPS. */
+/**
+ * Release (detach) an additional IP attached to the VPS.
+ *
+ * HTTP method: DELETE
+ * Endpoint: /vps/{serviceName}/ips/{ipAddress}
+ */
 export function description(displayOptions: IDisplayOptions): INodeProperties[] {
 	return [
 		{
@@ -51,10 +56,8 @@ export async function execute(
 	}) as string;
 	const ipAddress = this.getNodeParameter('ipAddress', itemIndex!) as string;
 
-	const data = (await client.httpPut(
-		`/vps/${serviceName}/ip/release`,
-		{},
-		{ query: { ip: ipAddress } },
+	const data = (await client.httpDelete(
+		`/vps/${serviceName}/ips/${encodeURIComponent(ipAddress)}`,
 	)) as IDataObject;
 	return this.helpers.returnJsonArray([{ ...data }]);
 }

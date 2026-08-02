@@ -71,13 +71,10 @@ export async function execute(
 	const isPrivate = this.getNodeParameter('isPrivate', itemIndex, false) as boolean;
 
 	const body: IDataObject = {
-		method: 'POST',
-		data: {
-			body: message,
-			isPrivate,
-		},
+		body: message,
+		isPrivate,
 	};
 
-	const data = (await client.httpPost(`/supportTicket/${ticketId}/messages`, body)) as IDataObject;
+	const data = (await client.httpPost(`/support/tickets/${ticketId}/reply`, body)) as IDataObject;
 	return this.helpers.returnJsonArray([data]);
 }

@@ -163,9 +163,9 @@ import {
 	description as descriptionIpCountryAvailableGet,
 } from './ipCountryAvailableGet.operation';
 import {
-	execute as executeIpReleasePut,
-	description as descriptionIpReleasePut,
-} from './ipReleasePut.operation';
+	execute as executeIpReleaseDelete,
+	description as descriptionIpReleaseDelete,
+} from './ipReleaseDelete.operation';
 import {
 	execute as executeNetbootCreatePost,
 	description as descriptionNetbootCreatePost,
@@ -597,7 +597,7 @@ export function description(displayOptions: IDisplayOptions): INodeProperties[] 
 			...displayOptions,
 			show: { vpsOperation: ['ipCountryAvailableGet'] },
 		}) as INodeProperties[]),
-		...(descriptionIpReleasePut({
+		...(descriptionIpReleaseDelete({
 			...displayOptions,
 			show: { vpsOperation: ['releaseIpPut'] },
 		}) as INodeProperties[]),
@@ -730,7 +730,7 @@ export async function execute(
 		case 'ipCountryAvailableGet':
 			return executeIpCountryAvailableGet.call(this, itemIndex);
 		case 'releaseIpPut':
-			return executeIpReleasePut.call(this, itemIndex);
+			return executeIpReleaseDelete.call(this, itemIndex);
 		case 'netbootCreatePost':
 			return executeNetbootCreatePost.call(this, itemIndex);
 		case 'restorePointListGet':

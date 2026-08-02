@@ -128,7 +128,7 @@ describe('create.operation', () => {
 
 			const result = await execute.call(mockExecuteFunctions, 0);
 
-			expect(mockClient.httpPost).toHaveBeenCalledWith('/supportTicket/create', {
+			expect(mockClient.httpPost).toHaveBeenCalledWith('/support/tickets/create', {
 				subject: 'Test Subject',
 				body: 'Test Body',
 				category: 'assistance',
@@ -164,7 +164,7 @@ describe('create.operation', () => {
 
 			const result = await execute.call(mockExecuteFunctions, 0);
 
-			expect(mockClient.httpPost).toHaveBeenCalledWith('/supportTicket/create', {
+			expect(mockClient.httpPost).toHaveBeenCalledWith('/support/tickets/create', {
 				subject: 'Test Subject',
 				body: '',
 				category: 'assistance',

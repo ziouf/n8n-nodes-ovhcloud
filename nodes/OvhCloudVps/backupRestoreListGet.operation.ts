@@ -38,6 +38,8 @@ export async function execute(
 		extractValue: true,
 	}) as string;
 
-	const data = (await client.httpGet(`/vps/${serviceName}/automatedBackup/list`)) as IDataObject[];
+	const data = (await client.httpGet(
+		`/vps/${serviceName}/automatedBackup/attachedBackup`,
+	)) as IDataObject[];
 	return this.helpers.returnJsonArray(data);
 }

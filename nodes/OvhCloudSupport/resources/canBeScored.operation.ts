@@ -6,6 +6,12 @@ import type {
 } from 'n8n-workflow';
 import { ApiClient } from '../../../shared/transport/ApiClient';
 
+/**
+ * Check whether a support ticket can be scored.
+ *
+ * HTTP method: GET
+ * Endpoint: /support/tickets/{ticketId}/canBeScored
+ */
 export function description(displayOptions: IDisplayOptions) {
 	return [
 		{
@@ -42,8 +48,6 @@ export async function execute(
 	const ticketId = this.getNodeParameter('ticketId', itemIndex, '', {
 		extractValue: true,
 	}) as string;
-	const data = (await client.httpPost(`/supportTicket/${ticketId}/messages`, {
-		method: 'readAll',
-	})) as IDataObject;
+	const data = (await client.httpGet(`/support/tickets/${ticketId}/canBeScored`)) as IDataObject;
 	return this.helpers.returnJsonArray([data]);
 }

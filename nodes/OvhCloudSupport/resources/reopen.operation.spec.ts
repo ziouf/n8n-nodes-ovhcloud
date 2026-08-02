@@ -52,9 +52,7 @@ describe('reopen.operation', () => {
 
 			const result = await execute.call(mockExecuteFunctions, 0);
 
-			expect(mockClient.httpPost).toHaveBeenCalledWith('/supportTicket/123456', {
-				method: 'reopen',
-			});
+			expect(mockClient.httpPost).toHaveBeenCalledWith('/support/tickets/123456/reopen');
 			expect(mockExecuteFunctions.helpers.returnJsonArray).toHaveBeenCalledWith([mockData]);
 			expect(result).toEqual([mockData]);
 		});

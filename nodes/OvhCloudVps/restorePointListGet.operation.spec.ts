@@ -45,7 +45,7 @@ describe('restorePointListGet.operation', () => {
 
 			await execute.call(mockExecuteFunctions);
 			expect(client.httpGet).toHaveBeenCalledWith(
-				'/vps/vps1234567.ovh.net/automatedBackup/listRestorePoints',
+				'/vps/vps1234567.ovh.net/automatedBackup/restorePoints',
 				{ query: { backup: '1234567890' } },
 			);
 		});

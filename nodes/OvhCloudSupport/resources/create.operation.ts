@@ -164,6 +164,6 @@ export async function execute(
 		serviceName: serviceName || undefined,
 	};
 
-	const result = (await client.httpPost('/supportTicket/create', data)) as IDataObject;
+	const result = (await client.httpPost('/support/tickets/create', data)) as IDataObject;
 	return this.helpers.returnJsonArray([result]);
 }

@@ -42,6 +42,6 @@ export async function execute(
 	const ticketId = this.getNodeParameter('ticketId', itemIndex, '', {
 		extractValue: true,
 	}) as string;
-	const data = (await client.httpGet(`/supportTicket/${ticketId}/messages`)) as IDataObject[];
+	const data = (await client.httpGet(`/support/tickets/${ticketId}/messages`)) as IDataObject[];
 	return this.helpers.returnJsonArray(data);
 }

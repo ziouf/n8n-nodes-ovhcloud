@@ -36,7 +36,7 @@ describe('recordCreatePost.operation', () => {
 				displayName: 'Type',
 				name: 'type',
 				type: 'options',
-				default: '',
+				default: 'A',
 				required: true,
 			});
 			expect(result[4]).toMatchObject({
