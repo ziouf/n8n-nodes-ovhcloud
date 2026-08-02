@@ -1,0 +1,64 @@
+import type {
+	IDataObject,
+	IDisplayOptions,
+	IExecuteFunctions,
+	INodeExecutionData,
+	INodeProperties,
+} from 'n8n-workflow';
+import { ApiClient } from '../../../shared/transport/ApiClient';
+
+export function description(displayOptions: IDisplayOptions): INodeProperties[] {
+	return [
+		{
+			displayName: 'Metrics Service Name',
+			name: 'serviceName',
+			type: 'resourceLocator',
+			default: { mode: 'list', value: '' },
+			required: true,
+			description: 'The Metrics service name (e.g. metrics-12345)',
+			modes: [
+				{
+					displayName: 'From List',
+					name: 'list',
+					type: 'list',
+					typeOptions: { searchListMethod: 'getMetricsServices', searchable: true },
+				},
+				{
+					displayName: 'By Name',
+					name: 'name',
+					type: 'string',
+					placeholder: 'metrics-12345',
+				},
+			],
+			displayOptions,
+		},
+		{
+			displayName: 'Description',
+			name: 'description',
+			type: 'string',
+			default: '',
+			required: true,
+			description: 'New description for the Metrics service',
+			displayOptions,
+		},
+	];
+}
+
+/**
+ * Modify the description of a Metrics service.
+ *
+ * HTTP method: PUT
+ * Endpoint: /metrics/{serviceName}
+ */
+export async function execute(this: IExecuteFunctions): Promise<INodeExecutionData[]> {
+	const client = new ApiClient(this);
+	const serviceName = this.getNodeParameter('serviceName', 0, '', { extractValue: true }) as string;
+	const description = this.getNodeParameter('description', 0) as string;
+
+	const body: IDataObject = { description };
+	const data = (await client.httpPut(
+		`/metrics/${encodeURIComponent(serviceName)}`,
+		body,
+	)) as IDataObject;
+	return this.helpers.returnJsonArray([data]);
+}

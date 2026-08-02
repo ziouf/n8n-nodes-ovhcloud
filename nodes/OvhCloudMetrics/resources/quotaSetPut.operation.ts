@@ -1,0 +1,64 @@
+import type {
+	IDataObject,
+	IDisplayOptions,
+	IExecuteFunctions,
+	INodeExecutionData,
+	INodeProperties,
+} from 'n8n-workflow';
+import { ApiClient } from '../../../shared/transport/ApiClient';
+
+export function description(displayOptions: IDisplayOptions): INodeProperties[] {
+	return [
+		{
+			displayName: 'Metrics Service Name',
+			name: 'serviceName',
+			type: 'resourceLocator',
+			default: { mode: 'list', value: '' },
+			required: true,
+			description: 'The Metrics service name (e.g. metrics-12345)',
+			modes: [
+				{
+					displayName: 'From List',
+					name: 'list',
+					type: 'list',
+					typeOptions: { searchListMethod: 'getMetricsServices', searchable: true },
+				},
+				{
+					displayName: 'By Name',
+					name: 'name',
+					type: 'string',
+					placeholder: 'metrics-12345',
+				},
+			],
+			displayOptions,
+		},
+		{
+			displayName: 'Quota',
+			name: 'quota',
+			type: 'number',
+			default: 0,
+			required: true,
+			description: 'New value for overquota',
+			displayOptions,
+		},
+	];
+}
+
+/**
+ * Set the overquota of a Metrics service.
+ *
+ * HTTP method: PUT
+ * Endpoint: /metrics/{serviceName}/quota
+ */
+export async function execute(this: IExecuteFunctions): Promise<INodeExecutionData[]> {
+	const client = new ApiClient(this);
+	const serviceName = this.getNodeParameter('serviceName', 0, '', { extractValue: true }) as string;
+	const quota = this.getNodeParameter('quota', 0) as number;
+
+	const body: IDataObject = { quota };
+	const data = (await client.httpPut(
+		`/metrics/${encodeURIComponent(serviceName)}/quota`,
+		body,
+	)) as string;
+	return this.helpers.returnJsonArray([{ message: data }]);
+}
