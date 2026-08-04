@@ -292,11 +292,11 @@ This node provides **675 operations** with **607 tests** for managing OVHcloud r
 | [`adminCredentials`](./`rancher/adminCredentials.ts`) | POST | `/publicCloud/project/{...}/rancher/{...}/adminCredentials` | 1 |
 | [`eventListGet`](./`rancher/eventListGet.ts`) | GET | `/publicCloud/project/{...}/rancher/{...}/event` | 0 |
 | [`planCapabilityListGet`](./`rancher/planCapabilityListGet.ts`) | GET | `/publicCloud/project/{...}/rancher/{...}/capabilities/plan` | 0 |
-| [`serviceCreatePost`](./`rancher/serviceCreatePost.ts`) | POST | `/publicCloud/project/{...}/rancher/create` | 1 |
-| [`serviceDeleteDelete`](./`rancher/serviceDeleteDelete.ts`) | DELETE | `/publicCloud/project/{...}/rancher/delete` | 1 |
+| [`serviceCreatePost`](./`rancher/serviceCreatePost.ts`) | POST | `/publicCloud/project/{...}/rancher` | 1 |
+| [`serviceDeleteDelete`](./`rancher/serviceDeleteDelete.ts`) | DELETE | `/publicCloud/project/{...}/rancher/{...}` | 1 |
 | [`serviceGet`](./`rancher/serviceGet.ts`) | GET | `/publicCloud/project/{...}/rancher/{...}` | 0 |
 | [`serviceListGet`](./`rancher/serviceListGet.ts`) | GET | `/publicCloud/project/{...}/rancher` | 0 |
-| [`serviceUpdatePut`](./`rancher/serviceUpdatePut.ts`) | POST | `/publicCloud/project/{...}/rancher/update` | 1 |
+| [`serviceUpdatePut`](./`rancher/serviceUpdatePut.ts`) | PUT | `/publicCloud/project/{...}/rancher/{...}` | 1 |
 | [`taskDetailGet`](./`rancher/taskDetailGet.ts`) | GET | `/publicCloud/project/{...}/rancher/{...}/task/{...}` | 0 |
 | [`taskListGet`](./`rancher/taskListGet.ts`) | GET | `/publicCloud/project/{...}/rancher/{...}/task` | 0 |
 | [`versionCapabilityListGet`](./`rancher/versionCapabilityListGet.ts`) | GET | `/publicCloud/project/{...}/rancher/{...}/capabilities/version` | 0 |
