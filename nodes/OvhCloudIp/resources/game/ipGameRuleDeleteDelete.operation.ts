@@ -1,0 +1,60 @@
+import type {
+	IDataObject,
+	IExecuteFunctions,
+	IDisplayOptions,
+	INodeExecutionData,
+	INodeProperties,
+} from 'n8n-workflow';
+import { ApiClient } from '../../../../shared/transport/ApiClient';
+
+export function description(displayOptions: IDisplayOptions): INodeProperties[] {
+	return [
+	{
+		displayName: 'Ip',
+		name: 'ip',
+		type: 'string',
+		default: '',
+		required: true,
+		description: 'The IP block identifier (e.g. 1.2.3.4/32)',
+		displayOptions,
+	},
+	{
+		displayName: 'Ip On Game',
+		name: 'ipOnGame',
+		type: 'string',
+		default: '',
+		required: true,
+		description: 'IP under game anti-ddos',
+		displayOptions,
+	},
+	{
+		displayName: 'ID',
+		name: 'id',
+		type: 'string',
+		default: '',
+		required: true,
+		description: 'ID of the rule',
+		displayOptions,
+	},
+	];
+}
+
+/**
+ * Executes the Delete Delete Game Rule operation.
+ *
+ * HTTP method: DELETE
+ * Endpoint: /ip/{ip}/game/{ipOnGame}/rule/{id}
+ */
+
+export async function execute(this: IExecuteFunctions, itemIndex: number): Promise<INodeExecutionData[]> {
+	const ip = this.getNodeParameter('ip', itemIndex) as string;
+
+	const ipOnGame = this.getNodeParameter('ipOnGame', itemIndex) as string;
+
+	const id = this.getNodeParameter('id', itemIndex) as string;
+
+	const client = new ApiClient(this);
+	const data = (await client.httpDelete(`/ip/${encodeURIComponent(ip)}/game/${encodeURIComponent(ipOnGame)}/rule/${encodeURIComponent(id)}`)) as IDataObject;
+
+	return this.helpers.returnJsonArray([data]);
+}
