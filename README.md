@@ -3,7 +3,7 @@
 [![n8n Nodes Base](https://img.shields.io/badge/n8n-nodes_base-orange.svg)](https://docs.n8n.io/integrations/#community-nodes)
 [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
 
-**n8n-nodes-ovhcloud** is a community node for [n8n](https://n8n.io/) that enables seamless integration with OVHcloud APIs. It provides **43 dedicated nodes** to manage your entire OVH Cloud infrastructure — from web hosting and virtual private servers, public cloud projects with Kubernetes and AI services, domain management, dedicated hardware, billing, SMS, telephony, CDN, storage, and more — all orchestrated directly inside your n8n workflows.
+**n8n-nodes-ovhcloud** is a community node for [n8n](https://n8n.io/) that enables seamless integration with OVHcloud APIs. It provides **62 dedicated nodes** to manage your entire OVH Cloud infrastructure — from web hosting and virtual private servers, public cloud projects with Kubernetes and AI services, domain management, dedicated hardware, billing, SMS, telephony, CDN, storage, and more — all orchestrated directly inside your n8n workflows.
 
 > **Note**: n8n is a workflow automation platform released under the [FairCode license](https://docs.n8n.io/sustainable-use-license/).
 
@@ -36,7 +36,7 @@ All nodes share common features across every OVH Cloud endpoint:
 
 ### Available Nodes
 
-The plugin provides **43 nodes** organized by category:
+The plugin provides **62 nodes** organized by category:
 
 #### 🖥️ Compute & Infrastructure
 
@@ -286,7 +286,7 @@ See the [full authentication guide](docs/guides/authentication-guide.md) for det
 
 ### 3. Use
 
-Add any of the **43 available OVH Cloud nodes** to your workflow — select a resource, pick an operation from the dropdown, fill in parameters (resourceLocator for services with IDs), and execute.
+Add any of the **62 available OVH Cloud nodes** to your workflow — select a resource, pick an operation from the dropdown, fill in parameters (resourceLocator for services with IDs), and execute.
 
 See [workflow examples](docs/guides/examples.md) for common use cases.
 
@@ -322,7 +322,7 @@ n8n-nodes-ovhcloud/
 │   ├── OvhCloudCluster/                # Cluster services node
 │   ├── OvhCloudCommercialCatalog/      # Commercial catalog node
 │   ├── OvhCloudDbaas/                  # Database as a Service node
-│   ├── OvhCloudDedicated/              # Dedicated servers node (65+ operations)
+│   ├── OvhCloudDedicated/              # Dedicated servers node (67 operations)
 │   │   ├── OvhCloudDedicated.node.ts    # n8n node class
 │   │   ├── index.ts                    # description() + execute() router
 │   │   ├── README.md                   # Node documentation
@@ -334,17 +334,17 @@ n8n-nodes-ovhcloud/
 │   │       ├── monitoring/             # Monitoring operations
 │   │       └── option/                 # Option operations
 │   ├── OvhCloudDedicatedCloud/         # Dedicated cloud node
-│   ├── OvhCloudDomain/                 # Domain management node (31 operations)
+│   ├── OvhCloudDomain/                 # Domain management node (110 operations)
 │   ├── OvhCloudDomainV2/               # Domain V2 node
 │   ├── OvhCloudEmailPro/               # Email Pro node
-│   ├── OvhCloudHosting/                # Web hosting node (39 operations)
+│   ├── OvhCloudHosting/                # Web hosting node (233 operations)
 │   ├── OvhCloudHostingWebResource/     # Web hosting resource node
 │   ├── OvhCloudIam/                    # IAM node (V2)
 │   ├── OvhCloudIp/                     # IP management node
 │   ├── OvhCloudIPLoadbalancing/        # IP Load Balancing node
 │   ├── OvhCloudLocation/               # Location node (V2)
 │   ├── OvhCloudManagedCMS/             # Managed CMS node (V2)
-│   ├── OvhCloudMe/                     # Account management node (10 operations)
+│   ├── OvhCloudMe/                     # Account management node (12 operations)
 │   ├── OvhCloudMsServices/             # Microsoft Services node
 │   ├── OvhCloudMxPlan/                 # MX Plan node
 │   ├── OvhCloudNetworkDefense/         # Network Defense node (V2)
@@ -353,7 +353,7 @@ n8n-nodes-ovhcloud/
 │   ├── OvhCloudOrder/                  # Order management node
 │   ├── OvhCloudPack/                   # Pack services node
 │   ├── OvhCloudPrice/                  # Price consultation node
-│   ├── OvhCloudPublicCloud/            # Public Cloud node (300+ operations)
+│   ├── OvhCloudPublicCloud/            # Public Cloud node (675 operations)
 │   │   ├── OvhCloudPublicCloud.node.ts  # n8n node class
 │   │   ├── index.ts                    # description() + execute() router
 │   │   ├── README.md                   # Node documentation

@@ -25,7 +25,7 @@ Organized by category:
 - **Security** — [Auth](api-reference/v1/security/auth.md), [SSL](api-reference/v1/security/ssl.md), [SSL Gateway](api-reference/v1/security/sslGateway.md), [Secret](api-reference/v1/security/secret.md)
 - **Other** — [All other V1 resources](api-reference/v1/other/)
 
-### V2 API (13 resources)
+### V2 API (14 resources)
 
 - [V2 API Index](api-reference/v2/_index.md) — Complete list of all V2 endpoints
 
@@ -49,6 +49,9 @@ Organized by category:
 ## API Specifications
 
 Raw OVH API specification data (JSON) is available in [api-specs/](api-specs/).
+
+- [V1 specs index](api-specs/v1/README.md) — liste des specs v1 et leur couverture
+- [Coverage report](api-reference/coverage-report.md) — matrice de couverture spec↔node générée par `scripts/compare-coverage.js`
 
 ## External Resources
 
