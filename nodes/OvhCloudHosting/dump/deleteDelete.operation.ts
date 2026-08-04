@@ -1,0 +1,49 @@
+import type {
+	IExecuteFunctions,
+	IDataObject,
+	INodeExecutionData,
+	IDisplayOptions,
+	INodeProperties,
+} from 'n8n-workflow';
+import { ApiClient } from '../../../shared/transport/ApiClient';
+
+export function description(displayOptions: IDisplayOptions): INodeProperties[] {
+	return [
+		{
+			displayName: 'Service Name',
+			name: 'serviceName',
+			type: 'string',
+			default: '',
+			required: true,
+			description: 'The internal name of your hosting',
+			displayOptions,
+		},
+		{
+			displayName: 'Dump ID',
+			name: 'dumpId',
+			type: 'number',
+			default: 0,
+			required: true,
+			displayOptions,
+		},
+	];
+}
+
+/**
+ * Delete a dump before expiration date
+ *
+ * HTTP method: DELETE
+ * Endpoint: /hosting/web/{serviceName}/dump/{id}
+ */
+export async function execute(
+	this: IExecuteFunctions,
+	itemIndex?: number,
+): Promise<INodeExecutionData[]> {
+	const client = new ApiClient(this);
+	const serviceName = this.getNodeParameter('serviceName', itemIndex as number) as string;
+	const dumpId = this.getNodeParameter('dumpId', itemIndex as number) as number;
+	const data = (await client.httpDelete(
+		`/hosting/web/${encodeURIComponent(serviceName)}/dump/${encodeURIComponent(String(dumpId))}`,
+	)) as IDataObject;
+	return this.helpers.returnJsonArray([data]);
+}

@@ -1,0 +1,35 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
+import { description, execute } from './dumpDeleteDelete.operation';
+
+jest.mock('../../../shared/transport/ApiClient', () => {
+	const mockHttpClient = { httpGet: jest.fn(), httpPost: jest.fn(), httpPut: jest.fn(), httpDelete: jest.fn() };
+	return { ApiClient: jest.fn().mockImplementation(() => mockHttpClient) };
+});
+
+import { ApiClient } from '../../../shared/transport/ApiClient';
+
+describe('dumpDeleteDelete.operation', () => {
+		describe('description', () => {
+			it('should return the expected parameters', () => {
+				const result = description({ show: {} });
+				expect(result.length).toBeGreaterThanOrEqual(3);
+				expect(result.map((p) => p.name)).toEqual(expect.arrayContaining(["serviceName", "databaseName", "dumpId"]));
+			});
+		});
+
+		describe('execute', () => {
+			it('should call DELETE /hosting/web/database/{serviceName}/{databaseName}/dump/42', async () => {
+				const mockExecuteFunctions: any = {
+					getNodeParameter: jest.fn(),
+					helpers: { returnJsonArray: jest.fn((data) => data) },
+				};
+				mockExecuteFunctions.getNodeParameter.mockImplementation((p: string): any =>
+						p === 'serviceName' ? 'myservice.ovh' : p === 'databaseName' ? 'mydb' : p === 'dumpId' ? 42 : 'default-fallback',
+					);
+				await execute.call(mockExecuteFunctions, 0);
+				expect(ApiClient).toHaveBeenCalled();
+				const client = new ApiClient(mockExecuteFunctions) as any;
+			expect(client.httpDelete).toHaveBeenCalledWith(`/hosting/web/database/myservice.ovh/mydb/dump/42`);
+			});
+		});
+});

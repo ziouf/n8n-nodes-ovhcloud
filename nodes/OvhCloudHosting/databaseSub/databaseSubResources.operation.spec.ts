@@ -399,7 +399,7 @@ describe('OvhCloudHosting Database Sub-Resources', () => {
 
 	describe('restoreGet', () => {
 		it('description should return serviceName and databaseName parameters', () => {
-			const result = dbRestoreGetDescription();
+			const result = dbRestoreGetDescription({ show: {} });
 			expect(result).toHaveLength(2);
 			expect(result[0]).toMatchObject({
 				displayName: 'Service Name',

@@ -162,8 +162,200 @@ import {
 } from './databaseSub/importPost.operation';
 import { execute as dbMetricsTokenGetExecute } from './databaseSub/metricsTokenGet.operation';
 import { execute as dbRequestListGetExecute } from './databaseSub/requestListGet.operation';
+import {
+	description as dbRestoreGetDescription,
+	execute as dbRestoreGetExecute,
+} from './databaseSub/restoreGet.operation';
 import { execute as dbRestoreCreatePostExecute } from './databaseSub/restoreCreatePost.operation';
 import { execute as dbStatisticsGetExecute } from './databaseSub/statisticsGet.operation';
+import {
+	description as dbCopyListGetDescription,
+	execute as dbCopyListGetExecute,
+} from './databaseSub/copyListGet.operation';
+import {
+	description as dbCopyGetGetDescription,
+	execute as dbCopyGetGetExecute,
+} from './databaseSub/copyGetGet.operation';
+import {
+	description as dbCopyDeleteDeleteDescription,
+	execute as dbCopyDeleteDeleteExecute,
+} from './databaseSub/copyDeleteDelete.operation';
+import {
+	description as dbCopyRestorePostDescription,
+	execute as dbCopyRestorePostExecute,
+} from './databaseSub/copyRestorePost.operation';
+import {
+	description as dbDumpGetGetDescription,
+	execute as dbDumpGetGetExecute,
+} from './databaseSub/dumpGetGet.operation';
+import {
+	description as dbDumpDeleteDeleteDescription,
+	execute as dbDumpDeleteDeleteExecute,
+} from './databaseSub/dumpDeleteDelete.operation';
+import {
+	description as dbDumpRestorePostDescription,
+	execute as dbDumpRestorePostExecute,
+} from './databaseSub/dumpRestorePost.operation';
+
+// ==================== Database Available Operations ====================
+import {
+	description as dbAvailableTypeListGetDescription,
+	execute as dbAvailableTypeListGetExecute,
+} from './databaseAvailable/typeListGet.operation';
+import {
+	description as dbAvailableVersionListGetDescription,
+	execute as dbAvailableVersionListGetExecute,
+} from './databaseAvailable/versionListGet.operation';
+import {
+	description as dbCreationCapabilitiesGetDescription,
+	execute as dbCreationCapabilitiesGetExecute,
+} from './databaseAvailable/creationCapabilitiesGet.operation';
+
+// ==================== Dump Operations ====================
+import {
+	description as dumpListGetDescription,
+	execute as dumpListGetExecute,
+} from './dump/listGet.operation';
+import {
+	description as dumpGetGetDescription,
+	execute as dumpGetGetExecute,
+} from './dump/getGet.operation';
+import {
+	description as dumpDeleteDeleteDescription,
+	execute as dumpDeleteDeleteExecute,
+} from './dump/deleteDelete.operation';
+
+// ==================== Email Operations ====================
+import {
+	description as emailUpdatePutDescription,
+	execute as emailUpdatePutExecute,
+} from './email/updatePut.operation';
+import {
+	description as emailBouncesGetDescription,
+	execute as emailBouncesGetExecute,
+} from './email/bouncesGet.operation';
+import {
+	description as emailRequestPostDescription,
+	execute as emailRequestPostExecute,
+} from './email/requestPost.operation';
+import {
+	description as emailVolumesGetDescription,
+	execute as emailVolumesGetExecute,
+} from './email/volumesGet.operation';
+
+// ==================== Email Option Operations ====================
+import {
+	description as emailOptionListGetDescription,
+	execute as emailOptionListGetExecute,
+} from './emailOption/listGet.operation';
+import {
+	description as emailOptionGetGetDescription,
+	execute as emailOptionGetGetExecute,
+} from './emailOption/getGet.operation';
+import {
+	description as emailOptionServiceInfosGetDescription,
+	execute as emailOptionServiceInfosGetExecute,
+} from './emailOption/serviceInfosGet.operation';
+import {
+	description as emailOptionTerminatePostDescription,
+	execute as emailOptionTerminatePostExecute,
+} from './emailOption/terminatePost.operation';
+
+// ==================== User Logs Operations ====================
+import {
+	description as userLogsListGetDescription,
+	execute as userLogsListGetExecute,
+} from './userLogs/listGet.operation';
+import {
+	description as userLogsCreatePostDescription,
+	execute as userLogsCreatePostExecute,
+} from './userLogs/createPost.operation';
+import {
+	description as userLogsDeleteDeleteDescription,
+	execute as userLogsDeleteDeleteExecute,
+} from './userLogs/deleteDelete.operation';
+import {
+	description as userLogsGetGetDescription,
+	execute as userLogsGetGetExecute,
+} from './userLogs/getGet.operation';
+import {
+	description as userLogsUpdatePutDescription,
+	execute as userLogsUpdatePutExecute,
+} from './userLogs/updatePut.operation';
+import {
+	description as userLogsChangePasswordPostDescription,
+	execute as userLogsChangePasswordPostExecute,
+} from './userLogs/changePasswordPost.operation';
+
+// ==================== Own Logs Operations ====================
+import {
+	description as ownLogsListGetDescription,
+	execute as ownLogsListGetExecute,
+} from './ownLogs/listGet.operation';
+import {
+	description as ownLogsGetGetDescription,
+	execute as ownLogsGetGetExecute,
+} from './ownLogs/getGet.operation';
+import {
+	description as ownLogsUserLogsListGetDescription,
+	execute as ownLogsUserLogsListGetExecute,
+} from './ownLogs/userLogsListGet.operation';
+import {
+	description as ownLogsUserLogsCreatePostDescription,
+	execute as ownLogsUserLogsCreatePostExecute,
+} from './ownLogs/userLogsCreatePost.operation';
+import {
+	description as ownLogsUserLogsDeleteDeleteDescription,
+	execute as ownLogsUserLogsDeleteDeleteExecute,
+} from './ownLogs/userLogsDeleteDelete.operation';
+import {
+	description as ownLogsUserLogsGetGetDescription,
+	execute as ownLogsUserLogsGetGetExecute,
+} from './ownLogs/userLogsGetGet.operation';
+import {
+	description as ownLogsUserLogsUpdatePutDescription,
+	execute as ownLogsUserLogsUpdatePutExecute,
+} from './ownLogs/userLogsUpdatePut.operation';
+import {
+	description as ownLogsUserLogsChangePasswordPostDescription,
+	execute as ownLogsUserLogsChangePasswordPostExecute,
+} from './ownLogs/userLogsChangePasswordPost.operation';
+
+// ==================== Log Operations ====================
+import {
+	description as logKindListGetDescription,
+	execute as logKindListGetExecute,
+} from './log/kindListGet.operation';
+import {
+	description as logKindGetGetDescription,
+	execute as logKindGetGetExecute,
+} from './log/kindGetGet.operation';
+import {
+	description as logSubscriptionListGetDescription,
+	execute as logSubscriptionListGetExecute,
+} from './log/subscriptionListGet.operation';
+import {
+	description as logSubscriptionCreatePostDescription,
+	execute as logSubscriptionCreatePostExecute,
+} from './log/subscriptionCreatePost.operation';
+import {
+	description as logSubscriptionDeleteDeleteDescription,
+	execute as logSubscriptionDeleteDeleteExecute,
+} from './log/subscriptionDeleteDelete.operation';
+import {
+	description as logSubscriptionGetGetDescription,
+	execute as logSubscriptionGetGetExecute,
+} from './log/subscriptionGetGet.operation';
+import {
+	description as logUrlCreatePostDescription,
+	execute as logUrlCreatePostExecute,
+} from './log/urlCreatePost.operation';
+
+// ==================== Token Operations ====================
+import {
+	description as tokenGetGetDescription,
+	execute as tokenGetGetExecute,
+} from './token/getGet.operation';
 
 // ==================== Website Operations ====================
 import {
@@ -300,6 +492,10 @@ import {
 	execute as v2WebsiteUpdatePutExecute,
 } from './v2/websiteUpdatePutV2.operation';
 import {
+	description as v2WebsiteDeleteDeleteDescription,
+	execute as v2WebsiteDeleteDeleteExecute,
+} from './v2/website/deleteDeleteByWebsiteIdGetV2.operation';
+import {
 	description as v2WebsiteDomainListGetDescription,
 	execute as v2WebsiteDomainListGetExecute,
 } from './v2/websiteDomainListGetV2.operation';
@@ -332,12 +528,368 @@ import {
 import { execute as emailDeleteDeleteExecute } from './email/deleteDelete.operation';
 
 // ==================== SSL Service Operations ====================
+import {
+	description as sslServiceGetGetDescription,
+	execute as sslServiceGetGetExecute,
+} from './sslService/getGet.operation';
 import { execute as sslServiceListGetExecute } from './sslService/listGet.operation';
 import { execute as sslServiceCreatePostExecute } from './sslService/createPost.operation';
 
 // ==================== Private Database Operations ====================
 import { execute as privateDatabaseListGetExecute } from './privateDatabase/listGet.operation';
 import { execute as privateDatabaseGetGetExecute } from './privateDatabase/getGet.operation';
+import {
+	description as privateDatabaseCreationCapabilitiesGetDescription,
+	execute as privateDatabaseCreationCapabilitiesGetExecute,
+} from './privateDatabase/creationCapabilitiesGet.operation';
+
+// ==================== Attached Domain Sub-Resources (Phase 4c - lot 2) ====================
+import {
+	description as attachedDomainDigStatusGetDescription,
+	execute as attachedDomainDigStatusGetExecute,
+} from './attachedDomain/digStatusGet.operation';
+import {
+	description as attachedDomainRestartPostDescription,
+	execute as attachedDomainRestartPostExecute,
+} from './attachedDomain/restartPost.operation';
+import {
+	description as attachedDomainSslGetDescription,
+	execute as attachedDomainSslGetExecute,
+} from './attachedDomain/sslGet.operation';
+import {
+	description as attachedDomainSslCreatePostDescription,
+	execute as attachedDomainSslCreatePostExecute,
+} from './attachedDomain/sslCreatePost.operation';
+import {
+	description as attachedDomainSslUpdatePutDescription,
+	execute as attachedDomainSslUpdatePutExecute,
+} from './attachedDomain/sslUpdatePut.operation';
+import {
+	description as attachedDomainSslDeleteDescription,
+	execute as attachedDomainSslDeleteExecute,
+} from './attachedDomain/sslDelete.operation';
+import {
+	description as attachedDomainSslRegeneratePostDescription,
+	execute as attachedDomainSslRegeneratePostExecute,
+} from './attachedDomain/sslRegeneratePost.operation';
+import {
+	description as attachedDomainSslReportGetDescription,
+	execute as attachedDomainSslReportGetExecute,
+} from './attachedDomain/sslReportGet.operation';
+
+// ==================== Boost History Operations (Phase 4c - lot 2) ====================
+import {
+	description as boostHistoryListGetDescription,
+	execute as boostHistoryListGetExecute,
+} from './boostHistory/listGet.operation';
+import {
+	description as boostHistoryGetGetDescription,
+	execute as boostHistoryGetGetExecute,
+} from './boostHistory/getGet.operation';
+
+// ==================== Configuration Operations (Phase 4c - lot 2) ====================
+import {
+	description as configurationGetGetDescription,
+	execute as configurationGetGetExecute,
+} from './configuration/getGet.operation';
+
+// ==================== Cron Available Language Operations (Phase 4c - lot 2) ====================
+import {
+	description as cronAvailableLanguageListGetDescription,
+	execute as cronAvailableLanguageListGetExecute,
+} from './cronAvailableLanguage/listGet.operation';
+
+// ==================== Extra SQL Perso Operations (Phase 4c - lot 2) ====================
+import {
+	description as extraSqlPersoListGetDescription,
+	execute as extraSqlPersoListGetExecute,
+} from './extraSqlPerso/listGet.operation';
+import {
+	description as extraSqlPersoGetGetDescription,
+	execute as extraSqlPersoGetGetExecute,
+} from './extraSqlPerso/getGet.operation';
+import {
+	description as extraSqlPersoDatabasesGetDescription,
+	execute as extraSqlPersoDatabasesGetExecute,
+} from './extraSqlPerso/databasesGet.operation';
+import {
+	description as extraSqlPersoServiceInfosGetDescription,
+	execute as extraSqlPersoServiceInfosGetExecute,
+} from './extraSqlPerso/serviceInfosGet.operation';
+import {
+	description as extraSqlPersoServiceInfosUpdatePostDescription,
+	execute as extraSqlPersoServiceInfosUpdatePostExecute,
+} from './extraSqlPerso/serviceInfosUpdatePost.operation';
+import {
+	description as extraSqlPersoTerminatePostDescription,
+	execute as extraSqlPersoTerminatePostExecute,
+} from './extraSqlPerso/terminatePost.operation';
+
+// ==================== Freedom Operations (Phase 4c - lot 2) ====================
+import {
+	description as freedomListGetDescription,
+	execute as freedomListGetExecute,
+} from './freedom/listGet.operation';
+
+// ==================== Indy Operations (Phase 4c - lot 2) ====================
+import {
+	description as indyListGetDescription,
+	execute as indyListGetExecute,
+} from './indy/listGet.operation';
+import {
+	description as indyGetGetDescription,
+	execute as indyGetGetExecute,
+} from './indy/getGet.operation';
+
+// ==================== SSH Key Operations (Phase 4c - lot 2) ====================
+import {
+	description as sshKeyListGetDescription,
+	execute as sshKeyListGetExecute,
+} from './key/sshListGet.operation';
+import {
+	description as sshKeyCreatePostDescription,
+	execute as sshKeyCreatePostExecute,
+} from './key/sshCreatePost.operation';
+
+// ==================== Local SEO Operations (Phase 4c - lot 2) ====================
+import {
+	description as localSeoAccountListGetDescription,
+	execute as localSeoAccountListGetExecute,
+} from './localSeo/accountListGet.operation';
+import {
+	description as localSeoAccountGetDescription,
+	execute as localSeoAccountGetExecute,
+} from './localSeo/accountGet.operation';
+import {
+	description as localSeoAccountLoginPostDescription,
+	execute as localSeoAccountLoginPostExecute,
+} from './localSeo/accountLoginPost.operation';
+import {
+	description as localSeoEmailAvailabilityGetDescription,
+	execute as localSeoEmailAvailabilityGetExecute,
+} from './localSeo/emailAvailabilityGet.operation';
+import {
+	description as localSeoLocationListGetDescription,
+	execute as localSeoLocationListGetExecute,
+} from './localSeo/locationListGet.operation';
+import {
+	description as localSeoLocationGetDescription,
+	execute as localSeoLocationGetExecute,
+} from './localSeo/locationGet.operation';
+import {
+	description as localSeoLocationServiceInfosGetDescription,
+	execute as localSeoLocationServiceInfosGetExecute,
+} from './localSeo/locationServiceInfosGet.operation';
+import {
+	description as localSeoLocationServiceInfosUpdatePostDescription,
+	execute as localSeoLocationServiceInfosUpdatePostExecute,
+} from './localSeo/locationServiceInfosUpdatePost.operation';
+import {
+	description as localSeoLocationTerminatePostDescription,
+	execute as localSeoLocationTerminatePostExecute,
+} from './localSeo/locationTerminatePost.operation';
+
+// ==================== Module Operations (Phase 4c - lot 2) ====================
+import {
+	description as moduleCreatePostDescription,
+	execute as moduleCreatePostExecute,
+} from './module/createPost.operation';
+import {
+	description as moduleDeleteDeleteDescription,
+	execute as moduleDeleteDeleteExecute,
+} from './module/deleteDelete.operation';
+
+// ==================== OvhConfig Operations (Phase 4c - lot 2) ====================
+import {
+	description as ovhConfigListGetDescription,
+	execute as ovhConfigListGetExecute,
+} from './ovhConfig/listGet.operation';
+import {
+	description as ovhConfigGetGetDescription,
+	execute as ovhConfigGetGetExecute,
+} from './ovhConfig/getGet.operation';
+import {
+	description as ovhConfigChangeConfigurationPostDescription,
+	execute as ovhConfigChangeConfigurationPostExecute,
+} from './ovhConfig/changeConfigurationPost.operation';
+import {
+	description as ovhConfigRollbackPostDescription,
+	execute as ovhConfigRollbackPostExecute,
+} from './ovhConfig/rollbackPost.operation';
+import {
+	description as ovhConfigCapabilitiesGetDescription,
+	execute as ovhConfigCapabilitiesGetExecute,
+} from './ovhConfig/capabilitiesGet.operation';
+import {
+	description as ovhConfigRecommendedValuesGetDescription,
+	execute as ovhConfigRecommendedValuesGetExecute,
+} from './ovhConfig/recommendedValuesGet.operation';
+import {
+	description as ovhConfigRefreshPostDescription,
+	execute as ovhConfigRefreshPostExecute,
+} from './ovhConfig/refreshPost.operation';
+
+// ==================== Restore Snapshot Operations (Phase 4c - lot 2) ====================
+import {
+	description as restoreSnapshotCreatePostDescription,
+	execute as restoreSnapshotCreatePostExecute,
+} from './restoreSnapshot/createPost.operation';
+
+// ==================== Runtime Operations (Phase 4c - lot 2) ====================
+import {
+	description as runtimeDeleteDeleteDescription,
+	execute as runtimeDeleteDeleteExecute,
+} from './runtime/deleteDelete.operation';
+import {
+	description as runtimeAttachedDomainsGetDescription,
+	execute as runtimeAttachedDomainsGetExecute,
+} from './runtime/attachedDomainsGet.operation';
+import {
+	description as runtimeAvailableTypesGetDescription,
+	execute as runtimeAvailableTypesGetExecute,
+} from './runtime/availableTypesGet.operation';
+
+// ==================== SSL Service Operations (Phase 4c - lot 2) ====================
+import {
+	description as sslServiceDeleteDeleteDescription,
+	execute as sslServiceDeleteDeleteExecute,
+} from './sslService/deleteDelete.operation';
+import {
+	description as sslServiceDomainsGetDescription,
+	execute as sslServiceDomainsGetExecute,
+} from './sslService/domainsGet.operation';
+import {
+	description as sslServiceRegeneratePostDescription,
+	execute as sslServiceRegeneratePostExecute,
+} from './sslService/regeneratePost.operation';
+import {
+	description as sslServiceReportGetDescription,
+	execute as sslServiceReportGetExecute,
+} from './sslService/reportGet.operation';
+
+// ==================== User Operations (Phase 4c - lot 2) ====================
+import {
+	description as userCreatePostDescription,
+	execute as userCreatePostExecute,
+} from './user/createPost.operation';
+import {
+	description as userDeleteDeleteDescription,
+	execute as userDeleteDeleteExecute,
+} from './user/deleteDelete.operation';
+import {
+	description as userChangePasswordPostDescription,
+	execute as userChangePasswordPostExecute,
+} from './user/changePasswordPost.operation';
+
+// ==================== VCS Operations (Phase 4c - lot 2) ====================
+import {
+	description as vcsWebhooksGetDescription,
+	execute as vcsWebhooksGetExecute,
+} from './vcs/webhooksGet.operation';
+
+// ==================== Website Operations (Phase 4c - lot 2) ====================
+import {
+	description as websiteDeploymentGetByIdDescription,
+	execute as websiteDeploymentGetByIdExecute,
+} from './website/deploymentGetById.operation';
+import {
+	description as websiteDeploymentLogsGetDescription,
+	execute as websiteDeploymentLogsGetExecute,
+} from './website/deploymentLogsGet.operation';
+
+// ==================== Phase 4c - lot 3 : Global operations ====================
+import {
+	description as availableOfferGetDescription,
+	execute as availableOfferGetExecute,
+} from './availableOfferGet.operation';
+import {
+	description as incidentGetDescription,
+	execute as incidentGetExecute,
+} from './incidentGet.operation';
+import {
+	description as offerCapabilitiesGetDescription,
+	execute as offerCapabilitiesGetExecute,
+} from './offerCapabilitiesGet.operation';
+import {
+	description as moduleCatalogListGetDescription,
+	execute as moduleCatalogListGetExecute,
+} from './moduleList/listGet.operation';
+import {
+	description as moduleCatalogGetByIdDescription,
+	execute as moduleCatalogGetByIdExecute,
+} from './moduleList/getById.operation';
+import {
+	description as vcsSupportedGetDescription,
+	execute as vcsSupportedGetExecute,
+} from './vcs/supportedGet.operation';
+import {
+	description as localSeoDirectoriesListGetDescription,
+	execute as localSeoDirectoriesListGetExecute,
+} from './localSeo/directoriesListGet.operation';
+import {
+	description as localSeoEmailAvailabilityGlobalGetDescription,
+	execute as localSeoEmailAvailabilityGlobalGetExecute,
+} from './localSeo/emailAvailabilityGlobalGet.operation';
+import {
+	description as localSeoVisibilityCheckPostDescription,
+	execute as localSeoVisibilityCheckPostExecute,
+} from './localSeo/visibilityCheckPost.operation';
+import {
+	description as localSeoVisibilityCheckResultGetDescription,
+	execute as localSeoVisibilityCheckResultGetExecute,
+} from './localSeo/visibilityCheckResultGet.operation';
+
+// ==================== Phase 4c - lot 3 : envVar / serviceInfos ====================
+import {
+	description as envVarCreatePostDescription,
+	execute as envVarCreatePostExecute,
+} from './envVarCreatePost.operation';
+import {
+	description as envVarUpdatePutDescription,
+	execute as envVarUpdatePutExecute,
+} from './envVarUpdatePut.operation';
+import {
+	description as envVarDeleteDeleteDescription,
+	execute as envVarDeleteDeleteExecute,
+} from './envVarDeleteDelete.operation';
+import {
+	description as serviceInfosUpdatePutDescription,
+	execute as serviceInfosUpdatePutExecute,
+} from './serviceInfosUpdatePut.operation';
+
+// ==================== Phase 4c - lot 3 : CDN sub-resources ====================
+import {
+	description as cdnDomainGetGetDescription,
+	execute as cdnDomainGetGetExecute,
+} from './cdn/cdnDomainGetGet.operation';
+import {
+	description as cdnDomainLogsGetDescription,
+	execute as cdnDomainLogsGetExecute,
+} from './cdn/cdnDomainLogsGet.operation';
+import {
+	description as cdnDomainStatisticsGetDescription,
+	execute as cdnDomainStatisticsGetExecute,
+} from './cdn/cdnDomainStatisticsGet.operation';
+import {
+	description as cdnDomainRefreshPostDescription,
+	execute as cdnDomainRefreshPostExecute,
+} from './cdn/cdnDomainRefreshPost.operation';
+import {
+	description as cdnDomainOptionCreatePostDescription,
+	execute as cdnDomainOptionCreatePostExecute,
+} from './cdn/cdnDomainOptionCreatePost.operation';
+import {
+	description as cdnDomainOptionGetGetDescription,
+	execute as cdnDomainOptionGetGetExecute,
+} from './cdn/cdnDomainOptionGetGet.operation';
+import {
+	description as cdnDomainOptionDeleteDeleteDescription,
+	execute as cdnDomainOptionDeleteDeleteExecute,
+} from './cdn/cdnDomainOptionDeleteDelete.operation';
+import {
+	description as cdnOperationGetGetDescription,
+	execute as cdnOperationGetGetExecute,
+} from './cdn/cdnOperationGetGet.operation';
 
 export function description(displayOptions: IDisplayOptions): INodeProperties[] {
 	const properties: INodeProperties[] = [];
@@ -367,10 +919,68 @@ export function description(displayOptions: IDisplayOptions): INodeProperties[] 
 				},
 			},
 			options: [
+				// ==================== Phase 4c - lot 3 : Global ====================
+				// ==================== Phase 4c - lot 3 : envVar / serviceInfos ====================
+				// ==================== Phase 4c - lot 3 : CDN ====================
 				{
 					name: 'Attach Domain',
 					value: 'attachedDomainCreate',
 					action: 'Attach a domain to hosting',
+				},
+				{
+					displayName: 'Attached Domain - Dig Status',
+					name: 'attachedDomainDigStatus',
+					value: 'attachedDomainDigStatus',
+				},
+				{
+					displayName: 'Attached Domain - Restart',
+					name: 'attachedDomainRestart',
+					value: 'attachedDomainRestart',
+				},
+				{
+					displayName: 'Attached Domain - SSL Create',
+					name: 'attachedDomainSslCreate',
+					value: 'attachedDomainSslCreate',
+				},
+				{
+					displayName: 'Attached Domain - SSL Delete',
+					name: 'attachedDomainSslDelete',
+					value: 'attachedDomainSslDelete',
+				},
+				{
+					displayName: 'Attached Domain - SSL Get',
+					name: 'attachedDomainSslGet',
+					value: 'attachedDomainSslGet',
+				},
+				{
+					displayName: 'Attached Domain - SSL Regenerate',
+					name: 'attachedDomainSslRegenerate',
+					value: 'attachedDomainSslRegenerate',
+				},
+				{
+					displayName: 'Attached Domain - SSL Report',
+					name: 'attachedDomainSslReport',
+					value: 'attachedDomainSslReport',
+				},
+				{
+					displayName: 'Attached Domain - SSL Update',
+					name: 'attachedDomainSslUpdate',
+					value: 'attachedDomainSslUpdate',
+				},
+				{
+					displayName: 'Available Offer',
+					name: 'availableOfferGet',
+					value: 'availableOfferGet',
+				},
+				{
+					displayName: 'Boost History - Get',
+					name: 'boostHistoryGet',
+					value: 'boostHistoryGet',
+				},
+				{
+					displayName: 'Boost History - List',
+					name: 'boostHistoryList',
+					value: 'boostHistoryList',
 				},
 				{ displayName: 'Add CDN Domain', name: 'cdnAddDomain', value: 'cdnAddDomain' },
 				{
@@ -379,6 +989,41 @@ export function description(displayOptions: IDisplayOptions): INodeProperties[] 
 					value: 'cdnAvailableOptions',
 				},
 				{ displayName: 'CDN - Delete Domain', name: 'cdnDeleteDomain', value: 'cdnDeleteDomain' },
+				{
+					displayName: 'CDN - Get Domain',
+					name: 'cdnDomainGet',
+					value: 'cdnDomainGet',
+				},
+				{
+					displayName: 'CDN - Domain Logs',
+					name: 'cdnDomainLogs',
+					value: 'cdnDomainLogs',
+				},
+				{
+					displayName: 'CDN - Create Domain Option',
+					name: 'cdnDomainOptionCreate',
+					value: 'cdnDomainOptionCreate',
+				},
+				{
+					displayName: 'CDN - Delete Domain Option',
+					name: 'cdnDomainOptionDelete',
+					value: 'cdnDomainOptionDelete',
+				},
+				{
+					displayName: 'CDN - Get Domain Option',
+					name: 'cdnDomainOptionGet',
+					value: 'cdnDomainOptionGet',
+				},
+				{
+					displayName: 'CDN - Refresh Domain',
+					name: 'cdnDomainRefresh',
+					value: 'cdnDomainRefresh',
+				},
+				{
+					displayName: 'CDN - Domain Statistics',
+					name: 'cdnDomainStatistics',
+					value: 'cdnDomainStatistics',
+				},
 				{ displayName: 'CDN - Get', name: 'cdnGet', value: 'cdnGet' },
 				{ displayName: 'CDN - List Domains', name: 'cdnListDomains', value: 'cdnListDomains' },
 				{
@@ -387,6 +1032,11 @@ export function description(displayOptions: IDisplayOptions): INodeProperties[] 
 					value: 'cdnListOperations',
 				},
 				{ displayName: 'CDN - List Options', name: 'cdnListOptions', value: 'cdnListOptions' },
+				{
+					displayName: 'CDN - Get Operation',
+					name: 'cdnOperationGet',
+					value: 'cdnOperationGet',
+				},
 				{ displayName: 'CDN - Purge Cache', name: 'cdnPurgeCache', value: 'cdnPurgeCache' },
 				{ displayName: 'CDN - Service Infos', name: 'cdnServiceInfos', value: 'cdnServiceInfos' },
 				{ displayName: 'CDN - Terminate', name: 'cdnTerminate', value: 'cdnTerminate' },
@@ -399,6 +1049,11 @@ export function description(displayOptions: IDisplayOptions): INodeProperties[] 
 					displayName: 'CDN - Update Service Infos',
 					name: 'cdnUpdateServiceInfos',
 					value: 'cdnUpdateServiceInfos',
+				},
+				{
+					displayName: 'Configuration - Get',
+					name: 'configurationGet',
+					value: 'configurationGet',
 				},
 				{
 					name: 'Configure Hosting',
@@ -416,6 +1071,11 @@ export function description(displayOptions: IDisplayOptions): INodeProperties[] 
 					action: 'Create a default OVH SSL certificate',
 				},
 				{
+					displayName: 'Cron Available Language - List',
+					name: 'cronAvailableLanguageList',
+					value: 'cronAvailableLanguageList',
+				},
+				{
 					name: 'Database Create',
 					value: 'databaseCreatePost',
 					action: 'Create a new database on the hosting service',
@@ -430,6 +1090,16 @@ export function description(displayOptions: IDisplayOptions): INodeProperties[] 
 					value: 'databaseUpdatePut',
 					action: 'Update a database on the hosting service',
 				},
+				{
+					displayName: 'DB - Available Types',
+					name: 'dbAvailableTypes',
+					value: 'dbAvailableTypes',
+				},
+				{
+					displayName: 'DB - Available Versions',
+					name: 'dbAvailableVersions',
+					value: 'dbAvailableVersions',
+				},
 				{ displayName: 'DB - Capabilities', name: 'dbCapabilities', value: 'dbCapabilities' },
 				{
 					displayName: 'DB - Change Password',
@@ -437,8 +1107,33 @@ export function description(displayOptions: IDisplayOptions): INodeProperties[] 
 					value: 'dbChangePassword',
 				},
 				{ displayName: 'DB - Copy Database', name: 'dbCopyDatabase', value: 'dbCopyDatabase' },
+				{ displayName: 'DB - Delete Copy', name: 'dbCopyDelete', value: 'dbCopyDelete' },
+				{ displayName: 'DB - Get Copy', name: 'dbCopyGet', value: 'dbCopyGet' },
+				{ displayName: 'DB - Copy List', name: 'dbCopyList', value: 'dbCopyList' },
+				{
+					displayName: 'DB - Restore from Copy',
+					name: 'dbCopyRestore',
+					value: 'dbCopyRestore',
+				},
 				{ displayName: 'DB - Create Dump', name: 'dbCreateDump', value: 'dbCreateDump' },
+				{
+					displayName: 'DB - Creation Capabilities',
+					name: 'dbCreationCapabilities',
+					value: 'dbCreationCapabilities',
+				},
+				{ displayName: 'DB - Delete Dump', name: 'dbDumpDelete', value: 'dbDumpDelete' },
+				{
+					displayName: 'DB - Get Dump by ID',
+					name: 'dbDumpGetById',
+					value: 'dbDumpGetById',
+				},
+				{
+					displayName: 'DB - Restore from Dump',
+					name: 'dbDumpRestore',
+					value: 'dbDumpRestore',
+				},
 				{ displayName: 'DB - Get Dump', name: 'dbGetDump', value: 'dbGetDump' },
+				{ displayName: 'DB - Get Restore', name: 'dbGetRestore', value: 'dbGetRestore' },
 				{ displayName: 'DB - Import Dump', name: 'dbImportDump', value: 'dbImportDump' },
 				{ displayName: 'DB - List Requests', name: 'dbListRequests', value: 'dbListRequests' },
 				{ displayName: 'DB - Metrics Token', name: 'dbMetricsToken', value: 'dbMetricsToken' },
@@ -454,15 +1149,107 @@ export function description(displayOptions: IDisplayOptions): INodeProperties[] 
 					value: 'cronDeleteDelete',
 					action: 'Delete a cron job from the hosting',
 				},
+				{ displayName: 'Dump - Delete', name: 'dumpDelete', value: 'dumpDelete' },
+				{ displayName: 'Dump - Get', name: 'dumpGet', value: 'dumpGet' },
+				{ displayName: 'Dump - List', name: 'dumpList', value: 'dumpList' },
+				{
+					displayName: 'Email - Bounces',
+					name: 'emailBounces',
+					value: 'emailBounces',
+				},
+				{ displayName: 'Email - Create', name: 'emailCreate', value: 'emailCreate' },
+				{ displayName: 'Email - Delete', name: 'emailDelete', value: 'emailDelete' },
+				{ displayName: 'Email - List', name: 'emailList', value: 'emailList' },
+				{
+					displayName: 'Email Option - Get',
+					name: 'emailOptionGet',
+					value: 'emailOptionGet',
+				},
+				{
+					displayName: 'Email Option - List',
+					name: 'emailOptionList',
+					value: 'emailOptionList',
+				},
+				{
+					displayName: 'Email Option - Service Infos',
+					name: 'emailOptionServiceInfos',
+					value: 'emailOptionServiceInfos',
+				},
+				{
+					displayName: 'Email Option - Terminate',
+					name: 'emailOptionTerminate',
+					value: 'emailOptionTerminate',
+				},
+				{
+					displayName: 'Email - Request Operation',
+					name: 'emailRequest',
+					value: 'emailRequest',
+				},
+				{ displayName: 'Email - Update', name: 'emailUpdate', value: 'emailUpdate' },
+				{
+					displayName: 'Email - Volumes History',
+					name: 'emailVolumes',
+					value: 'emailVolumes',
+				},
 				{
 					name: 'Environment Variable Set',
 					value: 'envVarSetCreate',
 					action: 'Set an environment variable',
 				},
 				{
+					displayName: 'Environment Variable - Create',
+					name: 'envVarCreatePost',
+					value: 'envVarCreatePost',
+				},
+				{
+					displayName: 'Environment Variable - Delete',
+					name: 'envVarDeleteDelete',
+					value: 'envVarDeleteDelete',
+				},
+				{
+					displayName: 'Environment Variable - Update',
+					name: 'envVarUpdatePut',
+					value: 'envVarUpdatePut',
+				},
+				{
+					displayName: 'Extra SQL Perso - Databases',
+					name: 'extraSqlPersoDatabases',
+					value: 'extraSqlPersoDatabases',
+				},
+				{
+					displayName: 'Extra SQL Perso - Get',
+					name: 'extraSqlPersoGet',
+					value: 'extraSqlPersoGet',
+				},
+				{
+					displayName: 'Extra SQL Perso - List',
+					name: 'extraSqlPersoList',
+					value: 'extraSqlPersoList',
+				},
+				{
+					displayName: 'Extra SQL Perso - Service Infos',
+					name: 'extraSqlPersoServiceInfos',
+					value: 'extraSqlPersoServiceInfos',
+				},
+				{
+					displayName: 'Extra SQL Perso - Service Infos Update',
+					name: 'extraSqlPersoServiceInfosUpdate',
+					value: 'extraSqlPersoServiceInfosUpdate',
+				},
+				{
+					displayName: 'Extra SQL Perso - Terminate',
+					name: 'extraSqlPersoTerminate',
+					value: 'extraSqlPersoTerminate',
+				},
+				{
 					name: 'Find Hosting by Domain',
 					value: 'findByDomain',
 					action: 'Find hosting services linked to a domain',
+				},
+				{
+					displayName: 'Freedom - List',
+					name: 'freedomList',
+					value: 'freedomList',
 				},
 				{ name: 'Get', value: 'get', action: 'Get hosting web service details' },
 				{
@@ -482,17 +1269,24 @@ export function description(displayOptions: IDisplayOptions): INodeProperties[] 
 					action: 'Get service billing infos',
 				},
 				{ name: 'Get SSL', value: 'getSsl', action: 'Get SSL certificate info' },
-				{ name: 'Get Task', value: 'getTask', action: 'Get a task' },
 				{
 					name: 'Get Statistics',
 					value: 'statisticsGet',
 					action: 'Get hosting statistics (bandwidth, hits, errors)',
 				},
+				{ name: 'Get Task', value: 'getTask', action: 'Get a task' },
 				{ name: 'Get User', value: 'getUser', action: 'Get a user' },
 				{
 					name: 'Import Custom Certificate',
 					value: 'importCustomCertificateCreate',
 					action: 'Import a custom SSL certificate',
+				},
+				{ displayName: 'Incident - Get', name: 'incidentGet', value: 'incidentGet' },
+				{ displayName: 'Indy - Get', name: 'indyGet', value: 'indyGet' },
+				{
+					displayName: 'Indy - List',
+					name: 'indyList',
+					value: 'indyList',
 				},
 				{ name: 'List', value: 'list', action: 'List all hosting web services' },
 				{
@@ -507,10 +1301,251 @@ export function description(displayOptions: IDisplayOptions): INodeProperties[] 
 				{ name: 'List Runtimes', value: 'listRuntimes', action: 'List runtimes' },
 				{ name: 'List Tasks', value: 'listTasks', action: 'List tasks' },
 				{
+					displayName: 'Local SEO - Account Get',
+					name: 'localSeoAccountGet',
+					value: 'localSeoAccountGet',
+				},
+				{
+					displayName: 'Local SEO - Account List',
+					name: 'localSeoAccountList',
+					value: 'localSeoAccountList',
+				},
+				{
+					displayName: 'Local SEO - Account Login',
+					name: 'localSeoAccountLogin',
+					value: 'localSeoAccountLogin',
+				},
+				{
+					displayName: 'Local SEO - Directories List',
+					name: 'localSeoDirectoriesList',
+					value: 'localSeoDirectoriesList',
+				},
+				{
+					displayName: 'Local SEO - Email Availability',
+					name: 'localSeoEmailAvailability',
+					value: 'localSeoEmailAvailability',
+				},
+				{
+					displayName: 'Local SEO - Email Availability (Global)',
+					name: 'localSeoEmailAvailabilityGlobal',
+					value: 'localSeoEmailAvailabilityGlobal',
+				},
+				{
+					displayName: 'Local SEO - Location Get',
+					name: 'localSeoLocationGet',
+					value: 'localSeoLocationGet',
+				},
+				{
+					displayName: 'Local SEO - Location List',
+					name: 'localSeoLocationList',
+					value: 'localSeoLocationList',
+				},
+				{
+					displayName: 'Local SEO - Location Service Infos',
+					name: 'localSeoLocationServiceInfos',
+					value: 'localSeoLocationServiceInfos',
+				},
+				{
+					displayName: 'Local SEO - Location Service Infos Update',
+					name: 'localSeoLocationServiceInfosUpdate',
+					value: 'localSeoLocationServiceInfosUpdate',
+				},
+				{
+					displayName: 'Local SEO - Location Terminate',
+					name: 'localSeoLocationTerminate',
+					value: 'localSeoLocationTerminate',
+				},
+				{
+					displayName: 'Local SEO - Visibility Check',
+					name: 'localSeoVisibilityCheck',
+					value: 'localSeoVisibilityCheck',
+				},
+				{
+					displayName: 'Local SEO - Visibility Check Result',
+					name: 'localSeoVisibilityCheckResult',
+					value: 'localSeoVisibilityCheckResult',
+				},
+				{
+					displayName: 'Log - Get Kind',
+					name: 'logKindGet',
+					value: 'logKindGet',
+				},
+				{
+					displayName: 'Log - List Kinds',
+					name: 'logKindList',
+					value: 'logKindList',
+				},
+				{
+					displayName: 'Log - Create Subscription',
+					name: 'logSubscriptionCreate',
+					value: 'logSubscriptionCreate',
+				},
+				{
+					displayName: 'Log - Delete Subscription',
+					name: 'logSubscriptionDelete',
+					value: 'logSubscriptionDelete',
+				},
+				{
+					displayName: 'Log - Get Subscription',
+					name: 'logSubscriptionGet',
+					value: 'logSubscriptionGet',
+				},
+				{
+					displayName: 'Log - List Subscriptions',
+					name: 'logSubscriptionList',
+					value: 'logSubscriptionList',
+				},
+				{
+					displayName: 'Log - Generate Temporary URL',
+					name: 'logUrl',
+					value: 'logUrl',
+				},
+				{
+					displayName: 'Module Catalog - Get by ID',
+					name: 'moduleCatalogGetById',
+					value: 'moduleCatalogGetById',
+				},
+				{
+					displayName: 'Module Catalog - List',
+					name: 'moduleCatalogList',
+					value: 'moduleCatalogList',
+				},
+				{
+					displayName: 'Module - Create',
+					name: 'moduleCreate',
+					value: 'moduleCreate',
+				},
+				{
+					displayName: 'Module - Delete',
+					name: 'moduleDelete',
+					value: 'moduleDelete',
+				},
+				{ displayName: 'Module - List', name: 'moduleList', value: 'moduleList' },
+				{ displayName: 'Module - Update', name: 'moduleUpdate', value: 'moduleUpdate' },
+				{
+					displayName: 'Offer Capabilities',
+					name: 'offerCapabilitiesGet',
+					value: 'offerCapabilitiesGet',
+				},
+				{
+					displayName: 'OvhConfig - Capabilities',
+					name: 'ovhConfigCapabilities',
+					value: 'ovhConfigCapabilities',
+				},
+				{
+					displayName: 'OvhConfig - Change Configuration',
+					name: 'ovhConfigChangeConfiguration',
+					value: 'ovhConfigChangeConfiguration',
+				},
+				{
+					displayName: 'OvhConfig - Get',
+					name: 'ovhConfigGet',
+					value: 'ovhConfigGet',
+				},
+				{
+					displayName: 'OvhConfig - List',
+					name: 'ovhConfigList',
+					value: 'ovhConfigList',
+				},
+				{
+					displayName: 'OvhConfig - Recommended Values',
+					name: 'ovhConfigRecommendedValues',
+					value: 'ovhConfigRecommendedValues',
+				},
+				{
+					displayName: 'OvhConfig - Refresh',
+					name: 'ovhConfigRefresh',
+					value: 'ovhConfigRefresh',
+				},
+				{
+					displayName: 'OvhConfig - Rollback',
+					name: 'ovhConfigRollback',
+					value: 'ovhConfigRollback',
+				},
+				{
+					displayName: 'Own Logs - Get',
+					name: 'ownLogsGet',
+					value: 'ownLogsGet',
+				},
+				{
+					displayName: 'Own Logs - List',
+					name: 'ownLogsList',
+					value: 'ownLogsList',
+				},
+				{
+					displayName: 'Own Logs - Change Password',
+					name: 'ownLogsUserLogsChangePassword',
+					value: 'ownLogsUserLogsChangePassword',
+				},
+				{
+					displayName: 'Own Logs - Create User Logs',
+					name: 'ownLogsUserLogsCreate',
+					value: 'ownLogsUserLogsCreate',
+				},
+				{
+					displayName: 'Own Logs - Delete User Logs',
+					name: 'ownLogsUserLogsDelete',
+					value: 'ownLogsUserLogsDelete',
+				},
+				{
+					displayName: 'Own Logs - Get User Logs',
+					name: 'ownLogsUserLogsGet',
+					value: 'ownLogsUserLogsGet',
+				},
+				{
+					displayName: 'Own Logs - List User Logs',
+					name: 'ownLogsUserLogsList',
+					value: 'ownLogsUserLogsList',
+				},
+				{
+					displayName: 'Own Logs - Update User Logs',
+					name: 'ownLogsUserLogsUpdate',
+					value: 'ownLogsUserLogsUpdate',
+				},
+				{
+					displayName: 'Private DB - Creation Capabilities',
+					name: 'privateDatabaseCreationCapabilities',
+					value: 'privateDatabaseCreationCapabilities',
+				},
+				{
+					displayName: 'Private DB - Get',
+					name: 'privateDatabaseGet',
+					value: 'privateDatabaseGet',
+				},
+				{
+					displayName: 'Private DB - List',
+					name: 'privateDatabaseList',
+					value: 'privateDatabaseList',
+				},
+				{
 					name: 'Purge CDN Cache',
 					value: 'attachedDomainPurgeCacheCreate',
 					action: 'Purge CDN cache for an attached domain',
 				},
+				{
+					displayName: 'Restore Snapshot',
+					name: 'restoreSnapshot',
+					value: 'restoreSnapshot',
+				},
+				{
+					displayName: 'Runtime - Attached Domains',
+					name: 'runtimeAttachedDomains',
+					value: 'runtimeAttachedDomains',
+				},
+				{
+					displayName: 'Runtime - Available Types',
+					name: 'runtimeAvailableTypes',
+					value: 'runtimeAvailableTypes',
+				},
+				{ displayName: 'Runtime - Create', name: 'runtimeCreate', value: 'runtimeCreate' },
+				{
+					displayName: 'Runtime - Delete',
+					name: 'runtimeDelete',
+					value: 'runtimeDelete',
+				},
+				{ displayName: 'Runtime - Get', name: 'runtimeGet2', value: 'runtimeGet2' },
+				{ displayName: 'Runtime - List', name: 'runtimeList2', value: 'runtimeList2' },
+				{ displayName: 'Runtime - Update', name: 'runtimeUpdate', value: 'runtimeUpdate' },
 				{
 					displayName: 'Service - Abuse State',
 					name: 'serviceAbuseState',
@@ -530,6 +1565,11 @@ export function description(displayOptions: IDisplayOptions): INodeProperties[] 
 					displayName: 'Service - Confirm Termination',
 					name: 'serviceConfirmTermination',
 					value: 'serviceConfirmTermination',
+				},
+				{
+					displayName: 'Service Infos - Update',
+					name: 'serviceInfosUpdatePut',
+					value: 'serviceInfosUpdatePut',
 				},
 				{
 					displayName: 'Service - Metrics Token',
@@ -561,6 +1601,36 @@ export function description(displayOptions: IDisplayOptions): INodeProperties[] 
 					name: 'serviceUserLogsToken',
 					value: 'serviceUserLogsToken',
 				},
+				{ displayName: 'SSH Key - Create', name: 'sshKeyCreate', value: 'sshKeyCreate' },
+				{ displayName: 'SSH Key - List', name: 'sshKeyList', value: 'sshKeyList' },
+				{ displayName: 'SSL - Create', name: 'sslCreate', value: 'sslCreate' },
+				{
+					displayName: 'SSL - Delete',
+					name: 'sslDelete',
+					value: 'sslDelete',
+				},
+				{
+					displayName: 'SSL - Domains',
+					name: 'sslDomains',
+					value: 'sslDomains',
+				},
+				{ displayName: 'SSL - Get', name: 'sslGet', value: 'sslGet' },
+				{ displayName: 'SSL - List', name: 'sslList', value: 'sslList' },
+				{
+					displayName: 'SSL - Regenerate',
+					name: 'sslRegenerate',
+					value: 'sslRegenerate',
+				},
+				{
+					displayName: 'SSL - Report',
+					name: 'sslReport',
+					value: 'sslReport',
+				},
+				{
+					displayName: 'Token - Get',
+					name: 'tokenGet',
+					value: 'tokenGet',
+				},
 				{
 					name: 'Update Attached Domain',
 					value: 'attachedDomainUpdate',
@@ -577,6 +1647,61 @@ export function description(displayOptions: IDisplayOptions): INodeProperties[] 
 					action: 'Update hosting web service properties',
 				},
 				{ name: 'User Update', value: 'userUpdatePut', action: 'Update a user password' },
+				{
+					displayName: 'User - Change Password',
+					name: 'userChangePassword',
+					value: 'userChangePassword',
+				},
+				{
+					displayName: 'User - Create',
+					name: 'userCreate',
+					value: 'userCreate',
+				},
+				{
+					displayName: 'User - Delete',
+					name: 'userDelete',
+					value: 'userDelete',
+				},
+				{
+					displayName: 'User Logs - Change Password',
+					name: 'userLogsChangePassword',
+					value: 'userLogsChangePassword',
+				},
+				{
+					displayName: 'User Logs - Create',
+					name: 'userLogsCreate',
+					value: 'userLogsCreate',
+				},
+				{
+					displayName: 'User Logs - Delete',
+					name: 'userLogsDelete',
+					value: 'userLogsDelete',
+				},
+				{
+					displayName: 'User Logs - Get',
+					name: 'userLogsGet',
+					value: 'userLogsGet',
+				},
+				{
+					displayName: 'User Logs - List',
+					name: 'userLogsList',
+					value: 'userLogsList',
+				},
+				{
+					displayName: 'User Logs - Update',
+					name: 'userLogsUpdate',
+					value: 'userLogsUpdate',
+				},
+				{
+					displayName: 'VCS - Supported Platforms',
+					name: 'vcsSupported',
+					value: 'vcsSupported',
+				},
+				{
+					displayName: 'VCS - Webhooks',
+					name: 'vcsWebhooks',
+					value: 'vcsWebhooks',
+				},
 				{ displayName: 'Website - Create', name: 'websiteCreate', value: 'websiteCreate' },
 				{
 					displayName: 'Website Creation Capabilities',
@@ -590,6 +1715,16 @@ export function description(displayOptions: IDisplayOptions): INodeProperties[] 
 					value: 'websiteDeployment',
 				},
 				{
+					displayName: 'Website - Get Deployment',
+					name: 'websiteDeploymentGetById',
+					value: 'websiteDeploymentGetById',
+				},
+				{
+					displayName: 'Website - Deployment Logs',
+					name: 'websiteDeploymentLogs',
+					value: 'websiteDeploymentLogs',
+				},
+				{
 					displayName: 'Website Deployment Status',
 					name: 'websiteDeploymentStatus',
 					value: 'websiteDeploymentStatus',
@@ -597,27 +1732,6 @@ export function description(displayOptions: IDisplayOptions): INodeProperties[] 
 				{ displayName: 'Website - Get', name: 'websiteGet', value: 'websiteGet' },
 				{ displayName: 'Website - List', name: 'websiteList', value: 'websiteList' },
 				{ displayName: 'Website - Update', name: 'websiteUpdate', value: 'websiteUpdate' },
-				{ displayName: 'Email - Create', name: 'emailCreate', value: 'emailCreate' },
-				{ displayName: 'Email - Delete', name: 'emailDelete', value: 'emailDelete' },
-				{ displayName: 'Email - List', name: 'emailList', value: 'emailList' },
-				{ displayName: 'Module - List', name: 'moduleList', value: 'moduleList' },
-				{ displayName: 'Module - Update', name: 'moduleUpdate', value: 'moduleUpdate' },
-				{
-					displayName: 'Private DB - Get',
-					name: 'privateDatabaseGet',
-					value: 'privateDatabaseGet',
-				},
-				{
-					displayName: 'Private DB - List',
-					name: 'privateDatabaseList',
-					value: 'privateDatabaseList',
-				},
-				{ displayName: 'Runtime - Create', name: 'runtimeCreate', value: 'runtimeCreate' },
-				{ displayName: 'Runtime - Get', name: 'runtimeGet2', value: 'runtimeGet2' },
-				{ displayName: 'Runtime - List', name: 'runtimeList2', value: 'runtimeList2' },
-				{ displayName: 'Runtime - Update', name: 'runtimeUpdate', value: 'runtimeUpdate' },
-				{ displayName: 'SSL - Create', name: 'sslCreate', value: 'sslCreate' },
-				{ displayName: 'SSL - List', name: 'sslList', value: 'sslList' },
 			],
 			default: 'list',
 		},
@@ -636,48 +1750,49 @@ export function description(displayOptions: IDisplayOptions): INodeProperties[] 
 			},
 		},
 		options: [
-			{ displayName: 'v2 - List Resources', name: 'v2ListResources', value: 'v2ListResources' },
+			{
+				displayName: 'v2 - Create Attached Domain',
+				name: 'v2CreateAttachedDomain',
+				value: 'v2CreateAttachedDomain',
+			},
+			{ displayName: 'v2 - Create Website', name: 'v2CreateWebsite', value: 'v2CreateWebsite' },
+			{ displayName: 'v2 - Delete User', name: 'v2DeleteUser', value: 'v2DeleteUser' },
+			{ displayName: 'v2 - Delete Website', name: 'v2DeleteWebsite', value: 'v2DeleteWebsite' },
 			{ displayName: 'v2 - Get Resource', name: 'v2GetResource', value: 'v2GetResource' },
+			{
+				displayName: 'v2 - Get Resource Attached Domains',
+				name: 'v2GetResourceAttachedDomains',
+				value: 'v2GetResourceAttachedDomains',
+			},
+			{ displayName: 'v2 - Get Website', name: 'v2GetWebsite', value: 'v2GetWebsite' },
+			{
+				displayName: 'v2 - Import Custom Certificate',
+				name: 'v2ImportCustomCertificate',
+				value: 'v2ImportCustomCertificate',
+			},
 			{
 				displayName: 'v2 - List Attached Domains',
 				name: 'v2ListAttachedDomains',
 				value: 'v2ListAttachedDomains',
 			},
 			{
-				displayName: 'v2 - Get Resource Attached Domains',
-				name: 'v2GetResourceAttachedDomains',
-				value: 'v2GetResourceAttachedDomains',
-			},
-			{
 				displayName: 'v2 - List Certificates',
 				name: 'v2ListCertificates',
 				value: 'v2ListCertificates',
-			},
-			{ displayName: 'v2 - List Websites', name: 'v2ListWebsites', value: 'v2ListWebsites' },
-			{ displayName: 'v2 - Create Website', name: 'v2CreateWebsite', value: 'v2CreateWebsite' },
-			{ displayName: 'v2 - Get Website', name: 'v2GetWebsite', value: 'v2GetWebsite' },
-			{ displayName: 'v2 - Update Website', name: 'v2UpdateWebsite', value: 'v2UpdateWebsite' },
-			{
-				displayName: 'v2 - List Website Domains',
-				name: 'v2ListWebsiteDomains',
-				value: 'v2ListWebsiteDomains',
-			},
-			{
-				displayName: 'v2 - Create Attached Domain',
-				name: 'v2CreateAttachedDomain',
-				value: 'v2CreateAttachedDomain',
 			},
 			{
 				displayName: 'v2 - List Resource Attached Domains',
 				name: 'v2ListResourceAttachedDomains',
 				value: 'v2ListResourceAttachedDomains',
 			},
+			{ displayName: 'v2 - List Resources', name: 'v2ListResources', value: 'v2ListResources' },
 			{
-				displayName: 'v2 - Import Custom Certificate',
-				name: 'v2ImportCustomCertificate',
-				value: 'v2ImportCustomCertificate',
+				displayName: 'v2 - List Website Domains',
+				name: 'v2ListWebsiteDomains',
+				value: 'v2ListWebsiteDomains',
 			},
-			{ displayName: 'v2 - Delete User', name: 'v2DeleteUser', value: 'v2DeleteUser' },
+			{ displayName: 'v2 - List Websites', name: 'v2ListWebsites', value: 'v2ListWebsites' },
+			{ displayName: 'v2 - Update Website', name: 'v2UpdateWebsite', value: 'v2UpdateWebsite' },
 		],
 	});
 
@@ -895,6 +2010,200 @@ export function description(displayOptions: IDisplayOptions): INodeProperties[] 
 			...displayOptions,
 			show: { apiVersion: ['v1'], hostingOperation: ['dbImportDump'] },
 		}) as INodeProperties[]),
+		...(dbRestoreGetDescription({
+			...displayOptions,
+			show: { apiVersion: ['v1'], hostingOperation: ['dbGetRestore'] },
+		}) as INodeProperties[]),
+
+		// Database copy/dump sub-resources (Phase 4c)
+		...(dbCopyListGetDescription({
+			...displayOptions,
+			show: { apiVersion: ['v1'], hostingOperation: ['dbCopyList'] },
+		}) as INodeProperties[]),
+		...(dbCopyGetGetDescription({
+			...displayOptions,
+			show: { apiVersion: ['v1'], hostingOperation: ['dbCopyGet'] },
+		}) as INodeProperties[]),
+		...(dbCopyDeleteDeleteDescription({
+			...displayOptions,
+			show: { apiVersion: ['v1'], hostingOperation: ['dbCopyDelete'] },
+		}) as INodeProperties[]),
+		...(dbCopyRestorePostDescription({
+			...displayOptions,
+			show: { apiVersion: ['v1'], hostingOperation: ['dbCopyRestore'] },
+		}) as INodeProperties[]),
+		...(dbDumpGetGetDescription({
+			...displayOptions,
+			show: { apiVersion: ['v1'], hostingOperation: ['dbDumpGetById'] },
+		}) as INodeProperties[]),
+		...(dbDumpDeleteDeleteDescription({
+			...displayOptions,
+			show: { apiVersion: ['v1'], hostingOperation: ['dbDumpDelete'] },
+		}) as INodeProperties[]),
+		...(dbDumpRestorePostDescription({
+			...displayOptions,
+			show: { apiVersion: ['v1'], hostingOperation: ['dbDumpRestore'] },
+		}) as INodeProperties[]),
+
+		// Database available operations (Phase 4c)
+		...(dbAvailableTypeListGetDescription({
+			...displayOptions,
+			show: { apiVersion: ['v1'], hostingOperation: ['dbAvailableTypes'] },
+		}) as INodeProperties[]),
+		...(dbAvailableVersionListGetDescription({
+			...displayOptions,
+			show: { apiVersion: ['v1'], hostingOperation: ['dbAvailableVersions'] },
+		}) as INodeProperties[]),
+		...(dbCreationCapabilitiesGetDescription({
+			...displayOptions,
+			show: { apiVersion: ['v1'], hostingOperation: ['dbCreationCapabilities'] },
+		}) as INodeProperties[]),
+
+		// Dump operations (Phase 4c)
+		...(dumpListGetDescription({
+			...displayOptions,
+			show: { apiVersion: ['v1'], hostingOperation: ['dumpList'] },
+		}) as INodeProperties[]),
+		...(dumpGetGetDescription({
+			...displayOptions,
+			show: { apiVersion: ['v1'], hostingOperation: ['dumpGet'] },
+		}) as INodeProperties[]),
+		...(dumpDeleteDeleteDescription({
+			...displayOptions,
+			show: { apiVersion: ['v1'], hostingOperation: ['dumpDelete'] },
+		}) as INodeProperties[]),
+
+		// Email operations (Phase 4c)
+		...(emailUpdatePutDescription({
+			...displayOptions,
+			show: { apiVersion: ['v1'], hostingOperation: ['emailUpdate'] },
+		}) as INodeProperties[]),
+		...(emailBouncesGetDescription({
+			...displayOptions,
+			show: { apiVersion: ['v1'], hostingOperation: ['emailBounces'] },
+		}) as INodeProperties[]),
+		...(emailRequestPostDescription({
+			...displayOptions,
+			show: { apiVersion: ['v1'], hostingOperation: ['emailRequest'] },
+		}) as INodeProperties[]),
+		...(emailVolumesGetDescription({
+			...displayOptions,
+			show: { apiVersion: ['v1'], hostingOperation: ['emailVolumes'] },
+		}) as INodeProperties[]),
+
+		// Email Option operations (Phase 4c)
+		...(emailOptionListGetDescription({
+			...displayOptions,
+			show: { apiVersion: ['v1'], hostingOperation: ['emailOptionList'] },
+		}) as INodeProperties[]),
+		...(emailOptionGetGetDescription({
+			...displayOptions,
+			show: { apiVersion: ['v1'], hostingOperation: ['emailOptionGet'] },
+		}) as INodeProperties[]),
+		...(emailOptionServiceInfosGetDescription({
+			...displayOptions,
+			show: { apiVersion: ['v1'], hostingOperation: ['emailOptionServiceInfos'] },
+		}) as INodeProperties[]),
+		...(emailOptionTerminatePostDescription({
+			...displayOptions,
+			show: { apiVersion: ['v1'], hostingOperation: ['emailOptionTerminate'] },
+		}) as INodeProperties[]),
+
+		// User Logs operations (Phase 4c)
+		...(userLogsListGetDescription({
+			...displayOptions,
+			show: { apiVersion: ['v1'], hostingOperation: ['userLogsList'] },
+		}) as INodeProperties[]),
+		...(userLogsCreatePostDescription({
+			...displayOptions,
+			show: { apiVersion: ['v1'], hostingOperation: ['userLogsCreate'] },
+		}) as INodeProperties[]),
+		...(userLogsDeleteDeleteDescription({
+			...displayOptions,
+			show: { apiVersion: ['v1'], hostingOperation: ['userLogsDelete'] },
+		}) as INodeProperties[]),
+		...(userLogsGetGetDescription({
+			...displayOptions,
+			show: { apiVersion: ['v1'], hostingOperation: ['userLogsGet'] },
+		}) as INodeProperties[]),
+		...(userLogsUpdatePutDescription({
+			...displayOptions,
+			show: { apiVersion: ['v1'], hostingOperation: ['userLogsUpdate'] },
+		}) as INodeProperties[]),
+		...(userLogsChangePasswordPostDescription({
+			...displayOptions,
+			show: { apiVersion: ['v1'], hostingOperation: ['userLogsChangePassword'] },
+		}) as INodeProperties[]),
+
+		// Own Logs operations (Phase 4c)
+		...(ownLogsListGetDescription({
+			...displayOptions,
+			show: { apiVersion: ['v1'], hostingOperation: ['ownLogsList'] },
+		}) as INodeProperties[]),
+		...(ownLogsGetGetDescription({
+			...displayOptions,
+			show: { apiVersion: ['v1'], hostingOperation: ['ownLogsGet'] },
+		}) as INodeProperties[]),
+		...(ownLogsUserLogsListGetDescription({
+			...displayOptions,
+			show: { apiVersion: ['v1'], hostingOperation: ['ownLogsUserLogsList'] },
+		}) as INodeProperties[]),
+		...(ownLogsUserLogsCreatePostDescription({
+			...displayOptions,
+			show: { apiVersion: ['v1'], hostingOperation: ['ownLogsUserLogsCreate'] },
+		}) as INodeProperties[]),
+		...(ownLogsUserLogsDeleteDeleteDescription({
+			...displayOptions,
+			show: { apiVersion: ['v1'], hostingOperation: ['ownLogsUserLogsDelete'] },
+		}) as INodeProperties[]),
+		...(ownLogsUserLogsGetGetDescription({
+			...displayOptions,
+			show: { apiVersion: ['v1'], hostingOperation: ['ownLogsUserLogsGet'] },
+		}) as INodeProperties[]),
+		...(ownLogsUserLogsUpdatePutDescription({
+			...displayOptions,
+			show: { apiVersion: ['v1'], hostingOperation: ['ownLogsUserLogsUpdate'] },
+		}) as INodeProperties[]),
+		...(ownLogsUserLogsChangePasswordPostDescription({
+			...displayOptions,
+			show: { apiVersion: ['v1'], hostingOperation: ['ownLogsUserLogsChangePassword'] },
+		}) as INodeProperties[]),
+
+		// Log operations (Phase 4c)
+		...(logKindListGetDescription({
+			...displayOptions,
+			show: { apiVersion: ['v1'], hostingOperation: ['logKindList'] },
+		}) as INodeProperties[]),
+		...(logKindGetGetDescription({
+			...displayOptions,
+			show: { apiVersion: ['v1'], hostingOperation: ['logKindGet'] },
+		}) as INodeProperties[]),
+		...(logSubscriptionListGetDescription({
+			...displayOptions,
+			show: { apiVersion: ['v1'], hostingOperation: ['logSubscriptionList'] },
+		}) as INodeProperties[]),
+		...(logSubscriptionCreatePostDescription({
+			...displayOptions,
+			show: { apiVersion: ['v1'], hostingOperation: ['logSubscriptionCreate'] },
+		}) as INodeProperties[]),
+		...(logSubscriptionDeleteDeleteDescription({
+			...displayOptions,
+			show: { apiVersion: ['v1'], hostingOperation: ['logSubscriptionDelete'] },
+		}) as INodeProperties[]),
+		...(logSubscriptionGetGetDescription({
+			...displayOptions,
+			show: { apiVersion: ['v1'], hostingOperation: ['logSubscriptionGet'] },
+		}) as INodeProperties[]),
+		...(logUrlCreatePostDescription({
+			...displayOptions,
+			show: { apiVersion: ['v1'], hostingOperation: ['logUrl'] },
+		}) as INodeProperties[]),
+
+		// Token operations (Phase 4c)
+		...(tokenGetGetDescription({
+			...displayOptions,
+			show: { apiVersion: ['v1'], hostingOperation: ['tokenGet'] },
+		}) as INodeProperties[]),
 
 		// CDN parameters
 		...(cdnDomainCreatePostDescription({
@@ -999,6 +2308,10 @@ export function description(displayOptions: IDisplayOptions): INodeProperties[] 
 			...displayOptions,
 			show: { apiVersion: ['v2'], hostingOperationV2: ['v2UpdateWebsite'] },
 		}) as INodeProperties[]),
+		...(v2WebsiteDeleteDeleteDescription({
+			...displayOptions,
+			show: { apiVersion: ['v2'], hostingOperationV2: ['v2DeleteWebsite'] },
+		}) as INodeProperties[]),
 		...(v2WebsiteDomainListGetDescription({
 			...displayOptions,
 			show: { apiVersion: ['v2'], hostingOperationV2: ['v2ListWebsiteDomains'] },
@@ -1038,6 +2351,346 @@ export function description(displayOptions: IDisplayOptions): INodeProperties[] 
 		...(emailCreatePostDescription({
 			...displayOptions,
 			show: { apiVersion: ['v1'], hostingOperation: ['emailCreate'] },
+		}) as INodeProperties[]),
+		// SSL Service parameters
+		...(sslServiceGetGetDescription({
+			...displayOptions,
+			show: { apiVersion: ['v1'], hostingOperation: ['sslGet'] },
+		}) as INodeProperties[]),
+
+		// ==================== Phase 4c - Lot 2 parameters ====================
+		// Attached Domain sub-resources
+		...(attachedDomainDigStatusGetDescription({
+			...displayOptions,
+			show: { apiVersion: ['v1'], hostingOperation: ['attachedDomainDigStatus'] },
+		}) as INodeProperties[]),
+		...(attachedDomainRestartPostDescription({
+			...displayOptions,
+			show: { apiVersion: ['v1'], hostingOperation: ['attachedDomainRestart'] },
+		}) as INodeProperties[]),
+		...(attachedDomainSslDeleteDescription({
+			...displayOptions,
+			show: { apiVersion: ['v1'], hostingOperation: ['attachedDomainSslDelete'] },
+		}) as INodeProperties[]),
+		...(attachedDomainSslGetDescription({
+			...displayOptions,
+			show: { apiVersion: ['v1'], hostingOperation: ['attachedDomainSslGet'] },
+		}) as INodeProperties[]),
+		...(attachedDomainSslCreatePostDescription({
+			...displayOptions,
+			show: { apiVersion: ['v1'], hostingOperation: ['attachedDomainSslCreate'] },
+		}) as INodeProperties[]),
+		...(attachedDomainSslUpdatePutDescription({
+			...displayOptions,
+			show: { apiVersion: ['v1'], hostingOperation: ['attachedDomainSslUpdate'] },
+		}) as INodeProperties[]),
+		...(attachedDomainSslRegeneratePostDescription({
+			...displayOptions,
+			show: { apiVersion: ['v1'], hostingOperation: ['attachedDomainSslRegenerate'] },
+		}) as INodeProperties[]),
+		...(attachedDomainSslReportGetDescription({
+			...displayOptions,
+			show: { apiVersion: ['v1'], hostingOperation: ['attachedDomainSslReport'] },
+		}) as INodeProperties[]),
+		// Boost History
+		...(boostHistoryListGetDescription({
+			...displayOptions,
+			show: { apiVersion: ['v1'], hostingOperation: ['boostHistoryList'] },
+		}) as INodeProperties[]),
+		...(boostHistoryGetGetDescription({
+			...displayOptions,
+			show: { apiVersion: ['v1'], hostingOperation: ['boostHistoryGet'] },
+		}) as INodeProperties[]),
+		// Configuration
+		...(configurationGetGetDescription({
+			...displayOptions,
+			show: { apiVersion: ['v1'], hostingOperation: ['configurationGet'] },
+		}) as INodeProperties[]),
+		// Cron Available Language
+		...(cronAvailableLanguageListGetDescription({
+			...displayOptions,
+			show: { apiVersion: ['v1'], hostingOperation: ['cronAvailableLanguageList'] },
+		}) as INodeProperties[]),
+		// Extra SQL Perso
+		...(extraSqlPersoListGetDescription({
+			...displayOptions,
+			show: { apiVersion: ['v1'], hostingOperation: ['extraSqlPersoList'] },
+		}) as INodeProperties[]),
+		...(extraSqlPersoGetGetDescription({
+			...displayOptions,
+			show: { apiVersion: ['v1'], hostingOperation: ['extraSqlPersoGet'] },
+		}) as INodeProperties[]),
+		...(extraSqlPersoDatabasesGetDescription({
+			...displayOptions,
+			show: { apiVersion: ['v1'], hostingOperation: ['extraSqlPersoDatabases'] },
+		}) as INodeProperties[]),
+		...(extraSqlPersoServiceInfosGetDescription({
+			...displayOptions,
+			show: { apiVersion: ['v1'], hostingOperation: ['extraSqlPersoServiceInfos'] },
+		}) as INodeProperties[]),
+		...(extraSqlPersoServiceInfosUpdatePostDescription({
+			...displayOptions,
+			show: { apiVersion: ['v1'], hostingOperation: ['extraSqlPersoServiceInfosUpdate'] },
+		}) as INodeProperties[]),
+		...(extraSqlPersoTerminatePostDescription({
+			...displayOptions,
+			show: { apiVersion: ['v1'], hostingOperation: ['extraSqlPersoTerminate'] },
+		}) as INodeProperties[]),
+		// Freedom
+		...(freedomListGetDescription({
+			...displayOptions,
+			show: { apiVersion: ['v1'], hostingOperation: ['freedomList'] },
+		}) as INodeProperties[]),
+		// Indy
+		...(indyListGetDescription({
+			...displayOptions,
+			show: { apiVersion: ['v1'], hostingOperation: ['indyList'] },
+		}) as INodeProperties[]),
+		...(indyGetGetDescription({
+			...displayOptions,
+			show: { apiVersion: ['v1'], hostingOperation: ['indyGet'] },
+		}) as INodeProperties[]),
+		// SSH Keys
+		...(sshKeyListGetDescription({
+			...displayOptions,
+			show: { apiVersion: ['v1'], hostingOperation: ['sshKeyList'] },
+		}) as INodeProperties[]),
+		...(sshKeyCreatePostDescription({
+			...displayOptions,
+			show: { apiVersion: ['v1'], hostingOperation: ['sshKeyCreate'] },
+		}) as INodeProperties[]),
+		// Local SEO
+		...(localSeoAccountListGetDescription({
+			...displayOptions,
+			show: { apiVersion: ['v1'], hostingOperation: ['localSeoAccountList'] },
+		}) as INodeProperties[]),
+		...(localSeoAccountGetDescription({
+			...displayOptions,
+			show: { apiVersion: ['v1'], hostingOperation: ['localSeoAccountGet'] },
+		}) as INodeProperties[]),
+		...(localSeoAccountLoginPostDescription({
+			...displayOptions,
+			show: { apiVersion: ['v1'], hostingOperation: ['localSeoAccountLogin'] },
+		}) as INodeProperties[]),
+		...(localSeoEmailAvailabilityGetDescription({
+			...displayOptions,
+			show: { apiVersion: ['v1'], hostingOperation: ['localSeoEmailAvailability'] },
+		}) as INodeProperties[]),
+		...(localSeoLocationListGetDescription({
+			...displayOptions,
+			show: { apiVersion: ['v1'], hostingOperation: ['localSeoLocationList'] },
+		}) as INodeProperties[]),
+		...(localSeoLocationGetDescription({
+			...displayOptions,
+			show: { apiVersion: ['v1'], hostingOperation: ['localSeoLocationGet'] },
+		}) as INodeProperties[]),
+		...(localSeoLocationServiceInfosGetDescription({
+			...displayOptions,
+			show: { apiVersion: ['v1'], hostingOperation: ['localSeoLocationServiceInfos'] },
+		}) as INodeProperties[]),
+		...(localSeoLocationServiceInfosUpdatePostDescription({
+			...displayOptions,
+			show: { apiVersion: ['v1'], hostingOperation: ['localSeoLocationServiceInfosUpdate'] },
+		}) as INodeProperties[]),
+		...(localSeoLocationTerminatePostDescription({
+			...displayOptions,
+			show: { apiVersion: ['v1'], hostingOperation: ['localSeoLocationTerminate'] },
+		}) as INodeProperties[]),
+		// Module
+		...(moduleCreatePostDescription({
+			...displayOptions,
+			show: { apiVersion: ['v1'], hostingOperation: ['moduleCreate'] },
+		}) as INodeProperties[]),
+		...(moduleDeleteDeleteDescription({
+			...displayOptions,
+			show: { apiVersion: ['v1'], hostingOperation: ['moduleDelete'] },
+		}) as INodeProperties[]),
+		// OvhConfig
+		...(ovhConfigListGetDescription({
+			...displayOptions,
+			show: { apiVersion: ['v1'], hostingOperation: ['ovhConfigList'] },
+		}) as INodeProperties[]),
+		...(ovhConfigGetGetDescription({
+			...displayOptions,
+			show: { apiVersion: ['v1'], hostingOperation: ['ovhConfigGet'] },
+		}) as INodeProperties[]),
+		...(ovhConfigChangeConfigurationPostDescription({
+			...displayOptions,
+			show: { apiVersion: ['v1'], hostingOperation: ['ovhConfigChangeConfiguration'] },
+		}) as INodeProperties[]),
+		...(ovhConfigRollbackPostDescription({
+			...displayOptions,
+			show: { apiVersion: ['v1'], hostingOperation: ['ovhConfigRollback'] },
+		}) as INodeProperties[]),
+		...(ovhConfigCapabilitiesGetDescription({
+			...displayOptions,
+			show: { apiVersion: ['v1'], hostingOperation: ['ovhConfigCapabilities'] },
+		}) as INodeProperties[]),
+		...(ovhConfigRecommendedValuesGetDescription({
+			...displayOptions,
+			show: { apiVersion: ['v1'], hostingOperation: ['ovhConfigRecommendedValues'] },
+		}) as INodeProperties[]),
+		...(ovhConfigRefreshPostDescription({
+			...displayOptions,
+			show: { apiVersion: ['v1'], hostingOperation: ['ovhConfigRefresh'] },
+		}) as INodeProperties[]),
+		// Private Database
+		...(privateDatabaseCreationCapabilitiesGetDescription({
+			...displayOptions,
+			show: { apiVersion: ['v1'], hostingOperation: ['privateDatabaseCreationCapabilities'] },
+		}) as INodeProperties[]),
+		// Restore Snapshot
+		...(restoreSnapshotCreatePostDescription({
+			...displayOptions,
+			show: { apiVersion: ['v1'], hostingOperation: ['restoreSnapshot'] },
+		}) as INodeProperties[]),
+		// Runtime
+		...(runtimeDeleteDeleteDescription({
+			...displayOptions,
+			show: { apiVersion: ['v1'], hostingOperation: ['runtimeDelete'] },
+		}) as INodeProperties[]),
+		...(runtimeAttachedDomainsGetDescription({
+			...displayOptions,
+			show: { apiVersion: ['v1'], hostingOperation: ['runtimeAttachedDomains'] },
+		}) as INodeProperties[]),
+		...(runtimeAvailableTypesGetDescription({
+			...displayOptions,
+			show: { apiVersion: ['v1'], hostingOperation: ['runtimeAvailableTypes'] },
+		}) as INodeProperties[]),
+		// SSL Service
+		...(sslServiceDeleteDeleteDescription({
+			...displayOptions,
+			show: { apiVersion: ['v1'], hostingOperation: ['sslDelete'] },
+		}) as INodeProperties[]),
+		...(sslServiceDomainsGetDescription({
+			...displayOptions,
+			show: { apiVersion: ['v1'], hostingOperation: ['sslDomains'] },
+		}) as INodeProperties[]),
+		...(sslServiceRegeneratePostDescription({
+			...displayOptions,
+			show: { apiVersion: ['v1'], hostingOperation: ['sslRegenerate'] },
+		}) as INodeProperties[]),
+		...(sslServiceReportGetDescription({
+			...displayOptions,
+			show: { apiVersion: ['v1'], hostingOperation: ['sslReport'] },
+		}) as INodeProperties[]),
+		// User
+		...(userCreatePostDescription({
+			...displayOptions,
+			show: { apiVersion: ['v1'], hostingOperation: ['userCreate'] },
+		}) as INodeProperties[]),
+		...(userDeleteDeleteDescription({
+			...displayOptions,
+			show: { apiVersion: ['v1'], hostingOperation: ['userDelete'] },
+		}) as INodeProperties[]),
+		...(userChangePasswordPostDescription({
+			...displayOptions,
+			show: { apiVersion: ['v1'], hostingOperation: ['userChangePassword'] },
+		}) as INodeProperties[]),
+		// VCS
+		...(vcsWebhooksGetDescription({
+			...displayOptions,
+			show: { apiVersion: ['v1'], hostingOperation: ['vcsWebhooks'] },
+		}) as INodeProperties[]),
+		// Website deployment
+		...(websiteDeploymentGetByIdDescription({
+			...displayOptions,
+			show: { apiVersion: ['v1'], hostingOperation: ['websiteDeploymentGetById'] },
+		}) as INodeProperties[]),
+		...(websiteDeploymentLogsGetDescription({
+			...displayOptions,
+			show: { apiVersion: ['v1'], hostingOperation: ['websiteDeploymentLogs'] },
+		}) as INodeProperties[]),
+		// ==================== Phase 4c - lot 3 : Global ====================
+		...(availableOfferGetDescription({
+			...displayOptions,
+			show: { apiVersion: ['v1'], hostingOperation: ['availableOfferGet'] },
+		}) as INodeProperties[]),
+		...(incidentGetDescription({
+			...displayOptions,
+			show: { apiVersion: ['v1'], hostingOperation: ['incidentGet'] },
+		}) as INodeProperties[]),
+		...(offerCapabilitiesGetDescription({
+			...displayOptions,
+			show: { apiVersion: ['v1'], hostingOperation: ['offerCapabilitiesGet'] },
+		}) as INodeProperties[]),
+		...(moduleCatalogListGetDescription({
+			...displayOptions,
+			show: { apiVersion: ['v1'], hostingOperation: ['moduleCatalogList'] },
+		}) as INodeProperties[]),
+		...(moduleCatalogGetByIdDescription({
+			...displayOptions,
+			show: { apiVersion: ['v1'], hostingOperation: ['moduleCatalogGetById'] },
+		}) as INodeProperties[]),
+		...(vcsSupportedGetDescription({
+			...displayOptions,
+			show: { apiVersion: ['v1'], hostingOperation: ['vcsSupported'] },
+		}) as INodeProperties[]),
+		...(localSeoDirectoriesListGetDescription({
+			...displayOptions,
+			show: { apiVersion: ['v1'], hostingOperation: ['localSeoDirectoriesList'] },
+		}) as INodeProperties[]),
+		...(localSeoEmailAvailabilityGlobalGetDescription({
+			...displayOptions,
+			show: { apiVersion: ['v1'], hostingOperation: ['localSeoEmailAvailabilityGlobal'] },
+		}) as INodeProperties[]),
+		...(localSeoVisibilityCheckPostDescription({
+			...displayOptions,
+			show: { apiVersion: ['v1'], hostingOperation: ['localSeoVisibilityCheck'] },
+		}) as INodeProperties[]),
+		...(localSeoVisibilityCheckResultGetDescription({
+			...displayOptions,
+			show: { apiVersion: ['v1'], hostingOperation: ['localSeoVisibilityCheckResult'] },
+		}) as INodeProperties[]),
+		// ==================== Phase 4c - lot 3 : envVar / serviceInfos ====================
+		...(envVarCreatePostDescription({
+			...displayOptions,
+			show: { apiVersion: ['v1'], hostingOperation: ['envVarCreatePost'] },
+		}) as INodeProperties[]),
+		...(envVarUpdatePutDescription({
+			...displayOptions,
+			show: { apiVersion: ['v1'], hostingOperation: ['envVarUpdatePut'] },
+		}) as INodeProperties[]),
+		...(envVarDeleteDeleteDescription({
+			...displayOptions,
+			show: { apiVersion: ['v1'], hostingOperation: ['envVarDeleteDelete'] },
+		}) as INodeProperties[]),
+		...(serviceInfosUpdatePutDescription({
+			...displayOptions,
+			show: { apiVersion: ['v1'], hostingOperation: ['serviceInfosUpdatePut'] },
+		}) as INodeProperties[]),
+		// ==================== Phase 4c - lot 3 : CDN ====================
+		...(cdnDomainGetGetDescription({
+			...displayOptions,
+			show: { apiVersion: ['v1'], hostingOperation: ['cdnDomainGet'] },
+		}) as INodeProperties[]),
+		...(cdnDomainLogsGetDescription({
+			...displayOptions,
+			show: { apiVersion: ['v1'], hostingOperation: ['cdnDomainLogs'] },
+		}) as INodeProperties[]),
+		...(cdnDomainStatisticsGetDescription({
+			...displayOptions,
+			show: { apiVersion: ['v1'], hostingOperation: ['cdnDomainStatistics'] },
+		}) as INodeProperties[]),
+		...(cdnDomainRefreshPostDescription({
+			...displayOptions,
+			show: { apiVersion: ['v1'], hostingOperation: ['cdnDomainRefresh'] },
+		}) as INodeProperties[]),
+		...(cdnDomainOptionCreatePostDescription({
+			...displayOptions,
+			show: { apiVersion: ['v1'], hostingOperation: ['cdnDomainOptionCreate'] },
+		}) as INodeProperties[]),
+		...(cdnDomainOptionGetGetDescription({
+			...displayOptions,
+			show: { apiVersion: ['v1'], hostingOperation: ['cdnDomainOptionGet'] },
+		}) as INodeProperties[]),
+		...(cdnDomainOptionDeleteDeleteDescription({
+			...displayOptions,
+			show: { apiVersion: ['v1'], hostingOperation: ['cdnDomainOptionDelete'] },
+		}) as INodeProperties[]),
+		...(cdnOperationGetGetDescription({
+			...displayOptions,
+			show: { apiVersion: ['v1'], hostingOperation: ['cdnOperationGet'] },
 		}) as INodeProperties[]),
 	];
 }
@@ -1151,8 +2804,96 @@ export async function execute(
 			return dbMetricsTokenGetExecute.call(this);
 		case 'dbRestore':
 			return dbRestoreCreatePostExecute.call(this);
+		case 'dbGetRestore':
+			return dbRestoreGetExecute.call(this);
 		case 'dbStatistics':
 			return dbStatisticsGetExecute.call(this);
+		case 'dbCopyList':
+			return dbCopyListGetExecute.call(this, itemIndex);
+		case 'dbCopyGet':
+			return dbCopyGetGetExecute.call(this, itemIndex);
+		case 'dbCopyDelete':
+			return dbCopyDeleteDeleteExecute.call(this, itemIndex);
+		case 'dbCopyRestore':
+			return dbCopyRestorePostExecute.call(this, itemIndex);
+		case 'dbDumpGetById':
+			return dbDumpGetGetExecute.call(this, itemIndex);
+		case 'dbDumpDelete':
+			return dbDumpDeleteDeleteExecute.call(this, itemIndex);
+		case 'dbDumpRestore':
+			return dbDumpRestorePostExecute.call(this, itemIndex);
+		case 'dbAvailableTypes':
+			return dbAvailableTypeListGetExecute.call(this, itemIndex);
+		case 'dbAvailableVersions':
+			return dbAvailableVersionListGetExecute.call(this, itemIndex);
+		case 'dbCreationCapabilities':
+			return dbCreationCapabilitiesGetExecute.call(this, itemIndex);
+		case 'dumpList':
+			return dumpListGetExecute.call(this, itemIndex);
+		case 'dumpGet':
+			return dumpGetGetExecute.call(this, itemIndex);
+		case 'dumpDelete':
+			return dumpDeleteDeleteExecute.call(this, itemIndex);
+		case 'emailUpdate':
+			return emailUpdatePutExecute.call(this, itemIndex);
+		case 'emailBounces':
+			return emailBouncesGetExecute.call(this, itemIndex);
+		case 'emailRequest':
+			return emailRequestPostExecute.call(this, itemIndex);
+		case 'emailVolumes':
+			return emailVolumesGetExecute.call(this, itemIndex);
+		case 'emailOptionList':
+			return emailOptionListGetExecute.call(this, itemIndex);
+		case 'emailOptionGet':
+			return emailOptionGetGetExecute.call(this, itemIndex);
+		case 'emailOptionServiceInfos':
+			return emailOptionServiceInfosGetExecute.call(this, itemIndex);
+		case 'emailOptionTerminate':
+			return emailOptionTerminatePostExecute.call(this, itemIndex);
+		case 'userLogsList':
+			return userLogsListGetExecute.call(this, itemIndex);
+		case 'userLogsCreate':
+			return userLogsCreatePostExecute.call(this, itemIndex);
+		case 'userLogsDelete':
+			return userLogsDeleteDeleteExecute.call(this, itemIndex);
+		case 'userLogsGet':
+			return userLogsGetGetExecute.call(this, itemIndex);
+		case 'userLogsUpdate':
+			return userLogsUpdatePutExecute.call(this, itemIndex);
+		case 'userLogsChangePassword':
+			return userLogsChangePasswordPostExecute.call(this, itemIndex);
+		case 'ownLogsList':
+			return ownLogsListGetExecute.call(this, itemIndex);
+		case 'ownLogsGet':
+			return ownLogsGetGetExecute.call(this, itemIndex);
+		case 'ownLogsUserLogsList':
+			return ownLogsUserLogsListGetExecute.call(this, itemIndex);
+		case 'ownLogsUserLogsCreate':
+			return ownLogsUserLogsCreatePostExecute.call(this, itemIndex);
+		case 'ownLogsUserLogsDelete':
+			return ownLogsUserLogsDeleteDeleteExecute.call(this, itemIndex);
+		case 'ownLogsUserLogsGet':
+			return ownLogsUserLogsGetGetExecute.call(this, itemIndex);
+		case 'ownLogsUserLogsUpdate':
+			return ownLogsUserLogsUpdatePutExecute.call(this, itemIndex);
+		case 'ownLogsUserLogsChangePassword':
+			return ownLogsUserLogsChangePasswordPostExecute.call(this, itemIndex);
+		case 'logKindList':
+			return logKindListGetExecute.call(this, itemIndex);
+		case 'logKindGet':
+			return logKindGetGetExecute.call(this, itemIndex);
+		case 'logSubscriptionList':
+			return logSubscriptionListGetExecute.call(this, itemIndex);
+		case 'logSubscriptionCreate':
+			return logSubscriptionCreatePostExecute.call(this, itemIndex);
+		case 'logSubscriptionDelete':
+			return logSubscriptionDeleteDeleteExecute.call(this, itemIndex);
+		case 'logSubscriptionGet':
+			return logSubscriptionGetGetExecute.call(this, itemIndex);
+		case 'logUrl':
+			return logUrlCreatePostExecute.call(this, itemIndex);
+		case 'tokenGet':
+			return tokenGetGetExecute.call(this, itemIndex);
 
 		// ==================== Website Operations ====================
 		case 'websiteCreate':
@@ -1239,6 +2980,8 @@ export async function execute(
 			return v2WebsiteGetGetExecute.call(this, itemIndex);
 		case 'v2UpdateWebsite':
 			return v2WebsiteUpdatePutExecute.call(this, itemIndex);
+		case 'v2DeleteWebsite':
+			return v2WebsiteDeleteDeleteExecute.call(this);
 		case 'v2ListWebsiteDomains':
 			return v2WebsiteDomainListGetExecute.call(this, itemIndex);
 		case 'v2CreateAttachedDomain':
@@ -1273,8 +3016,174 @@ export async function execute(
 			return runtimeUpdatePutExecute.call(this);
 		case 'sslCreate':
 			return sslServiceCreatePostExecute.call(this);
+		case 'sslGet':
+			return sslServiceGetGetExecute.call(this);
 		case 'sslList':
 			return sslServiceListGetExecute.call(this);
+
+		// ==================== Phase 4c - Lot 2 Operations ====================
+		case 'attachedDomainDigStatus':
+			return attachedDomainDigStatusGetExecute.call(this, itemIndex);
+		case 'attachedDomainRestart':
+			return attachedDomainRestartPostExecute.call(this, itemIndex);
+		case 'attachedDomainSslDelete':
+			return attachedDomainSslDeleteExecute.call(this, itemIndex);
+		case 'attachedDomainSslGet':
+			return attachedDomainSslGetExecute.call(this, itemIndex);
+		case 'attachedDomainSslCreate':
+			return attachedDomainSslCreatePostExecute.call(this, itemIndex);
+		case 'attachedDomainSslUpdate':
+			return attachedDomainSslUpdatePutExecute.call(this, itemIndex);
+		case 'attachedDomainSslRegenerate':
+			return attachedDomainSslRegeneratePostExecute.call(this, itemIndex);
+		case 'attachedDomainSslReport':
+			return attachedDomainSslReportGetExecute.call(this, itemIndex);
+		case 'boostHistoryList':
+			return boostHistoryListGetExecute.call(this, itemIndex);
+		case 'boostHistoryGet':
+			return boostHistoryGetGetExecute.call(this, itemIndex);
+		case 'configurationGet':
+			return configurationGetGetExecute.call(this, itemIndex);
+		case 'cronAvailableLanguageList':
+			return cronAvailableLanguageListGetExecute.call(this, itemIndex);
+		case 'extraSqlPersoList':
+			return extraSqlPersoListGetExecute.call(this, itemIndex);
+		case 'extraSqlPersoGet':
+			return extraSqlPersoGetGetExecute.call(this, itemIndex);
+		case 'extraSqlPersoDatabases':
+			return extraSqlPersoDatabasesGetExecute.call(this, itemIndex);
+		case 'extraSqlPersoServiceInfos':
+			return extraSqlPersoServiceInfosGetExecute.call(this, itemIndex);
+		case 'extraSqlPersoServiceInfosUpdate':
+			return extraSqlPersoServiceInfosUpdatePostExecute.call(this, itemIndex);
+		case 'extraSqlPersoTerminate':
+			return extraSqlPersoTerminatePostExecute.call(this, itemIndex);
+		case 'freedomList':
+			return freedomListGetExecute.call(this, itemIndex);
+		case 'indyList':
+			return indyListGetExecute.call(this, itemIndex);
+		case 'indyGet':
+			return indyGetGetExecute.call(this, itemIndex);
+		case 'sshKeyList':
+			return sshKeyListGetExecute.call(this, itemIndex);
+		case 'sshKeyCreate':
+			return sshKeyCreatePostExecute.call(this, itemIndex);
+		case 'localSeoAccountList':
+			return localSeoAccountListGetExecute.call(this, itemIndex);
+		case 'localSeoAccountGet':
+			return localSeoAccountGetExecute.call(this, itemIndex);
+		case 'localSeoAccountLogin':
+			return localSeoAccountLoginPostExecute.call(this, itemIndex);
+		case 'localSeoEmailAvailability':
+			return localSeoEmailAvailabilityGetExecute.call(this, itemIndex);
+		case 'localSeoLocationList':
+			return localSeoLocationListGetExecute.call(this, itemIndex);
+		case 'localSeoLocationGet':
+			return localSeoLocationGetExecute.call(this, itemIndex);
+		case 'localSeoLocationServiceInfos':
+			return localSeoLocationServiceInfosGetExecute.call(this, itemIndex);
+		case 'localSeoLocationServiceInfosUpdate':
+			return localSeoLocationServiceInfosUpdatePostExecute.call(this, itemIndex);
+		case 'localSeoLocationTerminate':
+			return localSeoLocationTerminatePostExecute.call(this, itemIndex);
+		case 'moduleCreate':
+			return moduleCreatePostExecute.call(this, itemIndex);
+		case 'moduleDelete':
+			return moduleDeleteDeleteExecute.call(this, itemIndex);
+		case 'ovhConfigList':
+			return ovhConfigListGetExecute.call(this, itemIndex);
+		case 'ovhConfigGet':
+			return ovhConfigGetGetExecute.call(this, itemIndex);
+		case 'ovhConfigChangeConfiguration':
+			return ovhConfigChangeConfigurationPostExecute.call(this, itemIndex);
+		case 'ovhConfigRollback':
+			return ovhConfigRollbackPostExecute.call(this, itemIndex);
+		case 'ovhConfigCapabilities':
+			return ovhConfigCapabilitiesGetExecute.call(this, itemIndex);
+		case 'ovhConfigRecommendedValues':
+			return ovhConfigRecommendedValuesGetExecute.call(this, itemIndex);
+		case 'ovhConfigRefresh':
+			return ovhConfigRefreshPostExecute.call(this, itemIndex);
+		case 'privateDatabaseCreationCapabilities':
+			return privateDatabaseCreationCapabilitiesGetExecute.call(this, itemIndex);
+		case 'restoreSnapshot':
+			return restoreSnapshotCreatePostExecute.call(this, itemIndex);
+		case 'runtimeDelete':
+			return runtimeDeleteDeleteExecute.call(this, itemIndex);
+		case 'runtimeAttachedDomains':
+			return runtimeAttachedDomainsGetExecute.call(this, itemIndex);
+		case 'runtimeAvailableTypes':
+			return runtimeAvailableTypesGetExecute.call(this, itemIndex);
+		case 'sslDelete':
+			return sslServiceDeleteDeleteExecute.call(this, itemIndex);
+		case 'sslDomains':
+			return sslServiceDomainsGetExecute.call(this, itemIndex);
+		case 'sslRegenerate':
+			return sslServiceRegeneratePostExecute.call(this, itemIndex);
+		case 'sslReport':
+			return sslServiceReportGetExecute.call(this, itemIndex);
+		case 'userCreate':
+			return userCreatePostExecute.call(this, itemIndex);
+		case 'userDelete':
+			return userDeleteDeleteExecute.call(this, itemIndex);
+		case 'userChangePassword':
+			return userChangePasswordPostExecute.call(this, itemIndex);
+		case 'vcsWebhooks':
+			return vcsWebhooksGetExecute.call(this, itemIndex);
+		case 'websiteDeploymentGetById':
+			return websiteDeploymentGetByIdExecute.call(this, itemIndex);
+		case 'websiteDeploymentLogs':
+			return websiteDeploymentLogsGetExecute.call(this, itemIndex);
+
+		// ==================== Phase 4c - lot 3 : Global ====================
+		case 'availableOfferGet':
+			return availableOfferGetExecute.call(this, itemIndex);
+		case 'incidentGet':
+			return incidentGetExecute.call(this, itemIndex);
+		case 'offerCapabilitiesGet':
+			return offerCapabilitiesGetExecute.call(this, itemIndex);
+		case 'moduleCatalogList':
+			return moduleCatalogListGetExecute.call(this, itemIndex);
+		case 'moduleCatalogGetById':
+			return moduleCatalogGetByIdExecute.call(this, itemIndex);
+		case 'vcsSupported':
+			return vcsSupportedGetExecute.call(this, itemIndex);
+		case 'localSeoDirectoriesList':
+			return localSeoDirectoriesListGetExecute.call(this, itemIndex);
+		case 'localSeoEmailAvailabilityGlobal':
+			return localSeoEmailAvailabilityGlobalGetExecute.call(this, itemIndex);
+		case 'localSeoVisibilityCheck':
+			return localSeoVisibilityCheckPostExecute.call(this, itemIndex);
+		case 'localSeoVisibilityCheckResult':
+			return localSeoVisibilityCheckResultGetExecute.call(this, itemIndex);
+
+		// ==================== Phase 4c - lot 3 : envVar / serviceInfos ====================
+		case 'envVarCreatePost':
+			return envVarCreatePostExecute.call(this, itemIndex);
+		case 'envVarUpdatePut':
+			return envVarUpdatePutExecute.call(this, itemIndex);
+		case 'envVarDeleteDelete':
+			return envVarDeleteDeleteExecute.call(this, itemIndex);
+		case 'serviceInfosUpdatePut':
+			return serviceInfosUpdatePutExecute.call(this, itemIndex);
+
+		// ==================== Phase 4c - lot 3 : CDN ====================
+		case 'cdnDomainGet':
+			return cdnDomainGetGetExecute.call(this, itemIndex);
+		case 'cdnDomainLogs':
+			return cdnDomainLogsGetExecute.call(this, itemIndex);
+		case 'cdnDomainStatistics':
+			return cdnDomainStatisticsGetExecute.call(this, itemIndex);
+		case 'cdnDomainRefresh':
+			return cdnDomainRefreshPostExecute.call(this, itemIndex);
+		case 'cdnDomainOptionCreate':
+			return cdnDomainOptionCreatePostExecute.call(this, itemIndex);
+		case 'cdnDomainOptionGet':
+			return cdnDomainOptionGetGetExecute.call(this, itemIndex);
+		case 'cdnDomainOptionDelete':
+			return cdnDomainOptionDeleteDeleteExecute.call(this, itemIndex);
+		case 'cdnOperationGet':
+			return cdnOperationGetGetExecute.call(this, itemIndex);
 
 		default:
 			throw new Error(`Unsupported operation "${operation}" for resource "ovhCloudHosting"`);

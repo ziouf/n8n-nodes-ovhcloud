@@ -1,0 +1,50 @@
+import type {
+	IExecuteFunctions,
+	INodeExecutionData,
+	IDataObject,
+	INodeProperties,
+	IDisplayOptions,
+} from 'n8n-workflow';
+import { ApiClient } from '../../../shared/transport/ApiClient';
+
+export function description(displayOptions: IDisplayOptions): INodeProperties[] {
+	return [
+		{
+			displayName: 'Service Name',
+			name: 'serviceName',
+			type: 'string',
+			default: '',
+			required: true,
+			displayOptions,
+		},
+		{
+			displayName: 'Operation ID',
+			name: 'operationId',
+			type: 'number',
+			default: 0,
+			required: true,
+			description: 'ID of the operation',
+			displayOptions,
+		},
+	];
+}
+
+/**
+ * Get details for a Shared CDN operation
+ *
+ * HTTP method: GET
+ * Endpoint: /hosting/web/cdn/{serviceName}/operation/{id}
+ */
+export async function execute(
+	this: IExecuteFunctions,
+	itemIndex: number,
+): Promise<INodeExecutionData[]> {
+	const client = new ApiClient(this);
+	const serviceName = this.getNodeParameter('serviceName', itemIndex) as string;
+	const operationId = this.getNodeParameter('operationId', itemIndex) as number;
+	const data = (await client.httpGet(
+		`/hosting/web/cdn/${serviceName}/operation/${encodeURIComponent(String(operationId))}`,
+	)) as IDataObject;
+	const inputData = this.getInputData()[itemIndex];
+	return this.helpers.returnJsonArray([{ ...inputData.json, ...data }]);
+}

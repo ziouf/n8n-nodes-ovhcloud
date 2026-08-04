@@ -1,0 +1,63 @@
+import type {
+	IExecuteFunctions,
+	IDataObject,
+	INodeExecutionData,
+	IDisplayOptions,
+	INodeProperties,
+} from 'n8n-workflow';
+import { ApiClient } from '../../../shared/transport/ApiClient';
+
+export function description(displayOptions: IDisplayOptions): INodeProperties[] {
+	return [
+		{
+			displayName: 'Service Name',
+			name: 'serviceName',
+			type: 'string',
+			default: '',
+			required: true,
+			description: 'The internal name of your hosting',
+			displayOptions,
+		},
+		{
+			displayName: 'Status',
+			name: 'status',
+			type: 'options',
+			options: [
+				{ name: 'All', value: '' },
+				{ name: 'Blocked by Customer', value: 'blockedByCustomer' },
+				{ name: 'Blocked by System', value: 'blockedBySystem' },
+				{ name: 'Ok', value: 'ok' },
+				{ name: 'Preset', value: 'preset' },
+			],
+			default: '',
+			description: 'Filter the freedom status',
+			displayOptions,
+		},
+	];
+}
+
+/**
+ * List the freedoms of the hosting
+ *
+ * HTTP method: GET
+ * Endpoint: /hosting/web/{serviceName}/freedom
+ */
+export async function execute(
+	this: IExecuteFunctions,
+	itemIndex?: number,
+): Promise<INodeExecutionData[]> {
+	const client = new ApiClient(this);
+	const serviceName = this.getNodeParameter('serviceName', itemIndex as number) as string;
+	const status = this.getNodeParameter('status', itemIndex as number, '') as string;
+
+	const qs: IDataObject = {};
+	if (status) {
+		qs.status = status;
+	}
+
+	const data = (await client.httpGet(
+		`/hosting/web/${encodeURIComponent(serviceName)}/freedom`,
+		qs,
+	)) as string[];
+	return this.helpers.returnJsonArray(data.map((name) => ({ name })));
+}
