@@ -23,7 +23,7 @@ sign and dispatch the calls through `ApiClient`.
 | [`contractsGet`](./`resources/contractsGet.ts`)             | GET    | `/newAccount/contracts`       |
 | [`corporationTypeGet`](./`resources/corporationTypeGet.ts`) | GET    | `/newAccount/corporationType` |
 | [`countriesGet`](./`resources/countriesGet.ts`)             | GET    | `/newAccount/countries`       |
-| [`creationRulesPost`](./`resources/creationRulesPost.ts`)   | POST   | `/newAccount/creationRules`   |
+| [`creationRulesPost`](./`resources/creationRulesPost.ts`)   | GET    | `/newAccount/creationRules`   |
 | [`legalformGet`](./`resources/legalformGet.ts`)             | GET    | `/newAccount/legalform`       |
 | [`rulesPost`](./`resources/rulesPost.ts`)                   | POST   | `/newAccount/rules`           |
 
@@ -34,7 +34,9 @@ sign and dispatch the calls through `ApiClient`.
 - No `serviceName` is required: these operations are not scoped to a service.
 - `newAccountPost` marks `country`, `email`, `legalform`, `ovhCompany` and
   `ovhSubsidiary` as required, matching the API contract.
-- `creationRulesPost` and `rulesPost` share the same identifier body fields
-  (plus an optional `action`). The shared field definitions live in
+- `creationRulesPost` is a GET endpoint (query parameters `country`, `legalform`,
+  `ovhCompany`, `ovhSubsidiary`) despite its historical `Post` filename; the
+  shared field definitions live in
   [`resources/newAccountCommon.ts`](./`resources/newAccountCommon.ts`).
+- `rulesPost` shares the same identifier body fields (plus an optional `action`).
 - `contractsGet` takes `company` and `subsidiary` query parameters.

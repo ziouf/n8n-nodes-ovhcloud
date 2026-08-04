@@ -66,7 +66,7 @@ export async function execute(this: IExecuteFunctions): Promise<INodeExecutionDa
 	const body: IDataObject = { plan, version };
 
 	const data = (await client.httpPost(
-		`/publicCloud/project/${projectId}/rancher/create`,
+		`/publicCloud/project/${projectId}/rancher`,
 		body as IDataObject,
 	)) as IDataObject;
 

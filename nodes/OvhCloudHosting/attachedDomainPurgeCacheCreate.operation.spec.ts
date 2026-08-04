@@ -61,7 +61,7 @@ describe('attachedDomainPurgeCacheCreate.operation', () => {
 			expect(ApiClient).toHaveBeenCalled();
 			const client = new ApiClient(mockExecuteFunctions) as any;
 			expect(client.httpPost).toHaveBeenCalledWith(
-				'/hosting/web/myservice.ovh/attachedDomain/example.com/purge',
+				'/hosting/web/myservice.ovh/attachedDomain/example.com/purgeCache',
 				{},
 			);
 			expect(result).toMatchObject([mockData]);
@@ -79,7 +79,7 @@ describe('attachedDomainPurgeCacheCreate.operation', () => {
 			expect(ApiClient).toHaveBeenCalled();
 			const client = new ApiClient(mockExecuteFunctions) as any;
 			expect(client.httpPost).toHaveBeenCalledWith(
-				'/hosting/web/myservice.ovh/attachedDomain/sub.domain.com/purge',
+				'/hosting/web/myservice.ovh/attachedDomain/sub.domain.com/purgeCache',
 				{},
 			);
 		});

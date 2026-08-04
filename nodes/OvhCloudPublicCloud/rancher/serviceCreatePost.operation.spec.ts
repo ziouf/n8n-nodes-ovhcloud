@@ -80,7 +80,7 @@ describe('rancher serviceCreatePost.operation', () => {
 
 			const result = await execute.call(mockExecuteFunctions);
 			expect(client.httpPost).toHaveBeenCalledWith(
-				'/publicCloud/project/12345678-1234-1234-1234-1234567890ab/rancher/create',
+				'/publicCloud/project/12345678-1234-1234-1234-1234567890ab/rancher',
 				{ plan: 'standard', version: '2.9.x' },
 			);
 			expect(result).toBeDefined();

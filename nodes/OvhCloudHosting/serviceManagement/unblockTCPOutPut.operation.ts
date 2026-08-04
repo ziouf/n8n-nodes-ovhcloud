@@ -16,12 +16,12 @@ export function description() {
 /**
  * Unblock TCP outgoing connections
  *
- * HTTP method: PUT
+ * HTTP method: POST
  * Endpoint: /hosting/web/{serviceName}/unblockTCPOut
  */
 export async function execute(this: IExecuteFunctions): Promise<INodeExecutionData[]> {
 	const client = new ApiClient(this);
 	const serviceName = this.getNodeParameter('serviceName', 0) as string;
-	const data = await client.httpPut(`/hosting/web/${serviceName}/unblockTCPOut`, {});
+	const data = await client.httpPost(`/hosting/web/${serviceName}/unblockTCPOut`, {});
 	return this.helpers.returnJsonArray([data as import('n8n-workflow').IDataObject]);
 }

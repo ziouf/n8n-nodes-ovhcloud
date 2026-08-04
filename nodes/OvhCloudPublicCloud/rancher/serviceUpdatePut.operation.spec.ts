@@ -62,10 +62,10 @@ describe('rancher serviceUpdatePut.operation', () => {
 			};
 		});
 
-		it('should update rancher service via POST', async () => {
+		it('should update rancher service via PUT', async () => {
 			const mockData = { id: 'rancher-123' };
 			const client = new ApiClient(mockExecuteFunctions) as any;
-			client.httpPost.mockResolvedValue(mockData);
+			client.httpPut.mockResolvedValue(mockData);
 
 			mockExecuteFunctions.getNodeParameter.mockImplementation(
 				(param: string): string | undefined => {
@@ -83,8 +83,8 @@ describe('rancher serviceUpdatePut.operation', () => {
 			);
 
 			const result = await execute.call(mockExecuteFunctions);
-			expect(client.httpPost).toHaveBeenCalledWith(
-				'/publicCloud/project/12345678-1234-1234-1234-1234567890ab/rancher/update',
+			expect(client.httpPut).toHaveBeenCalledWith(
+				'/publicCloud/project/12345678-1234-1234-1234-1234567890ab/rancher/a1b2c3d4-e5f6-7890-abcd-ef1234567890',
 				{ plan: 'premium' },
 			);
 			expect(result).toBeDefined();

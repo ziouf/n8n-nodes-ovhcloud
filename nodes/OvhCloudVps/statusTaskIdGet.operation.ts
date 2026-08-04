@@ -10,12 +10,12 @@ import { ApiClient } from '../../shared/transport/ApiClient';
 export function description(displayOptions: IDisplayOptions): INodeProperties[] {
 	return [
 		{
-			displayName: 'Task Status',
+			displayName: 'VPS Service Name',
 			name: 'serviceName',
 			type: 'resourceLocator',
 			default: { mode: 'list', value: '' },
 			required: true,
-			description: 'The task ID to retrieve the status of (e.g. 12345678)',
+			description: 'The VPS service name (e.g. vps1234567.ovh.net)',
 			modes: [
 				{
 					displayName: 'From List',
@@ -23,13 +23,18 @@ export function description(displayOptions: IDisplayOptions): INodeProperties[] 
 					type: 'list',
 					typeOptions: { searchListMethod: 'getVpsServices', searchable: true },
 				},
-				{
-					displayName: 'By Name',
-					name: 'name',
-					type: 'string',
-					placeholder: '12345678',
-				},
+				{ displayName: 'By Name', name: 'name', type: 'string', placeholder: 'vps1234567.ovh.net' },
 			],
+			displayOptions,
+		},
+		{
+			displayName: 'Task ID',
+			name: 'taskId',
+			type: 'string',
+			default: '',
+			required: true,
+			description: 'The task ID to retrieve the status of (e.g. 12345678)',
+			placeholder: '12345678',
 			displayOptions,
 		},
 	];
@@ -43,6 +48,7 @@ export async function execute(
 	const serviceName = this.getNodeParameter('serviceName', itemIndex, '', {
 		extractValue: true,
 	}) as string;
-	const data = (await client.httpGet(`/task/status/${serviceName}`)) as IDataObject;
+	const taskId = this.getNodeParameter('taskId', itemIndex) as string;
+	const data = (await client.httpGet(`/vps/${serviceName}/tasks/${taskId}`)) as IDataObject;
 	return this.helpers.returnJsonArray([data]);
 }

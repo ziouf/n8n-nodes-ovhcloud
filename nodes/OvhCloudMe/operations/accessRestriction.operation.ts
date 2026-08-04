@@ -156,6 +156,7 @@ export async function executeValidateSmsAccount(
 
 // ============================================================
 // TOTP Access Restrictions lifecycle (add/delete/enable/disable/validate = 5 operations)
+// Spec paths: POST /me/accessRestriction/totp/{id}/enable|disable|validate
 // ============================================================
 
 export async function executeAddTotpRestriction(
@@ -179,7 +180,8 @@ export async function executeEnableTotpAccount(
 	this: IExecuteFunctions,
 ): Promise<INodeExecutionData[]> {
 	const client = new ApiClient(this);
-	await client.httpPost('/me/accessRestriction/totp/enable', {});
+	const id = this.getNodeParameter('id', 0) as string;
+	await client.httpPost(`/me/accessRestriction/totp/${id}/enable`, {});
 	return this.helpers.returnJsonArray([{ success: true }]);
 }
 
@@ -187,7 +189,8 @@ export async function executeDisableTotpAccount(
 	this: IExecuteFunctions,
 ): Promise<INodeExecutionData[]> {
 	const client = new ApiClient(this);
-	await client.httpPost('/me/accessRestriction/totp/disable', {});
+	const id = this.getNodeParameter('id', 0) as string;
+	await client.httpPost(`/me/accessRestriction/totp/${id}/disable`, {});
 	return this.helpers.returnJsonArray([{ success: true }]);
 }
 
@@ -195,12 +198,14 @@ export async function executeValidateTotpAccount(
 	this: IExecuteFunctions,
 ): Promise<INodeExecutionData[]> {
 	const client = new ApiClient(this);
-	await client.httpPost('/me/accessRestriction/totp/validate', {});
+	const id = this.getNodeParameter('id', 0) as string;
+	await client.httpPost(`/me/accessRestriction/totp/${id}/validate`, {});
 	return this.helpers.returnJsonArray([{ success: true }]);
 }
 
 // ============================================================
 // U2F Access Restrictions lifecycle (add/delete/enable/disable = 4 operations, no code validation)
+// Spec paths: POST /me/accessRestriction/u2f/{id}/enable|disable
 // ============================================================
 
 export async function executeAddU2fRestriction(
@@ -224,7 +229,8 @@ export async function executeEnableU2fAccount(
 	this: IExecuteFunctions,
 ): Promise<INodeExecutionData[]> {
 	const client = new ApiClient(this);
-	await client.httpPost('/me/accessRestriction/u2f/enable', {});
+	const id = this.getNodeParameter('id', 0) as string;
+	await client.httpPost(`/me/accessRestriction/u2f/${id}/enable`, {});
 	return this.helpers.returnJsonArray([{ success: true }]);
 }
 
@@ -232,7 +238,8 @@ export async function executeDisableU2fAccount(
 	this: IExecuteFunctions,
 ): Promise<INodeExecutionData[]> {
 	const client = new ApiClient(this);
-	await client.httpPost('/me/accessRestriction/u2f/disable', {});
+	const id = this.getNodeParameter('id', 0) as string;
+	await client.httpPost(`/me/accessRestriction/u2f/${id}/disable`, {});
 	return this.helpers.returnJsonArray([{ success: true }]);
 }
 
@@ -299,7 +306,13 @@ export async function executeEditTotpRestriction(
 }
 
 // ============================================================
-// IP Enable/Disable Access Restrictions (POST /me/accessRestriction/ip/{id}/enable|disable)
+// IP Enable/Disable Access Restrictions
+//
+// NOTE: the OVH API does NOT expose `enable`/`disable` sub-resources for IP
+// restrictions (spec: /me/accessRestriction/ip and /me/accessRestriction/ip/{id}
+// only, and the nichandle.IpRestriction model has no `enabled` flag).
+// The closest spec-conformant equivalent is PUT /me/accessRestriction/ip/{id}
+// toggling the `rule` property (accept = enabled, deny = disabled).
 // ============================================================
 
 export async function executeEnableIpAccount(
@@ -307,7 +320,7 @@ export async function executeEnableIpAccount(
 ): Promise<INodeExecutionData[]> {
 	const client = new ApiClient(this);
 	const id = this.getNodeParameter('id', 0) as string;
-	await client.httpPost(`/me/accessRestriction/ip/${id}/enable`, {});
+	await client.httpPut(`/me/accessRestriction/ip/${id}`, { rule: 'accept' });
 	return this.helpers.returnJsonArray([{ success: true }]);
 }
 
@@ -316,7 +329,7 @@ export async function executeDisableIpAccount(
 ): Promise<INodeExecutionData[]> {
 	const client = new ApiClient(this);
 	const id = this.getNodeParameter('id', 0) as string;
-	await client.httpPost(`/me/accessRestriction/ip/${id}/disable`, {});
+	await client.httpPut(`/me/accessRestriction/ip/${id}`, { rule: 'deny' });
 	return this.helpers.returnJsonArray([{ success: true }]);
 }
 

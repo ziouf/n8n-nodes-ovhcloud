@@ -36,7 +36,7 @@ describe('creationRulesPost.operation', () => {
 			};
 		});
 
-		it('should retrieve creation rules via POST with provided fields', async () => {
+		it('should retrieve creation rules via GET with query parameters', async () => {
 			const mockData = [
 				{
 					defaultValue: '',
@@ -47,22 +47,25 @@ describe('creationRulesPost.operation', () => {
 				},
 			];
 			const client = new ApiClient(mockExecuteFunctions) as any;
-			client.httpPost.mockResolvedValue(mockData);
+			client.httpGet.mockResolvedValue(mockData);
 
 			mockExecuteFunctions.getNodeParameter.mockImplementation(
 				(param: string, _idx?: number, def?: any): any => {
 					if (param === 'action') return 'create';
 					if (param === 'country') return 'FR';
 					if (param === 'legalform') return 'individual';
+					if (param === 'ovhCompany') return 'ovh';
+					if (param === 'ovhSubsidiary') return 'FR';
 					return def ?? '';
 				},
 			);
 
 			const result = await execute.call(mockExecuteFunctions);
-			expect(client.httpPost).toHaveBeenCalledWith('/newAccount/creationRules', {
-				action: 'create',
+			expect(client.httpGet).toHaveBeenCalledWith('/newAccount/creationRules', {
 				country: 'FR',
 				legalform: 'individual',
+				ovhCompany: 'ovh',
+				ovhSubsidiary: 'FR',
 			});
 			expect(result).toEqual(mockData);
 		});

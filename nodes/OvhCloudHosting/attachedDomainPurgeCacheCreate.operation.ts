@@ -53,7 +53,7 @@ export async function execute(
 	const domainName = this.getNodeParameter('domainName', itemIndex as number) as string;
 
 	const data = (await client.httpPost(
-		`/hosting/web/${serviceName}/attachedDomain/${encodeURIComponent(domainName)}/purge`,
+		`/hosting/web/${serviceName}/attachedDomain/${encodeURIComponent(domainName)}/purgeCache`,
 		{},
 	)) as IDataObject;
 	return this.helpers.returnJsonArray([{ ...data }]);

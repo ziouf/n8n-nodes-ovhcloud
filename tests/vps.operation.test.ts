@@ -38,6 +38,15 @@ import { execute as migrationMigrationIdGetExecute } from '../nodes/OvhCloudVps/
 import { execute as migrationMigrationIdStepGetExecute } from '../nodes/OvhCloudVps/migrationMigrationIdStepGet.operation';
 import { execute as templateGetExecute } from '../nodes/OvhCloudVps/templateGet.operation';
 import { execute as statusTaskIdGetExecute } from '../nodes/OvhCloudVps/statusTaskIdGet.operation';
+import { execute as backupRestoreListGetExecute } from '../nodes/OvhCloudVps/backupRestoreListGet.operation';
+import { execute as automatedBackupRestoreCreateExecute } from '../nodes/OvhCloudVps/automatedBackupRestoreCreate.operation';
+import { execute as backupFtpAccessPostVpsExecute } from '../nodes/OvhCloudVps/backupFtpAccessPostVps.operation';
+import { execute as changeContactCreateVpsExecute } from '../nodes/OvhCloudVps/changeContactCreateVps.operation';
+import { execute as confirmTerminationCreateVpsExecute } from '../nodes/OvhCloudVps/confirmTerminationCreateVps.operation';
+import { execute as createSnapshotCreateExecute } from '../nodes/OvhCloudVps/createSnapshotCreate.operation';
+import { execute as disksIdPutExecute } from '../nodes/OvhCloudVps/disksIdPut.operation';
+import { execute as ipAddExecute } from '../nodes/OvhCloudVps/ipAdd.operation';
+import { execute as vpsUpdateExecute } from '../nodes/OvhCloudVps/vpsUpdate.operation';
 
 const spec = loadSpec('vps');
 
@@ -71,6 +80,11 @@ describe('VPS Operations - API Spec Non-Regression', () => {
 			'automatedBackupList',
 			automatedBackupListExecute,
 			new RegExp(`^/vps/${vpsName}/automaticBackups$`),
+		],
+		[
+			'backupRestoreListGet',
+			backupRestoreListGetExecute,
+			new RegExp(`^/vps/${vpsName}/automatedBackup/attachedBackup$`),
 		],
 		['netbootConfigGet', netbootConfigGetExecute, new RegExp(`^/vps/${vpsName}/kernels$`)],
 		['availableUpgradeList', availableUpgradeListExecute, new RegExp(`^/vps/${vpsName}/upgrade$`)],
@@ -165,10 +179,7 @@ describe('VPS Operations - API Spec Non-Regression', () => {
 
 	describe('distributionGet - sub-resource with distId', () => {
 		it(`should use /vps/${'serviceName'}/distribution/${'distId'} URL`, async () => {
-			const calls = await invokeOperation(
-				distributionGetExecute,
-				{},
-			);
+			const calls = await invokeOperation(distributionGetExecute, {});
 
 			expect(calls.length).toBeGreaterThan(0);
 			// Should be under the distribution path of a specific VPS service
@@ -178,10 +189,7 @@ describe('VPS Operations - API Spec Non-Regression', () => {
 
 	describe('optionDetailGet - sub-resource with optionName', () => {
 		it(`should use /vps/${'serviceName'}/options/${'optionName'} URL`, async () => {
-			const calls = await invokeOperation(
-				optionDetailGetExecute,
-				{},
-			);
+			const calls = await invokeOperation(optionDetailGetExecute, {});
 
 			expect(calls.length).toBeGreaterThan(0);
 			expect(calls[0].url).toMatch(/^\/vps\//);
@@ -199,10 +207,7 @@ describe('VPS Operations - API Spec Non-Regression', () => {
 
 	describe('templateGet - template path prefix', () => {
 		it(`should use /vps/template/{serviceName} URL`, async () => {
-			const calls = await invokeOperation(
-				templateGetExecute,
-				{},
-			);
+			const calls = await invokeOperation(templateGetExecute, {});
 
 			expect(calls.length).toBeGreaterThan(0);
 			expect(calls[0].url).toMatch(/^\/vps\/template\//);
@@ -210,23 +215,20 @@ describe('VPS Operations - API Spec Non-Regression', () => {
 	});
 
 	describe('statusTaskIdGet - task sub-resource', () => {
-		it(`should use /task/status/{taskId} URL`, async () => {
-			const calls = await invokeOperation(
-				statusTaskIdGetExecute,
-				{},
-			);
+		it(`should use /vps/{serviceName}/tasks/{taskId} URL`, async () => {
+			const calls = await invokeOperation(statusTaskIdGetExecute, {
+				serviceName: vpsName,
+				taskId: '12345678',
+			});
 
 			expect(calls.length).toBeGreaterThan(0);
-			expect(calls[0].url).toMatch(/^\/task\//);
+			expect(calls[0].url).toMatch(new RegExp(`^/vps/${vpsName}/tasks/`));
 		});
 	});
 
 	describe('netbootOrderGet - order sub-resource', () => {
 		it(`should use /vps/${'serviceName'}/order/netboot URL`, async () => {
-			const calls = await invokeOperation(
-				netbootOrderGetExecute,
-				{},
-			);
+			const calls = await invokeOperation(netbootOrderGetExecute, {});
 
 			expect(calls.length).toBeGreaterThan(0);
 			expect(calls[0].url).toMatch(/^\/vps\//);
@@ -235,10 +237,7 @@ describe('VPS Operations - API Spec Non-Regression', () => {
 
 	describe('netbootTemplateDetailsGet - template order sub-resource', () => {
 		it(`should use /vps/template/{serviceName}/order/netboot/template URL`, async () => {
-			const calls = await invokeOperation(
-				netbootTemplateDetailsGetExecute,
-				{},
-			);
+			const calls = await invokeOperation(netbootTemplateDetailsGetExecute, {});
 
 			expect(calls.length).toBeGreaterThan(0);
 			expect(calls[0].url).toMatch(/^\/vps\//);
@@ -247,10 +246,7 @@ describe('VPS Operations - API Spec Non-Regression', () => {
 
 	describe('migrationMigrationIdGet - migration sub-resource', () => {
 		it(`should use /vps/${'serviceName'}/migrations/2020/migration/{id} URL`, async () => {
-			const calls = await invokeOperation(
-				migrationMigrationIdGetExecute,
-				{},
-			);
+			const calls = await invokeOperation(migrationMigrationIdGetExecute, {});
 
 			expect(calls.length).toBeGreaterThan(0);
 			expect(calls[0].url).toMatch(/^\/vps\//);
@@ -259,15 +255,90 @@ describe('VPS Operations - API Spec Non-Regression', () => {
 
 	describe('migrationMigrationIdStepGet - migration step sub-resource', () => {
 		it(`should use /vps/${'serviceName'}/migrations/2020/migration/{id}/{step} URL`, async () => {
-			const calls = await invokeOperation(
-				migrationMigrationIdStepGetExecute,
-				{},
-			);
+			const calls = await invokeOperation(migrationMigrationIdStepGetExecute, {});
 
 			expect(calls.length).toBeGreaterThan(0);
 			expect(calls[0].url).toMatch(/^\/vps\//);
 		});
 	});
+
+	describe.each([
+		[
+			'automatedBackupRestoreCreate (POST restore)',
+			automatedBackupRestoreCreateExecute,
+			{ serviceName: vpsName },
+			'POST',
+			new RegExp(`^/vps/${vpsName}/automatedBackup/restore$`),
+		],
+		[
+			'backupFtpAccessPostVps (POST access rule)',
+			backupFtpAccessPostVpsExecute,
+			{ serviceName: vpsName, ipBlock: '10.245.36.0/28' },
+			'POST',
+			new RegExp(`^/vps/${vpsName}/backupftp/access/`),
+		],
+		[
+			'changeContactCreateVps (POST changeContact)',
+			changeContactCreateVpsExecute,
+			{ serviceName: vpsName, newContact: 'NICHANDLE1' },
+			'POST',
+			new RegExp(`^/vps/${vpsName}/changeContact$`),
+		],
+		[
+			'confirmTerminationCreateVps (POST confirmTermination)',
+			confirmTerminationCreateVpsExecute,
+			{ serviceName: vpsName },
+			'POST',
+			new RegExp(`^/vps/${vpsName}/confirmTermination$`),
+		],
+		[
+			'createSnapshotCreate (POST createSnapshot)',
+			createSnapshotCreateExecute,
+			{ serviceName: vpsName },
+			'POST',
+			new RegExp(`^/vps/${vpsName}/createSnapshot$`),
+		],
+		[
+			'disksIdPut (PUT storage disk)',
+			disksIdPutExecute,
+			{ serviceName: vpsName, diskId: 'primary' },
+			'PUT',
+			new RegExp(`^/vps/${vpsName}/storage/disk/primary$`),
+		],
+		[
+			'ipAdd (POST ips)',
+			ipAddExecute,
+			{ serviceName: vpsName, ipAddress: '8.8.8.8' },
+			'POST',
+			new RegExp(`^/vps/${vpsName}/ips$`),
+		],
+		[
+			'vpsUpdate (PUT vps)',
+			vpsUpdateExecute,
+			{ serviceName: vpsName },
+			'PUT',
+			new RegExp(`^/vps/${vpsName}$`),
+		],
+	])(
+		'%s - write operation',
+		(
+			name: string,
+			executeFn: OperationExecuteFn,
+			params: Record<string, unknown>,
+			method: string,
+			urlPattern: RegExp,
+		) => {
+			it('should call the correct API endpoint with the expected HTTP method', async () => {
+				const calls = await invokeOperation(executeFn, params);
+
+				expect(calls.length).toBeGreaterThan(0);
+				expect(calls[0].url).toMatch(urlPattern);
+				for (const call of calls) {
+					expect(call.method).toBe(method);
+				}
+			});
+		},
+	);
 
 	describe('spec coverage - VPS API groups in spec', () => {
 		it(`should have multiple resource groups defined in vps.json`, async () => {

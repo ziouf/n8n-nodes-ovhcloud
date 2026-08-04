@@ -29,7 +29,7 @@ https://eu.api.ovh.com/v1/newAccount
 | `/newAccount/contracts`       | `GET`           | Retrieve contracts governing identifier creation                   | None               | `order.Contract[]`             |
 | `/newAccount/corporationType` | `GET`           | Retrieve all available corporation types for a given country       | None               | `string[]`                     |
 | `/newAccount/countries`       | `GET`           | Retrieve all available countries for an OVH company and subsidiary | None               | `nichandle.CountryEnum[]`      |
-| `/newAccount/creationRules`   | `POST`          | Retrieve creation rules for identifier fields                      | None               | `nichandle.CreationRules`      |
+| `/newAccount/creationRules`   | `GET`           | Retrieve creation rules for identifier fields                      | None               | `nichandle.CreationRules`      |
 | `/newAccount/legalform`       | `GET`           | Retrieve all available legal forms for a given country             | None               | `string[]`                     |
 | `/newAccount/rules`           | `POST`          | Retrieve rules for creating or updating an identifier              | None               | `nichandle.CreationRules`      |
 
@@ -165,7 +165,7 @@ Returns a `nichandle.CountryEnum[]` containing all available country codes.
 
 ---
 
-### 6. `POST /newAccount/creationRules` - Retrieve creation rules for identifier fields
+### 6. `GET /newAccount/creationRules` - Retrieve creation rules for identifier fields
 
 #### Description
 
@@ -173,35 +173,12 @@ Retrieves the rules to follow when creating or updating an OVHcloud identifier f
 
 #### Parameters
 
-| **Parameter**                         | **Type**                            | **Required** | **Description**                                    |
-| ------------------------------------- | ----------------------------------- | ------------ | -------------------------------------------------- |
-| `action`                              | `nichandle.CreationRulesActionEnum` | No           | Action to perform (`create` or `update`)           |
-| `address`                             | `string`                            | No           | Physical address                                   |
-| `area`                                | `string`                            | No           | Area of residence                                  |
-| `birthCity`                           | `string`                            | No           | Birth city                                         |
-| `birthDay`                            | `string`                            | No           | Birth day                                          |
-| `city`                                | `string`                            | No           | City                                               |
-| `companyNationalIdentificationNumber` | `string`                            | No           | National identification number for a corporation   |
-| `country`                             | `nichandle.CountryEnum`             | No           | Country code (e.g., `FR`, `US`)                    |
-| `email`                               | `string`                            | No           | Primary email address                              |
-| `fax`                                 | `string`                            | No           | Fax number                                         |
-| `firstname`                           | `string`                            | No           | First name                                         |
-| `italianSDI`                          | `string`                            | No           | Italian SDI number                                 |
-| `language`                            | `string`                            | No           | Preferred language                                 |
-| `legalform`                           | `string`                            | No           | Legal form of the identifier                       |
-| `name`                                | `string`                            | No           | Last name                                          |
-| `nationalIdentificationNumber`        | `string`                            | No           | National identification number                     |
-| `organisation`                        | `string`                            | No           | Organization name                                  |
-| `ovhCompany`                          | `nichandle.OvhCompanyEnum`          | No           | OVH company (e.g., `ovh`, `kimsufi`, `soyoustart`) |
-| `ovhSubsidiary`                       | `nichandle.OvhSubsidiaryEnum`       | No           | OVH subsidiary (e.g., `FR`, `GB`, `US`)            |
-| `phone`                               | `string`                            | No           | Phone number                                       |
-| `phoneCountry`                        | `string`                            | No           | Country of the phone number                        |
-| `phoneType`                           | `string`                            | No           | Phone type (e.g., `mobile`, `landline`)            |
-| `purposeOfPurchase`                   | `string`                            | No           | Purpose of the purchase                            |
-| `sex`                                 | `string`                            | No           | Gender (e.g., `male`, `female`)                    |
-| `spareEmail`                          | `string`                            | No           | Additional email address                           |
-| `vat`                                 | `string`                            | No           | VAT number                                         |
-| `zip`                                 | `string`                            | No           | ZIP/postal code                                    |
+| **Parameter**   | **Type**                      | **Required** | **Description**                                    |
+| --------------- | ----------------------------- | ------------ | -------------------------------------------------- |
+| `country`       | `nichandle.CountryEnum`       | **Yes**      | Country code (e.g., `FR`, `US`)                    |
+| `legalform`     | `nichandle.LegalFormEnum`     | **Yes**      | Legal form of the identifier                       |
+| `ovhCompany`    | `nichandle.OvhCompanyEnum`    | **Yes**      | OVH company (e.g., `ovh`, `kimsufi`, `soyoustart`) |
+| `ovhSubsidiary` | `nichandle.OvhSubsidiaryEnum` | **Yes**      | OVH subsidiary (e.g., `FR`, `GB`, `US`)            |
 
 #### Response
 

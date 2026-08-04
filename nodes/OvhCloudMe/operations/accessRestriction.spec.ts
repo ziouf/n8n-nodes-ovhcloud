@@ -338,8 +338,8 @@ describe('accessRestriction.operation', () => {
 	});
 
 	describe('executeEnableIpAccount', () => {
-		it('should POST ip/{id}/enable and return success', async () => {
-			client.httpPost.mockResolvedValue(undefined);
+		it('should PUT ip/{id} with rule accept and return success', async () => {
+			client.httpPut.mockResolvedValue(undefined);
 
 			mockExecuteFunctions.getNodeParameter.mockImplementation((param: string): any => {
 				switch (param) {
@@ -351,14 +351,16 @@ describe('accessRestriction.operation', () => {
 			});
 
 			const result = await executeEnableIpAccount.call(mockExecuteFunctions);
-			expect(client.httpPost).toHaveBeenCalledWith('/me/accessRestriction/ip/ip-12345/enable', {});
+			expect(client.httpPut).toHaveBeenCalledWith('/me/accessRestriction/ip/ip-12345', {
+				rule: 'accept',
+			});
 			expect(result[0]).toEqual({ success: true });
 		});
 	});
 
 	describe('executeDisableIpAccount', () => {
-		it('should POST ip/{id}/disable and return success', async () => {
-			client.httpPost.mockResolvedValue(undefined);
+		it('should PUT ip/{id} with rule deny and return success', async () => {
+			client.httpPut.mockResolvedValue(undefined);
 
 			mockExecuteFunctions.getNodeParameter.mockImplementation((param: string): any => {
 				switch (param) {
@@ -370,7 +372,9 @@ describe('accessRestriction.operation', () => {
 			});
 
 			const result = await executeDisableIpAccount.call(mockExecuteFunctions);
-			expect(client.httpPost).toHaveBeenCalledWith('/me/accessRestriction/ip/ip-12345/disable', {});
+			expect(client.httpPut).toHaveBeenCalledWith('/me/accessRestriction/ip/ip-12345', {
+				rule: 'deny',
+			});
 			expect(result[0]).toEqual({ success: true });
 		});
 	});
@@ -565,31 +569,67 @@ describe('accessRestriction.operation', () => {
 	});
 
 	describe('executeEnableTotpAccount', () => {
-		it('should POST totp/enable and return success', async () => {
+		it('should POST totp/{id}/enable and return success', async () => {
 			client.httpPost.mockResolvedValue(undefined);
 
+			mockExecuteFunctions.getNodeParameter.mockImplementation((param: string): any => {
+				switch (param) {
+					case 'id':
+						return 'totp-100';
+					default:
+						return '';
+				}
+			});
+
 			const result = await executeEnableTotpAccount.call(mockExecuteFunctions);
-			expect(client.httpPost).toHaveBeenCalledWith('/me/accessRestriction/totp/enable', {});
+			expect(client.httpPost).toHaveBeenCalledWith(
+				'/me/accessRestriction/totp/totp-100/enable',
+				{},
+			);
 			expect(result[0]).toEqual({ success: true });
 		});
 	});
 
 	describe('executeDisableTotpAccount', () => {
-		it('should POST totp/disable and return success', async () => {
+		it('should POST totp/{id}/disable and return success', async () => {
 			client.httpPost.mockResolvedValue(undefined);
 
+			mockExecuteFunctions.getNodeParameter.mockImplementation((param: string): any => {
+				switch (param) {
+					case 'id':
+						return 'totp-100';
+					default:
+						return '';
+				}
+			});
+
 			const result = await executeDisableTotpAccount.call(mockExecuteFunctions);
-			expect(client.httpPost).toHaveBeenCalledWith('/me/accessRestriction/totp/disable', {});
+			expect(client.httpPost).toHaveBeenCalledWith(
+				'/me/accessRestriction/totp/totp-100/disable',
+				{},
+			);
 			expect(result[0]).toEqual({ success: true });
 		});
 	});
 
 	describe('executeValidateTotpAccount', () => {
-		it('should POST totp/validate and return success', async () => {
+		it('should POST totp/{id}/validate and return success', async () => {
 			client.httpPost.mockResolvedValue(undefined);
 
+			mockExecuteFunctions.getNodeParameter.mockImplementation((param: string): any => {
+				switch (param) {
+					case 'id':
+						return 'totp-100';
+					default:
+						return '';
+				}
+			});
+
 			const result = await executeValidateTotpAccount.call(mockExecuteFunctions);
-			expect(client.httpPost).toHaveBeenCalledWith('/me/accessRestriction/totp/validate', {});
+			expect(client.httpPost).toHaveBeenCalledWith(
+				'/me/accessRestriction/totp/totp-100/validate',
+				{},
+			);
 			expect(result[0]).toEqual({ success: true });
 		});
 	});
@@ -697,21 +737,39 @@ describe('accessRestriction.operation', () => {
 	});
 
 	describe('executeEnableU2fAccount', () => {
-		it('should POST u2f/enable and return success', async () => {
+		it('should POST u2f/{id}/enable and return success', async () => {
 			client.httpPost.mockResolvedValue(undefined);
 
+			mockExecuteFunctions.getNodeParameter.mockImplementation((param: string): any => {
+				switch (param) {
+					case 'id':
+						return 'u2f-100';
+					default:
+						return '';
+				}
+			});
+
 			const result = await executeEnableU2fAccount.call(mockExecuteFunctions);
-			expect(client.httpPost).toHaveBeenCalledWith('/me/accessRestriction/u2f/enable', {});
+			expect(client.httpPost).toHaveBeenCalledWith('/me/accessRestriction/u2f/u2f-100/enable', {});
 			expect(result[0]).toEqual({ success: true });
 		});
 	});
 
 	describe('executeDisableU2fAccount', () => {
-		it('should POST u2f/disable and return success', async () => {
+		it('should POST u2f/{id}/disable and return success', async () => {
 			client.httpPost.mockResolvedValue(undefined);
 
+			mockExecuteFunctions.getNodeParameter.mockImplementation((param: string): any => {
+				switch (param) {
+					case 'id':
+						return 'u2f-100';
+					default:
+						return '';
+				}
+			});
+
 			const result = await executeDisableU2fAccount.call(mockExecuteFunctions);
-			expect(client.httpPost).toHaveBeenCalledWith('/me/accessRestriction/u2f/disable', {});
+			expect(client.httpPost).toHaveBeenCalledWith('/me/accessRestriction/u2f/u2f-100/disable', {});
 			expect(result[0]).toEqual({ success: true });
 		});
 	});

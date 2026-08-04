@@ -66,7 +66,7 @@ export async function execute(this: IExecuteFunctions): Promise<INodeExecutionDa
 		extractValue: true,
 	}) as string;
 
-	await client.httpDelete(`/publicCloud/project/${projectId}/rancher/delete`);
+	await client.httpDelete(`/publicCloud/project/${projectId}/rancher/${rancherServiceId}`);
 
 	return this.helpers.returnJsonArray([{ deleted: rancherServiceId }]);
 }

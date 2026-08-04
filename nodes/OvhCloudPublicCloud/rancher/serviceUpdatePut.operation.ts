@@ -71,6 +71,9 @@ export async function execute(this: IExecuteFunctions): Promise<INodeExecutionDa
 	const projectId = this.getNodeParameter('publicCloudProjectId', 0, '', {
 		extractValue: true,
 	}) as string;
+	const rancherServiceId = this.getNodeParameter('rancherServiceId', 0, '', {
+		extractValue: true,
+	}) as string;
 
 	const plan = (this.getNodeParameter('plan', 0) || '') as string;
 
@@ -78,8 +81,8 @@ export async function execute(this: IExecuteFunctions): Promise<INodeExecutionDa
 
 	const body: IDataObject = { plan };
 
-	const data = (await client.httpPost(
-		`/publicCloud/project/${projectId}/rancher/update`,
+	const data = (await client.httpPut(
+		`/publicCloud/project/${projectId}/rancher/${rancherServiceId}`,
 		body as IDataObject,
 	)) as IDataObject;
 

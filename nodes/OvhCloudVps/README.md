@@ -69,7 +69,7 @@ This node provides **61 operations** with **31 tests** for managing OVHcloud res
 | [`snapshotGetImageGet`](./`snapshotGetImageGet`.ts)                     | GET    | `/vps/{...}/snapshot/image/get`                    | 1     |
 | [`snapshotListSnapshotsForVps`](./`snapshotListSnapshotsForVps`.ts)     | GET    | `/vps/{...}/snapshot`                              | 0     |
 | [`snapshotRevertPut`](./`snapshotRevertPut`.ts)                         | POST   | `/vps/{...}/snapshot/revert`                       | 1     |
-| [`statusTaskIdGet`](./`statusTaskIdGet`.ts)                             | GET    | `/task/status/{...}`                               | 0     |
+| [`statusTaskIdGet`](./`statusTaskIdGet`.ts)                             | GET    | `/vps/{...}/tasks/{...}`                           | 1     |
 | [`templateApplyPost`](./`templateApplyPost`.ts)                         | POST   | `/vps/{...}/netboot/order/applyTemplate`           | 1     |
 | [`templateGet`](./`templateGet`.ts)                                     | GET    | `/vps/template/{...}`                              | 0     |
 | [`vpsUpdate`](./`vpsUpdate`.ts)                                         | PUT    | `/vps/{...}`                                       | 1     |

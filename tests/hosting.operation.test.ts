@@ -29,6 +29,8 @@ import { execute as runtimeGetExecute } from '../nodes/OvhCloudHosting/getRuntim
 import { execute as listEnvVarsExecute } from '../nodes/OvhCloudHosting/listEnvVars.operation';
 import { execute as envVarGetExecute } from '../nodes/OvhCloudHosting/getEnvVar.operation';
 import { execute as listAttachedDomainsExecute } from '../nodes/OvhCloudHosting/listAttachedDomains.operation';
+import { execute as sslGetExecute } from '../nodes/OvhCloudHosting/sslService/getGet.operation';
+import { execute as v2WebsiteDeleteDeleteExecute } from '../nodes/OvhCloudHosting/v2/website/deleteDeleteByWebsiteIdGetV2.operation';
 
 const serviceName = 'test-hosting1234567.ovh.net';
 
@@ -132,6 +134,33 @@ describe('Hosting Operations - API Spec Non-Regression', () => {
 			});
 		},
 	);
+
+	describe('newly wired operations (Phase 2a)', () => {
+		it('sslGet should call GET /hosting/web/{serviceName}/ssl/{certificateName}', async () => {
+			const calls = await invokeOperation(sslGetExecute, {
+				serviceName,
+				certificateName: 'cert-123',
+			});
+
+			expect(calls.length).toBeGreaterThan(0);
+			expect((calls[0] as Record<string, unknown>).url).toMatch(
+				new RegExp(`^/hosting/web/${serviceName}/ssl/cert-123$`),
+			);
+			for (const call of calls) expect((call as Record<string, unknown>).method).toBe('GET');
+		});
+
+		it('v2DeleteWebsite should call DELETE /webhosting/resource/{resourceName}/website', async () => {
+			const calls = await invokeOperation(v2WebsiteDeleteDeleteExecute, {
+				resourceName: 'myResourceName',
+			});
+
+			expect(calls.length).toBeGreaterThan(0);
+			expect((calls[0] as Record<string, unknown>).url).toBe(
+				'/webhosting/resource/myResourceName/website',
+			);
+			for (const call of calls) expect((call as Record<string, unknown>).method).toBe('DELETE');
+		});
+	});
 
 	describe('spec coverage - Hosting API groups', () => {
 		it('should have multiple resource groups defined in hosting.json', async () => {

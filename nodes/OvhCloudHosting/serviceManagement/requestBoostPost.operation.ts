@@ -17,11 +17,11 @@ export function description() {
  * Boost hosting service
  *
  * HTTP method: POST
- * Endpoint: /hosting/web/{serviceName}/request/boost
+ * Endpoint: /hosting/web/{serviceName}/requestBoost
  */
 export async function execute(this: IExecuteFunctions): Promise<INodeExecutionData[]> {
 	const client = new ApiClient(this);
 	const serviceName = this.getNodeParameter('serviceName', 0) as string;
-	const data = await client.httpPost(`/hosting/web/${serviceName}/request/boost`);
+	const data = await client.httpPost(`/hosting/web/${serviceName}/requestBoost`);
 	return this.helpers.returnJsonArray([data as import('n8n-workflow').IDataObject]);
 }

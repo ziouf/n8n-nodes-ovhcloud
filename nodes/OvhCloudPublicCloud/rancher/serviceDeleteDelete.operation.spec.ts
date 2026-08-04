@@ -83,7 +83,7 @@ describe('rancher serviceDeleteDelete.operation', () => {
 
 			const result = await execute.call(mockExecuteFunctions);
 			expect(client.httpDelete).toHaveBeenCalledWith(
-				'/publicCloud/project/12345678-1234-1234-1234-1234567890ab/rancher/delete',
+				'/publicCloud/project/12345678-1234-1234-1234-1234567890ab/rancher/a1b2c3d4-e5f6-7890-abcd-ef1234567890',
 			);
 			expect(result).toMatchObject([{ deleted: 'a1b2c3d4-e5f6-7890-abcd-ef1234567890' }]);
 		});
