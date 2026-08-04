@@ -1,0 +1,127 @@
+import type {
+	IDataObject,
+	IExecuteFunctions,
+	IDisplayOptions,
+	INodeExecutionData,
+	INodeProperties,
+} from 'n8n-workflow';
+import { ApiClient } from '../../../shared/transport/ApiClient';
+
+export function description(displayOptions: IDisplayOptions): INodeProperties[] {
+	return [
+        {
+          displayName: 'Billing Account',
+          name: 'billingAccount',
+          type: 'string',
+          default: '',
+          required: true,
+          description: 'The name of your billingAccount',
+          displayOptions,
+        },
+        {
+          displayName: 'Service Name',
+          name: 'serviceName',
+          type: 'string',
+          default: '',
+          required: true,
+          displayOptions,
+        },
+        {
+          displayName: 'Blacklisted Numbers',
+          name: 'blacklistedNumbers',
+          type: 'string',
+          default: '',
+          description: 'The blacklistedNumbers parameter',
+          displayOptions,
+        },
+        {
+          displayName: 'Blacklisted Tsi',
+          name: 'blacklistedTSI',
+          type: 'string',
+          default: '',
+          description: 'The blacklistedTSI parameter',
+          displayOptions,
+        },
+        {
+          displayName: 'Call Number',
+          name: 'callNumber',
+          type: 'string',
+          default: '',
+          description: 'The callNumber parameter',
+          displayOptions,
+        },
+        {
+          displayName: 'Country Code',
+          name: 'countryCode',
+          type: 'string',
+          default: '',
+          description: 'The countryCode parameter',
+          displayOptions,
+        },
+        {
+          displayName: 'Filtering List',
+          name: 'filteringList',
+          type: 'string',
+          default: '',
+          description: 'The filteringList parameter',
+          displayOptions,
+        },
+        {
+          displayName: 'Service Name',
+          name: 'serviceName',
+          type: 'string',
+          default: '',
+          displayOptions,
+        },
+        {
+          displayName: 'Whitelisted Numbers',
+          name: 'whitelistedNumbers',
+          type: 'string',
+          default: '',
+          description: 'The whitelistedNumbers parameter',
+          displayOptions,
+        },
+        {
+          displayName: 'Whitelisted Tsi',
+          name: 'whitelistedTSI',
+          type: 'string',
+          default: '',
+          description: 'The whitelistedTSI parameter',
+          displayOptions,
+        },
+	];
+}
+
+/**
+ * Executes the Put Fax Screen Lists Update operation.
+ *
+ * HTTP method: PUT
+ * Endpoint: /telephony/{billingAccount}/fax/{serviceName}/screenLists
+ */
+export async function execute(this: IExecuteFunctions, itemIndex: number): Promise<INodeExecutionData[]> {
+	const billingAccount = this.getNodeParameter('billingAccount', itemIndex) as string;
+	const serviceName = this.getNodeParameter('serviceName', itemIndex) as string;
+	const blacklistedNumbers = this.getNodeParameter('blacklistedNumbers', itemIndex) as string;
+	const blacklistedTSI = this.getNodeParameter('blacklistedTSI', itemIndex) as string;
+	const callNumber = this.getNodeParameter('callNumber', itemIndex) as string;
+	const countryCode = this.getNodeParameter('countryCode', itemIndex) as string;
+	const filteringList = this.getNodeParameter('filteringList', itemIndex) as string;
+	const serviceName1 = this.getNodeParameter('serviceName', itemIndex) as string;
+	const whitelistedNumbers = this.getNodeParameter('whitelistedNumbers', itemIndex) as string;
+	const whitelistedTSI = this.getNodeParameter('whitelistedTSI', itemIndex) as string;
+
+	const body: IDataObject = {
+    blacklistedNumbers: blacklistedNumbers,
+    blacklistedTSI: blacklistedTSI,
+    callNumber: callNumber,
+    countryCode: countryCode,
+    filteringList: filteringList,
+    serviceName: serviceName1,
+    whitelistedNumbers: whitelistedNumbers,
+    whitelistedTSI: whitelistedTSI
+    };
+
+	const client = new ApiClient(this);
+	const data = (await client.httpPut('/telephony/' + billingAccount + '/fax/' + serviceName + '/screenLists', body)) as IDataObject;
+	return this.helpers.returnJsonArray([data]);
+}

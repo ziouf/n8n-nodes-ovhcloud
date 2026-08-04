@@ -1,0 +1,98 @@
+import type {
+	IDataObject,
+	IExecuteFunctions,
+	IDisplayOptions,
+	INodeExecutionData,
+	INodeProperties,
+} from 'n8n-workflow';
+import { ApiClient } from '../../../shared/transport/ApiClient';
+
+export function description(displayOptions: IDisplayOptions): INodeProperties[] {
+	return [
+        {
+          displayName: 'Billing Account',
+          name: 'billingAccount',
+          type: 'string',
+          default: '',
+          required: true,
+          description: 'The name of your billingAccount',
+          displayOptions,
+        },
+        {
+          displayName: 'Book Key',
+          name: 'bookKey',
+          type: 'string',
+          default: '',
+          required: true,
+          description: 'The bookKey parameter',
+          displayOptions,
+        },
+        {
+          displayName: 'Service Name',
+          name: 'serviceName',
+          type: 'string',
+          default: '',
+          required: true,
+          displayOptions,
+        },
+        {
+          displayName: 'Book Key',
+          name: 'bookKey',
+          type: 'string',
+          default: '',
+          description: 'The bookKey parameter',
+          displayOptions,
+        },
+        {
+          displayName: 'Is Readonly',
+          name: 'isReadonly',
+          type: 'string',
+          default: '',
+          description: 'The isReadonly parameter',
+          displayOptions,
+        },
+        {
+          displayName: 'Name',
+          name: 'name',
+          type: 'string',
+          default: '',
+          description: 'The name parameter',
+          displayOptions,
+        },
+        {
+          displayName: 'Phone Key',
+          name: 'phoneKey',
+          type: 'string',
+          default: '',
+          description: 'The phoneKey parameter',
+          displayOptions,
+        },
+	];
+}
+
+/**
+ * Executes the Put Line Phone Phonebook Update operation.
+ *
+ * HTTP method: PUT
+ * Endpoint: /telephony/{billingAccount}/line/{serviceName}/phone/phonebook/{bookKey}
+ */
+export async function execute(this: IExecuteFunctions, itemIndex: number): Promise<INodeExecutionData[]> {
+	const billingAccount = this.getNodeParameter('billingAccount', itemIndex) as string;
+	const bookKey = this.getNodeParameter('bookKey', itemIndex) as string;
+	const serviceName = this.getNodeParameter('serviceName', itemIndex) as string;
+	const bookKey1 = this.getNodeParameter('bookKey', itemIndex) as string;
+	const isReadonly = this.getNodeParameter('isReadonly', itemIndex) as string;
+	const name = this.getNodeParameter('name', itemIndex) as string;
+	const phoneKey = this.getNodeParameter('phoneKey', itemIndex) as string;
+
+	const body: IDataObject = {
+    bookKey: bookKey1,
+    isReadonly: isReadonly,
+    name: name,
+    phoneKey: phoneKey
+    };
+
+	const client = new ApiClient(this);
+	const data = (await client.httpPut('/telephony/' + billingAccount + '/line/' + serviceName + '/phone/phonebook/' + bookKey, body)) as IDataObject;
+	return this.helpers.returnJsonArray([data]);
+}

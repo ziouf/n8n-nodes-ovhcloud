@@ -7,7 +7,8 @@ import type {
 } from 'n8n-workflow';
 import { ApiClient } from '../../../shared/transport/ApiClient';
 
-export function description(displayOptions: IDisplayOptions): INodeProperties[] {
+export function description(_displayOptions: IDisplayOptions): INodeProperties[] {
+	void _displayOptions;
 	return [
 	];
 }
@@ -18,7 +19,8 @@ export function description(displayOptions: IDisplayOptions): INodeProperties[] 
  * HTTP method: GET
  * Endpoint: /telephony/lines
  */
-export async function execute(this: IExecuteFunctions, itemIndex: number): Promise<INodeExecutionData[]> {
+export async function execute(this: IExecuteFunctions, _itemIndex: number): Promise<INodeExecutionData[]> {
+	void _itemIndex;
 
 
 

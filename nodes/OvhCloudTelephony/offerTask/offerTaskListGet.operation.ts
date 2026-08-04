@@ -1,0 +1,69 @@
+import type {
+	IDataObject,
+	IExecuteFunctions,
+	IDisplayOptions,
+	INodeExecutionData,
+	INodeProperties,
+} from 'n8n-workflow';
+import { ApiClient } from '../../../shared/transport/ApiClient';
+
+export function description(displayOptions: IDisplayOptions): INodeProperties[] {
+	return [
+		{
+			displayName: 'Billing Account',
+			name: 'billingAccount',
+			type: 'string',
+			default: '',
+			required: true,
+			description: 'The name of your billingAccount',
+			displayOptions,
+		},
+		{
+			displayName: 'Action',
+			name: 'action',
+			type: 'string',
+			default: '',
+			description: 'Filter the value of action property (=)',
+			displayOptions,
+		},
+		{
+			displayName: 'Status',
+			name: 'status',
+			type: 'string',
+			default: '',
+			description: 'Filter the value of status property (=)',
+			displayOptions,
+		},
+		{
+			displayName: 'Type',
+			name: 'type',
+			type: 'string',
+			default: '',
+			description: 'Filter the value of type property (=)',
+			displayOptions,
+		},
+	];
+}
+
+/**
+ * Executes the OfferTask List operation.
+ *
+ * HTTP method: GET
+ * Endpoint: /telephony/{billingAccount}/offerTask
+ */
+export async function execute(this: IExecuteFunctions, itemIndex: number): Promise<INodeExecutionData[]> {
+	const billingAccount = this.getNodeParameter('billingAccount', itemIndex) as string;
+	const action = this.getNodeParameter('action', itemIndex) as string;
+	const status = this.getNodeParameter('status', itemIndex) as string;
+	const type = this.getNodeParameter('type', itemIndex) as string;
+
+	const qs: IDataObject = {
+		action: action,
+		status: status,
+		type: type,
+	};
+
+	const client = new ApiClient(this);
+	const data = (await client.httpGet('/telephony/' + encodeURIComponent(billingAccount) + '/offerTask', qs)) as IDataObject;
+	return this.helpers.returnJsonArray([data]);
+}
