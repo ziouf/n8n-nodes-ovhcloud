@@ -46,7 +46,7 @@ describe('blacklistGetGet.operation', () => {
 			});
 
 			const result = await execute.call(mockExecuteFunctions);
-			expect(client.httpGet).toHaveBeenCalledWith('/sms/sms123/blacklist/+33612345678');
+			expect(client.httpGet).toHaveBeenCalledWith('/sms/sms123/blacklists/+33612345678');
 			expect(result).toEqual([{ phoneNumber: '+33612345678', blacklisted: true }]);
 		});
 	});

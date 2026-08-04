@@ -46,7 +46,7 @@ describe('blacklistCreatePost.operation', () => {
 			});
 
 			const result = await execute.call(mockExecuteFunctions);
-			expect(client.httpPost).toHaveBeenCalledWith('/sms/sms123/blacklist', {
+			expect(client.httpPost).toHaveBeenCalledWith('/sms/sms123/blacklists', {
 				phoneNumber: '+33612345678',
 			});
 			expect(result).toEqual([{ phoneNumber: '+33612345678', blacklisted: true }]);

@@ -40,7 +40,7 @@ describe('smsRecipientListGet.operation', () => {
 			});
 
 			const result = await execute.call(mockExecuteFunctions);
-			expect(client.httpGet).toHaveBeenCalledWith('/sms/sms123/recipient');
+			expect(client.httpGet).toHaveBeenCalledWith('/sms/sms123/receivers');
 			expect(result).toEqual([{ phoneNumber: '+33612345678' }]);
 		});
 	});

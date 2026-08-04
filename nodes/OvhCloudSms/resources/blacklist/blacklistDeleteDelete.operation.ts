@@ -1,7 +1,12 @@
-import type { IDisplayOptions, IExecuteFunctions, INodeExecutionData } from 'n8n-workflow';
+import type {
+	IDisplayOptions,
+	IExecuteFunctions,
+	INodeExecutionData,
+	INodeProperties,
+} from 'n8n-workflow';
 import { ApiClient } from '../../../../shared/transport/ApiClient';
 
-export function description(displayOptions: IDisplayOptions) {
+export function description(displayOptions: IDisplayOptions): INodeProperties[] {
 	return [
 		{
 			displayName: 'Service Name',
@@ -28,15 +33,11 @@ export function description(displayOptions: IDisplayOptions) {
  * Executes the Delete Blacklist entry operation.
  *
  * HTTP method: DELETE
- * Endpoint: /sms/blacklist
+ * Endpoint: /sms/{serviceName}/blacklists/{number}
  */
 export async function execute(this: IExecuteFunctions): Promise<INodeExecutionData[]> {
-	
-	
 	const serviceName = this.getNodeParameter('serviceName', 0) as string;
 	const phoneNumber = this.getNodeParameter('phoneNumber', 0) as string;
-	await new ApiClient(this).httpDelete(`/sms/${serviceName}/blacklist`, {
-		qs: { phoneNumber },
-	});
+	await new ApiClient(this).httpDelete(`/sms/${serviceName}/blacklists/${phoneNumber}`);
 	return this.helpers.returnJsonArray([{ phoneNumber, unblacklisted: true }]);
 }

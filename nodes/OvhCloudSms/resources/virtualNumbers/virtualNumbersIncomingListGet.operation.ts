@@ -1,0 +1,85 @@
+import type {
+	IDataObject,
+	IDisplayOptions,
+	IExecuteFunctions,
+	INodeExecutionData,
+	INodeProperties,
+} from 'n8n-workflow';
+import { ApiClient } from '../../../../shared/transport/ApiClient';
+
+export function description(displayOptions: IDisplayOptions): INodeProperties[] {
+	return [
+		{
+			displayName: 'Number',
+			name: 'number',
+			type: 'string',
+			default: '',
+			required: true,
+			description: 'The virtual number',
+			displayOptions,
+		},
+		{
+			displayName: 'Service Name',
+			name: 'serviceName',
+			type: 'string',
+			default: '',
+			required: true,
+			description: 'The internal name of your SMS offer',
+			displayOptions,
+		},
+		{
+			displayName: 'Creation Datetime From',
+			name: 'creationDatetimeFrom',
+			type: 'string',
+			default: '',
+			description: 'Filter the value of creationDatetime property (>=)',
+			displayOptions,
+		},
+		{
+			displayName: 'Creation Datetime To',
+			name: 'creationDatetimeTo',
+			type: 'string',
+			default: '',
+			description: 'Filter the value of creationDatetime property (<=)',
+			displayOptions,
+		},
+		{
+			displayName: 'Sender',
+			name: 'sender',
+			type: 'string',
+			default: '',
+			description: 'Filter the value of sender property (=)',
+			displayOptions,
+		},
+		{
+			displayName: 'Tag',
+			name: 'tag',
+			type: 'string',
+			default: '',
+			description: 'Filter the value of tag property (=)',
+			displayOptions,
+		}
+	];
+}
+
+/**
+ * Executes the Get /sms/{serviceName}/virtualNumbers/{number}/incoming operation.
+ *
+ * HTTP method: GET
+ * Endpoint: /sms/{serviceName}/virtualNumbers/{number}/incoming
+ */
+export async function execute(this: IExecuteFunctions): Promise<INodeExecutionData[]> {
+	const number = this.getNodeParameter('number', 0) as string;
+	const serviceName = this.getNodeParameter('serviceName', 0) as string;
+	const creationDatetimeFrom = this.getNodeParameter('creationDatetimeFrom', 0) as string;
+	const creationDatetimeTo = this.getNodeParameter('creationDatetimeTo', 0) as string;
+	const sender = this.getNodeParameter('sender', 0) as string;
+	const tag = this.getNodeParameter('tag', 0) as string;
+	const qs: IDataObject = {};
+	if (creationDatetimeFrom) qs['creationDatetime.from'] = creationDatetimeFrom;
+	if (creationDatetimeTo) qs['creationDatetime.to'] = creationDatetimeTo;
+	if (sender) qs['sender'] = sender;
+	if (tag) qs['tag'] = tag;
+	const data = (await new ApiClient(this).httpGet(`/sms/${encodeURIComponent(serviceName)}/virtualNumbers/${encodeURIComponent(number)}/incoming`, qs)) as number[];
+	return this.helpers.returnJsonArray(data.map((v: number) => ({ id: v })));
+}

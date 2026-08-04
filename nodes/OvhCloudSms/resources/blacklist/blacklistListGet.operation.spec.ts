@@ -40,7 +40,7 @@ describe('blacklistListGet.operation', () => {
 			});
 
 			const result = await execute.call(mockExecuteFunctions);
-			expect(client.httpGet).toHaveBeenCalledWith('/sms/sms123/blacklist');
+			expect(client.httpGet).toHaveBeenCalledWith('/sms/sms123/blacklists');
 			expect(result).toEqual([{ phoneNumber: '+33612345678' }]);
 		});
 	});

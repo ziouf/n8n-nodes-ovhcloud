@@ -1,7 +1,13 @@
-import type { IDataObject,  IDisplayOptions, IExecuteFunctions, INodeExecutionData } from 'n8n-workflow';
+import type {
+	IDataObject,
+	IDisplayOptions,
+	IExecuteFunctions,
+	INodeExecutionData,
+	INodeProperties,
+} from 'n8n-workflow';
 import { ApiClient } from '../../../../shared/transport/ApiClient';
 
-export function description(displayOptions: IDisplayOptions) {
+export function description(displayOptions: IDisplayOptions): INodeProperties[] {
 	return [
 		{
 			displayName: 'Service Name',

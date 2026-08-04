@@ -46,9 +46,7 @@ describe('blacklistDeleteDelete.operation', () => {
 			});
 
 			const result = await execute.call(mockExecuteFunctions);
-			expect(client.httpDelete).toHaveBeenCalledWith('/sms/sms123/blacklist', {
-				qs: { phoneNumber: '+33612345678' },
-			});
+			expect(client.httpDelete).toHaveBeenCalledWith('/sms/sms123/blacklists/+33612345678');
 			expect(result).toEqual([{ phoneNumber: '+33612345678', unblacklisted: true }]);
 		});
 	});
