@@ -207,6 +207,41 @@ import {
 	execute as executeSshKeyListGet,
 	description as descriptionSshKeyListGet,
 } from './sshKeyListGet.operation';
+
+// Operations wired from audit (Phase 2a)
+import {
+	execute as executeAutomatedBackupRestore,
+	description as descriptionAutomatedBackupRestore,
+} from './automatedBackupRestoreCreate.operation';
+import {
+	execute as executeBackupFtpAccessPost,
+	description as descriptionBackupFtpAccessPost,
+} from './backupFtpAccessPostVps.operation';
+import {
+	execute as executeBackupRestoreList,
+	description as descriptionBackupRestoreList,
+} from './backupRestoreListGet.operation';
+import {
+	execute as executeChangeContact,
+	description as descriptionChangeContact,
+} from './changeContactCreateVps.operation';
+import {
+	execute as executeConfirmTermination,
+	description as descriptionConfirmTermination,
+} from './confirmTerminationCreateVps.operation';
+import {
+	execute as executeCreateSnapshot,
+	description as descriptionCreateSnapshot,
+} from './createSnapshotCreate.operation';
+import {
+	execute as executeStorageDiskUpdatePut,
+	description as descriptionStorageDiskUpdatePut,
+} from './disksIdPut.operation';
+import { execute as executeIpAdd, description as descriptionIpAdd } from './ipAdd.operation';
+import {
+	execute as executeVpsUpdate,
+	description as descriptionVpsUpdate,
+} from './vpsUpdate.operation';
 export function description(displayOptions: IDisplayOptions): INodeProperties[] {
 	const operationProperties: INodeProperties[] = [
 		{
@@ -232,6 +267,11 @@ export function description(displayOptions: IDisplayOptions): INodeProperties[] 
 					action: 'Reschedule an automated backup for a VPS',
 				},
 				{
+					name: 'Automated Backup Restore',
+					value: 'automatedBackupRestore',
+					action: 'Restore the VPS from an automated backup (irreversible)',
+				},
+				{
 					name: 'Automated Backup Restore Plan Set',
 					value: 'automatedBackupSetPost',
 					action: 'Set a backup restore plan for a VPS',
@@ -242,11 +282,36 @@ export function description(displayOptions: IDisplayOptions): INodeProperties[] 
 					action: 'Get available upgrades for a VPS',
 				},
 				{
+					name: 'Backup FTP Access Add',
+					value: 'backupFtpAccessPost',
+					action: 'Add an IP access rule to the VPS backup FTP',
+				},
+				{
 					name: 'Backup FTP Configs',
 					value: 'backupFtpList',
 					action: 'List backup FTP configurations',
 				},
+				{
+					name: 'Backup Restore List',
+					value: 'backupRestoreList',
+					action: 'List attached backups available for restore',
+				},
+				{
+					name: 'Change Contact',
+					value: 'changeContact',
+					action: 'Launch a contact change for the VPS service',
+				},
+				{
+					name: 'Confirm Termination',
+					value: 'confirmTermination',
+					action: 'Confirm termination of the VPS service (irreversible)',
+				},
 				{ name: 'Create Disk', value: 'createDiskPost' },
+				{
+					name: 'Create Snapshot',
+					value: 'createSnapshot',
+					action: 'Create a manual snapshot of the VPS',
+				},
 				{
 					name: 'Datacenter Availability Raw Get',
 					value: 'datacenterAvailabilityRawGet',
@@ -283,6 +348,7 @@ export function description(displayOptions: IDisplayOptions): INodeProperties[] 
 				},
 				{ name: 'Image Get', value: 'imageGet', action: 'Get image details' },
 				{ name: 'Image List', value: 'imageList', action: 'List available images for a VPS' },
+				{ name: 'IP Add', value: 'ipAdd', action: 'Add a failover IP to the VPS' },
 				{
 					name: 'IP Country Available',
 					value: 'ipCountryAvailableGet',
@@ -398,6 +464,11 @@ export function description(displayOptions: IDisplayOptions): INodeProperties[] 
 					action: 'Check status of a task by ID',
 				},
 				{
+					name: 'Storage Disk Update Put',
+					value: 'storageDiskUpdatePut',
+					action: 'Update VPS storage disk properties (e.g. resize)',
+				},
+				{
 					name: 'Template Apply Netboot Config Post',
 					value: 'templateApplyPost',
 					action: 'Apply netboot template to the VPS',
@@ -407,6 +478,11 @@ export function description(displayOptions: IDisplayOptions): INodeProperties[] 
 					name: 'Update Disk Detail Put',
 					value: 'updateDiskPut',
 					action: 'Update a specific VPS disk (resize or rename)',
+				},
+				{
+					name: 'VPS Update',
+					value: 'vpsUpdate',
+					action: 'Update VPS service properties (e.g. name)',
 				},
 			],
 			default: 'get',
@@ -625,6 +701,42 @@ export function description(displayOptions: IDisplayOptions): INodeProperties[] 
 			...displayOptions,
 			show: { vpsOperation: ['templateApplyPost'] },
 		}) as INodeProperties[]),
+		...(descriptionAutomatedBackupRestore({
+			...displayOptions,
+			show: { vpsOperation: ['automatedBackupRestore'] },
+		}) as INodeProperties[]),
+		...(descriptionBackupFtpAccessPost({
+			...displayOptions,
+			show: { vpsOperation: ['backupFtpAccessPost'] },
+		}) as INodeProperties[]),
+		...(descriptionBackupRestoreList({
+			...displayOptions,
+			show: { vpsOperation: ['backupRestoreList'] },
+		}) as INodeProperties[]),
+		...(descriptionChangeContact({
+			...displayOptions,
+			show: { vpsOperation: ['changeContact'] },
+		}) as INodeProperties[]),
+		...(descriptionConfirmTermination({
+			...displayOptions,
+			show: { vpsOperation: ['confirmTermination'] },
+		}) as INodeProperties[]),
+		...(descriptionCreateSnapshot({
+			...displayOptions,
+			show: { vpsOperation: ['createSnapshot'] },
+		}) as INodeProperties[]),
+		...(descriptionStorageDiskUpdatePut({
+			...displayOptions,
+			show: { vpsOperation: ['storageDiskUpdatePut'] },
+		}) as INodeProperties[]),
+		...(descriptionIpAdd({
+			...displayOptions,
+			show: { vpsOperation: ['ipAdd'] },
+		}) as INodeProperties[]),
+		...(descriptionVpsUpdate({
+			...displayOptions,
+			show: { vpsOperation: ['vpsUpdate'] },
+		}) as INodeProperties[]),
 	];
 
 	return properties;
@@ -743,6 +855,24 @@ export async function execute(
 			return executeSnapshotRevertPut.call(this, itemIndex);
 		case 'templateApplyPost':
 			return executeTemplateApplyPost.call(this, itemIndex);
+		case 'automatedBackupRestore':
+			return executeAutomatedBackupRestore.call(this, itemIndex);
+		case 'backupFtpAccessPost':
+			return executeBackupFtpAccessPost.call(this, itemIndex);
+		case 'backupRestoreList':
+			return executeBackupRestoreList.call(this, itemIndex);
+		case 'changeContact':
+			return executeChangeContact.call(this, itemIndex);
+		case 'confirmTermination':
+			return executeConfirmTermination.call(this, itemIndex);
+		case 'createSnapshot':
+			return executeCreateSnapshot.call(this, itemIndex);
+		case 'storageDiskUpdatePut':
+			return executeStorageDiskUpdatePut.call(this, itemIndex);
+		case 'ipAdd':
+			return executeIpAdd.call(this, itemIndex);
+		case 'vpsUpdate':
+			return executeVpsUpdate.call(this, itemIndex);
 	}
 
 	throw new Error(`Unsupported operation "${operation}" for resource "vps"`);

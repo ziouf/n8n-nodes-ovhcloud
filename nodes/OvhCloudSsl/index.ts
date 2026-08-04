@@ -25,6 +25,10 @@ import {
 	description as descriptionServiceInfosUpdatePut,
 } from './resources/serviceInfosUpdatePut.operation';
 import {
+	execute as executeServiceInfosGetGet,
+	description as descriptionServiceInfosGetGet,
+} from './resources/serviceInfosGetGet.operation';
+import {
 	execute as executeTaskListGet,
 	description as descriptionTaskListGet,
 } from './resources/taskListGet.operation';
@@ -60,6 +64,11 @@ export function description(displayOptions: IDisplayOptions) {
 					name: 'Get Certificate Task',
 					value: 'getCertificateTask',
 					action: 'Get a specific SSL certificate task',
+				},
+				{
+					name: 'Get Service Infos',
+					value: 'getServiceInfos',
+					action: 'Get SSL service information',
 				},
 				{
 					name: 'List All Domains',
@@ -110,6 +119,10 @@ export function description(displayOptions: IDisplayOptions) {
 			...displayOptions,
 			show: { sslOperation: ['updateServiceInfos'] },
 		}) || []),
+		...(descriptionServiceInfosGetGet({
+			...displayOptions,
+			show: { sslOperation: ['getServiceInfos'] },
+		}) || []),
 		...(descriptionTaskListGet({
 			...displayOptions,
 			show: { sslOperation: ['listCertificateTasks'] },
@@ -141,6 +154,8 @@ export async function execute(this: IExecuteFunctions, itemIndex: number) {
 			return executeUpdateCertificateByResourceName.call(this, itemIndex);
 		case 'updateServiceInfos':
 			return executeServiceInfosUpdatePut.call(this, itemIndex);
+		case 'getServiceInfos':
+			return executeServiceInfosGetGet.call(this, itemIndex);
 	}
 
 	throw new Error(`Unsupported operation "${operation}" for resource "ssl"`);
