@@ -1,0 +1,103 @@
+import type {
+	IDataObject,
+	IDisplayOptions,
+	IExecuteFunctions,
+	INodeExecutionData,
+	INodeProperties,
+} from 'n8n-workflow';
+import { ApiClient } from '../../../shared/transport/ApiClient';
+
+export function description(displayOptions: IDisplayOptions): INodeProperties[] {
+	return [
+		{
+			displayName: 'Service Name',
+			name: 'serviceName',
+			type: 'string',
+			default: '',
+			required: true,
+			description: 'The name/ID of the VMware on OVHcloud infrastructure',
+			displayOptions,
+		},
+		{
+			displayName: 'Description',
+			name: 'description',
+			type: 'string',
+			default: '',
+			description: 'Description of your VMware on OVHcloud',
+			displayOptions,
+		},
+		{
+			displayName: 'Enable SSL V3',
+			name: 'sslV3',
+			type: 'boolean',
+			default: false,
+			description: 'Whether enable SSL v3 support. Warning : this option is not recommended as it was recognized as a security breach. If this is enabled, we advise you to enable the filtered User access policy',
+			displayOptions,
+		},
+		{
+			displayName: 'User Access Policy',
+			name: 'userAccessPolicy',
+			type: 'options',
+			options: [
+				{ name: 'Filtered', value: 'filtered' },
+				{ name: 'Open', value: 'open' },
+			],
+			default: 'filtered',
+			description: 'Access policy of your VMware on OVHcloud : opened to every IPs or filtered',
+			displayOptions,
+		},
+		{
+			displayName: 'User Limit Concurrent Session',
+			name: 'userLimitConcurrentSession',
+			type: 'number',
+			default: 0,
+			description: 'The maximum amount of connected users allowed on the VMware on OVHcloud management interface',
+			displayOptions,
+		},
+		{
+			displayName: 'User Logout Policy',
+			name: 'userLogoutPolicy',
+			type: 'options',
+			options: [
+				{ name: 'First', value: 'first' },
+				{ name: 'Last', value: 'last' },
+			],
+			default: 'first',
+			displayOptions,
+		},
+		{
+			displayName: 'User Session Timeout',
+			name: 'userSessionTimeout',
+			type: 'number',
+			default: 0,
+			description: 'The timeout (in seconds) for the user sessions on the VMware on OVHcloud management interface. 0 value disable the timeout.',
+			displayOptions,
+		},
+	];
+}
+
+/**
+ * Executes the Update VMware on OVHcloud operation.
+ *
+ * HTTP method: PUT
+ * Endpoint: /dedicatedCloud/{serviceName}
+ */
+export async function execute(this: IExecuteFunctions, itemIndex: number): Promise<INodeExecutionData[]> {
+	const client = new ApiClient(this);
+	const serviceName = this.getNodeParameter('serviceName', itemIndex) as string;
+	const body: IDataObject = {};
+	const description = this.getNodeParameter('description', itemIndex, '') as string;
+	if (description !== '') { body.description = description; }
+	const sslV3 = this.getNodeParameter('sslV3', itemIndex) as boolean;
+	if (sslV3) { body.sslV3 = sslV3; }
+	const userAccessPolicy = this.getNodeParameter('userAccessPolicy', itemIndex, '') as string;
+	if (userAccessPolicy !== '') { body.userAccessPolicy = userAccessPolicy; }
+	const userLimitConcurrentSession = this.getNodeParameter('userLimitConcurrentSession', itemIndex) as number;
+	if (userLimitConcurrentSession) { body.userLimitConcurrentSession = userLimitConcurrentSession; }
+	const userLogoutPolicy = this.getNodeParameter('userLogoutPolicy', itemIndex, '') as string;
+	if (userLogoutPolicy !== '') { body.userLogoutPolicy = userLogoutPolicy; }
+	const userSessionTimeout = this.getNodeParameter('userSessionTimeout', itemIndex) as number;
+	if (userSessionTimeout) { body.userSessionTimeout = userSessionTimeout; }
+	const data = (await client.httpPut(`/dedicatedCloud/${serviceName}`, body)) as IDataObject;
+	return this.helpers.returnJsonArray([data]);
+}

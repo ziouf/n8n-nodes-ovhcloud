@@ -1,0 +1,56 @@
+import type {
+	IDataObject,
+	IDisplayOptions,
+	IExecuteFunctions,
+	INodeExecutionData,
+	INodeProperties,
+} from 'n8n-workflow';
+import { ApiClient } from '../../../shared/transport/ApiClient';
+
+export function description(displayOptions: IDisplayOptions): INodeProperties[] {
+	return [
+		{
+			displayName: 'Service Name',
+			name: 'serviceName',
+			type: 'string',
+			default: '',
+			required: true,
+			description: 'Domain of the service',
+			displayOptions,
+		},
+		{
+			displayName: 'Active Directory ID',
+			name: 'activeDirectoryId',
+			type: 'number',
+			default: 0,
+			required: true,
+			description: 'ID of the Active Directory',
+			displayOptions,
+		},
+		{
+			displayName: 'Username',
+			name: 'username',
+			type: 'string',
+			default: '',
+			required: true,
+			description: 'Active Directory user name (pre-Windows 2000 name), e.g. jdoe@example.com or jdoe',
+			displayOptions,
+		},
+	];
+}
+
+/**
+ * Executes the Grant Active Directory User operation.
+ *
+ * HTTP method: POST
+ * Endpoint: /dedicatedCloud/{serviceName}/federation/activeDirectory/{activeDirectoryId}/grantActiveDirectoryUser
+ */
+export async function execute(this: IExecuteFunctions, itemIndex: number): Promise<INodeExecutionData[]> {
+	const client = new ApiClient(this);
+	const activeDirectoryId = this.getNodeParameter('activeDirectoryId', itemIndex) as string;
+	const serviceName = this.getNodeParameter('serviceName', itemIndex) as string;
+	const body: IDataObject = {};
+	body.username = this.getNodeParameter('username', itemIndex) as string;
+	const data = (await client.httpPost(`/dedicatedCloud/${serviceName}/federation/activeDirectory/${activeDirectoryId}/grantActiveDirectoryUser`, body)) as IDataObject;
+	return this.helpers.returnJsonArray([data]);
+}
