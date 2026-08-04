@@ -11,6 +11,7 @@ export { getFreefaxServices } from './getFreefaxServices.method';
 export { getHorizonViewServices } from './getHorizonViewServices.method';
 export { getHostingWebServices } from './getHostingWebServices.method';
 export { getMetricsServices } from './getMetricsServices.method';
+export { getNetAppServices } from './getNetAppServices.method';
 export { getNutanixServices } from './getNutanixServices.method';
 export { getOverTheBoxServices } from './getOverTheBoxServices.method';
 export { getOvhCloudConnectServices } from './getOvhCloudConnectServices.method';

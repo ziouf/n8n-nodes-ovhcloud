@@ -7,6 +7,7 @@ import type {
 import { NodeConnectionTypes } from 'n8n-workflow';
 import { OvhCloudApiSecretName, OvhCloudIcon } from '../../shared/constants';
 import { description, execute } from './index';
+import { getNetAppServices } from '../../shared/methods/getNetAppServices.method';
 import { BaseNode, executeTemplate } from '../../shared/nodes/BaseNode';
 
 export class OvhCloudStorage extends BaseNode implements INodeType {
@@ -17,7 +18,7 @@ export class OvhCloudStorage extends BaseNode implements INodeType {
 		group: ['input'],
 		version: 1,
 		subtitle: '={{$parameter["storageOperation"]}}',
-		description: 'Manage OVHcloud Object Storage via /storage API v1',
+		description: 'Manage OVHcloud NetApp Storage services via /storage/netapp API v1',
 		defaults: {
 			name: 'OVH Cloud Storage',
 		},
@@ -32,6 +33,8 @@ export class OvhCloudStorage extends BaseNode implements INodeType {
 		],
 		properties: [...description({})],
 	};
+
+	methods = { listSearch: { getNetAppServices } };
 
 	async execute(this: IExecuteFunctions): Promise<INodeExecutionData[][]> {
 		return executeTemplate.call(this, execute);

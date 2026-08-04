@@ -1,30 +1,82 @@
 # OVH Cloud CDN
 
-> Manage CDN services via /cdn API v1
+> Manage OVHcloud CDN services via `/cdn/dedicated` API v1
 
 ## Overview
 
-This node provides **14 operations** with **14 tests** for managing OVHcloud resources.
+This node provides **44 operations** (one per endpoint of the `cdn` v1 spec) with **44 test suites**. Operations are grouped into four families under `resources/`:
+
+- `resources/service/` — service-level and global CDN endpoints
+- `resources/domains/` — domain, backend, cache rule and task endpoints
+- `resources/log/` — log kind / subscription / URL endpoints
+- `resources/ssl/` — SSL endpoints
+
+The primary identifier is the **Service Name** (`serviceName`, the internal name of the CDN offer), exposed as a required parameter on every scoped operation.
 
 ## Available Operations
 
-### Root Operations
+### Service (`resources/service/`)
 
-| Operation | Method | Endpoint | Tests |
-|-----------|--------|----------|-------|
-| [`cdnDeleteDelete`](./`cdnDeleteDelete`.ts) | DELETE | `...` | 1 |
-| [`cdnGetGet`](./`cdnGetGet`.ts) | GET | `...` | 1 |
-| [`cdnListGet`](./`cdnListGet`.ts) | GET | `...` | 1 |
-| [`cdnUpdatePut`](./`cdnUpdatePut`.ts) | PUT | `...` | 1 |
-| [`originCreatePost`](./`originCreatePost`.ts) | POST | `...` | 1 |
-| [`originDeleteDelete`](./`originDeleteDelete`.ts) | DELETE | `...` | 1 |
-| [`originGetGet`](./`originGetGet`.ts) | GET | `...` | 1 |
-| [`originListGet`](./`originListGet`.ts) | GET | `...` | 1 |
-| [`originUpdatePut`](./`originUpdatePut`.ts) | PUT | `...` | 1 |
-| [`userCreatePost`](./`userCreatePost`.ts) | POST | `...` | 1 |
-| [`userDeleteDelete`](./`userDeleteDelete`.ts) | DELETE | `...` | 1 |
-| [`userGetGet`](./`userGetGet`.ts) | GET | `...` | 1 |
-| [`userListGet`](./`userListGet`.ts) | GET | `...` | 1 |
-| [`userUpdatePut`](./`userUpdatePut`.ts) | PUT | `...` | 1 |
+| Operation           | Method | Endpoint                                     |
+| ------------------- | ------ | -------------------------------------------- |
+| `servicesListGet`   | GET    | `/cdn/dedicated`                             |
+| `serviceGetGet`     | GET    | `/cdn/dedicated/{serviceName}`               |
+| `logKindListGet`    | GET    | `/cdn/dedicated/log/kind`                    |
+| `logKindGetGet`     | GET    | `/cdn/dedicated/log/kind/{name}`             |
+| `popsListGet`       | GET    | `/cdn/dedicated/pops`                        |
+| `popsGetGet`        | GET    | `/cdn/dedicated/pops/{name}`                 |
+| `changeContactPost` | POST   | `/cdn/dedicated/{serviceName}/changeContact` |
+| `quotaGet`          | GET    | `/cdn/dedicated/{serviceName}/quota`         |
+| `serviceInfosGet`   | GET    | `/cdn/dedicated/{serviceName}/serviceInfos`  |
+| `serviceInfosPut`   | PUT    | `/cdn/dedicated/{serviceName}/serviceInfos`  |
+| `logsPost`          | POST   | `/cdn/dedicated/{serviceName}/logs`          |
 
-**Total:** 14 operations, 14 tests
+### Domains (`resources/domains/`)
+
+| Operation               | Method | Endpoint                                                                                |
+| ----------------------- | ------ | --------------------------------------------------------------------------------------- |
+| `domainsListGet`        | GET    | `/cdn/dedicated/{serviceName}/domains`                                                  |
+| `domainsCreatePost`     | POST   | `/cdn/dedicated/{serviceName}/domains`                                                  |
+| `domainDeleteDelete`    | DELETE | `/cdn/dedicated/{serviceName}/domains/{domain}`                                         |
+| `domainGetGet`          | GET    | `/cdn/dedicated/{serviceName}/domains/{domain}`                                         |
+| `domainUpdatePut`       | PUT    | `/cdn/dedicated/{serviceName}/domains/{domain}`                                         |
+| `backendsListGet`       | GET    | `/cdn/dedicated/{serviceName}/domains/{domain}/backends`                                |
+| `backendsCreatePost`    | POST   | `/cdn/dedicated/{serviceName}/domains/{domain}/backends`                                |
+| `backendDeleteDelete`   | DELETE | `/cdn/dedicated/{serviceName}/domains/{domain}/backends/{ip}`                           |
+| `backendGetGet`         | GET    | `/cdn/dedicated/{serviceName}/domains/{domain}/backends/{ip}`                           |
+| `cacheRulesListGet`     | GET    | `/cdn/dedicated/{serviceName}/domains/{domain}/cacheRules`                              |
+| `cacheRulesCreatePost`  | POST   | `/cdn/dedicated/{serviceName}/domains/{domain}/cacheRules`                              |
+| `cacheRuleDeleteDelete` | DELETE | `/cdn/dedicated/{serviceName}/domains/{domain}/cacheRules/{cacheRuleId}`                |
+| `cacheRuleGetGet`       | GET    | `/cdn/dedicated/{serviceName}/domains/{domain}/cacheRules/{cacheRuleId}`                |
+| `cacheRuleUpdatePut`    | PUT    | `/cdn/dedicated/{serviceName}/domains/{domain}/cacheRules/{cacheRuleId}`                |
+| `cacheRuleFlushPost`    | POST   | `/cdn/dedicated/{serviceName}/domains/{domain}/cacheRules/{cacheRuleId}/flush`          |
+| `cacheRuleTasksListGet` | GET    | `/cdn/dedicated/{serviceName}/domains/{domain}/cacheRules/{cacheRuleId}/tasks`          |
+| `cacheRuleTaskGetGet`   | GET    | `/cdn/dedicated/{serviceName}/domains/{domain}/cacheRules/{cacheRuleId}/tasks/{taskId}` |
+| `domainFlushPost`       | POST   | `/cdn/dedicated/{serviceName}/domains/{domain}/flush`                                   |
+| `domainLogsPost`        | POST   | `/cdn/dedicated/{serviceName}/domains/{domain}/logs`                                    |
+| `domainStatisticsGet`   | GET    | `/cdn/dedicated/{serviceName}/domains/{domain}/statistics`                              |
+| `domainTasksListGet`    | GET    | `/cdn/dedicated/{serviceName}/domains/{domain}/tasks`                                   |
+| `domainTaskGetGet`      | GET    | `/cdn/dedicated/{serviceName}/domains/{domain}/tasks/{taskId}`                          |
+
+### Log (`resources/log/`)
+
+| Operation                  | Method | Endpoint                                                         |
+| -------------------------- | ------ | ---------------------------------------------------------------- |
+| `subscriptionsListGet`     | GET    | `/cdn/dedicated/{serviceName}/log/subscription`                  |
+| `subscriptionsCreatePost`  | POST   | `/cdn/dedicated/{serviceName}/log/subscription`                  |
+| `subscriptionDeleteDelete` | DELETE | `/cdn/dedicated/{serviceName}/log/subscription/{subscriptionId}` |
+| `subscriptionGetGet`       | GET    | `/cdn/dedicated/{serviceName}/log/subscription/{subscriptionId}` |
+| `logUrlPost`               | POST   | `/cdn/dedicated/{serviceName}/log/url`                           |
+
+### SSL (`resources/ssl/`)
+
+| Operation         | Method | Endpoint                                          |
+| ----------------- | ------ | ------------------------------------------------- |
+| `sslDeleteDelete` | DELETE | `/cdn/dedicated/{serviceName}/ssl`                |
+| `sslGetGet`       | GET    | `/cdn/dedicated/{serviceName}/ssl`                |
+| `sslCreatePost`   | POST   | `/cdn/dedicated/{serviceName}/ssl`                |
+| `sslTasksListGet` | GET    | `/cdn/dedicated/{serviceName}/ssl/tasks`          |
+| `sslTaskGetGet`   | GET    | `/cdn/dedicated/{serviceName}/ssl/tasks/{taskId}` |
+| `sslUpdatePost`   | POST   | `/cdn/dedicated/{serviceName}/ssl/update`         |
+
+**Total:** 44 operations, 44 test suites
