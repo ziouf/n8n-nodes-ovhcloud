@@ -1,8 +1,1205 @@
 {
   "apiVersion": "1.0",
+  "apis": [
+    {
+      "path": "/dedicated/cluster",
+      "operations": [
+        {
+          "apiStatus": {
+            "description": "Beta version",
+            "value": "BETA"
+          },
+          "httpMethod": "GET",
+          "parameters": [
+            {
+              "name": "iamTags",
+              "dataType": "map[string][]iam.resource.TagFilter",
+              "paramType": "query",
+              "required": false,
+              "description": "Filter resources on IAM tags"
+            }
+          ],
+          "responseType": "uuid[]",
+          "responseTypes": {
+            "200": "uuid[]"
+          },
+          "noAuthentication": false,
+          "description": "List dedicated clusters",
+          "iamActions": [
+            {
+              "name": "clusterDelivery:apiovh:get",
+              "required": true
+            }
+          ]
+        }
+      ],
+      "description": "Manage dedicated clusters"
+    },
+    {
+      "path": "/dedicated/cluster/availabilities",
+      "operations": [
+        {
+          "apiStatus": {
+            "description": "Deprecated, will be removed",
+            "value": "DEPRECATED",
+            "deletionDate": "2025-12-02T00:00:00Z",
+            "deprecatedDate": "2025-09-23T00:00:00Z"
+          },
+          "httpMethod": "GET",
+          "parameters": [
+            {
+              "name": "memory",
+              "dataType": "string",
+              "paramType": "query",
+              "fullType": "string",
+              "required": false,
+              "description": "The name of the memory hardware part"
+            },
+            {
+              "name": "planCode",
+              "dataType": "string",
+              "paramType": "query",
+              "fullType": "string",
+              "required": false,
+              "description": "The plan code in which the hardware is involved"
+            },
+            {
+              "name": "quantity",
+              "dataType": "long",
+              "paramType": "query",
+              "fullType": "long",
+              "required": true,
+              "description": "Cluster quantity"
+            },
+            {
+              "name": "server",
+              "dataType": "string",
+              "paramType": "query",
+              "fullType": "string",
+              "required": false,
+              "description": "The name of the base hardware"
+            },
+            {
+              "name": "storage",
+              "dataType": "string",
+              "paramType": "query",
+              "fullType": "string",
+              "required": false,
+              "description": "The name of the storage hardware part"
+            },
+            {
+              "name": "systemStorage",
+              "dataType": "string",
+              "paramType": "query",
+              "fullType": "string",
+              "required": false,
+              "description": "The name of the system storage hardware part"
+            }
+          ],
+          "responseType": "dedicated.cluster.availability[]",
+          "responseTypes": {
+            "200": "dedicated.cluster.availability[]"
+          },
+          "noAuthentication": true,
+          "description": "Fetch the availabilities for a given cluster configuration"
+        }
+      ],
+      "description": "Fetch the availabilities for a given cluster configuration"
+    },
+    {
+      "path": "/dedicated/cluster/availabilities/raw",
+      "operations": [
+        {
+          "apiStatus": {
+            "description": "Beta version",
+            "value": "BETA"
+          },
+          "httpMethod": "GET",
+          "parameters": [
+            {
+              "name": "excludeRegions",
+              "dataType": "boolean",
+              "paramType": "query",
+              "fullType": "boolean",
+              "required": false,
+              "description": "If true, all regions are returned except those listed in regions parameter"
+            },
+            {
+              "name": "memory",
+              "dataType": "string",
+              "paramType": "query",
+              "fullType": "string",
+              "required": false,
+              "description": "The name of the memory hardware part"
+            },
+            {
+              "name": "planCode",
+              "dataType": "string",
+              "paramType": "query",
+              "fullType": "string",
+              "required": false,
+              "description": "The plan code in which the hardware is involved"
+            },
+            {
+              "name": "quantity",
+              "dataType": "long",
+              "paramType": "query",
+              "fullType": "long",
+              "required": true,
+              "description": "Node quantity"
+            },
+            {
+              "name": "regions",
+              "dataType": "dedicated.server.AvailabilityRegionalizationEnum",
+              "paramType": "query",
+              "fullType": "dedicated.server.AvailabilityRegionalizationEnum",
+              "required": false,
+              "description": "The names of regions separated by commas"
+            },
+            {
+              "name": "server",
+              "dataType": "string",
+              "paramType": "query",
+              "fullType": "string",
+              "required": false,
+              "description": "The name of the base hardware"
+            },
+            {
+              "name": "storage",
+              "dataType": "string",
+              "paramType": "query",
+              "fullType": "string",
+              "required": false,
+              "description": "The name of the storage hardware part"
+            },
+            {
+              "name": "systemStorage",
+              "dataType": "string",
+              "paramType": "query",
+              "fullType": "string",
+              "required": false,
+              "description": "The name of the system storage hardware part"
+            }
+          ],
+          "responseType": "dedicated.cluster.AvailabilitiesRaw[]",
+          "responseTypes": {
+            "200": "dedicated.cluster.AvailabilitiesRaw[]"
+          },
+          "noAuthentication": false,
+          "description": "List the raw availability for cluster"
+        }
+      ],
+      "description": ""
+    },
+    {
+      "path": "/dedicated/cluster/{serviceName}",
+      "operations": [
+        {
+          "apiStatus": {
+            "description": "Beta version",
+            "value": "BETA"
+          },
+          "httpMethod": "GET",
+          "parameters": [
+            {
+              "name": "serviceName",
+              "dataType": "uuid",
+              "paramType": "path",
+              "fullType": "uuid",
+              "required": true,
+              "description": "Service name"
+            }
+          ],
+          "responseType": "dedicated.cluster.ClusterWithIAM",
+          "responseTypes": {
+            "200": "dedicated.cluster.ClusterWithIAM"
+          },
+          "noAuthentication": false,
+          "description": "Get cluster info",
+          "iamActions": [
+            {
+              "name": "clusterDelivery:apiovh:get",
+              "required": true
+            }
+          ]
+        }
+      ],
+      "description": "Manage dedicated clusters"
+    },
+    {
+      "path": "/dedicated/cluster/{serviceName}/changeContact",
+      "operations": [
+        {
+          "apiStatus": {
+            "description": "Beta version",
+            "value": "BETA"
+          },
+          "httpMethod": "POST",
+          "parameters": [
+            {
+              "dataType": "services.changeContact",
+              "paramType": "body",
+              "fullType": "services.changeContact",
+              "required": true,
+              "description": "Request Body"
+            },
+            {
+              "name": "serviceName",
+              "dataType": "uuid",
+              "paramType": "path",
+              "fullType": "uuid",
+              "required": true,
+              "description": "Service name"
+            }
+          ],
+          "responseType": "long[]",
+          "responseTypes": {
+            "200": "long[]"
+          },
+          "noAuthentication": false,
+          "description": "Launch a contact change procedure",
+          "iamActions": [
+            {
+              "name": "clusterDelivery:apiovh:changeContact",
+              "required": true
+            }
+          ]
+        }
+      ],
+      "description": ""
+    },
+    {
+      "path": "/dedicated/cluster/{serviceName}/confirmTermination",
+      "operations": [
+        {
+          "apiStatus": {
+            "description": "Beta version",
+            "value": "BETA"
+          },
+          "httpMethod": "POST",
+          "parameters": [
+            {
+              "dataType": "services.confirmTermination",
+              "paramType": "body",
+              "fullType": "services.confirmTermination",
+              "required": true,
+              "description": "Request Body"
+            },
+            {
+              "name": "serviceName",
+              "dataType": "uuid",
+              "paramType": "path",
+              "fullType": "uuid",
+              "required": true,
+              "description": "Service name"
+            }
+          ],
+          "responseType": "string",
+          "responseTypes": {
+            "200": "string"
+          },
+          "noAuthentication": false,
+          "description": "Confirm service termination",
+          "iamActions": [
+            {
+              "name": "clusterDelivery:apiovh:confirmTermination",
+              "required": true
+            }
+          ]
+        }
+      ],
+      "description": ""
+    },
+    {
+      "path": "/dedicated/cluster/{serviceName}/serviceInfos",
+      "operations": [
+        {
+          "apiStatus": {
+            "description": "Beta version",
+            "value": "BETA"
+          },
+          "httpMethod": "GET",
+          "parameters": [
+            {
+              "name": "serviceName",
+              "dataType": "uuid",
+              "paramType": "path",
+              "fullType": "uuid",
+              "required": true,
+              "description": "Service name"
+            }
+          ],
+          "responseType": "services.Service",
+          "responseTypes": {
+            "200": "services.Service"
+          },
+          "noAuthentication": false,
+          "description": "Get service information",
+          "iamActions": [
+            {
+              "name": "clusterDelivery:apiovh:serviceInfos/get",
+              "required": true
+            }
+          ]
+        },
+        {
+          "apiStatus": {
+            "description": "Beta version",
+            "value": "BETA"
+          },
+          "httpMethod": "PUT",
+          "parameters": [
+            {
+              "dataType": "services.Service",
+              "paramType": "body",
+              "fullType": "services.Service",
+              "required": true,
+              "description": "Request Body"
+            },
+            {
+              "name": "serviceName",
+              "dataType": "uuid",
+              "paramType": "path",
+              "fullType": "uuid",
+              "required": true,
+              "description": "Service name"
+            }
+          ],
+          "responseType": "void",
+          "responseTypes": {
+            "200": "void"
+          },
+          "noAuthentication": false,
+          "description": "Update service information",
+          "iamActions": [
+            {
+              "name": "clusterDelivery:apiovh:serviceInfos/edit",
+              "required": true
+            }
+          ]
+        }
+      ],
+      "description": ""
+    },
+    {
+      "path": "/dedicated/cluster/{serviceName}/terminate",
+      "operations": [
+        {
+          "apiStatus": {
+            "description": "Beta version",
+            "value": "BETA"
+          },
+          "httpMethod": "POST",
+          "parameters": [
+            {
+              "name": "serviceName",
+              "dataType": "uuid",
+              "paramType": "path",
+              "fullType": "uuid",
+              "required": true,
+              "description": "Service name"
+            }
+          ],
+          "responseType": "string",
+          "responseTypes": {
+            "200": "string"
+          },
+          "noAuthentication": false,
+          "description": "Ask for the termination of your service",
+          "iamActions": [
+            {
+              "name": "clusterDelivery:apiovh:terminate",
+              "required": true
+            }
+          ]
+        }
+      ],
+      "description": ""
+    }
+  ],
   "resourcePath": "/dedicated/cluster",
-  "basePath": "https://eu.api.ovh.com/v1",
-  "apis": [],
-  "models": {},
-  "_note": "Spec non fournie dans ce repo — path référencé par _index.json mais sans fichier de spec téléchargé. Convention de nommage : famille + segment en camelCase (ex. dedicatedCeph.json pour /dedicated/ceph), cohérent avec dedicatedCloud.json / sslGateway.json / ipLoadbalancing.json."
+  "basePath": "https://api.ovh.com/1.0",
+  "models": {
+    "dedicated.cluster.AvailabilitiesRaw": {
+      "id": "AvailabilitiesRaw",
+      "namespace": "dedicated.cluster",
+      "description": "Cluster availability",
+      "properties": {
+        "clusterPlanCode": {
+          "type": "string",
+          "fullType": "string",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "Plan code in which the hardware is involved",
+          "required": false
+        },
+        "fqn": {
+          "type": "string",
+          "fullType": "string",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "Fully qualified name and unique name of the hardware",
+          "required": false
+        },
+        "memory": {
+          "type": "string",
+          "fullType": "string",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "Name of the memory hardware part",
+          "required": false
+        },
+        "planCode": {
+          "type": "string",
+          "fullType": "string",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "Plan code in which the hardware is involved",
+          "required": false
+        },
+        "regions": {
+          "type": "dedicated.cluster.AvailabilitiesRawRegion[]",
+          "fullType": "dedicated.cluster.AvailabilitiesRawRegion[]",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "A structure describing the hardware availability for each region",
+          "required": false
+        },
+        "server": {
+          "type": "string",
+          "fullType": "string",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "Name of the base hardware",
+          "required": false
+        },
+        "storage": {
+          "type": "string",
+          "fullType": "string",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "Name of the storage hardware part",
+          "required": false
+        },
+        "systemStorage": {
+          "type": "string",
+          "fullType": "string",
+          "canBeNull": true,
+          "readOnly": true,
+          "description": "Name of the system storage hardware part",
+          "required": false
+        }
+      }
+    },
+    "dedicated.cluster.AvailabilitiesRawRegion": {
+      "id": "AvailabilitiesRawRegion",
+      "namespace": "dedicated.cluster",
+      "description": "A structure describing the hardware raw availability for each region",
+      "properties": {
+        "availability": {
+          "type": "dedicated.server.AvailabilityEnum",
+          "fullType": "dedicated.server.AvailabilityEnum",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "The availability",
+          "required": false
+        },
+        "lastRule": {
+          "type": "string",
+          "fullType": "string",
+          "canBeNull": true,
+          "readOnly": true,
+          "description": "Last availability rule applied",
+          "required": false
+        },
+        "parentAvailable": {
+          "type": "long",
+          "fullType": "long",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "Real stock including parent references",
+          "required": false
+        },
+        "region": {
+          "type": "dedicated.server.AvailabilityEnum",
+          "fullType": "dedicated.server.AvailabilityEnum",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "The region code",
+          "required": false
+        },
+        "trueAvailable": {
+          "type": "long",
+          "fullType": "long",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "Real stock",
+          "required": false
+        }
+      }
+    },
+    "dedicated.cluster.Cluster": {
+      "id": "Cluster",
+      "namespace": "dedicated.cluster",
+      "description": "A structure describing the dedicated cluster",
+      "properties": {
+        "id": {
+          "type": "uuid",
+          "fullType": "uuid",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "Cluster's ID",
+          "required": false
+        },
+        "model": {
+          "type": "string",
+          "fullType": "string",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "Model of the cluster",
+          "required": false
+        },
+        "nodes": {
+          "type": "dedicated.cluster.Node[]",
+          "fullType": "dedicated.cluster.Node[]",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "Cluster's nodes",
+          "required": false
+        },
+        "region": {
+          "type": "string",
+          "fullType": "string",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "Region where cluster is located",
+          "required": false
+        },
+        "status": {
+          "type": "string",
+          "fullType": "string",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "Cluster status",
+          "required": false
+        }
+      }
+    },
+    "dedicated.cluster.ClusterWithIAM": {
+      "id": "Cluster",
+      "namespace": "dedicated.cluster",
+      "description": "A structure describing the dedicated cluster",
+      "properties": {
+        "iam": {
+          "type": "iam.ResourceMetadata",
+          "canBeNull": true,
+          "readOnly": true,
+          "description": "IAM resource metadata",
+          "required": false
+        },
+        "id": {
+          "type": "uuid",
+          "fullType": "uuid",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "Cluster's ID",
+          "required": false
+        },
+        "model": {
+          "type": "string",
+          "fullType": "string",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "Model of the cluster",
+          "required": false
+        },
+        "nodes": {
+          "type": "dedicated.cluster.Node[]",
+          "fullType": "dedicated.cluster.Node[]",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "Cluster's nodes",
+          "required": false
+        },
+        "region": {
+          "type": "string",
+          "fullType": "string",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "Region where cluster is located",
+          "required": false
+        },
+        "status": {
+          "type": "string",
+          "fullType": "string",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "Cluster status",
+          "required": false
+        }
+      }
+    },
+    "dedicated.cluster.Node": {
+      "id": "Node",
+      "namespace": "dedicated.cluster",
+      "description": "A structure describing the nodes of the cluster",
+      "properties": {
+        "id": {
+          "type": "uuid",
+          "fullType": "uuid",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "ID of the node",
+          "required": false
+        },
+        "serverId": {
+          "type": "long",
+          "fullType": "long",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "ID of the server",
+          "required": false
+        },
+        "serverName": {
+          "type": "string",
+          "fullType": "string",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "Name of the server",
+          "required": false
+        }
+      }
+    },
+    "dedicated.cluster.RegionAvailability": {
+      "id": "RegionAvailability",
+      "namespace": "dedicated.cluster",
+      "description": "A structure describing the availabilities of dedicated server",
+      "properties": {
+        "availability": {
+          "type": "dedicated.server.AvailabilityEnum",
+          "fullType": "dedicated.server.AvailabilityEnum",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "The availability",
+          "required": false
+        },
+        "region": {
+          "type": "dedicated.server.AvailabilityRegionalizationEnum",
+          "fullType": "dedicated.server.AvailabilityRegionalizationEnum",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "The region",
+          "required": false
+        }
+      }
+    },
+    "dedicated.cluster.availability": {
+      "id": "availability",
+      "namespace": "dedicated.cluster",
+      "description": "Cluster availability",
+      "properties": {
+        "clusterPlanCode": {
+          "type": "string",
+          "fullType": "string",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "Plan code in which the hardware is involved",
+          "required": false
+        },
+        "fqn": {
+          "type": "string",
+          "fullType": "string",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "Fully qualified name and unique name of the hardware",
+          "required": false
+        },
+        "memory": {
+          "type": "string",
+          "fullType": "string",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "Name of the memory hardware part",
+          "required": false
+        },
+        "planCode": {
+          "type": "string",
+          "fullType": "string",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "Plan code in which the hardware is involved",
+          "required": false
+        },
+        "regions": {
+          "type": "dedicated.cluster.RegionAvailability[]",
+          "fullType": "dedicated.cluster.RegionAvailability[]",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "A structure describing the hardware availability for each datacenter",
+          "required": false
+        },
+        "server": {
+          "type": "string",
+          "fullType": "string",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "Name of the base hardware",
+          "required": false
+        },
+        "storage": {
+          "type": "string",
+          "fullType": "string",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "Name of the storage hardware part",
+          "required": false
+        },
+        "systemStorage": {
+          "type": "string",
+          "fullType": "string",
+          "canBeNull": true,
+          "readOnly": true,
+          "description": "Name of the system storage hardware part",
+          "required": false
+        }
+      }
+    },
+    "dedicated.server.AvailabilityEnum": {
+      "id": "AvailabilityEnum",
+      "namespace": "dedicated.server",
+      "description": "The availability",
+      "enum": [
+        "120H",
+        "1440H",
+        "1H-high",
+        "1H-low",
+        "2160H",
+        "240H",
+        "24H",
+        "480H",
+        "720H",
+        "72H",
+        "comingSoon",
+        "unavailable",
+        "unknown"
+      ],
+      "enumType": "string"
+    },
+    "dedicated.server.AvailabilityRegionalizationEnum": {
+      "id": "AvailabilityRegionalizationEnum",
+      "namespace": "dedicated.server",
+      "description": "The region",
+      "enum": [
+        "ap-south-1",
+        "ap-southeast-sgp",
+        "ap-southeast-syd",
+        "ca-east-1",
+        "ca-east-bhs",
+        "eu-central-waw",
+        "eu-west-eri",
+        "eu-west-gra",
+        "eu-west-lim",
+        "eu-west-par",
+        "eu-west-rbx",
+        "eu-west-sbg",
+        "us-east-vin",
+        "us-west-hil"
+      ],
+      "enumType": "string"
+    },
+    "iam.ResourceMetadata": {
+      "id": "ResourceMetadata",
+      "namespace": "iam",
+      "description": "IAM resource metadata embedded in services models",
+      "properties": {
+        "displayName": {
+          "type": "string",
+          "fullType": "string",
+          "canBeNull": true,
+          "readOnly": true,
+          "description": "Resource display name",
+          "required": false
+        },
+        "id": {
+          "type": "uuid",
+          "fullType": "uuid",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "Unique identifier of the resource",
+          "required": false
+        },
+        "state": {
+          "type": "iam.ResourceMetadata.StateEnum",
+          "fullType": "iam.ResourceMetadata.StateEnum",
+          "canBeNull": true,
+          "readOnly": true,
+          "description": "Resource state",
+          "required": false
+        },
+        "tags": {
+          "type": "map[string]string",
+          "fullType": "map[string]string",
+          "canBeNull": true,
+          "readOnly": true,
+          "description": "Resource tags. Tags that were internally computed are prefixed with ovh:",
+          "required": false
+        },
+        "urn": {
+          "type": "string",
+          "fullType": "string",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "Unique resource name used in policies",
+          "required": false
+        }
+      }
+    },
+    "iam.ResourceMetadata.StateEnum": {
+      "id": "StateEnum",
+      "namespace": "iam.ResourceMetadata",
+      "description": "Resource state",
+      "enum": [
+        "EXPIRED",
+        "IN_CREATION",
+        "OK",
+        "SUSPENDED"
+      ],
+      "enumType": "string"
+    },
+    "iam.resource.TagFilter": {
+      "id": "TagFilter",
+      "namespace": "iam.resource",
+      "description": "Resource tag filter",
+      "properties": {
+        "operator": {
+          "type": "iam.resource.TagFilter.OperatorEnum",
+          "fullType": "iam.resource.TagFilter.OperatorEnum",
+          "canBeNull": true,
+          "readOnly": true,
+          "description": "Operator to use in order to filter on the value (defaults to 'EQ')",
+          "required": false
+        },
+        "value": {
+          "type": "string",
+          "fullType": "string",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "Value to use in order to filter tags",
+          "required": false
+        }
+      }
+    },
+    "iam.resource.TagFilter.OperatorEnum": {
+      "id": "OperatorEnum",
+      "namespace": "iam.resource.TagFilter",
+      "description": "Operator that can be used in order to filter resources tags",
+      "enum": [
+        "EQ",
+        "EXISTS",
+        "ILIKE",
+        "LIKE",
+        "NEQ",
+        "NEXISTS"
+      ],
+      "enumType": "string"
+    },
+    "service.RenewType": {
+      "id": "RenewType",
+      "namespace": "service",
+      "description": "Map a possible renew for a specific service",
+      "properties": {
+        "automatic": {
+          "type": "boolean",
+          "fullType": "boolean",
+          "canBeNull": false,
+          "readOnly": false,
+          "description": "The service is automatically renewed",
+          "required": false
+        },
+        "deleteAtExpiration": {
+          "type": "boolean",
+          "fullType": "boolean",
+          "canBeNull": false,
+          "readOnly": false,
+          "description": "The service will be deleted at expiration",
+          "required": false
+        },
+        "forced": {
+          "type": "boolean",
+          "fullType": "boolean",
+          "canBeNull": false,
+          "readOnly": false,
+          "description": "The service forced to be renewed",
+          "required": false
+        },
+        "manualPayment": {
+          "type": "boolean",
+          "fullType": "boolean",
+          "canBeNull": true,
+          "readOnly": false,
+          "description": "The service needs to be manually renewed and paid",
+          "required": false
+        },
+        "period": {
+          "type": "long",
+          "fullType": "long",
+          "canBeNull": true,
+          "readOnly": false,
+          "description": "period of renew in month",
+          "required": false
+        }
+      }
+    },
+    "service.RenewalTypeEnum": {
+      "id": "RenewalTypeEnum",
+      "namespace": "service",
+      "description": "Detailed renewal type of a service",
+      "enum": [
+        "automaticForcedProduct",
+        "automaticV2012",
+        "automaticV2014",
+        "automaticV2016",
+        "manual",
+        "oneShot",
+        "option"
+      ],
+      "enumType": "string"
+    },
+    "service.StateEnum": {
+      "id": "StateEnum",
+      "namespace": "service",
+      "description": "service.StateEnum",
+      "enum": [
+        "autorenewInProgress",
+        "expired",
+        "inCreation",
+        "ok",
+        "pendingDebt",
+        "unPaid"
+      ],
+      "enumType": "string"
+    },
+    "service.TerminationFutureUseEnum": {
+      "id": "TerminationFutureUseEnum",
+      "namespace": "service",
+      "description": "All future uses you can provide for a service termination",
+      "enum": [
+        "NOT_REPLACING_SERVICE",
+        "OTHER",
+        "SUBSCRIBE_AN_OTHER_SERVICE",
+        "SUBSCRIBE_OTHER_KIND_OF_SERVICE_WITH_COMPETITOR",
+        "SUBSCRIBE_SIMILAR_SERVICE_WITH_COMPETITOR"
+      ],
+      "enumType": "string"
+    },
+    "service.TerminationReasonEnum": {
+      "id": "TerminationReasonEnum",
+      "namespace": "service",
+      "description": "All reasons you can provide for a service termination",
+      "enum": [
+        "FEATURES_DONT_SUIT_ME",
+        "LACK_OF_PERFORMANCES",
+        "MIGRATED_TO_ANOTHER_OVH_PRODUCT",
+        "MIGRATED_TO_COMPETITOR",
+        "NOT_ENOUGH_RECOGNITION",
+        "NOT_NEEDED_ANYMORE",
+        "NOT_RELIABLE",
+        "NO_ANSWER",
+        "OTHER",
+        "PRODUCT_DIMENSION_DONT_SUIT_ME",
+        "PRODUCT_TOOLS_DONT_SUIT_ME",
+        "TOO_EXPENSIVE",
+        "TOO_HARD_TO_USE",
+        "UNSATIFIED_BY_CUSTOMER_SUPPORT"
+      ],
+      "enumType": "string"
+    },
+    "services.Service": {
+      "id": "Service",
+      "namespace": "services",
+      "description": "Details about a Service",
+      "properties": {
+        "canDeleteAtExpiration": {
+          "type": "boolean",
+          "fullType": "boolean",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "Indicates that the service can be set up to be deleted at expiration",
+          "required": false
+        },
+        "contactAdmin": {
+          "type": "string",
+          "fullType": "string",
+          "canBeNull": false,
+          "readOnly": true,
+          "required": false
+        },
+        "contactBilling": {
+          "type": "string",
+          "fullType": "string",
+          "canBeNull": false,
+          "readOnly": true,
+          "required": false
+        },
+        "contactTech": {
+          "type": "string",
+          "fullType": "string",
+          "canBeNull": false,
+          "readOnly": true,
+          "required": false
+        },
+        "creation": {
+          "type": "date",
+          "fullType": "date",
+          "canBeNull": false,
+          "readOnly": true,
+          "required": false
+        },
+        "domain": {
+          "type": "string",
+          "fullType": "string",
+          "canBeNull": false,
+          "readOnly": true,
+          "required": false
+        },
+        "engagedUpTo": {
+          "type": "date",
+          "fullType": "date",
+          "canBeNull": true,
+          "readOnly": true,
+          "required": false
+        },
+        "expiration": {
+          "type": "date",
+          "fullType": "date",
+          "canBeNull": false,
+          "readOnly": true,
+          "required": false
+        },
+        "possibleRenewPeriod": {
+          "type": "long[]",
+          "fullType": "long[]",
+          "canBeNull": true,
+          "readOnly": true,
+          "description": "All the possible renew period of your service in month",
+          "required": false
+        },
+        "renew": {
+          "type": "service.RenewType",
+          "fullType": "service.RenewType",
+          "canBeNull": true,
+          "readOnly": false,
+          "description": "Way of handling the renew",
+          "required": false
+        },
+        "renewalType": {
+          "type": "service.RenewalTypeEnum",
+          "fullType": "service.RenewalTypeEnum",
+          "canBeNull": false,
+          "readOnly": true,
+          "required": false
+        },
+        "serviceId": {
+          "type": "long",
+          "fullType": "long",
+          "canBeNull": false,
+          "readOnly": true,
+          "required": false
+        },
+        "status": {
+          "type": "service.StateEnum",
+          "fullType": "service.StateEnum",
+          "canBeNull": false,
+          "readOnly": true,
+          "required": false
+        }
+      }
+    },
+    "services.changeContact": {
+      "id": "changeContact",
+      "namespace": "services",
+      "description": "Service change contact payload",
+      "properties": {
+        "contactAdmin": {
+          "type": "string",
+          "fullType": "string",
+          "canBeNull": false,
+          "readOnly": false,
+          "description": "The contact to set as admin contact",
+          "required": false
+        },
+        "contactBilling": {
+          "type": "string",
+          "fullType": "string",
+          "canBeNull": false,
+          "readOnly": false,
+          "description": "The contact to set as billing contact",
+          "required": false
+        },
+        "contactTech": {
+          "type": "string",
+          "fullType": "string",
+          "canBeNull": false,
+          "readOnly": false,
+          "description": "The contact to set as tech contact",
+          "required": false
+        }
+      }
+    },
+    "services.confirmTermination": {
+      "id": "confirmTermination",
+      "namespace": "services",
+      "description": "Service confirm termination payload",
+      "properties": {
+        "commentary": {
+          "type": "string",
+          "fullType": "string",
+          "canBeNull": false,
+          "readOnly": false,
+          "description": "Commentary about your termination request",
+          "required": false
+        },
+        "commentaryFutureUse": {
+          "type": "string",
+          "fullType": "string",
+          "canBeNull": false,
+          "readOnly": false,
+          "description": "Commentary about your future use",
+          "required": false
+        },
+        "commentaryReason": {
+          "type": "string",
+          "fullType": "string",
+          "canBeNull": false,
+          "readOnly": false,
+          "description": "Commentary about your reason for termination request",
+          "required": false
+        },
+        "futureUse": {
+          "type": "service.TerminationFutureUseEnum",
+          "fullType": "service.TerminationFutureUseEnum",
+          "canBeNull": false,
+          "readOnly": false,
+          "description": "All future uses you can provide for a service termination",
+          "required": false
+        },
+        "reason": {
+          "type": "service.TerminationReasonEnum",
+          "fullType": "service.TerminationReasonEnum",
+          "canBeNull": false,
+          "readOnly": false,
+          "description": "All reasons you can provide for a service termination",
+          "required": false
+        },
+        "token": {
+          "type": "string",
+          "fullType": "string",
+          "canBeNull": false,
+          "readOnly": false,
+          "description": "The termination token sent by email to the admin contact",
+          "required": true
+        }
+      }
+    }
+  }
 }

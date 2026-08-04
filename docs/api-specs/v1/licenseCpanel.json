@@ -1,8 +1,1817 @@
 {
   "apiVersion": "1.0",
+  "apis": [
+    {
+      "path": "/license/cpanel",
+      "operations": [
+        {
+          "apiStatus": {
+            "description": "Stable production version",
+            "value": "PRODUCTION"
+          },
+          "httpMethod": "GET",
+          "parameters": [
+            {
+              "name": "iamTags",
+              "dataType": "map[string][]iam.resource.TagFilter",
+              "paramType": "query",
+              "required": false,
+              "description": "Filter resources on IAM tags"
+            }
+          ],
+          "responseType": "string[]",
+          "responseTypes": {
+            "200": "string[]"
+          },
+          "noAuthentication": false,
+          "description": "List available services",
+          "iamActions": [
+            {
+              "name": "licenseCpanel:apiovh:get",
+              "required": true
+            }
+          ]
+        }
+      ],
+      "description": "Operations about the LICENSE service"
+    },
+    {
+      "path": "/license/cpanel/orderableVersions",
+      "operations": [
+        {
+          "apiStatus": {
+            "description": "Stable production version",
+            "value": "PRODUCTION"
+          },
+          "httpMethod": "GET",
+          "parameters": [
+            {
+              "name": "ip",
+              "dataType": "ipv4",
+              "paramType": "query",
+              "fullType": "ipv4",
+              "required": true,
+              "description": "Your license Ip"
+            }
+          ],
+          "responseType": "license.CpanelOrderConfiguration[]",
+          "responseTypes": {
+            "200": "license.CpanelOrderConfiguration[]"
+          },
+          "noAuthentication": false,
+          "description": "Get the orderable CPanel versions",
+          "iamActions": [
+            {
+              "name": "account:apiovh:licenseCpanel/orderableVersions/get",
+              "required": true
+            }
+          ]
+        }
+      ],
+      "description": "Get the orderable CPanel versions"
+    },
+    {
+      "path": "/license/cpanel/{serviceName}",
+      "operations": [
+        {
+          "apiStatus": {
+            "description": "Stable production version",
+            "value": "PRODUCTION"
+          },
+          "httpMethod": "GET",
+          "parameters": [
+            {
+              "name": "serviceName",
+              "dataType": "string",
+              "paramType": "path",
+              "fullType": "string",
+              "required": true,
+              "description": "The name of your Cpanel license"
+            }
+          ],
+          "responseType": "license.cpanel.CpanelWithIAM",
+          "responseTypes": {
+            "200": "license.cpanel.CpanelWithIAM"
+          },
+          "noAuthentication": false,
+          "description": "Get this object properties",
+          "iamActions": [
+            {
+              "name": "licenseCpanel:apiovh:get",
+              "required": true
+            }
+          ]
+        },
+        {
+          "apiStatus": {
+            "description": "Stable production version",
+            "value": "PRODUCTION"
+          },
+          "httpMethod": "PUT",
+          "parameters": [
+            {
+              "dataType": "license.cpanel.Cpanel",
+              "paramType": "body",
+              "fullType": "license.cpanel.Cpanel",
+              "required": true,
+              "description": "New object properties"
+            },
+            {
+              "name": "serviceName",
+              "dataType": "string",
+              "paramType": "path",
+              "fullType": "string",
+              "required": true,
+              "description": "The name of your Cpanel license"
+            }
+          ],
+          "responseType": "void",
+          "responseTypes": {
+            "200": "void"
+          },
+          "noAuthentication": false,
+          "description": "Alter this object properties",
+          "iamActions": [
+            {
+              "name": "licenseCpanel:apiovh:put",
+              "required": true
+            }
+          ]
+        }
+      ],
+      "description": "Your Cpanel license"
+    },
+    {
+      "path": "/license/cpanel/{serviceName}/allowedDestinationIp",
+      "operations": [
+        {
+          "apiStatus": {
+            "description": "Stable production version",
+            "value": "PRODUCTION"
+          },
+          "httpMethod": "GET",
+          "parameters": [
+            {
+              "name": "serviceName",
+              "dataType": "string",
+              "paramType": "path",
+              "fullType": "string",
+              "required": true,
+              "description": "The name of your Cpanel license"
+            }
+          ],
+          "responseType": "ipBlock[]",
+          "responseTypes": {
+            "200": "ipBlock[]"
+          },
+          "noAuthentication": false,
+          "description": "Returns an array of ips where the license can be moved to",
+          "iamActions": [
+            {
+              "name": "licenseCpanel:apiovh:allowedDestinationIp/get",
+              "required": true
+            }
+          ]
+        }
+      ],
+      "description": "allowedDestinationIp operations"
+    },
+    {
+      "path": "/license/cpanel/{serviceName}/canLicenseBeMovedTo",
+      "operations": [
+        {
+          "apiStatus": {
+            "description": "Stable production version",
+            "value": "PRODUCTION"
+          },
+          "httpMethod": "GET",
+          "parameters": [
+            {
+              "name": "destinationIp",
+              "dataType": "ipv4",
+              "paramType": "query",
+              "fullType": "ipv4",
+              "required": true,
+              "description": "The Ip on which you want to move this license"
+            },
+            {
+              "name": "serviceName",
+              "dataType": "string",
+              "paramType": "path",
+              "fullType": "string",
+              "required": true,
+              "description": "The name of your Cpanel license"
+            }
+          ],
+          "responseType": "license.ChangeIpStatus",
+          "responseTypes": {
+            "200": "license.ChangeIpStatus"
+          },
+          "noAuthentication": false,
+          "description": "Will tell if the ip can accept the license",
+          "iamActions": [
+            {
+              "name": "licenseCpanel:apiovh:canLicenseBeMovedTo/get",
+              "required": true
+            }
+          ]
+        }
+      ],
+      "description": "canLicenseBeMovedTo operations"
+    },
+    {
+      "path": "/license/cpanel/{serviceName}/changeIp",
+      "operations": [
+        {
+          "apiStatus": {
+            "description": "Stable production version",
+            "value": "PRODUCTION"
+          },
+          "httpMethod": "POST",
+          "parameters": [
+            {
+              "name": "destinationIp",
+              "dataType": "ipv4",
+              "paramType": "body",
+              "fullType": "ipv4",
+              "required": true,
+              "description": "The Ip on which you want to move this license"
+            },
+            {
+              "name": "serviceName",
+              "dataType": "string",
+              "paramType": "path",
+              "fullType": "string",
+              "required": true,
+              "description": "The name of your Cpanel license"
+            }
+          ],
+          "responseType": "license.Task",
+          "responseTypes": {
+            "200": "license.Task"
+          },
+          "noAuthentication": false,
+          "description": "Move this license to another Ip",
+          "iamActions": [
+            {
+              "name": "licenseCpanel:apiovh:changeIp",
+              "required": true
+            }
+          ]
+        }
+      ],
+      "description": "changeIp operations"
+    },
+    {
+      "path": "/license/cpanel/{serviceName}/confirmTermination",
+      "operations": [
+        {
+          "apiStatus": {
+            "description": "Stable production version",
+            "value": "PRODUCTION"
+          },
+          "httpMethod": "POST",
+          "parameters": [
+            {
+              "name": "commentary",
+              "dataType": "string",
+              "paramType": "body",
+              "fullType": "string",
+              "required": false,
+              "description": "Commentary about your termination request"
+            },
+            {
+              "name": "futureUse",
+              "dataType": "service.TerminationFutureUseEnum",
+              "paramType": "body",
+              "fullType": "service.TerminationFutureUseEnum",
+              "required": false,
+              "description": "What next after your termination request"
+            },
+            {
+              "name": "reason",
+              "dataType": "service.TerminationReasonEnum",
+              "paramType": "body",
+              "fullType": "service.TerminationReasonEnum",
+              "required": false,
+              "description": "Reason of your termination request"
+            },
+            {
+              "name": "serviceName",
+              "dataType": "string",
+              "paramType": "path",
+              "fullType": "string",
+              "required": true,
+              "description": "The name of your Cpanel license"
+            },
+            {
+              "name": "token",
+              "dataType": "string",
+              "paramType": "body",
+              "fullType": "string",
+              "required": true,
+              "description": "The termination token sent by email to the admin contact"
+            }
+          ],
+          "responseType": "string",
+          "responseTypes": {
+            "200": "string"
+          },
+          "noAuthentication": false,
+          "description": "Confirm service termination",
+          "iamActions": [
+            {
+              "name": "licenseCpanel:apiovh:confirmTermination",
+              "required": true
+            }
+          ]
+        }
+      ],
+      "description": "Confirm service termination"
+    },
+    {
+      "path": "/license/cpanel/{serviceName}/serviceInfos",
+      "operations": [
+        {
+          "apiStatus": {
+            "description": "Stable production version",
+            "value": "PRODUCTION"
+          },
+          "httpMethod": "GET",
+          "parameters": [
+            {
+              "name": "serviceName",
+              "dataType": "string",
+              "paramType": "path",
+              "fullType": "string",
+              "required": true,
+              "description": "The name of your Cpanel license"
+            }
+          ],
+          "responseType": "services.Service",
+          "responseTypes": {
+            "200": "services.Service"
+          },
+          "noAuthentication": false,
+          "description": "Get service information",
+          "iamActions": [
+            {
+              "name": "licenseCpanel:apiovh:serviceInfos/get",
+              "required": true
+            }
+          ]
+        },
+        {
+          "apiStatus": {
+            "description": "Stable production version",
+            "value": "PRODUCTION"
+          },
+          "httpMethod": "PUT",
+          "parameters": [
+            {
+              "dataType": "services.Service",
+              "paramType": "body",
+              "fullType": "services.Service",
+              "required": true,
+              "description": "New object properties"
+            },
+            {
+              "name": "serviceName",
+              "dataType": "string",
+              "paramType": "path",
+              "fullType": "string",
+              "required": true,
+              "description": "The name of your Cpanel license"
+            }
+          ],
+          "responseType": "void",
+          "responseTypes": {
+            "200": "void"
+          },
+          "noAuthentication": false,
+          "description": "Update service information",
+          "iamActions": [
+            {
+              "name": "licenseCpanel:apiovh:serviceInfos/edit",
+              "required": true
+            }
+          ]
+        }
+      ],
+      "description": "Details about a Service"
+    },
+    {
+      "path": "/license/cpanel/{serviceName}/tasks",
+      "operations": [
+        {
+          "apiStatus": {
+            "description": "Stable production version",
+            "value": "PRODUCTION"
+          },
+          "httpMethod": "GET",
+          "parameters": [
+            {
+              "name": "action",
+              "dataType": "license.ActionType",
+              "paramType": "query",
+              "fullType": "license.ActionType",
+              "required": false,
+              "description": "Filter the value of action property (=)"
+            },
+            {
+              "name": "serviceName",
+              "dataType": "string",
+              "paramType": "path",
+              "fullType": "string",
+              "required": true,
+              "description": "The name of your Cpanel license"
+            },
+            {
+              "name": "status",
+              "dataType": "license.TaskStateEnum",
+              "paramType": "query",
+              "fullType": "license.TaskStateEnum",
+              "required": false,
+              "description": "Filter the value of status property (=)"
+            }
+          ],
+          "responseType": "long[]",
+          "responseTypes": {
+            "200": "long[]"
+          },
+          "noAuthentication": false,
+          "description": "tasks linked to this license",
+          "iamActions": [
+            {
+              "name": "licenseCpanel:apiovh:tasks/get",
+              "required": true
+            }
+          ]
+        }
+      ],
+      "description": "List the license.Task objects"
+    },
+    {
+      "path": "/license/cpanel/{serviceName}/tasks/{taskId}",
+      "operations": [
+        {
+          "apiStatus": {
+            "description": "Stable production version",
+            "value": "PRODUCTION"
+          },
+          "httpMethod": "GET",
+          "parameters": [
+            {
+              "name": "serviceName",
+              "dataType": "string",
+              "paramType": "path",
+              "fullType": "string",
+              "required": true,
+              "description": "The name of your Cpanel license"
+            },
+            {
+              "name": "taskId",
+              "dataType": "long",
+              "paramType": "path",
+              "fullType": "long",
+              "required": true,
+              "description": "This Task id"
+            }
+          ],
+          "responseType": "license.Task",
+          "responseTypes": {
+            "200": "license.Task"
+          },
+          "noAuthentication": false,
+          "description": "Get this object properties",
+          "iamActions": [
+            {
+              "name": "licenseCpanel:apiovh:tasks/get",
+              "required": true
+            }
+          ]
+        }
+      ],
+      "description": "licenses Todos"
+    },
+    {
+      "path": "/license/cpanel/{serviceName}/terminate",
+      "operations": [
+        {
+          "apiStatus": {
+            "description": "Stable production version",
+            "value": "PRODUCTION"
+          },
+          "httpMethod": "POST",
+          "parameters": [
+            {
+              "name": "serviceName",
+              "dataType": "string",
+              "paramType": "path",
+              "fullType": "string",
+              "required": true,
+              "description": "The name of your Cpanel license"
+            }
+          ],
+          "responseType": "string",
+          "responseTypes": {
+            "200": "string"
+          },
+          "noAuthentication": false,
+          "description": "Ask for the termination of your service",
+          "longDescription": "Ask for the termination of your service. Admin contact of this service will receive a termination token by email in order to confirm its termination with /confirmTermination endpoint.",
+          "iamActions": [
+            {
+              "name": "licenseCpanel:apiovh:terminate",
+              "required": true
+            }
+          ]
+        }
+      ],
+      "description": "Ask for the termination of your service. Admin contact of this service will receive a termination token in order to confirm its termination with /confirmTermination endpoint."
+    }
+  ],
   "resourcePath": "/license/cpanel",
-  "basePath": "https://eu.api.ovh.com/v1",
-  "apis": [],
-  "models": {},
-  "_note": "Spec non fournie dans ce repo — path référencé par _index.json mais sans fichier de spec téléchargé. Convention de nommage : famille + segment en camelCase (ex. dedicatedCeph.json pour /dedicated/ceph), cohérent avec dedicatedCloud.json / sslGateway.json / ipLoadbalancing.json."
+  "basePath": "https://api.ovh.com/1.0",
+  "models": {
+    "iam.ResourceMetadata": {
+      "id": "ResourceMetadata",
+      "namespace": "iam",
+      "description": "IAM resource metadata embedded in services models",
+      "properties": {
+        "displayName": {
+          "type": "string",
+          "fullType": "string",
+          "canBeNull": true,
+          "readOnly": true,
+          "description": "Resource display name",
+          "required": false
+        },
+        "id": {
+          "type": "uuid",
+          "fullType": "uuid",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "Unique identifier of the resource",
+          "required": false
+        },
+        "state": {
+          "type": "iam.ResourceMetadata.StateEnum",
+          "fullType": "iam.ResourceMetadata.StateEnum",
+          "canBeNull": true,
+          "readOnly": true,
+          "description": "Resource state",
+          "required": false
+        },
+        "tags": {
+          "type": "map[string]string",
+          "fullType": "map[string]string",
+          "canBeNull": true,
+          "readOnly": true,
+          "description": "Resource tags. Tags that were internally computed are prefixed with ovh:",
+          "required": false
+        },
+        "urn": {
+          "type": "string",
+          "fullType": "string",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "Unique resource name used in policies",
+          "required": false
+        }
+      }
+    },
+    "iam.ResourceMetadata.StateEnum": {
+      "id": "StateEnum",
+      "namespace": "iam.ResourceMetadata",
+      "description": "Resource state",
+      "enum": [
+        "EXPIRED",
+        "IN_CREATION",
+        "OK",
+        "SUSPENDED"
+      ],
+      "enumType": "string"
+    },
+    "iam.resource.TagFilter": {
+      "id": "TagFilter",
+      "namespace": "iam.resource",
+      "description": "Resource tag filter",
+      "properties": {
+        "operator": {
+          "type": "iam.resource.TagFilter.OperatorEnum",
+          "fullType": "iam.resource.TagFilter.OperatorEnum",
+          "canBeNull": true,
+          "readOnly": true,
+          "description": "Operator to use in order to filter on the value (defaults to 'EQ')",
+          "required": false
+        },
+        "value": {
+          "type": "string",
+          "fullType": "string",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "Value to use in order to filter tags",
+          "required": false
+        }
+      }
+    },
+    "iam.resource.TagFilter.OperatorEnum": {
+      "id": "OperatorEnum",
+      "namespace": "iam.resource.TagFilter",
+      "description": "Operator that can be used in order to filter resources tags",
+      "enum": [
+        "EQ",
+        "EXISTS",
+        "ILIKE",
+        "LIKE",
+        "NEQ",
+        "NEXISTS"
+      ],
+      "enumType": "string"
+    },
+    "license.ActionType": {
+      "id": "ActionType",
+      "namespace": "license",
+      "description": "A short description of what does the Task on your license",
+      "enum": [
+        "addWindowFromExistingSerial",
+        "changeIp",
+        "changeOs",
+        "installLicense",
+        "optionUpgrade",
+        "releaseOption",
+        "versionUpgrade"
+      ],
+      "enumType": "string"
+    },
+    "license.ChangeIpMessageEnum": {
+      "id": "ChangeIpMessageEnum",
+      "namespace": "license",
+      "description": "Messages from change IP",
+      "enum": [
+        "OK",
+        "destinationNotAllowed",
+        "licenseAlreadyExists",
+        "notAllowedToHandleThis",
+        "notSameType",
+        "sameIp",
+        "versionNotAllowed"
+      ],
+      "enumType": "string"
+    },
+    "license.ChangeIpStatus": {
+      "id": "ChangeIpStatus",
+      "namespace": "license",
+      "description": "License change ip status return",
+      "properties": {
+        "message": {
+          "type": "license.ChangeIpMessageEnum",
+          "canBeNull": false,
+          "readOnly": false,
+          "required": false
+        },
+        "success": {
+          "type": "boolean",
+          "canBeNull": false,
+          "readOnly": false,
+          "required": false
+        }
+      }
+    },
+    "license.CpanelOrderConfiguration": {
+      "id": "CpanelOrderConfiguration",
+      "namespace": "license",
+      "description": "The serviceTypes allowed to Order a CPanel version",
+      "properties": {
+        "orderableVersions": {
+          "type": "license.OrderableCpanelCompatibilityInfos[]",
+          "canBeNull": false,
+          "readOnly": false,
+          "required": false
+        },
+        "serviceType": {
+          "type": "license.LicenseTypeEnum",
+          "canBeNull": false,
+          "readOnly": false,
+          "required": false
+        }
+      }
+    },
+    "license.CpanelVersionEnum": {
+      "id": "CpanelVersionEnum",
+      "namespace": "license",
+      "description": "All versions available for Cpanel products",
+      "enum": [
+        "VERSION_11_FOR_LINUX",
+        "VERSION_11_FOR_VIRTUOZZO",
+        "VERSION_11_FOR_VPS",
+        "cpanel-license-version-11",
+        "cpanel-license-version-11-for-virtuozzo",
+        "cpanel-license-version-11-for-vps",
+        "version-admin-cloud",
+        "version-plus-cloud",
+        "version-premier-cloud-100",
+        "version-premier-cloud-1000",
+        "version-premier-cloud-10000",
+        "version-premier-cloud-1100",
+        "version-premier-cloud-1200",
+        "version-premier-cloud-1300",
+        "version-premier-cloud-1400",
+        "version-premier-cloud-150",
+        "version-premier-cloud-1500",
+        "version-premier-cloud-1600",
+        "version-premier-cloud-1700",
+        "version-premier-cloud-1800",
+        "version-premier-cloud-1900",
+        "version-premier-cloud-200",
+        "version-premier-cloud-2000",
+        "version-premier-cloud-2100",
+        "version-premier-cloud-2200",
+        "version-premier-cloud-2300",
+        "version-premier-cloud-2400",
+        "version-premier-cloud-250",
+        "version-premier-cloud-2500",
+        "version-premier-cloud-2600",
+        "version-premier-cloud-2700",
+        "version-premier-cloud-2800",
+        "version-premier-cloud-2900",
+        "version-premier-cloud-300",
+        "version-premier-cloud-3000",
+        "version-premier-cloud-3100",
+        "version-premier-cloud-3200",
+        "version-premier-cloud-3300",
+        "version-premier-cloud-3400",
+        "version-premier-cloud-3500",
+        "version-premier-cloud-3600",
+        "version-premier-cloud-3700",
+        "version-premier-cloud-3800",
+        "version-premier-cloud-3900",
+        "version-premier-cloud-400",
+        "version-premier-cloud-4000",
+        "version-premier-cloud-4100",
+        "version-premier-cloud-4200",
+        "version-premier-cloud-4300",
+        "version-premier-cloud-4400",
+        "version-premier-cloud-4500",
+        "version-premier-cloud-4600",
+        "version-premier-cloud-4700",
+        "version-premier-cloud-4800",
+        "version-premier-cloud-4900",
+        "version-premier-cloud-500",
+        "version-premier-cloud-5000",
+        "version-premier-cloud-5100",
+        "version-premier-cloud-5200",
+        "version-premier-cloud-5300",
+        "version-premier-cloud-5400",
+        "version-premier-cloud-5500",
+        "version-premier-cloud-5600",
+        "version-premier-cloud-5700",
+        "version-premier-cloud-5800",
+        "version-premier-cloud-5900",
+        "version-premier-cloud-600",
+        "version-premier-cloud-6000",
+        "version-premier-cloud-6100",
+        "version-premier-cloud-6200",
+        "version-premier-cloud-6300",
+        "version-premier-cloud-6400",
+        "version-premier-cloud-6500",
+        "version-premier-cloud-6600",
+        "version-premier-cloud-6700",
+        "version-premier-cloud-6800",
+        "version-premier-cloud-6900",
+        "version-premier-cloud-700",
+        "version-premier-cloud-7000",
+        "version-premier-cloud-7100",
+        "version-premier-cloud-7200",
+        "version-premier-cloud-7300",
+        "version-premier-cloud-7400",
+        "version-premier-cloud-7500",
+        "version-premier-cloud-7600",
+        "version-premier-cloud-7700",
+        "version-premier-cloud-7800",
+        "version-premier-cloud-7900",
+        "version-premier-cloud-800",
+        "version-premier-cloud-8000",
+        "version-premier-cloud-8100",
+        "version-premier-cloud-8200",
+        "version-premier-cloud-8300",
+        "version-premier-cloud-8400",
+        "version-premier-cloud-8500",
+        "version-premier-cloud-8600",
+        "version-premier-cloud-8700",
+        "version-premier-cloud-8800",
+        "version-premier-cloud-8900",
+        "version-premier-cloud-900",
+        "version-premier-cloud-9000",
+        "version-premier-cloud-9100",
+        "version-premier-cloud-9200",
+        "version-premier-cloud-9300",
+        "version-premier-cloud-9400",
+        "version-premier-cloud-9500",
+        "version-premier-cloud-9600",
+        "version-premier-cloud-9700",
+        "version-premier-cloud-9800",
+        "version-premier-cloud-9900",
+        "version-premier-metal-100",
+        "version-premier-metal-1000",
+        "version-premier-metal-10000",
+        "version-premier-metal-1100",
+        "version-premier-metal-1200",
+        "version-premier-metal-1300",
+        "version-premier-metal-1400",
+        "version-premier-metal-150",
+        "version-premier-metal-1500",
+        "version-premier-metal-1600",
+        "version-premier-metal-1700",
+        "version-premier-metal-1800",
+        "version-premier-metal-1900",
+        "version-premier-metal-200",
+        "version-premier-metal-2000",
+        "version-premier-metal-2100",
+        "version-premier-metal-2200",
+        "version-premier-metal-2300",
+        "version-premier-metal-2400",
+        "version-premier-metal-250",
+        "version-premier-metal-2500",
+        "version-premier-metal-2600",
+        "version-premier-metal-2700",
+        "version-premier-metal-2800",
+        "version-premier-metal-2900",
+        "version-premier-metal-300",
+        "version-premier-metal-3000",
+        "version-premier-metal-3100",
+        "version-premier-metal-3200",
+        "version-premier-metal-3300",
+        "version-premier-metal-3400",
+        "version-premier-metal-3500",
+        "version-premier-metal-3600",
+        "version-premier-metal-3700",
+        "version-premier-metal-3800",
+        "version-premier-metal-3900",
+        "version-premier-metal-400",
+        "version-premier-metal-4000",
+        "version-premier-metal-4100",
+        "version-premier-metal-4200",
+        "version-premier-metal-4300",
+        "version-premier-metal-4400",
+        "version-premier-metal-4500",
+        "version-premier-metal-4600",
+        "version-premier-metal-4700",
+        "version-premier-metal-4800",
+        "version-premier-metal-4900",
+        "version-premier-metal-500",
+        "version-premier-metal-5000",
+        "version-premier-metal-5100",
+        "version-premier-metal-5200",
+        "version-premier-metal-5300",
+        "version-premier-metal-5400",
+        "version-premier-metal-5500",
+        "version-premier-metal-5600",
+        "version-premier-metal-5700",
+        "version-premier-metal-5800",
+        "version-premier-metal-5900",
+        "version-premier-metal-600",
+        "version-premier-metal-6000",
+        "version-premier-metal-6100",
+        "version-premier-metal-6200",
+        "version-premier-metal-6300",
+        "version-premier-metal-6400",
+        "version-premier-metal-6500",
+        "version-premier-metal-6600",
+        "version-premier-metal-6700",
+        "version-premier-metal-6800",
+        "version-premier-metal-6900",
+        "version-premier-metal-700",
+        "version-premier-metal-7000",
+        "version-premier-metal-7100",
+        "version-premier-metal-7200",
+        "version-premier-metal-7300",
+        "version-premier-metal-7400",
+        "version-premier-metal-7500",
+        "version-premier-metal-7600",
+        "version-premier-metal-7700",
+        "version-premier-metal-7800",
+        "version-premier-metal-7900",
+        "version-premier-metal-800",
+        "version-premier-metal-8000",
+        "version-premier-metal-8100",
+        "version-premier-metal-8200",
+        "version-premier-metal-8300",
+        "version-premier-metal-8400",
+        "version-premier-metal-8500",
+        "version-premier-metal-8600",
+        "version-premier-metal-8700",
+        "version-premier-metal-8800",
+        "version-premier-metal-8900",
+        "version-premier-metal-900",
+        "version-premier-metal-9000",
+        "version-premier-metal-9100",
+        "version-premier-metal-9200",
+        "version-premier-metal-9300",
+        "version-premier-metal-9400",
+        "version-premier-metal-9500",
+        "version-premier-metal-9600",
+        "version-premier-metal-9700",
+        "version-premier-metal-9800",
+        "version-premier-metal-9900",
+        "version-pro-cloud",
+        "version-solo-cloud",
+        "version-solo-metal"
+      ],
+      "enumType": "string"
+    },
+    "license.LicenseTypeEnum": {
+      "id": "LicenseTypeEnum",
+      "namespace": "license",
+      "description": "Possible values for license type",
+      "enum": [
+        "dedicated",
+        "dedicatedCloud",
+        "dedicatedFailover",
+        "failover",
+        "vm",
+        "vps",
+        "vps_ceph",
+        "vps_classic",
+        "vps_cloud",
+        "vps_cloud_2016",
+        "vps_ssd"
+      ],
+      "enumType": "string"
+    },
+    "license.OrderableCpanelCompatibilityInfos": {
+      "id": "OrderableCpanelCompatibilityInfos",
+      "namespace": "license",
+      "description": "All versions available for Cpanel products",
+      "properties": {
+        "version": {
+          "type": "license.OrderableCpanelVersionEnum",
+          "canBeNull": false,
+          "readOnly": false,
+          "required": false
+        }
+      }
+    },
+    "license.OrderableCpanelVersionEnum": {
+      "id": "OrderableCpanelVersionEnum",
+      "namespace": "license",
+      "description": "All versions available for Cpanel products",
+      "enum": [
+        "VERSION_11_FOR_LINUX",
+        "VERSION_11_FOR_VIRTUOZZO",
+        "VERSION_11_FOR_VPS",
+        "cpanel-license-admin-cloud",
+        "cpanel-license-plus-cloud",
+        "cpanel-license-premier-cloud-100-accounts",
+        "cpanel-license-premier-cloud-1000-accounts",
+        "cpanel-license-premier-cloud-10000-accounts",
+        "cpanel-license-premier-cloud-1100-accounts",
+        "cpanel-license-premier-cloud-1200-accounts",
+        "cpanel-license-premier-cloud-1300-accounts",
+        "cpanel-license-premier-cloud-1400-accounts",
+        "cpanel-license-premier-cloud-150-accounts",
+        "cpanel-license-premier-cloud-1500-accounts",
+        "cpanel-license-premier-cloud-1600-accounts",
+        "cpanel-license-premier-cloud-1700-accounts",
+        "cpanel-license-premier-cloud-1800-accounts",
+        "cpanel-license-premier-cloud-1900-accounts",
+        "cpanel-license-premier-cloud-200-accounts",
+        "cpanel-license-premier-cloud-2000-accounts",
+        "cpanel-license-premier-cloud-2100-accounts",
+        "cpanel-license-premier-cloud-2200-accounts",
+        "cpanel-license-premier-cloud-2300-accounts",
+        "cpanel-license-premier-cloud-2400-accounts",
+        "cpanel-license-premier-cloud-250-accounts",
+        "cpanel-license-premier-cloud-2500-accounts",
+        "cpanel-license-premier-cloud-2600-accounts",
+        "cpanel-license-premier-cloud-2700-accounts",
+        "cpanel-license-premier-cloud-2800-accounts",
+        "cpanel-license-premier-cloud-2900-accounts",
+        "cpanel-license-premier-cloud-300-accounts",
+        "cpanel-license-premier-cloud-3000-accounts",
+        "cpanel-license-premier-cloud-3100-accounts",
+        "cpanel-license-premier-cloud-3200-accounts",
+        "cpanel-license-premier-cloud-3300-accounts",
+        "cpanel-license-premier-cloud-3400-accounts",
+        "cpanel-license-premier-cloud-3500-accounts",
+        "cpanel-license-premier-cloud-3600-accounts",
+        "cpanel-license-premier-cloud-3700-accounts",
+        "cpanel-license-premier-cloud-3800-accounts",
+        "cpanel-license-premier-cloud-3900-accounts",
+        "cpanel-license-premier-cloud-400-accounts",
+        "cpanel-license-premier-cloud-4000-accounts",
+        "cpanel-license-premier-cloud-4100-accounts",
+        "cpanel-license-premier-cloud-4200-accounts",
+        "cpanel-license-premier-cloud-4300-accounts",
+        "cpanel-license-premier-cloud-4400-accounts",
+        "cpanel-license-premier-cloud-4500-accounts",
+        "cpanel-license-premier-cloud-4600-accounts",
+        "cpanel-license-premier-cloud-4700-accounts",
+        "cpanel-license-premier-cloud-4800-accounts",
+        "cpanel-license-premier-cloud-4900-accounts",
+        "cpanel-license-premier-cloud-500-accounts",
+        "cpanel-license-premier-cloud-5000-accounts",
+        "cpanel-license-premier-cloud-5100-accounts",
+        "cpanel-license-premier-cloud-5200-accounts",
+        "cpanel-license-premier-cloud-5300-accounts",
+        "cpanel-license-premier-cloud-5400-accounts",
+        "cpanel-license-premier-cloud-5500-accounts",
+        "cpanel-license-premier-cloud-5600-accounts",
+        "cpanel-license-premier-cloud-5700-accounts",
+        "cpanel-license-premier-cloud-5800-accounts",
+        "cpanel-license-premier-cloud-5900-accounts",
+        "cpanel-license-premier-cloud-600-accounts",
+        "cpanel-license-premier-cloud-6000-accounts",
+        "cpanel-license-premier-cloud-6100-accounts",
+        "cpanel-license-premier-cloud-6200-accounts",
+        "cpanel-license-premier-cloud-6300-accounts",
+        "cpanel-license-premier-cloud-6400-accounts",
+        "cpanel-license-premier-cloud-6500-accounts",
+        "cpanel-license-premier-cloud-6600-accounts",
+        "cpanel-license-premier-cloud-6700-accounts",
+        "cpanel-license-premier-cloud-6800-accounts",
+        "cpanel-license-premier-cloud-6900-accounts",
+        "cpanel-license-premier-cloud-700-accounts",
+        "cpanel-license-premier-cloud-7000-accounts",
+        "cpanel-license-premier-cloud-7100-accounts",
+        "cpanel-license-premier-cloud-7200-accounts",
+        "cpanel-license-premier-cloud-7300-accounts",
+        "cpanel-license-premier-cloud-7400-accounts",
+        "cpanel-license-premier-cloud-7500-accounts",
+        "cpanel-license-premier-cloud-7600-accounts",
+        "cpanel-license-premier-cloud-7700-accounts",
+        "cpanel-license-premier-cloud-7800-accounts",
+        "cpanel-license-premier-cloud-7900-accounts",
+        "cpanel-license-premier-cloud-800-accounts",
+        "cpanel-license-premier-cloud-8000-accounts",
+        "cpanel-license-premier-cloud-8100-accounts",
+        "cpanel-license-premier-cloud-8200-accounts",
+        "cpanel-license-premier-cloud-8300-accounts",
+        "cpanel-license-premier-cloud-8400-accounts",
+        "cpanel-license-premier-cloud-8500-accounts",
+        "cpanel-license-premier-cloud-8600-accounts",
+        "cpanel-license-premier-cloud-8700-accounts",
+        "cpanel-license-premier-cloud-8800-accounts",
+        "cpanel-license-premier-cloud-8900-accounts",
+        "cpanel-license-premier-cloud-900-accounts",
+        "cpanel-license-premier-cloud-9000-accounts",
+        "cpanel-license-premier-cloud-9100-accounts",
+        "cpanel-license-premier-cloud-9200-accounts",
+        "cpanel-license-premier-cloud-9300-accounts",
+        "cpanel-license-premier-cloud-9400-accounts",
+        "cpanel-license-premier-cloud-9500-accounts",
+        "cpanel-license-premier-cloud-9600-accounts",
+        "cpanel-license-premier-cloud-9700-accounts",
+        "cpanel-license-premier-cloud-9800-accounts",
+        "cpanel-license-premier-cloud-9900-accounts",
+        "cpanel-license-premier-metal-100-accounts",
+        "cpanel-license-premier-metal-1000-accounts",
+        "cpanel-license-premier-metal-10000-accounts",
+        "cpanel-license-premier-metal-1100-accounts",
+        "cpanel-license-premier-metal-1200-accounts",
+        "cpanel-license-premier-metal-1300-accounts",
+        "cpanel-license-premier-metal-1400-accounts",
+        "cpanel-license-premier-metal-150-accounts",
+        "cpanel-license-premier-metal-1500-accounts",
+        "cpanel-license-premier-metal-1600-accounts",
+        "cpanel-license-premier-metal-1700-accounts",
+        "cpanel-license-premier-metal-1800-accounts",
+        "cpanel-license-premier-metal-1900-accounts",
+        "cpanel-license-premier-metal-200-accounts",
+        "cpanel-license-premier-metal-2000-accounts",
+        "cpanel-license-premier-metal-2100-accounts",
+        "cpanel-license-premier-metal-2200-accounts",
+        "cpanel-license-premier-metal-2300-accounts",
+        "cpanel-license-premier-metal-2400-accounts",
+        "cpanel-license-premier-metal-250-accounts",
+        "cpanel-license-premier-metal-2500-accounts",
+        "cpanel-license-premier-metal-2600-accounts",
+        "cpanel-license-premier-metal-2700-accounts",
+        "cpanel-license-premier-metal-2800-accounts",
+        "cpanel-license-premier-metal-2900-accounts",
+        "cpanel-license-premier-metal-300-accounts",
+        "cpanel-license-premier-metal-3000-accounts",
+        "cpanel-license-premier-metal-3100-accounts",
+        "cpanel-license-premier-metal-3200-accounts",
+        "cpanel-license-premier-metal-3300-accounts",
+        "cpanel-license-premier-metal-3400-accounts",
+        "cpanel-license-premier-metal-3500-accounts",
+        "cpanel-license-premier-metal-3600-accounts",
+        "cpanel-license-premier-metal-3700-accounts",
+        "cpanel-license-premier-metal-3800-accounts",
+        "cpanel-license-premier-metal-3900-accounts",
+        "cpanel-license-premier-metal-400-accounts",
+        "cpanel-license-premier-metal-4000-accounts",
+        "cpanel-license-premier-metal-4100-accounts",
+        "cpanel-license-premier-metal-4200-accounts",
+        "cpanel-license-premier-metal-4300-accounts",
+        "cpanel-license-premier-metal-4400-accounts",
+        "cpanel-license-premier-metal-4500-accounts",
+        "cpanel-license-premier-metal-4600-accounts",
+        "cpanel-license-premier-metal-4700-accounts",
+        "cpanel-license-premier-metal-4800-accounts",
+        "cpanel-license-premier-metal-4900-accounts",
+        "cpanel-license-premier-metal-500-accounts",
+        "cpanel-license-premier-metal-5000-accounts",
+        "cpanel-license-premier-metal-5100-accounts",
+        "cpanel-license-premier-metal-5200-accounts",
+        "cpanel-license-premier-metal-5300-accounts",
+        "cpanel-license-premier-metal-5400-accounts",
+        "cpanel-license-premier-metal-5500-accounts",
+        "cpanel-license-premier-metal-5600-accounts",
+        "cpanel-license-premier-metal-5700-accounts",
+        "cpanel-license-premier-metal-5800-accounts",
+        "cpanel-license-premier-metal-5900-accounts",
+        "cpanel-license-premier-metal-600-accounts",
+        "cpanel-license-premier-metal-6000-accounts",
+        "cpanel-license-premier-metal-6100-accounts",
+        "cpanel-license-premier-metal-6200-accounts",
+        "cpanel-license-premier-metal-6300-accounts",
+        "cpanel-license-premier-metal-6400-accounts",
+        "cpanel-license-premier-metal-6500-accounts",
+        "cpanel-license-premier-metal-6600-accounts",
+        "cpanel-license-premier-metal-6700-accounts",
+        "cpanel-license-premier-metal-6800-accounts",
+        "cpanel-license-premier-metal-6900-accounts",
+        "cpanel-license-premier-metal-700-accounts",
+        "cpanel-license-premier-metal-7000-accounts",
+        "cpanel-license-premier-metal-7100-accounts",
+        "cpanel-license-premier-metal-7200-accounts",
+        "cpanel-license-premier-metal-7300-accounts",
+        "cpanel-license-premier-metal-7400-accounts",
+        "cpanel-license-premier-metal-7500-accounts",
+        "cpanel-license-premier-metal-7600-accounts",
+        "cpanel-license-premier-metal-7700-accounts",
+        "cpanel-license-premier-metal-7800-accounts",
+        "cpanel-license-premier-metal-7900-accounts",
+        "cpanel-license-premier-metal-800-accounts",
+        "cpanel-license-premier-metal-8000-accounts",
+        "cpanel-license-premier-metal-8100-accounts",
+        "cpanel-license-premier-metal-8200-accounts",
+        "cpanel-license-premier-metal-8300-accounts",
+        "cpanel-license-premier-metal-8400-accounts",
+        "cpanel-license-premier-metal-8500-accounts",
+        "cpanel-license-premier-metal-8600-accounts",
+        "cpanel-license-premier-metal-8700-accounts",
+        "cpanel-license-premier-metal-8800-accounts",
+        "cpanel-license-premier-metal-8900-accounts",
+        "cpanel-license-premier-metal-900-accounts",
+        "cpanel-license-premier-metal-9000-accounts",
+        "cpanel-license-premier-metal-9100-accounts",
+        "cpanel-license-premier-metal-9200-accounts",
+        "cpanel-license-premier-metal-9300-accounts",
+        "cpanel-license-premier-metal-9400-accounts",
+        "cpanel-license-premier-metal-9500-accounts",
+        "cpanel-license-premier-metal-9600-accounts",
+        "cpanel-license-premier-metal-9700-accounts",
+        "cpanel-license-premier-metal-9800-accounts",
+        "cpanel-license-premier-metal-9900-accounts",
+        "cpanel-license-pro-cloud",
+        "cpanel-license-solo-cloud",
+        "cpanel-license-solo-metal",
+        "cpanel-license-version-11",
+        "cpanel-license-version-11-for-virtuozzo",
+        "cpanel-license-version-11-for-vps",
+        "version-admin-cloud",
+        "version-plus-cloud",
+        "version-premier-cloud-100",
+        "version-premier-cloud-1000",
+        "version-premier-cloud-10000",
+        "version-premier-cloud-1100",
+        "version-premier-cloud-1200",
+        "version-premier-cloud-1300",
+        "version-premier-cloud-1400",
+        "version-premier-cloud-150",
+        "version-premier-cloud-1500",
+        "version-premier-cloud-1600",
+        "version-premier-cloud-1700",
+        "version-premier-cloud-1800",
+        "version-premier-cloud-1900",
+        "version-premier-cloud-200",
+        "version-premier-cloud-2000",
+        "version-premier-cloud-2100",
+        "version-premier-cloud-2200",
+        "version-premier-cloud-2300",
+        "version-premier-cloud-2400",
+        "version-premier-cloud-250",
+        "version-premier-cloud-2500",
+        "version-premier-cloud-2600",
+        "version-premier-cloud-2700",
+        "version-premier-cloud-2800",
+        "version-premier-cloud-2900",
+        "version-premier-cloud-300",
+        "version-premier-cloud-3000",
+        "version-premier-cloud-3100",
+        "version-premier-cloud-3200",
+        "version-premier-cloud-3300",
+        "version-premier-cloud-3400",
+        "version-premier-cloud-3500",
+        "version-premier-cloud-3600",
+        "version-premier-cloud-3700",
+        "version-premier-cloud-3800",
+        "version-premier-cloud-3900",
+        "version-premier-cloud-400",
+        "version-premier-cloud-4000",
+        "version-premier-cloud-4100",
+        "version-premier-cloud-4200",
+        "version-premier-cloud-4300",
+        "version-premier-cloud-4400",
+        "version-premier-cloud-4500",
+        "version-premier-cloud-4600",
+        "version-premier-cloud-4700",
+        "version-premier-cloud-4800",
+        "version-premier-cloud-4900",
+        "version-premier-cloud-500",
+        "version-premier-cloud-5000",
+        "version-premier-cloud-5100",
+        "version-premier-cloud-5200",
+        "version-premier-cloud-5300",
+        "version-premier-cloud-5400",
+        "version-premier-cloud-5500",
+        "version-premier-cloud-5600",
+        "version-premier-cloud-5700",
+        "version-premier-cloud-5800",
+        "version-premier-cloud-5900",
+        "version-premier-cloud-600",
+        "version-premier-cloud-6000",
+        "version-premier-cloud-6100",
+        "version-premier-cloud-6200",
+        "version-premier-cloud-6300",
+        "version-premier-cloud-6400",
+        "version-premier-cloud-6500",
+        "version-premier-cloud-6600",
+        "version-premier-cloud-6700",
+        "version-premier-cloud-6800",
+        "version-premier-cloud-6900",
+        "version-premier-cloud-700",
+        "version-premier-cloud-7000",
+        "version-premier-cloud-7100",
+        "version-premier-cloud-7200",
+        "version-premier-cloud-7300",
+        "version-premier-cloud-7400",
+        "version-premier-cloud-7500",
+        "version-premier-cloud-7600",
+        "version-premier-cloud-7700",
+        "version-premier-cloud-7800",
+        "version-premier-cloud-7900",
+        "version-premier-cloud-800",
+        "version-premier-cloud-8000",
+        "version-premier-cloud-8100",
+        "version-premier-cloud-8200",
+        "version-premier-cloud-8300",
+        "version-premier-cloud-8400",
+        "version-premier-cloud-8500",
+        "version-premier-cloud-8600",
+        "version-premier-cloud-8700",
+        "version-premier-cloud-8800",
+        "version-premier-cloud-8900",
+        "version-premier-cloud-900",
+        "version-premier-cloud-9000",
+        "version-premier-cloud-9100",
+        "version-premier-cloud-9200",
+        "version-premier-cloud-9300",
+        "version-premier-cloud-9400",
+        "version-premier-cloud-9500",
+        "version-premier-cloud-9600",
+        "version-premier-cloud-9700",
+        "version-premier-cloud-9800",
+        "version-premier-cloud-9900",
+        "version-premier-metal-100",
+        "version-premier-metal-1000",
+        "version-premier-metal-10000",
+        "version-premier-metal-1100",
+        "version-premier-metal-1200",
+        "version-premier-metal-1300",
+        "version-premier-metal-1400",
+        "version-premier-metal-150",
+        "version-premier-metal-1500",
+        "version-premier-metal-1600",
+        "version-premier-metal-1700",
+        "version-premier-metal-1800",
+        "version-premier-metal-1900",
+        "version-premier-metal-200",
+        "version-premier-metal-2000",
+        "version-premier-metal-2100",
+        "version-premier-metal-2200",
+        "version-premier-metal-2300",
+        "version-premier-metal-2400",
+        "version-premier-metal-250",
+        "version-premier-metal-2500",
+        "version-premier-metal-2600",
+        "version-premier-metal-2700",
+        "version-premier-metal-2800",
+        "version-premier-metal-2900",
+        "version-premier-metal-300",
+        "version-premier-metal-3000",
+        "version-premier-metal-3100",
+        "version-premier-metal-3200",
+        "version-premier-metal-3300",
+        "version-premier-metal-3400",
+        "version-premier-metal-3500",
+        "version-premier-metal-3600",
+        "version-premier-metal-3700",
+        "version-premier-metal-3800",
+        "version-premier-metal-3900",
+        "version-premier-metal-400",
+        "version-premier-metal-4000",
+        "version-premier-metal-4100",
+        "version-premier-metal-4200",
+        "version-premier-metal-4300",
+        "version-premier-metal-4400",
+        "version-premier-metal-4500",
+        "version-premier-metal-4600",
+        "version-premier-metal-4700",
+        "version-premier-metal-4800",
+        "version-premier-metal-4900",
+        "version-premier-metal-500",
+        "version-premier-metal-5000",
+        "version-premier-metal-5100",
+        "version-premier-metal-5200",
+        "version-premier-metal-5300",
+        "version-premier-metal-5400",
+        "version-premier-metal-5500",
+        "version-premier-metal-5600",
+        "version-premier-metal-5700",
+        "version-premier-metal-5800",
+        "version-premier-metal-5900",
+        "version-premier-metal-600",
+        "version-premier-metal-6000",
+        "version-premier-metal-6100",
+        "version-premier-metal-6200",
+        "version-premier-metal-6300",
+        "version-premier-metal-6400",
+        "version-premier-metal-6500",
+        "version-premier-metal-6600",
+        "version-premier-metal-6700",
+        "version-premier-metal-6800",
+        "version-premier-metal-6900",
+        "version-premier-metal-700",
+        "version-premier-metal-7000",
+        "version-premier-metal-7100",
+        "version-premier-metal-7200",
+        "version-premier-metal-7300",
+        "version-premier-metal-7400",
+        "version-premier-metal-7500",
+        "version-premier-metal-7600",
+        "version-premier-metal-7700",
+        "version-premier-metal-7800",
+        "version-premier-metal-7900",
+        "version-premier-metal-800",
+        "version-premier-metal-8000",
+        "version-premier-metal-8100",
+        "version-premier-metal-8200",
+        "version-premier-metal-8300",
+        "version-premier-metal-8400",
+        "version-premier-metal-8500",
+        "version-premier-metal-8600",
+        "version-premier-metal-8700",
+        "version-premier-metal-8800",
+        "version-premier-metal-8900",
+        "version-premier-metal-900",
+        "version-premier-metal-9000",
+        "version-premier-metal-9100",
+        "version-premier-metal-9200",
+        "version-premier-metal-9300",
+        "version-premier-metal-9400",
+        "version-premier-metal-9500",
+        "version-premier-metal-9600",
+        "version-premier-metal-9700",
+        "version-premier-metal-9800",
+        "version-premier-metal-9900",
+        "version-pro-cloud",
+        "version-solo-cloud",
+        "version-solo-metal"
+      ],
+      "enumType": "string"
+    },
+    "license.StateEnum": {
+      "id": "StateEnum",
+      "namespace": "license",
+      "description": "All states a license can be in",
+      "enum": [
+        "ok",
+        "released",
+        "terminated",
+        "toDeliver"
+      ],
+      "enumType": "string"
+    },
+    "license.Task": {
+      "id": "Task",
+      "namespace": "license",
+      "description": "licenses Todos",
+      "properties": {
+        "action": {
+          "type": "license.ActionType",
+          "fullType": "license.ActionType",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "This Task description",
+          "required": false
+        },
+        "doneDate": {
+          "type": "datetime",
+          "fullType": "datetime",
+          "canBeNull": true,
+          "readOnly": true,
+          "description": "When was this Task done",
+          "required": false
+        },
+        "lastUpdate": {
+          "type": "datetime",
+          "fullType": "datetime",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "The last time this Task was updated",
+          "required": false
+        },
+        "name": {
+          "type": "string",
+          "fullType": "string",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "This Task name",
+          "required": false
+        },
+        "status": {
+          "type": "license.TaskStateEnum",
+          "fullType": "license.TaskStateEnum",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "Current Taks status",
+          "required": false
+        },
+        "taskId": {
+          "type": "long",
+          "fullType": "long",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "This Task id",
+          "required": false
+        },
+        "todoDate": {
+          "type": "datetime",
+          "fullType": "datetime",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "When was this Task created",
+          "required": false
+        }
+      }
+    },
+    "license.TaskStateEnum": {
+      "id": "TaskStateEnum",
+      "namespace": "license",
+      "description": "All states a license Task can be in",
+      "enum": [
+        "cancelled",
+        "doing",
+        "done",
+        "error",
+        "todo"
+      ],
+      "enumType": "string"
+    },
+    "license.cpanel.Cpanel": {
+      "id": "Cpanel",
+      "namespace": "license.cpanel",
+      "description": "Your Cpanel license",
+      "properties": {
+        "creation": {
+          "type": "datetime",
+          "fullType": "datetime",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "This license creation date",
+          "required": false
+        },
+        "deleteAtExpiration": {
+          "type": "boolean",
+          "fullType": "boolean",
+          "canBeNull": false,
+          "readOnly": false,
+          "description": "Shall we delete this on expiration ?",
+          "required": false
+        },
+        "domain": {
+          "type": "string",
+          "fullType": "string",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "The internal name of your license",
+          "required": false
+        },
+        "ip": {
+          "type": "ipv4",
+          "fullType": "ipv4",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "The ip on which this license is attached",
+          "required": false
+        },
+        "licenseId": {
+          "type": "string",
+          "fullType": "string",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "The license id on license provider side",
+          "required": false
+        },
+        "status": {
+          "type": "license.StateEnum",
+          "fullType": "license.StateEnum",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "This license state",
+          "required": false
+        },
+        "version": {
+          "type": "license.CpanelVersionEnum",
+          "fullType": "license.CpanelVersionEnum",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "This license version",
+          "required": false
+        }
+      }
+    },
+    "license.cpanel.CpanelWithIAM": {
+      "id": "Cpanel",
+      "namespace": "license.cpanel",
+      "description": "Your Cpanel license",
+      "properties": {
+        "creation": {
+          "type": "datetime",
+          "fullType": "datetime",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "This license creation date",
+          "required": false
+        },
+        "deleteAtExpiration": {
+          "type": "boolean",
+          "fullType": "boolean",
+          "canBeNull": false,
+          "readOnly": false,
+          "description": "Shall we delete this on expiration ?",
+          "required": false
+        },
+        "domain": {
+          "type": "string",
+          "fullType": "string",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "The internal name of your license",
+          "required": false
+        },
+        "iam": {
+          "type": "iam.ResourceMetadata",
+          "canBeNull": true,
+          "readOnly": true,
+          "description": "IAM resource metadata",
+          "required": false
+        },
+        "ip": {
+          "type": "ipv4",
+          "fullType": "ipv4",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "The ip on which this license is attached",
+          "required": false
+        },
+        "licenseId": {
+          "type": "string",
+          "fullType": "string",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "The license id on license provider side",
+          "required": false
+        },
+        "status": {
+          "type": "license.StateEnum",
+          "fullType": "license.StateEnum",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "This license state",
+          "required": false
+        },
+        "version": {
+          "type": "license.CpanelVersionEnum",
+          "fullType": "license.CpanelVersionEnum",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "This license version",
+          "required": false
+        }
+      }
+    },
+    "service.RenewType": {
+      "id": "RenewType",
+      "namespace": "service",
+      "description": "Map a possible renew for a specific service",
+      "properties": {
+        "automatic": {
+          "type": "boolean",
+          "canBeNull": false,
+          "readOnly": false,
+          "description": "The service is automatically renewed",
+          "required": false
+        },
+        "deleteAtExpiration": {
+          "type": "boolean",
+          "canBeNull": false,
+          "readOnly": false,
+          "description": "The service will be deleted at expiration",
+          "required": false
+        },
+        "forced": {
+          "type": "boolean",
+          "canBeNull": false,
+          "readOnly": false,
+          "description": "The service forced to be renewed",
+          "required": false
+        },
+        "manualPayment": {
+          "type": "boolean",
+          "canBeNull": true,
+          "readOnly": false,
+          "description": "The service needs to be manually renewed and paid",
+          "required": false
+        },
+        "period": {
+          "type": "long",
+          "canBeNull": true,
+          "readOnly": false,
+          "description": "period of renew in month",
+          "required": false
+        }
+      }
+    },
+    "service.RenewalTypeEnum": {
+      "id": "RenewalTypeEnum",
+      "namespace": "service",
+      "description": "Detailed renewal type of a service",
+      "enum": [
+        "automaticForcedProduct",
+        "automaticV2012",
+        "automaticV2014",
+        "automaticV2016",
+        "automaticV2024",
+        "manual",
+        "oneShot",
+        "option"
+      ],
+      "enumType": "string"
+    },
+    "service.StateEnum": {
+      "id": "StateEnum",
+      "namespace": "service",
+      "enum": [
+        "autorenewInProgress",
+        "expired",
+        "inCreation",
+        "ok",
+        "pendingDebt",
+        "unPaid"
+      ],
+      "enumType": "string"
+    },
+    "service.TerminationFutureUseEnum": {
+      "id": "TerminationFutureUseEnum",
+      "namespace": "service",
+      "description": "All future uses you can provide for a service termination",
+      "enum": [
+        "NOT_REPLACING_SERVICE",
+        "OTHER",
+        "SUBSCRIBE_AN_OTHER_SERVICE",
+        "SUBSCRIBE_OTHER_KIND_OF_SERVICE_WITH_COMPETITOR",
+        "SUBSCRIBE_SIMILAR_SERVICE_WITH_COMPETITOR"
+      ],
+      "enumType": "string"
+    },
+    "service.TerminationReasonEnum": {
+      "id": "TerminationReasonEnum",
+      "namespace": "service",
+      "description": "All reasons you can provide for a service termination",
+      "enum": [
+        "FEATURES_DONT_SUIT_ME",
+        "LACK_OF_PERFORMANCES",
+        "MIGRATED_TO_ANOTHER_OVH_PRODUCT",
+        "MIGRATED_TO_COMPETITOR",
+        "NOT_ENOUGH_RECOGNITION",
+        "NOT_NEEDED_ANYMORE",
+        "NOT_RELIABLE",
+        "NO_ANSWER",
+        "OTHER",
+        "PRODUCT_DIMENSION_DONT_SUIT_ME",
+        "PRODUCT_TOOLS_DONT_SUIT_ME",
+        "TOO_EXPENSIVE",
+        "TOO_HARD_TO_USE",
+        "UNSATIFIED_BY_CUSTOMER_SUPPORT"
+      ],
+      "enumType": "string"
+    },
+    "services.Service": {
+      "id": "Service",
+      "namespace": "services",
+      "description": "Details about a Service",
+      "properties": {
+        "canDeleteAtExpiration": {
+          "type": "boolean",
+          "fullType": "boolean",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "Indicates that the service can be set up to be deleted at expiration",
+          "required": false
+        },
+        "contactAdmin": {
+          "type": "string",
+          "fullType": "coreTypes.AccountId:string",
+          "canBeNull": false,
+          "readOnly": true,
+          "required": false
+        },
+        "contactBilling": {
+          "type": "string",
+          "fullType": "coreTypes.AccountId:string",
+          "canBeNull": false,
+          "readOnly": true,
+          "required": false
+        },
+        "contactTech": {
+          "type": "string",
+          "fullType": "coreTypes.AccountId:string",
+          "canBeNull": false,
+          "readOnly": true,
+          "required": false
+        },
+        "creation": {
+          "type": "date",
+          "fullType": "date",
+          "canBeNull": false,
+          "readOnly": true,
+          "required": false
+        },
+        "domain": {
+          "type": "string",
+          "fullType": "string",
+          "canBeNull": false,
+          "readOnly": true,
+          "required": false
+        },
+        "engagedUpTo": {
+          "type": "date",
+          "fullType": "date",
+          "canBeNull": true,
+          "readOnly": true,
+          "required": false
+        },
+        "expiration": {
+          "type": "date",
+          "fullType": "date",
+          "canBeNull": false,
+          "readOnly": true,
+          "required": false
+        },
+        "possibleRenewPeriod": {
+          "type": "long[]",
+          "fullType": "long[]",
+          "canBeNull": true,
+          "readOnly": true,
+          "description": "All the possible renew period of your service in month",
+          "required": false
+        },
+        "renew": {
+          "type": "service.RenewType",
+          "fullType": "service.RenewType",
+          "canBeNull": true,
+          "readOnly": false,
+          "description": "Way of handling the renew",
+          "required": false
+        },
+        "renewalType": {
+          "type": "service.RenewalTypeEnum",
+          "fullType": "service.RenewalTypeEnum",
+          "canBeNull": false,
+          "readOnly": true,
+          "required": false
+        },
+        "serviceId": {
+          "type": "long",
+          "fullType": "coreTypes.ServiceId:long",
+          "canBeNull": false,
+          "readOnly": true,
+          "required": false
+        },
+        "status": {
+          "type": "service.StateEnum",
+          "fullType": "service.StateEnum",
+          "canBeNull": false,
+          "readOnly": true,
+          "required": false
+        }
+      }
+    }
+  }
 }

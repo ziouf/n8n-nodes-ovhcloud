@@ -108,7 +108,7 @@ const SPEC_TO_NODES = {
 	commercialCatalog: ['OvhCloudCommercialCatalog'],
 	iam: ['OvhCloudIam'],
 	location: ['OvhCloudLocation'],
-	managedCMS: ['OvhCloudManagedCMS'],
+	managedCMS: ['OvhCloudManagedCms'],
 	networkDefense: ['OvhCloudNetworkDefense'],
 	notification: ['OvhCloudNotification'],
 	okms: ['OvhCloudOkms'],

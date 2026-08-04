@@ -1,8 +1,2827 @@
 {
   "apiVersion": "1.0",
+  "apis": [
+    {
+      "path": "/license/officePrepaid",
+      "operations": [
+        {
+          "apiStatus": {
+            "description": "Alpha version",
+            "value": "ALPHA"
+          },
+          "httpMethod": "GET",
+          "parameters": [
+            {
+              "name": "iamTags",
+              "dataType": "map[string][]iam.resource.TagFilter",
+              "paramType": "query",
+              "required": false,
+              "description": "Filter resources on IAM tags"
+            }
+          ],
+          "responseType": "string[]",
+          "responseTypes": {
+            "200": "string[]"
+          },
+          "noAuthentication": false,
+          "description": "List available services",
+          "iamActions": [
+            {
+              "name": "licenseOfficePrepaid:apiovh:get",
+              "required": true
+            }
+          ]
+        }
+      ],
+      "description": "Operations about Office services"
+    },
+    {
+      "path": "/license/officePrepaid/{serviceName}",
+      "operations": [
+        {
+          "apiStatus": {
+            "description": "Alpha version",
+            "value": "ALPHA"
+          },
+          "httpMethod": "GET",
+          "parameters": [
+            {
+              "name": "serviceName",
+              "dataType": "string",
+              "paramType": "path",
+              "fullType": "string",
+              "required": true,
+              "description": "Service name"
+            }
+          ],
+          "responseType": "license.officePrepaid.OfficeUserNativeWithIAM",
+          "responseTypes": {
+            "200": "license.officePrepaid.OfficeUserNativeWithIAM"
+          },
+          "noAuthentication": false,
+          "description": "Get this object properties",
+          "iamActions": [
+            {
+              "name": "licenseOfficePrepaid:apiovh:get",
+              "required": true
+            }
+          ]
+        },
+        {
+          "apiStatus": {
+            "description": "Alpha version",
+            "value": "ALPHA"
+          },
+          "httpMethod": "PUT",
+          "parameters": [
+            {
+              "dataType": "license.officePrepaid.PutOfficeUserNative",
+              "paramType": "body",
+              "fullType": "license.officePrepaid.PutOfficeUserNative",
+              "required": true,
+              "description": "Request Body"
+            },
+            {
+              "name": "serviceName",
+              "dataType": "string",
+              "paramType": "path",
+              "fullType": "string",
+              "required": true,
+              "description": "Service name"
+            }
+          ],
+          "responseType": "void",
+          "responseTypes": {
+            "200": "void"
+          },
+          "noAuthentication": false,
+          "description": "Modify the office user",
+          "iamActions": [
+            {
+              "name": "licenseOfficePrepaid:apiovh:put",
+              "required": true
+            }
+          ]
+        }
+      ],
+      "description": "Operations about Office services"
+    },
+    {
+      "path": "/license/officePrepaid/{serviceName}/changePassword",
+      "operations": [
+        {
+          "apiStatus": {
+            "description": "Alpha version",
+            "value": "ALPHA"
+          },
+          "httpMethod": "POST",
+          "parameters": [
+            {
+              "dataType": "license.officePrepaid.OfficeTenantPostChangePassword",
+              "paramType": "body",
+              "fullType": "license.officePrepaid.OfficeTenantPostChangePassword",
+              "required": true,
+              "description": "Request Body"
+            },
+            {
+              "name": "serviceName",
+              "dataType": "string",
+              "paramType": "path",
+              "fullType": "string",
+              "required": true,
+              "description": "Service name"
+            }
+          ],
+          "responseType": "license.officePrepaid.OfficeTaskNative",
+          "responseTypes": {
+            "200": "license.officePrepaid.OfficeTaskNative"
+          },
+          "noAuthentication": false,
+          "description": "Change password",
+          "iamActions": [
+            {
+              "name": "licenseOfficePrepaid:apiovh:changePassword",
+              "required": true
+            }
+          ]
+        }
+      ],
+      "description": "Change or reset user's password"
+    },
+    {
+      "path": "/license/officePrepaid/{serviceName}/confirmTermination",
+      "operations": [
+        {
+          "apiStatus": {
+            "description": "Beta version",
+            "value": "BETA"
+          },
+          "httpMethod": "POST",
+          "parameters": [
+            {
+              "name": "commentary",
+              "dataType": "string",
+              "paramType": "body",
+              "fullType": "string",
+              "required": false,
+              "description": "Commentary about your termination request"
+            },
+            {
+              "name": "futureUse",
+              "dataType": "service.TerminationFutureUseEnum",
+              "paramType": "body",
+              "fullType": "service.TerminationFutureUseEnum",
+              "required": false,
+              "description": "What next after your termination request"
+            },
+            {
+              "name": "reason",
+              "dataType": "service.TerminationReasonEnum",
+              "paramType": "body",
+              "fullType": "service.TerminationReasonEnum",
+              "required": false,
+              "description": "Reason of your termination request"
+            },
+            {
+              "name": "serviceName",
+              "dataType": "string",
+              "paramType": "path",
+              "fullType": "string",
+              "required": true,
+              "description": "The service name of your office account"
+            },
+            {
+              "name": "token",
+              "dataType": "string",
+              "paramType": "body",
+              "fullType": "string",
+              "required": true,
+              "description": "The termination token sent by email to the admin contact"
+            }
+          ],
+          "responseType": "string",
+          "responseTypes": {
+            "200": "string"
+          },
+          "noAuthentication": false,
+          "description": "Confirm service termination",
+          "iamActions": [
+            {
+              "name": "licenseOfficePrepaid:apiovh:confirmTermination",
+              "required": true
+            }
+          ]
+        }
+      ],
+      "description": "Confirm service termination"
+    },
+    {
+      "path": "/license/officePrepaid/{serviceName}/parentTenant",
+      "operations": [
+        {
+          "apiStatus": {
+            "description": "Alpha version",
+            "value": "ALPHA"
+          },
+          "httpMethod": "GET",
+          "parameters": [
+            {
+              "name": "serviceName",
+              "dataType": "string",
+              "paramType": "path",
+              "fullType": "string",
+              "required": true,
+              "description": "Service name"
+            }
+          ],
+          "responseType": "license.officePrepaid.OfficeTenantNative",
+          "responseTypes": {
+            "200": "license.officePrepaid.OfficeTenantNative"
+          },
+          "noAuthentication": false,
+          "description": "Get this object properties",
+          "iamActions": [
+            {
+              "name": "licenseOfficePrepaid:apiovh:parentTenant/get",
+              "required": true
+            }
+          ]
+        },
+        {
+          "apiStatus": {
+            "description": "Alpha version",
+            "value": "ALPHA"
+          },
+          "httpMethod": "PUT",
+          "parameters": [
+            {
+              "dataType": "license.officePrepaid.OfficeTenantPutParentTenant",
+              "paramType": "body",
+              "fullType": "license.officePrepaid.OfficeTenantPutParentTenant",
+              "required": true,
+              "description": "Request Body"
+            },
+            {
+              "name": "serviceName",
+              "dataType": "string",
+              "paramType": "path",
+              "fullType": "string",
+              "required": true,
+              "description": "Service name"
+            }
+          ],
+          "responseType": "void",
+          "responseTypes": {
+            "200": "void"
+          },
+          "noAuthentication": false,
+          "description": "Update parent tenant service",
+          "iamActions": [
+            {
+              "name": "licenseOfficePrepaid:apiovh:parentTenant/edit",
+              "required": true
+            }
+          ]
+        }
+      ],
+      "description": "Operations about Office services"
+    },
+    {
+      "path": "/license/officePrepaid/{serviceName}/parentTenant/acceptAgreement",
+      "operations": [
+        {
+          "apiStatus": {
+            "description": "Alpha version",
+            "value": "ALPHA"
+          },
+          "httpMethod": "POST",
+          "parameters": [
+            {
+              "name": "serviceName",
+              "dataType": "string",
+              "paramType": "path",
+              "fullType": "string",
+              "required": true,
+              "description": "Service name"
+            }
+          ],
+          "responseType": "void",
+          "responseTypes": {
+            "200": "void"
+          },
+          "noAuthentication": false,
+          "description": "Accept Agreement",
+          "iamActions": [
+            {
+              "name": "licenseOfficePrepaid:apiovh:acceptAgreement",
+              "required": true
+            }
+          ]
+        }
+      ],
+      "description": "Accept MCA Agreement"
+    },
+    {
+      "path": "/license/officePrepaid/{serviceName}/parentTenant/createAttestation",
+      "operations": [
+        {
+          "apiStatus": {
+            "description": "Alpha version",
+            "value": "ALPHA"
+          },
+          "httpMethod": "POST",
+          "parameters": [
+            {
+              "dataType": "license.officePrepaid.createAttestationPostPayload",
+              "paramType": "body",
+              "fullType": "license.officePrepaid.createAttestationPostPayload",
+              "required": true,
+              "description": "Request Body"
+            },
+            {
+              "name": "serviceName",
+              "dataType": "string",
+              "paramType": "path",
+              "fullType": "string",
+              "required": true,
+              "description": "Service name"
+            }
+          ],
+          "responseType": "license.officePrepaid.createAttestationResponse",
+          "responseTypes": {
+            "200": "license.officePrepaid.createAttestationResponse"
+          },
+          "noAuthentication": false,
+          "description": "Create Attestation",
+          "iamActions": [
+            {
+              "name": "licenseOfficePrepaid:apiovh:createAttestation",
+              "required": true
+            }
+          ]
+        }
+      ],
+      "description": "Create attestation for the MCA"
+    },
+    {
+      "path": "/license/officePrepaid/{serviceName}/serviceInfos",
+      "operations": [
+        {
+          "apiStatus": {
+            "description": "Beta version",
+            "value": "BETA"
+          },
+          "httpMethod": "GET",
+          "parameters": [
+            {
+              "name": "serviceName",
+              "dataType": "string",
+              "paramType": "path",
+              "fullType": "string",
+              "required": true,
+              "description": "The service name of your office account"
+            }
+          ],
+          "responseType": "services.Service",
+          "responseTypes": {
+            "200": "services.Service"
+          },
+          "noAuthentication": false,
+          "description": "Get service information",
+          "iamActions": [
+            {
+              "name": "licenseOfficePrepaid:apiovh:serviceInfos/get",
+              "required": true
+            }
+          ]
+        },
+        {
+          "apiStatus": {
+            "description": "Beta version",
+            "value": "BETA"
+          },
+          "httpMethod": "PUT",
+          "parameters": [
+            {
+              "dataType": "services.Service",
+              "paramType": "body",
+              "fullType": "services.Service",
+              "required": true,
+              "description": "New object properties"
+            },
+            {
+              "name": "serviceName",
+              "dataType": "string",
+              "paramType": "path",
+              "fullType": "string",
+              "required": true,
+              "description": "The service name of your office account"
+            }
+          ],
+          "responseType": "void",
+          "responseTypes": {
+            "200": "void"
+          },
+          "noAuthentication": false,
+          "description": "Update service information",
+          "iamActions": [
+            {
+              "name": "licenseOfficePrepaid:apiovh:serviceInfos/edit",
+              "required": true
+            }
+          ]
+        }
+      ],
+      "description": "Details about a Service"
+    },
+    {
+      "path": "/license/officePrepaid/{serviceName}/tenantPendingTask",
+      "operations": [
+        {
+          "apiStatus": {
+            "description": "Alpha version",
+            "value": "ALPHA"
+          },
+          "httpMethod": "GET",
+          "parameters": [
+            {
+              "name": "serviceName",
+              "dataType": "string",
+              "paramType": "path",
+              "fullType": "string",
+              "required": true,
+              "description": "Service name"
+            }
+          ],
+          "responseType": "long[]",
+          "responseTypes": {
+            "200": "long[]"
+          },
+          "noAuthentication": false,
+          "description": "List pending task",
+          "iamActions": [
+            {
+              "name": "licenseOfficePrepaid:apiovh:tenantPendingTask/get",
+              "required": true
+            }
+          ]
+        }
+      ],
+      "description": "Operations about a service tasks"
+    },
+    {
+      "path": "/license/officePrepaid/{serviceName}/tenantPendingTask/{id}",
+      "operations": [
+        {
+          "apiStatus": {
+            "description": "Alpha version",
+            "value": "ALPHA"
+          },
+          "httpMethod": "GET",
+          "parameters": [
+            {
+              "name": "id",
+              "dataType": "long",
+              "paramType": "path",
+              "fullType": "long",
+              "required": true,
+              "description": "Id"
+            },
+            {
+              "name": "serviceName",
+              "dataType": "string",
+              "paramType": "path",
+              "fullType": "string",
+              "required": true,
+              "description": "Service name"
+            }
+          ],
+          "responseType": "license.officePrepaid.OfficeTaskNative",
+          "responseTypes": {
+            "200": "license.officePrepaid.OfficeTaskNative"
+          },
+          "noAuthentication": false,
+          "description": "Get this object properties",
+          "iamActions": [
+            {
+              "name": "licenseOfficePrepaid:apiovh:tenantPendingTask/get",
+              "required": true
+            }
+          ]
+        }
+      ],
+      "description": "Operations about a service tasks"
+    },
+    {
+      "path": "/license/officePrepaid/{serviceName}/tenantUsageStatistics",
+      "operations": [
+        {
+          "apiStatus": {
+            "description": "Alpha version",
+            "value": "ALPHA"
+          },
+          "httpMethod": "GET",
+          "parameters": [
+            {
+              "name": "from",
+              "dataType": "datetime",
+              "paramType": "query",
+              "fullType": "datetime",
+              "required": false,
+              "description": "Period's start point."
+            },
+            {
+              "name": "serviceName",
+              "dataType": "string",
+              "paramType": "path",
+              "fullType": "string",
+              "required": true,
+              "description": "Service name"
+            },
+            {
+              "name": "to",
+              "dataType": "datetime",
+              "paramType": "query",
+              "fullType": "datetime",
+              "required": false,
+              "description": "Period's end point."
+            }
+          ],
+          "responseType": "license.officePrepaid.OfficeCurrentStatisticsNative[]",
+          "responseTypes": {
+            "200": "license.officePrepaid.OfficeCurrentStatisticsNative[]"
+          },
+          "noAuthentication": false,
+          "description": "Get day-to-day statistics of license usage and availability",
+          "iamActions": [
+            {
+              "name": "licenseOfficePrepaid:apiovh:tenantUsageStatistics/get",
+              "required": true
+            }
+          ]
+        }
+      ],
+      "description": "Get the current total available quantity as well as current usage"
+    },
+    {
+      "path": "/license/officePrepaid/{serviceName}/terminate",
+      "operations": [
+        {
+          "apiStatus": {
+            "description": "Beta version",
+            "value": "BETA"
+          },
+          "httpMethod": "POST",
+          "parameters": [
+            {
+              "name": "serviceName",
+              "dataType": "string",
+              "paramType": "path",
+              "fullType": "string",
+              "required": true,
+              "description": "The service name of your office account"
+            }
+          ],
+          "responseType": "string",
+          "responseTypes": {
+            "200": "string"
+          },
+          "noAuthentication": false,
+          "description": "Ask for the termination of your service",
+          "longDescription": "Ask for the termination of your service. Admin contact of this service will receive a termination token by email in order to confirm its termination with /confirmTermination endpoint.",
+          "iamActions": [
+            {
+              "name": "licenseOfficePrepaid:apiovh:terminate",
+              "required": true
+            }
+          ]
+        }
+      ],
+      "description": "Ask for the termination of your service. Admin contact of this service will receive a termination token in order to confirm its termination with /confirmTermination endpoint."
+    },
+    {
+      "path": "/license/officePrepaid/{serviceName}/unconfigure",
+      "operations": [
+        {
+          "apiStatus": {
+            "description": "Stable production version",
+            "value": "PRODUCTION"
+          },
+          "httpMethod": "POST",
+          "parameters": [
+            {
+              "name": "serviceName",
+              "dataType": "string",
+              "paramType": "path",
+              "fullType": "string",
+              "required": true,
+              "description": "Service name"
+            }
+          ],
+          "responseType": "license.officePrepaid.OfficeTaskNative",
+          "responseTypes": {
+            "200": "license.officePrepaid.OfficeTaskNative"
+          },
+          "noAuthentication": false,
+          "description": "Unconfigure the office user",
+          "iamActions": [
+            {
+              "name": "licenseOfficePrepaid:apiovh:unconfigure",
+              "required": true
+            }
+          ]
+        }
+      ],
+      "description": "Unconfigure the office user"
+    }
+  ],
   "resourcePath": "/license/officePrepaid",
-  "basePath": "https://eu.api.ovh.com/v1",
-  "apis": [],
-  "models": {},
-  "_note": "Spec non fournie dans ce repo — path référencé par _index.json mais sans fichier de spec téléchargé. Convention de nommage : famille + segment en camelCase (ex. dedicatedCeph.json pour /dedicated/ceph), cohérent avec dedicatedCloud.json / sslGateway.json / ipLoadbalancing.json."
+  "basePath": "https://api.ovh.com/1.0",
+  "models": {
+    "coreTypes.CountryEnum": {
+      "id": "CountryEnum",
+      "namespace": "coreTypes",
+      "description": "ISO country codes",
+      "enum": [
+        "ac",
+        "ad",
+        "ae",
+        "af",
+        "ag",
+        "ai",
+        "al",
+        "am",
+        "an",
+        "ao",
+        "aq",
+        "ar",
+        "as",
+        "at",
+        "au",
+        "aw",
+        "ax",
+        "az",
+        "ba",
+        "bb",
+        "bd",
+        "be",
+        "bf",
+        "bg",
+        "bh",
+        "bi",
+        "bj",
+        "bl",
+        "bm",
+        "bn",
+        "bo",
+        "bq",
+        "br",
+        "bs",
+        "bt",
+        "bv",
+        "bw",
+        "by",
+        "bz",
+        "ca",
+        "cc",
+        "cd",
+        "cf",
+        "cg",
+        "ch",
+        "ci",
+        "ck",
+        "cl",
+        "cm",
+        "cn",
+        "co",
+        "cr",
+        "cs",
+        "cu",
+        "cv",
+        "cw",
+        "cx",
+        "cy",
+        "cz",
+        "de",
+        "dj",
+        "dk",
+        "dm",
+        "do",
+        "dz",
+        "ec",
+        "ee",
+        "eg",
+        "eh",
+        "er",
+        "es",
+        "et",
+        "fc",
+        "fd",
+        "fi",
+        "fj",
+        "fk",
+        "fm",
+        "fo",
+        "fr",
+        "fx",
+        "ga",
+        "gb",
+        "gd",
+        "ge",
+        "gf",
+        "gg",
+        "gh",
+        "gi",
+        "gl",
+        "gm",
+        "gn",
+        "gp",
+        "gq",
+        "gr",
+        "gs",
+        "gt",
+        "gu",
+        "gw",
+        "gy",
+        "hk",
+        "hm",
+        "hn",
+        "hr",
+        "ht",
+        "hu",
+        "id",
+        "ie",
+        "il",
+        "im",
+        "in",
+        "io",
+        "iq",
+        "ir",
+        "is",
+        "it",
+        "je",
+        "jm",
+        "jo",
+        "jp",
+        "ke",
+        "kg",
+        "kh",
+        "ki",
+        "km",
+        "kn",
+        "kp",
+        "kr",
+        "kw",
+        "ky",
+        "kz",
+        "la",
+        "lb",
+        "lc",
+        "li",
+        "lk",
+        "lr",
+        "ls",
+        "lt",
+        "lu",
+        "lv",
+        "ly",
+        "ma",
+        "mc",
+        "md",
+        "me",
+        "mf",
+        "mg",
+        "mh",
+        "mk",
+        "ml",
+        "mm",
+        "mn",
+        "mo",
+        "mp",
+        "mq",
+        "mr",
+        "ms",
+        "mt",
+        "mu",
+        "mv",
+        "mw",
+        "mx",
+        "my",
+        "mz",
+        "na",
+        "nc",
+        "ne",
+        "nf",
+        "ng",
+        "ni",
+        "nl",
+        "no",
+        "np",
+        "nr",
+        "nu",
+        "nz",
+        "om",
+        "pa",
+        "pe",
+        "pf",
+        "pg",
+        "ph",
+        "pk",
+        "pl",
+        "pm",
+        "pn",
+        "pr",
+        "ps",
+        "pt",
+        "pw",
+        "py",
+        "qa",
+        "qc",
+        "re",
+        "ro",
+        "rs",
+        "ru",
+        "rw",
+        "sa",
+        "sb",
+        "sc",
+        "sd",
+        "se",
+        "sg",
+        "sh",
+        "si",
+        "sj",
+        "sk",
+        "sl",
+        "sm",
+        "sn",
+        "so",
+        "sr",
+        "ss",
+        "st",
+        "sv",
+        "sx",
+        "sy",
+        "sz",
+        "tc",
+        "td",
+        "tf",
+        "tg",
+        "th",
+        "tj",
+        "tk",
+        "tl",
+        "tm",
+        "tn",
+        "to",
+        "tp",
+        "tr",
+        "tt",
+        "tv",
+        "tw",
+        "tz",
+        "ua",
+        "ug",
+        "uk",
+        "um",
+        "us",
+        "uy",
+        "uz",
+        "va",
+        "vc",
+        "ve",
+        "vg",
+        "vi",
+        "vn",
+        "vu",
+        "we",
+        "wf",
+        "ws",
+        "ye",
+        "yt",
+        "yu",
+        "za",
+        "zm",
+        "zw"
+      ],
+      "enumType": "string"
+    },
+    "iam.ResourceMetadata": {
+      "id": "ResourceMetadata",
+      "namespace": "iam",
+      "description": "IAM resource metadata embedded in services models",
+      "properties": {
+        "displayName": {
+          "type": "string",
+          "fullType": "string",
+          "canBeNull": true,
+          "readOnly": true,
+          "description": "Resource display name",
+          "required": false
+        },
+        "id": {
+          "type": "uuid",
+          "fullType": "uuid",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "Unique identifier of the resource",
+          "required": false
+        },
+        "state": {
+          "type": "iam.ResourceMetadata.StateEnum",
+          "fullType": "iam.ResourceMetadata.StateEnum",
+          "canBeNull": true,
+          "readOnly": true,
+          "description": "Resource state",
+          "required": false
+        },
+        "tags": {
+          "type": "map[string]string",
+          "fullType": "map[string]string",
+          "canBeNull": true,
+          "readOnly": true,
+          "description": "Resource tags. Tags that were internally computed are prefixed with ovh:",
+          "required": false
+        },
+        "urn": {
+          "type": "string",
+          "fullType": "string",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "Unique resource name used in policies",
+          "required": false
+        }
+      }
+    },
+    "iam.ResourceMetadata.StateEnum": {
+      "id": "StateEnum",
+      "namespace": "iam.ResourceMetadata",
+      "description": "Resource state",
+      "enum": [
+        "EXPIRED",
+        "IN_CREATION",
+        "OK",
+        "SUSPENDED"
+      ],
+      "enumType": "string"
+    },
+    "iam.resource.TagFilter": {
+      "id": "TagFilter",
+      "namespace": "iam.resource",
+      "description": "Resource tag filter",
+      "properties": {
+        "operator": {
+          "type": "iam.resource.TagFilter.OperatorEnum",
+          "fullType": "iam.resource.TagFilter.OperatorEnum",
+          "canBeNull": true,
+          "readOnly": true,
+          "description": "Operator to use in order to filter on the value (defaults to 'EQ')",
+          "required": false
+        },
+        "value": {
+          "type": "string",
+          "fullType": "string",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "Value to use in order to filter tags",
+          "required": false
+        }
+      }
+    },
+    "iam.resource.TagFilter.OperatorEnum": {
+      "id": "OperatorEnum",
+      "namespace": "iam.resource.TagFilter",
+      "description": "Operator that can be used in order to filter resources tags",
+      "enum": [
+        "EQ",
+        "EXISTS",
+        "ILIKE",
+        "LIKE",
+        "NEQ",
+        "NEXISTS"
+      ],
+      "enumType": "string"
+    },
+    "license.office.LicenceEnum": {
+      "id": "LicenceEnum",
+      "namespace": "license.office",
+      "description": "Office Licence",
+      "enum": [
+        "officeBusiness",
+        "officeProPlus"
+      ],
+      "enumType": "string"
+    },
+    "license.office.OfficeTask": {
+      "id": "OfficeTask",
+      "namespace": "license.office",
+      "description": "Office task",
+      "properties": {
+        "finishDate": {
+          "type": "datetime",
+          "fullType": "datetime",
+          "canBeNull": true,
+          "readOnly": true,
+          "description": "Completion date",
+          "required": false
+        },
+        "function": {
+          "type": "string",
+          "fullType": "string",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "Function name",
+          "required": false
+        },
+        "id": {
+          "type": "long",
+          "fullType": "long",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "Task's unique identifier",
+          "required": false
+        },
+        "status": {
+          "type": "license.office.TaskStatusEnum",
+          "fullType": "license.office.TaskStatusEnum",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "Task state",
+          "required": false
+        },
+        "todoDate": {
+          "type": "datetime",
+          "fullType": "datetime",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "Creation date",
+          "required": false
+        }
+      }
+    },
+    "license.office.OfficeTenant": {
+      "id": "OfficeTenant",
+      "namespace": "license.office",
+      "description": "Office tenant",
+      "properties": {
+        "address": {
+          "type": "string",
+          "fullType": "string",
+          "canBeNull": false,
+          "readOnly": false,
+          "description": "Contact's address line",
+          "required": false
+        },
+        "city": {
+          "type": "string",
+          "fullType": "string",
+          "canBeNull": false,
+          "readOnly": false,
+          "description": "Contact's city",
+          "required": false
+        },
+        "creationDate": {
+          "type": "datetime",
+          "fullType": "datetime",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "Creation date",
+          "required": false
+        },
+        "displayName": {
+          "type": "string",
+          "fullType": "string",
+          "canBeNull": false,
+          "readOnly": false,
+          "description": "Tenant's display name",
+          "required": false
+        },
+        "firstName": {
+          "type": "string",
+          "fullType": "string",
+          "canBeNull": false,
+          "readOnly": false,
+          "description": "Contact's fisrt name",
+          "required": false
+        },
+        "lastName": {
+          "type": "string",
+          "fullType": "string",
+          "canBeNull": false,
+          "readOnly": false,
+          "description": "Contact's fisrt name",
+          "required": false
+        },
+        "phone": {
+          "type": "phoneNumber",
+          "fullType": "phoneNumber",
+          "canBeNull": false,
+          "readOnly": false,
+          "description": "Primary phone number",
+          "required": false
+        },
+        "serviceName": {
+          "type": "string",
+          "fullType": "string",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "Internal service name",
+          "required": false
+        },
+        "serviceType": {
+          "type": "license.office.ServiceTypeEnum",
+          "fullType": "license.office.ServiceTypeEnum",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "Tenant's service type",
+          "required": false
+        },
+        "status": {
+          "type": "license.office.ServiceStateEnum",
+          "fullType": "license.office.ServiceStateEnum",
+          "canBeNull": false,
+          "readOnly": true,
+          "required": false
+        },
+        "zipCode": {
+          "type": "string",
+          "fullType": "string",
+          "canBeNull": false,
+          "readOnly": false,
+          "description": "Contact's zip code",
+          "required": false
+        }
+      }
+    },
+    "license.office.ServiceStateEnum": {
+      "id": "ServiceStateEnum",
+      "namespace": "license.office",
+      "description": "Office tenant state",
+      "enum": [
+        "creating",
+        "inMaintenance",
+        "ok",
+        "suspended"
+      ],
+      "enumType": "string"
+    },
+    "license.office.ServiceTypeEnum": {
+      "id": "ServiceTypeEnum",
+      "namespace": "license.office",
+      "description": "Type of service",
+      "enum": [
+        "payAsYouGo",
+        "prepaid"
+      ],
+      "enumType": "string"
+    },
+    "license.office.Statistics": {
+      "id": "Statistics",
+      "namespace": "license.office",
+      "description": "License usage statistics.",
+      "properties": {
+        "date": {
+          "type": "date",
+          "canBeNull": false,
+          "readOnly": false,
+          "description": "Date of the statistics.",
+          "required": false
+        },
+        "lines": {
+          "type": "license.office.StatisticsLine[]",
+          "canBeNull": false,
+          "readOnly": false,
+          "description": "List of lines associated to this statistics entity.",
+          "required": false
+        }
+      }
+    },
+    "license.office.StatisticsLine": {
+      "id": "StatisticsLine",
+      "namespace": "license.office",
+      "description": "License usage statistics line.",
+      "properties": {
+        "endOfDayCount": {
+          "type": "long",
+          "canBeNull": false,
+          "readOnly": false,
+          "description": "Count of activated licenses at the end of the day.",
+          "required": false
+        },
+        "licenceType": {
+          "type": "license.office.LicenceEnum",
+          "canBeNull": false,
+          "readOnly": false,
+          "description": "Type of the Office license.",
+          "required": false
+        },
+        "peakCount": {
+          "type": "long",
+          "canBeNull": false,
+          "readOnly": false,
+          "description": "Maximum count of simultaneous activated licences.",
+          "required": false
+        }
+      }
+    },
+    "license.office.TaskStatusEnum": {
+      "id": "TaskStatusEnum",
+      "namespace": "license.office",
+      "description": "Exchange task status",
+      "enum": [
+        "cancelled",
+        "doing",
+        "done",
+        "error",
+        "todo"
+      ],
+      "enumType": "string"
+    },
+    "license.office.UserStateEnum": {
+      "id": "UserStateEnum",
+      "namespace": "license.office",
+      "description": "Office user  state",
+      "enum": [
+        "creating",
+        "deleting",
+        "ok"
+      ],
+      "enumType": "string"
+    },
+    "license.officePrepaid.CountryEnum": {
+      "id": "CountryEnum",
+      "namespace": "license.officePrepaid",
+      "description": "ISO country codes",
+      "enum": [
+        "ac",
+        "ad",
+        "ae",
+        "af",
+        "ag",
+        "ai",
+        "al",
+        "am",
+        "an",
+        "ao",
+        "aq",
+        "ar",
+        "as",
+        "at",
+        "au",
+        "aw",
+        "ax",
+        "az",
+        "ba",
+        "bb",
+        "bd",
+        "be",
+        "bf",
+        "bg",
+        "bh",
+        "bi",
+        "bj",
+        "bl",
+        "bm",
+        "bn",
+        "bo",
+        "bq",
+        "br",
+        "bs",
+        "bt",
+        "bv",
+        "bw",
+        "by",
+        "bz",
+        "ca",
+        "cc",
+        "cd",
+        "cf",
+        "cg",
+        "ch",
+        "ci",
+        "ck",
+        "cl",
+        "cm",
+        "cn",
+        "co",
+        "cr",
+        "cs",
+        "cu",
+        "cv",
+        "cw",
+        "cx",
+        "cy",
+        "cz",
+        "de",
+        "dj",
+        "dk",
+        "dm",
+        "do",
+        "dz",
+        "ec",
+        "ee",
+        "eg",
+        "eh",
+        "er",
+        "es",
+        "et",
+        "fc",
+        "fd",
+        "fi",
+        "fj",
+        "fk",
+        "fm",
+        "fo",
+        "fr",
+        "fx",
+        "ga",
+        "gb",
+        "gd",
+        "ge",
+        "gf",
+        "gg",
+        "gh",
+        "gi",
+        "gl",
+        "gm",
+        "gn",
+        "gp",
+        "gq",
+        "gr",
+        "gs",
+        "gt",
+        "gu",
+        "gw",
+        "gy",
+        "hk",
+        "hm",
+        "hn",
+        "hr",
+        "ht",
+        "hu",
+        "id",
+        "ie",
+        "il",
+        "im",
+        "in",
+        "io",
+        "iq",
+        "ir",
+        "is",
+        "it",
+        "je",
+        "jm",
+        "jo",
+        "jp",
+        "ke",
+        "kg",
+        "kh",
+        "ki",
+        "km",
+        "kn",
+        "kp",
+        "kr",
+        "kw",
+        "ky",
+        "kz",
+        "la",
+        "lb",
+        "lc",
+        "li",
+        "lk",
+        "lr",
+        "ls",
+        "lt",
+        "lu",
+        "lv",
+        "ly",
+        "ma",
+        "mc",
+        "md",
+        "me",
+        "mf",
+        "mg",
+        "mh",
+        "mk",
+        "ml",
+        "mm",
+        "mn",
+        "mo",
+        "mp",
+        "mq",
+        "mr",
+        "ms",
+        "mt",
+        "mu",
+        "mv",
+        "mw",
+        "mx",
+        "my",
+        "mz",
+        "na",
+        "nc",
+        "ne",
+        "nf",
+        "ng",
+        "ni",
+        "nl",
+        "no",
+        "np",
+        "nr",
+        "nu",
+        "nz",
+        "om",
+        "pa",
+        "pe",
+        "pf",
+        "pg",
+        "ph",
+        "pk",
+        "pl",
+        "pm",
+        "pn",
+        "pr",
+        "ps",
+        "pt",
+        "pw",
+        "py",
+        "qa",
+        "qc",
+        "re",
+        "ro",
+        "rs",
+        "ru",
+        "rw",
+        "sa",
+        "sb",
+        "sc",
+        "sd",
+        "se",
+        "sg",
+        "sh",
+        "si",
+        "sj",
+        "sk",
+        "sl",
+        "sm",
+        "sn",
+        "so",
+        "sr",
+        "ss",
+        "st",
+        "sv",
+        "sx",
+        "sy",
+        "sz",
+        "tc",
+        "td",
+        "tf",
+        "tg",
+        "th",
+        "tj",
+        "tk",
+        "tl",
+        "tm",
+        "tn",
+        "to",
+        "tp",
+        "tr",
+        "tt",
+        "tv",
+        "tw",
+        "tz",
+        "ua",
+        "ug",
+        "uk",
+        "um",
+        "us",
+        "uy",
+        "uz",
+        "va",
+        "vc",
+        "ve",
+        "vg",
+        "vi",
+        "vn",
+        "vu",
+        "we",
+        "wf",
+        "ws",
+        "ye",
+        "yt",
+        "yu",
+        "za",
+        "zm",
+        "zw"
+      ],
+      "enumType": "string"
+    },
+    "license.officePrepaid.CountryUppercaseEnum": {
+      "id": "CountryUppercaseEnum",
+      "namespace": "license.officePrepaid",
+      "description": "ISO country codes",
+      "enum": [
+        "AC",
+        "AD",
+        "AE",
+        "AF",
+        "AG",
+        "AI",
+        "AL",
+        "AM",
+        "AN",
+        "AO",
+        "AQ",
+        "AR",
+        "AS",
+        "AT",
+        "AU",
+        "AW",
+        "AX",
+        "AZ",
+        "BA",
+        "BB",
+        "BD",
+        "BE",
+        "BF",
+        "BG",
+        "BH",
+        "BI",
+        "BJ",
+        "BL",
+        "BM",
+        "BN",
+        "BO",
+        "BQ",
+        "BR",
+        "BS",
+        "BT",
+        "BV",
+        "BW",
+        "BY",
+        "BZ",
+        "CA",
+        "CC",
+        "CD",
+        "CF",
+        "CG",
+        "CH",
+        "CI",
+        "CK",
+        "CL",
+        "CM",
+        "CN",
+        "CO",
+        "CR",
+        "CS",
+        "CU",
+        "CV",
+        "CW",
+        "CX",
+        "CY",
+        "CZ",
+        "DE",
+        "DJ",
+        "DK",
+        "DM",
+        "DO",
+        "DZ",
+        "EC",
+        "EE",
+        "EG",
+        "EH",
+        "ER",
+        "ES",
+        "ET",
+        "FC",
+        "FD",
+        "FI",
+        "FJ",
+        "FK",
+        "FM",
+        "FO",
+        "FR",
+        "FX",
+        "GA",
+        "GB",
+        "GD",
+        "GE",
+        "GF",
+        "GG",
+        "GH",
+        "GI",
+        "GL",
+        "GM",
+        "GN",
+        "GP",
+        "GQ",
+        "GR",
+        "GS",
+        "GT",
+        "GU",
+        "GW",
+        "GY",
+        "HK",
+        "HM",
+        "HN",
+        "HR",
+        "HT",
+        "HU",
+        "ID",
+        "IE",
+        "IL",
+        "IM",
+        "IN",
+        "IO",
+        "IQ",
+        "IR",
+        "IS",
+        "IT",
+        "JE",
+        "JM",
+        "JO",
+        "JP",
+        "KE",
+        "KG",
+        "KH",
+        "KI",
+        "KM",
+        "KN",
+        "KP",
+        "KR",
+        "KW",
+        "KY",
+        "KZ",
+        "LA",
+        "LB",
+        "LC",
+        "LI",
+        "LK",
+        "LR",
+        "LS",
+        "LT",
+        "LU",
+        "LV",
+        "LY",
+        "MA",
+        "MC",
+        "MD",
+        "ME",
+        "MF",
+        "MG",
+        "MH",
+        "MK",
+        "ML",
+        "MM",
+        "MN",
+        "MO",
+        "MP",
+        "MQ",
+        "MR",
+        "MS",
+        "MT",
+        "MU",
+        "MV",
+        "MW",
+        "MX",
+        "MY",
+        "MZ",
+        "NA",
+        "NC",
+        "NE",
+        "NF",
+        "NG",
+        "NI",
+        "NL",
+        "NO",
+        "NP",
+        "NR",
+        "NU",
+        "NZ",
+        "OM",
+        "PA",
+        "PE",
+        "PF",
+        "PG",
+        "PH",
+        "PK",
+        "PL",
+        "PM",
+        "PN",
+        "PR",
+        "PS",
+        "PT",
+        "PW",
+        "PY",
+        "QA",
+        "QC",
+        "RE",
+        "RO",
+        "RS",
+        "RU",
+        "RW",
+        "SA",
+        "SB",
+        "SC",
+        "SD",
+        "SE",
+        "SG",
+        "SH",
+        "SI",
+        "SJ",
+        "SK",
+        "SL",
+        "SM",
+        "SN",
+        "SO",
+        "SR",
+        "SS",
+        "ST",
+        "SV",
+        "SX",
+        "SY",
+        "SZ",
+        "TC",
+        "TD",
+        "TF",
+        "TG",
+        "TH",
+        "TJ",
+        "TK",
+        "TL",
+        "TM",
+        "TN",
+        "TO",
+        "TP",
+        "TR",
+        "TT",
+        "TV",
+        "TW",
+        "TZ",
+        "UA",
+        "UG",
+        "UK",
+        "UM",
+        "US",
+        "UY",
+        "UZ",
+        "VA",
+        "VC",
+        "VE",
+        "VG",
+        "VI",
+        "VN",
+        "VU",
+        "WE",
+        "WF",
+        "WS",
+        "YE",
+        "YT",
+        "YU",
+        "ZA",
+        "ZM",
+        "ZW"
+      ],
+      "enumType": "string"
+    },
+    "license.officePrepaid.LicenseEnum": {
+      "id": "LicenseEnum",
+      "namespace": "license.officePrepaid",
+      "description": "Office tenant type",
+      "enum": [
+        "officeBusiness",
+        "officeProPlus"
+      ],
+      "enumType": "string"
+    },
+    "license.officePrepaid.OfficeCurrentStatisticsNative": {
+      "id": "OfficeCurrentStatisticsNative",
+      "namespace": "license.officePrepaid",
+      "description": "Office Current Statisitics",
+      "properties": {
+        "date": {
+          "type": "date",
+          "fullType": "date",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "Date of the statistics",
+          "required": false
+        },
+        "lines": {
+          "type": "license.officePrepaid.StatisticsLineNative[]",
+          "fullType": "license.officePrepaid.StatisticsLineNative[]",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "List of lines associated to this statistics entity.",
+          "required": false
+        }
+      }
+    },
+    "license.officePrepaid.OfficeTaskNative": {
+      "id": "OfficeTaskNative",
+      "namespace": "license.officePrepaid",
+      "description": "Office tenant",
+      "properties": {
+        "finishDate": {
+          "type": "datetime",
+          "fullType": "datetime",
+          "canBeNull": true,
+          "readOnly": true,
+          "description": "Completion date",
+          "required": false
+        },
+        "function": {
+          "type": "string",
+          "fullType": "string",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "Function name",
+          "required": false
+        },
+        "id": {
+          "type": "long",
+          "fullType": "long",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "Task's unique identifier",
+          "required": false
+        },
+        "status": {
+          "type": "license.officePrepaid.TaskStatusEnum",
+          "fullType": "license.officePrepaid.TaskStatusEnum",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "Task status",
+          "required": false
+        },
+        "todoDate": {
+          "type": "datetime",
+          "fullType": "datetime",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "Creation date",
+          "required": false
+        }
+      }
+    },
+    "license.officePrepaid.OfficeTenantNative": {
+      "id": "OfficeTenantNative",
+      "namespace": "license.officePrepaid",
+      "description": "Office tenant",
+      "properties": {
+        "address": {
+          "type": "string",
+          "fullType": "string",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "Contact's address line",
+          "required": false
+        },
+        "city": {
+          "type": "string",
+          "fullType": "string",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "Contact's city",
+          "required": false
+        },
+        "creationDate": {
+          "type": "datetime",
+          "fullType": "datetime",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "Creation date",
+          "required": false
+        },
+        "displayName": {
+          "type": "string",
+          "fullType": "string",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "Tenant's display name",
+          "required": false
+        },
+        "firstName": {
+          "type": "string",
+          "fullType": "string",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "Contact's first name",
+          "required": false
+        },
+        "lastName": {
+          "type": "string",
+          "fullType": "string",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "Contact's last name",
+          "required": false
+        },
+        "mcaAgreed": {
+          "type": "boolean",
+          "fullType": "boolean",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "MCA acceptance status",
+          "required": false
+        },
+        "phone": {
+          "type": "phoneNumber",
+          "fullType": "phoneNumber",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "Primary phone number",
+          "required": false
+        },
+        "serviceName": {
+          "type": "string",
+          "fullType": "string",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "Tenant's service name",
+          "required": false
+        },
+        "serviceType": {
+          "type": "license.officePrepaid.ServiceTypeEnum",
+          "fullType": "license.officePrepaid.ServiceTypeEnum",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "Tenant's service type",
+          "required": false
+        },
+        "status": {
+          "type": "license.officePrepaid.ServiceStateEnum",
+          "fullType": "license.officePrepaid.ServiceStateEnum",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "Tenant's status",
+          "required": false
+        },
+        "zipCode": {
+          "type": "string",
+          "fullType": "string",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "Contact's zip code",
+          "required": false
+        }
+      }
+    },
+    "license.officePrepaid.OfficeTenantPostChangePassword": {
+      "id": "OfficeTenantPostChangePassword",
+      "namespace": "license.officePrepaid",
+      "description": "Office change password",
+      "properties": {
+        "notifyEmail": {
+          "type": "string",
+          "fullType": "string",
+          "canBeNull": true,
+          "readOnly": false,
+          "description": "Email to send the new password to. Default is nicAdmin's email",
+          "required": false
+        },
+        "password": {
+          "type": "password",
+          "fullType": "password",
+          "canBeNull": true,
+          "readOnly": false,
+          "description": "New password or empty to receive a generated password by email",
+          "required": false
+        },
+        "shouldSendMail": {
+          "type": "boolean",
+          "fullType": "boolean",
+          "canBeNull": false,
+          "readOnly": false,
+          "description": "Specify if the new password should be send via email or not",
+          "required": true
+        }
+      }
+    },
+    "license.officePrepaid.OfficeTenantPutParentTenant": {
+      "id": "OfficeTenantPutParentTenant",
+      "namespace": "license.officePrepaid",
+      "description": "Office tenant",
+      "properties": {
+        "displayName": {
+          "type": "string",
+          "fullType": "string",
+          "canBeNull": false,
+          "readOnly": false,
+          "description": "Parent tenant display name",
+          "required": false
+        },
+        "serviceName": {
+          "type": "string",
+          "fullType": "string",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "Parent tenant name",
+          "required": false
+        }
+      }
+    },
+    "license.officePrepaid.OfficeUser": {
+      "id": "OfficeUser",
+      "namespace": "license.officePrepaid",
+      "description": "Office user",
+      "properties": {
+        "activationEmail": {
+          "type": "string",
+          "fullType": "string",
+          "canBeNull": false,
+          "readOnly": false,
+          "description": "Email used to activate Microsoft Office",
+          "required": false
+        },
+        "firstName": {
+          "type": "string",
+          "fullType": "string",
+          "canBeNull": false,
+          "readOnly": false,
+          "description": "User's first name",
+          "required": false
+        },
+        "isVirtual": {
+          "type": "boolean",
+          "fullType": "boolean",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "Specify if the user is actually a user slot (configureme) or a real user",
+          "required": false
+        },
+        "lastName": {
+          "type": "string",
+          "fullType": "string",
+          "canBeNull": false,
+          "readOnly": false,
+          "description": "User's last name",
+          "required": false
+        },
+        "licences": {
+          "type": "license.office.LicenceEnum[]",
+          "fullType": "license.office.LicenceEnum[]",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "Licenses attributed to the user",
+          "required": false
+        },
+        "serviceName": {
+          "type": "string",
+          "fullType": "string",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "User service name, used in invoices",
+          "required": false
+        },
+        "status": {
+          "type": "license.office.UserStateEnum",
+          "fullType": "license.office.UserStateEnum",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "User state",
+          "required": false
+        },
+        "taskPendingId": {
+          "type": "long",
+          "fullType": "long",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "Pending task id",
+          "required": false
+        },
+        "tenantServiceName": {
+          "type": "string",
+          "fullType": "string",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "User's tenant service name, used in invoices",
+          "required": false
+        },
+        "usageLocation": {
+          "type": "coreTypes.CountryEnum",
+          "fullType": "coreTypes.CountryEnum",
+          "canBeNull": false,
+          "readOnly": false,
+          "description": "ISO 3166-1 alpha-2 country code where the user is using Office365 services",
+          "required": false
+        }
+      }
+    },
+    "license.officePrepaid.OfficeUserNative": {
+      "id": "OfficeUserNative",
+      "namespace": "license.officePrepaid",
+      "description": "Office tenant",
+      "properties": {
+        "activationEmail": {
+          "type": "string",
+          "fullType": "string",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "Email used to activate Microsoft Office",
+          "required": false
+        },
+        "firstName": {
+          "type": "string",
+          "fullType": "string",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "User's first name",
+          "required": false
+        },
+        "isVirtual": {
+          "type": "boolean",
+          "fullType": "boolean",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "Specify if the user is actually a user slot (configureme) or a real user",
+          "required": false
+        },
+        "lastName": {
+          "type": "string",
+          "fullType": "string",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "User's last name",
+          "required": false
+        },
+        "licences": {
+          "type": "license.officePrepaid.LicenseEnum[]",
+          "fullType": "license.officePrepaid.LicenseEnum[]",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "Licenses attributed to the user",
+          "required": false
+        },
+        "serviceName": {
+          "type": "string",
+          "fullType": "string",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "User service name, used in invoices",
+          "required": false
+        },
+        "status": {
+          "type": "license.officePrepaid.UserStateEnum",
+          "fullType": "license.officePrepaid.UserStateEnum",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "User state",
+          "required": false
+        },
+        "taskPendingId": {
+          "type": "long",
+          "fullType": "long",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "Pending task id",
+          "required": false
+        },
+        "tenantServiceName": {
+          "type": "string",
+          "fullType": "string",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "User's tenant service name, used in invoices",
+          "required": false
+        },
+        "usageLocation": {
+          "type": "license.officePrepaid.CountryEnum",
+          "fullType": "license.officePrepaid.CountryEnum",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "ISO 3166-1 alpha-2 country code where the user is using Office365 services",
+          "required": false
+        }
+      }
+    },
+    "license.officePrepaid.OfficeUserNativeWithIAM": {
+      "id": "OfficeUserNative",
+      "namespace": "license.officePrepaid",
+      "description": "Office tenant",
+      "properties": {
+        "activationEmail": {
+          "type": "string",
+          "fullType": "string",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "Email used to activate Microsoft Office",
+          "required": false
+        },
+        "firstName": {
+          "type": "string",
+          "fullType": "string",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "User's first name",
+          "required": false
+        },
+        "iam": {
+          "type": "iam.ResourceMetadata",
+          "canBeNull": true,
+          "readOnly": true,
+          "description": "IAM resource metadata",
+          "required": false
+        },
+        "isVirtual": {
+          "type": "boolean",
+          "fullType": "boolean",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "Specify if the user is actually a user slot (configureme) or a real user",
+          "required": false
+        },
+        "lastName": {
+          "type": "string",
+          "fullType": "string",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "User's last name",
+          "required": false
+        },
+        "licences": {
+          "type": "license.officePrepaid.LicenseEnum[]",
+          "fullType": "license.officePrepaid.LicenseEnum[]",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "Licenses attributed to the user",
+          "required": false
+        },
+        "serviceName": {
+          "type": "string",
+          "fullType": "string",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "User service name, used in invoices",
+          "required": false
+        },
+        "status": {
+          "type": "license.officePrepaid.UserStateEnum",
+          "fullType": "license.officePrepaid.UserStateEnum",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "User state",
+          "required": false
+        },
+        "taskPendingId": {
+          "type": "long",
+          "fullType": "long",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "Pending task id",
+          "required": false
+        },
+        "tenantServiceName": {
+          "type": "string",
+          "fullType": "string",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "User's tenant service name, used in invoices",
+          "required": false
+        },
+        "usageLocation": {
+          "type": "license.officePrepaid.CountryEnum",
+          "fullType": "license.officePrepaid.CountryEnum",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "ISO 3166-1 alpha-2 country code where the user is using Office365 services",
+          "required": false
+        }
+      }
+    },
+    "license.officePrepaid.OfficeUserWithIAM": {
+      "id": "OfficeUser",
+      "namespace": "license.officePrepaid",
+      "description": "Office user",
+      "properties": {
+        "activationEmail": {
+          "type": "string",
+          "fullType": "string",
+          "canBeNull": false,
+          "readOnly": false,
+          "description": "Email used to activate Microsoft Office",
+          "required": false
+        },
+        "firstName": {
+          "type": "string",
+          "fullType": "string",
+          "canBeNull": false,
+          "readOnly": false,
+          "description": "User's first name",
+          "required": false
+        },
+        "iam": {
+          "type": "iam.ResourceMetadata",
+          "canBeNull": true,
+          "readOnly": true,
+          "description": "IAM resource metadata",
+          "required": false
+        },
+        "isVirtual": {
+          "type": "boolean",
+          "fullType": "boolean",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "Specify if the user is actually a user slot (configureme) or a real user",
+          "required": false
+        },
+        "lastName": {
+          "type": "string",
+          "fullType": "string",
+          "canBeNull": false,
+          "readOnly": false,
+          "description": "User's last name",
+          "required": false
+        },
+        "licences": {
+          "type": "license.office.LicenceEnum[]",
+          "fullType": "license.office.LicenceEnum[]",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "Licenses attributed to the user",
+          "required": false
+        },
+        "serviceName": {
+          "type": "string",
+          "fullType": "string",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "User service name, used in invoices",
+          "required": false
+        },
+        "status": {
+          "type": "license.office.UserStateEnum",
+          "fullType": "license.office.UserStateEnum",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "User state",
+          "required": false
+        },
+        "taskPendingId": {
+          "type": "long",
+          "fullType": "long",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "Pending task id",
+          "required": false
+        },
+        "tenantServiceName": {
+          "type": "string",
+          "fullType": "string",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "User's tenant service name, used in invoices",
+          "required": false
+        },
+        "usageLocation": {
+          "type": "coreTypes.CountryEnum",
+          "fullType": "coreTypes.CountryEnum",
+          "canBeNull": false,
+          "readOnly": false,
+          "description": "ISO 3166-1 alpha-2 country code where the user is using Office365 services",
+          "required": false
+        }
+      }
+    },
+    "license.officePrepaid.PutOfficeUserNative": {
+      "id": "PutOfficeUserNative",
+      "namespace": "license.officePrepaid",
+      "description": "Office tenant",
+      "properties": {
+        "activationEmail": {
+          "type": "string",
+          "fullType": "string",
+          "canBeNull": false,
+          "readOnly": false,
+          "description": "Email used to activate Microsoft Office",
+          "required": false
+        },
+        "firstName": {
+          "type": "string",
+          "fullType": "string",
+          "canBeNull": false,
+          "readOnly": false,
+          "description": "User's first name",
+          "required": false
+        },
+        "lastName": {
+          "type": "string",
+          "fullType": "string",
+          "canBeNull": false,
+          "readOnly": false,
+          "description": "User's last name",
+          "required": false
+        },
+        "usageLocation": {
+          "type": "license.officePrepaid.CountryEnum",
+          "fullType": "license.officePrepaid.CountryEnum",
+          "canBeNull": false,
+          "readOnly": false,
+          "description": "ISO 3166-1 alpha-2 country code where the user is using Office365 services",
+          "required": false
+        }
+      }
+    },
+    "license.officePrepaid.ServiceStateEnum": {
+      "id": "ServiceStateEnum",
+      "namespace": "license.officePrepaid",
+      "description": "Office tenant state",
+      "enum": [
+        "creating",
+        "inMaintenance",
+        "ok",
+        "reopening",
+        "suspended",
+        "suspending"
+      ],
+      "enumType": "string"
+    },
+    "license.officePrepaid.ServiceTypeEnum": {
+      "id": "ServiceTypeEnum",
+      "namespace": "license.officePrepaid",
+      "description": "Office tenant type",
+      "enum": [
+        "payAsYouGo",
+        "prepaid"
+      ],
+      "enumType": "string"
+    },
+    "license.officePrepaid.StatisticsLineNative": {
+      "id": "StatisticsLineNative",
+      "namespace": "license.officePrepaid",
+      "description": "License usage statistics line.",
+      "properties": {
+        "endOfDayCount": {
+          "type": "long",
+          "fullType": "long",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "Count of activated licenses at the end of the day.",
+          "required": false
+        },
+        "licenceType": {
+          "type": "license.officePrepaid.LicenseEnum",
+          "fullType": "license.officePrepaid.LicenseEnum",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "Type of the Office license.",
+          "required": false
+        },
+        "peakCount": {
+          "type": "long",
+          "fullType": "long",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "Maximum count of simultaneous activated licences.",
+          "required": false
+        }
+      }
+    },
+    "license.officePrepaid.TaskStatusEnum": {
+      "id": "TaskStatusEnum",
+      "namespace": "license.officePrepaid",
+      "description": "Excahnge task status",
+      "enum": [
+        "cancelled",
+        "doing",
+        "done",
+        "error",
+        "todo"
+      ],
+      "enumType": "string"
+    },
+    "license.officePrepaid.UserStateEnum": {
+      "id": "UserStateEnum",
+      "namespace": "license.officePrepaid",
+      "description": "Office tenant type",
+      "enum": [
+        "creating",
+        "deleting",
+        "ok",
+        "suspended",
+        "unspending"
+      ],
+      "enumType": "string"
+    },
+    "license.officePrepaid.createAttestationPostPayload": {
+      "id": "createAttestationPostPayload",
+      "namespace": "license.officePrepaid",
+      "description": "Create an attestation",
+      "properties": {
+        "companyName": {
+          "type": "string",
+          "fullType": "string",
+          "canBeNull": false,
+          "readOnly": false,
+          "description": "Signatory company name",
+          "required": false
+        },
+        "country": {
+          "type": "license.officePrepaid.CountryUppercaseEnum",
+          "fullType": "license.officePrepaid.CountryUppercaseEnum",
+          "canBeNull": false,
+          "readOnly": false,
+          "description": "Signatory Country",
+          "required": false
+        },
+        "emailAddress": {
+          "type": "string",
+          "fullType": "string",
+          "canBeNull": false,
+          "readOnly": false,
+          "description": "Signatory email email address",
+          "required": false
+        },
+        "language": {
+          "type": "nichandle.LanguageEnum",
+          "fullType": "nichandle.LanguageEnum",
+          "canBeNull": false,
+          "readOnly": false,
+          "description": "Signatory language",
+          "required": false
+        },
+        "phoneNumber": {
+          "type": "string",
+          "fullType": "string",
+          "canBeNull": false,
+          "readOnly": false,
+          "description": "Signatory phone number",
+          "required": false
+        },
+        "signatoryFirstName": {
+          "type": "string",
+          "fullType": "string",
+          "canBeNull": false,
+          "readOnly": false,
+          "description": "Signatory first name",
+          "required": false
+        },
+        "signatoryLastName": {
+          "type": "string",
+          "fullType": "string",
+          "canBeNull": false,
+          "readOnly": false,
+          "description": "Signatory last name",
+          "required": false
+        }
+      }
+    },
+    "license.officePrepaid.createAttestationResponse": {
+      "id": "createAttestationResponse",
+      "namespace": "license.officePrepaid",
+      "description": "Response for attestation creation",
+      "properties": {
+        "attestationId": {
+          "type": "string",
+          "fullType": "string",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "Attestation id.",
+          "required": false
+        },
+        "attestationLink": {
+          "type": "string",
+          "fullType": "string",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "Link to iframable attestation",
+          "required": false
+        }
+      }
+    },
+    "nichandle.LanguageEnum": {
+      "id": "LanguageEnum",
+      "namespace": "nichandle",
+      "description": "Languages a nichandle can choose",
+      "enum": [
+        "cs_CZ",
+        "de_DE",
+        "en_AU",
+        "en_CA",
+        "en_GB",
+        "en_IE",
+        "en_US",
+        "es_ES",
+        "fi_FI",
+        "fr_CA",
+        "fr_FR",
+        "fr_MA",
+        "fr_SN",
+        "fr_TN",
+        "it_IT",
+        "lt_LT",
+        "nl_NL",
+        "pl_PL",
+        "pt_PT"
+      ],
+      "enumType": "string"
+    },
+    "service.RenewType": {
+      "id": "RenewType",
+      "namespace": "service",
+      "description": "Map a possible renew for a specific service",
+      "properties": {
+        "automatic": {
+          "type": "boolean",
+          "canBeNull": false,
+          "readOnly": false,
+          "description": "The service is automatically renewed",
+          "required": false
+        },
+        "deleteAtExpiration": {
+          "type": "boolean",
+          "canBeNull": false,
+          "readOnly": false,
+          "description": "The service will be deleted at expiration",
+          "required": false
+        },
+        "forced": {
+          "type": "boolean",
+          "canBeNull": false,
+          "readOnly": false,
+          "description": "The service forced to be renewed",
+          "required": false
+        },
+        "manualPayment": {
+          "type": "boolean",
+          "canBeNull": true,
+          "readOnly": false,
+          "description": "The service needs to be manually renewed and paid",
+          "required": false
+        },
+        "period": {
+          "type": "long",
+          "canBeNull": true,
+          "readOnly": false,
+          "description": "period of renew in month",
+          "required": false
+        }
+      }
+    },
+    "service.RenewalTypeEnum": {
+      "id": "RenewalTypeEnum",
+      "namespace": "service",
+      "description": "Detailed renewal type of a service",
+      "enum": [
+        "automaticForcedProduct",
+        "automaticV2012",
+        "automaticV2014",
+        "automaticV2016",
+        "automaticV2024",
+        "manual",
+        "oneShot",
+        "option"
+      ],
+      "enumType": "string"
+    },
+    "service.StateEnum": {
+      "id": "StateEnum",
+      "namespace": "service",
+      "enum": [
+        "autorenewInProgress",
+        "expired",
+        "inCreation",
+        "ok",
+        "pendingDebt",
+        "unPaid"
+      ],
+      "enumType": "string"
+    },
+    "service.TerminationFutureUseEnum": {
+      "id": "TerminationFutureUseEnum",
+      "namespace": "service",
+      "description": "All future uses you can provide for a service termination",
+      "enum": [
+        "NOT_REPLACING_SERVICE",
+        "OTHER",
+        "SUBSCRIBE_AN_OTHER_SERVICE",
+        "SUBSCRIBE_OTHER_KIND_OF_SERVICE_WITH_COMPETITOR",
+        "SUBSCRIBE_SIMILAR_SERVICE_WITH_COMPETITOR"
+      ],
+      "enumType": "string"
+    },
+    "service.TerminationReasonEnum": {
+      "id": "TerminationReasonEnum",
+      "namespace": "service",
+      "description": "All reasons you can provide for a service termination",
+      "enum": [
+        "FEATURES_DONT_SUIT_ME",
+        "LACK_OF_PERFORMANCES",
+        "MIGRATED_TO_ANOTHER_OVH_PRODUCT",
+        "MIGRATED_TO_COMPETITOR",
+        "NOT_ENOUGH_RECOGNITION",
+        "NOT_NEEDED_ANYMORE",
+        "NOT_RELIABLE",
+        "NO_ANSWER",
+        "OTHER",
+        "PRODUCT_DIMENSION_DONT_SUIT_ME",
+        "PRODUCT_TOOLS_DONT_SUIT_ME",
+        "TOO_EXPENSIVE",
+        "TOO_HARD_TO_USE",
+        "UNSATIFIED_BY_CUSTOMER_SUPPORT"
+      ],
+      "enumType": "string"
+    },
+    "services.Service": {
+      "id": "Service",
+      "namespace": "services",
+      "description": "Details about a Service",
+      "properties": {
+        "canDeleteAtExpiration": {
+          "type": "boolean",
+          "fullType": "boolean",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "Indicates that the service can be set up to be deleted at expiration",
+          "required": false
+        },
+        "contactAdmin": {
+          "type": "string",
+          "fullType": "coreTypes.AccountId:string",
+          "canBeNull": false,
+          "readOnly": true,
+          "required": false
+        },
+        "contactBilling": {
+          "type": "string",
+          "fullType": "coreTypes.AccountId:string",
+          "canBeNull": false,
+          "readOnly": true,
+          "required": false
+        },
+        "contactTech": {
+          "type": "string",
+          "fullType": "coreTypes.AccountId:string",
+          "canBeNull": false,
+          "readOnly": true,
+          "required": false
+        },
+        "creation": {
+          "type": "date",
+          "fullType": "date",
+          "canBeNull": false,
+          "readOnly": true,
+          "required": false
+        },
+        "domain": {
+          "type": "string",
+          "fullType": "string",
+          "canBeNull": false,
+          "readOnly": true,
+          "required": false
+        },
+        "engagedUpTo": {
+          "type": "date",
+          "fullType": "date",
+          "canBeNull": true,
+          "readOnly": true,
+          "required": false
+        },
+        "expiration": {
+          "type": "date",
+          "fullType": "date",
+          "canBeNull": false,
+          "readOnly": true,
+          "required": false
+        },
+        "possibleRenewPeriod": {
+          "type": "long[]",
+          "fullType": "long[]",
+          "canBeNull": true,
+          "readOnly": true,
+          "description": "All the possible renew period of your service in month",
+          "required": false
+        },
+        "renew": {
+          "type": "service.RenewType",
+          "fullType": "service.RenewType",
+          "canBeNull": true,
+          "readOnly": false,
+          "description": "Way of handling the renew",
+          "required": false
+        },
+        "renewalType": {
+          "type": "service.RenewalTypeEnum",
+          "fullType": "service.RenewalTypeEnum",
+          "canBeNull": false,
+          "readOnly": true,
+          "required": false
+        },
+        "serviceId": {
+          "type": "long",
+          "fullType": "coreTypes.ServiceId:long",
+          "canBeNull": false,
+          "readOnly": true,
+          "required": false
+        },
+        "status": {
+          "type": "service.StateEnum",
+          "fullType": "service.StateEnum",
+          "canBeNull": false,
+          "readOnly": true,
+          "required": false
+        }
+      }
+    }
+  }
 }

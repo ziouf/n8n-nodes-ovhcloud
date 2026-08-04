@@ -1,8 +1,2782 @@
 {
   "apiVersion": "1.0",
+  "apis": [
+    {
+      "path": "/dedicated/nasha",
+      "operations": [
+        {
+          "apiStatus": {
+            "description": "Stable production version",
+            "value": "PRODUCTION"
+          },
+          "httpMethod": "GET",
+          "parameters": [
+            {
+              "name": "iamTags",
+              "dataType": "map[string][]iam.resource.TagFilter",
+              "paramType": "query",
+              "required": false,
+              "description": "Filter resources on IAM tags"
+            }
+          ],
+          "responseType": "string[]",
+          "responseTypes": {
+            "200": "string[]"
+          },
+          "noAuthentication": false,
+          "description": "List available services",
+          "iamActions": [
+            {
+              "name": "nasHA:apiovh:get",
+              "required": true
+            }
+          ]
+        }
+      ],
+      "description": "Operations about the STORAGE service"
+    },
+    {
+      "path": "/dedicated/nasha/{serviceName}",
+      "operations": [
+        {
+          "apiStatus": {
+            "description": "Stable production version",
+            "value": "PRODUCTION"
+          },
+          "httpMethod": "GET",
+          "parameters": [
+            {
+              "name": "serviceName",
+              "dataType": "string",
+              "paramType": "path",
+              "fullType": "string",
+              "required": true,
+              "description": "The internal name of your storage"
+            }
+          ],
+          "responseType": "dedicated.nasha.StorageWithIAM",
+          "responseTypes": {
+            "200": "dedicated.nasha.StorageWithIAM"
+          },
+          "noAuthentication": false,
+          "description": "Get this object properties",
+          "iamActions": [
+            {
+              "name": "nasHA:apiovh:get",
+              "required": true
+            }
+          ]
+        },
+        {
+          "apiStatus": {
+            "description": "Stable production version",
+            "value": "PRODUCTION"
+          },
+          "httpMethod": "PUT",
+          "parameters": [
+            {
+              "dataType": "dedicated.nasha.Storage",
+              "paramType": "body",
+              "fullType": "dedicated.nasha.Storage",
+              "required": true,
+              "description": "New object properties"
+            },
+            {
+              "name": "serviceName",
+              "dataType": "string",
+              "paramType": "path",
+              "fullType": "string",
+              "required": true,
+              "description": "The internal name of your storage"
+            }
+          ],
+          "responseType": "void",
+          "responseTypes": {
+            "200": "void"
+          },
+          "noAuthentication": false,
+          "description": "Alter this object properties",
+          "iamActions": [
+            {
+              "name": "nasHA:apiovh:put",
+              "required": true
+            }
+          ]
+        }
+      ],
+      "description": "Storage nas HA"
+    },
+    {
+      "path": "/dedicated/nasha/{serviceName}/changeContact",
+      "operations": [
+        {
+          "apiStatus": {
+            "description": "Stable production version",
+            "value": "PRODUCTION"
+          },
+          "httpMethod": "POST",
+          "parameters": [
+            {
+              "name": "contactAdmin",
+              "dataType": "string",
+              "paramType": "body",
+              "fullType": "coreTypes.AccountId:string",
+              "required": false,
+              "description": "The contact to set as admin contact"
+            },
+            {
+              "name": "contactBilling",
+              "dataType": "string",
+              "paramType": "body",
+              "fullType": "coreTypes.AccountId:string",
+              "required": false,
+              "description": "The contact to set as billing contact"
+            },
+            {
+              "name": "contactTech",
+              "dataType": "string",
+              "paramType": "body",
+              "fullType": "coreTypes.AccountId:string",
+              "required": false,
+              "description": "The contact to set as tech contact"
+            },
+            {
+              "name": "serviceName",
+              "dataType": "string",
+              "paramType": "path",
+              "fullType": "string",
+              "required": true,
+              "description": "The internal name of your storage"
+            }
+          ],
+          "responseType": "long[]",
+          "responseTypes": {
+            "200": "long[]"
+          },
+          "noAuthentication": false,
+          "description": "Launch a contact change procedure",
+          "iamActions": [
+            {
+              "name": "nasHA:apiovh:changeContact",
+              "required": true
+            }
+          ]
+        }
+      ],
+      "description": "Change the contacts of this service"
+    },
+    {
+      "path": "/dedicated/nasha/{serviceName}/confirmTermination",
+      "operations": [
+        {
+          "apiStatus": {
+            "description": "Stable production version",
+            "value": "PRODUCTION"
+          },
+          "httpMethod": "POST",
+          "parameters": [
+            {
+              "name": "commentary",
+              "dataType": "string",
+              "paramType": "body",
+              "fullType": "string",
+              "required": false,
+              "description": "Commentary about your termination request"
+            },
+            {
+              "name": "futureUse",
+              "dataType": "service.TerminationFutureUseEnum",
+              "paramType": "body",
+              "fullType": "service.TerminationFutureUseEnum",
+              "required": false,
+              "description": "What next after your termination request"
+            },
+            {
+              "name": "reason",
+              "dataType": "service.TerminationReasonEnum",
+              "paramType": "body",
+              "fullType": "service.TerminationReasonEnum",
+              "required": false,
+              "description": "Reason of your termination request"
+            },
+            {
+              "name": "serviceName",
+              "dataType": "string",
+              "paramType": "path",
+              "fullType": "string",
+              "required": true,
+              "description": "The internal name of your storage"
+            },
+            {
+              "name": "token",
+              "dataType": "string",
+              "paramType": "body",
+              "fullType": "string",
+              "required": true,
+              "description": "The termination token sent by email to the admin contact"
+            }
+          ],
+          "responseType": "string",
+          "responseTypes": {
+            "200": "string"
+          },
+          "noAuthentication": false,
+          "description": "Confirm service termination",
+          "iamActions": [
+            {
+              "name": "nasHA:apiovh:confirmTermination",
+              "required": true
+            }
+          ]
+        }
+      ],
+      "description": "Confirm service termination"
+    },
+    {
+      "path": "/dedicated/nasha/{serviceName}/metricsToken",
+      "operations": [
+        {
+          "apiStatus": {
+            "description": "Stable production version",
+            "value": "PRODUCTION"
+          },
+          "httpMethod": "GET",
+          "parameters": [
+            {
+              "name": "serviceName",
+              "dataType": "string",
+              "paramType": "path",
+              "fullType": "string",
+              "required": true,
+              "description": "The internal name of your storage"
+            }
+          ],
+          "responseType": "dedicated.storage.MetricsTokenResult",
+          "responseTypes": {
+            "200": "dedicated.storage.MetricsTokenResult"
+          },
+          "noAuthentication": false,
+          "description": "Return a read token for manager mimir metrics",
+          "iamActions": [
+            {
+              "name": "nasHA:apiovh:metricsToken/get",
+              "required": true
+            }
+          ]
+        }
+      ],
+      "description": "metricsToken operations"
+    },
+    {
+      "path": "/dedicated/nasha/{serviceName}/partition",
+      "operations": [
+        {
+          "apiStatus": {
+            "description": "Stable production version",
+            "value": "PRODUCTION"
+          },
+          "httpMethod": "GET",
+          "parameters": [
+            {
+              "name": "serviceName",
+              "dataType": "string",
+              "paramType": "path",
+              "fullType": "string",
+              "required": true,
+              "description": "The internal name of your storage"
+            }
+          ],
+          "responseType": "string[]",
+          "responseTypes": {
+            "200": "string[]"
+          },
+          "noAuthentication": false,
+          "description": "Get partition list",
+          "iamActions": [
+            {
+              "name": "nasHA:apiovh:partition/get",
+              "required": true
+            }
+          ]
+        },
+        {
+          "apiStatus": {
+            "description": "Stable production version",
+            "value": "PRODUCTION"
+          },
+          "httpMethod": "POST",
+          "parameters": [
+            {
+              "name": "partitionDescription",
+              "dataType": "string",
+              "paramType": "body",
+              "fullType": "string",
+              "required": false,
+              "description": "Partition description"
+            },
+            {
+              "name": "partitionName",
+              "dataType": "string",
+              "paramType": "body",
+              "fullType": "string",
+              "required": true,
+              "description": "Partition name"
+            },
+            {
+              "name": "protocol",
+              "dataType": "dedicated.storage.ProtocolEnum",
+              "paramType": "body",
+              "fullType": "dedicated.storage.ProtocolEnum",
+              "required": true,
+              "description": "NFS|CIFS|NFS_CIFS"
+            },
+            {
+              "name": "serviceName",
+              "dataType": "string",
+              "paramType": "path",
+              "fullType": "string",
+              "required": true,
+              "description": "The internal name of your storage"
+            },
+            {
+              "name": "size",
+              "dataType": "long",
+              "paramType": "body",
+              "fullType": "long",
+              "required": true,
+              "description": "Partition size"
+            }
+          ],
+          "responseType": "dedicated.nasTask.Task",
+          "responseTypes": {
+            "200": "dedicated.nasTask.Task"
+          },
+          "noAuthentication": false,
+          "description": "Create a new partition",
+          "iamActions": [
+            {
+              "name": "nasHA:apiovh:partition/create",
+              "required": true
+            }
+          ]
+        }
+      ],
+      "description": "List the dedicated.nasha.Partition objects"
+    },
+    {
+      "path": "/dedicated/nasha/{serviceName}/partition/{partitionName}",
+      "operations": [
+        {
+          "apiStatus": {
+            "description": "Stable production version",
+            "value": "PRODUCTION"
+          },
+          "httpMethod": "DELETE",
+          "parameters": [
+            {
+              "name": "partitionName",
+              "dataType": "string",
+              "paramType": "path",
+              "fullType": "string",
+              "required": true,
+              "description": "the given name of partition"
+            },
+            {
+              "name": "serviceName",
+              "dataType": "string",
+              "paramType": "path",
+              "fullType": "string",
+              "required": true,
+              "description": "The internal name of your storage"
+            }
+          ],
+          "responseType": "dedicated.nasTask.Task",
+          "responseTypes": {
+            "200": "dedicated.nasTask.Task"
+          },
+          "noAuthentication": false,
+          "description": "Delete this partition",
+          "iamActions": [
+            {
+              "name": "nasHA:apiovh:partition/delete",
+              "required": true
+            }
+          ]
+        },
+        {
+          "apiStatus": {
+            "description": "Stable production version",
+            "value": "PRODUCTION"
+          },
+          "httpMethod": "GET",
+          "parameters": [
+            {
+              "name": "partitionName",
+              "dataType": "string",
+              "paramType": "path",
+              "fullType": "string",
+              "required": true,
+              "description": "the given name of partition"
+            },
+            {
+              "name": "serviceName",
+              "dataType": "string",
+              "paramType": "path",
+              "fullType": "string",
+              "required": true,
+              "description": "The internal name of your storage"
+            }
+          ],
+          "responseType": "dedicated.nasha.Partition",
+          "responseTypes": {
+            "200": "dedicated.nasha.Partition"
+          },
+          "noAuthentication": false,
+          "description": "Get this object properties",
+          "iamActions": [
+            {
+              "name": "nasHA:apiovh:partition/get",
+              "required": true
+            }
+          ]
+        },
+        {
+          "apiStatus": {
+            "description": "Stable production version",
+            "value": "PRODUCTION"
+          },
+          "httpMethod": "PUT",
+          "parameters": [
+            {
+              "dataType": "dedicated.nasha.Partition",
+              "paramType": "body",
+              "fullType": "dedicated.nasha.Partition",
+              "required": true,
+              "description": "New object properties"
+            },
+            {
+              "name": "partitionName",
+              "dataType": "string",
+              "paramType": "path",
+              "fullType": "string",
+              "required": true,
+              "description": "the given name of partition"
+            },
+            {
+              "name": "serviceName",
+              "dataType": "string",
+              "paramType": "path",
+              "fullType": "string",
+              "required": true,
+              "description": "The internal name of your storage"
+            }
+          ],
+          "responseType": "void",
+          "responseTypes": {
+            "200": "void"
+          },
+          "noAuthentication": false,
+          "description": "Alter this object properties",
+          "iamActions": [
+            {
+              "name": "nasHA:apiovh:partition/edit",
+              "required": true
+            }
+          ]
+        }
+      ],
+      "description": "Storage zpool partition"
+    },
+    {
+      "path": "/dedicated/nasha/{serviceName}/partition/{partitionName}/access",
+      "operations": [
+        {
+          "apiStatus": {
+            "description": "Stable production version",
+            "value": "PRODUCTION"
+          },
+          "httpMethod": "GET",
+          "parameters": [
+            {
+              "name": "partitionName",
+              "dataType": "string",
+              "paramType": "path",
+              "fullType": "string",
+              "required": true,
+              "description": "the given name of partition"
+            },
+            {
+              "name": "serviceName",
+              "dataType": "string",
+              "paramType": "path",
+              "fullType": "string",
+              "required": true,
+              "description": "The internal name of your storage"
+            }
+          ],
+          "responseType": "ipBlock[]",
+          "responseTypes": {
+            "200": "ipBlock[]"
+          },
+          "noAuthentication": false,
+          "description": "get ACL for this partition",
+          "iamActions": [
+            {
+              "name": "nasHA:apiovh:partition/access/get",
+              "required": true
+            }
+          ]
+        },
+        {
+          "apiStatus": {
+            "description": "Stable production version",
+            "value": "PRODUCTION"
+          },
+          "httpMethod": "POST",
+          "parameters": [
+            {
+              "name": "aclDescription",
+              "dataType": "string",
+              "paramType": "body",
+              "fullType": "string",
+              "required": false,
+              "description": "ACL description"
+            },
+            {
+              "name": "ip",
+              "dataType": "ipBlock",
+              "paramType": "body",
+              "fullType": "ipBlock",
+              "required": true,
+              "description": "Ip or block to add"
+            },
+            {
+              "name": "partitionName",
+              "dataType": "string",
+              "paramType": "path",
+              "fullType": "string",
+              "required": true,
+              "description": "the given name of partition"
+            },
+            {
+              "name": "serviceName",
+              "dataType": "string",
+              "paramType": "path",
+              "fullType": "string",
+              "required": true,
+              "description": "The internal name of your storage"
+            },
+            {
+              "name": "type",
+              "dataType": "dedicated.storage.AclTypeEnum",
+              "paramType": "body",
+              "fullType": "dedicated.storage.AclTypeEnum",
+              "required": false,
+              "description": "ACL type"
+            }
+          ],
+          "responseType": "dedicated.nasTask.Task",
+          "responseTypes": {
+            "200": "dedicated.nasTask.Task"
+          },
+          "noAuthentication": false,
+          "description": "Add a new ACL entry",
+          "iamActions": [
+            {
+              "name": "nasHA:apiovh:partition/access/create",
+              "required": true
+            }
+          ]
+        }
+      ],
+      "description": "List the dedicated.nasha.Access objects"
+    },
+    {
+      "path": "/dedicated/nasha/{serviceName}/partition/{partitionName}/access/{ip}",
+      "operations": [
+        {
+          "apiStatus": {
+            "description": "Stable production version",
+            "value": "PRODUCTION"
+          },
+          "httpMethod": "DELETE",
+          "parameters": [
+            {
+              "name": "ip",
+              "dataType": "ipBlock",
+              "paramType": "path",
+              "fullType": "ipBlock",
+              "required": true,
+              "description": "the ip in root on storage"
+            },
+            {
+              "name": "partitionName",
+              "dataType": "string",
+              "paramType": "path",
+              "fullType": "string",
+              "required": true,
+              "description": "the given name of partition"
+            },
+            {
+              "name": "serviceName",
+              "dataType": "string",
+              "paramType": "path",
+              "fullType": "string",
+              "required": true,
+              "description": "The internal name of your storage"
+            }
+          ],
+          "responseType": "dedicated.nasTask.Task",
+          "responseTypes": {
+            "200": "dedicated.nasTask.Task"
+          },
+          "noAuthentication": false,
+          "description": "Delete an ACL entry",
+          "iamActions": [
+            {
+              "name": "nasHA:apiovh:partition/access/delete",
+              "required": true
+            }
+          ]
+        },
+        {
+          "apiStatus": {
+            "description": "Stable production version",
+            "value": "PRODUCTION"
+          },
+          "httpMethod": "GET",
+          "parameters": [
+            {
+              "name": "ip",
+              "dataType": "ipBlock",
+              "paramType": "path",
+              "fullType": "ipBlock",
+              "required": true,
+              "description": "the ip in root on storage"
+            },
+            {
+              "name": "partitionName",
+              "dataType": "string",
+              "paramType": "path",
+              "fullType": "string",
+              "required": true,
+              "description": "the given name of partition"
+            },
+            {
+              "name": "serviceName",
+              "dataType": "string",
+              "paramType": "path",
+              "fullType": "string",
+              "required": true,
+              "description": "The internal name of your storage"
+            }
+          ],
+          "responseType": "dedicated.nasha.Access",
+          "responseTypes": {
+            "200": "dedicated.nasha.Access"
+          },
+          "noAuthentication": false,
+          "description": "Get this object properties",
+          "iamActions": [
+            {
+              "name": "nasHA:apiovh:partition/access/get",
+              "required": true
+            }
+          ]
+        }
+      ],
+      "description": "Define Acl for partition"
+    },
+    {
+      "path": "/dedicated/nasha/{serviceName}/partition/{partitionName}/authorizableBlocks",
+      "operations": [
+        {
+          "apiStatus": {
+            "description": "Stable production version",
+            "value": "PRODUCTION"
+          },
+          "httpMethod": "GET",
+          "parameters": [
+            {
+              "name": "partitionName",
+              "dataType": "string",
+              "paramType": "path",
+              "fullType": "string",
+              "required": true,
+              "description": "the given name of partition"
+            },
+            {
+              "name": "serviceName",
+              "dataType": "string",
+              "paramType": "path",
+              "fullType": "string",
+              "required": true,
+              "description": "The internal name of your storage"
+            }
+          ],
+          "responseType": "ipBlock[]",
+          "responseTypes": {
+            "200": "ipBlock[]"
+          },
+          "noAuthentication": false,
+          "description": "Get all RIPE/ARIN blocks that can be used in the ACL",
+          "iamActions": [
+            {
+              "name": "nasHA:apiovh:partition/authorizableBlocks/get",
+              "required": true
+            },
+            {
+              "name": "ip:apiovh:nasHA/allow",
+              "description": "Required on IP blocks to be authorized on the partition",
+              "required": true
+            }
+          ]
+        }
+      ],
+      "description": "authorizableBlocks operations"
+    },
+    {
+      "path": "/dedicated/nasha/{serviceName}/partition/{partitionName}/authorizableIps",
+      "operations": [
+        {
+          "apiStatus": {
+            "description": "Stable production version",
+            "value": "PRODUCTION"
+          },
+          "httpMethod": "GET",
+          "parameters": [
+            {
+              "name": "partitionName",
+              "dataType": "string",
+              "paramType": "path",
+              "fullType": "string",
+              "required": true,
+              "description": "the given name of partition"
+            },
+            {
+              "name": "serviceName",
+              "dataType": "string",
+              "paramType": "path",
+              "fullType": "string",
+              "required": true,
+              "description": "The internal name of your storage"
+            }
+          ],
+          "responseType": "ip[]",
+          "responseTypes": {
+            "200": "ip[]"
+          },
+          "noAuthentication": false,
+          "description": "Get all IPs that can be used in the ACL",
+          "iamActions": [
+            {
+              "name": "nasHA:apiovh:partition/authorizableIps/get",
+              "required": true
+            },
+            {
+              "name": "ip:apiovh:nasHA/allow",
+              "description": "Required on IPs to be authorized on the partition",
+              "required": true
+            }
+          ]
+        }
+      ],
+      "description": "authorizableIps operations"
+    },
+    {
+      "path": "/dedicated/nasha/{serviceName}/partition/{partitionName}/customSnapshot",
+      "operations": [
+        {
+          "apiStatus": {
+            "description": "Beta version",
+            "value": "BETA"
+          },
+          "httpMethod": "GET",
+          "parameters": [
+            {
+              "name": "partitionName",
+              "dataType": "string",
+              "paramType": "path",
+              "fullType": "string",
+              "required": true,
+              "description": "the given name of partition"
+            },
+            {
+              "name": "serviceName",
+              "dataType": "string",
+              "paramType": "path",
+              "fullType": "string",
+              "required": true,
+              "description": "The internal name of your storage"
+            }
+          ],
+          "responseType": "string[]",
+          "responseTypes": {
+            "200": "string[]"
+          },
+          "noAuthentication": false,
+          "description": "Get custom snapshots for this partition",
+          "iamActions": [
+            {
+              "name": "nasHA:apiovh:partition/customSnapshot/get",
+              "required": true
+            }
+          ]
+        },
+        {
+          "apiStatus": {
+            "description": "Beta version",
+            "value": "BETA"
+          },
+          "httpMethod": "POST",
+          "parameters": [
+            {
+              "name": "expiration",
+              "dataType": "string",
+              "paramType": "body",
+              "fullType": "string",
+              "required": false,
+              "description": "optional expiration date/time, in iso8601 format"
+            },
+            {
+              "name": "name",
+              "dataType": "string",
+              "paramType": "body",
+              "fullType": "string",
+              "required": true,
+              "description": "the name of the snapshot"
+            },
+            {
+              "name": "partitionName",
+              "dataType": "string",
+              "paramType": "path",
+              "fullType": "string",
+              "required": true,
+              "description": "the given name of partition"
+            },
+            {
+              "name": "serviceName",
+              "dataType": "string",
+              "paramType": "path",
+              "fullType": "string",
+              "required": true,
+              "description": "The internal name of your storage"
+            }
+          ],
+          "responseType": "dedicated.nasTask.Task",
+          "responseTypes": {
+            "200": "dedicated.nasTask.Task"
+          },
+          "noAuthentication": false,
+          "description": "Create a new snapshot",
+          "iamActions": [
+            {
+              "name": "nasHA:apiovh:partition/customSnapshot/create",
+              "required": true
+            }
+          ]
+        }
+      ],
+      "description": "List the dedicated.nasha.customSnap objects"
+    },
+    {
+      "path": "/dedicated/nasha/{serviceName}/partition/{partitionName}/customSnapshot/{name}",
+      "operations": [
+        {
+          "apiStatus": {
+            "description": "Beta version",
+            "value": "BETA"
+          },
+          "httpMethod": "DELETE",
+          "parameters": [
+            {
+              "name": "name",
+              "dataType": "string",
+              "paramType": "path",
+              "fullType": "string",
+              "required": true,
+              "description": "name of the snapshot"
+            },
+            {
+              "name": "partitionName",
+              "dataType": "string",
+              "paramType": "path",
+              "fullType": "string",
+              "required": true,
+              "description": "the given name of partition"
+            },
+            {
+              "name": "serviceName",
+              "dataType": "string",
+              "paramType": "path",
+              "fullType": "string",
+              "required": true,
+              "description": "The internal name of your storage"
+            }
+          ],
+          "responseType": "dedicated.nasTask.Task",
+          "responseTypes": {
+            "200": "dedicated.nasTask.Task"
+          },
+          "noAuthentication": false,
+          "description": "Delete a given snapshot",
+          "iamActions": [
+            {
+              "name": "nasHA:apiovh:partition/customSnapshot/delete",
+              "required": true
+            }
+          ]
+        },
+        {
+          "apiStatus": {
+            "description": "Beta version",
+            "value": "BETA"
+          },
+          "httpMethod": "GET",
+          "parameters": [
+            {
+              "name": "name",
+              "dataType": "string",
+              "paramType": "path",
+              "fullType": "string",
+              "required": true,
+              "description": "name of the snapshot"
+            },
+            {
+              "name": "partitionName",
+              "dataType": "string",
+              "paramType": "path",
+              "fullType": "string",
+              "required": true,
+              "description": "the given name of partition"
+            },
+            {
+              "name": "serviceName",
+              "dataType": "string",
+              "paramType": "path",
+              "fullType": "string",
+              "required": true,
+              "description": "The internal name of your storage"
+            }
+          ],
+          "responseType": "dedicated.nasha.customSnap",
+          "responseTypes": {
+            "200": "dedicated.nasha.customSnap"
+          },
+          "noAuthentication": false,
+          "description": "Get this object properties",
+          "iamActions": [
+            {
+              "name": "nasHA:apiovh:partition/customSnapshot/get",
+              "required": true
+            }
+          ]
+        }
+      ],
+      "description": "Custom Snapshot"
+    },
+    {
+      "path": "/dedicated/nasha/{serviceName}/partition/{partitionName}/options",
+      "operations": [
+        {
+          "apiStatus": {
+            "description": "Stable production version",
+            "value": "PRODUCTION"
+          },
+          "httpMethod": "GET",
+          "parameters": [
+            {
+              "name": "partitionName",
+              "dataType": "string",
+              "paramType": "path",
+              "fullType": "string",
+              "required": true,
+              "description": "the given name of partition"
+            },
+            {
+              "name": "serviceName",
+              "dataType": "string",
+              "paramType": "path",
+              "fullType": "string",
+              "required": true,
+              "description": "The internal name of your storage"
+            }
+          ],
+          "responseType": "dedicated.nasha.options",
+          "responseTypes": {
+            "200": "dedicated.nasha.options"
+          },
+          "noAuthentication": false,
+          "description": "Get this object properties",
+          "iamActions": [
+            {
+              "name": "nasHA:apiovh:partition/options/get",
+              "required": true
+            }
+          ]
+        },
+        {
+          "apiStatus": {
+            "description": "Stable production version",
+            "value": "PRODUCTION"
+          },
+          "httpMethod": "POST",
+          "parameters": [
+            {
+              "name": "atime",
+              "dataType": "dedicated.storage.AtimeEnum",
+              "paramType": "body",
+              "fullType": "dedicated.storage.AtimeEnum",
+              "required": false,
+              "description": "atime setting"
+            },
+            {
+              "name": "partitionName",
+              "dataType": "string",
+              "paramType": "path",
+              "fullType": "string",
+              "required": true,
+              "description": "the given name of partition"
+            },
+            {
+              "name": "recordsize",
+              "dataType": "dedicated.storage.RecordSizeEnum",
+              "paramType": "body",
+              "fullType": "dedicated.storage.RecordSizeEnum",
+              "required": false,
+              "description": "ZFS recordsize"
+            },
+            {
+              "name": "serviceName",
+              "dataType": "string",
+              "paramType": "path",
+              "fullType": "string",
+              "required": true,
+              "description": "The internal name of your storage"
+            },
+            {
+              "name": "sync",
+              "dataType": "dedicated.storage.SyncEnum",
+              "paramType": "body",
+              "fullType": "dedicated.storage.SyncEnum",
+              "required": false,
+              "description": "sync setting"
+            },
+            {
+              "name": "templateName",
+              "dataType": "dedicated.storage.TemplateUsageOptionsEnum",
+              "paramType": "body",
+              "fullType": "dedicated.storage.TemplateUsageOptionsEnum",
+              "required": false,
+              "description": "The name of the usage template to apply for this partition."
+            }
+          ],
+          "responseType": "dedicated.nasTask.Task",
+          "responseTypes": {
+            "200": "dedicated.nasTask.Task"
+          },
+          "noAuthentication": false,
+          "description": "Setup options",
+          "iamActions": [
+            {
+              "name": "nasHA:apiovh:partition/options/create",
+              "required": true
+            }
+          ]
+        }
+      ],
+      "description": "Partition options"
+    },
+    {
+      "path": "/dedicated/nasha/{serviceName}/partition/{partitionName}/quota",
+      "operations": [
+        {
+          "apiStatus": {
+            "description": "Stable production version",
+            "value": "PRODUCTION"
+          },
+          "httpMethod": "GET",
+          "parameters": [
+            {
+              "name": "partitionName",
+              "dataType": "string",
+              "paramType": "path",
+              "fullType": "string",
+              "required": true,
+              "description": "the given name of partition"
+            },
+            {
+              "name": "serviceName",
+              "dataType": "string",
+              "paramType": "path",
+              "fullType": "string",
+              "required": true,
+              "description": "The internal name of your storage"
+            }
+          ],
+          "responseType": "long[]",
+          "responseTypes": {
+            "200": "long[]"
+          },
+          "noAuthentication": false,
+          "description": "Get quota for this partition",
+          "iamActions": [
+            {
+              "name": "nasHA:apiovh:partition/quota/get",
+              "required": true
+            }
+          ]
+        },
+        {
+          "apiStatus": {
+            "description": "Stable production version",
+            "value": "PRODUCTION"
+          },
+          "httpMethod": "POST",
+          "parameters": [
+            {
+              "name": "partitionName",
+              "dataType": "string",
+              "paramType": "path",
+              "fullType": "string",
+              "required": true,
+              "description": "the given name of partition"
+            },
+            {
+              "name": "serviceName",
+              "dataType": "string",
+              "paramType": "path",
+              "fullType": "string",
+              "required": true,
+              "description": "The internal name of your storage"
+            },
+            {
+              "name": "size",
+              "dataType": "long",
+              "paramType": "body",
+              "fullType": "long",
+              "required": true,
+              "description": "the size to set in MB"
+            },
+            {
+              "name": "uid",
+              "dataType": "long",
+              "paramType": "body",
+              "fullType": "long",
+              "required": true,
+              "description": "the uid to set quota on"
+            }
+          ],
+          "responseType": "dedicated.nasTask.Task",
+          "responseTypes": {
+            "200": "dedicated.nasTask.Task"
+          },
+          "noAuthentication": false,
+          "description": "Set a new quota",
+          "iamActions": [
+            {
+              "name": "nasHA:apiovh:partition/quota/create",
+              "required": true
+            }
+          ]
+        }
+      ],
+      "description": "List the dedicated.nasha.Quota objects"
+    },
+    {
+      "path": "/dedicated/nasha/{serviceName}/partition/{partitionName}/quota/{uid}",
+      "operations": [
+        {
+          "apiStatus": {
+            "description": "Stable production version",
+            "value": "PRODUCTION"
+          },
+          "httpMethod": "DELETE",
+          "parameters": [
+            {
+              "name": "partitionName",
+              "dataType": "string",
+              "paramType": "path",
+              "fullType": "string",
+              "required": true,
+              "description": "the given name of partition"
+            },
+            {
+              "name": "serviceName",
+              "dataType": "string",
+              "paramType": "path",
+              "fullType": "string",
+              "required": true,
+              "description": "The internal name of your storage"
+            },
+            {
+              "name": "uid",
+              "dataType": "long",
+              "paramType": "path",
+              "fullType": "long",
+              "required": true,
+              "description": "the uid to set quota on"
+            }
+          ],
+          "responseType": "dedicated.nasTask.Task",
+          "responseTypes": {
+            "200": "dedicated.nasTask.Task"
+          },
+          "noAuthentication": false,
+          "description": "Delete a given quota",
+          "iamActions": [
+            {
+              "name": "nasHA:apiovh:partition/quota/delete",
+              "required": true
+            }
+          ]
+        },
+        {
+          "apiStatus": {
+            "description": "Stable production version",
+            "value": "PRODUCTION"
+          },
+          "httpMethod": "GET",
+          "parameters": [
+            {
+              "name": "partitionName",
+              "dataType": "string",
+              "paramType": "path",
+              "fullType": "string",
+              "required": true,
+              "description": "the given name of partition"
+            },
+            {
+              "name": "serviceName",
+              "dataType": "string",
+              "paramType": "path",
+              "fullType": "string",
+              "required": true,
+              "description": "The internal name of your storage"
+            },
+            {
+              "name": "uid",
+              "dataType": "long",
+              "paramType": "path",
+              "fullType": "long",
+              "required": true,
+              "description": "the uid to set quota on"
+            }
+          ],
+          "responseType": "dedicated.nasha.Quota",
+          "responseTypes": {
+            "200": "dedicated.nasha.Quota"
+          },
+          "noAuthentication": false,
+          "description": "Get this object properties",
+          "iamActions": [
+            {
+              "name": "nasHA:apiovh:partition/quota/get",
+              "required": true
+            }
+          ]
+        }
+      ],
+      "description": "Partition Quota"
+    },
+    {
+      "path": "/dedicated/nasha/{serviceName}/partition/{partitionName}/snapshot",
+      "operations": [
+        {
+          "apiStatus": {
+            "description": "Stable production version",
+            "value": "PRODUCTION"
+          },
+          "httpMethod": "GET",
+          "parameters": [
+            {
+              "name": "partitionName",
+              "dataType": "string",
+              "paramType": "path",
+              "fullType": "string",
+              "required": true,
+              "description": "the given name of partition"
+            },
+            {
+              "name": "serviceName",
+              "dataType": "string",
+              "paramType": "path",
+              "fullType": "string",
+              "required": true,
+              "description": "The internal name of your storage"
+            }
+          ],
+          "responseType": "dedicated.storage.SnapshotEnum[]",
+          "responseTypes": {
+            "200": "dedicated.storage.SnapshotEnum[]"
+          },
+          "noAuthentication": false,
+          "description": "Get scheduled snapshot types for this partition",
+          "iamActions": [
+            {
+              "name": "nasHA:apiovh:partition/snapshot/get",
+              "required": true
+            }
+          ]
+        },
+        {
+          "apiStatus": {
+            "description": "Stable production version",
+            "value": "PRODUCTION"
+          },
+          "httpMethod": "POST",
+          "parameters": [
+            {
+              "name": "partitionName",
+              "dataType": "string",
+              "paramType": "path",
+              "fullType": "string",
+              "required": true,
+              "description": "the given name of partition"
+            },
+            {
+              "name": "serviceName",
+              "dataType": "string",
+              "paramType": "path",
+              "fullType": "string",
+              "required": true,
+              "description": "The internal name of your storage"
+            },
+            {
+              "name": "snapshotType",
+              "dataType": "dedicated.storage.SnapshotEnum",
+              "paramType": "body",
+              "fullType": "dedicated.storage.SnapshotEnum",
+              "required": true,
+              "description": "Snapshot interval to add"
+            }
+          ],
+          "responseType": "dedicated.nasTask.Task",
+          "responseTypes": {
+            "200": "dedicated.nasTask.Task"
+          },
+          "noAuthentication": false,
+          "description": "Schedule a new snapshot type",
+          "iamActions": [
+            {
+              "name": "nasHA:apiovh:partition/snapshot/create",
+              "required": true
+            }
+          ]
+        }
+      ],
+      "description": "List the dedicated.nasha.Snapshot objects"
+    },
+    {
+      "path": "/dedicated/nasha/{serviceName}/partition/{partitionName}/snapshot/{snapshotType}",
+      "operations": [
+        {
+          "apiStatus": {
+            "description": "Stable production version",
+            "value": "PRODUCTION"
+          },
+          "httpMethod": "DELETE",
+          "parameters": [
+            {
+              "name": "partitionName",
+              "dataType": "string",
+              "paramType": "path",
+              "fullType": "string",
+              "required": true,
+              "description": "the given name of partition"
+            },
+            {
+              "name": "serviceName",
+              "dataType": "string",
+              "paramType": "path",
+              "fullType": "string",
+              "required": true,
+              "description": "The internal name of your storage"
+            },
+            {
+              "name": "snapshotType",
+              "dataType": "dedicated.storage.SnapshotEnum",
+              "paramType": "path",
+              "fullType": "dedicated.storage.SnapshotEnum",
+              "required": true,
+              "description": "the interval of snapshot"
+            }
+          ],
+          "responseType": "dedicated.nasTask.Task",
+          "responseTypes": {
+            "200": "dedicated.nasTask.Task"
+          },
+          "noAuthentication": false,
+          "description": "Delete a given snapshot",
+          "iamActions": [
+            {
+              "name": "nasHA:apiovh:partition/snapshot/delete",
+              "required": true
+            }
+          ]
+        },
+        {
+          "apiStatus": {
+            "description": "Stable production version",
+            "value": "PRODUCTION"
+          },
+          "httpMethod": "GET",
+          "parameters": [
+            {
+              "name": "partitionName",
+              "dataType": "string",
+              "paramType": "path",
+              "fullType": "string",
+              "required": true,
+              "description": "the given name of partition"
+            },
+            {
+              "name": "serviceName",
+              "dataType": "string",
+              "paramType": "path",
+              "fullType": "string",
+              "required": true,
+              "description": "The internal name of your storage"
+            },
+            {
+              "name": "snapshotType",
+              "dataType": "dedicated.storage.SnapshotEnum",
+              "paramType": "path",
+              "fullType": "dedicated.storage.SnapshotEnum",
+              "required": true,
+              "description": "the interval of snapshot"
+            }
+          ],
+          "responseType": "dedicated.nasha.Snapshot",
+          "responseTypes": {
+            "200": "dedicated.nasha.Snapshot"
+          },
+          "noAuthentication": false,
+          "description": "Get this object properties",
+          "iamActions": [
+            {
+              "name": "nasHA:apiovh:partition/snapshot/get",
+              "required": true
+            }
+          ]
+        }
+      ],
+      "description": "Partition Snapshot"
+    },
+    {
+      "path": "/dedicated/nasha/{serviceName}/partition/{partitionName}/templateUsage",
+      "operations": [
+        {
+          "apiStatus": {
+            "description": "Stable production version",
+            "value": "PRODUCTION"
+          },
+          "httpMethod": "GET",
+          "parameters": [
+            {
+              "name": "partitionName",
+              "dataType": "string",
+              "paramType": "path",
+              "fullType": "string",
+              "required": true,
+              "description": "the given name of partition"
+            },
+            {
+              "name": "serviceName",
+              "dataType": "string",
+              "paramType": "path",
+              "fullType": "string",
+              "required": true,
+              "description": "The internal name of your storage"
+            }
+          ],
+          "responseType": "dedicated.storage.TemplateUsageOptionsDetails[]",
+          "responseTypes": {
+            "200": "dedicated.storage.TemplateUsageOptionsDetails[]"
+          },
+          "noAuthentication": false,
+          "description": "Get all the template usages options applicable to this partition.",
+          "iamActions": [
+            {
+              "name": "nasHA:apiovh:partition/templateUsage/get",
+              "required": true
+            }
+          ]
+        }
+      ],
+      "description": "templateUsage operations"
+    },
+    {
+      "path": "/dedicated/nasha/{serviceName}/partition/{partitionName}/use",
+      "operations": [
+        {
+          "apiStatus": {
+            "description": "Stable production version",
+            "value": "PRODUCTION"
+          },
+          "httpMethod": "GET",
+          "parameters": [
+            {
+              "name": "partitionName",
+              "dataType": "string",
+              "paramType": "path",
+              "fullType": "string",
+              "required": true,
+              "description": "the given name of partition"
+            },
+            {
+              "name": "serviceName",
+              "dataType": "string",
+              "paramType": "path",
+              "fullType": "string",
+              "required": true,
+              "description": "The internal name of your storage"
+            },
+            {
+              "name": "type",
+              "dataType": "dedicated.storage.PartitionUsageTypeEnum",
+              "paramType": "query",
+              "fullType": "dedicated.storage.PartitionUsageTypeEnum",
+              "required": true,
+              "description": "The type of statistic to be fetched"
+            }
+          ],
+          "responseType": "complexType.UnitAndValue<double>",
+          "responseTypes": {
+            "200": "complexType.UnitAndValue<double>"
+          },
+          "noAuthentication": false,
+          "description": "Return statistics about the partition",
+          "iamActions": [
+            {
+              "name": "nasHA:apiovh:partition/use/get",
+              "required": true
+            }
+          ]
+        }
+      ],
+      "description": "use operations"
+    },
+    {
+      "path": "/dedicated/nasha/{serviceName}/serviceInfos",
+      "operations": [
+        {
+          "apiStatus": {
+            "description": "Stable production version",
+            "value": "PRODUCTION"
+          },
+          "httpMethod": "GET",
+          "parameters": [
+            {
+              "name": "serviceName",
+              "dataType": "string",
+              "paramType": "path",
+              "fullType": "string",
+              "required": true,
+              "description": "The internal name of your storage"
+            }
+          ],
+          "responseType": "services.Service",
+          "responseTypes": {
+            "200": "services.Service"
+          },
+          "noAuthentication": false,
+          "description": "Get service information",
+          "iamActions": [
+            {
+              "name": "nasHA:apiovh:serviceInfos/get",
+              "required": true
+            }
+          ]
+        },
+        {
+          "apiStatus": {
+            "description": "Stable production version",
+            "value": "PRODUCTION"
+          },
+          "httpMethod": "PUT",
+          "parameters": [
+            {
+              "dataType": "services.Service",
+              "paramType": "body",
+              "fullType": "services.Service",
+              "required": true,
+              "description": "New object properties"
+            },
+            {
+              "name": "serviceName",
+              "dataType": "string",
+              "paramType": "path",
+              "fullType": "string",
+              "required": true,
+              "description": "The internal name of your storage"
+            }
+          ],
+          "responseType": "void",
+          "responseTypes": {
+            "200": "void"
+          },
+          "noAuthentication": false,
+          "description": "Update service information",
+          "iamActions": [
+            {
+              "name": "nasHA:apiovh:serviceInfos/edit",
+              "required": true
+            }
+          ]
+        }
+      ],
+      "description": "Details about a Service"
+    },
+    {
+      "path": "/dedicated/nasha/{serviceName}/task",
+      "operations": [
+        {
+          "apiStatus": {
+            "description": "Stable production version",
+            "value": "PRODUCTION"
+          },
+          "httpMethod": "GET",
+          "parameters": [
+            {
+              "name": "operation",
+              "dataType": "dedicated.storage.TaskFunctionEnum",
+              "paramType": "query",
+              "fullType": "dedicated.storage.TaskFunctionEnum",
+              "required": false,
+              "description": "Filter the value of operation property (=)"
+            },
+            {
+              "name": "serviceName",
+              "dataType": "string",
+              "paramType": "path",
+              "fullType": "string",
+              "required": true,
+              "description": "The internal name of your storage"
+            },
+            {
+              "name": "status",
+              "dataType": "dedicated.TaskStatusEnum",
+              "paramType": "query",
+              "fullType": "dedicated.TaskStatusEnum",
+              "required": false,
+              "description": "Filter the value of status property (=)"
+            }
+          ],
+          "responseType": "long[]",
+          "responseTypes": {
+            "200": "long[]"
+          },
+          "noAuthentication": false,
+          "description": "View task list",
+          "iamActions": [
+            {
+              "name": "nasHA:apiovh:task/get",
+              "required": true
+            }
+          ]
+        }
+      ],
+      "description": "List the dedicated.nasTask.Task objects"
+    },
+    {
+      "path": "/dedicated/nasha/{serviceName}/task/{taskId}",
+      "operations": [
+        {
+          "apiStatus": {
+            "description": "Stable production version",
+            "value": "PRODUCTION"
+          },
+          "httpMethod": "GET",
+          "parameters": [
+            {
+              "name": "serviceName",
+              "dataType": "string",
+              "paramType": "path",
+              "fullType": "string",
+              "required": true,
+              "description": "The internal name of your storage"
+            },
+            {
+              "name": "taskId",
+              "dataType": "long",
+              "paramType": "path",
+              "fullType": "long",
+              "required": true,
+              "description": "id of the task"
+            }
+          ],
+          "responseType": "dedicated.nasTask.Task",
+          "responseTypes": {
+            "200": "dedicated.nasTask.Task"
+          },
+          "noAuthentication": false,
+          "description": "Get this object properties",
+          "iamActions": [
+            {
+              "name": "nasHA:apiovh:task/get",
+              "required": true
+            }
+          ]
+        }
+      ],
+      "description": "Storage task"
+    },
+    {
+      "path": "/dedicated/nasha/{serviceName}/terminate",
+      "operations": [
+        {
+          "apiStatus": {
+            "description": "Stable production version",
+            "value": "PRODUCTION"
+          },
+          "httpMethod": "POST",
+          "parameters": [
+            {
+              "name": "serviceName",
+              "dataType": "string",
+              "paramType": "path",
+              "fullType": "string",
+              "required": true,
+              "description": "The internal name of your storage"
+            }
+          ],
+          "responseType": "string",
+          "responseTypes": {
+            "200": "string"
+          },
+          "noAuthentication": false,
+          "description": "Ask for the termination of your service",
+          "longDescription": "Ask for the termination of your service. Admin contact of this service will receive a termination token by email in order to confirm its termination with /confirmTermination endpoint.",
+          "iamActions": [
+            {
+              "name": "nasHA:apiovh:terminate",
+              "required": true
+            }
+          ]
+        }
+      ],
+      "description": "Ask for the termination of your service. Admin contact of this service will receive a termination token in order to confirm its termination with /confirmTermination endpoint."
+    },
+    {
+      "path": "/dedicated/nasha/{serviceName}/use",
+      "operations": [
+        {
+          "apiStatus": {
+            "description": "Stable production version",
+            "value": "PRODUCTION"
+          },
+          "httpMethod": "GET",
+          "parameters": [
+            {
+              "name": "serviceName",
+              "dataType": "string",
+              "paramType": "path",
+              "fullType": "string",
+              "required": true,
+              "description": "The internal name of your storage"
+            },
+            {
+              "name": "type",
+              "dataType": "dedicated.storage.NasUsageTypeEnum",
+              "paramType": "query",
+              "fullType": "dedicated.storage.NasUsageTypeEnum",
+              "required": true,
+              "description": "The type of statistic to be fetched"
+            }
+          ],
+          "responseType": "complexType.UnitAndValue<double>",
+          "responseTypes": {
+            "200": "complexType.UnitAndValue<double>"
+          },
+          "noAuthentication": false,
+          "description": "Return statistics about the nas",
+          "iamActions": [
+            {
+              "name": "nasHA:apiovh:use/get",
+              "required": true
+            }
+          ]
+        }
+      ],
+      "description": "use operations"
+    }
+  ],
   "resourcePath": "/dedicated/nasha",
-  "basePath": "https://eu.api.ovh.com/v1",
-  "apis": [],
-  "models": {},
-  "_note": "Spec non fournie dans ce repo — path référencé par _index.json mais sans fichier de spec téléchargé. Convention de nommage : famille + segment en camelCase (ex. dedicatedCeph.json pour /dedicated/ceph), cohérent avec dedicatedCloud.json / sslGateway.json / ipLoadbalancing.json."
+  "basePath": "https://api.ovh.com/1.0",
+  "models": {
+    "complexType.UnitAndValue<T>": {
+      "id": "UnitAndValue",
+      "namespace": "complexType",
+      "description": "A numeric value tagged with its unit",
+      "generics": [
+        "T"
+      ],
+      "properties": {
+        "unit": {
+          "type": "string",
+          "canBeNull": false,
+          "readOnly": false,
+          "required": false
+        },
+        "value": {
+          "type": "T",
+          "canBeNull": false,
+          "readOnly": false,
+          "required": false
+        }
+      }
+    },
+    "dedicated.TaskStatusEnum": {
+      "id": "TaskStatusEnum",
+      "namespace": "dedicated",
+      "description": "different task status",
+      "enum": [
+        "cancelled",
+        "customerError",
+        "doing",
+        "done",
+        "init",
+        "ovhError",
+        "todo"
+      ],
+      "enumType": "string"
+    },
+    "dedicated.nasTask.Task": {
+      "id": "Task",
+      "namespace": "dedicated.nasTask",
+      "description": "Storage task",
+      "properties": {
+        "details": {
+          "type": "string",
+          "fullType": "string",
+          "canBeNull": true,
+          "readOnly": true,
+          "description": "information about operation",
+          "required": false
+        },
+        "doneDate": {
+          "type": "datetime",
+          "fullType": "datetime",
+          "canBeNull": true,
+          "readOnly": true,
+          "description": "the date when the task finished",
+          "required": false
+        },
+        "lastUpdate": {
+          "type": "datetime",
+          "fullType": "datetime",
+          "canBeNull": true,
+          "readOnly": true,
+          "description": "last modification of task",
+          "required": false
+        },
+        "operation": {
+          "type": "dedicated.storage.TaskFunctionEnum",
+          "fullType": "dedicated.storage.TaskFunctionEnum",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "Task type of operation",
+          "required": false
+        },
+        "partitionName": {
+          "type": "string",
+          "fullType": "string",
+          "canBeNull": true,
+          "readOnly": true,
+          "description": "name of the partition",
+          "required": false
+        },
+        "status": {
+          "type": "dedicated.TaskStatusEnum",
+          "fullType": "dedicated.TaskStatusEnum",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "The actual state of the task",
+          "required": false
+        },
+        "storageName": {
+          "type": "string",
+          "fullType": "string",
+          "canBeNull": true,
+          "readOnly": true,
+          "description": "the name of your service",
+          "required": false
+        },
+        "taskId": {
+          "type": "long",
+          "fullType": "long",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "id of the task",
+          "required": false
+        },
+        "todoDate": {
+          "type": "datetime",
+          "fullType": "datetime",
+          "canBeNull": true,
+          "readOnly": true,
+          "description": "Insertion of task in the todo",
+          "required": false
+        }
+      }
+    },
+    "dedicated.nasha.Access": {
+      "id": "Access",
+      "namespace": "dedicated.nasha",
+      "description": "Define Acl for partition",
+      "properties": {
+        "accessId": {
+          "type": "long",
+          "fullType": "long",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "the id of the access",
+          "required": false
+        },
+        "aclDescription": {
+          "type": "string",
+          "fullType": "string",
+          "canBeNull": true,
+          "readOnly": true,
+          "description": "a brief description of the acl",
+          "required": false
+        },
+        "ip": {
+          "type": "ipBlock",
+          "fullType": "ipBlock",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "the ip in root on storage",
+          "required": false
+        },
+        "type": {
+          "type": "dedicated.storage.AclTypeEnum",
+          "fullType": "dedicated.storage.AclTypeEnum",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "ACL type",
+          "required": false
+        }
+      }
+    },
+    "dedicated.nasha.Partition": {
+      "id": "Partition",
+      "namespace": "dedicated.nasha",
+      "description": "Storage zpool partition",
+      "properties": {
+        "partitionCapacity": {
+          "type": "long",
+          "fullType": "long",
+          "canBeNull": true,
+          "readOnly": true,
+          "description": "percentage of partition space used in %",
+          "required": false
+        },
+        "partitionDescription": {
+          "type": "string",
+          "fullType": "string",
+          "canBeNull": true,
+          "readOnly": false,
+          "description": "a brief description of the partition",
+          "required": false
+        },
+        "partitionName": {
+          "type": "string",
+          "fullType": "string",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "the given name of partition",
+          "required": false
+        },
+        "protocol": {
+          "type": "dedicated.storage.ProtocolEnum",
+          "fullType": "dedicated.storage.ProtocolEnum",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "must be nfs cifs or both",
+          "required": false
+        },
+        "size": {
+          "type": "long",
+          "fullType": "long",
+          "canBeNull": false,
+          "readOnly": false,
+          "description": "Partition size",
+          "required": false
+        },
+        "usedBySnapshots": {
+          "type": "long",
+          "fullType": "long",
+          "canBeNull": true,
+          "readOnly": true,
+          "description": "percentage of partition space used by snapshots, in %",
+          "required": false
+        }
+      }
+    },
+    "dedicated.nasha.Quota": {
+      "id": "Quota",
+      "namespace": "dedicated.nasha",
+      "description": "Partition Quota",
+      "properties": {
+        "size": {
+          "type": "long",
+          "fullType": "long",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "the size to set in MB",
+          "required": false
+        },
+        "uid": {
+          "type": "long",
+          "fullType": "long",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "the uid to set quota on",
+          "required": false
+        }
+      }
+    },
+    "dedicated.nasha.Snapshot": {
+      "id": "Snapshot",
+      "namespace": "dedicated.nasha",
+      "description": "Partition Snapshot",
+      "properties": {
+        "snapshotType": {
+          "type": "dedicated.storage.SnapshotEnum",
+          "fullType": "dedicated.storage.SnapshotEnum",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "the interval of snapshot",
+          "required": false
+        }
+      }
+    },
+    "dedicated.nasha.Storage": {
+      "id": "Storage",
+      "namespace": "dedicated.nasha",
+      "description": "Storage nas HA",
+      "properties": {
+        "canCreatePartition": {
+          "type": "boolean",
+          "fullType": "boolean",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "True, if partition creation is allowed on this nas HA",
+          "required": false
+        },
+        "customName": {
+          "type": "string",
+          "fullType": "string",
+          "canBeNull": true,
+          "readOnly": false,
+          "description": "The name you give to the nas",
+          "required": false
+        },
+        "datacenter": {
+          "type": "string",
+          "fullType": "string",
+          "canBeNull": true,
+          "readOnly": true,
+          "description": "area of nas",
+          "required": false
+        },
+        "diskType": {
+          "type": "dedicated.storage.DiskTypeEnum",
+          "fullType": "dedicated.storage.DiskTypeEnum",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "the disk type of the nasHa",
+          "required": false
+        },
+        "ip": {
+          "type": "ip",
+          "fullType": "ip",
+          "canBeNull": true,
+          "readOnly": true,
+          "description": "Access ip of nas",
+          "required": false
+        },
+        "monitored": {
+          "type": "boolean",
+          "fullType": "boolean",
+          "canBeNull": false,
+          "readOnly": false,
+          "description": "Send an email to customer if any issue is detected",
+          "required": false
+        },
+        "serviceName": {
+          "type": "string",
+          "fullType": "string",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "The storage service name",
+          "required": false
+        },
+        "zpoolCapacity": {
+          "type": "long",
+          "fullType": "long",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "percentage of nas space used in %",
+          "required": false
+        },
+        "zpoolSize": {
+          "type": "long",
+          "fullType": "long",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "the size of the nas",
+          "required": false
+        }
+      }
+    },
+    "dedicated.nasha.StorageWithIAM": {
+      "id": "Storage",
+      "namespace": "dedicated.nasha",
+      "description": "Storage nas HA",
+      "properties": {
+        "canCreatePartition": {
+          "type": "boolean",
+          "fullType": "boolean",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "True, if partition creation is allowed on this nas HA",
+          "required": false
+        },
+        "customName": {
+          "type": "string",
+          "fullType": "string",
+          "canBeNull": true,
+          "readOnly": false,
+          "description": "The name you give to the nas",
+          "required": false
+        },
+        "datacenter": {
+          "type": "string",
+          "fullType": "string",
+          "canBeNull": true,
+          "readOnly": true,
+          "description": "area of nas",
+          "required": false
+        },
+        "diskType": {
+          "type": "dedicated.storage.DiskTypeEnum",
+          "fullType": "dedicated.storage.DiskTypeEnum",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "the disk type of the nasHa",
+          "required": false
+        },
+        "iam": {
+          "type": "iam.ResourceMetadata",
+          "canBeNull": true,
+          "readOnly": true,
+          "description": "IAM resource metadata",
+          "required": false
+        },
+        "ip": {
+          "type": "ip",
+          "fullType": "ip",
+          "canBeNull": true,
+          "readOnly": true,
+          "description": "Access ip of nas",
+          "required": false
+        },
+        "monitored": {
+          "type": "boolean",
+          "fullType": "boolean",
+          "canBeNull": false,
+          "readOnly": false,
+          "description": "Send an email to customer if any issue is detected",
+          "required": false
+        },
+        "serviceName": {
+          "type": "string",
+          "fullType": "string",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "The storage service name",
+          "required": false
+        },
+        "zpoolCapacity": {
+          "type": "long",
+          "fullType": "long",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "percentage of nas space used in %",
+          "required": false
+        },
+        "zpoolSize": {
+          "type": "long",
+          "fullType": "long",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "the size of the nas",
+          "required": false
+        }
+      }
+    },
+    "dedicated.nasha.customSnap": {
+      "id": "customSnap",
+      "namespace": "dedicated.nasha",
+      "description": "Custom Snapshot",
+      "properties": {
+        "expiration": {
+          "type": "string",
+          "fullType": "string",
+          "canBeNull": true,
+          "readOnly": true,
+          "description": "date and time at which snapshot will be automatically destroyed",
+          "required": false
+        },
+        "name": {
+          "type": "string",
+          "fullType": "string",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "name of the snapshot",
+          "required": false
+        }
+      }
+    },
+    "dedicated.nasha.options": {
+      "id": "options",
+      "namespace": "dedicated.nasha",
+      "description": "Partition options",
+      "properties": {
+        "atime": {
+          "type": "string",
+          "fullType": "string",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "atime setting",
+          "required": false
+        },
+        "id": {
+          "type": "long",
+          "fullType": "long",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "ID",
+          "required": false
+        },
+        "recordsize": {
+          "type": "string",
+          "fullType": "string",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "ZFS recordsize",
+          "required": false
+        },
+        "sync": {
+          "type": "string",
+          "fullType": "string",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "sync setting",
+          "required": false
+        },
+        "templateName": {
+          "type": "dedicated.storage.TemplateUsageOptionsEnum",
+          "fullType": "dedicated.storage.TemplateUsageOptionsEnum",
+          "canBeNull": true,
+          "readOnly": true,
+          "description": "the template name",
+          "required": false
+        }
+      }
+    },
+    "dedicated.storage.AclTypeEnum": {
+      "id": "AclTypeEnum",
+      "namespace": "dedicated.storage",
+      "description": "Acl Type",
+      "enum": [
+        "readonly",
+        "readwrite"
+      ],
+      "enumType": "string"
+    },
+    "dedicated.storage.AtimeEnum": {
+      "id": "AtimeEnum",
+      "namespace": "dedicated.storage",
+      "description": "Atime values",
+      "enum": [
+        "off",
+        "on"
+      ],
+      "enumType": "string"
+    },
+    "dedicated.storage.DiskTypeEnum": {
+      "id": "DiskTypeEnum",
+      "namespace": "dedicated.storage",
+      "description": "the disk type of the nasHa",
+      "enum": [
+        "hdd",
+        "nvme",
+        "ssd"
+      ],
+      "enumType": "string"
+    },
+    "dedicated.storage.MetricsTokenResult": {
+      "id": "MetricsTokenResult",
+      "namespace": "dedicated.storage",
+      "description": "A structure describing the metrics token result",
+      "properties": {
+        "endpoint": {
+          "type": "string",
+          "canBeNull": false,
+          "readOnly": false,
+          "description": "The url of the endpoint",
+          "required": false
+        },
+        "token": {
+          "type": "password",
+          "canBeNull": false,
+          "readOnly": false,
+          "description": "The token value",
+          "required": false
+        }
+      }
+    },
+    "dedicated.storage.NasUsageTypeEnum": {
+      "id": "NasUsageTypeEnum",
+      "namespace": "dedicated.storage",
+      "description": "Available types for NAS usage",
+      "enum": [
+        "size",
+        "used",
+        "usedbysnapshots"
+      ],
+      "enumType": "string"
+    },
+    "dedicated.storage.PartitionUsageTypeEnum": {
+      "id": "PartitionUsageTypeEnum",
+      "namespace": "dedicated.storage",
+      "description": "Available types for NAS partition usage",
+      "enum": [
+        "size",
+        "used",
+        "usedbysnapshots"
+      ],
+      "enumType": "string"
+    },
+    "dedicated.storage.ProtocolEnum": {
+      "id": "ProtocolEnum",
+      "namespace": "dedicated.storage",
+      "description": "Partition Protocol",
+      "enum": [
+        "CIFS",
+        "NFS",
+        "NFS_CIFS"
+      ],
+      "enumType": "string"
+    },
+    "dedicated.storage.RecordSizeEnum": {
+      "id": "RecordSizeEnum",
+      "namespace": "dedicated.storage",
+      "description": "Recordsize values",
+      "enum": [
+        "1048576",
+        "131072",
+        "16384",
+        "32768",
+        "4096",
+        "65536",
+        "8192"
+      ],
+      "enumType": "string"
+    },
+    "dedicated.storage.SnapshotEnum": {
+      "id": "SnapshotEnum",
+      "namespace": "dedicated.storage",
+      "description": "Partition snapshot allowed ",
+      "enum": [
+        "day-1",
+        "day-2",
+        "day-3",
+        "day-7",
+        "hour-1",
+        "hour-6"
+      ],
+      "enumType": "string"
+    },
+    "dedicated.storage.SyncEnum": {
+      "id": "SyncEnum",
+      "namespace": "dedicated.storage",
+      "description": "Sync values",
+      "enum": [
+        "always",
+        "disabled",
+        "standard"
+      ],
+      "enumType": "string"
+    },
+    "dedicated.storage.TaskFunctionEnum": {
+      "id": "TaskFunctionEnum",
+      "namespace": "dedicated.storage",
+      "description": "Distincts task",
+      "enum": [
+        "backupRecursiveDestroy",
+        "clusterLeclercAclUpdate",
+        "clusterLeclercChangeServiceIp",
+        "clusterLeclercCustomSnapCreate",
+        "clusterLeclercCustomSnapDelete",
+        "clusterLeclercDeleteSnapshotDirectory",
+        "clusterLeclercDestroyNasContainer",
+        "clusterLeclercPartitionAdd",
+        "clusterLeclercPartitionDelete",
+        "clusterLeclercPartitionUpdate",
+        "clusterLeclercQuotaUpdate",
+        "clusterLeclercSetupNasContainer",
+        "clusterLeclercSnapshotUpdate",
+        "clusterLeclercZfsOptions",
+        "nasAclUpdate",
+        "nasDeleteSnapshotDirectory",
+        "nasPartitionAdd",
+        "nasPartitionDelete",
+        "nasPartitionUpdate",
+        "nasQuotaUpdate",
+        "remoteBackupRecursiveDestroy"
+      ],
+      "enumType": "string"
+    },
+    "dedicated.storage.TemplateUsageOptionsDetails": {
+      "id": "TemplateUsageOptionsDetails",
+      "namespace": "dedicated.storage",
+      "description": "A structure describing the template usage result",
+      "properties": {
+        "description": {
+          "type": "string",
+          "canBeNull": false,
+          "readOnly": false,
+          "description": "The description of the template.",
+          "required": false
+        },
+        "name": {
+          "type": "string",
+          "canBeNull": false,
+          "readOnly": false,
+          "description": "The name of the template",
+          "required": false
+        }
+      }
+    },
+    "dedicated.storage.TemplateUsageOptionsEnum": {
+      "id": "TemplateUsageOptionsEnum",
+      "namespace": "dedicated.storage",
+      "description": "The template enumeration available for your partition.",
+      "enum": [
+        "Databases",
+        "Default",
+        "File Systems (big files)",
+        "Virtual machines"
+      ],
+      "enumType": "string"
+    },
+    "iam.ResourceMetadata": {
+      "id": "ResourceMetadata",
+      "namespace": "iam",
+      "description": "IAM resource metadata embedded in services models",
+      "properties": {
+        "displayName": {
+          "type": "string",
+          "fullType": "string",
+          "canBeNull": true,
+          "readOnly": true,
+          "description": "Resource display name",
+          "required": false
+        },
+        "id": {
+          "type": "uuid",
+          "fullType": "uuid",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "Unique identifier of the resource",
+          "required": false
+        },
+        "state": {
+          "type": "iam.ResourceMetadata.StateEnum",
+          "fullType": "iam.ResourceMetadata.StateEnum",
+          "canBeNull": true,
+          "readOnly": true,
+          "description": "Resource state",
+          "required": false
+        },
+        "tags": {
+          "type": "map[string]string",
+          "fullType": "map[string]string",
+          "canBeNull": true,
+          "readOnly": true,
+          "description": "Resource tags. Tags that were internally computed are prefixed with ovh:",
+          "required": false
+        },
+        "urn": {
+          "type": "string",
+          "fullType": "string",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "Unique resource name used in policies",
+          "required": false
+        }
+      }
+    },
+    "iam.ResourceMetadata.StateEnum": {
+      "id": "StateEnum",
+      "namespace": "iam.ResourceMetadata",
+      "description": "Resource state",
+      "enum": [
+        "EXPIRED",
+        "IN_CREATION",
+        "OK",
+        "SUSPENDED"
+      ],
+      "enumType": "string"
+    },
+    "iam.resource.TagFilter": {
+      "id": "TagFilter",
+      "namespace": "iam.resource",
+      "description": "Resource tag filter",
+      "properties": {
+        "operator": {
+          "type": "iam.resource.TagFilter.OperatorEnum",
+          "fullType": "iam.resource.TagFilter.OperatorEnum",
+          "canBeNull": true,
+          "readOnly": true,
+          "description": "Operator to use in order to filter on the value (defaults to 'EQ')",
+          "required": false
+        },
+        "value": {
+          "type": "string",
+          "fullType": "string",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "Value to use in order to filter tags",
+          "required": false
+        }
+      }
+    },
+    "iam.resource.TagFilter.OperatorEnum": {
+      "id": "OperatorEnum",
+      "namespace": "iam.resource.TagFilter",
+      "description": "Operator that can be used in order to filter resources tags",
+      "enum": [
+        "EQ",
+        "EXISTS",
+        "ILIKE",
+        "LIKE",
+        "NEQ",
+        "NEXISTS"
+      ],
+      "enumType": "string"
+    },
+    "service.RenewType": {
+      "id": "RenewType",
+      "namespace": "service",
+      "description": "Map a possible renew for a specific service",
+      "properties": {
+        "automatic": {
+          "type": "boolean",
+          "canBeNull": false,
+          "readOnly": false,
+          "description": "The service is automatically renewed",
+          "required": false
+        },
+        "deleteAtExpiration": {
+          "type": "boolean",
+          "canBeNull": false,
+          "readOnly": false,
+          "description": "The service will be deleted at expiration",
+          "required": false
+        },
+        "forced": {
+          "type": "boolean",
+          "canBeNull": false,
+          "readOnly": false,
+          "description": "The service forced to be renewed",
+          "required": false
+        },
+        "manualPayment": {
+          "type": "boolean",
+          "canBeNull": true,
+          "readOnly": false,
+          "description": "The service needs to be manually renewed and paid",
+          "required": false
+        },
+        "period": {
+          "type": "long",
+          "canBeNull": true,
+          "readOnly": false,
+          "description": "period of renew in month",
+          "required": false
+        }
+      }
+    },
+    "service.RenewalTypeEnum": {
+      "id": "RenewalTypeEnum",
+      "namespace": "service",
+      "description": "Detailed renewal type of a service",
+      "enum": [
+        "automaticForcedProduct",
+        "automaticV2012",
+        "automaticV2014",
+        "automaticV2016",
+        "automaticV2024",
+        "manual",
+        "oneShot",
+        "option"
+      ],
+      "enumType": "string"
+    },
+    "service.StateEnum": {
+      "id": "StateEnum",
+      "namespace": "service",
+      "enum": [
+        "autorenewInProgress",
+        "expired",
+        "inCreation",
+        "ok",
+        "pendingDebt",
+        "unPaid"
+      ],
+      "enumType": "string"
+    },
+    "service.TerminationFutureUseEnum": {
+      "id": "TerminationFutureUseEnum",
+      "namespace": "service",
+      "description": "All future uses you can provide for a service termination",
+      "enum": [
+        "NOT_REPLACING_SERVICE",
+        "OTHER",
+        "SUBSCRIBE_AN_OTHER_SERVICE",
+        "SUBSCRIBE_OTHER_KIND_OF_SERVICE_WITH_COMPETITOR",
+        "SUBSCRIBE_SIMILAR_SERVICE_WITH_COMPETITOR"
+      ],
+      "enumType": "string"
+    },
+    "service.TerminationReasonEnum": {
+      "id": "TerminationReasonEnum",
+      "namespace": "service",
+      "description": "All reasons you can provide for a service termination",
+      "enum": [
+        "FEATURES_DONT_SUIT_ME",
+        "LACK_OF_PERFORMANCES",
+        "MIGRATED_TO_ANOTHER_OVH_PRODUCT",
+        "MIGRATED_TO_COMPETITOR",
+        "NOT_ENOUGH_RECOGNITION",
+        "NOT_NEEDED_ANYMORE",
+        "NOT_RELIABLE",
+        "NO_ANSWER",
+        "OTHER",
+        "PRODUCT_DIMENSION_DONT_SUIT_ME",
+        "PRODUCT_TOOLS_DONT_SUIT_ME",
+        "TOO_EXPENSIVE",
+        "TOO_HARD_TO_USE",
+        "UNSATIFIED_BY_CUSTOMER_SUPPORT"
+      ],
+      "enumType": "string"
+    },
+    "services.Service": {
+      "id": "Service",
+      "namespace": "services",
+      "description": "Details about a Service",
+      "properties": {
+        "canDeleteAtExpiration": {
+          "type": "boolean",
+          "fullType": "boolean",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "Indicates that the service can be set up to be deleted at expiration",
+          "required": false
+        },
+        "contactAdmin": {
+          "type": "string",
+          "fullType": "coreTypes.AccountId:string",
+          "canBeNull": false,
+          "readOnly": true,
+          "required": false
+        },
+        "contactBilling": {
+          "type": "string",
+          "fullType": "coreTypes.AccountId:string",
+          "canBeNull": false,
+          "readOnly": true,
+          "required": false
+        },
+        "contactTech": {
+          "type": "string",
+          "fullType": "coreTypes.AccountId:string",
+          "canBeNull": false,
+          "readOnly": true,
+          "required": false
+        },
+        "creation": {
+          "type": "date",
+          "fullType": "date",
+          "canBeNull": false,
+          "readOnly": true,
+          "required": false
+        },
+        "domain": {
+          "type": "string",
+          "fullType": "string",
+          "canBeNull": false,
+          "readOnly": true,
+          "required": false
+        },
+        "engagedUpTo": {
+          "type": "date",
+          "fullType": "date",
+          "canBeNull": true,
+          "readOnly": true,
+          "required": false
+        },
+        "expiration": {
+          "type": "date",
+          "fullType": "date",
+          "canBeNull": false,
+          "readOnly": true,
+          "required": false
+        },
+        "possibleRenewPeriod": {
+          "type": "long[]",
+          "fullType": "long[]",
+          "canBeNull": true,
+          "readOnly": true,
+          "description": "All the possible renew period of your service in month",
+          "required": false
+        },
+        "renew": {
+          "type": "service.RenewType",
+          "fullType": "service.RenewType",
+          "canBeNull": true,
+          "readOnly": false,
+          "description": "Way of handling the renew",
+          "required": false
+        },
+        "renewalType": {
+          "type": "service.RenewalTypeEnum",
+          "fullType": "service.RenewalTypeEnum",
+          "canBeNull": false,
+          "readOnly": true,
+          "required": false
+        },
+        "serviceId": {
+          "type": "long",
+          "fullType": "coreTypes.ServiceId:long",
+          "canBeNull": false,
+          "readOnly": true,
+          "required": false
+        },
+        "status": {
+          "type": "service.StateEnum",
+          "fullType": "service.StateEnum",
+          "canBeNull": false,
+          "readOnly": true,
+          "required": false
+        }
+      }
+    }
+  }
 }

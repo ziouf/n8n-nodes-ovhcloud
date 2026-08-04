@@ -1,8 +1,1729 @@
 {
   "apiVersion": "1.0",
+  "apis": [
+    {
+      "path": "/dedicated/housing",
+      "operations": [
+        {
+          "apiStatus": {
+            "description": "Stable production version",
+            "value": "PRODUCTION"
+          },
+          "httpMethod": "GET",
+          "parameters": [
+            {
+              "name": "iamTags",
+              "dataType": "map[string][]iam.resource.TagFilter",
+              "paramType": "query",
+              "required": false,
+              "description": "Filter resources on IAM tags"
+            }
+          ],
+          "responseType": "string[]",
+          "responseTypes": {
+            "200": "string[]"
+          },
+          "noAuthentication": false,
+          "description": "List available services",
+          "iamActions": [
+            {
+              "name": "dedicatedHousing:apiovh:get",
+              "required": true
+            }
+          ]
+        }
+      ],
+      "description": "Operations about the HOUSING service"
+    },
+    {
+      "path": "/dedicated/housing/{serviceName}",
+      "operations": [
+        {
+          "apiStatus": {
+            "description": "Stable production version",
+            "value": "PRODUCTION"
+          },
+          "httpMethod": "GET",
+          "parameters": [
+            {
+              "name": "serviceName",
+              "dataType": "string",
+              "paramType": "path",
+              "fullType": "string",
+              "required": true,
+              "description": "The internal name of your Housing bay"
+            }
+          ],
+          "responseType": "dedicated.housing.HousingWithIAM",
+          "responseTypes": {
+            "200": "dedicated.housing.HousingWithIAM"
+          },
+          "noAuthentication": false,
+          "description": "Get this object properties",
+          "iamActions": [
+            {
+              "name": "dedicatedHousing:apiovh:get",
+              "required": true
+            }
+          ]
+        }
+      ],
+      "description": "Housing bay"
+    },
+    {
+      "path": "/dedicated/housing/{serviceName}/features/backupFTP",
+      "operations": [
+        {
+          "apiStatus": {
+            "description": "Stable production version",
+            "value": "PRODUCTION"
+          },
+          "httpMethod": "DELETE",
+          "parameters": [
+            {
+              "name": "serviceName",
+              "dataType": "string",
+              "paramType": "path",
+              "fullType": "string",
+              "required": true,
+              "description": "The internal name of your Housing bay"
+            }
+          ],
+          "responseType": "dedicated.server.Task",
+          "responseTypes": {
+            "200": "dedicated.server.Task"
+          },
+          "noAuthentication": false,
+          "description": "Terminate your Backup FTP service, ALL DATA WILL BE PERMANENTLY DELETED",
+          "iamActions": [
+            {
+              "name": "dedicatedHousing:apiovh:features/backupFTP/delete",
+              "required": true
+            }
+          ]
+        },
+        {
+          "apiStatus": {
+            "description": "Stable production version",
+            "value": "PRODUCTION"
+          },
+          "httpMethod": "GET",
+          "parameters": [
+            {
+              "name": "serviceName",
+              "dataType": "string",
+              "paramType": "path",
+              "fullType": "string",
+              "required": true,
+              "description": "The internal name of your Housing bay"
+            }
+          ],
+          "responseType": "dedicated.server.BackupFtp",
+          "responseTypes": {
+            "200": "dedicated.server.BackupFtp"
+          },
+          "noAuthentication": false,
+          "description": "Get this object properties",
+          "iamActions": [
+            {
+              "name": "dedicatedHousing:apiovh:features/backupFTP/get",
+              "required": true
+            }
+          ]
+        },
+        {
+          "apiStatus": {
+            "description": "Stable production version",
+            "value": "PRODUCTION"
+          },
+          "httpMethod": "POST",
+          "parameters": [
+            {
+              "name": "serviceName",
+              "dataType": "string",
+              "paramType": "path",
+              "fullType": "string",
+              "required": true,
+              "description": "The internal name of your Housing bay"
+            }
+          ],
+          "responseType": "dedicated.server.Task",
+          "responseTypes": {
+            "200": "dedicated.server.Task"
+          },
+          "noAuthentication": false,
+          "description": "Create a new Backup FTP space",
+          "iamActions": [
+            {
+              "name": "dedicatedHousing:apiovh:features/backupFTP/create",
+              "required": true
+            }
+          ]
+        }
+      ],
+      "description": "Backup Ftp assigned to this server"
+    },
+    {
+      "path": "/dedicated/housing/{serviceName}/features/backupFTP/access",
+      "operations": [
+        {
+          "apiStatus": {
+            "description": "Stable production version",
+            "value": "PRODUCTION"
+          },
+          "httpMethod": "GET",
+          "parameters": [
+            {
+              "name": "serviceName",
+              "dataType": "string",
+              "paramType": "path",
+              "fullType": "string",
+              "required": true,
+              "description": "The internal name of your Housing bay"
+            }
+          ],
+          "responseType": "ipBlock[]",
+          "responseTypes": {
+            "200": "ipBlock[]"
+          },
+          "noAuthentication": false,
+          "description": "List of IP blocks (and protocols to allow on these blocks) authorized on your backup FTP",
+          "iamActions": [
+            {
+              "name": "dedicatedHousing:apiovh:features/backupFTP/access/get",
+              "required": true
+            }
+          ]
+        },
+        {
+          "apiStatus": {
+            "description": "Stable production version",
+            "value": "PRODUCTION"
+          },
+          "httpMethod": "POST",
+          "parameters": [
+            {
+              "name": "cifs",
+              "dataType": "boolean",
+              "paramType": "body",
+              "fullType": "boolean",
+              "required": true,
+              "description": "Whether to allow the CIFS (SMB) protocol for this ACL"
+            },
+            {
+              "name": "ftp",
+              "dataType": "boolean",
+              "paramType": "body",
+              "fullType": "boolean",
+              "required": false,
+              "description": "Whether to allow the FTP protocol for this ACL"
+            },
+            {
+              "name": "ipBlock",
+              "dataType": "ipBlock",
+              "paramType": "body",
+              "fullType": "ipBlock",
+              "required": true,
+              "description": "The IP Block specific to this ACL. It musts belong to your server."
+            },
+            {
+              "name": "nfs",
+              "dataType": "boolean",
+              "paramType": "body",
+              "fullType": "boolean",
+              "required": true,
+              "description": "Whether to allow the NFS protocol for this ACL"
+            },
+            {
+              "name": "serviceName",
+              "dataType": "string",
+              "paramType": "path",
+              "fullType": "string",
+              "required": true,
+              "description": "The internal name of your Housing bay"
+            }
+          ],
+          "responseType": "dedicated.server.Task",
+          "responseTypes": {
+            "200": "dedicated.server.Task"
+          },
+          "noAuthentication": false,
+          "description": "Create a new Backup FTP ACL",
+          "iamActions": [
+            {
+              "name": "dedicatedHousing:apiovh:features/backupFTP/access/create",
+              "required": true
+            }
+          ]
+        }
+      ],
+      "description": "List the dedicated.server.BackupFtpAcl objects"
+    },
+    {
+      "path": "/dedicated/housing/{serviceName}/features/backupFTP/access/{ipBlock}",
+      "operations": [
+        {
+          "apiStatus": {
+            "description": "Stable production version",
+            "value": "PRODUCTION"
+          },
+          "httpMethod": "DELETE",
+          "parameters": [
+            {
+              "name": "ipBlock",
+              "dataType": "ipBlock",
+              "paramType": "path",
+              "fullType": "ipBlock",
+              "required": true,
+              "description": "The IP Block specific to this ACL"
+            },
+            {
+              "name": "serviceName",
+              "dataType": "string",
+              "paramType": "path",
+              "fullType": "string",
+              "required": true,
+              "description": "The internal name of your Housing bay"
+            }
+          ],
+          "responseType": "dedicated.server.Task",
+          "responseTypes": {
+            "200": "dedicated.server.Task"
+          },
+          "noAuthentication": false,
+          "description": "Revoke this ACL",
+          "iamActions": [
+            {
+              "name": "dedicatedHousing:apiovh:features/backupFTP/access/delete",
+              "required": true
+            }
+          ]
+        },
+        {
+          "apiStatus": {
+            "description": "Stable production version",
+            "value": "PRODUCTION"
+          },
+          "httpMethod": "GET",
+          "parameters": [
+            {
+              "name": "ipBlock",
+              "dataType": "ipBlock",
+              "paramType": "path",
+              "fullType": "ipBlock",
+              "required": true,
+              "description": "The IP Block specific to this ACL"
+            },
+            {
+              "name": "serviceName",
+              "dataType": "string",
+              "paramType": "path",
+              "fullType": "string",
+              "required": true,
+              "description": "The internal name of your Housing bay"
+            }
+          ],
+          "responseType": "dedicated.server.BackupFtpAcl",
+          "responseTypes": {
+            "200": "dedicated.server.BackupFtpAcl"
+          },
+          "noAuthentication": false,
+          "description": "Get this object properties",
+          "iamActions": [
+            {
+              "name": "dedicatedHousing:apiovh:features/backupFTP/access/get",
+              "required": true
+            }
+          ]
+        },
+        {
+          "apiStatus": {
+            "description": "Stable production version",
+            "value": "PRODUCTION"
+          },
+          "httpMethod": "PUT",
+          "parameters": [
+            {
+              "dataType": "dedicated.server.BackupFtpAcl",
+              "paramType": "body",
+              "fullType": "dedicated.server.BackupFtpAcl",
+              "required": true,
+              "description": "New object properties"
+            },
+            {
+              "name": "ipBlock",
+              "dataType": "ipBlock",
+              "paramType": "path",
+              "fullType": "ipBlock",
+              "required": true,
+              "description": "The IP Block specific to this ACL"
+            },
+            {
+              "name": "serviceName",
+              "dataType": "string",
+              "paramType": "path",
+              "fullType": "string",
+              "required": true,
+              "description": "The internal name of your Housing bay"
+            }
+          ],
+          "responseType": "void",
+          "responseTypes": {
+            "200": "void"
+          },
+          "noAuthentication": false,
+          "description": "Alter this object properties",
+          "iamActions": [
+            {
+              "name": "dedicatedHousing:apiovh:features/backupFTP/access/edit",
+              "required": true
+            }
+          ]
+        }
+      ],
+      "description": "Backup Ftp ACL for this server and Backup Ftp"
+    },
+    {
+      "path": "/dedicated/housing/{serviceName}/features/backupFTP/authorizableBlocks",
+      "operations": [
+        {
+          "apiStatus": {
+            "description": "Stable production version",
+            "value": "PRODUCTION"
+          },
+          "httpMethod": "GET",
+          "parameters": [
+            {
+              "name": "serviceName",
+              "dataType": "string",
+              "paramType": "path",
+              "fullType": "string",
+              "required": true,
+              "description": "The internal name of your Housing bay"
+            }
+          ],
+          "responseType": "ipBlock[]",
+          "responseTypes": {
+            "200": "ipBlock[]"
+          },
+          "noAuthentication": false,
+          "description": "Get all IP blocks that can be used in the ACL",
+          "iamActions": [
+            {
+              "name": "dedicatedHousing:apiovh:features/backupFTP/authorizableBlocks/get",
+              "required": true
+            }
+          ]
+        }
+      ],
+      "description": "authorizableBlocks operations"
+    },
+    {
+      "path": "/dedicated/housing/{serviceName}/features/backupFTP/password",
+      "operations": [
+        {
+          "apiStatus": {
+            "description": "Stable production version",
+            "value": "PRODUCTION"
+          },
+          "httpMethod": "POST",
+          "parameters": [
+            {
+              "name": "serviceName",
+              "dataType": "string",
+              "paramType": "path",
+              "fullType": "string",
+              "required": true,
+              "description": "The internal name of your Housing bay"
+            }
+          ],
+          "responseType": "dedicated.server.Task",
+          "responseTypes": {
+            "200": "dedicated.server.Task"
+          },
+          "noAuthentication": false,
+          "description": "Change your Backup FTP password",
+          "iamActions": [
+            {
+              "name": "dedicatedHousing:apiovh:features/backupFTP/password/create",
+              "required": true
+            }
+          ]
+        }
+      ],
+      "description": "password operations"
+    },
+    {
+      "path": "/dedicated/housing/{serviceName}/orderable/APC",
+      "operations": [
+        {
+          "apiStatus": {
+            "description": "Stable production version",
+            "value": "PRODUCTION"
+          },
+          "httpMethod": "GET",
+          "parameters": [
+            {
+              "name": "serviceName",
+              "dataType": "string",
+              "paramType": "path",
+              "fullType": "string",
+              "required": true,
+              "description": "The internal name of your Housing bay"
+            }
+          ],
+          "responseType": "dedicated.housing.ApcOrderable",
+          "responseTypes": {
+            "200": "dedicated.housing.ApcOrderable"
+          },
+          "noAuthentication": false,
+          "description": "Is an APC orderable for this housing bay",
+          "iamActions": [
+            {
+              "name": "dedicatedHousing:apiovh:orderable/APC/get",
+              "required": true
+            }
+          ]
+        }
+      ],
+      "description": "APC operations"
+    },
+    {
+      "path": "/dedicated/housing/{serviceName}/serviceInfos",
+      "operations": [
+        {
+          "apiStatus": {
+            "description": "Stable production version",
+            "value": "PRODUCTION"
+          },
+          "httpMethod": "GET",
+          "parameters": [
+            {
+              "name": "serviceName",
+              "dataType": "string",
+              "paramType": "path",
+              "fullType": "string",
+              "required": true,
+              "description": "The internal name of your Housing bay"
+            }
+          ],
+          "responseType": "services.Service",
+          "responseTypes": {
+            "200": "services.Service"
+          },
+          "noAuthentication": false,
+          "description": "Get service information",
+          "iamActions": [
+            {
+              "name": "dedicatedHousing:apiovh:serviceInfos/get",
+              "required": true
+            }
+          ]
+        },
+        {
+          "apiStatus": {
+            "description": "Stable production version",
+            "value": "PRODUCTION"
+          },
+          "httpMethod": "PUT",
+          "parameters": [
+            {
+              "dataType": "services.Service",
+              "paramType": "body",
+              "fullType": "services.Service",
+              "required": true,
+              "description": "New object properties"
+            },
+            {
+              "name": "serviceName",
+              "dataType": "string",
+              "paramType": "path",
+              "fullType": "string",
+              "required": true,
+              "description": "The internal name of your Housing bay"
+            }
+          ],
+          "responseType": "void",
+          "responseTypes": {
+            "200": "void"
+          },
+          "noAuthentication": false,
+          "description": "Update service information",
+          "iamActions": [
+            {
+              "name": "dedicatedHousing:apiovh:serviceInfos/edit",
+              "required": true
+            }
+          ]
+        }
+      ],
+      "description": "Details about a Service"
+    },
+    {
+      "path": "/dedicated/housing/{serviceName}/task",
+      "operations": [
+        {
+          "apiStatus": {
+            "description": "Stable production version",
+            "value": "PRODUCTION"
+          },
+          "httpMethod": "GET",
+          "parameters": [
+            {
+              "name": "function",
+              "dataType": "dedicated.housing.TaskFunctionEnum",
+              "paramType": "query",
+              "fullType": "dedicated.housing.TaskFunctionEnum",
+              "required": false,
+              "description": "Filter the value of function property (=)"
+            },
+            {
+              "name": "serviceName",
+              "dataType": "string",
+              "paramType": "path",
+              "fullType": "string",
+              "required": true,
+              "description": "The internal name of your Housing bay"
+            },
+            {
+              "name": "status",
+              "dataType": "dedicated.TaskStatusEnum",
+              "paramType": "query",
+              "fullType": "dedicated.TaskStatusEnum",
+              "required": false,
+              "description": "Filter the value of status property (=)"
+            }
+          ],
+          "responseType": "long[]",
+          "responseTypes": {
+            "200": "long[]"
+          },
+          "noAuthentication": false,
+          "description": "View task list",
+          "iamActions": [
+            {
+              "name": "dedicatedHousing:apiovh:task/get",
+              "required": true
+            }
+          ]
+        }
+      ],
+      "description": "List the dedicated.housing.Task objects"
+    },
+    {
+      "path": "/dedicated/housing/{serviceName}/task/{taskId}",
+      "operations": [
+        {
+          "apiStatus": {
+            "description": "Stable production version",
+            "value": "PRODUCTION"
+          },
+          "httpMethod": "GET",
+          "parameters": [
+            {
+              "name": "serviceName",
+              "dataType": "string",
+              "paramType": "path",
+              "fullType": "string",
+              "required": true,
+              "description": "The internal name of your Housing bay"
+            },
+            {
+              "name": "taskId",
+              "dataType": "long",
+              "paramType": "path",
+              "fullType": "long",
+              "required": true,
+              "description": "the id of the task"
+            }
+          ],
+          "responseType": "dedicated.housing.Task",
+          "responseTypes": {
+            "200": "dedicated.housing.Task"
+          },
+          "noAuthentication": false,
+          "description": "Get this object properties",
+          "iamActions": [
+            {
+              "name": "dedicatedHousing:apiovh:task/get",
+              "required": true
+            }
+          ]
+        }
+      ],
+      "description": "Housing tasks"
+    },
+    {
+      "path": "/dedicated/housing/{serviceName}/task/{taskId}/cancel",
+      "operations": [
+        {
+          "apiStatus": {
+            "description": "Stable production version",
+            "value": "PRODUCTION"
+          },
+          "httpMethod": "POST",
+          "parameters": [
+            {
+              "name": "serviceName",
+              "dataType": "string",
+              "paramType": "path",
+              "fullType": "string",
+              "required": true,
+              "description": "The internal name of your Housing bay"
+            },
+            {
+              "name": "taskId",
+              "dataType": "long",
+              "paramType": "path",
+              "fullType": "long",
+              "required": true,
+              "description": "the id of the task"
+            }
+          ],
+          "responseType": "void",
+          "responseTypes": {
+            "200": "void"
+          },
+          "noAuthentication": false,
+          "description": "this action stop the task progression if it's possible",
+          "iamActions": [
+            {
+              "name": "dedicatedHousing:apiovh:task/cancel",
+              "required": true
+            }
+          ]
+        }
+      ],
+      "description": "cancel operations"
+    }
+  ],
   "resourcePath": "/dedicated/housing",
-  "basePath": "https://eu.api.ovh.com/v1",
-  "apis": [],
-  "models": {},
-  "_note": "Spec non fournie dans ce repo — path référencé par _index.json mais sans fichier de spec téléchargé. Convention de nommage : famille + segment en camelCase (ex. dedicatedCeph.json pour /dedicated/ceph), cohérent avec dedicatedCloud.json / sslGateway.json / ipLoadbalancing.json."
+  "basePath": "https://api.ovh.com/1.0",
+  "models": {
+    "complexType.SafeKeyValueCanBeNull<T>": {
+      "id": "SafeKeyValueCanBeNull",
+      "namespace": "complexType",
+      "description": "Key and value, with proper key strings",
+      "generics": [
+        "T"
+      ],
+      "properties": {
+        "key": {
+          "type": "string",
+          "canBeNull": true,
+          "readOnly": false,
+          "required": false
+        },
+        "value": {
+          "type": "T",
+          "canBeNull": true,
+          "readOnly": false,
+          "required": false
+        }
+      }
+    },
+    "complexType.SafeKeyValueCanBeNull<string>": {
+      "id": "SafeKeyValueCanBeNull",
+      "namespace": "complexType",
+      "description": "Key and value, with proper key strings",
+      "generics": [
+        "T"
+      ],
+      "properties": {
+        "key": {
+          "type": "string",
+          "canBeNull": true,
+          "readOnly": false,
+          "required": false
+        },
+        "value": {
+          "type": "T",
+          "canBeNull": true,
+          "readOnly": false,
+          "required": false
+        }
+      }
+    },
+    "complexType.SafeKeyValueCanBeNull_string": {
+      "id": "SafeKeyValueCanBeNull_string",
+      "namespace": "complexType",
+      "description": "complexType.SafeKeyValueCanBeNull_string",
+      "properties": {
+        "key": {
+          "type": "string",
+          "fullType": "string",
+          "canBeNull": true,
+          "readOnly": true,
+          "required": false
+        },
+        "value": {
+          "type": "string",
+          "fullType": "string",
+          "canBeNull": false,
+          "readOnly": true,
+          "required": false
+        }
+      }
+    },
+    "complexType.UnitAndValue<T>": {
+      "id": "UnitAndValue",
+      "namespace": "complexType",
+      "description": "A numeric value tagged with its unit",
+      "generics": [
+        "T"
+      ],
+      "properties": {
+        "unit": {
+          "type": "string",
+          "canBeNull": false,
+          "readOnly": false,
+          "required": false
+        },
+        "value": {
+          "type": "T",
+          "canBeNull": false,
+          "readOnly": false,
+          "required": false
+        }
+      }
+    },
+    "complexType.UnitAndValue<long>": {
+      "id": "UnitAndValue",
+      "namespace": "complexType",
+      "description": "A numeric value tagged with its unit",
+      "generics": [
+        "T"
+      ],
+      "properties": {
+        "unit": {
+          "type": "string",
+          "canBeNull": false,
+          "readOnly": false,
+          "required": false
+        },
+        "value": {
+          "type": "T",
+          "canBeNull": false,
+          "readOnly": false,
+          "required": false
+        }
+      }
+    },
+    "dedicated.TaskFunctionEnum": {
+      "id": "TaskFunctionEnum",
+      "namespace": "dedicated",
+      "description": "different task operation",
+      "enum": [
+        "INFRA_002_VirtualNetworkInterface",
+        "INFRA_002_VirtualNetworkInterface_group",
+        "INFRA_002_VirtualNetworkInterface_ungroup",
+        "INFRA_ONE_NETWORK_ONEAPI_VirtualNetworkInterface_group",
+        "INFRA_ONE_NETWORK_ONEAPI_VirtualNetworkInterface_ungroup",
+        "INFRA_ONE_NETWORK_VirtualNetworkInterface_group",
+        "INFRA_ONE_NETWORK_VirtualNetworkInterface_ungroup",
+        "addVirtualMac",
+        "addWindowSplaFromExistingSerial",
+        "applyBackupFtpAcls",
+        "applyBackupFtpQuota",
+        "bypassAntiDDosGame",
+        "changePasswordBackupFTP",
+        "changeRipeOrg",
+        "checkAndReleaseIp",
+        "createBackupFTP",
+        "createOrUpdateRipeOrg",
+        "createPrivateNetwork",
+        "disableFirewall",
+        "enableFirewall",
+        "genericMoveFloatingIp",
+        "hardReboot",
+        "hardware_update",
+        "ipmi/configureSGX",
+        "migrateBackupFTP",
+        "moveFloatingIp",
+        "moveVirtualMac",
+        "reagregateBlock",
+        "rebootPower8To",
+        "reinstallServer",
+        "releaseIp",
+        "removeBackupFTP",
+        "removeVirtualMac",
+        "requestAccessIPMI",
+        "resetIPMI",
+        "resetIPMISession",
+        "testIPMIhttp",
+        "testIPMIpassword",
+        "testIPMIping",
+        "virtualMacAdd",
+        "virtualMacDelete"
+      ],
+      "enumType": "string"
+    },
+    "dedicated.TaskStatusEnum": {
+      "id": "TaskStatusEnum",
+      "namespace": "dedicated",
+      "description": "different task status",
+      "enum": [
+        "cancelled",
+        "customerError",
+        "doing",
+        "done",
+        "init",
+        "ovhError",
+        "todo"
+      ],
+      "enumType": "string"
+    },
+    "dedicated.housing.ApcOrderable": {
+      "id": "ApcOrderable",
+      "namespace": "dedicated.housing",
+      "description": "A structure describing informations for APC orderable for this housing bay",
+      "properties": {
+        "free": {
+          "type": "boolean",
+          "canBeNull": false,
+          "readOnly": false,
+          "description": "Is this APC free",
+          "required": false
+        },
+        "orderable": {
+          "type": "boolean",
+          "canBeNull": false,
+          "readOnly": false,
+          "description": "Is an APC is orderable for this housing bay",
+          "required": false
+        }
+      }
+    },
+    "dedicated.housing.DatacenterEnum": {
+      "id": "DatacenterEnum",
+      "namespace": "dedicated.housing",
+      "description": "Housing bay datacenters",
+      "enum": [
+        "gsw",
+        "pdc1"
+      ],
+      "enumType": "string"
+    },
+    "dedicated.housing.HaRoutingOfferEnum": {
+      "id": "HaRoutingOfferEnum",
+      "namespace": "dedicated.housing",
+      "description": "Housing bay High Availablility offers",
+      "enum": [
+        "ha2x2",
+        "ha2x4"
+      ],
+      "enumType": "string"
+    },
+    "dedicated.housing.HaRoutingOrderable": {
+      "id": "HaRoutingOrderable",
+      "namespace": "dedicated.housing",
+      "description": "A structure describing informations for High Availability routing service orderable for this housing bay",
+      "properties": {
+        "offer": {
+          "type": "dedicated.housing.HaRoutingOfferEnum[]",
+          "canBeNull": false,
+          "readOnly": false,
+          "description": "High Availability routing service offers",
+          "required": false
+        },
+        "orderable": {
+          "type": "boolean",
+          "canBeNull": false,
+          "readOnly": false,
+          "description": "Is a routing service is orderable for this housing bay",
+          "required": false
+        }
+      }
+    },
+    "dedicated.housing.Housing": {
+      "id": "Housing",
+      "namespace": "dedicated.housing",
+      "description": "Housing bay",
+      "properties": {
+        "datacenter": {
+          "type": "dedicated.housing.DatacenterEnum",
+          "fullType": "dedicated.housing.DatacenterEnum",
+          "canBeNull": true,
+          "readOnly": true,
+          "description": "Housing bay datacenter",
+          "required": false
+        },
+        "name": {
+          "type": "string",
+          "fullType": "string",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "The name you give to the bay",
+          "required": false
+        },
+        "network": {
+          "type": "dedicated.housing.NetworkInfo[]",
+          "fullType": "dedicated.housing.NetworkInfo[]",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "Housing bay network",
+          "required": false
+        },
+        "options": {
+          "type": "dedicated.housing.Options",
+          "fullType": "dedicated.housing.Options",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "Housing bay options",
+          "required": false
+        },
+        "rack": {
+          "type": "string",
+          "fullType": "string",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "The bay's description",
+          "required": false
+        },
+        "securityCode": {
+          "type": "string",
+          "fullType": "string",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "Bay Security code",
+          "required": false
+        }
+      }
+    },
+    "dedicated.housing.HousingWithIAM": {
+      "id": "Housing",
+      "namespace": "dedicated.housing",
+      "description": "Housing bay",
+      "properties": {
+        "datacenter": {
+          "type": "dedicated.housing.DatacenterEnum",
+          "fullType": "dedicated.housing.DatacenterEnum",
+          "canBeNull": true,
+          "readOnly": true,
+          "description": "Housing bay datacenter",
+          "required": false
+        },
+        "iam": {
+          "type": "iam.ResourceMetadata",
+          "canBeNull": true,
+          "readOnly": true,
+          "description": "IAM resource metadata",
+          "required": false
+        },
+        "name": {
+          "type": "string",
+          "fullType": "string",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "The name you give to the bay",
+          "required": false
+        },
+        "network": {
+          "type": "dedicated.housing.NetworkInfo[]",
+          "fullType": "dedicated.housing.NetworkInfo[]",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "Housing bay network",
+          "required": false
+        },
+        "options": {
+          "type": "dedicated.housing.Options",
+          "fullType": "dedicated.housing.Options",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "Housing bay options",
+          "required": false
+        },
+        "rack": {
+          "type": "string",
+          "fullType": "string",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "The bay's description",
+          "required": false
+        },
+        "securityCode": {
+          "type": "string",
+          "fullType": "string",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "Bay Security code",
+          "required": false
+        }
+      }
+    },
+    "dedicated.housing.IpInfo": {
+      "id": "IpInfo",
+      "namespace": "dedicated.housing",
+      "description": "A structure describing the Bay's network configuration",
+      "properties": {
+        "gateway": {
+          "type": "ip",
+          "canBeNull": true,
+          "readOnly": false,
+          "description": "Network gateway of the bay",
+          "required": false
+        },
+        "network": {
+          "type": "ipBlock",
+          "canBeNull": false,
+          "readOnly": false,
+          "description": "Network address of the bay",
+          "required": false
+        },
+        "reservedAddresses": {
+          "type": "ip[]",
+          "canBeNull": true,
+          "readOnly": false,
+          "description": "Reserved addresses. You should not use them in your network",
+          "required": false
+        }
+      }
+    },
+    "dedicated.housing.LinkInfo": {
+      "id": "LinkInfo",
+      "namespace": "dedicated.housing",
+      "description": "A structure describing the Bay`s link information",
+      "properties": {
+        "port": {
+          "type": "string",
+          "canBeNull": false,
+          "readOnly": false,
+          "description": "Router port number",
+          "required": false
+        },
+        "router": {
+          "type": "string",
+          "canBeNull": false,
+          "readOnly": false,
+          "description": "Router in charge of your network",
+          "required": false
+        }
+      }
+    },
+    "dedicated.housing.NetworkInfo": {
+      "id": "NetworkInfo",
+      "namespace": "dedicated.housing",
+      "description": "A structure describing the Bay`s network configuration",
+      "properties": {
+        "ipv4": {
+          "type": "dedicated.housing.IpInfo",
+          "canBeNull": true,
+          "readOnly": false,
+          "description": "IPv4 network information",
+          "required": false
+        },
+        "ipv6": {
+          "type": "dedicated.housing.IpInfo",
+          "canBeNull": true,
+          "readOnly": false,
+          "description": "IPv6 network information",
+          "required": false
+        },
+        "link": {
+          "type": "dedicated.housing.LinkInfo",
+          "canBeNull": true,
+          "readOnly": false,
+          "description": "Router related information",
+          "required": false
+        }
+      }
+    },
+    "dedicated.housing.Options": {
+      "id": "Options",
+      "namespace": "dedicated.housing",
+      "description": "A structure describing current housing options",
+      "properties": {
+        "apcCount": {
+          "type": "long",
+          "canBeNull": false,
+          "readOnly": false,
+          "description": "Number of APC connected to this housing bay",
+          "required": false
+        },
+        "handsneyes": {
+          "type": "boolean",
+          "canBeNull": false,
+          "readOnly": false,
+          "description": "Is this housing bay have handsneyes service",
+          "required": false
+        },
+        "highAvailabilityRouting": {
+          "type": "string",
+          "canBeNull": false,
+          "readOnly": false,
+          "description": "High Availability routing service offer",
+          "required": false
+        }
+      }
+    },
+    "dedicated.housing.Task": {
+      "id": "Task",
+      "namespace": "dedicated.housing",
+      "description": "Housing tasks",
+      "properties": {
+        "comment": {
+          "type": "string",
+          "fullType": "string",
+          "canBeNull": true,
+          "readOnly": true,
+          "description": "Details of this task",
+          "required": false
+        },
+        "doneDate": {
+          "type": "datetime",
+          "fullType": "datetime",
+          "canBeNull": true,
+          "readOnly": true,
+          "description": "Completion date",
+          "required": false
+        },
+        "function": {
+          "type": "dedicated.housing.TaskFunctionEnum",
+          "fullType": "dedicated.housing.TaskFunctionEnum",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "Function name",
+          "required": false
+        },
+        "lastUpdate": {
+          "type": "datetime",
+          "fullType": "datetime",
+          "canBeNull": true,
+          "readOnly": true,
+          "description": "last update",
+          "required": false
+        },
+        "startDate": {
+          "type": "datetime",
+          "fullType": "datetime",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "Task Creation date",
+          "required": false
+        },
+        "status": {
+          "type": "dedicated.TaskStatusEnum",
+          "fullType": "dedicated.TaskStatusEnum",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "Task status",
+          "required": false
+        },
+        "taskId": {
+          "type": "long",
+          "fullType": "long",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "the id of the task",
+          "required": false
+        }
+      }
+    },
+    "dedicated.housing.TaskFunctionEnum": {
+      "id": "TaskFunctionEnum",
+      "namespace": "dedicated.housing",
+      "description": "Distincts task",
+      "enum": [
+        "applyBackupFtpAcls",
+        "applyBackupFtpQuota",
+        "changePasswordBackupFTP",
+        "createBackupFTP",
+        "migrateBackupFTP",
+        "removeBackupFTP"
+      ],
+      "enumType": "string"
+    },
+    "dedicated.server.BackupFtp": {
+      "id": "BackupFtp",
+      "namespace": "dedicated.server",
+      "description": "Backup Ftp assigned to this server",
+      "properties": {
+        "ftpBackupName": {
+          "type": "string",
+          "fullType": "string",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "The backup FTP server name",
+          "required": false
+        },
+        "quota": {
+          "type": "complexType.UnitAndValue<long>",
+          "fullType": "complexType.UnitAndValue<long>",
+          "canBeNull": true,
+          "readOnly": true,
+          "description": "The disk space available in gigabytes",
+          "required": false
+        },
+        "readOnlyDate": {
+          "type": "datetime",
+          "fullType": "datetime",
+          "canBeNull": true,
+          "readOnly": true,
+          "description": "If not-null, gives the date since when your account was set in read-only mode because the quota was exceeded",
+          "required": false
+        },
+        "type": {
+          "type": "dedicated.server.BackupStorageTypeEnum",
+          "fullType": "dedicated.server.BackupStorageTypeEnum",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "The backup FTP type",
+          "required": false
+        },
+        "usage": {
+          "type": "complexType.UnitAndValue<long>",
+          "fullType": "complexType.UnitAndValue<long>",
+          "canBeNull": true,
+          "readOnly": true,
+          "description": "The disk space currently used on your backup FTP in percent",
+          "required": false
+        }
+      }
+    },
+    "dedicated.server.BackupFtpAcl": {
+      "id": "BackupFtpAcl",
+      "namespace": "dedicated.server",
+      "description": "Backup Ftp ACL for this server and Backup Ftp",
+      "properties": {
+        "cifs": {
+          "type": "boolean",
+          "fullType": "boolean",
+          "canBeNull": false,
+          "readOnly": false,
+          "description": "Whether to allow the CIFS (SMB) protocol for this ACL",
+          "required": false
+        },
+        "ftp": {
+          "type": "boolean",
+          "fullType": "boolean",
+          "canBeNull": false,
+          "readOnly": false,
+          "description": "Whether to allow the FTP protocol for this ACL",
+          "required": false
+        },
+        "ipBlock": {
+          "type": "ipBlock",
+          "fullType": "ipBlock",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "The IP Block specific to this ACL",
+          "required": false
+        },
+        "isApplied": {
+          "type": "boolean",
+          "fullType": "boolean",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "Whether the rule has been applied on the Backup Ftp",
+          "required": false
+        },
+        "lastUpdate": {
+          "type": "datetime",
+          "fullType": "datetime",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "Date of the last object modification",
+          "required": false
+        },
+        "nfs": {
+          "type": "boolean",
+          "fullType": "boolean",
+          "canBeNull": false,
+          "readOnly": false,
+          "description": "Whether to allow the NFS protocol for this ACL",
+          "required": false
+        }
+      }
+    },
+    "dedicated.server.BackupStorageTypeEnum": {
+      "id": "BackupStorageTypeEnum",
+      "namespace": "dedicated.server",
+      "description": "Different backup storage type",
+      "enum": [
+        "included",
+        "storage"
+      ],
+      "enumType": "string"
+    },
+    "dedicated.server.Task": {
+      "id": "Task",
+      "namespace": "dedicated.server",
+      "description": "Server tasks",
+      "properties": {
+        "changeUuid": {
+          "type": "string",
+          "fullType": "string",
+          "canBeNull": true,
+          "readOnly": true,
+          "description": "UUID of the change linked to this task",
+          "required": false
+        },
+        "comment": {
+          "type": "string",
+          "fullType": "string",
+          "canBeNull": true,
+          "readOnly": true,
+          "description": "Details of this task",
+          "required": false
+        },
+        "doneDate": {
+          "type": "datetime",
+          "fullType": "datetime",
+          "canBeNull": true,
+          "readOnly": true,
+          "description": "Completion date",
+          "required": false
+        },
+        "function": {
+          "type": "dedicated.TaskFunctionEnum",
+          "fullType": "dedicated.TaskFunctionEnum",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "Function name",
+          "required": false
+        },
+        "lastUpdate": {
+          "type": "datetime",
+          "fullType": "datetime",
+          "canBeNull": true,
+          "readOnly": true,
+          "description": "last update",
+          "required": false
+        },
+        "needSchedule": {
+          "type": "boolean",
+          "fullType": "boolean",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "Whether this task need to be scheduled or not",
+          "required": false
+        },
+        "note": {
+          "type": "string",
+          "fullType": "string",
+          "canBeNull": true,
+          "readOnly": true,
+          "description": "Extra information about this task",
+          "required": false
+        },
+        "plannedInterventionId": {
+          "type": "long",
+          "fullType": "long",
+          "canBeNull": true,
+          "readOnly": true,
+          "description": "ID of the planned intervention for this task",
+          "required": false
+        },
+        "startDate": {
+          "type": "datetime",
+          "fullType": "datetime",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "Task Creation date",
+          "required": false
+        },
+        "status": {
+          "type": "dedicated.TaskStatusEnum",
+          "fullType": "dedicated.TaskStatusEnum",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "Task status",
+          "required": false
+        },
+        "tags": {
+          "type": "complexType.SafeKeyValueCanBeNull<string>[]",
+          "fullType": "complexType.SafeKeyValueCanBeNull<string>[]",
+          "canBeNull": true,
+          "readOnly": true,
+          "description": "Task result tags output",
+          "required": false
+        },
+        "taskId": {
+          "type": "long",
+          "fullType": "long",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "the id of the task",
+          "required": false
+        },
+        "ticketReference": {
+          "type": "string",
+          "fullType": "string",
+          "canBeNull": true,
+          "readOnly": true,
+          "description": "Reference of the thread on the support tool",
+          "required": false
+        }
+      }
+    },
+    "iam.ResourceMetadata": {
+      "id": "ResourceMetadata",
+      "namespace": "iam",
+      "description": "IAM resource metadata embedded in services models",
+      "properties": {
+        "displayName": {
+          "type": "string",
+          "fullType": "string",
+          "canBeNull": true,
+          "readOnly": true,
+          "description": "Resource display name",
+          "required": false
+        },
+        "id": {
+          "type": "uuid",
+          "fullType": "uuid",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "Unique identifier of the resource",
+          "required": false
+        },
+        "state": {
+          "type": "iam.ResourceMetadata.StateEnum",
+          "fullType": "iam.ResourceMetadata.StateEnum",
+          "canBeNull": true,
+          "readOnly": true,
+          "description": "Resource state",
+          "required": false
+        },
+        "tags": {
+          "type": "map[string]string",
+          "fullType": "map[string]string",
+          "canBeNull": true,
+          "readOnly": true,
+          "description": "Resource tags. Tags that were internally computed are prefixed with ovh:",
+          "required": false
+        },
+        "urn": {
+          "type": "string",
+          "fullType": "string",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "Unique resource name used in policies",
+          "required": false
+        }
+      }
+    },
+    "iam.ResourceMetadata.StateEnum": {
+      "id": "StateEnum",
+      "namespace": "iam.ResourceMetadata",
+      "description": "Resource state",
+      "enum": [
+        "EXPIRED",
+        "IN_CREATION",
+        "OK",
+        "SUSPENDED"
+      ],
+      "enumType": "string"
+    },
+    "iam.resource.TagFilter": {
+      "id": "TagFilter",
+      "namespace": "iam.resource",
+      "description": "Resource tag filter",
+      "properties": {
+        "operator": {
+          "type": "iam.resource.TagFilter.OperatorEnum",
+          "fullType": "iam.resource.TagFilter.OperatorEnum",
+          "canBeNull": true,
+          "readOnly": true,
+          "description": "Operator to use in order to filter on the value (defaults to 'EQ')",
+          "required": false
+        },
+        "value": {
+          "type": "string",
+          "fullType": "string",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "Value to use in order to filter tags",
+          "required": false
+        }
+      }
+    },
+    "iam.resource.TagFilter.OperatorEnum": {
+      "id": "OperatorEnum",
+      "namespace": "iam.resource.TagFilter",
+      "description": "Operator that can be used in order to filter resources tags",
+      "enum": [
+        "EQ",
+        "EXISTS",
+        "ILIKE",
+        "LIKE",
+        "NEQ",
+        "NEXISTS"
+      ],
+      "enumType": "string"
+    },
+    "service.RenewType": {
+      "id": "RenewType",
+      "namespace": "service",
+      "description": "Map a possible renew for a specific service",
+      "properties": {
+        "automatic": {
+          "type": "boolean",
+          "canBeNull": false,
+          "readOnly": false,
+          "description": "The service is automatically renewed",
+          "required": false
+        },
+        "deleteAtExpiration": {
+          "type": "boolean",
+          "canBeNull": false,
+          "readOnly": false,
+          "description": "The service will be deleted at expiration",
+          "required": false
+        },
+        "forced": {
+          "type": "boolean",
+          "canBeNull": false,
+          "readOnly": false,
+          "description": "The service forced to be renewed",
+          "required": false
+        },
+        "manualPayment": {
+          "type": "boolean",
+          "canBeNull": true,
+          "readOnly": false,
+          "description": "The service needs to be manually renewed and paid",
+          "required": false
+        },
+        "period": {
+          "type": "long",
+          "canBeNull": true,
+          "readOnly": false,
+          "description": "period of renew in month",
+          "required": false
+        }
+      }
+    },
+    "service.RenewalTypeEnum": {
+      "id": "RenewalTypeEnum",
+      "namespace": "service",
+      "description": "Detailed renewal type of a service",
+      "enum": [
+        "automaticForcedProduct",
+        "automaticV2012",
+        "automaticV2014",
+        "automaticV2016",
+        "automaticV2024",
+        "manual",
+        "oneShot",
+        "option"
+      ],
+      "enumType": "string"
+    },
+    "service.StateEnum": {
+      "id": "StateEnum",
+      "namespace": "service",
+      "enum": [
+        "autorenewInProgress",
+        "expired",
+        "inCreation",
+        "ok",
+        "pendingDebt",
+        "unPaid"
+      ],
+      "enumType": "string"
+    },
+    "services.Service": {
+      "id": "Service",
+      "namespace": "services",
+      "description": "Details about a Service",
+      "properties": {
+        "canDeleteAtExpiration": {
+          "type": "boolean",
+          "fullType": "boolean",
+          "canBeNull": false,
+          "readOnly": true,
+          "description": "Indicates that the service can be set up to be deleted at expiration",
+          "required": false
+        },
+        "contactAdmin": {
+          "type": "string",
+          "fullType": "coreTypes.AccountId:string",
+          "canBeNull": false,
+          "readOnly": true,
+          "required": false
+        },
+        "contactBilling": {
+          "type": "string",
+          "fullType": "coreTypes.AccountId:string",
+          "canBeNull": false,
+          "readOnly": true,
+          "required": false
+        },
+        "contactTech": {
+          "type": "string",
+          "fullType": "coreTypes.AccountId:string",
+          "canBeNull": false,
+          "readOnly": true,
+          "required": false
+        },
+        "creation": {
+          "type": "date",
+          "fullType": "date",
+          "canBeNull": false,
+          "readOnly": true,
+          "required": false
+        },
+        "domain": {
+          "type": "string",
+          "fullType": "string",
+          "canBeNull": false,
+          "readOnly": true,
+          "required": false
+        },
+        "engagedUpTo": {
+          "type": "date",
+          "fullType": "date",
+          "canBeNull": true,
+          "readOnly": true,
+          "required": false
+        },
+        "expiration": {
+          "type": "date",
+          "fullType": "date",
+          "canBeNull": false,
+          "readOnly": true,
+          "required": false
+        },
+        "possibleRenewPeriod": {
+          "type": "long[]",
+          "fullType": "long[]",
+          "canBeNull": true,
+          "readOnly": true,
+          "description": "All the possible renew period of your service in month",
+          "required": false
+        },
+        "renew": {
+          "type": "service.RenewType",
+          "fullType": "service.RenewType",
+          "canBeNull": true,
+          "readOnly": false,
+          "description": "Way of handling the renew",
+          "required": false
+        },
+        "renewalType": {
+          "type": "service.RenewalTypeEnum",
+          "fullType": "service.RenewalTypeEnum",
+          "canBeNull": false,
+          "readOnly": true,
+          "required": false
+        },
+        "serviceId": {
+          "type": "long",
+          "fullType": "coreTypes.ServiceId:long",
+          "canBeNull": false,
+          "readOnly": true,
+          "required": false
+        },
+        "status": {
+          "type": "service.StateEnum",
+          "fullType": "service.StateEnum",
+          "canBeNull": false,
+          "readOnly": true,
+          "required": false
+        }
+      }
+    }
+  }
 }
