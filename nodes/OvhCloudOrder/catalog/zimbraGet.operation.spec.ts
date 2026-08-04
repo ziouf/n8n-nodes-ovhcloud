@@ -22,7 +22,7 @@ describe('zimbraGet operation', () => {
                 displayName: 'Product',
                 name: 'product',
                 type: 'string',
-																default: '',
+																default: 'zimbra',
             });
         });
     });

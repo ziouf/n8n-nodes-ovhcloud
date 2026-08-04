@@ -22,7 +22,7 @@ describe('hosting cronCreatePost operation', () => {
 				displayName: 'Service Name',
 				name: 'serviceName',
 				type: 'resourceLocator',
-				default: 'undefined',
+				default: { mode: 'list', value: '' },
 				required: true,
 			});
 		});

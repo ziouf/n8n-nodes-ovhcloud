@@ -22,7 +22,7 @@ describe('licensePleskOptionsGet operation', () => {
                 displayName: 'Product',
                 name: 'product',
                 type: 'string',
-																default: '',
+																default: 'licensePlesk',
             });
         });
     });

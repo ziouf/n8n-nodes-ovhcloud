@@ -16,6 +16,7 @@ export function description(displayOptions: IDisplayOptions): INodeProperties[] 
 			default: '',
 			required: true,
 			description: 'The serviceId identifier',
+			displayOptions,
 		},
 		{
 			displayName: 'Website ID',
@@ -24,16 +25,17 @@ export function description(displayOptions: IDisplayOptions): INodeProperties[] 
 			default: '',
 			required: true,
 			description: 'The websiteId identifier',
+			displayOptions,
 		},
 
 	];
 }
 
 /**
- * Executes the Post Reset password of the website\'s database operation.
+ * Executes the Get Get a website operation.
  *
- * HTTP method: POST
- * Endpoint: /managedCMS/resource/{serviceId}/website/{websiteId}/resetDatabasePassword
+ * HTTP method: GET
+ * Endpoint: /managedCMS/resource/{serviceId}/website/{websiteId}
  */
 export async function execute(this: IExecuteFunctions, itemIndex: number): Promise<INodeExecutionData[]> {
 	const serviceId = this.getNodeParameter('serviceId', itemIndex) as string;
@@ -41,7 +43,7 @@ export async function execute(this: IExecuteFunctions, itemIndex: number): Promi
 
 
 	const client = new ApiClient(this);
-	const data = (await client.httpPost('/managedCMS/resource/' + serviceId + '/website/' + websiteId + '/resetDatabasePassword')) as IDataObject;
+	const data = (await client.httpGet('/managedCMS/resource/' + serviceId + '/website/' + websiteId)) as IDataObject;
 
 	return this.helpers.returnJsonArray([data]);
 }

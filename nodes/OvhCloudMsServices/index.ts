@@ -43,9 +43,9 @@ export function description(displayOptions: IDisplayOptions): INodeProperties[] 
 			noDataExpression: true,
 			options: [
 			{
-				name: 'List MS Services',
-				value: 'msServicesListGet',
-				action: 'List all MS services',
+				name: 'Delete MS Service',
+				value: 'msServicesDeleteDelete',
+				action: 'Delete an MS service',
 			},
 			{
 				name: 'Get MS Service',
@@ -53,19 +53,14 @@ export function description(displayOptions: IDisplayOptions): INodeProperties[] 
 				action: 'Get MS service details',
 			},
 			{
-				name: 'Update MS Service',
-				value: 'msServicesUpdatePut',
-				action: 'Update MS service details',
+				name: 'Get Task',
+				value: 'taskGetGet',
+				action: 'Get task details',
 			},
 			{
-				name: 'Delete MS Service',
-				value: 'msServicesDeleteDelete',
-				action: 'Delete an MS service',
-			},
-			{
-				name: 'Reinstall MS Service',
-				value: 'reinstallPost',
-				action: 'Reinstall an MS service',
+				name: 'List MS Services',
+				value: 'msServicesListGet',
+				action: 'List all MS services',
 			},
 			{
 				name: 'List Tasks',
@@ -73,11 +68,15 @@ export function description(displayOptions: IDisplayOptions): INodeProperties[] 
 				action: 'List tasks for an MS service',
 			},
 			{
-				name: 'Get Task',
-				value: 'taskGetGet',
-				action: 'Get task details',
+				name: 'Reinstall MS Service',
+				value: 'reinstallPost',
+				action: 'Reinstall an MS service',
 			},
-
+			{
+				name: 'Update MS Service',
+				value: 'msServicesUpdatePut',
+				action: 'Update MS service details',
+			},
 			],
 			default: 'msServicesListGet',
 			displayOptions,

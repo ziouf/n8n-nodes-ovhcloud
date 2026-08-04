@@ -22,7 +22,7 @@ describe('netappGet operation', () => {
                 displayName: 'Product',
                 name: 'product',
                 type: 'string',
-																default: '',
+																default: 'netapp',
             });
         });
     });

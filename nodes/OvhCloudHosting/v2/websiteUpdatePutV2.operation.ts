@@ -16,6 +16,7 @@ export function description(displayOptions: IDisplayOptions): INodeProperties[] 
 			default: '',
 			required: true,
 			description: 'The name identifier',
+			displayOptions,
 		},
 		{
 			displayName: 'Website ID',
@@ -24,6 +25,7 @@ export function description(displayOptions: IDisplayOptions): INodeProperties[] 
 			default: '',
 			required: true,
 			description: 'The websiteId identifier',
+			displayOptions,
 		},
 
 	];

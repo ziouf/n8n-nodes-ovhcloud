@@ -22,7 +22,7 @@ describe('sslGatewayGet operation', () => {
                 displayName: 'Product',
                 name: 'product',
                 type: 'string',
-																default: '',
+																default: 'sslGateway',
             });
         });
     });

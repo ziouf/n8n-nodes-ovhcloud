@@ -16,6 +16,7 @@ export function description(displayOptions: IDisplayOptions): INodeProperties[] 
 			default: '',
 			required: true,
 			description: 'The projectId identifier',
+			displayOptions,
 		},
 		{
 			displayName: 'Rancher ID',
@@ -24,6 +25,7 @@ export function description(displayOptions: IDisplayOptions): INodeProperties[] 
 			default: '',
 			required: true,
 			description: 'The rancherId identifier',
+			displayOptions,
 		},
 
 	];

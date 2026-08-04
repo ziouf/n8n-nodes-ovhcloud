@@ -47,9 +47,9 @@ export function description(displayOptions: IDisplayOptions): INodeProperties[] 
 			noDataExpression: true,
 			options: [
 			{
-				name: 'List Clusters',
-				value: 'clusterListGet',
-				action: 'List all cluster services',
+				name: 'Delete Cluster',
+				value: 'clusterDeleteDelete',
+				action: 'Delete a cluster service',
 			},
 			{
 				name: 'Get Cluster',
@@ -57,24 +57,19 @@ export function description(displayOptions: IDisplayOptions): INodeProperties[] 
 				action: 'Get cluster details',
 			},
 			{
-				name: 'Update Cluster',
-				value: 'clusterUpdatePut',
-				action: 'Update cluster details',
-			},
-			{
-				name: 'Delete Cluster',
-				value: 'clusterDeleteDelete',
-				action: 'Delete a cluster service',
-			},
-			{
 				name: 'Get Service Infos',
 				value: 'serviceInfosGetGet',
 				action: 'Get service information for a cluster',
 			},
 			{
-				name: 'Reinstall Cluster',
-				value: 'reinstallPost',
-				action: 'Reinstall a cluster service',
+				name: 'Get Task',
+				value: 'taskGetGet',
+				action: 'Get task details',
+			},
+			{
+				name: 'List Clusters',
+				value: 'clusterListGet',
+				action: 'List all cluster services',
 			},
 			{
 				name: 'List Tasks',
@@ -82,11 +77,15 @@ export function description(displayOptions: IDisplayOptions): INodeProperties[] 
 				action: 'List tasks for a cluster',
 			},
 			{
-				name: 'Get Task',
-				value: 'taskGetGet',
-				action: 'Get task details',
+				name: 'Reinstall Cluster',
+				value: 'reinstallPost',
+				action: 'Reinstall a cluster service',
 			},
-
+			{
+				name: 'Update Cluster',
+				value: 'clusterUpdatePut',
+				action: 'Update cluster details',
+			},
 			],
 			default: 'clusterListGet',
 			displayOptions,

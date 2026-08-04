@@ -19,13 +19,13 @@ export function description() {
 		default: undefined,
 		options: [
 			{ displayName: 'Get Email Pro Task', name: 'emailProGetTask', value: 'emailProGetTask' },
-			{ displayName: 'Get Service By Name', name: 'getServiceByName', value: 'getServiceByName' },
-			{ displayName: 'List Services', name: 'listServices', value: 'listServices' },
 			{
 				displayName: 'List Email Pro Tasks',
 				name: 'emailProListTasks',
 				value: 'emailProListTasks',
 			},
+			{ displayName: 'Get Service By Name', name: 'getServiceByName', value: 'getServiceByName' },
+			{ displayName: 'List Services', name: 'listServices', value: 'listServices' },
 			{
 				displayName: 'Update Suspend Status By Service Name',
 				name: 'updateSuspendStatusByServiceName',

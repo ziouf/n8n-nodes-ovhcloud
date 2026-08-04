@@ -22,7 +22,7 @@ describe('licenseWindowsGet operation', () => {
                 displayName: 'Product',
                 name: 'product',
                 type: 'string',
-																default: '',
+																default: 'licenseWindows',
             });
         });
     });

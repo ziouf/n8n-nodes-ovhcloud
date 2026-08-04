@@ -16,6 +16,7 @@ export function description(displayOptions: IDisplayOptions): INodeProperties[] 
 			default: '',
 			required: true,
 			description: 'The okmsId identifier',
+			displayOptions,
 		},
 		{
 			displayName: 'Path',
@@ -24,6 +25,7 @@ export function description(displayOptions: IDisplayOptions): INodeProperties[] 
 			default: '',
 			required: true,
 			description: 'The path identifier',
+			displayOptions,
 		},
 
 	];

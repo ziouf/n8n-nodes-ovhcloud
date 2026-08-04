@@ -16,6 +16,7 @@ export function description(displayOptions: IDisplayOptions): INodeProperties[] 
 			default: '',
 			required: true,
 			description: 'The notificationId identifier',
+			displayOptions,
 		},
 		{
 			displayName: 'Attachment Name',
@@ -24,6 +25,7 @@ export function description(displayOptions: IDisplayOptions): INodeProperties[] 
 			default: '',
 			required: true,
 			description: 'The attachmentName identifier',
+			displayOptions,
 		},
 
 	];

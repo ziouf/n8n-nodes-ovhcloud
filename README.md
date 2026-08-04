@@ -71,7 +71,7 @@ The plugin provides **62 nodes** organized by category:
 | **OVH Cloud Hosting Web**          | Manage web hosting services (databases, crons, FTP, mail, PHP, statistics, users, SSL)             | [→](nodes/OvhCloudHosting/README.md)            |
 | **OVH Cloud Hosting Web Resource** | Manage web hosting resources (attached domains, SSL, users, websites)                              | [→](nodes/OvhCloudHostingWebResource/README.md) |
 | **OVH Cloud Web Hosting (V2)**     | Manage web hosting services via API v2                                                             | [→](nodes/OvhCloudWebhostingV2/README.md)       |
-| **OVH Cloud Managed CMS**          | Manage managed CMS services                                                                        | [→](nodes/OvhCloudManagedCMS/README.md)         |
+| **OVH Cloud Managed CMS**          | Manage managed CMS services                                                                        | [→](nodes/OvhCloudManagedCms/README.md)         |
 
 #### 📧 Email & Messaging
 
@@ -343,7 +343,7 @@ n8n-nodes-ovhcloud/
 │   ├── OvhCloudIp/                     # IP management node
 │   ├── OvhCloudIPLoadbalancing/        # IP Load Balancing node
 │   ├── OvhCloudLocation/               # Location node (V2)
-│   ├── OvhCloudManagedCMS/             # Managed CMS node (V2)
+│   ├── OvhCloudManagedCms/              # Managed CMS node (V2)
 │   ├── OvhCloudMe/                     # Account management node (12 operations)
 │   ├── OvhCloudMsServices/             # Microsoft Services node
 │   ├── OvhCloudMxPlan/                 # MX Plan node

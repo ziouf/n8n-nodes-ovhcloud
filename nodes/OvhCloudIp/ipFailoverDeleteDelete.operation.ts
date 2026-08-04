@@ -16,6 +16,7 @@ export function description(displayOptions: IDisplayOptions): INodeProperties[] 
 			default: '',
 			required: true,
 			description: 'The ip identifier',
+			displayOptions,
 		},
 		{
 			displayName: 'Failover',
@@ -24,6 +25,7 @@ export function description(displayOptions: IDisplayOptions): INodeProperties[] 
 			default: '',
 			required: true,
 			description: 'The failover identifier',
+			displayOptions,
 		},
 
 	];

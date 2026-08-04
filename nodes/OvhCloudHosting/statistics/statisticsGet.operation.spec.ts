@@ -22,21 +22,32 @@ describe('hosting statisticsGet operation', () => {
 				displayName: 'Service Name',
 				name: 'serviceName',
 				type: 'resourceLocator',
-				default: 'undefined',
+				default: { mode: 'list', value: '' },
 				required: true,
 			});
 			expect(result[1]).toMatchObject({
 				displayName: 'Period',
 				name: 'period',
 				type: 'options',
-				default: '',
+				default: 'day',
+				options: [
+					{ name: 'Day', value: 'day' },
+					{ name: 'Week', value: 'week' },
+					{ name: 'Month', value: 'month' },
+					{ name: 'Year', value: 'year' },
+				],
 				required: true,
 			});
 			expect(result[2]).toMatchObject({
 				displayName: 'Type',
 				name: 'type',
 				type: 'options',
-				default: '',
+				default: 'bandwidth',
+				options: [
+					{ name: 'Bandwidth', value: 'bandwidth' },
+					{ name: 'Hits', value: 'hits' },
+					{ name: 'Errors', value: 'errors' },
+				],
 				required: true,
 			});
 		});

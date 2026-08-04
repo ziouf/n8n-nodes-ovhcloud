@@ -16,6 +16,7 @@ export function description(displayOptions: IDisplayOptions): INodeProperties[] 
 			default: '',
 			required: true,
 			description: 'The resourceURN identifier',
+			displayOptions,
 		},
 
 	];

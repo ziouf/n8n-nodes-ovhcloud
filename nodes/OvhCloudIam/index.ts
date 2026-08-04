@@ -139,24 +139,24 @@ export function description(displayOptions: IDisplayOptions): INodeProperties[] 
 			noDataExpression: true,
 			options: [
 			{
-				name: 'Validate Your Authorizations on Given Resources',
-				value: 'iamauthorizationcheckCreatePost',
-				action: 'Validate your authorizations on given resources',
+				name: 'Add a Tag to a Resource',
+				value: 'iamresourcetagCreatePost',
+				action: 'Add a tag to a resource',
 			},
 			{
-				name: 'List Available Log Kinds',
-				value: 'iamlogkindListGet',
-				action: 'List available log kinds',
+				name: 'Create a New Policy',
+				value: 'iampolicyCreatePost',
+				action: 'Create a new policy',
 			},
 			{
-				name: 'Get a Log Kind',
-				value: 'iamlogkindListGet2',
-				action: 'Get a log kind',
+				name: 'Create a New Resource Group',
+				value: 'iamresourceGroupCreatePost',
+				action: 'Create a new resource group',
 			},
 			{
-				name: 'List Subscription IDs for a Cluster',
-				value: 'iamlogsubscriptionListGet',
-				action: 'List subscription IDs for a cluster',
+				name: 'Create a Permissions Group',
+				value: 'iampermissionsGroupCreatePost',
+				action: 'Create a permissions group',
 			},
 			{
 				name: 'Create a Subscription From Logs to a Pre-Existing LDP Stream',
@@ -169,49 +169,9 @@ export function description(displayOptions: IDisplayOptions): INodeProperties[] 
 				action: 'Delete a subscription',
 			},
 			{
-				name: 'Get Subscription Details',
-				value: 'iamlogsubscriptionListGet2',
-				action: 'Get subscription details',
-			},
-			{
-				name: 'Generate a Temporary URL to Retrieve Logs',
-				value: 'iamlogurlCreatePost',
-				action: 'Generate a temporary URL to retrieve logs',
-			},
-			{
-				name: 'Retrieve All Permissions Groups',
-				value: 'iampermissionsGroupListGet',
-				action: 'Retrieve all permissions groups',
-			},
-			{
-				name: 'Create a Permissions Group',
-				value: 'iampermissionsGroupCreatePost',
-				action: 'Create a permissions group',
-			},
-			{
 				name: 'Delete the Given Permissions Group',
 				value: 'iampermissionsGroupDeleteDelete',
 				action: 'Delete the given permissions group',
-			},
-			{
-				name: 'Retrieve the Given Permissions Group',
-				value: 'iampermissionsGroupListGet2',
-				action: 'Retrieve the given permissions group',
-			},
-			{
-				name: 'Update a Permissions Group',
-				value: 'iampermissionsGroupUpdatePut',
-				action: 'Update a permissions group',
-			},
-			{
-				name: 'Retrieve All Policies',
-				value: 'iampolicyListGet',
-				action: 'Retrieve all policies',
-			},
-			{
-				name: 'Create a New Policy',
-				value: 'iampolicyCreatePost',
-				action: 'Create a new policy',
 			},
 			{
 				name: 'Delete the Given Policy',
@@ -219,24 +179,24 @@ export function description(displayOptions: IDisplayOptions): INodeProperties[] 
 				action: 'Delete the given policy',
 			},
 			{
-				name: 'Retrieve the Given Policy',
-				value: 'iampolicyListGet2',
-				action: 'Retrieve the given policy',
+				name: 'Delete the Given Resource Group',
+				value: 'iamresourceGroupDeleteDelete',
+				action: 'Delete the given resource group',
 			},
 			{
-				name: 'Update an Existing Policy',
-				value: 'iampolicyUpdatePut',
-				action: 'Update an existing policy',
+				name: 'Generate a Temporary URL to Retrieve Logs',
+				value: 'iamlogurlCreatePost',
+				action: 'Generate a temporary URL to retrieve logs',
 			},
 			{
-				name: 'Retrieve All Actions',
-				value: 'iamreferenceactionListGet',
-				action: 'Retrieve all actions',
+				name: 'Get a Log Kind',
+				value: 'iamlogkindListGet2',
+				action: 'Get a log kind',
 			},
 			{
-				name: 'Retrieve All Resource Types',
-				value: 'iamreferenceresourcetypeListGet',
-				action: 'Retrieve all resource types',
+				name: 'Get Subscription Details',
+				value: 'iamlogsubscriptionListGet2',
+				action: 'Get subscription details',
 			},
 			{
 				name: 'List All Resources',
@@ -244,19 +204,14 @@ export function description(displayOptions: IDisplayOptions): INodeProperties[] 
 				action: 'List all resources',
 			},
 			{
-				name: 'Retrieve a Resource',
-				value: 'iamresourceListGet2',
-				action: 'Retrieve a resource',
+				name: 'List Available Log Kinds',
+				value: 'iamlogkindListGet',
+				action: 'List available log kinds',
 			},
 			{
-				name: 'Update an Existing Resource',
-				value: 'iamresourceUpdatePut',
-				action: 'Update an existing resource',
-			},
-			{
-				name: 'Validate Authorizations on a Given Resource',
-				value: 'iamresourceauthorizationcheckCreatePost',
-				action: 'Validate authorizations on a given resource',
+				name: 'List Subscription IDs for a Cluster',
+				value: 'iamlogsubscriptionListGet',
+				action: 'List subscription IDs for a cluster',
 			},
 			{
 				name: 'Remove a Tag From a Resource',
@@ -264,9 +219,24 @@ export function description(displayOptions: IDisplayOptions): INodeProperties[] 
 				action: 'Remove a tag from a resource',
 			},
 			{
-				name: 'Add a Tag to a Resource',
-				value: 'iamresourcetagCreatePost',
-				action: 'Add a tag to a resource',
+				name: 'Retrieve a Resource',
+				value: 'iamresourceListGet2',
+				action: 'Retrieve a resource',
+			},
+			{
+				name: 'Retrieve All Actions',
+				value: 'iamreferenceactionListGet',
+				action: 'Retrieve all actions',
+			},
+			{
+				name: 'Retrieve All Permissions Groups',
+				value: 'iampermissionsGroupListGet',
+				action: 'Retrieve all permissions groups',
+			},
+			{
+				name: 'Retrieve All Policies',
+				value: 'iampolicyListGet',
+				action: 'Retrieve all policies',
 			},
 			{
 				name: 'Retrieve All Resource Groups',
@@ -274,14 +244,19 @@ export function description(displayOptions: IDisplayOptions): INodeProperties[] 
 				action: 'Retrieve all resource groups',
 			},
 			{
-				name: 'Create a New Resource Group',
-				value: 'iamresourceGroupCreatePost',
-				action: 'Create a new resource group',
+				name: 'Retrieve All Resource Types',
+				value: 'iamreferenceresourcetypeListGet',
+				action: 'Retrieve all resource types',
 			},
 			{
-				name: 'Delete the Given Resource Group',
-				value: 'iamresourceGroupDeleteDelete',
-				action: 'Delete the given resource group',
+				name: 'Retrieve the Given Permissions Group',
+				value: 'iampermissionsGroupListGet2',
+				action: 'Retrieve the given permissions group',
+			},
+			{
+				name: 'Retrieve the Given Policy',
+				value: 'iampolicyListGet2',
+				action: 'Retrieve the given policy',
 			},
 			{
 				name: 'Retrieve the Given Resource Group',
@@ -289,11 +264,35 @@ export function description(displayOptions: IDisplayOptions): INodeProperties[] 
 				action: 'Retrieve the given resource group',
 			},
 			{
+				name: 'Update a Permissions Group',
+				value: 'iampermissionsGroupUpdatePut',
+				action: 'Update a permissions group',
+			},
+			{
+				name: 'Update an Existing Policy',
+				value: 'iampolicyUpdatePut',
+				action: 'Update an existing policy',
+			},
+			{
+				name: 'Update an Existing Resource',
+				value: 'iamresourceUpdatePut',
+				action: 'Update an existing resource',
+			},
+			{
 				name: 'Update an Existing Resource Group',
 				value: 'iamresourceGroupUpdatePut',
 				action: 'Update an existing resource group',
 			},
-
+			{
+				name: 'Validate Authorizations on a Given Resource',
+				value: 'iamresourceauthorizationcheckCreatePost',
+				action: 'Validate authorizations on a given resource',
+			},
+			{
+				name: 'Validate Your Authorizations on Given Resources',
+				value: 'iamauthorizationcheckCreatePost',
+				action: 'Validate your authorizations on given resources',
+			},
 			],
 			default: 'iamauthorizationcheckCreatePost',
 			displayOptions,

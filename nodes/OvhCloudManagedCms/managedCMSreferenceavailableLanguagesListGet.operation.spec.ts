@@ -1,5 +1,5 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import { description, execute } from './managedCMSreferenceavailableCMSListGet.operation';
+import { description, execute } from './managedCMSreferenceavailableLanguagesListGet.operation';
 
 // Mock ApiClient with mutable http methods for per-test control
 jest.mock('../../shared/transport/ApiClient', () => {
@@ -18,7 +18,7 @@ jest.mock('../../shared/transport/ApiClient', () => {
 
 import { ApiClient } from '../../shared/transport/ApiClient';
 
-describe('managedCMSreferenceavailableCMSListGet operation', () => {
+describe('managedCMSreferenceavailableLanguagesListGet operation', () => {
 	describe('description', () => {
 		it('should return all required parameters', () => {
 			const result = description({ show: {} });
@@ -40,7 +40,7 @@ describe('managedCMSreferenceavailableCMSListGet operation', () => {
 			const client = new ApiClient(mockExecuteFunctions) as any;
 			(client.httpGet as jest.Mock).mockResolvedValue(mockData);
 
-			mockExecuteFunctions.getNodeParameter.mockImplementation((param: string): string => {
+			mockExecuteFunctions.getNodeParameter.mockImplementation((): string => {
 				return '';
 			});
 

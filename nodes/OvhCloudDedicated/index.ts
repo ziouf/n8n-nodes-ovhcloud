@@ -346,6 +346,26 @@ export function description(displayOptions: IDisplayOptions): INodeProperties[] 
 					action: 'Create FTP backup for a dedicated server (irreversible)',
 				},
 				{
+					name: 'Bandwidth Create',
+					value: 'bandwidthCreatePost',
+					action: 'Create bandwidth for a housing service',
+				},
+				{
+					name: 'Bandwidth Get',
+					value: 'bandwidthGetGet',
+					action: 'Get bandwidth details of a housing service',
+				},
+				{
+					name: 'Bandwidth vRack Create',
+					value: 'bandwidthVrackCreatePost',
+					action: 'Create vRack bandwidth for a housing service',
+				},
+				{
+					name: 'Bandwidth vRack Get',
+					value: 'bandwidthVrackGetGet',
+					action: 'Get vRack bandwidth details of a housing service',
+				},
+				{
 					name: 'BIOS Settings Get',
 					value: 'biosSettingsGet',
 					action: 'Get BIOS settings of a dedicated server',
@@ -374,6 +394,26 @@ export function description(displayOptions: IDisplayOptions): INodeProperties[] 
 					name: 'Change Contact Create',
 					value: 'changeContactCreate',
 					action: 'Initiate contact change procedure for a dedicated server',
+				},
+				{
+					name: 'Cluster Delete',
+					value: 'clusterDeleteDelete',
+					action: 'Delete a cluster',
+				},
+				{
+					name: 'Cluster Get',
+					value: 'clusterGetGet',
+					action: 'Get details of a cluster',
+				},
+				{
+					name: 'Cluster List',
+					value: 'clusterListGet',
+					action: 'List clusters',
+				},
+				{
+					name: 'Cluster Update',
+					value: 'clusterUpdatePut',
+					action: 'Update a cluster',
 				},
 				{
 					name: 'Confirm Termination Create',
@@ -405,6 +445,26 @@ export function description(displayOptions: IDisplayOptions): INodeProperties[] 
 					value: 'taskDetailGet',
 					action: 'Get details of a specific dedicated server task',
 				},
+				{
+					name: 'Housing Get',
+					value: 'housingGetGet',
+					action: 'Get details of a housing service',
+				},
+				{
+					name: 'Housing List',
+					value: 'housingListGet',
+					action: 'List housing services',
+				},
+				{
+					name: 'Housing Update',
+					value: 'housingUpdatePut',
+					action: 'Update a housing service',
+				},
+				{
+					name: 'Install Server',
+					value: 'installPost',
+					action: 'Install or reinstall an OS on a dedicated server',
+				},
 				{ name: 'IPMI Get', value: 'ipmiGet', action: 'Get IPMI info of a dedicated server' },
 				{
 					name: 'List',
@@ -417,14 +477,69 @@ export function description(displayOptions: IDisplayOptions): INodeProperties[] 
 					action: 'List all tasks for a dedicated server',
 				},
 				{
+					name: 'Monitoring Get',
+					value: 'monitoringGetGet',
+					action: 'Get monitoring data of a dedicated server',
+				},
+				{
+					name: 'Monitoring Metric Get',
+					value: 'monitoringMetricGetGet',
+					action: 'Get monitoring metric data of a dedicated server',
+				},
+				{
+					name: 'Nasha Get',
+					value: 'nashaGetGet',
+					action: 'Get details of a Nasha (NAS) service',
+				},
+				{
+					name: 'Nasha List',
+					value: 'nashaListGet',
+					action: 'List Nasha (NAS) services',
+				},
+				{
 					name: 'Netboot Order Update',
 					value: 'netbootOrderUpdate',
 					action: 'Set netboot order for a dedicated server',
 				},
 				{
+					name: 'Node Delete',
+					value: 'nodeDeleteDelete',
+					action: 'Delete a cluster node',
+				},
+				{
+					name: 'Node Get',
+					value: 'nodeGetGet',
+					action: 'Get details of a cluster node',
+				},
+				{
+					name: 'Node List',
+					value: 'nodeListGet',
+					action: 'List nodes of a cluster',
+				},
+				{
+					name: 'Node Update',
+					value: 'nodeUpdatePut',
+					action: 'Update a cluster node',
+				},
+				{
+					name: 'Option Create',
+					value: 'optionCreatePost',
+					action: 'Add an option to a dedicated server',
+				},
+				{
 					name: 'Option Delete',
 					value: 'optionDelete',
 					action: 'Release an option from a dedicated server (irreversible)',
+				},
+				{
+					name: 'Option Get',
+					value: 'optionGetGet',
+					action: 'Get details of a dedicated server option',
+				},
+				{
+					name: 'Option List',
+					value: 'optionListGet',
+					action: 'List options of a dedicated server',
 				},
 				{
 					name: 'Raw Availability List',
@@ -436,46 +551,15 @@ export function description(displayOptions: IDisplayOptions): INodeProperties[] 
 					value: 'serverUpdate',
 					action: "Modify a dedicated server's name and/or status",
 				},
-				// Ceph (Nasha) operations
-				{
-					name: 'Nasha List',
-					value: 'nashaListGet',
-					action: 'List Nasha (NAS) services',
-				},
-				{
-					name: 'Nasha Get',
-					value: 'nashaGetGet',
-					action: 'Get details of a Nasha (NAS) service',
-				},
-				{
-					name: 'Snapshot List',
-					value: 'snapshotListGet',
-					action: 'List snapshots of a Nasha (NAS) service',
-				},
-				{
-					name: 'Snapshot Create',
-					value: 'snapshotCreatePost',
-					action: 'Create a snapshot of a Nasha (NAS) service',
-				},
-				{
-					name: 'Snapshot Get',
-					value: 'snapshotGetGet',
-					action: 'Get details of a Nasha (NAS) snapshot',
-				},
-				{
-					name: 'Snapshot Delete',
-					value: 'snapshotDeleteDelete',
-					action: 'Delete a Nasha (NAS) snapshot',
-				},
-				{
-					name: 'Share List',
-					value: 'shareListGet',
-					action: 'List shares of a Nasha (NAS) service',
-				},
 				{
 					name: 'Share Create',
 					value: 'shareCreatePost',
 					action: 'Create a share on a Nasha (NAS) service',
+				},
+				{
+					name: 'Share Delete',
+					value: 'shareDeleteDelete',
+					action: 'Delete a Nasha (NAS) share',
 				},
 				{
 					name: 'Share Get',
@@ -483,97 +567,34 @@ export function description(displayOptions: IDisplayOptions): INodeProperties[] 
 					action: 'Get details of a Nasha (NAS) share',
 				},
 				{
+					name: 'Share List',
+					value: 'shareListGet',
+					action: 'List shares of a Nasha (NAS) service',
+				},
+				{
 					name: 'Share Update',
 					value: 'shareUpdatePut',
 					action: 'Update a Nasha (NAS) share',
 				},
 				{
-					name: 'Share Delete',
-					value: 'shareDeleteDelete',
-					action: 'Delete a Nasha (NAS) share',
-				},
-				// Cluster operations
-				{
-					name: 'Cluster List',
-					value: 'clusterListGet',
-					action: 'List clusters',
+					name: 'Snapshot Create',
+					value: 'snapshotCreatePost',
+					action: 'Create a snapshot of a Nasha (NAS) service',
 				},
 				{
-					name: 'Cluster Get',
-					value: 'clusterGetGet',
-					action: 'Get details of a cluster',
+					name: 'Snapshot Delete',
+					value: 'snapshotDeleteDelete',
+					action: 'Delete a Nasha (NAS) snapshot',
 				},
 				{
-					name: 'Cluster Update',
-					value: 'clusterUpdatePut',
-					action: 'Update a cluster',
+					name: 'Snapshot Get',
+					value: 'snapshotGetGet',
+					action: 'Get details of a Nasha (NAS) snapshot',
 				},
 				{
-					name: 'Cluster Delete',
-					value: 'clusterDeleteDelete',
-					action: 'Delete a cluster',
-				},
-				{
-					name: 'Node List',
-					value: 'nodeListGet',
-					action: 'List nodes of a cluster',
-				},
-				{
-					name: 'Node Get',
-					value: 'nodeGetGet',
-					action: 'Get details of a cluster node',
-				},
-				{
-					name: 'Node Update',
-					value: 'nodeUpdatePut',
-					action: 'Update a cluster node',
-				},
-				{
-					name: 'Node Delete',
-					value: 'nodeDeleteDelete',
-					action: 'Delete a cluster node',
-				},
-				// Housing operations
-				{
-					name: 'Housing List',
-					value: 'housingListGet',
-					action: 'List housing services',
-				},
-				{
-					name: 'Housing Get',
-					value: 'housingGetGet',
-					action: 'Get details of a housing service',
-				},
-				{
-					name: 'Housing Update',
-					value: 'housingUpdatePut',
-					action: 'Update a housing service',
-				},
-				{
-					name: 'Bandwidth Get',
-					value: 'bandwidthGetGet',
-					action: 'Get bandwidth details of a housing service',
-				},
-				{
-					name: 'Bandwidth Create',
-					value: 'bandwidthCreatePost',
-					action: 'Create bandwidth for a housing service',
-				},
-				{
-					name: 'Bandwidth vRack Get',
-					value: 'bandwidthVrackGetGet',
-					action: 'Get vRack bandwidth details of a housing service',
-				},
-				{
-					name: 'Bandwidth vRack Create',
-					value: 'bandwidthVrackCreatePost',
-					action: 'Create vRack bandwidth for a housing service',
-				},
-				// Installation Template operations
-				{
-					name: 'Template List',
-					value: 'templateListGet',
-					action: 'List installation templates',
+					name: 'Snapshot List',
+					value: 'snapshotListGet',
+					action: 'List snapshots of a Nasha (NAS) service',
 				},
 				{
 					name: 'Template Get',
@@ -581,36 +602,9 @@ export function description(displayOptions: IDisplayOptions): INodeProperties[] 
 					action: 'Get details of an installation template',
 				},
 				{
-					name: 'Install Server',
-					value: 'installPost',
-					action: 'Install or reinstall an OS on a dedicated server',
-				},
-				// Option operations
-				{
-					name: 'Option List',
-					value: 'optionListGet',
-					action: 'List options of a dedicated server',
-				},
-				{
-					name: 'Option Get',
-					value: 'optionGetGet',
-					action: 'Get details of a dedicated server option',
-				},
-				{
-					name: 'Option Create',
-					value: 'optionCreatePost',
-					action: 'Add an option to a dedicated server',
-				},
-				// Monitoring operations
-				{
-					name: 'Monitoring Get',
-					value: 'monitoringGetGet',
-					action: 'Get monitoring data of a dedicated server',
-				},
-				{
-					name: 'Monitoring Metric Get',
-					value: 'monitoringMetricGetGet',
-					action: 'Get monitoring metric data of a dedicated server',
+					name: 'Template List',
+					value: 'templateListGet',
+					action: 'List installation templates',
 				},
 			],
 			default: 'get',

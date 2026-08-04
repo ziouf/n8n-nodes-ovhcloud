@@ -75,51 +75,6 @@ export function description(displayOptions: IDisplayOptions): INodeProperties[] 
 			noDataExpression: true,
 			options: [
 			{
-				name: 'Retrieves the Backup Tenants You Manage',
-				value: 'backupServicestenantListGet',
-				action: 'Retrieves the backup tenants you manage',
-			},
-			{
-				name: 'Retrieves the Details of Your Backup Tenant',
-				value: 'backupServicestenantListGet2',
-				action: 'Retrieves the details of your backup tenant',
-			},
-			{
-				name: 'Lists Vaults for Your Tenant',
-				value: 'backupServicestenantvaultListGet',
-				action: 'Lists vaults for your tenant',
-			},
-			{
-				name: 'Retrieves Specific Vault Details',
-				value: 'backupServicestenantvaultListGet2',
-				action: 'Retrieves specific vault details',
-			},
-			{
-				name: 'Updates Vault Display Name and Cloud Repository',
-				value: 'backupServicestenantvaultUpdatePut',
-				action: 'Updates vault display name and cloud repository',
-			},
-			{
-				name: 'Retrieves List of VSPC Tenants',
-				value: 'backupServicestenantvspcListGet',
-				action: 'Retrieves list of VSPC tenants',
-			},
-			{
-				name: 'Retrieves Details of a Specific VSPC Tenant',
-				value: 'backupServicestenantvspcListGet2',
-				action: 'Retrieves details of a specific VSPC tenant',
-			},
-			{
-				name: 'Updates the Display Name of a VSPC Tenant',
-				value: 'backupServicestenantvspcUpdatePut',
-				action: 'Updates the display name of a VSPC tenant',
-			},
-			{
-				name: 'Lists Backup Agents',
-				value: 'backupServicestenantvspcbackupAgentListGet',
-				action: 'Lists backup agents',
-			},
-			{
 				name: 'Creates Backup Agent',
 				value: 'backupServicestenantvspcbackupAgentCreatePost',
 				action: 'Creates backup agent',
@@ -135,9 +90,44 @@ export function description(displayOptions: IDisplayOptions): INodeProperties[] 
 				action: 'Gets specific backup agent details',
 			},
 			{
-				name: 'Updates Backup Agent',
-				value: 'backupServicestenantvspcbackupAgentUpdatePut',
-				action: 'Updates backup agent',
+				name: 'Lists Backup Agents',
+				value: 'backupServicestenantvspcbackupAgentListGet',
+				action: 'Lists backup agents',
+			},
+			{
+				name: 'Lists Vaults for Your Tenant',
+				value: 'backupServicestenantvaultListGet',
+				action: 'Lists vaults for your tenant',
+			},
+			{
+				name: 'Retrieves Details of a Specific VSPC Tenant',
+				value: 'backupServicestenantvspcListGet2',
+				action: 'Retrieves details of a specific VSPC tenant',
+			},
+			{
+				name: 'Retrieves List of VSPC Tenants',
+				value: 'backupServicestenantvspcListGet',
+				action: 'Retrieves list of VSPC tenants',
+			},
+			{
+				name: 'Retrieves Specific Vault Details',
+				value: 'backupServicestenantvaultListGet2',
+				action: 'Retrieves specific vault details',
+			},
+			{
+				name: 'Retrieves the Backup Tenants You Manage',
+				value: 'backupServicestenantListGet',
+				action: 'Retrieves the backup tenants you manage',
+			},
+			{
+				name: 'Retrieves the Details of Your Backup Tenant',
+				value: 'backupServicestenantListGet2',
+				action: 'Retrieves the details of your backup tenant',
+			},
+			{
+				name: 'Retrieves the Download Link for the Management Agent',
+				value: 'backupServicestenantvspcmanagementAgentListGet',
+				action: 'Retrieves the download link for the management agent',
 			},
 			{
 				name: 'Retrieves the List of Backup Policies Available in Your VSPC',
@@ -145,11 +135,20 @@ export function description(displayOptions: IDisplayOptions): INodeProperties[] 
 				action: 'Retrieves the list of backup policies available in your VSPC',
 			},
 			{
-				name: 'Retrieves the Download Link for the Management Agent',
-				value: 'backupServicestenantvspcmanagementAgentListGet',
-				action: 'Retrieves the download link for the management agent',
+				name: 'Updates Backup Agent',
+				value: 'backupServicestenantvspcbackupAgentUpdatePut',
+				action: 'Updates backup agent',
 			},
-
+			{
+				name: 'Updates the Display Name of a VSPC Tenant',
+				value: 'backupServicestenantvspcUpdatePut',
+				action: 'Updates the display name of a VSPC tenant',
+			},
+			{
+				name: 'Updates Vault Display Name and Cloud Repository',
+				value: 'backupServicestenantvaultUpdatePut',
+				action: 'Updates vault display name and cloud repository',
+			},
 			],
 			default: 'backupServicestenantListGet',
 			displayOptions,

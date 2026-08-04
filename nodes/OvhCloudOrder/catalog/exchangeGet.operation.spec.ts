@@ -22,7 +22,7 @@ describe('exchangeGet operation', () => {
                 displayName: 'Product',
                 name: 'product',
                 type: 'string',
-																default: '',
+																default: 'exchange',
             });
         });
     });

@@ -39,9 +39,9 @@ export function description(displayOptions: IDisplayOptions): INodeProperties[] 
 			noDataExpression: true,
 			options: [
 			{
-				name: 'List Packs',
-				value: 'packListGet',
-				action: 'List all pack services',
+				name: 'Delete Pack',
+				value: 'packDeleteDelete',
+				action: 'Delete a pack service',
 			},
 			{
 				name: 'Get Pack',
@@ -49,26 +49,25 @@ export function description(displayOptions: IDisplayOptions): INodeProperties[] 
 				action: 'Get pack service details',
 			},
 			{
-				name: 'Update Pack',
-				value: 'packUpdatePut',
-				action: 'Update pack service details',
-			},
-			{
-				name: 'Delete Pack',
-				value: 'packDeleteDelete',
-				action: 'Delete a pack service',
-			},
-			{
 				name: 'Get Service Infos',
 				value: 'serviceInfosGetGet',
 				action: 'Get service information for a pack',
+			},
+			{
+				name: 'List Packs',
+				value: 'packListGet',
+				action: 'List all pack services',
 			},
 			{
 				name: 'Reinstall Pack',
 				value: 'reinstallPost',
 				action: 'Reinstall a pack service',
 			},
-
+			{
+				name: 'Update Pack',
+				value: 'packUpdatePut',
+				action: 'Update pack service details',
+			},
 			],
 			default: 'packListGet',
 			displayOptions,

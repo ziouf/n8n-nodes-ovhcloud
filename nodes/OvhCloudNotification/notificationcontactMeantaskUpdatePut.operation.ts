@@ -16,6 +16,7 @@ export function description(displayOptions: IDisplayOptions): INodeProperties[] 
 			default: '',
 			required: true,
 			description: 'The contactMeanId identifier',
+			displayOptions,
 		},
 		{
 			displayName: 'Task ID',
@@ -24,6 +25,7 @@ export function description(displayOptions: IDisplayOptions): INodeProperties[] 
 			default: '',
 			required: true,
 			description: 'The taskId identifier',
+			displayOptions,
 		},
 
 	];

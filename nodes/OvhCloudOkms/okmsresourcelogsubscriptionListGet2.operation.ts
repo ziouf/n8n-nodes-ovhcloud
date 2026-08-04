@@ -16,6 +16,7 @@ export function description(displayOptions: IDisplayOptions): INodeProperties[] 
 			default: '',
 			required: true,
 			description: 'The okmsId identifier',
+			displayOptions,
 		},
 		{
 			displayName: 'Subscription ID',
@@ -24,6 +25,7 @@ export function description(displayOptions: IDisplayOptions): INodeProperties[] 
 			default: '',
 			required: true,
 			description: 'The subscriptionId identifier',
+			displayOptions,
 		},
 
 	];

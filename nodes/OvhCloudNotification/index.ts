@@ -91,14 +91,14 @@ export function description(displayOptions: IDisplayOptions): INodeProperties[] 
 			noDataExpression: true,
 			options: [
 			{
-				name: 'Retrieve Every Contact Mean',
-				value: 'notificationcontactMeanListGet',
-				action: 'Retrieve every contact mean',
-			},
-			{
 				name: 'Create a Contact Mean',
 				value: 'notificationcontactMeanCreatePost',
 				action: 'Create a contact mean',
+			},
+			{
+				name: 'Create a Routing',
+				value: 'notificationroutingCreatePost',
+				action: 'Create a routing',
 			},
 			{
 				name: 'Delete the Contact Mean',
@@ -106,19 +106,19 @@ export function description(displayOptions: IDisplayOptions): INodeProperties[] 
 				action: 'Delete the contact mean',
 			},
 			{
-				name: 'Retrieve Information About a Contact Mean',
-				value: 'notificationcontactMeanListGet2',
-				action: 'Retrieve information about a contact mean',
+				name: 'Delete the Routing',
+				value: 'notificationroutingDeleteDelete',
+				action: 'Delete the routing',
 			},
 			{
-				name: 'Update a Contact Mean',
-				value: 'notificationcontactMeanUpdatePut',
-				action: 'Update a contact mean',
+				name: 'Get a Notification Attachment',
+				value: 'notificationhistoryattachmentListGet',
+				action: 'Get a notification attachment',
 			},
 			{
-				name: 'Restart the Validation Process for This Contact Mean, if You Did Not Receive the OTP',
-				value: 'notificationcontactMeanrestartValidationCreatePost',
-				action: 'Restart the validation process for this contact mean, if you did not receive the OTP',
+				name: 'Get a Task on a Contact Mean',
+				value: 'notificationcontactMeantaskListGet2',
+				action: 'Get a task on a contact mean',
 			},
 			{
 				name: 'Get the List of Tasks on a Contact Mean',
@@ -126,9 +126,54 @@ export function description(displayOptions: IDisplayOptions): INodeProperties[] 
 				action: 'Get the list of tasks on a contact mean',
 			},
 			{
-				name: 'Get a Task on a Contact Mean',
-				value: 'notificationcontactMeantaskListGet2',
-				action: 'Get a task on a contact mean',
+				name: 'Restart the Validation Process for This Contact Mean, if You Did Not Receive the OTP',
+				value: 'notificationcontactMeanrestartValidationCreatePost',
+				action: 'Restart the validation process for this contact mean, if you did not receive the OTP',
+			},
+			{
+				name: 'Retrieve Data Referential for /Notification Endpoints',
+				value: 'notificationreferenceListGet',
+				action: 'Retrieve data referential for /notification endpoints',
+			},
+			{
+				name: 'Retrieve Every Contact Mean',
+				value: 'notificationcontactMeanListGet',
+				action: 'Retrieve every contact mean',
+			},
+			{
+				name: 'Retrieve Every Notification Sent to You',
+				value: 'notificationhistoryListGet',
+				action: 'Retrieve every notification sent to you',
+			},
+			{
+				name: 'Retrieve Every Routing',
+				value: 'notificationroutingListGet',
+				action: 'Retrieve every routing',
+			},
+			{
+				name: 'Retrieve Information About a Contact Mean',
+				value: 'notificationcontactMeanListGet2',
+				action: 'Retrieve information about a contact mean',
+			},
+			{
+				name: 'Retrieve Information About a Notification Sent to You',
+				value: 'notificationhistoryListGet2',
+				action: 'Retrieve information about a notification sent to you',
+			},
+			{
+				name: 'Retrieve Information About a Routing',
+				value: 'notificationroutingListGet2',
+				action: 'Retrieve information about a routing',
+			},
+			{
+				name: 'Update a Contact Mean',
+				value: 'notificationcontactMeanUpdatePut',
+				action: 'Update a contact mean',
+			},
+			{
+				name: 'Update a Routing',
+				value: 'notificationroutingUpdatePut',
+				action: 'Update a routing',
 			},
 			{
 				name: 'Update a Task on a Contact Mean',
@@ -140,52 +185,6 @@ export function description(displayOptions: IDisplayOptions): INodeProperties[] 
 				value: 'notificationcontactMeanvalidateCreatePost',
 				action: 'Validate this contact mean',
 			},
-			{
-				name: 'Retrieve Every Notification Sent to You',
-				value: 'notificationhistoryListGet',
-				action: 'Retrieve every notification sent to you',
-			},
-			{
-				name: 'Retrieve Information About a Notification Sent to You',
-				value: 'notificationhistoryListGet2',
-				action: 'Retrieve information about a notification sent to you',
-			},
-			{
-				name: 'Get a Notification Attachment',
-				value: 'notificationhistoryattachmentListGet',
-				action: 'Get a notification attachment',
-			},
-			{
-				name: 'Retrieve Data Referential for /Notification Endpoints',
-				value: 'notificationreferenceListGet',
-				action: 'Retrieve data referential for /notification endpoints',
-			},
-			{
-				name: 'Retrieve Every Routing',
-				value: 'notificationroutingListGet',
-				action: 'Retrieve every routing',
-			},
-			{
-				name: 'Create a Routing',
-				value: 'notificationroutingCreatePost',
-				action: 'Create a routing',
-			},
-			{
-				name: 'Delete the Routing',
-				value: 'notificationroutingDeleteDelete',
-				action: 'Delete the routing',
-			},
-			{
-				name: 'Retrieve Information About a Routing',
-				value: 'notificationroutingListGet2',
-				action: 'Retrieve information about a routing',
-			},
-			{
-				name: 'Update a Routing',
-				value: 'notificationroutingUpdatePut',
-				action: 'Update a routing',
-			},
-
 			],
 			default: 'notificationcontactMeanListGet',
 			displayOptions,

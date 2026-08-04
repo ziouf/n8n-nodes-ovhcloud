@@ -1,5 +1,5 @@
 import type {
-
+	IDataObject,
 	IExecuteFunctions,
 	IDisplayOptions,
 	INodeExecutionData,
@@ -16,28 +16,25 @@ export function description(displayOptions: IDisplayOptions): INodeProperties[] 
 			default: '',
 			required: true,
 			description: 'The serviceId identifier',
+			displayOptions,
 		},
 
 	];
 }
 
 /**
- * Executes the Get Get all websites of a service operation.
+ * Executes the Put Edit a service operation.
  *
- * HTTP method: GET
- * Endpoint: /managedCMS/resource/{serviceId}/website
+ * HTTP method: PUT
+ * Endpoint: /managedCMS/resource/{serviceId}
  */
 export async function execute(this: IExecuteFunctions, itemIndex: number): Promise<INodeExecutionData[]> {
 	const serviceId = this.getNodeParameter('serviceId', itemIndex) as string;
 
+	const body: IDataObject = {};
 
 	const client = new ApiClient(this);
-	const data = (await client.httpGet('/managedCMS/resource/' + serviceId + '/website')) as unknown[];
+	const data = (await client.httpPut('/managedCMS/resource/' + serviceId, body)) as IDataObject;
 
-
-	if (!Array.isArray(data)) {
-		return this.helpers.returnJsonArray([data]);
-	}
-
-	return this.helpers.returnJsonArray(data.map((item) => item as INodeExecutionData));
+	return this.helpers.returnJsonArray([data]);
 }

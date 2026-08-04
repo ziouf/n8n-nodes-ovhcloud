@@ -143,134 +143,9 @@ export function description(displayOptions: IDisplayOptions): INodeProperties[] 
 			noDataExpression: true,
 			options: [
 			{
-				name: 'List VMware Cloud Director Backup Services',
-				value: 'vmwareCloudDirectorbackupListGet',
-				action: 'List VMware Cloud Director Backup services',
-			},
-			{
-				name: 'Get VMware Cloud Director Backup Service',
-				value: 'vmwareCloudDirectorbackupListGet2',
-				action: 'Get VMware Cloud Director Backup service',
-			},
-			{
-				name: 'Update VMware Cloud Director Backup Service',
-				value: 'vmwareCloudDirectorbackupUpdatePut',
-				action: 'Update VMware Cloud Director Backup service',
-			},
-			{
-				name: 'List All Asynchronous Operations Related to the VMware Cloud Director Backup Service',
-				value: 'vmwareCloudDirectorbackuptaskListGet',
-				action: 'List all asynchronous operations related to the VMware Cloud Director backup service',
-			},
-			{
-				name: 'Get a Specific Task Related to the VMware Cloud Director Backup Service',
-				value: 'vmwareCloudDirectorbackuptaskListGet2',
-				action: 'Get a specific task related to the VMware Cloud Director backup service',
-			},
-			{
-				name: 'List VMware Cloud Director Organizations',
-				value: 'vmwareCloudDirectororganizationListGet',
-				action: 'List VMware Cloud Director organizations',
-			},
-			{
-				name: 'Get VMware Cloud Director Organization Details',
-				value: 'vmwareCloudDirectororganizationListGet2',
-				action: 'Get VMware Cloud Director organization details',
-			},
-			{
-				name: 'Update VMware Cloud Director Organization Details',
-				value: 'vmwareCloudDirectororganizationUpdatePut',
-				action: 'Update VMware Cloud Director organization details',
-			},
-			{
-				name: 'List Organization Network Access Control List Resources',
-				value: 'vmwareCloudDirectororganizationnetworkAclListGet',
-				action: 'List organization network access control list resources',
-			},
-			{
-				name: 'Get Organization Network Access Control List Resources',
-				value: 'vmwareCloudDirectororganizationnetworkAclListGet2',
-				action: 'Get organization network access control list resources',
-			},
-			{
-				name: 'Update Organization Network Access Control List Resources',
-				value: 'vmwareCloudDirectororganizationnetworkAclUpdatePut',
-				action: 'Update organization network access control list resources',
-			},
-			{
-				name: 'Reset the VMware Cloud Director Organization Administrator Password',
-				value: 'vmwareCloudDirectororganizationpasswordCreatePost',
-				action: 'Reset the VMware Cloud Director organization administrator password',
-			},
-			{
-				name: 'List All Asynchronous Operations Related to the VMware Cloud Director Resources',
-				value: 'vmwareCloudDirectororganizationtaskListGet',
-				action: 'List all asynchronous operations related to the VMware Cloud Director resources',
-			},
-			{
-				name: 'Get a Specific Task Related to the VMware Cloud Director Resources',
-				value: 'vmwareCloudDirectororganizationtaskListGet2',
-				action: 'Get a specific task related to the VMware Cloud Director resources',
-			},
-			{
-				name: 'List All Organization Virtual DataCenters',
-				value: 'vmwareCloudDirectororganizationvirtualDataCenterListGet',
-				action: 'List all organization Virtual DataCenters',
-			},
-			{
-				name: 'Get Organization Virtual DataCenter Details',
-				value: 'vmwareCloudDirectororganizationvirtualDataCenterListGet2',
-				action: 'Get organization Virtual DataCenter details',
-			},
-			{
-				name: 'Update Organization Virtual DataCenter Details',
-				value: 'vmwareCloudDirectororganizationvirtualDataCenterUpdatePut',
-				action: 'Update organization Virtual DataCenter details',
-			},
-			{
-				name: 'List Organization Virtual DataCenter Associated Compute Resources',
-				value: 'vmwareCloudDirectororganizationvirtualDataCentercomputeListGet',
-				action: 'List organization Virtual DataCenter associated compute resources',
-			},
-			{
 				name: 'Delete Compute Resources Associated with an Organization\'s Virtual DataCenter',
 				value: 'vmwareCloudDirectororganizationvirtualDataCentercomputeDeleteDelete',
 				action: 'Delete compute resources associated with an organization\'s Virtual DataCenter',
-			},
-			{
-				name: 'Get Organization Virtual DataCenter Associated Compute Resources',
-				value: 'vmwareCloudDirectororganizationvirtualDataCentercomputeListGet2',
-				action: 'Get organization Virtual DataCenter associated compute resources',
-			},
-			{
-				name: 'List All Orderable Resources Related to the Organization Virtual DataCenter',
-				value: 'vmwareCloudDirectororganizationvirtualDataCenterorderableResourceListGet',
-				action: 'List all orderable resources related to the organization Virtual DataCenter',
-			},
-			{
-				name: 'List Organization Virtual DataCenter Associated Storage Resources',
-				value: 'vmwareCloudDirectororganizationvirtualDataCenterstorageListGet',
-				action: 'List organization Virtual DataCenter associated storage resources',
-			},
-			{
-				name: 'Get Organization Virtual DataCenter Associated Storage Resources',
-				value: 'vmwareCloudDirectororganizationvirtualDataCenterstorageListGet2',
-				action: 'Get organization Virtual DataCenter associated storage resources',
-			},
-			{
-				name: 'List All Asynchronous Operations Related to the Organization Virtual DataCenter Resource',
-				value: 'vmwareCloudDirectororganizationvirtualDataCentertaskListGet',
-				action: 'List all asynchronous operations related to the organization Virtual DataCenter resource',
-			},
-			{
-				name: 'Get a Specific Task Related to the Organization Virtual DataCenter Resource',
-				value: 'vmwareCloudDirectororganizationvirtualDataCentertaskListGet2',
-				action: 'Get a specific task related to the organization Virtual DataCenter resource',
-			},
-			{
-				name: 'List Organization Virtual DataCenter Associated Vrack Segment Resources',
-				value: 'vmwareCloudDirectororganizationvirtualDataCentervrackSegmentListGet',
-				action: 'List organization Virtual DataCenter associated vrack segment resources',
 			},
 			{
 				name: 'Delete VMware Cloud Director Vrack Segment Resources',
@@ -278,19 +153,9 @@ export function description(displayOptions: IDisplayOptions): INodeProperties[] 
 				action: 'Delete VMware Cloud Director vrack segment resources',
 			},
 			{
-				name: 'Get Organization Virtual DataCenter Associated Vrack Segment Resources',
-				value: 'vmwareCloudDirectororganizationvirtualDataCentervrackSegmentListGet2',
-				action: 'Get organization Virtual DataCenter associated vrack segment resources',
-			},
-			{
-				name: 'Update VMware Cloud Director Vrack Segment Resources',
-				value: 'vmwareCloudDirectororganizationvirtualDataCentervrackSegmentUpdatePut',
-				action: 'Update VMware Cloud Director vrack segment resources',
-			},
-			{
-				name: 'List All Asynchronous Operations Related to the Organization Virtual DataCenter vRack Segment Resource',
-				value: 'vmwareCloudDirectororganizationvirtualDataCentervrackSegmenttaskListGet',
-				action: 'List all asynchronous operations related to the organization Virtual DataCenter vRack segment resource',
+				name: 'Get a Specific Task Related to the Organization Virtual DataCenter Resource',
+				value: 'vmwareCloudDirectororganizationvirtualDataCentertaskListGet2',
+				action: 'Get a specific task related to the organization Virtual DataCenter resource',
 			},
 			{
 				name: 'Get a Specific Task Related to the Organization Virtual DataCenter vRack Segment Resource',
@@ -298,11 +163,145 @@ export function description(displayOptions: IDisplayOptions): INodeProperties[] 
 				action: 'Get a specific task related to the organization Virtual DataCenter vRack segment resource',
 			},
 			{
+				name: 'Get a Specific Task Related to the VMware Cloud Director Backup Service',
+				value: 'vmwareCloudDirectorbackuptaskListGet2',
+				action: 'Get a specific task related to the VMware Cloud Director backup service',
+			},
+			{
+				name: 'Get a Specific Task Related to the VMware Cloud Director Resources',
+				value: 'vmwareCloudDirectororganizationtaskListGet2',
+				action: 'Get a specific task related to the VMware Cloud Director resources',
+			},
+			{
+				name: 'Get Organization Network Access Control List Resources',
+				value: 'vmwareCloudDirectororganizationnetworkAclListGet2',
+				action: 'Get organization network access control list resources',
+			},
+			{
+				name: 'Get Organization Virtual DataCenter Associated Compute Resources',
+				value: 'vmwareCloudDirectororganizationvirtualDataCentercomputeListGet2',
+				action: 'Get organization Virtual DataCenter associated compute resources',
+			},
+			{
+				name: 'Get Organization Virtual DataCenter Associated Storage Resources',
+				value: 'vmwareCloudDirectororganizationvirtualDataCenterstorageListGet2',
+				action: 'Get organization Virtual DataCenter associated storage resources',
+			},
+			{
+				name: 'Get Organization Virtual DataCenter Associated Vrack Segment Resources',
+				value: 'vmwareCloudDirectororganizationvirtualDataCentervrackSegmentListGet2',
+				action: 'Get organization Virtual DataCenter associated vrack segment resources',
+			},
+			{
+				name: 'Get Organization Virtual DataCenter Details',
+				value: 'vmwareCloudDirectororganizationvirtualDataCenterListGet2',
+				action: 'Get organization Virtual DataCenter details',
+			},
+			{
 				name: 'Get Region Details',
 				value: 'vmwareCloudDirectorreferenceregionListGet',
 				action: 'Get region details',
 			},
-
+			{
+				name: 'Get VMware Cloud Director Backup Service',
+				value: 'vmwareCloudDirectorbackupListGet2',
+				action: 'Get VMware Cloud Director Backup service',
+			},
+			{
+				name: 'Get VMware Cloud Director Organization Details',
+				value: 'vmwareCloudDirectororganizationListGet2',
+				action: 'Get VMware Cloud Director organization details',
+			},
+			{
+				name: 'List All Asynchronous Operations Related to the Organization Virtual DataCenter Resource',
+				value: 'vmwareCloudDirectororganizationvirtualDataCentertaskListGet',
+				action: 'List all asynchronous operations related to the organization Virtual DataCenter resource',
+			},
+			{
+				name: 'List All Asynchronous Operations Related to the Organization Virtual DataCenter vRack Segment Resource',
+				value: 'vmwareCloudDirectororganizationvirtualDataCentervrackSegmenttaskListGet',
+				action: 'List all asynchronous operations related to the organization Virtual DataCenter vRack segment resource',
+			},
+			{
+				name: 'List All Asynchronous Operations Related to the VMware Cloud Director Backup Service',
+				value: 'vmwareCloudDirectorbackuptaskListGet',
+				action: 'List all asynchronous operations related to the VMware Cloud Director backup service',
+			},
+			{
+				name: 'List All Asynchronous Operations Related to the VMware Cloud Director Resources',
+				value: 'vmwareCloudDirectororganizationtaskListGet',
+				action: 'List all asynchronous operations related to the VMware Cloud Director resources',
+			},
+			{
+				name: 'List All Orderable Resources Related to the Organization Virtual DataCenter',
+				value: 'vmwareCloudDirectororganizationvirtualDataCenterorderableResourceListGet',
+				action: 'List all orderable resources related to the organization Virtual DataCenter',
+			},
+			{
+				name: 'List All Organization Virtual DataCenters',
+				value: 'vmwareCloudDirectororganizationvirtualDataCenterListGet',
+				action: 'List all organization Virtual DataCenters',
+			},
+			{
+				name: 'List Organization Network Access Control List Resources',
+				value: 'vmwareCloudDirectororganizationnetworkAclListGet',
+				action: 'List organization network access control list resources',
+			},
+			{
+				name: 'List Organization Virtual DataCenter Associated Compute Resources',
+				value: 'vmwareCloudDirectororganizationvirtualDataCentercomputeListGet',
+				action: 'List organization Virtual DataCenter associated compute resources',
+			},
+			{
+				name: 'List Organization Virtual DataCenter Associated Storage Resources',
+				value: 'vmwareCloudDirectororganizationvirtualDataCenterstorageListGet',
+				action: 'List organization Virtual DataCenter associated storage resources',
+			},
+			{
+				name: 'List Organization Virtual DataCenter Associated Vrack Segment Resources',
+				value: 'vmwareCloudDirectororganizationvirtualDataCentervrackSegmentListGet',
+				action: 'List organization Virtual DataCenter associated vrack segment resources',
+			},
+			{
+				name: 'List VMware Cloud Director Backup Services',
+				value: 'vmwareCloudDirectorbackupListGet',
+				action: 'List VMware Cloud Director Backup services',
+			},
+			{
+				name: 'List VMware Cloud Director Organizations',
+				value: 'vmwareCloudDirectororganizationListGet',
+				action: 'List VMware Cloud Director organizations',
+			},
+			{
+				name: 'Reset the VMware Cloud Director Organization Administrator Password',
+				value: 'vmwareCloudDirectororganizationpasswordCreatePost',
+				action: 'Reset the VMware Cloud Director organization administrator password',
+			},
+			{
+				name: 'Update Organization Network Access Control List Resources',
+				value: 'vmwareCloudDirectororganizationnetworkAclUpdatePut',
+				action: 'Update organization network access control list resources',
+			},
+			{
+				name: 'Update Organization Virtual DataCenter Details',
+				value: 'vmwareCloudDirectororganizationvirtualDataCenterUpdatePut',
+				action: 'Update organization Virtual DataCenter details',
+			},
+			{
+				name: 'Update VMware Cloud Director Backup Service',
+				value: 'vmwareCloudDirectorbackupUpdatePut',
+				action: 'Update VMware Cloud Director Backup service',
+			},
+			{
+				name: 'Update VMware Cloud Director Organization Details',
+				value: 'vmwareCloudDirectororganizationUpdatePut',
+				action: 'Update VMware Cloud Director organization details',
+			},
+			{
+				name: 'Update VMware Cloud Director Vrack Segment Resources',
+				value: 'vmwareCloudDirectororganizationvirtualDataCentervrackSegmentUpdatePut',
+				action: 'Update VMware Cloud Director vrack segment resources',
+			},
 			],
 			default: 'vmwareCloudDirectorbackupListGet',
 			displayOptions,

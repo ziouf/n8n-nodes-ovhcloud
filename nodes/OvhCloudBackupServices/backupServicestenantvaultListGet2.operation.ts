@@ -16,6 +16,7 @@ export function description(displayOptions: IDisplayOptions): INodeProperties[] 
 			default: '',
 			required: true,
 			description: 'The backupServicesId identifier',
+			displayOptions,
 		},
 		{
 			displayName: 'Vault ID',
@@ -24,6 +25,7 @@ export function description(displayOptions: IDisplayOptions): INodeProperties[] 
 			default: '',
 			required: true,
 			description: 'The vaultId identifier',
+			displayOptions,
 		},
 
 	];

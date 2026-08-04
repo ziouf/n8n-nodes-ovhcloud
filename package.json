@@ -75,7 +75,7 @@
 			"dist/nodes/OvhCloudIp/OvhCloudIp.node.js",
 			"dist/nodes/OvhCloudLicense/OvhCloudLicense.node.js",
 			"dist/nodes/OvhCloudLocation/OvhCloudLocation.node.js",
-			"dist/nodes/OvhCloudManagedCMS/OvhCloudManagedCMS.node.js",
+			"dist/nodes/OvhCloudManagedCms/OvhCloudManagedCms.node.js",
 			"dist/nodes/OvhCloudMe/OvhCloudMe.node.js",
 			"dist/nodes/OvhCloudMetrics/OvhCloudMetrics.node.js",
 			"dist/nodes/OvhCloudMsServices/OvhCloudMsServices.node.js",

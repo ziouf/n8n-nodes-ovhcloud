@@ -16,6 +16,7 @@ export function description(displayOptions: IDisplayOptions): INodeProperties[] 
 			default: '',
 			required: true,
 			description: 'The organizationId identifier',
+			displayOptions,
 		},
 		{
 			displayName: 'Virtual Data Center ID',
@@ -24,6 +25,7 @@ export function description(displayOptions: IDisplayOptions): INodeProperties[] 
 			default: '',
 			required: true,
 			description: 'The virtualDataCenterId identifier',
+			displayOptions,
 		},
 		{
 			displayName: 'ID',
@@ -32,6 +34,7 @@ export function description(displayOptions: IDisplayOptions): INodeProperties[] 
 			default: '',
 			required: true,
 			description: 'The ID identifier',
+			displayOptions,
 		},
 		{
 			displayName: 'Task ID',
@@ -40,6 +43,7 @@ export function description(displayOptions: IDisplayOptions): INodeProperties[] 
 			default: '',
 			required: true,
 			description: 'The taskId identifier',
+			displayOptions,
 		},
 
 	];

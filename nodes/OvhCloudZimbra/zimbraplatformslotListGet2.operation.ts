@@ -16,6 +16,7 @@ export function description(displayOptions: IDisplayOptions): INodeProperties[] 
 			default: '',
 			required: true,
 			description: 'The platformId identifier',
+			displayOptions,
 		},
 		{
 			displayName: 'Slot ID',
@@ -24,6 +25,7 @@ export function description(displayOptions: IDisplayOptions): INodeProperties[] 
 			default: '',
 			required: true,
 			description: 'The slotId identifier',
+			displayOptions,
 		},
 
 	];

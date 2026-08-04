@@ -22,7 +22,7 @@ describe('privateSQLGet operation', () => {
                 displayName: 'Product',
                 name: 'product',
                 type: 'string',
-																default: '',
+																default: 'privateSQL',
             });
         });
     });

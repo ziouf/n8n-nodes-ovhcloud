@@ -7,23 +7,25 @@ import type {
 } from 'n8n-workflow';
 import { ApiClient } from '../../shared/transport/ApiClient';
 
-export function description(displayOptions: IDisplayOptions): INodeProperties[] {
+export function description(_displayOptions: IDisplayOptions): INodeProperties[] {
+	void _displayOptions;
 	return [
 
 	];
 }
 
 /**
- * Executes the Get List supported PHP versions operation.
+ * Executes the Get List the available content management systems operation.
  *
  * HTTP method: GET
- * Endpoint: /managedCMS/reference/supportedPHPVersions
+ * Endpoint: /managedCMS/reference/availableCMS
  */
 export async function execute(this: IExecuteFunctions, itemIndex: number): Promise<INodeExecutionData[]> {
+	void itemIndex;
 
 
 	const client = new ApiClient(this);
-	const data = (await client.httpGet('/managedCMS/reference/supportedPHPVersions')) as unknown[];
+	const data = (await client.httpGet('/managedCMS/reference/availableCMS')) as unknown[];
 
 
 	if (!Array.isArray(data)) {

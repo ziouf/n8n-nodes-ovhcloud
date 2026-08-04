@@ -15,17 +15,17 @@ export function description(_displayOptions: IDisplayOptions): INodeProperties[]
 }
 
 /**
- * Executes the Get List available regions and their availability zones operation.
+ * Executes the Get List the available languages when creating a new website operation.
  *
  * HTTP method: GET
- * Endpoint: /location
+ * Endpoint: /managedCMS/reference/availableLanguages
  */
 export async function execute(this: IExecuteFunctions, itemIndex: number): Promise<INodeExecutionData[]> {
 	void itemIndex;
 
 
 	const client = new ApiClient(this);
-	const data = (await client.httpGet('/location')) as unknown[];
+	const data = (await client.httpGet('/managedCMS/reference/availableLanguages')) as unknown[];
 
 
 	if (!Array.isArray(data)) {

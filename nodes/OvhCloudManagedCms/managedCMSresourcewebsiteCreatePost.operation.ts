@@ -16,32 +16,25 @@ export function description(displayOptions: IDisplayOptions): INodeProperties[] 
 			default: '',
 			required: true,
 			description: 'The serviceId identifier',
-		},
-		{
-			displayName: 'Website ID',
-			name: 'websiteId',
-			type: 'string',
-			default: '',
-			required: true,
-			description: 'The websiteId identifier',
+			displayOptions,
 		},
 
 	];
 }
 
 /**
- * Executes the Post Flush CDN for the website operation.
+ * Executes the Post Create or import a website operation.
  *
  * HTTP method: POST
- * Endpoint: /managedCMS/resource/{serviceId}/website/{websiteId}/flushCDN
+ * Endpoint: /managedCMS/resource/{serviceId}/website
  */
 export async function execute(this: IExecuteFunctions, itemIndex: number): Promise<INodeExecutionData[]> {
 	const serviceId = this.getNodeParameter('serviceId', itemIndex) as string;
-	const websiteId = this.getNodeParameter('websiteId', itemIndex) as string;
 
+	const body: IDataObject = {};
 
 	const client = new ApiClient(this);
-	const data = (await client.httpPost('/managedCMS/resource/' + serviceId + '/website/' + websiteId + '/flushCDN')) as IDataObject;
+	const data = (await client.httpPost('/managedCMS/resource/' + serviceId + '/website', body)) as IDataObject;
 
 	return this.helpers.returnJsonArray([data]);
 }

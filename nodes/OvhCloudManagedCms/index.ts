@@ -83,61 +83,6 @@ export function description(displayOptions: IDisplayOptions): INodeProperties[] 
 			noDataExpression: true,
 			options: [
 			{
-				name: 'List the Available Content Management Systems',
-				value: 'managedCMSreferenceavailableCMSListGet',
-				action: 'List the available content management systems',
-			},
-			{
-				name: 'List the Available Languages when Creating a New Website',
-				value: 'managedCMSreferenceavailableLanguagesListGet',
-				action: 'List the available languages when creating a new website',
-			},
-			{
-				name: 'List Supported PHP Versions',
-				value: 'managedCMSreferencesupportedPHPVersionsListGet',
-				action: 'List supported PHP versions',
-			},
-			{
-				name: 'Get All Services of Your Account',
-				value: 'managedCMSresourceListGet',
-				action: 'Get all services of your account',
-			},
-			{
-				name: 'Get a Service',
-				value: 'managedCMSresourceListGet2',
-				action: 'Get a service',
-			},
-			{
-				name: 'Edit a Service',
-				value: 'managedCMSresourceUpdatePut',
-				action: 'Edit a service',
-			},
-			{
-				name: 'Flush CDN for All Websites of the Service',
-				value: 'managedCMSresourceflushCDNCreatePost',
-				action: 'Flush CDN for all websites of the service',
-			},
-			{
-				name: 'Get Current and Recent Tasks on the Service',
-				value: 'managedCMSresourcetaskListGet',
-				action: 'Get current and recent tasks on the service',
-			},
-			{
-				name: 'GET /managedCMS/resource/{serviceId}/task/{taskId}',
-				value: 'managedCMSresourcetaskListGet2',
-				action: 'GET /managedCMS/resource/{serviceId}/task/{taskId}',
-			},
-			{
-				name: 'Edit a Task to Provide User Input',
-				value: 'managedCMSresourcetaskUpdatePut',
-				action: 'Edit a task to provide user input',
-			},
-			{
-				name: 'Get All Websites of a Service',
-				value: 'managedCMSresourcewebsiteListGet',
-				action: 'Get all websites of a service',
-			},
-			{
 				name: 'Create or Import a Website',
 				value: 'managedCMSresourcewebsiteCreatePost',
 				action: 'Create or import a website',
@@ -148,9 +93,14 @@ export function description(displayOptions: IDisplayOptions): INodeProperties[] 
 				action: 'Delete a website',
 			},
 			{
-				name: 'Get a Website',
-				value: 'managedCMSresourcewebsiteListGet2',
-				action: 'Get a website',
+				name: 'Edit a Service',
+				value: 'managedCMSresourceUpdatePut',
+				action: 'Edit a service',
+			},
+			{
+				name: 'Edit a Task to Provide User Input',
+				value: 'managedCMSresourcetaskUpdatePut',
+				action: 'Edit a task to provide user input',
 			},
 			{
 				name: 'Edit a Website',
@@ -158,16 +108,65 @@ export function description(displayOptions: IDisplayOptions): INodeProperties[] 
 				action: 'Edit a website',
 			},
 			{
+				name: 'Flush CDN for All Websites of the Service',
+				value: 'managedCMSresourceflushCDNCreatePost',
+				action: 'Flush CDN for all websites of the service',
+			},
+			{
 				name: 'Flush CDN for the Website',
 				value: 'managedCMSresourcewebsiteflushCDNCreatePost',
 				action: 'Flush CDN for the website',
+			},
+			{
+				name: 'GET /managedCMS/resource/{serviceId}/task/{taskId}',
+				value: 'managedCMSresourcetaskListGet2',
+				action: 'GET /managedCMS/resource/{serviceId}/task/{taskId}',
+			},
+			{
+				name: 'Get a Service',
+				value: 'managedCMSresourceListGet2',
+				action: 'Get a service',
+			},
+			{
+				name: 'Get a Website',
+				value: 'managedCMSresourcewebsiteListGet2',
+				action: 'Get a website',
+			},
+			{
+				name: 'Get All Services of Your Account',
+				value: 'managedCMSresourceListGet',
+				action: 'Get all services of your account',
+			},
+			{
+				name: 'Get All Websites of a Service',
+				value: 'managedCMSresourcewebsiteListGet',
+				action: 'Get all websites of a service',
+			},
+			{
+				name: 'Get Current and Recent Tasks on the Service',
+				value: 'managedCMSresourcetaskListGet',
+				action: 'Get current and recent tasks on the service',
+			},
+			{
+				name: 'List Supported PHP Versions',
+				value: 'managedCMSreferencesupportedPHPVersionsListGet',
+				action: 'List supported PHP versions',
+			},
+			{
+				name: 'List the Available Content Management Systems',
+				value: 'managedCMSreferenceavailableCMSListGet',
+				action: 'List the available content management systems',
+			},
+			{
+				name: 'List the Available Languages when Creating a New Website',
+				value: 'managedCMSreferenceavailableLanguagesListGet',
+				action: 'List the available languages when creating a new website',
 			},
 			{
 				name: 'Reset Password of the Website\'s Database',
 				value: 'managedCMSresourcewebsiteresetDatabasePasswordCreatePost',
 				action: 'Reset password of the website\'s database',
 			},
-
 			],
 			default: 'managedCMSreferenceavailableCMSListGet',
 			displayOptions,

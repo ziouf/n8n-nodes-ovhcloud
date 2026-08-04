@@ -22,7 +22,7 @@ describe('hosting cronDeleteDelete operation', () => {
 				displayName: 'Service Name',
 				name: 'serviceName',
 				type: 'resourceLocator',
-				default: 'undefined',
+				default: { mode: 'list', value: '' },
 				required: true,
 			});
 			expect(result[1]).toMatchObject({

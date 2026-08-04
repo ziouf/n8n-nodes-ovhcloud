@@ -22,7 +22,7 @@ describe('licensecPanelGet operation', () => {
                 displayName: 'Product',
                 name: 'product',
                 type: 'string',
-																default: '',
+																default: 'licensecPanel',
             });
         });
     });

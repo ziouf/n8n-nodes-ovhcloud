@@ -63,54 +63,9 @@ export function description(displayOptions: IDisplayOptions): INodeProperties[] 
 			noDataExpression: true,
 			options: [
 				{
-					name: 'List Vrack',
-					value: 'vrackListGet',
-					action: 'List all vRack networks',
-				},
-				{
-					name: 'Get Vrack',
-					value: 'vrackGetGet',
-					action: 'Get vRack details',
-				},
-				{
-					name: 'Get Service Order',
-					value: 'vrackGetServiceOrder',
-					action: 'Get vRack service order details',
-				},
-				{
-					name: 'Update Vrack',
-					value: 'vrackUpdatePut',
-					action: 'Update vRack details',
-				},
-				{
-					name: 'Delete Vrack',
-					value: 'vrackDeleteDelete',
-					action: 'Delete a vRack network',
-				},
-				{
-					name: 'List Service Orders',
-					value: 'vrackServiceOrderListGet',
-					action: 'List service orders for a vRack',
-				},
-				{
-					name: 'Create Service Order',
-					value: 'vrackServiceOrderCreatePost',
-					action: 'Create a service order for a vRack',
-				},
-				{
-					name: 'List IPs on Vrack',
-					value: 'ipSubListGet',
-					action: 'List IPs attached to a vRack',
-				},
-				{
 					name: 'Add IP to Vrack',
 					value: 'ipSubCreatePost',
 					action: 'Add an IP to a vRack',
-				},
-				{
-					name: 'List Public Networks',
-					value: 'publicNetworkSubListGet',
-					action: 'List public networks in a vRack',
 				},
 				{
 					name: 'Add Public Network to Vrack',
@@ -118,9 +73,54 @@ export function description(displayOptions: IDisplayOptions): INodeProperties[] 
 					action: 'Add a public network to a vRack',
 				},
 				{
+					name: 'Create Service Order',
+					value: 'vrackServiceOrderCreatePost',
+					action: 'Create a service order for a vRack',
+				},
+				{
+					name: 'Delete Vrack',
+					value: 'vrackDeleteDelete',
+					action: 'Delete a vRack network',
+				},
+				{
+					name: 'Get Service Order',
+					value: 'vrackGetServiceOrder',
+					action: 'Get vRack service order details',
+				},
+				{
+					name: 'Get Vrack',
+					value: 'vrackGetGet',
+					action: 'Get vRack details',
+				},
+				{
+					name: 'List IPs on Vrack',
+					value: 'ipSubListGet',
+					action: 'List IPs attached to a vRack',
+				},
+				{
+					name: 'List Public Networks',
+					value: 'publicNetworkSubListGet',
+					action: 'List public networks in a vRack',
+				},
+				{
+					name: 'List Service Orders',
+					value: 'vrackServiceOrderListGet',
+					action: 'List service orders for a vRack',
+				},
+				{
+					name: 'List Vrack',
+					value: 'vrackListGet',
+					action: 'List all vRack networks',
+				},
+				{
 					name: 'List Vrack Services',
 					value: 'vrackSubListGet',
 					action: 'List services attached to a vRack',
+				},
+				{
+					name: 'Update Vrack',
+					value: 'vrackUpdatePut',
+					action: 'Update vRack details',
 				},
 			],
 			default: 'vrackListGet',

@@ -16,23 +16,34 @@ export function description(displayOptions: IDisplayOptions): INodeProperties[] 
 			default: '',
 			required: true,
 			description: 'The serviceId identifier',
+			displayOptions,
+		},
+		{
+			displayName: 'Website ID',
+			name: 'websiteId',
+			type: 'string',
+			default: '',
+			required: true,
+			description: 'The websiteId identifier',
+			displayOptions,
 		},
 
 	];
 }
 
 /**
- * Executes the Post Flush CDN for all websites of the service operation.
+ * Executes the Post Reset password of the website\'s database operation.
  *
  * HTTP method: POST
- * Endpoint: /managedCMS/resource/{serviceId}/flushCDN
+ * Endpoint: /managedCMS/resource/{serviceId}/website/{websiteId}/resetDatabasePassword
  */
 export async function execute(this: IExecuteFunctions, itemIndex: number): Promise<INodeExecutionData[]> {
 	const serviceId = this.getNodeParameter('serviceId', itemIndex) as string;
+	const websiteId = this.getNodeParameter('websiteId', itemIndex) as string;
 
 
 	const client = new ApiClient(this);
-	const data = (await client.httpPost('/managedCMS/resource/' + serviceId + '/flushCDN')) as IDataObject;
+	const data = (await client.httpPost('/managedCMS/resource/' + serviceId + '/website/' + websiteId + '/resetDatabasePassword')) as IDataObject;
 
 	return this.helpers.returnJsonArray([data]);
 }

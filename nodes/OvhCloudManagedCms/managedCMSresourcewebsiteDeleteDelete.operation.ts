@@ -16,33 +16,34 @@ export function description(displayOptions: IDisplayOptions): INodeProperties[] 
 			default: '',
 			required: true,
 			description: 'The serviceId identifier',
+			displayOptions,
 		},
 		{
-			displayName: 'Task ID',
-			name: 'taskId',
+			displayName: 'Website ID',
+			name: 'websiteId',
 			type: 'string',
 			default: '',
 			required: true,
-			description: 'The taskId identifier',
+			description: 'The websiteId identifier',
+			displayOptions,
 		},
 
 	];
 }
 
 /**
- * Executes the Put Edit a task to provide user input operation.
+ * Executes the Delete Delete a website operation.
  *
- * HTTP method: PUT
- * Endpoint: /managedCMS/resource/{serviceId}/task/{taskId}
+ * HTTP method: DELETE
+ * Endpoint: /managedCMS/resource/{serviceId}/website/{websiteId}
  */
 export async function execute(this: IExecuteFunctions, itemIndex: number): Promise<INodeExecutionData[]> {
 	const serviceId = this.getNodeParameter('serviceId', itemIndex) as string;
-	const taskId = this.getNodeParameter('taskId', itemIndex) as string;
+	const websiteId = this.getNodeParameter('websiteId', itemIndex) as string;
 
-	const body: IDataObject = {};
 
 	const client = new ApiClient(this);
-	const data = (await client.httpPut('/managedCMS/resource/' + serviceId + '/task/' + taskId, body)) as IDataObject;
+	const data = (await client.httpDelete('/managedCMS/resource/' + serviceId + '/website/' + websiteId)) as IDataObject;
 
 	return this.helpers.returnJsonArray([data]);
 }

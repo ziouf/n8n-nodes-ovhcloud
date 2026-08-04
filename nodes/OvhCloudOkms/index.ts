@@ -143,9 +143,59 @@ export function description(displayOptions: IDisplayOptions): INodeProperties[] 
 			noDataExpression: true,
 			options: [
 			{
-				name: 'List Available Regions',
-				value: 'okmsreferenceregionsListGet',
-				action: 'List available regions',
+				name: 'Create a Secret',
+				value: 'okmsresourcesecretCreatePost',
+				action: 'Create a secret',
+			},
+			{
+				name: 'Create a Secret Version',
+				value: 'okmsresourcesecretversionCreatePost',
+				action: 'Create a secret version',
+			},
+			{
+				name: 'Create a Subscription From Logs to a Pre-Existing LDP Stream',
+				value: 'okmsresourcelogsubscriptionCreatePost',
+				action: 'Create a subscription from logs to a pre-existing LDP stream',
+			},
+			{
+				name: 'Create or Import a Service Key',
+				value: 'okmsresourceserviceKeyCreatePost',
+				action: 'Create or import a service key',
+			},
+			{
+				name: 'Delete a Secret and All Its Versions',
+				value: 'okmsresourcesecretDeleteDelete',
+				action: 'Delete a secret and all its versions',
+			},
+			{
+				name: 'Delete a Subscription',
+				value: 'okmsresourcelogsubscriptionDeleteDelete',
+				action: 'Delete a subscription',
+			},
+			{
+				name: 'Delete the Given Service Key',
+				value: 'okmsresourceserviceKeyDeleteDelete',
+				action: 'Delete the given service key',
+			},
+			{
+				name: 'Generate a Temporary URL to Retrieve Logs',
+				value: 'okmsresourcelogurlCreatePost',
+				action: 'Generate a temporary URL to retrieve logs',
+			},
+			{
+				name: 'Get a Log Kind',
+				value: 'okmsresourcelogkindListGet2',
+				action: 'Get a log kind',
+			},
+			{
+				name: 'Get an Access Credential',
+				value: 'okmsresourcecredentialListGet2',
+				action: 'Get an access credential',
+			},
+			{
+				name: 'Get an OVHcloud KMS Service',
+				value: 'okmsresourceListGet2',
+				action: 'Get an OVHcloud KMS service',
 			},
 			{
 				name: 'Get Secret Engine Default Configuration',
@@ -158,14 +208,9 @@ export function description(displayOptions: IDisplayOptions): INodeProperties[] 
 				action: 'Get service key type, size, curve and operations combination',
 			},
 			{
-				name: 'List OVHcloud KMS Services',
-				value: 'okmsresourceListGet',
-				action: 'List OVHcloud KMS services',
-			},
-			{
-				name: 'Get an OVHcloud KMS Service',
-				value: 'okmsresourceListGet2',
-				action: 'Get an OVHcloud KMS service',
+				name: 'Get Subscription Details',
+				value: 'okmsresourcelogsubscriptionListGet2',
+				action: 'Get subscription details',
 			},
 			{
 				name: 'List All Access Credentials',
@@ -173,54 +218,9 @@ export function description(displayOptions: IDisplayOptions): INodeProperties[] 
 				action: 'List all access credentials',
 			},
 			{
-				name: 'Request a New Access Credential',
-				value: 'okmsresourcecredentialCreatePost',
-				action: 'Request a new access credential',
-			},
-			{
-				name: 'Revoke and Delete an Access Credential',
-				value: 'okmsresourcecredentialDeleteDelete',
-				action: 'Revoke and delete an access credential',
-			},
-			{
-				name: 'Get an Access Credential',
-				value: 'okmsresourcecredentialListGet2',
-				action: 'Get an access credential',
-			},
-			{
-				name: 'List Available Log Kinds',
-				value: 'okmsresourcelogkindListGet',
-				action: 'List available log kinds',
-			},
-			{
-				name: 'Get a Log Kind',
-				value: 'okmsresourcelogkindListGet2',
-				action: 'Get a log kind',
-			},
-			{
-				name: 'List Subscription IDs for a Cluster',
-				value: 'okmsresourcelogsubscriptionListGet',
-				action: 'List subscription IDs for a cluster',
-			},
-			{
-				name: 'Create a Subscription From Logs to a Pre-Existing LDP Stream',
-				value: 'okmsresourcelogsubscriptionCreatePost',
-				action: 'Create a subscription from logs to a pre-existing LDP stream',
-			},
-			{
-				name: 'Delete a Subscription',
-				value: 'okmsresourcelogsubscriptionDeleteDelete',
-				action: 'Delete a subscription',
-			},
-			{
-				name: 'Get Subscription Details',
-				value: 'okmsresourcelogsubscriptionListGet2',
-				action: 'Get subscription details',
-			},
-			{
-				name: 'Generate a Temporary URL to Retrieve Logs',
-				value: 'okmsresourcelogurlCreatePost',
-				action: 'Generate a temporary URL to retrieve logs',
+				name: 'List All Keys',
+				value: 'okmsresourceserviceKeyListGet',
+				action: 'List all keys',
 			},
 			{
 				name: 'List All Secrets',
@@ -228,24 +228,24 @@ export function description(displayOptions: IDisplayOptions): INodeProperties[] 
 				action: 'List all secrets',
 			},
 			{
-				name: 'Create a Secret',
-				value: 'okmsresourcesecretCreatePost',
-				action: 'Create a secret',
+				name: 'List Available Log Kinds',
+				value: 'okmsresourcelogkindListGet',
+				action: 'List available log kinds',
 			},
 			{
-				name: 'Delete a Secret and All Its Versions',
-				value: 'okmsresourcesecretDeleteDelete',
-				action: 'Delete a secret and all its versions',
+				name: 'List Available Regions',
+				value: 'okmsreferenceregionsListGet',
+				action: 'List available regions',
 			},
 			{
-				name: 'Retrieve a Secret',
-				value: 'okmsresourcesecretListGet2',
-				action: 'Retrieve a secret',
+				name: 'List OVHcloud KMS Services',
+				value: 'okmsresourceListGet',
+				action: 'List OVHcloud KMS services',
 			},
 			{
-				name: 'Update a Secret',
-				value: 'okmsresourcesecretUpdatePut',
-				action: 'Update a secret',
+				name: 'List Subscription IDs for a Cluster',
+				value: 'okmsresourcelogsubscriptionListGet',
+				action: 'List subscription IDs for a cluster',
 			},
 			{
 				name: 'List the Versions of a Secret',
@@ -253,44 +253,9 @@ export function description(displayOptions: IDisplayOptions): INodeProperties[] 
 				action: 'List the versions of a secret',
 			},
 			{
-				name: 'Create a Secret Version',
-				value: 'okmsresourcesecretversionCreatePost',
-				action: 'Create a secret version',
-			},
-			{
-				name: 'Retrieve a Secret Version',
-				value: 'okmsresourcesecretversionListGet2',
-				action: 'Retrieve a secret version',
-			},
-			{
-				name: 'Update the State of a Secret Version',
-				value: 'okmsresourcesecretversionUpdatePut',
-				action: 'Update the state of a secret version',
-			},
-			{
-				name: 'Retrieve Secrets Configuration',
-				value: 'okmsresourcesecretConfigListGet',
-				action: 'Retrieve secrets configuration',
-			},
-			{
-				name: 'Update Secrets Configuration',
-				value: 'okmsresourcesecretConfigUpdatePut',
-				action: 'Update secrets configuration',
-			},
-			{
-				name: 'List All Keys',
-				value: 'okmsresourceserviceKeyListGet',
-				action: 'List all keys',
-			},
-			{
-				name: 'Create or Import a Service Key',
-				value: 'okmsresourceserviceKeyCreatePost',
-				action: 'Create or import a service key',
-			},
-			{
-				name: 'Delete the Given Service Key',
-				value: 'okmsresourceserviceKeyDeleteDelete',
-				action: 'Delete the given service key',
+				name: 'Request a New Access Credential',
+				value: 'okmsresourcecredentialCreatePost',
+				action: 'Request a new access credential',
 			},
 			{
 				name: 'Retrieve a Key',
@@ -298,11 +263,45 @@ export function description(displayOptions: IDisplayOptions): INodeProperties[] 
 				action: 'Retrieve a key',
 			},
 			{
+				name: 'Retrieve a Secret',
+				value: 'okmsresourcesecretListGet2',
+				action: 'Retrieve a secret',
+			},
+			{
+				name: 'Retrieve a Secret Version',
+				value: 'okmsresourcesecretversionListGet2',
+				action: 'Retrieve a secret version',
+			},
+			{
+				name: 'Retrieve Secrets Configuration',
+				value: 'okmsresourcesecretConfigListGet',
+				action: 'Retrieve secrets configuration',
+			},
+			{
+				name: 'Revoke and Delete an Access Credential',
+				value: 'okmsresourcecredentialDeleteDelete',
+				action: 'Revoke and delete an access credential',
+			},
+			{
+				name: 'Update a Secret',
+				value: 'okmsresourcesecretUpdatePut',
+				action: 'Update a secret',
+			},
+			{
 				name: 'Update a Service Key',
 				value: 'okmsresourceserviceKeyUpdatePut',
 				action: 'Update a service key',
 			},
-
+			{
+				name: 'Update Secrets Configuration',
+				value: 'okmsresourcesecretConfigUpdatePut',
+				action: 'Update secrets configuration',
+			},
+			{
+				name: 'Update the State of a Secret Version',
+				value: 'okmsresourcesecretversionUpdatePut',
+				action: 'Update the state of a secret version',
+			},
 			],
 			default: 'okmsreferenceregionsListGet',
 			displayOptions,

@@ -16,6 +16,7 @@ export function description(displayOptions: IDisplayOptions): INodeProperties[] 
 			default: '',
 			required: true,
 			description: 'The platformId identifier',
+			displayOptions,
 		},
 		{
 			displayName: 'Alias ID',
@@ -24,6 +25,7 @@ export function description(displayOptions: IDisplayOptions): INodeProperties[] 
 			default: '',
 			required: true,
 			description: 'The aliasId identifier',
+			displayOptions,
 		},
 
 	];

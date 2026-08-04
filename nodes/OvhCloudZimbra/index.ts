@@ -135,24 +135,9 @@ export function description(displayOptions: IDisplayOptions): INodeProperties[] 
 			noDataExpression: true,
 			options: [
 			{
-				name: 'Get a List of Zimbra Platforms',
-				value: 'zimbraplatformListGet',
-				action: 'Get a list of Zimbra Platforms',
-			},
-			{
-				name: 'Get a Zimbra Platform',
-				value: 'zimbraplatformListGet2',
-				action: 'Get a Zimbra Platform',
-			},
-			{
-				name: 'Modify a Platform',
-				value: 'zimbraplatformUpdatePut',
-				action: 'Modify a platform',
-			},
-			{
-				name: 'Get List of Accounts',
-				value: 'zimbraplatformaccountListGet',
-				action: 'Get list of accounts',
+				name: 'Create a Domain',
+				value: 'zimbraplatformdomainCreatePost',
+				action: 'Create a domain',
 			},
 			{
 				name: 'Create an Account',
@@ -160,74 +145,9 @@ export function description(displayOptions: IDisplayOptions): INodeProperties[] 
 				action: 'Create an account',
 			},
 			{
-				name: 'Delete an Account',
-				value: 'zimbraplatformaccountDeleteDelete',
-				action: 'Delete an account',
-			},
-			{
-				name: 'Get an Account',
-				value: 'zimbraplatformaccountListGet2',
-				action: 'Get an account',
-			},
-			{
-				name: 'Modify an Account',
-				value: 'zimbraplatformaccountUpdatePut',
-				action: 'Modify an account',
-			},
-			{
-				name: 'Retrieve the List of Platform Aliases',
-				value: 'zimbraplatformaliasListGet',
-				action: 'Retrieve the list of platform aliases',
-			},
-			{
 				name: 'Create an Alias',
 				value: 'zimbraplatformaliasCreatePost',
 				action: 'Create an alias',
-			},
-			{
-				name: 'Delete an Alias',
-				value: 'zimbraplatformaliasDeleteDelete',
-				action: 'Delete an alias',
-			},
-			{
-				name: 'Retrieve a Platform Alias',
-				value: 'zimbraplatformaliasListGet2',
-				action: 'Retrieve a platform alias',
-			},
-			{
-				name: 'POST /zimbra/platform/{platformId}/diagnostic/domain',
-				value: 'zimbraplatformdiagnosticdomainCreatePost',
-				action: 'POST /zimbra/platform/{platformId}/diagnostic/domain',
-			},
-			{
-				name: 'Get List of Domains',
-				value: 'zimbraplatformdomainListGet',
-				action: 'Get list of domains',
-			},
-			{
-				name: 'Create a Domain',
-				value: 'zimbraplatformdomainCreatePost',
-				action: 'Create a domain',
-			},
-			{
-				name: 'Delete a Domain',
-				value: 'zimbraplatformdomainDeleteDelete',
-				action: 'Delete a domain',
-			},
-			{
-				name: 'Get a Domain',
-				value: 'zimbraplatformdomainListGet2',
-				action: 'Get a domain',
-			},
-			{
-				name: 'Modify a Domain',
-				value: 'zimbraplatformdomainUpdatePut',
-				action: 'Modify a domain',
-			},
-			{
-				name: 'Get List of Organizations',
-				value: 'zimbraplatformorganizationListGet',
-				action: 'Get list of organizations',
 			},
 			{
 				name: 'Create an Organization',
@@ -235,29 +155,29 @@ export function description(displayOptions: IDisplayOptions): INodeProperties[] 
 				action: 'Create an organization',
 			},
 			{
-				name: 'Delete an Organization',
-				value: 'zimbraplatformorganizationDeleteDelete',
-				action: 'Delete an organization',
-			},
-			{
-				name: 'Get an Organization',
-				value: 'zimbraplatformorganizationListGet2',
-				action: 'Get an organization',
-			},
-			{
-				name: 'Modify an Organization',
-				value: 'zimbraplatformorganizationUpdatePut',
-				action: 'Modify an organization',
-			},
-			{
-				name: 'Get a Platform Redirection List',
-				value: 'zimbraplatformredirectionListGet',
-				action: 'Get a platform redirection list',
-			},
-			{
 				name: 'Create an Redirection',
 				value: 'zimbraplatformredirectionCreatePost',
 				action: 'Create an redirection',
+			},
+			{
+				name: 'Delete a Domain',
+				value: 'zimbraplatformdomainDeleteDelete',
+				action: 'Delete a domain',
+			},
+			{
+				name: 'Delete an Account',
+				value: 'zimbraplatformaccountDeleteDelete',
+				action: 'Delete an account',
+			},
+			{
+				name: 'Delete an Alias',
+				value: 'zimbraplatformaliasDeleteDelete',
+				action: 'Delete an alias',
+			},
+			{
+				name: 'Delete an Organization',
+				value: 'zimbraplatformorganizationDeleteDelete',
+				action: 'Delete an organization',
 			},
 			{
 				name: 'Delete an Redirection',
@@ -265,14 +185,29 @@ export function description(displayOptions: IDisplayOptions): INodeProperties[] 
 				action: 'Delete an redirection',
 			},
 			{
+				name: 'Get a Domain',
+				value: 'zimbraplatformdomainListGet2',
+				action: 'Get a domain',
+			},
+			{
+				name: 'Get a List of Platform Tasks',
+				value: 'zimbraplatformtaskListGet',
+				action: 'Get a list of platform tasks',
+			},
+			{
+				name: 'Get a List of Zimbra Platforms',
+				value: 'zimbraplatformListGet',
+				action: 'Get a list of Zimbra Platforms',
+			},
+			{
 				name: 'Get a Platform Redirection',
 				value: 'zimbraplatformredirectionListGet2',
 				action: 'Get a platform redirection',
 			},
 			{
-				name: 'Get a Platform Slot List',
-				value: 'zimbraplatformslotListGet',
-				action: 'Get a platform slot list',
+				name: 'Get a Platform Redirection List',
+				value: 'zimbraplatformredirectionListGet',
+				action: 'Get a platform redirection list',
 			},
 			{
 				name: 'Get a Platform Slot',
@@ -280,11 +215,75 @@ export function description(displayOptions: IDisplayOptions): INodeProperties[] 
 				action: 'Get a platform slot',
 			},
 			{
-				name: 'Get a List of Platform Tasks',
-				value: 'zimbraplatformtaskListGet',
-				action: 'Get a list of platform tasks',
+				name: 'Get a Platform Slot List',
+				value: 'zimbraplatformslotListGet',
+				action: 'Get a platform slot list',
 			},
-
+			{
+				name: 'Get a Zimbra Platform',
+				value: 'zimbraplatformListGet2',
+				action: 'Get a Zimbra Platform',
+			},
+			{
+				name: 'Get an Account',
+				value: 'zimbraplatformaccountListGet2',
+				action: 'Get an account',
+			},
+			{
+				name: 'Get an Organization',
+				value: 'zimbraplatformorganizationListGet2',
+				action: 'Get an organization',
+			},
+			{
+				name: 'Get List of Accounts',
+				value: 'zimbraplatformaccountListGet',
+				action: 'Get list of accounts',
+			},
+			{
+				name: 'Get List of Domains',
+				value: 'zimbraplatformdomainListGet',
+				action: 'Get list of domains',
+			},
+			{
+				name: 'Get List of Organizations',
+				value: 'zimbraplatformorganizationListGet',
+				action: 'Get list of organizations',
+			},
+			{
+				name: 'Modify a Domain',
+				value: 'zimbraplatformdomainUpdatePut',
+				action: 'Modify a domain',
+			},
+			{
+				name: 'Modify a Platform',
+				value: 'zimbraplatformUpdatePut',
+				action: 'Modify a platform',
+			},
+			{
+				name: 'Modify an Account',
+				value: 'zimbraplatformaccountUpdatePut',
+				action: 'Modify an account',
+			},
+			{
+				name: 'Modify an Organization',
+				value: 'zimbraplatformorganizationUpdatePut',
+				action: 'Modify an organization',
+			},
+			{
+				name: 'POST /zimbra/platform/{platformId}/diagnostic/domain',
+				value: 'zimbraplatformdiagnosticdomainCreatePost',
+				action: 'POST /zimbra/platform/{platformId}/diagnostic/domain',
+			},
+			{
+				name: 'Retrieve a Platform Alias',
+				value: 'zimbraplatformaliasListGet2',
+				action: 'Retrieve a platform alias',
+			},
+			{
+				name: 'Retrieve the List of Platform Aliases',
+				value: 'zimbraplatformaliasListGet',
+				action: 'Retrieve the list of platform aliases',
+			},
 			],
 			default: 'zimbraplatformListGet',
 			displayOptions,

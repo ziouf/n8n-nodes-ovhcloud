@@ -43,7 +43,7 @@ export function description(displayOptions: IDisplayOptions): INodeProperties[] 
 			name: 'hsts',
 			type: 'boolean',
 			default: false,
-			description: 'Set to true to enable Strict-Transport-Security HTTP header',
+			description: 'Whether to enable Strict-Transport-Security HTTP header',
 			displayOptions,
 		},
 		{
@@ -51,7 +51,7 @@ export function description(displayOptions: IDisplayOptions): INodeProperties[] 
 			name: 'httpsRedirect',
 			type: 'boolean',
 			default: false,
-			description: 'Set to true to enable https redirect',
+			description: 'Whether to enable https redirect',
 			displayOptions,
 		},
 		{
@@ -59,7 +59,7 @@ export function description(displayOptions: IDisplayOptions): INodeProperties[] 
 			name: 'serverHttps',
 			type: 'boolean',
 			default: false,
-			description: 'Set to true to contact backend servers over HTTPS',
+			description: 'Whether to contact backend servers over HTTPS',
 			displayOptions,
 		},
 		{

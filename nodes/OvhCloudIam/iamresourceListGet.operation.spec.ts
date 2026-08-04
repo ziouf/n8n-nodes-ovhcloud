@@ -40,7 +40,7 @@ describe('iamresourceListGet operation', () => {
 			const client = new ApiClient(mockExecuteFunctions) as any;
 			(client.httpGet as jest.Mock).mockResolvedValue(mockData);
 
-			mockExecuteFunctions.getNodeParameter.mockImplementation((param: string): string => {
+			mockExecuteFunctions.getNodeParameter.mockImplementation((): string => {
 				return '';
 			});
 
