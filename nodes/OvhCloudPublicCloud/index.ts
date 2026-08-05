@@ -963,61 +963,61 @@ import {
 	execute as kafkaClusterDeleteDeleteExecute,
 } from './database/kafka/clusterDeleteDelete.operation';
 import {
-	description as kafkaBackupListGetDescription,
-	execute as kafkaBackupListGetExecute,
-} from './database/kafka/backupListGet.operation';
+	description as kafkaAclListGetDescription,
+	execute as kafkaAclListGetExecute,
+} from './database/kafka/aclListGet.operation';
 import {
-	description as kafkaBackupCreatePostDescription,
-	execute as kafkaBackupCreatePostExecute,
-} from './database/kafka/backupCreatePost.operation';
+	description as kafkaAclCreatePostDescription,
+	execute as kafkaAclCreatePostExecute,
+} from './database/kafka/aclCreatePost.operation';
 import {
-	description as kafkaBackupGetGetDescription,
-	execute as kafkaBackupGetGetExecute,
-} from './database/kafka/backupGetGet.operation';
+	description as kafkaAclGetGetDescription,
+	execute as kafkaAclGetGetExecute,
+} from './database/kafka/aclGetGet.operation';
 import {
-	description as kafkaBackupDeleteDeleteDescription,
-	execute as kafkaBackupDeleteDeleteExecute,
-} from './database/kafka/backupDeleteDelete.operation';
+	description as kafkaAclDeleteDeleteDescription,
+	execute as kafkaAclDeleteDeleteExecute,
+} from './database/kafka/aclDeleteDelete.operation';
 import {
-	description as kafkaUserListGetDescription,
-	execute as kafkaUserListGetExecute,
-} from './database/kafka/userListGet.operation';
+	description as kafkaAdvancedConfigurationGetDescription,
+	execute as kafkaAdvancedConfigurationGetExecute,
+} from './database/kafka/advancedConfigurationGet.operation';
 import {
-	description as kafkaUserCreatePostDescription,
-	execute as kafkaUserCreatePostExecute,
-} from './database/kafka/userCreatePost.operation';
+	description as kafkaAdvancedConfigurationUpdatePutDescription,
+	execute as kafkaAdvancedConfigurationUpdatePutExecute,
+} from './database/kafka/advancedConfigurationUpdatePut.operation';
 import {
-	description as kafkaUserGetGetDescription,
-	execute as kafkaUserGetGetExecute,
-} from './database/kafka/userGetGet.operation';
+	description as kafkaCapabilitiesAdvancedConfigurationGetDescription,
+	execute as kafkaCapabilitiesAdvancedConfigurationGetExecute,
+} from './database/kafka/capabilitiesAdvancedConfigurationGet.operation';
 import {
-	description as kafkaUserUpdatePutDescription,
-	execute as kafkaUserUpdatePutExecute,
-} from './database/kafka/userUpdatePut.operation';
+	description as kafkaCapabilitiesBackupRegionsGetDescription,
+	execute as kafkaCapabilitiesBackupRegionsGetExecute,
+} from './database/kafka/capabilitiesBackupRegionsGet.operation';
 import {
-	description as kafkaUserDeleteDeleteDescription,
-	execute as kafkaUserDeleteDeleteExecute,
-} from './database/kafka/userDeleteDelete.operation';
+	description as kafkaCapabilitiesIntegrationGetDescription,
+	execute as kafkaCapabilitiesIntegrationGetExecute,
+} from './database/kafka/capabilitiesIntegrationGet.operation';
 import {
-	description as kafkaNodeListGetDescription,
-	execute as kafkaNodeListGetExecute,
-} from './database/kafka/nodeListGet.operation';
+	description as kafkaCertificateListGetDescription,
+	execute as kafkaCertificateListGetExecute,
+} from './database/kafka/certificateListGet.operation';
 import {
-	description as kafkaNodeCreatePostDescription,
-	execute as kafkaNodeCreatePostExecute,
-} from './database/kafka/nodeCreatePost.operation';
+	description as kafkaIntegrationListGetDescription,
+	execute as kafkaIntegrationListGetExecute,
+} from './database/kafka/integrationListGet.operation';
 import {
-	description as kafkaNodeGetGetDescription,
-	execute as kafkaNodeGetGetExecute,
-} from './database/kafka/nodeGetGet.operation';
+	description as kafkaIntegrationCreatePostDescription,
+	execute as kafkaIntegrationCreatePostExecute,
+} from './database/kafka/integrationCreatePost.operation';
 import {
-	description as kafkaNodeUpdatePutDescription,
-	execute as kafkaNodeUpdatePutExecute,
-} from './database/kafka/nodeUpdatePut.operation';
+	description as kafkaIntegrationGetGetDescription,
+	execute as kafkaIntegrationGetGetExecute,
+} from './database/kafka/integrationGetGet.operation';
 import {
-	description as kafkaNodeDeleteDeleteDescription,
-	execute as kafkaNodeDeleteDeleteExecute,
-} from './database/kafka/nodeDeleteDelete.operation';
+	description as kafkaIntegrationDeleteDeleteDescription,
+	execute as kafkaIntegrationDeleteDeleteExecute,
+} from './database/kafka/integrationDeleteDelete.operation';
 import {
 	description as kafkaIpRestrictionListGetDescription,
 	execute as kafkaIpRestrictionListGetExecute,
@@ -1026,6 +1026,26 @@ import {
 	description as kafkaIpRestrictionCreatePostDescription,
 	execute as kafkaIpRestrictionCreatePostExecute,
 } from './database/kafka/ipRestrictionCreatePost.operation';
+import {
+	description as kafkaIpRestrictionGetGetDescription,
+	execute as kafkaIpRestrictionGetGetExecute,
+} from './database/kafka/ipRestrictionGetGet.operation';
+import {
+	description as kafkaIpRestrictionUpdatePutDescription,
+	execute as kafkaIpRestrictionUpdatePutExecute,
+} from './database/kafka/ipRestrictionUpdatePut.operation';
+import {
+	description as kafkaIpRestrictionDeleteDeleteDescription,
+	execute as kafkaIpRestrictionDeleteDeleteExecute,
+} from './database/kafka/ipRestrictionDeleteDelete.operation';
+import {
+	description as kafkaLogKindListGetDescription,
+	execute as kafkaLogKindListGetExecute,
+} from './database/kafka/logKindListGet.operation';
+import {
+	description as kafkaLogKindGetDescription,
+	execute as kafkaLogKindGetExecute,
+} from './database/kafka/logKindGet.operation';
 import {
 	description as kafkaLogSubscriptionListGetDescription,
 	execute as kafkaLogSubscriptionListGetExecute,
@@ -1039,37 +1059,134 @@ import {
 	execute as kafkaLogSubscriptionGetGetExecute,
 } from './database/kafka/logSubscriptionGetGet.operation';
 import {
+	description as kafkaLogSubscriptionDeleteDeleteDescription,
+	execute as kafkaLogSubscriptionDeleteDeleteExecute,
+} from './database/kafka/logSubscriptionDeleteDelete.operation';
+import {
+	description as kafkaLogUrlCreatePostDescription,
+	execute as kafkaLogUrlCreatePostExecute,
+} from './database/kafka/logUrlCreatePost.operation';
+import {
+	description as kafkaLogsGetDescription,
+	execute as kafkaLogsGetExecute,
+} from './database/kafka/logsGet.operation';
+import {
+	description as kafkaMaintenanceListGetDescription,
+	execute as kafkaMaintenanceListGetExecute,
+} from './database/kafka/maintenanceListGet.operation';
+import {
 	description as kafkaMaintenanceGetDescription,
 	execute as kafkaMaintenanceGetExecute,
 } from './database/kafka/maintenanceGet.operation';
 import {
-	description as kafkaMaintenanceUpdatePutDescription,
-	execute as kafkaMaintenanceUpdatePutExecute,
-} from './database/kafka/maintenanceUpdatePut.operation';
+	description as kafkaMaintenanceApplyPostDescription,
+	execute as kafkaMaintenanceApplyPostExecute,
+} from './database/kafka/maintenanceApplyPost.operation';
+import {
+	description as kafkaMetricListGetDescription,
+	execute as kafkaMetricListGetExecute,
+} from './database/kafka/metricListGet.operation';
 import {
 	description as kafkaMetricGetDescription,
 	execute as kafkaMetricGetExecute,
 } from './database/kafka/metricGet.operation';
 import {
+	description as kafkaNodeListGetDescription,
+	execute as kafkaNodeListGetExecute,
+} from './database/kafka/nodeListGet.operation';
+import {
+	description as kafkaNodeGetGetDescription,
+	execute as kafkaNodeGetGetExecute,
+} from './database/kafka/nodeGetGet.operation';
+import {
+	description as kafkaPermissionsGetDescription,
+	execute as kafkaPermissionsGetExecute,
+} from './database/kafka/permissionsGet.operation';
+import {
 	description as kafkaPrometheusGetDescription,
 	execute as kafkaPrometheusGetExecute,
 } from './database/kafka/prometheusGet.operation';
 import {
-	description as kafkaCertificateListGetDescription,
-	execute as kafkaCertificateListGetExecute,
-} from './database/kafka/certificateListGet.operation';
+	description as kafkaPrometheusCredentialsResetPostDescription,
+	execute as kafkaPrometheusCredentialsResetPostExecute,
+} from './database/kafka/prometheusCredentialsResetPost.operation';
 import {
-	description as kafkaCertificateCreatePostDescription,
-	execute as kafkaCertificateCreatePostExecute,
-} from './database/kafka/certificateCreatePost.operation';
+	description as kafkaSchemaRegistryAclListGetDescription,
+	execute as kafkaSchemaRegistryAclListGetExecute,
+} from './database/kafka/schemaRegistryAclListGet.operation';
 import {
-	description as kafkaIntegrationListGetDescription,
-	execute as kafkaIntegrationListGetExecute,
-} from './database/kafka/integrationListGet.operation';
+	description as kafkaSchemaRegistryAclCreatePostDescription,
+	execute as kafkaSchemaRegistryAclCreatePostExecute,
+} from './database/kafka/schemaRegistryAclCreatePost.operation';
 import {
-	description as kafkaIntegrationCreatePostDescription,
-	execute as kafkaIntegrationCreatePostExecute,
-} from './database/kafka/integrationCreatePost.operation';
+	description as kafkaSchemaRegistryAclGetGetDescription,
+	execute as kafkaSchemaRegistryAclGetGetExecute,
+} from './database/kafka/schemaRegistryAclGetGet.operation';
+import {
+	description as kafkaSchemaRegistryAclDeleteDeleteDescription,
+	execute as kafkaSchemaRegistryAclDeleteDeleteExecute,
+} from './database/kafka/schemaRegistryAclDeleteDelete.operation';
+import {
+	description as kafkaTopicListGetDescription,
+	execute as kafkaTopicListGetExecute,
+} from './database/kafka/topicListGet.operation';
+import {
+	description as kafkaTopicCreatePostDescription,
+	execute as kafkaTopicCreatePostExecute,
+} from './database/kafka/topicCreatePost.operation';
+import {
+	description as kafkaTopicGetGetDescription,
+	execute as kafkaTopicGetGetExecute,
+} from './database/kafka/topicGetGet.operation';
+import {
+	description as kafkaTopicUpdatePutDescription,
+	execute as kafkaTopicUpdatePutExecute,
+} from './database/kafka/topicUpdatePut.operation';
+import {
+	description as kafkaTopicDeleteDeleteDescription,
+	execute as kafkaTopicDeleteDeleteExecute,
+} from './database/kafka/topicDeleteDelete.operation';
+import {
+	description as kafkaTopicAclListGetDescription,
+	execute as kafkaTopicAclListGetExecute,
+} from './database/kafka/topicAclListGet.operation';
+import {
+	description as kafkaTopicAclCreatePostDescription,
+	execute as kafkaTopicAclCreatePostExecute,
+} from './database/kafka/topicAclCreatePost.operation';
+import {
+	description as kafkaTopicAclGetGetDescription,
+	execute as kafkaTopicAclGetGetExecute,
+} from './database/kafka/topicAclGetGet.operation';
+import {
+	description as kafkaTopicAclDeleteDeleteDescription,
+	execute as kafkaTopicAclDeleteDeleteExecute,
+} from './database/kafka/topicAclDeleteDelete.operation';
+import {
+	description as kafkaUserListGetDescription,
+	execute as kafkaUserListGetExecute,
+} from './database/kafka/userListGet.operation';
+import {
+	description as kafkaUserCreatePostDescription,
+	execute as kafkaUserCreatePostExecute,
+} from './database/kafka/userCreatePost.operation';
+import {
+	description as kafkaUserGetGetDescription,
+	execute as kafkaUserGetGetExecute,
+} from './database/kafka/userGetGet.operation';
+import {
+	description as kafkaUserDeleteDeleteDescription,
+	execute as kafkaUserDeleteDeleteExecute,
+} from './database/kafka/userDeleteDelete.operation';
+import {
+	description as kafkaUserAccessGetDescription,
+	execute as kafkaUserAccessGetExecute,
+} from './database/kafka/userAccessGet.operation';
+import {
+	description as kafkaUserCredentialsResetPostDescription,
+	execute as kafkaUserCredentialsResetPostExecute,
+} from './database/kafka/userCredentialsResetPost.operation';
+
 import {
 	description as kafkaConnectClusterListGetDescription,
 	execute as kafkaConnectClusterListGetExecute,
@@ -3766,74 +3883,74 @@ export function description(displayOptions: IDisplayOptions): INodeProperties[] 
 				action: 'Delete Kafka cluster',
 			},
 			{
-				name: 'kafkaBackupListGet',
-				value: 'kafkaBackupListGet',
-				action: 'List Kafka backups',
+				name: 'kafkaAclListGet',
+				value: 'kafkaAclListGet',
+				action: 'List Kafka ACLs',
 			},
 			{
-				name: 'kafkaBackupCreatePost',
-				value: 'kafkaBackupCreatePost',
-				action: 'Create Kafka backup',
+				name: 'kafkaAclCreatePost',
+				value: 'kafkaAclCreatePost',
+				action: 'Create Kafka ACL',
 			},
 			{
-				name: 'kafkaBackupGetGet',
-				value: 'kafkaBackupGetGet',
-				action: 'Get Kafka backup',
+				name: 'kafkaAclGetGet',
+				value: 'kafkaAclGetGet',
+				action: 'Get Kafka ACL',
 			},
 			{
-				name: 'kafkaBackupDeleteDelete',
-				value: 'kafkaBackupDeleteDelete',
-				action: 'Delete Kafka backup',
+				name: 'kafkaAclDeleteDelete',
+				value: 'kafkaAclDeleteDelete',
+				action: 'Delete Kafka ACL',
 			},
 			{
-				name: 'kafkaUserListGet',
-				value: 'kafkaUserListGet',
-				action: 'List Kafka users',
+				name: 'kafkaAdvancedConfigurationGet',
+				value: 'kafkaAdvancedConfigurationGet',
+				action: 'Get Kafka advanced configuration',
 			},
 			{
-				name: 'kafkaUserCreatePost',
-				value: 'kafkaUserCreatePost',
-				action: 'Create Kafka user',
+				name: 'kafkaAdvancedConfigurationUpdatePut',
+				value: 'kafkaAdvancedConfigurationUpdatePut',
+				action: 'Update Kafka advanced configuration',
 			},
 			{
-				name: 'kafkaUserGetGet',
-				value: 'kafkaUserGetGet',
-				action: 'Get Kafka user',
+				name: 'kafkaCapabilitiesAdvancedConfigurationGet',
+				value: 'kafkaCapabilitiesAdvancedConfigurationGet',
+				action: 'Get Kafka advanced configuration capabilities',
 			},
 			{
-				name: 'kafkaUserUpdatePut',
-				value: 'kafkaUserUpdatePut',
-				action: 'Update Kafka user',
+				name: 'kafkaCapabilitiesBackupRegionsGet',
+				value: 'kafkaCapabilitiesBackupRegionsGet',
+				action: 'Get Kafka backup regions capabilities',
 			},
 			{
-				name: 'kafkaUserDeleteDelete',
-				value: 'kafkaUserDeleteDelete',
-				action: 'Delete Kafka user',
+				name: 'kafkaCapabilitiesIntegrationGet',
+				value: 'kafkaCapabilitiesIntegrationGet',
+				action: 'Get Kafka integration capabilities',
 			},
 			{
-				name: 'kafkaNodeListGet',
-				value: 'kafkaNodeListGet',
-				action: 'List Kafka nodes',
+				name: 'kafkaCertificateListGet',
+				value: 'kafkaCertificateListGet',
+				action: 'List Kafka certificates',
 			},
 			{
-				name: 'kafkaNodeCreatePost',
-				value: 'kafkaNodeCreatePost',
-				action: 'Create Kafka node',
+				name: 'kafkaIntegrationListGet',
+				value: 'kafkaIntegrationListGet',
+				action: 'List Kafka integrations',
 			},
 			{
-				name: 'kafkaNodeGetGet',
-				value: 'kafkaNodeGetGet',
-				action: 'Get Kafka node',
+				name: 'kafkaIntegrationCreatePost',
+				value: 'kafkaIntegrationCreatePost',
+				action: 'Create Kafka integration',
 			},
 			{
-				name: 'kafkaNodeUpdatePut',
-				value: 'kafkaNodeUpdatePut',
-				action: 'Update Kafka node',
+				name: 'kafkaIntegrationGetGet',
+				value: 'kafkaIntegrationGetGet',
+				action: 'Get Kafka integration',
 			},
 			{
-				name: 'kafkaNodeDeleteDelete',
-				value: 'kafkaNodeDeleteDelete',
-				action: 'Delete Kafka node',
+				name: 'kafkaIntegrationDeleteDelete',
+				value: 'kafkaIntegrationDeleteDelete',
+				action: 'Delete Kafka integration',
 			},
 			{
 				name: 'kafkaIpRestrictionListGet',
@@ -3844,6 +3961,31 @@ export function description(displayOptions: IDisplayOptions): INodeProperties[] 
 				name: 'kafkaIpRestrictionCreatePost',
 				value: 'kafkaIpRestrictionCreatePost',
 				action: 'Create Kafka IP restriction',
+			},
+			{
+				name: 'kafkaIpRestrictionGetGet',
+				value: 'kafkaIpRestrictionGetGet',
+				action: 'Get Kafka IP restriction',
+			},
+			{
+				name: 'kafkaIpRestrictionUpdatePut',
+				value: 'kafkaIpRestrictionUpdatePut',
+				action: 'Update Kafka IP restriction',
+			},
+			{
+				name: 'kafkaIpRestrictionDeleteDelete',
+				value: 'kafkaIpRestrictionDeleteDelete',
+				action: 'Delete Kafka IP restriction',
+			},
+			{
+				name: 'kafkaLogKindListGet',
+				value: 'kafkaLogKindListGet',
+				action: 'List Kafka log kinds',
+			},
+			{
+				name: 'kafkaLogKindGet',
+				value: 'kafkaLogKindGet',
+				action: 'Get Kafka log kind',
 			},
 			{
 				name: 'kafkaLogSubscriptionListGet',
@@ -3861,14 +4003,39 @@ export function description(displayOptions: IDisplayOptions): INodeProperties[] 
 				action: 'Get Kafka log subscription',
 			},
 			{
+				name: 'kafkaLogSubscriptionDeleteDelete',
+				value: 'kafkaLogSubscriptionDeleteDelete',
+				action: 'Delete Kafka log subscription',
+			},
+			{
+				name: 'kafkaLogUrlCreatePost',
+				value: 'kafkaLogUrlCreatePost',
+				action: 'Generate Kafka log URL',
+			},
+			{
+				name: 'kafkaLogsGet',
+				value: 'kafkaLogsGet',
+				action: 'Get Kafka logs',
+			},
+			{
+				name: 'kafkaMaintenanceListGet',
+				value: 'kafkaMaintenanceListGet',
+				action: 'List Kafka maintenances',
+			},
+			{
 				name: 'kafkaMaintenanceGet',
 				value: 'kafkaMaintenanceGet',
 				action: 'Get Kafka maintenance',
 			},
 			{
-				name: 'kafkaMaintenanceUpdatePut',
-				value: 'kafkaMaintenanceUpdatePut',
-				action: 'Update Kafka maintenance',
+				name: 'kafkaMaintenanceApplyPost',
+				value: 'kafkaMaintenanceApplyPost',
+				action: 'Apply Kafka maintenance',
+			},
+			{
+				name: 'kafkaMetricListGet',
+				value: 'kafkaMetricListGet',
+				action: 'List Kafka metrics',
 			},
 			{
 				name: 'kafkaMetricGet',
@@ -3876,29 +4043,124 @@ export function description(displayOptions: IDisplayOptions): INodeProperties[] 
 				action: 'Get Kafka metric',
 			},
 			{
+				name: 'kafkaNodeListGet',
+				value: 'kafkaNodeListGet',
+				action: 'List Kafka nodes',
+			},
+			{
+				name: 'kafkaNodeGetGet',
+				value: 'kafkaNodeGetGet',
+				action: 'Get Kafka node',
+			},
+			{
+				name: 'kafkaPermissionsGet',
+				value: 'kafkaPermissionsGet',
+				action: 'Get Kafka permissions',
+			},
+			{
 				name: 'kafkaPrometheusGet',
 				value: 'kafkaPrometheusGet',
-				action: 'Get Kafka prometheus',
+				action: 'Get Kafka prometheus endpoint',
 			},
 			{
-				name: 'kafkaCertificateListGet',
-				value: 'kafkaCertificateListGet',
-				action: 'List Kafka certificates',
+				name: 'kafkaPrometheusCredentialsResetPost',
+				value: 'kafkaPrometheusCredentialsResetPost',
+				action: 'Reset Kafka prometheus credentials',
 			},
 			{
-				name: 'kafkaCertificateCreatePost',
-				value: 'kafkaCertificateCreatePost',
-				action: 'Create Kafka certificate',
+				name: 'kafkaSchemaRegistryAclListGet',
+				value: 'kafkaSchemaRegistryAclListGet',
+				action: 'List Kafka schema registry ACLs',
 			},
 			{
-				name: 'kafkaIntegrationListGet',
-				value: 'kafkaIntegrationListGet',
-				action: 'List Kafka integrations',
+				name: 'kafkaSchemaRegistryAclCreatePost',
+				value: 'kafkaSchemaRegistryAclCreatePost',
+				action: 'Create Kafka schema registry ACL',
 			},
 			{
-				name: 'kafkaIntegrationCreatePost',
-				value: 'kafkaIntegrationCreatePost',
-				action: 'Create Kafka integration',
+				name: 'kafkaSchemaRegistryAclGetGet',
+				value: 'kafkaSchemaRegistryAclGetGet',
+				action: 'Get Kafka schema registry ACL',
+			},
+			{
+				name: 'kafkaSchemaRegistryAclDeleteDelete',
+				value: 'kafkaSchemaRegistryAclDeleteDelete',
+				action: 'Delete Kafka schema registry ACL',
+			},
+			{
+				name: 'kafkaTopicListGet',
+				value: 'kafkaTopicListGet',
+				action: 'List Kafka topics',
+			},
+			{
+				name: 'kafkaTopicCreatePost',
+				value: 'kafkaTopicCreatePost',
+				action: 'Create Kafka topic',
+			},
+			{
+				name: 'kafkaTopicGetGet',
+				value: 'kafkaTopicGetGet',
+				action: 'Get Kafka topic',
+			},
+			{
+				name: 'kafkaTopicUpdatePut',
+				value: 'kafkaTopicUpdatePut',
+				action: 'Update Kafka topic',
+			},
+			{
+				name: 'kafkaTopicDeleteDelete',
+				value: 'kafkaTopicDeleteDelete',
+				action: 'Delete Kafka topic',
+			},
+			{
+				name: 'kafkaTopicAclListGet',
+				value: 'kafkaTopicAclListGet',
+				action: 'List Kafka topic ACLs',
+			},
+			{
+				name: 'kafkaTopicAclCreatePost',
+				value: 'kafkaTopicAclCreatePost',
+				action: 'Create Kafka topic ACL',
+			},
+			{
+				name: 'kafkaTopicAclGetGet',
+				value: 'kafkaTopicAclGetGet',
+				action: 'Get Kafka topic ACL',
+			},
+			{
+				name: 'kafkaTopicAclDeleteDelete',
+				value: 'kafkaTopicAclDeleteDelete',
+				action: 'Delete Kafka topic ACL',
+			},
+			{
+				name: 'kafkaUserListGet',
+				value: 'kafkaUserListGet',
+				action: 'List Kafka users',
+			},
+			{
+				name: 'kafkaUserCreatePost',
+				value: 'kafkaUserCreatePost',
+				action: 'Create Kafka user',
+			},
+			{
+				name: 'kafkaUserGetGet',
+				value: 'kafkaUserGetGet',
+				action: 'Get Kafka user',
+			},
+			{
+				name: 'kafkaUserDeleteDelete',
+				value: 'kafkaUserDeleteDelete',
+				action: 'Delete Kafka user',
+			},
+			{
+				name: 'kafkaUserAccessGet',
+				value: 'kafkaUserAccessGet',
+				action: 'Get Kafka user access',
+			},
+			{
+				name: 'kafkaUserCredentialsResetPost',
+				value: 'kafkaUserCredentialsResetPost',
+				action: 'Reset Kafka user credentials',
 			},
 			{
 				name: 'kafkaConnectClusterListGet',
@@ -7696,87 +7958,87 @@ export function description(displayOptions: IDisplayOptions): INodeProperties[] 
 		}) as INodeProperties[]),
 	);
 	properties.push(
-		...(kafkaBackupListGetDescription({
+		...(kafkaAclListGetDescription({
 			...displayOptions,
-			show: { publicCloudOperation: ['kafkaBackupListGet'] },
+			show: { publicCloudOperation: ['kafkaAclListGet'] },
 		}) as INodeProperties[]),
 	);
 	properties.push(
-		...(kafkaBackupCreatePostDescription({
+		...(kafkaAclCreatePostDescription({
 			...displayOptions,
-			show: { publicCloudOperation: ['kafkaBackupCreatePost'] },
+			show: { publicCloudOperation: ['kafkaAclCreatePost'] },
 		}) as INodeProperties[]),
 	);
 	properties.push(
-		...(kafkaBackupGetGetDescription({
+		...(kafkaAclGetGetDescription({
 			...displayOptions,
-			show: { publicCloudOperation: ['kafkaBackupGetGet'] },
+			show: { publicCloudOperation: ['kafkaAclGetGet'] },
 		}) as INodeProperties[]),
 	);
 	properties.push(
-		...(kafkaBackupDeleteDeleteDescription({
+		...(kafkaAclDeleteDeleteDescription({
 			...displayOptions,
-			show: { publicCloudOperation: ['kafkaBackupDeleteDelete'] },
+			show: { publicCloudOperation: ['kafkaAclDeleteDelete'] },
 		}) as INodeProperties[]),
 	);
 	properties.push(
-		...(kafkaUserListGetDescription({
+		...(kafkaAdvancedConfigurationGetDescription({
 			...displayOptions,
-			show: { publicCloudOperation: ['kafkaUserListGet'] },
+			show: { publicCloudOperation: ['kafkaAdvancedConfigurationGet'] },
 		}) as INodeProperties[]),
 	);
 	properties.push(
-		...(kafkaUserCreatePostDescription({
+		...(kafkaAdvancedConfigurationUpdatePutDescription({
 			...displayOptions,
-			show: { publicCloudOperation: ['kafkaUserCreatePost'] },
+			show: { publicCloudOperation: ['kafkaAdvancedConfigurationUpdatePut'] },
 		}) as INodeProperties[]),
 	);
 	properties.push(
-		...(kafkaUserGetGetDescription({
+		...(kafkaCapabilitiesAdvancedConfigurationGetDescription({
 			...displayOptions,
-			show: { publicCloudOperation: ['kafkaUserGetGet'] },
+			show: { publicCloudOperation: ['kafkaCapabilitiesAdvancedConfigurationGet'] },
 		}) as INodeProperties[]),
 	);
 	properties.push(
-		...(kafkaUserUpdatePutDescription({
+		...(kafkaCapabilitiesBackupRegionsGetDescription({
 			...displayOptions,
-			show: { publicCloudOperation: ['kafkaUserUpdatePut'] },
+			show: { publicCloudOperation: ['kafkaCapabilitiesBackupRegionsGet'] },
 		}) as INodeProperties[]),
 	);
 	properties.push(
-		...(kafkaUserDeleteDeleteDescription({
+		...(kafkaCapabilitiesIntegrationGetDescription({
 			...displayOptions,
-			show: { publicCloudOperation: ['kafkaUserDeleteDelete'] },
+			show: { publicCloudOperation: ['kafkaCapabilitiesIntegrationGet'] },
 		}) as INodeProperties[]),
 	);
 	properties.push(
-		...(kafkaNodeListGetDescription({
+		...(kafkaCertificateListGetDescription({
 			...displayOptions,
-			show: { publicCloudOperation: ['kafkaNodeListGet'] },
+			show: { publicCloudOperation: ['kafkaCertificateListGet'] },
 		}) as INodeProperties[]),
 	);
 	properties.push(
-		...(kafkaNodeCreatePostDescription({
+		...(kafkaIntegrationListGetDescription({
 			...displayOptions,
-			show: { publicCloudOperation: ['kafkaNodeCreatePost'] },
+			show: { publicCloudOperation: ['kafkaIntegrationListGet'] },
 		}) as INodeProperties[]),
 	);
 	properties.push(
-		...(kafkaNodeGetGetDescription({
+		...(kafkaIntegrationCreatePostDescription({
 			...displayOptions,
-			show: { publicCloudOperation: ['kafkaNodeGetGet'] },
+			show: { publicCloudOperation: ['kafkaIntegrationCreatePost'] },
 		}) as INodeProperties[]),
 	);
 	properties.push(
-		...(kafkaNodeUpdatePutDescription({
+		...(kafkaIntegrationGetGetDescription({
 			...displayOptions,
-			show: { publicCloudOperation: ['kafkaNodeUpdatePut'] },
+			show: { publicCloudOperation: ['kafkaIntegrationGetGet'] },
 		}) as INodeProperties[]),
 	);
 	properties.push(
-		...(kafkaNodeDeleteDeleteDescription({
+		...(kafkaIntegrationDeleteDeleteDescription({
 			...displayOptions,
-			show: { publicCloudOperation: ['kafkaNodeDeleteDelete'] },
+			show: { publicCloudOperation: ['kafkaIntegrationDeleteDelete'] },
 		}) as INodeProperties[]),
 	);
 	properties.push(
@@ -7789,6 +8051,36 @@ export function description(displayOptions: IDisplayOptions): INodeProperties[] 
 		...(kafkaIpRestrictionCreatePostDescription({
 			...displayOptions,
 			show: { publicCloudOperation: ['kafkaIpRestrictionCreatePost'] },
+		}) as INodeProperties[]),
+	);
+	properties.push(
+		...(kafkaIpRestrictionGetGetDescription({
+			...displayOptions,
+			show: { publicCloudOperation: ['kafkaIpRestrictionGetGet'] },
+		}) as INodeProperties[]),
+	);
+	properties.push(
+		...(kafkaIpRestrictionUpdatePutDescription({
+			...displayOptions,
+			show: { publicCloudOperation: ['kafkaIpRestrictionUpdatePut'] },
+		}) as INodeProperties[]),
+	);
+	properties.push(
+		...(kafkaIpRestrictionDeleteDeleteDescription({
+			...displayOptions,
+			show: { publicCloudOperation: ['kafkaIpRestrictionDeleteDelete'] },
+		}) as INodeProperties[]),
+	);
+	properties.push(
+		...(kafkaLogKindListGetDescription({
+			...displayOptions,
+			show: { publicCloudOperation: ['kafkaLogKindListGet'] },
+		}) as INodeProperties[]),
+	);
+	properties.push(
+		...(kafkaLogKindGetDescription({
+			...displayOptions,
+			show: { publicCloudOperation: ['kafkaLogKindGet'] },
 		}) as INodeProperties[]),
 	);
 	properties.push(
@@ -7810,15 +8102,45 @@ export function description(displayOptions: IDisplayOptions): INodeProperties[] 
 		}) as INodeProperties[]),
 	);
 	properties.push(
+		...(kafkaLogSubscriptionDeleteDeleteDescription({
+			...displayOptions,
+			show: { publicCloudOperation: ['kafkaLogSubscriptionDeleteDelete'] },
+		}) as INodeProperties[]),
+	);
+	properties.push(
+		...(kafkaLogUrlCreatePostDescription({
+			...displayOptions,
+			show: { publicCloudOperation: ['kafkaLogUrlCreatePost'] },
+		}) as INodeProperties[]),
+	);
+	properties.push(
+		...(kafkaLogsGetDescription({
+			...displayOptions,
+			show: { publicCloudOperation: ['kafkaLogsGet'] },
+		}) as INodeProperties[]),
+	);
+	properties.push(
+		...(kafkaMaintenanceListGetDescription({
+			...displayOptions,
+			show: { publicCloudOperation: ['kafkaMaintenanceListGet'] },
+		}) as INodeProperties[]),
+	);
+	properties.push(
 		...(kafkaMaintenanceGetDescription({
 			...displayOptions,
 			show: { publicCloudOperation: ['kafkaMaintenanceGet'] },
 		}) as INodeProperties[]),
 	);
 	properties.push(
-		...(kafkaMaintenanceUpdatePutDescription({
+		...(kafkaMaintenanceApplyPostDescription({
 			...displayOptions,
-			show: { publicCloudOperation: ['kafkaMaintenanceUpdatePut'] },
+			show: { publicCloudOperation: ['kafkaMaintenanceApplyPost'] },
+		}) as INodeProperties[]),
+	);
+	properties.push(
+		...(kafkaMetricListGetDescription({
+			...displayOptions,
+			show: { publicCloudOperation: ['kafkaMetricListGet'] },
 		}) as INodeProperties[]),
 	);
 	properties.push(
@@ -7828,33 +8150,147 @@ export function description(displayOptions: IDisplayOptions): INodeProperties[] 
 		}) as INodeProperties[]),
 	);
 	properties.push(
+		...(kafkaNodeListGetDescription({
+			...displayOptions,
+			show: { publicCloudOperation: ['kafkaNodeListGet'] },
+		}) as INodeProperties[]),
+	);
+	properties.push(
+		...(kafkaNodeGetGetDescription({
+			...displayOptions,
+			show: { publicCloudOperation: ['kafkaNodeGetGet'] },
+		}) as INodeProperties[]),
+	);
+	properties.push(
+		...(kafkaPermissionsGetDescription({
+			...displayOptions,
+			show: { publicCloudOperation: ['kafkaPermissionsGet'] },
+		}) as INodeProperties[]),
+	);
+	properties.push(
 		...(kafkaPrometheusGetDescription({
 			...displayOptions,
 			show: { publicCloudOperation: ['kafkaPrometheusGet'] },
 		}) as INodeProperties[]),
 	);
 	properties.push(
-		...(kafkaCertificateListGetDescription({
+		...(kafkaPrometheusCredentialsResetPostDescription({
 			...displayOptions,
-			show: { publicCloudOperation: ['kafkaCertificateListGet'] },
+			show: { publicCloudOperation: ['kafkaPrometheusCredentialsResetPost'] },
 		}) as INodeProperties[]),
 	);
 	properties.push(
-		...(kafkaCertificateCreatePostDescription({
+		...(kafkaSchemaRegistryAclListGetDescription({
 			...displayOptions,
-			show: { publicCloudOperation: ['kafkaCertificateCreatePost'] },
+			show: { publicCloudOperation: ['kafkaSchemaRegistryAclListGet'] },
 		}) as INodeProperties[]),
 	);
 	properties.push(
-		...(kafkaIntegrationListGetDescription({
+		...(kafkaSchemaRegistryAclCreatePostDescription({
 			...displayOptions,
-			show: { publicCloudOperation: ['kafkaIntegrationListGet'] },
+			show: { publicCloudOperation: ['kafkaSchemaRegistryAclCreatePost'] },
 		}) as INodeProperties[]),
 	);
 	properties.push(
-		...(kafkaIntegrationCreatePostDescription({
+		...(kafkaSchemaRegistryAclGetGetDescription({
 			...displayOptions,
-			show: { publicCloudOperation: ['kafkaIntegrationCreatePost'] },
+			show: { publicCloudOperation: ['kafkaSchemaRegistryAclGetGet'] },
+		}) as INodeProperties[]),
+	);
+	properties.push(
+		...(kafkaSchemaRegistryAclDeleteDeleteDescription({
+			...displayOptions,
+			show: { publicCloudOperation: ['kafkaSchemaRegistryAclDeleteDelete'] },
+		}) as INodeProperties[]),
+	);
+	properties.push(
+		...(kafkaTopicListGetDescription({
+			...displayOptions,
+			show: { publicCloudOperation: ['kafkaTopicListGet'] },
+		}) as INodeProperties[]),
+	);
+	properties.push(
+		...(kafkaTopicCreatePostDescription({
+			...displayOptions,
+			show: { publicCloudOperation: ['kafkaTopicCreatePost'] },
+		}) as INodeProperties[]),
+	);
+	properties.push(
+		...(kafkaTopicGetGetDescription({
+			...displayOptions,
+			show: { publicCloudOperation: ['kafkaTopicGetGet'] },
+		}) as INodeProperties[]),
+	);
+	properties.push(
+		...(kafkaTopicUpdatePutDescription({
+			...displayOptions,
+			show: { publicCloudOperation: ['kafkaTopicUpdatePut'] },
+		}) as INodeProperties[]),
+	);
+	properties.push(
+		...(kafkaTopicDeleteDeleteDescription({
+			...displayOptions,
+			show: { publicCloudOperation: ['kafkaTopicDeleteDelete'] },
+		}) as INodeProperties[]),
+	);
+	properties.push(
+		...(kafkaTopicAclListGetDescription({
+			...displayOptions,
+			show: { publicCloudOperation: ['kafkaTopicAclListGet'] },
+		}) as INodeProperties[]),
+	);
+	properties.push(
+		...(kafkaTopicAclCreatePostDescription({
+			...displayOptions,
+			show: { publicCloudOperation: ['kafkaTopicAclCreatePost'] },
+		}) as INodeProperties[]),
+	);
+	properties.push(
+		...(kafkaTopicAclGetGetDescription({
+			...displayOptions,
+			show: { publicCloudOperation: ['kafkaTopicAclGetGet'] },
+		}) as INodeProperties[]),
+	);
+	properties.push(
+		...(kafkaTopicAclDeleteDeleteDescription({
+			...displayOptions,
+			show: { publicCloudOperation: ['kafkaTopicAclDeleteDelete'] },
+		}) as INodeProperties[]),
+	);
+	properties.push(
+		...(kafkaUserListGetDescription({
+			...displayOptions,
+			show: { publicCloudOperation: ['kafkaUserListGet'] },
+		}) as INodeProperties[]),
+	);
+	properties.push(
+		...(kafkaUserCreatePostDescription({
+			...displayOptions,
+			show: { publicCloudOperation: ['kafkaUserCreatePost'] },
+		}) as INodeProperties[]),
+	);
+	properties.push(
+		...(kafkaUserGetGetDescription({
+			...displayOptions,
+			show: { publicCloudOperation: ['kafkaUserGetGet'] },
+		}) as INodeProperties[]),
+	);
+	properties.push(
+		...(kafkaUserDeleteDeleteDescription({
+			...displayOptions,
+			show: { publicCloudOperation: ['kafkaUserDeleteDelete'] },
+		}) as INodeProperties[]),
+	);
+	properties.push(
+		...(kafkaUserAccessGetDescription({
+			...displayOptions,
+			show: { publicCloudOperation: ['kafkaUserAccessGet'] },
+		}) as INodeProperties[]),
+	);
+	properties.push(
+		...(kafkaUserCredentialsResetPostDescription({
+			...displayOptions,
+			show: { publicCloudOperation: ['kafkaUserCredentialsResetPost'] },
 		}) as INodeProperties[]),
 	);
 	properties.push(
@@ -11092,60 +11528,118 @@ export async function execute(
 			return kafkaClusterUpdatePutExecute.call(this);
 		case 'kafkaClusterDeleteDelete':
 			return kafkaClusterDeleteDeleteExecute.call(this);
-		case 'kafkaBackupListGet':
-			return kafkaBackupListGetExecute.call(this);
-		case 'kafkaBackupCreatePost':
-			return kafkaBackupCreatePostExecute.call(this);
-		case 'kafkaBackupGetGet':
-			return kafkaBackupGetGetExecute.call(this);
-		case 'kafkaBackupDeleteDelete':
-			return kafkaBackupDeleteDeleteExecute.call(this);
-		case 'kafkaUserListGet':
-			return kafkaUserListGetExecute.call(this);
-		case 'kafkaUserCreatePost':
-			return kafkaUserCreatePostExecute.call(this);
-		case 'kafkaUserGetGet':
-			return kafkaUserGetGetExecute.call(this);
-		case 'kafkaUserUpdatePut':
-			return kafkaUserUpdatePutExecute.call(this);
-		case 'kafkaUserDeleteDelete':
-			return kafkaUserDeleteDeleteExecute.call(this);
-		case 'kafkaNodeListGet':
-			return kafkaNodeListGetExecute.call(this);
-		case 'kafkaNodeCreatePost':
-			return kafkaNodeCreatePostExecute.call(this);
-		case 'kafkaNodeGetGet':
-			return kafkaNodeGetGetExecute.call(this);
-		case 'kafkaNodeUpdatePut':
-			return kafkaNodeUpdatePutExecute.call(this);
-		case 'kafkaNodeDeleteDelete':
-			return kafkaNodeDeleteDeleteExecute.call(this);
+		case 'kafkaAclListGet':
+			return kafkaAclListGetExecute.call(this);
+		case 'kafkaAclCreatePost':
+			return kafkaAclCreatePostExecute.call(this);
+		case 'kafkaAclGetGet':
+			return kafkaAclGetGetExecute.call(this);
+		case 'kafkaAclDeleteDelete':
+			return kafkaAclDeleteDeleteExecute.call(this);
+		case 'kafkaAdvancedConfigurationGet':
+			return kafkaAdvancedConfigurationGetExecute.call(this);
+		case 'kafkaAdvancedConfigurationUpdatePut':
+			return kafkaAdvancedConfigurationUpdatePutExecute.call(this);
+		case 'kafkaCapabilitiesAdvancedConfigurationGet':
+			return kafkaCapabilitiesAdvancedConfigurationGetExecute.call(this);
+		case 'kafkaCapabilitiesBackupRegionsGet':
+			return kafkaCapabilitiesBackupRegionsGetExecute.call(this);
+		case 'kafkaCapabilitiesIntegrationGet':
+			return kafkaCapabilitiesIntegrationGetExecute.call(this);
+		case 'kafkaCertificateListGet':
+			return kafkaCertificateListGetExecute.call(this);
+		case 'kafkaIntegrationListGet':
+			return kafkaIntegrationListGetExecute.call(this);
+		case 'kafkaIntegrationCreatePost':
+			return kafkaIntegrationCreatePostExecute.call(this);
+		case 'kafkaIntegrationGetGet':
+			return kafkaIntegrationGetGetExecute.call(this);
+		case 'kafkaIntegrationDeleteDelete':
+			return kafkaIntegrationDeleteDeleteExecute.call(this);
 		case 'kafkaIpRestrictionListGet':
 			return kafkaIpRestrictionListGetExecute.call(this);
 		case 'kafkaIpRestrictionCreatePost':
 			return kafkaIpRestrictionCreatePostExecute.call(this);
+		case 'kafkaIpRestrictionGetGet':
+			return kafkaIpRestrictionGetGetExecute.call(this);
+		case 'kafkaIpRestrictionUpdatePut':
+			return kafkaIpRestrictionUpdatePutExecute.call(this);
+		case 'kafkaIpRestrictionDeleteDelete':
+			return kafkaIpRestrictionDeleteDeleteExecute.call(this);
+		case 'kafkaLogKindListGet':
+			return kafkaLogKindListGetExecute.call(this);
+		case 'kafkaLogKindGet':
+			return kafkaLogKindGetExecute.call(this);
 		case 'kafkaLogSubscriptionListGet':
 			return kafkaLogSubscriptionListGetExecute.call(this);
 		case 'kafkaLogSubscriptionCreatePost':
 			return kafkaLogSubscriptionCreatePostExecute.call(this);
 		case 'kafkaLogSubscriptionGetGet':
 			return kafkaLogSubscriptionGetGetExecute.call(this);
+		case 'kafkaLogSubscriptionDeleteDelete':
+			return kafkaLogSubscriptionDeleteDeleteExecute.call(this);
+		case 'kafkaLogUrlCreatePost':
+			return kafkaLogUrlCreatePostExecute.call(this);
+		case 'kafkaLogsGet':
+			return kafkaLogsGetExecute.call(this);
+		case 'kafkaMaintenanceListGet':
+			return kafkaMaintenanceListGetExecute.call(this);
 		case 'kafkaMaintenanceGet':
 			return kafkaMaintenanceGetExecute.call(this);
-		case 'kafkaMaintenanceUpdatePut':
-			return kafkaMaintenanceUpdatePutExecute.call(this);
+		case 'kafkaMaintenanceApplyPost':
+			return kafkaMaintenanceApplyPostExecute.call(this);
+		case 'kafkaMetricListGet':
+			return kafkaMetricListGetExecute.call(this);
 		case 'kafkaMetricGet':
 			return kafkaMetricGetExecute.call(this);
+		case 'kafkaNodeListGet':
+			return kafkaNodeListGetExecute.call(this);
+		case 'kafkaNodeGetGet':
+			return kafkaNodeGetGetExecute.call(this);
+		case 'kafkaPermissionsGet':
+			return kafkaPermissionsGetExecute.call(this);
 		case 'kafkaPrometheusGet':
 			return kafkaPrometheusGetExecute.call(this);
-		case 'kafkaCertificateListGet':
-			return kafkaCertificateListGetExecute.call(this);
-		case 'kafkaCertificateCreatePost':
-			return kafkaCertificateCreatePostExecute.call(this);
-		case 'kafkaIntegrationListGet':
-			return kafkaIntegrationListGetExecute.call(this);
-		case 'kafkaIntegrationCreatePost':
-			return kafkaIntegrationCreatePostExecute.call(this);
+		case 'kafkaPrometheusCredentialsResetPost':
+			return kafkaPrometheusCredentialsResetPostExecute.call(this);
+		case 'kafkaSchemaRegistryAclListGet':
+			return kafkaSchemaRegistryAclListGetExecute.call(this);
+		case 'kafkaSchemaRegistryAclCreatePost':
+			return kafkaSchemaRegistryAclCreatePostExecute.call(this);
+		case 'kafkaSchemaRegistryAclGetGet':
+			return kafkaSchemaRegistryAclGetGetExecute.call(this);
+		case 'kafkaSchemaRegistryAclDeleteDelete':
+			return kafkaSchemaRegistryAclDeleteDeleteExecute.call(this);
+		case 'kafkaTopicListGet':
+			return kafkaTopicListGetExecute.call(this);
+		case 'kafkaTopicCreatePost':
+			return kafkaTopicCreatePostExecute.call(this);
+		case 'kafkaTopicGetGet':
+			return kafkaTopicGetGetExecute.call(this);
+		case 'kafkaTopicUpdatePut':
+			return kafkaTopicUpdatePutExecute.call(this);
+		case 'kafkaTopicDeleteDelete':
+			return kafkaTopicDeleteDeleteExecute.call(this);
+		case 'kafkaTopicAclListGet':
+			return kafkaTopicAclListGetExecute.call(this);
+		case 'kafkaTopicAclCreatePost':
+			return kafkaTopicAclCreatePostExecute.call(this);
+		case 'kafkaTopicAclGetGet':
+			return kafkaTopicAclGetGetExecute.call(this);
+		case 'kafkaTopicAclDeleteDelete':
+			return kafkaTopicAclDeleteDeleteExecute.call(this);
+		case 'kafkaUserListGet':
+			return kafkaUserListGetExecute.call(this);
+		case 'kafkaUserCreatePost':
+			return kafkaUserCreatePostExecute.call(this);
+		case 'kafkaUserGetGet':
+			return kafkaUserGetGetExecute.call(this);
+		case 'kafkaUserDeleteDelete':
+			return kafkaUserDeleteDeleteExecute.call(this);
+		case 'kafkaUserAccessGet':
+			return kafkaUserAccessGetExecute.call(this);
+		case 'kafkaUserCredentialsResetPost':
+			return kafkaUserCredentialsResetPostExecute.call(this);
 		case 'kafkaConnectClusterListGet':
 			return kafkaConnectClusterListGetExecute.call(this);
 		case 'kafkaConnectClusterGetGet':

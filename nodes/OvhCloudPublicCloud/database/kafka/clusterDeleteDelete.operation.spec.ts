@@ -13,10 +13,10 @@ jest.mock('../../../../shared/transport/ApiClient', () => {
 
 import { ApiClient } from '../../../../shared/transport/ApiClient';
 
-describe('kafka clusterDeleteDelete operation', () => {
+describe('OPERATION_NAME_PLACEHOLDER operation', () => {
 	describe('description', () => {
 		it('should return all required parameters', () => {
-			const result = description({'show': {}});
+			const result = description({ show: {} });
 			expect(result.length).toBeGreaterThanOrEqual(1);
 		});
 	});
@@ -31,19 +31,24 @@ describe('kafka clusterDeleteDelete operation', () => {
 		});
 
 		it('should call the correct API endpoint', async () => {
-			const mockData = [] as unknown[];
+			const mockData = { id: 'test-id' };
 			const client = new ApiClient(mockExecuteFunctions) as any;
 			client.httpDelete.mockResolvedValue(mockData);
 
-			mockExecuteFunctions.getNodeParameter.mockReturnValue((param: string): string | undefined => {
-				if (param === 'publicCloudProjectId') return '12345678-1234-1234-1234-1234567890ab';
-				if (param === 'serviceName') return 'test-service';
-				return '';
-			});
+			mockExecuteFunctions.getNodeParameter.mockImplementation(
+				(param: string): string | number | boolean | undefined => {
+										if (param === 'publicCloudProjectId') return '12345678-1234-1234-1234-1234567890ab';
+					if (param === 'clusterId') return 'clusterId-test-value';
+					return undefined;
+				},
+			);
 
 			const result = await execute.call(mockExecuteFunctions);
-			expect(client.httpDelete).toHaveBeenCalled();
-			expect(result).toHaveLength(0);
+			expect(client.httpDelete).toHaveBeenCalledWith(
+				'/cloud/project/12345678-1234-1234-1234-1234567890ab/database/kafka/clusterId-test-value',
+				undefined
+			);
+			expect(result).toMatchObject([mockData]);
 		});
 	});
 });

@@ -13,10 +13,10 @@ jest.mock('../../../../shared/transport/ApiClient', () => {
 
 import { ApiClient } from '../../../../shared/transport/ApiClient';
 
-describe('kafka userGetGet operation', () => {
+describe('OPERATION_NAME_PLACEHOLDER operation', () => {
 	describe('description', () => {
 		it('should return all required parameters', () => {
-			const result = description({'show': {}});
+			const result = description({ show: {} });
 			expect(result.length).toBeGreaterThanOrEqual(1);
 		});
 	});
@@ -35,16 +35,21 @@ describe('kafka userGetGet operation', () => {
 			const client = new ApiClient(mockExecuteFunctions) as any;
 			client.httpGet.mockResolvedValue(mockData);
 
-			mockExecuteFunctions.getNodeParameter.mockReturnValue((param: string): string | undefined => {
-				if (param === 'publicCloudProjectId') return '12345678-1234-1234-1234-1234567890ab';
-				if (param === 'serviceName') return 'test-service';
-				if (param === 'userId') return 'test-userId-id';
-				return '';
-			});
+			mockExecuteFunctions.getNodeParameter.mockImplementation(
+				(param: string): string | number | boolean | undefined => {
+										if (param === 'publicCloudProjectId') return '12345678-1234-1234-1234-1234567890ab';
+					if (param === 'clusterId') return 'clusterId-test-value';
+					if (param === 'userId') return 'userId-test-value';
+					return undefined;
+				},
+			);
 
 			const result = await execute.call(mockExecuteFunctions);
-			expect(client.httpGet).toHaveBeenCalled();
-			expect(result).toMatchObject([{ id: 'test-id' }]);
+			expect(client.httpGet).toHaveBeenCalledWith(
+				'/cloud/project/12345678-1234-1234-1234-1234567890ab/database/kafka/clusterId-test-value/user/userId-test-value',
+				undefined
+			);
+			expect(result).toMatchObject([mockData]);
 		});
 	});
 });

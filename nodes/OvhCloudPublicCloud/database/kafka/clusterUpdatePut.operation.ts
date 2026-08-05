@@ -9,56 +9,65 @@ import { ApiClient } from '../../../../shared/transport/ApiClient';
 
 export function description(displayOptions: IDisplayOptions): INodeProperties[] {
 	return [
-	{
-		displayName: 'Public Cloud Project',
-		name: 'publicCloudProjectId',
-		type: 'resourceLocator',
-		default: { mode: 'list', value: '' },
-		required: true,
-		description: 'The Public Cloud project ID (e.g. 12345678-1234-1234-1234-1234567890ab)',
-		modes: [
-			{
-				displayName: 'From List',
-				name: 'list',
-				type: 'list',
-				typeOptions: { searchListMethod: 'getPublicCloudProjects' },
-			},
-			{
-				displayName: 'By ID',
-				name: 'name',
-				type: 'string',
-				placeholder: '12345678-1234-1234-1234-1234567890ab',
-			},
-		],
-		displayOptions,
-	},
-	{
-		displayName: 'Service Name',
-		name: 'serviceName',
-		type: 'string',
-		default: '',
-		required: true,
-		description: 'The database service name',
-		displayOptions,
-	},
+		{
+			displayName: 'Public Cloud Project',
+			name: 'publicCloudProjectId',
+			type: 'resourceLocator',
+			default: { mode: 'list', value: '' },
+			required: true,
+			description: 'The Public Cloud project ID (e.g. 12345678-1234-1234-1234-1234567890ab)',
+			modes: [
+				{
+					displayName: 'From List',
+					name: 'list',
+					type: 'list',
+					typeOptions: { searchListMethod: 'getPublicCloudProjects' },
+				},
+				{
+					displayName: 'By ID',
+					name: 'name',
+					type: 'string',
+					placeholder: '12345678-1234-1234-1234-1234567890ab',
+				},
+			],
+			displayOptions,
+		},
+		{
+			displayName: 'Clusterid',
+			name: 'clusterId',
+			type: 'string',
+			required: true,
+			default: '',
+			description: 'ClusterId parameter',
+			displayOptions,
+		}
 	];
 }
 
 /**
- * Executes the Update Kafka Cluster operation.
+ * Executes the OPERATION_NAME_PLACEHOLDER.
  *
  * HTTP method: PUT
- * Endpoint: /publicCloud/project/{projectId}/kafka/serviceName
+ * Endpoint: /cloud/project/{serviceName}/database/kafka/{clusterId}
  */
 export async function execute(this: IExecuteFunctions): Promise<INodeExecutionData[]> {
 	const client = new ApiClient(this);
-	const projectId = this.getNodeParameter('publicCloudProjectId', 0, '', {
+	const serviceName = this.getNodeParameter('publicCloudProjectId', 0, '', {
 		extractValue: true,
 	}) as string;
-	const serviceName = this.getNodeParameter('serviceName', 0) as string;
+	const clusterId = this.getNodeParameter('clusterId', 0) as string;
+	const body: IDataObject = {};
+	const description = (this.getNodeParameter('description', 0) || '') as string;
+	if (description) body.description = description;
+	const plan = (this.getNodeParameter('plan', 0) || '') as string;
+	if (plan) body.plan = plan;
+	const version = (this.getNodeParameter('version', 0) || '') as string;
+	if (version) body.version = version;
 
-	const body = {} as IDataObject;
-	const data = (await client.httpPut(`/publicCloud/project/${projectId}/kafka/${serviceName}`, body)) as IDataObject;
+	const data = (await client.httpPut(
+		`/cloud/project/${serviceName}/database/kafka/${clusterId}`,
+		body
+	)) as IDataObject;
 
 	return this.helpers.returnJsonArray([data]);
 }

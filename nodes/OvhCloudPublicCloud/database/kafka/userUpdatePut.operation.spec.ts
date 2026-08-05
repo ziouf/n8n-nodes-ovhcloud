@@ -38,7 +38,7 @@ describe('kafka userUpdatePut operation', () => {
 			mockExecuteFunctions.getNodeParameter.mockReturnValue((param: string): string | undefined => {
 				if (param === 'publicCloudProjectId') return '12345678-1234-1234-1234-1234567890ab';
 				if (param === 'serviceName') return 'test-service';
-				if (param === 'userId') return 'test-userId-id';
+				if (param === 'userId') return 'userId-test-valueId-id';
 				return '';
 			});
 

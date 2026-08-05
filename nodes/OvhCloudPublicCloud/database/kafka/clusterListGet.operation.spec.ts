@@ -13,10 +13,10 @@ jest.mock('../../../../shared/transport/ApiClient', () => {
 
 import { ApiClient } from '../../../../shared/transport/ApiClient';
 
-describe('kafka clusterListGet operation', () => {
+describe('OPERATION_NAME_PLACEHOLDER operation', () => {
 	describe('description', () => {
 		it('should return all required parameters', () => {
-			const result = description({'show': {}});
+			const result = description({ show: {} });
 			expect(result.length).toBeGreaterThanOrEqual(1);
 		});
 	});
@@ -31,18 +31,23 @@ describe('kafka clusterListGet operation', () => {
 		});
 
 		it('should call the correct API endpoint', async () => {
-			const mockData = [{ id: 'test-id' }];
+			const mockData = { id: 'test-id' };
 			const client = new ApiClient(mockExecuteFunctions) as any;
 			client.httpGet.mockResolvedValue(mockData);
 
-			mockExecuteFunctions.getNodeParameter.mockReturnValue((param: string): string | undefined => {
-				if (param === 'publicCloudProjectId') return '12345678-1234-1234-1234-1234567890ab';
-				return '';
-			});
+			mockExecuteFunctions.getNodeParameter.mockImplementation(
+				(param: string): string | number | boolean | undefined => {
+										if (param === 'publicCloudProjectId') return '12345678-1234-1234-1234-1234567890ab';
+					return undefined;
+				},
+			);
 
 			const result = await execute.call(mockExecuteFunctions);
-			expect(client.httpGet).toHaveBeenCalled();
-			expect(result).toMatchObject([{ id: 'test-id' }]);
+			expect(client.httpGet).toHaveBeenCalledWith(
+				'/cloud/project/12345678-1234-1234-1234-1234567890ab/database/kafka',
+				undefined
+			);
+			expect(result).toMatchObject([mockData]);
 		});
 	});
 });

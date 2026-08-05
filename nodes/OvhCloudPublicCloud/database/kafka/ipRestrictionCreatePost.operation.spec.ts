@@ -13,10 +13,10 @@ jest.mock('../../../../shared/transport/ApiClient', () => {
 
 import { ApiClient } from '../../../../shared/transport/ApiClient';
 
-describe('kafka ipRestrictionCreatePost operation', () => {
+describe('OPERATION_NAME_PLACEHOLDER operation', () => {
 	describe('description', () => {
 		it('should return all required parameters', () => {
-			const result = description({'show': {}});
+			const result = description({ show: {} });
 			expect(result.length).toBeGreaterThanOrEqual(1);
 		});
 	});
@@ -30,20 +30,26 @@ describe('kafka ipRestrictionCreatePost operation', () => {
 			};
 		});
 
-		it('should call the correct API endpoint', async () => {
+		it('should call the correct API endpoint, with body', async () => {
 			const mockData = { id: 'test-id' };
 			const client = new ApiClient(mockExecuteFunctions) as any;
 			client.httpPost.mockResolvedValue(mockData);
 
-			mockExecuteFunctions.getNodeParameter.mockReturnValue((param: string): string | undefined => {
-				if (param === 'publicCloudProjectId') return '12345678-1234-1234-1234-1234567890ab';
-				if (param === 'serviceName') return 'test-service';
-				return '';
-			});
+			mockExecuteFunctions.getNodeParameter.mockImplementation(
+				(param: string): string | number | boolean | undefined => {
+										if (param === 'publicCloudProjectId') return '12345678-1234-1234-1234-1234567890ab';
+					if (param === 'clusterId') return 'clusterId-test-value';
+					if (param === 'ipBlock') return 'ipBlock-test-value';
+					return undefined;
+				},
+			);
 
 			const result = await execute.call(mockExecuteFunctions);
-			expect(client.httpPost).toHaveBeenCalled();
-			expect(result).toMatchObject([{ id: 'test-id' }]);
+			expect(client.httpPost).toHaveBeenCalledWith(
+				'/cloud/project/12345678-1234-1234-1234-1234567890ab/database/kafka/clusterId-test-value',
+				{"ipBlock":"ipBlock-test-value"}
+			);
+			expect(result).toMatchObject([mockData]);
 		});
 	});
 });
