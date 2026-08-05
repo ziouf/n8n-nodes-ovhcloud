@@ -1,12 +1,13 @@
 import type {
 	IDataObject,
+	IDisplayOptions,
 	IExecuteFunctions,
 	INodeExecutionData,
-	IDisplayOptions,
+	INodeProperties,
 } from 'n8n-workflow';
 import { ApiClient } from '../../../shared/transport/ApiClient';
 
-export function description(displayOptions: IDisplayOptions) {
+export function description(displayOptions: IDisplayOptions): INodeProperties[] {
 	return [
 		{
 			displayName: 'Public Cloud Project',
@@ -32,6 +33,15 @@ export function description(displayOptions: IDisplayOptions) {
 			displayOptions,
 		},
 		{
+			displayName: 'Instance ID',
+			name: 'instanceId',
+			type: 'string',
+			default: '',
+			required: true,
+			description: 'The UUID of the instance (e.g. 12345678-1234-1234-1234-1234567890ab)',
+			displayOptions,
+		},
+		{
 			displayName: 'Network ID',
 			name: 'networkId',
 			type: 'string',
@@ -41,27 +51,11 @@ export function description(displayOptions: IDisplayOptions) {
 			displayOptions,
 		},
 		{
-			displayName: 'Subnet ID',
-			name: 'subnetId',
-			type: 'string',
-			default: '',
-			description: 'The UUID of the subnet (optional)',
-			displayOptions,
-		},
-		{
 			displayName: 'IP Address',
-			name: 'ipAddress',
+			name: 'ip',
 			type: 'string',
 			default: '',
-			description: 'A specific IP address to assign (optional)',
-			displayOptions,
-		},
-		{
-			displayName: 'MAC Address',
-			name: 'macAddress',
-			type: 'string',
-			default: '',
-			description: 'A specific MAC address to use (optional)',
+			description: 'A specific IP address to assign to the interface (optional)',
 			displayOptions,
 		},
 	];
@@ -71,37 +65,27 @@ export function description(displayOptions: IDisplayOptions) {
  * Executes the Create Instance Interface operation.
  *
  * HTTP method: POST
- * Endpoint: /publicCloud/project/{projectId}/instance/{instanceId}/interface
+ * Endpoint: /cloud/project/{serviceName}/instance/{instanceId}/interface
  */
 export async function execute(this: IExecuteFunctions): Promise<INodeExecutionData[]> {
 	const client = new ApiClient(this);
-	const projectId = this.getNodeParameter('publicCloudProjectId', 0, '', {
+	const serviceName = this.getNodeParameter('publicCloudProjectId', 0, '', {
 		extractValue: true,
 	}) as string;
 	const instanceId = this.getNodeParameter('instanceId', 0) as string;
+
+	const body: IDataObject = {};
 	const networkId = (this.getNodeParameter('networkId', 0) || '') as string;
-
-	const body: IDataObject = { networkId };
-
-	const subnetId = (this.getNodeParameter('subnetId', 0) || '') as string;
-	if (subnetId !== '') {
-		body.subnetId = subnetId;
-	}
-
-	const ipAddress = (this.getNodeParameter('ipAddress', 0) || '') as string;
-	if (ipAddress !== '') {
-		body.ipAddress = ipAddress;
-	}
-
-	const macAddress = (this.getNodeParameter('macAddress', 0) || '') as string;
-	if (macAddress !== '') {
-		body.macAddress = macAddress;
+	body['networkId'] = networkId;
+	const ip = (this.getNodeParameter('ip', 0) || '') as string;
+	if (ip !== '') {
+		body['ip'] = ip;
 	}
 
 	const data = (await client.httpPost(
-		`/publicCloud/project/${projectId}/instance/${instanceId}/interface`,
+		`/cloud/project/${serviceName}/instance/${instanceId}/interface`,
 		body as IDataObject,
-	)) as IDataObject;
+	)) as INodeExecutionData;
 
 	return this.helpers.returnJsonArray([data]);
 }

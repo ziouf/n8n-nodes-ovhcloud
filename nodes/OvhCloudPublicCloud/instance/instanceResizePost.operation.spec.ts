@@ -15,21 +15,12 @@ import { ApiClient } from '../../../shared/transport/ApiClient';
 
 describe('instance instanceResizePost operation', () => {
 	describe('description', () => {
-		it('should return project and flavorId parameters', () => {
+		it('should return required parameters', () => {
 			const result = description({ show: {} });
-			expect(result.length).toBeGreaterThanOrEqual(1);
-			expect(result[0]).toMatchObject({
-				displayName: 'Public Cloud Project',
-				name: 'publicCloudProjectId',
-				type: 'resourceLocator',
-				default: { mode: 'list', value: '' },
-				required: true,
-			});
+			expect(result.length).toBeGreaterThanOrEqual(2);
 			expect(result[1]).toMatchObject({
-				displayName: 'Flavor ID',
-				name: 'flavorId',
-				type: 'string',
-				default: '',
+				displayName: 'Instance ID',
+				name: 'instanceId',
 				required: true,
 			});
 		});
@@ -66,7 +57,7 @@ describe('instance instanceResizePost operation', () => {
 
 			const result = await execute.call(mockExecuteFunctions);
 			expect(client.httpPost).toHaveBeenCalledWith(
-				'/publicCloud/project/12345678-1234-1234-1234-1234567890ab/instance/test-instance-id/resize',
+				'/cloud/project/12345678-1234-1234-1234-1234567890ab/instance/test-instance-id/resize',
 				{ flavorId: 's1-16-80' },
 			);
 			expect(result).toEqual([mockData]);

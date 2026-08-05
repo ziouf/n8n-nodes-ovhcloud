@@ -1,12 +1,13 @@
 import type {
 	IDataObject,
+	IDisplayOptions,
 	IExecuteFunctions,
 	INodeExecutionData,
-	IDisplayOptions,
+	INodeProperties,
 } from 'n8n-workflow';
 import { ApiClient } from '../../../shared/transport/ApiClient';
 
-export function description(displayOptions: IDisplayOptions) {
+export function description(displayOptions: IDisplayOptions): INodeProperties[] {
 	return [
 		{
 			displayName: 'Public Cloud Project',
@@ -37,23 +38,16 @@ export function description(displayOptions: IDisplayOptions) {
 			type: 'string',
 			default: '',
 			required: true,
-			description: 'The UUID of the instance to update (e.g. 12345678-1234-1234-1234-1234567890ab)',
+			description: 'The UUID of the instance (e.g. 12345678-1234-1234-1234-1234567890ab)',
 			displayOptions,
 		},
 		{
-			displayName: 'Name',
-			name: 'name',
+			displayName: 'Instance Name',
+			name: 'instanceName',
 			type: 'string',
 			default: '',
-			description: 'A new human-readable name for the instance (optional)',
-			displayOptions,
-		},
-		{
-			displayName: 'Tags',
-			name: 'tags',
-			type: 'string',
-			default: '',
-			description: 'Comma-separated list of tags (optional)',
+			required: true,
+			description: 'A new human-readable name for the instance',
 			displayOptions,
 		},
 	];
@@ -63,31 +57,23 @@ export function description(displayOptions: IDisplayOptions) {
  * Executes the Update Instance operation.
  *
  * HTTP method: PUT
- * Endpoint: /publicCloud/project/{projectId}/instance/{instanceId}
+ * Endpoint: /cloud/project/{serviceName}/instance/{instanceId}
  */
 export async function execute(this: IExecuteFunctions): Promise<INodeExecutionData[]> {
 	const client = new ApiClient(this);
-	const projectId = this.getNodeParameter('publicCloudProjectId', 0, '', {
+	const serviceName = this.getNodeParameter('publicCloudProjectId', 0, '', {
 		extractValue: true,
 	}) as string;
 	const instanceId = this.getNodeParameter('instanceId', 0) as string;
 
 	const body: IDataObject = {};
-
-	const name = (this.getNodeParameter('name', 0) || '') as string;
-	if (name !== '') {
-		body.name = name;
-	}
-
-	const tags = (this.getNodeParameter('tags', 0) || '') as string;
-	if (tags !== '') {
-		body.tags = tags.split(',').map((t: string) => t.trim());
-	}
+	const instanceName = (this.getNodeParameter('instanceName', 0) || '') as string;
+	body['instanceName'] = instanceName;
 
 	const data = (await client.httpPut(
-		`/publicCloud/project/${projectId}/instance/${instanceId}`,
+		`/cloud/project/${serviceName}/instance/${instanceId}`,
 		body as IDataObject,
-	)) as IDataObject;
+	)) as INodeExecutionData;
 
 	return this.helpers.returnJsonArray([data]);
 }

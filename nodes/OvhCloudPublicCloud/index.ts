@@ -2276,9 +2276,9 @@ import {
 	execute as instanceUpdatePutExecute,
 } from './instance/instanceUpdatePut.operation';
 import {
-	description as instanceVncGetDescription,
-	execute as instanceVncGetExecute,
-} from './instance/instanceVncGet.operation';
+	description as instanceVncPostDescription,
+	execute as instanceVncPostExecute,
+} from './instance/instanceVncPost.operation';
 import {
 	description as networkCreatePrivateNetworkPostDescription,
 	execute as networkCreatePrivateNetworkPostExecute,
@@ -5498,8 +5498,8 @@ export function description(displayOptions: IDisplayOptions): INodeProperties[] 
 				action: 'Update instance',
 			},
 			{
-				name: 'instanceVncGet',
-				value: 'instanceVncGet',
+				name: 'instanceVncPost',
+				value: 'instanceVncPost',
 				action: 'Get instance VNC console',
 			},
 			{
@@ -9321,7 +9321,12 @@ export function description(displayOptions: IDisplayOptions): INodeProperties[] 
 			show: { publicCloudOperation: ['kubeUpdatePut'] },
 		}) as INodeProperties[]),
 	);
-	properties.push(...instanceActiveMonthlyBillingPostDescription());
+	properties.push(
+		...(instanceActiveMonthlyBillingPostDescription({
+			...displayOptions,
+			show: { publicCloudOperation: ['instanceActiveMonthlyBillingPost'] },
+		}) as INodeProperties[]),
+	);
 	properties.push(
 		...(instanceApplicationAccessPostDescription({
 			...displayOptions,
@@ -9340,8 +9345,18 @@ export function description(displayOptions: IDisplayOptions): INodeProperties[] 
 			show: { publicCloudOperation: ['instanceCreatePost'] },
 		}) as INodeProperties[]),
 	);
-	properties.push(...instanceDeleteDeleteDescription());
-	properties.push(...instanceGetGetDescription());
+	properties.push(
+		...(instanceDeleteDeleteDescription({
+			...displayOptions,
+			show: { publicCloudOperation: ['instanceDeleteDelete'] },
+		}) as INodeProperties[]),
+	);
+	properties.push(
+		...(instanceGetGetDescription({
+			...displayOptions,
+			show: { publicCloudOperation: ['instanceGetGet'] },
+		}) as INodeProperties[]),
+	);
 	properties.push(
 		...(instanceGroupCreatePostDescription({
 			...displayOptions,
@@ -9357,11 +9372,31 @@ export function description(displayOptions: IDisplayOptions): INodeProperties[] 
 			show: { publicCloudOperation: ['instanceInterfaceCreatePost'] },
 		}) as INodeProperties[]),
 	);
-	properties.push(...instanceInterfaceDeleteDeleteDescription());
-	properties.push(...instanceInterfaceGetGetDescription());
-	properties.push(...instanceInterfaceListGetDescription());
+	properties.push(
+		...(instanceInterfaceDeleteDeleteDescription({
+			...displayOptions,
+			show: { publicCloudOperation: ['instanceInterfaceDeleteDelete'] },
+		}) as INodeProperties[]),
+	);
+	properties.push(
+		...(instanceInterfaceGetGetDescription({
+			...displayOptions,
+			show: { publicCloudOperation: ['instanceInterfaceGetGet'] },
+		}) as INodeProperties[]),
+	);
+	properties.push(
+		...(instanceInterfaceListGetDescription({
+			...displayOptions,
+			show: { publicCloudOperation: ['instanceInterfaceListGet'] },
+		}) as INodeProperties[]),
+	);
 	properties.push(...instanceListGetDescription());
-	properties.push(...instanceRebootPostDescription());
+	properties.push(
+		...(instanceRebootPostDescription({
+			...displayOptions,
+			show: { publicCloudOperation: ['instanceRebootPost'] },
+		}) as INodeProperties[]),
+	);
 	properties.push(
 		...(instanceReinstallPostDescription({
 			...displayOptions,
@@ -9380,24 +9415,54 @@ export function description(displayOptions: IDisplayOptions): INodeProperties[] 
 			show: { publicCloudOperation: ['instanceResizePost'] },
 		}) as INodeProperties[]),
 	);
-	properties.push(...instanceResumePostDescription());
-	properties.push(...instanceShelvePostDescription());
+	properties.push(
+		...(instanceResumePostDescription({
+			...displayOptions,
+			show: { publicCloudOperation: ['instanceResumePost'] },
+		}) as INodeProperties[]),
+	);
+	properties.push(
+		...(instanceShelvePostDescription({
+			...displayOptions,
+			show: { publicCloudOperation: ['instanceShelvePost'] },
+		}) as INodeProperties[]),
+	);
 	properties.push(
 		...(instanceSnapshotPostDescription({
 			...displayOptions,
 			show: { publicCloudOperation: ['instanceSnapshotPost'] },
 		}) as INodeProperties[]),
 	);
-	properties.push(...instanceStartPostDescription());
-	properties.push(...instanceStopPostDescription());
-	properties.push(...instanceUnshelvePostDescription());
+	properties.push(
+		...(instanceStartPostDescription({
+			...displayOptions,
+			show: { publicCloudOperation: ['instanceStartPost'] },
+		}) as INodeProperties[]),
+	);
+	properties.push(
+		...(instanceStopPostDescription({
+			...displayOptions,
+			show: { publicCloudOperation: ['instanceStopPost'] },
+		}) as INodeProperties[]),
+	);
+	properties.push(
+		...(instanceUnshelvePostDescription({
+			...displayOptions,
+			show: { publicCloudOperation: ['instanceUnshelvePost'] },
+		}) as INodeProperties[]),
+	);
 	properties.push(
 		...(instanceUpdatePutDescription({
 			...displayOptions,
 			show: { publicCloudOperation: ['instanceUpdatePut'] },
 		}) as INodeProperties[]),
 	);
-	properties.push(...instanceVncGetDescription());
+	properties.push(
+		...(instanceVncPostDescription({
+			...displayOptions,
+			show: { publicCloudOperation: ['instanceVncPost'] },
+		}) as INodeProperties[]),
+	);
 	properties.push(
 		...(networkCreatePrivateNetworkPostDescription({
 			...displayOptions,
@@ -11401,8 +11466,8 @@ export async function execute(
 			return instanceUnshelvePostExecute.call(this);
 		case 'instanceUpdatePut':
 			return instanceUpdatePutExecute.call(this);
-		case 'instanceVncGet':
-			return instanceVncGetExecute.call(this);
+		case 'instanceVncPost':
+			return instanceVncPostExecute.call(this);
 		case 'networkCreatePrivateNetworkPost':
 			return networkCreatePrivateNetworkPostExecute.call(this);
 		case 'networkCreateSubnetPost':

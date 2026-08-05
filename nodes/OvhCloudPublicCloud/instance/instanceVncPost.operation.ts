@@ -44,10 +44,10 @@ export function description(displayOptions: IDisplayOptions): INodeProperties[] 
 }
 
 /**
- * Executes the Shelve Instance operation.
+ * Executes the Get Instance VNC operation.
  *
  * HTTP method: POST
- * Endpoint: /cloud/project/{serviceName}/instance/{instanceId}/shelve
+ * Endpoint: /cloud/project/{serviceName}/instance/{instanceId}/vnc
  */
 export async function execute(this: IExecuteFunctions): Promise<INodeExecutionData[]> {
 	const client = new ApiClient(this);
@@ -56,7 +56,7 @@ export async function execute(this: IExecuteFunctions): Promise<INodeExecutionDa
 	}) as string;
 	const instanceId = this.getNodeParameter('instanceId', 0) as string;
 	const data = (await client.httpPost(
-		`/cloud/project/${serviceName}/instance/${instanceId}/shelve`,
+		`/cloud/project/${serviceName}/instance/${instanceId}/vnc`,
 	)) as INodeExecutionData;
 
 	return this.helpers.returnJsonArray([data]);

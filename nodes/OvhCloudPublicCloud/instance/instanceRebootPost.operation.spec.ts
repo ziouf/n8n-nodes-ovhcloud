@@ -15,9 +15,14 @@ import { ApiClient } from '../../../shared/transport/ApiClient';
 
 describe('instance instanceRebootPost operation', () => {
 	describe('description', () => {
-		it('should return empty description', () => {
-			const result = description();
-			expect(result).toHaveLength(0);
+		it('should return required parameters', () => {
+			const result = description({ show: {} });
+			expect(result.length).toBeGreaterThanOrEqual(2);
+			expect(result[1]).toMatchObject({
+				displayName: 'Instance ID',
+				name: 'instanceId',
+				required: true,
+			});
 		});
 	});
 
@@ -39,13 +44,15 @@ describe('instance instanceRebootPost operation', () => {
 				(param: string): string | undefined => {
 					if (param === 'publicCloudProjectId') return '12345678-1234-1234-1234-1234567890ab';
 					if (param === 'instanceId') return 'test-instance-id';
+					if (param === 'type') return 'hard';
 					return '';
 				},
 			);
 
 			const result = await execute.call(mockExecuteFunctions);
 			expect(client.httpPost).toHaveBeenCalledWith(
-				'/publicCloud/project/12345678-1234-1234-1234-1234567890ab/instance/test-instance-id/reboot',
+				'/cloud/project/12345678-1234-1234-1234-1234567890ab/instance/test-instance-id/reboot',
+				{ type: 'hard' },
 			);
 			expect(result).toEqual([mockData]);
 		});

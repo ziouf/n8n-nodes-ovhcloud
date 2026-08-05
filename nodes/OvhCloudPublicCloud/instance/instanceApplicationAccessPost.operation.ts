@@ -1,12 +1,12 @@
 import type {
-	IDataObject,
+	IDisplayOptions,
 	IExecuteFunctions,
 	INodeExecutionData,
-	IDisplayOptions,
+	INodeProperties,
 } from 'n8n-workflow';
 import { ApiClient } from '../../../shared/transport/ApiClient';
 
-export function description(displayOptions: IDisplayOptions) {
+export function description(displayOptions: IDisplayOptions): INodeProperties[] {
 	return [
 		{
 			displayName: 'Public Cloud Project',
@@ -32,13 +32,12 @@ export function description(displayOptions: IDisplayOptions) {
 			displayOptions,
 		},
 		{
-			displayName: 'SSH Key',
-			name: 'sshKey',
+			displayName: 'Instance ID',
+			name: 'instanceId',
 			type: 'string',
 			default: '',
 			required: true,
-			description:
-				'The SSH key to use for application access (e.g. ssh-xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx)',
+			description: 'The UUID of the instance (e.g. 12345678-1234-1234-1234-1234567890ab)',
 			displayOptions,
 		},
 	];
@@ -48,22 +47,17 @@ export function description(displayOptions: IDisplayOptions) {
  * Executes the Application Access Instance operation.
  *
  * HTTP method: POST
- * Endpoint: /publicCloud/project/{projectId}/instance/{instanceId}/applicationAccess
+ * Endpoint: /cloud/project/{serviceName}/instance/{instanceId}/applicationAccess
  */
 export async function execute(this: IExecuteFunctions): Promise<INodeExecutionData[]> {
 	const client = new ApiClient(this);
-	const projectId = this.getNodeParameter('publicCloudProjectId', 0, '', {
+	const serviceName = this.getNodeParameter('publicCloudProjectId', 0, '', {
 		extractValue: true,
 	}) as string;
 	const instanceId = this.getNodeParameter('instanceId', 0) as string;
-	const sshKey = (this.getNodeParameter('sshKey', 0) || '') as string;
-
-	const body: IDataObject = { sshKey };
-
 	const data = (await client.httpPost(
-		`/publicCloud/project/${projectId}/instance/${instanceId}/applicationAccess`,
-		body as IDataObject,
-	)) as IDataObject;
+		`/cloud/project/${serviceName}/instance/${instanceId}/applicationAccess`,
+	)) as INodeExecutionData;
 
 	return this.helpers.returnJsonArray([data]);
 }

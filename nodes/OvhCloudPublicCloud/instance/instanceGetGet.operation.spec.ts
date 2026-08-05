@@ -15,9 +15,14 @@ import { ApiClient } from '../../../shared/transport/ApiClient';
 
 describe('instance instanceGetGet operation', () => {
 	describe('description', () => {
-		it('should return empty description', () => {
-			const result = description();
-			expect(result).toHaveLength(0);
+		it('should return required parameters', () => {
+			const result = description({ show: {} });
+			expect(result.length).toBeGreaterThanOrEqual(2);
+			expect(result[1]).toMatchObject({
+				displayName: 'Instance ID',
+				name: 'instanceId',
+				required: true,
+			});
 		});
 	});
 
@@ -45,7 +50,7 @@ describe('instance instanceGetGet operation', () => {
 
 			const result = await execute.call(mockExecuteFunctions);
 			expect(client.httpGet).toHaveBeenCalledWith(
-				'/publicCloud/project/12345678-1234-1234-1234-1234567890ab/instance/test-instance-id',
+				'/cloud/project/12345678-1234-1234-1234-1234567890ab/instance/test-instance-id',
 			);
 			expect(result).toEqual([mockData]);
 		});

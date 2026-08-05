@@ -1,6 +1,6 @@
 # OVHcloud API Coverage Report
 
-> Généré par `scripts/compare-coverage.js` le 2026-08-05T03:11:00.232Z. Document généré automatiquement — ne pas éditer à la main.
+> Généré par `scripts/compare-coverage.js` le 2026-08-05T05:46:12.551Z. Document généré automatiquement — ne pas éditer à la main.
 
 Ce rapport compare les endpoints déclarés dans les specs Swagger 2.0 (`docs/api-specs/v1|v2/*.json`) avec les appels HTTP réellement présents dans les nodes (`nodes/**/*.operation.ts`).
 
@@ -8,8 +8,8 @@ Ce rapport compare les endpoints déclarés dans les specs Swagger 2.0 (`docs/ap
 
 - **Specs analysées** : 84 (v1: 70, v2: 14)
 - **Endpoints déclarés (specs avec endpoints)** : 6624
-- **Endpoints couverts par les nodes** : 3214
-- **Couverture globale** : **48.5%**
+- **Endpoints couverts par les nodes** : 3234
+- **Couverture globale** : **48.8%**
 - **Specs sans node associé** : 21
 - **Specs placeholder (aucun endpoint)** : 1
 
@@ -40,7 +40,7 @@ Triée par pourcentage croissant (moins bonne couverture en premier).
 | licenseRedhat (v1) | 9 | 0 | 9 | 0% |
 | licenseSqlserver (v1) | 9 | 0 | 9 | 0% |
 | packSiptrunk (v1) | 5 | 0 | 5 | 0% |
-| cloud (v1) | 1121 | 2 | 1119 | 0.2% |
+| cloud (v1) | 1121 | 22 | 1099 | 2% |
 | email (v1) | 60 | 2 | 58 | 3.3% |
 | order (v1) | 816 | 36 | 780 | 4.4% |
 | ipLoadbalancing (v1) | 121 | 9 | 112 | 7.4% |
@@ -975,7 +975,7 @@ _Nodes associés : (aucun node)_
 | GET | `/pack/siptrunk/{x}/serviceInfos` |
 | PUT | `/pack/siptrunk/{x}/serviceInfos` |
 
-### cloud (v1) — 1119 manquants
+### cloud (v1) — 1099 manquants
 
 _Nodes associés : OvhCloudPublicCloud, OvhCloudPublicCloudAi_
 
@@ -1775,26 +1775,6 @@ _Nodes associés : OvhCloudPublicCloud, OvhCloudPublicCloudAi_
 | GET | `/cloud/project/{x}/image/{x}` |
 | GET | `/cloud/project/{x}/instance` |
 | POST | `/cloud/project/{x}/instance` |
-| DELETE | `/cloud/project/{x}/instance/{x}` |
-| GET | `/cloud/project/{x}/instance/{x}` |
-| PUT | `/cloud/project/{x}/instance/{x}` |
-| POST | `/cloud/project/{x}/instance/{x}/activeMonthlyBilling` |
-| POST | `/cloud/project/{x}/instance/{x}/applicationAccess` |
-| GET | `/cloud/project/{x}/instance/{x}/interface` |
-| POST | `/cloud/project/{x}/instance/{x}/interface` |
-| DELETE | `/cloud/project/{x}/instance/{x}/interface/{x}` |
-| GET | `/cloud/project/{x}/instance/{x}/interface/{x}` |
-| POST | `/cloud/project/{x}/instance/{x}/reboot` |
-| POST | `/cloud/project/{x}/instance/{x}/reinstall` |
-| POST | `/cloud/project/{x}/instance/{x}/rescueMode` |
-| POST | `/cloud/project/{x}/instance/{x}/resize` |
-| POST | `/cloud/project/{x}/instance/{x}/resume` |
-| POST | `/cloud/project/{x}/instance/{x}/shelve` |
-| POST | `/cloud/project/{x}/instance/{x}/snapshot` |
-| POST | `/cloud/project/{x}/instance/{x}/start` |
-| POST | `/cloud/project/{x}/instance/{x}/stop` |
-| POST | `/cloud/project/{x}/instance/{x}/unshelve` |
-| POST | `/cloud/project/{x}/instance/{x}/vnc` |
 | POST | `/cloud/project/{x}/instance/bulk` |
 | GET | `/cloud/project/{x}/instance/group` |
 | POST | `/cloud/project/{x}/instance/group` |

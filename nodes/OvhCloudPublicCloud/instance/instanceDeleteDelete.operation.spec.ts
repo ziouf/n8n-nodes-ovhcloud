@@ -15,9 +15,14 @@ import { ApiClient } from '../../../shared/transport/ApiClient';
 
 describe('instance instanceDeleteDelete operation', () => {
 	describe('description', () => {
-		it('should return empty description', () => {
-			const result = description();
-			expect(result).toHaveLength(0);
+		it('should return required parameters', () => {
+			const result = description({ show: {} });
+			expect(result.length).toBeGreaterThanOrEqual(2);
+			expect(result[1]).toMatchObject({
+				displayName: 'Instance ID',
+				name: 'instanceId',
+				required: true,
+			});
 		});
 	});
 
@@ -32,7 +37,7 @@ describe('instance instanceDeleteDelete operation', () => {
 
 		it('should delete instance via DELETE', async () => {
 			const client = new ApiClient(mockExecuteFunctions) as any;
-			client.httpDelete.mockResolvedValue({ ok: true });
+			client.httpDelete.mockResolvedValue(undefined);
 
 			mockExecuteFunctions.getNodeParameter.mockImplementation(
 				(param: string): string | undefined => {
@@ -44,7 +49,7 @@ describe('instance instanceDeleteDelete operation', () => {
 
 			const result = await execute.call(mockExecuteFunctions);
 			expect(client.httpDelete).toHaveBeenCalledWith(
-				'/publicCloud/project/12345678-1234-1234-1234-1234567890ab/instance/test-instance-id',
+				'/cloud/project/12345678-1234-1234-1234-1234567890ab/instance/test-instance-id',
 			);
 			expect(result).toEqual([{ deleted: 'test-instance-id' }]);
 		});

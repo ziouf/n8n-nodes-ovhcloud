@@ -1,5 +1,5 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import { description, execute } from './instanceVncGet.operation';
+import { description, execute } from './instanceVncPost.operation';
 
 jest.mock('../../../shared/transport/ApiClient', () => {
 	const mockHttpClient = {
@@ -13,11 +13,16 @@ jest.mock('../../../shared/transport/ApiClient', () => {
 
 import { ApiClient } from '../../../shared/transport/ApiClient';
 
-describe('instance instanceVncGet operation', () => {
+describe('instance instanceVncPost operation', () => {
 	describe('description', () => {
-		it('should return empty description', () => {
-			const result = description();
-			expect(result).toHaveLength(0);
+		it('should return required parameters', () => {
+			const result = description({ show: {} });
+			expect(result.length).toBeGreaterThanOrEqual(2);
+			expect(result[1]).toMatchObject({
+				displayName: 'Instance ID',
+				name: 'instanceId',
+				required: true,
+			});
 		});
 	});
 
@@ -30,10 +35,10 @@ describe('instance instanceVncGet operation', () => {
 			};
 		});
 
-		it('should get VNC details via GET', async () => {
+		it('should get VNC access via POST', async () => {
 			const mockData = { vncUrl: 'vnc://example.com?token=abc123' };
 			const client = new ApiClient(mockExecuteFunctions) as any;
-			client.httpGet.mockResolvedValue(mockData);
+			client.httpPost.mockResolvedValue(mockData);
 
 			mockExecuteFunctions.getNodeParameter.mockImplementation(
 				(param: string): string | undefined => {
@@ -44,8 +49,8 @@ describe('instance instanceVncGet operation', () => {
 			);
 
 			const result = await execute.call(mockExecuteFunctions);
-			expect(client.httpGet).toHaveBeenCalledWith(
-				'/publicCloud/project/12345678-1234-1234-1234-1234567890ab/instance/test-instance-id/vnc',
+			expect(client.httpPost).toHaveBeenCalledWith(
+				'/cloud/project/12345678-1234-1234-1234-1234567890ab/instance/test-instance-id/vnc',
 			);
 			expect(result).toEqual([mockData]);
 		});

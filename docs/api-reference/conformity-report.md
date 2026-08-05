@@ -1,16 +1,16 @@
 # OVHcloud API Conformity Report
 
-> Généré par `scripts/audit-conformity.js` le 2026-08-05T03:11:00.769Z. Document généré automatiquement — ne pas éditer à la main.
+> Généré par `scripts/audit-conformity.js` le 2026-08-05T05:23:01.476Z. Document généré automatiquement — ne pas éditer à la main.
 
 Ce rapport vérifie que les opérations des nodes respectent leur spec (méthode, chemin, paramètres path requis, query requis, champs body requis).
 
 ## Résumé
 
 - **Opérations auditées** : 5451
-- **Conformes** : 3052
-- **Non conformes** : 2399
-- **Sans correspondance spec** (informatif) : 2126
-- **Taux de conformité** : **56%**
+- **Conformes** : 3072
+- **Non conformes** : 2379
+- **Sans correspondance spec** (informatif) : 2106
+- **Taux de conformité** : **56.4%**
 
 ## Conformité par spec
 
@@ -54,7 +54,7 @@ Triée par taux de non-conformité décroissant.
 | domain (v1) | 119 | 109 | 1 | 91.6% |
 | telephony (v1) | 644 | 602 | 5 | 93.5% |
 | publicCloud (v2) | 718 | 26 | 4 | 3.6% |
-| cloud (v1) | 718 | 1 | 1 | 0.1% |
+| cloud (v1) | 718 | 21 | 1 | 2.9% |
 | price (v1) | 581 | 581 | 0 | 100% |
 | sms (v1) | 126 | 124 | 0 | 98.4% |
 | domain (v2) | 119 | 9 | 0 | 7.6% |
@@ -1039,26 +1039,6 @@ Ces opérations appellent un chemin qui ne correspond à aucun endpoint de la sp
 | cloud (v1) | GET | `/publicCloud/project/{x}/image/{x}` | OvhCloudPublicCloud/image/getDetailGet.operation.ts |
 | cloud (v1) | GET | `/publicCloud/project/{x}/instance` | OvhCloudPublicCloud/instance/instanceListGet.operation.ts |
 | cloud (v1) | POST | `/publicCloud/project/{x}/instance` | OvhCloudPublicCloud/instance/instanceCreatePost.operation.ts |
-| cloud (v1) | DELETE | `/publicCloud/project/{x}/instance/{x}` | OvhCloudPublicCloud/instance/instanceDeleteDelete.operation.ts |
-| cloud (v1) | GET | `/publicCloud/project/{x}/instance/{x}` | OvhCloudPublicCloud/instance/instanceGetGet.operation.ts |
-| cloud (v1) | PUT | `/publicCloud/project/{x}/instance/{x}` | OvhCloudPublicCloud/instance/instanceUpdatePut.operation.ts |
-| cloud (v1) | POST | `/publicCloud/project/{x}/instance/{x}/activeMonthlyBilling` | OvhCloudPublicCloud/instance/instanceActiveMonthlyBillingPost.operation.ts |
-| cloud (v1) | POST | `/publicCloud/project/{x}/instance/{x}/applicationAccess` | OvhCloudPublicCloud/instance/instanceApplicationAccessPost.operation.ts |
-| cloud (v1) | GET | `/publicCloud/project/{x}/instance/{x}/interface` | OvhCloudPublicCloud/instance/instanceInterfaceListGet.operation.ts |
-| cloud (v1) | POST | `/publicCloud/project/{x}/instance/{x}/interface` | OvhCloudPublicCloud/instance/instanceInterfaceCreatePost.operation.ts |
-| cloud (v1) | DELETE | `/publicCloud/project/{x}/instance/{x}/interface/{x}` | OvhCloudPublicCloud/instance/instanceInterfaceDeleteDelete.operation.ts |
-| cloud (v1) | GET | `/publicCloud/project/{x}/instance/{x}/interface/{x}` | OvhCloudPublicCloud/instance/instanceInterfaceGetGet.operation.ts |
-| cloud (v1) | POST | `/publicCloud/project/{x}/instance/{x}/reboot` | OvhCloudPublicCloud/instance/instanceRebootPost.operation.ts |
-| cloud (v1) | POST | `/publicCloud/project/{x}/instance/{x}/reinstall` | OvhCloudPublicCloud/instance/instanceReinstallPost.operation.ts |
-| cloud (v1) | POST | `/publicCloud/project/{x}/instance/{x}/rescueMode` | OvhCloudPublicCloud/instance/instanceRescueModePost.operation.ts |
-| cloud (v1) | POST | `/publicCloud/project/{x}/instance/{x}/resize` | OvhCloudPublicCloud/instance/instanceResizePost.operation.ts |
-| cloud (v1) | POST | `/publicCloud/project/{x}/instance/{x}/resume` | OvhCloudPublicCloud/instance/instanceResumePost.operation.ts |
-| cloud (v1) | POST | `/publicCloud/project/{x}/instance/{x}/shelve` | OvhCloudPublicCloud/instance/instanceShelvePost.operation.ts |
-| cloud (v1) | POST | `/publicCloud/project/{x}/instance/{x}/snapshot` | OvhCloudPublicCloud/instance/instanceSnapshotPost.operation.ts |
-| cloud (v1) | POST | `/publicCloud/project/{x}/instance/{x}/start` | OvhCloudPublicCloud/instance/instanceStartPost.operation.ts |
-| cloud (v1) | POST | `/publicCloud/project/{x}/instance/{x}/stop` | OvhCloudPublicCloud/instance/instanceStopPost.operation.ts |
-| cloud (v1) | POST | `/publicCloud/project/{x}/instance/{x}/unshelve` | OvhCloudPublicCloud/instance/instanceUnshelvePost.operation.ts |
-| cloud (v1) | GET | `/publicCloud/project/{x}/instance/{x}/vnc` | OvhCloudPublicCloud/instance/instanceVncGet.operation.ts |
 | cloud (v1) | POST | `/publicCloud/project/{x}/instance/bulk` | OvhCloudPublicCloud/instance/instanceBulkPost.operation.ts |
 | cloud (v1) | GET | `/publicCloud/project/{x}/instance/group` | OvhCloudPublicCloud/instance/instanceGroupListGet.operation.ts |
 | cloud (v1) | POST | `/publicCloud/project/{x}/instance/group` | OvhCloudPublicCloud/instance/instanceGroupCreatePost.operation.ts |
@@ -1666,6 +1646,26 @@ Ces opérations appellent un chemin qui ne correspond à aucun endpoint de la sp
 | pack (v1) | POST | `/pack/{x}/reinstall` | OvhCloudPack/reinstallPost.operation.ts |
 | pack (v1) | GET | `/pack/{x}/serviceInfos` | OvhCloudPack/serviceInfosGetGet.operation.ts |
 | publicCloud (v2) | POST | `/cloud/project/{x}/ai/data/region/{x}/alias` | OvhCloudPublicCloudAi/dataStore/dataCreatePost.operation.ts |
+| publicCloud (v2) | DELETE | `/cloud/project/{x}/instance/{x}` | OvhCloudPublicCloud/instance/instanceDeleteDelete.operation.ts |
+| publicCloud (v2) | GET | `/cloud/project/{x}/instance/{x}` | OvhCloudPublicCloud/instance/instanceGetGet.operation.ts |
+| publicCloud (v2) | PUT | `/cloud/project/{x}/instance/{x}` | OvhCloudPublicCloud/instance/instanceUpdatePut.operation.ts |
+| publicCloud (v2) | POST | `/cloud/project/{x}/instance/{x}/activeMonthlyBilling` | OvhCloudPublicCloud/instance/instanceActiveMonthlyBillingPost.operation.ts |
+| publicCloud (v2) | POST | `/cloud/project/{x}/instance/{x}/applicationAccess` | OvhCloudPublicCloud/instance/instanceApplicationAccessPost.operation.ts |
+| publicCloud (v2) | GET | `/cloud/project/{x}/instance/{x}/interface` | OvhCloudPublicCloud/instance/instanceInterfaceListGet.operation.ts |
+| publicCloud (v2) | POST | `/cloud/project/{x}/instance/{x}/interface` | OvhCloudPublicCloud/instance/instanceInterfaceCreatePost.operation.ts |
+| publicCloud (v2) | DELETE | `/cloud/project/{x}/instance/{x}/interface/{x}` | OvhCloudPublicCloud/instance/instanceInterfaceDeleteDelete.operation.ts |
+| publicCloud (v2) | GET | `/cloud/project/{x}/instance/{x}/interface/{x}` | OvhCloudPublicCloud/instance/instanceInterfaceGetGet.operation.ts |
+| publicCloud (v2) | POST | `/cloud/project/{x}/instance/{x}/reboot` | OvhCloudPublicCloud/instance/instanceRebootPost.operation.ts |
+| publicCloud (v2) | POST | `/cloud/project/{x}/instance/{x}/reinstall` | OvhCloudPublicCloud/instance/instanceReinstallPost.operation.ts |
+| publicCloud (v2) | POST | `/cloud/project/{x}/instance/{x}/rescueMode` | OvhCloudPublicCloud/instance/instanceRescueModePost.operation.ts |
+| publicCloud (v2) | POST | `/cloud/project/{x}/instance/{x}/resize` | OvhCloudPublicCloud/instance/instanceResizePost.operation.ts |
+| publicCloud (v2) | POST | `/cloud/project/{x}/instance/{x}/resume` | OvhCloudPublicCloud/instance/instanceResumePost.operation.ts |
+| publicCloud (v2) | POST | `/cloud/project/{x}/instance/{x}/shelve` | OvhCloudPublicCloud/instance/instanceShelvePost.operation.ts |
+| publicCloud (v2) | POST | `/cloud/project/{x}/instance/{x}/snapshot` | OvhCloudPublicCloud/instance/instanceSnapshotPost.operation.ts |
+| publicCloud (v2) | POST | `/cloud/project/{x}/instance/{x}/start` | OvhCloudPublicCloud/instance/instanceStartPost.operation.ts |
+| publicCloud (v2) | POST | `/cloud/project/{x}/instance/{x}/stop` | OvhCloudPublicCloud/instance/instanceStopPost.operation.ts |
+| publicCloud (v2) | POST | `/cloud/project/{x}/instance/{x}/unshelve` | OvhCloudPublicCloud/instance/instanceUnshelvePost.operation.ts |
+| publicCloud (v2) | POST | `/cloud/project/{x}/instance/{x}/vnc` | OvhCloudPublicCloud/instance/instanceVncPost.operation.ts |
 | publicCloud (v2) | GET | `/cloud/project/{x}/kube` | OvhCloudPublicCloud/kube/kubeListGet.operation.ts |
 | publicCloud (v2) | GET | `/publicCloud/project/{x}/acl` | OvhCloudPublicCloud/acl/listGet.operation.ts |
 | publicCloud (v2) | POST | `/publicCloud/project/{x}/acl` | OvhCloudPublicCloud/acl/createPost.operation.ts |
@@ -2153,26 +2153,6 @@ Ces opérations appellent un chemin qui ne correspond à aucun endpoint de la sp
 | publicCloud (v2) | GET | `/publicCloud/project/{x}/image/{x}` | OvhCloudPublicCloud/image/getDetailGet.operation.ts |
 | publicCloud (v2) | GET | `/publicCloud/project/{x}/instance` | OvhCloudPublicCloud/instance/instanceListGet.operation.ts |
 | publicCloud (v2) | POST | `/publicCloud/project/{x}/instance` | OvhCloudPublicCloud/instance/instanceCreatePost.operation.ts |
-| publicCloud (v2) | DELETE | `/publicCloud/project/{x}/instance/{x}` | OvhCloudPublicCloud/instance/instanceDeleteDelete.operation.ts |
-| publicCloud (v2) | GET | `/publicCloud/project/{x}/instance/{x}` | OvhCloudPublicCloud/instance/instanceGetGet.operation.ts |
-| publicCloud (v2) | PUT | `/publicCloud/project/{x}/instance/{x}` | OvhCloudPublicCloud/instance/instanceUpdatePut.operation.ts |
-| publicCloud (v2) | POST | `/publicCloud/project/{x}/instance/{x}/activeMonthlyBilling` | OvhCloudPublicCloud/instance/instanceActiveMonthlyBillingPost.operation.ts |
-| publicCloud (v2) | POST | `/publicCloud/project/{x}/instance/{x}/applicationAccess` | OvhCloudPublicCloud/instance/instanceApplicationAccessPost.operation.ts |
-| publicCloud (v2) | GET | `/publicCloud/project/{x}/instance/{x}/interface` | OvhCloudPublicCloud/instance/instanceInterfaceListGet.operation.ts |
-| publicCloud (v2) | POST | `/publicCloud/project/{x}/instance/{x}/interface` | OvhCloudPublicCloud/instance/instanceInterfaceCreatePost.operation.ts |
-| publicCloud (v2) | DELETE | `/publicCloud/project/{x}/instance/{x}/interface/{x}` | OvhCloudPublicCloud/instance/instanceInterfaceDeleteDelete.operation.ts |
-| publicCloud (v2) | GET | `/publicCloud/project/{x}/instance/{x}/interface/{x}` | OvhCloudPublicCloud/instance/instanceInterfaceGetGet.operation.ts |
-| publicCloud (v2) | POST | `/publicCloud/project/{x}/instance/{x}/reboot` | OvhCloudPublicCloud/instance/instanceRebootPost.operation.ts |
-| publicCloud (v2) | POST | `/publicCloud/project/{x}/instance/{x}/reinstall` | OvhCloudPublicCloud/instance/instanceReinstallPost.operation.ts |
-| publicCloud (v2) | POST | `/publicCloud/project/{x}/instance/{x}/rescueMode` | OvhCloudPublicCloud/instance/instanceRescueModePost.operation.ts |
-| publicCloud (v2) | POST | `/publicCloud/project/{x}/instance/{x}/resize` | OvhCloudPublicCloud/instance/instanceResizePost.operation.ts |
-| publicCloud (v2) | POST | `/publicCloud/project/{x}/instance/{x}/resume` | OvhCloudPublicCloud/instance/instanceResumePost.operation.ts |
-| publicCloud (v2) | POST | `/publicCloud/project/{x}/instance/{x}/shelve` | OvhCloudPublicCloud/instance/instanceShelvePost.operation.ts |
-| publicCloud (v2) | POST | `/publicCloud/project/{x}/instance/{x}/snapshot` | OvhCloudPublicCloud/instance/instanceSnapshotPost.operation.ts |
-| publicCloud (v2) | POST | `/publicCloud/project/{x}/instance/{x}/start` | OvhCloudPublicCloud/instance/instanceStartPost.operation.ts |
-| publicCloud (v2) | POST | `/publicCloud/project/{x}/instance/{x}/stop` | OvhCloudPublicCloud/instance/instanceStopPost.operation.ts |
-| publicCloud (v2) | POST | `/publicCloud/project/{x}/instance/{x}/unshelve` | OvhCloudPublicCloud/instance/instanceUnshelvePost.operation.ts |
-| publicCloud (v2) | GET | `/publicCloud/project/{x}/instance/{x}/vnc` | OvhCloudPublicCloud/instance/instanceVncGet.operation.ts |
 | publicCloud (v2) | POST | `/publicCloud/project/{x}/instance/bulk` | OvhCloudPublicCloud/instance/instanceBulkPost.operation.ts |
 | publicCloud (v2) | GET | `/publicCloud/project/{x}/instance/group` | OvhCloudPublicCloud/instance/instanceGroupListGet.operation.ts |
 | publicCloud (v2) | POST | `/publicCloud/project/{x}/instance/group` | OvhCloudPublicCloud/instance/instanceGroupCreatePost.operation.ts |

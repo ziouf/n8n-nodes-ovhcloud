@@ -15,21 +15,12 @@ import { ApiClient } from '../../../shared/transport/ApiClient';
 
 describe('instance instanceInterfaceCreatePost operation', () => {
 	describe('description', () => {
-		it('should return all required parameters', () => {
+		it('should return required parameters', () => {
 			const result = description({ show: {} });
-			expect(result.length).toBeGreaterThanOrEqual(1);
-			expect(result[0]).toMatchObject({
-				displayName: 'Public Cloud Project',
-				name: 'publicCloudProjectId',
-				type: 'resourceLocator',
-				default: { mode: 'list', value: '' },
-				required: true,
-			});
+			expect(result.length).toBeGreaterThanOrEqual(2);
 			expect(result[1]).toMatchObject({
-				displayName: 'Network ID',
-				name: 'networkId',
-				type: 'string',
-				default: '',
+				displayName: 'Instance ID',
+				name: 'instanceId',
 				required: true,
 			});
 		});
@@ -58,12 +49,8 @@ describe('instance instanceInterfaceCreatePost operation', () => {
 							return 'test-instance-id';
 						case 'networkId':
 							return 'net-12345';
-						case 'subnetId':
-							return 'subnet-12345';
-						case 'ipAddress':
+						case 'ip':
 							return '10.0.0.5';
-						case 'macAddress':
-							return '';
 						default:
 							return '';
 					}
@@ -72,8 +59,8 @@ describe('instance instanceInterfaceCreatePost operation', () => {
 
 			const result = await execute.call(mockExecuteFunctions);
 			expect(client.httpPost).toHaveBeenCalledWith(
-				'/publicCloud/project/12345678-1234-1234-1234-1234567890ab/instance/test-instance-id/interface',
-				{ networkId: 'net-12345', subnetId: 'subnet-12345', ipAddress: '10.0.0.5' },
+				'/cloud/project/12345678-1234-1234-1234-1234567890ab/instance/test-instance-id/interface',
+				{ networkId: 'net-12345', ip: '10.0.0.5' },
 			);
 			expect(result).toEqual([mockData]);
 		});
