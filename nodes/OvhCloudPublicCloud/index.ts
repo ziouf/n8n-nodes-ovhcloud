@@ -225,19 +225,169 @@ import {
 } from './database/redis/backupListGet.operation';
 
 import {
-	description as redisBackupCreatePostDescription,
-	execute as redisBackupCreatePostExecute,
-} from './database/redis/backupCreatePost.operation';
-
-import {
 	description as redisBackupGetGetDescription,
 	execute as redisBackupGetGetExecute,
 } from './database/redis/backupGetGet.operation';
 
 import {
-	description as redisBackupDeleteDeleteDescription,
-	execute as redisBackupDeleteDeleteExecute,
-} from './database/redis/backupDeleteDelete.operation';
+	description as redisAdvancedConfigurationGetDescription,
+	execute as redisAdvancedConfigurationGetExecute,
+} from './database/redis/advancedConfigurationGet.operation';
+
+import {
+	description as redisAdvancedConfigurationUpdatePutDescription,
+	execute as redisAdvancedConfigurationUpdatePutExecute,
+} from './database/redis/advancedConfigurationUpdatePut.operation';
+
+import {
+	description as redisCapabilitiesAdvancedConfigurationGetDescription,
+	execute as redisCapabilitiesAdvancedConfigurationGetExecute,
+} from './database/redis/capabilitiesAdvancedConfigurationGet.operation';
+
+import {
+	description as redisCapabilitiesCategoriesGetDescription,
+	execute as redisCapabilitiesCategoriesGetExecute,
+} from './database/redis/capabilitiesCategoriesGet.operation';
+
+import {
+	description as redisCapabilitiesCommandsGetDescription,
+	execute as redisCapabilitiesCommandsGetExecute,
+} from './database/redis/capabilitiesCommandsGet.operation';
+
+import {
+	description as redisCapabilitiesIntegrationGetDescription,
+	execute as redisCapabilitiesIntegrationGetExecute,
+} from './database/redis/capabilitiesIntegrationGet.operation';
+
+import {
+	description as redisIntegrationListGetDescription,
+	execute as redisIntegrationListGetExecute,
+} from './database/redis/integrationListGet.operation';
+
+import {
+	description as redisIntegrationCreatePostDescription,
+	execute as redisIntegrationCreatePostExecute,
+} from './database/redis/integrationCreatePost.operation';
+
+import {
+	description as redisIntegrationGetGetDescription,
+	execute as redisIntegrationGetGetExecute,
+} from './database/redis/integrationGetGet.operation';
+
+import {
+	description as redisIntegrationDeleteDeleteDescription,
+	execute as redisIntegrationDeleteDeleteExecute,
+} from './database/redis/integrationDeleteDelete.operation';
+
+import {
+	description as redisIpRestrictionListGetDescription,
+	execute as redisIpRestrictionListGetExecute,
+} from './database/redis/ipRestrictionListGet.operation';
+
+import {
+	description as redisIpRestrictionCreatePostDescription,
+	execute as redisIpRestrictionCreatePostExecute,
+} from './database/redis/ipRestrictionCreatePost.operation';
+
+import {
+	description as redisIpRestrictionGetGetDescription,
+	execute as redisIpRestrictionGetGetExecute,
+} from './database/redis/ipRestrictionGetGet.operation';
+
+import {
+	description as redisIpRestrictionUpdatePutDescription,
+	execute as redisIpRestrictionUpdatePutExecute,
+} from './database/redis/ipRestrictionUpdatePut.operation';
+
+import {
+	description as redisIpRestrictionDeleteDeleteDescription,
+	execute as redisIpRestrictionDeleteDeleteExecute,
+} from './database/redis/ipRestrictionDeleteDelete.operation';
+
+import {
+	description as redisLogKindListGetDescription,
+	execute as redisLogKindListGetExecute,
+} from './database/redis/logKindListGet.operation';
+
+import {
+	description as redisLogKindGetDescription,
+	execute as redisLogKindGetExecute,
+} from './database/redis/logKindGet.operation';
+
+import {
+	description as redisLogSubscriptionListGetDescription,
+	execute as redisLogSubscriptionListGetExecute,
+} from './database/redis/logSubscriptionListGet.operation';
+
+import {
+	description as redisLogSubscriptionCreatePostDescription,
+	execute as redisLogSubscriptionCreatePostExecute,
+} from './database/redis/logSubscriptionCreatePost.operation';
+
+import {
+	description as redisLogSubscriptionGetGetDescription,
+	execute as redisLogSubscriptionGetGetExecute,
+} from './database/redis/logSubscriptionGetGet.operation';
+
+import {
+	description as redisLogSubscriptionDeleteDeleteDescription,
+	execute as redisLogSubscriptionDeleteDeleteExecute,
+} from './database/redis/logSubscriptionDeleteDelete.operation';
+
+import {
+	description as redisLogUrlCreatePostDescription,
+	execute as redisLogUrlCreatePostExecute,
+} from './database/redis/logUrlCreatePost.operation';
+
+import {
+	description as redisLogsGetDescription,
+	execute as redisLogsGetExecute,
+} from './database/redis/logsGet.operation';
+
+import {
+	description as redisMaintenanceListGetDescription,
+	execute as redisMaintenanceListGetExecute,
+} from './database/redis/maintenanceListGet.operation';
+
+import {
+	description as redisMaintenanceGetDescription,
+	execute as redisMaintenanceGetExecute,
+} from './database/redis/maintenanceGet.operation';
+
+import {
+	description as redisMaintenanceApplyPostDescription,
+	execute as redisMaintenanceApplyPostExecute,
+} from './database/redis/maintenanceApplyPost.operation';
+
+import {
+	description as redisMetricListGetDescription,
+	execute as redisMetricListGetExecute,
+} from './database/redis/metricListGet.operation';
+
+import {
+	description as redisMetricGetDescription,
+	execute as redisMetricGetExecute,
+} from './database/redis/metricGet.operation';
+
+import {
+	description as redisNodeListGetDescription,
+	execute as redisNodeListGetExecute,
+} from './database/redis/nodeListGet.operation';
+
+import {
+	description as redisNodeGetGetDescription,
+	execute as redisNodeGetGetExecute,
+} from './database/redis/nodeGetGet.operation';
+
+import {
+	description as redisPrometheusGetDescription,
+	execute as redisPrometheusGetExecute,
+} from './database/redis/prometheusGet.operation';
+
+import {
+	description as redisPrometheusCredentialsResetPostDescription,
+	execute as redisPrometheusCredentialsResetPostExecute,
+} from './database/redis/prometheusCredentialsResetPost.operation';
 
 import {
 	description as redisUserListGetDescription,
@@ -265,94 +415,9 @@ import {
 } from './database/redis/userDeleteDelete.operation';
 
 import {
-	description as redisNodeListGetDescription,
-	execute as redisNodeListGetExecute,
-} from './database/redis/nodeListGet.operation';
-
-import {
-	description as redisNodeCreatePostDescription,
-	execute as redisNodeCreatePostExecute,
-} from './database/redis/nodeCreatePost.operation';
-
-import {
-	description as redisNodeGetGetDescription,
-	execute as redisNodeGetGetExecute,
-} from './database/redis/nodeGetGet.operation';
-
-import {
-	description as redisNodeUpdatePutDescription,
-	execute as redisNodeUpdatePutExecute,
-} from './database/redis/nodeUpdatePut.operation';
-
-import {
-	description as redisNodeDeleteDeleteDescription,
-	execute as redisNodeDeleteDeleteExecute,
-} from './database/redis/nodeDeleteDelete.operation';
-
-import {
-	description as redisIpRestrictionListGetDescription,
-	execute as redisIpRestrictionListGetExecute,
-} from './database/redis/ipRestrictionListGet.operation';
-
-import {
-	description as redisIpRestrictionCreatePostDescription,
-	execute as redisIpRestrictionCreatePostExecute,
-} from './database/redis/ipRestrictionCreatePost.operation';
-
-import {
-	description as redisLogSubscriptionListGetDescription,
-	execute as redisLogSubscriptionListGetExecute,
-} from './database/redis/logSubscriptionListGet.operation';
-
-import {
-	description as redisLogSubscriptionCreatePostDescription,
-	execute as redisLogSubscriptionCreatePostExecute,
-} from './database/redis/logSubscriptionCreatePost.operation';
-
-import {
-	description as redisLogSubscriptionGetGetDescription,
-	execute as redisLogSubscriptionGetGetExecute,
-} from './database/redis/logSubscriptionGetGet.operation';
-
-import {
-	description as redisMaintenanceGetDescription,
-	execute as redisMaintenanceGetExecute,
-} from './database/redis/maintenanceGet.operation';
-
-import {
-	description as redisMaintenanceUpdatePutDescription,
-	execute as redisMaintenanceUpdatePutExecute,
-} from './database/redis/maintenanceUpdatePut.operation';
-
-import {
-	description as redisMetricGetDescription,
-	execute as redisMetricGetExecute,
-} from './database/redis/metricGet.operation';
-
-import {
-	description as redisPrometheusGetDescription,
-	execute as redisPrometheusGetExecute,
-} from './database/redis/prometheusGet.operation';
-
-import {
-	description as redisCertificateListGetDescription,
-	execute as redisCertificateListGetExecute,
-} from './database/redis/certificateListGet.operation';
-
-import {
-	description as redisCertificateCreatePostDescription,
-	execute as redisCertificateCreatePostExecute,
-} from './database/redis/certificateCreatePost.operation';
-
-import {
-	description as redisIntegrationListGetDescription,
-	execute as redisIntegrationListGetExecute,
-} from './database/redis/integrationListGet.operation';
-
-import {
-	description as redisIntegrationCreatePostDescription,
-	execute as redisIntegrationCreatePostExecute,
-} from './database/redis/integrationCreatePost.operation';
+	description as redisUserCredentialsResetPostDescription,
+	execute as redisUserCredentialsResetPostExecute,
+} from './database/redis/userCredentialsResetPost.operation';
 
 import {
 	description as valkeyClusterListGetDescription,
@@ -3014,49 +3079,199 @@ export function description(displayOptions: IDisplayOptions): INodeProperties[] 
 				action: 'Update a specific Rancher service (plan change)',
 			},
 			{
-				name: 'clusterListGet',
+				name: 'redisClusterListGet',
 				value: 'redisClusterListGet',
 				action: 'List Redis clusters in a project',
 			},
 			{
-				name: 'clusterGetGet',
+				name: 'redisClusterGetGet',
 				value: 'redisClusterGetGet',
 				action: 'Get Redis cluster',
 			},
 			{
-				name: 'clusterCreatePost',
+				name: 'redisClusterCreatePost',
 				value: 'redisClusterCreatePost',
 				action: 'Create Redis cluster',
 			},
 			{
-				name: 'clusterUpdatePut',
+				name: 'redisClusterUpdatePut',
 				value: 'redisClusterUpdatePut',
 				action: 'Update Redis cluster',
 			},
 			{
-				name: 'clusterDeleteDelete',
+				name: 'redisClusterDeleteDelete',
 				value: 'redisClusterDeleteDelete',
 				action: 'Delete Redis cluster',
 			},
 			{
-				name: 'backupListGet',
+				name: 'redisBackupListGet',
 				value: 'redisBackupListGet',
 				action: 'List Redis backups',
 			},
 			{
-				name: 'backupCreatePost',
-				value: 'redisBackupCreatePost',
-				action: 'Create Redis backup',
-			},
-			{
-				name: 'backupGetGet',
+				name: 'redisBackupGetGet',
 				value: 'redisBackupGetGet',
 				action: 'Get Redis backup',
 			},
 			{
-				name: 'backupDeleteDelete',
-				value: 'redisBackupDeleteDelete',
-				action: 'Delete Redis backup',
+				name: 'redisAdvancedConfigurationGet',
+				value: 'redisAdvancedConfigurationGet',
+				action: 'Get Redis advanced configuration',
+			},
+			{
+				name: 'redisAdvancedConfigurationUpdatePut',
+				value: 'redisAdvancedConfigurationUpdatePut',
+				action: 'Update Redis advanced configuration',
+			},
+			{
+				name: 'redisCapabilitiesAdvancedConfigurationGet',
+				value: 'redisCapabilitiesAdvancedConfigurationGet',
+				action: 'Get Redis advanced configuration capabilities',
+			},
+			{
+				name: 'redisCapabilitiesCategoriesGet',
+				value: 'redisCapabilitiesCategoriesGet',
+				action: 'Get Redis categories capabilities',
+			},
+			{
+				name: 'redisCapabilitiesCommandsGet',
+				value: 'redisCapabilitiesCommandsGet',
+				action: 'Get Redis commands capabilities',
+			},
+			{
+				name: 'redisCapabilitiesIntegrationGet',
+				value: 'redisCapabilitiesIntegrationGet',
+				action: 'Get Redis integration capabilities',
+			},
+			{
+				name: 'redisIntegrationListGet',
+				value: 'redisIntegrationListGet',
+				action: 'List Redis integrations',
+			},
+			{
+				name: 'redisIntegrationCreatePost',
+				value: 'redisIntegrationCreatePost',
+				action: 'Create Redis integration',
+			},
+			{
+				name: 'redisIntegrationGetGet',
+				value: 'redisIntegrationGetGet',
+				action: 'Get Redis integration',
+			},
+			{
+				name: 'redisIntegrationDeleteDelete',
+				value: 'redisIntegrationDeleteDelete',
+				action: 'Delete Redis integration',
+			},
+			{
+				name: 'redisIpRestrictionListGet',
+				value: 'redisIpRestrictionListGet',
+				action: 'List Redis IP restrictions',
+			},
+			{
+				name: 'redisIpRestrictionCreatePost',
+				value: 'redisIpRestrictionCreatePost',
+				action: 'Create Redis IP restriction',
+			},
+			{
+				name: 'redisIpRestrictionGetGet',
+				value: 'redisIpRestrictionGetGet',
+				action: 'Get Redis IP restriction',
+			},
+			{
+				name: 'redisIpRestrictionUpdatePut',
+				value: 'redisIpRestrictionUpdatePut',
+				action: 'Update Redis IP restriction',
+			},
+			{
+				name: 'redisIpRestrictionDeleteDelete',
+				value: 'redisIpRestrictionDeleteDelete',
+				action: 'Delete Redis IP restriction',
+			},
+			{
+				name: 'redisLogKindListGet',
+				value: 'redisLogKindListGet',
+				action: 'List Redis log kinds',
+			},
+			{
+				name: 'redisLogKindGet',
+				value: 'redisLogKindGet',
+				action: 'Get Redis log kind',
+			},
+			{
+				name: 'redisLogSubscriptionListGet',
+				value: 'redisLogSubscriptionListGet',
+				action: 'List Redis log subscriptions',
+			},
+			{
+				name: 'redisLogSubscriptionCreatePost',
+				value: 'redisLogSubscriptionCreatePost',
+				action: 'Create Redis log subscription',
+			},
+			{
+				name: 'redisLogSubscriptionGetGet',
+				value: 'redisLogSubscriptionGetGet',
+				action: 'Get Redis log subscription',
+			},
+			{
+				name: 'redisLogSubscriptionDeleteDelete',
+				value: 'redisLogSubscriptionDeleteDelete',
+				action: 'Delete Redis log subscription',
+			},
+			{
+				name: 'redisLogUrlCreatePost',
+				value: 'redisLogUrlCreatePost',
+				action: 'Generate Redis log URL',
+			},
+			{
+				name: 'redisLogsGet',
+				value: 'redisLogsGet',
+				action: 'Get Redis logs',
+			},
+			{
+				name: 'redisMaintenanceListGet',
+				value: 'redisMaintenanceListGet',
+				action: 'List Redis maintenances',
+			},
+			{
+				name: 'redisMaintenanceGet',
+				value: 'redisMaintenanceGet',
+				action: 'Get Redis maintenance',
+			},
+			{
+				name: 'redisMaintenanceApplyPost',
+				value: 'redisMaintenanceApplyPost',
+				action: 'Apply Redis maintenance',
+			},
+			{
+				name: 'redisMetricListGet',
+				value: 'redisMetricListGet',
+				action: 'List Redis metrics',
+			},
+			{
+				name: 'redisMetricGet',
+				value: 'redisMetricGet',
+				action: 'Get Redis metric',
+			},
+			{
+				name: 'redisNodeListGet',
+				value: 'redisNodeListGet',
+				action: 'List Redis nodes',
+			},
+			{
+				name: 'redisNodeGetGet',
+				value: 'redisNodeGetGet',
+				action: 'Get Redis node',
+			},
+			{
+				name: 'redisPrometheusGet',
+				value: 'redisPrometheusGet',
+				action: 'Get Redis prometheus endpoint',
+			},
+			{
+				name: 'redisPrometheusCredentialsResetPost',
+				value: 'redisPrometheusCredentialsResetPost',
+				action: 'Reset Redis prometheus credentials',
 			},
 			{
 				name: 'redisUserListGet',
@@ -3069,12 +3284,12 @@ export function description(displayOptions: IDisplayOptions): INodeProperties[] 
 				action: 'Create Redis user',
 			},
 			{
-				name: 'userGetGet',
+				name: 'redisUserGetGet',
 				value: 'redisUserGetGet',
 				action: 'Get Redis user',
 			},
 			{
-				name: 'userUpdatePut',
+				name: 'redisUserUpdatePut',
 				value: 'redisUserUpdatePut',
 				action: 'Update Redis user',
 			},
@@ -3084,94 +3299,9 @@ export function description(displayOptions: IDisplayOptions): INodeProperties[] 
 				action: 'Delete Redis user',
 			},
 			{
-				name: 'nodeListGet',
-				value: 'redisNodeListGet',
-				action: 'List Redis nodes',
-			},
-			{
-				name: 'nodeCreatePost',
-				value: 'redisNodeCreatePost',
-				action: 'Create Redis node',
-			},
-			{
-				name: 'nodeGetGet',
-				value: 'redisNodeGetGet',
-				action: 'Get Redis node',
-			},
-			{
-				name: 'nodeUpdatePut',
-				value: 'redisNodeUpdatePut',
-				action: 'Update Redis node',
-			},
-			{
-				name: 'nodeDeleteDelete',
-				value: 'redisNodeDeleteDelete',
-				action: 'Delete Redis node',
-			},
-			{
-				name: 'ipRestrictionListGet',
-				value: 'redisIpRestrictionListGet',
-				action: 'List Redis IP restrictions',
-			},
-			{
-				name: 'ipRestrictionCreatePost',
-				value: 'redisIpRestrictionCreatePost',
-				action: 'Create Redis IP restriction',
-			},
-			{
-				name: 'logSubscriptionListGet',
-				value: 'redisLogSubscriptionListGet',
-				action: 'List Redis log subscriptions',
-			},
-			{
-				name: 'logSubscriptionCreatePost',
-				value: 'redisLogSubscriptionCreatePost',
-				action: 'Create Redis log subscription',
-			},
-			{
-				name: 'logSubscriptionGetGet',
-				value: 'redisLogSubscriptionGetGet',
-				action: 'Get Redis log subscription',
-			},
-			{
-				name: 'maintenanceGet',
-				value: 'redisMaintenanceGet',
-				action: 'Get Redis maintenance',
-			},
-			{
-				name: 'maintenanceUpdatePut',
-				value: 'redisMaintenanceUpdatePut',
-				action: 'Update Redis maintenance',
-			},
-			{
-				name: 'metricGet',
-				value: 'redisMetricGet',
-				action: 'Get Redis metric',
-			},
-			{
-				name: 'prometheusGet',
-				value: 'redisPrometheusGet',
-				action: 'Get Redis prometheus',
-			},
-			{
-				name: 'certificateListGet',
-				value: 'redisCertificateListGet',
-				action: 'List Redis certificates',
-			},
-			{
-				name: 'certificateCreatePost',
-				value: 'redisCertificateCreatePost',
-				action: 'Create Redis certificate',
-			},
-			{
-				name: 'integrationListGet',
-				value: 'redisIntegrationListGet',
-				action: 'List Redis integrations',
-			},
-			{
-				name: 'integrationCreatePost',
-				value: 'redisIntegrationCreatePost',
-				action: 'Create Redis integration',
+				name: 'redisUserCredentialsResetPost',
+				value: 'redisUserCredentialsResetPost',
+				action: 'Reset Redis user credentials',
 			},
 			{
 				name: 'cassandraClusterListGet',
@@ -6568,21 +6698,201 @@ export function description(displayOptions: IDisplayOptions): INodeProperties[] 
 		}) as INodeProperties[]),
 	);
 	properties.push(
-		...(redisBackupCreatePostDescription({
-			...displayOptions,
-			show: { publicCloudOperation: ['redisBackupCreatePost'] },
-		}) as INodeProperties[]),
-	);
-	properties.push(
 		...(redisBackupGetGetDescription({
 			...displayOptions,
 			show: { publicCloudOperation: ['redisBackupGetGet'] },
 		}) as INodeProperties[]),
 	);
 	properties.push(
-		...(redisBackupDeleteDeleteDescription({
+		...(redisAdvancedConfigurationGetDescription({
 			...displayOptions,
-			show: { publicCloudOperation: ['redisBackupDeleteDelete'] },
+			show: { publicCloudOperation: ['redisAdvancedConfigurationGet'] },
+		}) as INodeProperties[]),
+	);
+	properties.push(
+		...(redisAdvancedConfigurationUpdatePutDescription({
+			...displayOptions,
+			show: { publicCloudOperation: ['redisAdvancedConfigurationUpdatePut'] },
+		}) as INodeProperties[]),
+	);
+	properties.push(
+		...(redisCapabilitiesAdvancedConfigurationGetDescription({
+			...displayOptions,
+			show: { publicCloudOperation: ['redisCapabilitiesAdvancedConfigurationGet'] },
+		}) as INodeProperties[]),
+	);
+	properties.push(
+		...(redisCapabilitiesCategoriesGetDescription({
+			...displayOptions,
+			show: { publicCloudOperation: ['redisCapabilitiesCategoriesGet'] },
+		}) as INodeProperties[]),
+	);
+	properties.push(
+		...(redisCapabilitiesCommandsGetDescription({
+			...displayOptions,
+			show: { publicCloudOperation: ['redisCapabilitiesCommandsGet'] },
+		}) as INodeProperties[]),
+	);
+	properties.push(
+		...(redisCapabilitiesIntegrationGetDescription({
+			...displayOptions,
+			show: { publicCloudOperation: ['redisCapabilitiesIntegrationGet'] },
+		}) as INodeProperties[]),
+	);
+	properties.push(
+		...(redisIntegrationListGetDescription({
+			...displayOptions,
+			show: { publicCloudOperation: ['redisIntegrationListGet'] },
+		}) as INodeProperties[]),
+	);
+	properties.push(
+		...(redisIntegrationCreatePostDescription({
+			...displayOptions,
+			show: { publicCloudOperation: ['redisIntegrationCreatePost'] },
+		}) as INodeProperties[]),
+	);
+	properties.push(
+		...(redisIntegrationGetGetDescription({
+			...displayOptions,
+			show: { publicCloudOperation: ['redisIntegrationGetGet'] },
+		}) as INodeProperties[]),
+	);
+	properties.push(
+		...(redisIntegrationDeleteDeleteDescription({
+			...displayOptions,
+			show: { publicCloudOperation: ['redisIntegrationDeleteDelete'] },
+		}) as INodeProperties[]),
+	);
+	properties.push(
+		...(redisIpRestrictionListGetDescription({
+			...displayOptions,
+			show: { publicCloudOperation: ['redisIpRestrictionListGet'] },
+		}) as INodeProperties[]),
+	);
+	properties.push(
+		...(redisIpRestrictionCreatePostDescription({
+			...displayOptions,
+			show: { publicCloudOperation: ['redisIpRestrictionCreatePost'] },
+		}) as INodeProperties[]),
+	);
+	properties.push(
+		...(redisIpRestrictionGetGetDescription({
+			...displayOptions,
+			show: { publicCloudOperation: ['redisIpRestrictionGetGet'] },
+		}) as INodeProperties[]),
+	);
+	properties.push(
+		...(redisIpRestrictionUpdatePutDescription({
+			...displayOptions,
+			show: { publicCloudOperation: ['redisIpRestrictionUpdatePut'] },
+		}) as INodeProperties[]),
+	);
+	properties.push(
+		...(redisIpRestrictionDeleteDeleteDescription({
+			...displayOptions,
+			show: { publicCloudOperation: ['redisIpRestrictionDeleteDelete'] },
+		}) as INodeProperties[]),
+	);
+	properties.push(
+		...(redisLogKindListGetDescription({
+			...displayOptions,
+			show: { publicCloudOperation: ['redisLogKindListGet'] },
+		}) as INodeProperties[]),
+	);
+	properties.push(
+		...(redisLogKindGetDescription({
+			...displayOptions,
+			show: { publicCloudOperation: ['redisLogKindGet'] },
+		}) as INodeProperties[]),
+	);
+	properties.push(
+		...(redisLogSubscriptionListGetDescription({
+			...displayOptions,
+			show: { publicCloudOperation: ['redisLogSubscriptionListGet'] },
+		}) as INodeProperties[]),
+	);
+	properties.push(
+		...(redisLogSubscriptionCreatePostDescription({
+			...displayOptions,
+			show: { publicCloudOperation: ['redisLogSubscriptionCreatePost'] },
+		}) as INodeProperties[]),
+	);
+	properties.push(
+		...(redisLogSubscriptionGetGetDescription({
+			...displayOptions,
+			show: { publicCloudOperation: ['redisLogSubscriptionGetGet'] },
+		}) as INodeProperties[]),
+	);
+	properties.push(
+		...(redisLogSubscriptionDeleteDeleteDescription({
+			...displayOptions,
+			show: { publicCloudOperation: ['redisLogSubscriptionDeleteDelete'] },
+		}) as INodeProperties[]),
+	);
+	properties.push(
+		...(redisLogUrlCreatePostDescription({
+			...displayOptions,
+			show: { publicCloudOperation: ['redisLogUrlCreatePost'] },
+		}) as INodeProperties[]),
+	);
+	properties.push(
+		...(redisLogsGetDescription({
+			...displayOptions,
+			show: { publicCloudOperation: ['redisLogsGet'] },
+		}) as INodeProperties[]),
+	);
+	properties.push(
+		...(redisMaintenanceListGetDescription({
+			...displayOptions,
+			show: { publicCloudOperation: ['redisMaintenanceListGet'] },
+		}) as INodeProperties[]),
+	);
+	properties.push(
+		...(redisMaintenanceGetDescription({
+			...displayOptions,
+			show: { publicCloudOperation: ['redisMaintenanceGet'] },
+		}) as INodeProperties[]),
+	);
+	properties.push(
+		...(redisMaintenanceApplyPostDescription({
+			...displayOptions,
+			show: { publicCloudOperation: ['redisMaintenanceApplyPost'] },
+		}) as INodeProperties[]),
+	);
+	properties.push(
+		...(redisMetricListGetDescription({
+			...displayOptions,
+			show: { publicCloudOperation: ['redisMetricListGet'] },
+		}) as INodeProperties[]),
+	);
+	properties.push(
+		...(redisMetricGetDescription({
+			...displayOptions,
+			show: { publicCloudOperation: ['redisMetricGet'] },
+		}) as INodeProperties[]),
+	);
+	properties.push(
+		...(redisNodeListGetDescription({
+			...displayOptions,
+			show: { publicCloudOperation: ['redisNodeListGet'] },
+		}) as INodeProperties[]),
+	);
+	properties.push(
+		...(redisNodeGetGetDescription({
+			...displayOptions,
+			show: { publicCloudOperation: ['redisNodeGetGet'] },
+		}) as INodeProperties[]),
+	);
+	properties.push(
+		...(redisPrometheusGetDescription({
+			...displayOptions,
+			show: { publicCloudOperation: ['redisPrometheusGet'] },
+		}) as INodeProperties[]),
+	);
+	properties.push(
+		...(redisPrometheusCredentialsResetPostDescription({
+			...displayOptions,
+			show: { publicCloudOperation: ['redisPrometheusCredentialsResetPost'] },
 		}) as INodeProperties[]),
 	);
 	properties.push(
@@ -6616,111 +6926,9 @@ export function description(displayOptions: IDisplayOptions): INodeProperties[] 
 		}) as INodeProperties[]),
 	);
 	properties.push(
-		...(redisNodeListGetDescription({
+		...(redisUserCredentialsResetPostDescription({
 			...displayOptions,
-			show: { publicCloudOperation: ['redisNodeListGet'] },
-		}) as INodeProperties[]),
-	);
-	properties.push(
-		...(redisNodeCreatePostDescription({
-			...displayOptions,
-			show: { publicCloudOperation: ['redisNodeCreatePost'] },
-		}) as INodeProperties[]),
-	);
-	properties.push(
-		...(redisNodeGetGetDescription({
-			...displayOptions,
-			show: { publicCloudOperation: ['redisNodeGetGet'] },
-		}) as INodeProperties[]),
-	);
-	properties.push(
-		...(redisNodeUpdatePutDescription({
-			...displayOptions,
-			show: { publicCloudOperation: ['redisNodeUpdatePut'] },
-		}) as INodeProperties[]),
-	);
-	properties.push(
-		...(redisNodeDeleteDeleteDescription({
-			...displayOptions,
-			show: { publicCloudOperation: ['redisNodeDeleteDelete'] },
-		}) as INodeProperties[]),
-	);
-	properties.push(
-		...(redisIpRestrictionListGetDescription({
-			...displayOptions,
-			show: { publicCloudOperation: ['redisIpRestrictionListGet'] },
-		}) as INodeProperties[]),
-	);
-	properties.push(
-		...(redisIpRestrictionCreatePostDescription({
-			...displayOptions,
-			show: { publicCloudOperation: ['redisIpRestrictionCreatePost'] },
-		}) as INodeProperties[]),
-	);
-	properties.push(
-		...(redisLogSubscriptionListGetDescription({
-			...displayOptions,
-			show: { publicCloudOperation: ['redisLogSubscriptionListGet'] },
-		}) as INodeProperties[]),
-	);
-	properties.push(
-		...(redisLogSubscriptionCreatePostDescription({
-			...displayOptions,
-			show: { publicCloudOperation: ['redisLogSubscriptionCreatePost'] },
-		}) as INodeProperties[]),
-	);
-	properties.push(
-		...(redisLogSubscriptionGetGetDescription({
-			...displayOptions,
-			show: { publicCloudOperation: ['redisLogSubscriptionGetGet'] },
-		}) as INodeProperties[]),
-	);
-	properties.push(
-		...(redisMaintenanceGetDescription({
-			...displayOptions,
-			show: { publicCloudOperation: ['redisMaintenanceGet'] },
-		}) as INodeProperties[]),
-	);
-	properties.push(
-		...(redisMaintenanceUpdatePutDescription({
-			...displayOptions,
-			show: { publicCloudOperation: ['redisMaintenanceUpdatePut'] },
-		}) as INodeProperties[]),
-	);
-	properties.push(
-		...(redisMetricGetDescription({
-			...displayOptions,
-			show: { publicCloudOperation: ['redisMetricGet'] },
-		}) as INodeProperties[]),
-	);
-	properties.push(
-		...(redisPrometheusGetDescription({
-			...displayOptions,
-			show: { publicCloudOperation: ['redisPrometheusGet'] },
-		}) as INodeProperties[]),
-	);
-	properties.push(
-		...(redisCertificateListGetDescription({
-			...displayOptions,
-			show: { publicCloudOperation: ['redisCertificateListGet'] },
-		}) as INodeProperties[]),
-	);
-	properties.push(
-		...(redisCertificateCreatePostDescription({
-			...displayOptions,
-			show: { publicCloudOperation: ['redisCertificateCreatePost'] },
-		}) as INodeProperties[]),
-	);
-	properties.push(
-		...(redisIntegrationListGetDescription({
-			...displayOptions,
-			show: { publicCloudOperation: ['redisIntegrationListGet'] },
-		}) as INodeProperties[]),
-	);
-	properties.push(
-		...(redisIntegrationCreatePostDescription({
-			...displayOptions,
-			show: { publicCloudOperation: ['redisIntegrationCreatePost'] },
+			show: { publicCloudOperation: ['redisUserCredentialsResetPost'] },
 		}) as INodeProperties[]),
 	);
 	properties.push(
@@ -10604,12 +10812,72 @@ export async function execute(
 			return redisClusterDeleteDeleteExecute.call(this);
 		case 'redisBackupListGet':
 			return redisBackupListGetExecute.call(this);
-		case 'redisBackupCreatePost':
-			return redisBackupCreatePostExecute.call(this);
 		case 'redisBackupGetGet':
 			return redisBackupGetGetExecute.call(this);
-		case 'redisBackupDeleteDelete':
-			return redisBackupDeleteDeleteExecute.call(this);
+		case 'redisAdvancedConfigurationGet':
+			return redisAdvancedConfigurationGetExecute.call(this);
+		case 'redisAdvancedConfigurationUpdatePut':
+			return redisAdvancedConfigurationUpdatePutExecute.call(this);
+		case 'redisCapabilitiesAdvancedConfigurationGet':
+			return redisCapabilitiesAdvancedConfigurationGetExecute.call(this);
+		case 'redisCapabilitiesCategoriesGet':
+			return redisCapabilitiesCategoriesGetExecute.call(this);
+		case 'redisCapabilitiesCommandsGet':
+			return redisCapabilitiesCommandsGetExecute.call(this);
+		case 'redisCapabilitiesIntegrationGet':
+			return redisCapabilitiesIntegrationGetExecute.call(this);
+		case 'redisIntegrationListGet':
+			return redisIntegrationListGetExecute.call(this);
+		case 'redisIntegrationCreatePost':
+			return redisIntegrationCreatePostExecute.call(this);
+		case 'redisIntegrationGetGet':
+			return redisIntegrationGetGetExecute.call(this);
+		case 'redisIntegrationDeleteDelete':
+			return redisIntegrationDeleteDeleteExecute.call(this);
+		case 'redisIpRestrictionListGet':
+			return redisIpRestrictionListGetExecute.call(this);
+		case 'redisIpRestrictionCreatePost':
+			return redisIpRestrictionCreatePostExecute.call(this);
+		case 'redisIpRestrictionGetGet':
+			return redisIpRestrictionGetGetExecute.call(this);
+		case 'redisIpRestrictionUpdatePut':
+			return redisIpRestrictionUpdatePutExecute.call(this);
+		case 'redisIpRestrictionDeleteDelete':
+			return redisIpRestrictionDeleteDeleteExecute.call(this);
+		case 'redisLogKindListGet':
+			return redisLogKindListGetExecute.call(this);
+		case 'redisLogKindGet':
+			return redisLogKindGetExecute.call(this);
+		case 'redisLogSubscriptionListGet':
+			return redisLogSubscriptionListGetExecute.call(this);
+		case 'redisLogSubscriptionCreatePost':
+			return redisLogSubscriptionCreatePostExecute.call(this);
+		case 'redisLogSubscriptionGetGet':
+			return redisLogSubscriptionGetGetExecute.call(this);
+		case 'redisLogSubscriptionDeleteDelete':
+			return redisLogSubscriptionDeleteDeleteExecute.call(this);
+		case 'redisLogUrlCreatePost':
+			return redisLogUrlCreatePostExecute.call(this);
+		case 'redisLogsGet':
+			return redisLogsGetExecute.call(this);
+		case 'redisMaintenanceListGet':
+			return redisMaintenanceListGetExecute.call(this);
+		case 'redisMaintenanceGet':
+			return redisMaintenanceGetExecute.call(this);
+		case 'redisMaintenanceApplyPost':
+			return redisMaintenanceApplyPostExecute.call(this);
+		case 'redisMetricListGet':
+			return redisMetricListGetExecute.call(this);
+		case 'redisMetricGet':
+			return redisMetricGetExecute.call(this);
+		case 'redisNodeListGet':
+			return redisNodeListGetExecute.call(this);
+		case 'redisNodeGetGet':
+			return redisNodeGetGetExecute.call(this);
+		case 'redisPrometheusGet':
+			return redisPrometheusGetExecute.call(this);
+		case 'redisPrometheusCredentialsResetPost':
+			return redisPrometheusCredentialsResetPostExecute.call(this);
 		case 'redisUserListGet':
 			return redisUserListGetExecute.call(this);
 		case 'redisUserCreatePost':
@@ -10620,42 +10888,8 @@ export async function execute(
 			return redisUserUpdatePutExecute.call(this);
 		case 'redisUserDeleteDelete':
 			return redisUserDeleteDeleteExecute.call(this);
-		case 'redisNodeListGet':
-			return redisNodeListGetExecute.call(this);
-		case 'redisNodeCreatePost':
-			return redisNodeCreatePostExecute.call(this);
-		case 'redisNodeGetGet':
-			return redisNodeGetGetExecute.call(this);
-		case 'redisNodeUpdatePut':
-			return redisNodeUpdatePutExecute.call(this);
-		case 'redisNodeDeleteDelete':
-			return redisNodeDeleteDeleteExecute.call(this);
-		case 'redisIpRestrictionListGet':
-			return redisIpRestrictionListGetExecute.call(this);
-		case 'redisIpRestrictionCreatePost':
-			return redisIpRestrictionCreatePostExecute.call(this);
-		case 'redisLogSubscriptionListGet':
-			return redisLogSubscriptionListGetExecute.call(this);
-		case 'redisLogSubscriptionCreatePost':
-			return redisLogSubscriptionCreatePostExecute.call(this);
-		case 'redisLogSubscriptionGetGet':
-			return redisLogSubscriptionGetGetExecute.call(this);
-		case 'redisMaintenanceGet':
-			return redisMaintenanceGetExecute.call(this);
-		case 'redisMaintenanceUpdatePut':
-			return redisMaintenanceUpdatePutExecute.call(this);
-		case 'redisMetricGet':
-			return redisMetricGetExecute.call(this);
-		case 'redisPrometheusGet':
-			return redisPrometheusGetExecute.call(this);
-		case 'redisCertificateListGet':
-			return redisCertificateListGetExecute.call(this);
-		case 'redisCertificateCreatePost':
-			return redisCertificateCreatePostExecute.call(this);
-		case 'redisIntegrationListGet':
-			return redisIntegrationListGetExecute.call(this);
-		case 'redisIntegrationCreatePost':
-			return redisIntegrationCreatePostExecute.call(this);
+		case 'redisUserCredentialsResetPost':
+			return redisUserCredentialsResetPostExecute.call(this);
 		case 'valkeyClusterListGet':
 			return valkeyClusterListGetExecute.call(this);
 		case 'valkeyClusterGetGet':

@@ -1,5 +1,5 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import { description, execute } from './nodeCreatePost.operation';
+import { description, execute } from './ipRestrictionUpdatePut.operation';
 
 jest.mock('../../../../shared/transport/ApiClient', () => {
 	const mockHttpClient = {
@@ -13,11 +13,11 @@ jest.mock('../../../../shared/transport/ApiClient', () => {
 
 import { ApiClient } from '../../../../shared/transport/ApiClient';
 
-describe('redis nodeCreatePost operation', () => {
+describe('redis ipRestrictionUpdatePut operation', () => {
 	describe('description', () => {
 		it('should return all required parameters', () => {
-			const result = description({show: {}});
-			expect(result.length).toBeGreaterThanOrEqual(1);
+			const result = description({ show: {} });
+			expect(result.length).toBeGreaterThanOrEqual(3);
 		});
 	});
 
@@ -31,22 +31,25 @@ describe('redis nodeCreatePost operation', () => {
 		});
 
 		it('should call the correct API endpoint', async () => {
+			const mockData = { ip: '10.0.0.0/24', status: 'READY' };
 			const client = new ApiClient(mockExecuteFunctions) as any;
-			mockExecuteFunctions.getNodeParameter.mockImplementation((param: string) => {
-				if (param === 'publicCloudProjectId') return '12345678-1234-1234-1234-1234567890ab';
-				if (param === 'serviceName') return 'test-service';
-				if (param === 'backupId') return 'test-backup-id';
-				if (param === 'userId') return 'test-user-id';
-				if (param === 'nodeId') return 'test-node-id';
-				if (param === 'subId') return 'test-sub-id';
-				return '';
-			});
+			client.httpPut.mockResolvedValue(mockData);
 
-			client.httpPost.mockResolvedValue(Promise.resolve({ id: 'test-id' }));
+			mockExecuteFunctions.getNodeParameter.mockImplementation(
+				(param: string): string | undefined => {
+					if (param === 'publicCloudProjectId') return '12345678-1234-1234-1234-1234567890ab';
+					if (param === 'clusterId') return 'test-cluster-id';
+					if (param === 'ipBlock') return '10.0.0.0/24';
+					return '';
+				},
+			);
 
 			const result = await execute.call(mockExecuteFunctions);
-			expect(client.httpPost).toHaveBeenCalled();
-			expect(result).toEqual(JSON.parse('[{"id":"test-id"}]'));
+			expect(client.httpPut).toHaveBeenCalledWith(
+				'/cloud/project/12345678-1234-1234-1234-1234567890ab/database/redis/test-cluster-id/ipRestriction/10.0.0.0%2F24',
+				{},
+			);
+			expect(result).toMatchObject([mockData]);
 		});
 	});
 });

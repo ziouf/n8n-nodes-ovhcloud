@@ -8,53 +8,53 @@ import { ApiClient } from '../../../../shared/transport/ApiClient';
 
 export function description(displayOptions: IDisplayOptions): INodeProperties[] {
 	return [
-	{
-		displayName: 'Public Cloud Project',
-		name: 'publicCloudProjectId',
-		type: 'resourceLocator',
-		default: { mode: 'list', value: '' },
-		required: true,
-		description: 'The Public Cloud project ID (e.g. 12345678-1234-1234-1234-1234567890ab)',
-		modes: [
-			{
-				displayName: 'From List',
-				name: 'list',
-				type: 'list',
-				typeOptions: { searchListMethod: 'getPublicCloudProjects' },
-			},
-			{
-				displayName: 'By ID',
-				name: 'name',
-				type: 'string',
-				placeholder: '12345678-1234-1234-1234-1234567890ab',
-			},
-		],
-	},
-	{
-		displayName: 'Service Name',
-		name: 'serviceName',
-		type: 'string',
-		default: '',
-		required: true,
-		description: 'The database service name',
-		displayOptions,
-	}
+		{
+			displayName: 'Public Cloud Project',
+			name: 'publicCloudProjectId',
+			type: 'resourceLocator',
+			default: { mode: 'list', value: '' },
+			required: true,
+			description: 'The Public Cloud project ID (e.g. 12345678-1234-1234-1234-1234567890ab)',
+			modes: [
+				{
+					displayName: 'From List',
+					name: 'list',
+					type: 'list',
+					typeOptions: { searchListMethod: 'getPublicCloudProjects' },
+				},
+				{
+					displayName: 'By ID',
+					name: 'name',
+					type: 'string',
+					placeholder: '12345678-1234-1234-1234-1234567890ab',
+				},
+			],
+			displayOptions,
+		},
+		{
+			displayName: 'Cluster ID',
+			name: 'clusterId',
+			type: 'string',
+			default: '',
+			required: true,
+			description: 'The Redis cluster ID',
+			displayOptions,
+		},
 	];
 }
 
 /**
- * Executes the Delete Redis cluster operation.
+ * Executes the Delete Redis Cluster operation.
  *
  * HTTP method: DELETE
- * Endpoint: /publicCloud/project/${projectId}/cloud/database/redis/${serviceName}
+ * Endpoint: /cloud/project/{serviceName}/database/redis/{clusterId}
  */
 export async function execute(this: IExecuteFunctions): Promise<INodeExecutionData[]> {
 	const client = new ApiClient(this);
-	const projectId = this.getNodeParameter('publicCloudProjectId', 0, '', {
+	const serviceName = this.getNodeParameter('publicCloudProjectId', 0, '', {
 		extractValue: true,
 	}) as string;
-	const serviceName = this.getNodeParameter('serviceName', 0) as string;
-	await client.httpDelete(`/publicCloud/project/${projectId}/cloud/database/redis/${serviceName}`);
-
-	return this.helpers.returnJsonArray([]);
+	const clusterId = this.getNodeParameter('clusterId', 0) as string;
+	await client.httpDelete(`/cloud/project/${serviceName}/database/redis/${clusterId}`);
+	return this.helpers.returnJsonArray([{}]);
 }

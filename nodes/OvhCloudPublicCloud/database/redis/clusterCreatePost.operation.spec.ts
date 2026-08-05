@@ -16,8 +16,8 @@ import { ApiClient } from '../../../../shared/transport/ApiClient';
 describe('redis clusterCreatePost operation', () => {
 	describe('description', () => {
 		it('should return all required parameters', () => {
-			const result = description({show: {}});
-			expect(result.length).toBeGreaterThanOrEqual(1);
+			const result = description({ show: {} });
+			expect(result).toHaveLength(4);
 		});
 	});
 
@@ -30,23 +30,27 @@ describe('redis clusterCreatePost operation', () => {
 			};
 		});
 
-		it('should call the correct API endpoint', async () => {
+		it('should call the correct API endpoint with body', async () => {
+			const mockData = { id: 'cluster-123' };
 			const client = new ApiClient(mockExecuteFunctions) as any;
-			mockExecuteFunctions.getNodeParameter.mockImplementation((param: string) => {
-				if (param === 'publicCloudProjectId') return '12345678-1234-1234-1234-1234567890ab';
-				if (param === 'serviceName') return 'test-service';
-				if (param === 'backupId') return 'test-backup-id';
-				if (param === 'userId') return 'test-user-id';
-				if (param === 'nodeId') return 'test-node-id';
-				if (param === 'subId') return 'test-sub-id';
-				return '';
-			});
+			client.httpPost.mockResolvedValue(mockData);
 
-			client.httpPost.mockResolvedValue(Promise.resolve({ id: 'test-id' }));
+			mockExecuteFunctions.getNodeParameter.mockImplementation(
+				(param: string): string | undefined => {
+					if (param === 'publicCloudProjectId') return '12345678-1234-1234-1234-1234567890ab';
+					if (param === 'description') return 'test cluster';
+					if (param === 'plan') return 'essential';
+					if (param === 'version') return '7.2';
+					return '';
+				},
+			);
 
 			const result = await execute.call(mockExecuteFunctions);
-			expect(client.httpPost).toHaveBeenCalled();
-			expect(result).toEqual(JSON.parse('[{"id":"test-id"}]'));
+			expect(client.httpPost).toHaveBeenCalledWith(
+				'/cloud/project/12345678-1234-1234-1234-1234567890ab/database/redis',
+				{ description: 'test cluster', plan: 'essential', version: '7.2' },
+			);
+			expect(result).toMatchObject([mockData]);
 		});
 	});
 });

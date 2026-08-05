@@ -6,46 +6,50 @@ import type {
 } from 'n8n-workflow';
 import { ApiClient } from '../../../../shared/transport/ApiClient';
 
-export function description(_displayOptions: IDisplayOptions): INodeProperties[] {
-	void _displayOptions;
+export function description(displayOptions: IDisplayOptions): INodeProperties[] {
 	return [
-	{
-		displayName: 'Public Cloud Project',
-		name: 'publicCloudProjectId',
-		type: 'resourceLocator',
-		default: { mode: 'list', value: '' },
-		required: true,
-		description: 'The Public Cloud project ID (e.g. 12345678-1234-1234-1234-1234567890ab)',
-		modes: [
-			{
-				displayName: 'From List',
-				name: 'list',
-				type: 'list',
-				typeOptions: { searchListMethod: 'getPublicCloudProjects' },
-			},
-			{
-				displayName: 'By ID',
-				name: 'name',
-				type: 'string',
-				placeholder: '12345678-1234-1234-1234-1234567890ab',
-			},
-		],
-	}
+		{
+			displayName: 'Public Cloud Project',
+			name: 'publicCloudProjectId',
+			type: 'resourceLocator',
+			default: { mode: 'list', value: '' },
+			required: true,
+			description: 'The Public Cloud project ID (e.g. 12345678-1234-1234-1234-1234567890ab)',
+			modes: [
+				{
+					displayName: 'From List',
+					name: 'list',
+					type: 'list',
+					typeOptions: { searchListMethod: 'getPublicCloudProjects' },
+				},
+				{
+					displayName: 'By ID',
+					name: 'name',
+					type: 'string',
+					placeholder: '12345678-1234-1234-1234-1234567890ab',
+				},
+			],
+			displayOptions,
+		},
 	];
 }
 
 /**
- * Executes the List Redis clusters in a project operation.
+ * Executes the List Redis Clusters operation.
  *
  * HTTP method: GET
- * Endpoint: /publicCloud/project/${projectId}/cloud/database/redis
+ * Endpoint: /cloud/project/{serviceName}/database/redis
  */
 export async function execute(this: IExecuteFunctions): Promise<INodeExecutionData[]> {
 	const client = new ApiClient(this);
-	const projectId = this.getNodeParameter('publicCloudProjectId', 0, '', {
+	const serviceName = this.getNodeParameter('publicCloudProjectId', 0, '', {
 		extractValue: true,
 	}) as string;
-	const data = (await client.httpGet(`/publicCloud/project/${projectId}/cloud/database/redis`)) as unknown[];
+	const data = (await client.httpGet(`/cloud/project/${serviceName}/database/redis`)) as unknown[];
+
+	if (!Array.isArray(data)) {
+		return this.helpers.returnJsonArray([data]);
+	}
 
 	return this.helpers.returnJsonArray(data.map((item) => item as INodeExecutionData));
 }

@@ -16,8 +16,8 @@ import { ApiClient } from '../../../../shared/transport/ApiClient';
 describe('redis clusterListGet operation', () => {
 	describe('description', () => {
 		it('should return all required parameters', () => {
-			const result = description({show: {}});
-			expect(result.length).toBeGreaterThanOrEqual(1);
+			const result = description({ show: {} });
+			expect(result).toHaveLength(1);
 		});
 	});
 
@@ -31,22 +31,22 @@ describe('redis clusterListGet operation', () => {
 		});
 
 		it('should call the correct API endpoint', async () => {
+			const mockData = { id: 'cluster-123' };
 			const client = new ApiClient(mockExecuteFunctions) as any;
-			mockExecuteFunctions.getNodeParameter.mockImplementation((param: string) => {
-				if (param === 'publicCloudProjectId') return '12345678-1234-1234-1234-1234567890ab';
-				if (param === 'serviceName') return 'test-service';
-				if (param === 'backupId') return 'test-backup-id';
-				if (param === 'userId') return 'test-user-id';
-				if (param === 'nodeId') return 'test-node-id';
-				if (param === 'subId') return 'test-sub-id';
-				return '';
-			});
+			client.httpGet.mockResolvedValue([mockData]);
 
-			client.httpGet.mockResolvedValue(Promise.resolve([{ id: 'test-id' }]));
+			mockExecuteFunctions.getNodeParameter.mockImplementation(
+				(param: string): string | undefined => {
+					if (param === 'publicCloudProjectId') return '12345678-1234-1234-1234-1234567890ab';
+					return '';
+				},
+			);
 
 			const result = await execute.call(mockExecuteFunctions);
-			expect(client.httpGet).toHaveBeenCalled();
-			expect(result).toEqual(JSON.parse('[{"id":"test-id"}]'));
+			expect(client.httpGet).toHaveBeenCalledWith(
+				'/cloud/project/12345678-1234-1234-1234-1234567890ab/database/redis',
+			);
+			expect(result).toMatchObject([mockData]);
 		});
 	});
 });

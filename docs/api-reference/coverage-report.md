@@ -1,6 +1,6 @@
 # OVHcloud API Coverage Report
 
-> Généré par `scripts/compare-coverage.js` le 2026-08-05T14:52:14.845Z. Document généré automatiquement — ne pas éditer à la main.
+> Généré par `scripts/compare-coverage.js` le 2026-08-05T15:11:32.848Z. Document généré automatiquement — ne pas éditer à la main.
 
 Ce rapport compare les endpoints déclarés dans les specs Swagger 2.0 (`docs/api-specs/v1|v2/*.json`) avec les appels HTTP réellement présents dans les nodes (`nodes/**/*.operation.ts`).
 
@@ -8,8 +8,8 @@ Ce rapport compare les endpoints déclarés dans les specs Swagger 2.0 (`docs/ap
 
 - **Specs analysées** : 84 (v1: 70, v2: 14)
 - **Endpoints déclarés (specs avec endpoints)** : 6624
-- **Endpoints couverts par les nodes** : 3331
-- **Couverture globale** : **50.3%**
+- **Endpoints couverts par les nodes** : 3376
+- **Couverture globale** : **51%**
 - **Specs sans node associé** : 21
 - **Specs placeholder (aucun endpoint)** : 1
 
@@ -45,7 +45,7 @@ Triée par pourcentage croissant (moins bonne couverture en premier).
 | ipLoadbalancing (v1) | 121 | 9 | 112 | 7.4% |
 | vrack (v1) | 68 | 5 | 63 | 7.4% |
 | msServices (v1) | 55 | 5 | 50 | 9.1% |
-| cloud (v1) | 1121 | 119 | 1002 | 10.6% |
+| cloud (v1) | 1121 | 164 | 957 | 14.6% |
 | dedicated (v1) | 131 | 30 | 101 | 22.9% |
 | vps (v1) | 94 | 22 | 72 | 23.4% |
 | sslGateway (v1) | 23 | 6 | 17 | 26.1% |
@@ -2073,7 +2073,7 @@ _Nodes associés : OvhCloudMsServices_
 | GET | `/msServices/sharepoint/{x}/serviceInfos` |
 | PUT | `/msServices/sharepoint/{x}/serviceInfos` |
 
-### cloud (v1) — 1002 manquants
+### cloud (v1) — 957 manquants
 
 _Nodes associés : OvhCloudPublicCloud, OvhCloudPublicCloudAi_
 
@@ -2740,51 +2740,6 @@ _Nodes associés : OvhCloudPublicCloud, OvhCloudPublicCloudAi_
 | GET | `/cloud/project/{x}/database/postgresql/{x}/user/{x}` |
 | PUT | `/cloud/project/{x}/database/postgresql/{x}/user/{x}` |
 | POST | `/cloud/project/{x}/database/postgresql/{x}/user/{x}/credentials/reset` |
-| GET | `/cloud/project/{x}/database/redis` |
-| POST | `/cloud/project/{x}/database/redis` |
-| DELETE | `/cloud/project/{x}/database/redis/{x}` |
-| GET | `/cloud/project/{x}/database/redis/{x}` |
-| PUT | `/cloud/project/{x}/database/redis/{x}` |
-| GET | `/cloud/project/{x}/database/redis/{x}/advancedConfiguration` |
-| PUT | `/cloud/project/{x}/database/redis/{x}/advancedConfiguration` |
-| GET | `/cloud/project/{x}/database/redis/{x}/backup` |
-| GET | `/cloud/project/{x}/database/redis/{x}/backup/{x}` |
-| GET | `/cloud/project/{x}/database/redis/{x}/capabilities/advancedConfiguration` |
-| GET | `/cloud/project/{x}/database/redis/{x}/capabilities/categories` |
-| GET | `/cloud/project/{x}/database/redis/{x}/capabilities/commands` |
-| GET | `/cloud/project/{x}/database/redis/{x}/capabilities/integration` |
-| GET | `/cloud/project/{x}/database/redis/{x}/integration` |
-| POST | `/cloud/project/{x}/database/redis/{x}/integration` |
-| DELETE | `/cloud/project/{x}/database/redis/{x}/integration/{x}` |
-| GET | `/cloud/project/{x}/database/redis/{x}/integration/{x}` |
-| GET | `/cloud/project/{x}/database/redis/{x}/ipRestriction` |
-| POST | `/cloud/project/{x}/database/redis/{x}/ipRestriction` |
-| DELETE | `/cloud/project/{x}/database/redis/{x}/ipRestriction/{x}` |
-| GET | `/cloud/project/{x}/database/redis/{x}/ipRestriction/{x}` |
-| PUT | `/cloud/project/{x}/database/redis/{x}/ipRestriction/{x}` |
-| GET | `/cloud/project/{x}/database/redis/{x}/log/kind` |
-| GET | `/cloud/project/{x}/database/redis/{x}/log/kind/{x}` |
-| GET | `/cloud/project/{x}/database/redis/{x}/log/subscription` |
-| POST | `/cloud/project/{x}/database/redis/{x}/log/subscription` |
-| DELETE | `/cloud/project/{x}/database/redis/{x}/log/subscription/{x}` |
-| GET | `/cloud/project/{x}/database/redis/{x}/log/subscription/{x}` |
-| POST | `/cloud/project/{x}/database/redis/{x}/log/url` |
-| GET | `/cloud/project/{x}/database/redis/{x}/logs` |
-| GET | `/cloud/project/{x}/database/redis/{x}/maintenance` |
-| GET | `/cloud/project/{x}/database/redis/{x}/maintenance/{x}` |
-| POST | `/cloud/project/{x}/database/redis/{x}/maintenance/{x}/apply` |
-| GET | `/cloud/project/{x}/database/redis/{x}/metric` |
-| GET | `/cloud/project/{x}/database/redis/{x}/metric/{x}` |
-| GET | `/cloud/project/{x}/database/redis/{x}/node` |
-| GET | `/cloud/project/{x}/database/redis/{x}/node/{x}` |
-| GET | `/cloud/project/{x}/database/redis/{x}/prometheus` |
-| POST | `/cloud/project/{x}/database/redis/{x}/prometheus/credentials/reset` |
-| GET | `/cloud/project/{x}/database/redis/{x}/user` |
-| POST | `/cloud/project/{x}/database/redis/{x}/user` |
-| DELETE | `/cloud/project/{x}/database/redis/{x}/user/{x}` |
-| GET | `/cloud/project/{x}/database/redis/{x}/user/{x}` |
-| PUT | `/cloud/project/{x}/database/redis/{x}/user/{x}` |
-| POST | `/cloud/project/{x}/database/redis/{x}/user/{x}/credentials/reset` |
 | GET | `/cloud/project/{x}/database/service` |
 | GET | `/cloud/project/{x}/database/service/{x}` |
 | GET | `/cloud/project/{x}/database/valkey` |
