@@ -1924,133 +1924,213 @@ import {
 	execute as mysqlIntegrationCreatePostExecute,
 } from './database/mysql/integrationCreatePost.operation';
 import {
-	description as opensearchClusterListGetDescription,
-	execute as opensearchClusterListGetExecute,
-} from './database/opensearch/clusterListGet.operation';
+	description as opensearchAdvancedConfigurationListGetDescription,
+	execute as opensearchAdvancedConfigurationListGetExecute,
+} from './database/opensearch/AdvancedConfigurationListGet.operation';
 import {
-	description as opensearchClusterGetGetDescription,
-	execute as opensearchClusterGetGetExecute,
-} from './database/opensearch/clusterGetGet.operation';
-import {
-	description as opensearchClusterCreatePostDescription,
-	execute as opensearchClusterCreatePostExecute,
-} from './database/opensearch/clusterCreatePost.operation';
-import {
-	description as opensearchClusterUpdatePutDescription,
-	execute as opensearchClusterUpdatePutExecute,
-} from './database/opensearch/clusterUpdatePut.operation';
-import {
-	description as opensearchClusterDeleteDeleteDescription,
-	execute as opensearchClusterDeleteDeleteExecute,
-} from './database/opensearch/clusterDeleteDelete.operation';
-import {
-	description as opensearchBackupListGetDescription,
-	execute as opensearchBackupListGetExecute,
-} from './database/opensearch/backupListGet.operation';
-import {
-	description as opensearchBackupCreatePostDescription,
-	execute as opensearchBackupCreatePostExecute,
-} from './database/opensearch/backupCreatePost.operation';
+	description as opensearchAdvancedConfigurationUpdatePutDescription,
+	execute as opensearchAdvancedConfigurationUpdatePutExecute,
+} from './database/opensearch/AdvancedConfigurationUpdatePut.operation';
 import {
 	description as opensearchBackupGetGetDescription,
 	execute as opensearchBackupGetGetExecute,
-} from './database/opensearch/backupGetGet.operation';
+} from './database/opensearch/BackupGetGet.operation';
 import {
-	description as opensearchBackupDeleteDeleteDescription,
-	execute as opensearchBackupDeleteDeleteExecute,
-} from './database/opensearch/backupDeleteDelete.operation';
+	description as opensearchBackupListGetDescription,
+	execute as opensearchBackupListGetExecute,
+} from './database/opensearch/BackupListGet.operation';
 import {
-	description as opensearchUserListGetDescription,
-	execute as opensearchUserListGetExecute,
-} from './database/opensearch/userListGet.operation';
+	description as opensearchCapabilitiesAdvancedConfigurationListGetDescription,
+	execute as opensearchCapabilitiesAdvancedConfigurationListGetExecute,
+} from './database/opensearch/CapabilitiesAdvancedConfigurationListGet.operation';
 import {
-	description as opensearchUserCreatePostDescription,
-	execute as opensearchUserCreatePostExecute,
-} from './database/opensearch/userCreatePost.operation';
+	description as opensearchCapabilitiesBackupRegionsListGetDescription,
+	execute as opensearchCapabilitiesBackupRegionsListGetExecute,
+} from './database/opensearch/CapabilitiesBackupRegionsListGet.operation';
 import {
-	description as opensearchUserGetGetDescription,
-	execute as opensearchUserGetGetExecute,
-} from './database/opensearch/userGetGet.operation';
+	description as opensearchCapabilitiesIntegrationListGetDescription,
+	execute as opensearchCapabilitiesIntegrationListGetExecute,
+} from './database/opensearch/CapabilitiesIntegrationListGet.operation';
 import {
-	description as opensearchUserUpdatePutDescription,
-	execute as opensearchUserUpdatePutExecute,
-} from './database/opensearch/userUpdatePut.operation';
+	description as opensearchClusterCreatePostDescription,
+	execute as opensearchClusterCreatePostExecute,
+} from './database/opensearch/ClusterCreatePost.operation';
 import {
-	description as opensearchUserDeleteDeleteDescription,
-	execute as opensearchUserDeleteDeleteExecute,
-} from './database/opensearch/userDeleteDelete.operation';
+	description as opensearchClusterDeleteDeleteDescription,
+	execute as opensearchClusterDeleteDeleteExecute,
+} from './database/opensearch/ClusterDeleteDelete.operation';
 import {
-	description as opensearchNodeListGetDescription,
-	execute as opensearchNodeListGetExecute,
-} from './database/opensearch/nodeListGet.operation';
+	description as opensearchClusterGetGetDescription,
+	execute as opensearchClusterGetGetExecute,
+} from './database/opensearch/ClusterGetGet.operation';
 import {
-	description as opensearchNodeCreatePostDescription,
-	execute as opensearchNodeCreatePostExecute,
-} from './database/opensearch/nodeCreatePost.operation';
+	description as opensearchClusterListGetDescription,
+	execute as opensearchClusterListGetExecute,
+} from './database/opensearch/ClusterListGet.operation';
 import {
-	description as opensearchNodeGetGetDescription,
-	execute as opensearchNodeGetGetExecute,
-} from './database/opensearch/nodeGetGet.operation';
+	description as opensearchClusterUpdatePutDescription,
+	execute as opensearchClusterUpdatePutExecute,
+} from './database/opensearch/ClusterUpdatePut.operation';
 import {
-	description as opensearchNodeUpdatePutDescription,
-	execute as opensearchNodeUpdatePutExecute,
-} from './database/opensearch/nodeUpdatePut.operation';
+	description as opensearchIndexDeleteDeleteDescription,
+	execute as opensearchIndexDeleteDeleteExecute,
+} from './database/opensearch/IndexDeleteDelete.operation';
 import {
-	description as opensearchNodeDeleteDeleteDescription,
-	execute as opensearchNodeDeleteDeleteExecute,
-} from './database/opensearch/nodeDeleteDelete.operation';
+	description as opensearchIndexGetGetDescription,
+	execute as opensearchIndexGetGetExecute,
+} from './database/opensearch/IndexGetGet.operation';
 import {
-	description as opensearchIpRestrictionListGetDescription,
-	execute as opensearchIpRestrictionListGetExecute,
-} from './database/opensearch/ipRestrictionListGet.operation';
-import {
-	description as opensearchIpRestrictionCreatePostDescription,
-	execute as opensearchIpRestrictionCreatePostExecute,
-} from './database/opensearch/ipRestrictionCreatePost.operation';
-import {
-	description as opensearchLogSubscriptionListGetDescription,
-	execute as opensearchLogSubscriptionListGetExecute,
-} from './database/opensearch/logSubscriptionListGet.operation';
-import {
-	description as opensearchLogSubscriptionCreatePostDescription,
-	execute as opensearchLogSubscriptionCreatePostExecute,
-} from './database/opensearch/logSubscriptionCreatePost.operation';
-import {
-	description as opensearchLogSubscriptionGetGetDescription,
-	execute as opensearchLogSubscriptionGetGetExecute,
-} from './database/opensearch/logSubscriptionGetGet.operation';
-import {
-	description as opensearchMaintenanceGetDescription,
-	execute as opensearchMaintenanceGetExecute,
-} from './database/opensearch/maintenanceGet.operation';
-import {
-	description as opensearchMaintenanceUpdatePutDescription,
-	execute as opensearchMaintenanceUpdatePutExecute,
-} from './database/opensearch/maintenanceUpdatePut.operation';
-import {
-	description as opensearchMetricGetDescription,
-	execute as opensearchMetricGetExecute,
-} from './database/opensearch/metricGet.operation';
-import {
-	description as opensearchPrometheusGetDescription,
-	execute as opensearchPrometheusGetExecute,
-} from './database/opensearch/prometheusGet.operation';
-import {
-	description as opensearchCertificateListGetDescription,
-	execute as opensearchCertificateListGetExecute,
-} from './database/opensearch/certificateListGet.operation';
-import {
-	description as opensearchCertificateCreatePostDescription,
-	execute as opensearchCertificateCreatePostExecute,
-} from './database/opensearch/certificateCreatePost.operation';
-import {
-	description as opensearchIntegrationListGetDescription,
-	execute as opensearchIntegrationListGetExecute,
-} from './database/opensearch/integrationListGet.operation';
+	description as opensearchIndexListGetDescription,
+	execute as opensearchIndexListGetExecute,
+} from './database/opensearch/IndexListGet.operation';
 import {
 	description as opensearchIntegrationCreatePostDescription,
 	execute as opensearchIntegrationCreatePostExecute,
-} from './database/opensearch/integrationCreatePost.operation';
+} from './database/opensearch/IntegrationCreatePost.operation';
+import {
+	description as opensearchIntegrationDeleteDeleteDescription,
+	execute as opensearchIntegrationDeleteDeleteExecute,
+} from './database/opensearch/IntegrationDeleteDelete.operation';
+import {
+	description as opensearchIntegrationGetGetDescription,
+	execute as opensearchIntegrationGetGetExecute,
+} from './database/opensearch/IntegrationGetGet.operation';
+import {
+	description as opensearchIntegrationListGetDescription,
+	execute as opensearchIntegrationListGetExecute,
+} from './database/opensearch/IntegrationListGet.operation';
+import {
+	description as opensearchIpRestrictionCreatePostDescription,
+	execute as opensearchIpRestrictionCreatePostExecute,
+} from './database/opensearch/IpRestrictionCreatePost.operation';
+import {
+	description as opensearchIpRestrictionDeleteDeleteDescription,
+	execute as opensearchIpRestrictionDeleteDeleteExecute,
+} from './database/opensearch/IpRestrictionDeleteDelete.operation';
+import {
+	description as opensearchIpRestrictionGetGetDescription,
+	execute as opensearchIpRestrictionGetGetExecute,
+} from './database/opensearch/IpRestrictionGetGet.operation';
+import {
+	description as opensearchIpRestrictionListGetDescription,
+	execute as opensearchIpRestrictionListGetExecute,
+} from './database/opensearch/IpRestrictionListGet.operation';
+import {
+	description as opensearchIpRestrictionUpdatePutDescription,
+	execute as opensearchIpRestrictionUpdatePutExecute,
+} from './database/opensearch/IpRestrictionUpdatePut.operation';
+import {
+	description as opensearchLogKindGetDescription,
+	execute as opensearchLogKindGetExecute,
+} from './database/opensearch/LogKindGet.operation';
+import {
+	description as opensearchLogKindListGetDescription,
+	execute as opensearchLogKindListGetExecute,
+} from './database/opensearch/LogKindListGet.operation';
+import {
+	description as opensearchLogSubscriptionCreatePostDescription,
+	execute as opensearchLogSubscriptionCreatePostExecute,
+} from './database/opensearch/LogSubscriptionCreatePost.operation';
+import {
+	description as opensearchLogSubscriptionDeleteDeleteDescription,
+	execute as opensearchLogSubscriptionDeleteDeleteExecute,
+} from './database/opensearch/LogSubscriptionDeleteDelete.operation';
+import {
+	description as opensearchLogSubscriptionGetDescription,
+	execute as opensearchLogSubscriptionGetExecute,
+} from './database/opensearch/LogSubscriptionGet.operation';
+import {
+	description as opensearchLogSubscriptionListGetDescription,
+	execute as opensearchLogSubscriptionListGetExecute,
+} from './database/opensearch/LogSubscriptionListGet.operation';
+import {
+	description as opensearchLogUrlCreatePostDescription,
+	execute as opensearchLogUrlCreatePostExecute,
+} from './database/opensearch/LogUrlCreatePost.operation';
+import {
+	description as opensearchLogsListGetDescription,
+	execute as opensearchLogsListGetExecute,
+} from './database/opensearch/LogsListGet.operation';
+import {
+	description as opensearchMaintenanceApplyPostDescription,
+	execute as opensearchMaintenanceApplyPostExecute,
+} from './database/opensearch/MaintenanceApplyPost.operation';
+import {
+	description as opensearchMaintenanceGetGetDescription,
+	execute as opensearchMaintenanceGetGetExecute,
+} from './database/opensearch/MaintenanceGetGet.operation';
+import {
+	description as opensearchMaintenanceListGetDescription,
+	execute as opensearchMaintenanceListGetExecute,
+} from './database/opensearch/MaintenanceListGet.operation';
+import {
+	description as opensearchMetricGetGetDescription,
+	execute as opensearchMetricGetGetExecute,
+} from './database/opensearch/MetricGetGet.operation';
+import {
+	description as opensearchMetricListGetDescription,
+	execute as opensearchMetricListGetExecute,
+} from './database/opensearch/MetricListGet.operation';
+import {
+	description as opensearchNodeGetGetDescription,
+	execute as opensearchNodeGetGetExecute,
+} from './database/opensearch/NodeGetGet.operation';
+import {
+	description as opensearchNodeListGetDescription,
+	execute as opensearchNodeListGetExecute,
+} from './database/opensearch/NodeListGet.operation';
+import {
+	description as opensearchPatternCreatePostDescription,
+	execute as opensearchPatternCreatePostExecute,
+} from './database/opensearch/PatternCreatePost.operation';
+import {
+	description as opensearchPatternDeleteDeleteDescription,
+	execute as opensearchPatternDeleteDeleteExecute,
+} from './database/opensearch/PatternDeleteDelete.operation';
+import {
+	description as opensearchPatternGetGetDescription,
+	execute as opensearchPatternGetGetExecute,
+} from './database/opensearch/PatternGetGet.operation';
+import {
+	description as opensearchPatternListGetDescription,
+	execute as opensearchPatternListGetExecute,
+} from './database/opensearch/PatternListGet.operation';
+import {
+	description as opensearchPermissionsListGetDescription,
+	execute as opensearchPermissionsListGetExecute,
+} from './database/opensearch/PermissionsListGet.operation';
+import {
+	description as opensearchPrometheusCredentialsResetPostDescription,
+	execute as opensearchPrometheusCredentialsResetPostExecute,
+} from './database/opensearch/PrometheusCredentialsResetPost.operation';
+import {
+	description as opensearchPrometheusListGetDescription,
+	execute as opensearchPrometheusListGetExecute,
+} from './database/opensearch/PrometheusListGet.operation';
+import {
+	description as opensearchUserCreatePostDescription,
+	execute as opensearchUserCreatePostExecute,
+} from './database/opensearch/UserCreatePost.operation';
+import {
+	description as opensearchUserCredentialsResetPostDescription,
+	execute as opensearchUserCredentialsResetPostExecute,
+} from './database/opensearch/UserCredentialsResetPost.operation';
+import {
+	description as opensearchUserDeleteDeleteDescription,
+	execute as opensearchUserDeleteDeleteExecute,
+} from './database/opensearch/UserDeleteDelete.operation';
+import {
+	description as opensearchUserGetGetDescription,
+	execute as opensearchUserGetGetExecute,
+} from './database/opensearch/UserGetGet.operation';
+import {
+	description as opensearchUserListGetDescription,
+	execute as opensearchUserListGetExecute,
+} from './database/opensearch/UserListGet.operation';
+import {
+	description as opensearchUserUpdatePutDescription,
+	execute as opensearchUserUpdatePutExecute,
+} from './database/opensearch/UserUpdatePut.operation';
 import {
 	description as postgresqlClusterListGetDescription,
 	execute as postgresqlClusterListGetExecute,
@@ -5083,164 +5163,264 @@ export function description(displayOptions: IDisplayOptions): INodeProperties[] 
 				action: 'Create MySQL integration',
 			},
 			{
-				name: 'opensearchClusterListGet',
-				value: 'opensearchClusterListGet',
-				action: 'List OpenSearch clusters in a project',
+				name: 'opensearchAdvancedConfigurationListGet',
+				value: 'opensearchAdvancedConfigurationListGet',
+				action: 'List Advanced Configuration OpenSearch',
 			},
 			{
-				name: 'opensearchClusterGetGet',
-				value: 'opensearchClusterGetGet',
-				action: 'Get OpenSearch cluster',
-			},
-			{
-				name: 'opensearchClusterCreatePost',
-				value: 'opensearchClusterCreatePost',
-				action: 'Create OpenSearch cluster',
-			},
-			{
-				name: 'opensearchClusterUpdatePut',
-				value: 'opensearchClusterUpdatePut',
-				action: 'Update OpenSearch cluster',
-			},
-			{
-				name: 'opensearchClusterDeleteDelete',
-				value: 'opensearchClusterDeleteDelete',
-				action: 'Delete OpenSearch cluster',
-			},
-			{
-				name: 'opensearchBackupListGet',
-				value: 'opensearchBackupListGet',
-				action: 'List OpenSearch backups',
-			},
-			{
-				name: 'opensearchBackupCreatePost',
-				value: 'opensearchBackupCreatePost',
-				action: 'Create OpenSearch backup',
+				name: 'opensearchAdvancedConfigurationUpdatePut',
+				value: 'opensearchAdvancedConfigurationUpdatePut',
+				action: 'Update Advanced Configuration OpenSearch',
 			},
 			{
 				name: 'opensearchBackupGetGet',
 				value: 'opensearchBackupGetGet',
-				action: 'Get OpenSearch backup',
+				action: 'Get Backup OpenSearch',
 			},
 			{
-				name: 'opensearchBackupDeleteDelete',
-				value: 'opensearchBackupDeleteDelete',
-				action: 'Delete OpenSearch backup',
+				name: 'opensearchBackupListGet',
+				value: 'opensearchBackupListGet',
+				action: 'List Backup OpenSearch',
 			},
 			{
-				name: 'opensearchUserListGet',
-				value: 'opensearchUserListGet',
-				action: 'List OpenSearch users',
+				name: 'opensearchCapabilitiesAdvancedConfigurationListGet',
+				value: 'opensearchCapabilitiesAdvancedConfigurationListGet',
+				action: 'List Capabilities Advanced Configuration OpenSearch',
 			},
 			{
-				name: 'opensearchUserCreatePost',
-				value: 'opensearchUserCreatePost',
-				action: 'Create OpenSearch user',
+				name: 'opensearchCapabilitiesBackupRegionsListGet',
+				value: 'opensearchCapabilitiesBackupRegionsListGet',
+				action: 'List Capabilities Backup Regions OpenSearch',
 			},
 			{
-				name: 'opensearchUserGetGet',
-				value: 'opensearchUserGetGet',
-				action: 'Get OpenSearch user',
+				name: 'opensearchCapabilitiesIntegrationListGet',
+				value: 'opensearchCapabilitiesIntegrationListGet',
+				action: 'List Capabilities Integration OpenSearch',
 			},
 			{
-				name: 'opensearchUserUpdatePut',
-				value: 'opensearchUserUpdatePut',
-				action: 'Update OpenSearch user',
+				name: 'opensearchClusterCreatePost',
+				value: 'opensearchClusterCreatePost',
+				action: 'Create Cluster OpenSearch',
 			},
 			{
-				name: 'opensearchUserDeleteDelete',
-				value: 'opensearchUserDeleteDelete',
-				action: 'Delete OpenSearch user',
+				name: 'opensearchClusterDeleteDelete',
+				value: 'opensearchClusterDeleteDelete',
+				action: 'Delete Cluster OpenSearch',
 			},
 			{
-				name: 'opensearchNodeListGet',
-				value: 'opensearchNodeListGet',
-				action: 'List OpenSearch nodes',
+				name: 'opensearchClusterGetGet',
+				value: 'opensearchClusterGetGet',
+				action: 'Get Cluster OpenSearch',
 			},
 			{
-				name: 'opensearchNodeCreatePost',
-				value: 'opensearchNodeCreatePost',
-				action: 'Create OpenSearch node',
+				name: 'opensearchClusterListGet',
+				value: 'opensearchClusterListGet',
+				action: 'List Cluster OpenSearch',
 			},
 			{
-				name: 'opensearchNodeGetGet',
-				value: 'opensearchNodeGetGet',
-				action: 'Get OpenSearch node',
+				name: 'opensearchClusterUpdatePut',
+				value: 'opensearchClusterUpdatePut',
+				action: 'Update Cluster OpenSearch',
 			},
 			{
-				name: 'opensearchNodeUpdatePut',
-				value: 'opensearchNodeUpdatePut',
-				action: 'Update OpenSearch node',
+				name: 'opensearchIndexDeleteDelete',
+				value: 'opensearchIndexDeleteDelete',
+				action: 'Delete Index OpenSearch',
 			},
 			{
-				name: 'opensearchNodeDeleteDelete',
-				value: 'opensearchNodeDeleteDelete',
-				action: 'Delete OpenSearch node',
+				name: 'opensearchIndexGetGet',
+				value: 'opensearchIndexGetGet',
+				action: 'Get Index OpenSearch',
 			},
 			{
-				name: 'opensearchIpRestrictionListGet',
-				value: 'opensearchIpRestrictionListGet',
-				action: 'List OpenSearch IP restrictions',
-			},
-			{
-				name: 'opensearchIpRestrictionCreatePost',
-				value: 'opensearchIpRestrictionCreatePost',
-				action: 'Create OpenSearch IP restriction',
-			},
-			{
-				name: 'opensearchLogSubscriptionListGet',
-				value: 'opensearchLogSubscriptionListGet',
-				action: 'List OpenSearch log subscriptions',
-			},
-			{
-				name: 'opensearchLogSubscriptionCreatePost',
-				value: 'opensearchLogSubscriptionCreatePost',
-				action: 'Create OpenSearch log subscription',
-			},
-			{
-				name: 'opensearchLogSubscriptionGetGet',
-				value: 'opensearchLogSubscriptionGetGet',
-				action: 'Get OpenSearch log subscription',
-			},
-			{
-				name: 'opensearchMaintenanceGet',
-				value: 'opensearchMaintenanceGet',
-				action: 'Get OpenSearch maintenance',
-			},
-			{
-				name: 'opensearchMaintenanceUpdatePut',
-				value: 'opensearchMaintenanceUpdatePut',
-				action: 'Update OpenSearch maintenance',
-			},
-			{
-				name: 'opensearchMetricGet',
-				value: 'opensearchMetricGet',
-				action: 'Get OpenSearch metric',
-			},
-			{
-				name: 'opensearchPrometheusGet',
-				value: 'opensearchPrometheusGet',
-				action: 'Get OpenSearch prometheus',
-			},
-			{
-				name: 'opensearchCertificateListGet',
-				value: 'opensearchCertificateListGet',
-				action: 'List OpenSearch certificates',
-			},
-			{
-				name: 'opensearchCertificateCreatePost',
-				value: 'opensearchCertificateCreatePost',
-				action: 'Create OpenSearch certificate',
-			},
-			{
-				name: 'opensearchIntegrationListGet',
-				value: 'opensearchIntegrationListGet',
-				action: 'List OpenSearch integrations',
+				name: 'opensearchIndexListGet',
+				value: 'opensearchIndexListGet',
+				action: 'List Index OpenSearch',
 			},
 			{
 				name: 'opensearchIntegrationCreatePost',
 				value: 'opensearchIntegrationCreatePost',
-				action: 'Create OpenSearch integration',
+				action: 'Create Integration OpenSearch',
+			},
+			{
+				name: 'opensearchIntegrationDeleteDelete',
+				value: 'opensearchIntegrationDeleteDelete',
+				action: 'Delete Integration OpenSearch',
+			},
+			{
+				name: 'opensearchIntegrationGetGet',
+				value: 'opensearchIntegrationGetGet',
+				action: 'Get Integration OpenSearch',
+			},
+			{
+				name: 'opensearchIntegrationListGet',
+				value: 'opensearchIntegrationListGet',
+				action: 'List Integration OpenSearch',
+			},
+			{
+				name: 'opensearchIpRestrictionCreatePost',
+				value: 'opensearchIpRestrictionCreatePost',
+				action: 'Create Ip Restriction OpenSearch',
+			},
+			{
+				name: 'opensearchIpRestrictionDeleteDelete',
+				value: 'opensearchIpRestrictionDeleteDelete',
+				action: 'Delete Ip Restriction OpenSearch',
+			},
+			{
+				name: 'opensearchIpRestrictionGetGet',
+				value: 'opensearchIpRestrictionGetGet',
+				action: 'Get Ip Restriction OpenSearch',
+			},
+			{
+				name: 'opensearchIpRestrictionListGet',
+				value: 'opensearchIpRestrictionListGet',
+				action: 'List Ip Restriction OpenSearch',
+			},
+			{
+				name: 'opensearchIpRestrictionUpdatePut',
+				value: 'opensearchIpRestrictionUpdatePut',
+				action: 'Update Ip Restriction OpenSearch',
+			},
+			{
+				name: 'opensearchLogKindGet',
+				value: 'opensearchLogKindGet',
+				action: ' Cluster OpenSearch',
+			},
+			{
+				name: 'opensearchLogKindListGet',
+				value: 'opensearchLogKindListGet',
+				action: 'List Log Kind OpenSearch',
+			},
+			{
+				name: 'opensearchLogSubscriptionCreatePost',
+				value: 'opensearchLogSubscriptionCreatePost',
+				action: 'Create Log Subscription OpenSearch',
+			},
+			{
+				name: 'opensearchLogSubscriptionDeleteDelete',
+				value: 'opensearchLogSubscriptionDeleteDelete',
+				action: 'Delete Log Subscription OpenSearch',
+			},
+			{
+				name: 'opensearchLogSubscriptionGet',
+				value: 'opensearchLogSubscriptionGet',
+				action: ' Cluster OpenSearch',
+			},
+			{
+				name: 'opensearchLogSubscriptionListGet',
+				value: 'opensearchLogSubscriptionListGet',
+				action: 'List Log Subscription OpenSearch',
+			},
+			{
+				name: 'opensearchLogUrlCreatePost',
+				value: 'opensearchLogUrlCreatePost',
+				action: 'Create Log Url OpenSearch',
+			},
+			{
+				name: 'opensearchLogsListGet',
+				value: 'opensearchLogsListGet',
+				action: 'List Logs OpenSearch',
+			},
+			{
+				name: 'opensearchMaintenanceApplyPost',
+				value: 'opensearchMaintenanceApplyPost',
+				action: ' Cluster OpenSearch',
+			},
+			{
+				name: 'opensearchMaintenanceGetGet',
+				value: 'opensearchMaintenanceGetGet',
+				action: 'Get Maintenance OpenSearch',
+			},
+			{
+				name: 'opensearchMaintenanceListGet',
+				value: 'opensearchMaintenanceListGet',
+				action: 'List Maintenance OpenSearch',
+			},
+			{
+				name: 'opensearchMetricGetGet',
+				value: 'opensearchMetricGetGet',
+				action: 'Get Metric OpenSearch',
+			},
+			{
+				name: 'opensearchMetricListGet',
+				value: 'opensearchMetricListGet',
+				action: 'List Metric OpenSearch',
+			},
+			{
+				name: 'opensearchNodeGetGet',
+				value: 'opensearchNodeGetGet',
+				action: 'Get Node OpenSearch',
+			},
+			{
+				name: 'opensearchNodeListGet',
+				value: 'opensearchNodeListGet',
+				action: 'List Node OpenSearch',
+			},
+			{
+				name: 'opensearchPatternCreatePost',
+				value: 'opensearchPatternCreatePost',
+				action: 'Create Pattern OpenSearch',
+			},
+			{
+				name: 'opensearchPatternDeleteDelete',
+				value: 'opensearchPatternDeleteDelete',
+				action: 'Delete Pattern OpenSearch',
+			},
+			{
+				name: 'opensearchPatternGetGet',
+				value: 'opensearchPatternGetGet',
+				action: 'Get Pattern OpenSearch',
+			},
+			{
+				name: 'opensearchPatternListGet',
+				value: 'opensearchPatternListGet',
+				action: 'List Pattern OpenSearch',
+			},
+			{
+				name: 'opensearchPermissionsListGet',
+				value: 'opensearchPermissionsListGet',
+				action: 'List Permissions OpenSearch',
+			},
+			{
+				name: 'opensearchPrometheusCredentialsResetPost',
+				value: 'opensearchPrometheusCredentialsResetPost',
+				action: ' Cluster OpenSearch',
+			},
+			{
+				name: 'opensearchPrometheusListGet',
+				value: 'opensearchPrometheusListGet',
+				action: 'List Prometheus OpenSearch',
+			},
+			{
+				name: 'opensearchUserCreatePost',
+				value: 'opensearchUserCreatePost',
+				action: 'Create User OpenSearch',
+			},
+			{
+				name: 'opensearchUserCredentialsResetPost',
+				value: 'opensearchUserCredentialsResetPost',
+				action: ' Cluster OpenSearch',
+			},
+			{
+				name: 'opensearchUserDeleteDelete',
+				value: 'opensearchUserDeleteDelete',
+				action: 'Delete User OpenSearch',
+			},
+			{
+				name: 'opensearchUserGetGet',
+				value: 'opensearchUserGetGet',
+				action: 'Get User OpenSearch',
+			},
+			{
+				name: 'opensearchUserListGet',
+				value: 'opensearchUserListGet',
+				action: 'List User OpenSearch',
+			},
+			{
+				name: 'opensearchUserUpdatePut',
+				value: 'opensearchUserUpdatePut',
+				action: 'Update User OpenSearch',
 			},
 			{
 				name: 'postgresqlClusterListGet',
@@ -9399,198 +9579,214 @@ export function description(displayOptions: IDisplayOptions): INodeProperties[] 
 		}) as INodeProperties[]),
 	);
 	properties.push(
-		...(opensearchClusterListGetDescription({
+		...(opensearchAdvancedConfigurationListGetDescription({
 			...displayOptions,
-			show: { publicCloudOperation: ['opensearchClusterListGet'] },
+			show: { publicCloudOperation: ['opensearchAdvancedConfigurationListGet'] },
 		}) as INodeProperties[]),
-	);
-	properties.push(
-		...(opensearchClusterGetGetDescription({
+		...(opensearchAdvancedConfigurationUpdatePutDescription({
 			...displayOptions,
-			show: { publicCloudOperation: ['opensearchClusterGetGet'] },
+			show: { publicCloudOperation: ['opensearchAdvancedConfigurationUpdatePut'] },
 		}) as INodeProperties[]),
-	);
-	properties.push(
-		...(opensearchClusterCreatePostDescription({
-			...displayOptions,
-			show: { publicCloudOperation: ['opensearchClusterCreatePost'] },
-		}) as INodeProperties[]),
-	);
-	properties.push(
-		...(opensearchClusterUpdatePutDescription({
-			...displayOptions,
-			show: { publicCloudOperation: ['opensearchClusterUpdatePut'] },
-		}) as INodeProperties[]),
-	);
-	properties.push(
-		...(opensearchClusterDeleteDeleteDescription({
-			...displayOptions,
-			show: { publicCloudOperation: ['opensearchClusterDeleteDelete'] },
-		}) as INodeProperties[]),
-	);
-	properties.push(
-		...(opensearchBackupListGetDescription({
-			...displayOptions,
-			show: { publicCloudOperation: ['opensearchBackupListGet'] },
-		}) as INodeProperties[]),
-	);
-	properties.push(
-		...(opensearchBackupCreatePostDescription({
-			...displayOptions,
-			show: { publicCloudOperation: ['opensearchBackupCreatePost'] },
-		}) as INodeProperties[]),
-	);
-	properties.push(
 		...(opensearchBackupGetGetDescription({
 			...displayOptions,
 			show: { publicCloudOperation: ['opensearchBackupGetGet'] },
 		}) as INodeProperties[]),
-	);
-	properties.push(
-		...(opensearchBackupDeleteDeleteDescription({
+		...(opensearchBackupListGetDescription({
 			...displayOptions,
-			show: { publicCloudOperation: ['opensearchBackupDeleteDelete'] },
+			show: { publicCloudOperation: ['opensearchBackupListGet'] },
 		}) as INodeProperties[]),
-	);
-	properties.push(
-		...(opensearchUserListGetDescription({
+		...(opensearchCapabilitiesAdvancedConfigurationListGetDescription({
 			...displayOptions,
-			show: { publicCloudOperation: ['opensearchUserListGet'] },
+			show: { publicCloudOperation: ['opensearchCapabilitiesAdvancedConfigurationListGet'] },
 		}) as INodeProperties[]),
-	);
-	properties.push(
-		...(opensearchUserCreatePostDescription({
+		...(opensearchCapabilitiesBackupRegionsListGetDescription({
 			...displayOptions,
-			show: { publicCloudOperation: ['opensearchUserCreatePost'] },
+			show: { publicCloudOperation: ['opensearchCapabilitiesBackupRegionsListGet'] },
 		}) as INodeProperties[]),
-	);
-	properties.push(
-		...(opensearchUserGetGetDescription({
+		...(opensearchCapabilitiesIntegrationListGetDescription({
 			...displayOptions,
-			show: { publicCloudOperation: ['opensearchUserGetGet'] },
+			show: { publicCloudOperation: ['opensearchCapabilitiesIntegrationListGet'] },
 		}) as INodeProperties[]),
-	);
-	properties.push(
-		...(opensearchUserUpdatePutDescription({
+		...(opensearchClusterCreatePostDescription({
 			...displayOptions,
-			show: { publicCloudOperation: ['opensearchUserUpdatePut'] },
+			show: { publicCloudOperation: ['opensearchClusterCreatePost'] },
 		}) as INodeProperties[]),
-	);
-	properties.push(
-		...(opensearchUserDeleteDeleteDescription({
+		...(opensearchClusterDeleteDeleteDescription({
 			...displayOptions,
-			show: { publicCloudOperation: ['opensearchUserDeleteDelete'] },
+			show: { publicCloudOperation: ['opensearchClusterDeleteDelete'] },
 		}) as INodeProperties[]),
-	);
-	properties.push(
-		...(opensearchNodeListGetDescription({
+		...(opensearchClusterGetGetDescription({
 			...displayOptions,
-			show: { publicCloudOperation: ['opensearchNodeListGet'] },
+			show: { publicCloudOperation: ['opensearchClusterGetGet'] },
 		}) as INodeProperties[]),
-	);
-	properties.push(
-		...(opensearchNodeCreatePostDescription({
+		...(opensearchClusterListGetDescription({
 			...displayOptions,
-			show: { publicCloudOperation: ['opensearchNodeCreatePost'] },
+			show: { publicCloudOperation: ['opensearchClusterListGet'] },
 		}) as INodeProperties[]),
-	);
-	properties.push(
-		...(opensearchNodeGetGetDescription({
+		...(opensearchClusterUpdatePutDescription({
 			...displayOptions,
-			show: { publicCloudOperation: ['opensearchNodeGetGet'] },
+			show: { publicCloudOperation: ['opensearchClusterUpdatePut'] },
 		}) as INodeProperties[]),
-	);
-	properties.push(
-		...(opensearchNodeUpdatePutDescription({
+		...(opensearchIndexDeleteDeleteDescription({
 			...displayOptions,
-			show: { publicCloudOperation: ['opensearchNodeUpdatePut'] },
+			show: { publicCloudOperation: ['opensearchIndexDeleteDelete'] },
 		}) as INodeProperties[]),
-	);
-	properties.push(
-		...(opensearchNodeDeleteDeleteDescription({
+		...(opensearchIndexGetGetDescription({
 			...displayOptions,
-			show: { publicCloudOperation: ['opensearchNodeDeleteDelete'] },
+			show: { publicCloudOperation: ['opensearchIndexGetGet'] },
 		}) as INodeProperties[]),
-	);
-	properties.push(
-		...(opensearchIpRestrictionListGetDescription({
+		...(opensearchIndexListGetDescription({
 			...displayOptions,
-			show: { publicCloudOperation: ['opensearchIpRestrictionListGet'] },
+			show: { publicCloudOperation: ['opensearchIndexListGet'] },
 		}) as INodeProperties[]),
-	);
-	properties.push(
-		...(opensearchIpRestrictionCreatePostDescription({
-			...displayOptions,
-			show: { publicCloudOperation: ['opensearchIpRestrictionCreatePost'] },
-		}) as INodeProperties[]),
-	);
-	properties.push(
-		...(opensearchLogSubscriptionListGetDescription({
-			...displayOptions,
-			show: { publicCloudOperation: ['opensearchLogSubscriptionListGet'] },
-		}) as INodeProperties[]),
-	);
-	properties.push(
-		...(opensearchLogSubscriptionCreatePostDescription({
-			...displayOptions,
-			show: { publicCloudOperation: ['opensearchLogSubscriptionCreatePost'] },
-		}) as INodeProperties[]),
-	);
-	properties.push(
-		...(opensearchLogSubscriptionGetGetDescription({
-			...displayOptions,
-			show: { publicCloudOperation: ['opensearchLogSubscriptionGetGet'] },
-		}) as INodeProperties[]),
-	);
-	properties.push(
-		...(opensearchMaintenanceGetDescription({
-			...displayOptions,
-			show: { publicCloudOperation: ['opensearchMaintenanceGet'] },
-		}) as INodeProperties[]),
-	);
-	properties.push(
-		...(opensearchMaintenanceUpdatePutDescription({
-			...displayOptions,
-			show: { publicCloudOperation: ['opensearchMaintenanceUpdatePut'] },
-		}) as INodeProperties[]),
-	);
-	properties.push(
-		...(opensearchMetricGetDescription({
-			...displayOptions,
-			show: { publicCloudOperation: ['opensearchMetricGet'] },
-		}) as INodeProperties[]),
-	);
-	properties.push(
-		...(opensearchPrometheusGetDescription({
-			...displayOptions,
-			show: { publicCloudOperation: ['opensearchPrometheusGet'] },
-		}) as INodeProperties[]),
-	);
-	properties.push(
-		...(opensearchCertificateListGetDescription({
-			...displayOptions,
-			show: { publicCloudOperation: ['opensearchCertificateListGet'] },
-		}) as INodeProperties[]),
-	);
-	properties.push(
-		...(opensearchCertificateCreatePostDescription({
-			...displayOptions,
-			show: { publicCloudOperation: ['opensearchCertificateCreatePost'] },
-		}) as INodeProperties[]),
-	);
-	properties.push(
-		...(opensearchIntegrationListGetDescription({
-			...displayOptions,
-			show: { publicCloudOperation: ['opensearchIntegrationListGet'] },
-		}) as INodeProperties[]),
-	);
-	properties.push(
 		...(opensearchIntegrationCreatePostDescription({
 			...displayOptions,
 			show: { publicCloudOperation: ['opensearchIntegrationCreatePost'] },
 		}) as INodeProperties[]),
-	);
-	properties.push(
+		...(opensearchIntegrationDeleteDeleteDescription({
+			...displayOptions,
+			show: { publicCloudOperation: ['opensearchIntegrationDeleteDelete'] },
+		}) as INodeProperties[]),
+		...(opensearchIntegrationGetGetDescription({
+			...displayOptions,
+			show: { publicCloudOperation: ['opensearchIntegrationGetGet'] },
+		}) as INodeProperties[]),
+		...(opensearchIntegrationListGetDescription({
+			...displayOptions,
+			show: { publicCloudOperation: ['opensearchIntegrationListGet'] },
+		}) as INodeProperties[]),
+		...(opensearchIpRestrictionCreatePostDescription({
+			...displayOptions,
+			show: { publicCloudOperation: ['opensearchIpRestrictionCreatePost'] },
+		}) as INodeProperties[]),
+		...(opensearchIpRestrictionDeleteDeleteDescription({
+			...displayOptions,
+			show: { publicCloudOperation: ['opensearchIpRestrictionDeleteDelete'] },
+		}) as INodeProperties[]),
+		...(opensearchIpRestrictionGetGetDescription({
+			...displayOptions,
+			show: { publicCloudOperation: ['opensearchIpRestrictionGetGet'] },
+		}) as INodeProperties[]),
+		...(opensearchIpRestrictionListGetDescription({
+			...displayOptions,
+			show: { publicCloudOperation: ['opensearchIpRestrictionListGet'] },
+		}) as INodeProperties[]),
+		...(opensearchIpRestrictionUpdatePutDescription({
+			...displayOptions,
+			show: { publicCloudOperation: ['opensearchIpRestrictionUpdatePut'] },
+		}) as INodeProperties[]),
+		...(opensearchLogKindGetDescription({
+			...displayOptions,
+			show: { publicCloudOperation: ['opensearchLogKindGet'] },
+		}) as INodeProperties[]),
+		...(opensearchLogKindListGetDescription({
+			...displayOptions,
+			show: { publicCloudOperation: ['opensearchLogKindListGet'] },
+		}) as INodeProperties[]),
+		...(opensearchLogSubscriptionCreatePostDescription({
+			...displayOptions,
+			show: { publicCloudOperation: ['opensearchLogSubscriptionCreatePost'] },
+		}) as INodeProperties[]),
+		...(opensearchLogSubscriptionDeleteDeleteDescription({
+			...displayOptions,
+			show: { publicCloudOperation: ['opensearchLogSubscriptionDeleteDelete'] },
+		}) as INodeProperties[]),
+		...(opensearchLogSubscriptionGetDescription({
+			...displayOptions,
+			show: { publicCloudOperation: ['opensearchLogSubscriptionGet'] },
+		}) as INodeProperties[]),
+		...(opensearchLogSubscriptionListGetDescription({
+			...displayOptions,
+			show: { publicCloudOperation: ['opensearchLogSubscriptionListGet'] },
+		}) as INodeProperties[]),
+		...(opensearchLogUrlCreatePostDescription({
+			...displayOptions,
+			show: { publicCloudOperation: ['opensearchLogUrlCreatePost'] },
+		}) as INodeProperties[]),
+		...(opensearchLogsListGetDescription({
+			...displayOptions,
+			show: { publicCloudOperation: ['opensearchLogsListGet'] },
+		}) as INodeProperties[]),
+		...(opensearchMaintenanceApplyPostDescription({
+			...displayOptions,
+			show: { publicCloudOperation: ['opensearchMaintenanceApplyPost'] },
+		}) as INodeProperties[]),
+		...(opensearchMaintenanceGetGetDescription({
+			...displayOptions,
+			show: { publicCloudOperation: ['opensearchMaintenanceGetGet'] },
+		}) as INodeProperties[]),
+		...(opensearchMaintenanceListGetDescription({
+			...displayOptions,
+			show: { publicCloudOperation: ['opensearchMaintenanceListGet'] },
+		}) as INodeProperties[]),
+		...(opensearchMetricGetGetDescription({
+			...displayOptions,
+			show: { publicCloudOperation: ['opensearchMetricGetGet'] },
+		}) as INodeProperties[]),
+		...(opensearchMetricListGetDescription({
+			...displayOptions,
+			show: { publicCloudOperation: ['opensearchMetricListGet'] },
+		}) as INodeProperties[]),
+		...(opensearchNodeGetGetDescription({
+			...displayOptions,
+			show: { publicCloudOperation: ['opensearchNodeGetGet'] },
+		}) as INodeProperties[]),
+		...(opensearchNodeListGetDescription({
+			...displayOptions,
+			show: { publicCloudOperation: ['opensearchNodeListGet'] },
+		}) as INodeProperties[]),
+		...(opensearchPatternCreatePostDescription({
+			...displayOptions,
+			show: { publicCloudOperation: ['opensearchPatternCreatePost'] },
+		}) as INodeProperties[]),
+		...(opensearchPatternDeleteDeleteDescription({
+			...displayOptions,
+			show: { publicCloudOperation: ['opensearchPatternDeleteDelete'] },
+		}) as INodeProperties[]),
+		...(opensearchPatternGetGetDescription({
+			...displayOptions,
+			show: { publicCloudOperation: ['opensearchPatternGetGet'] },
+		}) as INodeProperties[]),
+		...(opensearchPatternListGetDescription({
+			...displayOptions,
+			show: { publicCloudOperation: ['opensearchPatternListGet'] },
+		}) as INodeProperties[]),
+		...(opensearchPermissionsListGetDescription({
+			...displayOptions,
+			show: { publicCloudOperation: ['opensearchPermissionsListGet'] },
+		}) as INodeProperties[]),
+		...(opensearchPrometheusCredentialsResetPostDescription({
+			...displayOptions,
+			show: { publicCloudOperation: ['opensearchPrometheusCredentialsResetPost'] },
+		}) as INodeProperties[]),
+		...(opensearchPrometheusListGetDescription({
+			...displayOptions,
+			show: { publicCloudOperation: ['opensearchPrometheusListGet'] },
+		}) as INodeProperties[]),
+		...(opensearchUserCreatePostDescription({
+			...displayOptions,
+			show: { publicCloudOperation: ['opensearchUserCreatePost'] },
+		}) as INodeProperties[]),
+		...(opensearchUserCredentialsResetPostDescription({
+			...displayOptions,
+			show: { publicCloudOperation: ['opensearchUserCredentialsResetPost'] },
+		}) as INodeProperties[]),
+		...(opensearchUserDeleteDeleteDescription({
+			...displayOptions,
+			show: { publicCloudOperation: ['opensearchUserDeleteDelete'] },
+		}) as INodeProperties[]),
+		...(opensearchUserGetGetDescription({
+			...displayOptions,
+			show: { publicCloudOperation: ['opensearchUserGetGet'] },
+		}) as INodeProperties[]),
+		...(opensearchUserListGetDescription({
+			...displayOptions,
+			show: { publicCloudOperation: ['opensearchUserListGet'] },
+		}) as INodeProperties[]),
+		...(opensearchUserUpdatePutDescription({
+			...displayOptions,
+			show: { publicCloudOperation: ['opensearchUserUpdatePut'] },
+		}) as INodeProperties[]),
 		...(postgresqlClusterListGetDescription({
 			...displayOptions,
 			show: { publicCloudOperation: ['postgresqlClusterListGet'] },
@@ -12009,70 +12205,110 @@ export async function execute(
 			return mysqlIntegrationListGetExecute.call(this);
 		case 'mysqlIntegrationCreatePost':
 			return mysqlIntegrationCreatePostExecute.call(this);
-		case 'opensearchClusterListGet':
-			return opensearchClusterListGetExecute.call(this);
-		case 'opensearchClusterGetGet':
-			return opensearchClusterGetGetExecute.call(this);
-		case 'opensearchClusterCreatePost':
-			return opensearchClusterCreatePostExecute.call(this);
-		case 'opensearchClusterUpdatePut':
-			return opensearchClusterUpdatePutExecute.call(this);
-		case 'opensearchClusterDeleteDelete':
-			return opensearchClusterDeleteDeleteExecute.call(this);
-		case 'opensearchBackupListGet':
-			return opensearchBackupListGetExecute.call(this);
-		case 'opensearchBackupCreatePost':
-			return opensearchBackupCreatePostExecute.call(this);
+		case 'opensearchAdvancedConfigurationListGet':
+			return opensearchAdvancedConfigurationListGetExecute.call(this);
+		case 'opensearchAdvancedConfigurationUpdatePut':
+			return opensearchAdvancedConfigurationUpdatePutExecute.call(this);
 		case 'opensearchBackupGetGet':
 			return opensearchBackupGetGetExecute.call(this);
-		case 'opensearchBackupDeleteDelete':
-			return opensearchBackupDeleteDeleteExecute.call(this);
-		case 'opensearchUserListGet':
-			return opensearchUserListGetExecute.call(this);
-		case 'opensearchUserCreatePost':
-			return opensearchUserCreatePostExecute.call(this);
-		case 'opensearchUserGetGet':
-			return opensearchUserGetGetExecute.call(this);
-		case 'opensearchUserUpdatePut':
-			return opensearchUserUpdatePutExecute.call(this);
-		case 'opensearchUserDeleteDelete':
-			return opensearchUserDeleteDeleteExecute.call(this);
-		case 'opensearchNodeListGet':
-			return opensearchNodeListGetExecute.call(this);
-		case 'opensearchNodeCreatePost':
-			return opensearchNodeCreatePostExecute.call(this);
-		case 'opensearchNodeGetGet':
-			return opensearchNodeGetGetExecute.call(this);
-		case 'opensearchNodeUpdatePut':
-			return opensearchNodeUpdatePutExecute.call(this);
-		case 'opensearchNodeDeleteDelete':
-			return opensearchNodeDeleteDeleteExecute.call(this);
-		case 'opensearchIpRestrictionListGet':
-			return opensearchIpRestrictionListGetExecute.call(this);
-		case 'opensearchIpRestrictionCreatePost':
-			return opensearchIpRestrictionCreatePostExecute.call(this);
-		case 'opensearchLogSubscriptionListGet':
-			return opensearchLogSubscriptionListGetExecute.call(this);
-		case 'opensearchLogSubscriptionCreatePost':
-			return opensearchLogSubscriptionCreatePostExecute.call(this);
-		case 'opensearchLogSubscriptionGetGet':
-			return opensearchLogSubscriptionGetGetExecute.call(this);
-		case 'opensearchMaintenanceGet':
-			return opensearchMaintenanceGetExecute.call(this);
-		case 'opensearchMaintenanceUpdatePut':
-			return opensearchMaintenanceUpdatePutExecute.call(this);
-		case 'opensearchMetricGet':
-			return opensearchMetricGetExecute.call(this);
-		case 'opensearchPrometheusGet':
-			return opensearchPrometheusGetExecute.call(this);
-		case 'opensearchCertificateListGet':
-			return opensearchCertificateListGetExecute.call(this);
-		case 'opensearchCertificateCreatePost':
-			return opensearchCertificateCreatePostExecute.call(this);
-		case 'opensearchIntegrationListGet':
-			return opensearchIntegrationListGetExecute.call(this);
+		case 'opensearchBackupListGet':
+			return opensearchBackupListGetExecute.call(this);
+		case 'opensearchCapabilitiesAdvancedConfigurationListGet':
+			return opensearchCapabilitiesAdvancedConfigurationListGetExecute.call(this);
+		case 'opensearchCapabilitiesBackupRegionsListGet':
+			return opensearchCapabilitiesBackupRegionsListGetExecute.call(this);
+		case 'opensearchCapabilitiesIntegrationListGet':
+			return opensearchCapabilitiesIntegrationListGetExecute.call(this);
+		case 'opensearchClusterCreatePost':
+			return opensearchClusterCreatePostExecute.call(this);
+		case 'opensearchClusterDeleteDelete':
+			return opensearchClusterDeleteDeleteExecute.call(this);
+		case 'opensearchClusterGetGet':
+			return opensearchClusterGetGetExecute.call(this);
+		case 'opensearchClusterListGet':
+			return opensearchClusterListGetExecute.call(this);
+		case 'opensearchClusterUpdatePut':
+			return opensearchClusterUpdatePutExecute.call(this);
+		case 'opensearchIndexDeleteDelete':
+			return opensearchIndexDeleteDeleteExecute.call(this);
+		case 'opensearchIndexGetGet':
+			return opensearchIndexGetGetExecute.call(this);
+		case 'opensearchIndexListGet':
+			return opensearchIndexListGetExecute.call(this);
 		case 'opensearchIntegrationCreatePost':
 			return opensearchIntegrationCreatePostExecute.call(this);
+		case 'opensearchIntegrationDeleteDelete':
+			return opensearchIntegrationDeleteDeleteExecute.call(this);
+		case 'opensearchIntegrationGetGet':
+			return opensearchIntegrationGetGetExecute.call(this);
+		case 'opensearchIntegrationListGet':
+			return opensearchIntegrationListGetExecute.call(this);
+		case 'opensearchIpRestrictionCreatePost':
+			return opensearchIpRestrictionCreatePostExecute.call(this);
+		case 'opensearchIpRestrictionDeleteDelete':
+			return opensearchIpRestrictionDeleteDeleteExecute.call(this);
+		case 'opensearchIpRestrictionGetGet':
+			return opensearchIpRestrictionGetGetExecute.call(this);
+		case 'opensearchIpRestrictionListGet':
+			return opensearchIpRestrictionListGetExecute.call(this);
+		case 'opensearchIpRestrictionUpdatePut':
+			return opensearchIpRestrictionUpdatePutExecute.call(this);
+		case 'opensearchLogKindGet':
+			return opensearchLogKindGetExecute.call(this);
+		case 'opensearchLogKindListGet':
+			return opensearchLogKindListGetExecute.call(this);
+		case 'opensearchLogSubscriptionCreatePost':
+			return opensearchLogSubscriptionCreatePostExecute.call(this);
+		case 'opensearchLogSubscriptionDeleteDelete':
+			return opensearchLogSubscriptionDeleteDeleteExecute.call(this);
+		case 'opensearchLogSubscriptionGet':
+			return opensearchLogSubscriptionGetExecute.call(this);
+		case 'opensearchLogSubscriptionListGet':
+			return opensearchLogSubscriptionListGetExecute.call(this);
+		case 'opensearchLogUrlCreatePost':
+			return opensearchLogUrlCreatePostExecute.call(this);
+		case 'opensearchLogsListGet':
+			return opensearchLogsListGetExecute.call(this);
+		case 'opensearchMaintenanceApplyPost':
+			return opensearchMaintenanceApplyPostExecute.call(this);
+		case 'opensearchMaintenanceGetGet':
+			return opensearchMaintenanceGetGetExecute.call(this);
+		case 'opensearchMaintenanceListGet':
+			return opensearchMaintenanceListGetExecute.call(this);
+		case 'opensearchMetricGetGet':
+			return opensearchMetricGetGetExecute.call(this);
+		case 'opensearchMetricListGet':
+			return opensearchMetricListGetExecute.call(this);
+		case 'opensearchNodeGetGet':
+			return opensearchNodeGetGetExecute.call(this);
+		case 'opensearchNodeListGet':
+			return opensearchNodeListGetExecute.call(this);
+		case 'opensearchPatternCreatePost':
+			return opensearchPatternCreatePostExecute.call(this);
+		case 'opensearchPatternDeleteDelete':
+			return opensearchPatternDeleteDeleteExecute.call(this);
+		case 'opensearchPatternGetGet':
+			return opensearchPatternGetGetExecute.call(this);
+		case 'opensearchPatternListGet':
+			return opensearchPatternListGetExecute.call(this);
+		case 'opensearchPermissionsListGet':
+			return opensearchPermissionsListGetExecute.call(this);
+		case 'opensearchPrometheusCredentialsResetPost':
+			return opensearchPrometheusCredentialsResetPostExecute.call(this);
+		case 'opensearchPrometheusListGet':
+			return opensearchPrometheusListGetExecute.call(this);
+		case 'opensearchUserCreatePost':
+			return opensearchUserCreatePostExecute.call(this);
+		case 'opensearchUserCredentialsResetPost':
+			return opensearchUserCredentialsResetPostExecute.call(this);
+		case 'opensearchUserDeleteDelete':
+			return opensearchUserDeleteDeleteExecute.call(this);
+		case 'opensearchUserGetGet':
+			return opensearchUserGetGetExecute.call(this);
+		case 'opensearchUserListGet':
+			return opensearchUserListGetExecute.call(this);
+		case 'opensearchUserUpdatePut':
+			return opensearchUserUpdatePutExecute.call(this);
 		case 'postgresqlClusterListGet':
 			return postgresqlClusterListGetExecute.call(this);
 		case 'postgresqlClusterGetGet':

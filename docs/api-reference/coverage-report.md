@@ -1,6 +1,6 @@
 # OVHcloud API Coverage Report
 
-> Généré par `scripts/compare-coverage.js` le 2026-08-05T19:43:21.956Z. Document généré automatiquement — ne pas éditer à la main.
+> Généré par `scripts/compare-coverage.js` le 2026-08-05T22:31:29.994Z. Document généré automatiquement — ne pas éditer à la main.
 
 Ce rapport compare les endpoints déclarés dans les specs Swagger 2.0 (`docs/api-specs/v1|v2/*.json`) avec les appels HTTP réellement présents dans les nodes (`nodes/**/*.operation.ts`).
 
@@ -8,8 +8,8 @@ Ce rapport compare les endpoints déclarés dans les specs Swagger 2.0 (`docs/ap
 
 - **Specs analysées** : 84 (v1: 70, v2: 14)
 - **Endpoints déclarés (specs avec endpoints)** : 6624
-- **Endpoints couverts par les nodes** : 3475
-- **Couverture globale** : **52.5%**
+- **Endpoints couverts par les nodes** : 3607
+- **Couverture globale** : **54.5%**
 - **Specs sans node associé** : 21
 - **Specs placeholder (aucun endpoint)** : 1
 
@@ -47,9 +47,9 @@ Triée par pourcentage croissant (moins bonne couverture en premier).
 | msServices (v1) | 55 | 5 | 50 | 9.1% |
 | dedicated (v1) | 131 | 30 | 101 | 22.9% |
 | vps (v1) | 94 | 22 | 72 | 23.4% |
-| cloud (v1) | 1121 | 263 | 858 | 23.5% |
 | sslGateway (v1) | 23 | 6 | 17 | 26.1% |
 | xdsl (v1) | 142 | 39 | 103 | 27.5% |
+| cloud (v1) | 1121 | 395 | 726 | 35.2% |
 | veeam (v1) | 10 | 5 | 5 | 50% |
 | license (v1) | 13 | 7 | 6 | 53.8% |
 | pack (v1) | 58 | 33 | 25 | 56.9% |
@@ -2260,7 +2260,141 @@ _Nodes associés : OvhCloudVps_
 | GET | `/vps/order/rule/datacenter` |
 | GET | `/vps/order/rule/osChoices` |
 
-### cloud (v1) — 858 manquants
+### sslGateway (v1) — 17 manquants
+
+_Nodes associés : OvhCloudSslGateway_
+
+| Méthode | Chemin |
+|--------|--------|
+| POST | `/sslGateway/{x}/changeContact` |
+| POST | `/sslGateway/{x}/confirmTermination` |
+| GET | `/sslGateway/{x}/domain` |
+| POST | `/sslGateway/{x}/domain` |
+| DELETE | `/sslGateway/{x}/domain/{x}` |
+| GET | `/sslGateway/{x}/domain/{x}` |
+| GET | `/sslGateway/{x}/natIp` |
+| POST | `/sslGateway/{x}/renewCertificate` |
+| GET | `/sslGateway/{x}/server` |
+| POST | `/sslGateway/{x}/server` |
+| DELETE | `/sslGateway/{x}/server/{x}` |
+| GET | `/sslGateway/{x}/server/{x}` |
+| PUT | `/sslGateway/{x}/server/{x}` |
+| GET | `/sslGateway/{x}/serviceInfos` |
+| PUT | `/sslGateway/{x}/serviceInfos` |
+| GET | `/sslGateway/availableZones` |
+| GET | `/sslGateway/eligibility` |
+
+### xdsl (v1) — 103 manquants
+
+_Nodes associés : OvhCloudXdsl_
+
+| Méthode | Chemin |
+|--------|--------|
+| POST | `/xdsl/{x}/applyTemplateToModem` |
+| GET | `/xdsl/{x}/ips/{x}` |
+| POST | `/xdsl/{x}/ipv6` |
+| GET | `/xdsl/{x}/lines` |
+| GET | `/xdsl/{x}/lines/{x}` |
+| GET | `/xdsl/{x}/modem/availableACSBackend` |
+| GET | `/xdsl/{x}/modem/availableWLANChannel` |
+| GET | `/xdsl/{x}/modem/blocIp` |
+| POST | `/xdsl/{x}/modem/blocIp` |
+| GET | `/xdsl/{x}/modem/callWaiting` |
+| POST | `/xdsl/{x}/modem/callWaiting` |
+| GET | `/xdsl/{x}/modem/comfortExchange` |
+| POST | `/xdsl/{x}/modem/comfortExchange` |
+| GET | `/xdsl/{x}/modem/connectedDevices` |
+| GET | `/xdsl/{x}/modem/connectedDevices/{x}` |
+| GET | `/xdsl/{x}/modem/contentSharing` |
+| POST | `/xdsl/{x}/modem/contentSharing` |
+| GET | `/xdsl/{x}/modem/firmware` |
+| POST | `/xdsl/{x}/modem/firmware` |
+| GET | `/xdsl/{x}/modem/firmwareAvailable` |
+| GET | `/xdsl/{x}/modem/ftp` |
+| POST | `/xdsl/{x}/modem/ftp` |
+| GET | `/xdsl/{x}/modem/ipsecAlg` |
+| POST | `/xdsl/{x}/modem/ipsecAlg` |
+| GET | `/xdsl/{x}/modem/lan` |
+| GET | `/xdsl/{x}/modem/lan/{x}` |
+| PUT | `/xdsl/{x}/modem/lan/{x}` |
+| GET | `/xdsl/{x}/modem/lan/{x}/dhcp` |
+| GET | `/xdsl/{x}/modem/lan/{x}/dhcp/{x}` |
+| PUT | `/xdsl/{x}/modem/lan/{x}/dhcp/{x}` |
+| GET | `/xdsl/{x}/modem/lan/{x}/dhcp/{x}/DHCPStaticAddresses` |
+| POST | `/xdsl/{x}/modem/lan/{x}/dhcp/{x}/DHCPStaticAddresses` |
+| DELETE | `/xdsl/{x}/modem/lan/{x}/dhcp/{x}/DHCPStaticAddresses/{x}` |
+| GET | `/xdsl/{x}/modem/lan/{x}/dhcp/{x}/DHCPStaticAddresses/{x}` |
+| PUT | `/xdsl/{x}/modem/lan/{x}/dhcp/{x}/DHCPStaticAddresses/{x}` |
+| GET | `/xdsl/{x}/modem/portMappings` |
+| POST | `/xdsl/{x}/modem/portMappings` |
+| DELETE | `/xdsl/{x}/modem/portMappings/{x}` |
+| GET | `/xdsl/{x}/modem/portMappings/{x}` |
+| PUT | `/xdsl/{x}/modem/portMappings/{x}` |
+| POST | `/xdsl/{x}/modem/reboot` |
+| POST | `/xdsl/{x}/modem/reconfigureVoip` |
+| POST | `/xdsl/{x}/modem/refreshConnectedDevices` |
+| POST | `/xdsl/{x}/modem/reset` |
+| POST | `/xdsl/{x}/modem/resetPortMappingConfig` |
+| POST | `/xdsl/{x}/modem/retrieveInfo` |
+| GET | `/xdsl/{x}/modem/sipAlg` |
+| POST | `/xdsl/{x}/modem/sipAlg` |
+| GET | `/xdsl/{x}/modem/upnp` |
+| POST | `/xdsl/{x}/modem/upnp` |
+| GET | `/xdsl/{x}/modem/wifi` |
+| GET | `/xdsl/{x}/modem/wifi/{x}` |
+| PUT | `/xdsl/{x}/modem/wifi/{x}` |
+| GET | `/xdsl/{x}/modem/wifi/{x}/qrCode` |
+| GET | `/xdsl/{x}/monitoringNotifications` |
+| POST | `/xdsl/{x}/monitoringNotifications` |
+| DELETE | `/xdsl/{x}/monitoringNotifications/{x}` |
+| GET | `/xdsl/{x}/monitoringNotifications/{x}` |
+| PUT | `/xdsl/{x}/monitoringNotifications/{x}` |
+| GET | `/xdsl/{x}/ont` |
+| GET | `/xdsl/{x}/orderFollowup` |
+| POST | `/xdsl/{x}/orderMeeting` |
+| GET | `/xdsl/{x}/pendingAction` |
+| GET | `/xdsl/{x}/radiusConnectionLogs` |
+| POST | `/xdsl/{x}/requestPPPLoginMail` |
+| POST | `/xdsl/{x}/requestTotalDeconsolidation` |
+| POST | `/xdsl/{x}/resiliate` |
+| GET | `/xdsl/{x}/resiliationFollowup` |
+| GET | `/xdsl/{x}/resiliationTerms` |
+| GET | `/xdsl/{x}/rma` |
+| DELETE | `/xdsl/{x}/rma/{x}` |
+| GET | `/xdsl/{x}/rma/{x}` |
+| PUT | `/xdsl/{x}/rma/{x}` |
+| POST | `/xdsl/{x}/rma/{x}/changeType` |
+| POST | `/xdsl/{x}/searchOrderMeetings` |
+| POST | `/xdsl/{x}/sendOrderToProvider` |
+| GET | `/xdsl/{x}/serviceInfos` |
+| PUT | `/xdsl/{x}/serviceInfos` |
+| GET | `/xdsl/{x}/statistics` |
+| GET | `/xdsl/{x}/tasks` |
+| GET | `/xdsl/{x}/tasks/{x}` |
+| POST | `/xdsl/{x}/tasks/{x}/archive` |
+| GET | `/xdsl/{x}/totalDeconsolidationTerms` |
+| POST | `/xdsl/{x}/updateInvalidOrMissingRio` |
+| GET | `/xdsl/email/pro` |
+| DELETE | `/xdsl/email/pro/{x}` |
+| GET | `/xdsl/email/pro/{x}` |
+| PUT | `/xdsl/email/pro/{x}` |
+| POST | `/xdsl/email/pro/{x}/changePassword` |
+| GET | `/xdsl/spare` |
+| DELETE | `/xdsl/spare/{x}` |
+| GET | `/xdsl/spare/{x}` |
+| GET | `/xdsl/spare/{x}/compatibleReplacement` |
+| POST | `/xdsl/spare/{x}/replace` |
+| POST | `/xdsl/spare/{x}/returnMerchandise` |
+| GET | `/xdsl/spare/{x}/serviceInfos` |
+| PUT | `/xdsl/spare/{x}/serviceInfos` |
+| GET | `/xdsl/spare/brands` |
+| GET | `/xdsl/templateModem` |
+| POST | `/xdsl/templateModem` |
+| DELETE | `/xdsl/templateModem/{x}` |
+| GET | `/xdsl/templateModem/{x}` |
+| PUT | `/xdsl/templateModem/{x}` |
+
+### cloud (v1) — 726 manquants
 
 _Nodes associés : OvhCloudPublicCloud, OvhCloudPublicCloudAi_
 
@@ -2496,21 +2630,12 @@ _Nodes associés : OvhCloudPublicCloud, OvhCloudPublicCloudAi_
 | GET | `/cloud/project/{x}/database/clickhouse/{x}/user/{x}` |
 | PUT | `/cloud/project/{x}/database/clickhouse/{x}/user/{x}` |
 | POST | `/cloud/project/{x}/database/clickhouse/{x}/user/{x}/credentials/reset` |
-| GET | `/cloud/project/{x}/database/kafka` |
-| POST | `/cloud/project/{x}/database/kafka` |
-| DELETE | `/cloud/project/{x}/database/kafka/{x}` |
-| GET | `/cloud/project/{x}/database/kafka/{x}` |
-| PUT | `/cloud/project/{x}/database/kafka/{x}` |
 | GET | `/cloud/project/{x}/database/kafka/{x}/acl` |
 | POST | `/cloud/project/{x}/database/kafka/{x}/acl` |
 | DELETE | `/cloud/project/{x}/database/kafka/{x}/acl/{x}` |
 | GET | `/cloud/project/{x}/database/kafka/{x}/acl/{x}` |
 | GET | `/cloud/project/{x}/database/kafka/{x}/advancedConfiguration` |
 | PUT | `/cloud/project/{x}/database/kafka/{x}/advancedConfiguration` |
-| GET | `/cloud/project/{x}/database/kafka/{x}/capabilities/advancedConfiguration` |
-| GET | `/cloud/project/{x}/database/kafka/{x}/capabilities/backupRegions` |
-| GET | `/cloud/project/{x}/database/kafka/{x}/capabilities/integration` |
-| GET | `/cloud/project/{x}/database/kafka/{x}/certificates` |
 | GET | `/cloud/project/{x}/database/kafka/{x}/integration` |
 | POST | `/cloud/project/{x}/database/kafka/{x}/integration` |
 | DELETE | `/cloud/project/{x}/database/kafka/{x}/integration/{x}` |
@@ -2520,43 +2645,11 @@ _Nodes associés : OvhCloudPublicCloud, OvhCloudPublicCloudAi_
 | DELETE | `/cloud/project/{x}/database/kafka/{x}/ipRestriction/{x}` |
 | GET | `/cloud/project/{x}/database/kafka/{x}/ipRestriction/{x}` |
 | PUT | `/cloud/project/{x}/database/kafka/{x}/ipRestriction/{x}` |
-| GET | `/cloud/project/{x}/database/kafka/{x}/log/kind` |
-| GET | `/cloud/project/{x}/database/kafka/{x}/log/kind/{x}` |
-| GET | `/cloud/project/{x}/database/kafka/{x}/log/subscription` |
-| POST | `/cloud/project/{x}/database/kafka/{x}/log/subscription` |
-| DELETE | `/cloud/project/{x}/database/kafka/{x}/log/subscription/{x}` |
-| GET | `/cloud/project/{x}/database/kafka/{x}/log/subscription/{x}` |
-| POST | `/cloud/project/{x}/database/kafka/{x}/log/url` |
-| GET | `/cloud/project/{x}/database/kafka/{x}/logs` |
 | GET | `/cloud/project/{x}/database/kafka/{x}/maintenance` |
 | GET | `/cloud/project/{x}/database/kafka/{x}/maintenance/{x}` |
 | POST | `/cloud/project/{x}/database/kafka/{x}/maintenance/{x}/apply` |
-| GET | `/cloud/project/{x}/database/kafka/{x}/metric` |
-| GET | `/cloud/project/{x}/database/kafka/{x}/metric/{x}` |
 | GET | `/cloud/project/{x}/database/kafka/{x}/node` |
 | GET | `/cloud/project/{x}/database/kafka/{x}/node/{x}` |
-| GET | `/cloud/project/{x}/database/kafka/{x}/permissions` |
-| GET | `/cloud/project/{x}/database/kafka/{x}/prometheus` |
-| POST | `/cloud/project/{x}/database/kafka/{x}/prometheus/credentials/reset` |
-| GET | `/cloud/project/{x}/database/kafka/{x}/schemaRegistryAcl` |
-| POST | `/cloud/project/{x}/database/kafka/{x}/schemaRegistryAcl` |
-| DELETE | `/cloud/project/{x}/database/kafka/{x}/schemaRegistryAcl/{x}` |
-| GET | `/cloud/project/{x}/database/kafka/{x}/schemaRegistryAcl/{x}` |
-| GET | `/cloud/project/{x}/database/kafka/{x}/topic` |
-| POST | `/cloud/project/{x}/database/kafka/{x}/topic` |
-| DELETE | `/cloud/project/{x}/database/kafka/{x}/topic/{x}` |
-| GET | `/cloud/project/{x}/database/kafka/{x}/topic/{x}` |
-| PUT | `/cloud/project/{x}/database/kafka/{x}/topic/{x}` |
-| GET | `/cloud/project/{x}/database/kafka/{x}/topicAcl` |
-| POST | `/cloud/project/{x}/database/kafka/{x}/topicAcl` |
-| DELETE | `/cloud/project/{x}/database/kafka/{x}/topicAcl/{x}` |
-| GET | `/cloud/project/{x}/database/kafka/{x}/topicAcl/{x}` |
-| GET | `/cloud/project/{x}/database/kafka/{x}/user` |
-| POST | `/cloud/project/{x}/database/kafka/{x}/user` |
-| DELETE | `/cloud/project/{x}/database/kafka/{x}/user/{x}` |
-| GET | `/cloud/project/{x}/database/kafka/{x}/user/{x}` |
-| GET | `/cloud/project/{x}/database/kafka/{x}/user/{x}/access` |
-| POST | `/cloud/project/{x}/database/kafka/{x}/user/{x}/credentials/reset` |
 | GET | `/cloud/project/{x}/database/kafkaConnect` |
 | POST | `/cloud/project/{x}/database/kafkaConnect` |
 | DELETE | `/cloud/project/{x}/database/kafkaConnect/{x}` |
@@ -2757,120 +2850,29 @@ _Nodes associés : OvhCloudPublicCloud, OvhCloudPublicCloudAi_
 | GET | `/cloud/project/{x}/database/mongodb/{x}/user/{x}` |
 | PUT | `/cloud/project/{x}/database/mongodb/{x}/user/{x}` |
 | POST | `/cloud/project/{x}/database/mongodb/{x}/user/{x}/credentials/reset` |
-| GET | `/cloud/project/{x}/database/opensearch` |
-| POST | `/cloud/project/{x}/database/opensearch` |
-| DELETE | `/cloud/project/{x}/database/opensearch/{x}` |
-| GET | `/cloud/project/{x}/database/opensearch/{x}` |
-| PUT | `/cloud/project/{x}/database/opensearch/{x}` |
-| GET | `/cloud/project/{x}/database/opensearch/{x}/advancedConfiguration` |
-| PUT | `/cloud/project/{x}/database/opensearch/{x}/advancedConfiguration` |
-| GET | `/cloud/project/{x}/database/opensearch/{x}/backup` |
-| GET | `/cloud/project/{x}/database/opensearch/{x}/backup/{x}` |
-| GET | `/cloud/project/{x}/database/opensearch/{x}/capabilities/advancedConfiguration` |
-| GET | `/cloud/project/{x}/database/opensearch/{x}/capabilities/backupRegions` |
-| GET | `/cloud/project/{x}/database/opensearch/{x}/capabilities/integration` |
-| GET | `/cloud/project/{x}/database/opensearch/{x}/index` |
-| DELETE | `/cloud/project/{x}/database/opensearch/{x}/index/{x}` |
-| GET | `/cloud/project/{x}/database/opensearch/{x}/index/{x}` |
-| GET | `/cloud/project/{x}/database/opensearch/{x}/integration` |
-| POST | `/cloud/project/{x}/database/opensearch/{x}/integration` |
-| DELETE | `/cloud/project/{x}/database/opensearch/{x}/integration/{x}` |
-| GET | `/cloud/project/{x}/database/opensearch/{x}/integration/{x}` |
-| GET | `/cloud/project/{x}/database/opensearch/{x}/ipRestriction` |
-| POST | `/cloud/project/{x}/database/opensearch/{x}/ipRestriction` |
-| DELETE | `/cloud/project/{x}/database/opensearch/{x}/ipRestriction/{x}` |
-| GET | `/cloud/project/{x}/database/opensearch/{x}/ipRestriction/{x}` |
-| PUT | `/cloud/project/{x}/database/opensearch/{x}/ipRestriction/{x}` |
-| GET | `/cloud/project/{x}/database/opensearch/{x}/log/kind` |
-| GET | `/cloud/project/{x}/database/opensearch/{x}/log/kind/{x}` |
-| GET | `/cloud/project/{x}/database/opensearch/{x}/log/subscription` |
-| POST | `/cloud/project/{x}/database/opensearch/{x}/log/subscription` |
-| DELETE | `/cloud/project/{x}/database/opensearch/{x}/log/subscription/{x}` |
-| GET | `/cloud/project/{x}/database/opensearch/{x}/log/subscription/{x}` |
-| POST | `/cloud/project/{x}/database/opensearch/{x}/log/url` |
-| GET | `/cloud/project/{x}/database/opensearch/{x}/logs` |
-| GET | `/cloud/project/{x}/database/opensearch/{x}/maintenance` |
-| GET | `/cloud/project/{x}/database/opensearch/{x}/maintenance/{x}` |
-| POST | `/cloud/project/{x}/database/opensearch/{x}/maintenance/{x}/apply` |
-| GET | `/cloud/project/{x}/database/opensearch/{x}/metric` |
-| GET | `/cloud/project/{x}/database/opensearch/{x}/metric/{x}` |
-| GET | `/cloud/project/{x}/database/opensearch/{x}/node` |
-| GET | `/cloud/project/{x}/database/opensearch/{x}/node/{x}` |
-| GET | `/cloud/project/{x}/database/opensearch/{x}/pattern` |
-| POST | `/cloud/project/{x}/database/opensearch/{x}/pattern` |
-| DELETE | `/cloud/project/{x}/database/opensearch/{x}/pattern/{x}` |
-| GET | `/cloud/project/{x}/database/opensearch/{x}/pattern/{x}` |
-| GET | `/cloud/project/{x}/database/opensearch/{x}/permissions` |
-| GET | `/cloud/project/{x}/database/opensearch/{x}/prometheus` |
-| POST | `/cloud/project/{x}/database/opensearch/{x}/prometheus/credentials/reset` |
-| GET | `/cloud/project/{x}/database/opensearch/{x}/user` |
-| POST | `/cloud/project/{x}/database/opensearch/{x}/user` |
-| DELETE | `/cloud/project/{x}/database/opensearch/{x}/user/{x}` |
-| GET | `/cloud/project/{x}/database/opensearch/{x}/user/{x}` |
-| PUT | `/cloud/project/{x}/database/opensearch/{x}/user/{x}` |
-| POST | `/cloud/project/{x}/database/opensearch/{x}/user/{x}/credentials/reset` |
-| GET | `/cloud/project/{x}/database/postgresql` |
-| POST | `/cloud/project/{x}/database/postgresql` |
-| DELETE | `/cloud/project/{x}/database/postgresql/{x}` |
-| GET | `/cloud/project/{x}/database/postgresql/{x}` |
-| PUT | `/cloud/project/{x}/database/postgresql/{x}` |
-| GET | `/cloud/project/{x}/database/postgresql/{x}/advancedConfiguration` |
-| PUT | `/cloud/project/{x}/database/postgresql/{x}/advancedConfiguration` |
-| GET | `/cloud/project/{x}/database/postgresql/{x}/backup` |
-| GET | `/cloud/project/{x}/database/postgresql/{x}/backup/{x}` |
-| GET | `/cloud/project/{x}/database/postgresql/{x}/capabilities/advancedConfiguration` |
-| GET | `/cloud/project/{x}/database/postgresql/{x}/capabilities/backupRegions` |
-| GET | `/cloud/project/{x}/database/postgresql/{x}/capabilities/integration` |
-| GET | `/cloud/project/{x}/database/postgresql/{x}/certificates` |
-| GET | `/cloud/project/{x}/database/postgresql/{x}/connectionPool` |
-| POST | `/cloud/project/{x}/database/postgresql/{x}/connectionPool` |
-| DELETE | `/cloud/project/{x}/database/postgresql/{x}/connectionPool/{x}` |
-| GET | `/cloud/project/{x}/database/postgresql/{x}/connectionPool/{x}` |
-| PUT | `/cloud/project/{x}/database/postgresql/{x}/connectionPool/{x}` |
-| GET | `/cloud/project/{x}/database/postgresql/{x}/currentQueries` |
-| POST | `/cloud/project/{x}/database/postgresql/{x}/currentQueries/cancel` |
-| GET | `/cloud/project/{x}/database/postgresql/{x}/database` |
-| POST | `/cloud/project/{x}/database/postgresql/{x}/database` |
-| DELETE | `/cloud/project/{x}/database/postgresql/{x}/database/{x}` |
-| GET | `/cloud/project/{x}/database/postgresql/{x}/database/{x}` |
 | POST | `/cloud/project/{x}/database/postgresql/{x}/enableWrites` |
-| GET | `/cloud/project/{x}/database/postgresql/{x}/integration` |
-| POST | `/cloud/project/{x}/database/postgresql/{x}/integration` |
-| DELETE | `/cloud/project/{x}/database/postgresql/{x}/integration/{x}` |
-| GET | `/cloud/project/{x}/database/postgresql/{x}/integration/{x}` |
-| GET | `/cloud/project/{x}/database/postgresql/{x}/ipRestriction` |
-| POST | `/cloud/project/{x}/database/postgresql/{x}/ipRestriction` |
-| DELETE | `/cloud/project/{x}/database/postgresql/{x}/ipRestriction/{x}` |
-| GET | `/cloud/project/{x}/database/postgresql/{x}/ipRestriction/{x}` |
-| PUT | `/cloud/project/{x}/database/postgresql/{x}/ipRestriction/{x}` |
-| GET | `/cloud/project/{x}/database/postgresql/{x}/log/kind` |
-| GET | `/cloud/project/{x}/database/postgresql/{x}/log/kind/{x}` |
-| GET | `/cloud/project/{x}/database/postgresql/{x}/log/subscription` |
-| POST | `/cloud/project/{x}/database/postgresql/{x}/log/subscription` |
-| DELETE | `/cloud/project/{x}/database/postgresql/{x}/log/subscription/{x}` |
-| GET | `/cloud/project/{x}/database/postgresql/{x}/log/subscription/{x}` |
-| POST | `/cloud/project/{x}/database/postgresql/{x}/log/url` |
-| GET | `/cloud/project/{x}/database/postgresql/{x}/logs` |
-| GET | `/cloud/project/{x}/database/postgresql/{x}/maintenance` |
-| GET | `/cloud/project/{x}/database/postgresql/{x}/maintenance/{x}` |
-| POST | `/cloud/project/{x}/database/postgresql/{x}/maintenance/{x}/apply` |
-| GET | `/cloud/project/{x}/database/postgresql/{x}/metric` |
-| GET | `/cloud/project/{x}/database/postgresql/{x}/metric/{x}` |
-| GET | `/cloud/project/{x}/database/postgresql/{x}/node` |
-| GET | `/cloud/project/{x}/database/postgresql/{x}/node/{x}` |
-| GET | `/cloud/project/{x}/database/postgresql/{x}/prometheus` |
 | POST | `/cloud/project/{x}/database/postgresql/{x}/prometheus/credentials/reset` |
-| GET | `/cloud/project/{x}/database/postgresql/{x}/queryStatistics` |
-| POST | `/cloud/project/{x}/database/postgresql/{x}/queryStatistics/reset` |
-| GET | `/cloud/project/{x}/database/postgresql/{x}/roles` |
-| GET | `/cloud/project/{x}/database/postgresql/{x}/user` |
-| POST | `/cloud/project/{x}/database/postgresql/{x}/user` |
-| DELETE | `/cloud/project/{x}/database/postgresql/{x}/user/{x}` |
-| GET | `/cloud/project/{x}/database/postgresql/{x}/user/{x}` |
-| PUT | `/cloud/project/{x}/database/postgresql/{x}/user/{x}` |
-| POST | `/cloud/project/{x}/database/postgresql/{x}/user/{x}/credentials/reset` |
 | GET | `/cloud/project/{x}/database/service` |
 | GET | `/cloud/project/{x}/database/service/{x}` |
+| GET | `/cloud/project/{x}/database/valkey/{x}/advancedConfiguration` |
+| PUT | `/cloud/project/{x}/database/valkey/{x}/advancedConfiguration` |
+| GET | `/cloud/project/{x}/database/valkey/{x}/capabilities/advancedConfiguration` |
+| GET | `/cloud/project/{x}/database/valkey/{x}/capabilities/backupRegions` |
+| GET | `/cloud/project/{x}/database/valkey/{x}/capabilities/categories` |
+| GET | `/cloud/project/{x}/database/valkey/{x}/capabilities/commands` |
+| GET | `/cloud/project/{x}/database/valkey/{x}/capabilities/integration` |
+| DELETE | `/cloud/project/{x}/database/valkey/{x}/integration/{x}` |
+| GET | `/cloud/project/{x}/database/valkey/{x}/integration/{x}` |
+| GET | `/cloud/project/{x}/database/valkey/{x}/log/kind` |
+| GET | `/cloud/project/{x}/database/valkey/{x}/log/kind/{x}` |
+| DELETE | `/cloud/project/{x}/database/valkey/{x}/log/subscription/{x}` |
+| POST | `/cloud/project/{x}/database/valkey/{x}/log/url` |
+| GET | `/cloud/project/{x}/database/valkey/{x}/logs` |
+| GET | `/cloud/project/{x}/database/valkey/{x}/maintenance` |
+| POST | `/cloud/project/{x}/database/valkey/{x}/maintenance/{x}/apply` |
+| GET | `/cloud/project/{x}/database/valkey/{x}/metric` |
+| POST | `/cloud/project/{x}/database/valkey/{x}/prometheus/credentials/reset` |
+| POST | `/cloud/project/{x}/database/valkey/{x}/user/{x}/credentials/reset` |
 | GET | `/cloud/project/{x}/flavor` |
 | GET | `/cloud/project/{x}/flavor/{x}` |
 | GET | `/cloud/project/{x}/image` |
@@ -3124,140 +3126,6 @@ _Nodes associés : OvhCloudPublicCloud, OvhCloudPublicCloudAi_
 | GET | `/cloud/project/{x}/volume/snapshot/{x}` |
 | GET | `/cloud/project/{x}/vrack` |
 | POST | `/cloud/project/{x}/vrack` |
-
-### sslGateway (v1) — 17 manquants
-
-_Nodes associés : OvhCloudSslGateway_
-
-| Méthode | Chemin |
-|--------|--------|
-| POST | `/sslGateway/{x}/changeContact` |
-| POST | `/sslGateway/{x}/confirmTermination` |
-| GET | `/sslGateway/{x}/domain` |
-| POST | `/sslGateway/{x}/domain` |
-| DELETE | `/sslGateway/{x}/domain/{x}` |
-| GET | `/sslGateway/{x}/domain/{x}` |
-| GET | `/sslGateway/{x}/natIp` |
-| POST | `/sslGateway/{x}/renewCertificate` |
-| GET | `/sslGateway/{x}/server` |
-| POST | `/sslGateway/{x}/server` |
-| DELETE | `/sslGateway/{x}/server/{x}` |
-| GET | `/sslGateway/{x}/server/{x}` |
-| PUT | `/sslGateway/{x}/server/{x}` |
-| GET | `/sslGateway/{x}/serviceInfos` |
-| PUT | `/sslGateway/{x}/serviceInfos` |
-| GET | `/sslGateway/availableZones` |
-| GET | `/sslGateway/eligibility` |
-
-### xdsl (v1) — 103 manquants
-
-_Nodes associés : OvhCloudXdsl_
-
-| Méthode | Chemin |
-|--------|--------|
-| POST | `/xdsl/{x}/applyTemplateToModem` |
-| GET | `/xdsl/{x}/ips/{x}` |
-| POST | `/xdsl/{x}/ipv6` |
-| GET | `/xdsl/{x}/lines` |
-| GET | `/xdsl/{x}/lines/{x}` |
-| GET | `/xdsl/{x}/modem/availableACSBackend` |
-| GET | `/xdsl/{x}/modem/availableWLANChannel` |
-| GET | `/xdsl/{x}/modem/blocIp` |
-| POST | `/xdsl/{x}/modem/blocIp` |
-| GET | `/xdsl/{x}/modem/callWaiting` |
-| POST | `/xdsl/{x}/modem/callWaiting` |
-| GET | `/xdsl/{x}/modem/comfortExchange` |
-| POST | `/xdsl/{x}/modem/comfortExchange` |
-| GET | `/xdsl/{x}/modem/connectedDevices` |
-| GET | `/xdsl/{x}/modem/connectedDevices/{x}` |
-| GET | `/xdsl/{x}/modem/contentSharing` |
-| POST | `/xdsl/{x}/modem/contentSharing` |
-| GET | `/xdsl/{x}/modem/firmware` |
-| POST | `/xdsl/{x}/modem/firmware` |
-| GET | `/xdsl/{x}/modem/firmwareAvailable` |
-| GET | `/xdsl/{x}/modem/ftp` |
-| POST | `/xdsl/{x}/modem/ftp` |
-| GET | `/xdsl/{x}/modem/ipsecAlg` |
-| POST | `/xdsl/{x}/modem/ipsecAlg` |
-| GET | `/xdsl/{x}/modem/lan` |
-| GET | `/xdsl/{x}/modem/lan/{x}` |
-| PUT | `/xdsl/{x}/modem/lan/{x}` |
-| GET | `/xdsl/{x}/modem/lan/{x}/dhcp` |
-| GET | `/xdsl/{x}/modem/lan/{x}/dhcp/{x}` |
-| PUT | `/xdsl/{x}/modem/lan/{x}/dhcp/{x}` |
-| GET | `/xdsl/{x}/modem/lan/{x}/dhcp/{x}/DHCPStaticAddresses` |
-| POST | `/xdsl/{x}/modem/lan/{x}/dhcp/{x}/DHCPStaticAddresses` |
-| DELETE | `/xdsl/{x}/modem/lan/{x}/dhcp/{x}/DHCPStaticAddresses/{x}` |
-| GET | `/xdsl/{x}/modem/lan/{x}/dhcp/{x}/DHCPStaticAddresses/{x}` |
-| PUT | `/xdsl/{x}/modem/lan/{x}/dhcp/{x}/DHCPStaticAddresses/{x}` |
-| GET | `/xdsl/{x}/modem/portMappings` |
-| POST | `/xdsl/{x}/modem/portMappings` |
-| DELETE | `/xdsl/{x}/modem/portMappings/{x}` |
-| GET | `/xdsl/{x}/modem/portMappings/{x}` |
-| PUT | `/xdsl/{x}/modem/portMappings/{x}` |
-| POST | `/xdsl/{x}/modem/reboot` |
-| POST | `/xdsl/{x}/modem/reconfigureVoip` |
-| POST | `/xdsl/{x}/modem/refreshConnectedDevices` |
-| POST | `/xdsl/{x}/modem/reset` |
-| POST | `/xdsl/{x}/modem/resetPortMappingConfig` |
-| POST | `/xdsl/{x}/modem/retrieveInfo` |
-| GET | `/xdsl/{x}/modem/sipAlg` |
-| POST | `/xdsl/{x}/modem/sipAlg` |
-| GET | `/xdsl/{x}/modem/upnp` |
-| POST | `/xdsl/{x}/modem/upnp` |
-| GET | `/xdsl/{x}/modem/wifi` |
-| GET | `/xdsl/{x}/modem/wifi/{x}` |
-| PUT | `/xdsl/{x}/modem/wifi/{x}` |
-| GET | `/xdsl/{x}/modem/wifi/{x}/qrCode` |
-| GET | `/xdsl/{x}/monitoringNotifications` |
-| POST | `/xdsl/{x}/monitoringNotifications` |
-| DELETE | `/xdsl/{x}/monitoringNotifications/{x}` |
-| GET | `/xdsl/{x}/monitoringNotifications/{x}` |
-| PUT | `/xdsl/{x}/monitoringNotifications/{x}` |
-| GET | `/xdsl/{x}/ont` |
-| GET | `/xdsl/{x}/orderFollowup` |
-| POST | `/xdsl/{x}/orderMeeting` |
-| GET | `/xdsl/{x}/pendingAction` |
-| GET | `/xdsl/{x}/radiusConnectionLogs` |
-| POST | `/xdsl/{x}/requestPPPLoginMail` |
-| POST | `/xdsl/{x}/requestTotalDeconsolidation` |
-| POST | `/xdsl/{x}/resiliate` |
-| GET | `/xdsl/{x}/resiliationFollowup` |
-| GET | `/xdsl/{x}/resiliationTerms` |
-| GET | `/xdsl/{x}/rma` |
-| DELETE | `/xdsl/{x}/rma/{x}` |
-| GET | `/xdsl/{x}/rma/{x}` |
-| PUT | `/xdsl/{x}/rma/{x}` |
-| POST | `/xdsl/{x}/rma/{x}/changeType` |
-| POST | `/xdsl/{x}/searchOrderMeetings` |
-| POST | `/xdsl/{x}/sendOrderToProvider` |
-| GET | `/xdsl/{x}/serviceInfos` |
-| PUT | `/xdsl/{x}/serviceInfos` |
-| GET | `/xdsl/{x}/statistics` |
-| GET | `/xdsl/{x}/tasks` |
-| GET | `/xdsl/{x}/tasks/{x}` |
-| POST | `/xdsl/{x}/tasks/{x}/archive` |
-| GET | `/xdsl/{x}/totalDeconsolidationTerms` |
-| POST | `/xdsl/{x}/updateInvalidOrMissingRio` |
-| GET | `/xdsl/email/pro` |
-| DELETE | `/xdsl/email/pro/{x}` |
-| GET | `/xdsl/email/pro/{x}` |
-| PUT | `/xdsl/email/pro/{x}` |
-| POST | `/xdsl/email/pro/{x}/changePassword` |
-| GET | `/xdsl/spare` |
-| DELETE | `/xdsl/spare/{x}` |
-| GET | `/xdsl/spare/{x}` |
-| GET | `/xdsl/spare/{x}/compatibleReplacement` |
-| POST | `/xdsl/spare/{x}/replace` |
-| POST | `/xdsl/spare/{x}/returnMerchandise` |
-| GET | `/xdsl/spare/{x}/serviceInfos` |
-| PUT | `/xdsl/spare/{x}/serviceInfos` |
-| GET | `/xdsl/spare/brands` |
-| GET | `/xdsl/templateModem` |
-| POST | `/xdsl/templateModem` |
-| DELETE | `/xdsl/templateModem/{x}` |
-| GET | `/xdsl/templateModem/{x}` |
-| PUT | `/xdsl/templateModem/{x}` |
 
 ### veeam (v1) — 5 manquants
 
