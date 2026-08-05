@@ -16,8 +16,10 @@ import { ApiClient } from '../../../../shared/transport/ApiClient';
 describe('cassandra backupDeleteDelete operation', () => {
 	describe('description', () => {
 		it('should return all required parameters', () => {
-			const result = description({'show': {}});
-			expect(result.length).toBeGreaterThanOrEqual(1);
+			const result = description({
+				show: { publicCloudOperation: ['cassandraBackupDeleteDelete'] },
+			});
+			expect(result).toHaveLength(3);
 		});
 	});
 
@@ -31,20 +33,21 @@ describe('cassandra backupDeleteDelete operation', () => {
 		});
 
 		it('should call the correct API endpoint', async () => {
-			const mockData = [] as unknown[];
 			const client = new ApiClient(mockExecuteFunctions) as any;
-			client.httpDelete.mockResolvedValue(mockData);
+			client.httpDelete.mockResolvedValue(undefined);
 
-			mockExecuteFunctions.getNodeParameter.mockReturnValue((param: string): string | undefined => {
+			mockExecuteFunctions.getNodeParameter.mockImplementation((param: string): any => {
 				if (param === 'publicCloudProjectId') return '12345678-1234-1234-1234-1234567890ab';
-				if (param === 'serviceName') return 'test-service';
-				if (param === 'backupId') return 'test-backupId-id';
+				if (param === 'clusterId') return 'cluster-123';
+				if (param === 'backupId') return 'backup-456';
 				return '';
 			});
 
 			const result = await execute.call(mockExecuteFunctions);
-			expect(client.httpDelete).toHaveBeenCalled();
-			expect(result).toHaveLength(0);
+			expect(client.httpDelete).toHaveBeenCalledWith(
+				'/cloud/project/12345678-1234-1234-1234-1234567890ab/database/cassandra/cluster-123/backup/backup-456',
+			);
+			expect(result).toEqual([]);
 		});
 	});
 });

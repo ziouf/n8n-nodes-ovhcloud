@@ -16,8 +16,8 @@ import { ApiClient } from '../../../../shared/transport/ApiClient';
 describe('cassandra nodeUpdatePut operation', () => {
 	describe('description', () => {
 		it('should return all required parameters', () => {
-			const result = description({'show': {}});
-			expect(result.length).toBeGreaterThanOrEqual(1);
+			const result = description({ show: { publicCloudOperation: ['cassandraNodeUpdatePut'] } });
+			expect(result).toHaveLength(4);
 		});
 	});
 
@@ -31,20 +31,24 @@ describe('cassandra nodeUpdatePut operation', () => {
 		});
 
 		it('should call the correct API endpoint', async () => {
-			const mockData = { id: 'test-id' };
+			const mockData = { id: 'node-123' };
 			const client = new ApiClient(mockExecuteFunctions) as any;
 			client.httpPut.mockResolvedValue(mockData);
 
-			mockExecuteFunctions.getNodeParameter.mockReturnValue((param: string): string | undefined => {
+			mockExecuteFunctions.getNodeParameter.mockImplementation((param: string): any => {
 				if (param === 'publicCloudProjectId') return '12345678-1234-1234-1234-1234567890ab';
-				if (param === 'serviceName') return 'test-service';
-				if (param === 'nodeId') return 'test-nodeId-id';
+				if (param === 'clusterId') return 'cluster-123';
+				if (param === 'nodeId') return 'node-456';
+				if (param === 'flavorName') return 'b2-7';
 				return '';
 			});
 
 			const result = await execute.call(mockExecuteFunctions);
-			expect(client.httpPut).toHaveBeenCalled();
-			expect(result).toMatchObject([{ id: 'test-id' }]);
+			expect(client.httpPut).toHaveBeenCalledWith(
+				'/cloud/project/12345678-1234-1234-1234-1234567890ab/database/cassandra/cluster-123/node/node-456',
+				{ flavorName: 'b2-7' },
+			);
+			expect(result).toMatchObject([{ id: 'node-123' }]);
 		});
 	});
 });

@@ -1,16 +1,16 @@
 # OVHcloud API Conformity Report
 
-> Généré par `scripts/audit-conformity.js` le 2026-08-05T23:09:17.698Z. Document généré automatiquement — ne pas éditer à la main.
+> Généré par `scripts/audit-conformity.js` le 2026-08-05T23:49:40.211Z. Document généré automatiquement — ne pas éditer à la main.
 
 Ce rapport vérifie que les opérations des nodes respectent leur spec (méthode, chemin, paramètres path requis, query requis, champs body requis).
 
 ## Résumé
 
-- **Opérations auditées** : 5813
-- **Conformes** : 3467
-- **Non conformes** : 2346
-- **Sans correspondance spec** (informatif) : 2054
-- **Taux de conformité** : **59.6%**
+- **Opérations auditées** : 5851
+- **Conformes** : 3506
+- **Non conformes** : 2345
+- **Sans correspondance spec** (informatif) : 2049
+- **Taux de conformité** : **59.9%**
 
 ## Conformité par spec
 
@@ -48,13 +48,13 @@ Triée par taux de non-conformité décroissant.
 | order (v1) | 166 | 31 | 6 | 18.7% |
 | me (v1) | 309 | 300 | 9 | 97.1% |
 | dedicated (v1) | 69 | 31 | 2 | 44.9% |
+| cloud (v1) | 918 | 455 | 24 | 49.6% |
 | horizonView (v1) | 42 | 41 | 1 | 97.6% |
-| cloud (v1) | 899 | 416 | 20 | 46.3% |
 | hosting (v1) | 237 | 154 | 5 | 65% |
 | webhosting (v2) | 246 | 12 | 3 | 4.9% |
 | domain (v1) | 119 | 109 | 1 | 91.6% |
 | telephony (v1) | 644 | 602 | 5 | 93.5% |
-| publicCloud (v2) | 899 | 26 | 4 | 2.9% |
+| publicCloud (v2) | 918 | 26 | 4 | 2.8% |
 | price (v1) | 581 | 581 | 0 | 100% |
 | sms (v1) | 126 | 124 | 0 | 98.4% |
 | domain (v2) | 119 | 9 | 0 | 7.6% |
@@ -106,11 +106,15 @@ Chaque ligne correspond à un appel HTTP non conforme, groupée par spec :
 | POST | `/cdn/dedicated/{x}/ssl` | OvhCloudCdn/resources/ssl/sslCreatePost.operation.ts | missing required body field 'name' |
 | POST | `/cdn/dedicated/{x}/ssl/update` | OvhCloudCdn/resources/ssl/sslUpdatePost.operation.ts | missing required body field 'certificate'; missing required body field 'key' |
 
-### cloud — 20 non-conformités
+### cloud — 24 non-conformités
 
 | Méthode | Chemin | Fichier | Problèmes |
 |--------|--------|---------|-----------|
 | POST | `/cloud/project/{x}/ai/data/region/{x}/alias` | OvhCloudPublicCloudAi/dataStore/dataCreatePost.operation.ts | missing required body field 'alias'; missing required body field 'credentials'; missing required body field 'endpoint'; missing required body field 'owner'; missing required body field 'type' |
+| POST | `/cloud/project/{x}/database/cassandra/{x}/integration` | OvhCloudPublicCloud/database/cassandra/integrationCreatePost.operation.ts | missing required body field 'destinationServiceId'; missing required body field 'sourceServiceId' |
+| POST | `/cloud/project/{x}/database/cassandra/{x}/log/subscription` | OvhCloudPublicCloud/database/cassandra/logSubscriptionCreatePost.operation.ts | missing required body field 'kind'; missing required body field 'streamId' |
+| POST | `/cloud/project/{x}/database/cassandra/{x}/log/url` | OvhCloudPublicCloud/database/cassandra/logUrlCreatePost.operation.ts | missing required body field 'kind' |
+| GET | `/cloud/project/{x}/database/cassandra/{x}/metric/{x}` | OvhCloudPublicCloud/database/cassandra/metricGetGet.operation.ts | missing required query param 'period' |
 | POST | `/cloud/project/{x}/database/kafka/{x}/log/subscription` | OvhCloudPublicCloud/database/kafka/logSubscriptionCreatePost.operation.ts | missing required body field 'kind'; missing required body field 'streamId' |
 | POST | `/cloud/project/{x}/database/kafka/{x}/log/url` | OvhCloudPublicCloud/database/kafka/logUrlCreatePost.operation.ts | missing required body field 'kind' |
 | GET | `/cloud/project/{x}/database/kafka/{x}/metric/{x}` | OvhCloudPublicCloud/database/kafka/metricGet.operation.ts | missing required query param 'period' |
@@ -568,6 +572,13 @@ Ces opérations appellent un chemin qui ne correspond à aucun endpoint de la sp
 
 | Spec (version) | Méthode | Chemin | Fichier |
 |----------------|--------|--------|---------|
+| cloud (v1) | POST | `/cloud/project/{x}/database/cassandra/{x}/backup` | OvhCloudPublicCloud/database/cassandra/backupCreatePost.operation.ts |
+| cloud (v1) | DELETE | `/cloud/project/{x}/database/cassandra/{x}/backup/{x}` | OvhCloudPublicCloud/database/cassandra/backupDeleteDelete.operation.ts |
+| cloud (v1) | POST | `/cloud/project/{x}/database/cassandra/{x}/certificates` | OvhCloudPublicCloud/database/cassandra/certificateCreatePost.operation.ts |
+| cloud (v1) | POST | `/cloud/project/{x}/database/cassandra/{x}/node` | OvhCloudPublicCloud/database/cassandra/nodeCreatePost.operation.ts |
+| cloud (v1) | DELETE | `/cloud/project/{x}/database/cassandra/{x}/node/{x}` | OvhCloudPublicCloud/database/cassandra/nodeDeleteDelete.operation.ts |
+| cloud (v1) | PUT | `/cloud/project/{x}/database/cassandra/{x}/node/{x}` | OvhCloudPublicCloud/database/cassandra/nodeUpdatePut.operation.ts |
+| cloud (v1) | PUT | `/cloud/project/{x}/database/cassandra/{x}/user/{x}` | OvhCloudPublicCloud/database/cassandra/userUpdatePut.operation.ts |
 | cloud (v1) | POST | `/cloud/project/{x}/database/kafka/{x}` | OvhCloudPublicCloud/database/kafka/aclCreatePost.operation.ts |
 | cloud (v1) | POST | `/cloud/project/{x}/database/kafka/{x}` | OvhCloudPublicCloud/database/kafka/integrationCreatePost.operation.ts |
 | cloud (v1) | POST | `/cloud/project/{x}/database/kafka/{x}` | OvhCloudPublicCloud/database/kafka/ipRestrictionCreatePost.operation.ts |
@@ -654,38 +665,7 @@ Ces opérations appellent un chemin qui ne correspond à aucun endpoint de la sp
 | cloud (v1) | GET | `/publicCloud/project/{x}/capabilities/region` | OvhCloudPublicCloud/capabilities/listRegionGet.operation.ts |
 | cloud (v1) | GET | `/publicCloud/project/{x}/capabilities/region/{x}` | OvhCloudPublicCloud/capabilities/getRegionDetailGet.operation.ts |
 | cloud (v1) | GET | `/publicCloud/project/{x}/capabilities/region/{x}/{x}` | OvhCloudPublicCloud/capabilities/getRegionProductDetailGet.operation.ts |
-| cloud (v1) | GET | `/publicCloud/project/{x}/cassandra` | OvhCloudPublicCloud/database/cassandra/clusterListGet.operation.ts |
-| cloud (v1) | POST | `/publicCloud/project/{x}/cassandra` | OvhCloudPublicCloud/database/cassandra/clusterCreatePost.operation.ts |
-| cloud (v1) | DELETE | `/publicCloud/project/{x}/cassandra/{x}` | OvhCloudPublicCloud/database/cassandra/clusterDeleteDelete.operation.ts |
-| cloud (v1) | GET | `/publicCloud/project/{x}/cassandra/{x}` | OvhCloudPublicCloud/database/cassandra/clusterGetGet.operation.ts |
-| cloud (v1) | PUT | `/publicCloud/project/{x}/cassandra/{x}` | OvhCloudPublicCloud/database/cassandra/clusterUpdatePut.operation.ts |
-| cloud (v1) | GET | `/publicCloud/project/{x}/cassandra/{x}/backup` | OvhCloudPublicCloud/database/cassandra/backupListGet.operation.ts |
-| cloud (v1) | POST | `/publicCloud/project/{x}/cassandra/{x}/backup` | OvhCloudPublicCloud/database/cassandra/backupCreatePost.operation.ts |
-| cloud (v1) | DELETE | `/publicCloud/project/{x}/cassandra/{x}/backup/{x}` | OvhCloudPublicCloud/database/cassandra/backupDeleteDelete.operation.ts |
-| cloud (v1) | GET | `/publicCloud/project/{x}/cassandra/{x}/backup/{x}` | OvhCloudPublicCloud/database/cassandra/backupGetGet.operation.ts |
-| cloud (v1) | GET | `/publicCloud/project/{x}/cassandra/{x}/certificate` | OvhCloudPublicCloud/database/cassandra/certificateListGet.operation.ts |
-| cloud (v1) | POST | `/publicCloud/project/{x}/cassandra/{x}/certificate` | OvhCloudPublicCloud/database/cassandra/certificateCreatePost.operation.ts |
-| cloud (v1) | GET | `/publicCloud/project/{x}/cassandra/{x}/integration` | OvhCloudPublicCloud/database/cassandra/integrationListGet.operation.ts |
-| cloud (v1) | POST | `/publicCloud/project/{x}/cassandra/{x}/integration` | OvhCloudPublicCloud/database/cassandra/integrationCreatePost.operation.ts |
-| cloud (v1) | GET | `/publicCloud/project/{x}/cassandra/{x}/ipRestriction` | OvhCloudPublicCloud/database/cassandra/ipRestrictionListGet.operation.ts |
-| cloud (v1) | POST | `/publicCloud/project/{x}/cassandra/{x}/ipRestriction` | OvhCloudPublicCloud/database/cassandra/ipRestrictionCreatePost.operation.ts |
-| cloud (v1) | GET | `/publicCloud/project/{x}/cassandra/{x}/log/subscription` | OvhCloudPublicCloud/database/cassandra/logSubscriptionListGet.operation.ts |
-| cloud (v1) | POST | `/publicCloud/project/{x}/cassandra/{x}/log/subscription` | OvhCloudPublicCloud/database/cassandra/logSubscriptionCreatePost.operation.ts |
-| cloud (v1) | GET | `/publicCloud/project/{x}/cassandra/{x}/log/subscription/{x}` | OvhCloudPublicCloud/database/cassandra/logSubscriptionGetGet.operation.ts |
-| cloud (v1) | GET | `/publicCloud/project/{x}/cassandra/{x}/maintenance` | OvhCloudPublicCloud/database/cassandra/maintenanceGet.operation.ts |
 | cloud (v1) | PUT | `/publicCloud/project/{x}/cassandra/{x}/maintenance` | OvhCloudPublicCloud/database/cassandra/maintenanceUpdatePut.operation.ts |
-| cloud (v1) | GET | `/publicCloud/project/{x}/cassandra/{x}/metric` | OvhCloudPublicCloud/database/cassandra/metricGet.operation.ts |
-| cloud (v1) | GET | `/publicCloud/project/{x}/cassandra/{x}/node` | OvhCloudPublicCloud/database/cassandra/nodeListGet.operation.ts |
-| cloud (v1) | POST | `/publicCloud/project/{x}/cassandra/{x}/node` | OvhCloudPublicCloud/database/cassandra/nodeCreatePost.operation.ts |
-| cloud (v1) | DELETE | `/publicCloud/project/{x}/cassandra/{x}/node/{x}` | OvhCloudPublicCloud/database/cassandra/nodeDeleteDelete.operation.ts |
-| cloud (v1) | GET | `/publicCloud/project/{x}/cassandra/{x}/node/{x}` | OvhCloudPublicCloud/database/cassandra/nodeGetGet.operation.ts |
-| cloud (v1) | PUT | `/publicCloud/project/{x}/cassandra/{x}/node/{x}` | OvhCloudPublicCloud/database/cassandra/nodeUpdatePut.operation.ts |
-| cloud (v1) | GET | `/publicCloud/project/{x}/cassandra/{x}/prometheus` | OvhCloudPublicCloud/database/cassandra/prometheusGet.operation.ts |
-| cloud (v1) | GET | `/publicCloud/project/{x}/cassandra/{x}/user` | OvhCloudPublicCloud/database/cassandra/userListGet.operation.ts |
-| cloud (v1) | POST | `/publicCloud/project/{x}/cassandra/{x}/user` | OvhCloudPublicCloud/database/cassandra/userCreatePost.operation.ts |
-| cloud (v1) | DELETE | `/publicCloud/project/{x}/cassandra/{x}/user/{x}` | OvhCloudPublicCloud/database/cassandra/userDeleteDelete.operation.ts |
-| cloud (v1) | GET | `/publicCloud/project/{x}/cassandra/{x}/user/{x}` | OvhCloudPublicCloud/database/cassandra/userGetGet.operation.ts |
-| cloud (v1) | PUT | `/publicCloud/project/{x}/cassandra/{x}/user/{x}` | OvhCloudPublicCloud/database/cassandra/userUpdatePut.operation.ts |
 | cloud (v1) | POST | `/publicCloud/project/{x}/changeContact` | OvhCloudPublicCloud/changeContact/changeContactPost.operation.ts |
 | cloud (v1) | GET | `/publicCloud/project/{x}/clickhouse` | OvhCloudPublicCloud/database/clickhouse/clusterListGet.operation.ts |
 | cloud (v1) | POST | `/publicCloud/project/{x}/clickhouse` | OvhCloudPublicCloud/database/clickhouse/clusterCreatePost.operation.ts |
@@ -1432,6 +1412,56 @@ Ces opérations appellent un chemin qui ne correspond à aucun endpoint de la sp
 | pack (v1) | POST | `/pack/{x}/reinstall` | OvhCloudPack/reinstallPost.operation.ts |
 | pack (v1) | GET | `/pack/{x}/serviceInfos` | OvhCloudPack/serviceInfosGetGet.operation.ts |
 | publicCloud (v2) | POST | `/cloud/project/{x}/ai/data/region/{x}/alias` | OvhCloudPublicCloudAi/dataStore/dataCreatePost.operation.ts |
+| publicCloud (v2) | GET | `/cloud/project/{x}/database/cassandra` | OvhCloudPublicCloud/database/cassandra/clusterListGet.operation.ts |
+| publicCloud (v2) | POST | `/cloud/project/{x}/database/cassandra` | OvhCloudPublicCloud/database/cassandra/clusterCreatePost.operation.ts |
+| publicCloud (v2) | DELETE | `/cloud/project/{x}/database/cassandra/{x}` | OvhCloudPublicCloud/database/cassandra/clusterDeleteDelete.operation.ts |
+| publicCloud (v2) | GET | `/cloud/project/{x}/database/cassandra/{x}` | OvhCloudPublicCloud/database/cassandra/clusterGetGet.operation.ts |
+| publicCloud (v2) | PUT | `/cloud/project/{x}/database/cassandra/{x}` | OvhCloudPublicCloud/database/cassandra/clusterUpdatePut.operation.ts |
+| publicCloud (v2) | GET | `/cloud/project/{x}/database/cassandra/{x}/advancedConfiguration` | OvhCloudPublicCloud/database/cassandra/advancedConfigurationGet.operation.ts |
+| publicCloud (v2) | PUT | `/cloud/project/{x}/database/cassandra/{x}/advancedConfiguration` | OvhCloudPublicCloud/database/cassandra/advancedConfigurationUpdatePut.operation.ts |
+| publicCloud (v2) | GET | `/cloud/project/{x}/database/cassandra/{x}/backup` | OvhCloudPublicCloud/database/cassandra/backupListGet.operation.ts |
+| publicCloud (v2) | POST | `/cloud/project/{x}/database/cassandra/{x}/backup` | OvhCloudPublicCloud/database/cassandra/backupCreatePost.operation.ts |
+| publicCloud (v2) | DELETE | `/cloud/project/{x}/database/cassandra/{x}/backup/{x}` | OvhCloudPublicCloud/database/cassandra/backupDeleteDelete.operation.ts |
+| publicCloud (v2) | GET | `/cloud/project/{x}/database/cassandra/{x}/backup/{x}` | OvhCloudPublicCloud/database/cassandra/backupGetGet.operation.ts |
+| publicCloud (v2) | GET | `/cloud/project/{x}/database/cassandra/{x}/capabilities/advancedConfiguration` | OvhCloudPublicCloud/database/cassandra/capabilitiesAdvancedConfigurationGet.operation.ts |
+| publicCloud (v2) | GET | `/cloud/project/{x}/database/cassandra/{x}/capabilities/integration` | OvhCloudPublicCloud/database/cassandra/capabilitiesIntegrationGet.operation.ts |
+| publicCloud (v2) | GET | `/cloud/project/{x}/database/cassandra/{x}/certificates` | OvhCloudPublicCloud/database/cassandra/certificateListGet.operation.ts |
+| publicCloud (v2) | POST | `/cloud/project/{x}/database/cassandra/{x}/certificates` | OvhCloudPublicCloud/database/cassandra/certificateCreatePost.operation.ts |
+| publicCloud (v2) | GET | `/cloud/project/{x}/database/cassandra/{x}/integration` | OvhCloudPublicCloud/database/cassandra/integrationListGet.operation.ts |
+| publicCloud (v2) | POST | `/cloud/project/{x}/database/cassandra/{x}/integration` | OvhCloudPublicCloud/database/cassandra/integrationCreatePost.operation.ts |
+| publicCloud (v2) | DELETE | `/cloud/project/{x}/database/cassandra/{x}/integration/{x}` | OvhCloudPublicCloud/database/cassandra/integrationDeleteDelete.operation.ts |
+| publicCloud (v2) | GET | `/cloud/project/{x}/database/cassandra/{x}/integration/{x}` | OvhCloudPublicCloud/database/cassandra/integrationGetGet.operation.ts |
+| publicCloud (v2) | GET | `/cloud/project/{x}/database/cassandra/{x}/ipRestriction` | OvhCloudPublicCloud/database/cassandra/ipRestrictionListGet.operation.ts |
+| publicCloud (v2) | POST | `/cloud/project/{x}/database/cassandra/{x}/ipRestriction` | OvhCloudPublicCloud/database/cassandra/ipRestrictionCreatePost.operation.ts |
+| publicCloud (v2) | DELETE | `/cloud/project/{x}/database/cassandra/{x}/ipRestriction/{x}` | OvhCloudPublicCloud/database/cassandra/ipRestrictionDeleteDelete.operation.ts |
+| publicCloud (v2) | GET | `/cloud/project/{x}/database/cassandra/{x}/ipRestriction/{x}` | OvhCloudPublicCloud/database/cassandra/ipRestrictionGetGet.operation.ts |
+| publicCloud (v2) | PUT | `/cloud/project/{x}/database/cassandra/{x}/ipRestriction/{x}` | OvhCloudPublicCloud/database/cassandra/ipRestrictionUpdatePut.operation.ts |
+| publicCloud (v2) | GET | `/cloud/project/{x}/database/cassandra/{x}/log/kind` | OvhCloudPublicCloud/database/cassandra/logKindListGet.operation.ts |
+| publicCloud (v2) | GET | `/cloud/project/{x}/database/cassandra/{x}/log/kind/{x}` | OvhCloudPublicCloud/database/cassandra/logKindGetGet.operation.ts |
+| publicCloud (v2) | GET | `/cloud/project/{x}/database/cassandra/{x}/log/subscription` | OvhCloudPublicCloud/database/cassandra/logSubscriptionListGet.operation.ts |
+| publicCloud (v2) | POST | `/cloud/project/{x}/database/cassandra/{x}/log/subscription` | OvhCloudPublicCloud/database/cassandra/logSubscriptionCreatePost.operation.ts |
+| publicCloud (v2) | DELETE | `/cloud/project/{x}/database/cassandra/{x}/log/subscription/{x}` | OvhCloudPublicCloud/database/cassandra/logSubscriptionDeleteDelete.operation.ts |
+| publicCloud (v2) | GET | `/cloud/project/{x}/database/cassandra/{x}/log/subscription/{x}` | OvhCloudPublicCloud/database/cassandra/logSubscriptionGetGet.operation.ts |
+| publicCloud (v2) | POST | `/cloud/project/{x}/database/cassandra/{x}/log/url` | OvhCloudPublicCloud/database/cassandra/logUrlCreatePost.operation.ts |
+| publicCloud (v2) | GET | `/cloud/project/{x}/database/cassandra/{x}/logs` | OvhCloudPublicCloud/database/cassandra/logsGet.operation.ts |
+| publicCloud (v2) | GET | `/cloud/project/{x}/database/cassandra/{x}/maintenance` | OvhCloudPublicCloud/database/cassandra/maintenanceGet.operation.ts |
+| publicCloud (v2) | GET | `/cloud/project/{x}/database/cassandra/{x}/maintenance/{x}` | OvhCloudPublicCloud/database/cassandra/maintenanceGetGet.operation.ts |
+| publicCloud (v2) | POST | `/cloud/project/{x}/database/cassandra/{x}/maintenance/{x}/apply` | OvhCloudPublicCloud/database/cassandra/maintenanceApplyPost.operation.ts |
+| publicCloud (v2) | GET | `/cloud/project/{x}/database/cassandra/{x}/metric` | OvhCloudPublicCloud/database/cassandra/metricGet.operation.ts |
+| publicCloud (v2) | GET | `/cloud/project/{x}/database/cassandra/{x}/metric/{x}` | OvhCloudPublicCloud/database/cassandra/metricGetGet.operation.ts |
+| publicCloud (v2) | GET | `/cloud/project/{x}/database/cassandra/{x}/node` | OvhCloudPublicCloud/database/cassandra/nodeListGet.operation.ts |
+| publicCloud (v2) | POST | `/cloud/project/{x}/database/cassandra/{x}/node` | OvhCloudPublicCloud/database/cassandra/nodeCreatePost.operation.ts |
+| publicCloud (v2) | DELETE | `/cloud/project/{x}/database/cassandra/{x}/node/{x}` | OvhCloudPublicCloud/database/cassandra/nodeDeleteDelete.operation.ts |
+| publicCloud (v2) | GET | `/cloud/project/{x}/database/cassandra/{x}/node/{x}` | OvhCloudPublicCloud/database/cassandra/nodeGetGet.operation.ts |
+| publicCloud (v2) | PUT | `/cloud/project/{x}/database/cassandra/{x}/node/{x}` | OvhCloudPublicCloud/database/cassandra/nodeUpdatePut.operation.ts |
+| publicCloud (v2) | GET | `/cloud/project/{x}/database/cassandra/{x}/prometheus` | OvhCloudPublicCloud/database/cassandra/prometheusGet.operation.ts |
+| publicCloud (v2) | POST | `/cloud/project/{x}/database/cassandra/{x}/prometheus/credentials/reset` | OvhCloudPublicCloud/database/cassandra/prometheusCredentialsResetPost.operation.ts |
+| publicCloud (v2) | GET | `/cloud/project/{x}/database/cassandra/{x}/user` | OvhCloudPublicCloud/database/cassandra/userListGet.operation.ts |
+| publicCloud (v2) | POST | `/cloud/project/{x}/database/cassandra/{x}/user` | OvhCloudPublicCloud/database/cassandra/userCreatePost.operation.ts |
+| publicCloud (v2) | DELETE | `/cloud/project/{x}/database/cassandra/{x}/user/{x}` | OvhCloudPublicCloud/database/cassandra/userDeleteDelete.operation.ts |
+| publicCloud (v2) | GET | `/cloud/project/{x}/database/cassandra/{x}/user/{x}` | OvhCloudPublicCloud/database/cassandra/userGetGet.operation.ts |
+| publicCloud (v2) | PUT | `/cloud/project/{x}/database/cassandra/{x}/user/{x}` | OvhCloudPublicCloud/database/cassandra/userUpdatePut.operation.ts |
+| publicCloud (v2) | POST | `/cloud/project/{x}/database/cassandra/{x}/user/{x}/credentials/reset` | OvhCloudPublicCloud/database/cassandra/userCredentialsResetPost.operation.ts |
 | publicCloud (v2) | GET | `/cloud/project/{x}/database/grafana` | OvhCloudPublicCloud/database/grafana/clusterListGet.operation.ts |
 | publicCloud (v2) | POST | `/cloud/project/{x}/database/grafana` | OvhCloudPublicCloud/database/grafana/clusterCreatePost.operation.ts |
 | publicCloud (v2) | DELETE | `/cloud/project/{x}/database/grafana/{x}` | OvhCloudPublicCloud/database/grafana/clusterDeleteDelete.operation.ts |
@@ -1949,38 +1979,7 @@ Ces opérations appellent un chemin qui ne correspond à aucun endpoint de la sp
 | publicCloud (v2) | GET | `/publicCloud/project/{x}/capabilities/region` | OvhCloudPublicCloud/capabilities/listRegionGet.operation.ts |
 | publicCloud (v2) | GET | `/publicCloud/project/{x}/capabilities/region/{x}` | OvhCloudPublicCloud/capabilities/getRegionDetailGet.operation.ts |
 | publicCloud (v2) | GET | `/publicCloud/project/{x}/capabilities/region/{x}/{x}` | OvhCloudPublicCloud/capabilities/getRegionProductDetailGet.operation.ts |
-| publicCloud (v2) | GET | `/publicCloud/project/{x}/cassandra` | OvhCloudPublicCloud/database/cassandra/clusterListGet.operation.ts |
-| publicCloud (v2) | POST | `/publicCloud/project/{x}/cassandra` | OvhCloudPublicCloud/database/cassandra/clusterCreatePost.operation.ts |
-| publicCloud (v2) | DELETE | `/publicCloud/project/{x}/cassandra/{x}` | OvhCloudPublicCloud/database/cassandra/clusterDeleteDelete.operation.ts |
-| publicCloud (v2) | GET | `/publicCloud/project/{x}/cassandra/{x}` | OvhCloudPublicCloud/database/cassandra/clusterGetGet.operation.ts |
-| publicCloud (v2) | PUT | `/publicCloud/project/{x}/cassandra/{x}` | OvhCloudPublicCloud/database/cassandra/clusterUpdatePut.operation.ts |
-| publicCloud (v2) | GET | `/publicCloud/project/{x}/cassandra/{x}/backup` | OvhCloudPublicCloud/database/cassandra/backupListGet.operation.ts |
-| publicCloud (v2) | POST | `/publicCloud/project/{x}/cassandra/{x}/backup` | OvhCloudPublicCloud/database/cassandra/backupCreatePost.operation.ts |
-| publicCloud (v2) | DELETE | `/publicCloud/project/{x}/cassandra/{x}/backup/{x}` | OvhCloudPublicCloud/database/cassandra/backupDeleteDelete.operation.ts |
-| publicCloud (v2) | GET | `/publicCloud/project/{x}/cassandra/{x}/backup/{x}` | OvhCloudPublicCloud/database/cassandra/backupGetGet.operation.ts |
-| publicCloud (v2) | GET | `/publicCloud/project/{x}/cassandra/{x}/certificate` | OvhCloudPublicCloud/database/cassandra/certificateListGet.operation.ts |
-| publicCloud (v2) | POST | `/publicCloud/project/{x}/cassandra/{x}/certificate` | OvhCloudPublicCloud/database/cassandra/certificateCreatePost.operation.ts |
-| publicCloud (v2) | GET | `/publicCloud/project/{x}/cassandra/{x}/integration` | OvhCloudPublicCloud/database/cassandra/integrationListGet.operation.ts |
-| publicCloud (v2) | POST | `/publicCloud/project/{x}/cassandra/{x}/integration` | OvhCloudPublicCloud/database/cassandra/integrationCreatePost.operation.ts |
-| publicCloud (v2) | GET | `/publicCloud/project/{x}/cassandra/{x}/ipRestriction` | OvhCloudPublicCloud/database/cassandra/ipRestrictionListGet.operation.ts |
-| publicCloud (v2) | POST | `/publicCloud/project/{x}/cassandra/{x}/ipRestriction` | OvhCloudPublicCloud/database/cassandra/ipRestrictionCreatePost.operation.ts |
-| publicCloud (v2) | GET | `/publicCloud/project/{x}/cassandra/{x}/log/subscription` | OvhCloudPublicCloud/database/cassandra/logSubscriptionListGet.operation.ts |
-| publicCloud (v2) | POST | `/publicCloud/project/{x}/cassandra/{x}/log/subscription` | OvhCloudPublicCloud/database/cassandra/logSubscriptionCreatePost.operation.ts |
-| publicCloud (v2) | GET | `/publicCloud/project/{x}/cassandra/{x}/log/subscription/{x}` | OvhCloudPublicCloud/database/cassandra/logSubscriptionGetGet.operation.ts |
-| publicCloud (v2) | GET | `/publicCloud/project/{x}/cassandra/{x}/maintenance` | OvhCloudPublicCloud/database/cassandra/maintenanceGet.operation.ts |
 | publicCloud (v2) | PUT | `/publicCloud/project/{x}/cassandra/{x}/maintenance` | OvhCloudPublicCloud/database/cassandra/maintenanceUpdatePut.operation.ts |
-| publicCloud (v2) | GET | `/publicCloud/project/{x}/cassandra/{x}/metric` | OvhCloudPublicCloud/database/cassandra/metricGet.operation.ts |
-| publicCloud (v2) | GET | `/publicCloud/project/{x}/cassandra/{x}/node` | OvhCloudPublicCloud/database/cassandra/nodeListGet.operation.ts |
-| publicCloud (v2) | POST | `/publicCloud/project/{x}/cassandra/{x}/node` | OvhCloudPublicCloud/database/cassandra/nodeCreatePost.operation.ts |
-| publicCloud (v2) | DELETE | `/publicCloud/project/{x}/cassandra/{x}/node/{x}` | OvhCloudPublicCloud/database/cassandra/nodeDeleteDelete.operation.ts |
-| publicCloud (v2) | GET | `/publicCloud/project/{x}/cassandra/{x}/node/{x}` | OvhCloudPublicCloud/database/cassandra/nodeGetGet.operation.ts |
-| publicCloud (v2) | PUT | `/publicCloud/project/{x}/cassandra/{x}/node/{x}` | OvhCloudPublicCloud/database/cassandra/nodeUpdatePut.operation.ts |
-| publicCloud (v2) | GET | `/publicCloud/project/{x}/cassandra/{x}/prometheus` | OvhCloudPublicCloud/database/cassandra/prometheusGet.operation.ts |
-| publicCloud (v2) | GET | `/publicCloud/project/{x}/cassandra/{x}/user` | OvhCloudPublicCloud/database/cassandra/userListGet.operation.ts |
-| publicCloud (v2) | POST | `/publicCloud/project/{x}/cassandra/{x}/user` | OvhCloudPublicCloud/database/cassandra/userCreatePost.operation.ts |
-| publicCloud (v2) | DELETE | `/publicCloud/project/{x}/cassandra/{x}/user/{x}` | OvhCloudPublicCloud/database/cassandra/userDeleteDelete.operation.ts |
-| publicCloud (v2) | GET | `/publicCloud/project/{x}/cassandra/{x}/user/{x}` | OvhCloudPublicCloud/database/cassandra/userGetGet.operation.ts |
-| publicCloud (v2) | PUT | `/publicCloud/project/{x}/cassandra/{x}/user/{x}` | OvhCloudPublicCloud/database/cassandra/userUpdatePut.operation.ts |
 | publicCloud (v2) | POST | `/publicCloud/project/{x}/changeContact` | OvhCloudPublicCloud/changeContact/changeContactPost.operation.ts |
 | publicCloud (v2) | GET | `/publicCloud/project/{x}/clickhouse` | OvhCloudPublicCloud/database/clickhouse/clusterListGet.operation.ts |
 | publicCloud (v2) | POST | `/publicCloud/project/{x}/clickhouse` | OvhCloudPublicCloud/database/clickhouse/clusterCreatePost.operation.ts |

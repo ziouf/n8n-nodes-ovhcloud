@@ -16,8 +16,8 @@ import { ApiClient } from '../../../../shared/transport/ApiClient';
 describe('cassandra clusterListGet operation', () => {
 	describe('description', () => {
 		it('should return all required parameters', () => {
-			const result = description({'show': {}});
-			expect(result.length).toBeGreaterThanOrEqual(1);
+			const result = description({ show: { publicCloudOperation: ['cassandraClusterListGet'] } });
+			expect(result).toHaveLength(1);
 		});
 	});
 
@@ -35,13 +35,15 @@ describe('cassandra clusterListGet operation', () => {
 			const client = new ApiClient(mockExecuteFunctions) as any;
 			client.httpGet.mockResolvedValue(mockData);
 
-			mockExecuteFunctions.getNodeParameter.mockReturnValue((param: string): string | undefined => {
+			mockExecuteFunctions.getNodeParameter.mockImplementation((param: string): any => {
 				if (param === 'publicCloudProjectId') return '12345678-1234-1234-1234-1234567890ab';
 				return '';
 			});
 
 			const result = await execute.call(mockExecuteFunctions);
-			expect(client.httpGet).toHaveBeenCalled();
+			expect(client.httpGet).toHaveBeenCalledWith(
+				'/cloud/project/12345678-1234-1234-1234-1234567890ab/database/cassandra',
+			);
 			expect(result).toMatchObject([{ id: 'test-id' }]);
 		});
 	});

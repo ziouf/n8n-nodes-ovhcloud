@@ -1,6 +1,6 @@
 # OVHcloud API Coverage Report
 
-> Généré par `scripts/compare-coverage.js` le 2026-08-05T23:09:23.070Z. Document généré automatiquement — ne pas éditer à la main.
+> Généré par `scripts/compare-coverage.js` le 2026-08-05T23:49:44.076Z. Document généré automatiquement — ne pas éditer à la main.
 
 Ce rapport compare les endpoints déclarés dans les specs Swagger 2.0 (`docs/api-specs/v1|v2/*.json`) avec les appels HTTP réellement présents dans les nodes (`nodes/**/*.operation.ts`).
 
@@ -8,8 +8,8 @@ Ce rapport compare les endpoints déclarés dans les specs Swagger 2.0 (`docs/ap
 
 - **Specs analysées** : 84 (v1: 70, v2: 14)
 - **Endpoints déclarés (specs avec endpoints)** : 6624
-- **Endpoints couverts par les nodes** : 3641
-- **Couverture globale** : **55%**
+- **Endpoints couverts par les nodes** : 3684
+- **Couverture globale** : **55.6%**
 - **Specs sans node associé** : 21
 - **Specs placeholder (aucun endpoint)** : 1
 
@@ -49,7 +49,7 @@ Triée par pourcentage croissant (moins bonne couverture en premier).
 | vps (v1) | 94 | 22 | 72 | 23.4% |
 | sslGateway (v1) | 23 | 6 | 17 | 26.1% |
 | xdsl (v1) | 142 | 39 | 103 | 27.5% |
-| cloud (v1) | 1121 | 429 | 692 | 38.3% |
+| cloud (v1) | 1121 | 472 | 649 | 42.1% |
 | veeam (v1) | 10 | 5 | 5 | 50% |
 | license (v1) | 13 | 7 | 6 | 53.8% |
 | pack (v1) | 58 | 33 | 25 | 56.9% |
@@ -2394,7 +2394,7 @@ _Nodes associés : OvhCloudXdsl_
 | GET | `/xdsl/templateModem/{x}` |
 | PUT | `/xdsl/templateModem/{x}` |
 
-### cloud (v1) — 692 manquants
+### cloud (v1) — 649 manquants
 
 _Nodes associés : OvhCloudPublicCloud, OvhCloudPublicCloudAi_
 
@@ -2542,49 +2542,6 @@ _Nodes associés : OvhCloudPublicCloud, OvhCloudPublicCloudAi_
 | GET | `/cloud/project/{x}/credit/{x}` |
 | GET | `/cloud/project/{x}/database/availability` |
 | GET | `/cloud/project/{x}/database/capabilities` |
-| GET | `/cloud/project/{x}/database/cassandra` |
-| POST | `/cloud/project/{x}/database/cassandra` |
-| DELETE | `/cloud/project/{x}/database/cassandra/{x}` |
-| GET | `/cloud/project/{x}/database/cassandra/{x}` |
-| PUT | `/cloud/project/{x}/database/cassandra/{x}` |
-| GET | `/cloud/project/{x}/database/cassandra/{x}/advancedConfiguration` |
-| PUT | `/cloud/project/{x}/database/cassandra/{x}/advancedConfiguration` |
-| GET | `/cloud/project/{x}/database/cassandra/{x}/backup` |
-| GET | `/cloud/project/{x}/database/cassandra/{x}/backup/{x}` |
-| GET | `/cloud/project/{x}/database/cassandra/{x}/capabilities/advancedConfiguration` |
-| GET | `/cloud/project/{x}/database/cassandra/{x}/capabilities/integration` |
-| GET | `/cloud/project/{x}/database/cassandra/{x}/certificates` |
-| GET | `/cloud/project/{x}/database/cassandra/{x}/integration` |
-| POST | `/cloud/project/{x}/database/cassandra/{x}/integration` |
-| DELETE | `/cloud/project/{x}/database/cassandra/{x}/integration/{x}` |
-| GET | `/cloud/project/{x}/database/cassandra/{x}/integration/{x}` |
-| GET | `/cloud/project/{x}/database/cassandra/{x}/ipRestriction` |
-| POST | `/cloud/project/{x}/database/cassandra/{x}/ipRestriction` |
-| DELETE | `/cloud/project/{x}/database/cassandra/{x}/ipRestriction/{x}` |
-| GET | `/cloud/project/{x}/database/cassandra/{x}/ipRestriction/{x}` |
-| PUT | `/cloud/project/{x}/database/cassandra/{x}/ipRestriction/{x}` |
-| GET | `/cloud/project/{x}/database/cassandra/{x}/log/kind` |
-| GET | `/cloud/project/{x}/database/cassandra/{x}/log/kind/{x}` |
-| GET | `/cloud/project/{x}/database/cassandra/{x}/log/subscription` |
-| POST | `/cloud/project/{x}/database/cassandra/{x}/log/subscription` |
-| DELETE | `/cloud/project/{x}/database/cassandra/{x}/log/subscription/{x}` |
-| GET | `/cloud/project/{x}/database/cassandra/{x}/log/subscription/{x}` |
-| POST | `/cloud/project/{x}/database/cassandra/{x}/log/url` |
-| GET | `/cloud/project/{x}/database/cassandra/{x}/logs` |
-| GET | `/cloud/project/{x}/database/cassandra/{x}/maintenance` |
-| GET | `/cloud/project/{x}/database/cassandra/{x}/maintenance/{x}` |
-| POST | `/cloud/project/{x}/database/cassandra/{x}/maintenance/{x}/apply` |
-| GET | `/cloud/project/{x}/database/cassandra/{x}/metric` |
-| GET | `/cloud/project/{x}/database/cassandra/{x}/metric/{x}` |
-| GET | `/cloud/project/{x}/database/cassandra/{x}/node` |
-| GET | `/cloud/project/{x}/database/cassandra/{x}/node/{x}` |
-| GET | `/cloud/project/{x}/database/cassandra/{x}/prometheus` |
-| POST | `/cloud/project/{x}/database/cassandra/{x}/prometheus/credentials/reset` |
-| GET | `/cloud/project/{x}/database/cassandra/{x}/user` |
-| POST | `/cloud/project/{x}/database/cassandra/{x}/user` |
-| DELETE | `/cloud/project/{x}/database/cassandra/{x}/user/{x}` |
-| GET | `/cloud/project/{x}/database/cassandra/{x}/user/{x}` |
-| POST | `/cloud/project/{x}/database/cassandra/{x}/user/{x}/credentials/reset` |
 | GET | `/cloud/project/{x}/database/clickhouse` |
 | POST | `/cloud/project/{x}/database/clickhouse` |
 | DELETE | `/cloud/project/{x}/database/clickhouse/{x}` |

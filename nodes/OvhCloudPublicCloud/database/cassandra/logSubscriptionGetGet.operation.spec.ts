@@ -16,8 +16,10 @@ import { ApiClient } from '../../../../shared/transport/ApiClient';
 describe('cassandra logSubscriptionGetGet operation', () => {
 	describe('description', () => {
 		it('should return all required parameters', () => {
-			const result = description({'show': {}});
-			expect(result.length).toBeGreaterThanOrEqual(1);
+			const result = description({
+				show: { publicCloudOperation: ['cassandraLogSubscriptionGetGet'] },
+			});
+			expect(result).toHaveLength(3);
 		});
 	});
 
@@ -31,20 +33,22 @@ describe('cassandra logSubscriptionGetGet operation', () => {
 		});
 
 		it('should call the correct API endpoint', async () => {
-			const mockData = { id: 'test-id' };
+			const mockData = { id: 'sub-123' };
 			const client = new ApiClient(mockExecuteFunctions) as any;
 			client.httpGet.mockResolvedValue(mockData);
 
-			mockExecuteFunctions.getNodeParameter.mockReturnValue((param: string): string | undefined => {
+			mockExecuteFunctions.getNodeParameter.mockImplementation((param: string): any => {
 				if (param === 'publicCloudProjectId') return '12345678-1234-1234-1234-1234567890ab';
-				if (param === 'serviceName') return 'test-service';
-				if (param === 'subId') return 'test-subId-id';
+				if (param === 'clusterId') return 'cluster-123';
+				if (param === 'subscriptionId') return 'sub-456';
 				return '';
 			});
 
 			const result = await execute.call(mockExecuteFunctions);
-			expect(client.httpGet).toHaveBeenCalled();
-			expect(result).toMatchObject([{ id: 'test-id' }]);
+			expect(client.httpGet).toHaveBeenCalledWith(
+				'/cloud/project/12345678-1234-1234-1234-1234567890ab/database/cassandra/cluster-123/log/subscription/sub-456',
+			);
+			expect(result).toMatchObject([mockData]);
 		});
 	});
 });

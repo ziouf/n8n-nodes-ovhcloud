@@ -658,6 +658,82 @@ import {
 	execute as cassandraIntegrationCreatePostExecute,
 } from './database/cassandra/integrationCreatePost.operation';
 import {
+	description as cassandraAdvancedConfigurationGetDescription,
+	execute as cassandraAdvancedConfigurationGetExecute,
+} from './database/cassandra/advancedConfigurationGet.operation';
+import {
+	description as cassandraAdvancedConfigurationUpdatePutDescription,
+	execute as cassandraAdvancedConfigurationUpdatePutExecute,
+} from './database/cassandra/advancedConfigurationUpdatePut.operation';
+import {
+	description as cassandraCapabilitiesAdvancedConfigurationGetDescription,
+	execute as cassandraCapabilitiesAdvancedConfigurationGetExecute,
+} from './database/cassandra/capabilitiesAdvancedConfigurationGet.operation';
+import {
+	description as cassandraCapabilitiesIntegrationGetDescription,
+	execute as cassandraCapabilitiesIntegrationGetExecute,
+} from './database/cassandra/capabilitiesIntegrationGet.operation';
+import {
+	description as cassandraIntegrationGetGetDescription,
+	execute as cassandraIntegrationGetGetExecute,
+} from './database/cassandra/integrationGetGet.operation';
+import {
+	description as cassandraIntegrationDeleteDeleteDescription,
+	execute as cassandraIntegrationDeleteDeleteExecute,
+} from './database/cassandra/integrationDeleteDelete.operation';
+import {
+	description as cassandraIpRestrictionGetGetDescription,
+	execute as cassandraIpRestrictionGetGetExecute,
+} from './database/cassandra/ipRestrictionGetGet.operation';
+import {
+	description as cassandraIpRestrictionDeleteDeleteDescription,
+	execute as cassandraIpRestrictionDeleteDeleteExecute,
+} from './database/cassandra/ipRestrictionDeleteDelete.operation';
+import {
+	description as cassandraIpRestrictionUpdatePutDescription,
+	execute as cassandraIpRestrictionUpdatePutExecute,
+} from './database/cassandra/ipRestrictionUpdatePut.operation';
+import {
+	description as cassandraLogKindListGetDescription,
+	execute as cassandraLogKindListGetExecute,
+} from './database/cassandra/logKindListGet.operation';
+import {
+	description as cassandraLogKindGetGetDescription,
+	execute as cassandraLogKindGetGetExecute,
+} from './database/cassandra/logKindGetGet.operation';
+import {
+	description as cassandraLogSubscriptionDeleteDeleteDescription,
+	execute as cassandraLogSubscriptionDeleteDeleteExecute,
+} from './database/cassandra/logSubscriptionDeleteDelete.operation';
+import {
+	description as cassandraLogUrlCreatePostDescription,
+	execute as cassandraLogUrlCreatePostExecute,
+} from './database/cassandra/logUrlCreatePost.operation';
+import {
+	description as cassandraLogsGetDescription,
+	execute as cassandraLogsGetExecute,
+} from './database/cassandra/logsGet.operation';
+import {
+	description as cassandraMaintenanceApplyPostDescription,
+	execute as cassandraMaintenanceApplyPostExecute,
+} from './database/cassandra/maintenanceApplyPost.operation';
+import {
+	description as cassandraMaintenanceGetGetDescription,
+	execute as cassandraMaintenanceGetGetExecute,
+} from './database/cassandra/maintenanceGetGet.operation';
+import {
+	description as cassandraMetricGetGetDescription,
+	execute as cassandraMetricGetGetExecute,
+} from './database/cassandra/metricGetGet.operation';
+import {
+	description as cassandraPrometheusCredentialsResetPostDescription,
+	execute as cassandraPrometheusCredentialsResetPostExecute,
+} from './database/cassandra/prometheusCredentialsResetPost.operation';
+import {
+	description as cassandraUserCredentialsResetPostDescription,
+	execute as cassandraUserCredentialsResetPostExecute,
+} from './database/cassandra/userCredentialsResetPost.operation';
+import {
 	description as clickhouseClusterListGetDescription,
 	execute as clickhouseClusterListGetExecute,
 } from './database/clickhouse/clusterListGet.operation';
@@ -3734,6 +3810,101 @@ export function description(displayOptions: IDisplayOptions): INodeProperties[] 
 				name: 'cassandraIntegrationCreatePost',
 				value: 'cassandraIntegrationCreatePost',
 				action: 'Create Cassandra integration',
+			},
+			{
+				name: 'cassandraAdvancedConfigurationGet',
+				value: 'cassandraAdvancedConfigurationGet',
+				action: 'Get Cassandra advanced configuration',
+			},
+			{
+				name: 'cassandraAdvancedConfigurationUpdatePut',
+				value: 'cassandraAdvancedConfigurationUpdatePut',
+				action: 'Update Cassandra advanced configuration',
+			},
+			{
+				name: 'cassandraCapabilitiesAdvancedConfigurationGet',
+				value: 'cassandraCapabilitiesAdvancedConfigurationGet',
+				action: 'Get Cassandra capabilities advanced configuration',
+			},
+			{
+				name: 'cassandraCapabilitiesIntegrationGet',
+				value: 'cassandraCapabilitiesIntegrationGet',
+				action: 'Get Cassandra capabilities integration',
+			},
+			{
+				name: 'cassandraIntegrationGetGet',
+				value: 'cassandraIntegrationGetGet',
+				action: 'Get Cassandra integration',
+			},
+			{
+				name: 'cassandraIntegrationDeleteDelete',
+				value: 'cassandraIntegrationDeleteDelete',
+				action: 'Delete Cassandra integration',
+			},
+			{
+				name: 'cassandraIpRestrictionGetGet',
+				value: 'cassandraIpRestrictionGetGet',
+				action: 'Get Cassandra IP restriction',
+			},
+			{
+				name: 'cassandraIpRestrictionDeleteDelete',
+				value: 'cassandraIpRestrictionDeleteDelete',
+				action: 'Delete Cassandra IP restriction',
+			},
+			{
+				name: 'cassandraIpRestrictionUpdatePut',
+				value: 'cassandraIpRestrictionUpdatePut',
+				action: 'Update Cassandra IP restriction',
+			},
+			{
+				name: 'cassandraLogKindListGet',
+				value: 'cassandraLogKindListGet',
+				action: 'List Cassandra log kinds',
+			},
+			{
+				name: 'cassandraLogKindGetGet',
+				value: 'cassandraLogKindGetGet',
+				action: 'Get Cassandra log kind',
+			},
+			{
+				name: 'cassandraLogSubscriptionDeleteDelete',
+				value: 'cassandraLogSubscriptionDeleteDelete',
+				action: 'Delete Cassandra log subscription',
+			},
+			{
+				name: 'cassandraLogUrlCreatePost',
+				value: 'cassandraLogUrlCreatePost',
+				action: 'Create Cassandra log URL',
+			},
+			{
+				name: 'cassandraLogsGet',
+				value: 'cassandraLogsGet',
+				action: 'Get Cassandra logs',
+			},
+			{
+				name: 'cassandraMaintenanceApplyPost',
+				value: 'cassandraMaintenanceApplyPost',
+				action: 'Apply Cassandra maintenance',
+			},
+			{
+				name: 'cassandraMaintenanceGetGet',
+				value: 'cassandraMaintenanceGetGet',
+				action: 'Get Cassandra maintenance details',
+			},
+			{
+				name: 'cassandraMetricGetGet',
+				value: 'cassandraMetricGetGet',
+				action: 'Get Cassandra metric values',
+			},
+			{
+				name: 'cassandraPrometheusCredentialsResetPost',
+				value: 'cassandraPrometheusCredentialsResetPost',
+				action: 'Reset Cassandra Prometheus credentials',
+			},
+			{
+				name: 'cassandraUserCredentialsResetPost',
+				value: 'cassandraUserCredentialsResetPost',
+				action: 'Reset Cassandra user credentials',
 			},
 			{
 				name: 'clickhouseClusterListGet',
@@ -8024,6 +8195,120 @@ export function description(displayOptions: IDisplayOptions): INodeProperties[] 
 		}) as INodeProperties[]),
 	);
 	properties.push(
+		...(cassandraAdvancedConfigurationGetDescription({
+			...displayOptions,
+			show: { publicCloudOperation: ['cassandraAdvancedConfigurationGet'] },
+		}) as INodeProperties[]),
+	);
+	properties.push(
+		...(cassandraAdvancedConfigurationUpdatePutDescription({
+			...displayOptions,
+			show: { publicCloudOperation: ['cassandraAdvancedConfigurationUpdatePut'] },
+		}) as INodeProperties[]),
+	);
+	properties.push(
+		...(cassandraCapabilitiesAdvancedConfigurationGetDescription({
+			...displayOptions,
+			show: { publicCloudOperation: ['cassandraCapabilitiesAdvancedConfigurationGet'] },
+		}) as INodeProperties[]),
+	);
+	properties.push(
+		...(cassandraCapabilitiesIntegrationGetDescription({
+			...displayOptions,
+			show: { publicCloudOperation: ['cassandraCapabilitiesIntegrationGet'] },
+		}) as INodeProperties[]),
+	);
+	properties.push(
+		...(cassandraIntegrationGetGetDescription({
+			...displayOptions,
+			show: { publicCloudOperation: ['cassandraIntegrationGetGet'] },
+		}) as INodeProperties[]),
+	);
+	properties.push(
+		...(cassandraIntegrationDeleteDeleteDescription({
+			...displayOptions,
+			show: { publicCloudOperation: ['cassandraIntegrationDeleteDelete'] },
+		}) as INodeProperties[]),
+	);
+	properties.push(
+		...(cassandraIpRestrictionGetGetDescription({
+			...displayOptions,
+			show: { publicCloudOperation: ['cassandraIpRestrictionGetGet'] },
+		}) as INodeProperties[]),
+	);
+	properties.push(
+		...(cassandraIpRestrictionDeleteDeleteDescription({
+			...displayOptions,
+			show: { publicCloudOperation: ['cassandraIpRestrictionDeleteDelete'] },
+		}) as INodeProperties[]),
+	);
+	properties.push(
+		...(cassandraIpRestrictionUpdatePutDescription({
+			...displayOptions,
+			show: { publicCloudOperation: ['cassandraIpRestrictionUpdatePut'] },
+		}) as INodeProperties[]),
+	);
+	properties.push(
+		...(cassandraLogKindListGetDescription({
+			...displayOptions,
+			show: { publicCloudOperation: ['cassandraLogKindListGet'] },
+		}) as INodeProperties[]),
+	);
+	properties.push(
+		...(cassandraLogKindGetGetDescription({
+			...displayOptions,
+			show: { publicCloudOperation: ['cassandraLogKindGetGet'] },
+		}) as INodeProperties[]),
+	);
+	properties.push(
+		...(cassandraLogSubscriptionDeleteDeleteDescription({
+			...displayOptions,
+			show: { publicCloudOperation: ['cassandraLogSubscriptionDeleteDelete'] },
+		}) as INodeProperties[]),
+	);
+	properties.push(
+		...(cassandraLogUrlCreatePostDescription({
+			...displayOptions,
+			show: { publicCloudOperation: ['cassandraLogUrlCreatePost'] },
+		}) as INodeProperties[]),
+	);
+	properties.push(
+		...(cassandraLogsGetDescription({
+			...displayOptions,
+			show: { publicCloudOperation: ['cassandraLogsGet'] },
+		}) as INodeProperties[]),
+	);
+	properties.push(
+		...(cassandraMaintenanceApplyPostDescription({
+			...displayOptions,
+			show: { publicCloudOperation: ['cassandraMaintenanceApplyPost'] },
+		}) as INodeProperties[]),
+	);
+	properties.push(
+		...(cassandraMaintenanceGetGetDescription({
+			...displayOptions,
+			show: { publicCloudOperation: ['cassandraMaintenanceGetGet'] },
+		}) as INodeProperties[]),
+	);
+	properties.push(
+		...(cassandraMetricGetGetDescription({
+			...displayOptions,
+			show: { publicCloudOperation: ['cassandraMetricGetGet'] },
+		}) as INodeProperties[]),
+	);
+	properties.push(
+		...(cassandraPrometheusCredentialsResetPostDescription({
+			...displayOptions,
+			show: { publicCloudOperation: ['cassandraPrometheusCredentialsResetPost'] },
+		}) as INodeProperties[]),
+	);
+	properties.push(
+		...(cassandraUserCredentialsResetPostDescription({
+			...displayOptions,
+			show: { publicCloudOperation: ['cassandraUserCredentialsResetPost'] },
+		}) as INodeProperties[]),
+	);
+	properties.push(
 		...(clickhouseClusterListGetDescription({
 			...displayOptions,
 			show: { publicCloudOperation: ['clickhouseClusterListGet'] },
@@ -9001,187 +9286,224 @@ export function description(displayOptions: IDisplayOptions): INodeProperties[] 
 			...displayOptions,
 			show: { publicCloudOperation: ['kafkaConnectadvancedConfigurationGet'] },
 		}) as INodeProperties[]),
-	);	properties.push(
+	);
+	properties.push(
 		...(kafkaConnectadvancedConfigurationUpdatePutDescription({
 			...displayOptions,
 			show: { publicCloudOperation: ['kafkaConnectadvancedConfigurationUpdatePut'] },
 		}) as INodeProperties[]),
-	);	properties.push(
+	);
+	properties.push(
 		...(kafkaConnectcapabilitiesAdvancedConfigurationGetDescription({
 			...displayOptions,
 			show: { publicCloudOperation: ['kafkaConnectcapabilitiesAdvancedConfigurationGet'] },
 		}) as INodeProperties[]),
-	);	properties.push(
+	);
+	properties.push(
 		...(kafkaConnectcapabilitiesBackupRegionsGetDescription({
 			...displayOptions,
 			show: { publicCloudOperation: ['kafkaConnectcapabilitiesBackupRegionsGet'] },
 		}) as INodeProperties[]),
-	);	properties.push(
+	);
+	properties.push(
 		...(kafkaConnectcapabilitiesConnectorListGetDescription({
 			...displayOptions,
 			show: { publicCloudOperation: ['kafkaConnectcapabilitiesConnectorListGet'] },
 		}) as INodeProperties[]),
-	);	properties.push(
+	);
+	properties.push(
 		...(kafkaConnectcapabilitiesConnectorGetDescription({
 			...displayOptions,
 			show: { publicCloudOperation: ['kafkaConnectcapabilitiesConnectorGet'] },
 		}) as INodeProperties[]),
-	);	properties.push(
+	);
+	properties.push(
 		...(kafkaConnectcapabilitiesConnectorConfigurationGetDescription({
 			...displayOptions,
 			show: { publicCloudOperation: ['kafkaConnectcapabilitiesConnectorConfigurationGet'] },
 		}) as INodeProperties[]),
-	);	properties.push(
+	);
+	properties.push(
 		...(kafkaConnectcapabilitiesConnectorTransformsGetDescription({
 			...displayOptions,
 			show: { publicCloudOperation: ['kafkaConnectcapabilitiesConnectorTransformsGet'] },
 		}) as INodeProperties[]),
-	);	properties.push(
+	);
+	properties.push(
 		...(kafkaConnectcapabilitiesIntegrationGetDescription({
 			...displayOptions,
 			show: { publicCloudOperation: ['kafkaConnectcapabilitiesIntegrationGet'] },
 		}) as INodeProperties[]),
-	);	properties.push(
+	);
+	properties.push(
 		...(kafkaConnectconnectorListGetDescription({
 			...displayOptions,
 			show: { publicCloudOperation: ['kafkaConnectconnectorListGet'] },
 		}) as INodeProperties[]),
-	);	properties.push(
+	);
+	properties.push(
 		...(kafkaConnectconnectorCreatePostDescription({
 			...displayOptions,
 			show: { publicCloudOperation: ['kafkaConnectconnectorCreatePost'] },
 		}) as INodeProperties[]),
-	);	properties.push(
+	);
+	properties.push(
 		...(kafkaConnectconnectorGetGetDescription({
 			...displayOptions,
 			show: { publicCloudOperation: ['kafkaConnectconnectorGetGet'] },
 		}) as INodeProperties[]),
-	);	properties.push(
+	);
+	properties.push(
 		...(kafkaConnectconnectorUpdatePutDescription({
 			...displayOptions,
 			show: { publicCloudOperation: ['kafkaConnectconnectorUpdatePut'] },
 		}) as INodeProperties[]),
-	);	properties.push(
+	);
+	properties.push(
 		...(kafkaConnectconnectorDeleteDeleteDescription({
 			...displayOptions,
 			show: { publicCloudOperation: ['kafkaConnectconnectorDeleteDelete'] },
 		}) as INodeProperties[]),
-	);	properties.push(
+	);
+	properties.push(
 		...(kafkaConnectconnectorPausePostDescription({
 			...displayOptions,
 			show: { publicCloudOperation: ['kafkaConnectconnectorPausePost'] },
 		}) as INodeProperties[]),
-	);	properties.push(
+	);
+	properties.push(
 		...(kafkaConnectconnectorRestartPostDescription({
 			...displayOptions,
 			show: { publicCloudOperation: ['kafkaConnectconnectorRestartPost'] },
 		}) as INodeProperties[]),
-	);	properties.push(
+	);
+	properties.push(
 		...(kafkaConnectconnectorResumePostDescription({
 			...displayOptions,
 			show: { publicCloudOperation: ['kafkaConnectconnectorResumePost'] },
 		}) as INodeProperties[]),
-	);	properties.push(
+	);
+	properties.push(
 		...(kafkaConnectconnectorTaskListGetDescription({
 			...displayOptions,
 			show: { publicCloudOperation: ['kafkaConnectconnectorTaskListGet'] },
 		}) as INodeProperties[]),
-	);	properties.push(
+	);
+	properties.push(
 		...(kafkaConnectconnectorTaskGetDescription({
 			...displayOptions,
 			show: { publicCloudOperation: ['kafkaConnectconnectorTaskGet'] },
 		}) as INodeProperties[]),
-	);	properties.push(
+	);
+	properties.push(
 		...(kafkaConnectconnectorTaskRestartPostDescription({
 			...displayOptions,
 			show: { publicCloudOperation: ['kafkaConnectconnectorTaskRestartPost'] },
 		}) as INodeProperties[]),
-	);	properties.push(
+	);
+	properties.push(
 		...(kafkaConnectintegrationListGetDescription({
 			...displayOptions,
 			show: { publicCloudOperation: ['kafkaConnectintegrationListGet'] },
 		}) as INodeProperties[]),
-	);	properties.push(
+	);
+	properties.push(
 		...(kafkaConnectintegrationCreatePostDescription({
 			...displayOptions,
 			show: { publicCloudOperation: ['kafkaConnectintegrationCreatePost'] },
 		}) as INodeProperties[]),
-	);	properties.push(
+	);
+	properties.push(
 		...(kafkaConnectintegrationGetGetDescription({
 			...displayOptions,
 			show: { publicCloudOperation: ['kafkaConnectintegrationGetGet'] },
 		}) as INodeProperties[]),
-	);	properties.push(
+	);
+	properties.push(
 		...(kafkaConnectintegrationDeleteDeleteDescription({
 			...displayOptions,
 			show: { publicCloudOperation: ['kafkaConnectintegrationDeleteDelete'] },
 		}) as INodeProperties[]),
-	);	properties.push(
+	);
+	properties.push(
 		...(kafkaConnectipRestrictionGetGetDescription({
 			...displayOptions,
 			show: { publicCloudOperation: ['kafkaConnectipRestrictionGetGet'] },
 		}) as INodeProperties[]),
-	);	properties.push(
+	);
+	properties.push(
 		...(kafkaConnectipRestrictionUpdatePutDescription({
 			...displayOptions,
 			show: { publicCloudOperation: ['kafkaConnectipRestrictionUpdatePut'] },
 		}) as INodeProperties[]),
-	);	properties.push(
+	);
+	properties.push(
 		...(kafkaConnectipRestrictionDeleteDeleteDescription({
 			...displayOptions,
 			show: { publicCloudOperation: ['kafkaConnectipRestrictionDeleteDelete'] },
 		}) as INodeProperties[]),
-	);	properties.push(
+	);
+	properties.push(
 		...(kafkaConnectlogKindListGetDescription({
 			...displayOptions,
 			show: { publicCloudOperation: ['kafkaConnectlogKindListGet'] },
 		}) as INodeProperties[]),
-	);	properties.push(
+	);
+	properties.push(
 		...(kafkaConnectlogKindGetDescription({
 			...displayOptions,
 			show: { publicCloudOperation: ['kafkaConnectlogKindGet'] },
 		}) as INodeProperties[]),
-	);	properties.push(
+	);
+	properties.push(
 		...(kafkaConnectlogSubscriptionDeleteDeleteDescription({
 			...displayOptions,
 			show: { publicCloudOperation: ['kafkaConnectlogSubscriptionDeleteDelete'] },
 		}) as INodeProperties[]),
-	);	properties.push(
+	);
+	properties.push(
 		...(kafkaConnectlogUrlCreatePostDescription({
 			...displayOptions,
 			show: { publicCloudOperation: ['kafkaConnectlogUrlCreatePost'] },
 		}) as INodeProperties[]),
-	);	properties.push(
+	);
+	properties.push(
 		...(kafkaConnectlogsGetDescription({
 			...displayOptions,
 			show: { publicCloudOperation: ['kafkaConnectlogsGet'] },
 		}) as INodeProperties[]),
-	);	properties.push(
+	);
+	properties.push(
 		...(kafkaConnectmaintenanceListGetDescription({
 			...displayOptions,
 			show: { publicCloudOperation: ['kafkaConnectmaintenanceListGet'] },
 		}) as INodeProperties[]),
-	);	properties.push(
+	);
+	properties.push(
 		...(kafkaConnectmaintenanceApplyPostDescription({
 			...displayOptions,
 			show: { publicCloudOperation: ['kafkaConnectmaintenanceApplyPost'] },
 		}) as INodeProperties[]),
-	);	properties.push(
+	);
+	properties.push(
 		...(kafkaConnectmetricListGetDescription({
 			...displayOptions,
 			show: { publicCloudOperation: ['kafkaConnectmetricListGet'] },
 		}) as INodeProperties[]),
-	);	properties.push(
+	);
+	properties.push(
 		...(kafkaConnectnodeGetDescription({
 			...displayOptions,
 			show: { publicCloudOperation: ['kafkaConnectnodeGet'] },
 		}) as INodeProperties[]),
-	);	properties.push(
+	);
+	properties.push(
 		...(kafkaConnectprometheusCredentialsResetPostDescription({
 			...displayOptions,
 			show: { publicCloudOperation: ['kafkaConnectprometheusCredentialsResetPost'] },
 		}) as INodeProperties[]),
-	);	properties.push(
+	);
+	properties.push(
 		...(kafkaConnectuserCredentialsResetPostDescription({
 			...displayOptions,
 			show: { publicCloudOperation: ['kafkaConnectuserCredentialsResetPost'] },
@@ -12106,6 +12428,44 @@ export async function execute(
 			return cassandraIntegrationListGetExecute.call(this);
 		case 'cassandraIntegrationCreatePost':
 			return cassandraIntegrationCreatePostExecute.call(this);
+		case 'cassandraAdvancedConfigurationGet':
+			return cassandraAdvancedConfigurationGetExecute.call(this);
+		case 'cassandraAdvancedConfigurationUpdatePut':
+			return cassandraAdvancedConfigurationUpdatePutExecute.call(this);
+		case 'cassandraCapabilitiesAdvancedConfigurationGet':
+			return cassandraCapabilitiesAdvancedConfigurationGetExecute.call(this);
+		case 'cassandraCapabilitiesIntegrationGet':
+			return cassandraCapabilitiesIntegrationGetExecute.call(this);
+		case 'cassandraIntegrationGetGet':
+			return cassandraIntegrationGetGetExecute.call(this);
+		case 'cassandraIntegrationDeleteDelete':
+			return cassandraIntegrationDeleteDeleteExecute.call(this);
+		case 'cassandraIpRestrictionGetGet':
+			return cassandraIpRestrictionGetGetExecute.call(this);
+		case 'cassandraIpRestrictionDeleteDelete':
+			return cassandraIpRestrictionDeleteDeleteExecute.call(this);
+		case 'cassandraIpRestrictionUpdatePut':
+			return cassandraIpRestrictionUpdatePutExecute.call(this);
+		case 'cassandraLogKindListGet':
+			return cassandraLogKindListGetExecute.call(this);
+		case 'cassandraLogKindGetGet':
+			return cassandraLogKindGetGetExecute.call(this);
+		case 'cassandraLogSubscriptionDeleteDelete':
+			return cassandraLogSubscriptionDeleteDeleteExecute.call(this);
+		case 'cassandraLogUrlCreatePost':
+			return cassandraLogUrlCreatePostExecute.call(this);
+		case 'cassandraLogsGet':
+			return cassandraLogsGetExecute.call(this);
+		case 'cassandraMaintenanceApplyPost':
+			return cassandraMaintenanceApplyPostExecute.call(this);
+		case 'cassandraMaintenanceGetGet':
+			return cassandraMaintenanceGetGetExecute.call(this);
+		case 'cassandraMetricGetGet':
+			return cassandraMetricGetGetExecute.call(this);
+		case 'cassandraPrometheusCredentialsResetPost':
+			return cassandraPrometheusCredentialsResetPostExecute.call(this);
+		case 'cassandraUserCredentialsResetPost':
+			return cassandraUserCredentialsResetPostExecute.call(this);
 		case 'clickhouseClusterListGet':
 			return clickhouseClusterListGetExecute.call(this);
 		case 'clickhouseClusterGetGet':

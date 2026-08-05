@@ -16,8 +16,10 @@ import { ApiClient } from '../../../../shared/transport/ApiClient';
 describe('cassandra integrationCreatePost operation', () => {
 	describe('description', () => {
 		it('should return all required parameters', () => {
-			const result = description({'show': {}});
-			expect(result.length).toBeGreaterThanOrEqual(1);
+			const result = description({
+				show: { publicCloudOperation: ['cassandraIntegrationCreatePost'] },
+			});
+			expect(result).toHaveLength(4);
 		});
 	});
 
@@ -31,19 +33,23 @@ describe('cassandra integrationCreatePost operation', () => {
 		});
 
 		it('should call the correct API endpoint', async () => {
-			const mockData = { id: 'test-id' };
+			const mockData = { id: 'integration-123' };
 			const client = new ApiClient(mockExecuteFunctions) as any;
 			client.httpPost.mockResolvedValue(mockData);
 
-			mockExecuteFunctions.getNodeParameter.mockReturnValue((param: string): string | undefined => {
+			mockExecuteFunctions.getNodeParameter.mockImplementation((param: string): any => {
 				if (param === 'publicCloudProjectId') return '12345678-1234-1234-1234-1234567890ab';
-				if (param === 'serviceName') return 'test-service';
+				if (param === 'clusterId') return 'cluster-123';
+				if (param === 'destinationServiceId') return 'dest-456';
 				return '';
 			});
 
 			const result = await execute.call(mockExecuteFunctions);
-			expect(client.httpPost).toHaveBeenCalled();
-			expect(result).toMatchObject([{ id: 'test-id' }]);
+			expect(client.httpPost).toHaveBeenCalledWith(
+				'/cloud/project/12345678-1234-1234-1234-1234567890ab/database/cassandra/cluster-123/integration',
+				{ destinationServiceId: 'dest-456' },
+			);
+			expect(result).toMatchObject([{ id: 'integration-123' }]);
 		});
 	});
 });
