@@ -13,10 +13,10 @@ jest.mock('../../../../shared/transport/ApiClient', () => {
 
 import { ApiClient } from '../../../../shared/transport/ApiClient';
 
-describe('kafkaConnect metricGet operation', () => {
+describe('Metricget operation', () => {
 	describe('description', () => {
 		it('should return all required parameters', () => {
-			const result = description({'show': {}});
+			const result = description({ show: {} });
 			expect(result.length).toBeGreaterThanOrEqual(1);
 		});
 	});
@@ -30,20 +30,24 @@ describe('kafkaConnect metricGet operation', () => {
 			};
 		});
 
-		it('should call the correct API endpoint', async () => {
+		it('should call the correct API endpoint, with query params', async () => {
 			const mockData = { id: 'test-id' };
 			const client = new ApiClient(mockExecuteFunctions) as any;
 			client.httpGet.mockResolvedValue(mockData);
 
-			mockExecuteFunctions.getNodeParameter.mockReturnValue((param: string): string | undefined => {
+			mockExecuteFunctions.getNodeParameter.mockImplementation(
+				(param: string): string | number | boolean | undefined => {
 				if (param === 'publicCloudProjectId') return '12345678-1234-1234-1234-1234567890ab';
-				if (param === 'serviceName') return 'test-service';
-				return '';
-			});
+				if (param === 'clusterId') return '12345678-1234-1234-1234-1234567890ab';
+				if (param === 'metricName') return '12345678-1234-1234-1234-1234567890ab';
+				if (param === 'period') return 'test-value';
+				return undefined;
+			},
+		);
 
 			const result = await execute.call(mockExecuteFunctions);
-			expect(client.httpGet).toHaveBeenCalled();
-			expect(result).toMatchObject([{ id: 'test-id' }]);
+			expect(client.httpGet).toHaveBeenCalledWith('/cloud/project/12345678-1234-1234-1234-1234567890ab/database/kafkaConnect/12345678-1234-1234-1234-1234567890ab/metric/12345678-1234-1234-1234-1234567890ab', { period: "test-value" });
+			expect(result).toMatchObject([mockData]);
 		});
 	});
-});
+})

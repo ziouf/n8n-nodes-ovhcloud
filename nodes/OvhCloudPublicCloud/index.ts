@@ -1308,6 +1308,159 @@ import {
 	execute as kafkaConnectCertificateCreatePostExecute,
 } from './database/kafkaConnect/certificateCreatePost.operation';
 import {
+	description as kafkaConnectadvancedConfigurationGetDescription,
+	execute as kafkaConnectadvancedConfigurationGetExecute,
+} from './database/kafkaConnect/advancedConfigurationGet.operation';
+import {
+	description as kafkaConnectadvancedConfigurationUpdatePutDescription,
+	execute as kafkaConnectadvancedConfigurationUpdatePutExecute,
+} from './database/kafkaConnect/advancedConfigurationUpdatePut.operation';
+import {
+	description as kafkaConnectcapabilitiesAdvancedConfigurationGetDescription,
+	execute as kafkaConnectcapabilitiesAdvancedConfigurationGetExecute,
+} from './database/kafkaConnect/capabilitiesAdvancedConfigurationGet.operation';
+import {
+	description as kafkaConnectcapabilitiesBackupRegionsGetDescription,
+	execute as kafkaConnectcapabilitiesBackupRegionsGetExecute,
+} from './database/kafkaConnect/capabilitiesBackupRegionsGet.operation';
+import {
+	description as kafkaConnectcapabilitiesConnectorListGetDescription,
+	execute as kafkaConnectcapabilitiesConnectorListGetExecute,
+} from './database/kafkaConnect/capabilitiesConnectorListGet.operation';
+import {
+	description as kafkaConnectcapabilitiesConnectorGetDescription,
+	execute as kafkaConnectcapabilitiesConnectorGetExecute,
+} from './database/kafkaConnect/capabilitiesConnectorGet.operation';
+import {
+	description as kafkaConnectcapabilitiesConnectorConfigurationGetDescription,
+	execute as kafkaConnectcapabilitiesConnectorConfigurationGetExecute,
+} from './database/kafkaConnect/capabilitiesConnectorConfigurationGet.operation';
+import {
+	description as kafkaConnectcapabilitiesConnectorTransformsGetDescription,
+	execute as kafkaConnectcapabilitiesConnectorTransformsGetExecute,
+} from './database/kafkaConnect/capabilitiesConnectorTransformsGet.operation';
+import {
+	description as kafkaConnectcapabilitiesIntegrationGetDescription,
+	execute as kafkaConnectcapabilitiesIntegrationGetExecute,
+} from './database/kafkaConnect/capabilitiesIntegrationGet.operation';
+import {
+	description as kafkaConnectconnectorListGetDescription,
+	execute as kafkaConnectconnectorListGetExecute,
+} from './database/kafkaConnect/connectorListGet.operation';
+import {
+	description as kafkaConnectconnectorCreatePostDescription,
+	execute as kafkaConnectconnectorCreatePostExecute,
+} from './database/kafkaConnect/connectorCreatePost.operation';
+import {
+	description as kafkaConnectconnectorGetGetDescription,
+	execute as kafkaConnectconnectorGetGetExecute,
+} from './database/kafkaConnect/connectorGetGet.operation';
+import {
+	description as kafkaConnectconnectorUpdatePutDescription,
+	execute as kafkaConnectconnectorUpdatePutExecute,
+} from './database/kafkaConnect/connectorUpdatePut.operation';
+import {
+	description as kafkaConnectconnectorDeleteDeleteDescription,
+	execute as kafkaConnectconnectorDeleteDeleteExecute,
+} from './database/kafkaConnect/connectorDeleteDelete.operation';
+import {
+	description as kafkaConnectconnectorPausePostDescription,
+	execute as kafkaConnectconnectorPausePostExecute,
+} from './database/kafkaConnect/connectorPausePost.operation';
+import {
+	description as kafkaConnectconnectorRestartPostDescription,
+	execute as kafkaConnectconnectorRestartPostExecute,
+} from './database/kafkaConnect/connectorRestartPost.operation';
+import {
+	description as kafkaConnectconnectorResumePostDescription,
+	execute as kafkaConnectconnectorResumePostExecute,
+} from './database/kafkaConnect/connectorResumePost.operation';
+import {
+	description as kafkaConnectconnectorTaskListGetDescription,
+	execute as kafkaConnectconnectorTaskListGetExecute,
+} from './database/kafkaConnect/connectorTaskListGet.operation';
+import {
+	description as kafkaConnectconnectorTaskGetDescription,
+	execute as kafkaConnectconnectorTaskGetExecute,
+} from './database/kafkaConnect/connectorTaskGet.operation';
+import {
+	description as kafkaConnectconnectorTaskRestartPostDescription,
+	execute as kafkaConnectconnectorTaskRestartPostExecute,
+} from './database/kafkaConnect/connectorTaskRestartPost.operation';
+import {
+	description as kafkaConnectintegrationListGetDescription,
+	execute as kafkaConnectintegrationListGetExecute,
+} from './database/kafkaConnect/integrationListGet.operation';
+import {
+	description as kafkaConnectintegrationCreatePostDescription,
+	execute as kafkaConnectintegrationCreatePostExecute,
+} from './database/kafkaConnect/integrationCreatePost.operation';
+import {
+	description as kafkaConnectintegrationGetGetDescription,
+	execute as kafkaConnectintegrationGetGetExecute,
+} from './database/kafkaConnect/integrationGetGet.operation';
+import {
+	description as kafkaConnectintegrationDeleteDeleteDescription,
+	execute as kafkaConnectintegrationDeleteDeleteExecute,
+} from './database/kafkaConnect/integrationDeleteDelete.operation';
+import {
+	description as kafkaConnectipRestrictionGetGetDescription,
+	execute as kafkaConnectipRestrictionGetGetExecute,
+} from './database/kafkaConnect/ipRestrictionGetGet.operation';
+import {
+	description as kafkaConnectipRestrictionUpdatePutDescription,
+	execute as kafkaConnectipRestrictionUpdatePutExecute,
+} from './database/kafkaConnect/ipRestrictionUpdatePut.operation';
+import {
+	description as kafkaConnectipRestrictionDeleteDeleteDescription,
+	execute as kafkaConnectipRestrictionDeleteDeleteExecute,
+} from './database/kafkaConnect/ipRestrictionDeleteDelete.operation';
+import {
+	description as kafkaConnectlogKindListGetDescription,
+	execute as kafkaConnectlogKindListGetExecute,
+} from './database/kafkaConnect/logKindListGet.operation';
+import {
+	description as kafkaConnectlogKindGetDescription,
+	execute as kafkaConnectlogKindGetExecute,
+} from './database/kafkaConnect/logKindGet.operation';
+import {
+	description as kafkaConnectlogSubscriptionDeleteDeleteDescription,
+	execute as kafkaConnectlogSubscriptionDeleteDeleteExecute,
+} from './database/kafkaConnect/logSubscriptionDeleteDelete.operation';
+import {
+	description as kafkaConnectlogUrlCreatePostDescription,
+	execute as kafkaConnectlogUrlCreatePostExecute,
+} from './database/kafkaConnect/logUrlCreatePost.operation';
+import {
+	description as kafkaConnectlogsGetDescription,
+	execute as kafkaConnectlogsGetExecute,
+} from './database/kafkaConnect/logsGet.operation';
+import {
+	description as kafkaConnectmaintenanceListGetDescription,
+	execute as kafkaConnectmaintenanceListGetExecute,
+} from './database/kafkaConnect/maintenanceListGet.operation';
+import {
+	description as kafkaConnectmaintenanceApplyPostDescription,
+	execute as kafkaConnectmaintenanceApplyPostExecute,
+} from './database/kafkaConnect/maintenanceApplyPost.operation';
+import {
+	description as kafkaConnectmetricListGetDescription,
+	execute as kafkaConnectmetricListGetExecute,
+} from './database/kafkaConnect/metricListGet.operation';
+import {
+	description as kafkaConnectnodeGetDescription,
+	execute as kafkaConnectnodeGetExecute,
+} from './database/kafkaConnect/nodeGet.operation';
+import {
+	description as kafkaConnectprometheusCredentialsResetPostDescription,
+	execute as kafkaConnectprometheusCredentialsResetPostExecute,
+} from './database/kafkaConnect/prometheusCredentialsResetPost.operation';
+import {
+	description as kafkaConnectuserCredentialsResetPostDescription,
+	execute as kafkaConnectuserCredentialsResetPostExecute,
+} from './database/kafkaConnect/userCredentialsResetPost.operation';
+
+import {
 	description as kafkaMirrorMakerClusterListGetDescription,
 	execute as kafkaMirrorMakerClusterListGetExecute,
 } from './database/kafkaMirrorMaker/clusterListGet.operation';
@@ -4391,6 +4544,196 @@ export function description(displayOptions: IDisplayOptions): INodeProperties[] 
 				name: 'kafkaConnectCertificateCreatePost',
 				value: 'kafkaConnectCertificateCreatePost',
 				action: 'Create Kafka Connect certificate',
+			},
+			{
+				name: 'kafkaConnectadvancedConfigurationGet',
+				value: 'kafkaConnectadvancedConfigurationGet',
+				action: 'Get Advanced Configuration',
+			},
+			{
+				name: 'kafkaConnectadvancedConfigurationUpdatePut',
+				value: 'kafkaConnectadvancedConfigurationUpdatePut',
+				action: 'Update Advanced Configuration',
+			},
+			{
+				name: 'kafkaConnectcapabilitiesAdvancedConfigurationGet',
+				value: 'kafkaConnectcapabilitiesAdvancedConfigurationGet',
+				action: 'Get Advanced Configuration Capabilities',
+			},
+			{
+				name: 'kafkaConnectcapabilitiesBackupRegionsGet',
+				value: 'kafkaConnectcapabilitiesBackupRegionsGet',
+				action: 'Get Backup Regions Capabilities',
+			},
+			{
+				name: 'kafkaConnectcapabilitiesConnectorListGet',
+				value: 'kafkaConnectcapabilitiesConnectorListGet',
+				action: 'List Connector Capabilities',
+			},
+			{
+				name: 'kafkaConnectcapabilitiesConnectorGet',
+				value: 'kafkaConnectcapabilitiesConnectorGet',
+				action: 'Get Connector Capability',
+			},
+			{
+				name: 'kafkaConnectcapabilitiesConnectorConfigurationGet',
+				value: 'kafkaConnectcapabilitiesConnectorConfigurationGet',
+				action: 'Get Connector Configuration',
+			},
+			{
+				name: 'kafkaConnectcapabilitiesConnectorTransformsGet',
+				value: 'kafkaConnectcapabilitiesConnectorTransformsGet',
+				action: 'Get Connector Transforms',
+			},
+			{
+				name: 'kafkaConnectcapabilitiesIntegrationGet',
+				value: 'kafkaConnectcapabilitiesIntegrationGet',
+				action: 'Get Integration Capabilities',
+			},
+			{
+				name: 'kafkaConnectconnectorListGet',
+				value: 'kafkaConnectconnectorListGet',
+				action: 'List Connectors',
+			},
+			{
+				name: 'kafkaConnectconnectorCreatePost',
+				value: 'kafkaConnectconnectorCreatePost',
+				action: 'Create a Connector',
+			},
+			{
+				name: 'kafkaConnectconnectorGetGet',
+				value: 'kafkaConnectconnectorGetGet',
+				action: 'Get Connector Details',
+			},
+			{
+				name: 'kafkaConnectconnectorUpdatePut',
+				value: 'kafkaConnectconnectorUpdatePut',
+				action: 'Update a Connector',
+			},
+			{
+				name: 'kafkaConnectconnectorDeleteDelete',
+				value: 'kafkaConnectconnectorDeleteDelete',
+				action: 'Delete a Connector',
+			},
+			{
+				name: 'kafkaConnectconnectorPausePost',
+				value: 'kafkaConnectconnectorPausePost',
+				action: 'Pause a Connector',
+			},
+			{
+				name: 'kafkaConnectconnectorRestartPost',
+				value: 'kafkaConnectconnectorRestartPost',
+				action: 'Restart a Connector',
+			},
+			{
+				name: 'kafkaConnectconnectorResumePost',
+				value: 'kafkaConnectconnectorResumePost',
+				action: 'Resume a Connector',
+			},
+			{
+				name: 'kafkaConnectconnectorTaskListGet',
+				value: 'kafkaConnectconnectorTaskListGet',
+				action: 'List Connector Tasks',
+			},
+			{
+				name: 'kafkaConnectconnectorTaskGet',
+				value: 'kafkaConnectconnectorTaskGet',
+				action: 'Get Connector Task Details',
+			},
+			{
+				name: 'kafkaConnectconnectorTaskRestartPost',
+				value: 'kafkaConnectconnectorTaskRestartPost',
+				action: 'Restart a Connector Task',
+			},
+			{
+				name: 'kafkaConnectintegrationListGet',
+				value: 'kafkaConnectintegrationListGet',
+				action: 'List Integrations',
+			},
+			{
+				name: 'kafkaConnectintegrationCreatePost',
+				value: 'kafkaConnectintegrationCreatePost',
+				action: 'Create an Integration',
+			},
+			{
+				name: 'kafkaConnectintegrationGetGet',
+				value: 'kafkaConnectintegrationGetGet',
+				action: 'Get Integration Details',
+			},
+			{
+				name: 'kafkaConnectintegrationDeleteDelete',
+				value: 'kafkaConnectintegrationDeleteDelete',
+				action: 'Delete an Integration',
+			},
+			{
+				name: 'kafkaConnectipRestrictionGetGet',
+				value: 'kafkaConnectipRestrictionGetGet',
+				action: 'Get IP Restriction Details',
+			},
+			{
+				name: 'kafkaConnectipRestrictionUpdatePut',
+				value: 'kafkaConnectipRestrictionUpdatePut',
+				action: 'Update an IP Restriction',
+			},
+			{
+				name: 'kafkaConnectipRestrictionDeleteDelete',
+				value: 'kafkaConnectipRestrictionDeleteDelete',
+				action: 'Delete an IP Restriction',
+			},
+			{
+				name: 'kafkaConnectlogKindListGet',
+				value: 'kafkaConnectlogKindListGet',
+				action: 'List Log Kinds',
+			},
+			{
+				name: 'kafkaConnectlogKindGet',
+				value: 'kafkaConnectlogKindGet',
+				action: 'Get a Log Kind',
+			},
+			{
+				name: 'kafkaConnectlogSubscriptionDeleteDelete',
+				value: 'kafkaConnectlogSubscriptionDeleteDelete',
+				action: 'Delete a Log Subscription',
+			},
+			{
+				name: 'kafkaConnectlogUrlCreatePost',
+				value: 'kafkaConnectlogUrlCreatePost',
+				action: 'Generate Log URL',
+			},
+			{
+				name: 'kafkaConnectlogsGet',
+				value: 'kafkaConnectlogsGet',
+				action: 'Get Logs',
+			},
+			{
+				name: 'kafkaConnectmaintenanceListGet',
+				value: 'kafkaConnectmaintenanceListGet',
+				action: 'List Maintenances',
+			},
+			{
+				name: 'kafkaConnectmaintenanceApplyPost',
+				value: 'kafkaConnectmaintenanceApplyPost',
+				action: 'Apply Maintenance',
+			},
+			{
+				name: 'kafkaConnectmetricListGet',
+				value: 'kafkaConnectmetricListGet',
+				action: 'List Metrics',
+			},
+			{
+				name: 'kafkaConnectnodeGet',
+				value: 'kafkaConnectnodeGet',
+				action: 'Get a Node',
+			},
+			{
+				name: 'kafkaConnectprometheusCredentialsResetPost',
+				value: 'kafkaConnectprometheusCredentialsResetPost',
+				action: 'Reset Prometheus Credentials',
+			},
+			{
+				name: 'kafkaConnectuserCredentialsResetPost',
+				value: 'kafkaConnectuserCredentialsResetPost',
+				action: 'Reset User Credentials',
 			},
 			{
 				name: 'kafkaMirrorMakerClusterListGet',
@@ -8654,6 +8997,197 @@ export function description(displayOptions: IDisplayOptions): INodeProperties[] 
 		}) as INodeProperties[]),
 	);
 	properties.push(
+		...(kafkaConnectadvancedConfigurationGetDescription({
+			...displayOptions,
+			show: { publicCloudOperation: ['kafkaConnectadvancedConfigurationGet'] },
+		}) as INodeProperties[]),
+	);	properties.push(
+		...(kafkaConnectadvancedConfigurationUpdatePutDescription({
+			...displayOptions,
+			show: { publicCloudOperation: ['kafkaConnectadvancedConfigurationUpdatePut'] },
+		}) as INodeProperties[]),
+	);	properties.push(
+		...(kafkaConnectcapabilitiesAdvancedConfigurationGetDescription({
+			...displayOptions,
+			show: { publicCloudOperation: ['kafkaConnectcapabilitiesAdvancedConfigurationGet'] },
+		}) as INodeProperties[]),
+	);	properties.push(
+		...(kafkaConnectcapabilitiesBackupRegionsGetDescription({
+			...displayOptions,
+			show: { publicCloudOperation: ['kafkaConnectcapabilitiesBackupRegionsGet'] },
+		}) as INodeProperties[]),
+	);	properties.push(
+		...(kafkaConnectcapabilitiesConnectorListGetDescription({
+			...displayOptions,
+			show: { publicCloudOperation: ['kafkaConnectcapabilitiesConnectorListGet'] },
+		}) as INodeProperties[]),
+	);	properties.push(
+		...(kafkaConnectcapabilitiesConnectorGetDescription({
+			...displayOptions,
+			show: { publicCloudOperation: ['kafkaConnectcapabilitiesConnectorGet'] },
+		}) as INodeProperties[]),
+	);	properties.push(
+		...(kafkaConnectcapabilitiesConnectorConfigurationGetDescription({
+			...displayOptions,
+			show: { publicCloudOperation: ['kafkaConnectcapabilitiesConnectorConfigurationGet'] },
+		}) as INodeProperties[]),
+	);	properties.push(
+		...(kafkaConnectcapabilitiesConnectorTransformsGetDescription({
+			...displayOptions,
+			show: { publicCloudOperation: ['kafkaConnectcapabilitiesConnectorTransformsGet'] },
+		}) as INodeProperties[]),
+	);	properties.push(
+		...(kafkaConnectcapabilitiesIntegrationGetDescription({
+			...displayOptions,
+			show: { publicCloudOperation: ['kafkaConnectcapabilitiesIntegrationGet'] },
+		}) as INodeProperties[]),
+	);	properties.push(
+		...(kafkaConnectconnectorListGetDescription({
+			...displayOptions,
+			show: { publicCloudOperation: ['kafkaConnectconnectorListGet'] },
+		}) as INodeProperties[]),
+	);	properties.push(
+		...(kafkaConnectconnectorCreatePostDescription({
+			...displayOptions,
+			show: { publicCloudOperation: ['kafkaConnectconnectorCreatePost'] },
+		}) as INodeProperties[]),
+	);	properties.push(
+		...(kafkaConnectconnectorGetGetDescription({
+			...displayOptions,
+			show: { publicCloudOperation: ['kafkaConnectconnectorGetGet'] },
+		}) as INodeProperties[]),
+	);	properties.push(
+		...(kafkaConnectconnectorUpdatePutDescription({
+			...displayOptions,
+			show: { publicCloudOperation: ['kafkaConnectconnectorUpdatePut'] },
+		}) as INodeProperties[]),
+	);	properties.push(
+		...(kafkaConnectconnectorDeleteDeleteDescription({
+			...displayOptions,
+			show: { publicCloudOperation: ['kafkaConnectconnectorDeleteDelete'] },
+		}) as INodeProperties[]),
+	);	properties.push(
+		...(kafkaConnectconnectorPausePostDescription({
+			...displayOptions,
+			show: { publicCloudOperation: ['kafkaConnectconnectorPausePost'] },
+		}) as INodeProperties[]),
+	);	properties.push(
+		...(kafkaConnectconnectorRestartPostDescription({
+			...displayOptions,
+			show: { publicCloudOperation: ['kafkaConnectconnectorRestartPost'] },
+		}) as INodeProperties[]),
+	);	properties.push(
+		...(kafkaConnectconnectorResumePostDescription({
+			...displayOptions,
+			show: { publicCloudOperation: ['kafkaConnectconnectorResumePost'] },
+		}) as INodeProperties[]),
+	);	properties.push(
+		...(kafkaConnectconnectorTaskListGetDescription({
+			...displayOptions,
+			show: { publicCloudOperation: ['kafkaConnectconnectorTaskListGet'] },
+		}) as INodeProperties[]),
+	);	properties.push(
+		...(kafkaConnectconnectorTaskGetDescription({
+			...displayOptions,
+			show: { publicCloudOperation: ['kafkaConnectconnectorTaskGet'] },
+		}) as INodeProperties[]),
+	);	properties.push(
+		...(kafkaConnectconnectorTaskRestartPostDescription({
+			...displayOptions,
+			show: { publicCloudOperation: ['kafkaConnectconnectorTaskRestartPost'] },
+		}) as INodeProperties[]),
+	);	properties.push(
+		...(kafkaConnectintegrationListGetDescription({
+			...displayOptions,
+			show: { publicCloudOperation: ['kafkaConnectintegrationListGet'] },
+		}) as INodeProperties[]),
+	);	properties.push(
+		...(kafkaConnectintegrationCreatePostDescription({
+			...displayOptions,
+			show: { publicCloudOperation: ['kafkaConnectintegrationCreatePost'] },
+		}) as INodeProperties[]),
+	);	properties.push(
+		...(kafkaConnectintegrationGetGetDescription({
+			...displayOptions,
+			show: { publicCloudOperation: ['kafkaConnectintegrationGetGet'] },
+		}) as INodeProperties[]),
+	);	properties.push(
+		...(kafkaConnectintegrationDeleteDeleteDescription({
+			...displayOptions,
+			show: { publicCloudOperation: ['kafkaConnectintegrationDeleteDelete'] },
+		}) as INodeProperties[]),
+	);	properties.push(
+		...(kafkaConnectipRestrictionGetGetDescription({
+			...displayOptions,
+			show: { publicCloudOperation: ['kafkaConnectipRestrictionGetGet'] },
+		}) as INodeProperties[]),
+	);	properties.push(
+		...(kafkaConnectipRestrictionUpdatePutDescription({
+			...displayOptions,
+			show: { publicCloudOperation: ['kafkaConnectipRestrictionUpdatePut'] },
+		}) as INodeProperties[]),
+	);	properties.push(
+		...(kafkaConnectipRestrictionDeleteDeleteDescription({
+			...displayOptions,
+			show: { publicCloudOperation: ['kafkaConnectipRestrictionDeleteDelete'] },
+		}) as INodeProperties[]),
+	);	properties.push(
+		...(kafkaConnectlogKindListGetDescription({
+			...displayOptions,
+			show: { publicCloudOperation: ['kafkaConnectlogKindListGet'] },
+		}) as INodeProperties[]),
+	);	properties.push(
+		...(kafkaConnectlogKindGetDescription({
+			...displayOptions,
+			show: { publicCloudOperation: ['kafkaConnectlogKindGet'] },
+		}) as INodeProperties[]),
+	);	properties.push(
+		...(kafkaConnectlogSubscriptionDeleteDeleteDescription({
+			...displayOptions,
+			show: { publicCloudOperation: ['kafkaConnectlogSubscriptionDeleteDelete'] },
+		}) as INodeProperties[]),
+	);	properties.push(
+		...(kafkaConnectlogUrlCreatePostDescription({
+			...displayOptions,
+			show: { publicCloudOperation: ['kafkaConnectlogUrlCreatePost'] },
+		}) as INodeProperties[]),
+	);	properties.push(
+		...(kafkaConnectlogsGetDescription({
+			...displayOptions,
+			show: { publicCloudOperation: ['kafkaConnectlogsGet'] },
+		}) as INodeProperties[]),
+	);	properties.push(
+		...(kafkaConnectmaintenanceListGetDescription({
+			...displayOptions,
+			show: { publicCloudOperation: ['kafkaConnectmaintenanceListGet'] },
+		}) as INodeProperties[]),
+	);	properties.push(
+		...(kafkaConnectmaintenanceApplyPostDescription({
+			...displayOptions,
+			show: { publicCloudOperation: ['kafkaConnectmaintenanceApplyPost'] },
+		}) as INodeProperties[]),
+	);	properties.push(
+		...(kafkaConnectmetricListGetDescription({
+			...displayOptions,
+			show: { publicCloudOperation: ['kafkaConnectmetricListGet'] },
+		}) as INodeProperties[]),
+	);	properties.push(
+		...(kafkaConnectnodeGetDescription({
+			...displayOptions,
+			show: { publicCloudOperation: ['kafkaConnectnodeGet'] },
+		}) as INodeProperties[]),
+	);	properties.push(
+		...(kafkaConnectprometheusCredentialsResetPostDescription({
+			...displayOptions,
+			show: { publicCloudOperation: ['kafkaConnectprometheusCredentialsResetPost'] },
+		}) as INodeProperties[]),
+	);	properties.push(
+		...(kafkaConnectuserCredentialsResetPostDescription({
+			...displayOptions,
+			show: { publicCloudOperation: ['kafkaConnectuserCredentialsResetPost'] },
+		}) as INodeProperties[]),
+	);
+	properties.push(
 		...(kafkaMirrorMakerClusterListGetDescription({
 			...displayOptions,
 			show: { publicCloudOperation: ['kafkaMirrorMakerClusterListGet'] },
@@ -11896,6 +12430,82 @@ export async function execute(
 			return kafkaConnectCertificateListGetExecute.call(this);
 		case 'kafkaConnectCertificateCreatePost':
 			return kafkaConnectCertificateCreatePostExecute.call(this);
+		case 'kafkaConnectadvancedConfigurationGet':
+			return kafkaConnectadvancedConfigurationGetExecute.call(this);
+		case 'kafkaConnectadvancedConfigurationUpdatePut':
+			return kafkaConnectadvancedConfigurationUpdatePutExecute.call(this);
+		case 'kafkaConnectcapabilitiesAdvancedConfigurationGet':
+			return kafkaConnectcapabilitiesAdvancedConfigurationGetExecute.call(this);
+		case 'kafkaConnectcapabilitiesBackupRegionsGet':
+			return kafkaConnectcapabilitiesBackupRegionsGetExecute.call(this);
+		case 'kafkaConnectcapabilitiesConnectorListGet':
+			return kafkaConnectcapabilitiesConnectorListGetExecute.call(this);
+		case 'kafkaConnectcapabilitiesConnectorGet':
+			return kafkaConnectcapabilitiesConnectorGetExecute.call(this);
+		case 'kafkaConnectcapabilitiesConnectorConfigurationGet':
+			return kafkaConnectcapabilitiesConnectorConfigurationGetExecute.call(this);
+		case 'kafkaConnectcapabilitiesConnectorTransformsGet':
+			return kafkaConnectcapabilitiesConnectorTransformsGetExecute.call(this);
+		case 'kafkaConnectcapabilitiesIntegrationGet':
+			return kafkaConnectcapabilitiesIntegrationGetExecute.call(this);
+		case 'kafkaConnectconnectorListGet':
+			return kafkaConnectconnectorListGetExecute.call(this);
+		case 'kafkaConnectconnectorCreatePost':
+			return kafkaConnectconnectorCreatePostExecute.call(this);
+		case 'kafkaConnectconnectorGetGet':
+			return kafkaConnectconnectorGetGetExecute.call(this);
+		case 'kafkaConnectconnectorUpdatePut':
+			return kafkaConnectconnectorUpdatePutExecute.call(this);
+		case 'kafkaConnectconnectorDeleteDelete':
+			return kafkaConnectconnectorDeleteDeleteExecute.call(this);
+		case 'kafkaConnectconnectorPausePost':
+			return kafkaConnectconnectorPausePostExecute.call(this);
+		case 'kafkaConnectconnectorRestartPost':
+			return kafkaConnectconnectorRestartPostExecute.call(this);
+		case 'kafkaConnectconnectorResumePost':
+			return kafkaConnectconnectorResumePostExecute.call(this);
+		case 'kafkaConnectconnectorTaskListGet':
+			return kafkaConnectconnectorTaskListGetExecute.call(this);
+		case 'kafkaConnectconnectorTaskGet':
+			return kafkaConnectconnectorTaskGetExecute.call(this);
+		case 'kafkaConnectconnectorTaskRestartPost':
+			return kafkaConnectconnectorTaskRestartPostExecute.call(this);
+		case 'kafkaConnectintegrationListGet':
+			return kafkaConnectintegrationListGetExecute.call(this);
+		case 'kafkaConnectintegrationCreatePost':
+			return kafkaConnectintegrationCreatePostExecute.call(this);
+		case 'kafkaConnectintegrationGetGet':
+			return kafkaConnectintegrationGetGetExecute.call(this);
+		case 'kafkaConnectintegrationDeleteDelete':
+			return kafkaConnectintegrationDeleteDeleteExecute.call(this);
+		case 'kafkaConnectipRestrictionGetGet':
+			return kafkaConnectipRestrictionGetGetExecute.call(this);
+		case 'kafkaConnectipRestrictionUpdatePut':
+			return kafkaConnectipRestrictionUpdatePutExecute.call(this);
+		case 'kafkaConnectipRestrictionDeleteDelete':
+			return kafkaConnectipRestrictionDeleteDeleteExecute.call(this);
+		case 'kafkaConnectlogKindListGet':
+			return kafkaConnectlogKindListGetExecute.call(this);
+		case 'kafkaConnectlogKindGet':
+			return kafkaConnectlogKindGetExecute.call(this);
+		case 'kafkaConnectlogSubscriptionDeleteDelete':
+			return kafkaConnectlogSubscriptionDeleteDeleteExecute.call(this);
+		case 'kafkaConnectlogUrlCreatePost':
+			return kafkaConnectlogUrlCreatePostExecute.call(this);
+		case 'kafkaConnectlogsGet':
+			return kafkaConnectlogsGetExecute.call(this);
+		case 'kafkaConnectmaintenanceListGet':
+			return kafkaConnectmaintenanceListGetExecute.call(this);
+		case 'kafkaConnectmaintenanceApplyPost':
+			return kafkaConnectmaintenanceApplyPostExecute.call(this);
+		case 'kafkaConnectmetricListGet':
+			return kafkaConnectmetricListGetExecute.call(this);
+		case 'kafkaConnectnodeGet':
+			return kafkaConnectnodeGetExecute.call(this);
+		case 'kafkaConnectprometheusCredentialsResetPost':
+			return kafkaConnectprometheusCredentialsResetPostExecute.call(this);
+		case 'kafkaConnectuserCredentialsResetPost':
+			return kafkaConnectuserCredentialsResetPostExecute.call(this);
 		case 'kafkaMirrorMakerClusterListGet':
 			return kafkaMirrorMakerClusterListGetExecute.call(this);
 		case 'kafkaMirrorMakerClusterGetGet':

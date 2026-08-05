@@ -13,10 +13,10 @@ jest.mock('../../../../shared/transport/ApiClient', () => {
 
 import { ApiClient } from '../../../../shared/transport/ApiClient';
 
-describe('kafkaConnect logSubscriptionGetGet operation', () => {
+describe('Logsubscriptionget operation', () => {
 	describe('description', () => {
 		it('should return all required parameters', () => {
-			const result = description({'show': {}});
+			const result = description({ show: {} });
 			expect(result.length).toBeGreaterThanOrEqual(1);
 		});
 	});
@@ -35,16 +35,18 @@ describe('kafkaConnect logSubscriptionGetGet operation', () => {
 			const client = new ApiClient(mockExecuteFunctions) as any;
 			client.httpGet.mockResolvedValue(mockData);
 
-			mockExecuteFunctions.getNodeParameter.mockReturnValue((param: string): string | undefined => {
+			mockExecuteFunctions.getNodeParameter.mockImplementation(
+				(param: string): string | number | boolean | undefined => {
 				if (param === 'publicCloudProjectId') return '12345678-1234-1234-1234-1234567890ab';
-				if (param === 'serviceName') return 'test-service';
-				if (param === 'subId') return 'test-subId-id';
-				return '';
-			});
+				if (param === 'clusterId') return '12345678-1234-1234-1234-1234567890ab';
+				if (param === 'subscriptionId') return '12345678-1234-1234-1234-1234567890ab';
+				return undefined;
+			},
+		);
 
 			const result = await execute.call(mockExecuteFunctions);
-			expect(client.httpGet).toHaveBeenCalled();
-			expect(result).toMatchObject([{ id: 'test-id' }]);
+			expect(client.httpGet).toHaveBeenCalledWith('/cloud/project/12345678-1234-1234-1234-1234567890ab/database/kafkaConnect/12345678-1234-1234-1234-1234567890ab/log/subscription/12345678-1234-1234-1234-1234567890ab', undefined);
+			expect(result).toMatchObject([mockData]);
 		});
 	});
-});
+})

@@ -9,57 +9,73 @@ import { ApiClient } from '../../../../shared/transport/ApiClient';
 
 export function description(displayOptions: IDisplayOptions): INodeProperties[] {
 	return [
-	{
-		displayName: 'Public Cloud Project',
-		name: 'publicCloudProjectId',
-		type: 'resourceLocator',
-		default: { mode: 'list', value: '' },
-		required: true,
-		description: 'The Public Cloud project ID (e.g. 12345678-1234-1234-1234-1234567890ab)',
-		modes: [
-			{
-				displayName: 'From List',
-				name: 'list',
-				type: 'list',
-				typeOptions: { searchListMethod: 'getPublicCloudProjects' },
-			},
-			{
-				displayName: 'By ID',
-				name: 'name',
-				type: 'string',
-				placeholder: '12345678-1234-1234-1234-1234567890ab',
-			},
-		],
-		displayOptions,
-	},
-	{
-		displayName: 'Service Name',
-		name: 'serviceName',
-		type: 'string',
-		default: '',
-		required: true,
-		description: 'The database service name',
-		displayOptions,
-	},
+		{
+			displayName: 'Public Cloud Project',
+			name: 'publicCloudProjectId',
+			type: 'resourceLocator',
+			default: { mode: 'list', value: '' },
+			required: true,
+			description: 'The Public Cloud project ID (e.g. 12345678-1234-1234-1234-1234567890ab)',
+			modes: [
+				{
+					displayName: 'From List',
+					name: 'list',
+					type: 'list',
+					typeOptions: { searchListMethod: 'getPublicCloudProjects' },
+				},
+				{
+					displayName: 'By ID',
+					name: 'name',
+					type: 'string',
+					placeholder: '12345678-1234-1234-1234-1234567890ab',
+				},
+			],
+			displayOptions,
+		},
+		{
+			displayName: 'Clusterid',
+			name: 'clusterId',
+			type: 'string',
+			default: '' ,
+			required: true,
+			description: 'ClusterId ID',
+			displayOptions,
+		},
+		{
+			displayName: 'Kind',
+			name: 'kind',
+			type: 'string',
+			default: '',
+			description: 'Kind parameter',
+			required: true,
+			displayOptions,
+		},
+		{
+			displayName: 'Streamid',
+			name: 'streamId',
+			type: 'string',
+			default: '',
+			description: 'StreamId parameter',
+			required: true,
+			displayOptions,
+		},
 	];
 }
 
-
 /**
- * Executes the Create Kafka Connect Log Subscription operation.
+ * Executes the Create a log subscription.
  *
  * HTTP method: POST
- * Endpoint: /publicCloud/project/{projectId}/cloud/database/kafkaConnect/{serviceName}/log/subscription
+ * Endpoint: /cloud/project/{serviceName}/database/kafkaConnect/{clusterId}/log/subscription
  */
 export async function execute(this: IExecuteFunctions): Promise<INodeExecutionData[]> {
-	const client = new ApiClient(this);
-	const projectId = this.getNodeParameter('projectId', 0, '', {
-		extractValue: true,
-	}) as string;
-	const serviceName = this.getNodeParameter('serviceName', 0) as string;
-
-	const body = {} as IDataObject;
-	const data = (await client.httpPost(`/publicCloud/project/${projectId}/cloud/database/kafkaConnect/${serviceName}/log/subscription`, body)) as IDataObject;
-
-	return this.helpers.returnJsonArray([data]);
+const client = new ApiClient(this);
+const serviceName = this.getNodeParameter('publicCloudProjectId', 0, '', {
+	extractValue: true,
+}) as string;
+const clusterId = this.getNodeParameter('clusterId', 0) as string;
+const kind = this.getNodeParameter('kind', 0, '') as string;
+const streamId = this.getNodeParameter('streamId', 0, '') as string;
+const data = (await client.httpPost(`/cloud/project/${serviceName}/database/kafkaConnect/${clusterId}/log/subscription`, { kind: kind || undefined, streamId: streamId || undefined })) as IDataObject;
+return this.helpers.returnJsonArray([data]);
 }

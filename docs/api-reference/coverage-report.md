@@ -1,6 +1,6 @@
 # OVHcloud API Coverage Report
 
-> Généré par `scripts/compare-coverage.js` le 2026-08-05T22:31:29.994Z. Document généré automatiquement — ne pas éditer à la main.
+> Généré par `scripts/compare-coverage.js` le 2026-08-05T23:09:23.070Z. Document généré automatiquement — ne pas éditer à la main.
 
 Ce rapport compare les endpoints déclarés dans les specs Swagger 2.0 (`docs/api-specs/v1|v2/*.json`) avec les appels HTTP réellement présents dans les nodes (`nodes/**/*.operation.ts`).
 
@@ -8,8 +8,8 @@ Ce rapport compare les endpoints déclarés dans les specs Swagger 2.0 (`docs/ap
 
 - **Specs analysées** : 84 (v1: 70, v2: 14)
 - **Endpoints déclarés (specs avec endpoints)** : 6624
-- **Endpoints couverts par les nodes** : 3607
-- **Couverture globale** : **54.5%**
+- **Endpoints couverts par les nodes** : 3641
+- **Couverture globale** : **55%**
 - **Specs sans node associé** : 21
 - **Specs placeholder (aucun endpoint)** : 1
 
@@ -49,7 +49,7 @@ Triée par pourcentage croissant (moins bonne couverture en premier).
 | vps (v1) | 94 | 22 | 72 | 23.4% |
 | sslGateway (v1) | 23 | 6 | 17 | 26.1% |
 | xdsl (v1) | 142 | 39 | 103 | 27.5% |
-| cloud (v1) | 1121 | 395 | 726 | 35.2% |
+| cloud (v1) | 1121 | 429 | 692 | 38.3% |
 | veeam (v1) | 10 | 5 | 5 | 50% |
 | license (v1) | 13 | 7 | 6 | 53.8% |
 | pack (v1) | 58 | 33 | 25 | 56.9% |
@@ -2394,7 +2394,7 @@ _Nodes associés : OvhCloudXdsl_
 | GET | `/xdsl/templateModem/{x}` |
 | PUT | `/xdsl/templateModem/{x}` |
 
-### cloud (v1) — 726 manquants
+### cloud (v1) — 692 manquants
 
 _Nodes associés : OvhCloudPublicCloud, OvhCloudPublicCloudAi_
 
@@ -2650,62 +2650,6 @@ _Nodes associés : OvhCloudPublicCloud, OvhCloudPublicCloudAi_
 | POST | `/cloud/project/{x}/database/kafka/{x}/maintenance/{x}/apply` |
 | GET | `/cloud/project/{x}/database/kafka/{x}/node` |
 | GET | `/cloud/project/{x}/database/kafka/{x}/node/{x}` |
-| GET | `/cloud/project/{x}/database/kafkaConnect` |
-| POST | `/cloud/project/{x}/database/kafkaConnect` |
-| DELETE | `/cloud/project/{x}/database/kafkaConnect/{x}` |
-| GET | `/cloud/project/{x}/database/kafkaConnect/{x}` |
-| PUT | `/cloud/project/{x}/database/kafkaConnect/{x}` |
-| GET | `/cloud/project/{x}/database/kafkaConnect/{x}/advancedConfiguration` |
-| PUT | `/cloud/project/{x}/database/kafkaConnect/{x}/advancedConfiguration` |
-| GET | `/cloud/project/{x}/database/kafkaConnect/{x}/capabilities/advancedConfiguration` |
-| GET | `/cloud/project/{x}/database/kafkaConnect/{x}/capabilities/backupRegions` |
-| GET | `/cloud/project/{x}/database/kafkaConnect/{x}/capabilities/connector` |
-| GET | `/cloud/project/{x}/database/kafkaConnect/{x}/capabilities/connector/{x}` |
-| GET | `/cloud/project/{x}/database/kafkaConnect/{x}/capabilities/connector/{x}/configuration` |
-| GET | `/cloud/project/{x}/database/kafkaConnect/{x}/capabilities/connector/{x}/transforms` |
-| GET | `/cloud/project/{x}/database/kafkaConnect/{x}/capabilities/integration` |
-| GET | `/cloud/project/{x}/database/kafkaConnect/{x}/connector` |
-| POST | `/cloud/project/{x}/database/kafkaConnect/{x}/connector` |
-| DELETE | `/cloud/project/{x}/database/kafkaConnect/{x}/connector/{x}` |
-| GET | `/cloud/project/{x}/database/kafkaConnect/{x}/connector/{x}` |
-| PUT | `/cloud/project/{x}/database/kafkaConnect/{x}/connector/{x}` |
-| POST | `/cloud/project/{x}/database/kafkaConnect/{x}/connector/{x}/pause` |
-| POST | `/cloud/project/{x}/database/kafkaConnect/{x}/connector/{x}/restart` |
-| POST | `/cloud/project/{x}/database/kafkaConnect/{x}/connector/{x}/resume` |
-| GET | `/cloud/project/{x}/database/kafkaConnect/{x}/connector/{x}/task` |
-| GET | `/cloud/project/{x}/database/kafkaConnect/{x}/connector/{x}/task/{x}` |
-| POST | `/cloud/project/{x}/database/kafkaConnect/{x}/connector/{x}/task/{x}/restart` |
-| GET | `/cloud/project/{x}/database/kafkaConnect/{x}/integration` |
-| POST | `/cloud/project/{x}/database/kafkaConnect/{x}/integration` |
-| DELETE | `/cloud/project/{x}/database/kafkaConnect/{x}/integration/{x}` |
-| GET | `/cloud/project/{x}/database/kafkaConnect/{x}/integration/{x}` |
-| GET | `/cloud/project/{x}/database/kafkaConnect/{x}/ipRestriction` |
-| POST | `/cloud/project/{x}/database/kafkaConnect/{x}/ipRestriction` |
-| DELETE | `/cloud/project/{x}/database/kafkaConnect/{x}/ipRestriction/{x}` |
-| GET | `/cloud/project/{x}/database/kafkaConnect/{x}/ipRestriction/{x}` |
-| PUT | `/cloud/project/{x}/database/kafkaConnect/{x}/ipRestriction/{x}` |
-| GET | `/cloud/project/{x}/database/kafkaConnect/{x}/log/kind` |
-| GET | `/cloud/project/{x}/database/kafkaConnect/{x}/log/kind/{x}` |
-| GET | `/cloud/project/{x}/database/kafkaConnect/{x}/log/subscription` |
-| POST | `/cloud/project/{x}/database/kafkaConnect/{x}/log/subscription` |
-| DELETE | `/cloud/project/{x}/database/kafkaConnect/{x}/log/subscription/{x}` |
-| GET | `/cloud/project/{x}/database/kafkaConnect/{x}/log/subscription/{x}` |
-| POST | `/cloud/project/{x}/database/kafkaConnect/{x}/log/url` |
-| GET | `/cloud/project/{x}/database/kafkaConnect/{x}/logs` |
-| GET | `/cloud/project/{x}/database/kafkaConnect/{x}/maintenance` |
-| GET | `/cloud/project/{x}/database/kafkaConnect/{x}/maintenance/{x}` |
-| POST | `/cloud/project/{x}/database/kafkaConnect/{x}/maintenance/{x}/apply` |
-| GET | `/cloud/project/{x}/database/kafkaConnect/{x}/metric` |
-| GET | `/cloud/project/{x}/database/kafkaConnect/{x}/metric/{x}` |
-| GET | `/cloud/project/{x}/database/kafkaConnect/{x}/node` |
-| GET | `/cloud/project/{x}/database/kafkaConnect/{x}/node/{x}` |
-| GET | `/cloud/project/{x}/database/kafkaConnect/{x}/prometheus` |
-| POST | `/cloud/project/{x}/database/kafkaConnect/{x}/prometheus/credentials/reset` |
-| GET | `/cloud/project/{x}/database/kafkaConnect/{x}/user` |
-| POST | `/cloud/project/{x}/database/kafkaConnect/{x}/user` |
-| DELETE | `/cloud/project/{x}/database/kafkaConnect/{x}/user/{x}` |
-| GET | `/cloud/project/{x}/database/kafkaConnect/{x}/user/{x}` |
-| POST | `/cloud/project/{x}/database/kafkaConnect/{x}/user/{x}/credentials/reset` |
 | GET | `/cloud/project/{x}/database/kafkaMirrorMaker` |
 | POST | `/cloud/project/{x}/database/kafkaMirrorMaker` |
 | DELETE | `/cloud/project/{x}/database/kafkaMirrorMaker/{x}` |
@@ -2854,24 +2798,46 @@ _Nodes associés : OvhCloudPublicCloud, OvhCloudPublicCloudAi_
 | POST | `/cloud/project/{x}/database/postgresql/{x}/prometheus/credentials/reset` |
 | GET | `/cloud/project/{x}/database/service` |
 | GET | `/cloud/project/{x}/database/service/{x}` |
+| GET | `/cloud/project/{x}/database/valkey` |
+| POST | `/cloud/project/{x}/database/valkey` |
+| DELETE | `/cloud/project/{x}/database/valkey/{x}` |
+| GET | `/cloud/project/{x}/database/valkey/{x}` |
+| PUT | `/cloud/project/{x}/database/valkey/{x}` |
 | GET | `/cloud/project/{x}/database/valkey/{x}/advancedConfiguration` |
 | PUT | `/cloud/project/{x}/database/valkey/{x}/advancedConfiguration` |
+| GET | `/cloud/project/{x}/database/valkey/{x}/backup` |
+| GET | `/cloud/project/{x}/database/valkey/{x}/backup/{x}` |
 | GET | `/cloud/project/{x}/database/valkey/{x}/capabilities/advancedConfiguration` |
 | GET | `/cloud/project/{x}/database/valkey/{x}/capabilities/backupRegions` |
 | GET | `/cloud/project/{x}/database/valkey/{x}/capabilities/categories` |
 | GET | `/cloud/project/{x}/database/valkey/{x}/capabilities/commands` |
 | GET | `/cloud/project/{x}/database/valkey/{x}/capabilities/integration` |
+| GET | `/cloud/project/{x}/database/valkey/{x}/integration` |
+| POST | `/cloud/project/{x}/database/valkey/{x}/integration` |
 | DELETE | `/cloud/project/{x}/database/valkey/{x}/integration/{x}` |
 | GET | `/cloud/project/{x}/database/valkey/{x}/integration/{x}` |
 | GET | `/cloud/project/{x}/database/valkey/{x}/log/kind` |
 | GET | `/cloud/project/{x}/database/valkey/{x}/log/kind/{x}` |
+| GET | `/cloud/project/{x}/database/valkey/{x}/log/subscription` |
+| POST | `/cloud/project/{x}/database/valkey/{x}/log/subscription` |
 | DELETE | `/cloud/project/{x}/database/valkey/{x}/log/subscription/{x}` |
+| GET | `/cloud/project/{x}/database/valkey/{x}/log/subscription/{x}` |
 | POST | `/cloud/project/{x}/database/valkey/{x}/log/url` |
 | GET | `/cloud/project/{x}/database/valkey/{x}/logs` |
 | GET | `/cloud/project/{x}/database/valkey/{x}/maintenance` |
+| GET | `/cloud/project/{x}/database/valkey/{x}/maintenance/{x}` |
 | POST | `/cloud/project/{x}/database/valkey/{x}/maintenance/{x}/apply` |
 | GET | `/cloud/project/{x}/database/valkey/{x}/metric` |
+| GET | `/cloud/project/{x}/database/valkey/{x}/metric/{x}` |
+| GET | `/cloud/project/{x}/database/valkey/{x}/node` |
+| GET | `/cloud/project/{x}/database/valkey/{x}/node/{x}` |
+| GET | `/cloud/project/{x}/database/valkey/{x}/prometheus` |
 | POST | `/cloud/project/{x}/database/valkey/{x}/prometheus/credentials/reset` |
+| GET | `/cloud/project/{x}/database/valkey/{x}/user` |
+| POST | `/cloud/project/{x}/database/valkey/{x}/user` |
+| DELETE | `/cloud/project/{x}/database/valkey/{x}/user/{x}` |
+| GET | `/cloud/project/{x}/database/valkey/{x}/user/{x}` |
+| PUT | `/cloud/project/{x}/database/valkey/{x}/user/{x}` |
 | POST | `/cloud/project/{x}/database/valkey/{x}/user/{x}/credentials/reset` |
 | GET | `/cloud/project/{x}/flavor` |
 | GET | `/cloud/project/{x}/flavor/{x}` |
