@@ -54,6 +54,7 @@
 			"dist/credentials/OvhCloudApi.credentials.js"
 		],
 		"nodes": [
+			"dist/nodes/OvhCloudAllDom/OvhCloudAllDom.node.js",
 			"dist/nodes/OvhCloudAuth/OvhCloudAuth.node.js",
 			"dist/nodes/OvhCloudBackupServices/OvhCloudBackupServices.node.js",
 			"dist/nodes/OvhCloudCdn/OvhCloudCdn.node.js",

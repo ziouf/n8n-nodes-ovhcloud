@@ -1,6 +1,6 @@
 # OVHcloud API Coverage Report
 
-> Généré par `scripts/compare-coverage.js` le 2026-08-04T21:56:05.025Z. Document généré automatiquement — ne pas éditer à la main.
+> Généré par `scripts/compare-coverage.js` le 2026-08-05T03:11:00.232Z. Document généré automatiquement — ne pas éditer à la main.
 
 Ce rapport compare les endpoints déclarés dans les specs Swagger 2.0 (`docs/api-specs/v1|v2/*.json`) avec les appels HTTP réellement présents dans les nodes (`nodes/**/*.operation.ts`).
 
@@ -8,9 +8,9 @@ Ce rapport compare les endpoints déclarés dans les specs Swagger 2.0 (`docs/ap
 
 - **Specs analysées** : 84 (v1: 70, v2: 14)
 - **Endpoints déclarés (specs avec endpoints)** : 6624
-- **Endpoints couverts par les nodes** : 3199
-- **Couverture globale** : **48.3%**
-- **Specs sans node associé** : 22
+- **Endpoints couverts par les nodes** : 3214
+- **Couverture globale** : **48.5%**
+- **Specs sans node associé** : 21
 - **Specs placeholder (aucun endpoint)** : 1
 
 ## Couverture par spec
@@ -39,8 +39,6 @@ Triée par pourcentage croissant (moins bonne couverture en premier).
 | licenseCloudLinux (v1) | 9 | 0 | 9 | 0% |
 | licenseRedhat (v1) | 9 | 0 | 9 | 0% |
 | licenseSqlserver (v1) | 9 | 0 | 9 | 0% |
-| domain (v2) | 9 | 0 | 9 | 0% |
-| allDom (v1) | 6 | 0 | 6 | 0% |
 | packSiptrunk (v1) | 5 | 0 | 5 | 0% |
 | cloud (v1) | 1121 | 2 | 1119 | 0.2% |
 | email (v1) | 60 | 2 | 58 | 3.3% |
@@ -87,9 +85,11 @@ Triée par pourcentage croissant (moins bonne couverture en premier).
 | veeamCloudConnect (v1) | 14 | 14 | 0 | 100% |
 | webhosting (v2) | 10 | 10 | 0 | 100% |
 | support (v1) | 9 | 9 | 0 | 100% |
+| domain (v2) | 9 | 9 | 0 | 100% |
 | newAccount (v1) | 8 | 8 | 0 | 100% |
 | service (v1) | 8 | 8 | 0 | 100% |
 | vrackServices (v2) | 8 | 8 | 0 | 100% |
+| allDom (v1) | 6 | 6 | 0 | 100% |
 | auth (v1) | 6 | 6 | 0 | 100% |
 | ssl (v1) | 6 | 6 | 0 | 100% |
 | stack (v1) | 4 | 4 | 0 | 100% |
@@ -127,7 +127,6 @@ Ces specs ont des endpoints déclarés mais aucun node ne les implémente dans c
 - **licenseCloudLinux** (`/license/cloudLinux`, v1) — 9 endpoints, 9 manquants
 - **licenseRedhat** (`/license/redhat`, v1) — 9 endpoints, 9 manquants
 - **licenseSqlserver** (`/license/sqlserver`, v1) — 9 endpoints, 9 manquants
-- **allDom** (`/allDom`, v1) — 6 endpoints, 6 manquants
 - **packSiptrunk** (`/pack/siptrunk`, v1) — 5 endpoints, 5 manquants
 
 Sans node également, mais sans endpoints déclarés (voir section placeholder) :
@@ -963,35 +962,6 @@ _Nodes associés : (aucun node)_
 | GET | `/license/sqlserver/{x}/tasks/{x}` |
 | POST | `/license/sqlserver/{x}/terminate` |
 | GET | `/license/sqlserver/orderableVersions` |
-
-### domain (v2) — 9 manquants
-
-_Nodes associés : OvhCloudDomain_
-
-| Méthode | Chemin |
-|--------|--------|
-| GET | `/domain/alldom` |
-| GET | `/domain/alldom/{x}` |
-| GET | `/domain/alldom/{x}/task` |
-| GET | `/domain/alldom/{x}/task/{x}` |
-| GET | `/domain/name` |
-| GET | `/domain/name/{x}` |
-| PUT | `/domain/name/{x}` |
-| GET | `/domain/name/{x}/task` |
-| GET | `/domain/name/{x}/task/{x}` |
-
-### allDom (v1) — 6 manquants
-
-_Nodes associés : (aucun node)_
-
-| Méthode | Chemin |
-|--------|--------|
-| GET | `/allDom` |
-| GET | `/allDom/{x}` |
-| GET | `/allDom/{x}/domain` |
-| GET | `/allDom/{x}/domain/{x}` |
-| GET | `/allDom/{x}/serviceInfos` |
-| PUT | `/allDom/{x}/serviceInfos` |
 
 ### packSiptrunk (v1) — 5 manquants
 

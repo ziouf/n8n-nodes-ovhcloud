@@ -1,15 +1,15 @@
 # OVHcloud API Conformity Report
 
-> Généré par `scripts/audit-conformity.js` le 2026-08-04T23:53:29.456Z. Document généré automatiquement — ne pas éditer à la main.
+> Généré par `scripts/audit-conformity.js` le 2026-08-05T03:11:00.769Z. Document généré automatiquement — ne pas éditer à la main.
 
 Ce rapport vérifie que les opérations des nodes respectent leur spec (méthode, chemin, paramètres path requis, query requis, champs body requis).
 
 ## Résumé
 
-- **Opérations auditées** : 5427
-- **Conformes** : 3037
-- **Non conformes** : 2390
-- **Sans correspondance spec** (informatif) : 2117
+- **Opérations auditées** : 5451
+- **Conformes** : 3052
+- **Non conformes** : 2399
+- **Sans correspondance spec** (informatif) : 2126
 - **Taux de conformité** : **56%**
 
 ## Conformité par spec
@@ -51,13 +51,13 @@ Triée par taux de non-conformité décroissant.
 | horizonView (v1) | 42 | 41 | 1 | 97.6% |
 | hosting (v1) | 237 | 154 | 5 | 65% |
 | webhosting (v2) | 246 | 12 | 3 | 4.9% |
-| domain (v1) | 110 | 109 | 1 | 99.1% |
+| domain (v1) | 119 | 109 | 1 | 91.6% |
 | telephony (v1) | 644 | 602 | 5 | 93.5% |
 | publicCloud (v2) | 718 | 26 | 4 | 3.6% |
 | cloud (v1) | 718 | 1 | 1 | 0.1% |
 | price (v1) | 581 | 581 | 0 | 100% |
 | sms (v1) | 126 | 124 | 0 | 98.4% |
-| domain (v2) | 110 | 0 | 0 | 0% |
+| domain (v2) | 119 | 9 | 0 | 7.6% |
 | cluster (v1) | 50 | 42 | 0 | 84% |
 | services (v1) | 50 | 47 | 0 | 94% |
 | pack (v1) | 39 | 33 | 0 | 84.6% |
@@ -69,6 +69,7 @@ Triée par taux de non-conformité décroissant.
 | license (v1) | 9 | 7 | 0 | 77.8% |
 | ssl (v1) | 9 | 6 | 0 | 66.7% |
 | msServices (v1) | 7 | 5 | 0 | 71.4% |
+| allDom (v1) | 6 | 6 | 0 | 100% |
 | auth (v1) | 6 | 6 | 0 | 100% |
 | sslGateway (v1) | 6 | 6 | 0 | 100% |
 | veeam (v1) | 5 | 5 | 0 | 100% |
@@ -1348,6 +1349,10 @@ Ces opérations appellent un chemin qui ne correspond à aucun endpoint de la sp
 | domain (v2) | POST | `/domain/{x}/task/{x}/relaunch` | OvhCloudDomain/resources/service/task/domainTaskRelaunchPost.operation.ts |
 | domain (v2) | POST | `/domain/{x}/ukOutgoingTransfer` | OvhCloudDomain/resources/service/domainUkOutgoingTransferPost.operation.ts |
 | domain (v2) | GET | `/domain/{x}/ukRegistrars` | OvhCloudDomain/resources/service/domainUkRegistrarsListGet.operation.ts |
+| domain (v1) | GET | `/domain/alldom` | OvhCloudDomain/resources/alldom/domainAlldomListGet.operation.ts |
+| domain (v1) | GET | `/domain/alldom/{x}` | OvhCloudDomain/resources/alldom/domainAlldomGetGet.operation.ts |
+| domain (v1) | GET | `/domain/alldom/{x}/task` | OvhCloudDomain/resources/alldom/domainAlldomTaskListGet.operation.ts |
+| domain (v1) | GET | `/domain/alldom/{x}/task/{x}` | OvhCloudDomain/resources/alldom/domainAlldomTaskGetGet.operation.ts |
 | domain (v2) | GET | `/domain/configurationRule` | OvhCloudDomain/resources/root/domainConfigurationRuleListGet.operation.ts |
 | domain (v2) | POST | `/domain/configurationRule/check` | OvhCloudDomain/resources/root/domainConfigurationRuleCheckPost.operation.ts |
 | domain (v2) | GET | `/domain/contact` | OvhCloudDomain/resources/root/domainContactListGet.operation.ts |
@@ -1367,6 +1372,11 @@ Ces opérations appellent un chemin qui ne correspond à aucun endpoint de la sp
 | domain (v2) | GET | `/domain/extensions/byCategory` | OvhCloudDomain/resources/root/domainExtensionsByCategoryListGet.operation.ts |
 | domain (v2) | GET | `/domain/extensions/highlighted` | OvhCloudDomain/resources/root/domainExtensionsHighlightedListGet.operation.ts |
 | domain (v2) | GET | `/domain/extensions/pricingAttributes` | OvhCloudDomain/resources/root/domainExtensionsPricingAttributesListGet.operation.ts |
+| domain (v1) | GET | `/domain/name` | OvhCloudDomain/resources/name/domainNameListGet.operation.ts |
+| domain (v1) | GET | `/domain/name/{x}` | OvhCloudDomain/resources/name/domainNameGetGet.operation.ts |
+| domain (v1) | PUT | `/domain/name/{x}` | OvhCloudDomain/resources/name/domainNameUpdatePut.operation.ts |
+| domain (v1) | GET | `/domain/name/{x}/task` | OvhCloudDomain/resources/name/domainNameTaskListGet.operation.ts |
+| domain (v1) | GET | `/domain/name/{x}/task/{x}` | OvhCloudDomain/resources/name/domainNameTaskGetGet.operation.ts |
 | domain (v2) | GET | `/domain/zone` | OvhCloudDomain/resources/zone/domainZoneListGet.operation.ts |
 | domain (v2) | GET | `/domain/zone/{x}` | OvhCloudDomain/resources/zone/domainZoneGetGet.operation.ts |
 | domain (v2) | GET | `/domain/zone/{x}/capabilities` | OvhCloudDomain/resources/zone/domainZoneCapabilitiesGetGet.operation.ts |

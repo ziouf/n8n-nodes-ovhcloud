@@ -1,4 +1,5 @@
 export { getClusterHadoopServices } from './getClusterHadoopServices.method';
+export { getAllDomServices } from './getAllDomServices.method';
 export { getDedicatedCephServices } from './getDedicatedCephServices.method';
 export { getDedicatedCloudServices } from './getDedicatedCloudServices.method';
 export { getDedicatedClusterServices } from './getDedicatedClusterServices.method';

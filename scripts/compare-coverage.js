@@ -54,7 +54,7 @@ const REPORT_PATH = path.join(ROOT, 'docs', 'api-reference', 'coverage-report.md
 // ---------------------------------------------------------------------------
 const SPEC_TO_NODES = {
 	// --- v1 ---
-	allDom: [],
+	allDom: ['OvhCloudAllDom'],
 	auth: ['OvhCloudAuth'],
 	cdn: ['OvhCloudCdn'],
 	cloud: ['OvhCloudPublicCloud', 'OvhCloudPublicCloudAi'],
