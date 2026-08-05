@@ -1,16 +1,16 @@
 # OVHcloud API Conformity Report
 
-> Généré par `scripts/audit-conformity.js` le 2026-08-05T05:23:01.476Z. Document généré automatiquement — ne pas éditer à la main.
+> Généré par `scripts/audit-conformity.js` le 2026-08-05T07:50:12.995Z. Document généré automatiquement — ne pas éditer à la main.
 
 Ce rapport vérifie que les opérations des nodes respectent leur spec (méthode, chemin, paramètres path requis, query requis, champs body requis).
 
 ## Résumé
 
 - **Opérations auditées** : 5451
-- **Conformes** : 3072
-- **Non conformes** : 2379
-- **Sans correspondance spec** (informatif) : 2106
-- **Taux de conformité** : **56.4%**
+- **Conformes** : 3091
+- **Non conformes** : 2360
+- **Sans correspondance spec** (informatif) : 2087
+- **Taux de conformité** : **56.7%**
 
 ## Conformité par spec
 
@@ -54,7 +54,7 @@ Triée par taux de non-conformité décroissant.
 | domain (v1) | 119 | 109 | 1 | 91.6% |
 | telephony (v1) | 644 | 602 | 5 | 93.5% |
 | publicCloud (v2) | 718 | 26 | 4 | 3.6% |
-| cloud (v1) | 718 | 21 | 1 | 2.9% |
+| cloud (v1) | 718 | 40 | 1 | 5.6% |
 | price (v1) | 581 | 581 | 0 | 100% |
 | sms (v1) | 126 | 124 | 0 | 98.4% |
 | domain (v2) | 119 | 9 | 0 | 7.6% |
@@ -1218,25 +1218,6 @@ Ces opérations appellent un chemin qui ne correspond à aucun endpoint de la sp
 | cloud (v1) | GET | `/publicCloud/project/{x}/usage/history/{x}` | OvhCloudPublicCloud/usage/getHistoryDetailGet.operation.ts |
 | cloud (v1) | GET | `/publicCloud/project/{x}/user` | OvhCloudPublicCloud/user/listGet.operation.ts |
 | cloud (v1) | POST | `/publicCloud/project/{x}/user` | OvhCloudPublicCloud/user/createPost.operation.ts |
-| cloud (v1) | DELETE | `/publicCloud/project/{x}/user/{x}` | OvhCloudPublicCloud/user/deleteDelete.operation.ts |
-| cloud (v1) | GET | `/publicCloud/project/{x}/user/{x}` | OvhCloudPublicCloud/user/getDetailGet.operation.ts |
-| cloud (v1) | GET | `/publicCloud/project/{x}/user/{x}/configuration` | OvhCloudPublicCloud/user/getUserConfigurationGet.operation.ts |
-| cloud (v1) | GET | `/publicCloud/project/{x}/user/{x}/openrc` | OvhCloudPublicCloud/user/getUserOpenrcGet.operation.ts |
-| cloud (v1) | GET | `/publicCloud/project/{x}/user/{x}/policy` | OvhCloudPublicCloud/user/getUserPolicyGet.operation.ts |
-| cloud (v1) | POST | `/publicCloud/project/{x}/user/{x}/policy` | OvhCloudPublicCloud/user/createUserPolicyPost.operation.ts |
-| cloud (v1) | GET | `/publicCloud/project/{x}/user/{x}/rclone` | OvhCloudPublicCloud/user/getUserRcloneGet.operation.ts |
-| cloud (v1) | POST | `/publicCloud/project/{x}/user/{x}/regeneratePassword` | OvhCloudPublicCloud/user/regeneratePasswordPost.operation.ts |
-| cloud (v1) | GET | `/publicCloud/project/{x}/user/{x}/role` | OvhCloudPublicCloud/user/getUserRoleGet.operation.ts |
-| cloud (v1) | POST | `/publicCloud/project/{x}/user/{x}/role` | OvhCloudPublicCloud/user/createUserRolePost.operation.ts |
-| cloud (v1) | PUT | `/publicCloud/project/{x}/user/{x}/role` | OvhCloudPublicCloud/user/updateUserRolePut.operation.ts |
-| cloud (v1) | DELETE | `/publicCloud/project/{x}/user/{x}/role/{x}` | OvhCloudPublicCloud/user/deleteUserRoleDelete.operation.ts |
-| cloud (v1) | GET | `/publicCloud/project/{x}/user/{x}/role/{x}` | OvhCloudPublicCloud/user/getUserRoleDetailGet.operation.ts |
-| cloud (v1) | GET | `/publicCloud/project/{x}/user/{x}/s3Credentials` | OvhCloudPublicCloud/user/getUserS3CredentialsGet.operation.ts |
-| cloud (v1) | POST | `/publicCloud/project/{x}/user/{x}/s3Credentials` | OvhCloudPublicCloud/user/createUserS3CredentialsPost.operation.ts |
-| cloud (v1) | DELETE | `/publicCloud/project/{x}/user/{x}/s3Credentials/{x}` | OvhCloudPublicCloud/user/deleteUserS3CredentialDelete.operation.ts |
-| cloud (v1) | GET | `/publicCloud/project/{x}/user/{x}/s3Credentials/{x}` | OvhCloudPublicCloud/user/getUserS3CredentialDetailGet.operation.ts |
-| cloud (v1) | POST | `/publicCloud/project/{x}/user/{x}/s3Credentials/{x}/secret` | OvhCloudPublicCloud/user/createS3CredentialSecretPost.operation.ts |
-| cloud (v1) | POST | `/publicCloud/project/{x}/user/{x}/token` | OvhCloudPublicCloud/user/createUserTokenPost.operation.ts |
 | cloud (v1) | GET | `/publicCloud/project/{x}/vrack` | OvhCloudPublicCloud/vrack/listGet.operation.ts |
 | cloud (v1) | GET | `/publicCloud/reference/blockStorage/capability/getByRegionName` | OvhCloudPublicCloud/blockstorage/volumeCapabilityListGetByRegionNameGet.operation.ts |
 | cloud (v1) | GET | `/publicCloud/reference/blockStorage/plan/getByRegionName` | OvhCloudPublicCloud/blockstorage/volumePlanCapabilityListGetByRegionNameGet.operation.ts |
@@ -1667,6 +1648,25 @@ Ces opérations appellent un chemin qui ne correspond à aucun endpoint de la sp
 | publicCloud (v2) | POST | `/cloud/project/{x}/instance/{x}/unshelve` | OvhCloudPublicCloud/instance/instanceUnshelvePost.operation.ts |
 | publicCloud (v2) | POST | `/cloud/project/{x}/instance/{x}/vnc` | OvhCloudPublicCloud/instance/instanceVncPost.operation.ts |
 | publicCloud (v2) | GET | `/cloud/project/{x}/kube` | OvhCloudPublicCloud/kube/kubeListGet.operation.ts |
+| publicCloud (v2) | DELETE | `/cloud/project/{x}/user/{x}` | OvhCloudPublicCloud/user/deleteDelete.operation.ts |
+| publicCloud (v2) | GET | `/cloud/project/{x}/user/{x}` | OvhCloudPublicCloud/user/getDetailGet.operation.ts |
+| publicCloud (v2) | GET | `/cloud/project/{x}/user/{x}/configuration` | OvhCloudPublicCloud/user/getUserConfigurationGet.operation.ts |
+| publicCloud (v2) | GET | `/cloud/project/{x}/user/{x}/openrc` | OvhCloudPublicCloud/user/getUserOpenrcGet.operation.ts |
+| publicCloud (v2) | GET | `/cloud/project/{x}/user/{x}/policy` | OvhCloudPublicCloud/user/getUserPolicyGet.operation.ts |
+| publicCloud (v2) | POST | `/cloud/project/{x}/user/{x}/policy` | OvhCloudPublicCloud/user/createUserPolicyPost.operation.ts |
+| publicCloud (v2) | GET | `/cloud/project/{x}/user/{x}/rclone` | OvhCloudPublicCloud/user/getUserRcloneGet.operation.ts |
+| publicCloud (v2) | POST | `/cloud/project/{x}/user/{x}/regeneratePassword` | OvhCloudPublicCloud/user/regeneratePasswordPost.operation.ts |
+| publicCloud (v2) | GET | `/cloud/project/{x}/user/{x}/role` | OvhCloudPublicCloud/user/getUserRoleGet.operation.ts |
+| publicCloud (v2) | POST | `/cloud/project/{x}/user/{x}/role` | OvhCloudPublicCloud/user/createUserRolePost.operation.ts |
+| publicCloud (v2) | PUT | `/cloud/project/{x}/user/{x}/role` | OvhCloudPublicCloud/user/updateUserRolePut.operation.ts |
+| publicCloud (v2) | DELETE | `/cloud/project/{x}/user/{x}/role/{x}` | OvhCloudPublicCloud/user/deleteUserRoleDelete.operation.ts |
+| publicCloud (v2) | GET | `/cloud/project/{x}/user/{x}/role/{x}` | OvhCloudPublicCloud/user/getUserRoleDetailGet.operation.ts |
+| publicCloud (v2) | GET | `/cloud/project/{x}/user/{x}/s3Credentials` | OvhCloudPublicCloud/user/getUserS3CredentialsGet.operation.ts |
+| publicCloud (v2) | POST | `/cloud/project/{x}/user/{x}/s3Credentials` | OvhCloudPublicCloud/user/createUserS3CredentialsPost.operation.ts |
+| publicCloud (v2) | DELETE | `/cloud/project/{x}/user/{x}/s3Credentials/{x}` | OvhCloudPublicCloud/user/deleteUserS3CredentialDelete.operation.ts |
+| publicCloud (v2) | GET | `/cloud/project/{x}/user/{x}/s3Credentials/{x}` | OvhCloudPublicCloud/user/getUserS3CredentialDetailGet.operation.ts |
+| publicCloud (v2) | POST | `/cloud/project/{x}/user/{x}/s3Credentials/{x}/secret` | OvhCloudPublicCloud/user/createS3CredentialSecretPost.operation.ts |
+| publicCloud (v2) | POST | `/cloud/project/{x}/user/{x}/token` | OvhCloudPublicCloud/user/createUserTokenPost.operation.ts |
 | publicCloud (v2) | GET | `/publicCloud/project/{x}/acl` | OvhCloudPublicCloud/acl/listGet.operation.ts |
 | publicCloud (v2) | POST | `/publicCloud/project/{x}/acl` | OvhCloudPublicCloud/acl/createPost.operation.ts |
 | publicCloud (v2) | DELETE | `/publicCloud/project/{x}/acl/{x}` | OvhCloudPublicCloud/acl/deleteDelete.operation.ts |
@@ -2308,25 +2308,6 @@ Ces opérations appellent un chemin qui ne correspond à aucun endpoint de la sp
 | publicCloud (v2) | GET | `/publicCloud/project/{x}/usage/history/{x}` | OvhCloudPublicCloud/usage/getHistoryDetailGet.operation.ts |
 | publicCloud (v2) | GET | `/publicCloud/project/{x}/user` | OvhCloudPublicCloud/user/listGet.operation.ts |
 | publicCloud (v2) | POST | `/publicCloud/project/{x}/user` | OvhCloudPublicCloud/user/createPost.operation.ts |
-| publicCloud (v2) | DELETE | `/publicCloud/project/{x}/user/{x}` | OvhCloudPublicCloud/user/deleteDelete.operation.ts |
-| publicCloud (v2) | GET | `/publicCloud/project/{x}/user/{x}` | OvhCloudPublicCloud/user/getDetailGet.operation.ts |
-| publicCloud (v2) | GET | `/publicCloud/project/{x}/user/{x}/configuration` | OvhCloudPublicCloud/user/getUserConfigurationGet.operation.ts |
-| publicCloud (v2) | GET | `/publicCloud/project/{x}/user/{x}/openrc` | OvhCloudPublicCloud/user/getUserOpenrcGet.operation.ts |
-| publicCloud (v2) | GET | `/publicCloud/project/{x}/user/{x}/policy` | OvhCloudPublicCloud/user/getUserPolicyGet.operation.ts |
-| publicCloud (v2) | POST | `/publicCloud/project/{x}/user/{x}/policy` | OvhCloudPublicCloud/user/createUserPolicyPost.operation.ts |
-| publicCloud (v2) | GET | `/publicCloud/project/{x}/user/{x}/rclone` | OvhCloudPublicCloud/user/getUserRcloneGet.operation.ts |
-| publicCloud (v2) | POST | `/publicCloud/project/{x}/user/{x}/regeneratePassword` | OvhCloudPublicCloud/user/regeneratePasswordPost.operation.ts |
-| publicCloud (v2) | GET | `/publicCloud/project/{x}/user/{x}/role` | OvhCloudPublicCloud/user/getUserRoleGet.operation.ts |
-| publicCloud (v2) | POST | `/publicCloud/project/{x}/user/{x}/role` | OvhCloudPublicCloud/user/createUserRolePost.operation.ts |
-| publicCloud (v2) | PUT | `/publicCloud/project/{x}/user/{x}/role` | OvhCloudPublicCloud/user/updateUserRolePut.operation.ts |
-| publicCloud (v2) | DELETE | `/publicCloud/project/{x}/user/{x}/role/{x}` | OvhCloudPublicCloud/user/deleteUserRoleDelete.operation.ts |
-| publicCloud (v2) | GET | `/publicCloud/project/{x}/user/{x}/role/{x}` | OvhCloudPublicCloud/user/getUserRoleDetailGet.operation.ts |
-| publicCloud (v2) | GET | `/publicCloud/project/{x}/user/{x}/s3Credentials` | OvhCloudPublicCloud/user/getUserS3CredentialsGet.operation.ts |
-| publicCloud (v2) | POST | `/publicCloud/project/{x}/user/{x}/s3Credentials` | OvhCloudPublicCloud/user/createUserS3CredentialsPost.operation.ts |
-| publicCloud (v2) | DELETE | `/publicCloud/project/{x}/user/{x}/s3Credentials/{x}` | OvhCloudPublicCloud/user/deleteUserS3CredentialDelete.operation.ts |
-| publicCloud (v2) | GET | `/publicCloud/project/{x}/user/{x}/s3Credentials/{x}` | OvhCloudPublicCloud/user/getUserS3CredentialDetailGet.operation.ts |
-| publicCloud (v2) | POST | `/publicCloud/project/{x}/user/{x}/s3Credentials/{x}/secret` | OvhCloudPublicCloud/user/createS3CredentialSecretPost.operation.ts |
-| publicCloud (v2) | POST | `/publicCloud/project/{x}/user/{x}/token` | OvhCloudPublicCloud/user/createUserTokenPost.operation.ts |
 | publicCloud (v2) | GET | `/publicCloud/project/{x}/vrack` | OvhCloudPublicCloud/vrack/listGet.operation.ts |
 | publicCloud (v2) | GET | `/publicCloud/reference/blockStorage/capability/getByRegionName` | OvhCloudPublicCloud/blockstorage/volumeCapabilityListGetByRegionNameGet.operation.ts |
 | publicCloud (v2) | GET | `/publicCloud/reference/blockStorage/plan/getByRegionName` | OvhCloudPublicCloud/blockstorage/volumePlanCapabilityListGetByRegionNameGet.operation.ts |

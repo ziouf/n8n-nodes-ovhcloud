@@ -406,26 +406,26 @@ This node provides **675 operations** with **607 tests** for managing OVHcloud r
 | Operation | Method | Endpoint | Tests |
 |-----------|--------|----------|-------|
 | [`createPost`](./`user/createPost.ts`) | POST | `/publicCloud/project/{...}/user` | 1 |
-| [`createS3CredentialSecretPost`](./`user/createS3CredentialSecretPost.ts`) | POST | `/publicCloud/project/{...}/user/{...}/s3Credentials/{...}/secret` | 1 |
-| [`createUserPolicyPost`](./`user/createUserPolicyPost.ts`) | POST | `/publicCloud/project/{...}/user/{...}/policy` | 1 |
-| [`createUserRolePost`](./`user/createUserRolePost.ts`) | POST | `/publicCloud/project/{...}/user/{...}/role` | 1 |
-| [`createUserS3CredentialsPost`](./`user/createUserS3CredentialsPost.ts`) | POST | `/publicCloud/project/{...}/user/{...}/s3Credentials` | 1 |
-| [`createUserTokenPost`](./`user/createUserTokenPost.ts`) | POST | `/publicCloud/project/{...}/user/{...}/token` | 1 |
-| [`deleteDelete`](./`user/deleteDelete.ts`) | DELETE | `/publicCloud/project/{...}/user/{...}` | 1 |
-| [`deleteUserRoleDelete`](./`user/deleteUserRoleDelete.ts`) | DELETE | `/publicCloud/project/{...}/user/{...}/role/{...}` | 1 |
-| [`deleteUserS3CredentialDelete`](./`user/deleteUserS3CredentialDelete.ts`) | DELETE | `/publicCloud/project/{...}/user/{...}/s3Credentials/{...}` | 1 |
-| [`getDetailGet`](./`user/getDetailGet.ts`) | GET | `/publicCloud/project/{...}/user/{...}` | 1 |
-| [`getUserConfigurationGet`](./`user/getUserConfigurationGet.ts`) | GET | `/publicCloud/project/{...}/user/{...}/configuration` | 1 |
-| [`getUserOpenrcGet`](./`user/getUserOpenrcGet.ts`) | GET | `/publicCloud/project/{...}/user/{...}/openrc` | 1 |
-| [`getUserPolicyGet`](./`user/getUserPolicyGet.ts`) | GET | `/publicCloud/project/{...}/user/{...}/policy` | 1 |
-| [`getUserRcloneGet`](./`user/getUserRcloneGet.ts`) | GET | `/publicCloud/project/{...}/user/{...}/rclone` | 1 |
-| [`getUserRoleDetailGet`](./`user/getUserRoleDetailGet.ts`) | GET | `/publicCloud/project/{...}/user/{...}/role/{...}` | 1 |
-| [`getUserRoleGet`](./`user/getUserRoleGet.ts`) | GET | `/publicCloud/project/{...}/user/{...}/role` | 1 |
-| [`getUserS3CredentialDetailGet`](./`user/getUserS3CredentialDetailGet.ts`) | GET | `/publicCloud/project/{...}/user/{...}/s3Credentials/{...}` | 1 |
-| [`getUserS3CredentialsGet`](./`user/getUserS3CredentialsGet.ts`) | GET | `/publicCloud/project/{...}/user/{...}/s3Credentials` | 1 |
+| [`createS3CredentialSecretPost`](./`user/createS3CredentialSecretPost.ts`) | POST | `/cloud/project/{...}/user/{...}/s3Credentials/{...}/secret` | 1 |
+| [`createUserPolicyPost`](./`user/createUserPolicyPost.ts`) | POST | `/cloud/project/{...}/user/{...}/policy` | 1 |
+| [`createUserRolePost`](./`user/createUserRolePost.ts`) | POST | `/cloud/project/{...}/user/{...}/role` | 1 |
+| [`createUserS3CredentialsPost`](./`user/createUserS3CredentialsPost.ts`) | POST | `/cloud/project/{...}/user/{...}/s3Credentials` | 1 |
+| [`createUserTokenPost`](./`user/createUserTokenPost.ts`) | POST | `/cloud/project/{...}/user/{...}/token` | 1 |
+| [`deleteDelete`](./`user/deleteDelete.ts`) | DELETE | `/cloud/project/{...}/user/{...}` | 1 |
+| [`deleteUserRoleDelete`](./`user/deleteUserRoleDelete.ts`) | DELETE | `/cloud/project/{...}/user/{...}/role/{...}` | 1 |
+| [`deleteUserS3CredentialDelete`](./`user/deleteUserS3CredentialDelete.ts`) | DELETE | `/cloud/project/{...}/user/{...}/s3Credentials/{...}` | 1 |
+| [`getDetailGet`](./`user/getDetailGet.ts`) | GET | `/cloud/project/{...}/user/{...}` | 1 |
+| [`getUserConfigurationGet`](./`user/getUserConfigurationGet.ts`) | GET | `/cloud/project/{...}/user/{...}/configuration` | 1 |
+| [`getUserOpenrcGet`](./`user/getUserOpenrcGet.ts`) | GET | `/cloud/project/{...}/user/{...}/openrc` | 1 |
+| [`getUserPolicyGet`](./`user/getUserPolicyGet.ts`) | GET | `/cloud/project/{...}/user/{...}/policy` | 1 |
+| [`getUserRcloneGet`](./`user/getUserRcloneGet.ts`) | GET | `/cloud/project/{...}/user/{...}/rclone` | 1 |
+| [`getUserRoleDetailGet`](./`user/getUserRoleDetailGet.ts`) | GET | `/cloud/project/{...}/user/{...}/role/{...}` | 1 |
+| [`getUserRoleGet`](./`user/getUserRoleGet.ts`) | GET | `/cloud/project/{...}/user/{...}/role` | 1 |
+| [`getUserS3CredentialDetailGet`](./`user/getUserS3CredentialDetailGet.ts`) | GET | `/cloud/project/{...}/user/{...}/s3Credentials/{...}` | 1 |
+| [`getUserS3CredentialsGet`](./`user/getUserS3CredentialsGet.ts`) | GET | `/cloud/project/{...}/user/{...}/s3Credentials` | 1 |
 | [`listGet`](./`user/listGet.ts`) | GET | `/publicCloud/project/{...}/user` | 1 |
-| [`regeneratePasswordPost`](./`user/regeneratePasswordPost.ts`) | POST | `/publicCloud/project/{...}/user/{...}/regeneratePassword` | 1 |
-| [`updateUserRolePut`](./`user/updateUserRolePut.ts`) | PUT | `/publicCloud/project/{...}/user/{...}/role` | 1 |
+| [`regeneratePasswordPost`](./`user/regeneratePasswordPost.ts`) | POST | `/cloud/project/{...}/user/{...}/regeneratePassword` | 1 |
+| [`updateUserRolePut`](./`user/updateUserRolePut.ts`) | PUT | `/cloud/project/{...}/user/{...}/role` | 1 |
 
 ### vrack
 

@@ -1,6 +1,6 @@
 # OVHcloud API Coverage Report
 
-> Généré par `scripts/compare-coverage.js` le 2026-08-05T05:46:12.551Z. Document généré automatiquement — ne pas éditer à la main.
+> Généré par `scripts/compare-coverage.js` le 2026-08-05T07:50:12.612Z. Document généré automatiquement — ne pas éditer à la main.
 
 Ce rapport compare les endpoints déclarés dans les specs Swagger 2.0 (`docs/api-specs/v1|v2/*.json`) avec les appels HTTP réellement présents dans les nodes (`nodes/**/*.operation.ts`).
 
@@ -8,8 +8,8 @@ Ce rapport compare les endpoints déclarés dans les specs Swagger 2.0 (`docs/ap
 
 - **Specs analysées** : 84 (v1: 70, v2: 14)
 - **Endpoints déclarés (specs avec endpoints)** : 6624
-- **Endpoints couverts par les nodes** : 3234
-- **Couverture globale** : **48.8%**
+- **Endpoints couverts par les nodes** : 3253
+- **Couverture globale** : **49.1%**
 - **Specs sans node associé** : 21
 - **Specs placeholder (aucun endpoint)** : 1
 
@@ -40,8 +40,8 @@ Triée par pourcentage croissant (moins bonne couverture en premier).
 | licenseRedhat (v1) | 9 | 0 | 9 | 0% |
 | licenseSqlserver (v1) | 9 | 0 | 9 | 0% |
 | packSiptrunk (v1) | 5 | 0 | 5 | 0% |
-| cloud (v1) | 1121 | 22 | 1099 | 2% |
 | email (v1) | 60 | 2 | 58 | 3.3% |
+| cloud (v1) | 1121 | 41 | 1080 | 3.7% |
 | order (v1) | 816 | 36 | 780 | 4.4% |
 | ipLoadbalancing (v1) | 121 | 9 | 112 | 7.4% |
 | vrack (v1) | 68 | 5 | 63 | 7.4% |
@@ -975,7 +975,72 @@ _Nodes associés : (aucun node)_
 | GET | `/pack/siptrunk/{x}/serviceInfos` |
 | PUT | `/pack/siptrunk/{x}/serviceInfos` |
 
-### cloud (v1) — 1099 manquants
+### email (v1) — 58 manquants
+
+_Nodes associés : OvhCloudEmailPro, OvhCloudMxPlan_
+
+| Méthode | Chemin |
+|--------|--------|
+| PUT | `/email/pro/{x}` |
+| GET | `/email/pro/{x}/account` |
+| DELETE | `/email/pro/{x}/account/{x}` |
+| GET | `/email/pro/{x}/account/{x}` |
+| PUT | `/email/pro/{x}/account/{x}` |
+| GET | `/email/pro/{x}/account/{x}/alias` |
+| POST | `/email/pro/{x}/account/{x}/alias` |
+| DELETE | `/email/pro/{x}/account/{x}/alias/{x}` |
+| GET | `/email/pro/{x}/account/{x}/alias/{x}` |
+| POST | `/email/pro/{x}/account/{x}/changePassword` |
+| GET | `/email/pro/{x}/account/{x}/diagnostics` |
+| POST | `/email/pro/{x}/account/{x}/diagnostics` |
+| GET | `/email/pro/{x}/account/{x}/fullAccess` |
+| POST | `/email/pro/{x}/account/{x}/fullAccess` |
+| DELETE | `/email/pro/{x}/account/{x}/fullAccess/{x}` |
+| GET | `/email/pro/{x}/account/{x}/fullAccess/{x}` |
+| GET | `/email/pro/{x}/account/{x}/sendAs` |
+| POST | `/email/pro/{x}/account/{x}/sendAs` |
+| DELETE | `/email/pro/{x}/account/{x}/sendAs/{x}` |
+| GET | `/email/pro/{x}/account/{x}/sendAs/{x}` |
+| GET | `/email/pro/{x}/account/{x}/sendOnBehalfTo` |
+| POST | `/email/pro/{x}/account/{x}/sendOnBehalfTo` |
+| DELETE | `/email/pro/{x}/account/{x}/sendOnBehalfTo/{x}` |
+| GET | `/email/pro/{x}/account/{x}/sendOnBehalfTo/{x}` |
+| GET | `/email/pro/{x}/account/{x}/tasks` |
+| GET | `/email/pro/{x}/account/{x}/tasks/{x}` |
+| POST | `/email/pro/{x}/account/{x}/terminate` |
+| GET | `/email/pro/{x}/billingMigrated` |
+| GET | `/email/pro/{x}/billingPlan` |
+| POST | `/email/pro/{x}/changeContact` |
+| GET | `/email/pro/{x}/domain` |
+| POST | `/email/pro/{x}/domain` |
+| DELETE | `/email/pro/{x}/domain/{x}` |
+| GET | `/email/pro/{x}/domain/{x}` |
+| PUT | `/email/pro/{x}/domain/{x}` |
+| DELETE | `/email/pro/{x}/domain/{x}/disclaimer` |
+| GET | `/email/pro/{x}/domain/{x}/disclaimer` |
+| POST | `/email/pro/{x}/domain/{x}/disclaimer` |
+| PUT | `/email/pro/{x}/domain/{x}/disclaimer` |
+| GET | `/email/pro/{x}/domain/{x}/disclaimerAttribute` |
+| GET | `/email/pro/{x}/domain/{x}/dkim` |
+| POST | `/email/pro/{x}/domain/{x}/dkim` |
+| DELETE | `/email/pro/{x}/domain/{x}/dkim/{x}` |
+| GET | `/email/pro/{x}/domain/{x}/dkim/{x}` |
+| POST | `/email/pro/{x}/domain/{x}/dkim/{x}/disable` |
+| POST | `/email/pro/{x}/domain/{x}/dkim/{x}/enable` |
+| GET | `/email/pro/{x}/domain/{x}/dkimSelector` |
+| GET | `/email/pro/{x}/externalContact` |
+| POST | `/email/pro/{x}/externalContact` |
+| DELETE | `/email/pro/{x}/externalContact/{x}` |
+| GET | `/email/pro/{x}/externalContact/{x}` |
+| PUT | `/email/pro/{x}/externalContact/{x}` |
+| GET | `/email/pro/{x}/server` |
+| GET | `/email/pro/{x}/serviceInfos` |
+| PUT | `/email/pro/{x}/serviceInfos` |
+| GET | `/email/pro/{x}/task` |
+| GET | `/email/pro/{x}/task/{x}` |
+| POST | `/email/pro/{x}/updateFlagsOnAllAccounts` |
+
+### cloud (v1) — 1080 manquants
 
 _Nodes associés : OvhCloudPublicCloud, OvhCloudPublicCloudAi_
 
@@ -2047,25 +2112,6 @@ _Nodes associés : OvhCloudPublicCloud, OvhCloudPublicCloudAi_
 | GET | `/cloud/project/{x}/usage/plans` |
 | GET | `/cloud/project/{x}/user` |
 | POST | `/cloud/project/{x}/user` |
-| DELETE | `/cloud/project/{x}/user/{x}` |
-| GET | `/cloud/project/{x}/user/{x}` |
-| GET | `/cloud/project/{x}/user/{x}/configuration` |
-| GET | `/cloud/project/{x}/user/{x}/openrc` |
-| GET | `/cloud/project/{x}/user/{x}/policy` |
-| POST | `/cloud/project/{x}/user/{x}/policy` |
-| GET | `/cloud/project/{x}/user/{x}/rclone` |
-| POST | `/cloud/project/{x}/user/{x}/regeneratePassword` |
-| GET | `/cloud/project/{x}/user/{x}/role` |
-| POST | `/cloud/project/{x}/user/{x}/role` |
-| PUT | `/cloud/project/{x}/user/{x}/role` |
-| DELETE | `/cloud/project/{x}/user/{x}/role/{x}` |
-| GET | `/cloud/project/{x}/user/{x}/role/{x}` |
-| GET | `/cloud/project/{x}/user/{x}/s3Credentials` |
-| POST | `/cloud/project/{x}/user/{x}/s3Credentials` |
-| DELETE | `/cloud/project/{x}/user/{x}/s3Credentials/{x}` |
-| GET | `/cloud/project/{x}/user/{x}/s3Credentials/{x}` |
-| POST | `/cloud/project/{x}/user/{x}/s3Credentials/{x}/secret` |
-| POST | `/cloud/project/{x}/user/{x}/token` |
 | GET | `/cloud/project/{x}/volume` |
 | POST | `/cloud/project/{x}/volume` |
 | DELETE | `/cloud/project/{x}/volume/{x}` |
@@ -2080,71 +2126,6 @@ _Nodes associés : OvhCloudPublicCloud, OvhCloudPublicCloudAi_
 | GET | `/cloud/project/{x}/volume/snapshot/{x}` |
 | GET | `/cloud/project/{x}/vrack` |
 | POST | `/cloud/project/{x}/vrack` |
-
-### email (v1) — 58 manquants
-
-_Nodes associés : OvhCloudEmailPro, OvhCloudMxPlan_
-
-| Méthode | Chemin |
-|--------|--------|
-| PUT | `/email/pro/{x}` |
-| GET | `/email/pro/{x}/account` |
-| DELETE | `/email/pro/{x}/account/{x}` |
-| GET | `/email/pro/{x}/account/{x}` |
-| PUT | `/email/pro/{x}/account/{x}` |
-| GET | `/email/pro/{x}/account/{x}/alias` |
-| POST | `/email/pro/{x}/account/{x}/alias` |
-| DELETE | `/email/pro/{x}/account/{x}/alias/{x}` |
-| GET | `/email/pro/{x}/account/{x}/alias/{x}` |
-| POST | `/email/pro/{x}/account/{x}/changePassword` |
-| GET | `/email/pro/{x}/account/{x}/diagnostics` |
-| POST | `/email/pro/{x}/account/{x}/diagnostics` |
-| GET | `/email/pro/{x}/account/{x}/fullAccess` |
-| POST | `/email/pro/{x}/account/{x}/fullAccess` |
-| DELETE | `/email/pro/{x}/account/{x}/fullAccess/{x}` |
-| GET | `/email/pro/{x}/account/{x}/fullAccess/{x}` |
-| GET | `/email/pro/{x}/account/{x}/sendAs` |
-| POST | `/email/pro/{x}/account/{x}/sendAs` |
-| DELETE | `/email/pro/{x}/account/{x}/sendAs/{x}` |
-| GET | `/email/pro/{x}/account/{x}/sendAs/{x}` |
-| GET | `/email/pro/{x}/account/{x}/sendOnBehalfTo` |
-| POST | `/email/pro/{x}/account/{x}/sendOnBehalfTo` |
-| DELETE | `/email/pro/{x}/account/{x}/sendOnBehalfTo/{x}` |
-| GET | `/email/pro/{x}/account/{x}/sendOnBehalfTo/{x}` |
-| GET | `/email/pro/{x}/account/{x}/tasks` |
-| GET | `/email/pro/{x}/account/{x}/tasks/{x}` |
-| POST | `/email/pro/{x}/account/{x}/terminate` |
-| GET | `/email/pro/{x}/billingMigrated` |
-| GET | `/email/pro/{x}/billingPlan` |
-| POST | `/email/pro/{x}/changeContact` |
-| GET | `/email/pro/{x}/domain` |
-| POST | `/email/pro/{x}/domain` |
-| DELETE | `/email/pro/{x}/domain/{x}` |
-| GET | `/email/pro/{x}/domain/{x}` |
-| PUT | `/email/pro/{x}/domain/{x}` |
-| DELETE | `/email/pro/{x}/domain/{x}/disclaimer` |
-| GET | `/email/pro/{x}/domain/{x}/disclaimer` |
-| POST | `/email/pro/{x}/domain/{x}/disclaimer` |
-| PUT | `/email/pro/{x}/domain/{x}/disclaimer` |
-| GET | `/email/pro/{x}/domain/{x}/disclaimerAttribute` |
-| GET | `/email/pro/{x}/domain/{x}/dkim` |
-| POST | `/email/pro/{x}/domain/{x}/dkim` |
-| DELETE | `/email/pro/{x}/domain/{x}/dkim/{x}` |
-| GET | `/email/pro/{x}/domain/{x}/dkim/{x}` |
-| POST | `/email/pro/{x}/domain/{x}/dkim/{x}/disable` |
-| POST | `/email/pro/{x}/domain/{x}/dkim/{x}/enable` |
-| GET | `/email/pro/{x}/domain/{x}/dkimSelector` |
-| GET | `/email/pro/{x}/externalContact` |
-| POST | `/email/pro/{x}/externalContact` |
-| DELETE | `/email/pro/{x}/externalContact/{x}` |
-| GET | `/email/pro/{x}/externalContact/{x}` |
-| PUT | `/email/pro/{x}/externalContact/{x}` |
-| GET | `/email/pro/{x}/server` |
-| GET | `/email/pro/{x}/serviceInfos` |
-| PUT | `/email/pro/{x}/serviceInfos` |
-| GET | `/email/pro/{x}/task` |
-| GET | `/email/pro/{x}/task/{x}` |
-| POST | `/email/pro/{x}/updateFlagsOnAllAccounts` |
 
 ### order (v1) — 780 manquants
 
