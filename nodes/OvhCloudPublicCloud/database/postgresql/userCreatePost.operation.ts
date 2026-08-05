@@ -9,55 +9,77 @@ import { ApiClient } from '../../../../shared/transport/ApiClient';
 
 export function description(displayOptions: IDisplayOptions): INodeProperties[] {
 	return [
-	{
-		displayName: 'Public Cloud Project',
-		name: 'publicCloudProjectId',
-		type: 'resourceLocator',
-		default: { mode: 'list', value: '' },
-		required: true,
-		description: 'The Public Cloud project ID (e.g. 12345678-1234-1234-1234-1234567890ab)',
-		modes: [
-			{
-				displayName: 'From List',
-				name: 'list',
-				type: 'list',
-				typeOptions: { searchListMethod: 'getPublicCloudProjects' },
-			},
-			{
-				displayName: 'By ID',
-				name: 'name',
-				type: 'string',
-				placeholder: '12345678-1234-1234-1234-1234567890ab',
-			},
-		],
-	},
-	{
-		displayName: 'Service Name',
-		name: 'serviceName',
-		type: 'string',
-		default: '',
-		required: true,
-		description: 'The database service name',
-		displayOptions,
-	}
+		{
+			displayName: 'Public Cloud Project',
+			name: 'publicCloudProjectId',
+			type: 'resourceLocator',
+			default: { mode: 'list', value: '' },
+			required: true,
+			description: 'The Public Cloud project ID (e.g. 12345678-1234-1234-1234-1234567890ab)',
+			modes: [
+				{
+					displayName: 'From List',
+					name: 'list',
+					type: 'list',
+					typeOptions: { searchListMethod: 'getPublicCloudProjects' },
+				},
+				{
+					displayName: 'By ID',
+					name: 'name',
+					type: 'string',
+					placeholder: '12345678-1234-1234-1234-1234567890ab',
+				},
+			],
+			displayOptions,
+		},
+		{
+			displayName: 'Cluster ID',
+			name: 'clusterId',
+			type: 'string',
+			default: '',
+			required: true,
+			description: 'The PostgreSQL cluster ID',
+			displayOptions,
+		},
+		{
+			displayName: 'Name',
+			name: 'name',
+			type: 'string',
+			default: '',
+			required: true,
+			description: 'Database name',
+			displayOptions,
+		},
+		{
+			displayName: 'Roles',
+			name: 'roles',
+			type: 'json',
+			default: '{}',
+			description: 'User roles as a JSON array of strings',
+			displayOptions,
+		},
 	];
 }
 
 /**
- * Executes the Create Postgresql User operation.
+ * Executes the Create PostgreSQL User operation.
  *
  * HTTP method: POST
- * Endpoint: /publicCloud/project/{projectId}/cloud/database/postgresql/serviceName
+ * Endpoint: /cloud/project/{serviceName}/database/postgresql/{clusterId}/user
  */
 export async function execute(this: IExecuteFunctions): Promise<INodeExecutionData[]> {
 	const client = new ApiClient(this);
-	const projectId = this.getNodeParameter('publicCloudProjectId', 0, '', {
+	const serviceName = this.getNodeParameter('publicCloudProjectId', 0, '', {
 		extractValue: true,
 	}) as string;
-	const serviceName = this.getNodeParameter('serviceName', 0) as string;
-	const body = {} as IDataObject;
-
-	const data = (await client.httpPost(`/publicCloud/project/${projectId}/cloud/database/postgresql/${serviceName}`, body)) as import('n8n-workflow').IDataObject;
+	const clusterId = this.getNodeParameter('clusterId', 0) as string;
+	const name = (this.getNodeParameter('name', 0, '') || '') as string;
+	const rolesJson = (this.getNodeParameter('roles', 0, '[]') as string) || '[]';
+	const roles = JSON.parse(rolesJson) as string[];
+	const body: IDataObject = {};
+	if (name) body.name = name;
+	if (roles && roles.length) body.roles = roles;
+	const data = (await client.httpPost(`/cloud/project/${serviceName}/database/postgresql/${clusterId}/user`, body as IDataObject)) as IDataObject;
 
 	return this.helpers.returnJsonArray([data]);
 }

@@ -450,19 +450,9 @@ import {
 } from './database/valkey/backupListGet.operation';
 
 import {
-	description as valkeyBackupCreatePostDescription,
-	execute as valkeyBackupCreatePostExecute,
-} from './database/valkey/backupCreatePost.operation';
-
-import {
 	description as valkeyBackupGetGetDescription,
 	execute as valkeyBackupGetGetExecute,
 } from './database/valkey/backupGetGet.operation';
-
-import {
-	description as valkeyBackupDeleteDeleteDescription,
-	execute as valkeyBackupDeleteDeleteExecute,
-} from './database/valkey/backupDeleteDelete.operation';
 
 import {
 	description as valkeyUserListGetDescription,
@@ -495,34 +485,9 @@ import {
 } from './database/valkey/nodeListGet.operation';
 
 import {
-	description as valkeyNodeCreatePostDescription,
-	execute as valkeyNodeCreatePostExecute,
-} from './database/valkey/nodeCreatePost.operation';
-
-import {
 	description as valkeyNodeGetGetDescription,
 	execute as valkeyNodeGetGetExecute,
 } from './database/valkey/nodeGetGet.operation';
-
-import {
-	description as valkeyNodeUpdatePutDescription,
-	execute as valkeyNodeUpdatePutExecute,
-} from './database/valkey/nodeUpdatePut.operation';
-
-import {
-	description as valkeyNodeDeleteDeleteDescription,
-	execute as valkeyNodeDeleteDeleteExecute,
-} from './database/valkey/nodeDeleteDelete.operation';
-
-import {
-	description as valkeyIpRestrictionListGetDescription,
-	execute as valkeyIpRestrictionListGetExecute,
-} from './database/valkey/ipRestrictionListGet.operation';
-
-import {
-	description as valkeyIpRestrictionCreatePostDescription,
-	execute as valkeyIpRestrictionCreatePostExecute,
-} from './database/valkey/ipRestrictionCreatePost.operation';
 
 import {
 	description as valkeyLogSubscriptionListGetDescription,
@@ -545,11 +510,6 @@ import {
 } from './database/valkey/maintenanceGet.operation';
 
 import {
-	description as valkeyMaintenanceUpdatePutDescription,
-	execute as valkeyMaintenanceUpdatePutExecute,
-} from './database/valkey/maintenanceUpdatePut.operation';
-
-import {
 	description as valkeyMetricGetDescription,
 	execute as valkeyMetricGetExecute,
 } from './database/valkey/metricGet.operation';
@@ -558,16 +518,6 @@ import {
 	description as valkeyPrometheusGetDescription,
 	execute as valkeyPrometheusGetExecute,
 } from './database/valkey/prometheusGet.operation';
-
-import {
-	description as valkeyCertificateListGetDescription,
-	execute as valkeyCertificateListGetExecute,
-} from './database/valkey/certificateListGet.operation';
-
-import {
-	description as valkeyCertificateCreatePostDescription,
-	execute as valkeyCertificateCreatePostExecute,
-} from './database/valkey/certificateCreatePost.operation';
 
 import {
 	description as valkeyIntegrationListGetDescription,
@@ -2009,17 +1959,9 @@ import {
 	execute as postgresqlBackupListGetExecute,
 } from './database/postgresql/backupListGet.operation';
 import {
-	description as postgresqlBackupCreatePostDescription,
-	execute as postgresqlBackupCreatePostExecute,
-} from './database/postgresql/backupCreatePost.operation';
-import {
 	description as postgresqlBackupGetGetDescription,
 	execute as postgresqlBackupGetGetExecute,
 } from './database/postgresql/backupGetGet.operation';
-import {
-	description as postgresqlBackupDeleteDeleteDescription,
-	execute as postgresqlBackupDeleteDeleteExecute,
-} from './database/postgresql/backupDeleteDelete.operation';
 import {
 	description as postgresqlUserListGetDescription,
 	execute as postgresqlUserListGetExecute,
@@ -2045,21 +1987,9 @@ import {
 	execute as postgresqlNodeListGetExecute,
 } from './database/postgresql/nodeListGet.operation';
 import {
-	description as postgresqlNodeCreatePostDescription,
-	execute as postgresqlNodeCreatePostExecute,
-} from './database/postgresql/nodeCreatePost.operation';
-import {
 	description as postgresqlNodeGetGetDescription,
 	execute as postgresqlNodeGetGetExecute,
 } from './database/postgresql/nodeGetGet.operation';
-import {
-	description as postgresqlNodeUpdatePutDescription,
-	execute as postgresqlNodeUpdatePutExecute,
-} from './database/postgresql/nodeUpdatePut.operation';
-import {
-	description as postgresqlNodeDeleteDeleteDescription,
-	execute as postgresqlNodeDeleteDeleteExecute,
-} from './database/postgresql/nodeDeleteDelete.operation';
 import {
 	description as postgresqlIpRestrictionListGetDescription,
 	execute as postgresqlIpRestrictionListGetExecute,
@@ -2085,10 +2015,6 @@ import {
 	execute as postgresqlMaintenanceGetExecute,
 } from './database/postgresql/maintenanceGet.operation';
 import {
-	description as postgresqlMaintenanceUpdatePutDescription,
-	execute as postgresqlMaintenanceUpdatePutExecute,
-} from './database/postgresql/maintenanceUpdatePut.operation';
-import {
 	description as postgresqlMetricGetDescription,
 	execute as postgresqlMetricGetExecute,
 } from './database/postgresql/metricGet.operation';
@@ -2100,10 +2026,6 @@ import {
 	description as postgresqlCertificateListGetDescription,
 	execute as postgresqlCertificateListGetExecute,
 } from './database/postgresql/certificateListGet.operation';
-import {
-	description as postgresqlCertificateCreatePostDescription,
-	execute as postgresqlCertificateCreatePostExecute,
-} from './database/postgresql/certificateCreatePost.operation';
 import {
 	description as postgresqlIntegrationListGetDescription,
 	execute as postgresqlIntegrationListGetExecute,

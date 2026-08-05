@@ -3,59 +3,68 @@ import type {
 	IDisplayOptions,
 	INodeExecutionData,
 	INodeProperties,
+	IDataObject
 } from 'n8n-workflow';
 import { ApiClient } from '../../../../shared/transport/ApiClient';
 
 export function description(displayOptions: IDisplayOptions): INodeProperties[] {
 	return [
-	{
-		displayName: 'Public Cloud Project',
-		name: 'publicCloudProjectId',
-		type: 'resourceLocator',
-		default: { mode: 'list', value: '' },
-		required: true,
-		description: 'The Public Cloud project ID (e.g. 12345678-1234-1234-1234-1234567890ab)',
-		modes: [
-			{
-				displayName: 'From List',
-				name: 'list',
-				type: 'list',
-				typeOptions: { searchListMethod: 'getPublicCloudProjects' },
-			},
-			{
-				displayName: 'By ID',
-				name: 'name',
-				type: 'string',
-				placeholder: '12345678-1234-1234-1234-1234567890ab',
-			},
-		],
-	},
-	{
-		displayName: 'Service Name',
-		name: 'serviceName',
-		type: 'string',
-		default: '',
-		required: true,
-		description: 'The database service name',
-		displayOptions,
-	}
+		{
+			displayName: 'Public Cloud Project',
+			name: 'publicCloudProjectId',
+			type: 'resourceLocator',
+			default: { mode: 'list', value: '' },
+			required: true,
+			description: 'The Public Cloud project ID (e.g. 12345678-1234-1234-1234-1234567890ab)',
+			modes: [
+				{
+					displayName: 'From List',
+					name: 'list',
+					type: 'list',
+					typeOptions: { searchListMethod: 'getPublicCloudProjects' },
+				},
+				{
+					displayName: 'By ID',
+					name: 'name',
+					type: 'string',
+					placeholder: '12345678-1234-1234-1234-1234567890ab',
+				},
+			],
+			displayOptions,
+		},
+		{
+			displayName: 'Cluster ID',
+			name: 'clusterId',
+			type: 'string',
+			default: '',
+			required: true,
+			description: 'The PostgreSQL cluster ID',
+			displayOptions,
+		},
 	];
 }
 
 /**
- * Executes the List Postgresql Log Subscriptions operation.
+ * Executes the List PostgreSQL Log Subscriptions operation.
  *
  * HTTP method: GET
- * Endpoint: /publicCloud/project/{projectId}/cloud/database/postgresql/serviceName
+ * Endpoint: /cloud/project/{serviceName}/database/postgresql/{clusterId}/log/subscription
  */
 export async function execute(this: IExecuteFunctions): Promise<INodeExecutionData[]> {
 	const client = new ApiClient(this);
-	const projectId = this.getNodeParameter('publicCloudProjectId', 0, '', {
+	const serviceName = this.getNodeParameter('publicCloudProjectId', 0, '', {
 		extractValue: true,
 	}) as string;
-	const serviceName = this.getNodeParameter('serviceName', 0) as string;
+	const clusterId = this.getNodeParameter('clusterId', 0) as string;
 
-	const data = (await client.httpGet(`/publicCloud/project/${projectId}/cloud/database/postgresql/${serviceName}`)) as unknown[];
+	const kind = this.getNodeParameter('kind', 0, 0) as number | undefined;
+	const qs: IDataObject = {
+		kind: kind,
+	};	const data = (await client.httpGet(`/cloud/project/${serviceName}/database/postgresql/${clusterId}/log/subscription`, qs)) as unknown[];
+
+	if (!Array.isArray(data)) {
+		return this.helpers.returnJsonArray([data]);
+	}
 
 	return this.helpers.returnJsonArray(data.map((item) => item as INodeExecutionData));
 }
