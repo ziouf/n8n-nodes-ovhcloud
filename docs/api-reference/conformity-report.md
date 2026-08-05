@@ -1,16 +1,16 @@
 # OVHcloud API Conformity Report
 
-> Généré par `scripts/audit-conformity.js` le 2026-08-05T15:11:33.427Z. Document généré automatiquement — ne pas éditer à la main.
+> Généré par `scripts/audit-conformity.js` le 2026-08-05T19:43:27.677Z. Document généré automatiquement — ne pas éditer à la main.
 
 Ce rapport vérifie que les opérations des nodes respectent leur spec (méthode, chemin, paramètres path requis, query requis, champs body requis).
 
 ## Résumé
 
-- **Opérations auditées** : 5495
-- **Conformes** : 3214
-- **Non conformes** : 2281
-- **Sans correspondance spec** (informatif) : 2008
-- **Taux de conformité** : **58.5%**
+- **Opérations auditées** : 5581
+- **Conformes** : 3310
+- **Non conformes** : 2271
+- **Sans correspondance spec** (informatif) : 1995
+- **Taux de conformité** : **59.3%**
 
 ## Conformité par spec
 
@@ -53,8 +53,8 @@ Triée par taux de non-conformité décroissant.
 | webhosting (v2) | 246 | 12 | 3 | 4.9% |
 | domain (v1) | 119 | 109 | 1 | 91.6% |
 | telephony (v1) | 644 | 602 | 5 | 93.5% |
-| publicCloud (v2) | 740 | 26 | 4 | 3.5% |
-| cloud (v1) | 740 | 163 | 1 | 22% |
+| cloud (v1) | 783 | 259 | 4 | 33.1% |
+| publicCloud (v2) | 783 | 26 | 4 | 3.3% |
 | price (v1) | 581 | 581 | 0 | 100% |
 | sms (v1) | 126 | 124 | 0 | 98.4% |
 | domain (v2) | 119 | 9 | 0 | 7.6% |
@@ -106,11 +106,14 @@ Chaque ligne correspond à un appel HTTP non conforme, groupée par spec :
 | POST | `/cdn/dedicated/{x}/ssl` | OvhCloudCdn/resources/ssl/sslCreatePost.operation.ts | missing required body field 'name' |
 | POST | `/cdn/dedicated/{x}/ssl/update` | OvhCloudCdn/resources/ssl/sslUpdatePost.operation.ts | missing required body field 'certificate'; missing required body field 'key' |
 
-### cloud — 1 non-conformité
+### cloud — 4 non-conformités
 
 | Méthode | Chemin | Fichier | Problèmes |
 |--------|--------|---------|-----------|
 | POST | `/cloud/project/{x}/ai/data/region/{x}/alias` | OvhCloudPublicCloudAi/dataStore/dataCreatePost.operation.ts | missing required body field 'alias'; missing required body field 'credentials'; missing required body field 'endpoint'; missing required body field 'owner'; missing required body field 'type' |
+| POST | `/cloud/project/{x}/database/mysql/{x}/log/url` | OvhCloudPublicCloud/database/mysql/logUrlCreatePost.operation.ts | missing required body field 'kind' |
+| POST | `/cloud/project/{x}/database/mysql/{x}/migration` | OvhCloudPublicCloud/database/mysql/migrationCreatePost.operation.ts | missing required body field 'sourcePort'; missing required body field 'sourceSsl' |
+| POST | `/cloud/project/{x}/database/mysql/{x}/migration/check` | OvhCloudPublicCloud/database/mysql/migrationCheckPost.operation.ts | missing required body field 'sourcePort'; missing required body field 'sourceSsl' |
 
 ### connectivity — 18 non-conformités
 
@@ -549,6 +552,14 @@ Ces opérations appellent un chemin qui ne correspond à aucun endpoint de la sp
 
 | Spec (version) | Méthode | Chemin | Fichier |
 |----------------|--------|--------|---------|
+| cloud (v1) | POST | `/cloud/project/{x}/database/mysql/{x}/backup` | OvhCloudPublicCloud/database/mysql/backupCreatePost.operation.ts |
+| cloud (v1) | DELETE | `/cloud/project/{x}/database/mysql/{x}/backup/{x}` | OvhCloudPublicCloud/database/mysql/backupDeleteDelete.operation.ts |
+| cloud (v1) | POST | `/cloud/project/{x}/database/mysql/{x}/certificates` | OvhCloudPublicCloud/database/mysql/certificateCreatePost.operation.ts |
+| cloud (v1) | PUT | `/cloud/project/{x}/database/mysql/{x}/maintenance` | OvhCloudPublicCloud/database/mysql/maintenanceUpdatePut.operation.ts |
+| cloud (v1) | POST | `/cloud/project/{x}/database/mysql/{x}/node` | OvhCloudPublicCloud/database/mysql/nodeCreatePost.operation.ts |
+| cloud (v1) | DELETE | `/cloud/project/{x}/database/mysql/{x}/node/{x}` | OvhCloudPublicCloud/database/mysql/nodeDeleteDelete.operation.ts |
+| cloud (v1) | PUT | `/cloud/project/{x}/database/mysql/{x}/node/{x}` | OvhCloudPublicCloud/database/mysql/nodeUpdatePut.operation.ts |
+| cloud (v1) | PUT | `/cloud/project/{x}/database/mysql/{x}/user/{x}` | OvhCloudPublicCloud/database/mysql/userUpdatePut.operation.ts |
 | cloud (v1) | GET | `/publicCloud/project` | OvhCloudPublicCloud/project/listGet.operation.ts |
 | cloud (v1) | GET | `/publicCloud/project` | OvhCloudPublicCloud/project/listGetV2.operation.ts |
 | cloud (v1) | GET | `/publicCloud/project/{x}` | OvhCloudPublicCloud/project/getDetailGet.operation.ts |
@@ -829,38 +840,6 @@ Ces opérations appellent un chemin qui ne correspond à aucun endpoint de la sp
 | cloud (v1) | DELETE | `/publicCloud/project/{x}/cloud/database/mongodb/{x}/user/{x}` | OvhCloudPublicCloud/database/mongodb/userDeleteDelete.operation.ts |
 | cloud (v1) | GET | `/publicCloud/project/{x}/cloud/database/mongodb/{x}/user/{x}` | OvhCloudPublicCloud/database/mongodb/userGetGet.operation.ts |
 | cloud (v1) | PUT | `/publicCloud/project/{x}/cloud/database/mongodb/{x}/user/{x}` | OvhCloudPublicCloud/database/mongodb/userUpdatePut.operation.ts |
-| cloud (v1) | GET | `/publicCloud/project/{x}/cloud/database/mysql` | OvhCloudPublicCloud/database/mysql/clusterListGet.operation.ts |
-| cloud (v1) | POST | `/publicCloud/project/{x}/cloud/database/mysql` | OvhCloudPublicCloud/database/mysql/clusterCreatePost.operation.ts |
-| cloud (v1) | DELETE | `/publicCloud/project/{x}/cloud/database/mysql/{x}` | OvhCloudPublicCloud/database/mysql/clusterDeleteDelete.operation.ts |
-| cloud (v1) | GET | `/publicCloud/project/{x}/cloud/database/mysql/{x}` | OvhCloudPublicCloud/database/mysql/backupListGet.operation.ts |
-| cloud (v1) | GET | `/publicCloud/project/{x}/cloud/database/mysql/{x}` | OvhCloudPublicCloud/database/mysql/certificateListGet.operation.ts |
-| cloud (v1) | GET | `/publicCloud/project/{x}/cloud/database/mysql/{x}` | OvhCloudPublicCloud/database/mysql/clusterGetGet.operation.ts |
-| cloud (v1) | GET | `/publicCloud/project/{x}/cloud/database/mysql/{x}` | OvhCloudPublicCloud/database/mysql/integrationListGet.operation.ts |
-| cloud (v1) | GET | `/publicCloud/project/{x}/cloud/database/mysql/{x}` | OvhCloudPublicCloud/database/mysql/ipRestrictionListGet.operation.ts |
-| cloud (v1) | GET | `/publicCloud/project/{x}/cloud/database/mysql/{x}` | OvhCloudPublicCloud/database/mysql/logSubscriptionListGet.operation.ts |
-| cloud (v1) | GET | `/publicCloud/project/{x}/cloud/database/mysql/{x}` | OvhCloudPublicCloud/database/mysql/maintenanceGet.operation.ts |
-| cloud (v1) | GET | `/publicCloud/project/{x}/cloud/database/mysql/{x}` | OvhCloudPublicCloud/database/mysql/metricGet.operation.ts |
-| cloud (v1) | GET | `/publicCloud/project/{x}/cloud/database/mysql/{x}` | OvhCloudPublicCloud/database/mysql/nodeListGet.operation.ts |
-| cloud (v1) | GET | `/publicCloud/project/{x}/cloud/database/mysql/{x}` | OvhCloudPublicCloud/database/mysql/prometheusGet.operation.ts |
-| cloud (v1) | GET | `/publicCloud/project/{x}/cloud/database/mysql/{x}` | OvhCloudPublicCloud/database/mysql/userListGet.operation.ts |
-| cloud (v1) | POST | `/publicCloud/project/{x}/cloud/database/mysql/{x}` | OvhCloudPublicCloud/database/mysql/backupCreatePost.operation.ts |
-| cloud (v1) | POST | `/publicCloud/project/{x}/cloud/database/mysql/{x}` | OvhCloudPublicCloud/database/mysql/certificateCreatePost.operation.ts |
-| cloud (v1) | POST | `/publicCloud/project/{x}/cloud/database/mysql/{x}` | OvhCloudPublicCloud/database/mysql/integrationCreatePost.operation.ts |
-| cloud (v1) | POST | `/publicCloud/project/{x}/cloud/database/mysql/{x}` | OvhCloudPublicCloud/database/mysql/ipRestrictionCreatePost.operation.ts |
-| cloud (v1) | POST | `/publicCloud/project/{x}/cloud/database/mysql/{x}` | OvhCloudPublicCloud/database/mysql/logSubscriptionCreatePost.operation.ts |
-| cloud (v1) | POST | `/publicCloud/project/{x}/cloud/database/mysql/{x}` | OvhCloudPublicCloud/database/mysql/nodeCreatePost.operation.ts |
-| cloud (v1) | POST | `/publicCloud/project/{x}/cloud/database/mysql/{x}` | OvhCloudPublicCloud/database/mysql/userCreatePost.operation.ts |
-| cloud (v1) | PUT | `/publicCloud/project/{x}/cloud/database/mysql/{x}` | OvhCloudPublicCloud/database/mysql/clusterUpdatePut.operation.ts |
-| cloud (v1) | PUT | `/publicCloud/project/{x}/cloud/database/mysql/{x}` | OvhCloudPublicCloud/database/mysql/maintenanceUpdatePut.operation.ts |
-| cloud (v1) | DELETE | `/publicCloud/project/{x}/cloud/database/mysql/{x}/backup/{x}` | OvhCloudPublicCloud/database/mysql/backupDeleteDelete.operation.ts |
-| cloud (v1) | GET | `/publicCloud/project/{x}/cloud/database/mysql/{x}/backup/{x}` | OvhCloudPublicCloud/database/mysql/backupGetGet.operation.ts |
-| cloud (v1) | GET | `/publicCloud/project/{x}/cloud/database/mysql/{x}/log/subscription/{x}` | OvhCloudPublicCloud/database/mysql/logSubscriptionGetGet.operation.ts |
-| cloud (v1) | DELETE | `/publicCloud/project/{x}/cloud/database/mysql/{x}/node/{x}` | OvhCloudPublicCloud/database/mysql/nodeDeleteDelete.operation.ts |
-| cloud (v1) | GET | `/publicCloud/project/{x}/cloud/database/mysql/{x}/node/{x}` | OvhCloudPublicCloud/database/mysql/nodeGetGet.operation.ts |
-| cloud (v1) | PUT | `/publicCloud/project/{x}/cloud/database/mysql/{x}/node/{x}` | OvhCloudPublicCloud/database/mysql/nodeUpdatePut.operation.ts |
-| cloud (v1) | DELETE | `/publicCloud/project/{x}/cloud/database/mysql/{x}/user/{x}` | OvhCloudPublicCloud/database/mysql/userDeleteDelete.operation.ts |
-| cloud (v1) | GET | `/publicCloud/project/{x}/cloud/database/mysql/{x}/user/{x}` | OvhCloudPublicCloud/database/mysql/userGetGet.operation.ts |
-| cloud (v1) | PUT | `/publicCloud/project/{x}/cloud/database/mysql/{x}/user/{x}` | OvhCloudPublicCloud/database/mysql/userUpdatePut.operation.ts |
 | cloud (v1) | GET | `/publicCloud/project/{x}/cloud/database/opensearch` | OvhCloudPublicCloud/database/opensearch/clusterListGet.operation.ts |
 | cloud (v1) | POST | `/publicCloud/project/{x}/cloud/database/opensearch` | OvhCloudPublicCloud/database/opensearch/clusterCreatePost.operation.ts |
 | cloud (v1) | DELETE | `/publicCloud/project/{x}/cloud/database/opensearch/{x}` | OvhCloudPublicCloud/database/opensearch/clusterDeleteDelete.operation.ts |
@@ -925,38 +904,6 @@ Ces opérations appellent un chemin qui ne correspond à aucun endpoint de la sp
 | cloud (v1) | DELETE | `/publicCloud/project/{x}/cloud/database/postgresql/{x}/user/{x}` | OvhCloudPublicCloud/database/postgresql/userDeleteDelete.operation.ts |
 | cloud (v1) | GET | `/publicCloud/project/{x}/cloud/database/postgresql/{x}/user/{x}` | OvhCloudPublicCloud/database/postgresql/userGetGet.operation.ts |
 | cloud (v1) | PUT | `/publicCloud/project/{x}/cloud/database/postgresql/{x}/user/{x}` | OvhCloudPublicCloud/database/postgresql/userUpdatePut.operation.ts |
-| cloud (v1) | GET | `/publicCloud/project/{x}/cloud/database/valkey` | OvhCloudPublicCloud/database/valkey/clusterListGet.operation.ts |
-| cloud (v1) | POST | `/publicCloud/project/{x}/cloud/database/valkey` | OvhCloudPublicCloud/database/valkey/clusterCreatePost.operation.ts |
-| cloud (v1) | DELETE | `/publicCloud/project/{x}/cloud/database/valkey/{x}` | OvhCloudPublicCloud/database/valkey/clusterDeleteDelete.operation.ts |
-| cloud (v1) | GET | `/publicCloud/project/{x}/cloud/database/valkey/{x}` | OvhCloudPublicCloud/database/valkey/backupListGet.operation.ts |
-| cloud (v1) | GET | `/publicCloud/project/{x}/cloud/database/valkey/{x}` | OvhCloudPublicCloud/database/valkey/certificateListGet.operation.ts |
-| cloud (v1) | GET | `/publicCloud/project/{x}/cloud/database/valkey/{x}` | OvhCloudPublicCloud/database/valkey/clusterGetGet.operation.ts |
-| cloud (v1) | GET | `/publicCloud/project/{x}/cloud/database/valkey/{x}` | OvhCloudPublicCloud/database/valkey/integrationListGet.operation.ts |
-| cloud (v1) | GET | `/publicCloud/project/{x}/cloud/database/valkey/{x}` | OvhCloudPublicCloud/database/valkey/ipRestrictionListGet.operation.ts |
-| cloud (v1) | GET | `/publicCloud/project/{x}/cloud/database/valkey/{x}` | OvhCloudPublicCloud/database/valkey/logSubscriptionListGet.operation.ts |
-| cloud (v1) | GET | `/publicCloud/project/{x}/cloud/database/valkey/{x}` | OvhCloudPublicCloud/database/valkey/maintenanceGet.operation.ts |
-| cloud (v1) | GET | `/publicCloud/project/{x}/cloud/database/valkey/{x}` | OvhCloudPublicCloud/database/valkey/metricGet.operation.ts |
-| cloud (v1) | GET | `/publicCloud/project/{x}/cloud/database/valkey/{x}` | OvhCloudPublicCloud/database/valkey/nodeListGet.operation.ts |
-| cloud (v1) | GET | `/publicCloud/project/{x}/cloud/database/valkey/{x}` | OvhCloudPublicCloud/database/valkey/prometheusGet.operation.ts |
-| cloud (v1) | GET | `/publicCloud/project/{x}/cloud/database/valkey/{x}` | OvhCloudPublicCloud/database/valkey/userListGet.operation.ts |
-| cloud (v1) | POST | `/publicCloud/project/{x}/cloud/database/valkey/{x}` | OvhCloudPublicCloud/database/valkey/backupCreatePost.operation.ts |
-| cloud (v1) | POST | `/publicCloud/project/{x}/cloud/database/valkey/{x}` | OvhCloudPublicCloud/database/valkey/certificateCreatePost.operation.ts |
-| cloud (v1) | POST | `/publicCloud/project/{x}/cloud/database/valkey/{x}` | OvhCloudPublicCloud/database/valkey/integrationCreatePost.operation.ts |
-| cloud (v1) | POST | `/publicCloud/project/{x}/cloud/database/valkey/{x}` | OvhCloudPublicCloud/database/valkey/ipRestrictionCreatePost.operation.ts |
-| cloud (v1) | POST | `/publicCloud/project/{x}/cloud/database/valkey/{x}` | OvhCloudPublicCloud/database/valkey/logSubscriptionCreatePost.operation.ts |
-| cloud (v1) | POST | `/publicCloud/project/{x}/cloud/database/valkey/{x}` | OvhCloudPublicCloud/database/valkey/nodeCreatePost.operation.ts |
-| cloud (v1) | POST | `/publicCloud/project/{x}/cloud/database/valkey/{x}` | OvhCloudPublicCloud/database/valkey/userCreatePost.operation.ts |
-| cloud (v1) | PUT | `/publicCloud/project/{x}/cloud/database/valkey/{x}` | OvhCloudPublicCloud/database/valkey/clusterUpdatePut.operation.ts |
-| cloud (v1) | PUT | `/publicCloud/project/{x}/cloud/database/valkey/{x}` | OvhCloudPublicCloud/database/valkey/maintenanceUpdatePut.operation.ts |
-| cloud (v1) | DELETE | `/publicCloud/project/{x}/cloud/database/valkey/{x}/backup/{x}` | OvhCloudPublicCloud/database/valkey/backupDeleteDelete.operation.ts |
-| cloud (v1) | GET | `/publicCloud/project/{x}/cloud/database/valkey/{x}/backup/{x}` | OvhCloudPublicCloud/database/valkey/backupGetGet.operation.ts |
-| cloud (v1) | GET | `/publicCloud/project/{x}/cloud/database/valkey/{x}/log/subscription/{x}` | OvhCloudPublicCloud/database/valkey/logSubscriptionGetGet.operation.ts |
-| cloud (v1) | DELETE | `/publicCloud/project/{x}/cloud/database/valkey/{x}/node/{x}` | OvhCloudPublicCloud/database/valkey/nodeDeleteDelete.operation.ts |
-| cloud (v1) | GET | `/publicCloud/project/{x}/cloud/database/valkey/{x}/node/{x}` | OvhCloudPublicCloud/database/valkey/nodeGetGet.operation.ts |
-| cloud (v1) | PUT | `/publicCloud/project/{x}/cloud/database/valkey/{x}/node/{x}` | OvhCloudPublicCloud/database/valkey/nodeUpdatePut.operation.ts |
-| cloud (v1) | DELETE | `/publicCloud/project/{x}/cloud/database/valkey/{x}/user/{x}` | OvhCloudPublicCloud/database/valkey/userDeleteDelete.operation.ts |
-| cloud (v1) | GET | `/publicCloud/project/{x}/cloud/database/valkey/{x}/user/{x}` | OvhCloudPublicCloud/database/valkey/userGetGet.operation.ts |
-| cloud (v1) | PUT | `/publicCloud/project/{x}/cloud/database/valkey/{x}/user/{x}` | OvhCloudPublicCloud/database/valkey/userUpdatePut.operation.ts |
 | cloud (v1) | POST | `/publicCloud/project/{x}/confirmTermination` | OvhCloudPublicCloud/confirmTermination/confirmTerminationPost.operation.ts |
 | cloud (v1) | GET | `/publicCloud/project/{x}/containerRegistry` | OvhCloudPublicCloud/containerRegistry/listGet.operation.ts |
 | cloud (v1) | POST | `/publicCloud/project/{x}/containerRegistry` | OvhCloudPublicCloud/containerRegistry/createPost.operation.ts |
@@ -1565,6 +1512,72 @@ Ces opérations appellent un chemin qui ne correspond à aucun endpoint de la sp
 | publicCloud (v2) | GET | `/cloud/project/{x}/database/grafana/{x}/user` | OvhCloudPublicCloud/database/grafana/userListGet.operation.ts |
 | publicCloud (v2) | GET | `/cloud/project/{x}/database/grafana/{x}/user/{x}` | OvhCloudPublicCloud/database/grafana/userGetGet.operation.ts |
 | publicCloud (v2) | POST | `/cloud/project/{x}/database/grafana/{x}/user/{x}/credentials/reset` | OvhCloudPublicCloud/database/grafana/userCredentialsResetPost.operation.ts |
+| publicCloud (v2) | GET | `/cloud/project/{x}/database/mysql` | OvhCloudPublicCloud/database/mysql/clusterListGet.operation.ts |
+| publicCloud (v2) | POST | `/cloud/project/{x}/database/mysql` | OvhCloudPublicCloud/database/mysql/clusterCreatePost.operation.ts |
+| publicCloud (v2) | DELETE | `/cloud/project/{x}/database/mysql/{x}` | OvhCloudPublicCloud/database/mysql/clusterDeleteDelete.operation.ts |
+| publicCloud (v2) | GET | `/cloud/project/{x}/database/mysql/{x}` | OvhCloudPublicCloud/database/mysql/clusterGetGet.operation.ts |
+| publicCloud (v2) | PUT | `/cloud/project/{x}/database/mysql/{x}` | OvhCloudPublicCloud/database/mysql/clusterUpdatePut.operation.ts |
+| publicCloud (v2) | GET | `/cloud/project/{x}/database/mysql/{x}/advancedConfiguration` | OvhCloudPublicCloud/database/mysql/advancedConfigurationGet.operation.ts |
+| publicCloud (v2) | PUT | `/cloud/project/{x}/database/mysql/{x}/advancedConfiguration` | OvhCloudPublicCloud/database/mysql/advancedConfigurationUpdatePut.operation.ts |
+| publicCloud (v2) | GET | `/cloud/project/{x}/database/mysql/{x}/backup` | OvhCloudPublicCloud/database/mysql/backupListGet.operation.ts |
+| publicCloud (v2) | POST | `/cloud/project/{x}/database/mysql/{x}/backup` | OvhCloudPublicCloud/database/mysql/backupCreatePost.operation.ts |
+| publicCloud (v2) | DELETE | `/cloud/project/{x}/database/mysql/{x}/backup/{x}` | OvhCloudPublicCloud/database/mysql/backupDeleteDelete.operation.ts |
+| publicCloud (v2) | GET | `/cloud/project/{x}/database/mysql/{x}/backup/{x}` | OvhCloudPublicCloud/database/mysql/backupGetGet.operation.ts |
+| publicCloud (v2) | GET | `/cloud/project/{x}/database/mysql/{x}/capabilities/advancedConfiguration` | OvhCloudPublicCloud/database/mysql/capabilitiesAdvancedConfigurationGet.operation.ts |
+| publicCloud (v2) | GET | `/cloud/project/{x}/database/mysql/{x}/capabilities/backupRegions` | OvhCloudPublicCloud/database/mysql/capabilitiesBackupRegionsGet.operation.ts |
+| publicCloud (v2) | GET | `/cloud/project/{x}/database/mysql/{x}/capabilities/integration` | OvhCloudPublicCloud/database/mysql/capabilitiesIntegrationGet.operation.ts |
+| publicCloud (v2) | GET | `/cloud/project/{x}/database/mysql/{x}/certificates` | OvhCloudPublicCloud/database/mysql/certificateListGet.operation.ts |
+| publicCloud (v2) | POST | `/cloud/project/{x}/database/mysql/{x}/certificates` | OvhCloudPublicCloud/database/mysql/certificateCreatePost.operation.ts |
+| publicCloud (v2) | GET | `/cloud/project/{x}/database/mysql/{x}/currentQueries` | OvhCloudPublicCloud/database/mysql/currentQueriesGet.operation.ts |
+| publicCloud (v2) | POST | `/cloud/project/{x}/database/mysql/{x}/currentQueries/cancel` | OvhCloudPublicCloud/database/mysql/currentQueriesCancelPost.operation.ts |
+| publicCloud (v2) | GET | `/cloud/project/{x}/database/mysql/{x}/database` | OvhCloudPublicCloud/database/mysql/databaseListGet.operation.ts |
+| publicCloud (v2) | POST | `/cloud/project/{x}/database/mysql/{x}/database` | OvhCloudPublicCloud/database/mysql/databaseCreatePost.operation.ts |
+| publicCloud (v2) | DELETE | `/cloud/project/{x}/database/mysql/{x}/database/{x}` | OvhCloudPublicCloud/database/mysql/databaseDeleteDelete.operation.ts |
+| publicCloud (v2) | GET | `/cloud/project/{x}/database/mysql/{x}/database/{x}` | OvhCloudPublicCloud/database/mysql/databaseGetGet.operation.ts |
+| publicCloud (v2) | POST | `/cloud/project/{x}/database/mysql/{x}/enableWrites` | OvhCloudPublicCloud/database/mysql/enableWritesPost.operation.ts |
+| publicCloud (v2) | GET | `/cloud/project/{x}/database/mysql/{x}/integration` | OvhCloudPublicCloud/database/mysql/integrationListGet.operation.ts |
+| publicCloud (v2) | POST | `/cloud/project/{x}/database/mysql/{x}/integration` | OvhCloudPublicCloud/database/mysql/integrationCreatePost.operation.ts |
+| publicCloud (v2) | DELETE | `/cloud/project/{x}/database/mysql/{x}/integration/{x}` | OvhCloudPublicCloud/database/mysql/integrationDeleteDelete.operation.ts |
+| publicCloud (v2) | GET | `/cloud/project/{x}/database/mysql/{x}/integration/{x}` | OvhCloudPublicCloud/database/mysql/integrationGetGet.operation.ts |
+| publicCloud (v2) | GET | `/cloud/project/{x}/database/mysql/{x}/ipRestriction` | OvhCloudPublicCloud/database/mysql/ipRestrictionListGet.operation.ts |
+| publicCloud (v2) | POST | `/cloud/project/{x}/database/mysql/{x}/ipRestriction` | OvhCloudPublicCloud/database/mysql/ipRestrictionCreatePost.operation.ts |
+| publicCloud (v2) | DELETE | `/cloud/project/{x}/database/mysql/{x}/ipRestriction/{x}` | OvhCloudPublicCloud/database/mysql/ipRestrictionDeleteDelete.operation.ts |
+| publicCloud (v2) | GET | `/cloud/project/{x}/database/mysql/{x}/ipRestriction/{x}` | OvhCloudPublicCloud/database/mysql/ipRestrictionGetGet.operation.ts |
+| publicCloud (v2) | PUT | `/cloud/project/{x}/database/mysql/{x}/ipRestriction/{x}` | OvhCloudPublicCloud/database/mysql/ipRestrictionUpdatePut.operation.ts |
+| publicCloud (v2) | GET | `/cloud/project/{x}/database/mysql/{x}/log/kind` | OvhCloudPublicCloud/database/mysql/logKindListGet.operation.ts |
+| publicCloud (v2) | GET | `/cloud/project/{x}/database/mysql/{x}/log/kind/{x}` | OvhCloudPublicCloud/database/mysql/logKindGetGet.operation.ts |
+| publicCloud (v2) | GET | `/cloud/project/{x}/database/mysql/{x}/log/subscription` | OvhCloudPublicCloud/database/mysql/logSubscriptionListGet.operation.ts |
+| publicCloud (v2) | POST | `/cloud/project/{x}/database/mysql/{x}/log/subscription` | OvhCloudPublicCloud/database/mysql/logSubscriptionCreatePost.operation.ts |
+| publicCloud (v2) | DELETE | `/cloud/project/{x}/database/mysql/{x}/log/subscription/{x}` | OvhCloudPublicCloud/database/mysql/logSubscriptionDeleteDelete.operation.ts |
+| publicCloud (v2) | GET | `/cloud/project/{x}/database/mysql/{x}/log/subscription/{x}` | OvhCloudPublicCloud/database/mysql/logSubscriptionGetGet.operation.ts |
+| publicCloud (v2) | POST | `/cloud/project/{x}/database/mysql/{x}/log/url` | OvhCloudPublicCloud/database/mysql/logUrlCreatePost.operation.ts |
+| publicCloud (v2) | GET | `/cloud/project/{x}/database/mysql/{x}/logs` | OvhCloudPublicCloud/database/mysql/logsGet.operation.ts |
+| publicCloud (v2) | GET | `/cloud/project/{x}/database/mysql/{x}/maintenance` | OvhCloudPublicCloud/database/mysql/maintenanceGet.operation.ts |
+| publicCloud (v2) | PUT | `/cloud/project/{x}/database/mysql/{x}/maintenance` | OvhCloudPublicCloud/database/mysql/maintenanceUpdatePut.operation.ts |
+| publicCloud (v2) | GET | `/cloud/project/{x}/database/mysql/{x}/maintenance/{x}` | OvhCloudPublicCloud/database/mysql/maintenanceGetGet.operation.ts |
+| publicCloud (v2) | POST | `/cloud/project/{x}/database/mysql/{x}/maintenance/{x}/apply` | OvhCloudPublicCloud/database/mysql/maintenanceApplyPost.operation.ts |
+| publicCloud (v2) | GET | `/cloud/project/{x}/database/mysql/{x}/metric` | OvhCloudPublicCloud/database/mysql/metricGet.operation.ts |
+| publicCloud (v2) | GET | `/cloud/project/{x}/database/mysql/{x}/metric/{x}` | OvhCloudPublicCloud/database/mysql/metricGetGet.operation.ts |
+| publicCloud (v2) | GET | `/cloud/project/{x}/database/mysql/{x}/migration` | OvhCloudPublicCloud/database/mysql/migrationListGet.operation.ts |
+| publicCloud (v2) | POST | `/cloud/project/{x}/database/mysql/{x}/migration` | OvhCloudPublicCloud/database/mysql/migrationCreatePost.operation.ts |
+| publicCloud (v2) | GET | `/cloud/project/{x}/database/mysql/{x}/migration/check` | OvhCloudPublicCloud/database/mysql/migrationCheckGet.operation.ts |
+| publicCloud (v2) | POST | `/cloud/project/{x}/database/mysql/{x}/migration/check` | OvhCloudPublicCloud/database/mysql/migrationCheckPost.operation.ts |
+| publicCloud (v2) | POST | `/cloud/project/{x}/database/mysql/{x}/migration/stop` | OvhCloudPublicCloud/database/mysql/migrationStopPost.operation.ts |
+| publicCloud (v2) | GET | `/cloud/project/{x}/database/mysql/{x}/node` | OvhCloudPublicCloud/database/mysql/nodeListGet.operation.ts |
+| publicCloud (v2) | POST | `/cloud/project/{x}/database/mysql/{x}/node` | OvhCloudPublicCloud/database/mysql/nodeCreatePost.operation.ts |
+| publicCloud (v2) | DELETE | `/cloud/project/{x}/database/mysql/{x}/node/{x}` | OvhCloudPublicCloud/database/mysql/nodeDeleteDelete.operation.ts |
+| publicCloud (v2) | GET | `/cloud/project/{x}/database/mysql/{x}/node/{x}` | OvhCloudPublicCloud/database/mysql/nodeGetGet.operation.ts |
+| publicCloud (v2) | PUT | `/cloud/project/{x}/database/mysql/{x}/node/{x}` | OvhCloudPublicCloud/database/mysql/nodeUpdatePut.operation.ts |
+| publicCloud (v2) | GET | `/cloud/project/{x}/database/mysql/{x}/prometheus` | OvhCloudPublicCloud/database/mysql/prometheusGet.operation.ts |
+| publicCloud (v2) | POST | `/cloud/project/{x}/database/mysql/{x}/prometheus/credentials/reset` | OvhCloudPublicCloud/database/mysql/prometheusCredentialsResetPost.operation.ts |
+| publicCloud (v2) | GET | `/cloud/project/{x}/database/mysql/{x}/queryStatistics` | OvhCloudPublicCloud/database/mysql/queryStatisticsGet.operation.ts |
+| publicCloud (v2) | POST | `/cloud/project/{x}/database/mysql/{x}/queryStatistics/reset` | OvhCloudPublicCloud/database/mysql/queryStatisticsResetPost.operation.ts |
+| publicCloud (v2) | GET | `/cloud/project/{x}/database/mysql/{x}/user` | OvhCloudPublicCloud/database/mysql/userListGet.operation.ts |
+| publicCloud (v2) | POST | `/cloud/project/{x}/database/mysql/{x}/user` | OvhCloudPublicCloud/database/mysql/userCreatePost.operation.ts |
+| publicCloud (v2) | DELETE | `/cloud/project/{x}/database/mysql/{x}/user/{x}` | OvhCloudPublicCloud/database/mysql/userDeleteDelete.operation.ts |
+| publicCloud (v2) | GET | `/cloud/project/{x}/database/mysql/{x}/user/{x}` | OvhCloudPublicCloud/database/mysql/userGetGet.operation.ts |
+| publicCloud (v2) | PUT | `/cloud/project/{x}/database/mysql/{x}/user/{x}` | OvhCloudPublicCloud/database/mysql/userUpdatePut.operation.ts |
+| publicCloud (v2) | POST | `/cloud/project/{x}/database/mysql/{x}/user/{x}/credentials/reset` | OvhCloudPublicCloud/database/mysql/userCredentialsResetPost.operation.ts |
 | publicCloud (v2) | GET | `/cloud/project/{x}/database/redis` | OvhCloudPublicCloud/database/redis/clusterListGet.operation.ts |
 | publicCloud (v2) | POST | `/cloud/project/{x}/database/redis` | OvhCloudPublicCloud/database/redis/clusterCreatePost.operation.ts |
 | publicCloud (v2) | DELETE | `/cloud/project/{x}/database/redis/{x}` | OvhCloudPublicCloud/database/redis/clusterDeleteDelete.operation.ts |
@@ -1610,6 +1623,47 @@ Ces opérations appellent un chemin qui ne correspond à aucun endpoint de la sp
 | publicCloud (v2) | GET | `/cloud/project/{x}/database/redis/{x}/user/{x}` | OvhCloudPublicCloud/database/redis/userGetGet.operation.ts |
 | publicCloud (v2) | PUT | `/cloud/project/{x}/database/redis/{x}/user/{x}` | OvhCloudPublicCloud/database/redis/userUpdatePut.operation.ts |
 | publicCloud (v2) | POST | `/cloud/project/{x}/database/redis/{x}/user/{x}/credentials/reset` | OvhCloudPublicCloud/database/redis/userCredentialsResetPost.operation.ts |
+| publicCloud (v2) | GET | `/cloud/project/{x}/database/valkey` | OvhCloudPublicCloud/database/valkey/clusterListGet.operation.ts |
+| publicCloud (v2) | POST | `/cloud/project/{x}/database/valkey` | OvhCloudPublicCloud/database/valkey/clusterCreatePost.operation.ts |
+| publicCloud (v2) | DELETE | `/cloud/project/{x}/database/valkey/{x}` | OvhCloudPublicCloud/database/valkey/clusterDeleteDelete.operation.ts |
+| publicCloud (v2) | GET | `/cloud/project/{x}/database/valkey/{x}` | OvhCloudPublicCloud/database/valkey/clusterGetGet.operation.ts |
+| publicCloud (v2) | PUT | `/cloud/project/{x}/database/valkey/{x}` | OvhCloudPublicCloud/database/valkey/clusterUpdatePut.operation.ts |
+| publicCloud (v2) | GET | `/cloud/project/{x}/database/valkey/{x}/advancedConfiguration` | OvhCloudPublicCloud/database/valkey/advancedConfigurationGet.operation.ts |
+| publicCloud (v2) | PUT | `/cloud/project/{x}/database/valkey/{x}/advancedConfiguration` | OvhCloudPublicCloud/database/valkey/advancedConfigurationUpdatePut.operation.ts |
+| publicCloud (v2) | GET | `/cloud/project/{x}/database/valkey/{x}/backup` | OvhCloudPublicCloud/database/valkey/backupListGet.operation.ts |
+| publicCloud (v2) | GET | `/cloud/project/{x}/database/valkey/{x}/backup/{x}` | OvhCloudPublicCloud/database/valkey/backupGetGet.operation.ts |
+| publicCloud (v2) | GET | `/cloud/project/{x}/database/valkey/{x}/capabilities/advancedConfiguration` | OvhCloudPublicCloud/database/valkey/capabilitiesAdvancedConfigurationGet.operation.ts |
+| publicCloud (v2) | GET | `/cloud/project/{x}/database/valkey/{x}/capabilities/backupRegions` | OvhCloudPublicCloud/database/valkey/capabilitiesBackupRegionsGet.operation.ts |
+| publicCloud (v2) | GET | `/cloud/project/{x}/database/valkey/{x}/capabilities/categories` | OvhCloudPublicCloud/database/valkey/capabilitiesCategoriesGet.operation.ts |
+| publicCloud (v2) | GET | `/cloud/project/{x}/database/valkey/{x}/capabilities/commands` | OvhCloudPublicCloud/database/valkey/capabilitiesCommandsGet.operation.ts |
+| publicCloud (v2) | GET | `/cloud/project/{x}/database/valkey/{x}/capabilities/integration` | OvhCloudPublicCloud/database/valkey/capabilitiesIntegrationGet.operation.ts |
+| publicCloud (v2) | GET | `/cloud/project/{x}/database/valkey/{x}/integration` | OvhCloudPublicCloud/database/valkey/integrationListGet.operation.ts |
+| publicCloud (v2) | POST | `/cloud/project/{x}/database/valkey/{x}/integration` | OvhCloudPublicCloud/database/valkey/integrationCreatePost.operation.ts |
+| publicCloud (v2) | DELETE | `/cloud/project/{x}/database/valkey/{x}/integration/{x}` | OvhCloudPublicCloud/database/valkey/integrationDeleteDelete.operation.ts |
+| publicCloud (v2) | GET | `/cloud/project/{x}/database/valkey/{x}/integration/{x}` | OvhCloudPublicCloud/database/valkey/integrationGetGet.operation.ts |
+| publicCloud (v2) | GET | `/cloud/project/{x}/database/valkey/{x}/log/kind` | OvhCloudPublicCloud/database/valkey/logKindListGet.operation.ts |
+| publicCloud (v2) | GET | `/cloud/project/{x}/database/valkey/{x}/log/kind/{x}` | OvhCloudPublicCloud/database/valkey/logKindGet.operation.ts |
+| publicCloud (v2) | GET | `/cloud/project/{x}/database/valkey/{x}/log/subscription` | OvhCloudPublicCloud/database/valkey/logSubscriptionListGet.operation.ts |
+| publicCloud (v2) | POST | `/cloud/project/{x}/database/valkey/{x}/log/subscription` | OvhCloudPublicCloud/database/valkey/logSubscriptionCreatePost.operation.ts |
+| publicCloud (v2) | DELETE | `/cloud/project/{x}/database/valkey/{x}/log/subscription/{x}` | OvhCloudPublicCloud/database/valkey/logSubscriptionDeleteDelete.operation.ts |
+| publicCloud (v2) | GET | `/cloud/project/{x}/database/valkey/{x}/log/subscription/{x}` | OvhCloudPublicCloud/database/valkey/logSubscriptionGetGet.operation.ts |
+| publicCloud (v2) | POST | `/cloud/project/{x}/database/valkey/{x}/log/url` | OvhCloudPublicCloud/database/valkey/logUrlCreatePost.operation.ts |
+| publicCloud (v2) | GET | `/cloud/project/{x}/database/valkey/{x}/logs` | OvhCloudPublicCloud/database/valkey/logsGet.operation.ts |
+| publicCloud (v2) | GET | `/cloud/project/{x}/database/valkey/{x}/maintenance` | OvhCloudPublicCloud/database/valkey/maintenanceListGet.operation.ts |
+| publicCloud (v2) | GET | `/cloud/project/{x}/database/valkey/{x}/maintenance/{x}` | OvhCloudPublicCloud/database/valkey/maintenanceGet.operation.ts |
+| publicCloud (v2) | POST | `/cloud/project/{x}/database/valkey/{x}/maintenance/{x}/apply` | OvhCloudPublicCloud/database/valkey/maintenanceApplyPost.operation.ts |
+| publicCloud (v2) | GET | `/cloud/project/{x}/database/valkey/{x}/metric` | OvhCloudPublicCloud/database/valkey/metricListGet.operation.ts |
+| publicCloud (v2) | GET | `/cloud/project/{x}/database/valkey/{x}/metric/{x}` | OvhCloudPublicCloud/database/valkey/metricGet.operation.ts |
+| publicCloud (v2) | GET | `/cloud/project/{x}/database/valkey/{x}/node` | OvhCloudPublicCloud/database/valkey/nodeListGet.operation.ts |
+| publicCloud (v2) | GET | `/cloud/project/{x}/database/valkey/{x}/node/{x}` | OvhCloudPublicCloud/database/valkey/nodeGetGet.operation.ts |
+| publicCloud (v2) | GET | `/cloud/project/{x}/database/valkey/{x}/prometheus` | OvhCloudPublicCloud/database/valkey/prometheusGet.operation.ts |
+| publicCloud (v2) | POST | `/cloud/project/{x}/database/valkey/{x}/prometheus/credentials/reset` | OvhCloudPublicCloud/database/valkey/prometheusCredentialsResetPost.operation.ts |
+| publicCloud (v2) | GET | `/cloud/project/{x}/database/valkey/{x}/user` | OvhCloudPublicCloud/database/valkey/userListGet.operation.ts |
+| publicCloud (v2) | POST | `/cloud/project/{x}/database/valkey/{x}/user` | OvhCloudPublicCloud/database/valkey/userCreatePost.operation.ts |
+| publicCloud (v2) | DELETE | `/cloud/project/{x}/database/valkey/{x}/user/{x}` | OvhCloudPublicCloud/database/valkey/userDeleteDelete.operation.ts |
+| publicCloud (v2) | GET | `/cloud/project/{x}/database/valkey/{x}/user/{x}` | OvhCloudPublicCloud/database/valkey/userGetGet.operation.ts |
+| publicCloud (v2) | PUT | `/cloud/project/{x}/database/valkey/{x}/user/{x}` | OvhCloudPublicCloud/database/valkey/userUpdatePut.operation.ts |
+| publicCloud (v2) | POST | `/cloud/project/{x}/database/valkey/{x}/user/{x}/credentials/reset` | OvhCloudPublicCloud/database/valkey/userCredentialsResetPost.operation.ts |
 | publicCloud (v2) | DELETE | `/cloud/project/{x}/instance/{x}` | OvhCloudPublicCloud/instance/instanceDeleteDelete.operation.ts |
 | publicCloud (v2) | GET | `/cloud/project/{x}/instance/{x}` | OvhCloudPublicCloud/instance/instanceGetGet.operation.ts |
 | publicCloud (v2) | PUT | `/cloud/project/{x}/instance/{x}` | OvhCloudPublicCloud/instance/instanceUpdatePut.operation.ts |
@@ -1965,38 +2019,6 @@ Ces opérations appellent un chemin qui ne correspond à aucun endpoint de la sp
 | publicCloud (v2) | DELETE | `/publicCloud/project/{x}/cloud/database/mongodb/{x}/user/{x}` | OvhCloudPublicCloud/database/mongodb/userDeleteDelete.operation.ts |
 | publicCloud (v2) | GET | `/publicCloud/project/{x}/cloud/database/mongodb/{x}/user/{x}` | OvhCloudPublicCloud/database/mongodb/userGetGet.operation.ts |
 | publicCloud (v2) | PUT | `/publicCloud/project/{x}/cloud/database/mongodb/{x}/user/{x}` | OvhCloudPublicCloud/database/mongodb/userUpdatePut.operation.ts |
-| publicCloud (v2) | GET | `/publicCloud/project/{x}/cloud/database/mysql` | OvhCloudPublicCloud/database/mysql/clusterListGet.operation.ts |
-| publicCloud (v2) | POST | `/publicCloud/project/{x}/cloud/database/mysql` | OvhCloudPublicCloud/database/mysql/clusterCreatePost.operation.ts |
-| publicCloud (v2) | DELETE | `/publicCloud/project/{x}/cloud/database/mysql/{x}` | OvhCloudPublicCloud/database/mysql/clusterDeleteDelete.operation.ts |
-| publicCloud (v2) | GET | `/publicCloud/project/{x}/cloud/database/mysql/{x}` | OvhCloudPublicCloud/database/mysql/backupListGet.operation.ts |
-| publicCloud (v2) | GET | `/publicCloud/project/{x}/cloud/database/mysql/{x}` | OvhCloudPublicCloud/database/mysql/certificateListGet.operation.ts |
-| publicCloud (v2) | GET | `/publicCloud/project/{x}/cloud/database/mysql/{x}` | OvhCloudPublicCloud/database/mysql/clusterGetGet.operation.ts |
-| publicCloud (v2) | GET | `/publicCloud/project/{x}/cloud/database/mysql/{x}` | OvhCloudPublicCloud/database/mysql/integrationListGet.operation.ts |
-| publicCloud (v2) | GET | `/publicCloud/project/{x}/cloud/database/mysql/{x}` | OvhCloudPublicCloud/database/mysql/ipRestrictionListGet.operation.ts |
-| publicCloud (v2) | GET | `/publicCloud/project/{x}/cloud/database/mysql/{x}` | OvhCloudPublicCloud/database/mysql/logSubscriptionListGet.operation.ts |
-| publicCloud (v2) | GET | `/publicCloud/project/{x}/cloud/database/mysql/{x}` | OvhCloudPublicCloud/database/mysql/maintenanceGet.operation.ts |
-| publicCloud (v2) | GET | `/publicCloud/project/{x}/cloud/database/mysql/{x}` | OvhCloudPublicCloud/database/mysql/metricGet.operation.ts |
-| publicCloud (v2) | GET | `/publicCloud/project/{x}/cloud/database/mysql/{x}` | OvhCloudPublicCloud/database/mysql/nodeListGet.operation.ts |
-| publicCloud (v2) | GET | `/publicCloud/project/{x}/cloud/database/mysql/{x}` | OvhCloudPublicCloud/database/mysql/prometheusGet.operation.ts |
-| publicCloud (v2) | GET | `/publicCloud/project/{x}/cloud/database/mysql/{x}` | OvhCloudPublicCloud/database/mysql/userListGet.operation.ts |
-| publicCloud (v2) | POST | `/publicCloud/project/{x}/cloud/database/mysql/{x}` | OvhCloudPublicCloud/database/mysql/backupCreatePost.operation.ts |
-| publicCloud (v2) | POST | `/publicCloud/project/{x}/cloud/database/mysql/{x}` | OvhCloudPublicCloud/database/mysql/certificateCreatePost.operation.ts |
-| publicCloud (v2) | POST | `/publicCloud/project/{x}/cloud/database/mysql/{x}` | OvhCloudPublicCloud/database/mysql/integrationCreatePost.operation.ts |
-| publicCloud (v2) | POST | `/publicCloud/project/{x}/cloud/database/mysql/{x}` | OvhCloudPublicCloud/database/mysql/ipRestrictionCreatePost.operation.ts |
-| publicCloud (v2) | POST | `/publicCloud/project/{x}/cloud/database/mysql/{x}` | OvhCloudPublicCloud/database/mysql/logSubscriptionCreatePost.operation.ts |
-| publicCloud (v2) | POST | `/publicCloud/project/{x}/cloud/database/mysql/{x}` | OvhCloudPublicCloud/database/mysql/nodeCreatePost.operation.ts |
-| publicCloud (v2) | POST | `/publicCloud/project/{x}/cloud/database/mysql/{x}` | OvhCloudPublicCloud/database/mysql/userCreatePost.operation.ts |
-| publicCloud (v2) | PUT | `/publicCloud/project/{x}/cloud/database/mysql/{x}` | OvhCloudPublicCloud/database/mysql/clusterUpdatePut.operation.ts |
-| publicCloud (v2) | PUT | `/publicCloud/project/{x}/cloud/database/mysql/{x}` | OvhCloudPublicCloud/database/mysql/maintenanceUpdatePut.operation.ts |
-| publicCloud (v2) | DELETE | `/publicCloud/project/{x}/cloud/database/mysql/{x}/backup/{x}` | OvhCloudPublicCloud/database/mysql/backupDeleteDelete.operation.ts |
-| publicCloud (v2) | GET | `/publicCloud/project/{x}/cloud/database/mysql/{x}/backup/{x}` | OvhCloudPublicCloud/database/mysql/backupGetGet.operation.ts |
-| publicCloud (v2) | GET | `/publicCloud/project/{x}/cloud/database/mysql/{x}/log/subscription/{x}` | OvhCloudPublicCloud/database/mysql/logSubscriptionGetGet.operation.ts |
-| publicCloud (v2) | DELETE | `/publicCloud/project/{x}/cloud/database/mysql/{x}/node/{x}` | OvhCloudPublicCloud/database/mysql/nodeDeleteDelete.operation.ts |
-| publicCloud (v2) | GET | `/publicCloud/project/{x}/cloud/database/mysql/{x}/node/{x}` | OvhCloudPublicCloud/database/mysql/nodeGetGet.operation.ts |
-| publicCloud (v2) | PUT | `/publicCloud/project/{x}/cloud/database/mysql/{x}/node/{x}` | OvhCloudPublicCloud/database/mysql/nodeUpdatePut.operation.ts |
-| publicCloud (v2) | DELETE | `/publicCloud/project/{x}/cloud/database/mysql/{x}/user/{x}` | OvhCloudPublicCloud/database/mysql/userDeleteDelete.operation.ts |
-| publicCloud (v2) | GET | `/publicCloud/project/{x}/cloud/database/mysql/{x}/user/{x}` | OvhCloudPublicCloud/database/mysql/userGetGet.operation.ts |
-| publicCloud (v2) | PUT | `/publicCloud/project/{x}/cloud/database/mysql/{x}/user/{x}` | OvhCloudPublicCloud/database/mysql/userUpdatePut.operation.ts |
 | publicCloud (v2) | GET | `/publicCloud/project/{x}/cloud/database/opensearch` | OvhCloudPublicCloud/database/opensearch/clusterListGet.operation.ts |
 | publicCloud (v2) | POST | `/publicCloud/project/{x}/cloud/database/opensearch` | OvhCloudPublicCloud/database/opensearch/clusterCreatePost.operation.ts |
 | publicCloud (v2) | DELETE | `/publicCloud/project/{x}/cloud/database/opensearch/{x}` | OvhCloudPublicCloud/database/opensearch/clusterDeleteDelete.operation.ts |
@@ -2061,38 +2083,6 @@ Ces opérations appellent un chemin qui ne correspond à aucun endpoint de la sp
 | publicCloud (v2) | DELETE | `/publicCloud/project/{x}/cloud/database/postgresql/{x}/user/{x}` | OvhCloudPublicCloud/database/postgresql/userDeleteDelete.operation.ts |
 | publicCloud (v2) | GET | `/publicCloud/project/{x}/cloud/database/postgresql/{x}/user/{x}` | OvhCloudPublicCloud/database/postgresql/userGetGet.operation.ts |
 | publicCloud (v2) | PUT | `/publicCloud/project/{x}/cloud/database/postgresql/{x}/user/{x}` | OvhCloudPublicCloud/database/postgresql/userUpdatePut.operation.ts |
-| publicCloud (v2) | GET | `/publicCloud/project/{x}/cloud/database/valkey` | OvhCloudPublicCloud/database/valkey/clusterListGet.operation.ts |
-| publicCloud (v2) | POST | `/publicCloud/project/{x}/cloud/database/valkey` | OvhCloudPublicCloud/database/valkey/clusterCreatePost.operation.ts |
-| publicCloud (v2) | DELETE | `/publicCloud/project/{x}/cloud/database/valkey/{x}` | OvhCloudPublicCloud/database/valkey/clusterDeleteDelete.operation.ts |
-| publicCloud (v2) | GET | `/publicCloud/project/{x}/cloud/database/valkey/{x}` | OvhCloudPublicCloud/database/valkey/backupListGet.operation.ts |
-| publicCloud (v2) | GET | `/publicCloud/project/{x}/cloud/database/valkey/{x}` | OvhCloudPublicCloud/database/valkey/certificateListGet.operation.ts |
-| publicCloud (v2) | GET | `/publicCloud/project/{x}/cloud/database/valkey/{x}` | OvhCloudPublicCloud/database/valkey/clusterGetGet.operation.ts |
-| publicCloud (v2) | GET | `/publicCloud/project/{x}/cloud/database/valkey/{x}` | OvhCloudPublicCloud/database/valkey/integrationListGet.operation.ts |
-| publicCloud (v2) | GET | `/publicCloud/project/{x}/cloud/database/valkey/{x}` | OvhCloudPublicCloud/database/valkey/ipRestrictionListGet.operation.ts |
-| publicCloud (v2) | GET | `/publicCloud/project/{x}/cloud/database/valkey/{x}` | OvhCloudPublicCloud/database/valkey/logSubscriptionListGet.operation.ts |
-| publicCloud (v2) | GET | `/publicCloud/project/{x}/cloud/database/valkey/{x}` | OvhCloudPublicCloud/database/valkey/maintenanceGet.operation.ts |
-| publicCloud (v2) | GET | `/publicCloud/project/{x}/cloud/database/valkey/{x}` | OvhCloudPublicCloud/database/valkey/metricGet.operation.ts |
-| publicCloud (v2) | GET | `/publicCloud/project/{x}/cloud/database/valkey/{x}` | OvhCloudPublicCloud/database/valkey/nodeListGet.operation.ts |
-| publicCloud (v2) | GET | `/publicCloud/project/{x}/cloud/database/valkey/{x}` | OvhCloudPublicCloud/database/valkey/prometheusGet.operation.ts |
-| publicCloud (v2) | GET | `/publicCloud/project/{x}/cloud/database/valkey/{x}` | OvhCloudPublicCloud/database/valkey/userListGet.operation.ts |
-| publicCloud (v2) | POST | `/publicCloud/project/{x}/cloud/database/valkey/{x}` | OvhCloudPublicCloud/database/valkey/backupCreatePost.operation.ts |
-| publicCloud (v2) | POST | `/publicCloud/project/{x}/cloud/database/valkey/{x}` | OvhCloudPublicCloud/database/valkey/certificateCreatePost.operation.ts |
-| publicCloud (v2) | POST | `/publicCloud/project/{x}/cloud/database/valkey/{x}` | OvhCloudPublicCloud/database/valkey/integrationCreatePost.operation.ts |
-| publicCloud (v2) | POST | `/publicCloud/project/{x}/cloud/database/valkey/{x}` | OvhCloudPublicCloud/database/valkey/ipRestrictionCreatePost.operation.ts |
-| publicCloud (v2) | POST | `/publicCloud/project/{x}/cloud/database/valkey/{x}` | OvhCloudPublicCloud/database/valkey/logSubscriptionCreatePost.operation.ts |
-| publicCloud (v2) | POST | `/publicCloud/project/{x}/cloud/database/valkey/{x}` | OvhCloudPublicCloud/database/valkey/nodeCreatePost.operation.ts |
-| publicCloud (v2) | POST | `/publicCloud/project/{x}/cloud/database/valkey/{x}` | OvhCloudPublicCloud/database/valkey/userCreatePost.operation.ts |
-| publicCloud (v2) | PUT | `/publicCloud/project/{x}/cloud/database/valkey/{x}` | OvhCloudPublicCloud/database/valkey/clusterUpdatePut.operation.ts |
-| publicCloud (v2) | PUT | `/publicCloud/project/{x}/cloud/database/valkey/{x}` | OvhCloudPublicCloud/database/valkey/maintenanceUpdatePut.operation.ts |
-| publicCloud (v2) | DELETE | `/publicCloud/project/{x}/cloud/database/valkey/{x}/backup/{x}` | OvhCloudPublicCloud/database/valkey/backupDeleteDelete.operation.ts |
-| publicCloud (v2) | GET | `/publicCloud/project/{x}/cloud/database/valkey/{x}/backup/{x}` | OvhCloudPublicCloud/database/valkey/backupGetGet.operation.ts |
-| publicCloud (v2) | GET | `/publicCloud/project/{x}/cloud/database/valkey/{x}/log/subscription/{x}` | OvhCloudPublicCloud/database/valkey/logSubscriptionGetGet.operation.ts |
-| publicCloud (v2) | DELETE | `/publicCloud/project/{x}/cloud/database/valkey/{x}/node/{x}` | OvhCloudPublicCloud/database/valkey/nodeDeleteDelete.operation.ts |
-| publicCloud (v2) | GET | `/publicCloud/project/{x}/cloud/database/valkey/{x}/node/{x}` | OvhCloudPublicCloud/database/valkey/nodeGetGet.operation.ts |
-| publicCloud (v2) | PUT | `/publicCloud/project/{x}/cloud/database/valkey/{x}/node/{x}` | OvhCloudPublicCloud/database/valkey/nodeUpdatePut.operation.ts |
-| publicCloud (v2) | DELETE | `/publicCloud/project/{x}/cloud/database/valkey/{x}/user/{x}` | OvhCloudPublicCloud/database/valkey/userDeleteDelete.operation.ts |
-| publicCloud (v2) | GET | `/publicCloud/project/{x}/cloud/database/valkey/{x}/user/{x}` | OvhCloudPublicCloud/database/valkey/userGetGet.operation.ts |
-| publicCloud (v2) | PUT | `/publicCloud/project/{x}/cloud/database/valkey/{x}/user/{x}` | OvhCloudPublicCloud/database/valkey/userUpdatePut.operation.ts |
 | publicCloud (v2) | POST | `/publicCloud/project/{x}/confirmTermination` | OvhCloudPublicCloud/confirmTermination/confirmTerminationPost.operation.ts |
 | publicCloud (v2) | GET | `/publicCloud/project/{x}/containerRegistry` | OvhCloudPublicCloud/containerRegistry/listGet.operation.ts |
 | publicCloud (v2) | POST | `/publicCloud/project/{x}/containerRegistry` | OvhCloudPublicCloud/containerRegistry/createPost.operation.ts |

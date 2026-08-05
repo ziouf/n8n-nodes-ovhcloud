@@ -1,6 +1,6 @@
 # OVHcloud API Coverage Report
 
-> Généré par `scripts/compare-coverage.js` le 2026-08-05T15:11:32.848Z. Document généré automatiquement — ne pas éditer à la main.
+> Généré par `scripts/compare-coverage.js` le 2026-08-05T19:43:21.956Z. Document généré automatiquement — ne pas éditer à la main.
 
 Ce rapport compare les endpoints déclarés dans les specs Swagger 2.0 (`docs/api-specs/v1|v2/*.json`) avec les appels HTTP réellement présents dans les nodes (`nodes/**/*.operation.ts`).
 
@@ -8,8 +8,8 @@ Ce rapport compare les endpoints déclarés dans les specs Swagger 2.0 (`docs/ap
 
 - **Specs analysées** : 84 (v1: 70, v2: 14)
 - **Endpoints déclarés (specs avec endpoints)** : 6624
-- **Endpoints couverts par les nodes** : 3376
-- **Couverture globale** : **51%**
+- **Endpoints couverts par les nodes** : 3475
+- **Couverture globale** : **52.5%**
 - **Specs sans node associé** : 21
 - **Specs placeholder (aucun endpoint)** : 1
 
@@ -45,9 +45,9 @@ Triée par pourcentage croissant (moins bonne couverture en premier).
 | ipLoadbalancing (v1) | 121 | 9 | 112 | 7.4% |
 | vrack (v1) | 68 | 5 | 63 | 7.4% |
 | msServices (v1) | 55 | 5 | 50 | 9.1% |
-| cloud (v1) | 1121 | 164 | 957 | 14.6% |
 | dedicated (v1) | 131 | 30 | 101 | 22.9% |
 | vps (v1) | 94 | 22 | 72 | 23.4% |
+| cloud (v1) | 1121 | 263 | 858 | 23.5% |
 | sslGateway (v1) | 23 | 6 | 17 | 26.1% |
 | xdsl (v1) | 142 | 39 | 103 | 27.5% |
 | veeam (v1) | 10 | 5 | 5 | 50% |
@@ -2073,7 +2073,194 @@ _Nodes associés : OvhCloudMsServices_
 | GET | `/msServices/sharepoint/{x}/serviceInfos` |
 | PUT | `/msServices/sharepoint/{x}/serviceInfos` |
 
-### cloud (v1) — 957 manquants
+### dedicated (v1) — 101 manquants
+
+_Nodes associés : OvhCloudDedicated_
+
+| Méthode | Chemin |
+|--------|--------|
+| GET | `/dedicated/server/{x}/backupCloudOfferDetails` |
+| GET | `/dedicated/server/{x}/boot/{x}` |
+| GET | `/dedicated/server/{x}/boot/{x}/option` |
+| GET | `/dedicated/server/{x}/boot/{x}/option/{x}` |
+| GET | `/dedicated/server/{x}/burst` |
+| POST | `/dedicated/server/{x}/features/backupCloud/password` |
+| DELETE | `/dedicated/server/{x}/features/backupFTP/access/{x}` |
+| GET | `/dedicated/server/{x}/features/backupFTP/access/{x}` |
+| PUT | `/dedicated/server/{x}/features/backupFTP/access/{x}` |
+| GET | `/dedicated/server/{x}/features/backupFTP/authorizableBlocks` |
+| GET | `/dedicated/server/{x}/features/ipmi/access` |
+| POST | `/dedicated/server/{x}/features/ipmi/access` |
+| POST | `/dedicated/server/{x}/features/ipmi/resetInterface` |
+| POST | `/dedicated/server/{x}/features/ipmi/resetSessions` |
+| GET | `/dedicated/server/{x}/features/ipmi/test` |
+| POST | `/dedicated/server/{x}/features/ipmi/test` |
+| GET | `/dedicated/server/{x}/features/kvm` |
+| GET | `/dedicated/server/{x}/install/compatibleTemplatePartitionSchemes` |
+| GET | `/dedicated/server/{x}/install/compatibleTemplates` |
+| GET | `/dedicated/server/{x}/install/hardwareRaidProfile` |
+| GET | `/dedicated/server/{x}/install/status` |
+| GET | `/dedicated/server/{x}/intervention` |
+| GET | `/dedicated/server/{x}/intervention/{x}` |
+| POST | `/dedicated/server/{x}/ipBlockMerge` |
+| GET | `/dedicated/server/{x}/ipCanBeMovedTo` |
+| GET | `/dedicated/server/{x}/ipCountryAvailable` |
+| POST | `/dedicated/server/{x}/ipMove` |
+| GET | `/dedicated/server/{x}/ips` |
+| GET | `/dedicated/server/{x}/license/compliantWindows` |
+| GET | `/dedicated/server/{x}/license/compliantWindowsSqlServer` |
+| POST | `/dedicated/server/{x}/license/windows` |
+| GET | `/dedicated/server/{x}/mrtg` |
+| GET | `/dedicated/server/{x}/networkInterfaceController` |
+| GET | `/dedicated/server/{x}/networkInterfaceController/{x}` |
+| GET | `/dedicated/server/{x}/networkInterfaceController/{x}/mrtg` |
+| POST | `/dedicated/server/{x}/ola/aggregation` |
+| POST | `/dedicated/server/{x}/ola/group` |
+| POST | `/dedicated/server/{x}/ola/reset` |
+| POST | `/dedicated/server/{x}/ola/ungroup` |
+| GET | `/dedicated/server/{x}/ongoing` |
+| GET | `/dedicated/server/{x}/orderable/backupStorage` |
+| GET | `/dedicated/server/{x}/orderable/bandwidth` |
+| GET | `/dedicated/server/{x}/orderable/bandwidthvRack` |
+| GET | `/dedicated/server/{x}/orderable/feature` |
+| GET | `/dedicated/server/{x}/orderable/ip` |
+| GET | `/dedicated/server/{x}/orderable/kvm` |
+| GET | `/dedicated/server/{x}/orderable/kvmExpress` |
+| GET | `/dedicated/server/{x}/orderable/professionalUse` |
+| GET | `/dedicated/server/{x}/orderable/traffic` |
+| GET | `/dedicated/server/{x}/orderable/usbKey` |
+| GET | `/dedicated/server/{x}/plannedIntervention` |
+| GET | `/dedicated/server/{x}/plannedIntervention/{x}` |
+| POST | `/dedicated/server/{x}/reboot` |
+| POST | `/dedicated/server/{x}/reinstall` |
+| GET | `/dedicated/server/{x}/secondaryDnsDomains` |
+| POST | `/dedicated/server/{x}/secondaryDnsDomains` |
+| DELETE | `/dedicated/server/{x}/secondaryDnsDomains/{x}` |
+| GET | `/dedicated/server/{x}/secondaryDnsDomains/{x}` |
+| PUT | `/dedicated/server/{x}/secondaryDnsDomains/{x}` |
+| GET | `/dedicated/server/{x}/secondaryDnsDomains/{x}/dnsServer` |
+| GET | `/dedicated/server/{x}/secondaryDnsNameDomainToken` |
+| GET | `/dedicated/server/{x}/secondaryDnsNameServerAvailable` |
+| GET | `/dedicated/server/{x}/serviceInfos` |
+| PUT | `/dedicated/server/{x}/serviceInfos` |
+| GET | `/dedicated/server/{x}/specifications/hardware` |
+| GET | `/dedicated/server/{x}/specifications/ip` |
+| GET | `/dedicated/server/{x}/specifications/network` |
+| GET | `/dedicated/server/{x}/spla` |
+| POST | `/dedicated/server/{x}/spla` |
+| GET | `/dedicated/server/{x}/spla/{x}` |
+| PUT | `/dedicated/server/{x}/spla/{x}` |
+| POST | `/dedicated/server/{x}/spla/{x}/revoke` |
+| POST | `/dedicated/server/{x}/support/replace/cooling` |
+| POST | `/dedicated/server/{x}/support/replace/hardDiskDrive` |
+| POST | `/dedicated/server/{x}/support/replace/memory` |
+| GET | `/dedicated/server/{x}/task/{x}/availableTimeslots` |
+| POST | `/dedicated/server/{x}/task/{x}/cancel` |
+| POST | `/dedicated/server/{x}/task/{x}/schedule` |
+| POST | `/dedicated/server/{x}/terminate` |
+| GET | `/dedicated/server/{x}/virtualMac` |
+| POST | `/dedicated/server/{x}/virtualMac` |
+| GET | `/dedicated/server/{x}/virtualMac/{x}` |
+| GET | `/dedicated/server/{x}/virtualMac/{x}/virtualAddress` |
+| POST | `/dedicated/server/{x}/virtualMac/{x}/virtualAddress` |
+| DELETE | `/dedicated/server/{x}/virtualMac/{x}/virtualAddress/{x}` |
+| GET | `/dedicated/server/{x}/virtualMac/{x}/virtualAddress/{x}` |
+| GET | `/dedicated/server/{x}/virtualNetworkInterface` |
+| GET | `/dedicated/server/{x}/virtualNetworkInterface/{x}` |
+| PUT | `/dedicated/server/{x}/virtualNetworkInterface/{x}` |
+| POST | `/dedicated/server/{x}/virtualNetworkInterface/{x}/disable` |
+| POST | `/dedicated/server/{x}/virtualNetworkInterface/{x}/enable` |
+| GET | `/dedicated/server/{x}/vrack` |
+| DELETE | `/dedicated/server/{x}/vrack/{x}` |
+| GET | `/dedicated/server/{x}/vrack/{x}` |
+| GET | `/dedicated/server/{x}/vrack/{x}/mrtg` |
+| GET | `/dedicated/server/availabilities` |
+| GET | `/dedicated/server/datacenter/availabilities/raw` |
+| GET | `/dedicated/server/log` |
+| GET | `/dedicated/server/osAvailabilities` |
+| GET | `/dedicated/server/region/availabilities` |
+| GET | `/dedicated/server/virtualNetworkInterface/{x}` |
+
+### vps (v1) — 72 manquants
+
+_Nodes associés : OvhCloudVps_
+
+| Méthode | Chemin |
+|--------|--------|
+| GET | `/vps/{x}/activeOptions` |
+| GET | `/vps/{x}/automatedBackup` |
+| POST | `/vps/{x}/automatedBackup/detachBackup` |
+| GET | `/vps/{x}/availableUpgrade` |
+| GET | `/vps/{x}/backupftp/access` |
+| POST | `/vps/{x}/backupftp/access` |
+| DELETE | `/vps/{x}/backupftp/access/{x}` |
+| GET | `/vps/{x}/backupftp/access/{x}` |
+| PUT | `/vps/{x}/backupftp/access/{x}` |
+| GET | `/vps/{x}/backupftp/authorizableBlocks` |
+| POST | `/vps/{x}/backupftp/password` |
+| GET | `/vps/{x}/datacenter` |
+| PUT | `/vps/{x}/disks/{x}` |
+| GET | `/vps/{x}/disks/{x}/monitoring` |
+| GET | `/vps/{x}/disks/{x}/use` |
+| GET | `/vps/{x}/distribution/software` |
+| GET | `/vps/{x}/distribution/software/{x}` |
+| POST | `/vps/{x}/getConsoleUrl` |
+| GET | `/vps/{x}/images/available` |
+| GET | `/vps/{x}/images/available/{x}` |
+| GET | `/vps/{x}/images/current` |
+| GET | `/vps/{x}/ipCountryAvailable` |
+| GET | `/vps/{x}/ips` |
+| GET | `/vps/{x}/ips/{x}` |
+| PUT | `/vps/{x}/ips/{x}` |
+| GET | `/vps/{x}/migration2016` |
+| POST | `/vps/{x}/migration2016` |
+| GET | `/vps/{x}/migration2018` |
+| POST | `/vps/{x}/migration2018` |
+| DELETE | `/vps/{x}/migration2020` |
+| GET | `/vps/{x}/migration2020` |
+| POST | `/vps/{x}/migration2020` |
+| PUT | `/vps/{x}/migration2020` |
+| GET | `/vps/{x}/monitoring` |
+| POST | `/vps/{x}/openConsoleAccess` |
+| GET | `/vps/{x}/option` |
+| DELETE | `/vps/{x}/option/{x}` |
+| GET | `/vps/{x}/option/{x}` |
+| POST | `/vps/{x}/reboot` |
+| POST | `/vps/{x}/rebuild` |
+| POST | `/vps/{x}/reinstall` |
+| GET | `/vps/{x}/secondaryDnsDomains` |
+| POST | `/vps/{x}/secondaryDnsDomains` |
+| DELETE | `/vps/{x}/secondaryDnsDomains/{x}` |
+| GET | `/vps/{x}/secondaryDnsDomains/{x}` |
+| PUT | `/vps/{x}/secondaryDnsDomains/{x}` |
+| GET | `/vps/{x}/secondaryDnsDomains/{x}/dnsServer` |
+| GET | `/vps/{x}/secondaryDnsNameServerAvailable` |
+| GET | `/vps/{x}/serviceInfos` |
+| PUT | `/vps/{x}/serviceInfos` |
+| POST | `/vps/{x}/setPassword` |
+| DELETE | `/vps/{x}/snapshot` |
+| PUT | `/vps/{x}/snapshot` |
+| GET | `/vps/{x}/snapshot/download` |
+| GET | `/vps/{x}/statistics` |
+| POST | `/vps/{x}/stop` |
+| GET | `/vps/{x}/tasks` |
+| GET | `/vps/{x}/templates` |
+| GET | `/vps/{x}/templates/{x}` |
+| GET | `/vps/{x}/templates/{x}/software` |
+| GET | `/vps/{x}/templates/{x}/software/{x}` |
+| POST | `/vps/{x}/terminate` |
+| GET | `/vps/{x}/use` |
+| GET | `/vps/{x}/veeam` |
+| DELETE | `/vps/{x}/veeam/restoredBackup` |
+| GET | `/vps/{x}/veeam/restoredBackup` |
+| GET | `/vps/{x}/veeam/restorePoints` |
+| GET | `/vps/{x}/veeam/restorePoints/{x}` |
+| POST | `/vps/{x}/veeam/restorePoints/{x}/restore` |
+| GET | `/vps/datacenter` |
+| GET | `/vps/order/rule/datacenter` |
+| GET | `/vps/order/rule/osChoices` |
+
+### cloud (v1) — 858 manquants
 
 _Nodes associés : OvhCloudPublicCloud, OvhCloudPublicCloudAi_
 
@@ -2570,64 +2757,6 @@ _Nodes associés : OvhCloudPublicCloud, OvhCloudPublicCloudAi_
 | GET | `/cloud/project/{x}/database/mongodb/{x}/user/{x}` |
 | PUT | `/cloud/project/{x}/database/mongodb/{x}/user/{x}` |
 | POST | `/cloud/project/{x}/database/mongodb/{x}/user/{x}/credentials/reset` |
-| GET | `/cloud/project/{x}/database/mysql` |
-| POST | `/cloud/project/{x}/database/mysql` |
-| DELETE | `/cloud/project/{x}/database/mysql/{x}` |
-| GET | `/cloud/project/{x}/database/mysql/{x}` |
-| PUT | `/cloud/project/{x}/database/mysql/{x}` |
-| GET | `/cloud/project/{x}/database/mysql/{x}/advancedConfiguration` |
-| PUT | `/cloud/project/{x}/database/mysql/{x}/advancedConfiguration` |
-| GET | `/cloud/project/{x}/database/mysql/{x}/backup` |
-| GET | `/cloud/project/{x}/database/mysql/{x}/backup/{x}` |
-| GET | `/cloud/project/{x}/database/mysql/{x}/capabilities/advancedConfiguration` |
-| GET | `/cloud/project/{x}/database/mysql/{x}/capabilities/backupRegions` |
-| GET | `/cloud/project/{x}/database/mysql/{x}/capabilities/integration` |
-| GET | `/cloud/project/{x}/database/mysql/{x}/certificates` |
-| GET | `/cloud/project/{x}/database/mysql/{x}/currentQueries` |
-| POST | `/cloud/project/{x}/database/mysql/{x}/currentQueries/cancel` |
-| GET | `/cloud/project/{x}/database/mysql/{x}/database` |
-| POST | `/cloud/project/{x}/database/mysql/{x}/database` |
-| DELETE | `/cloud/project/{x}/database/mysql/{x}/database/{x}` |
-| GET | `/cloud/project/{x}/database/mysql/{x}/database/{x}` |
-| POST | `/cloud/project/{x}/database/mysql/{x}/enableWrites` |
-| GET | `/cloud/project/{x}/database/mysql/{x}/integration` |
-| POST | `/cloud/project/{x}/database/mysql/{x}/integration` |
-| DELETE | `/cloud/project/{x}/database/mysql/{x}/integration/{x}` |
-| GET | `/cloud/project/{x}/database/mysql/{x}/integration/{x}` |
-| GET | `/cloud/project/{x}/database/mysql/{x}/ipRestriction` |
-| POST | `/cloud/project/{x}/database/mysql/{x}/ipRestriction` |
-| DELETE | `/cloud/project/{x}/database/mysql/{x}/ipRestriction/{x}` |
-| GET | `/cloud/project/{x}/database/mysql/{x}/ipRestriction/{x}` |
-| PUT | `/cloud/project/{x}/database/mysql/{x}/ipRestriction/{x}` |
-| GET | `/cloud/project/{x}/database/mysql/{x}/log/kind` |
-| GET | `/cloud/project/{x}/database/mysql/{x}/log/kind/{x}` |
-| GET | `/cloud/project/{x}/database/mysql/{x}/log/subscription` |
-| POST | `/cloud/project/{x}/database/mysql/{x}/log/subscription` |
-| DELETE | `/cloud/project/{x}/database/mysql/{x}/log/subscription/{x}` |
-| GET | `/cloud/project/{x}/database/mysql/{x}/log/subscription/{x}` |
-| POST | `/cloud/project/{x}/database/mysql/{x}/log/url` |
-| GET | `/cloud/project/{x}/database/mysql/{x}/logs` |
-| GET | `/cloud/project/{x}/database/mysql/{x}/maintenance` |
-| GET | `/cloud/project/{x}/database/mysql/{x}/maintenance/{x}` |
-| POST | `/cloud/project/{x}/database/mysql/{x}/maintenance/{x}/apply` |
-| GET | `/cloud/project/{x}/database/mysql/{x}/metric` |
-| GET | `/cloud/project/{x}/database/mysql/{x}/metric/{x}` |
-| GET | `/cloud/project/{x}/database/mysql/{x}/migration` |
-| POST | `/cloud/project/{x}/database/mysql/{x}/migration` |
-| GET | `/cloud/project/{x}/database/mysql/{x}/migration/check` |
-| POST | `/cloud/project/{x}/database/mysql/{x}/migration/check` |
-| POST | `/cloud/project/{x}/database/mysql/{x}/migration/stop` |
-| GET | `/cloud/project/{x}/database/mysql/{x}/node` |
-| GET | `/cloud/project/{x}/database/mysql/{x}/node/{x}` |
-| GET | `/cloud/project/{x}/database/mysql/{x}/prometheus` |
-| POST | `/cloud/project/{x}/database/mysql/{x}/prometheus/credentials/reset` |
-| GET | `/cloud/project/{x}/database/mysql/{x}/queryStatistics` |
-| POST | `/cloud/project/{x}/database/mysql/{x}/queryStatistics/reset` |
-| GET | `/cloud/project/{x}/database/mysql/{x}/user` |
-| POST | `/cloud/project/{x}/database/mysql/{x}/user` |
-| DELETE | `/cloud/project/{x}/database/mysql/{x}/user/{x}` |
-| GET | `/cloud/project/{x}/database/mysql/{x}/user/{x}` |
-| POST | `/cloud/project/{x}/database/mysql/{x}/user/{x}/credentials/reset` |
 | GET | `/cloud/project/{x}/database/opensearch` |
 | POST | `/cloud/project/{x}/database/opensearch` |
 | DELETE | `/cloud/project/{x}/database/opensearch/{x}` |
@@ -2742,47 +2871,6 @@ _Nodes associés : OvhCloudPublicCloud, OvhCloudPublicCloudAi_
 | POST | `/cloud/project/{x}/database/postgresql/{x}/user/{x}/credentials/reset` |
 | GET | `/cloud/project/{x}/database/service` |
 | GET | `/cloud/project/{x}/database/service/{x}` |
-| GET | `/cloud/project/{x}/database/valkey` |
-| POST | `/cloud/project/{x}/database/valkey` |
-| DELETE | `/cloud/project/{x}/database/valkey/{x}` |
-| GET | `/cloud/project/{x}/database/valkey/{x}` |
-| PUT | `/cloud/project/{x}/database/valkey/{x}` |
-| GET | `/cloud/project/{x}/database/valkey/{x}/advancedConfiguration` |
-| PUT | `/cloud/project/{x}/database/valkey/{x}/advancedConfiguration` |
-| GET | `/cloud/project/{x}/database/valkey/{x}/backup` |
-| GET | `/cloud/project/{x}/database/valkey/{x}/backup/{x}` |
-| GET | `/cloud/project/{x}/database/valkey/{x}/capabilities/advancedConfiguration` |
-| GET | `/cloud/project/{x}/database/valkey/{x}/capabilities/backupRegions` |
-| GET | `/cloud/project/{x}/database/valkey/{x}/capabilities/categories` |
-| GET | `/cloud/project/{x}/database/valkey/{x}/capabilities/commands` |
-| GET | `/cloud/project/{x}/database/valkey/{x}/capabilities/integration` |
-| GET | `/cloud/project/{x}/database/valkey/{x}/integration` |
-| POST | `/cloud/project/{x}/database/valkey/{x}/integration` |
-| DELETE | `/cloud/project/{x}/database/valkey/{x}/integration/{x}` |
-| GET | `/cloud/project/{x}/database/valkey/{x}/integration/{x}` |
-| GET | `/cloud/project/{x}/database/valkey/{x}/log/kind` |
-| GET | `/cloud/project/{x}/database/valkey/{x}/log/kind/{x}` |
-| GET | `/cloud/project/{x}/database/valkey/{x}/log/subscription` |
-| POST | `/cloud/project/{x}/database/valkey/{x}/log/subscription` |
-| DELETE | `/cloud/project/{x}/database/valkey/{x}/log/subscription/{x}` |
-| GET | `/cloud/project/{x}/database/valkey/{x}/log/subscription/{x}` |
-| POST | `/cloud/project/{x}/database/valkey/{x}/log/url` |
-| GET | `/cloud/project/{x}/database/valkey/{x}/logs` |
-| GET | `/cloud/project/{x}/database/valkey/{x}/maintenance` |
-| GET | `/cloud/project/{x}/database/valkey/{x}/maintenance/{x}` |
-| POST | `/cloud/project/{x}/database/valkey/{x}/maintenance/{x}/apply` |
-| GET | `/cloud/project/{x}/database/valkey/{x}/metric` |
-| GET | `/cloud/project/{x}/database/valkey/{x}/metric/{x}` |
-| GET | `/cloud/project/{x}/database/valkey/{x}/node` |
-| GET | `/cloud/project/{x}/database/valkey/{x}/node/{x}` |
-| GET | `/cloud/project/{x}/database/valkey/{x}/prometheus` |
-| POST | `/cloud/project/{x}/database/valkey/{x}/prometheus/credentials/reset` |
-| GET | `/cloud/project/{x}/database/valkey/{x}/user` |
-| POST | `/cloud/project/{x}/database/valkey/{x}/user` |
-| DELETE | `/cloud/project/{x}/database/valkey/{x}/user/{x}` |
-| GET | `/cloud/project/{x}/database/valkey/{x}/user/{x}` |
-| PUT | `/cloud/project/{x}/database/valkey/{x}/user/{x}` |
-| POST | `/cloud/project/{x}/database/valkey/{x}/user/{x}/credentials/reset` |
 | GET | `/cloud/project/{x}/flavor` |
 | GET | `/cloud/project/{x}/flavor/{x}` |
 | GET | `/cloud/project/{x}/image` |
@@ -3036,193 +3124,6 @@ _Nodes associés : OvhCloudPublicCloud, OvhCloudPublicCloudAi_
 | GET | `/cloud/project/{x}/volume/snapshot/{x}` |
 | GET | `/cloud/project/{x}/vrack` |
 | POST | `/cloud/project/{x}/vrack` |
-
-### dedicated (v1) — 101 manquants
-
-_Nodes associés : OvhCloudDedicated_
-
-| Méthode | Chemin |
-|--------|--------|
-| GET | `/dedicated/server/{x}/backupCloudOfferDetails` |
-| GET | `/dedicated/server/{x}/boot/{x}` |
-| GET | `/dedicated/server/{x}/boot/{x}/option` |
-| GET | `/dedicated/server/{x}/boot/{x}/option/{x}` |
-| GET | `/dedicated/server/{x}/burst` |
-| POST | `/dedicated/server/{x}/features/backupCloud/password` |
-| DELETE | `/dedicated/server/{x}/features/backupFTP/access/{x}` |
-| GET | `/dedicated/server/{x}/features/backupFTP/access/{x}` |
-| PUT | `/dedicated/server/{x}/features/backupFTP/access/{x}` |
-| GET | `/dedicated/server/{x}/features/backupFTP/authorizableBlocks` |
-| GET | `/dedicated/server/{x}/features/ipmi/access` |
-| POST | `/dedicated/server/{x}/features/ipmi/access` |
-| POST | `/dedicated/server/{x}/features/ipmi/resetInterface` |
-| POST | `/dedicated/server/{x}/features/ipmi/resetSessions` |
-| GET | `/dedicated/server/{x}/features/ipmi/test` |
-| POST | `/dedicated/server/{x}/features/ipmi/test` |
-| GET | `/dedicated/server/{x}/features/kvm` |
-| GET | `/dedicated/server/{x}/install/compatibleTemplatePartitionSchemes` |
-| GET | `/dedicated/server/{x}/install/compatibleTemplates` |
-| GET | `/dedicated/server/{x}/install/hardwareRaidProfile` |
-| GET | `/dedicated/server/{x}/install/status` |
-| GET | `/dedicated/server/{x}/intervention` |
-| GET | `/dedicated/server/{x}/intervention/{x}` |
-| POST | `/dedicated/server/{x}/ipBlockMerge` |
-| GET | `/dedicated/server/{x}/ipCanBeMovedTo` |
-| GET | `/dedicated/server/{x}/ipCountryAvailable` |
-| POST | `/dedicated/server/{x}/ipMove` |
-| GET | `/dedicated/server/{x}/ips` |
-| GET | `/dedicated/server/{x}/license/compliantWindows` |
-| GET | `/dedicated/server/{x}/license/compliantWindowsSqlServer` |
-| POST | `/dedicated/server/{x}/license/windows` |
-| GET | `/dedicated/server/{x}/mrtg` |
-| GET | `/dedicated/server/{x}/networkInterfaceController` |
-| GET | `/dedicated/server/{x}/networkInterfaceController/{x}` |
-| GET | `/dedicated/server/{x}/networkInterfaceController/{x}/mrtg` |
-| POST | `/dedicated/server/{x}/ola/aggregation` |
-| POST | `/dedicated/server/{x}/ola/group` |
-| POST | `/dedicated/server/{x}/ola/reset` |
-| POST | `/dedicated/server/{x}/ola/ungroup` |
-| GET | `/dedicated/server/{x}/ongoing` |
-| GET | `/dedicated/server/{x}/orderable/backupStorage` |
-| GET | `/dedicated/server/{x}/orderable/bandwidth` |
-| GET | `/dedicated/server/{x}/orderable/bandwidthvRack` |
-| GET | `/dedicated/server/{x}/orderable/feature` |
-| GET | `/dedicated/server/{x}/orderable/ip` |
-| GET | `/dedicated/server/{x}/orderable/kvm` |
-| GET | `/dedicated/server/{x}/orderable/kvmExpress` |
-| GET | `/dedicated/server/{x}/orderable/professionalUse` |
-| GET | `/dedicated/server/{x}/orderable/traffic` |
-| GET | `/dedicated/server/{x}/orderable/usbKey` |
-| GET | `/dedicated/server/{x}/plannedIntervention` |
-| GET | `/dedicated/server/{x}/plannedIntervention/{x}` |
-| POST | `/dedicated/server/{x}/reboot` |
-| POST | `/dedicated/server/{x}/reinstall` |
-| GET | `/dedicated/server/{x}/secondaryDnsDomains` |
-| POST | `/dedicated/server/{x}/secondaryDnsDomains` |
-| DELETE | `/dedicated/server/{x}/secondaryDnsDomains/{x}` |
-| GET | `/dedicated/server/{x}/secondaryDnsDomains/{x}` |
-| PUT | `/dedicated/server/{x}/secondaryDnsDomains/{x}` |
-| GET | `/dedicated/server/{x}/secondaryDnsDomains/{x}/dnsServer` |
-| GET | `/dedicated/server/{x}/secondaryDnsNameDomainToken` |
-| GET | `/dedicated/server/{x}/secondaryDnsNameServerAvailable` |
-| GET | `/dedicated/server/{x}/serviceInfos` |
-| PUT | `/dedicated/server/{x}/serviceInfos` |
-| GET | `/dedicated/server/{x}/specifications/hardware` |
-| GET | `/dedicated/server/{x}/specifications/ip` |
-| GET | `/dedicated/server/{x}/specifications/network` |
-| GET | `/dedicated/server/{x}/spla` |
-| POST | `/dedicated/server/{x}/spla` |
-| GET | `/dedicated/server/{x}/spla/{x}` |
-| PUT | `/dedicated/server/{x}/spla/{x}` |
-| POST | `/dedicated/server/{x}/spla/{x}/revoke` |
-| POST | `/dedicated/server/{x}/support/replace/cooling` |
-| POST | `/dedicated/server/{x}/support/replace/hardDiskDrive` |
-| POST | `/dedicated/server/{x}/support/replace/memory` |
-| GET | `/dedicated/server/{x}/task/{x}/availableTimeslots` |
-| POST | `/dedicated/server/{x}/task/{x}/cancel` |
-| POST | `/dedicated/server/{x}/task/{x}/schedule` |
-| POST | `/dedicated/server/{x}/terminate` |
-| GET | `/dedicated/server/{x}/virtualMac` |
-| POST | `/dedicated/server/{x}/virtualMac` |
-| GET | `/dedicated/server/{x}/virtualMac/{x}` |
-| GET | `/dedicated/server/{x}/virtualMac/{x}/virtualAddress` |
-| POST | `/dedicated/server/{x}/virtualMac/{x}/virtualAddress` |
-| DELETE | `/dedicated/server/{x}/virtualMac/{x}/virtualAddress/{x}` |
-| GET | `/dedicated/server/{x}/virtualMac/{x}/virtualAddress/{x}` |
-| GET | `/dedicated/server/{x}/virtualNetworkInterface` |
-| GET | `/dedicated/server/{x}/virtualNetworkInterface/{x}` |
-| PUT | `/dedicated/server/{x}/virtualNetworkInterface/{x}` |
-| POST | `/dedicated/server/{x}/virtualNetworkInterface/{x}/disable` |
-| POST | `/dedicated/server/{x}/virtualNetworkInterface/{x}/enable` |
-| GET | `/dedicated/server/{x}/vrack` |
-| DELETE | `/dedicated/server/{x}/vrack/{x}` |
-| GET | `/dedicated/server/{x}/vrack/{x}` |
-| GET | `/dedicated/server/{x}/vrack/{x}/mrtg` |
-| GET | `/dedicated/server/availabilities` |
-| GET | `/dedicated/server/datacenter/availabilities/raw` |
-| GET | `/dedicated/server/log` |
-| GET | `/dedicated/server/osAvailabilities` |
-| GET | `/dedicated/server/region/availabilities` |
-| GET | `/dedicated/server/virtualNetworkInterface/{x}` |
-
-### vps (v1) — 72 manquants
-
-_Nodes associés : OvhCloudVps_
-
-| Méthode | Chemin |
-|--------|--------|
-| GET | `/vps/{x}/activeOptions` |
-| GET | `/vps/{x}/automatedBackup` |
-| POST | `/vps/{x}/automatedBackup/detachBackup` |
-| GET | `/vps/{x}/availableUpgrade` |
-| GET | `/vps/{x}/backupftp/access` |
-| POST | `/vps/{x}/backupftp/access` |
-| DELETE | `/vps/{x}/backupftp/access/{x}` |
-| GET | `/vps/{x}/backupftp/access/{x}` |
-| PUT | `/vps/{x}/backupftp/access/{x}` |
-| GET | `/vps/{x}/backupftp/authorizableBlocks` |
-| POST | `/vps/{x}/backupftp/password` |
-| GET | `/vps/{x}/datacenter` |
-| PUT | `/vps/{x}/disks/{x}` |
-| GET | `/vps/{x}/disks/{x}/monitoring` |
-| GET | `/vps/{x}/disks/{x}/use` |
-| GET | `/vps/{x}/distribution/software` |
-| GET | `/vps/{x}/distribution/software/{x}` |
-| POST | `/vps/{x}/getConsoleUrl` |
-| GET | `/vps/{x}/images/available` |
-| GET | `/vps/{x}/images/available/{x}` |
-| GET | `/vps/{x}/images/current` |
-| GET | `/vps/{x}/ipCountryAvailable` |
-| GET | `/vps/{x}/ips` |
-| GET | `/vps/{x}/ips/{x}` |
-| PUT | `/vps/{x}/ips/{x}` |
-| GET | `/vps/{x}/migration2016` |
-| POST | `/vps/{x}/migration2016` |
-| GET | `/vps/{x}/migration2018` |
-| POST | `/vps/{x}/migration2018` |
-| DELETE | `/vps/{x}/migration2020` |
-| GET | `/vps/{x}/migration2020` |
-| POST | `/vps/{x}/migration2020` |
-| PUT | `/vps/{x}/migration2020` |
-| GET | `/vps/{x}/monitoring` |
-| POST | `/vps/{x}/openConsoleAccess` |
-| GET | `/vps/{x}/option` |
-| DELETE | `/vps/{x}/option/{x}` |
-| GET | `/vps/{x}/option/{x}` |
-| POST | `/vps/{x}/reboot` |
-| POST | `/vps/{x}/rebuild` |
-| POST | `/vps/{x}/reinstall` |
-| GET | `/vps/{x}/secondaryDnsDomains` |
-| POST | `/vps/{x}/secondaryDnsDomains` |
-| DELETE | `/vps/{x}/secondaryDnsDomains/{x}` |
-| GET | `/vps/{x}/secondaryDnsDomains/{x}` |
-| PUT | `/vps/{x}/secondaryDnsDomains/{x}` |
-| GET | `/vps/{x}/secondaryDnsDomains/{x}/dnsServer` |
-| GET | `/vps/{x}/secondaryDnsNameServerAvailable` |
-| GET | `/vps/{x}/serviceInfos` |
-| PUT | `/vps/{x}/serviceInfos` |
-| POST | `/vps/{x}/setPassword` |
-| DELETE | `/vps/{x}/snapshot` |
-| PUT | `/vps/{x}/snapshot` |
-| GET | `/vps/{x}/snapshot/download` |
-| GET | `/vps/{x}/statistics` |
-| POST | `/vps/{x}/stop` |
-| GET | `/vps/{x}/tasks` |
-| GET | `/vps/{x}/templates` |
-| GET | `/vps/{x}/templates/{x}` |
-| GET | `/vps/{x}/templates/{x}/software` |
-| GET | `/vps/{x}/templates/{x}/software/{x}` |
-| POST | `/vps/{x}/terminate` |
-| GET | `/vps/{x}/use` |
-| GET | `/vps/{x}/veeam` |
-| DELETE | `/vps/{x}/veeam/restoredBackup` |
-| GET | `/vps/{x}/veeam/restoredBackup` |
-| GET | `/vps/{x}/veeam/restorePoints` |
-| GET | `/vps/{x}/veeam/restorePoints/{x}` |
-| POST | `/vps/{x}/veeam/restorePoints/{x}/restore` |
-| GET | `/vps/datacenter` |
-| GET | `/vps/order/rule/datacenter` |
-| GET | `/vps/order/rule/osChoices` |
 
 ### sslGateway (v1) — 17 manquants
 
