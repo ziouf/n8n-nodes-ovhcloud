@@ -69,20 +69,43 @@ Chaque fichier `*.json` correspond à une famille d'endpoints OVHcloud. La couve
 | cloud           |  1121 |        2 |  0.2% |
 | allDom          |     6 |        0 |    0% |
 
-### Specs placeholder (aucun endpoint déclaré)
+### Specs nouvellement téléchargées (endpoints désormais déclarés, non couverts)
 
-Fichiers présents mais avec `apis: []` (spec absente / non téléchargée) — non comptés dans la couverture :
+Ces specs étaient des placeholders (sans `apis`) et ont été téléchargées depuis `https://api.ovh.com/1.0/{path}.json`. Leurs endpoints sont désormais déclarés mais aucun node ne les implémente encore :
 
-- dedicatedCeph, dedicatedCluster, dedicatedHousing, dedicatedInstallationTemplate, dedicatedNasha
-- emailDomain, emailExchange, emailMxplan, hostingPrivateDatabase
-- licenseCloudLinux, licenseCpanel, licenseDirectadmin, licenseHycu, licenseOffice, licenseOfficePrepaid, licensePlesk, licenseRedhat, licenseSqlserver, licenseVirtuozzo, licenseWindows
-- packSiptrunk, products
+| Spec                          | Endpoints déclarés |
+| ----------------------------- | -----------------: |
+| emailExchange                 |                203 |
+| emailDomain                   |                107 |
+| hostingPrivateDatabase        |                 72 |
+| emailMxplan                   |                 46 |
+| dedicatedNasha                |                 39 |
+| dedicatedCeph                 |                 35 |
+| dedicatedHousing              |                 18 |
+| licenseOffice                 |                 16 |
+| licenseOfficePrepaid          |                 16 |
+| licensePlesk                  |                 16 |
+| licenseVirtuozzo              |                 16 |
+| licenseDirectadmin            |                 14 |
+| licenseWindows                |                 14 |
+| licenseCpanel                 |                 13 |
+| licenseHycu                   |                 10 |
+| dedicatedCluster              |                  9 |
+| dedicatedInstallationTemplate |                  9 |
+| licenseCloudLinux             |                  9 |
+| licenseRedhat                 |                  9 |
+| licenseSqlserver              |                  9 |
+| packSiptrunk                  |                  5 |
+
+`products` reste un placeholder légitime (aucun endpoint déclaré).
 
 ## Specs sans node associé
 
 - **allDom** (`/allDom`) — 6 endpoints déclarés, aucun node ne les implémente.
+- Les 21 specs ci-dessus ont des endpoints déclarés mais aucun node associé (voir le rapport de couverture).
 
 ## Résumé
 
-- Specs v1 : 70 fichiers ; endpoints déclarés : ~5939 (toutes versions confondues) ; couverture globale : **53.9%**.
+- Specs v1 : 70 fichiers ; endpoints déclarés : **~6624** (toutes versions confondues) ; couverture globale : **48.3%**.
 - Voir le rapport complet : [docs/api-reference/coverage-report.md](../api-reference/coverage-report.md).
+- Voir aussi le rapport de conformité : [docs/api-reference/conformity-report.md](../api-reference/conformity-report.md).
