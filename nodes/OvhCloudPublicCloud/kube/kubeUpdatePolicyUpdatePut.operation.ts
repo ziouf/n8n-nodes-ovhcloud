@@ -41,6 +41,19 @@ export function description(displayOptions: IDisplayOptions): INodeProperties[] 
 			description: 'The Kube cluster ID',
 			displayOptions,
 		},
+		{
+			displayName: 'Update Policy',
+			name: 'updatePolicy',
+			type: 'options',
+			required: true,
+			default: 'ALWAYS_UPDATE',
+			options: [
+				{ name: 'Always Update', value: 'ALWAYS_UPDATE' },
+				{ name: 'Minimal Downtime', value: 'MINIMAL_DOWNTIME' },
+				{ name: 'Never Update', value: 'NEVER_UPDATE' },
+			],
+			displayOptions,
+		},
 	];
 }
 
@@ -48,18 +61,19 @@ export function description(displayOptions: IDisplayOptions): INodeProperties[] 
  * Executes the Update Kube Policy operation.
  *
  * HTTP method: PUT
- * Endpoint: /publicCloud/project/{projectId}/kube/{kubeId}/updatePolicy
+ * Endpoint: /cloud/project/{serviceName}/kube/{kubeId}/updatePolicy
  */
 export async function execute(this: IExecuteFunctions): Promise<INodeExecutionData[]> {
 	const client = new ApiClient(this);
-	const projectId = this.getNodeParameter('publicCloudProjectId', 0, '', {
+	const serviceName = this.getNodeParameter('publicCloudProjectId', 0, '', {
 		extractValue: true,
 	}) as string;
 	const kubeId = this.getNodeParameter('kubeId', 0) as string;
-	const body: IDataObject = {};
+	const updatePolicy = (this.getNodeParameter('updatePolicy', 0) || '') as string;
+	const body: IDataObject = { updatePolicy };
 	const data = (await client.httpPut(
-		`/publicCloud/project/${projectId}/kube/${kubeId}/updatePolicy`,
-		body as IDataObject,
+		`/cloud/project/${serviceName}/kube/${kubeId}/updatePolicy`,
+		body,
 	)) as IDataObject;
 
 	return this.helpers.returnJsonArray([data]);

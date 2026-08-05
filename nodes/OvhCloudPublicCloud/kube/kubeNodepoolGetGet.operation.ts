@@ -56,17 +56,17 @@ export function description(displayOptions: IDisplayOptions): INodeProperties[] 
  * Executes the Get Kube Nodepool operation.
  *
  * HTTP method: GET
- * Endpoint: /publicCloud/project/{projectId}/kube/{kubeId}/nodepool/{nodePoolId}
+ * Endpoint: /cloud/project/{serviceName}/kube/{kubeId}/nodepool/{nodePoolId}
  */
 export async function execute(this: IExecuteFunctions): Promise<INodeExecutionData[]> {
 	const client = new ApiClient(this);
-	const projectId = this.getNodeParameter('publicCloudProjectId', 0, '', {
+	const serviceName = this.getNodeParameter('publicCloudProjectId', 0, '', {
 		extractValue: true,
 	}) as string;
 	const kubeId = this.getNodeParameter('kubeId', 0) as string;
 	const nodePoolId = this.getNodeParameter('nodePoolId', 0) as string;
 	const data = (await client.httpGet(
-		`/publicCloud/project/${projectId}/kube/${kubeId}/nodepool/${nodePoolId}`,
+		`/cloud/project/${serviceName}/kube/${kubeId}/nodepool/${nodePoolId}`,
 	)) as IDataObject;
 
 	return this.helpers.returnJsonArray([data]);

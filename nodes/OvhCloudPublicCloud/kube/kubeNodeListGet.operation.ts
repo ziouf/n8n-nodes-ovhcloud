@@ -47,16 +47,16 @@ export function description(displayOptions: IDisplayOptions): INodeProperties[] 
  * Executes the List Kube Nodes operation.
  *
  * HTTP method: GET
- * Endpoint: /publicCloud/project/{projectId}/kube/{kubeId}/node
+ * Endpoint: /cloud/project/{serviceName}/kube/{kubeId}/node
  */
 export async function execute(this: IExecuteFunctions): Promise<INodeExecutionData[]> {
 	const client = new ApiClient(this);
-	const projectId = this.getNodeParameter('publicCloudProjectId', 0, '', {
+	const serviceName = this.getNodeParameter('publicCloudProjectId', 0, '', {
 		extractValue: true,
 	}) as string;
 	const kubeId = this.getNodeParameter('kubeId', 0) as string;
 	const data = (await client.httpGet(
-		`/publicCloud/project/${projectId}/kube/${kubeId}/node`,
+		`/cloud/project/${serviceName}/kube/${kubeId}/node`,
 	)) as unknown[];
 
 	if (!Array.isArray(data)) {

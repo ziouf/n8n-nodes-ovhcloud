@@ -2084,6 +2084,10 @@ import {
 	execute as kubeLogSubscriptionPostExecute,
 } from './kube/kubeLogSubscriptionPost.operation';
 import {
+	description as kubeLogSubscriptionListGetDescription,
+	execute as kubeLogSubscriptionListGetExecute,
+} from './kube/kubeLogSubscriptionListGet.operation';
+import {
 	description as kubeLogUrlPostDescription,
 	execute as kubeLogUrlPostExecute,
 } from './kube/kubeLogUrlPost.operation';
@@ -2107,6 +2111,10 @@ import {
 	description as kubeNodepoolCreatePostDescription,
 	execute as kubeNodepoolCreatePostExecute,
 } from './kube/kubeNodepoolCreatePost.operation';
+import {
+	description as kubeNodepoolListGetDescription,
+	execute as kubeNodepoolListGetExecute,
+} from './kube/kubeNodepoolListGet.operation';
 import {
 	description as kubeNodepoolDeleteDeleteDescription,
 	execute as kubeNodepoolDeleteDeleteExecute,
@@ -5258,6 +5266,11 @@ export function description(displayOptions: IDisplayOptions): INodeProperties[] 
 				action: 'Create Kubernetes log subscription',
 			},
 			{
+				name: 'kubeLogSubscriptionListGet',
+				value: 'kubeLogSubscriptionListGet',
+				action: 'List Kubernetes log subscriptions',
+			},
+			{
 				name: 'kubeLogUrlPost',
 				value: 'kubeLogUrlPost',
 				action: 'Get Kubernetes log URL',
@@ -5286,6 +5299,11 @@ export function description(displayOptions: IDisplayOptions): INodeProperties[] 
 				name: 'kubeNodepoolCreatePost',
 				value: 'kubeNodepoolCreatePost',
 				action: 'Create Kubernetes nodepool',
+			},
+			{
+				name: 'kubeNodepoolListGet',
+				value: 'kubeNodepoolListGet',
+				action: 'List Kubernetes nodepools',
 			},
 			{
 				name: 'kubeNodepoolDeleteDelete',
@@ -9190,6 +9208,12 @@ export function description(displayOptions: IDisplayOptions): INodeProperties[] 
 		}) as INodeProperties[]),
 	);
 	properties.push(
+		...(kubeLogSubscriptionListGetDescription({
+			...displayOptions,
+			show: { publicCloudOperation: ['kubeLogSubscriptionListGet'] },
+		}) as INodeProperties[]),
+	);
+	properties.push(
 		...(kubeLogUrlPostDescription({
 			...displayOptions,
 			show: { publicCloudOperation: ['kubeLogUrlPost'] },
@@ -9223,6 +9247,12 @@ export function description(displayOptions: IDisplayOptions): INodeProperties[] 
 		...(kubeNodepoolCreatePostDescription({
 			...displayOptions,
 			show: { publicCloudOperation: ['kubeNodepoolCreatePost'] },
+		}) as INodeProperties[]),
+	);
+	properties.push(
+		...(kubeNodepoolListGetDescription({
+			...displayOptions,
+			show: { publicCloudOperation: ['kubeNodepoolListGet'] },
 		}) as INodeProperties[]),
 	);
 	properties.push(
@@ -11370,6 +11400,8 @@ export async function execute(
 			return kubeLogSubscriptionGetExecute.call(this);
 		case 'kubeLogSubscriptionPost':
 			return kubeLogSubscriptionPostExecute.call(this);
+		case 'kubeLogSubscriptionListGet':
+			return kubeLogSubscriptionListGetExecute.call(this);
 		case 'kubeLogUrlPost':
 			return kubeLogUrlPostExecute.call(this);
 		case 'kubeMetricsEtcdUsageGet':
@@ -11382,6 +11414,8 @@ export async function execute(
 			return kubeNodeListGetExecute.call(this);
 		case 'kubeNodepoolCreatePost':
 			return kubeNodepoolCreatePostExecute.call(this);
+		case 'kubeNodepoolListGet':
+			return kubeNodepoolListGetExecute.call(this);
 		case 'kubeNodepoolDeleteDelete':
 			return kubeNodepoolDeleteDeleteExecute.call(this);
 		case 'kubeNodepoolGetGet':

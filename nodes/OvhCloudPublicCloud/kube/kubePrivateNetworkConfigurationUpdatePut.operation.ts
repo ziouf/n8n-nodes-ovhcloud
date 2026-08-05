@@ -48,17 +48,17 @@ export function description(displayOptions: IDisplayOptions): INodeProperties[] 
  * Executes the Update Kube Private Network Configuration operation.
  *
  * HTTP method: PUT
- * Endpoint: /publicCloud/project/{projectId}/kube/{kubeId}/privateNetworkConfiguration
+ * Endpoint: /cloud/project/{serviceName}/kube/{kubeId}/privateNetworkConfiguration
  */
 export async function execute(this: IExecuteFunctions): Promise<INodeExecutionData[]> {
 	const client = new ApiClient(this);
-	const projectId = this.getNodeParameter('publicCloudProjectId', 0, '', {
+	const serviceName = this.getNodeParameter('publicCloudProjectId', 0, '', {
 		extractValue: true,
 	}) as string;
 	const kubeId = this.getNodeParameter('kubeId', 0) as string;
 	const body: IDataObject = {};
 	const data = (await client.httpPut(
-		`/publicCloud/project/${projectId}/kube/${kubeId}/privateNetworkConfiguration`,
+		`/cloud/project/${serviceName}/kube/${kubeId}/privateNetworkConfiguration`,
 		body as IDataObject,
 	)) as IDataObject;
 

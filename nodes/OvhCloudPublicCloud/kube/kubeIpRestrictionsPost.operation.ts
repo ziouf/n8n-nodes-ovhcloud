@@ -57,18 +57,18 @@ export function description(displayOptions: IDisplayOptions): INodeProperties[] 
  * Executes the Create Kube IP Restriction operation.
  *
  * HTTP method: POST
- * Endpoint: /publicCloud/project/{projectId}/kube/{kubeId}/ipRestrictions
+ * Endpoint: /cloud/project/{serviceName}/kube/{kubeId}/ipRestrictions
  */
 export async function execute(this: IExecuteFunctions): Promise<INodeExecutionData[]> {
 	const client = new ApiClient(this);
-	const projectId = this.getNodeParameter('publicCloudProjectId', 0, '', {
+	const serviceName = this.getNodeParameter('publicCloudProjectId', 0, '', {
 		extractValue: true,
 	}) as string;
 	const kubeId = this.getNodeParameter('kubeId', 0) as string;
 	const ip = this.getNodeParameter('ip', 0) as string;
 	const body: IDataObject = { ip };
 	const data = (await client.httpPost(
-		`/publicCloud/project/${projectId}/kube/${kubeId}/ipRestrictions`,
+		`/cloud/project/${serviceName}/kube/${kubeId}/ipRestrictions`,
 		body as IDataObject,
 	)) as IDataObject;
 

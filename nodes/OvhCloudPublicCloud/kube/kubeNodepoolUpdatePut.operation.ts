@@ -64,11 +64,11 @@ export function description(displayOptions: IDisplayOptions): INodeProperties[] 
  * Executes the Update Kube Nodepool operation.
  *
  * HTTP method: PUT
- * Endpoint: /publicCloud/project/{projectId}/kube/{kubeId}/nodepool/{nodePoolId}
+ * Endpoint: /cloud/project/{serviceName}/kube/{kubeId}/nodepool/{nodePoolId}
  */
 export async function execute(this: IExecuteFunctions): Promise<INodeExecutionData[]> {
 	const client = new ApiClient(this);
-	const projectId = this.getNodeParameter('publicCloudProjectId', 0, '', {
+	const serviceName = this.getNodeParameter('publicCloudProjectId', 0, '', {
 		extractValue: true,
 	}) as string;
 	const kubeId = this.getNodeParameter('kubeId', 0) as string;
@@ -77,7 +77,7 @@ export async function execute(this: IExecuteFunctions): Promise<INodeExecutionDa
 
 	const body: IDataObject = { size };
 	const data = (await client.httpPut(
-		`/publicCloud/project/${projectId}/kube/${kubeId}/nodepool/${nodePoolId}`,
+		`/cloud/project/${serviceName}/kube/${kubeId}/nodepool/${nodePoolId}`,
 		body as IDataObject,
 	)) as IDataObject;
 

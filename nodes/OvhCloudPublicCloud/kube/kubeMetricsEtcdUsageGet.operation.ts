@@ -48,16 +48,16 @@ export function description(displayOptions: IDisplayOptions): INodeProperties[] 
  * Executes the Get Kube Metrics Etcd Usage operation.
  *
  * HTTP method: GET
- * Endpoint: /publicCloud/project/{projectId}/kube/{kubeId}/metrics/etcdUsage
+ * Endpoint: /cloud/project/{serviceName}/kube/{kubeId}/metrics/etcdUsage
  */
 export async function execute(this: IExecuteFunctions): Promise<INodeExecutionData[]> {
 	const client = new ApiClient(this);
-	const projectId = this.getNodeParameter('publicCloudProjectId', 0, '', {
+	const serviceName = this.getNodeParameter('publicCloudProjectId', 0, '', {
 		extractValue: true,
 	}) as string;
 	const kubeId = this.getNodeParameter('kubeId', 0) as string;
 	const data = (await client.httpGet(
-		`/publicCloud/project/${projectId}/kube/${kubeId}/metrics/etcdUsage`,
+		`/cloud/project/${serviceName}/kube/${kubeId}/metrics/etcdUsage`,
 	)) as IDataObject;
 
 	return this.helpers.returnJsonArray([data]);

@@ -48,16 +48,16 @@ export function description(displayOptions: IDisplayOptions): INodeProperties[] 
  * Executes the Create Kube Audit Logs operation.
  *
  * HTTP method: POST
- * Endpoint: /publicCloud/project/{projectId}/kube/{kubeId}/auditLogs
+ * Endpoint: /cloud/project/{serviceName}/kube/{kubeId}/auditLogs
  */
 export async function execute(this: IExecuteFunctions): Promise<INodeExecutionData[]> {
 	const client = new ApiClient(this);
-	const projectId = this.getNodeParameter('publicCloudProjectId', 0, '', {
+	const serviceName = this.getNodeParameter('publicCloudProjectId', 0, '', {
 		extractValue: true,
 	}) as string;
 	const kubeId = this.getNodeParameter('kubeId', 0) as string;
 	const data = (await client.httpPost(
-		`/publicCloud/project/${projectId}/kube/${kubeId}/auditLogs`,
+		`/cloud/project/${serviceName}/kube/${kubeId}/auditLogs`,
 		{} as IDataObject,
 	)) as IDataObject;
 

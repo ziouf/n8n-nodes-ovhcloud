@@ -51,12 +51,12 @@ export function description(displayOptions: IDisplayOptions): INodeProperties[] 
 			displayOptions,
 		},
 		{
-			displayName: 'Flavor',
-			name: 'flavor',
+			displayName: 'Flavor Name',
+			name: 'flavorName',
 			type: 'string',
 			default: '',
 			required: true,
-			description: 'The flavor name for the nodepool',
+			description: 'Nodes flavor',
 			displayOptions,
 		},
 		{
@@ -74,24 +74,24 @@ export function description(displayOptions: IDisplayOptions): INodeProperties[] 
  * Executes the Create Kube Nodepool operation.
  *
  * HTTP method: POST
- * Endpoint: /publicCloud/project/{projectId}/kube/{kubeId}/nodepool
+ * Endpoint: /cloud/project/{serviceName}/kube/{kubeId}/nodepool
  */
 export async function execute(this: IExecuteFunctions): Promise<INodeExecutionData[]> {
 	const client = new ApiClient(this);
-	const projectId = this.getNodeParameter('publicCloudProjectId', 0, '', {
+	const serviceName = this.getNodeParameter('publicCloudProjectId', 0, '', {
 		extractValue: true,
 	}) as string;
 	const kubeId = this.getNodeParameter('kubeId', 0) as string;
 	const name = (this.getNodeParameter('name', 0) || '') as string;
-	const flavor = (this.getNodeParameter('flavor', 0) || '') as string;
+	const flavorName = (this.getNodeParameter('flavorName', 0) || '') as string;
 	const size = (this.getNodeParameter('size', 0) || 1) as number;
 
 	if (!name) throw new Error('Name is required to create a nodepool');
-	if (!flavor) throw new Error('Flavor is required to create a nodepool');
+	if (!flavorName) throw new Error('Flavor name is required to create a nodepool');
 
-	const body: IDataObject = { name, flavor, size };
+	const body: IDataObject = { name, flavorName, size };
 	const data = (await client.httpPost(
-		`/publicCloud/project/${projectId}/kube/${kubeId}/nodepool`,
+		`/cloud/project/${serviceName}/kube/${kubeId}/nodepool`,
 		body as IDataObject,
 	)) as IDataObject;
 

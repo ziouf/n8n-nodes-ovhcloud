@@ -1,16 +1,16 @@
 # OVHcloud API Conformity Report
 
-> Généré par `scripts/audit-conformity.js` le 2026-08-05T07:50:12.995Z. Document généré automatiquement — ne pas éditer à la main.
+> Généré par `scripts/audit-conformity.js` le 2026-08-05T13:07:01.272Z. Document généré automatiquement — ne pas éditer à la main.
 
 Ce rapport vérifie que les opérations des nodes respectent leur spec (méthode, chemin, paramètres path requis, query requis, champs body requis).
 
 ## Résumé
 
-- **Opérations auditées** : 5451
-- **Conformes** : 3091
-- **Non conformes** : 2360
-- **Sans correspondance spec** (informatif) : 2087
-- **Taux de conformité** : **56.7%**
+- **Opérations auditées** : 5455
+- **Conformes** : 3130
+- **Non conformes** : 2325
+- **Sans correspondance spec** (informatif) : 2052
+- **Taux de conformité** : **57.4%**
 
 ## Conformité par spec
 
@@ -53,8 +53,8 @@ Triée par taux de non-conformité décroissant.
 | webhosting (v2) | 246 | 12 | 3 | 4.9% |
 | domain (v1) | 119 | 109 | 1 | 91.6% |
 | telephony (v1) | 644 | 602 | 5 | 93.5% |
-| publicCloud (v2) | 718 | 26 | 4 | 3.6% |
-| cloud (v1) | 718 | 40 | 1 | 5.6% |
+| publicCloud (v2) | 720 | 26 | 4 | 3.6% |
+| cloud (v1) | 720 | 79 | 1 | 11% |
 | price (v1) | 581 | 581 | 0 | 100% |
 | sms (v1) | 126 | 124 | 0 | 98.4% |
 | domain (v2) | 119 | 9 | 0 | 7.6% |
@@ -1081,43 +1081,6 @@ Ces opérations appellent un chemin qui ne correspond à aucun endpoint de la sp
 | cloud (v1) | DELETE | `/publicCloud/project/{x}/kafka/{x}/user/{x}` | OvhCloudPublicCloud/database/kafka/userDeleteDelete.operation.ts |
 | cloud (v1) | GET | `/publicCloud/project/{x}/kafka/{x}/user/{x}` | OvhCloudPublicCloud/database/kafka/userGetGet.operation.ts |
 | cloud (v1) | PUT | `/publicCloud/project/{x}/kafka/{x}/user/{x}` | OvhCloudPublicCloud/database/kafka/userUpdatePut.operation.ts |
-| cloud (v1) | DELETE | `/publicCloud/project/{x}/kube/{x}` | OvhCloudPublicCloud/kube/kubeDeleteDelete.operation.ts |
-| cloud (v1) | GET | `/publicCloud/project/{x}/kube/{x}` | OvhCloudPublicCloud/kube/kubeGetGet.operation.ts |
-| cloud (v1) | PUT | `/publicCloud/project/{x}/kube/{x}` | OvhCloudPublicCloud/kube/kubeUpdatePut.operation.ts |
-| cloud (v1) | POST | `/publicCloud/project/{x}/kube/{x}/auditLogs` | OvhCloudPublicCloud/kube/kubeAuditLogsPost.operation.ts |
-| cloud (v1) | GET | `/publicCloud/project/{x}/kube/{x}/customization` | OvhCloudPublicCloud/kube/kubeCustomizationGet.operation.ts |
-| cloud (v1) | PUT | `/publicCloud/project/{x}/kube/{x}/customization` | OvhCloudPublicCloud/kube/kubeCustomizationUpdatePut.operation.ts |
-| cloud (v1) | GET | `/publicCloud/project/{x}/kube/{x}/flavors` | OvhCloudPublicCloud/kube/kubeFlavorsGet.operation.ts |
-| cloud (v1) | GET | `/publicCloud/project/{x}/kube/{x}/ipRestrictions` | OvhCloudPublicCloud/kube/kubeIpRestrictionsGet.operation.ts |
-| cloud (v1) | POST | `/publicCloud/project/{x}/kube/{x}/ipRestrictions` | OvhCloudPublicCloud/kube/kubeIpRestrictionsPost.operation.ts |
-| cloud (v1) | PUT | `/publicCloud/project/{x}/kube/{x}/ipRestrictions` | OvhCloudPublicCloud/kube/kubeIpRestrictionsUpdatePut.operation.ts |
-| cloud (v1) | DELETE | `/publicCloud/project/{x}/kube/{x}/ipRestrictions/{x}` | OvhCloudPublicCloud/kube/kubeIpRestrictionsDeleteDelete.operation.ts |
-| cloud (v1) | POST | `/publicCloud/project/{x}/kube/{x}/kubeconfig` | OvhCloudPublicCloud/kube/kubeKubeconfigPost.operation.ts |
-| cloud (v1) | POST | `/publicCloud/project/{x}/kube/{x}/kubeconfig/reset` | OvhCloudPublicCloud/kube/kubeKubeconfigResetPost.operation.ts |
-| cloud (v1) | POST | `/publicCloud/project/{x}/kube/{x}/log/subscription` | OvhCloudPublicCloud/kube/kubeLogSubscriptionPost.operation.ts |
-| cloud (v1) | DELETE | `/publicCloud/project/{x}/kube/{x}/log/subscription/{x}` | OvhCloudPublicCloud/kube/kubeLogSubscriptionDeleteDelete.operation.ts |
-| cloud (v1) | GET | `/publicCloud/project/{x}/kube/{x}/log/subscription/{x}` | OvhCloudPublicCloud/kube/kubeLogSubscriptionGet.operation.ts |
-| cloud (v1) | POST | `/publicCloud/project/{x}/kube/{x}/log/url` | OvhCloudPublicCloud/kube/kubeLogUrlPost.operation.ts |
-| cloud (v1) | GET | `/publicCloud/project/{x}/kube/{x}/metrics/etcdUsage` | OvhCloudPublicCloud/kube/kubeMetricsEtcdUsageGet.operation.ts |
-| cloud (v1) | GET | `/publicCloud/project/{x}/kube/{x}/node` | OvhCloudPublicCloud/kube/kubeNodeListGet.operation.ts |
-| cloud (v1) | DELETE | `/publicCloud/project/{x}/kube/{x}/node/{x}` | OvhCloudPublicCloud/kube/kubeNodeDeleteDelete.operation.ts |
-| cloud (v1) | GET | `/publicCloud/project/{x}/kube/{x}/node/{x}` | OvhCloudPublicCloud/kube/kubeNodeGet.operation.ts |
-| cloud (v1) | POST | `/publicCloud/project/{x}/kube/{x}/nodepool` | OvhCloudPublicCloud/kube/kubeNodepoolCreatePost.operation.ts |
-| cloud (v1) | DELETE | `/publicCloud/project/{x}/kube/{x}/nodepool/{x}` | OvhCloudPublicCloud/kube/kubeNodepoolDeleteDelete.operation.ts |
-| cloud (v1) | GET | `/publicCloud/project/{x}/kube/{x}/nodepool/{x}` | OvhCloudPublicCloud/kube/kubeNodepoolGetGet.operation.ts |
-| cloud (v1) | PUT | `/publicCloud/project/{x}/kube/{x}/nodepool/{x}` | OvhCloudPublicCloud/kube/kubeNodepoolUpdatePut.operation.ts |
-| cloud (v1) | GET | `/publicCloud/project/{x}/kube/{x}/nodepool/{x}/nodes` | OvhCloudPublicCloud/kube/kubeNodepoolListNodepoolNodesGet.operation.ts |
-| cloud (v1) | DELETE | `/publicCloud/project/{x}/kube/{x}/openIdConnect` | OvhCloudPublicCloud/kube/kubeOpenIdConnectDeleteDelete.operation.ts |
-| cloud (v1) | GET | `/publicCloud/project/{x}/kube/{x}/openIdConnect` | OvhCloudPublicCloud/kube/kubeOpenIdConnectGet.operation.ts |
-| cloud (v1) | POST | `/publicCloud/project/{x}/kube/{x}/openIdConnect` | OvhCloudPublicCloud/kube/kubeOpenIdConnectPost.operation.ts |
-| cloud (v1) | PUT | `/publicCloud/project/{x}/kube/{x}/openIdConnect` | OvhCloudPublicCloud/kube/kubeOpenIdConnectUpdatePut.operation.ts |
-| cloud (v1) | GET | `/publicCloud/project/{x}/kube/{x}/privateNetworkConfiguration` | OvhCloudPublicCloud/kube/kubePrivateNetworkConfigurationGet.operation.ts |
-| cloud (v1) | PUT | `/publicCloud/project/{x}/kube/{x}/privateNetworkConfiguration` | OvhCloudPublicCloud/kube/kubePrivateNetworkConfigurationUpdatePut.operation.ts |
-| cloud (v1) | POST | `/publicCloud/project/{x}/kube/{x}/reset` | OvhCloudPublicCloud/kube/kubeResetPost.operation.ts |
-| cloud (v1) | POST | `/publicCloud/project/{x}/kube/{x}/restart` | OvhCloudPublicCloud/kube/kubeRestartPost.operation.ts |
-| cloud (v1) | POST | `/publicCloud/project/{x}/kube/{x}/update` | OvhCloudPublicCloud/kube/kubeUpdatePost.operation.ts |
-| cloud (v1) | PUT | `/publicCloud/project/{x}/kube/{x}/updateLoadBalancersSubnetId` | OvhCloudPublicCloud/kube/kubeUpdateLoadBalancersSubnetIdUpdatePut.operation.ts |
-| cloud (v1) | PUT | `/publicCloud/project/{x}/kube/{x}/updatePolicy` | OvhCloudPublicCloud/kube/kubeUpdatePolicyUpdatePut.operation.ts |
 | cloud (v1) | GET | `/publicCloud/project/{x}/lab` | OvhCloudPublicCloud/lab/listGet.operation.ts |
 | cloud (v1) | POST | `/publicCloud/project/{x}/lab` | OvhCloudPublicCloud/lab/createPost.operation.ts |
 | cloud (v1) | DELETE | `/publicCloud/project/{x}/lab/{x}` | OvhCloudPublicCloud/lab/deleteDelete.operation.ts |
@@ -1648,6 +1611,45 @@ Ces opérations appellent un chemin qui ne correspond à aucun endpoint de la sp
 | publicCloud (v2) | POST | `/cloud/project/{x}/instance/{x}/unshelve` | OvhCloudPublicCloud/instance/instanceUnshelvePost.operation.ts |
 | publicCloud (v2) | POST | `/cloud/project/{x}/instance/{x}/vnc` | OvhCloudPublicCloud/instance/instanceVncPost.operation.ts |
 | publicCloud (v2) | GET | `/cloud/project/{x}/kube` | OvhCloudPublicCloud/kube/kubeListGet.operation.ts |
+| publicCloud (v2) | DELETE | `/cloud/project/{x}/kube/{x}` | OvhCloudPublicCloud/kube/kubeDeleteDelete.operation.ts |
+| publicCloud (v2) | GET | `/cloud/project/{x}/kube/{x}` | OvhCloudPublicCloud/kube/kubeGetGet.operation.ts |
+| publicCloud (v2) | PUT | `/cloud/project/{x}/kube/{x}` | OvhCloudPublicCloud/kube/kubeUpdatePut.operation.ts |
+| publicCloud (v2) | POST | `/cloud/project/{x}/kube/{x}/auditLogs` | OvhCloudPublicCloud/kube/kubeAuditLogsPost.operation.ts |
+| publicCloud (v2) | GET | `/cloud/project/{x}/kube/{x}/customization` | OvhCloudPublicCloud/kube/kubeCustomizationGet.operation.ts |
+| publicCloud (v2) | PUT | `/cloud/project/{x}/kube/{x}/customization` | OvhCloudPublicCloud/kube/kubeCustomizationUpdatePut.operation.ts |
+| publicCloud (v2) | GET | `/cloud/project/{x}/kube/{x}/flavors` | OvhCloudPublicCloud/kube/kubeFlavorsGet.operation.ts |
+| publicCloud (v2) | GET | `/cloud/project/{x}/kube/{x}/ipRestrictions` | OvhCloudPublicCloud/kube/kubeIpRestrictionsGet.operation.ts |
+| publicCloud (v2) | POST | `/cloud/project/{x}/kube/{x}/ipRestrictions` | OvhCloudPublicCloud/kube/kubeIpRestrictionsPost.operation.ts |
+| publicCloud (v2) | PUT | `/cloud/project/{x}/kube/{x}/ipRestrictions` | OvhCloudPublicCloud/kube/kubeIpRestrictionsUpdatePut.operation.ts |
+| publicCloud (v2) | DELETE | `/cloud/project/{x}/kube/{x}/ipRestrictions/{x}` | OvhCloudPublicCloud/kube/kubeIpRestrictionsDeleteDelete.operation.ts |
+| publicCloud (v2) | POST | `/cloud/project/{x}/kube/{x}/kubeconfig` | OvhCloudPublicCloud/kube/kubeKubeconfigPost.operation.ts |
+| publicCloud (v2) | POST | `/cloud/project/{x}/kube/{x}/kubeconfig/reset` | OvhCloudPublicCloud/kube/kubeKubeconfigResetPost.operation.ts |
+| publicCloud (v2) | GET | `/cloud/project/{x}/kube/{x}/log/subscription` | OvhCloudPublicCloud/kube/kubeLogSubscriptionListGet.operation.ts |
+| publicCloud (v2) | POST | `/cloud/project/{x}/kube/{x}/log/subscription` | OvhCloudPublicCloud/kube/kubeLogSubscriptionPost.operation.ts |
+| publicCloud (v2) | DELETE | `/cloud/project/{x}/kube/{x}/log/subscription/{x}` | OvhCloudPublicCloud/kube/kubeLogSubscriptionDeleteDelete.operation.ts |
+| publicCloud (v2) | GET | `/cloud/project/{x}/kube/{x}/log/subscription/{x}` | OvhCloudPublicCloud/kube/kubeLogSubscriptionGet.operation.ts |
+| publicCloud (v2) | POST | `/cloud/project/{x}/kube/{x}/log/url` | OvhCloudPublicCloud/kube/kubeLogUrlPost.operation.ts |
+| publicCloud (v2) | GET | `/cloud/project/{x}/kube/{x}/metrics/etcdUsage` | OvhCloudPublicCloud/kube/kubeMetricsEtcdUsageGet.operation.ts |
+| publicCloud (v2) | GET | `/cloud/project/{x}/kube/{x}/node` | OvhCloudPublicCloud/kube/kubeNodeListGet.operation.ts |
+| publicCloud (v2) | DELETE | `/cloud/project/{x}/kube/{x}/node/{x}` | OvhCloudPublicCloud/kube/kubeNodeDeleteDelete.operation.ts |
+| publicCloud (v2) | GET | `/cloud/project/{x}/kube/{x}/node/{x}` | OvhCloudPublicCloud/kube/kubeNodeGet.operation.ts |
+| publicCloud (v2) | GET | `/cloud/project/{x}/kube/{x}/nodepool` | OvhCloudPublicCloud/kube/kubeNodepoolListGet.operation.ts |
+| publicCloud (v2) | POST | `/cloud/project/{x}/kube/{x}/nodepool` | OvhCloudPublicCloud/kube/kubeNodepoolCreatePost.operation.ts |
+| publicCloud (v2) | DELETE | `/cloud/project/{x}/kube/{x}/nodepool/{x}` | OvhCloudPublicCloud/kube/kubeNodepoolDeleteDelete.operation.ts |
+| publicCloud (v2) | GET | `/cloud/project/{x}/kube/{x}/nodepool/{x}` | OvhCloudPublicCloud/kube/kubeNodepoolGetGet.operation.ts |
+| publicCloud (v2) | PUT | `/cloud/project/{x}/kube/{x}/nodepool/{x}` | OvhCloudPublicCloud/kube/kubeNodepoolUpdatePut.operation.ts |
+| publicCloud (v2) | GET | `/cloud/project/{x}/kube/{x}/nodepool/{x}/nodes` | OvhCloudPublicCloud/kube/kubeNodepoolListNodepoolNodesGet.operation.ts |
+| publicCloud (v2) | DELETE | `/cloud/project/{x}/kube/{x}/openIdConnect` | OvhCloudPublicCloud/kube/kubeOpenIdConnectDeleteDelete.operation.ts |
+| publicCloud (v2) | GET | `/cloud/project/{x}/kube/{x}/openIdConnect` | OvhCloudPublicCloud/kube/kubeOpenIdConnectGet.operation.ts |
+| publicCloud (v2) | POST | `/cloud/project/{x}/kube/{x}/openIdConnect` | OvhCloudPublicCloud/kube/kubeOpenIdConnectPost.operation.ts |
+| publicCloud (v2) | PUT | `/cloud/project/{x}/kube/{x}/openIdConnect` | OvhCloudPublicCloud/kube/kubeOpenIdConnectUpdatePut.operation.ts |
+| publicCloud (v2) | GET | `/cloud/project/{x}/kube/{x}/privateNetworkConfiguration` | OvhCloudPublicCloud/kube/kubePrivateNetworkConfigurationGet.operation.ts |
+| publicCloud (v2) | PUT | `/cloud/project/{x}/kube/{x}/privateNetworkConfiguration` | OvhCloudPublicCloud/kube/kubePrivateNetworkConfigurationUpdatePut.operation.ts |
+| publicCloud (v2) | POST | `/cloud/project/{x}/kube/{x}/reset` | OvhCloudPublicCloud/kube/kubeResetPost.operation.ts |
+| publicCloud (v2) | POST | `/cloud/project/{x}/kube/{x}/restart` | OvhCloudPublicCloud/kube/kubeRestartPost.operation.ts |
+| publicCloud (v2) | POST | `/cloud/project/{x}/kube/{x}/update` | OvhCloudPublicCloud/kube/kubeUpdatePost.operation.ts |
+| publicCloud (v2) | PUT | `/cloud/project/{x}/kube/{x}/updateLoadBalancersSubnetId` | OvhCloudPublicCloud/kube/kubeUpdateLoadBalancersSubnetIdUpdatePut.operation.ts |
+| publicCloud (v2) | PUT | `/cloud/project/{x}/kube/{x}/updatePolicy` | OvhCloudPublicCloud/kube/kubeUpdatePolicyUpdatePut.operation.ts |
 | publicCloud (v2) | DELETE | `/cloud/project/{x}/user/{x}` | OvhCloudPublicCloud/user/deleteDelete.operation.ts |
 | publicCloud (v2) | GET | `/cloud/project/{x}/user/{x}` | OvhCloudPublicCloud/user/getDetailGet.operation.ts |
 | publicCloud (v2) | GET | `/cloud/project/{x}/user/{x}/configuration` | OvhCloudPublicCloud/user/getUserConfigurationGet.operation.ts |
@@ -2195,43 +2197,6 @@ Ces opérations appellent un chemin qui ne correspond à aucun endpoint de la sp
 | publicCloud (v2) | DELETE | `/publicCloud/project/{x}/kafka/{x}/user/{x}` | OvhCloudPublicCloud/database/kafka/userDeleteDelete.operation.ts |
 | publicCloud (v2) | GET | `/publicCloud/project/{x}/kafka/{x}/user/{x}` | OvhCloudPublicCloud/database/kafka/userGetGet.operation.ts |
 | publicCloud (v2) | PUT | `/publicCloud/project/{x}/kafka/{x}/user/{x}` | OvhCloudPublicCloud/database/kafka/userUpdatePut.operation.ts |
-| publicCloud (v2) | DELETE | `/publicCloud/project/{x}/kube/{x}` | OvhCloudPublicCloud/kube/kubeDeleteDelete.operation.ts |
-| publicCloud (v2) | GET | `/publicCloud/project/{x}/kube/{x}` | OvhCloudPublicCloud/kube/kubeGetGet.operation.ts |
-| publicCloud (v2) | PUT | `/publicCloud/project/{x}/kube/{x}` | OvhCloudPublicCloud/kube/kubeUpdatePut.operation.ts |
-| publicCloud (v2) | POST | `/publicCloud/project/{x}/kube/{x}/auditLogs` | OvhCloudPublicCloud/kube/kubeAuditLogsPost.operation.ts |
-| publicCloud (v2) | GET | `/publicCloud/project/{x}/kube/{x}/customization` | OvhCloudPublicCloud/kube/kubeCustomizationGet.operation.ts |
-| publicCloud (v2) | PUT | `/publicCloud/project/{x}/kube/{x}/customization` | OvhCloudPublicCloud/kube/kubeCustomizationUpdatePut.operation.ts |
-| publicCloud (v2) | GET | `/publicCloud/project/{x}/kube/{x}/flavors` | OvhCloudPublicCloud/kube/kubeFlavorsGet.operation.ts |
-| publicCloud (v2) | GET | `/publicCloud/project/{x}/kube/{x}/ipRestrictions` | OvhCloudPublicCloud/kube/kubeIpRestrictionsGet.operation.ts |
-| publicCloud (v2) | POST | `/publicCloud/project/{x}/kube/{x}/ipRestrictions` | OvhCloudPublicCloud/kube/kubeIpRestrictionsPost.operation.ts |
-| publicCloud (v2) | PUT | `/publicCloud/project/{x}/kube/{x}/ipRestrictions` | OvhCloudPublicCloud/kube/kubeIpRestrictionsUpdatePut.operation.ts |
-| publicCloud (v2) | DELETE | `/publicCloud/project/{x}/kube/{x}/ipRestrictions/{x}` | OvhCloudPublicCloud/kube/kubeIpRestrictionsDeleteDelete.operation.ts |
-| publicCloud (v2) | POST | `/publicCloud/project/{x}/kube/{x}/kubeconfig` | OvhCloudPublicCloud/kube/kubeKubeconfigPost.operation.ts |
-| publicCloud (v2) | POST | `/publicCloud/project/{x}/kube/{x}/kubeconfig/reset` | OvhCloudPublicCloud/kube/kubeKubeconfigResetPost.operation.ts |
-| publicCloud (v2) | POST | `/publicCloud/project/{x}/kube/{x}/log/subscription` | OvhCloudPublicCloud/kube/kubeLogSubscriptionPost.operation.ts |
-| publicCloud (v2) | DELETE | `/publicCloud/project/{x}/kube/{x}/log/subscription/{x}` | OvhCloudPublicCloud/kube/kubeLogSubscriptionDeleteDelete.operation.ts |
-| publicCloud (v2) | GET | `/publicCloud/project/{x}/kube/{x}/log/subscription/{x}` | OvhCloudPublicCloud/kube/kubeLogSubscriptionGet.operation.ts |
-| publicCloud (v2) | POST | `/publicCloud/project/{x}/kube/{x}/log/url` | OvhCloudPublicCloud/kube/kubeLogUrlPost.operation.ts |
-| publicCloud (v2) | GET | `/publicCloud/project/{x}/kube/{x}/metrics/etcdUsage` | OvhCloudPublicCloud/kube/kubeMetricsEtcdUsageGet.operation.ts |
-| publicCloud (v2) | GET | `/publicCloud/project/{x}/kube/{x}/node` | OvhCloudPublicCloud/kube/kubeNodeListGet.operation.ts |
-| publicCloud (v2) | DELETE | `/publicCloud/project/{x}/kube/{x}/node/{x}` | OvhCloudPublicCloud/kube/kubeNodeDeleteDelete.operation.ts |
-| publicCloud (v2) | GET | `/publicCloud/project/{x}/kube/{x}/node/{x}` | OvhCloudPublicCloud/kube/kubeNodeGet.operation.ts |
-| publicCloud (v2) | POST | `/publicCloud/project/{x}/kube/{x}/nodepool` | OvhCloudPublicCloud/kube/kubeNodepoolCreatePost.operation.ts |
-| publicCloud (v2) | DELETE | `/publicCloud/project/{x}/kube/{x}/nodepool/{x}` | OvhCloudPublicCloud/kube/kubeNodepoolDeleteDelete.operation.ts |
-| publicCloud (v2) | GET | `/publicCloud/project/{x}/kube/{x}/nodepool/{x}` | OvhCloudPublicCloud/kube/kubeNodepoolGetGet.operation.ts |
-| publicCloud (v2) | PUT | `/publicCloud/project/{x}/kube/{x}/nodepool/{x}` | OvhCloudPublicCloud/kube/kubeNodepoolUpdatePut.operation.ts |
-| publicCloud (v2) | GET | `/publicCloud/project/{x}/kube/{x}/nodepool/{x}/nodes` | OvhCloudPublicCloud/kube/kubeNodepoolListNodepoolNodesGet.operation.ts |
-| publicCloud (v2) | DELETE | `/publicCloud/project/{x}/kube/{x}/openIdConnect` | OvhCloudPublicCloud/kube/kubeOpenIdConnectDeleteDelete.operation.ts |
-| publicCloud (v2) | GET | `/publicCloud/project/{x}/kube/{x}/openIdConnect` | OvhCloudPublicCloud/kube/kubeOpenIdConnectGet.operation.ts |
-| publicCloud (v2) | POST | `/publicCloud/project/{x}/kube/{x}/openIdConnect` | OvhCloudPublicCloud/kube/kubeOpenIdConnectPost.operation.ts |
-| publicCloud (v2) | PUT | `/publicCloud/project/{x}/kube/{x}/openIdConnect` | OvhCloudPublicCloud/kube/kubeOpenIdConnectUpdatePut.operation.ts |
-| publicCloud (v2) | GET | `/publicCloud/project/{x}/kube/{x}/privateNetworkConfiguration` | OvhCloudPublicCloud/kube/kubePrivateNetworkConfigurationGet.operation.ts |
-| publicCloud (v2) | PUT | `/publicCloud/project/{x}/kube/{x}/privateNetworkConfiguration` | OvhCloudPublicCloud/kube/kubePrivateNetworkConfigurationUpdatePut.operation.ts |
-| publicCloud (v2) | POST | `/publicCloud/project/{x}/kube/{x}/reset` | OvhCloudPublicCloud/kube/kubeResetPost.operation.ts |
-| publicCloud (v2) | POST | `/publicCloud/project/{x}/kube/{x}/restart` | OvhCloudPublicCloud/kube/kubeRestartPost.operation.ts |
-| publicCloud (v2) | POST | `/publicCloud/project/{x}/kube/{x}/update` | OvhCloudPublicCloud/kube/kubeUpdatePost.operation.ts |
-| publicCloud (v2) | PUT | `/publicCloud/project/{x}/kube/{x}/updateLoadBalancersSubnetId` | OvhCloudPublicCloud/kube/kubeUpdateLoadBalancersSubnetIdUpdatePut.operation.ts |
-| publicCloud (v2) | PUT | `/publicCloud/project/{x}/kube/{x}/updatePolicy` | OvhCloudPublicCloud/kube/kubeUpdatePolicyUpdatePut.operation.ts |
 | publicCloud (v2) | GET | `/publicCloud/project/{x}/lab` | OvhCloudPublicCloud/lab/listGet.operation.ts |
 | publicCloud (v2) | POST | `/publicCloud/project/{x}/lab` | OvhCloudPublicCloud/lab/createPost.operation.ts |
 | publicCloud (v2) | DELETE | `/publicCloud/project/{x}/lab/{x}` | OvhCloudPublicCloud/lab/deleteDelete.operation.ts |

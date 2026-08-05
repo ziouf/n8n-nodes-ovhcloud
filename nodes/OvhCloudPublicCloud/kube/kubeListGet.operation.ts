@@ -38,14 +38,14 @@ export function description(displayOptions: IDisplayOptions): INodeProperties[] 
  * Executes the List Kube operation.
  *
  * HTTP method: GET
- * Endpoint: /cloud/project/{projectId}/kube
+ * Endpoint: /cloud/project/{serviceName}/kube
  */
 export async function execute(this: IExecuteFunctions): Promise<INodeExecutionData[]> {
 	const client = new ApiClient(this);
-	const projectId = this.getNodeParameter('publicCloudProjectId', 0, '', {
+	const serviceName = this.getNodeParameter('publicCloudProjectId', 0, '', {
 		extractValue: true,
 	}) as string;
-	const data = (await client.httpGet(`/cloud/project/${projectId}/kube`)) as unknown[];
+	const data = (await client.httpGet(`/cloud/project/${serviceName}/kube`)) as unknown[];
 
 	if (!Array.isArray(data)) {
 		return this.helpers.returnJsonArray([data]);

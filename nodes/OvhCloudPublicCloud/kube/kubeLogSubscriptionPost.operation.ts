@@ -41,6 +41,24 @@ export function description(displayOptions: IDisplayOptions): INodeProperties[] 
 			description: 'The Kube cluster ID',
 			displayOptions,
 		},
+		{
+			displayName: 'Kind',
+			name: 'kind',
+			type: 'string',
+			default: '',
+			required: true,
+			description: 'Log kind name to subscribe to',
+			displayOptions,
+		},
+		{
+			displayName: 'Stream ID',
+			name: 'streamId',
+			type: 'string',
+			default: '',
+			required: true,
+			description: 'Customer log stream ID',
+			displayOptions,
+		},
 	];
 }
 
@@ -48,17 +66,21 @@ export function description(displayOptions: IDisplayOptions): INodeProperties[] 
  * Executes the Create Kube Log Subscription operation.
  *
  * HTTP method: POST
- * Endpoint: /publicCloud/project/{projectId}/kube/{kubeId}/log/subscription
+ * Endpoint: /cloud/project/{serviceName}/kube/{kubeId}/log/subscription
  */
 export async function execute(this: IExecuteFunctions): Promise<INodeExecutionData[]> {
 	const client = new ApiClient(this);
-	const projectId = this.getNodeParameter('publicCloudProjectId', 0, '', {
+	const serviceName = this.getNodeParameter('publicCloudProjectId', 0, '', {
 		extractValue: true,
 	}) as string;
 	const kubeId = this.getNodeParameter('kubeId', 0) as string;
+	const kind = (this.getNodeParameter('kind', 0) || '') as string;
+	const streamId = (this.getNodeParameter('streamId', 0) || '') as string;
+
+	const body: IDataObject = { kind, streamId };
 	const data = (await client.httpPost(
-		`/publicCloud/project/${projectId}/kube/${kubeId}/log/subscription`,
-		{} as IDataObject,
+		`/cloud/project/${serviceName}/kube/${kubeId}/log/subscription`,
+		body,
 	)) as IDataObject;
 
 	return this.helpers.returnJsonArray([data]);

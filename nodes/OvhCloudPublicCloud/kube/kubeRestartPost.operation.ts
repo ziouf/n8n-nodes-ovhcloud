@@ -48,16 +48,16 @@ export function description(displayOptions: IDisplayOptions): INodeProperties[] 
  * Executes the Restart Kube operation.
  *
  * HTTP method: POST
- * Endpoint: /publicCloud/project/{projectId}/kube/{kubeId}/restart
+ * Endpoint: /cloud/project/{serviceName}/kube/{kubeId}/restart
  */
 export async function execute(this: IExecuteFunctions): Promise<INodeExecutionData[]> {
 	const client = new ApiClient(this);
-	const projectId = this.getNodeParameter('publicCloudProjectId', 0, '', {
+	const serviceName = this.getNodeParameter('publicCloudProjectId', 0, '', {
 		extractValue: true,
 	}) as string;
 	const kubeId = this.getNodeParameter('kubeId', 0) as string;
 	const data = (await client.httpPost(
-		`/publicCloud/project/${projectId}/kube/${kubeId}/restart`,
+		`/cloud/project/${serviceName}/kube/${kubeId}/restart`,
 		{} as IDataObject,
 	)) as IDataObject;
 

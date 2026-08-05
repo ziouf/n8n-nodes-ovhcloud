@@ -46,7 +46,7 @@ export function description(displayOptions: IDisplayOptions): INodeProperties[] 
 			name: 'issuerUrl',
 			type: 'string',
 			default: '',
-			description: 'The OIDC issuer URL',
+			required: true,
 			displayOptions,
 		},
 		{
@@ -54,7 +54,7 @@ export function description(displayOptions: IDisplayOptions): INodeProperties[] 
 			name: 'clientId',
 			type: 'string',
 			default: '',
-			description: 'The OIDC client ID',
+			required: true,
 			displayOptions,
 		},
 	];
@@ -64,24 +64,22 @@ export function description(displayOptions: IDisplayOptions): INodeProperties[] 
  * Executes the Create Kube OpenIdConnect operation.
  *
  * HTTP method: POST
- * Endpoint: /publicCloud/project/{projectId}/kube/{kubeId}/openIdConnect
+ * Endpoint: /cloud/project/{serviceName}/kube/{kubeId}/openIdConnect
  */
 export async function execute(this: IExecuteFunctions): Promise<INodeExecutionData[]> {
 	const client = new ApiClient(this);
-	const projectId = this.getNodeParameter('publicCloudProjectId', 0, '', {
+	const serviceName = this.getNodeParameter('publicCloudProjectId', 0, '', {
 		extractValue: true,
 	}) as string;
 	const kubeId = this.getNodeParameter('kubeId', 0) as string;
 	const issuerUrl = (this.getNodeParameter('issuerUrl', 0) || '') as string;
 	const clientId = (this.getNodeParameter('clientId', 0) || '') as string;
 
-	const body: IDataObject = {};
-	if (issuerUrl) body.issuerUrl = issuerUrl;
-	if (clientId) body.clientId = clientId;
+	const body: IDataObject = { issuerUrl, clientId };
 
 	const data = (await client.httpPost(
-		`/publicCloud/project/${projectId}/kube/${kubeId}/openIdConnect`,
-		body as IDataObject,
+		`/cloud/project/${serviceName}/kube/${kubeId}/openIdConnect`,
+		body,
 	)) as IDataObject;
 
 	return this.helpers.returnJsonArray([data]);

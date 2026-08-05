@@ -48,16 +48,16 @@ export function description(displayOptions: IDisplayOptions): INodeProperties[] 
  * Executes the Reset Kube Kubeconfig operation.
  *
  * HTTP method: POST
- * Endpoint: /publicCloud/project/{projectId}/kube/{kubeId}/kubeconfig/reset
+ * Endpoint: /cloud/project/{serviceName}/kube/{kubeId}/kubeconfig/reset
  */
 export async function execute(this: IExecuteFunctions): Promise<INodeExecutionData[]> {
 	const client = new ApiClient(this);
-	const projectId = this.getNodeParameter('publicCloudProjectId', 0, '', {
+	const serviceName = this.getNodeParameter('publicCloudProjectId', 0, '', {
 		extractValue: true,
 	}) as string;
 	const kubeId = this.getNodeParameter('kubeId', 0) as string;
 	const data = (await client.httpPost(
-		`/publicCloud/project/${projectId}/kube/${kubeId}/kubeconfig/reset`,
+		`/cloud/project/${serviceName}/kube/${kubeId}/kubeconfig/reset`,
 		{} as IDataObject,
 	)) as IDataObject;
 

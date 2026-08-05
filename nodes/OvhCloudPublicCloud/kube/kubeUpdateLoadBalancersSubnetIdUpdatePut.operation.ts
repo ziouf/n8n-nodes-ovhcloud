@@ -56,11 +56,11 @@ export function description(displayOptions: IDisplayOptions): INodeProperties[] 
  * Executes the Update Kube Load Balancers Subnet ID operation.
  *
  * HTTP method: PUT
- * Endpoint: /publicCloud/project/{projectId}/kube/{kubeId}/updateLoadBalancersSubnetId
+ * Endpoint: /cloud/project/{serviceName}/kube/{kubeId}/updateLoadBalancersSubnetId
  */
 export async function execute(this: IExecuteFunctions): Promise<INodeExecutionData[]> {
 	const client = new ApiClient(this);
-	const projectId = this.getNodeParameter('publicCloudProjectId', 0, '', {
+	const serviceName = this.getNodeParameter('publicCloudProjectId', 0, '', {
 		extractValue: true,
 	}) as string;
 	const kubeId = this.getNodeParameter('kubeId', 0) as string;
@@ -68,7 +68,7 @@ export async function execute(this: IExecuteFunctions): Promise<INodeExecutionDa
 
 	const body: IDataObject = { loadBalancersSubnetId };
 	const data = (await client.httpPut(
-		`/publicCloud/project/${projectId}/kube/${kubeId}/updateLoadBalancersSubnetId`,
+		`/cloud/project/${serviceName}/kube/${kubeId}/updateLoadBalancersSubnetId`,
 		body as IDataObject,
 	)) as IDataObject;
 
