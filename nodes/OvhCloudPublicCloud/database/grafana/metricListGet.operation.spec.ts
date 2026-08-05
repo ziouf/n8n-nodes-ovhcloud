@@ -1,5 +1,5 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import { description, execute } from './userDeleteDelete.operation';
+import { description, execute } from './metricListGet.operation';
 
 jest.mock('../../../../shared/transport/ApiClient', () => {
 	const mockHttpClient = {
@@ -13,11 +13,11 @@ jest.mock('../../../../shared/transport/ApiClient', () => {
 
 import { ApiClient } from '../../../../shared/transport/ApiClient';
 
-describe('grafana userDeleteDelete operation', () => {
+describe('grafana metricListGet operation', () => {
 	describe('description', () => {
 		it('should return all required parameters', () => {
-			const result = description({'show': {}});
-			expect(result.length).toBeGreaterThanOrEqual(1);
+			const result = description({ show: {} });
+			expect(result).toHaveLength(2);
 		});
 	});
 
@@ -31,20 +31,22 @@ describe('grafana userDeleteDelete operation', () => {
 		});
 
 		it('should call the correct API endpoint', async () => {
-			const mockData = [] as unknown[];
 			const client = new ApiClient(mockExecuteFunctions) as any;
-			client.httpDelete.mockResolvedValue(mockData);
+			client.httpGet.mockResolvedValue(['cpu']);
 
-			mockExecuteFunctions.getNodeParameter.mockReturnValue((param: string): string | undefined => {
-				if (param === 'publicCloudProjectId') return '12345678-1234-1234-1234-1234567890ab';
-				if (param === 'serviceName') return 'test-service';
-				if (param === 'userId') return 'test-userId-id';
-				return '';
-			});
+			mockExecuteFunctions.getNodeParameter.mockImplementation(
+				(param: string): string | undefined => {
+					if (param === 'publicCloudProjectId') return '12345678-1234-1234-1234-1234567890ab';
+					if (param === 'clusterId') return 'test-cluster-id';
+					return '';
+				},
+			);
 
 			const result = await execute.call(mockExecuteFunctions);
-			expect(client.httpDelete).toHaveBeenCalled();
-			expect(result).toHaveLength(0);
+			expect(client.httpGet).toHaveBeenCalledWith(
+				'/cloud/project/12345678-1234-1234-1234-1234567890ab/database/grafana/test-cluster-id/metric',
+			);
+			expect(result).toMatchObject(['cpu']);
 		});
 	});
 });

@@ -795,57 +795,29 @@ import {
 	execute as grafanaBackupListGetExecute,
 } from './database/grafana/backupListGet.operation';
 import {
-	description as grafanaBackupCreatePostDescription,
-	execute as grafanaBackupCreatePostExecute,
-} from './database/grafana/backupCreatePost.operation';
-import {
 	description as grafanaBackupGetGetDescription,
 	execute as grafanaBackupGetGetExecute,
 } from './database/grafana/backupGetGet.operation';
-import {
-	description as grafanaBackupDeleteDeleteDescription,
-	execute as grafanaBackupDeleteDeleteExecute,
-} from './database/grafana/backupDeleteDelete.operation';
 import {
 	description as grafanaUserListGetDescription,
 	execute as grafanaUserListGetExecute,
 } from './database/grafana/userListGet.operation';
 import {
-	description as grafanaUserCreatePostDescription,
-	execute as grafanaUserCreatePostExecute,
-} from './database/grafana/userCreatePost.operation';
-import {
 	description as grafanaUserGetGetDescription,
 	execute as grafanaUserGetGetExecute,
 } from './database/grafana/userGetGet.operation';
 import {
-	description as grafanaUserUpdatePutDescription,
-	execute as grafanaUserUpdatePutExecute,
-} from './database/grafana/userUpdatePut.operation';
-import {
-	description as grafanaUserDeleteDeleteDescription,
-	execute as grafanaUserDeleteDeleteExecute,
-} from './database/grafana/userDeleteDelete.operation';
+	description as grafanaUserCredentialsResetPostDescription,
+	execute as grafanaUserCredentialsResetPostExecute,
+} from './database/grafana/userCredentialsResetPost.operation';
 import {
 	description as grafanaNodeListGetDescription,
 	execute as grafanaNodeListGetExecute,
 } from './database/grafana/nodeListGet.operation';
 import {
-	description as grafanaNodeCreatePostDescription,
-	execute as grafanaNodeCreatePostExecute,
-} from './database/grafana/nodeCreatePost.operation';
-import {
 	description as grafanaNodeGetGetDescription,
 	execute as grafanaNodeGetGetExecute,
 } from './database/grafana/nodeGetGet.operation';
-import {
-	description as grafanaNodeUpdatePutDescription,
-	execute as grafanaNodeUpdatePutExecute,
-} from './database/grafana/nodeUpdatePut.operation';
-import {
-	description as grafanaNodeDeleteDeleteDescription,
-	execute as grafanaNodeDeleteDeleteExecute,
-} from './database/grafana/nodeDeleteDelete.operation';
 import {
 	description as grafanaIpRestrictionListGetDescription,
 	execute as grafanaIpRestrictionListGetExecute,
@@ -854,6 +826,26 @@ import {
 	description as grafanaIpRestrictionCreatePostDescription,
 	execute as grafanaIpRestrictionCreatePostExecute,
 } from './database/grafana/ipRestrictionCreatePost.operation';
+import {
+	description as grafanaIpRestrictionGetGetDescription,
+	execute as grafanaIpRestrictionGetGetExecute,
+} from './database/grafana/ipRestrictionGetGet.operation';
+import {
+	description as grafanaIpRestrictionUpdatePutDescription,
+	execute as grafanaIpRestrictionUpdatePutExecute,
+} from './database/grafana/ipRestrictionUpdatePut.operation';
+import {
+	description as grafanaIpRestrictionDeleteDeleteDescription,
+	execute as grafanaIpRestrictionDeleteDeleteExecute,
+} from './database/grafana/ipRestrictionDeleteDelete.operation';
+import {
+	description as grafanaLogKindListGetDescription,
+	execute as grafanaLogKindListGetExecute,
+} from './database/grafana/logKindListGet.operation';
+import {
+	description as grafanaLogKindGetDescription,
+	execute as grafanaLogKindGetExecute,
+} from './database/grafana/logKindGet.operation';
 import {
 	description as grafanaLogSubscriptionListGetDescription,
 	execute as grafanaLogSubscriptionListGetExecute,
@@ -867,29 +859,57 @@ import {
 	execute as grafanaLogSubscriptionGetGetExecute,
 } from './database/grafana/logSubscriptionGetGet.operation';
 import {
+	description as grafanaLogSubscriptionDeleteDeleteDescription,
+	execute as grafanaLogSubscriptionDeleteDeleteExecute,
+} from './database/grafana/logSubscriptionDeleteDelete.operation';
+import {
+	description as grafanaLogUrlCreatePostDescription,
+	execute as grafanaLogUrlCreatePostExecute,
+} from './database/grafana/logUrlCreatePost.operation';
+import {
+	description as grafanaLogsGetDescription,
+	execute as grafanaLogsGetExecute,
+} from './database/grafana/logsGet.operation';
+import {
+	description as grafanaMaintenanceListGetDescription,
+	execute as grafanaMaintenanceListGetExecute,
+} from './database/grafana/maintenanceListGet.operation';
+import {
 	description as grafanaMaintenanceGetDescription,
 	execute as grafanaMaintenanceGetExecute,
 } from './database/grafana/maintenanceGet.operation';
 import {
-	description as grafanaMaintenanceUpdatePutDescription,
-	execute as grafanaMaintenanceUpdatePutExecute,
-} from './database/grafana/maintenanceUpdatePut.operation';
+	description as grafanaMaintenanceApplyPostDescription,
+	execute as grafanaMaintenanceApplyPostExecute,
+} from './database/grafana/maintenanceApplyPost.operation';
+import {
+	description as grafanaMetricListGetDescription,
+	execute as grafanaMetricListGetExecute,
+} from './database/grafana/metricListGet.operation';
 import {
 	description as grafanaMetricGetDescription,
 	execute as grafanaMetricGetExecute,
 } from './database/grafana/metricGet.operation';
 import {
-	description as grafanaPrometheusGetDescription,
-	execute as grafanaPrometheusGetExecute,
-} from './database/grafana/prometheusGet.operation';
+	description as grafanaAdvancedConfigurationGetDescription,
+	execute as grafanaAdvancedConfigurationGetExecute,
+} from './database/grafana/advancedConfigurationGet.operation';
 import {
-	description as grafanaCertificateListGetDescription,
-	execute as grafanaCertificateListGetExecute,
-} from './database/grafana/certificateListGet.operation';
+	description as grafanaAdvancedConfigurationUpdatePutDescription,
+	execute as grafanaAdvancedConfigurationUpdatePutExecute,
+} from './database/grafana/advancedConfigurationUpdatePut.operation';
 import {
-	description as grafanaCertificateCreatePostDescription,
-	execute as grafanaCertificateCreatePostExecute,
-} from './database/grafana/certificateCreatePost.operation';
+	description as grafanaCapabilitiesAdvancedConfigurationGetDescription,
+	execute as grafanaCapabilitiesAdvancedConfigurationGetExecute,
+} from './database/grafana/capabilitiesAdvancedConfigurationGet.operation';
+import {
+	description as grafanaCapabilitiesBackupRegionsGetDescription,
+	execute as grafanaCapabilitiesBackupRegionsGetExecute,
+} from './database/grafana/capabilitiesBackupRegionsGet.operation';
+import {
+	description as grafanaCapabilitiesIntegrationGetDescription,
+	execute as grafanaCapabilitiesIntegrationGetExecute,
+} from './database/grafana/capabilitiesIntegrationGet.operation';
 import {
 	description as grafanaIntegrationListGetDescription,
 	execute as grafanaIntegrationListGetExecute,
@@ -898,6 +918,14 @@ import {
 	description as grafanaIntegrationCreatePostDescription,
 	execute as grafanaIntegrationCreatePostExecute,
 } from './database/grafana/integrationCreatePost.operation';
+import {
+	description as grafanaIntegrationGetGetDescription,
+	execute as grafanaIntegrationGetGetExecute,
+} from './database/grafana/integrationGetGet.operation';
+import {
+	description as grafanaIntegrationDeleteDeleteDescription,
+	execute as grafanaIntegrationDeleteDeleteExecute,
+} from './database/grafana/integrationDeleteDelete.operation';
 
 import {
 	description as kafkaClusterListGetDescription,
@@ -3496,19 +3524,9 @@ export function description(displayOptions: IDisplayOptions): INodeProperties[] 
 				action: 'List Grafana backups',
 			},
 			{
-				name: 'grafanaBackupCreatePost',
-				value: 'grafanaBackupCreatePost',
-				action: 'Create Grafana backup',
-			},
-			{
 				name: 'grafanaBackupGetGet',
 				value: 'grafanaBackupGetGet',
 				action: 'Get Grafana backup',
-			},
-			{
-				name: 'grafanaBackupDeleteDelete',
-				value: 'grafanaBackupDeleteDelete',
-				action: 'Delete Grafana backup',
 			},
 			{
 				name: 'grafanaUserListGet',
@@ -3516,24 +3534,14 @@ export function description(displayOptions: IDisplayOptions): INodeProperties[] 
 				action: 'List Grafana users',
 			},
 			{
-				name: 'grafanaUserCreatePost',
-				value: 'grafanaUserCreatePost',
-				action: 'Create Grafana user',
-			},
-			{
 				name: 'grafanaUserGetGet',
 				value: 'grafanaUserGetGet',
 				action: 'Get Grafana user',
 			},
 			{
-				name: 'grafanaUserUpdatePut',
-				value: 'grafanaUserUpdatePut',
-				action: 'Update Grafana user',
-			},
-			{
-				name: 'grafanaUserDeleteDelete',
-				value: 'grafanaUserDeleteDelete',
-				action: 'Delete Grafana user',
+				name: 'grafanaUserCredentialsResetPost',
+				value: 'grafanaUserCredentialsResetPost',
+				action: 'Reset Grafana user credentials',
 			},
 			{
 				name: 'grafanaNodeListGet',
@@ -3541,24 +3549,9 @@ export function description(displayOptions: IDisplayOptions): INodeProperties[] 
 				action: 'List Grafana nodes',
 			},
 			{
-				name: 'grafanaNodeCreatePost',
-				value: 'grafanaNodeCreatePost',
-				action: 'Create Grafana node',
-			},
-			{
 				name: 'grafanaNodeGetGet',
 				value: 'grafanaNodeGetGet',
 				action: 'Get Grafana node',
-			},
-			{
-				name: 'grafanaNodeUpdatePut',
-				value: 'grafanaNodeUpdatePut',
-				action: 'Update Grafana node',
-			},
-			{
-				name: 'grafanaNodeDeleteDelete',
-				value: 'grafanaNodeDeleteDelete',
-				action: 'Delete Grafana node',
 			},
 			{
 				name: 'grafanaIpRestrictionListGet',
@@ -3569,6 +3562,31 @@ export function description(displayOptions: IDisplayOptions): INodeProperties[] 
 				name: 'grafanaIpRestrictionCreatePost',
 				value: 'grafanaIpRestrictionCreatePost',
 				action: 'Create Grafana IP restriction',
+			},
+			{
+				name: 'grafanaIpRestrictionGetGet',
+				value: 'grafanaIpRestrictionGetGet',
+				action: 'Get Grafana IP restriction',
+			},
+			{
+				name: 'grafanaIpRestrictionUpdatePut',
+				value: 'grafanaIpRestrictionUpdatePut',
+				action: 'Update Grafana IP restriction',
+			},
+			{
+				name: 'grafanaIpRestrictionDeleteDelete',
+				value: 'grafanaIpRestrictionDeleteDelete',
+				action: 'Delete Grafana IP restriction',
+			},
+			{
+				name: 'grafanaLogKindListGet',
+				value: 'grafanaLogKindListGet',
+				action: 'List Grafana log kinds',
+			},
+			{
+				name: 'grafanaLogKindGet',
+				value: 'grafanaLogKindGet',
+				action: 'Get Grafana log kind',
 			},
 			{
 				name: 'grafanaLogSubscriptionListGet',
@@ -3586,14 +3604,39 @@ export function description(displayOptions: IDisplayOptions): INodeProperties[] 
 				action: 'Get Grafana log subscription',
 			},
 			{
+				name: 'grafanaLogSubscriptionDeleteDelete',
+				value: 'grafanaLogSubscriptionDeleteDelete',
+				action: 'Delete Grafana log subscription',
+			},
+			{
+				name: 'grafanaLogUrlCreatePost',
+				value: 'grafanaLogUrlCreatePost',
+				action: 'Get Grafana log URL',
+			},
+			{
+				name: 'grafanaLogsGet',
+				value: 'grafanaLogsGet',
+				action: 'Get Grafana logs',
+			},
+			{
+				name: 'grafanaMaintenanceListGet',
+				value: 'grafanaMaintenanceListGet',
+				action: 'List Grafana maintenances',
+			},
+			{
 				name: 'grafanaMaintenanceGet',
 				value: 'grafanaMaintenanceGet',
 				action: 'Get Grafana maintenance',
 			},
 			{
-				name: 'grafanaMaintenanceUpdatePut',
-				value: 'grafanaMaintenanceUpdatePut',
-				action: 'Update Grafana maintenance',
+				name: 'grafanaMaintenanceApplyPost',
+				value: 'grafanaMaintenanceApplyPost',
+				action: 'Apply Grafana maintenance',
+			},
+			{
+				name: 'grafanaMetricListGet',
+				value: 'grafanaMetricListGet',
+				action: 'List Grafana metrics',
 			},
 			{
 				name: 'grafanaMetricGet',
@@ -3601,19 +3644,29 @@ export function description(displayOptions: IDisplayOptions): INodeProperties[] 
 				action: 'Get Grafana metric',
 			},
 			{
-				name: 'grafanaPrometheusGet',
-				value: 'grafanaPrometheusGet',
-				action: 'Get Grafana prometheus',
+				name: 'grafanaAdvancedConfigurationGet',
+				value: 'grafanaAdvancedConfigurationGet',
+				action: 'Get Grafana advanced configuration',
 			},
 			{
-				name: 'grafanaCertificateListGet',
-				value: 'grafanaCertificateListGet',
-				action: 'List Grafana certificates',
+				name: 'grafanaAdvancedConfigurationUpdatePut',
+				value: 'grafanaAdvancedConfigurationUpdatePut',
+				action: 'Update Grafana advanced configuration',
 			},
 			{
-				name: 'grafanaCertificateCreatePost',
-				value: 'grafanaCertificateCreatePost',
-				action: 'Create Grafana certificate',
+				name: 'grafanaCapabilitiesAdvancedConfigurationGet',
+				value: 'grafanaCapabilitiesAdvancedConfigurationGet',
+				action: 'Get Grafana advanced configuration capabilities',
+			},
+			{
+				name: 'grafanaCapabilitiesBackupRegionsGet',
+				value: 'grafanaCapabilitiesBackupRegionsGet',
+				action: 'Get Grafana backup regions capabilities',
+			},
+			{
+				name: 'grafanaCapabilitiesIntegrationGet',
+				value: 'grafanaCapabilitiesIntegrationGet',
+				action: 'Get Grafana integration capabilities',
 			},
 			{
 				name: 'grafanaIntegrationListGet',
@@ -3624,6 +3677,16 @@ export function description(displayOptions: IDisplayOptions): INodeProperties[] 
 				name: 'grafanaIntegrationCreatePost',
 				value: 'grafanaIntegrationCreatePost',
 				action: 'Create Grafana integration',
+			},
+			{
+				name: 'grafanaIntegrationGetGet',
+				value: 'grafanaIntegrationGetGet',
+				action: 'Get Grafana integration',
+			},
+			{
+				name: 'grafanaIntegrationDeleteDelete',
+				value: 'grafanaIntegrationDeleteDelete',
+				action: 'Delete Grafana integration',
 			},
 			{
 				name: 'kafkaClusterListGet',
@@ -7274,21 +7337,9 @@ export function description(displayOptions: IDisplayOptions): INodeProperties[] 
 		}) as INodeProperties[]),
 	);
 	properties.push(
-		...(grafanaBackupCreatePostDescription({
-			...displayOptions,
-			show: { publicCloudOperation: ['grafanaBackupCreatePost'] },
-		}) as INodeProperties[]),
-	);
-	properties.push(
 		...(grafanaBackupGetGetDescription({
 			...displayOptions,
 			show: { publicCloudOperation: ['grafanaBackupGetGet'] },
-		}) as INodeProperties[]),
-	);
-	properties.push(
-		...(grafanaBackupDeleteDeleteDescription({
-			...displayOptions,
-			show: { publicCloudOperation: ['grafanaBackupDeleteDelete'] },
 		}) as INodeProperties[]),
 	);
 	properties.push(
@@ -7298,27 +7349,15 @@ export function description(displayOptions: IDisplayOptions): INodeProperties[] 
 		}) as INodeProperties[]),
 	);
 	properties.push(
-		...(grafanaUserCreatePostDescription({
-			...displayOptions,
-			show: { publicCloudOperation: ['grafanaUserCreatePost'] },
-		}) as INodeProperties[]),
-	);
-	properties.push(
 		...(grafanaUserGetGetDescription({
 			...displayOptions,
 			show: { publicCloudOperation: ['grafanaUserGetGet'] },
 		}) as INodeProperties[]),
 	);
 	properties.push(
-		...(grafanaUserUpdatePutDescription({
+		...(grafanaUserCredentialsResetPostDescription({
 			...displayOptions,
-			show: { publicCloudOperation: ['grafanaUserUpdatePut'] },
-		}) as INodeProperties[]),
-	);
-	properties.push(
-		...(grafanaUserDeleteDeleteDescription({
-			...displayOptions,
-			show: { publicCloudOperation: ['grafanaUserDeleteDelete'] },
+			show: { publicCloudOperation: ['grafanaUserCredentialsResetPost'] },
 		}) as INodeProperties[]),
 	);
 	properties.push(
@@ -7328,27 +7367,9 @@ export function description(displayOptions: IDisplayOptions): INodeProperties[] 
 		}) as INodeProperties[]),
 	);
 	properties.push(
-		...(grafanaNodeCreatePostDescription({
-			...displayOptions,
-			show: { publicCloudOperation: ['grafanaNodeCreatePost'] },
-		}) as INodeProperties[]),
-	);
-	properties.push(
 		...(grafanaNodeGetGetDescription({
 			...displayOptions,
 			show: { publicCloudOperation: ['grafanaNodeGetGet'] },
-		}) as INodeProperties[]),
-	);
-	properties.push(
-		...(grafanaNodeUpdatePutDescription({
-			...displayOptions,
-			show: { publicCloudOperation: ['grafanaNodeUpdatePut'] },
-		}) as INodeProperties[]),
-	);
-	properties.push(
-		...(grafanaNodeDeleteDeleteDescription({
-			...displayOptions,
-			show: { publicCloudOperation: ['grafanaNodeDeleteDelete'] },
 		}) as INodeProperties[]),
 	);
 	properties.push(
@@ -7361,6 +7382,36 @@ export function description(displayOptions: IDisplayOptions): INodeProperties[] 
 		...(grafanaIpRestrictionCreatePostDescription({
 			...displayOptions,
 			show: { publicCloudOperation: ['grafanaIpRestrictionCreatePost'] },
+		}) as INodeProperties[]),
+	);
+	properties.push(
+		...(grafanaIpRestrictionGetGetDescription({
+			...displayOptions,
+			show: { publicCloudOperation: ['grafanaIpRestrictionGetGet'] },
+		}) as INodeProperties[]),
+	);
+	properties.push(
+		...(grafanaIpRestrictionUpdatePutDescription({
+			...displayOptions,
+			show: { publicCloudOperation: ['grafanaIpRestrictionUpdatePut'] },
+		}) as INodeProperties[]),
+	);
+	properties.push(
+		...(grafanaIpRestrictionDeleteDeleteDescription({
+			...displayOptions,
+			show: { publicCloudOperation: ['grafanaIpRestrictionDeleteDelete'] },
+		}) as INodeProperties[]),
+	);
+	properties.push(
+		...(grafanaLogKindListGetDescription({
+			...displayOptions,
+			show: { publicCloudOperation: ['grafanaLogKindListGet'] },
+		}) as INodeProperties[]),
+	);
+	properties.push(
+		...(grafanaLogKindGetDescription({
+			...displayOptions,
+			show: { publicCloudOperation: ['grafanaLogKindGet'] },
 		}) as INodeProperties[]),
 	);
 	properties.push(
@@ -7382,15 +7433,45 @@ export function description(displayOptions: IDisplayOptions): INodeProperties[] 
 		}) as INodeProperties[]),
 	);
 	properties.push(
+		...(grafanaLogSubscriptionDeleteDeleteDescription({
+			...displayOptions,
+			show: { publicCloudOperation: ['grafanaLogSubscriptionDeleteDelete'] },
+		}) as INodeProperties[]),
+	);
+	properties.push(
+		...(grafanaLogUrlCreatePostDescription({
+			...displayOptions,
+			show: { publicCloudOperation: ['grafanaLogUrlCreatePost'] },
+		}) as INodeProperties[]),
+	);
+	properties.push(
+		...(grafanaLogsGetDescription({
+			...displayOptions,
+			show: { publicCloudOperation: ['grafanaLogsGet'] },
+		}) as INodeProperties[]),
+	);
+	properties.push(
+		...(grafanaMaintenanceListGetDescription({
+			...displayOptions,
+			show: { publicCloudOperation: ['grafanaMaintenanceListGet'] },
+		}) as INodeProperties[]),
+	);
+	properties.push(
 		...(grafanaMaintenanceGetDescription({
 			...displayOptions,
 			show: { publicCloudOperation: ['grafanaMaintenanceGet'] },
 		}) as INodeProperties[]),
 	);
 	properties.push(
-		...(grafanaMaintenanceUpdatePutDescription({
+		...(grafanaMaintenanceApplyPostDescription({
 			...displayOptions,
-			show: { publicCloudOperation: ['grafanaMaintenanceUpdatePut'] },
+			show: { publicCloudOperation: ['grafanaMaintenanceApplyPost'] },
+		}) as INodeProperties[]),
+	);
+	properties.push(
+		...(grafanaMetricListGetDescription({
+			...displayOptions,
+			show: { publicCloudOperation: ['grafanaMetricListGet'] },
 		}) as INodeProperties[]),
 	);
 	properties.push(
@@ -7400,21 +7481,33 @@ export function description(displayOptions: IDisplayOptions): INodeProperties[] 
 		}) as INodeProperties[]),
 	);
 	properties.push(
-		...(grafanaPrometheusGetDescription({
+		...(grafanaAdvancedConfigurationGetDescription({
 			...displayOptions,
-			show: { publicCloudOperation: ['grafanaPrometheusGet'] },
+			show: { publicCloudOperation: ['grafanaAdvancedConfigurationGet'] },
 		}) as INodeProperties[]),
 	);
 	properties.push(
-		...(grafanaCertificateListGetDescription({
+		...(grafanaAdvancedConfigurationUpdatePutDescription({
 			...displayOptions,
-			show: { publicCloudOperation: ['grafanaCertificateListGet'] },
+			show: { publicCloudOperation: ['grafanaAdvancedConfigurationUpdatePut'] },
 		}) as INodeProperties[]),
 	);
 	properties.push(
-		...(grafanaCertificateCreatePostDescription({
+		...(grafanaCapabilitiesAdvancedConfigurationGetDescription({
 			...displayOptions,
-			show: { publicCloudOperation: ['grafanaCertificateCreatePost'] },
+			show: { publicCloudOperation: ['grafanaCapabilitiesAdvancedConfigurationGet'] },
+		}) as INodeProperties[]),
+	);
+	properties.push(
+		...(grafanaCapabilitiesBackupRegionsGetDescription({
+			...displayOptions,
+			show: { publicCloudOperation: ['grafanaCapabilitiesBackupRegionsGet'] },
+		}) as INodeProperties[]),
+	);
+	properties.push(
+		...(grafanaCapabilitiesIntegrationGetDescription({
+			...displayOptions,
+			show: { publicCloudOperation: ['grafanaCapabilitiesIntegrationGet'] },
 		}) as INodeProperties[]),
 	);
 	properties.push(
@@ -7427,6 +7520,18 @@ export function description(displayOptions: IDisplayOptions): INodeProperties[] 
 		...(grafanaIntegrationCreatePostDescription({
 			...displayOptions,
 			show: { publicCloudOperation: ['grafanaIntegrationCreatePost'] },
+		}) as INodeProperties[]),
+	);
+	properties.push(
+		...(grafanaIntegrationGetGetDescription({
+			...displayOptions,
+			show: { publicCloudOperation: ['grafanaIntegrationGetGet'] },
+		}) as INodeProperties[]),
+	);
+	properties.push(
+		...(grafanaIntegrationDeleteDeleteDescription({
+			...displayOptions,
+			show: { publicCloudOperation: ['grafanaIntegrationDeleteDelete'] },
 		}) as INodeProperties[]),
 	);
 
@@ -10755,58 +10860,72 @@ export async function execute(
 			return grafanaClusterDeleteDeleteExecute.call(this);
 		case 'grafanaBackupListGet':
 			return grafanaBackupListGetExecute.call(this);
-		case 'grafanaBackupCreatePost':
-			return grafanaBackupCreatePostExecute.call(this);
 		case 'grafanaBackupGetGet':
 			return grafanaBackupGetGetExecute.call(this);
-		case 'grafanaBackupDeleteDelete':
-			return grafanaBackupDeleteDeleteExecute.call(this);
 		case 'grafanaUserListGet':
 			return grafanaUserListGetExecute.call(this);
-		case 'grafanaUserCreatePost':
-			return grafanaUserCreatePostExecute.call(this);
 		case 'grafanaUserGetGet':
 			return grafanaUserGetGetExecute.call(this);
-		case 'grafanaUserUpdatePut':
-			return grafanaUserUpdatePutExecute.call(this);
-		case 'grafanaUserDeleteDelete':
-			return grafanaUserDeleteDeleteExecute.call(this);
+		case 'grafanaUserCredentialsResetPost':
+			return grafanaUserCredentialsResetPostExecute.call(this);
 		case 'grafanaNodeListGet':
 			return grafanaNodeListGetExecute.call(this);
-		case 'grafanaNodeCreatePost':
-			return grafanaNodeCreatePostExecute.call(this);
 		case 'grafanaNodeGetGet':
 			return grafanaNodeGetGetExecute.call(this);
-		case 'grafanaNodeUpdatePut':
-			return grafanaNodeUpdatePutExecute.call(this);
-		case 'grafanaNodeDeleteDelete':
-			return grafanaNodeDeleteDeleteExecute.call(this);
 		case 'grafanaIpRestrictionListGet':
 			return grafanaIpRestrictionListGetExecute.call(this);
 		case 'grafanaIpRestrictionCreatePost':
 			return grafanaIpRestrictionCreatePostExecute.call(this);
+		case 'grafanaIpRestrictionGetGet':
+			return grafanaIpRestrictionGetGetExecute.call(this);
+		case 'grafanaIpRestrictionUpdatePut':
+			return grafanaIpRestrictionUpdatePutExecute.call(this);
+		case 'grafanaIpRestrictionDeleteDelete':
+			return grafanaIpRestrictionDeleteDeleteExecute.call(this);
+		case 'grafanaLogKindListGet':
+			return grafanaLogKindListGetExecute.call(this);
+		case 'grafanaLogKindGet':
+			return grafanaLogKindGetExecute.call(this);
 		case 'grafanaLogSubscriptionListGet':
 			return grafanaLogSubscriptionListGetExecute.call(this);
 		case 'grafanaLogSubscriptionCreatePost':
 			return grafanaLogSubscriptionCreatePostExecute.call(this);
 		case 'grafanaLogSubscriptionGetGet':
 			return grafanaLogSubscriptionGetGetExecute.call(this);
+		case 'grafanaLogSubscriptionDeleteDelete':
+			return grafanaLogSubscriptionDeleteDeleteExecute.call(this);
+		case 'grafanaLogUrlCreatePost':
+			return grafanaLogUrlCreatePostExecute.call(this);
+		case 'grafanaLogsGet':
+			return grafanaLogsGetExecute.call(this);
+		case 'grafanaMaintenanceListGet':
+			return grafanaMaintenanceListGetExecute.call(this);
 		case 'grafanaMaintenanceGet':
 			return grafanaMaintenanceGetExecute.call(this);
-		case 'grafanaMaintenanceUpdatePut':
-			return grafanaMaintenanceUpdatePutExecute.call(this);
+		case 'grafanaMaintenanceApplyPost':
+			return grafanaMaintenanceApplyPostExecute.call(this);
+		case 'grafanaMetricListGet':
+			return grafanaMetricListGetExecute.call(this);
 		case 'grafanaMetricGet':
 			return grafanaMetricGetExecute.call(this);
-		case 'grafanaPrometheusGet':
-			return grafanaPrometheusGetExecute.call(this);
-		case 'grafanaCertificateListGet':
-			return grafanaCertificateListGetExecute.call(this);
-		case 'grafanaCertificateCreatePost':
-			return grafanaCertificateCreatePostExecute.call(this);
+		case 'grafanaAdvancedConfigurationGet':
+			return grafanaAdvancedConfigurationGetExecute.call(this);
+		case 'grafanaAdvancedConfigurationUpdatePut':
+			return grafanaAdvancedConfigurationUpdatePutExecute.call(this);
+		case 'grafanaCapabilitiesAdvancedConfigurationGet':
+			return grafanaCapabilitiesAdvancedConfigurationGetExecute.call(this);
+		case 'grafanaCapabilitiesBackupRegionsGet':
+			return grafanaCapabilitiesBackupRegionsGetExecute.call(this);
+		case 'grafanaCapabilitiesIntegrationGet':
+			return grafanaCapabilitiesIntegrationGetExecute.call(this);
 		case 'grafanaIntegrationListGet':
 			return grafanaIntegrationListGetExecute.call(this);
 		case 'grafanaIntegrationCreatePost':
 			return grafanaIntegrationCreatePostExecute.call(this);
+		case 'grafanaIntegrationGetGet':
+			return grafanaIntegrationGetGetExecute.call(this);
+		case 'grafanaIntegrationDeleteDelete':
+			return grafanaIntegrationDeleteDeleteExecute.call(this);
 		case 'kafkaClusterListGet':
 			return kafkaClusterListGetExecute.call(this);
 		case 'kafkaClusterGetGet':

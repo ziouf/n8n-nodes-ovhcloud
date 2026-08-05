@@ -1,16 +1,16 @@
 # OVHcloud API Conformity Report
 
-> Généré par `scripts/audit-conformity.js` le 2026-08-05T13:07:01.272Z. Document généré automatiquement — ne pas éditer à la main.
+> Généré par `scripts/audit-conformity.js` le 2026-08-05T14:52:15.240Z. Document généré automatiquement — ne pas éditer à la main.
 
 Ce rapport vérifie que les opérations des nodes respectent leur spec (méthode, chemin, paramètres path requis, query requis, champs body requis).
 
 ## Résumé
 
-- **Opérations auditées** : 5455
-- **Conformes** : 3130
-- **Non conformes** : 2325
-- **Sans correspondance spec** (informatif) : 2052
-- **Taux de conformité** : **57.4%**
+- **Opérations auditées** : 5469
+- **Conformes** : 3169
+- **Non conformes** : 2300
+- **Sans correspondance spec** (informatif) : 2027
+- **Taux de conformité** : **57.9%**
 
 ## Conformité par spec
 
@@ -53,8 +53,8 @@ Triée par taux de non-conformité décroissant.
 | webhosting (v2) | 246 | 12 | 3 | 4.9% |
 | domain (v1) | 119 | 109 | 1 | 91.6% |
 | telephony (v1) | 644 | 602 | 5 | 93.5% |
-| publicCloud (v2) | 720 | 26 | 4 | 3.6% |
-| cloud (v1) | 720 | 79 | 1 | 11% |
+| publicCloud (v2) | 727 | 26 | 4 | 3.6% |
+| cloud (v1) | 727 | 118 | 1 | 16.2% |
 | price (v1) | 581 | 581 | 0 | 100% |
 | sms (v1) | 126 | 124 | 0 | 98.4% |
 | domain (v2) | 119 | 9 | 0 | 7.6% |
@@ -1003,38 +1003,6 @@ Ces opérations appellent un chemin qui ne correspond à aucun endpoint de la sp
 | cloud (v1) | GET | `/publicCloud/project/{x}/credit/{x}` | OvhCloudPublicCloud/credit/getDetailGet.operation.ts |
 | cloud (v1) | GET | `/publicCloud/project/{x}/flavor` | OvhCloudPublicCloud/flavor/listGet.operation.ts |
 | cloud (v1) | GET | `/publicCloud/project/{x}/flavor/{x}` | OvhCloudPublicCloud/flavor/getDetailGet.operation.ts |
-| cloud (v1) | GET | `/publicCloud/project/{x}/grafana` | OvhCloudPublicCloud/database/grafana/clusterListGet.operation.ts |
-| cloud (v1) | POST | `/publicCloud/project/{x}/grafana` | OvhCloudPublicCloud/database/grafana/clusterCreatePost.operation.ts |
-| cloud (v1) | DELETE | `/publicCloud/project/{x}/grafana/{x}` | OvhCloudPublicCloud/database/grafana/clusterDeleteDelete.operation.ts |
-| cloud (v1) | GET | `/publicCloud/project/{x}/grafana/{x}` | OvhCloudPublicCloud/database/grafana/clusterGetGet.operation.ts |
-| cloud (v1) | PUT | `/publicCloud/project/{x}/grafana/{x}` | OvhCloudPublicCloud/database/grafana/clusterUpdatePut.operation.ts |
-| cloud (v1) | GET | `/publicCloud/project/{x}/grafana/{x}/backup` | OvhCloudPublicCloud/database/grafana/backupListGet.operation.ts |
-| cloud (v1) | POST | `/publicCloud/project/{x}/grafana/{x}/backup` | OvhCloudPublicCloud/database/grafana/backupCreatePost.operation.ts |
-| cloud (v1) | DELETE | `/publicCloud/project/{x}/grafana/{x}/backup/{x}` | OvhCloudPublicCloud/database/grafana/backupDeleteDelete.operation.ts |
-| cloud (v1) | GET | `/publicCloud/project/{x}/grafana/{x}/backup/{x}` | OvhCloudPublicCloud/database/grafana/backupGetGet.operation.ts |
-| cloud (v1) | GET | `/publicCloud/project/{x}/grafana/{x}/certificate` | OvhCloudPublicCloud/database/grafana/certificateListGet.operation.ts |
-| cloud (v1) | POST | `/publicCloud/project/{x}/grafana/{x}/certificate` | OvhCloudPublicCloud/database/grafana/certificateCreatePost.operation.ts |
-| cloud (v1) | GET | `/publicCloud/project/{x}/grafana/{x}/integration` | OvhCloudPublicCloud/database/grafana/integrationListGet.operation.ts |
-| cloud (v1) | POST | `/publicCloud/project/{x}/grafana/{x}/integration` | OvhCloudPublicCloud/database/grafana/integrationCreatePost.operation.ts |
-| cloud (v1) | GET | `/publicCloud/project/{x}/grafana/{x}/ipRestriction` | OvhCloudPublicCloud/database/grafana/ipRestrictionListGet.operation.ts |
-| cloud (v1) | POST | `/publicCloud/project/{x}/grafana/{x}/ipRestriction` | OvhCloudPublicCloud/database/grafana/ipRestrictionCreatePost.operation.ts |
-| cloud (v1) | GET | `/publicCloud/project/{x}/grafana/{x}/log/subscription` | OvhCloudPublicCloud/database/grafana/logSubscriptionListGet.operation.ts |
-| cloud (v1) | POST | `/publicCloud/project/{x}/grafana/{x}/log/subscription` | OvhCloudPublicCloud/database/grafana/logSubscriptionCreatePost.operation.ts |
-| cloud (v1) | GET | `/publicCloud/project/{x}/grafana/{x}/log/subscription/{x}` | OvhCloudPublicCloud/database/grafana/logSubscriptionGetGet.operation.ts |
-| cloud (v1) | GET | `/publicCloud/project/{x}/grafana/{x}/maintenance` | OvhCloudPublicCloud/database/grafana/maintenanceGet.operation.ts |
-| cloud (v1) | PUT | `/publicCloud/project/{x}/grafana/{x}/maintenance` | OvhCloudPublicCloud/database/grafana/maintenanceUpdatePut.operation.ts |
-| cloud (v1) | GET | `/publicCloud/project/{x}/grafana/{x}/metric` | OvhCloudPublicCloud/database/grafana/metricGet.operation.ts |
-| cloud (v1) | GET | `/publicCloud/project/{x}/grafana/{x}/node` | OvhCloudPublicCloud/database/grafana/nodeListGet.operation.ts |
-| cloud (v1) | POST | `/publicCloud/project/{x}/grafana/{x}/node` | OvhCloudPublicCloud/database/grafana/nodeCreatePost.operation.ts |
-| cloud (v1) | DELETE | `/publicCloud/project/{x}/grafana/{x}/node/{x}` | OvhCloudPublicCloud/database/grafana/nodeDeleteDelete.operation.ts |
-| cloud (v1) | GET | `/publicCloud/project/{x}/grafana/{x}/node/{x}` | OvhCloudPublicCloud/database/grafana/nodeGetGet.operation.ts |
-| cloud (v1) | PUT | `/publicCloud/project/{x}/grafana/{x}/node/{x}` | OvhCloudPublicCloud/database/grafana/nodeUpdatePut.operation.ts |
-| cloud (v1) | GET | `/publicCloud/project/{x}/grafana/{x}/prometheus` | OvhCloudPublicCloud/database/grafana/prometheusGet.operation.ts |
-| cloud (v1) | GET | `/publicCloud/project/{x}/grafana/{x}/user` | OvhCloudPublicCloud/database/grafana/userListGet.operation.ts |
-| cloud (v1) | POST | `/publicCloud/project/{x}/grafana/{x}/user` | OvhCloudPublicCloud/database/grafana/userCreatePost.operation.ts |
-| cloud (v1) | DELETE | `/publicCloud/project/{x}/grafana/{x}/user/{x}` | OvhCloudPublicCloud/database/grafana/userDeleteDelete.operation.ts |
-| cloud (v1) | GET | `/publicCloud/project/{x}/grafana/{x}/user/{x}` | OvhCloudPublicCloud/database/grafana/userGetGet.operation.ts |
-| cloud (v1) | PUT | `/publicCloud/project/{x}/grafana/{x}/user/{x}` | OvhCloudPublicCloud/database/grafana/userUpdatePut.operation.ts |
 | cloud (v1) | GET | `/publicCloud/project/{x}/image` | OvhCloudPublicCloud/image/listGet.operation.ts |
 | cloud (v1) | GET | `/publicCloud/project/{x}/image/{x}` | OvhCloudPublicCloud/image/getDetailGet.operation.ts |
 | cloud (v1) | GET | `/publicCloud/project/{x}/instance` | OvhCloudPublicCloud/instance/instanceListGet.operation.ts |
@@ -1590,6 +1558,45 @@ Ces opérations appellent un chemin qui ne correspond à aucun endpoint de la sp
 | pack (v1) | POST | `/pack/{x}/reinstall` | OvhCloudPack/reinstallPost.operation.ts |
 | pack (v1) | GET | `/pack/{x}/serviceInfos` | OvhCloudPack/serviceInfosGetGet.operation.ts |
 | publicCloud (v2) | POST | `/cloud/project/{x}/ai/data/region/{x}/alias` | OvhCloudPublicCloudAi/dataStore/dataCreatePost.operation.ts |
+| publicCloud (v2) | GET | `/cloud/project/{x}/database/grafana` | OvhCloudPublicCloud/database/grafana/clusterListGet.operation.ts |
+| publicCloud (v2) | POST | `/cloud/project/{x}/database/grafana` | OvhCloudPublicCloud/database/grafana/clusterCreatePost.operation.ts |
+| publicCloud (v2) | DELETE | `/cloud/project/{x}/database/grafana/{x}` | OvhCloudPublicCloud/database/grafana/clusterDeleteDelete.operation.ts |
+| publicCloud (v2) | GET | `/cloud/project/{x}/database/grafana/{x}` | OvhCloudPublicCloud/database/grafana/clusterGetGet.operation.ts |
+| publicCloud (v2) | PUT | `/cloud/project/{x}/database/grafana/{x}` | OvhCloudPublicCloud/database/grafana/clusterUpdatePut.operation.ts |
+| publicCloud (v2) | GET | `/cloud/project/{x}/database/grafana/{x}/advancedConfiguration` | OvhCloudPublicCloud/database/grafana/advancedConfigurationGet.operation.ts |
+| publicCloud (v2) | PUT | `/cloud/project/{x}/database/grafana/{x}/advancedConfiguration` | OvhCloudPublicCloud/database/grafana/advancedConfigurationUpdatePut.operation.ts |
+| publicCloud (v2) | GET | `/cloud/project/{x}/database/grafana/{x}/backup` | OvhCloudPublicCloud/database/grafana/backupListGet.operation.ts |
+| publicCloud (v2) | GET | `/cloud/project/{x}/database/grafana/{x}/backup/{x}` | OvhCloudPublicCloud/database/grafana/backupGetGet.operation.ts |
+| publicCloud (v2) | GET | `/cloud/project/{x}/database/grafana/{x}/capabilities/advancedConfiguration` | OvhCloudPublicCloud/database/grafana/capabilitiesAdvancedConfigurationGet.operation.ts |
+| publicCloud (v2) | GET | `/cloud/project/{x}/database/grafana/{x}/capabilities/backupRegions` | OvhCloudPublicCloud/database/grafana/capabilitiesBackupRegionsGet.operation.ts |
+| publicCloud (v2) | GET | `/cloud/project/{x}/database/grafana/{x}/capabilities/integration` | OvhCloudPublicCloud/database/grafana/capabilitiesIntegrationGet.operation.ts |
+| publicCloud (v2) | GET | `/cloud/project/{x}/database/grafana/{x}/integration` | OvhCloudPublicCloud/database/grafana/integrationListGet.operation.ts |
+| publicCloud (v2) | POST | `/cloud/project/{x}/database/grafana/{x}/integration` | OvhCloudPublicCloud/database/grafana/integrationCreatePost.operation.ts |
+| publicCloud (v2) | DELETE | `/cloud/project/{x}/database/grafana/{x}/integration/{x}` | OvhCloudPublicCloud/database/grafana/integrationDeleteDelete.operation.ts |
+| publicCloud (v2) | GET | `/cloud/project/{x}/database/grafana/{x}/integration/{x}` | OvhCloudPublicCloud/database/grafana/integrationGetGet.operation.ts |
+| publicCloud (v2) | GET | `/cloud/project/{x}/database/grafana/{x}/ipRestriction` | OvhCloudPublicCloud/database/grafana/ipRestrictionListGet.operation.ts |
+| publicCloud (v2) | POST | `/cloud/project/{x}/database/grafana/{x}/ipRestriction` | OvhCloudPublicCloud/database/grafana/ipRestrictionCreatePost.operation.ts |
+| publicCloud (v2) | DELETE | `/cloud/project/{x}/database/grafana/{x}/ipRestriction/{x}` | OvhCloudPublicCloud/database/grafana/ipRestrictionDeleteDelete.operation.ts |
+| publicCloud (v2) | GET | `/cloud/project/{x}/database/grafana/{x}/ipRestriction/{x}` | OvhCloudPublicCloud/database/grafana/ipRestrictionGetGet.operation.ts |
+| publicCloud (v2) | PUT | `/cloud/project/{x}/database/grafana/{x}/ipRestriction/{x}` | OvhCloudPublicCloud/database/grafana/ipRestrictionUpdatePut.operation.ts |
+| publicCloud (v2) | GET | `/cloud/project/{x}/database/grafana/{x}/log/kind` | OvhCloudPublicCloud/database/grafana/logKindListGet.operation.ts |
+| publicCloud (v2) | GET | `/cloud/project/{x}/database/grafana/{x}/log/kind/{x}` | OvhCloudPublicCloud/database/grafana/logKindGet.operation.ts |
+| publicCloud (v2) | GET | `/cloud/project/{x}/database/grafana/{x}/log/subscription` | OvhCloudPublicCloud/database/grafana/logSubscriptionListGet.operation.ts |
+| publicCloud (v2) | POST | `/cloud/project/{x}/database/grafana/{x}/log/subscription` | OvhCloudPublicCloud/database/grafana/logSubscriptionCreatePost.operation.ts |
+| publicCloud (v2) | DELETE | `/cloud/project/{x}/database/grafana/{x}/log/subscription/{x}` | OvhCloudPublicCloud/database/grafana/logSubscriptionDeleteDelete.operation.ts |
+| publicCloud (v2) | GET | `/cloud/project/{x}/database/grafana/{x}/log/subscription/{x}` | OvhCloudPublicCloud/database/grafana/logSubscriptionGetGet.operation.ts |
+| publicCloud (v2) | POST | `/cloud/project/{x}/database/grafana/{x}/log/url` | OvhCloudPublicCloud/database/grafana/logUrlCreatePost.operation.ts |
+| publicCloud (v2) | GET | `/cloud/project/{x}/database/grafana/{x}/logs` | OvhCloudPublicCloud/database/grafana/logsGet.operation.ts |
+| publicCloud (v2) | GET | `/cloud/project/{x}/database/grafana/{x}/maintenance` | OvhCloudPublicCloud/database/grafana/maintenanceListGet.operation.ts |
+| publicCloud (v2) | GET | `/cloud/project/{x}/database/grafana/{x}/maintenance/{x}` | OvhCloudPublicCloud/database/grafana/maintenanceGet.operation.ts |
+| publicCloud (v2) | POST | `/cloud/project/{x}/database/grafana/{x}/maintenance/{x}/apply` | OvhCloudPublicCloud/database/grafana/maintenanceApplyPost.operation.ts |
+| publicCloud (v2) | GET | `/cloud/project/{x}/database/grafana/{x}/metric` | OvhCloudPublicCloud/database/grafana/metricListGet.operation.ts |
+| publicCloud (v2) | GET | `/cloud/project/{x}/database/grafana/{x}/metric/{x}` | OvhCloudPublicCloud/database/grafana/metricGet.operation.ts |
+| publicCloud (v2) | GET | `/cloud/project/{x}/database/grafana/{x}/node` | OvhCloudPublicCloud/database/grafana/nodeListGet.operation.ts |
+| publicCloud (v2) | GET | `/cloud/project/{x}/database/grafana/{x}/node/{x}` | OvhCloudPublicCloud/database/grafana/nodeGetGet.operation.ts |
+| publicCloud (v2) | GET | `/cloud/project/{x}/database/grafana/{x}/user` | OvhCloudPublicCloud/database/grafana/userListGet.operation.ts |
+| publicCloud (v2) | GET | `/cloud/project/{x}/database/grafana/{x}/user/{x}` | OvhCloudPublicCloud/database/grafana/userGetGet.operation.ts |
+| publicCloud (v2) | POST | `/cloud/project/{x}/database/grafana/{x}/user/{x}/credentials/reset` | OvhCloudPublicCloud/database/grafana/userCredentialsResetPost.operation.ts |
 | publicCloud (v2) | DELETE | `/cloud/project/{x}/instance/{x}` | OvhCloudPublicCloud/instance/instanceDeleteDelete.operation.ts |
 | publicCloud (v2) | GET | `/cloud/project/{x}/instance/{x}` | OvhCloudPublicCloud/instance/instanceGetGet.operation.ts |
 | publicCloud (v2) | PUT | `/cloud/project/{x}/instance/{x}` | OvhCloudPublicCloud/instance/instanceUpdatePut.operation.ts |
@@ -2119,38 +2126,6 @@ Ces opérations appellent un chemin qui ne correspond à aucun endpoint de la sp
 | publicCloud (v2) | GET | `/publicCloud/project/{x}/credit/{x}` | OvhCloudPublicCloud/credit/getDetailGet.operation.ts |
 | publicCloud (v2) | GET | `/publicCloud/project/{x}/flavor` | OvhCloudPublicCloud/flavor/listGet.operation.ts |
 | publicCloud (v2) | GET | `/publicCloud/project/{x}/flavor/{x}` | OvhCloudPublicCloud/flavor/getDetailGet.operation.ts |
-| publicCloud (v2) | GET | `/publicCloud/project/{x}/grafana` | OvhCloudPublicCloud/database/grafana/clusterListGet.operation.ts |
-| publicCloud (v2) | POST | `/publicCloud/project/{x}/grafana` | OvhCloudPublicCloud/database/grafana/clusterCreatePost.operation.ts |
-| publicCloud (v2) | DELETE | `/publicCloud/project/{x}/grafana/{x}` | OvhCloudPublicCloud/database/grafana/clusterDeleteDelete.operation.ts |
-| publicCloud (v2) | GET | `/publicCloud/project/{x}/grafana/{x}` | OvhCloudPublicCloud/database/grafana/clusterGetGet.operation.ts |
-| publicCloud (v2) | PUT | `/publicCloud/project/{x}/grafana/{x}` | OvhCloudPublicCloud/database/grafana/clusterUpdatePut.operation.ts |
-| publicCloud (v2) | GET | `/publicCloud/project/{x}/grafana/{x}/backup` | OvhCloudPublicCloud/database/grafana/backupListGet.operation.ts |
-| publicCloud (v2) | POST | `/publicCloud/project/{x}/grafana/{x}/backup` | OvhCloudPublicCloud/database/grafana/backupCreatePost.operation.ts |
-| publicCloud (v2) | DELETE | `/publicCloud/project/{x}/grafana/{x}/backup/{x}` | OvhCloudPublicCloud/database/grafana/backupDeleteDelete.operation.ts |
-| publicCloud (v2) | GET | `/publicCloud/project/{x}/grafana/{x}/backup/{x}` | OvhCloudPublicCloud/database/grafana/backupGetGet.operation.ts |
-| publicCloud (v2) | GET | `/publicCloud/project/{x}/grafana/{x}/certificate` | OvhCloudPublicCloud/database/grafana/certificateListGet.operation.ts |
-| publicCloud (v2) | POST | `/publicCloud/project/{x}/grafana/{x}/certificate` | OvhCloudPublicCloud/database/grafana/certificateCreatePost.operation.ts |
-| publicCloud (v2) | GET | `/publicCloud/project/{x}/grafana/{x}/integration` | OvhCloudPublicCloud/database/grafana/integrationListGet.operation.ts |
-| publicCloud (v2) | POST | `/publicCloud/project/{x}/grafana/{x}/integration` | OvhCloudPublicCloud/database/grafana/integrationCreatePost.operation.ts |
-| publicCloud (v2) | GET | `/publicCloud/project/{x}/grafana/{x}/ipRestriction` | OvhCloudPublicCloud/database/grafana/ipRestrictionListGet.operation.ts |
-| publicCloud (v2) | POST | `/publicCloud/project/{x}/grafana/{x}/ipRestriction` | OvhCloudPublicCloud/database/grafana/ipRestrictionCreatePost.operation.ts |
-| publicCloud (v2) | GET | `/publicCloud/project/{x}/grafana/{x}/log/subscription` | OvhCloudPublicCloud/database/grafana/logSubscriptionListGet.operation.ts |
-| publicCloud (v2) | POST | `/publicCloud/project/{x}/grafana/{x}/log/subscription` | OvhCloudPublicCloud/database/grafana/logSubscriptionCreatePost.operation.ts |
-| publicCloud (v2) | GET | `/publicCloud/project/{x}/grafana/{x}/log/subscription/{x}` | OvhCloudPublicCloud/database/grafana/logSubscriptionGetGet.operation.ts |
-| publicCloud (v2) | GET | `/publicCloud/project/{x}/grafana/{x}/maintenance` | OvhCloudPublicCloud/database/grafana/maintenanceGet.operation.ts |
-| publicCloud (v2) | PUT | `/publicCloud/project/{x}/grafana/{x}/maintenance` | OvhCloudPublicCloud/database/grafana/maintenanceUpdatePut.operation.ts |
-| publicCloud (v2) | GET | `/publicCloud/project/{x}/grafana/{x}/metric` | OvhCloudPublicCloud/database/grafana/metricGet.operation.ts |
-| publicCloud (v2) | GET | `/publicCloud/project/{x}/grafana/{x}/node` | OvhCloudPublicCloud/database/grafana/nodeListGet.operation.ts |
-| publicCloud (v2) | POST | `/publicCloud/project/{x}/grafana/{x}/node` | OvhCloudPublicCloud/database/grafana/nodeCreatePost.operation.ts |
-| publicCloud (v2) | DELETE | `/publicCloud/project/{x}/grafana/{x}/node/{x}` | OvhCloudPublicCloud/database/grafana/nodeDeleteDelete.operation.ts |
-| publicCloud (v2) | GET | `/publicCloud/project/{x}/grafana/{x}/node/{x}` | OvhCloudPublicCloud/database/grafana/nodeGetGet.operation.ts |
-| publicCloud (v2) | PUT | `/publicCloud/project/{x}/grafana/{x}/node/{x}` | OvhCloudPublicCloud/database/grafana/nodeUpdatePut.operation.ts |
-| publicCloud (v2) | GET | `/publicCloud/project/{x}/grafana/{x}/prometheus` | OvhCloudPublicCloud/database/grafana/prometheusGet.operation.ts |
-| publicCloud (v2) | GET | `/publicCloud/project/{x}/grafana/{x}/user` | OvhCloudPublicCloud/database/grafana/userListGet.operation.ts |
-| publicCloud (v2) | POST | `/publicCloud/project/{x}/grafana/{x}/user` | OvhCloudPublicCloud/database/grafana/userCreatePost.operation.ts |
-| publicCloud (v2) | DELETE | `/publicCloud/project/{x}/grafana/{x}/user/{x}` | OvhCloudPublicCloud/database/grafana/userDeleteDelete.operation.ts |
-| publicCloud (v2) | GET | `/publicCloud/project/{x}/grafana/{x}/user/{x}` | OvhCloudPublicCloud/database/grafana/userGetGet.operation.ts |
-| publicCloud (v2) | PUT | `/publicCloud/project/{x}/grafana/{x}/user/{x}` | OvhCloudPublicCloud/database/grafana/userUpdatePut.operation.ts |
 | publicCloud (v2) | GET | `/publicCloud/project/{x}/image` | OvhCloudPublicCloud/image/listGet.operation.ts |
 | publicCloud (v2) | GET | `/publicCloud/project/{x}/image/{x}` | OvhCloudPublicCloud/image/getDetailGet.operation.ts |
 | publicCloud (v2) | GET | `/publicCloud/project/{x}/instance` | OvhCloudPublicCloud/instance/instanceListGet.operation.ts |

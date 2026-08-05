@@ -16,8 +16,8 @@ import { ApiClient } from '../../../../shared/transport/ApiClient';
 describe('grafana clusterDeleteDelete operation', () => {
 	describe('description', () => {
 		it('should return all required parameters', () => {
-			const result = description({'show': {}});
-			expect(result.length).toBeGreaterThanOrEqual(1);
+			const result = description({ show: {} });
+			expect(result).toHaveLength(2);
 		});
 	});
 
@@ -31,19 +31,22 @@ describe('grafana clusterDeleteDelete operation', () => {
 		});
 
 		it('should call the correct API endpoint', async () => {
-			const mockData = [] as unknown[];
 			const client = new ApiClient(mockExecuteFunctions) as any;
-			client.httpDelete.mockResolvedValue(mockData);
+			client.httpDelete.mockResolvedValue({});
 
-			mockExecuteFunctions.getNodeParameter.mockReturnValue((param: string): string | undefined => {
-				if (param === 'publicCloudProjectId') return '12345678-1234-1234-1234-1234567890ab';
-				if (param === 'serviceName') return 'test-service';
-				return '';
-			});
+			mockExecuteFunctions.getNodeParameter.mockImplementation(
+				(param: string): string | undefined => {
+					if (param === 'publicCloudProjectId') return '12345678-1234-1234-1234-1234567890ab';
+					if (param === 'clusterId') return 'test-cluster-id';
+					return '';
+				},
+			);
 
 			const result = await execute.call(mockExecuteFunctions);
-			expect(client.httpDelete).toHaveBeenCalled();
-			expect(result).toHaveLength(0);
+			expect(client.httpDelete).toHaveBeenCalledWith(
+				'/cloud/project/12345678-1234-1234-1234-1234567890ab/database/grafana/test-cluster-id',
+			);
+			expect(result).toMatchObject([{}]);
 		});
 	});
 });

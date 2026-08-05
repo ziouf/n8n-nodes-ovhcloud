@@ -121,6 +121,50 @@ This node provides **694 operations** with **647 tests** for managing OVHcloud r
 | Operation | Method | Endpoint | Tests |
 | --------- | ------ | -------- | ----- |
 
+#### database/grafana
+
+| Operation                                                                                              | Method | Endpoint                                                                         | Tests |
+| ------------------------------------------------------------------------------------------------------ | ------ | -------------------------------------------------------------------------------- | ----- |
+| [`advancedConfigurationGet`](./`database/grafana/advancedConfigurationGet.ts`)                         | GET    | `/cloud/project/{...}/database/grafana/{...}/advancedConfiguration`              | 2     |
+| [`advancedConfigurationUpdatePut`](./`database/grafana/advancedConfigurationUpdatePut.ts`)             | PUT    | `/cloud/project/{...}/database/grafana/{...}/advancedConfiguration`              | 2     |
+| [`backupGetGet`](./`database/grafana/backupGetGet.ts`)                                                 | GET    | `/cloud/project/{...}/database/grafana/{...}/backup/{...}`                       | 2     |
+| [`backupListGet`](./`database/grafana/backupListGet.ts`)                                               | GET    | `/cloud/project/{...}/database/grafana/{...}/backup`                             | 2     |
+| [`capabilitiesAdvancedConfigurationGet`](./`database/grafana/capabilitiesAdvancedConfigurationGet.ts`) | GET    | `/cloud/project/{...}/database/grafana/{...}/capabilities/advancedConfiguration` | 2     |
+| [`capabilitiesBackupRegionsGet`](./`database/grafana/capabilitiesBackupRegionsGet.ts`)                 | GET    | `/cloud/project/{...}/database/grafana/{...}/capabilities/backupRegions`         | 2     |
+| [`capabilitiesIntegrationGet`](./`database/grafana/capabilitiesIntegrationGet.ts`)                     | GET    | `/cloud/project/{...}/database/grafana/{...}/capabilities/integration`           | 2     |
+| [`clusterCreatePost`](./`database/grafana/clusterCreatePost.ts`)                                       | POST   | `/cloud/project/{...}/database/grafana`                                          | 2     |
+| [`clusterDeleteDelete`](./`database/grafana/clusterDeleteDelete.ts`)                                   | DELETE | `/cloud/project/{...}/database/grafana/{...}`                                    | 2     |
+| [`clusterGetGet`](./`database/grafana/clusterGetGet.ts`)                                               | GET    | `/cloud/project/{...}/database/grafana/{...}`                                    | 2     |
+| [`clusterListGet`](./`database/grafana/clusterListGet.ts`)                                             | GET    | `/cloud/project/{...}/database/grafana`                                          | 2     |
+| [`clusterUpdatePut`](./`database/grafana/clusterUpdatePut.ts`)                                         | PUT    | `/cloud/project/{...}/database/grafana/{...}`                                    | 2     |
+| [`integrationCreatePost`](./`database/grafana/integrationCreatePost.ts`)                               | POST   | `/cloud/project/{...}/database/grafana/{...}/integration`                        | 2     |
+| [`integrationDeleteDelete`](./`database/grafana/integrationDeleteDelete.ts`)                           | DELETE | `/cloud/project/{...}/database/grafana/{...}/integration/{...}`                  | 2     |
+| [`integrationGetGet`](./`database/grafana/integrationGetGet.ts`)                                       | GET    | `/cloud/project/{...}/database/grafana/{...}/integration/{...}`                  | 2     |
+| [`integrationListGet`](./`database/grafana/integrationListGet.ts`)                                     | GET    | `/cloud/project/{...}/database/grafana/{...}/integration`                        | 2     |
+| [`ipRestrictionCreatePost`](./`database/grafana/ipRestrictionCreatePost.ts`)                           | POST   | `/cloud/project/{...}/database/grafana/{...}/ipRestriction`                      | 2     |
+| [`ipRestrictionDeleteDelete`](./`database/grafana/ipRestrictionDeleteDelete.ts`)                       | DELETE | `/cloud/project/{...}/database/grafana/{...}/ipRestriction/{...}`                | 2     |
+| [`ipRestrictionGetGet`](./`database/grafana/ipRestrictionGetGet.ts`)                                   | GET    | `/cloud/project/{...}/database/grafana/{...}/ipRestriction/{...}`                | 2     |
+| [`ipRestrictionListGet`](./`database/grafana/ipRestrictionListGet.ts`)                                 | GET    | `/cloud/project/{...}/database/grafana/{...}/ipRestriction`                      | 2     |
+| [`ipRestrictionUpdatePut`](./`database/grafana/ipRestrictionUpdatePut.ts`)                             | PUT    | `/cloud/project/{...}/database/grafana/{...}/ipRestriction/{...}`                | 2     |
+| [`logKindGet`](./`database/grafana/logKindGet.ts`)                                                     | GET    | `/cloud/project/{...}/database/grafana/{...}/log/kind/{...}`                     | 2     |
+| [`logKindListGet`](./`database/grafana/logKindListGet.ts`)                                             | GET    | `/cloud/project/{...}/database/grafana/{...}/log/kind`                           | 2     |
+| [`logSubscriptionCreatePost`](./`database/grafana/logSubscriptionCreatePost.ts`)                       | POST   | `/cloud/project/{...}/database/grafana/{...}/log/subscription`                   | 2     |
+| [`logSubscriptionDeleteDelete`](./`database/grafana/logSubscriptionDeleteDelete.ts`)                   | DELETE | `/cloud/project/{...}/database/grafana/{...}/log/subscription/{...}`             | 2     |
+| [`logSubscriptionGetGet`](./`database/grafana/logSubscriptionGetGet.ts`)                               | GET    | `/cloud/project/{...}/database/grafana/{...}/log/subscription/{...}`             | 2     |
+| [`logSubscriptionListGet`](./`database/grafana/logSubscriptionListGet.ts`)                             | GET    | `/cloud/project/{...}/database/grafana/{...}/log/subscription`                   | 2     |
+| [`logUrlCreatePost`](./`database/grafana/logUrlCreatePost.ts`)                                         | POST   | `/cloud/project/{...}/database/grafana/{...}/log/url`                            | 2     |
+| [`logsGet`](./`database/grafana/logsGet.ts`)                                                           | GET    | `/cloud/project/{...}/database/grafana/{...}/logs`                               | 2     |
+| [`maintenanceApplyPost`](./`database/grafana/maintenanceApplyPost.ts`)                                 | POST   | `/cloud/project/{...}/database/grafana/{...}/maintenance/{...}/apply`            | 2     |
+| [`maintenanceGet`](./`database/grafana/maintenanceGet.ts`)                                             | GET    | `/cloud/project/{...}/database/grafana/{...}/maintenance/{...}`                  | 2     |
+| [`maintenanceListGet`](./`database/grafana/maintenanceListGet.ts`)                                     | GET    | `/cloud/project/{...}/database/grafana/{...}/maintenance`                        | 2     |
+| [`metricGet`](./`database/grafana/metricGet.ts`)                                                       | GET    | `/cloud/project/{...}/database/grafana/{...}/metric/{...}`                       | 2     |
+| [`metricListGet`](./`database/grafana/metricListGet.ts`)                                               | GET    | `/cloud/project/{...}/database/grafana/{...}/metric`                             | 2     |
+| [`nodeGetGet`](./`database/grafana/nodeGetGet.ts`)                                                     | GET    | `/cloud/project/{...}/database/grafana/{...}/node/{...}`                         | 2     |
+| [`nodeListGet`](./`database/grafana/nodeListGet.ts`)                                                   | GET    | `/cloud/project/{...}/database/grafana/{...}/node`                               | 2     |
+| [`userCredentialsResetPost`](./`database/grafana/userCredentialsResetPost.ts`)                         | POST   | `/cloud/project/{...}/database/grafana/{...}/user/{...}/credentials/reset`       | 2     |
+| [`userGetGet`](./`database/grafana/userGetGet.ts`)                                                     | GET    | `/cloud/project/{...}/database/grafana/{...}/user/{...}`                         | 2     |
+| [`userListGet`](./`database/grafana/userListGet.ts`)                                                   | GET    | `/cloud/project/{...}/database/grafana/{...}/user`                               | 2     |
+
 ### flavor
 
 | Operation                                    | Method | Endpoint                                  | Tests |
