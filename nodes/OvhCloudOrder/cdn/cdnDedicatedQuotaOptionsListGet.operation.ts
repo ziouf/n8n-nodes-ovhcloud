@@ -1,4 +1,5 @@
 import type {
+	IDataObject,
 	IExecuteFunctions,
 	IDisplayOptions,
 	INodeExecutionData,
@@ -23,7 +24,7 @@ export function description(displayOptions: IDisplayOptions): INodeProperties[] 
 			type: 'options',
 			default: '',
 			required: true,
-			description: 'quota number in TB that will be added to the CDN service',
+			description: 'Quota number in TB that will be added to the CDN service',
 			displayOptions,
 		},
 	];

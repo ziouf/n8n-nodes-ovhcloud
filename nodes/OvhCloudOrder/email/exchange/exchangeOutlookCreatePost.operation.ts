@@ -45,12 +45,12 @@ export function description(displayOptions: IDisplayOptions): INodeProperties[] 
 	];
 }
 
-export async function execute(this: IExecuteFunctions): Promise<INodeExecutionData[]> {
+export async function execute(this: IExecuteFunctions, itemIndex: number): Promise<INodeExecutionData[]> {
 	const client = new ApiClient(this);
-	const organizationName = this.getNodeParameter('organizationName', 0) as string;
-	const serviceName = this.getNodeParameter('serviceName', 0) as string;
-	const accountId = this.getNodeParameter('accountId', 0) as string;
-	const body = this.getNodeParameter('body', 0) as IDataObject;
+	const organizationName = this.getNodeParameter('organizationName', itemIndex) as string;
+	const serviceName = this.getNodeParameter('serviceName', itemIndex) as string;
+	const accountId = this.getNodeParameter('accountId', itemIndex) as string;
+	const body = this.getNodeParameter('body', itemIndex) as IDataObject;
 
 	const data = (await client.httpPost(
 		`/order/email/exchange/${organizationName}/${serviceName}/outlook/${accountId}`,

@@ -35,9 +35,9 @@ export function description(displayOptions: IDisplayOptions): INodeProperties[] 
  * HTTP method: GET
  * Endpoint: /order/cart/{cartId}/otbReseller/options
  */
-export async function execute(this: IExecuteFunctions): Promise<INodeExecutionData[]> {
+export async function execute(this: IExecuteFunctions, itemIndex: number): Promise<INodeExecutionData[]> {
 	const client = new ApiClient(this);
-	const cartId = this.getNodeParameter('cartId', 0) as string;
+	const cartId = this.getNodeParameter('cartId', itemIndex) as string;
 	const planCode = this.getNodeParameter('planCode', 0, '') as string;
 	const qs: IDataObject = {
 		planCode: planCode

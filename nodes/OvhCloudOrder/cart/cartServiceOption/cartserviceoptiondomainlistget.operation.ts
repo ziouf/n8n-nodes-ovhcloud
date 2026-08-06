@@ -27,9 +27,10 @@ export function description(displayOptions: IDisplayOptions): INodeProperties[] 
  * HTTP method: GET
  * Endpoint: /order/cartServiceOption/domain
  */
-export async function execute(this: IExecuteFunctions): Promise<INodeExecutionData[]> {
+ 
+export async function execute(this: IExecuteFunctions, itemIndex: number): Promise<INodeExecutionData[]> {
 	const client = new ApiClient(this);
-	const whoisOwner = this.getNodeParameter('whoisOwner', 0, '') as string;
+	const whoisOwner = this.getNodeParameter('whoisOwner', itemIndex, '') as string;
 
 
 	const qs: IDataObject = {};

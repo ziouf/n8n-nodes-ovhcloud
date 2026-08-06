@@ -44,7 +44,7 @@ describe('windowsNewCreatePost operation', () => {
 				},
 			);
 
-			const result = await execute.call(mockExecuteFunctions);
+			const result = await execute.call(mockExecuteFunctions, 0);
 			expect(client.httpPost).toHaveBeenCalled();
 			expect(result).toMatchObject([mockData]);
 		});

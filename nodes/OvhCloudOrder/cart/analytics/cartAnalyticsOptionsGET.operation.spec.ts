@@ -41,7 +41,7 @@ describe('cartAnalyticsOptionsGET operation', () => {
 				return '';
 			});
 
-			const result = await execute.call(mockExecuteFunctions);
+			const result = await execute.call(mockExecuteFunctions, 0);
 expect((client.httpGet as jest.Mock).mock.calls[0]).toEqual(['/order/cart/test-cartId/analytics/options', {
 				planCode: 'test-planCode',
 				}]);

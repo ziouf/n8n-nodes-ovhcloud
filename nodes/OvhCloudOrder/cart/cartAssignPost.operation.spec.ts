@@ -40,7 +40,7 @@ describe('cartAssignPost operation', () => {
 				return '';
 			});
 
-			const result = await execute.call(mockExecuteFunctions);
+			const result = await execute.call(mockExecuteFunctions, 0);
 			expect(client.httpPost).toHaveBeenCalledWith('/order/cart/test-cart-id/assign');
 			expect(result).toMatchObject([mockData]);
 		});

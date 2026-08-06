@@ -45,11 +45,11 @@ export function description(displayOptions: IDisplayOptions): INodeProperties[] 
 	];
 }
 
-export async function execute(this: IExecuteFunctions): Promise<INodeExecutionData[]> {
+export async function execute(this: IExecuteFunctions, itemIndex: number): Promise<INodeExecutionData[]> {
 	const client = new ApiClient(this);
-	const family = this.getNodeParameter('family', 0) as string;
-	const duration = this.getNodeParameter('duration', 0) as string;
-	const body = this.getNodeParameter('body', 0) as IDataObject;
+	const family = this.getNodeParameter('family', itemIndex) as string;
+	const duration = this.getNodeParameter('duration', itemIndex) as string;
+	const body = this.getNodeParameter('body', itemIndex) as IDataObject;
 
 	const data = (await client.httpPost(
 		`/order/license/${family}/new/${duration}`,

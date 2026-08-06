@@ -1,16 +1,16 @@
 # OVHcloud API Conformity Report
 
-> Généré par `scripts/audit-conformity.js` le 2026-08-06T18:29:54.271Z. Document généré automatiquement — ne pas éditer à la main.
+> Généré par `scripts/audit-conformity.js` le 2026-08-06T21:26:58.789Z. Document généré automatiquement — ne pas éditer à la main.
 
 Ce rapport vérifie que les opérations des nodes respectent leur spec (méthode, chemin, paramètres path requis, query requis, champs body requis).
 
 ## Résumé
 
-- **Opérations auditées** : 6760
-- **Conformes** : 4089
-- **Non conformes** : 2671
+- **Opérations auditées** : 6794
+- **Conformes** : 4122
+- **Non conformes** : 2672
 - **Sans correspondance spec** (informatif) : 2353
-- **Taux de conformité** : **60.5%**
+- **Taux de conformité** : **60.7%**
 
 ## Conformité par spec
 
@@ -50,7 +50,7 @@ Triée par taux de non-conformité décroissant.
 | dedicated (v1) | 69 | 31 | 2 | 44.9% |
 | horizonView (v1) | 42 | 41 | 1 | 97.6% |
 | hosting (v1) | 237 | 154 | 5 | 65% |
-| order (v1) | 653 | 396 | 8 | 60.6% |
+| order (v1) | 687 | 429 | 9 | 62.4% |
 | webhosting (v2) | 246 | 12 | 3 | 4.9% |
 | domain (v1) | 119 | 109 | 1 | 91.6% |
 | telephony (v1) | 644 | 602 | 5 | 93.5% |
@@ -414,7 +414,7 @@ Chaque ligne correspond à un appel HTTP non conforme, groupée par spec :
 | POST | `/okms/resource/{x}/secret/{x}/version` | OvhCloudOkms/okmsresourcesecretversionCreatePost.operation.ts | missing required body field 'data' |
 | PUT | `/okms/resource/{x}/secret/{x}/version/{x}` | OvhCloudOkms/okmsresourcesecretversionUpdatePut.operation.ts | missing required body field 'state' |
 
-### order — 8 non-conformités
+### order — 9 non-conformités
 
 | Méthode | Chemin | Fichier | Problèmes |
 |--------|--------|---------|-----------|
@@ -423,6 +423,7 @@ Chaque ligne correspond à un appel HTTP non conforme, groupée par spec :
 | POST | `/order/cart/{x}/domainPacks` | OvhCloudOrder/cart/domainPacks/cartDomainPacksPOST.operation.ts | missing required body field 'domain' |
 | POST | `/order/cart/{x}/item/{x}/configuration` | OvhCloudOrder/cart/cartItemConfigurationCreatePost.operation.ts | missing required body field 'label'; missing required body field 'value' |
 | POST | `/order/cart/{x}/support` | OvhCloudOrder/cart/cartSupportCreatePost.operation.ts | missing required body field 'duration'; missing required body field 'planCode'; missing required body field 'pricingMode'; missing required body field 'quantity' |
+| POST | `/order/email/domain/new/{x}` | OvhCloudOrder/emailDomain/emailDomainNewOrderCreatePost.operation.ts | missing required body field 'domain' |
 | GET | `/order/vps/{x}/additionalDisk` | OvhCloudOrder/vps/additionalDisk/additionalDiskListGet.operation.ts | missing required query param 'additionalDiskSize' |
 | GET | `/order/vps/{x}/additionalDisk/{x}` | OvhCloudOrder/vps/additionalDisk/additionalDiskDurationGet.operation.ts | missing required query param 'additionalDiskSize' |
 | POST | `/order/vps/{x}/additionalDisk/{x}` | OvhCloudOrder/vps/additionalDisk/additionalDiskCreatePost.operation.ts | missing required body field 'additionalDiskSize' |

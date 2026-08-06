@@ -42,7 +42,7 @@ describe('cartItemConfigurationUpdatePut operation', () => {
 				return '';
 			});
 
-			const result = await execute.call(mockExecuteFunctions);
+			const result = await execute.call(mockExecuteFunctions, 0);
 			expect(client.httpPut).toHaveBeenCalledWith(
 				'/order/cart/test-cart-id/item/test-item-id/configuration/test-config-id',
 			);

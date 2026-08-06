@@ -21,9 +21,9 @@ export function description(displayOptions: IDisplayOptions): INodeProperties[] 
 	];
 }
 
-export async function execute(this: IExecuteFunctions): Promise<INodeExecutionData[]> {
+export async function execute(this: IExecuteFunctions, itemIndex: number): Promise<INodeExecutionData[]> {
 	const client = new ApiClient(this);
-	const body = this.getNodeParameter('body', 0) as IDataObject;
+	const body = this.getNodeParameter('body', itemIndex) as IDataObject;
 
 	const data = (await client.httpPost('/order/saas/csp2', body)) as INodeExecutionData;
 	return this.helpers.returnJsonArray([data]);

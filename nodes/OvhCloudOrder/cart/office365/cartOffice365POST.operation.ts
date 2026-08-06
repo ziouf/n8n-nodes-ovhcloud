@@ -62,9 +62,9 @@ export function description(displayOptions: IDisplayOptions): INodeProperties[] 
  * HTTP method: POST
  * Endpoint: /order/cart/{cartId}/office365
  */
-export async function execute(this: IExecuteFunctions): Promise<INodeExecutionData[]> {
+export async function execute(this: IExecuteFunctions, itemIndex: number): Promise<INodeExecutionData[]> {
 	const client = new ApiClient(this);
-	const cartId = this.getNodeParameter('cartId', 0) as string;
+	const cartId = this.getNodeParameter('cartId', itemIndex) as string;
 	const duration = this.getNodeParameter('duration', 0, '') as string;
 	const planCode = this.getNodeParameter('planCode', 0, '') as string;
 	const pricingMode = this.getNodeParameter('pricingMode', 0, '') as string;

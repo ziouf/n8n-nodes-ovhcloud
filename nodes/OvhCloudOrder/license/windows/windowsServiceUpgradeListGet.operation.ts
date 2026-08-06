@@ -34,10 +34,10 @@ export function description(displayOptions: IDisplayOptions): INodeProperties[] 
 	];
 }
 
-export async function execute(this: IExecuteFunctions): Promise<INodeExecutionData[]> {
+export async function execute(this: IExecuteFunctions, itemIndex: number): Promise<INodeExecutionData[]> {
 	const client = new ApiClient(this);
-	const family = this.getNodeParameter('family', 0) as string;
-	const serviceName = this.getNodeParameter('serviceName', 0) as string;
+	const family = this.getNodeParameter('family', itemIndex) as string;
+	const serviceName = this.getNodeParameter('serviceName', itemIndex) as string;
 	const data = (await client.httpGet(
 		`/order/license/${family}/${serviceName}/upgrade`,
 	)) as unknown[];

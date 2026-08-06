@@ -45,7 +45,7 @@ describe('cartDedicatedCloudOptionsPOST operation', () => {
 				return '';
 			});
 
-			const result = await execute.call(mockExecuteFunctions);
+			const result = await execute.call(mockExecuteFunctions, 0);
 expect((client.httpPost as jest.Mock).mock.calls[0]).toEqual(['/order/cart/test-cartId/dedicatedCloud/options', {
 				duration: 'test-duration',
 				itemId: 1,

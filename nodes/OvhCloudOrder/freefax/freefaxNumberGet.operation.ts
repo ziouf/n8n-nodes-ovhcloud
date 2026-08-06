@@ -28,10 +28,10 @@ export function description(displayOptions: IDisplayOptions): INodeProperties[] 
 	];
 }
 
-export async function execute(this: IExecuteFunctions): Promise<INodeExecutionData[]> {
+export async function execute(this: IExecuteFunctions, itemIndex: number): Promise<INodeExecutionData[]> {
 	const client = new ApiClient(this);
-	const organizationName = this.getNodeParameter('organizationName', 0) as string;
-	const number = this.getNodeParameter('number', 0) as string;
+	const organizationName = this.getNodeParameter('organizationName', itemIndex) as string;
+	const number = this.getNodeParameter('number', itemIndex) as string;
 	const data = (await client.httpGet(
 		`/order/freefax/${organizationName}/${number}`,
 	)) as INodeExecutionData;

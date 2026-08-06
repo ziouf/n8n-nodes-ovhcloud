@@ -47,7 +47,7 @@ describe('upgradevpsadditionaldiskPlanGET operation', () => {
                 return '';
             });
 
-            const result = await execute.call(mockExecuteFunctions);
+            const result = await execute.call(mockExecuteFunctions, 0);
             expect(client.httpGet).toHaveBeenCalled();
             expect(result).toMatchObject([mockData]);
         });

@@ -35,7 +35,7 @@ describe('emailDomainNewOrderCreatePost operation', () => {
 			const client = new ApiClient(mockExecuteFunctions) as any;
 			client.httpPost.mockResolvedValue(mockData);
 
-			const result = await execute.call(mockExecuteFunctions);
+			const result = await execute.call(mockExecuteFunctions, 0);
 			expect(client.httpPost).toHaveBeenCalled();
 			expect(result).toHaveLength(1);
 		});

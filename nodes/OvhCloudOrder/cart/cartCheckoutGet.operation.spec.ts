@@ -40,7 +40,7 @@ describe('cartCheckoutGet operation', () => {
 				return '';
 			});
 
-			const result = await execute.call(mockExecuteFunctions);
+			const result = await execute.call(mockExecuteFunctions, 0);
 			expect(client.httpGet).toHaveBeenCalledWith('/order/cart/test-cart-id/checkout');
 			expect(result).toMatchObject([mockData]);
 		});
@@ -55,7 +55,7 @@ describe('cartCheckoutGet operation', () => {
 				return '';
 			});
 
-			const result = await execute.call(mockExecuteFunctions);
+			const result = await execute.call(mockExecuteFunctions, 0);
 			expect(result).toHaveLength(1);
 		});
 	});

@@ -11,7 +11,8 @@ export function description(_displayOptions: IDisplayOptions): INodeProperties[]
 	return [];
 }
 
-export async function execute(this: IExecuteFunctions): Promise<INodeExecutionData[]> {
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
+export async function execute(this: IExecuteFunctions, itemIndex: number): Promise<INodeExecutionData[]> {
 	const client = new ApiClient(this);
 	const data = (await client.httpGet('/order/xdsl/spare')) as unknown[];
 

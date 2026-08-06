@@ -36,11 +36,11 @@ export function description(displayOptions: IDisplayOptions): INodeProperties[] 
  * HTTP method: GET
  * Endpoint: /order/upgrade/zimbra/{serviceName}/{planCode}
  */
-export async function execute(this: IExecuteFunctions): Promise<INodeExecutionData[]> {
+export async function execute(this: IExecuteFunctions, itemIndex: number): Promise<INodeExecutionData[]> {
 	const client = new ApiClient(this);
-	const planCode = this.getNodeParameter('planCode', 0) as string;
+	const planCode = this.getNodeParameter('planCode', itemIndex) as string;
 	void planCode; // used in template literal
-	const serviceName = this.getNodeParameter('serviceName', 0) as string;
+	const serviceName = this.getNodeParameter('serviceName', itemIndex) as string;
 	void serviceName; // used in template literal
 
 	const qs: IDataObject = {};

@@ -29,10 +29,10 @@ export function description(displayOptions: IDisplayOptions): INodeProperties[] 
 	];
 }
 
-export async function execute(this: IExecuteFunctions): Promise<INodeExecutionData[]> {
+export async function execute(this: IExecuteFunctions, itemIndex: number): Promise<INodeExecutionData[]> {
 	const client = new ApiClient(this);
-	const product = this.getNodeParameter('product', 0) as string;
-	const duration = this.getNodeParameter('duration', 0) as string;
+	const product = this.getNodeParameter('product', itemIndex) as string;
+	const duration = this.getNodeParameter('duration', itemIndex) as string;
 	const data = (await client.httpGet(`/order/sms/${product}/${duration}`)) as unknown[];
 
 	if (!Array.isArray(data)) {

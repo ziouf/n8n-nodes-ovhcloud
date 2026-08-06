@@ -1,4 +1,5 @@
 import type {
+	IDataObject,
 	IExecuteFunctions,
 	IDisplayOptions,
 	INodeExecutionData,
@@ -31,7 +32,6 @@ export function description(displayOptions: IDisplayOptions): INodeProperties[] 
 			name: 'startTime',
 			type: 'string',
 			default: '',
-			required: false,
 			description: 'Upgrade start time if it implies a shutdown of the website during few minutes (Format "HH:MM:ss")',
 			displayOptions,
 		},
@@ -39,9 +39,8 @@ export function description(displayOptions: IDisplayOptions): INodeProperties[] 
 			displayName: 'Waive Retraction Period',
 			name: 'waiveRetractationPeriod',
 			type: 'boolean',
-			default: '',
-			required: false,
-			description: 'Indicates that order will be processed with waiving retractation period',
+			default: false,
+			description: 'Whether the order will be processed with waiving retractation period',
 			displayOptions,
 		},
 	];

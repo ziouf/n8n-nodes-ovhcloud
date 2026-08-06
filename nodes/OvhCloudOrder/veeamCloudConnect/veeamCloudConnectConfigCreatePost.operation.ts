@@ -29,10 +29,10 @@ export function description(displayOptions: IDisplayOptions): INodeProperties[] 
 	];
 }
 
-export async function execute(this: IExecuteFunctions): Promise<INodeExecutionData[]> {
+export async function execute(this: IExecuteFunctions, itemIndex: number): Promise<INodeExecutionData[]> {
 	const client = new ApiClient(this);
-	const projectId = this.getNodeParameter('projectId', 0) as string;
-	const body = this.getNodeParameter('body', 0) as IDataObject;
+	const projectId = this.getNodeParameter('projectId', itemIndex) as string;
+	const body = this.getNodeParameter('body', itemIndex) as IDataObject;
 
 	const data = (await client.httpPost(
 		`/order/veeamCloudConnect/${projectId}`,

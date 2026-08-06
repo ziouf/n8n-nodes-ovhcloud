@@ -1,6 +1,6 @@
 # OVHcloud API Coverage Report
 
-> Généré par `scripts/compare-coverage.js` le 2026-08-06T18:29:37.170Z. Document généré automatiquement — ne pas éditer à la main.
+> Généré par `scripts/compare-coverage.js` le 2026-08-06T21:26:58.382Z. Document généré automatiquement — ne pas éditer à la main.
 
 Ce rapport compare les endpoints déclarés dans les specs Swagger 2.0 (`docs/api-specs/v1|v2/*.json`) avec les appels HTTP réellement présents dans les nodes (`nodes/**/*.operation.ts`).
 
@@ -8,8 +8,8 @@ Ce rapport compare les endpoints déclarés dans les specs Swagger 2.0 (`docs/ap
 
 - **Specs analysées** : 84 (v1: 70, v2: 14)
 - **Endpoints déclarés (specs avec endpoints)** : 6624
-- **Endpoints couverts par les nodes** : 4289
-- **Couverture globale** : **64.7%**
+- **Endpoints couverts par les nodes** : 4323
+- **Couverture globale** : **65.3%**
 - **Specs sans node associé** : 21
 - **Specs placeholder (aucun endpoint)** : 1
 
@@ -48,8 +48,8 @@ Triée par pourcentage croissant (moins bonne couverture en premier).
 | vps (v1) | 94 | 22 | 72 | 23.4% |
 | sslGateway (v1) | 23 | 6 | 17 | 26.1% |
 | xdsl (v1) | 142 | 39 | 103 | 27.5% |
-| order (v1) | 816 | 403 | 413 | 49.4% |
 | veeam (v1) | 10 | 5 | 5 | 50% |
+| order (v1) | 816 | 437 | 379 | 53.6% |
 | license (v1) | 13 | 7 | 6 | 53.8% |
 | pack (v1) | 58 | 33 | 25 | 56.9% |
 | me (v1) | 379 | 233 | 146 | 61.5% |
@@ -1607,7 +1607,19 @@ _Nodes associés : OvhCloudXdsl_
 | GET | `/xdsl/templateModem/{x}` |
 | PUT | `/xdsl/templateModem/{x}` |
 
-### order (v1) — 413 manquants
+### veeam (v1) — 5 manquants
+
+_Nodes associés : OvhCloudVeeamEnterprisePlus_
+
+| Méthode | Chemin |
+|--------|--------|
+| PUT | `/veeam/veeamEnterprise/{x}/serviceInfos` |
+| GET | `/veeam/veeamEnterprise/{x}/task` |
+| GET | `/veeam/veeamEnterprise/{x}/task/{x}` |
+| POST | `/veeam/veeamEnterprise/{x}/terminate` |
+| POST | `/veeam/veeamEnterprise/{x}/update` |
+
+### order (v1) — 379 manquants
 
 _Nodes associés : OvhCloudOrder_
 
@@ -1733,20 +1745,6 @@ _Nodes associés : OvhCloudOrder_
 | GET | `/order/catalog/public/webHosting` |
 | GET | `/order/catalog/public/webPaaS` |
 | GET | `/order/catalog/public/zimbra` |
-| GET | `/order/cdn/dedicated` |
-| GET | `/order/cdn/dedicated/{x}` |
-| GET | `/order/cdn/dedicated/{x}/backend` |
-| GET | `/order/cdn/dedicated/{x}/backend/{x}` |
-| POST | `/order/cdn/dedicated/{x}/backend/{x}` |
-| GET | `/order/cdn/dedicated/{x}/cacheRule` |
-| GET | `/order/cdn/dedicated/{x}/cacheRule/{x}` |
-| POST | `/order/cdn/dedicated/{x}/cacheRule/{x}` |
-| GET | `/order/cdn/dedicated/{x}/quota` |
-| GET | `/order/cdn/dedicated/{x}/quota/{x}` |
-| POST | `/order/cdn/dedicated/{x}/quota/{x}` |
-| GET | `/order/cdn/dedicated/new` |
-| GET | `/order/cdn/dedicated/new/{x}` |
-| POST | `/order/cdn/dedicated/new/{x}` |
 | GET | `/order/cloud/project/{x}/credit` |
 | POST | `/order/cloud/project/{x}/credit` |
 | GET | `/order/dedicated/housing` |
@@ -1810,21 +1808,6 @@ _Nodes associés : OvhCloudOrder_
 | POST | `/order/dedicatedCloud/{x}/upgradeRessource/{x}` |
 | GET | `/order/dedicatedCloud/{x}/vdi` |
 | POST | `/order/dedicatedCloud/{x}/vdi` |
-| GET | `/order/domain/zone` |
-| GET | `/order/domain/zone/{x}` |
-| GET | `/order/domain/zone/{x}/dnsAnycast` |
-| GET | `/order/domain/zone/{x}/dnsAnycast/{x}` |
-| POST | `/order/domain/zone/{x}/dnsAnycast/{x}` |
-| GET | `/order/domain/zone/new` |
-| POST | `/order/domain/zone/new` |
-| GET | `/order/email/domain` |
-| GET | `/order/email/domain/{x}` |
-| GET | `/order/email/domain/{x}/upgrade` |
-| GET | `/order/email/domain/{x}/upgrade/{x}` |
-| POST | `/order/email/domain/{x}/upgrade/{x}` |
-| GET | `/order/email/domain/new` |
-| GET | `/order/email/domain/new/{x}` |
-| POST | `/order/email/domain/new/{x}` |
 | GET | `/order/email/exchange` |
 | GET | `/order/email/exchange/{x}/service` |
 | GET | `/order/email/exchange/{x}/service/{x}` |
@@ -1850,11 +1833,6 @@ _Nodes associés : OvhCloudOrder_
 | POST | `/order/freefax/{x}/convertToVoicefax` |
 | GET | `/order/freefax/new` |
 | POST | `/order/freefax/new` |
-| GET | `/order/hosting/web` |
-| GET | `/order/hosting/web/{x}` |
-| GET | `/order/hosting/web/{x}/upgrade` |
-| GET | `/order/hosting/web/{x}/upgrade/{x}` |
-| POST | `/order/hosting/web/{x}/upgrade/{x}` |
 | GET | `/order/license/cpanel` |
 | GET | `/order/license/cpanel/{x}` |
 | GET | `/order/license/cpanel/{x}/upgrade` |
@@ -2026,18 +2004,6 @@ _Nodes associés : OvhCloudOrder_
 | POST | `/order/vps/{x}/windows/{x}` |
 | GET | `/order/xdsl/spare/new` |
 | POST | `/order/xdsl/spare/new` |
-
-### veeam (v1) — 5 manquants
-
-_Nodes associés : OvhCloudVeeamEnterprisePlus_
-
-| Méthode | Chemin |
-|--------|--------|
-| PUT | `/veeam/veeamEnterprise/{x}/serviceInfos` |
-| GET | `/veeam/veeamEnterprise/{x}/task` |
-| GET | `/veeam/veeamEnterprise/{x}/task/{x}` |
-| POST | `/veeam/veeamEnterprise/{x}/terminate` |
-| POST | `/veeam/veeamEnterprise/{x}/update` |
 
 ### license (v1) — 6 manquants
 

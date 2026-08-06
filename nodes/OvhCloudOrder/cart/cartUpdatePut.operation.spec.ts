@@ -43,7 +43,7 @@ describe('cartUpdatePut operation', () => {
                 return '';
             });
 
-            const result = await execute.call(mockExecuteFunctions);
+            const result = await execute.call(mockExecuteFunctions, 0);
             expect(client.httpPut).toHaveBeenCalled();
             expect(result).toMatchObject([mockData]);
         });

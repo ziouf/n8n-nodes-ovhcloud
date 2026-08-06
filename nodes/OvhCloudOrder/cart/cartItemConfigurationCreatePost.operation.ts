@@ -42,11 +42,11 @@ export function description(displayOptions: IDisplayOptions): INodeProperties[] 
  * HTTP method: POST
  * Endpoint: /order/cart/{cartId}/item/{itemId}/configuration
  */
-export async function execute(this: IExecuteFunctions): Promise<INodeExecutionData[]> {
+export async function execute(this: IExecuteFunctions, itemIndex: number): Promise<INodeExecutionData[]> {
 	const client = new ApiClient(this);
-	const cartId = this.getNodeParameter('cartId', 0) as string;
-	const itemId = this.getNodeParameter('itemId', 0) as string;
-	const body = this.getNodeParameter('body', 0) as IDataObject;
+	const cartId = this.getNodeParameter('cartId', itemIndex) as string;
+	const itemId = this.getNodeParameter('itemId', itemIndex) as string;
+	const body = this.getNodeParameter('body', itemIndex) as IDataObject;
 
 	const data = (await client.httpPost(
 		`/order/cart/${cartId}/item/${itemId}/configuration`,

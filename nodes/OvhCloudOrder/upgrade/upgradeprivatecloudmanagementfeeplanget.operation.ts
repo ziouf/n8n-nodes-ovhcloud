@@ -27,9 +27,9 @@ export function description(displayOptions: IDisplayOptions): INodeProperties[] 
  * HTTP method: GET
  * Endpoint: /order/upgrade/privateCloudManagementFee/{serviceName}/{planCode}
  */
-export async function execute(this: IExecuteFunctions): Promise<INodeExecutionData[]> {
+export async function execute(this: IExecuteFunctions, itemIndex: number): Promise<INodeExecutionData[]> {
 	const client = new ApiClient(this);
-	const serviceName = this.getNodeParameter('serviceName', 0) as string;
+	const serviceName = this.getNodeParameter('serviceName', itemIndex) as string;
 	void serviceName; // used in template literal
 
 	const qs: IDataObject = {};

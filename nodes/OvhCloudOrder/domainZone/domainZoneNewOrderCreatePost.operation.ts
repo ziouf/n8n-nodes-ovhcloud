@@ -22,9 +22,8 @@ export function description(displayOptions: IDisplayOptions): INodeProperties[] 
 			displayName: 'Minimized',
 			name: 'minimized',
 			type: 'boolean',
-			default: '',
-			required: false,
-			description: 'Create only mandatory records',
+			default: false,
+			description: 'Whether to create only mandatory records',
 			displayOptions,
 		},
 	];

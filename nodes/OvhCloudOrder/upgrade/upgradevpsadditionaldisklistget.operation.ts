@@ -20,7 +20,8 @@ import { ApiClient } from '../../../shared/transport/ApiClient';
  * HTTP method: GET
  * Endpoint: /order/upgrade/vpsAdditionalDisk
  */
-export async function execute(this: IExecuteFunctions): Promise<INodeExecutionData[]> {
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
+export async function execute(this: IExecuteFunctions, itemIndex: number): Promise<INodeExecutionData[]> {
 	const client = new ApiClient(this);
 
 

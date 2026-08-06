@@ -26,9 +26,9 @@ export function description(displayOptions: IDisplayOptions): INodeProperties[] 
  * HTTP method: GET
  * Endpoint: /order/cart/{cartId}/ip
  */
-export async function execute(this: IExecuteFunctions): Promise<INodeExecutionData[]> {
+export async function execute(this: IExecuteFunctions, itemIndex: number): Promise<INodeExecutionData[]> {
 	const client = new ApiClient(this);
-	const cartId = this.getNodeParameter('cartId', 0) as string;
+	const cartId = this.getNodeParameter('cartId', itemIndex) as string;
 	const data = (await client.httpGet(`/order/cart/${cartId}/ip`)) as IDataObject;
 	return this.helpers.returnJsonArray([data]);
 }

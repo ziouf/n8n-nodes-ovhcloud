@@ -1,4 +1,5 @@
 import type {
+	IDataObject,
 	IExecuteFunctions,
 	IDisplayOptions,
 	INodeExecutionData,
@@ -23,7 +24,6 @@ export function description(displayOptions: IDisplayOptions): INodeProperties[] 
 			type: 'string',
 			default: '',
 			required: true,
-			description: 'Duration',
 			displayOptions,
 		},
 		{
@@ -32,7 +32,7 @@ export function description(displayOptions: IDisplayOptions): INodeProperties[] 
 			type: 'options',
 			default: '',
 			required: true,
-			description: 'cache rule upgrade option to 100 or 1000',
+			description: 'Cache rule upgrade option to 100 or 1000',
 			displayOptions,
 		},
 	];

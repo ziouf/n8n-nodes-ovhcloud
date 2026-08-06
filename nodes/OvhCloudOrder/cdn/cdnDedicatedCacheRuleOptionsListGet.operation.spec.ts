@@ -35,7 +35,7 @@ describe('cdnDedicatedCacheRuleOptionsListGet operation', () => {
 			const client = new ApiClient(mockExecuteFunctions) as any;
 			client.httpGet.mockResolvedValue(mockData);
 
-			const result = await execute.call(mockExecuteFunctions);
+			const result = await execute.call(mockExecuteFunctions, 0);
 			expect(client.httpGet).toHaveBeenCalled();
 			expect(result).toHaveLength(1);
 		});

@@ -53,11 +53,11 @@ export function description(displayOptions: IDisplayOptions): INodeProperties[] 
  * HTTP method: POST
  * Endpoint: /order/upgrade/privateSQL/{domain}/{planCode}
  */
-export async function execute(this: IExecuteFunctions): Promise<INodeExecutionData[]> {
+export async function execute(this: IExecuteFunctions, itemIndex: number): Promise<INodeExecutionData[]> {
 	const client = new ApiClient(this);
-	const planCode = this.getNodeParameter('planCode', 0) as string;
+	const planCode = this.getNodeParameter('planCode', itemIndex) as string;
 	void planCode; // used in template literal
-	const domain = this.getNodeParameter('domain', 0) as string;
+	const domain = this.getNodeParameter('domain', itemIndex) as string;
 	void domain; // used in template literal
 	const autoPayWithPreferredPaymentMethod = this.getNodeParameter('autoPayWithPreferredPaymentMethod', 0, false) as boolean;
 	const quantity = this.getNodeParameter('quantity', 0, 0) as number;
