@@ -1,6 +1,6 @@
 # OVHcloud API Coverage Report
 
-> Généré par `scripts/compare-coverage.js` le 2026-08-06T05:26:08.472Z. Document généré automatiquement — ne pas éditer à la main.
+> Généré par `scripts/compare-coverage.js` le 2026-08-06T06:46:25.446Z. Document généré automatiquement — ne pas éditer à la main.
 
 Ce rapport compare les endpoints déclarés dans les specs Swagger 2.0 (`docs/api-specs/v1|v2/*.json`) avec les appels HTTP réellement présents dans les nodes (`nodes/**/*.operation.ts`).
 
@@ -8,8 +8,8 @@ Ce rapport compare les endpoints déclarés dans les specs Swagger 2.0 (`docs/ap
 
 - **Specs analysées** : 84 (v1: 70, v2: 14)
 - **Endpoints déclarés (specs avec endpoints)** : 6624
-- **Endpoints couverts par les nodes** : 3872
-- **Couverture globale** : **58.5%**
+- **Endpoints couverts par les nodes** : 3871
+- **Couverture globale** : **58.4%**
 - **Specs sans node associé** : 21
 - **Specs placeholder (aucun endpoint)** : 1
 
@@ -52,7 +52,7 @@ Triée par pourcentage croissant (moins bonne couverture en premier).
 | veeam (v1) | 10 | 5 | 5 | 50% |
 | license (v1) | 13 | 7 | 6 | 53.8% |
 | pack (v1) | 58 | 33 | 25 | 56.9% |
-| cloud (v1) | 1121 | 660 | 461 | 58.9% |
+| cloud (v1) | 1121 | 659 | 462 | 58.8% |
 | me (v1) | 379 | 233 | 146 | 61.5% |
 | metrics (v1) | 16 | 12 | 4 | 75% |
 | hosting (v1) | 198 | 150 | 48 | 75.8% |
@@ -2451,7 +2451,7 @@ _Nodes associés : OvhCloudPackXdsl, OvhCloudPack_
 | GET | `/pack/xdsl/{x}/voipLine/services/{x}` |
 | GET | `/pack/xdsl/{x}/xdslAccess/services` |
 
-### cloud (v1) — 461 manquants
+### cloud (v1) — 462 manquants
 
 _Nodes associés : OvhCloudPublicCloud, OvhCloudPublicCloudAi_
 
@@ -2504,6 +2504,7 @@ _Nodes associés : OvhCloudPublicCloud, OvhCloudPublicCloudAi_
 | GET | `/cloud/project/{x}/ai/data/region` |
 | GET | `/cloud/project/{x}/ai/data/region/{x}` |
 | GET | `/cloud/project/{x}/ai/data/region/{x}/alias` |
+| POST | `/cloud/project/{x}/ai/data/region/{x}/alias` |
 | DELETE | `/cloud/project/{x}/ai/data/region/{x}/alias/{x}` |
 | GET | `/cloud/project/{x}/ai/data/region/{x}/alias/{x}` |
 | PUT | `/cloud/project/{x}/ai/data/region/{x}/alias/{x}` |

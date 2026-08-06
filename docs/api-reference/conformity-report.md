@@ -1,16 +1,16 @@
 # OVHcloud API Conformity Report
 
-> Généré par `scripts/audit-conformity.js` le 2026-08-06T05:26:09.843Z. Document généré automatiquement — ne pas éditer à la main.
+> Généré par `scripts/audit-conformity.js` le 2026-08-06T06:46:37.621Z. Document généré automatiquement — ne pas éditer à la main.
 
 Ce rapport vérifie que les opérations des nodes respectent leur spec (méthode, chemin, paramètres path requis, query requis, champs body requis).
 
 ## Résumé
 
-- **Opérations auditées** : 5963
+- **Opérations auditées** : 5913
 - **Conformes** : 3673
-- **Non conformes** : 2290
-- **Sans correspondance spec** (informatif) : 1973
-- **Taux de conformité** : **61.6%**
+- **Non conformes** : 2240
+- **Sans correspondance spec** (informatif) : 1924
+- **Taux de conformité** : **62.1%**
 
 ## Conformité par spec
 
@@ -45,7 +45,7 @@ Triée par taux de non-conformité décroissant.
 | vrack (v1) | 12 | 4 | 1 | 33.3% |
 | veeamCloudConnect (v1) | 14 | 13 | 1 | 92.9% |
 | vps (v1) | 63 | 20 | 4 | 31.7% |
-| cloud (v1) | 974 | 622 | 45 | 63.9% |
+| cloud (v1) | 949 | 622 | 44 | 65.5% |
 | order (v1) | 166 | 31 | 6 | 18.7% |
 | me (v1) | 309 | 300 | 9 | 97.1% |
 | dedicated (v1) | 69 | 31 | 2 | 44.9% |
@@ -54,7 +54,7 @@ Triée par taux de non-conformité décroissant.
 | webhosting (v2) | 246 | 12 | 3 | 4.9% |
 | domain (v1) | 119 | 109 | 1 | 91.6% |
 | telephony (v1) | 644 | 602 | 5 | 93.5% |
-| publicCloud (v2) | 974 | 26 | 4 | 2.7% |
+| publicCloud (v2) | 949 | 26 | 4 | 2.7% |
 | price (v1) | 581 | 581 | 0 | 100% |
 | sms (v1) | 126 | 124 | 0 | 98.4% |
 | domain (v2) | 119 | 9 | 0 | 7.6% |
@@ -106,11 +106,10 @@ Chaque ligne correspond à un appel HTTP non conforme, groupée par spec :
 | POST | `/cdn/dedicated/{x}/ssl` | OvhCloudCdn/resources/ssl/sslCreatePost.operation.ts | missing required body field 'name' |
 | POST | `/cdn/dedicated/{x}/ssl/update` | OvhCloudCdn/resources/ssl/sslUpdatePost.operation.ts | missing required body field 'certificate'; missing required body field 'key' |
 
-### cloud — 45 non-conformités
+### cloud — 44 non-conformités
 
 | Méthode | Chemin | Fichier | Problèmes |
 |--------|--------|---------|-----------|
-| POST | `/cloud/project/{x}/ai/data/region/{x}/alias` | OvhCloudPublicCloudAi/dataStore/dataCreatePost.operation.ts | missing required body field 'alias'; missing required body field 'credentials'; missing required body field 'endpoint'; missing required body field 'owner'; missing required body field 'type' |
 | POST | `/cloud/project/{x}/database/cassandra/{x}/integration` | OvhCloudPublicCloud/database/cassandra/integrationCreatePost.operation.ts | missing required body field 'destinationServiceId'; missing required body field 'sourceServiceId' |
 | POST | `/cloud/project/{x}/database/cassandra/{x}/log/subscription` | OvhCloudPublicCloud/database/cassandra/logSubscriptionCreatePost.operation.ts | missing required body field 'kind'; missing required body field 'streamId' |
 | POST | `/cloud/project/{x}/database/cassandra/{x}/log/url` | OvhCloudPublicCloud/database/cassandra/logUrlCreatePost.operation.ts | missing required body field 'kind' |
@@ -651,29 +650,8 @@ Ces opérations appellent un chemin qui ne correspond à aucun endpoint de la sp
 | cloud (v1) | POST | `/publicCloud/project/{x}/acl` | OvhCloudPublicCloud/acl/createPost.operation.ts |
 | cloud (v1) | DELETE | `/publicCloud/project/{x}/acl/{x}` | OvhCloudPublicCloud/acl/deleteDelete.operation.ts |
 | cloud (v1) | POST | `/publicCloud/project/{x}/activateMonthlyBilling` | OvhCloudPublicCloud/activateMonthlyBilling/activateMonthlyBillingPost.operation.ts |
-| cloud (v1) | GET | `/publicCloud/project/{x}/ai/app` | OvhCloudPublicCloudAi/app/appListGet.operation.ts |
-| cloud (v1) | POST | `/publicCloud/project/{x}/ai/app` | OvhCloudPublicCloudAi/app/appCreatePost.operation.ts |
-| cloud (v1) | DELETE | `/publicCloud/project/{x}/ai/app/{x}` | OvhCloudPublicCloudAi/app/appDeleteDelete.operation.ts |
-| cloud (v1) | GET | `/publicCloud/project/{x}/ai/app/{x}` | OvhCloudPublicCloudAi/app/appGetGet.operation.ts |
-| cloud (v1) | PUT | `/publicCloud/project/{x}/ai/app/{x}` | OvhCloudPublicCloudAi/app/appUpdatePut.operation.ts |
-| cloud (v1) | PUT | `/publicCloud/project/{x}/ai/app/{x}/start` | OvhCloudPublicCloudAi/app/appStartPut.operation.ts |
-| cloud (v1) | PUT | `/publicCloud/project/{x}/ai/app/{x}/stop` | OvhCloudPublicCloudAi/app/appStopPut.operation.ts |
-| cloud (v1) | GET | `/publicCloud/project/{x}/ai/data/region/eu/alias` | OvhCloudPublicCloudAi/dataStore/dataListGet.operation.ts |
-| cloud (v1) | GET | `/publicCloud/project/{x}/ai/job` | OvhCloudPublicCloudAi/job/jobListGet.operation.ts |
-| cloud (v1) | POST | `/publicCloud/project/{x}/ai/job` | OvhCloudPublicCloudAi/job/jobCreatePost.operation.ts |
-| cloud (v1) | DELETE | `/publicCloud/project/{x}/ai/job/{x}` | OvhCloudPublicCloudAi/job/jobDeleteDelete.operation.ts |
-| cloud (v1) | GET | `/publicCloud/project/{x}/ai/job/{x}` | OvhCloudPublicCloudAi/job/jobGetGet.operation.ts |
-| cloud (v1) | GET | `/publicCloud/project/{x}/ai/notebook` | OvhCloudPublicCloudAi/notebook/notebookListGet.operation.ts |
-| cloud (v1) | POST | `/publicCloud/project/{x}/ai/notebook` | OvhCloudPublicCloudAi/notebook/notebookCreatePost.operation.ts |
-| cloud (v1) | DELETE | `/publicCloud/project/{x}/ai/notebook/{x}` | OvhCloudPublicCloudAi/notebook/notebookDeleteDelete.operation.ts |
-| cloud (v1) | GET | `/publicCloud/project/{x}/ai/notebook/{x}` | OvhCloudPublicCloudAi/notebook/notebookGetGet.operation.ts |
-| cloud (v1) | PUT | `/publicCloud/project/{x}/ai/notebook/{x}/start` | OvhCloudPublicCloudAi/notebook/notebookStartPut.operation.ts |
-| cloud (v1) | GET | `/publicCloud/project/{x}/ai/registry` | OvhCloudPublicCloudAi/registry/registryListGet.operation.ts |
-| cloud (v1) | POST | `/publicCloud/project/{x}/ai/registry` | OvhCloudPublicCloudAi/registry/registryCreatePost.operation.ts |
 | cloud (v1) | GET | `/publicCloud/project/{x}/alerting` | OvhCloudPublicCloud/alerting/listGet.operation.ts |
-| cloud (v1) | GET | `/publicCloud/project/{x}/alerting` | OvhCloudPublicCloudAi/alerting/alertListGet.operation.ts |
 | cloud (v1) | POST | `/publicCloud/project/{x}/alerting` | OvhCloudPublicCloud/alerting/createPost.operation.ts |
-| cloud (v1) | POST | `/publicCloud/project/{x}/alerting` | OvhCloudPublicCloudAi/alerting/alertCreatePost.operation.ts |
 | cloud (v1) | DELETE | `/publicCloud/project/{x}/alerting/{x}` | OvhCloudPublicCloud/alerting/deleteDelete.operation.ts |
 | cloud (v1) | GET | `/publicCloud/project/{x}/alerting/{x}` | OvhCloudPublicCloud/alerting/getDetailGet.operation.ts |
 | cloud (v1) | PUT | `/publicCloud/project/{x}/alerting/{x}` | OvhCloudPublicCloud/alerting/updatePut.operation.ts |
@@ -895,9 +873,6 @@ Ces opérations appellent un chemin qui ne correspond à aucun endpoint de la sp
 | cloud (v1) | GET | `/publicCloud/project/{x}/vrack` | OvhCloudPublicCloud/vrack/listGet.operation.ts |
 | cloud (v1) | GET | `/publicCloud/reference/blockStorage/capability/getByRegionName` | OvhCloudPublicCloud/blockstorage/volumeCapabilityListGetByRegionNameGet.operation.ts |
 | cloud (v1) | GET | `/publicCloud/reference/blockStorage/plan/getByRegionName` | OvhCloudPublicCloud/blockstorage/volumePlanCapabilityListGetByRegionNameGet.operation.ts |
-| cloud (v1) | GET | `/publicCloud/reference/capabilities/kubernetes` | OvhCloudPublicCloudAi/capabilities/kube/kubeListGet.operation.ts |
-| cloud (v1) | GET | `/publicCloud/reference/capabilities/kubernetes/{x}` | OvhCloudPublicCloudAi/capabilities/kube/kubeGetGet.operation.ts |
-| cloud (v1) | GET | `/publicCloud/reference/capabilities/loadBalancer/getByRegionName` | OvhCloudPublicCloudAi/capabilities/loadbalancer/lbDetailGet.operation.ts |
 | cloud (v1) | GET | `/publicCloud/reference/rancher/plan` | OvhCloudPublicCloud/rancher/globalReferencePlanListGetV2.operation.ts |
 | cloud (v1) | GET | `/publicCloud/reference/rancher/version` | OvhCloudPublicCloud/rancher/globalReferenceVersionListGetV2.operation.ts |
 | cluster (v1) | GET | `/cluster` | OvhCloudCluster/clusterListGet.operation.ts |
@@ -1300,7 +1275,6 @@ Ces opérations appellent un chemin qui ne correspond à aucun endpoint de la sp
 | pack (v1) | PUT | `/pack/{x}` | OvhCloudPack/packUpdatePut.operation.ts |
 | pack (v1) | POST | `/pack/{x}/reinstall` | OvhCloudPack/reinstallPost.operation.ts |
 | pack (v1) | GET | `/pack/{x}/serviceInfos` | OvhCloudPack/serviceInfosGetGet.operation.ts |
-| publicCloud (v2) | POST | `/cloud/project/{x}/ai/data/region/{x}/alias` | OvhCloudPublicCloudAi/dataStore/dataCreatePost.operation.ts |
 | publicCloud (v2) | GET | `/cloud/project/{x}/database/cassandra` | OvhCloudPublicCloud/database/cassandra/clusterListGet.operation.ts |
 | publicCloud (v2) | POST | `/cloud/project/{x}/database/cassandra` | OvhCloudPublicCloud/database/cassandra/clusterCreatePost.operation.ts |
 | publicCloud (v2) | DELETE | `/cloud/project/{x}/database/cassandra/{x}` | OvhCloudPublicCloud/database/cassandra/clusterDeleteDelete.operation.ts |
@@ -2021,29 +1995,8 @@ Ces opérations appellent un chemin qui ne correspond à aucun endpoint de la sp
 | publicCloud (v2) | POST | `/publicCloud/project/{x}/acl` | OvhCloudPublicCloud/acl/createPost.operation.ts |
 | publicCloud (v2) | DELETE | `/publicCloud/project/{x}/acl/{x}` | OvhCloudPublicCloud/acl/deleteDelete.operation.ts |
 | publicCloud (v2) | POST | `/publicCloud/project/{x}/activateMonthlyBilling` | OvhCloudPublicCloud/activateMonthlyBilling/activateMonthlyBillingPost.operation.ts |
-| publicCloud (v2) | GET | `/publicCloud/project/{x}/ai/app` | OvhCloudPublicCloudAi/app/appListGet.operation.ts |
-| publicCloud (v2) | POST | `/publicCloud/project/{x}/ai/app` | OvhCloudPublicCloudAi/app/appCreatePost.operation.ts |
-| publicCloud (v2) | DELETE | `/publicCloud/project/{x}/ai/app/{x}` | OvhCloudPublicCloudAi/app/appDeleteDelete.operation.ts |
-| publicCloud (v2) | GET | `/publicCloud/project/{x}/ai/app/{x}` | OvhCloudPublicCloudAi/app/appGetGet.operation.ts |
-| publicCloud (v2) | PUT | `/publicCloud/project/{x}/ai/app/{x}` | OvhCloudPublicCloudAi/app/appUpdatePut.operation.ts |
-| publicCloud (v2) | PUT | `/publicCloud/project/{x}/ai/app/{x}/start` | OvhCloudPublicCloudAi/app/appStartPut.operation.ts |
-| publicCloud (v2) | PUT | `/publicCloud/project/{x}/ai/app/{x}/stop` | OvhCloudPublicCloudAi/app/appStopPut.operation.ts |
-| publicCloud (v2) | GET | `/publicCloud/project/{x}/ai/data/region/eu/alias` | OvhCloudPublicCloudAi/dataStore/dataListGet.operation.ts |
-| publicCloud (v2) | GET | `/publicCloud/project/{x}/ai/job` | OvhCloudPublicCloudAi/job/jobListGet.operation.ts |
-| publicCloud (v2) | POST | `/publicCloud/project/{x}/ai/job` | OvhCloudPublicCloudAi/job/jobCreatePost.operation.ts |
-| publicCloud (v2) | DELETE | `/publicCloud/project/{x}/ai/job/{x}` | OvhCloudPublicCloudAi/job/jobDeleteDelete.operation.ts |
-| publicCloud (v2) | GET | `/publicCloud/project/{x}/ai/job/{x}` | OvhCloudPublicCloudAi/job/jobGetGet.operation.ts |
-| publicCloud (v2) | GET | `/publicCloud/project/{x}/ai/notebook` | OvhCloudPublicCloudAi/notebook/notebookListGet.operation.ts |
-| publicCloud (v2) | POST | `/publicCloud/project/{x}/ai/notebook` | OvhCloudPublicCloudAi/notebook/notebookCreatePost.operation.ts |
-| publicCloud (v2) | DELETE | `/publicCloud/project/{x}/ai/notebook/{x}` | OvhCloudPublicCloudAi/notebook/notebookDeleteDelete.operation.ts |
-| publicCloud (v2) | GET | `/publicCloud/project/{x}/ai/notebook/{x}` | OvhCloudPublicCloudAi/notebook/notebookGetGet.operation.ts |
-| publicCloud (v2) | PUT | `/publicCloud/project/{x}/ai/notebook/{x}/start` | OvhCloudPublicCloudAi/notebook/notebookStartPut.operation.ts |
-| publicCloud (v2) | GET | `/publicCloud/project/{x}/ai/registry` | OvhCloudPublicCloudAi/registry/registryListGet.operation.ts |
-| publicCloud (v2) | POST | `/publicCloud/project/{x}/ai/registry` | OvhCloudPublicCloudAi/registry/registryCreatePost.operation.ts |
 | publicCloud (v2) | GET | `/publicCloud/project/{x}/alerting` | OvhCloudPublicCloud/alerting/listGet.operation.ts |
-| publicCloud (v2) | GET | `/publicCloud/project/{x}/alerting` | OvhCloudPublicCloudAi/alerting/alertListGet.operation.ts |
 | publicCloud (v2) | POST | `/publicCloud/project/{x}/alerting` | OvhCloudPublicCloud/alerting/createPost.operation.ts |
-| publicCloud (v2) | POST | `/publicCloud/project/{x}/alerting` | OvhCloudPublicCloudAi/alerting/alertCreatePost.operation.ts |
 | publicCloud (v2) | DELETE | `/publicCloud/project/{x}/alerting/{x}` | OvhCloudPublicCloud/alerting/deleteDelete.operation.ts |
 | publicCloud (v2) | GET | `/publicCloud/project/{x}/alerting/{x}` | OvhCloudPublicCloud/alerting/getDetailGet.operation.ts |
 | publicCloud (v2) | PUT | `/publicCloud/project/{x}/alerting/{x}` | OvhCloudPublicCloud/alerting/updatePut.operation.ts |
@@ -2241,9 +2194,6 @@ Ces opérations appellent un chemin qui ne correspond à aucun endpoint de la sp
 | publicCloud (v2) | GET | `/publicCloud/project/{x}/vrack` | OvhCloudPublicCloud/vrack/listGet.operation.ts |
 | publicCloud (v2) | GET | `/publicCloud/reference/blockStorage/capability/getByRegionName` | OvhCloudPublicCloud/blockstorage/volumeCapabilityListGetByRegionNameGet.operation.ts |
 | publicCloud (v2) | GET | `/publicCloud/reference/blockStorage/plan/getByRegionName` | OvhCloudPublicCloud/blockstorage/volumePlanCapabilityListGetByRegionNameGet.operation.ts |
-| publicCloud (v2) | GET | `/publicCloud/reference/capabilities/kubernetes` | OvhCloudPublicCloudAi/capabilities/kube/kubeListGet.operation.ts |
-| publicCloud (v2) | GET | `/publicCloud/reference/capabilities/kubernetes/{x}` | OvhCloudPublicCloudAi/capabilities/kube/kubeGetGet.operation.ts |
-| publicCloud (v2) | GET | `/publicCloud/reference/capabilities/loadBalancer/getByRegionName` | OvhCloudPublicCloudAi/capabilities/loadbalancer/lbDetailGet.operation.ts |
 | services (v1) | POST | `/services/{x}/reinstall` | OvhCloudServices/reinstallPost.operation.ts |
 | services (v1) | GET | `/services/{x}/task` | OvhCloudServices/taskListGet.operation.ts |
 | services (v1) | GET | `/services/{x}/task/{x}` | OvhCloudServices/taskGetGet.operation.ts |

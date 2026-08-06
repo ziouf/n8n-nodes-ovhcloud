@@ -1,0 +1,122 @@
+import type {
+	IDataObject,
+	IExecuteFunctions,
+	IDisplayOptions,
+	INodeExecutionData,
+	INodeProperties,
+} from 'n8n-workflow';
+import { ApiClient } from '../../../shared/transport/ApiClient';
+
+export function description(displayOptions: IDisplayOptions = {} as IDisplayOptions): INodeProperties[] {
+	return [
+		{
+			displayName: 'Service Name',
+			name: 'serviceName',
+			type: 'resourceLocator',
+			default: { mode: 'list', value: '' },
+			required: true,
+			description: 'The OVHcloud service name',
+			modes: [
+				{
+					displayName: 'From List',
+					name: 'list',
+					type: 'list',
+					typeOptions: { searchListMethod: 'getPublicCloudProjects' },
+				},
+				{
+					displayName: 'By Name',
+					name: 'name',
+					type: 'string',
+				},
+			],
+			displayOptions,
+		},
+		{
+			displayName: 'Notebook ID',
+			name: 'notebookId',
+			type: 'string',
+			default: '',
+			required: true,
+			description: 'The notebookId parameter',
+			displayOptions,
+		},
+		{
+			displayName: 'Order',
+			name: 'order',
+			type: 'string',
+			default: '',
+			description: 'Order the result set',
+			displayOptions,
+		},
+		{
+			displayName: 'Page',
+			name: 'page',
+			type: 'string',
+			default: '',
+			description: 'Page of the result set',
+			displayOptions,
+		},
+		{
+			displayName: 'Size',
+			name: 'size',
+			type: 'string',
+			default: '',
+			description: 'Size of the result set',
+			displayOptions,
+		},
+		{
+			displayName: 'Sort',
+			name: 'sort',
+			type: 'string',
+			default: '',
+			description: 'Sort the result with this field',
+			displayOptions,
+		},
+		{
+			displayName: 'Updated After',
+			name: 'updatedAfter',
+			type: 'string',
+			default: '',
+			description: 'Filter on updatedAt property (>)',
+			displayOptions,
+		},
+		{
+			displayName: 'Updated Before',
+			name: 'updatedBefore',
+			type: 'string',
+			default: '',
+			description: 'Filter on updatedAt property (<)',
+			displayOptions,
+		},
+	];
+}
+
+/**
+ * Executes the List all backups of an AI Solutions notebook operation.
+ *
+ * HTTP method: GET
+ * Endpoint: /cloud/project/{serviceName}/ai/notebook/{notebookId}/backup
+ */
+export async function execute(this: IExecuteFunctions): Promise<INodeExecutionData[]> {
+	const serviceName = this.getNodeParameter('serviceName', 0) as string;
+	const notebookId = this.getNodeParameter('notebookId', 0) as string;
+	const order = this.getNodeParameter('order', 0) as string;
+	const page = this.getNodeParameter('page', 0) as string;
+	const size = this.getNodeParameter('size', 0) as string;
+	const sort = this.getNodeParameter('sort', 0) as string;
+	const updatedAfter = this.getNodeParameter('updatedAfter', 0) as string;
+	const updatedBefore = this.getNodeParameter('updatedBefore', 0) as string;
+
+	const qs: Record<string, string> = {};
+	if (order) qs.order = order;
+	if (page) qs.page = page;
+	if (size) qs.size = size;
+	if (sort) qs.sort = sort;
+	if (updatedAfter) qs.updatedAfter = updatedAfter;
+	if (updatedBefore) qs.updatedBefore = updatedBefore;
+
+	const client = new ApiClient(this);
+	const data = (await client.httpGet('cloud/project' + serviceName + '/ai/notebook/' + notebookId + '/backup', qs)) as IDataObject;
+
+	return this.helpers.returnJsonArray([data]);
+}
