@@ -13,11 +13,11 @@ jest.mock('../../../../shared/transport/ApiClient', () => {
 
 import { ApiClient } from '../../../../shared/transport/ApiClient';
 
-describe('m3aggregator nodeGetGet operation', () => {
+describe('nodeGetGet operation', () => {
 	describe('description', () => {
 		it('should return all required parameters', () => {
-			const result = description({'show': {}});
-			expect(result.length).toBeGreaterThanOrEqual(1);
+			const result = description({ show: {} });
+			expect(result).toHaveLength(3);
 		});
 	});
 
@@ -31,20 +31,23 @@ describe('m3aggregator nodeGetGet operation', () => {
 		});
 
 		it('should call the correct API endpoint', async () => {
-			const mockData = { id: 'test-id' };
+			const mockData = { id: 'test-123' };
 			const client = new ApiClient(mockExecuteFunctions) as any;
-			client.httpGet.mockResolvedValue(mockData);
+			(client.httpGet as jest.Mock).mockResolvedValue(mockData);
 
-			mockExecuteFunctions.getNodeParameter.mockReturnValue((param: string): string | undefined => {
-				if (param === 'publicCloudProjectId') return '12345678-1234-1234-1234-1234567890ab';
-				if (param === 'serviceName') return 'test-service';
-				if (param === 'nodeId') return 'test-nodeId-id';
-				return '';
-			});
+			mockExecuteFunctions.getNodeParameter.mockImplementation((param: string): any => {
+			if (param === 'publicCloudProjectId') return 'test-publicCloudProjectId-value';
+			if (param === 'clusterId') return 'test-clusterId-value';
+			if (param === 'nodeId') return 'test-nodeId-value';
+			return '';
+		});
 
-			const result = await execute.call(mockExecuteFunctions);
+			await execute.call(mockExecuteFunctions);
 			expect(client.httpGet).toHaveBeenCalled();
-			expect(result).toMatchObject([{ id: 'test-id' }]);
+
+			expect(client.httpGet).toHaveBeenCalledWith(
+				'/cloud/project/test-publicCloudProjectId-value/database/m3aggregator/test-clusterId-value/node/test-nodeId-value',
+			);
 		});
 	});
 });

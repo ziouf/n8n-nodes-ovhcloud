@@ -1737,13 +1737,13 @@ import {
 	execute as m3aggregatorClusterListGetExecute,
 } from './database/m3aggregator/clusterListGet.operation';
 import {
-	description as m3aggregatorClusterGetGetDescription,
-	execute as m3aggregatorClusterGetGetExecute,
-} from './database/m3aggregator/clusterGetGet.operation';
-import {
 	description as m3aggregatorClusterCreatePostDescription,
 	execute as m3aggregatorClusterCreatePostExecute,
 } from './database/m3aggregator/clusterCreatePost.operation';
+import {
+	description as m3aggregatorClusterGetGetDescription,
+	execute as m3aggregatorClusterGetGetExecute,
+} from './database/m3aggregator/clusterGetGet.operation';
 import {
 	description as m3aggregatorClusterUpdatePutDescription,
 	execute as m3aggregatorClusterUpdatePutExecute,
@@ -1753,69 +1753,33 @@ import {
 	execute as m3aggregatorClusterDeleteDeleteExecute,
 } from './database/m3aggregator/clusterDeleteDelete.operation';
 import {
-	description as m3aggregatorBackupListGetDescription,
-	execute as m3aggregatorBackupListGetExecute,
-} from './database/m3aggregator/backupListGet.operation';
+	description as m3aggregatorCapabilitiesIntegrationGetDescription,
+	execute as m3aggregatorCapabilitiesIntegrationGetExecute,
+} from './database/m3aggregator/capabilitiesIntegrationGet.operation';
 import {
-	description as m3aggregatorBackupCreatePostDescription,
-	execute as m3aggregatorBackupCreatePostExecute,
-} from './database/m3aggregator/backupCreatePost.operation';
+	description as m3aggregatorIntegrationGetDescription,
+	execute as m3aggregatorIntegrationGetExecute,
+} from './database/m3aggregator/integrationGet.operation';
 import {
-	description as m3aggregatorBackupGetGetDescription,
-	execute as m3aggregatorBackupGetGetExecute,
-} from './database/m3aggregator/backupGetGet.operation';
+	description as m3aggregatorIntegrationCreatePostDescription,
+	execute as m3aggregatorIntegrationCreatePostExecute,
+} from './database/m3aggregator/integrationCreatePost.operation';
 import {
-	description as m3aggregatorBackupDeleteDeleteDescription,
-	execute as m3aggregatorBackupDeleteDeleteExecute,
-} from './database/m3aggregator/backupDeleteDelete.operation';
+	description as m3aggregatorIntegrationDeleteDeleteDescription,
+	execute as m3aggregatorIntegrationDeleteDeleteExecute,
+} from './database/m3aggregator/integrationDeleteDelete.operation';
 import {
-	description as m3aggregatorUserListGetDescription,
-	execute as m3aggregatorUserListGetExecute,
-} from './database/m3aggregator/userListGet.operation';
+	description as m3aggregatorIntegrationGetByIdDescription,
+	execute as m3aggregatorIntegrationGetByIdExecute,
+} from './database/m3aggregator/integrationGetById.operation';
 import {
-	description as m3aggregatorUserCreatePostDescription,
-	execute as m3aggregatorUserCreatePostExecute,
-} from './database/m3aggregator/userCreatePost.operation';
+	description as m3aggregatorLogKindGetDescription,
+	execute as m3aggregatorLogKindGetExecute,
+} from './database/m3aggregator/logKindGet.operation';
 import {
-	description as m3aggregatorUserGetGetDescription,
-	execute as m3aggregatorUserGetGetExecute,
-} from './database/m3aggregator/userGetGet.operation';
-import {
-	description as m3aggregatorUserUpdatePutDescription,
-	execute as m3aggregatorUserUpdatePutExecute,
-} from './database/m3aggregator/userUpdatePut.operation';
-import {
-	description as m3aggregatorUserDeleteDeleteDescription,
-	execute as m3aggregatorUserDeleteDeleteExecute,
-} from './database/m3aggregator/userDeleteDelete.operation';
-import {
-	description as m3aggregatorNodeListGetDescription,
-	execute as m3aggregatorNodeListGetExecute,
-} from './database/m3aggregator/nodeListGet.operation';
-import {
-	description as m3aggregatorNodeCreatePostDescription,
-	execute as m3aggregatorNodeCreatePostExecute,
-} from './database/m3aggregator/nodeCreatePost.operation';
-import {
-	description as m3aggregatorNodeGetGetDescription,
-	execute as m3aggregatorNodeGetGetExecute,
-} from './database/m3aggregator/nodeGetGet.operation';
-import {
-	description as m3aggregatorNodeUpdatePutDescription,
-	execute as m3aggregatorNodeUpdatePutExecute,
-} from './database/m3aggregator/nodeUpdatePut.operation';
-import {
-	description as m3aggregatorNodeDeleteDeleteDescription,
-	execute as m3aggregatorNodeDeleteDeleteExecute,
-} from './database/m3aggregator/nodeDeleteDelete.operation';
-import {
-	description as m3aggregatorIpRestrictionListGetDescription,
-	execute as m3aggregatorIpRestrictionListGetExecute,
-} from './database/m3aggregator/ipRestrictionListGet.operation';
-import {
-	description as m3aggregatorIpRestrictionCreatePostDescription,
-	execute as m3aggregatorIpRestrictionCreatePostExecute,
-} from './database/m3aggregator/ipRestrictionCreatePost.operation';
+	description as m3aggregatorLogKindNameGetDescription,
+	execute as m3aggregatorLogKindNameGetExecute,
+} from './database/m3aggregator/logKindNameGet.operation';
 import {
 	description as m3aggregatorLogSubscriptionListGetDescription,
 	execute as m3aggregatorLogSubscriptionListGetExecute,
@@ -1825,33 +1789,50 @@ import {
 	execute as m3aggregatorLogSubscriptionCreatePostExecute,
 } from './database/m3aggregator/logSubscriptionCreatePost.operation';
 import {
-	description as m3aggregatorLogSubscriptionGetGetDescription,
-	execute as m3aggregatorLogSubscriptionGetGetExecute,
-} from './database/m3aggregator/logSubscriptionGetGet.operation';
+	description as m3aggregatorLogSubscriptionDeleteDeleteDescription,
+	execute as m3aggregatorLogSubscriptionDeleteDeleteExecute,
+} from './database/m3aggregator/logSubscriptionDeleteDelete.operation';
+import {
+	description as m3aggregatorLogSubscriptionGetByIdDescription,
+	execute as m3aggregatorLogSubscriptionGetByIdExecute,
+} from './database/m3aggregator/logSubscriptionGetById.operation';
+import {
+	description as m3aggregatorLogUrlPostDescription,
+	execute as m3aggregatorLogUrlPostExecute,
+} from './database/m3aggregator/logUrlPost.operation';
+import {
+	description as m3aggregatorLogsGetDescription,
+	execute as m3aggregatorLogsGetExecute,
+} from './database/m3aggregator/logsGet.operation';
 import {
 	description as m3aggregatorMaintenanceGetDescription,
 	execute as m3aggregatorMaintenanceGetExecute,
 } from './database/m3aggregator/maintenanceGet.operation';
 import {
-	description as m3aggregatorMaintenanceUpdatePutDescription,
-	execute as m3aggregatorMaintenanceUpdatePutExecute,
-} from './database/m3aggregator/maintenanceUpdatePut.operation';
+	description as m3aggregatorMaintenanceGetByIdDescription,
+	execute as m3aggregatorMaintenanceGetByIdExecute,
+} from './database/m3aggregator/maintenanceGetById.operation';
+import {
+	description as m3aggregatorMaintenanceApplyPostDescription,
+	execute as m3aggregatorMaintenanceApplyPostExecute,
+} from './database/m3aggregator/maintenanceApplyPost.operation';
 import {
 	description as m3aggregatorMetricGetDescription,
 	execute as m3aggregatorMetricGetExecute,
 } from './database/m3aggregator/metricGet.operation';
 import {
-	description as m3aggregatorPrometheusGetDescription,
-	execute as m3aggregatorPrometheusGetExecute,
-} from './database/m3aggregator/prometheusGet.operation';
+	description as m3aggregatorMetricNameGetDescription,
+	execute as m3aggregatorMetricNameGetExecute,
+} from './database/m3aggregator/metricNameGet.operation';
 import {
-	description as m3aggregatorCertificateListGetDescription,
-	execute as m3aggregatorCertificateListGetExecute,
-} from './database/m3aggregator/certificateListGet.operation';
+	description as m3aggregatorNodeListGetDescription,
+	execute as m3aggregatorNodeListGetExecute,
+} from './database/m3aggregator/nodeListGet.operation';
 import {
-	description as m3aggregatorCertificateCreatePostDescription,
-	execute as m3aggregatorCertificateCreatePostExecute,
-} from './database/m3aggregator/certificateCreatePost.operation';
+	description as m3aggregatorNodeGetGetDescription,
+	execute as m3aggregatorNodeGetGetExecute,
+} from './database/m3aggregator/nodeGetGet.operation';
+
 import {
 	description as m3dbClusterListGetDescription,
 	execute as m3dbClusterListGetExecute,
@@ -5287,14 +5268,14 @@ export function description(displayOptions: IDisplayOptions): INodeProperties[] 
 				action: 'List M3 Aggregator clusters in a project',
 			},
 			{
-				name: 'm3aggregatorClusterGetGet',
-				value: 'm3aggregatorClusterGetGet',
-				action: 'Get M3 Aggregator cluster',
-			},
-			{
 				name: 'm3aggregatorClusterCreatePost',
 				value: 'm3aggregatorClusterCreatePost',
 				action: 'Create M3 Aggregator cluster',
+			},
+			{
+				name: 'm3aggregatorClusterGetGet',
+				value: 'm3aggregatorClusterGetGet',
+				action: 'Get M3 Aggregator cluster',
 			},
 			{
 				name: 'm3aggregatorClusterUpdatePut',
@@ -5307,130 +5288,106 @@ export function description(displayOptions: IDisplayOptions): INodeProperties[] 
 				action: 'Delete M3 Aggregator cluster',
 			},
 			{
-				name: 'm3aggregatorBackupListGet',
-				value: 'm3aggregatorBackupListGet',
-				action: 'List M3 Aggregator backups',
+				name: 'm3aggregatorCapabilitiesIntegrationGet',
+				value: 'm3aggregatorCapabilitiesIntegrationGet',
+				action: 'Get integration capabilities related to the m3aggregator service',
 			},
 			{
-				name: 'm3aggregatorBackupCreatePost',
-				value: 'm3aggregatorBackupCreatePost',
-				action: 'Create M3 Aggregator backup',
+				name: 'm3aggregatorIntegrationGet',
+				value: 'm3aggregatorIntegrationGet',
+				action: 'List integrations',
 			},
 			{
-				name: 'm3aggregatorBackupGetGet',
-				value: 'm3aggregatorBackupGetGet',
-				action: 'Get M3 Aggregator backup',
+				name: 'm3aggregatorIntegrationCreatePost',
+				value: 'm3aggregatorIntegrationCreatePost',
+				action: 'Create an integration',
 			},
 			{
-				name: 'm3aggregatorBackupDeleteDelete',
-				value: 'm3aggregatorBackupDeleteDelete',
-				action: 'Delete M3 Aggregator backup',
+				name: 'm3aggregatorIntegrationDeleteDelete',
+				value: 'm3aggregatorIntegrationDeleteDelete',
+				action: 'Delete an integration',
 			},
 			{
-				name: 'm3aggregatorUserListGet',
-				value: 'm3aggregatorUserListGet',
-				action: 'List M3 Aggregator users',
+				name: 'm3aggregatorIntegrationGetById',
+				value: 'm3aggregatorIntegrationGetById',
+				action: 'Get an integration',
 			},
 			{
-				name: 'm3aggregatorUserCreatePost',
-				value: 'm3aggregatorUserCreatePost',
-				action: 'Create M3 Aggregator user',
+				name: 'm3aggregatorLogKindGet',
+				value: 'm3aggregatorLogKindGet',
+				action: 'List available log kinds',
 			},
 			{
-				name: 'm3aggregatorUserGetGet',
-				value: 'm3aggregatorUserGetGet',
-				action: 'Get M3 Aggregator user',
-			},
-			{
-				name: 'm3aggregatorUserUpdatePut',
-				value: 'm3aggregatorUserUpdatePut',
-				action: 'Update M3 Aggregator user',
-			},
-			{
-				name: 'm3aggregatorUserDeleteDelete',
-				value: 'm3aggregatorUserDeleteDelete',
-				action: 'Delete M3 Aggregator user',
-			},
-			{
-				name: 'm3aggregatorNodeListGet',
-				value: 'm3aggregatorNodeListGet',
-				action: 'List M3 Aggregator nodes',
-			},
-			{
-				name: 'm3aggregatorNodeCreatePost',
-				value: 'm3aggregatorNodeCreatePost',
-				action: 'Create M3 Aggregator node',
-			},
-			{
-				name: 'm3aggregatorNodeGetGet',
-				value: 'm3aggregatorNodeGetGet',
-				action: 'Get M3 Aggregator node',
-			},
-			{
-				name: 'm3aggregatorNodeUpdatePut',
-				value: 'm3aggregatorNodeUpdatePut',
-				action: 'Update M3 Aggregator node',
-			},
-			{
-				name: 'm3aggregatorNodeDeleteDelete',
-				value: 'm3aggregatorNodeDeleteDelete',
-				action: 'Delete M3 Aggregator node',
-			},
-			{
-				name: 'm3aggregatorIpRestrictionListGet',
-				value: 'm3aggregatorIpRestrictionListGet',
-				action: 'List M3 Aggregator IP restrictions',
-			},
-			{
-				name: 'm3aggregatorIpRestrictionCreatePost',
-				value: 'm3aggregatorIpRestrictionCreatePost',
-				action: 'Create M3 Aggregator IP restriction',
+				name: 'm3aggregatorLogKindNameGet',
+				value: 'm3aggregatorLogKindNameGet',
+				action: 'Get a log kind',
 			},
 			{
 				name: 'm3aggregatorLogSubscriptionListGet',
 				value: 'm3aggregatorLogSubscriptionListGet',
-				action: 'List M3 Aggregator log subscriptions',
+				action: 'List subscription IDs for a cluster',
 			},
 			{
 				name: 'm3aggregatorLogSubscriptionCreatePost',
 				value: 'm3aggregatorLogSubscriptionCreatePost',
-				action: 'Create M3 Aggregator log subscription',
+				action: 'Create subscription to log to customer for a m3aggregator',
 			},
 			{
-				name: 'm3aggregatorLogSubscriptionGetGet',
-				value: 'm3aggregatorLogSubscriptionGetGet',
-				action: 'Get M3 Aggregator log subscription',
+				name: 'm3aggregatorLogSubscriptionDeleteDelete',
+				value: 'm3aggregatorLogSubscriptionDeleteDelete',
+				action: 'Delete a subscription',
+			},
+			{
+				name: 'm3aggregatorLogSubscriptionGetById',
+				value: 'm3aggregatorLogSubscriptionGetById',
+				action: 'Get subscription details',
+			},
+			{
+				name: 'm3aggregatorLogUrlPost',
+				value: 'm3aggregatorLogUrlPost',
+				action: 'Generate a temporary URL to retrieve logs',
+			},
+			{
+				name: 'm3aggregatorLogsGet',
+				value: 'm3aggregatorLogsGet',
+				action: 'Retrieve the most recent m3aggregator log messages',
 			},
 			{
 				name: 'm3aggregatorMaintenanceGet',
 				value: 'm3aggregatorMaintenanceGet',
-				action: 'Get M3 Aggregator maintenance',
+				action: 'List maintenances for the m3aggregator cluster',
 			},
 			{
-				name: 'm3aggregatorMaintenanceUpdatePut',
-				value: 'm3aggregatorMaintenanceUpdatePut',
-				action: 'Update M3 Aggregator maintenance',
+				name: 'm3aggregatorMaintenanceGetById',
+				value: 'm3aggregatorMaintenanceGetById',
+				action: 'Get the maintenance for the m3aggregator cluster',
+			},
+			{
+				name: 'm3aggregatorMaintenanceApplyPost',
+				value: 'm3aggregatorMaintenanceApplyPost',
+				action: 'Apply the maintenance',
 			},
 			{
 				name: 'm3aggregatorMetricGet',
 				value: 'm3aggregatorMetricGet',
-				action: 'Get M3 Aggregator metric',
+				action: 'List available metrics for the m3aggregator',
 			},
 			{
-				name: 'm3aggregatorPrometheusGet',
-				value: 'm3aggregatorPrometheusGet',
-				action: 'Get M3 Aggregator prometheus',
+				name: 'm3aggregatorMetricNameGet',
+				value: 'm3aggregatorMetricNameGet',
+				action: 'Get the metric values for the m3aggregator',
 			},
 			{
-				name: 'm3aggregatorCertificateListGet',
-				value: 'm3aggregatorCertificateListGet',
-				action: 'List M3 Aggregator certificates',
+				name: 'm3aggregatorNodeListGet',
+				value: 'm3aggregatorNodeListGet',
+				action: 'List nodes of the m3aggregator',
 			},
 			{
-				name: 'm3aggregatorCertificateCreatePost',
-				value: 'm3aggregatorCertificateCreatePost',
-				action: 'Create M3 Aggregator certificate',
+				name: 'm3aggregatorNodeGetGet',
+				value: 'm3aggregatorNodeGetGet',
+				action: 'Get m3aggregator nodes',
 			},
+
 			{
 				name: 'M3dbClusterListGet',
 				value: 'M3dbClusterListGet',
@@ -10055,180 +10012,103 @@ export function description(displayOptions: IDisplayOptions): INodeProperties[] 
 			...displayOptions,
 			show: { publicCloudOperation: ['m3aggregatorClusterListGet'] },
 		}) as INodeProperties[]),
-	);
-	properties.push(
-		...(m3aggregatorClusterGetGetDescription({
-			...displayOptions,
-			show: { publicCloudOperation: ['m3aggregatorClusterGetGet'] },
-		}) as INodeProperties[]),
-	);
-	properties.push(
 		...(m3aggregatorClusterCreatePostDescription({
 			...displayOptions,
 			show: { publicCloudOperation: ['m3aggregatorClusterCreatePost'] },
 		}) as INodeProperties[]),
-	);
-	properties.push(
+		...(m3aggregatorClusterGetGetDescription({
+			...displayOptions,
+			show: { publicCloudOperation: ['m3aggregatorClusterGetGet'] },
+		}) as INodeProperties[]),
 		...(m3aggregatorClusterUpdatePutDescription({
 			...displayOptions,
 			show: { publicCloudOperation: ['m3aggregatorClusterUpdatePut'] },
 		}) as INodeProperties[]),
-	);
-	properties.push(
 		...(m3aggregatorClusterDeleteDeleteDescription({
 			...displayOptions,
 			show: { publicCloudOperation: ['m3aggregatorClusterDeleteDelete'] },
 		}) as INodeProperties[]),
-	);
-	properties.push(
-		...(m3aggregatorBackupListGetDescription({
+		...(m3aggregatorCapabilitiesIntegrationGetDescription({
 			...displayOptions,
-			show: { publicCloudOperation: ['m3aggregatorBackupListGet'] },
+			show: { publicCloudOperation: ['m3aggregatorCapabilitiesIntegrationGet'] },
 		}) as INodeProperties[]),
-	);
-	properties.push(
-		...(m3aggregatorBackupCreatePostDescription({
+		...(m3aggregatorIntegrationGetDescription({
 			...displayOptions,
-			show: { publicCloudOperation: ['m3aggregatorBackupCreatePost'] },
+			show: { publicCloudOperation: ['m3aggregatorIntegrationGet'] },
 		}) as INodeProperties[]),
-	);
-	properties.push(
-		...(m3aggregatorBackupGetGetDescription({
+		...(m3aggregatorIntegrationCreatePostDescription({
 			...displayOptions,
-			show: { publicCloudOperation: ['m3aggregatorBackupGetGet'] },
+			show: { publicCloudOperation: ['m3aggregatorIntegrationCreatePost'] },
 		}) as INodeProperties[]),
-	);
-	properties.push(
-		...(m3aggregatorBackupDeleteDeleteDescription({
+		...(m3aggregatorIntegrationDeleteDeleteDescription({
 			...displayOptions,
-			show: { publicCloudOperation: ['m3aggregatorBackupDeleteDelete'] },
+			show: { publicCloudOperation: ['m3aggregatorIntegrationDeleteDelete'] },
 		}) as INodeProperties[]),
-	);
-	properties.push(
-		...(m3aggregatorUserListGetDescription({
+		...(m3aggregatorIntegrationGetByIdDescription({
 			...displayOptions,
-			show: { publicCloudOperation: ['m3aggregatorUserListGet'] },
+			show: { publicCloudOperation: ['m3aggregatorIntegrationGetById'] },
 		}) as INodeProperties[]),
-	);
-	properties.push(
-		...(m3aggregatorUserCreatePostDescription({
+		...(m3aggregatorLogKindGetDescription({
 			...displayOptions,
-			show: { publicCloudOperation: ['m3aggregatorUserCreatePost'] },
+			show: { publicCloudOperation: ['m3aggregatorLogKindGet'] },
 		}) as INodeProperties[]),
-	);
-	properties.push(
-		...(m3aggregatorUserGetGetDescription({
+		...(m3aggregatorLogKindNameGetDescription({
 			...displayOptions,
-			show: { publicCloudOperation: ['m3aggregatorUserGetGet'] },
+			show: { publicCloudOperation: ['m3aggregatorLogKindNameGet'] },
 		}) as INodeProperties[]),
-	);
-	properties.push(
-		...(m3aggregatorUserUpdatePutDescription({
-			...displayOptions,
-			show: { publicCloudOperation: ['m3aggregatorUserUpdatePut'] },
-		}) as INodeProperties[]),
-	);
-	properties.push(
-		...(m3aggregatorUserDeleteDeleteDescription({
-			...displayOptions,
-			show: { publicCloudOperation: ['m3aggregatorUserDeleteDelete'] },
-		}) as INodeProperties[]),
-	);
-	properties.push(
-		...(m3aggregatorNodeListGetDescription({
-			...displayOptions,
-			show: { publicCloudOperation: ['m3aggregatorNodeListGet'] },
-		}) as INodeProperties[]),
-	);
-	properties.push(
-		...(m3aggregatorNodeCreatePostDescription({
-			...displayOptions,
-			show: { publicCloudOperation: ['m3aggregatorNodeCreatePost'] },
-		}) as INodeProperties[]),
-	);
-	properties.push(
-		...(m3aggregatorNodeGetGetDescription({
-			...displayOptions,
-			show: { publicCloudOperation: ['m3aggregatorNodeGetGet'] },
-		}) as INodeProperties[]),
-	);
-	properties.push(
-		...(m3aggregatorNodeUpdatePutDescription({
-			...displayOptions,
-			show: { publicCloudOperation: ['m3aggregatorNodeUpdatePut'] },
-		}) as INodeProperties[]),
-	);
-	properties.push(
-		...(m3aggregatorNodeDeleteDeleteDescription({
-			...displayOptions,
-			show: { publicCloudOperation: ['m3aggregatorNodeDeleteDelete'] },
-		}) as INodeProperties[]),
-	);
-	properties.push(
-		...(m3aggregatorIpRestrictionListGetDescription({
-			...displayOptions,
-			show: { publicCloudOperation: ['m3aggregatorIpRestrictionListGet'] },
-		}) as INodeProperties[]),
-	);
-	properties.push(
-		...(m3aggregatorIpRestrictionCreatePostDescription({
-			...displayOptions,
-			show: { publicCloudOperation: ['m3aggregatorIpRestrictionCreatePost'] },
-		}) as INodeProperties[]),
-	);
-	properties.push(
 		...(m3aggregatorLogSubscriptionListGetDescription({
 			...displayOptions,
 			show: { publicCloudOperation: ['m3aggregatorLogSubscriptionListGet'] },
 		}) as INodeProperties[]),
-	);
-	properties.push(
 		...(m3aggregatorLogSubscriptionCreatePostDescription({
 			...displayOptions,
 			show: { publicCloudOperation: ['m3aggregatorLogSubscriptionCreatePost'] },
 		}) as INodeProperties[]),
-	);
-	properties.push(
-		...(m3aggregatorLogSubscriptionGetGetDescription({
+		...(m3aggregatorLogSubscriptionDeleteDeleteDescription({
 			...displayOptions,
-			show: { publicCloudOperation: ['m3aggregatorLogSubscriptionGetGet'] },
+			show: { publicCloudOperation: ['m3aggregatorLogSubscriptionDeleteDelete'] },
 		}) as INodeProperties[]),
-	);
-	properties.push(
+		...(m3aggregatorLogSubscriptionGetByIdDescription({
+			...displayOptions,
+			show: { publicCloudOperation: ['m3aggregatorLogSubscriptionGetById'] },
+		}) as INodeProperties[]),
+		...(m3aggregatorLogUrlPostDescription({
+			...displayOptions,
+			show: { publicCloudOperation: ['m3aggregatorLogUrlPost'] },
+		}) as INodeProperties[]),
+		...(m3aggregatorLogsGetDescription({
+			...displayOptions,
+			show: { publicCloudOperation: ['m3aggregatorLogsGet'] },
+		}) as INodeProperties[]),
 		...(m3aggregatorMaintenanceGetDescription({
 			...displayOptions,
 			show: { publicCloudOperation: ['m3aggregatorMaintenanceGet'] },
 		}) as INodeProperties[]),
-	);
-	properties.push(
-		...(m3aggregatorMaintenanceUpdatePutDescription({
+		...(m3aggregatorMaintenanceGetByIdDescription({
 			...displayOptions,
-			show: { publicCloudOperation: ['m3aggregatorMaintenanceUpdatePut'] },
+			show: { publicCloudOperation: ['m3aggregatorMaintenanceGetById'] },
 		}) as INodeProperties[]),
-	);
-	properties.push(
+		...(m3aggregatorMaintenanceApplyPostDescription({
+			...displayOptions,
+			show: { publicCloudOperation: ['m3aggregatorMaintenanceApplyPost'] },
+		}) as INodeProperties[]),
 		...(m3aggregatorMetricGetDescription({
 			...displayOptions,
 			show: { publicCloudOperation: ['m3aggregatorMetricGet'] },
 		}) as INodeProperties[]),
-	);
-	properties.push(
-		...(m3aggregatorPrometheusGetDescription({
+		...(m3aggregatorMetricNameGetDescription({
 			...displayOptions,
-			show: { publicCloudOperation: ['m3aggregatorPrometheusGet'] },
+			show: { publicCloudOperation: ['m3aggregatorMetricNameGet'] },
 		}) as INodeProperties[]),
-	);
-	properties.push(
-		...(m3aggregatorCertificateListGetDescription({
+		...(m3aggregatorNodeListGetDescription({
 			...displayOptions,
-			show: { publicCloudOperation: ['m3aggregatorCertificateListGet'] },
+			show: { publicCloudOperation: ['m3aggregatorNodeListGet'] },
 		}) as INodeProperties[]),
-	);
-	properties.push(
-		...(m3aggregatorCertificateCreatePostDescription({
+		...(m3aggregatorNodeGetGetDescription({
 			...displayOptions,
-			show: { publicCloudOperation: ['m3aggregatorCertificateCreatePost'] },
+			show: { publicCloudOperation: ['m3aggregatorNodeGetGet'] },
 		}) as INodeProperties[]),
+
 	);
 	properties.push(
 		...(m3dbClusterListGetDescription({
@@ -13364,64 +13244,55 @@ export async function execute(
 			return kafkaMirrorMakerReplicationUpdatePutExecute.call(this);
 		case 'm3aggregatorClusterListGet':
 			return m3aggregatorClusterListGetExecute.call(this);
-		case 'm3aggregatorClusterGetGet':
-			return m3aggregatorClusterGetGetExecute.call(this);
 		case 'm3aggregatorClusterCreatePost':
 			return m3aggregatorClusterCreatePostExecute.call(this);
+		case 'm3aggregatorClusterGetGet':
+			return m3aggregatorClusterGetGetExecute.call(this);
 		case 'm3aggregatorClusterUpdatePut':
 			return m3aggregatorClusterUpdatePutExecute.call(this);
 		case 'm3aggregatorClusterDeleteDelete':
 			return m3aggregatorClusterDeleteDeleteExecute.call(this);
-		case 'm3aggregatorBackupListGet':
-			return m3aggregatorBackupListGetExecute.call(this);
-		case 'm3aggregatorBackupCreatePost':
-			return m3aggregatorBackupCreatePostExecute.call(this);
-		case 'm3aggregatorBackupGetGet':
-			return m3aggregatorBackupGetGetExecute.call(this);
-		case 'm3aggregatorBackupDeleteDelete':
-			return m3aggregatorBackupDeleteDeleteExecute.call(this);
-		case 'm3aggregatorUserListGet':
-			return m3aggregatorUserListGetExecute.call(this);
-		case 'm3aggregatorUserCreatePost':
-			return m3aggregatorUserCreatePostExecute.call(this);
-		case 'm3aggregatorUserGetGet':
-			return m3aggregatorUserGetGetExecute.call(this);
-		case 'm3aggregatorUserUpdatePut':
-			return m3aggregatorUserUpdatePutExecute.call(this);
-		case 'm3aggregatorUserDeleteDelete':
-			return m3aggregatorUserDeleteDeleteExecute.call(this);
-		case 'm3aggregatorNodeListGet':
-			return m3aggregatorNodeListGetExecute.call(this);
-		case 'm3aggregatorNodeCreatePost':
-			return m3aggregatorNodeCreatePostExecute.call(this);
-		case 'm3aggregatorNodeGetGet':
-			return m3aggregatorNodeGetGetExecute.call(this);
-		case 'm3aggregatorNodeUpdatePut':
-			return m3aggregatorNodeUpdatePutExecute.call(this);
-		case 'm3aggregatorNodeDeleteDelete':
-			return m3aggregatorNodeDeleteDeleteExecute.call(this);
-		case 'm3aggregatorIpRestrictionListGet':
-			return m3aggregatorIpRestrictionListGetExecute.call(this);
-		case 'm3aggregatorIpRestrictionCreatePost':
-			return m3aggregatorIpRestrictionCreatePostExecute.call(this);
+		case 'm3aggregatorCapabilitiesIntegrationGet':
+			return m3aggregatorCapabilitiesIntegrationGetExecute.call(this);
+		case 'm3aggregatorIntegrationGet':
+			return m3aggregatorIntegrationGetExecute.call(this);
+		case 'm3aggregatorIntegrationCreatePost':
+			return m3aggregatorIntegrationCreatePostExecute.call(this);
+		case 'm3aggregatorIntegrationDeleteDelete':
+			return m3aggregatorIntegrationDeleteDeleteExecute.call(this);
+		case 'm3aggregatorIntegrationGetById':
+			return m3aggregatorIntegrationGetByIdExecute.call(this);
+		case 'm3aggregatorLogKindGet':
+			return m3aggregatorLogKindGetExecute.call(this);
+		case 'm3aggregatorLogKindNameGet':
+			return m3aggregatorLogKindNameGetExecute.call(this);
 		case 'm3aggregatorLogSubscriptionListGet':
 			return m3aggregatorLogSubscriptionListGetExecute.call(this);
 		case 'm3aggregatorLogSubscriptionCreatePost':
 			return m3aggregatorLogSubscriptionCreatePostExecute.call(this);
-		case 'm3aggregatorLogSubscriptionGetGet':
-			return m3aggregatorLogSubscriptionGetGetExecute.call(this);
+		case 'm3aggregatorLogSubscriptionDeleteDelete':
+			return m3aggregatorLogSubscriptionDeleteDeleteExecute.call(this);
+		case 'm3aggregatorLogSubscriptionGetById':
+			return m3aggregatorLogSubscriptionGetByIdExecute.call(this);
+		case 'm3aggregatorLogUrlPost':
+			return m3aggregatorLogUrlPostExecute.call(this);
+		case 'm3aggregatorLogsGet':
+			return m3aggregatorLogsGetExecute.call(this);
 		case 'm3aggregatorMaintenanceGet':
 			return m3aggregatorMaintenanceGetExecute.call(this);
-		case 'm3aggregatorMaintenanceUpdatePut':
-			return m3aggregatorMaintenanceUpdatePutExecute.call(this);
+		case 'm3aggregatorMaintenanceGetById':
+			return m3aggregatorMaintenanceGetByIdExecute.call(this);
+		case 'm3aggregatorMaintenanceApplyPost':
+			return m3aggregatorMaintenanceApplyPostExecute.call(this);
 		case 'm3aggregatorMetricGet':
 			return m3aggregatorMetricGetExecute.call(this);
-		case 'm3aggregatorPrometheusGet':
-			return m3aggregatorPrometheusGetExecute.call(this);
-		case 'm3aggregatorCertificateListGet':
-			return m3aggregatorCertificateListGetExecute.call(this);
-		case 'm3aggregatorCertificateCreatePost':
-			return m3aggregatorCertificateCreatePostExecute.call(this);
+		case 'm3aggregatorMetricNameGet':
+			return m3aggregatorMetricNameGetExecute.call(this);
+		case 'm3aggregatorNodeListGet':
+			return m3aggregatorNodeListGetExecute.call(this);
+		case 'm3aggregatorNodeGetGet':
+			return m3aggregatorNodeGetGetExecute.call(this);
+
 				case 'M3dbClusterListGet':
 			return m3dbClusterListGetExecute.call(this);
 		case 'M3dbClusterCreatePost':

@@ -1,5 +1,4 @@
 import type {
-	IDataObject,
 	IExecuteFunctions,
 	IDisplayOptions,
 	INodeExecutionData,
@@ -27,40 +26,25 @@ export function description(displayOptions: IDisplayOptions): INodeProperties[] 
 			required: true,
 			displayOptions,
 		},
-		{
-			displayName: 'Kind',
-			name: 'kind',
-			type: 'string',
-			default: '',
-			displayOptions,
-		},
-		{
-			displayName: 'Output',
-			name: 'output',
-			type: 'string',
-			default: '',
-			displayOptions,
-		},
 	];
 }
 
 /**
- * Executes the Create M3 Aggregator log subscription operation.
+ * Executes the Get M3 Aggregator logs operation.
  *
- * HTTP method: POST
- * Endpoint: /cloud/project/{serviceName}/database/m3aggregator/{clusterId}/log/subscription
+ * HTTP method: GET
+ * Endpoint: /cloud/project/{serviceName}/database/m3aggregator/{clusterId}/logs
  */
 export async function execute(this: IExecuteFunctions): Promise<INodeExecutionData[]> {
 	const client = new ApiClient(this);
 	const publicCloudProjectId = this.getNodeParameter('publicCloudProjectId', 0) as string;
 	const clusterId = this.getNodeParameter('clusterId', 0) as string;
-	const kind = this.getNodeParameter('kind', 0) as string;
-	const output = this.getNodeParameter('output', 0) as string;
 
-	const body: IDataObject = {};
-	if (kind) body.kind = kind;
-	if (output) body.output = output;
+	const data = (await await client.httpGet('/cloud/project/' + publicCloudProjectId + '/database/m3aggregator/' + clusterId + '/logs')) as unknown[];
 
-	const data = (await await client.httpPost('/cloud/project/' + publicCloudProjectId + '/database/m3aggregator/' + clusterId + '/log/subscription', body)) as IDataObject;
-	return this.helpers.returnJsonArray([data]);
+	if (!Array.isArray(data)) {
+		return this.helpers.returnJsonArray([data]);
+	}
+
+	return this.helpers.returnJsonArray(data.map((item) => item as INodeExecutionData));
 }

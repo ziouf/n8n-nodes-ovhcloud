@@ -1,5 +1,5 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import { description, execute } from './maintenanceGet.operation';
+import { description, execute } from './capabilitiesIntegrationGet.operation';
 
 jest.mock('../../../../shared/transport/ApiClient', () => {
 	const mockHttpClient = {
@@ -13,7 +13,7 @@ jest.mock('../../../../shared/transport/ApiClient', () => {
 
 import { ApiClient } from '../../../../shared/transport/ApiClient';
 
-describe('maintenanceGet operation', () => {
+describe('capabilitiesIntegrationGet operation', () => {
 	describe('description', () => {
 		it('should return all required parameters', () => {
 			const result = description({ show: {} });
@@ -45,7 +45,7 @@ describe('maintenanceGet operation', () => {
 			expect(client.httpGet).toHaveBeenCalled();
 
 			expect(client.httpGet).toHaveBeenCalledWith(
-				'/cloud/project/test-publicCloudProjectId-value/database/m3aggregator/test-clusterId-value/maintenance',
+				'/cloud/project/test-publicCloudProjectId-value/database/m3aggregator/test-clusterId-value/capabilities/integration',
 			);
 		});
 	});

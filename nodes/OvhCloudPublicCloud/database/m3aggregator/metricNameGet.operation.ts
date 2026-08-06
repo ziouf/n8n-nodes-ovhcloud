@@ -28,39 +28,40 @@ export function description(displayOptions: IDisplayOptions): INodeProperties[] 
 			displayOptions,
 		},
 		{
-			displayName: 'Kind',
-			name: 'kind',
+			displayName: 'Metricname',
+			name: 'metricName',
 			type: 'string',
 			default: '',
+			required: true,
 			displayOptions,
 		},
 		{
-			displayName: 'Output',
-			name: 'output',
+			displayName: 'Period',
+			name: 'period',
 			type: 'string',
 			default: '',
+			required: true,
 			displayOptions,
 		},
 	];
 }
 
 /**
- * Executes the Create M3 Aggregator log subscription operation.
+ * Executes the Get M3 Aggregator metric operation.
  *
- * HTTP method: POST
- * Endpoint: /cloud/project/{serviceName}/database/m3aggregator/{clusterId}/log/subscription
+ * HTTP method: GET
+ * Endpoint: /cloud/project/{serviceName}/database/m3aggregator/{clusterId}/metric/{metricName}
  */
 export async function execute(this: IExecuteFunctions): Promise<INodeExecutionData[]> {
 	const client = new ApiClient(this);
 	const publicCloudProjectId = this.getNodeParameter('publicCloudProjectId', 0) as string;
 	const clusterId = this.getNodeParameter('clusterId', 0) as string;
-	const kind = this.getNodeParameter('kind', 0) as string;
-	const output = this.getNodeParameter('output', 0) as string;
+	const metricName = this.getNodeParameter('metricName', 0) as string;
+	const period = this.getNodeParameter('period', 0) as string;
 
-	const body: IDataObject = {};
-	if (kind) body.kind = kind;
-	if (output) body.output = output;
+	const qs: IDataObject = {};
+	if (period) qs.period = period;
 
-	const data = (await await client.httpPost('/cloud/project/' + publicCloudProjectId + '/database/m3aggregator/' + clusterId + '/log/subscription', body)) as IDataObject;
+	const data = (await await client.httpGet('/cloud/project/' + publicCloudProjectId + '/database/m3aggregator/' + clusterId + '/metric/' + metricName, qs)) as IDataObject;
 	return this.helpers.returnJsonArray([data]);
 }
