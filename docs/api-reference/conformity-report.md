@@ -1,16 +1,16 @@
 # OVHcloud API Conformity Report
 
-> Généré par `scripts/audit-conformity.js` le 2026-08-06T12:03:32.282Z. Document généré automatiquement — ne pas éditer à la main.
+> Généré par `scripts/audit-conformity.js` le 2026-08-06T12:28:44.787Z. Document généré automatiquement — ne pas éditer à la main.
 
 Ce rapport vérifie que les opérations des nodes respectent leur spec (méthode, chemin, paramètres path requis, query requis, champs body requis).
 
 ## Résumé
 
 - **Opérations auditées** : 6223
-- **Conformes** : 3697
-- **Non conformes** : 2526
+- **Conformes** : 3700
+- **Non conformes** : 2523
 - **Sans correspondance spec** (informatif) : 2207
-- **Taux de conformité** : **59.4%**
+- **Taux de conformité** : **59.5%**
 
 ## Conformité par spec
 
@@ -45,7 +45,7 @@ Triée par taux de non-conformité décroissant.
 | vrack (v1) | 12 | 4 | 1 | 33.3% |
 | veeamCloudConnect (v1) | 14 | 13 | 1 | 92.9% |
 | vps (v1) | 63 | 20 | 4 | 31.7% |
-| cloud (v1) | 1104 | 646 | 47 | 58.5% |
+| cloud (v1) | 1104 | 649 | 44 | 58.8% |
 | order (v1) | 166 | 31 | 6 | 18.7% |
 | me (v1) | 309 | 300 | 9 | 97.1% |
 | dedicated (v1) | 69 | 31 | 2 | 44.9% |
@@ -106,13 +106,10 @@ Chaque ligne correspond à un appel HTTP non conforme, groupée par spec :
 | POST | `/cdn/dedicated/{x}/ssl` | OvhCloudCdn/resources/ssl/sslCreatePost.operation.ts | missing required body field 'name' |
 | POST | `/cdn/dedicated/{x}/ssl/update` | OvhCloudCdn/resources/ssl/sslUpdatePost.operation.ts | missing required body field 'certificate'; missing required body field 'key' |
 
-### cloud — 47 non-conformités
+### cloud — 44 non-conformités
 
 | Méthode | Chemin | Fichier | Problèmes |
 |--------|--------|---------|-----------|
-| POST | `/cloud/project/{x}/activateMonthlyBilling` | OvhCloudPublicCloud/activateMonthlyBilling/activateMonthlyBillingPost.operation.ts | missing required body field 'instances' |
-| POST | `/cloud/project/{x}/alerting` | OvhCloudPublicCloud/alerting/createPost.operation.ts | missing required body field 'delay'; missing required body field 'monthlyThreshold' |
-| POST | `/cloud/project/{x}/confirmTermination` | OvhCloudPublicCloud/confirmTermination/confirmTerminationPost.operation.ts | missing required body field 'token' |
 | POST | `/cloud/project/{x}/database/cassandra/{x}/integration` | OvhCloudPublicCloud/database/cassandra/integrationCreatePost.operation.ts | missing required body field 'destinationServiceId'; missing required body field 'sourceServiceId' |
 | POST | `/cloud/project/{x}/database/cassandra/{x}/log/subscription` | OvhCloudPublicCloud/database/cassandra/logSubscriptionCreatePost.operation.ts | missing required body field 'kind'; missing required body field 'streamId' |
 | POST | `/cloud/project/{x}/database/cassandra/{x}/log/url` | OvhCloudPublicCloud/database/cassandra/logUrlCreatePost.operation.ts | missing required body field 'kind' |
