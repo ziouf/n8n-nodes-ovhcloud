@@ -1855,123 +1855,188 @@ import {
 import {
 	description as m3dbClusterListGetDescription,
 	execute as m3dbClusterListGetExecute,
-} from './database/m3db/clusterListGet.operation';
-import {
-	description as m3dbClusterGetGetDescription,
-	execute as m3dbClusterGetGetExecute,
-} from './database/m3db/clusterGetGet.operation';
+} from './database/m3db/M3dbClusterListGet.operation';
 import {
 	description as m3dbClusterCreatePostDescription,
 	execute as m3dbClusterCreatePostExecute,
-} from './database/m3db/clusterCreatePost.operation';
-import {
-	description as m3dbClusterUpdatePutDescription,
-	execute as m3dbClusterUpdatePutExecute,
-} from './database/m3db/clusterUpdatePut.operation';
+} from './database/m3db/M3dbClusterCreatePost.operation';
 import {
 	description as m3dbClusterDeleteDeleteDescription,
 	execute as m3dbClusterDeleteDeleteExecute,
-} from './database/m3db/clusterDeleteDelete.operation';
+} from './database/m3db/M3dbClusterDeleteDelete.operation';
+import {
+	description as m3dbClusterGetGetDescription,
+	execute as m3dbClusterGetGetExecute,
+} from './database/m3db/M3dbClusterGetGet.operation';
+import {
+	description as m3dbClusterUpdatePutDescription,
+	execute as m3dbClusterUpdatePutExecute,
+} from './database/m3db/M3dbClusterUpdatePut.operation';
+import {
+	description as m3dbAdvancedConfigurationGetGetDescription,
+	execute as m3dbAdvancedConfigurationGetGetExecute,
+} from './database/m3db/M3dbAdvancedConfigurationGetGet.operation';
+import {
+	description as m3dbAdvancedConfigurationUpdatePutDescription,
+	execute as m3dbAdvancedConfigurationUpdatePutExecute,
+} from './database/m3db/M3dbAdvancedConfigurationUpdatePut.operation';
 import {
 	description as m3dbBackupListGetDescription,
 	execute as m3dbBackupListGetExecute,
-} from './database/m3db/backupListGet.operation';
-import {
-	description as m3dbBackupCreatePostDescription,
-	execute as m3dbBackupCreatePostExecute,
-} from './database/m3db/backupCreatePost.operation';
+} from './database/m3db/M3dbBackupListGet.operation';
 import {
 	description as m3dbBackupGetGetDescription,
 	execute as m3dbBackupGetGetExecute,
-} from './database/m3db/backupGetGet.operation';
+} from './database/m3db/M3dbBackupGetGet.operation';
 import {
-	description as m3dbBackupDeleteDeleteDescription,
-	execute as m3dbBackupDeleteDeleteExecute,
-} from './database/m3db/backupDeleteDelete.operation';
+	description as m3dbCapabilitiesAdvancedConfigurationGetGetDescription,
+	execute as m3dbCapabilitiesAdvancedConfigurationGetGetExecute,
+} from './database/m3db/M3dbCapabilitiesAdvancedConfigurationGetGet.operation';
 import {
-	description as m3dbUserListGetDescription,
-	execute as m3dbUserListGetExecute,
-} from './database/m3db/userListGet.operation';
+	description as m3dbCapabilitiesIntegrationGetGetDescription,
+	execute as m3dbCapabilitiesIntegrationGetGetExecute,
+} from './database/m3db/M3dbCapabilitiesIntegrationGetGet.operation';
 import {
-	description as m3dbUserCreatePostDescription,
-	execute as m3dbUserCreatePostExecute,
-} from './database/m3db/userCreatePost.operation';
+	description as m3dbIntegrationListGetDescription,
+	execute as m3dbIntegrationListGetExecute,
+} from './database/m3db/M3dbIntegrationListGet.operation';
 import {
-	description as m3dbUserGetGetDescription,
-	execute as m3dbUserGetGetExecute,
-} from './database/m3db/userGetGet.operation';
+	description as m3dbIntegrationCreatePostDescription,
+	execute as m3dbIntegrationCreatePostExecute,
+} from './database/m3db/M3dbIntegrationCreatePost.operation';
 import {
-	description as m3dbUserUpdatePutDescription,
-	execute as m3dbUserUpdatePutExecute,
-} from './database/m3db/userUpdatePut.operation';
+	description as m3dbIntegrationDeleteDeleteDescription,
+	execute as m3dbIntegrationDeleteDeleteExecute,
+} from './database/m3db/M3dbIntegrationDeleteDelete.operation';
 import {
-	description as m3dbUserDeleteDeleteDescription,
-	execute as m3dbUserDeleteDeleteExecute,
-} from './database/m3db/userDeleteDelete.operation';
-import {
-	description as m3dbNodeListGetDescription,
-	execute as m3dbNodeListGetExecute,
-} from './database/m3db/nodeListGet.operation';
-import {
-	description as m3dbNodeCreatePostDescription,
-	execute as m3dbNodeCreatePostExecute,
-} from './database/m3db/nodeCreatePost.operation';
-import {
-	description as m3dbNodeGetGetDescription,
-	execute as m3dbNodeGetGetExecute,
-} from './database/m3db/nodeGetGet.operation';
-import {
-	description as m3dbNodeUpdatePutDescription,
-	execute as m3dbNodeUpdatePutExecute,
-} from './database/m3db/nodeUpdatePut.operation';
-import {
-	description as m3dbNodeDeleteDeleteDescription,
-	execute as m3dbNodeDeleteDeleteExecute,
-} from './database/m3db/nodeDeleteDelete.operation';
+	description as m3dbIntegrationGetGetDescription,
+	execute as m3dbIntegrationGetGetExecute,
+} from './database/m3db/M3dbIntegrationGetGet.operation';
 import {
 	description as m3dbIpRestrictionListGetDescription,
 	execute as m3dbIpRestrictionListGetExecute,
-} from './database/m3db/ipRestrictionListGet.operation';
+} from './database/m3db/M3dbIpRestrictionListGet.operation';
 import {
 	description as m3dbIpRestrictionCreatePostDescription,
 	execute as m3dbIpRestrictionCreatePostExecute,
-} from './database/m3db/ipRestrictionCreatePost.operation';
+} from './database/m3db/M3dbIpRestrictionCreatePost.operation';
+import {
+	description as m3dbIpRestrictionDeleteDeleteDescription,
+	execute as m3dbIpRestrictionDeleteDeleteExecute,
+} from './database/m3db/M3dbIpRestrictionDeleteDelete.operation';
+import {
+	description as m3dbIpRestrictionGetGetDescription,
+	execute as m3dbIpRestrictionGetGetExecute,
+} from './database/m3db/M3dbIpRestrictionGetGet.operation';
+import {
+	description as m3dbIpRestrictionUpdatePutDescription,
+	execute as m3dbIpRestrictionUpdatePutExecute,
+} from './database/m3db/M3dbIpRestrictionUpdatePut.operation';
+import {
+	description as m3dbLogKindListGetDescription,
+	execute as m3dbLogKindListGetExecute,
+} from './database/m3db/M3dbLogKindListGet.operation';
+import {
+	description as m3dbLogKindGetGetDescription,
+	execute as m3dbLogKindGetGetExecute,
+} from './database/m3db/M3dbLogKindGetGet.operation';
 import {
 	description as m3dbLogSubscriptionListGetDescription,
 	execute as m3dbLogSubscriptionListGetExecute,
-} from './database/m3db/logSubscriptionListGet.operation';
+} from './database/m3db/M3dbLogSubscriptionListGet.operation';
 import {
 	description as m3dbLogSubscriptionCreatePostDescription,
 	execute as m3dbLogSubscriptionCreatePostExecute,
-} from './database/m3db/logSubscriptionCreatePost.operation';
+} from './database/m3db/M3dbLogSubscriptionCreatePost.operation';
+import {
+	description as m3dbLogSubscriptionDeleteDeleteDescription,
+	execute as m3dbLogSubscriptionDeleteDeleteExecute,
+} from './database/m3db/M3dbLogSubscriptionDeleteDelete.operation';
 import {
 	description as m3dbLogSubscriptionGetGetDescription,
 	execute as m3dbLogSubscriptionGetGetExecute,
-} from './database/m3db/logSubscriptionGetGet.operation';
+} from './database/m3db/M3dbLogSubscriptionGetGet.operation';
 import {
-	description as m3dbMaintenanceGetDescription,
-	execute as m3dbMaintenanceGetExecute,
-} from './database/m3db/maintenanceGet.operation';
+	description as m3dbLogUrlCreatePostDescription,
+	execute as m3dbLogUrlCreatePostExecute,
+} from './database/m3db/M3dbLogUrlCreatePost.operation';
 import {
-	description as m3dbMaintenanceUpdatePutDescription,
-	execute as m3dbMaintenanceUpdatePutExecute,
-} from './database/m3db/maintenanceUpdatePut.operation';
+	description as m3dbLogsGetDescription,
+	execute as m3dbLogsGetExecute,
+} from './database/m3db/M3dbLogsGet.operation';
 import {
-	description as m3dbMetricGetDescription,
-	execute as m3dbMetricGetExecute,
-} from './database/m3db/metricGet.operation';
+	description as m3dbMaintenanceListGetDescription,
+	execute as m3dbMaintenanceListGetExecute,
+} from './database/m3db/M3dbMaintenanceListGet.operation';
 import {
-	description as m3dbPrometheusGetDescription,
-	execute as m3dbPrometheusGetExecute,
-} from './database/m3db/prometheusGet.operation';
+	description as m3dbMaintenanceGetGetDescription,
+	execute as m3dbMaintenanceGetGetExecute,
+} from './database/m3db/M3dbMaintenanceGetGet.operation';
 import {
-	description as m3dbCertificateListGetDescription,
-	execute as m3dbCertificateListGetExecute,
-} from './database/m3db/certificateListGet.operation';
+	description as m3dbMaintenanceApplyPostDescription,
+	execute as m3dbMaintenanceApplyPostExecute,
+} from './database/m3db/M3dbMaintenanceApplyPost.operation';
 import {
-	description as m3dbCertificateCreatePostDescription,
-	execute as m3dbCertificateCreatePostExecute,
-} from './database/m3db/certificateCreatePost.operation';
+	description as m3dbMetricListGetDescription,
+	execute as m3dbMetricListGetExecute,
+} from './database/m3db/M3dbMetricListGet.operation';
+import {
+	description as m3dbMetricGetGetDescription,
+	execute as m3dbMetricGetGetExecute,
+} from './database/m3db/M3dbMetricGetGet.operation';
+import {
+	description as m3dbNamespaceListGetDescription,
+	execute as m3dbNamespaceListGetExecute,
+} from './database/m3db/M3dbNamespaceListGet.operation';
+import {
+	description as m3dbNamespaceCreatePostDescription,
+	execute as m3dbNamespaceCreatePostExecute,
+} from './database/m3db/M3dbNamespaceCreatePost.operation';
+import {
+	description as m3dbNamespaceDeleteDeleteDescription,
+	execute as m3dbNamespaceDeleteDeleteExecute,
+} from './database/m3db/M3dbNamespaceDeleteDelete.operation';
+import {
+	description as m3dbNamespaceGetGetDescription,
+	execute as m3dbNamespaceGetGetExecute,
+} from './database/m3db/M3dbNamespaceGetGet.operation';
+import {
+	description as m3dbNamespaceUpdatePutDescription,
+	execute as m3dbNamespaceUpdatePutExecute,
+} from './database/m3db/M3dbNamespaceUpdatePut.operation';
+import {
+	description as m3dbNodeListGetDescription,
+	execute as m3dbNodeListGetExecute,
+} from './database/m3db/M3dbNodeListGet.operation';
+import {
+	description as m3dbNodeGetGetDescription,
+	execute as m3dbNodeGetGetExecute,
+} from './database/m3db/M3dbNodeGetGet.operation';
+import {
+	description as m3dbUserListGetDescription,
+	execute as m3dbUserListGetExecute,
+} from './database/m3db/M3dbUserListGet.operation';
+import {
+	description as m3dbUserCreatePostDescription,
+	execute as m3dbUserCreatePostExecute,
+} from './database/m3db/M3dbUserCreatePost.operation';
+import {
+	description as m3dbUserDeleteDeleteDescription,
+	execute as m3dbUserDeleteDeleteExecute,
+} from './database/m3db/M3dbUserDeleteDelete.operation';
+import {
+	description as m3dbUserGetGetDescription,
+	execute as m3dbUserGetGetExecute,
+} from './database/m3db/M3dbUserGetGet.operation';
+import {
+	description as m3dbUserUpdatePutDescription,
+	execute as m3dbUserUpdatePutExecute,
+} from './database/m3db/M3dbUserUpdatePut.operation';
+import {
+	description as m3dbUserCredentialsResetPostDescription,
+	execute as m3dbUserCredentialsResetPostExecute,
+} from './database/m3db/M3dbUserCredentialsResetPost.operation';
+
 import {
 	description as mongodbClusterListGetDescription,
 	execute as mongodbClusterListGetExecute,
@@ -5367,154 +5432,234 @@ export function description(displayOptions: IDisplayOptions): INodeProperties[] 
 				action: 'Create M3 Aggregator certificate',
 			},
 			{
-				name: 'm3dbClusterListGet',
-				value: 'm3dbClusterListGet',
-				action: 'List M3DB clusters in a project',
+				name: 'M3dbClusterListGet',
+				value: 'M3dbClusterListGet',
+				action: 'List all the m3db clusters of the project',
 			},
 			{
-				name: 'm3dbClusterGetGet',
-				value: 'm3dbClusterGetGet',
-				action: 'Get M3DB cluster',
+				name: 'M3dbClusterCreatePost',
+				value: 'M3dbClusterCreatePost',
+				action: 'Create a new m3db cluster',
 			},
 			{
-				name: 'm3dbClusterCreatePost',
-				value: 'm3dbClusterCreatePost',
-				action: 'Create M3DB cluster',
+				name: 'M3dbClusterDeleteDelete',
+				value: 'M3dbClusterDeleteDelete',
+				action: 'Delete a m3db cluster',
 			},
 			{
-				name: 'm3dbClusterUpdatePut',
-				value: 'm3dbClusterUpdatePut',
-				action: 'Update M3DB cluster',
+				name: 'M3dbClusterGetGet',
+				value: 'M3dbClusterGetGet',
+				action: 'Get m3db cluster properties',
 			},
 			{
-				name: 'm3dbClusterDeleteDelete',
-				value: 'm3dbClusterDeleteDelete',
-				action: 'Delete M3DB cluster',
+				name: 'M3dbClusterUpdatePut',
+				value: 'M3dbClusterUpdatePut',
+				action: 'Update an existing m3db cluster',
 			},
 			{
-				name: 'm3dbBackupListGet',
-				value: 'm3dbBackupListGet',
-				action: 'List M3DB backups',
+				name: 'M3dbAdvancedConfigurationGetGet',
+				value: 'M3dbAdvancedConfigurationGetGet',
+				action: 'Get m3db advanced configuration',
 			},
 			{
-				name: 'm3dbBackupCreatePost',
-				value: 'm3dbBackupCreatePost',
-				action: 'Create M3DB backup',
+				name: 'M3dbAdvancedConfigurationUpdatePut',
+				value: 'M3dbAdvancedConfigurationUpdatePut',
+				action: 'Update m3db advanced configuration',
 			},
 			{
-				name: 'm3dbBackupGetGet',
-				value: 'm3dbBackupGetGet',
-				action: 'Get M3DB backup',
+				name: 'M3dbBackupListGet',
+				value: 'M3dbBackupListGet',
+				action: 'List backups of the m3db',
 			},
 			{
-				name: 'm3dbBackupDeleteDelete',
-				value: 'm3dbBackupDeleteDelete',
-				action: 'Delete M3DB backup',
+				name: 'M3dbBackupGetGet',
+				value: 'M3dbBackupGetGet',
+				action: 'Get m3db backups',
 			},
 			{
-				name: 'm3dbUserListGet',
-				value: 'm3dbUserListGet',
-				action: 'List M3DB users',
+				name: 'M3dbCapabilitiesAdvancedConfigurationGetGet',
+				value: 'M3dbCapabilitiesAdvancedConfigurationGetGet',
+				action: 'Get m3db advanced configuration fields',
 			},
 			{
-				name: 'm3dbUserCreatePost',
-				value: 'm3dbUserCreatePost',
-				action: 'Create M3DB user',
+				name: 'M3dbCapabilitiesIntegrationGetGet',
+				value: 'M3dbCapabilitiesIntegrationGetGet',
+				action: 'Get integration capabilities related to the m3db service',
 			},
 			{
-				name: 'm3dbUserGetGet',
-				value: 'm3dbUserGetGet',
-				action: 'Get M3DB user',
+				name: 'M3dbIntegrationListGet',
+				value: 'M3dbIntegrationListGet',
+				action: 'List integrations',
 			},
 			{
-				name: 'm3dbUserUpdatePut',
-				value: 'm3dbUserUpdatePut',
-				action: 'Update M3DB user',
+				name: 'M3dbIntegrationCreatePost',
+				value: 'M3dbIntegrationCreatePost',
+				action: 'Create a new integration',
 			},
 			{
-				name: 'm3dbUserDeleteDelete',
-				value: 'm3dbUserDeleteDelete',
-				action: 'Delete M3DB user',
+				name: 'M3dbIntegrationDeleteDelete',
+				value: 'M3dbIntegrationDeleteDelete',
+				action: 'Delete an integration',
 			},
 			{
-				name: 'm3dbNodeListGet',
-				value: 'm3dbNodeListGet',
-				action: 'List M3DB nodes',
+				name: 'M3dbIntegrationGetGet',
+				value: 'M3dbIntegrationGetGet',
+				action: 'Get an integration',
 			},
 			{
-				name: 'm3dbNodeCreatePost',
-				value: 'm3dbNodeCreatePost',
-				action: 'Create M3DB node',
+				name: 'M3dbIpRestrictionListGet',
+				value: 'M3dbIpRestrictionListGet',
+				action: 'List m3db ip restrictions',
 			},
 			{
-				name: 'm3dbNodeGetGet',
-				value: 'm3dbNodeGetGet',
-				action: 'Get M3DB node',
+				name: 'M3dbIpRestrictionCreatePost',
+				value: 'M3dbIpRestrictionCreatePost',
+				action: 'Add ip restrictions to the m3db',
 			},
 			{
-				name: 'm3dbNodeUpdatePut',
-				value: 'm3dbNodeUpdatePut',
-				action: 'Update M3DB node',
+				name: 'M3dbIpRestrictionDeleteDelete',
+				value: 'M3dbIpRestrictionDeleteDelete',
+				action: 'Deletes the given IP from the restricted IPs of the m3db',
 			},
 			{
-				name: 'm3dbNodeDeleteDelete',
-				value: 'm3dbNodeDeleteDelete',
-				action: 'Delete M3DB node',
+				name: 'M3dbIpRestrictionGetGet',
+				value: 'M3dbIpRestrictionGetGet',
+				action: 'Get m3db ip restrictions',
 			},
 			{
-				name: 'm3dbIpRestrictionListGet',
-				value: 'm3dbIpRestrictionListGet',
-				action: 'List M3DB IP restrictions',
+				name: 'M3dbIpRestrictionUpdatePut',
+				value: 'M3dbIpRestrictionUpdatePut',
+				action: 'Changes the list of ip restrictions to the m3db',
 			},
 			{
-				name: 'm3dbIpRestrictionCreatePost',
-				value: 'm3dbIpRestrictionCreatePost',
-				action: 'Create M3DB IP restriction',
+				name: 'M3dbLogKindListGet',
+				value: 'M3dbLogKindListGet',
+				action: 'List available log kinds',
 			},
 			{
-				name: 'm3dbLogSubscriptionListGet',
-				value: 'm3dbLogSubscriptionListGet',
-				action: 'List M3DB log subscriptions',
+				name: 'M3dbLogKindGetGet',
+				value: 'M3dbLogKindGetGet',
+				action: 'Get a log kind',
 			},
 			{
-				name: 'm3dbLogSubscriptionCreatePost',
-				value: 'm3dbLogSubscriptionCreatePost',
-				action: 'Create M3DB log subscription',
+				name: 'M3dbLogSubscriptionListGet',
+				value: 'M3dbLogSubscriptionListGet',
+				action: 'List subscription IDs for a cluster',
 			},
 			{
-				name: 'm3dbLogSubscriptionGetGet',
-				value: 'm3dbLogSubscriptionGetGet',
-				action: 'Get M3DB log subscription',
+				name: 'M3dbLogSubscriptionCreatePost',
+				value: 'M3dbLogSubscriptionCreatePost',
+				action: 'Create subscription to log to customer for a m3db',
 			},
 			{
-				name: 'm3dbMaintenanceGet',
-				value: 'm3dbMaintenanceGet',
-				action: 'Get M3DB maintenance',
+				name: 'M3dbLogSubscriptionDeleteDelete',
+				value: 'M3dbLogSubscriptionDeleteDelete',
+				action: 'Delete a subscription',
 			},
 			{
-				name: 'm3dbMaintenanceUpdatePut',
-				value: 'm3dbMaintenanceUpdatePut',
-				action: 'Update M3DB maintenance',
+				name: 'M3dbLogSubscriptionGetGet',
+				value: 'M3dbLogSubscriptionGetGet',
+				action: 'Get subscription details',
 			},
 			{
-				name: 'm3dbMetricGet',
-				value: 'm3dbMetricGet',
-				action: 'Get M3DB metric',
+				name: 'M3dbLogUrlCreatePost',
+				value: 'M3dbLogUrlCreatePost',
+				action: 'Generate a temporary URL to retrieve logs',
 			},
 			{
-				name: 'm3dbPrometheusGet',
-				value: 'm3dbPrometheusGet',
-				action: 'Get M3DB prometheus',
+				name: 'M3dbLogsGet',
+				value: 'M3dbLogsGet',
+				action: 'Retrieve the most recent m3db log messages (limited to 1000)',
 			},
 			{
-				name: 'm3dbCertificateListGet',
-				value: 'm3dbCertificateListGet',
-				action: 'List M3DB certificates',
+				name: 'M3dbMaintenanceListGet',
+				value: 'M3dbMaintenanceListGet',
+				action: 'List maintenances for the m3db cluster',
 			},
 			{
-				name: 'm3dbCertificateCreatePost',
-				value: 'm3dbCertificateCreatePost',
-				action: 'Create M3DB certificate',
+				name: 'M3dbMaintenanceGetGet',
+				value: 'M3dbMaintenanceGetGet',
+				action: 'Get the maintenance for the m3db cluster',
+			},
+			{
+				name: 'M3dbMaintenanceApplyPost',
+				value: 'M3dbMaintenanceApplyPost',
+				action: 'Apply the maintenance',
+			},
+			{
+				name: 'M3dbMetricListGet',
+				value: 'M3dbMetricListGet',
+				action: 'List available metrics for the m3db cluster',
+			},
+			{
+				name: 'M3dbMetricGetGet',
+				value: 'M3dbMetricGetGet',
+				action: 'Get the metric values for the m3db cluster',
+			},
+			{
+				name: 'M3dbNamespaceListGet',
+				value: 'M3dbNamespaceListGet',
+				action: 'List namespaces of the m3db',
+			},
+			{
+				name: 'M3dbNamespaceCreatePost',
+				value: 'M3dbNamespaceCreatePost',
+				action: 'Create a new namespace on the m3db cluster',
+			},
+			{
+				name: 'M3dbNamespaceDeleteDelete',
+				value: 'M3dbNamespaceDeleteDelete',
+				action: 'Delete m3db namespace',
+			},
+			{
+				name: 'M3dbNamespaceGetGet',
+				value: 'M3dbNamespaceGetGet',
+				action: 'Get m3db namespaces',
+			},
+			{
+				name: 'M3dbNamespaceUpdatePut',
+				value: 'M3dbNamespaceUpdatePut',
+				action: 'Updates the namespace on the m3db cluster',
+			},
+			{
+				name: 'M3dbNodeListGet',
+				value: 'M3dbNodeListGet',
+				action: 'List nodes of the m3db',
+			},
+			{
+				name: 'M3dbNodeGetGet',
+				value: 'M3dbNodeGetGet',
+				action: 'Get m3db nodes',
+			},
+			{
+				name: 'M3dbUserListGet',
+				value: 'M3dbUserListGet',
+				action: 'List users of the m3db',
+			},
+			{
+				name: 'M3dbUserCreatePost',
+				value: 'M3dbUserCreatePost',
+				action: 'Create a new user on the m3db cluster',
+			},
+			{
+				name: 'M3dbUserDeleteDelete',
+				value: 'M3dbUserDeleteDelete',
+				action: 'Delete m3db user',
+			},
+			{
+				name: 'M3dbUserGetGet',
+				value: 'M3dbUserGetGet',
+				action: 'Get m3db users',
+			},
+			{
+				name: 'M3dbUserUpdatePut',
+				value: 'M3dbUserUpdatePut',
+				action: 'Updates the user on the m3db cluster',
+			},
+			{
+				name: 'M3dbUserCredentialsResetPost',
+				value: 'M3dbUserCredentialsResetPost',
+				action: 'Reset the password of a user',
 			},
 			{
 				name: 'mongodbClusterListGet',
@@ -10088,181 +10233,277 @@ export function description(displayOptions: IDisplayOptions): INodeProperties[] 
 	properties.push(
 		...(m3dbClusterListGetDescription({
 			...displayOptions,
-			show: { publicCloudOperation: ['m3dbClusterListGet'] },
-		}) as INodeProperties[]),
-	);
-	properties.push(
-		...(m3dbClusterGetGetDescription({
-			...displayOptions,
-			show: { publicCloudOperation: ['m3dbClusterGetGet'] },
+			show: { publicCloudOperation: ['M3dbClusterListGet'] },
 		}) as INodeProperties[]),
 	);
 	properties.push(
 		...(m3dbClusterCreatePostDescription({
 			...displayOptions,
-			show: { publicCloudOperation: ['m3dbClusterCreatePost'] },
-		}) as INodeProperties[]),
-	);
-	properties.push(
-		...(m3dbClusterUpdatePutDescription({
-			...displayOptions,
-			show: { publicCloudOperation: ['m3dbClusterUpdatePut'] },
+			show: { publicCloudOperation: ['M3dbClusterCreatePost'] },
 		}) as INodeProperties[]),
 	);
 	properties.push(
 		...(m3dbClusterDeleteDeleteDescription({
 			...displayOptions,
-			show: { publicCloudOperation: ['m3dbClusterDeleteDelete'] },
+			show: { publicCloudOperation: ['M3dbClusterDeleteDelete'] },
+		}) as INodeProperties[]),
+	);
+	properties.push(
+		...(m3dbClusterGetGetDescription({
+			...displayOptions,
+			show: { publicCloudOperation: ['M3dbClusterGetGet'] },
+		}) as INodeProperties[]),
+	);
+	properties.push(
+		...(m3dbClusterUpdatePutDescription({
+			...displayOptions,
+			show: { publicCloudOperation: ['M3dbClusterUpdatePut'] },
+		}) as INodeProperties[]),
+	);
+	properties.push(
+		...(m3dbAdvancedConfigurationGetGetDescription({
+			...displayOptions,
+			show: { publicCloudOperation: ['M3dbAdvancedConfigurationGetGet'] },
+		}) as INodeProperties[]),
+	);
+	properties.push(
+		...(m3dbAdvancedConfigurationUpdatePutDescription({
+			...displayOptions,
+			show: { publicCloudOperation: ['M3dbAdvancedConfigurationUpdatePut'] },
 		}) as INodeProperties[]),
 	);
 	properties.push(
 		...(m3dbBackupListGetDescription({
 			...displayOptions,
-			show: { publicCloudOperation: ['m3dbBackupListGet'] },
-		}) as INodeProperties[]),
-	);
-	properties.push(
-		...(m3dbBackupCreatePostDescription({
-			...displayOptions,
-			show: { publicCloudOperation: ['m3dbBackupCreatePost'] },
+			show: { publicCloudOperation: ['M3dbBackupListGet'] },
 		}) as INodeProperties[]),
 	);
 	properties.push(
 		...(m3dbBackupGetGetDescription({
 			...displayOptions,
-			show: { publicCloudOperation: ['m3dbBackupGetGet'] },
+			show: { publicCloudOperation: ['M3dbBackupGetGet'] },
 		}) as INodeProperties[]),
 	);
 	properties.push(
-		...(m3dbBackupDeleteDeleteDescription({
+		...(m3dbCapabilitiesAdvancedConfigurationGetGetDescription({
 			...displayOptions,
-			show: { publicCloudOperation: ['m3dbBackupDeleteDelete'] },
+			show: { publicCloudOperation: ['M3dbCapabilitiesAdvancedConfigurationGetGet'] },
 		}) as INodeProperties[]),
 	);
 	properties.push(
-		...(m3dbUserListGetDescription({
+		...(m3dbCapabilitiesIntegrationGetGetDescription({
 			...displayOptions,
-			show: { publicCloudOperation: ['m3dbUserListGet'] },
+			show: { publicCloudOperation: ['M3dbCapabilitiesIntegrationGetGet'] },
 		}) as INodeProperties[]),
 	);
 	properties.push(
-		...(m3dbUserCreatePostDescription({
+		...(m3dbIntegrationListGetDescription({
 			...displayOptions,
-			show: { publicCloudOperation: ['m3dbUserCreatePost'] },
+			show: { publicCloudOperation: ['M3dbIntegrationListGet'] },
 		}) as INodeProperties[]),
 	);
 	properties.push(
-		...(m3dbUserGetGetDescription({
+		...(m3dbIntegrationCreatePostDescription({
 			...displayOptions,
-			show: { publicCloudOperation: ['m3dbUserGetGet'] },
+			show: { publicCloudOperation: ['M3dbIntegrationCreatePost'] },
 		}) as INodeProperties[]),
 	);
 	properties.push(
-		...(m3dbUserUpdatePutDescription({
+		...(m3dbIntegrationDeleteDeleteDescription({
 			...displayOptions,
-			show: { publicCloudOperation: ['m3dbUserUpdatePut'] },
+			show: { publicCloudOperation: ['M3dbIntegrationDeleteDelete'] },
 		}) as INodeProperties[]),
 	);
 	properties.push(
-		...(m3dbUserDeleteDeleteDescription({
+		...(m3dbIntegrationGetGetDescription({
 			...displayOptions,
-			show: { publicCloudOperation: ['m3dbUserDeleteDelete'] },
-		}) as INodeProperties[]),
-	);
-	properties.push(
-		...(m3dbNodeListGetDescription({
-			...displayOptions,
-			show: { publicCloudOperation: ['m3dbNodeListGet'] },
-		}) as INodeProperties[]),
-	);
-	properties.push(
-		...(m3dbNodeCreatePostDescription({
-			...displayOptions,
-			show: { publicCloudOperation: ['m3dbNodeCreatePost'] },
-		}) as INodeProperties[]),
-	);
-	properties.push(
-		...(m3dbNodeGetGetDescription({
-			...displayOptions,
-			show: { publicCloudOperation: ['m3dbNodeGetGet'] },
-		}) as INodeProperties[]),
-	);
-	properties.push(
-		...(m3dbNodeUpdatePutDescription({
-			...displayOptions,
-			show: { publicCloudOperation: ['m3dbNodeUpdatePut'] },
-		}) as INodeProperties[]),
-	);
-	properties.push(
-		...(m3dbNodeDeleteDeleteDescription({
-			...displayOptions,
-			show: { publicCloudOperation: ['m3dbNodeDeleteDelete'] },
+			show: { publicCloudOperation: ['M3dbIntegrationGetGet'] },
 		}) as INodeProperties[]),
 	);
 	properties.push(
 		...(m3dbIpRestrictionListGetDescription({
 			...displayOptions,
-			show: { publicCloudOperation: ['m3dbIpRestrictionListGet'] },
+			show: { publicCloudOperation: ['M3dbIpRestrictionListGet'] },
 		}) as INodeProperties[]),
 	);
 	properties.push(
 		...(m3dbIpRestrictionCreatePostDescription({
 			...displayOptions,
-			show: { publicCloudOperation: ['m3dbIpRestrictionCreatePost'] },
+			show: { publicCloudOperation: ['M3dbIpRestrictionCreatePost'] },
+		}) as INodeProperties[]),
+	);
+	properties.push(
+		...(m3dbIpRestrictionDeleteDeleteDescription({
+			...displayOptions,
+			show: { publicCloudOperation: ['M3dbIpRestrictionDeleteDelete'] },
+		}) as INodeProperties[]),
+	);
+	properties.push(
+		...(m3dbIpRestrictionGetGetDescription({
+			...displayOptions,
+			show: { publicCloudOperation: ['M3dbIpRestrictionGetGet'] },
+		}) as INodeProperties[]),
+	);
+	properties.push(
+		...(m3dbIpRestrictionUpdatePutDescription({
+			...displayOptions,
+			show: { publicCloudOperation: ['M3dbIpRestrictionUpdatePut'] },
+		}) as INodeProperties[]),
+	);
+	properties.push(
+		...(m3dbLogKindListGetDescription({
+			...displayOptions,
+			show: { publicCloudOperation: ['M3dbLogKindListGet'] },
+		}) as INodeProperties[]),
+	);
+	properties.push(
+		...(m3dbLogKindGetGetDescription({
+			...displayOptions,
+			show: { publicCloudOperation: ['M3dbLogKindGetGet'] },
 		}) as INodeProperties[]),
 	);
 	properties.push(
 		...(m3dbLogSubscriptionListGetDescription({
 			...displayOptions,
-			show: { publicCloudOperation: ['m3dbLogSubscriptionListGet'] },
+			show: { publicCloudOperation: ['M3dbLogSubscriptionListGet'] },
 		}) as INodeProperties[]),
 	);
 	properties.push(
 		...(m3dbLogSubscriptionCreatePostDescription({
 			...displayOptions,
-			show: { publicCloudOperation: ['m3dbLogSubscriptionCreatePost'] },
+			show: { publicCloudOperation: ['M3dbLogSubscriptionCreatePost'] },
+		}) as INodeProperties[]),
+	);
+	properties.push(
+		...(m3dbLogSubscriptionDeleteDeleteDescription({
+			...displayOptions,
+			show: { publicCloudOperation: ['M3dbLogSubscriptionDeleteDelete'] },
 		}) as INodeProperties[]),
 	);
 	properties.push(
 		...(m3dbLogSubscriptionGetGetDescription({
 			...displayOptions,
-			show: { publicCloudOperation: ['m3dbLogSubscriptionGetGet'] },
+			show: { publicCloudOperation: ['M3dbLogSubscriptionGetGet'] },
 		}) as INodeProperties[]),
 	);
 	properties.push(
-		...(m3dbMaintenanceGetDescription({
+		...(m3dbLogUrlCreatePostDescription({
 			...displayOptions,
-			show: { publicCloudOperation: ['m3dbMaintenanceGet'] },
+			show: { publicCloudOperation: ['M3dbLogUrlCreatePost'] },
 		}) as INodeProperties[]),
 	);
 	properties.push(
-		...(m3dbMaintenanceUpdatePutDescription({
+		...(m3dbLogsGetDescription({
 			...displayOptions,
-			show: { publicCloudOperation: ['m3dbMaintenanceUpdatePut'] },
+			show: { publicCloudOperation: ['M3dbLogsGet'] },
 		}) as INodeProperties[]),
 	);
 	properties.push(
-		...(m3dbMetricGetDescription({
+		...(m3dbMaintenanceListGetDescription({
 			...displayOptions,
-			show: { publicCloudOperation: ['m3dbMetricGet'] },
+			show: { publicCloudOperation: ['M3dbMaintenanceListGet'] },
 		}) as INodeProperties[]),
 	);
 	properties.push(
-		...(m3dbPrometheusGetDescription({
+		...(m3dbMaintenanceGetGetDescription({
 			...displayOptions,
-			show: { publicCloudOperation: ['m3dbPrometheusGet'] },
+			show: { publicCloudOperation: ['M3dbMaintenanceGetGet'] },
 		}) as INodeProperties[]),
 	);
 	properties.push(
-		...(m3dbCertificateListGetDescription({
+		...(m3dbMaintenanceApplyPostDescription({
 			...displayOptions,
-			show: { publicCloudOperation: ['m3dbCertificateListGet'] },
+			show: { publicCloudOperation: ['M3dbMaintenanceApplyPost'] },
 		}) as INodeProperties[]),
 	);
 	properties.push(
-		...(m3dbCertificateCreatePostDescription({
+		...(m3dbMetricListGetDescription({
 			...displayOptions,
-			show: { publicCloudOperation: ['m3dbCertificateCreatePost'] },
+			show: { publicCloudOperation: ['M3dbMetricListGet'] },
+		}) as INodeProperties[]),
+	);
+	properties.push(
+		...(m3dbMetricGetGetDescription({
+			...displayOptions,
+			show: { publicCloudOperation: ['M3dbMetricGetGet'] },
+		}) as INodeProperties[]),
+	);
+	properties.push(
+		...(m3dbNamespaceListGetDescription({
+			...displayOptions,
+			show: { publicCloudOperation: ['M3dbNamespaceListGet'] },
+		}) as INodeProperties[]),
+	);
+	properties.push(
+		...(m3dbNamespaceCreatePostDescription({
+			...displayOptions,
+			show: { publicCloudOperation: ['M3dbNamespaceCreatePost'] },
+		}) as INodeProperties[]),
+	);
+	properties.push(
+		...(m3dbNamespaceDeleteDeleteDescription({
+			...displayOptions,
+			show: { publicCloudOperation: ['M3dbNamespaceDeleteDelete'] },
+		}) as INodeProperties[]),
+	);
+	properties.push(
+		...(m3dbNamespaceGetGetDescription({
+			...displayOptions,
+			show: { publicCloudOperation: ['M3dbNamespaceGetGet'] },
+		}) as INodeProperties[]),
+	);
+	properties.push(
+		...(m3dbNamespaceUpdatePutDescription({
+			...displayOptions,
+			show: { publicCloudOperation: ['M3dbNamespaceUpdatePut'] },
+		}) as INodeProperties[]),
+	);
+	properties.push(
+		...(m3dbNodeListGetDescription({
+			...displayOptions,
+			show: { publicCloudOperation: ['M3dbNodeListGet'] },
+		}) as INodeProperties[]),
+	);
+	properties.push(
+		...(m3dbNodeGetGetDescription({
+			...displayOptions,
+			show: { publicCloudOperation: ['M3dbNodeGetGet'] },
+		}) as INodeProperties[]),
+	);
+	properties.push(
+		...(m3dbUserListGetDescription({
+			...displayOptions,
+			show: { publicCloudOperation: ['M3dbUserListGet'] },
+		}) as INodeProperties[]),
+	);
+	properties.push(
+		...(m3dbUserCreatePostDescription({
+			...displayOptions,
+			show: { publicCloudOperation: ['M3dbUserCreatePost'] },
+		}) as INodeProperties[]),
+	);
+	properties.push(
+		...(m3dbUserDeleteDeleteDescription({
+			...displayOptions,
+			show: { publicCloudOperation: ['M3dbUserDeleteDelete'] },
+		}) as INodeProperties[]),
+	);
+	properties.push(
+		...(m3dbUserGetGetDescription({
+			...displayOptions,
+			show: { publicCloudOperation: ['M3dbUserGetGet'] },
+		}) as INodeProperties[]),
+	);
+	properties.push(
+		...(m3dbUserUpdatePutDescription({
+			...displayOptions,
+			show: { publicCloudOperation: ['M3dbUserUpdatePut'] },
+		}) as INodeProperties[]),
+	);
+	properties.push(
+		...(m3dbUserCredentialsResetPostDescription({
+			...displayOptions,
+			show: { publicCloudOperation: ['M3dbUserCredentialsResetPost'] },
 		}) as INodeProperties[]),
 	);
 	properties.push(
@@ -13181,67 +13422,99 @@ export async function execute(
 			return m3aggregatorCertificateListGetExecute.call(this);
 		case 'm3aggregatorCertificateCreatePost':
 			return m3aggregatorCertificateCreatePostExecute.call(this);
-		case 'm3dbClusterListGet':
+				case 'M3dbClusterListGet':
 			return m3dbClusterListGetExecute.call(this);
-		case 'm3dbClusterGetGet':
-			return m3dbClusterGetGetExecute.call(this);
-		case 'm3dbClusterCreatePost':
+		case 'M3dbClusterCreatePost':
 			return m3dbClusterCreatePostExecute.call(this);
-		case 'm3dbClusterUpdatePut':
-			return m3dbClusterUpdatePutExecute.call(this);
-		case 'm3dbClusterDeleteDelete':
+		case 'M3dbClusterDeleteDelete':
 			return m3dbClusterDeleteDeleteExecute.call(this);
-		case 'm3dbBackupListGet':
+		case 'M3dbClusterGetGet':
+			return m3dbClusterGetGetExecute.call(this);
+		case 'M3dbClusterUpdatePut':
+			return m3dbClusterUpdatePutExecute.call(this);
+		case 'M3dbAdvancedConfigurationGetGet':
+			return m3dbAdvancedConfigurationGetGetExecute.call(this);
+		case 'M3dbAdvancedConfigurationUpdatePut':
+			return m3dbAdvancedConfigurationUpdatePutExecute.call(this);
+		case 'M3dbBackupListGet':
 			return m3dbBackupListGetExecute.call(this);
-		case 'm3dbBackupCreatePost':
-			return m3dbBackupCreatePostExecute.call(this);
-		case 'm3dbBackupGetGet':
+		case 'M3dbBackupGetGet':
 			return m3dbBackupGetGetExecute.call(this);
-		case 'm3dbBackupDeleteDelete':
-			return m3dbBackupDeleteDeleteExecute.call(this);
-		case 'm3dbUserListGet':
-			return m3dbUserListGetExecute.call(this);
-		case 'm3dbUserCreatePost':
-			return m3dbUserCreatePostExecute.call(this);
-		case 'm3dbUserGetGet':
-			return m3dbUserGetGetExecute.call(this);
-		case 'm3dbUserUpdatePut':
-			return m3dbUserUpdatePutExecute.call(this);
-		case 'm3dbUserDeleteDelete':
-			return m3dbUserDeleteDeleteExecute.call(this);
-		case 'm3dbNodeListGet':
-			return m3dbNodeListGetExecute.call(this);
-		case 'm3dbNodeCreatePost':
-			return m3dbNodeCreatePostExecute.call(this);
-		case 'm3dbNodeGetGet':
-			return m3dbNodeGetGetExecute.call(this);
-		case 'm3dbNodeUpdatePut':
-			return m3dbNodeUpdatePutExecute.call(this);
-		case 'm3dbNodeDeleteDelete':
-			return m3dbNodeDeleteDeleteExecute.call(this);
-		case 'm3dbIpRestrictionListGet':
+		case 'M3dbCapabilitiesAdvancedConfigurationGetGet':
+			return m3dbCapabilitiesAdvancedConfigurationGetGetExecute.call(this);
+		case 'M3dbCapabilitiesIntegrationGetGet':
+			return m3dbCapabilitiesIntegrationGetGetExecute.call(this);
+		case 'M3dbIntegrationListGet':
+			return m3dbIntegrationListGetExecute.call(this);
+		case 'M3dbIntegrationCreatePost':
+			return m3dbIntegrationCreatePostExecute.call(this);
+		case 'M3dbIntegrationDeleteDelete':
+			return m3dbIntegrationDeleteDeleteExecute.call(this);
+		case 'M3dbIntegrationGetGet':
+			return m3dbIntegrationGetGetExecute.call(this);
+		case 'M3dbIpRestrictionListGet':
 			return m3dbIpRestrictionListGetExecute.call(this);
-		case 'm3dbIpRestrictionCreatePost':
+		case 'M3dbIpRestrictionCreatePost':
 			return m3dbIpRestrictionCreatePostExecute.call(this);
-		case 'm3dbLogSubscriptionListGet':
+		case 'M3dbIpRestrictionDeleteDelete':
+			return m3dbIpRestrictionDeleteDeleteExecute.call(this);
+		case 'M3dbIpRestrictionGetGet':
+			return m3dbIpRestrictionGetGetExecute.call(this);
+		case 'M3dbIpRestrictionUpdatePut':
+			return m3dbIpRestrictionUpdatePutExecute.call(this);
+		case 'M3dbLogKindListGet':
+			return m3dbLogKindListGetExecute.call(this);
+		case 'M3dbLogKindGetGet':
+			return m3dbLogKindGetGetExecute.call(this);
+		case 'M3dbLogSubscriptionListGet':
 			return m3dbLogSubscriptionListGetExecute.call(this);
-		case 'm3dbLogSubscriptionCreatePost':
+		case 'M3dbLogSubscriptionCreatePost':
 			return m3dbLogSubscriptionCreatePostExecute.call(this);
-		case 'm3dbLogSubscriptionGetGet':
+		case 'M3dbLogSubscriptionDeleteDelete':
+			return m3dbLogSubscriptionDeleteDeleteExecute.call(this);
+		case 'M3dbLogSubscriptionGetGet':
 			return m3dbLogSubscriptionGetGetExecute.call(this);
-		case 'm3dbMaintenanceGet':
-			return m3dbMaintenanceGetExecute.call(this);
-		case 'm3dbMaintenanceUpdatePut':
-			return m3dbMaintenanceUpdatePutExecute.call(this);
-		case 'm3dbMetricGet':
-			return m3dbMetricGetExecute.call(this);
-		case 'm3dbPrometheusGet':
-			return m3dbPrometheusGetExecute.call(this);
-		case 'm3dbCertificateListGet':
-			return m3dbCertificateListGetExecute.call(this);
-		case 'm3dbCertificateCreatePost':
-			return m3dbCertificateCreatePostExecute.call(this);
-		case 'mongodbClusterListGet':
+		case 'M3dbLogUrlCreatePost':
+			return m3dbLogUrlCreatePostExecute.call(this);
+		case 'M3dbLogsGet':
+			return m3dbLogsGetExecute.call(this);
+		case 'M3dbMaintenanceListGet':
+			return m3dbMaintenanceListGetExecute.call(this);
+		case 'M3dbMaintenanceGetGet':
+			return m3dbMaintenanceGetGetExecute.call(this);
+		case 'M3dbMaintenanceApplyPost':
+			return m3dbMaintenanceApplyPostExecute.call(this);
+		case 'M3dbMetricListGet':
+			return m3dbMetricListGetExecute.call(this);
+		case 'M3dbMetricGetGet':
+			return m3dbMetricGetGetExecute.call(this);
+		case 'M3dbNamespaceListGet':
+			return m3dbNamespaceListGetExecute.call(this);
+		case 'M3dbNamespaceCreatePost':
+			return m3dbNamespaceCreatePostExecute.call(this);
+		case 'M3dbNamespaceDeleteDelete':
+			return m3dbNamespaceDeleteDeleteExecute.call(this);
+		case 'M3dbNamespaceGetGet':
+			return m3dbNamespaceGetGetExecute.call(this);
+		case 'M3dbNamespaceUpdatePut':
+			return m3dbNamespaceUpdatePutExecute.call(this);
+		case 'M3dbNodeListGet':
+			return m3dbNodeListGetExecute.call(this);
+		case 'M3dbNodeGetGet':
+			return m3dbNodeGetGetExecute.call(this);
+		case 'M3dbUserListGet':
+			return m3dbUserListGetExecute.call(this);
+		case 'M3dbUserCreatePost':
+			return m3dbUserCreatePostExecute.call(this);
+		case 'M3dbUserDeleteDelete':
+			return m3dbUserDeleteDeleteExecute.call(this);
+		case 'M3dbUserGetGet':
+			return m3dbUserGetGetExecute.call(this);
+		case 'M3dbUserUpdatePut':
+			return m3dbUserUpdatePutExecute.call(this);
+		case 'M3dbUserCredentialsResetPost':
+			return m3dbUserCredentialsResetPostExecute.call(this);
+case 'mongodbClusterListGet':
 			return mongodbClusterListGetExecute.call(this);
 		case 'mongodbClusterGetGet':
 			return mongodbClusterGetGetExecute.call(this);

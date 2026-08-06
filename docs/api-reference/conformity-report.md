@@ -1,16 +1,16 @@
 # OVHcloud API Conformity Report
 
-> Généré par `scripts/audit-conformity.js` le 2026-08-06T03:28:38.494Z. Document généré automatiquement — ne pas éditer à la main.
+> Généré par `scripts/audit-conformity.js` le 2026-08-06T04:26:47.068Z. Document généré automatiquement — ne pas éditer à la main.
 
 Ce rapport vérifie que les opérations des nodes respectent leur spec (méthode, chemin, paramètres path requis, query requis, champs body requis).
 
 ## Résumé
 
-- **Opérations auditées** : 5941
-- **Conformes** : 3612
-- **Non conformes** : 2329
-- **Sans correspondance spec** (informatif) : 2022
-- **Taux de conformité** : **60.8%**
+- **Opérations auditées** : 5973
+- **Conformes** : 3652
+- **Non conformes** : 2321
+- **Sans correspondance spec** (informatif) : 2008
+- **Taux de conformité** : **61.1%**
 
 ## Conformité par spec
 
@@ -45,7 +45,7 @@ Triée par taux de non-conformité décroissant.
 | vrack (v1) | 12 | 4 | 1 | 33.3% |
 | veeamCloudConnect (v1) | 14 | 13 | 1 | 92.9% |
 | vps (v1) | 63 | 20 | 4 | 31.7% |
-| cloud (v1) | 963 | 561 | 35 | 58.3% |
+| cloud (v1) | 979 | 601 | 41 | 61.4% |
 | order (v1) | 166 | 31 | 6 | 18.7% |
 | me (v1) | 309 | 300 | 9 | 97.1% |
 | dedicated (v1) | 69 | 31 | 2 | 44.9% |
@@ -54,7 +54,7 @@ Triée par taux de non-conformité décroissant.
 | webhosting (v2) | 246 | 12 | 3 | 4.9% |
 | domain (v1) | 119 | 109 | 1 | 91.6% |
 | telephony (v1) | 644 | 602 | 5 | 93.5% |
-| publicCloud (v2) | 963 | 26 | 4 | 2.7% |
+| publicCloud (v2) | 979 | 26 | 4 | 2.7% |
 | price (v1) | 581 | 581 | 0 | 100% |
 | sms (v1) | 126 | 124 | 0 | 98.4% |
 | domain (v2) | 119 | 9 | 0 | 7.6% |
@@ -106,7 +106,7 @@ Chaque ligne correspond à un appel HTTP non conforme, groupée par spec :
 | POST | `/cdn/dedicated/{x}/ssl` | OvhCloudCdn/resources/ssl/sslCreatePost.operation.ts | missing required body field 'name' |
 | POST | `/cdn/dedicated/{x}/ssl/update` | OvhCloudCdn/resources/ssl/sslUpdatePost.operation.ts | missing required body field 'certificate'; missing required body field 'key' |
 
-### cloud — 35 non-conformités
+### cloud — 41 non-conformités
 
 | Méthode | Chemin | Fichier | Problèmes |
 |--------|--------|---------|-----------|
@@ -132,6 +132,12 @@ Chaque ligne correspond à un appel HTTP non conforme, groupée par spec :
 | GET | `/cloud/project/{x}/database/kafkaMirrorMaker/{x}/metric/{x}` | OvhCloudPublicCloud/database/kafkaMirrorMaker/metricNameGet.operation.ts | missing required query param 'period' |
 | POST | `/cloud/project/{x}/database/kafkaMirrorMaker/{x}/replication` | OvhCloudPublicCloud/database/kafkaMirrorMaker/replicationCreatePost.operation.ts | missing required body field 'enabled'; missing required body field 'sourceIntegration'; missing required body field 'targetIntegration' |
 | PUT | `/cloud/project/{x}/database/kafkaMirrorMaker/{x}/replication/{x}` | OvhCloudPublicCloud/database/kafkaMirrorMaker/replicationUpdatePut.operation.ts | missing required body field 'enabled' |
+| POST | `/cloud/project/{x}/database/m3db/{x}/integration` | OvhCloudPublicCloud/database/m3db/M3dbIntegrationCreatePost.operation.ts | missing required body field 'destinationServiceId'; missing required body field 'sourceServiceId' |
+| POST | `/cloud/project/{x}/database/m3db/{x}/log/subscription` | OvhCloudPublicCloud/database/m3db/M3dbLogSubscriptionCreatePost.operation.ts | missing required body field 'kind'; missing required body field 'streamId' |
+| POST | `/cloud/project/{x}/database/m3db/{x}/log/url` | OvhCloudPublicCloud/database/m3db/M3dbLogUrlCreatePost.operation.ts | missing required body field 'kind' |
+| GET | `/cloud/project/{x}/database/m3db/{x}/metric/{x}` | OvhCloudPublicCloud/database/m3db/M3dbMetricGetGet.operation.ts | missing required query param 'period' |
+| POST | `/cloud/project/{x}/database/m3db/{x}/namespace` | OvhCloudPublicCloud/database/m3db/M3dbNamespaceCreatePost.operation.ts | missing required body field 'name'; missing required body field 'resolution'; missing required body field 'type' |
+| POST | `/cloud/project/{x}/database/m3db/{x}/user` | OvhCloudPublicCloud/database/m3db/M3dbUserCreatePost.operation.ts | missing required body field 'name' |
 | POST | `/cloud/project/{x}/database/mysql/{x}/log/url` | OvhCloudPublicCloud/database/mysql/logUrlCreatePost.operation.ts | missing required body field 'kind' |
 | POST | `/cloud/project/{x}/database/mysql/{x}/migration` | OvhCloudPublicCloud/database/mysql/migrationCreatePost.operation.ts | missing required body field 'sourcePort'; missing required body field 'sourceSsl' |
 | POST | `/cloud/project/{x}/database/mysql/{x}/migration/check` | OvhCloudPublicCloud/database/mysql/migrationCheckPost.operation.ts | missing required body field 'sourcePort'; missing required body field 'sourceSsl' |
@@ -742,36 +748,6 @@ Ces opérations appellent un chemin qui ne correspond à aucun endpoint de la sp
 | cloud (v1) | DELETE | `/publicCloud/project/{x}/cloud/database/m3aggregator/{x}/user/{x}` | OvhCloudPublicCloud/database/m3aggregator/userDeleteDelete.operation.ts |
 | cloud (v1) | GET | `/publicCloud/project/{x}/cloud/database/m3aggregator/{x}/user/{x}` | OvhCloudPublicCloud/database/m3aggregator/userGetGet.operation.ts |
 | cloud (v1) | PUT | `/publicCloud/project/{x}/cloud/database/m3aggregator/{x}/user/{x}` | OvhCloudPublicCloud/database/m3aggregator/userUpdatePut.operation.ts |
-| cloud (v1) | GET | `/publicCloud/project/{x}/cloud/database/m3db` | OvhCloudPublicCloud/database/m3db/clusterListGet.operation.ts |
-| cloud (v1) | POST | `/publicCloud/project/{x}/cloud/database/m3db` | OvhCloudPublicCloud/database/m3db/clusterCreatePost.operation.ts |
-| cloud (v1) | DELETE | `/publicCloud/project/{x}/cloud/database/m3db/{x}` | OvhCloudPublicCloud/database/m3db/clusterDeleteDelete.operation.ts |
-| cloud (v1) | GET | `/publicCloud/project/{x}/cloud/database/m3db/{x}` | OvhCloudPublicCloud/database/m3db/clusterGetGet.operation.ts |
-| cloud (v1) | PUT | `/publicCloud/project/{x}/cloud/database/m3db/{x}` | OvhCloudPublicCloud/database/m3db/clusterUpdatePut.operation.ts |
-| cloud (v1) | GET | `/publicCloud/project/{x}/cloud/database/m3db/{x}/backup` | OvhCloudPublicCloud/database/m3db/backupListGet.operation.ts |
-| cloud (v1) | POST | `/publicCloud/project/{x}/cloud/database/m3db/{x}/backup` | OvhCloudPublicCloud/database/m3db/backupCreatePost.operation.ts |
-| cloud (v1) | DELETE | `/publicCloud/project/{x}/cloud/database/m3db/{x}/backup/{x}` | OvhCloudPublicCloud/database/m3db/backupDeleteDelete.operation.ts |
-| cloud (v1) | GET | `/publicCloud/project/{x}/cloud/database/m3db/{x}/backup/{x}` | OvhCloudPublicCloud/database/m3db/backupGetGet.operation.ts |
-| cloud (v1) | GET | `/publicCloud/project/{x}/cloud/database/m3db/{x}/certificate` | OvhCloudPublicCloud/database/m3db/certificateListGet.operation.ts |
-| cloud (v1) | POST | `/publicCloud/project/{x}/cloud/database/m3db/{x}/certificate` | OvhCloudPublicCloud/database/m3db/certificateCreatePost.operation.ts |
-| cloud (v1) | GET | `/publicCloud/project/{x}/cloud/database/m3db/{x}/ipRestriction` | OvhCloudPublicCloud/database/m3db/ipRestrictionListGet.operation.ts |
-| cloud (v1) | POST | `/publicCloud/project/{x}/cloud/database/m3db/{x}/ipRestriction` | OvhCloudPublicCloud/database/m3db/ipRestrictionCreatePost.operation.ts |
-| cloud (v1) | GET | `/publicCloud/project/{x}/cloud/database/m3db/{x}/log/subscription` | OvhCloudPublicCloud/database/m3db/logSubscriptionListGet.operation.ts |
-| cloud (v1) | POST | `/publicCloud/project/{x}/cloud/database/m3db/{x}/log/subscription` | OvhCloudPublicCloud/database/m3db/logSubscriptionCreatePost.operation.ts |
-| cloud (v1) | GET | `/publicCloud/project/{x}/cloud/database/m3db/{x}/log/subscription/{x}` | OvhCloudPublicCloud/database/m3db/logSubscriptionGetGet.operation.ts |
-| cloud (v1) | GET | `/publicCloud/project/{x}/cloud/database/m3db/{x}/maintenance` | OvhCloudPublicCloud/database/m3db/maintenanceGet.operation.ts |
-| cloud (v1) | PUT | `/publicCloud/project/{x}/cloud/database/m3db/{x}/maintenance` | OvhCloudPublicCloud/database/m3db/maintenanceUpdatePut.operation.ts |
-| cloud (v1) | GET | `/publicCloud/project/{x}/cloud/database/m3db/{x}/metric` | OvhCloudPublicCloud/database/m3db/metricGet.operation.ts |
-| cloud (v1) | GET | `/publicCloud/project/{x}/cloud/database/m3db/{x}/node` | OvhCloudPublicCloud/database/m3db/nodeListGet.operation.ts |
-| cloud (v1) | POST | `/publicCloud/project/{x}/cloud/database/m3db/{x}/node` | OvhCloudPublicCloud/database/m3db/nodeCreatePost.operation.ts |
-| cloud (v1) | DELETE | `/publicCloud/project/{x}/cloud/database/m3db/{x}/node/{x}` | OvhCloudPublicCloud/database/m3db/nodeDeleteDelete.operation.ts |
-| cloud (v1) | GET | `/publicCloud/project/{x}/cloud/database/m3db/{x}/node/{x}` | OvhCloudPublicCloud/database/m3db/nodeGetGet.operation.ts |
-| cloud (v1) | PUT | `/publicCloud/project/{x}/cloud/database/m3db/{x}/node/{x}` | OvhCloudPublicCloud/database/m3db/nodeUpdatePut.operation.ts |
-| cloud (v1) | GET | `/publicCloud/project/{x}/cloud/database/m3db/{x}/prometheus` | OvhCloudPublicCloud/database/m3db/prometheusGet.operation.ts |
-| cloud (v1) | GET | `/publicCloud/project/{x}/cloud/database/m3db/{x}/user` | OvhCloudPublicCloud/database/m3db/userListGet.operation.ts |
-| cloud (v1) | POST | `/publicCloud/project/{x}/cloud/database/m3db/{x}/user` | OvhCloudPublicCloud/database/m3db/userCreatePost.operation.ts |
-| cloud (v1) | DELETE | `/publicCloud/project/{x}/cloud/database/m3db/{x}/user/{x}` | OvhCloudPublicCloud/database/m3db/userDeleteDelete.operation.ts |
-| cloud (v1) | GET | `/publicCloud/project/{x}/cloud/database/m3db/{x}/user/{x}` | OvhCloudPublicCloud/database/m3db/userGetGet.operation.ts |
-| cloud (v1) | PUT | `/publicCloud/project/{x}/cloud/database/m3db/{x}/user/{x}` | OvhCloudPublicCloud/database/m3db/userUpdatePut.operation.ts |
 | cloud (v1) | GET | `/publicCloud/project/{x}/cloud/database/valkey` | OvhCloudPublicCloud/database/valkey/clusterListGet.operation.ts |
 | cloud (v1) | POST | `/publicCloud/project/{x}/cloud/database/valkey` | OvhCloudPublicCloud/database/valkey/clusterCreatePost.operation.ts |
 | cloud (v1) | DELETE | `/publicCloud/project/{x}/cloud/database/valkey/{x}` | OvhCloudPublicCloud/database/valkey/clusterDeleteDelete.operation.ts |
@@ -1645,6 +1621,52 @@ Ces opérations appellent un chemin qui ne correspond à aucun endpoint de la sp
 | publicCloud (v2) | DELETE | `/cloud/project/{x}/database/kafkaMirrorMaker/{x}/replication/{x}` | OvhCloudPublicCloud/database/kafkaMirrorMaker/replicationDeleteDelete.operation.ts |
 | publicCloud (v2) | GET | `/cloud/project/{x}/database/kafkaMirrorMaker/{x}/replication/{x}` | OvhCloudPublicCloud/database/kafkaMirrorMaker/replicationGetById.operation.ts |
 | publicCloud (v2) | PUT | `/cloud/project/{x}/database/kafkaMirrorMaker/{x}/replication/{x}` | OvhCloudPublicCloud/database/kafkaMirrorMaker/replicationUpdatePut.operation.ts |
+| publicCloud (v2) | GET | `/cloud/project/{x}/database/m3db` | OvhCloudPublicCloud/database/m3db/M3dbClusterListGet.operation.ts |
+| publicCloud (v2) | POST | `/cloud/project/{x}/database/m3db` | OvhCloudPublicCloud/database/m3db/M3dbClusterCreatePost.operation.ts |
+| publicCloud (v2) | DELETE | `/cloud/project/{x}/database/m3db/{x}` | OvhCloudPublicCloud/database/m3db/M3dbClusterDeleteDelete.operation.ts |
+| publicCloud (v2) | GET | `/cloud/project/{x}/database/m3db/{x}` | OvhCloudPublicCloud/database/m3db/M3dbClusterGetGet.operation.ts |
+| publicCloud (v2) | PUT | `/cloud/project/{x}/database/m3db/{x}` | OvhCloudPublicCloud/database/m3db/M3dbClusterUpdatePut.operation.ts |
+| publicCloud (v2) | GET | `/cloud/project/{x}/database/m3db/{x}/advancedConfiguration` | OvhCloudPublicCloud/database/m3db/M3dbAdvancedConfigurationGetGet.operation.ts |
+| publicCloud (v2) | PUT | `/cloud/project/{x}/database/m3db/{x}/advancedConfiguration` | OvhCloudPublicCloud/database/m3db/M3dbAdvancedConfigurationUpdatePut.operation.ts |
+| publicCloud (v2) | GET | `/cloud/project/{x}/database/m3db/{x}/backup` | OvhCloudPublicCloud/database/m3db/M3dbBackupListGet.operation.ts |
+| publicCloud (v2) | GET | `/cloud/project/{x}/database/m3db/{x}/backup/{x}` | OvhCloudPublicCloud/database/m3db/M3dbBackupGetGet.operation.ts |
+| publicCloud (v2) | GET | `/cloud/project/{x}/database/m3db/{x}/capabilities/advancedConfiguration` | OvhCloudPublicCloud/database/m3db/M3dbCapabilitiesAdvancedConfigurationGetGet.operation.ts |
+| publicCloud (v2) | GET | `/cloud/project/{x}/database/m3db/{x}/capabilities/integration` | OvhCloudPublicCloud/database/m3db/M3dbCapabilitiesIntegrationGetGet.operation.ts |
+| publicCloud (v2) | GET | `/cloud/project/{x}/database/m3db/{x}/integration` | OvhCloudPublicCloud/database/m3db/M3dbIntegrationListGet.operation.ts |
+| publicCloud (v2) | POST | `/cloud/project/{x}/database/m3db/{x}/integration` | OvhCloudPublicCloud/database/m3db/M3dbIntegrationCreatePost.operation.ts |
+| publicCloud (v2) | DELETE | `/cloud/project/{x}/database/m3db/{x}/integration/{x}` | OvhCloudPublicCloud/database/m3db/M3dbIntegrationDeleteDelete.operation.ts |
+| publicCloud (v2) | GET | `/cloud/project/{x}/database/m3db/{x}/integration/{x}` | OvhCloudPublicCloud/database/m3db/M3dbIntegrationGetGet.operation.ts |
+| publicCloud (v2) | GET | `/cloud/project/{x}/database/m3db/{x}/ipRestriction` | OvhCloudPublicCloud/database/m3db/M3dbIpRestrictionListGet.operation.ts |
+| publicCloud (v2) | POST | `/cloud/project/{x}/database/m3db/{x}/ipRestriction` | OvhCloudPublicCloud/database/m3db/M3dbIpRestrictionCreatePost.operation.ts |
+| publicCloud (v2) | DELETE | `/cloud/project/{x}/database/m3db/{x}/ipRestriction/{x}` | OvhCloudPublicCloud/database/m3db/M3dbIpRestrictionDeleteDelete.operation.ts |
+| publicCloud (v2) | GET | `/cloud/project/{x}/database/m3db/{x}/ipRestriction/{x}` | OvhCloudPublicCloud/database/m3db/M3dbIpRestrictionGetGet.operation.ts |
+| publicCloud (v2) | PUT | `/cloud/project/{x}/database/m3db/{x}/ipRestriction/{x}` | OvhCloudPublicCloud/database/m3db/M3dbIpRestrictionUpdatePut.operation.ts |
+| publicCloud (v2) | GET | `/cloud/project/{x}/database/m3db/{x}/log/kind` | OvhCloudPublicCloud/database/m3db/M3dbLogKindListGet.operation.ts |
+| publicCloud (v2) | GET | `/cloud/project/{x}/database/m3db/{x}/log/kind/{x}` | OvhCloudPublicCloud/database/m3db/M3dbLogKindGetGet.operation.ts |
+| publicCloud (v2) | GET | `/cloud/project/{x}/database/m3db/{x}/log/subscription` | OvhCloudPublicCloud/database/m3db/M3dbLogSubscriptionListGet.operation.ts |
+| publicCloud (v2) | POST | `/cloud/project/{x}/database/m3db/{x}/log/subscription` | OvhCloudPublicCloud/database/m3db/M3dbLogSubscriptionCreatePost.operation.ts |
+| publicCloud (v2) | DELETE | `/cloud/project/{x}/database/m3db/{x}/log/subscription/{x}` | OvhCloudPublicCloud/database/m3db/M3dbLogSubscriptionDeleteDelete.operation.ts |
+| publicCloud (v2) | GET | `/cloud/project/{x}/database/m3db/{x}/log/subscription/{x}` | OvhCloudPublicCloud/database/m3db/M3dbLogSubscriptionGetGet.operation.ts |
+| publicCloud (v2) | POST | `/cloud/project/{x}/database/m3db/{x}/log/url` | OvhCloudPublicCloud/database/m3db/M3dbLogUrlCreatePost.operation.ts |
+| publicCloud (v2) | GET | `/cloud/project/{x}/database/m3db/{x}/logs` | OvhCloudPublicCloud/database/m3db/M3dbLogsGet.operation.ts |
+| publicCloud (v2) | GET | `/cloud/project/{x}/database/m3db/{x}/maintenance` | OvhCloudPublicCloud/database/m3db/M3dbMaintenanceListGet.operation.ts |
+| publicCloud (v2) | GET | `/cloud/project/{x}/database/m3db/{x}/maintenance/{x}` | OvhCloudPublicCloud/database/m3db/M3dbMaintenanceGetGet.operation.ts |
+| publicCloud (v2) | POST | `/cloud/project/{x}/database/m3db/{x}/maintenance/{x}/apply` | OvhCloudPublicCloud/database/m3db/M3dbMaintenanceApplyPost.operation.ts |
+| publicCloud (v2) | GET | `/cloud/project/{x}/database/m3db/{x}/metric` | OvhCloudPublicCloud/database/m3db/M3dbMetricListGet.operation.ts |
+| publicCloud (v2) | GET | `/cloud/project/{x}/database/m3db/{x}/metric/{x}` | OvhCloudPublicCloud/database/m3db/M3dbMetricGetGet.operation.ts |
+| publicCloud (v2) | GET | `/cloud/project/{x}/database/m3db/{x}/namespace` | OvhCloudPublicCloud/database/m3db/M3dbNamespaceListGet.operation.ts |
+| publicCloud (v2) | POST | `/cloud/project/{x}/database/m3db/{x}/namespace` | OvhCloudPublicCloud/database/m3db/M3dbNamespaceCreatePost.operation.ts |
+| publicCloud (v2) | DELETE | `/cloud/project/{x}/database/m3db/{x}/namespace/{x}` | OvhCloudPublicCloud/database/m3db/M3dbNamespaceDeleteDelete.operation.ts |
+| publicCloud (v2) | GET | `/cloud/project/{x}/database/m3db/{x}/namespace/{x}` | OvhCloudPublicCloud/database/m3db/M3dbNamespaceGetGet.operation.ts |
+| publicCloud (v2) | PUT | `/cloud/project/{x}/database/m3db/{x}/namespace/{x}` | OvhCloudPublicCloud/database/m3db/M3dbNamespaceUpdatePut.operation.ts |
+| publicCloud (v2) | GET | `/cloud/project/{x}/database/m3db/{x}/node` | OvhCloudPublicCloud/database/m3db/M3dbNodeListGet.operation.ts |
+| publicCloud (v2) | GET | `/cloud/project/{x}/database/m3db/{x}/node/{x}` | OvhCloudPublicCloud/database/m3db/M3dbNodeGetGet.operation.ts |
+| publicCloud (v2) | GET | `/cloud/project/{x}/database/m3db/{x}/user` | OvhCloudPublicCloud/database/m3db/M3dbUserListGet.operation.ts |
+| publicCloud (v2) | POST | `/cloud/project/{x}/database/m3db/{x}/user` | OvhCloudPublicCloud/database/m3db/M3dbUserCreatePost.operation.ts |
+| publicCloud (v2) | DELETE | `/cloud/project/{x}/database/m3db/{x}/user/{x}` | OvhCloudPublicCloud/database/m3db/M3dbUserDeleteDelete.operation.ts |
+| publicCloud (v2) | GET | `/cloud/project/{x}/database/m3db/{x}/user/{x}` | OvhCloudPublicCloud/database/m3db/M3dbUserGetGet.operation.ts |
+| publicCloud (v2) | PUT | `/cloud/project/{x}/database/m3db/{x}/user/{x}` | OvhCloudPublicCloud/database/m3db/M3dbUserUpdatePut.operation.ts |
+| publicCloud (v2) | POST | `/cloud/project/{x}/database/m3db/{x}/user/{x}/credentials/reset` | OvhCloudPublicCloud/database/m3db/M3dbUserCredentialsResetPost.operation.ts |
 | publicCloud (v2) | GET | `/cloud/project/{x}/database/mongodb` | OvhCloudPublicCloud/database/mongodb/clusterListGet.operation.ts |
 | publicCloud (v2) | POST | `/cloud/project/{x}/database/mongodb` | OvhCloudPublicCloud/database/mongodb/clusterCreatePost.operation.ts |
 | publicCloud (v2) | DELETE | `/cloud/project/{x}/database/mongodb/{x}` | OvhCloudPublicCloud/database/mongodb/clusterDeleteDelete.operation.ts |
@@ -2101,36 +2123,6 @@ Ces opérations appellent un chemin qui ne correspond à aucun endpoint de la sp
 | publicCloud (v2) | DELETE | `/publicCloud/project/{x}/cloud/database/m3aggregator/{x}/user/{x}` | OvhCloudPublicCloud/database/m3aggregator/userDeleteDelete.operation.ts |
 | publicCloud (v2) | GET | `/publicCloud/project/{x}/cloud/database/m3aggregator/{x}/user/{x}` | OvhCloudPublicCloud/database/m3aggregator/userGetGet.operation.ts |
 | publicCloud (v2) | PUT | `/publicCloud/project/{x}/cloud/database/m3aggregator/{x}/user/{x}` | OvhCloudPublicCloud/database/m3aggregator/userUpdatePut.operation.ts |
-| publicCloud (v2) | GET | `/publicCloud/project/{x}/cloud/database/m3db` | OvhCloudPublicCloud/database/m3db/clusterListGet.operation.ts |
-| publicCloud (v2) | POST | `/publicCloud/project/{x}/cloud/database/m3db` | OvhCloudPublicCloud/database/m3db/clusterCreatePost.operation.ts |
-| publicCloud (v2) | DELETE | `/publicCloud/project/{x}/cloud/database/m3db/{x}` | OvhCloudPublicCloud/database/m3db/clusterDeleteDelete.operation.ts |
-| publicCloud (v2) | GET | `/publicCloud/project/{x}/cloud/database/m3db/{x}` | OvhCloudPublicCloud/database/m3db/clusterGetGet.operation.ts |
-| publicCloud (v2) | PUT | `/publicCloud/project/{x}/cloud/database/m3db/{x}` | OvhCloudPublicCloud/database/m3db/clusterUpdatePut.operation.ts |
-| publicCloud (v2) | GET | `/publicCloud/project/{x}/cloud/database/m3db/{x}/backup` | OvhCloudPublicCloud/database/m3db/backupListGet.operation.ts |
-| publicCloud (v2) | POST | `/publicCloud/project/{x}/cloud/database/m3db/{x}/backup` | OvhCloudPublicCloud/database/m3db/backupCreatePost.operation.ts |
-| publicCloud (v2) | DELETE | `/publicCloud/project/{x}/cloud/database/m3db/{x}/backup/{x}` | OvhCloudPublicCloud/database/m3db/backupDeleteDelete.operation.ts |
-| publicCloud (v2) | GET | `/publicCloud/project/{x}/cloud/database/m3db/{x}/backup/{x}` | OvhCloudPublicCloud/database/m3db/backupGetGet.operation.ts |
-| publicCloud (v2) | GET | `/publicCloud/project/{x}/cloud/database/m3db/{x}/certificate` | OvhCloudPublicCloud/database/m3db/certificateListGet.operation.ts |
-| publicCloud (v2) | POST | `/publicCloud/project/{x}/cloud/database/m3db/{x}/certificate` | OvhCloudPublicCloud/database/m3db/certificateCreatePost.operation.ts |
-| publicCloud (v2) | GET | `/publicCloud/project/{x}/cloud/database/m3db/{x}/ipRestriction` | OvhCloudPublicCloud/database/m3db/ipRestrictionListGet.operation.ts |
-| publicCloud (v2) | POST | `/publicCloud/project/{x}/cloud/database/m3db/{x}/ipRestriction` | OvhCloudPublicCloud/database/m3db/ipRestrictionCreatePost.operation.ts |
-| publicCloud (v2) | GET | `/publicCloud/project/{x}/cloud/database/m3db/{x}/log/subscription` | OvhCloudPublicCloud/database/m3db/logSubscriptionListGet.operation.ts |
-| publicCloud (v2) | POST | `/publicCloud/project/{x}/cloud/database/m3db/{x}/log/subscription` | OvhCloudPublicCloud/database/m3db/logSubscriptionCreatePost.operation.ts |
-| publicCloud (v2) | GET | `/publicCloud/project/{x}/cloud/database/m3db/{x}/log/subscription/{x}` | OvhCloudPublicCloud/database/m3db/logSubscriptionGetGet.operation.ts |
-| publicCloud (v2) | GET | `/publicCloud/project/{x}/cloud/database/m3db/{x}/maintenance` | OvhCloudPublicCloud/database/m3db/maintenanceGet.operation.ts |
-| publicCloud (v2) | PUT | `/publicCloud/project/{x}/cloud/database/m3db/{x}/maintenance` | OvhCloudPublicCloud/database/m3db/maintenanceUpdatePut.operation.ts |
-| publicCloud (v2) | GET | `/publicCloud/project/{x}/cloud/database/m3db/{x}/metric` | OvhCloudPublicCloud/database/m3db/metricGet.operation.ts |
-| publicCloud (v2) | GET | `/publicCloud/project/{x}/cloud/database/m3db/{x}/node` | OvhCloudPublicCloud/database/m3db/nodeListGet.operation.ts |
-| publicCloud (v2) | POST | `/publicCloud/project/{x}/cloud/database/m3db/{x}/node` | OvhCloudPublicCloud/database/m3db/nodeCreatePost.operation.ts |
-| publicCloud (v2) | DELETE | `/publicCloud/project/{x}/cloud/database/m3db/{x}/node/{x}` | OvhCloudPublicCloud/database/m3db/nodeDeleteDelete.operation.ts |
-| publicCloud (v2) | GET | `/publicCloud/project/{x}/cloud/database/m3db/{x}/node/{x}` | OvhCloudPublicCloud/database/m3db/nodeGetGet.operation.ts |
-| publicCloud (v2) | PUT | `/publicCloud/project/{x}/cloud/database/m3db/{x}/node/{x}` | OvhCloudPublicCloud/database/m3db/nodeUpdatePut.operation.ts |
-| publicCloud (v2) | GET | `/publicCloud/project/{x}/cloud/database/m3db/{x}/prometheus` | OvhCloudPublicCloud/database/m3db/prometheusGet.operation.ts |
-| publicCloud (v2) | GET | `/publicCloud/project/{x}/cloud/database/m3db/{x}/user` | OvhCloudPublicCloud/database/m3db/userListGet.operation.ts |
-| publicCloud (v2) | POST | `/publicCloud/project/{x}/cloud/database/m3db/{x}/user` | OvhCloudPublicCloud/database/m3db/userCreatePost.operation.ts |
-| publicCloud (v2) | DELETE | `/publicCloud/project/{x}/cloud/database/m3db/{x}/user/{x}` | OvhCloudPublicCloud/database/m3db/userDeleteDelete.operation.ts |
-| publicCloud (v2) | GET | `/publicCloud/project/{x}/cloud/database/m3db/{x}/user/{x}` | OvhCloudPublicCloud/database/m3db/userGetGet.operation.ts |
-| publicCloud (v2) | PUT | `/publicCloud/project/{x}/cloud/database/m3db/{x}/user/{x}` | OvhCloudPublicCloud/database/m3db/userUpdatePut.operation.ts |
 | publicCloud (v2) | GET | `/publicCloud/project/{x}/cloud/database/valkey` | OvhCloudPublicCloud/database/valkey/clusterListGet.operation.ts |
 | publicCloud (v2) | POST | `/publicCloud/project/{x}/cloud/database/valkey` | OvhCloudPublicCloud/database/valkey/clusterCreatePost.operation.ts |
 | publicCloud (v2) | DELETE | `/publicCloud/project/{x}/cloud/database/valkey/{x}` | OvhCloudPublicCloud/database/valkey/clusterDeleteDelete.operation.ts |
