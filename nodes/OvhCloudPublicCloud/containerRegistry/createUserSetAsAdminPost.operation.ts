@@ -53,10 +53,10 @@ export function description(displayOptions: IDisplayOptions): INodeProperties[] 
 }
 
 /**
- * Executes the Delete Registry User operation.
+ * Executes the Set User As Admin operation.
  *
- * HTTP method: DELETE
- * Endpoint: /publicCloud/project/{projectId}/containerRegistry/{registryId}/users/{userId}
+ * HTTP method: POST
+ * Endpoint: /publicCloud/project/{projectId}/containerRegistry/{registryId}/users/{userId}/setAsAdmin
  */
 export async function execute(this: IExecuteFunctions): Promise<INodeExecutionData[]> {
 	const client = new ApiClient(this);
@@ -66,8 +66,8 @@ export async function execute(this: IExecuteFunctions): Promise<INodeExecutionDa
 	const registryId = this.getNodeParameter('registryId', 0) as string;
 	const userId = this.getNodeParameter('userId', 0) as string;
 
-	const data = (await client.httpDelete(
-		`/publicCloud/project/${projectId}/containerRegistry/${registryId}/users/${userId}`,
+	const data = (await client.httpPost(
+		`/publicCloud/project/${projectId}/containerRegistry/${registryId}/users/${userId}/setAsAdmin`,
 	)) as IDataObject;
 
 	return this.helpers.returnJsonArray([data]);

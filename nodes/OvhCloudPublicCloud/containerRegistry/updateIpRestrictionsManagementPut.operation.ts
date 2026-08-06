@@ -41,22 +41,14 @@ export function description(displayOptions: IDisplayOptions): INodeProperties[] 
 			description: 'The registry ID',
 			displayOptions,
 		},
-		{
-			displayName: 'User ID',
-			name: 'userId',
-			type: 'string',
-			default: '',
-			required: true,
-			displayOptions,
-		},
 	];
 }
 
 /**
- * Executes the Delete Registry User operation.
+ * Executes the Update IP Restrictions Management operation.
  *
- * HTTP method: DELETE
- * Endpoint: /publicCloud/project/{projectId}/containerRegistry/{registryId}/users/{userId}
+ * HTTP method: PUT
+ * Endpoint: /publicCloud/project/{projectId}/containerRegistry/{registryId}/ipRestrictions/management
  */
 export async function execute(this: IExecuteFunctions): Promise<INodeExecutionData[]> {
 	const client = new ApiClient(this);
@@ -64,10 +56,9 @@ export async function execute(this: IExecuteFunctions): Promise<INodeExecutionDa
 		extractValue: true,
 	}) as string;
 	const registryId = this.getNodeParameter('registryId', 0) as string;
-	const userId = this.getNodeParameter('userId', 0) as string;
 
-	const data = (await client.httpDelete(
-		`/publicCloud/project/${projectId}/containerRegistry/${registryId}/users/${userId}`,
+	const data = (await client.httpPut(
+		`/publicCloud/project/${projectId}/containerRegistry/${registryId}/ipRestrictions/management`,
 	)) as IDataObject;
 
 	return this.helpers.returnJsonArray([data]);

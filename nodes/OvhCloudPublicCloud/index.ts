@@ -24,6 +24,23 @@ import {
 } from './project/getDetailGetV2.operation';
 
 import {
+	description as cloudAgreementsGetDescription,
+	execute as cloudAgreementsGetExecute,
+} from './cloud/agreementsGet.operation';
+import {
+	description as cloudEligibilityGetDescription,
+	execute as cloudEligibilityGetExecute,
+} from './cloud/eligibilityGet.operation';
+import {
+	description as cloudOrderListGetDescription,
+	execute as cloudOrderListGetExecute,
+} from './cloud/orderListGet.operation';
+import {
+	description as cloudOrderRuleAvailabilityGetDescription,
+	execute as cloudOrderRuleAvailabilityGetExecute,
+} from './cloud/orderRuleAvailabilityGet.operation';
+
+import {
 	description as rancherServiceListGetDescription,
 	execute as rancherServiceListGetExecute,
 } from './rancher/serviceListGet.operation';
@@ -3005,6 +3022,10 @@ import {
 	execute as networkUpdateSubnetPutExecute,
 } from './network/updateSubnetPut.operation';
 import {
+	description as networkActivatePrivateNetworkRegionPostDescription,
+	execute as networkActivatePrivateNetworkRegionPostExecute,
+} from './network/activatePrivateNetworkRegionPost.operation';
+import {
 	description as regionGetGetDescription,
 	execute as regionGetGetExecute,
 } from './region/regionGetGet.operation';
@@ -3288,6 +3309,62 @@ import {
 	description as containerRegistryUpdatePutDescription,
 	execute as containerRegistryUpdatePutExecute,
 } from './containerRegistry/updatePut.operation';
+import {
+	description as containerRegistryGetCapabilitiesPlanGetDescription,
+	execute as containerRegistryGetCapabilitiesPlanGetExecute,
+} from './containerRegistry/getCapabilitiesPlanGet.operation';
+import {
+	description as containerRegistryDeleteIamDeleteDescription,
+	execute as containerRegistryDeleteIamDeleteExecute,
+} from './containerRegistry/deleteIamDelete.operation';
+import {
+	description as containerRegistryCreateIamPostDescription,
+	execute as containerRegistryCreateIamPostExecute,
+} from './containerRegistry/createIamPost.operation';
+import {
+	description as containerRegistryGetIpRestrictionsManagementListGetDescription,
+	execute as containerRegistryGetIpRestrictionsManagementListGetExecute,
+} from './containerRegistry/getIpRestrictionsManagementListGet.operation';
+import {
+	description as containerRegistryUpdateIpRestrictionsManagementPutDescription,
+	execute as containerRegistryUpdateIpRestrictionsManagementPutExecute,
+} from './containerRegistry/updateIpRestrictionsManagementPut.operation';
+import {
+	description as containerRegistryGetIpRestrictionsRegistryListGetDescription,
+	execute as containerRegistryGetIpRestrictionsRegistryListGetExecute,
+} from './containerRegistry/getIpRestrictionsRegistryListGet.operation';
+import {
+	description as containerRegistryUpdateIpRestrictionsRegistryPutDescription,
+	execute as containerRegistryUpdateIpRestrictionsRegistryPutExecute,
+} from './containerRegistry/updateIpRestrictionsRegistryPut.operation';
+import {
+	description as containerRegistryDeleteOpenIdConnectDeleteDescription,
+	execute as containerRegistryDeleteOpenIdConnectDeleteExecute,
+} from './containerRegistry/deleteOpenIdConnectDelete.operation';
+import {
+	description as containerRegistryGetOpenIdConnectGetDescription,
+	execute as containerRegistryGetOpenIdConnectGetExecute,
+} from './containerRegistry/getOpenIdConnectGet.operation';
+import {
+	description as containerRegistryCreateOpenIdConnectPostDescription,
+	execute as containerRegistryCreateOpenIdConnectPostExecute,
+} from './containerRegistry/createOpenIdConnectPost.operation';
+import {
+	description as containerRegistryUpdateOpenIdConnectPutDescription,
+	execute as containerRegistryUpdateOpenIdConnectPutExecute,
+} from './containerRegistry/updateOpenIdConnectPut.operation';
+import {
+	description as containerRegistryGetPlanGetDescription,
+	execute as containerRegistryGetPlanGetExecute,
+} from './containerRegistry/getPlanGet.operation';
+import {
+	description as containerRegistryUpdatePlanPutDescription,
+	execute as containerRegistryUpdatePlanPutExecute,
+} from './containerRegistry/updatePlanPut.operation';
+import {
+	description as containerRegistryCreateUserSetAsAdminPostDescription,
+	execute as containerRegistryCreateUserSetAsAdminPostExecute,
+} from './containerRegistry/createUserSetAsAdminPost.operation';
 import {
 	description as creditGetDetailGetDescription,
 	execute as creditGetDetailGetExecute,
@@ -6959,6 +7036,11 @@ export function description(displayOptions: IDisplayOptions): INodeProperties[] 
 				action: 'Update subnet',
 			},
 			{
+				name: 'networkActivatePrivateNetworkRegionPost',
+				value: 'networkActivatePrivateNetworkRegionPost',
+				action: 'Activate private network region',
+			},
+			{
 				name: 'regionGetGet',
 				value: 'regionGetGet',
 				action: 'Get region',
@@ -7164,6 +7246,26 @@ export function description(displayOptions: IDisplayOptions): INodeProperties[] 
 				action: 'Update user role',
 			},
 			{
+				name: 'cloudAgreementsGet',
+				value: 'cloudAgreementsGet',
+				action: 'Get agreements',
+			},
+			{
+				name: 'cloudEligibilityGet',
+				value: 'cloudEligibilityGet',
+				action: 'Get eligibility',
+			},
+			{
+				name: 'cloudOrderListGet',
+				value: 'cloudOrderListGet',
+				action: 'List orders',
+			},
+			{
+				name: 'cloudOrderRuleAvailabilityGet',
+				value: 'cloudOrderRuleAvailabilityGet',
+				action: 'Get order rule availability',
+			},
+			{
 				name: 'aclCreatePost',
 				value: 'aclCreatePost',
 				action: 'Create ACL',
@@ -7312,6 +7414,76 @@ export function description(displayOptions: IDisplayOptions): INodeProperties[] 
 				name: 'containerRegistryUpdatePut',
 				value: 'containerRegistryUpdatePut',
 				action: 'Update container registry',
+			},
+			{
+				name: 'containerRegistryGetCapabilitiesPlanGet',
+				value: 'containerRegistryGetCapabilitiesPlanGet',
+				action: 'Get container registry capabilities plan',
+			},
+			{
+				name: 'containerRegistryDeleteIamDelete',
+				value: 'containerRegistryDeleteIamDelete',
+				action: 'Delete IAM',
+			},
+			{
+				name: 'containerRegistryCreateIamPost',
+				value: 'containerRegistryCreateIamPost',
+				action: 'Create IAM',
+			},
+			{
+				name: 'containerRegistryGetIpRestrictionsManagementListGet',
+				value: 'containerRegistryGetIpRestrictionsManagementListGet',
+				action: 'Get IP restrictions management',
+			},
+			{
+				name: 'containerRegistryUpdateIpRestrictionsManagementPut',
+				value: 'containerRegistryUpdateIpRestrictionsManagementPut',
+				action: 'Update IP restrictions management',
+			},
+			{
+				name: 'containerRegistryGetIpRestrictionsRegistryListGet',
+				value: 'containerRegistryGetIpRestrictionsRegistryListGet',
+				action: 'Get IP restrictions registry',
+			},
+			{
+				name: 'containerRegistryUpdateIpRestrictionsRegistryPut',
+				value: 'containerRegistryUpdateIpRestrictionsRegistryPut',
+				action: 'Update IP restrictions registry',
+			},
+			{
+				name: 'containerRegistryDeleteOpenIdConnectDelete',
+				value: 'containerRegistryDeleteOpenIdConnectDelete',
+				action: 'Delete OpenID Connect',
+			},
+			{
+				name: 'containerRegistryGetOpenIdConnectGet',
+				value: 'containerRegistryGetOpenIdConnectGet',
+				action: 'Get OpenID Connect',
+			},
+			{
+				name: 'containerRegistryCreateOpenIdConnectPost',
+				value: 'containerRegistryCreateOpenIdConnectPost',
+				action: 'Create OpenID Connect',
+			},
+			{
+				name: 'containerRegistryUpdateOpenIdConnectPut',
+				value: 'containerRegistryUpdateOpenIdConnectPut',
+				action: 'Update OpenID Connect',
+			},
+			{
+				name: 'containerRegistryGetPlanGet',
+				value: 'containerRegistryGetPlanGet',
+				action: 'Get plan',
+			},
+			{
+				name: 'containerRegistryUpdatePlanPut',
+				value: 'containerRegistryUpdatePlanPut',
+				action: 'Update plan',
+			},
+			{
+				name: 'containerRegistryCreateUserSetAsAdminPost',
+				value: 'containerRegistryCreateUserSetAsAdminPost',
+				action: 'Set user as admin',
 			},
 			{
 				name: 'creditGetDetailGet',
@@ -10108,7 +10280,6 @@ export function description(displayOptions: IDisplayOptions): INodeProperties[] 
 			...displayOptions,
 			show: { publicCloudOperation: ['m3aggregatorNodeGetGet'] },
 		}) as INodeProperties[]),
-
 	);
 	properties.push(
 		...(m3dbClusterListGetDescription({
@@ -11597,6 +11768,12 @@ export function description(displayOptions: IDisplayOptions): INodeProperties[] 
 		}) as INodeProperties[]),
 	);
 	properties.push(
+		...(networkActivatePrivateNetworkRegionPostDescription({
+			...displayOptions,
+			show: { publicCloudOperation: ['networkActivatePrivateNetworkRegionPost'] },
+		}) as INodeProperties[]),
+	);
+	properties.push(
 		...(regionGetGetDescription({
 			...displayOptions,
 			show: { publicCloudOperation: ['regionGetGet'] },
@@ -11843,6 +12020,30 @@ export function description(displayOptions: IDisplayOptions): INodeProperties[] 
 		}) as INodeProperties[]),
 	);
 	properties.push(
+		...(cloudAgreementsGetDescription({
+			...displayOptions,
+			show: { publicCloudOperation: ['cloudAgreementsGet'] },
+		}) as INodeProperties[]),
+	);
+	properties.push(
+		...(cloudEligibilityGetDescription({
+			...displayOptions,
+			show: { publicCloudOperation: ['cloudEligibilityGet'] },
+		}) as INodeProperties[]),
+	);
+	properties.push(
+		...(cloudOrderListGetDescription({
+			...displayOptions,
+			show: { publicCloudOperation: ['cloudOrderListGet'] },
+		}) as INodeProperties[]),
+	);
+	properties.push(
+		...(cloudOrderRuleAvailabilityGetDescription({
+			...displayOptions,
+			show: { publicCloudOperation: ['cloudOrderRuleAvailabilityGet'] },
+		}) as INodeProperties[]),
+	);
+	properties.push(
 		...(aclCreatePostDescription({
 			...displayOptions,
 			show: { publicCloudOperation: ['aclCreatePost'] },
@@ -12020,6 +12221,90 @@ export function description(displayOptions: IDisplayOptions): INodeProperties[] 
 		...(containerRegistryUpdatePutDescription({
 			...displayOptions,
 			show: { publicCloudOperation: ['containerRegistryUpdatePut'] },
+		}) as INodeProperties[]),
+	);
+	properties.push(
+		...(containerRegistryGetCapabilitiesPlanGetDescription({
+			...displayOptions,
+			show: { publicCloudOperation: ['containerRegistryGetCapabilitiesPlanGet'] },
+		}) as INodeProperties[]),
+	);
+	properties.push(
+		...(containerRegistryDeleteIamDeleteDescription({
+			...displayOptions,
+			show: { publicCloudOperation: ['containerRegistryDeleteIamDelete'] },
+		}) as INodeProperties[]),
+	);
+	properties.push(
+		...(containerRegistryCreateIamPostDescription({
+			...displayOptions,
+			show: { publicCloudOperation: ['containerRegistryCreateIamPost'] },
+		}) as INodeProperties[]),
+	);
+	properties.push(
+		...(containerRegistryGetIpRestrictionsManagementListGetDescription({
+			...displayOptions,
+			show: { publicCloudOperation: ['containerRegistryGetIpRestrictionsManagementListGet'] },
+		}) as INodeProperties[]),
+	);
+	properties.push(
+		...(containerRegistryUpdateIpRestrictionsManagementPutDescription({
+			...displayOptions,
+			show: { publicCloudOperation: ['containerRegistryUpdateIpRestrictionsManagementPut'] },
+		}) as INodeProperties[]),
+	);
+	properties.push(
+		...(containerRegistryGetIpRestrictionsRegistryListGetDescription({
+			...displayOptions,
+			show: { publicCloudOperation: ['containerRegistryGetIpRestrictionsRegistryListGet'] },
+		}) as INodeProperties[]),
+	);
+	properties.push(
+		...(containerRegistryUpdateIpRestrictionsRegistryPutDescription({
+			...displayOptions,
+			show: { publicCloudOperation: ['containerRegistryUpdateIpRestrictionsRegistryPut'] },
+		}) as INodeProperties[]),
+	);
+	properties.push(
+		...(containerRegistryDeleteOpenIdConnectDeleteDescription({
+			...displayOptions,
+			show: { publicCloudOperation: ['containerRegistryDeleteOpenIdConnectDelete'] },
+		}) as INodeProperties[]),
+	);
+	properties.push(
+		...(containerRegistryGetOpenIdConnectGetDescription({
+			...displayOptions,
+			show: { publicCloudOperation: ['containerRegistryGetOpenIdConnectGet'] },
+		}) as INodeProperties[]),
+	);
+	properties.push(
+		...(containerRegistryCreateOpenIdConnectPostDescription({
+			...displayOptions,
+			show: { publicCloudOperation: ['containerRegistryCreateOpenIdConnectPost'] },
+		}) as INodeProperties[]),
+	);
+	properties.push(
+		...(containerRegistryUpdateOpenIdConnectPutDescription({
+			...displayOptions,
+			show: { publicCloudOperation: ['containerRegistryUpdateOpenIdConnectPut'] },
+		}) as INodeProperties[]),
+	);
+	properties.push(
+		...(containerRegistryGetPlanGetDescription({
+			...displayOptions,
+			show: { publicCloudOperation: ['containerRegistryGetPlanGet'] },
+		}) as INodeProperties[]),
+	);
+	properties.push(
+		...(containerRegistryUpdatePlanPutDescription({
+			...displayOptions,
+			show: { publicCloudOperation: ['containerRegistryUpdatePlanPut'] },
+		}) as INodeProperties[]),
+	);
+	properties.push(
+		...(containerRegistryCreateUserSetAsAdminPostDescription({
+			...displayOptions,
+			show: { publicCloudOperation: ['containerRegistryCreateUserSetAsAdminPost'] },
 		}) as INodeProperties[]),
 	);
 	properties.push(
@@ -13293,7 +13578,7 @@ export async function execute(
 		case 'm3aggregatorNodeGetGet':
 			return m3aggregatorNodeGetGetExecute.call(this);
 
-				case 'M3dbClusterListGet':
+		case 'M3dbClusterListGet':
 			return m3dbClusterListGetExecute.call(this);
 		case 'M3dbClusterCreatePost':
 			return m3dbClusterCreatePostExecute.call(this);
@@ -13385,7 +13670,7 @@ export async function execute(
 			return m3dbUserUpdatePutExecute.call(this);
 		case 'M3dbUserCredentialsResetPost':
 			return m3dbUserCredentialsResetPostExecute.call(this);
-case 'mongodbClusterListGet':
+		case 'mongodbClusterListGet':
 			return mongodbClusterListGetExecute.call(this);
 		case 'mongodbClusterGetGet':
 			return mongodbClusterGetGetExecute.call(this);
@@ -13857,6 +14142,8 @@ case 'mongodbClusterListGet':
 			return networkUpdatePrivateNetworkPutExecute.call(this);
 		case 'networkUpdateSubnetPut':
 			return networkUpdateSubnetPutExecute.call(this);
+		case 'networkActivatePrivateNetworkRegionPost':
+			return networkActivatePrivateNetworkRegionPostExecute.call(this);
 		case 'regionGetGet':
 			return regionGetGetExecute.call(this);
 		case 'regionListGet':
@@ -13939,6 +14226,14 @@ case 'mongodbClusterListGet':
 			return userRegeneratePasswordPostExecute.call(this);
 		case 'userUpdateUserRolePut':
 			return userUpdateUserRolePutExecute.call(this);
+		case 'cloudAgreementsGet':
+			return cloudAgreementsGetExecute.call(this);
+		case 'cloudEligibilityGet':
+			return cloudEligibilityGetExecute.call(this);
+		case 'cloudOrderListGet':
+			return cloudOrderListGetExecute.call(this);
+		case 'cloudOrderRuleAvailabilityGet':
+			return cloudOrderRuleAvailabilityGetExecute.call(this);
 		case 'aclCreatePost':
 			return aclCreatePostExecute.call(this);
 		case 'aclDeleteDelete':
@@ -13999,6 +14294,34 @@ case 'mongodbClusterListGet':
 			return containerRegistryListUsersGetExecute.call(this);
 		case 'containerRegistryUpdatePut':
 			return containerRegistryUpdatePutExecute.call(this);
+		case 'containerRegistryGetCapabilitiesPlanGet':
+			return containerRegistryGetCapabilitiesPlanGetExecute.call(this);
+		case 'containerRegistryDeleteIamDelete':
+			return containerRegistryDeleteIamDeleteExecute.call(this);
+		case 'containerRegistryCreateIamPost':
+			return containerRegistryCreateIamPostExecute.call(this);
+		case 'containerRegistryGetIpRestrictionsManagementListGet':
+			return containerRegistryGetIpRestrictionsManagementListGetExecute.call(this);
+		case 'containerRegistryUpdateIpRestrictionsManagementPut':
+			return containerRegistryUpdateIpRestrictionsManagementPutExecute.call(this);
+		case 'containerRegistryGetIpRestrictionsRegistryListGet':
+			return containerRegistryGetIpRestrictionsRegistryListGetExecute.call(this);
+		case 'containerRegistryUpdateIpRestrictionsRegistryPut':
+			return containerRegistryUpdateIpRestrictionsRegistryPutExecute.call(this);
+		case 'containerRegistryDeleteOpenIdConnectDelete':
+			return containerRegistryDeleteOpenIdConnectDeleteExecute.call(this);
+		case 'containerRegistryGetOpenIdConnectGet':
+			return containerRegistryGetOpenIdConnectGetExecute.call(this);
+		case 'containerRegistryCreateOpenIdConnectPost':
+			return containerRegistryCreateOpenIdConnectPostExecute.call(this);
+		case 'containerRegistryUpdateOpenIdConnectPut':
+			return containerRegistryUpdateOpenIdConnectPutExecute.call(this);
+		case 'containerRegistryGetPlanGet':
+			return containerRegistryGetPlanGetExecute.call(this);
+		case 'containerRegistryUpdatePlanPut':
+			return containerRegistryUpdatePlanPutExecute.call(this);
+		case 'containerRegistryCreateUserSetAsAdminPost':
+			return containerRegistryCreateUserSetAsAdminPostExecute.call(this);
 		case 'creditGetDetailGet':
 			return creditGetDetailGetExecute.call(this);
 		case 'creditListGet':

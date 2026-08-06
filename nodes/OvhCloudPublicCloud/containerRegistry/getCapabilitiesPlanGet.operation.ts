@@ -1,5 +1,4 @@
 import type {
-	IDataObject,
 	IExecuteFunctions,
 	IDisplayOptions,
 	INodeExecutionData,
@@ -41,22 +40,14 @@ export function description(displayOptions: IDisplayOptions): INodeProperties[] 
 			description: 'The registry ID',
 			displayOptions,
 		},
-		{
-			displayName: 'User ID',
-			name: 'userId',
-			type: 'string',
-			default: '',
-			required: true,
-			displayOptions,
-		},
 	];
 }
 
 /**
- * Executes the Delete Registry User operation.
+ * Executes the Get Container Registry Capabilities Plan operation.
  *
- * HTTP method: DELETE
- * Endpoint: /publicCloud/project/{projectId}/containerRegistry/{registryId}/users/{userId}
+ * HTTP method: GET
+ * Endpoint: /publicCloud/project/{projectId}/containerRegistry/{registryId}/capabilities/plan
  */
 export async function execute(this: IExecuteFunctions): Promise<INodeExecutionData[]> {
 	const client = new ApiClient(this);
@@ -64,11 +55,14 @@ export async function execute(this: IExecuteFunctions): Promise<INodeExecutionDa
 		extractValue: true,
 	}) as string;
 	const registryId = this.getNodeParameter('registryId', 0) as string;
-	const userId = this.getNodeParameter('userId', 0) as string;
 
-	const data = (await client.httpDelete(
-		`/publicCloud/project/${projectId}/containerRegistry/${registryId}/users/${userId}`,
-	)) as IDataObject;
+	const data = (await client.httpGet(
+		`/publicCloud/project/${projectId}/containerRegistry/${registryId}/capabilities/plan`,
+	)) as unknown[];
 
-	return this.helpers.returnJsonArray([data]);
+	if (!Array.isArray(data)) {
+		return this.helpers.returnJsonArray([data]);
+	}
+
+	return this.helpers.returnJsonArray(data.map((item) => item as INodeExecutionData));
 }

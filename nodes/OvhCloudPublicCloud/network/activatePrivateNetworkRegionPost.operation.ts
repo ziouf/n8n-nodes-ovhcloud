@@ -33,17 +33,8 @@ export function description(displayOptions: IDisplayOptions): INodeProperties[] 
 			displayOptions,
 		},
 		{
-			displayName: 'Container Registry ID',
-			name: 'registryId',
-			type: 'string',
-			default: '',
-			required: true,
-			description: 'The registry ID',
-			displayOptions,
-		},
-		{
-			displayName: 'User ID',
-			name: 'userId',
+			displayName: 'Private Network ID',
+			name: 'pnId',
 			type: 'string',
 			default: '',
 			required: true,
@@ -53,21 +44,20 @@ export function description(displayOptions: IDisplayOptions): INodeProperties[] 
 }
 
 /**
- * Executes the Delete Registry User operation.
+ * Executes the Activate Private Network Region operation.
  *
- * HTTP method: DELETE
- * Endpoint: /publicCloud/project/{projectId}/containerRegistry/{registryId}/users/{userId}
+ * HTTP method: POST
+ * Endpoint: /publicCloud/project/{projectId}/network/private/{networkId}/region
  */
 export async function execute(this: IExecuteFunctions): Promise<INodeExecutionData[]> {
 	const client = new ApiClient(this);
 	const projectId = this.getNodeParameter('publicCloudProjectId', 0, '', {
 		extractValue: true,
 	}) as string;
-	const registryId = this.getNodeParameter('registryId', 0) as string;
-	const userId = this.getNodeParameter('userId', 0) as string;
+	const pnId = this.getNodeParameter('pnId', 0) as string;
 
-	const data = (await client.httpDelete(
-		`/publicCloud/project/${projectId}/containerRegistry/${registryId}/users/${userId}`,
+	const data = (await client.httpPost(
+		`/publicCloud/project/${projectId}/network/private/${pnId}/region`,
 	)) as IDataObject;
 
 	return this.helpers.returnJsonArray([data]);

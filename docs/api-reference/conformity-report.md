@@ -1,16 +1,16 @@
 # OVHcloud API Conformity Report
 
-> Généré par `scripts/audit-conformity.js` le 2026-08-06T06:46:37.621Z. Document généré automatiquement — ne pas éditer à la main.
+> Généré par `scripts/audit-conformity.js` le 2026-08-06T07:26:37.491Z. Document généré automatiquement — ne pas éditer à la main.
 
 Ce rapport vérifie que les opérations des nodes respectent leur spec (méthode, chemin, paramètres path requis, query requis, champs body requis).
 
 ## Résumé
 
-- **Opérations auditées** : 5913
+- **Opérations auditées** : 5951
 - **Conformes** : 3673
-- **Non conformes** : 2240
-- **Sans correspondance spec** (informatif) : 1924
-- **Taux de conformité** : **62.1%**
+- **Non conformes** : 2278
+- **Sans correspondance spec** (informatif) : 1962
+- **Taux de conformité** : **61.7%**
 
 ## Conformité par spec
 
@@ -45,7 +45,7 @@ Triée par taux de non-conformité décroissant.
 | vrack (v1) | 12 | 4 | 1 | 33.3% |
 | veeamCloudConnect (v1) | 14 | 13 | 1 | 92.9% |
 | vps (v1) | 63 | 20 | 4 | 31.7% |
-| cloud (v1) | 949 | 622 | 44 | 65.5% |
+| cloud (v1) | 968 | 622 | 44 | 64.3% |
 | order (v1) | 166 | 31 | 6 | 18.7% |
 | me (v1) | 309 | 300 | 9 | 97.1% |
 | dedicated (v1) | 69 | 31 | 2 | 44.9% |
@@ -54,7 +54,7 @@ Triée par taux de non-conformité décroissant.
 | webhosting (v2) | 246 | 12 | 3 | 4.9% |
 | domain (v1) | 119 | 109 | 1 | 91.6% |
 | telephony (v1) | 644 | 602 | 5 | 93.5% |
-| publicCloud (v2) | 949 | 26 | 4 | 2.7% |
+| publicCloud (v2) | 968 | 26 | 4 | 2.7% |
 | price (v1) | 581 | 581 | 0 | 100% |
 | sms (v1) | 126 | 124 | 0 | 98.4% |
 | domain (v2) | 119 | 9 | 0 | 7.6% |
@@ -642,6 +642,10 @@ Ces opérations appellent un chemin qui ne correspond à aucun endpoint de la sp
 | cloud (v1) | PUT | `/cloud/project/{x}/database/postgresql/{x}/node/{x}` | OvhCloudPublicCloud/database/postgresql/nodeUpdatePut.operation.ts |
 | cloud (v1) | POST | `/cloud/project/{x}/database/postgresql/enableWrites` | OvhCloudPublicCloud/database/postgresql/enableWritesPost.operation.ts |
 | cloud (v1) | POST | `/cloud/project/{x}/database/postgresql/prometheus/credentials/reset` | OvhCloudPublicCloud/database/postgresql/prometheusCredentialsResetPost.operation.ts |
+| cloud (v1) | GET | `/publicCloud/agreements` | OvhCloudPublicCloud/cloud/agreementsGet.operation.ts |
+| cloud (v1) | GET | `/publicCloud/eligibility` | OvhCloudPublicCloud/cloud/eligibilityGet.operation.ts |
+| cloud (v1) | GET | `/publicCloud/order` | OvhCloudPublicCloud/cloud/orderListGet.operation.ts |
+| cloud (v1) | GET | `/publicCloud/order/rule/availability` | OvhCloudPublicCloud/cloud/orderRuleAvailabilityGet.operation.ts |
 | cloud (v1) | GET | `/publicCloud/project` | OvhCloudPublicCloud/project/listGet.operation.ts |
 | cloud (v1) | GET | `/publicCloud/project` | OvhCloudPublicCloud/project/listGetV2.operation.ts |
 | cloud (v1) | GET | `/publicCloud/project/{x}` | OvhCloudPublicCloud/project/getDetailGet.operation.ts |
@@ -738,10 +742,24 @@ Ces opérations appellent un chemin qui ne correspond à aucun endpoint de la sp
 | cloud (v1) | DELETE | `/publicCloud/project/{x}/containerRegistry/{x}` | OvhCloudPublicCloud/containerRegistry/deleteDelete.operation.ts |
 | cloud (v1) | GET | `/publicCloud/project/{x}/containerRegistry/{x}` | OvhCloudPublicCloud/containerRegistry/getDetailGet.operation.ts |
 | cloud (v1) | PUT | `/publicCloud/project/{x}/containerRegistry/{x}` | OvhCloudPublicCloud/containerRegistry/updatePut.operation.ts |
-| cloud (v1) | GET | `/publicCloud/project/{x}/containerRegistry/{x}/user` | OvhCloudPublicCloud/containerRegistry/listUsersGet.operation.ts |
-| cloud (v1) | POST | `/publicCloud/project/{x}/containerRegistry/{x}/user` | OvhCloudPublicCloud/containerRegistry/createUserPost.operation.ts |
-| cloud (v1) | DELETE | `/publicCloud/project/{x}/containerRegistry/{x}/user/{x}` | OvhCloudPublicCloud/containerRegistry/deleteUserDelete.operation.ts |
-| cloud (v1) | GET | `/publicCloud/project/{x}/containerRegistry/{x}/user/{x}` | OvhCloudPublicCloud/containerRegistry/getUserDetailGet.operation.ts |
+| cloud (v1) | GET | `/publicCloud/project/{x}/containerRegistry/{x}/capabilities/plan` | OvhCloudPublicCloud/containerRegistry/getCapabilitiesPlanGet.operation.ts |
+| cloud (v1) | DELETE | `/publicCloud/project/{x}/containerRegistry/{x}/iam` | OvhCloudPublicCloud/containerRegistry/deleteIamDelete.operation.ts |
+| cloud (v1) | POST | `/publicCloud/project/{x}/containerRegistry/{x}/iam` | OvhCloudPublicCloud/containerRegistry/createIamPost.operation.ts |
+| cloud (v1) | GET | `/publicCloud/project/{x}/containerRegistry/{x}/ipRestrictions/management` | OvhCloudPublicCloud/containerRegistry/getIpRestrictionsManagementListGet.operation.ts |
+| cloud (v1) | PUT | `/publicCloud/project/{x}/containerRegistry/{x}/ipRestrictions/management` | OvhCloudPublicCloud/containerRegistry/updateIpRestrictionsManagementPut.operation.ts |
+| cloud (v1) | GET | `/publicCloud/project/{x}/containerRegistry/{x}/ipRestrictions/registry` | OvhCloudPublicCloud/containerRegistry/getIpRestrictionsRegistryListGet.operation.ts |
+| cloud (v1) | PUT | `/publicCloud/project/{x}/containerRegistry/{x}/ipRestrictions/registry` | OvhCloudPublicCloud/containerRegistry/updateIpRestrictionsRegistryPut.operation.ts |
+| cloud (v1) | DELETE | `/publicCloud/project/{x}/containerRegistry/{x}/openIdConnect` | OvhCloudPublicCloud/containerRegistry/deleteOpenIdConnectDelete.operation.ts |
+| cloud (v1) | GET | `/publicCloud/project/{x}/containerRegistry/{x}/openIdConnect` | OvhCloudPublicCloud/containerRegistry/getOpenIdConnectGet.operation.ts |
+| cloud (v1) | POST | `/publicCloud/project/{x}/containerRegistry/{x}/openIdConnect` | OvhCloudPublicCloud/containerRegistry/createOpenIdConnectPost.operation.ts |
+| cloud (v1) | PUT | `/publicCloud/project/{x}/containerRegistry/{x}/openIdConnect` | OvhCloudPublicCloud/containerRegistry/updateOpenIdConnectPut.operation.ts |
+| cloud (v1) | GET | `/publicCloud/project/{x}/containerRegistry/{x}/plan` | OvhCloudPublicCloud/containerRegistry/getPlanGet.operation.ts |
+| cloud (v1) | PUT | `/publicCloud/project/{x}/containerRegistry/{x}/plan` | OvhCloudPublicCloud/containerRegistry/updatePlanPut.operation.ts |
+| cloud (v1) | GET | `/publicCloud/project/{x}/containerRegistry/{x}/users` | OvhCloudPublicCloud/containerRegistry/listUsersGet.operation.ts |
+| cloud (v1) | POST | `/publicCloud/project/{x}/containerRegistry/{x}/users` | OvhCloudPublicCloud/containerRegistry/createUserPost.operation.ts |
+| cloud (v1) | DELETE | `/publicCloud/project/{x}/containerRegistry/{x}/users/{x}` | OvhCloudPublicCloud/containerRegistry/deleteUserDelete.operation.ts |
+| cloud (v1) | GET | `/publicCloud/project/{x}/containerRegistry/{x}/users/{x}` | OvhCloudPublicCloud/containerRegistry/getUserDetailGet.operation.ts |
+| cloud (v1) | POST | `/publicCloud/project/{x}/containerRegistry/{x}/users/{x}/setAsAdmin` | OvhCloudPublicCloud/containerRegistry/createUserSetAsAdminPost.operation.ts |
 | cloud (v1) | GET | `/publicCloud/project/{x}/credit` | OvhCloudPublicCloud/credit/listGet.operation.ts |
 | cloud (v1) | GET | `/publicCloud/project/{x}/credit/{x}` | OvhCloudPublicCloud/credit/getDetailGet.operation.ts |
 | cloud (v1) | GET | `/publicCloud/project/{x}/flavor` | OvhCloudPublicCloud/flavor/listGet.operation.ts |
@@ -780,17 +798,18 @@ Ces opérations appellent un chemin qui ne correspond à aucun endpoint de la sp
 | cloud (v1) | DELETE | `/publicCloud/project/{x}/loadbalancer/{x}` | OvhCloudPublicCloud/loadbalancer/deleteDelete.operation.ts |
 | cloud (v1) | GET | `/publicCloud/project/{x}/loadbalancer/{x}` | OvhCloudPublicCloud/loadbalancer/getDetailGet.operation.ts |
 | cloud (v1) | PUT | `/publicCloud/project/{x}/loadbalancer/{x}` | OvhCloudPublicCloud/loadbalancer/updatePut.operation.ts |
-| cloud (v1) | GET | `/publicCloud/project/{x}/network/privateNetwork` | OvhCloudPublicCloud/network/listPrivateNetworksGet.operation.ts |
-| cloud (v1) | POST | `/publicCloud/project/{x}/network/privateNetwork` | OvhCloudPublicCloud/network/createPrivateNetworkPost.operation.ts |
-| cloud (v1) | DELETE | `/publicCloud/project/{x}/network/privateNetwork/{x}` | OvhCloudPublicCloud/network/deletePrivateNetworkDelete.operation.ts |
-| cloud (v1) | GET | `/publicCloud/project/{x}/network/privateNetwork/{x}` | OvhCloudPublicCloud/network/getPrivateNetworkDetailGet.operation.ts |
-| cloud (v1) | PUT | `/publicCloud/project/{x}/network/privateNetwork/{x}` | OvhCloudPublicCloud/network/updatePrivateNetworkPut.operation.ts |
-| cloud (v1) | GET | `/publicCloud/project/{x}/network/publicNetwork` | OvhCloudPublicCloud/network/listPublicNetworksGet.operation.ts |
-| cloud (v1) | GET | `/publicCloud/project/{x}/network/subnet` | OvhCloudPublicCloud/network/listSubnetsGet.operation.ts |
-| cloud (v1) | POST | `/publicCloud/project/{x}/network/subnet` | OvhCloudPublicCloud/network/createSubnetPost.operation.ts |
-| cloud (v1) | DELETE | `/publicCloud/project/{x}/network/subnet/{x}` | OvhCloudPublicCloud/network/deleteSubnetDelete.operation.ts |
+| cloud (v1) | GET | `/publicCloud/project/{x}/network/private` | OvhCloudPublicCloud/network/listPrivateNetworksGet.operation.ts |
+| cloud (v1) | POST | `/publicCloud/project/{x}/network/private` | OvhCloudPublicCloud/network/createPrivateNetworkPost.operation.ts |
+| cloud (v1) | DELETE | `/publicCloud/project/{x}/network/private/{x}` | OvhCloudPublicCloud/network/deletePrivateNetworkDelete.operation.ts |
+| cloud (v1) | GET | `/publicCloud/project/{x}/network/private/{x}` | OvhCloudPublicCloud/network/getPrivateNetworkDetailGet.operation.ts |
+| cloud (v1) | PUT | `/publicCloud/project/{x}/network/private/{x}` | OvhCloudPublicCloud/network/updatePrivateNetworkPut.operation.ts |
+| cloud (v1) | POST | `/publicCloud/project/{x}/network/private/{x}/region` | OvhCloudPublicCloud/network/activatePrivateNetworkRegionPost.operation.ts |
+| cloud (v1) | GET | `/publicCloud/project/{x}/network/private/{x}/subnet` | OvhCloudPublicCloud/network/listSubnetsGet.operation.ts |
+| cloud (v1) | POST | `/publicCloud/project/{x}/network/private/{x}/subnet` | OvhCloudPublicCloud/network/createSubnetPost.operation.ts |
+| cloud (v1) | DELETE | `/publicCloud/project/{x}/network/private/{x}/subnet/{x}` | OvhCloudPublicCloud/network/deleteSubnetDelete.operation.ts |
+| cloud (v1) | PUT | `/publicCloud/project/{x}/network/private/{x}/subnet/{x}` | OvhCloudPublicCloud/network/updateSubnetPut.operation.ts |
+| cloud (v1) | GET | `/publicCloud/project/{x}/network/public` | OvhCloudPublicCloud/network/listPublicNetworksGet.operation.ts |
 | cloud (v1) | GET | `/publicCloud/project/{x}/network/subnet/{x}` | OvhCloudPublicCloud/network/getSubnetDetailGet.operation.ts |
-| cloud (v1) | PUT | `/publicCloud/project/{x}/network/subnet/{x}` | OvhCloudPublicCloud/network/updateSubnetPut.operation.ts |
 | cloud (v1) | GET | `/publicCloud/project/{x}/operation` | OvhCloudPublicCloud/operation/listGet.operation.ts |
 | cloud (v1) | GET | `/publicCloud/project/{x}/operation/{x}` | OvhCloudPublicCloud/operation/getDetailGet.operation.ts |
 | cloud (v1) | GET | `/publicCloud/project/{x}/quantum/capabilities` | OvhCloudPublicCloud/quantum/listCapabilitiesGet.operation.ts |
@@ -1991,6 +2010,10 @@ Ces opérations appellent un chemin qui ne correspond à aucun endpoint de la sp
 | publicCloud (v2) | GET | `/cloud/project/{x}/user/{x}/s3Credentials/{x}` | OvhCloudPublicCloud/user/getUserS3CredentialDetailGet.operation.ts |
 | publicCloud (v2) | POST | `/cloud/project/{x}/user/{x}/s3Credentials/{x}/secret` | OvhCloudPublicCloud/user/createS3CredentialSecretPost.operation.ts |
 | publicCloud (v2) | POST | `/cloud/project/{x}/user/{x}/token` | OvhCloudPublicCloud/user/createUserTokenPost.operation.ts |
+| publicCloud (v2) | GET | `/publicCloud/agreements` | OvhCloudPublicCloud/cloud/agreementsGet.operation.ts |
+| publicCloud (v2) | GET | `/publicCloud/eligibility` | OvhCloudPublicCloud/cloud/eligibilityGet.operation.ts |
+| publicCloud (v2) | GET | `/publicCloud/order` | OvhCloudPublicCloud/cloud/orderListGet.operation.ts |
+| publicCloud (v2) | GET | `/publicCloud/order/rule/availability` | OvhCloudPublicCloud/cloud/orderRuleAvailabilityGet.operation.ts |
 | publicCloud (v2) | GET | `/publicCloud/project/{x}/acl` | OvhCloudPublicCloud/acl/listGet.operation.ts |
 | publicCloud (v2) | POST | `/publicCloud/project/{x}/acl` | OvhCloudPublicCloud/acl/createPost.operation.ts |
 | publicCloud (v2) | DELETE | `/publicCloud/project/{x}/acl/{x}` | OvhCloudPublicCloud/acl/deleteDelete.operation.ts |
@@ -2083,10 +2106,24 @@ Ces opérations appellent un chemin qui ne correspond à aucun endpoint de la sp
 | publicCloud (v2) | DELETE | `/publicCloud/project/{x}/containerRegistry/{x}` | OvhCloudPublicCloud/containerRegistry/deleteDelete.operation.ts |
 | publicCloud (v2) | GET | `/publicCloud/project/{x}/containerRegistry/{x}` | OvhCloudPublicCloud/containerRegistry/getDetailGet.operation.ts |
 | publicCloud (v2) | PUT | `/publicCloud/project/{x}/containerRegistry/{x}` | OvhCloudPublicCloud/containerRegistry/updatePut.operation.ts |
-| publicCloud (v2) | GET | `/publicCloud/project/{x}/containerRegistry/{x}/user` | OvhCloudPublicCloud/containerRegistry/listUsersGet.operation.ts |
-| publicCloud (v2) | POST | `/publicCloud/project/{x}/containerRegistry/{x}/user` | OvhCloudPublicCloud/containerRegistry/createUserPost.operation.ts |
-| publicCloud (v2) | DELETE | `/publicCloud/project/{x}/containerRegistry/{x}/user/{x}` | OvhCloudPublicCloud/containerRegistry/deleteUserDelete.operation.ts |
-| publicCloud (v2) | GET | `/publicCloud/project/{x}/containerRegistry/{x}/user/{x}` | OvhCloudPublicCloud/containerRegistry/getUserDetailGet.operation.ts |
+| publicCloud (v2) | GET | `/publicCloud/project/{x}/containerRegistry/{x}/capabilities/plan` | OvhCloudPublicCloud/containerRegistry/getCapabilitiesPlanGet.operation.ts |
+| publicCloud (v2) | DELETE | `/publicCloud/project/{x}/containerRegistry/{x}/iam` | OvhCloudPublicCloud/containerRegistry/deleteIamDelete.operation.ts |
+| publicCloud (v2) | POST | `/publicCloud/project/{x}/containerRegistry/{x}/iam` | OvhCloudPublicCloud/containerRegistry/createIamPost.operation.ts |
+| publicCloud (v2) | GET | `/publicCloud/project/{x}/containerRegistry/{x}/ipRestrictions/management` | OvhCloudPublicCloud/containerRegistry/getIpRestrictionsManagementListGet.operation.ts |
+| publicCloud (v2) | PUT | `/publicCloud/project/{x}/containerRegistry/{x}/ipRestrictions/management` | OvhCloudPublicCloud/containerRegistry/updateIpRestrictionsManagementPut.operation.ts |
+| publicCloud (v2) | GET | `/publicCloud/project/{x}/containerRegistry/{x}/ipRestrictions/registry` | OvhCloudPublicCloud/containerRegistry/getIpRestrictionsRegistryListGet.operation.ts |
+| publicCloud (v2) | PUT | `/publicCloud/project/{x}/containerRegistry/{x}/ipRestrictions/registry` | OvhCloudPublicCloud/containerRegistry/updateIpRestrictionsRegistryPut.operation.ts |
+| publicCloud (v2) | DELETE | `/publicCloud/project/{x}/containerRegistry/{x}/openIdConnect` | OvhCloudPublicCloud/containerRegistry/deleteOpenIdConnectDelete.operation.ts |
+| publicCloud (v2) | GET | `/publicCloud/project/{x}/containerRegistry/{x}/openIdConnect` | OvhCloudPublicCloud/containerRegistry/getOpenIdConnectGet.operation.ts |
+| publicCloud (v2) | POST | `/publicCloud/project/{x}/containerRegistry/{x}/openIdConnect` | OvhCloudPublicCloud/containerRegistry/createOpenIdConnectPost.operation.ts |
+| publicCloud (v2) | PUT | `/publicCloud/project/{x}/containerRegistry/{x}/openIdConnect` | OvhCloudPublicCloud/containerRegistry/updateOpenIdConnectPut.operation.ts |
+| publicCloud (v2) | GET | `/publicCloud/project/{x}/containerRegistry/{x}/plan` | OvhCloudPublicCloud/containerRegistry/getPlanGet.operation.ts |
+| publicCloud (v2) | PUT | `/publicCloud/project/{x}/containerRegistry/{x}/plan` | OvhCloudPublicCloud/containerRegistry/updatePlanPut.operation.ts |
+| publicCloud (v2) | GET | `/publicCloud/project/{x}/containerRegistry/{x}/users` | OvhCloudPublicCloud/containerRegistry/listUsersGet.operation.ts |
+| publicCloud (v2) | POST | `/publicCloud/project/{x}/containerRegistry/{x}/users` | OvhCloudPublicCloud/containerRegistry/createUserPost.operation.ts |
+| publicCloud (v2) | DELETE | `/publicCloud/project/{x}/containerRegistry/{x}/users/{x}` | OvhCloudPublicCloud/containerRegistry/deleteUserDelete.operation.ts |
+| publicCloud (v2) | GET | `/publicCloud/project/{x}/containerRegistry/{x}/users/{x}` | OvhCloudPublicCloud/containerRegistry/getUserDetailGet.operation.ts |
+| publicCloud (v2) | POST | `/publicCloud/project/{x}/containerRegistry/{x}/users/{x}/setAsAdmin` | OvhCloudPublicCloud/containerRegistry/createUserSetAsAdminPost.operation.ts |
 | publicCloud (v2) | GET | `/publicCloud/project/{x}/credit` | OvhCloudPublicCloud/credit/listGet.operation.ts |
 | publicCloud (v2) | GET | `/publicCloud/project/{x}/credit/{x}` | OvhCloudPublicCloud/credit/getDetailGet.operation.ts |
 | publicCloud (v2) | GET | `/publicCloud/project/{x}/flavor` | OvhCloudPublicCloud/flavor/listGet.operation.ts |
@@ -2125,17 +2162,18 @@ Ces opérations appellent un chemin qui ne correspond à aucun endpoint de la sp
 | publicCloud (v2) | DELETE | `/publicCloud/project/{x}/loadbalancer/{x}` | OvhCloudPublicCloud/loadbalancer/deleteDelete.operation.ts |
 | publicCloud (v2) | GET | `/publicCloud/project/{x}/loadbalancer/{x}` | OvhCloudPublicCloud/loadbalancer/getDetailGet.operation.ts |
 | publicCloud (v2) | PUT | `/publicCloud/project/{x}/loadbalancer/{x}` | OvhCloudPublicCloud/loadbalancer/updatePut.operation.ts |
-| publicCloud (v2) | GET | `/publicCloud/project/{x}/network/privateNetwork` | OvhCloudPublicCloud/network/listPrivateNetworksGet.operation.ts |
-| publicCloud (v2) | POST | `/publicCloud/project/{x}/network/privateNetwork` | OvhCloudPublicCloud/network/createPrivateNetworkPost.operation.ts |
-| publicCloud (v2) | DELETE | `/publicCloud/project/{x}/network/privateNetwork/{x}` | OvhCloudPublicCloud/network/deletePrivateNetworkDelete.operation.ts |
-| publicCloud (v2) | GET | `/publicCloud/project/{x}/network/privateNetwork/{x}` | OvhCloudPublicCloud/network/getPrivateNetworkDetailGet.operation.ts |
-| publicCloud (v2) | PUT | `/publicCloud/project/{x}/network/privateNetwork/{x}` | OvhCloudPublicCloud/network/updatePrivateNetworkPut.operation.ts |
-| publicCloud (v2) | GET | `/publicCloud/project/{x}/network/publicNetwork` | OvhCloudPublicCloud/network/listPublicNetworksGet.operation.ts |
-| publicCloud (v2) | GET | `/publicCloud/project/{x}/network/subnet` | OvhCloudPublicCloud/network/listSubnetsGet.operation.ts |
-| publicCloud (v2) | POST | `/publicCloud/project/{x}/network/subnet` | OvhCloudPublicCloud/network/createSubnetPost.operation.ts |
-| publicCloud (v2) | DELETE | `/publicCloud/project/{x}/network/subnet/{x}` | OvhCloudPublicCloud/network/deleteSubnetDelete.operation.ts |
+| publicCloud (v2) | GET | `/publicCloud/project/{x}/network/private` | OvhCloudPublicCloud/network/listPrivateNetworksGet.operation.ts |
+| publicCloud (v2) | POST | `/publicCloud/project/{x}/network/private` | OvhCloudPublicCloud/network/createPrivateNetworkPost.operation.ts |
+| publicCloud (v2) | DELETE | `/publicCloud/project/{x}/network/private/{x}` | OvhCloudPublicCloud/network/deletePrivateNetworkDelete.operation.ts |
+| publicCloud (v2) | GET | `/publicCloud/project/{x}/network/private/{x}` | OvhCloudPublicCloud/network/getPrivateNetworkDetailGet.operation.ts |
+| publicCloud (v2) | PUT | `/publicCloud/project/{x}/network/private/{x}` | OvhCloudPublicCloud/network/updatePrivateNetworkPut.operation.ts |
+| publicCloud (v2) | POST | `/publicCloud/project/{x}/network/private/{x}/region` | OvhCloudPublicCloud/network/activatePrivateNetworkRegionPost.operation.ts |
+| publicCloud (v2) | GET | `/publicCloud/project/{x}/network/private/{x}/subnet` | OvhCloudPublicCloud/network/listSubnetsGet.operation.ts |
+| publicCloud (v2) | POST | `/publicCloud/project/{x}/network/private/{x}/subnet` | OvhCloudPublicCloud/network/createSubnetPost.operation.ts |
+| publicCloud (v2) | DELETE | `/publicCloud/project/{x}/network/private/{x}/subnet/{x}` | OvhCloudPublicCloud/network/deleteSubnetDelete.operation.ts |
+| publicCloud (v2) | PUT | `/publicCloud/project/{x}/network/private/{x}/subnet/{x}` | OvhCloudPublicCloud/network/updateSubnetPut.operation.ts |
+| publicCloud (v2) | GET | `/publicCloud/project/{x}/network/public` | OvhCloudPublicCloud/network/listPublicNetworksGet.operation.ts |
 | publicCloud (v2) | GET | `/publicCloud/project/{x}/network/subnet/{x}` | OvhCloudPublicCloud/network/getSubnetDetailGet.operation.ts |
-| publicCloud (v2) | PUT | `/publicCloud/project/{x}/network/subnet/{x}` | OvhCloudPublicCloud/network/updateSubnetPut.operation.ts |
 | publicCloud (v2) | GET | `/publicCloud/project/{x}/operation` | OvhCloudPublicCloud/operation/listGet.operation.ts |
 | publicCloud (v2) | GET | `/publicCloud/project/{x}/operation/{x}` | OvhCloudPublicCloud/operation/getDetailGet.operation.ts |
 | publicCloud (v2) | GET | `/publicCloud/project/{x}/quantum/capabilities` | OvhCloudPublicCloud/quantum/listCapabilitiesGet.operation.ts |
