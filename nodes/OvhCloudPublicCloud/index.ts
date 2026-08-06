@@ -3246,6 +3246,254 @@ import {
 	description as regionStoragePolicyCreatePostDescription,
 	execute as regionStoragePolicyCreatePostExecute,
 } from './region/regionStoragePolicyCreatePost.operation';
+
+import {
+	execute as floatingIpListGetExecute,
+} from './region/floatingip/floatingIpListGet.operation';
+
+import {
+	execute as floatingIpCreatePostExecute,
+} from './region/floatingip/floatingIpCreatePost.operation';
+
+import {
+	execute as floatingIpGetGetExecute,
+} from './region/floatingip/floatingIpGetGet.operation';
+
+import {
+	execute as floatingIpDeleteDeleteExecute,
+} from './region/floatingip/floatingIpDeleteDelete.operation';
+
+import {
+	execute as floatingIpDetachPostExecute,
+} from './region/floatingip/floatingIpDetachPost.operation';
+
+import {
+	execute as gatewayListGetExecute,
+} from './region/gateway/gatewayListGet.operation';
+
+import {
+	execute as gatewayCreatePostExecute,
+} from './region/gateway/gatewayCreatePost.operation';
+
+import {
+	execute as gatewayGetGetExecute,
+} from './region/gateway/gatewayGetGet.operation';
+
+import {
+	execute as gatewayUpdatePutExecute,
+} from './region/gateway/gatewayUpdatePut.operation';
+
+import {
+	execute as gatewayDeleteDeleteExecute,
+} from './region/gateway/gatewayDeleteDelete.operation';
+
+import {
+	execute as gatewayExposePostExecute,
+} from './region/gateway/gatewayExposePost.operation';
+
+import {
+	execute as gatewayInterfaceListGetExecute,
+} from './region/gateway/gatewayInterfaceListGet.operation';
+
+import {
+	execute as gatewayInterfaceCreatePostExecute,
+} from './region/gateway/gatewayInterfaceCreatePost.operation';
+
+import {
+	execute as gatewayInterfaceGetGetExecute,
+} from './region/gateway/gatewayInterfaceGetGet.operation';
+
+import {
+	execute as gatewayInterfaceDeleteDeleteExecute,
+} from './region/gateway/gatewayInterfaceDeleteDelete.operation';
+
+import {
+	execute as loadbalancingFlavorListGetExecute,
+} from './region/loadbalancing/loadbalancingFlavorListGet.operation';
+
+import {
+	execute as loadbalancingFlavorGetGetExecute,
+} from './region/loadbalancing/loadbalancingFlavorGetGet.operation';
+
+import {
+	execute as loadbalancingHealthMonitorListGetExecute,
+} from './region/loadbalancing/loadbalancingHealthMonitorListGet.operation';
+
+import {
+	execute as loadbalancingHealthMonitorCreatePostExecute,
+} from './region/loadbalancing/loadbalancingHealthMonitorCreatePost.operation';
+
+import {
+	execute as loadbalancingHealthMonitorGetGetExecute,
+} from './region/loadbalancing/loadbalancingHealthMonitorGetGet.operation';
+
+import {
+	execute as loadbalancingHealthMonitorUpdatePutExecute,
+} from './region/loadbalancing/loadbalancingHealthMonitorUpdatePut.operation';
+
+import {
+	execute as loadbalancingHealthMonitorDeleteDeleteExecute,
+} from './region/loadbalancing/loadbalancingHealthMonitorDeleteDelete.operation';
+
+import {
+	execute as loadbalancingL7PolicyListGetExecute,
+} from './region/loadbalancing/loadbalancingL7PolicyListGet.operation';
+
+import {
+	execute as loadbalancingL7PolicyCreatePostExecute,
+} from './region/loadbalancing/loadbalancingL7PolicyCreatePost.operation';
+
+import {
+	execute as loadbalancingL7PolicyGetGetExecute,
+} from './region/loadbalancing/loadbalancingL7PolicyGetGet.operation';
+
+import {
+	execute as loadbalancingL7PolicyUpdatePutExecute,
+} from './region/loadbalancing/loadbalancingL7PolicyUpdatePut.operation';
+
+import {
+	execute as loadbalancingL7PolicyDeleteDeleteExecute,
+} from './region/loadbalancing/loadbalancingL7PolicyDeleteDelete.operation';
+
+import {
+	execute as loadbalancingL7PolicyL7RuleListGetExecute,
+} from './region/loadbalancing/loadbalancingL7PolicyL7RuleListGet.operation';
+
+import {
+	execute as loadbalancingL7PolicyL7RuleCreatePostExecute,
+} from './region/loadbalancing/loadbalancingL7PolicyL7RuleCreatePost.operation';
+
+import {
+	execute as loadbalancingL7PolicyL7RuleGetGetExecute,
+} from './region/loadbalancing/loadbalancingL7PolicyL7RuleGetGet.operation';
+
+import {
+	execute as loadbalancingL7PolicyL7RuleUpdatePutExecute,
+} from './region/loadbalancing/loadbalancingL7PolicyL7RuleUpdatePut.operation';
+
+import {
+	execute as loadbalancingL7PolicyL7RuleDeleteDeleteExecute,
+} from './region/loadbalancing/loadbalancingL7PolicyL7RuleDeleteDelete.operation';
+
+import {
+	execute as loadbalancingListenerListGetExecute,
+} from './region/loadbalancing/loadbalancingListenerListGet.operation';
+
+import {
+	execute as loadbalancingListenerCreatePostExecute,
+} from './region/loadbalancing/loadbalancingListenerCreatePost.operation';
+
+import {
+	execute as loadbalancingListenerGetGetExecute,
+} from './region/loadbalancing/loadbalancingListenerGetGet.operation';
+
+import {
+	execute as loadbalancingListenerUpdatePutExecute,
+} from './region/loadbalancing/loadbalancingListenerUpdatePut.operation';
+
+import {
+	execute as loadbalancingListenerDeleteDeleteExecute,
+} from './region/loadbalancing/loadbalancingListenerDeleteDelete.operation';
+
+import {
+	execute as loadbalancingLoadBalancerListGetExecute,
+} from './region/loadbalancing/loadbalancingLoadBalancerListGet.operation';
+
+import {
+	execute as loadbalancingLoadBalancerCreatePostExecute,
+} from './region/loadbalancing/loadbalancingLoadBalancerCreatePost.operation';
+
+import {
+	execute as loadbalancingLoadBalancerGetGetExecute,
+} from './region/loadbalancing/loadbalancingLoadBalancerGetGet.operation';
+
+import {
+	execute as loadbalancingLoadBalancerUpdatePutExecute,
+} from './region/loadbalancing/loadbalancingLoadBalancerUpdatePut.operation';
+
+import {
+	execute as loadbalancingLoadBalancerDeleteDeleteExecute,
+} from './region/loadbalancing/loadbalancingLoadBalancerDeleteDelete.operation';
+
+import {
+	execute as loadbalancingLoadBalancerAssociateFloatingIpPostExecute,
+} from './region/loadbalancing/loadbalancingLoadBalancerAssociateFloatingIpPost.operation';
+
+import {
+	execute as loadbalancingLoadBalancerFloatingIpPostExecute,
+} from './region/loadbalancing/loadbalancingLoadBalancerFloatingIpPost.operation';
+
+import {
+	execute as loadbalancingLoadBalancerLogSubscriptionListGetExecute,
+} from './region/loadbalancing/loadbalancingLoadBalancerLogSubscriptionListGet.operation';
+
+import {
+	execute as loadbalancingLoadBalancerLogSubscriptionCreatePostExecute,
+} from './region/loadbalancing/loadbalancingLoadBalancerLogSubscriptionCreatePost.operation';
+
+import {
+	execute as loadbalancingLoadBalancerLogSubscriptionGetGetExecute,
+} from './region/loadbalancing/loadbalancingLoadBalancerLogSubscriptionGetGet.operation';
+
+import {
+	execute as loadbalancingLoadBalancerLogSubscriptionDeleteDeleteExecute,
+} from './region/loadbalancing/loadbalancingLoadBalancerLogSubscriptionDeleteDelete.operation';
+
+import {
+	execute as loadbalancingLoadBalancerLogUrlPostExecute,
+} from './region/loadbalancing/loadbalancingLoadBalancerLogUrlPost.operation';
+
+import {
+	execute as loadbalancingLoadBalancerStatsGetExecute,
+} from './region/loadbalancing/loadbalancingLoadBalancerStatsGet.operation';
+
+import {
+	execute as loadbalancingLogKindListGetExecute,
+} from './region/loadbalancing/loadbalancingLogKindListGet.operation';
+
+import {
+	execute as loadbalancingLogKindGetGetExecute,
+} from './region/loadbalancing/loadbalancingLogKindGetGet.operation';
+
+import {
+	execute as loadbalancingPoolListGetExecute,
+} from './region/loadbalancing/loadbalancingPoolListGet.operation';
+
+import {
+	execute as loadbalancingPoolCreatePostExecute,
+} from './region/loadbalancing/loadbalancingPoolCreatePost.operation';
+
+import {
+	execute as loadbalancingPoolGetGetExecute,
+} from './region/loadbalancing/loadbalancingPoolGetGet.operation';
+
+import {
+	execute as loadbalancingPoolUpdatePutExecute,
+} from './region/loadbalancing/loadbalancingPoolUpdatePut.operation';
+
+import {
+	execute as loadbalancingPoolDeleteDeleteExecute,
+} from './region/loadbalancing/loadbalancingPoolDeleteDelete.operation';
+
+import {
+	execute as loadbalancingPoolMemberListGetExecute,
+} from './region/loadbalancing/loadbalancingPoolMemberListGet.operation';
+
+import {
+	execute as loadbalancingPoolMemberCreatePostExecute,
+} from './region/loadbalancing/loadbalancingPoolMemberCreatePost.operation';
+
+import {
+	execute as loadbalancingPoolMemberGetGetExecute,
+} from './region/loadbalancing/loadbalancingPoolMemberGetGet.operation';
+
+import {
+	execute as loadbalancingPoolMemberUpdatePutExecute,
+} from './region/loadbalancing/loadbalancingPoolMemberUpdatePut.operation';
+
+import {
+	execute as loadbalancingPoolMemberDeleteDeleteExecute,
+} from './region/loadbalancing/loadbalancingPoolMemberDeleteDelete.operation';
 import {
 	description as regionStoragePresignPostDescription,
 	execute as regionStoragePresignPostExecute,
@@ -7466,6 +7714,254 @@ export function description(displayOptions: IDisplayOptions): INodeProperties[] 
 				value: 'regionStoragePresignPost',
 				action: 'Generate storage presigned URL',
 			},
+				{
+					name: 'floatingIpListGet',
+					value: 'floatingIpListGet',
+				}, 
+				{
+					name: 'floatingIpCreatePost',
+					value: 'floatingIpCreatePost',
+				}, 
+				{
+					name: 'floatingIpGetGet',
+					value: 'floatingIpGetGet',
+				}, 
+				{
+					name: 'floatingIpDeleteDelete',
+					value: 'floatingIpDeleteDelete',
+				}, 
+				{
+					name: 'floatingIpDetachPost',
+					value: 'floatingIpDetachPost',
+				}, 
+				{
+					name: 'gatewayListGet',
+					value: 'gatewayListGet',
+				}, 
+				{
+					name: 'gatewayCreatePost',
+					value: 'gatewayCreatePost',
+				}, 
+				{
+					name: 'gatewayGetGet',
+					value: 'gatewayGetGet',
+				}, 
+				{
+					name: 'gatewayUpdatePut',
+					value: 'gatewayUpdatePut',
+				}, 
+				{
+					name: 'gatewayDeleteDelete',
+					value: 'gatewayDeleteDelete',
+				}, 
+				{
+					name: 'gatewayExposePost',
+					value: 'gatewayExposePost',
+				}, 
+				{
+					name: 'gatewayInterfaceListGet',
+					value: 'gatewayInterfaceListGet',
+				}, 
+				{
+					name: 'gatewayInterfaceCreatePost',
+					value: 'gatewayInterfaceCreatePost',
+				}, 
+				{
+					name: 'gatewayInterfaceGetGet',
+					value: 'gatewayInterfaceGetGet',
+				}, 
+				{
+					name: 'gatewayInterfaceDeleteDelete',
+					value: 'gatewayInterfaceDeleteDelete',
+				}, 
+				{
+					name: 'loadbalancingFlavorListGet',
+					value: 'loadbalancingFlavorListGet',
+				}, 
+				{
+					name: 'loadbalancingFlavorGetGet',
+					value: 'loadbalancingFlavorGetGet',
+				}, 
+				{
+					name: 'loadbalancingHealthMonitorListGet',
+					value: 'loadbalancingHealthMonitorListGet',
+				}, 
+				{
+					name: 'loadbalancingHealthMonitorCreatePost',
+					value: 'loadbalancingHealthMonitorCreatePost',
+				}, 
+				{
+					name: 'loadbalancingHealthMonitorGetGet',
+					value: 'loadbalancingHealthMonitorGetGet',
+				}, 
+				{
+					name: 'loadbalancingHealthMonitorUpdatePut',
+					value: 'loadbalancingHealthMonitorUpdatePut',
+				}, 
+				{
+					name: 'loadbalancingHealthMonitorDeleteDelete',
+					value: 'loadbalancingHealthMonitorDeleteDelete',
+				}, 
+				{
+					name: 'loadbalancingL7PolicyListGet',
+					value: 'loadbalancingL7PolicyListGet',
+				}, 
+				{
+					name: 'loadbalancingL7PolicyCreatePost',
+					value: 'loadbalancingL7PolicyCreatePost',
+				}, 
+				{
+					name: 'loadbalancingL7PolicyGetGet',
+					value: 'loadbalancingL7PolicyGetGet',
+				}, 
+				{
+					name: 'loadbalancingL7PolicyUpdatePut',
+					value: 'loadbalancingL7PolicyUpdatePut',
+				}, 
+				{
+					name: 'loadbalancingL7PolicyDeleteDelete',
+					value: 'loadbalancingL7PolicyDeleteDelete',
+				}, 
+				{
+					name: 'loadbalancingL7PolicyL7RuleListGet',
+					value: 'loadbalancingL7PolicyL7RuleListGet',
+				}, 
+				{
+					name: 'loadbalancingL7PolicyL7RuleCreatePost',
+					value: 'loadbalancingL7PolicyL7RuleCreatePost',
+				}, 
+				{
+					name: 'loadbalancingL7PolicyL7RuleGetGet',
+					value: 'loadbalancingL7PolicyL7RuleGetGet',
+				}, 
+				{
+					name: 'loadbalancingL7PolicyL7RuleUpdatePut',
+					value: 'loadbalancingL7PolicyL7RuleUpdatePut',
+				}, 
+				{
+					name: 'loadbalancingL7PolicyL7RuleDeleteDelete',
+					value: 'loadbalancingL7PolicyL7RuleDeleteDelete',
+				}, 
+				{
+					name: 'loadbalancingListenerListGet',
+					value: 'loadbalancingListenerListGet',
+				}, 
+				{
+					name: 'loadbalancingListenerCreatePost',
+					value: 'loadbalancingListenerCreatePost',
+				}, 
+				{
+					name: 'loadbalancingListenerGetGet',
+					value: 'loadbalancingListenerGetGet',
+				}, 
+				{
+					name: 'loadbalancingListenerUpdatePut',
+					value: 'loadbalancingListenerUpdatePut',
+				}, 
+				{
+					name: 'loadbalancingListenerDeleteDelete',
+					value: 'loadbalancingListenerDeleteDelete',
+				}, 
+				{
+					name: 'loadbalancingLoadBalancerListGet',
+					value: 'loadbalancingLoadBalancerListGet',
+				}, 
+				{
+					name: 'loadbalancingLoadBalancerCreatePost',
+					value: 'loadbalancingLoadBalancerCreatePost',
+				}, 
+				{
+					name: 'loadbalancingLoadBalancerGetGet',
+					value: 'loadbalancingLoadBalancerGetGet',
+				}, 
+				{
+					name: 'loadbalancingLoadBalancerUpdatePut',
+					value: 'loadbalancingLoadBalancerUpdatePut',
+				}, 
+				{
+					name: 'loadbalancingLoadBalancerDeleteDelete',
+					value: 'loadbalancingLoadBalancerDeleteDelete',
+				}, 
+				{
+					name: 'loadbalancingLoadBalancerAssociateFloatingIpPost',
+					value: 'loadbalancingLoadBalancerAssociateFloatingIpPost',
+				}, 
+				{
+					name: 'loadbalancingLoadBalancerFloatingIpPost',
+					value: 'loadbalancingLoadBalancerFloatingIpPost',
+				}, 
+				{
+					name: 'loadbalancingLoadBalancerLogSubscriptionListGet',
+					value: 'loadbalancingLoadBalancerLogSubscriptionListGet',
+				}, 
+				{
+					name: 'loadbalancingLoadBalancerLogSubscriptionCreatePost',
+					value: 'loadbalancingLoadBalancerLogSubscriptionCreatePost',
+				}, 
+				{
+					name: 'loadbalancingLoadBalancerLogSubscriptionGetGet',
+					value: 'loadbalancingLoadBalancerLogSubscriptionGetGet',
+				}, 
+				{
+					name: 'loadbalancingLoadBalancerLogSubscriptionDeleteDelete',
+					value: 'loadbalancingLoadBalancerLogSubscriptionDeleteDelete',
+				}, 
+				{
+					name: 'loadbalancingLoadBalancerLogUrlPost',
+					value: 'loadbalancingLoadBalancerLogUrlPost',
+				}, 
+				{
+					name: 'loadbalancingLoadBalancerStatsGet',
+					value: 'loadbalancingLoadBalancerStatsGet',
+				}, 
+				{
+					name: 'loadbalancingLogKindListGet',
+					value: 'loadbalancingLogKindListGet',
+				}, 
+				{
+					name: 'loadbalancingLogKindGetGet',
+					value: 'loadbalancingLogKindGetGet',
+				}, 
+				{
+					name: 'loadbalancingPoolListGet',
+					value: 'loadbalancingPoolListGet',
+				}, 
+				{
+					name: 'loadbalancingPoolCreatePost',
+					value: 'loadbalancingPoolCreatePost',
+				}, 
+				{
+					name: 'loadbalancingPoolGetGet',
+					value: 'loadbalancingPoolGetGet',
+				}, 
+				{
+					name: 'loadbalancingPoolUpdatePut',
+					value: 'loadbalancingPoolUpdatePut',
+				}, 
+				{
+					name: 'loadbalancingPoolDeleteDelete',
+					value: 'loadbalancingPoolDeleteDelete',
+				}, 
+				{
+					name: 'loadbalancingPoolMemberListGet',
+					value: 'loadbalancingPoolMemberListGet',
+				}, 
+				{
+					name: 'loadbalancingPoolMemberCreatePost',
+					value: 'loadbalancingPoolMemberCreatePost',
+				}, 
+				{
+					name: 'loadbalancingPoolMemberGetGet',
+					value: 'loadbalancingPoolMemberGetGet',
+				}, 
+				{
+					name: 'loadbalancingPoolMemberUpdatePut',
+					value: 'loadbalancingPoolMemberUpdatePut',
+				}, 
+				{
+					name: 'loadbalancingPoolMemberDeleteDelete',
+					value: 'loadbalancingPoolMemberDeleteDelete',
+				}, 
 			{
 				name: 'userCreatePost',
 				value: 'userCreatePost',
@@ -14726,6 +15222,131 @@ export async function execute(
 			return regionStoragePolicyCreatePostExecute.call(this);
 		case 'regionStoragePresignPost':
 			return regionStoragePresignPostExecute.call(this);
+		case 'floatingIpListGet':
+			return floatingIpListGetExecute.call(this);
+		case 'floatingIpCreatePost':
+			return floatingIpCreatePostExecute.call(this);
+		case 'floatingIpGetGet':
+			return floatingIpGetGetExecute.call(this);
+		case 'floatingIpDeleteDelete':
+			return floatingIpDeleteDeleteExecute.call(this);
+		case 'floatingIpDetachPost':
+			return floatingIpDetachPostExecute.call(this);
+		case 'gatewayListGet':
+			return gatewayListGetExecute.call(this);
+		case 'gatewayCreatePost':
+			return gatewayCreatePostExecute.call(this);
+		case 'gatewayGetGet':
+			return gatewayGetGetExecute.call(this);
+		case 'gatewayUpdatePut':
+			return gatewayUpdatePutExecute.call(this);
+		case 'gatewayDeleteDelete':
+			return gatewayDeleteDeleteExecute.call(this);
+		case 'gatewayExposePost':
+			return gatewayExposePostExecute.call(this);
+		case 'gatewayInterfaceListGet':
+			return gatewayInterfaceListGetExecute.call(this);
+		case 'gatewayInterfaceCreatePost':
+			return gatewayInterfaceCreatePostExecute.call(this);
+		case 'gatewayInterfaceGetGet':
+			return gatewayInterfaceGetGetExecute.call(this);
+		case 'gatewayInterfaceDeleteDelete':
+			return gatewayInterfaceDeleteDeleteExecute.call(this);
+		case 'loadbalancingFlavorListGet':
+			return loadbalancingFlavorListGetExecute.call(this);
+		case 'loadbalancingFlavorGetGet':
+			return loadbalancingFlavorGetGetExecute.call(this);
+		case 'loadbalancingHealthMonitorListGet':
+			return loadbalancingHealthMonitorListGetExecute.call(this);
+		case 'loadbalancingHealthMonitorCreatePost':
+			return loadbalancingHealthMonitorCreatePostExecute.call(this);
+		case 'loadbalancingHealthMonitorGetGet':
+			return loadbalancingHealthMonitorGetGetExecute.call(this);
+		case 'loadbalancingHealthMonitorUpdatePut':
+			return loadbalancingHealthMonitorUpdatePutExecute.call(this);
+		case 'loadbalancingHealthMonitorDeleteDelete':
+			return loadbalancingHealthMonitorDeleteDeleteExecute.call(this);
+		case 'loadbalancingL7PolicyListGet':
+			return loadbalancingL7PolicyListGetExecute.call(this);
+		case 'loadbalancingL7PolicyCreatePost':
+			return loadbalancingL7PolicyCreatePostExecute.call(this);
+		case 'loadbalancingL7PolicyGetGet':
+			return loadbalancingL7PolicyGetGetExecute.call(this);
+		case 'loadbalancingL7PolicyUpdatePut':
+			return loadbalancingL7PolicyUpdatePutExecute.call(this);
+		case 'loadbalancingL7PolicyDeleteDelete':
+			return loadbalancingL7PolicyDeleteDeleteExecute.call(this);
+		case 'loadbalancingL7PolicyL7RuleListGet':
+			return loadbalancingL7PolicyL7RuleListGetExecute.call(this);
+		case 'loadbalancingL7PolicyL7RuleCreatePost':
+			return loadbalancingL7PolicyL7RuleCreatePostExecute.call(this);
+		case 'loadbalancingL7PolicyL7RuleGetGet':
+			return loadbalancingL7PolicyL7RuleGetGetExecute.call(this);
+		case 'loadbalancingL7PolicyL7RuleUpdatePut':
+			return loadbalancingL7PolicyL7RuleUpdatePutExecute.call(this);
+		case 'loadbalancingL7PolicyL7RuleDeleteDelete':
+			return loadbalancingL7PolicyL7RuleDeleteDeleteExecute.call(this);
+		case 'loadbalancingListenerListGet':
+			return loadbalancingListenerListGetExecute.call(this);
+		case 'loadbalancingListenerCreatePost':
+			return loadbalancingListenerCreatePostExecute.call(this);
+		case 'loadbalancingListenerGetGet':
+			return loadbalancingListenerGetGetExecute.call(this);
+		case 'loadbalancingListenerUpdatePut':
+			return loadbalancingListenerUpdatePutExecute.call(this);
+		case 'loadbalancingListenerDeleteDelete':
+			return loadbalancingListenerDeleteDeleteExecute.call(this);
+		case 'loadbalancingLoadBalancerListGet':
+			return loadbalancingLoadBalancerListGetExecute.call(this);
+		case 'loadbalancingLoadBalancerCreatePost':
+			return loadbalancingLoadBalancerCreatePostExecute.call(this);
+		case 'loadbalancingLoadBalancerGetGet':
+			return loadbalancingLoadBalancerGetGetExecute.call(this);
+		case 'loadbalancingLoadBalancerUpdatePut':
+			return loadbalancingLoadBalancerUpdatePutExecute.call(this);
+		case 'loadbalancingLoadBalancerDeleteDelete':
+			return loadbalancingLoadBalancerDeleteDeleteExecute.call(this);
+		case 'loadbalancingLoadBalancerAssociateFloatingIpPost':
+			return loadbalancingLoadBalancerAssociateFloatingIpPostExecute.call(this);
+		case 'loadbalancingLoadBalancerFloatingIpPost':
+			return loadbalancingLoadBalancerFloatingIpPostExecute.call(this);
+		case 'loadbalancingLoadBalancerLogSubscriptionListGet':
+			return loadbalancingLoadBalancerLogSubscriptionListGetExecute.call(this);
+		case 'loadbalancingLoadBalancerLogSubscriptionCreatePost':
+			return loadbalancingLoadBalancerLogSubscriptionCreatePostExecute.call(this);
+		case 'loadbalancingLoadBalancerLogSubscriptionGetGet':
+			return loadbalancingLoadBalancerLogSubscriptionGetGetExecute.call(this);
+		case 'loadbalancingLoadBalancerLogSubscriptionDeleteDelete':
+			return loadbalancingLoadBalancerLogSubscriptionDeleteDeleteExecute.call(this);
+		case 'loadbalancingLoadBalancerLogUrlPost':
+			return loadbalancingLoadBalancerLogUrlPostExecute.call(this);
+		case 'loadbalancingLoadBalancerStatsGet':
+			return loadbalancingLoadBalancerStatsGetExecute.call(this);
+		case 'loadbalancingLogKindListGet':
+			return loadbalancingLogKindListGetExecute.call(this);
+		case 'loadbalancingLogKindGetGet':
+			return loadbalancingLogKindGetGetExecute.call(this);
+		case 'loadbalancingPoolListGet':
+			return loadbalancingPoolListGetExecute.call(this);
+		case 'loadbalancingPoolCreatePost':
+			return loadbalancingPoolCreatePostExecute.call(this);
+		case 'loadbalancingPoolGetGet':
+			return loadbalancingPoolGetGetExecute.call(this);
+		case 'loadbalancingPoolUpdatePut':
+			return loadbalancingPoolUpdatePutExecute.call(this);
+		case 'loadbalancingPoolDeleteDelete':
+			return loadbalancingPoolDeleteDeleteExecute.call(this);
+		case 'loadbalancingPoolMemberListGet':
+			return loadbalancingPoolMemberListGetExecute.call(this);
+		case 'loadbalancingPoolMemberCreatePost':
+			return loadbalancingPoolMemberCreatePostExecute.call(this);
+		case 'loadbalancingPoolMemberGetGet':
+			return loadbalancingPoolMemberGetGetExecute.call(this);
+		case 'loadbalancingPoolMemberUpdatePut':
+			return loadbalancingPoolMemberUpdatePutExecute.call(this);
+		case 'loadbalancingPoolMemberDeleteDelete':
+			return loadbalancingPoolMemberDeleteDeleteExecute.call(this);
+
 
 		case 'userCreatePost':
 			return userCreatePostExecute.call(this);

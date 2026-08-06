@@ -63,7 +63,6 @@ export async function execute(this: IExecuteFunctions): Promise<INodeExecutionDa
 	const regionName = this.getNodeParameter('regionName', 0) as string;
 	const name = this.getNodeParameter('name', 0) as string;
 
-
 	const client = new ApiClient(this);
 	const projectId = this.getNodeParameter('publicCloudProjectId', 0, '', {
 		extractValue: true,

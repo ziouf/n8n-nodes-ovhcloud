@@ -1,16 +1,16 @@
 # OVHcloud API Conformity Report
 
-> Généré par `scripts/audit-conformity.js` le 2026-08-06T09:56:58.080Z. Document généré automatiquement — ne pas éditer à la main.
+> Généré par `scripts/audit-conformity.js` le 2026-08-06T10:55:15.266Z. Document généré automatiquement — ne pas éditer à la main.
 
 Ce rapport vérifie que les opérations des nodes respectent leur spec (méthode, chemin, paramètres path requis, query requis, champs body requis).
 
 ## Résumé
 
-- **Opérations auditées** : 6023
+- **Opérations auditées** : 6147
 - **Conformes** : 3673
-- **Non conformes** : 2350
-- **Sans correspondance spec** (informatif) : 2034
-- **Taux de conformité** : **61%**
+- **Non conformes** : 2474
+- **Sans correspondance spec** (informatif) : 2158
+- **Taux de conformité** : **59.8%**
 
 ## Conformité par spec
 
@@ -45,7 +45,7 @@ Triée par taux de non-conformité décroissant.
 | vrack (v1) | 12 | 4 | 1 | 33.3% |
 | veeamCloudConnect (v1) | 14 | 13 | 1 | 92.9% |
 | vps (v1) | 63 | 20 | 4 | 31.7% |
-| cloud (v1) | 1004 | 622 | 44 | 62% |
+| cloud (v1) | 1066 | 622 | 44 | 58.3% |
 | order (v1) | 166 | 31 | 6 | 18.7% |
 | me (v1) | 309 | 300 | 9 | 97.1% |
 | dedicated (v1) | 69 | 31 | 2 | 44.9% |
@@ -54,7 +54,7 @@ Triée par taux de non-conformité décroissant.
 | webhosting (v2) | 246 | 12 | 3 | 4.9% |
 | domain (v1) | 119 | 109 | 1 | 91.6% |
 | telephony (v1) | 644 | 602 | 5 | 93.5% |
-| publicCloud (v2) | 1004 | 26 | 4 | 2.6% |
+| publicCloud (v2) | 1066 | 26 | 4 | 2.4% |
 | price (v1) | 581 | 581 | 0 | 100% |
 | sms (v1) | 126 | 124 | 0 | 98.4% |
 | domain (v2) | 119 | 9 | 0 | 7.6% |
@@ -854,6 +854,68 @@ Ces opérations appellent un chemin qui ne correspond à aucun endpoint de la sp
 | cloud (v1) | POST | `/publicCloud/project/{x}/region/{x}/coldArchive/{x}/policy/{x}` | OvhCloudPublicCloud/region/regionColdArchivePolicyCreatePost.operation.ts |
 | cloud (v1) | POST | `/publicCloud/project/{x}/region/{x}/coldArchive/{x}/presign` | OvhCloudPublicCloud/region/regionColdArchivePresignPost.operation.ts |
 | cloud (v1) | POST | `/publicCloud/project/{x}/region/{x}/coldArchive/{x}/restore` | OvhCloudPublicCloud/region/regionColdArchiveRestorePost.operation.ts |
+| cloud (v1) | GET | `/publicCloud/project/{x}/region/{x}/floatingip` | OvhCloudPublicCloud/region/floatingip/floatingIpListGet.operation.ts |
+| cloud (v1) | POST | `/publicCloud/project/{x}/region/{x}/floatingip` | OvhCloudPublicCloud/region/floatingip/floatingIpCreatePost.operation.ts |
+| cloud (v1) | DELETE | `/publicCloud/project/{x}/region/{x}/floatingip/{x}` | OvhCloudPublicCloud/region/floatingip/floatingIpDeleteDelete.operation.ts |
+| cloud (v1) | GET | `/publicCloud/project/{x}/region/{x}/floatingip/{x}` | OvhCloudPublicCloud/region/floatingip/floatingIpGetGet.operation.ts |
+| cloud (v1) | POST | `/publicCloud/project/{x}/region/{x}/floatingip/{x}/detach` | OvhCloudPublicCloud/region/floatingip/floatingIpDetachPost.operation.ts |
+| cloud (v1) | GET | `/publicCloud/project/{x}/region/{x}/gateway` | OvhCloudPublicCloud/region/gateway/gatewayListGet.operation.ts |
+| cloud (v1) | POST | `/publicCloud/project/{x}/region/{x}/gateway` | OvhCloudPublicCloud/region/gateway/gatewayCreatePost.operation.ts |
+| cloud (v1) | DELETE | `/publicCloud/project/{x}/region/{x}/gateway/{x}` | OvhCloudPublicCloud/region/gateway/gatewayDeleteDelete.operation.ts |
+| cloud (v1) | GET | `/publicCloud/project/{x}/region/{x}/gateway/{x}` | OvhCloudPublicCloud/region/gateway/gatewayGetGet.operation.ts |
+| cloud (v1) | PUT | `/publicCloud/project/{x}/region/{x}/gateway/{x}` | OvhCloudPublicCloud/region/gateway/gatewayUpdatePut.operation.ts |
+| cloud (v1) | POST | `/publicCloud/project/{x}/region/{x}/gateway/{x}/expose` | OvhCloudPublicCloud/region/gateway/gatewayExposePost.operation.ts |
+| cloud (v1) | GET | `/publicCloud/project/{x}/region/{x}/gateway/{x}/interface` | OvhCloudPublicCloud/region/gateway/gatewayInterfaceListGet.operation.ts |
+| cloud (v1) | POST | `/publicCloud/project/{x}/region/{x}/gateway/{x}/interface` | OvhCloudPublicCloud/region/gateway/gatewayInterfaceCreatePost.operation.ts |
+| cloud (v1) | DELETE | `/publicCloud/project/{x}/region/{x}/gateway/{x}/interface/{x}` | OvhCloudPublicCloud/region/gateway/gatewayInterfaceDeleteDelete.operation.ts |
+| cloud (v1) | GET | `/publicCloud/project/{x}/region/{x}/gateway/{x}/interface/{x}` | OvhCloudPublicCloud/region/gateway/gatewayInterfaceGetGet.operation.ts |
+| cloud (v1) | GET | `/publicCloud/project/{x}/region/{x}/loadbalancing/flavor` | OvhCloudPublicCloud/region/loadbalancing/loadbalancingFlavorListGet.operation.ts |
+| cloud (v1) | GET | `/publicCloud/project/{x}/region/{x}/loadbalancing/flavor/{x}` | OvhCloudPublicCloud/region/loadbalancing/loadbalancingFlavorGetGet.operation.ts |
+| cloud (v1) | GET | `/publicCloud/project/{x}/region/{x}/loadbalancing/healthMonitor` | OvhCloudPublicCloud/region/loadbalancing/loadbalancingHealthMonitorListGet.operation.ts |
+| cloud (v1) | POST | `/publicCloud/project/{x}/region/{x}/loadbalancing/healthMonitor` | OvhCloudPublicCloud/region/loadbalancing/loadbalancingHealthMonitorCreatePost.operation.ts |
+| cloud (v1) | DELETE | `/publicCloud/project/{x}/region/{x}/loadbalancing/healthMonitor/{x}` | OvhCloudPublicCloud/region/loadbalancing/loadbalancingHealthMonitorDeleteDelete.operation.ts |
+| cloud (v1) | GET | `/publicCloud/project/{x}/region/{x}/loadbalancing/healthMonitor/{x}` | OvhCloudPublicCloud/region/loadbalancing/loadbalancingHealthMonitorGetGet.operation.ts |
+| cloud (v1) | PUT | `/publicCloud/project/{x}/region/{x}/loadbalancing/healthMonitor/{x}` | OvhCloudPublicCloud/region/loadbalancing/loadbalancingHealthMonitorUpdatePut.operation.ts |
+| cloud (v1) | GET | `/publicCloud/project/{x}/region/{x}/loadbalancing/l7Policy` | OvhCloudPublicCloud/region/loadbalancing/loadbalancingL7PolicyListGet.operation.ts |
+| cloud (v1) | POST | `/publicCloud/project/{x}/region/{x}/loadbalancing/l7Policy` | OvhCloudPublicCloud/region/loadbalancing/loadbalancingL7PolicyCreatePost.operation.ts |
+| cloud (v1) | DELETE | `/publicCloud/project/{x}/region/{x}/loadbalancing/l7Policy/{x}` | OvhCloudPublicCloud/region/loadbalancing/loadbalancingL7PolicyDeleteDelete.operation.ts |
+| cloud (v1) | GET | `/publicCloud/project/{x}/region/{x}/loadbalancing/l7Policy/{x}` | OvhCloudPublicCloud/region/loadbalancing/loadbalancingL7PolicyGetGet.operation.ts |
+| cloud (v1) | PUT | `/publicCloud/project/{x}/region/{x}/loadbalancing/l7Policy/{x}` | OvhCloudPublicCloud/region/loadbalancing/loadbalancingL7PolicyUpdatePut.operation.ts |
+| cloud (v1) | GET | `/publicCloud/project/{x}/region/{x}/loadbalancing/l7Policy/{x}/l7Rule` | OvhCloudPublicCloud/region/loadbalancing/loadbalancingL7PolicyL7RuleListGet.operation.ts |
+| cloud (v1) | POST | `/publicCloud/project/{x}/region/{x}/loadbalancing/l7Policy/{x}/l7Rule` | OvhCloudPublicCloud/region/loadbalancing/loadbalancingL7PolicyL7RuleCreatePost.operation.ts |
+| cloud (v1) | DELETE | `/publicCloud/project/{x}/region/{x}/loadbalancing/l7Policy/{x}/l7Rule/{x}` | OvhCloudPublicCloud/region/loadbalancing/loadbalancingL7PolicyL7RuleDeleteDelete.operation.ts |
+| cloud (v1) | GET | `/publicCloud/project/{x}/region/{x}/loadbalancing/l7Policy/{x}/l7Rule/{x}` | OvhCloudPublicCloud/region/loadbalancing/loadbalancingL7PolicyL7RuleGetGet.operation.ts |
+| cloud (v1) | PUT | `/publicCloud/project/{x}/region/{x}/loadbalancing/l7Policy/{x}/l7Rule/{x}` | OvhCloudPublicCloud/region/loadbalancing/loadbalancingL7PolicyL7RuleUpdatePut.operation.ts |
+| cloud (v1) | GET | `/publicCloud/project/{x}/region/{x}/loadbalancing/listener` | OvhCloudPublicCloud/region/loadbalancing/loadbalancingListenerListGet.operation.ts |
+| cloud (v1) | POST | `/publicCloud/project/{x}/region/{x}/loadbalancing/listener` | OvhCloudPublicCloud/region/loadbalancing/loadbalancingListenerCreatePost.operation.ts |
+| cloud (v1) | DELETE | `/publicCloud/project/{x}/region/{x}/loadbalancing/listener/{x}` | OvhCloudPublicCloud/region/loadbalancing/loadbalancingListenerDeleteDelete.operation.ts |
+| cloud (v1) | GET | `/publicCloud/project/{x}/region/{x}/loadbalancing/listener/{x}` | OvhCloudPublicCloud/region/loadbalancing/loadbalancingListenerGetGet.operation.ts |
+| cloud (v1) | PUT | `/publicCloud/project/{x}/region/{x}/loadbalancing/listener/{x}` | OvhCloudPublicCloud/region/loadbalancing/loadbalancingListenerUpdatePut.operation.ts |
+| cloud (v1) | GET | `/publicCloud/project/{x}/region/{x}/loadbalancing/loadbalancer` | OvhCloudPublicCloud/region/loadbalancing/loadbalancingLoadBalancerListGet.operation.ts |
+| cloud (v1) | POST | `/publicCloud/project/{x}/region/{x}/loadbalancing/loadbalancer` | OvhCloudPublicCloud/region/loadbalancing/loadbalancingLoadBalancerCreatePost.operation.ts |
+| cloud (v1) | DELETE | `/publicCloud/project/{x}/region/{x}/loadbalancing/loadbalancer/{x}` | OvhCloudPublicCloud/region/loadbalancing/loadbalancingLoadBalancerDeleteDelete.operation.ts |
+| cloud (v1) | GET | `/publicCloud/project/{x}/region/{x}/loadbalancing/loadbalancer/{x}` | OvhCloudPublicCloud/region/loadbalancing/loadbalancingLoadBalancerGetGet.operation.ts |
+| cloud (v1) | PUT | `/publicCloud/project/{x}/region/{x}/loadbalancing/loadbalancer/{x}` | OvhCloudPublicCloud/region/loadbalancing/loadbalancingLoadBalancerUpdatePut.operation.ts |
+| cloud (v1) | POST | `/publicCloud/project/{x}/region/{x}/loadbalancing/loadbalancer/{x}/associateFloatingIp` | OvhCloudPublicCloud/region/loadbalancing/loadbalancingLoadBalancerAssociateFloatingIpPost.operation.ts |
+| cloud (v1) | POST | `/publicCloud/project/{x}/region/{x}/loadbalancing/loadbalancer/{x}/floatingIp` | OvhCloudPublicCloud/region/loadbalancing/loadbalancingLoadBalancerFloatingIpPost.operation.ts |
+| cloud (v1) | GET | `/publicCloud/project/{x}/region/{x}/loadbalancing/loadbalancer/{x}/log/subscription` | OvhCloudPublicCloud/region/loadbalancing/loadbalancingLoadBalancerLogSubscriptionListGet.operation.ts |
+| cloud (v1) | POST | `/publicCloud/project/{x}/region/{x}/loadbalancing/loadbalancer/{x}/log/subscription` | OvhCloudPublicCloud/region/loadbalancing/loadbalancingLoadBalancerLogSubscriptionCreatePost.operation.ts |
+| cloud (v1) | DELETE | `/publicCloud/project/{x}/region/{x}/loadbalancing/loadbalancer/{x}/log/subscription/{x}` | OvhCloudPublicCloud/region/loadbalancing/loadbalancingLoadBalancerLogSubscriptionDeleteDelete.operation.ts |
+| cloud (v1) | GET | `/publicCloud/project/{x}/region/{x}/loadbalancing/loadbalancer/{x}/log/subscription/{x}` | OvhCloudPublicCloud/region/loadbalancing/loadbalancingLoadBalancerLogSubscriptionGetGet.operation.ts |
+| cloud (v1) | POST | `/publicCloud/project/{x}/region/{x}/loadbalancing/loadbalancer/{x}/log/url` | OvhCloudPublicCloud/region/loadbalancing/loadbalancingLoadBalancerLogUrlPost.operation.ts |
+| cloud (v1) | GET | `/publicCloud/project/{x}/region/{x}/loadbalancing/loadbalancer/{x}/stats` | OvhCloudPublicCloud/region/loadbalancing/loadbalancingLoadBalancerStatsGet.operation.ts |
+| cloud (v1) | GET | `/publicCloud/project/{x}/region/{x}/loadbalancing/log/kind` | OvhCloudPublicCloud/region/loadbalancing/loadbalancingLogKindListGet.operation.ts |
+| cloud (v1) | GET | `/publicCloud/project/{x}/region/{x}/loadbalancing/log/kind/{x}` | OvhCloudPublicCloud/region/loadbalancing/loadbalancingLogKindGetGet.operation.ts |
+| cloud (v1) | GET | `/publicCloud/project/{x}/region/{x}/loadbalancing/pool` | OvhCloudPublicCloud/region/loadbalancing/loadbalancingPoolListGet.operation.ts |
+| cloud (v1) | POST | `/publicCloud/project/{x}/region/{x}/loadbalancing/pool` | OvhCloudPublicCloud/region/loadbalancing/loadbalancingPoolCreatePost.operation.ts |
+| cloud (v1) | DELETE | `/publicCloud/project/{x}/region/{x}/loadbalancing/pool/{x}` | OvhCloudPublicCloud/region/loadbalancing/loadbalancingPoolDeleteDelete.operation.ts |
+| cloud (v1) | GET | `/publicCloud/project/{x}/region/{x}/loadbalancing/pool/{x}` | OvhCloudPublicCloud/region/loadbalancing/loadbalancingPoolGetGet.operation.ts |
+| cloud (v1) | PUT | `/publicCloud/project/{x}/region/{x}/loadbalancing/pool/{x}` | OvhCloudPublicCloud/region/loadbalancing/loadbalancingPoolUpdatePut.operation.ts |
+| cloud (v1) | GET | `/publicCloud/project/{x}/region/{x}/loadbalancing/pool/{x}/member` | OvhCloudPublicCloud/region/loadbalancing/loadbalancingPoolMemberListGet.operation.ts |
+| cloud (v1) | POST | `/publicCloud/project/{x}/region/{x}/loadbalancing/pool/{x}/member` | OvhCloudPublicCloud/region/loadbalancing/loadbalancingPoolMemberCreatePost.operation.ts |
+| cloud (v1) | DELETE | `/publicCloud/project/{x}/region/{x}/loadbalancing/pool/{x}/member/{x}` | OvhCloudPublicCloud/region/loadbalancing/loadbalancingPoolMemberDeleteDelete.operation.ts |
+| cloud (v1) | GET | `/publicCloud/project/{x}/region/{x}/loadbalancing/pool/{x}/member/{x}` | OvhCloudPublicCloud/region/loadbalancing/loadbalancingPoolMemberGetGet.operation.ts |
+| cloud (v1) | PUT | `/publicCloud/project/{x}/region/{x}/loadbalancing/pool/{x}/member/{x}` | OvhCloudPublicCloud/region/loadbalancing/loadbalancingPoolMemberUpdatePut.operation.ts |
 | cloud (v1) | GET | `/publicCloud/project/{x}/region/{x}/share` | OvhCloudPublicCloud/region/regionShareListGet.operation.ts |
 | cloud (v1) | POST | `/publicCloud/project/{x}/region/{x}/share` | OvhCloudPublicCloud/region/regionShareCreatePost.operation.ts |
 | cloud (v1) | DELETE | `/publicCloud/project/{x}/region/{x}/share/{x}` | OvhCloudPublicCloud/region/regionShareDeleteDelete.operation.ts |
@@ -2230,6 +2292,68 @@ Ces opérations appellent un chemin qui ne correspond à aucun endpoint de la sp
 | publicCloud (v2) | POST | `/publicCloud/project/{x}/region/{x}/coldArchive/{x}/policy/{x}` | OvhCloudPublicCloud/region/regionColdArchivePolicyCreatePost.operation.ts |
 | publicCloud (v2) | POST | `/publicCloud/project/{x}/region/{x}/coldArchive/{x}/presign` | OvhCloudPublicCloud/region/regionColdArchivePresignPost.operation.ts |
 | publicCloud (v2) | POST | `/publicCloud/project/{x}/region/{x}/coldArchive/{x}/restore` | OvhCloudPublicCloud/region/regionColdArchiveRestorePost.operation.ts |
+| publicCloud (v2) | GET | `/publicCloud/project/{x}/region/{x}/floatingip` | OvhCloudPublicCloud/region/floatingip/floatingIpListGet.operation.ts |
+| publicCloud (v2) | POST | `/publicCloud/project/{x}/region/{x}/floatingip` | OvhCloudPublicCloud/region/floatingip/floatingIpCreatePost.operation.ts |
+| publicCloud (v2) | DELETE | `/publicCloud/project/{x}/region/{x}/floatingip/{x}` | OvhCloudPublicCloud/region/floatingip/floatingIpDeleteDelete.operation.ts |
+| publicCloud (v2) | GET | `/publicCloud/project/{x}/region/{x}/floatingip/{x}` | OvhCloudPublicCloud/region/floatingip/floatingIpGetGet.operation.ts |
+| publicCloud (v2) | POST | `/publicCloud/project/{x}/region/{x}/floatingip/{x}/detach` | OvhCloudPublicCloud/region/floatingip/floatingIpDetachPost.operation.ts |
+| publicCloud (v2) | GET | `/publicCloud/project/{x}/region/{x}/gateway` | OvhCloudPublicCloud/region/gateway/gatewayListGet.operation.ts |
+| publicCloud (v2) | POST | `/publicCloud/project/{x}/region/{x}/gateway` | OvhCloudPublicCloud/region/gateway/gatewayCreatePost.operation.ts |
+| publicCloud (v2) | DELETE | `/publicCloud/project/{x}/region/{x}/gateway/{x}` | OvhCloudPublicCloud/region/gateway/gatewayDeleteDelete.operation.ts |
+| publicCloud (v2) | GET | `/publicCloud/project/{x}/region/{x}/gateway/{x}` | OvhCloudPublicCloud/region/gateway/gatewayGetGet.operation.ts |
+| publicCloud (v2) | PUT | `/publicCloud/project/{x}/region/{x}/gateway/{x}` | OvhCloudPublicCloud/region/gateway/gatewayUpdatePut.operation.ts |
+| publicCloud (v2) | POST | `/publicCloud/project/{x}/region/{x}/gateway/{x}/expose` | OvhCloudPublicCloud/region/gateway/gatewayExposePost.operation.ts |
+| publicCloud (v2) | GET | `/publicCloud/project/{x}/region/{x}/gateway/{x}/interface` | OvhCloudPublicCloud/region/gateway/gatewayInterfaceListGet.operation.ts |
+| publicCloud (v2) | POST | `/publicCloud/project/{x}/region/{x}/gateway/{x}/interface` | OvhCloudPublicCloud/region/gateway/gatewayInterfaceCreatePost.operation.ts |
+| publicCloud (v2) | DELETE | `/publicCloud/project/{x}/region/{x}/gateway/{x}/interface/{x}` | OvhCloudPublicCloud/region/gateway/gatewayInterfaceDeleteDelete.operation.ts |
+| publicCloud (v2) | GET | `/publicCloud/project/{x}/region/{x}/gateway/{x}/interface/{x}` | OvhCloudPublicCloud/region/gateway/gatewayInterfaceGetGet.operation.ts |
+| publicCloud (v2) | GET | `/publicCloud/project/{x}/region/{x}/loadbalancing/flavor` | OvhCloudPublicCloud/region/loadbalancing/loadbalancingFlavorListGet.operation.ts |
+| publicCloud (v2) | GET | `/publicCloud/project/{x}/region/{x}/loadbalancing/flavor/{x}` | OvhCloudPublicCloud/region/loadbalancing/loadbalancingFlavorGetGet.operation.ts |
+| publicCloud (v2) | GET | `/publicCloud/project/{x}/region/{x}/loadbalancing/healthMonitor` | OvhCloudPublicCloud/region/loadbalancing/loadbalancingHealthMonitorListGet.operation.ts |
+| publicCloud (v2) | POST | `/publicCloud/project/{x}/region/{x}/loadbalancing/healthMonitor` | OvhCloudPublicCloud/region/loadbalancing/loadbalancingHealthMonitorCreatePost.operation.ts |
+| publicCloud (v2) | DELETE | `/publicCloud/project/{x}/region/{x}/loadbalancing/healthMonitor/{x}` | OvhCloudPublicCloud/region/loadbalancing/loadbalancingHealthMonitorDeleteDelete.operation.ts |
+| publicCloud (v2) | GET | `/publicCloud/project/{x}/region/{x}/loadbalancing/healthMonitor/{x}` | OvhCloudPublicCloud/region/loadbalancing/loadbalancingHealthMonitorGetGet.operation.ts |
+| publicCloud (v2) | PUT | `/publicCloud/project/{x}/region/{x}/loadbalancing/healthMonitor/{x}` | OvhCloudPublicCloud/region/loadbalancing/loadbalancingHealthMonitorUpdatePut.operation.ts |
+| publicCloud (v2) | GET | `/publicCloud/project/{x}/region/{x}/loadbalancing/l7Policy` | OvhCloudPublicCloud/region/loadbalancing/loadbalancingL7PolicyListGet.operation.ts |
+| publicCloud (v2) | POST | `/publicCloud/project/{x}/region/{x}/loadbalancing/l7Policy` | OvhCloudPublicCloud/region/loadbalancing/loadbalancingL7PolicyCreatePost.operation.ts |
+| publicCloud (v2) | DELETE | `/publicCloud/project/{x}/region/{x}/loadbalancing/l7Policy/{x}` | OvhCloudPublicCloud/region/loadbalancing/loadbalancingL7PolicyDeleteDelete.operation.ts |
+| publicCloud (v2) | GET | `/publicCloud/project/{x}/region/{x}/loadbalancing/l7Policy/{x}` | OvhCloudPublicCloud/region/loadbalancing/loadbalancingL7PolicyGetGet.operation.ts |
+| publicCloud (v2) | PUT | `/publicCloud/project/{x}/region/{x}/loadbalancing/l7Policy/{x}` | OvhCloudPublicCloud/region/loadbalancing/loadbalancingL7PolicyUpdatePut.operation.ts |
+| publicCloud (v2) | GET | `/publicCloud/project/{x}/region/{x}/loadbalancing/l7Policy/{x}/l7Rule` | OvhCloudPublicCloud/region/loadbalancing/loadbalancingL7PolicyL7RuleListGet.operation.ts |
+| publicCloud (v2) | POST | `/publicCloud/project/{x}/region/{x}/loadbalancing/l7Policy/{x}/l7Rule` | OvhCloudPublicCloud/region/loadbalancing/loadbalancingL7PolicyL7RuleCreatePost.operation.ts |
+| publicCloud (v2) | DELETE | `/publicCloud/project/{x}/region/{x}/loadbalancing/l7Policy/{x}/l7Rule/{x}` | OvhCloudPublicCloud/region/loadbalancing/loadbalancingL7PolicyL7RuleDeleteDelete.operation.ts |
+| publicCloud (v2) | GET | `/publicCloud/project/{x}/region/{x}/loadbalancing/l7Policy/{x}/l7Rule/{x}` | OvhCloudPublicCloud/region/loadbalancing/loadbalancingL7PolicyL7RuleGetGet.operation.ts |
+| publicCloud (v2) | PUT | `/publicCloud/project/{x}/region/{x}/loadbalancing/l7Policy/{x}/l7Rule/{x}` | OvhCloudPublicCloud/region/loadbalancing/loadbalancingL7PolicyL7RuleUpdatePut.operation.ts |
+| publicCloud (v2) | GET | `/publicCloud/project/{x}/region/{x}/loadbalancing/listener` | OvhCloudPublicCloud/region/loadbalancing/loadbalancingListenerListGet.operation.ts |
+| publicCloud (v2) | POST | `/publicCloud/project/{x}/region/{x}/loadbalancing/listener` | OvhCloudPublicCloud/region/loadbalancing/loadbalancingListenerCreatePost.operation.ts |
+| publicCloud (v2) | DELETE | `/publicCloud/project/{x}/region/{x}/loadbalancing/listener/{x}` | OvhCloudPublicCloud/region/loadbalancing/loadbalancingListenerDeleteDelete.operation.ts |
+| publicCloud (v2) | GET | `/publicCloud/project/{x}/region/{x}/loadbalancing/listener/{x}` | OvhCloudPublicCloud/region/loadbalancing/loadbalancingListenerGetGet.operation.ts |
+| publicCloud (v2) | PUT | `/publicCloud/project/{x}/region/{x}/loadbalancing/listener/{x}` | OvhCloudPublicCloud/region/loadbalancing/loadbalancingListenerUpdatePut.operation.ts |
+| publicCloud (v2) | GET | `/publicCloud/project/{x}/region/{x}/loadbalancing/loadbalancer` | OvhCloudPublicCloud/region/loadbalancing/loadbalancingLoadBalancerListGet.operation.ts |
+| publicCloud (v2) | POST | `/publicCloud/project/{x}/region/{x}/loadbalancing/loadbalancer` | OvhCloudPublicCloud/region/loadbalancing/loadbalancingLoadBalancerCreatePost.operation.ts |
+| publicCloud (v2) | DELETE | `/publicCloud/project/{x}/region/{x}/loadbalancing/loadbalancer/{x}` | OvhCloudPublicCloud/region/loadbalancing/loadbalancingLoadBalancerDeleteDelete.operation.ts |
+| publicCloud (v2) | GET | `/publicCloud/project/{x}/region/{x}/loadbalancing/loadbalancer/{x}` | OvhCloudPublicCloud/region/loadbalancing/loadbalancingLoadBalancerGetGet.operation.ts |
+| publicCloud (v2) | PUT | `/publicCloud/project/{x}/region/{x}/loadbalancing/loadbalancer/{x}` | OvhCloudPublicCloud/region/loadbalancing/loadbalancingLoadBalancerUpdatePut.operation.ts |
+| publicCloud (v2) | POST | `/publicCloud/project/{x}/region/{x}/loadbalancing/loadbalancer/{x}/associateFloatingIp` | OvhCloudPublicCloud/region/loadbalancing/loadbalancingLoadBalancerAssociateFloatingIpPost.operation.ts |
+| publicCloud (v2) | POST | `/publicCloud/project/{x}/region/{x}/loadbalancing/loadbalancer/{x}/floatingIp` | OvhCloudPublicCloud/region/loadbalancing/loadbalancingLoadBalancerFloatingIpPost.operation.ts |
+| publicCloud (v2) | GET | `/publicCloud/project/{x}/region/{x}/loadbalancing/loadbalancer/{x}/log/subscription` | OvhCloudPublicCloud/region/loadbalancing/loadbalancingLoadBalancerLogSubscriptionListGet.operation.ts |
+| publicCloud (v2) | POST | `/publicCloud/project/{x}/region/{x}/loadbalancing/loadbalancer/{x}/log/subscription` | OvhCloudPublicCloud/region/loadbalancing/loadbalancingLoadBalancerLogSubscriptionCreatePost.operation.ts |
+| publicCloud (v2) | DELETE | `/publicCloud/project/{x}/region/{x}/loadbalancing/loadbalancer/{x}/log/subscription/{x}` | OvhCloudPublicCloud/region/loadbalancing/loadbalancingLoadBalancerLogSubscriptionDeleteDelete.operation.ts |
+| publicCloud (v2) | GET | `/publicCloud/project/{x}/region/{x}/loadbalancing/loadbalancer/{x}/log/subscription/{x}` | OvhCloudPublicCloud/region/loadbalancing/loadbalancingLoadBalancerLogSubscriptionGetGet.operation.ts |
+| publicCloud (v2) | POST | `/publicCloud/project/{x}/region/{x}/loadbalancing/loadbalancer/{x}/log/url` | OvhCloudPublicCloud/region/loadbalancing/loadbalancingLoadBalancerLogUrlPost.operation.ts |
+| publicCloud (v2) | GET | `/publicCloud/project/{x}/region/{x}/loadbalancing/loadbalancer/{x}/stats` | OvhCloudPublicCloud/region/loadbalancing/loadbalancingLoadBalancerStatsGet.operation.ts |
+| publicCloud (v2) | GET | `/publicCloud/project/{x}/region/{x}/loadbalancing/log/kind` | OvhCloudPublicCloud/region/loadbalancing/loadbalancingLogKindListGet.operation.ts |
+| publicCloud (v2) | GET | `/publicCloud/project/{x}/region/{x}/loadbalancing/log/kind/{x}` | OvhCloudPublicCloud/region/loadbalancing/loadbalancingLogKindGetGet.operation.ts |
+| publicCloud (v2) | GET | `/publicCloud/project/{x}/region/{x}/loadbalancing/pool` | OvhCloudPublicCloud/region/loadbalancing/loadbalancingPoolListGet.operation.ts |
+| publicCloud (v2) | POST | `/publicCloud/project/{x}/region/{x}/loadbalancing/pool` | OvhCloudPublicCloud/region/loadbalancing/loadbalancingPoolCreatePost.operation.ts |
+| publicCloud (v2) | DELETE | `/publicCloud/project/{x}/region/{x}/loadbalancing/pool/{x}` | OvhCloudPublicCloud/region/loadbalancing/loadbalancingPoolDeleteDelete.operation.ts |
+| publicCloud (v2) | GET | `/publicCloud/project/{x}/region/{x}/loadbalancing/pool/{x}` | OvhCloudPublicCloud/region/loadbalancing/loadbalancingPoolGetGet.operation.ts |
+| publicCloud (v2) | PUT | `/publicCloud/project/{x}/region/{x}/loadbalancing/pool/{x}` | OvhCloudPublicCloud/region/loadbalancing/loadbalancingPoolUpdatePut.operation.ts |
+| publicCloud (v2) | GET | `/publicCloud/project/{x}/region/{x}/loadbalancing/pool/{x}/member` | OvhCloudPublicCloud/region/loadbalancing/loadbalancingPoolMemberListGet.operation.ts |
+| publicCloud (v2) | POST | `/publicCloud/project/{x}/region/{x}/loadbalancing/pool/{x}/member` | OvhCloudPublicCloud/region/loadbalancing/loadbalancingPoolMemberCreatePost.operation.ts |
+| publicCloud (v2) | DELETE | `/publicCloud/project/{x}/region/{x}/loadbalancing/pool/{x}/member/{x}` | OvhCloudPublicCloud/region/loadbalancing/loadbalancingPoolMemberDeleteDelete.operation.ts |
+| publicCloud (v2) | GET | `/publicCloud/project/{x}/region/{x}/loadbalancing/pool/{x}/member/{x}` | OvhCloudPublicCloud/region/loadbalancing/loadbalancingPoolMemberGetGet.operation.ts |
+| publicCloud (v2) | PUT | `/publicCloud/project/{x}/region/{x}/loadbalancing/pool/{x}/member/{x}` | OvhCloudPublicCloud/region/loadbalancing/loadbalancingPoolMemberUpdatePut.operation.ts |
 | publicCloud (v2) | GET | `/publicCloud/project/{x}/region/{x}/share` | OvhCloudPublicCloud/region/regionShareListGet.operation.ts |
 | publicCloud (v2) | POST | `/publicCloud/project/{x}/region/{x}/share` | OvhCloudPublicCloud/region/regionShareCreatePost.operation.ts |
 | publicCloud (v2) | DELETE | `/publicCloud/project/{x}/region/{x}/share/{x}` | OvhCloudPublicCloud/region/regionShareDeleteDelete.operation.ts |
