@@ -1,6 +1,6 @@
 # OVHcloud API Coverage Report
 
-> Généré par `scripts/compare-coverage.js` le 2026-08-06T04:30:02.622Z. Document généré automatiquement — ne pas éditer à la main.
+> Généré par `scripts/compare-coverage.js` le 2026-08-06T05:26:08.472Z. Document généré automatiquement — ne pas éditer à la main.
 
 Ce rapport compare les endpoints déclarés dans les specs Swagger 2.0 (`docs/api-specs/v1|v2/*.json`) avec les appels HTTP réellement présents dans les nodes (`nodes/**/*.operation.ts`).
 
@@ -8,8 +8,8 @@ Ce rapport compare les endpoints déclarés dans les specs Swagger 2.0 (`docs/ap
 
 - **Specs analysées** : 84 (v1: 70, v2: 14)
 - **Endpoints déclarés (specs avec endpoints)** : 6624
-- **Endpoints couverts par les nodes** : 3847
-- **Couverture globale** : **58.1%**
+- **Endpoints couverts par les nodes** : 3872
+- **Couverture globale** : **58.5%**
 - **Specs sans node associé** : 21
 - **Specs placeholder (aucun endpoint)** : 1
 
@@ -51,8 +51,8 @@ Triée par pourcentage croissant (moins bonne couverture en premier).
 | xdsl (v1) | 142 | 39 | 103 | 27.5% |
 | veeam (v1) | 10 | 5 | 5 | 50% |
 | license (v1) | 13 | 7 | 6 | 53.8% |
-| cloud (v1) | 1121 | 635 | 486 | 56.6% |
 | pack (v1) | 58 | 33 | 25 | 56.9% |
+| cloud (v1) | 1121 | 660 | 461 | 58.9% |
 | me (v1) | 379 | 233 | 146 | 61.5% |
 | metrics (v1) | 16 | 12 | 4 | 75% |
 | hosting (v1) | 198 | 150 | 48 | 75.8% |
@@ -2419,7 +2419,39 @@ _Nodes associés : OvhCloudLicense_
 | GET | `/license/worklight/{x}/tasks/{x}` |
 | GET | `/license/worklight/orderableVersions` |
 
-### cloud (v1) — 486 manquants
+### pack (v1) — 25 manquants
+
+_Nodes associés : OvhCloudPackXdsl, OvhCloudPack_
+
+| Méthode | Chemin |
+|--------|--------|
+| GET | `/pack/xdsl/{x}/orderFollowUp` |
+| GET | `/pack/xdsl/{x}/promotionCode/capabilities` |
+| POST | `/pack/xdsl/{x}/promotionCode/generate` |
+| POST | `/pack/xdsl/{x}/resiliate` |
+| GET | `/pack/xdsl/{x}/resiliationFollowUp` |
+| GET | `/pack/xdsl/{x}/resiliationTerms` |
+| GET | `/pack/xdsl/{x}/serviceInfos` |
+| PUT | `/pack/xdsl/{x}/serviceInfos` |
+| GET | `/pack/xdsl/{x}/services` |
+| GET | `/pack/xdsl/{x}/shippingAddresses` |
+| GET | `/pack/xdsl/{x}/subServices` |
+| GET | `/pack/xdsl/{x}/subServices/{x}` |
+| GET | `/pack/xdsl/{x}/subServices/{x}/keepServiceTerms` |
+| GET | `/pack/xdsl/{x}/tasks` |
+| GET | `/pack/xdsl/{x}/tasks/{x}` |
+| GET | `/pack/xdsl/{x}/voipBillingAccount/services` |
+| GET | `/pack/xdsl/{x}/voipEcofax/services` |
+| POST | `/pack/xdsl/{x}/voipEcofax/services` |
+| POST | `/pack/xdsl/{x}/voipLine/options/customShippingAddress` |
+| GET | `/pack/xdsl/{x}/voipLine/options/hardwares` |
+| GET | `/pack/xdsl/{x}/voipLine/options/shippingAddresses` |
+| GET | `/pack/xdsl/{x}/voipLine/services` |
+| POST | `/pack/xdsl/{x}/voipLine/services` |
+| GET | `/pack/xdsl/{x}/voipLine/services/{x}` |
+| GET | `/pack/xdsl/{x}/xdslAccess/services` |
+
+### cloud (v1) — 461 manquants
 
 _Nodes associés : OvhCloudPublicCloud, OvhCloudPublicCloudAi_
 
@@ -2588,31 +2620,6 @@ _Nodes associés : OvhCloudPublicCloud, OvhCloudPublicCloudAi_
 | GET | `/cloud/project/{x}/database/kafka/{x}/node` |
 | GET | `/cloud/project/{x}/database/kafka/{x}/node/{x}` |
 | GET | `/cloud/project/{x}/database/kafkaMirrorMaker/{x}/log/subscription` |
-| GET | `/cloud/project/{x}/database/m3aggregator` |
-| POST | `/cloud/project/{x}/database/m3aggregator` |
-| DELETE | `/cloud/project/{x}/database/m3aggregator/{x}` |
-| GET | `/cloud/project/{x}/database/m3aggregator/{x}` |
-| PUT | `/cloud/project/{x}/database/m3aggregator/{x}` |
-| GET | `/cloud/project/{x}/database/m3aggregator/{x}/capabilities/integration` |
-| GET | `/cloud/project/{x}/database/m3aggregator/{x}/integration` |
-| POST | `/cloud/project/{x}/database/m3aggregator/{x}/integration` |
-| DELETE | `/cloud/project/{x}/database/m3aggregator/{x}/integration/{x}` |
-| GET | `/cloud/project/{x}/database/m3aggregator/{x}/integration/{x}` |
-| GET | `/cloud/project/{x}/database/m3aggregator/{x}/log/kind` |
-| GET | `/cloud/project/{x}/database/m3aggregator/{x}/log/kind/{x}` |
-| GET | `/cloud/project/{x}/database/m3aggregator/{x}/log/subscription` |
-| POST | `/cloud/project/{x}/database/m3aggregator/{x}/log/subscription` |
-| DELETE | `/cloud/project/{x}/database/m3aggregator/{x}/log/subscription/{x}` |
-| GET | `/cloud/project/{x}/database/m3aggregator/{x}/log/subscription/{x}` |
-| POST | `/cloud/project/{x}/database/m3aggregator/{x}/log/url` |
-| GET | `/cloud/project/{x}/database/m3aggregator/{x}/logs` |
-| GET | `/cloud/project/{x}/database/m3aggregator/{x}/maintenance` |
-| GET | `/cloud/project/{x}/database/m3aggregator/{x}/maintenance/{x}` |
-| POST | `/cloud/project/{x}/database/m3aggregator/{x}/maintenance/{x}/apply` |
-| GET | `/cloud/project/{x}/database/m3aggregator/{x}/metric` |
-| GET | `/cloud/project/{x}/database/m3aggregator/{x}/metric/{x}` |
-| GET | `/cloud/project/{x}/database/m3aggregator/{x}/node` |
-| GET | `/cloud/project/{x}/database/m3aggregator/{x}/node/{x}` |
 | POST | `/cloud/project/{x}/database/postgresql/{x}/enableWrites` |
 | POST | `/cloud/project/{x}/database/postgresql/{x}/prometheus/credentials/reset` |
 | GET | `/cloud/project/{x}/database/service` |
@@ -2911,38 +2918,6 @@ _Nodes associés : OvhCloudPublicCloud, OvhCloudPublicCloudAi_
 | GET | `/cloud/project/{x}/volume/snapshot/{x}` |
 | GET | `/cloud/project/{x}/vrack` |
 | POST | `/cloud/project/{x}/vrack` |
-
-### pack (v1) — 25 manquants
-
-_Nodes associés : OvhCloudPackXdsl, OvhCloudPack_
-
-| Méthode | Chemin |
-|--------|--------|
-| GET | `/pack/xdsl/{x}/orderFollowUp` |
-| GET | `/pack/xdsl/{x}/promotionCode/capabilities` |
-| POST | `/pack/xdsl/{x}/promotionCode/generate` |
-| POST | `/pack/xdsl/{x}/resiliate` |
-| GET | `/pack/xdsl/{x}/resiliationFollowUp` |
-| GET | `/pack/xdsl/{x}/resiliationTerms` |
-| GET | `/pack/xdsl/{x}/serviceInfos` |
-| PUT | `/pack/xdsl/{x}/serviceInfos` |
-| GET | `/pack/xdsl/{x}/services` |
-| GET | `/pack/xdsl/{x}/shippingAddresses` |
-| GET | `/pack/xdsl/{x}/subServices` |
-| GET | `/pack/xdsl/{x}/subServices/{x}` |
-| GET | `/pack/xdsl/{x}/subServices/{x}/keepServiceTerms` |
-| GET | `/pack/xdsl/{x}/tasks` |
-| GET | `/pack/xdsl/{x}/tasks/{x}` |
-| GET | `/pack/xdsl/{x}/voipBillingAccount/services` |
-| GET | `/pack/xdsl/{x}/voipEcofax/services` |
-| POST | `/pack/xdsl/{x}/voipEcofax/services` |
-| POST | `/pack/xdsl/{x}/voipLine/options/customShippingAddress` |
-| GET | `/pack/xdsl/{x}/voipLine/options/hardwares` |
-| GET | `/pack/xdsl/{x}/voipLine/options/shippingAddresses` |
-| GET | `/pack/xdsl/{x}/voipLine/services` |
-| POST | `/pack/xdsl/{x}/voipLine/services` |
-| GET | `/pack/xdsl/{x}/voipLine/services/{x}` |
-| GET | `/pack/xdsl/{x}/xdslAccess/services` |
 
 ### me (v1) — 146 manquants
 

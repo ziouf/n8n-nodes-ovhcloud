@@ -1,4 +1,5 @@
 import type {
+	IDataObject,
 	IExecuteFunctions,
 	IDisplayOptions,
 	INodeExecutionData,
@@ -49,6 +50,13 @@ export async function execute(this: IExecuteFunctions): Promise<INodeExecutionDa
 	const clusterId = this.getNodeParameter('clusterId', 0) as string;
 	const nodeId = this.getNodeParameter('nodeId', 0) as string;
 
-	const data = (await await client.httpGet('/cloud/project/' + publicCloudProjectId + '/database/m3aggregator/' + clusterId + '/node/' + nodeId)) as IDataObject;
+	const data = (await await client.httpGet(
+		'/cloud/project/' +
+			publicCloudProjectId +
+			'/database/m3aggregator/' +
+			clusterId +
+			'/node/' +
+			nodeId,
+	)) as IDataObject;
 	return this.helpers.returnJsonArray([data]);
 }
