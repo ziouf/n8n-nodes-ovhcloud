@@ -1975,6 +1975,178 @@ import {
 	description as descriptionupgradeZimbraServiceGET,
 } from './upgrade/upgradezimbraserviceget.operation';
 
+// CDN, hosting, emailDomain, domainZone operations
+import {
+	execute as executecdnDedicatedBackendOptionsListGet,
+	description as descriptioncdnDedicatedBackendOptionsListGet,
+} from './cdn/cdnDedicatedBackendOptionsListGet.operation';
+
+import {
+	execute as executecdnDedicatedBackendOrderCreatePost,
+	description as descriptioncdnDedicatedBackendOrderCreatePost,
+} from './cdn/cdnDedicatedBackendOrderCreatePost.operation';
+
+import {
+	execute as executecdnDedicatedBackendOrderGet,
+	description as descriptioncdnDedicatedBackendOrderGet,
+} from './cdn/cdnDedicatedBackendOrderGet.operation';
+
+import {
+	execute as executecdnDedicatedCacheRuleOptionsListGet,
+	description as descriptioncdnDedicatedCacheRuleOptionsListGet,
+} from './cdn/cdnDedicatedCacheRuleOptionsListGet.operation';
+
+import {
+	execute as executecdnDedicatedCacheRuleOrderCreatePost,
+	description as descriptioncdnDedicatedCacheRuleOrderCreatePost,
+} from './cdn/cdnDedicatedCacheRuleOrderCreatePost.operation';
+
+import {
+	execute as executecdnDedicatedCacheRuleOrderGet,
+	description as descriptioncdnDedicatedCacheRuleOrderGet,
+} from './cdn/cdnDedicatedCacheRuleOrderGet.operation';
+
+import {
+	execute as executecdnDedicatedListGet,
+	description as descriptioncdnDedicatedListGet,
+} from './cdn/cdnDedicatedListGet.operation';
+
+import {
+	execute as executecdnDedicatedNewDurationGet,
+	description as descriptioncdnDedicatedNewDurationGet,
+} from './cdn/cdnDedicatedNewDurationGet.operation';
+
+import {
+	execute as executecdnDedicatedNewOrderCreatePost,
+	description as descriptioncdnDedicatedNewOrderCreatePost,
+} from './cdn/cdnDedicatedNewOrderCreatePost.operation';
+
+import {
+	execute as executecdnDedicatedNewOrderGet,
+	description as descriptioncdnDedicatedNewOrderGet,
+} from './cdn/cdnDedicatedNewOrderGet.operation';
+
+import {
+	execute as executecdnDedicatedQuotaOptionsListGet,
+	description as descriptioncdnDedicatedQuotaOptionsListGet,
+} from './cdn/cdnDedicatedQuotaOptionsListGet.operation';
+
+import {
+	execute as executecdnDedicatedQuotaOrderCreatePost,
+	description as descriptioncdnDedicatedQuotaOrderCreatePost,
+} from './cdn/cdnDedicatedQuotaOrderCreatePost.operation';
+
+import {
+	execute as executecdnDedicatedQuotaOrderGet,
+	description as descriptioncdnDedicatedQuotaOrderGet,
+} from './cdn/cdnDedicatedQuotaOrderGet.operation';
+
+import {
+	execute as executecdnDedicatedServiceOptionsListGet,
+	description as descriptioncdnDedicatedServiceOptionsListGet,
+} from './cdn/cdnDedicatedServiceOptionsListGet.operation';
+
+import {
+	execute as executedomainZoneDnsAnycastOptionsListGet,
+	description as descriptiondomainZoneDnsAnycastOptionsListGet,
+} from './domainZone/domainZoneDnsAnycastOptionsListGet.operation';
+
+import {
+	execute as executedomainZoneDnsAnycastOrderCreatePost,
+	description as descriptiondomainZoneDnsAnycastOrderCreatePost,
+} from './domainZone/domainZoneDnsAnycastOrderCreatePost.operation';
+
+import {
+	execute as executedomainZoneDnsAnycastOrderGet,
+	description as descriptiondomainZoneDnsAnycastOrderGet,
+} from './domainZone/domainZoneDnsAnycastOrderGet.operation';
+
+import {
+	execute as executedomainZoneListGet,
+	description as descriptiondomainZoneListGet,
+} from './domainZone/domainZoneListGet.operation';
+
+import {
+	execute as executedomainZoneNewOrderCreatePost,
+	description as descriptiondomainZoneNewOrderCreatePost,
+} from './domainZone/domainZoneNewOrderCreatePost.operation';
+
+import {
+	execute as executedomainZoneNewOrderGet,
+	description as descriptiondomainZoneNewOrderGet,
+} from './domainZone/domainZoneNewOrderGet.operation';
+
+import {
+	execute as executedomainZoneServiceOptionsListGet,
+	description as descriptiondomainZoneServiceOptionsListGet,
+} from './domainZone/domainZoneServiceOptionsListGet.operation';
+
+import {
+	execute as executeemailDomainListGet,
+	description as descriptionemailDomainListGet,
+} from './emailDomain/emailDomainListGet.operation';
+
+import {
+	execute as executeemailDomainNewDurationGet,
+	description as descriptionemailDomainNewDurationGet,
+} from './emailDomain/emailDomainNewDurationGet.operation';
+
+import {
+	execute as executeemailDomainNewOrderCreatePost,
+	description as descriptionemailDomainNewOrderCreatePost,
+} from './emailDomain/emailDomainNewOrderCreatePost.operation';
+
+import {
+	execute as executeemailDomainNewOrderGet,
+	description as descriptionemailDomainNewOrderGet,
+} from './emailDomain/emailDomainNewOrderGet.operation';
+
+import {
+	execute as executeemailDomainServiceOptionsListGet,
+	description as descriptionemailDomainServiceOptionsListGet,
+} from './emailDomain/emailDomainServiceOptionsListGet.operation';
+
+import {
+	execute as executeemailDomainServiceUpgradeOptionsListGet,
+	description as descriptionemailDomainServiceUpgradeOptionsListGet,
+} from './emailDomain/emailDomainServiceUpgradeOptionsListGet.operation';
+
+import {
+	execute as executeemailDomainServiceUpgradeOrderCreatePost,
+	description as descriptionemailDomainServiceUpgradeOrderCreatePost,
+} from './emailDomain/emailDomainServiceUpgradeOrderCreatePost.operation';
+
+import {
+	execute as executeemailDomainServiceUpgradeOrderGet,
+	description as descriptionemailDomainServiceUpgradeOrderGet,
+} from './emailDomain/emailDomainServiceUpgradeOrderGet.operation';
+
+import {
+	execute as executehostingWebListGet,
+	description as descriptionhostingWebListGet,
+} from './hosting/hostingWebListGet.operation';
+
+import {
+	execute as executehostingWebServiceOptionsListGet,
+	description as descriptionhostingWebServiceOptionsListGet,
+} from './hosting/hostingWebServiceOptionsListGet.operation';
+
+import {
+	execute as executehostingWebServiceUpgradeOptionsListGet,
+	description as descriptionhostingWebServiceUpgradeOptionsListGet,
+} from './hosting/hostingWebServiceUpgradeOptionsListGet.operation';
+
+import {
+	execute as executehostingWebServiceUpgradeOrderCreatePost,
+	description as descriptionhostingWebServiceUpgradeOrderCreatePost,
+} from './hosting/hostingWebServiceUpgradeOrderCreatePost.operation';
+
+import {
+	execute as executehostingWebServiceUpgradeOrderGet,
+	description as descriptionhostingWebServiceUpgradeOrderGet,
+} from './hosting/hostingWebServiceUpgradeOrderGet.operation';
+
+
 // CartServiceOption operations
 import {
 	execute as executecartServiceOptionBackupServicesListGET,
@@ -2846,6 +3018,40 @@ export function description(displayOptions: IDisplayOptions): INodeProperties[] 
 			{ name: 'Get Web Hosting Cart Service Option (List)', value: 'cartServiceOptionWebHostingListGET', action: 'get web hosting cart service option (List)' },
 			{ name: 'Get Web Hosting Cart Service Option (Service)', value: 'cartServiceOptionWebHostingServiceGET', action: 'get web hosting cart service option (Service)' },
 			{ name: 'Add Web Hosting Cart Service Option (Service)', value: 'cartServiceOptionWebHostingServicePOST', action: 'add web hosting cart service option (Service)' },
+			{ name: 'Get options CDN Dedicated Backend', value: 'cdnDedicatedBackendOptionsListGet', action: 'get options cdn dedicated backend' },
+			{ name: 'Create CDN Dedicated Backend', value: 'cdnDedicatedBackendOrderCreatePost', action: 'create cdn dedicated backend' },
+			{ name: 'Get CDN Dedicated Backend', value: 'cdnDedicatedBackendOrderGet', action: 'get cdn dedicated backend' },
+			{ name: 'Get options CDN Dedicated CacheRule', value: 'cdnDedicatedCacheRuleOptionsListGet', action: 'get options cdn dedicated cacherule' },
+			{ name: 'Create CDN Dedicated CacheRule', value: 'cdnDedicatedCacheRuleOrderCreatePost', action: 'create cdn dedicated cacherule' },
+			{ name: 'Get CDN Dedicated CacheRule', value: 'cdnDedicatedCacheRuleOrderGet', action: 'get cdn dedicated cacherule' },
+			{ name: 'List CDN Dedicated  Get', value: 'cdnDedicatedListGet', action: 'list cdn dedicated  get' },
+			{ name: 'Get duration CDN Dedicated', value: 'cdnDedicatedNewDurationGet', action: 'get duration cdn dedicated' },
+			{ name: 'Create CDN Dedicated', value: 'cdnDedicatedNewOrderCreatePost', action: 'create cdn dedicated' },
+			{ name: 'Get CDN Dedicated', value: 'cdnDedicatedNewOrderGet', action: 'get cdn dedicated' },
+			{ name: 'Get options CDN Dedicated Quota', value: 'cdnDedicatedQuotaOptionsListGet', action: 'get options cdn dedicated quota' },
+			{ name: 'Create CDN Dedicated Quota', value: 'cdnDedicatedQuotaOrderCreatePost', action: 'create cdn dedicated quota' },
+			{ name: 'Get CDN Dedicated Quota', value: 'cdnDedicatedQuotaOrderGet', action: 'get cdn dedicated quota' },
+			{ name: 'Get options CDN Dedicated', value: 'cdnDedicatedServiceOptionsListGet', action: 'get options cdn dedicated' },
+			{ name: 'Get options Domain Zone DNS Anycast', value: 'domainZoneDnsAnycastOptionsListGet', action: 'get options domain zone dns anycast' },
+			{ name: 'Create Domain Zone DNS Anycast', value: 'domainZoneDnsAnycastOrderCreatePost', action: 'create domain zone dns anycast' },
+			{ name: 'Get Domain Zone DNS Anycast', value: 'domainZoneDnsAnycastOrderGet', action: 'get domain zone dns anycast' },
+			{ name: 'List Domain Zone  Get', value: 'domainZoneListGet', action: 'list domain zone  get' },
+			{ name: 'Create Domain Zone', value: 'domainZoneNewOrderCreatePost', action: 'create domain zone' },
+			{ name: 'Get Domain Zone', value: 'domainZoneNewOrderGet', action: 'get domain zone' },
+			{ name: 'Get options Domain Zone', value: 'domainZoneServiceOptionsListGet', action: 'get options domain zone' },
+			{ name: 'List Email Domain  Get', value: 'emailDomainListGet', action: 'list email domain  get' },
+			{ name: 'Get duration Email Domain', value: 'emailDomainNewDurationGet', action: 'get duration email domain' },
+			{ name: 'Create Email Domain', value: 'emailDomainNewOrderCreatePost', action: 'create email domain' },
+			{ name: 'Get Email Domain', value: 'emailDomainNewOrderGet', action: 'get email domain' },
+			{ name: 'Get options Email Domain', value: 'emailDomainServiceOptionsListGet', action: 'get options email domain' },
+			{ name: 'Get options Email Domain', value: 'emailDomainServiceUpgradeOptionsListGet', action: 'get options email domain' },
+			{ name: 'Create Email Domain', value: 'emailDomainServiceUpgradeOrderCreatePost', action: 'create email domain' },
+			{ name: 'Get Email Domain', value: 'emailDomainServiceUpgradeOrderGet', action: 'get email domain' },
+			{ name: 'List Hosting Web  Get', value: 'hostingWebListGet', action: 'list hosting web  get' },
+			{ name: 'Get options Hosting Web', value: 'hostingWebServiceOptionsListGet', action: 'get options hosting web' },
+			{ name: 'Get options Hosting Web', value: 'hostingWebServiceUpgradeOptionsListGet', action: 'get options hosting web' },
+			{ name: 'Create Hosting Web', value: 'hostingWebServiceUpgradeOrderCreatePost', action: 'create hosting web' },
+			{ name: 'Get Hosting Web', value: 'hostingWebServiceUpgradeOrderGet', action: 'get hosting web' },
 ],
 			default: 'cartListGet',
 			displayOptions,
@@ -2857,6 +3063,142 @@ export function description(displayOptions: IDisplayOptions): INodeProperties[] 
 		...(descriptionCartListGet({
 			...displayOptions,
 			show: { orderOperation: ['cartListGet'] },
+		}) as INodeProperties[]),
+		...(descriptioncdnDedicatedBackendOptionsListGet({
+			...displayOptions,
+			show: { orderOperation: ['cdnDedicatedBackendOptionsListGet'] },
+		}) as INodeProperties[]),
+		...(descriptioncdnDedicatedBackendOrderCreatePost({
+			...displayOptions,
+			show: { orderOperation: ['cdnDedicatedBackendOrderCreatePost'] },
+		}) as INodeProperties[]),
+		...(descriptioncdnDedicatedBackendOrderGet({
+			...displayOptions,
+			show: { orderOperation: ['cdnDedicatedBackendOrderGet'] },
+		}) as INodeProperties[]),
+		...(descriptioncdnDedicatedCacheRuleOptionsListGet({
+			...displayOptions,
+			show: { orderOperation: ['cdnDedicatedCacheRuleOptionsListGet'] },
+		}) as INodeProperties[]),
+		...(descriptioncdnDedicatedCacheRuleOrderCreatePost({
+			...displayOptions,
+			show: { orderOperation: ['cdnDedicatedCacheRuleOrderCreatePost'] },
+		}) as INodeProperties[]),
+		...(descriptioncdnDedicatedCacheRuleOrderGet({
+			...displayOptions,
+			show: { orderOperation: ['cdnDedicatedCacheRuleOrderGet'] },
+		}) as INodeProperties[]),
+		...(descriptioncdnDedicatedListGet({
+			...displayOptions,
+			show: { orderOperation: ['cdnDedicatedListGet'] },
+		}) as INodeProperties[]),
+		...(descriptioncdnDedicatedNewDurationGet({
+			...displayOptions,
+			show: { orderOperation: ['cdnDedicatedNewDurationGet'] },
+		}) as INodeProperties[]),
+		...(descriptioncdnDedicatedNewOrderCreatePost({
+			...displayOptions,
+			show: { orderOperation: ['cdnDedicatedNewOrderCreatePost'] },
+		}) as INodeProperties[]),
+		...(descriptioncdnDedicatedNewOrderGet({
+			...displayOptions,
+			show: { orderOperation: ['cdnDedicatedNewOrderGet'] },
+		}) as INodeProperties[]),
+		...(descriptioncdnDedicatedQuotaOptionsListGet({
+			...displayOptions,
+			show: { orderOperation: ['cdnDedicatedQuotaOptionsListGet'] },
+		}) as INodeProperties[]),
+		...(descriptioncdnDedicatedQuotaOrderCreatePost({
+			...displayOptions,
+			show: { orderOperation: ['cdnDedicatedQuotaOrderCreatePost'] },
+		}) as INodeProperties[]),
+		...(descriptioncdnDedicatedQuotaOrderGet({
+			...displayOptions,
+			show: { orderOperation: ['cdnDedicatedQuotaOrderGet'] },
+		}) as INodeProperties[]),
+		...(descriptioncdnDedicatedServiceOptionsListGet({
+			...displayOptions,
+			show: { orderOperation: ['cdnDedicatedServiceOptionsListGet'] },
+		}) as INodeProperties[]),
+		...(descriptiondomainZoneDnsAnycastOptionsListGet({
+			...displayOptions,
+			show: { orderOperation: ['domainZoneDnsAnycastOptionsListGet'] },
+		}) as INodeProperties[]),
+		...(descriptiondomainZoneDnsAnycastOrderCreatePost({
+			...displayOptions,
+			show: { orderOperation: ['domainZoneDnsAnycastOrderCreatePost'] },
+		}) as INodeProperties[]),
+		...(descriptiondomainZoneDnsAnycastOrderGet({
+			...displayOptions,
+			show: { orderOperation: ['domainZoneDnsAnycastOrderGet'] },
+		}) as INodeProperties[]),
+		...(descriptiondomainZoneListGet({
+			...displayOptions,
+			show: { orderOperation: ['domainZoneListGet'] },
+		}) as INodeProperties[]),
+		...(descriptiondomainZoneNewOrderCreatePost({
+			...displayOptions,
+			show: { orderOperation: ['domainZoneNewOrderCreatePost'] },
+		}) as INodeProperties[]),
+		...(descriptiondomainZoneNewOrderGet({
+			...displayOptions,
+			show: { orderOperation: ['domainZoneNewOrderGet'] },
+		}) as INodeProperties[]),
+		...(descriptiondomainZoneServiceOptionsListGet({
+			...displayOptions,
+			show: { orderOperation: ['domainZoneServiceOptionsListGet'] },
+		}) as INodeProperties[]),
+		...(descriptionemailDomainListGet({
+			...displayOptions,
+			show: { orderOperation: ['emailDomainListGet'] },
+		}) as INodeProperties[]),
+		...(descriptionemailDomainNewDurationGet({
+			...displayOptions,
+			show: { orderOperation: ['emailDomainNewDurationGet'] },
+		}) as INodeProperties[]),
+		...(descriptionemailDomainNewOrderCreatePost({
+			...displayOptions,
+			show: { orderOperation: ['emailDomainNewOrderCreatePost'] },
+		}) as INodeProperties[]),
+		...(descriptionemailDomainNewOrderGet({
+			...displayOptions,
+			show: { orderOperation: ['emailDomainNewOrderGet'] },
+		}) as INodeProperties[]),
+		...(descriptionemailDomainServiceOptionsListGet({
+			...displayOptions,
+			show: { orderOperation: ['emailDomainServiceOptionsListGet'] },
+		}) as INodeProperties[]),
+		...(descriptionemailDomainServiceUpgradeOptionsListGet({
+			...displayOptions,
+			show: { orderOperation: ['emailDomainServiceUpgradeOptionsListGet'] },
+		}) as INodeProperties[]),
+		...(descriptionemailDomainServiceUpgradeOrderCreatePost({
+			...displayOptions,
+			show: { orderOperation: ['emailDomainServiceUpgradeOrderCreatePost'] },
+		}) as INodeProperties[]),
+		...(descriptionemailDomainServiceUpgradeOrderGet({
+			...displayOptions,
+			show: { orderOperation: ['emailDomainServiceUpgradeOrderGet'] },
+		}) as INodeProperties[]),
+		...(descriptionhostingWebListGet({
+			...displayOptions,
+			show: { orderOperation: ['hostingWebListGet'] },
+		}) as INodeProperties[]),
+		...(descriptionhostingWebServiceOptionsListGet({
+			...displayOptions,
+			show: { orderOperation: ['hostingWebServiceOptionsListGet'] },
+		}) as INodeProperties[]),
+		...(descriptionhostingWebServiceUpgradeOptionsListGet({
+			...displayOptions,
+			show: { orderOperation: ['hostingWebServiceUpgradeOptionsListGet'] },
+		}) as INodeProperties[]),
+		...(descriptionhostingWebServiceUpgradeOrderCreatePost({
+			...displayOptions,
+			show: { orderOperation: ['hostingWebServiceUpgradeOrderCreatePost'] },
+		}) as INodeProperties[]),
+		...(descriptionhostingWebServiceUpgradeOrderGet({
+			...displayOptions,
+			show: { orderOperation: ['hostingWebServiceUpgradeOrderGet'] },
 		}) as INodeProperties[]),
 		...(descriptionCartCreatePost({
 			...displayOptions,
@@ -5352,6 +5694,108 @@ export async function execute(
 			return executeCartZimbraOptionsGET.call(this);
 		case 'cartZimbraOptionsPOST':
 			return executeCartZimbraOptionsPOST.call(this);
+		case 'cdnDedicatedBackendOptionsListGet':
+			return executecdnDedicatedBackendOptionsListGet.call(this);
+
+		case 'cdnDedicatedBackendOrderCreatePost':
+			return executecdnDedicatedBackendOrderCreatePost.call(this);
+
+		case 'cdnDedicatedBackendOrderGet':
+			return executecdnDedicatedBackendOrderGet.call(this);
+
+		case 'cdnDedicatedCacheRuleOptionsListGet':
+			return executecdnDedicatedCacheRuleOptionsListGet.call(this);
+
+		case 'cdnDedicatedCacheRuleOrderCreatePost':
+			return executecdnDedicatedCacheRuleOrderCreatePost.call(this);
+
+		case 'cdnDedicatedCacheRuleOrderGet':
+			return executecdnDedicatedCacheRuleOrderGet.call(this);
+
+		case 'cdnDedicatedListGet':
+			return executecdnDedicatedListGet.call(this);
+
+		case 'cdnDedicatedNewDurationGet':
+			return executecdnDedicatedNewDurationGet.call(this);
+
+		case 'cdnDedicatedNewOrderCreatePost':
+			return executecdnDedicatedNewOrderCreatePost.call(this);
+
+		case 'cdnDedicatedNewOrderGet':
+			return executecdnDedicatedNewOrderGet.call(this);
+
+		case 'cdnDedicatedQuotaOptionsListGet':
+			return executecdnDedicatedQuotaOptionsListGet.call(this);
+
+		case 'cdnDedicatedQuotaOrderCreatePost':
+			return executecdnDedicatedQuotaOrderCreatePost.call(this);
+
+		case 'cdnDedicatedQuotaOrderGet':
+			return executecdnDedicatedQuotaOrderGet.call(this);
+
+		case 'cdnDedicatedServiceOptionsListGet':
+			return executecdnDedicatedServiceOptionsListGet.call(this);
+
+		case 'domainZoneDnsAnycastOptionsListGet':
+			return executedomainZoneDnsAnycastOptionsListGet.call(this);
+
+		case 'domainZoneDnsAnycastOrderCreatePost':
+			return executedomainZoneDnsAnycastOrderCreatePost.call(this);
+
+		case 'domainZoneDnsAnycastOrderGet':
+			return executedomainZoneDnsAnycastOrderGet.call(this);
+
+		case 'domainZoneListGet':
+			return executedomainZoneListGet.call(this);
+
+		case 'domainZoneNewOrderCreatePost':
+			return executedomainZoneNewOrderCreatePost.call(this);
+
+		case 'domainZoneNewOrderGet':
+			return executedomainZoneNewOrderGet.call(this);
+
+		case 'domainZoneServiceOptionsListGet':
+			return executedomainZoneServiceOptionsListGet.call(this);
+
+		case 'emailDomainListGet':
+			return executeemailDomainListGet.call(this);
+
+		case 'emailDomainNewDurationGet':
+			return executeemailDomainNewDurationGet.call(this);
+
+		case 'emailDomainNewOrderCreatePost':
+			return executeemailDomainNewOrderCreatePost.call(this);
+
+		case 'emailDomainNewOrderGet':
+			return executeemailDomainNewOrderGet.call(this);
+
+		case 'emailDomainServiceOptionsListGet':
+			return executeemailDomainServiceOptionsListGet.call(this);
+
+		case 'emailDomainServiceUpgradeOptionsListGet':
+			return executeemailDomainServiceUpgradeOptionsListGet.call(this);
+
+		case 'emailDomainServiceUpgradeOrderCreatePost':
+			return executeemailDomainServiceUpgradeOrderCreatePost.call(this);
+
+		case 'emailDomainServiceUpgradeOrderGet':
+			return executeemailDomainServiceUpgradeOrderGet.call(this);
+
+		case 'hostingWebListGet':
+			return executehostingWebListGet.call(this);
+
+		case 'hostingWebServiceOptionsListGet':
+			return executehostingWebServiceOptionsListGet.call(this);
+
+		case 'hostingWebServiceUpgradeOptionsListGet':
+			return executehostingWebServiceUpgradeOptionsListGet.call(this);
+
+		case 'hostingWebServiceUpgradeOrderCreatePost':
+			return executehostingWebServiceUpgradeOrderCreatePost.call(this);
+
+		case 'hostingWebServiceUpgradeOrderGet':
+			return executehostingWebServiceUpgradeOrderGet.call(this);
+
 
 		case 'catalogPublicGet':
 			return executeCatalogPublicGet.call(this);
