@@ -1,16 +1,16 @@
 # OVHcloud API Conformity Report
 
-> Généré par `scripts/audit-conformity.js` le 2026-08-06T16:12:20.506Z. Document généré automatiquement — ne pas éditer à la main.
+> Généré par `scripts/audit-conformity.js` le 2026-08-06T18:29:54.271Z. Document généré automatiquement — ne pas éditer à la main.
 
 Ce rapport vérifie que les opérations des nodes respectent leur spec (méthode, chemin, paramètres path requis, query requis, champs body requis).
 
 ## Résumé
 
-- **Opérations auditées** : 6591
-- **Conformes** : 4039
-- **Non conformes** : 2552
-- **Sans correspondance spec** (informatif) : 2234
-- **Taux de conformité** : **61.3%**
+- **Opérations auditées** : 6760
+- **Conformes** : 4089
+- **Non conformes** : 2671
+- **Sans correspondance spec** (informatif) : 2353
+- **Taux de conformité** : **60.5%**
 
 ## Conformité par spec
 
@@ -50,7 +50,7 @@ Triée par taux de non-conformité décroissant.
 | dedicated (v1) | 69 | 31 | 2 | 44.9% |
 | horizonView (v1) | 42 | 41 | 1 | 97.6% |
 | hosting (v1) | 237 | 154 | 5 | 65% |
-| order (v1) | 484 | 346 | 8 | 71.5% |
+| order (v1) | 653 | 396 | 8 | 60.6% |
 | webhosting (v2) | 246 | 12 | 3 | 4.9% |
 | domain (v1) | 119 | 109 | 1 | 91.6% |
 | telephony (v1) | 644 | 602 | 5 | 93.5% |
@@ -1272,6 +1272,62 @@ Ces opérations appellent un chemin qui ne correspond à aucun endpoint de la sp
 | msServices (v1) | DELETE | `/msServices/{x}` | OvhCloudMsServices/msServicesDeleteDelete.operation.ts |
 | msServices (v1) | POST | `/msServices/{x}/reinstall` | OvhCloudMsServices/reinstallPost.operation.ts |
 | order (v1) | PUT | `/order/cart/{x}/item/{x}/configuration/{x}` | OvhCloudOrder/cart/cartItemConfigurationUpdatePut.operation.ts |
+| order (v1) | GET | `/order/cartServiceOption/backupServices/{serviceName}` | OvhCloudOrder/cart/cartServiceOption/cartserviceoptionbackupservicesserviceget.operation.ts |
+| order (v1) | GET | `/order/cartServiceOption/baremetalServers/{serviceName}` | OvhCloudOrder/cart/cartServiceOption/cartserviceoptionbaremetalserversserviceget.operation.ts |
+| order (v1) | POST | `/order/cartServiceOption/baremetalServers/{serviceName}` | OvhCloudOrder/cart/cartServiceOption/cartserviceoptionbaremetalserversservicepost.operation.ts |
+| order (v1) | GET | `/order/cartServiceOption/cloud/{serviceName}` | OvhCloudOrder/cart/cartServiceOption/cartserviceoptioncloudserviceget.operation.ts |
+| order (v1) | POST | `/order/cartServiceOption/cloud/{serviceName}` | OvhCloudOrder/cart/cartServiceOption/cartserviceoptioncloudservicepost.operation.ts |
+| order (v1) | GET | `/order/cartServiceOption/dedicated/{serviceName}` | OvhCloudOrder/cart/cartServiceOption/cartserviceoptiondedicatedserviceget.operation.ts |
+| order (v1) | POST | `/order/cartServiceOption/dedicated/{serviceName}` | OvhCloudOrder/cart/cartServiceOption/cartserviceoptiondedicatedservicepost.operation.ts |
+| order (v1) | GET | `/order/cartServiceOption/dns/{serviceName}` | OvhCloudOrder/cart/cartServiceOption/cartserviceoptiondnsserviceget.operation.ts |
+| order (v1) | POST | `/order/cartServiceOption/dns/{serviceName}` | OvhCloudOrder/cart/cartServiceOption/cartserviceoptiondnsservicepost.operation.ts |
+| order (v1) | GET | `/order/cartServiceOption/domain/{serviceName}` | OvhCloudOrder/cart/cartServiceOption/cartserviceoptiondomainserviceget.operation.ts |
+| order (v1) | POST | `/order/cartServiceOption/domain/{serviceName}` | OvhCloudOrder/cart/cartServiceOption/cartserviceoptiondomainservicepost.operation.ts |
+| order (v1) | GET | `/order/cartServiceOption/emailpro/{serviceName}` | OvhCloudOrder/cart/cartServiceOption/cartserviceoptionemailproserviceget.operation.ts |
+| order (v1) | POST | `/order/cartServiceOption/emailpro/{serviceName}` | OvhCloudOrder/cart/cartServiceOption/cartserviceoptionemailproservicepost.operation.ts |
+| order (v1) | GET | `/order/cartServiceOption/ipLoadbalancing/{serviceName}` | OvhCloudOrder/cart/cartServiceOption/cartserviceoptioniploadbalancingserviceget.operation.ts |
+| order (v1) | POST | `/order/cartServiceOption/ipLoadbalancing/{serviceName}` | OvhCloudOrder/cart/cartServiceOption/cartserviceoptioniploadbalancingservicepost.operation.ts |
+| order (v1) | GET | `/order/cartServiceOption/licenseHycu/{serviceName}` | OvhCloudOrder/cart/cartServiceOption/cartserviceoptionlicensehycuserviceget.operation.ts |
+| order (v1) | POST | `/order/cartServiceOption/licenseHycu/{serviceName}` | OvhCloudOrder/cart/cartServiceOption/cartserviceoptionlicensehycuservicepost.operation.ts |
+| order (v1) | GET | `/order/cartServiceOption/logs/{serviceName}` | OvhCloudOrder/cart/cartServiceOption/cartserviceoptionlogsserviceget.operation.ts |
+| order (v1) | POST | `/order/cartServiceOption/logs/{serviceName}` | OvhCloudOrder/cart/cartServiceOption/cartserviceoptionlogsservicepost.operation.ts |
+| order (v1) | GET | `/order/cartServiceOption/microsoft/{serviceName}` | OvhCloudOrder/cart/cartServiceOption/cartserviceoptionmicrosoftserviceget.operation.ts |
+| order (v1) | POST | `/order/cartServiceOption/microsoft/{serviceName}` | OvhCloudOrder/cart/cartServiceOption/cartserviceoptionmicrosoftservicepost.operation.ts |
+| order (v1) | GET | `/order/cartServiceOption/microsoftExchange/{serviceName}` | OvhCloudOrder/cart/cartServiceOption/cartserviceoptionmicrosoftexchangeserviceget.operation.ts |
+| order (v1) | POST | `/order/cartServiceOption/microsoftExchange/{serviceName}` | OvhCloudOrder/cart/cartServiceOption/cartserviceoptionmicrosoftexchangeservicepost.operation.ts |
+| order (v1) | GET | `/order/cartServiceOption/nutanix/{serviceName}` | OvhCloudOrder/cart/cartServiceOption/cartserviceoptionnutanixserviceget.operation.ts |
+| order (v1) | POST | `/order/cartServiceOption/nutanix/{serviceName}` | OvhCloudOrder/cart/cartServiceOption/cartserviceoptionnutanixservicepost.operation.ts |
+| order (v1) | GET | `/order/cartServiceOption/office365Prepaid/{serviceName}` | OvhCloudOrder/cart/cartServiceOption/cartserviceoptionoffice365prepaidserviceget.operation.ts |
+| order (v1) | POST | `/order/cartServiceOption/office365Prepaid/{serviceName}` | OvhCloudOrder/cart/cartServiceOption/cartserviceoptionoffice365prepaidservicepost.operation.ts |
+| order (v1) | GET | `/order/cartServiceOption/officePrepaid/{serviceName}` | OvhCloudOrder/cart/cartServiceOption/cartserviceoptionofficeprepaidserviceget.operation.ts |
+| order (v1) | POST | `/order/cartServiceOption/officePrepaid/{serviceName}` | OvhCloudOrder/cart/cartServiceOption/cartserviceoptionofficeprepaidservicepost.operation.ts |
+| order (v1) | GET | `/order/cartServiceOption/privateCloud/{serviceName}` | OvhCloudOrder/cart/cartServiceOption/cartserviceoptionprivatecloudserviceget.operation.ts |
+| order (v1) | POST | `/order/cartServiceOption/privateCloud/{serviceName}` | OvhCloudOrder/cart/cartServiceOption/cartserviceoptionprivatecloudservicepost.operation.ts |
+| order (v1) | GET | `/order/cartServiceOption/privateCloudEnterprise/{serviceName}` | OvhCloudOrder/cart/cartServiceOption/cartserviceoptionprivatecloudenterpriseserviceget.operation.ts |
+| order (v1) | POST | `/order/cartServiceOption/privateCloudEnterprise/{serviceName}` | OvhCloudOrder/cart/cartServiceOption/cartserviceoptionprivatecloudenterpriseservicepost.operation.ts |
+| order (v1) | GET | `/order/cartServiceOption/privateCloudReseller/{serviceName}` | OvhCloudOrder/cart/cartServiceOption/cartserviceoptionprivatecloudresellerserviceget.operation.ts |
+| order (v1) | POST | `/order/cartServiceOption/privateCloudReseller/{serviceName}` | OvhCloudOrder/cart/cartServiceOption/cartserviceoptionprivatecloudresellerservicepost.operation.ts |
+| order (v1) | GET | `/order/cartServiceOption/privateCloudResellerEnterprise/{serviceName}` | OvhCloudOrder/cart/cartServiceOption/cartserviceoptionprivatecloudresellerenterpriseserviceget.operation.ts |
+| order (v1) | POST | `/order/cartServiceOption/privateCloudResellerEnterprise/{serviceName}` | OvhCloudOrder/cart/cartServiceOption/cartserviceoptionprivatecloudresellerenterpriseservicepost.operation.ts |
+| order (v1) | GET | `/order/cartServiceOption/sharepoint/{serviceName}` | OvhCloudOrder/cart/cartServiceOption/cartserviceoptionsharepointserviceget.operation.ts |
+| order (v1) | POST | `/order/cartServiceOption/sharepoint/{serviceName}` | OvhCloudOrder/cart/cartServiceOption/cartserviceoptionsharepointservicepost.operation.ts |
+| order (v1) | GET | `/order/cartServiceOption/sms/{serviceName}` | OvhCloudOrder/cart/cartServiceOption/cartserviceoptionsmsserviceget.operation.ts |
+| order (v1) | POST | `/order/cartServiceOption/sms/{serviceName}` | OvhCloudOrder/cart/cartServiceOption/cartserviceoptionsmsservicepost.operation.ts |
+| order (v1) | GET | `/order/cartServiceOption/sncNetworkServices/{serviceName}` | OvhCloudOrder/cart/cartServiceOption/cartserviceoptionsncnetworkservicesserviceget.operation.ts |
+| order (v1) | POST | `/order/cartServiceOption/sncNetworkServices/{serviceName}` | OvhCloudOrder/cart/cartServiceOption/cartserviceoptionsncnetworkservicesservicepost.operation.ts |
+| order (v1) | GET | `/order/cartServiceOption/sslGateway/{serviceName}` | OvhCloudOrder/cart/cartServiceOption/cartserviceoptionsslgatewayserviceget.operation.ts |
+| order (v1) | POST | `/order/cartServiceOption/sslGateway/{serviceName}` | OvhCloudOrder/cart/cartServiceOption/cartserviceoptionsslgatewayservicepost.operation.ts |
+| order (v1) | GET | `/order/cartServiceOption/vdi/{serviceName}` | OvhCloudOrder/cart/cartServiceOption/cartserviceoptionvdiserviceget.operation.ts |
+| order (v1) | POST | `/order/cartServiceOption/vdi/{serviceName}` | OvhCloudOrder/cart/cartServiceOption/cartserviceoptionvdiservicepost.operation.ts |
+| order (v1) | GET | `/order/cartServiceOption/vmwareCloudDirector/{serviceName}` | OvhCloudOrder/cart/cartServiceOption/cartserviceoptionvmwareclouddirectorserviceget.operation.ts |
+| order (v1) | POST | `/order/cartServiceOption/vmwareCloudDirector/{serviceName}` | OvhCloudOrder/cart/cartServiceOption/cartserviceoptionvmwareclouddirectorservicepost.operation.ts |
+| order (v1) | GET | `/order/cartServiceOption/vmwareCloudDirectorBackup/{serviceName}` | OvhCloudOrder/cart/cartServiceOption/cartserviceoptionvmwareclouddirectorbackupserviceget.operation.ts |
+| order (v1) | GET | `/order/cartServiceOption/vps/{serviceName}` | OvhCloudOrder/cart/cartServiceOption/cartserviceoptionvpsserviceget.operation.ts |
+| order (v1) | POST | `/order/cartServiceOption/vps/{serviceName}` | OvhCloudOrder/cart/cartServiceOption/cartserviceoptionvpsservicepost.operation.ts |
+| order (v1) | GET | `/order/cartServiceOption/vrack/{serviceName}` | OvhCloudOrder/cart/cartServiceOption/cartserviceoptionvrackserviceget.operation.ts |
+| order (v1) | POST | `/order/cartServiceOption/vrack/{serviceName}` | OvhCloudOrder/cart/cartServiceOption/cartserviceoptionvrackservicepost.operation.ts |
+| order (v1) | GET | `/order/cartServiceOption/webHosting/{serviceName}` | OvhCloudOrder/cart/cartServiceOption/cartserviceoptionwebhostingserviceget.operation.ts |
+| order (v1) | POST | `/order/cartServiceOption/webHosting/{serviceName}` | OvhCloudOrder/cart/cartServiceOption/cartserviceoptionwebhostingservicepost.operation.ts |
 | order (v1) | GET | `/order/catalog/public/{x}` | OvhCloudOrder/catalog/catalogPublicGet.operation.ts |
 | order (v1) | GET | `/order/catalog/public/{x}` | OvhCloudOrder/catalog/domainGet.operation.ts |
 | order (v1) | GET | `/order/catalog/public/{x}` | OvhCloudOrder/catalog/ecoGet.operation.ts |
@@ -1396,6 +1452,69 @@ Ces opérations appellent un chemin qui ne correspond à aucun endpoint de la sp
 | order (v1) | POST | `/order/sms` | OvhCloudOrder/sms/smsCreatePost.operation.ts |
 | order (v1) | POST | `/order/sms/{x}` | OvhCloudOrder/sms/smsProductCreatePost.operation.ts |
 | order (v1) | GET | `/order/sms/{x}/{x}` | OvhCloudOrder/sms/smsProductDurationGet.operation.ts |
+| order (v1) | GET | `/order/upgrade/bandwidthVrack/{serviceName}` | OvhCloudOrder/upgrade/upgradebandwidthvrackserviceget.operation.ts |
+| order (v1) | GET | `/order/upgrade/bandwidthVrack/{serviceName}/{planCode}` | OvhCloudOrder/upgrade/upgradebandwidthvrackplanget.operation.ts |
+| order (v1) | POST | `/order/upgrade/bandwidthVrack/{serviceName}/{planCode}` | OvhCloudOrder/upgrade/upgradebandwidthvrackplanpost.operation.ts |
+| order (v1) | GET | `/order/upgrade/baremetalPrivateBandwidth/{serviceName}` | OvhCloudOrder/upgrade/upgradebaremetalprivatebandwidthserviceget.operation.ts |
+| order (v1) | GET | `/order/upgrade/baremetalPrivateBandwidth/{serviceName}/{planCode}` | OvhCloudOrder/upgrade/upgradebaremetalprivatebandwidthplanget.operation.ts |
+| order (v1) | POST | `/order/upgrade/baremetalPrivateBandwidth/{serviceName}/{planCode}` | OvhCloudOrder/upgrade/upgradebaremetalprivatebandwidthplanpost.operation.ts |
+| order (v1) | GET | `/order/upgrade/baremetalPublicBandwidth/{serviceName}` | OvhCloudOrder/upgrade/upgradebaremetalpublicbandwidthserviceget.operation.ts |
+| order (v1) | GET | `/order/upgrade/baremetalPublicBandwidth/{serviceName}/{planCode}` | OvhCloudOrder/upgrade/upgradebaremetalpublicbandwidthplanget.operation.ts |
+| order (v1) | POST | `/order/upgrade/baremetalPublicBandwidth/{serviceName}/{planCode}` | OvhCloudOrder/upgrade/upgradebaremetalpublicbandwidthplanpost.operation.ts |
+| order (v1) | GET | `/order/upgrade/cephaas/{serviceName}` | OvhCloudOrder/upgrade/upgradecephaasserviceget.operation.ts |
+| order (v1) | GET | `/order/upgrade/cephaas/{serviceName}/{planCode}` | OvhCloudOrder/upgrade/upgradecephaasplanget.operation.ts |
+| order (v1) | POST | `/order/upgrade/cephaas/{serviceName}/{planCode}` | OvhCloudOrder/upgrade/upgradecephaasplanpost.operation.ts |
+| order (v1) | GET | `/order/upgrade/cloudDB/{domain}` | OvhCloudOrder/upgrade/upgradeclouddbserviceget.operation.ts |
+| order (v1) | GET | `/order/upgrade/cloudDB/{domain}/{planCode}` | OvhCloudOrder/upgrade/upgradeclouddbplanget.operation.ts |
+| order (v1) | POST | `/order/upgrade/cloudDB/{domain}/{planCode}` | OvhCloudOrder/upgrade/upgradeclouddbplanpost.operation.ts |
+| order (v1) | GET | `/order/upgrade/emailDomain/{serviceName}` | OvhCloudOrder/upgrade/upgradeemaildomainserviceget.operation.ts |
+| order (v1) | GET | `/order/upgrade/emailDomain/{serviceName}/{planCode}` | OvhCloudOrder/upgrade/upgradeemaildomainplanget.operation.ts |
+| order (v1) | POST | `/order/upgrade/emailDomain/{serviceName}/{planCode}` | OvhCloudOrder/upgrade/upgradeemaildomainplanpost.operation.ts |
+| order (v1) | GET | `/order/upgrade/ipLoadbalancing/{serviceName}` | OvhCloudOrder/upgrade/upgradeiploadbalancingserviceget.operation.ts |
+| order (v1) | GET | `/order/upgrade/ipLoadbalancing/{serviceName}/{planCode}` | OvhCloudOrder/upgrade/upgradeiploadbalancingplanget.operation.ts |
+| order (v1) | POST | `/order/upgrade/ipLoadbalancing/{serviceName}/{planCode}` | OvhCloudOrder/upgrade/upgradeiploadbalancingplanpost.operation.ts |
+| order (v1) | GET | `/order/upgrade/licensecPanel/{serviceName}` | OvhCloudOrder/upgrade/upgradelicensecpanelserviceget.operation.ts |
+| order (v1) | GET | `/order/upgrade/licensecPanel/{serviceName}/{planCode}` | OvhCloudOrder/upgrade/upgradelicensecpanelplanget.operation.ts |
+| order (v1) | POST | `/order/upgrade/licensecPanel/{serviceName}/{planCode}` | OvhCloudOrder/upgrade/upgradelicensecpanelplanpost.operation.ts |
+| order (v1) | GET | `/order/upgrade/licenseHycu/{serviceName}` | OvhCloudOrder/upgrade/upgradelicensehycuserviceget.operation.ts |
+| order (v1) | GET | `/order/upgrade/licenseHycu/{serviceName}/{planCode}` | OvhCloudOrder/upgrade/upgradelicensehycuplanget.operation.ts |
+| order (v1) | POST | `/order/upgrade/licenseHycu/{serviceName}/{planCode}` | OvhCloudOrder/upgrade/upgradelicensehycuplanpost.operation.ts |
+| order (v1) | GET | `/order/upgrade/licensePlesk/{serviceName}` | OvhCloudOrder/upgrade/upgradelicensepleskserviceget.operation.ts |
+| order (v1) | GET | `/order/upgrade/licensePlesk/{serviceName}/{planCode}` | OvhCloudOrder/upgrade/upgradelicensepleskplanget.operation.ts |
+| order (v1) | POST | `/order/upgrade/licensePlesk/{serviceName}/{planCode}` | OvhCloudOrder/upgrade/upgradelicensepleskplanpost.operation.ts |
+| order (v1) | GET | `/order/upgrade/logs/{serviceName}` | OvhCloudOrder/upgrade/upgradelogsserviceget.operation.ts |
+| order (v1) | GET | `/order/upgrade/logs/{serviceName}/{planCode}` | OvhCloudOrder/upgrade/upgradelogsplanget.operation.ts |
+| order (v1) | POST | `/order/upgrade/logs/{serviceName}/{planCode}` | OvhCloudOrder/upgrade/upgradelogsplanpost.operation.ts |
+| order (v1) | GET | `/order/upgrade/metrics/{serviceName}` | OvhCloudOrder/upgrade/upgrademetricsserviceget.operation.ts |
+| order (v1) | GET | `/order/upgrade/metrics/{serviceName}/{planCode}` | OvhCloudOrder/upgrade/upgrademetricsplanget.operation.ts |
+| order (v1) | POST | `/order/upgrade/metrics/{serviceName}/{planCode}` | OvhCloudOrder/upgrade/upgrademetricsplanpost.operation.ts |
+| order (v1) | GET | `/order/upgrade/microsoftExchange/{serviceName}` | OvhCloudOrder/upgrade/upgrademicrosoftexchangeserviceget.operation.ts |
+| order (v1) | GET | `/order/upgrade/microsoftExchange/{serviceName}/{planCode}` | OvhCloudOrder/upgrade/upgrademicrosoftexchangeplanget.operation.ts |
+| order (v1) | POST | `/order/upgrade/microsoftExchange/{serviceName}/{planCode}` | OvhCloudOrder/upgrade/upgrademicrosoftexchangeplanpost.operation.ts |
+| order (v1) | GET | `/order/upgrade/privateCloud/{serviceName}` | OvhCloudOrder/upgrade/upgradeprivatecloudserviceget.operation.ts |
+| order (v1) | GET | `/order/upgrade/privateCloud/{serviceName}/{planCode}` | OvhCloudOrder/upgrade/upgradeprivatecloudplanget.operation.ts |
+| order (v1) | POST | `/order/upgrade/privateCloud/{serviceName}/{planCode}` | OvhCloudOrder/upgrade/upgradeprivatecloudplanpost.operation.ts |
+| order (v1) | GET | `/order/upgrade/privateCloudManagementFee/{serviceName}` | OvhCloudOrder/upgrade/upgradeprivatecloudmanagementfeeserviceget.operation.ts |
+| order (v1) | GET | `/order/upgrade/privateCloudManagementFee/{serviceName}/{planCode}` | OvhCloudOrder/upgrade/upgradeprivatecloudmanagementfeeplanget.operation.ts |
+| order (v1) | POST | `/order/upgrade/privateCloudManagementFee/{serviceName}/{planCode}` | OvhCloudOrder/upgrade/upgradeprivatecloudmanagementfeeplanpost.operation.ts |
+| order (v1) | GET | `/order/upgrade/privateSQL/{domain}` | OvhCloudOrder/upgrade/upgradeprivatesqlserviceget.operation.ts |
+| order (v1) | GET | `/order/upgrade/privateSQL/{domain}/{planCode}` | OvhCloudOrder/upgrade/upgradeprivatesqlplanget.operation.ts |
+| order (v1) | POST | `/order/upgrade/privateSQL/{domain}/{planCode}` | OvhCloudOrder/upgrade/upgradeprivatesqlplanpost.operation.ts |
+| order (v1) | GET | `/order/upgrade/sslGateway/{serviceName}` | OvhCloudOrder/upgrade/upgradesslgatewayserviceget.operation.ts |
+| order (v1) | GET | `/order/upgrade/sslGateway/{serviceName}/{planCode}` | OvhCloudOrder/upgrade/upgradesslgatewayplanget.operation.ts |
+| order (v1) | POST | `/order/upgrade/sslGateway/{serviceName}/{planCode}` | OvhCloudOrder/upgrade/upgradesslgatewayplanpost.operation.ts |
+| order (v1) | GET | `/order/upgrade/vps/{serviceName}` | OvhCloudOrder/upgrade/upgradevpsserviceget.operation.ts |
+| order (v1) | GET | `/order/upgrade/vps/{serviceName}/{planCode}` | OvhCloudOrder/upgrade/upgradevpsplanget.operation.ts |
+| order (v1) | POST | `/order/upgrade/vps/{serviceName}/{planCode}` | OvhCloudOrder/upgrade/upgradevpsplanpost.operation.ts |
+| order (v1) | GET | `/order/upgrade/vpsAdditionalDisk/{serviceName}` | OvhCloudOrder/upgrade/upgradevpsadditionaldiskserviceget.operation.ts |
+| order (v1) | GET | `/order/upgrade/vpsAdditionalDisk/{serviceName}/{planCode}` | OvhCloudOrder/upgrade/upgradevpsadditionaldiskplanget.operation.ts |
+| order (v1) | POST | `/order/upgrade/vpsAdditionalDisk/{serviceName}/{planCode}` | OvhCloudOrder/upgrade/upgradevpsadditionaldiskplanpost.operation.ts |
+| order (v1) | GET | `/order/upgrade/webHosting/{serviceName}` | OvhCloudOrder/upgrade/upgradewebhostingserviceget.operation.ts |
+| order (v1) | GET | `/order/upgrade/webHosting/{serviceName}/{planCode}` | OvhCloudOrder/upgrade/upgradewebhostingplanget.operation.ts |
+| order (v1) | POST | `/order/upgrade/webHosting/{serviceName}/{planCode}` | OvhCloudOrder/upgrade/upgradewebhostingplanpost.operation.ts |
+| order (v1) | GET | `/order/upgrade/zimbra/{serviceName}` | OvhCloudOrder/upgrade/upgradezimbraserviceget.operation.ts |
+| order (v1) | GET | `/order/upgrade/zimbra/{serviceName}/{planCode}` | OvhCloudOrder/upgrade/upgradezimbraplanget.operation.ts |
+| order (v1) | POST | `/order/upgrade/zimbra/{serviceName}/{planCode}` | OvhCloudOrder/upgrade/upgradezimbraplanpost.operation.ts |
 | order (v1) | POST | `/order/veeamCloudConnect` | OvhCloudOrder/veeamCloudConnect/veeamCloudConnectCreatePost.operation.ts |
 | order (v1) | POST | `/order/veeamCloudConnect/{x}` | OvhCloudOrder/veeamCloudConnect/veeamCloudConnectConfigCreatePost.operation.ts |
 | order (v1) | POST | `/order/veeamCloudConnect/{x}/option` | OvhCloudOrder/veeamCloudConnect/veeamCloudConnectOptionCreatePost.operation.ts |

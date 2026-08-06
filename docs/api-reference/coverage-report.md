@@ -1,6 +1,6 @@
 # OVHcloud API Coverage Report
 
-> Généré par `scripts/compare-coverage.js` le 2026-08-06T17:09:56.040Z. Document généré automatiquement — ne pas éditer à la main.
+> Généré par `scripts/compare-coverage.js` le 2026-08-06T18:29:37.170Z. Document généré automatiquement — ne pas éditer à la main.
 
 Ce rapport compare les endpoints déclarés dans les specs Swagger 2.0 (`docs/api-specs/v1|v2/*.json`) avec les appels HTTP réellement présents dans les nodes (`nodes/**/*.operation.ts`).
 
@@ -8,8 +8,8 @@ Ce rapport compare les endpoints déclarés dans les specs Swagger 2.0 (`docs/ap
 
 - **Specs analysées** : 84 (v1: 70, v2: 14)
 - **Endpoints déclarés (specs avec endpoints)** : 6624
-- **Endpoints couverts par les nodes** : 4239
-- **Couverture globale** : **64%**
+- **Endpoints couverts par les nodes** : 4289
+- **Couverture globale** : **64.7%**
 - **Specs sans node associé** : 21
 - **Specs placeholder (aucun endpoint)** : 1
 
@@ -48,7 +48,7 @@ Triée par pourcentage croissant (moins bonne couverture en premier).
 | vps (v1) | 94 | 22 | 72 | 23.4% |
 | sslGateway (v1) | 23 | 6 | 17 | 26.1% |
 | xdsl (v1) | 142 | 39 | 103 | 27.5% |
-| order (v1) | 816 | 353 | 463 | 43.3% |
+| order (v1) | 816 | 403 | 413 | 49.4% |
 | veeam (v1) | 10 | 5 | 5 | 50% |
 | license (v1) | 13 | 7 | 6 | 53.8% |
 | pack (v1) | 58 | 33 | 25 | 56.9% |
@@ -1607,7 +1607,7 @@ _Nodes associés : OvhCloudXdsl_
 | GET | `/xdsl/templateModem/{x}` |
 | PUT | `/xdsl/templateModem/{x}` |
 
-### order (v1) — 463 manquants
+### order (v1) — 413 manquants
 
 _Nodes associés : OvhCloudOrder_
 
@@ -1615,89 +1615,60 @@ _Nodes associés : OvhCloudOrder_
 |--------|--------|
 | GET | `/order/cart` |
 | POST | `/order/cart` |
-| GET | `/order/cartServiceOption/backupServices` |
 | GET | `/order/cartServiceOption/backupServices/{x}` |
-| GET | `/order/cartServiceOption/baremetalServers` |
 | GET | `/order/cartServiceOption/baremetalServers/{x}` |
 | POST | `/order/cartServiceOption/baremetalServers/{x}` |
-| GET | `/order/cartServiceOption/cloud` |
 | GET | `/order/cartServiceOption/cloud/{x}` |
 | POST | `/order/cartServiceOption/cloud/{x}` |
-| GET | `/order/cartServiceOption/dedicated` |
 | GET | `/order/cartServiceOption/dedicated/{x}` |
 | POST | `/order/cartServiceOption/dedicated/{x}` |
-| GET | `/order/cartServiceOption/dns` |
 | GET | `/order/cartServiceOption/dns/{x}` |
 | POST | `/order/cartServiceOption/dns/{x}` |
-| GET | `/order/cartServiceOption/domain` |
 | GET | `/order/cartServiceOption/domain/{x}` |
 | POST | `/order/cartServiceOption/domain/{x}` |
-| GET | `/order/cartServiceOption/emailpro` |
 | GET | `/order/cartServiceOption/emailpro/{x}` |
 | POST | `/order/cartServiceOption/emailpro/{x}` |
-| GET | `/order/cartServiceOption/ipLoadbalancing` |
 | GET | `/order/cartServiceOption/ipLoadbalancing/{x}` |
 | POST | `/order/cartServiceOption/ipLoadbalancing/{x}` |
-| GET | `/order/cartServiceOption/licenseHycu` |
 | GET | `/order/cartServiceOption/licenseHycu/{x}` |
 | POST | `/order/cartServiceOption/licenseHycu/{x}` |
-| GET | `/order/cartServiceOption/logs` |
 | GET | `/order/cartServiceOption/logs/{x}` |
 | POST | `/order/cartServiceOption/logs/{x}` |
-| GET | `/order/cartServiceOption/microsoft` |
 | GET | `/order/cartServiceOption/microsoft/{x}` |
 | POST | `/order/cartServiceOption/microsoft/{x}` |
-| GET | `/order/cartServiceOption/microsoftExchange` |
 | GET | `/order/cartServiceOption/microsoftExchange/{x}` |
 | POST | `/order/cartServiceOption/microsoftExchange/{x}` |
-| GET | `/order/cartServiceOption/nutanix` |
 | GET | `/order/cartServiceOption/nutanix/{x}` |
 | POST | `/order/cartServiceOption/nutanix/{x}` |
-| GET | `/order/cartServiceOption/office365Prepaid` |
 | GET | `/order/cartServiceOption/office365Prepaid/{x}` |
 | POST | `/order/cartServiceOption/office365Prepaid/{x}` |
-| GET | `/order/cartServiceOption/officePrepaid` |
 | GET | `/order/cartServiceOption/officePrepaid/{x}` |
 | POST | `/order/cartServiceOption/officePrepaid/{x}` |
-| GET | `/order/cartServiceOption/privateCloud` |
 | GET | `/order/cartServiceOption/privateCloud/{x}` |
 | POST | `/order/cartServiceOption/privateCloud/{x}` |
-| GET | `/order/cartServiceOption/privateCloudEnterprise` |
 | GET | `/order/cartServiceOption/privateCloudEnterprise/{x}` |
 | POST | `/order/cartServiceOption/privateCloudEnterprise/{x}` |
-| GET | `/order/cartServiceOption/privateCloudReseller` |
 | GET | `/order/cartServiceOption/privateCloudReseller/{x}` |
 | POST | `/order/cartServiceOption/privateCloudReseller/{x}` |
-| GET | `/order/cartServiceOption/privateCloudResellerEnterprise` |
 | GET | `/order/cartServiceOption/privateCloudResellerEnterprise/{x}` |
 | POST | `/order/cartServiceOption/privateCloudResellerEnterprise/{x}` |
-| GET | `/order/cartServiceOption/sharepoint` |
 | GET | `/order/cartServiceOption/sharepoint/{x}` |
 | POST | `/order/cartServiceOption/sharepoint/{x}` |
-| GET | `/order/cartServiceOption/sms` |
 | GET | `/order/cartServiceOption/sms/{x}` |
 | POST | `/order/cartServiceOption/sms/{x}` |
-| GET | `/order/cartServiceOption/sncNetworkServices` |
 | GET | `/order/cartServiceOption/sncNetworkServices/{x}` |
 | POST | `/order/cartServiceOption/sncNetworkServices/{x}` |
-| GET | `/order/cartServiceOption/sslGateway` |
 | GET | `/order/cartServiceOption/sslGateway/{x}` |
 | POST | `/order/cartServiceOption/sslGateway/{x}` |
-| GET | `/order/cartServiceOption/vdi` |
 | GET | `/order/cartServiceOption/vdi/{x}` |
 | POST | `/order/cartServiceOption/vdi/{x}` |
-| GET | `/order/cartServiceOption/vmwareCloudDirector` |
 | GET | `/order/cartServiceOption/vmwareCloudDirector/{x}` |
 | POST | `/order/cartServiceOption/vmwareCloudDirector/{x}` |
-| GET | `/order/cartServiceOption/vmwareCloudDirectorBackup` |
 | GET | `/order/cartServiceOption/vmwareCloudDirectorBackup/{x}` |
-| GET | `/order/cartServiceOption/vps` |
 | GET | `/order/cartServiceOption/vps/{x}` |
 | POST | `/order/cartServiceOption/vps/{x}` |
-| GET | `/order/cartServiceOption/vrack` |
 | GET | `/order/cartServiceOption/vrack/{x}` |
 | POST | `/order/cartServiceOption/vrack/{x}` |
-| GET | `/order/cartServiceOption/webHosting` |
 | GET | `/order/cartServiceOption/webHosting/{x}` |
 | POST | `/order/cartServiceOption/webHosting/{x}` |
 | GET | `/order/catalog/formatted` |
@@ -1967,87 +1938,66 @@ _Nodes associés : OvhCloudOrder_
 | POST | `/order/telephony/trunks/{x}/hardware` |
 | GET | `/order/telephony/trunks/{x}/updateSimultaneousChannels` |
 | POST | `/order/telephony/trunks/{x}/updateSimultaneousChannels` |
-| GET | `/order/upgrade/bandwidthVrack` |
 | GET | `/order/upgrade/bandwidthVrack/{x}` |
 | GET | `/order/upgrade/bandwidthVrack/{x}/{x}` |
 | POST | `/order/upgrade/bandwidthVrack/{x}/{x}` |
-| GET | `/order/upgrade/baremetalPrivateBandwidth` |
 | GET | `/order/upgrade/baremetalPrivateBandwidth/{x}` |
 | GET | `/order/upgrade/baremetalPrivateBandwidth/{x}/{x}` |
 | POST | `/order/upgrade/baremetalPrivateBandwidth/{x}/{x}` |
-| GET | `/order/upgrade/baremetalPublicBandwidth` |
 | GET | `/order/upgrade/baremetalPublicBandwidth/{x}` |
 | GET | `/order/upgrade/baremetalPublicBandwidth/{x}/{x}` |
 | POST | `/order/upgrade/baremetalPublicBandwidth/{x}/{x}` |
-| GET | `/order/upgrade/cephaas` |
 | GET | `/order/upgrade/cephaas/{x}` |
 | GET | `/order/upgrade/cephaas/{x}/{x}` |
 | POST | `/order/upgrade/cephaas/{x}/{x}` |
-| GET | `/order/upgrade/cloudDB` |
 | GET | `/order/upgrade/cloudDB/{x}` |
 | GET | `/order/upgrade/cloudDB/{x}/{x}` |
 | POST | `/order/upgrade/cloudDB/{x}/{x}` |
-| GET | `/order/upgrade/emailDomain` |
 | GET | `/order/upgrade/emailDomain/{x}` |
 | GET | `/order/upgrade/emailDomain/{x}/{x}` |
 | POST | `/order/upgrade/emailDomain/{x}/{x}` |
-| GET | `/order/upgrade/ipLoadbalancing` |
 | GET | `/order/upgrade/ipLoadbalancing/{x}` |
 | GET | `/order/upgrade/ipLoadbalancing/{x}/{x}` |
 | POST | `/order/upgrade/ipLoadbalancing/{x}/{x}` |
-| GET | `/order/upgrade/licensecPanel` |
 | GET | `/order/upgrade/licensecPanel/{x}` |
 | GET | `/order/upgrade/licensecPanel/{x}/{x}` |
 | POST | `/order/upgrade/licensecPanel/{x}/{x}` |
-| GET | `/order/upgrade/licenseHycu` |
 | GET | `/order/upgrade/licenseHycu/{x}` |
 | GET | `/order/upgrade/licenseHycu/{x}/{x}` |
 | POST | `/order/upgrade/licenseHycu/{x}/{x}` |
-| GET | `/order/upgrade/licensePlesk` |
 | GET | `/order/upgrade/licensePlesk/{x}` |
 | GET | `/order/upgrade/licensePlesk/{x}/{x}` |
 | POST | `/order/upgrade/licensePlesk/{x}/{x}` |
-| GET | `/order/upgrade/logs` |
 | GET | `/order/upgrade/logs/{x}` |
 | GET | `/order/upgrade/logs/{x}/{x}` |
 | POST | `/order/upgrade/logs/{x}/{x}` |
-| GET | `/order/upgrade/metrics` |
 | GET | `/order/upgrade/metrics/{x}` |
 | GET | `/order/upgrade/metrics/{x}/{x}` |
 | POST | `/order/upgrade/metrics/{x}/{x}` |
-| GET | `/order/upgrade/microsoftExchange` |
 | GET | `/order/upgrade/microsoftExchange/{x}` |
 | GET | `/order/upgrade/microsoftExchange/{x}/{x}` |
 | POST | `/order/upgrade/microsoftExchange/{x}/{x}` |
-| GET | `/order/upgrade/privateCloud` |
 | GET | `/order/upgrade/privateCloud/{x}` |
 | GET | `/order/upgrade/privateCloud/{x}/{x}` |
 | POST | `/order/upgrade/privateCloud/{x}/{x}` |
-| GET | `/order/upgrade/privateCloudManagementFee` |
 | GET | `/order/upgrade/privateCloudManagementFee/{x}` |
 | GET | `/order/upgrade/privateCloudManagementFee/{x}/{x}` |
 | POST | `/order/upgrade/privateCloudManagementFee/{x}/{x}` |
-| GET | `/order/upgrade/privateSQL` |
 | GET | `/order/upgrade/privateSQL/{x}` |
 | GET | `/order/upgrade/privateSQL/{x}/{x}` |
 | POST | `/order/upgrade/privateSQL/{x}/{x}` |
-| GET | `/order/upgrade/sslGateway` |
 | GET | `/order/upgrade/sslGateway/{x}` |
 | GET | `/order/upgrade/sslGateway/{x}/{x}` |
 | POST | `/order/upgrade/sslGateway/{x}/{x}` |
-| GET | `/order/upgrade/vps` |
 | GET | `/order/upgrade/vps/{x}` |
 | GET | `/order/upgrade/vps/{x}/{x}` |
 | POST | `/order/upgrade/vps/{x}/{x}` |
-| GET | `/order/upgrade/vpsAdditionalDisk` |
 | GET | `/order/upgrade/vpsAdditionalDisk/{x}` |
 | GET | `/order/upgrade/vpsAdditionalDisk/{x}/{x}` |
 | POST | `/order/upgrade/vpsAdditionalDisk/{x}/{x}` |
-| GET | `/order/upgrade/webHosting` |
 | GET | `/order/upgrade/webHosting/{x}` |
 | GET | `/order/upgrade/webHosting/{x}/{x}` |
 | POST | `/order/upgrade/webHosting/{x}/{x}` |
-| GET | `/order/upgrade/zimbra` |
 | GET | `/order/upgrade/zimbra/{x}` |
 | GET | `/order/upgrade/zimbra/{x}/{x}` |
 | POST | `/order/upgrade/zimbra/{x}/{x}` |

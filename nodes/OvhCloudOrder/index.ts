@@ -1637,6 +1637,686 @@ import {
 	description as descriptionXdslspareCreatePost,
 } from './xdsl/xdslSpareCreatePost.operation';
 
+// Upgrade operations
+import {
+	execute as executeupgradeBandwidthVrackListGET,
+	description as descriptionupgradeBandwidthVrackListGET,
+} from './upgrade/upgradebandwidthvracklistget.operation';
+import {
+	execute as executeupgradeBandwidthVrackPlanGET,
+	description as descriptionupgradeBandwidthVrackPlanGET,
+} from './upgrade/upgradebandwidthvrackplanget.operation';
+import {
+	execute as executeupgradeBandwidthVrackPlanPOST,
+	description as descriptionupgradeBandwidthVrackPlanPOST,
+} from './upgrade/upgradebandwidthvrackplanpost.operation';
+import {
+	execute as executeupgradeBandwidthVrackServiceGET,
+	description as descriptionupgradeBandwidthVrackServiceGET,
+} from './upgrade/upgradebandwidthvrackserviceget.operation';
+import {
+	execute as executeupgradeBaremetalPrivateBandwidthListGET,
+	description as descriptionupgradeBaremetalPrivateBandwidthListGET,
+} from './upgrade/upgradebaremetalprivatebandwidthlistget.operation';
+import {
+	execute as executeupgradeBaremetalPrivateBandwidthPlanGET,
+	description as descriptionupgradeBaremetalPrivateBandwidthPlanGET,
+} from './upgrade/upgradebaremetalprivatebandwidthplanget.operation';
+import {
+	execute as executeupgradeBaremetalPrivateBandwidthPlanPOST,
+	description as descriptionupgradeBaremetalPrivateBandwidthPlanPOST,
+} from './upgrade/upgradebaremetalprivatebandwidthplanpost.operation';
+import {
+	execute as executeupgradeBaremetalPrivateBandwidthServiceGET,
+	description as descriptionupgradeBaremetalPrivateBandwidthServiceGET,
+} from './upgrade/upgradebaremetalprivatebandwidthserviceget.operation';
+import {
+	execute as executeupgradeBaremetalPublicBandwidthListGET,
+	description as descriptionupgradeBaremetalPublicBandwidthListGET,
+} from './upgrade/upgradebaremetalpublicbandwidthlistget.operation';
+import {
+	execute as executeupgradeBaremetalPublicBandwidthPlanGET,
+	description as descriptionupgradeBaremetalPublicBandwidthPlanGET,
+} from './upgrade/upgradebaremetalpublicbandwidthplanget.operation';
+import {
+	execute as executeupgradeBaremetalPublicBandwidthPlanPOST,
+	description as descriptionupgradeBaremetalPublicBandwidthPlanPOST,
+} from './upgrade/upgradebaremetalpublicbandwidthplanpost.operation';
+import {
+	execute as executeupgradeBaremetalPublicBandwidthServiceGET,
+	description as descriptionupgradeBaremetalPublicBandwidthServiceGET,
+} from './upgrade/upgradebaremetalpublicbandwidthserviceget.operation';
+import {
+	execute as executeupgradeCephAASListGET,
+	description as descriptionupgradeCephAASListGET,
+} from './upgrade/upgradecephaaslistget.operation';
+import {
+	execute as executeupgradeCephAASPlanGET,
+	description as descriptionupgradeCephAASPlanGET,
+} from './upgrade/upgradecephaasplanget.operation';
+import {
+	execute as executeupgradeCephAASPlanPOST,
+	description as descriptionupgradeCephAASPlanPOST,
+} from './upgrade/upgradecephaasplanpost.operation';
+import {
+	execute as executeupgradeCephAASServiceGET,
+	description as descriptionupgradeCephAASServiceGET,
+} from './upgrade/upgradecephaasserviceget.operation';
+import {
+	execute as executeupgradeCloudDBListGET,
+	description as descriptionupgradeCloudDBListGET,
+} from './upgrade/upgradeclouddblistget.operation';
+import {
+	execute as executeupgradeCloudDBPlanGET,
+	description as descriptionupgradeCloudDBPlanGET,
+} from './upgrade/upgradeclouddbplanget.operation';
+import {
+	execute as executeupgradeCloudDBPlanPOST,
+	description as descriptionupgradeCloudDBPlanPOST,
+} from './upgrade/upgradeclouddbplanpost.operation';
+import {
+	execute as executeupgradeCloudDBServiceGET,
+	description as descriptionupgradeCloudDBServiceGET,
+} from './upgrade/upgradeclouddbserviceget.operation';
+import {
+	execute as executeupgradeEmailDomainListGET,
+	description as descriptionupgradeEmailDomainListGET,
+} from './upgrade/upgradeemaildomainlistget.operation';
+import {
+	execute as executeupgradeEmailDomainPlanGET,
+	description as descriptionupgradeEmailDomainPlanGET,
+} from './upgrade/upgradeemaildomainplanget.operation';
+import {
+	execute as executeupgradeEmailDomainPlanPOST,
+	description as descriptionupgradeEmailDomainPlanPOST,
+} from './upgrade/upgradeemaildomainplanpost.operation';
+import {
+	execute as executeupgradeEmailDomainServiceGET,
+	description as descriptionupgradeEmailDomainServiceGET,
+} from './upgrade/upgradeemaildomainserviceget.operation';
+import {
+	execute as executeupgradeIPLoadBalancingListGET,
+	description as descriptionupgradeIPLoadBalancingListGET,
+} from './upgrade/upgradeiploadbalancinglistget.operation';
+import {
+	execute as executeupgradeIPLoadBalancingPlanGET,
+	description as descriptionupgradeIPLoadBalancingPlanGET,
+} from './upgrade/upgradeiploadbalancingplanget.operation';
+import {
+	execute as executeupgradeIPLoadBalancingPlanPOST,
+	description as descriptionupgradeIPLoadBalancingPlanPOST,
+} from './upgrade/upgradeiploadbalancingplanpost.operation';
+import {
+	execute as executeupgradeIPLoadBalancingServiceGET,
+	description as descriptionupgradeIPLoadBalancingServiceGET,
+} from './upgrade/upgradeiploadbalancingserviceget.operation';
+import {
+	execute as executeupgradeLicenseHycuListGET,
+	description as descriptionupgradeLicenseHycuListGET,
+} from './upgrade/upgradelicensehyculistget.operation';
+import {
+	execute as executeupgradeLicenseHycuPlanGET,
+	description as descriptionupgradeLicenseHycuPlanGET,
+} from './upgrade/upgradelicensehycuplanget.operation';
+import {
+	execute as executeupgradeLicenseHycuPlanPOST,
+	description as descriptionupgradeLicenseHycuPlanPOST,
+} from './upgrade/upgradelicensehycuplanpost.operation';
+import {
+	execute as executeupgradeLicenseHycuServiceGET,
+	description as descriptionupgradeLicenseHycuServiceGET,
+} from './upgrade/upgradelicensehycuserviceget.operation';
+import {
+	execute as executeupgradeLicensePleskListGET,
+	description as descriptionupgradeLicensePleskListGET,
+} from './upgrade/upgradelicenseplesklistget.operation';
+import {
+	execute as executeupgradeLicensePleskPlanGET,
+	description as descriptionupgradeLicensePleskPlanGET,
+} from './upgrade/upgradelicensepleskplanget.operation';
+import {
+	execute as executeupgradeLicensePleskPlanPOST,
+	description as descriptionupgradeLicensePleskPlanPOST,
+} from './upgrade/upgradelicensepleskplanpost.operation';
+import {
+	execute as executeupgradeLicensePleskServiceGET,
+	description as descriptionupgradeLicensePleskServiceGET,
+} from './upgrade/upgradelicensepleskserviceget.operation';
+import {
+	execute as executeupgradeLicensecPanelListGET,
+	description as descriptionupgradeLicensecPanelListGET,
+} from './upgrade/upgradelicensecpanellistget.operation';
+import {
+	execute as executeupgradeLicensecPanelPlanGET,
+	description as descriptionupgradeLicensecPanelPlanGET,
+} from './upgrade/upgradelicensecpanelplanget.operation';
+import {
+	execute as executeupgradeLicensecPanelPlanPOST,
+	description as descriptionupgradeLicensecPanelPlanPOST,
+} from './upgrade/upgradelicensecpanelplanpost.operation';
+import {
+	execute as executeupgradeLicensecPanelServiceGET,
+	description as descriptionupgradeLicensecPanelServiceGET,
+} from './upgrade/upgradelicensecpanelserviceget.operation';
+import {
+	execute as executeupgradeLogsListGET,
+	description as descriptionupgradeLogsListGET,
+} from './upgrade/upgradelogslistget.operation';
+import {
+	execute as executeupgradeLogsPlanGET,
+	description as descriptionupgradeLogsPlanGET,
+} from './upgrade/upgradelogsplanget.operation';
+import {
+	execute as executeupgradeLogsPlanPOST,
+	description as descriptionupgradeLogsPlanPOST,
+} from './upgrade/upgradelogsplanpost.operation';
+import {
+	execute as executeupgradeLogsServiceGET,
+	description as descriptionupgradeLogsServiceGET,
+} from './upgrade/upgradelogsserviceget.operation';
+import {
+	execute as executeupgradeMetricsListGET,
+	description as descriptionupgradeMetricsListGET,
+} from './upgrade/upgrademetricslistget.operation';
+import {
+	execute as executeupgradeMetricsPlanGET,
+	description as descriptionupgradeMetricsPlanGET,
+} from './upgrade/upgrademetricsplanget.operation';
+import {
+	execute as executeupgradeMetricsPlanPOST,
+	description as descriptionupgradeMetricsPlanPOST,
+} from './upgrade/upgrademetricsplanpost.operation';
+import {
+	execute as executeupgradeMetricsServiceGET,
+	description as descriptionupgradeMetricsServiceGET,
+} from './upgrade/upgrademetricsserviceget.operation';
+import {
+	execute as executeupgradeMicrosoftExchangeListGET,
+	description as descriptionupgradeMicrosoftExchangeListGET,
+} from './upgrade/upgrademicrosoftexchangelistget.operation';
+import {
+	execute as executeupgradeMicrosoftExchangePlanGET,
+	description as descriptionupgradeMicrosoftExchangePlanGET,
+} from './upgrade/upgrademicrosoftexchangeplanget.operation';
+import {
+	execute as executeupgradeMicrosoftExchangePlanPOST,
+	description as descriptionupgradeMicrosoftExchangePlanPOST,
+} from './upgrade/upgrademicrosoftexchangeplanpost.operation';
+import {
+	execute as executeupgradeMicrosoftExchangeServiceGET,
+	description as descriptionupgradeMicrosoftExchangeServiceGET,
+} from './upgrade/upgrademicrosoftexchangeserviceget.operation';
+import {
+	execute as executeupgradePrivateCloudListGET,
+	description as descriptionupgradePrivateCloudListGET,
+} from './upgrade/upgradeprivatecloudlistget.operation';
+import {
+	execute as executeupgradePrivateCloudManagementFeeListGET,
+	description as descriptionupgradePrivateCloudManagementFeeListGET,
+} from './upgrade/upgradeprivatecloudmanagementfeelistget.operation';
+import {
+	execute as executeupgradePrivateCloudManagementFeePlanGET,
+	description as descriptionupgradePrivateCloudManagementFeePlanGET,
+} from './upgrade/upgradeprivatecloudmanagementfeeplanget.operation';
+import {
+	execute as executeupgradePrivateCloudManagementFeePlanPOST,
+	description as descriptionupgradePrivateCloudManagementFeePlanPOST,
+} from './upgrade/upgradeprivatecloudmanagementfeeplanpost.operation';
+import {
+	execute as executeupgradePrivateCloudManagementFeeServiceGET,
+	description as descriptionupgradePrivateCloudManagementFeeServiceGET,
+} from './upgrade/upgradeprivatecloudmanagementfeeserviceget.operation';
+import {
+	execute as executeupgradePrivateCloudPlanGET,
+	description as descriptionupgradePrivateCloudPlanGET,
+} from './upgrade/upgradeprivatecloudplanget.operation';
+import {
+	execute as executeupgradePrivateCloudPlanPOST,
+	description as descriptionupgradePrivateCloudPlanPOST,
+} from './upgrade/upgradeprivatecloudplanpost.operation';
+import {
+	execute as executeupgradePrivateCloudServiceGET,
+	description as descriptionupgradePrivateCloudServiceGET,
+} from './upgrade/upgradeprivatecloudserviceget.operation';
+import {
+	execute as executeupgradePrivateSQLListGET,
+	description as descriptionupgradePrivateSQLListGET,
+} from './upgrade/upgradeprivatesqllistget.operation';
+import {
+	execute as executeupgradePrivateSQLPlanGET,
+	description as descriptionupgradePrivateSQLPlanGET,
+} from './upgrade/upgradeprivatesqlplanget.operation';
+import {
+	execute as executeupgradePrivateSQLPlanPOST,
+	description as descriptionupgradePrivateSQLPlanPOST,
+} from './upgrade/upgradeprivatesqlplanpost.operation';
+import {
+	execute as executeupgradePrivateSQLServiceGET,
+	description as descriptionupgradePrivateSQLServiceGET,
+} from './upgrade/upgradeprivatesqlserviceget.operation';
+import {
+	execute as executeupgradeSSLGatewayListGET,
+	description as descriptionupgradeSSLGatewayListGET,
+} from './upgrade/upgradesslgatewaylistget.operation';
+import {
+	execute as executeupgradeSSLGatewayPlanGET,
+	description as descriptionupgradeSSLGatewayPlanGET,
+} from './upgrade/upgradesslgatewayplanget.operation';
+import {
+	execute as executeupgradeSSLGatewayPlanPOST,
+	description as descriptionupgradeSSLGatewayPlanPOST,
+} from './upgrade/upgradesslgatewayplanpost.operation';
+import {
+	execute as executeupgradeSSLGatewayServiceGET,
+	description as descriptionupgradeSSLGatewayServiceGET,
+} from './upgrade/upgradesslgatewayserviceget.operation';
+import {
+	execute as executeupgradeVPSAdditionalDiskListGET,
+	description as descriptionupgradeVPSAdditionalDiskListGET,
+} from './upgrade/upgradevpsadditionaldisklistget.operation';
+import {
+	execute as executeupgradeVPSAdditionalDiskPlanGET,
+	description as descriptionupgradeVPSAdditionalDiskPlanGET,
+} from './upgrade/upgradevpsadditionaldiskplanget.operation';
+import {
+	execute as executeupgradeVPSAdditionalDiskPlanPOST,
+	description as descriptionupgradeVPSAdditionalDiskPlanPOST,
+} from './upgrade/upgradevpsadditionaldiskplanpost.operation';
+import {
+	execute as executeupgradeVPSAdditionalDiskServiceGET,
+	description as descriptionupgradeVPSAdditionalDiskServiceGET,
+} from './upgrade/upgradevpsadditionaldiskserviceget.operation';
+import {
+	execute as executeupgradeVPSListGET,
+	description as descriptionupgradeVPSListGET,
+} from './upgrade/upgradevpslistget.operation';
+import {
+	execute as executeupgradeVPSPlanGET,
+	description as descriptionupgradeVPSPlanGET,
+} from './upgrade/upgradevpsplanget.operation';
+import {
+	execute as executeupgradeVPSPlanPOST,
+	description as descriptionupgradeVPSPlanPOST,
+} from './upgrade/upgradevpsplanpost.operation';
+import {
+	execute as executeupgradeVPSServiceGET,
+	description as descriptionupgradeVPSServiceGET,
+} from './upgrade/upgradevpsserviceget.operation';
+import {
+	execute as executeupgradeWebHostingListGET,
+	description as descriptionupgradeWebHostingListGET,
+} from './upgrade/upgradewebhostinglistget.operation';
+import {
+	execute as executeupgradeWebHostingPlanGET,
+	description as descriptionupgradeWebHostingPlanGET,
+} from './upgrade/upgradewebhostingplanget.operation';
+import {
+	execute as executeupgradeWebHostingPlanPOST,
+	description as descriptionupgradeWebHostingPlanPOST,
+} from './upgrade/upgradewebhostingplanpost.operation';
+import {
+	execute as executeupgradeWebHostingServiceGET,
+	description as descriptionupgradeWebHostingServiceGET,
+} from './upgrade/upgradewebhostingserviceget.operation';
+import {
+	execute as executeupgradeZimbraListGET,
+	description as descriptionupgradeZimbraListGET,
+} from './upgrade/upgradezimbralistget.operation';
+import {
+	execute as executeupgradeZimbraPlanGET,
+	description as descriptionupgradeZimbraPlanGET,
+} from './upgrade/upgradezimbraplanget.operation';
+import {
+	execute as executeupgradeZimbraPlanPOST,
+	description as descriptionupgradeZimbraPlanPOST,
+} from './upgrade/upgradezimbraplanpost.operation';
+import {
+	execute as executeupgradeZimbraServiceGET,
+	description as descriptionupgradeZimbraServiceGET,
+} from './upgrade/upgradezimbraserviceget.operation';
+
+// CartServiceOption operations
+import {
+	execute as executecartServiceOptionBackupServicesListGET,
+	description as descriptioncartServiceOptionBackupServicesListGET,
+} from './cart/cartServiceOption/cartserviceoptionbackupserviceslistget.operation';
+import {
+	execute as executecartServiceOptionBackupServicesServiceGET,
+	description as descriptioncartServiceOptionBackupServicesServiceGET,
+} from './cart/cartServiceOption/cartserviceoptionbackupservicesserviceget.operation';
+import {
+	execute as executecartServiceOptionBaremetalServersListGET,
+	description as descriptioncartServiceOptionBaremetalServersListGET,
+} from './cart/cartServiceOption/cartserviceoptionbaremetalserverslistget.operation';
+import {
+	execute as executecartServiceOptionBaremetalServersServiceGET,
+	description as descriptioncartServiceOptionBaremetalServersServiceGET,
+} from './cart/cartServiceOption/cartserviceoptionbaremetalserversserviceget.operation';
+import {
+	execute as executecartServiceOptionBaremetalServersServicePOST,
+	description as descriptioncartServiceOptionBaremetalServersServicePOST,
+} from './cart/cartServiceOption/cartserviceoptionbaremetalserversservicepost.operation';
+import {
+	execute as executecartServiceOptionCloudListGET,
+	description as descriptioncartServiceOptionCloudListGET,
+} from './cart/cartServiceOption/cartserviceoptioncloudlistget.operation';
+import {
+	execute as executecartServiceOptionCloudServiceGET,
+	description as descriptioncartServiceOptionCloudServiceGET,
+} from './cart/cartServiceOption/cartserviceoptioncloudserviceget.operation';
+import {
+	execute as executecartServiceOptionCloudServicePOST,
+	description as descriptioncartServiceOptionCloudServicePOST,
+} from './cart/cartServiceOption/cartserviceoptioncloudservicepost.operation';
+import {
+	execute as executecartServiceOptionDNSListGET,
+	description as descriptioncartServiceOptionDNSListGET,
+} from './cart/cartServiceOption/cartserviceoptiondnslistget.operation';
+import {
+	execute as executecartServiceOptionDNSServiceGET,
+	description as descriptioncartServiceOptionDNSServiceGET,
+} from './cart/cartServiceOption/cartserviceoptiondnsserviceget.operation';
+import {
+	execute as executecartServiceOptionDNSServicePOST,
+	description as descriptioncartServiceOptionDNSServicePOST,
+} from './cart/cartServiceOption/cartserviceoptiondnsservicepost.operation';
+import {
+	execute as executecartServiceOptionDedicatedListGET,
+	description as descriptioncartServiceOptionDedicatedListGET,
+} from './cart/cartServiceOption/cartserviceoptiondedicatedlistget.operation';
+import {
+	execute as executecartServiceOptionDedicatedServiceGET,
+	description as descriptioncartServiceOptionDedicatedServiceGET,
+} from './cart/cartServiceOption/cartserviceoptiondedicatedserviceget.operation';
+import {
+	execute as executecartServiceOptionDedicatedServicePOST,
+	description as descriptioncartServiceOptionDedicatedServicePOST,
+} from './cart/cartServiceOption/cartserviceoptiondedicatedservicepost.operation';
+import {
+	execute as executecartServiceOptionDomainListGET,
+	description as descriptioncartServiceOptionDomainListGET,
+} from './cart/cartServiceOption/cartserviceoptiondomainlistget.operation';
+import {
+	execute as executecartServiceOptionDomainServiceGET,
+	description as descriptioncartServiceOptionDomainServiceGET,
+} from './cart/cartServiceOption/cartserviceoptiondomainserviceget.operation';
+import {
+	execute as executecartServiceOptionDomainServicePOST,
+	description as descriptioncartServiceOptionDomainServicePOST,
+} from './cart/cartServiceOption/cartserviceoptiondomainservicepost.operation';
+import {
+	execute as executecartServiceOptionEmailProListGET,
+	description as descriptioncartServiceOptionEmailProListGET,
+} from './cart/cartServiceOption/cartserviceoptionemailprolistget.operation';
+import {
+	execute as executecartServiceOptionEmailProServiceGET,
+	description as descriptioncartServiceOptionEmailProServiceGET,
+} from './cart/cartServiceOption/cartserviceoptionemailproserviceget.operation';
+import {
+	execute as executecartServiceOptionEmailProServicePOST,
+	description as descriptioncartServiceOptionEmailProServicePOST,
+} from './cart/cartServiceOption/cartserviceoptionemailproservicepost.operation';
+import {
+	execute as executecartServiceOptionIPLoadBalancingListGET,
+	description as descriptioncartServiceOptionIPLoadBalancingListGET,
+} from './cart/cartServiceOption/cartserviceoptioniploadbalancinglistget.operation';
+import {
+	execute as executecartServiceOptionIPLoadBalancingServiceGET,
+	description as descriptioncartServiceOptionIPLoadBalancingServiceGET,
+} from './cart/cartServiceOption/cartserviceoptioniploadbalancingserviceget.operation';
+import {
+	execute as executecartServiceOptionIPLoadBalancingServicePOST,
+	description as descriptioncartServiceOptionIPLoadBalancingServicePOST,
+} from './cart/cartServiceOption/cartserviceoptioniploadbalancingservicepost.operation';
+import {
+	execute as executecartServiceOptionLicenseHycuListGET,
+	description as descriptioncartServiceOptionLicenseHycuListGET,
+} from './cart/cartServiceOption/cartserviceoptionlicensehyculistget.operation';
+import {
+	execute as executecartServiceOptionLicenseHycuServiceGET,
+	description as descriptioncartServiceOptionLicenseHycuServiceGET,
+} from './cart/cartServiceOption/cartserviceoptionlicensehycuserviceget.operation';
+import {
+	execute as executecartServiceOptionLicenseHycuServicePOST,
+	description as descriptioncartServiceOptionLicenseHycuServicePOST,
+} from './cart/cartServiceOption/cartserviceoptionlicensehycuservicepost.operation';
+import {
+	execute as executecartServiceOptionLogsListGET,
+	description as descriptioncartServiceOptionLogsListGET,
+} from './cart/cartServiceOption/cartserviceoptionlogslistget.operation';
+import {
+	execute as executecartServiceOptionLogsServiceGET,
+	description as descriptioncartServiceOptionLogsServiceGET,
+} from './cart/cartServiceOption/cartserviceoptionlogsserviceget.operation';
+import {
+	execute as executecartServiceOptionLogsServicePOST,
+	description as descriptioncartServiceOptionLogsServicePOST,
+} from './cart/cartServiceOption/cartserviceoptionlogsservicepost.operation';
+import {
+	execute as executecartServiceOptionMicrosoftExchangeListGET,
+	description as descriptioncartServiceOptionMicrosoftExchangeListGET,
+} from './cart/cartServiceOption/cartserviceoptionmicrosoftexchangelistget.operation';
+import {
+	execute as executecartServiceOptionMicrosoftExchangeServiceGET,
+	description as descriptioncartServiceOptionMicrosoftExchangeServiceGET,
+} from './cart/cartServiceOption/cartserviceoptionmicrosoftexchangeserviceget.operation';
+import {
+	execute as executecartServiceOptionMicrosoftExchangeServicePOST,
+	description as descriptioncartServiceOptionMicrosoftExchangeServicePOST,
+} from './cart/cartServiceOption/cartserviceoptionmicrosoftexchangeservicepost.operation';
+import {
+	execute as executecartServiceOptionMicrosoftListGET,
+	description as descriptioncartServiceOptionMicrosoftListGET,
+} from './cart/cartServiceOption/cartserviceoptionmicrosoftlistget.operation';
+import {
+	execute as executecartServiceOptionMicrosoftServiceGET,
+	description as descriptioncartServiceOptionMicrosoftServiceGET,
+} from './cart/cartServiceOption/cartserviceoptionmicrosoftserviceget.operation';
+import {
+	execute as executecartServiceOptionMicrosoftServicePOST,
+	description as descriptioncartServiceOptionMicrosoftServicePOST,
+} from './cart/cartServiceOption/cartserviceoptionmicrosoftservicepost.operation';
+import {
+	execute as executecartServiceOptionNutanixListGET,
+	description as descriptioncartServiceOptionNutanixListGET,
+} from './cart/cartServiceOption/cartserviceoptionnutanixlistget.operation';
+import {
+	execute as executecartServiceOptionNutanixServiceGET,
+	description as descriptioncartServiceOptionNutanixServiceGET,
+} from './cart/cartServiceOption/cartserviceoptionnutanixserviceget.operation';
+import {
+	execute as executecartServiceOptionNutanixServicePOST,
+	description as descriptioncartServiceOptionNutanixServicePOST,
+} from './cart/cartServiceOption/cartserviceoptionnutanixservicepost.operation';
+import {
+	execute as executecartServiceOptionOffice365PrepaidListGET,
+	description as descriptioncartServiceOptionOffice365PrepaidListGET,
+} from './cart/cartServiceOption/cartserviceoptionoffice365prepaidlistget.operation';
+import {
+	execute as executecartServiceOptionOffice365PrepaidServiceGET,
+	description as descriptioncartServiceOptionOffice365PrepaidServiceGET,
+} from './cart/cartServiceOption/cartserviceoptionoffice365prepaidserviceget.operation';
+import {
+	execute as executecartServiceOptionOffice365PrepaidServicePOST,
+	description as descriptioncartServiceOptionOffice365PrepaidServicePOST,
+} from './cart/cartServiceOption/cartserviceoptionoffice365prepaidservicepost.operation';
+import {
+	execute as executecartServiceOptionOfficePrepaidListGET,
+	description as descriptioncartServiceOptionOfficePrepaidListGET,
+} from './cart/cartServiceOption/cartserviceoptionofficeprepaidlistget.operation';
+import {
+	execute as executecartServiceOptionOfficePrepaidServiceGET,
+	description as descriptioncartServiceOptionOfficePrepaidServiceGET,
+} from './cart/cartServiceOption/cartserviceoptionofficeprepaidserviceget.operation';
+import {
+	execute as executecartServiceOptionOfficePrepaidServicePOST,
+	description as descriptioncartServiceOptionOfficePrepaidServicePOST,
+} from './cart/cartServiceOption/cartserviceoptionofficeprepaidservicepost.operation';
+import {
+	execute as executecartServiceOptionPrivateCloudEnterpriseListGET,
+	description as descriptioncartServiceOptionPrivateCloudEnterpriseListGET,
+} from './cart/cartServiceOption/cartserviceoptionprivatecloudenterpriselistget.operation';
+import {
+	execute as executecartServiceOptionPrivateCloudEnterpriseServiceGET,
+	description as descriptioncartServiceOptionPrivateCloudEnterpriseServiceGET,
+} from './cart/cartServiceOption/cartserviceoptionprivatecloudenterpriseserviceget.operation';
+import {
+	execute as executecartServiceOptionPrivateCloudEnterpriseServicePOST,
+	description as descriptioncartServiceOptionPrivateCloudEnterpriseServicePOST,
+} from './cart/cartServiceOption/cartserviceoptionprivatecloudenterpriseservicepost.operation';
+import {
+	execute as executecartServiceOptionPrivateCloudListGET,
+	description as descriptioncartServiceOptionPrivateCloudListGET,
+} from './cart/cartServiceOption/cartserviceoptionprivatecloudlistget.operation';
+import {
+	execute as executecartServiceOptionPrivateCloudResellerEnterpriseListGET,
+	description as descriptioncartServiceOptionPrivateCloudResellerEnterpriseListGET,
+} from './cart/cartServiceOption/cartserviceoptionprivatecloudresellerenterpriselistget.operation';
+import {
+	execute as executecartServiceOptionPrivateCloudResellerEnterpriseServiceGET,
+	description as descriptioncartServiceOptionPrivateCloudResellerEnterpriseServiceGET,
+} from './cart/cartServiceOption/cartserviceoptionprivatecloudresellerenterpriseserviceget.operation';
+import {
+	execute as executecartServiceOptionPrivateCloudResellerEnterpriseServicePOST,
+	description as descriptioncartServiceOptionPrivateCloudResellerEnterpriseServicePOST,
+} from './cart/cartServiceOption/cartserviceoptionprivatecloudresellerenterpriseservicepost.operation';
+import {
+	execute as executecartServiceOptionPrivateCloudResellerListGET,
+	description as descriptioncartServiceOptionPrivateCloudResellerListGET,
+} from './cart/cartServiceOption/cartserviceoptionprivatecloudresellerlistget.operation';
+import {
+	execute as executecartServiceOptionPrivateCloudResellerServiceGET,
+	description as descriptioncartServiceOptionPrivateCloudResellerServiceGET,
+} from './cart/cartServiceOption/cartserviceoptionprivatecloudresellerserviceget.operation';
+import {
+	execute as executecartServiceOptionPrivateCloudResellerServicePOST,
+	description as descriptioncartServiceOptionPrivateCloudResellerServicePOST,
+} from './cart/cartServiceOption/cartserviceoptionprivatecloudresellerservicepost.operation';
+import {
+	execute as executecartServiceOptionPrivateCloudServiceGET,
+	description as descriptioncartServiceOptionPrivateCloudServiceGET,
+} from './cart/cartServiceOption/cartserviceoptionprivatecloudserviceget.operation';
+import {
+	execute as executecartServiceOptionPrivateCloudServicePOST,
+	description as descriptioncartServiceOptionPrivateCloudServicePOST,
+} from './cart/cartServiceOption/cartserviceoptionprivatecloudservicepost.operation';
+import {
+	execute as executecartServiceOptionSMSListGET,
+	description as descriptioncartServiceOptionSMSListGET,
+} from './cart/cartServiceOption/cartserviceoptionsmslistget.operation';
+import {
+	execute as executecartServiceOptionSMSServiceGET,
+	description as descriptioncartServiceOptionSMSServiceGET,
+} from './cart/cartServiceOption/cartserviceoptionsmsserviceget.operation';
+import {
+	execute as executecartServiceOptionSMSServicePOST,
+	description as descriptioncartServiceOptionSMSServicePOST,
+} from './cart/cartServiceOption/cartserviceoptionsmsservicepost.operation';
+import {
+	execute as executecartServiceOptionSSLGatewayListGET,
+	description as descriptioncartServiceOptionSSLGatewayListGET,
+} from './cart/cartServiceOption/cartserviceoptionsslgatewaylistget.operation';
+import {
+	execute as executecartServiceOptionSSLGatewayServiceGET,
+	description as descriptioncartServiceOptionSSLGatewayServiceGET,
+} from './cart/cartServiceOption/cartserviceoptionsslgatewayserviceget.operation';
+import {
+	execute as executecartServiceOptionSSLGatewayServicePOST,
+	description as descriptioncartServiceOptionSSLGatewayServicePOST,
+} from './cart/cartServiceOption/cartserviceoptionsslgatewayservicepost.operation';
+import {
+	execute as executecartServiceOptionSharepointListGET,
+	description as descriptioncartServiceOptionSharepointListGET,
+} from './cart/cartServiceOption/cartserviceoptionsharepointlistget.operation';
+import {
+	execute as executecartServiceOptionSharepointServiceGET,
+	description as descriptioncartServiceOptionSharepointServiceGET,
+} from './cart/cartServiceOption/cartserviceoptionsharepointserviceget.operation';
+import {
+	execute as executecartServiceOptionSharepointServicePOST,
+	description as descriptioncartServiceOptionSharepointServicePOST,
+} from './cart/cartServiceOption/cartserviceoptionsharepointservicepost.operation';
+import {
+	execute as executecartServiceOptionSncNetworkServicesListGET,
+	description as descriptioncartServiceOptionSncNetworkServicesListGET,
+} from './cart/cartServiceOption/cartserviceoptionsncnetworkserviceslistget.operation';
+import {
+	execute as executecartServiceOptionSncNetworkServicesServiceGET,
+	description as descriptioncartServiceOptionSncNetworkServicesServiceGET,
+} from './cart/cartServiceOption/cartserviceoptionsncnetworkservicesserviceget.operation';
+import {
+	execute as executecartServiceOptionSncNetworkServicesServicePOST,
+	description as descriptioncartServiceOptionSncNetworkServicesServicePOST,
+} from './cart/cartServiceOption/cartserviceoptionsncnetworkservicesservicepost.operation';
+import {
+	execute as executecartServiceOptionVDIListGET,
+	description as descriptioncartServiceOptionVDIListGET,
+} from './cart/cartServiceOption/cartserviceoptionvdilistget.operation';
+import {
+	execute as executecartServiceOptionVDIServiceGET,
+	description as descriptioncartServiceOptionVDIServiceGET,
+} from './cart/cartServiceOption/cartserviceoptionvdiserviceget.operation';
+import {
+	execute as executecartServiceOptionVDIServicePOST,
+	description as descriptioncartServiceOptionVDIServicePOST,
+} from './cart/cartServiceOption/cartserviceoptionvdiservicepost.operation';
+import {
+	execute as executecartServiceOptionVPSListGET,
+	description as descriptioncartServiceOptionVPSListGET,
+} from './cart/cartServiceOption/cartserviceoptionvpslistget.operation';
+import {
+	execute as executecartServiceOptionVPSServiceGET,
+	description as descriptioncartServiceOptionVPSServiceGET,
+} from './cart/cartServiceOption/cartserviceoptionvpsserviceget.operation';
+import {
+	execute as executecartServiceOptionVPSServicePOST,
+	description as descriptioncartServiceOptionVPSServicePOST,
+} from './cart/cartServiceOption/cartserviceoptionvpsservicepost.operation';
+import {
+	execute as executecartServiceOptionVmwareCloudDirectorBackupListGET,
+	description as descriptioncartServiceOptionVmwareCloudDirectorBackupListGET,
+} from './cart/cartServiceOption/cartserviceoptionvmwareclouddirectorbackuplistget.operation';
+import {
+	execute as executecartServiceOptionVmwareCloudDirectorBackupServiceGET,
+	description as descriptioncartServiceOptionVmwareCloudDirectorBackupServiceGET,
+} from './cart/cartServiceOption/cartserviceoptionvmwareclouddirectorbackupserviceget.operation';
+import {
+	execute as executecartServiceOptionVmwareCloudDirectorListGET,
+	description as descriptioncartServiceOptionVmwareCloudDirectorListGET,
+} from './cart/cartServiceOption/cartserviceoptionvmwareclouddirectorlistget.operation';
+import {
+	execute as executecartServiceOptionVmwareCloudDirectorServiceGET,
+	description as descriptioncartServiceOptionVmwareCloudDirectorServiceGET,
+} from './cart/cartServiceOption/cartserviceoptionvmwareclouddirectorserviceget.operation';
+import {
+	execute as executecartServiceOptionVmwareCloudDirectorServicePOST,
+	description as descriptioncartServiceOptionVmwareCloudDirectorServicePOST,
+} from './cart/cartServiceOption/cartserviceoptionvmwareclouddirectorservicepost.operation';
+import {
+	execute as executecartServiceOptionVrackListGET,
+	description as descriptioncartServiceOptionVrackListGET,
+} from './cart/cartServiceOption/cartserviceoptionvracklistget.operation';
+import {
+	execute as executecartServiceOptionVrackServiceGET,
+	description as descriptioncartServiceOptionVrackServiceGET,
+} from './cart/cartServiceOption/cartserviceoptionvrackserviceget.operation';
+import {
+	execute as executecartServiceOptionVrackServicePOST,
+	description as descriptioncartServiceOptionVrackServicePOST,
+} from './cart/cartServiceOption/cartserviceoptionvrackservicepost.operation';
+import {
+	execute as executecartServiceOptionWebHostingListGET,
+	description as descriptioncartServiceOptionWebHostingListGET,
+} from './cart/cartServiceOption/cartserviceoptionwebhostinglistget.operation';
+import {
+	execute as executecartServiceOptionWebHostingServiceGET,
+	description as descriptioncartServiceOptionWebHostingServiceGET,
+} from './cart/cartServiceOption/cartserviceoptionwebhostingserviceget.operation';
+import {
+	execute as executecartServiceOptionWebHostingServicePOST,
+	description as descriptioncartServiceOptionWebHostingServicePOST,
+} from './cart/cartServiceOption/cartserviceoptionwebhostingservicepost.operation';
+
 export function description(displayOptions: IDisplayOptions): INodeProperties[] {
 	const operationProperties: INodeProperties[] = [
 		{
@@ -1646,44 +2326,44 @@ export function description(displayOptions: IDisplayOptions): INodeProperties[] 
 			noDataExpression: true,
 			// eslint-disable-next-line n8n-nodes-base/node-param-options-type-unsorted-items
 			options: [
-			{ name: 'Add License Plesk Option to Cart', value: 'cartLicensePleskOptionsPOST', action: 'Add License Plesk option to cart' },
-			{ name: 'Add Logs Option to Cart', value: 'cartLogsOptionsPOST', action: 'Add Logs option to cart' },
-			{ name: 'Add Managed C M S Option to Cart', value: 'cartManagedCMSOptionsPOST', action: 'Add Managed C M S option to cart' },
-			{ name: 'Add Managed Services Option to Cart', value: 'cartManagedServicesOptionsPOST', action: 'Add Managed Services option to cart' },
-			{ name: 'Add Metrics Option to Cart', value: 'cartMetricsOptionsPOST', action: 'Add Metrics option to cart' },
-			{ name: 'Add Microsoft Option to Cart', value: 'cartMicrosoftOptionsPOST', action: 'Add Microsoft option to cart' },
-			{ name: 'Add Nasha Option to Cart', value: 'cartNashaOptionsPOST', action: 'Add Nasha option to cart' },
-			{ name: 'Add Netapp Option to Cart', value: 'cartNetappOptionsPOST', action: 'Add Netapp option to cart' },
-			{ name: 'Add Nutanix Option to Cart', value: 'cartNutanixOptionsPOST', action: 'Add Nutanix option to cart' },
-			{ name: 'Add Office Prepaid Option to Cart', value: 'cartOfficePrepaidOptionsPOST', action: 'Add Office Prepaid option to cart' },
-			{ name: 'Add Office365 Option to Cart', value: 'cartOffice365OptionsPOST', action: 'Add Office365 option to cart' },
-			{ name: 'Add Office365 Prepaid Option to Cart', value: 'cartOffice365PrepaidOptionsPOST', action: 'Add Office365 Prepaid option to cart' },
-			{ name: 'Add Otb Option to Cart', value: 'cartOtbOptionsPOST', action: 'Add Otb option to cart' },
-			{ name: 'Add Otb Reseller Option to Cart', value: 'cartOtbResellerOptionsPOST', action: 'Add Otb Reseller option to cart' },
-			{ name: 'Add Packs Professional Services Option to Cart', value: 'cartPacksProfessionalServicesOptionsPOST', action: 'Add Packs Professional Services option to cart' },
-			{ name: 'Add Private Cloud C D I Option to Cart', value: 'cartPrivateCloudCDIOptionsPOST', action: 'Add Private Cloud C D I option to cart' },
-			{ name: 'Add Private Cloud D C Option to Cart', value: 'cartPrivateCloudDCOptionsPOST', action: 'Add Private Cloud D C option to cart' },
-			{ name: 'Add Private Cloud Enterprise Option to Cart', value: 'cartPrivateCloudEnterpriseOptionsPOST', action: 'Add Private Cloud Enterprise option to cart' },
-			{ name: 'Add Private Cloud Option to Cart', value: 'cartPrivateCloudOptionsPOST', action: 'Add Private Cloud option to cart' },
-			{ name: 'Add Private Cloud Reseller Enterprise Option to Cart', value: 'cartPrivateCloudResellerEnterpriseOptionsPOST', action: 'Add Private Cloud Reseller Enterprise option to cart' },
-			{ name: 'Add Private Cloud Reseller Option to Cart', value: 'cartPrivateCloudResellerOptionsPOST', action: 'Add Private Cloud Reseller option to cart' },
-			{ name: 'Add Private Cloud S D D C Option to Cart', value: 'cartPrivateCloudSDDCOptionsPOST', action: 'Add Private Cloud S D D C option to cart' },
-			{ name: 'Add Sharepoint Option to Cart', value: 'cartSharepointOptionsPOST', action: 'Add Sharepoint option to cart' },
-			{ name: 'Add Snc Network Services Option to Cart', value: 'cartSncNetworkServicesOptionsPOST', action: 'Add Snc Network Services option to cart' },
-			{ name: 'Add Ssl Comodo Option to Cart', value: 'cartSslComodoOptionsPOST', action: 'Add Ssl Comodo option to cart' },
-			{ name: 'Add Ssl Gateway Option to Cart', value: 'cartSslGatewayOptionsPOST', action: 'Add Ssl Gateway option to cart' },
-			{ name: 'Add Telephony Option to Cart', value: 'cartTelephonyOptionsPOST', action: 'Add Telephony option to cart' },
-			{ name: 'Add Vdi Option to Cart', value: 'cartVdiOptionsPOST', action: 'Add Vdi option to cart' },
-			{ name: 'Add Veeam Enterprise Option to Cart', value: 'cartVeeamEnterpriseOptionsPOST', action: 'Add Veeam Enterprise option to cart' },
-			{ name: 'Add Veeamcc Option to Cart', value: 'cartVeeamccOptionsPOST', action: 'Add Veeamcc option to cart' },
-			{ name: 'Add Videocenter Option to Cart', value: 'cartVideocenterOptionsPOST', action: 'Add Videocenter option to cart' },
-			{ name: 'Add Vmware Cloud Director Backup Option to Cart', value: 'cartVmwareCloudDirectorBackupOptionsPOST', action: 'Add Vmware Cloud Director Backup option to cart' },
-			{ name: 'Add Vmware Cloud Director Option to Cart', value: 'cartVmwareCloudDirectorOptionsPOST', action: 'Add Vmware Cloud Director option to cart' },
-			{ name: 'Add Vps Option to Cart', value: 'cartVpsOptionsPOST', action: 'Add Vps option to cart' },
-			{ name: 'Add Vrack Option to Cart', value: 'cartVrackOptionsPOST', action: 'Add Vrack option to cart' },
-			{ name: 'Add Web Hosting Option to Cart', value: 'cartWebHostingOptionsPOST', action: 'Add Web Hosting option to cart' },
-			{ name: 'Add Xdsl Option to Cart', value: 'cartXdslOptionsPOST', action: 'Add Xdsl option to cart' },
-			{ name: 'Add Zimbra Option to Cart', value: 'cartZimbraOptionsPOST', action: 'Add Zimbra option to cart' },
+			{ name: 'Add License Plesk Option to Cart', value: 'cartLicensePleskOptionsPOST', action: 'add license plesk option to cart' },
+			{ name: 'Add Logs Option to Cart', value: 'cartLogsOptionsPOST', action: 'add logs option to cart' },
+			{ name: 'Add Managed C M S Option to Cart', value: 'cartManagedCMSOptionsPOST', action: 'add managed c m s option to cart' },
+			{ name: 'Add Managed Services Option to Cart (Service)', value: 'cartManagedServicesOptionsPOST', action: 'add managed services option to cart (Service)' },
+			{ name: 'Add Metrics Option to Cart', value: 'cartMetricsOptionsPOST', action: 'add metrics option to cart' },
+			{ name: 'Add Microsoft Option to Cart', value: 'cartMicrosoftOptionsPOST', action: 'add microsoft option to cart' },
+			{ name: 'Add Nasha Option to Cart', value: 'cartNashaOptionsPOST', action: 'add nasha option to cart' },
+			{ name: 'Add Netapp Option to Cart', value: 'cartNetappOptionsPOST', action: 'add netapp option to cart' },
+			{ name: 'Add Nutanix Option to Cart', value: 'cartNutanixOptionsPOST', action: 'add nutanix option to cart' },
+			{ name: 'Add Office Prepaid Option to Cart', value: 'cartOfficePrepaidOptionsPOST', action: 'add office prepaid option to cart' },
+			{ name: 'Add Office365 Option to Cart', value: 'cartOffice365OptionsPOST', action: 'add office365 option to cart' },
+			{ name: 'Add Office365 Prepaid Option to Cart', value: 'cartOffice365PrepaidOptionsPOST', action: 'add office365 prepaid option to cart' },
+			{ name: 'Add Otb Option to Cart', value: 'cartOtbOptionsPOST', action: 'add otb option to cart' },
+			{ name: 'Add Otb Reseller Option to Cart', value: 'cartOtbResellerOptionsPOST', action: 'add otb reseller option to cart' },
+			{ name: 'Add Packs Professional Services Option to Cart (Service)', value: 'cartPacksProfessionalServicesOptionsPOST', action: 'add packs professional services option to cart (Service)' },
+			{ name: 'Add Private Cloud C D I Option to Cart', value: 'cartPrivateCloudCDIOptionsPOST', action: 'add private cloud c d i option to cart' },
+			{ name: 'Add Private Cloud D C Option to Cart', value: 'cartPrivateCloudDCOptionsPOST', action: 'add private cloud d c option to cart' },
+			{ name: 'Add Private Cloud Enterprise Option to Cart', value: 'cartPrivateCloudEnterpriseOptionsPOST', action: 'add private cloud enterprise option to cart' },
+			{ name: 'Add Private Cloud Option to Cart', value: 'cartPrivateCloudOptionsPOST', action: 'add private cloud option to cart' },
+			{ name: 'Add Private Cloud Reseller Enterprise Option to Cart', value: 'cartPrivateCloudResellerEnterpriseOptionsPOST', action: 'add private cloud reseller enterprise option to cart' },
+			{ name: 'Add Private Cloud Reseller Option to Cart', value: 'cartPrivateCloudResellerOptionsPOST', action: 'add private cloud reseller option to cart' },
+			{ name: 'Add Private Cloud S D D C Option to Cart', value: 'cartPrivateCloudSDDCOptionsPOST', action: 'add private cloud s d d c option to cart' },
+			{ name: 'Add Sharepoint Option to Cart', value: 'cartSharepointOptionsPOST', action: 'add sharepoint option to cart' },
+			{ name: 'Add Snc Network Services Option to Cart (Service)', value: 'cartSncNetworkServicesOptionsPOST', action: 'add snc network services option to cart (Service)' },
+			{ name: 'Add Ssl Comodo Option to Cart', value: 'cartSslComodoOptionsPOST', action: 'add ssl comodo option to cart' },
+			{ name: 'Add Ssl Gateway Option to Cart', value: 'cartSslGatewayOptionsPOST', action: 'add ssl gateway option to cart' },
+			{ name: 'Add Telephony Option to Cart', value: 'cartTelephonyOptionsPOST', action: 'add telephony option to cart' },
+			{ name: 'Add Vdi Option to Cart', value: 'cartVdiOptionsPOST', action: 'add vdi option to cart' },
+			{ name: 'Add Veeam Enterprise Option to Cart', value: 'cartVeeamEnterpriseOptionsPOST', action: 'add veeam enterprise option to cart' },
+			{ name: 'Add Veeamcc Option to Cart', value: 'cartVeeamccOptionsPOST', action: 'add veeamcc option to cart' },
+			{ name: 'Add Videocenter Option to Cart', value: 'cartVideocenterOptionsPOST', action: 'add videocenter option to cart' },
+			{ name: 'Add Vmware Cloud Director Backup Option to Cart', value: 'cartVmwareCloudDirectorBackupOptionsPOST', action: 'add vmware cloud director backup option to cart' },
+			{ name: 'Add Vmware Cloud Director Option to Cart', value: 'cartVmwareCloudDirectorOptionsPOST', action: 'add vmware cloud director option to cart' },
+			{ name: 'Add Vps Option to Cart', value: 'cartVpsOptionsPOST', action: 'add vps option to cart' },
+			{ name: 'Add Vrack Option to Cart', value: 'cartVrackOptionsPOST', action: 'add vrack option to cart' },
+			{ name: 'Add Web Hosting Option to Cart', value: 'cartWebHostingOptionsPOST', action: 'add web hosting option to cart' },
+			{ name: 'Add Xdsl Option to Cart', value: 'cartXdslOptionsPOST', action: 'add xdsl option to cart' },
+			{ name: 'Add Zimbra Option to Cart', value: 'cartZimbraOptionsPOST', action: 'add zimbra option to cart' },
 			{ name: 'Cart Assign', value: 'cartAssignPost', action: 'Assign a cart to your account' },
 			{ name: 'Cart Checkout Get', value: 'cartCheckoutGet', action: 'Simulate cart checkout' },
 			{ name: 'Cart Checkout Post', value: 'cartCheckoutPost', action: 'Execute cart checkout' },
@@ -1787,44 +2467,44 @@ export function description(displayOptions: IDisplayOptions): INodeProperties[] 
 			{ name: 'Freefax Create', value: 'freefaxCreatePost', action: 'Create freefax order' },
 			{ name: 'Freefax Number Get', value: 'freefaxnumberGet', action: 'Get freefax number' },
 			{ name: 'Freefax Organization List', value: 'freefaxorganizationListGet', action: 'List freefax organizations' },
-			{ name: 'Get License Plesk Options', value: 'cartLicensePleskOptionsGET', action: 'Get License Plesk options' },
-			{ name: 'Get Logs Options', value: 'cartLogsOptionsGET', action: 'Get Logs options' },
-			{ name: 'Get Managed C M S Options', value: 'cartManagedCMSOptionsGET', action: 'Get Managed C M S options' },
-			{ name: 'Get Managed Services Options', value: 'cartManagedServicesOptionsGET', action: 'Get Managed Services options' },
-			{ name: 'Get Metrics Options', value: 'cartMetricsOptionsGET', action: 'Get Metrics options' },
-			{ name: 'Get Microsoft Options', value: 'cartMicrosoftOptionsGET', action: 'Get Microsoft options' },
-			{ name: 'Get Nasha Options', value: 'cartNashaOptionsGET', action: 'Get Nasha options' },
-			{ name: 'Get Netapp Options', value: 'cartNetappOptionsGET', action: 'Get Netapp options' },
-			{ name: 'Get Nutanix Options', value: 'cartNutanixOptionsGET', action: 'Get Nutanix options' },
-			{ name: 'Get Office Prepaid Options', value: 'cartOfficePrepaidOptionsGET', action: 'Get Office Prepaid options' },
-			{ name: 'Get Office365 Options', value: 'cartOffice365OptionsGET', action: 'Get Office365 options' },
-			{ name: 'Get Office365 Prepaid Options', value: 'cartOffice365PrepaidOptionsGET', action: 'Get Office365 Prepaid options' },
-			{ name: 'Get Otb Options', value: 'cartOtbOptionsGET', action: 'Get Otb options' },
-			{ name: 'Get Otb Reseller Options', value: 'cartOtbResellerOptionsGET', action: 'Get Otb Reseller options' },
-			{ name: 'Get Packs Professional Services Options', value: 'cartPacksProfessionalServicesOptionsGET', action: 'Get Packs Professional Services options' },
-			{ name: 'Get Private Cloud C D I Options', value: 'cartPrivateCloudCDIOptionsGET', action: 'Get Private Cloud C D I options' },
-			{ name: 'Get Private Cloud D C Options', value: 'cartPrivateCloudDCOptionsGET', action: 'Get Private Cloud D C options' },
-			{ name: 'Get Private Cloud Enterprise Options', value: 'cartPrivateCloudEnterpriseOptionsGET', action: 'Get Private Cloud Enterprise options' },
-			{ name: 'Get Private Cloud Options', value: 'cartPrivateCloudOptionsGET', action: 'Get Private Cloud options' },
-			{ name: 'Get Private Cloud Reseller Enterprise Options', value: 'cartPrivateCloudResellerEnterpriseOptionsGET', action: 'Get Private Cloud Reseller Enterprise options' },
-			{ name: 'Get Private Cloud Reseller Options', value: 'cartPrivateCloudResellerOptionsGET', action: 'Get Private Cloud Reseller options' },
-			{ name: 'Get Private Cloud S D D C Options', value: 'cartPrivateCloudSDDCOptionsGET', action: 'Get Private Cloud S D D C options' },
-			{ name: 'Get Sharepoint Options', value: 'cartSharepointOptionsGET', action: 'Get Sharepoint options' },
-			{ name: 'Get Snc Network Services Options', value: 'cartSncNetworkServicesOptionsGET', action: 'Get Snc Network Services options' },
-			{ name: 'Get Ssl Comodo Options', value: 'cartSslComodoOptionsGET', action: 'Get Ssl Comodo options' },
-			{ name: 'Get Ssl Gateway Options', value: 'cartSslGatewayOptionsGET', action: 'Get Ssl Gateway options' },
-			{ name: 'Get Telephony Options', value: 'cartTelephonyOptionsGET', action: 'Get Telephony options' },
-			{ name: 'Get Vdi Options', value: 'cartVdiOptionsGET', action: 'Get Vdi options' },
-			{ name: 'Get Veeam Enterprise Options', value: 'cartVeeamEnterpriseOptionsGET', action: 'Get Veeam Enterprise options' },
-			{ name: 'Get Veeamcc Options', value: 'cartVeeamccOptionsGET', action: 'Get Veeamcc options' },
-			{ name: 'Get Videocenter Options', value: 'cartVideocenterOptionsGET', action: 'Get Videocenter options' },
-			{ name: 'Get Vmware Cloud Director Backup Options', value: 'cartVmwareCloudDirectorBackupOptionsGET', action: 'Get Vmware Cloud Director Backup options' },
-			{ name: 'Get Vmware Cloud Director Options', value: 'cartVmwareCloudDirectorOptionsGET', action: 'Get Vmware Cloud Director options' },
-			{ name: 'Get Vps Options', value: 'cartVpsOptionsGET', action: 'Get Vps options' },
-			{ name: 'Get Vrack Options', value: 'cartVrackOptionsGET', action: 'Get Vrack options' },
-			{ name: 'Get Web Hosting Options', value: 'cartWebHostingOptionsGET', action: 'Get Web Hosting options' },
-			{ name: 'Get Xdsl Options', value: 'cartXdslOptionsGET', action: 'Get Xdsl options' },
-			{ name: 'Get Zimbra Options', value: 'cartZimbraOptionsGET', action: 'Get Zimbra options' },
+			{ name: 'Get License Plesk Options', value: 'cartLicensePleskOptionsGET', action: 'get license plesk options' },
+			{ name: 'Get Logs Options', value: 'cartLogsOptionsGET', action: 'get logs options' },
+			{ name: 'Get Managed C M S Options', value: 'cartManagedCMSOptionsGET', action: 'get managed c m s options' },
+			{ name: 'Get Managed Services Options (Service)', value: 'cartManagedServicesOptionsGET', action: 'get managed services options (Service)' },
+			{ name: 'Get Metrics Options', value: 'cartMetricsOptionsGET', action: 'get metrics options' },
+			{ name: 'Get Microsoft Options', value: 'cartMicrosoftOptionsGET', action: 'get microsoft options' },
+			{ name: 'Get Nasha Options', value: 'cartNashaOptionsGET', action: 'get nasha options' },
+			{ name: 'Get Netapp Options', value: 'cartNetappOptionsGET', action: 'get netapp options' },
+			{ name: 'Get Nutanix Options', value: 'cartNutanixOptionsGET', action: 'get nutanix options' },
+			{ name: 'Get Office Prepaid Options', value: 'cartOfficePrepaidOptionsGET', action: 'get office prepaid options' },
+			{ name: 'Get Office365 Options', value: 'cartOffice365OptionsGET', action: 'get office365 options' },
+			{ name: 'Get Office365 Prepaid Options', value: 'cartOffice365PrepaidOptionsGET', action: 'get office365 prepaid options' },
+			{ name: 'Get Otb Options', value: 'cartOtbOptionsGET', action: 'get otb options' },
+			{ name: 'Get Otb Reseller Options', value: 'cartOtbResellerOptionsGET', action: 'get otb reseller options' },
+			{ name: 'Get Packs Professional Services Options (Service)', value: 'cartPacksProfessionalServicesOptionsGET', action: 'get packs professional services options (Service)' },
+			{ name: 'Get Private Cloud C D I Options', value: 'cartPrivateCloudCDIOptionsGET', action: 'get private cloud c d i options' },
+			{ name: 'Get Private Cloud D C Options', value: 'cartPrivateCloudDCOptionsGET', action: 'get private cloud d c options' },
+			{ name: 'Get Private Cloud Enterprise Options', value: 'cartPrivateCloudEnterpriseOptionsGET', action: 'get private cloud enterprise options' },
+			{ name: 'Get Private Cloud Options', value: 'cartPrivateCloudOptionsGET', action: 'get private cloud options' },
+			{ name: 'Get Private Cloud Reseller Enterprise Options', value: 'cartPrivateCloudResellerEnterpriseOptionsGET', action: 'get private cloud reseller enterprise options' },
+			{ name: 'Get Private Cloud Reseller Options', value: 'cartPrivateCloudResellerOptionsGET', action: 'get private cloud reseller options' },
+			{ name: 'Get Private Cloud S D D C Options', value: 'cartPrivateCloudSDDCOptionsGET', action: 'get private cloud s d d c options' },
+			{ name: 'Get Sharepoint Options', value: 'cartSharepointOptionsGET', action: 'get sharepoint options' },
+			{ name: 'Get Snc Network Services Options (Service)', value: 'cartSncNetworkServicesOptionsGET', action: 'get snc network services options (Service)' },
+			{ name: 'Get Ssl Comodo Options', value: 'cartSslComodoOptionsGET', action: 'get ssl comodo options' },
+			{ name: 'Get Ssl Gateway Options', value: 'cartSslGatewayOptionsGET', action: 'get ssl gateway options' },
+			{ name: 'Get Telephony Options', value: 'cartTelephonyOptionsGET', action: 'get telephony options' },
+			{ name: 'Get Vdi Options', value: 'cartVdiOptionsGET', action: 'get vdi options' },
+			{ name: 'Get Veeam Enterprise Options', value: 'cartVeeamEnterpriseOptionsGET', action: 'get veeam enterprise options' },
+			{ name: 'Get Veeamcc Options', value: 'cartVeeamccOptionsGET', action: 'get veeamcc options' },
+			{ name: 'Get Videocenter Options', value: 'cartVideocenterOptionsGET', action: 'get videocenter options' },
+			{ name: 'Get Vmware Cloud Director Backup Options', value: 'cartVmwareCloudDirectorBackupOptionsGET', action: 'get vmware cloud director backup options' },
+			{ name: 'Get Vmware Cloud Director Options', value: 'cartVmwareCloudDirectorOptionsGET', action: 'get vmware cloud director options' },
+			{ name: 'Get Vps Options', value: 'cartVpsOptionsGET', action: 'get vps options' },
+			{ name: 'Get Vrack Options', value: 'cartVrackOptionsGET', action: 'get vrack options' },
+			{ name: 'Get Web Hosting Options', value: 'cartWebHostingOptionsGET', action: 'get web hosting options' },
+			{ name: 'Get Xdsl Options', value: 'cartXdslOptionsGET', action: 'get xdsl options' },
+			{ name: 'Get Zimbra Options', value: 'cartZimbraOptionsGET', action: 'get zimbra options' },
 			{ name: 'IpLoadbalancing Get', value: 'ipLoadbalancingGet', action: 'Get ipLoadbalancing catalog' },
 			{ name: 'IpLoadbalancing Options Get', value: 'ipLoadbalancingOptionsGet', action: 'Get ipLoadbalancing options' },
 			{ name: 'License Office List', value: 'licenseofficeListGet', action: 'List office license services' },
@@ -1832,41 +2512,41 @@ export function description(displayOptions: IDisplayOptions): INodeProperties[] 
 			{ name: 'License Office New Duration Get', value: 'licenseofficeNewDurationGet', action: 'Get office new prices' },
 			{ name: 'License Office New List', value: 'licenseofficeNewListGet', action: 'Get office new durations' },
 			{ name: 'License Office Service Get', value: 'licenseofficeServiceGet', action: 'Get office service options' },
-			{ name: 'License Office Service Upgrade Create', value: 'licenseofficeServiceUpgradeCreatePost', action: 'Upgrade office order' },
-			{ name: 'License Office Service Upgrade Duration Get', value: 'licenseofficeServiceUpgradeDurationGet', action: 'Get office upgrade prices' },
-			{ name: 'License Office Service Upgrade List', value: 'licenseofficeServiceUpgradeListGet', action: 'Get office upgrade durations' },
+			{ name: 'License Office Service Upgrade Create (Service)', value: 'licenseofficeServiceUpgradeCreatePost', action: 'license office service upgrade create (Service)' },
+			{ name: 'License Office Service Upgrade Duration Get (Service)', value: 'licenseofficeServiceUpgradeDurationGet', action: 'license office service upgrade duration get (Service)' },
+			{ name: 'License Office Service Upgrade List (List)', value: 'licenseofficeServiceUpgradeListGet', action: 'license office service upgrade list (List)' },
 			{ name: 'License Plesk List', value: 'licensepleskListGet', action: 'List plesk license services' },
 			{ name: 'License Plesk New Create', value: 'licensepleskNewCreatePost', action: 'Create plesk new order' },
 			{ name: 'License Plesk New Duration Get', value: 'licensepleskNewDurationGet', action: 'Get plesk new prices' },
 			{ name: 'License Plesk New List', value: 'licensepleskNewListGet', action: 'Get plesk new durations' },
 			{ name: 'License Plesk Service Get', value: 'licensepleskServiceGet', action: 'Get plesk service options' },
-			{ name: 'License Plesk Service Upgrade Create', value: 'licensepleskServiceUpgradeCreatePost', action: 'Upgrade plesk order' },
-			{ name: 'License Plesk Service Upgrade Duration Get', value: 'licensepleskServiceUpgradeDurationGet', action: 'Get plesk upgrade prices' },
-			{ name: 'License Plesk Service Upgrade List', value: 'licensepleskServiceUpgradeListGet', action: 'Get plesk upgrade durations' },
+			{ name: 'License Plesk Service Upgrade Create (Service)', value: 'licensepleskServiceUpgradeCreatePost', action: 'license plesk service upgrade create (Service)' },
+			{ name: 'License Plesk Service Upgrade Duration Get (Service)', value: 'licensepleskServiceUpgradeDurationGet', action: 'license plesk service upgrade duration get (Service)' },
+			{ name: 'License Plesk Service Upgrade List (List)', value: 'licensepleskServiceUpgradeListGet', action: 'license plesk service upgrade list (List)' },
 			{ name: 'License Sqlserver List', value: 'licensesqlserverListGet', action: 'List sqlserver license services' },
 			{ name: 'License Sqlserver New Create', value: 'licensesqlserverNewCreatePost', action: 'Create sqlserver new order' },
 			{ name: 'License Sqlserver New Duration Get', value: 'licensesqlserverNewDurationGet', action: 'Get sqlserver new prices' },
 			{ name: 'License Sqlserver New List', value: 'licensesqlserverNewListGet', action: 'Get sqlserver new durations' },
 			{ name: 'License Sqlserver Service Get', value: 'licensesqlserverServiceGet', action: 'Get sqlserver service options' },
-			{ name: 'License Sqlserver Service Upgrade Create', value: 'licensesqlserverServiceUpgradeCreatePost', action: 'Upgrade sqlserver order' },
-			{ name: 'License Sqlserver Service Upgrade Duration Get', value: 'licensesqlserverServiceUpgradeDurationGet', action: 'Get sqlserver upgrade prices' },
-			{ name: 'License Sqlserver Service Upgrade List', value: 'licensesqlserverServiceUpgradeListGet', action: 'Get sqlserver upgrade durations' },
+			{ name: 'License Sqlserver Service Upgrade Create (Service)', value: 'licensesqlserverServiceUpgradeCreatePost', action: 'license sqlserver service upgrade create (Service)' },
+			{ name: 'License Sqlserver Service Upgrade Duration Get (Service)', value: 'licensesqlserverServiceUpgradeDurationGet', action: 'license sqlserver service upgrade duration get (Service)' },
+			{ name: 'License Sqlserver Service Upgrade List (List)', value: 'licensesqlserverServiceUpgradeListGet', action: 'license sqlserver service upgrade list (List)' },
 			{ name: 'License Windows List', value: 'licensewindowsListGet', action: 'List windows license services' },
 			{ name: 'License Windows New Create', value: 'licensewindowsNewCreatePost', action: 'Create windows new order' },
 			{ name: 'License Windows New Duration Get', value: 'licensewindowsNewDurationGet', action: 'Get windows new prices' },
 			{ name: 'License Windows New List', value: 'licensewindowsNewListGet', action: 'Get windows new durations' },
 			{ name: 'License Windows Service Get', value: 'licensewindowsServiceGet', action: 'Get windows service options' },
-			{ name: 'License Windows Service Upgrade Create', value: 'licensewindowsServiceUpgradeCreatePost', action: 'Upgrade windows order' },
-			{ name: 'License Windows Service Upgrade Duration Get', value: 'licensewindowsServiceUpgradeDurationGet', action: 'Get windows upgrade prices' },
-			{ name: 'License Windows Service Upgrade List', value: 'licensewindowsServiceUpgradeListGet', action: 'Get windows upgrade durations' },
+			{ name: 'License Windows Service Upgrade Create (Service)', value: 'licensewindowsServiceUpgradeCreatePost', action: 'license windows service upgrade create (Service)' },
+			{ name: 'License Windows Service Upgrade Duration Get (Service)', value: 'licensewindowsServiceUpgradeDurationGet', action: 'license windows service upgrade duration get (Service)' },
+			{ name: 'License Windows Service Upgrade List (List)', value: 'licensewindowsServiceUpgradeListGet', action: 'license windows service upgrade list (List)' },
 			{ name: 'License cPanel List', value: 'licensecPanelListGet', action: 'List cPanel license services' },
 			{ name: 'License cPanel New Create', value: 'licensecPanelNewCreatePost', action: 'Create cPanel new order' },
 			{ name: 'License cPanel New Duration Get', value: 'licensecPanelNewDurationGet', action: 'Get cPanel new prices' },
 			{ name: 'License cPanel New List', value: 'licensecPanelNewListGet', action: 'Get cPanel new durations' },
 			{ name: 'License cPanel Service Get', value: 'licensecPanelServiceGet', action: 'Get cPanel service options' },
-			{ name: 'License cPanel Service Upgrade Create', value: 'licensecPanelServiceUpgradeCreatePost', action: 'Upgrade cPanel order' },
-			{ name: 'License cPanel Service Upgrade Duration Get', value: 'licensecPanelServiceUpgradeDurationGet', action: 'Get cPanel upgrade prices' },
-			{ name: 'License cPanel Service Upgrade List', value: 'licensecPanelServiceUpgradeListGet', action: 'Get cPanel upgrade durations' },
+			{ name: 'License cPanel Service Upgrade Create (Service)', value: 'licensecPanelServiceUpgradeCreatePost', action: 'license cpanel service upgrade create (Service)' },
+			{ name: 'License cPanel Service Upgrade Duration Get (Service)', value: 'licensecPanelServiceUpgradeDurationGet', action: 'license cpanel service upgrade duration get (Service)' },
+			{ name: 'License cPanel Service Upgrade List (List)', value: 'licensecPanelServiceUpgradeListGet', action: 'license cpanel service upgrade list (List)' },
 			{ name: 'LicenseHycu Get', value: 'licenseHycuGet', action: 'Get licenseHycu catalog' },
 			{ name: 'LicenseHycu Options Get', value: 'licenseHycuOptionsGet', action: 'Get licenseHycu options' },
 			{ name: 'LicensePlesk Get', value: 'licensePleskGet', action: 'Get licensePlesk catalog' },
@@ -1997,6 +2677,175 @@ export function description(displayOptions: IDisplayOptions): INodeProperties[] 
 			{ name: 'Zimbra Options Get', value: 'zimbraOptionsGet', action: 'Get zimbra options' },
 			{ name: 'xDSL Spare Create', value: 'xdslspareCreatePost', action: 'Create xDSL order' },
 			{ name: 'xDSL Spare List', value: 'xdslspareListGet', action: 'List xDSL spare lines' },
+			{ name: 'Get Upgrade Bandwidth Vrack (List)', value: 'upgradeBandwidthVrackListGET', action: 'get upgrade bandwidth vrack (List)' },
+			{ name: 'Get Upgrade Bandwidth Vrack (Plan)', value: 'upgradeBandwidthVrackPlanGET', action: 'get upgrade bandwidth vrack (Plan)' },
+			{ name: 'Upgrade Bandwidth Vrack (Plan)', value: 'upgradeBandwidthVrackPlanPOST', action: 'upgrade bandwidth vrack (Plan)' },
+			{ name: 'Get Upgrade Bandwidth Vrack (Service)', value: 'upgradeBandwidthVrackServiceGET', action: 'get upgrade bandwidth vrack (Service)' },
+			{ name: 'Get Upgrade Baremetal Private Bandwidth (List)', value: 'upgradeBaremetalPrivateBandwidthListGET', action: 'get upgrade baremetal private bandwidth (List)' },
+			{ name: 'Get Upgrade Baremetal Private Bandwidth (Plan)', value: 'upgradeBaremetalPrivateBandwidthPlanGET', action: 'get upgrade baremetal private bandwidth (Plan)' },
+			{ name: 'Upgrade Baremetal Private Bandwidth (Plan)', value: 'upgradeBaremetalPrivateBandwidthPlanPOST', action: 'upgrade baremetal private bandwidth (Plan)' },
+			{ name: 'Get Upgrade Baremetal Private Bandwidth (Service)', value: 'upgradeBaremetalPrivateBandwidthServiceGET', action: 'get upgrade baremetal private bandwidth (Service)' },
+			{ name: 'Get Upgrade Baremetal Public Bandwidth (List)', value: 'upgradeBaremetalPublicBandwidthListGET', action: 'get upgrade baremetal public bandwidth (List)' },
+			{ name: 'Get Upgrade Baremetal Public Bandwidth (Plan)', value: 'upgradeBaremetalPublicBandwidthPlanGET', action: 'get upgrade baremetal public bandwidth (Plan)' },
+			{ name: 'Upgrade Baremetal Public Bandwidth (Plan)', value: 'upgradeBaremetalPublicBandwidthPlanPOST', action: 'upgrade baremetal public bandwidth (Plan)' },
+			{ name: 'Get Upgrade Baremetal Public Bandwidth (Service)', value: 'upgradeBaremetalPublicBandwidthServiceGET', action: 'get upgrade baremetal public bandwidth (Service)' },
+			{ name: 'Get Upgrade Ceph AAS (List)', value: 'upgradeCephAASListGET', action: 'get upgrade ceph aas (List)' },
+			{ name: 'Get Upgrade Ceph AAS (Plan)', value: 'upgradeCephAASPlanGET', action: 'get upgrade ceph aas (Plan)' },
+			{ name: 'Upgrade Ceph AAS (Plan)', value: 'upgradeCephAASPlanPOST', action: 'upgrade ceph aas (Plan)' },
+			{ name: 'Get Upgrade Ceph AAS (Service)', value: 'upgradeCephAASServiceGET', action: 'get upgrade ceph aas (Service)' },
+			{ name: 'Get Upgrade Cloud DB (List)', value: 'upgradeCloudDBListGET', action: 'get upgrade cloud db (List)' },
+			{ name: 'Get Upgrade Cloud DB (Plan)', value: 'upgradeCloudDBPlanGET', action: 'get upgrade cloud db (Plan)' },
+			{ name: 'Upgrade Cloud DB (Plan)', value: 'upgradeCloudDBPlanPOST', action: 'upgrade cloud db (Plan)' },
+			{ name: 'Get Upgrade Cloud DB (Service)', value: 'upgradeCloudDBServiceGET', action: 'get upgrade cloud db (Service)' },
+			{ name: 'Get Upgrade Email Domain (List)', value: 'upgradeEmailDomainListGET', action: 'get upgrade email domain (List)' },
+			{ name: 'Get Upgrade Email Domain (Plan)', value: 'upgradeEmailDomainPlanGET', action: 'get upgrade email domain (Plan)' },
+			{ name: 'Upgrade Email Domain (Plan)', value: 'upgradeEmailDomainPlanPOST', action: 'upgrade email domain (Plan)' },
+			{ name: 'Get Upgrade Email Domain (Service)', value: 'upgradeEmailDomainServiceGET', action: 'get upgrade email domain (Service)' },
+			{ name: 'Get Upgrade IP Load Balancing (List)', value: 'upgradeIPLoadBalancingListGET', action: 'get upgrade ip load balancing (List)' },
+			{ name: 'Get Upgrade IP Load Balancing (Plan)', value: 'upgradeIPLoadBalancingPlanGET', action: 'get upgrade ip load balancing (Plan)' },
+			{ name: 'Upgrade IP Load Balancing (Plan)', value: 'upgradeIPLoadBalancingPlanPOST', action: 'upgrade ip load balancing (Plan)' },
+			{ name: 'Get Upgrade IP Load Balancing (Service)', value: 'upgradeIPLoadBalancingServiceGET', action: 'get upgrade ip load balancing (Service)' },
+			{ name: 'Get Upgrade License Hycu (List)', value: 'upgradeLicenseHycuListGET', action: 'get upgrade license hycu (List)' },
+			{ name: 'Get Upgrade License Hycu (Plan)', value: 'upgradeLicenseHycuPlanGET', action: 'get upgrade license hycu (Plan)' },
+			{ name: 'Upgrade License Hycu (Plan)', value: 'upgradeLicenseHycuPlanPOST', action: 'upgrade license hycu (Plan)' },
+			{ name: 'Get Upgrade License Hycu (Service)', value: 'upgradeLicenseHycuServiceGET', action: 'get upgrade license hycu (Service)' },
+			{ name: 'Get Upgrade License Plesk (List)', value: 'upgradeLicensePleskListGET', action: 'get upgrade license plesk (List)' },
+			{ name: 'Get Upgrade License Plesk (Plan)', value: 'upgradeLicensePleskPlanGET', action: 'get upgrade license plesk (Plan)' },
+			{ name: 'Upgrade License Plesk (Plan)', value: 'upgradeLicensePleskPlanPOST', action: 'upgrade license plesk (Plan)' },
+			{ name: 'Get Upgrade License Plesk (Service)', value: 'upgradeLicensePleskServiceGET', action: 'get upgrade license plesk (Service)' },
+			{ name: 'Get Upgrade License cPanel (List)', value: 'upgradeLicensecPanelListGET', action: 'get upgrade license cpanel (List)' },
+			{ name: 'Get Upgrade License cPanel (Plan)', value: 'upgradeLicensecPanelPlanGET', action: 'get upgrade license cpanel (Plan)' },
+			{ name: 'Upgrade License cPanel (Plan)', value: 'upgradeLicensecPanelPlanPOST', action: 'upgrade license cpanel (Plan)' },
+			{ name: 'Get Upgrade License cPanel (Service)', value: 'upgradeLicensecPanelServiceGET', action: 'get upgrade license cpanel (Service)' },
+			{ name: 'Get Upgrade Logs (List)', value: 'upgradeLogsListGET', action: 'get upgrade logs (List)' },
+			{ name: 'Get Upgrade Logs (Plan)', value: 'upgradeLogsPlanGET', action: 'get upgrade logs (Plan)' },
+			{ name: 'Upgrade Logs (Plan)', value: 'upgradeLogsPlanPOST', action: 'upgrade logs (Plan)' },
+			{ name: 'Get Upgrade Logs (Service)', value: 'upgradeLogsServiceGET', action: 'get upgrade logs (Service)' },
+			{ name: 'Get Upgrade Metrics (List)', value: 'upgradeMetricsListGET', action: 'get upgrade metrics (List)' },
+			{ name: 'Get Upgrade Metrics (Plan)', value: 'upgradeMetricsPlanGET', action: 'get upgrade metrics (Plan)' },
+			{ name: 'Upgrade Metrics (Plan)', value: 'upgradeMetricsPlanPOST', action: 'upgrade metrics (Plan)' },
+			{ name: 'Get Upgrade Metrics (Service)', value: 'upgradeMetricsServiceGET', action: 'get upgrade metrics (Service)' },
+			{ name: 'Get Upgrade Microsoft Exchange (List)', value: 'upgradeMicrosoftExchangeListGET', action: 'get upgrade microsoft exchange (List)' },
+			{ name: 'Get Upgrade Microsoft Exchange (Plan)', value: 'upgradeMicrosoftExchangePlanGET', action: 'get upgrade microsoft exchange (Plan)' },
+			{ name: 'Upgrade Microsoft Exchange (Plan)', value: 'upgradeMicrosoftExchangePlanPOST', action: 'upgrade microsoft exchange (Plan)' },
+			{ name: 'Get Upgrade Microsoft Exchange (Service)', value: 'upgradeMicrosoftExchangeServiceGET', action: 'get upgrade microsoft exchange (Service)' },
+			{ name: 'Get Upgrade Private Cloud (List)', value: 'upgradePrivateCloudListGET', action: 'get upgrade private cloud (List)' },
+			{ name: 'Get Upgrade Private Cloud Management Fee (List)', value: 'upgradePrivateCloudManagementFeeListGET', action: 'get upgrade private cloud management fee (List)' },
+			{ name: 'Get Upgrade Private Cloud Management Fee (Plan)', value: 'upgradePrivateCloudManagementFeePlanGET', action: 'get upgrade private cloud management fee (Plan)' },
+			{ name: 'Upgrade Private Cloud Management Fee (Plan)', value: 'upgradePrivateCloudManagementFeePlanPOST', action: 'upgrade private cloud management fee (Plan)' },
+			{ name: 'Get Upgrade Private Cloud Management Fee (Service)', value: 'upgradePrivateCloudManagementFeeServiceGET', action: 'get upgrade private cloud management fee (Service)' },
+			{ name: 'Get Upgrade Private Cloud (Plan)', value: 'upgradePrivateCloudPlanGET', action: 'get upgrade private cloud (Plan)' },
+			{ name: 'Upgrade Private Cloud (Plan)', value: 'upgradePrivateCloudPlanPOST', action: 'upgrade private cloud (Plan)' },
+			{ name: 'Get Upgrade Private Cloud (Service)', value: 'upgradePrivateCloudServiceGET', action: 'get upgrade private cloud (Service)' },
+			{ name: 'Get Upgrade Private SQL (List)', value: 'upgradePrivateSQLListGET', action: 'get upgrade private sql (List)' },
+			{ name: 'Get Upgrade Private SQL (Plan)', value: 'upgradePrivateSQLPlanGET', action: 'get upgrade private sql (Plan)' },
+			{ name: 'Upgrade Private SQL (Plan)', value: 'upgradePrivateSQLPlanPOST', action: 'upgrade private sql (Plan)' },
+			{ name: 'Get Upgrade Private SQL (Service)', value: 'upgradePrivateSQLServiceGET', action: 'get upgrade private sql (Service)' },
+			{ name: 'Get Upgrade SSL Gateway (List)', value: 'upgradeSSLGatewayListGET', action: 'get upgrade ssl gateway (List)' },
+			{ name: 'Get Upgrade SSL Gateway (Plan)', value: 'upgradeSSLGatewayPlanGET', action: 'get upgrade ssl gateway (Plan)' },
+			{ name: 'Upgrade SSL Gateway (Plan)', value: 'upgradeSSLGatewayPlanPOST', action: 'upgrade ssl gateway (Plan)' },
+			{ name: 'Get Upgrade SSL Gateway (Service)', value: 'upgradeSSLGatewayServiceGET', action: 'get upgrade ssl gateway (Service)' },
+			{ name: 'Get Upgrade VPS Additional Disk (List)', value: 'upgradeVPSAdditionalDiskListGET', action: 'get upgrade vps additional disk (List)' },
+			{ name: 'Get Upgrade VPS Additional Disk (Plan)', value: 'upgradeVPSAdditionalDiskPlanGET', action: 'get upgrade vps additional disk (Plan)' },
+			{ name: 'Upgrade VPS Additional Disk (Plan)', value: 'upgradeVPSAdditionalDiskPlanPOST', action: 'upgrade vps additional disk (Plan)' },
+			{ name: 'Get Upgrade VPS Additional Disk (Service)', value: 'upgradeVPSAdditionalDiskServiceGET', action: 'get upgrade vps additional disk (Service)' },
+			{ name: 'Get Upgrade VPS (List)', value: 'upgradeVPSListGET', action: 'get upgrade vps (List)' },
+			{ name: 'Get Upgrade VPS (Plan)', value: 'upgradeVPSPlanGET', action: 'get upgrade vps (Plan)' },
+			{ name: 'Upgrade VPS (Plan)', value: 'upgradeVPSPlanPOST', action: 'upgrade vps (Plan)' },
+			{ name: 'Get Upgrade VPS (Service)', value: 'upgradeVPSServiceGET', action: 'get upgrade vps (Service)' },
+			{ name: 'Get Upgrade Web Hosting (List)', value: 'upgradeWebHostingListGET', action: 'get upgrade web hosting (List)' },
+			{ name: 'Get Upgrade Web Hosting (Plan)', value: 'upgradeWebHostingPlanGET', action: 'get upgrade web hosting (Plan)' },
+			{ name: 'Upgrade Web Hosting (Plan)', value: 'upgradeWebHostingPlanPOST', action: 'upgrade web hosting (Plan)' },
+			{ name: 'Get Upgrade Web Hosting (Service)', value: 'upgradeWebHostingServiceGET', action: 'get upgrade web hosting (Service)' },
+			{ name: 'Get Upgrade Zimbra (List)', value: 'upgradeZimbraListGET', action: 'get upgrade zimbra (List)' },
+			{ name: 'Get Upgrade Zimbra (Plan)', value: 'upgradeZimbraPlanGET', action: 'get upgrade zimbra (Plan)' },
+			{ name: 'Upgrade Zimbra (Plan)', value: 'upgradeZimbraPlanPOST', action: 'upgrade zimbra (Plan)' },
+			{ name: 'Get Upgrade Zimbra (Service)', value: 'upgradeZimbraServiceGET', action: 'get upgrade zimbra (Service)' },
+			{ name: 'Get Backup Services Cart Service Option (List)', value: 'cartServiceOptionBackupServicesListGET', action: 'get backup services cart service option (List)' },
+			{ name: 'Get Backup Services Cart Service Option (Service)', value: 'cartServiceOptionBackupServicesServiceGET', action: 'get backup services cart service option (Service)' },
+			{ name: 'Get Baremetal Servers Cart Service Option (List)', value: 'cartServiceOptionBaremetalServersListGET', action: 'get baremetal servers cart service option (List)' },
+			{ name: 'Get Baremetal Servers Cart Service Option (Service)', value: 'cartServiceOptionBaremetalServersServiceGET', action: 'get baremetal servers cart service option (Service)' },
+			{ name: 'Add Baremetal Servers Cart Service Option (Service)', value: 'cartServiceOptionBaremetalServersServicePOST', action: 'add baremetal servers cart service option (Service)' },
+			{ name: 'Get Cloud Cart Service Option (List)', value: 'cartServiceOptionCloudListGET', action: 'get cloud cart service option (List)' },
+			{ name: 'Get Cloud Cart Service Option (Service)', value: 'cartServiceOptionCloudServiceGET', action: 'get cloud cart service option (Service)' },
+			{ name: 'Add Cloud Cart Service Option (Service)', value: 'cartServiceOptionCloudServicePOST', action: 'add cloud cart service option (Service)' },
+			{ name: 'Get DNS Cart Service Option (List)', value: 'cartServiceOptionDNSListGET', action: 'get dns cart service option (List)' },
+			{ name: 'Get DNS Cart Service Option (Service)', value: 'cartServiceOptionDNSServiceGET', action: 'get dns cart service option (Service)' },
+			{ name: 'Add DNS Cart Service Option (Service)', value: 'cartServiceOptionDNSServicePOST', action: 'add dns cart service option (Service)' },
+			{ name: 'Get Dedicated Cart Service Option (List)', value: 'cartServiceOptionDedicatedListGET', action: 'get dedicated cart service option (List)' },
+			{ name: 'Get Dedicated Cart Service Option (Service)', value: 'cartServiceOptionDedicatedServiceGET', action: 'get dedicated cart service option (Service)' },
+			{ name: 'Add Dedicated Cart Service Option (Service)', value: 'cartServiceOptionDedicatedServicePOST', action: 'add dedicated cart service option (Service)' },
+			{ name: 'Get Domain Cart Service Option (List)', value: 'cartServiceOptionDomainListGET', action: 'get domain cart service option (List)' },
+			{ name: 'Get Domain Cart Service Option (Service)', value: 'cartServiceOptionDomainServiceGET', action: 'get domain cart service option (Service)' },
+			{ name: 'Add Domain Cart Service Option (Service)', value: 'cartServiceOptionDomainServicePOST', action: 'add domain cart service option (Service)' },
+			{ name: 'Get Email Pro Cart Service Option (List)', value: 'cartServiceOptionEmailProListGET', action: 'get email pro cart service option (List)' },
+			{ name: 'Get Email Pro Cart Service Option (Service)', value: 'cartServiceOptionEmailProServiceGET', action: 'get email pro cart service option (Service)' },
+			{ name: 'Add Email Pro Cart Service Option (Service)', value: 'cartServiceOptionEmailProServicePOST', action: 'add email pro cart service option (Service)' },
+			{ name: 'Get IP Load Balancing Cart Service Option (List)', value: 'cartServiceOptionIPLoadBalancingListGET', action: 'get ip load balancing cart service option (List)' },
+			{ name: 'Get IP Load Balancing Cart Service Option (Service)', value: 'cartServiceOptionIPLoadBalancingServiceGET', action: 'get ip load balancing cart service option (Service)' },
+			{ name: 'Add IP Load Balancing Cart Service Option (Service)', value: 'cartServiceOptionIPLoadBalancingServicePOST', action: 'add ip load balancing cart service option (Service)' },
+			{ name: 'Get License Hycu Cart Service Option (List)', value: 'cartServiceOptionLicenseHycuListGET', action: 'get license hycu cart service option (List)' },
+			{ name: 'Get License Hycu Cart Service Option (Service)', value: 'cartServiceOptionLicenseHycuServiceGET', action: 'get license hycu cart service option (Service)' },
+			{ name: 'Add License Hycu Cart Service Option (Service)', value: 'cartServiceOptionLicenseHycuServicePOST', action: 'add license hycu cart service option (Service)' },
+			{ name: 'Get Logs Cart Service Option (List)', value: 'cartServiceOptionLogsListGET', action: 'get logs cart service option (List)' },
+			{ name: 'Get Logs Cart Service Option (Service)', value: 'cartServiceOptionLogsServiceGET', action: 'get logs cart service option (Service)' },
+			{ name: 'Add Logs Cart Service Option (Service)', value: 'cartServiceOptionLogsServicePOST', action: 'add logs cart service option (Service)' },
+			{ name: 'Get Microsoft Exchange Cart Service Option (List)', value: 'cartServiceOptionMicrosoftExchangeListGET', action: 'get microsoft exchange cart service option (List)' },
+			{ name: 'Get Microsoft Exchange Cart Service Option (Service)', value: 'cartServiceOptionMicrosoftExchangeServiceGET', action: 'get microsoft exchange cart service option (Service)' },
+			{ name: 'Add Microsoft Exchange Cart Service Option (Service)', value: 'cartServiceOptionMicrosoftExchangeServicePOST', action: 'add microsoft exchange cart service option (Service)' },
+			{ name: 'Get Microsoft Cart Service Option (List)', value: 'cartServiceOptionMicrosoftListGET', action: 'get microsoft cart service option (List)' },
+			{ name: 'Get Microsoft Cart Service Option (Service)', value: 'cartServiceOptionMicrosoftServiceGET', action: 'get microsoft cart service option (Service)' },
+			{ name: 'Add Microsoft Cart Service Option (Service)', value: 'cartServiceOptionMicrosoftServicePOST', action: 'add microsoft cart service option (Service)' },
+			{ name: 'Get Nutanix Cart Service Option (List)', value: 'cartServiceOptionNutanixListGET', action: 'get nutanix cart service option (List)' },
+			{ name: 'Get Nutanix Cart Service Option (Service)', value: 'cartServiceOptionNutanixServiceGET', action: 'get nutanix cart service option (Service)' },
+			{ name: 'Add Nutanix Cart Service Option (Service)', value: 'cartServiceOptionNutanixServicePOST', action: 'add nutanix cart service option (Service)' },
+			{ name: 'Get Office365 Prepaid Cart Service Option (List)', value: 'cartServiceOptionOffice365PrepaidListGET', action: 'get office365 prepaid cart service option (List)' },
+			{ name: 'Get Office365 Prepaid Cart Service Option (Service)', value: 'cartServiceOptionOffice365PrepaidServiceGET', action: 'get office365 prepaid cart service option (Service)' },
+			{ name: 'Add Office365 Prepaid Cart Service Option (Service)', value: 'cartServiceOptionOffice365PrepaidServicePOST', action: 'add office365 prepaid cart service option (Service)' },
+			{ name: 'Get Office Prepaid Cart Service Option (List)', value: 'cartServiceOptionOfficePrepaidListGET', action: 'get office prepaid cart service option (List)' },
+			{ name: 'Get Office Prepaid Cart Service Option (Service)', value: 'cartServiceOptionOfficePrepaidServiceGET', action: 'get office prepaid cart service option (Service)' },
+			{ name: 'Add Office Prepaid Cart Service Option (Service)', value: 'cartServiceOptionOfficePrepaidServicePOST', action: 'add office prepaid cart service option (Service)' },
+			{ name: 'Get Private Cloud Enterprise Cart Service Option (List)', value: 'cartServiceOptionPrivateCloudEnterpriseListGET', action: 'get private cloud enterprise cart service option (List)' },
+			{ name: 'Get Private Cloud Enterprise Cart Service Option (Service)', value: 'cartServiceOptionPrivateCloudEnterpriseServiceGET', action: 'get private cloud enterprise cart service option (Service)' },
+			{ name: 'Add Private Cloud Enterprise Cart Service Option (Service)', value: 'cartServiceOptionPrivateCloudEnterpriseServicePOST', action: 'add private cloud enterprise cart service option (Service)' },
+			{ name: 'Get Private Cloud Cart Service Option (List)', value: 'cartServiceOptionPrivateCloudListGET', action: 'get private cloud cart service option (List)' },
+			{ name: 'Get Private Cloud Reseller Enterprise Cart Service Option (List)', value: 'cartServiceOptionPrivateCloudResellerEnterpriseListGET', action: 'get private cloud reseller enterprise cart service option (List)' },
+			{ name: 'Get Private Cloud Reseller Enterprise Cart Service Option (Service)', value: 'cartServiceOptionPrivateCloudResellerEnterpriseServiceGET', action: 'get private cloud reseller enterprise cart service option (Service)' },
+			{ name: 'Add Private Cloud Reseller Enterprise Cart Service Option (Service)', value: 'cartServiceOptionPrivateCloudResellerEnterpriseServicePOST', action: 'add private cloud reseller enterprise cart service option (Service)' },
+			{ name: 'Get Private Cloud Reseller Cart Service Option (List)', value: 'cartServiceOptionPrivateCloudResellerListGET', action: 'get private cloud reseller cart service option (List)' },
+			{ name: 'Get Private Cloud Reseller Cart Service Option (Service)', value: 'cartServiceOptionPrivateCloudResellerServiceGET', action: 'get private cloud reseller cart service option (Service)' },
+			{ name: 'Add Private Cloud Reseller Cart Service Option (Service)', value: 'cartServiceOptionPrivateCloudResellerServicePOST', action: 'add private cloud reseller cart service option (Service)' },
+			{ name: 'Get Private Cloud Cart Service Option (Service)', value: 'cartServiceOptionPrivateCloudServiceGET', action: 'get private cloud cart service option (Service)' },
+			{ name: 'Add Private Cloud Cart Service Option (Service)', value: 'cartServiceOptionPrivateCloudServicePOST', action: 'add private cloud cart service option (Service)' },
+			{ name: 'Get SMS Cart Service Option (List)', value: 'cartServiceOptionSMSListGET', action: 'get sms cart service option (List)' },
+			{ name: 'Get SMS Cart Service Option (Service)', value: 'cartServiceOptionSMSServiceGET', action: 'get sms cart service option (Service)' },
+			{ name: 'Add SMS Cart Service Option (Service)', value: 'cartServiceOptionSMSServicePOST', action: 'add sms cart service option (Service)' },
+			{ name: 'Get SSL Gateway Cart Service Option (List)', value: 'cartServiceOptionSSLGatewayListGET', action: 'get ssl gateway cart service option (List)' },
+			{ name: 'Get SSL Gateway Cart Service Option (Service)', value: 'cartServiceOptionSSLGatewayServiceGET', action: 'get ssl gateway cart service option (Service)' },
+			{ name: 'Add SSL Gateway Cart Service Option (Service)', value: 'cartServiceOptionSSLGatewayServicePOST', action: 'add ssl gateway cart service option (Service)' },
+			{ name: 'Get Sharepoint Cart Service Option (List)', value: 'cartServiceOptionSharepointListGET', action: 'get sharepoint cart service option (List)' },
+			{ name: 'Get Sharepoint Cart Service Option (Service)', value: 'cartServiceOptionSharepointServiceGET', action: 'get sharepoint cart service option (Service)' },
+			{ name: 'Add Sharepoint Cart Service Option (Service)', value: 'cartServiceOptionSharepointServicePOST', action: 'add sharepoint cart service option (Service)' },
+			{ name: 'Get SNC Network Services Cart Service Option (List)', value: 'cartServiceOptionSncNetworkServicesListGET', action: 'get snc network services cart service option (List)' },
+			{ name: 'Get SNC Network Services Cart Service Option (Service)', value: 'cartServiceOptionSncNetworkServicesServiceGET', action: 'get snc network services cart service option (Service)' },
+			{ name: 'Add SNC Network Services Cart Service Option (Service)', value: 'cartServiceOptionSncNetworkServicesServicePOST', action: 'add snc network services cart service option (Service)' },
+			{ name: 'Get VDI Cart Service Option (List)', value: 'cartServiceOptionVDIListGET', action: 'get vdi cart service option (List)' },
+			{ name: 'Get VDI Cart Service Option (Service)', value: 'cartServiceOptionVDIServiceGET', action: 'get vdi cart service option (Service)' },
+			{ name: 'Add VDI Cart Service Option (Service)', value: 'cartServiceOptionVDIServicePOST', action: 'add vdi cart service option (Service)' },
+			{ name: 'Get VPS Cart Service Option (List)', value: 'cartServiceOptionVPSListGET', action: 'get vps cart service option (List)' },
+			{ name: 'Get VPS Cart Service Option (Service)', value: 'cartServiceOptionVPSServiceGET', action: 'get vps cart service option (Service)' },
+			{ name: 'Add VPS Cart Service Option (Service)', value: 'cartServiceOptionVPSServicePOST', action: 'add vps cart service option (Service)' },
+			{ name: 'Get VMware Cloud Director Backup Cart Service Option (List)', value: 'cartServiceOptionVmwareCloudDirectorBackupListGET', action: 'get vmware cloud director backup cart service option (List)' },
+			{ name: 'Get VMware Cloud Director Backup Cart Service Option (Service)', value: 'cartServiceOptionVmwareCloudDirectorBackupServiceGET', action: 'get vmware cloud director backup cart service option (Service)' },
+			{ name: 'Get VMware Cloud Director Cart Service Option (List)', value: 'cartServiceOptionVmwareCloudDirectorListGET', action: 'get vmware cloud director cart service option (List)' },
+			{ name: 'Get VMware Cloud Director Cart Service Option (Service)', value: 'cartServiceOptionVmwareCloudDirectorServiceGET', action: 'get vmware cloud director cart service option (Service)' },
+			{ name: 'Add VMware Cloud Director Cart Service Option (Service)', value: 'cartServiceOptionVmwareCloudDirectorServicePOST', action: 'add vmware cloud director cart service option (Service)' },
+			{ name: 'Get Vrack Cart Service Option (List)', value: 'cartServiceOptionVrackListGET', action: 'get vrack cart service option (List)' },
+			{ name: 'Get Vrack Cart Service Option (Service)', value: 'cartServiceOptionVrackServiceGET', action: 'get vrack cart service option (Service)' },
+			{ name: 'Add Vrack Cart Service Option (Service)', value: 'cartServiceOptionVrackServicePOST', action: 'add vrack cart service option (Service)' },
+			{ name: 'Get Web Hosting Cart Service Option (List)', value: 'cartServiceOptionWebHostingListGET', action: 'get web hosting cart service option (List)' },
+			{ name: 'Get Web Hosting Cart Service Option (Service)', value: 'cartServiceOptionWebHostingServiceGET', action: 'get web hosting cart service option (Service)' },
+			{ name: 'Add Web Hosting Cart Service Option (Service)', value: 'cartServiceOptionWebHostingServicePOST', action: 'add web hosting cart service option (Service)' },
 ],
 			default: 'cartListGet',
 			displayOptions,
@@ -3409,6 +4258,682 @@ export function description(displayOptions: IDisplayOptions): INodeProperties[] 
 			...displayOptions,
 			show: { orderOperation: ['xdslspareCreatePost'] },
 		}) as INodeProperties[]),
+		...(descriptionupgradeBandwidthVrackListGET({
+			...displayOptions,
+			show: { orderOperation: ['upgradeBandwidthVrackListGET'] },
+		}) as INodeProperties[]),
+		...(descriptionupgradeBandwidthVrackPlanGET({
+			...displayOptions,
+			show: { orderOperation: ['upgradeBandwidthVrackPlanGET'] },
+		}) as INodeProperties[]),
+		...(descriptionupgradeBandwidthVrackPlanPOST({
+			...displayOptions,
+			show: { orderOperation: ['upgradeBandwidthVrackPlanPOST'] },
+		}) as INodeProperties[]),
+		...(descriptionupgradeBandwidthVrackServiceGET({
+			...displayOptions,
+			show: { orderOperation: ['upgradeBandwidthVrackServiceGET'] },
+		}) as INodeProperties[]),
+		...(descriptionupgradeBaremetalPrivateBandwidthListGET({
+			...displayOptions,
+			show: { orderOperation: ['upgradeBaremetalPrivateBandwidthListGET'] },
+		}) as INodeProperties[]),
+		...(descriptionupgradeBaremetalPrivateBandwidthPlanGET({
+			...displayOptions,
+			show: { orderOperation: ['upgradeBaremetalPrivateBandwidthPlanGET'] },
+		}) as INodeProperties[]),
+		...(descriptionupgradeBaremetalPrivateBandwidthPlanPOST({
+			...displayOptions,
+			show: { orderOperation: ['upgradeBaremetalPrivateBandwidthPlanPOST'] },
+		}) as INodeProperties[]),
+		...(descriptionupgradeBaremetalPrivateBandwidthServiceGET({
+			...displayOptions,
+			show: { orderOperation: ['upgradeBaremetalPrivateBandwidthServiceGET'] },
+		}) as INodeProperties[]),
+		...(descriptionupgradeBaremetalPublicBandwidthListGET({
+			...displayOptions,
+			show: { orderOperation: ['upgradeBaremetalPublicBandwidthListGET'] },
+		}) as INodeProperties[]),
+		...(descriptionupgradeBaremetalPublicBandwidthPlanGET({
+			...displayOptions,
+			show: { orderOperation: ['upgradeBaremetalPublicBandwidthPlanGET'] },
+		}) as INodeProperties[]),
+		...(descriptionupgradeBaremetalPublicBandwidthPlanPOST({
+			...displayOptions,
+			show: { orderOperation: ['upgradeBaremetalPublicBandwidthPlanPOST'] },
+		}) as INodeProperties[]),
+		...(descriptionupgradeBaremetalPublicBandwidthServiceGET({
+			...displayOptions,
+			show: { orderOperation: ['upgradeBaremetalPublicBandwidthServiceGET'] },
+		}) as INodeProperties[]),
+		...(descriptionupgradeCephAASListGET({
+			...displayOptions,
+			show: { orderOperation: ['upgradeCephAASListGET'] },
+		}) as INodeProperties[]),
+		...(descriptionupgradeCephAASPlanGET({
+			...displayOptions,
+			show: { orderOperation: ['upgradeCephAASPlanGET'] },
+		}) as INodeProperties[]),
+		...(descriptionupgradeCephAASPlanPOST({
+			...displayOptions,
+			show: { orderOperation: ['upgradeCephAASPlanPOST'] },
+		}) as INodeProperties[]),
+		...(descriptionupgradeCephAASServiceGET({
+			...displayOptions,
+			show: { orderOperation: ['upgradeCephAASServiceGET'] },
+		}) as INodeProperties[]),
+		...(descriptionupgradeCloudDBListGET({
+			...displayOptions,
+			show: { orderOperation: ['upgradeCloudDBListGET'] },
+		}) as INodeProperties[]),
+		...(descriptionupgradeCloudDBPlanGET({
+			...displayOptions,
+			show: { orderOperation: ['upgradeCloudDBPlanGET'] },
+		}) as INodeProperties[]),
+		...(descriptionupgradeCloudDBPlanPOST({
+			...displayOptions,
+			show: { orderOperation: ['upgradeCloudDBPlanPOST'] },
+		}) as INodeProperties[]),
+		...(descriptionupgradeCloudDBServiceGET({
+			...displayOptions,
+			show: { orderOperation: ['upgradeCloudDBServiceGET'] },
+		}) as INodeProperties[]),
+		...(descriptionupgradeEmailDomainListGET({
+			...displayOptions,
+			show: { orderOperation: ['upgradeEmailDomainListGET'] },
+		}) as INodeProperties[]),
+		...(descriptionupgradeEmailDomainPlanGET({
+			...displayOptions,
+			show: { orderOperation: ['upgradeEmailDomainPlanGET'] },
+		}) as INodeProperties[]),
+		...(descriptionupgradeEmailDomainPlanPOST({
+			...displayOptions,
+			show: { orderOperation: ['upgradeEmailDomainPlanPOST'] },
+		}) as INodeProperties[]),
+		...(descriptionupgradeEmailDomainServiceGET({
+			...displayOptions,
+			show: { orderOperation: ['upgradeEmailDomainServiceGET'] },
+		}) as INodeProperties[]),
+		...(descriptionupgradeIPLoadBalancingListGET({
+			...displayOptions,
+			show: { orderOperation: ['upgradeIPLoadBalancingListGET'] },
+		}) as INodeProperties[]),
+		...(descriptionupgradeIPLoadBalancingPlanGET({
+			...displayOptions,
+			show: { orderOperation: ['upgradeIPLoadBalancingPlanGET'] },
+		}) as INodeProperties[]),
+		...(descriptionupgradeIPLoadBalancingPlanPOST({
+			...displayOptions,
+			show: { orderOperation: ['upgradeIPLoadBalancingPlanPOST'] },
+		}) as INodeProperties[]),
+		...(descriptionupgradeIPLoadBalancingServiceGET({
+			...displayOptions,
+			show: { orderOperation: ['upgradeIPLoadBalancingServiceGET'] },
+		}) as INodeProperties[]),
+		...(descriptionupgradeLicenseHycuListGET({
+			...displayOptions,
+			show: { orderOperation: ['upgradeLicenseHycuListGET'] },
+		}) as INodeProperties[]),
+		...(descriptionupgradeLicenseHycuPlanGET({
+			...displayOptions,
+			show: { orderOperation: ['upgradeLicenseHycuPlanGET'] },
+		}) as INodeProperties[]),
+		...(descriptionupgradeLicenseHycuPlanPOST({
+			...displayOptions,
+			show: { orderOperation: ['upgradeLicenseHycuPlanPOST'] },
+		}) as INodeProperties[]),
+		...(descriptionupgradeLicenseHycuServiceGET({
+			...displayOptions,
+			show: { orderOperation: ['upgradeLicenseHycuServiceGET'] },
+		}) as INodeProperties[]),
+		...(descriptionupgradeLicensePleskListGET({
+			...displayOptions,
+			show: { orderOperation: ['upgradeLicensePleskListGET'] },
+		}) as INodeProperties[]),
+		...(descriptionupgradeLicensePleskPlanGET({
+			...displayOptions,
+			show: { orderOperation: ['upgradeLicensePleskPlanGET'] },
+		}) as INodeProperties[]),
+		...(descriptionupgradeLicensePleskPlanPOST({
+			...displayOptions,
+			show: { orderOperation: ['upgradeLicensePleskPlanPOST'] },
+		}) as INodeProperties[]),
+		...(descriptionupgradeLicensePleskServiceGET({
+			...displayOptions,
+			show: { orderOperation: ['upgradeLicensePleskServiceGET'] },
+		}) as INodeProperties[]),
+		...(descriptionupgradeLicensecPanelListGET({
+			...displayOptions,
+			show: { orderOperation: ['upgradeLicensecPanelListGET'] },
+		}) as INodeProperties[]),
+		...(descriptionupgradeLicensecPanelPlanGET({
+			...displayOptions,
+			show: { orderOperation: ['upgradeLicensecPanelPlanGET'] },
+		}) as INodeProperties[]),
+		...(descriptionupgradeLicensecPanelPlanPOST({
+			...displayOptions,
+			show: { orderOperation: ['upgradeLicensecPanelPlanPOST'] },
+		}) as INodeProperties[]),
+		...(descriptionupgradeLicensecPanelServiceGET({
+			...displayOptions,
+			show: { orderOperation: ['upgradeLicensecPanelServiceGET'] },
+		}) as INodeProperties[]),
+		...(descriptionupgradeLogsListGET({
+			...displayOptions,
+			show: { orderOperation: ['upgradeLogsListGET'] },
+		}) as INodeProperties[]),
+		...(descriptionupgradeLogsPlanGET({
+			...displayOptions,
+			show: { orderOperation: ['upgradeLogsPlanGET'] },
+		}) as INodeProperties[]),
+		...(descriptionupgradeLogsPlanPOST({
+			...displayOptions,
+			show: { orderOperation: ['upgradeLogsPlanPOST'] },
+		}) as INodeProperties[]),
+		...(descriptionupgradeLogsServiceGET({
+			...displayOptions,
+			show: { orderOperation: ['upgradeLogsServiceGET'] },
+		}) as INodeProperties[]),
+		...(descriptionupgradeMetricsListGET({
+			...displayOptions,
+			show: { orderOperation: ['upgradeMetricsListGET'] },
+		}) as INodeProperties[]),
+		...(descriptionupgradeMetricsPlanGET({
+			...displayOptions,
+			show: { orderOperation: ['upgradeMetricsPlanGET'] },
+		}) as INodeProperties[]),
+		...(descriptionupgradeMetricsPlanPOST({
+			...displayOptions,
+			show: { orderOperation: ['upgradeMetricsPlanPOST'] },
+		}) as INodeProperties[]),
+		...(descriptionupgradeMetricsServiceGET({
+			...displayOptions,
+			show: { orderOperation: ['upgradeMetricsServiceGET'] },
+		}) as INodeProperties[]),
+		...(descriptionupgradeMicrosoftExchangeListGET({
+			...displayOptions,
+			show: { orderOperation: ['upgradeMicrosoftExchangeListGET'] },
+		}) as INodeProperties[]),
+		...(descriptionupgradeMicrosoftExchangePlanGET({
+			...displayOptions,
+			show: { orderOperation: ['upgradeMicrosoftExchangePlanGET'] },
+		}) as INodeProperties[]),
+		...(descriptionupgradeMicrosoftExchangePlanPOST({
+			...displayOptions,
+			show: { orderOperation: ['upgradeMicrosoftExchangePlanPOST'] },
+		}) as INodeProperties[]),
+		...(descriptionupgradeMicrosoftExchangeServiceGET({
+			...displayOptions,
+			show: { orderOperation: ['upgradeMicrosoftExchangeServiceGET'] },
+		}) as INodeProperties[]),
+		...(descriptionupgradePrivateCloudListGET({
+			...displayOptions,
+			show: { orderOperation: ['upgradePrivateCloudListGET'] },
+		}) as INodeProperties[]),
+		...(descriptionupgradePrivateCloudManagementFeeListGET({
+			...displayOptions,
+			show: { orderOperation: ['upgradePrivateCloudManagementFeeListGET'] },
+		}) as INodeProperties[]),
+		...(descriptionupgradePrivateCloudManagementFeePlanGET({
+			...displayOptions,
+			show: { orderOperation: ['upgradePrivateCloudManagementFeePlanGET'] },
+		}) as INodeProperties[]),
+		...(descriptionupgradePrivateCloudManagementFeePlanPOST({
+			...displayOptions,
+			show: { orderOperation: ['upgradePrivateCloudManagementFeePlanPOST'] },
+		}) as INodeProperties[]),
+		...(descriptionupgradePrivateCloudManagementFeeServiceGET({
+			...displayOptions,
+			show: { orderOperation: ['upgradePrivateCloudManagementFeeServiceGET'] },
+		}) as INodeProperties[]),
+		...(descriptionupgradePrivateCloudPlanGET({
+			...displayOptions,
+			show: { orderOperation: ['upgradePrivateCloudPlanGET'] },
+		}) as INodeProperties[]),
+		...(descriptionupgradePrivateCloudPlanPOST({
+			...displayOptions,
+			show: { orderOperation: ['upgradePrivateCloudPlanPOST'] },
+		}) as INodeProperties[]),
+		...(descriptionupgradePrivateCloudServiceGET({
+			...displayOptions,
+			show: { orderOperation: ['upgradePrivateCloudServiceGET'] },
+		}) as INodeProperties[]),
+		...(descriptionupgradePrivateSQLListGET({
+			...displayOptions,
+			show: { orderOperation: ['upgradePrivateSQLListGET'] },
+		}) as INodeProperties[]),
+		...(descriptionupgradePrivateSQLPlanGET({
+			...displayOptions,
+			show: { orderOperation: ['upgradePrivateSQLPlanGET'] },
+		}) as INodeProperties[]),
+		...(descriptionupgradePrivateSQLPlanPOST({
+			...displayOptions,
+			show: { orderOperation: ['upgradePrivateSQLPlanPOST'] },
+		}) as INodeProperties[]),
+		...(descriptionupgradePrivateSQLServiceGET({
+			...displayOptions,
+			show: { orderOperation: ['upgradePrivateSQLServiceGET'] },
+		}) as INodeProperties[]),
+		...(descriptionupgradeSSLGatewayListGET({
+			...displayOptions,
+			show: { orderOperation: ['upgradeSSLGatewayListGET'] },
+		}) as INodeProperties[]),
+		...(descriptionupgradeSSLGatewayPlanGET({
+			...displayOptions,
+			show: { orderOperation: ['upgradeSSLGatewayPlanGET'] },
+		}) as INodeProperties[]),
+		...(descriptionupgradeSSLGatewayPlanPOST({
+			...displayOptions,
+			show: { orderOperation: ['upgradeSSLGatewayPlanPOST'] },
+		}) as INodeProperties[]),
+		...(descriptionupgradeSSLGatewayServiceGET({
+			...displayOptions,
+			show: { orderOperation: ['upgradeSSLGatewayServiceGET'] },
+		}) as INodeProperties[]),
+		...(descriptionupgradeVPSAdditionalDiskListGET({
+			...displayOptions,
+			show: { orderOperation: ['upgradeVPSAdditionalDiskListGET'] },
+		}) as INodeProperties[]),
+		...(descriptionupgradeVPSAdditionalDiskPlanGET({
+			...displayOptions,
+			show: { orderOperation: ['upgradeVPSAdditionalDiskPlanGET'] },
+		}) as INodeProperties[]),
+		...(descriptionupgradeVPSAdditionalDiskPlanPOST({
+			...displayOptions,
+			show: { orderOperation: ['upgradeVPSAdditionalDiskPlanPOST'] },
+		}) as INodeProperties[]),
+		...(descriptionupgradeVPSAdditionalDiskServiceGET({
+			...displayOptions,
+			show: { orderOperation: ['upgradeVPSAdditionalDiskServiceGET'] },
+		}) as INodeProperties[]),
+		...(descriptionupgradeVPSListGET({
+			...displayOptions,
+			show: { orderOperation: ['upgradeVPSListGET'] },
+		}) as INodeProperties[]),
+		...(descriptionupgradeVPSPlanGET({
+			...displayOptions,
+			show: { orderOperation: ['upgradeVPSPlanGET'] },
+		}) as INodeProperties[]),
+		...(descriptionupgradeVPSPlanPOST({
+			...displayOptions,
+			show: { orderOperation: ['upgradeVPSPlanPOST'] },
+		}) as INodeProperties[]),
+		...(descriptionupgradeVPSServiceGET({
+			...displayOptions,
+			show: { orderOperation: ['upgradeVPSServiceGET'] },
+		}) as INodeProperties[]),
+		...(descriptionupgradeWebHostingListGET({
+			...displayOptions,
+			show: { orderOperation: ['upgradeWebHostingListGET'] },
+		}) as INodeProperties[]),
+		...(descriptionupgradeWebHostingPlanGET({
+			...displayOptions,
+			show: { orderOperation: ['upgradeWebHostingPlanGET'] },
+		}) as INodeProperties[]),
+		...(descriptionupgradeWebHostingPlanPOST({
+			...displayOptions,
+			show: { orderOperation: ['upgradeWebHostingPlanPOST'] },
+		}) as INodeProperties[]),
+		...(descriptionupgradeWebHostingServiceGET({
+			...displayOptions,
+			show: { orderOperation: ['upgradeWebHostingServiceGET'] },
+		}) as INodeProperties[]),
+		...(descriptionupgradeZimbraListGET({
+			...displayOptions,
+			show: { orderOperation: ['upgradeZimbraListGET'] },
+		}) as INodeProperties[]),
+		...(descriptionupgradeZimbraPlanGET({
+			...displayOptions,
+			show: { orderOperation: ['upgradeZimbraPlanGET'] },
+		}) as INodeProperties[]),
+		...(descriptionupgradeZimbraPlanPOST({
+			...displayOptions,
+			show: { orderOperation: ['upgradeZimbraPlanPOST'] },
+		}) as INodeProperties[]),
+		...(descriptionupgradeZimbraServiceGET({
+			...displayOptions,
+			show: { orderOperation: ['upgradeZimbraServiceGET'] },
+		}) as INodeProperties[]),
+		...(descriptioncartServiceOptionBackupServicesListGET({
+			...displayOptions,
+			show: { orderOperation: ['cartServiceOptionBackupServicesListGET'] },
+		}) as INodeProperties[]),
+		...(descriptioncartServiceOptionBackupServicesServiceGET({
+			...displayOptions,
+			show: { orderOperation: ['cartServiceOptionBackupServicesServiceGET'] },
+		}) as INodeProperties[]),
+		...(descriptioncartServiceOptionBaremetalServersListGET({
+			...displayOptions,
+			show: { orderOperation: ['cartServiceOptionBaremetalServersListGET'] },
+		}) as INodeProperties[]),
+		...(descriptioncartServiceOptionBaremetalServersServiceGET({
+			...displayOptions,
+			show: { orderOperation: ['cartServiceOptionBaremetalServersServiceGET'] },
+		}) as INodeProperties[]),
+		...(descriptioncartServiceOptionBaremetalServersServicePOST({
+			...displayOptions,
+			show: { orderOperation: ['cartServiceOptionBaremetalServersServicePOST'] },
+		}) as INodeProperties[]),
+		...(descriptioncartServiceOptionCloudListGET({
+			...displayOptions,
+			show: { orderOperation: ['cartServiceOptionCloudListGET'] },
+		}) as INodeProperties[]),
+		...(descriptioncartServiceOptionCloudServiceGET({
+			...displayOptions,
+			show: { orderOperation: ['cartServiceOptionCloudServiceGET'] },
+		}) as INodeProperties[]),
+		...(descriptioncartServiceOptionCloudServicePOST({
+			...displayOptions,
+			show: { orderOperation: ['cartServiceOptionCloudServicePOST'] },
+		}) as INodeProperties[]),
+		...(descriptioncartServiceOptionDNSListGET({
+			...displayOptions,
+			show: { orderOperation: ['cartServiceOptionDNSListGET'] },
+		}) as INodeProperties[]),
+		...(descriptioncartServiceOptionDNSServiceGET({
+			...displayOptions,
+			show: { orderOperation: ['cartServiceOptionDNSServiceGET'] },
+		}) as INodeProperties[]),
+		...(descriptioncartServiceOptionDNSServicePOST({
+			...displayOptions,
+			show: { orderOperation: ['cartServiceOptionDNSServicePOST'] },
+		}) as INodeProperties[]),
+		...(descriptioncartServiceOptionDedicatedListGET({
+			...displayOptions,
+			show: { orderOperation: ['cartServiceOptionDedicatedListGET'] },
+		}) as INodeProperties[]),
+		...(descriptioncartServiceOptionDedicatedServiceGET({
+			...displayOptions,
+			show: { orderOperation: ['cartServiceOptionDedicatedServiceGET'] },
+		}) as INodeProperties[]),
+		...(descriptioncartServiceOptionDedicatedServicePOST({
+			...displayOptions,
+			show: { orderOperation: ['cartServiceOptionDedicatedServicePOST'] },
+		}) as INodeProperties[]),
+		...(descriptioncartServiceOptionDomainListGET({
+			...displayOptions,
+			show: { orderOperation: ['cartServiceOptionDomainListGET'] },
+		}) as INodeProperties[]),
+		...(descriptioncartServiceOptionDomainServiceGET({
+			...displayOptions,
+			show: { orderOperation: ['cartServiceOptionDomainServiceGET'] },
+		}) as INodeProperties[]),
+		...(descriptioncartServiceOptionDomainServicePOST({
+			...displayOptions,
+			show: { orderOperation: ['cartServiceOptionDomainServicePOST'] },
+		}) as INodeProperties[]),
+		...(descriptioncartServiceOptionEmailProListGET({
+			...displayOptions,
+			show: { orderOperation: ['cartServiceOptionEmailProListGET'] },
+		}) as INodeProperties[]),
+		...(descriptioncartServiceOptionEmailProServiceGET({
+			...displayOptions,
+			show: { orderOperation: ['cartServiceOptionEmailProServiceGET'] },
+		}) as INodeProperties[]),
+		...(descriptioncartServiceOptionEmailProServicePOST({
+			...displayOptions,
+			show: { orderOperation: ['cartServiceOptionEmailProServicePOST'] },
+		}) as INodeProperties[]),
+		...(descriptioncartServiceOptionIPLoadBalancingListGET({
+			...displayOptions,
+			show: { orderOperation: ['cartServiceOptionIPLoadBalancingListGET'] },
+		}) as INodeProperties[]),
+		...(descriptioncartServiceOptionIPLoadBalancingServiceGET({
+			...displayOptions,
+			show: { orderOperation: ['cartServiceOptionIPLoadBalancingServiceGET'] },
+		}) as INodeProperties[]),
+		...(descriptioncartServiceOptionIPLoadBalancingServicePOST({
+			...displayOptions,
+			show: { orderOperation: ['cartServiceOptionIPLoadBalancingServicePOST'] },
+		}) as INodeProperties[]),
+		...(descriptioncartServiceOptionLicenseHycuListGET({
+			...displayOptions,
+			show: { orderOperation: ['cartServiceOptionLicenseHycuListGET'] },
+		}) as INodeProperties[]),
+		...(descriptioncartServiceOptionLicenseHycuServiceGET({
+			...displayOptions,
+			show: { orderOperation: ['cartServiceOptionLicenseHycuServiceGET'] },
+		}) as INodeProperties[]),
+		...(descriptioncartServiceOptionLicenseHycuServicePOST({
+			...displayOptions,
+			show: { orderOperation: ['cartServiceOptionLicenseHycuServicePOST'] },
+		}) as INodeProperties[]),
+		...(descriptioncartServiceOptionLogsListGET({
+			...displayOptions,
+			show: { orderOperation: ['cartServiceOptionLogsListGET'] },
+		}) as INodeProperties[]),
+		...(descriptioncartServiceOptionLogsServiceGET({
+			...displayOptions,
+			show: { orderOperation: ['cartServiceOptionLogsServiceGET'] },
+		}) as INodeProperties[]),
+		...(descriptioncartServiceOptionLogsServicePOST({
+			...displayOptions,
+			show: { orderOperation: ['cartServiceOptionLogsServicePOST'] },
+		}) as INodeProperties[]),
+		...(descriptioncartServiceOptionMicrosoftExchangeListGET({
+			...displayOptions,
+			show: { orderOperation: ['cartServiceOptionMicrosoftExchangeListGET'] },
+		}) as INodeProperties[]),
+		...(descriptioncartServiceOptionMicrosoftExchangeServiceGET({
+			...displayOptions,
+			show: { orderOperation: ['cartServiceOptionMicrosoftExchangeServiceGET'] },
+		}) as INodeProperties[]),
+		...(descriptioncartServiceOptionMicrosoftExchangeServicePOST({
+			...displayOptions,
+			show: { orderOperation: ['cartServiceOptionMicrosoftExchangeServicePOST'] },
+		}) as INodeProperties[]),
+		...(descriptioncartServiceOptionMicrosoftListGET({
+			...displayOptions,
+			show: { orderOperation: ['cartServiceOptionMicrosoftListGET'] },
+		}) as INodeProperties[]),
+		...(descriptioncartServiceOptionMicrosoftServiceGET({
+			...displayOptions,
+			show: { orderOperation: ['cartServiceOptionMicrosoftServiceGET'] },
+		}) as INodeProperties[]),
+		...(descriptioncartServiceOptionMicrosoftServicePOST({
+			...displayOptions,
+			show: { orderOperation: ['cartServiceOptionMicrosoftServicePOST'] },
+		}) as INodeProperties[]),
+		...(descriptioncartServiceOptionNutanixListGET({
+			...displayOptions,
+			show: { orderOperation: ['cartServiceOptionNutanixListGET'] },
+		}) as INodeProperties[]),
+		...(descriptioncartServiceOptionNutanixServiceGET({
+			...displayOptions,
+			show: { orderOperation: ['cartServiceOptionNutanixServiceGET'] },
+		}) as INodeProperties[]),
+		...(descriptioncartServiceOptionNutanixServicePOST({
+			...displayOptions,
+			show: { orderOperation: ['cartServiceOptionNutanixServicePOST'] },
+		}) as INodeProperties[]),
+		...(descriptioncartServiceOptionOffice365PrepaidListGET({
+			...displayOptions,
+			show: { orderOperation: ['cartServiceOptionOffice365PrepaidListGET'] },
+		}) as INodeProperties[]),
+		...(descriptioncartServiceOptionOffice365PrepaidServiceGET({
+			...displayOptions,
+			show: { orderOperation: ['cartServiceOptionOffice365PrepaidServiceGET'] },
+		}) as INodeProperties[]),
+		...(descriptioncartServiceOptionOffice365PrepaidServicePOST({
+			...displayOptions,
+			show: { orderOperation: ['cartServiceOptionOffice365PrepaidServicePOST'] },
+		}) as INodeProperties[]),
+		...(descriptioncartServiceOptionOfficePrepaidListGET({
+			...displayOptions,
+			show: { orderOperation: ['cartServiceOptionOfficePrepaidListGET'] },
+		}) as INodeProperties[]),
+		...(descriptioncartServiceOptionOfficePrepaidServiceGET({
+			...displayOptions,
+			show: { orderOperation: ['cartServiceOptionOfficePrepaidServiceGET'] },
+		}) as INodeProperties[]),
+		...(descriptioncartServiceOptionOfficePrepaidServicePOST({
+			...displayOptions,
+			show: { orderOperation: ['cartServiceOptionOfficePrepaidServicePOST'] },
+		}) as INodeProperties[]),
+		...(descriptioncartServiceOptionPrivateCloudEnterpriseListGET({
+			...displayOptions,
+			show: { orderOperation: ['cartServiceOptionPrivateCloudEnterpriseListGET'] },
+		}) as INodeProperties[]),
+		...(descriptioncartServiceOptionPrivateCloudEnterpriseServiceGET({
+			...displayOptions,
+			show: { orderOperation: ['cartServiceOptionPrivateCloudEnterpriseServiceGET'] },
+		}) as INodeProperties[]),
+		...(descriptioncartServiceOptionPrivateCloudEnterpriseServicePOST({
+			...displayOptions,
+			show: { orderOperation: ['cartServiceOptionPrivateCloudEnterpriseServicePOST'] },
+		}) as INodeProperties[]),
+		...(descriptioncartServiceOptionPrivateCloudListGET({
+			...displayOptions,
+			show: { orderOperation: ['cartServiceOptionPrivateCloudListGET'] },
+		}) as INodeProperties[]),
+		...(descriptioncartServiceOptionPrivateCloudResellerEnterpriseListGET({
+			...displayOptions,
+			show: { orderOperation: ['cartServiceOptionPrivateCloudResellerEnterpriseListGET'] },
+		}) as INodeProperties[]),
+		...(descriptioncartServiceOptionPrivateCloudResellerEnterpriseServiceGET({
+			...displayOptions,
+			show: { orderOperation: ['cartServiceOptionPrivateCloudResellerEnterpriseServiceGET'] },
+		}) as INodeProperties[]),
+		...(descriptioncartServiceOptionPrivateCloudResellerEnterpriseServicePOST({
+			...displayOptions,
+			show: { orderOperation: ['cartServiceOptionPrivateCloudResellerEnterpriseServicePOST'] },
+		}) as INodeProperties[]),
+		...(descriptioncartServiceOptionPrivateCloudResellerListGET({
+			...displayOptions,
+			show: { orderOperation: ['cartServiceOptionPrivateCloudResellerListGET'] },
+		}) as INodeProperties[]),
+		...(descriptioncartServiceOptionPrivateCloudResellerServiceGET({
+			...displayOptions,
+			show: { orderOperation: ['cartServiceOptionPrivateCloudResellerServiceGET'] },
+		}) as INodeProperties[]),
+		...(descriptioncartServiceOptionPrivateCloudResellerServicePOST({
+			...displayOptions,
+			show: { orderOperation: ['cartServiceOptionPrivateCloudResellerServicePOST'] },
+		}) as INodeProperties[]),
+		...(descriptioncartServiceOptionPrivateCloudServiceGET({
+			...displayOptions,
+			show: { orderOperation: ['cartServiceOptionPrivateCloudServiceGET'] },
+		}) as INodeProperties[]),
+		...(descriptioncartServiceOptionPrivateCloudServicePOST({
+			...displayOptions,
+			show: { orderOperation: ['cartServiceOptionPrivateCloudServicePOST'] },
+		}) as INodeProperties[]),
+		...(descriptioncartServiceOptionSMSListGET({
+			...displayOptions,
+			show: { orderOperation: ['cartServiceOptionSMSListGET'] },
+		}) as INodeProperties[]),
+		...(descriptioncartServiceOptionSMSServiceGET({
+			...displayOptions,
+			show: { orderOperation: ['cartServiceOptionSMSServiceGET'] },
+		}) as INodeProperties[]),
+		...(descriptioncartServiceOptionSMSServicePOST({
+			...displayOptions,
+			show: { orderOperation: ['cartServiceOptionSMSServicePOST'] },
+		}) as INodeProperties[]),
+		...(descriptioncartServiceOptionSSLGatewayListGET({
+			...displayOptions,
+			show: { orderOperation: ['cartServiceOptionSSLGatewayListGET'] },
+		}) as INodeProperties[]),
+		...(descriptioncartServiceOptionSSLGatewayServiceGET({
+			...displayOptions,
+			show: { orderOperation: ['cartServiceOptionSSLGatewayServiceGET'] },
+		}) as INodeProperties[]),
+		...(descriptioncartServiceOptionSSLGatewayServicePOST({
+			...displayOptions,
+			show: { orderOperation: ['cartServiceOptionSSLGatewayServicePOST'] },
+		}) as INodeProperties[]),
+		...(descriptioncartServiceOptionSharepointListGET({
+			...displayOptions,
+			show: { orderOperation: ['cartServiceOptionSharepointListGET'] },
+		}) as INodeProperties[]),
+		...(descriptioncartServiceOptionSharepointServiceGET({
+			...displayOptions,
+			show: { orderOperation: ['cartServiceOptionSharepointServiceGET'] },
+		}) as INodeProperties[]),
+		...(descriptioncartServiceOptionSharepointServicePOST({
+			...displayOptions,
+			show: { orderOperation: ['cartServiceOptionSharepointServicePOST'] },
+		}) as INodeProperties[]),
+		...(descriptioncartServiceOptionSncNetworkServicesListGET({
+			...displayOptions,
+			show: { orderOperation: ['cartServiceOptionSncNetworkServicesListGET'] },
+		}) as INodeProperties[]),
+		...(descriptioncartServiceOptionSncNetworkServicesServiceGET({
+			...displayOptions,
+			show: { orderOperation: ['cartServiceOptionSncNetworkServicesServiceGET'] },
+		}) as INodeProperties[]),
+		...(descriptioncartServiceOptionSncNetworkServicesServicePOST({
+			...displayOptions,
+			show: { orderOperation: ['cartServiceOptionSncNetworkServicesServicePOST'] },
+		}) as INodeProperties[]),
+		...(descriptioncartServiceOptionVDIListGET({
+			...displayOptions,
+			show: { orderOperation: ['cartServiceOptionVDIListGET'] },
+		}) as INodeProperties[]),
+		...(descriptioncartServiceOptionVDIServiceGET({
+			...displayOptions,
+			show: { orderOperation: ['cartServiceOptionVDIServiceGET'] },
+		}) as INodeProperties[]),
+		...(descriptioncartServiceOptionVDIServicePOST({
+			...displayOptions,
+			show: { orderOperation: ['cartServiceOptionVDIServicePOST'] },
+		}) as INodeProperties[]),
+		...(descriptioncartServiceOptionVPSListGET({
+			...displayOptions,
+			show: { orderOperation: ['cartServiceOptionVPSListGET'] },
+		}) as INodeProperties[]),
+		...(descriptioncartServiceOptionVPSServiceGET({
+			...displayOptions,
+			show: { orderOperation: ['cartServiceOptionVPSServiceGET'] },
+		}) as INodeProperties[]),
+		...(descriptioncartServiceOptionVPSServicePOST({
+			...displayOptions,
+			show: { orderOperation: ['cartServiceOptionVPSServicePOST'] },
+		}) as INodeProperties[]),
+		...(descriptioncartServiceOptionVmwareCloudDirectorBackupListGET({
+			...displayOptions,
+			show: { orderOperation: ['cartServiceOptionVmwareCloudDirectorBackupListGET'] },
+		}) as INodeProperties[]),
+		...(descriptioncartServiceOptionVmwareCloudDirectorBackupServiceGET({
+			...displayOptions,
+			show: { orderOperation: ['cartServiceOptionVmwareCloudDirectorBackupServiceGET'] },
+		}) as INodeProperties[]),
+		...(descriptioncartServiceOptionVmwareCloudDirectorListGET({
+			...displayOptions,
+			show: { orderOperation: ['cartServiceOptionVmwareCloudDirectorListGET'] },
+		}) as INodeProperties[]),
+		...(descriptioncartServiceOptionVmwareCloudDirectorServiceGET({
+			...displayOptions,
+			show: { orderOperation: ['cartServiceOptionVmwareCloudDirectorServiceGET'] },
+		}) as INodeProperties[]),
+		...(descriptioncartServiceOptionVmwareCloudDirectorServicePOST({
+			...displayOptions,
+			show: { orderOperation: ['cartServiceOptionVmwareCloudDirectorServicePOST'] },
+		}) as INodeProperties[]),
+		...(descriptioncartServiceOptionVrackListGET({
+			...displayOptions,
+			show: { orderOperation: ['cartServiceOptionVrackListGET'] },
+		}) as INodeProperties[]),
+		...(descriptioncartServiceOptionVrackServiceGET({
+			...displayOptions,
+			show: { orderOperation: ['cartServiceOptionVrackServiceGET'] },
+		}) as INodeProperties[]),
+		...(descriptioncartServiceOptionVrackServicePOST({
+			...displayOptions,
+			show: { orderOperation: ['cartServiceOptionVrackServicePOST'] },
+		}) as INodeProperties[]),
+		...(descriptioncartServiceOptionWebHostingListGET({
+			...displayOptions,
+			show: { orderOperation: ['cartServiceOptionWebHostingListGET'] },
+		}) as INodeProperties[]),
+		...(descriptioncartServiceOptionWebHostingServiceGET({
+			...displayOptions,
+			show: { orderOperation: ['cartServiceOptionWebHostingServiceGET'] },
+		}) as INodeProperties[]),
+		...(descriptioncartServiceOptionWebHostingServicePOST({
+			...displayOptions,
+			show: { orderOperation: ['cartServiceOptionWebHostingServicePOST'] },
+		}) as INodeProperties[]),
 	];
 
 	return properties;
@@ -4126,6 +5651,344 @@ export async function execute(
 			return executeXdslspareListGet.call(this);
 		case 'xdslspareCreatePost':
 			return executeXdslspareCreatePost.call(this);
+		case 'upgradeBandwidthVrackListGET':
+			return executeupgradeBandwidthVrackListGET.call(this);
+		case 'upgradeBandwidthVrackPlanGET':
+			return executeupgradeBandwidthVrackPlanGET.call(this);
+		case 'upgradeBandwidthVrackPlanPOST':
+			return executeupgradeBandwidthVrackPlanPOST.call(this);
+		case 'upgradeBandwidthVrackServiceGET':
+			return executeupgradeBandwidthVrackServiceGET.call(this);
+		case 'upgradeBaremetalPrivateBandwidthListGET':
+			return executeupgradeBaremetalPrivateBandwidthListGET.call(this);
+		case 'upgradeBaremetalPrivateBandwidthPlanGET':
+			return executeupgradeBaremetalPrivateBandwidthPlanGET.call(this);
+		case 'upgradeBaremetalPrivateBandwidthPlanPOST':
+			return executeupgradeBaremetalPrivateBandwidthPlanPOST.call(this);
+		case 'upgradeBaremetalPrivateBandwidthServiceGET':
+			return executeupgradeBaremetalPrivateBandwidthServiceGET.call(this);
+		case 'upgradeBaremetalPublicBandwidthListGET':
+			return executeupgradeBaremetalPublicBandwidthListGET.call(this);
+		case 'upgradeBaremetalPublicBandwidthPlanGET':
+			return executeupgradeBaremetalPublicBandwidthPlanGET.call(this);
+		case 'upgradeBaremetalPublicBandwidthPlanPOST':
+			return executeupgradeBaremetalPublicBandwidthPlanPOST.call(this);
+		case 'upgradeBaremetalPublicBandwidthServiceGET':
+			return executeupgradeBaremetalPublicBandwidthServiceGET.call(this);
+		case 'upgradeCephAASListGET':
+			return executeupgradeCephAASListGET.call(this);
+		case 'upgradeCephAASPlanGET':
+			return executeupgradeCephAASPlanGET.call(this);
+		case 'upgradeCephAASPlanPOST':
+			return executeupgradeCephAASPlanPOST.call(this);
+		case 'upgradeCephAASServiceGET':
+			return executeupgradeCephAASServiceGET.call(this);
+		case 'upgradeCloudDBListGET':
+			return executeupgradeCloudDBListGET.call(this);
+		case 'upgradeCloudDBPlanGET':
+			return executeupgradeCloudDBPlanGET.call(this);
+		case 'upgradeCloudDBPlanPOST':
+			return executeupgradeCloudDBPlanPOST.call(this);
+		case 'upgradeCloudDBServiceGET':
+			return executeupgradeCloudDBServiceGET.call(this);
+		case 'upgradeEmailDomainListGET':
+			return executeupgradeEmailDomainListGET.call(this);
+		case 'upgradeEmailDomainPlanGET':
+			return executeupgradeEmailDomainPlanGET.call(this);
+		case 'upgradeEmailDomainPlanPOST':
+			return executeupgradeEmailDomainPlanPOST.call(this);
+		case 'upgradeEmailDomainServiceGET':
+			return executeupgradeEmailDomainServiceGET.call(this);
+		case 'upgradeIPLoadBalancingListGET':
+			return executeupgradeIPLoadBalancingListGET.call(this);
+		case 'upgradeIPLoadBalancingPlanGET':
+			return executeupgradeIPLoadBalancingPlanGET.call(this);
+		case 'upgradeIPLoadBalancingPlanPOST':
+			return executeupgradeIPLoadBalancingPlanPOST.call(this);
+		case 'upgradeIPLoadBalancingServiceGET':
+			return executeupgradeIPLoadBalancingServiceGET.call(this);
+		case 'upgradeLicenseHycuListGET':
+			return executeupgradeLicenseHycuListGET.call(this);
+		case 'upgradeLicenseHycuPlanGET':
+			return executeupgradeLicenseHycuPlanGET.call(this);
+		case 'upgradeLicenseHycuPlanPOST':
+			return executeupgradeLicenseHycuPlanPOST.call(this);
+		case 'upgradeLicenseHycuServiceGET':
+			return executeupgradeLicenseHycuServiceGET.call(this);
+		case 'upgradeLicensePleskListGET':
+			return executeupgradeLicensePleskListGET.call(this);
+		case 'upgradeLicensePleskPlanGET':
+			return executeupgradeLicensePleskPlanGET.call(this);
+		case 'upgradeLicensePleskPlanPOST':
+			return executeupgradeLicensePleskPlanPOST.call(this);
+		case 'upgradeLicensePleskServiceGET':
+			return executeupgradeLicensePleskServiceGET.call(this);
+		case 'upgradeLicensecPanelListGET':
+			return executeupgradeLicensecPanelListGET.call(this);
+		case 'upgradeLicensecPanelPlanGET':
+			return executeupgradeLicensecPanelPlanGET.call(this);
+		case 'upgradeLicensecPanelPlanPOST':
+			return executeupgradeLicensecPanelPlanPOST.call(this);
+		case 'upgradeLicensecPanelServiceGET':
+			return executeupgradeLicensecPanelServiceGET.call(this);
+		case 'upgradeLogsListGET':
+			return executeupgradeLogsListGET.call(this);
+		case 'upgradeLogsPlanGET':
+			return executeupgradeLogsPlanGET.call(this);
+		case 'upgradeLogsPlanPOST':
+			return executeupgradeLogsPlanPOST.call(this);
+		case 'upgradeLogsServiceGET':
+			return executeupgradeLogsServiceGET.call(this);
+		case 'upgradeMetricsListGET':
+			return executeupgradeMetricsListGET.call(this);
+		case 'upgradeMetricsPlanGET':
+			return executeupgradeMetricsPlanGET.call(this);
+		case 'upgradeMetricsPlanPOST':
+			return executeupgradeMetricsPlanPOST.call(this);
+		case 'upgradeMetricsServiceGET':
+			return executeupgradeMetricsServiceGET.call(this);
+		case 'upgradeMicrosoftExchangeListGET':
+			return executeupgradeMicrosoftExchangeListGET.call(this);
+		case 'upgradeMicrosoftExchangePlanGET':
+			return executeupgradeMicrosoftExchangePlanGET.call(this);
+		case 'upgradeMicrosoftExchangePlanPOST':
+			return executeupgradeMicrosoftExchangePlanPOST.call(this);
+		case 'upgradeMicrosoftExchangeServiceGET':
+			return executeupgradeMicrosoftExchangeServiceGET.call(this);
+		case 'upgradePrivateCloudListGET':
+			return executeupgradePrivateCloudListGET.call(this);
+		case 'upgradePrivateCloudManagementFeeListGET':
+			return executeupgradePrivateCloudManagementFeeListGET.call(this);
+		case 'upgradePrivateCloudManagementFeePlanGET':
+			return executeupgradePrivateCloudManagementFeePlanGET.call(this);
+		case 'upgradePrivateCloudManagementFeePlanPOST':
+			return executeupgradePrivateCloudManagementFeePlanPOST.call(this);
+		case 'upgradePrivateCloudManagementFeeServiceGET':
+			return executeupgradePrivateCloudManagementFeeServiceGET.call(this);
+		case 'upgradePrivateCloudPlanGET':
+			return executeupgradePrivateCloudPlanGET.call(this);
+		case 'upgradePrivateCloudPlanPOST':
+			return executeupgradePrivateCloudPlanPOST.call(this);
+		case 'upgradePrivateCloudServiceGET':
+			return executeupgradePrivateCloudServiceGET.call(this);
+		case 'upgradePrivateSQLListGET':
+			return executeupgradePrivateSQLListGET.call(this);
+		case 'upgradePrivateSQLPlanGET':
+			return executeupgradePrivateSQLPlanGET.call(this);
+		case 'upgradePrivateSQLPlanPOST':
+			return executeupgradePrivateSQLPlanPOST.call(this);
+		case 'upgradePrivateSQLServiceGET':
+			return executeupgradePrivateSQLServiceGET.call(this);
+		case 'upgradeSSLGatewayListGET':
+			return executeupgradeSSLGatewayListGET.call(this);
+		case 'upgradeSSLGatewayPlanGET':
+			return executeupgradeSSLGatewayPlanGET.call(this);
+		case 'upgradeSSLGatewayPlanPOST':
+			return executeupgradeSSLGatewayPlanPOST.call(this);
+		case 'upgradeSSLGatewayServiceGET':
+			return executeupgradeSSLGatewayServiceGET.call(this);
+		case 'upgradeVPSAdditionalDiskListGET':
+			return executeupgradeVPSAdditionalDiskListGET.call(this);
+		case 'upgradeVPSAdditionalDiskPlanGET':
+			return executeupgradeVPSAdditionalDiskPlanGET.call(this);
+		case 'upgradeVPSAdditionalDiskPlanPOST':
+			return executeupgradeVPSAdditionalDiskPlanPOST.call(this);
+		case 'upgradeVPSAdditionalDiskServiceGET':
+			return executeupgradeVPSAdditionalDiskServiceGET.call(this);
+		case 'upgradeVPSListGET':
+			return executeupgradeVPSListGET.call(this);
+		case 'upgradeVPSPlanGET':
+			return executeupgradeVPSPlanGET.call(this);
+		case 'upgradeVPSPlanPOST':
+			return executeupgradeVPSPlanPOST.call(this);
+		case 'upgradeVPSServiceGET':
+			return executeupgradeVPSServiceGET.call(this);
+		case 'upgradeWebHostingListGET':
+			return executeupgradeWebHostingListGET.call(this);
+		case 'upgradeWebHostingPlanGET':
+			return executeupgradeWebHostingPlanGET.call(this);
+		case 'upgradeWebHostingPlanPOST':
+			return executeupgradeWebHostingPlanPOST.call(this);
+		case 'upgradeWebHostingServiceGET':
+			return executeupgradeWebHostingServiceGET.call(this);
+		case 'upgradeZimbraListGET':
+			return executeupgradeZimbraListGET.call(this);
+		case 'upgradeZimbraPlanGET':
+			return executeupgradeZimbraPlanGET.call(this);
+		case 'upgradeZimbraPlanPOST':
+			return executeupgradeZimbraPlanPOST.call(this);
+		case 'upgradeZimbraServiceGET':
+			return executeupgradeZimbraServiceGET.call(this);
+		case 'cartServiceOptionBackupServicesListGET':
+			return executecartServiceOptionBackupServicesListGET.call(this);
+		case 'cartServiceOptionBackupServicesServiceGET':
+			return executecartServiceOptionBackupServicesServiceGET.call(this);
+		case 'cartServiceOptionBaremetalServersListGET':
+			return executecartServiceOptionBaremetalServersListGET.call(this);
+		case 'cartServiceOptionBaremetalServersServiceGET':
+			return executecartServiceOptionBaremetalServersServiceGET.call(this);
+		case 'cartServiceOptionBaremetalServersServicePOST':
+			return executecartServiceOptionBaremetalServersServicePOST.call(this);
+		case 'cartServiceOptionCloudListGET':
+			return executecartServiceOptionCloudListGET.call(this);
+		case 'cartServiceOptionCloudServiceGET':
+			return executecartServiceOptionCloudServiceGET.call(this);
+		case 'cartServiceOptionCloudServicePOST':
+			return executecartServiceOptionCloudServicePOST.call(this);
+		case 'cartServiceOptionDNSListGET':
+			return executecartServiceOptionDNSListGET.call(this);
+		case 'cartServiceOptionDNSServiceGET':
+			return executecartServiceOptionDNSServiceGET.call(this);
+		case 'cartServiceOptionDNSServicePOST':
+			return executecartServiceOptionDNSServicePOST.call(this);
+		case 'cartServiceOptionDedicatedListGET':
+			return executecartServiceOptionDedicatedListGET.call(this);
+		case 'cartServiceOptionDedicatedServiceGET':
+			return executecartServiceOptionDedicatedServiceGET.call(this);
+		case 'cartServiceOptionDedicatedServicePOST':
+			return executecartServiceOptionDedicatedServicePOST.call(this);
+		case 'cartServiceOptionDomainListGET':
+			return executecartServiceOptionDomainListGET.call(this);
+		case 'cartServiceOptionDomainServiceGET':
+			return executecartServiceOptionDomainServiceGET.call(this);
+		case 'cartServiceOptionDomainServicePOST':
+			return executecartServiceOptionDomainServicePOST.call(this);
+		case 'cartServiceOptionEmailProListGET':
+			return executecartServiceOptionEmailProListGET.call(this);
+		case 'cartServiceOptionEmailProServiceGET':
+			return executecartServiceOptionEmailProServiceGET.call(this);
+		case 'cartServiceOptionEmailProServicePOST':
+			return executecartServiceOptionEmailProServicePOST.call(this);
+		case 'cartServiceOptionIPLoadBalancingListGET':
+			return executecartServiceOptionIPLoadBalancingListGET.call(this);
+		case 'cartServiceOptionIPLoadBalancingServiceGET':
+			return executecartServiceOptionIPLoadBalancingServiceGET.call(this);
+		case 'cartServiceOptionIPLoadBalancingServicePOST':
+			return executecartServiceOptionIPLoadBalancingServicePOST.call(this);
+		case 'cartServiceOptionLicenseHycuListGET':
+			return executecartServiceOptionLicenseHycuListGET.call(this);
+		case 'cartServiceOptionLicenseHycuServiceGET':
+			return executecartServiceOptionLicenseHycuServiceGET.call(this);
+		case 'cartServiceOptionLicenseHycuServicePOST':
+			return executecartServiceOptionLicenseHycuServicePOST.call(this);
+		case 'cartServiceOptionLogsListGET':
+			return executecartServiceOptionLogsListGET.call(this);
+		case 'cartServiceOptionLogsServiceGET':
+			return executecartServiceOptionLogsServiceGET.call(this);
+		case 'cartServiceOptionLogsServicePOST':
+			return executecartServiceOptionLogsServicePOST.call(this);
+		case 'cartServiceOptionMicrosoftExchangeListGET':
+			return executecartServiceOptionMicrosoftExchangeListGET.call(this);
+		case 'cartServiceOptionMicrosoftExchangeServiceGET':
+			return executecartServiceOptionMicrosoftExchangeServiceGET.call(this);
+		case 'cartServiceOptionMicrosoftExchangeServicePOST':
+			return executecartServiceOptionMicrosoftExchangeServicePOST.call(this);
+		case 'cartServiceOptionMicrosoftListGET':
+			return executecartServiceOptionMicrosoftListGET.call(this);
+		case 'cartServiceOptionMicrosoftServiceGET':
+			return executecartServiceOptionMicrosoftServiceGET.call(this);
+		case 'cartServiceOptionMicrosoftServicePOST':
+			return executecartServiceOptionMicrosoftServicePOST.call(this);
+		case 'cartServiceOptionNutanixListGET':
+			return executecartServiceOptionNutanixListGET.call(this);
+		case 'cartServiceOptionNutanixServiceGET':
+			return executecartServiceOptionNutanixServiceGET.call(this);
+		case 'cartServiceOptionNutanixServicePOST':
+			return executecartServiceOptionNutanixServicePOST.call(this);
+		case 'cartServiceOptionOffice365PrepaidListGET':
+			return executecartServiceOptionOffice365PrepaidListGET.call(this);
+		case 'cartServiceOptionOffice365PrepaidServiceGET':
+			return executecartServiceOptionOffice365PrepaidServiceGET.call(this);
+		case 'cartServiceOptionOffice365PrepaidServicePOST':
+			return executecartServiceOptionOffice365PrepaidServicePOST.call(this);
+		case 'cartServiceOptionOfficePrepaidListGET':
+			return executecartServiceOptionOfficePrepaidListGET.call(this);
+		case 'cartServiceOptionOfficePrepaidServiceGET':
+			return executecartServiceOptionOfficePrepaidServiceGET.call(this);
+		case 'cartServiceOptionOfficePrepaidServicePOST':
+			return executecartServiceOptionOfficePrepaidServicePOST.call(this);
+		case 'cartServiceOptionPrivateCloudEnterpriseListGET':
+			return executecartServiceOptionPrivateCloudEnterpriseListGET.call(this);
+		case 'cartServiceOptionPrivateCloudEnterpriseServiceGET':
+			return executecartServiceOptionPrivateCloudEnterpriseServiceGET.call(this);
+		case 'cartServiceOptionPrivateCloudEnterpriseServicePOST':
+			return executecartServiceOptionPrivateCloudEnterpriseServicePOST.call(this);
+		case 'cartServiceOptionPrivateCloudListGET':
+			return executecartServiceOptionPrivateCloudListGET.call(this);
+		case 'cartServiceOptionPrivateCloudResellerEnterpriseListGET':
+			return executecartServiceOptionPrivateCloudResellerEnterpriseListGET.call(this);
+		case 'cartServiceOptionPrivateCloudResellerEnterpriseServiceGET':
+			return executecartServiceOptionPrivateCloudResellerEnterpriseServiceGET.call(this);
+		case 'cartServiceOptionPrivateCloudResellerEnterpriseServicePOST':
+			return executecartServiceOptionPrivateCloudResellerEnterpriseServicePOST.call(this);
+		case 'cartServiceOptionPrivateCloudResellerListGET':
+			return executecartServiceOptionPrivateCloudResellerListGET.call(this);
+		case 'cartServiceOptionPrivateCloudResellerServiceGET':
+			return executecartServiceOptionPrivateCloudResellerServiceGET.call(this);
+		case 'cartServiceOptionPrivateCloudResellerServicePOST':
+			return executecartServiceOptionPrivateCloudResellerServicePOST.call(this);
+		case 'cartServiceOptionPrivateCloudServiceGET':
+			return executecartServiceOptionPrivateCloudServiceGET.call(this);
+		case 'cartServiceOptionPrivateCloudServicePOST':
+			return executecartServiceOptionPrivateCloudServicePOST.call(this);
+		case 'cartServiceOptionSMSListGET':
+			return executecartServiceOptionSMSListGET.call(this);
+		case 'cartServiceOptionSMSServiceGET':
+			return executecartServiceOptionSMSServiceGET.call(this);
+		case 'cartServiceOptionSMSServicePOST':
+			return executecartServiceOptionSMSServicePOST.call(this);
+		case 'cartServiceOptionSSLGatewayListGET':
+			return executecartServiceOptionSSLGatewayListGET.call(this);
+		case 'cartServiceOptionSSLGatewayServiceGET':
+			return executecartServiceOptionSSLGatewayServiceGET.call(this);
+		case 'cartServiceOptionSSLGatewayServicePOST':
+			return executecartServiceOptionSSLGatewayServicePOST.call(this);
+		case 'cartServiceOptionSharepointListGET':
+			return executecartServiceOptionSharepointListGET.call(this);
+		case 'cartServiceOptionSharepointServiceGET':
+			return executecartServiceOptionSharepointServiceGET.call(this);
+		case 'cartServiceOptionSharepointServicePOST':
+			return executecartServiceOptionSharepointServicePOST.call(this);
+		case 'cartServiceOptionSncNetworkServicesListGET':
+			return executecartServiceOptionSncNetworkServicesListGET.call(this);
+		case 'cartServiceOptionSncNetworkServicesServiceGET':
+			return executecartServiceOptionSncNetworkServicesServiceGET.call(this);
+		case 'cartServiceOptionSncNetworkServicesServicePOST':
+			return executecartServiceOptionSncNetworkServicesServicePOST.call(this);
+		case 'cartServiceOptionVDIListGET':
+			return executecartServiceOptionVDIListGET.call(this);
+		case 'cartServiceOptionVDIServiceGET':
+			return executecartServiceOptionVDIServiceGET.call(this);
+		case 'cartServiceOptionVDIServicePOST':
+			return executecartServiceOptionVDIServicePOST.call(this);
+		case 'cartServiceOptionVPSListGET':
+			return executecartServiceOptionVPSListGET.call(this);
+		case 'cartServiceOptionVPSServiceGET':
+			return executecartServiceOptionVPSServiceGET.call(this);
+		case 'cartServiceOptionVPSServicePOST':
+			return executecartServiceOptionVPSServicePOST.call(this);
+		case 'cartServiceOptionVmwareCloudDirectorBackupListGET':
+			return executecartServiceOptionVmwareCloudDirectorBackupListGET.call(this);
+		case 'cartServiceOptionVmwareCloudDirectorBackupServiceGET':
+			return executecartServiceOptionVmwareCloudDirectorBackupServiceGET.call(this);
+		case 'cartServiceOptionVmwareCloudDirectorListGET':
+			return executecartServiceOptionVmwareCloudDirectorListGET.call(this);
+		case 'cartServiceOptionVmwareCloudDirectorServiceGET':
+			return executecartServiceOptionVmwareCloudDirectorServiceGET.call(this);
+		case 'cartServiceOptionVmwareCloudDirectorServicePOST':
+			return executecartServiceOptionVmwareCloudDirectorServicePOST.call(this);
+		case 'cartServiceOptionVrackListGET':
+			return executecartServiceOptionVrackListGET.call(this);
+		case 'cartServiceOptionVrackServiceGET':
+			return executecartServiceOptionVrackServiceGET.call(this);
+		case 'cartServiceOptionVrackServicePOST':
+			return executecartServiceOptionVrackServicePOST.call(this);
+		case 'cartServiceOptionWebHostingListGET':
+			return executecartServiceOptionWebHostingListGET.call(this);
+		case 'cartServiceOptionWebHostingServiceGET':
+			return executecartServiceOptionWebHostingServiceGET.call(this);
+		case 'cartServiceOptionWebHostingServicePOST':
+			return executecartServiceOptionWebHostingServicePOST.call(this);
 	}
 
 	throw new Error(`Unsupported operation "${operation}" for resource "order"`);
