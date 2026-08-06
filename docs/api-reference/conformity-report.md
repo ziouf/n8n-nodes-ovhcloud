@@ -1,16 +1,16 @@
 # OVHcloud API Conformity Report
 
-> Généré par `scripts/audit-conformity.js` le 2026-08-06T07:26:37.491Z. Document généré automatiquement — ne pas éditer à la main.
+> Généré par `scripts/audit-conformity.js` le 2026-08-06T09:56:58.080Z. Document généré automatiquement — ne pas éditer à la main.
 
 Ce rapport vérifie que les opérations des nodes respectent leur spec (méthode, chemin, paramètres path requis, query requis, champs body requis).
 
 ## Résumé
 
-- **Opérations auditées** : 5951
+- **Opérations auditées** : 6023
 - **Conformes** : 3673
-- **Non conformes** : 2278
-- **Sans correspondance spec** (informatif) : 1962
-- **Taux de conformité** : **61.7%**
+- **Non conformes** : 2350
+- **Sans correspondance spec** (informatif) : 2034
+- **Taux de conformité** : **61%**
 
 ## Conformité par spec
 
@@ -45,7 +45,7 @@ Triée par taux de non-conformité décroissant.
 | vrack (v1) | 12 | 4 | 1 | 33.3% |
 | veeamCloudConnect (v1) | 14 | 13 | 1 | 92.9% |
 | vps (v1) | 63 | 20 | 4 | 31.7% |
-| cloud (v1) | 968 | 622 | 44 | 64.3% |
+| cloud (v1) | 1004 | 622 | 44 | 62% |
 | order (v1) | 166 | 31 | 6 | 18.7% |
 | me (v1) | 309 | 300 | 9 | 97.1% |
 | dedicated (v1) | 69 | 31 | 2 | 44.9% |
@@ -54,7 +54,7 @@ Triée par taux de non-conformité décroissant.
 | webhosting (v2) | 246 | 12 | 3 | 4.9% |
 | domain (v1) | 119 | 109 | 1 | 91.6% |
 | telephony (v1) | 644 | 602 | 5 | 93.5% |
-| publicCloud (v2) | 968 | 26 | 4 | 2.7% |
+| publicCloud (v2) | 1004 | 26 | 4 | 2.6% |
 | price (v1) | 581 | 581 | 0 | 100% |
 | sms (v1) | 126 | 124 | 0 | 98.4% |
 | domain (v2) | 119 | 9 | 0 | 7.6% |
@@ -844,6 +844,16 @@ Ces opérations appellent un chemin qui ne correspond à aucun endpoint de la sp
 | cloud (v1) | GET | `/publicCloud/project/{x}/reference/rancher/version` | OvhCloudPublicCloud/rancher/referenceVersionListGetV2.operation.ts |
 | cloud (v1) | GET | `/publicCloud/project/{x}/region` | OvhCloudPublicCloud/region/regionListGet.operation.ts |
 | cloud (v1) | GET | `/publicCloud/project/{x}/region/{x}` | OvhCloudPublicCloud/region/regionGetGet.operation.ts |
+| cloud (v1) | GET | `/publicCloud/project/{x}/region/{x}/coldArchive` | OvhCloudPublicCloud/region/regionColdArchiveListGet.operation.ts |
+| cloud (v1) | POST | `/publicCloud/project/{x}/region/{x}/coldArchive` | OvhCloudPublicCloud/region/regionColdArchiveCreatePost.operation.ts |
+| cloud (v1) | DELETE | `/publicCloud/project/{x}/region/{x}/coldArchive/{x}` | OvhCloudPublicCloud/region/regionColdArchiveDeleteDelete.operation.ts |
+| cloud (v1) | GET | `/publicCloud/project/{x}/region/{x}/coldArchive/{x}` | OvhCloudPublicCloud/region/regionColdArchiveGetGet.operation.ts |
+| cloud (v1) | POST | `/publicCloud/project/{x}/region/{x}/coldArchive/{x}/archive` | OvhCloudPublicCloud/region/regionColdArchiveArchivePost.operation.ts |
+| cloud (v1) | POST | `/publicCloud/project/{x}/region/{x}/coldArchive/{x}/destroy` | OvhCloudPublicCloud/region/regionColdArchiveDestroyPost.operation.ts |
+| cloud (v1) | DELETE | `/publicCloud/project/{x}/region/{x}/coldArchive/{x}/object/{x}` | OvhCloudPublicCloud/region/regionColdArchiveObjectDeleteDelete.operation.ts |
+| cloud (v1) | POST | `/publicCloud/project/{x}/region/{x}/coldArchive/{x}/policy/{x}` | OvhCloudPublicCloud/region/regionColdArchivePolicyCreatePost.operation.ts |
+| cloud (v1) | POST | `/publicCloud/project/{x}/region/{x}/coldArchive/{x}/presign` | OvhCloudPublicCloud/region/regionColdArchivePresignPost.operation.ts |
+| cloud (v1) | POST | `/publicCloud/project/{x}/region/{x}/coldArchive/{x}/restore` | OvhCloudPublicCloud/region/regionColdArchiveRestorePost.operation.ts |
 | cloud (v1) | GET | `/publicCloud/project/{x}/region/{x}/share` | OvhCloudPublicCloud/region/regionShareListGet.operation.ts |
 | cloud (v1) | POST | `/publicCloud/project/{x}/region/{x}/share` | OvhCloudPublicCloud/region/regionShareCreatePost.operation.ts |
 | cloud (v1) | DELETE | `/publicCloud/project/{x}/region/{x}/share/{x}` | OvhCloudPublicCloud/region/regionShareDeleteDelete.operation.ts |
@@ -853,6 +863,32 @@ Ces opérations appellent un chemin qui ne correspond à aucun endpoint de la sp
 | cloud (v1) | POST | `/publicCloud/project/{x}/region/{x}/share/{x}/snapshot` | OvhCloudPublicCloud/region/regionShareSnapshotCreatePost.operation.ts |
 | cloud (v1) | DELETE | `/publicCloud/project/{x}/region/{x}/share/{x}/snapshot/{x}` | OvhCloudPublicCloud/region/regionShareSnapshotDeleteDelete.operation.ts |
 | cloud (v1) | GET | `/publicCloud/project/{x}/region/{x}/share/{x}/snapshot/{x}` | OvhCloudPublicCloud/region/regionShareSnapshotGetGet.operation.ts |
+| cloud (v1) | GET | `/publicCloud/project/{x}/region/{x}/storage` | OvhCloudPublicCloud/region/regionStorageListGet.operation.ts |
+| cloud (v1) | POST | `/publicCloud/project/{x}/region/{x}/storage` | OvhCloudPublicCloud/region/regionStorageCreatePost.operation.ts |
+| cloud (v1) | DELETE | `/publicCloud/project/{x}/region/{x}/storage/{x}` | OvhCloudPublicCloud/region/regionStorageDeleteDelete.operation.ts |
+| cloud (v1) | GET | `/publicCloud/project/{x}/region/{x}/storage/{x}` | OvhCloudPublicCloud/region/regionStorageGetGet.operation.ts |
+| cloud (v1) | PUT | `/publicCloud/project/{x}/region/{x}/storage/{x}` | OvhCloudPublicCloud/region/regionStorageUpdatePut.operation.ts |
+| cloud (v1) | POST | `/publicCloud/project/{x}/region/{x}/storage/{x}/bulkDeleteObjects` | OvhCloudPublicCloud/region/regionStorageBulkDeleteObjectsPost.operation.ts |
+| cloud (v1) | GET | `/publicCloud/project/{x}/region/{x}/storage/{x}/job/replication` | OvhCloudPublicCloud/region/regionStorageReplicationListGet.operation.ts |
+| cloud (v1) | POST | `/publicCloud/project/{x}/region/{x}/storage/{x}/job/replication` | OvhCloudPublicCloud/region/regionStorageReplicationCreatePost.operation.ts |
+| cloud (v1) | DELETE | `/publicCloud/project/{x}/region/{x}/storage/{x}/lifecycle` | OvhCloudPublicCloud/region/regionStorageLifecycleDeleteDelete.operation.ts |
+| cloud (v1) | GET | `/publicCloud/project/{x}/region/{x}/storage/{x}/lifecycle` | OvhCloudPublicCloud/region/regionStorageLifecycleGetGet.operation.ts |
+| cloud (v1) | PUT | `/publicCloud/project/{x}/region/{x}/storage/{x}/lifecycle` | OvhCloudPublicCloud/region/regionStorageLifecycleUpdatePut.operation.ts |
+| cloud (v1) | GET | `/publicCloud/project/{x}/region/{x}/storage/{x}/object` | OvhCloudPublicCloud/region/regionStorageObjectListGet.operation.ts |
+| cloud (v1) | POST | `/publicCloud/project/{x}/region/{x}/storage/{x}/object` | OvhCloudPublicCloud/region/regionStorageObjectCreatePost.operation.ts |
+| cloud (v1) | DELETE | `/publicCloud/project/{x}/region/{x}/storage/{x}/object/{x}` | OvhCloudPublicCloud/region/regionStorageObjectDeleteDelete.operation.ts |
+| cloud (v1) | GET | `/publicCloud/project/{x}/region/{x}/storage/{x}/object/{x}` | OvhCloudPublicCloud/region/regionStorageObjectGetGet.operation.ts |
+| cloud (v1) | PUT | `/publicCloud/project/{x}/region/{x}/storage/{x}/object/{x}` | OvhCloudPublicCloud/region/regionStorageObjectUpdatePut.operation.ts |
+| cloud (v1) | POST | `/publicCloud/project/{x}/region/{x}/storage/{x}/object/{x}/copy` | OvhCloudPublicCloud/region/regionStorageObjectCopyPost.operation.ts |
+| cloud (v1) | POST | `/publicCloud/project/{x}/region/{x}/storage/{x}/object/{x}/restore` | OvhCloudPublicCloud/region/regionStorageObjectRestorePost.operation.ts |
+| cloud (v1) | GET | `/publicCloud/project/{x}/region/{x}/storage/{x}/object/{x}/version` | OvhCloudPublicCloud/region/regionStorageObjectVersionListGet.operation.ts |
+| cloud (v1) | DELETE | `/publicCloud/project/{x}/region/{x}/storage/{x}/object/{x}/version/{x}` | OvhCloudPublicCloud/region/regionStorageObjectVersionDeleteDelete.operation.ts |
+| cloud (v1) | GET | `/publicCloud/project/{x}/region/{x}/storage/{x}/object/{x}/version/{x}` | OvhCloudPublicCloud/region/regionStorageObjectVersionGetGet.operation.ts |
+| cloud (v1) | PUT | `/publicCloud/project/{x}/region/{x}/storage/{x}/object/{x}/version/{x}` | OvhCloudPublicCloud/region/regionStorageObjectVersionUpdatePut.operation.ts |
+| cloud (v1) | POST | `/publicCloud/project/{x}/region/{x}/storage/{x}/object/{x}/version/{x}/copy` | OvhCloudPublicCloud/region/regionStorageObjectVersionCopyPost.operation.ts |
+| cloud (v1) | POST | `/publicCloud/project/{x}/region/{x}/storage/{x}/object/{x}/version/{x}/restore` | OvhCloudPublicCloud/region/regionStorageObjectVersionRestorePost.operation.ts |
+| cloud (v1) | POST | `/publicCloud/project/{x}/region/{x}/storage/{x}/policy/{x}` | OvhCloudPublicCloud/region/regionStoragePolicyCreatePost.operation.ts |
+| cloud (v1) | POST | `/publicCloud/project/{x}/region/{x}/storage/{x}/presign` | OvhCloudPublicCloud/region/regionStoragePresignPost.operation.ts |
 | cloud (v1) | GET | `/publicCloud/project/{x}/region/{x}/volume` | OvhCloudPublicCloud/region/regionVolumeListGet.operation.ts |
 | cloud (v1) | POST | `/publicCloud/project/{x}/region/{x}/volume` | OvhCloudPublicCloud/region/regionVolumeCreatePost.operation.ts |
 | cloud (v1) | DELETE | `/publicCloud/project/{x}/region/{x}/volume/{x}` | OvhCloudPublicCloud/region/regionVolumeDeleteDelete.operation.ts |
@@ -2184,6 +2220,16 @@ Ces opérations appellent un chemin qui ne correspond à aucun endpoint de la sp
 | publicCloud (v2) | GET | `/publicCloud/project/{x}/rancher/{x}/adminCredentials` | OvhCloudPublicCloud/rancher/adminCredentials.operation.ts |
 | publicCloud (v2) | GET | `/publicCloud/project/{x}/region` | OvhCloudPublicCloud/region/regionListGet.operation.ts |
 | publicCloud (v2) | GET | `/publicCloud/project/{x}/region/{x}` | OvhCloudPublicCloud/region/regionGetGet.operation.ts |
+| publicCloud (v2) | GET | `/publicCloud/project/{x}/region/{x}/coldArchive` | OvhCloudPublicCloud/region/regionColdArchiveListGet.operation.ts |
+| publicCloud (v2) | POST | `/publicCloud/project/{x}/region/{x}/coldArchive` | OvhCloudPublicCloud/region/regionColdArchiveCreatePost.operation.ts |
+| publicCloud (v2) | DELETE | `/publicCloud/project/{x}/region/{x}/coldArchive/{x}` | OvhCloudPublicCloud/region/regionColdArchiveDeleteDelete.operation.ts |
+| publicCloud (v2) | GET | `/publicCloud/project/{x}/region/{x}/coldArchive/{x}` | OvhCloudPublicCloud/region/regionColdArchiveGetGet.operation.ts |
+| publicCloud (v2) | POST | `/publicCloud/project/{x}/region/{x}/coldArchive/{x}/archive` | OvhCloudPublicCloud/region/regionColdArchiveArchivePost.operation.ts |
+| publicCloud (v2) | POST | `/publicCloud/project/{x}/region/{x}/coldArchive/{x}/destroy` | OvhCloudPublicCloud/region/regionColdArchiveDestroyPost.operation.ts |
+| publicCloud (v2) | DELETE | `/publicCloud/project/{x}/region/{x}/coldArchive/{x}/object/{x}` | OvhCloudPublicCloud/region/regionColdArchiveObjectDeleteDelete.operation.ts |
+| publicCloud (v2) | POST | `/publicCloud/project/{x}/region/{x}/coldArchive/{x}/policy/{x}` | OvhCloudPublicCloud/region/regionColdArchivePolicyCreatePost.operation.ts |
+| publicCloud (v2) | POST | `/publicCloud/project/{x}/region/{x}/coldArchive/{x}/presign` | OvhCloudPublicCloud/region/regionColdArchivePresignPost.operation.ts |
+| publicCloud (v2) | POST | `/publicCloud/project/{x}/region/{x}/coldArchive/{x}/restore` | OvhCloudPublicCloud/region/regionColdArchiveRestorePost.operation.ts |
 | publicCloud (v2) | GET | `/publicCloud/project/{x}/region/{x}/share` | OvhCloudPublicCloud/region/regionShareListGet.operation.ts |
 | publicCloud (v2) | POST | `/publicCloud/project/{x}/region/{x}/share` | OvhCloudPublicCloud/region/regionShareCreatePost.operation.ts |
 | publicCloud (v2) | DELETE | `/publicCloud/project/{x}/region/{x}/share/{x}` | OvhCloudPublicCloud/region/regionShareDeleteDelete.operation.ts |
@@ -2193,6 +2239,32 @@ Ces opérations appellent un chemin qui ne correspond à aucun endpoint de la sp
 | publicCloud (v2) | POST | `/publicCloud/project/{x}/region/{x}/share/{x}/snapshot` | OvhCloudPublicCloud/region/regionShareSnapshotCreatePost.operation.ts |
 | publicCloud (v2) | DELETE | `/publicCloud/project/{x}/region/{x}/share/{x}/snapshot/{x}` | OvhCloudPublicCloud/region/regionShareSnapshotDeleteDelete.operation.ts |
 | publicCloud (v2) | GET | `/publicCloud/project/{x}/region/{x}/share/{x}/snapshot/{x}` | OvhCloudPublicCloud/region/regionShareSnapshotGetGet.operation.ts |
+| publicCloud (v2) | GET | `/publicCloud/project/{x}/region/{x}/storage` | OvhCloudPublicCloud/region/regionStorageListGet.operation.ts |
+| publicCloud (v2) | POST | `/publicCloud/project/{x}/region/{x}/storage` | OvhCloudPublicCloud/region/regionStorageCreatePost.operation.ts |
+| publicCloud (v2) | DELETE | `/publicCloud/project/{x}/region/{x}/storage/{x}` | OvhCloudPublicCloud/region/regionStorageDeleteDelete.operation.ts |
+| publicCloud (v2) | GET | `/publicCloud/project/{x}/region/{x}/storage/{x}` | OvhCloudPublicCloud/region/regionStorageGetGet.operation.ts |
+| publicCloud (v2) | PUT | `/publicCloud/project/{x}/region/{x}/storage/{x}` | OvhCloudPublicCloud/region/regionStorageUpdatePut.operation.ts |
+| publicCloud (v2) | POST | `/publicCloud/project/{x}/region/{x}/storage/{x}/bulkDeleteObjects` | OvhCloudPublicCloud/region/regionStorageBulkDeleteObjectsPost.operation.ts |
+| publicCloud (v2) | GET | `/publicCloud/project/{x}/region/{x}/storage/{x}/job/replication` | OvhCloudPublicCloud/region/regionStorageReplicationListGet.operation.ts |
+| publicCloud (v2) | POST | `/publicCloud/project/{x}/region/{x}/storage/{x}/job/replication` | OvhCloudPublicCloud/region/regionStorageReplicationCreatePost.operation.ts |
+| publicCloud (v2) | DELETE | `/publicCloud/project/{x}/region/{x}/storage/{x}/lifecycle` | OvhCloudPublicCloud/region/regionStorageLifecycleDeleteDelete.operation.ts |
+| publicCloud (v2) | GET | `/publicCloud/project/{x}/region/{x}/storage/{x}/lifecycle` | OvhCloudPublicCloud/region/regionStorageLifecycleGetGet.operation.ts |
+| publicCloud (v2) | PUT | `/publicCloud/project/{x}/region/{x}/storage/{x}/lifecycle` | OvhCloudPublicCloud/region/regionStorageLifecycleUpdatePut.operation.ts |
+| publicCloud (v2) | GET | `/publicCloud/project/{x}/region/{x}/storage/{x}/object` | OvhCloudPublicCloud/region/regionStorageObjectListGet.operation.ts |
+| publicCloud (v2) | POST | `/publicCloud/project/{x}/region/{x}/storage/{x}/object` | OvhCloudPublicCloud/region/regionStorageObjectCreatePost.operation.ts |
+| publicCloud (v2) | DELETE | `/publicCloud/project/{x}/region/{x}/storage/{x}/object/{x}` | OvhCloudPublicCloud/region/regionStorageObjectDeleteDelete.operation.ts |
+| publicCloud (v2) | GET | `/publicCloud/project/{x}/region/{x}/storage/{x}/object/{x}` | OvhCloudPublicCloud/region/regionStorageObjectGetGet.operation.ts |
+| publicCloud (v2) | PUT | `/publicCloud/project/{x}/region/{x}/storage/{x}/object/{x}` | OvhCloudPublicCloud/region/regionStorageObjectUpdatePut.operation.ts |
+| publicCloud (v2) | POST | `/publicCloud/project/{x}/region/{x}/storage/{x}/object/{x}/copy` | OvhCloudPublicCloud/region/regionStorageObjectCopyPost.operation.ts |
+| publicCloud (v2) | POST | `/publicCloud/project/{x}/region/{x}/storage/{x}/object/{x}/restore` | OvhCloudPublicCloud/region/regionStorageObjectRestorePost.operation.ts |
+| publicCloud (v2) | GET | `/publicCloud/project/{x}/region/{x}/storage/{x}/object/{x}/version` | OvhCloudPublicCloud/region/regionStorageObjectVersionListGet.operation.ts |
+| publicCloud (v2) | DELETE | `/publicCloud/project/{x}/region/{x}/storage/{x}/object/{x}/version/{x}` | OvhCloudPublicCloud/region/regionStorageObjectVersionDeleteDelete.operation.ts |
+| publicCloud (v2) | GET | `/publicCloud/project/{x}/region/{x}/storage/{x}/object/{x}/version/{x}` | OvhCloudPublicCloud/region/regionStorageObjectVersionGetGet.operation.ts |
+| publicCloud (v2) | PUT | `/publicCloud/project/{x}/region/{x}/storage/{x}/object/{x}/version/{x}` | OvhCloudPublicCloud/region/regionStorageObjectVersionUpdatePut.operation.ts |
+| publicCloud (v2) | POST | `/publicCloud/project/{x}/region/{x}/storage/{x}/object/{x}/version/{x}/copy` | OvhCloudPublicCloud/region/regionStorageObjectVersionCopyPost.operation.ts |
+| publicCloud (v2) | POST | `/publicCloud/project/{x}/region/{x}/storage/{x}/object/{x}/version/{x}/restore` | OvhCloudPublicCloud/region/regionStorageObjectVersionRestorePost.operation.ts |
+| publicCloud (v2) | POST | `/publicCloud/project/{x}/region/{x}/storage/{x}/policy/{x}` | OvhCloudPublicCloud/region/regionStoragePolicyCreatePost.operation.ts |
+| publicCloud (v2) | POST | `/publicCloud/project/{x}/region/{x}/storage/{x}/presign` | OvhCloudPublicCloud/region/regionStoragePresignPost.operation.ts |
 | publicCloud (v2) | GET | `/publicCloud/project/{x}/region/{x}/volume` | OvhCloudPublicCloud/region/regionVolumeListGet.operation.ts |
 | publicCloud (v2) | POST | `/publicCloud/project/{x}/region/{x}/volume` | OvhCloudPublicCloud/region/regionVolumeCreatePost.operation.ts |
 | publicCloud (v2) | DELETE | `/publicCloud/project/{x}/region/{x}/volume/{x}` | OvhCloudPublicCloud/region/regionVolumeDeleteDelete.operation.ts |
