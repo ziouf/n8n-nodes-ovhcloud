@@ -13,10 +13,10 @@ jest.mock('../../../../shared/transport/ApiClient', () => {
 
 import { ApiClient } from '../../../../shared/transport/ApiClient';
 
-describe('mongodb clusterListGet operation', () => {
+describe('clusterListGet operation', () => {
 	describe('description', () => {
 		it('should return all required parameters', () => {
-			const result = description({'show': {}});
+			const result = description({ show: {} });
 			expect(result.length).toBeGreaterThanOrEqual(1);
 		});
 	});
@@ -31,22 +31,22 @@ describe('mongodb clusterListGet operation', () => {
 		});
 
 		it('should call the correct API endpoint', async () => {
-			const mockData = { id: 'test-id' };
+			const mockData = { id: 'test-123' };
 			const client = new ApiClient(mockExecuteFunctions) as any;
-			client.httpGet.mockResolvedValue([mockData]);
-			mockExecuteFunctions.getNodeParameter.mockReturnValue((param: string): string | undefined => {
-				if (param === 'publicCloudProjectId') return '12345678-1234-1234-1234-1234567890ab';
+			client.httpGet = jest.fn().mockResolvedValue(mockData);
+
+			mockExecuteFunctions.getNodeParameter.mockImplementation(
+				(param: string): any => {
 				if (param === 'serviceName') return 'test-service';
-				if (param === 'backupId') return 'test-backup-id';
-				if (param === 'userId') return 'test-user-id';
-				if (param === 'nodeId') return 'test-node-id';
-				if (param === 'subId') return 'test-sub-id';
-				return '';
-			});
+					return '';
+				},
+			);
 
 			const result = await execute.call(mockExecuteFunctions);
-			expect(client.httpGet).toHaveBeenCalled();
-			expect(result).toMatchObject([{ id: 'test-id' }]);
+			expect(client.httpGet).toHaveBeenCalledWith(
+				'/cloud/project/test-service/database/mongodb'
+			);
+			expect(result).toMatchObject([mockData]);
 		});
 	});
 });

@@ -1,6 +1,6 @@
 # OVHcloud API Coverage Report
 
-> Généré par `scripts/compare-coverage.js` le 2026-08-05T23:49:44.076Z. Document généré automatiquement — ne pas éditer à la main.
+> Généré par `scripts/compare-coverage.js` le 2026-08-06T00:19:18.653Z. Document généré automatiquement — ne pas éditer à la main.
 
 Ce rapport compare les endpoints déclarés dans les specs Swagger 2.0 (`docs/api-specs/v1|v2/*.json`) avec les appels HTTP réellement présents dans les nodes (`nodes/**/*.operation.ts`).
 
@@ -8,8 +8,8 @@ Ce rapport compare les endpoints déclarés dans les specs Swagger 2.0 (`docs/ap
 
 - **Specs analysées** : 84 (v1: 70, v2: 14)
 - **Endpoints déclarés (specs avec endpoints)** : 6624
-- **Endpoints couverts par les nodes** : 3684
-- **Couverture globale** : **55.6%**
+- **Endpoints couverts par les nodes** : 3725
+- **Couverture globale** : **56.2%**
 - **Specs sans node associé** : 21
 - **Specs placeholder (aucun endpoint)** : 1
 
@@ -49,7 +49,7 @@ Triée par pourcentage croissant (moins bonne couverture en premier).
 | vps (v1) | 94 | 22 | 72 | 23.4% |
 | sslGateway (v1) | 23 | 6 | 17 | 26.1% |
 | xdsl (v1) | 142 | 39 | 103 | 27.5% |
-| cloud (v1) | 1121 | 472 | 649 | 42.1% |
+| cloud (v1) | 1121 | 513 | 608 | 45.8% |
 | veeam (v1) | 10 | 5 | 5 | 50% |
 | license (v1) | 13 | 7 | 6 | 53.8% |
 | pack (v1) | 58 | 33 | 25 | 56.9% |
@@ -2394,7 +2394,7 @@ _Nodes associés : OvhCloudXdsl_
 | GET | `/xdsl/templateModem/{x}` |
 | PUT | `/xdsl/templateModem/{x}` |
 
-### cloud (v1) — 649 manquants
+### cloud (v1) — 608 manquants
 
 _Nodes associés : OvhCloudPublicCloud, OvhCloudPublicCloudAi_
 
@@ -2710,47 +2710,6 @@ _Nodes associés : OvhCloudPublicCloud, OvhCloudPublicCloudAi_
 | GET | `/cloud/project/{x}/database/m3db/{x}/user/{x}` |
 | PUT | `/cloud/project/{x}/database/m3db/{x}/user/{x}` |
 | POST | `/cloud/project/{x}/database/m3db/{x}/user/{x}/credentials/reset` |
-| GET | `/cloud/project/{x}/database/mongodb` |
-| POST | `/cloud/project/{x}/database/mongodb` |
-| DELETE | `/cloud/project/{x}/database/mongodb/{x}` |
-| GET | `/cloud/project/{x}/database/mongodb/{x}` |
-| PUT | `/cloud/project/{x}/database/mongodb/{x}` |
-| GET | `/cloud/project/{x}/database/mongodb/{x}/backup` |
-| GET | `/cloud/project/{x}/database/mongodb/{x}/backup/{x}` |
-| POST | `/cloud/project/{x}/database/mongodb/{x}/backup/{x}/restore` |
-| GET | `/cloud/project/{x}/database/mongodb/{x}/ipRestriction` |
-| POST | `/cloud/project/{x}/database/mongodb/{x}/ipRestriction` |
-| DELETE | `/cloud/project/{x}/database/mongodb/{x}/ipRestriction/{x}` |
-| GET | `/cloud/project/{x}/database/mongodb/{x}/ipRestriction/{x}` |
-| PUT | `/cloud/project/{x}/database/mongodb/{x}/ipRestriction/{x}` |
-| GET | `/cloud/project/{x}/database/mongodb/{x}/log/kind` |
-| GET | `/cloud/project/{x}/database/mongodb/{x}/log/kind/{x}` |
-| GET | `/cloud/project/{x}/database/mongodb/{x}/log/subscription` |
-| POST | `/cloud/project/{x}/database/mongodb/{x}/log/subscription` |
-| DELETE | `/cloud/project/{x}/database/mongodb/{x}/log/subscription/{x}` |
-| GET | `/cloud/project/{x}/database/mongodb/{x}/log/subscription/{x}` |
-| POST | `/cloud/project/{x}/database/mongodb/{x}/log/url` |
-| GET | `/cloud/project/{x}/database/mongodb/{x}/logs` |
-| GET | `/cloud/project/{x}/database/mongodb/{x}/maintenance` |
-| GET | `/cloud/project/{x}/database/mongodb/{x}/maintenance/{x}` |
-| POST | `/cloud/project/{x}/database/mongodb/{x}/maintenance/{x}/apply` |
-| GET | `/cloud/project/{x}/database/mongodb/{x}/metric` |
-| GET | `/cloud/project/{x}/database/mongodb/{x}/metric/{x}` |
-| GET | `/cloud/project/{x}/database/mongodb/{x}/node` |
-| POST | `/cloud/project/{x}/database/mongodb/{x}/node` |
-| DELETE | `/cloud/project/{x}/database/mongodb/{x}/node/{x}` |
-| GET | `/cloud/project/{x}/database/mongodb/{x}/node/{x}` |
-| PUT | `/cloud/project/{x}/database/mongodb/{x}/node/{x}` |
-| GET | `/cloud/project/{x}/database/mongodb/{x}/prometheus` |
-| POST | `/cloud/project/{x}/database/mongodb/{x}/prometheus/credentials/reset` |
-| POST | `/cloud/project/{x}/database/mongodb/{x}/restore` |
-| GET | `/cloud/project/{x}/database/mongodb/{x}/roles` |
-| GET | `/cloud/project/{x}/database/mongodb/{x}/user` |
-| POST | `/cloud/project/{x}/database/mongodb/{x}/user` |
-| DELETE | `/cloud/project/{x}/database/mongodb/{x}/user/{x}` |
-| GET | `/cloud/project/{x}/database/mongodb/{x}/user/{x}` |
-| PUT | `/cloud/project/{x}/database/mongodb/{x}/user/{x}` |
-| POST | `/cloud/project/{x}/database/mongodb/{x}/user/{x}/credentials/reset` |
 | POST | `/cloud/project/{x}/database/postgresql/{x}/enableWrites` |
 | POST | `/cloud/project/{x}/database/postgresql/{x}/prometheus/credentials/reset` |
 | GET | `/cloud/project/{x}/database/service` |

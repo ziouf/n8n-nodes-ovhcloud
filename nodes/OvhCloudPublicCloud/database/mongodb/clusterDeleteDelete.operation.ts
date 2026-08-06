@@ -1,61 +1,42 @@
 import type {
+	IDataObject,
 	IExecuteFunctions,
 	IDisplayOptions,
 	INodeExecutionData,
 	INodeProperties,
 } from 'n8n-workflow';
 import { ApiClient } from '../../../../shared/transport/ApiClient';
-
 export function description(displayOptions: IDisplayOptions): INodeProperties[] {
 	return [
-	{
-		displayName: 'Public Cloud Project',
-		name: 'publicCloudProjectId',
-		type: 'resourceLocator',
-		default: { mode: 'list', value: '' },
-		required: true,
-		description: 'The Public Cloud project ID (e.g. 12345678-1234-1234-1234-1234567890ab)',
-		modes: [
-			{
-				displayName: 'From List',
-				name: 'list',
-				type: 'list',
-				typeOptions: { searchListMethod: 'getPublicCloudProjects' },
-			},
-			{
-				displayName: 'By ID',
-				name: 'name',
-				type: 'string',
-				placeholder: '12345678-1234-1234-1234-1234567890ab',
-			},
-		],
-	},
-	{
-		displayName: 'Service Name',
-		name: 'serviceName',
-		type: 'string',
-		default: '',
-		required: true,
-		description: 'The database service name',
-		displayOptions,
-	}
+		{
+			displayName: 'Service Name',
+			name: 'serviceName',
+			type: 'string',
+			default: '',
+			required: true,
+			description: 'The database service name',
+			displayOptions,
+		},
+		{
+			displayName: 'Cluster ID',
+			name: 'clusterId',
+			type: 'string',
+			default: '',
+			required: true,
+			displayOptions,
+		},
 	];
 }
-
 /**
- * Executes the Delete Mongodb Cluster operation.
+ * Executes the Delete MongoDB Cluster operation.
  *
  * HTTP method: DELETE
- * Endpoint: /publicCloud/project/{projectId}/cloud/database/mongodb/serviceName
+ * Endpoint: /cloud/project/{serviceName}/database/mongodb/{clusterId}
  */
 export async function execute(this: IExecuteFunctions): Promise<INodeExecutionData[]> {
-	const client = new ApiClient(this);
-	const projectId = this.getNodeParameter('publicCloudProjectId', 0, '', {
-		extractValue: true,
-	}) as string;
 	const serviceName = this.getNodeParameter('serviceName', 0) as string;
-
-	await client.httpDelete(`/publicCloud/project/${projectId}/cloud/database/mongodb/${serviceName}`);
-
-	return this.helpers.returnJsonArray([]);
+	const clusterId = this.getNodeParameter('clusterId', 0) as string;
+	const client = new ApiClient(this);
+	const data = (await client.httpDelete(`/cloud/project/${serviceName}/database/mongodb/${clusterId}`)) as IDataObject;
+	return this.helpers.returnJsonArray([data]);
 }

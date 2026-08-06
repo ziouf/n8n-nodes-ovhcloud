@@ -1900,134 +1900,212 @@ import {
 	description as mongodbClusterListGetDescription,
 	execute as mongodbClusterListGetExecute,
 } from './database/mongodb/clusterListGet.operation';
+
 import {
 	description as mongodbClusterGetGetDescription,
 	execute as mongodbClusterGetGetExecute,
 } from './database/mongodb/clusterGetGet.operation';
+
 import {
 	description as mongodbClusterCreatePostDescription,
 	execute as mongodbClusterCreatePostExecute,
 } from './database/mongodb/clusterCreatePost.operation';
+
 import {
 	description as mongodbClusterUpdatePutDescription,
 	execute as mongodbClusterUpdatePutExecute,
 } from './database/mongodb/clusterUpdatePut.operation';
+
 import {
 	description as mongodbClusterDeleteDeleteDescription,
 	execute as mongodbClusterDeleteDeleteExecute,
 } from './database/mongodb/clusterDeleteDelete.operation';
+
 import {
 	description as mongodbBackupListGetDescription,
 	execute as mongodbBackupListGetExecute,
 } from './database/mongodb/backupListGet.operation';
-import {
-	description as mongodbBackupCreatePostDescription,
-	execute as mongodbBackupCreatePostExecute,
-} from './database/mongodb/backupCreatePost.operation';
+
 import {
 	description as mongodbBackupGetGetDescription,
 	execute as mongodbBackupGetGetExecute,
 } from './database/mongodb/backupGetGet.operation';
+
 import {
 	description as mongodbBackupDeleteDeleteDescription,
 	execute as mongodbBackupDeleteDeleteExecute,
 } from './database/mongodb/backupDeleteDelete.operation';
+
 import {
-	description as mongodbUserListGetDescription,
-	execute as mongodbUserListGetExecute,
-} from './database/mongodb/userListGet.operation';
-import {
-	description as mongodbUserCreatePostDescription,
-	execute as mongodbUserCreatePostExecute,
-} from './database/mongodb/userCreatePost.operation';
-import {
-	description as mongodbUserGetGetDescription,
-	execute as mongodbUserGetGetExecute,
-} from './database/mongodb/userGetGet.operation';
-import {
-	description as mongodbUserUpdatePutDescription,
-	execute as mongodbUserUpdatePutExecute,
-} from './database/mongodb/userUpdatePut.operation';
-import {
-	description as mongodbUserDeleteDeleteDescription,
-	execute as mongodbUserDeleteDeleteExecute,
-} from './database/mongodb/userDeleteDelete.operation';
-import {
-	description as mongodbNodeListGetDescription,
-	execute as mongodbNodeListGetExecute,
-} from './database/mongodb/nodeListGet.operation';
-import {
-	description as mongodbNodeCreatePostDescription,
-	execute as mongodbNodeCreatePostExecute,
-} from './database/mongodb/nodeCreatePost.operation';
-import {
-	description as mongodbNodeGetGetDescription,
-	execute as mongodbNodeGetGetExecute,
-} from './database/mongodb/nodeGetGet.operation';
-import {
-	description as mongodbNodeUpdatePutDescription,
-	execute as mongodbNodeUpdatePutExecute,
-} from './database/mongodb/nodeUpdatePut.operation';
-import {
-	description as mongodbNodeDeleteDeleteDescription,
-	execute as mongodbNodeDeleteDeleteExecute,
-} from './database/mongodb/nodeDeleteDelete.operation';
+	description as mongodbBackupRestorePostDescription,
+	execute as mongodbBackupRestorePostExecute,
+} from './database/mongodb/backupRestorePost.operation';
+
 import {
 	description as mongodbIpRestrictionListGetDescription,
 	execute as mongodbIpRestrictionListGetExecute,
 } from './database/mongodb/ipRestrictionListGet.operation';
+
 import {
 	description as mongodbIpRestrictionCreatePostDescription,
 	execute as mongodbIpRestrictionCreatePostExecute,
 } from './database/mongodb/ipRestrictionCreatePost.operation';
+
+import {
+	description as mongodbIpRestrictionGetGetDescription,
+	execute as mongodbIpRestrictionGetGetExecute,
+} from './database/mongodb/ipRestrictionGetGet.operation';
+
+import {
+	description as mongodbIpRestrictionUpdatePutDescription,
+	execute as mongodbIpRestrictionUpdatePutExecute,
+} from './database/mongodb/ipRestrictionUpdatePut.operation';
+
+import {
+	description as mongodbIpRestrictionDeleteDeleteDescription,
+	execute as mongodbIpRestrictionDeleteDeleteExecute,
+} from './database/mongodb/ipRestrictionDeleteDelete.operation';
+
+import {
+	description as mongodbLogKindListGetDescription,
+	execute as mongodbLogKindListGetExecute,
+} from './database/mongodb/logKindListGet.operation';
+
+import {
+	description as mongodbLogKindGetGetDescription,
+	execute as mongodbLogKindGetGetExecute,
+} from './database/mongodb/logKindGetGet.operation';
+
 import {
 	description as mongodbLogSubscriptionListGetDescription,
 	execute as mongodbLogSubscriptionListGetExecute,
 } from './database/mongodb/logSubscriptionListGet.operation';
+
 import {
 	description as mongodbLogSubscriptionCreatePostDescription,
 	execute as mongodbLogSubscriptionCreatePostExecute,
 } from './database/mongodb/logSubscriptionCreatePost.operation';
+
 import {
 	description as mongodbLogSubscriptionGetGetDescription,
 	execute as mongodbLogSubscriptionGetGetExecute,
 } from './database/mongodb/logSubscriptionGetGet.operation';
+
 import {
-	description as mongodbMaintenanceGetDescription,
-	execute as mongodbMaintenanceGetExecute,
-} from './database/mongodb/maintenanceGet.operation';
+	description as mongodbLogSubscriptionDeleteDeleteDescription,
+	execute as mongodbLogSubscriptionDeleteDeleteExecute,
+} from './database/mongodb/logSubscriptionDeleteDelete.operation';
+
 import {
-	description as mongodbMaintenanceUpdatePutDescription,
-	execute as mongodbMaintenanceUpdatePutExecute,
-} from './database/mongodb/maintenanceUpdatePut.operation';
+	description as mongodbLogUrlCreatePostDescription,
+	execute as mongodbLogUrlCreatePostExecute,
+} from './database/mongodb/logUrlCreatePost.operation';
+
 import {
-	description as mongodbMetricGetDescription,
-	execute as mongodbMetricGetExecute,
-} from './database/mongodb/metricGet.operation';
+	description as mongodbLogListGetDescription,
+	execute as mongodbLogListGetExecute,
+} from './database/mongodb/logListGet.operation';
+
 import {
-	description as mongodbPrometheusGetDescription,
-	execute as mongodbPrometheusGetExecute,
-} from './database/mongodb/prometheusGet.operation';
+	description as mongodbMaintenanceListGetDescription,
+	execute as mongodbMaintenanceListGetExecute,
+} from './database/mongodb/maintenanceListGet.operation';
+
 import {
-	description as mongodbCertificateListGetDescription,
-	execute as mongodbCertificateListGetExecute,
-} from './database/mongodb/certificateListGet.operation';
+	description as mongodbMaintenanceGetGetDescription,
+	execute as mongodbMaintenanceGetGetExecute,
+} from './database/mongodb/maintenanceGetGet.operation';
+
 import {
-	description as mongodbCertificateCreatePostDescription,
-	execute as mongodbCertificateCreatePostExecute,
-} from './database/mongodb/certificateCreatePost.operation';
+	description as mongodbMaintenanceApplyPostDescription,
+	execute as mongodbMaintenanceApplyPostExecute,
+} from './database/mongodb/maintenanceApplyPost.operation';
+
 import {
-	description as mongodbIntegrationListGetDescription,
-	execute as mongodbIntegrationListGetExecute,
-} from './database/mongodb/integrationListGet.operation';
+	description as mongodbMetricListGetDescription,
+	execute as mongodbMetricListGetExecute,
+} from './database/mongodb/metricListGet.operation';
+
 import {
-	description as mongodbIntegrationCreatePostDescription,
-	execute as mongodbIntegrationCreatePostExecute,
-} from './database/mongodb/integrationCreatePost.operation';
+	description as mongodbMetricNameGetGetDescription,
+	execute as mongodbMetricNameGetGetExecute,
+} from './database/mongodb/metricNameGetGet.operation';
+
 import {
-	description as mysqlClusterListGetDescription,
-	execute as mysqlClusterListGetExecute,
-} from './database/mysql/clusterListGet.operation';
+	description as mongodbNodeListGetDescription,
+	execute as mongodbNodeListGetExecute,
+} from './database/mongodb/nodeListGet.operation';
+
+import {
+	description as mongodbNodeCreatePostDescription,
+	execute as mongodbNodeCreatePostExecute,
+} from './database/mongodb/nodeCreatePost.operation';
+
+import {
+	description as mongodbNodeGetGetDescription,
+	execute as mongodbNodeGetGetExecute,
+} from './database/mongodb/nodeGetGet.operation';
+
+import {
+	description as mongodbNodeUpdatePutDescription,
+	execute as mongodbNodeUpdatePutExecute,
+} from './database/mongodb/nodeUpdatePut.operation';
+
+import {
+	description as mongodbNodeDeleteDeleteDescription,
+	execute as mongodbNodeDeleteDeleteExecute,
+} from './database/mongodb/nodeDeleteDelete.operation';
+
+import {
+	description as mongodbPrometheusGetGetDescription,
+	execute as mongodbPrometheusGetGetExecute,
+} from './database/mongodb/prometheusGetGet.operation';
+
+import {
+	description as mongodbPrometheusCredentialsResetPostDescription,
+	execute as mongodbPrometheusCredentialsResetPostExecute,
+} from './database/mongodb/prometheusCredentialsResetPost.operation';
+
+import {
+	description as mongodbRestoreCreatePostDescription,
+	execute as mongodbRestoreCreatePostExecute,
+} from './database/mongodb/restoreCreatePost.operation';
+
+import {
+	description as mongodbRoleListGetDescription,
+	execute as mongodbRoleListGetExecute,
+} from './database/mongodb/roleListGet.operation';
+
+import {
+	description as mongodbUserListGetDescription,
+	execute as mongodbUserListGetExecute,
+} from './database/mongodb/userListGet.operation';
+
+import {
+	description as mongodbUserCreatePostDescription,
+	execute as mongodbUserCreatePostExecute,
+} from './database/mongodb/userCreatePost.operation';
+
+import {
+	description as mongodbUserGetGetDescription,
+	execute as mongodbUserGetGetExecute,
+} from './database/mongodb/userGetGet.operation';
+
+import {
+	description as mongodbUserUpdatePutDescription,
+	execute as mongodbUserUpdatePutExecute,
+} from './database/mongodb/userUpdatePut.operation';
+
+import {
+	description as mongodbUserDeleteDeleteDescription,
+	execute as mongodbUserDeleteDeleteExecute,
+} from './database/mongodb/userDeleteDelete.operation';
+
+import {
+	description as mongodbUserCredentialsResetPostDescription,
+	execute as mongodbUserCredentialsResetPostExecute,
+} from './database/mongodb/userCredentialsResetPost.operation';
+
 import {
 	description as mysqlClusterGetGetDescription,
 	execute as mysqlClusterGetGetExecute,
@@ -5359,162 +5437,212 @@ export function description(displayOptions: IDisplayOptions): INodeProperties[] 
 			{
 				name: 'mongodbClusterListGet',
 				value: 'mongodbClusterListGet',
-				action: 'List MongoDB clusters in a project',
+				action: 'List MongoDB Clusters',
 			},
 			{
 				name: 'mongodbClusterGetGet',
 				value: 'mongodbClusterGetGet',
-				action: 'Get MongoDB cluster',
+				action: 'Get MongoDB Cluster',
 			},
 			{
 				name: 'mongodbClusterCreatePost',
 				value: 'mongodbClusterCreatePost',
-				action: 'Create MongoDB cluster',
+				action: 'Create MongoDB Cluster',
 			},
 			{
 				name: 'mongodbClusterUpdatePut',
 				value: 'mongodbClusterUpdatePut',
-				action: 'Update MongoDB cluster',
+				action: 'Update MongoDB Cluster',
 			},
 			{
 				name: 'mongodbClusterDeleteDelete',
 				value: 'mongodbClusterDeleteDelete',
-				action: 'Delete MongoDB cluster',
+				action: 'Delete MongoDB Cluster',
 			},
 			{
 				name: 'mongodbBackupListGet',
 				value: 'mongodbBackupListGet',
-				action: 'List MongoDB backups',
-			},
-			{
-				name: 'mongodbBackupCreatePost',
-				value: 'mongodbBackupCreatePost',
-				action: 'Create MongoDB backup',
+				action: 'List MongoDB Backups',
 			},
 			{
 				name: 'mongodbBackupGetGet',
 				value: 'mongodbBackupGetGet',
-				action: 'Get MongoDB backup',
+				action: 'Get MongoDB Backup',
 			},
 			{
 				name: 'mongodbBackupDeleteDelete',
 				value: 'mongodbBackupDeleteDelete',
-				action: 'Delete MongoDB backup',
+				action: 'Delete MongoDB Backup',
 			},
 			{
-				name: 'mongodbUserListGet',
-				value: 'mongodbUserListGet',
-				action: 'List MongoDB users',
-			},
-			{
-				name: 'mongodbUserCreatePost',
-				value: 'mongodbUserCreatePost',
-				action: 'Create MongoDB user',
-			},
-			{
-				name: 'mongodbUserGetGet',
-				value: 'mongodbUserGetGet',
-				action: 'Get MongoDB user',
-			},
-			{
-				name: 'mongodbUserUpdatePut',
-				value: 'mongodbUserUpdatePut',
-				action: 'Update MongoDB user',
-			},
-			{
-				name: 'mongodbUserDeleteDelete',
-				value: 'mongodbUserDeleteDelete',
-				action: 'Delete MongoDB user',
-			},
-			{
-				name: 'mongodbNodeListGet',
-				value: 'mongodbNodeListGet',
-				action: 'List MongoDB nodes',
-			},
-			{
-				name: 'mongodbNodeCreatePost',
-				value: 'mongodbNodeCreatePost',
-				action: 'Create MongoDB node',
-			},
-			{
-				name: 'mongodbNodeGetGet',
-				value: 'mongodbNodeGetGet',
-				action: 'Get MongoDB node',
-			},
-			{
-				name: 'mongodbNodeUpdatePut',
-				value: 'mongodbNodeUpdatePut',
-				action: 'Update MongoDB node',
-			},
-			{
-				name: 'mongodbNodeDeleteDelete',
-				value: 'mongodbNodeDeleteDelete',
-				action: 'Delete MongoDB node',
+				name: 'mongodbBackupRestorePost',
+				value: 'mongodbBackupRestorePost',
+				action: 'Restore MongoDB Backup',
 			},
 			{
 				name: 'mongodbIpRestrictionListGet',
 				value: 'mongodbIpRestrictionListGet',
-				action: 'List MongoDB IP restrictions',
+				action: 'List MongoDB IP Restrictions',
 			},
 			{
 				name: 'mongodbIpRestrictionCreatePost',
 				value: 'mongodbIpRestrictionCreatePost',
-				action: 'Create MongoDB IP restriction',
+				action: 'Create MongoDB IP Restriction',
+			},
+			{
+				name: 'mongodbIpRestrictionGetGet',
+				value: 'mongodbIpRestrictionGetGet',
+				action: 'Get MongoDB IP Restriction',
+			},
+			{
+				name: 'mongodbIpRestrictionUpdatePut',
+				value: 'mongodbIpRestrictionUpdatePut',
+				action: 'Update MongoDB IP Restriction',
+			},
+			{
+				name: 'mongodbIpRestrictionDeleteDelete',
+				value: 'mongodbIpRestrictionDeleteDelete',
+				action: 'Delete MongoDB IP Restriction',
+			},
+			{
+				name: 'mongodbLogKindListGet',
+				value: 'mongodbLogKindListGet',
+				action: 'List MongoDB Log Kinds',
+			},
+			{
+				name: 'mongodbLogKindGetGet',
+				value: 'mongodbLogKindGetGet',
+				action: 'Get MongoDB Log Kind',
 			},
 			{
 				name: 'mongodbLogSubscriptionListGet',
 				value: 'mongodbLogSubscriptionListGet',
-				action: 'List MongoDB log subscriptions',
+				action: 'List MongoDB Log Subscriptions',
 			},
 			{
 				name: 'mongodbLogSubscriptionCreatePost',
 				value: 'mongodbLogSubscriptionCreatePost',
-				action: 'Create MongoDB log subscription',
+				action: 'Create MongoDB Log Subscription',
 			},
 			{
 				name: 'mongodbLogSubscriptionGetGet',
 				value: 'mongodbLogSubscriptionGetGet',
-				action: 'Get MongoDB log subscription',
+				action: 'Get MongoDB Log Subscription',
 			},
 			{
-				name: 'mongodbMaintenanceGet',
-				value: 'mongodbMaintenanceGet',
-				action: 'Get MongoDB maintenance',
+				name: 'mongodbLogSubscriptionDeleteDelete',
+				value: 'mongodbLogSubscriptionDeleteDelete',
+				action: 'Delete MongoDB Log Subscription',
 			},
 			{
-				name: 'mongodbMaintenanceUpdatePut',
-				value: 'mongodbMaintenanceUpdatePut',
-				action: 'Update MongoDB maintenance',
+				name: 'mongodbLogUrlCreatePost',
+				value: 'mongodbLogUrlCreatePost',
+				action: 'Create MongoDB Log URL',
 			},
 			{
-				name: 'mongodbMetricGet',
-				value: 'mongodbMetricGet',
-				action: 'Get MongoDB metric',
+				name: 'mongodbLogListGet',
+				value: 'mongodbLogListGet',
+				action: 'List MongoDB Logs',
 			},
 			{
-				name: 'mongodbPrometheusGet',
-				value: 'mongodbPrometheusGet',
-				action: 'Get MongoDB prometheus',
+				name: 'mongodbMaintenanceListGet',
+				value: 'mongodbMaintenanceListGet',
+				action: 'List MongoDB Maintenances',
 			},
 			{
-				name: 'mongodbCertificateListGet',
-				value: 'mongodbCertificateListGet',
-				action: 'List MongoDB certificates',
+				name: 'mongodbMaintenanceGetGet',
+				value: 'mongodbMaintenanceGetGet',
+				action: 'Get MongoDB Maintenance',
 			},
 			{
-				name: 'mongodbCertificateCreatePost',
-				value: 'mongodbCertificateCreatePost',
-				action: 'Create MongoDB certificate',
+				name: 'mongodbMaintenanceApplyPost',
+				value: 'mongodbMaintenanceApplyPost',
+				action: 'Apply MongoDB Maintenance',
 			},
 			{
-				name: 'mongodbIntegrationListGet',
-				value: 'mongodbIntegrationListGet',
-				action: 'List MongoDB integrations',
+				name: 'mongodbMetricListGet',
+				value: 'mongodbMetricListGet',
+				action: 'List MongoDB Metrics',
 			},
 			{
-				name: 'mongodbIntegrationCreatePost',
-				value: 'mongodbIntegrationCreatePost',
-				action: 'Create MongoDB integration',
+				name: 'mongodbMetricNameGetGet',
+				value: 'mongodbMetricNameGetGet',
+				action: 'Get MongoDB Metric',
+			},
+			{
+				name: 'mongodbNodeListGet',
+				value: 'mongodbNodeListGet',
+				action: 'List MongoDB Nodes',
+			},
+			{
+				name: 'mongodbNodeCreatePost',
+				value: 'mongodbNodeCreatePost',
+				action: 'Create MongoDB Node',
+			},
+			{
+				name: 'mongodbNodeGetGet',
+				value: 'mongodbNodeGetGet',
+				action: 'Get MongoDB Node',
+			},
+			{
+				name: 'mongodbNodeUpdatePut',
+				value: 'mongodbNodeUpdatePut',
+				action: 'Update MongoDB Node',
+			},
+			{
+				name: 'mongodbNodeDeleteDelete',
+				value: 'mongodbNodeDeleteDelete',
+				action: 'Delete MongoDB Node',
+			},
+			{
+				name: 'mongodbPrometheusGetGet',
+				value: 'mongodbPrometheusGetGet',
+				action: 'Get MongoDB Prometheus',
+			},
+			{
+				name: 'mongodbPrometheusCredentialsResetPost',
+				value: 'mongodbPrometheusCredentialsResetPost',
+				action: 'Reset MongoDB Prometheus Credentials',
+			},
+			{
+				name: 'mongodbRestoreCreatePost',
+				value: 'mongodbRestoreCreatePost',
+				action: 'Restore MongoDB Cluster',
+			},
+			{
+				name: 'mongodbRoleListGet',
+				value: 'mongodbRoleListGet',
+				action: 'List MongoDB Roles',
+			},
+			{
+				name: 'mongodbUserListGet',
+				value: 'mongodbUserListGet',
+				action: 'List MongoDB Users',
+			},
+			{
+				name: 'mongodbUserCreatePost',
+				value: 'mongodbUserCreatePost',
+				action: 'Create MongoDB User',
+			},
+			{
+				name: 'mongodbUserGetGet',
+				value: 'mongodbUserGetGet',
+				action: 'Get MongoDB User',
+			},
+			{
+				name: 'mongodbUserUpdatePut',
+				value: 'mongodbUserUpdatePut',
+				action: 'Update MongoDB User',
+			},
+			{
+				name: 'mongodbUserDeleteDelete',
+				value: 'mongodbUserDeleteDelete',
+				action: 'Delete MongoDB User',
+			},
+			{
+				name: 'mongodbUserCredentialsResetPost',
+				value: 'mongodbUserCredentialsResetPost',
+				action: 'Reset MongoDB User Credentials',
 			},
 			{
 				name: 'mysqlClusterListGet',
@@ -10055,191 +10183,169 @@ export function description(displayOptions: IDisplayOptions): INodeProperties[] 
 			...displayOptions,
 			show: { publicCloudOperation: ['mongodbClusterListGet'] },
 		}) as INodeProperties[]),
-	);
-	properties.push(
 		...(mongodbClusterGetGetDescription({
 			...displayOptions,
 			show: { publicCloudOperation: ['mongodbClusterGetGet'] },
 		}) as INodeProperties[]),
-	);
-	properties.push(
 		...(mongodbClusterCreatePostDescription({
 			...displayOptions,
 			show: { publicCloudOperation: ['mongodbClusterCreatePost'] },
 		}) as INodeProperties[]),
-	);
-	properties.push(
 		...(mongodbClusterUpdatePutDescription({
 			...displayOptions,
 			show: { publicCloudOperation: ['mongodbClusterUpdatePut'] },
 		}) as INodeProperties[]),
-	);
-	properties.push(
 		...(mongodbClusterDeleteDeleteDescription({
 			...displayOptions,
 			show: { publicCloudOperation: ['mongodbClusterDeleteDelete'] },
 		}) as INodeProperties[]),
-	);
-	properties.push(
 		...(mongodbBackupListGetDescription({
 			...displayOptions,
 			show: { publicCloudOperation: ['mongodbBackupListGet'] },
 		}) as INodeProperties[]),
-	);
-	properties.push(
-		...(mongodbBackupCreatePostDescription({
-			...displayOptions,
-			show: { publicCloudOperation: ['mongodbBackupCreatePost'] },
-		}) as INodeProperties[]),
-	);
-	properties.push(
 		...(mongodbBackupGetGetDescription({
 			...displayOptions,
 			show: { publicCloudOperation: ['mongodbBackupGetGet'] },
 		}) as INodeProperties[]),
-	);
-	properties.push(
 		...(mongodbBackupDeleteDeleteDescription({
 			...displayOptions,
 			show: { publicCloudOperation: ['mongodbBackupDeleteDelete'] },
 		}) as INodeProperties[]),
-	);
-	properties.push(
-		...(mongodbUserListGetDescription({
+		...(mongodbBackupRestorePostDescription({
 			...displayOptions,
-			show: { publicCloudOperation: ['mongodbUserListGet'] },
+			show: { publicCloudOperation: ['mongodbBackupRestorePost'] },
 		}) as INodeProperties[]),
-	);
-	properties.push(
-		...(mongodbUserCreatePostDescription({
-			...displayOptions,
-			show: { publicCloudOperation: ['mongodbUserCreatePost'] },
-		}) as INodeProperties[]),
-	);
-	properties.push(
-		...(mongodbUserGetGetDescription({
-			...displayOptions,
-			show: { publicCloudOperation: ['mongodbUserGetGet'] },
-		}) as INodeProperties[]),
-	);
-	properties.push(
-		...(mongodbUserUpdatePutDescription({
-			...displayOptions,
-			show: { publicCloudOperation: ['mongodbUserUpdatePut'] },
-		}) as INodeProperties[]),
-	);
-	properties.push(
-		...(mongodbUserDeleteDeleteDescription({
-			...displayOptions,
-			show: { publicCloudOperation: ['mongodbUserDeleteDelete'] },
-		}) as INodeProperties[]),
-	);
-	properties.push(
-		...(mongodbNodeListGetDescription({
-			...displayOptions,
-			show: { publicCloudOperation: ['mongodbNodeListGet'] },
-		}) as INodeProperties[]),
-	);
-	properties.push(
-		...(mongodbNodeCreatePostDescription({
-			...displayOptions,
-			show: { publicCloudOperation: ['mongodbNodeCreatePost'] },
-		}) as INodeProperties[]),
-	);
-	properties.push(
-		...(mongodbNodeGetGetDescription({
-			...displayOptions,
-			show: { publicCloudOperation: ['mongodbNodeGetGet'] },
-		}) as INodeProperties[]),
-	);
-	properties.push(
-		...(mongodbNodeUpdatePutDescription({
-			...displayOptions,
-			show: { publicCloudOperation: ['mongodbNodeUpdatePut'] },
-		}) as INodeProperties[]),
-	);
-	properties.push(
-		...(mongodbNodeDeleteDeleteDescription({
-			...displayOptions,
-			show: { publicCloudOperation: ['mongodbNodeDeleteDelete'] },
-		}) as INodeProperties[]),
-	);
-	properties.push(
 		...(mongodbIpRestrictionListGetDescription({
 			...displayOptions,
 			show: { publicCloudOperation: ['mongodbIpRestrictionListGet'] },
 		}) as INodeProperties[]),
-	);
-	properties.push(
 		...(mongodbIpRestrictionCreatePostDescription({
 			...displayOptions,
 			show: { publicCloudOperation: ['mongodbIpRestrictionCreatePost'] },
 		}) as INodeProperties[]),
-	);
-	properties.push(
+		...(mongodbIpRestrictionGetGetDescription({
+			...displayOptions,
+			show: { publicCloudOperation: ['mongodbIpRestrictionGetGet'] },
+		}) as INodeProperties[]),
+		...(mongodbIpRestrictionUpdatePutDescription({
+			...displayOptions,
+			show: { publicCloudOperation: ['mongodbIpRestrictionUpdatePut'] },
+		}) as INodeProperties[]),
+		...(mongodbIpRestrictionDeleteDeleteDescription({
+			...displayOptions,
+			show: { publicCloudOperation: ['mongodbIpRestrictionDeleteDelete'] },
+		}) as INodeProperties[]),
+		...(mongodbLogKindListGetDescription({
+			...displayOptions,
+			show: { publicCloudOperation: ['mongodbLogKindListGet'] },
+		}) as INodeProperties[]),
+		...(mongodbLogKindGetGetDescription({
+			...displayOptions,
+			show: { publicCloudOperation: ['mongodbLogKindGetGet'] },
+		}) as INodeProperties[]),
 		...(mongodbLogSubscriptionListGetDescription({
 			...displayOptions,
 			show: { publicCloudOperation: ['mongodbLogSubscriptionListGet'] },
 		}) as INodeProperties[]),
-	);
-	properties.push(
 		...(mongodbLogSubscriptionCreatePostDescription({
 			...displayOptions,
 			show: { publicCloudOperation: ['mongodbLogSubscriptionCreatePost'] },
 		}) as INodeProperties[]),
-	);
-	properties.push(
 		...(mongodbLogSubscriptionGetGetDescription({
 			...displayOptions,
 			show: { publicCloudOperation: ['mongodbLogSubscriptionGetGet'] },
 		}) as INodeProperties[]),
-	);
-	properties.push(
-		...(mongodbMaintenanceGetDescription({
+		...(mongodbLogSubscriptionDeleteDeleteDescription({
 			...displayOptions,
-			show: { publicCloudOperation: ['mongodbMaintenanceGet'] },
+			show: { publicCloudOperation: ['mongodbLogSubscriptionDeleteDelete'] },
 		}) as INodeProperties[]),
-	);
-	properties.push(
-		...(mongodbMaintenanceUpdatePutDescription({
+		...(mongodbLogUrlCreatePostDescription({
 			...displayOptions,
-			show: { publicCloudOperation: ['mongodbMaintenanceUpdatePut'] },
+			show: { publicCloudOperation: ['mongodbLogUrlCreatePost'] },
 		}) as INodeProperties[]),
-	);
-	properties.push(
-		...(mongodbMetricGetDescription({
+		...(mongodbLogListGetDescription({
 			...displayOptions,
-			show: { publicCloudOperation: ['mongodbMetricGet'] },
+			show: { publicCloudOperation: ['mongodbLogListGet'] },
 		}) as INodeProperties[]),
-	);
-	properties.push(
-		...(mongodbPrometheusGetDescription({
+		...(mongodbMaintenanceListGetDescription({
 			...displayOptions,
-			show: { publicCloudOperation: ['mongodbPrometheusGet'] },
+			show: { publicCloudOperation: ['mongodbMaintenanceListGet'] },
 		}) as INodeProperties[]),
-	);
-	properties.push(
-		...(mongodbCertificateListGetDescription({
+		...(mongodbMaintenanceGetGetDescription({
 			...displayOptions,
-			show: { publicCloudOperation: ['mongodbCertificateListGet'] },
+			show: { publicCloudOperation: ['mongodbMaintenanceGetGet'] },
 		}) as INodeProperties[]),
-	);
-	properties.push(
-		...(mongodbCertificateCreatePostDescription({
+		...(mongodbMaintenanceApplyPostDescription({
 			...displayOptions,
-			show: { publicCloudOperation: ['mongodbCertificateCreatePost'] },
+			show: { publicCloudOperation: ['mongodbMaintenanceApplyPost'] },
 		}) as INodeProperties[]),
-	);
-	properties.push(
-		...(mongodbIntegrationListGetDescription({
+		...(mongodbMetricListGetDescription({
 			...displayOptions,
-			show: { publicCloudOperation: ['mongodbIntegrationListGet'] },
+			show: { publicCloudOperation: ['mongodbMetricListGet'] },
 		}) as INodeProperties[]),
-	);
-	properties.push(
-		...(mongodbIntegrationCreatePostDescription({
+		...(mongodbMetricNameGetGetDescription({
 			...displayOptions,
-			show: { publicCloudOperation: ['mongodbIntegrationCreatePost'] },
+			show: { publicCloudOperation: ['mongodbMetricNameGetGet'] },
+		}) as INodeProperties[]),
+		...(mongodbNodeListGetDescription({
+			...displayOptions,
+			show: { publicCloudOperation: ['mongodbNodeListGet'] },
+		}) as INodeProperties[]),
+		...(mongodbNodeCreatePostDescription({
+			...displayOptions,
+			show: { publicCloudOperation: ['mongodbNodeCreatePost'] },
+		}) as INodeProperties[]),
+		...(mongodbNodeGetGetDescription({
+			...displayOptions,
+			show: { publicCloudOperation: ['mongodbNodeGetGet'] },
+		}) as INodeProperties[]),
+		...(mongodbNodeUpdatePutDescription({
+			...displayOptions,
+			show: { publicCloudOperation: ['mongodbNodeUpdatePut'] },
+		}) as INodeProperties[]),
+		...(mongodbNodeDeleteDeleteDescription({
+			...displayOptions,
+			show: { publicCloudOperation: ['mongodbNodeDeleteDelete'] },
+		}) as INodeProperties[]),
+		...(mongodbPrometheusGetGetDescription({
+			...displayOptions,
+			show: { publicCloudOperation: ['mongodbPrometheusGetGet'] },
+		}) as INodeProperties[]),
+		...(mongodbPrometheusCredentialsResetPostDescription({
+			...displayOptions,
+			show: { publicCloudOperation: ['mongodbPrometheusCredentialsResetPost'] },
+		}) as INodeProperties[]),
+		...(mongodbRestoreCreatePostDescription({
+			...displayOptions,
+			show: { publicCloudOperation: ['mongodbRestoreCreatePost'] },
+		}) as INodeProperties[]),
+		...(mongodbRoleListGetDescription({
+			...displayOptions,
+			show: { publicCloudOperation: ['mongodbRoleListGet'] },
+		}) as INodeProperties[]),
+		...(mongodbUserListGetDescription({
+			...displayOptions,
+			show: { publicCloudOperation: ['mongodbUserListGet'] },
+		}) as INodeProperties[]),
+		...(mongodbUserCreatePostDescription({
+			...displayOptions,
+			show: { publicCloudOperation: ['mongodbUserCreatePost'] },
+		}) as INodeProperties[]),
+		...(mongodbUserGetGetDescription({
+			...displayOptions,
+			show: { publicCloudOperation: ['mongodbUserGetGet'] },
+		}) as INodeProperties[]),
+		...(mongodbUserUpdatePutDescription({
+			...displayOptions,
+			show: { publicCloudOperation: ['mongodbUserUpdatePut'] },
+		}) as INodeProperties[]),
+		...(mongodbUserDeleteDeleteDescription({
+			...displayOptions,
+			show: { publicCloudOperation: ['mongodbUserDeleteDelete'] },
+		}) as INodeProperties[]),
+		...(mongodbUserCredentialsResetPostDescription({
+			...displayOptions,
+			show: { publicCloudOperation: ['mongodbUserCredentialsResetPost'] },
 		}) as INodeProperties[]),
 	);
 	properties.push(
@@ -13059,22 +13165,48 @@ export async function execute(
 			return mongodbClusterDeleteDeleteExecute.call(this);
 		case 'mongodbBackupListGet':
 			return mongodbBackupListGetExecute.call(this);
-		case 'mongodbBackupCreatePost':
-			return mongodbBackupCreatePostExecute.call(this);
 		case 'mongodbBackupGetGet':
 			return mongodbBackupGetGetExecute.call(this);
 		case 'mongodbBackupDeleteDelete':
 			return mongodbBackupDeleteDeleteExecute.call(this);
-		case 'mongodbUserListGet':
-			return mongodbUserListGetExecute.call(this);
-		case 'mongodbUserCreatePost':
-			return mongodbUserCreatePostExecute.call(this);
-		case 'mongodbUserGetGet':
-			return mongodbUserGetGetExecute.call(this);
-		case 'mongodbUserUpdatePut':
-			return mongodbUserUpdatePutExecute.call(this);
-		case 'mongodbUserDeleteDelete':
-			return mongodbUserDeleteDeleteExecute.call(this);
+		case 'mongodbBackupRestorePost':
+			return mongodbBackupRestorePostExecute.call(this);
+		case 'mongodbIpRestrictionListGet':
+			return mongodbIpRestrictionListGetExecute.call(this);
+		case 'mongodbIpRestrictionCreatePost':
+			return mongodbIpRestrictionCreatePostExecute.call(this);
+		case 'mongodbIpRestrictionGetGet':
+			return mongodbIpRestrictionGetGetExecute.call(this);
+		case 'mongodbIpRestrictionUpdatePut':
+			return mongodbIpRestrictionUpdatePutExecute.call(this);
+		case 'mongodbIpRestrictionDeleteDelete':
+			return mongodbIpRestrictionDeleteDeleteExecute.call(this);
+		case 'mongodbLogKindListGet':
+			return mongodbLogKindListGetExecute.call(this);
+		case 'mongodbLogKindGetGet':
+			return mongodbLogKindGetGetExecute.call(this);
+		case 'mongodbLogSubscriptionListGet':
+			return mongodbLogSubscriptionListGetExecute.call(this);
+		case 'mongodbLogSubscriptionCreatePost':
+			return mongodbLogSubscriptionCreatePostExecute.call(this);
+		case 'mongodbLogSubscriptionGetGet':
+			return mongodbLogSubscriptionGetGetExecute.call(this);
+		case 'mongodbLogSubscriptionDeleteDelete':
+			return mongodbLogSubscriptionDeleteDeleteExecute.call(this);
+		case 'mongodbLogUrlCreatePost':
+			return mongodbLogUrlCreatePostExecute.call(this);
+		case 'mongodbLogListGet':
+			return mongodbLogListGetExecute.call(this);
+		case 'mongodbMaintenanceListGet':
+			return mongodbMaintenanceListGetExecute.call(this);
+		case 'mongodbMaintenanceGetGet':
+			return mongodbMaintenanceGetGetExecute.call(this);
+		case 'mongodbMaintenanceApplyPost':
+			return mongodbMaintenanceApplyPostExecute.call(this);
+		case 'mongodbMetricListGet':
+			return mongodbMetricListGetExecute.call(this);
+		case 'mongodbMetricNameGetGet':
+			return mongodbMetricNameGetGetExecute.call(this);
 		case 'mongodbNodeListGet':
 			return mongodbNodeListGetExecute.call(this);
 		case 'mongodbNodeCreatePost':
@@ -13085,32 +13217,26 @@ export async function execute(
 			return mongodbNodeUpdatePutExecute.call(this);
 		case 'mongodbNodeDeleteDelete':
 			return mongodbNodeDeleteDeleteExecute.call(this);
-		case 'mongodbIpRestrictionListGet':
-			return mongodbIpRestrictionListGetExecute.call(this);
-		case 'mongodbIpRestrictionCreatePost':
-			return mongodbIpRestrictionCreatePostExecute.call(this);
-		case 'mongodbLogSubscriptionListGet':
-			return mongodbLogSubscriptionListGetExecute.call(this);
-		case 'mongodbLogSubscriptionCreatePost':
-			return mongodbLogSubscriptionCreatePostExecute.call(this);
-		case 'mongodbLogSubscriptionGetGet':
-			return mongodbLogSubscriptionGetGetExecute.call(this);
-		case 'mongodbMaintenanceGet':
-			return mongodbMaintenanceGetExecute.call(this);
-		case 'mongodbMaintenanceUpdatePut':
-			return mongodbMaintenanceUpdatePutExecute.call(this);
-		case 'mongodbMetricGet':
-			return mongodbMetricGetExecute.call(this);
-		case 'mongodbPrometheusGet':
-			return mongodbPrometheusGetExecute.call(this);
-		case 'mongodbCertificateListGet':
-			return mongodbCertificateListGetExecute.call(this);
-		case 'mongodbCertificateCreatePost':
-			return mongodbCertificateCreatePostExecute.call(this);
-		case 'mongodbIntegrationListGet':
-			return mongodbIntegrationListGetExecute.call(this);
-		case 'mongodbIntegrationCreatePost':
-			return mongodbIntegrationCreatePostExecute.call(this);
+		case 'mongodbPrometheusGetGet':
+			return mongodbPrometheusGetGetExecute.call(this);
+		case 'mongodbPrometheusCredentialsResetPost':
+			return mongodbPrometheusCredentialsResetPostExecute.call(this);
+		case 'mongodbRestoreCreatePost':
+			return mongodbRestoreCreatePostExecute.call(this);
+		case 'mongodbRoleListGet':
+			return mongodbRoleListGetExecute.call(this);
+		case 'mongodbUserListGet':
+			return mongodbUserListGetExecute.call(this);
+		case 'mongodbUserCreatePost':
+			return mongodbUserCreatePostExecute.call(this);
+		case 'mongodbUserGetGet':
+			return mongodbUserGetGetExecute.call(this);
+		case 'mongodbUserUpdatePut':
+			return mongodbUserUpdatePutExecute.call(this);
+		case 'mongodbUserDeleteDelete':
+			return mongodbUserDeleteDeleteExecute.call(this);
+		case 'mongodbUserCredentialsResetPost':
+			return mongodbUserCredentialsResetPostExecute.call(this);
 		case 'mysqlClusterListGet':
 			return mysqlClusterListGetExecute.call(this);
 		case 'mysqlClusterGetGet':

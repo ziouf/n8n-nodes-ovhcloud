@@ -6,49 +6,58 @@ import type {
 	INodeProperties,
 } from 'n8n-workflow';
 import { ApiClient } from '../../../../shared/transport/ApiClient';
-
-export function description(_displayOptions: IDisplayOptions): INodeProperties[] {
-	void _displayOptions;
+export function description(displayOptions: IDisplayOptions): INodeProperties[] {
 	return [
-	{
-		displayName: 'Public Cloud Project',
-		name: 'publicCloudProjectId',
-		type: 'resourceLocator',
-		default: { mode: 'list', value: '' },
-		required: true,
-		description: 'The Public Cloud project ID (e.g. 12345678-1234-1234-1234-1234567890ab)',
-		modes: [
-			{
-				displayName: 'From List',
-				name: 'list',
-				type: 'list',
-				typeOptions: { searchListMethod: 'getPublicCloudProjects' },
-			},
-			{
-				displayName: 'By ID',
-				name: 'name',
-				type: 'string',
-				placeholder: '12345678-1234-1234-1234-1234567890ab',
-			},
-		],
-	}
+		{
+			displayName: 'Service Name',
+			name: 'serviceName',
+			type: 'string',
+			default: '',
+			required: true,
+			description: 'The database service name',
+			displayOptions,
+		},
+		{
+			displayName: 'Description',
+			name: 'description',
+			type: 'string',
+			default: '',
+			displayOptions,
+		},
+		{
+			displayName: 'Plan',
+			name: 'plan',
+			type: 'string',
+			default: '',
+			displayOptions,
+		},
+		{
+			displayName: 'Version',
+			name: 'version',
+			type: 'string',
+			default: '',
+			displayOptions,
+		},
 	];
 }
-
 /**
- * Executes the Create Mongodb Cluster operation.
+ * Executes the Create MongoDB Cluster operation.
  *
  * HTTP method: POST
- * Endpoint: /publicCloud/project/{projectId}/cloud/database/mongodb
+ * Endpoint: /cloud/project/{serviceName}/database/mongodb
  */
 export async function execute(this: IExecuteFunctions): Promise<INodeExecutionData[]> {
+	const serviceName = this.getNodeParameter('serviceName', 0) as string;
+	const description = this.getNodeParameter('description', 0, '') as string;
+	const plan = this.getNodeParameter('plan', 0, '') as string;
+	const version = this.getNodeParameter('version', 0, '') as string;
+
+	const body: IDataObject = {
+    description: description || undefined,
+    plan: plan || undefined,
+    version: version || undefined
+  };
 	const client = new ApiClient(this);
-	const projectId = this.getNodeParameter('publicCloudProjectId', 0, '', {
-		extractValue: true,
-	}) as string;
-	const body = {} as IDataObject;
-
-	const data = (await client.httpPost(`/publicCloud/project/${projectId}/cloud/database/mongodb`, body)) as import('n8n-workflow').IDataObject;
-
+	const data = (await client.httpPost(`/cloud/project/${serviceName}/database/mongodb`, body)) as IDataObject;
 	return this.helpers.returnJsonArray([data]);
 }

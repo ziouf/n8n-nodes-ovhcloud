@@ -6,58 +6,103 @@ import type {
 	INodeProperties,
 } from 'n8n-workflow';
 import { ApiClient } from '../../../../shared/transport/ApiClient';
-
 export function description(displayOptions: IDisplayOptions): INodeProperties[] {
 	return [
-	{
-		displayName: 'Public Cloud Project',
-		name: 'publicCloudProjectId',
-		type: 'resourceLocator',
-		default: { mode: 'list', value: '' },
-		required: true,
-		description: 'The Public Cloud project ID (e.g. 12345678-1234-1234-1234-1234567890ab)',
-		modes: [
-			{
-				displayName: 'From List',
-				name: 'list',
-				type: 'list',
-				typeOptions: { searchListMethod: 'getPublicCloudProjects' },
-			},
-			{
-				displayName: 'By ID',
-				name: 'name',
-				type: 'string',
-				placeholder: '12345678-1234-1234-1234-1234567890ab',
-			},
-		],
-	},
-	{
-		displayName: 'Service Name',
-		name: 'serviceName',
-		type: 'string',
-		default: '',
-		required: true,
-		description: 'The database service name',
-		displayOptions,
-	}
+		{
+			displayName: 'Service Name',
+			name: 'serviceName',
+			type: 'string',
+			default: '',
+			required: true,
+			description: 'The database service name',
+			displayOptions,
+		},
+		{
+			displayName: 'Cluster ID',
+			name: 'clusterId',
+			type: 'string',
+			default: '',
+			required: true,
+			displayOptions,
+		},
+		{
+			displayName: 'Description',
+			name: 'description',
+			type: 'string',
+			default: '',
+			displayOptions,
+		},
+		{
+			displayName: 'Plan',
+			name: 'plan',
+			type: 'string',
+			default: '',
+			displayOptions,
+		},
+		{
+			displayName: 'Version',
+			name: 'version',
+			type: 'string',
+			default: '',
+			displayOptions,
+		},
+		{
+			displayName: 'flavor',
+			name: 'flavor',
+			type: 'string',
+			default: '',
+			displayOptions,
+		},
+		{
+			displayName: 'Maintenance Time',
+			name: 'maintenanceTime',
+			type: 'string',
+			default: '',
+			displayOptions,
+		},
+		{
+			displayName: 'Backup Time',
+			name: 'backupTime',
+			type: 'string',
+			default: '',
+			displayOptions,
+		},
+		{
+			displayName: 'Deletion Protection',
+			name: 'deletionProtection',
+			type: 'string',
+			default: '',
+			displayOptions,
+		},
 	];
 }
-
 /**
- * Executes the Update Mongodb Cluster operation.
+ * Executes the Update MongoDB Cluster operation.
  *
  * HTTP method: PUT
- * Endpoint: /publicCloud/project/{projectId}/cloud/database/mongodb/serviceName
+ * Endpoint: /cloud/project/{serviceName}/database/mongodb/{clusterId}
  */
 export async function execute(this: IExecuteFunctions): Promise<INodeExecutionData[]> {
-	const client = new ApiClient(this);
-	const projectId = this.getNodeParameter('publicCloudProjectId', 0, '', {
-		extractValue: true,
-	}) as string;
 	const serviceName = this.getNodeParameter('serviceName', 0) as string;
-	const body = {} as IDataObject;
+	const clusterId = this.getNodeParameter('clusterId', 0) as string;
+	const description = this.getNodeParameter('description', 0, '') as string;
+	const plan = this.getNodeParameter('plan', 0, '') as string;
+	const version = this.getNodeParameter('version', 0, '') as string;
+	const flavor = this.getNodeParameter('flavor', 0, '') as string;
+	const maintenanceTime = this.getNodeParameter('maintenanceTime', 0, '') as string;
+	const backupTime = this.getNodeParameter('backupTime', 0, '') as string;
+	const deletionProtection = this.getNodeParameter('deletionProtection', 0, '') as string;
 
-	const data = (await client.httpPut(`/publicCloud/project/${projectId}/cloud/database/mongodb/${serviceName}`, body)) as import('n8n-workflow').IDataObject;
-
+	const body: IDataObject = {
+    description: description || undefined,
+    plan: plan || undefined,
+    version: version || undefined,
+    flavor: flavor || undefined,
+    maintenanceTime: maintenanceTime || undefined,
+    backupTime: backupTime || undefined,
+    deletionProtection: deletionProtection || undefined
+  };
+	const client = new ApiClient(this);
+	const data = (await client.httpPut(`/cloud/project/${serviceName}/database/mongodb/${clusterId}`, body)) as IDataObject;
 	return this.helpers.returnJsonArray([data]);
 }

@@ -1,52 +1,33 @@
 import type {
+	IDataObject,
 	IExecuteFunctions,
 	IDisplayOptions,
 	INodeExecutionData,
 	INodeProperties,
 } from 'n8n-workflow';
 import { ApiClient } from '../../../../shared/transport/ApiClient';
-
-export function description(_displayOptions: IDisplayOptions): INodeProperties[] {
-	void _displayOptions;
+export function description(displayOptions: IDisplayOptions): INodeProperties[] {
 	return [
-	{
-		displayName: 'Public Cloud Project',
-		name: 'publicCloudProjectId',
-		type: 'resourceLocator',
-		default: { mode: 'list', value: '' },
-		required: true,
-		description: 'The Public Cloud project ID (e.g. 12345678-1234-1234-1234-1234567890ab)',
-		modes: [
-			{
-				displayName: 'From List',
-				name: 'list',
-				type: 'list',
-				typeOptions: { searchListMethod: 'getPublicCloudProjects' },
-			},
-			{
-				displayName: 'By ID',
-				name: 'name',
-				type: 'string',
-				placeholder: '12345678-1234-1234-1234-1234567890ab',
-			},
-		],
-	}
+		{
+			displayName: 'Service Name',
+			name: 'serviceName',
+			type: 'string',
+			default: '',
+			required: true,
+			description: 'The database service name',
+			displayOptions,
+		},
 	];
 }
-
 /**
- * Executes the List Mongodb Clusters operation.
+ * Executes the List MongoDB Clusters operation.
  *
  * HTTP method: GET
- * Endpoint: /publicCloud/project/{projectId}/cloud/database/mongodb
+ * Endpoint: /cloud/project/{serviceName}/database/mongodb
  */
 export async function execute(this: IExecuteFunctions): Promise<INodeExecutionData[]> {
+	const serviceName = this.getNodeParameter('serviceName', 0) as string;
 	const client = new ApiClient(this);
-	const projectId = this.getNodeParameter('publicCloudProjectId', 0, '', {
-		extractValue: true,
-	}) as string;
-
-	const data = (await client.httpGet(`/publicCloud/project/${projectId}/cloud/database/mongodb`)) as unknown[];
-
-	return this.helpers.returnJsonArray(data.map((item) => item as INodeExecutionData));
+	const data = (await client.httpGet(`/cloud/project/${serviceName}/database/mongodb`)) as IDataObject;
+	return this.helpers.returnJsonArray([data]);
 }

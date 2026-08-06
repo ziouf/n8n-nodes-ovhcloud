@@ -13,11 +13,11 @@ jest.mock('../../../../shared/transport/ApiClient', () => {
 
 import { ApiClient } from '../../../../shared/transport/ApiClient';
 
-describe('mongodb nodeDeleteDelete operation', () => {
+describe('nodeDeleteDelete operation', () => {
 	describe('description', () => {
 		it('should return all required parameters', () => {
-			const result = description({'show': {}});
-			expect(result.length).toBeGreaterThanOrEqual(1);
+			const result = description({ show: {} });
+			expect(result.length).toBeGreaterThanOrEqual(2);
 		});
 	});
 
@@ -31,21 +31,24 @@ describe('mongodb nodeDeleteDelete operation', () => {
 		});
 
 		it('should call the correct API endpoint', async () => {
+			const mockData = { id: 'test-123' };
 			const client = new ApiClient(mockExecuteFunctions) as any;
-			client.httpDelete.mockResolvedValue(undefined);
-			mockExecuteFunctions.getNodeParameter.mockReturnValue((param: string): string | undefined => {
-				if (param === 'publicCloudProjectId') return '12345678-1234-1234-1234-1234567890ab';
+			client.httpDelete = jest.fn().mockResolvedValue(mockData);
+
+			mockExecuteFunctions.getNodeParameter.mockImplementation(
+				(param: string): any => {
 				if (param === 'serviceName') return 'test-service';
-				if (param === 'backupId') return 'test-backup-id';
-				if (param === 'userId') return 'test-user-id';
+				if (param === 'clusterId') return 'test-cluster-id';
 				if (param === 'nodeId') return 'test-node-id';
-				if (param === 'subId') return 'test-sub-id';
-				return '';
-			});
+					return '';
+				},
+			);
 
 			const result = await execute.call(mockExecuteFunctions);
-			expect(client.httpDelete).toHaveBeenCalled();
-			expect(result).toEqual([]);
+			expect(client.httpDelete).toHaveBeenCalledWith(
+				'/cloud/project/test-service/database/mongodb/test-cluster-id/node/test-node-id'
+			);
+			expect(result).toMatchObject([mockData]);
 		});
 	});
 });
