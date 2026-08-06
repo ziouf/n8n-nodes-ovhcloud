@@ -3226,6 +3226,147 @@ import {
 	description as regionStorageObjectVersionDeleteDeleteDescription,
 	execute as regionStorageObjectVersionDeleteDeleteExecute,
 } from './region/regionStorageObjectVersionDeleteDelete.operation';
+
+import {
+	description as regionInstanceListGetDescription,
+	execute as regionInstanceListGetExecute,
+} from './region/regionInstanceListGet.operation';
+import {
+	description as regionInstanceGetGetDescription,
+	execute as regionInstanceGetGetExecute,
+} from './region/regionInstanceGetGet.operation';
+import {
+	description as regionInstanceAbortSnapshotPostDescription,
+	execute as regionInstanceAbortSnapshotPostExecute,
+} from './region/regionInstanceAbortSnapshotPost.operation';
+import {
+	description as regionInstanceAssociateFloatingIpPostDescription,
+	execute as regionInstanceAssociateFloatingIpPostExecute,
+} from './region/regionInstanceAssociateFloatingIpPost.operation';
+import {
+	description as regionInstanceAutobackupPostDescription,
+	execute as regionInstanceAutobackupPostExecute,
+} from './region/regionInstanceAutobackupPost.operation';
+import {
+	description as regionInstanceFloatingIpPostDescription,
+	execute as regionInstanceFloatingIpPostExecute,
+} from './region/regionInstanceFloatingIpPost.operation';
+import {
+	description as regionInstanceReinstallPostDescription,
+	execute as regionInstanceReinstallPostExecute,
+} from './region/regionInstanceReinstallPost.operation';
+import {
+	description as regionInstanceSnapshotPostDescription,
+	execute as regionInstanceSnapshotPostExecute,
+} from './region/regionInstanceSnapshotPost.operation';
+import {
+	description as regionKeymanagerCertificateListGetDescription,
+	execute as regionKeymanagerCertificateListGetExecute,
+} from './region/regionKeymanagerCertificateListGet.operation';
+import {
+	description as regionKeymanagerCertificateCreatePostDescription,
+	execute as regionKeymanagerCertificateCreatePostExecute,
+} from './region/regionKeymanagerCertificateCreatePost.operation';
+import {
+	description as regionKeymanagerCertificateDeleteDeleteDescription,
+	execute as regionKeymanagerCertificateDeleteDeleteExecute,
+} from './region/regionKeymanagerCertificateDeleteDelete.operation';
+import {
+	description as regionKeymanagerCertificateGetGetDescription,
+	execute as regionKeymanagerCertificateGetGetExecute,
+} from './region/regionKeymanagerCertificateGetGet.operation';
+import {
+	description as regionKeymanagerSecretListGetDescription,
+	execute as regionKeymanagerSecretListGetExecute,
+} from './region/regionKeymanagerSecretListGet.operation';
+import {
+	description as regionKeymanagerSecretCreatePostDescription,
+	execute as regionKeymanagerSecretCreatePostExecute,
+} from './region/regionKeymanagerSecretCreatePost.operation';
+import {
+	description as regionKeymanagerSecretDeleteDeleteDescription,
+	execute as regionKeymanagerSecretDeleteDeleteExecute,
+} from './region/regionKeymanagerSecretDeleteDelete.operation';
+import {
+	description as regionKeymanagerSecretGetGetDescription,
+	execute as regionKeymanagerSecretGetGetExecute,
+} from './region/regionKeymanagerSecretGetGet.operation';
+import {
+	description as regionNetworkListGetDescription,
+	execute as regionNetworkListGetExecute,
+} from './region/regionNetworkListGet.operation';
+import {
+	description as regionNetworkCreatePostDescription,
+	execute as regionNetworkCreatePostExecute,
+} from './region/regionNetworkCreatePost.operation';
+import {
+	description as regionNetworkDeleteDeleteDescription,
+	execute as regionNetworkDeleteDeleteExecute,
+} from './region/regionNetworkDeleteDelete.operation';
+import {
+	description as regionNetworkGetGetDescription,
+	execute as regionNetworkGetGetExecute,
+} from './region/regionNetworkGetGet.operation';
+import {
+	description as regionNetworkSubnetListGetDescription,
+	execute as regionNetworkSubnetListGetExecute,
+} from './region/regionNetworkSubnetListGet.operation';
+import {
+	description as regionNetworkSubnetCreatePostDescription,
+	execute as regionNetworkSubnetCreatePostExecute,
+} from './region/regionNetworkSubnetCreatePost.operation';
+import {
+	description as regionNetworkSubnetDeleteDeleteDescription,
+	execute as regionNetworkSubnetDeleteDeleteExecute,
+} from './region/regionNetworkSubnetDeleteDelete.operation';
+import {
+	description as regionNetworkSubnetGetGetDescription,
+	execute as regionNetworkSubnetGetGetExecute,
+} from './region/regionNetworkSubnetGetGet.operation';
+import {
+	description as regionNetworkSubnetGatewayPostDescription,
+	execute as regionNetworkSubnetGatewayPostExecute,
+} from './region/regionNetworkSubnetGatewayPost.operation';
+import {
+	description as regionQuotaListGetDescription,
+	execute as regionQuotaListGetExecute,
+} from './region/regionQuotaListGet.operation';
+import {
+	description as regionQuotaAllowedGetDescription,
+	execute as regionQuotaAllowedGetExecute,
+} from './region/regionQuotaAllowedGet.operation';
+import {
+	description as regionQuotaStorageGetDescription,
+	execute as regionQuotaStorageGetExecute,
+} from './region/regionQuotaStorageGet.operation';
+import {
+	description as regionVolumeBackupListGetDescription,
+	execute as regionVolumeBackupListGetExecute,
+} from './region/regionVolumeBackupListGet.operation';
+import {
+	description as regionVolumeBackupCreatePostDescription,
+	execute as regionVolumeBackupCreatePostExecute,
+} from './region/regionVolumeBackupCreatePost.operation';
+import {
+	description as regionVolumeBackupDeleteDeleteDescription,
+	execute as regionVolumeBackupDeleteDeleteExecute,
+} from './region/regionVolumeBackupDeleteDelete.operation';
+import {
+	description as regionVolumeBackupGetGetDescription,
+	execute as regionVolumeBackupGetGetExecute,
+} from './region/regionVolumeBackupGetGet.operation';
+import {
+	description as regionVolumeBackupRestorePostDescription,
+	execute as regionVolumeBackupRestorePostExecute,
+} from './region/regionVolumeBackupRestorePost.operation';
+import {
+	description as regionVolumeBackupVolumePostDescription,
+	execute as regionVolumeBackupVolumePostExecute,
+} from './region/regionVolumeBackupVolumePost.operation';
+import {
+	description as regionVolumeTypeListGetDescription,
+	execute as regionVolumeTypeListGetExecute,
+} from './region/regionVolumeTypeListGet.operation';
 import {
 	description as regionStorageObjectVersionGetGetDescription,
 	execute as regionStorageObjectVersionGetGetExecute,
@@ -3247,253 +3388,129 @@ import {
 	execute as regionStoragePolicyCreatePostExecute,
 } from './region/regionStoragePolicyCreatePost.operation';
 
-import {
-	execute as floatingIpListGetExecute,
-} from './region/floatingip/floatingIpListGet.operation';
+import { execute as floatingIpListGetExecute } from './region/floatingip/floatingIpListGet.operation';
 
-import {
-	execute as floatingIpCreatePostExecute,
-} from './region/floatingip/floatingIpCreatePost.operation';
+import { execute as floatingIpCreatePostExecute } from './region/floatingip/floatingIpCreatePost.operation';
 
-import {
-	execute as floatingIpGetGetExecute,
-} from './region/floatingip/floatingIpGetGet.operation';
+import { execute as floatingIpGetGetExecute } from './region/floatingip/floatingIpGetGet.operation';
 
-import {
-	execute as floatingIpDeleteDeleteExecute,
-} from './region/floatingip/floatingIpDeleteDelete.operation';
+import { execute as floatingIpDeleteDeleteExecute } from './region/floatingip/floatingIpDeleteDelete.operation';
 
-import {
-	execute as floatingIpDetachPostExecute,
-} from './region/floatingip/floatingIpDetachPost.operation';
+import { execute as floatingIpDetachPostExecute } from './region/floatingip/floatingIpDetachPost.operation';
 
-import {
-	execute as gatewayListGetExecute,
-} from './region/gateway/gatewayListGet.operation';
+import { execute as gatewayListGetExecute } from './region/gateway/gatewayListGet.operation';
 
-import {
-	execute as gatewayCreatePostExecute,
-} from './region/gateway/gatewayCreatePost.operation';
+import { execute as gatewayCreatePostExecute } from './region/gateway/gatewayCreatePost.operation';
 
-import {
-	execute as gatewayGetGetExecute,
-} from './region/gateway/gatewayGetGet.operation';
+import { execute as gatewayGetGetExecute } from './region/gateway/gatewayGetGet.operation';
 
-import {
-	execute as gatewayUpdatePutExecute,
-} from './region/gateway/gatewayUpdatePut.operation';
+import { execute as gatewayUpdatePutExecute } from './region/gateway/gatewayUpdatePut.operation';
 
-import {
-	execute as gatewayDeleteDeleteExecute,
-} from './region/gateway/gatewayDeleteDelete.operation';
+import { execute as gatewayDeleteDeleteExecute } from './region/gateway/gatewayDeleteDelete.operation';
 
-import {
-	execute as gatewayExposePostExecute,
-} from './region/gateway/gatewayExposePost.operation';
+import { execute as gatewayExposePostExecute } from './region/gateway/gatewayExposePost.operation';
 
-import {
-	execute as gatewayInterfaceListGetExecute,
-} from './region/gateway/gatewayInterfaceListGet.operation';
+import { execute as gatewayInterfaceListGetExecute } from './region/gateway/gatewayInterfaceListGet.operation';
 
-import {
-	execute as gatewayInterfaceCreatePostExecute,
-} from './region/gateway/gatewayInterfaceCreatePost.operation';
+import { execute as gatewayInterfaceCreatePostExecute } from './region/gateway/gatewayInterfaceCreatePost.operation';
 
-import {
-	execute as gatewayInterfaceGetGetExecute,
-} from './region/gateway/gatewayInterfaceGetGet.operation';
+import { execute as gatewayInterfaceGetGetExecute } from './region/gateway/gatewayInterfaceGetGet.operation';
 
-import {
-	execute as gatewayInterfaceDeleteDeleteExecute,
-} from './region/gateway/gatewayInterfaceDeleteDelete.operation';
+import { execute as gatewayInterfaceDeleteDeleteExecute } from './region/gateway/gatewayInterfaceDeleteDelete.operation';
 
-import {
-	execute as loadbalancingFlavorListGetExecute,
-} from './region/loadbalancing/loadbalancingFlavorListGet.operation';
+import { execute as loadbalancingFlavorListGetExecute } from './region/loadbalancing/loadbalancingFlavorListGet.operation';
 
-import {
-	execute as loadbalancingFlavorGetGetExecute,
-} from './region/loadbalancing/loadbalancingFlavorGetGet.operation';
+import { execute as loadbalancingFlavorGetGetExecute } from './region/loadbalancing/loadbalancingFlavorGetGet.operation';
 
-import {
-	execute as loadbalancingHealthMonitorListGetExecute,
-} from './region/loadbalancing/loadbalancingHealthMonitorListGet.operation';
+import { execute as loadbalancingHealthMonitorListGetExecute } from './region/loadbalancing/loadbalancingHealthMonitorListGet.operation';
 
-import {
-	execute as loadbalancingHealthMonitorCreatePostExecute,
-} from './region/loadbalancing/loadbalancingHealthMonitorCreatePost.operation';
+import { execute as loadbalancingHealthMonitorCreatePostExecute } from './region/loadbalancing/loadbalancingHealthMonitorCreatePost.operation';
 
-import {
-	execute as loadbalancingHealthMonitorGetGetExecute,
-} from './region/loadbalancing/loadbalancingHealthMonitorGetGet.operation';
+import { execute as loadbalancingHealthMonitorGetGetExecute } from './region/loadbalancing/loadbalancingHealthMonitorGetGet.operation';
 
-import {
-	execute as loadbalancingHealthMonitorUpdatePutExecute,
-} from './region/loadbalancing/loadbalancingHealthMonitorUpdatePut.operation';
+import { execute as loadbalancingHealthMonitorUpdatePutExecute } from './region/loadbalancing/loadbalancingHealthMonitorUpdatePut.operation';
 
-import {
-	execute as loadbalancingHealthMonitorDeleteDeleteExecute,
-} from './region/loadbalancing/loadbalancingHealthMonitorDeleteDelete.operation';
+import { execute as loadbalancingHealthMonitorDeleteDeleteExecute } from './region/loadbalancing/loadbalancingHealthMonitorDeleteDelete.operation';
 
-import {
-	execute as loadbalancingL7PolicyListGetExecute,
-} from './region/loadbalancing/loadbalancingL7PolicyListGet.operation';
+import { execute as loadbalancingL7PolicyListGetExecute } from './region/loadbalancing/loadbalancingL7PolicyListGet.operation';
 
-import {
-	execute as loadbalancingL7PolicyCreatePostExecute,
-} from './region/loadbalancing/loadbalancingL7PolicyCreatePost.operation';
+import { execute as loadbalancingL7PolicyCreatePostExecute } from './region/loadbalancing/loadbalancingL7PolicyCreatePost.operation';
 
-import {
-	execute as loadbalancingL7PolicyGetGetExecute,
-} from './region/loadbalancing/loadbalancingL7PolicyGetGet.operation';
+import { execute as loadbalancingL7PolicyGetGetExecute } from './region/loadbalancing/loadbalancingL7PolicyGetGet.operation';
 
-import {
-	execute as loadbalancingL7PolicyUpdatePutExecute,
-} from './region/loadbalancing/loadbalancingL7PolicyUpdatePut.operation';
+import { execute as loadbalancingL7PolicyUpdatePutExecute } from './region/loadbalancing/loadbalancingL7PolicyUpdatePut.operation';
 
-import {
-	execute as loadbalancingL7PolicyDeleteDeleteExecute,
-} from './region/loadbalancing/loadbalancingL7PolicyDeleteDelete.operation';
+import { execute as loadbalancingL7PolicyDeleteDeleteExecute } from './region/loadbalancing/loadbalancingL7PolicyDeleteDelete.operation';
 
-import {
-	execute as loadbalancingL7PolicyL7RuleListGetExecute,
-} from './region/loadbalancing/loadbalancingL7PolicyL7RuleListGet.operation';
+import { execute as loadbalancingL7PolicyL7RuleListGetExecute } from './region/loadbalancing/loadbalancingL7PolicyL7RuleListGet.operation';
 
-import {
-	execute as loadbalancingL7PolicyL7RuleCreatePostExecute,
-} from './region/loadbalancing/loadbalancingL7PolicyL7RuleCreatePost.operation';
+import { execute as loadbalancingL7PolicyL7RuleCreatePostExecute } from './region/loadbalancing/loadbalancingL7PolicyL7RuleCreatePost.operation';
 
-import {
-	execute as loadbalancingL7PolicyL7RuleGetGetExecute,
-} from './region/loadbalancing/loadbalancingL7PolicyL7RuleGetGet.operation';
+import { execute as loadbalancingL7PolicyL7RuleGetGetExecute } from './region/loadbalancing/loadbalancingL7PolicyL7RuleGetGet.operation';
 
-import {
-	execute as loadbalancingL7PolicyL7RuleUpdatePutExecute,
-} from './region/loadbalancing/loadbalancingL7PolicyL7RuleUpdatePut.operation';
+import { execute as loadbalancingL7PolicyL7RuleUpdatePutExecute } from './region/loadbalancing/loadbalancingL7PolicyL7RuleUpdatePut.operation';
 
-import {
-	execute as loadbalancingL7PolicyL7RuleDeleteDeleteExecute,
-} from './region/loadbalancing/loadbalancingL7PolicyL7RuleDeleteDelete.operation';
+import { execute as loadbalancingL7PolicyL7RuleDeleteDeleteExecute } from './region/loadbalancing/loadbalancingL7PolicyL7RuleDeleteDelete.operation';
 
-import {
-	execute as loadbalancingListenerListGetExecute,
-} from './region/loadbalancing/loadbalancingListenerListGet.operation';
+import { execute as loadbalancingListenerListGetExecute } from './region/loadbalancing/loadbalancingListenerListGet.operation';
 
-import {
-	execute as loadbalancingListenerCreatePostExecute,
-} from './region/loadbalancing/loadbalancingListenerCreatePost.operation';
+import { execute as loadbalancingListenerCreatePostExecute } from './region/loadbalancing/loadbalancingListenerCreatePost.operation';
 
-import {
-	execute as loadbalancingListenerGetGetExecute,
-} from './region/loadbalancing/loadbalancingListenerGetGet.operation';
+import { execute as loadbalancingListenerGetGetExecute } from './region/loadbalancing/loadbalancingListenerGetGet.operation';
 
-import {
-	execute as loadbalancingListenerUpdatePutExecute,
-} from './region/loadbalancing/loadbalancingListenerUpdatePut.operation';
+import { execute as loadbalancingListenerUpdatePutExecute } from './region/loadbalancing/loadbalancingListenerUpdatePut.operation';
 
-import {
-	execute as loadbalancingListenerDeleteDeleteExecute,
-} from './region/loadbalancing/loadbalancingListenerDeleteDelete.operation';
+import { execute as loadbalancingListenerDeleteDeleteExecute } from './region/loadbalancing/loadbalancingListenerDeleteDelete.operation';
 
-import {
-	execute as loadbalancingLoadBalancerListGetExecute,
-} from './region/loadbalancing/loadbalancingLoadBalancerListGet.operation';
+import { execute as loadbalancingLoadBalancerListGetExecute } from './region/loadbalancing/loadbalancingLoadBalancerListGet.operation';
 
-import {
-	execute as loadbalancingLoadBalancerCreatePostExecute,
-} from './region/loadbalancing/loadbalancingLoadBalancerCreatePost.operation';
+import { execute as loadbalancingLoadBalancerCreatePostExecute } from './region/loadbalancing/loadbalancingLoadBalancerCreatePost.operation';
 
-import {
-	execute as loadbalancingLoadBalancerGetGetExecute,
-} from './region/loadbalancing/loadbalancingLoadBalancerGetGet.operation';
+import { execute as loadbalancingLoadBalancerGetGetExecute } from './region/loadbalancing/loadbalancingLoadBalancerGetGet.operation';
 
-import {
-	execute as loadbalancingLoadBalancerUpdatePutExecute,
-} from './region/loadbalancing/loadbalancingLoadBalancerUpdatePut.operation';
+import { execute as loadbalancingLoadBalancerUpdatePutExecute } from './region/loadbalancing/loadbalancingLoadBalancerUpdatePut.operation';
 
-import {
-	execute as loadbalancingLoadBalancerDeleteDeleteExecute,
-} from './region/loadbalancing/loadbalancingLoadBalancerDeleteDelete.operation';
+import { execute as loadbalancingLoadBalancerDeleteDeleteExecute } from './region/loadbalancing/loadbalancingLoadBalancerDeleteDelete.operation';
 
-import {
-	execute as loadbalancingLoadBalancerAssociateFloatingIpPostExecute,
-} from './region/loadbalancing/loadbalancingLoadBalancerAssociateFloatingIpPost.operation';
+import { execute as loadbalancingLoadBalancerAssociateFloatingIpPostExecute } from './region/loadbalancing/loadbalancingLoadBalancerAssociateFloatingIpPost.operation';
 
-import {
-	execute as loadbalancingLoadBalancerFloatingIpPostExecute,
-} from './region/loadbalancing/loadbalancingLoadBalancerFloatingIpPost.operation';
+import { execute as loadbalancingLoadBalancerFloatingIpPostExecute } from './region/loadbalancing/loadbalancingLoadBalancerFloatingIpPost.operation';
 
-import {
-	execute as loadbalancingLoadBalancerLogSubscriptionListGetExecute,
-} from './region/loadbalancing/loadbalancingLoadBalancerLogSubscriptionListGet.operation';
+import { execute as loadbalancingLoadBalancerLogSubscriptionListGetExecute } from './region/loadbalancing/loadbalancingLoadBalancerLogSubscriptionListGet.operation';
 
-import {
-	execute as loadbalancingLoadBalancerLogSubscriptionCreatePostExecute,
-} from './region/loadbalancing/loadbalancingLoadBalancerLogSubscriptionCreatePost.operation';
+import { execute as loadbalancingLoadBalancerLogSubscriptionCreatePostExecute } from './region/loadbalancing/loadbalancingLoadBalancerLogSubscriptionCreatePost.operation';
 
-import {
-	execute as loadbalancingLoadBalancerLogSubscriptionGetGetExecute,
-} from './region/loadbalancing/loadbalancingLoadBalancerLogSubscriptionGetGet.operation';
+import { execute as loadbalancingLoadBalancerLogSubscriptionGetGetExecute } from './region/loadbalancing/loadbalancingLoadBalancerLogSubscriptionGetGet.operation';
 
-import {
-	execute as loadbalancingLoadBalancerLogSubscriptionDeleteDeleteExecute,
-} from './region/loadbalancing/loadbalancingLoadBalancerLogSubscriptionDeleteDelete.operation';
+import { execute as loadbalancingLoadBalancerLogSubscriptionDeleteDeleteExecute } from './region/loadbalancing/loadbalancingLoadBalancerLogSubscriptionDeleteDelete.operation';
 
-import {
-	execute as loadbalancingLoadBalancerLogUrlPostExecute,
-} from './region/loadbalancing/loadbalancingLoadBalancerLogUrlPost.operation';
+import { execute as loadbalancingLoadBalancerLogUrlPostExecute } from './region/loadbalancing/loadbalancingLoadBalancerLogUrlPost.operation';
 
-import {
-	execute as loadbalancingLoadBalancerStatsGetExecute,
-} from './region/loadbalancing/loadbalancingLoadBalancerStatsGet.operation';
+import { execute as loadbalancingLoadBalancerStatsGetExecute } from './region/loadbalancing/loadbalancingLoadBalancerStatsGet.operation';
 
-import {
-	execute as loadbalancingLogKindListGetExecute,
-} from './region/loadbalancing/loadbalancingLogKindListGet.operation';
+import { execute as loadbalancingLogKindListGetExecute } from './region/loadbalancing/loadbalancingLogKindListGet.operation';
 
-import {
-	execute as loadbalancingLogKindGetGetExecute,
-} from './region/loadbalancing/loadbalancingLogKindGetGet.operation';
+import { execute as loadbalancingLogKindGetGetExecute } from './region/loadbalancing/loadbalancingLogKindGetGet.operation';
 
-import {
-	execute as loadbalancingPoolListGetExecute,
-} from './region/loadbalancing/loadbalancingPoolListGet.operation';
+import { execute as loadbalancingPoolListGetExecute } from './region/loadbalancing/loadbalancingPoolListGet.operation';
 
-import {
-	execute as loadbalancingPoolCreatePostExecute,
-} from './region/loadbalancing/loadbalancingPoolCreatePost.operation';
+import { execute as loadbalancingPoolCreatePostExecute } from './region/loadbalancing/loadbalancingPoolCreatePost.operation';
 
-import {
-	execute as loadbalancingPoolGetGetExecute,
-} from './region/loadbalancing/loadbalancingPoolGetGet.operation';
+import { execute as loadbalancingPoolGetGetExecute } from './region/loadbalancing/loadbalancingPoolGetGet.operation';
 
-import {
-	execute as loadbalancingPoolUpdatePutExecute,
-} from './region/loadbalancing/loadbalancingPoolUpdatePut.operation';
+import { execute as loadbalancingPoolUpdatePutExecute } from './region/loadbalancing/loadbalancingPoolUpdatePut.operation';
 
-import {
-	execute as loadbalancingPoolDeleteDeleteExecute,
-} from './region/loadbalancing/loadbalancingPoolDeleteDelete.operation';
+import { execute as loadbalancingPoolDeleteDeleteExecute } from './region/loadbalancing/loadbalancingPoolDeleteDelete.operation';
 
-import {
-	execute as loadbalancingPoolMemberListGetExecute,
-} from './region/loadbalancing/loadbalancingPoolMemberListGet.operation';
+import { execute as loadbalancingPoolMemberListGetExecute } from './region/loadbalancing/loadbalancingPoolMemberListGet.operation';
 
-import {
-	execute as loadbalancingPoolMemberCreatePostExecute,
-} from './region/loadbalancing/loadbalancingPoolMemberCreatePost.operation';
+import { execute as loadbalancingPoolMemberCreatePostExecute } from './region/loadbalancing/loadbalancingPoolMemberCreatePost.operation';
 
-import {
-	execute as loadbalancingPoolMemberGetGetExecute,
-} from './region/loadbalancing/loadbalancingPoolMemberGetGet.operation';
+import { execute as loadbalancingPoolMemberGetGetExecute } from './region/loadbalancing/loadbalancingPoolMemberGetGet.operation';
 
-import {
-	execute as loadbalancingPoolMemberUpdatePutExecute,
-} from './region/loadbalancing/loadbalancingPoolMemberUpdatePut.operation';
+import { execute as loadbalancingPoolMemberUpdatePutExecute } from './region/loadbalancing/loadbalancingPoolMemberUpdatePut.operation';
 
-import {
-	execute as loadbalancingPoolMemberDeleteDeleteExecute,
-} from './region/loadbalancing/loadbalancingPoolMemberDeleteDelete.operation';
+import { execute as loadbalancingPoolMemberDeleteDeleteExecute } from './region/loadbalancing/loadbalancingPoolMemberDeleteDelete.operation';
 import {
 	description as regionStoragePresignPostDescription,
 	execute as regionStoragePresignPostExecute,
@@ -7714,254 +7731,254 @@ export function description(displayOptions: IDisplayOptions): INodeProperties[] 
 				value: 'regionStoragePresignPost',
 				action: 'Generate storage presigned URL',
 			},
-				{
-					name: 'floatingIpListGet',
-					value: 'floatingIpListGet',
-				}, 
-				{
-					name: 'floatingIpCreatePost',
-					value: 'floatingIpCreatePost',
-				}, 
-				{
-					name: 'floatingIpGetGet',
-					value: 'floatingIpGetGet',
-				}, 
-				{
-					name: 'floatingIpDeleteDelete',
-					value: 'floatingIpDeleteDelete',
-				}, 
-				{
-					name: 'floatingIpDetachPost',
-					value: 'floatingIpDetachPost',
-				}, 
-				{
-					name: 'gatewayListGet',
-					value: 'gatewayListGet',
-				}, 
-				{
-					name: 'gatewayCreatePost',
-					value: 'gatewayCreatePost',
-				}, 
-				{
-					name: 'gatewayGetGet',
-					value: 'gatewayGetGet',
-				}, 
-				{
-					name: 'gatewayUpdatePut',
-					value: 'gatewayUpdatePut',
-				}, 
-				{
-					name: 'gatewayDeleteDelete',
-					value: 'gatewayDeleteDelete',
-				}, 
-				{
-					name: 'gatewayExposePost',
-					value: 'gatewayExposePost',
-				}, 
-				{
-					name: 'gatewayInterfaceListGet',
-					value: 'gatewayInterfaceListGet',
-				}, 
-				{
-					name: 'gatewayInterfaceCreatePost',
-					value: 'gatewayInterfaceCreatePost',
-				}, 
-				{
-					name: 'gatewayInterfaceGetGet',
-					value: 'gatewayInterfaceGetGet',
-				}, 
-				{
-					name: 'gatewayInterfaceDeleteDelete',
-					value: 'gatewayInterfaceDeleteDelete',
-				}, 
-				{
-					name: 'loadbalancingFlavorListGet',
-					value: 'loadbalancingFlavorListGet',
-				}, 
-				{
-					name: 'loadbalancingFlavorGetGet',
-					value: 'loadbalancingFlavorGetGet',
-				}, 
-				{
-					name: 'loadbalancingHealthMonitorListGet',
-					value: 'loadbalancingHealthMonitorListGet',
-				}, 
-				{
-					name: 'loadbalancingHealthMonitorCreatePost',
-					value: 'loadbalancingHealthMonitorCreatePost',
-				}, 
-				{
-					name: 'loadbalancingHealthMonitorGetGet',
-					value: 'loadbalancingHealthMonitorGetGet',
-				}, 
-				{
-					name: 'loadbalancingHealthMonitorUpdatePut',
-					value: 'loadbalancingHealthMonitorUpdatePut',
-				}, 
-				{
-					name: 'loadbalancingHealthMonitorDeleteDelete',
-					value: 'loadbalancingHealthMonitorDeleteDelete',
-				}, 
-				{
-					name: 'loadbalancingL7PolicyListGet',
-					value: 'loadbalancingL7PolicyListGet',
-				}, 
-				{
-					name: 'loadbalancingL7PolicyCreatePost',
-					value: 'loadbalancingL7PolicyCreatePost',
-				}, 
-				{
-					name: 'loadbalancingL7PolicyGetGet',
-					value: 'loadbalancingL7PolicyGetGet',
-				}, 
-				{
-					name: 'loadbalancingL7PolicyUpdatePut',
-					value: 'loadbalancingL7PolicyUpdatePut',
-				}, 
-				{
-					name: 'loadbalancingL7PolicyDeleteDelete',
-					value: 'loadbalancingL7PolicyDeleteDelete',
-				}, 
-				{
-					name: 'loadbalancingL7PolicyL7RuleListGet',
-					value: 'loadbalancingL7PolicyL7RuleListGet',
-				}, 
-				{
-					name: 'loadbalancingL7PolicyL7RuleCreatePost',
-					value: 'loadbalancingL7PolicyL7RuleCreatePost',
-				}, 
-				{
-					name: 'loadbalancingL7PolicyL7RuleGetGet',
-					value: 'loadbalancingL7PolicyL7RuleGetGet',
-				}, 
-				{
-					name: 'loadbalancingL7PolicyL7RuleUpdatePut',
-					value: 'loadbalancingL7PolicyL7RuleUpdatePut',
-				}, 
-				{
-					name: 'loadbalancingL7PolicyL7RuleDeleteDelete',
-					value: 'loadbalancingL7PolicyL7RuleDeleteDelete',
-				}, 
-				{
-					name: 'loadbalancingListenerListGet',
-					value: 'loadbalancingListenerListGet',
-				}, 
-				{
-					name: 'loadbalancingListenerCreatePost',
-					value: 'loadbalancingListenerCreatePost',
-				}, 
-				{
-					name: 'loadbalancingListenerGetGet',
-					value: 'loadbalancingListenerGetGet',
-				}, 
-				{
-					name: 'loadbalancingListenerUpdatePut',
-					value: 'loadbalancingListenerUpdatePut',
-				}, 
-				{
-					name: 'loadbalancingListenerDeleteDelete',
-					value: 'loadbalancingListenerDeleteDelete',
-				}, 
-				{
-					name: 'loadbalancingLoadBalancerListGet',
-					value: 'loadbalancingLoadBalancerListGet',
-				}, 
-				{
-					name: 'loadbalancingLoadBalancerCreatePost',
-					value: 'loadbalancingLoadBalancerCreatePost',
-				}, 
-				{
-					name: 'loadbalancingLoadBalancerGetGet',
-					value: 'loadbalancingLoadBalancerGetGet',
-				}, 
-				{
-					name: 'loadbalancingLoadBalancerUpdatePut',
-					value: 'loadbalancingLoadBalancerUpdatePut',
-				}, 
-				{
-					name: 'loadbalancingLoadBalancerDeleteDelete',
-					value: 'loadbalancingLoadBalancerDeleteDelete',
-				}, 
-				{
-					name: 'loadbalancingLoadBalancerAssociateFloatingIpPost',
-					value: 'loadbalancingLoadBalancerAssociateFloatingIpPost',
-				}, 
-				{
-					name: 'loadbalancingLoadBalancerFloatingIpPost',
-					value: 'loadbalancingLoadBalancerFloatingIpPost',
-				}, 
-				{
-					name: 'loadbalancingLoadBalancerLogSubscriptionListGet',
-					value: 'loadbalancingLoadBalancerLogSubscriptionListGet',
-				}, 
-				{
-					name: 'loadbalancingLoadBalancerLogSubscriptionCreatePost',
-					value: 'loadbalancingLoadBalancerLogSubscriptionCreatePost',
-				}, 
-				{
-					name: 'loadbalancingLoadBalancerLogSubscriptionGetGet',
-					value: 'loadbalancingLoadBalancerLogSubscriptionGetGet',
-				}, 
-				{
-					name: 'loadbalancingLoadBalancerLogSubscriptionDeleteDelete',
-					value: 'loadbalancingLoadBalancerLogSubscriptionDeleteDelete',
-				}, 
-				{
-					name: 'loadbalancingLoadBalancerLogUrlPost',
-					value: 'loadbalancingLoadBalancerLogUrlPost',
-				}, 
-				{
-					name: 'loadbalancingLoadBalancerStatsGet',
-					value: 'loadbalancingLoadBalancerStatsGet',
-				}, 
-				{
-					name: 'loadbalancingLogKindListGet',
-					value: 'loadbalancingLogKindListGet',
-				}, 
-				{
-					name: 'loadbalancingLogKindGetGet',
-					value: 'loadbalancingLogKindGetGet',
-				}, 
-				{
-					name: 'loadbalancingPoolListGet',
-					value: 'loadbalancingPoolListGet',
-				}, 
-				{
-					name: 'loadbalancingPoolCreatePost',
-					value: 'loadbalancingPoolCreatePost',
-				}, 
-				{
-					name: 'loadbalancingPoolGetGet',
-					value: 'loadbalancingPoolGetGet',
-				}, 
-				{
-					name: 'loadbalancingPoolUpdatePut',
-					value: 'loadbalancingPoolUpdatePut',
-				}, 
-				{
-					name: 'loadbalancingPoolDeleteDelete',
-					value: 'loadbalancingPoolDeleteDelete',
-				}, 
-				{
-					name: 'loadbalancingPoolMemberListGet',
-					value: 'loadbalancingPoolMemberListGet',
-				}, 
-				{
-					name: 'loadbalancingPoolMemberCreatePost',
-					value: 'loadbalancingPoolMemberCreatePost',
-				}, 
-				{
-					name: 'loadbalancingPoolMemberGetGet',
-					value: 'loadbalancingPoolMemberGetGet',
-				}, 
-				{
-					name: 'loadbalancingPoolMemberUpdatePut',
-					value: 'loadbalancingPoolMemberUpdatePut',
-				}, 
-				{
-					name: 'loadbalancingPoolMemberDeleteDelete',
-					value: 'loadbalancingPoolMemberDeleteDelete',
-				}, 
+			{
+				name: 'floatingIpListGet',
+				value: 'floatingIpListGet',
+			},
+			{
+				name: 'floatingIpCreatePost',
+				value: 'floatingIpCreatePost',
+			},
+			{
+				name: 'floatingIpGetGet',
+				value: 'floatingIpGetGet',
+			},
+			{
+				name: 'floatingIpDeleteDelete',
+				value: 'floatingIpDeleteDelete',
+			},
+			{
+				name: 'floatingIpDetachPost',
+				value: 'floatingIpDetachPost',
+			},
+			{
+				name: 'gatewayListGet',
+				value: 'gatewayListGet',
+			},
+			{
+				name: 'gatewayCreatePost',
+				value: 'gatewayCreatePost',
+			},
+			{
+				name: 'gatewayGetGet',
+				value: 'gatewayGetGet',
+			},
+			{
+				name: 'gatewayUpdatePut',
+				value: 'gatewayUpdatePut',
+			},
+			{
+				name: 'gatewayDeleteDelete',
+				value: 'gatewayDeleteDelete',
+			},
+			{
+				name: 'gatewayExposePost',
+				value: 'gatewayExposePost',
+			},
+			{
+				name: 'gatewayInterfaceListGet',
+				value: 'gatewayInterfaceListGet',
+			},
+			{
+				name: 'gatewayInterfaceCreatePost',
+				value: 'gatewayInterfaceCreatePost',
+			},
+			{
+				name: 'gatewayInterfaceGetGet',
+				value: 'gatewayInterfaceGetGet',
+			},
+			{
+				name: 'gatewayInterfaceDeleteDelete',
+				value: 'gatewayInterfaceDeleteDelete',
+			},
+			{
+				name: 'loadbalancingFlavorListGet',
+				value: 'loadbalancingFlavorListGet',
+			},
+			{
+				name: 'loadbalancingFlavorGetGet',
+				value: 'loadbalancingFlavorGetGet',
+			},
+			{
+				name: 'loadbalancingHealthMonitorListGet',
+				value: 'loadbalancingHealthMonitorListGet',
+			},
+			{
+				name: 'loadbalancingHealthMonitorCreatePost',
+				value: 'loadbalancingHealthMonitorCreatePost',
+			},
+			{
+				name: 'loadbalancingHealthMonitorGetGet',
+				value: 'loadbalancingHealthMonitorGetGet',
+			},
+			{
+				name: 'loadbalancingHealthMonitorUpdatePut',
+				value: 'loadbalancingHealthMonitorUpdatePut',
+			},
+			{
+				name: 'loadbalancingHealthMonitorDeleteDelete',
+				value: 'loadbalancingHealthMonitorDeleteDelete',
+			},
+			{
+				name: 'loadbalancingL7PolicyListGet',
+				value: 'loadbalancingL7PolicyListGet',
+			},
+			{
+				name: 'loadbalancingL7PolicyCreatePost',
+				value: 'loadbalancingL7PolicyCreatePost',
+			},
+			{
+				name: 'loadbalancingL7PolicyGetGet',
+				value: 'loadbalancingL7PolicyGetGet',
+			},
+			{
+				name: 'loadbalancingL7PolicyUpdatePut',
+				value: 'loadbalancingL7PolicyUpdatePut',
+			},
+			{
+				name: 'loadbalancingL7PolicyDeleteDelete',
+				value: 'loadbalancingL7PolicyDeleteDelete',
+			},
+			{
+				name: 'loadbalancingL7PolicyL7RuleListGet',
+				value: 'loadbalancingL7PolicyL7RuleListGet',
+			},
+			{
+				name: 'loadbalancingL7PolicyL7RuleCreatePost',
+				value: 'loadbalancingL7PolicyL7RuleCreatePost',
+			},
+			{
+				name: 'loadbalancingL7PolicyL7RuleGetGet',
+				value: 'loadbalancingL7PolicyL7RuleGetGet',
+			},
+			{
+				name: 'loadbalancingL7PolicyL7RuleUpdatePut',
+				value: 'loadbalancingL7PolicyL7RuleUpdatePut',
+			},
+			{
+				name: 'loadbalancingL7PolicyL7RuleDeleteDelete',
+				value: 'loadbalancingL7PolicyL7RuleDeleteDelete',
+			},
+			{
+				name: 'loadbalancingListenerListGet',
+				value: 'loadbalancingListenerListGet',
+			},
+			{
+				name: 'loadbalancingListenerCreatePost',
+				value: 'loadbalancingListenerCreatePost',
+			},
+			{
+				name: 'loadbalancingListenerGetGet',
+				value: 'loadbalancingListenerGetGet',
+			},
+			{
+				name: 'loadbalancingListenerUpdatePut',
+				value: 'loadbalancingListenerUpdatePut',
+			},
+			{
+				name: 'loadbalancingListenerDeleteDelete',
+				value: 'loadbalancingListenerDeleteDelete',
+			},
+			{
+				name: 'loadbalancingLoadBalancerListGet',
+				value: 'loadbalancingLoadBalancerListGet',
+			},
+			{
+				name: 'loadbalancingLoadBalancerCreatePost',
+				value: 'loadbalancingLoadBalancerCreatePost',
+			},
+			{
+				name: 'loadbalancingLoadBalancerGetGet',
+				value: 'loadbalancingLoadBalancerGetGet',
+			},
+			{
+				name: 'loadbalancingLoadBalancerUpdatePut',
+				value: 'loadbalancingLoadBalancerUpdatePut',
+			},
+			{
+				name: 'loadbalancingLoadBalancerDeleteDelete',
+				value: 'loadbalancingLoadBalancerDeleteDelete',
+			},
+			{
+				name: 'loadbalancingLoadBalancerAssociateFloatingIpPost',
+				value: 'loadbalancingLoadBalancerAssociateFloatingIpPost',
+			},
+			{
+				name: 'loadbalancingLoadBalancerFloatingIpPost',
+				value: 'loadbalancingLoadBalancerFloatingIpPost',
+			},
+			{
+				name: 'loadbalancingLoadBalancerLogSubscriptionListGet',
+				value: 'loadbalancingLoadBalancerLogSubscriptionListGet',
+			},
+			{
+				name: 'loadbalancingLoadBalancerLogSubscriptionCreatePost',
+				value: 'loadbalancingLoadBalancerLogSubscriptionCreatePost',
+			},
+			{
+				name: 'loadbalancingLoadBalancerLogSubscriptionGetGet',
+				value: 'loadbalancingLoadBalancerLogSubscriptionGetGet',
+			},
+			{
+				name: 'loadbalancingLoadBalancerLogSubscriptionDeleteDelete',
+				value: 'loadbalancingLoadBalancerLogSubscriptionDeleteDelete',
+			},
+			{
+				name: 'loadbalancingLoadBalancerLogUrlPost',
+				value: 'loadbalancingLoadBalancerLogUrlPost',
+			},
+			{
+				name: 'loadbalancingLoadBalancerStatsGet',
+				value: 'loadbalancingLoadBalancerStatsGet',
+			},
+			{
+				name: 'loadbalancingLogKindListGet',
+				value: 'loadbalancingLogKindListGet',
+			},
+			{
+				name: 'loadbalancingLogKindGetGet',
+				value: 'loadbalancingLogKindGetGet',
+			},
+			{
+				name: 'loadbalancingPoolListGet',
+				value: 'loadbalancingPoolListGet',
+			},
+			{
+				name: 'loadbalancingPoolCreatePost',
+				value: 'loadbalancingPoolCreatePost',
+			},
+			{
+				name: 'loadbalancingPoolGetGet',
+				value: 'loadbalancingPoolGetGet',
+			},
+			{
+				name: 'loadbalancingPoolUpdatePut',
+				value: 'loadbalancingPoolUpdatePut',
+			},
+			{
+				name: 'loadbalancingPoolDeleteDelete',
+				value: 'loadbalancingPoolDeleteDelete',
+			},
+			{
+				name: 'loadbalancingPoolMemberListGet',
+				value: 'loadbalancingPoolMemberListGet',
+			},
+			{
+				name: 'loadbalancingPoolMemberCreatePost',
+				value: 'loadbalancingPoolMemberCreatePost',
+			},
+			{
+				name: 'loadbalancingPoolMemberGetGet',
+				value: 'loadbalancingPoolMemberGetGet',
+			},
+			{
+				name: 'loadbalancingPoolMemberUpdatePut',
+				value: 'loadbalancingPoolMemberUpdatePut',
+			},
+			{
+				name: 'loadbalancingPoolMemberDeleteDelete',
+				value: 'loadbalancingPoolMemberDeleteDelete',
+			},
 			{
 				name: 'userCreatePost',
 				value: 'userCreatePost',
@@ -12902,6 +12919,146 @@ export function description(displayOptions: IDisplayOptions): INodeProperties[] 
 		}) as INodeProperties[]),
 	);
 	properties.push(
+		...(regionInstanceListGetDescription({
+			...displayOptions,
+			show: { publicCloudOperation: ['regionInstanceListGet'] },
+		}) as INodeProperties[]),
+		...(regionInstanceGetGetDescription({
+			...displayOptions,
+			show: { publicCloudOperation: ['regionInstanceGetGet'] },
+		}) as INodeProperties[]),
+		...(regionInstanceAbortSnapshotPostDescription({
+			...displayOptions,
+			show: { publicCloudOperation: ['regionInstanceAbortSnapshotPost'] },
+		}) as INodeProperties[]),
+		...(regionInstanceAssociateFloatingIpPostDescription({
+			...displayOptions,
+			show: { publicCloudOperation: ['regionInstanceAssociateFloatingIpPost'] },
+		}) as INodeProperties[]),
+		...(regionInstanceAutobackupPostDescription({
+			...displayOptions,
+			show: { publicCloudOperation: ['regionInstanceAutobackupPost'] },
+		}) as INodeProperties[]),
+		...(regionInstanceFloatingIpPostDescription({
+			...displayOptions,
+			show: { publicCloudOperation: ['regionInstanceFloatingIpPost'] },
+		}) as INodeProperties[]),
+		...(regionInstanceReinstallPostDescription({
+			...displayOptions,
+			show: { publicCloudOperation: ['regionInstanceReinstallPost'] },
+		}) as INodeProperties[]),
+		...(regionInstanceSnapshotPostDescription({
+			...displayOptions,
+			show: { publicCloudOperation: ['regionInstanceSnapshotPost'] },
+		}) as INodeProperties[]),
+		...(regionKeymanagerCertificateListGetDescription({
+			...displayOptions,
+			show: { publicCloudOperation: ['regionKeymanagerCertificateListGet'] },
+		}) as INodeProperties[]),
+		...(regionKeymanagerCertificateCreatePostDescription({
+			...displayOptions,
+			show: { publicCloudOperation: ['regionKeymanagerCertificateCreatePost'] },
+		}) as INodeProperties[]),
+		...(regionKeymanagerCertificateDeleteDeleteDescription({
+			...displayOptions,
+			show: { publicCloudOperation: ['regionKeymanagerCertificateDeleteDelete'] },
+		}) as INodeProperties[]),
+		...(regionKeymanagerCertificateGetGetDescription({
+			...displayOptions,
+			show: { publicCloudOperation: ['regionKeymanagerCertificateGetGet'] },
+		}) as INodeProperties[]),
+		...(regionKeymanagerSecretListGetDescription({
+			...displayOptions,
+			show: { publicCloudOperation: ['regionKeymanagerSecretListGet'] },
+		}) as INodeProperties[]),
+		...(regionKeymanagerSecretCreatePostDescription({
+			...displayOptions,
+			show: { publicCloudOperation: ['regionKeymanagerSecretCreatePost'] },
+		}) as INodeProperties[]),
+		...(regionKeymanagerSecretDeleteDeleteDescription({
+			...displayOptions,
+			show: { publicCloudOperation: ['regionKeymanagerSecretDeleteDelete'] },
+		}) as INodeProperties[]),
+		...(regionKeymanagerSecretGetGetDescription({
+			...displayOptions,
+			show: { publicCloudOperation: ['regionKeymanagerSecretGetGet'] },
+		}) as INodeProperties[]),
+		...(regionNetworkListGetDescription({
+			...displayOptions,
+			show: { publicCloudOperation: ['regionNetworkListGet'] },
+		}) as INodeProperties[]),
+		...(regionNetworkCreatePostDescription({
+			...displayOptions,
+			show: { publicCloudOperation: ['regionNetworkCreatePost'] },
+		}) as INodeProperties[]),
+		...(regionNetworkDeleteDeleteDescription({
+			...displayOptions,
+			show: { publicCloudOperation: ['regionNetworkDeleteDelete'] },
+		}) as INodeProperties[]),
+		...(regionNetworkGetGetDescription({
+			...displayOptions,
+			show: { publicCloudOperation: ['regionNetworkGetGet'] },
+		}) as INodeProperties[]),
+		...(regionNetworkSubnetListGetDescription({
+			...displayOptions,
+			show: { publicCloudOperation: ['regionNetworkSubnetListGet'] },
+		}) as INodeProperties[]),
+		...(regionNetworkSubnetCreatePostDescription({
+			...displayOptions,
+			show: { publicCloudOperation: ['regionNetworkSubnetCreatePost'] },
+		}) as INodeProperties[]),
+		...(regionNetworkSubnetDeleteDeleteDescription({
+			...displayOptions,
+			show: { publicCloudOperation: ['regionNetworkSubnetDeleteDelete'] },
+		}) as INodeProperties[]),
+		...(regionNetworkSubnetGetGetDescription({
+			...displayOptions,
+			show: { publicCloudOperation: ['regionNetworkSubnetGetGet'] },
+		}) as INodeProperties[]),
+		...(regionNetworkSubnetGatewayPostDescription({
+			...displayOptions,
+			show: { publicCloudOperation: ['regionNetworkSubnetGatewayPost'] },
+		}) as INodeProperties[]),
+		...(regionQuotaListGetDescription({
+			...displayOptions,
+			show: { publicCloudOperation: ['regionQuotaListGet'] },
+		}) as INodeProperties[]),
+		...(regionQuotaAllowedGetDescription({
+			...displayOptions,
+			show: { publicCloudOperation: ['regionQuotaAllowedGet'] },
+		}) as INodeProperties[]),
+		...(regionQuotaStorageGetDescription({
+			...displayOptions,
+			show: { publicCloudOperation: ['regionQuotaStorageGet'] },
+		}) as INodeProperties[]),
+		...(regionVolumeBackupListGetDescription({
+			...displayOptions,
+			show: { publicCloudOperation: ['regionVolumeBackupListGet'] },
+		}) as INodeProperties[]),
+		...(regionVolumeBackupCreatePostDescription({
+			...displayOptions,
+			show: { publicCloudOperation: ['regionVolumeBackupCreatePost'] },
+		}) as INodeProperties[]),
+		...(regionVolumeBackupDeleteDeleteDescription({
+			...displayOptions,
+			show: { publicCloudOperation: ['regionVolumeBackupDeleteDelete'] },
+		}) as INodeProperties[]),
+		...(regionVolumeBackupGetGetDescription({
+			...displayOptions,
+			show: { publicCloudOperation: ['regionVolumeBackupGetGet'] },
+		}) as INodeProperties[]),
+		...(regionVolumeBackupRestorePostDescription({
+			...displayOptions,
+			show: { publicCloudOperation: ['regionVolumeBackupRestorePost'] },
+		}) as INodeProperties[]),
+		...(regionVolumeBackupVolumePostDescription({
+			...displayOptions,
+			show: { publicCloudOperation: ['regionVolumeBackupVolumePost'] },
+		}) as INodeProperties[]),
+		...(regionVolumeTypeListGetDescription({
+			...displayOptions,
+			show: { publicCloudOperation: ['regionVolumeTypeListGet'] },
+		}) as INodeProperties[]),
 		...(userDeleteUserRoleDeleteDescription({
 			...displayOptions,
 			show: { publicCloudOperation: ['userDeleteUserRoleDelete'] },
@@ -15210,6 +15367,78 @@ export async function execute(
 			return regionStorageObjectVersionListGetExecute.call(this);
 		case 'regionStorageObjectVersionDeleteDelete':
 			return regionStorageObjectVersionDeleteDeleteExecute.call(this);
+
+		case 'regionInstanceListGet':
+			return regionInstanceListGetExecute.call(this);
+		case 'regionInstanceGetGet':
+			return regionInstanceGetGetExecute.call(this);
+		case 'regionInstanceAbortSnapshotPost':
+			return regionInstanceAbortSnapshotPostExecute.call(this);
+		case 'regionInstanceAssociateFloatingIpPost':
+			return regionInstanceAssociateFloatingIpPostExecute.call(this);
+		case 'regionInstanceAutobackupPost':
+			return regionInstanceAutobackupPostExecute.call(this);
+		case 'regionInstanceFloatingIpPost':
+			return regionInstanceFloatingIpPostExecute.call(this);
+		case 'regionInstanceReinstallPost':
+			return regionInstanceReinstallPostExecute.call(this);
+		case 'regionInstanceSnapshotPost':
+			return regionInstanceSnapshotPostExecute.call(this);
+		case 'regionKeymanagerCertificateListGet':
+			return regionKeymanagerCertificateListGetExecute.call(this);
+		case 'regionKeymanagerCertificateCreatePost':
+			return regionKeymanagerCertificateCreatePostExecute.call(this);
+		case 'regionKeymanagerCertificateDeleteDelete':
+			return regionKeymanagerCertificateDeleteDeleteExecute.call(this);
+		case 'regionKeymanagerCertificateGetGet':
+			return regionKeymanagerCertificateGetGetExecute.call(this);
+		case 'regionKeymanagerSecretListGet':
+			return regionKeymanagerSecretListGetExecute.call(this);
+		case 'regionKeymanagerSecretCreatePost':
+			return regionKeymanagerSecretCreatePostExecute.call(this);
+		case 'regionKeymanagerSecretDeleteDelete':
+			return regionKeymanagerSecretDeleteDeleteExecute.call(this);
+		case 'regionKeymanagerSecretGetGet':
+			return regionKeymanagerSecretGetGetExecute.call(this);
+		case 'regionNetworkListGet':
+			return regionNetworkListGetExecute.call(this);
+		case 'regionNetworkCreatePost':
+			return regionNetworkCreatePostExecute.call(this);
+		case 'regionNetworkDeleteDelete':
+			return regionNetworkDeleteDeleteExecute.call(this);
+		case 'regionNetworkGetGet':
+			return regionNetworkGetGetExecute.call(this);
+		case 'regionNetworkSubnetListGet':
+			return regionNetworkSubnetListGetExecute.call(this);
+		case 'regionNetworkSubnetCreatePost':
+			return regionNetworkSubnetCreatePostExecute.call(this);
+		case 'regionNetworkSubnetDeleteDelete':
+			return regionNetworkSubnetDeleteDeleteExecute.call(this);
+		case 'regionNetworkSubnetGetGet':
+			return regionNetworkSubnetGetGetExecute.call(this);
+		case 'regionNetworkSubnetGatewayPost':
+			return regionNetworkSubnetGatewayPostExecute.call(this);
+		case 'regionQuotaListGet':
+			return regionQuotaListGetExecute.call(this);
+		case 'regionQuotaAllowedGet':
+			return regionQuotaAllowedGetExecute.call(this);
+		case 'regionQuotaStorageGet':
+			return regionQuotaStorageGetExecute.call(this);
+		case 'regionVolumeBackupListGet':
+			return regionVolumeBackupListGetExecute.call(this);
+		case 'regionVolumeBackupCreatePost':
+			return regionVolumeBackupCreatePostExecute.call(this);
+		case 'regionVolumeBackupDeleteDelete':
+			return regionVolumeBackupDeleteDeleteExecute.call(this);
+		case 'regionVolumeBackupGetGet':
+			return regionVolumeBackupGetGetExecute.call(this);
+		case 'regionVolumeBackupRestorePost':
+			return regionVolumeBackupRestorePostExecute.call(this);
+		case 'regionVolumeBackupVolumePost':
+			return regionVolumeBackupVolumePostExecute.call(this);
+		case 'regionVolumeTypeListGet':
+			return regionVolumeTypeListGetExecute.call(this);
+			return regionStorageObjectVersionDeleteDeleteExecute.call(this);
 		case 'regionStorageObjectVersionGetGet':
 			return regionStorageObjectVersionGetGetExecute.call(this);
 		case 'regionStorageObjectVersionUpdatePut':
@@ -15346,7 +15575,6 @@ export async function execute(
 			return loadbalancingPoolMemberUpdatePutExecute.call(this);
 		case 'loadbalancingPoolMemberDeleteDelete':
 			return loadbalancingPoolMemberDeleteDeleteExecute.call(this);
-
 
 		case 'userCreatePost':
 			return userCreatePostExecute.call(this);
