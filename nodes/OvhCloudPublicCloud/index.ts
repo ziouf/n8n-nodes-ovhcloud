@@ -4005,6 +4005,120 @@ import {
 	execute as vrackListGetExecute,
 } from './vrack/listGet.operation';
 
+// IP failover operations
+import {
+	description as ipFailoverListGetDescription,
+	execute as ipFailoverListGetExecute,
+} from './ip/failoverListGet.operation';
+import {
+	description as ipFailoverGetGetDescription,
+	execute as ipFailoverGetGetExecute,
+} from './ip/failoverGetGet.operation';
+import {
+	description as ipFailoverAttachPostDescription,
+	execute as ipFailoverAttachPostExecute,
+} from './ip/failoverAttachPost.operation';
+
+// Loadbalancer configuration operations
+import {
+	description as loadbalancerConfigurationListGetDescription,
+	execute as loadbalancerConfigurationListGetExecute,
+} from './loadbalancer/configurationListGet.operation';
+import {
+	description as loadbalancerConfigurationCreatePostDescription,
+	execute as loadbalancerConfigurationCreatePostExecute,
+} from './loadbalancer/configurationCreatePost.operation';
+import {
+	description as loadbalancerConfigurationDeleteDeleteDescription,
+	execute as loadbalancerConfigurationDeleteDeleteExecute,
+} from './loadbalancer/configurationDeleteDelete.operation';
+import {
+	description as loadbalancerConfigurationGetGetDescription,
+	execute as loadbalancerConfigurationGetGetExecute,
+} from './loadbalancer/configurationGetGet.operation';
+import {
+	description as loadbalancerConfigurationApplyPostDescription,
+	execute as loadbalancerConfigurationApplyPostExecute,
+} from './loadbalancer/configurationApplyPost.operation';
+
+// Role operations
+import {
+	description as roleCreatePostDescription,
+	execute as roleCreatePostExecute,
+} from './role/createPost.operation';
+
+// ServiceInfos operations
+import {
+	description as serviceInfosUpdatePutDescription,
+	execute as serviceInfosUpdatePutExecute,
+} from './serviceInfos/updatePut.operation';
+
+// Storage operations
+import {
+	description as storageAccessPostDescription,
+	execute as storageAccessPostExecute,
+} from './storage/accessPost.operation';
+import {
+	description as storageQuotaGetDescription,
+	execute as storageQuotaGetExecute,
+} from './storage/quotaGet.operation';
+import {
+	description as storageCorsPostDescription,
+	execute as storageCorsPostExecute,
+} from './storage/corsPost.operation';
+import {
+	description as storageCorsDeleteDeleteDescription,
+	execute as storageCorsDeleteDeleteExecute,
+} from './storage/corsDeleteDelete.operation';
+import {
+	description as storagePublicUrlPostDescription,
+	execute as storagePublicUrlPostExecute,
+} from './storage/publicUrlPost.operation';
+import {
+	description as storageStaticPostDescription,
+	execute as storageStaticPostExecute,
+} from './storage/staticPost.operation';
+import {
+	description as storageUserPostDescription,
+	execute as storageUserPostExecute,
+} from './storage/userPost.operation';
+
+// Volume operations
+import {
+	description as volumeSnapshotListGetDescription,
+	execute as volumeSnapshotListGetExecute,
+} from './volume/snapshotListGet.operation';
+import {
+	description as volumeSnapshotGetGetDescription,
+	execute as volumeSnapshotGetGetExecute,
+} from './volume/snapshotGetGet.operation';
+import {
+	description as volumeSnapshotDeleteDeleteDescription,
+	execute as volumeSnapshotDeleteDeleteExecute,
+} from './volume/snapshotDeleteDelete.operation';
+import {
+	description as volumeAttachPostDescription,
+	execute as volumeAttachPostExecute,
+} from './volume/attachPost.operation';
+import {
+	description as volumeDetachPostDescription,
+	execute as volumeDetachPostExecute,
+} from './volume/detachPost.operation';
+import {
+	description as volumeSnapshotCreatePostDescription,
+	execute as volumeSnapshotCreatePostExecute,
+} from './volume/snapshotCreatePost.operation';
+import {
+	description as volumeUpsizePostDescription,
+	execute as volumeUpsizePostExecute,
+} from './volume/upsizePost.operation';
+
+// Vrack operations
+import {
+	description as vrackCreatePostDescription,
+	execute as vrackCreatePostExecute,
+} from './vrack/createPost.operation';
+
 export function description(displayOptions: IDisplayOptions): INodeProperties[] {
 	const properties: INodeProperties[] = [];
 
@@ -8620,6 +8734,131 @@ export function description(displayOptions: IDisplayOptions): INodeProperties[] 
 				name: 'vrackListGet',
 				value: 'vrackListGet',
 				action: 'List vRacks',
+			},
+			{
+				name: 'Attach vRack',
+				value: 'vrackCreatePost',
+				action: 'Order and attach a new vRack to your project',
+			},
+			{
+				name: 'List Failover IPs',
+				value: 'ipFailoverListGet',
+				action: 'List failover IPs in your project',
+			},
+			{
+				name: 'Get Failover IP',
+				value: 'ipFailoverGetGet',
+				action: 'Get details of a failover IP',
+			},
+			{
+				name: 'Attach Failover IP',
+				value: 'ipFailoverAttachPost',
+				action: 'Attach a failover IP to an instance',
+			},
+			{
+				name: 'List LB Configurations',
+				value: 'loadbalancerConfigurationListGet',
+				action: 'List load balancer configuration versions',
+			},
+			{
+				name: 'Create LB Configuration',
+				value: 'loadbalancerConfigurationCreatePost',
+				action: 'Create a load balancer configuration',
+			},
+			{
+				name: 'Get LB Configuration',
+				value: 'loadbalancerConfigurationGetGet',
+				action: 'Get a load balancer configuration version',
+			},
+			{
+				name: 'Delete LB Configuration',
+				value: 'loadbalancerConfigurationDeleteDelete',
+				action: 'Delete a load balancer configuration version',
+			},
+			{
+				name: 'Apply LB Configuration',
+				value: 'loadbalancerConfigurationApplyPost',
+				action: 'Apply a load balancer configuration',
+			},
+			{
+				name: 'Assign Role',
+				value: 'roleCreatePost',
+				action: 'Assign a role to a user in your project',
+			},
+			{
+				name: 'Update Service Info',
+				value: 'serviceInfosUpdatePut',
+				action: 'Update service information (e.g. renew mode)',
+			},
+			{
+				name: 'Get Storage Access',
+				value: 'storageAccessPost',
+				action: 'Get SWIFT storage API access credentials',
+			},
+			{
+				name: 'Get Storage Quota',
+				value: 'storageQuotaGet',
+				action: 'List storage quotas for your project',
+			},
+			{
+				name: 'Add CORS',
+				value: 'storageCorsPost',
+				action: 'Add CORS support to a SWIFT container',
+			},
+			{
+				name: 'Delete CORS',
+				value: 'storageCorsDeleteDelete',
+				action: 'Delete CORS support from a SWIFT container',
+			},
+			{
+				name: 'Get Public URL',
+				value: 'storagePublicUrlPost',
+				action: 'Get a temporary public URL for a SWIFT object',
+			},
+			{
+				name: 'Deploy Static Website',
+				value: 'storageStaticPost',
+				action: 'Deploy a SWIFT container as a static website',
+			},
+			{
+				name: 'Create OpenStack User',
+				value: 'storageUserPost',
+				action: 'Create an OpenStack user for a SWIFT container',
+			},
+			{
+				name: 'List Volume Snapshots',
+				value: 'volumeSnapshotListGet',
+				action: 'List volume snapshots in your project',
+			},
+			{
+				name: 'Get Volume Snapshot',
+				value: 'volumeSnapshotGetGet',
+				action: 'Get details of a volume snapshot',
+			},
+			{
+				name: 'Delete Volume Snapshot',
+				value: 'volumeSnapshotDeleteDelete',
+				action: 'Delete a volume snapshot',
+			},
+			{
+				name: 'Attach Volume',
+				value: 'volumeAttachPost',
+				action: 'Attach a volume to an instance',
+			},
+			{
+				name: 'Detach Volume',
+				value: 'volumeDetachPost',
+				action: 'Detach a volume from an instance',
+			},
+			{
+				name: 'Create Volume Snapshot',
+				value: 'volumeSnapshotCreatePost',
+				action: 'Create a snapshot from a volume',
+			},
+			{
+				name: 'Upsize Volume',
+				value: 'volumeUpsizePost',
+				action: 'Extend a volume size',
 			},
 		],
 		default: 'projectListGet',
@@ -13799,6 +14038,156 @@ export function description(displayOptions: IDisplayOptions): INodeProperties[] 
 			show: { publicCloudOperation: ['vrackListGet'] },
 		}) as INodeProperties[]),
 	);
+	properties.push(
+		...(vrackCreatePostDescription({
+			...displayOptions,
+			show: { publicCloudOperation: ['vrackCreatePost'] },
+		}) as INodeProperties[]),
+	);
+	properties.push(
+		...(ipFailoverListGetDescription({
+			...displayOptions,
+			show: { publicCloudOperation: ['ipFailoverListGet'] },
+		}) as INodeProperties[]),
+	);
+	properties.push(
+		...(ipFailoverGetGetDescription({
+			...displayOptions,
+			show: { publicCloudOperation: ['ipFailoverGetGet'] },
+		}) as INodeProperties[]),
+	);
+	properties.push(
+		...(ipFailoverAttachPostDescription({
+			...displayOptions,
+			show: { publicCloudOperation: ['ipFailoverAttachPost'] },
+		}) as INodeProperties[]),
+	);
+	properties.push(
+		...(loadbalancerConfigurationListGetDescription({
+			...displayOptions,
+			show: { publicCloudOperation: ['loadbalancerConfigurationListGet'] },
+		}) as INodeProperties[]),
+	);
+	properties.push(
+		...(loadbalancerConfigurationCreatePostDescription({
+			...displayOptions,
+			show: { publicCloudOperation: ['loadbalancerConfigurationCreatePost'] },
+		}) as INodeProperties[]),
+	);
+	properties.push(
+		...(loadbalancerConfigurationGetGetDescription({
+			...displayOptions,
+			show: { publicCloudOperation: ['loadbalancerConfigurationGetGet'] },
+		}) as INodeProperties[]),
+	);
+	properties.push(
+		...(loadbalancerConfigurationDeleteDeleteDescription({
+			...displayOptions,
+			show: { publicCloudOperation: ['loadbalancerConfigurationDeleteDelete'] },
+		}) as INodeProperties[]),
+	);
+	properties.push(
+		...(loadbalancerConfigurationApplyPostDescription({
+			...displayOptions,
+			show: { publicCloudOperation: ['loadbalancerConfigurationApplyPost'] },
+		}) as INodeProperties[]),
+	);
+	properties.push(
+		...(roleCreatePostDescription({
+			...displayOptions,
+			show: { publicCloudOperation: ['roleCreatePost'] },
+		}) as INodeProperties[]),
+	);
+	properties.push(
+		...(serviceInfosUpdatePutDescription({
+			...displayOptions,
+			show: { publicCloudOperation: ['serviceInfosUpdatePut'] },
+		}) as INodeProperties[]),
+	);
+	properties.push(
+		...(storageAccessPostDescription({
+			...displayOptions,
+			show: { publicCloudOperation: ['storageAccessPost'] },
+		}) as INodeProperties[]),
+	);
+	properties.push(
+		...(storageQuotaGetDescription({
+			...displayOptions,
+			show: { publicCloudOperation: ['storageQuotaGet'] },
+		}) as INodeProperties[]),
+	);
+	properties.push(
+		...(storageCorsPostDescription({
+			...displayOptions,
+			show: { publicCloudOperation: ['storageCorsPost'] },
+		}) as INodeProperties[]),
+	);
+	properties.push(
+		...(storageCorsDeleteDeleteDescription({
+			...displayOptions,
+			show: { publicCloudOperation: ['storageCorsDeleteDelete'] },
+		}) as INodeProperties[]),
+	);
+	properties.push(
+		...(storagePublicUrlPostDescription({
+			...displayOptions,
+			show: { publicCloudOperation: ['storagePublicUrlPost'] },
+		}) as INodeProperties[]),
+	);
+	properties.push(
+		...(storageStaticPostDescription({
+			...displayOptions,
+			show: { publicCloudOperation: ['storageStaticPost'] },
+		}) as INodeProperties[]),
+	);
+	properties.push(
+		...(storageUserPostDescription({
+			...displayOptions,
+			show: { publicCloudOperation: ['storageUserPost'] },
+		}) as INodeProperties[]),
+	);
+	properties.push(
+		...(volumeSnapshotListGetDescription({
+			...displayOptions,
+			show: { publicCloudOperation: ['volumeSnapshotListGet'] },
+		}) as INodeProperties[]),
+	);
+	properties.push(
+		...(volumeSnapshotGetGetDescription({
+			...displayOptions,
+			show: { publicCloudOperation: ['volumeSnapshotGetGet'] },
+		}) as INodeProperties[]),
+	);
+	properties.push(
+		...(volumeSnapshotDeleteDeleteDescription({
+			...displayOptions,
+			show: { publicCloudOperation: ['volumeSnapshotDeleteDelete'] },
+		}) as INodeProperties[]),
+	);
+	properties.push(
+		...(volumeAttachPostDescription({
+			...displayOptions,
+			show: { publicCloudOperation: ['volumeAttachPost'] },
+		}) as INodeProperties[]),
+	);
+	properties.push(
+		...(volumeDetachPostDescription({
+			...displayOptions,
+			show: { publicCloudOperation: ['volumeDetachPost'] },
+		}) as INodeProperties[]),
+	);
+	properties.push(
+		...(volumeSnapshotCreatePostDescription({
+			...displayOptions,
+			show: { publicCloudOperation: ['volumeSnapshotCreatePost'] },
+		}) as INodeProperties[]),
+	);
+	properties.push(
+		...(volumeUpsizePostDescription({
+			...displayOptions,
+			show: { publicCloudOperation: ['volumeUpsizePost'] },
+		}) as INodeProperties[]),
+	);
 
 	// v2 operation descriptions
 	properties.push(
@@ -15873,6 +16262,56 @@ export async function execute(
 			return usageListHistoryGetExecute.call(this);
 		case 'vrackListGet':
 			return vrackListGetExecute.call(this);
+		case 'vrackCreatePost':
+			return vrackCreatePostExecute.call(this);
+		case 'ipFailoverListGet':
+			return ipFailoverListGetExecute.call(this);
+		case 'ipFailoverGetGet':
+			return ipFailoverGetGetExecute.call(this);
+		case 'ipFailoverAttachPost':
+			return ipFailoverAttachPostExecute.call(this);
+		case 'loadbalancerConfigurationListGet':
+			return loadbalancerConfigurationListGetExecute.call(this);
+		case 'loadbalancerConfigurationCreatePost':
+			return loadbalancerConfigurationCreatePostExecute.call(this);
+		case 'loadbalancerConfigurationGetGet':
+			return loadbalancerConfigurationGetGetExecute.call(this);
+		case 'loadbalancerConfigurationDeleteDelete':
+			return loadbalancerConfigurationDeleteDeleteExecute.call(this);
+		case 'loadbalancerConfigurationApplyPost':
+			return loadbalancerConfigurationApplyPostExecute.call(this);
+		case 'roleCreatePost':
+			return roleCreatePostExecute.call(this);
+		case 'serviceInfosUpdatePut':
+			return serviceInfosUpdatePutExecute.call(this);
+		case 'storageAccessPost':
+			return storageAccessPostExecute.call(this);
+		case 'storageQuotaGet':
+			return storageQuotaGetExecute.call(this);
+		case 'storageCorsPost':
+			return storageCorsPostExecute.call(this);
+		case 'storageCorsDeleteDelete':
+			return storageCorsDeleteDeleteExecute.call(this);
+		case 'storagePublicUrlPost':
+			return storagePublicUrlPostExecute.call(this);
+		case 'storageStaticPost':
+			return storageStaticPostExecute.call(this);
+		case 'storageUserPost':
+			return storageUserPostExecute.call(this);
+		case 'volumeSnapshotListGet':
+			return volumeSnapshotListGetExecute.call(this);
+		case 'volumeSnapshotGetGet':
+			return volumeSnapshotGetGetExecute.call(this);
+		case 'volumeSnapshotDeleteDelete':
+			return volumeSnapshotDeleteDeleteExecute.call(this);
+		case 'volumeAttachPost':
+			return volumeAttachPostExecute.call(this);
+		case 'volumeDetachPost':
+			return volumeDetachPostExecute.call(this);
+		case 'volumeSnapshotCreatePost':
+			return volumeSnapshotCreatePostExecute.call(this);
+		case 'volumeUpsizePost':
+			return volumeUpsizePostExecute.call(this);
 
 		// v2 cases
 		case 'listProjectsV2':

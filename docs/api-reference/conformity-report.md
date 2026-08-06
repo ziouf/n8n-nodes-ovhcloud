@@ -1,16 +1,16 @@
 # OVHcloud API Conformity Report
 
-> Généré par `scripts/audit-conformity.js` le 2026-08-06T12:28:44.787Z. Document généré automatiquement — ne pas éditer à la main.
+> Généré par `scripts/audit-conformity.js` le 2026-08-06T13:08:39.000Z. Document généré automatiquement — ne pas éditer à la main.
 
 Ce rapport vérifie que les opérations des nodes respectent leur spec (méthode, chemin, paramètres path requis, query requis, champs body requis).
 
 ## Résumé
 
-- **Opérations auditées** : 6223
-- **Conformes** : 3700
-- **Non conformes** : 2523
-- **Sans correspondance spec** (informatif) : 2207
-- **Taux de conformité** : **59.5%**
+- **Opérations auditées** : 6273
+- **Conformes** : 3724
+- **Non conformes** : 2549
+- **Sans correspondance spec** (informatif) : 2233
+- **Taux de conformité** : **59.4%**
 
 ## Conformité par spec
 
@@ -45,7 +45,7 @@ Triée par taux de non-conformité décroissant.
 | vrack (v1) | 12 | 4 | 1 | 33.3% |
 | veeamCloudConnect (v1) | 14 | 13 | 1 | 92.9% |
 | vps (v1) | 63 | 20 | 4 | 31.7% |
-| cloud (v1) | 1104 | 649 | 44 | 58.8% |
+| cloud (v1) | 1129 | 673 | 44 | 59.6% |
 | order (v1) | 166 | 31 | 6 | 18.7% |
 | me (v1) | 309 | 300 | 9 | 97.1% |
 | dedicated (v1) | 69 | 31 | 2 | 44.9% |
@@ -54,7 +54,7 @@ Triée par taux de non-conformité décroissant.
 | webhosting (v2) | 246 | 12 | 3 | 4.9% |
 | domain (v1) | 119 | 109 | 1 | 91.6% |
 | telephony (v1) | 644 | 602 | 5 | 93.5% |
-| publicCloud (v2) | 1104 | 26 | 4 | 2.4% |
+| publicCloud (v2) | 1129 | 26 | 4 | 2.3% |
 | price (v1) | 581 | 581 | 0 | 100% |
 | sms (v1) | 126 | 124 | 0 | 98.4% |
 | domain (v2) | 119 | 9 | 0 | 7.6% |
@@ -645,6 +645,7 @@ Ces opérations appellent un chemin qui ne correspond à aucun endpoint de la sp
 | cloud (v1) | POST | `/cloud/project/{x}/lab` | OvhCloudPublicCloud/lab/createPost.operation.ts |
 | cloud (v1) | DELETE | `/cloud/project/{x}/lab/{x}` | OvhCloudPublicCloud/lab/deleteDelete.operation.ts |
 | cloud (v1) | PUT | `/cloud/project/{x}/lab/{x}` | OvhCloudPublicCloud/lab/updatePut.operation.ts |
+| cloud (v1) | POST | `/cloud/project/{x}/role` | OvhCloudPublicCloud/role/createPost.operation.ts |
 | cloud (v1) | GET | `/publicCloud/agreements` | OvhCloudPublicCloud/cloud/agreementsGet.operation.ts |
 | cloud (v1) | GET | `/publicCloud/eligibility` | OvhCloudPublicCloud/cloud/eligibilityGet.operation.ts |
 | cloud (v1) | GET | `/publicCloud/order` | OvhCloudPublicCloud/cloud/orderListGet.operation.ts |
@@ -2077,6 +2078,9 @@ Ces opérations appellent un chemin qui ne correspond à aucun endpoint de la sp
 | publicCloud (v2) | POST | `/cloud/project/{x}/instance/{x}/stop` | OvhCloudPublicCloud/instance/instanceStopPost.operation.ts |
 | publicCloud (v2) | POST | `/cloud/project/{x}/instance/{x}/unshelve` | OvhCloudPublicCloud/instance/instanceUnshelvePost.operation.ts |
 | publicCloud (v2) | POST | `/cloud/project/{x}/instance/{x}/vnc` | OvhCloudPublicCloud/instance/instanceVncPost.operation.ts |
+| publicCloud (v2) | GET | `/cloud/project/{x}/ip/failover` | OvhCloudPublicCloud/ip/failoverListGet.operation.ts |
+| publicCloud (v2) | GET | `/cloud/project/{x}/ip/failover/{x}` | OvhCloudPublicCloud/ip/failoverGetGet.operation.ts |
+| publicCloud (v2) | POST | `/cloud/project/{x}/ip/failover/{x}/attach` | OvhCloudPublicCloud/ip/failoverAttachPost.operation.ts |
 | publicCloud (v2) | GET | `/cloud/project/{x}/kube` | OvhCloudPublicCloud/kube/kubeListGet.operation.ts |
 | publicCloud (v2) | DELETE | `/cloud/project/{x}/kube/{x}` | OvhCloudPublicCloud/kube/kubeDeleteDelete.operation.ts |
 | publicCloud (v2) | GET | `/cloud/project/{x}/kube/{x}` | OvhCloudPublicCloud/kube/kubeGetGet.operation.ts |
@@ -2123,11 +2127,25 @@ Ces opérations appellent un chemin qui ne correspond à aucun endpoint de la sp
 | publicCloud (v2) | GET | `/cloud/project/{x}/lab/{x}` | OvhCloudPublicCloud/lab/getDetailGet.operation.ts |
 | publicCloud (v2) | PUT | `/cloud/project/{x}/lab/{x}` | OvhCloudPublicCloud/lab/updatePut.operation.ts |
 | publicCloud (v2) | GET | `/cloud/project/{x}/lab/{x}/agreement` | OvhCloudPublicCloud/lab/agreementListGet.operation.ts |
+| publicCloud (v2) | GET | `/cloud/project/{x}/loadbalancer/{x}/configuration` | OvhCloudPublicCloud/loadbalancer/configurationListGet.operation.ts |
+| publicCloud (v2) | POST | `/cloud/project/{x}/loadbalancer/{x}/configuration` | OvhCloudPublicCloud/loadbalancer/configurationCreatePost.operation.ts |
+| publicCloud (v2) | DELETE | `/cloud/project/{x}/loadbalancer/{x}/configuration/{x}` | OvhCloudPublicCloud/loadbalancer/configurationDeleteDelete.operation.ts |
+| publicCloud (v2) | GET | `/cloud/project/{x}/loadbalancer/{x}/configuration/{x}` | OvhCloudPublicCloud/loadbalancer/configurationGetGet.operation.ts |
+| publicCloud (v2) | POST | `/cloud/project/{x}/loadbalancer/{x}/configuration/{x}/apply` | OvhCloudPublicCloud/loadbalancer/configurationApplyPost.operation.ts |
 | publicCloud (v2) | GET | `/cloud/project/{x}/operation` | OvhCloudPublicCloud/operation/listGet.operation.ts |
 | publicCloud (v2) | GET | `/cloud/project/{x}/operation/{x}` | OvhCloudPublicCloud/operation/getDetailGet.operation.ts |
 | publicCloud (v2) | GET | `/cloud/project/{x}/quota` | OvhCloudPublicCloud/quota/listGet.operation.ts |
 | publicCloud (v2) | GET | `/cloud/project/{x}/regionAvailable` | OvhCloudPublicCloud/regionAvailable/checkRegionAvailableGet.operation.ts |
 | publicCloud (v2) | POST | `/cloud/project/{x}/retain` | OvhCloudPublicCloud/retain/retainPost.operation.ts |
+| publicCloud (v2) | POST | `/cloud/project/{x}/role` | OvhCloudPublicCloud/role/createPost.operation.ts |
+| publicCloud (v2) | PUT | `/cloud/project/{x}/serviceInfos` | OvhCloudPublicCloud/serviceInfos/updatePut.operation.ts |
+| publicCloud (v2) | DELETE | `/cloud/project/{x}/storage/{x}/cors` | OvhCloudPublicCloud/storage/corsDeleteDelete.operation.ts |
+| publicCloud (v2) | POST | `/cloud/project/{x}/storage/{x}/cors` | OvhCloudPublicCloud/storage/corsPost.operation.ts |
+| publicCloud (v2) | POST | `/cloud/project/{x}/storage/{x}/publicUrl` | OvhCloudPublicCloud/storage/publicUrlPost.operation.ts |
+| publicCloud (v2) | POST | `/cloud/project/{x}/storage/{x}/static` | OvhCloudPublicCloud/storage/staticPost.operation.ts |
+| publicCloud (v2) | POST | `/cloud/project/{x}/storage/{x}/user` | OvhCloudPublicCloud/storage/userPost.operation.ts |
+| publicCloud (v2) | POST | `/cloud/project/{x}/storage/access` | OvhCloudPublicCloud/storage/accessPost.operation.ts |
+| publicCloud (v2) | GET | `/cloud/project/{x}/storage/quota` | OvhCloudPublicCloud/storage/quotaGet.operation.ts |
 | publicCloud (v2) | POST | `/cloud/project/{x}/terminate` | OvhCloudPublicCloud/terminate/terminatePost.operation.ts |
 | publicCloud (v2) | POST | `/cloud/project/{x}/unleash` | OvhCloudPublicCloud/unleash/unleashPost.operation.ts |
 | publicCloud (v2) | DELETE | `/cloud/project/{x}/user/{x}` | OvhCloudPublicCloud/user/deleteDelete.operation.ts |
@@ -2149,6 +2167,14 @@ Ces opérations appellent un chemin qui ne correspond à aucun endpoint de la sp
 | publicCloud (v2) | GET | `/cloud/project/{x}/user/{x}/s3Credentials/{x}` | OvhCloudPublicCloud/user/getUserS3CredentialDetailGet.operation.ts |
 | publicCloud (v2) | POST | `/cloud/project/{x}/user/{x}/s3Credentials/{x}/secret` | OvhCloudPublicCloud/user/createS3CredentialSecretPost.operation.ts |
 | publicCloud (v2) | POST | `/cloud/project/{x}/user/{x}/token` | OvhCloudPublicCloud/user/createUserTokenPost.operation.ts |
+| publicCloud (v2) | POST | `/cloud/project/{x}/volume/{x}/attach` | OvhCloudPublicCloud/volume/attachPost.operation.ts |
+| publicCloud (v2) | POST | `/cloud/project/{x}/volume/{x}/detach` | OvhCloudPublicCloud/volume/detachPost.operation.ts |
+| publicCloud (v2) | POST | `/cloud/project/{x}/volume/{x}/snapshot` | OvhCloudPublicCloud/volume/snapshotCreatePost.operation.ts |
+| publicCloud (v2) | POST | `/cloud/project/{x}/volume/{x}/upsize` | OvhCloudPublicCloud/volume/upsizePost.operation.ts |
+| publicCloud (v2) | GET | `/cloud/project/{x}/volume/snapshot` | OvhCloudPublicCloud/volume/snapshotListGet.operation.ts |
+| publicCloud (v2) | DELETE | `/cloud/project/{x}/volume/snapshot/{x}` | OvhCloudPublicCloud/volume/snapshotDeleteDelete.operation.ts |
+| publicCloud (v2) | GET | `/cloud/project/{x}/volume/snapshot/{x}` | OvhCloudPublicCloud/volume/snapshotGetGet.operation.ts |
+| publicCloud (v2) | POST | `/cloud/project/{x}/vrack` | OvhCloudPublicCloud/vrack/createPost.operation.ts |
 | publicCloud (v2) | GET | `/publicCloud/agreements` | OvhCloudPublicCloud/cloud/agreementsGet.operation.ts |
 | publicCloud (v2) | GET | `/publicCloud/eligibility` | OvhCloudPublicCloud/cloud/eligibilityGet.operation.ts |
 | publicCloud (v2) | GET | `/publicCloud/order` | OvhCloudPublicCloud/cloud/orderListGet.operation.ts |

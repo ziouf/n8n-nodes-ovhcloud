@@ -1,6 +1,6 @@
 # OVHcloud API Coverage Report
 
-> Généré par `scripts/compare-coverage.js` le 2026-08-06T12:28:44.243Z. Document généré automatiquement — ne pas éditer à la main.
+> Généré par `scripts/compare-coverage.js` le 2026-08-06T13:07:44.304Z. Document généré automatiquement — ne pas éditer à la main.
 
 Ce rapport compare les endpoints déclarés dans les specs Swagger 2.0 (`docs/api-specs/v1|v2/*.json`) avec les appels HTTP réellement présents dans les nodes (`nodes/**/*.operation.ts`).
 
@@ -8,8 +8,8 @@ Ce rapport compare les endpoints déclarés dans les specs Swagger 2.0 (`docs/ap
 
 - **Specs analysées** : 84 (v1: 70, v2: 14)
 - **Endpoints déclarés (specs avec endpoints)** : 6624
-- **Endpoints couverts par les nodes** : 3898
-- **Couverture globale** : **58.8%**
+- **Endpoints couverts par les nodes** : 3922
+- **Couverture globale** : **59.2%**
 - **Specs sans node associé** : 21
 - **Specs placeholder (aucun endpoint)** : 1
 
@@ -52,8 +52,8 @@ Triée par pourcentage croissant (moins bonne couverture en premier).
 | veeam (v1) | 10 | 5 | 5 | 50% |
 | license (v1) | 13 | 7 | 6 | 53.8% |
 | pack (v1) | 58 | 33 | 25 | 56.9% |
-| cloud (v1) | 1121 | 686 | 435 | 61.2% |
 | me (v1) | 379 | 233 | 146 | 61.5% |
+| cloud (v1) | 1121 | 710 | 411 | 63.3% |
 | metrics (v1) | 16 | 12 | 4 | 75% |
 | hosting (v1) | 198 | 150 | 48 | 75.8% |
 | ovhCloudConnect (v1) | 54 | 42 | 12 | 77.8% |
@@ -2451,7 +2451,160 @@ _Nodes associés : OvhCloudPackXdsl, OvhCloudPack_
 | GET | `/pack/xdsl/{x}/voipLine/services/{x}` |
 | GET | `/pack/xdsl/{x}/xdslAccess/services` |
 
-### cloud (v1) — 435 manquants
+### me (v1) — 146 manquants
+
+_Nodes associés : OvhCloudMe_
+
+| Méthode | Chemin |
+|--------|--------|
+| PUT | `/me` |
+| DELETE | `/me/accessRestriction/backupCode` |
+| PUT | `/me/accessRestriction/ipDefaultRule` |
+| PUT | `/me/accessRestriction/sms/{x}` |
+| POST | `/me/accessRestriction/u2f/{x}/validate` |
+| POST | `/me/account` |
+| DELETE | `/me/api/application/{x}` |
+| DELETE | `/me/api/credential/{x}` |
+| PUT | `/me/api/credential/{x}` |
+| POST | `/me/api/log/subscription` |
+| DELETE | `/me/api/log/subscription/{x}` |
+| POST | `/me/api/log/url` |
+| POST | `/me/api/oauth2/client` |
+| DELETE | `/me/api/oauth2/client/{x}` |
+| PUT | `/me/api/oauth2/client/{x}` |
+| POST | `/me/autorenew` |
+| PUT | `/me/autorenew` |
+| POST | `/me/bill/{x}/debt/pay` |
+| POST | `/me/bill/export` |
+| POST | `/me/billing/group` |
+| DELETE | `/me/billing/group/{x}` |
+| PUT | `/me/billing/group/{x}` |
+| POST | `/me/billing/group/{x}/service` |
+| DELETE | `/me/billing/group/{x}/service/{x}` |
+| GET | `/me/billing/invoicesByPostalMail` |
+| POST | `/me/billing/invoicesByPostalMail` |
+| POST | `/me/billing/purchaseOrder` |
+| DELETE | `/me/billing/purchaseOrder/{x}` |
+| PUT | `/me/billing/purchaseOrder/{x}` |
+| POST | `/me/billing/report/consumption` |
+| POST | `/me/carbonCalculator/task` |
+| POST | `/me/changeEmail` |
+| POST | `/me/changePassword` |
+| PUT | `/me/consent/{x}/decision` |
+| POST | `/me/contact` |
+| PUT | `/me/contact/{x}` |
+| POST | `/me/correctiveInvoice/{x}/debt/pay` |
+| POST | `/me/credit/code` |
+| POST | `/me/debtAccount/debt/{x}/pay` |
+| POST | `/me/debtAccount/pay` |
+| GET | `/me/deposit/{x}/paidBills/{x}/debt` |
+| GET | `/me/deposit/{x}/paidBills/{x}/debt/operation` |
+| GET | `/me/deposit/{x}/paidBills/{x}/debt/operation/{x}` |
+| GET | `/me/deposit/{x}/paidBills/{x}/debt/operation/{x}/associatedObject` |
+| POST | `/me/deposit/{x}/paidBills/{x}/debt/pay` |
+| GET | `/me/deposit/{x}/paidBills/{x}/details` |
+| GET | `/me/deposit/{x}/paidBills/{x}/details/{x}` |
+| GET | `/me/deposit/{x}/paidBills/{x}/payment` |
+| POST | `/me/document` |
+| DELETE | `/me/document/{x}` |
+| PUT | `/me/document/{x}` |
+| POST | `/me/document/cors` |
+| POST | `/me/fax/customDomains` |
+| DELETE | `/me/fax/customDomains/{x}` |
+| PUT | `/me/fidelityAccount` |
+| POST | `/me/fidelityAccount/creditOrder` |
+| POST | `/me/geolocation` |
+| POST | `/me/identity/group` |
+| DELETE | `/me/identity/group/{x}` |
+| PUT | `/me/identity/group/{x}` |
+| POST | `/me/identity/group/{x}/user` |
+| DELETE | `/me/identity/group/{x}/user/{x}` |
+| DELETE | `/me/identity/provider` |
+| POST | `/me/identity/provider` |
+| PUT | `/me/identity/provider` |
+| POST | `/me/identity/user` |
+| DELETE | `/me/identity/user/{x}` |
+| PUT | `/me/identity/user/{x}` |
+| POST | `/me/identity/user/{x}/disable` |
+| POST | `/me/identity/user/{x}/enable` |
+| POST | `/me/identity/user/{x}/token` |
+| DELETE | `/me/identity/user/{x}/token/{x}` |
+| PUT | `/me/identity/user/{x}/token/{x}` |
+| GET | `/me/incident/sbg/migrateServices` |
+| POST | `/me/incident/sbg/migrateServices` |
+| POST | `/me/ipOrganisation` |
+| DELETE | `/me/ipOrganisation/{x}` |
+| PUT | `/me/ipOrganisation/{x}` |
+| POST | `/me/logs/audit/log/subscription` |
+| DELETE | `/me/logs/audit/log/subscription/{x}` |
+| POST | `/me/logs/audit/log/url` |
+| POST | `/me/mailingList/subscribe` |
+| PUT | `/me/marketing` |
+| POST | `/me/migration/{x}/contract/{x}/accept` |
+| POST | `/me/order/{x}/balance` |
+| DELETE | `/me/order/{x}/balance/{x}` |
+| POST | `/me/order/{x}/debt/pay` |
+| POST | `/me/order/{x}/pay` |
+| POST | `/me/order/{x}/payWithRegisteredPaymentMean` |
+| POST | `/me/order/{x}/retraction` |
+| POST | `/me/order/{x}/waiveRetraction` |
+| PUT | `/me/ovhAccount/{x}` |
+| POST | `/me/ovhAccount/{x}/creditOrder` |
+| POST | `/me/ovhAccount/{x}/movements/{x}/requestRefund` |
+| POST | `/me/ovhAccount/{x}/retrieveMoney` |
+| POST | `/me/passwordRecover` |
+| POST | `/me/payment/method` |
+| DELETE | `/me/payment/method/{x}` |
+| PUT | `/me/payment/method/{x}` |
+| POST | `/me/payment/method/{x}/challenge` |
+| POST | `/me/payment/method/{x}/details` |
+| POST | `/me/payment/method/{x}/finalize` |
+| POST | `/me/paymentMean/bankAccount` |
+| DELETE | `/me/paymentMean/bankAccount/{x}` |
+| PUT | `/me/paymentMean/bankAccount/{x}` |
+| POST | `/me/paymentMean/bankAccount/{x}/challenge` |
+| POST | `/me/paymentMean/bankAccount/{x}/chooseAsDefaultPaymentMean` |
+| POST | `/me/paymentMean/creditCard` |
+| DELETE | `/me/paymentMean/creditCard/{x}` |
+| PUT | `/me/paymentMean/creditCard/{x}` |
+| POST | `/me/paymentMean/creditCard/{x}/challenge` |
+| POST | `/me/paymentMean/creditCard/{x}/chooseAsDefaultPaymentMean` |
+| PUT | `/me/paymentMean/deferredPaymentAccount/{x}` |
+| POST | `/me/paymentMean/deferredPaymentAccount/{x}/chooseAsDefaultPaymentMean` |
+| POST | `/me/paymentMean/paypal` |
+| DELETE | `/me/paymentMean/paypal/{x}` |
+| PUT | `/me/paymentMean/paypal/{x}` |
+| POST | `/me/paymentMean/paypal/{x}/challenge` |
+| POST | `/me/paymentMean/paypal/{x}/chooseAsDefaultPaymentMean` |
+| POST | `/me/refund/export` |
+| POST | `/me/sla/{x}/apply` |
+| POST | `/me/sshKey` |
+| DELETE | `/me/sshKey/{x}` |
+| POST | `/me/subAccount` |
+| PUT | `/me/subAccount/{x}` |
+| POST | `/me/subAccount/{x}/createConsumerKey` |
+| PUT | `/me/subscription/{x}` |
+| POST | `/me/tag` |
+| DELETE | `/me/tag/{x}` |
+| POST | `/me/task/contactChange/{x}/accept` |
+| POST | `/me/task/contactChange/{x}/refuse` |
+| POST | `/me/task/contactChange/{x}/resendEmail` |
+| POST | `/me/task/dns/{x}/accelerate` |
+| POST | `/me/task/dns/{x}/cancel` |
+| POST | `/me/task/dns/{x}/relaunch` |
+| POST | `/me/task/domain/{x}/accelerate` |
+| PUT | `/me/task/domain/{x}/argument/{x}` |
+| POST | `/me/task/domain/{x}/cancel` |
+| POST | `/me/task/domain/{x}/relaunch` |
+| POST | `/me/task/emailChange/{x}/accept` |
+| POST | `/me/task/emailChange/{x}/refuse` |
+| POST | `/me/telephony/defaultIpRestriction` |
+| DELETE | `/me/telephony/defaultIpRestriction/{x}` |
+| POST | `/me/telephony/settings` |
+| POST | `/me/voucher/checkValidity` |
+| POST | `/me/xdsl/setting` |
+
+### cloud (v1) — 411 manquants
 
 _Nodes associés : OvhCloudPublicCloud, OvhCloudPublicCloudAi_
 
@@ -2661,9 +2814,6 @@ _Nodes associés : OvhCloudPublicCloud, OvhCloudPublicCloudAi_
 | DELETE | `/cloud/project/{x}/instance/group/{x}` |
 | GET | `/cloud/project/{x}/instance/group/{x}` |
 | GET | `/cloud/project/{x}/ip` |
-| GET | `/cloud/project/{x}/ip/failover` |
-| GET | `/cloud/project/{x}/ip/failover/{x}` |
-| POST | `/cloud/project/{x}/ip/failover/{x}/attach` |
 | POST | `/cloud/project/{x}/kube` |
 | POST | `/cloud/project/{x}/lab/{x}` |
 | GET | `/cloud/project/{x}/loadbalancer` |
@@ -2671,11 +2821,6 @@ _Nodes associés : OvhCloudPublicCloud, OvhCloudPublicCloudAi_
 | DELETE | `/cloud/project/{x}/loadbalancer/{x}` |
 | GET | `/cloud/project/{x}/loadbalancer/{x}` |
 | PUT | `/cloud/project/{x}/loadbalancer/{x}` |
-| GET | `/cloud/project/{x}/loadbalancer/{x}/configuration` |
-| POST | `/cloud/project/{x}/loadbalancer/{x}/configuration` |
-| DELETE | `/cloud/project/{x}/loadbalancer/{x}/configuration/{x}` |
-| GET | `/cloud/project/{x}/loadbalancer/{x}/configuration/{x}` |
-| POST | `/cloud/project/{x}/loadbalancer/{x}/configuration/{x}/apply` |
 | GET | `/cloud/project/{x}/network/private` |
 | POST | `/cloud/project/{x}/network/private` |
 | DELETE | `/cloud/project/{x}/network/private/{x}` |
@@ -2851,7 +2996,6 @@ _Nodes associés : OvhCloudPublicCloud, OvhCloudPublicCloudAi_
 | GET | `/cloud/project/{x}/region/{x}/workflow/backup/{x}` |
 | GET | `/cloud/project/{x}/role` |
 | GET | `/cloud/project/{x}/serviceInfos` |
-| PUT | `/cloud/project/{x}/serviceInfos` |
 | GET | `/cloud/project/{x}/snapshot` |
 | DELETE | `/cloud/project/{x}/snapshot/{x}` |
 | GET | `/cloud/project/{x}/snapshot/{x}` |
@@ -2864,13 +3008,6 @@ _Nodes associés : OvhCloudPublicCloud, OvhCloudPublicCloudAi_
 | DELETE | `/cloud/project/{x}/storage/{x}` |
 | GET | `/cloud/project/{x}/storage/{x}` |
 | PUT | `/cloud/project/{x}/storage/{x}` |
-| DELETE | `/cloud/project/{x}/storage/{x}/cors` |
-| POST | `/cloud/project/{x}/storage/{x}/cors` |
-| POST | `/cloud/project/{x}/storage/{x}/publicUrl` |
-| POST | `/cloud/project/{x}/storage/{x}/static` |
-| POST | `/cloud/project/{x}/storage/{x}/user` |
-| POST | `/cloud/project/{x}/storage/access` |
-| GET | `/cloud/project/{x}/storage/quota` |
 | GET | `/cloud/project/{x}/usage/current` |
 | GET | `/cloud/project/{x}/usage/forecast` |
 | GET | `/cloud/project/{x}/usage/history` |
@@ -2883,168 +3020,7 @@ _Nodes associés : OvhCloudPublicCloud, OvhCloudPublicCloudAi_
 | DELETE | `/cloud/project/{x}/volume/{x}` |
 | GET | `/cloud/project/{x}/volume/{x}` |
 | PUT | `/cloud/project/{x}/volume/{x}` |
-| POST | `/cloud/project/{x}/volume/{x}/attach` |
-| POST | `/cloud/project/{x}/volume/{x}/detach` |
-| POST | `/cloud/project/{x}/volume/{x}/snapshot` |
-| POST | `/cloud/project/{x}/volume/{x}/upsize` |
-| GET | `/cloud/project/{x}/volume/snapshot` |
-| DELETE | `/cloud/project/{x}/volume/snapshot/{x}` |
-| GET | `/cloud/project/{x}/volume/snapshot/{x}` |
 | GET | `/cloud/project/{x}/vrack` |
-| POST | `/cloud/project/{x}/vrack` |
-
-### me (v1) — 146 manquants
-
-_Nodes associés : OvhCloudMe_
-
-| Méthode | Chemin |
-|--------|--------|
-| PUT | `/me` |
-| DELETE | `/me/accessRestriction/backupCode` |
-| PUT | `/me/accessRestriction/ipDefaultRule` |
-| PUT | `/me/accessRestriction/sms/{x}` |
-| POST | `/me/accessRestriction/u2f/{x}/validate` |
-| POST | `/me/account` |
-| DELETE | `/me/api/application/{x}` |
-| DELETE | `/me/api/credential/{x}` |
-| PUT | `/me/api/credential/{x}` |
-| POST | `/me/api/log/subscription` |
-| DELETE | `/me/api/log/subscription/{x}` |
-| POST | `/me/api/log/url` |
-| POST | `/me/api/oauth2/client` |
-| DELETE | `/me/api/oauth2/client/{x}` |
-| PUT | `/me/api/oauth2/client/{x}` |
-| POST | `/me/autorenew` |
-| PUT | `/me/autorenew` |
-| POST | `/me/bill/{x}/debt/pay` |
-| POST | `/me/bill/export` |
-| POST | `/me/billing/group` |
-| DELETE | `/me/billing/group/{x}` |
-| PUT | `/me/billing/group/{x}` |
-| POST | `/me/billing/group/{x}/service` |
-| DELETE | `/me/billing/group/{x}/service/{x}` |
-| GET | `/me/billing/invoicesByPostalMail` |
-| POST | `/me/billing/invoicesByPostalMail` |
-| POST | `/me/billing/purchaseOrder` |
-| DELETE | `/me/billing/purchaseOrder/{x}` |
-| PUT | `/me/billing/purchaseOrder/{x}` |
-| POST | `/me/billing/report/consumption` |
-| POST | `/me/carbonCalculator/task` |
-| POST | `/me/changeEmail` |
-| POST | `/me/changePassword` |
-| PUT | `/me/consent/{x}/decision` |
-| POST | `/me/contact` |
-| PUT | `/me/contact/{x}` |
-| POST | `/me/correctiveInvoice/{x}/debt/pay` |
-| POST | `/me/credit/code` |
-| POST | `/me/debtAccount/debt/{x}/pay` |
-| POST | `/me/debtAccount/pay` |
-| GET | `/me/deposit/{x}/paidBills/{x}/debt` |
-| GET | `/me/deposit/{x}/paidBills/{x}/debt/operation` |
-| GET | `/me/deposit/{x}/paidBills/{x}/debt/operation/{x}` |
-| GET | `/me/deposit/{x}/paidBills/{x}/debt/operation/{x}/associatedObject` |
-| POST | `/me/deposit/{x}/paidBills/{x}/debt/pay` |
-| GET | `/me/deposit/{x}/paidBills/{x}/details` |
-| GET | `/me/deposit/{x}/paidBills/{x}/details/{x}` |
-| GET | `/me/deposit/{x}/paidBills/{x}/payment` |
-| POST | `/me/document` |
-| DELETE | `/me/document/{x}` |
-| PUT | `/me/document/{x}` |
-| POST | `/me/document/cors` |
-| POST | `/me/fax/customDomains` |
-| DELETE | `/me/fax/customDomains/{x}` |
-| PUT | `/me/fidelityAccount` |
-| POST | `/me/fidelityAccount/creditOrder` |
-| POST | `/me/geolocation` |
-| POST | `/me/identity/group` |
-| DELETE | `/me/identity/group/{x}` |
-| PUT | `/me/identity/group/{x}` |
-| POST | `/me/identity/group/{x}/user` |
-| DELETE | `/me/identity/group/{x}/user/{x}` |
-| DELETE | `/me/identity/provider` |
-| POST | `/me/identity/provider` |
-| PUT | `/me/identity/provider` |
-| POST | `/me/identity/user` |
-| DELETE | `/me/identity/user/{x}` |
-| PUT | `/me/identity/user/{x}` |
-| POST | `/me/identity/user/{x}/disable` |
-| POST | `/me/identity/user/{x}/enable` |
-| POST | `/me/identity/user/{x}/token` |
-| DELETE | `/me/identity/user/{x}/token/{x}` |
-| PUT | `/me/identity/user/{x}/token/{x}` |
-| GET | `/me/incident/sbg/migrateServices` |
-| POST | `/me/incident/sbg/migrateServices` |
-| POST | `/me/ipOrganisation` |
-| DELETE | `/me/ipOrganisation/{x}` |
-| PUT | `/me/ipOrganisation/{x}` |
-| POST | `/me/logs/audit/log/subscription` |
-| DELETE | `/me/logs/audit/log/subscription/{x}` |
-| POST | `/me/logs/audit/log/url` |
-| POST | `/me/mailingList/subscribe` |
-| PUT | `/me/marketing` |
-| POST | `/me/migration/{x}/contract/{x}/accept` |
-| POST | `/me/order/{x}/balance` |
-| DELETE | `/me/order/{x}/balance/{x}` |
-| POST | `/me/order/{x}/debt/pay` |
-| POST | `/me/order/{x}/pay` |
-| POST | `/me/order/{x}/payWithRegisteredPaymentMean` |
-| POST | `/me/order/{x}/retraction` |
-| POST | `/me/order/{x}/waiveRetraction` |
-| PUT | `/me/ovhAccount/{x}` |
-| POST | `/me/ovhAccount/{x}/creditOrder` |
-| POST | `/me/ovhAccount/{x}/movements/{x}/requestRefund` |
-| POST | `/me/ovhAccount/{x}/retrieveMoney` |
-| POST | `/me/passwordRecover` |
-| POST | `/me/payment/method` |
-| DELETE | `/me/payment/method/{x}` |
-| PUT | `/me/payment/method/{x}` |
-| POST | `/me/payment/method/{x}/challenge` |
-| POST | `/me/payment/method/{x}/details` |
-| POST | `/me/payment/method/{x}/finalize` |
-| POST | `/me/paymentMean/bankAccount` |
-| DELETE | `/me/paymentMean/bankAccount/{x}` |
-| PUT | `/me/paymentMean/bankAccount/{x}` |
-| POST | `/me/paymentMean/bankAccount/{x}/challenge` |
-| POST | `/me/paymentMean/bankAccount/{x}/chooseAsDefaultPaymentMean` |
-| POST | `/me/paymentMean/creditCard` |
-| DELETE | `/me/paymentMean/creditCard/{x}` |
-| PUT | `/me/paymentMean/creditCard/{x}` |
-| POST | `/me/paymentMean/creditCard/{x}/challenge` |
-| POST | `/me/paymentMean/creditCard/{x}/chooseAsDefaultPaymentMean` |
-| PUT | `/me/paymentMean/deferredPaymentAccount/{x}` |
-| POST | `/me/paymentMean/deferredPaymentAccount/{x}/chooseAsDefaultPaymentMean` |
-| POST | `/me/paymentMean/paypal` |
-| DELETE | `/me/paymentMean/paypal/{x}` |
-| PUT | `/me/paymentMean/paypal/{x}` |
-| POST | `/me/paymentMean/paypal/{x}/challenge` |
-| POST | `/me/paymentMean/paypal/{x}/chooseAsDefaultPaymentMean` |
-| POST | `/me/refund/export` |
-| POST | `/me/sla/{x}/apply` |
-| POST | `/me/sshKey` |
-| DELETE | `/me/sshKey/{x}` |
-| POST | `/me/subAccount` |
-| PUT | `/me/subAccount/{x}` |
-| POST | `/me/subAccount/{x}/createConsumerKey` |
-| PUT | `/me/subscription/{x}` |
-| POST | `/me/tag` |
-| DELETE | `/me/tag/{x}` |
-| POST | `/me/task/contactChange/{x}/accept` |
-| POST | `/me/task/contactChange/{x}/refuse` |
-| POST | `/me/task/contactChange/{x}/resendEmail` |
-| POST | `/me/task/dns/{x}/accelerate` |
-| POST | `/me/task/dns/{x}/cancel` |
-| POST | `/me/task/dns/{x}/relaunch` |
-| POST | `/me/task/domain/{x}/accelerate` |
-| PUT | `/me/task/domain/{x}/argument/{x}` |
-| POST | `/me/task/domain/{x}/cancel` |
-| POST | `/me/task/domain/{x}/relaunch` |
-| POST | `/me/task/emailChange/{x}/accept` |
-| POST | `/me/task/emailChange/{x}/refuse` |
-| POST | `/me/telephony/defaultIpRestriction` |
-| DELETE | `/me/telephony/defaultIpRestriction/{x}` |
-| POST | `/me/telephony/settings` |
-| POST | `/me/voucher/checkValidity` |
-| POST | `/me/xdsl/setting` |
 
 ### metrics (v1) — 4 manquants
 
