@@ -33,50 +33,35 @@ export function description(displayOptions: IDisplayOptions): INodeProperties[] 
 			displayOptions,
 		},
 		{
-			displayName: 'From',
-			name: 'from',
+			displayName: 'Code',
+			name: 'code',
 			type: 'string',
 			default: '',
 			required: true,
-			description: 'Start date for the bill filter (ISO 8601 format)',
-			displayOptions,
-		},
-		{
-			displayName: 'To',
-			name: 'to',
-			type: 'string',
-			default: '',
-			required: true,
-			description: 'End date for the bill filter (ISO 8601 format)',
+			description: 'The credit code to apply',
 			displayOptions,
 		},
 	];
 }
 
 /**
- * Executes the List Bills operation.
+ * Executes the Add Credit operation.
  *
- * HTTP method: GET
- * Endpoint: /cloud/project/{serviceName}/bill
+ * HTTP method: POST
+ * Endpoint: /cloud/project/{serviceName}/credit
  */
 export async function execute(this: IExecuteFunctions): Promise<INodeExecutionData[]> {
 	const client = new ApiClient(this);
 	const serviceName = this.getNodeParameter('publicCloudProjectId', 0, '', {
 		extractValue: true,
 	}) as string;
-	const from = this.getNodeParameter('from', 0) as string;
-	const to = this.getNodeParameter('to', 0) as string;
+	const code = this.getNodeParameter('code', 0) as string;
 
-	const qs: IDataObject = {
-		from,
-		to,
+	const body: IDataObject = {
+		code,
 	};
 
-	const data = (await client.httpGet(`/cloud/project/${serviceName}/bill`, qs)) as unknown[];
+	await client.httpPost(`/cloud/project/${serviceName}/credit`, body);
 
-	if (!Array.isArray(data)) {
-		return this.helpers.returnJsonArray([data]);
-	}
-
-	return this.helpers.returnJsonArray(data.map((item) => item as INodeExecutionData));
+	return this.helpers.returnJsonArray([{ success: true }]);
 }

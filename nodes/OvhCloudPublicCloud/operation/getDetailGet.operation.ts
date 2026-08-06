@@ -48,17 +48,17 @@ export function description(displayOptions: IDisplayOptions): INodeProperties[] 
  * Executes the Get Operation Details operation.
  *
  * HTTP method: GET
- * Endpoint: /publicCloud/project/{projectId}/operation/{operationId}
+ * Endpoint: /cloud/project/{serviceName}/operation/{operationId}
  */
 export async function execute(this: IExecuteFunctions): Promise<INodeExecutionData[]> {
     const client = new ApiClient(this);
-    const projectId = this.getNodeParameter('publicCloudProjectId', 0, '', {
+    const serviceName = this.getNodeParameter('publicCloudProjectId', 0, '', {
         extractValue: true,
     }) as string;
     const operationId = this.getNodeParameter('operationId', 0) as string;
     
     const data = (await client.httpGet(
-        `/publicCloud/project/${projectId}/operation/${operationId}`,
+        `/cloud/project/${serviceName}/operation/${operationId}`,
     )) as IDataObject;
 
     return this.helpers.returnJsonArray([data]);

@@ -39,16 +39,16 @@ export function description(displayOptions: IDisplayOptions): INodeProperties[] 
  * Executes the Activate Monthly Billing operation.
  *
  * HTTP method: POST
- * Endpoint: /publicCloud/project/{projectId}/activateMonthlyBilling
+ * Endpoint: /cloud/project/{serviceName}/activateMonthlyBilling
  */
 export async function execute(this: IExecuteFunctions): Promise<INodeExecutionData[]> {
     const client = new ApiClient(this);
-    const projectId = this.getNodeParameter('publicCloudProjectId', 0, '', {
+    const serviceName = this.getNodeParameter('publicCloudProjectId', 0, '', {
         extractValue: true,
     }) as string;
     
     const data = (await client.httpPost(
-        `/publicCloud/project/${projectId}/activateMonthlyBilling`,
+        `/cloud/project/${serviceName}/activateMonthlyBilling`,
     )) as IDataObject;
 
     return this.helpers.returnJsonArray([data]);

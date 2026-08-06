@@ -39,16 +39,16 @@ export function description(displayOptions: IDisplayOptions): INodeProperties[] 
  * Executes the Terminate Service operation.
  *
  * HTTP method: POST
- * Endpoint: /publicCloud/project/{projectId}/terminate
+ * Endpoint: /cloud/project/{serviceName}/terminate
  */
 export async function execute(this: IExecuteFunctions): Promise<INodeExecutionData[]> {
     const client = new ApiClient(this);
-    const projectId = this.getNodeParameter('publicCloudProjectId', 0, '', {
+    const serviceName = this.getNodeParameter('publicCloudProjectId', 0, '', {
         extractValue: true,
     }) as string;
     
     const data = (await client.httpPost(
-        `/publicCloud/project/${projectId}/terminate`,
+        `/cloud/project/${serviceName}/terminate`,
     )) as IDataObject;
 
     return this.helpers.returnJsonArray([data]);

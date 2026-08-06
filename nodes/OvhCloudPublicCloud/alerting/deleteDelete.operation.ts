@@ -47,16 +47,16 @@ export function description(displayOptions: IDisplayOptions): INodeProperties[] 
  * Executes the Delete Alerting Rule operation.
  *
  * HTTP method: DELETE
- * Endpoint: /publicCloud/project/{projectId}/alerting/{alertId}
+ * Endpoint: /cloud/project/{serviceName}/alerting/{alertId}
  */
 export async function execute(this: IExecuteFunctions): Promise<INodeExecutionData[]> {
     const client = new ApiClient(this);
-    const projectId = this.getNodeParameter('publicCloudProjectId', 0, '', {
+    const serviceName = this.getNodeParameter('publicCloudProjectId', 0, '', {
         extractValue: true,
     }) as string;
     const alertId = this.getNodeParameter('alertId', 0) as string;
     
-    await client.httpDelete(`/publicCloud/project/${projectId}/alerting/${alertId}`);
+    await client.httpDelete(`/cloud/project/${serviceName}/alerting/${alertId}`);
 
     return this.helpers.returnJsonArray([{ deleted: alertId }]);
 }

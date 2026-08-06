@@ -3609,6 +3609,10 @@ import {
 	execute as aclDeleteDeleteExecute,
 } from './acl/deleteDelete.operation';
 import {
+	description as aclGetDetailGetDescription,
+	execute as aclGetDetailGetExecute,
+} from './acl/getDetailGet.operation';
+import {
 	description as aclListGetDescription,
 	execute as aclListGetExecute,
 } from './acl/listGet.operation';
@@ -3777,6 +3781,10 @@ import {
 	execute as containerRegistryCreateUserSetAsAdminPostExecute,
 } from './containerRegistry/createUserSetAsAdminPost.operation';
 import {
+	description as creditCreatePostDescription,
+	execute as creditCreatePostExecute,
+} from './credit/createPost.operation';
+import {
 	description as creditGetDetailGetDescription,
 	execute as creditGetDetailGetExecute,
 } from './credit/getDetailGet.operation';
@@ -3820,6 +3828,10 @@ import {
 	description as ipUpdatePutDescription,
 	execute as ipUpdatePutExecute,
 } from './ip/updatePut.operation';
+import {
+	description as labAgreementListGetDescription,
+	execute as labAgreementListGetExecute,
+} from './lab/agreementListGet.operation';
 import {
 	description as labCreatePostDescription,
 	execute as labCreatePostExecute,
@@ -8115,6 +8127,11 @@ export function description(displayOptions: IDisplayOptions): INodeProperties[] 
 				action: 'Delete ACL',
 			},
 			{
+				name: 'aclGetDetailGet',
+				value: 'aclGetDetailGet',
+				action: 'Get ACL details',
+			},
+			{
 				name: 'aclListGet',
 				value: 'aclListGet',
 				action: 'List ACLs in a project',
@@ -8325,6 +8342,11 @@ export function description(displayOptions: IDisplayOptions): INodeProperties[] 
 				action: 'Set user as admin',
 			},
 			{
+				name: 'creditCreatePost',
+				value: 'creditCreatePost',
+				action: 'Add credit to project',
+			},
+			{
 				name: 'creditGetDetailGet',
 				value: 'creditGetDetailGet',
 				action: 'Get credit',
@@ -8383,6 +8405,11 @@ export function description(displayOptions: IDisplayOptions): INodeProperties[] 
 				name: 'labCreatePost',
 				value: 'labCreatePost',
 				action: 'Create lab',
+			},
+			{
+				name: 'labAgreementListGet',
+				value: 'labAgreementListGet',
+				action: 'List lab agreements',
 			},
 			{
 				name: 'labDeleteDelete',
@@ -13179,6 +13206,12 @@ export function description(displayOptions: IDisplayOptions): INodeProperties[] 
 		}) as INodeProperties[]),
 	);
 	properties.push(
+		...(aclGetDetailGetDescription({
+			...displayOptions,
+			show: { publicCloudOperation: ['aclGetDetailGet'] },
+		}) as INodeProperties[]),
+	);
+	properties.push(
 		...(aclListGetDescription({
 			...displayOptions,
 			show: { publicCloudOperation: ['aclListGet'] },
@@ -13431,6 +13464,12 @@ export function description(displayOptions: IDisplayOptions): INodeProperties[] 
 		}) as INodeProperties[]),
 	);
 	properties.push(
+		...(creditCreatePostDescription({
+			...displayOptions,
+			show: { publicCloudOperation: ['creditCreatePost'] },
+		}) as INodeProperties[]),
+	);
+	properties.push(
 		...(creditGetDetailGetDescription({
 			...displayOptions,
 			show: { publicCloudOperation: ['creditGetDetailGet'] },
@@ -13500,6 +13539,12 @@ export function description(displayOptions: IDisplayOptions): INodeProperties[] 
 		...(labCreatePostDescription({
 			...displayOptions,
 			show: { publicCloudOperation: ['labCreatePost'] },
+		}) as INodeProperties[]),
+	);
+	properties.push(
+		...(labAgreementListGetDescription({
+			...displayOptions,
+			show: { publicCloudOperation: ['labAgreementListGet'] },
 		}) as INodeProperties[]),
 	);
 	properties.push(
@@ -15630,6 +15675,8 @@ export async function execute(
 			return aclCreatePostExecute.call(this);
 		case 'aclDeleteDelete':
 			return aclDeleteDeleteExecute.call(this);
+		case 'aclGetDetailGet':
+			return aclGetDetailGetExecute.call(this);
 		case 'aclListGet':
 			return aclListGetExecute.call(this);
 		case 'activateMonthlyBillingPost':
@@ -15714,6 +15761,8 @@ export async function execute(
 			return containerRegistryUpdatePlanPutExecute.call(this);
 		case 'containerRegistryCreateUserSetAsAdminPost':
 			return containerRegistryCreateUserSetAsAdminPostExecute.call(this);
+		case 'creditCreatePost':
+			return creditCreatePostExecute.call(this);
 		case 'creditGetDetailGet':
 			return creditGetDetailGetExecute.call(this);
 		case 'creditListGet':
@@ -15738,6 +15787,8 @@ export async function execute(
 			return ipUpdatePutExecute.call(this);
 		case 'labCreatePost':
 			return labCreatePostExecute.call(this);
+		case 'labAgreementListGet':
+			return labAgreementListGetExecute.call(this);
 		case 'labDeleteDelete':
 			return labDeleteDeleteExecute.call(this);
 		case 'labGetDetailGet':

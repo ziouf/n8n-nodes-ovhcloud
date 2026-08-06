@@ -47,16 +47,16 @@ export function description(displayOptions: IDisplayOptions): INodeProperties[] 
  * Executes the Delete Lab operation.
  *
  * HTTP method: DELETE
- * Endpoint: /publicCloud/project/{projectId}/lab/{labId}
+ * Endpoint: /cloud/project/{serviceName}/lab/{labId}
  */
 export async function execute(this: IExecuteFunctions): Promise<INodeExecutionData[]> {
     const client = new ApiClient(this);
-    const projectId = this.getNodeParameter('publicCloudProjectId', 0, '', {
+    const serviceName = this.getNodeParameter('publicCloudProjectId', 0, '', {
         extractValue: true,
     }) as string;
     const labId = this.getNodeParameter('labId', 0) as string;
     
-    await client.httpDelete(`/publicCloud/project/${projectId}/lab/${labId}`);
+    await client.httpDelete(`/cloud/project/${serviceName}/lab/${labId}`);
 
     return this.helpers.returnJsonArray([{ deleted: labId }]);
 }

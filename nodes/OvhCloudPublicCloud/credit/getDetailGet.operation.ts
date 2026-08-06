@@ -48,17 +48,17 @@ export function description(displayOptions: IDisplayOptions): INodeProperties[] 
  * Executes the Get Credit Details operation.
  *
  * HTTP method: GET
- * Endpoint: /publicCloud/project/{projectId}/credit/{creditId}
+ * Endpoint: /cloud/project/{serviceName}/credit/{creditId}
  */
 export async function execute(this: IExecuteFunctions): Promise<INodeExecutionData[]> {
     const client = new ApiClient(this);
-    const projectId = this.getNodeParameter('publicCloudProjectId', 0, '', {
+    const serviceName = this.getNodeParameter('publicCloudProjectId', 0, '', {
         extractValue: true,
     }) as string;
     const creditId = this.getNodeParameter('creditId', 0) as string;
     
     const data = (await client.httpGet(
-        `/publicCloud/project/${projectId}/credit/${creditId}`,
+        `/cloud/project/${serviceName}/credit/${creditId}`,
     )) as IDataObject;
 
     return this.helpers.returnJsonArray([data]);

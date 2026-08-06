@@ -38,16 +38,16 @@ export function description(displayOptions: IDisplayOptions): INodeProperties[] 
  * Executes the List Quotas operation.
  *
  * HTTP method: GET
- * Endpoint: /publicCloud/project/{projectId}/quota
+ * Endpoint: /cloud/project/{serviceName}/quota
  */
 export async function execute(this: IExecuteFunctions): Promise<INodeExecutionData[]> {
     const client = new ApiClient(this);
-    const projectId = this.getNodeParameter('publicCloudProjectId', 0, '', {
+    const serviceName = this.getNodeParameter('publicCloudProjectId', 0, '', {
         extractValue: true,
     }) as string;
     
     const data = (await client.httpGet(
-        `/publicCloud/project/${projectId}/quota`,
+        `/cloud/project/${serviceName}/quota`,
     )) as unknown[];
 
     if (!Array.isArray(data)) {

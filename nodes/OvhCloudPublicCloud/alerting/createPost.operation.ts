@@ -1,6 +1,6 @@
 import type {
     IDataObject,
-IExecuteFunctions,
+    IExecuteFunctions,
     IDisplayOptions,
     INodeExecutionData,
     INodeProperties,
@@ -39,16 +39,16 @@ export function description(displayOptions: IDisplayOptions): INodeProperties[] 
  * Executes the Create Alerting Rule operation.
  *
  * HTTP method: POST
- * Endpoint: /publicCloud/project/{projectId}/alerting
+ * Endpoint: /cloud/project/{serviceName}/alerting
  */
 export async function execute(this: IExecuteFunctions): Promise<INodeExecutionData[]> {
     const client = new ApiClient(this);
-    const projectId = this.getNodeParameter('publicCloudProjectId', 0, '', {
+    const serviceName = this.getNodeParameter('publicCloudProjectId', 0, '', {
         extractValue: true,
     }) as string;
     
     const data = (await client.httpPost(
-        `/publicCloud/project/${projectId}/alerting`,
+        `/cloud/project/${serviceName}/alerting`,
     )) as IDataObject;
 
     return this.helpers.returnJsonArray([data]);

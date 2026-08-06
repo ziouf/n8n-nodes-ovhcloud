@@ -33,50 +33,33 @@ export function description(displayOptions: IDisplayOptions): INodeProperties[] 
 			displayOptions,
 		},
 		{
-			displayName: 'From',
-			name: 'from',
+			displayName: 'Account ID',
+			name: 'accountId',
 			type: 'string',
 			default: '',
 			required: true,
-			description: 'Start date for the bill filter (ISO 8601 format)',
-			displayOptions,
-		},
-		{
-			displayName: 'To',
-			name: 'to',
-			type: 'string',
-			default: '',
-			required: true,
-			description: 'End date for the bill filter (ISO 8601 format)',
+			description: 'The accountId identifier',
 			displayOptions,
 		},
 	];
 }
 
 /**
- * Executes the List Bills operation.
+ * Executes the Get ACL operation.
  *
  * HTTP method: GET
- * Endpoint: /cloud/project/{serviceName}/bill
+ * Endpoint: /cloud/project/{serviceName}/acl/{accountId}
  */
 export async function execute(this: IExecuteFunctions): Promise<INodeExecutionData[]> {
 	const client = new ApiClient(this);
 	const serviceName = this.getNodeParameter('publicCloudProjectId', 0, '', {
 		extractValue: true,
 	}) as string;
-	const from = this.getNodeParameter('from', 0) as string;
-	const to = this.getNodeParameter('to', 0) as string;
+	const accountId = this.getNodeParameter('accountId', 0) as string;
 
-	const qs: IDataObject = {
-		from,
-		to,
-	};
+	const data = (await client.httpGet(
+		`/cloud/project/${serviceName}/acl/${accountId}`,
+	)) as IDataObject;
 
-	const data = (await client.httpGet(`/cloud/project/${serviceName}/bill`, qs)) as unknown[];
-
-	if (!Array.isArray(data)) {
-		return this.helpers.returnJsonArray([data]);
-	}
-
-	return this.helpers.returnJsonArray(data.map((item) => item as INodeExecutionData));
+	return this.helpers.returnJsonArray([data]);
 }

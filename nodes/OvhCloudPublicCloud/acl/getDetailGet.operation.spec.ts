@@ -1,5 +1,5 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import { description, execute } from './createPost.operation';
+import { description, execute } from './getDetailGet.operation';
 
 jest.mock('../../../shared/transport/ApiClient', () => {
 	const mockHttpClient = {
@@ -13,11 +13,11 @@ jest.mock('../../../shared/transport/ApiClient', () => {
 
 import { ApiClient } from '../../../shared/transport/ApiClient';
 
-describe('acl createPost operation', () => {
+describe('acl getDetailGet operation', () => {
 	describe('description', () => {
 		it('should return all required parameters', () => {
 			const result = description({ show: {} });
-			expect(result.length).toBeGreaterThanOrEqual(3); // project + accountId + type
+			expect(result.length).toBeGreaterThanOrEqual(2); // project + accountId
 		});
 	});
 
@@ -30,24 +30,22 @@ describe('acl createPost operation', () => {
 			};
 		});
 
-		it('should call the correct API endpoint with body', async () => {
+		it('should call the correct API endpoint', async () => {
 			const mockData = { accountId: 'test-account', type: 'READ' };
 			const client = new ApiClient(mockExecuteFunctions) as any;
-			client.httpPost.mockResolvedValue(mockData);
+			client.httpGet.mockResolvedValue(mockData);
 
 			mockExecuteFunctions.getNodeParameter.mockImplementation(
 				(param: string): string | undefined => {
 					if (param === 'publicCloudProjectId') return '12345678-1234-1234-1234-1234567890ab';
 					if (param === 'accountId') return 'acc-12345';
-					if (param === 'type') return 'READ';
 					return '';
 				},
 			);
 
 			const result = await execute.call(mockExecuteFunctions);
-			expect(client.httpPost).toHaveBeenCalledWith(
-				'/cloud/project/12345678-1234-1234-1234-1234567890ab/acl',
-				{ accountId: 'acc-12345', type: 'READ' },
+			expect(client.httpGet).toHaveBeenCalledWith(
+				'/cloud/project/12345678-1234-1234-1234-1234567890ab/acl/acc-12345',
 			);
 			expect(result).toMatchObject([mockData]);
 		});

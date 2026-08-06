@@ -47,16 +47,16 @@ export function description(displayOptions: IDisplayOptions): INodeProperties[] 
  * Executes the Delete ACL operation.
  *
  * HTTP method: DELETE
- * Endpoint: /publicCloud/project/{projectId}/acl/{aclId}
+ * Endpoint: /cloud/project/{serviceName}/acl/{aclId}
  */
 export async function execute(this: IExecuteFunctions): Promise<INodeExecutionData[]> {
     const client = new ApiClient(this);
-    const projectId = this.getNodeParameter('publicCloudProjectId', 0, '', {
+    const serviceName = this.getNodeParameter('publicCloudProjectId', 0, '', {
         extractValue: true,
     }) as string;
     const aclId = this.getNodeParameter('aclId', 0) as string;
     
-    await client.httpDelete(`/publicCloud/project/${projectId}/acl/${aclId}`);
+    await client.httpDelete(`/cloud/project/${serviceName}/acl/${aclId}`);
 
     return this.helpers.returnJsonArray([{ deleted: aclId }]);
 }

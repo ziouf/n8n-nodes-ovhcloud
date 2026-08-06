@@ -1,6 +1,6 @@
 # OVHcloud API Coverage Report
 
-> Généré par `scripts/compare-coverage.js` le 2026-08-06T11:43:21.035Z. Document généré automatiquement — ne pas éditer à la main.
+> Généré par `scripts/compare-coverage.js` le 2026-08-06T12:03:43.786Z. Document généré automatiquement — ne pas éditer à la main.
 
 Ce rapport compare les endpoints déclarés dans les specs Swagger 2.0 (`docs/api-specs/v1|v2/*.json`) avec les appels HTTP réellement présents dans les nodes (`nodes/**/*.operation.ts`).
 
@@ -8,8 +8,8 @@ Ce rapport compare les endpoints déclarés dans les specs Swagger 2.0 (`docs/ap
 
 - **Specs analysées** : 84 (v1: 70, v2: 14)
 - **Endpoints déclarés (specs avec endpoints)** : 6624
-- **Endpoints couverts par les nodes** : 3871
-- **Couverture globale** : **58.4%**
+- **Endpoints couverts par les nodes** : 3898
+- **Couverture globale** : **58.8%**
 - **Specs sans node associé** : 21
 - **Specs placeholder (aucun endpoint)** : 1
 
@@ -52,7 +52,7 @@ Triée par pourcentage croissant (moins bonne couverture en premier).
 | veeam (v1) | 10 | 5 | 5 | 50% |
 | license (v1) | 13 | 7 | 6 | 53.8% |
 | pack (v1) | 58 | 33 | 25 | 56.9% |
-| cloud (v1) | 1121 | 659 | 462 | 58.8% |
+| cloud (v1) | 1121 | 686 | 435 | 61.2% |
 | me (v1) | 379 | 233 | 146 | 61.5% |
 | metrics (v1) | 16 | 12 | 4 | 75% |
 | hosting (v1) | 198 | 150 | 48 | 75.8% |
@@ -2451,7 +2451,7 @@ _Nodes associés : OvhCloudPackXdsl, OvhCloudPack_
 | GET | `/pack/xdsl/{x}/voipLine/services/{x}` |
 | GET | `/pack/xdsl/{x}/xdslAccess/services` |
 
-### cloud (v1) — 462 manquants
+### cloud (v1) — 435 manquants
 
 _Nodes associés : OvhCloudPublicCloud, OvhCloudPublicCloudAi_
 
@@ -2464,11 +2464,6 @@ _Nodes associés : OvhCloudPublicCloud, OvhCloudPublicCloudAi_
 | GET | `/cloud/project` |
 | GET | `/cloud/project/{x}` |
 | PUT | `/cloud/project/{x}` |
-| GET | `/cloud/project/{x}/acl` |
-| POST | `/cloud/project/{x}/acl` |
-| DELETE | `/cloud/project/{x}/acl/{x}` |
-| GET | `/cloud/project/{x}/acl/{x}` |
-| POST | `/cloud/project/{x}/activateMonthlyBilling` |
 | GET | `/cloud/project/{x}/ai/app` |
 | POST | `/cloud/project/{x}/ai/app` |
 | DELETE | `/cloud/project/{x}/ai/app/{x}` |
@@ -2552,15 +2547,8 @@ _Nodes associés : OvhCloudPublicCloud, OvhCloudPublicCloudAi_
 | DELETE | `/cloud/project/{x}/ai/token/{x}` |
 | GET | `/cloud/project/{x}/ai/token/{x}` |
 | POST | `/cloud/project/{x}/ai/token/{x}/renew` |
-| GET | `/cloud/project/{x}/alerting` |
-| POST | `/cloud/project/{x}/alerting` |
-| DELETE | `/cloud/project/{x}/alerting/{x}` |
-| GET | `/cloud/project/{x}/alerting/{x}` |
-| PUT | `/cloud/project/{x}/alerting/{x}` |
 | GET | `/cloud/project/{x}/alerting/{x}/alert` |
 | GET | `/cloud/project/{x}/alerting/{x}/alert/{x}` |
-| GET | `/cloud/project/{x}/bill` |
-| POST | `/cloud/project/{x}/cancel` |
 | GET | `/cloud/project/{x}/capabilities/containerRegistry` |
 | GET | `/cloud/project/{x}/capabilities/kube/admissionplugins` |
 | GET | `/cloud/project/{x}/capabilities/kube/flavors` |
@@ -2570,8 +2558,6 @@ _Nodes associés : OvhCloudPublicCloud, OvhCloudPublicCloudAi_
 | GET | `/cloud/project/{x}/capabilities/loadbalancer/region` |
 | GET | `/cloud/project/{x}/capabilities/loadbalancer/region/{x}` |
 | GET | `/cloud/project/{x}/capabilities/productAvailability` |
-| POST | `/cloud/project/{x}/changeContact` |
-| POST | `/cloud/project/{x}/confirmTermination` |
 | GET | `/cloud/project/{x}/containerRegistry` |
 | POST | `/cloud/project/{x}/containerRegistry` |
 | DELETE | `/cloud/project/{x}/containerRegistry/{x}` |
@@ -2595,9 +2581,6 @@ _Nodes associés : OvhCloudPublicCloud, OvhCloudPublicCloudAi_
 | DELETE | `/cloud/project/{x}/containerRegistry/{x}/users/{x}` |
 | GET | `/cloud/project/{x}/containerRegistry/{x}/users/{x}` |
 | PUT | `/cloud/project/{x}/containerRegistry/{x}/users/{x}/setAsAdmin` |
-| GET | `/cloud/project/{x}/credit` |
-| POST | `/cloud/project/{x}/credit` |
-| GET | `/cloud/project/{x}/credit/{x}` |
 | GET | `/cloud/project/{x}/database/availability` |
 | GET | `/cloud/project/{x}/database/capabilities` |
 | GET | `/cloud/project/{x}/database/kafka/{x}/acl` |
@@ -2682,10 +2665,7 @@ _Nodes associés : OvhCloudPublicCloud, OvhCloudPublicCloudAi_
 | GET | `/cloud/project/{x}/ip/failover/{x}` |
 | POST | `/cloud/project/{x}/ip/failover/{x}/attach` |
 | POST | `/cloud/project/{x}/kube` |
-| GET | `/cloud/project/{x}/lab` |
-| GET | `/cloud/project/{x}/lab/{x}` |
 | POST | `/cloud/project/{x}/lab/{x}` |
-| GET | `/cloud/project/{x}/lab/{x}/agreement` |
 | GET | `/cloud/project/{x}/loadbalancer` |
 | POST | `/cloud/project/{x}/loadbalancer` |
 | DELETE | `/cloud/project/{x}/loadbalancer/{x}` |
@@ -2706,13 +2686,10 @@ _Nodes associés : OvhCloudPublicCloud, OvhCloudPublicCloudAi_
 | POST | `/cloud/project/{x}/network/private/{x}/subnet` |
 | DELETE | `/cloud/project/{x}/network/private/{x}/subnet/{x}` |
 | GET | `/cloud/project/{x}/network/public` |
-| GET | `/cloud/project/{x}/operation` |
-| GET | `/cloud/project/{x}/operation/{x}` |
 | GET | `/cloud/project/{x}/quantum/capabilities/region` |
 | GET | `/cloud/project/{x}/quantum/capabilities/region/{x}` |
 | GET | `/cloud/project/{x}/quantum/capabilities/region/{x}/qpu` |
 | GET | `/cloud/project/{x}/quantum/capabilities/region/{x}/qpu/{x}` |
-| GET | `/cloud/project/{x}/quota` |
 | GET | `/cloud/project/{x}/region` |
 | POST | `/cloud/project/{x}/region` |
 | GET | `/cloud/project/{x}/region/{x}` |
@@ -2872,8 +2849,6 @@ _Nodes associés : OvhCloudPublicCloud, OvhCloudPublicCloudAi_
 | POST | `/cloud/project/{x}/region/{x}/workflow/backup` |
 | DELETE | `/cloud/project/{x}/region/{x}/workflow/backup/{x}` |
 | GET | `/cloud/project/{x}/region/{x}/workflow/backup/{x}` |
-| GET | `/cloud/project/{x}/regionAvailable` |
-| POST | `/cloud/project/{x}/retain` |
 | GET | `/cloud/project/{x}/role` |
 | GET | `/cloud/project/{x}/serviceInfos` |
 | PUT | `/cloud/project/{x}/serviceInfos` |
@@ -2896,8 +2871,6 @@ _Nodes associés : OvhCloudPublicCloud, OvhCloudPublicCloudAi_
 | POST | `/cloud/project/{x}/storage/{x}/user` |
 | POST | `/cloud/project/{x}/storage/access` |
 | GET | `/cloud/project/{x}/storage/quota` |
-| POST | `/cloud/project/{x}/terminate` |
-| POST | `/cloud/project/{x}/unleash` |
 | GET | `/cloud/project/{x}/usage/current` |
 | GET | `/cloud/project/{x}/usage/forecast` |
 | GET | `/cloud/project/{x}/usage/history` |

@@ -39,16 +39,16 @@ export function description(displayOptions: IDisplayOptions): INodeProperties[] 
  * Executes the Change Contact operation.
  *
  * HTTP method: POST
- * Endpoint: /publicCloud/project/{projectId}/changeContact
+ * Endpoint: /cloud/project/{serviceName}/changeContact
  */
 export async function execute(this: IExecuteFunctions): Promise<INodeExecutionData[]> {
     const client = new ApiClient(this);
-    const projectId = this.getNodeParameter('publicCloudProjectId', 0, '', {
+    const serviceName = this.getNodeParameter('publicCloudProjectId', 0, '', {
         extractValue: true,
     }) as string;
     
     const data = (await client.httpPost(
-        `/publicCloud/project/${projectId}/changeContact`,
+        `/cloud/project/${serviceName}/changeContact`,
     )) as IDataObject;
 
     return this.helpers.returnJsonArray([data]);
