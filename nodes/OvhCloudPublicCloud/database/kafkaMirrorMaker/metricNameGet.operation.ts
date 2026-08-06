@@ -20,49 +20,51 @@ export function description(displayOptions: IDisplayOptions): INodeProperties[] 
 			displayOptions,
 		},
 		{
-			displayName: 'Description',
-			name: 'description',
+			displayName: 'Cluster ID',
+			name: 'clusterId',
 			type: 'string',
 			default: '',
+			required: true,
+			description: 'The Kafka MirrorMaker cluster ID',
 			displayOptions,
 		},
 		{
-			displayName: 'Plan',
-			name: 'plan',
+			displayName: 'Metric Name',
+			name: 'metricName',
 			type: 'string',
 			default: '',
+			required: true,
 			displayOptions,
 		},
 		{
-			displayName: 'Version',
-			name: 'version',
+			displayName: 'Period',
+			name: 'period',
 			type: 'string',
 			default: '',
+			required: true,
+			description: 'The period of time to query metrics for (e.g., 24h, 7d)',
 			displayOptions,
-		}
+		},
 	];
 }
 
 /**
- * Executes the Create Kafka MirrorMaker Cluster.
+ * Executes the Get Kafka MirrorMaker Metric.
  *
- * HTTP method: POST
- * Endpoint: /cloud/project/${publicCloudProjectId}/database/kafkaMirrorMaker
+ * HTTP method: GET
+ * Endpoint: /cloud/project/${publicCloudProjectId}/database/kafkaMirrorMaker/${clusterId}/metric/${metricName}
  */
 export async function execute(this: IExecuteFunctions): Promise<INodeExecutionData[]> {
 	const client = new ApiClient(this);
 	const publicCloudProjectId = this.getNodeParameter('publicCloudProjectId', 0) as string;
-	const description = this.getNodeParameter('description', 0) as string;
-	const plan = this.getNodeParameter('plan', 0) as string;
-	const version = this.getNodeParameter('version', 0) as string;
+	const clusterId = this.getNodeParameter('clusterId', 0) as string;
+	const metricName = this.getNodeParameter('metricName', 0) as string;
+	const period = this.getNodeParameter('period', 0) as string;
 
-	const body: IDataObject = {};
-	if (description) body.description = description;
+	const qs: IDataObject = {};
+	if (period) qs.period = period;
 
-	if (plan) body.plan = plan;
-
-	if (version) body.version = version;
-	const data = (await client.httpPost(`/cloud/project/${publicCloudProjectId}/database/kafkaMirrorMaker`, body )) as IDataObject;
+	const data = (await client.httpGet(`/cloud/project/${publicCloudProjectId}/database/kafkaMirrorMaker/${clusterId}/metric/${metricName}`, qs)) as IDataObject;
 
 	return this.helpers.returnJsonArray([data]);
 }

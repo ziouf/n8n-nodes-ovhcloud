@@ -29,28 +29,49 @@ export function description(displayOptions: IDisplayOptions): INodeProperties[] 
 			displayOptions,
 		},
 		{
-			displayName: 'Node ID',
-			name: 'nodeId',
+			displayName: 'Replication ID',
+			name: 'replicationId',
 			type: 'string',
 			default: '',
 			required: true,
+			displayOptions,
+		},
+		{
+			displayName: 'Destinationserviceid',
+			name: 'destinationServiceId',
+			type: 'string',
+			default: '',
+			displayOptions,
+		},
+		{
+			displayName: 'Sourceserviceid',
+			name: 'sourceServiceId',
+			type: 'string',
+			default: '',
 			displayOptions,
 		}
 	];
 }
 
 /**
- * Executes the Get Kafka MirrorMaker Node.
+ * Executes the Update Kafka MirrorMaker Replication.
  *
- * HTTP method: GET
- * Endpoint: /cloud/project/${publicCloudProjectId}/database/kafkaMirrorMaker/${clusterId}/node/${nodeId}
+ * HTTP method: PUT
+ * Endpoint: /cloud/project/${publicCloudProjectId}/database/kafkaMirrorMaker/${clusterId}/replication/${replicationId}
  */
 export async function execute(this: IExecuteFunctions): Promise<INodeExecutionData[]> {
 	const client = new ApiClient(this);
 	const publicCloudProjectId = this.getNodeParameter('publicCloudProjectId', 0) as string;
 	const clusterId = this.getNodeParameter('clusterId', 0) as string;
-	const nodeId = this.getNodeParameter('nodeId', 0) as string;
-	const data = (await client.httpGet(`/cloud/project/${publicCloudProjectId}/database/kafkaMirrorMaker/${clusterId}/node/${nodeId}`)) as IDataObject;
+	const replicationId = this.getNodeParameter('replicationId', 0) as string;
+	const destinationServiceId = this.getNodeParameter('destinationServiceId', 0) as string;
+	const sourceServiceId = this.getNodeParameter('sourceServiceId', 0) as string;
+
+	const body: IDataObject = {};
+	if (destinationServiceId) body.destinationServiceId = destinationServiceId;
+
+	if (sourceServiceId) body.sourceServiceId = sourceServiceId;
+	const data = (await client.httpPut(`/cloud/project/${publicCloudProjectId}/database/kafkaMirrorMaker/${clusterId}/replication/${replicationId}`, body )) as IDataObject;
 
 	return this.helpers.returnJsonArray([data]);
 }

@@ -20,22 +20,31 @@ export function description(displayOptions: IDisplayOptions): INodeProperties[] 
 			displayOptions,
 		},
 		{
-			displayName: 'Description',
-			name: 'description',
+			displayName: 'Cluster ID',
+			name: 'clusterId',
+			type: 'string',
+			default: '',
+			required: true,
+			description: 'The Kafka MirrorMaker cluster ID',
+			displayOptions,
+		},
+		{
+			displayName: 'Kind',
+			name: 'kind',
 			type: 'string',
 			default: '',
 			displayOptions,
 		},
 		{
-			displayName: 'Plan',
-			name: 'plan',
+			displayName: 'Region',
+			name: 'region',
 			type: 'string',
 			default: '',
 			displayOptions,
 		},
 		{
-			displayName: 'Version',
-			name: 'version',
+			displayName: 'Since',
+			name: 'since',
 			type: 'string',
 			default: '',
 			displayOptions,
@@ -44,25 +53,26 @@ export function description(displayOptions: IDisplayOptions): INodeProperties[] 
 }
 
 /**
- * Executes the Create Kafka MirrorMaker Cluster.
+ * Executes the Generate Kafka MirrorMaker Log URL.
  *
  * HTTP method: POST
- * Endpoint: /cloud/project/${publicCloudProjectId}/database/kafkaMirrorMaker
+ * Endpoint: /cloud/project/${publicCloudProjectId}/database/kafkaMirrorMaker/${clusterId}/log/url
  */
 export async function execute(this: IExecuteFunctions): Promise<INodeExecutionData[]> {
 	const client = new ApiClient(this);
 	const publicCloudProjectId = this.getNodeParameter('publicCloudProjectId', 0) as string;
-	const description = this.getNodeParameter('description', 0) as string;
-	const plan = this.getNodeParameter('plan', 0) as string;
-	const version = this.getNodeParameter('version', 0) as string;
+	const clusterId = this.getNodeParameter('clusterId', 0) as string;
+	const kind = this.getNodeParameter('kind', 0) as string;
+	const region = this.getNodeParameter('region', 0) as string;
+	const since = this.getNodeParameter('since', 0) as string;
 
 	const body: IDataObject = {};
-	if (description) body.description = description;
+	if (kind) body.kind = kind;
 
-	if (plan) body.plan = plan;
+	if (region) body.region = region;
 
-	if (version) body.version = version;
-	const data = (await client.httpPost(`/cloud/project/${publicCloudProjectId}/database/kafkaMirrorMaker`, body )) as IDataObject;
+	if (since) body.since = since;
+	const data = (await client.httpPost(`/cloud/project/${publicCloudProjectId}/database/kafkaMirrorMaker/${clusterId}/log/url`, body )) as IDataObject;
 
 	return this.helpers.returnJsonArray([data]);
 }

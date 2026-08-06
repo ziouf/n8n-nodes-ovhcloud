@@ -1,4 +1,5 @@
 import type {
+	IDataObject,
 	IExecuteFunctions,
 	IDisplayOptions,
 	INodeExecutionData,
@@ -8,56 +9,39 @@ import { ApiClient } from '../../../../shared/transport/ApiClient';
 
 export function description(displayOptions: IDisplayOptions): INodeProperties[] {
 	return [
-	{
-		displayName: 'Public Cloud Project',
-		name: 'publicCloudProjectId',
-		type: 'resourceLocator',
-		default: { mode: 'list', value: '' },
-		required: true,
-		description: 'The Public Cloud project ID (e.g. 12345678-1234-1234-1234-1234567890ab)',
-		modes: [
-			{
-				displayName: 'From List',
-				name: 'list',
-				type: 'list',
-				typeOptions: { searchListMethod: 'getPublicCloudProjects' },
-			},
-			{
-				displayName: 'By ID',
-				name: 'name',
-				type: 'string',
-				placeholder: '12345678-1234-1234-1234-1234567890ab',
-			},
-		],
-		displayOptions,
-	},
-	{
-		displayName: 'Service Name',
-		name: 'serviceName',
-		type: 'string',
-		default: '',
-		required: true,
-		description: 'The database service name',
-		displayOptions,
-	},
+		{
+			displayName: 'Public Cloud Project',
+			name: 'publicCloudProjectId',
+			type: 'resourceLocator',
+			default: '',
+			required: true,
+			description: 'The Public Cloud project ID',
+			typeOptions: { searchListMethod: 'getPublicCloudProjects' },
+			displayOptions,
+		},
+		{
+			displayName: 'Cluster ID',
+			name: 'clusterId',
+			type: 'string',
+			default: '',
+			required: true,
+			description: 'The Kafka MirrorMaker cluster ID',
+			displayOptions,
+		}
 	];
 }
 
-
 /**
- * Executes the Get Kafka MirrorMaker Prometheus Config operation.
+ * Executes the Get Kafka MirrorMaker Prometheus.
  *
  * HTTP method: GET
- * Endpoint: /publicCloud/project/{projectId}/cloud/database/kafkaMirrorMaker/{serviceName}/prometheus
+ * Endpoint: /cloud/project/${publicCloudProjectId}/database/kafkaMirrorMaker/${clusterId}/prometheus
  */
 export async function execute(this: IExecuteFunctions): Promise<INodeExecutionData[]> {
 	const client = new ApiClient(this);
-	const projectId = this.getNodeParameter('projectId', 0, '', {
-		extractValue: true,
-	}) as string;
-	const serviceName = this.getNodeParameter('serviceName', 0) as string;
+	const publicCloudProjectId = this.getNodeParameter('publicCloudProjectId', 0) as string;
+	const clusterId = this.getNodeParameter('clusterId', 0) as string;
+	const data = (await client.httpGet(`/cloud/project/${publicCloudProjectId}/database/kafkaMirrorMaker/${clusterId}/prometheus`)) as IDataObject;
 
-	const data = (await client.httpGet(`/publicCloud/project/${projectId}/cloud/database/kafkaMirrorMaker/${serviceName}/prometheus`)) as import('n8n-workflow').IDataObject;
-
-	return this.helpers.returnJsonArray([data as INodeExecutionData]);
+	return this.helpers.returnJsonArray([data]);
 }

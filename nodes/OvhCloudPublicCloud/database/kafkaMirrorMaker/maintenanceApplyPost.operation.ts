@@ -20,49 +20,37 @@ export function description(displayOptions: IDisplayOptions): INodeProperties[] 
 			displayOptions,
 		},
 		{
-			displayName: 'Description',
-			name: 'description',
+			displayName: 'Cluster ID',
+			name: 'clusterId',
 			type: 'string',
 			default: '',
+			required: true,
+			description: 'The Kafka MirrorMaker cluster ID',
 			displayOptions,
 		},
 		{
-			displayName: 'Plan',
-			name: 'plan',
+			displayName: 'Maintenance ID',
+			name: 'maintenanceId',
 			type: 'string',
 			default: '',
-			displayOptions,
-		},
-		{
-			displayName: 'Version',
-			name: 'version',
-			type: 'string',
-			default: '',
+			required: true,
 			displayOptions,
 		}
 	];
 }
 
 /**
- * Executes the Create Kafka MirrorMaker Cluster.
+ * Executes the Apply Kafka MirrorMaker Maintenance.
  *
  * HTTP method: POST
- * Endpoint: /cloud/project/${publicCloudProjectId}/database/kafkaMirrorMaker
+ * Endpoint: /cloud/project/${publicCloudProjectId}/database/kafkaMirrorMaker/${clusterId}/maintenance/${maintenanceId}/apply
  */
 export async function execute(this: IExecuteFunctions): Promise<INodeExecutionData[]> {
 	const client = new ApiClient(this);
 	const publicCloudProjectId = this.getNodeParameter('publicCloudProjectId', 0) as string;
-	const description = this.getNodeParameter('description', 0) as string;
-	const plan = this.getNodeParameter('plan', 0) as string;
-	const version = this.getNodeParameter('version', 0) as string;
-
-	const body: IDataObject = {};
-	if (description) body.description = description;
-
-	if (plan) body.plan = plan;
-
-	if (version) body.version = version;
-	const data = (await client.httpPost(`/cloud/project/${publicCloudProjectId}/database/kafkaMirrorMaker`, body )) as IDataObject;
+	const clusterId = this.getNodeParameter('clusterId', 0) as string;
+	const maintenanceId = this.getNodeParameter('maintenanceId', 0) as string;
+	const data = (await client.httpPost(`/cloud/project/${publicCloudProjectId}/database/kafkaMirrorMaker/${clusterId}/maintenance/${maintenanceId}/apply`)) as IDataObject;
 
 	return this.helpers.returnJsonArray([data]);
 }

@@ -1,5 +1,5 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import { description, execute } from './nodeGetGet.operation';
+import { description, execute } from './logKindNameGet.operation';
 
 jest.mock('../../../../shared/transport/ApiClient', () => {
 	const mockHttpClient = {
@@ -13,7 +13,7 @@ jest.mock('../../../../shared/transport/ApiClient', () => {
 
 import { ApiClient } from '../../../../shared/transport/ApiClient';
 
-describe('nodeGetGet operation', () => {
+describe('logKindNameGet operation', () => {
 	describe('description', () => {
 		it('should return all required parameters', () => {
 			const result = description({ show: {} });
@@ -78,7 +78,7 @@ describe('nodeGetGet operation', () => {
 
 			const result = await execute.call(mockExecuteFunctions);
 			expect(client.httpGet).toHaveBeenCalledWith(
-				'/cloud/project/12345678-1234-1234-1234-1234567890ab/database/kafkaMirrorMaker/cluster-123/node/node-001',
+				'/cloud/project/12345678-1234-1234-1234-1234567890ab/database/kafkaMirrorMaker/cluster-123/log/kind/general',
 			);
 			expect(result).toMatchObject([mockData]);
 		});

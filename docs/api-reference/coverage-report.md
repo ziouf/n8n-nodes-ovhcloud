@@ -1,6 +1,6 @@
 # OVHcloud API Coverage Report
 
-> Généré par `scripts/compare-coverage.js` le 2026-08-06T01:37:54.146Z. Document généré automatiquement — ne pas éditer à la main.
+> Généré par `scripts/compare-coverage.js` le 2026-08-06T03:28:43.911Z. Document généré automatiquement — ne pas éditer à la main.
 
 Ce rapport compare les endpoints déclarés dans les specs Swagger 2.0 (`docs/api-specs/v1|v2/*.json`) avec les appels HTTP réellement présents dans les nodes (`nodes/**/*.operation.ts`).
 
@@ -8,8 +8,8 @@ Ce rapport compare les endpoints déclarés dans les specs Swagger 2.0 (`docs/ap
 
 - **Specs analysées** : 84 (v1: 70, v2: 14)
 - **Endpoints déclarés (specs avec endpoints)** : 6624
-- **Endpoints couverts par les nodes** : 3770
-- **Couverture globale** : **56.9%**
+- **Endpoints couverts par les nodes** : 3801
+- **Couverture globale** : **57.4%**
 - **Specs sans node associé** : 21
 - **Specs placeholder (aucun endpoint)** : 1
 
@@ -49,8 +49,8 @@ Triée par pourcentage croissant (moins bonne couverture en premier).
 | vps (v1) | 94 | 22 | 72 | 23.4% |
 | sslGateway (v1) | 23 | 6 | 17 | 26.1% |
 | xdsl (v1) | 142 | 39 | 103 | 27.5% |
-| cloud (v1) | 1121 | 558 | 563 | 49.8% |
 | veeam (v1) | 10 | 5 | 5 | 50% |
+| cloud (v1) | 1121 | 589 | 532 | 52.5% |
 | license (v1) | 13 | 7 | 6 | 53.8% |
 | pack (v1) | 58 | 33 | 25 | 56.9% |
 | me (v1) | 379 | 233 | 146 | 61.5% |
@@ -2394,7 +2394,19 @@ _Nodes associés : OvhCloudXdsl_
 | GET | `/xdsl/templateModem/{x}` |
 | PUT | `/xdsl/templateModem/{x}` |
 
-### cloud (v1) — 563 manquants
+### veeam (v1) — 5 manquants
+
+_Nodes associés : OvhCloudVeeamEnterprisePlus_
+
+| Méthode | Chemin |
+|--------|--------|
+| PUT | `/veeam/veeamEnterprise/{x}/serviceInfos` |
+| GET | `/veeam/veeamEnterprise/{x}/task` |
+| GET | `/veeam/veeamEnterprise/{x}/task/{x}` |
+| POST | `/veeam/veeamEnterprise/{x}/terminate` |
+| POST | `/veeam/veeamEnterprise/{x}/update` |
+
+### cloud (v1) — 532 manquants
 
 _Nodes associés : OvhCloudPublicCloud, OvhCloudPublicCloudAi_
 
@@ -2562,38 +2574,7 @@ _Nodes associés : OvhCloudPublicCloud, OvhCloudPublicCloudAi_
 | POST | `/cloud/project/{x}/database/kafka/{x}/maintenance/{x}/apply` |
 | GET | `/cloud/project/{x}/database/kafka/{x}/node` |
 | GET | `/cloud/project/{x}/database/kafka/{x}/node/{x}` |
-| GET | `/cloud/project/{x}/database/kafkaMirrorMaker` |
-| POST | `/cloud/project/{x}/database/kafkaMirrorMaker` |
-| DELETE | `/cloud/project/{x}/database/kafkaMirrorMaker/{x}` |
-| GET | `/cloud/project/{x}/database/kafkaMirrorMaker/{x}` |
-| PUT | `/cloud/project/{x}/database/kafkaMirrorMaker/{x}` |
-| GET | `/cloud/project/{x}/database/kafkaMirrorMaker/{x}/capabilities/integration` |
-| GET | `/cloud/project/{x}/database/kafkaMirrorMaker/{x}/integration` |
-| POST | `/cloud/project/{x}/database/kafkaMirrorMaker/{x}/integration` |
-| DELETE | `/cloud/project/{x}/database/kafkaMirrorMaker/{x}/integration/{x}` |
-| GET | `/cloud/project/{x}/database/kafkaMirrorMaker/{x}/integration/{x}` |
-| GET | `/cloud/project/{x}/database/kafkaMirrorMaker/{x}/log/kind` |
-| GET | `/cloud/project/{x}/database/kafkaMirrorMaker/{x}/log/kind/{x}` |
 | GET | `/cloud/project/{x}/database/kafkaMirrorMaker/{x}/log/subscription` |
-| POST | `/cloud/project/{x}/database/kafkaMirrorMaker/{x}/log/subscription` |
-| DELETE | `/cloud/project/{x}/database/kafkaMirrorMaker/{x}/log/subscription/{x}` |
-| GET | `/cloud/project/{x}/database/kafkaMirrorMaker/{x}/log/subscription/{x}` |
-| POST | `/cloud/project/{x}/database/kafkaMirrorMaker/{x}/log/url` |
-| GET | `/cloud/project/{x}/database/kafkaMirrorMaker/{x}/logs` |
-| GET | `/cloud/project/{x}/database/kafkaMirrorMaker/{x}/maintenance` |
-| GET | `/cloud/project/{x}/database/kafkaMirrorMaker/{x}/maintenance/{x}` |
-| POST | `/cloud/project/{x}/database/kafkaMirrorMaker/{x}/maintenance/{x}/apply` |
-| GET | `/cloud/project/{x}/database/kafkaMirrorMaker/{x}/metric` |
-| GET | `/cloud/project/{x}/database/kafkaMirrorMaker/{x}/metric/{x}` |
-| GET | `/cloud/project/{x}/database/kafkaMirrorMaker/{x}/node` |
-| GET | `/cloud/project/{x}/database/kafkaMirrorMaker/{x}/node/{x}` |
-| GET | `/cloud/project/{x}/database/kafkaMirrorMaker/{x}/prometheus` |
-| POST | `/cloud/project/{x}/database/kafkaMirrorMaker/{x}/prometheus/credentials/reset` |
-| GET | `/cloud/project/{x}/database/kafkaMirrorMaker/{x}/replication` |
-| POST | `/cloud/project/{x}/database/kafkaMirrorMaker/{x}/replication` |
-| DELETE | `/cloud/project/{x}/database/kafkaMirrorMaker/{x}/replication/{x}` |
-| GET | `/cloud/project/{x}/database/kafkaMirrorMaker/{x}/replication/{x}` |
-| PUT | `/cloud/project/{x}/database/kafkaMirrorMaker/{x}/replication/{x}` |
 | GET | `/cloud/project/{x}/database/m3aggregator` |
 | POST | `/cloud/project/{x}/database/m3aggregator` |
 | DELETE | `/cloud/project/{x}/database/m3aggregator/{x}` |
@@ -2963,18 +2944,6 @@ _Nodes associés : OvhCloudPublicCloud, OvhCloudPublicCloudAi_
 | GET | `/cloud/project/{x}/volume/snapshot/{x}` |
 | GET | `/cloud/project/{x}/vrack` |
 | POST | `/cloud/project/{x}/vrack` |
-
-### veeam (v1) — 5 manquants
-
-_Nodes associés : OvhCloudVeeamEnterprisePlus_
-
-| Méthode | Chemin |
-|--------|--------|
-| PUT | `/veeam/veeamEnterprise/{x}/serviceInfos` |
-| GET | `/veeam/veeamEnterprise/{x}/task` |
-| GET | `/veeam/veeamEnterprise/{x}/task/{x}` |
-| POST | `/veeam/veeamEnterprise/{x}/terminate` |
-| POST | `/veeam/veeamEnterprise/{x}/update` |
 
 ### license (v1) — 6 manquants
 

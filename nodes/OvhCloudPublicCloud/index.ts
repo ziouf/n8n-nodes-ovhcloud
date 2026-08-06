@@ -1581,122 +1581,157 @@ import {
 	description as kafkaMirrorMakerClusterListGetDescription,
 	execute as kafkaMirrorMakerClusterListGetExecute,
 } from './database/kafkaMirrorMaker/clusterListGet.operation';
-import {
-	description as kafkaMirrorMakerClusterGetGetDescription,
-	execute as kafkaMirrorMakerClusterGetGetExecute,
-} from './database/kafkaMirrorMaker/clusterGetGet.operation';
+
 import {
 	description as kafkaMirrorMakerClusterCreatePostDescription,
 	execute as kafkaMirrorMakerClusterCreatePostExecute,
 } from './database/kafkaMirrorMaker/clusterCreatePost.operation';
+
+import {
+	description as kafkaMirrorMakerClusterGetGetDescription,
+	execute as kafkaMirrorMakerClusterGetGetExecute,
+} from './database/kafkaMirrorMaker/clusterGetGet.operation';
+
 import {
 	description as kafkaMirrorMakerClusterUpdatePutDescription,
 	execute as kafkaMirrorMakerClusterUpdatePutExecute,
 } from './database/kafkaMirrorMaker/clusterUpdatePut.operation';
+
 import {
 	description as kafkaMirrorMakerClusterDeleteDeleteDescription,
 	execute as kafkaMirrorMakerClusterDeleteDeleteExecute,
 } from './database/kafkaMirrorMaker/clusterDeleteDelete.operation';
+
 import {
-	description as kafkaMirrorMakerBackupListGetDescription,
-	execute as kafkaMirrorMakerBackupListGetExecute,
-} from './database/kafkaMirrorMaker/backupListGet.operation';
+	description as kafkaMirrorMakerCapabilitiesIntegrationGetDescription,
+	execute as kafkaMirrorMakerCapabilitiesIntegrationGetExecute,
+} from './database/kafkaMirrorMaker/capabilitiesIntegrationGet.operation';
+
 import {
-	description as kafkaMirrorMakerBackupCreatePostDescription,
-	execute as kafkaMirrorMakerBackupCreatePostExecute,
-} from './database/kafkaMirrorMaker/backupCreatePost.operation';
+	description as kafkaMirrorMakerIntegrationGetDescription,
+	execute as kafkaMirrorMakerIntegrationGetExecute,
+} from './database/kafkaMirrorMaker/integrationGet.operation';
+
 import {
-	description as kafkaMirrorMakerBackupGetGetDescription,
-	execute as kafkaMirrorMakerBackupGetGetExecute,
-} from './database/kafkaMirrorMaker/backupGetGet.operation';
+	description as kafkaMirrorMakerIntegrationCreatePostDescription,
+	execute as kafkaMirrorMakerIntegrationCreatePostExecute,
+} from './database/kafkaMirrorMaker/integrationCreatePost.operation';
+
 import {
-	description as kafkaMirrorMakerBackupDeleteDeleteDescription,
-	execute as kafkaMirrorMakerBackupDeleteDeleteExecute,
-} from './database/kafkaMirrorMaker/backupDeleteDelete.operation';
+	description as kafkaMirrorMakerIntegrationDeleteDeleteDescription,
+	execute as kafkaMirrorMakerIntegrationDeleteDeleteExecute,
+} from './database/kafkaMirrorMaker/integrationDeleteDelete.operation';
+
 import {
-	description as kafkaMirrorMakerUserListGetDescription,
-	execute as kafkaMirrorMakerUserListGetExecute,
-} from './database/kafkaMirrorMaker/userListGet.operation';
+	description as kafkaMirrorMakerIntegrationGetByIdDescription,
+	execute as kafkaMirrorMakerIntegrationGetByIdExecute,
+} from './database/kafkaMirrorMaker/integrationGetById.operation';
+
 import {
-	description as kafkaMirrorMakerUserCreatePostDescription,
-	execute as kafkaMirrorMakerUserCreatePostExecute,
-} from './database/kafkaMirrorMaker/userCreatePost.operation';
+	description as kafkaMirrorMakerLogKindGetDescription,
+	execute as kafkaMirrorMakerLogKindGetExecute,
+} from './database/kafkaMirrorMaker/logKindGet.operation';
+
 import {
-	description as kafkaMirrorMakerUserGetGetDescription,
-	execute as kafkaMirrorMakerUserGetGetExecute,
-} from './database/kafkaMirrorMaker/userGetGet.operation';
-import {
-	description as kafkaMirrorMakerUserUpdatePutDescription,
-	execute as kafkaMirrorMakerUserUpdatePutExecute,
-} from './database/kafkaMirrorMaker/userUpdatePut.operation';
-import {
-	description as kafkaMirrorMakerUserDeleteDeleteDescription,
-	execute as kafkaMirrorMakerUserDeleteDeleteExecute,
-} from './database/kafkaMirrorMaker/userDeleteDelete.operation';
-import {
-	description as kafkaMirrorMakerNodeListGetDescription,
-	execute as kafkaMirrorMakerNodeListGetExecute,
-} from './database/kafkaMirrorMaker/nodeListGet.operation';
-import {
-	description as kafkaMirrorMakerNodeCreatePostDescription,
-	execute as kafkaMirrorMakerNodeCreatePostExecute,
-} from './database/kafkaMirrorMaker/nodeCreatePost.operation';
-import {
-	description as kafkaMirrorMakerNodeGetGetDescription,
-	execute as kafkaMirrorMakerNodeGetGetExecute,
-} from './database/kafkaMirrorMaker/nodeGetGet.operation';
-import {
-	description as kafkaMirrorMakerNodeUpdatePutDescription,
-	execute as kafkaMirrorMakerNodeUpdatePutExecute,
-} from './database/kafkaMirrorMaker/nodeUpdatePut.operation';
-import {
-	description as kafkaMirrorMakerNodeDeleteDeleteDescription,
-	execute as kafkaMirrorMakerNodeDeleteDeleteExecute,
-} from './database/kafkaMirrorMaker/nodeDeleteDelete.operation';
-import {
-	description as kafkaMirrorMakerIpRestrictionListGetDescription,
-	execute as kafkaMirrorMakerIpRestrictionListGetExecute,
-} from './database/kafkaMirrorMaker/ipRestrictionListGet.operation';
-import {
-	description as kafkaMirrorMakerIpRestrictionCreatePostDescription,
-	execute as kafkaMirrorMakerIpRestrictionCreatePostExecute,
-} from './database/kafkaMirrorMaker/ipRestrictionCreatePost.operation';
-import {
-	description as kafkaMirrorMakerLogSubscriptionListGetDescription,
-	execute as kafkaMirrorMakerLogSubscriptionListGetExecute,
-} from './database/kafkaMirrorMaker/logSubscriptionListGet.operation';
+	description as kafkaMirrorMakerLogKindNameGetDescription,
+	execute as kafkaMirrorMakerLogKindNameGetExecute,
+} from './database/kafkaMirrorMaker/logKindNameGet.operation';
+
 import {
 	description as kafkaMirrorMakerLogSubscriptionCreatePostDescription,
 	execute as kafkaMirrorMakerLogSubscriptionCreatePostExecute,
 } from './database/kafkaMirrorMaker/logSubscriptionCreatePost.operation';
+
 import {
-	description as kafkaMirrorMakerLogSubscriptionGetGetDescription,
-	execute as kafkaMirrorMakerLogSubscriptionGetGetExecute,
-} from './database/kafkaMirrorMaker/logSubscriptionGetGet.operation';
+	description as kafkaMirrorMakerLogSubscriptionDeleteDeleteDescription,
+	execute as kafkaMirrorMakerLogSubscriptionDeleteDeleteExecute,
+} from './database/kafkaMirrorMaker/logSubscriptionDeleteDelete.operation';
+
+import {
+	description as kafkaMirrorMakerLogSubscriptionGetByIdDescription,
+	execute as kafkaMirrorMakerLogSubscriptionGetByIdExecute,
+} from './database/kafkaMirrorMaker/logSubscriptionGetById.operation';
+
+import {
+	description as kafkaMirrorMakerLogUrlPostDescription,
+	execute as kafkaMirrorMakerLogUrlPostExecute,
+} from './database/kafkaMirrorMaker/logUrlPost.operation';
+
+import {
+	description as kafkaMirrorMakerLogsGetDescription,
+	execute as kafkaMirrorMakerLogsGetExecute,
+} from './database/kafkaMirrorMaker/logsGet.operation';
+
 import {
 	description as kafkaMirrorMakerMaintenanceGetDescription,
 	execute as kafkaMirrorMakerMaintenanceGetExecute,
 } from './database/kafkaMirrorMaker/maintenanceGet.operation';
+
 import {
-	description as kafkaMirrorMakerMaintenanceUpdatePutDescription,
-	execute as kafkaMirrorMakerMaintenanceUpdatePutExecute,
-} from './database/kafkaMirrorMaker/maintenanceUpdatePut.operation';
+	description as kafkaMirrorMakerMaintenanceGetByIdDescription,
+	execute as kafkaMirrorMakerMaintenanceGetByIdExecute,
+} from './database/kafkaMirrorMaker/maintenanceGetById.operation';
+
+import {
+	description as kafkaMirrorMakerMaintenanceApplyPostDescription,
+	execute as kafkaMirrorMakerMaintenanceApplyPostExecute,
+} from './database/kafkaMirrorMaker/maintenanceApplyPost.operation';
+
 import {
 	description as kafkaMirrorMakerMetricGetDescription,
 	execute as kafkaMirrorMakerMetricGetExecute,
 } from './database/kafkaMirrorMaker/metricGet.operation';
+
+import {
+	description as kafkaMirrorMakerMetricNameGetDescription,
+	execute as kafkaMirrorMakerMetricNameGetExecute,
+} from './database/kafkaMirrorMaker/metricNameGet.operation';
+
+import {
+	description as kafkaMirrorMakerNodeListGetDescription,
+	execute as kafkaMirrorMakerNodeListGetExecute,
+} from './database/kafkaMirrorMaker/nodeListGet.operation';
+
+import {
+	description as kafkaMirrorMakerNodeGetGetDescription,
+	execute as kafkaMirrorMakerNodeGetGetExecute,
+} from './database/kafkaMirrorMaker/nodeGetGet.operation';
+
 import {
 	description as kafkaMirrorMakerPrometheusGetDescription,
 	execute as kafkaMirrorMakerPrometheusGetExecute,
 } from './database/kafkaMirrorMaker/prometheusGet.operation';
+
 import {
-	description as kafkaMirrorMakerCertificateListGetDescription,
-	execute as kafkaMirrorMakerCertificateListGetExecute,
-} from './database/kafkaMirrorMaker/certificateListGet.operation';
+	description as kafkaMirrorMakerPrometheusCredentialsResetPostDescription,
+	execute as kafkaMirrorMakerPrometheusCredentialsResetPostExecute,
+} from './database/kafkaMirrorMaker/prometheusCredentialsResetPost.operation';
+
 import {
-	description as kafkaMirrorMakerCertificateCreatePostDescription,
-	execute as kafkaMirrorMakerCertificateCreatePostExecute,
-} from './database/kafkaMirrorMaker/certificateCreatePost.operation';
+	description as kafkaMirrorMakerReplicationGetDescription,
+	execute as kafkaMirrorMakerReplicationGetExecute,
+} from './database/kafkaMirrorMaker/replicationGet.operation';
+
+import {
+	description as kafkaMirrorMakerReplicationCreatePostDescription,
+	execute as kafkaMirrorMakerReplicationCreatePostExecute,
+} from './database/kafkaMirrorMaker/replicationCreatePost.operation';
+
+import {
+	description as kafkaMirrorMakerReplicationDeleteDeleteDescription,
+	execute as kafkaMirrorMakerReplicationDeleteDeleteExecute,
+} from './database/kafkaMirrorMaker/replicationDeleteDelete.operation';
+
+import {
+	description as kafkaMirrorMakerReplicationGetByIdDescription,
+	execute as kafkaMirrorMakerReplicationGetByIdExecute,
+} from './database/kafkaMirrorMaker/replicationGetById.operation';
+
+import {
+	description as kafkaMirrorMakerReplicationUpdatePutDescription,
+	execute as kafkaMirrorMakerReplicationUpdatePutExecute,
+} from './database/kafkaMirrorMaker/replicationUpdatePut.operation';
+
 import {
 	description as m3aggregatorClusterListGetDescription,
 	execute as m3aggregatorClusterListGetExecute,
@@ -5060,152 +5095,126 @@ export function description(displayOptions: IDisplayOptions): INodeProperties[] 
 			{
 				name: 'kafkaMirrorMakerClusterListGet',
 				value: 'kafkaMirrorMakerClusterListGet',
-				action: 'List Kafka MirrorMaker clusters in a project',
-			},
-			{
-				name: 'kafkaMirrorMakerClusterGetGet',
-				value: 'kafkaMirrorMakerClusterGetGet',
-				action: 'Get Kafka MirrorMaker cluster',
 			},
 			{
 				name: 'kafkaMirrorMakerClusterCreatePost',
 				value: 'kafkaMirrorMakerClusterCreatePost',
-				action: 'Create Kafka MirrorMaker cluster',
+			},
+			{
+				name: 'kafkaMirrorMakerClusterGetGet',
+				value: 'kafkaMirrorMakerClusterGetGet',
 			},
 			{
 				name: 'kafkaMirrorMakerClusterUpdatePut',
 				value: 'kafkaMirrorMakerClusterUpdatePut',
-				action: 'Update Kafka MirrorMaker cluster',
 			},
 			{
 				name: 'kafkaMirrorMakerClusterDeleteDelete',
 				value: 'kafkaMirrorMakerClusterDeleteDelete',
-				action: 'Delete Kafka MirrorMaker cluster',
 			},
 			{
-				name: 'kafkaMirrorMakerBackupListGet',
-				value: 'kafkaMirrorMakerBackupListGet',
-				action: 'List Kafka MirrorMaker backups',
+				name: 'kafkaMirrorMakerCapabilitiesIntegrationGet',
+				value: 'kafkaMirrorMakerCapabilitiesIntegrationGet',
 			},
 			{
-				name: 'kafkaMirrorMakerBackupCreatePost',
-				value: 'kafkaMirrorMakerBackupCreatePost',
-				action: 'Create Kafka MirrorMaker backup',
+				name: 'kafkaMirrorMakerIntegrationGet',
+				value: 'kafkaMirrorMakerIntegrationGet',
 			},
 			{
-				name: 'kafkaMirrorMakerBackupGetGet',
-				value: 'kafkaMirrorMakerBackupGetGet',
-				action: 'Get Kafka MirrorMaker backup',
+				name: 'kafkaMirrorMakerIntegrationCreatePost',
+				value: 'kafkaMirrorMakerIntegrationCreatePost',
 			},
 			{
-				name: 'kafkaMirrorMakerBackupDeleteDelete',
-				value: 'kafkaMirrorMakerBackupDeleteDelete',
-				action: 'Delete Kafka MirrorMaker backup',
+				name: 'kafkaMirrorMakerIntegrationDeleteDelete',
+				value: 'kafkaMirrorMakerIntegrationDeleteDelete',
 			},
 			{
-				name: 'kafkaMirrorMakerUserListGet',
-				value: 'kafkaMirrorMakerUserListGet',
-				action: 'List Kafka MirrorMaker users',
+				name: 'kafkaMirrorMakerIntegrationGetById',
+				value: 'kafkaMirrorMakerIntegrationGetById',
 			},
 			{
-				name: 'kafkaMirrorMakerUserCreatePost',
-				value: 'kafkaMirrorMakerUserCreatePost',
-				action: 'Create Kafka MirrorMaker user',
+				name: 'kafkaMirrorMakerLogKindGet',
+				value: 'kafkaMirrorMakerLogKindGet',
 			},
 			{
-				name: 'kafkaMirrorMakerUserGetGet',
-				value: 'kafkaMirrorMakerUserGetGet',
-				action: 'Get Kafka MirrorMaker user',
-			},
-			{
-				name: 'kafkaMirrorMakerUserUpdatePut',
-				value: 'kafkaMirrorMakerUserUpdatePut',
-				action: 'Update Kafka MirrorMaker user',
-			},
-			{
-				name: 'kafkaMirrorMakerUserDeleteDelete',
-				value: 'kafkaMirrorMakerUserDeleteDelete',
-				action: 'Delete Kafka MirrorMaker user',
-			},
-			{
-				name: 'kafkaMirrorMakerNodeListGet',
-				value: 'kafkaMirrorMakerNodeListGet',
-				action: 'List Kafka MirrorMaker nodes',
-			},
-			{
-				name: 'kafkaMirrorMakerNodeCreatePost',
-				value: 'kafkaMirrorMakerNodeCreatePost',
-				action: 'Create Kafka MirrorMaker node',
-			},
-			{
-				name: 'kafkaMirrorMakerNodeGetGet',
-				value: 'kafkaMirrorMakerNodeGetGet',
-				action: 'Get Kafka MirrorMaker node',
-			},
-			{
-				name: 'kafkaMirrorMakerNodeUpdatePut',
-				value: 'kafkaMirrorMakerNodeUpdatePut',
-				action: 'Update Kafka MirrorMaker node',
-			},
-			{
-				name: 'kafkaMirrorMakerNodeDeleteDelete',
-				value: 'kafkaMirrorMakerNodeDeleteDelete',
-				action: 'Delete Kafka MirrorMaker node',
-			},
-			{
-				name: 'kafkaMirrorMakerIpRestrictionListGet',
-				value: 'kafkaMirrorMakerIpRestrictionListGet',
-				action: 'List Kafka MirrorMaker IP restrictions',
-			},
-			{
-				name: 'kafkaMirrorMakerIpRestrictionCreatePost',
-				value: 'kafkaMirrorMakerIpRestrictionCreatePost',
-				action: 'Create Kafka MirrorMaker IP restriction',
-			},
-			{
-				name: 'kafkaMirrorMakerLogSubscriptionListGet',
-				value: 'kafkaMirrorMakerLogSubscriptionListGet',
-				action: 'List Kafka MirrorMaker log subscriptions',
+				name: 'kafkaMirrorMakerLogKindNameGet',
+				value: 'kafkaMirrorMakerLogKindNameGet',
 			},
 			{
 				name: 'kafkaMirrorMakerLogSubscriptionCreatePost',
 				value: 'kafkaMirrorMakerLogSubscriptionCreatePost',
-				action: 'Create Kafka MirrorMaker log subscription',
 			},
 			{
-				name: 'kafkaMirrorMakerLogSubscriptionGetGet',
-				value: 'kafkaMirrorMakerLogSubscriptionGetGet',
-				action: 'Get Kafka MirrorMaker log subscription',
+				name: 'kafkaMirrorMakerLogSubscriptionDeleteDelete',
+				value: 'kafkaMirrorMakerLogSubscriptionDeleteDelete',
+			},
+			{
+				name: 'kafkaMirrorMakerLogSubscriptionGetById',
+				value: 'kafkaMirrorMakerLogSubscriptionGetById',
+			},
+			{
+				name: 'kafkaMirrorMakerLogUrlPost',
+				value: 'kafkaMirrorMakerLogUrlPost',
+			},
+			{
+				name: 'kafkaMirrorMakerLogsGet',
+				value: 'kafkaMirrorMakerLogsGet',
 			},
 			{
 				name: 'kafkaMirrorMakerMaintenanceGet',
 				value: 'kafkaMirrorMakerMaintenanceGet',
-				action: 'Get Kafka MirrorMaker maintenance',
 			},
 			{
-				name: 'kafkaMirrorMakerMaintenanceUpdatePut',
-				value: 'kafkaMirrorMakerMaintenanceUpdatePut',
-				action: 'Update Kafka MirrorMaker maintenance',
+				name: 'kafkaMirrorMakerMaintenanceGetById',
+				value: 'kafkaMirrorMakerMaintenanceGetById',
+			},
+			{
+				name: 'kafkaMirrorMakerMaintenanceApplyPost',
+				value: 'kafkaMirrorMakerMaintenanceApplyPost',
 			},
 			{
 				name: 'kafkaMirrorMakerMetricGet',
 				value: 'kafkaMirrorMakerMetricGet',
-				action: 'Get Kafka MirrorMaker metric',
+			},
+			{
+				name: 'kafkaMirrorMakerMetricNameGet',
+				value: 'kafkaMirrorMakerMetricNameGet',
+			},
+			{
+				name: 'kafkaMirrorMakerNodeListGet',
+				value: 'kafkaMirrorMakerNodeListGet',
+			},
+			{
+				name: 'kafkaMirrorMakerNodeGetGet',
+				value: 'kafkaMirrorMakerNodeGetGet',
 			},
 			{
 				name: 'kafkaMirrorMakerPrometheusGet',
 				value: 'kafkaMirrorMakerPrometheusGet',
-				action: 'Get Kafka MirrorMaker prometheus',
 			},
 			{
-				name: 'kafkaMirrorMakerCertificateListGet',
-				value: 'kafkaMirrorMakerCertificateListGet',
-				action: 'List Kafka MirrorMaker certificates',
+				name: 'kafkaMirrorMakerPrometheusCredentialsResetPost',
+				value: 'kafkaMirrorMakerPrometheusCredentialsResetPost',
 			},
 			{
-				name: 'kafkaMirrorMakerCertificateCreatePost',
-				value: 'kafkaMirrorMakerCertificateCreatePost',
-				action: 'Create Kafka MirrorMaker certificate',
+				name: 'kafkaMirrorMakerReplicationGet',
+				value: 'kafkaMirrorMakerReplicationGet',
+			},
+			{
+				name: 'kafkaMirrorMakerReplicationCreatePost',
+				value: 'kafkaMirrorMakerReplicationCreatePost',
+			},
+			{
+				name: 'kafkaMirrorMakerReplicationDeleteDelete',
+				value: 'kafkaMirrorMakerReplicationDeleteDelete',
+			},
+			{
+				name: 'kafkaMirrorMakerReplicationGetById',
+				value: 'kafkaMirrorMakerReplicationGetById',
+			},
+			{
+				name: 'kafkaMirrorMakerReplicationUpdatePut',
+				value: 'kafkaMirrorMakerReplicationUpdatePut',
 			},
 			{
 				name: 'm3aggregatorClusterListGet',
@@ -9741,105 +9750,45 @@ export function description(displayOptions: IDisplayOptions): INodeProperties[] 
 		}) as INodeProperties[]),
 	);
 	properties.push(
-		...(kafkaMirrorMakerBackupListGetDescription({
+		...(kafkaMirrorMakerCapabilitiesIntegrationGetDescription({
 			...displayOptions,
-			show: { publicCloudOperation: ['kafkaMirrorMakerBackupListGet'] },
+			show: { publicCloudOperation: ['kafkaMirrorMakerCapabilitiesIntegrationGet'] },
 		}) as INodeProperties[]),
 	);
 	properties.push(
-		...(kafkaMirrorMakerBackupCreatePostDescription({
+		...(kafkaMirrorMakerIntegrationGetDescription({
 			...displayOptions,
-			show: { publicCloudOperation: ['kafkaMirrorMakerBackupCreatePost'] },
+			show: { publicCloudOperation: ['kafkaMirrorMakerIntegrationGet'] },
 		}) as INodeProperties[]),
 	);
 	properties.push(
-		...(kafkaMirrorMakerBackupGetGetDescription({
+		...(kafkaMirrorMakerIntegrationCreatePostDescription({
 			...displayOptions,
-			show: { publicCloudOperation: ['kafkaMirrorMakerBackupGetGet'] },
+			show: { publicCloudOperation: ['kafkaMirrorMakerIntegrationCreatePost'] },
 		}) as INodeProperties[]),
 	);
 	properties.push(
-		...(kafkaMirrorMakerBackupDeleteDeleteDescription({
+		...(kafkaMirrorMakerIntegrationDeleteDeleteDescription({
 			...displayOptions,
-			show: { publicCloudOperation: ['kafkaMirrorMakerBackupDeleteDelete'] },
+			show: { publicCloudOperation: ['kafkaMirrorMakerIntegrationDeleteDelete'] },
 		}) as INodeProperties[]),
 	);
 	properties.push(
-		...(kafkaMirrorMakerUserListGetDescription({
+		...(kafkaMirrorMakerIntegrationGetByIdDescription({
 			...displayOptions,
-			show: { publicCloudOperation: ['kafkaMirrorMakerUserListGet'] },
+			show: { publicCloudOperation: ['kafkaMirrorMakerIntegrationGetById'] },
 		}) as INodeProperties[]),
 	);
 	properties.push(
-		...(kafkaMirrorMakerUserCreatePostDescription({
+		...(kafkaMirrorMakerLogKindGetDescription({
 			...displayOptions,
-			show: { publicCloudOperation: ['kafkaMirrorMakerUserCreatePost'] },
+			show: { publicCloudOperation: ['kafkaMirrorMakerLogKindGet'] },
 		}) as INodeProperties[]),
 	);
 	properties.push(
-		...(kafkaMirrorMakerUserGetGetDescription({
+		...(kafkaMirrorMakerLogKindNameGetDescription({
 			...displayOptions,
-			show: { publicCloudOperation: ['kafkaMirrorMakerUserGetGet'] },
-		}) as INodeProperties[]),
-	);
-	properties.push(
-		...(kafkaMirrorMakerUserUpdatePutDescription({
-			...displayOptions,
-			show: { publicCloudOperation: ['kafkaMirrorMakerUserUpdatePut'] },
-		}) as INodeProperties[]),
-	);
-	properties.push(
-		...(kafkaMirrorMakerUserDeleteDeleteDescription({
-			...displayOptions,
-			show: { publicCloudOperation: ['kafkaMirrorMakerUserDeleteDelete'] },
-		}) as INodeProperties[]),
-	);
-	properties.push(
-		...(kafkaMirrorMakerNodeListGetDescription({
-			...displayOptions,
-			show: { publicCloudOperation: ['kafkaMirrorMakerNodeListGet'] },
-		}) as INodeProperties[]),
-	);
-	properties.push(
-		...(kafkaMirrorMakerNodeCreatePostDescription({
-			...displayOptions,
-			show: { publicCloudOperation: ['kafkaMirrorMakerNodeCreatePost'] },
-		}) as INodeProperties[]),
-	);
-	properties.push(
-		...(kafkaMirrorMakerNodeGetGetDescription({
-			...displayOptions,
-			show: { publicCloudOperation: ['kafkaMirrorMakerNodeGetGet'] },
-		}) as INodeProperties[]),
-	);
-	properties.push(
-		...(kafkaMirrorMakerNodeUpdatePutDescription({
-			...displayOptions,
-			show: { publicCloudOperation: ['kafkaMirrorMakerNodeUpdatePut'] },
-		}) as INodeProperties[]),
-	);
-	properties.push(
-		...(kafkaMirrorMakerNodeDeleteDeleteDescription({
-			...displayOptions,
-			show: { publicCloudOperation: ['kafkaMirrorMakerNodeDeleteDelete'] },
-		}) as INodeProperties[]),
-	);
-	properties.push(
-		...(kafkaMirrorMakerIpRestrictionListGetDescription({
-			...displayOptions,
-			show: { publicCloudOperation: ['kafkaMirrorMakerIpRestrictionListGet'] },
-		}) as INodeProperties[]),
-	);
-	properties.push(
-		...(kafkaMirrorMakerIpRestrictionCreatePostDescription({
-			...displayOptions,
-			show: { publicCloudOperation: ['kafkaMirrorMakerIpRestrictionCreatePost'] },
-		}) as INodeProperties[]),
-	);
-	properties.push(
-		...(kafkaMirrorMakerLogSubscriptionListGetDescription({
-			...displayOptions,
-			show: { publicCloudOperation: ['kafkaMirrorMakerLogSubscriptionListGet'] },
+			show: { publicCloudOperation: ['kafkaMirrorMakerLogKindNameGet'] },
 		}) as INodeProperties[]),
 	);
 	properties.push(
@@ -9849,9 +9798,27 @@ export function description(displayOptions: IDisplayOptions): INodeProperties[] 
 		}) as INodeProperties[]),
 	);
 	properties.push(
-		...(kafkaMirrorMakerLogSubscriptionGetGetDescription({
+		...(kafkaMirrorMakerLogSubscriptionDeleteDeleteDescription({
 			...displayOptions,
-			show: { publicCloudOperation: ['kafkaMirrorMakerLogSubscriptionGetGet'] },
+			show: { publicCloudOperation: ['kafkaMirrorMakerLogSubscriptionDeleteDelete'] },
+		}) as INodeProperties[]),
+	);
+	properties.push(
+		...(kafkaMirrorMakerLogSubscriptionGetByIdDescription({
+			...displayOptions,
+			show: { publicCloudOperation: ['kafkaMirrorMakerLogSubscriptionGetById'] },
+		}) as INodeProperties[]),
+	);
+	properties.push(
+		...(kafkaMirrorMakerLogUrlPostDescription({
+			...displayOptions,
+			show: { publicCloudOperation: ['kafkaMirrorMakerLogUrlPost'] },
+		}) as INodeProperties[]),
+	);
+	properties.push(
+		...(kafkaMirrorMakerLogsGetDescription({
+			...displayOptions,
+			show: { publicCloudOperation: ['kafkaMirrorMakerLogsGet'] },
 		}) as INodeProperties[]),
 	);
 	properties.push(
@@ -9861,9 +9828,15 @@ export function description(displayOptions: IDisplayOptions): INodeProperties[] 
 		}) as INodeProperties[]),
 	);
 	properties.push(
-		...(kafkaMirrorMakerMaintenanceUpdatePutDescription({
+		...(kafkaMirrorMakerMaintenanceGetByIdDescription({
 			...displayOptions,
-			show: { publicCloudOperation: ['kafkaMirrorMakerMaintenanceUpdatePut'] },
+			show: { publicCloudOperation: ['kafkaMirrorMakerMaintenanceGetById'] },
+		}) as INodeProperties[]),
+	);
+	properties.push(
+		...(kafkaMirrorMakerMaintenanceApplyPostDescription({
+			...displayOptions,
+			show: { publicCloudOperation: ['kafkaMirrorMakerMaintenanceApplyPost'] },
 		}) as INodeProperties[]),
 	);
 	properties.push(
@@ -9873,24 +9846,65 @@ export function description(displayOptions: IDisplayOptions): INodeProperties[] 
 		}) as INodeProperties[]),
 	);
 	properties.push(
+		...(kafkaMirrorMakerMetricNameGetDescription({
+			...displayOptions,
+			show: { publicCloudOperation: ['kafkaMirrorMakerMetricNameGet'] },
+		}) as INodeProperties[]),
+	);
+	properties.push(
+		...(kafkaMirrorMakerNodeListGetDescription({
+			...displayOptions,
+			show: { publicCloudOperation: ['kafkaMirrorMakerNodeListGet'] },
+		}) as INodeProperties[]),
+	);
+	properties.push(
+		...(kafkaMirrorMakerNodeGetGetDescription({
+			...displayOptions,
+			show: { publicCloudOperation: ['kafkaMirrorMakerNodeGetGet'] },
+		}) as INodeProperties[]),
+	);
+	properties.push(
 		...(kafkaMirrorMakerPrometheusGetDescription({
 			...displayOptions,
 			show: { publicCloudOperation: ['kafkaMirrorMakerPrometheusGet'] },
 		}) as INodeProperties[]),
 	);
 	properties.push(
-		...(kafkaMirrorMakerCertificateListGetDescription({
+		...(kafkaMirrorMakerPrometheusCredentialsResetPostDescription({
 			...displayOptions,
-			show: { publicCloudOperation: ['kafkaMirrorMakerCertificateListGet'] },
+			show: { publicCloudOperation: ['kafkaMirrorMakerPrometheusCredentialsResetPost'] },
 		}) as INodeProperties[]),
 	);
 	properties.push(
-		...(kafkaMirrorMakerCertificateCreatePostDescription({
+		...(kafkaMirrorMakerReplicationGetDescription({
 			...displayOptions,
-			show: { publicCloudOperation: ['kafkaMirrorMakerCertificateCreatePost'] },
+			show: { publicCloudOperation: ['kafkaMirrorMakerReplicationGet'] },
 		}) as INodeProperties[]),
 	);
-
+	properties.push(
+		...(kafkaMirrorMakerReplicationCreatePostDescription({
+			...displayOptions,
+			show: { publicCloudOperation: ['kafkaMirrorMakerReplicationCreatePost'] },
+		}) as INodeProperties[]),
+	);
+	properties.push(
+		...(kafkaMirrorMakerReplicationDeleteDeleteDescription({
+			...displayOptions,
+			show: { publicCloudOperation: ['kafkaMirrorMakerReplicationDeleteDelete'] },
+		}) as INodeProperties[]),
+	);
+	properties.push(
+		...(kafkaMirrorMakerReplicationGetByIdDescription({
+			...displayOptions,
+			show: { publicCloudOperation: ['kafkaMirrorMakerReplicationGetById'] },
+		}) as INodeProperties[]),
+	);
+	properties.push(
+		...(kafkaMirrorMakerReplicationUpdatePutDescription({
+			...displayOptions,
+			show: { publicCloudOperation: ['kafkaMirrorMakerReplicationUpdatePut'] },
+		}) as INodeProperties[]),
+	);
 	properties.push(
 		...(m3aggregatorClusterListGetDescription({
 			...displayOptions,
@@ -13047,65 +13061,66 @@ export async function execute(
 			return kafkaConnectuserCredentialsResetPostExecute.call(this);
 		case 'kafkaMirrorMakerClusterListGet':
 			return kafkaMirrorMakerClusterListGetExecute.call(this);
-		case 'kafkaMirrorMakerClusterGetGet':
-			return kafkaMirrorMakerClusterGetGetExecute.call(this);
 		case 'kafkaMirrorMakerClusterCreatePost':
 			return kafkaMirrorMakerClusterCreatePostExecute.call(this);
+		case 'kafkaMirrorMakerClusterGetGet':
+			return kafkaMirrorMakerClusterGetGetExecute.call(this);
 		case 'kafkaMirrorMakerClusterUpdatePut':
 			return kafkaMirrorMakerClusterUpdatePutExecute.call(this);
 		case 'kafkaMirrorMakerClusterDeleteDelete':
 			return kafkaMirrorMakerClusterDeleteDeleteExecute.call(this);
-		case 'kafkaMirrorMakerBackupListGet':
-			return kafkaMirrorMakerBackupListGetExecute.call(this);
-		case 'kafkaMirrorMakerBackupCreatePost':
-			return kafkaMirrorMakerBackupCreatePostExecute.call(this);
-		case 'kafkaMirrorMakerBackupGetGet':
-			return kafkaMirrorMakerBackupGetGetExecute.call(this);
-		case 'kafkaMirrorMakerBackupDeleteDelete':
-			return kafkaMirrorMakerBackupDeleteDeleteExecute.call(this);
-		case 'kafkaMirrorMakerUserListGet':
-			return kafkaMirrorMakerUserListGetExecute.call(this);
-		case 'kafkaMirrorMakerUserCreatePost':
-			return kafkaMirrorMakerUserCreatePostExecute.call(this);
-		case 'kafkaMirrorMakerUserGetGet':
-			return kafkaMirrorMakerUserGetGetExecute.call(this);
-		case 'kafkaMirrorMakerUserUpdatePut':
-			return kafkaMirrorMakerUserUpdatePutExecute.call(this);
-		case 'kafkaMirrorMakerUserDeleteDelete':
-			return kafkaMirrorMakerUserDeleteDeleteExecute.call(this);
-		case 'kafkaMirrorMakerNodeListGet':
-			return kafkaMirrorMakerNodeListGetExecute.call(this);
-		case 'kafkaMirrorMakerNodeCreatePost':
-			return kafkaMirrorMakerNodeCreatePostExecute.call(this);
-		case 'kafkaMirrorMakerNodeGetGet':
-			return kafkaMirrorMakerNodeGetGetExecute.call(this);
-		case 'kafkaMirrorMakerNodeUpdatePut':
-			return kafkaMirrorMakerNodeUpdatePutExecute.call(this);
-		case 'kafkaMirrorMakerNodeDeleteDelete':
-			return kafkaMirrorMakerNodeDeleteDeleteExecute.call(this);
-		case 'kafkaMirrorMakerIpRestrictionListGet':
-			return kafkaMirrorMakerIpRestrictionListGetExecute.call(this);
-		case 'kafkaMirrorMakerIpRestrictionCreatePost':
-			return kafkaMirrorMakerIpRestrictionCreatePostExecute.call(this);
-		case 'kafkaMirrorMakerLogSubscriptionListGet':
-			return kafkaMirrorMakerLogSubscriptionListGetExecute.call(this);
+		case 'kafkaMirrorMakerCapabilitiesIntegrationGet':
+			return kafkaMirrorMakerCapabilitiesIntegrationGetExecute.call(this);
+		case 'kafkaMirrorMakerIntegrationGet':
+			return kafkaMirrorMakerIntegrationGetExecute.call(this);
+		case 'kafkaMirrorMakerIntegrationCreatePost':
+			return kafkaMirrorMakerIntegrationCreatePostExecute.call(this);
+		case 'kafkaMirrorMakerIntegrationDeleteDelete':
+			return kafkaMirrorMakerIntegrationDeleteDeleteExecute.call(this);
+		case 'kafkaMirrorMakerIntegrationGetById':
+			return kafkaMirrorMakerIntegrationGetByIdExecute.call(this);
+		case 'kafkaMirrorMakerLogKindGet':
+			return kafkaMirrorMakerLogKindGetExecute.call(this);
+		case 'kafkaMirrorMakerLogKindNameGet':
+			return kafkaMirrorMakerLogKindNameGetExecute.call(this);
 		case 'kafkaMirrorMakerLogSubscriptionCreatePost':
 			return kafkaMirrorMakerLogSubscriptionCreatePostExecute.call(this);
-		case 'kafkaMirrorMakerLogSubscriptionGetGet':
-			return kafkaMirrorMakerLogSubscriptionGetGetExecute.call(this);
+		case 'kafkaMirrorMakerLogSubscriptionDeleteDelete':
+			return kafkaMirrorMakerLogSubscriptionDeleteDeleteExecute.call(this);
+		case 'kafkaMirrorMakerLogSubscriptionGetById':
+			return kafkaMirrorMakerLogSubscriptionGetByIdExecute.call(this);
+		case 'kafkaMirrorMakerLogUrlPost':
+			return kafkaMirrorMakerLogUrlPostExecute.call(this);
+		case 'kafkaMirrorMakerLogsGet':
+			return kafkaMirrorMakerLogsGetExecute.call(this);
 		case 'kafkaMirrorMakerMaintenanceGet':
 			return kafkaMirrorMakerMaintenanceGetExecute.call(this);
-		case 'kafkaMirrorMakerMaintenanceUpdatePut':
-			return kafkaMirrorMakerMaintenanceUpdatePutExecute.call(this);
+		case 'kafkaMirrorMakerMaintenanceGetById':
+			return kafkaMirrorMakerMaintenanceGetByIdExecute.call(this);
+		case 'kafkaMirrorMakerMaintenanceApplyPost':
+			return kafkaMirrorMakerMaintenanceApplyPostExecute.call(this);
 		case 'kafkaMirrorMakerMetricGet':
 			return kafkaMirrorMakerMetricGetExecute.call(this);
+		case 'kafkaMirrorMakerMetricNameGet':
+			return kafkaMirrorMakerMetricNameGetExecute.call(this);
+		case 'kafkaMirrorMakerNodeListGet':
+			return kafkaMirrorMakerNodeListGetExecute.call(this);
+		case 'kafkaMirrorMakerNodeGetGet':
+			return kafkaMirrorMakerNodeGetGetExecute.call(this);
 		case 'kafkaMirrorMakerPrometheusGet':
 			return kafkaMirrorMakerPrometheusGetExecute.call(this);
-		case 'kafkaMirrorMakerCertificateListGet':
-			return kafkaMirrorMakerCertificateListGetExecute.call(this);
-		case 'kafkaMirrorMakerCertificateCreatePost':
-			return kafkaMirrorMakerCertificateCreatePostExecute.call(this);
-
+		case 'kafkaMirrorMakerPrometheusCredentialsResetPost':
+			return kafkaMirrorMakerPrometheusCredentialsResetPostExecute.call(this);
+		case 'kafkaMirrorMakerReplicationGet':
+			return kafkaMirrorMakerReplicationGetExecute.call(this);
+		case 'kafkaMirrorMakerReplicationCreatePost':
+			return kafkaMirrorMakerReplicationCreatePostExecute.call(this);
+		case 'kafkaMirrorMakerReplicationDeleteDelete':
+			return kafkaMirrorMakerReplicationDeleteDeleteExecute.call(this);
+		case 'kafkaMirrorMakerReplicationGetById':
+			return kafkaMirrorMakerReplicationGetByIdExecute.call(this);
+		case 'kafkaMirrorMakerReplicationUpdatePut':
+			return kafkaMirrorMakerReplicationUpdatePutExecute.call(this);
 		case 'm3aggregatorClusterListGet':
 			return m3aggregatorClusterListGetExecute.call(this);
 		case 'm3aggregatorClusterGetGet':

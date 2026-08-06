@@ -1,16 +1,16 @@
 # OVHcloud API Conformity Report
 
-> Généré par `scripts/audit-conformity.js` le 2026-08-06T01:37:59.563Z. Document généré automatiquement — ne pas éditer à la main.
+> Généré par `scripts/audit-conformity.js` le 2026-08-06T03:28:38.494Z. Document généré automatiquement — ne pas éditer à la main.
 
 Ce rapport vérifie que les opérations des nodes respectent leur spec (méthode, chemin, paramètres path requis, query requis, champs body requis).
 
 ## Résumé
 
-- **Opérations auditées** : 5939
-- **Conformes** : 3587
-- **Non conformes** : 2352
-- **Sans correspondance spec** (informatif) : 2051
-- **Taux de conformité** : **60.4%**
+- **Opérations auditées** : 5941
+- **Conformes** : 3612
+- **Non conformes** : 2329
+- **Sans correspondance spec** (informatif) : 2022
+- **Taux de conformité** : **60.8%**
 
 ## Conformité par spec
 
@@ -45,8 +45,8 @@ Triée par taux de non-conformité décroissant.
 | vrack (v1) | 12 | 4 | 1 | 33.3% |
 | veeamCloudConnect (v1) | 14 | 13 | 1 | 92.9% |
 | vps (v1) | 63 | 20 | 4 | 31.7% |
+| cloud (v1) | 963 | 561 | 35 | 58.3% |
 | order (v1) | 166 | 31 | 6 | 18.7% |
-| cloud (v1) | 962 | 536 | 29 | 55.7% |
 | me (v1) | 309 | 300 | 9 | 97.1% |
 | dedicated (v1) | 69 | 31 | 2 | 44.9% |
 | horizonView (v1) | 42 | 41 | 1 | 97.6% |
@@ -54,7 +54,7 @@ Triée par taux de non-conformité décroissant.
 | webhosting (v2) | 246 | 12 | 3 | 4.9% |
 | domain (v1) | 119 | 109 | 1 | 91.6% |
 | telephony (v1) | 644 | 602 | 5 | 93.5% |
-| publicCloud (v2) | 962 | 26 | 4 | 2.7% |
+| publicCloud (v2) | 963 | 26 | 4 | 2.7% |
 | price (v1) | 581 | 581 | 0 | 100% |
 | sms (v1) | 126 | 124 | 0 | 98.4% |
 | domain (v2) | 119 | 9 | 0 | 7.6% |
@@ -106,7 +106,7 @@ Chaque ligne correspond à un appel HTTP non conforme, groupée par spec :
 | POST | `/cdn/dedicated/{x}/ssl` | OvhCloudCdn/resources/ssl/sslCreatePost.operation.ts | missing required body field 'name' |
 | POST | `/cdn/dedicated/{x}/ssl/update` | OvhCloudCdn/resources/ssl/sslUpdatePost.operation.ts | missing required body field 'certificate'; missing required body field 'key' |
 
-### cloud — 29 non-conformités
+### cloud — 35 non-conformités
 
 | Méthode | Chemin | Fichier | Problèmes |
 |--------|--------|---------|-----------|
@@ -126,6 +126,12 @@ Chaque ligne correspond à un appel HTTP non conforme, groupée par spec :
 | POST | `/cloud/project/{x}/database/kafka/{x}/schemaRegistryAcl` | OvhCloudPublicCloud/database/kafka/schemaRegistryAclCreatePost.operation.ts | missing required body field 'permission'; missing required body field 'resource'; missing required body field 'username' |
 | POST | `/cloud/project/{x}/database/kafka/{x}/topic` | OvhCloudPublicCloud/database/kafka/topicCreatePost.operation.ts | missing required body field 'name' |
 | POST | `/cloud/project/{x}/database/kafka/{x}/topicAcl` | OvhCloudPublicCloud/database/kafka/topicAclCreatePost.operation.ts | missing required body field 'permission'; missing required body field 'topic'; missing required body field 'username' |
+| POST | `/cloud/project/{x}/database/kafkaMirrorMaker/{x}/integration` | OvhCloudPublicCloud/database/kafkaMirrorMaker/integrationCreatePost.operation.ts | missing required body field 'destinationServiceId'; missing required body field 'sourceServiceId' |
+| POST | `/cloud/project/{x}/database/kafkaMirrorMaker/{x}/log/subscription` | OvhCloudPublicCloud/database/kafkaMirrorMaker/logSubscriptionCreatePost.operation.ts | missing required body field 'kind'; missing required body field 'streamId' |
+| POST | `/cloud/project/{x}/database/kafkaMirrorMaker/{x}/log/url` | OvhCloudPublicCloud/database/kafkaMirrorMaker/logUrlPost.operation.ts | missing required body field 'kind' |
+| GET | `/cloud/project/{x}/database/kafkaMirrorMaker/{x}/metric/{x}` | OvhCloudPublicCloud/database/kafkaMirrorMaker/metricNameGet.operation.ts | missing required query param 'period' |
+| POST | `/cloud/project/{x}/database/kafkaMirrorMaker/{x}/replication` | OvhCloudPublicCloud/database/kafkaMirrorMaker/replicationCreatePost.operation.ts | missing required body field 'enabled'; missing required body field 'sourceIntegration'; missing required body field 'targetIntegration' |
+| PUT | `/cloud/project/{x}/database/kafkaMirrorMaker/{x}/replication/{x}` | OvhCloudPublicCloud/database/kafkaMirrorMaker/replicationUpdatePut.operation.ts | missing required body field 'enabled' |
 | POST | `/cloud/project/{x}/database/mysql/{x}/log/url` | OvhCloudPublicCloud/database/mysql/logUrlCreatePost.operation.ts | missing required body field 'kind' |
 | POST | `/cloud/project/{x}/database/mysql/{x}/migration` | OvhCloudPublicCloud/database/mysql/migrationCreatePost.operation.ts | missing required body field 'sourcePort'; missing required body field 'sourceSsl' |
 | POST | `/cloud/project/{x}/database/mysql/{x}/migration/check` | OvhCloudPublicCloud/database/mysql/migrationCheckPost.operation.ts | missing required body field 'sourcePort'; missing required body field 'sourceSsl' |
@@ -706,36 +712,6 @@ Ces opérations appellent un chemin qui ne correspond à aucun endpoint de la sp
 | cloud (v1) | GET | `/publicCloud/project/{x}/cloud/database/kafkaConnect/{x}/node/{x}` | OvhCloudPublicCloud/database/kafkaConnect/nodeGetGet.operation.ts |
 | cloud (v1) | PUT | `/publicCloud/project/{x}/cloud/database/kafkaConnect/{x}/node/{x}` | OvhCloudPublicCloud/database/kafkaConnect/nodeUpdatePut.operation.ts |
 | cloud (v1) | PUT | `/publicCloud/project/{x}/cloud/database/kafkaConnect/{x}/user/{x}` | OvhCloudPublicCloud/database/kafkaConnect/userUpdatePut.operation.ts |
-| cloud (v1) | GET | `/publicCloud/project/{x}/cloud/database/kafkaMirrorMaker` | OvhCloudPublicCloud/database/kafkaMirrorMaker/clusterListGet.operation.ts |
-| cloud (v1) | POST | `/publicCloud/project/{x}/cloud/database/kafkaMirrorMaker` | OvhCloudPublicCloud/database/kafkaMirrorMaker/clusterCreatePost.operation.ts |
-| cloud (v1) | DELETE | `/publicCloud/project/{x}/cloud/database/kafkaMirrorMaker/{x}` | OvhCloudPublicCloud/database/kafkaMirrorMaker/clusterDeleteDelete.operation.ts |
-| cloud (v1) | GET | `/publicCloud/project/{x}/cloud/database/kafkaMirrorMaker/{x}` | OvhCloudPublicCloud/database/kafkaMirrorMaker/clusterGetGet.operation.ts |
-| cloud (v1) | PUT | `/publicCloud/project/{x}/cloud/database/kafkaMirrorMaker/{x}` | OvhCloudPublicCloud/database/kafkaMirrorMaker/clusterUpdatePut.operation.ts |
-| cloud (v1) | GET | `/publicCloud/project/{x}/cloud/database/kafkaMirrorMaker/{x}/backup` | OvhCloudPublicCloud/database/kafkaMirrorMaker/backupListGet.operation.ts |
-| cloud (v1) | POST | `/publicCloud/project/{x}/cloud/database/kafkaMirrorMaker/{x}/backup` | OvhCloudPublicCloud/database/kafkaMirrorMaker/backupCreatePost.operation.ts |
-| cloud (v1) | DELETE | `/publicCloud/project/{x}/cloud/database/kafkaMirrorMaker/{x}/backup/{x}` | OvhCloudPublicCloud/database/kafkaMirrorMaker/backupDeleteDelete.operation.ts |
-| cloud (v1) | GET | `/publicCloud/project/{x}/cloud/database/kafkaMirrorMaker/{x}/backup/{x}` | OvhCloudPublicCloud/database/kafkaMirrorMaker/backupGetGet.operation.ts |
-| cloud (v1) | GET | `/publicCloud/project/{x}/cloud/database/kafkaMirrorMaker/{x}/certificate` | OvhCloudPublicCloud/database/kafkaMirrorMaker/certificateListGet.operation.ts |
-| cloud (v1) | POST | `/publicCloud/project/{x}/cloud/database/kafkaMirrorMaker/{x}/certificate` | OvhCloudPublicCloud/database/kafkaMirrorMaker/certificateCreatePost.operation.ts |
-| cloud (v1) | GET | `/publicCloud/project/{x}/cloud/database/kafkaMirrorMaker/{x}/ipRestriction` | OvhCloudPublicCloud/database/kafkaMirrorMaker/ipRestrictionListGet.operation.ts |
-| cloud (v1) | POST | `/publicCloud/project/{x}/cloud/database/kafkaMirrorMaker/{x}/ipRestriction` | OvhCloudPublicCloud/database/kafkaMirrorMaker/ipRestrictionCreatePost.operation.ts |
-| cloud (v1) | GET | `/publicCloud/project/{x}/cloud/database/kafkaMirrorMaker/{x}/log/subscription` | OvhCloudPublicCloud/database/kafkaMirrorMaker/logSubscriptionListGet.operation.ts |
-| cloud (v1) | POST | `/publicCloud/project/{x}/cloud/database/kafkaMirrorMaker/{x}/log/subscription` | OvhCloudPublicCloud/database/kafkaMirrorMaker/logSubscriptionCreatePost.operation.ts |
-| cloud (v1) | GET | `/publicCloud/project/{x}/cloud/database/kafkaMirrorMaker/{x}/log/subscription/{x}` | OvhCloudPublicCloud/database/kafkaMirrorMaker/logSubscriptionGetGet.operation.ts |
-| cloud (v1) | GET | `/publicCloud/project/{x}/cloud/database/kafkaMirrorMaker/{x}/maintenance` | OvhCloudPublicCloud/database/kafkaMirrorMaker/maintenanceGet.operation.ts |
-| cloud (v1) | PUT | `/publicCloud/project/{x}/cloud/database/kafkaMirrorMaker/{x}/maintenance` | OvhCloudPublicCloud/database/kafkaMirrorMaker/maintenanceUpdatePut.operation.ts |
-| cloud (v1) | GET | `/publicCloud/project/{x}/cloud/database/kafkaMirrorMaker/{x}/metric` | OvhCloudPublicCloud/database/kafkaMirrorMaker/metricGet.operation.ts |
-| cloud (v1) | GET | `/publicCloud/project/{x}/cloud/database/kafkaMirrorMaker/{x}/node` | OvhCloudPublicCloud/database/kafkaMirrorMaker/nodeListGet.operation.ts |
-| cloud (v1) | POST | `/publicCloud/project/{x}/cloud/database/kafkaMirrorMaker/{x}/node` | OvhCloudPublicCloud/database/kafkaMirrorMaker/nodeCreatePost.operation.ts |
-| cloud (v1) | DELETE | `/publicCloud/project/{x}/cloud/database/kafkaMirrorMaker/{x}/node/{x}` | OvhCloudPublicCloud/database/kafkaMirrorMaker/nodeDeleteDelete.operation.ts |
-| cloud (v1) | GET | `/publicCloud/project/{x}/cloud/database/kafkaMirrorMaker/{x}/node/{x}` | OvhCloudPublicCloud/database/kafkaMirrorMaker/nodeGetGet.operation.ts |
-| cloud (v1) | PUT | `/publicCloud/project/{x}/cloud/database/kafkaMirrorMaker/{x}/node/{x}` | OvhCloudPublicCloud/database/kafkaMirrorMaker/nodeUpdatePut.operation.ts |
-| cloud (v1) | GET | `/publicCloud/project/{x}/cloud/database/kafkaMirrorMaker/{x}/prometheus` | OvhCloudPublicCloud/database/kafkaMirrorMaker/prometheusGet.operation.ts |
-| cloud (v1) | GET | `/publicCloud/project/{x}/cloud/database/kafkaMirrorMaker/{x}/user` | OvhCloudPublicCloud/database/kafkaMirrorMaker/userListGet.operation.ts |
-| cloud (v1) | POST | `/publicCloud/project/{x}/cloud/database/kafkaMirrorMaker/{x}/user` | OvhCloudPublicCloud/database/kafkaMirrorMaker/userCreatePost.operation.ts |
-| cloud (v1) | DELETE | `/publicCloud/project/{x}/cloud/database/kafkaMirrorMaker/{x}/user/{x}` | OvhCloudPublicCloud/database/kafkaMirrorMaker/userDeleteDelete.operation.ts |
-| cloud (v1) | GET | `/publicCloud/project/{x}/cloud/database/kafkaMirrorMaker/{x}/user/{x}` | OvhCloudPublicCloud/database/kafkaMirrorMaker/userGetGet.operation.ts |
-| cloud (v1) | PUT | `/publicCloud/project/{x}/cloud/database/kafkaMirrorMaker/{x}/user/{x}` | OvhCloudPublicCloud/database/kafkaMirrorMaker/userUpdatePut.operation.ts |
 | cloud (v1) | GET | `/publicCloud/project/{x}/cloud/database/m3aggregator` | OvhCloudPublicCloud/database/m3aggregator/clusterListGet.operation.ts |
 | cloud (v1) | POST | `/publicCloud/project/{x}/cloud/database/m3aggregator` | OvhCloudPublicCloud/database/m3aggregator/clusterCreatePost.operation.ts |
 | cloud (v1) | DELETE | `/publicCloud/project/{x}/cloud/database/m3aggregator/{x}` | OvhCloudPublicCloud/database/m3aggregator/clusterDeleteDelete.operation.ts |
@@ -1638,6 +1614,37 @@ Ces opérations appellent un chemin qui ne correspond à aucun endpoint de la sp
 | publicCloud (v2) | DELETE | `/cloud/project/{x}/database/kafkaConnect/{x}/user/{x}` | OvhCloudPublicCloud/database/kafkaConnect/userDeleteDelete.operation.ts |
 | publicCloud (v2) | GET | `/cloud/project/{x}/database/kafkaConnect/{x}/user/{x}` | OvhCloudPublicCloud/database/kafkaConnect/userGetGet.operation.ts |
 | publicCloud (v2) | POST | `/cloud/project/{x}/database/kafkaConnect/{x}/user/{x}/credentials/reset` | OvhCloudPublicCloud/database/kafkaConnect/userCredentialsResetPost.operation.ts |
+| publicCloud (v2) | GET | `/cloud/project/{x}/database/kafkaMirrorMaker` | OvhCloudPublicCloud/database/kafkaMirrorMaker/clusterListGet.operation.ts |
+| publicCloud (v2) | POST | `/cloud/project/{x}/database/kafkaMirrorMaker` | OvhCloudPublicCloud/database/kafkaMirrorMaker/clusterCreatePost.operation.ts |
+| publicCloud (v2) | DELETE | `/cloud/project/{x}/database/kafkaMirrorMaker/{x}` | OvhCloudPublicCloud/database/kafkaMirrorMaker/clusterDeleteDelete.operation.ts |
+| publicCloud (v2) | GET | `/cloud/project/{x}/database/kafkaMirrorMaker/{x}` | OvhCloudPublicCloud/database/kafkaMirrorMaker/clusterGetGet.operation.ts |
+| publicCloud (v2) | PUT | `/cloud/project/{x}/database/kafkaMirrorMaker/{x}` | OvhCloudPublicCloud/database/kafkaMirrorMaker/clusterUpdatePut.operation.ts |
+| publicCloud (v2) | GET | `/cloud/project/{x}/database/kafkaMirrorMaker/{x}/capabilities/integration` | OvhCloudPublicCloud/database/kafkaMirrorMaker/capabilitiesIntegrationGet.operation.ts |
+| publicCloud (v2) | GET | `/cloud/project/{x}/database/kafkaMirrorMaker/{x}/integration` | OvhCloudPublicCloud/database/kafkaMirrorMaker/integrationGet.operation.ts |
+| publicCloud (v2) | POST | `/cloud/project/{x}/database/kafkaMirrorMaker/{x}/integration` | OvhCloudPublicCloud/database/kafkaMirrorMaker/integrationCreatePost.operation.ts |
+| publicCloud (v2) | DELETE | `/cloud/project/{x}/database/kafkaMirrorMaker/{x}/integration/{x}` | OvhCloudPublicCloud/database/kafkaMirrorMaker/integrationDeleteDelete.operation.ts |
+| publicCloud (v2) | GET | `/cloud/project/{x}/database/kafkaMirrorMaker/{x}/integration/{x}` | OvhCloudPublicCloud/database/kafkaMirrorMaker/integrationGetById.operation.ts |
+| publicCloud (v2) | GET | `/cloud/project/{x}/database/kafkaMirrorMaker/{x}/log/kind` | OvhCloudPublicCloud/database/kafkaMirrorMaker/logKindGet.operation.ts |
+| publicCloud (v2) | GET | `/cloud/project/{x}/database/kafkaMirrorMaker/{x}/log/kind/{x}` | OvhCloudPublicCloud/database/kafkaMirrorMaker/logKindNameGet.operation.ts |
+| publicCloud (v2) | POST | `/cloud/project/{x}/database/kafkaMirrorMaker/{x}/log/subscription` | OvhCloudPublicCloud/database/kafkaMirrorMaker/logSubscriptionCreatePost.operation.ts |
+| publicCloud (v2) | DELETE | `/cloud/project/{x}/database/kafkaMirrorMaker/{x}/log/subscription/{x}` | OvhCloudPublicCloud/database/kafkaMirrorMaker/logSubscriptionDeleteDelete.operation.ts |
+| publicCloud (v2) | GET | `/cloud/project/{x}/database/kafkaMirrorMaker/{x}/log/subscription/{x}` | OvhCloudPublicCloud/database/kafkaMirrorMaker/logSubscriptionGetById.operation.ts |
+| publicCloud (v2) | POST | `/cloud/project/{x}/database/kafkaMirrorMaker/{x}/log/url` | OvhCloudPublicCloud/database/kafkaMirrorMaker/logUrlPost.operation.ts |
+| publicCloud (v2) | GET | `/cloud/project/{x}/database/kafkaMirrorMaker/{x}/logs` | OvhCloudPublicCloud/database/kafkaMirrorMaker/logsGet.operation.ts |
+| publicCloud (v2) | GET | `/cloud/project/{x}/database/kafkaMirrorMaker/{x}/maintenance` | OvhCloudPublicCloud/database/kafkaMirrorMaker/maintenanceGet.operation.ts |
+| publicCloud (v2) | GET | `/cloud/project/{x}/database/kafkaMirrorMaker/{x}/maintenance/{x}` | OvhCloudPublicCloud/database/kafkaMirrorMaker/maintenanceGetById.operation.ts |
+| publicCloud (v2) | POST | `/cloud/project/{x}/database/kafkaMirrorMaker/{x}/maintenance/{x}/apply` | OvhCloudPublicCloud/database/kafkaMirrorMaker/maintenanceApplyPost.operation.ts |
+| publicCloud (v2) | GET | `/cloud/project/{x}/database/kafkaMirrorMaker/{x}/metric` | OvhCloudPublicCloud/database/kafkaMirrorMaker/metricGet.operation.ts |
+| publicCloud (v2) | GET | `/cloud/project/{x}/database/kafkaMirrorMaker/{x}/metric/{x}` | OvhCloudPublicCloud/database/kafkaMirrorMaker/metricNameGet.operation.ts |
+| publicCloud (v2) | GET | `/cloud/project/{x}/database/kafkaMirrorMaker/{x}/node` | OvhCloudPublicCloud/database/kafkaMirrorMaker/nodeListGet.operation.ts |
+| publicCloud (v2) | GET | `/cloud/project/{x}/database/kafkaMirrorMaker/{x}/node/{x}` | OvhCloudPublicCloud/database/kafkaMirrorMaker/nodeGetGet.operation.ts |
+| publicCloud (v2) | GET | `/cloud/project/{x}/database/kafkaMirrorMaker/{x}/prometheus` | OvhCloudPublicCloud/database/kafkaMirrorMaker/prometheusGet.operation.ts |
+| publicCloud (v2) | POST | `/cloud/project/{x}/database/kafkaMirrorMaker/{x}/prometheus/credentials/reset` | OvhCloudPublicCloud/database/kafkaMirrorMaker/prometheusCredentialsResetPost.operation.ts |
+| publicCloud (v2) | GET | `/cloud/project/{x}/database/kafkaMirrorMaker/{x}/replication` | OvhCloudPublicCloud/database/kafkaMirrorMaker/replicationGet.operation.ts |
+| publicCloud (v2) | POST | `/cloud/project/{x}/database/kafkaMirrorMaker/{x}/replication` | OvhCloudPublicCloud/database/kafkaMirrorMaker/replicationCreatePost.operation.ts |
+| publicCloud (v2) | DELETE | `/cloud/project/{x}/database/kafkaMirrorMaker/{x}/replication/{x}` | OvhCloudPublicCloud/database/kafkaMirrorMaker/replicationDeleteDelete.operation.ts |
+| publicCloud (v2) | GET | `/cloud/project/{x}/database/kafkaMirrorMaker/{x}/replication/{x}` | OvhCloudPublicCloud/database/kafkaMirrorMaker/replicationGetById.operation.ts |
+| publicCloud (v2) | PUT | `/cloud/project/{x}/database/kafkaMirrorMaker/{x}/replication/{x}` | OvhCloudPublicCloud/database/kafkaMirrorMaker/replicationUpdatePut.operation.ts |
 | publicCloud (v2) | GET | `/cloud/project/{x}/database/mongodb` | OvhCloudPublicCloud/database/mongodb/clusterListGet.operation.ts |
 | publicCloud (v2) | POST | `/cloud/project/{x}/database/mongodb` | OvhCloudPublicCloud/database/mongodb/clusterCreatePost.operation.ts |
 | publicCloud (v2) | DELETE | `/cloud/project/{x}/database/mongodb/{x}` | OvhCloudPublicCloud/database/mongodb/clusterDeleteDelete.operation.ts |
@@ -2064,36 +2071,6 @@ Ces opérations appellent un chemin qui ne correspond à aucun endpoint de la sp
 | publicCloud (v2) | GET | `/publicCloud/project/{x}/cloud/database/kafkaConnect/{x}/node/{x}` | OvhCloudPublicCloud/database/kafkaConnect/nodeGetGet.operation.ts |
 | publicCloud (v2) | PUT | `/publicCloud/project/{x}/cloud/database/kafkaConnect/{x}/node/{x}` | OvhCloudPublicCloud/database/kafkaConnect/nodeUpdatePut.operation.ts |
 | publicCloud (v2) | PUT | `/publicCloud/project/{x}/cloud/database/kafkaConnect/{x}/user/{x}` | OvhCloudPublicCloud/database/kafkaConnect/userUpdatePut.operation.ts |
-| publicCloud (v2) | GET | `/publicCloud/project/{x}/cloud/database/kafkaMirrorMaker` | OvhCloudPublicCloud/database/kafkaMirrorMaker/clusterListGet.operation.ts |
-| publicCloud (v2) | POST | `/publicCloud/project/{x}/cloud/database/kafkaMirrorMaker` | OvhCloudPublicCloud/database/kafkaMirrorMaker/clusterCreatePost.operation.ts |
-| publicCloud (v2) | DELETE | `/publicCloud/project/{x}/cloud/database/kafkaMirrorMaker/{x}` | OvhCloudPublicCloud/database/kafkaMirrorMaker/clusterDeleteDelete.operation.ts |
-| publicCloud (v2) | GET | `/publicCloud/project/{x}/cloud/database/kafkaMirrorMaker/{x}` | OvhCloudPublicCloud/database/kafkaMirrorMaker/clusterGetGet.operation.ts |
-| publicCloud (v2) | PUT | `/publicCloud/project/{x}/cloud/database/kafkaMirrorMaker/{x}` | OvhCloudPublicCloud/database/kafkaMirrorMaker/clusterUpdatePut.operation.ts |
-| publicCloud (v2) | GET | `/publicCloud/project/{x}/cloud/database/kafkaMirrorMaker/{x}/backup` | OvhCloudPublicCloud/database/kafkaMirrorMaker/backupListGet.operation.ts |
-| publicCloud (v2) | POST | `/publicCloud/project/{x}/cloud/database/kafkaMirrorMaker/{x}/backup` | OvhCloudPublicCloud/database/kafkaMirrorMaker/backupCreatePost.operation.ts |
-| publicCloud (v2) | DELETE | `/publicCloud/project/{x}/cloud/database/kafkaMirrorMaker/{x}/backup/{x}` | OvhCloudPublicCloud/database/kafkaMirrorMaker/backupDeleteDelete.operation.ts |
-| publicCloud (v2) | GET | `/publicCloud/project/{x}/cloud/database/kafkaMirrorMaker/{x}/backup/{x}` | OvhCloudPublicCloud/database/kafkaMirrorMaker/backupGetGet.operation.ts |
-| publicCloud (v2) | GET | `/publicCloud/project/{x}/cloud/database/kafkaMirrorMaker/{x}/certificate` | OvhCloudPublicCloud/database/kafkaMirrorMaker/certificateListGet.operation.ts |
-| publicCloud (v2) | POST | `/publicCloud/project/{x}/cloud/database/kafkaMirrorMaker/{x}/certificate` | OvhCloudPublicCloud/database/kafkaMirrorMaker/certificateCreatePost.operation.ts |
-| publicCloud (v2) | GET | `/publicCloud/project/{x}/cloud/database/kafkaMirrorMaker/{x}/ipRestriction` | OvhCloudPublicCloud/database/kafkaMirrorMaker/ipRestrictionListGet.operation.ts |
-| publicCloud (v2) | POST | `/publicCloud/project/{x}/cloud/database/kafkaMirrorMaker/{x}/ipRestriction` | OvhCloudPublicCloud/database/kafkaMirrorMaker/ipRestrictionCreatePost.operation.ts |
-| publicCloud (v2) | GET | `/publicCloud/project/{x}/cloud/database/kafkaMirrorMaker/{x}/log/subscription` | OvhCloudPublicCloud/database/kafkaMirrorMaker/logSubscriptionListGet.operation.ts |
-| publicCloud (v2) | POST | `/publicCloud/project/{x}/cloud/database/kafkaMirrorMaker/{x}/log/subscription` | OvhCloudPublicCloud/database/kafkaMirrorMaker/logSubscriptionCreatePost.operation.ts |
-| publicCloud (v2) | GET | `/publicCloud/project/{x}/cloud/database/kafkaMirrorMaker/{x}/log/subscription/{x}` | OvhCloudPublicCloud/database/kafkaMirrorMaker/logSubscriptionGetGet.operation.ts |
-| publicCloud (v2) | GET | `/publicCloud/project/{x}/cloud/database/kafkaMirrorMaker/{x}/maintenance` | OvhCloudPublicCloud/database/kafkaMirrorMaker/maintenanceGet.operation.ts |
-| publicCloud (v2) | PUT | `/publicCloud/project/{x}/cloud/database/kafkaMirrorMaker/{x}/maintenance` | OvhCloudPublicCloud/database/kafkaMirrorMaker/maintenanceUpdatePut.operation.ts |
-| publicCloud (v2) | GET | `/publicCloud/project/{x}/cloud/database/kafkaMirrorMaker/{x}/metric` | OvhCloudPublicCloud/database/kafkaMirrorMaker/metricGet.operation.ts |
-| publicCloud (v2) | GET | `/publicCloud/project/{x}/cloud/database/kafkaMirrorMaker/{x}/node` | OvhCloudPublicCloud/database/kafkaMirrorMaker/nodeListGet.operation.ts |
-| publicCloud (v2) | POST | `/publicCloud/project/{x}/cloud/database/kafkaMirrorMaker/{x}/node` | OvhCloudPublicCloud/database/kafkaMirrorMaker/nodeCreatePost.operation.ts |
-| publicCloud (v2) | DELETE | `/publicCloud/project/{x}/cloud/database/kafkaMirrorMaker/{x}/node/{x}` | OvhCloudPublicCloud/database/kafkaMirrorMaker/nodeDeleteDelete.operation.ts |
-| publicCloud (v2) | GET | `/publicCloud/project/{x}/cloud/database/kafkaMirrorMaker/{x}/node/{x}` | OvhCloudPublicCloud/database/kafkaMirrorMaker/nodeGetGet.operation.ts |
-| publicCloud (v2) | PUT | `/publicCloud/project/{x}/cloud/database/kafkaMirrorMaker/{x}/node/{x}` | OvhCloudPublicCloud/database/kafkaMirrorMaker/nodeUpdatePut.operation.ts |
-| publicCloud (v2) | GET | `/publicCloud/project/{x}/cloud/database/kafkaMirrorMaker/{x}/prometheus` | OvhCloudPublicCloud/database/kafkaMirrorMaker/prometheusGet.operation.ts |
-| publicCloud (v2) | GET | `/publicCloud/project/{x}/cloud/database/kafkaMirrorMaker/{x}/user` | OvhCloudPublicCloud/database/kafkaMirrorMaker/userListGet.operation.ts |
-| publicCloud (v2) | POST | `/publicCloud/project/{x}/cloud/database/kafkaMirrorMaker/{x}/user` | OvhCloudPublicCloud/database/kafkaMirrorMaker/userCreatePost.operation.ts |
-| publicCloud (v2) | DELETE | `/publicCloud/project/{x}/cloud/database/kafkaMirrorMaker/{x}/user/{x}` | OvhCloudPublicCloud/database/kafkaMirrorMaker/userDeleteDelete.operation.ts |
-| publicCloud (v2) | GET | `/publicCloud/project/{x}/cloud/database/kafkaMirrorMaker/{x}/user/{x}` | OvhCloudPublicCloud/database/kafkaMirrorMaker/userGetGet.operation.ts |
-| publicCloud (v2) | PUT | `/publicCloud/project/{x}/cloud/database/kafkaMirrorMaker/{x}/user/{x}` | OvhCloudPublicCloud/database/kafkaMirrorMaker/userUpdatePut.operation.ts |
 | publicCloud (v2) | GET | `/publicCloud/project/{x}/cloud/database/m3aggregator` | OvhCloudPublicCloud/database/m3aggregator/clusterListGet.operation.ts |
 | publicCloud (v2) | POST | `/publicCloud/project/{x}/cloud/database/m3aggregator` | OvhCloudPublicCloud/database/m3aggregator/clusterCreatePost.operation.ts |
 | publicCloud (v2) | DELETE | `/publicCloud/project/{x}/cloud/database/m3aggregator/{x}` | OvhCloudPublicCloud/database/m3aggregator/clusterDeleteDelete.operation.ts |

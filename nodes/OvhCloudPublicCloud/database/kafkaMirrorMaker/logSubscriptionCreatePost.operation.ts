@@ -9,57 +9,70 @@ import { ApiClient } from '../../../../shared/transport/ApiClient';
 
 export function description(displayOptions: IDisplayOptions): INodeProperties[] {
 	return [
-	{
-		displayName: 'Public Cloud Project',
-		name: 'publicCloudProjectId',
-		type: 'resourceLocator',
-		default: { mode: 'list', value: '' },
-		required: true,
-		description: 'The Public Cloud project ID (e.g. 12345678-1234-1234-1234-1234567890ab)',
-		modes: [
-			{
-				displayName: 'From List',
-				name: 'list',
-				type: 'list',
-				typeOptions: { searchListMethod: 'getPublicCloudProjects' },
-			},
-			{
-				displayName: 'By ID',
-				name: 'name',
-				type: 'string',
-				placeholder: '12345678-1234-1234-1234-1234567890ab',
-			},
-		],
-		displayOptions,
-	},
-	{
-		displayName: 'Service Name',
-		name: 'serviceName',
-		type: 'string',
-		default: '',
-		required: true,
-		description: 'The database service name',
-		displayOptions,
-	},
+		{
+			displayName: 'Public Cloud Project',
+			name: 'publicCloudProjectId',
+			type: 'resourceLocator',
+			default: '',
+			required: true,
+			description: 'The Public Cloud project ID',
+			typeOptions: { searchListMethod: 'getPublicCloudProjects' },
+			displayOptions,
+		},
+		{
+			displayName: 'Cluster ID',
+			name: 'clusterId',
+			type: 'string',
+			default: '',
+			required: true,
+			description: 'The Kafka MirrorMaker cluster ID',
+			displayOptions,
+		},
+		{
+			displayName: 'Destinationserviceid',
+			name: 'destinationServiceId',
+			type: 'string',
+			default: '',
+			displayOptions,
+		},
+		{
+			displayName: 'Kind',
+			name: 'kind',
+			type: 'string',
+			default: '',
+			displayOptions,
+		},
+		{
+			displayName: 'Sourceserviceid',
+			name: 'sourceServiceId',
+			type: 'string',
+			default: '',
+			displayOptions,
+		}
 	];
 }
 
-
 /**
- * Executes the Create Kafka MirrorMaker Log Subscription operation.
+ * Executes the Create Kafka MirrorMaker Log Subscription.
  *
  * HTTP method: POST
- * Endpoint: /publicCloud/project/{projectId}/cloud/database/kafkaMirrorMaker/{serviceName}/log/subscription
+ * Endpoint: /cloud/project/${publicCloudProjectId}/database/kafkaMirrorMaker/${clusterId}/log/subscription
  */
 export async function execute(this: IExecuteFunctions): Promise<INodeExecutionData[]> {
 	const client = new ApiClient(this);
-	const projectId = this.getNodeParameter('projectId', 0, '', {
-		extractValue: true,
-	}) as string;
-	const serviceName = this.getNodeParameter('serviceName', 0) as string;
+	const publicCloudProjectId = this.getNodeParameter('publicCloudProjectId', 0) as string;
+	const clusterId = this.getNodeParameter('clusterId', 0) as string;
+	const destinationServiceId = this.getNodeParameter('destinationServiceId', 0) as string;
+	const kind = this.getNodeParameter('kind', 0) as string;
+	const sourceServiceId = this.getNodeParameter('sourceServiceId', 0) as string;
 
-	const body = {} as IDataObject;
-	const data = (await client.httpPost(`/publicCloud/project/${projectId}/cloud/database/kafkaMirrorMaker/${serviceName}/log/subscription`, body)) as IDataObject;
+	const body: IDataObject = {};
+	if (destinationServiceId) body.destinationServiceId = destinationServiceId;
+
+	if (kind) body.kind = kind;
+
+	if (sourceServiceId) body.sourceServiceId = sourceServiceId;
+	const data = (await client.httpPost(`/cloud/project/${publicCloudProjectId}/database/kafkaMirrorMaker/${clusterId}/log/subscription`, body )) as IDataObject;
 
 	return this.helpers.returnJsonArray([data]);
 }

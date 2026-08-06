@@ -1,5 +1,4 @@
 import type {
-	IDataObject,
 	IExecuteFunctions,
 	IDisplayOptions,
 	INodeExecutionData,
@@ -27,30 +26,25 @@ export function description(displayOptions: IDisplayOptions): INodeProperties[] 
 			required: true,
 			description: 'The Kafka MirrorMaker cluster ID',
 			displayOptions,
-		},
-		{
-			displayName: 'Node ID',
-			name: 'nodeId',
-			type: 'string',
-			default: '',
-			required: true,
-			displayOptions,
 		}
 	];
 }
 
 /**
- * Executes the Get Kafka MirrorMaker Node.
+ * Executes the Get Kafka MirrorMaker Capabilities Integration.
  *
  * HTTP method: GET
- * Endpoint: /cloud/project/${publicCloudProjectId}/database/kafkaMirrorMaker/${clusterId}/node/${nodeId}
+ * Endpoint: /cloud/project/${publicCloudProjectId}/database/kafkaMirrorMaker/${clusterId}/capabilities/integration
  */
 export async function execute(this: IExecuteFunctions): Promise<INodeExecutionData[]> {
 	const client = new ApiClient(this);
 	const publicCloudProjectId = this.getNodeParameter('publicCloudProjectId', 0) as string;
 	const clusterId = this.getNodeParameter('clusterId', 0) as string;
-	const nodeId = this.getNodeParameter('nodeId', 0) as string;
-	const data = (await client.httpGet(`/cloud/project/${publicCloudProjectId}/database/kafkaMirrorMaker/${clusterId}/node/${nodeId}`)) as IDataObject;
+	const data = (await client.httpGet(`/cloud/project/${publicCloudProjectId}/database/kafkaMirrorMaker/${clusterId}/capabilities/integration`)) as unknown[];
 
-	return this.helpers.returnJsonArray([data]);
+	if (!Array.isArray(data)) {
+		return this.helpers.returnJsonArray([data]);
+	}
+
+	return this.helpers.returnJsonArray(data.map((item) => item as INodeExecutionData));
 }
