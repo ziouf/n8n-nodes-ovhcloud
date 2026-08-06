@@ -1,6 +1,7 @@
 import type {
 	IExecuteFunctions,
 	IDisplayOptions,
+	IDataObject,
 	INodeExecutionData,
 	INodeProperties,
 } from 'n8n-workflow';
@@ -67,7 +68,11 @@ export async function execute(this: IExecuteFunctions): Promise<INodeExecutionDa
 	const extended = this.getNodeParameter('extended', 0, false) as boolean | undefined;
 	const qs: IDataObject = {
 		extended: extended,
-	};	const data = (await client.httpGet(`/cloud/project/${serviceName}/database/postgresql/${clusterId}/metric`, qs)) as import('n8n-workflow').IDataObject;
+	};
+	const data = (await client.httpGet(
+		`/cloud/project/${serviceName}/database/postgresql/${clusterId}/metric`,
+		qs,
+	)) as import('n8n-workflow').IDataObject;
 
 	return this.helpers.returnJsonArray([data as INodeExecutionData]);
 }

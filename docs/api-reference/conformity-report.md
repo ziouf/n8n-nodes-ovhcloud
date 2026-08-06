@@ -1,16 +1,16 @@
 # OVHcloud API Conformity Report
 
-> Généré par `scripts/audit-conformity.js` le 2026-08-06T00:19:23.202Z. Document généré automatiquement — ne pas éditer à la main.
+> Généré par `scripts/audit-conformity.js` le 2026-08-06T00:32:21.648Z. Document généré automatiquement — ne pas éditer à la main.
 
 Ce rapport vérifie que les opérations des nodes respectent leur spec (méthode, chemin, paramètres path requis, query requis, champs body requis).
 
 ## Résumé
 
-- **Opérations auditées** : 5871
+- **Opérations auditées** : 5885
 - **Conformes** : 3547
-- **Non conformes** : 2324
-- **Sans correspondance spec** (informatif) : 2028
-- **Taux de conformité** : **60.4%**
+- **Non conformes** : 2338
+- **Sans correspondance spec** (informatif) : 2042
+- **Taux de conformité** : **60.3%**
 
 ## Conformité par spec
 
@@ -48,13 +48,13 @@ Triée par taux de non-conformité décroissant.
 | order (v1) | 166 | 31 | 6 | 18.7% |
 | me (v1) | 309 | 300 | 9 | 97.1% |
 | dedicated (v1) | 69 | 31 | 2 | 44.9% |
-| cloud (v1) | 928 | 496 | 24 | 53.4% |
+| cloud (v1) | 935 | 496 | 24 | 53% |
 | horizonView (v1) | 42 | 41 | 1 | 97.6% |
 | hosting (v1) | 237 | 154 | 5 | 65% |
 | webhosting (v2) | 246 | 12 | 3 | 4.9% |
 | domain (v1) | 119 | 109 | 1 | 91.6% |
 | telephony (v1) | 644 | 602 | 5 | 93.5% |
-| publicCloud (v2) | 928 | 26 | 4 | 2.8% |
+| publicCloud (v2) | 935 | 26 | 4 | 2.8% |
 | price (v1) | 581 | 581 | 0 | 100% |
 | sms (v1) | 126 | 124 | 0 | 98.4% |
 | domain (v2) | 119 | 9 | 0 | 7.6% |
@@ -601,6 +601,13 @@ Ces opérations appellent un chemin qui ne correspond à aucun endpoint de la sp
 | cloud (v1) | DELETE | `/cloud/project/{x}/database/mysql/{x}/node/{x}` | OvhCloudPublicCloud/database/mysql/nodeDeleteDelete.operation.ts |
 | cloud (v1) | PUT | `/cloud/project/{x}/database/mysql/{x}/node/{x}` | OvhCloudPublicCloud/database/mysql/nodeUpdatePut.operation.ts |
 | cloud (v1) | PUT | `/cloud/project/{x}/database/mysql/{x}/user/{x}` | OvhCloudPublicCloud/database/mysql/userUpdatePut.operation.ts |
+| cloud (v1) | POST | `/cloud/project/{x}/database/postgresql/{x}/backup` | OvhCloudPublicCloud/database/postgresql/backupCreatePost.operation.ts |
+| cloud (v1) | DELETE | `/cloud/project/{x}/database/postgresql/{x}/backup/{x}` | OvhCloudPublicCloud/database/postgresql/backupDeleteDelete.operation.ts |
+| cloud (v1) | POST | `/cloud/project/{x}/database/postgresql/{x}/certificates` | OvhCloudPublicCloud/database/postgresql/certificateCreatePost.operation.ts |
+| cloud (v1) | PUT | `/cloud/project/{x}/database/postgresql/{x}/maintenance` | OvhCloudPublicCloud/database/postgresql/maintenanceUpdatePut.operation.ts |
+| cloud (v1) | POST | `/cloud/project/{x}/database/postgresql/{x}/node` | OvhCloudPublicCloud/database/postgresql/nodeCreatePost.operation.ts |
+| cloud (v1) | DELETE | `/cloud/project/{x}/database/postgresql/{x}/node/{x}` | OvhCloudPublicCloud/database/postgresql/nodeDeleteDelete.operation.ts |
+| cloud (v1) | PUT | `/cloud/project/{x}/database/postgresql/{x}/node/{x}` | OvhCloudPublicCloud/database/postgresql/nodeUpdatePut.operation.ts |
 | cloud (v1) | POST | `/cloud/project/{x}/database/postgresql/enableWrites` | OvhCloudPublicCloud/database/postgresql/enableWritesPost.operation.ts |
 | cloud (v1) | POST | `/cloud/project/{x}/database/postgresql/prometheus/credentials/reset` | OvhCloudPublicCloud/database/postgresql/prometheusCredentialsResetPost.operation.ts |
 | cloud (v1) | GET | `/publicCloud/project` | OvhCloudPublicCloud/project/listGet.operation.ts |
@@ -1755,11 +1762,14 @@ Ces opérations appellent un chemin qui ne correspond à aucun endpoint de la sp
 | publicCloud (v2) | GET | `/cloud/project/{x}/database/postgresql/{x}/advancedConfiguration` | OvhCloudPublicCloud/database/postgresql/advancedConfigurationGet.operation.ts |
 | publicCloud (v2) | PUT | `/cloud/project/{x}/database/postgresql/{x}/advancedConfiguration` | OvhCloudPublicCloud/database/postgresql/advancedConfigurationUpdatePut.operation.ts |
 | publicCloud (v2) | GET | `/cloud/project/{x}/database/postgresql/{x}/backup` | OvhCloudPublicCloud/database/postgresql/backupListGet.operation.ts |
+| publicCloud (v2) | POST | `/cloud/project/{x}/database/postgresql/{x}/backup` | OvhCloudPublicCloud/database/postgresql/backupCreatePost.operation.ts |
+| publicCloud (v2) | DELETE | `/cloud/project/{x}/database/postgresql/{x}/backup/{x}` | OvhCloudPublicCloud/database/postgresql/backupDeleteDelete.operation.ts |
 | publicCloud (v2) | GET | `/cloud/project/{x}/database/postgresql/{x}/backup/{x}` | OvhCloudPublicCloud/database/postgresql/backupGetGet.operation.ts |
 | publicCloud (v2) | GET | `/cloud/project/{x}/database/postgresql/{x}/capabilities/advancedConfiguration` | OvhCloudPublicCloud/database/postgresql/capabilitiesAdvancedConfigurationGet.operation.ts |
 | publicCloud (v2) | GET | `/cloud/project/{x}/database/postgresql/{x}/capabilities/backupRegions` | OvhCloudPublicCloud/database/postgresql/capabilitiesBackupRegionsGet.operation.ts |
 | publicCloud (v2) | GET | `/cloud/project/{x}/database/postgresql/{x}/capabilities/integration` | OvhCloudPublicCloud/database/postgresql/capabilitiesIntegrationGet.operation.ts |
 | publicCloud (v2) | GET | `/cloud/project/{x}/database/postgresql/{x}/certificates` | OvhCloudPublicCloud/database/postgresql/certificateListGet.operation.ts |
+| publicCloud (v2) | POST | `/cloud/project/{x}/database/postgresql/{x}/certificates` | OvhCloudPublicCloud/database/postgresql/certificateCreatePost.operation.ts |
 | publicCloud (v2) | GET | `/cloud/project/{x}/database/postgresql/{x}/connectionPool` | OvhCloudPublicCloud/database/postgresql/connectionPoolListGet.operation.ts |
 | publicCloud (v2) | POST | `/cloud/project/{x}/database/postgresql/{x}/connectionPool` | OvhCloudPublicCloud/database/postgresql/connectionPoolCreatePost.operation.ts |
 | publicCloud (v2) | DELETE | `/cloud/project/{x}/database/postgresql/{x}/connectionPool/{x}` | OvhCloudPublicCloud/database/postgresql/connectionPoolDeleteDelete.operation.ts |
@@ -1789,12 +1799,16 @@ Ces opérations appellent un chemin qui ne correspond à aucun endpoint de la sp
 | publicCloud (v2) | POST | `/cloud/project/{x}/database/postgresql/{x}/log/url` | OvhCloudPublicCloud/database/postgresql/logUrlCreatePost.operation.ts |
 | publicCloud (v2) | GET | `/cloud/project/{x}/database/postgresql/{x}/logs` | OvhCloudPublicCloud/database/postgresql/logsGet.operation.ts |
 | publicCloud (v2) | GET | `/cloud/project/{x}/database/postgresql/{x}/maintenance` | OvhCloudPublicCloud/database/postgresql/maintenanceGet.operation.ts |
+| publicCloud (v2) | PUT | `/cloud/project/{x}/database/postgresql/{x}/maintenance` | OvhCloudPublicCloud/database/postgresql/maintenanceUpdatePut.operation.ts |
 | publicCloud (v2) | GET | `/cloud/project/{x}/database/postgresql/{x}/maintenance/{x}` | OvhCloudPublicCloud/database/postgresql/maintenanceGetGet.operation.ts |
 | publicCloud (v2) | POST | `/cloud/project/{x}/database/postgresql/{x}/maintenance/{x}/apply` | OvhCloudPublicCloud/database/postgresql/maintenanceApplyPost.operation.ts |
 | publicCloud (v2) | GET | `/cloud/project/{x}/database/postgresql/{x}/metric` | OvhCloudPublicCloud/database/postgresql/metricGet.operation.ts |
 | publicCloud (v2) | GET | `/cloud/project/{x}/database/postgresql/{x}/metric/{x}` | OvhCloudPublicCloud/database/postgresql/metricGetGet.operation.ts |
 | publicCloud (v2) | GET | `/cloud/project/{x}/database/postgresql/{x}/node` | OvhCloudPublicCloud/database/postgresql/nodeListGet.operation.ts |
+| publicCloud (v2) | POST | `/cloud/project/{x}/database/postgresql/{x}/node` | OvhCloudPublicCloud/database/postgresql/nodeCreatePost.operation.ts |
+| publicCloud (v2) | DELETE | `/cloud/project/{x}/database/postgresql/{x}/node/{x}` | OvhCloudPublicCloud/database/postgresql/nodeDeleteDelete.operation.ts |
 | publicCloud (v2) | GET | `/cloud/project/{x}/database/postgresql/{x}/node/{x}` | OvhCloudPublicCloud/database/postgresql/nodeGetGet.operation.ts |
+| publicCloud (v2) | PUT | `/cloud/project/{x}/database/postgresql/{x}/node/{x}` | OvhCloudPublicCloud/database/postgresql/nodeUpdatePut.operation.ts |
 | publicCloud (v2) | GET | `/cloud/project/{x}/database/postgresql/{x}/prometheus` | OvhCloudPublicCloud/database/postgresql/prometheusGet.operation.ts |
 | publicCloud (v2) | GET | `/cloud/project/{x}/database/postgresql/{x}/queryStatistics` | OvhCloudPublicCloud/database/postgresql/queryStatisticsGet.operation.ts |
 | publicCloud (v2) | POST | `/cloud/project/{x}/database/postgresql/{x}/queryStatistics/reset` | OvhCloudPublicCloud/database/postgresql/queryStatisticsResetPost.operation.ts |

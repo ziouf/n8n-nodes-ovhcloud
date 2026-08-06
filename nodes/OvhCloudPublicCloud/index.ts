@@ -530,6 +530,47 @@ import {
 } from './database/valkey/integrationCreatePost.operation';
 
 import {
+	description as valkeyBackupCreatePostDescription,
+	execute as valkeyBackupCreatePostExecute,
+} from './database/valkey/backupCreatePost.operation';
+import {
+	description as valkeyBackupDeleteDeleteDescription,
+	execute as valkeyBackupDeleteDeleteExecute,
+} from './database/valkey/backupDeleteDelete.operation';
+import {
+	description as valkeyNodeCreatePostDescription,
+	execute as valkeyNodeCreatePostExecute,
+} from './database/valkey/nodeCreatePost.operation';
+import {
+	description as valkeyNodeUpdatePutDescription,
+	execute as valkeyNodeUpdatePutExecute,
+} from './database/valkey/nodeUpdatePut.operation';
+import {
+	description as valkeyNodeDeleteDeleteDescription,
+	execute as valkeyNodeDeleteDeleteExecute,
+} from './database/valkey/nodeDeleteDelete.operation';
+import {
+	description as valkeyIpRestrictionListGetDescription,
+	execute as valkeyIpRestrictionListGetExecute,
+} from './database/valkey/ipRestrictionListGet.operation';
+import {
+	description as valkeyIpRestrictionCreatePostDescription,
+	execute as valkeyIpRestrictionCreatePostExecute,
+} from './database/valkey/ipRestrictionCreatePost.operation';
+import {
+	description as valkeyMaintenanceUpdatePutDescription,
+	execute as valkeyMaintenanceUpdatePutExecute,
+} from './database/valkey/maintenanceUpdatePut.operation';
+import {
+	description as valkeyCertificateListGetDescription,
+	execute as valkeyCertificateListGetExecute,
+} from './database/valkey/certificateListGet.operation';
+import {
+	description as valkeyCertificateCreatePostDescription,
+	execute as valkeyCertificateCreatePostExecute,
+} from './database/valkey/certificateCreatePost.operation';
+
+import {
 	description as cassandraClusterListGetDescription,
 	execute as cassandraClusterListGetExecute,
 } from './database/cassandra/clusterListGet.operation';
@@ -2107,6 +2148,10 @@ import {
 } from './database/mongodb/userCredentialsResetPost.operation';
 
 import {
+	description as mysqlClusterListGetDescription,
+	execute as mysqlClusterListGetExecute,
+} from './database/mysql/clusterListGet.operation';
+import {
 	description as mysqlClusterGetGetDescription,
 	execute as mysqlClusterGetGetExecute,
 } from './database/mysql/clusterGetGet.operation';
@@ -2467,6 +2512,14 @@ import {
 	execute as postgresqlBackupGetGetExecute,
 } from './database/postgresql/backupGetGet.operation';
 import {
+	description as postgresqlBackupCreatePostDescription,
+	execute as postgresqlBackupCreatePostExecute,
+} from './database/postgresql/backupCreatePost.operation';
+import {
+	description as postgresqlBackupDeleteDeleteDescription,
+	execute as postgresqlBackupDeleteDeleteExecute,
+} from './database/postgresql/backupDeleteDelete.operation';
+import {
 	description as postgresqlUserListGetDescription,
 	execute as postgresqlUserListGetExecute,
 } from './database/postgresql/userListGet.operation';
@@ -2495,6 +2548,18 @@ import {
 	execute as postgresqlNodeGetGetExecute,
 } from './database/postgresql/nodeGetGet.operation';
 import {
+	description as postgresqlNodeCreatePostDescription,
+	execute as postgresqlNodeCreatePostExecute,
+} from './database/postgresql/nodeCreatePost.operation';
+import {
+	description as postgresqlNodeUpdatePutDescription,
+	execute as postgresqlNodeUpdatePutExecute,
+} from './database/postgresql/nodeUpdatePut.operation';
+import {
+	description as postgresqlNodeDeleteDeleteDescription,
+	execute as postgresqlNodeDeleteDeleteExecute,
+} from './database/postgresql/nodeDeleteDelete.operation';
+import {
 	description as postgresqlIpRestrictionListGetDescription,
 	execute as postgresqlIpRestrictionListGetExecute,
 } from './database/postgresql/ipRestrictionListGet.operation';
@@ -2519,6 +2584,10 @@ import {
 	execute as postgresqlMaintenanceGetExecute,
 } from './database/postgresql/maintenanceGet.operation';
 import {
+	description as postgresqlMaintenanceUpdatePutDescription,
+	execute as postgresqlMaintenanceUpdatePutExecute,
+} from './database/postgresql/maintenanceUpdatePut.operation';
+import {
 	description as postgresqlMetricGetDescription,
 	execute as postgresqlMetricGetExecute,
 } from './database/postgresql/metricGet.operation';
@@ -2530,6 +2599,10 @@ import {
 	description as postgresqlCertificateListGetDescription,
 	execute as postgresqlCertificateListGetExecute,
 } from './database/postgresql/certificateListGet.operation';
+import {
+	description as postgresqlCertificateCreatePostDescription,
+	execute as postgresqlCertificateCreatePostExecute,
+} from './database/postgresql/certificateCreatePost.operation';
 import {
 	description as postgresqlIntegrationListGetDescription,
 	execute as postgresqlIntegrationListGetExecute,

@@ -1,7 +1,6 @@
 import type {
 	IExecuteFunctions,
 	IDisplayOptions,
-	IDataObject,
 	INodeExecutionData,
 	INodeProperties,
 } from 'n8n-workflow';
@@ -42,30 +41,21 @@ export function description(displayOptions: IDisplayOptions): INodeProperties[] 
 			displayOptions,
 		},
 		{
-			displayName: 'Metric Name',
-			name: 'metricName',
+			displayName: 'Backup ID',
+			name: 'backupId',
 			type: 'string',
 			default: '',
 			required: true,
-			displayOptions,
-		},
-		{
-			displayName: 'Period',
-			name: 'period',
-			type: 'string',
-			default: '',
-			required: true,
-			description: 'Metric period',
 			displayOptions,
 		},
 	];
 }
 
 /**
- * Executes the Get PostgreSQL Metric operation.
+ * Executes the Delete PostgreSQL Backup operation.
  *
- * HTTP method: GET
- * Endpoint: /cloud/project/{serviceName}/database/postgresql/{clusterId}/metric/{metricName}
+ * HTTP method: DELETE
+ * Endpoint: /cloud/project/{serviceName}/database/postgresql/{clusterId}/backup/{backupId}
  */
 export async function execute(this: IExecuteFunctions): Promise<INodeExecutionData[]> {
 	const client = new ApiClient(this);
@@ -73,16 +63,10 @@ export async function execute(this: IExecuteFunctions): Promise<INodeExecutionDa
 		extractValue: true,
 	}) as string;
 	const clusterId = this.getNodeParameter('clusterId', 0) as string;
-	const metricName = this.getNodeParameter('metricName', 0) as string;
+	const backupId = this.getNodeParameter('backupId', 0) as string;
+	await client.httpDelete(
+		`/cloud/project/${serviceName}/database/postgresql/${clusterId}/backup/${backupId}`,
+	);
 
-	const period = this.getNodeParameter('period', 0, '') as string;
-	const qs: IDataObject = {
-		period: period,
-	};
-	const data = (await client.httpGet(
-		`/cloud/project/${serviceName}/database/postgresql/${clusterId}/metric/${metricName}`,
-		qs,
-	)) as import('n8n-workflow').IDataObject;
-
-	return this.helpers.returnJsonArray([data as INodeExecutionData]);
+	return this.helpers.returnJsonArray([]);
 }

@@ -1,7 +1,7 @@
 import type {
+	IDataObject,
 	IExecuteFunctions,
 	IDisplayOptions,
-	IDataObject,
 	INodeExecutionData,
 	INodeProperties,
 } from 'n8n-workflow';
@@ -42,30 +42,21 @@ export function description(displayOptions: IDisplayOptions): INodeProperties[] 
 			displayOptions,
 		},
 		{
-			displayName: 'Metric Name',
-			name: 'metricName',
+			displayName: 'Node ID',
+			name: 'nodeId',
 			type: 'string',
 			default: '',
 			required: true,
-			displayOptions,
-		},
-		{
-			displayName: 'Period',
-			name: 'period',
-			type: 'string',
-			default: '',
-			required: true,
-			description: 'Metric period',
 			displayOptions,
 		},
 	];
 }
 
 /**
- * Executes the Get PostgreSQL Metric operation.
+ * Executes the Update PostgreSQL Node operation.
  *
- * HTTP method: GET
- * Endpoint: /cloud/project/{serviceName}/database/postgresql/{clusterId}/metric/{metricName}
+ * HTTP method: PUT
+ * Endpoint: /cloud/project/{serviceName}/database/postgresql/{clusterId}/node/{nodeId}
  */
 export async function execute(this: IExecuteFunctions): Promise<INodeExecutionData[]> {
 	const client = new ApiClient(this);
@@ -73,15 +64,12 @@ export async function execute(this: IExecuteFunctions): Promise<INodeExecutionDa
 		extractValue: true,
 	}) as string;
 	const clusterId = this.getNodeParameter('clusterId', 0) as string;
-	const metricName = this.getNodeParameter('metricName', 0) as string;
+	const nodeId = this.getNodeParameter('nodeId', 0) as string;
+	const body = {} as IDataObject;
 
-	const period = this.getNodeParameter('period', 0, '') as string;
-	const qs: IDataObject = {
-		period: period,
-	};
-	const data = (await client.httpGet(
-		`/cloud/project/${serviceName}/database/postgresql/${clusterId}/metric/${metricName}`,
-		qs,
+	const data = (await client.httpPut(
+		`/cloud/project/${serviceName}/database/postgresql/${clusterId}/node/${nodeId}`,
+		body,
 	)) as import('n8n-workflow').IDataObject;
 
 	return this.helpers.returnJsonArray([data as INodeExecutionData]);
