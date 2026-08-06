@@ -1,16 +1,16 @@
 # OVHcloud API Conformity Report
 
-> Généré par `scripts/audit-conformity.js` le 2026-08-06T13:41:15.696Z. Document généré automatiquement — ne pas éditer à la main.
+> Généré par `scripts/audit-conformity.js` le 2026-08-06T16:12:20.506Z. Document généré automatiquement — ne pas éditer à la main.
 
 Ce rapport vérifie que les opérations des nodes respectent leur spec (méthode, chemin, paramètres path requis, query requis, champs body requis).
 
 ## Résumé
 
-- **Opérations auditées** : 6278
-- **Conformes** : 3728
-- **Non conformes** : 2550
+- **Opérations auditées** : 6591
+- **Conformes** : 4039
+- **Non conformes** : 2552
 - **Sans correspondance spec** (informatif) : 2234
-- **Taux de conformité** : **59.4%**
+- **Taux de conformité** : **61.3%**
 
 ## Conformité par spec
 
@@ -46,11 +46,11 @@ Triée par taux de non-conformité décroissant.
 | veeamCloudConnect (v1) | 14 | 13 | 1 | 92.9% |
 | vps (v1) | 63 | 20 | 4 | 31.7% |
 | cloud (v1) | 1129 | 673 | 44 | 59.6% |
-| order (v1) | 171 | 35 | 6 | 20.5% |
 | me (v1) | 309 | 300 | 9 | 97.1% |
 | dedicated (v1) | 69 | 31 | 2 | 44.9% |
 | horizonView (v1) | 42 | 41 | 1 | 97.6% |
 | hosting (v1) | 237 | 154 | 5 | 65% |
+| order (v1) | 484 | 346 | 8 | 71.5% |
 | webhosting (v2) | 246 | 12 | 3 | 4.9% |
 | domain (v1) | 119 | 109 | 1 | 91.6% |
 | telephony (v1) | 644 | 602 | 5 | 93.5% |
@@ -414,11 +414,13 @@ Chaque ligne correspond à un appel HTTP non conforme, groupée par spec :
 | POST | `/okms/resource/{x}/secret/{x}/version` | OvhCloudOkms/okmsresourcesecretversionCreatePost.operation.ts | missing required body field 'data' |
 | PUT | `/okms/resource/{x}/secret/{x}/version/{x}` | OvhCloudOkms/okmsresourcesecretversionUpdatePut.operation.ts | missing required body field 'state' |
 
-### order — 6 non-conformités
+### order — 8 non-conformités
 
 | Méthode | Chemin | Fichier | Problèmes |
 |--------|--------|---------|-----------|
 | POST | `/order/cart/{x}/coupon` | OvhCloudOrder/cart/cartCouponCreatePost.operation.ts | missing required body field 'coupon' |
+| POST | `/order/cart/{x}/domain` | OvhCloudOrder/cart/domain/cartDomainPOST.operation.ts | missing required body field 'domain' |
+| POST | `/order/cart/{x}/domainPacks` | OvhCloudOrder/cart/domainPacks/cartDomainPacksPOST.operation.ts | missing required body field 'domain' |
 | POST | `/order/cart/{x}/item/{x}/configuration` | OvhCloudOrder/cart/cartItemConfigurationCreatePost.operation.ts | missing required body field 'label'; missing required body field 'value' |
 | POST | `/order/cart/{x}/support` | OvhCloudOrder/cart/cartSupportCreatePost.operation.ts | missing required body field 'duration'; missing required body field 'planCode'; missing required body field 'pricingMode'; missing required body field 'quantity' |
 | GET | `/order/vps/{x}/additionalDisk` | OvhCloudOrder/vps/additionalDisk/additionalDiskListGet.operation.ts | missing required query param 'additionalDiskSize' |
