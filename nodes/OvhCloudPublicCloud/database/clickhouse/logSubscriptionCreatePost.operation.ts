@@ -9,7 +9,7 @@ import { ApiClient } from '../../../../shared/transport/ApiClient';
 
 export function description(displayOptions: IDisplayOptions): INodeProperties[] {
 	return [
-	{
+{
 		displayName: 'Public Cloud Project',
 		name: 'publicCloudProjectId',
 		type: 'resourceLocator',
@@ -32,13 +32,30 @@ export function description(displayOptions: IDisplayOptions): INodeProperties[] 
 		],
 		displayOptions,
 	},
-	{
-		displayName: 'Service Name',
-		name: 'serviceName',
+{
+		displayName: 'Cluster ID',
+		name: 'clusterId',
 		type: 'string',
 		default: '',
 		required: true,
-		description: 'The database service name',
+		displayOptions,
+	},
+{
+		displayName: 'Kind',
+		name: 'kind',
+		type: 'string',
+		default: '',
+		required: true,
+		description: 'Log kind name to subscribe to',
+		displayOptions,
+	},
+{
+		displayName: 'Stream ID',
+		name: 'streamId',
+		type: 'string',
+		default: '',
+		required: true,
+		description: 'Customer log stream ID',
 		displayOptions,
 	},
 	];
@@ -48,17 +65,21 @@ export function description(displayOptions: IDisplayOptions): INodeProperties[] 
  * Executes the Create Clickhouse Log Subscription operation.
  *
  * HTTP method: POST
- * Endpoint: /publicCloud/project/{projectId}/clickhouse/serviceName/log/subscription
+ * Endpoint: /cloud/project/{serviceName}/database/clickhouse/{clusterId}/log/subscription
  */
 export async function execute(this: IExecuteFunctions): Promise<INodeExecutionData[]> {
 	const client = new ApiClient(this);
-	const projectId = this.getNodeParameter('publicCloudProjectId', 0, '', {
-		extractValue: true,
-	}) as string;
-	const serviceName = this.getNodeParameter('serviceName', 0) as string;
+	const clusterId = this.getNodeParameter('clusterId', 0) as string;
+	const serviceName = this.getNodeParameter('publicCloudProjectId', 0, '', { extractValue: true }) as string;
+	const kind = (this.getNodeParameter('kind', 0, '') || '') as string;
+	const streamId = (this.getNodeParameter('streamId', 0, '') || '') as string;
 
-	const body = {} as IDataObject;
-	const data = (await client.httpPost(`/publicCloud/project/${projectId}/clickhouse/${serviceName}/log/subscription`, body)) as IDataObject;
+	const body: IDataObject = {};
+	if (kind) body.kind = kind;
+	if (streamId) body.streamId = streamId;
+
+	const data = (await client.httpPost(`/cloud/project/${serviceName}/database/clickhouse/${clusterId}/log/subscription`, body as IDataObject)) as IDataObject;
 
 	return this.helpers.returnJsonArray([data]);
 }
+

@@ -1,16 +1,16 @@
 # OVHcloud API Conformity Report
 
-> Généré par `scripts/audit-conformity.js` le 2026-08-06T00:32:21.648Z. Document généré automatiquement — ne pas éditer à la main.
+> Généré par `scripts/audit-conformity.js` le 2026-08-06T01:37:59.563Z. Document généré automatiquement — ne pas éditer à la main.
 
 Ce rapport vérifie que les opérations des nodes respectent leur spec (méthode, chemin, paramètres path requis, query requis, champs body requis).
 
 ## Résumé
 
-- **Opérations auditées** : 5885
-- **Conformes** : 3547
-- **Non conformes** : 2338
-- **Sans correspondance spec** (informatif) : 2042
-- **Taux de conformité** : **60.3%**
+- **Opérations auditées** : 5939
+- **Conformes** : 3587
+- **Non conformes** : 2352
+- **Sans correspondance spec** (informatif) : 2051
+- **Taux de conformité** : **60.4%**
 
 ## Conformité par spec
 
@@ -46,15 +46,15 @@ Triée par taux de non-conformité décroissant.
 | veeamCloudConnect (v1) | 14 | 13 | 1 | 92.9% |
 | vps (v1) | 63 | 20 | 4 | 31.7% |
 | order (v1) | 166 | 31 | 6 | 18.7% |
+| cloud (v1) | 962 | 536 | 29 | 55.7% |
 | me (v1) | 309 | 300 | 9 | 97.1% |
 | dedicated (v1) | 69 | 31 | 2 | 44.9% |
-| cloud (v1) | 935 | 496 | 24 | 53% |
 | horizonView (v1) | 42 | 41 | 1 | 97.6% |
 | hosting (v1) | 237 | 154 | 5 | 65% |
 | webhosting (v2) | 246 | 12 | 3 | 4.9% |
 | domain (v1) | 119 | 109 | 1 | 91.6% |
 | telephony (v1) | 644 | 602 | 5 | 93.5% |
-| publicCloud (v2) | 935 | 26 | 4 | 2.8% |
+| publicCloud (v2) | 962 | 26 | 4 | 2.7% |
 | price (v1) | 581 | 581 | 0 | 100% |
 | sms (v1) | 126 | 124 | 0 | 98.4% |
 | domain (v2) | 119 | 9 | 0 | 7.6% |
@@ -106,7 +106,7 @@ Chaque ligne correspond à un appel HTTP non conforme, groupée par spec :
 | POST | `/cdn/dedicated/{x}/ssl` | OvhCloudCdn/resources/ssl/sslCreatePost.operation.ts | missing required body field 'name' |
 | POST | `/cdn/dedicated/{x}/ssl/update` | OvhCloudCdn/resources/ssl/sslUpdatePost.operation.ts | missing required body field 'certificate'; missing required body field 'key' |
 
-### cloud — 24 non-conformités
+### cloud — 29 non-conformités
 
 | Méthode | Chemin | Fichier | Problèmes |
 |--------|--------|---------|-----------|
@@ -115,6 +115,11 @@ Chaque ligne correspond à un appel HTTP non conforme, groupée par spec :
 | POST | `/cloud/project/{x}/database/cassandra/{x}/log/subscription` | OvhCloudPublicCloud/database/cassandra/logSubscriptionCreatePost.operation.ts | missing required body field 'kind'; missing required body field 'streamId' |
 | POST | `/cloud/project/{x}/database/cassandra/{x}/log/url` | OvhCloudPublicCloud/database/cassandra/logUrlCreatePost.operation.ts | missing required body field 'kind' |
 | GET | `/cloud/project/{x}/database/cassandra/{x}/metric/{x}` | OvhCloudPublicCloud/database/cassandra/metricGetGet.operation.ts | missing required query param 'period' |
+| POST | `/cloud/project/{x}/database/clickhouse/{x}/database` | OvhCloudPublicCloud/database/clickhouse/databaseCreatePost.operation.ts | missing required body field 'name' |
+| POST | `/cloud/project/{x}/database/clickhouse/{x}/integration` | OvhCloudPublicCloud/database/clickhouse/integrationCreatePost.operation.ts | missing required body field 'destinationServiceId'; missing required body field 'sourceServiceId' |
+| POST | `/cloud/project/{x}/database/clickhouse/{x}/log/subscription` | OvhCloudPublicCloud/database/clickhouse/logSubscriptionCreatePost.operation.ts | missing required body field 'kind'; missing required body field 'streamId' |
+| POST | `/cloud/project/{x}/database/clickhouse/{x}/log/url` | OvhCloudPublicCloud/database/clickhouse/logUrlCreatePost.operation.ts | missing required body field 'kind' |
+| GET | `/cloud/project/{x}/database/clickhouse/{x}/metric/{x}` | OvhCloudPublicCloud/database/clickhouse/metricGetGet.operation.ts | missing required query param 'period' |
 | POST | `/cloud/project/{x}/database/kafka/{x}/log/subscription` | OvhCloudPublicCloud/database/kafka/logSubscriptionCreatePost.operation.ts | missing required body field 'kind'; missing required body field 'streamId' |
 | POST | `/cloud/project/{x}/database/kafka/{x}/log/url` | OvhCloudPublicCloud/database/kafka/logUrlCreatePost.operation.ts | missing required body field 'kind' |
 | GET | `/cloud/project/{x}/database/kafka/{x}/metric/{x}` | OvhCloudPublicCloud/database/kafka/metricGet.operation.ts | missing required query param 'period' |
@@ -579,6 +584,18 @@ Ces opérations appellent un chemin qui ne correspond à aucun endpoint de la sp
 | cloud (v1) | DELETE | `/cloud/project/{x}/database/cassandra/{x}/node/{x}` | OvhCloudPublicCloud/database/cassandra/nodeDeleteDelete.operation.ts |
 | cloud (v1) | PUT | `/cloud/project/{x}/database/cassandra/{x}/node/{x}` | OvhCloudPublicCloud/database/cassandra/nodeUpdatePut.operation.ts |
 | cloud (v1) | PUT | `/cloud/project/{x}/database/cassandra/{x}/user/{x}` | OvhCloudPublicCloud/database/cassandra/userUpdatePut.operation.ts |
+| cloud (v1) | POST | `/cloud/project/{x}/database/clickhouse/{x}/backup` | OvhCloudPublicCloud/database/clickhouse/backupCreatePost.operation.ts |
+| cloud (v1) | POST | `/cloud/project/{x}/database/clickhouse/{x}/certificates` | OvhCloudPublicCloud/database/clickhouse/certificateCreatePost.operation.ts |
+| cloud (v1) | GET | `/cloud/project/{x}/database/clickhouse/{x}/ipRestrictions` | OvhCloudPublicCloud/database/clickhouse/ipRestrictionListGet.operation.ts |
+| cloud (v1) | POST | `/cloud/project/{x}/database/clickhouse/{x}/ipRestrictions` | OvhCloudPublicCloud/database/clickhouse/ipRestrictionCreatePost.operation.ts |
+| cloud (v1) | DELETE | `/cloud/project/{x}/database/clickhouse/{x}/ipRestrictions/{x}` | OvhCloudPublicCloud/database/clickhouse/ipRestrictionDeleteDelete.operation.ts |
+| cloud (v1) | GET | `/cloud/project/{x}/database/clickhouse/{x}/ipRestrictions/{x}` | OvhCloudPublicCloud/database/clickhouse/ipRestrictionGetGet.operation.ts |
+| cloud (v1) | PUT | `/cloud/project/{x}/database/clickhouse/{x}/ipRestrictions/{x}` | OvhCloudPublicCloud/database/clickhouse/ipRestrictionUpdatePut.operation.ts |
+| cloud (v1) | GET | `/cloud/project/{x}/database/clickhouse/{x}/log` | OvhCloudPublicCloud/database/clickhouse/logsGet.operation.ts |
+| cloud (v1) | POST | `/cloud/project/{x}/database/clickhouse/{x}/node` | OvhCloudPublicCloud/database/clickhouse/nodeCreatePost.operation.ts |
+| cloud (v1) | DELETE | `/cloud/project/{x}/database/clickhouse/{x}/node/{x}` | OvhCloudPublicCloud/database/clickhouse/nodeDeleteDelete.operation.ts |
+| cloud (v1) | PUT | `/cloud/project/{x}/database/clickhouse/{x}/node/{x}` | OvhCloudPublicCloud/database/clickhouse/nodeUpdatePut.operation.ts |
+| cloud (v1) | POST | `/cloud/project/{x}/database/clickhouse/{x}/queryStatistics/reset` | OvhCloudPublicCloud/database/clickhouse/queryStatisticsResetPost.operation.ts |
 | cloud (v1) | POST | `/cloud/project/{x}/database/kafka/{x}` | OvhCloudPublicCloud/database/kafka/aclCreatePost.operation.ts |
 | cloud (v1) | POST | `/cloud/project/{x}/database/kafka/{x}` | OvhCloudPublicCloud/database/kafka/integrationCreatePost.operation.ts |
 | cloud (v1) | POST | `/cloud/project/{x}/database/kafka/{x}` | OvhCloudPublicCloud/database/kafka/ipRestrictionCreatePost.operation.ts |
@@ -675,38 +692,8 @@ Ces opérations appellent un chemin qui ne correspond à aucun endpoint de la sp
 | cloud (v1) | GET | `/publicCloud/project/{x}/capabilities/region/{x}/{x}` | OvhCloudPublicCloud/capabilities/getRegionProductDetailGet.operation.ts |
 | cloud (v1) | PUT | `/publicCloud/project/{x}/cassandra/{x}/maintenance` | OvhCloudPublicCloud/database/cassandra/maintenanceUpdatePut.operation.ts |
 | cloud (v1) | POST | `/publicCloud/project/{x}/changeContact` | OvhCloudPublicCloud/changeContact/changeContactPost.operation.ts |
-| cloud (v1) | GET | `/publicCloud/project/{x}/clickhouse` | OvhCloudPublicCloud/database/clickhouse/clusterListGet.operation.ts |
-| cloud (v1) | POST | `/publicCloud/project/{x}/clickhouse` | OvhCloudPublicCloud/database/clickhouse/clusterCreatePost.operation.ts |
-| cloud (v1) | DELETE | `/publicCloud/project/{x}/clickhouse/{x}` | OvhCloudPublicCloud/database/clickhouse/clusterDeleteDelete.operation.ts |
-| cloud (v1) | GET | `/publicCloud/project/{x}/clickhouse/{x}` | OvhCloudPublicCloud/database/clickhouse/clusterGetGet.operation.ts |
-| cloud (v1) | PUT | `/publicCloud/project/{x}/clickhouse/{x}` | OvhCloudPublicCloud/database/clickhouse/clusterUpdatePut.operation.ts |
-| cloud (v1) | GET | `/publicCloud/project/{x}/clickhouse/{x}/backup` | OvhCloudPublicCloud/database/clickhouse/backupListGet.operation.ts |
-| cloud (v1) | POST | `/publicCloud/project/{x}/clickhouse/{x}/backup` | OvhCloudPublicCloud/database/clickhouse/backupCreatePost.operation.ts |
 | cloud (v1) | DELETE | `/publicCloud/project/{x}/clickhouse/{x}/backup/{x}` | OvhCloudPublicCloud/database/clickhouse/backupDeleteDelete.operation.ts |
-| cloud (v1) | GET | `/publicCloud/project/{x}/clickhouse/{x}/backup/{x}` | OvhCloudPublicCloud/database/clickhouse/backupGetGet.operation.ts |
-| cloud (v1) | GET | `/publicCloud/project/{x}/clickhouse/{x}/certificate` | OvhCloudPublicCloud/database/clickhouse/certificateListGet.operation.ts |
-| cloud (v1) | POST | `/publicCloud/project/{x}/clickhouse/{x}/certificate` | OvhCloudPublicCloud/database/clickhouse/certificateCreatePost.operation.ts |
-| cloud (v1) | GET | `/publicCloud/project/{x}/clickhouse/{x}/integration` | OvhCloudPublicCloud/database/clickhouse/integrationListGet.operation.ts |
-| cloud (v1) | POST | `/publicCloud/project/{x}/clickhouse/{x}/integration` | OvhCloudPublicCloud/database/clickhouse/integrationCreatePost.operation.ts |
-| cloud (v1) | GET | `/publicCloud/project/{x}/clickhouse/{x}/ipRestriction` | OvhCloudPublicCloud/database/clickhouse/ipRestrictionListGet.operation.ts |
-| cloud (v1) | POST | `/publicCloud/project/{x}/clickhouse/{x}/ipRestriction` | OvhCloudPublicCloud/database/clickhouse/ipRestrictionCreatePost.operation.ts |
-| cloud (v1) | GET | `/publicCloud/project/{x}/clickhouse/{x}/log/subscription` | OvhCloudPublicCloud/database/clickhouse/logSubscriptionListGet.operation.ts |
-| cloud (v1) | POST | `/publicCloud/project/{x}/clickhouse/{x}/log/subscription` | OvhCloudPublicCloud/database/clickhouse/logSubscriptionCreatePost.operation.ts |
-| cloud (v1) | GET | `/publicCloud/project/{x}/clickhouse/{x}/log/subscription/{x}` | OvhCloudPublicCloud/database/clickhouse/logSubscriptionGetGet.operation.ts |
-| cloud (v1) | GET | `/publicCloud/project/{x}/clickhouse/{x}/maintenance` | OvhCloudPublicCloud/database/clickhouse/maintenanceGet.operation.ts |
 | cloud (v1) | PUT | `/publicCloud/project/{x}/clickhouse/{x}/maintenance` | OvhCloudPublicCloud/database/clickhouse/maintenanceUpdatePut.operation.ts |
-| cloud (v1) | GET | `/publicCloud/project/{x}/clickhouse/{x}/metric` | OvhCloudPublicCloud/database/clickhouse/metricGet.operation.ts |
-| cloud (v1) | GET | `/publicCloud/project/{x}/clickhouse/{x}/node` | OvhCloudPublicCloud/database/clickhouse/nodeListGet.operation.ts |
-| cloud (v1) | POST | `/publicCloud/project/{x}/clickhouse/{x}/node` | OvhCloudPublicCloud/database/clickhouse/nodeCreatePost.operation.ts |
-| cloud (v1) | DELETE | `/publicCloud/project/{x}/clickhouse/{x}/node/{x}` | OvhCloudPublicCloud/database/clickhouse/nodeDeleteDelete.operation.ts |
-| cloud (v1) | GET | `/publicCloud/project/{x}/clickhouse/{x}/node/{x}` | OvhCloudPublicCloud/database/clickhouse/nodeGetGet.operation.ts |
-| cloud (v1) | PUT | `/publicCloud/project/{x}/clickhouse/{x}/node/{x}` | OvhCloudPublicCloud/database/clickhouse/nodeUpdatePut.operation.ts |
-| cloud (v1) | GET | `/publicCloud/project/{x}/clickhouse/{x}/prometheus` | OvhCloudPublicCloud/database/clickhouse/prometheusGet.operation.ts |
-| cloud (v1) | GET | `/publicCloud/project/{x}/clickhouse/{x}/user` | OvhCloudPublicCloud/database/clickhouse/userListGet.operation.ts |
-| cloud (v1) | POST | `/publicCloud/project/{x}/clickhouse/{x}/user` | OvhCloudPublicCloud/database/clickhouse/userCreatePost.operation.ts |
-| cloud (v1) | DELETE | `/publicCloud/project/{x}/clickhouse/{x}/user/{x}` | OvhCloudPublicCloud/database/clickhouse/userDeleteDelete.operation.ts |
-| cloud (v1) | GET | `/publicCloud/project/{x}/clickhouse/{x}/user/{x}` | OvhCloudPublicCloud/database/clickhouse/userGetGet.operation.ts |
-| cloud (v1) | PUT | `/publicCloud/project/{x}/clickhouse/{x}/user/{x}` | OvhCloudPublicCloud/database/clickhouse/userUpdatePut.operation.ts |
 | cloud (v1) | GET | `/publicCloud/project/{x}/cloud/database/kafkaConnect/{x}/backup` | OvhCloudPublicCloud/database/kafkaConnect/backupListGet.operation.ts |
 | cloud (v1) | POST | `/publicCloud/project/{x}/cloud/database/kafkaConnect/{x}/backup` | OvhCloudPublicCloud/database/kafkaConnect/backupCreatePost.operation.ts |
 | cloud (v1) | DELETE | `/publicCloud/project/{x}/cloud/database/kafkaConnect/{x}/backup/{x}` | OvhCloudPublicCloud/database/kafkaConnect/backupDeleteDelete.operation.ts |
@@ -1438,6 +1425,63 @@ Ces opérations appellent un chemin qui ne correspond à aucun endpoint de la sp
 | publicCloud (v2) | GET | `/cloud/project/{x}/database/cassandra/{x}/user/{x}` | OvhCloudPublicCloud/database/cassandra/userGetGet.operation.ts |
 | publicCloud (v2) | PUT | `/cloud/project/{x}/database/cassandra/{x}/user/{x}` | OvhCloudPublicCloud/database/cassandra/userUpdatePut.operation.ts |
 | publicCloud (v2) | POST | `/cloud/project/{x}/database/cassandra/{x}/user/{x}/credentials/reset` | OvhCloudPublicCloud/database/cassandra/userCredentialsResetPost.operation.ts |
+| publicCloud (v2) | GET | `/cloud/project/{x}/database/clickhouse` | OvhCloudPublicCloud/database/clickhouse/clusterListGet.operation.ts |
+| publicCloud (v2) | POST | `/cloud/project/{x}/database/clickhouse` | OvhCloudPublicCloud/database/clickhouse/clusterCreatePost.operation.ts |
+| publicCloud (v2) | DELETE | `/cloud/project/{x}/database/clickhouse/{x}` | OvhCloudPublicCloud/database/clickhouse/clusterDeleteDelete.operation.ts |
+| publicCloud (v2) | GET | `/cloud/project/{x}/database/clickhouse/{x}` | OvhCloudPublicCloud/database/clickhouse/clusterGetGet.operation.ts |
+| publicCloud (v2) | PUT | `/cloud/project/{x}/database/clickhouse/{x}` | OvhCloudPublicCloud/database/clickhouse/clusterUpdatePut.operation.ts |
+| publicCloud (v2) | GET | `/cloud/project/{x}/database/clickhouse/{x}/backup` | OvhCloudPublicCloud/database/clickhouse/backupListGet.operation.ts |
+| publicCloud (v2) | POST | `/cloud/project/{x}/database/clickhouse/{x}/backup` | OvhCloudPublicCloud/database/clickhouse/backupCreatePost.operation.ts |
+| publicCloud (v2) | GET | `/cloud/project/{x}/database/clickhouse/{x}/backup/{x}` | OvhCloudPublicCloud/database/clickhouse/backupGetGet.operation.ts |
+| publicCloud (v2) | GET | `/cloud/project/{x}/database/clickhouse/{x}/capabilities/backupRegions` | OvhCloudPublicCloud/database/clickhouse/capabilitiesBackupRegionsGet.operation.ts |
+| publicCloud (v2) | GET | `/cloud/project/{x}/database/clickhouse/{x}/capabilities/integration` | OvhCloudPublicCloud/database/clickhouse/capabilitiesIntegrationGet.operation.ts |
+| publicCloud (v2) | GET | `/cloud/project/{x}/database/clickhouse/{x}/certificates` | OvhCloudPublicCloud/database/clickhouse/certificateListGet.operation.ts |
+| publicCloud (v2) | POST | `/cloud/project/{x}/database/clickhouse/{x}/certificates` | OvhCloudPublicCloud/database/clickhouse/certificateCreatePost.operation.ts |
+| publicCloud (v2) | GET | `/cloud/project/{x}/database/clickhouse/{x}/currentQueries` | OvhCloudPublicCloud/database/clickhouse/currentQueriesGet.operation.ts |
+| publicCloud (v2) | POST | `/cloud/project/{x}/database/clickhouse/{x}/currentQueries/cancel` | OvhCloudPublicCloud/database/clickhouse/currentQueriesCancelPost.operation.ts |
+| publicCloud (v2) | GET | `/cloud/project/{x}/database/clickhouse/{x}/database` | OvhCloudPublicCloud/database/clickhouse/databaseListGet.operation.ts |
+| publicCloud (v2) | POST | `/cloud/project/{x}/database/clickhouse/{x}/database` | OvhCloudPublicCloud/database/clickhouse/databaseCreatePost.operation.ts |
+| publicCloud (v2) | DELETE | `/cloud/project/{x}/database/clickhouse/{x}/database/{x}` | OvhCloudPublicCloud/database/clickhouse/databaseDeleteDelete.operation.ts |
+| publicCloud (v2) | GET | `/cloud/project/{x}/database/clickhouse/{x}/database/{x}` | OvhCloudPublicCloud/database/clickhouse/databaseGetGet.operation.ts |
+| publicCloud (v2) | POST | `/cloud/project/{x}/database/clickhouse/{x}/enableWrites` | OvhCloudPublicCloud/database/clickhouse/enableWritesPost.operation.ts |
+| publicCloud (v2) | GET | `/cloud/project/{x}/database/clickhouse/{x}/integration` | OvhCloudPublicCloud/database/clickhouse/integrationListGet.operation.ts |
+| publicCloud (v2) | POST | `/cloud/project/{x}/database/clickhouse/{x}/integration` | OvhCloudPublicCloud/database/clickhouse/integrationCreatePost.operation.ts |
+| publicCloud (v2) | DELETE | `/cloud/project/{x}/database/clickhouse/{x}/integration/{x}` | OvhCloudPublicCloud/database/clickhouse/integrationDeleteDelete.operation.ts |
+| publicCloud (v2) | GET | `/cloud/project/{x}/database/clickhouse/{x}/integration/{x}` | OvhCloudPublicCloud/database/clickhouse/integrationGetGet.operation.ts |
+| publicCloud (v2) | GET | `/cloud/project/{x}/database/clickhouse/{x}/ipRestrictions` | OvhCloudPublicCloud/database/clickhouse/ipRestrictionListGet.operation.ts |
+| publicCloud (v2) | POST | `/cloud/project/{x}/database/clickhouse/{x}/ipRestrictions` | OvhCloudPublicCloud/database/clickhouse/ipRestrictionCreatePost.operation.ts |
+| publicCloud (v2) | DELETE | `/cloud/project/{x}/database/clickhouse/{x}/ipRestrictions/{x}` | OvhCloudPublicCloud/database/clickhouse/ipRestrictionDeleteDelete.operation.ts |
+| publicCloud (v2) | GET | `/cloud/project/{x}/database/clickhouse/{x}/ipRestrictions/{x}` | OvhCloudPublicCloud/database/clickhouse/ipRestrictionGetGet.operation.ts |
+| publicCloud (v2) | PUT | `/cloud/project/{x}/database/clickhouse/{x}/ipRestrictions/{x}` | OvhCloudPublicCloud/database/clickhouse/ipRestrictionUpdatePut.operation.ts |
+| publicCloud (v2) | GET | `/cloud/project/{x}/database/clickhouse/{x}/log` | OvhCloudPublicCloud/database/clickhouse/logsGet.operation.ts |
+| publicCloud (v2) | GET | `/cloud/project/{x}/database/clickhouse/{x}/log/kind` | OvhCloudPublicCloud/database/clickhouse/logKindListGet.operation.ts |
+| publicCloud (v2) | GET | `/cloud/project/{x}/database/clickhouse/{x}/log/kind/{x}` | OvhCloudPublicCloud/database/clickhouse/logKindGetGet.operation.ts |
+| publicCloud (v2) | GET | `/cloud/project/{x}/database/clickhouse/{x}/log/subscription` | OvhCloudPublicCloud/database/clickhouse/logSubscriptionListGet.operation.ts |
+| publicCloud (v2) | POST | `/cloud/project/{x}/database/clickhouse/{x}/log/subscription` | OvhCloudPublicCloud/database/clickhouse/logSubscriptionCreatePost.operation.ts |
+| publicCloud (v2) | DELETE | `/cloud/project/{x}/database/clickhouse/{x}/log/subscription/{x}` | OvhCloudPublicCloud/database/clickhouse/logSubscriptionDeleteDelete.operation.ts |
+| publicCloud (v2) | GET | `/cloud/project/{x}/database/clickhouse/{x}/log/subscription/{x}` | OvhCloudPublicCloud/database/clickhouse/logSubscriptionGetGet.operation.ts |
+| publicCloud (v2) | POST | `/cloud/project/{x}/database/clickhouse/{x}/log/url` | OvhCloudPublicCloud/database/clickhouse/logUrlCreatePost.operation.ts |
+| publicCloud (v2) | GET | `/cloud/project/{x}/database/clickhouse/{x}/maintenance` | OvhCloudPublicCloud/database/clickhouse/maintenanceGetGet.operation.ts |
+| publicCloud (v2) | GET | `/cloud/project/{x}/database/clickhouse/{x}/maintenance/{x}` | OvhCloudPublicCloud/database/clickhouse/maintenanceGet.operation.ts |
+| publicCloud (v2) | POST | `/cloud/project/{x}/database/clickhouse/{x}/maintenance/{x}/apply` | OvhCloudPublicCloud/database/clickhouse/maintenanceApplyPost.operation.ts |
+| publicCloud (v2) | GET | `/cloud/project/{x}/database/clickhouse/{x}/metric` | OvhCloudPublicCloud/database/clickhouse/metricGet.operation.ts |
+| publicCloud (v2) | GET | `/cloud/project/{x}/database/clickhouse/{x}/metric/{x}` | OvhCloudPublicCloud/database/clickhouse/metricGetGet.operation.ts |
+| publicCloud (v2) | GET | `/cloud/project/{x}/database/clickhouse/{x}/node` | OvhCloudPublicCloud/database/clickhouse/nodeListGet.operation.ts |
+| publicCloud (v2) | POST | `/cloud/project/{x}/database/clickhouse/{x}/node` | OvhCloudPublicCloud/database/clickhouse/nodeCreatePost.operation.ts |
+| publicCloud (v2) | DELETE | `/cloud/project/{x}/database/clickhouse/{x}/node/{x}` | OvhCloudPublicCloud/database/clickhouse/nodeDeleteDelete.operation.ts |
+| publicCloud (v2) | GET | `/cloud/project/{x}/database/clickhouse/{x}/node/{x}` | OvhCloudPublicCloud/database/clickhouse/nodeGetGet.operation.ts |
+| publicCloud (v2) | PUT | `/cloud/project/{x}/database/clickhouse/{x}/node/{x}` | OvhCloudPublicCloud/database/clickhouse/nodeUpdatePut.operation.ts |
+| publicCloud (v2) | GET | `/cloud/project/{x}/database/clickhouse/{x}/prometheus` | OvhCloudPublicCloud/database/clickhouse/prometheusGet.operation.ts |
+| publicCloud (v2) | POST | `/cloud/project/{x}/database/clickhouse/{x}/prometheus/credentials/reset` | OvhCloudPublicCloud/database/clickhouse/prometheusCredentialsResetPost.operation.ts |
+| publicCloud (v2) | GET | `/cloud/project/{x}/database/clickhouse/{x}/queryStatistics` | OvhCloudPublicCloud/database/clickhouse/queryStatisticsGet.operation.ts |
+| publicCloud (v2) | POST | `/cloud/project/{x}/database/clickhouse/{x}/queryStatistics/reset` | OvhCloudPublicCloud/database/clickhouse/queryStatisticsResetPost.operation.ts |
+| publicCloud (v2) | GET | `/cloud/project/{x}/database/clickhouse/{x}/roles` | OvhCloudPublicCloud/database/clickhouse/rolesGet.operation.ts |
+| publicCloud (v2) | GET | `/cloud/project/{x}/database/clickhouse/{x}/user` | OvhCloudPublicCloud/database/clickhouse/userListGet.operation.ts |
+| publicCloud (v2) | POST | `/cloud/project/{x}/database/clickhouse/{x}/user` | OvhCloudPublicCloud/database/clickhouse/userCreatePost.operation.ts |
+| publicCloud (v2) | DELETE | `/cloud/project/{x}/database/clickhouse/{x}/user/{x}` | OvhCloudPublicCloud/database/clickhouse/userDeleteDelete.operation.ts |
+| publicCloud (v2) | GET | `/cloud/project/{x}/database/clickhouse/{x}/user/{x}` | OvhCloudPublicCloud/database/clickhouse/userGetGet.operation.ts |
+| publicCloud (v2) | PUT | `/cloud/project/{x}/database/clickhouse/{x}/user/{x}` | OvhCloudPublicCloud/database/clickhouse/userUpdatePut.operation.ts |
+| publicCloud (v2) | POST | `/cloud/project/{x}/database/clickhouse/{x}/user/{x}/credentials/reset` | OvhCloudPublicCloud/database/clickhouse/userCredentialsResetPost.operation.ts |
 | publicCloud (v2) | GET | `/cloud/project/{x}/database/grafana` | OvhCloudPublicCloud/database/grafana/clusterListGet.operation.ts |
 | publicCloud (v2) | POST | `/cloud/project/{x}/database/grafana` | OvhCloudPublicCloud/database/grafana/clusterCreatePost.operation.ts |
 | publicCloud (v2) | DELETE | `/cloud/project/{x}/database/grafana/{x}` | OvhCloudPublicCloud/database/grafana/clusterDeleteDelete.operation.ts |
@@ -2006,38 +2050,8 @@ Ces opérations appellent un chemin qui ne correspond à aucun endpoint de la sp
 | publicCloud (v2) | GET | `/publicCloud/project/{x}/capabilities/region/{x}/{x}` | OvhCloudPublicCloud/capabilities/getRegionProductDetailGet.operation.ts |
 | publicCloud (v2) | PUT | `/publicCloud/project/{x}/cassandra/{x}/maintenance` | OvhCloudPublicCloud/database/cassandra/maintenanceUpdatePut.operation.ts |
 | publicCloud (v2) | POST | `/publicCloud/project/{x}/changeContact` | OvhCloudPublicCloud/changeContact/changeContactPost.operation.ts |
-| publicCloud (v2) | GET | `/publicCloud/project/{x}/clickhouse` | OvhCloudPublicCloud/database/clickhouse/clusterListGet.operation.ts |
-| publicCloud (v2) | POST | `/publicCloud/project/{x}/clickhouse` | OvhCloudPublicCloud/database/clickhouse/clusterCreatePost.operation.ts |
-| publicCloud (v2) | DELETE | `/publicCloud/project/{x}/clickhouse/{x}` | OvhCloudPublicCloud/database/clickhouse/clusterDeleteDelete.operation.ts |
-| publicCloud (v2) | GET | `/publicCloud/project/{x}/clickhouse/{x}` | OvhCloudPublicCloud/database/clickhouse/clusterGetGet.operation.ts |
-| publicCloud (v2) | PUT | `/publicCloud/project/{x}/clickhouse/{x}` | OvhCloudPublicCloud/database/clickhouse/clusterUpdatePut.operation.ts |
-| publicCloud (v2) | GET | `/publicCloud/project/{x}/clickhouse/{x}/backup` | OvhCloudPublicCloud/database/clickhouse/backupListGet.operation.ts |
-| publicCloud (v2) | POST | `/publicCloud/project/{x}/clickhouse/{x}/backup` | OvhCloudPublicCloud/database/clickhouse/backupCreatePost.operation.ts |
 | publicCloud (v2) | DELETE | `/publicCloud/project/{x}/clickhouse/{x}/backup/{x}` | OvhCloudPublicCloud/database/clickhouse/backupDeleteDelete.operation.ts |
-| publicCloud (v2) | GET | `/publicCloud/project/{x}/clickhouse/{x}/backup/{x}` | OvhCloudPublicCloud/database/clickhouse/backupGetGet.operation.ts |
-| publicCloud (v2) | GET | `/publicCloud/project/{x}/clickhouse/{x}/certificate` | OvhCloudPublicCloud/database/clickhouse/certificateListGet.operation.ts |
-| publicCloud (v2) | POST | `/publicCloud/project/{x}/clickhouse/{x}/certificate` | OvhCloudPublicCloud/database/clickhouse/certificateCreatePost.operation.ts |
-| publicCloud (v2) | GET | `/publicCloud/project/{x}/clickhouse/{x}/integration` | OvhCloudPublicCloud/database/clickhouse/integrationListGet.operation.ts |
-| publicCloud (v2) | POST | `/publicCloud/project/{x}/clickhouse/{x}/integration` | OvhCloudPublicCloud/database/clickhouse/integrationCreatePost.operation.ts |
-| publicCloud (v2) | GET | `/publicCloud/project/{x}/clickhouse/{x}/ipRestriction` | OvhCloudPublicCloud/database/clickhouse/ipRestrictionListGet.operation.ts |
-| publicCloud (v2) | POST | `/publicCloud/project/{x}/clickhouse/{x}/ipRestriction` | OvhCloudPublicCloud/database/clickhouse/ipRestrictionCreatePost.operation.ts |
-| publicCloud (v2) | GET | `/publicCloud/project/{x}/clickhouse/{x}/log/subscription` | OvhCloudPublicCloud/database/clickhouse/logSubscriptionListGet.operation.ts |
-| publicCloud (v2) | POST | `/publicCloud/project/{x}/clickhouse/{x}/log/subscription` | OvhCloudPublicCloud/database/clickhouse/logSubscriptionCreatePost.operation.ts |
-| publicCloud (v2) | GET | `/publicCloud/project/{x}/clickhouse/{x}/log/subscription/{x}` | OvhCloudPublicCloud/database/clickhouse/logSubscriptionGetGet.operation.ts |
-| publicCloud (v2) | GET | `/publicCloud/project/{x}/clickhouse/{x}/maintenance` | OvhCloudPublicCloud/database/clickhouse/maintenanceGet.operation.ts |
 | publicCloud (v2) | PUT | `/publicCloud/project/{x}/clickhouse/{x}/maintenance` | OvhCloudPublicCloud/database/clickhouse/maintenanceUpdatePut.operation.ts |
-| publicCloud (v2) | GET | `/publicCloud/project/{x}/clickhouse/{x}/metric` | OvhCloudPublicCloud/database/clickhouse/metricGet.operation.ts |
-| publicCloud (v2) | GET | `/publicCloud/project/{x}/clickhouse/{x}/node` | OvhCloudPublicCloud/database/clickhouse/nodeListGet.operation.ts |
-| publicCloud (v2) | POST | `/publicCloud/project/{x}/clickhouse/{x}/node` | OvhCloudPublicCloud/database/clickhouse/nodeCreatePost.operation.ts |
-| publicCloud (v2) | DELETE | `/publicCloud/project/{x}/clickhouse/{x}/node/{x}` | OvhCloudPublicCloud/database/clickhouse/nodeDeleteDelete.operation.ts |
-| publicCloud (v2) | GET | `/publicCloud/project/{x}/clickhouse/{x}/node/{x}` | OvhCloudPublicCloud/database/clickhouse/nodeGetGet.operation.ts |
-| publicCloud (v2) | PUT | `/publicCloud/project/{x}/clickhouse/{x}/node/{x}` | OvhCloudPublicCloud/database/clickhouse/nodeUpdatePut.operation.ts |
-| publicCloud (v2) | GET | `/publicCloud/project/{x}/clickhouse/{x}/prometheus` | OvhCloudPublicCloud/database/clickhouse/prometheusGet.operation.ts |
-| publicCloud (v2) | GET | `/publicCloud/project/{x}/clickhouse/{x}/user` | OvhCloudPublicCloud/database/clickhouse/userListGet.operation.ts |
-| publicCloud (v2) | POST | `/publicCloud/project/{x}/clickhouse/{x}/user` | OvhCloudPublicCloud/database/clickhouse/userCreatePost.operation.ts |
-| publicCloud (v2) | DELETE | `/publicCloud/project/{x}/clickhouse/{x}/user/{x}` | OvhCloudPublicCloud/database/clickhouse/userDeleteDelete.operation.ts |
-| publicCloud (v2) | GET | `/publicCloud/project/{x}/clickhouse/{x}/user/{x}` | OvhCloudPublicCloud/database/clickhouse/userGetGet.operation.ts |
-| publicCloud (v2) | PUT | `/publicCloud/project/{x}/clickhouse/{x}/user/{x}` | OvhCloudPublicCloud/database/clickhouse/userUpdatePut.operation.ts |
 | publicCloud (v2) | GET | `/publicCloud/project/{x}/cloud/database/kafkaConnect/{x}/backup` | OvhCloudPublicCloud/database/kafkaConnect/backupListGet.operation.ts |
 | publicCloud (v2) | POST | `/publicCloud/project/{x}/cloud/database/kafkaConnect/{x}/backup` | OvhCloudPublicCloud/database/kafkaConnect/backupCreatePost.operation.ts |
 | publicCloud (v2) | DELETE | `/publicCloud/project/{x}/cloud/database/kafkaConnect/{x}/backup/{x}` | OvhCloudPublicCloud/database/kafkaConnect/backupDeleteDelete.operation.ts |

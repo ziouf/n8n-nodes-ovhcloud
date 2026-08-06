@@ -1,0 +1,86 @@
+import type {
+	IExecuteFunctions,
+	IDisplayOptions,
+	INodeExecutionData,
+	INodeProperties,
+} from 'n8n-workflow';
+import { ApiClient } from '../../../../shared/transport/ApiClient';
+
+export function description(displayOptions: IDisplayOptions): INodeProperties[] {
+	return [
+{
+		displayName: 'Public Cloud Project',
+		name: 'publicCloudProjectId',
+		type: 'resourceLocator',
+		default: { mode: 'list', value: '' },
+		required: true,
+		description: 'The Public Cloud project ID (e.g. 12345678-1234-1234-1234-1234567890ab)',
+		modes: [
+			{
+				displayName: 'From List',
+				name: 'list',
+				type: 'list',
+				typeOptions: { searchListMethod: 'getPublicCloudProjects' },
+			},
+			{
+				displayName: 'By ID',
+				name: 'name',
+				type: 'string',
+				placeholder: '12345678-1234-1234-1234-1234567890ab',
+			},
+		],
+		displayOptions,
+	},
+{
+		displayName: 'Cluster ID',
+		name: 'clusterId',
+		type: 'string',
+		default: '',
+		required: true,
+		displayOptions,
+	},
+{
+		displayName: 'Limit',
+		name: 'limit',
+		type: 'number',
+		typeOptions: {
+			minValue: 1,
+		},
+		default: 50,
+		
+		description: 'Max number of results to return',
+		displayOptions,
+	},
+{
+		displayName: 'Offset',
+		name: 'offset',
+		type: 'number',
+		default: 0,
+		
+		description: 'Offset for pagination',
+		displayOptions,
+	},
+	];
+}
+
+/**
+ * Executes the List Clickhouse Current Queries operation.
+ *
+ * HTTP method: GET
+ * Endpoint: /cloud/project/{serviceName}/database/clickhouse/{clusterId}/currentQueries
+ */
+export async function execute(this: IExecuteFunctions): Promise<INodeExecutionData[]> {
+	const client = new ApiClient(this);
+	const clusterId = this.getNodeParameter('clusterId', 0) as string;
+	const serviceName = this.getNodeParameter('publicCloudProjectId', 0, '', { extractValue: true }) as string;
+	const limit = this.getNodeParameter('limit', 0, 0) as number;
+	const offset = this.getNodeParameter('offset', 0, 0) as number;
+
+	const data = (await client.httpGet(`/cloud/project/${serviceName}/database/clickhouse/${clusterId}/currentQueries`, { limit, offset })) as import('n8n-workflow').IDataObject;
+
+	if (!Array.isArray(data)) {
+		return this.helpers.returnJsonArray([data]);
+	}
+	return this.helpers.returnJsonArray(data.map((item) => item as INodeExecutionData));
+}
+

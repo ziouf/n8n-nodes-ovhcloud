@@ -8,7 +8,7 @@ import { ApiClient } from '../../../../shared/transport/ApiClient';
 
 export function description(displayOptions: IDisplayOptions): INodeProperties[] {
 	return [
-	{
+{
 		displayName: 'Public Cloud Project',
 		name: 'publicCloudProjectId',
 		type: 'resourceLocator',
@@ -31,22 +31,20 @@ export function description(displayOptions: IDisplayOptions): INodeProperties[] 
 		],
 		displayOptions,
 	},
-	{
-		displayName: 'Service Name',
-		name: 'serviceName',
-		type: 'string',
-		default: '',
-		required: true,
-		description: 'The database service name',
-		displayOptions,
-	},
-	{
-		displayName: 'Nodeid',
+{
+		displayName: 'Node ID',
 		name: 'nodeId',
 		type: 'string',
 		default: '',
 		required: true,
-		description: 'The nodeId identifier',
+		displayOptions,
+	},
+{
+		displayName: 'Cluster ID',
+		name: 'clusterId',
+		type: 'string',
+		default: '',
+		required: true,
 		displayOptions,
 	},
 	];
@@ -56,17 +54,16 @@ export function description(displayOptions: IDisplayOptions): INodeProperties[] 
  * Executes the Delete Clickhouse Node operation.
  *
  * HTTP method: DELETE
- * Endpoint: /publicCloud/project/{projectId}/clickhouse/serviceName/node/nodeId
+ * Endpoint: /cloud/project/{serviceName}/database/clickhouse/{clusterId}/node/{nodeId}
  */
 export async function execute(this: IExecuteFunctions): Promise<INodeExecutionData[]> {
 	const client = new ApiClient(this);
-	const projectId = this.getNodeParameter('publicCloudProjectId', 0, '', {
-		extractValue: true,
-	}) as string;
-	const serviceName = this.getNodeParameter('serviceName', 0) as string;
 	const nodeId = this.getNodeParameter('nodeId', 0) as string;
+	const clusterId = this.getNodeParameter('clusterId', 0) as string;
+	const serviceName = this.getNodeParameter('publicCloudProjectId', 0, '', { extractValue: true }) as string;
 
-	await client.httpDelete(`/publicCloud/project/${projectId}/clickhouse/${serviceName}/node/${nodeId}`);
+	await client.httpDelete(`/cloud/project/${serviceName}/database/clickhouse/${clusterId}/node/${nodeId}`);
 
-	return this.helpers.returnJsonArray([]);
+	return this.helpers.returnJsonArray([{}]);
 }
+

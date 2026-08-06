@@ -9,7 +9,7 @@ import { ApiClient } from '../../../../shared/transport/ApiClient';
 
 export function description(displayOptions: IDisplayOptions): INodeProperties[] {
 	return [
-	{
+{
 		displayName: 'Public Cloud Project',
 		name: 'publicCloudProjectId',
 		type: 'resourceLocator',
@@ -32,13 +32,21 @@ export function description(displayOptions: IDisplayOptions): INodeProperties[] 
 		],
 		displayOptions,
 	},
-	{
-		displayName: 'Service Name',
-		name: 'serviceName',
+{
+		displayName: 'Cluster ID',
+		name: 'clusterId',
 		type: 'string',
 		default: '',
 		required: true,
-		description: 'The database service name',
+		displayOptions,
+	},
+{
+		displayName: 'Comment',
+		name: 'comment',
+		type: 'string',
+		default: '',
+		
+		description: 'Comment for the backup',
 		displayOptions,
 	},
 	];
@@ -48,17 +56,19 @@ export function description(displayOptions: IDisplayOptions): INodeProperties[] 
  * Executes the Create Clickhouse Backup operation.
  *
  * HTTP method: POST
- * Endpoint: /publicCloud/project/{projectId}/clickhouse/serviceName/backup
+ * Endpoint: /cloud/project/{serviceName}/database/clickhouse/{clusterId}/backup
  */
 export async function execute(this: IExecuteFunctions): Promise<INodeExecutionData[]> {
 	const client = new ApiClient(this);
-	const projectId = this.getNodeParameter('publicCloudProjectId', 0, '', {
-		extractValue: true,
-	}) as string;
-	const serviceName = this.getNodeParameter('serviceName', 0) as string;
+	const clusterId = this.getNodeParameter('clusterId', 0) as string;
+	const serviceName = this.getNodeParameter('publicCloudProjectId', 0, '', { extractValue: true }) as string;
+	const comment = (this.getNodeParameter('comment', 0, '') || '') as string;
 
-	const body = {} as IDataObject;
-	const data = (await client.httpPost(`/publicCloud/project/${projectId}/clickhouse/${serviceName}/backup`, body)) as IDataObject;
+	const body: IDataObject = {};
+	if (comment) body.comment = comment;
+
+	const data = (await client.httpPost(`/cloud/project/${serviceName}/database/clickhouse/${clusterId}/backup`, body as IDataObject)) as IDataObject;
 
 	return this.helpers.returnJsonArray([data]);
 }
+

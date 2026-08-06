@@ -9,7 +9,7 @@ import { ApiClient } from '../../../../shared/transport/ApiClient';
 
 export function description(displayOptions: IDisplayOptions): INodeProperties[] {
 	return [
-	{
+{
 		displayName: 'Public Cloud Project',
 		name: 'publicCloudProjectId',
 		type: 'resourceLocator',
@@ -32,13 +32,21 @@ export function description(displayOptions: IDisplayOptions): INodeProperties[] 
 		],
 		displayOptions,
 	},
-	{
-		displayName: 'Service Name',
-		name: 'serviceName',
+{
+		displayName: 'Cluster ID',
+		name: 'clusterId',
 		type: 'string',
 		default: '',
 		required: true,
-		description: 'The database service name',
+		displayOptions,
+	},
+{
+		displayName: 'Network',
+		name: 'network',
+		type: 'string',
+		default: '',
+		required: true,
+		description: 'IP block in CIDR notation',
 		displayOptions,
 	},
 	];
@@ -48,17 +56,19 @@ export function description(displayOptions: IDisplayOptions): INodeProperties[] 
  * Executes the Create Clickhouse IP Restriction operation.
  *
  * HTTP method: POST
- * Endpoint: /publicCloud/project/{projectId}/clickhouse/serviceName/ipRestriction
+ * Endpoint: /cloud/project/{serviceName}/database/clickhouse/{clusterId}/ipRestrictions
  */
 export async function execute(this: IExecuteFunctions): Promise<INodeExecutionData[]> {
 	const client = new ApiClient(this);
-	const projectId = this.getNodeParameter('publicCloudProjectId', 0, '', {
-		extractValue: true,
-	}) as string;
-	const serviceName = this.getNodeParameter('serviceName', 0) as string;
+	const clusterId = this.getNodeParameter('clusterId', 0) as string;
+	const serviceName = this.getNodeParameter('publicCloudProjectId', 0, '', { extractValue: true }) as string;
+	const network = (this.getNodeParameter('network', 0, '') || '') as string;
 
-	const body = {} as IDataObject;
-	const data = (await client.httpPost(`/publicCloud/project/${projectId}/clickhouse/${serviceName}/ipRestriction`, body)) as IDataObject;
+	const body: IDataObject = {};
+	if (network) body.network = network;
+
+	const data = (await client.httpPost(`/cloud/project/${serviceName}/database/clickhouse/${clusterId}/ipRestrictions`, body as IDataObject)) as IDataObject;
 
 	return this.helpers.returnJsonArray([data]);
 }
+

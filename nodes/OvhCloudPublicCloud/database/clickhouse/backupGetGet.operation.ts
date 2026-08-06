@@ -8,7 +8,7 @@ import { ApiClient } from '../../../../shared/transport/ApiClient';
 
 export function description(displayOptions: IDisplayOptions): INodeProperties[] {
 	return [
-	{
+{
 		displayName: 'Public Cloud Project',
 		name: 'publicCloudProjectId',
 		type: 'resourceLocator',
@@ -31,22 +31,20 @@ export function description(displayOptions: IDisplayOptions): INodeProperties[] 
 		],
 		displayOptions,
 	},
-	{
-		displayName: 'Service Name',
-		name: 'serviceName',
-		type: 'string',
-		default: '',
-		required: true,
-		description: 'The database service name',
-		displayOptions,
-	},
-	{
-		displayName: 'Backupid',
+{
+		displayName: 'Backup ID',
 		name: 'backupId',
 		type: 'string',
 		default: '',
 		required: true,
-		description: 'The backupId identifier',
+		displayOptions,
+	},
+{
+		displayName: 'Cluster ID',
+		name: 'clusterId',
+		type: 'string',
+		default: '',
+		required: true,
 		displayOptions,
 	},
 	];
@@ -56,17 +54,19 @@ export function description(displayOptions: IDisplayOptions): INodeProperties[] 
  * Executes the Get Clickhouse Backup operation.
  *
  * HTTP method: GET
- * Endpoint: /publicCloud/project/{projectId}/clickhouse/serviceName/backup/backupId
+ * Endpoint: /cloud/project/{serviceName}/database/clickhouse/{clusterId}/backup/{backupId}
  */
 export async function execute(this: IExecuteFunctions): Promise<INodeExecutionData[]> {
 	const client = new ApiClient(this);
-	const projectId = this.getNodeParameter('publicCloudProjectId', 0, '', {
-		extractValue: true,
-	}) as string;
-	const serviceName = this.getNodeParameter('serviceName', 0) as string;
 	const backupId = this.getNodeParameter('backupId', 0) as string;
+	const clusterId = this.getNodeParameter('clusterId', 0) as string;
+	const serviceName = this.getNodeParameter('publicCloudProjectId', 0, '', { extractValue: true }) as string;
 
-	const data = (await client.httpGet(`/publicCloud/project/${projectId}/clickhouse/${serviceName}/backup/${backupId}`)) as import('n8n-workflow').IDataObject;
+	const data = (await client.httpGet(`/cloud/project/${serviceName}/database/clickhouse/${clusterId}/backup/${backupId}`)) as import('n8n-workflow').IDataObject;
 
-	return this.helpers.returnJsonArray([data as INodeExecutionData]);
+	if (!Array.isArray(data)) {
+		return this.helpers.returnJsonArray([data]);
+	}
+	return this.helpers.returnJsonArray(data.map((item) => item as INodeExecutionData));
 }
+

@@ -1,4 +1,5 @@
 import type {
+	IDataObject,
 	IExecuteFunctions,
 	IDisplayOptions,
 	INodeExecutionData,
@@ -8,7 +9,7 @@ import { ApiClient } from '../../../../shared/transport/ApiClient';
 
 export function description(displayOptions: IDisplayOptions): INodeProperties[] {
 	return [
-	{
+{
 		displayName: 'Public Cloud Project',
 		name: 'publicCloudProjectId',
 		type: 'resourceLocator',
@@ -31,13 +32,21 @@ export function description(displayOptions: IDisplayOptions): INodeProperties[] 
 		],
 		displayOptions,
 	},
-	{
-		displayName: 'Service Name',
-		name: 'serviceName',
+{
+		displayName: 'Cluster ID',
+		name: 'clusterId',
 		type: 'string',
 		default: '',
 		required: true,
-		description: 'The database service name',
+		displayOptions,
+	},
+{
+		displayName: 'Kind',
+		name: 'kind',
+		type: 'string',
+		default: '',
+		
+		description: 'Log kind name',
 		displayOptions,
 	},
 	];
@@ -47,16 +56,22 @@ export function description(displayOptions: IDisplayOptions): INodeProperties[] 
  * Executes the List Clickhouse Log Subscriptions operation.
  *
  * HTTP method: GET
- * Endpoint: /publicCloud/project/{projectId}/clickhouse/serviceName/log/subscription
+ * Endpoint: /cloud/project/{serviceName}/database/clickhouse/{clusterId}/log/subscription
  */
 export async function execute(this: IExecuteFunctions): Promise<INodeExecutionData[]> {
 	const client = new ApiClient(this);
-	const projectId = this.getNodeParameter('publicCloudProjectId', 0, '', {
-		extractValue: true,
-	}) as string;
-	const serviceName = this.getNodeParameter('serviceName', 0) as string;
+	const clusterId = this.getNodeParameter('clusterId', 0) as string;
+	const serviceName = this.getNodeParameter('publicCloudProjectId', 0, '', { extractValue: true }) as string;
+	const kind = (this.getNodeParameter('kind', 0, '') || '') as string;
 
-	const data = (await client.httpGet(`/publicCloud/project/${projectId}/clickhouse/${serviceName}/log/subscription`)) as import('n8n-workflow').IDataObject;
+	const body: IDataObject = {};
+	if (kind) body.kind = kind;
 
-	return this.helpers.returnJsonArray([data as INodeExecutionData]);
+	const data = (await client.httpGet(`/cloud/project/${serviceName}/database/clickhouse/${clusterId}/log/subscription`)) as import('n8n-workflow').IDataObject;
+
+	if (!Array.isArray(data)) {
+		return this.helpers.returnJsonArray([data]);
+	}
+	return this.helpers.returnJsonArray(data.map((item) => item as INodeExecutionData));
 }
+

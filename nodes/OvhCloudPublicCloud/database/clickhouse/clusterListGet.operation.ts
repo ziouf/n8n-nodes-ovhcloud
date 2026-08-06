@@ -8,7 +8,7 @@ import { ApiClient } from '../../../../shared/transport/ApiClient';
 
 export function description(displayOptions: IDisplayOptions): INodeProperties[] {
 	return [
-	{
+{
 		displayName: 'Public Cloud Project',
 		name: 'publicCloudProjectId',
 		type: 'resourceLocator',
@@ -30,7 +30,7 @@ export function description(displayOptions: IDisplayOptions): INodeProperties[] 
 			},
 		],
 		displayOptions,
-	},
+	}
 	];
 }
 
@@ -38,15 +38,17 @@ export function description(displayOptions: IDisplayOptions): INodeProperties[] 
  * Executes the List Clickhouse Clusters operation.
  *
  * HTTP method: GET
- * Endpoint: /publicCloud/project/{projectId}/clickhouse
+ * Endpoint: /cloud/project/{serviceName}/database/clickhouse
  */
 export async function execute(this: IExecuteFunctions): Promise<INodeExecutionData[]> {
 	const client = new ApiClient(this);
-	const projectId = this.getNodeParameter('publicCloudProjectId', 0, '', {
-		extractValue: true,
-	}) as string;
+	const serviceName = this.getNodeParameter('publicCloudProjectId', 0, '', { extractValue: true }) as string;
 
-	const data = (await client.httpGet(`/publicCloud/project/${projectId}/clickhouse`)) as unknown[];
+	const data = (await client.httpGet(`/cloud/project/${serviceName}/database/clickhouse`)) as import('n8n-workflow').IDataObject;
 
+	if (!Array.isArray(data)) {
+		return this.helpers.returnJsonArray([data]);
+	}
 	return this.helpers.returnJsonArray(data.map((item) => item as INodeExecutionData));
 }
+

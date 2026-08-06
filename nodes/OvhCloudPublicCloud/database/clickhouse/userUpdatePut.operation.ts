@@ -9,7 +9,7 @@ import { ApiClient } from '../../../../shared/transport/ApiClient';
 
 export function description(displayOptions: IDisplayOptions): INodeProperties[] {
 	return [
-	{
+{
 		displayName: 'Public Cloud Project',
 		name: 'publicCloudProjectId',
 		type: 'resourceLocator',
@@ -32,22 +32,29 @@ export function description(displayOptions: IDisplayOptions): INodeProperties[] 
 		],
 		displayOptions,
 	},
-	{
-		displayName: 'Service Name',
-		name: 'serviceName',
-		type: 'string',
-		default: '',
-		required: true,
-		description: 'The database service name',
-		displayOptions,
-	},
-	{
-		displayName: 'Userid',
+{
+		displayName: 'User ID',
 		name: 'userId',
 		type: 'string',
 		default: '',
 		required: true,
-		description: 'The userId identifier',
+		displayOptions,
+	},
+{
+		displayName: 'Cluster ID',
+		name: 'clusterId',
+		type: 'string',
+		default: '',
+		required: true,
+		displayOptions,
+	},
+{
+		displayName: 'Roles',
+		name: 'roles',
+		type: 'string',
+		default: '',
+		
+		description: 'Roles the user belongs to (comma-separated)',
 		displayOptions,
 	},
 	];
@@ -57,18 +64,20 @@ export function description(displayOptions: IDisplayOptions): INodeProperties[] 
  * Executes the Update Clickhouse User operation.
  *
  * HTTP method: PUT
- * Endpoint: /publicCloud/project/{projectId}/clickhouse/serviceName/user/userId
+ * Endpoint: /cloud/project/{serviceName}/database/clickhouse/{clusterId}/user/{userId}
  */
 export async function execute(this: IExecuteFunctions): Promise<INodeExecutionData[]> {
 	const client = new ApiClient(this);
-	const projectId = this.getNodeParameter('publicCloudProjectId', 0, '', {
-		extractValue: true,
-	}) as string;
-	const serviceName = this.getNodeParameter('serviceName', 0) as string;
 	const userId = this.getNodeParameter('userId', 0) as string;
+	const clusterId = this.getNodeParameter('clusterId', 0) as string;
+	const serviceName = this.getNodeParameter('publicCloudProjectId', 0, '', { extractValue: true }) as string;
+	const roles = (this.getNodeParameter('roles', 0, '') || '') as string;
 
-	const body = {} as IDataObject;
-	const data = (await client.httpPut(`/publicCloud/project/${projectId}/clickhouse/${serviceName}/user/${userId}`, body)) as IDataObject;
+	const body: IDataObject = {};
+	if (roles) body.roles = roles;
+
+	const data = (await client.httpPut(`/cloud/project/${serviceName}/database/clickhouse/${clusterId}/user/${userId}`, body as IDataObject)) as IDataObject;
 
 	return this.helpers.returnJsonArray([data]);
 }
+

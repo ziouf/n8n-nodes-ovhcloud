@@ -13,11 +13,11 @@ jest.mock('../../../../shared/transport/ApiClient', () => {
 
 import { ApiClient } from '../../../../shared/transport/ApiClient';
 
-describe('clickhouse clusterListGet operation', () => {
+describe('clusterListGet operation', () => {
 	describe('description', () => {
 		it('should return all required parameters', () => {
-			const result = description({'show': {}});
-			expect(result.length).toBeGreaterThanOrEqual(1);
+			const result = description({ show: {} });
+			expect(result).toHaveLength(1);
 		});
 	});
 
@@ -31,18 +31,52 @@ describe('clickhouse clusterListGet operation', () => {
 		});
 
 		it('should call the correct API endpoint', async () => {
-			const mockData = [{ id: 'test-id' }];
+			const mockData = { id: 'test-123' };
 			const client = new ApiClient(mockExecuteFunctions) as any;
-			client.httpGet.mockResolvedValue(mockData);
+			client.httpGet = jest.fn().mockResolvedValue(mockData);
 
-			mockExecuteFunctions.getNodeParameter.mockReturnValue((param: string): string | undefined => {
+			mockExecuteFunctions.getNodeParameter.mockImplementation(
+				(param: string): any => {
 				if (param === 'publicCloudProjectId') return '12345678-1234-1234-1234-1234567890ab';
-				return '';
-			});
+					if (param === 'clusterId') return 'cluster-123';
+					if (param === 'backupId') return 'backup-456';
+					if (param === 'databaseId') return 'db-001';
+					if (param === 'integrationId') return 'integration-789';
+					if (param === 'ipRestrictionId') return 'ip-001';
+					if (param === 'subscriptionId') return 'sub-001';
+					if (param === 'maintenanceId') return 'maint-001';
+					if (param === 'nodeId') return 'node-001';
+					if (param === 'userId') return 'user-001';
+					if (param === 'metricName') return 'cpu';
+					if (param === 'period') return '24h';
+					if (param === 'name') return 'general';
+					if (param === 'description') return 'test';
+					if (param === 'plan') return 'essential';
+					if (param === 'version') return '8.0';
+					if (param === 'destinationServiceId') return 'dest-123';
+					if (param === 'sourceServiceId') return 'src-456';
+					if (param === 'network') return '192.168.1.0/24';
+					if (param === 'kind') return 'general';
+					if (param === 'streamId') return 'stream-001';
+					if (param === 'limit') return 0;
+					if (param === 'offset') return 0;
+					if (param === 'pid') return 1234;
+					if (param === 'terminate') return false;
+					if (param === 'extended') return false;
+					if (param === 'flavor') return 'essential';
+					if (param === 'roles') return 'admin';
+					if (param === 'defaultDb') return false;
+					if (param === 'comment') return 'test backup';
+					if (param === 'parameters') return '{}';
+					return '';
+				},
+			);
 
 			const result = await execute.call(mockExecuteFunctions);
-			expect(client.httpGet).toHaveBeenCalled();
-			expect(result).toMatchObject([{ id: 'test-id' }]);
+			expect(client.httpGet).toHaveBeenCalledWith(
+				'/cloud/project/12345678-1234-1234-1234-1234567890ab/database/clickhouse',
+			);
+			expect(result).toMatchObject([{ id: 'test-123' }]);
 		});
 	});
 });

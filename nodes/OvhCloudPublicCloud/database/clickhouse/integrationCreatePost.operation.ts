@@ -9,7 +9,7 @@ import { ApiClient } from '../../../../shared/transport/ApiClient';
 
 export function description(displayOptions: IDisplayOptions): INodeProperties[] {
 	return [
-	{
+{
 		displayName: 'Public Cloud Project',
 		name: 'publicCloudProjectId',
 		type: 'resourceLocator',
@@ -32,13 +32,46 @@ export function description(displayOptions: IDisplayOptions): INodeProperties[] 
 		],
 		displayOptions,
 	},
-	{
-		displayName: 'Service Name',
-		name: 'serviceName',
+{
+		displayName: 'Cluster ID',
+		name: 'clusterId',
 		type: 'string',
 		default: '',
 		required: true,
-		description: 'The database service name',
+		displayOptions,
+	},
+{
+		displayName: 'Source Service ID',
+		name: 'sourceServiceId',
+		type: 'string',
+		default: '',
+		required: true,
+		displayOptions,
+	},
+{
+		displayName: 'Destination Service ID',
+		name: 'destinationServiceId',
+		type: 'string',
+		default: '',
+		required: true,
+		displayOptions,
+	},
+{
+		displayName: 'Type',
+		name: 'type',
+		type: 'string',
+		default: '',
+		required: true,
+		description: 'Type of the integration',
+		displayOptions,
+	},
+{
+		displayName: 'Parameters',
+		name: 'parameters',
+		type: 'json',
+		default: '',
+		
+		description: 'Parameters for the integration',
 		displayOptions,
 	},
 	];
@@ -48,17 +81,25 @@ export function description(displayOptions: IDisplayOptions): INodeProperties[] 
  * Executes the Create Clickhouse Integration operation.
  *
  * HTTP method: POST
- * Endpoint: /publicCloud/project/{projectId}/clickhouse/serviceName/integration
+ * Endpoint: /cloud/project/{serviceName}/database/clickhouse/{clusterId}/integration
  */
 export async function execute(this: IExecuteFunctions): Promise<INodeExecutionData[]> {
 	const client = new ApiClient(this);
-	const projectId = this.getNodeParameter('publicCloudProjectId', 0, '', {
-		extractValue: true,
-	}) as string;
-	const serviceName = this.getNodeParameter('serviceName', 0) as string;
+	const clusterId = this.getNodeParameter('clusterId', 0) as string;
+	const serviceName = this.getNodeParameter('publicCloudProjectId', 0, '', { extractValue: true }) as string;
+	const sourceServiceId = (this.getNodeParameter('sourceServiceId', 0, '') || '') as string;
+	const destinationServiceId = (this.getNodeParameter('destinationServiceId', 0, '') || '') as string;
+	const type = (this.getNodeParameter('type', 0, '') || '') as string;
+	const parameters = (this.getNodeParameter('parameters', 0, '') || '') as string;
 
-	const body = {} as IDataObject;
-	const data = (await client.httpPost(`/publicCloud/project/${projectId}/clickhouse/${serviceName}/integration`, body)) as IDataObject;
+	const body: IDataObject = {};
+	if (sourceServiceId) body.sourceServiceId = sourceServiceId;
+	if (destinationServiceId) body.destinationServiceId = destinationServiceId;
+	if (type) body.type = type;
+	if (parameters) body.parameters = JSON.parse(parameters);
+
+	const data = (await client.httpPost(`/cloud/project/${serviceName}/database/clickhouse/${clusterId}/integration`, body as IDataObject)) as IDataObject;
 
 	return this.helpers.returnJsonArray([data]);
 }
+
