@@ -1,6 +1,6 @@
 # OVHcloud API Coverage Report
 
-> Généré par `scripts/compare-coverage.js` le 2026-08-06T13:07:44.304Z. Document généré automatiquement — ne pas éditer à la main.
+> Généré par `scripts/compare-coverage.js` le 2026-08-06T13:41:19.109Z. Document généré automatiquement — ne pas éditer à la main.
 
 Ce rapport compare les endpoints déclarés dans les specs Swagger 2.0 (`docs/api-specs/v1|v2/*.json`) avec les appels HTTP réellement présents dans les nodes (`nodes/**/*.operation.ts`).
 
@@ -8,8 +8,8 @@ Ce rapport compare les endpoints déclarés dans les specs Swagger 2.0 (`docs/ap
 
 - **Specs analysées** : 84 (v1: 70, v2: 14)
 - **Endpoints déclarés (specs avec endpoints)** : 6624
-- **Endpoints couverts par les nodes** : 3922
-- **Couverture globale** : **59.2%**
+- **Endpoints couverts par les nodes** : 3926
+- **Couverture globale** : **59.3%**
 - **Specs sans node associé** : 21
 - **Specs placeholder (aucun endpoint)** : 1
 
@@ -41,7 +41,7 @@ Triée par pourcentage croissant (moins bonne couverture en premier).
 | licenseSqlserver (v1) | 9 | 0 | 9 | 0% |
 | packSiptrunk (v1) | 5 | 0 | 5 | 0% |
 | email (v1) | 60 | 2 | 58 | 3.3% |
-| order (v1) | 816 | 36 | 780 | 4.4% |
+| order (v1) | 816 | 40 | 776 | 4.9% |
 | ipLoadbalancing (v1) | 121 | 9 | 112 | 7.4% |
 | vrack (v1) | 68 | 5 | 63 | 7.4% |
 | msServices (v1) | 55 | 5 | 50 | 9.1% |
@@ -1040,7 +1040,7 @@ _Nodes associés : OvhCloudEmailPro, OvhCloudMxPlan_
 | GET | `/email/pro/{x}/task/{x}` |
 | POST | `/email/pro/{x}/updateFlagsOnAllAccounts` |
 
-### order (v1) — 780 manquants
+### order (v1) — 776 manquants
 
 _Nodes associés : OvhCloudOrder_
 
@@ -1064,7 +1064,6 @@ _Nodes associés : OvhCloudOrder_
 | POST | `/order/cart/{x}/analytics` |
 | GET | `/order/cart/{x}/analytics/options` |
 | POST | `/order/cart/{x}/analytics/options` |
-| POST | `/order/cart/{x}/assign` |
 | GET | `/order/cart/{x}/backupServices` |
 | POST | `/order/cart/{x}/backupServices` |
 | GET | `/order/cart/{x}/backupServices/options` |
@@ -1083,8 +1082,6 @@ _Nodes associés : OvhCloudOrder_
 | POST | `/order/cart/{x}/cephaas` |
 | GET | `/order/cart/{x}/cephaas/options` |
 | POST | `/order/cart/{x}/cephaas/options` |
-| GET | `/order/cart/{x}/checkout` |
-| POST | `/order/cart/{x}/checkout` |
 | GET | `/order/cart/{x}/cloud` |
 | POST | `/order/cart/{x}/cloud` |
 | GET | `/order/cart/{x}/cloud/options` |
@@ -1095,7 +1092,6 @@ _Nodes associés : OvhCloudOrder_
 | POST | `/order/cart/{x}/cloudweb` |
 | GET | `/order/cart/{x}/cloudweb/options` |
 | POST | `/order/cart/{x}/cloudweb/options` |
-| DELETE | `/order/cart/{x}/coupon` |
 | GET | `/order/cart/{x}/csp2` |
 | POST | `/order/cart/{x}/csp2` |
 | GET | `/order/cart/{x}/csp2/options` |

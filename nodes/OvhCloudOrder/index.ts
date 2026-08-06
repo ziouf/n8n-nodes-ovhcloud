@@ -83,6 +83,28 @@ import {
 	description as descriptionCartSupportCreatePost,
 } from './cart/cartSupportCreatePost.operation';
 
+// Cart checkout/assign/coupon/config operations
+import {
+	execute as executeCartCheckoutGet,
+	description as descriptionCartCheckoutGet,
+} from './cart/cartCheckoutGet.operation';
+import {
+	execute as executeCartCheckoutPost,
+	description as descriptionCartCheckoutPost,
+} from './cart/cartCheckoutPost.operation';
+import {
+	execute as executeCartAssignPost,
+	description as descriptionCartAssignPost,
+} from './cart/cartAssignPost.operation';
+import {
+	execute as executeCartCouponDelete,
+	description as descriptionCartCouponDelete,
+} from './cart/cartCouponDelete.operation';
+import {
+	execute as executeCartItemConfigurationUpdatePut,
+	description as descriptionCartItemConfigurationUpdatePut,
+} from './cart/cartItemConfigurationUpdatePut.operation';
+
 // Catalog operations
 import {
 	execute as executeCatalogPublicGet,
@@ -732,9 +754,29 @@ export function description(displayOptions: IDisplayOptions): INodeProperties[] 
 			noDataExpression: true,
 			options: [
 				{
+					name: 'Cart Assign',
+					value: 'cartAssignPost',
+					action: 'Assign a cart to your account',
+				},
+				{
+					name: 'Cart Checkout Get',
+					value: 'cartCheckoutGet',
+					action: 'Simulate cart checkout',
+				},
+				{
+					name: 'Cart Checkout Post',
+					value: 'cartCheckoutPost',
+					action: 'Execute cart checkout',
+				},
+				{
 					name: 'Cart Coupon Create',
 					value: 'cartCouponCreatePost',
 					action: 'Create a coupon for a cart',
+				},
+				{
+					name: 'Cart Coupon Delete',
+					value: 'cartCouponDelete',
+					action: 'Delete a coupon from cart',
 				},
 				{ name: 'Cart Coupon List', value: 'cartCouponListGet', action: 'List coupons for a cart' },
 				{ name: 'Cart Create', value: 'cartCreatePost', action: 'Create a new cart' },
@@ -759,6 +801,11 @@ export function description(displayOptions: IDisplayOptions): INodeProperties[] 
 					name: 'Cart Item Configuration List',
 					value: 'cartItemConfigurationListGet',
 					action: 'List configurations for a cart item',
+				},
+				{
+					name: 'Cart Item Configuration Update',
+					value: 'cartItemConfigurationUpdatePut',
+					action: 'Update a cart item configuration',
 				},
 				{ name: 'Cart Item Delete', value: 'cartItemDeleteDelete', action: 'Delete a cart item' },
 				{ name: 'Cart Item Get', value: 'cartItemGetGet', action: 'Get a cart item' },
@@ -1431,6 +1478,26 @@ export function description(displayOptions: IDisplayOptions): INodeProperties[] 
 			...displayOptions,
 			show: { orderOperation: ['cartSupportListGet'] },
 		}) as INodeProperties[]),
+		...(descriptionCartCheckoutGet({
+			...displayOptions,
+			show: { orderOperation: ['cartCheckoutGet'] },
+		}) as INodeProperties[]),
+		...(descriptionCartCheckoutPost({
+			...displayOptions,
+			show: { orderOperation: ['cartCheckoutPost'] },
+		}) as INodeProperties[]),
+		...(descriptionCartAssignPost({
+			...displayOptions,
+			show: { orderOperation: ['cartAssignPost'] },
+		}) as INodeProperties[]),
+		...(descriptionCartCouponDelete({
+			...displayOptions,
+			show: { orderOperation: ['cartCouponDelete'] },
+		}) as INodeProperties[]),
+		...(descriptionCartItemConfigurationUpdatePut({
+			...displayOptions,
+			show: { orderOperation: ['cartItemConfigurationUpdatePut'] },
+		}) as INodeProperties[]),
 		...(descriptionCartSupportCreatePost({
 			...displayOptions,
 			show: { orderOperation: ['cartSupportCreatePost'] },
@@ -2083,6 +2150,17 @@ export async function execute(
 			return executeCartSupportListGet.call(this);
 		case 'cartSupportCreatePost':
 			return executeCartSupportCreatePost.call(this);
+		case 'cartCheckoutGet':
+			return executeCartCheckoutGet.call(this);
+		case 'cartCheckoutPost':
+			return executeCartCheckoutPost.call(this);
+		case 'cartAssignPost':
+			return executeCartAssignPost.call(this);
+		case 'cartCouponDelete':
+			return executeCartCouponDelete.call(this);
+		case 'cartItemConfigurationUpdatePut':
+			return executeCartItemConfigurationUpdatePut.call(this);
+
 		case 'catalogPublicGet':
 			return executeCatalogPublicGet.call(this);
 		case 'catalogPublicOptionsGet':

@@ -1,15 +1,15 @@
 # OVHcloud API Conformity Report
 
-> Généré par `scripts/audit-conformity.js` le 2026-08-06T13:08:39.000Z. Document généré automatiquement — ne pas éditer à la main.
+> Généré par `scripts/audit-conformity.js` le 2026-08-06T13:41:15.696Z. Document généré automatiquement — ne pas éditer à la main.
 
 Ce rapport vérifie que les opérations des nodes respectent leur spec (méthode, chemin, paramètres path requis, query requis, champs body requis).
 
 ## Résumé
 
-- **Opérations auditées** : 6273
-- **Conformes** : 3724
-- **Non conformes** : 2549
-- **Sans correspondance spec** (informatif) : 2233
+- **Opérations auditées** : 6278
+- **Conformes** : 3728
+- **Non conformes** : 2550
+- **Sans correspondance spec** (informatif) : 2234
 - **Taux de conformité** : **59.4%**
 
 ## Conformité par spec
@@ -46,7 +46,7 @@ Triée par taux de non-conformité décroissant.
 | veeamCloudConnect (v1) | 14 | 13 | 1 | 92.9% |
 | vps (v1) | 63 | 20 | 4 | 31.7% |
 | cloud (v1) | 1129 | 673 | 44 | 59.6% |
-| order (v1) | 166 | 31 | 6 | 18.7% |
+| order (v1) | 171 | 35 | 6 | 20.5% |
 | me (v1) | 309 | 300 | 9 | 97.1% |
 | dedicated (v1) | 69 | 31 | 2 | 44.9% |
 | horizonView (v1) | 42 | 41 | 1 | 97.6% |
@@ -1269,6 +1269,7 @@ Ces opérations appellent un chemin qui ne correspond à aucun endpoint de la sp
 | metrics (v1) | GET | `/metrics/{x}/quota` | OvhCloudMetrics/resources/quotaGet.operation.ts |
 | msServices (v1) | DELETE | `/msServices/{x}` | OvhCloudMsServices/msServicesDeleteDelete.operation.ts |
 | msServices (v1) | POST | `/msServices/{x}/reinstall` | OvhCloudMsServices/reinstallPost.operation.ts |
+| order (v1) | PUT | `/order/cart/{x}/item/{x}/configuration/{x}` | OvhCloudOrder/cart/cartItemConfigurationUpdatePut.operation.ts |
 | order (v1) | GET | `/order/catalog/public/{x}` | OvhCloudOrder/catalog/catalogPublicGet.operation.ts |
 | order (v1) | GET | `/order/catalog/public/{x}` | OvhCloudOrder/catalog/domainGet.operation.ts |
 | order (v1) | GET | `/order/catalog/public/{x}` | OvhCloudOrder/catalog/ecoGet.operation.ts |
