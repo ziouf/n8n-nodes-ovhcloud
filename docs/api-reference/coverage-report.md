@@ -1,6 +1,6 @@
 # OVHcloud API Coverage Report
 
-> Généré par `scripts/compare-coverage.js` le 2026-08-07T18:41:07.162Z. Document généré automatiquement — ne pas éditer à la main.
+> Généré par `scripts/compare-coverage.js` le 2026-08-07T19:12:37.381Z. Document généré automatiquement — ne pas éditer à la main.
 
 Ce rapport compare les endpoints déclarés dans les specs Swagger 2.0 (`docs/api-specs/v1|v2/*.json`) avec les appels HTTP réellement présents dans les nodes (`nodes/**/*.operation.ts`).
 
@@ -8,8 +8,8 @@ Ce rapport compare les endpoints déclarés dans les specs Swagger 2.0 (`docs/ap
 
 - **Specs analysées** : 84 (v1: 70, v2: 14)
 - **Endpoints déclarés (specs avec endpoints)** : 6624
-- **Endpoints couverts par les nodes** : 5636
-- **Couverture globale** : **85.1%**
+- **Endpoints couverts par les nodes** : 5647
+- **Couverture globale** : **85.3%**
 - **Specs sans node associé** : 1
 - **Specs placeholder (aucun endpoint)** : 1
 
@@ -22,9 +22,7 @@ Triée par pourcentage croissant (moins bonne couverture en premier).
 | packSiptrunk (v1) | 5 | 0 | 5 | 0% |
 | sslGateway (v1) | 23 | 6 | 17 | 26.1% |
 | veeam (v1) | 10 | 5 | 5 | 50% |
-| license (v1) | 13 | 7 | 6 | 53.8% |
 | pack (v1) | 58 | 33 | 25 | 56.9% |
-| licenseHycu (v1) | 10 | 6 | 4 | 60% |
 | me (v1) | 379 | 233 | 146 | 61.5% |
 | cloud (v1) | 1121 | 710 | 411 | 63.3% |
 | order (v1) | 816 | 538 | 278 | 65.9% |
@@ -42,7 +40,6 @@ Triée par pourcentage croissant (moins bonne couverture en premier).
 | dedicated (v1) | 131 | 116 | 15 | 88.5% |
 | licenseCloudLinux (v1) | 9 | 8 | 1 | 88.9% |
 | licenseSqlserver (v1) | 9 | 8 | 1 | 88.9% |
-| freefax (v1) | 19 | 18 | 1 | 94.7% |
 | cluster (v1) | 43 | 42 | 1 | 97.7% |
 | horizonView (v1) | 43 | 42 | 1 | 97.7% |
 | email (v1) | 60 | 59 | 1 | 98.3% |
@@ -73,6 +70,7 @@ Triée par pourcentage croissant (moins bonne couverture en premier).
 | iam (v2) | 31 | 31 | 0 | 100% |
 | zimbra (v2) | 30 | 30 | 0 | 100% |
 | connectivity (v1) | 28 | 28 | 0 | 100% |
+| freefax (v1) | 19 | 19 | 0 | 100% |
 | saas (v1) | 19 | 19 | 0 | 100% |
 | notification (v2) | 19 | 19 | 0 | 100% |
 | dedicatedHousing (v1) | 18 | 18 | 0 | 100% |
@@ -81,6 +79,8 @@ Triée par pourcentage croissant (moins bonne couverture en premier).
 | publicCloud (v2) | 17 | 17 | 0 | 100% |
 | backupServices (v2) | 15 | 15 | 0 | 100% |
 | veeamCloudConnect (v1) | 14 | 14 | 0 | 100% |
+| license (v1) | 13 | 13 | 0 | 100% |
+| licenseHycu (v1) | 10 | 10 | 0 | 100% |
 | webhosting (v2) | 10 | 10 | 0 | 100% |
 | dedicatedCluster (v1) | 9 | 9 | 0 | 100% |
 | dedicatedInstallationTemplate (v1) | 9 | 9 | 0 | 100% |
@@ -171,19 +171,6 @@ _Nodes associés : OvhCloudVeeamEnterprisePlus_
 | POST | `/veeam/veeamEnterprise/{x}/terminate` |
 | POST | `/veeam/veeamEnterprise/{x}/update` |
 
-### license (v1) — 6 manquants
-
-_Nodes associés : OvhCloudLicense_
-
-| Méthode | Chemin |
-|--------|--------|
-| GET | `/license/worklight/{x}/canLicenseBeMovedTo` |
-| GET | `/license/worklight/{x}/serviceInfos` |
-| PUT | `/license/worklight/{x}/serviceInfos` |
-| GET | `/license/worklight/{x}/tasks` |
-| GET | `/license/worklight/{x}/tasks/{x}` |
-| GET | `/license/worklight/orderableVersions` |
-
 ### pack (v1) — 25 manquants
 
 _Nodes associés : OvhCloudPackXdsl, OvhCloudPack_
@@ -215,17 +202,6 @@ _Nodes associés : OvhCloudPackXdsl, OvhCloudPack_
 | POST | `/pack/xdsl/{x}/voipLine/services` |
 | GET | `/pack/xdsl/{x}/voipLine/services/{x}` |
 | GET | `/pack/xdsl/{x}/xdslAccess/services` |
-
-### licenseHycu (v1) — 4 manquants
-
-_Nodes associés : OvhCloudLicense_
-
-| Méthode | Chemin |
-|--------|--------|
-| PUT | `/license/hycu/{x}` |
-| POST | `/license/hycu/{x}/activate` |
-| POST | `/license/hycu/{x}/refresh` |
-| PUT | `/license/hycu/{x}/serviceInfos` |
 
 ### me (v1) — 146 manquants
 
@@ -1266,14 +1242,6 @@ _Nodes associés : OvhCloudLicense_
 | Méthode | Chemin |
 |--------|--------|
 | PUT | `/license/sqlserver/{x}/serviceInfos` |
-
-### freefax (v1) — 1 manquant
-
-_Nodes associés : OvhCloudFreefax_
-
-| Méthode | Chemin |
-|--------|--------|
-| GET | `/freefax/{x}/directory/getDirectoryServiceCode` |
 
 ### cluster (v1) — 1 manquant
 

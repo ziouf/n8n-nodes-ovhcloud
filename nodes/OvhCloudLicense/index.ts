@@ -10,6 +10,10 @@ import * as canLicenseBeMovedToGet from './resources/canLicenseBeMovedToGet.oper
 import * as changeIpPost from './resources/changeIpPost.operation';
 import * as terminatePost from './resources/terminatePost.operation';
 import * as confirmTerminationPost from './resources/confirmTerminationPost.operation';
+import * as serviceInfosGet from './resources/serviceInfosGet.operation';
+import * as serviceInfosPut from './resources/serviceInfosPut.operation';
+import * as tasksGet from './resources/tasksGet.operation';
+import * as tasksGetTask from './resources/tasksGetTask.operation';
 
 // CloudLinux operations
 import * as cloudLinuxListGet from './resources/cloudLinux/GET.operation';
@@ -55,6 +59,10 @@ import * as hycuServiceConfirmTerminationPost from './resources/hycu/serviceConf
 import * as hycuServiceLicenseGet from './resources/hycu/serviceLicenseGet.operation';
 import * as hycuServiceInfosGet from './resources/hycu/serviceInfosGet.operation';
 import * as hycuServiceTerminatePost from './resources/hycu/serviceTerminatePost.operation';
+import * as hycuServicePut from './resources/hycu/servicePut.operation';
+import * as hycuServiceActivatePost from './resources/hycu/serviceActivatePost.operation';
+import * as hycuServiceRefreshPost from './resources/hycu/serviceRefreshPost.operation';
+import * as hycuServiceInfosPut from './resources/hycu/serviceInfosPut.operation';
 
 // Office operations
 import * as officeListGet from './resources/office/GET.operation';
@@ -186,6 +194,16 @@ export function description() {
 				action: 'Accept Agreement',
 			},
 			{
+				name: 'Activate HYCU License',
+				value: 'hycuServiceActivatePost',
+				action: 'Activate the HYCU license',
+			},
+			{
+				name: 'Alter HYCU License Properties',
+				value: 'hycuServicePut',
+				action: 'Alter HYCU license properties',
+			},
+			{
 				name: 'Alter License Properties',
 				value: 'updatePut',
 				action: 'Alter the properties of a WorkLight license',
@@ -311,9 +329,9 @@ export function description() {
 				action: 'Delete existing office user',
 			},
 			{
-				name: 'Get H Y C U License File (Hycu)',
-				value: 'hycuServiceLicenseGet',
-				action: 'Get the HYCU license file',
+				name: 'Get a Task for This License (WorkLight)',
+				value: 'tasksGetTask',
+				action: 'Get a specific task for a WorkLight license',
 			},
 			{
 				name: 'Get Accounts Associated to This Office Tenant (Office)',
@@ -325,7 +343,11 @@ export function description() {
 				value: 'allowedDestinationIpGet',
 				action: 'Get the IPs where a WorkLight license can be moved to',
 			},
-			{ name: 'Get an Office User (Office)', value: 'officeUserGet', action: 'Get an office user' },
+			{
+				name: 'Get an Office User (Office)',
+				value: 'officeUserGet',
+				action: 'Get an office user',
+			},
 			{
 				name: 'Get Day-to-Day Statistics of License Usage and Availability (Office)',
 				value: 'officeUsageStatisticsGet',
@@ -350,6 +372,11 @@ export function description() {
 				name: 'Get Day-to-Day Statistics of License Usage and Availability (Windows)',
 				value: 'windowsOptionsListGet',
 				action: 'Get day-to-day statistics of license usage and availability',
+			},
+			{
+				name: 'Get H Y C U License File (Hycu)',
+				value: 'hycuServiceLicenseGet',
+				action: 'Get the HYCU license file',
 			},
 			{
 				name: 'Get License Properties',
@@ -482,6 +509,16 @@ export function description() {
 				action: 'Get the orderable Windows license versions',
 			},
 			{
+				name: 'Get Service Information (WorkLight)',
+				value: 'serviceInfosGet',
+				action: 'Get service information for a WorkLight license',
+			},
+			{
+				name: 'Get Tasks for This License (WorkLight)',
+				value: 'tasksGet',
+				action: 'Get the list of tasks for a WorkLight license',
+			},
+			{
 				name: 'Get This Object Properties (cloudLinux)',
 				value: 'cloudLinuxServiceGet',
 				action: 'Get this object properties',
@@ -545,6 +582,11 @@ export function description() {
 				name: 'List WorkLight Licenses',
 				value: 'list',
 				action: 'List all available WorkLight licenses',
+			},
+			{
+				name: 'Manually Refresh HYCU License',
+				value: 'hycuServiceRefreshPost',
+				action: 'Manually refresh the HYCU license',
 			},
 			{
 				name: 'Move License to Another IP',
@@ -642,6 +684,16 @@ export function description() {
 				action: 'Unconfigure the office user',
 			},
 			{
+				name: 'Update Service Information (HYCU)',
+				value: 'hycuServiceInfosPut',
+				action: 'Update service information for a HYCU license',
+			},
+			{
+				name: 'Update Service Information (WorkLight)',
+				value: 'serviceInfosPut',
+				action: 'Update service information for a WorkLight license',
+			},
+			{
 				name: 'Will Tell if the Ip Can Accept the License (Cpanel)',
 				value: 'cpanelServiceCanLicenseBeMovedToGet',
 				action: 'Will tell if the ip can accept the license',
@@ -691,6 +743,14 @@ export async function execute(this: IExecuteFunctions): Promise<INodeExecutionDa
 				return terminatePost.execute.call(this);
 			case 'confirmTerminationPost':
 				return confirmTerminationPost.execute.call(this);
+			case 'serviceInfosGet':
+				return serviceInfosGet.execute.call(this);
+			case 'serviceInfosPut':
+				return serviceInfosPut.execute.call(this);
+			case 'tasksGet':
+				return tasksGet.execute.call(this);
+			case 'tasksGetTask':
+				return tasksGetTask.execute.call(this);
 		}
 	}
 
@@ -785,6 +845,14 @@ export async function execute(this: IExecuteFunctions): Promise<INodeExecutionDa
 				return hycuServiceInfosGet.execute.call(this, 0);
 			case 'hycuServiceTerminatePost':
 				return hycuServiceTerminatePost.execute.call(this, 0);
+			case 'hycuServicePut':
+				return hycuServicePut.execute.call(this, 0);
+			case 'hycuServiceActivatePost':
+				return hycuServiceActivatePost.execute.call(this, 0);
+			case 'hycuServiceRefreshPost':
+				return hycuServiceRefreshPost.execute.call(this, 0);
+			case 'hycuServiceInfosPut':
+				return hycuServiceInfosPut.execute.call(this, 0);
 		}
 	}
 

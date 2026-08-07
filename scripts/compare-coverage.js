@@ -373,7 +373,7 @@ function normalizePathExpression(raw) {
 		i = j;
 	}
 
-	return out;
+	return out.replace(/\?.*/, ''); // strip query string for comparison
 }
 
 /**

@@ -1,16 +1,16 @@
 # OVHcloud API Conformity Report
 
-> Généré par `scripts/audit-conformity.js` le 2026-08-07T18:41:14.049Z. Document généré automatiquement — ne pas éditer à la main.
+> Généré par `scripts/audit-conformity.js` le 2026-08-07T19:07:29.249Z. Document généré automatiquement — ne pas éditer à la main.
 
 Ce rapport vérifie que les opérations des nodes respectent leur spec (méthode, chemin, paramètres path requis, query requis, champs body requis).
 
 ## Résumé
 
-- **Opérations auditées** : 9499
-- **Conformes** : 5288
-- **Non conformes** : 4211
-- **Sans correspondance spec** (informatif) : 3745
-- **Taux de conformité** : **55.7%**
+- **Opérations auditées** : 9595
+- **Conformes** : 5296
+- **Non conformes** : 4299
+- **Sans correspondance spec** (informatif) : 3833
+- **Taux de conformité** : **55.2%**
 
 ## Conformité par spec
 
@@ -58,19 +58,19 @@ Triée par taux de non-conformité décroissant.
 | publicCloud (v2) | 1129 | 26 | 4 | 2.3% |
 | price (v1) | 581 | 581 | 0 | 100% |
 | emailExchange (v1) | 203 | 203 | 0 | 100% |
+| license (v1) | 131 | 11 | 0 | 8.4% |
+| licenseCloudLinux (v1) | 131 | 8 | 0 | 6.1% |
+| licenseCpanel (v1) | 131 | 11 | 0 | 8.4% |
+| licenseDirectadmin (v1) | 131 | 12 | 0 | 9.2% |
+| licenseHycu (v1) | 131 | 10 | 0 | 7.6% |
+| licenseOffice (v1) | 131 | 11 | 0 | 8.4% |
+| licenseOfficePrepaid (v1) | 131 | 11 | 0 | 8.4% |
+| licensePlesk (v1) | 131 | 14 | 0 | 10.7% |
+| licenseRedhat (v1) | 131 | 7 | 0 | 5.3% |
+| licenseSqlserver (v1) | 131 | 8 | 0 | 6.1% |
+| licenseVirtuozzo (v1) | 131 | 14 | 0 | 10.7% |
+| licenseWindows (v1) | 131 | 12 | 0 | 9.2% |
 | sms (v1) | 126 | 124 | 0 | 98.4% |
-| license (v1) | 123 | 7 | 0 | 5.7% |
-| licenseCloudLinux (v1) | 123 | 8 | 0 | 6.5% |
-| licenseCpanel (v1) | 123 | 11 | 0 | 8.9% |
-| licenseDirectadmin (v1) | 123 | 12 | 0 | 9.8% |
-| licenseHycu (v1) | 123 | 6 | 0 | 4.9% |
-| licenseOffice (v1) | 123 | 11 | 0 | 8.9% |
-| licenseOfficePrepaid (v1) | 123 | 11 | 0 | 8.9% |
-| licensePlesk (v1) | 123 | 14 | 0 | 11.4% |
-| licenseRedhat (v1) | 123 | 7 | 0 | 5.7% |
-| licenseSqlserver (v1) | 123 | 8 | 0 | 6.5% |
-| licenseVirtuozzo (v1) | 123 | 14 | 0 | 11.4% |
-| licenseWindows (v1) | 123 | 12 | 0 | 9.8% |
 | ipLoadbalancing (v1) | 121 | 121 | 0 | 100% |
 | domain (v2) | 119 | 9 | 0 | 7.6% |
 | email (v1) | 108 | 59 | 0 | 54.6% |
@@ -1510,9 +1510,13 @@ Ces opérations appellent un chemin qui ne correspond à aucun endpoint de la sp
 | license (v1) | GET | `/license/directadmin/orderableVersions` | OvhCloudLicense/resources/directadmin/OrderableVersionsGET.operation.ts |
 | license (v1) | GET | `/license/hycu` | OvhCloudLicense/resources/hycu/GET.operation.ts |
 | license (v1) | GET | `/license/hycu/{x}` | OvhCloudLicense/resources/hycu/serviceGet.operation.ts |
+| license (v1) | PUT | `/license/hycu/{x}` | OvhCloudLicense/resources/hycu/servicePut.operation.ts |
+| license (v1) | POST | `/license/hycu/{x}/activate` | OvhCloudLicense/resources/hycu/serviceActivatePost.operation.ts |
 | license (v1) | POST | `/license/hycu/{x}/confirmTermination` | OvhCloudLicense/resources/hycu/serviceConfirmTerminationPost.operation.ts |
 | license (v1) | GET | `/license/hycu/{x}/license` | OvhCloudLicense/resources/hycu/serviceLicenseGet.operation.ts |
+| license (v1) | POST | `/license/hycu/{x}/refresh` | OvhCloudLicense/resources/hycu/serviceRefreshPost.operation.ts |
 | license (v1) | GET | `/license/hycu/{x}/serviceInfos` | OvhCloudLicense/resources/hycu/serviceInfosGet.operation.ts |
+| license (v1) | PUT | `/license/hycu/{x}/serviceInfos` | OvhCloudLicense/resources/hycu/serviceInfosPut.operation.ts |
 | license (v1) | POST | `/license/hycu/{x}/terminate` | OvhCloudLicense/resources/hycu/serviceTerminatePost.operation.ts |
 | license (v1) | GET | `/license/office` | OvhCloudLicense/resources/office/GET.operation.ts |
 | license (v1) | GET | `/license/office/{x}` | OvhCloudLicense/resources/office/serviceGet.operation.ts |
@@ -1618,9 +1622,13 @@ Ces opérations appellent un chemin qui ne correspond à aucun endpoint de la sp
 | licenseCloudLinux (v1) | GET | `/license/directadmin/orderableVersions` | OvhCloudLicense/resources/directadmin/OrderableVersionsGET.operation.ts |
 | licenseCloudLinux (v1) | GET | `/license/hycu` | OvhCloudLicense/resources/hycu/GET.operation.ts |
 | licenseCloudLinux (v1) | GET | `/license/hycu/{x}` | OvhCloudLicense/resources/hycu/serviceGet.operation.ts |
+| licenseCloudLinux (v1) | PUT | `/license/hycu/{x}` | OvhCloudLicense/resources/hycu/servicePut.operation.ts |
+| licenseCloudLinux (v1) | POST | `/license/hycu/{x}/activate` | OvhCloudLicense/resources/hycu/serviceActivatePost.operation.ts |
 | licenseCloudLinux (v1) | POST | `/license/hycu/{x}/confirmTermination` | OvhCloudLicense/resources/hycu/serviceConfirmTerminationPost.operation.ts |
 | licenseCloudLinux (v1) | GET | `/license/hycu/{x}/license` | OvhCloudLicense/resources/hycu/serviceLicenseGet.operation.ts |
+| licenseCloudLinux (v1) | POST | `/license/hycu/{x}/refresh` | OvhCloudLicense/resources/hycu/serviceRefreshPost.operation.ts |
 | licenseCloudLinux (v1) | GET | `/license/hycu/{x}/serviceInfos` | OvhCloudLicense/resources/hycu/serviceInfosGet.operation.ts |
+| licenseCloudLinux (v1) | PUT | `/license/hycu/{x}/serviceInfos` | OvhCloudLicense/resources/hycu/serviceInfosPut.operation.ts |
 | licenseCloudLinux (v1) | POST | `/license/hycu/{x}/terminate` | OvhCloudLicense/resources/hycu/serviceTerminatePost.operation.ts |
 | licenseCloudLinux (v1) | GET | `/license/office` | OvhCloudLicense/resources/office/GET.operation.ts |
 | licenseCloudLinux (v1) | GET | `/license/office/{x}` | OvhCloudLicense/resources/office/serviceGet.operation.ts |
@@ -1706,6 +1714,10 @@ Ces opérations appellent un chemin qui ne correspond à aucun endpoint de la sp
 | licenseCloudLinux (v1) | GET | `/license/worklight/{x}/canLicenseBeMovedTo?destinationIp={x}` | OvhCloudLicense/resources/canLicenseBeMovedToGet.operation.ts |
 | licenseCloudLinux (v1) | POST | `/license/worklight/{x}/changeIp` | OvhCloudLicense/resources/changeIpPost.operation.ts |
 | licenseCloudLinux (v1) | POST | `/license/worklight/{x}/confirmTermination` | OvhCloudLicense/resources/confirmTerminationPost.operation.ts |
+| licenseCloudLinux (v1) | GET | `/license/worklight/{x}/serviceInfos` | OvhCloudLicense/resources/serviceInfosGet.operation.ts |
+| licenseCloudLinux (v1) | PUT | `/license/worklight/{x}/serviceInfos` | OvhCloudLicense/resources/serviceInfosPut.operation.ts |
+| licenseCloudLinux (v1) | GET | `/license/worklight/{x}/tasks` | OvhCloudLicense/resources/tasksGet.operation.ts |
+| licenseCloudLinux (v1) | GET | `/license/worklight/{x}/tasks/{x}` | OvhCloudLicense/resources/tasksGetTask.operation.ts |
 | licenseCloudLinux (v1) | POST | `/license/worklight/{x}/terminate` | OvhCloudLicense/resources/terminatePost.operation.ts |
 | licenseCloudLinux (v1) | GET | `/license/worklight/orderableVersions?ip={x}` | OvhCloudLicense/resources/orderableVersionsGet.operation.ts |
 | licenseCpanel (v1) | GET | `/license/cloudLinux` | OvhCloudLicense/resources/cloudLinux/GET.operation.ts |
@@ -1730,9 +1742,13 @@ Ces opérations appellent un chemin qui ne correspond à aucun endpoint de la sp
 | licenseCpanel (v1) | GET | `/license/directadmin/orderableVersions` | OvhCloudLicense/resources/directadmin/OrderableVersionsGET.operation.ts |
 | licenseCpanel (v1) | GET | `/license/hycu` | OvhCloudLicense/resources/hycu/GET.operation.ts |
 | licenseCpanel (v1) | GET | `/license/hycu/{x}` | OvhCloudLicense/resources/hycu/serviceGet.operation.ts |
+| licenseCpanel (v1) | PUT | `/license/hycu/{x}` | OvhCloudLicense/resources/hycu/servicePut.operation.ts |
+| licenseCpanel (v1) | POST | `/license/hycu/{x}/activate` | OvhCloudLicense/resources/hycu/serviceActivatePost.operation.ts |
 | licenseCpanel (v1) | POST | `/license/hycu/{x}/confirmTermination` | OvhCloudLicense/resources/hycu/serviceConfirmTerminationPost.operation.ts |
 | licenseCpanel (v1) | GET | `/license/hycu/{x}/license` | OvhCloudLicense/resources/hycu/serviceLicenseGet.operation.ts |
+| licenseCpanel (v1) | POST | `/license/hycu/{x}/refresh` | OvhCloudLicense/resources/hycu/serviceRefreshPost.operation.ts |
 | licenseCpanel (v1) | GET | `/license/hycu/{x}/serviceInfos` | OvhCloudLicense/resources/hycu/serviceInfosGet.operation.ts |
+| licenseCpanel (v1) | PUT | `/license/hycu/{x}/serviceInfos` | OvhCloudLicense/resources/hycu/serviceInfosPut.operation.ts |
 | licenseCpanel (v1) | POST | `/license/hycu/{x}/terminate` | OvhCloudLicense/resources/hycu/serviceTerminatePost.operation.ts |
 | licenseCpanel (v1) | GET | `/license/office` | OvhCloudLicense/resources/office/GET.operation.ts |
 | licenseCpanel (v1) | GET | `/license/office/{x}` | OvhCloudLicense/resources/office/serviceGet.operation.ts |
@@ -1818,6 +1834,10 @@ Ces opérations appellent un chemin qui ne correspond à aucun endpoint de la sp
 | licenseCpanel (v1) | GET | `/license/worklight/{x}/canLicenseBeMovedTo?destinationIp={x}` | OvhCloudLicense/resources/canLicenseBeMovedToGet.operation.ts |
 | licenseCpanel (v1) | POST | `/license/worklight/{x}/changeIp` | OvhCloudLicense/resources/changeIpPost.operation.ts |
 | licenseCpanel (v1) | POST | `/license/worklight/{x}/confirmTermination` | OvhCloudLicense/resources/confirmTerminationPost.operation.ts |
+| licenseCpanel (v1) | GET | `/license/worklight/{x}/serviceInfos` | OvhCloudLicense/resources/serviceInfosGet.operation.ts |
+| licenseCpanel (v1) | PUT | `/license/worklight/{x}/serviceInfos` | OvhCloudLicense/resources/serviceInfosPut.operation.ts |
+| licenseCpanel (v1) | GET | `/license/worklight/{x}/tasks` | OvhCloudLicense/resources/tasksGet.operation.ts |
+| licenseCpanel (v1) | GET | `/license/worklight/{x}/tasks/{x}` | OvhCloudLicense/resources/tasksGetTask.operation.ts |
 | licenseCpanel (v1) | POST | `/license/worklight/{x}/terminate` | OvhCloudLicense/resources/terminatePost.operation.ts |
 | licenseCpanel (v1) | GET | `/license/worklight/orderableVersions?ip={x}` | OvhCloudLicense/resources/orderableVersionsGet.operation.ts |
 | licenseDirectadmin (v1) | GET | `/license/cloudLinux` | OvhCloudLicense/resources/cloudLinux/GET.operation.ts |
@@ -1841,9 +1861,13 @@ Ces opérations appellent un chemin qui ne correspond à aucun endpoint de la sp
 | licenseDirectadmin (v1) | GET | `/license/cpanel/orderableVersions` | OvhCloudLicense/resources/cpanel/OrderableVersionsGET.operation.ts |
 | licenseDirectadmin (v1) | GET | `/license/hycu` | OvhCloudLicense/resources/hycu/GET.operation.ts |
 | licenseDirectadmin (v1) | GET | `/license/hycu/{x}` | OvhCloudLicense/resources/hycu/serviceGet.operation.ts |
+| licenseDirectadmin (v1) | PUT | `/license/hycu/{x}` | OvhCloudLicense/resources/hycu/servicePut.operation.ts |
+| licenseDirectadmin (v1) | POST | `/license/hycu/{x}/activate` | OvhCloudLicense/resources/hycu/serviceActivatePost.operation.ts |
 | licenseDirectadmin (v1) | POST | `/license/hycu/{x}/confirmTermination` | OvhCloudLicense/resources/hycu/serviceConfirmTerminationPost.operation.ts |
 | licenseDirectadmin (v1) | GET | `/license/hycu/{x}/license` | OvhCloudLicense/resources/hycu/serviceLicenseGet.operation.ts |
+| licenseDirectadmin (v1) | POST | `/license/hycu/{x}/refresh` | OvhCloudLicense/resources/hycu/serviceRefreshPost.operation.ts |
 | licenseDirectadmin (v1) | GET | `/license/hycu/{x}/serviceInfos` | OvhCloudLicense/resources/hycu/serviceInfosGet.operation.ts |
+| licenseDirectadmin (v1) | PUT | `/license/hycu/{x}/serviceInfos` | OvhCloudLicense/resources/hycu/serviceInfosPut.operation.ts |
 | licenseDirectadmin (v1) | POST | `/license/hycu/{x}/terminate` | OvhCloudLicense/resources/hycu/serviceTerminatePost.operation.ts |
 | licenseDirectadmin (v1) | GET | `/license/office` | OvhCloudLicense/resources/office/GET.operation.ts |
 | licenseDirectadmin (v1) | GET | `/license/office/{x}` | OvhCloudLicense/resources/office/serviceGet.operation.ts |
@@ -1929,6 +1953,10 @@ Ces opérations appellent un chemin qui ne correspond à aucun endpoint de la sp
 | licenseDirectadmin (v1) | GET | `/license/worklight/{x}/canLicenseBeMovedTo?destinationIp={x}` | OvhCloudLicense/resources/canLicenseBeMovedToGet.operation.ts |
 | licenseDirectadmin (v1) | POST | `/license/worklight/{x}/changeIp` | OvhCloudLicense/resources/changeIpPost.operation.ts |
 | licenseDirectadmin (v1) | POST | `/license/worklight/{x}/confirmTermination` | OvhCloudLicense/resources/confirmTerminationPost.operation.ts |
+| licenseDirectadmin (v1) | GET | `/license/worklight/{x}/serviceInfos` | OvhCloudLicense/resources/serviceInfosGet.operation.ts |
+| licenseDirectadmin (v1) | PUT | `/license/worklight/{x}/serviceInfos` | OvhCloudLicense/resources/serviceInfosPut.operation.ts |
+| licenseDirectadmin (v1) | GET | `/license/worklight/{x}/tasks` | OvhCloudLicense/resources/tasksGet.operation.ts |
+| licenseDirectadmin (v1) | GET | `/license/worklight/{x}/tasks/{x}` | OvhCloudLicense/resources/tasksGetTask.operation.ts |
 | licenseDirectadmin (v1) | POST | `/license/worklight/{x}/terminate` | OvhCloudLicense/resources/terminatePost.operation.ts |
 | licenseDirectadmin (v1) | GET | `/license/worklight/orderableVersions?ip={x}` | OvhCloudLicense/resources/orderableVersionsGet.operation.ts |
 | licenseHycu (v1) | GET | `/license/cloudLinux` | OvhCloudLicense/resources/cloudLinux/GET.operation.ts |
@@ -2046,6 +2074,10 @@ Ces opérations appellent un chemin qui ne correspond à aucun endpoint de la sp
 | licenseHycu (v1) | GET | `/license/worklight/{x}/canLicenseBeMovedTo?destinationIp={x}` | OvhCloudLicense/resources/canLicenseBeMovedToGet.operation.ts |
 | licenseHycu (v1) | POST | `/license/worklight/{x}/changeIp` | OvhCloudLicense/resources/changeIpPost.operation.ts |
 | licenseHycu (v1) | POST | `/license/worklight/{x}/confirmTermination` | OvhCloudLicense/resources/confirmTerminationPost.operation.ts |
+| licenseHycu (v1) | GET | `/license/worklight/{x}/serviceInfos` | OvhCloudLicense/resources/serviceInfosGet.operation.ts |
+| licenseHycu (v1) | PUT | `/license/worklight/{x}/serviceInfos` | OvhCloudLicense/resources/serviceInfosPut.operation.ts |
+| licenseHycu (v1) | GET | `/license/worklight/{x}/tasks` | OvhCloudLicense/resources/tasksGet.operation.ts |
+| licenseHycu (v1) | GET | `/license/worklight/{x}/tasks/{x}` | OvhCloudLicense/resources/tasksGetTask.operation.ts |
 | licenseHycu (v1) | POST | `/license/worklight/{x}/terminate` | OvhCloudLicense/resources/terminatePost.operation.ts |
 | licenseHycu (v1) | GET | `/license/worklight/orderableVersions?ip={x}` | OvhCloudLicense/resources/orderableVersionsGet.operation.ts |
 | licenseOffice (v1) | GET | `/license/cloudLinux` | OvhCloudLicense/resources/cloudLinux/GET.operation.ts |
@@ -2081,9 +2113,13 @@ Ces opérations appellent un chemin qui ne correspond à aucun endpoint de la sp
 | licenseOffice (v1) | GET | `/license/directadmin/orderableVersions` | OvhCloudLicense/resources/directadmin/OrderableVersionsGET.operation.ts |
 | licenseOffice (v1) | GET | `/license/hycu` | OvhCloudLicense/resources/hycu/GET.operation.ts |
 | licenseOffice (v1) | GET | `/license/hycu/{x}` | OvhCloudLicense/resources/hycu/serviceGet.operation.ts |
+| licenseOffice (v1) | PUT | `/license/hycu/{x}` | OvhCloudLicense/resources/hycu/servicePut.operation.ts |
+| licenseOffice (v1) | POST | `/license/hycu/{x}/activate` | OvhCloudLicense/resources/hycu/serviceActivatePost.operation.ts |
 | licenseOffice (v1) | POST | `/license/hycu/{x}/confirmTermination` | OvhCloudLicense/resources/hycu/serviceConfirmTerminationPost.operation.ts |
 | licenseOffice (v1) | GET | `/license/hycu/{x}/license` | OvhCloudLicense/resources/hycu/serviceLicenseGet.operation.ts |
+| licenseOffice (v1) | POST | `/license/hycu/{x}/refresh` | OvhCloudLicense/resources/hycu/serviceRefreshPost.operation.ts |
 | licenseOffice (v1) | GET | `/license/hycu/{x}/serviceInfos` | OvhCloudLicense/resources/hycu/serviceInfosGet.operation.ts |
+| licenseOffice (v1) | PUT | `/license/hycu/{x}/serviceInfos` | OvhCloudLicense/resources/hycu/serviceInfosPut.operation.ts |
 | licenseOffice (v1) | POST | `/license/hycu/{x}/terminate` | OvhCloudLicense/resources/hycu/serviceTerminatePost.operation.ts |
 | licenseOffice (v1) | GET | `/license/officePrepaid` | OvhCloudLicense/resources/officePrepaid/GET.operation.ts |
 | licenseOffice (v1) | GET | `/license/officePrepaid/{x}` | OvhCloudLicense/resources/officePrepaid/serviceGet.operation.ts |
@@ -2158,6 +2194,10 @@ Ces opérations appellent un chemin qui ne correspond à aucun endpoint de la sp
 | licenseOffice (v1) | GET | `/license/worklight/{x}/canLicenseBeMovedTo?destinationIp={x}` | OvhCloudLicense/resources/canLicenseBeMovedToGet.operation.ts |
 | licenseOffice (v1) | POST | `/license/worklight/{x}/changeIp` | OvhCloudLicense/resources/changeIpPost.operation.ts |
 | licenseOffice (v1) | POST | `/license/worklight/{x}/confirmTermination` | OvhCloudLicense/resources/confirmTerminationPost.operation.ts |
+| licenseOffice (v1) | GET | `/license/worklight/{x}/serviceInfos` | OvhCloudLicense/resources/serviceInfosGet.operation.ts |
+| licenseOffice (v1) | PUT | `/license/worklight/{x}/serviceInfos` | OvhCloudLicense/resources/serviceInfosPut.operation.ts |
+| licenseOffice (v1) | GET | `/license/worklight/{x}/tasks` | OvhCloudLicense/resources/tasksGet.operation.ts |
+| licenseOffice (v1) | GET | `/license/worklight/{x}/tasks/{x}` | OvhCloudLicense/resources/tasksGetTask.operation.ts |
 | licenseOffice (v1) | POST | `/license/worklight/{x}/terminate` | OvhCloudLicense/resources/terminatePost.operation.ts |
 | licenseOffice (v1) | GET | `/license/worklight/orderableVersions?ip={x}` | OvhCloudLicense/resources/orderableVersionsGet.operation.ts |
 | licenseOfficePrepaid (v1) | GET | `/license/cloudLinux` | OvhCloudLicense/resources/cloudLinux/GET.operation.ts |
@@ -2193,9 +2233,13 @@ Ces opérations appellent un chemin qui ne correspond à aucun endpoint de la sp
 | licenseOfficePrepaid (v1) | GET | `/license/directadmin/orderableVersions` | OvhCloudLicense/resources/directadmin/OrderableVersionsGET.operation.ts |
 | licenseOfficePrepaid (v1) | GET | `/license/hycu` | OvhCloudLicense/resources/hycu/GET.operation.ts |
 | licenseOfficePrepaid (v1) | GET | `/license/hycu/{x}` | OvhCloudLicense/resources/hycu/serviceGet.operation.ts |
+| licenseOfficePrepaid (v1) | PUT | `/license/hycu/{x}` | OvhCloudLicense/resources/hycu/servicePut.operation.ts |
+| licenseOfficePrepaid (v1) | POST | `/license/hycu/{x}/activate` | OvhCloudLicense/resources/hycu/serviceActivatePost.operation.ts |
 | licenseOfficePrepaid (v1) | POST | `/license/hycu/{x}/confirmTermination` | OvhCloudLicense/resources/hycu/serviceConfirmTerminationPost.operation.ts |
 | licenseOfficePrepaid (v1) | GET | `/license/hycu/{x}/license` | OvhCloudLicense/resources/hycu/serviceLicenseGet.operation.ts |
+| licenseOfficePrepaid (v1) | POST | `/license/hycu/{x}/refresh` | OvhCloudLicense/resources/hycu/serviceRefreshPost.operation.ts |
 | licenseOfficePrepaid (v1) | GET | `/license/hycu/{x}/serviceInfos` | OvhCloudLicense/resources/hycu/serviceInfosGet.operation.ts |
+| licenseOfficePrepaid (v1) | PUT | `/license/hycu/{x}/serviceInfos` | OvhCloudLicense/resources/hycu/serviceInfosPut.operation.ts |
 | licenseOfficePrepaid (v1) | POST | `/license/hycu/{x}/terminate` | OvhCloudLicense/resources/hycu/serviceTerminatePost.operation.ts |
 | licenseOfficePrepaid (v1) | GET | `/license/office` | OvhCloudLicense/resources/office/GET.operation.ts |
 | licenseOfficePrepaid (v1) | GET | `/license/office/{x}` | OvhCloudLicense/resources/office/serviceGet.operation.ts |
@@ -2270,6 +2314,10 @@ Ces opérations appellent un chemin qui ne correspond à aucun endpoint de la sp
 | licenseOfficePrepaid (v1) | GET | `/license/worklight/{x}/canLicenseBeMovedTo?destinationIp={x}` | OvhCloudLicense/resources/canLicenseBeMovedToGet.operation.ts |
 | licenseOfficePrepaid (v1) | POST | `/license/worklight/{x}/changeIp` | OvhCloudLicense/resources/changeIpPost.operation.ts |
 | licenseOfficePrepaid (v1) | POST | `/license/worklight/{x}/confirmTermination` | OvhCloudLicense/resources/confirmTerminationPost.operation.ts |
+| licenseOfficePrepaid (v1) | GET | `/license/worklight/{x}/serviceInfos` | OvhCloudLicense/resources/serviceInfosGet.operation.ts |
+| licenseOfficePrepaid (v1) | PUT | `/license/worklight/{x}/serviceInfos` | OvhCloudLicense/resources/serviceInfosPut.operation.ts |
+| licenseOfficePrepaid (v1) | GET | `/license/worklight/{x}/tasks` | OvhCloudLicense/resources/tasksGet.operation.ts |
+| licenseOfficePrepaid (v1) | GET | `/license/worklight/{x}/tasks/{x}` | OvhCloudLicense/resources/tasksGetTask.operation.ts |
 | licenseOfficePrepaid (v1) | POST | `/license/worklight/{x}/terminate` | OvhCloudLicense/resources/terminatePost.operation.ts |
 | licenseOfficePrepaid (v1) | GET | `/license/worklight/orderableVersions?ip={x}` | OvhCloudLicense/resources/orderableVersionsGet.operation.ts |
 | licensePlesk (v1) | GET | `/license/cloudLinux` | OvhCloudLicense/resources/cloudLinux/GET.operation.ts |
@@ -2305,9 +2353,13 @@ Ces opérations appellent un chemin qui ne correspond à aucun endpoint de la sp
 | licensePlesk (v1) | GET | `/license/directadmin/orderableVersions` | OvhCloudLicense/resources/directadmin/OrderableVersionsGET.operation.ts |
 | licensePlesk (v1) | GET | `/license/hycu` | OvhCloudLicense/resources/hycu/GET.operation.ts |
 | licensePlesk (v1) | GET | `/license/hycu/{x}` | OvhCloudLicense/resources/hycu/serviceGet.operation.ts |
+| licensePlesk (v1) | PUT | `/license/hycu/{x}` | OvhCloudLicense/resources/hycu/servicePut.operation.ts |
+| licensePlesk (v1) | POST | `/license/hycu/{x}/activate` | OvhCloudLicense/resources/hycu/serviceActivatePost.operation.ts |
 | licensePlesk (v1) | POST | `/license/hycu/{x}/confirmTermination` | OvhCloudLicense/resources/hycu/serviceConfirmTerminationPost.operation.ts |
 | licensePlesk (v1) | GET | `/license/hycu/{x}/license` | OvhCloudLicense/resources/hycu/serviceLicenseGet.operation.ts |
+| licensePlesk (v1) | POST | `/license/hycu/{x}/refresh` | OvhCloudLicense/resources/hycu/serviceRefreshPost.operation.ts |
 | licensePlesk (v1) | GET | `/license/hycu/{x}/serviceInfos` | OvhCloudLicense/resources/hycu/serviceInfosGet.operation.ts |
+| licensePlesk (v1) | PUT | `/license/hycu/{x}/serviceInfos` | OvhCloudLicense/resources/hycu/serviceInfosPut.operation.ts |
 | licensePlesk (v1) | POST | `/license/hycu/{x}/terminate` | OvhCloudLicense/resources/hycu/serviceTerminatePost.operation.ts |
 | licensePlesk (v1) | GET | `/license/office` | OvhCloudLicense/resources/office/GET.operation.ts |
 | licensePlesk (v1) | GET | `/license/office/{x}` | OvhCloudLicense/resources/office/serviceGet.operation.ts |
@@ -2379,6 +2431,10 @@ Ces opérations appellent un chemin qui ne correspond à aucun endpoint de la sp
 | licensePlesk (v1) | GET | `/license/worklight/{x}/canLicenseBeMovedTo?destinationIp={x}` | OvhCloudLicense/resources/canLicenseBeMovedToGet.operation.ts |
 | licensePlesk (v1) | POST | `/license/worklight/{x}/changeIp` | OvhCloudLicense/resources/changeIpPost.operation.ts |
 | licensePlesk (v1) | POST | `/license/worklight/{x}/confirmTermination` | OvhCloudLicense/resources/confirmTerminationPost.operation.ts |
+| licensePlesk (v1) | GET | `/license/worklight/{x}/serviceInfos` | OvhCloudLicense/resources/serviceInfosGet.operation.ts |
+| licensePlesk (v1) | PUT | `/license/worklight/{x}/serviceInfos` | OvhCloudLicense/resources/serviceInfosPut.operation.ts |
+| licensePlesk (v1) | GET | `/license/worklight/{x}/tasks` | OvhCloudLicense/resources/tasksGet.operation.ts |
+| licensePlesk (v1) | GET | `/license/worklight/{x}/tasks/{x}` | OvhCloudLicense/resources/tasksGetTask.operation.ts |
 | licensePlesk (v1) | POST | `/license/worklight/{x}/terminate` | OvhCloudLicense/resources/terminatePost.operation.ts |
 | licensePlesk (v1) | GET | `/license/worklight/orderableVersions?ip={x}` | OvhCloudLicense/resources/orderableVersionsGet.operation.ts |
 | licenseRedhat (v1) | GET | `/license/cloudLinux` | OvhCloudLicense/resources/cloudLinux/GET.operation.ts |
@@ -2414,9 +2470,13 @@ Ces opérations appellent un chemin qui ne correspond à aucun endpoint de la sp
 | licenseRedhat (v1) | GET | `/license/directadmin/orderableVersions` | OvhCloudLicense/resources/directadmin/OrderableVersionsGET.operation.ts |
 | licenseRedhat (v1) | GET | `/license/hycu` | OvhCloudLicense/resources/hycu/GET.operation.ts |
 | licenseRedhat (v1) | GET | `/license/hycu/{x}` | OvhCloudLicense/resources/hycu/serviceGet.operation.ts |
+| licenseRedhat (v1) | PUT | `/license/hycu/{x}` | OvhCloudLicense/resources/hycu/servicePut.operation.ts |
+| licenseRedhat (v1) | POST | `/license/hycu/{x}/activate` | OvhCloudLicense/resources/hycu/serviceActivatePost.operation.ts |
 | licenseRedhat (v1) | POST | `/license/hycu/{x}/confirmTermination` | OvhCloudLicense/resources/hycu/serviceConfirmTerminationPost.operation.ts |
 | licenseRedhat (v1) | GET | `/license/hycu/{x}/license` | OvhCloudLicense/resources/hycu/serviceLicenseGet.operation.ts |
+| licenseRedhat (v1) | POST | `/license/hycu/{x}/refresh` | OvhCloudLicense/resources/hycu/serviceRefreshPost.operation.ts |
 | licenseRedhat (v1) | GET | `/license/hycu/{x}/serviceInfos` | OvhCloudLicense/resources/hycu/serviceInfosGet.operation.ts |
+| licenseRedhat (v1) | PUT | `/license/hycu/{x}/serviceInfos` | OvhCloudLicense/resources/hycu/serviceInfosPut.operation.ts |
 | licenseRedhat (v1) | POST | `/license/hycu/{x}/terminate` | OvhCloudLicense/resources/hycu/serviceTerminatePost.operation.ts |
 | licenseRedhat (v1) | GET | `/license/office` | OvhCloudLicense/resources/office/GET.operation.ts |
 | licenseRedhat (v1) | GET | `/license/office/{x}` | OvhCloudLicense/resources/office/serviceGet.operation.ts |
@@ -2495,6 +2555,10 @@ Ces opérations appellent un chemin qui ne correspond à aucun endpoint de la sp
 | licenseRedhat (v1) | GET | `/license/worklight/{x}/canLicenseBeMovedTo?destinationIp={x}` | OvhCloudLicense/resources/canLicenseBeMovedToGet.operation.ts |
 | licenseRedhat (v1) | POST | `/license/worklight/{x}/changeIp` | OvhCloudLicense/resources/changeIpPost.operation.ts |
 | licenseRedhat (v1) | POST | `/license/worklight/{x}/confirmTermination` | OvhCloudLicense/resources/confirmTerminationPost.operation.ts |
+| licenseRedhat (v1) | GET | `/license/worklight/{x}/serviceInfos` | OvhCloudLicense/resources/serviceInfosGet.operation.ts |
+| licenseRedhat (v1) | PUT | `/license/worklight/{x}/serviceInfos` | OvhCloudLicense/resources/serviceInfosPut.operation.ts |
+| licenseRedhat (v1) | GET | `/license/worklight/{x}/tasks` | OvhCloudLicense/resources/tasksGet.operation.ts |
+| licenseRedhat (v1) | GET | `/license/worklight/{x}/tasks/{x}` | OvhCloudLicense/resources/tasksGetTask.operation.ts |
 | licenseRedhat (v1) | POST | `/license/worklight/{x}/terminate` | OvhCloudLicense/resources/terminatePost.operation.ts |
 | licenseRedhat (v1) | GET | `/license/worklight/orderableVersions?ip={x}` | OvhCloudLicense/resources/orderableVersionsGet.operation.ts |
 | licenseSqlserver (v1) | GET | `/license/cloudLinux` | OvhCloudLicense/resources/cloudLinux/GET.operation.ts |
@@ -2530,9 +2594,13 @@ Ces opérations appellent un chemin qui ne correspond à aucun endpoint de la sp
 | licenseSqlserver (v1) | GET | `/license/directadmin/orderableVersions` | OvhCloudLicense/resources/directadmin/OrderableVersionsGET.operation.ts |
 | licenseSqlserver (v1) | GET | `/license/hycu` | OvhCloudLicense/resources/hycu/GET.operation.ts |
 | licenseSqlserver (v1) | GET | `/license/hycu/{x}` | OvhCloudLicense/resources/hycu/serviceGet.operation.ts |
+| licenseSqlserver (v1) | PUT | `/license/hycu/{x}` | OvhCloudLicense/resources/hycu/servicePut.operation.ts |
+| licenseSqlserver (v1) | POST | `/license/hycu/{x}/activate` | OvhCloudLicense/resources/hycu/serviceActivatePost.operation.ts |
 | licenseSqlserver (v1) | POST | `/license/hycu/{x}/confirmTermination` | OvhCloudLicense/resources/hycu/serviceConfirmTerminationPost.operation.ts |
 | licenseSqlserver (v1) | GET | `/license/hycu/{x}/license` | OvhCloudLicense/resources/hycu/serviceLicenseGet.operation.ts |
+| licenseSqlserver (v1) | POST | `/license/hycu/{x}/refresh` | OvhCloudLicense/resources/hycu/serviceRefreshPost.operation.ts |
 | licenseSqlserver (v1) | GET | `/license/hycu/{x}/serviceInfos` | OvhCloudLicense/resources/hycu/serviceInfosGet.operation.ts |
+| licenseSqlserver (v1) | PUT | `/license/hycu/{x}/serviceInfos` | OvhCloudLicense/resources/hycu/serviceInfosPut.operation.ts |
 | licenseSqlserver (v1) | POST | `/license/hycu/{x}/terminate` | OvhCloudLicense/resources/hycu/serviceTerminatePost.operation.ts |
 | licenseSqlserver (v1) | GET | `/license/office` | OvhCloudLicense/resources/office/GET.operation.ts |
 | licenseSqlserver (v1) | GET | `/license/office/{x}` | OvhCloudLicense/resources/office/serviceGet.operation.ts |
@@ -2610,6 +2678,10 @@ Ces opérations appellent un chemin qui ne correspond à aucun endpoint de la sp
 | licenseSqlserver (v1) | GET | `/license/worklight/{x}/canLicenseBeMovedTo?destinationIp={x}` | OvhCloudLicense/resources/canLicenseBeMovedToGet.operation.ts |
 | licenseSqlserver (v1) | POST | `/license/worklight/{x}/changeIp` | OvhCloudLicense/resources/changeIpPost.operation.ts |
 | licenseSqlserver (v1) | POST | `/license/worklight/{x}/confirmTermination` | OvhCloudLicense/resources/confirmTerminationPost.operation.ts |
+| licenseSqlserver (v1) | GET | `/license/worklight/{x}/serviceInfos` | OvhCloudLicense/resources/serviceInfosGet.operation.ts |
+| licenseSqlserver (v1) | PUT | `/license/worklight/{x}/serviceInfos` | OvhCloudLicense/resources/serviceInfosPut.operation.ts |
+| licenseSqlserver (v1) | GET | `/license/worklight/{x}/tasks` | OvhCloudLicense/resources/tasksGet.operation.ts |
+| licenseSqlserver (v1) | GET | `/license/worklight/{x}/tasks/{x}` | OvhCloudLicense/resources/tasksGetTask.operation.ts |
 | licenseSqlserver (v1) | POST | `/license/worklight/{x}/terminate` | OvhCloudLicense/resources/terminatePost.operation.ts |
 | licenseSqlserver (v1) | GET | `/license/worklight/orderableVersions?ip={x}` | OvhCloudLicense/resources/orderableVersionsGet.operation.ts |
 | licenseVirtuozzo (v1) | GET | `/license/cloudLinux` | OvhCloudLicense/resources/cloudLinux/GET.operation.ts |
@@ -2645,9 +2717,13 @@ Ces opérations appellent un chemin qui ne correspond à aucun endpoint de la sp
 | licenseVirtuozzo (v1) | GET | `/license/directadmin/orderableVersions` | OvhCloudLicense/resources/directadmin/OrderableVersionsGET.operation.ts |
 | licenseVirtuozzo (v1) | GET | `/license/hycu` | OvhCloudLicense/resources/hycu/GET.operation.ts |
 | licenseVirtuozzo (v1) | GET | `/license/hycu/{x}` | OvhCloudLicense/resources/hycu/serviceGet.operation.ts |
+| licenseVirtuozzo (v1) | PUT | `/license/hycu/{x}` | OvhCloudLicense/resources/hycu/servicePut.operation.ts |
+| licenseVirtuozzo (v1) | POST | `/license/hycu/{x}/activate` | OvhCloudLicense/resources/hycu/serviceActivatePost.operation.ts |
 | licenseVirtuozzo (v1) | POST | `/license/hycu/{x}/confirmTermination` | OvhCloudLicense/resources/hycu/serviceConfirmTerminationPost.operation.ts |
 | licenseVirtuozzo (v1) | GET | `/license/hycu/{x}/license` | OvhCloudLicense/resources/hycu/serviceLicenseGet.operation.ts |
+| licenseVirtuozzo (v1) | POST | `/license/hycu/{x}/refresh` | OvhCloudLicense/resources/hycu/serviceRefreshPost.operation.ts |
 | licenseVirtuozzo (v1) | GET | `/license/hycu/{x}/serviceInfos` | OvhCloudLicense/resources/hycu/serviceInfosGet.operation.ts |
+| licenseVirtuozzo (v1) | PUT | `/license/hycu/{x}/serviceInfos` | OvhCloudLicense/resources/hycu/serviceInfosPut.operation.ts |
 | licenseVirtuozzo (v1) | POST | `/license/hycu/{x}/terminate` | OvhCloudLicense/resources/hycu/serviceTerminatePost.operation.ts |
 | licenseVirtuozzo (v1) | GET | `/license/office` | OvhCloudLicense/resources/office/GET.operation.ts |
 | licenseVirtuozzo (v1) | GET | `/license/office/{x}` | OvhCloudLicense/resources/office/serviceGet.operation.ts |
@@ -2719,6 +2795,10 @@ Ces opérations appellent un chemin qui ne correspond à aucun endpoint de la sp
 | licenseVirtuozzo (v1) | GET | `/license/worklight/{x}/canLicenseBeMovedTo?destinationIp={x}` | OvhCloudLicense/resources/canLicenseBeMovedToGet.operation.ts |
 | licenseVirtuozzo (v1) | POST | `/license/worklight/{x}/changeIp` | OvhCloudLicense/resources/changeIpPost.operation.ts |
 | licenseVirtuozzo (v1) | POST | `/license/worklight/{x}/confirmTermination` | OvhCloudLicense/resources/confirmTerminationPost.operation.ts |
+| licenseVirtuozzo (v1) | GET | `/license/worklight/{x}/serviceInfos` | OvhCloudLicense/resources/serviceInfosGet.operation.ts |
+| licenseVirtuozzo (v1) | PUT | `/license/worklight/{x}/serviceInfos` | OvhCloudLicense/resources/serviceInfosPut.operation.ts |
+| licenseVirtuozzo (v1) | GET | `/license/worklight/{x}/tasks` | OvhCloudLicense/resources/tasksGet.operation.ts |
+| licenseVirtuozzo (v1) | GET | `/license/worklight/{x}/tasks/{x}` | OvhCloudLicense/resources/tasksGetTask.operation.ts |
 | licenseVirtuozzo (v1) | POST | `/license/worklight/{x}/terminate` | OvhCloudLicense/resources/terminatePost.operation.ts |
 | licenseVirtuozzo (v1) | GET | `/license/worklight/orderableVersions?ip={x}` | OvhCloudLicense/resources/orderableVersionsGet.operation.ts |
 | licenseWindows (v1) | GET | `/license/cloudLinux` | OvhCloudLicense/resources/cloudLinux/GET.operation.ts |
@@ -2754,9 +2834,13 @@ Ces opérations appellent un chemin qui ne correspond à aucun endpoint de la sp
 | licenseWindows (v1) | GET | `/license/directadmin/orderableVersions` | OvhCloudLicense/resources/directadmin/OrderableVersionsGET.operation.ts |
 | licenseWindows (v1) | GET | `/license/hycu` | OvhCloudLicense/resources/hycu/GET.operation.ts |
 | licenseWindows (v1) | GET | `/license/hycu/{x}` | OvhCloudLicense/resources/hycu/serviceGet.operation.ts |
+| licenseWindows (v1) | PUT | `/license/hycu/{x}` | OvhCloudLicense/resources/hycu/servicePut.operation.ts |
+| licenseWindows (v1) | POST | `/license/hycu/{x}/activate` | OvhCloudLicense/resources/hycu/serviceActivatePost.operation.ts |
 | licenseWindows (v1) | POST | `/license/hycu/{x}/confirmTermination` | OvhCloudLicense/resources/hycu/serviceConfirmTerminationPost.operation.ts |
 | licenseWindows (v1) | GET | `/license/hycu/{x}/license` | OvhCloudLicense/resources/hycu/serviceLicenseGet.operation.ts |
+| licenseWindows (v1) | POST | `/license/hycu/{x}/refresh` | OvhCloudLicense/resources/hycu/serviceRefreshPost.operation.ts |
 | licenseWindows (v1) | GET | `/license/hycu/{x}/serviceInfos` | OvhCloudLicense/resources/hycu/serviceInfosGet.operation.ts |
+| licenseWindows (v1) | PUT | `/license/hycu/{x}/serviceInfos` | OvhCloudLicense/resources/hycu/serviceInfosPut.operation.ts |
 | licenseWindows (v1) | POST | `/license/hycu/{x}/terminate` | OvhCloudLicense/resources/hycu/serviceTerminatePost.operation.ts |
 | licenseWindows (v1) | GET | `/license/office` | OvhCloudLicense/resources/office/GET.operation.ts |
 | licenseWindows (v1) | GET | `/license/office/{x}` | OvhCloudLicense/resources/office/serviceGet.operation.ts |
@@ -2830,6 +2914,10 @@ Ces opérations appellent un chemin qui ne correspond à aucun endpoint de la sp
 | licenseWindows (v1) | GET | `/license/worklight/{x}/canLicenseBeMovedTo?destinationIp={x}` | OvhCloudLicense/resources/canLicenseBeMovedToGet.operation.ts |
 | licenseWindows (v1) | POST | `/license/worklight/{x}/changeIp` | OvhCloudLicense/resources/changeIpPost.operation.ts |
 | licenseWindows (v1) | POST | `/license/worklight/{x}/confirmTermination` | OvhCloudLicense/resources/confirmTerminationPost.operation.ts |
+| licenseWindows (v1) | GET | `/license/worklight/{x}/serviceInfos` | OvhCloudLicense/resources/serviceInfosGet.operation.ts |
+| licenseWindows (v1) | PUT | `/license/worklight/{x}/serviceInfos` | OvhCloudLicense/resources/serviceInfosPut.operation.ts |
+| licenseWindows (v1) | GET | `/license/worklight/{x}/tasks` | OvhCloudLicense/resources/tasksGet.operation.ts |
+| licenseWindows (v1) | GET | `/license/worklight/{x}/tasks/{x}` | OvhCloudLicense/resources/tasksGetTask.operation.ts |
 | licenseWindows (v1) | POST | `/license/worklight/{x}/terminate` | OvhCloudLicense/resources/terminatePost.operation.ts |
 | licenseWindows (v1) | GET | `/license/worklight/orderableVersions?ip={x}` | OvhCloudLicense/resources/orderableVersionsGet.operation.ts |
 | metrics (v1) | GET | `/metrics/{x}/quota` | OvhCloudMetrics/resources/quotaGet.operation.ts |

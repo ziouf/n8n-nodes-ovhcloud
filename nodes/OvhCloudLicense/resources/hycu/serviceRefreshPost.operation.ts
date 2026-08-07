@@ -1,0 +1,68 @@
+import type {
+	IDataObject,
+	IDisplayOptions,
+	IExecuteFunctions,
+	INodeExecutionData,
+	INodeProperties,
+} from 'n8n-workflow';
+import { ApiClient } from '../../../../shared/transport/ApiClient';
+
+export function description(displayOptions: IDisplayOptions): INodeProperties[] {
+	return [
+		{
+			displayName: 'License Service Name',
+			name: 'serviceName',
+			type: 'resourceLocator',
+			default: { mode: 'list', value: '' },
+			required: true,
+			description: 'The HYCU license service name',
+			modes: [
+				{
+					displayName: 'From List',
+					name: 'list',
+					type: 'list',
+					typeOptions: { searchListMethod: 'getWorkLightLicenses', searchable: true },
+				},
+				{
+					displayName: 'By Name',
+					name: 'name',
+					type: 'string',
+					placeholder: 'hycu-1',
+				},
+			],
+			displayOptions,
+		},
+		{
+			displayName: 'License Request',
+			name: 'licenseRequest',
+			type: 'string',
+			default: '',
+			description: 'License request in base64 format',
+			displayOptions,
+		},
+	];
+}
+
+/**
+ * Manually refresh the HYCU license.
+ *
+ * HTTP method: POST
+ * Endpoint: /license/hycu/{serviceName}/refresh
+ */
+export async function execute(
+	this: IExecuteFunctions,
+	itemIndex: number,
+): Promise<INodeExecutionData[]> {
+	const client = new ApiClient(this);
+	const serviceName = this.getNodeParameter('serviceName', itemIndex, '', {
+		extractValue: true,
+	}) as string;
+	const licenseRequest = (this.getNodeParameter('licenseRequest', itemIndex, '') as string) || '';
+
+	const body: IDataObject = {};
+	if (licenseRequest) body.licenseRequest = licenseRequest;
+
+	await client.httpPost(`/license/hycu/${encodeURIComponent(serviceName)}/refresh`, body);
+
+	return this.helpers.returnJsonArray([{ serviceName, success: true }]);
+}
