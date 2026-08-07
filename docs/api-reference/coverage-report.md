@@ -1,6 +1,6 @@
 # OVHcloud API Coverage Report
 
-> Généré par `scripts/compare-coverage.js` le 2026-08-07T09:00:56.799Z. Document généré automatiquement — ne pas éditer à la main.
+> Généré par `scripts/compare-coverage.js` le 2026-08-07T10:53:46.641Z. Document généré automatiquement — ne pas éditer à la main.
 
 Ce rapport compare les endpoints déclarés dans les specs Swagger 2.0 (`docs/api-specs/v1|v2/*.json`) avec les appels HTTP réellement présents dans les nodes (`nodes/**/*.operation.ts`).
 
@@ -8,9 +8,9 @@ Ce rapport compare les endpoints déclarés dans les specs Swagger 2.0 (`docs/ap
 
 - **Specs analysées** : 84 (v1: 70, v2: 14)
 - **Endpoints déclarés (specs avec endpoints)** : 6624
-- **Endpoints couverts par les nodes** : 5412
-- **Couverture globale** : **81.7%**
-- **Specs sans node associé** : 17
+- **Endpoints couverts par les nodes** : 5522
+- **Couverture globale** : **83.4%**
+- **Specs sans node associé** : 1
 - **Specs placeholder (aucun endpoint)** : 1
 
 ## Couverture par spec
@@ -19,9 +19,6 @@ Triée par pourcentage croissant (moins bonne couverture en premier).
 
 | Spec (version) | Total | Couverts | Manquants | % |
 |----------------|------:|---------:|----------:|---:|
-| dedicatedNasha (v1) | 39 | 0 | 39 | 0% |
-| dedicatedCeph (v1) | 35 | 0 | 35 | 0% |
-| dedicatedHousing (v1) | 18 | 0 | 18 | 0% |
 | licenseOffice (v1) | 16 | 0 | 16 | 0% |
 | licenseOfficePrepaid (v1) | 16 | 0 | 16 | 0% |
 | licensePlesk (v1) | 16 | 0 | 16 | 0% |
@@ -30,8 +27,6 @@ Triée par pourcentage croissant (moins bonne couverture en premier).
 | licenseWindows (v1) | 14 | 0 | 14 | 0% |
 | licenseCpanel (v1) | 13 | 0 | 13 | 0% |
 | licenseHycu (v1) | 10 | 0 | 10 | 0% |
-| dedicatedCluster (v1) | 9 | 0 | 9 | 0% |
-| dedicatedInstallationTemplate (v1) | 9 | 0 | 9 | 0% |
 | licenseCloudLinux (v1) | 9 | 0 | 9 | 0% |
 | licenseRedhat (v1) | 9 | 0 | 9 | 0% |
 | licenseSqlserver (v1) | 9 | 0 | 9 | 0% |
@@ -71,6 +66,8 @@ Triée par pourcentage croissant (moins bonne couverture en premier).
 | storage (v1) | 47 | 47 | 0 | 100% |
 | emailMxplan (v1) | 46 | 46 | 0 | 100% |
 | cdn (v1) | 44 | 44 | 0 | 100% |
+| dedicatedNasha (v1) | 39 | 39 | 0 | 100% |
+| dedicatedCeph (v1) | 35 | 35 | 0 | 100% |
 | okms (v2) | 32 | 32 | 0 | 100% |
 | vmwareCloudDirector (v2) | 32 | 32 | 0 | 100% |
 | iam (v2) | 31 | 31 | 0 | 100% |
@@ -78,12 +75,15 @@ Triée par pourcentage croissant (moins bonne couverture en premier).
 | connectivity (v1) | 28 | 28 | 0 | 100% |
 | saas (v1) | 19 | 19 | 0 | 100% |
 | notification (v2) | 19 | 19 | 0 | 100% |
+| dedicatedHousing (v1) | 18 | 18 | 0 | 100% |
 | nutanix (v1) | 17 | 17 | 0 | 100% |
 | managedCMS (v2) | 17 | 17 | 0 | 100% |
 | publicCloud (v2) | 17 | 17 | 0 | 100% |
 | backupServices (v2) | 15 | 15 | 0 | 100% |
 | veeamCloudConnect (v1) | 14 | 14 | 0 | 100% |
 | webhosting (v2) | 10 | 10 | 0 | 100% |
+| dedicatedCluster (v1) | 9 | 9 | 0 | 100% |
+| dedicatedInstallationTemplate (v1) | 9 | 9 | 0 | 100% |
 | support (v1) | 9 | 9 | 0 | 100% |
 | domain (v2) | 9 | 9 | 0 | 100% |
 | newAccount (v1) | 8 | 8 | 0 | 100% |
@@ -107,22 +107,6 @@ Triée par pourcentage croissant (moins bonne couverture en premier).
 
 Ces specs ont des endpoints déclarés mais aucun node ne les implémente dans ce repo :
 
-- **dedicatedNasha** (`/dedicated/nasha`, v1) — 39 endpoints, 39 manquants
-- **dedicatedCeph** (`/dedicated/ceph`, v1) — 35 endpoints, 35 manquants
-- **dedicatedHousing** (`/dedicated/housing`, v1) — 18 endpoints, 18 manquants
-- **licenseOffice** (`/license/office`, v1) — 16 endpoints, 16 manquants
-- **licenseOfficePrepaid** (`/license/officePrepaid`, v1) — 16 endpoints, 16 manquants
-- **licensePlesk** (`/license/plesk`, v1) — 16 endpoints, 16 manquants
-- **licenseVirtuozzo** (`/license/virtuozzo`, v1) — 16 endpoints, 16 manquants
-- **licenseDirectadmin** (`/license/directadmin`, v1) — 14 endpoints, 14 manquants
-- **licenseWindows** (`/license/windows`, v1) — 14 endpoints, 14 manquants
-- **licenseCpanel** (`/license/cpanel`, v1) — 13 endpoints, 13 manquants
-- **licenseHycu** (`/license/hycu`, v1) — 10 endpoints, 10 manquants
-- **dedicatedCluster** (`/dedicated/cluster`, v1) — 9 endpoints, 9 manquants
-- **dedicatedInstallationTemplate** (`/dedicated/installationTemplate`, v1) — 9 endpoints, 9 manquants
-- **licenseCloudLinux** (`/license/cloudLinux`, v1) — 9 endpoints, 9 manquants
-- **licenseRedhat** (`/license/redhat`, v1) — 9 endpoints, 9 manquants
-- **licenseSqlserver** (`/license/sqlserver`, v1) — 9 endpoints, 9 manquants
 - **packSiptrunk** (`/pack/siptrunk`, v1) — 5 endpoints, 5 manquants
 
 Sans node également, mais sans endpoints déclarés (voir section placeholder) :
@@ -139,122 +123,9 @@ Fichiers de spec présents dans le dossier mais avec `apis: []` (spec absente / 
 
 Endpoints déclarés dans les specs mais non appelés par les nodes, groupés par spec :
 
-### dedicatedNasha (v1) — 39 manquants
-
-_Nodes associés : (aucun node)_
-
-| Méthode | Chemin |
-|--------|--------|
-| GET | `/dedicated/nasha` |
-| GET | `/dedicated/nasha/{x}` |
-| PUT | `/dedicated/nasha/{x}` |
-| POST | `/dedicated/nasha/{x}/changeContact` |
-| POST | `/dedicated/nasha/{x}/confirmTermination` |
-| GET | `/dedicated/nasha/{x}/metricsToken` |
-| GET | `/dedicated/nasha/{x}/partition` |
-| POST | `/dedicated/nasha/{x}/partition` |
-| DELETE | `/dedicated/nasha/{x}/partition/{x}` |
-| GET | `/dedicated/nasha/{x}/partition/{x}` |
-| PUT | `/dedicated/nasha/{x}/partition/{x}` |
-| GET | `/dedicated/nasha/{x}/partition/{x}/access` |
-| POST | `/dedicated/nasha/{x}/partition/{x}/access` |
-| DELETE | `/dedicated/nasha/{x}/partition/{x}/access/{x}` |
-| GET | `/dedicated/nasha/{x}/partition/{x}/access/{x}` |
-| GET | `/dedicated/nasha/{x}/partition/{x}/authorizableBlocks` |
-| GET | `/dedicated/nasha/{x}/partition/{x}/authorizableIps` |
-| GET | `/dedicated/nasha/{x}/partition/{x}/customSnapshot` |
-| POST | `/dedicated/nasha/{x}/partition/{x}/customSnapshot` |
-| DELETE | `/dedicated/nasha/{x}/partition/{x}/customSnapshot/{x}` |
-| GET | `/dedicated/nasha/{x}/partition/{x}/customSnapshot/{x}` |
-| GET | `/dedicated/nasha/{x}/partition/{x}/options` |
-| POST | `/dedicated/nasha/{x}/partition/{x}/options` |
-| GET | `/dedicated/nasha/{x}/partition/{x}/quota` |
-| POST | `/dedicated/nasha/{x}/partition/{x}/quota` |
-| DELETE | `/dedicated/nasha/{x}/partition/{x}/quota/{x}` |
-| GET | `/dedicated/nasha/{x}/partition/{x}/quota/{x}` |
-| GET | `/dedicated/nasha/{x}/partition/{x}/snapshot` |
-| POST | `/dedicated/nasha/{x}/partition/{x}/snapshot` |
-| DELETE | `/dedicated/nasha/{x}/partition/{x}/snapshot/{x}` |
-| GET | `/dedicated/nasha/{x}/partition/{x}/snapshot/{x}` |
-| GET | `/dedicated/nasha/{x}/partition/{x}/templateUsage` |
-| GET | `/dedicated/nasha/{x}/partition/{x}/use` |
-| GET | `/dedicated/nasha/{x}/serviceInfos` |
-| PUT | `/dedicated/nasha/{x}/serviceInfos` |
-| GET | `/dedicated/nasha/{x}/task` |
-| GET | `/dedicated/nasha/{x}/task/{x}` |
-| POST | `/dedicated/nasha/{x}/terminate` |
-| GET | `/dedicated/nasha/{x}/use` |
-
-### dedicatedCeph (v1) — 35 manquants
-
-_Nodes associés : (aucun node)_
-
-| Méthode | Chemin |
-|--------|--------|
-| GET | `/dedicated/ceph` |
-| GET | `/dedicated/ceph/{x}` |
-| PUT | `/dedicated/ceph/{x}` |
-| GET | `/dedicated/ceph/{x}/acl` |
-| POST | `/dedicated/ceph/{x}/acl` |
-| DELETE | `/dedicated/ceph/{x}/acl/{x}` |
-| GET | `/dedicated/ceph/{x}/acl/{x}` |
-| GET | `/dedicated/ceph/{x}/cephfs` |
-| DELETE | `/dedicated/ceph/{x}/cephfs/{x}` |
-| GET | `/dedicated/ceph/{x}/cephfs/{x}` |
-| POST | `/dedicated/ceph/{x}/cephfs/{x}/disable` |
-| POST | `/dedicated/ceph/{x}/cephfs/{x}/enable` |
-| POST | `/dedicated/ceph/{x}/changeContact` |
-| POST | `/dedicated/ceph/{x}/confirmTermination` |
-| GET | `/dedicated/ceph/{x}/health` |
-| GET | `/dedicated/ceph/{x}/osd/blocklist` |
-| DELETE | `/dedicated/ceph/{x}/osd/blocklist/{x}` |
-| GET | `/dedicated/ceph/{x}/pool` |
-| POST | `/dedicated/ceph/{x}/pool` |
-| DELETE | `/dedicated/ceph/{x}/pool/{x}` |
-| GET | `/dedicated/ceph/{x}/pool/{x}` |
-| PUT | `/dedicated/ceph/{x}/pool/{x}/allowDeletion` |
-| GET | `/dedicated/ceph/{x}/serviceInfos` |
-| PUT | `/dedicated/ceph/{x}/serviceInfos` |
-| GET | `/dedicated/ceph/{x}/task` |
-| GET | `/dedicated/ceph/{x}/task/{x}` |
-| POST | `/dedicated/ceph/{x}/terminate` |
-| GET | `/dedicated/ceph/{x}/user` |
-| POST | `/dedicated/ceph/{x}/user` |
-| DELETE | `/dedicated/ceph/{x}/user/{x}` |
-| GET | `/dedicated/ceph/{x}/user/{x}` |
-| GET | `/dedicated/ceph/{x}/user/{x}/pool` |
-| POST | `/dedicated/ceph/{x}/user/{x}/pool` |
-| PUT | `/dedicated/ceph/{x}/user/{x}/pool` |
-| DELETE | `/dedicated/ceph/{x}/user/{x}/pool/{x}` |
-
-### dedicatedHousing (v1) — 18 manquants
-
-_Nodes associés : (aucun node)_
-
-| Méthode | Chemin |
-|--------|--------|
-| GET | `/dedicated/housing` |
-| GET | `/dedicated/housing/{x}` |
-| DELETE | `/dedicated/housing/{x}/features/backupFTP` |
-| GET | `/dedicated/housing/{x}/features/backupFTP` |
-| POST | `/dedicated/housing/{x}/features/backupFTP` |
-| GET | `/dedicated/housing/{x}/features/backupFTP/access` |
-| POST | `/dedicated/housing/{x}/features/backupFTP/access` |
-| DELETE | `/dedicated/housing/{x}/features/backupFTP/access/{x}` |
-| GET | `/dedicated/housing/{x}/features/backupFTP/access/{x}` |
-| PUT | `/dedicated/housing/{x}/features/backupFTP/access/{x}` |
-| GET | `/dedicated/housing/{x}/features/backupFTP/authorizableBlocks` |
-| POST | `/dedicated/housing/{x}/features/backupFTP/password` |
-| GET | `/dedicated/housing/{x}/orderable/APC` |
-| GET | `/dedicated/housing/{x}/serviceInfos` |
-| PUT | `/dedicated/housing/{x}/serviceInfos` |
-| GET | `/dedicated/housing/{x}/task` |
-| GET | `/dedicated/housing/{x}/task/{x}` |
-| POST | `/dedicated/housing/{x}/task/{x}/cancel` |
-
 ### licenseOffice (v1) — 16 manquants
 
-_Nodes associés : (aucun node)_
+_Nodes associés : OvhCloudLicense_
 
 | Méthode | Chemin |
 |--------|--------|
@@ -277,7 +148,7 @@ _Nodes associés : (aucun node)_
 
 ### licenseOfficePrepaid (v1) — 16 manquants
 
-_Nodes associés : (aucun node)_
+_Nodes associés : OvhCloudLicense_
 
 | Méthode | Chemin |
 |--------|--------|
@@ -300,7 +171,7 @@ _Nodes associés : (aucun node)_
 
 ### licensePlesk (v1) — 16 manquants
 
-_Nodes associés : (aucun node)_
+_Nodes associés : OvhCloudLicense_
 
 | Méthode | Chemin |
 |--------|--------|
@@ -323,7 +194,7 @@ _Nodes associés : (aucun node)_
 
 ### licenseVirtuozzo (v1) — 16 manquants
 
-_Nodes associés : (aucun node)_
+_Nodes associés : OvhCloudLicense_
 
 | Méthode | Chemin |
 |--------|--------|
@@ -346,7 +217,7 @@ _Nodes associés : (aucun node)_
 
 ### licenseDirectadmin (v1) — 14 manquants
 
-_Nodes associés : (aucun node)_
+_Nodes associés : OvhCloudLicense_
 
 | Méthode | Chemin |
 |--------|--------|
@@ -367,7 +238,7 @@ _Nodes associés : (aucun node)_
 
 ### licenseWindows (v1) — 14 manquants
 
-_Nodes associés : (aucun node)_
+_Nodes associés : OvhCloudLicense_
 
 | Méthode | Chemin |
 |--------|--------|
@@ -388,7 +259,7 @@ _Nodes associés : (aucun node)_
 
 ### licenseCpanel (v1) — 13 manquants
 
-_Nodes associés : (aucun node)_
+_Nodes associés : OvhCloudLicense_
 
 | Méthode | Chemin |
 |--------|--------|
@@ -408,7 +279,7 @@ _Nodes associés : (aucun node)_
 
 ### licenseHycu (v1) — 10 manquants
 
-_Nodes associés : (aucun node)_
+_Nodes associés : OvhCloudLicense_
 
 | Méthode | Chemin |
 |--------|--------|
@@ -423,41 +294,9 @@ _Nodes associés : (aucun node)_
 | PUT | `/license/hycu/{x}/serviceInfos` |
 | POST | `/license/hycu/{x}/terminate` |
 
-### dedicatedCluster (v1) — 9 manquants
-
-_Nodes associés : (aucun node)_
-
-| Méthode | Chemin |
-|--------|--------|
-| GET | `/dedicated/cluster` |
-| GET | `/dedicated/cluster/{x}` |
-| POST | `/dedicated/cluster/{x}/changeContact` |
-| POST | `/dedicated/cluster/{x}/confirmTermination` |
-| GET | `/dedicated/cluster/{x}/serviceInfos` |
-| PUT | `/dedicated/cluster/{x}/serviceInfos` |
-| POST | `/dedicated/cluster/{x}/terminate` |
-| GET | `/dedicated/cluster/availabilities` |
-| GET | `/dedicated/cluster/availabilities/raw` |
-
-### dedicatedInstallationTemplate (v1) — 9 manquants
-
-_Nodes associés : (aucun node)_
-
-| Méthode | Chemin |
-|--------|--------|
-| GET | `/dedicated/installationTemplate` |
-| GET | `/dedicated/installationTemplate/{x}` |
-| GET | `/dedicated/installationTemplate/{x}/partitionScheme` |
-| GET | `/dedicated/installationTemplate/{x}/partitionScheme/{x}` |
-| GET | `/dedicated/installationTemplate/{x}/partitionScheme/{x}/hardwareRaid` |
-| GET | `/dedicated/installationTemplate/{x}/partitionScheme/{x}/hardwareRaid/{x}` |
-| GET | `/dedicated/installationTemplate/{x}/partitionScheme/{x}/partition` |
-| GET | `/dedicated/installationTemplate/{x}/partitionScheme/{x}/partition/{x}` |
-| GET | `/dedicated/installationTemplate/templateInfos` |
-
 ### licenseCloudLinux (v1) — 9 manquants
 
-_Nodes associés : (aucun node)_
+_Nodes associés : OvhCloudLicense_
 
 | Méthode | Chemin |
 |--------|--------|
@@ -473,7 +312,7 @@ _Nodes associés : (aucun node)_
 
 ### licenseRedhat (v1) — 9 manquants
 
-_Nodes associés : (aucun node)_
+_Nodes associés : OvhCloudLicense_
 
 | Méthode | Chemin |
 |--------|--------|
@@ -489,7 +328,7 @@ _Nodes associés : (aucun node)_
 
 ### licenseSqlserver (v1) — 9 manquants
 
-_Nodes associés : (aucun node)_
+_Nodes associés : OvhCloudLicense_
 
 | Méthode | Chemin |
 |--------|--------|

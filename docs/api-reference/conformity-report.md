@@ -1,16 +1,16 @@
 # OVHcloud API Conformity Report
 
-> Généré par `scripts/audit-conformity.js` le 2026-08-07T09:01:21.059Z. Document généré automatiquement — ne pas éditer à la main.
+> Généré par `scripts/audit-conformity.js` le 2026-08-07T10:54:03.419Z. Document généré automatiquement — ne pas éditer à la main.
 
 Ce rapport vérifie que les opérations des nodes respectent leur spec (méthode, chemin, paramètres path requis, query requis, champs body requis).
 
 ## Résumé
 
-- **Opérations auditées** : 7922
-- **Conformes** : 5064
-- **Non conformes** : 2858
-- **Sans correspondance spec** (informatif) : 2392
-- **Taux de conformité** : **63.9%**
+- **Opérations auditées** : 8131
+- **Conformes** : 5174
+- **Non conformes** : 2957
+- **Sans correspondance spec** (informatif) : 2491
+- **Taux de conformité** : **63.6%**
 
 ## Conformité par spec
 
@@ -67,11 +67,27 @@ Triée par taux de non-conformité décroissant.
 | cluster (v1) | 50 | 42 | 0 | 84% |
 | services (v1) | 50 | 47 | 0 | 94% |
 | emailMxplan (v1) | 46 | 46 | 0 | 100% |
+| dedicatedNasha (v1) | 39 | 39 | 0 | 100% |
 | pack (v1) | 39 | 33 | 0 | 84.6% |
+| dedicatedCeph (v1) | 35 | 35 | 0 | 100% |
 | freefax (v1) | 19 | 18 | 0 | 94.7% |
 | saas (v1) | 19 | 19 | 0 | 100% |
+| dedicatedHousing (v1) | 18 | 18 | 0 | 100% |
 | metrics (v1) | 13 | 12 | 0 | 92.3% |
+| dedicatedCluster (v1) | 9 | 9 | 0 | 100% |
+| dedicatedInstallationTemplate (v1) | 9 | 9 | 0 | 100% |
 | license (v1) | 9 | 7 | 0 | 77.8% |
+| licenseCloudLinux (v1) | 9 | 0 | 0 | 0% |
+| licenseCpanel (v1) | 9 | 0 | 0 | 0% |
+| licenseDirectadmin (v1) | 9 | 0 | 0 | 0% |
+| licenseHycu (v1) | 9 | 0 | 0 | 0% |
+| licenseOffice (v1) | 9 | 0 | 0 | 0% |
+| licenseOfficePrepaid (v1) | 9 | 0 | 0 | 0% |
+| licensePlesk (v1) | 9 | 0 | 0 | 0% |
+| licenseRedhat (v1) | 9 | 0 | 0 | 0% |
+| licenseSqlserver (v1) | 9 | 0 | 0 | 0% |
+| licenseVirtuozzo (v1) | 9 | 0 | 0 | 0% |
+| licenseWindows (v1) | 9 | 0 | 0 | 0% |
 | ssl (v1) | 9 | 6 | 0 | 66.7% |
 | allDom (v1) | 6 | 6 | 0 | 100% |
 | auth (v1) | 6 | 6 | 0 | 100% |
@@ -1463,6 +1479,105 @@ Ces opérations appellent un chemin qui ne correspond à aucun endpoint de la sp
 | ip (v1) | PUT | `/ip/{x}/reverse` | OvhCloudIp/ipReverseUpdatePut.operation.ts |
 | license (v1) | GET | `/license/worklight/{x}/canLicenseBeMovedTo?destinationIp={x}` | OvhCloudLicense/resources/canLicenseBeMovedToGet.operation.ts |
 | license (v1) | GET | `/license/worklight/orderableVersions?ip={x}` | OvhCloudLicense/resources/orderableVersionsGet.operation.ts |
+| licenseCloudLinux (v1) | GET | `/license/worklight` | OvhCloudLicense/resources/list.operation.ts |
+| licenseCloudLinux (v1) | GET | `/license/worklight/{x}` | OvhCloudLicense/resources/get.operation.ts |
+| licenseCloudLinux (v1) | PUT | `/license/worklight/{x}` | OvhCloudLicense/resources/updatePut.operation.ts |
+| licenseCloudLinux (v1) | GET | `/license/worklight/{x}/allowedDestinationIp` | OvhCloudLicense/resources/allowedDestinationIpGet.operation.ts |
+| licenseCloudLinux (v1) | GET | `/license/worklight/{x}/canLicenseBeMovedTo?destinationIp={x}` | OvhCloudLicense/resources/canLicenseBeMovedToGet.operation.ts |
+| licenseCloudLinux (v1) | POST | `/license/worklight/{x}/changeIp` | OvhCloudLicense/resources/changeIpPost.operation.ts |
+| licenseCloudLinux (v1) | POST | `/license/worklight/{x}/confirmTermination` | OvhCloudLicense/resources/confirmTerminationPost.operation.ts |
+| licenseCloudLinux (v1) | POST | `/license/worklight/{x}/terminate` | OvhCloudLicense/resources/terminatePost.operation.ts |
+| licenseCloudLinux (v1) | GET | `/license/worklight/orderableVersions?ip={x}` | OvhCloudLicense/resources/orderableVersionsGet.operation.ts |
+| licenseCpanel (v1) | GET | `/license/worklight` | OvhCloudLicense/resources/list.operation.ts |
+| licenseCpanel (v1) | GET | `/license/worklight/{x}` | OvhCloudLicense/resources/get.operation.ts |
+| licenseCpanel (v1) | PUT | `/license/worklight/{x}` | OvhCloudLicense/resources/updatePut.operation.ts |
+| licenseCpanel (v1) | GET | `/license/worklight/{x}/allowedDestinationIp` | OvhCloudLicense/resources/allowedDestinationIpGet.operation.ts |
+| licenseCpanel (v1) | GET | `/license/worklight/{x}/canLicenseBeMovedTo?destinationIp={x}` | OvhCloudLicense/resources/canLicenseBeMovedToGet.operation.ts |
+| licenseCpanel (v1) | POST | `/license/worklight/{x}/changeIp` | OvhCloudLicense/resources/changeIpPost.operation.ts |
+| licenseCpanel (v1) | POST | `/license/worklight/{x}/confirmTermination` | OvhCloudLicense/resources/confirmTerminationPost.operation.ts |
+| licenseCpanel (v1) | POST | `/license/worklight/{x}/terminate` | OvhCloudLicense/resources/terminatePost.operation.ts |
+| licenseCpanel (v1) | GET | `/license/worklight/orderableVersions?ip={x}` | OvhCloudLicense/resources/orderableVersionsGet.operation.ts |
+| licenseDirectadmin (v1) | GET | `/license/worklight` | OvhCloudLicense/resources/list.operation.ts |
+| licenseDirectadmin (v1) | GET | `/license/worklight/{x}` | OvhCloudLicense/resources/get.operation.ts |
+| licenseDirectadmin (v1) | PUT | `/license/worklight/{x}` | OvhCloudLicense/resources/updatePut.operation.ts |
+| licenseDirectadmin (v1) | GET | `/license/worklight/{x}/allowedDestinationIp` | OvhCloudLicense/resources/allowedDestinationIpGet.operation.ts |
+| licenseDirectadmin (v1) | GET | `/license/worklight/{x}/canLicenseBeMovedTo?destinationIp={x}` | OvhCloudLicense/resources/canLicenseBeMovedToGet.operation.ts |
+| licenseDirectadmin (v1) | POST | `/license/worklight/{x}/changeIp` | OvhCloudLicense/resources/changeIpPost.operation.ts |
+| licenseDirectadmin (v1) | POST | `/license/worklight/{x}/confirmTermination` | OvhCloudLicense/resources/confirmTerminationPost.operation.ts |
+| licenseDirectadmin (v1) | POST | `/license/worklight/{x}/terminate` | OvhCloudLicense/resources/terminatePost.operation.ts |
+| licenseDirectadmin (v1) | GET | `/license/worklight/orderableVersions?ip={x}` | OvhCloudLicense/resources/orderableVersionsGet.operation.ts |
+| licenseHycu (v1) | GET | `/license/worklight` | OvhCloudLicense/resources/list.operation.ts |
+| licenseHycu (v1) | GET | `/license/worklight/{x}` | OvhCloudLicense/resources/get.operation.ts |
+| licenseHycu (v1) | PUT | `/license/worklight/{x}` | OvhCloudLicense/resources/updatePut.operation.ts |
+| licenseHycu (v1) | GET | `/license/worklight/{x}/allowedDestinationIp` | OvhCloudLicense/resources/allowedDestinationIpGet.operation.ts |
+| licenseHycu (v1) | GET | `/license/worklight/{x}/canLicenseBeMovedTo?destinationIp={x}` | OvhCloudLicense/resources/canLicenseBeMovedToGet.operation.ts |
+| licenseHycu (v1) | POST | `/license/worklight/{x}/changeIp` | OvhCloudLicense/resources/changeIpPost.operation.ts |
+| licenseHycu (v1) | POST | `/license/worklight/{x}/confirmTermination` | OvhCloudLicense/resources/confirmTerminationPost.operation.ts |
+| licenseHycu (v1) | POST | `/license/worklight/{x}/terminate` | OvhCloudLicense/resources/terminatePost.operation.ts |
+| licenseHycu (v1) | GET | `/license/worklight/orderableVersions?ip={x}` | OvhCloudLicense/resources/orderableVersionsGet.operation.ts |
+| licenseOffice (v1) | GET | `/license/worklight` | OvhCloudLicense/resources/list.operation.ts |
+| licenseOffice (v1) | GET | `/license/worklight/{x}` | OvhCloudLicense/resources/get.operation.ts |
+| licenseOffice (v1) | PUT | `/license/worklight/{x}` | OvhCloudLicense/resources/updatePut.operation.ts |
+| licenseOffice (v1) | GET | `/license/worklight/{x}/allowedDestinationIp` | OvhCloudLicense/resources/allowedDestinationIpGet.operation.ts |
+| licenseOffice (v1) | GET | `/license/worklight/{x}/canLicenseBeMovedTo?destinationIp={x}` | OvhCloudLicense/resources/canLicenseBeMovedToGet.operation.ts |
+| licenseOffice (v1) | POST | `/license/worklight/{x}/changeIp` | OvhCloudLicense/resources/changeIpPost.operation.ts |
+| licenseOffice (v1) | POST | `/license/worklight/{x}/confirmTermination` | OvhCloudLicense/resources/confirmTerminationPost.operation.ts |
+| licenseOffice (v1) | POST | `/license/worklight/{x}/terminate` | OvhCloudLicense/resources/terminatePost.operation.ts |
+| licenseOffice (v1) | GET | `/license/worklight/orderableVersions?ip={x}` | OvhCloudLicense/resources/orderableVersionsGet.operation.ts |
+| licenseOfficePrepaid (v1) | GET | `/license/worklight` | OvhCloudLicense/resources/list.operation.ts |
+| licenseOfficePrepaid (v1) | GET | `/license/worklight/{x}` | OvhCloudLicense/resources/get.operation.ts |
+| licenseOfficePrepaid (v1) | PUT | `/license/worklight/{x}` | OvhCloudLicense/resources/updatePut.operation.ts |
+| licenseOfficePrepaid (v1) | GET | `/license/worklight/{x}/allowedDestinationIp` | OvhCloudLicense/resources/allowedDestinationIpGet.operation.ts |
+| licenseOfficePrepaid (v1) | GET | `/license/worklight/{x}/canLicenseBeMovedTo?destinationIp={x}` | OvhCloudLicense/resources/canLicenseBeMovedToGet.operation.ts |
+| licenseOfficePrepaid (v1) | POST | `/license/worklight/{x}/changeIp` | OvhCloudLicense/resources/changeIpPost.operation.ts |
+| licenseOfficePrepaid (v1) | POST | `/license/worklight/{x}/confirmTermination` | OvhCloudLicense/resources/confirmTerminationPost.operation.ts |
+| licenseOfficePrepaid (v1) | POST | `/license/worklight/{x}/terminate` | OvhCloudLicense/resources/terminatePost.operation.ts |
+| licenseOfficePrepaid (v1) | GET | `/license/worklight/orderableVersions?ip={x}` | OvhCloudLicense/resources/orderableVersionsGet.operation.ts |
+| licensePlesk (v1) | GET | `/license/worklight` | OvhCloudLicense/resources/list.operation.ts |
+| licensePlesk (v1) | GET | `/license/worklight/{x}` | OvhCloudLicense/resources/get.operation.ts |
+| licensePlesk (v1) | PUT | `/license/worklight/{x}` | OvhCloudLicense/resources/updatePut.operation.ts |
+| licensePlesk (v1) | GET | `/license/worklight/{x}/allowedDestinationIp` | OvhCloudLicense/resources/allowedDestinationIpGet.operation.ts |
+| licensePlesk (v1) | GET | `/license/worklight/{x}/canLicenseBeMovedTo?destinationIp={x}` | OvhCloudLicense/resources/canLicenseBeMovedToGet.operation.ts |
+| licensePlesk (v1) | POST | `/license/worklight/{x}/changeIp` | OvhCloudLicense/resources/changeIpPost.operation.ts |
+| licensePlesk (v1) | POST | `/license/worklight/{x}/confirmTermination` | OvhCloudLicense/resources/confirmTerminationPost.operation.ts |
+| licensePlesk (v1) | POST | `/license/worklight/{x}/terminate` | OvhCloudLicense/resources/terminatePost.operation.ts |
+| licensePlesk (v1) | GET | `/license/worklight/orderableVersions?ip={x}` | OvhCloudLicense/resources/orderableVersionsGet.operation.ts |
+| licenseRedhat (v1) | GET | `/license/worklight` | OvhCloudLicense/resources/list.operation.ts |
+| licenseRedhat (v1) | GET | `/license/worklight/{x}` | OvhCloudLicense/resources/get.operation.ts |
+| licenseRedhat (v1) | PUT | `/license/worklight/{x}` | OvhCloudLicense/resources/updatePut.operation.ts |
+| licenseRedhat (v1) | GET | `/license/worklight/{x}/allowedDestinationIp` | OvhCloudLicense/resources/allowedDestinationIpGet.operation.ts |
+| licenseRedhat (v1) | GET | `/license/worklight/{x}/canLicenseBeMovedTo?destinationIp={x}` | OvhCloudLicense/resources/canLicenseBeMovedToGet.operation.ts |
+| licenseRedhat (v1) | POST | `/license/worklight/{x}/changeIp` | OvhCloudLicense/resources/changeIpPost.operation.ts |
+| licenseRedhat (v1) | POST | `/license/worklight/{x}/confirmTermination` | OvhCloudLicense/resources/confirmTerminationPost.operation.ts |
+| licenseRedhat (v1) | POST | `/license/worklight/{x}/terminate` | OvhCloudLicense/resources/terminatePost.operation.ts |
+| licenseRedhat (v1) | GET | `/license/worklight/orderableVersions?ip={x}` | OvhCloudLicense/resources/orderableVersionsGet.operation.ts |
+| licenseSqlserver (v1) | GET | `/license/worklight` | OvhCloudLicense/resources/list.operation.ts |
+| licenseSqlserver (v1) | GET | `/license/worklight/{x}` | OvhCloudLicense/resources/get.operation.ts |
+| licenseSqlserver (v1) | PUT | `/license/worklight/{x}` | OvhCloudLicense/resources/updatePut.operation.ts |
+| licenseSqlserver (v1) | GET | `/license/worklight/{x}/allowedDestinationIp` | OvhCloudLicense/resources/allowedDestinationIpGet.operation.ts |
+| licenseSqlserver (v1) | GET | `/license/worklight/{x}/canLicenseBeMovedTo?destinationIp={x}` | OvhCloudLicense/resources/canLicenseBeMovedToGet.operation.ts |
+| licenseSqlserver (v1) | POST | `/license/worklight/{x}/changeIp` | OvhCloudLicense/resources/changeIpPost.operation.ts |
+| licenseSqlserver (v1) | POST | `/license/worklight/{x}/confirmTermination` | OvhCloudLicense/resources/confirmTerminationPost.operation.ts |
+| licenseSqlserver (v1) | POST | `/license/worklight/{x}/terminate` | OvhCloudLicense/resources/terminatePost.operation.ts |
+| licenseSqlserver (v1) | GET | `/license/worklight/orderableVersions?ip={x}` | OvhCloudLicense/resources/orderableVersionsGet.operation.ts |
+| licenseVirtuozzo (v1) | GET | `/license/worklight` | OvhCloudLicense/resources/list.operation.ts |
+| licenseVirtuozzo (v1) | GET | `/license/worklight/{x}` | OvhCloudLicense/resources/get.operation.ts |
+| licenseVirtuozzo (v1) | PUT | `/license/worklight/{x}` | OvhCloudLicense/resources/updatePut.operation.ts |
+| licenseVirtuozzo (v1) | GET | `/license/worklight/{x}/allowedDestinationIp` | OvhCloudLicense/resources/allowedDestinationIpGet.operation.ts |
+| licenseVirtuozzo (v1) | GET | `/license/worklight/{x}/canLicenseBeMovedTo?destinationIp={x}` | OvhCloudLicense/resources/canLicenseBeMovedToGet.operation.ts |
+| licenseVirtuozzo (v1) | POST | `/license/worklight/{x}/changeIp` | OvhCloudLicense/resources/changeIpPost.operation.ts |
+| licenseVirtuozzo (v1) | POST | `/license/worklight/{x}/confirmTermination` | OvhCloudLicense/resources/confirmTerminationPost.operation.ts |
+| licenseVirtuozzo (v1) | POST | `/license/worklight/{x}/terminate` | OvhCloudLicense/resources/terminatePost.operation.ts |
+| licenseVirtuozzo (v1) | GET | `/license/worklight/orderableVersions?ip={x}` | OvhCloudLicense/resources/orderableVersionsGet.operation.ts |
+| licenseWindows (v1) | GET | `/license/worklight` | OvhCloudLicense/resources/list.operation.ts |
+| licenseWindows (v1) | GET | `/license/worklight/{x}` | OvhCloudLicense/resources/get.operation.ts |
+| licenseWindows (v1) | PUT | `/license/worklight/{x}` | OvhCloudLicense/resources/updatePut.operation.ts |
+| licenseWindows (v1) | GET | `/license/worklight/{x}/allowedDestinationIp` | OvhCloudLicense/resources/allowedDestinationIpGet.operation.ts |
+| licenseWindows (v1) | GET | `/license/worklight/{x}/canLicenseBeMovedTo?destinationIp={x}` | OvhCloudLicense/resources/canLicenseBeMovedToGet.operation.ts |
+| licenseWindows (v1) | POST | `/license/worklight/{x}/changeIp` | OvhCloudLicense/resources/changeIpPost.operation.ts |
+| licenseWindows (v1) | POST | `/license/worklight/{x}/confirmTermination` | OvhCloudLicense/resources/confirmTerminationPost.operation.ts |
+| licenseWindows (v1) | POST | `/license/worklight/{x}/terminate` | OvhCloudLicense/resources/terminatePost.operation.ts |
+| licenseWindows (v1) | GET | `/license/worklight/orderableVersions?ip={x}` | OvhCloudLicense/resources/orderableVersionsGet.operation.ts |
 | metrics (v1) | GET | `/metrics/{x}/quota` | OvhCloudMetrics/resources/quotaGet.operation.ts |
 | msServices (v1) | DELETE | `/msServices/{x}` | OvhCloudMsServices/msServicesDeleteDelete.operation.ts |
 | msServices (v1) | POST | `/msServices/{x}/reinstall` | OvhCloudMsServices/reinstallPost.operation.ts |
