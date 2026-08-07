@@ -1,6 +1,6 @@
 # OVHcloud API Coverage Report
 
-> Généré par `scripts/compare-coverage.js` le 2026-08-07T16:01:42.291Z. Document généré automatiquement — ne pas éditer à la main.
+> Généré par `scripts/compare-coverage.js` le 2026-08-07T18:41:07.162Z. Document généré automatiquement — ne pas éditer à la main.
 
 Ce rapport compare les endpoints déclarés dans les specs Swagger 2.0 (`docs/api-specs/v1|v2/*.json`) avec les appels HTTP réellement présents dans les nodes (`nodes/**/*.operation.ts`).
 
@@ -8,8 +8,8 @@ Ce rapport compare les endpoints déclarés dans les specs Swagger 2.0 (`docs/ap
 
 - **Specs analysées** : 84 (v1: 70, v2: 14)
 - **Endpoints déclarés (specs avec endpoints)** : 6624
-- **Endpoints couverts par les nodes** : 5522
-- **Couverture globale** : **83.4%**
+- **Endpoints couverts par les nodes** : 5636
+- **Couverture globale** : **85.1%**
 - **Specs sans node associé** : 1
 - **Specs placeholder (aucun endpoint)** : 1
 
@@ -19,29 +19,29 @@ Triée par pourcentage croissant (moins bonne couverture en premier).
 
 | Spec (version) | Total | Couverts | Manquants | % |
 |----------------|------:|---------:|----------:|---:|
-| licenseOffice (v1) | 16 | 0 | 16 | 0% |
-| licenseOfficePrepaid (v1) | 16 | 0 | 16 | 0% |
-| licensePlesk (v1) | 16 | 0 | 16 | 0% |
-| licenseVirtuozzo (v1) | 16 | 0 | 16 | 0% |
-| licenseDirectadmin (v1) | 14 | 0 | 14 | 0% |
-| licenseWindows (v1) | 14 | 0 | 14 | 0% |
-| licenseCpanel (v1) | 13 | 0 | 13 | 0% |
-| licenseHycu (v1) | 10 | 0 | 10 | 0% |
-| licenseCloudLinux (v1) | 9 | 0 | 9 | 0% |
-| licenseRedhat (v1) | 9 | 0 | 9 | 0% |
-| licenseSqlserver (v1) | 9 | 0 | 9 | 0% |
 | packSiptrunk (v1) | 5 | 0 | 5 | 0% |
 | sslGateway (v1) | 23 | 6 | 17 | 26.1% |
 | veeam (v1) | 10 | 5 | 5 | 50% |
 | license (v1) | 13 | 7 | 6 | 53.8% |
 | pack (v1) | 58 | 33 | 25 | 56.9% |
+| licenseHycu (v1) | 10 | 6 | 4 | 60% |
 | me (v1) | 379 | 233 | 146 | 61.5% |
 | cloud (v1) | 1121 | 710 | 411 | 63.3% |
 | order (v1) | 816 | 538 | 278 | 65.9% |
+| licenseOffice (v1) | 16 | 11 | 5 | 68.8% |
+| licenseOfficePrepaid (v1) | 16 | 11 | 5 | 68.8% |
 | metrics (v1) | 16 | 12 | 4 | 75% |
 | ovhCloudConnect (v1) | 54 | 42 | 12 | 77.8% |
+| licenseRedhat (v1) | 9 | 7 | 2 | 77.8% |
 | hosting (v1) | 198 | 167 | 31 | 84.3% |
+| licenseCpanel (v1) | 13 | 11 | 2 | 84.6% |
+| licenseDirectadmin (v1) | 14 | 12 | 2 | 85.7% |
+| licenseWindows (v1) | 14 | 12 | 2 | 85.7% |
+| licensePlesk (v1) | 16 | 14 | 2 | 87.5% |
+| licenseVirtuozzo (v1) | 16 | 14 | 2 | 87.5% |
 | dedicated (v1) | 131 | 116 | 15 | 88.5% |
+| licenseCloudLinux (v1) | 9 | 8 | 1 | 88.9% |
+| licenseSqlserver (v1) | 9 | 8 | 1 | 88.9% |
 | freefax (v1) | 19 | 18 | 1 | 94.7% |
 | cluster (v1) | 43 | 42 | 1 | 97.7% |
 | horizonView (v1) | 43 | 42 | 1 | 97.7% |
@@ -122,225 +122,6 @@ Fichiers de spec présents dans le dossier mais avec `apis: []` (spec absente / 
 ## Endpoints manquants
 
 Endpoints déclarés dans les specs mais non appelés par les nodes, groupés par spec :
-
-### licenseOffice (v1) — 16 manquants
-
-_Nodes associés : OvhCloudLicense_
-
-| Méthode | Chemin |
-|--------|--------|
-| GET | `/license/office` |
-| GET | `/license/office/{x}` |
-| PUT | `/license/office/{x}` |
-| GET | `/license/office/{x}/domain` |
-| GET | `/license/office/{x}/domain/{x}` |
-| GET | `/license/office/{x}/pendingTask` |
-| GET | `/license/office/{x}/pendingTask/{x}` |
-| GET | `/license/office/{x}/serviceInfos` |
-| PUT | `/license/office/{x}/serviceInfos` |
-| GET | `/license/office/{x}/usageStatistics` |
-| GET | `/license/office/{x}/user` |
-| POST | `/license/office/{x}/user` |
-| DELETE | `/license/office/{x}/user/{x}` |
-| GET | `/license/office/{x}/user/{x}` |
-| PUT | `/license/office/{x}/user/{x}` |
-| POST | `/license/office/{x}/user/{x}/changePassword` |
-
-### licenseOfficePrepaid (v1) — 16 manquants
-
-_Nodes associés : OvhCloudLicense_
-
-| Méthode | Chemin |
-|--------|--------|
-| GET | `/license/officePrepaid` |
-| GET | `/license/officePrepaid/{x}` |
-| PUT | `/license/officePrepaid/{x}` |
-| POST | `/license/officePrepaid/{x}/changePassword` |
-| POST | `/license/officePrepaid/{x}/confirmTermination` |
-| GET | `/license/officePrepaid/{x}/parentTenant` |
-| PUT | `/license/officePrepaid/{x}/parentTenant` |
-| POST | `/license/officePrepaid/{x}/parentTenant/acceptAgreement` |
-| POST | `/license/officePrepaid/{x}/parentTenant/createAttestation` |
-| GET | `/license/officePrepaid/{x}/serviceInfos` |
-| PUT | `/license/officePrepaid/{x}/serviceInfos` |
-| GET | `/license/officePrepaid/{x}/tenantPendingTask` |
-| GET | `/license/officePrepaid/{x}/tenantPendingTask/{x}` |
-| GET | `/license/officePrepaid/{x}/tenantUsageStatistics` |
-| POST | `/license/officePrepaid/{x}/terminate` |
-| POST | `/license/officePrepaid/{x}/unconfigure` |
-
-### licensePlesk (v1) — 16 manquants
-
-_Nodes associés : OvhCloudLicense_
-
-| Méthode | Chemin |
-|--------|--------|
-| GET | `/license/plesk` |
-| GET | `/license/plesk/{x}` |
-| PUT | `/license/plesk/{x}` |
-| GET | `/license/plesk/{x}/allowedDestinationIp` |
-| GET | `/license/plesk/{x}/canLicenseBeMovedTo` |
-| POST | `/license/plesk/{x}/changeIp` |
-| POST | `/license/plesk/{x}/confirmTermination` |
-| GET | `/license/plesk/{x}/option` |
-| DELETE | `/license/plesk/{x}/option/{x}` |
-| GET | `/license/plesk/{x}/option/{x}` |
-| GET | `/license/plesk/{x}/serviceInfos` |
-| PUT | `/license/plesk/{x}/serviceInfos` |
-| GET | `/license/plesk/{x}/tasks` |
-| GET | `/license/plesk/{x}/tasks/{x}` |
-| POST | `/license/plesk/{x}/terminate` |
-| GET | `/license/plesk/orderableVersions` |
-
-### licenseVirtuozzo (v1) — 16 manquants
-
-_Nodes associés : OvhCloudLicense_
-
-| Méthode | Chemin |
-|--------|--------|
-| GET | `/license/virtuozzo` |
-| GET | `/license/virtuozzo/{x}` |
-| PUT | `/license/virtuozzo/{x}` |
-| GET | `/license/virtuozzo/{x}/allowedDestinationIp` |
-| GET | `/license/virtuozzo/{x}/canLicenseBeMovedTo` |
-| POST | `/license/virtuozzo/{x}/changeIp` |
-| POST | `/license/virtuozzo/{x}/confirmTermination` |
-| GET | `/license/virtuozzo/{x}/option` |
-| DELETE | `/license/virtuozzo/{x}/option/{x}` |
-| GET | `/license/virtuozzo/{x}/option/{x}` |
-| GET | `/license/virtuozzo/{x}/serviceInfos` |
-| PUT | `/license/virtuozzo/{x}/serviceInfos` |
-| GET | `/license/virtuozzo/{x}/tasks` |
-| GET | `/license/virtuozzo/{x}/tasks/{x}` |
-| POST | `/license/virtuozzo/{x}/terminate` |
-| GET | `/license/virtuozzo/orderableVersions` |
-
-### licenseDirectadmin (v1) — 14 manquants
-
-_Nodes associés : OvhCloudLicense_
-
-| Méthode | Chemin |
-|--------|--------|
-| GET | `/license/directadmin` |
-| GET | `/license/directadmin/{x}` |
-| PUT | `/license/directadmin/{x}` |
-| GET | `/license/directadmin/{x}/allowedDestinationIp` |
-| GET | `/license/directadmin/{x}/canLicenseBeMovedTo` |
-| POST | `/license/directadmin/{x}/changeIp` |
-| POST | `/license/directadmin/{x}/changeOs` |
-| POST | `/license/directadmin/{x}/confirmTermination` |
-| GET | `/license/directadmin/{x}/serviceInfos` |
-| PUT | `/license/directadmin/{x}/serviceInfos` |
-| GET | `/license/directadmin/{x}/tasks` |
-| GET | `/license/directadmin/{x}/tasks/{x}` |
-| POST | `/license/directadmin/{x}/terminate` |
-| GET | `/license/directadmin/orderableVersions` |
-
-### licenseWindows (v1) — 14 manquants
-
-_Nodes associés : OvhCloudLicense_
-
-| Méthode | Chemin |
-|--------|--------|
-| GET | `/license/windows` |
-| GET | `/license/windows/{x}` |
-| PUT | `/license/windows/{x}` |
-| POST | `/license/windows/{x}/confirmTermination` |
-| GET | `/license/windows/{x}/option` |
-| DELETE | `/license/windows/{x}/option/{x}` |
-| GET | `/license/windows/{x}/option/{x}` |
-| GET | `/license/windows/{x}/serviceInfos` |
-| PUT | `/license/windows/{x}/serviceInfos` |
-| POST | `/license/windows/{x}/sqlServer` |
-| GET | `/license/windows/{x}/tasks` |
-| GET | `/license/windows/{x}/tasks/{x}` |
-| POST | `/license/windows/{x}/terminate` |
-| GET | `/license/windows/orderableVersions` |
-
-### licenseCpanel (v1) — 13 manquants
-
-_Nodes associés : OvhCloudLicense_
-
-| Méthode | Chemin |
-|--------|--------|
-| GET | `/license/cpanel` |
-| GET | `/license/cpanel/{x}` |
-| PUT | `/license/cpanel/{x}` |
-| GET | `/license/cpanel/{x}/allowedDestinationIp` |
-| GET | `/license/cpanel/{x}/canLicenseBeMovedTo` |
-| POST | `/license/cpanel/{x}/changeIp` |
-| POST | `/license/cpanel/{x}/confirmTermination` |
-| GET | `/license/cpanel/{x}/serviceInfos` |
-| PUT | `/license/cpanel/{x}/serviceInfos` |
-| GET | `/license/cpanel/{x}/tasks` |
-| GET | `/license/cpanel/{x}/tasks/{x}` |
-| POST | `/license/cpanel/{x}/terminate` |
-| GET | `/license/cpanel/orderableVersions` |
-
-### licenseHycu (v1) — 10 manquants
-
-_Nodes associés : OvhCloudLicense_
-
-| Méthode | Chemin |
-|--------|--------|
-| GET | `/license/hycu` |
-| GET | `/license/hycu/{x}` |
-| PUT | `/license/hycu/{x}` |
-| POST | `/license/hycu/{x}/activate` |
-| POST | `/license/hycu/{x}/confirmTermination` |
-| GET | `/license/hycu/{x}/license` |
-| POST | `/license/hycu/{x}/refresh` |
-| GET | `/license/hycu/{x}/serviceInfos` |
-| PUT | `/license/hycu/{x}/serviceInfos` |
-| POST | `/license/hycu/{x}/terminate` |
-
-### licenseCloudLinux (v1) — 9 manquants
-
-_Nodes associés : OvhCloudLicense_
-
-| Méthode | Chemin |
-|--------|--------|
-| GET | `/license/cloudLinux` |
-| GET | `/license/cloudLinux/{x}` |
-| POST | `/license/cloudLinux/{x}/confirmTermination` |
-| GET | `/license/cloudLinux/{x}/serviceInfos` |
-| PUT | `/license/cloudLinux/{x}/serviceInfos` |
-| GET | `/license/cloudLinux/{x}/tasks` |
-| GET | `/license/cloudLinux/{x}/tasks/{x}` |
-| POST | `/license/cloudLinux/{x}/terminate` |
-| GET | `/license/cloudLinux/orderableVersions` |
-
-### licenseRedhat (v1) — 9 manquants
-
-_Nodes associés : OvhCloudLicense_
-
-| Méthode | Chemin |
-|--------|--------|
-| GET | `/license/redhat` |
-| GET | `/license/redhat/{x}` |
-| PUT | `/license/redhat/{x}` |
-| POST | `/license/redhat/{x}/confirmTermination` |
-| GET | `/license/redhat/{x}/serviceInfos` |
-| PUT | `/license/redhat/{x}/serviceInfos` |
-| GET | `/license/redhat/{x}/tasks` |
-| GET | `/license/redhat/{x}/tasks/{x}` |
-| POST | `/license/redhat/{x}/terminate` |
-
-### licenseSqlserver (v1) — 9 manquants
-
-_Nodes associés : OvhCloudLicense_
-
-| Méthode | Chemin |
-|--------|--------|
-| GET | `/license/sqlserver` |
-| GET | `/license/sqlserver/{x}` |
-| POST | `/license/sqlserver/{x}/confirmTermination` |
-| GET | `/license/sqlserver/{x}/serviceInfos` |
-| PUT | `/license/sqlserver/{x}/serviceInfos` |
-| GET | `/license/sqlserver/{x}/tasks` |
-| GET | `/license/sqlserver/{x}/tasks/{x}` |
-| POST | `/license/sqlserver/{x}/terminate` |
-| GET | `/license/sqlserver/orderableVersions` |
 
 ### packSiptrunk (v1) — 5 manquants
 
@@ -434,6 +215,17 @@ _Nodes associés : OvhCloudPackXdsl, OvhCloudPack_
 | POST | `/pack/xdsl/{x}/voipLine/services` |
 | GET | `/pack/xdsl/{x}/voipLine/services/{x}` |
 | GET | `/pack/xdsl/{x}/xdslAccess/services` |
+
+### licenseHycu (v1) — 4 manquants
+
+_Nodes associés : OvhCloudLicense_
+
+| Méthode | Chemin |
+|--------|--------|
+| PUT | `/license/hycu/{x}` |
+| POST | `/license/hycu/{x}/activate` |
+| POST | `/license/hycu/{x}/refresh` |
+| PUT | `/license/hycu/{x}/serviceInfos` |
 
 ### me (v1) — 146 manquants
 
@@ -1291,6 +1083,30 @@ _Nodes associés : OvhCloudOrder_
 | GET | `/order/xdsl/spare/new` |
 | POST | `/order/xdsl/spare/new` |
 
+### licenseOffice (v1) — 5 manquants
+
+_Nodes associés : OvhCloudLicense_
+
+| Méthode | Chemin |
+|--------|--------|
+| PUT | `/license/office/{x}` |
+| PUT | `/license/office/{x}/serviceInfos` |
+| POST | `/license/office/{x}/user` |
+| PUT | `/license/office/{x}/user/{x}` |
+| POST | `/license/office/{x}/user/{x}/changePassword` |
+
+### licenseOfficePrepaid (v1) — 5 manquants
+
+_Nodes associés : OvhCloudLicense_
+
+| Méthode | Chemin |
+|--------|--------|
+| PUT | `/license/officePrepaid/{x}` |
+| POST | `/license/officePrepaid/{x}/changePassword` |
+| PUT | `/license/officePrepaid/{x}/parentTenant` |
+| POST | `/license/officePrepaid/{x}/parentTenant/createAttestation` |
+| PUT | `/license/officePrepaid/{x}/serviceInfos` |
+
 ### metrics (v1) — 4 manquants
 
 _Nodes associés : OvhCloudMetrics_
@@ -1320,6 +1136,15 @@ _Nodes associés : OvhCloudOvhCloudConnect_
 | GET | `/ovhCloudConnect/{x}/task` |
 | GET | `/ovhCloudConnect/{x}/task/{x}` |
 | POST | `/ovhCloudConnect/{x}/terminate` |
+
+### licenseRedhat (v1) — 2 manquants
+
+_Nodes associés : OvhCloudLicense_
+
+| Méthode | Chemin |
+|--------|--------|
+| PUT | `/license/redhat/{x}` |
+| PUT | `/license/redhat/{x}/serviceInfos` |
 
 ### hosting (v1) — 31 manquants
 
@@ -1359,6 +1184,51 @@ _Nodes associés : OvhCloudHosting_
 | GET | `/hosting/web/{x}/website/{x}/deployment/{x}/logs` |
 | GET | `/hosting/web/{x}/websiteCreationCapabilities` |
 
+### licenseCpanel (v1) — 2 manquants
+
+_Nodes associés : OvhCloudLicense_
+
+| Méthode | Chemin |
+|--------|--------|
+| PUT | `/license/cpanel/{x}` |
+| PUT | `/license/cpanel/{x}/serviceInfos` |
+
+### licenseDirectadmin (v1) — 2 manquants
+
+_Nodes associés : OvhCloudLicense_
+
+| Méthode | Chemin |
+|--------|--------|
+| PUT | `/license/directadmin/{x}` |
+| PUT | `/license/directadmin/{x}/serviceInfos` |
+
+### licenseWindows (v1) — 2 manquants
+
+_Nodes associés : OvhCloudLicense_
+
+| Méthode | Chemin |
+|--------|--------|
+| PUT | `/license/windows/{x}` |
+| PUT | `/license/windows/{x}/serviceInfos` |
+
+### licensePlesk (v1) — 2 manquants
+
+_Nodes associés : OvhCloudLicense_
+
+| Méthode | Chemin |
+|--------|--------|
+| PUT | `/license/plesk/{x}` |
+| PUT | `/license/plesk/{x}/serviceInfos` |
+
+### licenseVirtuozzo (v1) — 2 manquants
+
+_Nodes associés : OvhCloudLicense_
+
+| Méthode | Chemin |
+|--------|--------|
+| PUT | `/license/virtuozzo/{x}` |
+| PUT | `/license/virtuozzo/{x}/serviceInfos` |
+
 ### dedicated (v1) — 15 manquants
 
 _Nodes associés : OvhCloudDedicated_
@@ -1380,6 +1250,22 @@ _Nodes associés : OvhCloudDedicated_
 | POST | `/dedicated/server/{x}/terminate` |
 | POST | `/dedicated/server/{x}/virtualNetworkInterface/{x}/disable` |
 | POST | `/dedicated/server/{x}/virtualNetworkInterface/{x}/enable` |
+
+### licenseCloudLinux (v1) — 1 manquant
+
+_Nodes associés : OvhCloudLicense_
+
+| Méthode | Chemin |
+|--------|--------|
+| PUT | `/license/cloudLinux/{x}/serviceInfos` |
+
+### licenseSqlserver (v1) — 1 manquant
+
+_Nodes associés : OvhCloudLicense_
+
+| Méthode | Chemin |
+|--------|--------|
+| PUT | `/license/sqlserver/{x}/serviceInfos` |
 
 ### freefax (v1) — 1 manquant
 
