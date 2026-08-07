@@ -1,0 +1,52 @@
+import type {
+	IExecuteFunctions,
+	INodeExecutionData,
+	IDataObject,
+	INodeProperties,
+	IDisplayOptions,
+} from 'n8n-workflow';
+import { ApiClient } from '../../../shared/transport/ApiClient';
+
+export function description(displayOptions: IDisplayOptions): INodeProperties[] {
+	return [
+		{
+			displayName: 'Service Name',
+			name: 'serviceName',
+			type: 'string',
+			default: '',
+			required: true,
+			description: 'Get NIC details',
+			displayOptions,
+		},
+		{
+			displayName: 'Nic ID',
+			name: 'nicId',
+			type: 'string',
+			default: '',
+			required: true,
+			description: 'Get NIC details',
+			displayOptions,
+		},
+	];
+}
+
+/**
+ * Get NIC details
+ *
+ * HTTP method: GET
+ * Endpoint: /dedicated/server/{serviceName}/networkInterfaceController/{nicId}
+ */
+export async function execute(
+	this: IExecuteFunctions,
+	itemIndex: number,
+): Promise<INodeExecutionData[]> {
+	const client = new ApiClient(this);
+	const serviceName = this.getNodeParameter('serviceName', itemIndex) as string;
+	const nicId = this.getNodeParameter('nicId', itemIndex) as string;
+
+	const data = (await client.httpGet(
+		`/dedicated/server/${encodeURIComponent(String(serviceName))}/networkInterfaceController/${encodeURIComponent(String(nicId))}`,
+	)) as IDataObject;
+	const inputData = this.getInputData()[itemIndex];
+	return this.helpers.returnJsonArray([{ ...inputData.json, ...data }]);
+}
