@@ -1,16 +1,16 @@
 # OVHcloud API Conformity Report
 
-> Généré par `scripts/audit-conformity.js` le 2026-08-06T22:13:28.069Z. Document généré automatiquement — ne pas éditer à la main.
+> Généré par `scripts/audit-conformity.js` le 2026-08-07T02:43:20.194Z. Document généré automatiquement — ne pas éditer à la main.
 
 Ce rapport vérifie que les opérations des nodes respectent leur spec (méthode, chemin, paramètres path requis, query requis, champs body requis).
 
 ## Résumé
 
-- **Opérations auditées** : 6794
-- **Conformes** : 4122
-- **Non conformes** : 2672
-- **Sans correspondance spec** (informatif) : 2353
-- **Taux de conformité** : **60.7%**
+- **Opérations auditées** : 7142
+- **Conformes** : 4331
+- **Non conformes** : 2811
+- **Sans correspondance spec** (informatif) : 2350
+- **Taux de conformité** : **60.6%**
 
 ## Conformité par spec
 
@@ -37,20 +37,20 @@ Triée par taux de non-conformité décroissant.
 | managedCMS (v2) | 17 | 14 | 3 | 82.4% |
 | notification (v2) | 19 | 16 | 3 | 84.2% |
 | vmwareCloudDirector (v2) | 32 | 27 | 5 | 84.4% |
+| dedicated (v1) | 168 | 93 | 26 | 55.4% |
 | ip (v1) | 92 | 68 | 13 | 73.9% |
 | backupServices (v2) | 15 | 13 | 2 | 86.7% |
 | newAccount (v1) | 8 | 7 | 1 | 87.5% |
 | vrackServices (v2) | 8 | 7 | 1 | 87.5% |
+| order (v1) | 789 | 447 | 92 | 56.7% |
 | service (v1) | 9 | 8 | 1 | 88.9% |
+| me (v1) | 456 | 414 | 42 | 90.8% |
 | vrack (v1) | 12 | 4 | 1 | 33.3% |
 | veeamCloudConnect (v1) | 14 | 13 | 1 | 92.9% |
 | vps (v1) | 63 | 20 | 4 | 31.7% |
 | cloud (v1) | 1129 | 673 | 44 | 59.6% |
-| me (v1) | 309 | 300 | 9 | 97.1% |
-| dedicated (v1) | 69 | 31 | 2 | 44.9% |
+| hosting (v1) | 237 | 169 | 7 | 71.3% |
 | horizonView (v1) | 42 | 41 | 1 | 97.6% |
-| hosting (v1) | 237 | 154 | 5 | 65% |
-| order (v1) | 687 | 429 | 9 | 62.4% |
 | webhosting (v2) | 246 | 12 | 3 | 4.9% |
 | domain (v1) | 119 | 109 | 1 | 91.6% |
 | telephony (v1) | 644 | 602 | 5 | 93.5% |
@@ -214,12 +214,36 @@ Chaque ligne correspond à un appel HTTP non conforme, groupée par spec :
 | POST | `/dbaas/logs/{x}/token` | OvhCloudDbaas/token/tokenCreatePost.operation.ts | missing required body field 'name' |
 | POST | `/dbaas/logs/{x}/user/changePassword` | OvhCloudDbaas/service/serviceUserChangePasswordPost.operation.ts | missing required body field 'password' |
 
-### dedicated — 2 non-conformités
+### dedicated — 26 non-conformités
 
 | Méthode | Chemin | Fichier | Problèmes |
 |--------|--------|---------|-----------|
 | POST | `/dedicated/server/{x}/confirmTermination` | OvhCloudDedicated/resources/confirmTerminationCreate.operation.ts | missing required body field 'token' |
 | POST | `/dedicated/server/{x}/features/backupFTP/access` | OvhCloudDedicated/resources/backupFtpAccessPost.operation.ts | missing required body field 'cifs'; missing required body field 'ipBlock'; missing required body field 'nfs' |
+| GET | `/dedicated/server/{x}/features/ipmi/access` | OvhCloudDedicated/resources/featuresIpmiAccessGet.operation.ts | missing required query param 'type' |
+| GET | `/dedicated/server/{x}/features/ipmi/test` | OvhCloudDedicated/resources/featuresIpmiTestGet.operation.ts | missing required query param 'type' |
+| GET | `/dedicated/server/{x}/install/compatibleTemplatePartitionSchemes` | OvhCloudDedicated/resources/installCompatibleTemplatePartitionSchemesGet.operation.ts | missing required query param 'templateName' |
+| POST | `/dedicated/server/{x}/ipBlockMerge` | OvhCloudDedicated/resources/ipBlockMergePost.operation.ts | missing required body field 'block' |
+| GET | `/dedicated/server/{x}/ipCanBeMovedTo` | OvhCloudDedicated/resources/ipCanBeMovedToGet.operation.ts | missing required query param 'ip' |
+| POST | `/dedicated/server/{x}/ipMove` | OvhCloudDedicated/resources/ipMovePost.operation.ts | missing required body field 'ip' |
+| POST | `/dedicated/server/{x}/license/windows` | OvhCloudDedicated/resources/licenseWindowsPost.operation.ts | missing required body field 'licenseId'; missing required body field 'version' |
+| GET | `/dedicated/server/{x}/mrtg` | OvhCloudDedicated/resources/mrtgGet.operation.ts | missing required query param 'period'; missing required query param 'type' |
+| GET | `/dedicated/server/{x}/networkInterfaceController/{x}/mrtg` | OvhCloudDedicated/resources/networkInterfaceControllerMrtgGet.operation.ts | missing required query param 'period'; missing required query param 'type' |
+| POST | `/dedicated/server/{x}/ola/aggregation` | OvhCloudDedicated/resources/olaAggregationPost.operation.ts | missing required body field 'name'; missing required body field 'virtualNetworkInterfaces' |
+| POST | `/dedicated/server/{x}/ola/group` | OvhCloudDedicated/resources/olaGroupPost.operation.ts | missing required body field 'name'; missing required body field 'virtualNetworkInterfaces' |
+| POST | `/dedicated/server/{x}/ola/ungroup` | OvhCloudDedicated/resources/olaUngroupPost.operation.ts | missing required body field 'virtualNetworkInterface' |
+| GET | `/dedicated/server/{x}/orderable/feature` | OvhCloudDedicated/resources/orderableFeatureGet.operation.ts | missing required query param 'feature' |
+| POST | `/dedicated/server/{x}/reinstall` | OvhCloudDedicated/resources/reinstallPost.operation.ts | missing required body field 'operatingSystem' |
+| POST | `/dedicated/server/{x}/secondaryDnsDomains` | OvhCloudDedicated/resources/secondaryDnsDomainsCreatePost.operation.ts | missing required body field 'domain' |
+| GET | `/dedicated/server/{x}/secondaryDnsNameDomainToken` | OvhCloudDedicated/resources/secondaryDnsNameDomainTokenGet.operation.ts | missing required query param 'domain' |
+| POST | `/dedicated/server/{x}/spla` | OvhCloudDedicated/resources/splaCreatePost.operation.ts | missing required body field 'serialNumber'; missing required body field 'type' |
+| GET | `/dedicated/server/{x}/task/{x}/availableTimeslots` | OvhCloudDedicated/resources/taskAvailableTimeslotsGet.operation.ts | missing required query param 'periodEnd'; missing required query param 'periodStart' |
+| POST | `/dedicated/server/{x}/task/{x}/schedule` | OvhCloudDedicated/resources/taskSchedulePost.operation.ts | missing required body field 'hasPerformedBackup'; missing required body field 'wantedBeginingDate' |
+| POST | `/dedicated/server/{x}/virtualMac` | OvhCloudDedicated/resources/virtualMacCreatePost.operation.ts | missing required body field 'ipAddress'; missing required body field 'type'; missing required body field 'virtualMachineName' |
+| POST | `/dedicated/server/{x}/virtualMac/{x}/virtualAddress` | OvhCloudDedicated/resources/virtualMacVirtualAddressCreatePost.operation.ts | missing required body field 'ipAddress'; missing required body field 'virtualMachineName' |
+| GET | `/dedicated/server/{x}/vrack/{x}/mrtg` | OvhCloudDedicated/resources/vrackMrtgGet.operation.ts | missing required query param 'period'; missing required query param 'type' |
+| GET | `/dedicated/server/availabilities` | OvhCloudDedicated/resources/availabilitiesGet.operation.ts | missing required query param 'country' |
+| GET | `/dedicated/server/osAvailabilities` | OvhCloudDedicated/resources/osAvailabilitiesGet.operation.ts | missing required query param 'hardware' |
 
 ### dedicatedCloud — 67 non-conformités
 
@@ -305,10 +329,12 @@ Chaque ligne correspond à un appel HTTP non conforme, groupée par spec :
 |--------|--------|---------|-----------|
 | POST | `/horizonView/{x}/accessPoint/{x}/enableTwoFA` | OvhCloudHorizonView/resources/accessPoint/enableTwoFAPost.operation.ts | missing required body field 'radiusIp'; missing required body field 'secret' |
 
-### hosting — 5 non-conformités
+### hosting — 7 non-conformités
 
 | Méthode | Chemin | Fichier | Problèmes |
 |--------|--------|---------|-----------|
+| POST | `/hosting/web/{x}/cdn/domain/{x}/option` | OvhCloudHosting/cdn/cdnDomainOptionCreatePost.operation.ts | missing required body field 'type' |
+| PUT | `/hosting/web/{x}/cdn/domain/{x}/option/{x}` | OvhCloudHosting/cdn/cdnDomainOptionUpdatePut.operation.ts | missing required body field 'enabled'; missing required body field 'type' |
 | POST | `/hosting/web/{x}/confirmTermination` | OvhCloudHosting/serviceManagement/confirmTerminationCreate.operation.ts | missing required body field 'token' |
 | POST | `/hosting/web/{x}/cron` | OvhCloudHosting/cron/cronCreatePost.operation.ts | missing required body field 'command'; missing required body field 'frequency'; missing required body field 'language' |
 | PUT | `/hosting/web/{x}/cron/{x}` | OvhCloudHosting/cron/cronUpdatePut.operation.ts | missing required body field 'command'; missing required body field 'frequency'; missing required body field 'language' |
@@ -357,7 +383,7 @@ Chaque ligne correspond à un appel HTTP non conforme, groupée par spec :
 | GET | `/managedCMS/reference/supportedPHPVersions` | OvhCloudManagedCms/managedCMSreferencesupportedPHPVersionsListGet.operation.ts | missing required query param 'cms' |
 | POST | `/managedCMS/resource/{x}/website` | OvhCloudManagedCms/managedCMSresourcewebsiteCreatePost.operation.ts | missing required body field 'targetSpec' |
 
-### me — 9 non-conformités
+### me — 42 non-conformités
 
 | Méthode | Chemin | Fichier | Problèmes |
 |--------|--------|---------|-----------|
@@ -367,9 +393,42 @@ Chaque ligne correspond à un appel HTTP non conforme, groupée par spec :
 | POST | `/me/accessRestriction/totp/{x}/disable` | OvhCloudMe/operations/accessRestriction.operation.ts | missing required body field 'code' |
 | POST | `/me/accessRestriction/totp/{x}/enable` | OvhCloudMe/operations/accessRestriction.operation.ts | missing required body field 'code' |
 | POST | `/me/accessRestriction/totp/{x}/validate` | OvhCloudMe/operations/accessRestriction.operation.ts | missing required body field 'code' |
+| POST | `/me/api/log/subscription` | OvhCloudMe/operations/apiExtra.operation.ts | missing required body field 'streamId' |
+| POST | `/me/api/oauth2/client` | OvhCloudMe/operations/apiExtra.operation.ts | missing required body field 'description'; missing required body field 'flow' |
+| POST | `/me/billing/purchaseOrder` | OvhCloudMe/operations/billingExtra.operation.ts | missing required body field 'reference'; missing required body field 'startDate'; missing required body field 'type' |
+| POST | `/me/billing/report/consumption` | OvhCloudMe/operations/billingExtra.operation.ts | missing required body field 'periodEnd'; missing required body field 'periodStart' |
 | GET | `/me/bringYourOwnIp/token` | OvhCloudMe/operations/partner.operation.ts | missing required query param 'campus' |
 | GET | `/me/consumption/usage/history` | OvhCloudMe/operations/notification.operation.ts | missing required query param 'beginDate'; missing required query param 'endDate' |
+| POST | `/me/credit/code` | OvhCloudMe/operations/contactCreditDebtDocument.operation.ts | missing required body field 'inputCode' |
+| POST | `/me/fax/customDomains` | OvhCloudMe/operations/faxFidelity.operation.ts | missing required body field 'domain' |
+| POST | `/me/fidelityAccount/creditOrder` | OvhCloudMe/operations/faxFidelity.operation.ts | missing required body field 'amount' |
+| POST | `/me/identity/provider` | OvhCloudMe/operations/identity.operation.ts | missing required body field 'metadata' |
+| POST | `/me/identity/user` | OvhCloudMe/operations/identity.operation.ts | missing required body field 'login' |
+| POST | `/me/identity/user/{x}/token` | OvhCloudMe/operations/identity.operation.ts | missing required body field 'description' |
+| POST | `/me/ipOrganisation` | OvhCloudMe/operations/ipAuditMarketingMigration.operation.ts | missing required body field 'abuse_mailbox'; missing required body field 'address'; missing required body field 'city'; missing required body field 'country'; missing required body field 'firstname'; missing required body field 'lastname'; missing required body field 'phone'; missing required body field 'registry' |
+| POST | `/me/logs/audit/log/subscription` | OvhCloudMe/operations/ipAuditMarketingMigration.operation.ts | missing required body field 'streamId' |
+| POST | `/me/mailingList/subscribe` | OvhCloudMe/operations/ipAuditMarketingMigration.operation.ts | missing required body field 'email' |
+| POST | `/me/order/{x}/balance` | OvhCloudMe/operations/order.operation.ts | missing required body field 'balanceName' |
 | GET | `/me/order/{x}/consumption/details` | OvhCloudMe/operations/payment.operation.ts | missing required query param 'fileFormat' |
+| POST | `/me/order/{x}/pay` | OvhCloudMe/operations/order.operation.ts | missing required body field 'paymentMethod' |
+| POST | `/me/order/{x}/retraction` | OvhCloudMe/operations/order.operation.ts | missing required body field 'reason' |
+| POST | `/me/ovhAccount/{x}/movements/{x}/requestRefund` | OvhCloudMe/operations/accountCreate.operation.ts | missing required body field 'amount' |
+| POST | `/me/ovhAccount/{x}/retrieveMoney` | OvhCloudMe/operations/accountCreate.operation.ts | missing required body field 'amount'; missing required body field 'bankAccountId' |
+| POST | `/me/passwordRecover` | OvhCloudMe/operations/accountCreate.operation.ts | missing required body field 'ovhCompany'; missing required body field 'ovhId' |
+| POST | `/me/payment/method` | OvhCloudMe/operations/paymentExtra.operation.ts | missing required body field 'callbackUrl'; missing required body field 'paymentType' |
+| POST | `/me/payment/method/{x}/challenge` | OvhCloudMe/operations/paymentExtra.operation.ts | missing required body field 'challenge' |
+| POST | `/me/paymentMean/bankAccount` | OvhCloudMe/operations/paymentExtra.operation.ts | missing required body field 'bic'; missing required body field 'iban'; missing required body field 'ownerAddress'; missing required body field 'ownerName' |
+| POST | `/me/paymentMean/bankAccount/{x}/challenge` | OvhCloudMe/operations/paymentExtra.operation.ts | missing required body field 'challenge' |
+| POST | `/me/paymentMean/creditCard/{x}/challenge` | OvhCloudMe/operations/paymentExtra.operation.ts | missing required body field 'challenge' |
+| POST | `/me/paymentMean/paypal/{x}/challenge` | OvhCloudMe/operations/paymentExtra.operation.ts | missing required body field 'challenge' |
+| POST | `/me/sshKey` | OvhCloudMe/operations/refundSshKey.operation.ts | missing required body field 'key'; missing required body field 'keyName' |
+| POST | `/me/task/contactChange/{x}/accept` | OvhCloudMe/operations/task.operation.ts | missing required body field 'token' |
+| POST | `/me/task/contactChange/{x}/refuse` | OvhCloudMe/operations/task.operation.ts | missing required body field 'token' |
+| POST | `/me/task/emailChange/{x}/accept` | OvhCloudMe/operations/task.operation.ts | missing required body field 'token' |
+| POST | `/me/task/emailChange/{x}/refuse` | OvhCloudMe/operations/task.operation.ts | missing required body field 'token' |
+| POST | `/me/telephony/defaultIpRestriction` | OvhCloudMe/operations/telecomExtra.operation.ts | missing required body field 'subnet'; missing required body field 'type' |
+| POST | `/me/telephony/settings` | OvhCloudMe/operations/telecomExtra.operation.ts | missing required body field 'settings' |
+| POST | `/me/voucher/checkValidity` | OvhCloudMe/operations/accountCreate.operation.ts | missing required body field 'voucher' |
 
 ### networkDefense — 1 non-conformité
 
@@ -414,7 +473,7 @@ Chaque ligne correspond à un appel HTTP non conforme, groupée par spec :
 | POST | `/okms/resource/{x}/secret/{x}/version` | OvhCloudOkms/okmsresourcesecretversionCreatePost.operation.ts | missing required body field 'data' |
 | PUT | `/okms/resource/{x}/secret/{x}/version/{x}` | OvhCloudOkms/okmsresourcesecretversionUpdatePut.operation.ts | missing required body field 'state' |
 
-### order — 9 non-conformités
+### order — 92 non-conformités
 
 | Méthode | Chemin | Fichier | Problèmes |
 |--------|--------|---------|-----------|
@@ -423,7 +482,90 @@ Chaque ligne correspond à un appel HTTP non conforme, groupée par spec :
 | POST | `/order/cart/{x}/domainPacks` | OvhCloudOrder/cart/domainPacks/cartDomainPacksPOST.operation.ts | missing required body field 'domain' |
 | POST | `/order/cart/{x}/item/{x}/configuration` | OvhCloudOrder/cart/cartItemConfigurationCreatePost.operation.ts | missing required body field 'label'; missing required body field 'value' |
 | POST | `/order/cart/{x}/support` | OvhCloudOrder/cart/cartSupportCreatePost.operation.ts | missing required body field 'duration'; missing required body field 'planCode'; missing required body field 'pricingMode'; missing required body field 'quantity' |
+| POST | `/order/cartServiceOption/baremetalServers/{x}` | OvhCloudOrder/cartServiceOption/cartServiceOptionBaremetalServersCreatePost.operation.ts | missing required body field 'cartId'; missing required body field 'duration'; missing required body field 'planCode'; missing required body field 'pricingMode'; missing required body field 'quantity' |
+| POST | `/order/cartServiceOption/cloud/{x}` | OvhCloudOrder/cartServiceOption/cartServiceOptionCloudCreatePost.operation.ts | missing required body field 'cartId'; missing required body field 'duration'; missing required body field 'planCode'; missing required body field 'pricingMode'; missing required body field 'quantity' |
+| POST | `/order/cartServiceOption/dedicated/{x}` | OvhCloudOrder/cartServiceOption/cartServiceOptionDedicatedCreatePost.operation.ts | missing required body field 'cartId'; missing required body field 'duration'; missing required body field 'planCode'; missing required body field 'pricingMode'; missing required body field 'quantity' |
+| POST | `/order/cartServiceOption/dns/{x}` | OvhCloudOrder/cartServiceOption/cartServiceOptionDnsCreatePost.operation.ts | missing required body field 'cartId'; missing required body field 'duration'; missing required body field 'planCode'; missing required body field 'pricingMode'; missing required body field 'quantity' |
+| POST | `/order/cartServiceOption/domain/{x}` | OvhCloudOrder/cartServiceOption/cartServiceOptionDomainCreatePost.operation.ts | missing required body field 'cartId'; missing required body field 'duration'; missing required body field 'planCode'; missing required body field 'pricingMode'; missing required body field 'quantity' |
+| POST | `/order/cartServiceOption/emailpro/{x}` | OvhCloudOrder/cartServiceOption/cartServiceOptionEmailproCreatePost.operation.ts | missing required body field 'cartId'; missing required body field 'duration'; missing required body field 'planCode'; missing required body field 'pricingMode'; missing required body field 'quantity' |
+| POST | `/order/cartServiceOption/ipLoadbalancing/{x}` | OvhCloudOrder/cartServiceOption/cartServiceOptionIpLoadbalancingCreatePost.operation.ts | missing required body field 'cartId'; missing required body field 'duration'; missing required body field 'planCode'; missing required body field 'pricingMode'; missing required body field 'quantity' |
+| POST | `/order/cartServiceOption/licenseHycu/{x}` | OvhCloudOrder/cartServiceOption/cartServiceOptionLicenseHycuCreatePost.operation.ts | missing required body field 'cartId'; missing required body field 'duration'; missing required body field 'planCode'; missing required body field 'pricingMode'; missing required body field 'quantity' |
+| POST | `/order/cartServiceOption/logs/{x}` | OvhCloudOrder/cartServiceOption/cartServiceOptionLogsCreatePost.operation.ts | missing required body field 'cartId'; missing required body field 'duration'; missing required body field 'planCode'; missing required body field 'pricingMode'; missing required body field 'quantity' |
+| POST | `/order/cartServiceOption/microsoft/{x}` | OvhCloudOrder/cartServiceOption/cartServiceOptionMicrosoftCreatePost.operation.ts | missing required body field 'cartId'; missing required body field 'duration'; missing required body field 'planCode'; missing required body field 'pricingMode'; missing required body field 'quantity' |
+| POST | `/order/cartServiceOption/microsoftExchange/{x}` | OvhCloudOrder/cartServiceOption/cartServiceOptionMicrosoftExchangeCreatePost.operation.ts | missing required body field 'cartId'; missing required body field 'duration'; missing required body field 'planCode'; missing required body field 'pricingMode'; missing required body field 'quantity' |
+| POST | `/order/cartServiceOption/nutanix/{x}` | OvhCloudOrder/cartServiceOption/cartServiceOptionNutanixCreatePost.operation.ts | missing required body field 'cartId'; missing required body field 'duration'; missing required body field 'planCode'; missing required body field 'pricingMode'; missing required body field 'quantity' |
+| POST | `/order/cartServiceOption/office365Prepaid/{x}` | OvhCloudOrder/cartServiceOption/cartServiceOptionOffice365PrepaidCreatePost.operation.ts | missing required body field 'cartId'; missing required body field 'duration'; missing required body field 'planCode'; missing required body field 'pricingMode'; missing required body field 'quantity' |
+| POST | `/order/cartServiceOption/officePrepaid/{x}` | OvhCloudOrder/cartServiceOption/cartServiceOptionOfficePrepaidCreatePost.operation.ts | missing required body field 'cartId'; missing required body field 'duration'; missing required body field 'planCode'; missing required body field 'pricingMode'; missing required body field 'quantity' |
+| POST | `/order/cartServiceOption/privateCloud/{x}` | OvhCloudOrder/cartServiceOption/cartServiceOptionPrivateCloudCreatePost.operation.ts | missing required body field 'cartId'; missing required body field 'duration'; missing required body field 'planCode'; missing required body field 'pricingMode'; missing required body field 'quantity' |
+| POST | `/order/cartServiceOption/privateCloudEnterprise/{x}` | OvhCloudOrder/cartServiceOption/cartServiceOptionPrivateCloudEnterpriseCreatePost.operation.ts | missing required body field 'cartId'; missing required body field 'duration'; missing required body field 'planCode'; missing required body field 'pricingMode'; missing required body field 'quantity' |
+| POST | `/order/cartServiceOption/privateCloudReseller/{x}` | OvhCloudOrder/cartServiceOption/cartServiceOptionPrivateCloudResellerCreatePost.operation.ts | missing required body field 'cartId'; missing required body field 'duration'; missing required body field 'planCode'; missing required body field 'pricingMode'; missing required body field 'quantity' |
+| POST | `/order/cartServiceOption/privateCloudResellerEnterprise/{x}` | OvhCloudOrder/cartServiceOption/cartServiceOptionPrivateCloudResellerEnterpriseCreatePost.operation.ts | missing required body field 'cartId'; missing required body field 'duration'; missing required body field 'planCode'; missing required body field 'pricingMode'; missing required body field 'quantity' |
+| POST | `/order/cartServiceOption/sharepoint/{x}` | OvhCloudOrder/cartServiceOption/cartServiceOptionSharepointCreatePost.operation.ts | missing required body field 'cartId'; missing required body field 'duration'; missing required body field 'planCode'; missing required body field 'pricingMode'; missing required body field 'quantity' |
+| POST | `/order/cartServiceOption/sms/{x}` | OvhCloudOrder/cartServiceOption/cartServiceOptionSmsCreatePost.operation.ts | missing required body field 'cartId'; missing required body field 'duration'; missing required body field 'planCode'; missing required body field 'pricingMode'; missing required body field 'quantity' |
+| POST | `/order/cartServiceOption/sncNetworkServices/{x}` | OvhCloudOrder/cartServiceOption/cartServiceOptionSncNetworkServicesCreatePost.operation.ts | missing required body field 'cartId'; missing required body field 'duration'; missing required body field 'planCode'; missing required body field 'pricingMode'; missing required body field 'quantity' |
+| POST | `/order/cartServiceOption/sslGateway/{x}` | OvhCloudOrder/cartServiceOption/cartServiceOptionSslGatewayCreatePost.operation.ts | missing required body field 'cartId'; missing required body field 'duration'; missing required body field 'planCode'; missing required body field 'pricingMode'; missing required body field 'quantity' |
+| POST | `/order/cartServiceOption/vdi/{x}` | OvhCloudOrder/cartServiceOption/cartServiceOptionVdiCreatePost.operation.ts | missing required body field 'cartId'; missing required body field 'duration'; missing required body field 'planCode'; missing required body field 'pricingMode'; missing required body field 'quantity' |
+| POST | `/order/cartServiceOption/vmwareCloudDirector/{x}` | OvhCloudOrder/cartServiceOption/cartServiceOptionVmwareCloudDirectorCreatePost.operation.ts | missing required body field 'cartId'; missing required body field 'duration'; missing required body field 'planCode'; missing required body field 'pricingMode'; missing required body field 'quantity' |
+| POST | `/order/cartServiceOption/vps/{x}` | OvhCloudOrder/cartServiceOption/cartServiceOptionVpsCreatePost.operation.ts | missing required body field 'cartId'; missing required body field 'duration'; missing required body field 'planCode'; missing required body field 'pricingMode'; missing required body field 'quantity' |
+| POST | `/order/cartServiceOption/vrack/{x}` | OvhCloudOrder/cartServiceOption/cartServiceOptionVrackCreatePost.operation.ts | missing required body field 'cartId'; missing required body field 'duration'; missing required body field 'planCode'; missing required body field 'pricingMode'; missing required body field 'quantity' |
+| POST | `/order/cartServiceOption/webHosting/{x}` | OvhCloudOrder/cartServiceOption/cartServiceOptionWebHostingCreatePost.operation.ts | missing required body field 'cartId'; missing required body field 'duration'; missing required body field 'planCode'; missing required body field 'pricingMode'; missing required body field 'quantity' |
+| GET | `/order/dedicated/server/{x}/backupStorage/{x}` | OvhCloudOrder/dedicated/dedicatedServerBackupStorageListGet.operation.ts | missing required query param 'capacity' |
+| POST | `/order/dedicated/server/{x}/backupStorage/{x}` | OvhCloudOrder/dedicated/dedicatedServerBackupStorageCreatePost.operation.ts | missing required body field 'capacity' |
+| GET | `/order/dedicated/server/{x}/bandwidth/{x}` | OvhCloudOrder/dedicated/dedicatedServerBandwidthListGet.operation.ts | missing required query param 'bandwidth'; missing required query param 'type' |
+| POST | `/order/dedicated/server/{x}/bandwidth/{x}` | OvhCloudOrder/dedicated/dedicatedServerBandwidthCreatePost.operation.ts | missing required body field 'bandwidth'; missing required body field 'type' |
+| GET | `/order/dedicated/server/{x}/bandwidthvRack/{x}` | OvhCloudOrder/dedicated/dedicatedServerBandwidthvRackListGet.operation.ts | missing required query param 'bandwidth' |
+| POST | `/order/dedicated/server/{x}/bandwidthvRack/{x}` | OvhCloudOrder/dedicated/dedicatedServerBandwidthvRackCreatePost.operation.ts | missing required body field 'bandwidth' |
+| GET | `/order/dedicated/server/{x}/feature/{x}` | OvhCloudOrder/dedicated/dedicatedServerFeatureListGet.operation.ts | missing required query param 'feature' |
+| POST | `/order/dedicated/server/{x}/feature/{x}` | OvhCloudOrder/dedicated/dedicatedServerFeatureCreatePost.operation.ts | missing required body field 'feature' |
+| GET | `/order/dedicated/server/{x}/firewall/{x}` | OvhCloudOrder/dedicated/dedicatedServerFirewallListGet.operation.ts | missing required query param 'firewallModel' |
+| POST | `/order/dedicated/server/{x}/firewall/{x}` | OvhCloudOrder/dedicated/dedicatedServerFirewallCreatePost.operation.ts | missing required body field 'firewallModel' |
+| GET | `/order/dedicated/server/{x}/ipMigration/{x}` | OvhCloudOrder/dedicated/dedicatedServerIpMigrationListGet.operation.ts | missing required query param 'ip'; missing required query param 'token' |
+| POST | `/order/dedicated/server/{x}/ipMigration/{x}` | OvhCloudOrder/dedicated/dedicatedServerIpMigrationCreatePost.operation.ts | missing required body field 'ip'; missing required body field 'token' |
+| GET | `/order/dedicated/server/{x}/traffic/{x}` | OvhCloudOrder/dedicated/dedicatedServerTrafficListGet.operation.ts | missing required query param 'traffic' |
+| POST | `/order/dedicated/server/{x}/traffic/{x}` | OvhCloudOrder/dedicated/dedicatedServerTrafficCreatePost.operation.ts | missing required body field 'traffic' |
+| GET | `/order/dedicated/server/{x}/usbKey/{x}` | OvhCloudOrder/dedicated/dedicatedServerUsbKeyListGet.operation.ts | missing required query param 'capacity' |
+| POST | `/order/dedicated/server/{x}/usbKey/{x}` | OvhCloudOrder/dedicated/dedicatedServerUsbKeyCreatePost.operation.ts | missing required body field 'capacity' |
+| GET | `/order/dedicatedCloud/{x}/additionalBandwidth/{x}` | OvhCloudOrder/dedicatedCloud/dedicatedCloudAdditionalBandwidthListGet.operation.ts | missing required query param 'bandwidth' |
+| POST | `/order/dedicatedCloud/{x}/additionalBandwidth/{x}` | OvhCloudOrder/dedicatedCloud/dedicatedCloudAdditionalBandwidthCreatePost.operation.ts | missing required body field 'bandwidth' |
+| GET | `/order/dedicatedCloud/{x}/filer/{x}` | OvhCloudOrder/dedicatedCloud/dedicatedCloudFilerListGet.operation.ts | missing required query param 'name' |
+| POST | `/order/dedicatedCloud/{x}/filer/{x}` | OvhCloudOrder/dedicatedCloud/dedicatedCloudFilerCreatePost.operation.ts | missing required body field 'name' |
+| GET | `/order/dedicatedCloud/{x}/host/{x}` | OvhCloudOrder/dedicatedCloud/dedicatedCloudHostListGet.operation.ts | missing required query param 'datacenterId'; missing required query param 'name' |
+| POST | `/order/dedicatedCloud/{x}/host/{x}` | OvhCloudOrder/dedicatedCloud/dedicatedCloudHostCreatePost.operation.ts | missing required body field 'datacenterId'; missing required body field 'name' |
+| GET | `/order/dedicatedCloud/{x}/ip/{x}` | OvhCloudOrder/dedicatedCloud/dedicatedCloudIpListGet.operation.ts | missing required query param 'country'; missing required query param 'description'; missing required query param 'estimatedClientsNumber'; missing required query param 'networkName'; missing required query param 'size'; missing required query param 'usage' |
+| POST | `/order/dedicatedCloud/{x}/ip/{x}` | OvhCloudOrder/dedicatedCloud/dedicatedCloudIpCreatePost.operation.ts | missing required body field 'country'; missing required body field 'description'; missing required body field 'estimatedClientsNumber'; missing required body field 'networkName'; missing required body field 'size'; missing required body field 'usage' |
+| GET | `/order/dedicatedCloud/{x}/upgradeRessource/{x}` | OvhCloudOrder/dedicatedCloud/dedicatedCloudUpgradeRessourceListGet.operation.ts | missing required query param 'upgradeType'; missing required query param 'upgradedRessourceType' |
+| POST | `/order/dedicatedCloud/{x}/upgradeRessource/{x}` | OvhCloudOrder/dedicatedCloud/dedicatedCloudUpgradeRessourceCreatePost.operation.ts | missing required body field 'upgradeType'; missing required body field 'upgradedRessourceType' |
+| GET | `/order/dedicatedCloud/{x}/vdi` | OvhCloudOrder/dedicatedCloud/dedicatedCloudVdiListGet.operation.ts | missing required query param 'datacenterId'; missing required query param 'firstPublicIpAddress'; missing required query param 'secondPublicIpAddress' |
+| POST | `/order/dedicatedCloud/{x}/vdi` | OvhCloudOrder/dedicatedCloud/dedicatedCloudVdiCreatePost.operation.ts | missing required body field 'datacenterId'; missing required body field 'firstPublicIpAddress'; missing required body field 'secondPublicIpAddress' |
 | POST | `/order/email/domain/new/{x}` | OvhCloudOrder/emailDomain/emailDomainNewOrderCreatePost.operation.ts | missing required body field 'domain' |
+| GET | `/order/telephony/{x}/accessories` | OvhCloudOrder/telephony/telephonyAccessoriesListGet.operation.ts | missing required query param 'accessories'; missing required query param 'retractation'; missing required query param 'shippingContactId' |
+| POST | `/order/telephony/{x}/accessories` | OvhCloudOrder/telephony/telephonyAccessoriesCreatePost.operation.ts | missing required body field 'accessories'; missing required body field 'retractation'; missing required body field 'shippingContactId' |
+| GET | `/order/telephony/{x}/line` | OvhCloudOrder/telephony/telephonyLineListGet.operation.ts | missing required query param 'displayUniversalDirectories'; missing required query param 'extraSimultaneousLines'; missing required query param 'offers'; missing required query param 'ownerContactIds'; missing required query param 'quantity'; missing required query param 'retractation'; missing required query param 'shippingContactId'; missing required query param 'types' |
+| POST | `/order/telephony/{x}/line` | OvhCloudOrder/telephony/telephonyLineCreatePost.operation.ts | missing required body field 'displayUniversalDirectories'; missing required body field 'extraSimultaneousLines'; missing required body field 'offers'; missing required body field 'ownerContactIds'; missing required body field 'quantity'; missing required body field 'retractation'; missing required body field 'shippingContactId'; missing required body field 'types' |
+| GET | `/order/telephony/{x}/numberGeographic` | OvhCloudOrder/telephony/telephonyNumberGeographicListGet.operation.ts | missing required query param 'city'; missing required query param 'country'; missing required query param 'displayUniversalDirectory'; missing required query param 'legalform'; missing required query param 'offer'; missing required query param 'retractation'; missing required query param 'zone' |
+| POST | `/order/telephony/{x}/numberGeographic` | OvhCloudOrder/telephony/telephonyNumberGeographicCreatePost.operation.ts | missing required body field 'city'; missing required body field 'country'; missing required body field 'displayUniversalDirectory'; missing required body field 'legalform'; missing required body field 'offer'; missing required body field 'retractation'; missing required body field 'zone' |
+| GET | `/order/telephony/{x}/numberNogeographic` | OvhCloudOrder/telephony/telephonyNumberNogeographicListGet.operation.ts | missing required query param 'country'; missing required query param 'displayUniversalDirectory'; missing required query param 'legalform'; missing required query param 'offer'; missing required query param 'retractation' |
+| POST | `/order/telephony/{x}/numberNogeographic` | OvhCloudOrder/telephony/telephonyNumberNogeographicCreatePost.operation.ts | missing required body field 'country'; missing required body field 'displayUniversalDirectory'; missing required body field 'legalform'; missing required body field 'offer'; missing required body field 'retractation' |
+| GET | `/order/telephony/{x}/numberSpecial` | OvhCloudOrder/telephony/telephonyNumberSpecialListGet.operation.ts | missing required query param 'country'; missing required query param 'displayUniversalDirectory'; missing required query param 'legalform'; missing required query param 'range'; missing required query param 'retractation'; missing required query param 'siret'; missing required query param 'socialNomination'; missing required query param 'typology' |
+| POST | `/order/telephony/{x}/numberSpecial` | OvhCloudOrder/telephony/telephonyNumberSpecialCreatePost.operation.ts | missing required body field 'country'; missing required body field 'displayUniversalDirectory'; missing required body field 'legalform'; missing required body field 'range'; missing required body field 'retractation'; missing required body field 'siret'; missing required body field 'socialNomination'; missing required body field 'typology' |
+| GET | `/order/telephony/{x}/portability` | OvhCloudOrder/telephony/telephonyPortabilityListGet.operation.ts | missing required query param 'callNumber'; missing required query param 'city'; missing required query param 'country'; missing required query param 'displayUniversalDirectory'; missing required query param 'name'; missing required query param 'offer'; missing required query param 'socialReason'; missing required query param 'streetName'; missing required query param 'streetNumber'; missing required query param 'zip' |
+| POST | `/order/telephony/{x}/portability` | OvhCloudOrder/telephony/telephonyPortabilityCreatePost.operation.ts | missing required body field 'callNumber'; missing required body field 'city'; missing required body field 'country'; missing required body field 'displayUniversalDirectory'; missing required body field 'name'; missing required body field 'offer'; missing required body field 'socialReason'; missing required body field 'streetName'; missing required body field 'streetNumber'; missing required body field 'zip' |
+| GET | `/order/telephony/{x}/securityDeposit` | OvhCloudOrder/telephony/telephonySecurityDepositListGet.operation.ts | missing required query param 'amount' |
+| POST | `/order/telephony/{x}/securityDeposit` | OvhCloudOrder/telephony/telephonySecurityDepositCreatePost.operation.ts | missing required body field 'amount' |
+| GET | `/order/telephony/lines/{x}/addSimultaneousLines` | OvhCloudOrder/telephony/telephonyLinesAddSimultaneousLinesListGet.operation.ts | missing required query param 'billingAccount'; missing required query param 'quantity' |
+| POST | `/order/telephony/lines/{x}/addSimultaneousLines` | OvhCloudOrder/telephony/telephonyLinesAddSimultaneousLinesCreatePost.operation.ts | missing required body field 'billingAccount'; missing required body field 'quantity' |
+| GET | `/order/telephony/lines/{x}/hardware` | OvhCloudOrder/telephony/telephonyLinesHardwareListGet.operation.ts | missing required query param 'hardware'; missing required query param 'retractation' |
+| POST | `/order/telephony/lines/{x}/hardware` | OvhCloudOrder/telephony/telephonyLinesHardwareCreatePost.operation.ts | missing required body field 'hardware'; missing required body field 'retractation' |
+| GET | `/order/telephony/lines/{x}/updateSimultaneousChannels` | OvhCloudOrder/telephony/telephonyLinesUpdateSimultaneousChannelsListGet.operation.ts | missing required query param 'quantity' |
+| POST | `/order/telephony/lines/{x}/updateSimultaneousChannels` | OvhCloudOrder/telephony/telephonyLinesUpdateSimultaneousChannelsCreatePost.operation.ts | missing required body field 'quantity' |
+| GET | `/order/telephony/spare/new` | OvhCloudOrder/telephony/telephonySpareNewListGet.operation.ts | missing required query param 'brand'; missing required query param 'quantity'; missing required query param 'shippingContactId' |
+| POST | `/order/telephony/spare/new` | OvhCloudOrder/telephony/telephonySpareNewCreatePost.operation.ts | missing required body field 'brand'; missing required body field 'quantity'; missing required body field 'shippingContactId' |
+| GET | `/order/telephony/trunks/{x}/addSimultaneousLines` | OvhCloudOrder/telephony/telephonyTrunksAddSimultaneousLinesListGet.operation.ts | missing required query param 'billingAccount'; missing required query param 'quantity' |
+| POST | `/order/telephony/trunks/{x}/addSimultaneousLines` | OvhCloudOrder/telephony/telephonyTrunksAddSimultaneousLinesCreatePost.operation.ts | missing required body field 'billingAccount'; missing required body field 'quantity' |
+| GET | `/order/telephony/trunks/{x}/hardware` | OvhCloudOrder/telephony/telephonyTrunksHardwareListGet.operation.ts | missing required query param 'hardware'; missing required query param 'retractation' |
+| POST | `/order/telephony/trunks/{x}/hardware` | OvhCloudOrder/telephony/telephonyTrunksHardwareCreatePost.operation.ts | missing required body field 'hardware'; missing required body field 'retractation' |
+| GET | `/order/telephony/trunks/{x}/updateSimultaneousChannels` | OvhCloudOrder/telephony/telephonyTrunksUpdateSimultaneousChannelsListGet.operation.ts | missing required query param 'quantity' |
+| POST | `/order/telephony/trunks/{x}/updateSimultaneousChannels` | OvhCloudOrder/telephony/telephonyTrunksUpdateSimultaneousChannelsCreatePost.operation.ts | missing required body field 'quantity' |
 | GET | `/order/vps/{x}/additionalDisk` | OvhCloudOrder/vps/additionalDisk/additionalDiskListGet.operation.ts | missing required query param 'additionalDiskSize' |
 | GET | `/order/vps/{x}/additionalDisk/{x}` | OvhCloudOrder/vps/additionalDisk/additionalDiskDurationGet.operation.ts | missing required query param 'additionalDiskSize' |
 | POST | `/order/vps/{x}/additionalDisk/{x}` | OvhCloudOrder/vps/additionalDisk/additionalDiskCreatePost.operation.ts | missing required body field 'additionalDiskSize' |
@@ -1046,11 +1188,24 @@ Ces opérations appellent un chemin qui ne correspond à aucun endpoint de la sp
 | dedicated (v1) | GET | `/dedicated/server/{x}/features/backupCloud/get/{x}` | OvhCloudDedicated/resources/backupCloudGetByIdGet.operation.ts |
 | dedicated (v1) | DELETE | `/dedicated/server/{x}/features/backupFTP/access/delete?ipBlock={x}` | OvhCloudDedicated/resources/backupFtpAccessDelete.operation.ts |
 | dedicated (v1) | PUT | `/dedicated/server/{x}/features/backupFTP/access/edit?ipBlock={x}` | OvhCloudDedicated/resources/backupFtpAccessEditPut.operation.ts |
+| dedicated (v1) | DELETE | `/dedicated/server/{x}/features/ipmi/access` | OvhCloudDedicated/resources/featuresIpmiAccessPost.operation.ts |
+| dedicated (v1) | DELETE | `/dedicated/server/{x}/features/ipmi/resetInterface` | OvhCloudDedicated/resources/featuresIpmiResetInterfacePost.operation.ts |
+| dedicated (v1) | DELETE | `/dedicated/server/{x}/features/ipmi/resetSessions` | OvhCloudDedicated/resources/featuresIpmiResetSessionsPost.operation.ts |
+| dedicated (v1) | DELETE | `/dedicated/server/{x}/features/ipmi/test` | OvhCloudDedicated/resources/featuresIpmiTestPost.operation.ts |
 | dedicated (v1) | POST | `/dedicated/server/{x}/install` | OvhCloudDedicated/resources/installation/installPost.operation.ts |
 | dedicated (v1) | GET | `/dedicated/server/{x}/monitoring` | OvhCloudDedicated/resources/monitoring/monitoringGetGet.operation.ts |
 | dedicated (v1) | GET | `/dedicated/server/{x}/monitoring/{x}` | OvhCloudDedicated/resources/monitoring/monitoringMetricGetGet.operation.ts |
 | dedicated (v1) | PUT | `/dedicated/server/{x}/netboot/order` | OvhCloudDedicated/resources/netbootOrderPut.operation.ts |
+| dedicated (v1) | DELETE | `/dedicated/server/{x}/ola/reset` | OvhCloudDedicated/resources/olaResetPost.operation.ts |
 | dedicated (v1) | POST | `/dedicated/server/{x}/option/{x}` | OvhCloudDedicated/resources/option/optionCreatePost.operation.ts |
+| dedicated (v1) | DELETE | `/dedicated/server/{x}/spla/{x}/revoke` | OvhCloudDedicated/resources/splaRevokePost.operation.ts |
+| dedicated (v1) | DELETE | `/dedicated/server/{x}/support/replace/cooling` | OvhCloudDedicated/resources/supportReplaceCoolingPost.operation.ts |
+| dedicated (v1) | DELETE | `/dedicated/server/{x}/support/replace/hardDiskDrive` | OvhCloudDedicated/resources/supportReplaceHardDiskDrivePost.operation.ts |
+| dedicated (v1) | DELETE | `/dedicated/server/{x}/support/replace/memory` | OvhCloudDedicated/resources/supportReplaceMemoryPost.operation.ts |
+| dedicated (v1) | DELETE | `/dedicated/server/{x}/task/{x}/cancel` | OvhCloudDedicated/resources/taskCancelPost.operation.ts |
+| dedicated (v1) | DELETE | `/dedicated/server/{x}/terminate` | OvhCloudDedicated/resources/terminatePost.operation.ts |
+| dedicated (v1) | DELETE | `/dedicated/server/{x}/virtualNetworkInterface/{x}/disable` | OvhCloudDedicated/resources/virtualNetworkInterfaceDisablePost.operation.ts |
+| dedicated (v1) | DELETE | `/dedicated/server/{x}/virtualNetworkInterface/{x}/enable` | OvhCloudDedicated/resources/virtualNetworkInterfaceEnablePost.operation.ts |
 | domain (v2) | GET | `/domain` | OvhCloudDomain/resources/root/domainListGet.operation.ts |
 | domain (v2) | GET | `/domain/{x}` | OvhCloudDomain/resources/service/domainGetGet.operation.ts |
 | domain (v2) | PUT | `/domain/{x}` | OvhCloudDomain/resources/service/domainUpdatePut.operation.ts |
@@ -1178,6 +1333,9 @@ Ces opérations appellent un chemin qui ne correspond à aucun endpoint de la sp
 | email (v1) | GET | `/email/pro/{x}/tasks` | OvhCloudEmailPro/resources/taskListGet.operation.ts |
 | email (v1) | GET | `/email/pro/{x}/tasks/{x}` | OvhCloudEmailPro/resources/taskGetGet.operation.ts |
 | freefax (v1) | GET | `/freefax/{x}/directory/getDirectoryServiceCode?apeCode={x}` | OvhCloudFreefax/resources/directoryGetDirectoryServiceCodeGet.operation.ts |
+| hosting (v1) | POST | `/hosting/web/{x}/cdn/domain` | OvhCloudHosting/cdn/cdnDomainCreatePost.operation.ts |
+| hosting (v1) | DELETE | `/hosting/web/{x}/cdn/domain/{x}` | OvhCloudHosting/cdn/cdnDomainDeleteDelete.operation.ts |
+| hosting (v1) | PUT | `/hosting/web/{x}/cdn/serviceInfos` | OvhCloudHosting/cdn/cdnServiceInfosUpdatePut.operation.ts |
 | hosting (v1) | PUT | `/hosting/web/{x}/database/{x}` | OvhCloudHosting/database/databaseUpdatePut.operation.ts |
 | hosting (v1) | POST | `/hosting/web/{x}/database/create` | OvhCloudHosting/databaseCreatePost.operation.ts |
 | hosting (v1) | POST | `/hosting/web/{x}/database/delete` | OvhCloudHosting/databaseDelete.operation.ts |
@@ -1190,26 +1348,6 @@ Ces opérations appellent un chemin qui ne correspond à aucun endpoint de la sp
 | hosting (v1) | POST | `/hosting/web/{x}/ssl/defaultSslCertificate` | OvhCloudHosting/defaultSslCertificateCreate.operation.ts |
 | hosting (v1) | POST | `/hosting/web/{x}/ssl/importCustomCertificate` | OvhCloudHosting/importCustomCertificateCreate.operation.ts |
 | hosting (v1) | POST | `/hosting/web/{x}/user/update` | OvhCloudHosting/userUpdatePut.operation.ts |
-| hosting (v1) | GET | `/hosting/web/cdn/{x}` | OvhCloudHosting/cdn/cdnGet.operation.ts |
-| hosting (v1) | GET | `/hosting/web/cdn/{x}/availableOptions` | OvhCloudHosting/cdn/cdnAvailableOptionsGet.operation.ts |
-| hosting (v1) | GET | `/hosting/web/cdn/{x}/domain` | OvhCloudHosting/cdn/cdnDomainListGet.operation.ts |
-| hosting (v1) | POST | `/hosting/web/cdn/{x}/domain` | OvhCloudHosting/cdn/cdnDomainCreatePost.operation.ts |
-| hosting (v1) | DELETE | `/hosting/web/cdn/{x}/domain/{x}` | OvhCloudHosting/cdn/cdnDomainDeleteDelete.operation.ts |
-| hosting (v1) | GET | `/hosting/web/cdn/{x}/domain/{x}` | OvhCloudHosting/cdn/cdnDomainGetGet.operation.ts |
-| hosting (v1) | GET | `/hosting/web/cdn/{x}/domain/{x}/logs` | OvhCloudHosting/cdn/cdnDomainLogsGet.operation.ts |
-| hosting (v1) | POST | `/hosting/web/cdn/{x}/domain/{x}/option` | OvhCloudHosting/cdn/cdnDomainOptionCreatePost.operation.ts |
-| hosting (v1) | DELETE | `/hosting/web/cdn/{x}/domain/{x}/option/{x}` | OvhCloudHosting/cdn/cdnDomainOptionDeleteDelete.operation.ts |
-| hosting (v1) | GET | `/hosting/web/cdn/{x}/domain/{x}/option/{x}` | OvhCloudHosting/cdn/cdnDomainOptionGetGet.operation.ts |
-| hosting (v1) | PUT | `/hosting/web/cdn/{x}/domain/{x}/option/{x}` | OvhCloudHosting/cdn/cdnDomainOptionUpdatePut.operation.ts |
-| hosting (v1) | POST | `/hosting/web/cdn/{x}/domain/{x}/purge` | OvhCloudHosting/cdn/cdnDomainPurgePost.operation.ts |
-| hosting (v1) | POST | `/hosting/web/cdn/{x}/domain/{x}/refresh` | OvhCloudHosting/cdn/cdnDomainRefreshPost.operation.ts |
-| hosting (v1) | GET | `/hosting/web/cdn/{x}/domain/{x}/statistics` | OvhCloudHosting/cdn/cdnDomainStatisticsGet.operation.ts |
-| hosting (v1) | GET | `/hosting/web/cdn/{x}/domain/option` | OvhCloudHosting/cdn/cdnDomainOptionListGet.operation.ts |
-| hosting (v1) | GET | `/hosting/web/cdn/{x}/operation` | OvhCloudHosting/cdn/cdnOperationListGet.operation.ts |
-| hosting (v1) | GET | `/hosting/web/cdn/{x}/operation/{x}` | OvhCloudHosting/cdn/cdnOperationGetGet.operation.ts |
-| hosting (v1) | GET | `/hosting/web/cdn/{x}/serviceInfos` | OvhCloudHosting/cdn/cdnServiceInfosGet.operation.ts |
-| hosting (v1) | PUT | `/hosting/web/cdn/{x}/serviceInfos` | OvhCloudHosting/cdn/cdnServiceInfosUpdatePut.operation.ts |
-| hosting (v1) | POST | `/hosting/web/cdn/{x}/terminate` | OvhCloudHosting/cdn/cdnTerminateCreate.operation.ts |
 | hosting (v1) | GET | `/hosting/web/database/{x}/{x}/capabilities` | OvhCloudHosting/databaseSub/capabilitiesGet.operation.ts |
 | hosting (v1) | PUT | `/hosting/web/database/{x}/{x}/changePassword` | OvhCloudHosting/databaseSub/changePasswordPut.operation.ts |
 | hosting (v1) | GET | `/hosting/web/database/{x}/{x}/copy` | OvhCloudHosting/databaseSub/copyListGet.operation.ts |
@@ -1394,6 +1532,7 @@ Ces opérations appellent un chemin qui ne correspond à aucun endpoint de la sp
 | order (v1) | GET | `/order/catalog/public/{x}/options` | OvhCloudOrder/catalog/webPaaSOptionsGet.operation.ts |
 | order (v1) | GET | `/order/catalog/public/{x}/options` | OvhCloudOrder/catalog/zimbraOptionsGet.operation.ts |
 | order (v1) | POST | `/order/cloud/project` | OvhCloudOrder/cloud/cloudProjectCreatePost.operation.ts |
+| order (v1) | GET | `/order/domain` | OvhCloudOrder/domain/domainListGet.operation.ts |
 | order (v1) | GET | `/order/email/exchange/{x}` | OvhCloudOrder/email/exchange/exchangeOrganizationListGet.operation.ts |
 | order (v1) | GET | `/order/email/exchange/{x}/{x}` | OvhCloudOrder/email/exchange/exchangeServiceGet.operation.ts |
 | order (v1) | POST | `/order/email/exchange/{x}/{x}` | OvhCloudOrder/email/exchange/exchangeServiceCreatePost.operation.ts |
@@ -2742,6 +2881,26 @@ Ces opérations appellent un chemin qui ne correspond à aucun endpoint de la sp
 | webhosting (v2) | GET | `/hosting/web/{x}/availableConfigurations` | OvhCloudHosting/serviceManagement/availableConfigurationsGet.operation.ts |
 | webhosting (v2) | GET | `/hosting/web/{x}/boostHistory` | OvhCloudHosting/boostHistory/listGet.operation.ts |
 | webhosting (v2) | GET | `/hosting/web/{x}/boostHistory/{x}` | OvhCloudHosting/boostHistory/getGet.operation.ts |
+| webhosting (v2) | GET | `/hosting/web/{x}/cdn` | OvhCloudHosting/cdn/cdnGet.operation.ts |
+| webhosting (v2) | GET | `/hosting/web/{x}/cdn/availableOptions` | OvhCloudHosting/cdn/cdnAvailableOptionsGet.operation.ts |
+| webhosting (v2) | GET | `/hosting/web/{x}/cdn/domain` | OvhCloudHosting/cdn/cdnDomainListGet.operation.ts |
+| webhosting (v2) | POST | `/hosting/web/{x}/cdn/domain` | OvhCloudHosting/cdn/cdnDomainCreatePost.operation.ts |
+| webhosting (v2) | DELETE | `/hosting/web/{x}/cdn/domain/{x}` | OvhCloudHosting/cdn/cdnDomainDeleteDelete.operation.ts |
+| webhosting (v2) | GET | `/hosting/web/{x}/cdn/domain/{x}` | OvhCloudHosting/cdn/cdnDomainGetGet.operation.ts |
+| webhosting (v2) | GET | `/hosting/web/{x}/cdn/domain/{x}/logs` | OvhCloudHosting/cdn/cdnDomainLogsGet.operation.ts |
+| webhosting (v2) | GET | `/hosting/web/{x}/cdn/domain/{x}/option` | OvhCloudHosting/cdn/cdnDomainOptionListGet.operation.ts |
+| webhosting (v2) | POST | `/hosting/web/{x}/cdn/domain/{x}/option` | OvhCloudHosting/cdn/cdnDomainOptionCreatePost.operation.ts |
+| webhosting (v2) | DELETE | `/hosting/web/{x}/cdn/domain/{x}/option/{x}` | OvhCloudHosting/cdn/cdnDomainOptionDeleteDelete.operation.ts |
+| webhosting (v2) | GET | `/hosting/web/{x}/cdn/domain/{x}/option/{x}` | OvhCloudHosting/cdn/cdnDomainOptionGetGet.operation.ts |
+| webhosting (v2) | PUT | `/hosting/web/{x}/cdn/domain/{x}/option/{x}` | OvhCloudHosting/cdn/cdnDomainOptionUpdatePut.operation.ts |
+| webhosting (v2) | POST | `/hosting/web/{x}/cdn/domain/{x}/purge` | OvhCloudHosting/cdn/cdnDomainPurgePost.operation.ts |
+| webhosting (v2) | POST | `/hosting/web/{x}/cdn/domain/{x}/refresh` | OvhCloudHosting/cdn/cdnDomainRefreshPost.operation.ts |
+| webhosting (v2) | GET | `/hosting/web/{x}/cdn/domain/{x}/statistics` | OvhCloudHosting/cdn/cdnDomainStatisticsGet.operation.ts |
+| webhosting (v2) | GET | `/hosting/web/{x}/cdn/operation` | OvhCloudHosting/cdn/cdnOperationListGet.operation.ts |
+| webhosting (v2) | GET | `/hosting/web/{x}/cdn/operation/{x}` | OvhCloudHosting/cdn/cdnOperationGetGet.operation.ts |
+| webhosting (v2) | GET | `/hosting/web/{x}/cdn/serviceInfos` | OvhCloudHosting/cdn/cdnServiceInfosGet.operation.ts |
+| webhosting (v2) | PUT | `/hosting/web/{x}/cdn/serviceInfos` | OvhCloudHosting/cdn/cdnServiceInfosUpdatePut.operation.ts |
+| webhosting (v2) | POST | `/hosting/web/{x}/cdn/terminate` | OvhCloudHosting/cdn/cdnTerminateCreate.operation.ts |
 | webhosting (v2) | POST | `/hosting/web/{x}/changeContact` | OvhCloudHosting/serviceManagement/changeContactPost.operation.ts |
 | webhosting (v2) | GET | `/hosting/web/{x}/configuration` | OvhCloudHosting/configuration/getGet.operation.ts |
 | webhosting (v2) | PUT | `/hosting/web/{x}/configuration` | OvhCloudHosting/configurationPut.operation.ts |
@@ -2879,26 +3038,6 @@ Ces opérations appellent un chemin qui ne correspond à aucun endpoint de la sp
 | webhosting (v2) | GET | `/hosting/web/{x}/vcs/webhooks` | OvhCloudHosting/vcs/webhooksGet.operation.ts |
 | webhosting (v2) | GET | `/hosting/web/attachedDomain` | OvhCloudHosting/findByDomain.operation.ts |
 | webhosting (v2) | GET | `/hosting/web/availableOffer` | OvhCloudHosting/availableOfferGet.operation.ts |
-| webhosting (v2) | GET | `/hosting/web/cdn/{x}` | OvhCloudHosting/cdn/cdnGet.operation.ts |
-| webhosting (v2) | GET | `/hosting/web/cdn/{x}/availableOptions` | OvhCloudHosting/cdn/cdnAvailableOptionsGet.operation.ts |
-| webhosting (v2) | GET | `/hosting/web/cdn/{x}/domain` | OvhCloudHosting/cdn/cdnDomainListGet.operation.ts |
-| webhosting (v2) | POST | `/hosting/web/cdn/{x}/domain` | OvhCloudHosting/cdn/cdnDomainCreatePost.operation.ts |
-| webhosting (v2) | DELETE | `/hosting/web/cdn/{x}/domain/{x}` | OvhCloudHosting/cdn/cdnDomainDeleteDelete.operation.ts |
-| webhosting (v2) | GET | `/hosting/web/cdn/{x}/domain/{x}` | OvhCloudHosting/cdn/cdnDomainGetGet.operation.ts |
-| webhosting (v2) | GET | `/hosting/web/cdn/{x}/domain/{x}/logs` | OvhCloudHosting/cdn/cdnDomainLogsGet.operation.ts |
-| webhosting (v2) | POST | `/hosting/web/cdn/{x}/domain/{x}/option` | OvhCloudHosting/cdn/cdnDomainOptionCreatePost.operation.ts |
-| webhosting (v2) | DELETE | `/hosting/web/cdn/{x}/domain/{x}/option/{x}` | OvhCloudHosting/cdn/cdnDomainOptionDeleteDelete.operation.ts |
-| webhosting (v2) | GET | `/hosting/web/cdn/{x}/domain/{x}/option/{x}` | OvhCloudHosting/cdn/cdnDomainOptionGetGet.operation.ts |
-| webhosting (v2) | PUT | `/hosting/web/cdn/{x}/domain/{x}/option/{x}` | OvhCloudHosting/cdn/cdnDomainOptionUpdatePut.operation.ts |
-| webhosting (v2) | POST | `/hosting/web/cdn/{x}/domain/{x}/purge` | OvhCloudHosting/cdn/cdnDomainPurgePost.operation.ts |
-| webhosting (v2) | POST | `/hosting/web/cdn/{x}/domain/{x}/refresh` | OvhCloudHosting/cdn/cdnDomainRefreshPost.operation.ts |
-| webhosting (v2) | GET | `/hosting/web/cdn/{x}/domain/{x}/statistics` | OvhCloudHosting/cdn/cdnDomainStatisticsGet.operation.ts |
-| webhosting (v2) | GET | `/hosting/web/cdn/{x}/domain/option` | OvhCloudHosting/cdn/cdnDomainOptionListGet.operation.ts |
-| webhosting (v2) | GET | `/hosting/web/cdn/{x}/operation` | OvhCloudHosting/cdn/cdnOperationListGet.operation.ts |
-| webhosting (v2) | GET | `/hosting/web/cdn/{x}/operation/{x}` | OvhCloudHosting/cdn/cdnOperationGetGet.operation.ts |
-| webhosting (v2) | GET | `/hosting/web/cdn/{x}/serviceInfos` | OvhCloudHosting/cdn/cdnServiceInfosGet.operation.ts |
-| webhosting (v2) | PUT | `/hosting/web/cdn/{x}/serviceInfos` | OvhCloudHosting/cdn/cdnServiceInfosUpdatePut.operation.ts |
-| webhosting (v2) | POST | `/hosting/web/cdn/{x}/terminate` | OvhCloudHosting/cdn/cdnTerminateCreate.operation.ts |
 | webhosting (v2) | GET | `/hosting/web/database/{x}/{x}/capabilities` | OvhCloudHosting/databaseSub/capabilitiesGet.operation.ts |
 | webhosting (v2) | PUT | `/hosting/web/database/{x}/{x}/changePassword` | OvhCloudHosting/databaseSub/changePasswordPut.operation.ts |
 | webhosting (v2) | GET | `/hosting/web/database/{x}/{x}/copy` | OvhCloudHosting/databaseSub/copyListGet.operation.ts |

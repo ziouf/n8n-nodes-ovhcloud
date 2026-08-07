@@ -50,7 +50,7 @@ export function description(displayOptions: IDisplayOptions): INodeProperties[] 
  * Update a CDN domain option
  *
  * HTTP method: PUT
- * Endpoint: /hosting/web/cdn/{serviceName}/domain/{domain}/option/{optionName}
+ * Endpoint: /hosting/web/{serviceName}/cdn/domain/{domain}/option/{optionName}
  */
 export async function execute(
 	this: IExecuteFunctions,
@@ -62,7 +62,7 @@ export async function execute(
 	const optionName = this.getNodeParameter('optionName', itemIndex) as string;
 	const optionValue = this.getNodeParameter('optionValue', itemIndex) as string;
 	const data = (await client.httpPut(
-		`/hosting/web/cdn/${serviceName}/domain/${domain}/option/${optionName}`,
+		`/hosting/web/${serviceName}/cdn/domain/${domain}/option/${optionName}`,
 		{ value: optionValue },
 	)) as IDataObject;
 	const inputData = this.getInputData()[itemIndex];

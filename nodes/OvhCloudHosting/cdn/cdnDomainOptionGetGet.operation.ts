@@ -41,7 +41,7 @@ export function description(displayOptions: IDisplayOptions): INodeProperties[] 
  * Get details of a CDN domain option
  *
  * HTTP method: GET
- * Endpoint: /hosting/web/cdn/{serviceName}/domain/{domain}/option/{optionName}
+ * Endpoint: /hosting/web/{serviceName}/cdn/domain/{domain}/option/{optionName}
  */
 export async function execute(
 	this: IExecuteFunctions,
@@ -52,7 +52,7 @@ export async function execute(
 	const domain = this.getNodeParameter('domain', itemIndex) as string;
 	const optionName = this.getNodeParameter('optionName', itemIndex) as string;
 	const data = (await client.httpGet(
-		`/hosting/web/cdn/${serviceName}/domain/${domain}/option/${optionName}`,
+		`/hosting/web/${serviceName}/cdn/domain/${domain}/option/${optionName}`,
 	)) as IDataObject;
 	const inputData = this.getInputData()[itemIndex];
 	return this.helpers.returnJsonArray([{ ...inputData.json, ...data }]);

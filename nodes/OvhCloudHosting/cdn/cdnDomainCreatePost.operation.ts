@@ -33,7 +33,7 @@ export function description(displayOptions: IDisplayOptions): INodeProperties[] 
  * Add a domain to CDN
  *
  * HTTP method: POST
- * Endpoint: /hosting/web/cdn/{serviceName}/domain
+ * Endpoint: /hosting/web/{serviceName}/cdn/domain
  */
 export async function execute(
 	this: IExecuteFunctions,
@@ -42,7 +42,7 @@ export async function execute(
 	const client = new ApiClient(this);
 	const serviceName = this.getNodeParameter('serviceName', itemIndex) as string;
 	const domain = this.getNodeParameter('domain', itemIndex) as string;
-	const data = (await client.httpPost(`/hosting/web/cdn/${serviceName}/domain`, {
+	const data = (await client.httpPost(`/hosting/web/${serviceName}/cdn/domain`, {
 		domain,
 	})) as IDataObject;
 	const inputData = this.getInputData()[itemIndex];

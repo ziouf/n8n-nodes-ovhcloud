@@ -47,7 +47,7 @@ export function description(displayOptions: IDisplayOptions): INodeProperties[] 
  * Get CDN statistics for a domain
  *
  * HTTP method: GET
- * Endpoint: /hosting/web/cdn/{serviceName}/domain/{domain}/statistics
+ * Endpoint: /hosting/web/{serviceName}/cdn/domain/{domain}/statistics
  */
 export async function execute(
 	this: IExecuteFunctions,
@@ -60,7 +60,7 @@ export async function execute(
 	const qs: IDataObject = {};
 	if (period) qs.period = period;
 	const data = (await client.httpGet(
-		`/hosting/web/cdn/${serviceName}/domain/${domain}/statistics`,
+		`/hosting/web/${serviceName}/cdn/domain/${domain}/statistics`,
 		qs,
 	)) as IDataObject;
 	const inputData = this.getInputData()[itemIndex];

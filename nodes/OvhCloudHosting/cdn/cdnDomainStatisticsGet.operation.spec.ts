@@ -66,7 +66,7 @@ describe('hosting cdnDomainStatisticsGet operation', () => {
 
 			const result = await execute.call(mockExecuteFunctions, 0);
 			expect(client.httpGet).toHaveBeenCalledWith(
-				'/hosting/web/cdn/myservice.ovh/domain/www.example.com/statistics',
+				'/hosting/web/myservice.ovh/cdn/domain/www.example.com/statistics',
 				{ period: 'week' },
 			);
 			expect(result[0]).toMatchObject({ '0': { name: 'requests', points: [] } });

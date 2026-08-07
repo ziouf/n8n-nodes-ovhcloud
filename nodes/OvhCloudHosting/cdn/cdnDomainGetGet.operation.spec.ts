@@ -58,7 +58,7 @@ describe('hosting cdnDomainGetGet operation', () => {
 
 			const result = await execute.call(mockExecuteFunctions, 0);
 			expect(client.httpGet).toHaveBeenCalledWith(
-				'/hosting/web/cdn/myservice.ovh/domain/www.example.com',
+				'/hosting/web/myservice.ovh/cdn/domain/www.example.com',
 			);
 			expect(result[0]).toMatchObject({ domain: 'www.example.com', status: 'on' });
 		});

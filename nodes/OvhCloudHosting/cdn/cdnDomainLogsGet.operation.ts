@@ -41,7 +41,7 @@ export function description(displayOptions: IDisplayOptions): INodeProperties[] 
  * Generate URL to logs archive
  *
  * HTTP method: GET
- * Endpoint: /hosting/web/cdn/{serviceName}/domain/{domain}/logs
+ * Endpoint: /hosting/web/{serviceName}/cdn/domain/{domain}/logs
  */
 export async function execute(
 	this: IExecuteFunctions,
@@ -54,7 +54,7 @@ export async function execute(
 	const qs: IDataObject = {};
 	if (date) qs.date = date;
 	const data = (await client.httpGet(
-		`/hosting/web/cdn/${serviceName}/domain/${domain}/logs`,
+		`/hosting/web/${serviceName}/cdn/domain/${domain}/logs`,
 		qs,
 	)) as IDataObject;
 	const inputData = this.getInputData()[itemIndex];

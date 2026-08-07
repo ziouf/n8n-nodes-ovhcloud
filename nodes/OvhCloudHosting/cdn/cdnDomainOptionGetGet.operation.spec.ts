@@ -65,7 +65,7 @@ describe('hosting cdnDomainOptionGetGet operation', () => {
 
 			const result = await execute.call(mockExecuteFunctions, 0);
 			expect(client.httpGet).toHaveBeenCalledWith(
-				'/hosting/web/cdn/myservice.ovh/domain/www.example.com/option/cache',
+				'/hosting/web/myservice.ovh/cdn/domain/www.example.com/option/cache',
 			);
 			expect(result[0]).toMatchObject({ name: 'cache', enabled: true });
 		});

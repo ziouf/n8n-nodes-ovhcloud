@@ -24,7 +24,7 @@ export function description(displayOptions: IDisplayOptions): INodeProperties[] 
  * List CDN operations
  *
  * HTTP method: GET
- * Endpoint: /hosting/web/cdn/{serviceName}/operation
+ * Endpoint: /hosting/web/{serviceName}/cdn/operation
  */
 export async function execute(
 	this: IExecuteFunctions,
@@ -32,7 +32,7 @@ export async function execute(
 ): Promise<INodeExecutionData[]> {
 	const client = new ApiClient(this);
 	const serviceName = this.getNodeParameter('serviceName', itemIndex) as string;
-	const data = (await client.httpGet(`/hosting/web/cdn/${serviceName}/operation`)) as IDataObject;
+	const data = (await client.httpGet(`/hosting/web/${serviceName}/cdn/operation`)) as IDataObject;
 	const inputData = this.getInputData()[itemIndex];
 	return this.helpers.returnJsonArray([{ ...inputData.json, ...data }]);
 }

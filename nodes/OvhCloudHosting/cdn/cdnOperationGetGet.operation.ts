@@ -33,7 +33,7 @@ export function description(displayOptions: IDisplayOptions): INodeProperties[] 
  * Get details for a Shared CDN operation
  *
  * HTTP method: GET
- * Endpoint: /hosting/web/cdn/{serviceName}/operation/{id}
+ * Endpoint: /hosting/web/{serviceName}/cdn/operation/{id}
  */
 export async function execute(
 	this: IExecuteFunctions,
@@ -43,7 +43,7 @@ export async function execute(
 	const serviceName = this.getNodeParameter('serviceName', itemIndex) as string;
 	const operationId = this.getNodeParameter('operationId', itemIndex) as number;
 	const data = (await client.httpGet(
-		`/hosting/web/cdn/${serviceName}/operation/${encodeURIComponent(String(operationId))}`,
+		`/hosting/web/${serviceName}/cdn/operation/${encodeURIComponent(String(operationId))}`,
 	)) as IDataObject;
 	const inputData = this.getInputData()[itemIndex];
 	return this.helpers.returnJsonArray([{ ...inputData.json, ...data }]);

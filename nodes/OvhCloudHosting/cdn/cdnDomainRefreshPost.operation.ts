@@ -33,7 +33,7 @@ export function description(displayOptions: IDisplayOptions): INodeProperties[] 
  * Trigger a refresh for a domain
  *
  * HTTP method: POST
- * Endpoint: /hosting/web/cdn/{serviceName}/domain/{domain}/refresh
+ * Endpoint: /hosting/web/{serviceName}/cdn/domain/{domain}/refresh
  */
 export async function execute(
 	this: IExecuteFunctions,
@@ -43,7 +43,7 @@ export async function execute(
 	const serviceName = this.getNodeParameter('serviceName', itemIndex) as string;
 	const domain = this.getNodeParameter('domain', itemIndex) as string;
 	const data = (await client.httpPost(
-		`/hosting/web/cdn/${serviceName}/domain/${domain}/refresh`,
+		`/hosting/web/${serviceName}/cdn/domain/${domain}/refresh`,
 	)) as IDataObject;
 	const inputData = this.getInputData()[itemIndex];
 	return this.helpers.returnJsonArray([{ ...inputData.json, ...data }]);

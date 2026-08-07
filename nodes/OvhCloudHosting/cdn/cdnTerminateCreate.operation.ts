@@ -24,7 +24,7 @@ export function description(displayOptions: IDisplayOptions): INodeProperties[] 
  * Terminate CDN service
  *
  * HTTP method: POST
- * Endpoint: /hosting/web/cdn/{serviceName}/terminate
+ * Endpoint: /hosting/web/{serviceName}/cdn/terminate
  */
 export async function execute(
 	this: IExecuteFunctions,
@@ -32,7 +32,7 @@ export async function execute(
 ): Promise<INodeExecutionData[]> {
 	const client = new ApiClient(this);
 	const serviceName = this.getNodeParameter('serviceName', itemIndex) as string;
-	const data = (await client.httpPost(`/hosting/web/cdn/${serviceName}/terminate`)) as IDataObject;
+	const data = (await client.httpPost(`/hosting/web/${serviceName}/cdn/terminate`)) as IDataObject;
 	const inputData = this.getInputData()[itemIndex];
 	return this.helpers.returnJsonArray([{ ...inputData.json, ...data }]);
 }

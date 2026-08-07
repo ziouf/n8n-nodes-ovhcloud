@@ -17,6 +17,15 @@ export function description(displayOptions: IDisplayOptions): INodeProperties[] 
 			required: true,
 			displayOptions,
 		},
+		{
+			displayName: 'Domain',
+			name: 'domain',
+			type: 'string',
+			default: '',
+			required: true,
+			description: 'The domain name',
+			displayOptions,
+		},
 	];
 }
 
@@ -24,7 +33,7 @@ export function description(displayOptions: IDisplayOptions): INodeProperties[] 
  * List CDN domain options
  *
  * HTTP method: GET
- * Endpoint: /hosting/web/cdn/{serviceName}/domain/option
+ * Endpoint: /hosting/web/{serviceName}/cdn/domain/{domain}/option
  */
 export async function execute(
 	this: IExecuteFunctions,
@@ -32,8 +41,9 @@ export async function execute(
 ): Promise<INodeExecutionData[]> {
 	const client = new ApiClient(this);
 	const serviceName = this.getNodeParameter('serviceName', itemIndex) as string;
+	const domain = this.getNodeParameter('domain', itemIndex) as string;
 	const data = (await client.httpGet(
-		`/hosting/web/cdn/${serviceName}/domain/option`,
+		`/hosting/web/${serviceName}/cdn/domain/${domain}/option`,
 	)) as IDataObject;
 	const inputData = this.getInputData()[itemIndex];
 	return this.helpers.returnJsonArray([{ ...inputData.json, ...data }]);

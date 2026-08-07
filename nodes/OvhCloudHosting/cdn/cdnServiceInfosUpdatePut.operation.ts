@@ -32,7 +32,7 @@ export function description(displayOptions: IDisplayOptions): INodeProperties[] 
  * Update CDN service information
  *
  * HTTP method: PUT
- * Endpoint: /hosting/web/cdn/{serviceName}/serviceInfos
+ * Endpoint: /hosting/web/{serviceName}/cdn/serviceInfos
  */
 export async function execute(
 	this: IExecuteFunctions,
@@ -41,7 +41,7 @@ export async function execute(
 	const client = new ApiClient(this);
 	const serviceName = this.getNodeParameter('serviceName', itemIndex) as string;
 	const suspend = this.getNodeParameter('suspend', itemIndex) as boolean;
-	const data = (await client.httpPut(`/hosting/web/cdn/${serviceName}/serviceInfos`, {
+	const data = (await client.httpPut(`/hosting/web/${serviceName}/cdn/serviceInfos`, {
 		suspend,
 	})) as IDataObject;
 	const inputData = this.getInputData()[itemIndex];

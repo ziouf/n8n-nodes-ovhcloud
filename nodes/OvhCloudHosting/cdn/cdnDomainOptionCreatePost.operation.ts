@@ -59,7 +59,7 @@ export function description(displayOptions: IDisplayOptions): INodeProperties[] 
  * Add an option to a CDN domain
  *
  * HTTP method: POST
- * Endpoint: /hosting/web/cdn/{serviceName}/domain/{domain}/option
+ * Endpoint: /hosting/web/{serviceName}/cdn/domain/{domain}/option
  */
 export async function execute(
 	this: IExecuteFunctions,
@@ -80,7 +80,7 @@ export async function execute(
 	const body: IDataObject = { enabled, name: optionName };
 	if (config) body.config = config;
 	const data = (await client.httpPost(
-		`/hosting/web/cdn/${serviceName}/domain/${domain}/option`,
+		`/hosting/web/${serviceName}/cdn/domain/${domain}/option`,
 		body,
 	)) as IDataObject;
 	const inputData = this.getInputData()[itemIndex];

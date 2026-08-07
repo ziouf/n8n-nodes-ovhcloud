@@ -1,6 +1,6 @@
 # OVHcloud API Coverage Report
 
-> Généré par `scripts/compare-coverage.js` le 2026-08-06T22:30:39.482Z. Document généré automatiquement — ne pas éditer à la main.
+> Généré par `scripts/compare-coverage.js` le 2026-08-07T02:42:18.998Z. Document généré automatiquement — ne pas éditer à la main.
 
 Ce rapport compare les endpoints déclarés dans les specs Swagger 2.0 (`docs/api-specs/v1|v2/*.json`) avec les appels HTTP réellement présents dans les nodes (`nodes/**/*.operation.ts`).
 
@@ -8,8 +8,8 @@ Ce rapport compare les endpoints déclarés dans les specs Swagger 2.0 (`docs/ap
 
 - **Specs analysées** : 84 (v1: 70, v2: 14)
 - **Endpoints déclarés (specs avec endpoints)** : 6624
-- **Endpoints couverts par les nodes** : 4424
-- **Couverture globale** : **66.8%**
+- **Endpoints couverts par les nodes** : 4671
+- **Couverture globale** : **70.5%**
 - **Specs sans node associé** : 21
 - **Specs placeholder (aucun endpoint)** : 1
 
@@ -44,23 +44,23 @@ Triée par pourcentage croissant (moins bonne couverture en premier).
 | ipLoadbalancing (v1) | 121 | 9 | 112 | 7.4% |
 | vrack (v1) | 68 | 5 | 63 | 7.4% |
 | msServices (v1) | 55 | 5 | 50 | 9.1% |
-| dedicated (v1) | 131 | 30 | 101 | 22.9% |
 | vps (v1) | 94 | 22 | 72 | 23.4% |
 | sslGateway (v1) | 23 | 6 | 17 | 26.1% |
 | xdsl (v1) | 142 | 39 | 103 | 27.5% |
 | veeam (v1) | 10 | 5 | 5 | 50% |
 | license (v1) | 13 | 7 | 6 | 53.8% |
 | pack (v1) | 58 | 33 | 25 | 56.9% |
-| me (v1) | 379 | 233 | 146 | 61.5% |
 | cloud (v1) | 1121 | 710 | 411 | 63.3% |
 | order (v1) | 816 | 538 | 278 | 65.9% |
 | metrics (v1) | 16 | 12 | 4 | 75% |
-| hosting (v1) | 198 | 150 | 48 | 75.8% |
 | ovhCloudConnect (v1) | 54 | 42 | 12 | 77.8% |
+| hosting (v1) | 198 | 167 | 31 | 84.3% |
+| dedicated (v1) | 131 | 116 | 15 | 88.5% |
 | freefax (v1) | 19 | 18 | 1 | 94.7% |
 | cluster (v1) | 43 | 42 | 1 | 97.7% |
 | horizonView (v1) | 43 | 42 | 1 | 97.7% |
 | ip (v1) | 81 | 80 | 1 | 98.8% |
+| me (v1) | 379 | 377 | 2 | 99.5% |
 | telephony (v1) | 607 | 607 | 0 | 100% |
 | price (v1) | 581 | 581 | 0 | 100% |
 | dedicatedCloud (v1) | 305 | 305 | 0 | 100% |
@@ -1286,114 +1286,6 @@ _Nodes associés : OvhCloudMsServices_
 | GET | `/msServices/sharepoint/{x}/serviceInfos` |
 | PUT | `/msServices/sharepoint/{x}/serviceInfos` |
 
-### dedicated (v1) — 101 manquants
-
-_Nodes associés : OvhCloudDedicated_
-
-| Méthode | Chemin |
-|--------|--------|
-| GET | `/dedicated/server/{x}/backupCloudOfferDetails` |
-| GET | `/dedicated/server/{x}/boot/{x}` |
-| GET | `/dedicated/server/{x}/boot/{x}/option` |
-| GET | `/dedicated/server/{x}/boot/{x}/option/{x}` |
-| GET | `/dedicated/server/{x}/burst` |
-| POST | `/dedicated/server/{x}/features/backupCloud/password` |
-| DELETE | `/dedicated/server/{x}/features/backupFTP/access/{x}` |
-| GET | `/dedicated/server/{x}/features/backupFTP/access/{x}` |
-| PUT | `/dedicated/server/{x}/features/backupFTP/access/{x}` |
-| GET | `/dedicated/server/{x}/features/backupFTP/authorizableBlocks` |
-| GET | `/dedicated/server/{x}/features/ipmi/access` |
-| POST | `/dedicated/server/{x}/features/ipmi/access` |
-| POST | `/dedicated/server/{x}/features/ipmi/resetInterface` |
-| POST | `/dedicated/server/{x}/features/ipmi/resetSessions` |
-| GET | `/dedicated/server/{x}/features/ipmi/test` |
-| POST | `/dedicated/server/{x}/features/ipmi/test` |
-| GET | `/dedicated/server/{x}/features/kvm` |
-| GET | `/dedicated/server/{x}/install/compatibleTemplatePartitionSchemes` |
-| GET | `/dedicated/server/{x}/install/compatibleTemplates` |
-| GET | `/dedicated/server/{x}/install/hardwareRaidProfile` |
-| GET | `/dedicated/server/{x}/install/status` |
-| GET | `/dedicated/server/{x}/intervention` |
-| GET | `/dedicated/server/{x}/intervention/{x}` |
-| POST | `/dedicated/server/{x}/ipBlockMerge` |
-| GET | `/dedicated/server/{x}/ipCanBeMovedTo` |
-| GET | `/dedicated/server/{x}/ipCountryAvailable` |
-| POST | `/dedicated/server/{x}/ipMove` |
-| GET | `/dedicated/server/{x}/ips` |
-| GET | `/dedicated/server/{x}/license/compliantWindows` |
-| GET | `/dedicated/server/{x}/license/compliantWindowsSqlServer` |
-| POST | `/dedicated/server/{x}/license/windows` |
-| GET | `/dedicated/server/{x}/mrtg` |
-| GET | `/dedicated/server/{x}/networkInterfaceController` |
-| GET | `/dedicated/server/{x}/networkInterfaceController/{x}` |
-| GET | `/dedicated/server/{x}/networkInterfaceController/{x}/mrtg` |
-| POST | `/dedicated/server/{x}/ola/aggregation` |
-| POST | `/dedicated/server/{x}/ola/group` |
-| POST | `/dedicated/server/{x}/ola/reset` |
-| POST | `/dedicated/server/{x}/ola/ungroup` |
-| GET | `/dedicated/server/{x}/ongoing` |
-| GET | `/dedicated/server/{x}/orderable/backupStorage` |
-| GET | `/dedicated/server/{x}/orderable/bandwidth` |
-| GET | `/dedicated/server/{x}/orderable/bandwidthvRack` |
-| GET | `/dedicated/server/{x}/orderable/feature` |
-| GET | `/dedicated/server/{x}/orderable/ip` |
-| GET | `/dedicated/server/{x}/orderable/kvm` |
-| GET | `/dedicated/server/{x}/orderable/kvmExpress` |
-| GET | `/dedicated/server/{x}/orderable/professionalUse` |
-| GET | `/dedicated/server/{x}/orderable/traffic` |
-| GET | `/dedicated/server/{x}/orderable/usbKey` |
-| GET | `/dedicated/server/{x}/plannedIntervention` |
-| GET | `/dedicated/server/{x}/plannedIntervention/{x}` |
-| POST | `/dedicated/server/{x}/reboot` |
-| POST | `/dedicated/server/{x}/reinstall` |
-| GET | `/dedicated/server/{x}/secondaryDnsDomains` |
-| POST | `/dedicated/server/{x}/secondaryDnsDomains` |
-| DELETE | `/dedicated/server/{x}/secondaryDnsDomains/{x}` |
-| GET | `/dedicated/server/{x}/secondaryDnsDomains/{x}` |
-| PUT | `/dedicated/server/{x}/secondaryDnsDomains/{x}` |
-| GET | `/dedicated/server/{x}/secondaryDnsDomains/{x}/dnsServer` |
-| GET | `/dedicated/server/{x}/secondaryDnsNameDomainToken` |
-| GET | `/dedicated/server/{x}/secondaryDnsNameServerAvailable` |
-| GET | `/dedicated/server/{x}/serviceInfos` |
-| PUT | `/dedicated/server/{x}/serviceInfos` |
-| GET | `/dedicated/server/{x}/specifications/hardware` |
-| GET | `/dedicated/server/{x}/specifications/ip` |
-| GET | `/dedicated/server/{x}/specifications/network` |
-| GET | `/dedicated/server/{x}/spla` |
-| POST | `/dedicated/server/{x}/spla` |
-| GET | `/dedicated/server/{x}/spla/{x}` |
-| PUT | `/dedicated/server/{x}/spla/{x}` |
-| POST | `/dedicated/server/{x}/spla/{x}/revoke` |
-| POST | `/dedicated/server/{x}/support/replace/cooling` |
-| POST | `/dedicated/server/{x}/support/replace/hardDiskDrive` |
-| POST | `/dedicated/server/{x}/support/replace/memory` |
-| GET | `/dedicated/server/{x}/task/{x}/availableTimeslots` |
-| POST | `/dedicated/server/{x}/task/{x}/cancel` |
-| POST | `/dedicated/server/{x}/task/{x}/schedule` |
-| POST | `/dedicated/server/{x}/terminate` |
-| GET | `/dedicated/server/{x}/virtualMac` |
-| POST | `/dedicated/server/{x}/virtualMac` |
-| GET | `/dedicated/server/{x}/virtualMac/{x}` |
-| GET | `/dedicated/server/{x}/virtualMac/{x}/virtualAddress` |
-| POST | `/dedicated/server/{x}/virtualMac/{x}/virtualAddress` |
-| DELETE | `/dedicated/server/{x}/virtualMac/{x}/virtualAddress/{x}` |
-| GET | `/dedicated/server/{x}/virtualMac/{x}/virtualAddress/{x}` |
-| GET | `/dedicated/server/{x}/virtualNetworkInterface` |
-| GET | `/dedicated/server/{x}/virtualNetworkInterface/{x}` |
-| PUT | `/dedicated/server/{x}/virtualNetworkInterface/{x}` |
-| POST | `/dedicated/server/{x}/virtualNetworkInterface/{x}/disable` |
-| POST | `/dedicated/server/{x}/virtualNetworkInterface/{x}/enable` |
-| GET | `/dedicated/server/{x}/vrack` |
-| DELETE | `/dedicated/server/{x}/vrack/{x}` |
-| GET | `/dedicated/server/{x}/vrack/{x}` |
-| GET | `/dedicated/server/{x}/vrack/{x}/mrtg` |
-| GET | `/dedicated/server/availabilities` |
-| GET | `/dedicated/server/datacenter/availabilities/raw` |
-| GET | `/dedicated/server/log` |
-| GET | `/dedicated/server/osAvailabilities` |
-| GET | `/dedicated/server/region/availabilities` |
-| GET | `/dedicated/server/virtualNetworkInterface/{x}` |
-
 ### vps (v1) — 72 manquants
 
 _Nodes associés : OvhCloudVps_
@@ -1663,159 +1555,6 @@ _Nodes associés : OvhCloudPackXdsl, OvhCloudPack_
 | POST | `/pack/xdsl/{x}/voipLine/services` |
 | GET | `/pack/xdsl/{x}/voipLine/services/{x}` |
 | GET | `/pack/xdsl/{x}/xdslAccess/services` |
-
-### me (v1) — 146 manquants
-
-_Nodes associés : OvhCloudMe_
-
-| Méthode | Chemin |
-|--------|--------|
-| PUT | `/me` |
-| DELETE | `/me/accessRestriction/backupCode` |
-| PUT | `/me/accessRestriction/ipDefaultRule` |
-| PUT | `/me/accessRestriction/sms/{x}` |
-| POST | `/me/accessRestriction/u2f/{x}/validate` |
-| POST | `/me/account` |
-| DELETE | `/me/api/application/{x}` |
-| DELETE | `/me/api/credential/{x}` |
-| PUT | `/me/api/credential/{x}` |
-| POST | `/me/api/log/subscription` |
-| DELETE | `/me/api/log/subscription/{x}` |
-| POST | `/me/api/log/url` |
-| POST | `/me/api/oauth2/client` |
-| DELETE | `/me/api/oauth2/client/{x}` |
-| PUT | `/me/api/oauth2/client/{x}` |
-| POST | `/me/autorenew` |
-| PUT | `/me/autorenew` |
-| POST | `/me/bill/{x}/debt/pay` |
-| POST | `/me/bill/export` |
-| POST | `/me/billing/group` |
-| DELETE | `/me/billing/group/{x}` |
-| PUT | `/me/billing/group/{x}` |
-| POST | `/me/billing/group/{x}/service` |
-| DELETE | `/me/billing/group/{x}/service/{x}` |
-| GET | `/me/billing/invoicesByPostalMail` |
-| POST | `/me/billing/invoicesByPostalMail` |
-| POST | `/me/billing/purchaseOrder` |
-| DELETE | `/me/billing/purchaseOrder/{x}` |
-| PUT | `/me/billing/purchaseOrder/{x}` |
-| POST | `/me/billing/report/consumption` |
-| POST | `/me/carbonCalculator/task` |
-| POST | `/me/changeEmail` |
-| POST | `/me/changePassword` |
-| PUT | `/me/consent/{x}/decision` |
-| POST | `/me/contact` |
-| PUT | `/me/contact/{x}` |
-| POST | `/me/correctiveInvoice/{x}/debt/pay` |
-| POST | `/me/credit/code` |
-| POST | `/me/debtAccount/debt/{x}/pay` |
-| POST | `/me/debtAccount/pay` |
-| GET | `/me/deposit/{x}/paidBills/{x}/debt` |
-| GET | `/me/deposit/{x}/paidBills/{x}/debt/operation` |
-| GET | `/me/deposit/{x}/paidBills/{x}/debt/operation/{x}` |
-| GET | `/me/deposit/{x}/paidBills/{x}/debt/operation/{x}/associatedObject` |
-| POST | `/me/deposit/{x}/paidBills/{x}/debt/pay` |
-| GET | `/me/deposit/{x}/paidBills/{x}/details` |
-| GET | `/me/deposit/{x}/paidBills/{x}/details/{x}` |
-| GET | `/me/deposit/{x}/paidBills/{x}/payment` |
-| POST | `/me/document` |
-| DELETE | `/me/document/{x}` |
-| PUT | `/me/document/{x}` |
-| POST | `/me/document/cors` |
-| POST | `/me/fax/customDomains` |
-| DELETE | `/me/fax/customDomains/{x}` |
-| PUT | `/me/fidelityAccount` |
-| POST | `/me/fidelityAccount/creditOrder` |
-| POST | `/me/geolocation` |
-| POST | `/me/identity/group` |
-| DELETE | `/me/identity/group/{x}` |
-| PUT | `/me/identity/group/{x}` |
-| POST | `/me/identity/group/{x}/user` |
-| DELETE | `/me/identity/group/{x}/user/{x}` |
-| DELETE | `/me/identity/provider` |
-| POST | `/me/identity/provider` |
-| PUT | `/me/identity/provider` |
-| POST | `/me/identity/user` |
-| DELETE | `/me/identity/user/{x}` |
-| PUT | `/me/identity/user/{x}` |
-| POST | `/me/identity/user/{x}/disable` |
-| POST | `/me/identity/user/{x}/enable` |
-| POST | `/me/identity/user/{x}/token` |
-| DELETE | `/me/identity/user/{x}/token/{x}` |
-| PUT | `/me/identity/user/{x}/token/{x}` |
-| GET | `/me/incident/sbg/migrateServices` |
-| POST | `/me/incident/sbg/migrateServices` |
-| POST | `/me/ipOrganisation` |
-| DELETE | `/me/ipOrganisation/{x}` |
-| PUT | `/me/ipOrganisation/{x}` |
-| POST | `/me/logs/audit/log/subscription` |
-| DELETE | `/me/logs/audit/log/subscription/{x}` |
-| POST | `/me/logs/audit/log/url` |
-| POST | `/me/mailingList/subscribe` |
-| PUT | `/me/marketing` |
-| POST | `/me/migration/{x}/contract/{x}/accept` |
-| POST | `/me/order/{x}/balance` |
-| DELETE | `/me/order/{x}/balance/{x}` |
-| POST | `/me/order/{x}/debt/pay` |
-| POST | `/me/order/{x}/pay` |
-| POST | `/me/order/{x}/payWithRegisteredPaymentMean` |
-| POST | `/me/order/{x}/retraction` |
-| POST | `/me/order/{x}/waiveRetraction` |
-| PUT | `/me/ovhAccount/{x}` |
-| POST | `/me/ovhAccount/{x}/creditOrder` |
-| POST | `/me/ovhAccount/{x}/movements/{x}/requestRefund` |
-| POST | `/me/ovhAccount/{x}/retrieveMoney` |
-| POST | `/me/passwordRecover` |
-| POST | `/me/payment/method` |
-| DELETE | `/me/payment/method/{x}` |
-| PUT | `/me/payment/method/{x}` |
-| POST | `/me/payment/method/{x}/challenge` |
-| POST | `/me/payment/method/{x}/details` |
-| POST | `/me/payment/method/{x}/finalize` |
-| POST | `/me/paymentMean/bankAccount` |
-| DELETE | `/me/paymentMean/bankAccount/{x}` |
-| PUT | `/me/paymentMean/bankAccount/{x}` |
-| POST | `/me/paymentMean/bankAccount/{x}/challenge` |
-| POST | `/me/paymentMean/bankAccount/{x}/chooseAsDefaultPaymentMean` |
-| POST | `/me/paymentMean/creditCard` |
-| DELETE | `/me/paymentMean/creditCard/{x}` |
-| PUT | `/me/paymentMean/creditCard/{x}` |
-| POST | `/me/paymentMean/creditCard/{x}/challenge` |
-| POST | `/me/paymentMean/creditCard/{x}/chooseAsDefaultPaymentMean` |
-| PUT | `/me/paymentMean/deferredPaymentAccount/{x}` |
-| POST | `/me/paymentMean/deferredPaymentAccount/{x}/chooseAsDefaultPaymentMean` |
-| POST | `/me/paymentMean/paypal` |
-| DELETE | `/me/paymentMean/paypal/{x}` |
-| PUT | `/me/paymentMean/paypal/{x}` |
-| POST | `/me/paymentMean/paypal/{x}/challenge` |
-| POST | `/me/paymentMean/paypal/{x}/chooseAsDefaultPaymentMean` |
-| POST | `/me/refund/export` |
-| POST | `/me/sla/{x}/apply` |
-| POST | `/me/sshKey` |
-| DELETE | `/me/sshKey/{x}` |
-| POST | `/me/subAccount` |
-| PUT | `/me/subAccount/{x}` |
-| POST | `/me/subAccount/{x}/createConsumerKey` |
-| PUT | `/me/subscription/{x}` |
-| POST | `/me/tag` |
-| DELETE | `/me/tag/{x}` |
-| POST | `/me/task/contactChange/{x}/accept` |
-| POST | `/me/task/contactChange/{x}/refuse` |
-| POST | `/me/task/contactChange/{x}/resendEmail` |
-| POST | `/me/task/dns/{x}/accelerate` |
-| POST | `/me/task/dns/{x}/cancel` |
-| POST | `/me/task/dns/{x}/relaunch` |
-| POST | `/me/task/domain/{x}/accelerate` |
-| PUT | `/me/task/domain/{x}/argument/{x}` |
-| POST | `/me/task/domain/{x}/cancel` |
-| POST | `/me/task/domain/{x}/relaunch` |
-| POST | `/me/task/emailChange/{x}/accept` |
-| POST | `/me/task/emailChange/{x}/refuse` |
-| POST | `/me/telephony/defaultIpRestriction` |
-| DELETE | `/me/telephony/defaultIpRestriction/{x}` |
-| POST | `/me/telephony/settings` |
-| POST | `/me/voucher/checkValidity` |
-| POST | `/me/xdsl/setting` |
 
 ### cloud (v1) — 411 manquants
 
@@ -2531,30 +2270,32 @@ _Nodes associés : OvhCloudMetrics_
 | PUT | `/metrics/{x}/serviceInfos` |
 | POST | `/metrics/{x}/terminate` |
 
-### hosting (v1) — 48 manquants
+### ovhCloudConnect (v1) — 12 manquants
+
+_Nodes associés : OvhCloudOvhCloudConnect_
+
+| Méthode | Chemin |
+|--------|--------|
+| GET | `/ovhCloudConnect/{x}/datacenter` |
+| GET | `/ovhCloudConnect/{x}/datacenter/{x}` |
+| POST | `/ovhCloudConnect/{x}/loa` |
+| GET | `/ovhCloudConnect/{x}/serviceInfos` |
+| PUT | `/ovhCloudConnect/{x}/serviceInfos` |
+| GET | `/ovhCloudConnect/{x}/serviceKey` |
+| GET | `/ovhCloudConnect/{x}/serviceKey/{x}` |
+| POST | `/ovhCloudConnect/{x}/serviceKey/{x}/regenerate` |
+| POST | `/ovhCloudConnect/{x}/serviceKey/{x}/send` |
+| GET | `/ovhCloudConnect/{x}/task` |
+| GET | `/ovhCloudConnect/{x}/task/{x}` |
+| POST | `/ovhCloudConnect/{x}/terminate` |
+
+### hosting (v1) — 31 manquants
 
 _Nodes associés : OvhCloudHosting_
 
 | Méthode | Chemin |
 |--------|--------|
-| GET | `/hosting/web/{x}/cdn` |
-| GET | `/hosting/web/{x}/cdn/availableOptions` |
-| GET | `/hosting/web/{x}/cdn/domain` |
-| GET | `/hosting/web/{x}/cdn/domain/{x}` |
-| GET | `/hosting/web/{x}/cdn/domain/{x}/logs` |
-| GET | `/hosting/web/{x}/cdn/domain/{x}/option` |
-| POST | `/hosting/web/{x}/cdn/domain/{x}/option` |
-| DELETE | `/hosting/web/{x}/cdn/domain/{x}/option/{x}` |
-| GET | `/hosting/web/{x}/cdn/domain/{x}/option/{x}` |
-| PUT | `/hosting/web/{x}/cdn/domain/{x}/option/{x}` |
-| POST | `/hosting/web/{x}/cdn/domain/{x}/purge` |
-| POST | `/hosting/web/{x}/cdn/domain/{x}/refresh` |
-| GET | `/hosting/web/{x}/cdn/domain/{x}/statistics` |
-| GET | `/hosting/web/{x}/cdn/operation` |
-| GET | `/hosting/web/{x}/cdn/operation/{x}` |
-| GET | `/hosting/web/{x}/cdn/serviceInfos` |
 | POST | `/hosting/web/{x}/cdn/serviceInfosUpdate` |
-| POST | `/hosting/web/{x}/cdn/terminate` |
 | POST | `/hosting/web/{x}/database` |
 | DELETE | `/hosting/web/{x}/database/{x}` |
 | GET | `/hosting/web/{x}/database/{x}/capabilities` |
@@ -2586,24 +2327,27 @@ _Nodes associés : OvhCloudHosting_
 | GET | `/hosting/web/{x}/website/{x}/deployment/{x}/logs` |
 | GET | `/hosting/web/{x}/websiteCreationCapabilities` |
 
-### ovhCloudConnect (v1) — 12 manquants
+### dedicated (v1) — 15 manquants
 
-_Nodes associés : OvhCloudOvhCloudConnect_
+_Nodes associés : OvhCloudDedicated_
 
 | Méthode | Chemin |
 |--------|--------|
-| GET | `/ovhCloudConnect/{x}/datacenter` |
-| GET | `/ovhCloudConnect/{x}/datacenter/{x}` |
-| POST | `/ovhCloudConnect/{x}/loa` |
-| GET | `/ovhCloudConnect/{x}/serviceInfos` |
-| PUT | `/ovhCloudConnect/{x}/serviceInfos` |
-| GET | `/ovhCloudConnect/{x}/serviceKey` |
-| GET | `/ovhCloudConnect/{x}/serviceKey/{x}` |
-| POST | `/ovhCloudConnect/{x}/serviceKey/{x}/regenerate` |
-| POST | `/ovhCloudConnect/{x}/serviceKey/{x}/send` |
-| GET | `/ovhCloudConnect/{x}/task` |
-| GET | `/ovhCloudConnect/{x}/task/{x}` |
-| POST | `/ovhCloudConnect/{x}/terminate` |
+| GET | `/dedicated/server/{x}/backupCloudOfferDetails` |
+| GET | `/dedicated/server/{x}/burst` |
+| POST | `/dedicated/server/{x}/features/ipmi/access` |
+| POST | `/dedicated/server/{x}/features/ipmi/resetInterface` |
+| POST | `/dedicated/server/{x}/features/ipmi/resetSessions` |
+| POST | `/dedicated/server/{x}/features/ipmi/test` |
+| POST | `/dedicated/server/{x}/ola/reset` |
+| POST | `/dedicated/server/{x}/spla/{x}/revoke` |
+| POST | `/dedicated/server/{x}/support/replace/cooling` |
+| POST | `/dedicated/server/{x}/support/replace/hardDiskDrive` |
+| POST | `/dedicated/server/{x}/support/replace/memory` |
+| POST | `/dedicated/server/{x}/task/{x}/cancel` |
+| POST | `/dedicated/server/{x}/terminate` |
+| POST | `/dedicated/server/{x}/virtualNetworkInterface/{x}/disable` |
+| POST | `/dedicated/server/{x}/virtualNetworkInterface/{x}/enable` |
 
 ### freefax (v1) — 1 manquant
 
@@ -2636,6 +2380,15 @@ _Nodes associés : OvhCloudIp_
 | Méthode | Chemin |
 |--------|--------|
 | GET | `/ip/{x}/reverse/{x}` |
+
+### me (v1) — 2 manquants
+
+_Nodes associés : OvhCloudMe_
+
+| Méthode | Chemin |
+|--------|--------|
+| POST | `/me/carbonCalculator/task` |
+| POST | `/me/correctiveInvoice/{x}/debt/pay` |
 
 ## Notes
 

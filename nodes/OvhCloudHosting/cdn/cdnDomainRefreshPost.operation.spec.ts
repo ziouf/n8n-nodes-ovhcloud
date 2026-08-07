@@ -58,7 +58,7 @@ describe('hosting cdnDomainRefreshPost operation', () => {
 
 			const result = await execute.call(mockExecuteFunctions, 0);
 			expect(client.httpPost).toHaveBeenCalledWith(
-				'/hosting/web/cdn/myservice.ovh/domain/www.example.com/refresh',
+				'/hosting/web/myservice.ovh/cdn/domain/www.example.com/refresh',
 			);
 			expect(result[0]).toMatchObject({ id: 55, status: 'todo' });
 		});

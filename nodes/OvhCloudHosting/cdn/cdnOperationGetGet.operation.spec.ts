@@ -57,7 +57,7 @@ describe('hosting cdnOperationGetGet operation', () => {
 			});
 
 			const result = await execute.call(mockExecuteFunctions, 0);
-			expect(client.httpGet).toHaveBeenCalledWith('/hosting/web/cdn/myservice.ovh/operation/55');
+			expect(client.httpGet).toHaveBeenCalledWith('/hosting/web/myservice.ovh/cdn/operation/55');
 			expect(result[0]).toMatchObject({ id: 55, status: 'done' });
 		});
 	});

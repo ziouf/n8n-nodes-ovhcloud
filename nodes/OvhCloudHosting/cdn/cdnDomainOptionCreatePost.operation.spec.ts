@@ -84,7 +84,7 @@ describe('hosting cdnDomainOptionCreatePost operation', () => {
 
 			const result = await execute.call(mockExecuteFunctions, 0);
 			expect(client.httpPost).toHaveBeenCalledWith(
-				'/hosting/web/cdn/myservice.ovh/domain/www.example.com/option',
+				'/hosting/web/myservice.ovh/cdn/domain/www.example.com/option',
 				{ enabled: true, name: 'cache', config: { ttl: 3600 } },
 			);
 			expect(result[0]).toMatchObject({ name: 'cache', enabled: true });
@@ -115,7 +115,7 @@ describe('hosting cdnDomainOptionCreatePost operation', () => {
 
 			await execute.call(mockExecuteFunctions, 0);
 			expect(client.httpPost).toHaveBeenCalledWith(
-				'/hosting/web/cdn/myservice.ovh/domain/www.example.com/option',
+				'/hosting/web/myservice.ovh/cdn/domain/www.example.com/option',
 				{ enabled: true, name: 'cache' },
 			);
 		});

@@ -67,7 +67,7 @@ describe('hosting cdnDomainLogsGet operation', () => {
 
 			const result = await execute.call(mockExecuteFunctions, 0);
 			expect(client.httpGet).toHaveBeenCalledWith(
-				'/hosting/web/cdn/myservice.ovh/domain/www.example.com/logs',
+				'/hosting/web/myservice.ovh/cdn/domain/www.example.com/logs',
 				{ date: '2026-08-01' },
 			);
 			expect(result[0]).toMatchObject({ url: 'https://logs.example.com/archive.zip' });
@@ -87,7 +87,7 @@ describe('hosting cdnDomainLogsGet operation', () => {
 
 			await execute.call(mockExecuteFunctions, 0);
 			expect(client.httpGet).toHaveBeenCalledWith(
-				'/hosting/web/cdn/myservice.ovh/domain/www.example.com/logs',
+				'/hosting/web/myservice.ovh/cdn/domain/www.example.com/logs',
 				{},
 			);
 		});

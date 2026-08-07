@@ -80,7 +80,7 @@ describe('hosting cdnDomainOptionUpdatePut operation', () => {
 
 			const result = await execute.call(mockExecuteFunctions, 0);
 			expect(client.httpPut).toHaveBeenCalledWith(
-				'/hosting/web/cdn/myservice.ovh/domain/www.example.com/option/phpVersion',
+				'/hosting/web/myservice.ovh/cdn/domain/www.example.com/option/phpVersion',
 				{ value: '8.0' },
 			);
 			expect(result[0]).toMatchObject({ option: 'phpVersion', value: '8.0' });

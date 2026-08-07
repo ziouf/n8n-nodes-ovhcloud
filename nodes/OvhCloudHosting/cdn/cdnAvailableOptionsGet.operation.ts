@@ -24,7 +24,7 @@ export function description(displayOptions: IDisplayOptions): INodeProperties[] 
  * Get available CDN options
  *
  * HTTP method: GET
- * Endpoint: /hosting/web/cdn/{serviceName}/availableOptions
+ * Endpoint: /hosting/web/{serviceName}/cdn/availableOptions
  */
 export async function execute(
 	this: IExecuteFunctions,
@@ -33,7 +33,7 @@ export async function execute(
 	const client = new ApiClient(this);
 	const serviceName = this.getNodeParameter('serviceName', itemIndex) as string;
 	const data = (await client.httpGet(
-		`/hosting/web/cdn/${serviceName}/availableOptions`,
+		`/hosting/web/${serviceName}/cdn/availableOptions`,
 	)) as IDataObject;
 	const inputData = this.getInputData()[itemIndex];
 	return this.helpers.returnJsonArray([{ ...inputData.json, ...data }]);

@@ -33,7 +33,7 @@ export function description(displayOptions: IDisplayOptions): INodeProperties[] 
  * Purge CDN cache for a domain
  *
  * HTTP method: POST
- * Endpoint: /hosting/web/cdn/{serviceName}/domain/{domain}/purge
+ * Endpoint: /hosting/web/{serviceName}/cdn/domain/{domain}/purge
  */
 export async function execute(
 	this: IExecuteFunctions,
@@ -43,7 +43,7 @@ export async function execute(
 	const serviceName = this.getNodeParameter('serviceName', itemIndex) as string;
 	const domain = this.getNodeParameter('domain', itemIndex) as string;
 	const data = (await client.httpPost(
-		`/hosting/web/cdn/${serviceName}/domain/${domain}/purge`,
+		`/hosting/web/${serviceName}/cdn/domain/${domain}/purge`,
 	)) as IDataObject;
 	const inputData = this.getInputData()[itemIndex];
 	return this.helpers.returnJsonArray([{ ...inputData.json, ...data }]);
