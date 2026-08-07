@@ -70,6 +70,7 @@ const SPEC_TO_NODES = {
 	freefax: ['OvhCloudFreefax'],
 	horizonView: ['OvhCloudHorizonView'],
 	hosting: ['OvhCloudHosting'],
+	hostingPrivateDatabase: ['OvhCloudHostingPrivateDatabase'],
 	ip: ['OvhCloudIp'],
 	ipLoadbalancing: ['OvhCloudIPLoadbalancing'],
 	license: ['OvhCloudLicense'],

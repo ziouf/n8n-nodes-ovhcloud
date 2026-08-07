@@ -1,16 +1,16 @@
 # OVHcloud API Conformity Report
 
-> Généré par `scripts/audit-conformity.js` le 2026-08-07T07:44:05.886Z. Document généré automatiquement — ne pas éditer à la main.
+> Généré par `scripts/audit-conformity.js` le 2026-08-07T09:01:21.059Z. Document généré automatiquement — ne pas éditer à la main.
 
 Ce rapport vérifie que les opérations des nodes respectent leur spec (méthode, chemin, paramètres path requis, query requis, champs body requis).
 
 ## Résumé
 
-- **Opérations auditées** : 7850
-- **Conformes** : 4992
+- **Opérations auditées** : 7922
+- **Conformes** : 5064
 - **Non conformes** : 2858
 - **Sans correspondance spec** (informatif) : 2392
-- **Taux de conformité** : **63.6%**
+- **Taux de conformité** : **63.9%**
 
 ## Conformité par spec
 
@@ -62,6 +62,7 @@ Triée par taux de non-conformité décroissant.
 | ipLoadbalancing (v1) | 121 | 121 | 0 | 100% |
 | domain (v2) | 119 | 9 | 0 | 7.6% |
 | email (v1) | 108 | 59 | 0 | 54.6% |
+| hostingPrivateDatabase (v1) | 72 | 72 | 0 | 100% |
 | msServices (v1) | 57 | 55 | 0 | 96.5% |
 | cluster (v1) | 50 | 42 | 0 | 84% |
 | services (v1) | 50 | 47 | 0 | 94% |

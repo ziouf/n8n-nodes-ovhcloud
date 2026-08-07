@@ -1,6 +1,6 @@
 # OVHcloud API Coverage Report
 
-> Généré par `scripts/compare-coverage.js` le 2026-08-07T07:40:39.497Z. Document généré automatiquement — ne pas éditer à la main.
+> Généré par `scripts/compare-coverage.js` le 2026-08-07T09:00:56.799Z. Document généré automatiquement — ne pas éditer à la main.
 
 Ce rapport compare les endpoints déclarés dans les specs Swagger 2.0 (`docs/api-specs/v1|v2/*.json`) avec les appels HTTP réellement présents dans les nodes (`nodes/**/*.operation.ts`).
 
@@ -8,9 +8,9 @@ Ce rapport compare les endpoints déclarés dans les specs Swagger 2.0 (`docs/ap
 
 - **Specs analysées** : 84 (v1: 70, v2: 14)
 - **Endpoints déclarés (specs avec endpoints)** : 6624
-- **Endpoints couverts par les nodes** : 5340
-- **Couverture globale** : **80.6%**
-- **Specs sans node associé** : 18
+- **Endpoints couverts par les nodes** : 5412
+- **Couverture globale** : **81.7%**
+- **Specs sans node associé** : 17
 - **Specs placeholder (aucun endpoint)** : 1
 
 ## Couverture par spec
@@ -19,7 +19,6 @@ Triée par pourcentage croissant (moins bonne couverture en premier).
 
 | Spec (version) | Total | Couverts | Manquants | % |
 |----------------|------:|---------:|----------:|---:|
-| hostingPrivateDatabase (v1) | 72 | 0 | 72 | 0% |
 | dedicatedNasha (v1) | 39 | 0 | 39 | 0% |
 | dedicatedCeph (v1) | 35 | 0 | 35 | 0% |
 | dedicatedHousing (v1) | 18 | 0 | 18 | 0% |
@@ -64,6 +63,7 @@ Triée par pourcentage croissant (moins bonne couverture en premier).
 | domain (v1) | 110 | 110 | 0 | 100% |
 | emailDomain (v1) | 107 | 107 | 0 | 100% |
 | vps (v1) | 94 | 94 | 0 | 100% |
+| hostingPrivateDatabase (v1) | 72 | 72 | 0 | 100% |
 | vrack (v1) | 68 | 68 | 0 | 100% |
 | msServices (v1) | 55 | 55 | 0 | 100% |
 | overTheBox (v1) | 50 | 50 | 0 | 100% |
@@ -107,7 +107,6 @@ Triée par pourcentage croissant (moins bonne couverture en premier).
 
 Ces specs ont des endpoints déclarés mais aucun node ne les implémente dans ce repo :
 
-- **hostingPrivateDatabase** (`/hosting/privateDatabase`, v1) — 72 endpoints, 72 manquants
 - **dedicatedNasha** (`/dedicated/nasha`, v1) — 39 endpoints, 39 manquants
 - **dedicatedCeph** (`/dedicated/ceph`, v1) — 35 endpoints, 35 manquants
 - **dedicatedHousing** (`/dedicated/housing`, v1) — 18 endpoints, 18 manquants
@@ -139,85 +138,6 @@ Fichiers de spec présents dans le dossier mais avec `apis: []` (spec absente / 
 ## Endpoints manquants
 
 Endpoints déclarés dans les specs mais non appelés par les nodes, groupés par spec :
-
-### hostingPrivateDatabase (v1) — 72 manquants
-
-_Nodes associés : (aucun node)_
-
-| Méthode | Chemin |
-|--------|--------|
-| GET | `/hosting/privateDatabase` |
-| GET | `/hosting/privateDatabase/{x}` |
-| PUT | `/hosting/privateDatabase/{x}` |
-| GET | `/hosting/privateDatabase/{x}/availableVersions` |
-| POST | `/hosting/privateDatabase/{x}/changeContact` |
-| POST | `/hosting/privateDatabase/{x}/changeFtpPassword` |
-| POST | `/hosting/privateDatabase/{x}/changeVersion` |
-| GET | `/hosting/privateDatabase/{x}/config` |
-| POST | `/hosting/privateDatabase/{x}/config/update` |
-| POST | `/hosting/privateDatabase/{x}/confirmTermination` |
-| GET | `/hosting/privateDatabase/{x}/cpuThrottle` |
-| GET | `/hosting/privateDatabase/{x}/database` |
-| POST | `/hosting/privateDatabase/{x}/database` |
-| DELETE | `/hosting/privateDatabase/{x}/database/{x}` |
-| GET | `/hosting/privateDatabase/{x}/database/{x}` |
-| GET | `/hosting/privateDatabase/{x}/database/{x}/copy` |
-| POST | `/hosting/privateDatabase/{x}/database/{x}/copy` |
-| DELETE | `/hosting/privateDatabase/{x}/database/{x}/copy/{x}` |
-| GET | `/hosting/privateDatabase/{x}/database/{x}/copy/{x}` |
-| POST | `/hosting/privateDatabase/{x}/database/{x}/copyRestore` |
-| GET | `/hosting/privateDatabase/{x}/database/{x}/dump` |
-| POST | `/hosting/privateDatabase/{x}/database/{x}/dump` |
-| DELETE | `/hosting/privateDatabase/{x}/database/{x}/dump/{x}` |
-| GET | `/hosting/privateDatabase/{x}/database/{x}/dump/{x}` |
-| POST | `/hosting/privateDatabase/{x}/database/{x}/dump/{x}/restore` |
-| GET | `/hosting/privateDatabase/{x}/database/{x}/extension` |
-| GET | `/hosting/privateDatabase/{x}/database/{x}/extension/{x}` |
-| POST | `/hosting/privateDatabase/{x}/database/{x}/extension/{x}/disable` |
-| POST | `/hosting/privateDatabase/{x}/database/{x}/extension/{x}/enable` |
-| POST | `/hosting/privateDatabase/{x}/database/{x}/import` |
-| POST | `/hosting/privateDatabase/{x}/databaseWizard` |
-| GET | `/hosting/privateDatabase/{x}/dump` |
-| DELETE | `/hosting/privateDatabase/{x}/dump/{x}` |
-| GET | `/hosting/privateDatabase/{x}/dump/{x}` |
-| POST | `/hosting/privateDatabase/{x}/dump/{x}/restore` |
-| POST | `/hosting/privateDatabase/{x}/generateTemporaryLogsLink` |
-| GET | `/hosting/privateDatabase/{x}/log/kind` |
-| GET | `/hosting/privateDatabase/{x}/log/kind/{x}` |
-| GET | `/hosting/privateDatabase/{x}/log/subscription` |
-| POST | `/hosting/privateDatabase/{x}/log/subscription` |
-| DELETE | `/hosting/privateDatabase/{x}/log/subscription/{x}` |
-| GET | `/hosting/privateDatabase/{x}/log/subscription/{x}` |
-| POST | `/hosting/privateDatabase/{x}/log/url` |
-| GET | `/hosting/privateDatabase/{x}/metricsToken` |
-| GET | `/hosting/privateDatabase/{x}/oom` |
-| POST | `/hosting/privateDatabase/{x}/quotaRefresh` |
-| POST | `/hosting/privateDatabase/{x}/restart` |
-| GET | `/hosting/privateDatabase/{x}/serviceInfos` |
-| PUT | `/hosting/privateDatabase/{x}/serviceInfos` |
-| GET | `/hosting/privateDatabase/{x}/tasks` |
-| GET | `/hosting/privateDatabase/{x}/tasks/{x}` |
-| POST | `/hosting/privateDatabase/{x}/terminate` |
-| GET | `/hosting/privateDatabase/{x}/user` |
-| POST | `/hosting/privateDatabase/{x}/user` |
-| DELETE | `/hosting/privateDatabase/{x}/user/{x}` |
-| GET | `/hosting/privateDatabase/{x}/user/{x}` |
-| POST | `/hosting/privateDatabase/{x}/user/{x}/changePassword` |
-| GET | `/hosting/privateDatabase/{x}/user/{x}/grant` |
-| POST | `/hosting/privateDatabase/{x}/user/{x}/grant` |
-| DELETE | `/hosting/privateDatabase/{x}/user/{x}/grant/{x}` |
-| GET | `/hosting/privateDatabase/{x}/user/{x}/grant/{x}` |
-| POST | `/hosting/privateDatabase/{x}/user/{x}/grant/{x}/update` |
-| DELETE | `/hosting/privateDatabase/{x}/webhostingNetwork` |
-| GET | `/hosting/privateDatabase/{x}/webhostingNetwork` |
-| POST | `/hosting/privateDatabase/{x}/webhostingNetwork` |
-| GET | `/hosting/privateDatabase/{x}/webs` |
-| GET | `/hosting/privateDatabase/{x}/whitelist` |
-| POST | `/hosting/privateDatabase/{x}/whitelist` |
-| DELETE | `/hosting/privateDatabase/{x}/whitelist/{x}` |
-| GET | `/hosting/privateDatabase/{x}/whitelist/{x}` |
-| PUT | `/hosting/privateDatabase/{x}/whitelist/{x}` |
-| GET | `/hosting/privateDatabase/availableOrderCapacities` |
 
 ### dedicatedNasha (v1) — 39 manquants
 
