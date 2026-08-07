@@ -1,4 +1,10 @@
-import type { IDataObject, IExecuteFunctions, INodeExecutionData, IDisplayOptions, INodeProperties } from 'n8n-workflow';
+import type {
+	IDataObject,
+	IExecuteFunctions,
+	INodeExecutionData,
+	IDisplayOptions,
+	INodeProperties,
+} from 'n8n-workflow';
 import { ApiClient } from '../../../shared/transport/ApiClient';
 
 export function description(displayOptions: IDisplayOptions): INodeProperties[] {
@@ -98,19 +104,22 @@ export async function execute(this: IExecuteFunctions): Promise<INodeExecutionDa
 	const domain = this.getNodeParameter('domain', 0) as string;
 	const language = this.getNodeParameter('language', 0) as string;
 	const name = this.getNodeParameter('name', 0) as string;
-	const options = this.getNodeParameter('options', 0) as unknown;
+	const options = this.getNodeParameter('options', 0) as IDataObject;
 	const ownerEmail = this.getNodeParameter('ownerEmail', 0) as string;
 	const replyTo = this.getNodeParameter('replyTo', 0) as string;
 
 	const body: IDataObject = {
-		language: language,
-		name: name,
-		options: options,
-		ownerEmail: ownerEmail,
-		replyTo: replyTo,
+		language,
+		name,
+		options,
+		ownerEmail,
+		replyTo,
 	};
 
 	const client = new ApiClient(this);
-	const data = (await client.httpPost('/email' + '/domain/' + encodeURIComponent(domain) + '/mailingList', body)) as IDataObject;
+	const data = (await client.httpPost(
+		'/email' + '/domain/' + encodeURIComponent(domain) + '/mailingList',
+		body,
+	)) as IDataObject;
 	return this.helpers.returnJsonArray([data]);
 }

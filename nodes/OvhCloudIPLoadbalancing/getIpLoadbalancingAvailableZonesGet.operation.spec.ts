@@ -36,14 +36,12 @@ describe('getIpLoadbalancingAvailableZonesGet operation', () => {
 			(client.httpGet as jest.Mock).mockResolvedValue(mockData);
 
 			mockExecuteFunctions.getNodeParameter.mockImplementation(() => {
-				return '';
-			return undefined;
+				return undefined;
 			});
 
-			const result = await execute.call(mockExecuteFunctions, 0);
+			const result = await execute.call(mockExecuteFunctions);
 			expect((client.httpGet as jest.Mock).mock.calls.length).toBeGreaterThan(0);
 			expect(result).toMatchObject([mockData]);
 		});
 	});
 });
-
