@@ -36,7 +36,7 @@ export function description(displayOptions: IDisplayOptions): INodeProperties[] 
           displayOptions,
         },
         {
-          displayName: 'status',
+          displayName: 'Status',
           name: 'status',
           type: 'string',
           default: '',

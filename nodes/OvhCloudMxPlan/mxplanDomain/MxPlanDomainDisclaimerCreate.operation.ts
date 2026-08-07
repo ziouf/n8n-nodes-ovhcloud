@@ -9,7 +9,6 @@ export function description(displayOptions: IDisplayOptions): INodeProperties[] 
 			type: 'string',
 			default: '',
 			required: true,
-			description: 'Domain name',
 			displayOptions: {
 				show: {
 					mxPlanOperation: ['MxPlanDomainDisclaimerCreate'],
@@ -71,7 +70,7 @@ export async function execute(this: IExecuteFunctions): Promise<INodeExecutionDa
 	const domainName = this.getNodeParameter('domainName', 0) as string;
 	const service = this.getNodeParameter('service', 0) as string;
 	const content = this.getNodeParameter('content', 0) as string;
-	const outsideOnly = this.getNodeParameter('outsideOnly', 0) as any;
+	const outsideOnly = this.getNodeParameter('outsideOnly', 0) as string;
 
 	const body: IDataObject = {
 		content: content,

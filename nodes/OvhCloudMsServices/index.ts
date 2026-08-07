@@ -215,141 +215,6 @@ export function description(displayOptions: IDisplayOptions): INodeProperties[] 
 			noDataExpression: true,
 			options: [
 				{
-					name: 'Delete MsServices ServiceName Account UserPrincipalName Mfa',
-					value: 'deleteMsServicesserviceNAccountuserPrinMfaDelete',
-					action: 'Delete Multi Factor Authentication feature for this account',
-				},
-				{
-					name: 'Delete MsServices ServiceName Account UserPrincipalName Sync',
-					value: 'deleteMsServicesserviceNAccountuserPrinSyncDelete',
-					action: 'Delete sync account',
-				},
-				{
-					name: 'Delete MsServices ServiceName Sync',
-					value: 'deleteMsServicesserviceNSyncDelete',
-					action: 'Delete sync service',
-				},
-				{
-					name: 'Delete MsServices ServiceName UpnSuffix Suffix',
-					value: 'deleteMsServicesserviceNUpnSuffixsuffixDelete',
-					action: 'Delete existing UPN suffix',
-				},
-				{
-					name: 'Get MsServices ServiceName Account',
-					value: 'getMsServicesserviceNAccountGet',
-					action: 'Accounts associated to this Active Directory service',
-				},
-				{
-					name: 'Get MsServices ServiceName Account UserPrincipalName Exchange',
-					value: 'getMsServicesserviceNAccountuserPrinExchangeGet',
-					action: 'Get this object properties',
-				},
-				{
-					name: 'Get MsServices ServiceName Account UserPrincipalName',
-					value: 'getMsServicesserviceNAccountuserPrinGet',
-					action: 'Get this object properties',
-				},
-				{
-					name: 'Get MsServices ServiceName Account UserPrincipalName Mfa',
-					value: 'getMsServicesserviceNAccountuserPrinMfaGet',
-					action: 'Get this object properties',
-				},
-				{
-					name: 'Get MsServices ServiceName Account UserPrincipalName Sharepoint',
-					value: 'getMsServicesserviceNAccountuserPrinSharepointGet',
-					action: 'Get this object properties',
-				},
-				{
-					name: 'Get MsServices ServiceName Account UserPrincipalName Sync',
-					value: 'getMsServicesserviceNAccountuserPrinSyncGet',
-					action: 'Get this object properties',
-				},
-				{
-					name: 'Get MsServices ServiceName Exchange BillingMigrated',
-					value: 'getMsServicesserviceNExchangeBillingMigratedGet',
-					action: 'Detects billing transition status for the service',
-				},
-				{
-					name: 'Get MsServices ServiceName Exchange',
-					value: 'getMsServicesserviceNExchangeGet',
-					action: 'Get this object properties',
-				},
-				{
-					name: 'Get MsServices ServiceName Exchange Task',
-					value: 'getMsServicesserviceNExchangeTaskGet',
-					action: 'Pending actions',
-				},
-				{
-					name: 'Get MsServices ServiceName Exchange Task ID',
-					value: 'getMsServicesserviceNExchangeTaskidGet',
-					action: 'Get this object properties',
-				},
-				{
-					name: 'Get MsServices ServiceName Sharepoint BillingMigrated',
-					value: 'getMsServicesserviceNSharepointBillingMigratedGet',
-					action: 'Detects billing transition status for the service',
-				},
-				{
-					name: 'Get MsServices ServiceName Sharepoint',
-					value: 'getMsServicesserviceNSharepointGet',
-					action: 'Get this object properties',
-				},
-				{
-					name: 'Get MsServices ServiceName Sharepoint License',
-					value: 'getMsServicesserviceNSharepointLicenseGet',
-					action: 'Get active licenses for specific period of time',
-				},
-				{
-					name: 'Get MsServices ServiceName Sharepoint Task',
-					value: 'getMsServicesserviceNSharepointTaskGet',
-					action: 'Pending actions',
-				},
-				{
-					name: 'Get MsServices ServiceName Sharepoint Task ID',
-					value: 'getMsServicesserviceNSharepointTaskidGet',
-					action: 'Get this object properties',
-				},
-				{
-					name: 'Get MsServices ServiceName Sync ClientSoftwareURL',
-					value: 'getMsServicesserviceNSyncClientSoftwareURLGet',
-					action: 'Get this object properties',
-				},
-				{
-					name: 'Get MsServices ServiceName Sync',
-					value: 'getMsServicesserviceNSyncGet',
-					action: 'Get this object properties',
-				},
-				{
-					name: 'Get MsServices ServiceName Sync License',
-					value: 'getMsServicesserviceNSyncLicenseGet',
-					action: 'Get active licenses for specific period of time',
-				},
-				{
-					name: 'Get MsServices ServiceName UpnSuffix',
-					value: 'getMsServicesserviceNUpnSuffixGet',
-					action: 'active directory UPN suffix',
-				},
-				{
-					name: 'Get MsServices ServiceName UpnSuffix Suffix',
-					value: 'getMsServicesserviceNUpnSuffixsuffixGet',
-					action: 'Get this object properties',
-				},
-				{
-					name: 'Get MsServices Sharepoint Domain',
-					value: 'getMsServicesSharepointdomainGet',
-					action: 'Get this object properties',
-				},
-				{
-					name: 'Get MsServices Sharepoint Domain ServiceInfos',
-					value: 'getMsServicesSharepointdomainServiceInfosGet',
-					action: 'Get service information',
-				},
-				{
-					name: 'Get MsServices Sharepoint',
-					value: 'getMsServicesSharepointGet',
-					action: 'List available services',
-				},
-				{
 					name: 'Create MsServices ServiceName Account UserPrincipalName ChangePassword',
 					value: 'postMsServicesserviceNAccountuserPrinChangePasswordPost',
 					action: 'Change account password',
@@ -360,6 +225,11 @@ export function description(displayOptions: IDisplayOptions): INodeProperties[] 
 					action: 'Configure mailbox to be operational',
 				},
 				{
+					name: 'Create MsServices ServiceName Account UserPrincipalName Mfa',
+					value: 'postMsServicesserviceNAccountuserPrinMfaPost',
+					action: 'Create Multi Factor Authentication for this account',
+				},
+				{
 					name: 'Create MsServices ServiceName Account UserPrincipalName Mfa Disable',
 					value: 'postMsServicesserviceNAccountuserPrinMfaDisablePost',
 					action: 'Disable Multi Factor Authentication for a period of time',
@@ -368,11 +238,6 @@ export function description(displayOptions: IDisplayOptions): INodeProperties[] 
 					name: 'Create MsServices ServiceName Account UserPrincipalName Mfa Enable',
 					value: 'postMsServicesserviceNAccountuserPrinMfaEnablePost',
 					action: 'Enable Mfa (enabled by default when created)',
-				},
-				{
-					name: 'Create MsServices ServiceName Account UserPrincipalName Mfa',
-					value: 'postMsServicesserviceNAccountuserPrinMfaPost',
-					action: 'Create Multi Factor Authentication for this account',
 				},
 				{
 					name: 'Create MsServices ServiceName Account UserPrincipalName Mfa Reset',
@@ -390,14 +255,14 @@ export function description(displayOptions: IDisplayOptions): INodeProperties[] 
 					action: 'Configure sharepoint account to be operational',
 				},
 				{
-					name: 'Create MsServices ServiceName Account UserPrincipalName Sync Configure',
-					value: 'postMsServicesserviceNAccountuserPrinSyncConfigurePost',
-					action: 'Configure sync account to be operational',
-				},
-				{
 					name: 'Create MsServices ServiceName Account UserPrincipalName Sync',
 					value: 'postMsServicesserviceNAccountuserPrinSyncPost',
 					action: 'Create new sync account',
+				},
+				{
+					name: 'Create MsServices ServiceName Account UserPrincipalName Sync Configure',
+					value: 'postMsServicesserviceNAccountuserPrinSyncConfigurePost',
+					action: 'Configure sync account to be operational',
 				},
 				{
 					name: 'Create MsServices ServiceName ChangeContact',
@@ -435,13 +300,148 @@ export function description(displayOptions: IDisplayOptions): INodeProperties[] 
 					action: 'Create new UPN suffix',
 				},
 				{
-					name: 'Update MsServices ServiceName Account UserPrincipalName Exchange',
-					value: 'putMsServicesserviceNAccountuserPrinExchangePut',
-					action: 'Alter this object properties',
+					name: 'Delete MsServices ServiceName Account UserPrincipalName Mfa',
+					value: 'deleteMsServicesserviceNAccountuserPrinMfaDelete',
+					action: 'Delete Multi Factor Authentication feature for this account',
+				},
+				{
+					name: 'Delete MsServices ServiceName Account UserPrincipalName Sync',
+					value: 'deleteMsServicesserviceNAccountuserPrinSyncDelete',
+					action: 'Delete sync account',
+				},
+				{
+					name: 'Delete MsServices ServiceName Sync',
+					value: 'deleteMsServicesserviceNSyncDelete',
+					action: 'Delete sync service',
+				},
+				{
+					name: 'Delete MsServices ServiceName UpnSuffix Suffix',
+					value: 'deleteMsServicesserviceNUpnSuffixsuffixDelete',
+					action: 'Delete existing UPN suffix',
+				},
+				{
+					name: 'Get MsServices ServiceName Account',
+					value: 'getMsServicesserviceNAccountGet',
+					action: 'Accounts associated to this Active Directory service',
+				},
+				{
+					name: 'Get MsServices ServiceName Account UserPrincipalName',
+					value: 'getMsServicesserviceNAccountuserPrinGet',
+					action: 'Get this object properties',
+				},
+				{
+					name: 'Get MsServices ServiceName Account UserPrincipalName Exchange',
+					value: 'getMsServicesserviceNAccountuserPrinExchangeGet',
+					action: 'Get this object properties',
+				},
+				{
+					name: 'Get MsServices ServiceName Account UserPrincipalName Mfa',
+					value: 'getMsServicesserviceNAccountuserPrinMfaGet',
+					action: 'Get this object properties',
+				},
+				{
+					name: 'Get MsServices ServiceName Account UserPrincipalName Sharepoint',
+					value: 'getMsServicesserviceNAccountuserPrinSharepointGet',
+					action: 'Get this object properties',
+				},
+				{
+					name: 'Get MsServices ServiceName Account UserPrincipalName Sync',
+					value: 'getMsServicesserviceNAccountuserPrinSyncGet',
+					action: 'Get this object properties',
+				},
+				{
+					name: 'Get MsServices ServiceName Exchange',
+					value: 'getMsServicesserviceNExchangeGet',
+					action: 'Get this object properties',
+				},
+				{
+					name: 'Get MsServices ServiceName Exchange BillingMigrated',
+					value: 'getMsServicesserviceNExchangeBillingMigratedGet',
+					action: 'Detects billing transition status for the service',
+				},
+				{
+					name: 'Get MsServices ServiceName Exchange Task',
+					value: 'getMsServicesserviceNExchangeTaskGet',
+					action: 'Pending actions',
+				},
+				{
+					name: 'Get MsServices ServiceName Exchange Task ID',
+					value: 'getMsServicesserviceNExchangeTaskidGet',
+					action: 'Get this object properties',
+				},
+				{
+					name: 'Get MsServices ServiceName Sharepoint',
+					value: 'getMsServicesserviceNSharepointGet',
+					action: 'Get this object properties',
+				},
+				{
+					name: 'Get MsServices ServiceName Sharepoint BillingMigrated',
+					value: 'getMsServicesserviceNSharepointBillingMigratedGet',
+					action: 'Detects billing transition status for the service',
+				},
+				{
+					name: 'Get MsServices ServiceName Sharepoint License',
+					value: 'getMsServicesserviceNSharepointLicenseGet',
+					action: 'Get active licenses for specific period of time',
+				},
+				{
+					name: 'Get MsServices ServiceName Sharepoint Task',
+					value: 'getMsServicesserviceNSharepointTaskGet',
+					action: 'Pending actions',
+				},
+				{
+					name: 'Get MsServices ServiceName Sharepoint Task ID',
+					value: 'getMsServicesserviceNSharepointTaskidGet',
+					action: 'Get this object properties',
+				},
+				{
+					name: 'Get MsServices ServiceName Sync',
+					value: 'getMsServicesserviceNSyncGet',
+					action: 'Get this object properties',
+				},
+				{
+					name: 'Get MsServices ServiceName Sync ClientSoftwareURL',
+					value: 'getMsServicesserviceNSyncClientSoftwareURLGet',
+					action: 'Get this object properties',
+				},
+				{
+					name: 'Get MsServices ServiceName Sync License',
+					value: 'getMsServicesserviceNSyncLicenseGet',
+					action: 'Get active licenses for specific period of time',
+				},
+				{
+					name: 'Get MsServices ServiceName UpnSuffix',
+					value: 'getMsServicesserviceNUpnSuffixGet',
+					action: 'active directory UPN suffix',
+				},
+				{
+					name: 'Get MsServices ServiceName UpnSuffix Suffix',
+					value: 'getMsServicesserviceNUpnSuffixsuffixGet',
+					action: 'Get this object properties',
+				},
+				{
+					name: 'Get MsServices Sharepoint',
+					value: 'getMsServicesSharepointGet',
+					action: 'List available services',
+				},
+				{
+					name: 'Get MsServices Sharepoint Domain',
+					value: 'getMsServicesSharepointdomainGet',
+					action: 'Get this object properties',
+				},
+				{
+					name: 'Get MsServices Sharepoint Domain ServiceInfos',
+					value: 'getMsServicesSharepointdomainServiceInfosGet',
+					action: 'Get service information',
 				},
 				{
 					name: 'Update MsServices ServiceName Account UserPrincipalName',
 					value: 'putMsServicesserviceNAccountuserPrinPut',
+					action: 'Alter this object properties',
+				},
+				{
+					name: 'Update MsServices ServiceName Account UserPrincipalName Exchange',
+					value: 'putMsServicesserviceNAccountuserPrinExchangePut',
 					action: 'Alter this object properties',
 				},
 				{

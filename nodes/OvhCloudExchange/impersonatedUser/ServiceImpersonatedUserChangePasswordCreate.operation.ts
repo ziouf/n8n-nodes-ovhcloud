@@ -30,7 +30,7 @@ export function description() {
 			typeOptions: { password: true },
 			default: '',
 			required: true,
-			description: 'new password',
+			description: 'New password',
 		},
 	];
 }
@@ -44,7 +44,7 @@ export function description() {
 export async function execute(this: IExecuteFunctions): Promise<INodeExecutionData[]> {
 	const organizationName = this.getNodeParameter('organizationName', 0) as string;
 	const exchangeService = this.getNodeParameter('exchangeService', 0) as string;
-	const password = this.getNodeParameter('password', 0) as any;
+	const password = this.getNodeParameter('password', 0) as string;
 
 	const body: IDataObject = {
     password: password

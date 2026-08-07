@@ -94,14 +94,14 @@ export function description() {
 export async function execute(this: IExecuteFunctions): Promise<INodeExecutionData[]> {
 	const organizationName = this.getNodeParameter('organizationName', 0) as string;
 	const exchangeService = this.getNodeParameter('exchangeService', 0) as string;
-	const displayName = this.getNodeParameter('displayName', 0) as any;
-	const maxSendSize = this.getNodeParameter('maxSendSize', 0) as any;
-	const password = this.getNodeParameter('password', 0) as any;
-	const port = this.getNodeParameter('port', 0) as any;
-	const requireTLS = this.getNodeParameter('requireTLS', 0) as any;
-	const smartHost = this.getNodeParameter('smartHost', 0) as any;
-	const smartHostAuthMechanism = this.getNodeParameter('smartHostAuthMechanism', 0) as any;
-	const user = this.getNodeParameter('user', 0) as any;
+	const displayName = this.getNodeParameter('displayName', 0) as string;
+	const maxSendSize = this.getNodeParameter('maxSendSize', 0) as string;
+	const password = this.getNodeParameter('password', 0) as string;
+	const port = this.getNodeParameter('port', 0) as string;
+	const requireTLS = this.getNodeParameter('requireTLS', 0) as string;
+	const smartHost = this.getNodeParameter('smartHost', 0) as string;
+	const smartHostAuthMechanism = this.getNodeParameter('smartHostAuthMechanism', 0) as string;
+	const user = this.getNodeParameter('user', 0) as string;
 
 	const body: IDataObject = {
     displayName: displayName,

@@ -32,12 +32,12 @@ export function description() {
 			description: 'Default email for this shared mailbox',
 		},
 		{
-			displayName: 'Id',
+			displayName: 'ID',
 			name: 'id',
 			type: 'string',
 			default: '',
 			required: true,
-			description: 'Task id',
+			description: 'Task ID',
 		},
 	];
 }

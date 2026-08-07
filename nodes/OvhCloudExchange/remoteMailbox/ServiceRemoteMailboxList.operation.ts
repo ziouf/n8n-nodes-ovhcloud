@@ -24,11 +24,11 @@ export function description() {
 			description: 'The internal name of your exchange service',
 		},
 		{
-			displayName: 'Id',
+			displayName: 'ID',
 			name: 'id',
 			type: 'string',
 			default: '',
-			description: 'Filter the value of id property (like)',
+			description: 'Filter the value of ID property (like)',
 		},
 		{
 			displayName: 'Primary Email Address',
@@ -49,8 +49,8 @@ export function description() {
 export async function execute(this: IExecuteFunctions): Promise<INodeExecutionData[]> {
 	const organizationName = this.getNodeParameter('organizationName', 0) as string;
 	const exchangeService = this.getNodeParameter('exchangeService', 0) as string;
-	const id = this.getNodeParameter('id', 0) as any;
-	const primaryEmailAddress = this.getNodeParameter('primaryEmailAddress', 0) as any;
+	const id = this.getNodeParameter('id', 0) as string;
+	const primaryEmailAddress = this.getNodeParameter('primaryEmailAddress', 0) as string;
 
 	const qs: IDataObject = {
     id: id,

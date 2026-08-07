@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { description, execute } from './ServiceMailingListManagerAccountManagerAccountIdDelete.operation';
 
 jest.mock('../../../shared/transport/ApiClient', () => {

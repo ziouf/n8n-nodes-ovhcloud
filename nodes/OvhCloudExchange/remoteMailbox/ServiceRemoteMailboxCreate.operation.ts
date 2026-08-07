@@ -28,7 +28,6 @@ export function description() {
 			name: 'city',
 			type: 'string',
 			default: '',
-			description: 'City',
 		},
 		{
 			displayName: 'Company',
@@ -42,21 +41,18 @@ export function description() {
 			name: 'countryCode',
 			type: 'string',
 			default: '',
-			description: 'Country code',
 		},
 		{
 			displayName: 'Description',
 			name: 'description',
 			type: 'string',
 			default: '',
-			description: 'Description',
 		},
 		{
 			displayName: 'Display Name',
 			name: 'displayName',
 			type: 'string',
 			default: '',
-			description: 'Display name',
 		},
 		{
 			displayName: 'Domain',
@@ -86,7 +82,6 @@ export function description() {
 			name: 'firstName',
 			type: 'string',
 			default: '',
-			description: 'First name',
 		},
 		{
 			displayName: 'Hidden From G A L',
@@ -100,28 +95,24 @@ export function description() {
 			name: 'initials',
 			type: 'string',
 			default: '',
-			description: 'Initials',
 		},
 		{
 			displayName: 'Job Department',
 			name: 'jobDepartment',
 			type: 'string',
 			default: '',
-			description: 'Job department',
 		},
 		{
 			displayName: 'Job Title',
 			name: 'jobTitle',
 			type: 'string',
 			default: '',
-			description: 'Job title',
 		},
 		{
 			displayName: 'Last Name',
 			name: 'lastName',
 			type: 'string',
 			default: '',
-			description: 'Last name',
 		},
 		{
 			displayName: 'Login',
@@ -129,7 +120,6 @@ export function description() {
 			type: 'string',
 			default: '',
 			required: true,
-			description: 'Login',
 		},
 		{
 			displayName: 'Mobile',
@@ -143,7 +133,6 @@ export function description() {
 			name: 'office',
 			type: 'string',
 			default: '',
-			description: 'Office',
 		},
 		{
 			displayName: 'Password',
@@ -152,7 +141,6 @@ export function description() {
 			typeOptions: { password: true },
 			default: '',
 			required: true,
-			description: 'Password',
 		},
 		{
 			displayName: 'Phone',
@@ -166,14 +154,12 @@ export function description() {
 			name: 'postalCode',
 			type: 'string',
 			default: '',
-			description: 'Postal code',
 		},
 		{
 			displayName: 'Region',
 			name: 'region',
 			type: 'string',
 			default: '',
-			description: 'Region',
 		},
 		{
 			displayName: 'Remote Routing Address',
@@ -195,7 +181,6 @@ export function description() {
 			name: 'streetAddress',
 			type: 'string',
 			default: '',
-			description: 'Street address',
 		},
 		{
 			displayName: 'Type',
@@ -217,31 +202,31 @@ export function description() {
 export async function execute(this: IExecuteFunctions): Promise<INodeExecutionData[]> {
 	const organizationName = this.getNodeParameter('organizationName', 0) as string;
 	const exchangeService = this.getNodeParameter('exchangeService', 0) as string;
-	const city = this.getNodeParameter('city', 0) as any;
-	const company = this.getNodeParameter('company', 0) as any;
-	const countryCode = this.getNodeParameter('countryCode', 0) as any;
-	const description = this.getNodeParameter('description', 0) as any;
-	const displayName = this.getNodeParameter('displayName', 0) as any;
-	const domain = this.getNodeParameter('domain', 0) as any;
-	const exchangeGuid = this.getNodeParameter('exchangeGuid', 0) as any;
-	const fax = this.getNodeParameter('fax', 0) as any;
-	const firstName = this.getNodeParameter('firstName', 0) as any;
-	const hiddenFromGAL = this.getNodeParameter('hiddenFromGAL', 0) as any;
-	const initials = this.getNodeParameter('initials', 0) as any;
-	const jobDepartment = this.getNodeParameter('jobDepartment', 0) as any;
-	const jobTitle = this.getNodeParameter('jobTitle', 0) as any;
-	const lastName = this.getNodeParameter('lastName', 0) as any;
-	const login = this.getNodeParameter('login', 0) as any;
-	const mobile = this.getNodeParameter('mobile', 0) as any;
-	const office = this.getNodeParameter('office', 0) as any;
-	const password = this.getNodeParameter('password', 0) as any;
-	const phone = this.getNodeParameter('phone', 0) as any;
-	const postalCode = this.getNodeParameter('postalCode', 0) as any;
-	const region = this.getNodeParameter('region', 0) as any;
-	const remoteRoutingAddress = this.getNodeParameter('remoteRoutingAddress', 0) as any;
-	const spamAndVirusConfiguration = this.getNodeParameter('spamAndVirusConfiguration', 0) as any;
-	const streetAddress = this.getNodeParameter('streetAddress', 0) as any;
-	const type = this.getNodeParameter('type', 0) as any;
+	const city = this.getNodeParameter('city', 0) as string;
+	const company = this.getNodeParameter('company', 0) as string;
+	const countryCode = this.getNodeParameter('countryCode', 0) as string;
+	const description = this.getNodeParameter('description', 0) as string;
+	const displayName = this.getNodeParameter('displayName', 0) as string;
+	const domain = this.getNodeParameter('domain', 0) as string;
+	const exchangeGuid = this.getNodeParameter('exchangeGuid', 0) as string;
+	const fax = this.getNodeParameter('fax', 0) as string;
+	const firstName = this.getNodeParameter('firstName', 0) as string;
+	const hiddenFromGAL = this.getNodeParameter('hiddenFromGAL', 0) as string;
+	const initials = this.getNodeParameter('initials', 0) as string;
+	const jobDepartment = this.getNodeParameter('jobDepartment', 0) as string;
+	const jobTitle = this.getNodeParameter('jobTitle', 0) as string;
+	const lastName = this.getNodeParameter('lastName', 0) as string;
+	const login = this.getNodeParameter('login', 0) as string;
+	const mobile = this.getNodeParameter('mobile', 0) as string;
+	const office = this.getNodeParameter('office', 0) as string;
+	const password = this.getNodeParameter('password', 0) as string;
+	const phone = this.getNodeParameter('phone', 0) as string;
+	const postalCode = this.getNodeParameter('postalCode', 0) as string;
+	const region = this.getNodeParameter('region', 0) as string;
+	const remoteRoutingAddress = this.getNodeParameter('remoteRoutingAddress', 0) as string;
+	const spamAndVirusConfiguration = this.getNodeParameter('spamAndVirusConfiguration', 0) as string;
+	const streetAddress = this.getNodeParameter('streetAddress', 0) as string;
+	const type = this.getNodeParameter('type', 0) as string;
 
 	const body: IDataObject = {
     city: city,

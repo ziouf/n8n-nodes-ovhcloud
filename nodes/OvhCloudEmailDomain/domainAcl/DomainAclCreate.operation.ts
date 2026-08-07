@@ -18,7 +18,7 @@ export function description(displayOptions: IDisplayOptions): INodeProperties[] 
 			},
 		},
 		{
-			displayName: 'Account Id',
+			displayName: 'Account ID',
 			name: 'accountId',
 			type: 'string',
 			default: '',

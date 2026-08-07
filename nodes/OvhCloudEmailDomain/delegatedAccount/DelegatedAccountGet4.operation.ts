@@ -1,3 +1,4 @@
+/* eslint-disable n8n-nodes-base/node-param-type-options-password-missing */
 import type { IDataObject, IExecuteFunctions, INodeExecutionData, IDisplayOptions, INodeProperties } from 'n8n-workflow';
 import { ApiClient } from '../../../shared/transport/ApiClient';
 
@@ -7,9 +8,9 @@ export function description(displayOptions: IDisplayOptions): INodeProperties[] 
 			displayName: 'Email',
 			name: 'email',
 			type: 'string',
+			placeholder: 'name@email.com',
 			default: '',
 			required: true,
-			description: 'Email',
 			displayOptions: {
 				show: {
 					emailDomainOperation: ['DelegatedAccountGet4'],

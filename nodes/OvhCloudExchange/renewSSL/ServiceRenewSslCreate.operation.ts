@@ -56,9 +56,9 @@ export function description() {
 export async function execute(this: IExecuteFunctions): Promise<INodeExecutionData[]> {
 	const organizationName = this.getNodeParameter('organizationName', 0) as string;
 	const exchangeService = this.getNodeParameter('exchangeService', 0) as string;
-	const dcv = this.getNodeParameter('dcv', 0) as any;
-	const useCname = this.getNodeParameter('useCname', 0) as any;
-	const useDnsAssist = this.getNodeParameter('useDnsAssist', 0) as any;
+	const dcv = this.getNodeParameter('dcv', 0) as string;
+	const useCname = this.getNodeParameter('useCname', 0) as string;
+	const useDnsAssist = this.getNodeParameter('useDnsAssist', 0) as string;
 
 	const body: IDataObject = {
     dcv: dcv,

@@ -4,12 +4,12 @@ import { ApiClient } from '../../../shared/transport/ApiClient';
 export function description(displayOptions: IDisplayOptions): INodeProperties[] {
 	return [
 		{
-			displayName: 'Allowed Account Id',
+			displayName: 'Allowed Account ID',
 			name: 'allowedAccountId',
 			type: 'string',
 			default: '',
 			required: true,
-			description: 'Account id to give send on behalf to',
+			description: 'Account ID to give send on behalf to',
 			displayOptions: {
 				show: {
 					mxPlanOperation: ['MxPlanAccountSendOnBehalfToGet'],
@@ -21,6 +21,7 @@ export function description(displayOptions: IDisplayOptions): INodeProperties[] 
 			displayName: 'Email',
 			name: 'email',
 			type: 'string',
+			placeholder: 'name@email.com',
 			default: '',
 			required: true,
 			description: 'Default email for this mailbox',
@@ -55,7 +56,7 @@ export function description(displayOptions: IDisplayOptions): INodeProperties[] 
  * Endpoint: /email/mxplan/{service}/account/{email}/sendOnBehalfTo/{allowedAccountId}
  */
 export async function execute(this: IExecuteFunctions): Promise<INodeExecutionData[]> {
-	const allowedAccountId = this.getNodeParameter('allowedAccountId', 0) as any;
+	const allowedAccountId = this.getNodeParameter('allowedAccountId', 0) as string;
 	const email = this.getNodeParameter('email', 0) as string;
 	const service = this.getNodeParameter('service', 0) as string;
 

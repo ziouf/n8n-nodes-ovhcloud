@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { description, execute } from './ServiceSharedAccountSendOnBehalfToGet.operation';
 
 jest.mock('../../../shared/transport/ApiClient', () => {

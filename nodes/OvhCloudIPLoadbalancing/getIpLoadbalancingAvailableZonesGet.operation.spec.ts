@@ -16,7 +16,7 @@ import { ApiClient } from '../../shared/transport/ApiClient';
 describe('getIpLoadbalancingAvailableZonesGet operation', () => {
 	describe('description', () => {
 		it('should return all required parameters', () => {
-			const result = description({ show: {} });
+			const result = description();
 			expect(result.length).toBeGreaterThanOrEqual(0);
 		});
 	});

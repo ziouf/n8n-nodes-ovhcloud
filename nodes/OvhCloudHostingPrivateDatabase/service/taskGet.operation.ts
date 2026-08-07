@@ -19,12 +19,12 @@ export function description(displayOptions: IDisplayOptions): INodeProperties[] 
           displayOptions,
         },
         {
-          displayName: 'Id',
+          displayName: 'ID',
           name: 'id',
           type: 'number',
           default: 0,
           required: true,
-          description: 'Id parameter',
+          description: 'ID parameter',
           displayOptions,
         },
 	];

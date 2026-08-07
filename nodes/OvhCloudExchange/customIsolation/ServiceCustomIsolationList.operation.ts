@@ -56,9 +56,9 @@ export function description() {
 export async function execute(this: IExecuteFunctions): Promise<INodeExecutionData[]> {
 	const organizationName = this.getNodeParameter('organizationName', 0) as string;
 	const exchangeService = this.getNodeParameter('exchangeService', 0) as string;
-	const isolationField = this.getNodeParameter('isolationField', 0) as any;
-	const isolationValue = this.getNodeParameter('isolationValue', 0) as any;
-	const name = this.getNodeParameter('name', 0) as any;
+	const isolationField = this.getNodeParameter('isolationField', 0) as string;
+	const isolationValue = this.getNodeParameter('isolationValue', 0) as string;
+	const name = this.getNodeParameter('name', 0) as string;
 
 	const qs: IDataObject = {
     isolationField: isolationField,

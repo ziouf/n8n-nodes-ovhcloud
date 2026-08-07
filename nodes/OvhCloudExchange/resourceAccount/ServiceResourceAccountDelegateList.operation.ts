@@ -29,7 +29,7 @@ export function description() {
 			type: 'string',
 			default: '',
 			required: true,
-			description: 'resource as email',
+			description: 'Resource as email',
 		},
 	];
 }

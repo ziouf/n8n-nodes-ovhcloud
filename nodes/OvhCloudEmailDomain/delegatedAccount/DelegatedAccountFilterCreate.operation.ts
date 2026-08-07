@@ -7,9 +7,9 @@ export function description(displayOptions: IDisplayOptions): INodeProperties[] 
 			displayName: 'Email',
 			name: 'email',
 			type: 'string',
+			placeholder: 'name@email.com',
 			default: '',
 			required: true,
-			description: 'Email',
 			displayOptions: {
 				show: {
 					emailDomainOperation: ['DelegatedAccountFilterCreate'],
@@ -141,11 +141,11 @@ export async function execute(this: IExecuteFunctions): Promise<INodeExecutionDa
 	const email = this.getNodeParameter('email', 0) as string;
 	const action = this.getNodeParameter('action', 0) as string;
 	const actionParam = this.getNodeParameter('actionParam', 0) as string;
-	const active = this.getNodeParameter('active', 0) as any;
+	const active = this.getNodeParameter('active', 0) as boolean;
 	const header = this.getNodeParameter('header', 0) as string;
 	const name = this.getNodeParameter('name', 0) as string;
 	const operand = this.getNodeParameter('operand', 0) as string;
-	const priority = this.getNodeParameter('priority', 0) as any;
+	const priority = this.getNodeParameter('priority', 0) as string;
 	const value = this.getNodeParameter('value', 0) as string;
 
 	const body: IDataObject = {

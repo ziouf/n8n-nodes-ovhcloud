@@ -49,8 +49,8 @@ export function description() {
 export async function execute(this: IExecuteFunctions): Promise<INodeExecutionData[]> {
 	const organizationName = this.getNodeParameter('organizationName', 0) as string;
 	const exchangeService = this.getNodeParameter('exchangeService', 0) as string;
-	const company = this.getNodeParameter('company', 0) as any;
-	const resourceEmailAddress = this.getNodeParameter('resourceEmailAddress', 0) as any;
+	const company = this.getNodeParameter('company', 0) as string;
+	const resourceEmailAddress = this.getNodeParameter('resourceEmailAddress', 0) as string;
 
 	const qs: IDataObject = {
     company: company,

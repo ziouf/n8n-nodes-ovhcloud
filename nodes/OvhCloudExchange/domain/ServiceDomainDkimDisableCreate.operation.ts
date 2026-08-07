@@ -29,7 +29,6 @@ export function description() {
 			type: 'string',
 			default: '',
 			required: true,
-			description: 'Domain name',
 		},
 		{
 			displayName: 'Selector Name',
@@ -37,7 +36,7 @@ export function description() {
 			type: 'string',
 			default: '',
 			required: true,
-			description: 'selectorName',
+			description: 'SelectorName',
 		},
 	];
 }

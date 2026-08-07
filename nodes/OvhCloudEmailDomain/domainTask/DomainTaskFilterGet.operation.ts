@@ -18,12 +18,12 @@ export function description(displayOptions: IDisplayOptions): INodeProperties[] 
 			},
 		},
 		{
-			displayName: 'Id',
+			displayName: 'ID',
 			name: 'id',
 			type: 'string',
 			default: '',
 			required: true,
-			description: 'Id of task',
+			description: 'ID of task',
 			displayOptions: {
 				show: {
 					emailDomainOperation: ['DomainTaskFilterGet'],
@@ -42,7 +42,7 @@ export function description(displayOptions: IDisplayOptions): INodeProperties[] 
  */
 export async function execute(this: IExecuteFunctions): Promise<INodeExecutionData[]> {
 	const domain = this.getNodeParameter('domain', 0) as string;
-	const id = this.getNodeParameter('id', 0) as any;
+	const id = this.getNodeParameter('id', 0) as string;
 
 	const client = new ApiClient(this);
 	const data = (await client.httpGet('/email' + '/domain/' + encodeURIComponent(domain) + '/task' + '/filter/' + encodeURIComponent(id))) as IDataObject;

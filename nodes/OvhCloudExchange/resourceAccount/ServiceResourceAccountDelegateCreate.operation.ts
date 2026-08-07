@@ -29,15 +29,15 @@ export function description() {
 			type: 'string',
 			default: '',
 			required: true,
-			description: 'resource as email',
+			description: 'Resource as email',
 		},
 		{
-			displayName: 'Allowed Account Id',
+			displayName: 'Allowed Account ID',
 			name: 'allowedAccountId',
 			type: 'string',
 			default: '',
 			required: true,
-			description: 'delegate\'s account id',
+			description: 'Delegate\'s account ID',
 		},
 	];
 }
@@ -52,7 +52,7 @@ export async function execute(this: IExecuteFunctions): Promise<INodeExecutionDa
 	const organizationName = this.getNodeParameter('organizationName', 0) as string;
 	const exchangeService = this.getNodeParameter('exchangeService', 0) as string;
 	const resourceEmailAddress = this.getNodeParameter('resourceEmailAddress', 0) as string;
-	const allowedAccountId = this.getNodeParameter('allowedAccountId', 0) as any;
+	const allowedAccountId = this.getNodeParameter('allowedAccountId', 0) as string;
 
 	const body: IDataObject = {
     allowedAccountId: allowedAccountId

@@ -27,7 +27,7 @@ export function description(displayOptions: IDisplayOptions): INodeProperties[] 
           displayOptions,
         },
         {
-          displayName: 'orphan',
+          displayName: 'Orphan',
           name: 'orphan',
           type: 'string',
           default: '',

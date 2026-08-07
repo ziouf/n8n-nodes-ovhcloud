@@ -19,7 +19,7 @@ export function description(displayOptions: IDisplayOptions): INodeProperties[] 
           displayOptions,
         },
         {
-          displayName: 'kind',
+          displayName: 'Kind',
           name: 'kind',
           type: 'string',
           default: '',

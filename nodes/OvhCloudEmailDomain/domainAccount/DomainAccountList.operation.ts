@@ -22,7 +22,6 @@ export function description(displayOptions: IDisplayOptions): INodeProperties[] 
 			name: 'accountName',
 			type: 'string',
 			default: '',
-			description: 'Account name',
 			displayOptions: {
 				show: {
 					emailDomainOperation: ['DomainAccountList'],

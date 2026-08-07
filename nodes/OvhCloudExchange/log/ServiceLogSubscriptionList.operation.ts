@@ -42,7 +42,7 @@ export function description() {
 export async function execute(this: IExecuteFunctions): Promise<INodeExecutionData[]> {
 	const organizationName = this.getNodeParameter('organizationName', 0) as string;
 	const exchangeService = this.getNodeParameter('exchangeService', 0) as string;
-	const kind = this.getNodeParameter('kind', 0) as any;
+	const kind = this.getNodeParameter('kind', 0) as string;
 
 	const qs: IDataObject = {
     kind: kind

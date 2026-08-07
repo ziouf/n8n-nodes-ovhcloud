@@ -57,11 +57,11 @@ export function description(displayOptions: IDisplayOptions): INodeProperties[] 
 			},
 		},
 		{
-			displayName: 'Id',
+			displayName: 'ID',
 			name: 'id',
 			type: 'string',
 			default: '',
-			description: 'Filter the value of id property (like)',
+			description: 'Filter the value of ID property (like)',
 			displayOptions: {
 				show: {
 					mxPlanOperation: ['MxPlanExternalContactList'],
@@ -96,7 +96,7 @@ export async function execute(this: IExecuteFunctions): Promise<INodeExecutionDa
 	const displayName = this.getNodeParameter('displayName', 0) as string;
 	const externalEmailAddress = this.getNodeParameter('externalEmailAddress', 0) as string;
 	const firstName = this.getNodeParameter('firstName', 0) as string;
-	const id = this.getNodeParameter('id', 0) as any;
+	const id = this.getNodeParameter('id', 0) as string;
 	const lastName = this.getNodeParameter('lastName', 0) as string;
 
 	const qs: IDataObject = {

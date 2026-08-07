@@ -19,7 +19,7 @@ export function description(displayOptions: IDisplayOptions): INodeProperties[] 
           displayOptions,
         },
         {
-          displayName: 'ip',
+          displayName: 'Ip',
           name: 'ip',
           type: 'string',
           default: '',
@@ -27,7 +27,7 @@ export function description(displayOptions: IDisplayOptions): INodeProperties[] 
           displayOptions,
         },
         {
-          displayName: 'service',
+          displayName: 'Service',
           name: 'service',
           type: 'string',
           default: '',
@@ -35,7 +35,7 @@ export function description(displayOptions: IDisplayOptions): INodeProperties[] 
           displayOptions,
         },
         {
-          displayName: 'sftp',
+          displayName: 'Sftp',
           name: 'sftp',
           type: 'string',
           default: '',

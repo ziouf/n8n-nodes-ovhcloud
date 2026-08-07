@@ -29,15 +29,13 @@ export function description() {
 			type: 'string',
 			default: '',
 			required: true,
-			description: 'The mailing list address',
 		},
 		{
-			displayName: 'Manager Account Id',
+			displayName: 'Manager Account ID',
 			name: 'managerAccountId',
 			type: 'string',
 			default: '',
 			required: true,
-			description: 'Manager account id',
 		},
 	];
 }
@@ -52,7 +50,7 @@ export async function execute(this: IExecuteFunctions): Promise<INodeExecutionDa
 	const organizationName = this.getNodeParameter('organizationName', 0) as string;
 	const exchangeService = this.getNodeParameter('exchangeService', 0) as string;
 	const mailingListAddress = this.getNodeParameter('mailingListAddress', 0) as string;
-	const managerAccountId = this.getNodeParameter('managerAccountId', 0) as any;
+	const managerAccountId = this.getNodeParameter('managerAccountId', 0) as string;
 
 	const body: IDataObject = {
     managerAccountId: managerAccountId

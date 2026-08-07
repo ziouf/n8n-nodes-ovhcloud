@@ -22,6 +22,7 @@ export function description(displayOptions: IDisplayOptions): INodeProperties[] 
           displayName: 'Token',
           name: 'token',
           type: 'string',
+										typeOptions: { password: true },
           default: '',
           description: 'Token field',
           displayOptions,

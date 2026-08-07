@@ -28,7 +28,7 @@ export function description() {
 			name: 'fromDate',
 			type: 'string',
 			default: '',
-			description: 'Get active licenses since date ',
+			description: 'Get active licenses since date',
 		},
 		{
 			displayName: 'License',
@@ -56,9 +56,9 @@ export function description() {
 export async function execute(this: IExecuteFunctions): Promise<INodeExecutionData[]> {
 	const organizationName = this.getNodeParameter('organizationName', 0) as string;
 	const exchangeService = this.getNodeParameter('exchangeService', 0) as string;
-	const fromDate = this.getNodeParameter('fromDate', 0) as any;
-	const license = this.getNodeParameter('license', 0) as any;
-	const toDate = this.getNodeParameter('toDate', 0) as any;
+	const fromDate = this.getNodeParameter('fromDate', 0) as string;
+	const license = this.getNodeParameter('license', 0) as string;
+	const toDate = this.getNodeParameter('toDate', 0) as string;
 
 	const qs: IDataObject = {
     fromDate: fromDate,

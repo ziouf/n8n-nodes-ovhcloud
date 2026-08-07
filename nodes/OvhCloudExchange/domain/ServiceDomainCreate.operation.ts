@@ -95,11 +95,11 @@ export function description() {
 			description: 'Default Sender base routing destination domain applied on all new created accounts',
 		},
 		{
-			displayName: 'Send Connector Id Default',
+			displayName: 'Send Connector ID Default',
 			name: 'sendConnectorIdDefault',
 			type: 'string',
 			default: '',
-			description: 'Default Sender Connector id applied on all new created accounts',
+			description: 'Default Sender Connector ID applied on all new created accounts',
 		},
 		{
 			displayName: 'Type',
@@ -121,18 +121,18 @@ export function description() {
 export async function execute(this: IExecuteFunctions): Promise<INodeExecutionData[]> {
 	const organizationName = this.getNodeParameter('organizationName', 0) as string;
 	const exchangeService = this.getNodeParameter('exchangeService', 0) as string;
-	const autoEnableDKIM = this.getNodeParameter('autoEnableDKIM', 0) as any;
-	const configureAutodiscover = this.getNodeParameter('configureAutodiscover', 0) as any;
-	const configureDKIM = this.getNodeParameter('configureDKIM', 0) as any;
-	const configureMx = this.getNodeParameter('configureMx', 0) as any;
-	const configureSPF = this.getNodeParameter('configureSPF', 0) as any;
-	const main = this.getNodeParameter('main', 0) as any;
-	const mxRelay = this.getNodeParameter('mxRelay', 0) as any;
-	const name = this.getNodeParameter('name', 0) as any;
-	const organization2010 = this.getNodeParameter('organization2010', 0) as any;
-	const sbrDefault = this.getNodeParameter('sbrDefault', 0) as any;
-	const sendConnectorIdDefault = this.getNodeParameter('sendConnectorIdDefault', 0) as any;
-	const type = this.getNodeParameter('type', 0) as any;
+	const autoEnableDKIM = this.getNodeParameter('autoEnableDKIM', 0) as string;
+	const configureAutodiscover = this.getNodeParameter('configureAutodiscover', 0) as string;
+	const configureDKIM = this.getNodeParameter('configureDKIM', 0) as string;
+	const configureMx = this.getNodeParameter('configureMx', 0) as string;
+	const configureSPF = this.getNodeParameter('configureSPF', 0) as string;
+	const main = this.getNodeParameter('main', 0) as string;
+	const mxRelay = this.getNodeParameter('mxRelay', 0) as string;
+	const name = this.getNodeParameter('name', 0) as string;
+	const organization2010 = this.getNodeParameter('organization2010', 0) as string;
+	const sbrDefault = this.getNodeParameter('sbrDefault', 0) as string;
+	const sendConnectorIdDefault = this.getNodeParameter('sendConnectorIdDefault', 0) as string;
+	const type = this.getNodeParameter('type', 0) as string;
 
 	const body: IDataObject = {
     autoEnableDKIM: autoEnableDKIM,

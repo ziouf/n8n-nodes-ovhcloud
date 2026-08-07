@@ -7,6 +7,7 @@ export function description(displayOptions: IDisplayOptions): INodeProperties[] 
 			displayName: 'Email',
 			name: 'email',
 			type: 'string',
+			placeholder: 'name@email.com',
 			default: '',
 			required: true,
 			description: 'Default email for this mailbox',
@@ -32,7 +33,7 @@ export function description(displayOptions: IDisplayOptions): INodeProperties[] 
 			},
 		},
 		{
-			displayName: 'Allowed Account Id',
+			displayName: 'Allowed Account ID',
 			name: 'allowedAccountId',
 			type: 'string',
 			default: '',
@@ -57,7 +58,7 @@ export function description(displayOptions: IDisplayOptions): INodeProperties[] 
 export async function execute(this: IExecuteFunctions): Promise<INodeExecutionData[]> {
 	const email = this.getNodeParameter('email', 0) as string;
 	const service = this.getNodeParameter('service', 0) as string;
-	const allowedAccountId = this.getNodeParameter('allowedAccountId', 0) as any;
+	const allowedAccountId = this.getNodeParameter('allowedAccountId', 0) as string;
 
 	const body: IDataObject = {
 		allowedAccountId: allowedAccountId,

@@ -56,9 +56,9 @@ export function description() {
 export async function execute(this: IExecuteFunctions): Promise<INodeExecutionData[]> {
 	const organizationName = this.getNodeParameter('organizationName', 0) as string;
 	const exchangeService = this.getNodeParameter('exchangeService', 0) as string;
-	const IMEI = this.getNodeParameter('IMEI', 0) as any;
-	const deviceState = this.getNodeParameter('deviceState', 0) as any;
-	const identity = this.getNodeParameter('identity', 0) as any;
+	const IMEI = this.getNodeParameter('IMEI', 0) as string;
+	const deviceState = this.getNodeParameter('deviceState', 0) as string;
+	const identity = this.getNodeParameter('identity', 0) as string;
 
 	const qs: IDataObject = {
     IMEI: IMEI,

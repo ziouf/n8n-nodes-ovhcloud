@@ -32,12 +32,12 @@ export function description() {
 			description: 'Default email for this mailbox',
 		},
 		{
-			displayName: 'Allowed Account Id',
+			displayName: 'Allowed Account ID',
 			name: 'allowedAccountId',
 			type: 'string',
 			default: '',
 			required: true,
-			description: 'Account id to give full access',
+			description: 'Account ID to give full access',
 		},
 	];
 }

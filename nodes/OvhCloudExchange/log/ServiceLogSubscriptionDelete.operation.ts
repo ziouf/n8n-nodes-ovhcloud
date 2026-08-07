@@ -24,12 +24,11 @@ export function description() {
 			description: 'The internal name of your exchange service',
 		},
 		{
-			displayName: 'Subscription Id',
+			displayName: 'Subscription ID',
 			name: 'subscriptionId',
 			type: 'string',
 			default: '',
 			required: true,
-			description: 'Subscription ID',
 		},
 	];
 }

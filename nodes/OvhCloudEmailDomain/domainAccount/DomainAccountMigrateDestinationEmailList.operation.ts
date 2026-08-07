@@ -71,7 +71,7 @@ export async function execute(this: IExecuteFunctions): Promise<INodeExecutionDa
 	const accountName = this.getNodeParameter('accountName', 0) as string;
 	const destinationServiceName = this.getNodeParameter('destinationServiceName', 0) as string;
 	const domain = this.getNodeParameter('domain', 0) as string;
-	const quota = this.getNodeParameter('quota', 0) as any;
+	const quota = this.getNodeParameter('quota', 0) as string;
 
 	const qs: IDataObject = {
 		quota: quota,

@@ -51,7 +51,7 @@ export async function execute(this: IExecuteFunctions): Promise<INodeExecutionDa
 	const organizationName = this.getNodeParameter('organizationName', 0) as string;
 	const exchangeService = this.getNodeParameter('exchangeService', 0) as string;
 	const primaryEmailAddress = this.getNodeParameter('primaryEmailAddress', 0) as string;
-	const quota = this.getNodeParameter('quota', 0) as any;
+	const quota = this.getNodeParameter('quota', 0) as string;
 
 	const body: IDataObject = {
     quota: quota

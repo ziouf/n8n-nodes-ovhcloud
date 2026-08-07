@@ -49,8 +49,8 @@ export function description() {
 export async function execute(this: IExecuteFunctions): Promise<INodeExecutionData[]> {
 	const organizationName = this.getNodeParameter('organizationName', 0) as string;
 	const exchangeService = this.getNodeParameter('exchangeService', 0) as string;
-	const outlookLanguage = this.getNodeParameter('outlookLanguage', 0) as any;
-	const outlookVersion = this.getNodeParameter('outlookVersion', 0) as any;
+	const outlookLanguage = this.getNodeParameter('outlookLanguage', 0) as string;
+	const outlookVersion = this.getNodeParameter('outlookVersion', 0) as string;
 
 	const qs: IDataObject = {
     outlookLanguage: outlookLanguage,

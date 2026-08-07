@@ -29,7 +29,6 @@ export function description() {
 			type: 'string',
 			default: '',
 			required: true,
-			description: 'Domain name',
 		},
 		{
 			displayName: 'Content',
@@ -59,8 +58,8 @@ export async function execute(this: IExecuteFunctions): Promise<INodeExecutionDa
 	const organizationName = this.getNodeParameter('organizationName', 0) as string;
 	const exchangeService = this.getNodeParameter('exchangeService', 0) as string;
 	const domainName = this.getNodeParameter('domainName', 0) as string;
-	const content = this.getNodeParameter('content', 0) as any;
-	const outsideOnly = this.getNodeParameter('outsideOnly', 0) as any;
+	const content = this.getNodeParameter('content', 0) as string;
+	const outsideOnly = this.getNodeParameter('outsideOnly', 0) as string;
 
 	const body: IDataObject = {
     content: content,

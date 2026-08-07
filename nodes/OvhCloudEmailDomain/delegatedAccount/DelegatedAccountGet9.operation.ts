@@ -7,9 +7,9 @@ export function description(displayOptions: IDisplayOptions): INodeProperties[] 
 			displayName: 'Email',
 			name: 'email',
 			type: 'string',
+			placeholder: 'name@email.com',
 			default: '',
 			required: true,
-			description: 'Email',
 			displayOptions: {
 				show: {
 					emailDomainOperation: ['DelegatedAccountGet9'],
@@ -96,7 +96,7 @@ export function description(displayOptions: IDisplayOptions): INodeProperties[] 
 export async function execute(this: IExecuteFunctions): Promise<INodeExecutionData[]> {
 	const email = this.getNodeParameter('email', 0) as string;
 	const content = this.getNodeParameter('content', 0) as string;
-	const copy = this.getNodeParameter('copy', 0) as any;
+	const copy = this.getNodeParameter('copy', 0) as string;
 	const copyTo = this.getNodeParameter('copyTo', 0) as string;
 	const from = this.getNodeParameter('from', 0) as string;
 	const to = this.getNodeParameter('to', 0) as string;

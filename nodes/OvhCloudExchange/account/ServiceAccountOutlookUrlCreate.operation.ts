@@ -60,8 +60,8 @@ export async function execute(this: IExecuteFunctions): Promise<INodeExecutionDa
 	const organizationName = this.getNodeParameter('organizationName', 0) as string;
 	const exchangeService = this.getNodeParameter('exchangeService', 0) as string;
 	const primaryEmailAddress = this.getNodeParameter('primaryEmailAddress', 0) as string;
-	const language = this.getNodeParameter('language', 0) as any;
-	const version = this.getNodeParameter('version', 0) as any;
+	const language = this.getNodeParameter('language', 0) as string;
+	const version = this.getNodeParameter('version', 0) as string;
 
 	const body: IDataObject = {
     language: language,

@@ -29,7 +29,7 @@ export function description() {
 			type: 'string',
 			default: '',
 			required: true,
-			description: 'primary email address of a user that will be admin of sharepoint (You will not be able to change it!)',
+			description: 'Primary email address of a user that will be admin of sharepoint (You will not be able to change it!)',
 		},
 		{
 			displayName: 'Sub Domain',
@@ -37,7 +37,7 @@ export function description() {
 			type: 'string',
 			default: '',
 			required: true,
-			description: 'sub domain that will be used for Your sharepoint infra (You will not be able to change it!)',
+			description: 'Sub domain that will be used for Your sharepoint infra (You will not be able to change it!)',
 		},
 	];
 }
@@ -51,8 +51,8 @@ export function description() {
 export async function execute(this: IExecuteFunctions): Promise<INodeExecutionData[]> {
 	const organizationName = this.getNodeParameter('organizationName', 0) as string;
 	const exchangeService = this.getNodeParameter('exchangeService', 0) as string;
-	const primaryEmailAddress = this.getNodeParameter('primaryEmailAddress', 0) as any;
-	const subDomain = this.getNodeParameter('subDomain', 0) as any;
+	const primaryEmailAddress = this.getNodeParameter('primaryEmailAddress', 0) as string;
+	const subDomain = this.getNodeParameter('subDomain', 0) as string;
 
 	const body: IDataObject = {
     primaryEmailAddress: primaryEmailAddress,

@@ -9,7 +9,6 @@ export function description(displayOptions: IDisplayOptions): INodeProperties[] 
 			type: 'string',
 			default: '',
 			required: true,
-			description: 'Alias',
 			displayOptions: {
 				show: {
 					mxPlanOperation: ['MxPlanAccountAliasGet'],
@@ -21,6 +20,7 @@ export function description(displayOptions: IDisplayOptions): INodeProperties[] 
 			displayName: 'Email',
 			name: 'email',
 			type: 'string',
+			placeholder: 'name@email.com',
 			default: '',
 			required: true,
 			description: 'Default email for this mailbox',

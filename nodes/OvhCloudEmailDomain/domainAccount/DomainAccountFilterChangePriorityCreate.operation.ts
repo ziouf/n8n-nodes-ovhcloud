@@ -72,7 +72,7 @@ export async function execute(this: IExecuteFunctions): Promise<INodeExecutionDa
 	const accountName = this.getNodeParameter('accountName', 0) as string;
 	const domain = this.getNodeParameter('domain', 0) as string;
 	const name = this.getNodeParameter('name', 0) as string;
-	const priority = this.getNodeParameter('priority', 0) as any;
+	const priority = this.getNodeParameter('priority', 0) as string;
 
 	const body: IDataObject = {
 		priority: priority,

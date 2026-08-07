@@ -29,15 +29,14 @@ export function description() {
 			type: 'string',
 			default: '',
 			required: true,
-			description: 'The mailing list address',
 		},
 		{
-			displayName: 'Allow Account Id',
+			displayName: 'Allow Account ID',
 			name: 'allowAccountId',
 			type: 'string',
 			default: '',
 			required: true,
-			description: 'Account id to allow to send as mails from this mailing list',
+			description: 'Account ID to allow to send as mails from this mailing list',
 		},
 	];
 }
@@ -52,7 +51,7 @@ export async function execute(this: IExecuteFunctions): Promise<INodeExecutionDa
 	const organizationName = this.getNodeParameter('organizationName', 0) as string;
 	const exchangeService = this.getNodeParameter('exchangeService', 0) as string;
 	const mailingListAddress = this.getNodeParameter('mailingListAddress', 0) as string;
-	const allowAccountId = this.getNodeParameter('allowAccountId', 0) as any;
+	const allowAccountId = this.getNodeParameter('allowAccountId', 0) as string;
 
 	const body: IDataObject = {
     allowAccountId: allowAccountId

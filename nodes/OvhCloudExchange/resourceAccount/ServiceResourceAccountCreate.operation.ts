@@ -28,21 +28,21 @@ export function description() {
 			name: 'addOrganizerToSubject',
 			type: 'string',
 			default: '',
-			description: 'meeting organizer\'s name is used as the subject of the meeting request',
+			description: 'Meeting organizer\'s name is used as the subject of the meeting request',
 		},
 		{
 			displayName: 'Allow Conflict',
 			name: 'allowConflict',
 			type: 'string',
 			default: '',
-			description: 'resource can be scheduled by more than one person during the same time period',
+			description: 'Resource can be scheduled by more than one person during the same time period',
 		},
 		{
 			displayName: 'Booking Window',
 			name: 'bookingWindow',
 			type: 'string',
 			default: '',
-			description: 'maximum number of days in advance that the resource can be reserved',
+			description: 'Maximum number of days in advance that the resource can be reserved',
 		},
 		{
 			displayName: 'Capacity',
@@ -50,7 +50,7 @@ export function description() {
 			type: 'string',
 			default: '',
 			required: true,
-			description: 'number of the same equipment or capacity of a room',
+			description: 'Number of the same equipment or capacity of a room',
 		},
 		{
 			displayName: 'Company',
@@ -64,35 +64,35 @@ export function description() {
 			name: 'deleteComments',
 			type: 'string',
 			default: '',
-			description: 'remove any text in the message body of incoming meeting requests on resourceAccount',
+			description: 'Remove any text in the message body of incoming meeting requests on resourceAccount',
 		},
 		{
 			displayName: 'Delete Subject',
 			name: 'deleteSubject',
 			type: 'string',
 			default: '',
-			description: 'remove email subject of incoming meeting requests on resourceAccount',
+			description: 'Remove email subject of incoming meeting requests on resourceAccount',
 		},
 		{
 			displayName: 'Display Name',
 			name: 'displayName',
 			type: 'string',
 			default: '',
-			description: 'resource account display name',
+			description: 'Resource account display name',
 		},
 		{
 			displayName: 'Location',
 			name: 'location',
 			type: 'string',
 			default: '',
-			description: 'resource location',
+			description: 'Resource location',
 		},
 		{
 			displayName: 'Maximum Duration',
 			name: 'maximumDuration',
 			type: 'string',
 			default: '',
-			description: 'maximum duration in minutes for meeting requests',
+			description: 'Maximum duration in minutes for meeting requests',
 		},
 		{
 			displayName: 'Resource Email Address',
@@ -100,14 +100,14 @@ export function description() {
 			type: 'string',
 			default: '',
 			required: true,
-			description: 'resource address',
+			description: 'Resource address',
 		},
 		{
 			displayName: 'Show Meeting Details',
 			name: 'showMeetingDetails',
 			type: 'string',
 			default: '',
-			description: 'granted right on a calendar of that resourceAccount',
+			description: 'Granted right on a calendar of that resourceAccount',
 		},
 		{
 			displayName: 'Type',
@@ -115,7 +115,7 @@ export function description() {
 			type: 'string',
 			default: '',
 			required: true,
-			description: 'type of your reservation',
+			description: 'Type of your reservation',
 		},
 	];
 }
@@ -129,19 +129,19 @@ export function description() {
 export async function execute(this: IExecuteFunctions): Promise<INodeExecutionData[]> {
 	const organizationName = this.getNodeParameter('organizationName', 0) as string;
 	const exchangeService = this.getNodeParameter('exchangeService', 0) as string;
-	const addOrganizerToSubject = this.getNodeParameter('addOrganizerToSubject', 0) as any;
-	const allowConflict = this.getNodeParameter('allowConflict', 0) as any;
-	const bookingWindow = this.getNodeParameter('bookingWindow', 0) as any;
-	const capacity = this.getNodeParameter('capacity', 0) as any;
-	const company = this.getNodeParameter('company', 0) as any;
-	const deleteComments = this.getNodeParameter('deleteComments', 0) as any;
-	const deleteSubject = this.getNodeParameter('deleteSubject', 0) as any;
-	const displayName = this.getNodeParameter('displayName', 0) as any;
-	const location = this.getNodeParameter('location', 0) as any;
-	const maximumDuration = this.getNodeParameter('maximumDuration', 0) as any;
-	const resourceEmailAddress = this.getNodeParameter('resourceEmailAddress', 0) as any;
-	const showMeetingDetails = this.getNodeParameter('showMeetingDetails', 0) as any;
-	const type = this.getNodeParameter('type', 0) as any;
+	const addOrganizerToSubject = this.getNodeParameter('addOrganizerToSubject', 0) as string;
+	const allowConflict = this.getNodeParameter('allowConflict', 0) as string;
+	const bookingWindow = this.getNodeParameter('bookingWindow', 0) as string;
+	const capacity = this.getNodeParameter('capacity', 0) as string;
+	const company = this.getNodeParameter('company', 0) as string;
+	const deleteComments = this.getNodeParameter('deleteComments', 0) as string;
+	const deleteSubject = this.getNodeParameter('deleteSubject', 0) as string;
+	const displayName = this.getNodeParameter('displayName', 0) as string;
+	const location = this.getNodeParameter('location', 0) as string;
+	const maximumDuration = this.getNodeParameter('maximumDuration', 0) as string;
+	const resourceEmailAddress = this.getNodeParameter('resourceEmailAddress', 0) as string;
+	const showMeetingDetails = this.getNodeParameter('showMeetingDetails', 0) as string;
+	const type = this.getNodeParameter('type', 0) as string;
 
 	const body: IDataObject = {
     addOrganizerToSubject: addOrganizerToSubject,

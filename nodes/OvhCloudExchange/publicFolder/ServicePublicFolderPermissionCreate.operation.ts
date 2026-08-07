@@ -40,12 +40,12 @@ export function description() {
 			description: 'Access rights to be set for the account',
 		},
 		{
-			displayName: 'Allowed Account Id',
+			displayName: 'Allowed Account ID',
 			name: 'allowedAccountId',
 			type: 'string',
 			default: '',
 			required: true,
-			description: 'Account id to have access to public folder',
+			description: 'Account ID to have access to public folder',
 		},
 	];
 }
@@ -60,8 +60,8 @@ export async function execute(this: IExecuteFunctions): Promise<INodeExecutionDa
 	const organizationName = this.getNodeParameter('organizationName', 0) as string;
 	const exchangeService = this.getNodeParameter('exchangeService', 0) as string;
 	const path = this.getNodeParameter('path', 0) as string;
-	const accessRights = this.getNodeParameter('accessRights', 0) as any;
-	const allowedAccountId = this.getNodeParameter('allowedAccountId', 0) as any;
+	const accessRights = this.getNodeParameter('accessRights', 0) as string;
+	const allowedAccountId = this.getNodeParameter('allowedAccountId', 0) as string;
 
 	const body: IDataObject = {
     accessRights: accessRights,

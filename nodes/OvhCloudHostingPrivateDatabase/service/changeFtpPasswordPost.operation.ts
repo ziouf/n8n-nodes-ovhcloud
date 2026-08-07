@@ -22,6 +22,7 @@ export function description(displayOptions: IDisplayOptions): INodeProperties[] 
           displayName: 'Password',
           name: 'password',
           type: 'string',
+										typeOptions: { password: true },
           default: '',
           description: 'Password field',
           displayOptions,

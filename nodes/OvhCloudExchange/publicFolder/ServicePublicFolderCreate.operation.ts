@@ -73,11 +73,11 @@ export function description() {
 export async function execute(this: IExecuteFunctions): Promise<INodeExecutionData[]> {
 	const organizationName = this.getNodeParameter('organizationName', 0) as string;
 	const exchangeService = this.getNodeParameter('exchangeService', 0) as string;
-	const anonymousPermission = this.getNodeParameter('anonymousPermission', 0) as any;
-	const defaultPermission = this.getNodeParameter('defaultPermission', 0) as any;
-	const path = this.getNodeParameter('path', 0) as any;
-	const quota = this.getNodeParameter('quota', 0) as any;
-	const type = this.getNodeParameter('type', 0) as any;
+	const anonymousPermission = this.getNodeParameter('anonymousPermission', 0) as string;
+	const defaultPermission = this.getNodeParameter('defaultPermission', 0) as string;
+	const path = this.getNodeParameter('path', 0) as string;
+	const quota = this.getNodeParameter('quota', 0) as string;
+	const type = this.getNodeParameter('type', 0) as string;
 
 	const body: IDataObject = {
     anonymousPermission: anonymousPermission,

@@ -24,12 +24,12 @@ export function description() {
 			description: 'The internal name of your exchange service',
 		},
 		{
-			displayName: 'Id',
+			displayName: 'ID',
 			name: 'id',
 			type: 'string',
 			default: '',
 			required: true,
-			description: 'Task id',
+			description: 'Task ID',
 		},
 	];
 }

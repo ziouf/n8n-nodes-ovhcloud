@@ -19,7 +19,7 @@ export function description(displayOptions: IDisplayOptions): INodeProperties[] 
           displayOptions,
         },
         {
-          displayName: 'function',
+          displayName: 'Function',
           name: 'function',
           type: 'string',
           default: '',
@@ -27,7 +27,7 @@ export function description(displayOptions: IDisplayOptions): INodeProperties[] 
           displayOptions,
         },
         {
-          displayName: 'status',
+          displayName: 'Status',
           name: 'status',
           type: 'string',
           default: '',

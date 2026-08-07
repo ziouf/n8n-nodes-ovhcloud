@@ -33,7 +33,7 @@ export function description() {
  */
 export async function execute(this: IExecuteFunctions): Promise<INodeExecutionData[]> {
 	const organizationName = this.getNodeParameter('organizationName', 0) as string;
-	const iamTags = this.getNodeParameter('iamTags', 0) as any;
+	const iamTags = this.getNodeParameter('iamTags', 0) as string;
 
 	const qs: IDataObject = {
     iamTags: iamTags

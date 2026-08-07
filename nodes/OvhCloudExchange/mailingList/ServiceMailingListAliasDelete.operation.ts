@@ -29,7 +29,6 @@ export function description() {
 			type: 'string',
 			default: '',
 			required: true,
-			description: 'The mailing list address',
 		},
 		{
 			displayName: 'Alias',
@@ -37,7 +36,6 @@ export function description() {
 			type: 'string',
 			default: '',
 			required: true,
-			description: 'Alias',
 		},
 	];
 }

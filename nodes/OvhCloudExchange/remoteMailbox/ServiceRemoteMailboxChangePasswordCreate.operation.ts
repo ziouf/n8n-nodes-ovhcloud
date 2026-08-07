@@ -35,6 +35,7 @@ export function description() {
 			displayName: 'Force Password Change At Next Logon',
 			name: 'forcePasswordChangeAtNextLogon',
 			type: 'string',
+			typeOptions: { password: true },
 			default: '',
 			description: 'The password will need to be changed at the next time you log on',
 		},
@@ -59,8 +60,8 @@ export async function execute(this: IExecuteFunctions): Promise<INodeExecutionDa
 	const organizationName = this.getNodeParameter('organizationName', 0) as string;
 	const exchangeService = this.getNodeParameter('exchangeService', 0) as string;
 	const primaryEmailAddress = this.getNodeParameter('primaryEmailAddress', 0) as string;
-	const forcePasswordChangeAtNextLogon = this.getNodeParameter('forcePasswordChangeAtNextLogon', 0) as any;
-	const password = this.getNodeParameter('password', 0) as any;
+	const forcePasswordChangeAtNextLogon = this.getNodeParameter('forcePasswordChangeAtNextLogon', 0) as string;
+	const password = this.getNodeParameter('password', 0) as string;
 
 	const body: IDataObject = {
     forcePasswordChangeAtNextLogon: forcePasswordChangeAtNextLogon,

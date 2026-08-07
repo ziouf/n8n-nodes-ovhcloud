@@ -85,7 +85,7 @@ export function description() {
 			name: 'displayName',
 			type: 'string',
 			default: '',
-			description: 'display name information',
+			description: 'Display name information',
 		},
 	];
 }
@@ -99,15 +99,15 @@ export function description() {
 export async function execute(this: IExecuteFunctions): Promise<INodeExecutionData[]> {
 	const organizationName = this.getNodeParameter('organizationName', 0) as string;
 	const exchangeService = this.getNodeParameter('exchangeService', 0) as string;
-	const HTTPS = this.getNodeParameter('HTTPS', 0) as any;
-	const IMAP = this.getNodeParameter('IMAP', 0) as any;
-	const IMAPS = this.getNodeParameter('IMAPS', 0) as any;
-	const IP = this.getNodeParameter('IP', 0) as any;
-	const POP = this.getNodeParameter('POP', 0) as any;
-	const POPS = this.getNodeParameter('POPS', 0) as any;
-	const SMTP = this.getNodeParameter('SMTP', 0) as any;
-	const SMTPS = this.getNodeParameter('SMTPS', 0) as any;
-	const displayName = this.getNodeParameter('displayName', 0) as any;
+	const HTTPS = this.getNodeParameter('HTTPS', 0) as string;
+	const IMAP = this.getNodeParameter('IMAP', 0) as string;
+	const IMAPS = this.getNodeParameter('IMAPS', 0) as string;
+	const IP = this.getNodeParameter('IP', 0) as string;
+	const POP = this.getNodeParameter('POP', 0) as string;
+	const POPS = this.getNodeParameter('POPS', 0) as string;
+	const SMTP = this.getNodeParameter('SMTP', 0) as string;
+	const SMTPS = this.getNodeParameter('SMTPS', 0) as string;
+	const displayName = this.getNodeParameter('displayName', 0) as string;
 
 	const body: IDataObject = {
     HTTPS: HTTPS,

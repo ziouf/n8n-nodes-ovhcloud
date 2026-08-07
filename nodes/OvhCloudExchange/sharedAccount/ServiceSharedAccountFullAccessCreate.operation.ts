@@ -32,7 +32,7 @@ export function description() {
 			description: 'Default email for this shared mailbox',
 		},
 		{
-			displayName: 'Allowed Account Id',
+			displayName: 'Allowed Account ID',
 			name: 'allowedAccountId',
 			type: 'string',
 			default: '',
@@ -52,7 +52,7 @@ export async function execute(this: IExecuteFunctions): Promise<INodeExecutionDa
 	const organizationName = this.getNodeParameter('organizationName', 0) as string;
 	const exchangeService = this.getNodeParameter('exchangeService', 0) as string;
 	const sharedEmailAddress = this.getNodeParameter('sharedEmailAddress', 0) as string;
-	const allowedAccountId = this.getNodeParameter('allowedAccountId', 0) as any;
+	const allowedAccountId = this.getNodeParameter('allowedAccountId', 0) as string;
 
 	const body: IDataObject = {
     allowedAccountId: allowedAccountId

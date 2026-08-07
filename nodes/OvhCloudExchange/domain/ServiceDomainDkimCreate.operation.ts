@@ -29,7 +29,6 @@ export function description() {
 			type: 'string',
 			default: '',
 			required: true,
-			description: 'Domain name',
 		},
 		{
 			displayName: 'Auto Enable D K I M',
@@ -51,7 +50,7 @@ export function description() {
 			type: 'string',
 			default: '',
 			required: true,
-			description: 'selector name for DKIM',
+			description: 'Selector name for DKIM',
 		},
 	];
 }
@@ -66,9 +65,9 @@ export async function execute(this: IExecuteFunctions): Promise<INodeExecutionDa
 	const organizationName = this.getNodeParameter('organizationName', 0) as string;
 	const exchangeService = this.getNodeParameter('exchangeService', 0) as string;
 	const domainName = this.getNodeParameter('domainName', 0) as string;
-	const autoEnableDKIM = this.getNodeParameter('autoEnableDKIM', 0) as any;
-	const configureDkim = this.getNodeParameter('configureDkim', 0) as any;
-	const selectorName = this.getNodeParameter('selectorName', 0) as any;
+	const autoEnableDKIM = this.getNodeParameter('autoEnableDKIM', 0) as string;
+	const configureDkim = this.getNodeParameter('configureDkim', 0) as string;
+	const selectorName = this.getNodeParameter('selectorName', 0) as string;
 
 	const body: IDataObject = {
     autoEnableDKIM: autoEnableDKIM,

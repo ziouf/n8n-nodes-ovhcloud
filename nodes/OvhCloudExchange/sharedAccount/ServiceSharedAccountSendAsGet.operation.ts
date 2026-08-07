@@ -32,12 +32,12 @@ export function description() {
 			description: 'Default email for this shared mailbox',
 		},
 		{
-			displayName: 'Allowed Account Id',
+			displayName: 'Allowed Account ID',
 			name: 'allowedAccountId',
 			type: 'string',
 			default: '',
 			required: true,
-			description: 'Account id to give send as',
+			description: 'Account ID to give send as',
 		},
 	];
 }

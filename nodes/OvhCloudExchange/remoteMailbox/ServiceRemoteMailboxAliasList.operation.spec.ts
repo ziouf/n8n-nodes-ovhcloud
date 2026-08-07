@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { description, execute } from './ServiceRemoteMailboxAliasList.operation';
 
 jest.mock('../../../shared/transport/ApiClient', () => {

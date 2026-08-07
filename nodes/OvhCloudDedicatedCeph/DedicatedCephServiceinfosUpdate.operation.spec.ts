@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { description, execute } from './DedicatedCephServiceinfosUpdate.operation';
 
 jest.mock('../../shared/transport/ApiClient', () => {

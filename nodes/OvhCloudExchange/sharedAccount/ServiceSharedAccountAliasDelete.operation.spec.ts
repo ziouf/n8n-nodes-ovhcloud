@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { description, execute } from './ServiceSharedAccountAliasDelete.operation';
 
 jest.mock('../../../shared/transport/ApiClient', () => {

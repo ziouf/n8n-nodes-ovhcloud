@@ -267,6 +267,71 @@ export function description(displayOptions: IDisplayOptions): INodeProperties[] 
 			noDataExpression: true,
 			options: [
 				{
+					name: 'Create Vrack ServiceName CloudProject',
+					value: 'postVrackserviceNCloudProjectPost',
+					action: 'add a publicCloud project to this vrack',
+				},
+				{
+					name: 'Create Vrack ServiceName ConfirmTermination',
+					value: 'postVrackserviceNConfirmTerminationPost',
+					action: 'Confirm service termination',
+				},
+				{
+					name: 'Create Vrack ServiceName DedicatedCloud',
+					value: 'postVrackserviceNDedicatedCloudPost',
+					action: 'Add VMware on OVHcloud to vRack',
+				},
+				{
+					name: 'Create Vrack ServiceName DedicatedCloudDatacenter Datacenter Move',
+					value: 'postVrackserviceNDedicatedCloudDatacenterdatacentMovePost',
+					action: 'Move your dedicatedCloud datacenter from a Vrack to another',
+				},
+				{
+					name: 'Create Vrack ServiceName DedicatedServer',
+					value: 'postVrackserviceNDedicatedServerPost',
+					action: 'add a dedicated server to this vrack (LEGACY)',
+				},
+				{
+					name: 'Create Vrack ServiceName DedicatedServerInterface',
+					value: 'postVrackserviceNDedicatedServerInterfacePost',
+					action: 'add a dedicated server interface to this vrack',
+				},
+				{
+					name: 'Create Vrack ServiceName IpLoadbalancing',
+					value: 'postVrackserviceNIpLoadbalancingPost',
+					action: 'add an ipLoadbalancing to this vrack',
+				},
+				{
+					name: 'Create Vrack ServiceName Ipv6',
+					value: 'postVrackserviceNIpv6Post',
+					action: 'add an IP v6 block to this vrack',
+				},
+				{
+					name: 'Create Vrack ServiceName Ipv6 Ipv6 RoutedSubrange',
+					value: 'postVrackserviceNIpv6ipv6RoutedSubrangePost',
+					action: 'route a subrange of your IP v6 block into your vrack',
+				},
+				{
+					name: 'Create Vrack ServiceName LegacyVrack',
+					value: 'postVrackserviceNLegacyVrackPost',
+					action: 'add a legacy vrack (vrackXXXX) to this vrack (pn-XXXX)',
+				},
+				{
+					name: 'Create Vrack ServiceName OvhCloudConnect',
+					value: 'postVrackserviceNOvhCloudConnectPost',
+					action: 'Add an ovhCloudConnect to the vrack',
+				},
+				{
+					name: 'Create Vrack ServiceName Terminate',
+					value: 'postVrackserviceNTerminatePost',
+					action: 'Ask for the termination of your service',
+				},
+				{
+					name: 'Create Vrack ServiceName VrackServices',
+					value: 'postVrackserviceNVrackServicesPost',
+					action: 'Add a vrackServices to the vrack',
+				},
+				{
 					name: 'Delete Vrack ServiceName CloudProject Project',
 					value: 'deleteVrackserviceNCloudProjectprojectDelete',
 					action: 'remove this publicCloud project from this vrack',
@@ -342,19 +407,9 @@ export function description(displayOptions: IDisplayOptions): INodeProperties[] 
 					action: 'Get this object properties',
 				},
 				{
-					name: 'Get Vrack ServiceName DedicatedCloudDatacenter Datacenter AllowedVrack',
-					value: 'getVrackserviceNDedicatedCloudDatacenterdatacentAllowedVrackGet',
-					action: 'Vracks allowed for your dedicatedCloud datacenter',
-				},
-				{
-					name: 'Get Vrack ServiceName DedicatedCloudDatacenter Datacenter',
-					value: 'getVrackserviceNDedicatedCloudDatacenterdatacentGet',
-					action: 'Get this object properties',
-				},
-				{
-					name: 'Get Vrack ServiceName DedicatedCloudDatacenter',
-					value: 'getVrackserviceNDedicatedCloudDatacenterGet',
-					action: 'vrack dedicated cloud datacenter',
+					name: 'Get Vrack ServiceName DedicatedCloud',
+					value: 'getVrackserviceNDedicatedCloudGet',
+					action: 'vrack dedicated cloud (VmNetwork)',
 				},
 				{
 					name: 'Get Vrack ServiceName DedicatedCloud DedicatedCloud',
@@ -362,9 +417,19 @@ export function description(displayOptions: IDisplayOptions): INodeProperties[] 
 					action: 'Get vRack',
 				},
 				{
-					name: 'Get Vrack ServiceName DedicatedCloud',
-					value: 'getVrackserviceNDedicatedCloudGet',
-					action: 'vrack dedicated cloud (VmNetwork)',
+					name: 'Get Vrack ServiceName DedicatedCloudDatacenter',
+					value: 'getVrackserviceNDedicatedCloudDatacenterGet',
+					action: 'vrack dedicated cloud datacenter',
+				},
+				{
+					name: 'Get Vrack ServiceName DedicatedCloudDatacenter Datacenter',
+					value: 'getVrackserviceNDedicatedCloudDatacenterdatacentGet',
+					action: 'Get this object properties',
+				},
+				{
+					name: 'Get Vrack ServiceName DedicatedCloudDatacenter Datacenter AllowedVrack',
+					value: 'getVrackserviceNDedicatedCloudDatacenterdatacentAllowedVrackGet',
+					action: 'Vracks allowed for your dedicatedCloud datacenter',
 				},
 				{
 					name: 'Get Vrack ServiceName DedicatedConnect',
@@ -377,6 +442,11 @@ export function description(displayOptions: IDisplayOptions): INodeProperties[] 
 					action: 'Get this object properties',
 				},
 				{
+					name: 'Get Vrack ServiceName DedicatedServer',
+					value: 'getVrackserviceNDedicatedServerGet',
+					action: 'vrack for dedicated server',
+				},
+				{
 					name: 'Get Vrack ServiceName DedicatedServer DedicatedServer',
 					value: 'getVrackserviceNDedicatedServerdedicateGet',
 					action: 'Get this object properties',
@@ -387,9 +457,9 @@ export function description(displayOptions: IDisplayOptions): INodeProperties[] 
 					action: 'Retrieve vrack traffic graph values (LEGACY)',
 				},
 				{
-					name: 'Get Vrack ServiceName DedicatedServer',
-					value: 'getVrackserviceNDedicatedServerGet',
-					action: 'vrack for dedicated server',
+					name: 'Get Vrack ServiceName DedicatedServerInterface',
+					value: 'getVrackserviceNDedicatedServerInterfaceGet',
+					action: 'vrack for dedicated server interface',
 				},
 				{
 					name: 'Get Vrack ServiceName DedicatedServerInterface DedicatedServerInterface',
@@ -400,11 +470,6 @@ export function description(displayOptions: IDisplayOptions): INodeProperties[] 
 					name: 'Get Vrack ServiceName DedicatedServerInterfaceDetails',
 					value: 'getVrackserviceNDedicatedServerInterfaceDetailsGet',
 					action: 'Details for all dedicated server interfaces in this vrack',
-				},
-				{
-					name: 'Get Vrack ServiceName DedicatedServerInterface',
-					value: 'getVrackserviceNDedicatedServerInterfaceGet',
-					action: 'vrack for dedicated server interface',
 				},
 				{
 					name: 'Get Vrack ServiceName EligibleServices',
@@ -432,8 +497,8 @@ export function description(displayOptions: IDisplayOptions): INodeProperties[] 
 					action: 'vrack for IP v6 blocks',
 				},
 				{
-					name: 'Get Vrack ServiceName Ipv6 Ipv6 BridgedSubrange BridgedSubrange',
-					value: 'getVrackserviceNIpv6ipv6BridgedSubrangebridgedSGet',
+					name: 'Get Vrack ServiceName Ipv6 Ipv6',
+					value: 'getVrackserviceNIpv6ipv6Get',
 					action: 'Get this object properties',
 				},
 				{
@@ -442,8 +507,8 @@ export function description(displayOptions: IDisplayOptions): INodeProperties[] 
 					action: 'subrange bridged into your vrack',
 				},
 				{
-					name: 'Get Vrack ServiceName Ipv6 Ipv6',
-					value: 'getVrackserviceNIpv6ipv6Get',
+					name: 'Get Vrack ServiceName Ipv6 Ipv6 BridgedSubrange BridgedSubrange',
+					value: 'getVrackserviceNIpv6ipv6BridgedSubrangebridgedSGet',
 					action: 'Get this object properties',
 				},
 				{
@@ -505,71 +570,6 @@ export function description(displayOptions: IDisplayOptions): INodeProperties[] 
 					name: 'Get Vrack ServiceName VrackServices VrackServices',
 					value: 'getVrackserviceNVrackServicesvrackSerGet',
 					action: 'Get this object properties',
-				},
-				{
-					name: 'Create Vrack ServiceName CloudProject',
-					value: 'postVrackserviceNCloudProjectPost',
-					action: 'add a publicCloud project to this vrack',
-				},
-				{
-					name: 'Create Vrack ServiceName ConfirmTermination',
-					value: 'postVrackserviceNConfirmTerminationPost',
-					action: 'Confirm service termination',
-				},
-				{
-					name: 'Create Vrack ServiceName DedicatedCloudDatacenter Datacenter Move',
-					value: 'postVrackserviceNDedicatedCloudDatacenterdatacentMovePost',
-					action: 'Move your dedicatedCloud datacenter from a Vrack to another',
-				},
-				{
-					name: 'Create Vrack ServiceName DedicatedCloud',
-					value: 'postVrackserviceNDedicatedCloudPost',
-					action: 'Add VMware on OVHcloud to vRack',
-				},
-				{
-					name: 'Create Vrack ServiceName DedicatedServerInterface',
-					value: 'postVrackserviceNDedicatedServerInterfacePost',
-					action: 'add a dedicated server interface to this vrack',
-				},
-				{
-					name: 'Create Vrack ServiceName DedicatedServer',
-					value: 'postVrackserviceNDedicatedServerPost',
-					action: 'add a dedicated server to this vrack (LEGACY)',
-				},
-				{
-					name: 'Create Vrack ServiceName IpLoadbalancing',
-					value: 'postVrackserviceNIpLoadbalancingPost',
-					action: 'add an ipLoadbalancing to this vrack',
-				},
-				{
-					name: 'Create Vrack ServiceName Ipv6 Ipv6 RoutedSubrange',
-					value: 'postVrackserviceNIpv6ipv6RoutedSubrangePost',
-					action: 'route a subrange of your IP v6 block into your vrack',
-				},
-				{
-					name: 'Create Vrack ServiceName Ipv6',
-					value: 'postVrackserviceNIpv6Post',
-					action: 'add an IP v6 block to this vrack',
-				},
-				{
-					name: 'Create Vrack ServiceName LegacyVrack',
-					value: 'postVrackserviceNLegacyVrackPost',
-					action: 'add a legacy vrack (vrackXXXX) to this vrack (pn-XXXX)',
-				},
-				{
-					name: 'Create Vrack ServiceName OvhCloudConnect',
-					value: 'postVrackserviceNOvhCloudConnectPost',
-					action: 'Add an ovhCloudConnect to the vrack',
-				},
-				{
-					name: 'Create Vrack ServiceName Terminate',
-					value: 'postVrackserviceNTerminatePost',
-					action: 'Ask for the termination of your service',
-				},
-				{
-					name: 'Create Vrack ServiceName VrackServices',
-					value: 'postVrackserviceNVrackServicesPost',
-					action: 'Add a vrackServices to the vrack',
 				},
 				{
 					name: 'Update Vrack ServiceName DedicatedConnect Name',

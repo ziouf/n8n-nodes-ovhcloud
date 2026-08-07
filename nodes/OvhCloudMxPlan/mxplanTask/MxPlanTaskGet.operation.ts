@@ -4,12 +4,12 @@ import { ApiClient } from '../../../shared/transport/ApiClient';
 export function description(displayOptions: IDisplayOptions): INodeProperties[] {
 	return [
 		{
-			displayName: 'Id',
+			displayName: 'ID',
 			name: 'id',
 			type: 'string',
 			default: '',
 			required: true,
-			description: 'Task id',
+			description: 'Task ID',
 			displayOptions: {
 				show: {
 					mxPlanOperation: ['MxPlanTaskGet'],
@@ -41,7 +41,7 @@ export function description(displayOptions: IDisplayOptions): INodeProperties[] 
  * Endpoint: /email/mxplan/{service}/task/{id}
  */
 export async function execute(this: IExecuteFunctions): Promise<INodeExecutionData[]> {
-	const id = this.getNodeParameter('id', 0) as any;
+	const id = this.getNodeParameter('id', 0) as string;
 	const service = this.getNodeParameter('service', 0) as string;
 
 	const client = new ApiClient(this);

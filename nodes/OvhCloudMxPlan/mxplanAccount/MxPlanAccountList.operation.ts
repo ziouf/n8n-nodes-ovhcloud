@@ -18,11 +18,11 @@ export function description(displayOptions: IDisplayOptions): INodeProperties[] 
 			},
 		},
 		{
-			displayName: 'Id',
+			displayName: 'ID',
 			name: 'id',
 			type: 'string',
 			default: '',
-			description: 'Filter the value of id property (like)',
+			description: 'Filter the value of ID property (like)',
 			displayOptions: {
 				show: {
 					mxPlanOperation: ['MxPlanAccountList'],
@@ -54,7 +54,7 @@ export function description(displayOptions: IDisplayOptions): INodeProperties[] 
  */
 export async function execute(this: IExecuteFunctions): Promise<INodeExecutionData[]> {
 	const service = this.getNodeParameter('service', 0) as string;
-	const id = this.getNodeParameter('id', 0) as any;
+	const id = this.getNodeParameter('id', 0) as string;
 	const primaryEmailAddress = this.getNodeParameter('primaryEmailAddress', 0) as string;
 
 	const qs: IDataObject = {

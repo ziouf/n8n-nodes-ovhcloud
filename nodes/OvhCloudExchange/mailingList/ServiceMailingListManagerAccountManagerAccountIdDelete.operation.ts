@@ -29,15 +29,13 @@ export function description() {
 			type: 'string',
 			default: '',
 			required: true,
-			description: 'The mailing list address',
 		},
 		{
-			displayName: 'Manager Account Id',
+			displayName: 'Manager Account ID',
 			name: 'managerAccountId',
 			type: 'string',
 			default: '',
 			required: true,
-			description: 'Manager account id',
 		},
 	];
 }

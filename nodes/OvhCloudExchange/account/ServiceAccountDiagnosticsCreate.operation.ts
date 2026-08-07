@@ -35,6 +35,7 @@ export function description() {
 			displayName: 'Password',
 			name: 'password',
 			type: 'string',
+			typeOptions: { password: true },
 			default: '',
 			required: true,
 			description: 'Account password',
@@ -52,7 +53,7 @@ export async function execute(this: IExecuteFunctions): Promise<INodeExecutionDa
 	const organizationName = this.getNodeParameter('organizationName', 0) as string;
 	const exchangeService = this.getNodeParameter('exchangeService', 0) as string;
 	const primaryEmailAddress = this.getNodeParameter('primaryEmailAddress', 0) as string;
-	const password = this.getNodeParameter('password', 0) as any;
+	const password = this.getNodeParameter('password', 0) as string;
 
 	const body: IDataObject = {
     password: password

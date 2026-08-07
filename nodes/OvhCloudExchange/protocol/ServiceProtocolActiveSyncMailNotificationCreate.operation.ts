@@ -24,12 +24,12 @@ export function description() {
 			description: 'The internal name of your exchange service',
 		},
 		{
-			displayName: 'Notified Account Id',
+			displayName: 'Notified Account ID',
 			name: 'notifiedAccountId',
 			type: 'string',
 			default: '',
 			required: true,
-			description: 'Exchange Account Id',
+			description: 'Exchange Account ID',
 		},
 	];
 }
@@ -43,7 +43,7 @@ export function description() {
 export async function execute(this: IExecuteFunctions): Promise<INodeExecutionData[]> {
 	const organizationName = this.getNodeParameter('organizationName', 0) as string;
 	const exchangeService = this.getNodeParameter('exchangeService', 0) as string;
-	const notifiedAccountId = this.getNodeParameter('notifiedAccountId', 0) as any;
+	const notifiedAccountId = this.getNodeParameter('notifiedAccountId', 0) as string;
 
 	const body: IDataObject = {
     notifiedAccountId: notifiedAccountId

@@ -49,8 +49,8 @@ export function description() {
 export async function execute(this: IExecuteFunctions): Promise<INodeExecutionData[]> {
 	const organizationName = this.getNodeParameter('organizationName', 0) as string;
 	const exchangeService = this.getNodeParameter('exchangeService', 0) as string;
-	const main = this.getNodeParameter('main', 0) as any;
-	const state = this.getNodeParameter('state', 0) as any;
+	const main = this.getNodeParameter('main', 0) as string;
+	const state = this.getNodeParameter('state', 0) as string;
 
 	const qs: IDataObject = {
     main: main,

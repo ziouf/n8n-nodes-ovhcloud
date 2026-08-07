@@ -29,15 +29,15 @@ export function description() {
 			type: 'string',
 			default: '',
 			required: true,
-			description: 'resource as email',
+			description: 'Resource as email',
 		},
 		{
-			displayName: 'Allowed Account Id',
+			displayName: 'Allowed Account ID',
 			name: 'allowedAccountId',
 			type: 'string',
 			default: '',
 			required: true,
-			description: 'delegate\'s account id',
+			description: 'Delegate\'s account ID',
 		},
 	];
 }

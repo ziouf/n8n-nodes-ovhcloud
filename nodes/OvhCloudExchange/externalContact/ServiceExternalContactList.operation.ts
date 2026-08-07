@@ -45,11 +45,11 @@ export function description() {
 			description: 'Filter the value of firstName property (like)',
 		},
 		{
-			displayName: 'Id',
+			displayName: 'ID',
 			name: 'id',
 			type: 'string',
 			default: '',
-			description: 'Filter the value of id property (like)',
+			description: 'Filter the value of ID property (like)',
 		},
 		{
 			displayName: 'Last Name',
@@ -70,11 +70,11 @@ export function description() {
 export async function execute(this: IExecuteFunctions): Promise<INodeExecutionData[]> {
 	const organizationName = this.getNodeParameter('organizationName', 0) as string;
 	const exchangeService = this.getNodeParameter('exchangeService', 0) as string;
-	const displayName = this.getNodeParameter('displayName', 0) as any;
-	const externalEmailAddress = this.getNodeParameter('externalEmailAddress', 0) as any;
-	const firstName = this.getNodeParameter('firstName', 0) as any;
-	const id = this.getNodeParameter('id', 0) as any;
-	const lastName = this.getNodeParameter('lastName', 0) as any;
+	const displayName = this.getNodeParameter('displayName', 0) as string;
+	const externalEmailAddress = this.getNodeParameter('externalEmailAddress', 0) as string;
+	const firstName = this.getNodeParameter('firstName', 0) as string;
+	const id = this.getNodeParameter('id', 0) as string;
+	const lastName = this.getNodeParameter('lastName', 0) as string;
 
 	const qs: IDataObject = {
     displayName: displayName,

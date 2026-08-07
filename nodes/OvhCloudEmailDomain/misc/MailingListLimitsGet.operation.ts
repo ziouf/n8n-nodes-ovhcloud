@@ -27,7 +27,7 @@ export function description(displayOptions: IDisplayOptions): INodeProperties[] 
  * Endpoint: /email/domain/mailingListLimits
  */
 export async function execute(this: IExecuteFunctions): Promise<INodeExecutionData[]> {
-	const moderatorMessage = this.getNodeParameter('moderatorMessage', 0) as any;
+	const moderatorMessage = this.getNodeParameter('moderatorMessage', 0) as string;
 
 	const qs: IDataObject = {
 		moderatorMessage: moderatorMessage,

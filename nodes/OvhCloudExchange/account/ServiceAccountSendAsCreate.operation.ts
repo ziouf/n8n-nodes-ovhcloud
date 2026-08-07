@@ -32,12 +32,12 @@ export function description() {
 			description: 'Default email for this mailbox',
 		},
 		{
-			displayName: 'Allow Account Id',
+			displayName: 'Allow Account ID',
 			name: 'allowAccountId',
 			type: 'string',
 			default: '',
 			required: true,
-			description: 'Account id to allow to send mails from this mailbox',
+			description: 'Account ID to allow to send mails from this mailbox',
 		},
 	];
 }
@@ -52,7 +52,7 @@ export async function execute(this: IExecuteFunctions): Promise<INodeExecutionDa
 	const organizationName = this.getNodeParameter('organizationName', 0) as string;
 	const exchangeService = this.getNodeParameter('exchangeService', 0) as string;
 	const primaryEmailAddress = this.getNodeParameter('primaryEmailAddress', 0) as string;
-	const allowAccountId = this.getNodeParameter('allowAccountId', 0) as any;
+	const allowAccountId = this.getNodeParameter('allowAccountId', 0) as string;
 
 	const body: IDataObject = {
     allowAccountId: allowAccountId

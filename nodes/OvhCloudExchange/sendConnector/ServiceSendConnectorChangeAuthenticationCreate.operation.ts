@@ -24,12 +24,12 @@ export function description() {
 			description: 'The internal name of your exchange service',
 		},
 		{
-			displayName: 'Id',
+			displayName: 'ID',
 			name: 'id',
 			type: 'string',
 			default: '',
 			required: true,
-			description: 'Id of this send connector',
+			description: 'ID of this send connector',
 		},
 		{
 			displayName: 'Password',
@@ -66,9 +66,9 @@ export async function execute(this: IExecuteFunctions): Promise<INodeExecutionDa
 	const organizationName = this.getNodeParameter('organizationName', 0) as string;
 	const exchangeService = this.getNodeParameter('exchangeService', 0) as string;
 	const id = this.getNodeParameter('id', 0) as string;
-	const password = this.getNodeParameter('password', 0) as any;
-	const smartHostAuthMechanism = this.getNodeParameter('smartHostAuthMechanism', 0) as any;
-	const user = this.getNodeParameter('user', 0) as any;
+	const password = this.getNodeParameter('password', 0) as string;
+	const smartHostAuthMechanism = this.getNodeParameter('smartHostAuthMechanism', 0) as string;
+	const user = this.getNodeParameter('user', 0) as string;
 
 	const body: IDataObject = {
     password: password,

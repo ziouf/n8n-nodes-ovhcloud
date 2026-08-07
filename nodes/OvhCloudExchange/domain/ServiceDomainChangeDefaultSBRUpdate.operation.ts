@@ -29,7 +29,6 @@ export function description() {
 			type: 'string',
 			default: '',
 			required: true,
-			description: 'Domain name',
 		},
 		{
 			displayName: 'Sbr Default',
@@ -39,11 +38,11 @@ export function description() {
 			description: 'Default Sender base routing destination domain applied on all new created accounts',
 		},
 		{
-			displayName: 'Send Connector Id Default',
+			displayName: 'Send Connector ID Default',
 			name: 'sendConnectorIdDefault',
 			type: 'string',
 			default: '',
-			description: 'Default Sender Connector id applied on all new created accounts',
+			description: 'Default Sender Connector ID applied on all new created accounts',
 		},
 	];
 }
@@ -58,8 +57,8 @@ export async function execute(this: IExecuteFunctions): Promise<INodeExecutionDa
 	const organizationName = this.getNodeParameter('organizationName', 0) as string;
 	const exchangeService = this.getNodeParameter('exchangeService', 0) as string;
 	const domainName = this.getNodeParameter('domainName', 0) as string;
-	const sbrDefault = this.getNodeParameter('sbrDefault', 0) as any;
-	const sendConnectorIdDefault = this.getNodeParameter('sendConnectorIdDefault', 0) as any;
+	const sbrDefault = this.getNodeParameter('sbrDefault', 0) as string;
+	const sendConnectorIdDefault = this.getNodeParameter('sendConnectorIdDefault', 0) as string;
 
 	const body: IDataObject = {
     sbrDefault: sbrDefault,

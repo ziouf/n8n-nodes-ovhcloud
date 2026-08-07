@@ -10,7 +10,7 @@ import { ApiClient } from '../../../shared/transport/ApiClient';
 export function description(displayOptions: IDisplayOptions): INodeProperties[] {
 	return [
         {
-          displayName: 'offer',
+          displayName: 'Offer',
           name: 'offer',
           type: 'string',
           default: '',

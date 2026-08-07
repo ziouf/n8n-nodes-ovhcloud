@@ -7,9 +7,9 @@ export function description(displayOptions: IDisplayOptions): INodeProperties[] 
 			displayName: 'Email',
 			name: 'email',
 			type: 'string',
+			placeholder: 'name@email.com',
 			default: '',
 			required: true,
-			description: 'Email',
 			displayOptions: {
 				show: {
 					emailDomainOperation: ['DelegatedAccountFilterRuleDelete'],
@@ -18,12 +18,12 @@ export function description(displayOptions: IDisplayOptions): INodeProperties[] 
 			},
 		},
 		{
-			displayName: 'Id',
+			displayName: 'ID',
 			name: 'id',
 			type: 'string',
 			default: '',
 			required: true,
-			description: 'The id parameter',
+			description: 'The ID parameter',
 			displayOptions: {
 				show: {
 					emailDomainOperation: ['DelegatedAccountFilterRuleDelete'],
@@ -56,7 +56,7 @@ export function description(displayOptions: IDisplayOptions): INodeProperties[] 
  */
 export async function execute(this: IExecuteFunctions): Promise<INodeExecutionData[]> {
 	const email = this.getNodeParameter('email', 0) as string;
-	const id = this.getNodeParameter('id', 0) as any;
+	const id = this.getNodeParameter('id', 0) as string;
 	const name = this.getNodeParameter('name', 0) as string;
 
 	const client = new ApiClient(this);

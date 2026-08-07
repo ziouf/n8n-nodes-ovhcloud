@@ -38,11 +38,11 @@ export function description() {
 			description: 'Filter the value of company property (like)',
 		},
 		{
-			displayName: 'Id',
+			displayName: 'ID',
 			name: 'id',
 			type: 'string',
 			default: '',
-			description: 'Filter the value of id property (like)',
+			description: 'Filter the value of ID property (like)',
 		},
 		{
 			displayName: 'Primary Email Address',
@@ -63,10 +63,10 @@ export function description() {
 export async function execute(this: IExecuteFunctions): Promise<INodeExecutionData[]> {
 	const organizationName = this.getNodeParameter('organizationName', 0) as string;
 	const exchangeService = this.getNodeParameter('exchangeService', 0) as string;
-	const accountLicense = this.getNodeParameter('accountLicense', 0) as any;
-	const company = this.getNodeParameter('company', 0) as any;
-	const id = this.getNodeParameter('id', 0) as any;
-	const primaryEmailAddress = this.getNodeParameter('primaryEmailAddress', 0) as any;
+	const accountLicense = this.getNodeParameter('accountLicense', 0) as string;
+	const company = this.getNodeParameter('company', 0) as string;
+	const id = this.getNodeParameter('id', 0) as string;
+	const primaryEmailAddress = this.getNodeParameter('primaryEmailAddress', 0) as string;
 
 	const qs: IDataObject = {
     accountLicense: accountLicense,

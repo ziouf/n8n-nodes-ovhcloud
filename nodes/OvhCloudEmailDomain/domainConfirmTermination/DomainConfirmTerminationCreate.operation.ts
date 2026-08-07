@@ -47,6 +47,7 @@ export function description(displayOptions: IDisplayOptions): INodeProperties[] 
 			displayName: 'Token',
 			name: 'token',
 			type: 'string',
+			typeOptions: { password: true },
 			default: '',
 			required: true,
 			description: 'The termination token sent by mail to the admin contact',

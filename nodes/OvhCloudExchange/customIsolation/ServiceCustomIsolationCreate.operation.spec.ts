@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { description, execute } from './ServiceCustomIsolationCreate.operation';
 
 jest.mock('../../../shared/transport/ApiClient', () => {

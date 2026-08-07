@@ -93,14 +93,14 @@ export function description() {
 export async function execute(this: IExecuteFunctions): Promise<INodeExecutionData[]> {
 	const organizationName = this.getNodeParameter('organizationName', 0) as string;
 	const exchangeService = this.getNodeParameter('exchangeService', 0) as string;
-	const displayName = this.getNodeParameter('displayName', 0) as any;
-	const firstName = this.getNodeParameter('firstName', 0) as any;
-	const hiddenFromGAL = this.getNodeParameter('hiddenFromGAL', 0) as any;
-	const initials = this.getNodeParameter('initials', 0) as any;
-	const lastName = this.getNodeParameter('lastName', 0) as any;
-	const mailingFilter = this.getNodeParameter('mailingFilter', 0) as any;
-	const quota = this.getNodeParameter('quota', 0) as any;
-	const sharedEmailAddress = this.getNodeParameter('sharedEmailAddress', 0) as any;
+	const displayName = this.getNodeParameter('displayName', 0) as string;
+	const firstName = this.getNodeParameter('firstName', 0) as string;
+	const hiddenFromGAL = this.getNodeParameter('hiddenFromGAL', 0) as string;
+	const initials = this.getNodeParameter('initials', 0) as string;
+	const lastName = this.getNodeParameter('lastName', 0) as string;
+	const mailingFilter = this.getNodeParameter('mailingFilter', 0) as string;
+	const quota = this.getNodeParameter('quota', 0) as string;
+	const sharedEmailAddress = this.getNodeParameter('sharedEmailAddress', 0) as string;
 
 	const body: IDataObject = {
     displayName: displayName,

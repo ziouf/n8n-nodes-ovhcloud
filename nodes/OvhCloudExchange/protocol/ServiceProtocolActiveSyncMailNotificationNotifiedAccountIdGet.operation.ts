@@ -24,12 +24,11 @@ export function description() {
 			description: 'The internal name of your exchange service',
 		},
 		{
-			displayName: 'Notified Account Id',
+			displayName: 'Notified Account ID',
 			name: 'notifiedAccountId',
 			type: 'string',
 			default: '',
 			required: true,
-			description: 'Notified Account Id',
 		},
 	];
 }

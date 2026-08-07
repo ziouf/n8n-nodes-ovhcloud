@@ -26,7 +26,7 @@ export function description(displayOptions: IDisplayOptions): INodeProperties[] 
  * Endpoint: /email/mxplan
  */
 export async function execute(this: IExecuteFunctions): Promise<INodeExecutionData[]> {
-	const iamTags = this.getNodeParameter('iamTags', 0) as any;
+	const iamTags = this.getNodeParameter('iamTags', 0) as string;
 
 	const qs: IDataObject = {
 		iamTags: iamTags,

@@ -7,6 +7,7 @@ export function description(displayOptions: IDisplayOptions): INodeProperties[] 
 			displayName: 'Email',
 			name: 'email',
 			type: 'string',
+			placeholder: 'name@email.com',
 			default: '',
 			required: true,
 			description: 'Default email for this mailbox',
@@ -18,12 +19,12 @@ export function description(displayOptions: IDisplayOptions): INodeProperties[] 
 			},
 		},
 		{
-			displayName: 'Id',
+			displayName: 'ID',
 			name: 'id',
 			type: 'string',
 			default: '',
 			required: true,
-			description: 'Task id',
+			description: 'Task ID',
 			displayOptions: {
 				show: {
 					mxPlanOperation: ['MxPlanAccountTaskGet'],
@@ -56,7 +57,7 @@ export function description(displayOptions: IDisplayOptions): INodeProperties[] 
  */
 export async function execute(this: IExecuteFunctions): Promise<INodeExecutionData[]> {
 	const email = this.getNodeParameter('email', 0) as string;
-	const id = this.getNodeParameter('id', 0) as any;
+	const id = this.getNodeParameter('id', 0) as string;
 	const service = this.getNodeParameter('service', 0) as string;
 
 	const client = new ApiClient(this);

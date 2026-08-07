@@ -4,7 +4,7 @@ import { ApiClient } from '../../../shared/transport/ApiClient';
 export function description(displayOptions: IDisplayOptions): INodeProperties[] {
 	return [
 		{
-			displayName: 'Account Id',
+			displayName: 'Account ID',
 			name: 'accountId',
 			type: 'string',
 			default: '',

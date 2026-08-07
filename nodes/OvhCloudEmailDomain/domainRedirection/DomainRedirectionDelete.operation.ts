@@ -18,12 +18,11 @@ export function description(displayOptions: IDisplayOptions): INodeProperties[] 
 			},
 		},
 		{
-			displayName: 'Id',
+			displayName: 'ID',
 			name: 'id',
 			type: 'string',
 			default: '',
 			required: true,
-			description: 'Id',
 			displayOptions: {
 				show: {
 					emailDomainOperation: ['DomainRedirectionDelete'],

@@ -32,12 +32,12 @@ export function description() {
 			description: 'Path for public folder',
 		},
 		{
-			displayName: 'Allowed Account Id',
+			displayName: 'Allowed Account ID',
 			name: 'allowedAccountId',
 			type: 'string',
 			default: '',
 			required: true,
-			description: 'Account id',
+			description: 'Account ID',
 		},
 	];
 }

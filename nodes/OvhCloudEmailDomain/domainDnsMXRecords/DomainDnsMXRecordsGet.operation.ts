@@ -22,7 +22,6 @@ export function description(displayOptions: IDisplayOptions): INodeProperties[] 
 			name: 'subDomain',
 			type: 'string',
 			default: '',
-			description: 'Sub domain',
 			displayOptions: {
 				show: {
 					emailDomainOperation: ['DomainDnsMXRecordsGet'],
