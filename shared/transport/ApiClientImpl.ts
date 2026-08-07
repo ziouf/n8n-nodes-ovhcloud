@@ -112,6 +112,12 @@ export class ApiClient {
 	/** Default retry configuration for all requests. */
 	defaultRetryOptions: Required<RetryOptions>;
 
+	/** Memoized credentials (resolved once per client instance). */
+	private credentialsCache: CredentialHolder | undefined;
+
+	/** Maximum number of concurrent resource fetches in paginateResources. */
+	private static readonly PAGINATE_CONCURRENCY = 5;
+
 	/**
 	 * Creates a new API client instance for the given n8n function context.
 	 *
@@ -127,12 +133,30 @@ export class ApiClient {
 	/**
 	 * Retrieves and wraps the stored OVH API credentials.
 	 *
+	 * Credentials are resolved once per client instance and memoized, so that
+	 * consecutive HTTP calls within a single execution reuse the same
+	 * {@link CredentialHolder} instead of re-fetching them from the n8n context
+	 * for every request.
+	 *
 	 * @returns A CredentialHolder instance with the current credentials
 	 * @throws Error if the `ovhCloud-Api` credential is not configured
 	 */
 	private async getCredentials(): Promise<CredentialHolder> {
+		if (this.credentialsCache) {
+			return this.credentialsCache;
+		}
 		const rawCredentials = await this.fn.getCredentials('ovhCloud-Api');
-		return new CredentialHolder(rawCredentials as OvhCredentialsType);
+		this.credentialsCache = new CredentialHolder(rawCredentials as OvhCredentialsType);
+		return this.credentialsCache;
+	}
+
+	/**
+	 * Clears the memoized credentials, forcing a fresh fetch on the next request.
+	 *
+	 * Useful when credentials may have been rotated mid-execution.
+	 */
+	public clearCredentialsCache(): void {
+		this.credentialsCache = undefined;
 	}
 
 	/**
@@ -482,35 +506,36 @@ export class ApiClient {
 	): Promise<T[]> {
 		const ids = await this.paginate<string>(listEndpoint, options);
 
-		const resources: T[] = [];
-		for (const id of ids) {
-			const itemEndpointUrl = itemEndpoint.replace('{id}', id);
-			try {
-				const resource = (await this.httpGet(itemEndpointUrl)) as T;
-				resources.push(resource);
-			} catch {
-				continue;
+		const resources: (T | undefined)[] = new Array(ids.length);
+		let nextIndex = 0;
+
+		/**
+		 * Fetches the next batch of resources concurrently.
+		 *
+		 * Workers pull indices off the queue in order, so results can be stored
+		 * back at their original position, preserving the ordering of `ids`
+		 * regardless of completion timing. Individual failures are skipped
+		 * (left as `undefined`) to avoid letting one missing resource fail the
+		 * whole call, mirroring the previous sequential behaviour.
+		 */
+		const worker = async (): Promise<void> => {
+			while (true) {
+				const index = nextIndex++;
+				if (index >= ids.length) {
+					return;
+				}
+				const itemEndpointUrl = itemEndpoint.replace('{id}', ids[index]);
+				try {
+					resources[index] = (await this.httpGet(itemEndpointUrl)) as T;
+				} catch {
+					// Skip resources that fail to fetch individually.
+				}
 			}
-		}
+		};
 
-		return resources;
-	}
+		const concurrency = Math.min(ApiClient.PAGINATE_CONCURRENCY, Math.max(1, ids.length));
+		await Promise.all(Array.from({ length: concurrency }, () => worker()));
 
-	/**
-	 * Gets the count of items at an endpoint without fetching all items.
-	 *
-	 * Useful for checking how many items exist before deciding whether to paginate.
-	 *
-	 * @param endpoint - The API endpoint to count
-	 * @param options - Optional pagination config with a small limit
-	 * @returns Number of items at the endpoint
-	 */
-	public async getCount(endpoint: string, options?: PaginationOptions): Promise<number> {
-		const result = await this.paginate(endpoint, {
-			...options,
-			limit: 1,
-			maxItems: 1,
-		});
-		return result.length;
+		return resources.filter((resource): resource is T => resource !== undefined);
 	}
 }

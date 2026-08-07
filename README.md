@@ -31,7 +31,9 @@ All nodes share common features across every OVH Cloud endpoint:
 
 - **Multi-endpoint support**: OVH Europe, Canada, USA, SoYouStart, Kimsufi
 - **SHA1 signature authentication** for secure API requests (via `OvhCloudApiClient`)
-- **Dynamic list selection** — auto-populate dropdowns with live data via resourceLocator + paginated searchListMethod
+- **Dynamic list selection** — auto-populate dropdowns with live data via resourceLocator + paginated searchListMethod, built on a shared `createServiceListSearch()` factory (`shared/methods/listSearch.ts`)
+- **Credential memoization** — API credentials are fetched once per node execution and reused across all HTTP calls (`ApiClient.clearCredentialsCache()` to force refresh)
+- **Bounded-concurrency resource pagination** — `paginateResources()` fetches detail objects in parallel (max 5 concurrent requests) while preserving order
 - **Automatic pagination** for endpoints returning ID arrays (`string[]` / `long[]`) that are mapped to full objects
 
 ### Available Nodes
@@ -384,9 +386,10 @@ n8n-nodes-ovhcloud/
 │       ├── constants.ts                # Shared constants (icon path, credential name)
 │       ├── nodes/BaseNode.ts           # Abstract base class for all OVH Cloud nodes
 │       ├── methods/                    # Search list methods for dynamic dropdowns
+│       │   └── listSearch.ts           # createServiceListSearch() factory (deduplicated loaders)
 │       └── transport/                   # API client & authentication
 │           ├── ApiClient.ts             #   abstract interface
-│           ├── ApiClientImpl.ts         #   HTTP implementation (with retry + pagination)
+│           ├── ApiClientImpl.ts         #   HTTP implementation (credential memoization + retry + pagination)
 │           └── CredentialHolder.ts      #   OVH SHA1 signature helper
 ├── scripts/
 │   ├── generate-nodes-manifest.js       # Regenerate nodes list in package.json after build

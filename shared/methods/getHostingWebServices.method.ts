@@ -1,10 +1,10 @@
-import type { ILoadOptionsFunctions, INodeListSearchResult } from 'n8n-workflow';
-import { ApiClient } from '../transport/ApiClient';
+import { createServiceListSearch } from './listSearch';
 
-export async function getHostingWebServices(
-	this: ILoadOptionsFunctions,
-): Promise<INodeListSearchResult> {
-	const client = new ApiClient(this);
-	const data = (await client.httpGet('/hosting/web')) as string[];
-	return { results: data.map((name: string) => ({ name, value: name })) };
-}
+/**
+ * @brief Dynamic list search for Hosting Web services
+ *
+ * Retrieves available hosting web service names from the OVH API for dynamic dropdown selection.
+ */
+export const getHostingWebServices: ListSearchLoader = createServiceListSearch('/hosting/web');
+
+export type { ListSearchLoader } from './listSearch';

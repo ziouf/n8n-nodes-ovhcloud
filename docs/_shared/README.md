@@ -16,6 +16,7 @@ Many documentation files (e.g., `v1/vps.md`, `v1/me.md`, `v1/domain.md`, `v2/iam
 | [`testing.md`](./testing.md)               | Manual testing procedures in n8n, credential test button, debug node usage, and testing checklist.                                                                                  |
 | [`security.md`](./security.md)             | Credential handling, least privilege IAM principles, data sensitivity, and resource URN best practices.                                                                             |
 | [`common-models.md`](./common-models.md)   | Shared type definitions: `common.Task`, `common.TaskError`, `common.CurrentTask`, `common.ResourceStatusEnum`, `iam.ResourceMetadata`, `iam.resource.TagFilter`, and related enums. |
+| [`search-methods.md`](./search-methods.md) | Dynamic list search factory (`createServiceListSearch`) for auto-populating dropdowns via resourceLocator + paginated search.                                                       |
 
 ## How to Use
 

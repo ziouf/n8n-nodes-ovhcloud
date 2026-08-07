@@ -135,19 +135,6 @@ describe('ApiClient pagination', () => {
 		expect(result).toHaveLength(2);
 		expect(result.map((r: Record<string, unknown>) => r.serviceId)).toEqual(['vps-1', 'vps-3']);
 	});
-
-	it('should return count of items', async () => {
-		const { client, mockHttpRequest } = createMockClient(['vps-1']);
-		const count = await client.getCount('/vps');
-		expect(count).toBe(1);
-		expect(mockHttpRequest).toHaveBeenCalledTimes(1);
-	});
-
-	it('should return 0 when no items exist', async () => {
-		const { client } = createMockClient([]);
-		const count = await client.getCount('/vps');
-		expect(count).toBe(0);
-	});
 });
 
 describe('ApiClient retry', () => {

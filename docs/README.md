@@ -45,6 +45,7 @@ Organized by category:
 - [Testing](_shared/testing.md) — How to test nodes
 - [Security](_shared/security.md) — Security best practices
 - [Common Models](_shared/common-models.md) — Shared type definitions
+- [Search Methods](_shared/search-methods.md) — Dynamic dropdown factory (`createServiceListSearch`)
 
 ## API Specifications
 
