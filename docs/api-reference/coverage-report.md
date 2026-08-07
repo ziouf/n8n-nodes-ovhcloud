@@ -1,6 +1,6 @@
 # OVHcloud API Coverage Report
 
-> Généré par `scripts/compare-coverage.js` le 2026-08-07T02:42:18.998Z. Document généré automatiquement — ne pas éditer à la main.
+> Généré par `scripts/compare-coverage.js` le 2026-08-07T03:35:32.710Z. Document généré automatiquement — ne pas éditer à la main.
 
 Ce rapport compare les endpoints déclarés dans les specs Swagger 2.0 (`docs/api-specs/v1|v2/*.json`) avec les appels HTTP réellement présents dans les nodes (`nodes/**/*.operation.ts`).
 
@@ -8,8 +8,8 @@ Ce rapport compare les endpoints déclarés dans les specs Swagger 2.0 (`docs/ap
 
 - **Specs analysées** : 84 (v1: 70, v2: 14)
 - **Endpoints déclarés (specs avec endpoints)** : 6624
-- **Endpoints couverts par les nodes** : 4671
-- **Couverture globale** : **70.5%**
+- **Endpoints couverts par les nodes** : 4846
+- **Couverture globale** : **73.2%**
 - **Specs sans node associé** : 21
 - **Specs placeholder (aucun endpoint)** : 1
 
@@ -44,9 +44,7 @@ Triée par pourcentage croissant (moins bonne couverture en premier).
 | ipLoadbalancing (v1) | 121 | 9 | 112 | 7.4% |
 | vrack (v1) | 68 | 5 | 63 | 7.4% |
 | msServices (v1) | 55 | 5 | 50 | 9.1% |
-| vps (v1) | 94 | 22 | 72 | 23.4% |
 | sslGateway (v1) | 23 | 6 | 17 | 26.1% |
-| xdsl (v1) | 142 | 39 | 103 | 27.5% |
 | veeam (v1) | 10 | 5 | 5 | 50% |
 | license (v1) | 13 | 7 | 6 | 53.8% |
 | pack (v1) | 58 | 33 | 25 | 56.9% |
@@ -64,9 +62,11 @@ Triée par pourcentage croissant (moins bonne couverture en premier).
 | telephony (v1) | 607 | 607 | 0 | 100% |
 | price (v1) | 581 | 581 | 0 | 100% |
 | dedicatedCloud (v1) | 305 | 305 | 0 | 100% |
+| xdsl (v1) | 142 | 142 | 0 | 100% |
 | sms (v1) | 124 | 124 | 0 | 100% |
 | dbaas (v1) | 116 | 116 | 0 | 100% |
 | domain (v1) | 110 | 110 | 0 | 100% |
+| vps (v1) | 94 | 94 | 0 | 100% |
 | overTheBox (v1) | 50 | 50 | 0 | 100% |
 | services (v1) | 47 | 47 | 0 | 100% |
 | storage (v1) | 47 | 47 | 0 | 100% |
@@ -1286,85 +1286,6 @@ _Nodes associés : OvhCloudMsServices_
 | GET | `/msServices/sharepoint/{x}/serviceInfos` |
 | PUT | `/msServices/sharepoint/{x}/serviceInfos` |
 
-### vps (v1) — 72 manquants
-
-_Nodes associés : OvhCloudVps_
-
-| Méthode | Chemin |
-|--------|--------|
-| GET | `/vps/{x}/activeOptions` |
-| GET | `/vps/{x}/automatedBackup` |
-| POST | `/vps/{x}/automatedBackup/detachBackup` |
-| GET | `/vps/{x}/availableUpgrade` |
-| GET | `/vps/{x}/backupftp/access` |
-| POST | `/vps/{x}/backupftp/access` |
-| DELETE | `/vps/{x}/backupftp/access/{x}` |
-| GET | `/vps/{x}/backupftp/access/{x}` |
-| PUT | `/vps/{x}/backupftp/access/{x}` |
-| GET | `/vps/{x}/backupftp/authorizableBlocks` |
-| POST | `/vps/{x}/backupftp/password` |
-| GET | `/vps/{x}/datacenter` |
-| PUT | `/vps/{x}/disks/{x}` |
-| GET | `/vps/{x}/disks/{x}/monitoring` |
-| GET | `/vps/{x}/disks/{x}/use` |
-| GET | `/vps/{x}/distribution/software` |
-| GET | `/vps/{x}/distribution/software/{x}` |
-| POST | `/vps/{x}/getConsoleUrl` |
-| GET | `/vps/{x}/images/available` |
-| GET | `/vps/{x}/images/available/{x}` |
-| GET | `/vps/{x}/images/current` |
-| GET | `/vps/{x}/ipCountryAvailable` |
-| GET | `/vps/{x}/ips` |
-| GET | `/vps/{x}/ips/{x}` |
-| PUT | `/vps/{x}/ips/{x}` |
-| GET | `/vps/{x}/migration2016` |
-| POST | `/vps/{x}/migration2016` |
-| GET | `/vps/{x}/migration2018` |
-| POST | `/vps/{x}/migration2018` |
-| DELETE | `/vps/{x}/migration2020` |
-| GET | `/vps/{x}/migration2020` |
-| POST | `/vps/{x}/migration2020` |
-| PUT | `/vps/{x}/migration2020` |
-| GET | `/vps/{x}/monitoring` |
-| POST | `/vps/{x}/openConsoleAccess` |
-| GET | `/vps/{x}/option` |
-| DELETE | `/vps/{x}/option/{x}` |
-| GET | `/vps/{x}/option/{x}` |
-| POST | `/vps/{x}/reboot` |
-| POST | `/vps/{x}/rebuild` |
-| POST | `/vps/{x}/reinstall` |
-| GET | `/vps/{x}/secondaryDnsDomains` |
-| POST | `/vps/{x}/secondaryDnsDomains` |
-| DELETE | `/vps/{x}/secondaryDnsDomains/{x}` |
-| GET | `/vps/{x}/secondaryDnsDomains/{x}` |
-| PUT | `/vps/{x}/secondaryDnsDomains/{x}` |
-| GET | `/vps/{x}/secondaryDnsDomains/{x}/dnsServer` |
-| GET | `/vps/{x}/secondaryDnsNameServerAvailable` |
-| GET | `/vps/{x}/serviceInfos` |
-| PUT | `/vps/{x}/serviceInfos` |
-| POST | `/vps/{x}/setPassword` |
-| DELETE | `/vps/{x}/snapshot` |
-| PUT | `/vps/{x}/snapshot` |
-| GET | `/vps/{x}/snapshot/download` |
-| GET | `/vps/{x}/statistics` |
-| POST | `/vps/{x}/stop` |
-| GET | `/vps/{x}/tasks` |
-| GET | `/vps/{x}/templates` |
-| GET | `/vps/{x}/templates/{x}` |
-| GET | `/vps/{x}/templates/{x}/software` |
-| GET | `/vps/{x}/templates/{x}/software/{x}` |
-| POST | `/vps/{x}/terminate` |
-| GET | `/vps/{x}/use` |
-| GET | `/vps/{x}/veeam` |
-| DELETE | `/vps/{x}/veeam/restoredBackup` |
-| GET | `/vps/{x}/veeam/restoredBackup` |
-| GET | `/vps/{x}/veeam/restorePoints` |
-| GET | `/vps/{x}/veeam/restorePoints/{x}` |
-| POST | `/vps/{x}/veeam/restorePoints/{x}/restore` |
-| GET | `/vps/datacenter` |
-| GET | `/vps/order/rule/datacenter` |
-| GET | `/vps/order/rule/osChoices` |
-
 ### sslGateway (v1) — 17 manquants
 
 _Nodes associés : OvhCloudSslGateway_
@@ -1388,116 +1309,6 @@ _Nodes associés : OvhCloudSslGateway_
 | PUT | `/sslGateway/{x}/serviceInfos` |
 | GET | `/sslGateway/availableZones` |
 | GET | `/sslGateway/eligibility` |
-
-### xdsl (v1) — 103 manquants
-
-_Nodes associés : OvhCloudXdsl_
-
-| Méthode | Chemin |
-|--------|--------|
-| POST | `/xdsl/{x}/applyTemplateToModem` |
-| GET | `/xdsl/{x}/ips/{x}` |
-| POST | `/xdsl/{x}/ipv6` |
-| GET | `/xdsl/{x}/lines` |
-| GET | `/xdsl/{x}/lines/{x}` |
-| GET | `/xdsl/{x}/modem/availableACSBackend` |
-| GET | `/xdsl/{x}/modem/availableWLANChannel` |
-| GET | `/xdsl/{x}/modem/blocIp` |
-| POST | `/xdsl/{x}/modem/blocIp` |
-| GET | `/xdsl/{x}/modem/callWaiting` |
-| POST | `/xdsl/{x}/modem/callWaiting` |
-| GET | `/xdsl/{x}/modem/comfortExchange` |
-| POST | `/xdsl/{x}/modem/comfortExchange` |
-| GET | `/xdsl/{x}/modem/connectedDevices` |
-| GET | `/xdsl/{x}/modem/connectedDevices/{x}` |
-| GET | `/xdsl/{x}/modem/contentSharing` |
-| POST | `/xdsl/{x}/modem/contentSharing` |
-| GET | `/xdsl/{x}/modem/firmware` |
-| POST | `/xdsl/{x}/modem/firmware` |
-| GET | `/xdsl/{x}/modem/firmwareAvailable` |
-| GET | `/xdsl/{x}/modem/ftp` |
-| POST | `/xdsl/{x}/modem/ftp` |
-| GET | `/xdsl/{x}/modem/ipsecAlg` |
-| POST | `/xdsl/{x}/modem/ipsecAlg` |
-| GET | `/xdsl/{x}/modem/lan` |
-| GET | `/xdsl/{x}/modem/lan/{x}` |
-| PUT | `/xdsl/{x}/modem/lan/{x}` |
-| GET | `/xdsl/{x}/modem/lan/{x}/dhcp` |
-| GET | `/xdsl/{x}/modem/lan/{x}/dhcp/{x}` |
-| PUT | `/xdsl/{x}/modem/lan/{x}/dhcp/{x}` |
-| GET | `/xdsl/{x}/modem/lan/{x}/dhcp/{x}/DHCPStaticAddresses` |
-| POST | `/xdsl/{x}/modem/lan/{x}/dhcp/{x}/DHCPStaticAddresses` |
-| DELETE | `/xdsl/{x}/modem/lan/{x}/dhcp/{x}/DHCPStaticAddresses/{x}` |
-| GET | `/xdsl/{x}/modem/lan/{x}/dhcp/{x}/DHCPStaticAddresses/{x}` |
-| PUT | `/xdsl/{x}/modem/lan/{x}/dhcp/{x}/DHCPStaticAddresses/{x}` |
-| GET | `/xdsl/{x}/modem/portMappings` |
-| POST | `/xdsl/{x}/modem/portMappings` |
-| DELETE | `/xdsl/{x}/modem/portMappings/{x}` |
-| GET | `/xdsl/{x}/modem/portMappings/{x}` |
-| PUT | `/xdsl/{x}/modem/portMappings/{x}` |
-| POST | `/xdsl/{x}/modem/reboot` |
-| POST | `/xdsl/{x}/modem/reconfigureVoip` |
-| POST | `/xdsl/{x}/modem/refreshConnectedDevices` |
-| POST | `/xdsl/{x}/modem/reset` |
-| POST | `/xdsl/{x}/modem/resetPortMappingConfig` |
-| POST | `/xdsl/{x}/modem/retrieveInfo` |
-| GET | `/xdsl/{x}/modem/sipAlg` |
-| POST | `/xdsl/{x}/modem/sipAlg` |
-| GET | `/xdsl/{x}/modem/upnp` |
-| POST | `/xdsl/{x}/modem/upnp` |
-| GET | `/xdsl/{x}/modem/wifi` |
-| GET | `/xdsl/{x}/modem/wifi/{x}` |
-| PUT | `/xdsl/{x}/modem/wifi/{x}` |
-| GET | `/xdsl/{x}/modem/wifi/{x}/qrCode` |
-| GET | `/xdsl/{x}/monitoringNotifications` |
-| POST | `/xdsl/{x}/monitoringNotifications` |
-| DELETE | `/xdsl/{x}/monitoringNotifications/{x}` |
-| GET | `/xdsl/{x}/monitoringNotifications/{x}` |
-| PUT | `/xdsl/{x}/monitoringNotifications/{x}` |
-| GET | `/xdsl/{x}/ont` |
-| GET | `/xdsl/{x}/orderFollowup` |
-| POST | `/xdsl/{x}/orderMeeting` |
-| GET | `/xdsl/{x}/pendingAction` |
-| GET | `/xdsl/{x}/radiusConnectionLogs` |
-| POST | `/xdsl/{x}/requestPPPLoginMail` |
-| POST | `/xdsl/{x}/requestTotalDeconsolidation` |
-| POST | `/xdsl/{x}/resiliate` |
-| GET | `/xdsl/{x}/resiliationFollowup` |
-| GET | `/xdsl/{x}/resiliationTerms` |
-| GET | `/xdsl/{x}/rma` |
-| DELETE | `/xdsl/{x}/rma/{x}` |
-| GET | `/xdsl/{x}/rma/{x}` |
-| PUT | `/xdsl/{x}/rma/{x}` |
-| POST | `/xdsl/{x}/rma/{x}/changeType` |
-| POST | `/xdsl/{x}/searchOrderMeetings` |
-| POST | `/xdsl/{x}/sendOrderToProvider` |
-| GET | `/xdsl/{x}/serviceInfos` |
-| PUT | `/xdsl/{x}/serviceInfos` |
-| GET | `/xdsl/{x}/statistics` |
-| GET | `/xdsl/{x}/tasks` |
-| GET | `/xdsl/{x}/tasks/{x}` |
-| POST | `/xdsl/{x}/tasks/{x}/archive` |
-| GET | `/xdsl/{x}/totalDeconsolidationTerms` |
-| POST | `/xdsl/{x}/updateInvalidOrMissingRio` |
-| GET | `/xdsl/email/pro` |
-| DELETE | `/xdsl/email/pro/{x}` |
-| GET | `/xdsl/email/pro/{x}` |
-| PUT | `/xdsl/email/pro/{x}` |
-| POST | `/xdsl/email/pro/{x}/changePassword` |
-| GET | `/xdsl/spare` |
-| DELETE | `/xdsl/spare/{x}` |
-| GET | `/xdsl/spare/{x}` |
-| GET | `/xdsl/spare/{x}/compatibleReplacement` |
-| POST | `/xdsl/spare/{x}/replace` |
-| POST | `/xdsl/spare/{x}/returnMerchandise` |
-| GET | `/xdsl/spare/{x}/serviceInfos` |
-| PUT | `/xdsl/spare/{x}/serviceInfos` |
-| GET | `/xdsl/spare/brands` |
-| GET | `/xdsl/templateModem` |
-| POST | `/xdsl/templateModem` |
-| DELETE | `/xdsl/templateModem/{x}` |
-| GET | `/xdsl/templateModem/{x}` |
-| PUT | `/xdsl/templateModem/{x}` |
 
 ### veeam (v1) — 5 manquants
 
