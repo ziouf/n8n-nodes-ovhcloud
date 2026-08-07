@@ -68,6 +68,7 @@
 			"dist/nodes/OvhCloudDedicatedCloud/OvhCloudDedicatedCloud.node.js",
 			"dist/nodes/OvhCloudDomain/OvhCloudDomain.node.js",
 			"dist/nodes/OvhCloudEmailPro/OvhCloudEmailPro.node.js",
+			"dist/nodes/OvhCloudExchange/OvhCloudExchange.node.js",
 			"dist/nodes/OvhCloudFreefax/OvhCloudFreefax.node.js",
 			"dist/nodes/OvhCloudHorizonView/OvhCloudHorizonView.node.js",
 			"dist/nodes/OvhCloudHosting/OvhCloudHosting.node.js",

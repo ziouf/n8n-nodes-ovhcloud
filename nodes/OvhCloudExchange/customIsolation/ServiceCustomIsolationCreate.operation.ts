@@ -1,0 +1,75 @@
+import type {
+	IDataObject,
+	IExecuteFunctions,
+	INodeExecutionData,
+} from 'n8n-workflow';
+import { ApiClient } from '../../../shared/transport/ApiClient';
+
+export function description() {
+	return [
+		{
+			displayName: 'Organization Name',
+			name: 'organizationName',
+			type: 'string',
+			default: '',
+			required: true,
+			description: 'The internal name of your exchange organization',
+		},
+		{
+			displayName: 'Exchange Service',
+			name: 'exchangeService',
+			type: 'string',
+			default: '',
+			required: true,
+			description: 'The internal name of your exchange service',
+		},
+		{
+			displayName: 'Isolation Field',
+			name: 'isolationField',
+			type: 'string',
+			default: '',
+			required: true,
+			description: 'field use for isolation',
+		},
+		{
+			displayName: 'Isolation Value',
+			name: 'isolationValue',
+			type: 'string',
+			default: '',
+			required: true,
+			description: 'value used for isolation',
+		},
+		{
+			displayName: 'Name',
+			name: 'name',
+			type: 'string',
+			default: '',
+			required: true,
+			description: 'display name of isolation',
+		},
+	];
+}
+
+/**
+ * Create new custom isolation for mailbox
+ *
+ * HTTP method: POST
+ * Endpoint: /email/exchange/{organizationName}/service/{exchangeService}/customIsolation
+ */
+export async function execute(this: IExecuteFunctions): Promise<INodeExecutionData[]> {
+	const organizationName = this.getNodeParameter('organizationName', 0) as string;
+	const exchangeService = this.getNodeParameter('exchangeService', 0) as string;
+	const isolationField = this.getNodeParameter('isolationField', 0) as any;
+	const isolationValue = this.getNodeParameter('isolationValue', 0) as any;
+	const name = this.getNodeParameter('name', 0) as any;
+
+	const body: IDataObject = {
+    isolationField: isolationField,
+    isolationValue: isolationValue,
+    name: name
+	};
+
+	const client = new ApiClient(this);
+	const data = (await client.httpPost("/email/exchange/" + encodeURIComponent(organizationName) + "/service/" + encodeURIComponent(exchangeService) + "/customIsolation", body)) as IDataObject;
+	return this.helpers.returnJsonArray([data]);
+}

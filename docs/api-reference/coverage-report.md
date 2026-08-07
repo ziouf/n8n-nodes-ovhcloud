@@ -1,6 +1,6 @@
 # OVHcloud API Coverage Report
 
-> Généré par `scripts/compare-coverage.js` le 2026-08-07T05:20:40.333Z. Document généré automatiquement — ne pas éditer à la main.
+> Généré par `scripts/compare-coverage.js` le 2026-08-07T06:37:21.579Z. Document généré automatiquement — ne pas éditer à la main.
 
 Ce rapport compare les endpoints déclarés dans les specs Swagger 2.0 (`docs/api-specs/v1|v2/*.json`) avec les appels HTTP réellement présents dans les nodes (`nodes/**/*.operation.ts`).
 
@@ -8,9 +8,9 @@ Ce rapport compare les endpoints déclarés dans les specs Swagger 2.0 (`docs/ap
 
 - **Specs analysées** : 84 (v1: 70, v2: 14)
 - **Endpoints déclarés (specs avec endpoints)** : 6624
-- **Endpoints couverts par les nodes** : 4984
-- **Couverture globale** : **75.2%**
-- **Specs sans node associé** : 21
+- **Endpoints couverts par les nodes** : 5187
+- **Couverture globale** : **78.3%**
+- **Specs sans node associé** : 20
 - **Specs placeholder (aucun endpoint)** : 1
 
 ## Couverture par spec
@@ -19,7 +19,6 @@ Triée par pourcentage croissant (moins bonne couverture en premier).
 
 | Spec (version) | Total | Couverts | Manquants | % |
 |----------------|------:|---------:|----------:|---:|
-| emailExchange (v1) | 203 | 0 | 203 | 0% |
 | emailDomain (v1) | 107 | 0 | 107 | 0% |
 | hostingPrivateDatabase (v1) | 72 | 0 | 72 | 0% |
 | emailMxplan (v1) | 46 | 0 | 46 | 0% |
@@ -59,6 +58,7 @@ Triée par pourcentage croissant (moins bonne couverture en premier).
 | telephony (v1) | 607 | 607 | 0 | 100% |
 | price (v1) | 581 | 581 | 0 | 100% |
 | dedicatedCloud (v1) | 305 | 305 | 0 | 100% |
+| emailExchange (v1) | 203 | 203 | 0 | 100% |
 | xdsl (v1) | 142 | 142 | 0 | 100% |
 | sms (v1) | 124 | 124 | 0 | 100% |
 | ipLoadbalancing (v1) | 121 | 121 | 0 | 100% |
@@ -107,7 +107,6 @@ Triée par pourcentage croissant (moins bonne couverture en premier).
 
 Ces specs ont des endpoints déclarés mais aucun node ne les implémente dans ce repo :
 
-- **emailExchange** (`/email/exchange`, v1) — 203 endpoints, 203 manquants
 - **emailDomain** (`/email/domain`, v1) — 107 endpoints, 107 manquants
 - **hostingPrivateDatabase** (`/hosting/privateDatabase`, v1) — 72 endpoints, 72 manquants
 - **emailMxplan** (`/email/mxplan`, v1) — 46 endpoints, 46 manquants
@@ -142,216 +141,6 @@ Fichiers de spec présents dans le dossier mais avec `apis: []` (spec absente / 
 ## Endpoints manquants
 
 Endpoints déclarés dans les specs mais non appelés par les nodes, groupés par spec :
-
-### emailExchange (v1) — 203 manquants
-
-_Nodes associés : (aucun node)_
-
-| Méthode | Chemin |
-|--------|--------|
-| GET | `/email/exchange` |
-| GET | `/email/exchange/{x}/service` |
-| GET | `/email/exchange/{x}/service/{x}` |
-| PUT | `/email/exchange/{x}/service/{x}` |
-| GET | `/email/exchange/{x}/service/{x}/account` |
-| POST | `/email/exchange/{x}/service/{x}/account` |
-| DELETE | `/email/exchange/{x}/service/{x}/account/{x}` |
-| GET | `/email/exchange/{x}/service/{x}/account/{x}` |
-| PUT | `/email/exchange/{x}/service/{x}/account/{x}` |
-| GET | `/email/exchange/{x}/service/{x}/account/{x}/alias` |
-| POST | `/email/exchange/{x}/service/{x}/account/{x}/alias` |
-| DELETE | `/email/exchange/{x}/service/{x}/account/{x}/alias/{x}` |
-| GET | `/email/exchange/{x}/service/{x}/account/{x}/alias/{x}` |
-| DELETE | `/email/exchange/{x}/service/{x}/account/{x}/archive` |
-| GET | `/email/exchange/{x}/service/{x}/account/{x}/archive` |
-| POST | `/email/exchange/{x}/service/{x}/account/{x}/archive` |
-| PUT | `/email/exchange/{x}/service/{x}/account/{x}/archive` |
-| POST | `/email/exchange/{x}/service/{x}/account/{x}/changePassword` |
-| GET | `/email/exchange/{x}/service/{x}/account/{x}/diagnostics` |
-| POST | `/email/exchange/{x}/service/{x}/account/{x}/diagnostics` |
-| DELETE | `/email/exchange/{x}/service/{x}/account/{x}/export` |
-| GET | `/email/exchange/{x}/service/{x}/account/{x}/export` |
-| POST | `/email/exchange/{x}/service/{x}/account/{x}/export` |
-| GET | `/email/exchange/{x}/service/{x}/account/{x}/exportURL` |
-| POST | `/email/exchange/{x}/service/{x}/account/{x}/exportURL` |
-| GET | `/email/exchange/{x}/service/{x}/account/{x}/fullAccess` |
-| POST | `/email/exchange/{x}/service/{x}/account/{x}/fullAccess` |
-| DELETE | `/email/exchange/{x}/service/{x}/account/{x}/fullAccess/{x}` |
-| GET | `/email/exchange/{x}/service/{x}/account/{x}/fullAccess/{x}` |
-| GET | `/email/exchange/{x}/service/{x}/account/{x}/outlookURL` |
-| POST | `/email/exchange/{x}/service/{x}/account/{x}/outlookURL` |
-| GET | `/email/exchange/{x}/service/{x}/account/{x}/protocol` |
-| PUT | `/email/exchange/{x}/service/{x}/account/{x}/protocol` |
-| GET | `/email/exchange/{x}/service/{x}/account/{x}/sendAs` |
-| POST | `/email/exchange/{x}/service/{x}/account/{x}/sendAs` |
-| DELETE | `/email/exchange/{x}/service/{x}/account/{x}/sendAs/{x}` |
-| GET | `/email/exchange/{x}/service/{x}/account/{x}/sendAs/{x}` |
-| GET | `/email/exchange/{x}/service/{x}/account/{x}/sendOnBehalfTo` |
-| POST | `/email/exchange/{x}/service/{x}/account/{x}/sendOnBehalfTo` |
-| DELETE | `/email/exchange/{x}/service/{x}/account/{x}/sendOnBehalfTo/{x}` |
-| GET | `/email/exchange/{x}/service/{x}/account/{x}/sendOnBehalfTo/{x}` |
-| GET | `/email/exchange/{x}/service/{x}/account/{x}/tasks` |
-| GET | `/email/exchange/{x}/service/{x}/account/{x}/tasks/{x}` |
-| POST | `/email/exchange/{x}/service/{x}/account/{x}/terminate` |
-| POST | `/email/exchange/{x}/service/{x}/activateSharepoint` |
-| GET | `/email/exchange/{x}/service/{x}/authenticationPolicy` |
-| GET | `/email/exchange/{x}/service/{x}/authenticationPolicy/{x}` |
-| GET | `/email/exchange/{x}/service/{x}/authorizedIp` |
-| POST | `/email/exchange/{x}/service/{x}/authorizedIp` |
-| DELETE | `/email/exchange/{x}/service/{x}/authorizedIp/{x}` |
-| GET | `/email/exchange/{x}/service/{x}/authorizedIp/{x}` |
-| PUT | `/email/exchange/{x}/service/{x}/authorizedIp/{x}` |
-| POST | `/email/exchange/{x}/service/{x}/changeHostname` |
-| GET | `/email/exchange/{x}/service/{x}/customIsolation` |
-| POST | `/email/exchange/{x}/service/{x}/customIsolation` |
-| DELETE | `/email/exchange/{x}/service/{x}/customIsolation/{x}` |
-| GET | `/email/exchange/{x}/service/{x}/customIsolation/{x}` |
-| GET | `/email/exchange/{x}/service/{x}/dcvEmails` |
-| GET | `/email/exchange/{x}/service/{x}/device` |
-| GET | `/email/exchange/{x}/service/{x}/device/{x}` |
-| PUT | `/email/exchange/{x}/service/{x}/device/{x}` |
-| POST | `/email/exchange/{x}/service/{x}/device/{x}/clearDevice` |
-| GET | `/email/exchange/{x}/service/{x}/domain` |
-| POST | `/email/exchange/{x}/service/{x}/domain` |
-| DELETE | `/email/exchange/{x}/service/{x}/domain/{x}` |
-| GET | `/email/exchange/{x}/service/{x}/domain/{x}` |
-| PUT | `/email/exchange/{x}/service/{x}/domain/{x}` |
-| PUT | `/email/exchange/{x}/service/{x}/domain/{x}/changeDefaultSBR` |
-| DELETE | `/email/exchange/{x}/service/{x}/domain/{x}/disclaimer` |
-| GET | `/email/exchange/{x}/service/{x}/domain/{x}/disclaimer` |
-| POST | `/email/exchange/{x}/service/{x}/domain/{x}/disclaimer` |
-| PUT | `/email/exchange/{x}/service/{x}/domain/{x}/disclaimer` |
-| GET | `/email/exchange/{x}/service/{x}/domain/{x}/disclaimerAttribute` |
-| GET | `/email/exchange/{x}/service/{x}/domain/{x}/dkim` |
-| POST | `/email/exchange/{x}/service/{x}/domain/{x}/dkim` |
-| DELETE | `/email/exchange/{x}/service/{x}/domain/{x}/dkim/{x}` |
-| GET | `/email/exchange/{x}/service/{x}/domain/{x}/dkim/{x}` |
-| POST | `/email/exchange/{x}/service/{x}/domain/{x}/dkim/{x}/disable` |
-| POST | `/email/exchange/{x}/service/{x}/domain/{x}/dkim/{x}/enable` |
-| GET | `/email/exchange/{x}/service/{x}/domain/{x}/dkimSelector` |
-| GET | `/email/exchange/{x}/service/{x}/externalContact` |
-| POST | `/email/exchange/{x}/service/{x}/externalContact` |
-| DELETE | `/email/exchange/{x}/service/{x}/externalContact/{x}` |
-| GET | `/email/exchange/{x}/service/{x}/externalContact/{x}` |
-| PUT | `/email/exchange/{x}/service/{x}/externalContact/{x}` |
-| DELETE | `/email/exchange/{x}/service/{x}/impersonatedUser` |
-| GET | `/email/exchange/{x}/service/{x}/impersonatedUser` |
-| POST | `/email/exchange/{x}/service/{x}/impersonatedUser` |
-| POST | `/email/exchange/{x}/service/{x}/impersonatedUser/changePassword` |
-| GET | `/email/exchange/{x}/service/{x}/impersonationPasswordPolicy` |
-| GET | `/email/exchange/{x}/service/{x}/license` |
-| GET | `/email/exchange/{x}/service/{x}/log/kind` |
-| GET | `/email/exchange/{x}/service/{x}/log/kind/{x}` |
-| GET | `/email/exchange/{x}/service/{x}/log/subscription` |
-| POST | `/email/exchange/{x}/service/{x}/log/subscription` |
-| DELETE | `/email/exchange/{x}/service/{x}/log/subscription/{x}` |
-| GET | `/email/exchange/{x}/service/{x}/log/subscription/{x}` |
-| POST | `/email/exchange/{x}/service/{x}/log/url` |
-| GET | `/email/exchange/{x}/service/{x}/mailingList` |
-| POST | `/email/exchange/{x}/service/{x}/mailingList` |
-| DELETE | `/email/exchange/{x}/service/{x}/mailingList/{x}` |
-| GET | `/email/exchange/{x}/service/{x}/mailingList/{x}` |
-| PUT | `/email/exchange/{x}/service/{x}/mailingList/{x}` |
-| GET | `/email/exchange/{x}/service/{x}/mailingList/{x}/alias` |
-| POST | `/email/exchange/{x}/service/{x}/mailingList/{x}/alias` |
-| DELETE | `/email/exchange/{x}/service/{x}/mailingList/{x}/alias/{x}` |
-| GET | `/email/exchange/{x}/service/{x}/mailingList/{x}/alias/{x}` |
-| GET | `/email/exchange/{x}/service/{x}/mailingList/{x}/manager/account` |
-| POST | `/email/exchange/{x}/service/{x}/mailingList/{x}/manager/account` |
-| DELETE | `/email/exchange/{x}/service/{x}/mailingList/{x}/manager/account/{x}` |
-| GET | `/email/exchange/{x}/service/{x}/mailingList/{x}/manager/account/{x}` |
-| GET | `/email/exchange/{x}/service/{x}/mailingList/{x}/member/account` |
-| POST | `/email/exchange/{x}/service/{x}/mailingList/{x}/member/account` |
-| DELETE | `/email/exchange/{x}/service/{x}/mailingList/{x}/member/account/{x}` |
-| GET | `/email/exchange/{x}/service/{x}/mailingList/{x}/member/account/{x}` |
-| GET | `/email/exchange/{x}/service/{x}/mailingList/{x}/member/contact` |
-| POST | `/email/exchange/{x}/service/{x}/mailingList/{x}/member/contact` |
-| DELETE | `/email/exchange/{x}/service/{x}/mailingList/{x}/member/contact/{x}` |
-| GET | `/email/exchange/{x}/service/{x}/mailingList/{x}/member/contact/{x}` |
-| GET | `/email/exchange/{x}/service/{x}/mailingList/{x}/sendAs` |
-| POST | `/email/exchange/{x}/service/{x}/mailingList/{x}/sendAs` |
-| DELETE | `/email/exchange/{x}/service/{x}/mailingList/{x}/sendAs/{x}` |
-| GET | `/email/exchange/{x}/service/{x}/mailingList/{x}/sendAs/{x}` |
-| GET | `/email/exchange/{x}/service/{x}/mailingList/{x}/sendOnBehalfTo` |
-| POST | `/email/exchange/{x}/service/{x}/mailingList/{x}/sendOnBehalfTo` |
-| DELETE | `/email/exchange/{x}/service/{x}/mailingList/{x}/sendOnBehalfTo/{x}` |
-| GET | `/email/exchange/{x}/service/{x}/mailingList/{x}/sendOnBehalfTo/{x}` |
-| GET | `/email/exchange/{x}/service/{x}/outlookAvailability` |
-| GET | `/email/exchange/{x}/service/{x}/protocol` |
-| PUT | `/email/exchange/{x}/service/{x}/protocol` |
-| GET | `/email/exchange/{x}/service/{x}/protocol/activeSyncMailNotification` |
-| POST | `/email/exchange/{x}/service/{x}/protocol/activeSyncMailNotification` |
-| DELETE | `/email/exchange/{x}/service/{x}/protocol/activeSyncMailNotification/{x}` |
-| GET | `/email/exchange/{x}/service/{x}/protocol/activeSyncMailNotification/{x}` |
-| GET | `/email/exchange/{x}/service/{x}/publicFolder` |
-| POST | `/email/exchange/{x}/service/{x}/publicFolder` |
-| DELETE | `/email/exchange/{x}/service/{x}/publicFolder/{x}` |
-| GET | `/email/exchange/{x}/service/{x}/publicFolder/{x}` |
-| PUT | `/email/exchange/{x}/service/{x}/publicFolder/{x}` |
-| GET | `/email/exchange/{x}/service/{x}/publicFolder/{x}/permission` |
-| POST | `/email/exchange/{x}/service/{x}/publicFolder/{x}/permission` |
-| DELETE | `/email/exchange/{x}/service/{x}/publicFolder/{x}/permission/{x}` |
-| GET | `/email/exchange/{x}/service/{x}/publicFolder/{x}/permission/{x}` |
-| PUT | `/email/exchange/{x}/service/{x}/publicFolder/{x}/permission/{x}` |
-| GET | `/email/exchange/{x}/service/{x}/publicFolderQuota` |
-| GET | `/email/exchange/{x}/service/{x}/remoteMailbox` |
-| POST | `/email/exchange/{x}/service/{x}/remoteMailbox` |
-| DELETE | `/email/exchange/{x}/service/{x}/remoteMailbox/{x}` |
-| GET | `/email/exchange/{x}/service/{x}/remoteMailbox/{x}` |
-| PUT | `/email/exchange/{x}/service/{x}/remoteMailbox/{x}` |
-| GET | `/email/exchange/{x}/service/{x}/remoteMailbox/{x}/alias` |
-| POST | `/email/exchange/{x}/service/{x}/remoteMailbox/{x}/alias` |
-| DELETE | `/email/exchange/{x}/service/{x}/remoteMailbox/{x}/alias/{x}` |
-| GET | `/email/exchange/{x}/service/{x}/remoteMailbox/{x}/alias/{x}` |
-| POST | `/email/exchange/{x}/service/{x}/remoteMailbox/{x}/changePassword` |
-| POST | `/email/exchange/{x}/service/{x}/renewSSL` |
-| GET | `/email/exchange/{x}/service/{x}/resourceAccount` |
-| POST | `/email/exchange/{x}/service/{x}/resourceAccount` |
-| DELETE | `/email/exchange/{x}/service/{x}/resourceAccount/{x}` |
-| GET | `/email/exchange/{x}/service/{x}/resourceAccount/{x}` |
-| PUT | `/email/exchange/{x}/service/{x}/resourceAccount/{x}` |
-| GET | `/email/exchange/{x}/service/{x}/resourceAccount/{x}/delegate` |
-| POST | `/email/exchange/{x}/service/{x}/resourceAccount/{x}/delegate` |
-| DELETE | `/email/exchange/{x}/service/{x}/resourceAccount/{x}/delegate/{x}` |
-| GET | `/email/exchange/{x}/service/{x}/resourceAccount/{x}/delegate/{x}` |
-| GET | `/email/exchange/{x}/service/{x}/sendConnector` |
-| POST | `/email/exchange/{x}/service/{x}/sendConnector` |
-| DELETE | `/email/exchange/{x}/service/{x}/sendConnector/{x}` |
-| GET | `/email/exchange/{x}/service/{x}/sendConnector/{x}` |
-| PUT | `/email/exchange/{x}/service/{x}/sendConnector/{x}` |
-| POST | `/email/exchange/{x}/service/{x}/sendConnector/{x}/changeAuthentication` |
-| GET | `/email/exchange/{x}/service/{x}/server` |
-| PUT | `/email/exchange/{x}/service/{x}/server` |
-| GET | `/email/exchange/{x}/service/{x}/serviceInfos` |
-| PUT | `/email/exchange/{x}/service/{x}/serviceInfos` |
-| GET | `/email/exchange/{x}/service/{x}/sharedAccount` |
-| POST | `/email/exchange/{x}/service/{x}/sharedAccount` |
-| DELETE | `/email/exchange/{x}/service/{x}/sharedAccount/{x}` |
-| GET | `/email/exchange/{x}/service/{x}/sharedAccount/{x}` |
-| PUT | `/email/exchange/{x}/service/{x}/sharedAccount/{x}` |
-| GET | `/email/exchange/{x}/service/{x}/sharedAccount/{x}/alias` |
-| POST | `/email/exchange/{x}/service/{x}/sharedAccount/{x}/alias` |
-| DELETE | `/email/exchange/{x}/service/{x}/sharedAccount/{x}/alias/{x}` |
-| GET | `/email/exchange/{x}/service/{x}/sharedAccount/{x}/alias/{x}` |
-| GET | `/email/exchange/{x}/service/{x}/sharedAccount/{x}/fullAccess` |
-| POST | `/email/exchange/{x}/service/{x}/sharedAccount/{x}/fullAccess` |
-| DELETE | `/email/exchange/{x}/service/{x}/sharedAccount/{x}/fullAccess/{x}` |
-| GET | `/email/exchange/{x}/service/{x}/sharedAccount/{x}/fullAccess/{x}` |
-| GET | `/email/exchange/{x}/service/{x}/sharedAccount/{x}/sendAs` |
-| POST | `/email/exchange/{x}/service/{x}/sharedAccount/{x}/sendAs` |
-| DELETE | `/email/exchange/{x}/service/{x}/sharedAccount/{x}/sendAs/{x}` |
-| GET | `/email/exchange/{x}/service/{x}/sharedAccount/{x}/sendAs/{x}` |
-| GET | `/email/exchange/{x}/service/{x}/sharedAccount/{x}/sendOnBehalfTo` |
-| POST | `/email/exchange/{x}/service/{x}/sharedAccount/{x}/sendOnBehalfTo` |
-| DELETE | `/email/exchange/{x}/service/{x}/sharedAccount/{x}/sendOnBehalfTo/{x}` |
-| GET | `/email/exchange/{x}/service/{x}/sharedAccount/{x}/sendOnBehalfTo/{x}` |
-| GET | `/email/exchange/{x}/service/{x}/sharedAccount/{x}/tasks` |
-| GET | `/email/exchange/{x}/service/{x}/sharedAccount/{x}/tasks/{x}` |
-| GET | `/email/exchange/{x}/service/{x}/sharedAccountQuota` |
-| GET | `/email/exchange/{x}/service/{x}/task` |
-| GET | `/email/exchange/{x}/service/{x}/task/{x}` |
-| POST | `/email/exchange/{x}/service/{x}/updateDeviceList` |
-| POST | `/email/exchange/{x}/service/{x}/updateFlagsOnAllAccounts` |
 
 ### emailDomain (v1) — 107 manquants
 

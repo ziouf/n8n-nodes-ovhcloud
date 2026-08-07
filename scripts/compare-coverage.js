@@ -66,6 +66,7 @@ const SPEC_TO_NODES = {
 	dedicatedCloud: ['OvhCloudDedicatedCloud'],
 	domain: ['OvhCloudDomain'],
 	email: ['OvhCloudEmailPro', 'OvhCloudMxPlan'],
+	emailExchange: ['OvhCloudExchange'],
 	freefax: ['OvhCloudFreefax'],
 	horizonView: ['OvhCloudHorizonView'],
 	hosting: ['OvhCloudHosting'],
