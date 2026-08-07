@@ -65,7 +65,6 @@ export function description(displayOptions: IDisplayOptions): INodeProperties[] 
 			type: 'string',
 			default: '',
 			required: true,
-			description: 'Owner Email',
 			displayOptions: {
 				show: {
 					emailDomainOperation: ['DomainMailingListCreate'],
@@ -99,7 +98,7 @@ export async function execute(this: IExecuteFunctions): Promise<INodeExecutionDa
 	const domain = this.getNodeParameter('domain', 0) as string;
 	const language = this.getNodeParameter('language', 0) as string;
 	const name = this.getNodeParameter('name', 0) as string;
-	const options = this.getNodeParameter('options', 0) as any;
+	const options = this.getNodeParameter('options', 0) as unknown;
 	const ownerEmail = this.getNodeParameter('ownerEmail', 0) as string;
 	const replyTo = this.getNodeParameter('replyTo', 0) as string;
 

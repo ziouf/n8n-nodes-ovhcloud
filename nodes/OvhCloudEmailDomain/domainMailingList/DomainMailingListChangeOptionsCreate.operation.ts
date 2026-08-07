@@ -57,7 +57,7 @@ export function description(displayOptions: IDisplayOptions): INodeProperties[] 
 export async function execute(this: IExecuteFunctions): Promise<INodeExecutionData[]> {
 	const domain = this.getNodeParameter('domain', 0) as string;
 	const name = this.getNodeParameter('name', 0) as string;
-	const options = this.getNodeParameter('options', 0) as any;
+	const options = this.getNodeParameter('options', 0) as unknown;
 
 	const body: IDataObject = {
 		options: options,

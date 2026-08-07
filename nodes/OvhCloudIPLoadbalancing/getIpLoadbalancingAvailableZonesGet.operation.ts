@@ -1,5 +1,4 @@
 import type {
-	IDisplayOptions,
 	IDataObject,
 	IExecuteFunctions,
 	INodeProperties,
@@ -8,7 +7,7 @@ import type {
 import { ApiClient } from '../../shared/transport/ApiClient';
 
 
-export function description(displayOptions?: IDisplayOptions): INodeProperties[] {
+export function description(): INodeProperties[] {
 	return [];
 }
 
@@ -18,7 +17,7 @@ export function description(displayOptions?: IDisplayOptions): INodeProperties[]
  * HTTP method: GET
  * Endpoint: /ipLoadbalancing/availableZones
  */
-export async function execute(this: IExecuteFunctions, itemIndex: number): Promise<INodeExecutionData[]> {
+export async function execute(this: IExecuteFunctions): Promise<INodeExecutionData[]> {
 
 
 
