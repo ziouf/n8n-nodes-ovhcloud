@@ -1,16 +1,16 @@
 # OVHcloud API Conformity Report
 
-> Généré par `scripts/audit-conformity.js` le 2026-08-07T02:43:20.194Z. Document généré automatiquement — ne pas éditer à la main.
+> Généré par `scripts/audit-conformity.js` le 2026-08-07T05:20:41.638Z. Document généré automatiquement — ne pas éditer à la main.
 
 Ce rapport vérifie que les opérations des nodes respectent leur spec (méthode, chemin, paramètres path requis, query requis, champs body requis).
 
 ## Résumé
 
-- **Opérations auditées** : 7142
-- **Conformes** : 4331
-- **Non conformes** : 2811
+- **Opérations auditées** : 7452
+- **Conformes** : 4638
+- **Non conformes** : 2814
 - **Sans correspondance spec** (informatif) : 2350
-- **Taux de conformité** : **60.6%**
+- **Taux de conformité** : **62.2%**
 
 ## Conformité par spec
 
@@ -33,42 +33,42 @@ Triée par taux de non-conformité décroissant.
 | ovhCloudConnect (v1) | 42 | 33 | 9 | 78.6% |
 | storage (v1) | 47 | 37 | 10 | 78.7% |
 | cdn (v1) | 44 | 35 | 9 | 79.5% |
-| xdsl (v1) | 39 | 32 | 7 | 82.1% |
+| xdsl (v1) | 142 | 113 | 29 | 79.6% |
 | managedCMS (v2) | 17 | 14 | 3 | 82.4% |
 | notification (v2) | 19 | 16 | 3 | 84.2% |
 | vmwareCloudDirector (v2) | 32 | 27 | 5 | 84.4% |
 | dedicated (v1) | 168 | 93 | 26 | 55.4% |
 | ip (v1) | 92 | 68 | 13 | 73.9% |
+| vps (v1) | 135 | 78 | 18 | 57.8% |
 | backupServices (v2) | 15 | 13 | 2 | 86.7% |
 | newAccount (v1) | 8 | 7 | 1 | 87.5% |
 | vrackServices (v2) | 8 | 7 | 1 | 87.5% |
 | order (v1) | 789 | 447 | 92 | 56.7% |
 | service (v1) | 9 | 8 | 1 | 88.9% |
-| me (v1) | 456 | 414 | 42 | 90.8% |
-| vrack (v1) | 12 | 4 | 1 | 33.3% |
 | veeamCloudConnect (v1) | 14 | 13 | 1 | 92.9% |
-| vps (v1) | 63 | 20 | 4 | 31.7% |
 | cloud (v1) | 1129 | 673 | 44 | 59.6% |
 | hosting (v1) | 237 | 169 | 7 | 71.3% |
+| me (v1) | 309 | 300 | 9 | 97.1% |
 | horizonView (v1) | 42 | 41 | 1 | 97.6% |
+| vrack (v1) | 75 | 67 | 1 | 89.3% |
 | webhosting (v2) | 246 | 12 | 3 | 4.9% |
 | domain (v1) | 119 | 109 | 1 | 91.6% |
 | telephony (v1) | 644 | 602 | 5 | 93.5% |
 | publicCloud (v2) | 1129 | 26 | 4 | 2.3% |
 | price (v1) | 581 | 581 | 0 | 100% |
 | sms (v1) | 126 | 124 | 0 | 98.4% |
+| ipLoadbalancing (v1) | 121 | 121 | 0 | 100% |
 | domain (v2) | 119 | 9 | 0 | 7.6% |
+| email (v1) | 66 | 59 | 0 | 89.4% |
+| msServices (v1) | 57 | 55 | 0 | 96.5% |
 | cluster (v1) | 50 | 42 | 0 | 84% |
 | services (v1) | 50 | 47 | 0 | 94% |
 | pack (v1) | 39 | 33 | 0 | 84.6% |
 | freefax (v1) | 19 | 18 | 0 | 94.7% |
 | saas (v1) | 19 | 19 | 0 | 100% |
 | metrics (v1) | 13 | 12 | 0 | 92.3% |
-| email (v1) | 9 | 2 | 0 | 22.2% |
-| ipLoadbalancing (v1) | 9 | 9 | 0 | 100% |
 | license (v1) | 9 | 7 | 0 | 77.8% |
 | ssl (v1) | 9 | 6 | 0 | 66.7% |
-| msServices (v1) | 7 | 5 | 0 | 71.4% |
 | allDom (v1) | 6 | 6 | 0 | 100% |
 | auth (v1) | 6 | 6 | 0 | 100% |
 | sslGateway (v1) | 6 | 6 | 0 | 100% |
@@ -383,7 +383,7 @@ Chaque ligne correspond à un appel HTTP non conforme, groupée par spec :
 | GET | `/managedCMS/reference/supportedPHPVersions` | OvhCloudManagedCms/managedCMSreferencesupportedPHPVersionsListGet.operation.ts | missing required query param 'cms' |
 | POST | `/managedCMS/resource/{x}/website` | OvhCloudManagedCms/managedCMSresourcewebsiteCreatePost.operation.ts | missing required body field 'targetSpec' |
 
-### me — 42 non-conformités
+### me — 9 non-conformités
 
 | Méthode | Chemin | Fichier | Problèmes |
 |--------|--------|---------|-----------|
@@ -393,42 +393,9 @@ Chaque ligne correspond à un appel HTTP non conforme, groupée par spec :
 | POST | `/me/accessRestriction/totp/{x}/disable` | OvhCloudMe/operations/accessRestriction.operation.ts | missing required body field 'code' |
 | POST | `/me/accessRestriction/totp/{x}/enable` | OvhCloudMe/operations/accessRestriction.operation.ts | missing required body field 'code' |
 | POST | `/me/accessRestriction/totp/{x}/validate` | OvhCloudMe/operations/accessRestriction.operation.ts | missing required body field 'code' |
-| POST | `/me/api/log/subscription` | OvhCloudMe/operations/apiExtra.operation.ts | missing required body field 'streamId' |
-| POST | `/me/api/oauth2/client` | OvhCloudMe/operations/apiExtra.operation.ts | missing required body field 'description'; missing required body field 'flow' |
-| POST | `/me/billing/purchaseOrder` | OvhCloudMe/operations/billingExtra.operation.ts | missing required body field 'reference'; missing required body field 'startDate'; missing required body field 'type' |
-| POST | `/me/billing/report/consumption` | OvhCloudMe/operations/billingExtra.operation.ts | missing required body field 'periodEnd'; missing required body field 'periodStart' |
 | GET | `/me/bringYourOwnIp/token` | OvhCloudMe/operations/partner.operation.ts | missing required query param 'campus' |
 | GET | `/me/consumption/usage/history` | OvhCloudMe/operations/notification.operation.ts | missing required query param 'beginDate'; missing required query param 'endDate' |
-| POST | `/me/credit/code` | OvhCloudMe/operations/contactCreditDebtDocument.operation.ts | missing required body field 'inputCode' |
-| POST | `/me/fax/customDomains` | OvhCloudMe/operations/faxFidelity.operation.ts | missing required body field 'domain' |
-| POST | `/me/fidelityAccount/creditOrder` | OvhCloudMe/operations/faxFidelity.operation.ts | missing required body field 'amount' |
-| POST | `/me/identity/provider` | OvhCloudMe/operations/identity.operation.ts | missing required body field 'metadata' |
-| POST | `/me/identity/user` | OvhCloudMe/operations/identity.operation.ts | missing required body field 'login' |
-| POST | `/me/identity/user/{x}/token` | OvhCloudMe/operations/identity.operation.ts | missing required body field 'description' |
-| POST | `/me/ipOrganisation` | OvhCloudMe/operations/ipAuditMarketingMigration.operation.ts | missing required body field 'abuse_mailbox'; missing required body field 'address'; missing required body field 'city'; missing required body field 'country'; missing required body field 'firstname'; missing required body field 'lastname'; missing required body field 'phone'; missing required body field 'registry' |
-| POST | `/me/logs/audit/log/subscription` | OvhCloudMe/operations/ipAuditMarketingMigration.operation.ts | missing required body field 'streamId' |
-| POST | `/me/mailingList/subscribe` | OvhCloudMe/operations/ipAuditMarketingMigration.operation.ts | missing required body field 'email' |
-| POST | `/me/order/{x}/balance` | OvhCloudMe/operations/order.operation.ts | missing required body field 'balanceName' |
 | GET | `/me/order/{x}/consumption/details` | OvhCloudMe/operations/payment.operation.ts | missing required query param 'fileFormat' |
-| POST | `/me/order/{x}/pay` | OvhCloudMe/operations/order.operation.ts | missing required body field 'paymentMethod' |
-| POST | `/me/order/{x}/retraction` | OvhCloudMe/operations/order.operation.ts | missing required body field 'reason' |
-| POST | `/me/ovhAccount/{x}/movements/{x}/requestRefund` | OvhCloudMe/operations/accountCreate.operation.ts | missing required body field 'amount' |
-| POST | `/me/ovhAccount/{x}/retrieveMoney` | OvhCloudMe/operations/accountCreate.operation.ts | missing required body field 'amount'; missing required body field 'bankAccountId' |
-| POST | `/me/passwordRecover` | OvhCloudMe/operations/accountCreate.operation.ts | missing required body field 'ovhCompany'; missing required body field 'ovhId' |
-| POST | `/me/payment/method` | OvhCloudMe/operations/paymentExtra.operation.ts | missing required body field 'callbackUrl'; missing required body field 'paymentType' |
-| POST | `/me/payment/method/{x}/challenge` | OvhCloudMe/operations/paymentExtra.operation.ts | missing required body field 'challenge' |
-| POST | `/me/paymentMean/bankAccount` | OvhCloudMe/operations/paymentExtra.operation.ts | missing required body field 'bic'; missing required body field 'iban'; missing required body field 'ownerAddress'; missing required body field 'ownerName' |
-| POST | `/me/paymentMean/bankAccount/{x}/challenge` | OvhCloudMe/operations/paymentExtra.operation.ts | missing required body field 'challenge' |
-| POST | `/me/paymentMean/creditCard/{x}/challenge` | OvhCloudMe/operations/paymentExtra.operation.ts | missing required body field 'challenge' |
-| POST | `/me/paymentMean/paypal/{x}/challenge` | OvhCloudMe/operations/paymentExtra.operation.ts | missing required body field 'challenge' |
-| POST | `/me/sshKey` | OvhCloudMe/operations/refundSshKey.operation.ts | missing required body field 'key'; missing required body field 'keyName' |
-| POST | `/me/task/contactChange/{x}/accept` | OvhCloudMe/operations/task.operation.ts | missing required body field 'token' |
-| POST | `/me/task/contactChange/{x}/refuse` | OvhCloudMe/operations/task.operation.ts | missing required body field 'token' |
-| POST | `/me/task/emailChange/{x}/accept` | OvhCloudMe/operations/task.operation.ts | missing required body field 'token' |
-| POST | `/me/task/emailChange/{x}/refuse` | OvhCloudMe/operations/task.operation.ts | missing required body field 'token' |
-| POST | `/me/telephony/defaultIpRestriction` | OvhCloudMe/operations/telecomExtra.operation.ts | missing required body field 'subnet'; missing required body field 'type' |
-| POST | `/me/telephony/settings` | OvhCloudMe/operations/telecomExtra.operation.ts | missing required body field 'settings' |
-| POST | `/me/voucher/checkValidity` | OvhCloudMe/operations/accountCreate.operation.ts | missing required body field 'voucher' |
 
 ### networkDefense — 1 non-conformité
 
@@ -675,14 +642,28 @@ Chaque ligne correspond à un appel HTTP non conforme, groupée par spec :
 | PUT | `/vmwareCloudDirector/organization/{x}/virtualDataCenter/{x}` | OvhCloudVmwareCloudDirector/vmwareCloudDirectororganizationvirtualDataCenterUpdatePut.operation.ts | missing required body field 'targetSpec' |
 | PUT | `/vmwareCloudDirector/organization/{x}/virtualDataCenter/{x}/vrackSegment/{x}` | OvhCloudVmwareCloudDirector/vmwareCloudDirectororganizationvirtualDataCentervrackSegmentUpdatePut.operation.ts | missing required body field 'targetSpec' |
 
-### vps — 4 non-conformités
+### vps — 18 non-conformités
 
 | Méthode | Chemin | Fichier | Problèmes |
 |--------|--------|---------|-----------|
+| POST | `/vps/{x}/automatedBackup/detachBackup` | OvhCloudVps/postVpsAutomatedBackupDetachBackupPost.operation.ts | missing required body field 'restorePoint' |
 | POST | `/vps/{x}/automatedBackup/reschedule` | OvhCloudVps/automatedBackupReschedulePost.operation.ts | missing required body field 'schedule' |
 | POST | `/vps/{x}/automatedBackup/restore` | OvhCloudVps/automatedBackupRestoreCreate.operation.ts | missing required body field 'restorePoint'; missing required body field 'type' |
 | GET | `/vps/{x}/automatedBackup/restorePoints` | OvhCloudVps/restorePointListGet.operation.ts | missing required query param 'state' |
+| POST | `/vps/{x}/backupftp/access` | OvhCloudVps/postVpsBackupFtpAccessPost.operation.ts | missing required body field 'cifs'; missing required body field 'ipBlock'; missing required body field 'nfs' |
 | POST | `/vps/{x}/confirmTermination` | OvhCloudVps/confirmTerminationCreateVps.operation.ts | missing required body field 'token' |
+| GET | `/vps/{x}/disks/{x}/monitoring` | OvhCloudVps/getVpsDiskMonitoringGet.operation.ts | missing required query param 'period'; missing required query param 'type' |
+| GET | `/vps/{x}/disks/{x}/use` | OvhCloudVps/getVpsDiskUseGet.operation.ts | missing required query param 'type' |
+| POST | `/vps/{x}/migration2018` | OvhCloudVps/postVpsMigration2018Post.operation.ts | missing required body field 'newPlan' |
+| POST | `/vps/{x}/migration2020` | OvhCloudVps/postVpsMigration2020Post.operation.ts | missing required body field 'plan' |
+| GET | `/vps/{x}/monitoring` | OvhCloudVps/getVpsMonitoringGet.operation.ts | missing required query param 'period'; missing required query param 'type' |
+| POST | `/vps/{x}/rebuild` | OvhCloudVps/postVpsRebuildPost.operation.ts | missing required body field 'imageId' |
+| POST | `/vps/{x}/reinstall` | OvhCloudVps/postVpsReinstallPost.operation.ts | missing required body field 'templateId' |
+| POST | `/vps/{x}/secondaryDnsDomains` | OvhCloudVps/postVpsSecondaryDnsDomainsPost.operation.ts | missing required body field 'domain' |
+| GET | `/vps/{x}/use` | OvhCloudVps/getVpsUseGet.operation.ts | missing required query param 'type' |
+| POST | `/vps/{x}/veeam/restorePoints/{x}/restore` | OvhCloudVps/postVpsVeeamRestorePost.operation.ts | missing required body field 'full' |
+| GET | `/vps/order/rule/datacenter` | OvhCloudVps/getVpsOrderRuleDatacenterGet.operation.ts | missing required query param 'ovhSubsidiary'; missing required query param 'planCode' |
+| GET | `/vps/order/rule/osChoices` | OvhCloudVps/getVpsOrderRuleOsChoicesGet.operation.ts | missing required query param 'datacenter'; missing required query param 'os' |
 
 ### vrack — 1 non-conformité
 
@@ -704,10 +685,12 @@ Chaque ligne correspond à un appel HTTP non conforme, groupée par spec :
 | POST | `/webhosting/resource/{x}/website` | OvhCloudHosting/v2/websiteCreatePostV2.operation.ts | missing required body field 'targetSpec' |
 | PUT | `/webhosting/resource/{x}/website/{x}` | OvhCloudHosting/v2/websiteUpdatePutV2.operation.ts | missing required body field 'targetSpec' |
 
-### xdsl — 7 non-conformités
+### xdsl — 29 non-conformités
 
 | Méthode | Chemin | Fichier | Problèmes |
 |--------|--------|---------|-----------|
+| POST | `/xdsl/{x}/applyTemplateToModem` | OvhCloudXdsl/resources/main/postXdslApplyTemplateToModemPost.operation.ts | missing required body field 'templateName' |
+| POST | `/xdsl/{x}/ipv6` | OvhCloudXdsl/resources/main/postXdslIpv6Post.operation.ts | missing required body field 'enabled' |
 | POST | `/xdsl/{x}/lines/{x}/diagnostic/run` | OvhCloudXdsl/resources/lines/lineDiagnosticRunPost.operation.ts | missing required body field 'faultType' |
 | POST | `/xdsl/{x}/lines/{x}/dslamPort/changeProfile` | OvhCloudXdsl/resources/lines/dslamPortChangeProfilePost.operation.ts | missing required body field 'dslamProfileId' |
 | GET | `/xdsl/{x}/lines/{x}/dslamPort/logs` | OvhCloudXdsl/resources/lines/dslamPortLogsGet.operation.ts | missing required query param 'limit' |
@@ -715,6 +698,26 @@ Chaque ligne correspond à un appel HTTP non conforme, groupée par spec :
 | POST | `/xdsl/{x}/log/subscription` | OvhCloudXdsl/resources/log/logSubscriptionPost.operation.ts | missing required body field 'kind'; missing required body field 'streamId' |
 | POST | `/xdsl/{x}/log/url` | OvhCloudXdsl/resources/log/logUrlPost.operation.ts | missing required body field 'kind' |
 | POST | `/xdsl/{x}/mailSending` | OvhCloudXdsl/resources/main/mailSendingPost.operation.ts | missing required body field 'status' |
+| GET | `/xdsl/{x}/modem/availableWLANChannel` | OvhCloudXdsl/resources/main/listXdslModemAvailableWlanChannelGet.operation.ts | missing required query param 'frequency' |
+| POST | `/xdsl/{x}/modem/blocIp` | OvhCloudXdsl/resources/main/postXdslModemBlocIpPost.operation.ts | missing required body field 'status' |
+| POST | `/xdsl/{x}/modem/callWaiting` | OvhCloudXdsl/resources/main/postXdslModemCallWaitingPost.operation.ts | missing required body field 'callWaiting' |
+| POST | `/xdsl/{x}/modem/contentSharing` | OvhCloudXdsl/resources/main/postXdslModemContentSharingPost.operation.ts | missing required body field 'contentSharing' |
+| POST | `/xdsl/{x}/modem/firmware` | OvhCloudXdsl/resources/main/postXdslModemFirmwarePost.operation.ts | missing required body field 'firmware' |
+| POST | `/xdsl/{x}/modem/ftp` | OvhCloudXdsl/resources/main/postXdslModemFtpPost.operation.ts | missing required body field 'ftp' |
+| POST | `/xdsl/{x}/modem/ipsecAlg` | OvhCloudXdsl/resources/main/postXdslModemIpsecAlgPost.operation.ts | missing required body field 'ipsecAlg' |
+| POST | `/xdsl/{x}/modem/lan/{x}/dhcp/{x}/DHCPStaticAddresses` | OvhCloudXdsl/resources/main/postXdslModemLanDhcpStaticPost.operation.ts | missing required body field 'IPAddress'; missing required body field 'MACAddress' |
+| POST | `/xdsl/{x}/modem/portMappings` | OvhCloudXdsl/resources/main/postXdslModemPortMappingsPost.operation.ts | missing required body field 'externalPortStart'; missing required body field 'internalClient'; missing required body field 'internalPort'; missing required body field 'name'; missing required body field 'protocol' |
+| POST | `/xdsl/{x}/modem/sipAlg` | OvhCloudXdsl/resources/main/postXdslModemSipAlgPost.operation.ts | missing required body field 'sipAlg' |
+| POST | `/xdsl/{x}/modem/upnp` | OvhCloudXdsl/resources/main/postXdslModemUpnpPost.operation.ts | missing required body field 'upnp' |
+| POST | `/xdsl/{x}/monitoringNotifications` | OvhCloudXdsl/resources/main/postXdslMonitoringNotificationPost.operation.ts | missing required body field 'frequency'; missing required body field 'type' |
+| POST | `/xdsl/{x}/orderMeeting` | OvhCloudXdsl/resources/main/postXdslOrderMeetingPost.operation.ts | missing required body field 'endDate'; missing required body field 'startDate'; missing required body field 'uiCode' |
+| POST | `/xdsl/{x}/resiliate` | OvhCloudXdsl/resources/main/postXdslResiliatePost.operation.ts | missing required body field 'resiliationSurvey' |
+| POST | `/xdsl/{x}/rma/{x}/changeType` | OvhCloudXdsl/resources/main/postXdslRmaChangeTypePost.operation.ts | missing required body field 'type' |
+| GET | `/xdsl/{x}/statistics` | OvhCloudXdsl/resources/main/getXdslStatisticsGet.operation.ts | missing required query param 'period'; missing required query param 'type' |
+| POST | `/xdsl/{x}/updateInvalidOrMissingRio` | OvhCloudXdsl/resources/main/postXdslUpdateInvalidOrMissingRioPost.operation.ts | missing required body field 'relaunchWithoutPortability' |
+| POST | `/xdsl/email/pro/{x}/changePassword` | OvhCloudXdsl/resources/main/postXdslEmailProChangePasswordPost.operation.ts | missing required body field 'password' |
+| POST | `/xdsl/spare/{x}/replace` | OvhCloudXdsl/resources/main/postXdslSpareReplacePost.operation.ts | missing required body field 'domain' |
+| POST | `/xdsl/templateModem` | OvhCloudXdsl/resources/main/postXdslTemplateModemPost.operation.ts | missing required body field 'name'; missing required body field 'serviceName' |
 
 ### zimbra — 10 non-conformités
 

@@ -1,6 +1,6 @@
 # OVHcloud API Coverage Report
 
-> Généré par `scripts/compare-coverage.js` le 2026-08-07T03:35:32.710Z. Document généré automatiquement — ne pas éditer à la main.
+> Généré par `scripts/compare-coverage.js` le 2026-08-07T05:20:40.333Z. Document généré automatiquement — ne pas éditer à la main.
 
 Ce rapport compare les endpoints déclarés dans les specs Swagger 2.0 (`docs/api-specs/v1|v2/*.json`) avec les appels HTTP réellement présents dans les nodes (`nodes/**/*.operation.ts`).
 
@@ -8,8 +8,8 @@ Ce rapport compare les endpoints déclarés dans les specs Swagger 2.0 (`docs/ap
 
 - **Specs analysées** : 84 (v1: 70, v2: 14)
 - **Endpoints déclarés (specs avec endpoints)** : 6624
-- **Endpoints couverts par les nodes** : 4846
-- **Couverture globale** : **73.2%**
+- **Endpoints couverts par les nodes** : 4984
+- **Couverture globale** : **75.2%**
 - **Specs sans node associé** : 21
 - **Specs placeholder (aucun endpoint)** : 1
 
@@ -40,14 +40,11 @@ Triée par pourcentage croissant (moins bonne couverture en premier).
 | licenseRedhat (v1) | 9 | 0 | 9 | 0% |
 | licenseSqlserver (v1) | 9 | 0 | 9 | 0% |
 | packSiptrunk (v1) | 5 | 0 | 5 | 0% |
-| email (v1) | 60 | 2 | 58 | 3.3% |
-| ipLoadbalancing (v1) | 121 | 9 | 112 | 7.4% |
-| vrack (v1) | 68 | 5 | 63 | 7.4% |
-| msServices (v1) | 55 | 5 | 50 | 9.1% |
 | sslGateway (v1) | 23 | 6 | 17 | 26.1% |
 | veeam (v1) | 10 | 5 | 5 | 50% |
 | license (v1) | 13 | 7 | 6 | 53.8% |
 | pack (v1) | 58 | 33 | 25 | 56.9% |
+| me (v1) | 379 | 233 | 146 | 61.5% |
 | cloud (v1) | 1121 | 710 | 411 | 63.3% |
 | order (v1) | 816 | 538 | 278 | 65.9% |
 | metrics (v1) | 16 | 12 | 4 | 75% |
@@ -57,16 +54,19 @@ Triée par pourcentage croissant (moins bonne couverture en premier).
 | freefax (v1) | 19 | 18 | 1 | 94.7% |
 | cluster (v1) | 43 | 42 | 1 | 97.7% |
 | horizonView (v1) | 43 | 42 | 1 | 97.7% |
+| email (v1) | 60 | 59 | 1 | 98.3% |
 | ip (v1) | 81 | 80 | 1 | 98.8% |
-| me (v1) | 379 | 377 | 2 | 99.5% |
 | telephony (v1) | 607 | 607 | 0 | 100% |
 | price (v1) | 581 | 581 | 0 | 100% |
 | dedicatedCloud (v1) | 305 | 305 | 0 | 100% |
 | xdsl (v1) | 142 | 142 | 0 | 100% |
 | sms (v1) | 124 | 124 | 0 | 100% |
+| ipLoadbalancing (v1) | 121 | 121 | 0 | 100% |
 | dbaas (v1) | 116 | 116 | 0 | 100% |
 | domain (v1) | 110 | 110 | 0 | 100% |
 | vps (v1) | 94 | 94 | 0 | 100% |
+| vrack (v1) | 68 | 68 | 0 | 100% |
+| msServices (v1) | 55 | 55 | 0 | 100% |
 | overTheBox (v1) | 50 | 50 | 0 | 100% |
 | services (v1) | 47 | 47 | 0 | 100% |
 | storage (v1) | 47 | 47 | 0 | 100% |
@@ -975,317 +975,6 @@ _Nodes associés : (aucun node)_
 | GET | `/pack/siptrunk/{x}/serviceInfos` |
 | PUT | `/pack/siptrunk/{x}/serviceInfos` |
 
-### email (v1) — 58 manquants
-
-_Nodes associés : OvhCloudEmailPro, OvhCloudMxPlan_
-
-| Méthode | Chemin |
-|--------|--------|
-| PUT | `/email/pro/{x}` |
-| GET | `/email/pro/{x}/account` |
-| DELETE | `/email/pro/{x}/account/{x}` |
-| GET | `/email/pro/{x}/account/{x}` |
-| PUT | `/email/pro/{x}/account/{x}` |
-| GET | `/email/pro/{x}/account/{x}/alias` |
-| POST | `/email/pro/{x}/account/{x}/alias` |
-| DELETE | `/email/pro/{x}/account/{x}/alias/{x}` |
-| GET | `/email/pro/{x}/account/{x}/alias/{x}` |
-| POST | `/email/pro/{x}/account/{x}/changePassword` |
-| GET | `/email/pro/{x}/account/{x}/diagnostics` |
-| POST | `/email/pro/{x}/account/{x}/diagnostics` |
-| GET | `/email/pro/{x}/account/{x}/fullAccess` |
-| POST | `/email/pro/{x}/account/{x}/fullAccess` |
-| DELETE | `/email/pro/{x}/account/{x}/fullAccess/{x}` |
-| GET | `/email/pro/{x}/account/{x}/fullAccess/{x}` |
-| GET | `/email/pro/{x}/account/{x}/sendAs` |
-| POST | `/email/pro/{x}/account/{x}/sendAs` |
-| DELETE | `/email/pro/{x}/account/{x}/sendAs/{x}` |
-| GET | `/email/pro/{x}/account/{x}/sendAs/{x}` |
-| GET | `/email/pro/{x}/account/{x}/sendOnBehalfTo` |
-| POST | `/email/pro/{x}/account/{x}/sendOnBehalfTo` |
-| DELETE | `/email/pro/{x}/account/{x}/sendOnBehalfTo/{x}` |
-| GET | `/email/pro/{x}/account/{x}/sendOnBehalfTo/{x}` |
-| GET | `/email/pro/{x}/account/{x}/tasks` |
-| GET | `/email/pro/{x}/account/{x}/tasks/{x}` |
-| POST | `/email/pro/{x}/account/{x}/terminate` |
-| GET | `/email/pro/{x}/billingMigrated` |
-| GET | `/email/pro/{x}/billingPlan` |
-| POST | `/email/pro/{x}/changeContact` |
-| GET | `/email/pro/{x}/domain` |
-| POST | `/email/pro/{x}/domain` |
-| DELETE | `/email/pro/{x}/domain/{x}` |
-| GET | `/email/pro/{x}/domain/{x}` |
-| PUT | `/email/pro/{x}/domain/{x}` |
-| DELETE | `/email/pro/{x}/domain/{x}/disclaimer` |
-| GET | `/email/pro/{x}/domain/{x}/disclaimer` |
-| POST | `/email/pro/{x}/domain/{x}/disclaimer` |
-| PUT | `/email/pro/{x}/domain/{x}/disclaimer` |
-| GET | `/email/pro/{x}/domain/{x}/disclaimerAttribute` |
-| GET | `/email/pro/{x}/domain/{x}/dkim` |
-| POST | `/email/pro/{x}/domain/{x}/dkim` |
-| DELETE | `/email/pro/{x}/domain/{x}/dkim/{x}` |
-| GET | `/email/pro/{x}/domain/{x}/dkim/{x}` |
-| POST | `/email/pro/{x}/domain/{x}/dkim/{x}/disable` |
-| POST | `/email/pro/{x}/domain/{x}/dkim/{x}/enable` |
-| GET | `/email/pro/{x}/domain/{x}/dkimSelector` |
-| GET | `/email/pro/{x}/externalContact` |
-| POST | `/email/pro/{x}/externalContact` |
-| DELETE | `/email/pro/{x}/externalContact/{x}` |
-| GET | `/email/pro/{x}/externalContact/{x}` |
-| PUT | `/email/pro/{x}/externalContact/{x}` |
-| GET | `/email/pro/{x}/server` |
-| GET | `/email/pro/{x}/serviceInfos` |
-| PUT | `/email/pro/{x}/serviceInfos` |
-| GET | `/email/pro/{x}/task` |
-| GET | `/email/pro/{x}/task/{x}` |
-| POST | `/email/pro/{x}/updateFlagsOnAllAccounts` |
-
-### ipLoadbalancing (v1) — 112 manquants
-
-_Nodes associés : OvhCloudIPLoadbalancing_
-
-| Méthode | Chemin |
-|--------|--------|
-| POST | `/ipLoadbalancing/{x}/confirmTermination` |
-| GET | `/ipLoadbalancing/{x}/definedFarms` |
-| GET | `/ipLoadbalancing/{x}/definedFrontends` |
-| GET | `/ipLoadbalancing/{x}/definedRoutes` |
-| GET | `/ipLoadbalancing/{x}/failover` |
-| POST | `/ipLoadbalancing/{x}/freeCertificate` |
-| GET | `/ipLoadbalancing/{x}/http/farm` |
-| POST | `/ipLoadbalancing/{x}/http/farm` |
-| DELETE | `/ipLoadbalancing/{x}/http/farm/{x}` |
-| GET | `/ipLoadbalancing/{x}/http/farm/{x}` |
-| PUT | `/ipLoadbalancing/{x}/http/farm/{x}` |
-| GET | `/ipLoadbalancing/{x}/http/farm/{x}/server` |
-| POST | `/ipLoadbalancing/{x}/http/farm/{x}/server` |
-| DELETE | `/ipLoadbalancing/{x}/http/farm/{x}/server/{x}` |
-| GET | `/ipLoadbalancing/{x}/http/farm/{x}/server/{x}` |
-| PUT | `/ipLoadbalancing/{x}/http/farm/{x}/server/{x}` |
-| GET | `/ipLoadbalancing/{x}/http/frontend` |
-| POST | `/ipLoadbalancing/{x}/http/frontend` |
-| DELETE | `/ipLoadbalancing/{x}/http/frontend/{x}` |
-| GET | `/ipLoadbalancing/{x}/http/frontend/{x}` |
-| PUT | `/ipLoadbalancing/{x}/http/frontend/{x}` |
-| GET | `/ipLoadbalancing/{x}/http/route` |
-| POST | `/ipLoadbalancing/{x}/http/route` |
-| DELETE | `/ipLoadbalancing/{x}/http/route/{x}` |
-| GET | `/ipLoadbalancing/{x}/http/route/{x}` |
-| PUT | `/ipLoadbalancing/{x}/http/route/{x}` |
-| GET | `/ipLoadbalancing/{x}/http/route/{x}/rule` |
-| POST | `/ipLoadbalancing/{x}/http/route/{x}/rule` |
-| DELETE | `/ipLoadbalancing/{x}/http/route/{x}/rule/{x}` |
-| GET | `/ipLoadbalancing/{x}/http/route/{x}/rule/{x}` |
-| PUT | `/ipLoadbalancing/{x}/http/route/{x}/rule/{x}` |
-| GET | `/ipLoadbalancing/{x}/instancesState` |
-| GET | `/ipLoadbalancing/{x}/log/kind` |
-| GET | `/ipLoadbalancing/{x}/log/kind/{x}` |
-| GET | `/ipLoadbalancing/{x}/log/subscription` |
-| POST | `/ipLoadbalancing/{x}/log/subscription` |
-| DELETE | `/ipLoadbalancing/{x}/log/subscription/{x}` |
-| GET | `/ipLoadbalancing/{x}/log/subscription/{x}` |
-| POST | `/ipLoadbalancing/{x}/log/url` |
-| GET | `/ipLoadbalancing/{x}/metricsToken` |
-| GET | `/ipLoadbalancing/{x}/natIp` |
-| GET | `/ipLoadbalancing/{x}/pendingChanges` |
-| GET | `/ipLoadbalancing/{x}/quota` |
-| GET | `/ipLoadbalancing/{x}/quota/{x}` |
-| PUT | `/ipLoadbalancing/{x}/quota/{x}` |
-| GET | `/ipLoadbalancing/{x}/quotaHistory` |
-| GET | `/ipLoadbalancing/{x}/quotaHistory/{x}` |
-| POST | `/ipLoadbalancing/{x}/refresh` |
-| GET | `/ipLoadbalancing/{x}/serviceInfos` |
-| PUT | `/ipLoadbalancing/{x}/serviceInfos` |
-| GET | `/ipLoadbalancing/{x}/ssl` |
-| POST | `/ipLoadbalancing/{x}/ssl` |
-| DELETE | `/ipLoadbalancing/{x}/ssl/{x}` |
-| GET | `/ipLoadbalancing/{x}/ssl/{x}` |
-| PUT | `/ipLoadbalancing/{x}/ssl/{x}` |
-| GET | `/ipLoadbalancing/{x}/status` |
-| GET | `/ipLoadbalancing/{x}/task` |
-| GET | `/ipLoadbalancing/{x}/task/{x}` |
-| GET | `/ipLoadbalancing/{x}/tcp/farm` |
-| POST | `/ipLoadbalancing/{x}/tcp/farm` |
-| DELETE | `/ipLoadbalancing/{x}/tcp/farm/{x}` |
-| GET | `/ipLoadbalancing/{x}/tcp/farm/{x}` |
-| PUT | `/ipLoadbalancing/{x}/tcp/farm/{x}` |
-| GET | `/ipLoadbalancing/{x}/tcp/farm/{x}/server` |
-| POST | `/ipLoadbalancing/{x}/tcp/farm/{x}/server` |
-| DELETE | `/ipLoadbalancing/{x}/tcp/farm/{x}/server/{x}` |
-| GET | `/ipLoadbalancing/{x}/tcp/farm/{x}/server/{x}` |
-| PUT | `/ipLoadbalancing/{x}/tcp/farm/{x}/server/{x}` |
-| GET | `/ipLoadbalancing/{x}/tcp/frontend` |
-| POST | `/ipLoadbalancing/{x}/tcp/frontend` |
-| DELETE | `/ipLoadbalancing/{x}/tcp/frontend/{x}` |
-| GET | `/ipLoadbalancing/{x}/tcp/frontend/{x}` |
-| PUT | `/ipLoadbalancing/{x}/tcp/frontend/{x}` |
-| GET | `/ipLoadbalancing/{x}/tcp/route` |
-| POST | `/ipLoadbalancing/{x}/tcp/route` |
-| DELETE | `/ipLoadbalancing/{x}/tcp/route/{x}` |
-| GET | `/ipLoadbalancing/{x}/tcp/route/{x}` |
-| PUT | `/ipLoadbalancing/{x}/tcp/route/{x}` |
-| GET | `/ipLoadbalancing/{x}/tcp/route/{x}/rule` |
-| POST | `/ipLoadbalancing/{x}/tcp/route/{x}/rule` |
-| DELETE | `/ipLoadbalancing/{x}/tcp/route/{x}/rule/{x}` |
-| GET | `/ipLoadbalancing/{x}/tcp/route/{x}/rule/{x}` |
-| PUT | `/ipLoadbalancing/{x}/tcp/route/{x}/rule/{x}` |
-| POST | `/ipLoadbalancing/{x}/terminate` |
-| GET | `/ipLoadbalancing/{x}/udp/farm` |
-| POST | `/ipLoadbalancing/{x}/udp/farm` |
-| DELETE | `/ipLoadbalancing/{x}/udp/farm/{x}` |
-| GET | `/ipLoadbalancing/{x}/udp/farm/{x}` |
-| PUT | `/ipLoadbalancing/{x}/udp/farm/{x}` |
-| GET | `/ipLoadbalancing/{x}/udp/farm/{x}/server` |
-| POST | `/ipLoadbalancing/{x}/udp/farm/{x}/server` |
-| DELETE | `/ipLoadbalancing/{x}/udp/farm/{x}/server/{x}` |
-| GET | `/ipLoadbalancing/{x}/udp/farm/{x}/server/{x}` |
-| PUT | `/ipLoadbalancing/{x}/udp/farm/{x}/server/{x}` |
-| GET | `/ipLoadbalancing/{x}/udp/frontend` |
-| POST | `/ipLoadbalancing/{x}/udp/frontend` |
-| DELETE | `/ipLoadbalancing/{x}/udp/frontend/{x}` |
-| GET | `/ipLoadbalancing/{x}/udp/frontend/{x}` |
-| PUT | `/ipLoadbalancing/{x}/udp/frontend/{x}` |
-| GET | `/ipLoadbalancing/{x}/vrack/network` |
-| POST | `/ipLoadbalancing/{x}/vrack/network` |
-| DELETE | `/ipLoadbalancing/{x}/vrack/network/{x}` |
-| GET | `/ipLoadbalancing/{x}/vrack/network/{x}` |
-| PUT | `/ipLoadbalancing/{x}/vrack/network/{x}` |
-| POST | `/ipLoadbalancing/{x}/vrack/network/{x}/updateFarmId` |
-| GET | `/ipLoadbalancing/{x}/vrack/networkCreationRules` |
-| GET | `/ipLoadbalancing/{x}/vrack/status` |
-| GET | `/ipLoadbalancing/{x}/zone` |
-| GET | `/ipLoadbalancing/{x}/zone/{x}` |
-| POST | `/ipLoadbalancing/{x}/zone/{x}/cancelTermination` |
-| POST | `/ipLoadbalancing/{x}/zone/{x}/terminate` |
-| GET | `/ipLoadbalancing/availableZones` |
-
-### vrack (v1) — 63 manquants
-
-_Nodes associés : OvhCloudVrack_
-
-| Méthode | Chemin |
-|--------|--------|
-| GET | `/vrack/{x}/allowedServices` |
-| GET | `/vrack/{x}/cloudProject` |
-| POST | `/vrack/{x}/cloudProject` |
-| DELETE | `/vrack/{x}/cloudProject/{x}` |
-| GET | `/vrack/{x}/cloudProject/{x}` |
-| POST | `/vrack/{x}/confirmTermination` |
-| GET | `/vrack/{x}/dedicatedCloud` |
-| POST | `/vrack/{x}/dedicatedCloud` |
-| DELETE | `/vrack/{x}/dedicatedCloud/{x}` |
-| GET | `/vrack/{x}/dedicatedCloud/{x}` |
-| GET | `/vrack/{x}/dedicatedCloudDatacenter` |
-| GET | `/vrack/{x}/dedicatedCloudDatacenter/{x}` |
-| GET | `/vrack/{x}/dedicatedCloudDatacenter/{x}/allowedVrack` |
-| POST | `/vrack/{x}/dedicatedCloudDatacenter/{x}/move` |
-| GET | `/vrack/{x}/dedicatedConnect` |
-| GET | `/vrack/{x}/dedicatedConnect/{x}` |
-| PUT | `/vrack/{x}/dedicatedConnect/{x}` |
-| GET | `/vrack/{x}/dedicatedServer` |
-| POST | `/vrack/{x}/dedicatedServer` |
-| DELETE | `/vrack/{x}/dedicatedServer/{x}` |
-| GET | `/vrack/{x}/dedicatedServer/{x}` |
-| GET | `/vrack/{x}/dedicatedServer/{x}/mrtg` |
-| GET | `/vrack/{x}/dedicatedServerInterface` |
-| POST | `/vrack/{x}/dedicatedServerInterface` |
-| DELETE | `/vrack/{x}/dedicatedServerInterface/{x}` |
-| GET | `/vrack/{x}/dedicatedServerInterface/{x}` |
-| GET | `/vrack/{x}/dedicatedServerInterfaceDetails` |
-| GET | `/vrack/{x}/eligibleServices` |
-| DELETE | `/vrack/{x}/ip/{x}` |
-| GET | `/vrack/{x}/ip/{x}` |
-| GET | `/vrack/{x}/ipLoadbalancing` |
-| POST | `/vrack/{x}/ipLoadbalancing` |
-| DELETE | `/vrack/{x}/ipLoadbalancing/{x}` |
-| GET | `/vrack/{x}/ipLoadbalancing/{x}` |
-| GET | `/vrack/{x}/ipv6` |
-| POST | `/vrack/{x}/ipv6` |
-| DELETE | `/vrack/{x}/ipv6/{x}` |
-| GET | `/vrack/{x}/ipv6/{x}` |
-| GET | `/vrack/{x}/ipv6/{x}/bridgedSubrange` |
-| GET | `/vrack/{x}/ipv6/{x}/bridgedSubrange/{x}` |
-| PUT | `/vrack/{x}/ipv6/{x}/bridgedSubrange/{x}` |
-| GET | `/vrack/{x}/ipv6/{x}/routedSubrange` |
-| POST | `/vrack/{x}/ipv6/{x}/routedSubrange` |
-| DELETE | `/vrack/{x}/ipv6/{x}/routedSubrange/{x}` |
-| GET | `/vrack/{x}/ipv6/{x}/routedSubrange/{x}` |
-| GET | `/vrack/{x}/legacyVrack` |
-| POST | `/vrack/{x}/legacyVrack` |
-| DELETE | `/vrack/{x}/legacyVrack/{x}` |
-| GET | `/vrack/{x}/legacyVrack/{x}` |
-| GET | `/vrack/{x}/ovhCloudConnect` |
-| POST | `/vrack/{x}/ovhCloudConnect` |
-| DELETE | `/vrack/{x}/ovhCloudConnect/{x}` |
-| GET | `/vrack/{x}/ovhCloudConnect/{x}` |
-| GET | `/vrack/{x}/publicRoutingBandwidthLimit` |
-| GET | `/vrack/{x}/serviceInfos` |
-| GET | `/vrack/{x}/task` |
-| GET | `/vrack/{x}/task/{x}` |
-| POST | `/vrack/{x}/terminate` |
-| GET | `/vrack/{x}/vrackServices` |
-| POST | `/vrack/{x}/vrackServices` |
-| DELETE | `/vrack/{x}/vrackServices/{x}` |
-| GET | `/vrack/{x}/vrackServices/{x}` |
-| GET | `/vrack/publicRoutingRegion` |
-
-### msServices (v1) — 50 manquants
-
-_Nodes associés : OvhCloudMsServices_
-
-| Méthode | Chemin |
-|--------|--------|
-| GET | `/msServices/{x}/account` |
-| GET | `/msServices/{x}/account/{x}` |
-| PUT | `/msServices/{x}/account/{x}` |
-| POST | `/msServices/{x}/account/{x}/changePassword` |
-| GET | `/msServices/{x}/account/{x}/exchange` |
-| PUT | `/msServices/{x}/account/{x}/exchange` |
-| POST | `/msServices/{x}/account/{x}/exchange/configure` |
-| DELETE | `/msServices/{x}/account/{x}/mfa` |
-| GET | `/msServices/{x}/account/{x}/mfa` |
-| POST | `/msServices/{x}/account/{x}/mfa` |
-| POST | `/msServices/{x}/account/{x}/mfa/disable` |
-| POST | `/msServices/{x}/account/{x}/mfa/enable` |
-| POST | `/msServices/{x}/account/{x}/mfa/reset` |
-| GET | `/msServices/{x}/account/{x}/sharepoint` |
-| PUT | `/msServices/{x}/account/{x}/sharepoint` |
-| POST | `/msServices/{x}/account/{x}/sharepoint/clearSpace` |
-| POST | `/msServices/{x}/account/{x}/sharepoint/configure` |
-| DELETE | `/msServices/{x}/account/{x}/sync` |
-| GET | `/msServices/{x}/account/{x}/sync` |
-| POST | `/msServices/{x}/account/{x}/sync` |
-| POST | `/msServices/{x}/account/{x}/sync/configure` |
-| POST | `/msServices/{x}/changeContact` |
-| POST | `/msServices/{x}/createMfaOnAllUsers` |
-| GET | `/msServices/{x}/exchange` |
-| PUT | `/msServices/{x}/exchange` |
-| GET | `/msServices/{x}/exchange/billingMigrated` |
-| GET | `/msServices/{x}/exchange/task` |
-| GET | `/msServices/{x}/exchange/task/{x}` |
-| POST | `/msServices/{x}/removeMfaOnAllUsers` |
-| GET | `/msServices/{x}/sharepoint` |
-| PUT | `/msServices/{x}/sharepoint` |
-| GET | `/msServices/{x}/sharepoint/billingMigrated` |
-| GET | `/msServices/{x}/sharepoint/license` |
-| POST | `/msServices/{x}/sharepoint/restoreAdminRights` |
-| GET | `/msServices/{x}/sharepoint/task` |
-| GET | `/msServices/{x}/sharepoint/task/{x}` |
-| DELETE | `/msServices/{x}/sync` |
-| GET | `/msServices/{x}/sync` |
-| POST | `/msServices/{x}/sync/changePassword` |
-| GET | `/msServices/{x}/sync/clientSoftwareURL` |
-| POST | `/msServices/{x}/sync/clientSoftwareURL` |
-| GET | `/msServices/{x}/sync/license` |
-| GET | `/msServices/{x}/upnSuffix` |
-| POST | `/msServices/{x}/upnSuffix` |
-| DELETE | `/msServices/{x}/upnSuffix/{x}` |
-| GET | `/msServices/{x}/upnSuffix/{x}` |
-| GET | `/msServices/sharepoint` |
-| GET | `/msServices/sharepoint/{x}` |
-| GET | `/msServices/sharepoint/{x}/serviceInfos` |
-| PUT | `/msServices/sharepoint/{x}/serviceInfos` |
-
 ### sslGateway (v1) — 17 manquants
 
 _Nodes associés : OvhCloudSslGateway_
@@ -1366,6 +1055,159 @@ _Nodes associés : OvhCloudPackXdsl, OvhCloudPack_
 | POST | `/pack/xdsl/{x}/voipLine/services` |
 | GET | `/pack/xdsl/{x}/voipLine/services/{x}` |
 | GET | `/pack/xdsl/{x}/xdslAccess/services` |
+
+### me (v1) — 146 manquants
+
+_Nodes associés : OvhCloudMe_
+
+| Méthode | Chemin |
+|--------|--------|
+| PUT | `/me` |
+| DELETE | `/me/accessRestriction/backupCode` |
+| PUT | `/me/accessRestriction/ipDefaultRule` |
+| PUT | `/me/accessRestriction/sms/{x}` |
+| POST | `/me/accessRestriction/u2f/{x}/validate` |
+| POST | `/me/account` |
+| DELETE | `/me/api/application/{x}` |
+| DELETE | `/me/api/credential/{x}` |
+| PUT | `/me/api/credential/{x}` |
+| POST | `/me/api/log/subscription` |
+| DELETE | `/me/api/log/subscription/{x}` |
+| POST | `/me/api/log/url` |
+| POST | `/me/api/oauth2/client` |
+| DELETE | `/me/api/oauth2/client/{x}` |
+| PUT | `/me/api/oauth2/client/{x}` |
+| POST | `/me/autorenew` |
+| PUT | `/me/autorenew` |
+| POST | `/me/bill/{x}/debt/pay` |
+| POST | `/me/bill/export` |
+| POST | `/me/billing/group` |
+| DELETE | `/me/billing/group/{x}` |
+| PUT | `/me/billing/group/{x}` |
+| POST | `/me/billing/group/{x}/service` |
+| DELETE | `/me/billing/group/{x}/service/{x}` |
+| GET | `/me/billing/invoicesByPostalMail` |
+| POST | `/me/billing/invoicesByPostalMail` |
+| POST | `/me/billing/purchaseOrder` |
+| DELETE | `/me/billing/purchaseOrder/{x}` |
+| PUT | `/me/billing/purchaseOrder/{x}` |
+| POST | `/me/billing/report/consumption` |
+| POST | `/me/carbonCalculator/task` |
+| POST | `/me/changeEmail` |
+| POST | `/me/changePassword` |
+| PUT | `/me/consent/{x}/decision` |
+| POST | `/me/contact` |
+| PUT | `/me/contact/{x}` |
+| POST | `/me/correctiveInvoice/{x}/debt/pay` |
+| POST | `/me/credit/code` |
+| POST | `/me/debtAccount/debt/{x}/pay` |
+| POST | `/me/debtAccount/pay` |
+| GET | `/me/deposit/{x}/paidBills/{x}/debt` |
+| GET | `/me/deposit/{x}/paidBills/{x}/debt/operation` |
+| GET | `/me/deposit/{x}/paidBills/{x}/debt/operation/{x}` |
+| GET | `/me/deposit/{x}/paidBills/{x}/debt/operation/{x}/associatedObject` |
+| POST | `/me/deposit/{x}/paidBills/{x}/debt/pay` |
+| GET | `/me/deposit/{x}/paidBills/{x}/details` |
+| GET | `/me/deposit/{x}/paidBills/{x}/details/{x}` |
+| GET | `/me/deposit/{x}/paidBills/{x}/payment` |
+| POST | `/me/document` |
+| DELETE | `/me/document/{x}` |
+| PUT | `/me/document/{x}` |
+| POST | `/me/document/cors` |
+| POST | `/me/fax/customDomains` |
+| DELETE | `/me/fax/customDomains/{x}` |
+| PUT | `/me/fidelityAccount` |
+| POST | `/me/fidelityAccount/creditOrder` |
+| POST | `/me/geolocation` |
+| POST | `/me/identity/group` |
+| DELETE | `/me/identity/group/{x}` |
+| PUT | `/me/identity/group/{x}` |
+| POST | `/me/identity/group/{x}/user` |
+| DELETE | `/me/identity/group/{x}/user/{x}` |
+| DELETE | `/me/identity/provider` |
+| POST | `/me/identity/provider` |
+| PUT | `/me/identity/provider` |
+| POST | `/me/identity/user` |
+| DELETE | `/me/identity/user/{x}` |
+| PUT | `/me/identity/user/{x}` |
+| POST | `/me/identity/user/{x}/disable` |
+| POST | `/me/identity/user/{x}/enable` |
+| POST | `/me/identity/user/{x}/token` |
+| DELETE | `/me/identity/user/{x}/token/{x}` |
+| PUT | `/me/identity/user/{x}/token/{x}` |
+| GET | `/me/incident/sbg/migrateServices` |
+| POST | `/me/incident/sbg/migrateServices` |
+| POST | `/me/ipOrganisation` |
+| DELETE | `/me/ipOrganisation/{x}` |
+| PUT | `/me/ipOrganisation/{x}` |
+| POST | `/me/logs/audit/log/subscription` |
+| DELETE | `/me/logs/audit/log/subscription/{x}` |
+| POST | `/me/logs/audit/log/url` |
+| POST | `/me/mailingList/subscribe` |
+| PUT | `/me/marketing` |
+| POST | `/me/migration/{x}/contract/{x}/accept` |
+| POST | `/me/order/{x}/balance` |
+| DELETE | `/me/order/{x}/balance/{x}` |
+| POST | `/me/order/{x}/debt/pay` |
+| POST | `/me/order/{x}/pay` |
+| POST | `/me/order/{x}/payWithRegisteredPaymentMean` |
+| POST | `/me/order/{x}/retraction` |
+| POST | `/me/order/{x}/waiveRetraction` |
+| PUT | `/me/ovhAccount/{x}` |
+| POST | `/me/ovhAccount/{x}/creditOrder` |
+| POST | `/me/ovhAccount/{x}/movements/{x}/requestRefund` |
+| POST | `/me/ovhAccount/{x}/retrieveMoney` |
+| POST | `/me/passwordRecover` |
+| POST | `/me/payment/method` |
+| DELETE | `/me/payment/method/{x}` |
+| PUT | `/me/payment/method/{x}` |
+| POST | `/me/payment/method/{x}/challenge` |
+| POST | `/me/payment/method/{x}/details` |
+| POST | `/me/payment/method/{x}/finalize` |
+| POST | `/me/paymentMean/bankAccount` |
+| DELETE | `/me/paymentMean/bankAccount/{x}` |
+| PUT | `/me/paymentMean/bankAccount/{x}` |
+| POST | `/me/paymentMean/bankAccount/{x}/challenge` |
+| POST | `/me/paymentMean/bankAccount/{x}/chooseAsDefaultPaymentMean` |
+| POST | `/me/paymentMean/creditCard` |
+| DELETE | `/me/paymentMean/creditCard/{x}` |
+| PUT | `/me/paymentMean/creditCard/{x}` |
+| POST | `/me/paymentMean/creditCard/{x}/challenge` |
+| POST | `/me/paymentMean/creditCard/{x}/chooseAsDefaultPaymentMean` |
+| PUT | `/me/paymentMean/deferredPaymentAccount/{x}` |
+| POST | `/me/paymentMean/deferredPaymentAccount/{x}/chooseAsDefaultPaymentMean` |
+| POST | `/me/paymentMean/paypal` |
+| DELETE | `/me/paymentMean/paypal/{x}` |
+| PUT | `/me/paymentMean/paypal/{x}` |
+| POST | `/me/paymentMean/paypal/{x}/challenge` |
+| POST | `/me/paymentMean/paypal/{x}/chooseAsDefaultPaymentMean` |
+| POST | `/me/refund/export` |
+| POST | `/me/sla/{x}/apply` |
+| POST | `/me/sshKey` |
+| DELETE | `/me/sshKey/{x}` |
+| POST | `/me/subAccount` |
+| PUT | `/me/subAccount/{x}` |
+| POST | `/me/subAccount/{x}/createConsumerKey` |
+| PUT | `/me/subscription/{x}` |
+| POST | `/me/tag` |
+| DELETE | `/me/tag/{x}` |
+| POST | `/me/task/contactChange/{x}/accept` |
+| POST | `/me/task/contactChange/{x}/refuse` |
+| POST | `/me/task/contactChange/{x}/resendEmail` |
+| POST | `/me/task/dns/{x}/accelerate` |
+| POST | `/me/task/dns/{x}/cancel` |
+| POST | `/me/task/dns/{x}/relaunch` |
+| POST | `/me/task/domain/{x}/accelerate` |
+| PUT | `/me/task/domain/{x}/argument/{x}` |
+| POST | `/me/task/domain/{x}/cancel` |
+| POST | `/me/task/domain/{x}/relaunch` |
+| POST | `/me/task/emailChange/{x}/accept` |
+| POST | `/me/task/emailChange/{x}/refuse` |
+| POST | `/me/telephony/defaultIpRestriction` |
+| DELETE | `/me/telephony/defaultIpRestriction/{x}` |
+| POST | `/me/telephony/settings` |
+| POST | `/me/voucher/checkValidity` |
+| POST | `/me/xdsl/setting` |
 
 ### cloud (v1) — 411 manquants
 
@@ -2184,6 +2026,14 @@ _Nodes associés : OvhCloudHorizonView_
 |--------|--------|
 | PUT | `/horizonView/{x}/serviceInfos` |
 
+### email (v1) — 1 manquant
+
+_Nodes associés : OvhCloudEmailPro, OvhCloudMxPlan_
+
+| Méthode | Chemin |
+|--------|--------|
+| GET | `/email/pro/{x}/domain/{x}/dkim/{x}` |
+
 ### ip (v1) — 1 manquant
 
 _Nodes associés : OvhCloudIp_
@@ -2191,15 +2041,6 @@ _Nodes associés : OvhCloudIp_
 | Méthode | Chemin |
 |--------|--------|
 | GET | `/ip/{x}/reverse/{x}` |
-
-### me (v1) — 2 manquants
-
-_Nodes associés : OvhCloudMe_
-
-| Méthode | Chemin |
-|--------|--------|
-| POST | `/me/carbonCalculator/task` |
-| POST | `/me/correctiveInvoice/{x}/debt/pay` |
 
 ## Notes
 
