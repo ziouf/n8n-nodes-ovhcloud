@@ -1,6 +1,6 @@
 # OVHcloud API Coverage Report
 
-> Généré par `scripts/compare-coverage.js` le 2026-08-07T06:37:21.579Z. Document généré automatiquement — ne pas éditer à la main.
+> Généré par `scripts/compare-coverage.js` le 2026-08-07T07:40:39.497Z. Document généré automatiquement — ne pas éditer à la main.
 
 Ce rapport compare les endpoints déclarés dans les specs Swagger 2.0 (`docs/api-specs/v1|v2/*.json`) avec les appels HTTP réellement présents dans les nodes (`nodes/**/*.operation.ts`).
 
@@ -8,9 +8,9 @@ Ce rapport compare les endpoints déclarés dans les specs Swagger 2.0 (`docs/ap
 
 - **Specs analysées** : 84 (v1: 70, v2: 14)
 - **Endpoints déclarés (specs avec endpoints)** : 6624
-- **Endpoints couverts par les nodes** : 5187
-- **Couverture globale** : **78.3%**
-- **Specs sans node associé** : 20
+- **Endpoints couverts par les nodes** : 5340
+- **Couverture globale** : **80.6%**
+- **Specs sans node associé** : 18
 - **Specs placeholder (aucun endpoint)** : 1
 
 ## Couverture par spec
@@ -19,9 +19,7 @@ Triée par pourcentage croissant (moins bonne couverture en premier).
 
 | Spec (version) | Total | Couverts | Manquants | % |
 |----------------|------:|---------:|----------:|---:|
-| emailDomain (v1) | 107 | 0 | 107 | 0% |
 | hostingPrivateDatabase (v1) | 72 | 0 | 72 | 0% |
-| emailMxplan (v1) | 46 | 0 | 46 | 0% |
 | dedicatedNasha (v1) | 39 | 0 | 39 | 0% |
 | dedicatedCeph (v1) | 35 | 0 | 35 | 0% |
 | dedicatedHousing (v1) | 18 | 0 | 18 | 0% |
@@ -64,12 +62,14 @@ Triée par pourcentage croissant (moins bonne couverture en premier).
 | ipLoadbalancing (v1) | 121 | 121 | 0 | 100% |
 | dbaas (v1) | 116 | 116 | 0 | 100% |
 | domain (v1) | 110 | 110 | 0 | 100% |
+| emailDomain (v1) | 107 | 107 | 0 | 100% |
 | vps (v1) | 94 | 94 | 0 | 100% |
 | vrack (v1) | 68 | 68 | 0 | 100% |
 | msServices (v1) | 55 | 55 | 0 | 100% |
 | overTheBox (v1) | 50 | 50 | 0 | 100% |
 | services (v1) | 47 | 47 | 0 | 100% |
 | storage (v1) | 47 | 47 | 0 | 100% |
+| emailMxplan (v1) | 46 | 46 | 0 | 100% |
 | cdn (v1) | 44 | 44 | 0 | 100% |
 | okms (v2) | 32 | 32 | 0 | 100% |
 | vmwareCloudDirector (v2) | 32 | 32 | 0 | 100% |
@@ -107,9 +107,7 @@ Triée par pourcentage croissant (moins bonne couverture en premier).
 
 Ces specs ont des endpoints déclarés mais aucun node ne les implémente dans ce repo :
 
-- **emailDomain** (`/email/domain`, v1) — 107 endpoints, 107 manquants
 - **hostingPrivateDatabase** (`/hosting/privateDatabase`, v1) — 72 endpoints, 72 manquants
-- **emailMxplan** (`/email/mxplan`, v1) — 46 endpoints, 46 manquants
 - **dedicatedNasha** (`/dedicated/nasha`, v1) — 39 endpoints, 39 manquants
 - **dedicatedCeph** (`/dedicated/ceph`, v1) — 35 endpoints, 35 manquants
 - **dedicatedHousing** (`/dedicated/housing`, v1) — 18 endpoints, 18 manquants
@@ -141,120 +139,6 @@ Fichiers de spec présents dans le dossier mais avec `apis: []` (spec absente / 
 ## Endpoints manquants
 
 Endpoints déclarés dans les specs mais non appelés par les nodes, groupés par spec :
-
-### emailDomain (v1) — 107 manquants
-
-_Nodes associés : (aucun node)_
-
-| Méthode | Chemin |
-|--------|--------|
-| GET | `/email/domain` |
-| GET | `/email/domain/{x}` |
-| GET | `/email/domain/{x}/account` |
-| POST | `/email/domain/{x}/account` |
-| DELETE | `/email/domain/{x}/account/{x}` |
-| GET | `/email/domain/{x}/account/{x}` |
-| PUT | `/email/domain/{x}/account/{x}` |
-| POST | `/email/domain/{x}/account/{x}/changePassword` |
-| GET | `/email/domain/{x}/account/{x}/delegation` |
-| POST | `/email/domain/{x}/account/{x}/delegation` |
-| DELETE | `/email/domain/{x}/account/{x}/delegation/{x}` |
-| GET | `/email/domain/{x}/account/{x}/delegation/{x}` |
-| GET | `/email/domain/{x}/account/{x}/filter` |
-| POST | `/email/domain/{x}/account/{x}/filter` |
-| DELETE | `/email/domain/{x}/account/{x}/filter/{x}` |
-| GET | `/email/domain/{x}/account/{x}/filter/{x}` |
-| POST | `/email/domain/{x}/account/{x}/filter/{x}/changeActivity` |
-| POST | `/email/domain/{x}/account/{x}/filter/{x}/changePriority` |
-| GET | `/email/domain/{x}/account/{x}/filter/{x}/rule` |
-| POST | `/email/domain/{x}/account/{x}/filter/{x}/rule` |
-| DELETE | `/email/domain/{x}/account/{x}/filter/{x}/rule/{x}` |
-| GET | `/email/domain/{x}/account/{x}/filter/{x}/rule/{x}` |
-| GET | `/email/domain/{x}/account/{x}/migrate` |
-| GET | `/email/domain/{x}/account/{x}/migrate/{x}` |
-| GET | `/email/domain/{x}/account/{x}/migrate/{x}/destinationEmailAddress` |
-| GET | `/email/domain/{x}/account/{x}/migrate/{x}/destinationEmailAddress/{x}` |
-| GET | `/email/domain/{x}/account/{x}/migrate/{x}/destinationEmailAddress/{x}/checkMigrate` |
-| POST | `/email/domain/{x}/account/{x}/migrate/{x}/destinationEmailAddress/{x}/migrate` |
-| POST | `/email/domain/{x}/account/{x}/updateUsage` |
-| GET | `/email/domain/{x}/account/{x}/usage` |
-| GET | `/email/domain/{x}/acl` |
-| POST | `/email/domain/{x}/acl` |
-| DELETE | `/email/domain/{x}/acl/{x}` |
-| GET | `/email/domain/{x}/acl/{x}` |
-| POST | `/email/domain/{x}/changeContact` |
-| POST | `/email/domain/{x}/changeDnsMXFilter` |
-| POST | `/email/domain/{x}/confirmTermination` |
-| GET | `/email/domain/{x}/dkim` |
-| PUT | `/email/domain/{x}/dkim/disable` |
-| PUT | `/email/domain/{x}/dkim/enable` |
-| GET | `/email/domain/{x}/dnsMXFilter` |
-| GET | `/email/domain/{x}/dnsMXRecords` |
-| GET | `/email/domain/{x}/mailingList` |
-| POST | `/email/domain/{x}/mailingList` |
-| DELETE | `/email/domain/{x}/mailingList/{x}` |
-| GET | `/email/domain/{x}/mailingList/{x}` |
-| PUT | `/email/domain/{x}/mailingList/{x}` |
-| POST | `/email/domain/{x}/mailingList/{x}/changeOptions` |
-| GET | `/email/domain/{x}/mailingList/{x}/moderator` |
-| POST | `/email/domain/{x}/mailingList/{x}/moderator` |
-| DELETE | `/email/domain/{x}/mailingList/{x}/moderator/{x}` |
-| GET | `/email/domain/{x}/mailingList/{x}/moderator/{x}` |
-| POST | `/email/domain/{x}/mailingList/{x}/sendListByEmail` |
-| GET | `/email/domain/{x}/mailingList/{x}/subscriber` |
-| POST | `/email/domain/{x}/mailingList/{x}/subscriber` |
-| DELETE | `/email/domain/{x}/mailingList/{x}/subscriber/{x}` |
-| GET | `/email/domain/{x}/mailingList/{x}/subscriber/{x}` |
-| POST | `/email/domain/{x}/migrateDelegationV3toV6` |
-| GET | `/email/domain/{x}/quota` |
-| GET | `/email/domain/{x}/recommendedDNSRecords` |
-| GET | `/email/domain/{x}/redirection` |
-| POST | `/email/domain/{x}/redirection` |
-| DELETE | `/email/domain/{x}/redirection/{x}` |
-| GET | `/email/domain/{x}/redirection/{x}` |
-| POST | `/email/domain/{x}/redirection/{x}/changeRedirection` |
-| GET | `/email/domain/{x}/responder` |
-| POST | `/email/domain/{x}/responder` |
-| DELETE | `/email/domain/{x}/responder/{x}` |
-| GET | `/email/domain/{x}/responder/{x}` |
-| PUT | `/email/domain/{x}/responder/{x}` |
-| GET | `/email/domain/{x}/serviceInfos` |
-| PUT | `/email/domain/{x}/serviceInfos` |
-| GET | `/email/domain/{x}/summary` |
-| GET | `/email/domain/{x}/task/account` |
-| GET | `/email/domain/{x}/task/account/{x}` |
-| GET | `/email/domain/{x}/task/all` |
-| GET | `/email/domain/{x}/task/all/{x}` |
-| GET | `/email/domain/{x}/task/filter` |
-| GET | `/email/domain/{x}/task/filter/{x}` |
-| GET | `/email/domain/{x}/task/mailinglist` |
-| GET | `/email/domain/{x}/task/mailinglist/{x}` |
-| GET | `/email/domain/{x}/task/redirection` |
-| GET | `/email/domain/{x}/task/redirection/{x}` |
-| GET | `/email/domain/{x}/task/responder` |
-| GET | `/email/domain/{x}/task/responder/{x}` |
-| POST | `/email/domain/{x}/terminate` |
-| GET | `/email/domain/delegatedAccount` |
-| GET | `/email/domain/delegatedAccount/{x}` |
-| PUT | `/email/domain/delegatedAccount/{x}` |
-| POST | `/email/domain/delegatedAccount/{x}/changePassword` |
-| GET | `/email/domain/delegatedAccount/{x}/filter` |
-| POST | `/email/domain/delegatedAccount/{x}/filter` |
-| DELETE | `/email/domain/delegatedAccount/{x}/filter/{x}` |
-| GET | `/email/domain/delegatedAccount/{x}/filter/{x}` |
-| POST | `/email/domain/delegatedAccount/{x}/filter/{x}/changeActivity` |
-| POST | `/email/domain/delegatedAccount/{x}/filter/{x}/changePriority` |
-| GET | `/email/domain/delegatedAccount/{x}/filter/{x}/rule` |
-| POST | `/email/domain/delegatedAccount/{x}/filter/{x}/rule` |
-| DELETE | `/email/domain/delegatedAccount/{x}/filter/{x}/rule/{x}` |
-| GET | `/email/domain/delegatedAccount/{x}/filter/{x}/rule/{x}` |
-| DELETE | `/email/domain/delegatedAccount/{x}/responder` |
-| GET | `/email/domain/delegatedAccount/{x}/responder` |
-| POST | `/email/domain/delegatedAccount/{x}/responder` |
-| PUT | `/email/domain/delegatedAccount/{x}/responder` |
-| POST | `/email/domain/delegatedAccount/{x}/updateUsage` |
-| POST | `/email/domain/delegatedAccount/{x}/usage` |
-| GET | `/email/domain/mailingListLimits` |
 
 ### hostingPrivateDatabase (v1) — 72 manquants
 
@@ -334,59 +218,6 @@ _Nodes associés : (aucun node)_
 | GET | `/hosting/privateDatabase/{x}/whitelist/{x}` |
 | PUT | `/hosting/privateDatabase/{x}/whitelist/{x}` |
 | GET | `/hosting/privateDatabase/availableOrderCapacities` |
-
-### emailMxplan (v1) — 46 manquants
-
-_Nodes associés : (aucun node)_
-
-| Méthode | Chemin |
-|--------|--------|
-| GET | `/email/mxplan` |
-| GET | `/email/mxplan/{x}` |
-| PUT | `/email/mxplan/{x}` |
-| GET | `/email/mxplan/{x}/account` |
-| DELETE | `/email/mxplan/{x}/account/{x}` |
-| GET | `/email/mxplan/{x}/account/{x}` |
-| PUT | `/email/mxplan/{x}/account/{x}` |
-| GET | `/email/mxplan/{x}/account/{x}/alias` |
-| POST | `/email/mxplan/{x}/account/{x}/alias` |
-| DELETE | `/email/mxplan/{x}/account/{x}/alias/{x}` |
-| GET | `/email/mxplan/{x}/account/{x}/alias/{x}` |
-| GET | `/email/mxplan/{x}/account/{x}/capabilities` |
-| POST | `/email/mxplan/{x}/account/{x}/changePassword` |
-| GET | `/email/mxplan/{x}/account/{x}/diagnostic` |
-| POST | `/email/mxplan/{x}/account/{x}/diagnostic` |
-| GET | `/email/mxplan/{x}/account/{x}/fullAccess` |
-| POST | `/email/mxplan/{x}/account/{x}/fullAccess` |
-| DELETE | `/email/mxplan/{x}/account/{x}/fullAccess/{x}` |
-| GET | `/email/mxplan/{x}/account/{x}/fullAccess/{x}` |
-| GET | `/email/mxplan/{x}/account/{x}/sendAs` |
-| POST | `/email/mxplan/{x}/account/{x}/sendAs` |
-| DELETE | `/email/mxplan/{x}/account/{x}/sendAs/{x}` |
-| GET | `/email/mxplan/{x}/account/{x}/sendAs/{x}` |
-| GET | `/email/mxplan/{x}/account/{x}/sendOnBehalfTo` |
-| POST | `/email/mxplan/{x}/account/{x}/sendOnBehalfTo` |
-| DELETE | `/email/mxplan/{x}/account/{x}/sendOnBehalfTo/{x}` |
-| GET | `/email/mxplan/{x}/account/{x}/sendOnBehalfTo/{x}` |
-| GET | `/email/mxplan/{x}/account/{x}/task` |
-| GET | `/email/mxplan/{x}/account/{x}/task/{x}` |
-| GET | `/email/mxplan/{x}/domain` |
-| GET | `/email/mxplan/{x}/domain/{x}` |
-| PUT | `/email/mxplan/{x}/domain/{x}` |
-| DELETE | `/email/mxplan/{x}/domain/{x}/disclaimer` |
-| GET | `/email/mxplan/{x}/domain/{x}/disclaimer` |
-| POST | `/email/mxplan/{x}/domain/{x}/disclaimer` |
-| PUT | `/email/mxplan/{x}/domain/{x}/disclaimer` |
-| GET | `/email/mxplan/{x}/domain/{x}/disclaimerAttribute` |
-| GET | `/email/mxplan/{x}/externalContact` |
-| POST | `/email/mxplan/{x}/externalContact` |
-| DELETE | `/email/mxplan/{x}/externalContact/{x}` |
-| GET | `/email/mxplan/{x}/externalContact/{x}` |
-| PUT | `/email/mxplan/{x}/externalContact/{x}` |
-| GET | `/email/mxplan/{x}/server` |
-| GET | `/email/mxplan/{x}/task` |
-| GET | `/email/mxplan/{x}/task/{x}` |
-| POST | `/email/mxplan/{x}/updateFlagsOnAllAccounts` |
 
 ### dedicatedNasha (v1) — 39 manquants
 

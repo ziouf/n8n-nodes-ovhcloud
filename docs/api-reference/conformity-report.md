@@ -1,16 +1,16 @@
 # OVHcloud API Conformity Report
 
-> Généré par `scripts/audit-conformity.js` le 2026-08-07T06:37:22.007Z. Document généré automatiquement — ne pas éditer à la main.
+> Généré par `scripts/audit-conformity.js` le 2026-08-07T07:44:05.886Z. Document généré automatiquement — ne pas éditer à la main.
 
 Ce rapport vérifie que les opérations des nodes respectent leur spec (méthode, chemin, paramètres path requis, query requis, champs body requis).
 
 ## Résumé
 
-- **Opérations auditées** : 7655
-- **Conformes** : 4841
-- **Non conformes** : 2814
-- **Sans correspondance spec** (informatif) : 2350
-- **Taux de conformité** : **63.2%**
+- **Opérations auditées** : 7850
+- **Conformes** : 4992
+- **Non conformes** : 2858
+- **Sans correspondance spec** (informatif) : 2392
+- **Taux de conformité** : **63.6%**
 
 ## Conformité par spec
 
@@ -50,6 +50,7 @@ Triée par taux de non-conformité décroissant.
 | hosting (v1) | 237 | 169 | 7 | 71.3% |
 | me (v1) | 309 | 300 | 9 | 97.1% |
 | horizonView (v1) | 42 | 41 | 1 | 97.6% |
+| emailDomain (v1) | 107 | 105 | 2 | 98.1% |
 | vrack (v1) | 75 | 67 | 1 | 89.3% |
 | webhosting (v2) | 246 | 12 | 3 | 4.9% |
 | domain (v1) | 119 | 109 | 1 | 91.6% |
@@ -60,10 +61,11 @@ Triée par taux de non-conformité décroissant.
 | sms (v1) | 126 | 124 | 0 | 98.4% |
 | ipLoadbalancing (v1) | 121 | 121 | 0 | 100% |
 | domain (v2) | 119 | 9 | 0 | 7.6% |
-| email (v1) | 66 | 59 | 0 | 89.4% |
+| email (v1) | 108 | 59 | 0 | 54.6% |
 | msServices (v1) | 57 | 55 | 0 | 96.5% |
 | cluster (v1) | 50 | 42 | 0 | 84% |
 | services (v1) | 50 | 47 | 0 | 94% |
+| emailMxplan (v1) | 46 | 46 | 0 | 100% |
 | pack (v1) | 39 | 33 | 0 | 84.6% |
 | freefax (v1) | 19 | 18 | 0 | 94.7% |
 | saas (v1) | 19 | 19 | 0 | 100% |
@@ -323,6 +325,13 @@ Chaque ligne correspond à un appel HTTP non conforme, groupée par spec :
 | Méthode | Chemin | Fichier | Problèmes |
 |--------|--------|---------|-----------|
 | PUT | `/domain/zone/{x}/option/{x}/serviceInfos` | OvhCloudDomain/resources/zone/domainZoneOptionServiceInfosUpdatePut.operation.ts | missing required body field 'renew' |
+
+### emailDomain — 2 non-conformités
+
+| Méthode | Chemin | Fichier | Problèmes |
+|--------|--------|---------|-----------|
+| POST | `/email/domain/{x}/redirection` | OvhCloudEmailDomain/domainRedirection/DomainRedirectionCreate.operation.ts | missing required body field 'from'; missing required body field 'localCopy'; missing required body field 'to' |
+| POST | `/email/domain/{x}/redirection/{x}/changeRedirection` | OvhCloudEmailDomain/domainRedirection/DomainRedirectionChangeCreate.operation.ts | missing required body field 'to' |
 
 ### horizonView — 1 non-conformité
 
@@ -1329,10 +1338,52 @@ Ces opérations appellent un chemin qui ne correspond à aucun endpoint de la sp
 | domain (v2) | POST | `/domain/zone/{x}/task/{x}/cancel` | OvhCloudDomain/resources/zone/domainZoneTaskCancelPost.operation.ts |
 | domain (v2) | POST | `/domain/zone/{x}/task/{x}/relaunch` | OvhCloudDomain/resources/zone/domainZoneTaskRelaunchPost.operation.ts |
 | domain (v2) | POST | `/domain/zone/{x}/terminate` | OvhCloudDomain/resources/zone/domainZoneTerminatePost.operation.ts |
-| email (v1) | GET | `/email/mxplan` | OvhCloudMxPlan/resources/mxplan/mxPlanListGet.operation.ts |
-| email (v1) | DELETE | `/email/mxplan/{x}` | OvhCloudMxPlan/resources/mxplan/mxPlanDeleteDelete.operation.ts |
-| email (v1) | GET | `/email/mxplan/{x}` | OvhCloudMxPlan/resources/mxplan/mxPlanGetGet.operation.ts |
-| email (v1) | PUT | `/email/mxplan/{x}` | OvhCloudMxPlan/resources/mxplan/mxPlanUpdatePut.operation.ts |
+| email (v1) | GET | `/email/mxplan` | OvhCloudMxPlan/misc/MxPlanList.operation.ts |
+| email (v1) | GET | `/email/mxplan/{x}` | OvhCloudMxPlan/misc/MxPlanGet.operation.ts |
+| email (v1) | PUT | `/email/mxplan/{x}` | OvhCloudMxPlan/misc/MxPlanPut.operation.ts |
+| email (v1) | GET | `/email/mxplan/{x}/account` | OvhCloudMxPlan/mxplanAccount/MxPlanAccountList.operation.ts |
+| email (v1) | DELETE | `/email/mxplan/{x}/account/{x}` | OvhCloudMxPlan/mxplanAccount/MxPlanAccountDelete.operation.ts |
+| email (v1) | GET | `/email/mxplan/{x}/account/{x}` | OvhCloudMxPlan/mxplanAccount/MxPlanAccountGet.operation.ts |
+| email (v1) | PUT | `/email/mxplan/{x}/account/{x}` | OvhCloudMxPlan/mxplanAccount/MxPlanAccountUpdate.operation.ts |
+| email (v1) | GET | `/email/mxplan/{x}/account/{x}/alias` | OvhCloudMxPlan/mxplanAccount/MxPlanAccountAliasList.operation.ts |
+| email (v1) | POST | `/email/mxplan/{x}/account/{x}/alias` | OvhCloudMxPlan/mxplanAccount/MxPlanAccountAliasCreate.operation.ts |
+| email (v1) | DELETE | `/email/mxplan/{x}/account/{x}/alias/{x}` | OvhCloudMxPlan/mxplanAccount/MxPlanAccountAliasDelete.operation.ts |
+| email (v1) | GET | `/email/mxplan/{x}/account/{x}/alias/{x}` | OvhCloudMxPlan/mxplanAccount/MxPlanAccountAliasGet.operation.ts |
+| email (v1) | GET | `/email/mxplan/{x}/account/{x}/capabilities` | OvhCloudMxPlan/mxplanAccount/MxPlanAccountCapabilitiesGet.operation.ts |
+| email (v1) | POST | `/email/mxplan/{x}/account/{x}/changePassword` | OvhCloudMxPlan/mxplanAccount/MxPlanAccountChangePasswordCreate.operation.ts |
+| email (v1) | GET | `/email/mxplan/{x}/account/{x}/diagnostic` | OvhCloudMxPlan/mxplanAccount/MxPlanAccountDiagnosticGet.operation.ts |
+| email (v1) | POST | `/email/mxplan/{x}/account/{x}/diagnostic` | OvhCloudMxPlan/mxplanAccount/MxPlanAccountDiagnosticCreate.operation.ts |
+| email (v1) | GET | `/email/mxplan/{x}/account/{x}/fullAccess` | OvhCloudMxPlan/mxplanAccount/MxPlanAccountFullAccessList.operation.ts |
+| email (v1) | POST | `/email/mxplan/{x}/account/{x}/fullAccess` | OvhCloudMxPlan/mxplanAccount/MxPlanAccountFullAccessCreate.operation.ts |
+| email (v1) | DELETE | `/email/mxplan/{x}/account/{x}/fullAccess/{x}` | OvhCloudMxPlan/mxplanAccount/MxPlanAccountFullAccessDelete.operation.ts |
+| email (v1) | GET | `/email/mxplan/{x}/account/{x}/fullAccess/{x}` | OvhCloudMxPlan/mxplanAccount/MxPlanAccountFullAccessGet.operation.ts |
+| email (v1) | GET | `/email/mxplan/{x}/account/{x}/sendAs` | OvhCloudMxPlan/mxplanAccount/MxPlanAccountSendAsList.operation.ts |
+| email (v1) | POST | `/email/mxplan/{x}/account/{x}/sendAs` | OvhCloudMxPlan/mxplanAccount/MxPlanAccountSendAsCreate.operation.ts |
+| email (v1) | DELETE | `/email/mxplan/{x}/account/{x}/sendAs/{x}` | OvhCloudMxPlan/mxplanAccount/MxPlanAccountSendAsDelete.operation.ts |
+| email (v1) | GET | `/email/mxplan/{x}/account/{x}/sendAs/{x}` | OvhCloudMxPlan/mxplanAccount/MxPlanAccountSendAsGet.operation.ts |
+| email (v1) | GET | `/email/mxplan/{x}/account/{x}/sendOnBehalfTo` | OvhCloudMxPlan/mxplanAccount/MxPlanAccountSendOnBehalfToList.operation.ts |
+| email (v1) | POST | `/email/mxplan/{x}/account/{x}/sendOnBehalfTo` | OvhCloudMxPlan/mxplanAccount/MxPlanAccountSendOnBehalfToCreate.operation.ts |
+| email (v1) | DELETE | `/email/mxplan/{x}/account/{x}/sendOnBehalfTo/{x}` | OvhCloudMxPlan/mxplanAccount/MxPlanAccountSendOnBehalfToDelete.operation.ts |
+| email (v1) | GET | `/email/mxplan/{x}/account/{x}/sendOnBehalfTo/{x}` | OvhCloudMxPlan/mxplanAccount/MxPlanAccountSendOnBehalfToGet.operation.ts |
+| email (v1) | GET | `/email/mxplan/{x}/account/{x}/task` | OvhCloudMxPlan/mxplanAccount/MxPlanAccountTaskList.operation.ts |
+| email (v1) | GET | `/email/mxplan/{x}/account/{x}/task/{x}` | OvhCloudMxPlan/mxplanAccount/MxPlanAccountTaskGet.operation.ts |
+| email (v1) | GET | `/email/mxplan/{x}/domain` | OvhCloudMxPlan/mxplanDomain/MxPlanDomainList.operation.ts |
+| email (v1) | GET | `/email/mxplan/{x}/domain/{x}` | OvhCloudMxPlan/mxplanDomain/MxPlanDomainGet.operation.ts |
+| email (v1) | PUT | `/email/mxplan/{x}/domain/{x}` | OvhCloudMxPlan/mxplanDomain/MxPlanDomainUpdate.operation.ts |
+| email (v1) | DELETE | `/email/mxplan/{x}/domain/{x}/disclaimer` | OvhCloudMxPlan/mxplanDomain/MxPlanDomainDisclaimerDelete.operation.ts |
+| email (v1) | GET | `/email/mxplan/{x}/domain/{x}/disclaimer` | OvhCloudMxPlan/mxplanDomain/MxPlanDomainDisclaimerList.operation.ts |
+| email (v1) | POST | `/email/mxplan/{x}/domain/{x}/disclaimer` | OvhCloudMxPlan/mxplanDomain/MxPlanDomainDisclaimerCreate.operation.ts |
+| email (v1) | PUT | `/email/mxplan/{x}/domain/{x}/disclaimer` | OvhCloudMxPlan/mxplanDomain/MxPlanDomainDisclaimerUpdate.operation.ts |
+| email (v1) | GET | `/email/mxplan/{x}/domain/{x}/disclaimerAttribute` | OvhCloudMxPlan/mxplanDomain/MxPlanDomainDisclaimerAttributeGet.operation.ts |
+| email (v1) | GET | `/email/mxplan/{x}/externalContact` | OvhCloudMxPlan/mxplanExternalContact/MxPlanExternalContactList.operation.ts |
+| email (v1) | POST | `/email/mxplan/{x}/externalContact` | OvhCloudMxPlan/mxplanExternalContact/MxPlanExternalContactCreate.operation.ts |
+| email (v1) | DELETE | `/email/mxplan/{x}/externalContact/{x}` | OvhCloudMxPlan/mxplanExternalContact/MxPlanExternalContactDelete.operation.ts |
+| email (v1) | GET | `/email/mxplan/{x}/externalContact/{x}` | OvhCloudMxPlan/mxplanExternalContact/MxPlanExternalContactGet.operation.ts |
+| email (v1) | PUT | `/email/mxplan/{x}/externalContact/{x}` | OvhCloudMxPlan/mxplanExternalContact/MxPlanExternalContactUpdate.operation.ts |
+| email (v1) | GET | `/email/mxplan/{x}/server` | OvhCloudMxPlan/mxplanServer/MxPlanServerGet.operation.ts |
+| email (v1) | GET | `/email/mxplan/{x}/task` | OvhCloudMxPlan/mxplanTask/MxPlanTaskList.operation.ts |
+| email (v1) | GET | `/email/mxplan/{x}/task/{x}` | OvhCloudMxPlan/mxplanTask/MxPlanTaskGet.operation.ts |
+| email (v1) | POST | `/email/mxplan/{x}/updateFlagsOnAllAccounts` | OvhCloudMxPlan/mxplanUpdateFlagsOnAllAccounts/MxPlanUpdateFlagsOnAllAccountsCreate.operation.ts |
 | email (v1) | PUT | `/email/pro/{x}/suspendStatus` | OvhCloudEmailPro/resources/updateSuspendStatusByServiceNamePut.operation.ts |
 | email (v1) | GET | `/email/pro/{x}/tasks` | OvhCloudEmailPro/resources/taskListGet.operation.ts |
 | email (v1) | GET | `/email/pro/{x}/tasks/{x}` | OvhCloudEmailPro/resources/taskGetGet.operation.ts |

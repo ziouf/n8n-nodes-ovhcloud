@@ -11,19 +11,19 @@ import { BaseNode, executeTemplate } from '../../shared/nodes/BaseNode';
 
 export class OvhCloudMxPlan extends BaseNode implements INodeType {
 	description: INodeTypeDescription = {
-		displayName: 'OVH Cloud MX Plan',
+		displayName: 'OVH Cloud Mx Plan',
 		name: 'ovhCloudMxPlan',
 		icon: OvhCloudIcon,
 		group: ['input'],
 		version: 1,
 		subtitle: '={{$parameter["mxPlanOperation"]}}',
-		description: 'Manage OVHcloud MX Plan services via /email/mxplan API v1',
-		defaults: { name: 'OVH Cloud MX Plan' },
+		description: 'Manage your OVHcloud MX Plan (MSS) services via the /email/mxplan API v1',
+		defaults: { name: 'OVH Cloud Mx Plan' },
 		usableAsTool: true,
 		inputs: [NodeConnectionTypes.Main],
 		outputs: [NodeConnectionTypes.Main],
 		credentials: [{ name: OvhCloudApiSecretName, required: true }],
-		properties: [...description()],
+		properties: [...description({})],
 	};
 
 	async execute(this: IExecuteFunctions): Promise<INodeExecutionData[][]> {

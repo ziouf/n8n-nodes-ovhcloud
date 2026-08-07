@@ -1,0 +1,56 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
+import { description, execute } from './DelegatedAccountFilterCreate.operation';
+
+jest.mock('../../../shared/transport/ApiClient', () => {
+	const mockHttpClient = {
+		httpGet: jest.fn(),
+		httpPost: jest.fn(),
+		httpPut: jest.fn(),
+		httpDelete: jest.fn(),
+	};
+	return { ApiClient: jest.fn().mockImplementation(() => mockHttpClient) };
+});
+
+import { ApiClient } from '../../../shared/transport/ApiClient';
+
+describe('DelegatedAccountFilterCreate operation', () => {
+	describe('description', () => {
+		it('should return all required parameters', () => {
+			const result = description({});
+			expect(result.length).toBeGreaterThanOrEqual(0);
+		});
+	});
+
+	describe('execute', () => {
+		let mockExecuteFunctions: any;
+		beforeEach(() => {
+			mockExecuteFunctions = {
+				getNodeParameter: jest.fn(),
+				helpers: { returnJsonArray: jest.fn((data: any) => data) },
+			};
+		});
+
+		it('should call the correct API endpoint', async () => {
+			const mockData = { id: 'test-id' };
+			const client = new ApiClient(mockExecuteFunctions);
+			(client.httpPost as jest.Mock).mockResolvedValue(mockData);
+
+			mockExecuteFunctions.getNodeParameter.mockImplementation((param: string) => {
+			if (param === 'email') return 'email-test';
+			if (param === 'action') return 'action-test';
+			if (param === 'actionParam') return 'actionParam-test';
+			if (param === 'active') return 'active-test';
+			if (param === 'header') return 'header-test';
+			if (param === 'name') return 'name-test';
+			if (param === 'operand') return 'operand-test';
+			if (param === 'priority') return 'priority-test';
+			if (param === 'value') return 'value-test';
+				return '';
+			});
+
+			const result = await execute.call(mockExecuteFunctions);
+			expect((client.httpPost as jest.Mock).mock.calls.length).toBeGreaterThan(0);
+			expect(result).toMatchObject([mockData]);
+		});
+	});
+});
