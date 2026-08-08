@@ -23,6 +23,7 @@ export { getPublicCloudBlockStorageVolumes } from './getPublicCloudBlockStorageV
 export { getPublicCloudProjects } from './getPublicCloudProjects.method';
 export { getPublicCloudRancherServices } from './getPublicCloudRancherServices.method';
 export { getSaasCsp2Services } from './getSaasCsp2Services.method';
+export { getSmsServices } from './getSmsServices.method';
 export { getServiceIds } from './getServiceIds.method';
 export { getStackServices } from './getStackServices.method';
 export { getSupportTicketServices } from './getSupportTicketServices.method';

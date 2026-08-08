@@ -1,3 +1,4 @@
+import type { ListSearchLoader } from './listSearch';
 import { createProjectScopedServiceListSearch } from './listSearch';
 
 /**
@@ -9,5 +10,3 @@ import { createProjectScopedServiceListSearch } from './listSearch';
 export const getPublicCloudRancherServices: ListSearchLoader = createProjectScopedServiceListSearch(
 	(projectId) => `/publicCloud/project/${projectId}/rancher`,
 );
-
-export type { ListSearchLoader } from './listSearch';

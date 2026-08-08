@@ -1,3 +1,4 @@
+import type { ListSearchLoader } from './listSearch';
 import { createServiceListSearch } from './listSearch';
 
 /**
@@ -6,6 +7,7 @@ import { createServiceListSearch } from './listSearch';
  * Retrieves available support ticket IDs from the OVH API for dynamic dropdown selection.
  * Ticket IDs are normalized to strings for n8n dropdown compatibility.
  */
-export const getSupportTicketServices: ListSearchLoader = createServiceListSearch('/supportTicket');
-
-export type { ListSearchLoader } from './listSearch';
+export const getSupportTicketServices: ListSearchLoader = createServiceListSearch(
+	'/supportTicket',
+	{ map: (id) => `Ticket #${id}` },
+);

@@ -24,7 +24,7 @@ describe('createServiceListSearch', () => {
 		const mockClient = (ApiClient as any)();
 		(mockClient.httpGet as jest.Mock).mockResolvedValue(['vps-1', 'vps-2']);
 
-		const result = await loader.call(mockLoadOptionsFunctions);
+		const result = await loader.call(mockLoadOptionsFunctions as any);
 		expect(mockClient.httpGet).toHaveBeenCalledWith('/vps');
 		expect(result).toEqual({
 			results: [
@@ -39,7 +39,7 @@ describe('createServiceListSearch', () => {
 		const mockClient = (ApiClient as any)();
 		(mockClient.httpGet as jest.Mock).mockResolvedValue([123, 456]);
 
-		const result = await loader.call(mockLoadOptionsFunctions);
+		const result = await loader.call(mockLoadOptionsFunctions as any);
 		expect(result).toEqual({
 			results: [
 				{ name: '123', value: '123' },
@@ -60,7 +60,7 @@ describe('createProjectScopedServiceListSearch', () => {
 		const mockCtx = {
 			getNodeParameter: jest.fn().mockReturnValue('project-abc'),
 		};
-		const result = await loader.call(mockCtx);
+		const result = await loader.call(mockCtx as any);
 		expect(mockClient.httpGet).toHaveBeenCalledWith(
 			'/publicCloud/project/project-abc/blockStorage/volume',
 		);
@@ -77,7 +77,7 @@ describe('createProjectScopedServiceListSearch', () => {
 		const mockCtx = {
 			getNodeParameter: jest.fn().mockReturnValue({ mode: 'list', value: 'project-xyz' }),
 		};
-		const result = await loader.call(mockCtx);
+		const result = await loader.call(mockCtx as any);
 		expect(mockClient.httpGet).toHaveBeenCalledWith('/publicCloud/project/project-xyz/rancher');
 		expect(result).toEqual({ results: [{ name: 'rancher-1', value: 'rancher-1' }] });
 	});
@@ -85,7 +85,7 @@ describe('createProjectScopedServiceListSearch', () => {
 	it('should throw when project id is invalid', async () => {
 		const loader = createProjectScopedServiceListSearch((projectId) => `/p/${projectId}`);
 		const mockCtx = { getNodeParameter: jest.fn().mockReturnValue({ mode: 'id' }) };
-		await expect(loader.call(mockCtx)).rejects.toThrow(
+		await expect(loader.call(mockCtx as any)).rejects.toThrow(
 			'publicCloudProjectId parameter is not a valid string',
 		);
 	});

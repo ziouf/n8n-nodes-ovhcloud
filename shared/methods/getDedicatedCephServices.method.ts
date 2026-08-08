@@ -1,3 +1,4 @@
+import type { ListSearchLoader } from './listSearch';
 import { createServiceListSearch } from './listSearch';
 
 /**
@@ -7,5 +8,3 @@ import { createServiceListSearch } from './listSearch';
  */
 export const getDedicatedCephServices: ListSearchLoader =
 	createServiceListSearch('/dedicated/ceph');
-
-export type { ListSearchLoader } from './listSearch';

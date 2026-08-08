@@ -1,3 +1,4 @@
+import type { ListSearchLoader } from './listSearch';
 import { createServiceListSearch } from './listSearch';
 
 /**
@@ -6,5 +7,3 @@ import { createServiceListSearch } from './listSearch';
  * Retrieves available Metrics service names from the OVH API for dynamic dropdown selection.
  */
 export const getMetricsServices: ListSearchLoader = createServiceListSearch('/metrics');
-
-export type { ListSearchLoader } from './listSearch';

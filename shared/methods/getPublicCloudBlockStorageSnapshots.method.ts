@@ -1,3 +1,4 @@
+import type { ListSearchLoader } from './listSearch';
 import { createProjectScopedServiceListSearch } from './listSearch';
 
 /**
@@ -10,5 +11,3 @@ export const getPublicCloudBlockStorageSnapshots: ListSearchLoader =
 	createProjectScopedServiceListSearch(
 		(projectId) => `/publicCloud/project/${projectId}/blockStorage/snapshot`,
 	);
-
-export type { ListSearchLoader } from './listSearch';

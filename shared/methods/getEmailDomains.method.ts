@@ -1,3 +1,4 @@
+import type { ListSearchLoader } from './listSearch';
 import { createServiceListSearch } from './listSearch';
 
 /**
@@ -6,5 +7,3 @@ import { createServiceListSearch } from './listSearch';
  * Retrieves available email domain names from the OVH API for dynamic dropdown selection.
  */
 export const getEmailDomains: ListSearchLoader = createServiceListSearch('/email/domain');
-
-export type { ListSearchLoader } from './listSearch';
