@@ -43,8 +43,6 @@ import { execute as automatedBackupRestoreCreateExecute } from '../nodes/OvhClou
 import { execute as backupFtpAccessPostVpsExecute } from '../nodes/OvhCloudVps/backupFtpAccessPostVps.operation';
 import { execute as changeContactCreateVpsExecute } from '../nodes/OvhCloudVps/changeContactCreateVps.operation';
 import { execute as confirmTerminationCreateVpsExecute } from '../nodes/OvhCloudVps/confirmTerminationCreateVps.operation';
-import { execute as createSnapshotCreateExecute } from '../nodes/OvhCloudVps/createSnapshotCreate.operation';
-import { execute as disksIdPutExecute } from '../nodes/OvhCloudVps/disksIdPut.operation';
 import { execute as ipAddExecute } from '../nodes/OvhCloudVps/ipAdd.operation';
 import { execute as vpsUpdateExecute } from '../nodes/OvhCloudVps/vpsUpdate.operation';
 
@@ -290,20 +288,6 @@ describe('VPS Operations - API Spec Non-Regression', () => {
 			{ serviceName: vpsName },
 			'POST',
 			new RegExp(`^/vps/${vpsName}/confirmTermination$`),
-		],
-		[
-			'createSnapshotCreate (POST createSnapshot)',
-			createSnapshotCreateExecute,
-			{ serviceName: vpsName },
-			'POST',
-			new RegExp(`^/vps/${vpsName}/createSnapshot$`),
-		],
-		[
-			'disksIdPut (PUT storage disk)',
-			disksIdPutExecute,
-			{ serviceName: vpsName, diskId: 'primary' },
-			'PUT',
-			new RegExp(`^/vps/${vpsName}/storage/disk/primary$`),
 		],
 		[
 			'ipAdd (POST ips)',

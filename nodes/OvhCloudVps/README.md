@@ -4,7 +4,7 @@
 
 ## Overview
 
-This node provides **61 operations** with **31 tests** for managing OVHcloud resources.
+This node provides **59 operations** with **31 tests** for managing OVHcloud resources.
 
 ## Available Operations
 
@@ -23,14 +23,12 @@ This node provides **61 operations** with **31 tests** for managing OVHcloud res
 | [`backupRestoreListGet`](./`backupRestoreListGet`.ts)                   | GET    | `/vps/{...}/automatedBackup/attachedBackup`        | 1     |
 | [`changeContactCreateVps`](./`changeContactCreateVps`.ts)               | POST   | `/vps/{...}/changeContact`                         | 1     |
 | [`confirmTerminationCreateVps`](./`confirmTerminationCreateVps`.ts)     | POST   | `/vps/{...}/confirmTermination`                    | 1     |
-| [`createSnapshotCreate`](./`createSnapshotCreate`.ts)                   | POST   | `/vps/{...}/createSnapshot`                        | 1     |
 | [`datacenterAvailabilityRawGet`](./`datacenterAvailabilityRawGet`.ts)   | GET    | `/vps/{...}/datacenter/availabilities/raw`         | 1     |
 | [`datacenterList`](./`datacenterList`.ts)                               | GET    | `/vps/{...}/availableDatacenters`                  | 0     |
 | [`diskCreatePost`](./`diskCreatePost`.ts)                               | POST   | `/vps/{...}/disks/create`                          | 1     |
 | [`diskGet`](./`diskGet`.ts)                                             | GET    | `/vps/{...}/disks/{...}`                           | 1     |
 | [`diskList`](./`diskList`.ts)                                           | GET    | `/vps/{...}/disks`                                 | 0     |
 | [`diskMonitoringStatsGet`](./`diskMonitoringStatsGet`.ts)               | GET    | `/vps/{...}/disks/monitoring/stats`                | 1     |
-| [`disksIdPut`](./`disksIdPut`.ts)                                       | PUT    | `/vps/{...}/storage/disk/{...}`                    | 1     |
 | [`diskUpdatePut`](./`diskUpdatePut`.ts)                                 | POST   | `/vps/{...}/disks/{...}`                           | 1     |
 | [`distributionGet`](./`distributionGet`.ts)                             | GET    | `/vps/{...}/distribution/{...}`                    | 0     |
 | [`distributionList`](./`distributionList`.ts)                           | GET    | `/vps/{...}/distribution`                          | 0     |
@@ -45,7 +43,7 @@ This node provides **61 operations** with **31 tests** for managing OVHcloud res
 | [`ipGet`](./`ipGet`.ts)                                                 | GET    | `/vps/{...}/ip/{...}`                              | 0     |
 | [`ipList`](./`ipList`.ts)                                               | GET    | `/vps/{...}/ip`                                    | 0     |
 | [`ipReleaseDelete`](./`ipReleaseDelete`.ts)                             | DELETE | `/vps/{...}/ips/{...}`                             | 1     |
-| [`list`](./`list`.ts)                                                   | GET    | `...`                                              | 0     |
+| [`list`](./`list`.ts)                                                   | GET    | `...`                                              | 0     | (Includes "Return Full Objects / Max Items" toggle for parallel fetching) |
 | [`migrationMigrationIdGet`](./`migrationMigrationIdGet`.ts)             | GET    | `/vps/{...}/migrations/2020/migration/{...}`       | 0     |
 | [`migrationMigrationIdStepGet`](./`migrationMigrationIdStepGet`.ts)     | GET    | `/vps/{...}/migrations/2020/migration/{...}/{...}` | 0     |
 | [`modelList`](./`modelList`.ts)                                         | GET    | `/vps/{...}/models`                                | 0     |
@@ -74,4 +72,4 @@ This node provides **61 operations** with **31 tests** for managing OVHcloud res
 | [`templateGet`](./`templateGet`.ts)                                     | GET    | `/vps/template/{...}`                              | 0     |
 | [`vpsUpdate`](./`vpsUpdate`.ts)                                         | PUT    | `/vps/{...}`                                       | 1     |
 
-**Total:** 61 operations, 31 tests
+**Total:** 59 operations, 31 tests

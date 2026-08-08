@@ -229,14 +229,6 @@ import {
 	execute as executeConfirmTermination,
 	description as descriptionConfirmTermination,
 } from './confirmTerminationCreateVps.operation';
-import {
-	execute as executeCreateSnapshot,
-	description as descriptionCreateSnapshot,
-} from './createSnapshotCreate.operation';
-import {
-	execute as executeStorageDiskUpdatePut,
-	description as descriptionStorageDiskUpdatePut,
-} from './disksIdPut.operation';
 import { execute as executeIpAdd, description as descriptionIpAdd } from './ipAdd.operation';
 import {
 	execute as executeVpsUpdate,
@@ -252,49 +244,20 @@ export function description(displayOptions: IDisplayOptions): INodeProperties[] 
 			options: [
 				{ name: 'Abort Snapshot', value: 'abortSnapshot' },
 				{
-					name: 'Attach Secondary DNS',
-					value: 'attachSecondaryDns',
-					action: 'Attach a secondary DNS to a VPS',
-				},
-				{
-					name: 'Automated Backup List',
-					value: 'automatedBackupList',
-					action: 'List automated backups for a VPS',
-				},
-				{
-					name: 'Automated Backup Reschedule',
-					value: 'automatedBackupReschedulePost',
-					action: 'Reschedule an automated backup for a VPS',
-				},
-				{
-					name: 'Automated Backup Restore',
-					value: 'automatedBackupRestore',
-					action: 'Restore the VPS from an automated backup (irreversible)',
-				},
-				{
-					name: 'Automated Backup Restore Plan Set',
-					value: 'automatedBackupSetPost',
-					action: 'Set a backup restore plan for a VPS',
-				},
-				{
-					name: 'Available Upgrade List',
-					value: 'availableUpgradeList',
-					action: 'Get available upgrades for a VPS',
-				},
-				{
-					name: 'Backup FTP Access Add',
+					name: 'Add Backup FTP Access',
 					value: 'backupFtpAccessPost',
 					action: 'Add an IP access rule to the VPS backup FTP',
 				},
+				{ name: 'Add IP', value: 'ipAdd', action: 'Add a failover IP to the VPS' },
 				{
-					name: 'Backup FTP Configs',
-					value: 'backupFtpList',
-					action: 'List backup FTP configurations',
+					name: 'Apply Netboot Template',
+					value: 'templateApplyPost',
+					action: 'Apply netboot template to the VPS',
 				},
 				{
-					name: 'Backup Restore List',
-					value: 'backupRestoreList',
-					action: 'List attached backups available for restore',
+					name: 'Attach Secondary DNS',
+					value: 'attachSecondaryDns',
+					action: 'Attach a secondary DNS to a VPS',
 				},
 				{
 					name: 'Change Contact',
@@ -302,126 +265,193 @@ export function description(displayOptions: IDisplayOptions): INodeProperties[] 
 					action: 'Launch a contact change for the VPS service',
 				},
 				{
+					name: 'Check Power Off Status',
+					value: 'powerOffGet',
+					action: 'Check power off status of a VPS',
+				},
+				{
+					name: 'Check Reboot Status',
+					value: 'rebootHardGet',
+					action: 'Check reboot status of a VPS',
+				},
+				{
 					name: 'Confirm Termination',
 					value: 'confirmTermination',
 					action: 'Confirm termination of the VPS service (irreversible)',
 				},
 				{ name: 'Create Disk', value: 'createDiskPost' },
+				{ name: 'Create Netboot Order Config', value: 'netbootCreatePost' },
 				{
 					name: 'Create Snapshot',
-					value: 'createSnapshot',
-					action: 'Create a manual snapshot of the VPS',
+					value: 'snapshotCreatePost',
+					action: 'Create a new snapshot for the VPS',
+				},
+				{ name: 'Get', value: 'get', action: 'Get VPS service details' },
+				{
+					name: 'Get Available IP Countries',
+					value: 'ipCountryAvailableGet',
+					action: 'List available IP countries per region',
 				},
 				{
-					name: 'Datacenter Availability Raw Get',
+					name: 'Get Datacenter Availability',
 					value: 'datacenterAvailabilityRawGet',
 					action: 'Check raw datacenter availability for a VPS',
 				},
-				{
-					name: 'Datacenter List',
-					value: 'datacenterList',
-					action: 'Get available datacenters for a VPS',
-				},
-				{ name: 'Disk List', value: 'diskList', action: 'List disks attached to a VPS' },
-				{
-					name: 'Disk Monitoring Stats Get',
-					value: 'diskMonitoringStatsGet',
-					action: 'Get monitoring stats for a disk',
-				},
-				{ name: 'Distribution Get', value: 'distributionGet', action: 'Get distribution details' },
-				{
-					name: 'Distribution List',
-					value: 'distributionList',
-					action: 'List available distributions for a VPS',
-				},
-				{ name: 'Distribution Update', value: 'distributionUpdatePut' },
-				{ name: 'Get', value: 'get', action: 'Get VPS service details' },
 				{
 					name: 'Get Disk Detail',
 					value: 'diskDetailGet',
 					action: 'Get detail of a specific VPS disk',
 				},
 				{
+					name: 'Get Disk Monitoring Stats',
+					value: 'diskMonitoringStatsGet',
+					action: 'Get monitoring stats for a disk',
+				},
+				{ name: 'Get Distribution', value: 'distributionGet', action: 'Get distribution details' },
+				{ name: 'Get Image', value: 'imageGet', action: 'Get image details' },
+				{ name: 'Get IP', value: 'ipGet', action: 'Get IP address details' },
+				{
+					name: 'Get IP Geolocation',
+					value: 'ipGeolocationGet',
+					action: 'Get IP geolocation info',
+				},
+				{
+					name: 'Get Kernel Configs',
+					value: 'netbootConfigGet',
+					action: 'Get kernel/netboot config for a VPS',
+				},
+				{
+					name: 'Get Migration',
+					value: 'migrationMigrationIdGet',
+					action: 'Get migration details by ID',
+				},
+				{
+					name: 'Get Migration Step',
+					value: 'migrationMigrationIdStepGet',
+					action: 'Get migration step details',
+				},
+				{
+					name: 'Get Netboot Order Config',
+					value: 'netbootOrderGet',
+					action: 'Get netboot order configuration',
+				},
+				{
+					name: 'Get Netboot Template Details',
+					value: 'netbootTemplateDetailsGet',
+					action: 'Get netboot template details',
+				},
+				{ name: 'Get Option Details', value: 'optionDetailGet', action: 'Get option type details' },
+				{
+					name: 'Get Service Information',
+					value: 'serviceInformationGet',
+					action: 'Get service information for a VPS',
+				},
+				{
+					name: 'Get Service Secret Key',
+					value: 'serviceSecretGet',
+					action: 'Get authentication secret key for a VPS',
+				},
+				{
 					name: 'Get Snapshot Image',
 					value: 'getSnapshotImage',
 					action: 'Get image of a snapshot',
 				},
-				{ name: 'Image Get', value: 'imageGet', action: 'Get image details' },
-				{ name: 'Image List', value: 'imageList', action: 'List available images for a VPS' },
-				{ name: 'IP Add', value: 'ipAdd', action: 'Add a failover IP to the VPS' },
 				{
-					name: 'IP Country Available',
-					value: 'ipCountryAvailableGet',
-					action: 'List available IP countries per region',
+					name: 'Get Task Status',
+					value: 'statusTaskIdGet',
+					action: 'Check status of a task by ID',
 				},
-				{ name: 'IP Geolocation', value: 'ipGeolocationGet', action: 'Get IP geolocation info' },
-				{ name: 'IP Get', value: 'ipGet', action: 'Get IP address details' },
-				{ name: 'IP List', value: 'ipList', action: 'List IPs attached to a VPS' },
+				{ name: 'Get Template Details', value: 'templateGet', action: 'Get template details' },
 				{
-					name: 'Kernel Configs',
-					value: 'netbootConfigGet',
-					action: 'Get kernel/netboot config for a VPS',
+					name: 'List Automated Backups',
+					value: 'automatedBackupList',
+					action: 'List automated backups for a VPS',
 				},
-				{ name: 'List', value: 'list', action: 'List all VPS services' },
+				{
+					name: 'List Available Upgrades',
+					value: 'availableUpgradeList',
+					action: 'Get available upgrades for a VPS',
+				},
+				{
+					name: 'List Backup FTP Configs',
+					value: 'backupFtpList',
+					action: 'List backup FTP configurations',
+				},
+				{
+					name: 'List Backup Restores',
+					value: 'backupRestoreList',
+					action: 'List attached backups available for restore',
+				},
+				{
+					name: 'List Datacenters',
+					value: 'datacenterList',
+					action: 'Get available datacenters for a VPS',
+				},
+				{ name: 'List Disks', value: 'diskList', action: 'List disks attached to a VPS' },
+				{
+					name: 'List Distributions',
+					value: 'distributionList',
+					action: 'List available distributions for a VPS',
+				},
+				{ name: 'List Images', value: 'imageList', action: 'List available images for a VPS' },
+				{ name: 'List IPs', value: 'ipList', action: 'List IPs attached to a VPS' },
+				{ name: 'List Models', value: 'modelList', action: 'List available VPS models' },
+				{ name: 'List Options', value: 'optionList', action: 'List available options for a VPS' },
+				{
+					name: 'List Restore Points',
+					value: 'restorePointListGet',
+					action: 'List restore points for a backup',
+				},
+				{
+					name: 'List Secondary DNS Domains',
+					value: 'secondaryDnsDomainListDomains',
+					action: 'List secondary DNS domains',
+				},
+				{
+					name: 'List Secondary DNS Servers',
+					value: 'secondaryDnsServerList',
+					action: 'List secondary DNS servers',
+				},
+				{
+					name: 'List Snapshots',
+					value: 'snapshotListSnapshotsForVps',
+					action: 'List snapshots for a VPS',
+				},
 				{
 					name: 'List SSH Keys',
 					value: 'listSshKeys',
 					action: 'List SSH keys for a VPS',
 				},
+				{ name: 'List VPS Services', value: 'list', action: 'List all VPS services' },
 				{
-					name: 'Migration Migration ID Get',
-					value: 'migrationMigrationIdGet',
-					action: 'Get migration details by ID',
+					name: 'Power Off VPS',
+					value: 'powerStopDelete',
+					action: 'Request shutdown for the VPS',
 				},
 				{
-					name: 'Migration Step Get',
-					value: 'migrationMigrationIdStepGet',
-					action: 'Get migration step details',
-				},
-				{ name: 'Model List', value: 'modelList', action: 'List available VPS models' },
-				{ name: 'Netboot Create Order Config Post', value: 'netbootCreatePost' },
-				{
-					name: 'Netboot Order Config',
-					value: 'netbootOrderGet',
-					action: 'Get netboot order configuration',
-				},
-				{
-					name: 'Netboot Template Details',
-					value: 'netbootTemplateDetailsGet',
-					action: 'Get netboot template details',
-				},
-				{ name: 'Option Detail Get', value: 'optionDetailGet', action: 'Get option type details' },
-				{ name: 'Option List', value: 'optionList', action: 'List available options for a VPS' },
-				{
-					name: 'Power Off Status',
-					value: 'powerOffGet',
-					action: 'Check power off status of a VPS',
-				},
-				{
-					name: 'Power Reboot Delete',
-					value: 'powerRebootDelete',
-					action: 'Request hard reboot for the VPS',
-				},
-				{
-					name: 'Power Start Post',
+					name: 'Power On VPS',
 					value: 'powerStartPost',
 					action: 'Request power on for the VPS',
 				},
 				{
-					name: 'Power Stop Delete',
-					value: 'powerStopDelete',
-					action: 'Request shutdown for the VPS',
+					name: 'Reboot VPS',
+					value: 'powerRebootDelete',
+					action: 'Request hard reboot for the VPS',
 				},
-				{ name: 'Reboot Status', value: 'rebootHardGet', action: 'Check reboot status of a VPS' },
 				{
 					name: 'Release IP Address',
-					value: 'releaseIpPut',
+					value: 'releaseIpDelete',
 					action: 'Release an IP address from the VPS',
 				},
 				{
-					name: 'Restore Point List Get',
-					value: 'restorePointListGet',
-					action: 'List restore points for a backup',
+					name: 'Reschedule Automated Backup',
+					value: 'automatedBackupReschedulePost',
+					action: 'Reschedule an automated backup for a VPS',
+				},
+				{
+					name: 'Restore Automated Backup',
+					value: 'automatedBackupRestore',
+					action: 'Restore the VPS from an automated backup (irreversible)',
 				},
 				{
 					name: 'Revert Snapshot',
@@ -429,58 +459,21 @@ export function description(displayOptions: IDisplayOptions): INodeProperties[] 
 					action: 'Revert the VPS to a specific snapshot',
 				},
 				{
-					name: 'Secondary DNS Domain List',
-					value: 'secondaryDnsDomainListDomains',
-					action: 'List secondary DNS domains',
+					name: 'Set Automated Backup Restore Plan',
+					value: 'automatedBackupSetPost',
+					action: 'Set a backup restore plan for a VPS',
 				},
 				{
-					name: 'Secondary DNS Server List',
-					value: 'secondaryDnsServerList',
-					action: 'List secondary DNS servers',
-				},
-				{
-					name: 'Service Information Get',
-					value: 'serviceInformationGet',
-					action: 'Get service information for a VPS',
-				},
-				{
-					name: 'Service Secret Key Get',
-					value: 'serviceSecretGet',
-					action: 'Get authentication secret key for a VPS',
-				},
-				{
-					name: 'Snapshot Create Post',
-					value: 'snapshotCreatePost',
-					action: 'Create a new snapshot for the VPS',
-				},
-				{
-					name: 'Snapshot List Snapshots For Vps',
-					value: 'snapshotListSnapshotsForVps',
-					action: 'List snapshots for a VPS',
-				},
-				{
-					name: 'Status Task ID Get',
-					value: 'statusTaskIdGet',
-					action: 'Check status of a task by ID',
-				},
-				{
-					name: 'Storage Disk Update Put',
-					value: 'storageDiskUpdatePut',
-					action: 'Update VPS storage disk properties (e.g. resize)',
-				},
-				{
-					name: 'Template Apply Netboot Config Post',
-					value: 'templateApplyPost',
-					action: 'Apply netboot template to the VPS',
-				},
-				{ name: 'Template Details', value: 'templateGet', action: 'Get template details' },
-				{
-					name: 'Update Disk Detail Put',
+					name: 'Update Disk',
 					value: 'updateDiskPut',
 					action: 'Update a specific VPS disk (resize or rename)',
 				},
 				{
-					name: 'VPS Update',
+					name: 'Update Distribution',
+					value: 'distributionUpdatePut',
+				},
+				{
+					name: 'Update VPS',
 					value: 'vpsUpdate',
 					action: 'Update VPS service properties (e.g. name)',
 				},
@@ -560,7 +553,10 @@ export function description(displayOptions: IDisplayOptions): INodeProperties[] 
 			...displayOptions,
 			show: { vpsOperation: ['netbootConfigGet'] },
 		}) as INodeProperties[]),
-		...(descriptionList() as INodeProperties[]),
+		...(descriptionList({
+			...displayOptions,
+			show: { vpsOperation: ['list'] },
+		}) as INodeProperties[]),
 		...(descriptionSshKeyListGet({
 			...displayOptions,
 			show: { vpsOperation: ['listSshKeys'] },
@@ -675,7 +671,7 @@ export function description(displayOptions: IDisplayOptions): INodeProperties[] 
 		}) as INodeProperties[]),
 		...(descriptionIpReleaseDelete({
 			...displayOptions,
-			show: { vpsOperation: ['releaseIpPut'] },
+			show: { vpsOperation: ['releaseIpDelete'] },
 		}) as INodeProperties[]),
 		...(descriptionNetbootCreatePost({
 			...displayOptions,
@@ -720,14 +716,6 @@ export function description(displayOptions: IDisplayOptions): INodeProperties[] 
 		...(descriptionConfirmTermination({
 			...displayOptions,
 			show: { vpsOperation: ['confirmTermination'] },
-		}) as INodeProperties[]),
-		...(descriptionCreateSnapshot({
-			...displayOptions,
-			show: { vpsOperation: ['createSnapshot'] },
-		}) as INodeProperties[]),
-		...(descriptionStorageDiskUpdatePut({
-			...displayOptions,
-			show: { vpsOperation: ['storageDiskUpdatePut'] },
 		}) as INodeProperties[]),
 		...(descriptionIpAdd({
 			...displayOptions,
@@ -841,7 +829,7 @@ export async function execute(
 			return executeGetSnapshotImage.call(this, itemIndex);
 		case 'ipCountryAvailableGet':
 			return executeIpCountryAvailableGet.call(this, itemIndex);
-		case 'releaseIpPut':
+		case 'releaseIpDelete':
 			return executeIpReleaseDelete.call(this, itemIndex);
 		case 'netbootCreatePost':
 			return executeNetbootCreatePost.call(this, itemIndex);
@@ -865,10 +853,6 @@ export async function execute(
 			return executeChangeContact.call(this, itemIndex);
 		case 'confirmTermination':
 			return executeConfirmTermination.call(this, itemIndex);
-		case 'createSnapshot':
-			return executeCreateSnapshot.call(this, itemIndex);
-		case 'storageDiskUpdatePut':
-			return executeStorageDiskUpdatePut.call(this, itemIndex);
 		case 'ipAdd':
 			return executeIpAdd.call(this, itemIndex);
 		case 'vpsUpdate':
