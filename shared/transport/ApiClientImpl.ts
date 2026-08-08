@@ -16,6 +16,29 @@ import { CredentialHolder } from './CredentialHolder';
 type IFunctions = IExecuteFunctions | ILoadOptionsFunctions;
 
 /**
+ * Configuration options for paginating through a list endpoint and fetching
+ * full resources for each ID.
+ *
+ * Extends {@link PaginationOptions} with callbacks and concurrency controls.
+ */
+export interface PaginateResourcesOptions extends PaginationOptions {
+	/**
+	 * Callback invoked when a resource fails to fetch (e.g. 404 Not Found).
+	 *
+	 * Receives the resource ID and the error that caused the skip.  Use this
+	 * to log warnings, collect failed IDs, or surface them to the user.
+	 */
+	onSkipped?: (id: string, error: unknown) => void;
+	/**
+	 * Maximum number of concurrent resource fetches.
+	 *
+	 * Defaults to {@link ApiClient.PAGINATE_CONCURRENCY} when omitted or ≤ 0.
+	 * Set to `1` for strict sequential fetching.
+	 */
+	concurrency?: number;
+}
+
+/**
  * Configuration options for pagination.
  */
 export interface PaginationOptions {
@@ -29,6 +52,11 @@ export interface PaginationOptions {
 	maxItems?: number;
 	/** API endpoint to paginate (default: same as request endpoint) */
 	endpoint?: string;
+	/** Additional query parameters merged into every page request
+	 * (e.g. `{ routes: '/vps' }`). Merged before `offset`/`limit`,
+	 * so those always take precedence.
+	 */
+	query?: IDataObject;
 }
 
 /**
@@ -160,7 +188,27 @@ export class ApiClient {
 	}
 
 	/**
-	 * Makes a GET request to the OVH API.
+	 * Makes a GET request to the OVH API (raw, without retry).
+	 *
+	 * @param url - The API endpoint path (without base URL)
+	 * @param qs - Optional query parameters
+	 * @param options - Additional HTTP request options
+	 * @returns The parsed response data from the API
+	 * @throws NodeApiError if the API call fails with an error status
+	 */
+	private async httpGetRaw(
+		url: string,
+		qs?: IDataObject,
+		options?: IHttpRequestOptions,
+	): Promise<unknown> {
+		const credentials = await this.getCredentials();
+		return await this.fn.helpers.httpRequest(
+			credentials.sign({ method: 'GET', url, qs, ...options }),
+		);
+	}
+
+	/**
+	 * Makes a GET request to the OVH API with automatic retry on transient errors.
 	 *
 	 * @param url - The API endpoint path (without base URL)
 	 * @param qs - Optional query parameters
@@ -173,10 +221,7 @@ export class ApiClient {
 		qs?: IDataObject,
 		options?: IHttpRequestOptions,
 	): Promise<unknown> {
-		const credentials = await this.getCredentials();
-		return await this.fn.helpers.httpRequest(
-			credentials.sign({ method: 'GET', url, qs, ...options }),
-		);
+		return this.requestWithRetry(() => this.httpGetRaw(url, qs, options));
 	}
 
 	/**
@@ -259,9 +304,71 @@ export class ApiClient {
 	 * @returns true if the error is a 429 rate limit error
 	 */
 	private isRateLimitError(error: unknown): boolean {
-		if (error && typeof error === 'object' && 'code' in error) {
-			return (error as { code?: number }).code === 429;
+		if (error && typeof error === 'object') {
+			const err = error as {
+				code?: number | string;
+				httpCode?: string;
+				response?: { status?: number };
+			};
+			if (err.code === 429 || err.code === '429') return true;
+			if (err.httpCode === '429') return true;
+			if (err.response?.status === 429) return true;
 		}
+		return false;
+	}
+
+	/**
+	 * Checks if an error is transient (suitable for automatic retry).
+	 *
+	 * A transient error is one that may resolve on retry:
+	 * - HTTP 429 (Rate Limit) or 5xx (Server errors)
+	 * - Network-level errors (ECONNRESET, ETIMEDOUT, etc.)
+	 * - Messages containing 'socket hang up' or 'timeout'
+	 *
+	 * All other 4xx errors and unknown errors are considered non-transient.
+	 *
+	 * @param error - The error to check
+	 * @returns true if the error is transient and may succeed on retry
+	 */
+	private isTransientError(error: unknown): boolean {
+		const err = error as {
+			code?: number | string;
+			httpCode?: string;
+			message?: string;
+			response?: { status?: number };
+		};
+
+		// Check HTTP status code from various possible locations
+		let httpStatus: number | null = null;
+		if (typeof err.code === 'number') httpStatus = err.code;
+		else if (typeof err.httpCode === 'string') httpStatus = parseInt(err.httpCode, 10);
+		else if (typeof err.response?.status === 'number') httpStatus = err.response.status;
+
+		if (httpStatus !== null) {
+			if (httpStatus === 429 || (httpStatus >= 500 && httpStatus <= 599)) return true;
+			// All other 4xx are non-transient
+			if (httpStatus >= 400 && httpStatus < 500) return false;
+		}
+
+		// Check network-level error codes
+		const networkErrors = [
+			'ECONNRESET',
+			'ETIMEDOUT',
+			'ECONNABORTED',
+			'ENOTFOUND',
+			'EAI_AGAIN',
+			'EHOSTUNREACH',
+			'ENETUNREACH',
+			'EPIPE',
+		];
+		if (typeof err.code === 'string' && networkErrors.includes(err.code)) return true;
+
+		// Check message for known transient patterns
+		if (typeof err.message === 'string') {
+			const msgLower = err.message.toLowerCase();
+			if (msgLower.includes('socket hang up') || msgLower.includes('timeout')) return true;
+		}
+
 		return false;
 	}
 
@@ -306,6 +413,8 @@ export class ApiClient {
 	 *
 	 * Handles HTTP 429 Rate Limit errors specifically by respecting
 	 * Retry-After and X-Ratelimit-Reset headers.
+	 * Retries only transient errors (5xx, 429, network errors).
+	 * Applies jitter to avoid thundering-herd on retry.
 	 *
 	 * @param requestFn - Async function that performs the HTTP request
 	 * @param retryOptions - Retry configuration (overrides default)
@@ -330,13 +439,18 @@ export class ApiClient {
 					break;
 				}
 
+				if (!this.isTransientError(error)) {
+					break;
+				}
+
 				if (this.isRateLimitError(error)) {
 					delayMs = this.getRateLimitDelay(error, delayMs);
 				} else {
 					delayMs = Math.min(delayMs * (options.backoffMultiplier ?? 2), options.maxDelayMs);
 				}
 
-				await this.delay(delayMs);
+				const jitteredDelay = delayMs * (0.5 + Math.random() * 0.5);
+				await this.delay(jitteredDelay);
 			}
 		}
 
@@ -359,8 +473,8 @@ export class ApiClient {
 		const retryOptions = options?.retry;
 		const httpOptions = { ...options };
 		delete httpOptions.retry;
-		return await this.requestWithRetry(
-			() => this.httpGet(url, qs, httpOptions as IHttpRequestOptions),
+		return this.requestWithRetry(
+			() => this.httpGetRaw(url, qs, httpOptions as IHttpRequestOptions),
 			retryOptions,
 		);
 	}
@@ -461,6 +575,7 @@ export class ApiClient {
 
 		while (allItems.length < maxItems) {
 			const response = (await this.httpGet(endpoint, {
+				...options?.query,
 				offset: currentOffset,
 				limit: Math.min(limit, maxItems - allItems.length),
 			})) as string[];
@@ -489,25 +604,37 @@ export class ApiClient {
 	 * This method fetches all IDs via pagination, then fetches each resource
 	 * by its ID endpoint to get the full object.
 	 *
+	 * Individual resource fetch failures are silently skipped (the resource is
+	 * omitted from the result) so that one missing or deleted resource does not
+	 * fail the entire call.  Use the `onSkipped` callback to track failures.
+	 *
 	 * @param listEndpoint - The list endpoint returning IDs (e.g., '/vps')
 	 * @param itemEndpoint - The item endpoint template with {id} placeholder (e.g., '/vps/{id}')
-	 * @param options - Pagination configuration
-	 * @returns Array of full resource objects
+	 * @param options - Pagination and resource-fetch configuration
+	 * @returns Array of full resource objects (skipped resources omitted)
 	 *
 	 * @example
 	 * ```typescript
+	 * // Basic usage — same as before
 	 * const allVps = await client.paginateResources('/vps', '/vps/{id}', { limit: 50 });
+	 *
+	 * // With skip tracking
+	 * await client.paginateResources('/vps', '/vps/{id}', {
+	 *   onSkipped: (id, error) => console.warn(`Skipped ${id}:`, error),
+	 *   concurrency: 3,
+	 * });
 	 * ```
 	 */
 	public async paginateResources<T = IDataObject>(
 		listEndpoint: string,
 		itemEndpoint: string,
-		options?: PaginationOptions,
+		options?: PaginateResourcesOptions,
 	): Promise<T[]> {
 		const ids = await this.paginate<string>(listEndpoint, options);
 
 		const resources: (T | undefined)[] = new Array(ids.length);
 		let nextIndex = 0;
+		const onSkipped = options?.onSkipped;
 
 		/**
 		 * Fetches the next batch of resources concurrently.
@@ -527,13 +654,17 @@ export class ApiClient {
 				const itemEndpointUrl = itemEndpoint.replace('{id}', ids[index]);
 				try {
 					resources[index] = (await this.httpGet(itemEndpointUrl)) as T;
-				} catch {
-					// Skip resources that fail to fetch individually.
+				} catch (error) {
+					onSkipped?.(ids[index], error);
 				}
 			}
 		};
 
-		const concurrency = Math.min(ApiClient.PAGINATE_CONCURRENCY, Math.max(1, ids.length));
+		const rawConcurrency = options?.concurrency;
+		const concurrency =
+			rawConcurrency != null && rawConcurrency > 0
+				? Math.min(rawConcurrency, Math.max(1, ids.length))
+				: Math.min(ApiClient.PAGINATE_CONCURRENCY, Math.max(1, ids.length));
 		await Promise.all(Array.from({ length: concurrency }, () => worker()));
 
 		return resources.filter((resource): resource is T => resource !== undefined);

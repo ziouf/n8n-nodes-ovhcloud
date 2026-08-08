@@ -614,7 +614,10 @@ export function description(displayOptions: IDisplayOptions): INodeProperties[] 
 
 	const properties: INodeProperties[] = [
 		...operationProperties,
-		...(descriptionList() as INodeProperties[]),
+		...(descriptionList({
+			...displayOptions,
+			show: { dedicatedServerOperation: ['list'] },
+		}) as INodeProperties[]),
 		...(descriptionGet({
 			...displayOptions,
 			show: { dedicatedServerOperation: ['get'] },
