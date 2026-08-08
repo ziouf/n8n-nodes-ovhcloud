@@ -16,7 +16,7 @@ import { ApiClient } from '../../shared/transport/ApiClient';
 describe('DedicatedClusterTerminateCreate operation', () => {
 	describe('description', () => {
 		it('should return all required parameters', () => {
-			const result = description();
+			const result = description({});
 			expect(result.length).toBeGreaterThanOrEqual(0);
 		});
 	});

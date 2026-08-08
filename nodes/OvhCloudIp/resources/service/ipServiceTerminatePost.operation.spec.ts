@@ -17,8 +17,9 @@ describe('ipServiceTerminatePost.operation', () => {
 	describe('description', () => {
 		it('should return the required parameters', () => {
 			const result = description({ show: {} });
-			expect(result.length).toBeGreaterThanOrEqual(0);
-			expect(result[0]).toMatchObject({ name: 'serviceName', type: 'string', required: true });
+			expect(result.length).toBeGreaterThanOrEqual(1);
+			expect(result[0]).toMatchObject({ name: 'destructiveActionNotice', type: 'notice' });
+			expect(result[1]).toMatchObject({ name: 'serviceName', type: 'string', required: true });
 		});
 	});
 
@@ -36,14 +37,16 @@ describe('ipServiceTerminatePost.operation', () => {
 			const client = new ApiClient(mockExecuteFunctions) as any;
 			client.httpPost.mockResolvedValue(mockData);
 
-			mockExecuteFunctions.getNodeParameter.mockImplementation((param: string): string | boolean => {
-				switch (param) {
-					case 'serviceName':
-						return 'ip-12345';
-					default:
-						return '';
-				}
-			});
+			mockExecuteFunctions.getNodeParameter.mockImplementation(
+				(param: string): string | boolean => {
+					switch (param) {
+						case 'serviceName':
+							return 'ip-12345';
+						default:
+							return '';
+					}
+				},
+			);
 
 			const result = await execute.call(mockExecuteFunctions, 0);
 			expect(client.httpPost).toHaveBeenCalledWith('/ip/service/ip-12345/terminate', {});

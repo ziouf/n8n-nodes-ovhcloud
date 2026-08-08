@@ -6,9 +6,14 @@ import type {
 	INodeProperties,
 } from 'n8n-workflow';
 import { ApiClient } from '../../../../shared/transport/ApiClient';
+import { destructiveActionNotice } from '../../../../shared/nodes/notices';
 
 export function description(displayOptions: IDisplayOptions): INodeProperties[] {
 	return [
+		destructiveActionNotice(
+			'This will permanently terminate the Hadoop cluster. This action is irreversible.',
+			displayOptions,
+		),
 		{
 			displayName: 'Cluster Hadoop Service Name',
 			name: 'serviceName',

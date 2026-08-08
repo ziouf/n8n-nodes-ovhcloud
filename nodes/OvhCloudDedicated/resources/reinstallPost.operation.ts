@@ -6,9 +6,14 @@ import type {
 	IDisplayOptions,
 } from 'n8n-workflow';
 import { ApiClient } from '../../../shared/transport/ApiClient';
+import { destructiveActionNotice } from '../../../shared/nodes/notices';
 
 export function description(displayOptions: IDisplayOptions): INodeProperties[] {
 	return [
+		destructiveActionNotice(
+			'This will reinstall the dedicated server, erasing all data on it. This action is irreversible.',
+			displayOptions,
+		),
 		{
 			displayName: 'Service Name',
 			name: 'serviceName',
@@ -45,13 +50,13 @@ export async function execute(
 	const template = this.getNodeParameter('template', itemIndex, '') as string;
 
 	const body: IDataObject = {};
-		if (template) {
-			body.template = template;
-		}
+	if (template) {
+		body.template = template;
+	}
 
 	const data = (await client.httpPost(
 		`/dedicated/server/${encodeURIComponent(String(serviceName))}/reinstall`,
-		body
+		body,
 	)) as IDataObject;
 	const inputData = this.getInputData()[itemIndex];
 	return this.helpers.returnJsonArray([{ ...inputData.json, ...data }]);

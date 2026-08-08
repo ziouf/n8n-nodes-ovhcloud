@@ -58,51 +58,51 @@ export function description(displayOptions: IDisplayOptions): INodeProperties[] 
 			type: 'options',
 			noDataExpression: true,
 			options: [
-		{
-			name: 'Ask For The Termination Of Your Service',
-			value: 'DedicatedClusterTerminateCreate',
-			action: 'Ask for the termination of your service',
-		},
-		{
-			name: 'Confirm Service Termination',
-			value: 'DedicatedClusterConfirmterminationCreate',
-			action: 'Confirm service termination',
-		},
-		{
-			name: 'Fetch The Availabilities For A Given Cluster Configuration',
-			value: 'DedicatedClusterAvailabilitiesGet',
-			action: 'Fetch the availabilities for a given cluster configuration',
-		},
-		{
-			name: 'Get Cluster Info',
-			value: 'DedicatedClusterGetServicename',
-			action: 'Get cluster info',
-		},
-		{
-			name: 'Get Service Information',
-			value: 'DedicatedClusterServiceinfosGet',
-			action: 'Get service information',
-		},
-		{
-			name: 'Launch A Contact Change Procedure',
-			value: 'DedicatedClusterChangecontactCreate',
-			action: 'Launch a contact change procedure',
-		},
-		{
-			name: 'List Dedicated Clusters',
-			value: 'DedicatedClusterGet',
-			action: 'List dedicated clusters',
-		},
-		{
-			name: 'List The Raw Availability For Cluster',
-			value: 'ClusterAvailabilitiesRawGet',
-			action: 'List the raw availability for cluster',
-		},
-		{
-			name: 'Update Service Information',
-			value: 'DedicatedClusterServiceinfosUpdate',
-			action: 'Update service information',
-		},
+				{
+					name: 'Ask For The Termination Of Your Service',
+					value: 'DedicatedClusterTerminateCreate',
+					action: 'Ask for the termination of your service',
+				},
+				{
+					name: 'Confirm Service Termination',
+					value: 'DedicatedClusterConfirmterminationCreate',
+					action: 'Confirm service termination',
+				},
+				{
+					name: 'Fetch The Availabilities For A Given Cluster Configuration',
+					value: 'DedicatedClusterAvailabilitiesGet',
+					action: 'Fetch the availabilities for a given cluster configuration',
+				},
+				{
+					name: 'Get Cluster Info',
+					value: 'DedicatedClusterGetServicename',
+					action: 'Get cluster info',
+				},
+				{
+					name: 'Get Service Information',
+					value: 'DedicatedClusterServiceinfosGet',
+					action: 'Get service information',
+				},
+				{
+					name: 'Launch A Contact Change Procedure',
+					value: 'DedicatedClusterChangecontactCreate',
+					action: 'Launch a contact change procedure',
+				},
+				{
+					name: 'List Dedicated Clusters',
+					value: 'DedicatedClusterGet',
+					action: 'List dedicated clusters',
+				},
+				{
+					name: 'List The Raw Availability For Cluster',
+					value: 'ClusterAvailabilitiesRawGet',
+					action: 'List the raw availability for cluster',
+				},
+				{
+					name: 'Update Service Information',
+					value: 'DedicatedClusterServiceinfosUpdate',
+					action: 'Update service information',
+				},
 			],
 			default: 'DedicatedClusterTerminateCreate',
 			displayOptions,
@@ -111,15 +111,15 @@ export function description(displayOptions: IDisplayOptions): INodeProperties[] 
 
 	const properties: INodeProperties[] = [
 		...operationProperties,
-	...descriptionDedicatedClusterTerminateCreatePost(),
-	...descriptionDedicatedClusterConfirmterminationCreatePost(),
-	...descriptionDedicatedClusterAvailabilitiesGetGet(),
-	...descriptionDedicatedClusterGetServicenameGet(),
-	...descriptionDedicatedClusterServiceinfosGetGet(),
-	...descriptionDedicatedClusterChangecontactCreatePost(),
-	...descriptionDedicatedClusterGetGet(),
-	...descriptionClusterAvailabilitiesRawGetGet(),
-	...descriptionDedicatedClusterServiceinfosUpdatePut(),
+		...descriptionDedicatedClusterTerminateCreatePost({}),
+		...descriptionDedicatedClusterConfirmterminationCreatePost(),
+		...descriptionDedicatedClusterAvailabilitiesGetGet(),
+		...descriptionDedicatedClusterGetServicenameGet(),
+		...descriptionDedicatedClusterServiceinfosGetGet(),
+		...descriptionDedicatedClusterChangecontactCreatePost(),
+		...descriptionDedicatedClusterGetGet(),
+		...descriptionClusterAvailabilitiesRawGetGet(),
+		...descriptionDedicatedClusterServiceinfosUpdatePut(),
 	];
 
 	return properties;

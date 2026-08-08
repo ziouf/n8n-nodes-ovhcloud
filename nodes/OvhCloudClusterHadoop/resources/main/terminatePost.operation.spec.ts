@@ -17,8 +17,12 @@ describe('terminatePost.operation', () => {
 	describe('description', () => {
 		it('should return serviceName resourceLocator parameter', () => {
 			const result = description({ show: {} });
-			expect(result).toHaveLength(1);
+			expect(result).toHaveLength(2);
 			expect(result[0]).toMatchObject({
+				name: 'destructiveActionNotice',
+				type: 'notice',
+			});
+			expect(result[1]).toMatchObject({
 				displayName: 'Cluster Hadoop Service Name',
 				name: 'serviceName',
 				type: 'resourceLocator',
@@ -29,7 +33,7 @@ describe('terminatePost.operation', () => {
 
 		it('should have list and name modes for the service locator', () => {
 			const result = description({ show: {} });
-			const serviceNameProp = result[0] as any;
+			const serviceNameProp = result[1] as any;
 			expect(serviceNameProp.modes).toHaveLength(2);
 			expect(serviceNameProp.modes.map((m: any) => m.name)).toEqual(['list', 'name']);
 		});

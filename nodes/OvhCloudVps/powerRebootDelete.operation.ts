@@ -1,24 +1,21 @@
 import type { IExecuteFunctions, IDisplayOptions, INodeExecutionData } from 'n8n-workflow';
+import { serviceNameLocator } from '../../shared/nodes/locators';
 import { ApiClient } from '../../shared/transport/ApiClient';
+import { destructiveActionNotice } from '../../shared/nodes/notices';
 
 export function description(displayOptions: IDisplayOptions) {
 	return [
+		destructiveActionNotice(
+			'This will reboot the VPS. Running workloads will be interrupted.',
+			displayOptions,
+		),
 		{
-			displayName: 'VPS Service Name',
-			name: 'serviceName',
-			type: 'resourceLocator',
-			default: { mode: 'list' },
-			required: true,
-			description: 'The VPS service name (e.g. vps1234567.ovh.net)',
-			modes: [
-				{
-					displayName: 'From List',
-					name: 'list',
-					type: 'list',
-					typeOptions: { searchListMethod: 'getVpsServices', searchable: true },
-				},
-				{ displayName: 'By Name', name: 'name', type: 'string', placeholder: 'vps1234567.ovh.net' },
-			],
+			...serviceNameLocator({
+				searchListMethod: 'getVpsServices',
+				displayName: 'VPS Service Name',
+				description: 'The VPS service name (e.g. vps1234567.ovh.net)',
+				placeholder: 'vps1234567.ovh.net',
+			}),
 			displayOptions,
 		},
 	];

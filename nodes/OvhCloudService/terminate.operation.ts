@@ -6,6 +6,7 @@ import {
 	IDisplayOptions,
 } from 'n8n-workflow';
 import { ApiClient } from '../../shared/transport/ApiClient';
+import { destructiveActionNotice } from '../../shared/nodes/notices';
 
 /**
  * @brief Terminate Service operation for Service resource
@@ -19,6 +20,10 @@ import { ApiClient } from '../../shared/transport/ApiClient';
  */
 export function description(displayOptions: IDisplayOptions): INodeProperties[] {
 	return [
+		destructiveActionNotice(
+			'This will permanently terminate the service. This action is irreversible.',
+			displayOptions,
+		),
 		{
 			displayName: 'Service ID',
 			name: 'serviceId',

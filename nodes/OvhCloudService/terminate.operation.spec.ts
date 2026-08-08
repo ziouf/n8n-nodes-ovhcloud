@@ -18,8 +18,14 @@ describe('terminate.operation', () => {
 		it('should return serviceId param', () => {
 			const result = description({ show: {} });
 
-			expect(result).toHaveLength(1);
+			expect(result).toHaveLength(2);
 			expect(result[0]).toEqual(
+				expect.objectContaining({
+					name: 'destructiveActionNotice',
+					type: 'notice',
+				}),
+			);
+			expect(result[1]).toEqual(
 				expect.objectContaining({
 					displayName: 'Service ID',
 					name: 'serviceId',

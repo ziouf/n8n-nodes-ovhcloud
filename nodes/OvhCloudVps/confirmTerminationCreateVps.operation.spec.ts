@@ -17,8 +17,12 @@ describe('confirmTerminationCreateVps.operation', () => {
 	describe('description', () => {
 		it('should return only serviceName parameter', () => {
 			const result = description({ show: {} });
-			expect(result).toHaveLength(1);
+			expect(result).toHaveLength(2);
 			expect(result[0]).toMatchObject({
+				name: 'destructiveActionNotice',
+				type: 'notice',
+			});
+			expect(result[1]).toMatchObject({
 				displayName: 'VPS Service Name',
 				name: 'serviceName',
 				type: 'resourceLocator',

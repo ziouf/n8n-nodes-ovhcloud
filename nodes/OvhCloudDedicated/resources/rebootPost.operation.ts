@@ -6,9 +6,14 @@ import type {
 	IDisplayOptions,
 } from 'n8n-workflow';
 import { ApiClient } from '../../../shared/transport/ApiClient';
+import { destructiveActionNotice } from '../../../shared/nodes/notices';
 
 export function description(displayOptions: IDisplayOptions): INodeProperties[] {
 	return [
+		destructiveActionNotice(
+			'This will reboot the dedicated server. Running workloads will be interrupted.',
+			displayOptions,
+		),
 		{
 			displayName: 'Service Name',
 			name: 'serviceName',
@@ -45,13 +50,13 @@ export async function execute(
 	const mode = this.getNodeParameter('mode', itemIndex, '') as string;
 
 	const body: IDataObject = {};
-		if (mode) {
-			body.mode = mode;
-		}
+	if (mode) {
+		body.mode = mode;
+	}
 
 	const data = (await client.httpPost(
 		`/dedicated/server/${encodeURIComponent(String(serviceName))}/reboot`,
-		body
+		body,
 	)) as IDataObject;
 	const inputData = this.getInputData()[itemIndex];
 	return this.helpers.returnJsonArray([{ ...inputData.json, ...data }]);

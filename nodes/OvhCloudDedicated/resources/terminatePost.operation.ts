@@ -6,9 +6,14 @@ import type {
 	IDisplayOptions,
 } from 'n8n-workflow';
 import { ApiClient } from '../../../shared/transport/ApiClient';
+import { destructiveActionNotice } from '../../../shared/nodes/notices';
 
 export function description(displayOptions: IDisplayOptions): INodeProperties[] {
 	return [
+		destructiveActionNotice(
+			'This will permanently terminate the dedicated server. This action is irreversible.',
+			displayOptions,
+		),
 		{
 			displayName: 'Service Name',
 			name: 'serviceName',

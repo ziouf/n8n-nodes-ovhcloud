@@ -5,27 +5,24 @@ import type {
 	IDisplayOptions,
 	INodeProperties,
 } from 'n8n-workflow';
+import { serviceNameLocator } from '../../shared/nodes/locators';
 import { ApiClient } from '../../shared/transport/ApiClient';
+import { destructiveActionNotice } from '../../shared/nodes/notices';
 
 /** Revert the VPS to a specific snapshot. */
 export function description(displayOptions: IDisplayOptions): INodeProperties[] {
 	return [
+		destructiveActionNotice(
+			'This will revert the VPS to a previous snapshot. Current data will be lost.',
+			displayOptions,
+		),
 		{
-			displayName: 'VPS Service Name',
-			name: 'serviceName',
-			type: 'resourceLocator',
-			default: { mode: 'list', value: '' },
-			required: true,
-			description: 'The VPS service name (e.g. vps1234567.ovh.net)',
-			modes: [
-				{
-					displayName: 'From List',
-					name: 'list',
-					type: 'list',
-					typeOptions: { searchListMethod: 'getVpsServices', searchable: true },
-				},
-				{ displayName: 'By Name', name: 'name', type: 'string', placeholder: 'vps1234567.ovh.net' },
-			],
+			...serviceNameLocator({
+				searchListMethod: 'getVpsServices',
+				displayName: 'VPS Service Name',
+				description: 'The VPS service name (e.g. vps1234567.ovh.net)',
+				placeholder: 'vps1234567.ovh.net',
+			}),
 			displayOptions,
 		},
 		{

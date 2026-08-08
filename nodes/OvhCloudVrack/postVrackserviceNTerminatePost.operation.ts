@@ -6,10 +6,14 @@ import type {
 	INodeExecutionData,
 } from 'n8n-workflow';
 import { ApiClient } from '../../shared/transport/ApiClient';
-
+import { destructiveActionNotice } from '../../shared/nodes/notices';
 
 export function description(displayOptions: IDisplayOptions): INodeProperties[] {
 	return [
+		destructiveActionNotice(
+			'This will permanently terminate the vRack service. This action is irreversible.',
+			displayOptions,
+		),
 		{
 			displayName: 'ServiceName',
 			name: 'serviceName',
@@ -28,15 +32,16 @@ export function description(displayOptions: IDisplayOptions): INodeProperties[] 
  * HTTP method: POST
  * Endpoint: /vrack/{serviceName}/terminate
  */
-export async function execute(this: IExecuteFunctions, itemIndex: number): Promise<INodeExecutionData[]> {
+export async function execute(
+	this: IExecuteFunctions,
+	itemIndex: number,
+): Promise<INodeExecutionData[]> {
 	const serviceName = this.getNodeParameter('serviceName', itemIndex) as string;
 
-
-
-
-
 	const client = new ApiClient(this);
-	const data = (await client.httpPost('/vrack' + '/' + encodeURIComponent(serviceName) + '/' + 'terminate', {})) as IDataObject;
+	const data = (await client.httpPost(
+		'/vrack' + '/' + encodeURIComponent(serviceName) + '/' + 'terminate',
+		{},
+	)) as IDataObject;
 	return this.helpers.returnJsonArray([data]);
 }
-
