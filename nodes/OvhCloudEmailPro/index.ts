@@ -16,7 +16,7 @@ export function description() {
 		name: 'emailProOperation',
 		type: 'options',
 		noDataExpression: true,
-		default: undefined,
+		default: 'getServiceByName',
 		options: [
 			{ displayName: 'Get Email Pro Task', name: 'emailProGetTask', value: 'emailProGetTask' },
 			{

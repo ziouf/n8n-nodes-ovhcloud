@@ -505,7 +505,7 @@ export function description() {
 		name: 'domainOperation',
 		type: 'options',
 		noDataExpression: true,
-		default: undefined,
+		default: 'domainZoneExportGetGet',
 		options: [
 			{
 				name: 'Accelerate a Zone Task',

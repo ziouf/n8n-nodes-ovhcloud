@@ -30,7 +30,7 @@ export function description() {
 		name: 'freefaxOperation',
 		type: 'options',
 		noDataExpression: true,
-		default: undefined,
+		default: 'creditsGet',
 		options: [
 			{
 				name: 'Change Password',

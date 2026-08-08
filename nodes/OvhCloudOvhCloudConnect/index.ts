@@ -57,7 +57,7 @@ export function description() {
 		name: 'ovhCloudConnectOperation',
 		type: 'options',
 		noDataExpression: true,
-		default: undefined,
+		default: 'interfaceStatisticsGet',
 		options: [
 			{
 				name: 'Change Service Contact',

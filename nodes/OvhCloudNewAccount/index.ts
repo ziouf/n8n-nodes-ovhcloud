@@ -19,7 +19,7 @@ export function description() {
 		name: 'newAccountOperation',
 		type: 'options',
 		noDataExpression: true,
-		default: undefined,
+		default: 'areaGet',
 		options: [
 			{
 				name: 'Create New Account',

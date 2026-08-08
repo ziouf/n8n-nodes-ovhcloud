@@ -13,7 +13,7 @@ export function description() {
 		name: 'partnerOperation',
 		type: 'options',
 		noDataExpression: true,
-		default: undefined,
+		default: 'get',
 		options: [
 			{
 				name: 'Get Partner Status',

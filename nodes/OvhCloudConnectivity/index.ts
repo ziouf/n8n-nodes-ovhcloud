@@ -45,7 +45,7 @@ export function description() {
 		name: 'connectivityOperation',
 		type: 'options',
 		noDataExpression: true,
-		default: undefined,
+		default: 'recallGet',
 		options: [
 			{
 				name: 'Create Eligibility Recall',
@@ -75,7 +75,8 @@ export function description() {
 			{
 				name: 'List Generic Incidents (Partners)',
 				value: 'genericIncidentPartnersGet',
-				action: 'List the detected, validated and recently closed generic incidents, reserved for partners',
+				action:
+					'List the detected, validated and recently closed generic incidents, reserved for partners',
 			},
 			{
 				name: 'List Generic Incidents (Public)',

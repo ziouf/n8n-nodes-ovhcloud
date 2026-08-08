@@ -1121,10 +1121,7 @@ export function description(displayOptions: IDisplayOptions): INodeProperties[] 
 				ipLoadbalancingOperation: ['deleteIpLoadbalancingserviceNVrackNetworkvrackNetDelete'],
 			},
 		}) as INodeProperties[]),
-		...(descriptionGetIpLoadbalancingAvailableZonesGet({
-			...displayOptions,
-			show: { ipLoadbalancingOperation: ['getIpLoadbalancingAvailableZonesGet'] },
-		}) as INodeProperties[]),
+		...(descriptionGetIpLoadbalancingAvailableZonesGet() as INodeProperties[]),
 		...(descriptionGetIpLoadbalancingserviceNDefinedFarmsGet({
 			...displayOptions,
 			show: { ipLoadbalancingOperation: ['getIpLoadbalancingserviceNDefinedFarmsGet'] },
@@ -1610,7 +1607,7 @@ export async function execute(
 				itemIndex,
 			);
 		case 'getIpLoadbalancingAvailableZonesGet':
-			return await executeGetIpLoadbalancingAvailableZonesGet.call(this, itemIndex);
+			return await executeGetIpLoadbalancingAvailableZonesGet.call(this);
 		case 'getIpLoadbalancingserviceNDefinedFarmsGet':
 			return await executeGetIpLoadbalancingserviceNDefinedFarmsGet.call(this, itemIndex);
 		case 'getIpLoadbalancingserviceNDefinedFrontendsGet':

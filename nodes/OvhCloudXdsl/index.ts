@@ -152,7 +152,7 @@ export function description() {
 		name: 'xdslOperation',
 		type: 'options',
 		noDataExpression: true,
-		default: undefined,
+		default: 'antiSpamDetailGet',
 		options: [
 			{
 				name: 'antiSpamDetailGet',

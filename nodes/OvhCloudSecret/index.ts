@@ -12,7 +12,7 @@ export function description() {
 		name: 'secretOperation',
 		type: 'options',
 		noDataExpression: true,
-		default: undefined,
+		default: 'retrievePost',
 		options: [
 			{
 				name: 'Retrieve Secret',

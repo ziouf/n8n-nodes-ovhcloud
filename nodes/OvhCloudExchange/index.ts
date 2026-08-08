@@ -214,7 +214,7 @@ export function description() {
 		name: 'exchangeOperation',
 		type: 'options',
 		noDataExpression: true,
-		default: undefined,
+		default: 'exchangeMisc',
 		options: [
 			{
 				displayName: 'List available services',
@@ -1231,7 +1231,7 @@ export function description() {
 				name: 'ServiceUpdateFlagsOnAllAccountsCreate',
 				value: 'ServiceUpdateFlagsOnAllAccountsCreate',
 			},
-			],
+		],
 	});
 
 	return props;
@@ -1500,9 +1500,13 @@ export async function execute(this: IExecuteFunctions): Promise<INodeExecutionDa
 		case 'ServiceProtocolActiveSyncMailNotificationList':
 			return exchangeServiceProtocolActiveSyncMailNotificationList.execute.call(this);
 		case 'ServiceProtocolActiveSyncMailNotificationNotifiedAccountIdDelete':
-			return exchangeServiceProtocolActiveSyncMailNotificationNotifiedAccountIdDelete.execute.call(this);
+			return exchangeServiceProtocolActiveSyncMailNotificationNotifiedAccountIdDelete.execute.call(
+				this,
+			);
 		case 'ServiceProtocolActiveSyncMailNotificationNotifiedAccountIdGet':
-			return exchangeServiceProtocolActiveSyncMailNotificationNotifiedAccountIdGet.execute.call(this);
+			return exchangeServiceProtocolActiveSyncMailNotificationNotifiedAccountIdGet.execute.call(
+				this,
+			);
 		case 'ServiceProtocolList':
 			return exchangeServiceProtocolList.execute.call(this);
 		case 'ServiceProtocolUpdate':
