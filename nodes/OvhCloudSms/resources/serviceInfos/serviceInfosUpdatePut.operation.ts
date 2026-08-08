@@ -6,16 +6,17 @@ import type {
 	INodeProperties,
 } from 'n8n-workflow';
 import { ApiClient } from '../../../../shared/transport/ApiClient';
+import { serviceNameLocator } from '../../../../shared/nodes/locators';
 
 export function description(displayOptions: IDisplayOptions): INodeProperties[] {
 	return [
 		{
-			displayName: 'Service Name',
-			name: 'serviceName',
-			type: 'string',
-			default: '',
-			required: true,
-			description: 'The internal name of your SMS offer',
+			...serviceNameLocator({
+				searchListMethod: 'getSmsServices',
+				displayName: 'Service Name',
+				description: 'The internal name of your SMS offer',
+				placeholder: 'sms-XXXXXX-1',
+			}),
 			displayOptions,
 		},
 		{
@@ -49,7 +50,7 @@ export function description(displayOptions: IDisplayOptions): INodeProperties[] 
 			default: '',
 			description: 'Property of services.Service',
 			displayOptions,
-		}
+		},
 	];
 }
 
@@ -60,7 +61,7 @@ export function description(displayOptions: IDisplayOptions): INodeProperties[] 
  * Endpoint: /sms/{serviceName}/serviceInfos
  */
 export async function execute(this: IExecuteFunctions): Promise<INodeExecutionData[]> {
-	const serviceName = this.getNodeParameter('serviceName', 0) as string;
+	const serviceName = this.getNodeParameter('serviceName', 0, '', { extractValue: true }) as string;
 	const body: IDataObject = {};
 	const canDeleteAtExpiration = this.getNodeParameter('canDeleteAtExpiration', 0) as boolean;
 	if (canDeleteAtExpiration) body['canDeleteAtExpiration'] = canDeleteAtExpiration;
@@ -70,6 +71,9 @@ export async function execute(this: IExecuteFunctions): Promise<INodeExecutionDa
 	if (contactBilling) body['contactBilling'] = contactBilling;
 	const contactTech = this.getNodeParameter('contactTech', 0) as string;
 	if (contactTech) body['contactTech'] = contactTech;
-	const data = (await new ApiClient(this).httpPut(`/sms/${encodeURIComponent(serviceName)}/serviceInfos`, body)) as IDataObject;
+	const data = (await new ApiClient(this).httpPut(
+		`/sms/${encodeURIComponent(serviceName)}/serviceInfos`,
+		body,
+	)) as IDataObject;
 	return this.helpers.returnJsonArray([data as IDataObject]);
 }

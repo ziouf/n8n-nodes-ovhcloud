@@ -18,7 +18,6 @@ export function description(displayOptions: IDisplayOptions): INodeProperties[] 
 			description: 'The notificationId identifier',
 			displayOptions,
 		},
-
 	];
 }
 
@@ -28,9 +27,11 @@ export function description(displayOptions: IDisplayOptions): INodeProperties[] 
  * HTTP method: GET
  * Endpoint: /notification/history/{notificationId}
  */
-export async function execute(this: IExecuteFunctions, itemIndex: number): Promise<INodeExecutionData[]> {
+export async function execute(
+	this: IExecuteFunctions,
+	itemIndex: number,
+): Promise<INodeExecutionData[]> {
 	const notificationId = this.getNodeParameter('notificationId', itemIndex) as string;
-
 
 	const client = new ApiClient(this);
 	const data = (await client.httpGet('/notification/history/' + notificationId)) as IDataObject;

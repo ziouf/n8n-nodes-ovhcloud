@@ -6,16 +6,17 @@ import type {
 	INodeProperties,
 } from 'n8n-workflow';
 import { ApiClient } from '../../../../shared/transport/ApiClient';
+import { serviceNameLocator } from '../../../../shared/nodes/locators';
 
 export function description(displayOptions: IDisplayOptions): INodeProperties[] {
 	return [
 		{
-			displayName: 'Service Name',
-			name: 'serviceName',
-			type: 'string',
-			default: '',
-			required: true,
-			description: 'The internal name of your SMS offer',
+			...serviceNameLocator({
+				searchListMethod: 'getSmsServices',
+				displayName: 'Service Name',
+				description: 'The internal name of your SMS offer',
+				placeholder: 'sms-XXXXXX-1',
+			}),
 			displayOptions,
 		},
 		{
@@ -23,7 +24,8 @@ export function description(displayOptions: IDisplayOptions): INodeProperties[] 
 			name: 'automaticRecreditAmount',
 			type: 'string',
 			default: '',
-			description: 'Property of sms.Account (allowed values: 100, 200, 250, 500, 1000, 5000, 10000)',
+			description:
+				'Property of sms.Account (allowed values: 100, 200, 250, 500, 1000, 5000, 10000)',
 			displayOptions,
 		},
 		{
@@ -65,7 +67,7 @@ export function description(displayOptions: IDisplayOptions): INodeProperties[] 
 			default: '',
 			description: 'Property of sms.Account',
 			displayOptions,
-		}
+		},
 	];
 }
 
@@ -76,7 +78,7 @@ export function description(displayOptions: IDisplayOptions): INodeProperties[] 
  * Endpoint: /sms/{serviceName}
  */
 export async function execute(this: IExecuteFunctions): Promise<INodeExecutionData[]> {
-	const serviceName = this.getNodeParameter('serviceName', 0) as string;
+	const serviceName = this.getNodeParameter('serviceName', 0, '', { extractValue: true }) as string;
 	const body: IDataObject = {};
 	const automaticRecreditAmount = this.getNodeParameter('automaticRecreditAmount', 0) as string;
 	if (automaticRecreditAmount) body['automaticRecreditAmount'] = automaticRecreditAmount;
@@ -90,6 +92,9 @@ export async function execute(this: IExecuteFunctions): Promise<INodeExecutionDa
 	if (status) body['status'] = status;
 	const stopCallBack = this.getNodeParameter('stopCallBack', 0) as string;
 	if (stopCallBack) body['stopCallBack'] = stopCallBack;
-	const data = (await new ApiClient(this).httpPut(`/sms/${encodeURIComponent(serviceName)}`, body)) as IDataObject;
+	const data = (await new ApiClient(this).httpPut(
+		`/sms/${encodeURIComponent(serviceName)}`,
+		body,
+	)) as IDataObject;
 	return this.helpers.returnJsonArray([data as IDataObject]);
 }

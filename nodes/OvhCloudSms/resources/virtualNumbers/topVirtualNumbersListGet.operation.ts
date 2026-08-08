@@ -16,7 +16,7 @@ export function description(displayOptions: IDisplayOptions): INodeProperties[] 
 			default: '',
 			description: 'Filter resources on IAM tags',
 			displayOptions,
-		}
+		},
 	];
 }
 

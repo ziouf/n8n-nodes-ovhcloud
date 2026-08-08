@@ -5,31 +5,18 @@ import type {
 	IDisplayOptions,
 	INodeProperties,
 } from 'n8n-workflow';
+import { serviceNameLocator } from '../../shared/nodes/locators';
 import { ApiClient } from '../../shared/transport/ApiClient';
 
 export function description(displayOptions: IDisplayOptions): INodeProperties[] {
 	return [
 		{
-			displayName: 'Template Details',
-			name: 'serviceName',
-			type: 'resourceLocator',
-			default: { mode: 'list', value: '' },
-			required: true,
-			description: 'The template name (e.g. debian12)',
-			modes: [
-				{
-					displayName: 'From List',
-					name: 'list',
-					type: 'list',
-					typeOptions: { searchListMethod: 'getVpsServices', searchable: true },
-				},
-				{
-					displayName: 'By Name',
-					name: 'name',
-					type: 'string',
-					placeholder: 'debian12',
-				},
-			],
+			...serviceNameLocator({
+				searchListMethod: 'getVpsServices',
+				displayName: 'Template Details',
+				description: 'The template name (e.g. debian12)',
+				placeholder: 'debian12',
+			}),
 			displayOptions,
 		},
 	];

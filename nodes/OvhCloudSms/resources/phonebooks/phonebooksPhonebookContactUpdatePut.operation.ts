@@ -6,6 +6,7 @@ import type {
 	INodeProperties,
 } from 'n8n-workflow';
 import { ApiClient } from '../../../../shared/transport/ApiClient';
+import { serviceNameLocator } from '../../../../shared/nodes/locators';
 
 export function description(displayOptions: IDisplayOptions): INodeProperties[] {
 	return [
@@ -28,12 +29,12 @@ export function description(displayOptions: IDisplayOptions): INodeProperties[] 
 			displayOptions,
 		},
 		{
-			displayName: 'Service Name',
-			name: 'serviceName',
-			type: 'string',
-			default: '',
-			required: true,
-			description: 'The internal name of your SMS offer',
+			...serviceNameLocator({
+				searchListMethod: 'getSmsServices',
+				displayName: 'Service Name',
+				description: 'The internal name of your SMS offer',
+				placeholder: 'sms-XXXXXX-1',
+			}),
 			displayOptions,
 		},
 		{
@@ -91,7 +92,7 @@ export function description(displayOptions: IDisplayOptions): INodeProperties[] 
 			default: '',
 			description: 'Property of sms.PhonebookContact',
 			displayOptions,
-		}
+		},
 	];
 }
 
@@ -104,7 +105,7 @@ export function description(displayOptions: IDisplayOptions): INodeProperties[] 
 export async function execute(this: IExecuteFunctions): Promise<INodeExecutionData[]> {
 	const bookKey = this.getNodeParameter('bookKey', 0) as string;
 	const id = this.getNodeParameter('id', 0) as number;
-	const serviceName = this.getNodeParameter('serviceName', 0) as string;
+	const serviceName = this.getNodeParameter('serviceName', 0, '', { extractValue: true }) as string;
 	const body: IDataObject = {};
 	const group = this.getNodeParameter('group', 0) as string;
 	if (group) body['group'] = group;
@@ -120,6 +121,9 @@ export async function execute(this: IExecuteFunctions): Promise<INodeExecutionDa
 	if (workMobile) body['workMobile'] = workMobile;
 	const workPhone = this.getNodeParameter('workPhone', 0) as string;
 	if (workPhone) body['workPhone'] = workPhone;
-	const data = (await new ApiClient(this).httpPut(`/sms/${encodeURIComponent(serviceName)}/phonebooks/${encodeURIComponent(bookKey)}/phonebookContact/${id}`, body)) as IDataObject;
+	const data = (await new ApiClient(this).httpPut(
+		`/sms/${encodeURIComponent(serviceName)}/phonebooks/${encodeURIComponent(bookKey)}/phonebookContact/${id}`,
+		body,
+	)) as IDataObject;
 	return this.helpers.returnJsonArray([data as IDataObject]);
 }

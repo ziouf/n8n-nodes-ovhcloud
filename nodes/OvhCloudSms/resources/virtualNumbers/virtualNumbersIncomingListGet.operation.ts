@@ -6,6 +6,7 @@ import type {
 	INodeProperties,
 } from 'n8n-workflow';
 import { ApiClient } from '../../../../shared/transport/ApiClient';
+import { serviceNameLocator } from '../../../../shared/nodes/locators';
 
 export function description(displayOptions: IDisplayOptions): INodeProperties[] {
 	return [
@@ -19,12 +20,12 @@ export function description(displayOptions: IDisplayOptions): INodeProperties[] 
 			displayOptions,
 		},
 		{
-			displayName: 'Service Name',
-			name: 'serviceName',
-			type: 'string',
-			default: '',
-			required: true,
-			description: 'The internal name of your SMS offer',
+			...serviceNameLocator({
+				searchListMethod: 'getSmsServices',
+				displayName: 'Service Name',
+				description: 'The internal name of your SMS offer',
+				placeholder: 'sms-XXXXXX-1',
+			}),
 			displayOptions,
 		},
 		{
@@ -58,7 +59,7 @@ export function description(displayOptions: IDisplayOptions): INodeProperties[] 
 			default: '',
 			description: 'Filter the value of tag property (=)',
 			displayOptions,
-		}
+		},
 	];
 }
 
@@ -70,7 +71,7 @@ export function description(displayOptions: IDisplayOptions): INodeProperties[] 
  */
 export async function execute(this: IExecuteFunctions): Promise<INodeExecutionData[]> {
 	const number = this.getNodeParameter('number', 0) as string;
-	const serviceName = this.getNodeParameter('serviceName', 0) as string;
+	const serviceName = this.getNodeParameter('serviceName', 0, '', { extractValue: true }) as string;
 	const creationDatetimeFrom = this.getNodeParameter('creationDatetimeFrom', 0) as string;
 	const creationDatetimeTo = this.getNodeParameter('creationDatetimeTo', 0) as string;
 	const sender = this.getNodeParameter('sender', 0) as string;
@@ -80,6 +81,9 @@ export async function execute(this: IExecuteFunctions): Promise<INodeExecutionDa
 	if (creationDatetimeTo) qs['creationDatetime.to'] = creationDatetimeTo;
 	if (sender) qs['sender'] = sender;
 	if (tag) qs['tag'] = tag;
-	const data = (await new ApiClient(this).httpGet(`/sms/${encodeURIComponent(serviceName)}/virtualNumbers/${encodeURIComponent(number)}/incoming`, qs)) as number[];
+	const data = (await new ApiClient(this).httpGet(
+		`/sms/${encodeURIComponent(serviceName)}/virtualNumbers/${encodeURIComponent(number)}/incoming`,
+		qs,
+	)) as number[];
 	return this.helpers.returnJsonArray(data.map((v: number) => ({ id: v })));
 }

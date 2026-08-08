@@ -6,16 +6,17 @@ import type {
 	INodeProperties,
 } from 'n8n-workflow';
 import { ApiClient } from '../../../../shared/transport/ApiClient';
+import { serviceNameLocator } from '../../../../shared/nodes/locators';
 
 export function description(displayOptions: IDisplayOptions): INodeProperties[] {
 	return [
 		{
-			displayName: 'Service Name',
-			name: 'serviceName',
-			type: 'string',
-			default: '',
-			required: true,
-			description: 'The internal name of your SMS offer',
+			...serviceNameLocator({
+				searchListMethod: 'getSmsServices',
+				displayName: 'Service Name',
+				description: 'The internal name of your SMS offer',
+				placeholder: 'sms-XXXXXX-1',
+			}),
 			displayOptions,
 		},
 		{
@@ -99,7 +100,7 @@ export function description(displayOptions: IDisplayOptions): INodeProperties[] 
 			required: true,
 			description: 'Property of sms.BatchParams (comma-separated list)',
 			displayOptions,
-		}
+		},
 	];
 }
 
@@ -110,7 +111,7 @@ export function description(displayOptions: IDisplayOptions): INodeProperties[] 
  * Endpoint: /sms/{serviceName}/batches
  */
 export async function execute(this: IExecuteFunctions): Promise<INodeExecutionData[]> {
-	const serviceName = this.getNodeParameter('serviceName', 0) as string;
+	const serviceName = this.getNodeParameter('serviceName', 0, '', { extractValue: true }) as string;
 	const body: IDataObject = {};
 	const classValue = this.getNodeParameter('class', 0) as string;
 	if (classValue) body['class'] = classValue;
@@ -132,6 +133,9 @@ export async function execute(this: IExecuteFunctions): Promise<INodeExecutionDa
 	if (tag) body['tag'] = tag;
 	const to = this.getNodeParameter('to', 0) as string;
 	body['to'] = (to as string).split(',').map((r: string) => r.trim());
-	const data = (await new ApiClient(this).httpPost(`/sms/${encodeURIComponent(serviceName)}/batches`, body)) as IDataObject;
+	const data = (await new ApiClient(this).httpPost(
+		`/sms/${encodeURIComponent(serviceName)}/batches`,
+		body,
+	)) as IDataObject;
 	return this.helpers.returnJsonArray([data as IDataObject]);
 }

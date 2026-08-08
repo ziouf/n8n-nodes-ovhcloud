@@ -6,6 +6,7 @@ import type {
 	INodeProperties,
 } from 'n8n-workflow';
 import { ApiClient } from '../../../../shared/transport/ApiClient';
+import { serviceNameLocator } from '../../../../shared/nodes/locators';
 
 export function description(displayOptions: IDisplayOptions): INodeProperties[] {
 	return [
@@ -19,12 +20,12 @@ export function description(displayOptions: IDisplayOptions): INodeProperties[] 
 			displayOptions,
 		},
 		{
-			displayName: 'Service Name',
-			name: 'serviceName',
-			type: 'string',
-			default: '',
-			required: true,
-			description: 'The internal name of your SMS offer',
+			...serviceNameLocator({
+				searchListMethod: 'getSmsServices',
+				displayName: 'Service Name',
+				description: 'The internal name of your SMS offer',
+				placeholder: 'sms-XXXXXX-1',
+			}),
 			displayOptions,
 		},
 		{
@@ -56,11 +57,14 @@ export function description(displayOptions: IDisplayOptions): INodeProperties[] 
 			name: 'wayType',
 			type: 'options',
 			default: 'incoming',
-			options: [{ name: 'Incoming', value: 'incoming' }, { name: 'Outgoing', value: 'outgoing' }],
+			options: [
+				{ name: 'Incoming', value: 'incoming' },
+				{ name: 'Outgoing', value: 'outgoing' },
+			],
 			required: true,
 			description: 'Specify outgoing or incoming sms',
 			displayOptions,
-		}
+		},
 	];
 }
 
@@ -72,7 +76,7 @@ export function description(displayOptions: IDisplayOptions): INodeProperties[] 
  */
 export async function execute(this: IExecuteFunctions): Promise<INodeExecutionData[]> {
 	const login = this.getNodeParameter('login', 0) as string;
-	const serviceName = this.getNodeParameter('serviceName', 0) as string;
+	const serviceName = this.getNodeParameter('serviceName', 0, '', { extractValue: true }) as string;
 	const creationDatetimeFrom = this.getNodeParameter('creationDatetimeFrom', 0) as string;
 	const creationDatetimeTo = this.getNodeParameter('creationDatetimeTo', 0) as string;
 	const tag = this.getNodeParameter('tag', 0) as string;
@@ -82,6 +86,9 @@ export async function execute(this: IExecuteFunctions): Promise<INodeExecutionDa
 	if (creationDatetimeFrom) qs['creationDatetime.from'] = creationDatetimeFrom;
 	if (creationDatetimeTo) qs['creationDatetime.to'] = creationDatetimeTo;
 	if (tag) qs['tag'] = tag;
-	const data = (await new ApiClient(this).httpGet(`/sms/${encodeURIComponent(serviceName)}/users/${encodeURIComponent(login)}/document`, qs)) as string;
+	const data = (await new ApiClient(this).httpGet(
+		`/sms/${encodeURIComponent(serviceName)}/users/${encodeURIComponent(login)}/document`,
+		qs,
+	)) as string;
 	return this.helpers.returnJsonArray([{ value: data }]);
 }

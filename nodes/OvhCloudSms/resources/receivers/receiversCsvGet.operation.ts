@@ -5,16 +5,17 @@ import type {
 	INodeProperties,
 } from 'n8n-workflow';
 import { ApiClient } from '../../../../shared/transport/ApiClient';
+import { serviceNameLocator } from '../../../../shared/nodes/locators';
 
 export function description(displayOptions: IDisplayOptions): INodeProperties[] {
 	return [
 		{
-			displayName: 'Service Name',
-			name: 'serviceName',
-			type: 'string',
-			default: '',
-			required: true,
-			description: 'The internal name of your SMS offer',
+			...serviceNameLocator({
+				searchListMethod: 'getSmsServices',
+				displayName: 'Service Name',
+				description: 'The internal name of your SMS offer',
+				placeholder: 'sms-XXXXXX-1',
+			}),
 			displayOptions,
 		},
 		{
@@ -25,7 +26,7 @@ export function description(displayOptions: IDisplayOptions): INodeProperties[] 
 			required: true,
 			description: 'Slot number ID',
 			displayOptions,
-		}
+		},
 	];
 }
 
@@ -36,8 +37,10 @@ export function description(displayOptions: IDisplayOptions): INodeProperties[] 
  * Endpoint: /sms/{serviceName}/receivers/{slotId}/csv
  */
 export async function execute(this: IExecuteFunctions): Promise<INodeExecutionData[]> {
-	const serviceName = this.getNodeParameter('serviceName', 0) as string;
+	const serviceName = this.getNodeParameter('serviceName', 0, '', { extractValue: true }) as string;
 	const slotId = this.getNodeParameter('slotId', 0) as number;
-	const data = (await new ApiClient(this).httpGet(`/sms/${encodeURIComponent(serviceName)}/receivers/${slotId}/csv`)) as string;
+	const data = (await new ApiClient(this).httpGet(
+		`/sms/${encodeURIComponent(serviceName)}/receivers/${slotId}/csv`,
+	)) as string;
 	return this.helpers.returnJsonArray([{ value: data }]);
 }

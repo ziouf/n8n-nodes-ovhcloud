@@ -49,7 +49,7 @@ export function description(displayOptions: IDisplayOptions): INodeProperties[] 
 			default: '',
 			description: 'Property of services.Service',
 			displayOptions,
-		}
+		},
 	];
 }
 
@@ -70,6 +70,9 @@ export async function execute(this: IExecuteFunctions): Promise<INodeExecutionDa
 	if (contactBilling) body['contactBilling'] = contactBilling;
 	const contactTech = this.getNodeParameter('contactTech', 0) as string;
 	if (contactTech) body['contactTech'] = contactTech;
-	const data = (await new ApiClient(this).httpPut(`/sms/virtualNumbers/${encodeURIComponent(number)}/serviceInfos`, body)) as IDataObject;
+	const data = (await new ApiClient(this).httpPut(
+		`/sms/virtualNumbers/${encodeURIComponent(number)}/serviceInfos`,
+		body,
+	)) as IDataObject;
 	return this.helpers.returnJsonArray([data as IDataObject]);
 }

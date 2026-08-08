@@ -24,7 +24,8 @@ export function description(displayOptions: IDisplayOptions): INodeProperties[] 
 			type: 'boolean',
 			default: false,
 			required: true,
-			description: 'Whether Do not display STOP clause in the message, this requires that this is not an advertising message',
+			description:
+				'Whether Do not display STOP clause in the message, this requires that this is not an advertising message',
 			displayOptions,
 		},
 		{
@@ -32,11 +33,17 @@ export function description(displayOptions: IDisplayOptions): INodeProperties[] 
 			name: 'senderType',
 			type: 'options',
 			default: 'alpha',
-			options: [{ name: 'Alpha', value: 'alpha' }, { name: 'Numeric', value: 'numeric' }, { name: 'Shortcode', value: 'shortcode' }, { name: 'Time2chat', value: 'time2chat' }, { name: 'Virtual', value: 'virtual' }],
+			options: [
+				{ name: 'Alpha', value: 'alpha' },
+				{ name: 'Numeric', value: 'numeric' },
+				{ name: 'Shortcode', value: 'shortcode' },
+				{ name: 'Time2chat', value: 'time2chat' },
+				{ name: 'Virtual', value: 'virtual' },
+			],
 			required: true,
 			description: 'Sender type that will be used to send the message',
 			displayOptions,
-		}
+		},
 	];
 }
 

@@ -18,7 +18,6 @@ export function description(displayOptions: IDisplayOptions): INodeProperties[] 
 			description: 'The routingId identifier',
 			displayOptions,
 		},
-
 	];
 }
 
@@ -28,9 +27,11 @@ export function description(displayOptions: IDisplayOptions): INodeProperties[] 
  * HTTP method: GET
  * Endpoint: /notification/routing/{routingId}
  */
-export async function execute(this: IExecuteFunctions, itemIndex: number): Promise<INodeExecutionData[]> {
+export async function execute(
+	this: IExecuteFunctions,
+	itemIndex: number,
+): Promise<INodeExecutionData[]> {
 	const routingId = this.getNodeParameter('routingId', itemIndex) as string;
-
 
 	const client = new ApiClient(this);
 	const data = (await client.httpGet('/notification/routing/' + routingId)) as IDataObject;

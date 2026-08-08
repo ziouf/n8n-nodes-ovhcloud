@@ -6,6 +6,7 @@ import type {
 	INodeProperties,
 } from 'n8n-workflow';
 import { ApiClient } from '../../../../shared/transport/ApiClient';
+import { serviceNameLocator } from '../../../../shared/nodes/locators';
 
 export function description(displayOptions: IDisplayOptions): INodeProperties[] {
 	return [
@@ -19,12 +20,12 @@ export function description(displayOptions: IDisplayOptions): INodeProperties[] 
 			displayOptions,
 		},
 		{
-			displayName: 'Service Name',
-			name: 'serviceName',
-			type: 'string',
-			default: '',
-			required: true,
-			description: 'The internal name of your SMS offer',
+			...serviceNameLocator({
+				searchListMethod: 'getSmsServices',
+				displayName: 'Service Name',
+				description: 'The internal name of your SMS offer',
+				placeholder: 'sms-XXXXXX-1',
+			}),
 			displayOptions,
 		},
 		{
@@ -43,7 +44,7 @@ export function description(displayOptions: IDisplayOptions): INodeProperties[] 
 			required: true,
 			description: 'Document name',
 			displayOptions,
-		}
+		},
 	];
 }
 
@@ -55,12 +56,15 @@ export function description(displayOptions: IDisplayOptions): INodeProperties[] 
  */
 export async function execute(this: IExecuteFunctions): Promise<INodeExecutionData[]> {
 	const sender = this.getNodeParameter('sender', 0) as string;
-	const serviceName = this.getNodeParameter('serviceName', 0) as string;
+	const serviceName = this.getNodeParameter('serviceName', 0, '', { extractValue: true }) as string;
 	const description = this.getNodeParameter('description', 0) as string;
 	const name = this.getNodeParameter('name', 0) as string;
 	const body: IDataObject = {};
 	if (description) body['description'] = description;
 	body['name'] = name;
-	const data = (await new ApiClient(this).httpPost(`/sms/${encodeURIComponent(serviceName)}/senders/${encodeURIComponent(sender)}/documents`, body)) as IDataObject;
+	const data = (await new ApiClient(this).httpPost(
+		`/sms/${encodeURIComponent(serviceName)}/senders/${encodeURIComponent(sender)}/documents`,
+		body,
+	)) as IDataObject;
 	return this.helpers.returnJsonArray([data as IDataObject]);
 }

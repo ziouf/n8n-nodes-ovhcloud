@@ -18,7 +18,6 @@ export function description(displayOptions: IDisplayOptions): INodeProperties[] 
 			description: 'The contactMeanId identifier',
 			displayOptions,
 		},
-
 	];
 }
 
@@ -28,9 +27,11 @@ export function description(displayOptions: IDisplayOptions): INodeProperties[] 
  * HTTP method: GET
  * Endpoint: /notification/contactMean/{contactMeanId}
  */
-export async function execute(this: IExecuteFunctions, itemIndex: number): Promise<INodeExecutionData[]> {
+export async function execute(
+	this: IExecuteFunctions,
+	itemIndex: number,
+): Promise<INodeExecutionData[]> {
 	const contactMeanId = this.getNodeParameter('contactMeanId', itemIndex) as string;
-
 
 	const client = new ApiClient(this);
 	const data = (await client.httpGet('/notification/contactMean/' + contactMeanId)) as IDataObject;

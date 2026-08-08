@@ -17,7 +17,7 @@ export function description(displayOptions: IDisplayOptions): INodeProperties[] 
 			required: true,
 			description: 'The premium transaction tracking code',
 			displayOptions,
-		}
+		},
 	];
 }
 

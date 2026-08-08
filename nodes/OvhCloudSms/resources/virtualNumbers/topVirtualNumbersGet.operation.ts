@@ -17,7 +17,7 @@ export function description(displayOptions: IDisplayOptions): INodeProperties[] 
 			required: true,
 			description: 'Your virtual number',
 			displayOptions,
-		}
+		},
 	];
 }
 
@@ -29,6 +29,8 @@ export function description(displayOptions: IDisplayOptions): INodeProperties[] 
  */
 export async function execute(this: IExecuteFunctions): Promise<INodeExecutionData[]> {
 	const number = this.getNodeParameter('number', 0) as string;
-	const data = (await new ApiClient(this).httpGet(`/sms/virtualNumbers/${encodeURIComponent(number)}/serviceInfos`)) as IDataObject;
+	const data = (await new ApiClient(this).httpGet(
+		`/sms/virtualNumbers/${encodeURIComponent(number)}/serviceInfos`,
+	)) as IDataObject;
 	return this.helpers.returnJsonArray([data as IDataObject]);
 }

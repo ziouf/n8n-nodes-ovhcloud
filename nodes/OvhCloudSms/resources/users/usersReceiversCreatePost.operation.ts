@@ -6,6 +6,7 @@ import type {
 	INodeProperties,
 } from 'n8n-workflow';
 import { ApiClient } from '../../../../shared/transport/ApiClient';
+import { serviceNameLocator } from '../../../../shared/nodes/locators';
 
 export function description(displayOptions: IDisplayOptions): INodeProperties[] {
 	return [
@@ -19,12 +20,12 @@ export function description(displayOptions: IDisplayOptions): INodeProperties[] 
 			displayOptions,
 		},
 		{
-			displayName: 'Service Name',
-			name: 'serviceName',
-			type: 'string',
-			default: '',
-			required: true,
-			description: 'The internal name of your SMS offer',
+			...serviceNameLocator({
+				searchListMethod: 'getSmsServices',
+				displayName: 'Service Name',
+				description: 'The internal name of your SMS offer',
+				placeholder: 'sms-XXXXXX-1',
+			}),
 			displayOptions,
 		},
 		{
@@ -33,7 +34,8 @@ export function description(displayOptions: IDisplayOptions): INodeProperties[] 
 			type: 'boolean',
 			default: false,
 			required: true,
-			description: 'Whether Download file from URL before sending to contacts (works only with csvUrl and not document ID)',
+			description:
+				'Whether Download file from URL before sending to contacts (works only with csvUrl and not document ID)',
 			displayOptions,
 		},
 		{
@@ -69,7 +71,7 @@ export function description(displayOptions: IDisplayOptions): INodeProperties[] 
 			required: true,
 			description: 'Slot number ID used to handle the document',
 			displayOptions,
-		}
+		},
 	];
 }
 
@@ -81,7 +83,7 @@ export function description(displayOptions: IDisplayOptions): INodeProperties[] 
  */
 export async function execute(this: IExecuteFunctions): Promise<INodeExecutionData[]> {
 	const login = this.getNodeParameter('login', 0) as string;
-	const serviceName = this.getNodeParameter('serviceName', 0) as string;
+	const serviceName = this.getNodeParameter('serviceName', 0, '', { extractValue: true }) as string;
 	const autoUpdate = this.getNodeParameter('autoUpdate', 0) as boolean;
 	const csvUrl = this.getNodeParameter('csvUrl', 0) as string;
 	const description = this.getNodeParameter('description', 0) as string;
@@ -93,6 +95,9 @@ export async function execute(this: IExecuteFunctions): Promise<INodeExecutionDa
 	body['description'] = description;
 	if (documentId) body['documentId'] = documentId;
 	body['slotId'] = slotId;
-	const data = (await new ApiClient(this).httpPost(`/sms/${encodeURIComponent(serviceName)}/users/${encodeURIComponent(login)}/receivers`, body)) as IDataObject;
+	const data = (await new ApiClient(this).httpPost(
+		`/sms/${encodeURIComponent(serviceName)}/users/${encodeURIComponent(login)}/receivers`,
+		body,
+	)) as IDataObject;
 	return this.helpers.returnJsonArray([data as IDataObject]);
 }
