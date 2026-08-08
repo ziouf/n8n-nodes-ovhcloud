@@ -19,6 +19,8 @@
 - Throw descriptive error messages with context (e.g., which operation failed and why).
 - Validate inputs before making API calls to avoid unnecessary errors.
 - Handle API errors gracefully and provide meaningful error messages to users.
+- **Destructive operations** (terminate, reinstall, reboot) display a yellow warning notice in the node UI via the shared `destructiveActionNotice()` helper, alerting users before irreversible actions.
+- **Concurrent execution mode** (`executeTemplate` with `concurrency > 1`): when `continueOnFail` is disabled, the first fatal error throws a unified `NodeApiError` and stops all new items from starting. Workers already in flight are awaited before the error is thrown, so no in-flight requests are left orphaned.
 
 ## Common Error Scenarios
 
@@ -49,9 +51,10 @@ Examples of common error messages:
 
 ## Retry Logic Recommendations
 
-- Implement **exponential backoff** for rate limit (`429`) and server error (`500`, `503`) responses.
-- Use n8n's built-in retry mechanisms where applicable.
-- For asynchronous operations that return a task object, poll the task status until completion (`done` or `error`) rather than retrying the operation itself.
+- **Transient Retry**: All `GET` requests now include an automatic retry mechanism by default for transient errors (e.g., timeouts, 503s).
+- **Jitter**: A jitter algorithm is applied to retry delays to prevent request collisions.
+- **`continueOnFail`**: In case of an error during a batch operation, the `continueOnFail` parameter ensures that the current input item is preserved in the output to facilitate debugging and subsequent manual processing.
+- For asynchronous operations that return a task object, continue to poll the task status until completion (`done` or `error`) rather than retrying the operation itself.
 
 ## Handling Asynchronous Tasks
 

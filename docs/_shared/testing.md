@@ -1,8 +1,23 @@
 # Testing
 
-## Manual Testing in n8n
+## Automated Tests (Jest + ts-jest)
 
-There is no automated test framework configured for this project. All testing must be performed manually via an n8n instance.
+This project uses **Jest** with **ts-jest** for unit and non-regression testing. The test suite covers 3000+ tests across all nodes.
+
+### Running Tests
+
+```bash
+npm test
+```
+
+### Key Test Files
+
+- **`tests/base-node.test.ts`** — concurrency support in `executeTemplate` (worker pool, result ordering, `continueOnFail` per item, fatal error handling)
+- **`tests/api-client-pagination-retry.test.ts`** — `paginateResources` with `onSkipped` callback and `concurrency` option
+- **`tests/*.operation.test.ts`** — per-node operation coverage tests
+- **`tests/helpers.ts`** — shared test utilities (`createMockCtx`, `invokeOperation`)
+
+## Manual Testing in n8n
 
 ### Steps
 

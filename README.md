@@ -31,10 +31,16 @@ All nodes share common features across every OVH Cloud endpoint:
 
 - **Multi-endpoint support**: OVH Europe, Canada, USA, SoYouStart, Kimsufi
 - **SHA1 signature authentication** for secure API requests (via `OvhCloudApiClient`)
-- **Dynamic list selection** — auto-populate dropdowns with live data via resourceLocator + paginated searchListMethod, built on a shared `createServiceListSearch()` factory (`shared/methods/listSearch.ts`)
+- **Dynamic list selection** — auto-populate dropdowns with live data via a shared `resourceLocator` factory (e.g. `shared/nodes/locators.ts`) and paginated `searchListMethod` (built on `shared/methods/listSearch.ts`)
 - **Credential memoization** — API credentials are fetched once per node execution and reused across all HTTP calls (`ApiClient.clearCredentialsCache()` to force refresh)
-- **Bounded-concurrency resource pagination** — `paginateResources()` fetches detail objects in parallel (max 5 concurrent requests) while preserving order
-- **Automatic pagination** for endpoints returning ID arrays (`string[]` / `long[]`) that are mapped to full objects
+- **Automatic retry & backoff** — GET requests automatically retry on transient errors (429, 5xx, timeouts) with jitter; POST/PUT/DELETE retries require explicit `*WithRetry` configuration.
+- **Destructive operation warnings** — destructive or irreversible operations (terminate, reinstall, reboot) display a yellow warning notice in the node UI via the shared `destructiveActionNotice()` helper.
+- **Advanced pagination** — `paginateResources()` fetches detail objects in parallel (max 5 concurrent requests) with an `onSkipped` callback for per-resource error tracking; `paginate` supports `maxItems` (default 1000), `query` merging, and automatic mapping to full objects for ID arrays.
+- **Return Full Objects / Max Items** — list operations (VPS, Dedicated Server) expose a toggle to fetch full resource objects in parallel, with a configurable max item count and a visible warning when some resources could not be fetched.
+
+### Status
+
+- **Build Status**: ✅ Passing (stable)
 
 ### Available Nodes
 
@@ -384,7 +390,10 @@ n8n-nodes-ovhcloud/
 │   ├── OvhCloudZimbra/                 # Zimbra email node (V2)
 │   └── shared/
 │       ├── constants.ts                # Shared constants (icon path, credential name)
-│       ├── nodes/BaseNode.ts           # Abstract base class for all OVH Cloud nodes
+│       ├── nodes/
+│       │   ├── BaseNode.ts           # Abstract base class for all OVH Cloud nodes (executeTemplate supports optional concurrency)
+│       │   ├── listOptions.ts        # "Return Full Objects / Max Items" list options helper
+│       │   ├── notices.ts            # Destructive action warning notices
 │       ├── methods/                    # Search list methods for dynamic dropdowns
 │       │   └── listSearch.ts           # createServiceListSearch() factory (deduplicated loaders)
 │       └── transport/                   # API client & authentication
