@@ -54,7 +54,6 @@ describe('OvhCloud Public Cloud - Backup Operations', () => {
 
 			const calls = await invokeOperation(executeFn, params);
 
-	
 			expect(calls.length).toBeGreaterThan(0);
 			for (const call of calls) {
 				expect(call.url).toMatch(expectedUrlPattern);
@@ -80,7 +79,6 @@ describe('OvhCloud Public Cloud - Backup Operations', () => {
 
 			const calls = await invokeOperation(executeFn, params);
 
-	
 			expect(calls.length).toBeGreaterThan(0);
 			for (const call of calls) {
 				expect(call.url).toContain('/publicCloud/project/');
@@ -105,10 +103,8 @@ describe('OvhCloud Public Cloud - Backup Operations', () => {
 			if (name !== 'createBackupPost') params.backupId = backupId;
 			const calls = await invokeOperation(executeFn, params);
 
-	
 			expect(calls.length).toBeGreaterThan(0);
 			for (const call of calls) {
-		
 				if (!name.includes('List')) {
 					if (name === 'createBackupPost') {
 						// create doesn't have backupId in URL path, just ends with /blockStorage/backup$
@@ -181,7 +177,6 @@ describe('OvhCloud Public Cloud - Snapshot Operations', () => {
 
 			const calls = await invokeOperation(executeFn, params);
 
-	
 			expect(calls.length).toBeGreaterThan(0);
 			for (const call of calls) {
 				expect(call.url).toMatch(expectedUrlPattern);
@@ -207,7 +202,6 @@ describe('OvhCloud Public Cloud - Snapshot Operations', () => {
 
 			const calls = await invokeOperation(executeFn, params);
 
-	
 			expect(calls.length).toBeGreaterThan(0);
 			for (const call of calls) {
 				expect(call.url).toContain('/publicCloud/project/');
@@ -232,7 +226,6 @@ describe('OvhCloud Public Cloud - Snapshot Operations', () => {
 			if (name !== 'createSnapshotPost') params.snapshotId = snapshotId;
 			const calls = await invokeOperation(executeFn, params);
 
-	
 			expect(calls.length).toBeGreaterThan(0);
 			for (const call of calls) {
 				if (!name.includes('List')) {

@@ -149,9 +149,11 @@ describe('ApiClient', () => {
 
 	describe('error handling', () => {
 		it('should propagate httpRequest errors from httpGet', async () => {
-			mockHttpRequest.mockRejectedValue(new Error('Network error'));
+			mockHttpRequest.mockRejectedValue(
+				Object.assign(new Error('Bad request'), { code: 400, httpCode: '400' }),
+			);
 
-			await expect(client.httpGet('/vps')).rejects.toThrow('Network error');
+			await expect(client.httpGet('/vps')).rejects.toThrow('Bad request');
 		});
 
 		it('should propagate httpRequest errors from httpPost', async () => {

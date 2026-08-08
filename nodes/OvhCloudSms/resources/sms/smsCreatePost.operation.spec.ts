@@ -21,8 +21,8 @@ describe('smsCreatePost.operation', () => {
 			expect(result[0]).toMatchObject({
 				displayName: 'Service Name',
 				name: 'serviceName',
-				type: 'string',
-				default: '',
+				type: 'resourceLocator',
+				default: { mode: 'list', value: '' },
 				required: true,
 			});
 			expect(result.find((p: any) => p.name === 'message')).toMatchObject({
