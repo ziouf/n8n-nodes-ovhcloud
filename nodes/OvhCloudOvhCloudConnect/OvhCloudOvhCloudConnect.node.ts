@@ -17,7 +17,8 @@ export class OvhCloudOvhCloudConnect extends BaseNode implements INodeType {
 		icon: OvhCloudIcon,
 		group: ['input'],
 		version: 1,
-		subtitle: '={{$parameter["ovhCloudConnectOperation"]}}',
+		subtitle:
+			'={{$parameter["ovhCloudConnectOperation"]}}{{ $parameter["serviceName"] ? ": " + ($parameter["serviceName"].value ?? $parameter["serviceName"]) : "" }}',
 		description: 'Manage OVHcloud OvhCloud Connect services via the /ovhCloudConnect API v1',
 		defaults: { name: 'OVH Cloud OvhCloudConnect' },
 		usableAsTool: true,

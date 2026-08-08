@@ -1,4 +1,9 @@
-import type { IExecuteFunctions, INodeExecutionData, INodeProperties, IDisplayOptions } from 'n8n-workflow';
+import type {
+	IExecuteFunctions,
+	INodeExecutionData,
+	INodeProperties,
+	IDisplayOptions,
+} from 'n8n-workflow';
 
 import {
 	execute as executeMxPlanAccountAliasCreate,
@@ -195,192 +200,192 @@ export function description(displayOptions: IDisplayOptions = {}): INodeProperti
 		type: 'options',
 		noDataExpression: true,
 		options: [
-				{
-					name: 'MxPlanAccountAliasCreate',
-					value: 'MxPlanAccountAliasCreate',
-				},
-				{
-					name: 'MxPlanAccountAliasDelete',
-					value: 'MxPlanAccountAliasDelete',
-				},
-				{
-					name: 'MxPlanAccountAliasGet',
-					value: 'MxPlanAccountAliasGet',
-				},
-				{
-					name: 'MxPlanAccountAliasList',
-					value: 'MxPlanAccountAliasList',
-				},
-				{
-					name: 'MxPlanAccountCapabilitiesGet',
-					value: 'MxPlanAccountCapabilitiesGet',
-				},
-				{
-					name: 'MxPlanAccountChangePasswordCreate',
-					value: 'MxPlanAccountChangePasswordCreate',
-				},
-				{
-					name: 'MxPlanAccountDelete',
-					value: 'MxPlanAccountDelete',
-				},
-				{
-					name: 'MxPlanAccountDiagnosticCreate',
-					value: 'MxPlanAccountDiagnosticCreate',
-				},
-				{
-					name: 'MxPlanAccountDiagnosticGet',
-					value: 'MxPlanAccountDiagnosticGet',
-				},
-				{
-					name: 'MxPlanAccountFullAccessCreate',
-					value: 'MxPlanAccountFullAccessCreate',
-				},
-				{
-					name: 'MxPlanAccountFullAccessDelete',
-					value: 'MxPlanAccountFullAccessDelete',
-				},
-				{
-					name: 'MxPlanAccountFullAccessGet',
-					value: 'MxPlanAccountFullAccessGet',
-				},
-				{
-					name: 'MxPlanAccountFullAccessList',
-					value: 'MxPlanAccountFullAccessList',
-				},
-				{
-					name: 'MxPlanAccountGet',
-					value: 'MxPlanAccountGet',
-				},
-				{
-					name: 'MxPlanAccountList',
-					value: 'MxPlanAccountList',
-				},
-				{
-					name: 'MxPlanAccountSendAsCreate',
-					value: 'MxPlanAccountSendAsCreate',
-				},
-				{
-					name: 'MxPlanAccountSendAsDelete',
-					value: 'MxPlanAccountSendAsDelete',
-				},
-				{
-					name: 'MxPlanAccountSendAsGet',
-					value: 'MxPlanAccountSendAsGet',
-				},
-				{
-					name: 'MxPlanAccountSendAsList',
-					value: 'MxPlanAccountSendAsList',
-				},
-				{
-					name: 'MxPlanAccountSendOnBehalfToCreate',
-					value: 'MxPlanAccountSendOnBehalfToCreate',
-				},
-				{
-					name: 'MxPlanAccountSendOnBehalfToDelete',
-					value: 'MxPlanAccountSendOnBehalfToDelete',
-				},
-				{
-					name: 'MxPlanAccountSendOnBehalfToGet',
-					value: 'MxPlanAccountSendOnBehalfToGet',
-				},
-				{
-					name: 'MxPlanAccountSendOnBehalfToList',
-					value: 'MxPlanAccountSendOnBehalfToList',
-				},
-				{
-					name: 'MxPlanAccountTaskGet',
-					value: 'MxPlanAccountTaskGet',
-				},
-				{
-					name: 'MxPlanAccountTaskList',
-					value: 'MxPlanAccountTaskList',
-				},
-				{
-					name: 'MxPlanAccountUpdate',
-					value: 'MxPlanAccountUpdate',
-				},
-				{
-					name: 'MxPlanDomainDisclaimerAttributeGet',
-					value: 'MxPlanDomainDisclaimerAttributeGet',
-				},
-				{
-					name: 'MxPlanDomainDisclaimerCreate',
-					value: 'MxPlanDomainDisclaimerCreate',
-				},
-				{
-					name: 'MxPlanDomainDisclaimerDelete',
-					value: 'MxPlanDomainDisclaimerDelete',
-				},
-				{
-					name: 'MxPlanDomainDisclaimerList',
-					value: 'MxPlanDomainDisclaimerList',
-				},
-				{
-					name: 'MxPlanDomainDisclaimerUpdate',
-					value: 'MxPlanDomainDisclaimerUpdate',
-				},
-				{
-					name: 'MxPlanDomainGet',
-					value: 'MxPlanDomainGet',
-				},
-				{
-					name: 'MxPlanDomainList',
-					value: 'MxPlanDomainList',
-				},
-				{
-					name: 'MxPlanDomainUpdate',
-					value: 'MxPlanDomainUpdate',
-				},
-				{
-					name: 'MxPlanExternalContactCreate',
-					value: 'MxPlanExternalContactCreate',
-				},
-				{
-					name: 'MxPlanExternalContactDelete',
-					value: 'MxPlanExternalContactDelete',
-				},
-				{
-					name: 'MxPlanExternalContactGet',
-					value: 'MxPlanExternalContactGet',
-				},
-				{
-					name: 'MxPlanExternalContactList',
-					value: 'MxPlanExternalContactList',
-				},
-				{
-					name: 'MxPlanExternalContactUpdate',
-					value: 'MxPlanExternalContactUpdate',
-				},
-				{
-					name: 'MxPlanGet',
-					value: 'MxPlanGet',
-				},
-				{
-					name: 'MxPlanList',
-					value: 'MxPlanList',
-				},
-				{
-					name: 'MxPlanPut',
-					value: 'MxPlanPut',
-				},
-				{
-					name: 'MxPlanServerGet',
-					value: 'MxPlanServerGet',
-				},
-				{
-					name: 'MxPlanTaskGet',
-					value: 'MxPlanTaskGet',
-				},
-				{
-					name: 'MxPlanTaskList',
-					value: 'MxPlanTaskList',
-				},
-				{
-					name: 'MxPlanUpdateFlagsOnAllAccountsCreate',
-					value: 'MxPlanUpdateFlagsOnAllAccountsCreate',
-				},
+			{
+				name: 'MxPlanAccountAliasCreate',
+				value: 'MxPlanAccountAliasCreate',
+			},
+			{
+				name: 'MxPlanAccountAliasDelete',
+				value: 'MxPlanAccountAliasDelete',
+			},
+			{
+				name: 'MxPlanAccountAliasGet',
+				value: 'MxPlanAccountAliasGet',
+			},
+			{
+				name: 'MxPlanAccountAliasList',
+				value: 'MxPlanAccountAliasList',
+			},
+			{
+				name: 'MxPlanAccountCapabilitiesGet',
+				value: 'MxPlanAccountCapabilitiesGet',
+			},
+			{
+				name: 'MxPlanAccountChangePasswordCreate',
+				value: 'MxPlanAccountChangePasswordCreate',
+			},
+			{
+				name: 'MxPlanAccountDelete',
+				value: 'MxPlanAccountDelete',
+			},
+			{
+				name: 'MxPlanAccountDiagnosticCreate',
+				value: 'MxPlanAccountDiagnosticCreate',
+			},
+			{
+				name: 'MxPlanAccountDiagnosticGet',
+				value: 'MxPlanAccountDiagnosticGet',
+			},
+			{
+				name: 'MxPlanAccountFullAccessCreate',
+				value: 'MxPlanAccountFullAccessCreate',
+			},
+			{
+				name: 'MxPlanAccountFullAccessDelete',
+				value: 'MxPlanAccountFullAccessDelete',
+			},
+			{
+				name: 'MxPlanAccountFullAccessGet',
+				value: 'MxPlanAccountFullAccessGet',
+			},
+			{
+				name: 'MxPlanAccountFullAccessList',
+				value: 'MxPlanAccountFullAccessList',
+			},
+			{
+				name: 'MxPlanAccountGet',
+				value: 'MxPlanAccountGet',
+			},
+			{
+				name: 'MxPlanAccountList',
+				value: 'MxPlanAccountList',
+			},
+			{
+				name: 'MxPlanAccountSendAsCreate',
+				value: 'MxPlanAccountSendAsCreate',
+			},
+			{
+				name: 'MxPlanAccountSendAsDelete',
+				value: 'MxPlanAccountSendAsDelete',
+			},
+			{
+				name: 'MxPlanAccountSendAsGet',
+				value: 'MxPlanAccountSendAsGet',
+			},
+			{
+				name: 'MxPlanAccountSendAsList',
+				value: 'MxPlanAccountSendAsList',
+			},
+			{
+				name: 'MxPlanAccountSendOnBehalfToCreate',
+				value: 'MxPlanAccountSendOnBehalfToCreate',
+			},
+			{
+				name: 'MxPlanAccountSendOnBehalfToDelete',
+				value: 'MxPlanAccountSendOnBehalfToDelete',
+			},
+			{
+				name: 'MxPlanAccountSendOnBehalfToGet',
+				value: 'MxPlanAccountSendOnBehalfToGet',
+			},
+			{
+				name: 'MxPlanAccountSendOnBehalfToList',
+				value: 'MxPlanAccountSendOnBehalfToList',
+			},
+			{
+				name: 'MxPlanAccountTaskGet',
+				value: 'MxPlanAccountTaskGet',
+			},
+			{
+				name: 'MxPlanAccountTaskList',
+				value: 'MxPlanAccountTaskList',
+			},
+			{
+				name: 'MxPlanAccountUpdate',
+				value: 'MxPlanAccountUpdate',
+			},
+			{
+				name: 'MxPlanDomainDisclaimerAttributeGet',
+				value: 'MxPlanDomainDisclaimerAttributeGet',
+			},
+			{
+				name: 'MxPlanDomainDisclaimerCreate',
+				value: 'MxPlanDomainDisclaimerCreate',
+			},
+			{
+				name: 'MxPlanDomainDisclaimerDelete',
+				value: 'MxPlanDomainDisclaimerDelete',
+			},
+			{
+				name: 'MxPlanDomainDisclaimerList',
+				value: 'MxPlanDomainDisclaimerList',
+			},
+			{
+				name: 'MxPlanDomainDisclaimerUpdate',
+				value: 'MxPlanDomainDisclaimerUpdate',
+			},
+			{
+				name: 'MxPlanDomainGet',
+				value: 'MxPlanDomainGet',
+			},
+			{
+				name: 'MxPlanDomainList',
+				value: 'MxPlanDomainList',
+			},
+			{
+				name: 'MxPlanDomainUpdate',
+				value: 'MxPlanDomainUpdate',
+			},
+			{
+				name: 'MxPlanExternalContactCreate',
+				value: 'MxPlanExternalContactCreate',
+			},
+			{
+				name: 'MxPlanExternalContactDelete',
+				value: 'MxPlanExternalContactDelete',
+			},
+			{
+				name: 'MxPlanExternalContactGet',
+				value: 'MxPlanExternalContactGet',
+			},
+			{
+				name: 'MxPlanExternalContactList',
+				value: 'MxPlanExternalContactList',
+			},
+			{
+				name: 'MxPlanExternalContactUpdate',
+				value: 'MxPlanExternalContactUpdate',
+			},
+			{
+				name: 'MxPlanGet',
+				value: 'MxPlanGet',
+			},
+			{
+				name: 'MxPlanList',
+				value: 'MxPlanList',
+			},
+			{
+				name: 'MxPlanPut',
+				value: 'MxPlanPut',
+			},
+			{
+				name: 'MxPlanServerGet',
+				value: 'MxPlanServerGet',
+			},
+			{
+				name: 'MxPlanTaskGet',
+				value: 'MxPlanTaskGet',
+			},
+			{
+				name: 'MxPlanTaskList',
+				value: 'MxPlanTaskList',
+			},
+			{
+				name: 'MxPlanUpdateFlagsOnAllAccountsCreate',
+				value: 'MxPlanUpdateFlagsOnAllAccountsCreate',
+			},
 		],
-		default: undefined,
+		default: 'MxPlanAccountAliasGet',
 		displayOptions,
 	});
 

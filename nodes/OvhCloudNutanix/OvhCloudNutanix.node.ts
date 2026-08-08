@@ -17,7 +17,8 @@ export class OvhCloudNutanix extends BaseNode implements INodeType {
 		icon: OvhCloudIcon,
 		group: ['input'],
 		version: 1,
-		subtitle: '={{$parameter["nutanixOperation"]}}',
+		subtitle:
+			'={{$parameter["nutanixOperation"]}}{{ $parameter["serviceName"] ? ": " + ($parameter["serviceName"].value ?? $parameter["serviceName"]) : "" }}',
 		description: 'Manage OVHcloud Nutanix clusters via the /nutanix API v1',
 		defaults: { name: 'OVH Cloud Nutanix' },
 		usableAsTool: true,

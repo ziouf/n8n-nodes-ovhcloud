@@ -16,7 +16,8 @@ export class OvhCloudIp extends BaseNode implements INodeType {
 		icon: OvhCloudIcon,
 		group: ['input'],
 		version: 1,
-		subtitle: '={{$parameter["ipOperation"]}}',
+		subtitle:
+			'={{$parameter["ipOperation"]}}{{ $parameter["serviceName"] ? ": " + ($parameter["serviceName"].value ?? $parameter["serviceName"]) : "" }}',
 		description: 'Manage OVHcloud IP services via /ip API v1',
 		defaults: {
 			name: 'OVH Cloud IP',

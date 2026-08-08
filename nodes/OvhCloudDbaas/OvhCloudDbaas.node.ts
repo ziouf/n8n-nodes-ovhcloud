@@ -16,7 +16,8 @@ export class OvhCloudDbaas extends BaseNode implements INodeType {
 		icon: OvhCloudIcon,
 		group: ['input'],
 		version: 1,
-		subtitle: '={{$parameter["dbaasOperation"]}}',
+		subtitle:
+			'={{$parameter["dbaasOperation"]}}{{ $parameter["serviceName"] ? ": " + ($parameter["serviceName"].value ?? $parameter["serviceName"]) : "" }}',
 		description: 'Manage OVHcloud Database-as-a-Service via /dbaas API v1',
 		defaults: {
 			name: 'OVH Cloud DBaaS',

@@ -16,7 +16,8 @@ export class OvhCloudSsl extends BaseNode implements INodeType {
 		icon: OvhCloudIcon,
 		group: ['input'],
 		version: 1,
-		subtitle: '={{$parameter["sslOperation"]}}',
+		subtitle:
+			'={{$parameter["sslOperation"]}}{{ $parameter["serviceName"] ? ": " + ($parameter["serviceName"].value ?? $parameter["serviceName"]) : "" }}',
 		description: 'Manage OVH Cloud SSL certificates via /ssl API v1 and v2',
 		defaults: { name: 'OVH Cloud SSL Certificates' },
 		usableAsTool: true,

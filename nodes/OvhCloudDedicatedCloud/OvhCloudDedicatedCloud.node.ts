@@ -16,7 +16,8 @@ export class OvhCloudDedicatedCloud extends BaseNode implements INodeType {
 		icon: OvhCloudIcon,
 		group: ['input'],
 		version: 1,
-		subtitle: '={{$parameter["dedicatedCloudOperation"]}}',
+		subtitle:
+			'={{$parameter["dedicatedCloudOperation"]}}{{ $parameter["serviceName"] ? ": " + ($parameter["serviceName"].value ?? $parameter["serviceName"]) : "" }}',
 		description: 'Manage VMware on OVHcloud Dedicated Cloud infrastructure',
 		defaults: {
 			name: 'OVH Dedicated Cloud',

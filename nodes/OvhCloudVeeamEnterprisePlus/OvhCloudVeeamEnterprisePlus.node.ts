@@ -16,7 +16,8 @@ export class OvhCloudVeeamEnterprisePlus extends BaseNode implements INodeType {
 		icon: OvhCloudIcon,
 		group: ['input'],
 		version: 1,
-		subtitle: '={{$parameter["veeamOperation"]}}',
+		subtitle:
+			'={{$parameter["veeamOperation"]}}{{ $parameter["serviceName"] ? ": " + ($parameter["serviceName"].value ?? $parameter["serviceName"]) : "" }}',
 		description: 'Manage Veeam Enterprise Plus services via /veeam API',
 		defaults: {
 			name: 'OVH Veeam Enterprise Plus',

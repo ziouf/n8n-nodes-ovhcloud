@@ -16,8 +16,10 @@ export class OvhCloudDedicatedHousing extends BaseNode implements INodeType {
 		icon: OvhCloudIcon,
 		group: ['input'],
 		version: 1,
-		subtitle: '={$parameter["dedicatedHousingOperation"]}',
-		description: 'Manage your OVHcloud Dedicated Housing services via the /dedicated/housing API v1',
+		subtitle:
+			'={{$parameter["dedicatedHousingOperation"]}}{{ $parameter["serviceName"] ? ": " + ($parameter["serviceName"].value ?? $parameter["serviceName"]) : "" }}',
+		description:
+			'Manage your OVHcloud Dedicated Housing services via the /dedicated/housing API v1',
 		defaults: { name: 'OVH Cloud Dedicated Housing' },
 		usableAsTool: true,
 		inputs: [NodeConnectionTypes.Main],

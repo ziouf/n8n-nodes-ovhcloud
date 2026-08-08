@@ -16,7 +16,8 @@ export class OvhCloudPack extends BaseNode implements INodeType {
 		icon: OvhCloudIcon,
 		group: ['input'],
 		version: 1,
-		subtitle: '={{$parameter["packOperation"]}}',
+		subtitle:
+			'={{$parameter["packOperation"]}}{{ $parameter["serviceName"] ? ": " + ($parameter["serviceName"].value ?? $parameter["serviceName"]) : "" }}',
 		description: 'Manage OVHcloud Pack services via /pack API v1',
 		defaults: {
 			name: 'OVH Cloud Pack',

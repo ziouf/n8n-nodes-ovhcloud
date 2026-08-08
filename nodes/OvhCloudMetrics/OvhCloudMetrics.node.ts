@@ -17,7 +17,8 @@ export class OvhCloudMetrics extends BaseNode implements INodeType {
 		icon: OvhCloudIcon,
 		group: ['input'],
 		version: 1,
-		subtitle: '={{$parameter["metricsOperation"]}}',
+		subtitle:
+			'={{$parameter["metricsOperation"]}}{{ $parameter["serviceName"] ? ": " + ($parameter["serviceName"].value ?? $parameter["serviceName"]) : "" }}',
 		description: 'Manage OVHcloud Metrics services via the /metrics API v1',
 		defaults: { name: 'OVH Cloud Metrics' },
 		usableAsTool: true,

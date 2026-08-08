@@ -16,7 +16,8 @@ export class OvhCloudVrack extends BaseNode implements INodeType {
 		icon: OvhCloudIcon,
 		group: ['input'],
 		version: 1,
-		subtitle: '={{$parameter["vrackOperation"]}}',
+		subtitle:
+			'={{$parameter["vrackOperation"]}}{{ $parameter["serviceName"] ? ": " + ($parameter["serviceName"].value ?? $parameter["serviceName"]) : "" }}',
 		description: 'Manage OVHcloud vRack services via /vrack API v1',
 		defaults: {
 			name: 'OVH Cloud Vrack',

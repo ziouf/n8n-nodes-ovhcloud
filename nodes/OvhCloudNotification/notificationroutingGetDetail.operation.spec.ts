@@ -1,5 +1,5 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import { description, execute } from './notificationroutingListGet2.operation';
+import { description, execute } from './notificationroutingGetDetail.operation';
 
 // Mock ApiClient with mutable http methods for per-test control
 jest.mock('../../shared/transport/ApiClient', () => {
@@ -18,7 +18,7 @@ jest.mock('../../shared/transport/ApiClient', () => {
 
 import { ApiClient } from '../../shared/transport/ApiClient';
 
-describe('notificationroutingListGet2 operation', () => {
+describe('notificationroutingGetDetail operation', () => {
 	describe('description', () => {
 		it('should return all required parameters', () => {
 			const result = description({ show: {} });
@@ -41,7 +41,7 @@ describe('notificationroutingListGet2 operation', () => {
 			(client.httpGet as jest.Mock).mockResolvedValue(mockData);
 
 			mockExecuteFunctions.getNodeParameter.mockImplementation((param: string): string => {
-			if (param === 'routingId') return 'test-routingId-id';
+				if (param === 'routingId') return 'test-routingId-id';
 				return '';
 			});
 

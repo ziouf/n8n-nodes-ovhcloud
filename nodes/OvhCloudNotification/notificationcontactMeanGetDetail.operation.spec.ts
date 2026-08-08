@@ -1,5 +1,5 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import { description, execute } from './notificationcontactMeanListGet2.operation';
+import { description, execute } from './notificationcontactMeanGetDetail.operation';
 
 // Mock ApiClient with mutable http methods for per-test control
 jest.mock('../../shared/transport/ApiClient', () => {
@@ -18,7 +18,7 @@ jest.mock('../../shared/transport/ApiClient', () => {
 
 import { ApiClient } from '../../shared/transport/ApiClient';
 
-describe('notificationcontactMeanListGet2 operation', () => {
+describe('notificationcontactMeanGetDetail operation', () => {
 	describe('description', () => {
 		it('should return all required parameters', () => {
 			const result = description({ show: {} });
@@ -41,7 +41,7 @@ describe('notificationcontactMeanListGet2 operation', () => {
 			(client.httpGet as jest.Mock).mockResolvedValue(mockData);
 
 			mockExecuteFunctions.getNodeParameter.mockImplementation((param: string): string => {
-			if (param === 'contactMeanId') return 'test-contactMeanId-id';
+				if (param === 'contactMeanId') return 'test-contactMeanId-id';
 				return '';
 			});
 

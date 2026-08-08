@@ -16,7 +16,8 @@ export class OvhCloudPublicCloudAi extends BaseNode implements INodeType {
 		icon: OvhCloudIcon,
 		group: ['input'],
 		version: 1,
-		subtitle: '={{$parameter["publicCloudAiOperation"]}}',
+		subtitle:
+			'={{$parameter["publicCloudAiOperation"]}}{{ $parameter["serviceName"] ? ": " + ($parameter["serviceName"].value ?? $parameter["serviceName"]) : "" }}',
 		description:
 			'Manage OVHcloud Public Cloud AI services (apps, jobs, notebooks) via /publicCloud API v2',
 		defaults: { name: 'OVH Cloud Public Cloud AI' },

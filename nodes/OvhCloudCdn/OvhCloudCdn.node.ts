@@ -16,7 +16,8 @@ export class OvhCloudCdn extends BaseNode implements INodeType {
 		icon: OvhCloudIcon,
 		group: ['input'],
 		version: 1,
-		subtitle: '={{$parameter["cdnOperation"]}}',
+		subtitle:
+			'={{$parameter["cdnOperation"]}}{{ $parameter["serviceName"] ? ": " + ($parameter["serviceName"].value ?? $parameter["serviceName"]) : "" }}',
 		description: 'Manage OVHcloud CDN services via /cdn API v1',
 		defaults: {
 			name: 'OVH Cloud CDN',

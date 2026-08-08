@@ -16,7 +16,8 @@ export class OvhCloudDedicatedCeph extends BaseNode implements INodeType {
 		icon: OvhCloudIcon,
 		group: ['input'],
 		version: 1,
-		subtitle: '={$parameter["dedicatedCephOperation"]}',
+		subtitle:
+			'={{$parameter["dedicatedCephOperation"]}}{{ $parameter["serviceName"] ? ": " + ($parameter["serviceName"].value ?? $parameter["serviceName"]) : "" }}',
 		description: 'Manage your OVHcloud Dedicated Ceph services via the /dedicated/ceph API v1',
 		defaults: { name: 'OVH Cloud Dedicated Ceph' },
 		usableAsTool: true,

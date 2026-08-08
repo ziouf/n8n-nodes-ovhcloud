@@ -17,7 +17,8 @@ export class OvhCloudOverTheBox extends BaseNode implements INodeType {
 		icon: OvhCloudIcon,
 		group: ['input'],
 		version: 1,
-		subtitle: '={{$parameter["overTheBoxOperation"]}}',
+		subtitle:
+			'={{$parameter["overTheBoxOperation"]}}{{ $parameter["serviceName"] ? ": " + ($parameter["serviceName"].value ?? $parameter["serviceName"]) : "" }}',
 		description: 'Manage OVHcloud OverTheBox services via the /overTheBox API v1',
 		defaults: { name: 'OVH Cloud OverTheBox' },
 		usableAsTool: true,

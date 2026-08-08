@@ -16,7 +16,8 @@ export class OvhCloudServices extends BaseNode implements INodeType {
 		icon: OvhCloudIcon,
 		group: ['input'],
 		version: 1,
-		subtitle: '={{$parameter["servicesOperation"]}}',
+		subtitle:
+			'={{$parameter["servicesOperation"]}}{{ $parameter["serviceName"] ? ": " + ($parameter["serviceName"].value ?? $parameter["serviceName"]) : "" }}',
 		description: 'Manage OVHcloud generic services via /services API v1',
 		defaults: {
 			name: 'OVH Cloud Services',

@@ -16,7 +16,8 @@ export class OvhCloudEmailPro extends BaseNode implements INodeType {
 		icon: OvhCloudIcon,
 		group: ['input'],
 		version: 1,
-		subtitle: '={{$parameter["emailProOperation"]}}',
+		subtitle:
+			'={{$parameter["emailProOperation"]}}{{ $parameter["serviceName"] ? ": " + ($parameter["serviceName"].value ?? $parameter["serviceName"]) : "" }}',
 		description: 'Manage your OVHcloud Email Pro services via the /email/pro API v1',
 		defaults: { name: 'OVH Cloud Email Pro' },
 		usableAsTool: true,

@@ -17,7 +17,8 @@ export class OvhCloudSaasCsp2 extends BaseNode implements INodeType {
 		icon: OvhCloudIcon,
 		group: ['input'],
 		version: 1,
-		subtitle: '={{$parameter["saasCsp2Operation"]}}',
+		subtitle:
+			'={{$parameter["saasCsp2Operation"]}}{{ $parameter["serviceName"] ? ": " + ($parameter["serviceName"].value ?? $parameter["serviceName"]) : "" }}',
 		description: 'Manage OVHcloud Office 365 CSP2 tenants via the /saas/csp2 API v1',
 		defaults: { name: 'OVH Cloud SaaS CSP2' },
 		usableAsTool: true,

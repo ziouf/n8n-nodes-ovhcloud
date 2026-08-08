@@ -17,7 +17,8 @@ export class OvhCloudFreefax extends BaseNode implements INodeType {
 		icon: OvhCloudIcon,
 		group: ['input'],
 		version: 1,
-		subtitle: '={{$parameter["freefaxOperation"]}}',
+		subtitle:
+			'={{$parameter["freefaxOperation"]}}{{ $parameter["serviceName"] ? ": " + ($parameter["serviceName"].value ?? $parameter["serviceName"]) : "" }}',
 		description: 'Manage your OVHcloud Freefax line accounts via the /freefax API v1',
 		defaults: { name: 'OVH Cloud Freefax' },
 		usableAsTool: true,

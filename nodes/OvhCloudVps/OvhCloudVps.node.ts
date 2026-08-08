@@ -17,7 +17,8 @@ export class OvhCloudVps extends BaseNode implements INodeType {
 		icon: OvhCloudIcon,
 		group: ['input'],
 		version: 1,
-		subtitle: '={{$parameter["vpsOperation"]}}',
+		subtitle:
+			'={{$parameter["vpsOperation"]}}{{ $parameter["serviceName"] ? ": " + ($parameter["serviceName"].value ?? $parameter["serviceName"]) : "" }}',
 		description: 'Manage OVH Cloud VPS services via /vps API (GET operations only)',
 		defaults: { name: 'OVH Cloud VPS' },
 		usableAsTool: true,

@@ -16,7 +16,8 @@ export class OvhCloudTelephony extends BaseNode implements INodeType {
 		icon: OvhCloudIcon,
 		group: ['input'],
 		version: 1,
-		subtitle: '={{$parameter["telephonyOperation"]}}',
+		subtitle:
+			'={{$parameter["telephonyOperation"]}}{{ $parameter["serviceName"] ? ": " + ($parameter["serviceName"].value ?? $parameter["serviceName"]) : "" }}',
 		description: 'Manage OVHcloud telephony services via /telephony API v1',
 		defaults: { name: 'OVH Cloud Telephony' },
 		usableAsTool: true,

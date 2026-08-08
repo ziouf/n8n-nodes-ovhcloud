@@ -16,7 +16,8 @@ export class OvhCloudSupport extends BaseNode implements INodeType {
 		icon: OvhCloudIcon,
 		group: ['input'],
 		version: 1,
-		subtitle: '={{$parameter["ovhCloudSupportTicketOperation"]}}',
+		subtitle:
+			'={{$parameter["ovhCloudSupportTicketOperation"]}}{{ $parameter["serviceName"] ? ": " + ($parameter["serviceName"].value ?? $parameter["serviceName"]) : "" }}',
 		description: 'Manage OVH Cloud support tickets via /support/tickets API',
 		defaults: { name: 'OVH Cloud Support' },
 		usableAsTool: true,

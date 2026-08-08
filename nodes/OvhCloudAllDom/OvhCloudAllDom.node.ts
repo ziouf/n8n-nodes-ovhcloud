@@ -17,7 +17,8 @@ export class OvhCloudAllDom extends BaseNode implements INodeType {
 		icon: OvhCloudIcon,
 		group: ['input'],
 		version: 1,
-		subtitle: '={{$parameter["allDomOperation"]}}',
+		subtitle:
+			'={{$parameter["allDomOperation"]}}{{ $parameter["serviceName"] ? ": " + ($parameter["serviceName"].value ?? $parameter["serviceName"]) : "" }}',
 		description: 'Manage OVHcloud AllDom services via the /allDom API v1',
 		defaults: { name: 'OVH Cloud AllDom' },
 		usableAsTool: true,

@@ -17,7 +17,8 @@ export class OvhCloudVeeamCloudConnect extends BaseNode implements INodeType {
 		icon: OvhCloudIcon,
 		group: ['input'],
 		version: 1,
-		subtitle: '={{$parameter["veeamCloudConnectOperation"]}}',
+		subtitle:
+			'={{$parameter["veeamCloudConnectOperation"]}}{{ $parameter["serviceName"] ? ": " + ($parameter["serviceName"].value ?? $parameter["serviceName"]) : "" }}',
 		description: 'Manage OVHcloud Veeam Cloud Connect services via the /veeamCloudConnect API v1',
 		defaults: { name: 'OVH Cloud Veeam Cloud Connect' },
 		usableAsTool: true,

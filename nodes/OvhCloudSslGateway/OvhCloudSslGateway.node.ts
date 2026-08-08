@@ -16,7 +16,8 @@ export class OvhCloudSslGateway extends BaseNode implements INodeType {
 		icon: OvhCloudIcon,
 		group: ['input'],
 		version: 1,
-		subtitle: '={{$parameter["sslGatewayOperation"]}}',
+		subtitle:
+			'={{$parameter["sslGatewayOperation"]}}{{ $parameter["serviceName"] ? ": " + ($parameter["serviceName"].value ?? $parameter["serviceName"]) : "" }}',
 		description: 'Manage OVHcloud SSL Gateway services via /sslGateway API',
 		defaults: {
 			name: 'OVH Cloud SSL Gateway',

@@ -17,7 +17,8 @@ export class OvhCloudLicense extends BaseNode implements INodeType {
 		icon: OvhCloudIcon,
 		group: ['input'],
 		version: 1,
-		subtitle: '={{$parameter["licenseOperation"]}}',
+		subtitle:
+			'={{$parameter["licenseOperation"]}}{{ $parameter["serviceName"] ? ": " + ($parameter["serviceName"].value ?? $parameter["serviceName"]) : "" }}',
 		description: 'Manage your OVHcloud licenses via the /license API v1',
 		defaults: { name: 'OVH Cloud License' },
 		usableAsTool: true,

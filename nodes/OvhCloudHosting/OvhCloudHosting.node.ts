@@ -18,7 +18,7 @@ export class OvhCloudHosting extends BaseNode implements INodeType {
 		group: ['input'],
 		version: 2,
 		subtitle:
-			'={{$parameter["apiVersion"] === "v2" ? "v2 API: " + $parameter["hostingOperationV2"] : "v1 API: " + $parameter["hostingOperation"]}}',
+			'={{$parameter["apiVersion"] === "v2" ? "v2 API: " + $parameter["hostingOperationV2"] + ($parameter["serviceName"] ? ": " + ($parameter["serviceName"].value ?? $parameter["serviceName"]) : "") : "v1 API: " + $parameter["hostingOperation"] + ($parameter["serviceName"] ? ": " + ($parameter["serviceName"].value ?? $parameter["serviceName"]) : "")}}',
 		description:
 			'Manage OVH Cloud Web Hosting services via /hosting/web API v1 and /webhosting API v2',
 		defaults: {

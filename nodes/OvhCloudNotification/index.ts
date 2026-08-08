@@ -18,9 +18,9 @@ import {
 	description as descriptionNotificationcontactMeanDeleteDelete,
 } from './notificationcontactMeanDeleteDelete.operation';
 import {
-	execute as executeNotificationcontactMeanListGet2,
-	description as descriptionNotificationcontactMeanListGet2,
-} from './notificationcontactMeanListGet2.operation';
+	execute as executeNotificationcontactMeanGetDetail,
+	description as descriptionNotificationcontactMeanGetDetail,
+} from './notificationcontactMeanGetDetail.operation';
 import {
 	execute as executeNotificationcontactMeanUpdatePut,
 	description as descriptionNotificationcontactMeanUpdatePut,
@@ -50,9 +50,9 @@ import {
 	description as descriptionNotificationhistoryListGet,
 } from './notificationhistoryListGet.operation';
 import {
-	execute as executeNotificationhistoryListGet2,
-	description as descriptionNotificationhistoryListGet2,
-} from './notificationhistoryListGet2.operation';
+	execute as executeNotificationhistoryGetDetail,
+	description as descriptionNotificationhistoryGetDetail,
+} from './notificationhistoryGetDetail.operation';
 import {
 	execute as executeNotificationhistoryattachmentListGet,
 	description as descriptionNotificationhistoryattachmentListGet,
@@ -74,9 +74,9 @@ import {
 	description as descriptionNotificationroutingDeleteDelete,
 } from './notificationroutingDeleteDelete.operation';
 import {
-	execute as executeNotificationroutingListGet2,
-	description as descriptionNotificationroutingListGet2,
-} from './notificationroutingListGet2.operation';
+	execute as executeNotificationroutingGetDetail,
+	description as descriptionNotificationroutingGetDetail,
+} from './notificationroutingGetDetail.operation';
 import {
 	execute as executeNotificationroutingUpdatePut,
 	description as descriptionNotificationroutingUpdatePut,
@@ -90,101 +90,102 @@ export function description(displayOptions: IDisplayOptions): INodeProperties[] 
 			type: 'options',
 			noDataExpression: true,
 			options: [
-			{
-				name: 'Create a Contact Mean',
-				value: 'notificationcontactMeanCreatePost',
-				action: 'Create a contact mean',
-			},
-			{
-				name: 'Create a Routing',
-				value: 'notificationroutingCreatePost',
-				action: 'Create a routing',
-			},
-			{
-				name: 'Delete the Contact Mean',
-				value: 'notificationcontactMeanDeleteDelete',
-				action: 'Delete the contact mean',
-			},
-			{
-				name: 'Delete the Routing',
-				value: 'notificationroutingDeleteDelete',
-				action: 'Delete the routing',
-			},
-			{
-				name: 'Get a Notification Attachment',
-				value: 'notificationhistoryattachmentListGet',
-				action: 'Get a notification attachment',
-			},
-			{
-				name: 'Get a Task on a Contact Mean',
-				value: 'notificationcontactMeantaskListGet2',
-				action: 'Get a task on a contact mean',
-			},
-			{
-				name: 'Get the List of Tasks on a Contact Mean',
-				value: 'notificationcontactMeantaskListGet',
-				action: 'Get the list of tasks on a contact mean',
-			},
-			{
-				name: 'Restart the Validation Process for This Contact Mean, if You Did Not Receive the OTP',
-				value: 'notificationcontactMeanrestartValidationCreatePost',
-				action: 'Restart the validation process for this contact mean, if you did not receive the OTP',
-			},
-			{
-				name: 'Retrieve Data Referential for /Notification Endpoints',
-				value: 'notificationreferenceListGet',
-				action: 'Retrieve data referential for /notification endpoints',
-			},
-			{
-				name: 'Retrieve Every Contact Mean',
-				value: 'notificationcontactMeanListGet',
-				action: 'Retrieve every contact mean',
-			},
-			{
-				name: 'Retrieve Every Notification Sent to You',
-				value: 'notificationhistoryListGet',
-				action: 'Retrieve every notification sent to you',
-			},
-			{
-				name: 'Retrieve Every Routing',
-				value: 'notificationroutingListGet',
-				action: 'Retrieve every routing',
-			},
-			{
-				name: 'Retrieve Information About a Contact Mean',
-				value: 'notificationcontactMeanListGet2',
-				action: 'Retrieve information about a contact mean',
-			},
-			{
-				name: 'Retrieve Information About a Notification Sent to You',
-				value: 'notificationhistoryListGet2',
-				action: 'Retrieve information about a notification sent to you',
-			},
-			{
-				name: 'Retrieve Information About a Routing',
-				value: 'notificationroutingListGet2',
-				action: 'Retrieve information about a routing',
-			},
-			{
-				name: 'Update a Contact Mean',
-				value: 'notificationcontactMeanUpdatePut',
-				action: 'Update a contact mean',
-			},
-			{
-				name: 'Update a Routing',
-				value: 'notificationroutingUpdatePut',
-				action: 'Update a routing',
-			},
-			{
-				name: 'Update a Task on a Contact Mean',
-				value: 'notificationcontactMeantaskUpdatePut',
-				action: 'Update a task on a contact mean',
-			},
-			{
-				name: 'Validate This Contact Mean',
-				value: 'notificationcontactMeanvalidateCreatePost',
-				action: 'Validate this contact mean',
-			},
+				{
+					name: 'Create a Contact Mean',
+					value: 'notificationcontactMeanCreatePost',
+					action: 'Create a contact mean',
+				},
+				{
+					name: 'Create a Routing',
+					value: 'notificationroutingCreatePost',
+					action: 'Create a routing',
+				},
+				{
+					name: 'Delete the Contact Mean',
+					value: 'notificationcontactMeanDeleteDelete',
+					action: 'Delete the contact mean',
+				},
+				{
+					name: 'Delete the Routing',
+					value: 'notificationroutingDeleteDelete',
+					action: 'Delete the routing',
+				},
+				{
+					name: 'Get a Notification Attachment',
+					value: 'notificationhistoryattachmentListGet',
+					action: 'Get a notification attachment',
+				},
+				{
+					name: 'Get a Task on a Contact Mean',
+					value: 'notificationcontactMeantaskListGet2',
+					action: 'Get a task on a contact mean',
+				},
+				{
+					name: 'Get Contact Mean',
+					value: 'notificationcontactMeanListGet2',
+					action: 'Retrieve information about a contact mean',
+				},
+				{
+					name: 'Get Notification',
+					value: 'notificationhistoryListGet2',
+					action: 'Retrieve information about a notification sent to you',
+				},
+				{
+					name: 'Get Routing',
+					value: 'notificationroutingListGet2',
+					action: 'Retrieve information about a routing',
+				},
+				{
+					name: 'Get the List of Tasks on a Contact Mean',
+					value: 'notificationcontactMeantaskListGet',
+					action: 'Get the list of tasks on a contact mean',
+				},
+				{
+					name: 'Restart the Validation Process for This Contact Mean, if You Did Not Receive the OTP',
+					value: 'notificationcontactMeanrestartValidationCreatePost',
+					action:
+						'Restart the validation process for this contact mean, if you did not receive the OTP',
+				},
+				{
+					name: 'Retrieve Data Referential for /Notification Endpoints',
+					value: 'notificationreferenceListGet',
+					action: 'Retrieve data referential for /notification endpoints',
+				},
+				{
+					name: 'Retrieve Every Contact Mean',
+					value: 'notificationcontactMeanListGet',
+					action: 'Retrieve every contact mean',
+				},
+				{
+					name: 'Retrieve Every Notification Sent to You',
+					value: 'notificationhistoryListGet',
+					action: 'Retrieve every notification sent to you',
+				},
+				{
+					name: 'Retrieve Every Routing',
+					value: 'notificationroutingListGet',
+					action: 'Retrieve every routing',
+				},
+				{
+					name: 'Update a Contact Mean',
+					value: 'notificationcontactMeanUpdatePut',
+					action: 'Update a contact mean',
+				},
+				{
+					name: 'Update a Routing',
+					value: 'notificationroutingUpdatePut',
+					action: 'Update a routing',
+				},
+				{
+					name: 'Update a Task on a Contact Mean',
+					value: 'notificationcontactMeantaskUpdatePut',
+					action: 'Update a task on a contact mean',
+				},
+				{
+					name: 'Validate This Contact Mean',
+					value: 'notificationcontactMeanvalidateCreatePost',
+					action: 'Validate this contact mean',
+				},
 			],
 			default: 'notificationcontactMeanListGet',
 			displayOptions,
@@ -205,7 +206,7 @@ export function description(displayOptions: IDisplayOptions): INodeProperties[] 
 			...displayOptions,
 			show: { notificationOperation: ['notificationcontactMeanDeleteDelete'] },
 		}) as INodeProperties[]),
-		...(descriptionNotificationcontactMeanListGet2({
+		...(descriptionNotificationcontactMeanGetDetail({
 			...displayOptions,
 			show: { notificationOperation: ['notificationcontactMeanListGet2'] },
 		}) as INodeProperties[]),
@@ -237,7 +238,7 @@ export function description(displayOptions: IDisplayOptions): INodeProperties[] 
 			...displayOptions,
 			show: { notificationOperation: ['notificationhistoryListGet'] },
 		}) as INodeProperties[]),
-		...(descriptionNotificationhistoryListGet2({
+		...(descriptionNotificationhistoryGetDetail({
 			...displayOptions,
 			show: { notificationOperation: ['notificationhistoryListGet2'] },
 		}) as INodeProperties[]),
@@ -261,7 +262,7 @@ export function description(displayOptions: IDisplayOptions): INodeProperties[] 
 			...displayOptions,
 			show: { notificationOperation: ['notificationroutingDeleteDelete'] },
 		}) as INodeProperties[]),
-		...(descriptionNotificationroutingListGet2({
+		...(descriptionNotificationroutingGetDetail({
 			...displayOptions,
 			show: { notificationOperation: ['notificationroutingListGet2'] },
 		}) as INodeProperties[]),
@@ -269,7 +270,6 @@ export function description(displayOptions: IDisplayOptions): INodeProperties[] 
 			...displayOptions,
 			show: { notificationOperation: ['notificationroutingUpdatePut'] },
 		}) as INodeProperties[]),
-
 	];
 
 	return properties;
@@ -291,7 +291,7 @@ export async function execute(
 		case 'notificationcontactMeanDeleteDelete':
 			return executeNotificationcontactMeanDeleteDelete.call(this, itemIndex);
 		case 'notificationcontactMeanListGet2':
-			return executeNotificationcontactMeanListGet2.call(this, itemIndex);
+			return executeNotificationcontactMeanGetDetail.call(this, itemIndex);
 		case 'notificationcontactMeanUpdatePut':
 			return executeNotificationcontactMeanUpdatePut.call(this, itemIndex);
 		case 'notificationcontactMeanrestartValidationCreatePost':
@@ -307,7 +307,7 @@ export async function execute(
 		case 'notificationhistoryListGet':
 			return executeNotificationhistoryListGet.call(this, itemIndex);
 		case 'notificationhistoryListGet2':
-			return executeNotificationhistoryListGet2.call(this, itemIndex);
+			return executeNotificationhistoryGetDetail.call(this, itemIndex);
 		case 'notificationhistoryattachmentListGet':
 			return executeNotificationhistoryattachmentListGet.call(this, itemIndex);
 		case 'notificationreferenceListGet':
@@ -319,10 +319,9 @@ export async function execute(
 		case 'notificationroutingDeleteDelete':
 			return executeNotificationroutingDeleteDelete.call(this, itemIndex);
 		case 'notificationroutingListGet2':
-			return executeNotificationroutingListGet2.call(this, itemIndex);
+			return executeNotificationroutingGetDetail.call(this, itemIndex);
 		case 'notificationroutingUpdatePut':
 			return executeNotificationroutingUpdatePut.call(this, itemIndex);
-
 	}
 
 	throw new Error(`Unsupported operation "${operation}" for resource "ovhCloudNotification"`);

@@ -17,7 +17,8 @@ export class OvhCloudStorage extends BaseNode implements INodeType {
 		icon: OvhCloudIcon,
 		group: ['input'],
 		version: 1,
-		subtitle: '={{$parameter["storageOperation"]}}',
+		subtitle:
+			'={{$parameter["storageOperation"]}}{{ $parameter["serviceName"] ? ": " + ($parameter["serviceName"].value ?? $parameter["serviceName"]) : "" }}',
 		description: 'Manage OVHcloud NetApp Storage services via /storage/netapp API v1',
 		defaults: {
 			name: 'OVH Cloud Storage',

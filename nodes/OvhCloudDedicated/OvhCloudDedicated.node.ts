@@ -16,7 +16,8 @@ export class OvhCloudDedicated extends BaseNode implements INodeType {
 		icon: OvhCloudIcon,
 		group: ['input'],
 		version: 1,
-		subtitle: '={{$parameter["dedicatedServerOperation"]}}',
+		subtitle:
+			'={{$parameter["dedicatedServerOperation"]}}{{ $parameter["serviceName"] ? ": " + ($parameter["serviceName"].value ?? $parameter["serviceName"]) : "" }}',
 		description:
 			'Manage OVH Cloud Dedicated Server services via /dedicated/server API (GET operations only)',
 		defaults: { name: 'OVH Cloud Dedicated Server' },

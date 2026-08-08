@@ -16,7 +16,8 @@ export class OvhCloudMsServices extends BaseNode implements INodeType {
 		icon: OvhCloudIcon,
 		group: ['input'],
 		version: 1,
-		subtitle: '={{$parameter["msServicesOperation"]}}',
+		subtitle:
+			'={{$parameter["msServicesOperation"]}}{{ $parameter["serviceName"] ? ": " + ($parameter["serviceName"].value ?? $parameter["serviceName"]) : "" }}',
 		description: 'Manage OVHcloud Mail/Phone services via /msServices API v1',
 		defaults: {
 			name: 'OVH Cloud MS Services',

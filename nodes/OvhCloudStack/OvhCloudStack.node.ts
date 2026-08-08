@@ -17,7 +17,8 @@ export class OvhCloudStack extends BaseNode implements INodeType {
 		icon: OvhCloudIcon,
 		group: ['input'],
 		version: 1,
-		subtitle: '={{$parameter["stackOperation"]}}',
+		subtitle:
+			'={{$parameter["stackOperation"]}}{{ $parameter["serviceName"] ? ": " + ($parameter["serviceName"].value ?? $parameter["serviceName"]) : "" }}',
 		description: 'Manage OVHcloud Stack MIS services via the /stack/mis API v1',
 		defaults: { name: 'OVH Cloud Stack' },
 		usableAsTool: true,

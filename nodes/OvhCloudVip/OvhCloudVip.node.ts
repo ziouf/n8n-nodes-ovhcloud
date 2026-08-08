@@ -17,7 +17,8 @@ export class OvhCloudVip extends BaseNode implements INodeType {
 		icon: OvhCloudIcon,
 		group: ['input'],
 		version: 1,
-		subtitle: '={{$parameter["vipOperation"]}}',
+		subtitle:
+			'={{$parameter["vipOperation"]}}{{ $parameter["serviceName"] ? ": " + ($parameter["serviceName"].value ?? $parameter["serviceName"]) : "" }}',
 		description: 'Manage OVHcloud VIP services via the /vip API v1',
 		defaults: { name: 'OVH Cloud VIP' },
 		usableAsTool: true,

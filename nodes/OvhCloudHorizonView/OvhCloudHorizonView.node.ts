@@ -17,7 +17,8 @@ export class OvhCloudHorizonView extends BaseNode implements INodeType {
 		icon: OvhCloudIcon,
 		group: ['input'],
 		version: 1,
-		subtitle: '={{$parameter["horizonViewOperation"]}}',
+		subtitle:
+			'={{$parameter["horizonViewOperation"]}}{{ $parameter["serviceName"] ? ": " + ($parameter["serviceName"].value ?? $parameter["serviceName"]) : "" }}',
 		description: 'Manage OVHcloud Horizon View services via the /horizonView API v1',
 		defaults: { name: 'OVH Cloud Horizon View' },
 		usableAsTool: true,

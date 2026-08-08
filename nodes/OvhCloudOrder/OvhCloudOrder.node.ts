@@ -16,7 +16,8 @@ export class OvhCloudOrder extends BaseNode implements INodeType {
 		icon: OvhCloudIcon,
 		group: ['input'],
 		version: 1,
-		subtitle: '={{$parameter["orderOperation"]}}',
+		subtitle:
+			'={{$parameter["orderOperation"]}}{{ $parameter["serviceName"] ? ": " + ($parameter["serviceName"].value ?? $parameter["serviceName"]) : "" }}',
 		description: 'Manage OVHcloud orders via /order API v1',
 		defaults: { name: 'OVH Cloud Order' },
 		usableAsTool: true,

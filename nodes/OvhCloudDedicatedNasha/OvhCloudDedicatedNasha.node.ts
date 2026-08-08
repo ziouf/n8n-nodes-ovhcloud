@@ -16,8 +16,10 @@ export class OvhCloudDedicatedNasha extends BaseNode implements INodeType {
 		icon: OvhCloudIcon,
 		group: ['input'],
 		version: 1,
-		subtitle: '={$parameter["dedicatedNashaOperation"]}',
-		description: 'Manage your OVHcloud Dedicated Nasha (NAS) services via the /dedicated/nasha API v1',
+		subtitle:
+			'={{$parameter["dedicatedNashaOperation"]}}{{ $parameter["serviceName"] ? ": " + ($parameter["serviceName"].value ?? $parameter["serviceName"]) : "" }}',
+		description:
+			'Manage your OVHcloud Dedicated Nasha (NAS) services via the /dedicated/nasha API v1',
 		defaults: { name: 'OVH Cloud Dedicated Nasha' },
 		usableAsTool: true,
 		inputs: [NodeConnectionTypes.Main],

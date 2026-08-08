@@ -16,8 +16,10 @@ export class OvhCloudHostingPrivateDatabase extends BaseNode implements INodeTyp
 		icon: OvhCloudIcon,
 		group: ['input'],
 		version: 1,
-		subtitle: '={{$parameter["hostingPrivateDatabaseOperation"]}}',
-		description: 'Manage OVHcloud Web Cloud Database (private database) services via /hosting/privateDatabase API v1',
+		subtitle:
+			'={{$parameter["hostingPrivateDatabaseOperation"]}}{{ $parameter["serviceName"] ? ": " + ($parameter["serviceName"].value ?? $parameter["serviceName"]) : "" }}',
+		description:
+			'Manage OVHcloud Web Cloud Database (private database) services via /hosting/privateDatabase API v1',
 		defaults: { name: 'OVH Cloud Hosting Private Database' },
 		usableAsTool: true,
 		inputs: [NodeConnectionTypes.Main],

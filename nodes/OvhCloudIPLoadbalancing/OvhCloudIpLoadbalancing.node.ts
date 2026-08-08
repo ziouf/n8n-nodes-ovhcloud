@@ -16,7 +16,8 @@ export class OvhCloudIpLoadbalancing extends BaseNode implements INodeType {
 		icon: OvhCloudIcon,
 		group: ['input'],
 		version: 1,
-		subtitle: '={{$parameter["ipLoadbalancingOperation"]}}',
+		subtitle:
+			'={{$parameter["ipLoadbalancingOperation"]}}{{ $parameter["serviceName"] ? ": " + ($parameter["serviceName"].value ?? $parameter["serviceName"]) : "" }}',
 		description: 'Manage IP Load Balancing services via /ipLoadbalancing API',
 		defaults: {
 			name: 'OVH IP Load Balancing',

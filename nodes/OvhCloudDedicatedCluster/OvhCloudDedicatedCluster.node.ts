@@ -16,8 +16,10 @@ export class OvhCloudDedicatedCluster extends BaseNode implements INodeType {
 		icon: OvhCloudIcon,
 		group: ['input'],
 		version: 1,
-		subtitle: '={$parameter["dedicatedClusterOperation"]}',
-		description: 'Manage your OVHcloud Dedicated Cluster services via the /dedicated/cluster API v1',
+		subtitle:
+			'={{$parameter["dedicatedClusterOperation"]}}{{ $parameter["serviceName"] ? ": " + ($parameter["serviceName"].value ?? $parameter["serviceName"]) : "" }}',
+		description:
+			'Manage your OVHcloud Dedicated Cluster services via the /dedicated/cluster API v1',
 		defaults: { name: 'OVH Cloud Dedicated Cluster' },
 		usableAsTool: true,
 		inputs: [NodeConnectionTypes.Main],

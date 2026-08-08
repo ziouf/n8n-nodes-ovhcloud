@@ -17,7 +17,8 @@ export class OvhCloudXdsl extends BaseNode implements INodeType {
 		icon: OvhCloudIcon,
 		group: ['input'],
 		version: 1,
-		subtitle: '={{$parameter["xdslOperation"]}}',
+		subtitle:
+			'={{$parameter["xdslOperation"]}}{{ $parameter["serviceName"] ? ": " + ($parameter["serviceName"].value ?? $parameter["serviceName"]) : "" }}',
 		description: 'Manage OVHcloud xDSL services via the /xdsl API v1',
 		defaults: { name: 'OVH Cloud Xdsl' },
 		usableAsTool: true,

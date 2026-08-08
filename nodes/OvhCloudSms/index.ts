@@ -521,641 +521,1475 @@ export function description(displayOptions: IDisplayOptions = {}) {
 		name: 'smsOperation',
 		type: 'options',
 		noDataExpression: true,
-		default: undefined,
+		default: 'batchesGetGet',
 		options: [
-			{ displayName: 'Batches Cancel Post', name: 'batchesCancelPost', value: 'batchesCancelPost', action: 'POST /sms/{serviceName}/batches/{id}/cancel' },
-			{ displayName: 'Batches Create Post', name: 'batchesCreatePost', value: 'batchesCreatePost', action: 'POST /sms/{serviceName}/batches' },
-			{ displayName: 'Batches Delete Delete', name: 'batchesDeleteDelete', value: 'batchesDeleteDelete', action: 'DELETE /sms/{serviceName}/batches/{id}' },
-			{ displayName: 'Batches Get', name: 'batchesGetGet', value: 'batchesGetGet', action: 'GET /sms/{serviceName}/batches/{id}' },
-			{ displayName: 'Batches List', name: 'batchesListGet', value: 'batchesListGet', action: 'GET /sms/{serviceName}/batches' },
-			{ displayName: 'Batches Statistics', name: 'batchesStatisticsGet', value: 'batchesStatisticsGet', action: 'GET /sms/{serviceName}/batches/{id}/statistics' },
-			{ displayName: 'Batches Update Put', name: 'batchesUpdatePut', value: 'batchesUpdatePut', action: 'PUT /sms/{serviceName}/batches/{id}' },
-			{ displayName: 'Blacklist Create', name: 'blacklistCreatePost', value: 'blacklistCreatePost' },
-			{ displayName: 'Blacklist Delete', name: 'blacklistDeleteDelete', value: 'blacklistDeleteDelete' },
+			{
+				displayName: 'Batches Cancel Post',
+				name: 'batchesCancelPost',
+				value: 'batchesCancelPost',
+				action: 'POST /sms/{serviceName}/batches/{id}/cancel',
+			},
+			{
+				displayName: 'Batches Create Post',
+				name: 'batchesCreatePost',
+				value: 'batchesCreatePost',
+				action: 'POST /sms/{serviceName}/batches',
+			},
+			{
+				displayName: 'Batches Delete Delete',
+				name: 'batchesDeleteDelete',
+				value: 'batchesDeleteDelete',
+				action: 'DELETE /sms/{serviceName}/batches/{id}',
+			},
+			{
+				displayName: 'Batches Get',
+				name: 'batchesGetGet',
+				value: 'batchesGetGet',
+				action: 'GET /sms/{serviceName}/batches/{id}',
+			},
+			{
+				displayName: 'Batches List',
+				name: 'batchesListGet',
+				value: 'batchesListGet',
+				action: 'GET /sms/{serviceName}/batches',
+			},
+			{
+				displayName: 'Batches Statistics',
+				name: 'batchesStatisticsGet',
+				value: 'batchesStatisticsGet',
+				action: 'GET /sms/{serviceName}/batches/{id}/statistics',
+			},
+			{
+				displayName: 'Batches Update Put',
+				name: 'batchesUpdatePut',
+				value: 'batchesUpdatePut',
+				action: 'PUT /sms/{serviceName}/batches/{id}',
+			},
+			{
+				displayName: 'Blacklist Create',
+				name: 'blacklistCreatePost',
+				value: 'blacklistCreatePost',
+			},
+			{
+				displayName: 'Blacklist Delete',
+				name: 'blacklistDeleteDelete',
+				value: 'blacklistDeleteDelete',
+			},
 			{ displayName: 'Blacklist Get', name: 'blacklistGetGet', value: 'blacklistGetGet' },
 			{ displayName: 'Blacklist List', name: 'blacklistListGet', value: 'blacklistListGet' },
-			{ displayName: 'Document', name: 'documentGet', value: 'documentGet', action: 'GET /sms/{serviceName}/document' },
-			{ displayName: 'Estimate Post', name: 'estimatePost', value: 'estimatePost', action: 'POST /sms/estimate' },
-			{ displayName: 'Exceptions List', name: 'exceptionsListGet', value: 'exceptionsListGet', action: 'GET /sms/{serviceName}/exceptions' },
-			{ displayName: 'Hlr Create Post', name: 'hlrCreatePost', value: 'hlrCreatePost', action: 'POST /sms/{serviceName}/hlr' },
-			{ displayName: 'Hlr Get', name: 'hlrGetGet', value: 'hlrGetGet', action: 'GET /sms/{serviceName}/hlr/{id}' },
-			{ displayName: 'Hlr List', name: 'hlrListGet', value: 'hlrListGet', action: 'GET /sms/{serviceName}/hlr' },
-			{ displayName: 'Hlr Operator', name: 'hlrOperatorGet', value: 'hlrOperatorGet', action: 'GET /sms/{serviceName}/hlr/{id}/operator' },
-			{ displayName: 'Incoming Delete Delete', name: 'incomingDeleteDelete', value: 'incomingDeleteDelete', action: 'DELETE /sms/{serviceName}/incoming/{id}' },
-			{ displayName: 'Incoming Get', name: 'incomingGetGet', value: 'incomingGetGet', action: 'GET /sms/{serviceName}/incoming/{id}' },
-			{ displayName: 'Incoming List', name: 'incomingListGet', value: 'incomingListGet', action: 'GET /sms/{serviceName}/incoming' },
-			{ displayName: 'Jobs Delete Delete', name: 'jobsDeleteDelete', value: 'jobsDeleteDelete', action: 'DELETE /sms/{serviceName}/jobs/{id}' },
-			{ displayName: 'Jobs Get', name: 'jobsGetGet', value: 'jobsGetGet', action: 'GET /sms/{serviceName}/jobs/{id}' },
-			{ displayName: 'Jobs List', name: 'jobsListGet', value: 'jobsListGet', action: 'GET /sms/{serviceName}/jobs' },
-			{ displayName: 'Outgoing Delete Delete', name: 'outgoingDeleteDelete', value: 'outgoingDeleteDelete', action: 'DELETE /sms/{serviceName}/outgoing/{id}' },
-			{ displayName: 'Outgoing Get', name: 'outgoingGetGet', value: 'outgoingGetGet', action: 'GET /sms/{serviceName}/outgoing/{id}' },
-			{ displayName: 'Outgoing Hlr', name: 'outgoingHlrGet', value: 'outgoingHlrGet', action: 'GET /sms/{serviceName}/outgoing/{id}/hlr' },
-			{ displayName: 'Outgoing List', name: 'outgoingListGet', value: 'outgoingListGet', action: 'GET /sms/{serviceName}/outgoing' },
-			{ displayName: 'Phonebooks Create Post', name: 'phonebooksCreatePost', value: 'phonebooksCreatePost', action: 'POST /sms/{serviceName}/phonebooks' },
-			{ displayName: 'Phonebooks Delete Delete', name: 'phonebooksDeleteDelete', value: 'phonebooksDeleteDelete', action: 'DELETE /sms/{serviceName}/phonebooks/{bookKey}' },
-			{ displayName: 'Phonebooks Export', name: 'phonebooksExportGet', value: 'phonebooksExportGet', action: 'GET /sms/{serviceName}/phonebooks/{bookKey}/export' },
-			{ displayName: 'Phonebooks Get', name: 'phonebooksGetGet', value: 'phonebooksGetGet', action: 'GET /sms/{serviceName}/phonebooks/{bookKey}' },
-			{ displayName: 'Phonebooks Import Post', name: 'phonebooksImportPost', value: 'phonebooksImportPost', action: 'POST /sms/{serviceName}/phonebooks/{bookKey}/import' },
-			{ displayName: 'Phonebooks List', name: 'phonebooksListGet', value: 'phonebooksListGet', action: 'GET /sms/{serviceName}/phonebooks' },
-			{ displayName: 'Phonebooks Phonebook Contact Create Post', name: 'phonebooksPhonebookContactCreatePost', value: 'phonebooksPhonebookContactCreatePost', action: 'POST /sms/{serviceName}/phonebooks/{bookKey}/phonebookContact' },
-			{ displayName: 'Phonebooks Phonebook Contact Delete Delete', name: 'phonebooksPhonebookContactDeleteDelete', value: 'phonebooksPhonebookContactDeleteDelete', action: 'DELETE /sms/{serviceName}/phonebooks/{bookKey}/phonebookContact/{id}' },
-			{ displayName: 'Phonebooks Phonebook Contact Get', name: 'phonebooksPhonebookContactGetGet', value: 'phonebooksPhonebookContactGetGet', action: 'GET /sms/{serviceName}/phonebooks/{bookKey}/phonebookContact/{id}' },
-			{ displayName: 'Phonebooks Phonebook Contact List', name: 'phonebooksPhonebookContactListGet', value: 'phonebooksPhonebookContactListGet', action: 'GET /sms/{serviceName}/phonebooks/{bookKey}/phonebookContact' },
-			{ displayName: 'Phonebooks Phonebook Contact Update Put', name: 'phonebooksPhonebookContactUpdatePut', value: 'phonebooksPhonebookContactUpdatePut', action: 'PUT /sms/{serviceName}/phonebooks/{bookKey}/phonebookContact/{id}' },
-			{ displayName: 'Phonebooks Update Put', name: 'phonebooksUpdatePut', value: 'phonebooksUpdatePut', action: 'PUT /sms/{serviceName}/phonebooks/{bookKey}' },
+			{
+				displayName: 'Document',
+				name: 'documentGet',
+				value: 'documentGet',
+				action: 'GET /sms/{serviceName}/document',
+			},
+			{
+				displayName: 'Estimate Post',
+				name: 'estimatePost',
+				value: 'estimatePost',
+				action: 'POST /sms/estimate',
+			},
+			{
+				displayName: 'Exceptions List',
+				name: 'exceptionsListGet',
+				value: 'exceptionsListGet',
+				action: 'GET /sms/{serviceName}/exceptions',
+			},
+			{
+				displayName: 'Hlr Create Post',
+				name: 'hlrCreatePost',
+				value: 'hlrCreatePost',
+				action: 'POST /sms/{serviceName}/hlr',
+			},
+			{
+				displayName: 'Hlr Get',
+				name: 'hlrGetGet',
+				value: 'hlrGetGet',
+				action: 'GET /sms/{serviceName}/hlr/{id}',
+			},
+			{
+				displayName: 'Hlr List',
+				name: 'hlrListGet',
+				value: 'hlrListGet',
+				action: 'GET /sms/{serviceName}/hlr',
+			},
+			{
+				displayName: 'Hlr Operator',
+				name: 'hlrOperatorGet',
+				value: 'hlrOperatorGet',
+				action: 'GET /sms/{serviceName}/hlr/{id}/operator',
+			},
+			{
+				displayName: 'Incoming Delete Delete',
+				name: 'incomingDeleteDelete',
+				value: 'incomingDeleteDelete',
+				action: 'DELETE /sms/{serviceName}/incoming/{id}',
+			},
+			{
+				displayName: 'Incoming Get',
+				name: 'incomingGetGet',
+				value: 'incomingGetGet',
+				action: 'GET /sms/{serviceName}/incoming/{id}',
+			},
+			{
+				displayName: 'Incoming List',
+				name: 'incomingListGet',
+				value: 'incomingListGet',
+				action: 'GET /sms/{serviceName}/incoming',
+			},
+			{
+				displayName: 'Jobs Delete Delete',
+				name: 'jobsDeleteDelete',
+				value: 'jobsDeleteDelete',
+				action: 'DELETE /sms/{serviceName}/jobs/{id}',
+			},
+			{
+				displayName: 'Jobs Get',
+				name: 'jobsGetGet',
+				value: 'jobsGetGet',
+				action: 'GET /sms/{serviceName}/jobs/{id}',
+			},
+			{
+				displayName: 'Jobs List',
+				name: 'jobsListGet',
+				value: 'jobsListGet',
+				action: 'GET /sms/{serviceName}/jobs',
+			},
+			{
+				displayName: 'Outgoing Delete Delete',
+				name: 'outgoingDeleteDelete',
+				value: 'outgoingDeleteDelete',
+				action: 'DELETE /sms/{serviceName}/outgoing/{id}',
+			},
+			{
+				displayName: 'Outgoing Get',
+				name: 'outgoingGetGet',
+				value: 'outgoingGetGet',
+				action: 'GET /sms/{serviceName}/outgoing/{id}',
+			},
+			{
+				displayName: 'Outgoing Hlr',
+				name: 'outgoingHlrGet',
+				value: 'outgoingHlrGet',
+				action: 'GET /sms/{serviceName}/outgoing/{id}/hlr',
+			},
+			{
+				displayName: 'Outgoing List',
+				name: 'outgoingListGet',
+				value: 'outgoingListGet',
+				action: 'GET /sms/{serviceName}/outgoing',
+			},
+			{
+				displayName: 'Phonebooks Create Post',
+				name: 'phonebooksCreatePost',
+				value: 'phonebooksCreatePost',
+				action: 'POST /sms/{serviceName}/phonebooks',
+			},
+			{
+				displayName: 'Phonebooks Delete Delete',
+				name: 'phonebooksDeleteDelete',
+				value: 'phonebooksDeleteDelete',
+				action: 'DELETE /sms/{serviceName}/phonebooks/{bookKey}',
+			},
+			{
+				displayName: 'Phonebooks Export',
+				name: 'phonebooksExportGet',
+				value: 'phonebooksExportGet',
+				action: 'GET /sms/{serviceName}/phonebooks/{bookKey}/export',
+			},
+			{
+				displayName: 'Phonebooks Get',
+				name: 'phonebooksGetGet',
+				value: 'phonebooksGetGet',
+				action: 'GET /sms/{serviceName}/phonebooks/{bookKey}',
+			},
+			{
+				displayName: 'Phonebooks Import Post',
+				name: 'phonebooksImportPost',
+				value: 'phonebooksImportPost',
+				action: 'POST /sms/{serviceName}/phonebooks/{bookKey}/import',
+			},
+			{
+				displayName: 'Phonebooks List',
+				name: 'phonebooksListGet',
+				value: 'phonebooksListGet',
+				action: 'GET /sms/{serviceName}/phonebooks',
+			},
+			{
+				displayName: 'Phonebooks Phonebook Contact Create Post',
+				name: 'phonebooksPhonebookContactCreatePost',
+				value: 'phonebooksPhonebookContactCreatePost',
+				action: 'POST /sms/{serviceName}/phonebooks/{bookKey}/phonebookContact',
+			},
+			{
+				displayName: 'Phonebooks Phonebook Contact Delete Delete',
+				name: 'phonebooksPhonebookContactDeleteDelete',
+				value: 'phonebooksPhonebookContactDeleteDelete',
+				action: 'DELETE /sms/{serviceName}/phonebooks/{bookKey}/phonebookContact/{id}',
+			},
+			{
+				displayName: 'Phonebooks Phonebook Contact Get',
+				name: 'phonebooksPhonebookContactGetGet',
+				value: 'phonebooksPhonebookContactGetGet',
+				action: 'GET /sms/{serviceName}/phonebooks/{bookKey}/phonebookContact/{id}',
+			},
+			{
+				displayName: 'Phonebooks Phonebook Contact List',
+				name: 'phonebooksPhonebookContactListGet',
+				value: 'phonebooksPhonebookContactListGet',
+				action: 'GET /sms/{serviceName}/phonebooks/{bookKey}/phonebookContact',
+			},
+			{
+				displayName: 'Phonebooks Phonebook Contact Update Put',
+				name: 'phonebooksPhonebookContactUpdatePut',
+				value: 'phonebooksPhonebookContactUpdatePut',
+				action: 'PUT /sms/{serviceName}/phonebooks/{bookKey}/phonebookContact/{id}',
+			},
+			{
+				displayName: 'Phonebooks Update Put',
+				name: 'phonebooksUpdatePut',
+				value: 'phonebooksUpdatePut',
+				action: 'PUT /sms/{serviceName}/phonebooks/{bookKey}',
+			},
 			{ displayName: 'Ptts', name: 'pttsGet', value: 'pttsGet', action: 'GET /sms/ptts' },
-			{ displayName: 'Rates Destinations', name: 'ratesDestinationsGet', value: 'ratesDestinationsGet', action: 'GET /sms/rates/destinations' },
-			{ displayName: 'Rates Packs', name: 'ratesPacksGet', value: 'ratesPacksGet', action: 'GET /sms/rates/packs' },
-			{ displayName: 'Receivers Clean Post', name: 'receiversCleanPost', value: 'receiversCleanPost', action: 'POST /sms/{serviceName}/receivers/{slotId}/clean' },
-			{ displayName: 'Receivers Create Post', name: 'receiversCreatePost', value: 'receiversCreatePost', action: 'POST /sms/{serviceName}/receivers' },
-			{ displayName: 'Receivers Csv', name: 'receiversCsvGet', value: 'receiversCsvGet', action: 'GET /sms/{serviceName}/receivers/{slotId}/csv' },
-			{ displayName: 'Receivers Delete Delete', name: 'receiversDeleteDelete', value: 'receiversDeleteDelete', action: 'DELETE /sms/{serviceName}/receivers/{slotId}' },
-			{ displayName: 'Receivers Get', name: 'receiversGetGet', value: 'receiversGetGet', action: 'GET /sms/{serviceName}/receivers/{slotId}' },
-			{ displayName: 'Receivers Update Put', name: 'receiversUpdatePut', value: 'receiversUpdatePut', action: 'PUT /sms/{serviceName}/receivers/{slotId}' },
-			{ displayName: 'See Offers', name: 'seeOffersGet', value: 'seeOffersGet', action: 'GET /sms/{serviceName}/seeOffers' },
-			{ displayName: 'Senders Available For Validation', name: 'sendersAvailableForValidationGet', value: 'sendersAvailableForValidationGet', action: 'GET /sms/{serviceName}/sendersAvailableForValidation' },
-			{ displayName: 'Senders Create Post', name: 'sendersCreatePost', value: 'sendersCreatePost', action: 'POST /sms/{serviceName}/senders' },
-			{ displayName: 'Senders Delete Delete', name: 'sendersDeleteDelete', value: 'sendersDeleteDelete', action: 'DELETE /sms/{serviceName}/senders/{sender}' },
-			{ displayName: 'Senders Documents Get', name: 'sendersDocumentsGetGet', value: 'sendersDocumentsGetGet', action: 'GET /sms/{serviceName}/senders/{sender}/documents/{documentID}' },
-			{ displayName: 'Senders Documents List', name: 'sendersDocumentsListGet', value: 'sendersDocumentsListGet', action: 'GET /sms/{serviceName}/senders/{sender}/documents' },
-			{ displayName: 'Senders Documents Post', name: 'sendersDocumentsPost', value: 'sendersDocumentsPost', action: 'POST /sms/{serviceName}/senders/{sender}/documents' },
-			{ displayName: 'Senders Documents Update Put', name: 'sendersDocumentsUpdatePut', value: 'sendersDocumentsUpdatePut', action: 'PUT /sms/{serviceName}/senders/{sender}/documents/{documentID}' },
-			{ displayName: 'Senders Get', name: 'sendersGetGet', value: 'sendersGetGet', action: 'GET /sms/{serviceName}/senders/{sender}' },
-			{ displayName: 'Senders List', name: 'sendersListGet', value: 'sendersListGet', action: 'GET /sms/{serviceName}/senders' },
-			{ displayName: 'Senders Update Put', name: 'sendersUpdatePut', value: 'sendersUpdatePut', action: 'PUT /sms/{serviceName}/senders/{sender}' },
-			{ displayName: 'Senders Validate Post', name: 'sendersValidatePost', value: 'sendersValidatePost', action: 'POST /sms/{serviceName}/senders/{sender}/validate' },
-			{ displayName: 'Service Infos', name: 'serviceInfosGet', value: 'serviceInfosGet', action: 'GET /sms/{serviceName}/serviceInfos' },
-			{ displayName: 'Service Infos Update Put', name: 'serviceInfosUpdatePut', value: 'serviceInfosUpdatePut', action: 'PUT /sms/{serviceName}/serviceInfos' },
-			{ displayName: 'Smpp Allowed Ips List', name: 'smppAllowedIPsListGet', value: 'smppAllowedIPsListGet', action: 'GET /sms/{serviceName}/smpp/allowedIPs' },
-			{ displayName: 'Smpp Allowed Ips Update Put', name: 'smppAllowedIPsUpdatePut', value: 'smppAllowedIPsUpdatePut', action: 'PUT /sms/{serviceName}/smpp/allowedIPs' },
-			{ displayName: 'Smpp Password Post', name: 'smppPasswordPost', value: 'smppPasswordPost', action: 'POST /sms/{serviceName}/smpp/password' },
-			{ displayName: 'Smpp Settings', name: 'smppSettingsGet', value: 'smppSettingsGet', action: 'GET /sms/{serviceName}/smpp/settings' },
+			{
+				displayName: 'Rates Destinations',
+				name: 'ratesDestinationsGet',
+				value: 'ratesDestinationsGet',
+				action: 'GET /sms/rates/destinations',
+			},
+			{
+				displayName: 'Rates Packs',
+				name: 'ratesPacksGet',
+				value: 'ratesPacksGet',
+				action: 'GET /sms/rates/packs',
+			},
+			{
+				displayName: 'Receivers Clean Post',
+				name: 'receiversCleanPost',
+				value: 'receiversCleanPost',
+				action: 'POST /sms/{serviceName}/receivers/{slotId}/clean',
+			},
+			{
+				displayName: 'Receivers Create Post',
+				name: 'receiversCreatePost',
+				value: 'receiversCreatePost',
+				action: 'POST /sms/{serviceName}/receivers',
+			},
+			{
+				displayName: 'Receivers Csv',
+				name: 'receiversCsvGet',
+				value: 'receiversCsvGet',
+				action: 'GET /sms/{serviceName}/receivers/{slotId}/csv',
+			},
+			{
+				displayName: 'Receivers Delete Delete',
+				name: 'receiversDeleteDelete',
+				value: 'receiversDeleteDelete',
+				action: 'DELETE /sms/{serviceName}/receivers/{slotId}',
+			},
+			{
+				displayName: 'Receivers Get',
+				name: 'receiversGetGet',
+				value: 'receiversGetGet',
+				action: 'GET /sms/{serviceName}/receivers/{slotId}',
+			},
+			{
+				displayName: 'Receivers Update Put',
+				name: 'receiversUpdatePut',
+				value: 'receiversUpdatePut',
+				action: 'PUT /sms/{serviceName}/receivers/{slotId}',
+			},
+			{
+				displayName: 'See Offers',
+				name: 'seeOffersGet',
+				value: 'seeOffersGet',
+				action: 'GET /sms/{serviceName}/seeOffers',
+			},
+			{
+				displayName: 'Senders Available For Validation',
+				name: 'sendersAvailableForValidationGet',
+				value: 'sendersAvailableForValidationGet',
+				action: 'GET /sms/{serviceName}/sendersAvailableForValidation',
+			},
+			{
+				displayName: 'Senders Create Post',
+				name: 'sendersCreatePost',
+				value: 'sendersCreatePost',
+				action: 'POST /sms/{serviceName}/senders',
+			},
+			{
+				displayName: 'Senders Delete Delete',
+				name: 'sendersDeleteDelete',
+				value: 'sendersDeleteDelete',
+				action: 'DELETE /sms/{serviceName}/senders/{sender}',
+			},
+			{
+				displayName: 'Senders Documents Get',
+				name: 'sendersDocumentsGetGet',
+				value: 'sendersDocumentsGetGet',
+				action: 'GET /sms/{serviceName}/senders/{sender}/documents/{documentID}',
+			},
+			{
+				displayName: 'Senders Documents List',
+				name: 'sendersDocumentsListGet',
+				value: 'sendersDocumentsListGet',
+				action: 'GET /sms/{serviceName}/senders/{sender}/documents',
+			},
+			{
+				displayName: 'Senders Documents Post',
+				name: 'sendersDocumentsPost',
+				value: 'sendersDocumentsPost',
+				action: 'POST /sms/{serviceName}/senders/{sender}/documents',
+			},
+			{
+				displayName: 'Senders Documents Update Put',
+				name: 'sendersDocumentsUpdatePut',
+				value: 'sendersDocumentsUpdatePut',
+				action: 'PUT /sms/{serviceName}/senders/{sender}/documents/{documentID}',
+			},
+			{
+				displayName: 'Senders Get',
+				name: 'sendersGetGet',
+				value: 'sendersGetGet',
+				action: 'GET /sms/{serviceName}/senders/{sender}',
+			},
+			{
+				displayName: 'Senders List',
+				name: 'sendersListGet',
+				value: 'sendersListGet',
+				action: 'GET /sms/{serviceName}/senders',
+			},
+			{
+				displayName: 'Senders Update Put',
+				name: 'sendersUpdatePut',
+				value: 'sendersUpdatePut',
+				action: 'PUT /sms/{serviceName}/senders/{sender}',
+			},
+			{
+				displayName: 'Senders Validate Post',
+				name: 'sendersValidatePost',
+				value: 'sendersValidatePost',
+				action: 'POST /sms/{serviceName}/senders/{sender}/validate',
+			},
+			{
+				displayName: 'Service Infos',
+				name: 'serviceInfosGet',
+				value: 'serviceInfosGet',
+				action: 'GET /sms/{serviceName}/serviceInfos',
+			},
+			{
+				displayName: 'Service Infos Update Put',
+				name: 'serviceInfosUpdatePut',
+				value: 'serviceInfosUpdatePut',
+				action: 'PUT /sms/{serviceName}/serviceInfos',
+			},
+			{
+				displayName: 'Smpp Allowed Ips List',
+				name: 'smppAllowedIPsListGet',
+				value: 'smppAllowedIPsListGet',
+				action: 'GET /sms/{serviceName}/smpp/allowedIPs',
+			},
+			{
+				displayName: 'Smpp Allowed Ips Update Put',
+				name: 'smppAllowedIPsUpdatePut',
+				value: 'smppAllowedIPsUpdatePut',
+				action: 'PUT /sms/{serviceName}/smpp/allowedIPs',
+			},
+			{
+				displayName: 'Smpp Password Post',
+				name: 'smppPasswordPost',
+				value: 'smppPasswordPost',
+				action: 'POST /sms/{serviceName}/smpp/password',
+			},
+			{
+				displayName: 'Smpp Settings',
+				name: 'smppSettingsGet',
+				value: 'smppSettingsGet',
+				action: 'GET /sms/{serviceName}/smpp/settings',
+			},
 			{ displayName: 'Send SMS', name: 'smsCreatePost', value: 'smsCreatePost' },
 			{ displayName: 'Delete SMS Service', name: 'smsDeleteDelete', value: 'smsDeleteDelete' },
 			{ displayName: 'Get SMS Service', name: 'smsGetGet', value: 'smsGetGet' },
 			{ displayName: 'List SMS Services', name: 'smsListGet', value: 'smsListGet' },
-			{ displayName: 'List SMS Recipients', name: 'smsRecipientListGet', value: 'smsRecipientListGet' },
+			{
+				displayName: 'List SMS Recipients',
+				name: 'smsRecipientListGet',
+				value: 'smsRecipientListGet',
+			},
 			{ displayName: 'Get SMS Task', name: 'smsTaskGetGet', value: 'smsTaskGetGet' },
 			{ displayName: 'List SMS Tasks', name: 'smsTaskListGet', value: 'smsTaskListGet' },
-			{ displayName: 'Sms Update Put', name: 'smsUpdatePut', value: 'smsUpdatePut', action: 'PUT /sms/{serviceName}' },
-			{ displayName: 'Templates Control Create Post', name: 'templatesControlCreatePost', value: 'templatesControlCreatePost', action: 'POST /sms/{serviceName}/templatesControl' },
-			{ displayName: 'Templates Control Delete Delete', name: 'templatesControlDeleteDelete', value: 'templatesControlDeleteDelete', action: 'DELETE /sms/{serviceName}/templatesControl/{name}' },
-			{ displayName: 'Templates Control Get', name: 'templatesControlGetGet', value: 'templatesControlGetGet', action: 'GET /sms/{serviceName}/templatesControl/{name}' },
-			{ displayName: 'Templates Control List', name: 'templatesControlListGet', value: 'templatesControlListGet', action: 'GET /sms/{serviceName}/templatesControl' },
-			{ displayName: 'Templates Control Relaunch Validation Post', name: 'templatesControlRelaunchValidationPost', value: 'templatesControlRelaunchValidationPost', action: 'POST /sms/{serviceName}/templatesControl/{name}/relaunchValidation' },
-			{ displayName: 'Templates Control Update Put', name: 'templatesControlUpdatePut', value: 'templatesControlUpdatePut', action: 'PUT /sms/{serviceName}/templatesControl/{name}' },
-			{ displayName: 'Top Virtual Numbers', name: 'topVirtualNumbersGet', value: 'topVirtualNumbersGet', action: 'GET /sms/virtualNumbers/{number}/serviceInfos' },
-			{ displayName: 'Top Virtual Numbers Get', name: 'topVirtualNumbersGetGet', value: 'topVirtualNumbersGetGet', action: 'GET /sms/virtualNumbers/{number}' },
-			{ displayName: 'Top Virtual Numbers List', name: 'topVirtualNumbersListGet', value: 'topVirtualNumbersListGet', action: 'GET /sms/virtualNumbers' },
-			{ displayName: 'Top Virtual Numbers Update Put', name: 'topVirtualNumbersUpdatePut', value: 'topVirtualNumbersUpdatePut', action: 'PUT /sms/virtualNumbers/{number}/serviceInfos' },
-			{ displayName: 'Transfer Credits Post', name: 'transferCreditsPost', value: 'transferCreditsPost', action: 'POST /sms/{serviceName}/transferCredits' },
-			{ displayName: 'Users Create Post', name: 'usersCreatePost', value: 'usersCreatePost', action: 'POST /sms/{serviceName}/users' },
-			{ displayName: 'Users Delete Delete', name: 'usersDeleteDelete', value: 'usersDeleteDelete', action: 'DELETE /sms/{serviceName}/users/{login}' },
-			{ displayName: 'Users Document', name: 'usersDocumentGet', value: 'usersDocumentGet', action: 'GET /sms/{serviceName}/users/{login}/document' },
-			{ displayName: 'Users Get', name: 'usersGetGet', value: 'usersGetGet', action: 'GET /sms/{serviceName}/users/{login}' },
-			{ displayName: 'Users Incoming Delete Delete', name: 'usersIncomingDeleteDelete', value: 'usersIncomingDeleteDelete', action: 'DELETE /sms/{serviceName}/users/{login}/incoming/{id}' },
-			{ displayName: 'Users Incoming Get', name: 'usersIncomingGetGet', value: 'usersIncomingGetGet', action: 'GET /sms/{serviceName}/users/{login}/incoming/{id}' },
-			{ displayName: 'Users Incoming List', name: 'usersIncomingListGet', value: 'usersIncomingListGet', action: 'GET /sms/{serviceName}/users/{login}/incoming' },
-			{ displayName: 'Users Jobs Delete Delete', name: 'usersJobsDeleteDelete', value: 'usersJobsDeleteDelete', action: 'DELETE /sms/{serviceName}/users/{login}/jobs/{id}' },
-			{ displayName: 'Users Jobs Get', name: 'usersJobsGetGet', value: 'usersJobsGetGet', action: 'GET /sms/{serviceName}/users/{login}/jobs/{id}' },
-			{ displayName: 'Users Jobs List', name: 'usersJobsListGet', value: 'usersJobsListGet', action: 'GET /sms/{serviceName}/users/{login}/jobs' },
-			{ displayName: 'Users Jobs Send Post', name: 'usersJobsSendPost', value: 'usersJobsSendPost', action: 'POST /sms/{serviceName}/users/{login}/jobs' },
-			{ displayName: 'Users List', name: 'usersListGet', value: 'usersListGet', action: 'GET /sms/{serviceName}/users' },
-			{ displayName: 'Users Outgoing Delete Delete', name: 'usersOutgoingDeleteDelete', value: 'usersOutgoingDeleteDelete', action: 'DELETE /sms/{serviceName}/users/{login}/outgoing/{id}' },
-			{ displayName: 'Users Outgoing Get', name: 'usersOutgoingGetGet', value: 'usersOutgoingGetGet', action: 'GET /sms/{serviceName}/users/{login}/outgoing/{id}' },
-			{ displayName: 'Users Outgoing Hlr', name: 'usersOutgoingHlrGet', value: 'usersOutgoingHlrGet', action: 'GET /sms/{serviceName}/users/{login}/outgoing/{id}/hlr' },
-			{ displayName: 'Users Outgoing List', name: 'usersOutgoingListGet', value: 'usersOutgoingListGet', action: 'GET /sms/{serviceName}/users/{login}/outgoing' },
-			{ displayName: 'Users Receivers Clean Post', name: 'usersReceiversCleanPost', value: 'usersReceiversCleanPost', action: 'POST /sms/{serviceName}/users/{login}/receivers/{slotId}/clean' },
-			{ displayName: 'Users Receivers Create Post', name: 'usersReceiversCreatePost', value: 'usersReceiversCreatePost', action: 'POST /sms/{serviceName}/users/{login}/receivers' },
-			{ displayName: 'Users Receivers Csv', name: 'usersReceiversCsvGet', value: 'usersReceiversCsvGet', action: 'GET /sms/{serviceName}/users/{login}/receivers/{slotId}/csv' },
-			{ displayName: 'Users Receivers Delete Delete', name: 'usersReceiversDeleteDelete', value: 'usersReceiversDeleteDelete', action: 'DELETE /sms/{serviceName}/users/{login}/receivers/{slotId}' },
-			{ displayName: 'Users Receivers Get', name: 'usersReceiversGetGet', value: 'usersReceiversGetGet', action: 'GET /sms/{serviceName}/users/{login}/receivers/{slotId}' },
-			{ displayName: 'Users Receivers List', name: 'usersReceiversListGet', value: 'usersReceiversListGet', action: 'GET /sms/{serviceName}/users/{login}/receivers' },
-			{ displayName: 'Users Receivers Update Put', name: 'usersReceiversUpdatePut', value: 'usersReceiversUpdatePut', action: 'PUT /sms/{serviceName}/users/{login}/receivers/{slotId}' },
-			{ displayName: 'Users Update Put', name: 'usersUpdatePut', value: 'usersUpdatePut', action: 'PUT /sms/{serviceName}/users/{login}' },
-			{ displayName: 'Virtual Numbers Chat Access Delete', name: 'virtualNumbersChatAccessDelete', value: 'virtualNumbersChatAccessDelete', action: 'DELETE /sms/{serviceName}/virtualNumbers/{number}/chatAccess' },
-			{ displayName: 'Virtual Numbers Chat Access', name: 'virtualNumbersChatAccessGet', value: 'virtualNumbersChatAccessGet', action: 'GET /sms/{serviceName}/virtualNumbers/{number}/chatAccess' },
-			{ displayName: 'Virtual Numbers Chat Access Post', name: 'virtualNumbersChatAccessPost', value: 'virtualNumbersChatAccessPost', action: 'POST /sms/{serviceName}/virtualNumbers/{number}/chatAccess' },
-			{ displayName: 'Virtual Numbers Get', name: 'virtualNumbersGetGet', value: 'virtualNumbersGetGet', action: 'GET /sms/{serviceName}/virtualNumbers/{number}' },
-			{ displayName: 'Virtual Numbers Incoming Delete Delete', name: 'virtualNumbersIncomingDeleteDelete', value: 'virtualNumbersIncomingDeleteDelete', action: 'DELETE /sms/{serviceName}/virtualNumbers/{number}/incoming/{id}' },
-			{ displayName: 'Virtual Numbers Incoming Get', name: 'virtualNumbersIncomingGetGet', value: 'virtualNumbersIncomingGetGet', action: 'GET /sms/{serviceName}/virtualNumbers/{number}/incoming/{id}' },
-			{ displayName: 'Virtual Numbers Incoming List', name: 'virtualNumbersIncomingListGet', value: 'virtualNumbersIncomingListGet', action: 'GET /sms/{serviceName}/virtualNumbers/{number}/incoming' },
-			{ displayName: 'Virtual Numbers Jobs Delete Delete', name: 'virtualNumbersJobsDeleteDelete', value: 'virtualNumbersJobsDeleteDelete', action: 'DELETE /sms/{serviceName}/virtualNumbers/{number}/jobs/{id}' },
-			{ displayName: 'Virtual Numbers Jobs Get', name: 'virtualNumbersJobsGetGet', value: 'virtualNumbersJobsGetGet', action: 'GET /sms/{serviceName}/virtualNumbers/{number}/jobs/{id}' },
-			{ displayName: 'Virtual Numbers Jobs List', name: 'virtualNumbersJobsListGet', value: 'virtualNumbersJobsListGet', action: 'GET /sms/{serviceName}/virtualNumbers/{number}/jobs' },
-			{ displayName: 'Virtual Numbers Jobs Send Post', name: 'virtualNumbersJobsSendPost', value: 'virtualNumbersJobsSendPost', action: 'POST /sms/{serviceName}/virtualNumbers/{number}/jobs' },
-			{ displayName: 'Virtual Numbers List', name: 'virtualNumbersListGet', value: 'virtualNumbersListGet', action: 'GET /sms/{serviceName}/virtualNumbers' },
-			{ displayName: 'Virtual Numbers Outgoing Delete Delete', name: 'virtualNumbersOutgoingDeleteDelete', value: 'virtualNumbersOutgoingDeleteDelete', action: 'DELETE /sms/{serviceName}/virtualNumbers/{number}/outgoing/{id}' },
-			{ displayName: 'Virtual Numbers Outgoing Get', name: 'virtualNumbersOutgoingGetGet', value: 'virtualNumbersOutgoingGetGet', action: 'GET /sms/{serviceName}/virtualNumbers/{number}/outgoing/{id}' },
-			{ displayName: 'Virtual Numbers Outgoing Hlr', name: 'virtualNumbersOutgoingHlrGet', value: 'virtualNumbersOutgoingHlrGet', action: 'GET /sms/{serviceName}/virtualNumbers/{number}/outgoing/{id}/hlr' },
-			{ displayName: 'Virtual Numbers Outgoing List', name: 'virtualNumbersOutgoingListGet', value: 'virtualNumbersOutgoingListGet', action: 'GET /sms/{serviceName}/virtualNumbers/{number}/outgoing' },
+			{
+				displayName: 'Sms Update Put',
+				name: 'smsUpdatePut',
+				value: 'smsUpdatePut',
+				action: 'PUT /sms/{serviceName}',
+			},
+			{
+				displayName: 'Templates Control Create Post',
+				name: 'templatesControlCreatePost',
+				value: 'templatesControlCreatePost',
+				action: 'POST /sms/{serviceName}/templatesControl',
+			},
+			{
+				displayName: 'Templates Control Delete Delete',
+				name: 'templatesControlDeleteDelete',
+				value: 'templatesControlDeleteDelete',
+				action: 'DELETE /sms/{serviceName}/templatesControl/{name}',
+			},
+			{
+				displayName: 'Templates Control Get',
+				name: 'templatesControlGetGet',
+				value: 'templatesControlGetGet',
+				action: 'GET /sms/{serviceName}/templatesControl/{name}',
+			},
+			{
+				displayName: 'Templates Control List',
+				name: 'templatesControlListGet',
+				value: 'templatesControlListGet',
+				action: 'GET /sms/{serviceName}/templatesControl',
+			},
+			{
+				displayName: 'Templates Control Relaunch Validation Post',
+				name: 'templatesControlRelaunchValidationPost',
+				value: 'templatesControlRelaunchValidationPost',
+				action: 'POST /sms/{serviceName}/templatesControl/{name}/relaunchValidation',
+			},
+			{
+				displayName: 'Templates Control Update Put',
+				name: 'templatesControlUpdatePut',
+				value: 'templatesControlUpdatePut',
+				action: 'PUT /sms/{serviceName}/templatesControl/{name}',
+			},
+			{
+				displayName: 'Top Virtual Numbers',
+				name: 'topVirtualNumbersGet',
+				value: 'topVirtualNumbersGet',
+				action: 'GET /sms/virtualNumbers/{number}/serviceInfos',
+			},
+			{
+				displayName: 'Top Virtual Numbers Get',
+				name: 'topVirtualNumbersGetGet',
+				value: 'topVirtualNumbersGetGet',
+				action: 'GET /sms/virtualNumbers/{number}',
+			},
+			{
+				displayName: 'Top Virtual Numbers List',
+				name: 'topVirtualNumbersListGet',
+				value: 'topVirtualNumbersListGet',
+				action: 'GET /sms/virtualNumbers',
+			},
+			{
+				displayName: 'Top Virtual Numbers Update Put',
+				name: 'topVirtualNumbersUpdatePut',
+				value: 'topVirtualNumbersUpdatePut',
+				action: 'PUT /sms/virtualNumbers/{number}/serviceInfos',
+			},
+			{
+				displayName: 'Transfer Credits Post',
+				name: 'transferCreditsPost',
+				value: 'transferCreditsPost',
+				action: 'POST /sms/{serviceName}/transferCredits',
+			},
+			{
+				displayName: 'Users Create Post',
+				name: 'usersCreatePost',
+				value: 'usersCreatePost',
+				action: 'POST /sms/{serviceName}/users',
+			},
+			{
+				displayName: 'Users Delete Delete',
+				name: 'usersDeleteDelete',
+				value: 'usersDeleteDelete',
+				action: 'DELETE /sms/{serviceName}/users/{login}',
+			},
+			{
+				displayName: 'Users Document',
+				name: 'usersDocumentGet',
+				value: 'usersDocumentGet',
+				action: 'GET /sms/{serviceName}/users/{login}/document',
+			},
+			{
+				displayName: 'Users Get',
+				name: 'usersGetGet',
+				value: 'usersGetGet',
+				action: 'GET /sms/{serviceName}/users/{login}',
+			},
+			{
+				displayName: 'Users Incoming Delete Delete',
+				name: 'usersIncomingDeleteDelete',
+				value: 'usersIncomingDeleteDelete',
+				action: 'DELETE /sms/{serviceName}/users/{login}/incoming/{id}',
+			},
+			{
+				displayName: 'Users Incoming Get',
+				name: 'usersIncomingGetGet',
+				value: 'usersIncomingGetGet',
+				action: 'GET /sms/{serviceName}/users/{login}/incoming/{id}',
+			},
+			{
+				displayName: 'Users Incoming List',
+				name: 'usersIncomingListGet',
+				value: 'usersIncomingListGet',
+				action: 'GET /sms/{serviceName}/users/{login}/incoming',
+			},
+			{
+				displayName: 'Users Jobs Delete Delete',
+				name: 'usersJobsDeleteDelete',
+				value: 'usersJobsDeleteDelete',
+				action: 'DELETE /sms/{serviceName}/users/{login}/jobs/{id}',
+			},
+			{
+				displayName: 'Users Jobs Get',
+				name: 'usersJobsGetGet',
+				value: 'usersJobsGetGet',
+				action: 'GET /sms/{serviceName}/users/{login}/jobs/{id}',
+			},
+			{
+				displayName: 'Users Jobs List',
+				name: 'usersJobsListGet',
+				value: 'usersJobsListGet',
+				action: 'GET /sms/{serviceName}/users/{login}/jobs',
+			},
+			{
+				displayName: 'Users Jobs Send Post',
+				name: 'usersJobsSendPost',
+				value: 'usersJobsSendPost',
+				action: 'POST /sms/{serviceName}/users/{login}/jobs',
+			},
+			{
+				displayName: 'Users List',
+				name: 'usersListGet',
+				value: 'usersListGet',
+				action: 'GET /sms/{serviceName}/users',
+			},
+			{
+				displayName: 'Users Outgoing Delete Delete',
+				name: 'usersOutgoingDeleteDelete',
+				value: 'usersOutgoingDeleteDelete',
+				action: 'DELETE /sms/{serviceName}/users/{login}/outgoing/{id}',
+			},
+			{
+				displayName: 'Users Outgoing Get',
+				name: 'usersOutgoingGetGet',
+				value: 'usersOutgoingGetGet',
+				action: 'GET /sms/{serviceName}/users/{login}/outgoing/{id}',
+			},
+			{
+				displayName: 'Users Outgoing Hlr',
+				name: 'usersOutgoingHlrGet',
+				value: 'usersOutgoingHlrGet',
+				action: 'GET /sms/{serviceName}/users/{login}/outgoing/{id}/hlr',
+			},
+			{
+				displayName: 'Users Outgoing List',
+				name: 'usersOutgoingListGet',
+				value: 'usersOutgoingListGet',
+				action: 'GET /sms/{serviceName}/users/{login}/outgoing',
+			},
+			{
+				displayName: 'Users Receivers Clean Post',
+				name: 'usersReceiversCleanPost',
+				value: 'usersReceiversCleanPost',
+				action: 'POST /sms/{serviceName}/users/{login}/receivers/{slotId}/clean',
+			},
+			{
+				displayName: 'Users Receivers Create Post',
+				name: 'usersReceiversCreatePost',
+				value: 'usersReceiversCreatePost',
+				action: 'POST /sms/{serviceName}/users/{login}/receivers',
+			},
+			{
+				displayName: 'Users Receivers Csv',
+				name: 'usersReceiversCsvGet',
+				value: 'usersReceiversCsvGet',
+				action: 'GET /sms/{serviceName}/users/{login}/receivers/{slotId}/csv',
+			},
+			{
+				displayName: 'Users Receivers Delete Delete',
+				name: 'usersReceiversDeleteDelete',
+				value: 'usersReceiversDeleteDelete',
+				action: 'DELETE /sms/{serviceName}/users/{login}/receivers/{slotId}',
+			},
+			{
+				displayName: 'Users Receivers Get',
+				name: 'usersReceiversGetGet',
+				value: 'usersReceiversGetGet',
+				action: 'GET /sms/{serviceName}/users/{login}/receivers/{slotId}',
+			},
+			{
+				displayName: 'Users Receivers List',
+				name: 'usersReceiversListGet',
+				value: 'usersReceiversListGet',
+				action: 'GET /sms/{serviceName}/users/{login}/receivers',
+			},
+			{
+				displayName: 'Users Receivers Update Put',
+				name: 'usersReceiversUpdatePut',
+				value: 'usersReceiversUpdatePut',
+				action: 'PUT /sms/{serviceName}/users/{login}/receivers/{slotId}',
+			},
+			{
+				displayName: 'Users Update Put',
+				name: 'usersUpdatePut',
+				value: 'usersUpdatePut',
+				action: 'PUT /sms/{serviceName}/users/{login}',
+			},
+			{
+				displayName: 'Virtual Numbers Chat Access Delete',
+				name: 'virtualNumbersChatAccessDelete',
+				value: 'virtualNumbersChatAccessDelete',
+				action: 'DELETE /sms/{serviceName}/virtualNumbers/{number}/chatAccess',
+			},
+			{
+				displayName: 'Virtual Numbers Chat Access',
+				name: 'virtualNumbersChatAccessGet',
+				value: 'virtualNumbersChatAccessGet',
+				action: 'GET /sms/{serviceName}/virtualNumbers/{number}/chatAccess',
+			},
+			{
+				displayName: 'Virtual Numbers Chat Access Post',
+				name: 'virtualNumbersChatAccessPost',
+				value: 'virtualNumbersChatAccessPost',
+				action: 'POST /sms/{serviceName}/virtualNumbers/{number}/chatAccess',
+			},
+			{
+				displayName: 'Virtual Numbers Get',
+				name: 'virtualNumbersGetGet',
+				value: 'virtualNumbersGetGet',
+				action: 'GET /sms/{serviceName}/virtualNumbers/{number}',
+			},
+			{
+				displayName: 'Virtual Numbers Incoming Delete Delete',
+				name: 'virtualNumbersIncomingDeleteDelete',
+				value: 'virtualNumbersIncomingDeleteDelete',
+				action: 'DELETE /sms/{serviceName}/virtualNumbers/{number}/incoming/{id}',
+			},
+			{
+				displayName: 'Virtual Numbers Incoming Get',
+				name: 'virtualNumbersIncomingGetGet',
+				value: 'virtualNumbersIncomingGetGet',
+				action: 'GET /sms/{serviceName}/virtualNumbers/{number}/incoming/{id}',
+			},
+			{
+				displayName: 'Virtual Numbers Incoming List',
+				name: 'virtualNumbersIncomingListGet',
+				value: 'virtualNumbersIncomingListGet',
+				action: 'GET /sms/{serviceName}/virtualNumbers/{number}/incoming',
+			},
+			{
+				displayName: 'Virtual Numbers Jobs Delete Delete',
+				name: 'virtualNumbersJobsDeleteDelete',
+				value: 'virtualNumbersJobsDeleteDelete',
+				action: 'DELETE /sms/{serviceName}/virtualNumbers/{number}/jobs/{id}',
+			},
+			{
+				displayName: 'Virtual Numbers Jobs Get',
+				name: 'virtualNumbersJobsGetGet',
+				value: 'virtualNumbersJobsGetGet',
+				action: 'GET /sms/{serviceName}/virtualNumbers/{number}/jobs/{id}',
+			},
+			{
+				displayName: 'Virtual Numbers Jobs List',
+				name: 'virtualNumbersJobsListGet',
+				value: 'virtualNumbersJobsListGet',
+				action: 'GET /sms/{serviceName}/virtualNumbers/{number}/jobs',
+			},
+			{
+				displayName: 'Virtual Numbers Jobs Send Post',
+				name: 'virtualNumbersJobsSendPost',
+				value: 'virtualNumbersJobsSendPost',
+				action: 'POST /sms/{serviceName}/virtualNumbers/{number}/jobs',
+			},
+			{
+				displayName: 'Virtual Numbers List',
+				name: 'virtualNumbersListGet',
+				value: 'virtualNumbersListGet',
+				action: 'GET /sms/{serviceName}/virtualNumbers',
+			},
+			{
+				displayName: 'Virtual Numbers Outgoing Delete Delete',
+				name: 'virtualNumbersOutgoingDeleteDelete',
+				value: 'virtualNumbersOutgoingDeleteDelete',
+				action: 'DELETE /sms/{serviceName}/virtualNumbers/{number}/outgoing/{id}',
+			},
+			{
+				displayName: 'Virtual Numbers Outgoing Get',
+				name: 'virtualNumbersOutgoingGetGet',
+				value: 'virtualNumbersOutgoingGetGet',
+				action: 'GET /sms/{serviceName}/virtualNumbers/{number}/outgoing/{id}',
+			},
+			{
+				displayName: 'Virtual Numbers Outgoing Hlr',
+				name: 'virtualNumbersOutgoingHlrGet',
+				value: 'virtualNumbersOutgoingHlrGet',
+				action: 'GET /sms/{serviceName}/virtualNumbers/{number}/outgoing/{id}/hlr',
+			},
+			{
+				displayName: 'Virtual Numbers Outgoing List',
+				name: 'virtualNumbersOutgoingListGet',
+				value: 'virtualNumbersOutgoingListGet',
+				action: 'GET /sms/{serviceName}/virtualNumbers/{number}/outgoing',
+			},
 		],
 	});
 
-	properties.push(...descriptionSmsListGet({
-		...displayOptions,
-		show: { smsOperation: ['smsListGet'] },
-	}));
-	properties.push(...descriptionSmsCreatePost({
-		...displayOptions,
-		show: { smsOperation: ['smsCreatePost'] },
-	}));
-	properties.push(...descriptionSmsGetGet({
-		...displayOptions,
-		show: { smsOperation: ['smsGetGet'] },
-	}));
-	properties.push(...descriptionSmsDeleteDelete({
-		...displayOptions,
-		show: { smsOperation: ['smsDeleteDelete'] },
-	}));
-	properties.push(...descriptionSmsRecipientListGet({
-		...displayOptions,
-		show: { smsOperation: ['smsRecipientListGet'] },
-	}));
-	properties.push(...descriptionSmsTaskListGet({
-		...displayOptions,
-		show: { smsOperation: ['smsTaskListGet'] },
-	}));
-	properties.push(...descriptionSmsTaskGetGet({
-		...displayOptions,
-		show: { smsOperation: ['smsTaskGetGet'] },
-	}));
-	properties.push(...descriptionBlacklistListGet({
-		...displayOptions,
-		show: { smsOperation: ['blacklistListGet'] },
-	}));
-	properties.push(...descriptionBlacklistCreatePost({
-		...displayOptions,
-		show: { smsOperation: ['blacklistCreatePost'] },
-	}));
-	properties.push(...descriptionBlacklistDeleteDelete({
-		...displayOptions,
-		show: { smsOperation: ['blacklistDeleteDelete'] },
-	}));
-	properties.push(...descriptionBlacklistGetGet({
-		...displayOptions,
-		show: { smsOperation: ['blacklistGetGet'] },
-	}));
-	properties.push(...descriptionEstimatePost({
-		...displayOptions,
-		show: { smsOperation: ['estimatePost'] },
-	}));
-	properties.push(...descriptionPttsGet({
-		...displayOptions,
-		show: { smsOperation: ['pttsGet'] },
-	}));
-	properties.push(...descriptionRatesDestinationsGet({
-		...displayOptions,
-		show: { smsOperation: ['ratesDestinationsGet'] },
-	}));
-	properties.push(...descriptionRatesPacksGet({
-		...displayOptions,
-		show: { smsOperation: ['ratesPacksGet'] },
-	}));
-	properties.push(...descriptionTopVirtualNumbersListGet({
-		...displayOptions,
-		show: { smsOperation: ['topVirtualNumbersListGet'] },
-	}));
-	properties.push(...descriptionTopVirtualNumbersGetGet({
-		...displayOptions,
-		show: { smsOperation: ['topVirtualNumbersGetGet'] },
-	}));
-	properties.push(...descriptionTopVirtualNumbersGet({
-		...displayOptions,
-		show: { smsOperation: ['topVirtualNumbersGet'] },
-	}));
-	properties.push(...descriptionTopVirtualNumbersUpdatePut({
-		...displayOptions,
-		show: { smsOperation: ['topVirtualNumbersUpdatePut'] },
-	}));
-	properties.push(...descriptionSmsUpdatePut({
-		...displayOptions,
-		show: { smsOperation: ['smsUpdatePut'] },
-	}));
-	properties.push(...descriptionBatchesListGet({
-		...displayOptions,
-		show: { smsOperation: ['batchesListGet'] },
-	}));
-	properties.push(...descriptionBatchesCreatePost({
-		...displayOptions,
-		show: { smsOperation: ['batchesCreatePost'] },
-	}));
-	properties.push(...descriptionBatchesDeleteDelete({
-		...displayOptions,
-		show: { smsOperation: ['batchesDeleteDelete'] },
-	}));
-	properties.push(...descriptionBatchesGetGet({
-		...displayOptions,
-		show: { smsOperation: ['batchesGetGet'] },
-	}));
-	properties.push(...descriptionBatchesUpdatePut({
-		...displayOptions,
-		show: { smsOperation: ['batchesUpdatePut'] },
-	}));
-	properties.push(...descriptionBatchesCancelPost({
-		...displayOptions,
-		show: { smsOperation: ['batchesCancelPost'] },
-	}));
-	properties.push(...descriptionBatchesStatisticsGet({
-		...displayOptions,
-		show: { smsOperation: ['batchesStatisticsGet'] },
-	}));
-	properties.push(...descriptionDocumentGet({
-		...displayOptions,
-		show: { smsOperation: ['documentGet'] },
-	}));
-	properties.push(...descriptionExceptionsListGet({
-		...displayOptions,
-		show: { smsOperation: ['exceptionsListGet'] },
-	}));
-	properties.push(...descriptionHlrListGet({
-		...displayOptions,
-		show: { smsOperation: ['hlrListGet'] },
-	}));
-	properties.push(...descriptionHlrCreatePost({
-		...displayOptions,
-		show: { smsOperation: ['hlrCreatePost'] },
-	}));
-	properties.push(...descriptionHlrGetGet({
-		...displayOptions,
-		show: { smsOperation: ['hlrGetGet'] },
-	}));
-	properties.push(...descriptionHlrOperatorGet({
-		...displayOptions,
-		show: { smsOperation: ['hlrOperatorGet'] },
-	}));
-	properties.push(...descriptionIncomingListGet({
-		...displayOptions,
-		show: { smsOperation: ['incomingListGet'] },
-	}));
-	properties.push(...descriptionIncomingDeleteDelete({
-		...displayOptions,
-		show: { smsOperation: ['incomingDeleteDelete'] },
-	}));
-	properties.push(...descriptionIncomingGetGet({
-		...displayOptions,
-		show: { smsOperation: ['incomingGetGet'] },
-	}));
-	properties.push(...descriptionJobsListGet({
-		...displayOptions,
-		show: { smsOperation: ['jobsListGet'] },
-	}));
-	properties.push(...descriptionJobsDeleteDelete({
-		...displayOptions,
-		show: { smsOperation: ['jobsDeleteDelete'] },
-	}));
-	properties.push(...descriptionJobsGetGet({
-		...displayOptions,
-		show: { smsOperation: ['jobsGetGet'] },
-	}));
-	properties.push(...descriptionOutgoingListGet({
-		...displayOptions,
-		show: { smsOperation: ['outgoingListGet'] },
-	}));
-	properties.push(...descriptionOutgoingDeleteDelete({
-		...displayOptions,
-		show: { smsOperation: ['outgoingDeleteDelete'] },
-	}));
-	properties.push(...descriptionOutgoingGetGet({
-		...displayOptions,
-		show: { smsOperation: ['outgoingGetGet'] },
-	}));
-	properties.push(...descriptionOutgoingHlrGet({
-		...displayOptions,
-		show: { smsOperation: ['outgoingHlrGet'] },
-	}));
-	properties.push(...descriptionPhonebooksListGet({
-		...displayOptions,
-		show: { smsOperation: ['phonebooksListGet'] },
-	}));
-	properties.push(...descriptionPhonebooksCreatePost({
-		...displayOptions,
-		show: { smsOperation: ['phonebooksCreatePost'] },
-	}));
-	properties.push(...descriptionPhonebooksDeleteDelete({
-		...displayOptions,
-		show: { smsOperation: ['phonebooksDeleteDelete'] },
-	}));
-	properties.push(...descriptionPhonebooksGetGet({
-		...displayOptions,
-		show: { smsOperation: ['phonebooksGetGet'] },
-	}));
-	properties.push(...descriptionPhonebooksUpdatePut({
-		...displayOptions,
-		show: { smsOperation: ['phonebooksUpdatePut'] },
-	}));
-	properties.push(...descriptionPhonebooksExportGet({
-		...displayOptions,
-		show: { smsOperation: ['phonebooksExportGet'] },
-	}));
-	properties.push(...descriptionPhonebooksImportPost({
-		...displayOptions,
-		show: { smsOperation: ['phonebooksImportPost'] },
-	}));
-	properties.push(...descriptionPhonebooksPhonebookContactListGet({
-		...displayOptions,
-		show: { smsOperation: ['phonebooksPhonebookContactListGet'] },
-	}));
-	properties.push(...descriptionPhonebooksPhonebookContactCreatePost({
-		...displayOptions,
-		show: { smsOperation: ['phonebooksPhonebookContactCreatePost'] },
-	}));
-	properties.push(...descriptionPhonebooksPhonebookContactDeleteDelete({
-		...displayOptions,
-		show: { smsOperation: ['phonebooksPhonebookContactDeleteDelete'] },
-	}));
-	properties.push(...descriptionPhonebooksPhonebookContactGetGet({
-		...displayOptions,
-		show: { smsOperation: ['phonebooksPhonebookContactGetGet'] },
-	}));
-	properties.push(...descriptionPhonebooksPhonebookContactUpdatePut({
-		...displayOptions,
-		show: { smsOperation: ['phonebooksPhonebookContactUpdatePut'] },
-	}));
-	properties.push(...descriptionReceiversCreatePost({
-		...displayOptions,
-		show: { smsOperation: ['receiversCreatePost'] },
-	}));
-	properties.push(...descriptionReceiversDeleteDelete({
-		...displayOptions,
-		show: { smsOperation: ['receiversDeleteDelete'] },
-	}));
-	properties.push(...descriptionReceiversGetGet({
-		...displayOptions,
-		show: { smsOperation: ['receiversGetGet'] },
-	}));
-	properties.push(...descriptionReceiversUpdatePut({
-		...displayOptions,
-		show: { smsOperation: ['receiversUpdatePut'] },
-	}));
-	properties.push(...descriptionReceiversCleanPost({
-		...displayOptions,
-		show: { smsOperation: ['receiversCleanPost'] },
-	}));
-	properties.push(...descriptionReceiversCsvGet({
-		...displayOptions,
-		show: { smsOperation: ['receiversCsvGet'] },
-	}));
-	properties.push(...descriptionSeeOffersGet({
-		...displayOptions,
-		show: { smsOperation: ['seeOffersGet'] },
-	}));
-	properties.push(...descriptionSendersListGet({
-		...displayOptions,
-		show: { smsOperation: ['sendersListGet'] },
-	}));
-	properties.push(...descriptionSendersCreatePost({
-		...displayOptions,
-		show: { smsOperation: ['sendersCreatePost'] },
-	}));
-	properties.push(...descriptionSendersDeleteDelete({
-		...displayOptions,
-		show: { smsOperation: ['sendersDeleteDelete'] },
-	}));
-	properties.push(...descriptionSendersGetGet({
-		...displayOptions,
-		show: { smsOperation: ['sendersGetGet'] },
-	}));
-	properties.push(...descriptionSendersUpdatePut({
-		...displayOptions,
-		show: { smsOperation: ['sendersUpdatePut'] },
-	}));
-	properties.push(...descriptionSendersDocumentsListGet({
-		...displayOptions,
-		show: { smsOperation: ['sendersDocumentsListGet'] },
-	}));
-	properties.push(...descriptionSendersDocumentsPost({
-		...displayOptions,
-		show: { smsOperation: ['sendersDocumentsPost'] },
-	}));
-	properties.push(...descriptionSendersDocumentsGetGet({
-		...displayOptions,
-		show: { smsOperation: ['sendersDocumentsGetGet'] },
-	}));
-	properties.push(...descriptionSendersDocumentsUpdatePut({
-		...displayOptions,
-		show: { smsOperation: ['sendersDocumentsUpdatePut'] },
-	}));
-	properties.push(...descriptionSendersValidatePost({
-		...displayOptions,
-		show: { smsOperation: ['sendersValidatePost'] },
-	}));
-	properties.push(...descriptionSendersAvailableForValidationGet({
-		...displayOptions,
-		show: { smsOperation: ['sendersAvailableForValidationGet'] },
-	}));
-	properties.push(...descriptionServiceInfosGet({
-		...displayOptions,
-		show: { smsOperation: ['serviceInfosGet'] },
-	}));
-	properties.push(...descriptionServiceInfosUpdatePut({
-		...displayOptions,
-		show: { smsOperation: ['serviceInfosUpdatePut'] },
-	}));
-	properties.push(...descriptionSmppAllowedIPsListGet({
-		...displayOptions,
-		show: { smsOperation: ['smppAllowedIPsListGet'] },
-	}));
-	properties.push(...descriptionSmppAllowedIPsUpdatePut({
-		...displayOptions,
-		show: { smsOperation: ['smppAllowedIPsUpdatePut'] },
-	}));
-	properties.push(...descriptionSmppPasswordPost({
-		...displayOptions,
-		show: { smsOperation: ['smppPasswordPost'] },
-	}));
-	properties.push(...descriptionSmppSettingsGet({
-		...displayOptions,
-		show: { smsOperation: ['smppSettingsGet'] },
-	}));
-	properties.push(...descriptionTemplatesControlListGet({
-		...displayOptions,
-		show: { smsOperation: ['templatesControlListGet'] },
-	}));
-	properties.push(...descriptionTemplatesControlCreatePost({
-		...displayOptions,
-		show: { smsOperation: ['templatesControlCreatePost'] },
-	}));
-	properties.push(...descriptionTemplatesControlDeleteDelete({
-		...displayOptions,
-		show: { smsOperation: ['templatesControlDeleteDelete'] },
-	}));
-	properties.push(...descriptionTemplatesControlGetGet({
-		...displayOptions,
-		show: { smsOperation: ['templatesControlGetGet'] },
-	}));
-	properties.push(...descriptionTemplatesControlUpdatePut({
-		...displayOptions,
-		show: { smsOperation: ['templatesControlUpdatePut'] },
-	}));
-	properties.push(...descriptionTemplatesControlRelaunchValidationPost({
-		...displayOptions,
-		show: { smsOperation: ['templatesControlRelaunchValidationPost'] },
-	}));
-	properties.push(...descriptionTransferCreditsPost({
-		...displayOptions,
-		show: { smsOperation: ['transferCreditsPost'] },
-	}));
-	properties.push(...descriptionUsersListGet({
-		...displayOptions,
-		show: { smsOperation: ['usersListGet'] },
-	}));
-	properties.push(...descriptionUsersCreatePost({
-		...displayOptions,
-		show: { smsOperation: ['usersCreatePost'] },
-	}));
-	properties.push(...descriptionUsersDeleteDelete({
-		...displayOptions,
-		show: { smsOperation: ['usersDeleteDelete'] },
-	}));
-	properties.push(...descriptionUsersGetGet({
-		...displayOptions,
-		show: { smsOperation: ['usersGetGet'] },
-	}));
-	properties.push(...descriptionUsersUpdatePut({
-		...displayOptions,
-		show: { smsOperation: ['usersUpdatePut'] },
-	}));
-	properties.push(...descriptionUsersDocumentGet({
-		...displayOptions,
-		show: { smsOperation: ['usersDocumentGet'] },
-	}));
-	properties.push(...descriptionUsersIncomingListGet({
-		...displayOptions,
-		show: { smsOperation: ['usersIncomingListGet'] },
-	}));
-	properties.push(...descriptionUsersIncomingDeleteDelete({
-		...displayOptions,
-		show: { smsOperation: ['usersIncomingDeleteDelete'] },
-	}));
-	properties.push(...descriptionUsersIncomingGetGet({
-		...displayOptions,
-		show: { smsOperation: ['usersIncomingGetGet'] },
-	}));
-	properties.push(...descriptionUsersJobsListGet({
-		...displayOptions,
-		show: { smsOperation: ['usersJobsListGet'] },
-	}));
-	properties.push(...descriptionUsersJobsSendPost({
-		...displayOptions,
-		show: { smsOperation: ['usersJobsSendPost'] },
-	}));
-	properties.push(...descriptionUsersJobsDeleteDelete({
-		...displayOptions,
-		show: { smsOperation: ['usersJobsDeleteDelete'] },
-	}));
-	properties.push(...descriptionUsersJobsGetGet({
-		...displayOptions,
-		show: { smsOperation: ['usersJobsGetGet'] },
-	}));
-	properties.push(...descriptionUsersOutgoingListGet({
-		...displayOptions,
-		show: { smsOperation: ['usersOutgoingListGet'] },
-	}));
-	properties.push(...descriptionUsersOutgoingDeleteDelete({
-		...displayOptions,
-		show: { smsOperation: ['usersOutgoingDeleteDelete'] },
-	}));
-	properties.push(...descriptionUsersOutgoingGetGet({
-		...displayOptions,
-		show: { smsOperation: ['usersOutgoingGetGet'] },
-	}));
-	properties.push(...descriptionUsersOutgoingHlrGet({
-		...displayOptions,
-		show: { smsOperation: ['usersOutgoingHlrGet'] },
-	}));
-	properties.push(...descriptionUsersReceiversListGet({
-		...displayOptions,
-		show: { smsOperation: ['usersReceiversListGet'] },
-	}));
-	properties.push(...descriptionUsersReceiversCreatePost({
-		...displayOptions,
-		show: { smsOperation: ['usersReceiversCreatePost'] },
-	}));
-	properties.push(...descriptionUsersReceiversDeleteDelete({
-		...displayOptions,
-		show: { smsOperation: ['usersReceiversDeleteDelete'] },
-	}));
-	properties.push(...descriptionUsersReceiversGetGet({
-		...displayOptions,
-		show: { smsOperation: ['usersReceiversGetGet'] },
-	}));
-	properties.push(...descriptionUsersReceiversUpdatePut({
-		...displayOptions,
-		show: { smsOperation: ['usersReceiversUpdatePut'] },
-	}));
-	properties.push(...descriptionUsersReceiversCleanPost({
-		...displayOptions,
-		show: { smsOperation: ['usersReceiversCleanPost'] },
-	}));
-	properties.push(...descriptionUsersReceiversCsvGet({
-		...displayOptions,
-		show: { smsOperation: ['usersReceiversCsvGet'] },
-	}));
-	properties.push(...descriptionVirtualNumbersListGet({
-		...displayOptions,
-		show: { smsOperation: ['virtualNumbersListGet'] },
-	}));
-	properties.push(...descriptionVirtualNumbersGetGet({
-		...displayOptions,
-		show: { smsOperation: ['virtualNumbersGetGet'] },
-	}));
-	properties.push(...descriptionVirtualNumbersChatAccessDelete({
-		...displayOptions,
-		show: { smsOperation: ['virtualNumbersChatAccessDelete'] },
-	}));
-	properties.push(...descriptionVirtualNumbersChatAccessGet({
-		...displayOptions,
-		show: { smsOperation: ['virtualNumbersChatAccessGet'] },
-	}));
-	properties.push(...descriptionVirtualNumbersChatAccessPost({
-		...displayOptions,
-		show: { smsOperation: ['virtualNumbersChatAccessPost'] },
-	}));
-	properties.push(...descriptionVirtualNumbersIncomingListGet({
-		...displayOptions,
-		show: { smsOperation: ['virtualNumbersIncomingListGet'] },
-	}));
-	properties.push(...descriptionVirtualNumbersIncomingDeleteDelete({
-		...displayOptions,
-		show: { smsOperation: ['virtualNumbersIncomingDeleteDelete'] },
-	}));
-	properties.push(...descriptionVirtualNumbersIncomingGetGet({
-		...displayOptions,
-		show: { smsOperation: ['virtualNumbersIncomingGetGet'] },
-	}));
-	properties.push(...descriptionVirtualNumbersJobsListGet({
-		...displayOptions,
-		show: { smsOperation: ['virtualNumbersJobsListGet'] },
-	}));
-	properties.push(...descriptionVirtualNumbersJobsSendPost({
-		...displayOptions,
-		show: { smsOperation: ['virtualNumbersJobsSendPost'] },
-	}));
-	properties.push(...descriptionVirtualNumbersJobsDeleteDelete({
-		...displayOptions,
-		show: { smsOperation: ['virtualNumbersJobsDeleteDelete'] },
-	}));
-	properties.push(...descriptionVirtualNumbersJobsGetGet({
-		...displayOptions,
-		show: { smsOperation: ['virtualNumbersJobsGetGet'] },
-	}));
-	properties.push(...descriptionVirtualNumbersOutgoingListGet({
-		...displayOptions,
-		show: { smsOperation: ['virtualNumbersOutgoingListGet'] },
-	}));
-	properties.push(...descriptionVirtualNumbersOutgoingDeleteDelete({
-		...displayOptions,
-		show: { smsOperation: ['virtualNumbersOutgoingDeleteDelete'] },
-	}));
-	properties.push(...descriptionVirtualNumbersOutgoingGetGet({
-		...displayOptions,
-		show: { smsOperation: ['virtualNumbersOutgoingGetGet'] },
-	}));
-	properties.push(...descriptionVirtualNumbersOutgoingHlrGet({
-		...displayOptions,
-		show: { smsOperation: ['virtualNumbersOutgoingHlrGet'] },
-	}));
+	properties.push(
+		...descriptionSmsListGet({
+			...displayOptions,
+			show: { smsOperation: ['smsListGet'] },
+		}),
+	);
+	properties.push(
+		...descriptionSmsCreatePost({
+			...displayOptions,
+			show: { smsOperation: ['smsCreatePost'] },
+		}),
+	);
+	properties.push(
+		...descriptionSmsGetGet({
+			...displayOptions,
+			show: { smsOperation: ['smsGetGet'] },
+		}),
+	);
+	properties.push(
+		...descriptionSmsDeleteDelete({
+			...displayOptions,
+			show: { smsOperation: ['smsDeleteDelete'] },
+		}),
+	);
+	properties.push(
+		...descriptionSmsRecipientListGet({
+			...displayOptions,
+			show: { smsOperation: ['smsRecipientListGet'] },
+		}),
+	);
+	properties.push(
+		...descriptionSmsTaskListGet({
+			...displayOptions,
+			show: { smsOperation: ['smsTaskListGet'] },
+		}),
+	);
+	properties.push(
+		...descriptionSmsTaskGetGet({
+			...displayOptions,
+			show: { smsOperation: ['smsTaskGetGet'] },
+		}),
+	);
+	properties.push(
+		...descriptionBlacklistListGet({
+			...displayOptions,
+			show: { smsOperation: ['blacklistListGet'] },
+		}),
+	);
+	properties.push(
+		...descriptionBlacklistCreatePost({
+			...displayOptions,
+			show: { smsOperation: ['blacklistCreatePost'] },
+		}),
+	);
+	properties.push(
+		...descriptionBlacklistDeleteDelete({
+			...displayOptions,
+			show: { smsOperation: ['blacklistDeleteDelete'] },
+		}),
+	);
+	properties.push(
+		...descriptionBlacklistGetGet({
+			...displayOptions,
+			show: { smsOperation: ['blacklistGetGet'] },
+		}),
+	);
+	properties.push(
+		...descriptionEstimatePost({
+			...displayOptions,
+			show: { smsOperation: ['estimatePost'] },
+		}),
+	);
+	properties.push(
+		...descriptionPttsGet({
+			...displayOptions,
+			show: { smsOperation: ['pttsGet'] },
+		}),
+	);
+	properties.push(
+		...descriptionRatesDestinationsGet({
+			...displayOptions,
+			show: { smsOperation: ['ratesDestinationsGet'] },
+		}),
+	);
+	properties.push(
+		...descriptionRatesPacksGet({
+			...displayOptions,
+			show: { smsOperation: ['ratesPacksGet'] },
+		}),
+	);
+	properties.push(
+		...descriptionTopVirtualNumbersListGet({
+			...displayOptions,
+			show: { smsOperation: ['topVirtualNumbersListGet'] },
+		}),
+	);
+	properties.push(
+		...descriptionTopVirtualNumbersGetGet({
+			...displayOptions,
+			show: { smsOperation: ['topVirtualNumbersGetGet'] },
+		}),
+	);
+	properties.push(
+		...descriptionTopVirtualNumbersGet({
+			...displayOptions,
+			show: { smsOperation: ['topVirtualNumbersGet'] },
+		}),
+	);
+	properties.push(
+		...descriptionTopVirtualNumbersUpdatePut({
+			...displayOptions,
+			show: { smsOperation: ['topVirtualNumbersUpdatePut'] },
+		}),
+	);
+	properties.push(
+		...descriptionSmsUpdatePut({
+			...displayOptions,
+			show: { smsOperation: ['smsUpdatePut'] },
+		}),
+	);
+	properties.push(
+		...descriptionBatchesListGet({
+			...displayOptions,
+			show: { smsOperation: ['batchesListGet'] },
+		}),
+	);
+	properties.push(
+		...descriptionBatchesCreatePost({
+			...displayOptions,
+			show: { smsOperation: ['batchesCreatePost'] },
+		}),
+	);
+	properties.push(
+		...descriptionBatchesDeleteDelete({
+			...displayOptions,
+			show: { smsOperation: ['batchesDeleteDelete'] },
+		}),
+	);
+	properties.push(
+		...descriptionBatchesGetGet({
+			...displayOptions,
+			show: { smsOperation: ['batchesGetGet'] },
+		}),
+	);
+	properties.push(
+		...descriptionBatchesUpdatePut({
+			...displayOptions,
+			show: { smsOperation: ['batchesUpdatePut'] },
+		}),
+	);
+	properties.push(
+		...descriptionBatchesCancelPost({
+			...displayOptions,
+			show: { smsOperation: ['batchesCancelPost'] },
+		}),
+	);
+	properties.push(
+		...descriptionBatchesStatisticsGet({
+			...displayOptions,
+			show: { smsOperation: ['batchesStatisticsGet'] },
+		}),
+	);
+	properties.push(
+		...descriptionDocumentGet({
+			...displayOptions,
+			show: { smsOperation: ['documentGet'] },
+		}),
+	);
+	properties.push(
+		...descriptionExceptionsListGet({
+			...displayOptions,
+			show: { smsOperation: ['exceptionsListGet'] },
+		}),
+	);
+	properties.push(
+		...descriptionHlrListGet({
+			...displayOptions,
+			show: { smsOperation: ['hlrListGet'] },
+		}),
+	);
+	properties.push(
+		...descriptionHlrCreatePost({
+			...displayOptions,
+			show: { smsOperation: ['hlrCreatePost'] },
+		}),
+	);
+	properties.push(
+		...descriptionHlrGetGet({
+			...displayOptions,
+			show: { smsOperation: ['hlrGetGet'] },
+		}),
+	);
+	properties.push(
+		...descriptionHlrOperatorGet({
+			...displayOptions,
+			show: { smsOperation: ['hlrOperatorGet'] },
+		}),
+	);
+	properties.push(
+		...descriptionIncomingListGet({
+			...displayOptions,
+			show: { smsOperation: ['incomingListGet'] },
+		}),
+	);
+	properties.push(
+		...descriptionIncomingDeleteDelete({
+			...displayOptions,
+			show: { smsOperation: ['incomingDeleteDelete'] },
+		}),
+	);
+	properties.push(
+		...descriptionIncomingGetGet({
+			...displayOptions,
+			show: { smsOperation: ['incomingGetGet'] },
+		}),
+	);
+	properties.push(
+		...descriptionJobsListGet({
+			...displayOptions,
+			show: { smsOperation: ['jobsListGet'] },
+		}),
+	);
+	properties.push(
+		...descriptionJobsDeleteDelete({
+			...displayOptions,
+			show: { smsOperation: ['jobsDeleteDelete'] },
+		}),
+	);
+	properties.push(
+		...descriptionJobsGetGet({
+			...displayOptions,
+			show: { smsOperation: ['jobsGetGet'] },
+		}),
+	);
+	properties.push(
+		...descriptionOutgoingListGet({
+			...displayOptions,
+			show: { smsOperation: ['outgoingListGet'] },
+		}),
+	);
+	properties.push(
+		...descriptionOutgoingDeleteDelete({
+			...displayOptions,
+			show: { smsOperation: ['outgoingDeleteDelete'] },
+		}),
+	);
+	properties.push(
+		...descriptionOutgoingGetGet({
+			...displayOptions,
+			show: { smsOperation: ['outgoingGetGet'] },
+		}),
+	);
+	properties.push(
+		...descriptionOutgoingHlrGet({
+			...displayOptions,
+			show: { smsOperation: ['outgoingHlrGet'] },
+		}),
+	);
+	properties.push(
+		...descriptionPhonebooksListGet({
+			...displayOptions,
+			show: { smsOperation: ['phonebooksListGet'] },
+		}),
+	);
+	properties.push(
+		...descriptionPhonebooksCreatePost({
+			...displayOptions,
+			show: { smsOperation: ['phonebooksCreatePost'] },
+		}),
+	);
+	properties.push(
+		...descriptionPhonebooksDeleteDelete({
+			...displayOptions,
+			show: { smsOperation: ['phonebooksDeleteDelete'] },
+		}),
+	);
+	properties.push(
+		...descriptionPhonebooksGetGet({
+			...displayOptions,
+			show: { smsOperation: ['phonebooksGetGet'] },
+		}),
+	);
+	properties.push(
+		...descriptionPhonebooksUpdatePut({
+			...displayOptions,
+			show: { smsOperation: ['phonebooksUpdatePut'] },
+		}),
+	);
+	properties.push(
+		...descriptionPhonebooksExportGet({
+			...displayOptions,
+			show: { smsOperation: ['phonebooksExportGet'] },
+		}),
+	);
+	properties.push(
+		...descriptionPhonebooksImportPost({
+			...displayOptions,
+			show: { smsOperation: ['phonebooksImportPost'] },
+		}),
+	);
+	properties.push(
+		...descriptionPhonebooksPhonebookContactListGet({
+			...displayOptions,
+			show: { smsOperation: ['phonebooksPhonebookContactListGet'] },
+		}),
+	);
+	properties.push(
+		...descriptionPhonebooksPhonebookContactCreatePost({
+			...displayOptions,
+			show: { smsOperation: ['phonebooksPhonebookContactCreatePost'] },
+		}),
+	);
+	properties.push(
+		...descriptionPhonebooksPhonebookContactDeleteDelete({
+			...displayOptions,
+			show: { smsOperation: ['phonebooksPhonebookContactDeleteDelete'] },
+		}),
+	);
+	properties.push(
+		...descriptionPhonebooksPhonebookContactGetGet({
+			...displayOptions,
+			show: { smsOperation: ['phonebooksPhonebookContactGetGet'] },
+		}),
+	);
+	properties.push(
+		...descriptionPhonebooksPhonebookContactUpdatePut({
+			...displayOptions,
+			show: { smsOperation: ['phonebooksPhonebookContactUpdatePut'] },
+		}),
+	);
+	properties.push(
+		...descriptionReceiversCreatePost({
+			...displayOptions,
+			show: { smsOperation: ['receiversCreatePost'] },
+		}),
+	);
+	properties.push(
+		...descriptionReceiversDeleteDelete({
+			...displayOptions,
+			show: { smsOperation: ['receiversDeleteDelete'] },
+		}),
+	);
+	properties.push(
+		...descriptionReceiversGetGet({
+			...displayOptions,
+			show: { smsOperation: ['receiversGetGet'] },
+		}),
+	);
+	properties.push(
+		...descriptionReceiversUpdatePut({
+			...displayOptions,
+			show: { smsOperation: ['receiversUpdatePut'] },
+		}),
+	);
+	properties.push(
+		...descriptionReceiversCleanPost({
+			...displayOptions,
+			show: { smsOperation: ['receiversCleanPost'] },
+		}),
+	);
+	properties.push(
+		...descriptionReceiversCsvGet({
+			...displayOptions,
+			show: { smsOperation: ['receiversCsvGet'] },
+		}),
+	);
+	properties.push(
+		...descriptionSeeOffersGet({
+			...displayOptions,
+			show: { smsOperation: ['seeOffersGet'] },
+		}),
+	);
+	properties.push(
+		...descriptionSendersListGet({
+			...displayOptions,
+			show: { smsOperation: ['sendersListGet'] },
+		}),
+	);
+	properties.push(
+		...descriptionSendersCreatePost({
+			...displayOptions,
+			show: { smsOperation: ['sendersCreatePost'] },
+		}),
+	);
+	properties.push(
+		...descriptionSendersDeleteDelete({
+			...displayOptions,
+			show: { smsOperation: ['sendersDeleteDelete'] },
+		}),
+	);
+	properties.push(
+		...descriptionSendersGetGet({
+			...displayOptions,
+			show: { smsOperation: ['sendersGetGet'] },
+		}),
+	);
+	properties.push(
+		...descriptionSendersUpdatePut({
+			...displayOptions,
+			show: { smsOperation: ['sendersUpdatePut'] },
+		}),
+	);
+	properties.push(
+		...descriptionSendersDocumentsListGet({
+			...displayOptions,
+			show: { smsOperation: ['sendersDocumentsListGet'] },
+		}),
+	);
+	properties.push(
+		...descriptionSendersDocumentsPost({
+			...displayOptions,
+			show: { smsOperation: ['sendersDocumentsPost'] },
+		}),
+	);
+	properties.push(
+		...descriptionSendersDocumentsGetGet({
+			...displayOptions,
+			show: { smsOperation: ['sendersDocumentsGetGet'] },
+		}),
+	);
+	properties.push(
+		...descriptionSendersDocumentsUpdatePut({
+			...displayOptions,
+			show: { smsOperation: ['sendersDocumentsUpdatePut'] },
+		}),
+	);
+	properties.push(
+		...descriptionSendersValidatePost({
+			...displayOptions,
+			show: { smsOperation: ['sendersValidatePost'] },
+		}),
+	);
+	properties.push(
+		...descriptionSendersAvailableForValidationGet({
+			...displayOptions,
+			show: { smsOperation: ['sendersAvailableForValidationGet'] },
+		}),
+	);
+	properties.push(
+		...descriptionServiceInfosGet({
+			...displayOptions,
+			show: { smsOperation: ['serviceInfosGet'] },
+		}),
+	);
+	properties.push(
+		...descriptionServiceInfosUpdatePut({
+			...displayOptions,
+			show: { smsOperation: ['serviceInfosUpdatePut'] },
+		}),
+	);
+	properties.push(
+		...descriptionSmppAllowedIPsListGet({
+			...displayOptions,
+			show: { smsOperation: ['smppAllowedIPsListGet'] },
+		}),
+	);
+	properties.push(
+		...descriptionSmppAllowedIPsUpdatePut({
+			...displayOptions,
+			show: { smsOperation: ['smppAllowedIPsUpdatePut'] },
+		}),
+	);
+	properties.push(
+		...descriptionSmppPasswordPost({
+			...displayOptions,
+			show: { smsOperation: ['smppPasswordPost'] },
+		}),
+	);
+	properties.push(
+		...descriptionSmppSettingsGet({
+			...displayOptions,
+			show: { smsOperation: ['smppSettingsGet'] },
+		}),
+	);
+	properties.push(
+		...descriptionTemplatesControlListGet({
+			...displayOptions,
+			show: { smsOperation: ['templatesControlListGet'] },
+		}),
+	);
+	properties.push(
+		...descriptionTemplatesControlCreatePost({
+			...displayOptions,
+			show: { smsOperation: ['templatesControlCreatePost'] },
+		}),
+	);
+	properties.push(
+		...descriptionTemplatesControlDeleteDelete({
+			...displayOptions,
+			show: { smsOperation: ['templatesControlDeleteDelete'] },
+		}),
+	);
+	properties.push(
+		...descriptionTemplatesControlGetGet({
+			...displayOptions,
+			show: { smsOperation: ['templatesControlGetGet'] },
+		}),
+	);
+	properties.push(
+		...descriptionTemplatesControlUpdatePut({
+			...displayOptions,
+			show: { smsOperation: ['templatesControlUpdatePut'] },
+		}),
+	);
+	properties.push(
+		...descriptionTemplatesControlRelaunchValidationPost({
+			...displayOptions,
+			show: { smsOperation: ['templatesControlRelaunchValidationPost'] },
+		}),
+	);
+	properties.push(
+		...descriptionTransferCreditsPost({
+			...displayOptions,
+			show: { smsOperation: ['transferCreditsPost'] },
+		}),
+	);
+	properties.push(
+		...descriptionUsersListGet({
+			...displayOptions,
+			show: { smsOperation: ['usersListGet'] },
+		}),
+	);
+	properties.push(
+		...descriptionUsersCreatePost({
+			...displayOptions,
+			show: { smsOperation: ['usersCreatePost'] },
+		}),
+	);
+	properties.push(
+		...descriptionUsersDeleteDelete({
+			...displayOptions,
+			show: { smsOperation: ['usersDeleteDelete'] },
+		}),
+	);
+	properties.push(
+		...descriptionUsersGetGet({
+			...displayOptions,
+			show: { smsOperation: ['usersGetGet'] },
+		}),
+	);
+	properties.push(
+		...descriptionUsersUpdatePut({
+			...displayOptions,
+			show: { smsOperation: ['usersUpdatePut'] },
+		}),
+	);
+	properties.push(
+		...descriptionUsersDocumentGet({
+			...displayOptions,
+			show: { smsOperation: ['usersDocumentGet'] },
+		}),
+	);
+	properties.push(
+		...descriptionUsersIncomingListGet({
+			...displayOptions,
+			show: { smsOperation: ['usersIncomingListGet'] },
+		}),
+	);
+	properties.push(
+		...descriptionUsersIncomingDeleteDelete({
+			...displayOptions,
+			show: { smsOperation: ['usersIncomingDeleteDelete'] },
+		}),
+	);
+	properties.push(
+		...descriptionUsersIncomingGetGet({
+			...displayOptions,
+			show: { smsOperation: ['usersIncomingGetGet'] },
+		}),
+	);
+	properties.push(
+		...descriptionUsersJobsListGet({
+			...displayOptions,
+			show: { smsOperation: ['usersJobsListGet'] },
+		}),
+	);
+	properties.push(
+		...descriptionUsersJobsSendPost({
+			...displayOptions,
+			show: { smsOperation: ['usersJobsSendPost'] },
+		}),
+	);
+	properties.push(
+		...descriptionUsersJobsDeleteDelete({
+			...displayOptions,
+			show: { smsOperation: ['usersJobsDeleteDelete'] },
+		}),
+	);
+	properties.push(
+		...descriptionUsersJobsGetGet({
+			...displayOptions,
+			show: { smsOperation: ['usersJobsGetGet'] },
+		}),
+	);
+	properties.push(
+		...descriptionUsersOutgoingListGet({
+			...displayOptions,
+			show: { smsOperation: ['usersOutgoingListGet'] },
+		}),
+	);
+	properties.push(
+		...descriptionUsersOutgoingDeleteDelete({
+			...displayOptions,
+			show: { smsOperation: ['usersOutgoingDeleteDelete'] },
+		}),
+	);
+	properties.push(
+		...descriptionUsersOutgoingGetGet({
+			...displayOptions,
+			show: { smsOperation: ['usersOutgoingGetGet'] },
+		}),
+	);
+	properties.push(
+		...descriptionUsersOutgoingHlrGet({
+			...displayOptions,
+			show: { smsOperation: ['usersOutgoingHlrGet'] },
+		}),
+	);
+	properties.push(
+		...descriptionUsersReceiversListGet({
+			...displayOptions,
+			show: { smsOperation: ['usersReceiversListGet'] },
+		}),
+	);
+	properties.push(
+		...descriptionUsersReceiversCreatePost({
+			...displayOptions,
+			show: { smsOperation: ['usersReceiversCreatePost'] },
+		}),
+	);
+	properties.push(
+		...descriptionUsersReceiversDeleteDelete({
+			...displayOptions,
+			show: { smsOperation: ['usersReceiversDeleteDelete'] },
+		}),
+	);
+	properties.push(
+		...descriptionUsersReceiversGetGet({
+			...displayOptions,
+			show: { smsOperation: ['usersReceiversGetGet'] },
+		}),
+	);
+	properties.push(
+		...descriptionUsersReceiversUpdatePut({
+			...displayOptions,
+			show: { smsOperation: ['usersReceiversUpdatePut'] },
+		}),
+	);
+	properties.push(
+		...descriptionUsersReceiversCleanPost({
+			...displayOptions,
+			show: { smsOperation: ['usersReceiversCleanPost'] },
+		}),
+	);
+	properties.push(
+		...descriptionUsersReceiversCsvGet({
+			...displayOptions,
+			show: { smsOperation: ['usersReceiversCsvGet'] },
+		}),
+	);
+	properties.push(
+		...descriptionVirtualNumbersListGet({
+			...displayOptions,
+			show: { smsOperation: ['virtualNumbersListGet'] },
+		}),
+	);
+	properties.push(
+		...descriptionVirtualNumbersGetGet({
+			...displayOptions,
+			show: { smsOperation: ['virtualNumbersGetGet'] },
+		}),
+	);
+	properties.push(
+		...descriptionVirtualNumbersChatAccessDelete({
+			...displayOptions,
+			show: { smsOperation: ['virtualNumbersChatAccessDelete'] },
+		}),
+	);
+	properties.push(
+		...descriptionVirtualNumbersChatAccessGet({
+			...displayOptions,
+			show: { smsOperation: ['virtualNumbersChatAccessGet'] },
+		}),
+	);
+	properties.push(
+		...descriptionVirtualNumbersChatAccessPost({
+			...displayOptions,
+			show: { smsOperation: ['virtualNumbersChatAccessPost'] },
+		}),
+	);
+	properties.push(
+		...descriptionVirtualNumbersIncomingListGet({
+			...displayOptions,
+			show: { smsOperation: ['virtualNumbersIncomingListGet'] },
+		}),
+	);
+	properties.push(
+		...descriptionVirtualNumbersIncomingDeleteDelete({
+			...displayOptions,
+			show: { smsOperation: ['virtualNumbersIncomingDeleteDelete'] },
+		}),
+	);
+	properties.push(
+		...descriptionVirtualNumbersIncomingGetGet({
+			...displayOptions,
+			show: { smsOperation: ['virtualNumbersIncomingGetGet'] },
+		}),
+	);
+	properties.push(
+		...descriptionVirtualNumbersJobsListGet({
+			...displayOptions,
+			show: { smsOperation: ['virtualNumbersJobsListGet'] },
+		}),
+	);
+	properties.push(
+		...descriptionVirtualNumbersJobsSendPost({
+			...displayOptions,
+			show: { smsOperation: ['virtualNumbersJobsSendPost'] },
+		}),
+	);
+	properties.push(
+		...descriptionVirtualNumbersJobsDeleteDelete({
+			...displayOptions,
+			show: { smsOperation: ['virtualNumbersJobsDeleteDelete'] },
+		}),
+	);
+	properties.push(
+		...descriptionVirtualNumbersJobsGetGet({
+			...displayOptions,
+			show: { smsOperation: ['virtualNumbersJobsGetGet'] },
+		}),
+	);
+	properties.push(
+		...descriptionVirtualNumbersOutgoingListGet({
+			...displayOptions,
+			show: { smsOperation: ['virtualNumbersOutgoingListGet'] },
+		}),
+	);
+	properties.push(
+		...descriptionVirtualNumbersOutgoingDeleteDelete({
+			...displayOptions,
+			show: { smsOperation: ['virtualNumbersOutgoingDeleteDelete'] },
+		}),
+	);
+	properties.push(
+		...descriptionVirtualNumbersOutgoingGetGet({
+			...displayOptions,
+			show: { smsOperation: ['virtualNumbersOutgoingGetGet'] },
+		}),
+	);
+	properties.push(
+		...descriptionVirtualNumbersOutgoingHlrGet({
+			...displayOptions,
+			show: { smsOperation: ['virtualNumbersOutgoingHlrGet'] },
+		}),
+	);
 
 	return properties;
 }

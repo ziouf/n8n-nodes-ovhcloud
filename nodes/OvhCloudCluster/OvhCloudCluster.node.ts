@@ -16,7 +16,8 @@ export class OvhCloudCluster extends BaseNode implements INodeType {
 		icon: OvhCloudIcon,
 		group: ['input'],
 		version: 1,
-		subtitle: '={{$parameter["clusterOperation"]}}',
+		subtitle:
+			'={{$parameter["clusterOperation"]}}{{ $parameter["serviceName"] ? ": " + ($parameter["serviceName"].value ?? $parameter["serviceName"]) : "" }}',
 		description: 'Manage OVHcloud Cluster services via /cluster API v1',
 		defaults: {
 			name: 'OVH Cloud Cluster',
