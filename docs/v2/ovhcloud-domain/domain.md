@@ -54,9 +54,9 @@ Le node propose un paramètre unique **Operation** (`domainOperation`) qui perme
 
 ### Domaines (Root)
 
-| Operation        | Endpoint API  | Description                                                                                                                            |
-| ---------------- | ------------- | -------------------------------------------------------------------------------------------------------------------------------------- |
-| **List Domains** | `GET /domain` | Liste tous les domaines gérés dans le compte OVHcloud. Les résultats sont auto-paginé et mappés en objets complets via `/domain/{id}`. |
+| Operation        | Endpoint API  | Description                                                                                                                                                                          |
+| ---------------- | ------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| **List Domains** | `GET /domain` | Liste tous les domaines gérés dans le compte OVHcloud. Les résultats sont auto-paginés et mappés en objets complets via pagination automatique (avec support `maxItems` et `query`). |
 
 ### Extensions de Domaines
 
@@ -176,10 +176,13 @@ Ces tests couvrent :
 
 ### Pagination Automatique
 
-Les opérations retournant un tableau d'IDs (`string[]` ou `long[]`) utilisent automatiquement la pagination via `client.paginateResources()` :
+Les opérations retournant un tableau d'IDs (`string[]` ou `long[]`) utilisent automatiquement la pagination via `client.paginateResources()`. Ce mécanisme permet de récupérer tous les items (jusqu'à une limite définie par `maxItems`, par défaut 1000) et de mapper chaque item individuellement sur son endpoint de détail pour obtenir l'objet complet.
 
-- Récupère tous les IDs via `/domain/...?offset=&limit=` jusqu'à épuisement (max 1000 items par défaut)
-- Fetch chaque ID individuellement sur son endpoint correspondant pour obtenir l'objet complet
+### Retry et Résilience
+
+- **Retry Transitoire** : Toutes les requêtes `GET` incluent désormais un système de retry automatique par défaut pour les erreurs transitoires (ex: timeout, 503).
+- **Jitter** : Un algorithme de jitter est appliqué aux délais de retry pour éviter les collisions de requêtes.
+- **`continueOnFail`** : En cas d'erreur sur une opération au sein d'un traitement par lot, le paramètre `continueOnFail` permet de préserver l'item d'entrée actuel dans la sortie pour faciliter le débogage et le traitement manuel ultérieur.
 
 ### Type Safety
 

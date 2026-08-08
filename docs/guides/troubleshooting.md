@@ -18,13 +18,13 @@ This guide helps you diagnose and resolve common issues when using the `n8n-node
 
 The following table lists the most frequent errors you may encounter, their likely causes, and recommended solutions.
 
-| Error                         | Cause                                        | Solution                                                                                                                                                                                           |
-| ----------------------------- | -------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| **`401 Unauthorized`**        | Invalid or expired credentials               | Regenerate your API credentials in the OVH API Console and update them in n8n. Verify the endpoint matches your account region.                                                                    |
-| **`403 Forbidden`**           | Insufficient permissions on the Consumer Key | Add the required permissions to your API application and generate a new Consumer Key. See the [Authentication Guide](./authentication-guide.md#required-permissions) for a full list.              |
-| **`404 Not Found`**           | The requested service ID does not exist      | Verify the service ID is correct and that the service is active in your OVH account. Check that you are using the correct API endpoint for your region.                                            |
-| **`429 Too Many Requests`**   | API rate limit exceeded                      | Add **Wait** nodes between API calls (recommended: 100ms+). Use batching to group similar operations. Implement retry logic for transient failures. See [API Rate Limits](#api-rate-limits) below. |
-| **`503 Service Unavailable`** | OVH API maintenance or outage                | Retry after some time. Check the [OVH Status Page](https://status.ovhcloud.com/) for known outages or scheduled maintenance.                                                                       |
+| Error                         | Cause                                        | Solution                                                                                                                                                                                            |
+| ----------------------------- | -------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| **`401 Unauthorized`**        | Invalid or expired credentials               | Regenerate your API credentials in the OVH API Console and update them in n8n. Verify the endpoint matches your account region.                                                                     |
+| **`403 Forbidden`**           | Insufficient permissions on the Consumer Key | Add the required permissions to your API application and generate a new Consumer Key. See the [Authentication Guide](./authentication-guide.md#required-permissions) for a full list.               |
+| **`404 Not Found`**           | The requested service ID does not exist      | Verify the service ID is correct and that the service is active in your OVH account. Check that you are using the correct API endpoint for your region.                                             |
+| **`429 Too Many Requests`**   | API rate limit exceeded                      | Add **Wait** nodes between API calls (recommended: 100ms+). Use batching to group similar operations. Automatic retry is enabled for `GET` requests. See [API Rate Limits](#api-rate-limits) below. |
+| **`503 Service Unavailable`** | OVH API maintenance or outage                | Retry after some time. Check the [OVH Status Page](https://status.ovhcloud.com/) for known outages or scheduled maintenance.                                                                        |
 
 ### Additional Error Scenarios
 
@@ -120,11 +120,10 @@ Group similar operations together to reduce the total number of API calls:
 
 #### 3. Implement Retry Logic
 
-Configure automatic retries for transient failures:
-
-- Set the node's **Retry on Fail** option (if available).
-- Use exponential backoff: start with a short delay and increase it with each retry.
-- Limit the maximum number of retries to avoid infinite loops.
+- **Transient Retry**: All `GET` requests now include an automatic retry mechanism by default for transient errors (e.g., timeouts, 503s).
+- **Jitter**: A jitter algorithm is applied to retry delays to prevent request collisions.
+- **`continueOnFail`**: In case of an error during a batch operation, the `continueOnFail` parameter ensures that the current input item is preserved in the output to facilitate debugging and subsequent manual processing.
+- For asynchronous operations that return a task object, continue to poll the task status until completion (`done` or `error`) rather than retrying the operation itself.
 
 #### 4. Cache Results
 

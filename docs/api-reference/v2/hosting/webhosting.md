@@ -1047,7 +1047,17 @@ All operations are currently in **Beta** version, as indicated by the `X-Paginat
 
 ---
 
-## Notes
+---
+
+## Technical Notes
+
+### API Client & Resilience
+
+- **API Client Pattern**: Uses `OvhCloudApiClient` for all HTTP requests.
+- **Transient Retry**: All `GET` requests include an automatic retry mechanism by default for transient errors (e.g., timeouts, 503s).
+- **Jitter**: A jitter algorithm is applied to retry delays to prevent request collisions.
+- **`continueOnFail`**: In case of an error during a batch operation, the `continueOnFail` parameter ensures that the current input item is preserved in the output to facilitate debugging and subsequent manual processing.
+- **Pagination**: Supports pagination with `maxItems` and `query` parameters, and automatically maps each result to an object.
 
 - Follow the existing code patterns in resource files.
 - Use the `OvhCloudApiClient` for all API calls.

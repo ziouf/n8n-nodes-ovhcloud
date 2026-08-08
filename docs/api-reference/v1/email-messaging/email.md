@@ -10,7 +10,7 @@ The **OVHcloud Email Pro** node provides access to the OVHcloud Email Profession
 
 The node is designed to work with the n8n platform and follows the established conventions for node implementation, including:
 
-- **API Client Pattern**: Uses `OvhCloudApiClient` for HTTP requests
+- **API Client Pattern**: Uses `OvhCloudApiClient` for HTTP requests. All `GET` requests automatically include transient retries with jitter. The `continueOnFail` parameter preserves the input item in the output in case of operation failure during batch processing.
 - **Authentication**: Handled via the `OVH API` credential type
 - **Error Handling**: Uses `NodeApiError` for n8n-specific errors
 - **Type Safety**: Defines explicit types for all parameters and responses
