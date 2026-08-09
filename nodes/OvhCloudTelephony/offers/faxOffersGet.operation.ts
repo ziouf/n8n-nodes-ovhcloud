@@ -36,9 +36,9 @@ export function description(displayOptions: IDisplayOptions): INodeProperties[] 
  * HTTP method: GET
  * Endpoint: /telephony/fax/offers
  */
-export async function execute(this: IExecuteFunctions, itemIndex: number): Promise<INodeExecutionData[]> {
+export async function execute(this: IExecuteFunctions, _itemIndex: number): Promise<INodeExecutionData[]> {
 
-	const country = this.getNodeParameter('country', itemIndex) as string;
+	const country = this.getNodeParameter('country', _itemIndex) as string;
 
 	const qs: IDataObject = {
     country: country

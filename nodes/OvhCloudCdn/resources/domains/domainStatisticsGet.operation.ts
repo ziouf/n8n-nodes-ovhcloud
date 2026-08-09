@@ -77,12 +77,12 @@ export function description(displayOptions: IDisplayOptions): INodeProperties[] 
  * HTTP method: GET
  * Endpoint: /cdn/dedicated/{serviceName}/domains/{domain}/statistics
  */
-export async function execute(this: IExecuteFunctions, itemIndex: number): Promise<INodeExecutionData[]> {
-	const serviceName = this.getNodeParameter('serviceName', itemIndex) as string;
-	const domain = this.getNodeParameter('domain', itemIndex) as string;
-	const period = this.getNodeParameter('period', itemIndex) as string;
-	const type = this.getNodeParameter('type', itemIndex) as string;
-	const value = this.getNodeParameter('value', itemIndex) as string;
+export async function execute(this: IExecuteFunctions, _itemIndex: number): Promise<INodeExecutionData[]> {
+	const serviceName = this.getNodeParameter('serviceName', _itemIndex) as string;
+	const domain = this.getNodeParameter('domain', _itemIndex) as string;
+	const period = this.getNodeParameter('period', _itemIndex) as string;
+	const type = this.getNodeParameter('type', _itemIndex) as string;
+	const value = this.getNodeParameter('value', _itemIndex) as string;
 
 	const qs: IDataObject = {};
 	if (period) qs.period = period;

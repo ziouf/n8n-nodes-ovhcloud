@@ -28,8 +28,8 @@ export function description(displayOptions: IDisplayOptions): INodeProperties[] 
  * HTTP method: GET
  * Endpoint: /okms/resource/{okmsId}/secret
  */
-export async function execute(this: IExecuteFunctions, itemIndex: number): Promise<INodeExecutionData[]> {
-	const okmsId = this.getNodeParameter('okmsId', itemIndex) as string;
+export async function execute(this: IExecuteFunctions, _itemIndex: number): Promise<INodeExecutionData[]> {
+	const okmsId = this.getNodeParameter('okmsId', _itemIndex) as string;
 
 
 	const client = new ApiClient(this);

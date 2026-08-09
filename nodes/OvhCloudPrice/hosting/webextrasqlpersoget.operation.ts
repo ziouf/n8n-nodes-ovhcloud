@@ -28,9 +28,9 @@ export function description(displayOptions: IDisplayOptions): INodeProperties[] 
  * HTTP method: GET
  * Endpoint: /price/hosting/web/extraSqlPerso/{extraSqlPersoName}
  */
-export async function execute(this: IExecuteFunctions): Promise<INodeExecutionData[]> {
+export async function execute(this: IExecuteFunctions, _itemIndex?: number): Promise<INodeExecutionData[]> {
     const client = new ApiClient(this);
-    const extraSqlPersoName = this.getNodeParameter('extraSqlPersoName', 0) as string;
+    const extraSqlPersoName = this.getNodeParameter('extraSqlPersoName', _itemIndex ?? 0) as string;
     const data = (await client.httpGet(`/price/hosting/web/extraSqlPerso/${extraSqlPersoName}`)) as IDataObject;
     return this.helpers.returnJsonArray([data]);
 }

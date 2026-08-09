@@ -59,19 +59,19 @@ export function description(displayOptions: IDisplayOptions): INodeProperties[] 
  * HTTP method: PUT
  * Endpoint: /cloud/project/{serviceName}/database/kafka/{clusterId}/topic/{topicId}
  */
-export async function execute(this: IExecuteFunctions): Promise<INodeExecutionData[]> {
+export async function execute(this: IExecuteFunctions, _itemIndex?: number): Promise<INodeExecutionData[]> {
 	const client = new ApiClient(this);
-	const serviceName = this.getNodeParameter('publicCloudProjectId', 0, '', {
+	const serviceName = this.getNodeParameter('publicCloudProjectId', _itemIndex ?? 0, '', {
 		extractValue: true,
 	}) as string;
-	const topicId = this.getNodeParameter('topicId', 0) as string;
-	const clusterId = this.getNodeParameter('clusterId', 0) as string;
+	const topicId = this.getNodeParameter('topicId', _itemIndex ?? 0) as string;
+	const clusterId = this.getNodeParameter('clusterId', _itemIndex ?? 0) as string;
 	const body: IDataObject = {};
-	const name = (this.getNodeParameter('name', 0) || '') as string;
+	const name = (this.getNodeParameter('name', _itemIndex ?? 0) || '') as string;
 	if (name) body.name = name;
-	const numberOfPartitions = Number(this.getNodeParameter('numberOfPartitions', 0) || 0);
+	const numberOfPartitions = Number(this.getNodeParameter('numberOfPartitions', _itemIndex ?? 0) || 0);
 	if (numberOfPartitions) body.numberOfPartitions = numberOfPartitions;
-	const replicationFactor = Number(this.getNodeParameter('replicationFactor', 0) || 0);
+	const replicationFactor = Number(this.getNodeParameter('replicationFactor', _itemIndex ?? 0) || 0);
 	if (replicationFactor) body.replicationFactor = replicationFactor;
 
 	const data = (await client.httpPut(

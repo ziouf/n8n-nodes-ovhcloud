@@ -36,12 +36,12 @@ export function description(displayOptions: IDisplayOptions): INodeProperties[] 
  * HTTP method: POST
  * Endpoint: /msServices/{serviceName}/upnSuffix
  */
-export async function execute(this: IExecuteFunctions, itemIndex: number): Promise<INodeExecutionData[]> {
-	const serviceName = this.getNodeParameter('serviceName', itemIndex) as string;
+export async function execute(this: IExecuteFunctions, _itemIndex: number): Promise<INodeExecutionData[]> {
+	const serviceName = this.getNodeParameter('serviceName', _itemIndex) as string;
 
 
 
-	const suffix = this.getNodeParameter('suffix', itemIndex) as string;
+	const suffix = this.getNodeParameter('suffix', _itemIndex) as string;
 
 
 const body: IDataObject = {

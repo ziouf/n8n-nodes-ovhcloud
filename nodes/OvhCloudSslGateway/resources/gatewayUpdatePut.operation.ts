@@ -101,37 +101,37 @@ export function description(displayOptions: IDisplayOptions): INodeProperties[] 
  * HTTP method: PUT
  * Endpoint: /sslGateway/{serviceName}
  */
-export async function execute(this: IExecuteFunctions): Promise<INodeExecutionData[]> {
+export async function execute(this: IExecuteFunctions, _itemIndex?: number): Promise<INodeExecutionData[]> {
 	const client = new ApiClient(this);
-	const serviceName = this.getNodeParameter('serviceName', 0, '', {
+	const serviceName = this.getNodeParameter('serviceName', _itemIndex ?? 0, '', {
 		extractValue: true,
 	}) as string;
 
 	const body: IDataObject = {};
 
-	const displayName = this.getNodeParameter('displayName', 0, '') as string;
+	const displayName = this.getNodeParameter('displayName', _itemIndex ?? 0, '') as string;
 	if (displayName !== '') {
 		body.displayName = displayName;
 	}
 
-	const hsts = this.getNodeParameter('hsts', 0, false) as boolean;
+	const hsts = this.getNodeParameter('hsts', _itemIndex ?? 0, false) as boolean;
 	body.hsts = hsts;
 
-	const httpsRedirect = this.getNodeParameter('httpsRedirect', 0, false) as boolean;
+	const httpsRedirect = this.getNodeParameter('httpsRedirect', _itemIndex ?? 0, false) as boolean;
 	body.httpsRedirect = httpsRedirect;
 
-	const serverHttps = this.getNodeParameter('serverHttps', 0, false) as boolean;
+	const serverHttps = this.getNodeParameter('serverHttps', _itemIndex ?? 0, false) as boolean;
 	body.serverHttps = serverHttps;
 
-	const reverse = this.getNodeParameter('reverse', 0, '') as string;
+	const reverse = this.getNodeParameter('reverse', _itemIndex ?? 0, '') as string;
 	if (reverse !== '') {
 		body.reverse = reverse;
 	}
 
-	const sslConfiguration = this.getNodeParameter('sslConfiguration', 0, 'intermediate') as string;
+	const sslConfiguration = this.getNodeParameter('sslConfiguration', _itemIndex ?? 0, 'intermediate') as string;
 	body.sslConfiguration = sslConfiguration;
 
-	const allowedSource = this.getNodeParameter('allowedSource', 0, '') as string;
+	const allowedSource = this.getNodeParameter('allowedSource', _itemIndex ?? 0, '') as string;
 	if (allowedSource !== '') {
 		body.allowedSource = allowedSource.split(',').map((ip) => ip.trim());
 	}

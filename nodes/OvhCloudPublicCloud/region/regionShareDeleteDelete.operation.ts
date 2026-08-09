@@ -58,13 +58,13 @@ export function description(displayOptions: IDisplayOptions): INodeProperties[] 
  * HTTP method: DELETE
  * Endpoint: /publicCloud/project/{projectId}/region/{regionName}/share/{shareId}
  */
-export async function execute(this: IExecuteFunctions): Promise<INodeExecutionData[]> {
+export async function execute(this: IExecuteFunctions, _itemIndex?: number): Promise<INodeExecutionData[]> {
 	const client = new ApiClient(this);
-	const projectId = this.getNodeParameter('publicCloudProjectId', 0, '', {
+	const projectId = this.getNodeParameter('publicCloudProjectId', _itemIndex ?? 0, '', {
 		extractValue: true,
 	}) as string;
-	const regionName = this.getNodeParameter('regionName', 0) as string;
-	const shareId = this.getNodeParameter('shareId', 0) as string;
+	const regionName = this.getNodeParameter('regionName', _itemIndex ?? 0) as string;
+	const shareId = this.getNodeParameter('shareId', _itemIndex ?? 0) as string;
 
 	await client.httpDelete(
 		`/publicCloud/project/${projectId}/region/${regionName}/share/${shareId}`,

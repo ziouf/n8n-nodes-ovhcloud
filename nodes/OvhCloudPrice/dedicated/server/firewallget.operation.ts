@@ -28,9 +28,9 @@ export function description(displayOptions: IDisplayOptions): INodeProperties[] 
  * HTTP method: GET
  * Endpoint: /price/dedicated/server/firewall/{firewallModel}
  */
-export async function execute(this: IExecuteFunctions): Promise<INodeExecutionData[]> {
+export async function execute(this: IExecuteFunctions, _itemIndex?: number): Promise<INodeExecutionData[]> {
     const client = new ApiClient(this);
-    const firewallModel = this.getNodeParameter('firewallModel', 0) as string;
+    const firewallModel = this.getNodeParameter('firewallModel', _itemIndex ?? 0) as string;
     const data = (await client.httpGet(`/price/dedicated/server/firewall/${firewallModel}`)) as IDataObject;
     return this.helpers.returnJsonArray([data]);
 }

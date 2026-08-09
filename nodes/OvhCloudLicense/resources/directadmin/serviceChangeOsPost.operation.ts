@@ -51,10 +51,10 @@ export function description(displayOptions: IDisplayOptions): INodeProperties[] 
  * HTTP method: POST
  * Endpoint: /license/directadmin/{serviceName}/changeOs
  */
-export async function execute(this: IExecuteFunctions, itemIndex: number): Promise<INodeExecutionData[]> {
+export async function execute(this: IExecuteFunctions, _itemIndex: number): Promise<INodeExecutionData[]> {
 	const client = new ApiClient(this);
-	const serviceName = this.getNodeParameter('serviceName', itemIndex, '', { extractValue: true }) as string;
-	const os = this.getNodeParameter('os', itemIndex, '') as string;
+	const serviceName = this.getNodeParameter('serviceName', _itemIndex, '', { extractValue: true }) as string;
+	const os = this.getNodeParameter('os', _itemIndex, '') as string;
 
 	const body: IDataObject = {
     os: os

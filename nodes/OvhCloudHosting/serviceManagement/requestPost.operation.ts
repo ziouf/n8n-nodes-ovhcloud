@@ -44,11 +44,11 @@ export function description(displayOptions: IDisplayOptions): INodeProperties[] 
  * HTTP method: POST
  * Endpoint: /hosting/web/{serviceName}/request
  */
-export async function execute(this: IExecuteFunctions): Promise<INodeExecutionData[]> {
+export async function execute(this: IExecuteFunctions, _itemIndex?: number): Promise<INodeExecutionData[]> {
 	const client = new ApiClient(this);
-	const serviceName = this.getNodeParameter('serviceName', 0) as string;
-	const subject = this.getNodeParameter('subject', 0) as string;
-	const message = this.getNodeParameter('message', 0) as string;
+	const serviceName = this.getNodeParameter('serviceName', _itemIndex ?? 0) as string;
+	const subject = this.getNodeParameter('subject', _itemIndex ?? 0) as string;
+	const message = this.getNodeParameter('message', _itemIndex ?? 0) as string;
 	const data = await client.httpPost(`/hosting/web/${serviceName}/request`, { subject, message });
 	return this.helpers.returnJsonArray([data as import('n8n-workflow').IDataObject]);
 }

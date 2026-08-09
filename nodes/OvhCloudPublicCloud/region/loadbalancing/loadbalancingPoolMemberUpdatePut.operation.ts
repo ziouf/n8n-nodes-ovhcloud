@@ -86,27 +86,27 @@ export function description(displayOptions: IDisplayOptions): INodeProperties[] 
  * HTTP method: PUT
  * Endpoint: /publicCloud/project/{projectId}/region/{regionName}/loadbalancing/pool/${poolIdVal}/member/${memberIdVal}
  */
-export async function execute(this: IExecuteFunctions): Promise<INodeExecutionData[]> {
+export async function execute(this: IExecuteFunctions, _itemIndex?: number): Promise<INodeExecutionData[]> {
 	const client = new ApiClient(this);
-	const projectId = this.getNodeParameter('publicCloudProjectId', 0, '', {
+	const projectId = this.getNodeParameter('publicCloudProjectId', _itemIndex ?? 0, '', {
 		extractValue: true,
 	}) as string;
-	const regionName = this.getNodeParameter('regionName', 0) as string;
+	const regionName = this.getNodeParameter('regionName', _itemIndex ?? 0) as string;
 	const body = {} as import('n8n-workflow').IDataObject;
 
-	const poolIdVal = (this.getNodeParameter('poolId', 0) || '') as string;
+	const poolIdVal = (this.getNodeParameter('poolId', _itemIndex ?? 0) || '') as string;
 	if (poolIdVal !== '') {
 		body.poolId = poolIdVal;
 	}
-	const memberIdVal = (this.getNodeParameter('memberId', 0) || '') as string;
+	const memberIdVal = (this.getNodeParameter('memberId', _itemIndex ?? 0) || '') as string;
 	if (memberIdVal !== '') {
 		body.memberId = memberIdVal;
 	}
-	const nameVal = (this.getNodeParameter('name', 0) || '') as string;
+	const nameVal = (this.getNodeParameter('name', _itemIndex ?? 0) || '') as string;
 	if (nameVal !== '') {
 		body.name = nameVal;
 	}
-	const weightNum = this.getNodeParameter('weight', 0) as number;
+	const weightNum = this.getNodeParameter('weight', _itemIndex ?? 0) as number;
 	if (weightNum !== undefined && weightNum !== 0) {
 		body.weight = weightNum;
 	}

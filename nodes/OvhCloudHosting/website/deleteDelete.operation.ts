@@ -35,11 +35,11 @@ export function description(displayOptions: IDisplayOptions): INodeProperties[] 
  */
 export async function execute(
 	this: IExecuteFunctions,
-	itemIndex: number,
+	_itemIndex: number,
 ): Promise<INodeExecutionData[]> {
 	const client = new ApiClient(this);
-	const serviceName = this.getNodeParameter('serviceName', itemIndex) as string;
-	const websiteName = this.getNodeParameter('websiteName', itemIndex) as string;
+	const serviceName = this.getNodeParameter('serviceName', _itemIndex) as string;
+	const websiteName = this.getNodeParameter('websiteName', _itemIndex) as string;
 	await client.httpDelete(`/hosting/web/website/${serviceName}/${websiteName}`);
 	return this.helpers.returnJsonArray([{ success: true }]);
 }

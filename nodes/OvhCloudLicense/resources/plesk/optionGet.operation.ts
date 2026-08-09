@@ -50,10 +50,10 @@ export function description(displayOptions: IDisplayOptions): INodeProperties[] 
  * HTTP method: GET
  * Endpoint: /license/plesk/{serviceName}/option/{label}
  */
-export async function execute(this: IExecuteFunctions, itemIndex: number): Promise<INodeExecutionData[]> {
+export async function execute(this: IExecuteFunctions, _itemIndex: number): Promise<INodeExecutionData[]> {
 	const client = new ApiClient(this);
-	const serviceName = this.getNodeParameter('serviceName', itemIndex, '', { extractValue: true }) as string;
-	const label = this.getNodeParameter('label', itemIndex) as string;
+	const serviceName = this.getNodeParameter('serviceName', _itemIndex, '', { extractValue: true }) as string;
+	const label = this.getNodeParameter('label', _itemIndex) as string;
 	const data = (await client.httpGet('/license/plesk/' + encodeURIComponent(serviceName) + '/option/' + encodeURIComponent(label) + '')) as IDataObject;
 	return this.helpers.returnJsonArray([data]);
 }

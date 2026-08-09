@@ -28,8 +28,8 @@ export function description(displayOptions: IDisplayOptions): INodeProperties[] 
  * HTTP method: GET
  * Endpoint: /msServices/sharepoint/{domain}
  */
-export async function execute(this: IExecuteFunctions, itemIndex: number): Promise<INodeExecutionData[]> {
-	const domain = this.getNodeParameter('domain', itemIndex) as string;
+export async function execute(this: IExecuteFunctions, _itemIndex: number): Promise<INodeExecutionData[]> {
+	const domain = this.getNodeParameter('domain', _itemIndex) as string;
 
 
 

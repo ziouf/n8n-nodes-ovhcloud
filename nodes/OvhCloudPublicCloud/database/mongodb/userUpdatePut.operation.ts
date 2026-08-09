@@ -56,12 +56,12 @@ export function description(displayOptions: IDisplayOptions): INodeProperties[] 
  * HTTP method: PUT
  * Endpoint: /cloud/project/{serviceName}/database/mongodb/{clusterId}/user/{userId}
  */
-export async function execute(this: IExecuteFunctions): Promise<INodeExecutionData[]> {
-	const serviceName = this.getNodeParameter('serviceName', 0) as string;
-	const clusterId = this.getNodeParameter('clusterId', 0) as string;
-	const userId = this.getNodeParameter('userId', 0) as string;
-	const password = this.getNodeParameter('password', 0, '') as string;
-	const roles = this.getNodeParameter('roles', 0, '') as string;
+export async function execute(this: IExecuteFunctions, _itemIndex?: number): Promise<INodeExecutionData[]> {
+	const serviceName = this.getNodeParameter('serviceName', _itemIndex ?? 0) as string;
+	const clusterId = this.getNodeParameter('clusterId', _itemIndex ?? 0) as string;
+	const userId = this.getNodeParameter('userId', _itemIndex ?? 0) as string;
+	const password = this.getNodeParameter('password', _itemIndex ?? 0, '') as string;
+	const roles = this.getNodeParameter('roles', _itemIndex ?? 0, '') as string;
 
 	const body: IDataObject = {
     password: password || undefined,

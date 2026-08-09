@@ -42,13 +42,13 @@ export function description(displayOptions: IDisplayOptions): INodeProperties[] 
  * HTTP method: GET
  * Endpoint: /domain/configurationRule
  */
-export async function execute(this: IExecuteFunctions, itemIndex: number): Promise<INodeExecutionData[]> {
+export async function execute(this: IExecuteFunctions, _itemIndex: number): Promise<INodeExecutionData[]> {
 	const client = new ApiClient(this);
 
 	const qs: IDataObject = {};
-		const action = this.getNodeParameter('action', itemIndex, '') as string;
+		const action = this.getNodeParameter('action', _itemIndex, '') as string;
 		if (action !== '' && action !== undefined) qs['action'] = action;
-		const domain = this.getNodeParameter('domain', itemIndex, '') as string;
+		const domain = this.getNodeParameter('domain', _itemIndex, '') as string;
 		if (domain !== '' && domain !== undefined) qs['domain'] = domain;
 
 	const data = (await client.httpGet(`/domain/configurationRule`, qs)) as IDataObject;

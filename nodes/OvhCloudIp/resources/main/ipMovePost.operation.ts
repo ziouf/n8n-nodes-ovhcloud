@@ -45,11 +45,11 @@ export function description(displayOptions: IDisplayOptions): INodeProperties[] 
  * Endpoint: /ip/{ip}/move
  */
 
-export async function execute(this: IExecuteFunctions, itemIndex: number): Promise<INodeExecutionData[]> {
-	const ip = this.getNodeParameter('ip', itemIndex) as string;
+export async function execute(this: IExecuteFunctions, _itemIndex: number): Promise<INodeExecutionData[]> {
+	const ip = this.getNodeParameter('ip', _itemIndex) as string;
 
-	const to = (this.getNodeParameter('to', itemIndex) as string) || '';
-	const nexthop = (this.getNodeParameter('nexthop', itemIndex) as string) || '';
+	const to = (this.getNodeParameter('to', _itemIndex) as string) || '';
+	const nexthop = (this.getNodeParameter('nexthop', _itemIndex) as string) || '';
 
 	const body: IDataObject = {};
 	body.to = to;

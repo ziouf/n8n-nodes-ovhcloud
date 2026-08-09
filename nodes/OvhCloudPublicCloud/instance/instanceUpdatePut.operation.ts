@@ -59,15 +59,15 @@ export function description(displayOptions: IDisplayOptions): INodeProperties[] 
  * HTTP method: PUT
  * Endpoint: /cloud/project/{serviceName}/instance/{instanceId}
  */
-export async function execute(this: IExecuteFunctions): Promise<INodeExecutionData[]> {
+export async function execute(this: IExecuteFunctions, _itemIndex?: number): Promise<INodeExecutionData[]> {
 	const client = new ApiClient(this);
-	const serviceName = this.getNodeParameter('publicCloudProjectId', 0, '', {
+	const serviceName = this.getNodeParameter('publicCloudProjectId', _itemIndex ?? 0, '', {
 		extractValue: true,
 	}) as string;
-	const instanceId = this.getNodeParameter('instanceId', 0) as string;
+	const instanceId = this.getNodeParameter('instanceId', _itemIndex ?? 0) as string;
 
 	const body: IDataObject = {};
-	const instanceName = (this.getNodeParameter('instanceName', 0) || '') as string;
+	const instanceName = (this.getNodeParameter('instanceName', _itemIndex ?? 0) || '') as string;
 	body['instanceName'] = instanceName;
 
 	const data = (await client.httpPut(

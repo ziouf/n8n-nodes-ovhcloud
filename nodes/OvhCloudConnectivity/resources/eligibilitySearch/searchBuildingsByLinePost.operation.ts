@@ -40,10 +40,10 @@ export function description(displayOptions: IDisplayOptions): INodeProperties[] 
  * HTTP method: POST
  * Endpoint: /connectivity/eligibility/search/buildingsByLine
  */
-export async function execute(this: IExecuteFunctions): Promise<INodeExecutionData[]> {
+export async function execute(this: IExecuteFunctions, _itemIndex?: number): Promise<INodeExecutionData[]> {
 	const client = new ApiClient(this);
-	const lineNumber = (this.getNodeParameter('lineNumber', 0, '') as string) || '';
-	const status = (this.getNodeParameter('status', 0, '') as string) || '';
+	const lineNumber = (this.getNodeParameter('lineNumber', _itemIndex ?? 0, '') as string) || '';
+	const status = (this.getNodeParameter('status', _itemIndex ?? 0, '') as string) || '';
 
 	const body: IDataObject = {};
 	if (lineNumber) body.lineNumber = lineNumber;

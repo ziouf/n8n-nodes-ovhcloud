@@ -90,17 +90,17 @@ export function description() {
  * HTTP method: POST
  * Endpoint: /email/exchange/{organizationName}/service/{exchangeService}/sharedAccount
  */
-export async function execute(this: IExecuteFunctions): Promise<INodeExecutionData[]> {
-	const organizationName = this.getNodeParameter('organizationName', 0) as string;
-	const exchangeService = this.getNodeParameter('exchangeService', 0) as string;
-	const displayName = this.getNodeParameter('displayName', 0) as string;
-	const firstName = this.getNodeParameter('firstName', 0) as string;
-	const hiddenFromGAL = this.getNodeParameter('hiddenFromGAL', 0) as string;
-	const initials = this.getNodeParameter('initials', 0) as string;
-	const lastName = this.getNodeParameter('lastName', 0) as string;
-	const mailingFilter = this.getNodeParameter('mailingFilter', 0) as string;
-	const quota = this.getNodeParameter('quota', 0) as string;
-	const sharedEmailAddress = this.getNodeParameter('sharedEmailAddress', 0) as string;
+export async function execute(this: IExecuteFunctions, _itemIndex?: number): Promise<INodeExecutionData[]> {
+	const organizationName = this.getNodeParameter('organizationName', _itemIndex ?? 0) as string;
+	const exchangeService = this.getNodeParameter('exchangeService', _itemIndex ?? 0) as string;
+	const displayName = this.getNodeParameter('displayName', _itemIndex ?? 0) as string;
+	const firstName = this.getNodeParameter('firstName', _itemIndex ?? 0) as string;
+	const hiddenFromGAL = this.getNodeParameter('hiddenFromGAL', _itemIndex ?? 0) as string;
+	const initials = this.getNodeParameter('initials', _itemIndex ?? 0) as string;
+	const lastName = this.getNodeParameter('lastName', _itemIndex ?? 0) as string;
+	const mailingFilter = this.getNodeParameter('mailingFilter', _itemIndex ?? 0) as string;
+	const quota = this.getNodeParameter('quota', _itemIndex ?? 0) as string;
+	const sharedEmailAddress = this.getNodeParameter('sharedEmailAddress', _itemIndex ?? 0) as string;
 
 	const body: IDataObject = {
     displayName: displayName,

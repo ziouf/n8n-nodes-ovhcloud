@@ -34,10 +34,10 @@ export function description(displayOptions: IDisplayOptions): INodeProperties[] 
  * HTTP method: GET
  * Endpoint: /xdsl/incidents
  */
-export async function execute(this: IExecuteFunctions): Promise<INodeExecutionData[]> {
+export async function execute(this: IExecuteFunctions, _itemIndex?: number): Promise<INodeExecutionData[]> {
 	const client = new ApiClient(this);
-	const creationDate = (this.getNodeParameter('creationDate', 0, '') as string) || '';
-	const endDate = (this.getNodeParameter('endDate', 0, '') as string) || '';
+	const creationDate = (this.getNodeParameter('creationDate', _itemIndex ?? 0, '') as string) || '';
+	const endDate = (this.getNodeParameter('endDate', _itemIndex ?? 0, '') as string) || '';
 
 	const qs: IDataObject = {};
 	if (creationDate) qs.creationDate = creationDate;

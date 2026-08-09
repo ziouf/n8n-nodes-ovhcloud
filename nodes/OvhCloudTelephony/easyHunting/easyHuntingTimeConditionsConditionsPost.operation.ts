@@ -72,13 +72,13 @@ export function description(displayOptions: IDisplayOptions): INodeProperties[] 
  * HTTP method: POST
  * Endpoint: /telephony/{billingAccount}/easyHunting/{serviceName}/timeConditions/conditions
  */
-export async function execute(this: IExecuteFunctions, itemIndex: number): Promise<INodeExecutionData[]> {
-	const billingAccount = this.getNodeParameter('billingAccount', itemIndex) as string;
-	const serviceName = this.getNodeParameter('serviceName', itemIndex) as string;
-	const policy = this.getNodeParameter('policy', itemIndex) as string;
-	const timeFrom = this.getNodeParameter('timeFrom', itemIndex) as string;
-	const timeTo = this.getNodeParameter('timeTo', itemIndex) as string;
-	const weekDay = this.getNodeParameter('weekDay', itemIndex) as string;
+export async function execute(this: IExecuteFunctions, _itemIndex: number): Promise<INodeExecutionData[]> {
+	const billingAccount = this.getNodeParameter('billingAccount', _itemIndex) as string;
+	const serviceName = this.getNodeParameter('serviceName', _itemIndex) as string;
+	const policy = this.getNodeParameter('policy', _itemIndex) as string;
+	const timeFrom = this.getNodeParameter('timeFrom', _itemIndex) as string;
+	const timeTo = this.getNodeParameter('timeTo', _itemIndex) as string;
+	const weekDay = this.getNodeParameter('weekDay', _itemIndex) as string;
 
 	const body: IDataObject = {
 		policy: policy,

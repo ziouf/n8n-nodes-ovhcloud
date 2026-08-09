@@ -67,17 +67,17 @@ export function description(displayOptions: IDisplayOptions): INodeProperties[] 
  * HTTP method: POST
  * Endpoint: /cloud/project/{serviceName}/instance/{instanceId}/interface
  */
-export async function execute(this: IExecuteFunctions): Promise<INodeExecutionData[]> {
+export async function execute(this: IExecuteFunctions, _itemIndex?: number): Promise<INodeExecutionData[]> {
 	const client = new ApiClient(this);
-	const serviceName = this.getNodeParameter('publicCloudProjectId', 0, '', {
+	const serviceName = this.getNodeParameter('publicCloudProjectId', _itemIndex ?? 0, '', {
 		extractValue: true,
 	}) as string;
-	const instanceId = this.getNodeParameter('instanceId', 0) as string;
+	const instanceId = this.getNodeParameter('instanceId', _itemIndex ?? 0) as string;
 
 	const body: IDataObject = {};
-	const networkId = (this.getNodeParameter('networkId', 0) || '') as string;
+	const networkId = (this.getNodeParameter('networkId', _itemIndex ?? 0) || '') as string;
 	body['networkId'] = networkId;
-	const ip = (this.getNodeParameter('ip', 0) || '') as string;
+	const ip = (this.getNodeParameter('ip', _itemIndex ?? 0) || '') as string;
 	if (ip !== '') {
 		body['ip'] = ip;
 	}

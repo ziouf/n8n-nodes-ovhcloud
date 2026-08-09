@@ -50,12 +50,12 @@ export function description(displayOptions: IDisplayOptions): INodeProperties[] 
  */
 export async function execute(
 	this: IExecuteFunctions,
-	itemIndex: number,
+	_itemIndex: number,
 ): Promise<INodeExecutionData[]> {
 	const client = new ApiClient(this);
-	const serviceName = this.getNodeParameter('serviceName', itemIndex) as string;
-	const filerId = this.getNodeParameter('filerId', itemIndex) as string;
-	const node = this.getNodeParameter('node', itemIndex, '') as string;
+	const serviceName = this.getNodeParameter('serviceName', _itemIndex) as string;
+	const filerId = this.getNodeParameter('filerId', _itemIndex) as string;
+	const node = this.getNodeParameter('node', _itemIndex, '') as string;
 	const qs: IDataObject = {};
 	if (node !== '') {
 		qs.node = node;

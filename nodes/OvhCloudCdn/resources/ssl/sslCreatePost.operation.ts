@@ -60,12 +60,12 @@ export function description(displayOptions: IDisplayOptions): INodeProperties[] 
  * HTTP method: POST
  * Endpoint: /cdn/dedicated/{serviceName}/ssl
  */
-export async function execute(this: IExecuteFunctions, itemIndex: number): Promise<INodeExecutionData[]> {
-	const serviceName = this.getNodeParameter('serviceName', itemIndex) as string;
-	const certificate = (this.getNodeParameter('certificate', itemIndex, "") as string);
-	const chain = (this.getNodeParameter('chain', itemIndex, "") as string);
-	const key = (this.getNodeParameter('key', itemIndex, "") as string);
-	const name = this.getNodeParameter('name', itemIndex) as string;
+export async function execute(this: IExecuteFunctions, _itemIndex: number): Promise<INodeExecutionData[]> {
+	const serviceName = this.getNodeParameter('serviceName', _itemIndex) as string;
+	const certificate = (this.getNodeParameter('certificate', _itemIndex, "") as string);
+	const chain = (this.getNodeParameter('chain', _itemIndex, "") as string);
+	const key = (this.getNodeParameter('key', _itemIndex, "") as string);
+	const name = this.getNodeParameter('name', _itemIndex) as string;
 
 	const body: IDataObject = {};
 	if (certificate !== '') body.certificate = certificate;

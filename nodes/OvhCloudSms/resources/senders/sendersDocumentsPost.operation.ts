@@ -54,11 +54,11 @@ export function description(displayOptions: IDisplayOptions): INodeProperties[] 
  * HTTP method: POST
  * Endpoint: /sms/{serviceName}/senders/{sender}/documents
  */
-export async function execute(this: IExecuteFunctions): Promise<INodeExecutionData[]> {
-	const sender = this.getNodeParameter('sender', 0) as string;
-	const serviceName = this.getNodeParameter('serviceName', 0, '', { extractValue: true }) as string;
-	const description = this.getNodeParameter('description', 0) as string;
-	const name = this.getNodeParameter('name', 0) as string;
+export async function execute(this: IExecuteFunctions, _itemIndex?: number): Promise<INodeExecutionData[]> {
+	const sender = this.getNodeParameter('sender', _itemIndex ?? 0) as string;
+	const serviceName = this.getNodeParameter('serviceName', _itemIndex ?? 0, '', { extractValue: true }) as string;
+	const description = this.getNodeParameter('description', _itemIndex ?? 0) as string;
+	const name = this.getNodeParameter('name', _itemIndex ?? 0) as string;
 	const body: IDataObject = {};
 	if (description) body['description'] = description;
 	body['name'] = name;

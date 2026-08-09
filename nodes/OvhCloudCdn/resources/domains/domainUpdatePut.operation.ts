@@ -77,13 +77,13 @@ export function description(displayOptions: IDisplayOptions): INodeProperties[] 
  * HTTP method: PUT
  * Endpoint: /cdn/dedicated/{serviceName}/domains/{domain}
  */
-export async function execute(this: IExecuteFunctions, itemIndex: number): Promise<INodeExecutionData[]> {
-	const serviceName = this.getNodeParameter('serviceName', itemIndex) as string;
-	const domain = this.getNodeParameter('domain', itemIndex) as string;
-	const cacheRuleUse = (this.getNodeParameter('cacheRuleUse', itemIndex, "") as number);
-	const cname = (this.getNodeParameter('cname', itemIndex, "") as string);
-	const status = (this.getNodeParameter('status', itemIndex, "") as string);
-	const type = (this.getNodeParameter('type', itemIndex, "") as string);
+export async function execute(this: IExecuteFunctions, _itemIndex: number): Promise<INodeExecutionData[]> {
+	const serviceName = this.getNodeParameter('serviceName', _itemIndex) as string;
+	const domain = this.getNodeParameter('domain', _itemIndex) as string;
+	const cacheRuleUse = (this.getNodeParameter('cacheRuleUse', _itemIndex, "") as number);
+	const cname = (this.getNodeParameter('cname', _itemIndex, "") as string);
+	const status = (this.getNodeParameter('status', _itemIndex, "") as string);
+	const type = (this.getNodeParameter('type', _itemIndex, "") as string);
 
 	const body: IDataObject = {};
 	if (cacheRuleUse !== 0) body.cacheRuleUse = cacheRuleUse;

@@ -19,7 +19,7 @@ import { ApiClient } from '../../../shared/transport/ApiClient';
 describe('list.operation', () => {
 	describe('description', () => {
 		it('should return empty array (no additional params for list)', () => {
-			const result = description();
+			const result = description({});
 
 			expect(result).toEqual([]);
 		});

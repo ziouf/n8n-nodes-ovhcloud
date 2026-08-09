@@ -50,13 +50,13 @@ export function description(displayOptions: IDisplayOptions): INodeProperties[] 
  * HTTP method: POST
  * Endpoint: /horizonView/{serviceName}/dedicatedHorizon/user/changePassword
  */
-export async function execute(this: IExecuteFunctions): Promise<INodeExecutionData[]> {
+export async function execute(this: IExecuteFunctions, _itemIndex?: number): Promise<INodeExecutionData[]> {
 	const client = new ApiClient(this);
-	const serviceName = this.getNodeParameter('serviceName', 0, '', { extractValue: true }) as string;
+	const serviceName = this.getNodeParameter('serviceName', _itemIndex ?? 0, '', { extractValue: true }) as string;
 
 	const body: IDataObject = {};
 
-	const password = (this.getNodeParameter('password', 0, '') as string) || '';
+	const password = (this.getNodeParameter('password', _itemIndex ?? 0, '') as string) || '';
 	if (password) body.password = password;
 
 	const data = (await client.httpPost(

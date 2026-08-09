@@ -454,69 +454,69 @@ export async function execute(
 
 	switch (operation) {
 		case 'vmwareCloudDirectorbackupListGet':
-			return executeVmwareCloudDirectorbackupListGet.call(this, itemIndex);
+			return executeVmwareCloudDirectorbackupListGet.call(this, itemIndex ?? 0);
 		case 'vmwareCloudDirectorbackupListGet2':
-			return executeVmwareCloudDirectorbackupListGet2.call(this, itemIndex);
+			return executeVmwareCloudDirectorbackupListGet2.call(this, itemIndex ?? 0);
 		case 'vmwareCloudDirectorbackupUpdatePut':
-			return executeVmwareCloudDirectorbackupUpdatePut.call(this, itemIndex);
+			return executeVmwareCloudDirectorbackupUpdatePut.call(this, itemIndex ?? 0);
 		case 'vmwareCloudDirectorbackuptaskListGet':
-			return executeVmwareCloudDirectorbackuptaskListGet.call(this, itemIndex);
+			return executeVmwareCloudDirectorbackuptaskListGet.call(this, itemIndex ?? 0);
 		case 'vmwareCloudDirectorbackuptaskListGet2':
-			return executeVmwareCloudDirectorbackuptaskListGet2.call(this, itemIndex);
+			return executeVmwareCloudDirectorbackuptaskListGet2.call(this, itemIndex ?? 0);
 		case 'vmwareCloudDirectororganizationListGet':
-			return executeVmwareCloudDirectororganizationListGet.call(this, itemIndex);
+			return executeVmwareCloudDirectororganizationListGet.call(this, itemIndex ?? 0);
 		case 'vmwareCloudDirectororganizationListGet2':
-			return executeVmwareCloudDirectororganizationListGet2.call(this, itemIndex);
+			return executeVmwareCloudDirectororganizationListGet2.call(this, itemIndex ?? 0);
 		case 'vmwareCloudDirectororganizationUpdatePut':
-			return executeVmwareCloudDirectororganizationUpdatePut.call(this, itemIndex);
+			return executeVmwareCloudDirectororganizationUpdatePut.call(this, itemIndex ?? 0);
 		case 'vmwareCloudDirectororganizationnetworkAclListGet':
-			return executeVmwareCloudDirectororganizationnetworkAclListGet.call(this, itemIndex);
+			return executeVmwareCloudDirectororganizationnetworkAclListGet.call(this, itemIndex ?? 0);
 		case 'vmwareCloudDirectororganizationnetworkAclListGet2':
-			return executeVmwareCloudDirectororganizationnetworkAclListGet2.call(this, itemIndex);
+			return executeVmwareCloudDirectororganizationnetworkAclListGet2.call(this, itemIndex ?? 0);
 		case 'vmwareCloudDirectororganizationnetworkAclUpdatePut':
-			return executeVmwareCloudDirectororganizationnetworkAclUpdatePut.call(this, itemIndex);
+			return executeVmwareCloudDirectororganizationnetworkAclUpdatePut.call(this, itemIndex ?? 0);
 		case 'vmwareCloudDirectororganizationpasswordCreatePost':
-			return executeVmwareCloudDirectororganizationpasswordCreatePost.call(this, itemIndex);
+			return executeVmwareCloudDirectororganizationpasswordCreatePost.call(this, itemIndex ?? 0);
 		case 'vmwareCloudDirectororganizationtaskListGet':
-			return executeVmwareCloudDirectororganizationtaskListGet.call(this, itemIndex);
+			return executeVmwareCloudDirectororganizationtaskListGet.call(this, itemIndex ?? 0);
 		case 'vmwareCloudDirectororganizationtaskListGet2':
-			return executeVmwareCloudDirectororganizationtaskListGet2.call(this, itemIndex);
+			return executeVmwareCloudDirectororganizationtaskListGet2.call(this, itemIndex ?? 0);
 		case 'vmwareCloudDirectororganizationvirtualDataCenterListGet':
-			return executeVmwareCloudDirectororganizationvirtualDataCenterListGet.call(this, itemIndex);
+			return executeVmwareCloudDirectororganizationvirtualDataCenterListGet.call(this, itemIndex ?? 0);
 		case 'vmwareCloudDirectororganizationvirtualDataCenterListGet2':
-			return executeVmwareCloudDirectororganizationvirtualDataCenterListGet2.call(this, itemIndex);
+			return executeVmwareCloudDirectororganizationvirtualDataCenterListGet2.call(this, itemIndex ?? 0);
 		case 'vmwareCloudDirectororganizationvirtualDataCenterUpdatePut':
-			return executeVmwareCloudDirectororganizationvirtualDataCenterUpdatePut.call(this, itemIndex);
+			return executeVmwareCloudDirectororganizationvirtualDataCenterUpdatePut.call(this, itemIndex ?? 0);
 		case 'vmwareCloudDirectororganizationvirtualDataCentercomputeListGet':
-			return executeVmwareCloudDirectororganizationvirtualDataCentercomputeListGet.call(this, itemIndex);
+			return executeVmwareCloudDirectororganizationvirtualDataCentercomputeListGet.call(this, itemIndex ?? 0);
 		case 'vmwareCloudDirectororganizationvirtualDataCentercomputeDeleteDelete':
-			return executeVmwareCloudDirectororganizationvirtualDataCentercomputeDeleteDelete.call(this, itemIndex);
+			return executeVmwareCloudDirectororganizationvirtualDataCentercomputeDeleteDelete.call(this, itemIndex ?? 0);
 		case 'vmwareCloudDirectororganizationvirtualDataCentercomputeListGet2':
-			return executeVmwareCloudDirectororganizationvirtualDataCentercomputeListGet2.call(this, itemIndex);
+			return executeVmwareCloudDirectororganizationvirtualDataCentercomputeListGet2.call(this, itemIndex ?? 0);
 		case 'vmwareCloudDirectororganizationvirtualDataCenterorderableResourceListGet':
-			return executeVmwareCloudDirectororganizationvirtualDataCenterorderableResourceListGet.call(this, itemIndex);
+			return executeVmwareCloudDirectororganizationvirtualDataCenterorderableResourceListGet.call(this, itemIndex ?? 0);
 		case 'vmwareCloudDirectororganizationvirtualDataCenterstorageListGet':
-			return executeVmwareCloudDirectororganizationvirtualDataCenterstorageListGet.call(this, itemIndex);
+			return executeVmwareCloudDirectororganizationvirtualDataCenterstorageListGet.call(this, itemIndex ?? 0);
 		case 'vmwareCloudDirectororganizationvirtualDataCenterstorageListGet2':
-			return executeVmwareCloudDirectororganizationvirtualDataCenterstorageListGet2.call(this, itemIndex);
+			return executeVmwareCloudDirectororganizationvirtualDataCenterstorageListGet2.call(this, itemIndex ?? 0);
 		case 'vmwareCloudDirectororganizationvirtualDataCentertaskListGet':
-			return executeVmwareCloudDirectororganizationvirtualDataCentertaskListGet.call(this, itemIndex);
+			return executeVmwareCloudDirectororganizationvirtualDataCentertaskListGet.call(this, itemIndex ?? 0);
 		case 'vmwareCloudDirectororganizationvirtualDataCentertaskListGet2':
-			return executeVmwareCloudDirectororganizationvirtualDataCentertaskListGet2.call(this, itemIndex);
+			return executeVmwareCloudDirectororganizationvirtualDataCentertaskListGet2.call(this, itemIndex ?? 0);
 		case 'vmwareCloudDirectororganizationvirtualDataCentervrackSegmentListGet':
-			return executeVmwareCloudDirectororganizationvirtualDataCentervrackSegmentListGet.call(this, itemIndex);
+			return executeVmwareCloudDirectororganizationvirtualDataCentervrackSegmentListGet.call(this, itemIndex ?? 0);
 		case 'vmwareCloudDirectororganizationvirtualDataCentervrackSegmentDeleteDelete':
-			return executeVmwareCloudDirectororganizationvirtualDataCentervrackSegmentDeleteDelete.call(this, itemIndex);
+			return executeVmwareCloudDirectororganizationvirtualDataCentervrackSegmentDeleteDelete.call(this, itemIndex ?? 0);
 		case 'vmwareCloudDirectororganizationvirtualDataCentervrackSegmentListGet2':
-			return executeVmwareCloudDirectororganizationvirtualDataCentervrackSegmentListGet2.call(this, itemIndex);
+			return executeVmwareCloudDirectororganizationvirtualDataCentervrackSegmentListGet2.call(this, itemIndex ?? 0);
 		case 'vmwareCloudDirectororganizationvirtualDataCentervrackSegmentUpdatePut':
-			return executeVmwareCloudDirectororganizationvirtualDataCentervrackSegmentUpdatePut.call(this, itemIndex);
+			return executeVmwareCloudDirectororganizationvirtualDataCentervrackSegmentUpdatePut.call(this, itemIndex ?? 0);
 		case 'vmwareCloudDirectororganizationvirtualDataCentervrackSegmenttaskListGet':
-			return executeVmwareCloudDirectororganizationvirtualDataCentervrackSegmenttaskListGet.call(this, itemIndex);
+			return executeVmwareCloudDirectororganizationvirtualDataCentervrackSegmenttaskListGet.call(this, itemIndex ?? 0);
 		case 'vmwareCloudDirectororganizationvirtualDataCentervrackSegmenttaskListGet2':
-			return executeVmwareCloudDirectororganizationvirtualDataCentervrackSegmenttaskListGet2.call(this, itemIndex);
+			return executeVmwareCloudDirectororganizationvirtualDataCentervrackSegmenttaskListGet2.call(this, itemIndex ?? 0);
 		case 'vmwareCloudDirectorreferenceregionListGet':
-			return executeVmwareCloudDirectorreferenceregionListGet.call(this, itemIndex);
+			return executeVmwareCloudDirectorreferenceregionListGet.call(this, itemIndex ?? 0);
 
 	}
 

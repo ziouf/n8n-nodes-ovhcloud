@@ -47,11 +47,11 @@ export function description() {
  * HTTP method: GET
  * Endpoint: /email/exchange/{organizationName}/service/{exchangeService}/domain/{domainName}/dkim/{selectorName}
  */
-export async function execute(this: IExecuteFunctions): Promise<INodeExecutionData[]> {
-	const organizationName = this.getNodeParameter('organizationName', 0) as string;
-	const exchangeService = this.getNodeParameter('exchangeService', 0) as string;
-	const domainName = this.getNodeParameter('domainName', 0) as string;
-	const selectorName = this.getNodeParameter('selectorName', 0) as string;
+export async function execute(this: IExecuteFunctions, _itemIndex?: number): Promise<INodeExecutionData[]> {
+	const organizationName = this.getNodeParameter('organizationName', _itemIndex ?? 0) as string;
+	const exchangeService = this.getNodeParameter('exchangeService', _itemIndex ?? 0) as string;
+	const domainName = this.getNodeParameter('domainName', _itemIndex ?? 0) as string;
+	const selectorName = this.getNodeParameter('selectorName', _itemIndex ?? 0) as string;
 
 	const client = new ApiClient(this);
 	const data = (await client.httpGet("/email/exchange/" + encodeURIComponent(organizationName) + "/service/" + encodeURIComponent(exchangeService) + "/domain/" + encodeURIComponent(domainName) + "/dkim/" + encodeURIComponent(selectorName))) as IDataObject;

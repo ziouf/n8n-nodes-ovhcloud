@@ -60,17 +60,17 @@ export function description(displayOptions: IDisplayOptions): INodeProperties[] 
  * HTTP method: PUT
  * Endpoint: /domain/zone/{zoneName}/record/{id}
  */
-export async function execute(this: IExecuteFunctions, itemIndex: number): Promise<INodeExecutionData[]> {
+export async function execute(this: IExecuteFunctions, _itemIndex: number): Promise<INodeExecutionData[]> {
 	const client = new ApiClient(this);
-		const id = this.getNodeParameter('id', itemIndex) as string;
-		const zoneName = this.getNodeParameter('zoneName', itemIndex) as string;
+		const id = this.getNodeParameter('id', _itemIndex) as string;
+		const zoneName = this.getNodeParameter('zoneName', _itemIndex) as string;
 
 	const body: IDataObject = {};
-		const subDomain = this.getNodeParameter('subDomain', itemIndex, '') as string;
+		const subDomain = this.getNodeParameter('subDomain', _itemIndex, '') as string;
 		if (subDomain !== '') body['subDomain'] = subDomain;
-		const target = this.getNodeParameter('target', itemIndex, '') as string;
+		const target = this.getNodeParameter('target', _itemIndex, '') as string;
 		if (target !== '') body['target'] = target;
-		const ttl = this.getNodeParameter('ttl', itemIndex, 0) as number;
+		const ttl = this.getNodeParameter('ttl', _itemIndex, 0) as number;
 		if (ttl !== 0) body['ttl'] = ttl;
 
 	const data = (await client.httpPut(`/domain/zone/${encodeURIComponent(zoneName)}/record/${encodeURIComponent(id)}`, body)) as IDataObject;

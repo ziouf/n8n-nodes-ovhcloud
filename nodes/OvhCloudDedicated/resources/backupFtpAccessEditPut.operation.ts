@@ -71,14 +71,14 @@ export function description(displayOptions: IDisplayOptions): INodeProperties[] 
 	];
 }
 
-export async function execute(this: IExecuteFunctions): Promise<INodeExecutionData[]> {
+export async function execute(this: IExecuteFunctions, _itemIndex?: number): Promise<INodeExecutionData[]> {
 	const client = new ApiClient(this);
-	const serviceName = this.getNodeParameter('serviceName', 0, '', { extractValue: true }) as string;
-	const ipBlock = (this.getNodeParameter('ipBlock', 0) as string) || '';
+	const serviceName = this.getNodeParameter('serviceName', _itemIndex ?? 0, '', { extractValue: true }) as string;
+	const ipBlock = (this.getNodeParameter('ipBlock', _itemIndex ?? 0) as string) || '';
 
-	const ftp = this.getNodeParameter('ftp', 0) as boolean | undefined;
-	const cifs = (this.getNodeParameter('cifs', 0) as boolean) ?? false;
-	const nfs = this.getNodeParameter('nfs', 0) as boolean | undefined;
+	const ftp = this.getNodeParameter('ftp', _itemIndex ?? 0) as boolean | undefined;
+	const cifs = (this.getNodeParameter('cifs', _itemIndex ?? 0) as boolean) ?? false;
+	const nfs = this.getNodeParameter('nfs', _itemIndex ?? 0) as boolean | undefined;
 
 	const body: IDataObject = {};
 	if (ftp !== undefined) body.ftp = ftp;

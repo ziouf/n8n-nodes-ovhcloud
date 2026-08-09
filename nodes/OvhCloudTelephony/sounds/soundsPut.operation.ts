@@ -45,11 +45,11 @@ export function description(displayOptions: IDisplayOptions): INodeProperties[] 
  */
 export async function execute(
 	this: IExecuteFunctions,
-	itemIndex: number,
+	_itemIndex: number,
 ): Promise<INodeExecutionData[]> {
-	const id = this.getNodeParameter('id', itemIndex) as string;
-	const descriptionParam = this.getNodeParameter('description', itemIndex) as string;
-	const filename = this.getNodeParameter('filename', itemIndex) as string;
+	const id = this.getNodeParameter('id', _itemIndex) as string;
+	const descriptionParam = this.getNodeParameter('description', _itemIndex) as string;
+	const filename = this.getNodeParameter('filename', _itemIndex) as string;
 
 	const body: IDataObject = {
 		description: descriptionParam,

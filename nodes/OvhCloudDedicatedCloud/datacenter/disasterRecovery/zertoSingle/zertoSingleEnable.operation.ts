@@ -62,14 +62,14 @@ export function description(displayOptions: IDisplayOptions): INodeProperties[] 
  * HTTP method: POST
  * Endpoint: /dedicatedCloud/{serviceName}/datacenter/{datacenterId}/disasterRecovery/zertoSingle/enable
  */
-export async function execute(this: IExecuteFunctions, itemIndex: number): Promise<INodeExecutionData[]> {
+export async function execute(this: IExecuteFunctions, _itemIndex: number): Promise<INodeExecutionData[]> {
 	const client = new ApiClient(this);
-	const datacenterId = this.getNodeParameter('datacenterId', itemIndex) as string;
-	const serviceName = this.getNodeParameter('serviceName', itemIndex) as string;
+	const datacenterId = this.getNodeParameter('datacenterId', _itemIndex) as string;
+	const serviceName = this.getNodeParameter('serviceName', _itemIndex) as string;
 	const body: IDataObject = {};
-	body.localVraNetwork = this.getNodeParameter('localVraNetwork', itemIndex) as string;
-	body.ovhEndpointIp = this.getNodeParameter('ovhEndpointIp', itemIndex) as string;
-	const remoteVraNetwork = this.getNodeParameter('remoteVraNetwork', itemIndex, '') as string; if (remoteVraNetwork !== '') { body.remoteVraNetwork = remoteVraNetwork; }
+	body.localVraNetwork = this.getNodeParameter('localVraNetwork', _itemIndex) as string;
+	body.ovhEndpointIp = this.getNodeParameter('ovhEndpointIp', _itemIndex) as string;
+	const remoteVraNetwork = this.getNodeParameter('remoteVraNetwork', _itemIndex, '') as string; if (remoteVraNetwork !== '') { body.remoteVraNetwork = remoteVraNetwork; }
 	const data = (await client.httpPost(`/dedicatedCloud/${serviceName}/datacenter/${datacenterId}/disasterRecovery/zertoSingle/enable`, body)) as IDataObject;
 	return this.helpers.returnJsonArray([data]);
 }

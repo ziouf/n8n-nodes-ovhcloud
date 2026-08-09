@@ -57,11 +57,11 @@ export function description(displayOptions: IDisplayOptions): INodeProperties[] 
  * HTTP method: GET
  * Endpoint: /veeamCloudConnect/{serviceName}/task
  */
-export async function execute(this: IExecuteFunctions): Promise<INodeExecutionData[]> {
+export async function execute(this: IExecuteFunctions, _itemIndex?: number): Promise<INodeExecutionData[]> {
 	const client = new ApiClient(this);
-	const serviceName = this.getNodeParameter('serviceName', 0, '', { extractValue: true }) as string;
-	const name = (this.getNodeParameter('name', 0, '') as string) || '';
-	const state = (this.getNodeParameter('state', 0, '') as string) || '';
+	const serviceName = this.getNodeParameter('serviceName', _itemIndex ?? 0, '', { extractValue: true }) as string;
+	const name = (this.getNodeParameter('name', _itemIndex ?? 0, '') as string) || '';
+	const state = (this.getNodeParameter('state', _itemIndex ?? 0, '') as string) || '';
 
 	const qs: IDataObject = {};
 	if (name) qs.name = name;

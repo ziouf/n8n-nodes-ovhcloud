@@ -43,11 +43,11 @@ export function description(
  * HTTP method: PUT
  * Endpoint: /hosting/web/{serviceName}/runtime/{runtimeName}
  */
-export async function execute(this: IExecuteFunctions): Promise<INodeExecutionData[]> {
+export async function execute(this: IExecuteFunctions, _itemIndex?: number): Promise<INodeExecutionData[]> {
 	const client = new ApiClient(this);
-	const serviceName = this.getNodeParameter('serviceName', 0) as string;
-	const runtimeName = this.getNodeParameter('runtimeName', 0) as string;
-	const active = this.getNodeParameter('active', 0) as boolean;
+	const serviceName = this.getNodeParameter('serviceName', _itemIndex ?? 0) as string;
+	const runtimeName = this.getNodeParameter('runtimeName', _itemIndex ?? 0) as string;
+	const active = this.getNodeParameter('active', _itemIndex ?? 0) as boolean;
 	const data = (await client.httpPut(`/hosting/web/${serviceName}/runtime/${runtimeName}`, {
 		active,
 	})) as IDataObject;

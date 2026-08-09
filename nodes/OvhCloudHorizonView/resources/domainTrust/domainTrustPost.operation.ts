@@ -77,19 +77,19 @@ export function description(displayOptions: IDisplayOptions): INodeProperties[] 
  * HTTP method: POST
  * Endpoint: /horizonView/{serviceName}/domainTrust
  */
-export async function execute(this: IExecuteFunctions): Promise<INodeExecutionData[]> {
+export async function execute(this: IExecuteFunctions, _itemIndex?: number): Promise<INodeExecutionData[]> {
 	const client = new ApiClient(this);
-	const serviceName = this.getNodeParameter('serviceName', 0, '', { extractValue: true }) as string;
+	const serviceName = this.getNodeParameter('serviceName', _itemIndex ?? 0, '', { extractValue: true }) as string;
 
 	const body: IDataObject = {
-		domain: this.getNodeParameter('domain', 0) as string,
-		activeDirectoryIP: this.getNodeParameter('activeDirectoryIP', 0) as string,
+		domain: this.getNodeParameter('domain', _itemIndex ?? 0) as string,
+		activeDirectoryIP: this.getNodeParameter('activeDirectoryIP', _itemIndex ?? 0) as string,
 	};
 
-	const dns1 = (this.getNodeParameter('dns1', 0, '') as string) || '';
+	const dns1 = (this.getNodeParameter('dns1', _itemIndex ?? 0, '') as string) || '';
 	if (dns1) body.dns1 = dns1;
 
-	const dns2 = (this.getNodeParameter('dns2', 0, '') as string) || '';
+	const dns2 = (this.getNodeParameter('dns2', _itemIndex ?? 0, '') as string) || '';
 	if (dns2) body.dns2 = dns2;
 
 	const data = (await client.httpPost(

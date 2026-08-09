@@ -51,11 +51,11 @@ export function description(displayOptions: IDisplayOptions): INodeProperties[] 
  * HTTP method: GET
  * Endpoint: /telephony/{billingAccount}/task
  */
-export async function execute(this: IExecuteFunctions, itemIndex: number): Promise<INodeExecutionData[]> {
-	const billingAccount = this.getNodeParameter('billingAccount', itemIndex) as string;
-	const action = this.getNodeParameter('action', itemIndex) as string;
-	const serviceType = this.getNodeParameter('serviceType', itemIndex) as string;
-	const status = this.getNodeParameter('status', itemIndex) as string;
+export async function execute(this: IExecuteFunctions, _itemIndex: number): Promise<INodeExecutionData[]> {
+	const billingAccount = this.getNodeParameter('billingAccount', _itemIndex) as string;
+	const action = this.getNodeParameter('action', _itemIndex) as string;
+	const serviceType = this.getNodeParameter('serviceType', _itemIndex) as string;
+	const status = this.getNodeParameter('status', _itemIndex) as string;
 
 	const qs: IDataObject = {
     action: action,

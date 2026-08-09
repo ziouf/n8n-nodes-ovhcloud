@@ -36,9 +36,9 @@ export function description(displayOptions: IDisplayOptions): INodeProperties[] 
  * HTTP method: DELETE
  * Endpoint: /sms/{serviceName}/outgoing/{id}
  */
-export async function execute(this: IExecuteFunctions): Promise<INodeExecutionData[]> {
-	const serviceName = this.getNodeParameter('serviceName', 0, '', { extractValue: true }) as string;
-	const id = this.getNodeParameter('id', 0) as number;
+export async function execute(this: IExecuteFunctions, _itemIndex?: number): Promise<INodeExecutionData[]> {
+	const serviceName = this.getNodeParameter('serviceName', _itemIndex ?? 0, '', { extractValue: true }) as string;
+	const id = this.getNodeParameter('id', _itemIndex ?? 0) as number;
 	const data = (await new ApiClient(this).httpDelete(
 		`/sms/${encodeURIComponent(serviceName)}/outgoing/${id}`,
 	)) as IDataObject;

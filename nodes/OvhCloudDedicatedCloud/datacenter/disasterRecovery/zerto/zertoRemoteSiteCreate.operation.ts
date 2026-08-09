@@ -81,16 +81,16 @@ export function description(displayOptions: IDisplayOptions): INodeProperties[] 
  * HTTP method: POST
  * Endpoint: /dedicatedCloud/{serviceName}/datacenter/{datacenterId}/disasterRecovery/zerto/remoteSites
  */
-export async function execute(this: IExecuteFunctions, itemIndex: number): Promise<INodeExecutionData[]> {
+export async function execute(this: IExecuteFunctions, _itemIndex: number): Promise<INodeExecutionData[]> {
 	const client = new ApiClient(this);
-	const datacenterId = this.getNodeParameter('datacenterId', itemIndex) as string;
-	const serviceName = this.getNodeParameter('serviceName', itemIndex) as string;
+	const datacenterId = this.getNodeParameter('datacenterId', _itemIndex) as string;
+	const serviceName = this.getNodeParameter('serviceName', _itemIndex) as string;
 	const body: IDataObject = {};
-	body.label = this.getNodeParameter('label', itemIndex) as string;
-	body.preSharedKey = this.getNodeParameter('preSharedKey', itemIndex) as string;
-	body.remoteEndpointPublicIp = this.getNodeParameter('remoteEndpointPublicIp', itemIndex) as string;
-	body.remoteVraNetwork = this.getNodeParameter('remoteVraNetwork', itemIndex) as string;
-	body.remoteZvmInternalIp = this.getNodeParameter('remoteZvmInternalIp', itemIndex) as string;
+	body.label = this.getNodeParameter('label', _itemIndex) as string;
+	body.preSharedKey = this.getNodeParameter('preSharedKey', _itemIndex) as string;
+	body.remoteEndpointPublicIp = this.getNodeParameter('remoteEndpointPublicIp', _itemIndex) as string;
+	body.remoteVraNetwork = this.getNodeParameter('remoteVraNetwork', _itemIndex) as string;
+	body.remoteZvmInternalIp = this.getNodeParameter('remoteZvmInternalIp', _itemIndex) as string;
 	const data = (await client.httpPost(`/dedicatedCloud/${serviceName}/datacenter/${datacenterId}/disasterRecovery/zerto/remoteSites`, body)) as IDataObject;
 	return this.helpers.returnJsonArray([data]);
 }

@@ -45,10 +45,10 @@ export function description(displayOptions: IDisplayOptions): INodeProperties[] 
  * HTTP method: GET
  * Endpoint: /telephony/{billingAccount}/service/{serviceName}/diagnosticReports
  */
-export async function execute(this: IExecuteFunctions, itemIndex: number): Promise<INodeExecutionData[]> {
-	const billingAccount = this.getNodeParameter('billingAccount', itemIndex) as string;
-	const serviceName = this.getNodeParameter('serviceName', itemIndex) as string;
-	const dayInterval = this.getNodeParameter('dayInterval', itemIndex) as string;
+export async function execute(this: IExecuteFunctions, _itemIndex: number): Promise<INodeExecutionData[]> {
+	const billingAccount = this.getNodeParameter('billingAccount', _itemIndex) as string;
+	const serviceName = this.getNodeParameter('serviceName', _itemIndex) as string;
+	const dayInterval = this.getNodeParameter('dayInterval', _itemIndex) as string;
 
 	const qs: IDataObject = {
 		dayInterval: dayInterval,

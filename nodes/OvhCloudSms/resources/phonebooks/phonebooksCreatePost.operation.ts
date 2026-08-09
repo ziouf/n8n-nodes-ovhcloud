@@ -37,9 +37,9 @@ export function description(displayOptions: IDisplayOptions): INodeProperties[] 
  * HTTP method: POST
  * Endpoint: /sms/{serviceName}/phonebooks
  */
-export async function execute(this: IExecuteFunctions): Promise<INodeExecutionData[]> {
-	const serviceName = this.getNodeParameter('serviceName', 0, '', { extractValue: true }) as string;
-	const name = this.getNodeParameter('name', 0) as string;
+export async function execute(this: IExecuteFunctions, _itemIndex?: number): Promise<INodeExecutionData[]> {
+	const serviceName = this.getNodeParameter('serviceName', _itemIndex ?? 0, '', { extractValue: true }) as string;
+	const name = this.getNodeParameter('name', _itemIndex ?? 0) as string;
 	const body: IDataObject = {};
 	body['name'] = name;
 	const data = (await new ApiClient(this).httpPost(

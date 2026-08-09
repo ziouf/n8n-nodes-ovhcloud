@@ -54,12 +54,12 @@ export function description(displayOptions: IDisplayOptions): INodeProperties[] 
  */
 export async function execute(
 	this: IExecuteFunctions,
-	itemIndex: number,
+	_itemIndex: number,
 ): Promise<INodeExecutionData[]> {
-	const country = this.getNodeParameter('country', itemIndex) as string;
-	const range = this.getNodeParameter('range', itemIndex) as string;
-	const type = this.getNodeParameter('type', itemIndex) as string;
-	const zone = this.getNodeParameter('zone', itemIndex) as string;
+	const country = this.getNodeParameter('country', _itemIndex) as string;
+	const range = this.getNodeParameter('range', _itemIndex) as string;
+	const type = this.getNodeParameter('type', _itemIndex) as string;
+	const zone = this.getNodeParameter('zone', _itemIndex) as string;
 
 	const qs: IDataObject = {
 		country: country,

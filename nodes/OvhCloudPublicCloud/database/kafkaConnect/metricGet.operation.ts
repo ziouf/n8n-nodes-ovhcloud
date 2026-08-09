@@ -68,14 +68,14 @@ export function description(displayOptions: IDisplayOptions): INodeProperties[] 
  * HTTP method: GET
  * Endpoint: /cloud/project/{serviceName}/database/kafkaConnect/{clusterId}/metric/{metricName}
  */
-export async function execute(this: IExecuteFunctions): Promise<INodeExecutionData[]> {
+export async function execute(this: IExecuteFunctions, _itemIndex?: number): Promise<INodeExecutionData[]> {
 const client = new ApiClient(this);
-const serviceName = this.getNodeParameter('publicCloudProjectId', 0, '', {
+const serviceName = this.getNodeParameter('publicCloudProjectId', _itemIndex ?? 0, '', {
 	extractValue: true,
 }) as string;
-const clusterId = this.getNodeParameter('clusterId', 0) as string;
-const metricName = this.getNodeParameter('metricName', 0) as string;
-const period = this.getNodeParameter('period', 0, undefined) as string | undefined;
+const clusterId = this.getNodeParameter('clusterId', _itemIndex ?? 0) as string;
+const metricName = this.getNodeParameter('metricName', _itemIndex ?? 0) as string;
+const period = this.getNodeParameter('period', _itemIndex ?? 0, undefined) as string | undefined;
 const data = (await client.httpGet(`/cloud/project/${serviceName}/database/kafkaConnect/${clusterId}/metric/${metricName}`, { period: period })) as IDataObject;
 return this.helpers.returnJsonArray([data]);
 }

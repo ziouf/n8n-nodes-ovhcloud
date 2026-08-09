@@ -49,11 +49,11 @@ export function description(displayOptions: IDisplayOptions = {} as IDisplayOpti
  * HTTP method: POST
  * Endpoint: /cloud/project/{serviceName}/ai/job/{jobId}/datasync
  */
-export async function execute(this: IExecuteFunctions): Promise<INodeExecutionData[]> {
-	const serviceName = this.getNodeParameter('serviceName', 0) as string;
-	const jobId = this.getNodeParameter('jobId', 0) as string;
+export async function execute(this: IExecuteFunctions, _itemIndex?: number): Promise<INodeExecutionData[]> {
+	const serviceName = this.getNodeParameter('serviceName', _itemIndex ?? 0) as string;
+	const jobId = this.getNodeParameter('jobId', _itemIndex ?? 0) as string;
 
-	const body = this.getNodeParameter("body", 0) as IDataObject;
+	const body = this.getNodeParameter('body', _itemIndex ?? 0) as IDataObject;
 
 	const client = new ApiClient(this);
 	const data = (await client.httpPost('cloud/project' + serviceName + '/ai/job/' + jobId + '/datasync', body)) as IDataObject;

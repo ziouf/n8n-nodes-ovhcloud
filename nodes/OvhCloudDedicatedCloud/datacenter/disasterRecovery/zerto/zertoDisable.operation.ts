@@ -54,13 +54,13 @@ export function description(displayOptions: IDisplayOptions): INodeProperties[] 
  * HTTP method: POST
  * Endpoint: /dedicatedCloud/{serviceName}/datacenter/{datacenterId}/disasterRecovery/zerto/disable
  */
-export async function execute(this: IExecuteFunctions, itemIndex: number): Promise<INodeExecutionData[]> {
+export async function execute(this: IExecuteFunctions, _itemIndex: number): Promise<INodeExecutionData[]> {
 	const client = new ApiClient(this);
-	const datacenterId = this.getNodeParameter('datacenterId', itemIndex) as string;
-	const serviceName = this.getNodeParameter('serviceName', itemIndex) as string;
+	const datacenterId = this.getNodeParameter('datacenterId', _itemIndex) as string;
+	const serviceName = this.getNodeParameter('serviceName', _itemIndex) as string;
 	const body: IDataObject = {};
-	body.secondaryDatacenterId = this.getNodeParameter('secondaryDatacenterId', itemIndex) as number;
-	body.secondaryServiceName = this.getNodeParameter('secondaryServiceName', itemIndex) as string;
+	body.secondaryDatacenterId = this.getNodeParameter('secondaryDatacenterId', _itemIndex) as number;
+	body.secondaryServiceName = this.getNodeParameter('secondaryServiceName', _itemIndex) as string;
 	const data = (await client.httpPost(`/dedicatedCloud/${serviceName}/datacenter/${datacenterId}/disasterRecovery/zerto/disable`, body)) as IDataObject;
 	return this.helpers.returnJsonArray([data]);
 }

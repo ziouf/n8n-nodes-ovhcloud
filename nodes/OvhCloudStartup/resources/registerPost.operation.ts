@@ -217,42 +217,42 @@ export function description(displayOptions: IDisplayOptions): INodeProperties[] 
  * HTTP method: POST
  * Endpoint: /startup
  */
-export async function execute(this: IExecuteFunctions): Promise<INodeExecutionData[]> {
+export async function execute(this: IExecuteFunctions, _itemIndex?: number): Promise<INodeExecutionData[]> {
 	const client = new ApiClient(this);
 
-	const awarness = this.getNodeParameter('awarness', 0) as string;
+	const awarness = this.getNodeParameter('awarness', _itemIndex ?? 0) as string;
 
 	const body: IDataObject = { awarness };
 
-	const eventCode = (this.getNodeParameter('eventCode', 0, '') as string) || '';
+	const eventCode = (this.getNodeParameter('eventCode', _itemIndex ?? 0, '') as string) || '';
 	if (eventCode) body.eventCode = eventCode;
 
-	const companyName = this.getNodeParameter('companyName', 0) as string;
+	const companyName = this.getNodeParameter('companyName', _itemIndex ?? 0) as string;
 	const company: IDataObject = { name: companyName };
 
-	const societyWebsite = (this.getNodeParameter('societyWebsite', 0, '') as string) || '';
+	const societyWebsite = (this.getNodeParameter('societyWebsite', _itemIndex ?? 0, '') as string) || '';
 	if (societyWebsite) company.societyWebsite = societyWebsite;
 
-	const employeesNumber = (this.getNodeParameter('employeesNumber', 0, '') as string) || '';
+	const employeesNumber = (this.getNodeParameter('employeesNumber', _itemIndex ?? 0, '') as string) || '';
 	if (employeesNumber) company.employeesNumber = employeesNumber;
 
-	const relatedIndustry = (this.getNodeParameter('relatedIndustry', 0, '') as string) || '';
+	const relatedIndustry = (this.getNodeParameter('relatedIndustry', _itemIndex ?? 0, '') as string) || '';
 	if (relatedIndustry) company.relatedIndustry = relatedIndustry;
 
 	body.company = company;
 
-	const project: IDataObject = { productName: this.getNodeParameter('productName', 0) as string };
+	const project: IDataObject = { productName: this.getNodeParameter('productName', _itemIndex ?? 0) as string };
 
-	const projectDescription = (this.getNodeParameter('projectDescription', 0, '') as string) || '';
+	const projectDescription = (this.getNodeParameter('projectDescription', _itemIndex ?? 0, '') as string) || '';
 	if (projectDescription) project.description = projectDescription;
 
-	const businessModel = (this.getNodeParameter('businessModel', 0, '') as string) || '';
+	const businessModel = (this.getNodeParameter('businessModel', _itemIndex ?? 0, '') as string) || '';
 	if (businessModel) project.businessModel = businessModel;
 
-	const developmentStage = (this.getNodeParameter('developmentStage', 0, '') as string) || '';
+	const developmentStage = (this.getNodeParameter('developmentStage', _itemIndex ?? 0, '') as string) || '';
 	if (developmentStage) project.developmentStage = developmentStage;
 
-	const relatedTechnology = this.getNodeParameter('relatedTechnology', 0, '[]') as string;
+	const relatedTechnology = this.getNodeParameter('relatedTechnology', _itemIndex ?? 0, '[]') as string;
 	if (relatedTechnology && relatedTechnology !== '[]') {
 		project.relatedTechnology = JSON.parse(relatedTechnology);
 	}
@@ -261,10 +261,10 @@ export async function execute(this: IExecuteFunctions): Promise<INodeExecutionDa
 
 	const fundRaising: IDataObject = {};
 
-	const lastFundraising = (this.getNodeParameter('lastFundraising', 0, '') as string) || '';
+	const lastFundraising = (this.getNodeParameter('lastFundraising', _itemIndex ?? 0, '') as string) || '';
 	if (lastFundraising) fundRaising.lastFundraising = lastFundraising;
 
-	const plannedFundRaising = (this.getNodeParameter('plannedFundRaising', 0, '') as string) || '';
+	const plannedFundRaising = (this.getNodeParameter('plannedFundRaising', _itemIndex ?? 0, '') as string) || '';
 	if (plannedFundRaising) fundRaising.plannedFundRaising = plannedFundRaising;
 
 	if (Object.keys(fundRaising).length > 0) {

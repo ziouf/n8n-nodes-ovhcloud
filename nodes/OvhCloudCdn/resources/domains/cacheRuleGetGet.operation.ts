@@ -45,10 +45,10 @@ export function description(displayOptions: IDisplayOptions): INodeProperties[] 
  * HTTP method: GET
  * Endpoint: /cdn/dedicated/{serviceName}/domains/{domain}/cacheRules/{cacheRuleId}
  */
-export async function execute(this: IExecuteFunctions, itemIndex: number): Promise<INodeExecutionData[]> {
-	const serviceName = this.getNodeParameter('serviceName', itemIndex) as string;
-	const domain = this.getNodeParameter('domain', itemIndex) as string;
-	const cacheRuleId = this.getNodeParameter('cacheRuleId', itemIndex) as number;
+export async function execute(this: IExecuteFunctions, _itemIndex: number): Promise<INodeExecutionData[]> {
+	const serviceName = this.getNodeParameter('serviceName', _itemIndex) as string;
+	const domain = this.getNodeParameter('domain', _itemIndex) as string;
+	const cacheRuleId = this.getNodeParameter('cacheRuleId', _itemIndex) as number;
 
 	const client = new ApiClient(this);
 	const data = (await client.httpGet(`/cdn/dedicated/${encodeURIComponent(serviceName)}/domains/${encodeURIComponent(domain)}/cacheRules/${encodeURIComponent(cacheRuleId)}`)) as IDataObject;

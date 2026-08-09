@@ -60,12 +60,12 @@ export function description(displayOptions: IDisplayOptions): INodeProperties[] 
  * HTTP method: PUT
  * Endpoint: /telephony/{billingAccount}/easyHunting/{serviceName}/hunting
  */
-export async function execute(this: IExecuteFunctions, itemIndex: number): Promise<INodeExecutionData[]> {
-	const billingAccount = this.getNodeParameter('billingAccount', itemIndex) as string;
-	const serviceName = this.getNodeParameter('serviceName', itemIndex) as string;
-	const crmUrlTemplate = this.getNodeParameter('crmUrlTemplate', itemIndex) as string;
-	const g729 = this.getNodeParameter('g729', itemIndex) as string;
-	const statusIvrEnabled = this.getNodeParameter('statusIvrEnabled', itemIndex) as string;
+export async function execute(this: IExecuteFunctions, _itemIndex: number): Promise<INodeExecutionData[]> {
+	const billingAccount = this.getNodeParameter('billingAccount', _itemIndex) as string;
+	const serviceName = this.getNodeParameter('serviceName', _itemIndex) as string;
+	const crmUrlTemplate = this.getNodeParameter('crmUrlTemplate', _itemIndex) as string;
+	const g729 = this.getNodeParameter('g729', _itemIndex) as string;
+	const statusIvrEnabled = this.getNodeParameter('statusIvrEnabled', _itemIndex) as string;
 
 	const body: IDataObject = {
 		crmUrlTemplate: crmUrlTemplate,

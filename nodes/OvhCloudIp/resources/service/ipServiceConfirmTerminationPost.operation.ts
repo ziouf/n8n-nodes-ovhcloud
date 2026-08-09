@@ -46,11 +46,11 @@ export function description(displayOptions: IDisplayOptions): INodeProperties[] 
  * Endpoint: /ip/service/{serviceName}/confirmTermination
  */
 
-export async function execute(this: IExecuteFunctions, itemIndex: number): Promise<INodeExecutionData[]> {
-	const serviceName = this.getNodeParameter('serviceName', itemIndex) as string;
+export async function execute(this: IExecuteFunctions, _itemIndex: number): Promise<INodeExecutionData[]> {
+	const serviceName = this.getNodeParameter('serviceName', _itemIndex) as string;
 
-	const token = (this.getNodeParameter('token', itemIndex) as string) || '';
-	const commentary = (this.getNodeParameter('commentary', itemIndex) as string) || '';
+	const token = (this.getNodeParameter('token', _itemIndex) as string) || '';
+	const commentary = (this.getNodeParameter('commentary', _itemIndex) as string) || '';
 
 	const body: IDataObject = {};
 	body.token = token;

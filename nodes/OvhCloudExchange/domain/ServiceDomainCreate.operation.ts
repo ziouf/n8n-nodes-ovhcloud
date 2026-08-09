@@ -118,21 +118,21 @@ export function description() {
  * HTTP method: POST
  * Endpoint: /email/exchange/{organizationName}/service/{exchangeService}/domain
  */
-export async function execute(this: IExecuteFunctions): Promise<INodeExecutionData[]> {
-	const organizationName = this.getNodeParameter('organizationName', 0) as string;
-	const exchangeService = this.getNodeParameter('exchangeService', 0) as string;
-	const autoEnableDKIM = this.getNodeParameter('autoEnableDKIM', 0) as string;
-	const configureAutodiscover = this.getNodeParameter('configureAutodiscover', 0) as string;
-	const configureDKIM = this.getNodeParameter('configureDKIM', 0) as string;
-	const configureMx = this.getNodeParameter('configureMx', 0) as string;
-	const configureSPF = this.getNodeParameter('configureSPF', 0) as string;
-	const main = this.getNodeParameter('main', 0) as string;
-	const mxRelay = this.getNodeParameter('mxRelay', 0) as string;
-	const name = this.getNodeParameter('name', 0) as string;
-	const organization2010 = this.getNodeParameter('organization2010', 0) as string;
-	const sbrDefault = this.getNodeParameter('sbrDefault', 0) as string;
-	const sendConnectorIdDefault = this.getNodeParameter('sendConnectorIdDefault', 0) as string;
-	const type = this.getNodeParameter('type', 0) as string;
+export async function execute(this: IExecuteFunctions, _itemIndex?: number): Promise<INodeExecutionData[]> {
+	const organizationName = this.getNodeParameter('organizationName', _itemIndex ?? 0) as string;
+	const exchangeService = this.getNodeParameter('exchangeService', _itemIndex ?? 0) as string;
+	const autoEnableDKIM = this.getNodeParameter('autoEnableDKIM', _itemIndex ?? 0) as string;
+	const configureAutodiscover = this.getNodeParameter('configureAutodiscover', _itemIndex ?? 0) as string;
+	const configureDKIM = this.getNodeParameter('configureDKIM', _itemIndex ?? 0) as string;
+	const configureMx = this.getNodeParameter('configureMx', _itemIndex ?? 0) as string;
+	const configureSPF = this.getNodeParameter('configureSPF', _itemIndex ?? 0) as string;
+	const main = this.getNodeParameter('main', _itemIndex ?? 0) as string;
+	const mxRelay = this.getNodeParameter('mxRelay', _itemIndex ?? 0) as string;
+	const name = this.getNodeParameter('name', _itemIndex ?? 0) as string;
+	const organization2010 = this.getNodeParameter('organization2010', _itemIndex ?? 0) as string;
+	const sbrDefault = this.getNodeParameter('sbrDefault', _itemIndex ?? 0) as string;
+	const sendConnectorIdDefault = this.getNodeParameter('sendConnectorIdDefault', _itemIndex ?? 0) as string;
+	const type = this.getNodeParameter('type', _itemIndex ?? 0) as string;
 
 	const body: IDataObject = {
     autoEnableDKIM: autoEnableDKIM,

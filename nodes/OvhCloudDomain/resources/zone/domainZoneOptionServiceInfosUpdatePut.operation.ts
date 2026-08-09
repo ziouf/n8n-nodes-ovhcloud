@@ -76,21 +76,21 @@ export function description(displayOptions: IDisplayOptions): INodeProperties[] 
  * HTTP method: PUT
  * Endpoint: /domain/zone/{zoneName}/option/{name}/serviceInfos
  */
-export async function execute(this: IExecuteFunctions, itemIndex: number): Promise<INodeExecutionData[]> {
+export async function execute(this: IExecuteFunctions, _itemIndex: number): Promise<INodeExecutionData[]> {
 	const client = new ApiClient(this);
-		const name = this.getNodeParameter('name', itemIndex) as string;
-		const zoneName = this.getNodeParameter('zoneName', itemIndex) as string;
+		const name = this.getNodeParameter('name', _itemIndex) as string;
+		const zoneName = this.getNodeParameter('zoneName', _itemIndex) as string;
 
 	const body: IDataObject = {};
-		const automatic = this.getNodeParameter('automatic', itemIndex, false) as boolean;
+		const automatic = this.getNodeParameter('automatic', _itemIndex, false) as boolean;
 		if (automatic !== undefined) body['automatic'] = automatic;
-		const deleteAtExpiration = this.getNodeParameter('deleteAtExpiration', itemIndex, false) as boolean;
+		const deleteAtExpiration = this.getNodeParameter('deleteAtExpiration', _itemIndex, false) as boolean;
 		if (deleteAtExpiration !== undefined) body['deleteAtExpiration'] = deleteAtExpiration;
-		const forced = this.getNodeParameter('forced', itemIndex, false) as boolean;
+		const forced = this.getNodeParameter('forced', _itemIndex, false) as boolean;
 		if (forced !== undefined) body['forced'] = forced;
-		const manualPayment = this.getNodeParameter('manualPayment', itemIndex, false) as boolean;
+		const manualPayment = this.getNodeParameter('manualPayment', _itemIndex, false) as boolean;
 		if (manualPayment !== undefined) body['manualPayment'] = manualPayment;
-		const period = this.getNodeParameter('period', itemIndex, 0) as number;
+		const period = this.getNodeParameter('period', _itemIndex, 0) as number;
 		if (period !== 0) body['period'] = period;
 
 	const data = (await client.httpPut(`/domain/zone/${encodeURIComponent(zoneName)}/option/${encodeURIComponent(name)}/serviceInfos`, body)) as IDataObject;

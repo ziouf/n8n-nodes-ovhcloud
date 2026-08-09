@@ -21,9 +21,9 @@ export function description(displayOptions: IDisplayOptions): INodeProperties[] 
 	];
 }
 
-export async function execute(this: IExecuteFunctions, itemIndex: number): Promise<INodeExecutionData[]> {
+export async function execute(this: IExecuteFunctions, _itemIndex: number): Promise<INodeExecutionData[]> {
 	const client = new ApiClient(this);
-	const zoneName = this.getNodeParameter('zoneName', itemIndex) as string;
+	const zoneName = this.getNodeParameter('zoneName', _itemIndex) as string;
 
 
 	const data = (await client.httpGet(`/order/domain/zone/${zoneName}/dnsAnycast`)) as IDataObject[];

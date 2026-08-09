@@ -28,8 +28,8 @@ export function description(displayOptions: IDisplayOptions): INodeProperties[] 
  * HTTP method: GET
  * Endpoint: /order/dedicated/server/{x}/kvm/{x}
  */
-export async function execute(this: IExecuteFunctions, itemIndex: number): Promise<INodeExecutionData[]> {
-	const x = this.getNodeParameter('x', itemIndex) as string;
+export async function execute(this: IExecuteFunctions, _itemIndex: number): Promise<INodeExecutionData[]> {
+	const x = this.getNodeParameter('x', _itemIndex) as string;
 	const client = new ApiClient(this);
 
 	const data = (await client.httpGet(`/order/dedicated/server/${x}/kvm/{x}`)) as IDataObject[];

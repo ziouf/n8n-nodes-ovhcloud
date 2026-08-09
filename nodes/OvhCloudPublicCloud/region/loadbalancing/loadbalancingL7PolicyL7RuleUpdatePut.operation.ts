@@ -113,37 +113,37 @@ export function description(displayOptions: IDisplayOptions): INodeProperties[] 
  * HTTP method: PUT
  * Endpoint: /publicCloud/project/{projectId}/region/{regionName}/loadbalancing/l7Policy/${l7PolicyIdVal}/l7Rule/${l7RuleIdVal}
  */
-export async function execute(this: IExecuteFunctions): Promise<INodeExecutionData[]> {
+export async function execute(this: IExecuteFunctions, _itemIndex?: number): Promise<INodeExecutionData[]> {
 	const client = new ApiClient(this);
-	const projectId = this.getNodeParameter('publicCloudProjectId', 0, '', {
+	const projectId = this.getNodeParameter('publicCloudProjectId', _itemIndex ?? 0, '', {
 		extractValue: true,
 	}) as string;
-	const regionName = this.getNodeParameter('regionName', 0) as string;
+	const regionName = this.getNodeParameter('regionName', _itemIndex ?? 0) as string;
 	const body = {} as import('n8n-workflow').IDataObject;
 
-	const l7PolicyIdVal = (this.getNodeParameter('l7PolicyId', 0) || '') as string;
+	const l7PolicyIdVal = (this.getNodeParameter('l7PolicyId', _itemIndex ?? 0) || '') as string;
 	if (l7PolicyIdVal !== '') {
 		body.l7PolicyId = l7PolicyIdVal;
 	}
-	const l7RuleIdVal = (this.getNodeParameter('l7RuleId', 0) || '') as string;
+	const l7RuleIdVal = (this.getNodeParameter('l7RuleId', _itemIndex ?? 0) || '') as string;
 	if (l7RuleIdVal !== '') {
 		body.l7RuleId = l7RuleIdVal;
 	}
-	const ruleTypeVal = (this.getNodeParameter('ruleType', 0) || '') as string;
+	const ruleTypeVal = (this.getNodeParameter('ruleType', _itemIndex ?? 0) || '') as string;
 	if (ruleTypeVal !== '') {
 		body.ruleType = ruleTypeVal;
 	}
-	const valueVal = (this.getNodeParameter('value', 0) || '') as string;
+	const valueVal = (this.getNodeParameter('value', _itemIndex ?? 0) || '') as string;
 	if (valueVal !== '') {
 		body.value = valueVal;
 	}
-	const compareTypeVal = (this.getNodeParameter('compareType', 0) || '') as string;
+	const compareTypeVal = (this.getNodeParameter('compareType', _itemIndex ?? 0) || '') as string;
 	if (compareTypeVal !== '') {
 		body.compareType = compareTypeVal;
 	}
-	const invertBool = this.getNodeParameter('invert', 0) as boolean;
+	const invertBool = this.getNodeParameter('invert', _itemIndex ?? 0) as boolean;
 	body.invert = invertBool;
-	const keyVal = (this.getNodeParameter('key', 0) || '') as string;
+	const keyVal = (this.getNodeParameter('key', _itemIndex ?? 0) || '') as string;
 	if (keyVal !== '') {
 		body.key = keyVal;
 	}

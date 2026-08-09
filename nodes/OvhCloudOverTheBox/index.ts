@@ -318,110 +318,110 @@ export function description() {
 	return props;
 }
 
-export async function execute(this: IExecuteFunctions): Promise<INodeExecutionData[]> {
+export async function execute(this: IExecuteFunctions, itemIndex?: number): Promise<INodeExecutionData[]> {
 	const operation = this.getNodeParameter('overTheBoxOperation', 0) as string;
 
 	switch (operation) {
 		case 'remoteAccessAuthorizePost':
-			return remoteAccessAuthorizePost.execute.call(this);
+			return remoteAccessAuthorizePost.execute.call(this, itemIndex ?? 0);
 		case 'cancelResiliationPost':
-			return cancelResiliationPost.execute.call(this);
+			return cancelResiliationPost.execute.call(this, itemIndex ?? 0);
 		case 'changeContactPost':
-			return changeContactPost.execute.call(this);
+			return changeContactPost.execute.call(this, itemIndex ?? 0);
 		case 'deviceBackupPost':
-			return deviceBackupPost.execute.call(this);
+			return deviceBackupPost.execute.call(this, itemIndex ?? 0);
 		case 'deviceActionsPost':
-			return deviceActionsPost.execute.call(this);
+			return deviceActionsPost.execute.call(this, itemIndex ?? 0);
 		case 'logSubscriptionPost':
-			return logSubscriptionPost.execute.call(this);
+			return logSubscriptionPost.execute.call(this, itemIndex ?? 0);
 		case 'logUrlPost':
-			return logUrlPost.execute.call(this);
+			return logUrlPost.execute.call(this, itemIndex ?? 0);
 		case 'remoteAccessesPost':
-			return remoteAccessesPost.execute.call(this);
+			return remoteAccessesPost.execute.call(this, itemIndex ?? 0);
 		case 'backupDelete':
-			return backupDelete.execute.call(this);
+			return backupDelete.execute.call(this, itemIndex ?? 0);
 		case 'logSubscriptionDelete':
-			return logSubscriptionDelete.execute.call(this);
+			return logSubscriptionDelete.execute.call(this, itemIndex ?? 0);
 		case 'deleteDelete':
-			return deleteDelete.execute.call(this);
+			return deleteDelete.execute.call(this, itemIndex ?? 0);
 		case 'remoteAccessDelete':
-			return remoteAccessDelete.execute.call(this);
+			return remoteAccessDelete.execute.call(this, itemIndex ?? 0);
 		case 'backupGet':
-			return backupGet.execute.call(this);
+			return backupGet.execute.call(this, itemIndex ?? 0);
 		case 'deviceGet':
-			return deviceGet.execute.call(this);
+			return deviceGet.execute.call(this, itemIndex ?? 0);
 		case 'deviceActionGet':
-			return deviceActionGet.execute.call(this);
+			return deviceActionGet.execute.call(this, itemIndex ?? 0);
 		case 'deviceHardwareGet':
-			return deviceHardwareGet.execute.call(this);
+			return deviceHardwareGet.execute.call(this, itemIndex ?? 0);
 		case 'deviceLogsPost':
-			return deviceLogsPost.execute.call(this);
+			return deviceLogsPost.execute.call(this, itemIndex ?? 0);
 		case 'hardwareDetailGet':
-			return hardwareDetailGet.execute.call(this);
+			return hardwareDetailGet.execute.call(this, itemIndex ?? 0);
 		case 'ipGet':
-			return ipGet.execute.call(this);
+			return ipGet.execute.call(this, itemIndex ?? 0);
 		case 'logKindNameGet':
-			return logKindNameGet.execute.call(this);
+			return logKindNameGet.execute.call(this, itemIndex ?? 0);
 		case 'logSubscriptionDetailGet':
-			return logSubscriptionDetailGet.execute.call(this);
+			return logSubscriptionDetailGet.execute.call(this, itemIndex ?? 0);
 		case 'get':
-			return get.execute.call(this);
+			return get.execute.call(this, itemIndex ?? 0);
 		case 'remoteAccessGet':
-			return remoteAccessGet.execute.call(this);
+			return remoteAccessGet.execute.call(this, itemIndex ?? 0);
 		case 'serviceInfosGet':
-			return serviceInfosGet.execute.call(this);
+			return serviceInfosGet.execute.call(this, itemIndex ?? 0);
 		case 'statisticsGet':
-			return statisticsGet.execute.call(this);
+			return statisticsGet.execute.call(this, itemIndex ?? 0);
 		case 'taskGet':
-			return taskGet.execute.call(this);
+			return taskGet.execute.call(this, itemIndex ?? 0);
 		case 'linkDevicePost':
-			return linkDevicePost.execute.call(this);
+			return linkDevicePost.execute.call(this, itemIndex ?? 0);
 		case 'linkHardwarePost':
-			return linkHardwarePost.execute.call(this);
+			return linkHardwarePost.execute.call(this, itemIndex ?? 0);
 		case 'deviceAvailableActionsGet':
-			return deviceAvailableActionsGet.execute.call(this);
+			return deviceAvailableActionsGet.execute.call(this, itemIndex ?? 0);
 		case 'hardwareAvailableGet':
-			return hardwareAvailableGet.execute.call(this);
+			return hardwareAvailableGet.execute.call(this, itemIndex ?? 0);
 		case 'availableOffersGet':
-			return availableOffersGet.execute.call(this);
+			return availableOffersGet.execute.call(this, itemIndex ?? 0);
 		case 'availableReleaseChannelsGet':
-			return availableReleaseChannelsGet.execute.call(this);
+			return availableReleaseChannelsGet.execute.call(this, itemIndex ?? 0);
 		case 'backupsGet':
-			return backupsGet.execute.call(this);
+			return backupsGet.execute.call(this, itemIndex ?? 0);
 		case 'deviceActionsGet':
-			return deviceActionsGet.execute.call(this);
+			return deviceActionsGet.execute.call(this, itemIndex ?? 0);
 		case 'devicesPost':
-			return devicesPost.execute.call(this);
+			return devicesPost.execute.call(this, itemIndex ?? 0);
 		case 'hardwareGet':
-			return hardwareGet.execute.call(this);
+			return hardwareGet.execute.call(this, itemIndex ?? 0);
 		case 'ipsGet':
-			return ipsGet.execute.call(this);
+			return ipsGet.execute.call(this, itemIndex ?? 0);
 		case 'logKindGet':
-			return logKindGet.execute.call(this);
+			return logKindGet.execute.call(this, itemIndex ?? 0);
 		case 'logSubscriptionGet':
-			return logSubscriptionGet.execute.call(this);
+			return logSubscriptionGet.execute.call(this, itemIndex ?? 0);
 		case 'migrationOffersGet':
-			return migrationOffersGet.execute.call(this);
+			return migrationOffersGet.execute.call(this, itemIndex ?? 0);
 		case 'list':
-			return list.execute.call(this);
+			return list.execute.call(this, itemIndex ?? 0);
 		case 'remoteAccessesGet':
-			return remoteAccessesGet.execute.call(this);
+			return remoteAccessesGet.execute.call(this, itemIndex ?? 0);
 		case 'tasksGet':
-			return tasksGet.execute.call(this);
+			return tasksGet.execute.call(this, itemIndex ?? 0);
 		case 'migrationChangeOffersPost':
-			return migrationChangeOffersPost.execute.call(this);
+			return migrationChangeOffersPost.execute.call(this, itemIndex ?? 0);
 		case 'deviceRestoreBackupPost':
-			return deviceRestoreBackupPost.execute.call(this);
+			return deviceRestoreBackupPost.execute.call(this, itemIndex ?? 0);
 		case 'deviceDelete':
-			return deviceDelete.execute.call(this);
+			return deviceDelete.execute.call(this, itemIndex ?? 0);
 		case 'autoMTUPut':
-			return autoMTUPut.execute.call(this);
+			return autoMTUPut.execute.call(this, itemIndex ?? 0);
 		case 'ipv6Put':
-			return ipv6Put.execute.call(this);
+			return ipv6Put.execute.call(this, itemIndex ?? 0);
 		case 'updatePut':
-			return updatePut.execute.call(this);
+			return updatePut.execute.call(this, itemIndex ?? 0);
 		case 'serviceInfosUpdatePut':
-			return serviceInfosUpdatePut.execute.call(this);
+			return serviceInfosUpdatePut.execute.call(this, itemIndex ?? 0);
 		default:
 			throw new Error(`No handler for operation '${operation}'`);
 	}

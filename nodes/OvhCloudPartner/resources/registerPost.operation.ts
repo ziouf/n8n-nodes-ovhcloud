@@ -232,20 +232,20 @@ export function description(displayOptions: IDisplayOptions): INodeProperties[] 
  * HTTP method: POST
  * Endpoint: /partner
  */
-export async function execute(this: IExecuteFunctions): Promise<INodeExecutionData[]> {
+export async function execute(this: IExecuteFunctions, _itemIndex?: number): Promise<INodeExecutionData[]> {
 	const client = new ApiClient(this);
 
 	const account: IDataObject = {
-		name: this.getNodeParameter('accountName', 0) as string,
+		name: this.getNodeParameter('accountName', _itemIndex ?? 0) as string,
 	};
 
-	const accountCity = (this.getNodeParameter('accountCity', 0, '') as string) || '';
+	const accountCity = (this.getNodeParameter('accountCity', _itemIndex ?? 0, '') as string) || '';
 	if (accountCity) account.city = accountCity;
 
-	const accountCountry = (this.getNodeParameter('accountCountry', 0, '') as string) || '';
+	const accountCountry = (this.getNodeParameter('accountCountry', _itemIndex ?? 0, '') as string) || '';
 	if (accountCountry) account.country = accountCountry;
 
-	const accountCompanyTurnover = this.getNodeParameter('accountCompanyTurnover', 0, undefined) as
+	const accountCompanyTurnover = this.getNodeParameter('accountCompanyTurnover', _itemIndex ?? 0, undefined) as
 		number | undefined;
 	if (
 		accountCompanyTurnover !== undefined &&
@@ -256,32 +256,32 @@ export async function execute(this: IExecuteFunctions): Promise<INodeExecutionDa
 	}
 
 	const accountNumberOfEmployees =
-		(this.getNodeParameter('accountNumberOfEmployees', 0, '') as string) || '';
+		(this.getNodeParameter('accountNumberOfEmployees', _itemIndex ?? 0, '') as string) || '';
 	if (accountNumberOfEmployees) account.numberOfEmployees = accountNumberOfEmployees;
 
-	const accountPartnerType = (this.getNodeParameter('accountPartnerType', 0, '') as string) || '';
+	const accountPartnerType = (this.getNodeParameter('accountPartnerType', _itemIndex ?? 0, '') as string) || '';
 	if (accountPartnerType) account.partnerType = accountPartnerType;
 
 	const accountYearEstablished =
-		(this.getNodeParameter('accountYearEstablished', 0, '') as string) || '';
+		(this.getNodeParameter('accountYearEstablished', _itemIndex ?? 0, '') as string) || '';
 	if (accountYearEstablished) account.yearEstablished = accountYearEstablished;
 
 	const contact: IDataObject = {
-		email: this.getNodeParameter('contactEmail', 0) as string,
-		firstName: this.getNodeParameter('contactFirstName', 0) as string,
-		lastName: this.getNodeParameter('contactLastName', 0) as string,
-		phone: this.getNodeParameter('contactPhone', 0) as string,
-		position: this.getNodeParameter('contactPosition', 0) as string,
+		email: this.getNodeParameter('contactEmail', _itemIndex ?? 0) as string,
+		firstName: this.getNodeParameter('contactFirstName', _itemIndex ?? 0) as string,
+		lastName: this.getNodeParameter('contactLastName', _itemIndex ?? 0) as string,
+		phone: this.getNodeParameter('contactPhone', _itemIndex ?? 0) as string,
+		position: this.getNodeParameter('contactPosition', _itemIndex ?? 0) as string,
 	};
 
-	const contactJobTitle = (this.getNodeParameter('contactJobTitle', 0, '') as string) || '';
+	const contactJobTitle = (this.getNodeParameter('contactJobTitle', _itemIndex ?? 0, '') as string) || '';
 	if (contactJobTitle) contact.jobTitle = contactJobTitle;
 
 	const partnership: IDataObject = {};
 
 	const partnershipAreaOfExpertise = this.getNodeParameter(
 		'partnershipAreaOfExpertise',
-		0,
+		_itemIndex ?? 0,
 		[],
 	) as IDataObject[];
 	if (Array.isArray(partnershipAreaOfExpertise) && partnershipAreaOfExpertise.length > 0) {
@@ -290,20 +290,20 @@ export async function execute(this: IExecuteFunctions): Promise<INodeExecutionDa
 
 	const emailCommunication = this.getNodeParameter(
 		'partnershipEmailCommunication',
-		0,
+		_itemIndex ?? 0,
 		false,
 	) as boolean;
 	if (emailCommunication) partnership.emailCommunication = emailCommunication;
 
 	const partnersProgramReason =
-		(this.getNodeParameter('partnershipPartnersProgramReason', 0, '') as string) || '';
+		(this.getNodeParameter('partnershipPartnersProgramReason', _itemIndex ?? 0, '') as string) || '';
 	if (partnersProgramReason) partnership.partnersProgramReason = partnersProgramReason;
 
 	const salesGrowthOpportunities =
-		(this.getNodeParameter('partnershipSalesGrowthOpportunities', 0, '') as string) || '';
+		(this.getNodeParameter('partnershipSalesGrowthOpportunities', _itemIndex ?? 0, '') as string) || '';
 	if (salesGrowthOpportunities) partnership.salesGrowthOpportunities = salesGrowthOpportunities;
 
-	const salesProjection = this.getNodeParameter('partnershipSalesProjection', 0, undefined) as
+	const salesProjection = this.getNodeParameter('partnershipSalesProjection', _itemIndex ?? 0, undefined) as
 		number | undefined;
 	if (
 		salesProjection !== undefined &&
@@ -315,7 +315,7 @@ export async function execute(this: IExecuteFunctions): Promise<INodeExecutionDa
 
 	const supportAgreementStatement = this.getNodeParameter(
 		'partnershipSupportAgreementStatement',
-		0,
+		_itemIndex ?? 0,
 		false,
 	) as boolean;
 	if (supportAgreementStatement) partnership.supportAgreementStatement = supportAgreementStatement;

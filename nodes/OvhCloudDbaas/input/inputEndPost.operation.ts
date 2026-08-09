@@ -36,9 +36,9 @@ export function description(displayOptions: IDisplayOptions): INodeProperties[] 
  * HTTP method: POST
  * Endpoint: /dbaas/logs/{serviceName}/input/{inputId}/end
  */
-export async function execute(this: IExecuteFunctions, itemIndex: number): Promise<INodeExecutionData[]> {
-	const serviceName = this.getNodeParameter('serviceName', itemIndex) as string;
-	const inputId = this.getNodeParameter('inputId', itemIndex) as string;
+export async function execute(this: IExecuteFunctions, _itemIndex: number): Promise<INodeExecutionData[]> {
+	const serviceName = this.getNodeParameter('serviceName', _itemIndex) as string;
+	const inputId = this.getNodeParameter('inputId', _itemIndex) as string;
 	const client = new ApiClient(this);
 	const data = (await client.httpPost(`/dbaas/logs/${encodeURIComponent(serviceName)}/input/${encodeURIComponent(inputId)}/end`)) as IDataObject;
 

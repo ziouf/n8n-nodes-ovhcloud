@@ -83,23 +83,23 @@ export function description(displayOptions: IDisplayOptions): INodeProperties[] 
  * HTTP method: POST
  * Endpoint: /publicCloud/project/${projectId}/region/${regionName}/volumeBackup/${volumeBackupId}/volume
  */
-export async function execute(this: IExecuteFunctions): Promise<INodeExecutionData[]> {
+export async function execute(this: IExecuteFunctions, _itemIndex?: number): Promise<INodeExecutionData[]> {
 	const client = new ApiClient(this);
-	const projectId = this.getNodeParameter('publicCloudProjectId', 0, '', {
+	const projectId = this.getNodeParameter('publicCloudProjectId', _itemIndex ?? 0, '', {
 		extractValue: true,
 	}) as string;
-	const regionName = this.getNodeParameter('regionName', 0) as string;
-	const volumeBackupId = this.getNodeParameter('volumeBackupId', 0) as string;
+	const regionName = this.getNodeParameter('regionName', _itemIndex ?? 0) as string;
+	const volumeBackupId = this.getNodeParameter('volumeBackupId', _itemIndex ?? 0) as string;
 
 	const body: IDataObject = {};
-	if (this.getNodeParameter('volumeName', 0)) {
-		body.volumeName = this.getNodeParameter('volumeName', 0) as string;
+	if (this.getNodeParameter('volumeName', _itemIndex ?? 0)) {
+		body.volumeName = this.getNodeParameter('volumeName', _itemIndex ?? 0) as string;
 	}
-	if (this.getNodeParameter('volumeSize', 0)) {
-		body.volumeSize = this.getNodeParameter('volumeSize', 0) as string;
+	if (this.getNodeParameter('volumeSize', _itemIndex ?? 0)) {
+		body.volumeSize = this.getNodeParameter('volumeSize', _itemIndex ?? 0) as string;
 	}
-	if (this.getNodeParameter('volumeType', 0)) {
-		body.volumeType = this.getNodeParameter('volumeType', 0) as string;
+	if (this.getNodeParameter('volumeType', _itemIndex ?? 0)) {
+		body.volumeType = this.getNodeParameter('volumeType', _itemIndex ?? 0) as string;
 	}
 	const data = (await client.httpPost(
 		`/publicCloud/project/${projectId}/region/${regionName}/volumeBackup/${volumeBackupId}/volume`, body

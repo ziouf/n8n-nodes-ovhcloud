@@ -84,16 +84,16 @@ export function description(displayOptions: IDisplayOptions): INodeProperties[] 
  * HTTP method: POST
  * Endpoint: /dedicatedCloud/{serviceName}/user/{userId}/objectRight
  */
-export async function execute(this: IExecuteFunctions, itemIndex: number): Promise<INodeExecutionData[]> {
+export async function execute(this: IExecuteFunctions, _itemIndex: number): Promise<INodeExecutionData[]> {
 	const client = new ApiClient(this);
-	const serviceName = this.getNodeParameter('serviceName', itemIndex) as string;
-	const userId = this.getNodeParameter('userId', itemIndex) as string;
+	const serviceName = this.getNodeParameter('serviceName', _itemIndex) as string;
+	const userId = this.getNodeParameter('userId', _itemIndex) as string;
 	const body: IDataObject = {};
-	const propagate = this.getNodeParameter('propagate', itemIndex) as boolean;
+	const propagate = this.getNodeParameter('propagate', _itemIndex) as boolean;
 	if (propagate) { body.propagate = propagate; }
-	body.right = this.getNodeParameter('right', itemIndex) as string;
-	body.type = this.getNodeParameter('type', itemIndex) as string;
-	body.vmwareObjectId = this.getNodeParameter('vmwareObjectId', itemIndex) as string;
+	body.right = this.getNodeParameter('right', _itemIndex) as string;
+	body.type = this.getNodeParameter('type', _itemIndex) as string;
+	body.vmwareObjectId = this.getNodeParameter('vmwareObjectId', _itemIndex) as string;
 	const data = (await client.httpPost(`/dedicatedCloud/${serviceName}/user/${userId}/objectRight`, body)) as IDataObject;
 	return this.helpers.returnJsonArray([data]);
 }

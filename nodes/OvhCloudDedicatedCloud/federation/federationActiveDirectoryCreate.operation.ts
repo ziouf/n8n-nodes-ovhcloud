@@ -133,38 +133,38 @@ export function description(displayOptions: IDisplayOptions): INodeProperties[] 
  */
 export async function execute(
 	this: IExecuteFunctions,
-	itemIndex: number,
+	_itemIndex: number,
 ): Promise<INodeExecutionData[]> {
 	const client = new ApiClient(this);
-	const serviceName = this.getNodeParameter('serviceName', itemIndex) as string;
+	const serviceName = this.getNodeParameter('serviceName', _itemIndex) as string;
 	const body: IDataObject = {};
-	body.baseDnForGroups = this.getNodeParameter('baseDnForGroups', itemIndex) as string;
-	body.baseDnForUsers = this.getNodeParameter('baseDnForUsers', itemIndex) as string;
-	const description = this.getNodeParameter('description', itemIndex, '') as string;
+	body.baseDnForGroups = this.getNodeParameter('baseDnForGroups', _itemIndex) as string;
+	body.baseDnForUsers = this.getNodeParameter('baseDnForUsers', _itemIndex) as string;
+	const description = this.getNodeParameter('description', _itemIndex, '') as string;
 	if (description !== '') {
 		body.description = description;
 	}
-	body.domainAlias = this.getNodeParameter('domainAlias', itemIndex) as string;
-	body.domainName = this.getNodeParameter('domainName', itemIndex) as string;
-	body.ip = this.getNodeParameter('ip', itemIndex) as string;
-	const ldapHostname = this.getNodeParameter('ldapHostname', itemIndex, '') as string;
+	body.domainAlias = this.getNodeParameter('domainAlias', _itemIndex) as string;
+	body.domainName = this.getNodeParameter('domainName', _itemIndex) as string;
+	body.ip = this.getNodeParameter('ip', _itemIndex) as string;
+	const ldapHostname = this.getNodeParameter('ldapHostname', _itemIndex, '') as string;
 	if (ldapHostname !== '') {
 		body.ldapHostname = ldapHostname;
 	}
-	const ldapTcpPort = this.getNodeParameter('ldapTcpPort', itemIndex) as number;
+	const ldapTcpPort = this.getNodeParameter('ldapTcpPort', _itemIndex) as number;
 	if (ldapTcpPort) {
 		body.ldapTcpPort = ldapTcpPort;
 	}
-	const noSsl = this.getNodeParameter('noSsl', itemIndex) as boolean;
+	const noSsl = this.getNodeParameter('noSsl', _itemIndex) as boolean;
 	if (noSsl) {
 		body.noSsl = noSsl;
 	}
-	body.password = this.getNodeParameter('password', itemIndex) as string;
-	const sslThumbprint = this.getNodeParameter('sslThumbprint', itemIndex, '') as string;
+	body.password = this.getNodeParameter('password', _itemIndex) as string;
+	const sslThumbprint = this.getNodeParameter('sslThumbprint', _itemIndex, '') as string;
 	if (sslThumbprint !== '') {
 		body.sslThumbprint = sslThumbprint;
 	}
-	body.username = this.getNodeParameter('username', itemIndex) as string;
+	body.username = this.getNodeParameter('username', _itemIndex) as string;
 	const data = (await client.httpPost(
 		`/dedicatedCloud/${serviceName}/federation/activeDirectory`,
 		body,

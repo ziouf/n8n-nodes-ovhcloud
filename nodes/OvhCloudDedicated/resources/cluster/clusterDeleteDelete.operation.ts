@@ -34,9 +34,9 @@ export function description(displayOptions: IDisplayOptions) {
  * HTTP method: DELETE
  * Endpoint: /dedicated/cluster/{serviceName}
  */
-export async function execute(this: IExecuteFunctions): Promise<INodeExecutionData[]> {
+export async function execute(this: IExecuteFunctions, _itemIndex?: number): Promise<INodeExecutionData[]> {
 	const client = new ApiClient(this);
-	const serviceName = this.getNodeParameter('serviceName', 0, '', {
+	const serviceName = this.getNodeParameter('serviceName', _itemIndex ?? 0, '', {
 		extractValue: true,
 	}) as string;
 	await client.httpDelete(`/dedicated/cluster/${serviceName}`);

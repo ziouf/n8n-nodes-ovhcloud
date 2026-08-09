@@ -28,9 +28,9 @@ export function description(displayOptions: IDisplayOptions): INodeProperties[] 
  * HTTP method: GET
  * Endpoint: /price/overTheBox/offer/{offerName}
  */
-export async function execute(this: IExecuteFunctions): Promise<INodeExecutionData[]> {
+export async function execute(this: IExecuteFunctions, _itemIndex?: number): Promise<INodeExecutionData[]> {
     const client = new ApiClient(this);
-    const offerName = this.getNodeParameter('offerName', 0) as string;
+    const offerName = this.getNodeParameter('offerName', _itemIndex ?? 0) as string;
     const data = (await client.httpGet(`/price/overTheBox/offer/${offerName}`)) as IDataObject;
     return this.helpers.returnJsonArray([data]);
 }

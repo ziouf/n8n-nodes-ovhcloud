@@ -63,12 +63,12 @@ export function description(displayOptions: IDisplayOptions): INodeProperties[] 
  * HTTP method: POST
  * Endpoint: /telephony/{billingAccount}/easyHunting/{serviceName}/hunting/queue/{queueId}/liveCalls/{id}/transfer
  */
-export async function execute(this: IExecuteFunctions, itemIndex: number): Promise<INodeExecutionData[]> {
-	const billingAccount = this.getNodeParameter('billingAccount', itemIndex) as string;
-	const id = this.getNodeParameter('id', itemIndex) as string;
-	const queueId = this.getNodeParameter('queueId', itemIndex) as string;
-	const serviceName = this.getNodeParameter('serviceName', itemIndex) as string;
-	const number = this.getNodeParameter('number', itemIndex) as string;
+export async function execute(this: IExecuteFunctions, _itemIndex: number): Promise<INodeExecutionData[]> {
+	const billingAccount = this.getNodeParameter('billingAccount', _itemIndex) as string;
+	const id = this.getNodeParameter('id', _itemIndex) as string;
+	const queueId = this.getNodeParameter('queueId', _itemIndex) as string;
+	const serviceName = this.getNodeParameter('serviceName', _itemIndex) as string;
+	const number = this.getNodeParameter('number', _itemIndex) as string;
 
 	const body: IDataObject = {
 		number: number,

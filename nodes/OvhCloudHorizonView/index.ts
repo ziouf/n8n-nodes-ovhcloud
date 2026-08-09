@@ -279,94 +279,94 @@ export function description() {
 	return props;
 }
 
-export async function execute(this: IExecuteFunctions): Promise<INodeExecutionData[]> {
+export async function execute(this: IExecuteFunctions, itemIndex?: number): Promise<INodeExecutionData[]> {
 	const operation = this.getNodeParameter('horizonViewOperation', 0) as string;
 
 	switch (operation) {
 		case 'accessPointCustomerNetworkDelete':
-			return accessPointCustomerNetworkDelete.execute.call(this);
+			return accessPointCustomerNetworkDelete.execute.call(this, itemIndex ?? 0);
 		case 'accessPointCustomerNetworkDetailGet':
-			return accessPointCustomerNetworkDetailGet.execute.call(this);
+			return accessPointCustomerNetworkDetailGet.execute.call(this, itemIndex ?? 0);
 		case 'accessPointCustomerNetworkGet':
-			return accessPointCustomerNetworkGet.execute.call(this);
+			return accessPointCustomerNetworkGet.execute.call(this, itemIndex ?? 0);
 		case 'accessPointCustomerNetworkPost':
-			return accessPointCustomerNetworkPost.execute.call(this);
+			return accessPointCustomerNetworkPost.execute.call(this, itemIndex ?? 0);
 		case 'accessPointDelete':
-			return accessPointDelete.execute.call(this);
+			return accessPointDelete.execute.call(this, itemIndex ?? 0);
 		case 'accessPointDetailGet':
-			return accessPointDetailGet.execute.call(this);
+			return accessPointDetailGet.execute.call(this, itemIndex ?? 0);
 		case 'accessPointGet':
-			return accessPointGet.execute.call(this);
+			return accessPointGet.execute.call(this, itemIndex ?? 0);
 		case 'accessPointPost':
-			return accessPointPost.execute.call(this);
+			return accessPointPost.execute.call(this, itemIndex ?? 0);
 		case 'addChildDomainPost':
-			return addChildDomainPost.execute.call(this);
+			return addChildDomainPost.execute.call(this, itemIndex ?? 0);
 		case 'addDomainControllerPost':
-			return addDomainControllerPost.execute.call(this);
+			return addDomainControllerPost.execute.call(this, itemIndex ?? 0);
 		case 'addDomainUserOnComposerPost':
-			return addDomainUserOnComposerPost.execute.call(this);
+			return addDomainUserOnComposerPost.execute.call(this, itemIndex ?? 0);
 		case 'changePasswordPost':
-			return changePasswordPost.execute.call(this);
+			return changePasswordPost.execute.call(this, itemIndex ?? 0);
 		case 'changePropertiesPost':
-			return changePropertiesPost.execute.call(this);
+			return changePropertiesPost.execute.call(this, itemIndex ?? 0);
 		case 'changeSessionTimeoutPost':
-			return changeSessionTimeoutPost.execute.call(this);
+			return changeSessionTimeoutPost.execute.call(this, itemIndex ?? 0);
 		case 'confirmTerminationPost':
-			return confirmTerminationPost.execute.call(this);
+			return confirmTerminationPost.execute.call(this, itemIndex ?? 0);
 		case 'createTrustPost':
-			return createTrustPost.execute.call(this);
+			return createTrustPost.execute.call(this, itemIndex ?? 0);
 		case 'customerNetworkDelete':
-			return customerNetworkDelete.execute.call(this);
+			return customerNetworkDelete.execute.call(this, itemIndex ?? 0);
 		case 'customerNetworkDetailGet':
-			return customerNetworkDetailGet.execute.call(this);
+			return customerNetworkDetailGet.execute.call(this, itemIndex ?? 0);
 		case 'customerNetworkGet':
-			return customerNetworkGet.execute.call(this);
+			return customerNetworkGet.execute.call(this, itemIndex ?? 0);
 		case 'customerNetworkPost':
-			return customerNetworkPost.execute.call(this);
+			return customerNetworkPost.execute.call(this, itemIndex ?? 0);
 		case 'customerUserChangePasswordPost':
-			return customerUserChangePasswordPost.execute.call(this);
+			return customerUserChangePasswordPost.execute.call(this, itemIndex ?? 0);
 		case 'customerUserDelete':
-			return customerUserDelete.execute.call(this);
+			return customerUserDelete.execute.call(this, itemIndex ?? 0);
 		case 'customerUserDetailGet':
-			return customerUserDetailGet.execute.call(this);
+			return customerUserDetailGet.execute.call(this, itemIndex ?? 0);
 		case 'customerUserGet':
-			return customerUserGet.execute.call(this);
+			return customerUserGet.execute.call(this, itemIndex ?? 0);
 		case 'customerUserPost':
-			return customerUserPost.execute.call(this);
+			return customerUserPost.execute.call(this, itemIndex ?? 0);
 		case 'dedicatedHorizonGet':
-			return dedicatedHorizonGet.execute.call(this);
+			return dedicatedHorizonGet.execute.call(this, itemIndex ?? 0);
 		case 'disableStorageAcceleratorPost':
-			return disableStorageAcceleratorPost.execute.call(this);
+			return disableStorageAcceleratorPost.execute.call(this, itemIndex ?? 0);
 		case 'disableTwoFAPost':
-			return disableTwoFAPost.execute.call(this);
+			return disableTwoFAPost.execute.call(this, itemIndex ?? 0);
 		case 'disableWindowsUsernameOptionPost':
-			return disableWindowsUsernameOptionPost.execute.call(this);
+			return disableWindowsUsernameOptionPost.execute.call(this, itemIndex ?? 0);
 		case 'domainTrustDetailGet':
-			return domainTrustDetailGet.execute.call(this);
+			return domainTrustDetailGet.execute.call(this, itemIndex ?? 0);
 		case 'domainTrustGet':
-			return domainTrustGet.execute.call(this);
+			return domainTrustGet.execute.call(this, itemIndex ?? 0);
 		case 'domainTrustPost':
-			return domainTrustPost.execute.call(this);
+			return domainTrustPost.execute.call(this, itemIndex ?? 0);
 		case 'enableStorageAcceleratorPost':
-			return enableStorageAcceleratorPost.execute.call(this);
+			return enableStorageAcceleratorPost.execute.call(this, itemIndex ?? 0);
 		case 'enableTwoFAPost':
-			return enableTwoFAPost.execute.call(this);
+			return enableTwoFAPost.execute.call(this, itemIndex ?? 0);
 		case 'enableWindowsUsernameOptionPost':
-			return enableWindowsUsernameOptionPost.execute.call(this);
+			return enableWindowsUsernameOptionPost.execute.call(this, itemIndex ?? 0);
 		case 'get':
-			return get.execute.call(this);
+			return get.execute.call(this, itemIndex ?? 0);
 		case 'list':
-			return list.execute.call(this);
+			return list.execute.call(this, itemIndex ?? 0);
 		case 'serviceInfosGet':
-			return serviceInfosGet.execute.call(this);
+			return serviceInfosGet.execute.call(this, itemIndex ?? 0);
 		case 'taskDetailGet':
-			return taskDetailGet.execute.call(this);
+			return taskDetailGet.execute.call(this, itemIndex ?? 0);
 		case 'taskGet':
-			return taskGet.execute.call(this);
+			return taskGet.execute.call(this, itemIndex ?? 0);
 		case 'terminatePost':
-			return terminatePost.execute.call(this);
+			return terminatePost.execute.call(this, itemIndex ?? 0);
 		case 'userGet':
-			return userGet.execute.call(this);
+			return userGet.execute.call(this, itemIndex ?? 0);
 		default:
 			throw new Error(`No handler for operation '${operation}'`);
 	}

@@ -27,9 +27,9 @@ export function description(displayOptions: IDisplayOptions): INodeProperties[] 
  * HTTP method: GET
  * Endpoint: /license/virtuozzo
  */
-export async function execute(this: IExecuteFunctions, itemIndex: number): Promise<INodeExecutionData[]> {
+export async function execute(this: IExecuteFunctions, _itemIndex: number): Promise<INodeExecutionData[]> {
 	const client = new ApiClient(this);
-	const iamTags = this.getNodeParameter('iamTags', itemIndex, '') as string;
+	const iamTags = this.getNodeParameter('iamTags', _itemIndex, '') as string;
 
 	const qs: IDataObject = {
     iamTags: iamTags

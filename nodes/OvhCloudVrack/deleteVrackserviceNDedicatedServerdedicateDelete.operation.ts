@@ -37,9 +37,9 @@ export function description(displayOptions: IDisplayOptions): INodeProperties[] 
  * HTTP method: DELETE
  * Endpoint: /vrack/{serviceName}/dedicatedServer/{dedicatedServer}
  */
-export async function execute(this: IExecuteFunctions, itemIndex: number): Promise<INodeExecutionData[]> {
-	const serviceName = this.getNodeParameter('serviceName', itemIndex) as string;
-	const dedicatedServer = this.getNodeParameter('dedicatedServer', itemIndex) as string;
+export async function execute(this: IExecuteFunctions, _itemIndex: number): Promise<INodeExecutionData[]> {
+	const serviceName = this.getNodeParameter('serviceName', _itemIndex) as string;
+	const dedicatedServer = this.getNodeParameter('dedicatedServer', _itemIndex) as string;
 
 
 

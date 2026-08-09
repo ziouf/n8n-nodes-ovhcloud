@@ -27,11 +27,11 @@ export function description(displayOptions: IDisplayOptions): INodeProperties[] 
  * HTTP method: GET
  * Endpoint: /domain/data/claimNotice
  */
-export async function execute(this: IExecuteFunctions, itemIndex: number): Promise<INodeExecutionData[]> {
+export async function execute(this: IExecuteFunctions, _itemIndex: number): Promise<INodeExecutionData[]> {
 	const client = new ApiClient(this);
 
 	const qs: IDataObject = {};
-		const domain = this.getNodeParameter('domain', itemIndex, '') as string;
+		const domain = this.getNodeParameter('domain', _itemIndex, '') as string;
 		if (domain !== '' && domain !== undefined) qs['domain'] = domain;
 
 	const data = (await client.httpGet(`/domain/data/claimNotice`, qs)) as IDataObject;

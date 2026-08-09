@@ -60,12 +60,12 @@ export function description(displayOptions: IDisplayOptions): INodeProperties[] 
  * HTTP method: GET
  * Endpoint: /sms/{serviceName}/incoming
  */
-export async function execute(this: IExecuteFunctions): Promise<INodeExecutionData[]> {
-	const serviceName = this.getNodeParameter('serviceName', 0, '', { extractValue: true }) as string;
-	const creationDatetimeFrom = this.getNodeParameter('creationDatetimeFrom', 0) as string;
-	const creationDatetimeTo = this.getNodeParameter('creationDatetimeTo', 0) as string;
-	const sender = this.getNodeParameter('sender', 0) as string;
-	const tag = this.getNodeParameter('tag', 0) as string;
+export async function execute(this: IExecuteFunctions, _itemIndex?: number): Promise<INodeExecutionData[]> {
+	const serviceName = this.getNodeParameter('serviceName', _itemIndex ?? 0, '', { extractValue: true }) as string;
+	const creationDatetimeFrom = this.getNodeParameter('creationDatetimeFrom', _itemIndex ?? 0) as string;
+	const creationDatetimeTo = this.getNodeParameter('creationDatetimeTo', _itemIndex ?? 0) as string;
+	const sender = this.getNodeParameter('sender', _itemIndex ?? 0) as string;
+	const tag = this.getNodeParameter('tag', _itemIndex ?? 0) as string;
 	const qs: IDataObject = {};
 	if (creationDatetimeFrom) qs['creationDatetime.from'] = creationDatetimeFrom;
 	if (creationDatetimeTo) qs['creationDatetime.to'] = creationDatetimeTo;

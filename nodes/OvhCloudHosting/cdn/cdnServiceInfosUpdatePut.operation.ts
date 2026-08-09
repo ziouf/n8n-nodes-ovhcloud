@@ -36,14 +36,14 @@ export function description(displayOptions: IDisplayOptions): INodeProperties[] 
  */
 export async function execute(
 	this: IExecuteFunctions,
-	itemIndex: number,
+	_itemIndex: number,
 ): Promise<INodeExecutionData[]> {
 	const client = new ApiClient(this);
-	const serviceName = this.getNodeParameter('serviceName', itemIndex) as string;
-	const suspend = this.getNodeParameter('suspend', itemIndex) as boolean;
+	const serviceName = this.getNodeParameter('serviceName', _itemIndex) as string;
+	const suspend = this.getNodeParameter('suspend', _itemIndex) as boolean;
 	const data = (await client.httpPut(`/hosting/web/${serviceName}/cdn/serviceInfos`, {
 		suspend,
 	})) as IDataObject;
-	const inputData = this.getInputData()[itemIndex];
+	const inputData = this.getInputData()[_itemIndex];
 	return this.helpers.returnJsonArray([{ ...inputData.json, ...data }]);
 }

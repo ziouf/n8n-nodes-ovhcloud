@@ -53,11 +53,11 @@ export function description(displayOptions: IDisplayOptions): INodeProperties[] 
  * HTTP method: PUT
  * Endpoint: /dbaas/logs/{serviceName}/role/{roleId}/member/{username}
  */
-export async function execute(this: IExecuteFunctions, itemIndex: number): Promise<INodeExecutionData[]> {
-	const serviceName = this.getNodeParameter('serviceName', itemIndex) as string;
-	const roleId = this.getNodeParameter('roleId', itemIndex) as string;
-	const username = this.getNodeParameter('username', itemIndex) as string;
-	const bodyJson = (this.getNodeParameter('body', itemIndex, '') as string) || '';
+export async function execute(this: IExecuteFunctions, _itemIndex: number): Promise<INodeExecutionData[]> {
+	const serviceName = this.getNodeParameter('serviceName', _itemIndex) as string;
+	const roleId = this.getNodeParameter('roleId', _itemIndex) as string;
+	const username = this.getNodeParameter('username', _itemIndex) as string;
+	const bodyJson = (this.getNodeParameter('body', _itemIndex, '') as string) || '';
 	const body: IDataObject = {};
 	if (bodyJson) {
 		Object.assign(body, JSON.parse(bodyJson));

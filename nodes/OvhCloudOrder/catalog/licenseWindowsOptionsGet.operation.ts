@@ -25,9 +25,9 @@ export function description(displayOptions: IDisplayOptions): INodeProperties[] 
  * HTTP method: GET
  * Endpoint: /order/catalog/public/licenseWindows/options
  */
-export async function execute(this: IExecuteFunctions, itemIndex: number): Promise<INodeExecutionData[]> {
+export async function execute(this: IExecuteFunctions, _itemIndex: number): Promise<INodeExecutionData[]> {
     const client = new ApiClient(this);
-    const product = this.getNodeParameter('product', itemIndex) as string;
+    const product = this.getNodeParameter('product', _itemIndex) as string;
 
     const data = (await client.httpGet(`/order/catalog/public/${product}/options`)) as unknown[];
 

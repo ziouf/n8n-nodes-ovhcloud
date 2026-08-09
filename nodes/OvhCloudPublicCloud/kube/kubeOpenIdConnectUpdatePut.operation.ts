@@ -66,14 +66,14 @@ export function description(displayOptions: IDisplayOptions): INodeProperties[] 
  * HTTP method: PUT
  * Endpoint: /cloud/project/{serviceName}/kube/{kubeId}/openIdConnect
  */
-export async function execute(this: IExecuteFunctions): Promise<INodeExecutionData[]> {
+export async function execute(this: IExecuteFunctions, _itemIndex?: number): Promise<INodeExecutionData[]> {
 	const client = new ApiClient(this);
-	const serviceName = this.getNodeParameter('publicCloudProjectId', 0, '', {
+	const serviceName = this.getNodeParameter('publicCloudProjectId', _itemIndex ?? 0, '', {
 		extractValue: true,
 	}) as string;
-	const kubeId = this.getNodeParameter('kubeId', 0) as string;
-	const issuerUrl = (this.getNodeParameter('issuerUrl', 0) || '') as string;
-	const clientId = (this.getNodeParameter('clientId', 0) || '') as string;
+	const kubeId = this.getNodeParameter('kubeId', _itemIndex ?? 0) as string;
+	const issuerUrl = (this.getNodeParameter('issuerUrl', _itemIndex ?? 0) || '') as string;
+	const clientId = (this.getNodeParameter('clientId', _itemIndex ?? 0) || '') as string;
 
 	const body: IDataObject = {};
 	if (issuerUrl) body.issuerUrl = issuerUrl;

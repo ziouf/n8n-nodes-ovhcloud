@@ -48,13 +48,13 @@ export function description(
 
 export async function execute(
 	this: IExecuteFunctions,
-	itemIndex?: number,
+	_itemIndex?: number,
 ): Promise<INodeExecutionData[]> {
 	const client = new ApiClient(this);
-	const serviceName = this.getNodeParameter('serviceName', itemIndex as number, '', {
+	const serviceName = this.getNodeParameter('serviceName', _itemIndex as number, '', {
 		extractValue: true,
 	}) as string;
-	const domain = this.getNodeParameter('domain', itemIndex as number) as string;
+	const domain = this.getNodeParameter('domain', _itemIndex as number) as string;
 
 	await client.httpDelete(`/hosting/web/${serviceName}/attachedDomain/${domain}`);
 	return [{ json: {}, pairedItem: { item: 0 } }];

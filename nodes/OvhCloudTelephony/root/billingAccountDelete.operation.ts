@@ -44,10 +44,10 @@ export function description(displayOptions: IDisplayOptions): INodeProperties[] 
  * HTTP method: DELETE
  * Endpoint: /telephony/{billingAccount}
  */
-export async function execute(this: IExecuteFunctions, itemIndex: number): Promise<INodeExecutionData[]> {
-	const billingAccount = this.getNodeParameter('billingAccount', itemIndex) as string;
-	const details = this.getNodeParameter('details', itemIndex) as string;
-	const reason = this.getNodeParameter('reason', itemIndex) as string;
+export async function execute(this: IExecuteFunctions, _itemIndex: number): Promise<INodeExecutionData[]> {
+	const billingAccount = this.getNodeParameter('billingAccount', _itemIndex) as string;
+	const details = this.getNodeParameter('details', _itemIndex) as string;
+	const reason = this.getNodeParameter('reason', _itemIndex) as string;
 
 	const qs: IDataObject = {
     details: details,

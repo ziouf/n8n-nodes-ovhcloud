@@ -49,10 +49,10 @@ export function description(displayOptions: IDisplayOptions): INodeProperties[] 
  * HTTP method: DELETE
  * Endpoint: /overTheBox/{serviceName}/backups/{backupId}
  */
-export async function execute(this: IExecuteFunctions): Promise<INodeExecutionData[]> {
+export async function execute(this: IExecuteFunctions, _itemIndex?: number): Promise<INodeExecutionData[]> {
 	const client = new ApiClient(this);
-	const serviceName = this.getNodeParameter('serviceName', 0, '', { extractValue: true }) as string;
-	const backupId = this.getNodeParameter('backupId', 0) as string;
+	const serviceName = this.getNodeParameter('serviceName', _itemIndex ?? 0, '', { extractValue: true }) as string;
+	const backupId = this.getNodeParameter('backupId', _itemIndex ?? 0) as string;
 	await client.httpDelete(
 		`/overTheBox/${encodeURIComponent(serviceName)}/backups/${encodeURIComponent(backupId)}`,
 	);

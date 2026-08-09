@@ -36,10 +36,10 @@ export function description(displayOptions: IDisplayOptions): INodeProperties[] 
  * HTTP method: DELETE
  * Endpoint: /dedicatedCloud/{serviceName}/vmEncryption/kms/{kmsId}
  */
-export async function execute(this: IExecuteFunctions, itemIndex: number): Promise<INodeExecutionData[]> {
+export async function execute(this: IExecuteFunctions, _itemIndex: number): Promise<INodeExecutionData[]> {
 	const client = new ApiClient(this);
-	const kmsId = this.getNodeParameter('kmsId', itemIndex) as string;
-	const serviceName = this.getNodeParameter('serviceName', itemIndex) as string;
+	const kmsId = this.getNodeParameter('kmsId', _itemIndex) as string;
+	const serviceName = this.getNodeParameter('serviceName', _itemIndex) as string;
 	const data = (await client.httpDelete(`/dedicatedCloud/${serviceName}/vmEncryption/kms/${kmsId}`)) as IDataObject;
 	return this.helpers.returnJsonArray([data]);
 }

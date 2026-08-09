@@ -60,16 +60,16 @@ export function description(displayOptions: IDisplayOptions): INodeProperties[] 
  * HTTP method: PUT
  * Endpoint: /sms/{serviceName}/serviceInfos
  */
-export async function execute(this: IExecuteFunctions): Promise<INodeExecutionData[]> {
-	const serviceName = this.getNodeParameter('serviceName', 0, '', { extractValue: true }) as string;
+export async function execute(this: IExecuteFunctions, _itemIndex?: number): Promise<INodeExecutionData[]> {
+	const serviceName = this.getNodeParameter('serviceName', _itemIndex ?? 0, '', { extractValue: true }) as string;
 	const body: IDataObject = {};
-	const canDeleteAtExpiration = this.getNodeParameter('canDeleteAtExpiration', 0) as boolean;
+	const canDeleteAtExpiration = this.getNodeParameter('canDeleteAtExpiration', _itemIndex ?? 0) as boolean;
 	if (canDeleteAtExpiration) body['canDeleteAtExpiration'] = canDeleteAtExpiration;
-	const contactAdmin = this.getNodeParameter('contactAdmin', 0) as string;
+	const contactAdmin = this.getNodeParameter('contactAdmin', _itemIndex ?? 0) as string;
 	if (contactAdmin) body['contactAdmin'] = contactAdmin;
-	const contactBilling = this.getNodeParameter('contactBilling', 0) as string;
+	const contactBilling = this.getNodeParameter('contactBilling', _itemIndex ?? 0) as string;
 	if (contactBilling) body['contactBilling'] = contactBilling;
-	const contactTech = this.getNodeParameter('contactTech', 0) as string;
+	const contactTech = this.getNodeParameter('contactTech', _itemIndex ?? 0) as string;
 	if (contactTech) body['contactTech'] = contactTech;
 	const data = (await new ApiClient(this).httpPut(
 		`/sms/${encodeURIComponent(serviceName)}/serviceInfos`,

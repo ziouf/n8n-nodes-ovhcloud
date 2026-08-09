@@ -125,23 +125,23 @@ export function description(displayOptions: IDisplayOptions): INodeProperties[] 
  * HTTP method: POST
  * Endpoint: /ipLoadbalancing/{serviceName}/tcp/farm/{farmId}/server
  */
-export async function execute(this: IExecuteFunctions, itemIndex: number): Promise<INodeExecutionData[]> {
-	const serviceName = this.getNodeParameter('serviceName', itemIndex) as string;
-	const farmId = this.getNodeParameter('farmId', itemIndex) as string;
+export async function execute(this: IExecuteFunctions, _itemIndex: number): Promise<INodeExecutionData[]> {
+	const serviceName = this.getNodeParameter('serviceName', _itemIndex) as string;
+	const farmId = this.getNodeParameter('farmId', _itemIndex) as string;
 
 
 
-	const address = this.getNodeParameter('address', itemIndex) as string;
-	const backup = this.getNodeParameter('backup', itemIndex) as string;
-	const chain = this.getNodeParameter('chain', itemIndex) as string;
-	const displayName = this.getNodeParameter('displayName', itemIndex) as string;
-	const onMarkedDown = this.getNodeParameter('onMarkedDown', itemIndex) as string;
-	const port = this.getNodeParameter('port', itemIndex) as string;
-	const probe = this.getNodeParameter('probe', itemIndex) as string;
-	const proxyProtocolVersion = this.getNodeParameter('proxyProtocolVersion', itemIndex) as string;
-	const ssl = this.getNodeParameter('ssl', itemIndex) as string;
-	const status = this.getNodeParameter('status', itemIndex) as string;
-	const weight = this.getNodeParameter('weight', itemIndex) as string;
+	const address = this.getNodeParameter('address', _itemIndex) as string;
+	const backup = this.getNodeParameter('backup', _itemIndex) as string;
+	const chain = this.getNodeParameter('chain', _itemIndex) as string;
+	const displayName = this.getNodeParameter('displayName', _itemIndex) as string;
+	const onMarkedDown = this.getNodeParameter('onMarkedDown', _itemIndex) as string;
+	const port = this.getNodeParameter('port', _itemIndex) as string;
+	const probe = this.getNodeParameter('probe', _itemIndex) as string;
+	const proxyProtocolVersion = this.getNodeParameter('proxyProtocolVersion', _itemIndex) as string;
+	const ssl = this.getNodeParameter('ssl', _itemIndex) as string;
+	const status = this.getNodeParameter('status', _itemIndex) as string;
+	const weight = this.getNodeParameter('weight', _itemIndex) as string;
 
 
 const body: IDataObject = {

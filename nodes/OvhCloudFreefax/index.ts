@@ -133,48 +133,48 @@ export function description() {
 	return props;
 }
 
-export async function execute(this: IExecuteFunctions): Promise<INodeExecutionData[]> {
+export async function execute(this: IExecuteFunctions, itemIndex?: number): Promise<INodeExecutionData[]> {
 	const operation = this.getNodeParameter('freefaxOperation', 0) as string;
 
 	switch (operation) {
 		case 'list':
-			return list.execute.call(this);
+			return list.execute.call(this, itemIndex ?? 0);
 		case 'creditsGet':
-			return creditsGet.execute.call(this);
+			return creditsGet.execute.call(this, itemIndex ?? 0);
 		case 'get':
-			return get.execute.call(this);
+			return get.execute.call(this, itemIndex ?? 0);
 		case 'updatePut':
-			return updatePut.execute.call(this);
+			return updatePut.execute.call(this, itemIndex ?? 0);
 		case 'changePasswordPost':
-			return changePasswordPost.execute.call(this);
+			return changePasswordPost.execute.call(this, itemIndex ?? 0);
 		case 'directoryGet':
-			return directoryGet.execute.call(this);
+			return directoryGet.execute.call(this, itemIndex ?? 0);
 		case 'directoryUpdatePut':
-			return directoryUpdatePut.execute.call(this);
+			return directoryUpdatePut.execute.call(this, itemIndex ?? 0);
 		case 'directoryFetchEntrepriseInformationsPost':
-			return directoryFetchEntrepriseInformationsPost.execute.call(this);
+			return directoryFetchEntrepriseInformationsPost.execute.call(this, itemIndex ?? 0);
 		case 'directoryGetDirectoryServiceCodeGet':
-			return directoryGetDirectoryServiceCodeGet.execute.call(this);
+			return directoryGetDirectoryServiceCodeGet.execute.call(this, itemIndex ?? 0);
 		case 'directoryGetWayTypesGet':
-			return directoryGetWayTypesGet.execute.call(this);
+			return directoryGetWayTypesGet.execute.call(this, itemIndex ?? 0);
 		case 'mainServiceGet':
-			return mainServiceGet.execute.call(this);
+			return mainServiceGet.execute.call(this, itemIndex ?? 0);
 		case 'serviceInfosGet':
-			return serviceInfosGet.execute.call(this);
+			return serviceInfosGet.execute.call(this, itemIndex ?? 0);
 		case 'serviceInfosUpdatePut':
-			return serviceInfosUpdatePut.execute.call(this);
+			return serviceInfosUpdatePut.execute.call(this, itemIndex ?? 0);
 		case 'voicemailGet':
-			return voicemailGet.execute.call(this);
+			return voicemailGet.execute.call(this, itemIndex ?? 0);
 		case 'voicemailUpdatePut':
-			return voicemailUpdatePut.execute.call(this);
+			return voicemailUpdatePut.execute.call(this, itemIndex ?? 0);
 		case 'voicemailChangePasswordPost':
-			return voicemailChangePasswordPost.execute.call(this);
+			return voicemailChangePasswordPost.execute.call(this, itemIndex ?? 0);
 		case 'voicemailChangeRoutingPost':
-			return voicemailChangeRoutingPost.execute.call(this);
+			return voicemailChangeRoutingPost.execute.call(this, itemIndex ?? 0);
 		case 'voicemailRoutingGet':
-			return voicemailRoutingGet.execute.call(this);
+			return voicemailRoutingGet.execute.call(this, itemIndex ?? 0);
 		case 'voicemailVoicemailNumbersGet':
-			return voicemailVoicemailNumbersGet.execute.call(this);
+			return voicemailVoicemailNumbersGet.execute.call(this, itemIndex ?? 0);
 		default:
 			throw new Error(`No handler for operation '${operation}'`);
 	}

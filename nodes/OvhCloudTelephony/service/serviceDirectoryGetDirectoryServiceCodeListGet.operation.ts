@@ -45,10 +45,10 @@ export function description(displayOptions: IDisplayOptions): INodeProperties[] 
  * HTTP method: GET
  * Endpoint: /telephony/{billingAccount}/service/{serviceName}/directory/getDirectoryServiceCode
  */
-export async function execute(this: IExecuteFunctions, itemIndex: number): Promise<INodeExecutionData[]> {
-	const billingAccount = this.getNodeParameter('billingAccount', itemIndex) as string;
-	const serviceName = this.getNodeParameter('serviceName', itemIndex) as string;
-	const apeCode = this.getNodeParameter('apeCode', itemIndex) as string;
+export async function execute(this: IExecuteFunctions, _itemIndex: number): Promise<INodeExecutionData[]> {
+	const billingAccount = this.getNodeParameter('billingAccount', _itemIndex) as string;
+	const serviceName = this.getNodeParameter('serviceName', _itemIndex) as string;
+	const apeCode = this.getNodeParameter('apeCode', _itemIndex) as string;
 
 	const qs: IDataObject = {
 		apeCode: apeCode,

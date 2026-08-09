@@ -74,13 +74,13 @@ export function description(displayOptions: IDisplayOptions): INodeProperties[] 
  * HTTP method: GET
  * Endpoint: /license/office/{serviceName}/user
  */
-export async function execute(this: IExecuteFunctions, itemIndex: number): Promise<INodeExecutionData[]> {
+export async function execute(this: IExecuteFunctions, _itemIndex: number): Promise<INodeExecutionData[]> {
 	const client = new ApiClient(this);
-	const serviceName = this.getNodeParameter('serviceName', itemIndex, '', { extractValue: true }) as string;
-	const activationEmail = this.getNodeParameter('activationEmail', itemIndex, '') as string;
-	const firstName = this.getNodeParameter('firstName', itemIndex, '') as string;
-	const lastName = this.getNodeParameter('lastName', itemIndex, '') as string;
-	const licences = this.getNodeParameter('licences', itemIndex, '') as string;
+	const serviceName = this.getNodeParameter('serviceName', _itemIndex, '', { extractValue: true }) as string;
+	const activationEmail = this.getNodeParameter('activationEmail', _itemIndex, '') as string;
+	const firstName = this.getNodeParameter('firstName', _itemIndex, '') as string;
+	const lastName = this.getNodeParameter('lastName', _itemIndex, '') as string;
+	const licences = this.getNodeParameter('licences', _itemIndex, '') as string;
 
 	const qs: IDataObject = {
     activationEmail: activationEmail,

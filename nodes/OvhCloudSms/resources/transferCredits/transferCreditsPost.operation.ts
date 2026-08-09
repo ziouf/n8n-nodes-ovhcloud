@@ -46,10 +46,10 @@ export function description(displayOptions: IDisplayOptions): INodeProperties[] 
  * HTTP method: POST
  * Endpoint: /sms/{serviceName}/transferCredits
  */
-export async function execute(this: IExecuteFunctions): Promise<INodeExecutionData[]> {
-	const serviceName = this.getNodeParameter('serviceName', 0, '', { extractValue: true }) as string;
-	const credits = this.getNodeParameter('credits', 0) as number;
-	const smsAccountTarget = this.getNodeParameter('smsAccountTarget', 0) as string;
+export async function execute(this: IExecuteFunctions, _itemIndex?: number): Promise<INodeExecutionData[]> {
+	const serviceName = this.getNodeParameter('serviceName', _itemIndex ?? 0, '', { extractValue: true }) as string;
+	const credits = this.getNodeParameter('credits', _itemIndex ?? 0) as number;
+	const smsAccountTarget = this.getNodeParameter('smsAccountTarget', _itemIndex ?? 0) as string;
 	const body: IDataObject = {};
 	body['credits'] = credits;
 	body['smsAccountTarget'] = smsAccountTarget;

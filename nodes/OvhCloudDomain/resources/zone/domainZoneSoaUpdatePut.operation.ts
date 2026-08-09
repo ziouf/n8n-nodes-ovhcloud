@@ -84,24 +84,24 @@ export function description(displayOptions: IDisplayOptions): INodeProperties[] 
  * HTTP method: PUT
  * Endpoint: /domain/zone/{zoneName}/soa
  */
-export async function execute(this: IExecuteFunctions, itemIndex: number): Promise<INodeExecutionData[]> {
+export async function execute(this: IExecuteFunctions, _itemIndex: number): Promise<INodeExecutionData[]> {
 	const client = new ApiClient(this);
-		const zoneName = this.getNodeParameter('zoneName', itemIndex) as string;
+		const zoneName = this.getNodeParameter('zoneName', _itemIndex) as string;
 
 	const body: IDataObject = {};
-		const email = this.getNodeParameter('email', itemIndex, '') as string;
+		const email = this.getNodeParameter('email', _itemIndex, '') as string;
 		if (email !== '') body['email'] = email;
-		const expire = this.getNodeParameter('expire', itemIndex, 0) as number;
+		const expire = this.getNodeParameter('expire', _itemIndex, 0) as number;
 		if (expire !== 0) body['expire'] = expire;
-		const nxDomainTtl = this.getNodeParameter('nxDomainTtl', itemIndex, 0) as number;
+		const nxDomainTtl = this.getNodeParameter('nxDomainTtl', _itemIndex, 0) as number;
 		if (nxDomainTtl !== 0) body['nxDomainTtl'] = nxDomainTtl;
-		const refresh = this.getNodeParameter('refresh', itemIndex, 0) as number;
+		const refresh = this.getNodeParameter('refresh', _itemIndex, 0) as number;
 		if (refresh !== 0) body['refresh'] = refresh;
-		const serial = this.getNodeParameter('serial', itemIndex, 0) as number;
+		const serial = this.getNodeParameter('serial', _itemIndex, 0) as number;
 		if (serial !== 0) body['serial'] = serial;
-		const server = this.getNodeParameter('server', itemIndex, '') as string;
+		const server = this.getNodeParameter('server', _itemIndex, '') as string;
 		if (server !== '') body['server'] = server;
-		const ttl = this.getNodeParameter('ttl', itemIndex, 0) as number;
+		const ttl = this.getNodeParameter('ttl', _itemIndex, 0) as number;
 		if (ttl !== 0) body['ttl'] = ttl;
 
 	const data = (await client.httpPut(`/domain/zone/${encodeURIComponent(zoneName)}/soa`, body)) as IDataObject;

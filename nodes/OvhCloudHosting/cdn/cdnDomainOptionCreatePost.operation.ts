@@ -63,14 +63,14 @@ export function description(displayOptions: IDisplayOptions): INodeProperties[] 
  */
 export async function execute(
 	this: IExecuteFunctions,
-	itemIndex: number,
+	_itemIndex: number,
 ): Promise<INodeExecutionData[]> {
 	const client = new ApiClient(this);
-	const serviceName = this.getNodeParameter('serviceName', itemIndex) as string;
-	const domain = this.getNodeParameter('domain', itemIndex) as string;
-	const optionName = this.getNodeParameter('optionName', itemIndex) as string;
-	const enabled = this.getNodeParameter('enabled', itemIndex) as boolean;
-	const configRaw = this.getNodeParameter('config', itemIndex, '{}') as string;
+	const serviceName = this.getNodeParameter('serviceName', _itemIndex) as string;
+	const domain = this.getNodeParameter('domain', _itemIndex) as string;
+	const optionName = this.getNodeParameter('optionName', _itemIndex) as string;
+	const enabled = this.getNodeParameter('enabled', _itemIndex) as boolean;
+	const configRaw = this.getNodeParameter('config', _itemIndex, '{}') as string;
 	let config: IDataObject | undefined;
 	try {
 		config = JSON.parse(configRaw || '{}') as IDataObject;
@@ -83,6 +83,6 @@ export async function execute(
 		`/hosting/web/${serviceName}/cdn/domain/${domain}/option`,
 		body,
 	)) as IDataObject;
-	const inputData = this.getInputData()[itemIndex];
+	const inputData = this.getInputData()[_itemIndex];
 	return this.helpers.returnJsonArray([{ ...inputData.json, ...data }]);
 }

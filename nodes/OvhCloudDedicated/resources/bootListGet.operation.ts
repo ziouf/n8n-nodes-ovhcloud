@@ -50,14 +50,14 @@ export function description(displayOptions: IDisplayOptions) {
 
 export async function execute(
 	this: IExecuteFunctions,
-	itemIndex: number,
+	_itemIndex: number,
 ): Promise<INodeExecutionData[]> {
 	const client = new ApiClient(this);
-	const serviceName = this.getNodeParameter('serviceName', itemIndex, '', {
+	const serviceName = this.getNodeParameter('serviceName', _itemIndex, '', {
 		extractValue: true,
 	}) as string;
 
-	const bootType = (this.getNodeParameter('bootType', itemIndex) as string) || undefined;
+	const bootType = (this.getNodeParameter('bootType', _itemIndex) as string) || undefined;
 
 	if (!bootType) {
 		const data = (await client.httpGet(`/dedicated/server/${serviceName}/boot`)) as IDataObject;

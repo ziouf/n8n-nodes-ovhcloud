@@ -107,15 +107,15 @@ export function description(displayOptions: IDisplayOptions): INodeProperties[] 
  * HTTP method: GET
  * Endpoint: /publicCloud/project/${projectId}/region/${regionName}/storage/${name}/object
  */
-export async function execute(this: IExecuteFunctions): Promise<INodeExecutionData[]> {
-	const regionName = this.getNodeParameter('regionName', 0) as string;
-	const name = this.getNodeParameter('name', 0) as string;
-	const delimiter = this.getNodeParameter('delimiter', 0, '') as string;
-	const keyMarker = this.getNodeParameter('keyMarker', 0, '') as string;
-	const limit = this.getNodeParameter('limit', 0, '') as string;
-	const prefix = this.getNodeParameter('prefix', 0, '') as string;
-	const versionIdMarker = this.getNodeParameter('versionIdMarker', 0, '') as string;
-	const withVersions = this.getNodeParameter('withVersions', 0, '') as string;
+export async function execute(this: IExecuteFunctions, _itemIndex?: number): Promise<INodeExecutionData[]> {
+	const regionName = this.getNodeParameter('regionName', _itemIndex ?? 0) as string;
+	const name = this.getNodeParameter('name', _itemIndex ?? 0) as string;
+	const delimiter = this.getNodeParameter('delimiter', _itemIndex ?? 0, '') as string;
+	const keyMarker = this.getNodeParameter('keyMarker', _itemIndex ?? 0, '') as string;
+	const limit = this.getNodeParameter('limit', _itemIndex ?? 0, '') as string;
+	const prefix = this.getNodeParameter('prefix', _itemIndex ?? 0, '') as string;
+	const versionIdMarker = this.getNodeParameter('versionIdMarker', _itemIndex ?? 0, '') as string;
+	const withVersions = this.getNodeParameter('withVersions', _itemIndex ?? 0, '') as string;
 
 	const qs: IDataObject = {
 		delimiter: delimiter,
@@ -126,7 +126,7 @@ export async function execute(this: IExecuteFunctions): Promise<INodeExecutionDa
 		withVersions: withVersions
 	};
 	const client = new ApiClient(this);
-	const projectId = this.getNodeParameter('publicCloudProjectId', 0, '', {
+	const projectId = this.getNodeParameter('publicCloudProjectId', _itemIndex ?? 0, '', {
 		extractValue: true,
 	}) as string;
 	const data = (await client.httpGet(

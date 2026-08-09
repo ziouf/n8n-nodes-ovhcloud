@@ -40,10 +40,10 @@ export function description() {
  * HTTP method: GET
  * Endpoint: /email/exchange/{organizationName}/service/{exchangeService}/resourceAccount/{resourceEmailAddress}/delegate
  */
-export async function execute(this: IExecuteFunctions): Promise<INodeExecutionData[]> {
-	const organizationName = this.getNodeParameter('organizationName', 0) as string;
-	const exchangeService = this.getNodeParameter('exchangeService', 0) as string;
-	const resourceEmailAddress = this.getNodeParameter('resourceEmailAddress', 0) as string;
+export async function execute(this: IExecuteFunctions, _itemIndex?: number): Promise<INodeExecutionData[]> {
+	const organizationName = this.getNodeParameter('organizationName', _itemIndex ?? 0) as string;
+	const exchangeService = this.getNodeParameter('exchangeService', _itemIndex ?? 0) as string;
+	const resourceEmailAddress = this.getNodeParameter('resourceEmailAddress', _itemIndex ?? 0) as string;
 
 	const client = new ApiClient(this);
 	const data = (await client.httpGet("/email/exchange/" + encodeURIComponent(organizationName) + "/service/" + encodeURIComponent(exchangeService) + "/resourceAccount/" + encodeURIComponent(resourceEmailAddress) + "/delegate")) as IDataObject;

@@ -47,11 +47,11 @@ export function description() {
  * HTTP method: POST
  * Endpoint: /email/exchange/{organizationName}/service/{exchangeService}/account/{primaryEmailAddress}/alias
  */
-export async function execute(this: IExecuteFunctions): Promise<INodeExecutionData[]> {
-	const organizationName = this.getNodeParameter('organizationName', 0) as string;
-	const exchangeService = this.getNodeParameter('exchangeService', 0) as string;
-	const primaryEmailAddress = this.getNodeParameter('primaryEmailAddress', 0) as string;
-	const alias = this.getNodeParameter('alias', 0) as string;
+export async function execute(this: IExecuteFunctions, _itemIndex?: number): Promise<INodeExecutionData[]> {
+	const organizationName = this.getNodeParameter('organizationName', _itemIndex ?? 0) as string;
+	const exchangeService = this.getNodeParameter('exchangeService', _itemIndex ?? 0) as string;
+	const primaryEmailAddress = this.getNodeParameter('primaryEmailAddress', _itemIndex ?? 0) as string;
+	const alias = this.getNodeParameter('alias', _itemIndex ?? 0) as string;
 
 	const body: IDataObject = {
     alias: alias

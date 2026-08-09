@@ -46,11 +46,11 @@ export function description(displayOptions: IDisplayOptions): INodeProperties[] 
  * HTTP method: POST
  * Endpoint: /cloud/project/{serviceName}/database/mongodb
  */
-export async function execute(this: IExecuteFunctions): Promise<INodeExecutionData[]> {
-	const serviceName = this.getNodeParameter('serviceName', 0) as string;
-	const description = this.getNodeParameter('description', 0, '') as string;
-	const plan = this.getNodeParameter('plan', 0, '') as string;
-	const version = this.getNodeParameter('version', 0, '') as string;
+export async function execute(this: IExecuteFunctions, _itemIndex?: number): Promise<INodeExecutionData[]> {
+	const serviceName = this.getNodeParameter('serviceName', _itemIndex ?? 0) as string;
+	const description = this.getNodeParameter('description', _itemIndex ?? 0, '') as string;
+	const plan = this.getNodeParameter('plan', _itemIndex ?? 0, '') as string;
+	const version = this.getNodeParameter('version', _itemIndex ?? 0, '') as string;
 
 	const body: IDataObject = {
     description: description || undefined,

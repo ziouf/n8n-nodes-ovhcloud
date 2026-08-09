@@ -17,10 +17,10 @@ export function description(displayOptions: IDisplayOptions): INodeProperties[] 
 	];
 }
 
-export async function execute(this: IExecuteFunctions): Promise<INodeExecutionData[]> {
+export async function execute(this: IExecuteFunctions, _itemIndex?: number): Promise<INodeExecutionData[]> {
 	const client = new ApiClient(this);
-	const returnFullObjects = this.getNodeParameter('returnFullObjects', 0, false) as boolean;
-	const maxItems = this.getNodeParameter('maxItems', 0, 1000) as number;
+	const returnFullObjects = this.getNodeParameter('returnFullObjects', _itemIndex ?? 0, false) as boolean;
+	const maxItems = this.getNodeParameter('maxItems', _itemIndex ?? 0, 1000) as number;
 
 	if (returnFullObjects) {
 		const skippedIds: string[] = [];

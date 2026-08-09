@@ -28,8 +28,8 @@ export function description(displayOptions: IDisplayOptions): INodeProperties[] 
  * Endpoint: /ip/service/{serviceName}/serviceInfos
  */
 
-export async function execute(this: IExecuteFunctions, itemIndex: number): Promise<INodeExecutionData[]> {
-	const serviceName = this.getNodeParameter('serviceName', itemIndex) as string;
+export async function execute(this: IExecuteFunctions, _itemIndex: number): Promise<INodeExecutionData[]> {
+	const serviceName = this.getNodeParameter('serviceName', _itemIndex) as string;
 
 	const client = new ApiClient(this);
 	const data = (await client.httpGet(`/ip/service/${encodeURIComponent(serviceName)}/serviceInfos`)) as IDataObject;

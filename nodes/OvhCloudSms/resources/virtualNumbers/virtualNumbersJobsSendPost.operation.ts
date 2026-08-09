@@ -127,20 +127,20 @@ export function description(displayOptions: IDisplayOptions): INodeProperties[] 
  * HTTP method: POST
  * Endpoint: /sms/{serviceName}/virtualNumbers/{number}/jobs
  */
-export async function execute(this: IExecuteFunctions): Promise<INodeExecutionData[]> {
-	const number = this.getNodeParameter('number', 0) as string;
-	const serviceName = this.getNodeParameter('serviceName', 0, '', { extractValue: true }) as string;
-	const charset = this.getNodeParameter('charset', 0) as string;
-	const classValue = this.getNodeParameter('class', 0) as string;
-	const coding = this.getNodeParameter('coding', 0) as string;
-	const differedPeriod = this.getNodeParameter('differedPeriod', 0) as number;
-	const message = this.getNodeParameter('message', 0) as string;
-	const priority = this.getNodeParameter('priority', 0) as string;
-	const receivers = this.getNodeParameter('receivers', 0) as string;
-	const receiversDocumentUrl = this.getNodeParameter('receiversDocumentUrl', 0) as string;
-	const receiversSlotId = this.getNodeParameter('receiversSlotId', 0) as string;
-	const tag = this.getNodeParameter('tag', 0) as string;
-	const validityPeriod = this.getNodeParameter('validityPeriod', 0) as number;
+export async function execute(this: IExecuteFunctions, _itemIndex?: number): Promise<INodeExecutionData[]> {
+	const number = this.getNodeParameter('number', _itemIndex ?? 0) as string;
+	const serviceName = this.getNodeParameter('serviceName', _itemIndex ?? 0, '', { extractValue: true }) as string;
+	const charset = this.getNodeParameter('charset', _itemIndex ?? 0) as string;
+	const classValue = this.getNodeParameter('class', _itemIndex ?? 0) as string;
+	const coding = this.getNodeParameter('coding', _itemIndex ?? 0) as string;
+	const differedPeriod = this.getNodeParameter('differedPeriod', _itemIndex ?? 0) as number;
+	const message = this.getNodeParameter('message', _itemIndex ?? 0) as string;
+	const priority = this.getNodeParameter('priority', _itemIndex ?? 0) as string;
+	const receivers = this.getNodeParameter('receivers', _itemIndex ?? 0) as string;
+	const receiversDocumentUrl = this.getNodeParameter('receiversDocumentUrl', _itemIndex ?? 0) as string;
+	const receiversSlotId = this.getNodeParameter('receiversSlotId', _itemIndex ?? 0) as string;
+	const tag = this.getNodeParameter('tag', _itemIndex ?? 0) as string;
+	const validityPeriod = this.getNodeParameter('validityPeriod', _itemIndex ?? 0) as number;
 	const body: IDataObject = {};
 	if (charset) body['charset'] = charset;
 	if (classValue) body['class'] = classValue;

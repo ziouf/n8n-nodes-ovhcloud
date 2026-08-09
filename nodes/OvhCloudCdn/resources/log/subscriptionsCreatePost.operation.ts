@@ -45,10 +45,10 @@ export function description(displayOptions: IDisplayOptions): INodeProperties[] 
  * HTTP method: POST
  * Endpoint: /cdn/dedicated/{serviceName}/log/subscription
  */
-export async function execute(this: IExecuteFunctions, itemIndex: number): Promise<INodeExecutionData[]> {
-	const serviceName = this.getNodeParameter('serviceName', itemIndex) as string;
-	const kind = this.getNodeParameter('kind', itemIndex) as string;
-	const streamId = this.getNodeParameter('streamId', itemIndex) as string;
+export async function execute(this: IExecuteFunctions, _itemIndex: number): Promise<INodeExecutionData[]> {
+	const serviceName = this.getNodeParameter('serviceName', _itemIndex) as string;
+	const kind = this.getNodeParameter('kind', _itemIndex) as string;
+	const streamId = this.getNodeParameter('streamId', _itemIndex) as string;
 
 	const body: IDataObject = {};
 	body.kind = kind;

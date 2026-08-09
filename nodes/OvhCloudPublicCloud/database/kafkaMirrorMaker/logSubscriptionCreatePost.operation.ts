@@ -58,13 +58,13 @@ export function description(displayOptions: IDisplayOptions): INodeProperties[] 
  * HTTP method: POST
  * Endpoint: /cloud/project/${publicCloudProjectId}/database/kafkaMirrorMaker/${clusterId}/log/subscription
  */
-export async function execute(this: IExecuteFunctions): Promise<INodeExecutionData[]> {
+export async function execute(this: IExecuteFunctions, _itemIndex?: number): Promise<INodeExecutionData[]> {
 	const client = new ApiClient(this);
-	const publicCloudProjectId = this.getNodeParameter('publicCloudProjectId', 0) as string;
-	const clusterId = this.getNodeParameter('clusterId', 0) as string;
-	const destinationServiceId = this.getNodeParameter('destinationServiceId', 0) as string;
-	const kind = this.getNodeParameter('kind', 0) as string;
-	const sourceServiceId = this.getNodeParameter('sourceServiceId', 0) as string;
+	const publicCloudProjectId = this.getNodeParameter('publicCloudProjectId', _itemIndex ?? 0) as string;
+	const clusterId = this.getNodeParameter('clusterId', _itemIndex ?? 0) as string;
+	const destinationServiceId = this.getNodeParameter('destinationServiceId', _itemIndex ?? 0) as string;
+	const kind = this.getNodeParameter('kind', _itemIndex ?? 0) as string;
+	const sourceServiceId = this.getNodeParameter('sourceServiceId', _itemIndex ?? 0) as string;
 
 	const body: IDataObject = {};
 	if (destinationServiceId) body.destinationServiceId = destinationServiceId;

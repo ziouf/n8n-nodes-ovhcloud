@@ -28,13 +28,13 @@ export function description(displayOptions: IDisplayOptions) {
 
 export async function execute(
 	this: IExecuteFunctions,
-	itemIndex: number,
+	_itemIndex: number,
 ): Promise<INodeExecutionData[]> {
 	const client = new ApiClient(this);
-	const serviceName = this.getNodeParameter('serviceName', itemIndex, '', {
+	const serviceName = this.getNodeParameter('serviceName', _itemIndex, '', {
 		extractValue: true,
 	}) as string;
-	const address = this.getNodeParameter('address', itemIndex) as string;
+	const address = this.getNodeParameter('address', _itemIndex) as string;
 	const data = await client.httpGet(`/vps/${serviceName}/ip/${address}`);
 	return this.helpers.returnJsonArray([data as INodeExecutionData]);
 }

@@ -963,149 +963,149 @@ export async function execute(
 
 	switch (operation) {
 		case 'availableOrderCapacitiesGet':
-			return executeAvailableOrderCapacitiesGet.call(this, itemIndex);
+			return executeAvailableOrderCapacitiesGet.call(this, itemIndex ?? 0);
 		case 'availableVersionsGet':
-			return executeAvailableVersionsGet.call(this, itemIndex);
+			return executeAvailableVersionsGet.call(this, itemIndex ?? 0);
 		case 'changeContactPost':
-			return executeChangeContactPost.call(this, itemIndex);
+			return executeChangeContactPost.call(this, itemIndex ?? 0);
 		case 'changeFtpPasswordPost':
-			return executeChangeFtpPasswordPost.call(this, itemIndex);
+			return executeChangeFtpPasswordPost.call(this, itemIndex ?? 0);
 		case 'changeVersionPost':
-			return executeChangeVersionPost.call(this, itemIndex);
+			return executeChangeVersionPost.call(this, itemIndex ?? 0);
 		case 'configGet':
-			return executeConfigGet.call(this, itemIndex);
+			return executeConfigGet.call(this, itemIndex ?? 0);
 		case 'configUpdatePost':
-			return executeConfigUpdatePost.call(this, itemIndex);
+			return executeConfigUpdatePost.call(this, itemIndex ?? 0);
 		case 'confirmTerminationPost':
-			return executeConfirmTerminationPost.call(this, itemIndex);
+			return executeConfirmTerminationPost.call(this, itemIndex ?? 0);
 		case 'cpuThrottleGet':
-			return executeCpuThrottleGet.call(this, itemIndex);
+			return executeCpuThrottleGet.call(this, itemIndex ?? 0);
 		case 'database_Delete':
-			return executeDatabase_Delete.call(this, itemIndex);
+			return executeDatabase_Delete.call(this, itemIndex ?? 0);
 		case 'database_Get':
-			return executeDatabase_Get.call(this, itemIndex);
+			return executeDatabase_Get.call(this, itemIndex ?? 0);
 		case 'databaseCopyCreatePost':
-			return executeDatabaseCopyCreatePost.call(this, itemIndex);
+			return executeDatabaseCopyCreatePost.call(this, itemIndex ?? 0);
 		case 'databaseCopyDelete':
-			return executeDatabaseCopyDelete.call(this, itemIndex);
+			return executeDatabaseCopyDelete.call(this, itemIndex ?? 0);
 		case 'databaseCopyGet':
-			return executeDatabaseCopyGet.call(this, itemIndex);
+			return executeDatabaseCopyGet.call(this, itemIndex ?? 0);
 		case 'databaseCopyListGet':
-			return executeDatabaseCopyListGet.call(this, itemIndex);
+			return executeDatabaseCopyListGet.call(this, itemIndex ?? 0);
 		case 'databaseCopyRestorePost':
-			return executeDatabaseCopyRestorePost.call(this, itemIndex);
+			return executeDatabaseCopyRestorePost.call(this, itemIndex ?? 0);
 		case 'databaseCreatePost':
-			return executeDatabaseCreatePost.call(this, itemIndex);
+			return executeDatabaseCreatePost.call(this, itemIndex ?? 0);
 		case 'databaseDumpCreatePost':
-			return executeDatabaseDumpCreatePost.call(this, itemIndex);
+			return executeDatabaseDumpCreatePost.call(this, itemIndex ?? 0);
 		case 'databaseDumpDelete':
-			return executeDatabaseDumpDelete.call(this, itemIndex);
+			return executeDatabaseDumpDelete.call(this, itemIndex ?? 0);
 		case 'databaseDumpGet':
-			return executeDatabaseDumpGet.call(this, itemIndex);
+			return executeDatabaseDumpGet.call(this, itemIndex ?? 0);
 		case 'databaseDumpListGet':
-			return executeDatabaseDumpListGet.call(this, itemIndex);
+			return executeDatabaseDumpListGet.call(this, itemIndex ?? 0);
 		case 'databaseDumpRestorePost':
-			return executeDatabaseDumpRestorePost.call(this, itemIndex);
+			return executeDatabaseDumpRestorePost.call(this, itemIndex ?? 0);
 		case 'databaseExtensionDisablePost':
-			return executeDatabaseExtensionDisablePost.call(this, itemIndex);
+			return executeDatabaseExtensionDisablePost.call(this, itemIndex ?? 0);
 		case 'databaseExtensionEnablePost':
-			return executeDatabaseExtensionEnablePost.call(this, itemIndex);
+			return executeDatabaseExtensionEnablePost.call(this, itemIndex ?? 0);
 		case 'databaseExtensionGet':
-			return executeDatabaseExtensionGet.call(this, itemIndex);
+			return executeDatabaseExtensionGet.call(this, itemIndex ?? 0);
 		case 'databaseExtensionListGet':
-			return executeDatabaseExtensionListGet.call(this, itemIndex);
+			return executeDatabaseExtensionListGet.call(this, itemIndex ?? 0);
 		case 'databaseImportPost':
-			return executeDatabaseImportPost.call(this, itemIndex);
+			return executeDatabaseImportPost.call(this, itemIndex ?? 0);
 		case 'databaseListGet':
-			return executeDatabaseListGet.call(this, itemIndex);
+			return executeDatabaseListGet.call(this, itemIndex ?? 0);
 		case 'databaseWizardPost':
-			return executeDatabaseWizardPost.call(this, itemIndex);
+			return executeDatabaseWizardPost.call(this, itemIndex ?? 0);
 		case 'dumpDelete':
-			return executeDumpDelete.call(this, itemIndex);
+			return executeDumpDelete.call(this, itemIndex ?? 0);
 		case 'dumpGet':
-			return executeDumpGet.call(this, itemIndex);
+			return executeDumpGet.call(this, itemIndex ?? 0);
 		case 'dumpListGet':
-			return executeDumpListGet.call(this, itemIndex);
+			return executeDumpListGet.call(this, itemIndex ?? 0);
 		case 'dumpRestorePost':
-			return executeDumpRestorePost.call(this, itemIndex);
+			return executeDumpRestorePost.call(this, itemIndex ?? 0);
 		case 'generateTemporaryLogsLinkPost':
-			return executeGenerateTemporaryLogsLinkPost.call(this, itemIndex);
+			return executeGenerateTemporaryLogsLinkPost.call(this, itemIndex ?? 0);
 		case 'listGet':
-			return executeListGet.call(this, itemIndex);
+			return executeListGet.call(this, itemIndex ?? 0);
 		case 'logKindGet':
-			return executeLogKindGet.call(this, itemIndex);
+			return executeLogKindGet.call(this, itemIndex ?? 0);
 		case 'logKindNameGet':
-			return executeLogKindNameGet.call(this, itemIndex);
+			return executeLogKindNameGet.call(this, itemIndex ?? 0);
 		case 'logSubscriptionCreatePost':
-			return executeLogSubscriptionCreatePost.call(this, itemIndex);
+			return executeLogSubscriptionCreatePost.call(this, itemIndex ?? 0);
 		case 'logSubscriptionDelete':
-			return executeLogSubscriptionDelete.call(this, itemIndex);
+			return executeLogSubscriptionDelete.call(this, itemIndex ?? 0);
 		case 'logSubscriptionGet':
-			return executeLogSubscriptionGet.call(this, itemIndex);
+			return executeLogSubscriptionGet.call(this, itemIndex ?? 0);
 		case 'logSubscriptionListGet':
-			return executeLogSubscriptionListGet.call(this, itemIndex);
+			return executeLogSubscriptionListGet.call(this, itemIndex ?? 0);
 		case 'logUrlPost':
-			return executeLogUrlPost.call(this, itemIndex);
+			return executeLogUrlPost.call(this, itemIndex ?? 0);
 		case 'metricsTokenGet':
-			return executeMetricsTokenGet.call(this, itemIndex);
+			return executeMetricsTokenGet.call(this, itemIndex ?? 0);
 		case 'oomGet':
-			return executeOomGet.call(this, itemIndex);
+			return executeOomGet.call(this, itemIndex ?? 0);
 		case 'quotaRefreshPost':
-			return executeQuotaRefreshPost.call(this, itemIndex);
+			return executeQuotaRefreshPost.call(this, itemIndex ?? 0);
 		case 'restartPost':
-			return executeRestartPost.call(this, itemIndex);
+			return executeRestartPost.call(this, itemIndex ?? 0);
 		case 'serviceGet':
-			return executeServiceGet.call(this, itemIndex);
+			return executeServiceGet.call(this, itemIndex ?? 0);
 		case 'serviceInfosGet':
-			return executeServiceInfosGet.call(this, itemIndex);
+			return executeServiceInfosGet.call(this, itemIndex ?? 0);
 		case 'serviceInfosUpdate':
-			return executeServiceInfosUpdate.call(this, itemIndex);
+			return executeServiceInfosUpdate.call(this, itemIndex ?? 0);
 		case 'serviceUpdate':
-			return executeServiceUpdate.call(this, itemIndex);
+			return executeServiceUpdate.call(this, itemIndex ?? 0);
 		case 'taskGet':
-			return executeTaskGet.call(this, itemIndex);
+			return executeTaskGet.call(this, itemIndex ?? 0);
 		case 'taskListGet':
-			return executeTaskListGet.call(this, itemIndex);
+			return executeTaskListGet.call(this, itemIndex ?? 0);
 		case 'terminatePost':
-			return executeTerminatePost.call(this, itemIndex);
+			return executeTerminatePost.call(this, itemIndex ?? 0);
 		case 'userChangePasswordPost':
-			return executeUserChangePasswordPost.call(this, itemIndex);
+			return executeUserChangePasswordPost.call(this, itemIndex ?? 0);
 		case 'userCreatePost':
-			return executeUserCreatePost.call(this, itemIndex);
+			return executeUserCreatePost.call(this, itemIndex ?? 0);
 		case 'userDelete':
-			return executeUserDelete.call(this, itemIndex);
+			return executeUserDelete.call(this, itemIndex ?? 0);
 		case 'userGet':
-			return executeUserGet.call(this, itemIndex);
+			return executeUserGet.call(this, itemIndex ?? 0);
 		case 'userGrantCreatePost':
-			return executeUserGrantCreatePost.call(this, itemIndex);
+			return executeUserGrantCreatePost.call(this, itemIndex ?? 0);
 		case 'userGrantDelete':
-			return executeUserGrantDelete.call(this, itemIndex);
+			return executeUserGrantDelete.call(this, itemIndex ?? 0);
 		case 'userGrantGet':
-			return executeUserGrantGet.call(this, itemIndex);
+			return executeUserGrantGet.call(this, itemIndex ?? 0);
 		case 'userGrantListGet':
-			return executeUserGrantListGet.call(this, itemIndex);
+			return executeUserGrantListGet.call(this, itemIndex ?? 0);
 		case 'userGrantUpdatePost':
-			return executeUserGrantUpdatePost.call(this, itemIndex);
+			return executeUserGrantUpdatePost.call(this, itemIndex ?? 0);
 		case 'userListGet':
-			return executeUserListGet.call(this, itemIndex);
+			return executeUserListGet.call(this, itemIndex ?? 0);
 		case 'webhostingNetworkDelete':
-			return executeWebhostingNetworkDelete.call(this, itemIndex);
+			return executeWebhostingNetworkDelete.call(this, itemIndex ?? 0);
 		case 'webhostingNetworkGet':
-			return executeWebhostingNetworkGet.call(this, itemIndex);
+			return executeWebhostingNetworkGet.call(this, itemIndex ?? 0);
 		case 'webhostingNetworkPost':
-			return executeWebhostingNetworkPost.call(this, itemIndex);
+			return executeWebhostingNetworkPost.call(this, itemIndex ?? 0);
 		case 'websGet':
-			return executeWebsGet.call(this, itemIndex);
+			return executeWebsGet.call(this, itemIndex ?? 0);
 		case 'whitelistCreatePost':
-			return executeWhitelistCreatePost.call(this, itemIndex);
+			return executeWhitelistCreatePost.call(this, itemIndex ?? 0);
 		case 'whitelistDelete':
-			return executeWhitelistDelete.call(this, itemIndex);
+			return executeWhitelistDelete.call(this, itemIndex ?? 0);
 		case 'whitelistGet':
-			return executeWhitelistGet.call(this, itemIndex);
+			return executeWhitelistGet.call(this, itemIndex ?? 0);
 		case 'whitelistListGet':
-			return executeWhitelistListGet.call(this, itemIndex);
+			return executeWhitelistListGet.call(this, itemIndex ?? 0);
 		case 'whitelistUpdate':
-			return executeWhitelistUpdate.call(this, itemIndex);
+			return executeWhitelistUpdate.call(this, itemIndex ?? 0);
 	}
 
 	throw new Error(`Unsupported operation "${operation}" for resource "hostingPrivateDatabase"`);

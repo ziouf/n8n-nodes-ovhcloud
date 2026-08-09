@@ -7,7 +7,7 @@ import type {
 } from 'n8n-workflow';
 import { ApiClient } from '../../shared/transport/ApiClient';
 
-// eslint-disable-next-line @typescript-eslint/no-unused-vars
+ 
 export function description(_displayOptions: IDisplayOptions): INodeProperties[] {
 	return [];
 }
@@ -20,10 +20,10 @@ export function description(_displayOptions: IDisplayOptions): INodeProperties[]
  */
 export async function execute(
 	this: IExecuteFunctions,
-	itemIndex: number,
+	_itemIndex: number,
 ): Promise<INodeExecutionData[]> {
 	const client = new ApiClient(this);
 	const data = (await client.httpGet('/hosting/web/incident')) as IDataObject;
-	const inputData = this.getInputData()[itemIndex];
+	const inputData = this.getInputData()[_itemIndex];
 	return this.helpers.returnJsonArray([{ ...inputData.json, ...data }]);
 }

@@ -89,21 +89,21 @@ export function description(displayOptions: IDisplayOptions): INodeProperties[] 
  * HTTP method: POST
  * Endpoint: /storage/netapp/{serviceName}/shareReplication/{shareReplicationId}/accept
  */
-export async function execute(this: IExecuteFunctions, itemIndex: number): Promise<INodeExecutionData[]> {
+export async function execute(this: IExecuteFunctions, _itemIndex: number): Promise<INodeExecutionData[]> {
 	const client = new ApiClient(this);
-	const serviceName = this.getNodeParameter('serviceName', itemIndex, '', {
+	const serviceName = this.getNodeParameter('serviceName', _itemIndex, '', {
 				extractValue: true,
 			}) as string;
-	const shareReplicationId = this.getNodeParameter('shareReplicationId', itemIndex) as string;
+	const shareReplicationId = this.getNodeParameter('shareReplicationId', _itemIndex) as string;
 	const body: IDataObject = {};
-	const description = this.getNodeParameter('description', itemIndex, '') as string;
+	const description = this.getNodeParameter('description', _itemIndex, '') as string;
 	if (description !== '') { body.description = description; }
-	const mountPointName = this.getNodeParameter('mountPointName', itemIndex, '') as string;
+	const mountPointName = this.getNodeParameter('mountPointName', _itemIndex, '') as string;
 	if (mountPointName !== '') { body.mountPointName = mountPointName; }
-	const name = this.getNodeParameter('name', itemIndex, '') as string;
+	const name = this.getNodeParameter('name', _itemIndex, '') as string;
 	if (name !== '') { body.name = name; }
-	body.protocol = this.getNodeParameter('protocol', itemIndex) as string;
-	body.size = this.getNodeParameter('size', itemIndex) as number;
+	body.protocol = this.getNodeParameter('protocol', _itemIndex) as string;
+	body.size = this.getNodeParameter('size', _itemIndex) as number;
 	const data = (await client.httpPost(`/storage/netapp/${encodeURIComponent(serviceName)}/shareReplication/${encodeURIComponent(shareReplicationId)}/accept`, body)) as IDataObject;
 	return this.helpers.returnJsonArray([data]);
 }

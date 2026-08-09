@@ -31,9 +31,9 @@ export function description() {
  * HTTP method: GET
  * Endpoint: /email/exchange/{organizationName}/service
  */
-export async function execute(this: IExecuteFunctions): Promise<INodeExecutionData[]> {
-	const organizationName = this.getNodeParameter('organizationName', 0) as string;
-	const iamTags = this.getNodeParameter('iamTags', 0) as string;
+export async function execute(this: IExecuteFunctions, _itemIndex?: number): Promise<INodeExecutionData[]> {
+	const organizationName = this.getNodeParameter('organizationName', _itemIndex ?? 0) as string;
+	const iamTags = this.getNodeParameter('iamTags', _itemIndex ?? 0) as string;
 
 	const qs: IDataObject = {
     iamTags: iamTags

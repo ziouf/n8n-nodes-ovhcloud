@@ -36,12 +36,12 @@ export function description(displayOptions: IDisplayOptions): INodeProperties[] 
  */
 export async function execute(
 	this: IExecuteFunctions,
-	itemIndex: number,
+	_itemIndex: number,
 ): Promise<INodeExecutionData[]> {
 	const client = new ApiClient(this);
-	const certificateId = this.getNodeParameter('certificateId', itemIndex) as string;
+	const certificateId = this.getNodeParameter('certificateId', _itemIndex) as string;
 	const body: IDataObject = {};
-	const suspend = this.getNodeParameter('suspend', itemIndex) as boolean;
+	const suspend = this.getNodeParameter('suspend', _itemIndex) as boolean;
 	body.suspend = suspend;
 	const data = (await client.httpPut(`/ssl/${certificateId}/serviceInfos`, body)) as IDataObject;
 	return this.helpers.returnJsonArray([data]);

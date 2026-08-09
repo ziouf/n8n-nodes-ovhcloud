@@ -26,8 +26,8 @@ export function description(): INodeProperties[] {
  * Endpoint: /dedicated/housing/{serviceName}/features/backupFTP/access
  */
 export async function execute(this: IExecuteFunctions,
-	itemIndex: number): Promise<INodeExecutionData[]> {
-	const serviceName = this.getNodeParameter('serviceName', itemIndex) as string;
+	_itemIndex: number): Promise<INodeExecutionData[]> {
+	const serviceName = this.getNodeParameter('serviceName', _itemIndex) as string;
 	const client = new ApiClient(this);
 	const data = (await client.httpGet('/dedicated/housing/' + encodeURIComponent(serviceName) + '/features/backupFTP/access')) as IDataObject;
 	return this.helpers.returnJsonArray([data]);

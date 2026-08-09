@@ -61,12 +61,12 @@ export function description(displayOptions: IDisplayOptions): INodeProperties[] 
  * HTTP method: PUT
  * Endpoint: /telephony/{billingAccount}/ovhPabx/{serviceName}/tts/{id}
  */
-export async function execute(this: IExecuteFunctions, itemIndex: number): Promise<INodeExecutionData[]> {
-	const billingAccount = this.getNodeParameter('billingAccount', itemIndex) as string;
-	const id = this.getNodeParameter('id', itemIndex) as string;
-	const serviceName = this.getNodeParameter('serviceName', itemIndex) as string;
-	const text = this.getNodeParameter('text', itemIndex) as string;
-	const voice = this.getNodeParameter('voice', itemIndex) as string;
+export async function execute(this: IExecuteFunctions, _itemIndex: number): Promise<INodeExecutionData[]> {
+	const billingAccount = this.getNodeParameter('billingAccount', _itemIndex) as string;
+	const id = this.getNodeParameter('id', _itemIndex) as string;
+	const serviceName = this.getNodeParameter('serviceName', _itemIndex) as string;
+	const text = this.getNodeParameter('text', _itemIndex) as string;
+	const voice = this.getNodeParameter('voice', _itemIndex) as string;
 
 	const body: IDataObject = {
 		text: text,

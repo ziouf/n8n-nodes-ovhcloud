@@ -67,14 +67,14 @@ export function description(displayOptions: IDisplayOptions): INodeProperties[] 
  * HTTP method: PUT
  * Endpoint: /cloud/project/{serviceName}/database/redis/{clusterId}/ipRestriction/{ipBlock}
  */
-export async function execute(this: IExecuteFunctions): Promise<INodeExecutionData[]> {
+export async function execute(this: IExecuteFunctions, _itemIndex?: number): Promise<INodeExecutionData[]> {
 	const client = new ApiClient(this);
-	const serviceName = this.getNodeParameter('publicCloudProjectId', 0, '', {
+	const serviceName = this.getNodeParameter('publicCloudProjectId', _itemIndex ?? 0, '', {
 		extractValue: true,
 	}) as string;
-	const clusterId = this.getNodeParameter('clusterId', 0) as string;
-	const ipBlock = this.getNodeParameter('ipBlock', 0) as string;
-	const description = (this.getNodeParameter('description', 0) || '') as string;
+	const clusterId = this.getNodeParameter('clusterId', _itemIndex ?? 0) as string;
+	const ipBlock = this.getNodeParameter('ipBlock', _itemIndex ?? 0) as string;
+	const description = (this.getNodeParameter('description', _itemIndex ?? 0) || '') as string;
 
 	const body: IDataObject = {};
 	if (description) body.description = description;

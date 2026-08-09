@@ -46,10 +46,10 @@ export function description(displayOptions: IDisplayOptions): INodeProperties[] 
  * HTTP method: GET
  * Endpoint: /publicCloud/project/{projectId}/rancher/{rancherId}/task/{taskId}
  */
-export async function execute(this: IExecuteFunctions, itemIndex: number): Promise<INodeExecutionData[]> {
-	const projectId = this.getNodeParameter('projectId', itemIndex) as string;
-	const rancherId = this.getNodeParameter('rancherId', itemIndex) as string;
-	const taskId = this.getNodeParameter('taskId', itemIndex) as string;
+export async function execute(this: IExecuteFunctions, _itemIndex: number): Promise<INodeExecutionData[]> {
+	const projectId = this.getNodeParameter('projectId', _itemIndex) as string;
+	const rancherId = this.getNodeParameter('rancherId', _itemIndex) as string;
+	const taskId = this.getNodeParameter('taskId', _itemIndex) as string;
 
 
 	const client = new ApiClient(this);

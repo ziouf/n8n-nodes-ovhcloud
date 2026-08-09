@@ -62,14 +62,14 @@ export function description(displayOptions: IDisplayOptions): INodeProperties[] 
  * HTTP method: PUT
  * Endpoint: /sms/{serviceName}/users/{login}/receivers/{slotId}
  */
-export async function execute(this: IExecuteFunctions): Promise<INodeExecutionData[]> {
-	const login = this.getNodeParameter('login', 0) as string;
-	const serviceName = this.getNodeParameter('serviceName', 0, '', { extractValue: true }) as string;
-	const slotId = this.getNodeParameter('slotId', 0) as number;
+export async function execute(this: IExecuteFunctions, _itemIndex?: number): Promise<INodeExecutionData[]> {
+	const login = this.getNodeParameter('login', _itemIndex ?? 0) as string;
+	const serviceName = this.getNodeParameter('serviceName', _itemIndex ?? 0, '', { extractValue: true }) as string;
+	const slotId = this.getNodeParameter('slotId', _itemIndex ?? 0) as number;
 	const body: IDataObject = {};
-	const autoUpdate = this.getNodeParameter('autoUpdate', 0) as boolean;
+	const autoUpdate = this.getNodeParameter('autoUpdate', _itemIndex ?? 0) as boolean;
 	if (autoUpdate) body['autoUpdate'] = autoUpdate;
-	const description = this.getNodeParameter('description', 0) as string;
+	const description = this.getNodeParameter('description', _itemIndex ?? 0) as string;
 	if (description) body['description'] = description;
 	const data = (await new ApiClient(this).httpPut(
 		`/sms/${encodeURIComponent(serviceName)}/users/${encodeURIComponent(login)}/receivers/${slotId}`,

@@ -29,13 +29,13 @@ export function description(displayOptions: IDisplayOptions): INodeProperties[] 
  */
 export async function execute(
 	this: IExecuteFunctions,
-	itemIndex: number,
+	_itemIndex: number,
 ): Promise<INodeExecutionData[]> {
 	const client = new ApiClient(this);
-	const moduleId = this.getNodeParameter('moduleId', itemIndex) as number;
+	const moduleId = this.getNodeParameter('moduleId', _itemIndex) as number;
 	const data = (await client.httpGet(
 		`/hosting/web/moduleList/${encodeURIComponent(String(moduleId))}`,
 	)) as IDataObject;
-	const inputData = this.getInputData()[itemIndex];
+	const inputData = this.getInputData()[_itemIndex];
 	return this.helpers.returnJsonArray([{ ...inputData.json, ...data }]);
 }

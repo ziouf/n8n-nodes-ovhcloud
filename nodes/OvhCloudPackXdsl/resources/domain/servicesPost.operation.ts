@@ -84,13 +84,13 @@ export function description(displayOptions: IDisplayOptions): INodeProperties[] 
  * HTTP method: POST
  * Endpoint: /pack/xdsl/{packName}/domain/services
  */
-export async function execute(this: IExecuteFunctions): Promise<INodeExecutionData[]> {
+export async function execute(this: IExecuteFunctions, _itemIndex?: number): Promise<INodeExecutionData[]> {
 	const client = new ApiClient(this);
-	const packName = this.getNodeParameter('packName', 0, '', { extractValue: true }) as string;
-	const action = this.getNodeParameter('action', 0) as string;
-	const authInfo = (this.getNodeParameter('authInfo', 0, '') as string) || '';
-	const domain = this.getNodeParameter('domain', 0) as string;
-	const tld = this.getNodeParameter('tld', 0) as string;
+	const packName = this.getNodeParameter('packName', _itemIndex ?? 0, '', { extractValue: true }) as string;
+	const action = this.getNodeParameter('action', _itemIndex ?? 0) as string;
+	const authInfo = (this.getNodeParameter('authInfo', _itemIndex ?? 0, '') as string) || '';
+	const domain = this.getNodeParameter('domain', _itemIndex ?? 0) as string;
+	const tld = this.getNodeParameter('tld', _itemIndex ?? 0) as string;
 
 	const body: IDataObject = { action, domain, tld };
 	if (authInfo) body.authInfo = authInfo;

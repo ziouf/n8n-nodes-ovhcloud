@@ -89,26 +89,26 @@ export function description(displayOptions: IDisplayOptions): INodeProperties[] 
  * HTTP method: GET
  * Endpoint: /publicCloud/project/{projectId}/region/{regionName}/gateway
  */
-export async function execute(this: IExecuteFunctions): Promise<INodeExecutionData[]> {
+export async function execute(this: IExecuteFunctions, _itemIndex?: number): Promise<INodeExecutionData[]> {
 	const client = new ApiClient(this);
-	const projectId = this.getNodeParameter('publicCloudProjectId', 0, '', {
+	const projectId = this.getNodeParameter('publicCloudProjectId', _itemIndex ?? 0, '', {
 		extractValue: true,
 	}) as string;
-	const regionName = this.getNodeParameter('regionName', 0) as string;
+	const regionName = this.getNodeParameter('regionName', _itemIndex ?? 0) as string;
 	const qs = {} as IDataObject;
-	const limitVal = Number(this.getNodeParameter('limit', 0)) as number;
+	const limitVal = Number(this.getNodeParameter('limit', _itemIndex ?? 0)) as number;
 	if (limitVal > 0) {
 		qs.limit = limitVal;
 	}
-	const markerVal = this.getNodeParameter('marker', 0) as string;
+	const markerVal = this.getNodeParameter('marker', _itemIndex ?? 0) as string;
 	if (markerVal !== '') {
 		qs.marker = markerVal;
 	}
-	const subnetIdVal = this.getNodeParameter('subnetId', 0) as string;
+	const subnetIdVal = this.getNodeParameter('subnetId', _itemIndex ?? 0) as string;
 	if (subnetIdVal !== '') {
 		qs.subnetId = subnetIdVal;
 	}
-	if (this.getNodeParameter('withSubnets', 0) as boolean) {
+	if (this.getNodeParameter('withSubnets', _itemIndex ?? 0) as boolean) {
 		qs.withSubnets = true;
 	}
 

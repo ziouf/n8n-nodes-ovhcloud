@@ -28,9 +28,9 @@ export function description(displayOptions: IDisplayOptions): INodeProperties[] 
  * HTTP method: GET
  * Endpoint: /price/license/office/{officeName}
  */
-export async function execute(this: IExecuteFunctions): Promise<INodeExecutionData[]> {
+export async function execute(this: IExecuteFunctions, _itemIndex?: number): Promise<INodeExecutionData[]> {
     const client = new ApiClient(this);
-    const officeName = this.getNodeParameter('officeName', 0) as string;
+    const officeName = this.getNodeParameter('officeName', _itemIndex ?? 0) as string;
     const data = (await client.httpGet(`/price/license/office/${officeName}`)) as IDataObject;
     return this.helpers.returnJsonArray([data]);
 }

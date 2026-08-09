@@ -60,13 +60,13 @@ export function description(displayOptions: IDisplayOptions): INodeProperties[] 
  * HTTP method: GET
  * Endpoint: /ipLoadbalancing/{serviceName}/ssl
  */
-export async function execute(this: IExecuteFunctions, itemIndex: number): Promise<INodeExecutionData[]> {
-	const serviceName = this.getNodeParameter('serviceName', itemIndex) as string;
+export async function execute(this: IExecuteFunctions, _itemIndex: number): Promise<INodeExecutionData[]> {
+	const serviceName = this.getNodeParameter('serviceName', _itemIndex) as string;
 
-	const expireDate = this.getNodeParameter('expireDate', itemIndex) as string;
-	const fingerprint = this.getNodeParameter('fingerprint', itemIndex) as string;
-	const serial = this.getNodeParameter('serial', itemIndex) as string;
-	const type = this.getNodeParameter('type', itemIndex) as string;
+	const expireDate = this.getNodeParameter('expireDate', _itemIndex) as string;
+	const fingerprint = this.getNodeParameter('fingerprint', _itemIndex) as string;
+	const serial = this.getNodeParameter('serial', _itemIndex) as string;
+	const type = this.getNodeParameter('type', _itemIndex) as string;
 
 
 const qs: IDataObject = {

@@ -85,15 +85,15 @@ export function description(displayOptions: IDisplayOptions): INodeProperties[] 
  * HTTP method: PUT
  * Endpoint: /telephony/{billingAccount}/scheduler/{serviceName}/events/{uid}
  */
-export async function execute(this: IExecuteFunctions, itemIndex: number): Promise<INodeExecutionData[]> {
-	const billingAccount = this.getNodeParameter('billingAccount', itemIndex) as string;
-	const serviceName = this.getNodeParameter('serviceName', itemIndex) as string;
-	const uid = this.getNodeParameter('uid', itemIndex) as string;
-	const categories = this.getNodeParameter('categories', itemIndex) as string;
-	const dateEnd = this.getNodeParameter('dateEnd', itemIndex) as string;
-	const dateStart = this.getNodeParameter('dateStart', itemIndex) as string;
-	const description = this.getNodeParameter('description', itemIndex) as string;
-	const title = this.getNodeParameter('title', itemIndex) as string;
+export async function execute(this: IExecuteFunctions, _itemIndex: number): Promise<INodeExecutionData[]> {
+	const billingAccount = this.getNodeParameter('billingAccount', _itemIndex) as string;
+	const serviceName = this.getNodeParameter('serviceName', _itemIndex) as string;
+	const uid = this.getNodeParameter('uid', _itemIndex) as string;
+	const categories = this.getNodeParameter('categories', _itemIndex) as string;
+	const dateEnd = this.getNodeParameter('dateEnd', _itemIndex) as string;
+	const dateStart = this.getNodeParameter('dateStart', _itemIndex) as string;
+	const description = this.getNodeParameter('description', _itemIndex) as string;
+	const title = this.getNodeParameter('title', _itemIndex) as string;
 
 	const body: IDataObject = {
 		categories: categories,

@@ -53,11 +53,11 @@ export function description(displayOptions: IDisplayOptions): INodeProperties[] 
  * HTTP method: GET
  * Endpoint: /sms/{serviceName}/users/{login}/incoming
  */
-export async function execute(this: IExecuteFunctions): Promise<INodeExecutionData[]> {
-	const login = this.getNodeParameter('login', 0) as string;
-	const serviceName = this.getNodeParameter('serviceName', 0, '', { extractValue: true }) as string;
-	const sender = this.getNodeParameter('sender', 0) as string;
-	const tag = this.getNodeParameter('tag', 0) as string;
+export async function execute(this: IExecuteFunctions, _itemIndex?: number): Promise<INodeExecutionData[]> {
+	const login = this.getNodeParameter('login', _itemIndex ?? 0) as string;
+	const serviceName = this.getNodeParameter('serviceName', _itemIndex ?? 0, '', { extractValue: true }) as string;
+	const sender = this.getNodeParameter('sender', _itemIndex ?? 0) as string;
+	const tag = this.getNodeParameter('tag', _itemIndex ?? 0) as string;
 	const qs: IDataObject = {};
 	if (sender) qs['sender'] = sender;
 	if (tag) qs['tag'] = tag;

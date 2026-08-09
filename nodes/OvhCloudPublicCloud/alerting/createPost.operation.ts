@@ -77,15 +77,15 @@ export function description(displayOptions: IDisplayOptions): INodeProperties[] 
  * HTTP method: POST
  * Endpoint: /cloud/project/{serviceName}/alerting
  */
-export async function execute(this: IExecuteFunctions): Promise<INodeExecutionData[]> {
+export async function execute(this: IExecuteFunctions, _itemIndex?: number): Promise<INodeExecutionData[]> {
 	const client = new ApiClient(this);
-	const serviceName = this.getNodeParameter('publicCloudProjectId', 0, '', {
+	const serviceName = this.getNodeParameter('publicCloudProjectId', _itemIndex ?? 0, '', {
 		extractValue: true,
 	}) as string;
-	const name = this.getNodeParameter('name', 0) as string;
-	const delay = this.getNodeParameter('delay', 0) as number;
-	const monthlyThreshold = this.getNodeParameter('monthlyThreshold', 0) as number;
-	const email = this.getNodeParameter('email', 0) as string;
+	const name = this.getNodeParameter('name', _itemIndex ?? 0) as string;
+	const delay = this.getNodeParameter('delay', _itemIndex ?? 0) as number;
+	const monthlyThreshold = this.getNodeParameter('monthlyThreshold', _itemIndex ?? 0) as number;
+	const email = this.getNodeParameter('email', _itemIndex ?? 0) as string;
 
 	const body: IDataObject = {
 		name,

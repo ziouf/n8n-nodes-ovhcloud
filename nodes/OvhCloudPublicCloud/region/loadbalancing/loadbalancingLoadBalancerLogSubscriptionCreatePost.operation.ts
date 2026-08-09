@@ -77,23 +77,23 @@ export function description(displayOptions: IDisplayOptions): INodeProperties[] 
  * HTTP method: POST
  * Endpoint: /publicCloud/project/{projectId}/region/{regionName}/loadbalancing/loadbalancer/${loadBalancerIdVal}/log/subscription
  */
-export async function execute(this: IExecuteFunctions): Promise<INodeExecutionData[]> {
+export async function execute(this: IExecuteFunctions, _itemIndex?: number): Promise<INodeExecutionData[]> {
 	const client = new ApiClient(this);
-	const projectId = this.getNodeParameter('publicCloudProjectId', 0, '', {
+	const projectId = this.getNodeParameter('publicCloudProjectId', _itemIndex ?? 0, '', {
 		extractValue: true,
 	}) as string;
-	const regionName = this.getNodeParameter('regionName', 0) as string;
+	const regionName = this.getNodeParameter('regionName', _itemIndex ?? 0) as string;
 	const body = {} as import('n8n-workflow').IDataObject;
 
-	const loadBalancerIdVal = (this.getNodeParameter('loadBalancerId', 0) || '') as string;
+	const loadBalancerIdVal = (this.getNodeParameter('loadBalancerId', _itemIndex ?? 0) || '') as string;
 	if (loadBalancerIdVal !== '') {
 		body.loadBalancerId = loadBalancerIdVal;
 	}
-	const kindVal = (this.getNodeParameter('kind', 0) || '') as string;
+	const kindVal = (this.getNodeParameter('kind', _itemIndex ?? 0) || '') as string;
 	if (kindVal !== '') {
 		body.kind = kindVal;
 	}
-	const streamIdVal = (this.getNodeParameter('streamId', 0) || '') as string;
+	const streamIdVal = (this.getNodeParameter('streamId', _itemIndex ?? 0) || '') as string;
 	if (streamIdVal !== '') {
 		body.streamId = streamIdVal;
 	}

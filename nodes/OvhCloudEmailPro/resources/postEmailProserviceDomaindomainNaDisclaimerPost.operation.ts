@@ -47,14 +47,14 @@ export function description() {
  * HTTP method: POST
  * Endpoint: /email/pro/{service}/domain/{domainName}/disclaimer
  */
-export async function execute(this: IExecuteFunctions): Promise<INodeExecutionData[]> {
-	const service = this.getNodeParameter('service', 0) as string;
-	const domainName = this.getNodeParameter('domainName', 0) as string;
+export async function execute(this: IExecuteFunctions, _itemIndex?: number): Promise<INodeExecutionData[]> {
+	const service = this.getNodeParameter('service', _itemIndex ?? 0) as string;
+	const domainName = this.getNodeParameter('domainName', _itemIndex ?? 0) as string;
 
 
 
-	const content = this.getNodeParameter('content', 0) as string;
-	const outsideOnly = this.getNodeParameter('outsideOnly', 0) as string;
+	const content = this.getNodeParameter('content', _itemIndex ?? 0) as string;
+	const outsideOnly = this.getNodeParameter('outsideOnly', _itemIndex ?? 0) as string;
 
 
 const body: IDataObject = {

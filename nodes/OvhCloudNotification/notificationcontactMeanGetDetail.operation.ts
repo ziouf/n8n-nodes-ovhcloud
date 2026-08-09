@@ -29,9 +29,9 @@ export function description(displayOptions: IDisplayOptions): INodeProperties[] 
  */
 export async function execute(
 	this: IExecuteFunctions,
-	itemIndex: number,
+	_itemIndex: number,
 ): Promise<INodeExecutionData[]> {
-	const contactMeanId = this.getNodeParameter('contactMeanId', itemIndex) as string;
+	const contactMeanId = this.getNodeParameter('contactMeanId', _itemIndex) as string;
 
 	const client = new ApiClient(this);
 	const data = (await client.httpGet('/notification/contactMean/' + contactMeanId)) as IDataObject;

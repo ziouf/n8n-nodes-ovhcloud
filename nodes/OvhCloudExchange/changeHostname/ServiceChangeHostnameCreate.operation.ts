@@ -62,13 +62,13 @@ export function description() {
  * HTTP method: POST
  * Endpoint: /email/exchange/{organizationName}/service/{exchangeService}/changeHostname
  */
-export async function execute(this: IExecuteFunctions): Promise<INodeExecutionData[]> {
-	const organizationName = this.getNodeParameter('organizationName', 0) as string;
-	const exchangeService = this.getNodeParameter('exchangeService', 0) as string;
-	const dcvEmail = this.getNodeParameter('dcvEmail', 0) as string;
-	const hostname = this.getNodeParameter('hostname', 0) as string;
-	const useCname = this.getNodeParameter('useCname', 0) as string;
-	const useDnsAssist = this.getNodeParameter('useDnsAssist', 0) as string;
+export async function execute(this: IExecuteFunctions, _itemIndex?: number): Promise<INodeExecutionData[]> {
+	const organizationName = this.getNodeParameter('organizationName', _itemIndex ?? 0) as string;
+	const exchangeService = this.getNodeParameter('exchangeService', _itemIndex ?? 0) as string;
+	const dcvEmail = this.getNodeParameter('dcvEmail', _itemIndex ?? 0) as string;
+	const hostname = this.getNodeParameter('hostname', _itemIndex ?? 0) as string;
+	const useCname = this.getNodeParameter('useCname', _itemIndex ?? 0) as string;
+	const useDnsAssist = this.getNodeParameter('useDnsAssist', _itemIndex ?? 0) as string;
 
 	const body: IDataObject = {
     dcvEmail: dcvEmail,

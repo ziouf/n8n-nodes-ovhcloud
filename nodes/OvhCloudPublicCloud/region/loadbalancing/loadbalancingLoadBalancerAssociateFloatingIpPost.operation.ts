@@ -77,23 +77,23 @@ export function description(displayOptions: IDisplayOptions): INodeProperties[] 
  * HTTP method: POST
  * Endpoint: /publicCloud/project/{projectId}/region/{regionName}/loadbalancing/loadbalancer/${loadBalancerIdVal}/associateFloatingIp
  */
-export async function execute(this: IExecuteFunctions): Promise<INodeExecutionData[]> {
+export async function execute(this: IExecuteFunctions, _itemIndex?: number): Promise<INodeExecutionData[]> {
 	const client = new ApiClient(this);
-	const projectId = this.getNodeParameter('publicCloudProjectId', 0, '', {
+	const projectId = this.getNodeParameter('publicCloudProjectId', _itemIndex ?? 0, '', {
 		extractValue: true,
 	}) as string;
-	const regionName = this.getNodeParameter('regionName', 0) as string;
+	const regionName = this.getNodeParameter('regionName', _itemIndex ?? 0) as string;
 	const body = {} as import('n8n-workflow').IDataObject;
 
-	const loadBalancerIdVal = (this.getNodeParameter('loadBalancerId', 0) || '') as string;
+	const loadBalancerIdVal = (this.getNodeParameter('loadBalancerId', _itemIndex ?? 0) || '') as string;
 	if (loadBalancerIdVal !== '') {
 		body.loadBalancerId = loadBalancerIdVal;
 	}
-	const floatingIpIdVal = (this.getNodeParameter('floatingIpId', 0) || '') as string;
+	const floatingIpIdVal = (this.getNodeParameter('floatingIpId', _itemIndex ?? 0) || '') as string;
 	if (floatingIpIdVal !== '') {
 		body.floatingIpId = floatingIpIdVal;
 	}
-	const ipVal = (this.getNodeParameter('ip', 0) || '') as string;
+	const ipVal = (this.getNodeParameter('ip', _itemIndex ?? 0) || '') as string;
 	if (ipVal !== '') {
 		body.ip = ipVal;
 	}

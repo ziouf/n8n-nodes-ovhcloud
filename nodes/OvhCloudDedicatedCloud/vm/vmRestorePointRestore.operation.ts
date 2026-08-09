@@ -63,14 +63,14 @@ export function description(displayOptions: IDisplayOptions): INodeProperties[] 
  * HTTP method: POST
  * Endpoint: /dedicatedCloud/{serviceName}/datacenter/{datacenterId}/vm/{vmId}/backupJob/restorePoints/{restorePointId}/restore
  */
-export async function execute(this: IExecuteFunctions, itemIndex: number): Promise<INodeExecutionData[]> {
+export async function execute(this: IExecuteFunctions, _itemIndex: number): Promise<INodeExecutionData[]> {
 	const client = new ApiClient(this);
-	const serviceName = this.getNodeParameter('serviceName', itemIndex) as string;
-	const datacenterId = this.getNodeParameter('datacenterId', itemIndex) as string;
-	const vmId = this.getNodeParameter('vmId', itemIndex) as string;
-	const restorePointId = this.getNodeParameter('restorePointId', itemIndex) as string;
+	const serviceName = this.getNodeParameter('serviceName', _itemIndex) as string;
+	const datacenterId = this.getNodeParameter('datacenterId', _itemIndex) as string;
+	const vmId = this.getNodeParameter('vmId', _itemIndex) as string;
+	const restorePointId = this.getNodeParameter('restorePointId', _itemIndex) as string;
 	const body: IDataObject = {};
-	body.filerId = this.getNodeParameter('filerId', itemIndex) as number;
+	body.filerId = this.getNodeParameter('filerId', _itemIndex) as number;
 	const data = (await client.httpPost(`/dedicatedCloud/${serviceName}/datacenter/${datacenterId}/vm/${vmId}/backupJob/restorePoints/${restorePointId}/restore`, body)) as IDataObject;
 	return this.helpers.returnJsonArray([data]);
 }

@@ -82,35 +82,35 @@ export function description(displayOptions: IDisplayOptions) {
 	];
 }
 
-export async function execute(this: IExecuteFunctions): Promise<INodeExecutionData[]> {
+export async function execute(this: IExecuteFunctions, _itemIndex?: number): Promise<INodeExecutionData[]> {
 	const client = new ApiClient(this);
 	const qs: IDataObject = {};
 
-	const country = (this.getNodeParameter('country', 0) as string) || undefined;
+	const country = (this.getNodeParameter('country', _itemIndex ?? 0) as string) || undefined;
 	if (country) qs.country = country;
 
 	const serverHardwareType =
-		(this.getNodeParameter('serverHardwareType', 0) as string) || undefined;
+		(this.getNodeParameter('serverHardwareType', _itemIndex ?? 0) as string) || undefined;
 	if (serverHardwareType) qs.server = serverHardwareType;
 
-	const memoryType = (this.getNodeParameter('memoryType', 0) as string) || undefined;
+	const memoryType = (this.getNodeParameter('memoryType', _itemIndex ?? 0) as string) || undefined;
 	if (memoryType) qs.memory = memoryType;
 
-	const storageType = (this.getNodeParameter('storageType', 0) as string) || undefined;
+	const storageType = (this.getNodeParameter('storageType', _itemIndex ?? 0) as string) || undefined;
 	if (storageType) qs.storage = storageType;
 
-	const gpuName = (this.getNodeParameter('gpuName', 0) as string) || undefined;
+	const gpuName = (this.getNodeParameter('gpuName', _itemIndex ?? 0) as string) || undefined;
 	if (gpuName) qs.gpu = gpuName;
 
-	const planCode = (this.getNodeParameter('planCode', 0) as string) || undefined;
+	const planCode = (this.getNodeParameter('planCode', _itemIndex ?? 0) as string) || undefined;
 	if (planCode) qs.planCode = planCode;
 
-	const datacentersList = (this.getNodeParameter('datacentersList', 0) as string) || undefined;
+	const datacentersList = (this.getNodeParameter('datacentersList', _itemIndex ?? 0) as string) || undefined;
 	if (datacentersList) {
 		qs.datacenters = datacentersList.split(',').map((d: string) => d.trim());
 	}
 
-	const excludeDatacenters = this.getNodeParameter('excludeDatacenters', 0) as boolean | undefined;
+	const excludeDatacenters = this.getNodeParameter('excludeDatacenters', _itemIndex ?? 0) as boolean | undefined;
 	if (typeof excludeDatacenters === 'boolean') {
 		qs.excludeDatacenters = excludeDatacenters;
 	}

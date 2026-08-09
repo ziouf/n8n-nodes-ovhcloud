@@ -54,11 +54,11 @@ export function description(displayOptions: IDisplayOptions): INodeProperties[] 
  * HTTP method: POST
  * Endpoint: /telephony/{billingAccount}/ovhPabx/{serviceName}/hunting/queue/{queueId}/agent
  */
-export async function execute(this: IExecuteFunctions, itemIndex: number): Promise<INodeExecutionData[]> {
-	const billingAccount = this.getNodeParameter('billingAccount', itemIndex) as string;
-	const serviceName = this.getNodeParameter('serviceName', itemIndex) as string;
-	const position = this.getNodeParameter('position', itemIndex) as string;
-	const queueId = this.getNodeParameter('queueId', itemIndex) as string;
+export async function execute(this: IExecuteFunctions, _itemIndex: number): Promise<INodeExecutionData[]> {
+	const billingAccount = this.getNodeParameter('billingAccount', _itemIndex) as string;
+	const serviceName = this.getNodeParameter('serviceName', _itemIndex) as string;
+	const position = this.getNodeParameter('position', _itemIndex) as string;
+	const queueId = this.getNodeParameter('queueId', _itemIndex) as string;
 
 	const body: IDataObject = {
 		position: position,

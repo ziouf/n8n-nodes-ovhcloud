@@ -63,11 +63,11 @@ export function description(displayOptions: IDisplayOptions): INodeProperties[] 
  * HTTP method: POST
  * Endpoint: /dedicatedCloud/{serviceName}/securityOptions/resumePendingEnabling
  */
-export async function execute(this: IExecuteFunctions, itemIndex: number): Promise<INodeExecutionData[]> {
+export async function execute(this: IExecuteFunctions, _itemIndex: number): Promise<INodeExecutionData[]> {
 	const client = new ApiClient(this);
-	const serviceName = this.getNodeParameter('serviceName', itemIndex) as string;
+	const serviceName = this.getNodeParameter('serviceName', _itemIndex) as string;
 	const body: IDataObject = {};
-	body.option = this.getNodeParameter('option', itemIndex) as string;
+	body.option = this.getNodeParameter('option', _itemIndex) as string;
 	const data = (await client.httpPost(`/dedicatedCloud/${serviceName}/securityOptions/resumePendingEnabling`, body)) as IDataObject;
 	return this.helpers.returnJsonArray([data]);
 }

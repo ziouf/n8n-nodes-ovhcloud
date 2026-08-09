@@ -1689,1167 +1689,1167 @@ export async function execute(
 
     switch (operation) {
         case 'addressmovefeeget':
-            return executeaddressmovefeeGet.call(this);
+            return executeaddressmovefeeGet.call(this, itemIndex ?? 0);
         case 'antiddosproget':
-            return executeantiddosproGet.call(this);
+            return executeantiddosproGet.call(this, itemIndex ?? 0);
         case 'backupstorageget':
-            return executebackupstorageGet.call(this);
+            return executebackupstorageGet.call(this, itemIndex ?? 0);
         case 'classicmodelget':
-            return executeclassicmodelGet.call(this);
+            return executeclassicmodelGet.call(this, itemIndex ?? 0);
         case 'classicmodelget1':
-            return executeclassicmodelGet1.call(this);
+            return executeclassicmodelGet1.call(this, itemIndex ?? 0);
         case 'classicmodelget2':
-            return executeclassicmodelGet2.call(this);
+            return executeclassicmodelGet2.call(this, itemIndex ?? 0);
         case 'cloudmodelget':
-            return executecloudmodelGet.call(this);
+            return executecloudmodelGet.call(this, itemIndex ?? 0);
         case 'cloudmodelget1':
-            return executecloudmodelGet1.call(this);
+            return executecloudmodelGet1.call(this, itemIndex ?? 0);
         case 'cloudmodelget2':
-            return executecloudmodelGet2.call(this);
+            return executecloudmodelGet2.call(this, itemIndex ?? 0);
         case 'cloudmodelget3':
-            return executecloudmodelGet3.call(this);
+            return executecloudmodelGet3.call(this, itemIndex ?? 0);
         case 'cloudmodelget4':
-            return executecloudmodelGet4.call(this);
+            return executecloudmodelGet4.call(this, itemIndex ?? 0);
         case 'cloudmodelget5':
-            return executecloudmodelGet5.call(this);
+            return executecloudmodelGet5.call(this, itemIndex ?? 0);
         case 'cloudoptionget':
-            return executecloudoptionGet.call(this);
+            return executecloudoptionGet.call(this, itemIndex ?? 0);
         case 'cloudoptionget1':
-            return executecloudoptionGet1.call(this);
+            return executecloudoptionGet1.call(this, itemIndex ?? 0);
         case 'cloudoptionget2':
-            return executecloudoptionGet2.call(this);
+            return executecloudoptionGet2.call(this, itemIndex ?? 0);
         case 'cloudoptionget3':
-            return executecloudoptionGet3.call(this);
+            return executecloudoptionGet3.call(this, itemIndex ?? 0);
         case 'cloudoptionget4':
-            return executecloudoptionGet4.call(this);
+            return executecloudoptionGet4.call(this, itemIndex ?? 0);
         case 'cloudoptionget5':
-            return executecloudoptionGet5.call(this);
+            return executecloudoptionGet5.call(this, itemIndex ?? 0);
         case 'cloudrammodelget':
-            return executecloudrammodelGet.call(this);
+            return executecloudrammodelGet.call(this, itemIndex ?? 0);
         case 'cloudrammodelget1':
-            return executecloudrammodelGet1.call(this);
+            return executecloudrammodelGet1.call(this, itemIndex ?? 0);
         case 'cloudrammodelget2':
-            return executecloudrammodelGet2.call(this);
+            return executecloudrammodelGet2.call(this, itemIndex ?? 0);
         case 'cloudrammodelget3':
-            return executecloudrammodelGet3.call(this);
+            return executecloudrammodelGet3.call(this, itemIndex ?? 0);
         case 'cloudramoptionget':
-            return executecloudramoptionGet.call(this);
+            return executecloudramoptionGet.call(this, itemIndex ?? 0);
         case 'cloudramoptionget1':
-            return executecloudramoptionGet1.call(this);
+            return executecloudramoptionGet1.call(this, itemIndex ?? 0);
         case 'cloudramoptionget2':
-            return executecloudramoptionGet2.call(this);
+            return executecloudramoptionGet2.call(this, itemIndex ?? 0);
         case 'cloudramoptionget3':
-            return executecloudramoptionGet3.call(this);
+            return executecloudramoptionGet3.call(this, itemIndex ?? 0);
         case 'csp2licenseget':
-            return executecsp2licenseGet.call(this);
+            return executecsp2licenseGet.call(this, itemIndex ?? 0);
         case 'filerhourlyget':
-            return executefilerhourlyGet.call(this);
+            return executefilerhourlyGet.call(this, itemIndex ?? 0);
         case 'filerhourlyget1':
-            return executefilerhourlyGet1.call(this);
+            return executefilerhourlyGet1.call(this, itemIndex ?? 0);
         case 'filerhourlyget10':
-            return executefilerhourlyGet10.call(this);
+            return executefilerhourlyGet10.call(this, itemIndex ?? 0);
         case 'filerhourlyget100':
-            return executefilerhourlyGet100.call(this);
+            return executefilerhourlyGet100.call(this, itemIndex ?? 0);
         case 'filerhourlyget101':
-            return executefilerhourlyGet101.call(this);
+            return executefilerhourlyGet101.call(this, itemIndex ?? 0);
         case 'filerhourlyget102':
-            return executefilerhourlyGet102.call(this);
+            return executefilerhourlyGet102.call(this, itemIndex ?? 0);
         case 'filerhourlyget103':
-            return executefilerhourlyGet103.call(this);
+            return executefilerhourlyGet103.call(this, itemIndex ?? 0);
         case 'filerhourlyget104':
-            return executefilerhourlyGet104.call(this);
+            return executefilerhourlyGet104.call(this, itemIndex ?? 0);
         case 'filerhourlyget105':
-            return executefilerhourlyGet105.call(this);
+            return executefilerhourlyGet105.call(this, itemIndex ?? 0);
         case 'filerhourlyget106':
-            return executefilerhourlyGet106.call(this);
+            return executefilerhourlyGet106.call(this, itemIndex ?? 0);
         case 'filerhourlyget107':
-            return executefilerhourlyGet107.call(this);
+            return executefilerhourlyGet107.call(this, itemIndex ?? 0);
         case 'filerhourlyget108':
-            return executefilerhourlyGet108.call(this);
+            return executefilerhourlyGet108.call(this, itemIndex ?? 0);
         case 'filerhourlyget109':
-            return executefilerhourlyGet109.call(this);
+            return executefilerhourlyGet109.call(this, itemIndex ?? 0);
         case 'filerhourlyget11':
-            return executefilerhourlyGet11.call(this);
+            return executefilerhourlyGet11.call(this, itemIndex ?? 0);
         case 'filerhourlyget110':
-            return executefilerhourlyGet110.call(this);
+            return executefilerhourlyGet110.call(this, itemIndex ?? 0);
         case 'filerhourlyget111':
-            return executefilerhourlyGet111.call(this);
+            return executefilerhourlyGet111.call(this, itemIndex ?? 0);
         case 'filerhourlyget112':
-            return executefilerhourlyGet112.call(this);
+            return executefilerhourlyGet112.call(this, itemIndex ?? 0);
         case 'filerhourlyget113':
-            return executefilerhourlyGet113.call(this);
+            return executefilerhourlyGet113.call(this, itemIndex ?? 0);
         case 'filerhourlyget114':
-            return executefilerhourlyGet114.call(this);
+            return executefilerhourlyGet114.call(this, itemIndex ?? 0);
         case 'filerhourlyget115':
-            return executefilerhourlyGet115.call(this);
+            return executefilerhourlyGet115.call(this, itemIndex ?? 0);
         case 'filerhourlyget116':
-            return executefilerhourlyGet116.call(this);
+            return executefilerhourlyGet116.call(this, itemIndex ?? 0);
         case 'filerhourlyget117':
-            return executefilerhourlyGet117.call(this);
+            return executefilerhourlyGet117.call(this, itemIndex ?? 0);
         case 'filerhourlyget118':
-            return executefilerhourlyGet118.call(this);
+            return executefilerhourlyGet118.call(this, itemIndex ?? 0);
         case 'filerhourlyget119':
-            return executefilerhourlyGet119.call(this);
+            return executefilerhourlyGet119.call(this, itemIndex ?? 0);
         case 'filerhourlyget12':
-            return executefilerhourlyGet12.call(this);
+            return executefilerhourlyGet12.call(this, itemIndex ?? 0);
         case 'filerhourlyget120':
-            return executefilerhourlyGet120.call(this);
+            return executefilerhourlyGet120.call(this, itemIndex ?? 0);
         case 'filerhourlyget121':
-            return executefilerhourlyGet121.call(this);
+            return executefilerhourlyGet121.call(this, itemIndex ?? 0);
         case 'filerhourlyget122':
-            return executefilerhourlyGet122.call(this);
+            return executefilerhourlyGet122.call(this, itemIndex ?? 0);
         case 'filerhourlyget123':
-            return executefilerhourlyGet123.call(this);
+            return executefilerhourlyGet123.call(this, itemIndex ?? 0);
         case 'filerhourlyget124':
-            return executefilerhourlyGet124.call(this);
+            return executefilerhourlyGet124.call(this, itemIndex ?? 0);
         case 'filerhourlyget125':
-            return executefilerhourlyGet125.call(this);
+            return executefilerhourlyGet125.call(this, itemIndex ?? 0);
         case 'filerhourlyget126':
-            return executefilerhourlyGet126.call(this);
+            return executefilerhourlyGet126.call(this, itemIndex ?? 0);
         case 'filerhourlyget127':
-            return executefilerhourlyGet127.call(this);
+            return executefilerhourlyGet127.call(this, itemIndex ?? 0);
         case 'filerhourlyget128':
-            return executefilerhourlyGet128.call(this);
+            return executefilerhourlyGet128.call(this, itemIndex ?? 0);
         case 'filerhourlyget129':
-            return executefilerhourlyGet129.call(this);
+            return executefilerhourlyGet129.call(this, itemIndex ?? 0);
         case 'filerhourlyget13':
-            return executefilerhourlyGet13.call(this);
+            return executefilerhourlyGet13.call(this, itemIndex ?? 0);
         case 'filerhourlyget130':
-            return executefilerhourlyGet130.call(this);
+            return executefilerhourlyGet130.call(this, itemIndex ?? 0);
         case 'filerhourlyget14':
-            return executefilerhourlyGet14.call(this);
+            return executefilerhourlyGet14.call(this, itemIndex ?? 0);
         case 'filerhourlyget15':
-            return executefilerhourlyGet15.call(this);
+            return executefilerhourlyGet15.call(this, itemIndex ?? 0);
         case 'filerhourlyget16':
-            return executefilerhourlyGet16.call(this);
+            return executefilerhourlyGet16.call(this, itemIndex ?? 0);
         case 'filerhourlyget17':
-            return executefilerhourlyGet17.call(this);
+            return executefilerhourlyGet17.call(this, itemIndex ?? 0);
         case 'filerhourlyget18':
-            return executefilerhourlyGet18.call(this);
+            return executefilerhourlyGet18.call(this, itemIndex ?? 0);
         case 'filerhourlyget19':
-            return executefilerhourlyGet19.call(this);
+            return executefilerhourlyGet19.call(this, itemIndex ?? 0);
         case 'filerhourlyget2':
-            return executefilerhourlyGet2.call(this);
+            return executefilerhourlyGet2.call(this, itemIndex ?? 0);
         case 'filerhourlyget20':
-            return executefilerhourlyGet20.call(this);
+            return executefilerhourlyGet20.call(this, itemIndex ?? 0);
         case 'filerhourlyget21':
-            return executefilerhourlyGet21.call(this);
+            return executefilerhourlyGet21.call(this, itemIndex ?? 0);
         case 'filerhourlyget22':
-            return executefilerhourlyGet22.call(this);
+            return executefilerhourlyGet22.call(this, itemIndex ?? 0);
         case 'filerhourlyget23':
-            return executefilerhourlyGet23.call(this);
+            return executefilerhourlyGet23.call(this, itemIndex ?? 0);
         case 'filerhourlyget24':
-            return executefilerhourlyGet24.call(this);
+            return executefilerhourlyGet24.call(this, itemIndex ?? 0);
         case 'filerhourlyget25':
-            return executefilerhourlyGet25.call(this);
+            return executefilerhourlyGet25.call(this, itemIndex ?? 0);
         case 'filerhourlyget26':
-            return executefilerhourlyGet26.call(this);
+            return executefilerhourlyGet26.call(this, itemIndex ?? 0);
         case 'filerhourlyget27':
-            return executefilerhourlyGet27.call(this);
+            return executefilerhourlyGet27.call(this, itemIndex ?? 0);
         case 'filerhourlyget28':
-            return executefilerhourlyGet28.call(this);
+            return executefilerhourlyGet28.call(this, itemIndex ?? 0);
         case 'filerhourlyget29':
-            return executefilerhourlyGet29.call(this);
+            return executefilerhourlyGet29.call(this, itemIndex ?? 0);
         case 'filerhourlyget3':
-            return executefilerhourlyGet3.call(this);
+            return executefilerhourlyGet3.call(this, itemIndex ?? 0);
         case 'filerhourlyget30':
-            return executefilerhourlyGet30.call(this);
+            return executefilerhourlyGet30.call(this, itemIndex ?? 0);
         case 'filerhourlyget31':
-            return executefilerhourlyGet31.call(this);
+            return executefilerhourlyGet31.call(this, itemIndex ?? 0);
         case 'filerhourlyget32':
-            return executefilerhourlyGet32.call(this);
+            return executefilerhourlyGet32.call(this, itemIndex ?? 0);
         case 'filerhourlyget33':
-            return executefilerhourlyGet33.call(this);
+            return executefilerhourlyGet33.call(this, itemIndex ?? 0);
         case 'filerhourlyget34':
-            return executefilerhourlyGet34.call(this);
+            return executefilerhourlyGet34.call(this, itemIndex ?? 0);
         case 'filerhourlyget35':
-            return executefilerhourlyGet35.call(this);
+            return executefilerhourlyGet35.call(this, itemIndex ?? 0);
         case 'filerhourlyget36':
-            return executefilerhourlyGet36.call(this);
+            return executefilerhourlyGet36.call(this, itemIndex ?? 0);
         case 'filerhourlyget37':
-            return executefilerhourlyGet37.call(this);
+            return executefilerhourlyGet37.call(this, itemIndex ?? 0);
         case 'filerhourlyget38':
-            return executefilerhourlyGet38.call(this);
+            return executefilerhourlyGet38.call(this, itemIndex ?? 0);
         case 'filerhourlyget39':
-            return executefilerhourlyGet39.call(this);
+            return executefilerhourlyGet39.call(this, itemIndex ?? 0);
         case 'filerhourlyget4':
-            return executefilerhourlyGet4.call(this);
+            return executefilerhourlyGet4.call(this, itemIndex ?? 0);
         case 'filerhourlyget40':
-            return executefilerhourlyGet40.call(this);
+            return executefilerhourlyGet40.call(this, itemIndex ?? 0);
         case 'filerhourlyget41':
-            return executefilerhourlyGet41.call(this);
+            return executefilerhourlyGet41.call(this, itemIndex ?? 0);
         case 'filerhourlyget42':
-            return executefilerhourlyGet42.call(this);
+            return executefilerhourlyGet42.call(this, itemIndex ?? 0);
         case 'filerhourlyget43':
-            return executefilerhourlyGet43.call(this);
+            return executefilerhourlyGet43.call(this, itemIndex ?? 0);
         case 'filerhourlyget44':
-            return executefilerhourlyGet44.call(this);
+            return executefilerhourlyGet44.call(this, itemIndex ?? 0);
         case 'filerhourlyget45':
-            return executefilerhourlyGet45.call(this);
+            return executefilerhourlyGet45.call(this, itemIndex ?? 0);
         case 'filerhourlyget46':
-            return executefilerhourlyGet46.call(this);
+            return executefilerhourlyGet46.call(this, itemIndex ?? 0);
         case 'filerhourlyget47':
-            return executefilerhourlyGet47.call(this);
+            return executefilerhourlyGet47.call(this, itemIndex ?? 0);
         case 'filerhourlyget48':
-            return executefilerhourlyGet48.call(this);
+            return executefilerhourlyGet48.call(this, itemIndex ?? 0);
         case 'filerhourlyget49':
-            return executefilerhourlyGet49.call(this);
+            return executefilerhourlyGet49.call(this, itemIndex ?? 0);
         case 'filerhourlyget5':
-            return executefilerhourlyGet5.call(this);
+            return executefilerhourlyGet5.call(this, itemIndex ?? 0);
         case 'filerhourlyget50':
-            return executefilerhourlyGet50.call(this);
+            return executefilerhourlyGet50.call(this, itemIndex ?? 0);
         case 'filerhourlyget51':
-            return executefilerhourlyGet51.call(this);
+            return executefilerhourlyGet51.call(this, itemIndex ?? 0);
         case 'filerhourlyget52':
-            return executefilerhourlyGet52.call(this);
+            return executefilerhourlyGet52.call(this, itemIndex ?? 0);
         case 'filerhourlyget53':
-            return executefilerhourlyGet53.call(this);
+            return executefilerhourlyGet53.call(this, itemIndex ?? 0);
         case 'filerhourlyget54':
-            return executefilerhourlyGet54.call(this);
+            return executefilerhourlyGet54.call(this, itemIndex ?? 0);
         case 'filerhourlyget55':
-            return executefilerhourlyGet55.call(this);
+            return executefilerhourlyGet55.call(this, itemIndex ?? 0);
         case 'filerhourlyget56':
-            return executefilerhourlyGet56.call(this);
+            return executefilerhourlyGet56.call(this, itemIndex ?? 0);
         case 'filerhourlyget57':
-            return executefilerhourlyGet57.call(this);
+            return executefilerhourlyGet57.call(this, itemIndex ?? 0);
         case 'filerhourlyget58':
-            return executefilerhourlyGet58.call(this);
+            return executefilerhourlyGet58.call(this, itemIndex ?? 0);
         case 'filerhourlyget59':
-            return executefilerhourlyGet59.call(this);
+            return executefilerhourlyGet59.call(this, itemIndex ?? 0);
         case 'filerhourlyget6':
-            return executefilerhourlyGet6.call(this);
+            return executefilerhourlyGet6.call(this, itemIndex ?? 0);
         case 'filerhourlyget60':
-            return executefilerhourlyGet60.call(this);
+            return executefilerhourlyGet60.call(this, itemIndex ?? 0);
         case 'filerhourlyget61':
-            return executefilerhourlyGet61.call(this);
+            return executefilerhourlyGet61.call(this, itemIndex ?? 0);
         case 'filerhourlyget62':
-            return executefilerhourlyGet62.call(this);
+            return executefilerhourlyGet62.call(this, itemIndex ?? 0);
         case 'filerhourlyget63':
-            return executefilerhourlyGet63.call(this);
+            return executefilerhourlyGet63.call(this, itemIndex ?? 0);
         case 'filerhourlyget64':
-            return executefilerhourlyGet64.call(this);
+            return executefilerhourlyGet64.call(this, itemIndex ?? 0);
         case 'filerhourlyget65':
-            return executefilerhourlyGet65.call(this);
+            return executefilerhourlyGet65.call(this, itemIndex ?? 0);
         case 'filerhourlyget66':
-            return executefilerhourlyGet66.call(this);
+            return executefilerhourlyGet66.call(this, itemIndex ?? 0);
         case 'filerhourlyget67':
-            return executefilerhourlyGet67.call(this);
+            return executefilerhourlyGet67.call(this, itemIndex ?? 0);
         case 'filerhourlyget68':
-            return executefilerhourlyGet68.call(this);
+            return executefilerhourlyGet68.call(this, itemIndex ?? 0);
         case 'filerhourlyget69':
-            return executefilerhourlyGet69.call(this);
+            return executefilerhourlyGet69.call(this, itemIndex ?? 0);
         case 'filerhourlyget7':
-            return executefilerhourlyGet7.call(this);
+            return executefilerhourlyGet7.call(this, itemIndex ?? 0);
         case 'filerhourlyget70':
-            return executefilerhourlyGet70.call(this);
+            return executefilerhourlyGet70.call(this, itemIndex ?? 0);
         case 'filerhourlyget71':
-            return executefilerhourlyGet71.call(this);
+            return executefilerhourlyGet71.call(this, itemIndex ?? 0);
         case 'filerhourlyget72':
-            return executefilerhourlyGet72.call(this);
+            return executefilerhourlyGet72.call(this, itemIndex ?? 0);
         case 'filerhourlyget73':
-            return executefilerhourlyGet73.call(this);
+            return executefilerhourlyGet73.call(this, itemIndex ?? 0);
         case 'filerhourlyget74':
-            return executefilerhourlyGet74.call(this);
+            return executefilerhourlyGet74.call(this, itemIndex ?? 0);
         case 'filerhourlyget75':
-            return executefilerhourlyGet75.call(this);
+            return executefilerhourlyGet75.call(this, itemIndex ?? 0);
         case 'filerhourlyget76':
-            return executefilerhourlyGet76.call(this);
+            return executefilerhourlyGet76.call(this, itemIndex ?? 0);
         case 'filerhourlyget77':
-            return executefilerhourlyGet77.call(this);
+            return executefilerhourlyGet77.call(this, itemIndex ?? 0);
         case 'filerhourlyget78':
-            return executefilerhourlyGet78.call(this);
+            return executefilerhourlyGet78.call(this, itemIndex ?? 0);
         case 'filerhourlyget79':
-            return executefilerhourlyGet79.call(this);
+            return executefilerhourlyGet79.call(this, itemIndex ?? 0);
         case 'filerhourlyget8':
-            return executefilerhourlyGet8.call(this);
+            return executefilerhourlyGet8.call(this, itemIndex ?? 0);
         case 'filerhourlyget80':
-            return executefilerhourlyGet80.call(this);
+            return executefilerhourlyGet80.call(this, itemIndex ?? 0);
         case 'filerhourlyget81':
-            return executefilerhourlyGet81.call(this);
+            return executefilerhourlyGet81.call(this, itemIndex ?? 0);
         case 'filerhourlyget82':
-            return executefilerhourlyGet82.call(this);
+            return executefilerhourlyGet82.call(this, itemIndex ?? 0);
         case 'filerhourlyget83':
-            return executefilerhourlyGet83.call(this);
+            return executefilerhourlyGet83.call(this, itemIndex ?? 0);
         case 'filerhourlyget84':
-            return executefilerhourlyGet84.call(this);
+            return executefilerhourlyGet84.call(this, itemIndex ?? 0);
         case 'filerhourlyget85':
-            return executefilerhourlyGet85.call(this);
+            return executefilerhourlyGet85.call(this, itemIndex ?? 0);
         case 'filerhourlyget86':
-            return executefilerhourlyGet86.call(this);
+            return executefilerhourlyGet86.call(this, itemIndex ?? 0);
         case 'filerhourlyget87':
-            return executefilerhourlyGet87.call(this);
+            return executefilerhourlyGet87.call(this, itemIndex ?? 0);
         case 'filerhourlyget88':
-            return executefilerhourlyGet88.call(this);
+            return executefilerhourlyGet88.call(this, itemIndex ?? 0);
         case 'filerhourlyget89':
-            return executefilerhourlyGet89.call(this);
+            return executefilerhourlyGet89.call(this, itemIndex ?? 0);
         case 'filerhourlyget9':
-            return executefilerhourlyGet9.call(this);
+            return executefilerhourlyGet9.call(this, itemIndex ?? 0);
         case 'filerhourlyget90':
-            return executefilerhourlyGet90.call(this);
+            return executefilerhourlyGet90.call(this, itemIndex ?? 0);
         case 'filerhourlyget91':
-            return executefilerhourlyGet91.call(this);
+            return executefilerhourlyGet91.call(this, itemIndex ?? 0);
         case 'filerhourlyget92':
-            return executefilerhourlyGet92.call(this);
+            return executefilerhourlyGet92.call(this, itemIndex ?? 0);
         case 'filerhourlyget93':
-            return executefilerhourlyGet93.call(this);
+            return executefilerhourlyGet93.call(this, itemIndex ?? 0);
         case 'filerhourlyget94':
-            return executefilerhourlyGet94.call(this);
+            return executefilerhourlyGet94.call(this, itemIndex ?? 0);
         case 'filerhourlyget95':
-            return executefilerhourlyGet95.call(this);
+            return executefilerhourlyGet95.call(this, itemIndex ?? 0);
         case 'filerhourlyget96':
-            return executefilerhourlyGet96.call(this);
+            return executefilerhourlyGet96.call(this, itemIndex ?? 0);
         case 'filerhourlyget97':
-            return executefilerhourlyGet97.call(this);
+            return executefilerhourlyGet97.call(this, itemIndex ?? 0);
         case 'filerhourlyget98':
-            return executefilerhourlyGet98.call(this);
+            return executefilerhourlyGet98.call(this, itemIndex ?? 0);
         case 'filerhourlyget99':
-            return executefilerhourlyGet99.call(this);
+            return executefilerhourlyGet99.call(this, itemIndex ?? 0);
         case 'filermonthlyget':
-            return executefilermonthlyGet.call(this);
+            return executefilermonthlyGet.call(this, itemIndex ?? 0);
         case 'filermonthlyget1':
-            return executefilermonthlyGet1.call(this);
+            return executefilermonthlyGet1.call(this, itemIndex ?? 0);
         case 'filermonthlyget10':
-            return executefilermonthlyGet10.call(this);
+            return executefilermonthlyGet10.call(this, itemIndex ?? 0);
         case 'filermonthlyget100':
-            return executefilermonthlyGet100.call(this);
+            return executefilermonthlyGet100.call(this, itemIndex ?? 0);
         case 'filermonthlyget101':
-            return executefilermonthlyGet101.call(this);
+            return executefilermonthlyGet101.call(this, itemIndex ?? 0);
         case 'filermonthlyget102':
-            return executefilermonthlyGet102.call(this);
+            return executefilermonthlyGet102.call(this, itemIndex ?? 0);
         case 'filermonthlyget103':
-            return executefilermonthlyGet103.call(this);
+            return executefilermonthlyGet103.call(this, itemIndex ?? 0);
         case 'filermonthlyget104':
-            return executefilermonthlyGet104.call(this);
+            return executefilermonthlyGet104.call(this, itemIndex ?? 0);
         case 'filermonthlyget105':
-            return executefilermonthlyGet105.call(this);
+            return executefilermonthlyGet105.call(this, itemIndex ?? 0);
         case 'filermonthlyget106':
-            return executefilermonthlyGet106.call(this);
+            return executefilermonthlyGet106.call(this, itemIndex ?? 0);
         case 'filermonthlyget107':
-            return executefilermonthlyGet107.call(this);
+            return executefilermonthlyGet107.call(this, itemIndex ?? 0);
         case 'filermonthlyget108':
-            return executefilermonthlyGet108.call(this);
+            return executefilermonthlyGet108.call(this, itemIndex ?? 0);
         case 'filermonthlyget109':
-            return executefilermonthlyGet109.call(this);
+            return executefilermonthlyGet109.call(this, itemIndex ?? 0);
         case 'filermonthlyget11':
-            return executefilermonthlyGet11.call(this);
+            return executefilermonthlyGet11.call(this, itemIndex ?? 0);
         case 'filermonthlyget110':
-            return executefilermonthlyGet110.call(this);
+            return executefilermonthlyGet110.call(this, itemIndex ?? 0);
         case 'filermonthlyget111':
-            return executefilermonthlyGet111.call(this);
+            return executefilermonthlyGet111.call(this, itemIndex ?? 0);
         case 'filermonthlyget112':
-            return executefilermonthlyGet112.call(this);
+            return executefilermonthlyGet112.call(this, itemIndex ?? 0);
         case 'filermonthlyget113':
-            return executefilermonthlyGet113.call(this);
+            return executefilermonthlyGet113.call(this, itemIndex ?? 0);
         case 'filermonthlyget114':
-            return executefilermonthlyGet114.call(this);
+            return executefilermonthlyGet114.call(this, itemIndex ?? 0);
         case 'filermonthlyget115':
-            return executefilermonthlyGet115.call(this);
+            return executefilermonthlyGet115.call(this, itemIndex ?? 0);
         case 'filermonthlyget116':
-            return executefilermonthlyGet116.call(this);
+            return executefilermonthlyGet116.call(this, itemIndex ?? 0);
         case 'filermonthlyget117':
-            return executefilermonthlyGet117.call(this);
+            return executefilermonthlyGet117.call(this, itemIndex ?? 0);
         case 'filermonthlyget118':
-            return executefilermonthlyGet118.call(this);
+            return executefilermonthlyGet118.call(this, itemIndex ?? 0);
         case 'filermonthlyget119':
-            return executefilermonthlyGet119.call(this);
+            return executefilermonthlyGet119.call(this, itemIndex ?? 0);
         case 'filermonthlyget12':
-            return executefilermonthlyGet12.call(this);
+            return executefilermonthlyGet12.call(this, itemIndex ?? 0);
         case 'filermonthlyget120':
-            return executefilermonthlyGet120.call(this);
+            return executefilermonthlyGet120.call(this, itemIndex ?? 0);
         case 'filermonthlyget121':
-            return executefilermonthlyGet121.call(this);
+            return executefilermonthlyGet121.call(this, itemIndex ?? 0);
         case 'filermonthlyget122':
-            return executefilermonthlyGet122.call(this);
+            return executefilermonthlyGet122.call(this, itemIndex ?? 0);
         case 'filermonthlyget123':
-            return executefilermonthlyGet123.call(this);
+            return executefilermonthlyGet123.call(this, itemIndex ?? 0);
         case 'filermonthlyget124':
-            return executefilermonthlyGet124.call(this);
+            return executefilermonthlyGet124.call(this, itemIndex ?? 0);
         case 'filermonthlyget125':
-            return executefilermonthlyGet125.call(this);
+            return executefilermonthlyGet125.call(this, itemIndex ?? 0);
         case 'filermonthlyget126':
-            return executefilermonthlyGet126.call(this);
+            return executefilermonthlyGet126.call(this, itemIndex ?? 0);
         case 'filermonthlyget127':
-            return executefilermonthlyGet127.call(this);
+            return executefilermonthlyGet127.call(this, itemIndex ?? 0);
         case 'filermonthlyget128':
-            return executefilermonthlyGet128.call(this);
+            return executefilermonthlyGet128.call(this, itemIndex ?? 0);
         case 'filermonthlyget129':
-            return executefilermonthlyGet129.call(this);
+            return executefilermonthlyGet129.call(this, itemIndex ?? 0);
         case 'filermonthlyget13':
-            return executefilermonthlyGet13.call(this);
+            return executefilermonthlyGet13.call(this, itemIndex ?? 0);
         case 'filermonthlyget130':
-            return executefilermonthlyGet130.call(this);
+            return executefilermonthlyGet130.call(this, itemIndex ?? 0);
         case 'filermonthlyget14':
-            return executefilermonthlyGet14.call(this);
+            return executefilermonthlyGet14.call(this, itemIndex ?? 0);
         case 'filermonthlyget15':
-            return executefilermonthlyGet15.call(this);
+            return executefilermonthlyGet15.call(this, itemIndex ?? 0);
         case 'filermonthlyget16':
-            return executefilermonthlyGet16.call(this);
+            return executefilermonthlyGet16.call(this, itemIndex ?? 0);
         case 'filermonthlyget17':
-            return executefilermonthlyGet17.call(this);
+            return executefilermonthlyGet17.call(this, itemIndex ?? 0);
         case 'filermonthlyget18':
-            return executefilermonthlyGet18.call(this);
+            return executefilermonthlyGet18.call(this, itemIndex ?? 0);
         case 'filermonthlyget19':
-            return executefilermonthlyGet19.call(this);
+            return executefilermonthlyGet19.call(this, itemIndex ?? 0);
         case 'filermonthlyget2':
-            return executefilermonthlyGet2.call(this);
+            return executefilermonthlyGet2.call(this, itemIndex ?? 0);
         case 'filermonthlyget20':
-            return executefilermonthlyGet20.call(this);
+            return executefilermonthlyGet20.call(this, itemIndex ?? 0);
         case 'filermonthlyget21':
-            return executefilermonthlyGet21.call(this);
+            return executefilermonthlyGet21.call(this, itemIndex ?? 0);
         case 'filermonthlyget22':
-            return executefilermonthlyGet22.call(this);
+            return executefilermonthlyGet22.call(this, itemIndex ?? 0);
         case 'filermonthlyget23':
-            return executefilermonthlyGet23.call(this);
+            return executefilermonthlyGet23.call(this, itemIndex ?? 0);
         case 'filermonthlyget24':
-            return executefilermonthlyGet24.call(this);
+            return executefilermonthlyGet24.call(this, itemIndex ?? 0);
         case 'filermonthlyget25':
-            return executefilermonthlyGet25.call(this);
+            return executefilermonthlyGet25.call(this, itemIndex ?? 0);
         case 'filermonthlyget26':
-            return executefilermonthlyGet26.call(this);
+            return executefilermonthlyGet26.call(this, itemIndex ?? 0);
         case 'filermonthlyget27':
-            return executefilermonthlyGet27.call(this);
+            return executefilermonthlyGet27.call(this, itemIndex ?? 0);
         case 'filermonthlyget28':
-            return executefilermonthlyGet28.call(this);
+            return executefilermonthlyGet28.call(this, itemIndex ?? 0);
         case 'filermonthlyget29':
-            return executefilermonthlyGet29.call(this);
+            return executefilermonthlyGet29.call(this, itemIndex ?? 0);
         case 'filermonthlyget3':
-            return executefilermonthlyGet3.call(this);
+            return executefilermonthlyGet3.call(this, itemIndex ?? 0);
         case 'filermonthlyget30':
-            return executefilermonthlyGet30.call(this);
+            return executefilermonthlyGet30.call(this, itemIndex ?? 0);
         case 'filermonthlyget31':
-            return executefilermonthlyGet31.call(this);
+            return executefilermonthlyGet31.call(this, itemIndex ?? 0);
         case 'filermonthlyget32':
-            return executefilermonthlyGet32.call(this);
+            return executefilermonthlyGet32.call(this, itemIndex ?? 0);
         case 'filermonthlyget33':
-            return executefilermonthlyGet33.call(this);
+            return executefilermonthlyGet33.call(this, itemIndex ?? 0);
         case 'filermonthlyget34':
-            return executefilermonthlyGet34.call(this);
+            return executefilermonthlyGet34.call(this, itemIndex ?? 0);
         case 'filermonthlyget35':
-            return executefilermonthlyGet35.call(this);
+            return executefilermonthlyGet35.call(this, itemIndex ?? 0);
         case 'filermonthlyget36':
-            return executefilermonthlyGet36.call(this);
+            return executefilermonthlyGet36.call(this, itemIndex ?? 0);
         case 'filermonthlyget37':
-            return executefilermonthlyGet37.call(this);
+            return executefilermonthlyGet37.call(this, itemIndex ?? 0);
         case 'filermonthlyget38':
-            return executefilermonthlyGet38.call(this);
+            return executefilermonthlyGet38.call(this, itemIndex ?? 0);
         case 'filermonthlyget39':
-            return executefilermonthlyGet39.call(this);
+            return executefilermonthlyGet39.call(this, itemIndex ?? 0);
         case 'filermonthlyget4':
-            return executefilermonthlyGet4.call(this);
+            return executefilermonthlyGet4.call(this, itemIndex ?? 0);
         case 'filermonthlyget40':
-            return executefilermonthlyGet40.call(this);
+            return executefilermonthlyGet40.call(this, itemIndex ?? 0);
         case 'filermonthlyget41':
-            return executefilermonthlyGet41.call(this);
+            return executefilermonthlyGet41.call(this, itemIndex ?? 0);
         case 'filermonthlyget42':
-            return executefilermonthlyGet42.call(this);
+            return executefilermonthlyGet42.call(this, itemIndex ?? 0);
         case 'filermonthlyget43':
-            return executefilermonthlyGet43.call(this);
+            return executefilermonthlyGet43.call(this, itemIndex ?? 0);
         case 'filermonthlyget44':
-            return executefilermonthlyGet44.call(this);
+            return executefilermonthlyGet44.call(this, itemIndex ?? 0);
         case 'filermonthlyget45':
-            return executefilermonthlyGet45.call(this);
+            return executefilermonthlyGet45.call(this, itemIndex ?? 0);
         case 'filermonthlyget46':
-            return executefilermonthlyGet46.call(this);
+            return executefilermonthlyGet46.call(this, itemIndex ?? 0);
         case 'filermonthlyget47':
-            return executefilermonthlyGet47.call(this);
+            return executefilermonthlyGet47.call(this, itemIndex ?? 0);
         case 'filermonthlyget48':
-            return executefilermonthlyGet48.call(this);
+            return executefilermonthlyGet48.call(this, itemIndex ?? 0);
         case 'filermonthlyget49':
-            return executefilermonthlyGet49.call(this);
+            return executefilermonthlyGet49.call(this, itemIndex ?? 0);
         case 'filermonthlyget5':
-            return executefilermonthlyGet5.call(this);
+            return executefilermonthlyGet5.call(this, itemIndex ?? 0);
         case 'filermonthlyget50':
-            return executefilermonthlyGet50.call(this);
+            return executefilermonthlyGet50.call(this, itemIndex ?? 0);
         case 'filermonthlyget51':
-            return executefilermonthlyGet51.call(this);
+            return executefilermonthlyGet51.call(this, itemIndex ?? 0);
         case 'filermonthlyget52':
-            return executefilermonthlyGet52.call(this);
+            return executefilermonthlyGet52.call(this, itemIndex ?? 0);
         case 'filermonthlyget53':
-            return executefilermonthlyGet53.call(this);
+            return executefilermonthlyGet53.call(this, itemIndex ?? 0);
         case 'filermonthlyget54':
-            return executefilermonthlyGet54.call(this);
+            return executefilermonthlyGet54.call(this, itemIndex ?? 0);
         case 'filermonthlyget55':
-            return executefilermonthlyGet55.call(this);
+            return executefilermonthlyGet55.call(this, itemIndex ?? 0);
         case 'filermonthlyget56':
-            return executefilermonthlyGet56.call(this);
+            return executefilermonthlyGet56.call(this, itemIndex ?? 0);
         case 'filermonthlyget57':
-            return executefilermonthlyGet57.call(this);
+            return executefilermonthlyGet57.call(this, itemIndex ?? 0);
         case 'filermonthlyget58':
-            return executefilermonthlyGet58.call(this);
+            return executefilermonthlyGet58.call(this, itemIndex ?? 0);
         case 'filermonthlyget59':
-            return executefilermonthlyGet59.call(this);
+            return executefilermonthlyGet59.call(this, itemIndex ?? 0);
         case 'filermonthlyget6':
-            return executefilermonthlyGet6.call(this);
+            return executefilermonthlyGet6.call(this, itemIndex ?? 0);
         case 'filermonthlyget60':
-            return executefilermonthlyGet60.call(this);
+            return executefilermonthlyGet60.call(this, itemIndex ?? 0);
         case 'filermonthlyget61':
-            return executefilermonthlyGet61.call(this);
+            return executefilermonthlyGet61.call(this, itemIndex ?? 0);
         case 'filermonthlyget62':
-            return executefilermonthlyGet62.call(this);
+            return executefilermonthlyGet62.call(this, itemIndex ?? 0);
         case 'filermonthlyget63':
-            return executefilermonthlyGet63.call(this);
+            return executefilermonthlyGet63.call(this, itemIndex ?? 0);
         case 'filermonthlyget64':
-            return executefilermonthlyGet64.call(this);
+            return executefilermonthlyGet64.call(this, itemIndex ?? 0);
         case 'filermonthlyget65':
-            return executefilermonthlyGet65.call(this);
+            return executefilermonthlyGet65.call(this, itemIndex ?? 0);
         case 'filermonthlyget66':
-            return executefilermonthlyGet66.call(this);
+            return executefilermonthlyGet66.call(this, itemIndex ?? 0);
         case 'filermonthlyget67':
-            return executefilermonthlyGet67.call(this);
+            return executefilermonthlyGet67.call(this, itemIndex ?? 0);
         case 'filermonthlyget68':
-            return executefilermonthlyGet68.call(this);
+            return executefilermonthlyGet68.call(this, itemIndex ?? 0);
         case 'filermonthlyget69':
-            return executefilermonthlyGet69.call(this);
+            return executefilermonthlyGet69.call(this, itemIndex ?? 0);
         case 'filermonthlyget7':
-            return executefilermonthlyGet7.call(this);
+            return executefilermonthlyGet7.call(this, itemIndex ?? 0);
         case 'filermonthlyget70':
-            return executefilermonthlyGet70.call(this);
+            return executefilermonthlyGet70.call(this, itemIndex ?? 0);
         case 'filermonthlyget71':
-            return executefilermonthlyGet71.call(this);
+            return executefilermonthlyGet71.call(this, itemIndex ?? 0);
         case 'filermonthlyget72':
-            return executefilermonthlyGet72.call(this);
+            return executefilermonthlyGet72.call(this, itemIndex ?? 0);
         case 'filermonthlyget73':
-            return executefilermonthlyGet73.call(this);
+            return executefilermonthlyGet73.call(this, itemIndex ?? 0);
         case 'filermonthlyget74':
-            return executefilermonthlyGet74.call(this);
+            return executefilermonthlyGet74.call(this, itemIndex ?? 0);
         case 'filermonthlyget75':
-            return executefilermonthlyGet75.call(this);
+            return executefilermonthlyGet75.call(this, itemIndex ?? 0);
         case 'filermonthlyget76':
-            return executefilermonthlyGet76.call(this);
+            return executefilermonthlyGet76.call(this, itemIndex ?? 0);
         case 'filermonthlyget77':
-            return executefilermonthlyGet77.call(this);
+            return executefilermonthlyGet77.call(this, itemIndex ?? 0);
         case 'filermonthlyget78':
-            return executefilermonthlyGet78.call(this);
+            return executefilermonthlyGet78.call(this, itemIndex ?? 0);
         case 'filermonthlyget79':
-            return executefilermonthlyGet79.call(this);
+            return executefilermonthlyGet79.call(this, itemIndex ?? 0);
         case 'filermonthlyget8':
-            return executefilermonthlyGet8.call(this);
+            return executefilermonthlyGet8.call(this, itemIndex ?? 0);
         case 'filermonthlyget80':
-            return executefilermonthlyGet80.call(this);
+            return executefilermonthlyGet80.call(this, itemIndex ?? 0);
         case 'filermonthlyget81':
-            return executefilermonthlyGet81.call(this);
+            return executefilermonthlyGet81.call(this, itemIndex ?? 0);
         case 'filermonthlyget82':
-            return executefilermonthlyGet82.call(this);
+            return executefilermonthlyGet82.call(this, itemIndex ?? 0);
         case 'filermonthlyget83':
-            return executefilermonthlyGet83.call(this);
+            return executefilermonthlyGet83.call(this, itemIndex ?? 0);
         case 'filermonthlyget84':
-            return executefilermonthlyGet84.call(this);
+            return executefilermonthlyGet84.call(this, itemIndex ?? 0);
         case 'filermonthlyget85':
-            return executefilermonthlyGet85.call(this);
+            return executefilermonthlyGet85.call(this, itemIndex ?? 0);
         case 'filermonthlyget86':
-            return executefilermonthlyGet86.call(this);
+            return executefilermonthlyGet86.call(this, itemIndex ?? 0);
         case 'filermonthlyget87':
-            return executefilermonthlyGet87.call(this);
+            return executefilermonthlyGet87.call(this, itemIndex ?? 0);
         case 'filermonthlyget88':
-            return executefilermonthlyGet88.call(this);
+            return executefilermonthlyGet88.call(this, itemIndex ?? 0);
         case 'filermonthlyget89':
-            return executefilermonthlyGet89.call(this);
+            return executefilermonthlyGet89.call(this, itemIndex ?? 0);
         case 'filermonthlyget9':
-            return executefilermonthlyGet9.call(this);
+            return executefilermonthlyGet9.call(this, itemIndex ?? 0);
         case 'filermonthlyget90':
-            return executefilermonthlyGet90.call(this);
+            return executefilermonthlyGet90.call(this, itemIndex ?? 0);
         case 'filermonthlyget91':
-            return executefilermonthlyGet91.call(this);
+            return executefilermonthlyGet91.call(this, itemIndex ?? 0);
         case 'filermonthlyget92':
-            return executefilermonthlyGet92.call(this);
+            return executefilermonthlyGet92.call(this, itemIndex ?? 0);
         case 'filermonthlyget93':
-            return executefilermonthlyGet93.call(this);
+            return executefilermonthlyGet93.call(this, itemIndex ?? 0);
         case 'filermonthlyget94':
-            return executefilermonthlyGet94.call(this);
+            return executefilermonthlyGet94.call(this, itemIndex ?? 0);
         case 'filermonthlyget95':
-            return executefilermonthlyGet95.call(this);
+            return executefilermonthlyGet95.call(this, itemIndex ?? 0);
         case 'filermonthlyget96':
-            return executefilermonthlyGet96.call(this);
+            return executefilermonthlyGet96.call(this, itemIndex ?? 0);
         case 'filermonthlyget97':
-            return executefilermonthlyGet97.call(this);
+            return executefilermonthlyGet97.call(this, itemIndex ?? 0);
         case 'filermonthlyget98':
-            return executefilermonthlyGet98.call(this);
+            return executefilermonthlyGet98.call(this, itemIndex ?? 0);
         case 'filermonthlyget99':
-            return executefilermonthlyGet99.call(this);
+            return executefilermonthlyGet99.call(this, itemIndex ?? 0);
         case 'firewallget':
-            return executefirewallGet.call(this);
+            return executefirewallGet.call(this, itemIndex ?? 0);
         case 'hosthourlyget':
-            return executehosthourlyGet.call(this);
+            return executehosthourlyGet.call(this, itemIndex ?? 0);
         case 'hosthourlyget1':
-            return executehosthourlyGet1.call(this);
+            return executehosthourlyGet1.call(this, itemIndex ?? 0);
         case 'hosthourlyget10':
-            return executehosthourlyGet10.call(this);
+            return executehosthourlyGet10.call(this, itemIndex ?? 0);
         case 'hosthourlyget100':
-            return executehosthourlyGet100.call(this);
+            return executehosthourlyGet100.call(this, itemIndex ?? 0);
         case 'hosthourlyget101':
-            return executehosthourlyGet101.call(this);
+            return executehosthourlyGet101.call(this, itemIndex ?? 0);
         case 'hosthourlyget102':
-            return executehosthourlyGet102.call(this);
+            return executehosthourlyGet102.call(this, itemIndex ?? 0);
         case 'hosthourlyget103':
-            return executehosthourlyGet103.call(this);
+            return executehosthourlyGet103.call(this, itemIndex ?? 0);
         case 'hosthourlyget104':
-            return executehosthourlyGet104.call(this);
+            return executehosthourlyGet104.call(this, itemIndex ?? 0);
         case 'hosthourlyget105':
-            return executehosthourlyGet105.call(this);
+            return executehosthourlyGet105.call(this, itemIndex ?? 0);
         case 'hosthourlyget106':
-            return executehosthourlyGet106.call(this);
+            return executehosthourlyGet106.call(this, itemIndex ?? 0);
         case 'hosthourlyget107':
-            return executehosthourlyGet107.call(this);
+            return executehosthourlyGet107.call(this, itemIndex ?? 0);
         case 'hosthourlyget108':
-            return executehosthourlyGet108.call(this);
+            return executehosthourlyGet108.call(this, itemIndex ?? 0);
         case 'hosthourlyget109':
-            return executehosthourlyGet109.call(this);
+            return executehosthourlyGet109.call(this, itemIndex ?? 0);
         case 'hosthourlyget11':
-            return executehosthourlyGet11.call(this);
+            return executehosthourlyGet11.call(this, itemIndex ?? 0);
         case 'hosthourlyget110':
-            return executehosthourlyGet110.call(this);
+            return executehosthourlyGet110.call(this, itemIndex ?? 0);
         case 'hosthourlyget111':
-            return executehosthourlyGet111.call(this);
+            return executehosthourlyGet111.call(this, itemIndex ?? 0);
         case 'hosthourlyget112':
-            return executehosthourlyGet112.call(this);
+            return executehosthourlyGet112.call(this, itemIndex ?? 0);
         case 'hosthourlyget113':
-            return executehosthourlyGet113.call(this);
+            return executehosthourlyGet113.call(this, itemIndex ?? 0);
         case 'hosthourlyget114':
-            return executehosthourlyGet114.call(this);
+            return executehosthourlyGet114.call(this, itemIndex ?? 0);
         case 'hosthourlyget115':
-            return executehosthourlyGet115.call(this);
+            return executehosthourlyGet115.call(this, itemIndex ?? 0);
         case 'hosthourlyget116':
-            return executehosthourlyGet116.call(this);
+            return executehosthourlyGet116.call(this, itemIndex ?? 0);
         case 'hosthourlyget117':
-            return executehosthourlyGet117.call(this);
+            return executehosthourlyGet117.call(this, itemIndex ?? 0);
         case 'hosthourlyget118':
-            return executehosthourlyGet118.call(this);
+            return executehosthourlyGet118.call(this, itemIndex ?? 0);
         case 'hosthourlyget119':
-            return executehosthourlyGet119.call(this);
+            return executehosthourlyGet119.call(this, itemIndex ?? 0);
         case 'hosthourlyget12':
-            return executehosthourlyGet12.call(this);
+            return executehosthourlyGet12.call(this, itemIndex ?? 0);
         case 'hosthourlyget120':
-            return executehosthourlyGet120.call(this);
+            return executehosthourlyGet120.call(this, itemIndex ?? 0);
         case 'hosthourlyget121':
-            return executehosthourlyGet121.call(this);
+            return executehosthourlyGet121.call(this, itemIndex ?? 0);
         case 'hosthourlyget122':
-            return executehosthourlyGet122.call(this);
+            return executehosthourlyGet122.call(this, itemIndex ?? 0);
         case 'hosthourlyget123':
-            return executehosthourlyGet123.call(this);
+            return executehosthourlyGet123.call(this, itemIndex ?? 0);
         case 'hosthourlyget124':
-            return executehosthourlyGet124.call(this);
+            return executehosthourlyGet124.call(this, itemIndex ?? 0);
         case 'hosthourlyget125':
-            return executehosthourlyGet125.call(this);
+            return executehosthourlyGet125.call(this, itemIndex ?? 0);
         case 'hosthourlyget126':
-            return executehosthourlyGet126.call(this);
+            return executehosthourlyGet126.call(this, itemIndex ?? 0);
         case 'hosthourlyget127':
-            return executehosthourlyGet127.call(this);
+            return executehosthourlyGet127.call(this, itemIndex ?? 0);
         case 'hosthourlyget128':
-            return executehosthourlyGet128.call(this);
+            return executehosthourlyGet128.call(this, itemIndex ?? 0);
         case 'hosthourlyget129':
-            return executehosthourlyGet129.call(this);
+            return executehosthourlyGet129.call(this, itemIndex ?? 0);
         case 'hosthourlyget13':
-            return executehosthourlyGet13.call(this);
+            return executehosthourlyGet13.call(this, itemIndex ?? 0);
         case 'hosthourlyget130':
-            return executehosthourlyGet130.call(this);
+            return executehosthourlyGet130.call(this, itemIndex ?? 0);
         case 'hosthourlyget14':
-            return executehosthourlyGet14.call(this);
+            return executehosthourlyGet14.call(this, itemIndex ?? 0);
         case 'hosthourlyget15':
-            return executehosthourlyGet15.call(this);
+            return executehosthourlyGet15.call(this, itemIndex ?? 0);
         case 'hosthourlyget16':
-            return executehosthourlyGet16.call(this);
+            return executehosthourlyGet16.call(this, itemIndex ?? 0);
         case 'hosthourlyget17':
-            return executehosthourlyGet17.call(this);
+            return executehosthourlyGet17.call(this, itemIndex ?? 0);
         case 'hosthourlyget18':
-            return executehosthourlyGet18.call(this);
+            return executehosthourlyGet18.call(this, itemIndex ?? 0);
         case 'hosthourlyget19':
-            return executehosthourlyGet19.call(this);
+            return executehosthourlyGet19.call(this, itemIndex ?? 0);
         case 'hosthourlyget2':
-            return executehosthourlyGet2.call(this);
+            return executehosthourlyGet2.call(this, itemIndex ?? 0);
         case 'hosthourlyget20':
-            return executehosthourlyGet20.call(this);
+            return executehosthourlyGet20.call(this, itemIndex ?? 0);
         case 'hosthourlyget21':
-            return executehosthourlyGet21.call(this);
+            return executehosthourlyGet21.call(this, itemIndex ?? 0);
         case 'hosthourlyget22':
-            return executehosthourlyGet22.call(this);
+            return executehosthourlyGet22.call(this, itemIndex ?? 0);
         case 'hosthourlyget23':
-            return executehosthourlyGet23.call(this);
+            return executehosthourlyGet23.call(this, itemIndex ?? 0);
         case 'hosthourlyget24':
-            return executehosthourlyGet24.call(this);
+            return executehosthourlyGet24.call(this, itemIndex ?? 0);
         case 'hosthourlyget25':
-            return executehosthourlyGet25.call(this);
+            return executehosthourlyGet25.call(this, itemIndex ?? 0);
         case 'hosthourlyget26':
-            return executehosthourlyGet26.call(this);
+            return executehosthourlyGet26.call(this, itemIndex ?? 0);
         case 'hosthourlyget27':
-            return executehosthourlyGet27.call(this);
+            return executehosthourlyGet27.call(this, itemIndex ?? 0);
         case 'hosthourlyget28':
-            return executehosthourlyGet28.call(this);
+            return executehosthourlyGet28.call(this, itemIndex ?? 0);
         case 'hosthourlyget29':
-            return executehosthourlyGet29.call(this);
+            return executehosthourlyGet29.call(this, itemIndex ?? 0);
         case 'hosthourlyget3':
-            return executehosthourlyGet3.call(this);
+            return executehosthourlyGet3.call(this, itemIndex ?? 0);
         case 'hosthourlyget30':
-            return executehosthourlyGet30.call(this);
+            return executehosthourlyGet30.call(this, itemIndex ?? 0);
         case 'hosthourlyget31':
-            return executehosthourlyGet31.call(this);
+            return executehosthourlyGet31.call(this, itemIndex ?? 0);
         case 'hosthourlyget32':
-            return executehosthourlyGet32.call(this);
+            return executehosthourlyGet32.call(this, itemIndex ?? 0);
         case 'hosthourlyget33':
-            return executehosthourlyGet33.call(this);
+            return executehosthourlyGet33.call(this, itemIndex ?? 0);
         case 'hosthourlyget34':
-            return executehosthourlyGet34.call(this);
+            return executehosthourlyGet34.call(this, itemIndex ?? 0);
         case 'hosthourlyget35':
-            return executehosthourlyGet35.call(this);
+            return executehosthourlyGet35.call(this, itemIndex ?? 0);
         case 'hosthourlyget36':
-            return executehosthourlyGet36.call(this);
+            return executehosthourlyGet36.call(this, itemIndex ?? 0);
         case 'hosthourlyget37':
-            return executehosthourlyGet37.call(this);
+            return executehosthourlyGet37.call(this, itemIndex ?? 0);
         case 'hosthourlyget38':
-            return executehosthourlyGet38.call(this);
+            return executehosthourlyGet38.call(this, itemIndex ?? 0);
         case 'hosthourlyget39':
-            return executehosthourlyGet39.call(this);
+            return executehosthourlyGet39.call(this, itemIndex ?? 0);
         case 'hosthourlyget4':
-            return executehosthourlyGet4.call(this);
+            return executehosthourlyGet4.call(this, itemIndex ?? 0);
         case 'hosthourlyget40':
-            return executehosthourlyGet40.call(this);
+            return executehosthourlyGet40.call(this, itemIndex ?? 0);
         case 'hosthourlyget41':
-            return executehosthourlyGet41.call(this);
+            return executehosthourlyGet41.call(this, itemIndex ?? 0);
         case 'hosthourlyget42':
-            return executehosthourlyGet42.call(this);
+            return executehosthourlyGet42.call(this, itemIndex ?? 0);
         case 'hosthourlyget43':
-            return executehosthourlyGet43.call(this);
+            return executehosthourlyGet43.call(this, itemIndex ?? 0);
         case 'hosthourlyget44':
-            return executehosthourlyGet44.call(this);
+            return executehosthourlyGet44.call(this, itemIndex ?? 0);
         case 'hosthourlyget45':
-            return executehosthourlyGet45.call(this);
+            return executehosthourlyGet45.call(this, itemIndex ?? 0);
         case 'hosthourlyget46':
-            return executehosthourlyGet46.call(this);
+            return executehosthourlyGet46.call(this, itemIndex ?? 0);
         case 'hosthourlyget47':
-            return executehosthourlyGet47.call(this);
+            return executehosthourlyGet47.call(this, itemIndex ?? 0);
         case 'hosthourlyget48':
-            return executehosthourlyGet48.call(this);
+            return executehosthourlyGet48.call(this, itemIndex ?? 0);
         case 'hosthourlyget49':
-            return executehosthourlyGet49.call(this);
+            return executehosthourlyGet49.call(this, itemIndex ?? 0);
         case 'hosthourlyget5':
-            return executehosthourlyGet5.call(this);
+            return executehosthourlyGet5.call(this, itemIndex ?? 0);
         case 'hosthourlyget50':
-            return executehosthourlyGet50.call(this);
+            return executehosthourlyGet50.call(this, itemIndex ?? 0);
         case 'hosthourlyget51':
-            return executehosthourlyGet51.call(this);
+            return executehosthourlyGet51.call(this, itemIndex ?? 0);
         case 'hosthourlyget52':
-            return executehosthourlyGet52.call(this);
+            return executehosthourlyGet52.call(this, itemIndex ?? 0);
         case 'hosthourlyget53':
-            return executehosthourlyGet53.call(this);
+            return executehosthourlyGet53.call(this, itemIndex ?? 0);
         case 'hosthourlyget54':
-            return executehosthourlyGet54.call(this);
+            return executehosthourlyGet54.call(this, itemIndex ?? 0);
         case 'hosthourlyget55':
-            return executehosthourlyGet55.call(this);
+            return executehosthourlyGet55.call(this, itemIndex ?? 0);
         case 'hosthourlyget56':
-            return executehosthourlyGet56.call(this);
+            return executehosthourlyGet56.call(this, itemIndex ?? 0);
         case 'hosthourlyget57':
-            return executehosthourlyGet57.call(this);
+            return executehosthourlyGet57.call(this, itemIndex ?? 0);
         case 'hosthourlyget58':
-            return executehosthourlyGet58.call(this);
+            return executehosthourlyGet58.call(this, itemIndex ?? 0);
         case 'hosthourlyget59':
-            return executehosthourlyGet59.call(this);
+            return executehosthourlyGet59.call(this, itemIndex ?? 0);
         case 'hosthourlyget6':
-            return executehosthourlyGet6.call(this);
+            return executehosthourlyGet6.call(this, itemIndex ?? 0);
         case 'hosthourlyget60':
-            return executehosthourlyGet60.call(this);
+            return executehosthourlyGet60.call(this, itemIndex ?? 0);
         case 'hosthourlyget61':
-            return executehosthourlyGet61.call(this);
+            return executehosthourlyGet61.call(this, itemIndex ?? 0);
         case 'hosthourlyget62':
-            return executehosthourlyGet62.call(this);
+            return executehosthourlyGet62.call(this, itemIndex ?? 0);
         case 'hosthourlyget63':
-            return executehosthourlyGet63.call(this);
+            return executehosthourlyGet63.call(this, itemIndex ?? 0);
         case 'hosthourlyget64':
-            return executehosthourlyGet64.call(this);
+            return executehosthourlyGet64.call(this, itemIndex ?? 0);
         case 'hosthourlyget65':
-            return executehosthourlyGet65.call(this);
+            return executehosthourlyGet65.call(this, itemIndex ?? 0);
         case 'hosthourlyget66':
-            return executehosthourlyGet66.call(this);
+            return executehosthourlyGet66.call(this, itemIndex ?? 0);
         case 'hosthourlyget67':
-            return executehosthourlyGet67.call(this);
+            return executehosthourlyGet67.call(this, itemIndex ?? 0);
         case 'hosthourlyget68':
-            return executehosthourlyGet68.call(this);
+            return executehosthourlyGet68.call(this, itemIndex ?? 0);
         case 'hosthourlyget69':
-            return executehosthourlyGet69.call(this);
+            return executehosthourlyGet69.call(this, itemIndex ?? 0);
         case 'hosthourlyget7':
-            return executehosthourlyGet7.call(this);
+            return executehosthourlyGet7.call(this, itemIndex ?? 0);
         case 'hosthourlyget70':
-            return executehosthourlyGet70.call(this);
+            return executehosthourlyGet70.call(this, itemIndex ?? 0);
         case 'hosthourlyget71':
-            return executehosthourlyGet71.call(this);
+            return executehosthourlyGet71.call(this, itemIndex ?? 0);
         case 'hosthourlyget72':
-            return executehosthourlyGet72.call(this);
+            return executehosthourlyGet72.call(this, itemIndex ?? 0);
         case 'hosthourlyget73':
-            return executehosthourlyGet73.call(this);
+            return executehosthourlyGet73.call(this, itemIndex ?? 0);
         case 'hosthourlyget74':
-            return executehosthourlyGet74.call(this);
+            return executehosthourlyGet74.call(this, itemIndex ?? 0);
         case 'hosthourlyget75':
-            return executehosthourlyGet75.call(this);
+            return executehosthourlyGet75.call(this, itemIndex ?? 0);
         case 'hosthourlyget76':
-            return executehosthourlyGet76.call(this);
+            return executehosthourlyGet76.call(this, itemIndex ?? 0);
         case 'hosthourlyget77':
-            return executehosthourlyGet77.call(this);
+            return executehosthourlyGet77.call(this, itemIndex ?? 0);
         case 'hosthourlyget78':
-            return executehosthourlyGet78.call(this);
+            return executehosthourlyGet78.call(this, itemIndex ?? 0);
         case 'hosthourlyget79':
-            return executehosthourlyGet79.call(this);
+            return executehosthourlyGet79.call(this, itemIndex ?? 0);
         case 'hosthourlyget8':
-            return executehosthourlyGet8.call(this);
+            return executehosthourlyGet8.call(this, itemIndex ?? 0);
         case 'hosthourlyget80':
-            return executehosthourlyGet80.call(this);
+            return executehosthourlyGet80.call(this, itemIndex ?? 0);
         case 'hosthourlyget81':
-            return executehosthourlyGet81.call(this);
+            return executehosthourlyGet81.call(this, itemIndex ?? 0);
         case 'hosthourlyget82':
-            return executehosthourlyGet82.call(this);
+            return executehosthourlyGet82.call(this, itemIndex ?? 0);
         case 'hosthourlyget83':
-            return executehosthourlyGet83.call(this);
+            return executehosthourlyGet83.call(this, itemIndex ?? 0);
         case 'hosthourlyget84':
-            return executehosthourlyGet84.call(this);
+            return executehosthourlyGet84.call(this, itemIndex ?? 0);
         case 'hosthourlyget85':
-            return executehosthourlyGet85.call(this);
+            return executehosthourlyGet85.call(this, itemIndex ?? 0);
         case 'hosthourlyget86':
-            return executehosthourlyGet86.call(this);
+            return executehosthourlyGet86.call(this, itemIndex ?? 0);
         case 'hosthourlyget87':
-            return executehosthourlyGet87.call(this);
+            return executehosthourlyGet87.call(this, itemIndex ?? 0);
         case 'hosthourlyget88':
-            return executehosthourlyGet88.call(this);
+            return executehosthourlyGet88.call(this, itemIndex ?? 0);
         case 'hosthourlyget89':
-            return executehosthourlyGet89.call(this);
+            return executehosthourlyGet89.call(this, itemIndex ?? 0);
         case 'hosthourlyget9':
-            return executehosthourlyGet9.call(this);
+            return executehosthourlyGet9.call(this, itemIndex ?? 0);
         case 'hosthourlyget90':
-            return executehosthourlyGet90.call(this);
+            return executehosthourlyGet90.call(this, itemIndex ?? 0);
         case 'hosthourlyget91':
-            return executehosthourlyGet91.call(this);
+            return executehosthourlyGet91.call(this, itemIndex ?? 0);
         case 'hosthourlyget92':
-            return executehosthourlyGet92.call(this);
+            return executehosthourlyGet92.call(this, itemIndex ?? 0);
         case 'hosthourlyget93':
-            return executehosthourlyGet93.call(this);
+            return executehosthourlyGet93.call(this, itemIndex ?? 0);
         case 'hosthourlyget94':
-            return executehosthourlyGet94.call(this);
+            return executehosthourlyGet94.call(this, itemIndex ?? 0);
         case 'hosthourlyget95':
-            return executehosthourlyGet95.call(this);
+            return executehosthourlyGet95.call(this, itemIndex ?? 0);
         case 'hosthourlyget96':
-            return executehosthourlyGet96.call(this);
+            return executehosthourlyGet96.call(this, itemIndex ?? 0);
         case 'hosthourlyget97':
-            return executehosthourlyGet97.call(this);
+            return executehosthourlyGet97.call(this, itemIndex ?? 0);
         case 'hosthourlyget98':
-            return executehosthourlyGet98.call(this);
+            return executehosthourlyGet98.call(this, itemIndex ?? 0);
         case 'hosthourlyget99':
-            return executehosthourlyGet99.call(this);
+            return executehosthourlyGet99.call(this, itemIndex ?? 0);
         case 'hostmonthlyget':
-            return executehostmonthlyGet.call(this);
+            return executehostmonthlyGet.call(this, itemIndex ?? 0);
         case 'hostmonthlyget1':
-            return executehostmonthlyGet1.call(this);
+            return executehostmonthlyGet1.call(this, itemIndex ?? 0);
         case 'hostmonthlyget10':
-            return executehostmonthlyGet10.call(this);
+            return executehostmonthlyGet10.call(this, itemIndex ?? 0);
         case 'hostmonthlyget100':
-            return executehostmonthlyGet100.call(this);
+            return executehostmonthlyGet100.call(this, itemIndex ?? 0);
         case 'hostmonthlyget101':
-            return executehostmonthlyGet101.call(this);
+            return executehostmonthlyGet101.call(this, itemIndex ?? 0);
         case 'hostmonthlyget102':
-            return executehostmonthlyGet102.call(this);
+            return executehostmonthlyGet102.call(this, itemIndex ?? 0);
         case 'hostmonthlyget103':
-            return executehostmonthlyGet103.call(this);
+            return executehostmonthlyGet103.call(this, itemIndex ?? 0);
         case 'hostmonthlyget104':
-            return executehostmonthlyGet104.call(this);
+            return executehostmonthlyGet104.call(this, itemIndex ?? 0);
         case 'hostmonthlyget105':
-            return executehostmonthlyGet105.call(this);
+            return executehostmonthlyGet105.call(this, itemIndex ?? 0);
         case 'hostmonthlyget106':
-            return executehostmonthlyGet106.call(this);
+            return executehostmonthlyGet106.call(this, itemIndex ?? 0);
         case 'hostmonthlyget107':
-            return executehostmonthlyGet107.call(this);
+            return executehostmonthlyGet107.call(this, itemIndex ?? 0);
         case 'hostmonthlyget108':
-            return executehostmonthlyGet108.call(this);
+            return executehostmonthlyGet108.call(this, itemIndex ?? 0);
         case 'hostmonthlyget109':
-            return executehostmonthlyGet109.call(this);
+            return executehostmonthlyGet109.call(this, itemIndex ?? 0);
         case 'hostmonthlyget11':
-            return executehostmonthlyGet11.call(this);
+            return executehostmonthlyGet11.call(this, itemIndex ?? 0);
         case 'hostmonthlyget110':
-            return executehostmonthlyGet110.call(this);
+            return executehostmonthlyGet110.call(this, itemIndex ?? 0);
         case 'hostmonthlyget111':
-            return executehostmonthlyGet111.call(this);
+            return executehostmonthlyGet111.call(this, itemIndex ?? 0);
         case 'hostmonthlyget112':
-            return executehostmonthlyGet112.call(this);
+            return executehostmonthlyGet112.call(this, itemIndex ?? 0);
         case 'hostmonthlyget113':
-            return executehostmonthlyGet113.call(this);
+            return executehostmonthlyGet113.call(this, itemIndex ?? 0);
         case 'hostmonthlyget114':
-            return executehostmonthlyGet114.call(this);
+            return executehostmonthlyGet114.call(this, itemIndex ?? 0);
         case 'hostmonthlyget115':
-            return executehostmonthlyGet115.call(this);
+            return executehostmonthlyGet115.call(this, itemIndex ?? 0);
         case 'hostmonthlyget116':
-            return executehostmonthlyGet116.call(this);
+            return executehostmonthlyGet116.call(this, itemIndex ?? 0);
         case 'hostmonthlyget117':
-            return executehostmonthlyGet117.call(this);
+            return executehostmonthlyGet117.call(this, itemIndex ?? 0);
         case 'hostmonthlyget118':
-            return executehostmonthlyGet118.call(this);
+            return executehostmonthlyGet118.call(this, itemIndex ?? 0);
         case 'hostmonthlyget119':
-            return executehostmonthlyGet119.call(this);
+            return executehostmonthlyGet119.call(this, itemIndex ?? 0);
         case 'hostmonthlyget12':
-            return executehostmonthlyGet12.call(this);
+            return executehostmonthlyGet12.call(this, itemIndex ?? 0);
         case 'hostmonthlyget120':
-            return executehostmonthlyGet120.call(this);
+            return executehostmonthlyGet120.call(this, itemIndex ?? 0);
         case 'hostmonthlyget121':
-            return executehostmonthlyGet121.call(this);
+            return executehostmonthlyGet121.call(this, itemIndex ?? 0);
         case 'hostmonthlyget122':
-            return executehostmonthlyGet122.call(this);
+            return executehostmonthlyGet122.call(this, itemIndex ?? 0);
         case 'hostmonthlyget123':
-            return executehostmonthlyGet123.call(this);
+            return executehostmonthlyGet123.call(this, itemIndex ?? 0);
         case 'hostmonthlyget124':
-            return executehostmonthlyGet124.call(this);
+            return executehostmonthlyGet124.call(this, itemIndex ?? 0);
         case 'hostmonthlyget125':
-            return executehostmonthlyGet125.call(this);
+            return executehostmonthlyGet125.call(this, itemIndex ?? 0);
         case 'hostmonthlyget126':
-            return executehostmonthlyGet126.call(this);
+            return executehostmonthlyGet126.call(this, itemIndex ?? 0);
         case 'hostmonthlyget127':
-            return executehostmonthlyGet127.call(this);
+            return executehostmonthlyGet127.call(this, itemIndex ?? 0);
         case 'hostmonthlyget128':
-            return executehostmonthlyGet128.call(this);
+            return executehostmonthlyGet128.call(this, itemIndex ?? 0);
         case 'hostmonthlyget129':
-            return executehostmonthlyGet129.call(this);
+            return executehostmonthlyGet129.call(this, itemIndex ?? 0);
         case 'hostmonthlyget13':
-            return executehostmonthlyGet13.call(this);
+            return executehostmonthlyGet13.call(this, itemIndex ?? 0);
         case 'hostmonthlyget130':
-            return executehostmonthlyGet130.call(this);
+            return executehostmonthlyGet130.call(this, itemIndex ?? 0);
         case 'hostmonthlyget14':
-            return executehostmonthlyGet14.call(this);
+            return executehostmonthlyGet14.call(this, itemIndex ?? 0);
         case 'hostmonthlyget15':
-            return executehostmonthlyGet15.call(this);
+            return executehostmonthlyGet15.call(this, itemIndex ?? 0);
         case 'hostmonthlyget16':
-            return executehostmonthlyGet16.call(this);
+            return executehostmonthlyGet16.call(this, itemIndex ?? 0);
         case 'hostmonthlyget17':
-            return executehostmonthlyGet17.call(this);
+            return executehostmonthlyGet17.call(this, itemIndex ?? 0);
         case 'hostmonthlyget18':
-            return executehostmonthlyGet18.call(this);
+            return executehostmonthlyGet18.call(this, itemIndex ?? 0);
         case 'hostmonthlyget19':
-            return executehostmonthlyGet19.call(this);
+            return executehostmonthlyGet19.call(this, itemIndex ?? 0);
         case 'hostmonthlyget2':
-            return executehostmonthlyGet2.call(this);
+            return executehostmonthlyGet2.call(this, itemIndex ?? 0);
         case 'hostmonthlyget20':
-            return executehostmonthlyGet20.call(this);
+            return executehostmonthlyGet20.call(this, itemIndex ?? 0);
         case 'hostmonthlyget21':
-            return executehostmonthlyGet21.call(this);
+            return executehostmonthlyGet21.call(this, itemIndex ?? 0);
         case 'hostmonthlyget22':
-            return executehostmonthlyGet22.call(this);
+            return executehostmonthlyGet22.call(this, itemIndex ?? 0);
         case 'hostmonthlyget23':
-            return executehostmonthlyGet23.call(this);
+            return executehostmonthlyGet23.call(this, itemIndex ?? 0);
         case 'hostmonthlyget24':
-            return executehostmonthlyGet24.call(this);
+            return executehostmonthlyGet24.call(this, itemIndex ?? 0);
         case 'hostmonthlyget25':
-            return executehostmonthlyGet25.call(this);
+            return executehostmonthlyGet25.call(this, itemIndex ?? 0);
         case 'hostmonthlyget26':
-            return executehostmonthlyGet26.call(this);
+            return executehostmonthlyGet26.call(this, itemIndex ?? 0);
         case 'hostmonthlyget27':
-            return executehostmonthlyGet27.call(this);
+            return executehostmonthlyGet27.call(this, itemIndex ?? 0);
         case 'hostmonthlyget28':
-            return executehostmonthlyGet28.call(this);
+            return executehostmonthlyGet28.call(this, itemIndex ?? 0);
         case 'hostmonthlyget29':
-            return executehostmonthlyGet29.call(this);
+            return executehostmonthlyGet29.call(this, itemIndex ?? 0);
         case 'hostmonthlyget3':
-            return executehostmonthlyGet3.call(this);
+            return executehostmonthlyGet3.call(this, itemIndex ?? 0);
         case 'hostmonthlyget30':
-            return executehostmonthlyGet30.call(this);
+            return executehostmonthlyGet30.call(this, itemIndex ?? 0);
         case 'hostmonthlyget31':
-            return executehostmonthlyGet31.call(this);
+            return executehostmonthlyGet31.call(this, itemIndex ?? 0);
         case 'hostmonthlyget32':
-            return executehostmonthlyGet32.call(this);
+            return executehostmonthlyGet32.call(this, itemIndex ?? 0);
         case 'hostmonthlyget33':
-            return executehostmonthlyGet33.call(this);
+            return executehostmonthlyGet33.call(this, itemIndex ?? 0);
         case 'hostmonthlyget34':
-            return executehostmonthlyGet34.call(this);
+            return executehostmonthlyGet34.call(this, itemIndex ?? 0);
         case 'hostmonthlyget35':
-            return executehostmonthlyGet35.call(this);
+            return executehostmonthlyGet35.call(this, itemIndex ?? 0);
         case 'hostmonthlyget36':
-            return executehostmonthlyGet36.call(this);
+            return executehostmonthlyGet36.call(this, itemIndex ?? 0);
         case 'hostmonthlyget37':
-            return executehostmonthlyGet37.call(this);
+            return executehostmonthlyGet37.call(this, itemIndex ?? 0);
         case 'hostmonthlyget38':
-            return executehostmonthlyGet38.call(this);
+            return executehostmonthlyGet38.call(this, itemIndex ?? 0);
         case 'hostmonthlyget39':
-            return executehostmonthlyGet39.call(this);
+            return executehostmonthlyGet39.call(this, itemIndex ?? 0);
         case 'hostmonthlyget4':
-            return executehostmonthlyGet4.call(this);
+            return executehostmonthlyGet4.call(this, itemIndex ?? 0);
         case 'hostmonthlyget40':
-            return executehostmonthlyGet40.call(this);
+            return executehostmonthlyGet40.call(this, itemIndex ?? 0);
         case 'hostmonthlyget41':
-            return executehostmonthlyGet41.call(this);
+            return executehostmonthlyGet41.call(this, itemIndex ?? 0);
         case 'hostmonthlyget42':
-            return executehostmonthlyGet42.call(this);
+            return executehostmonthlyGet42.call(this, itemIndex ?? 0);
         case 'hostmonthlyget43':
-            return executehostmonthlyGet43.call(this);
+            return executehostmonthlyGet43.call(this, itemIndex ?? 0);
         case 'hostmonthlyget44':
-            return executehostmonthlyGet44.call(this);
+            return executehostmonthlyGet44.call(this, itemIndex ?? 0);
         case 'hostmonthlyget45':
-            return executehostmonthlyGet45.call(this);
+            return executehostmonthlyGet45.call(this, itemIndex ?? 0);
         case 'hostmonthlyget46':
-            return executehostmonthlyGet46.call(this);
+            return executehostmonthlyGet46.call(this, itemIndex ?? 0);
         case 'hostmonthlyget47':
-            return executehostmonthlyGet47.call(this);
+            return executehostmonthlyGet47.call(this, itemIndex ?? 0);
         case 'hostmonthlyget48':
-            return executehostmonthlyGet48.call(this);
+            return executehostmonthlyGet48.call(this, itemIndex ?? 0);
         case 'hostmonthlyget49':
-            return executehostmonthlyGet49.call(this);
+            return executehostmonthlyGet49.call(this, itemIndex ?? 0);
         case 'hostmonthlyget5':
-            return executehostmonthlyGet5.call(this);
+            return executehostmonthlyGet5.call(this, itemIndex ?? 0);
         case 'hostmonthlyget50':
-            return executehostmonthlyGet50.call(this);
+            return executehostmonthlyGet50.call(this, itemIndex ?? 0);
         case 'hostmonthlyget51':
-            return executehostmonthlyGet51.call(this);
+            return executehostmonthlyGet51.call(this, itemIndex ?? 0);
         case 'hostmonthlyget52':
-            return executehostmonthlyGet52.call(this);
+            return executehostmonthlyGet52.call(this, itemIndex ?? 0);
         case 'hostmonthlyget53':
-            return executehostmonthlyGet53.call(this);
+            return executehostmonthlyGet53.call(this, itemIndex ?? 0);
         case 'hostmonthlyget54':
-            return executehostmonthlyGet54.call(this);
+            return executehostmonthlyGet54.call(this, itemIndex ?? 0);
         case 'hostmonthlyget55':
-            return executehostmonthlyGet55.call(this);
+            return executehostmonthlyGet55.call(this, itemIndex ?? 0);
         case 'hostmonthlyget56':
-            return executehostmonthlyGet56.call(this);
+            return executehostmonthlyGet56.call(this, itemIndex ?? 0);
         case 'hostmonthlyget57':
-            return executehostmonthlyGet57.call(this);
+            return executehostmonthlyGet57.call(this, itemIndex ?? 0);
         case 'hostmonthlyget58':
-            return executehostmonthlyGet58.call(this);
+            return executehostmonthlyGet58.call(this, itemIndex ?? 0);
         case 'hostmonthlyget59':
-            return executehostmonthlyGet59.call(this);
+            return executehostmonthlyGet59.call(this, itemIndex ?? 0);
         case 'hostmonthlyget6':
-            return executehostmonthlyGet6.call(this);
+            return executehostmonthlyGet6.call(this, itemIndex ?? 0);
         case 'hostmonthlyget60':
-            return executehostmonthlyGet60.call(this);
+            return executehostmonthlyGet60.call(this, itemIndex ?? 0);
         case 'hostmonthlyget61':
-            return executehostmonthlyGet61.call(this);
+            return executehostmonthlyGet61.call(this, itemIndex ?? 0);
         case 'hostmonthlyget62':
-            return executehostmonthlyGet62.call(this);
+            return executehostmonthlyGet62.call(this, itemIndex ?? 0);
         case 'hostmonthlyget63':
-            return executehostmonthlyGet63.call(this);
+            return executehostmonthlyGet63.call(this, itemIndex ?? 0);
         case 'hostmonthlyget64':
-            return executehostmonthlyGet64.call(this);
+            return executehostmonthlyGet64.call(this, itemIndex ?? 0);
         case 'hostmonthlyget65':
-            return executehostmonthlyGet65.call(this);
+            return executehostmonthlyGet65.call(this, itemIndex ?? 0);
         case 'hostmonthlyget66':
-            return executehostmonthlyGet66.call(this);
+            return executehostmonthlyGet66.call(this, itemIndex ?? 0);
         case 'hostmonthlyget67':
-            return executehostmonthlyGet67.call(this);
+            return executehostmonthlyGet67.call(this, itemIndex ?? 0);
         case 'hostmonthlyget68':
-            return executehostmonthlyGet68.call(this);
+            return executehostmonthlyGet68.call(this, itemIndex ?? 0);
         case 'hostmonthlyget69':
-            return executehostmonthlyGet69.call(this);
+            return executehostmonthlyGet69.call(this, itemIndex ?? 0);
         case 'hostmonthlyget7':
-            return executehostmonthlyGet7.call(this);
+            return executehostmonthlyGet7.call(this, itemIndex ?? 0);
         case 'hostmonthlyget70':
-            return executehostmonthlyGet70.call(this);
+            return executehostmonthlyGet70.call(this, itemIndex ?? 0);
         case 'hostmonthlyget71':
-            return executehostmonthlyGet71.call(this);
+            return executehostmonthlyGet71.call(this, itemIndex ?? 0);
         case 'hostmonthlyget72':
-            return executehostmonthlyGet72.call(this);
+            return executehostmonthlyGet72.call(this, itemIndex ?? 0);
         case 'hostmonthlyget73':
-            return executehostmonthlyGet73.call(this);
+            return executehostmonthlyGet73.call(this, itemIndex ?? 0);
         case 'hostmonthlyget74':
-            return executehostmonthlyGet74.call(this);
+            return executehostmonthlyGet74.call(this, itemIndex ?? 0);
         case 'hostmonthlyget75':
-            return executehostmonthlyGet75.call(this);
+            return executehostmonthlyGet75.call(this, itemIndex ?? 0);
         case 'hostmonthlyget76':
-            return executehostmonthlyGet76.call(this);
+            return executehostmonthlyGet76.call(this, itemIndex ?? 0);
         case 'hostmonthlyget77':
-            return executehostmonthlyGet77.call(this);
+            return executehostmonthlyGet77.call(this, itemIndex ?? 0);
         case 'hostmonthlyget78':
-            return executehostmonthlyGet78.call(this);
+            return executehostmonthlyGet78.call(this, itemIndex ?? 0);
         case 'hostmonthlyget79':
-            return executehostmonthlyGet79.call(this);
+            return executehostmonthlyGet79.call(this, itemIndex ?? 0);
         case 'hostmonthlyget8':
-            return executehostmonthlyGet8.call(this);
+            return executehostmonthlyGet8.call(this, itemIndex ?? 0);
         case 'hostmonthlyget80':
-            return executehostmonthlyGet80.call(this);
+            return executehostmonthlyGet80.call(this, itemIndex ?? 0);
         case 'hostmonthlyget81':
-            return executehostmonthlyGet81.call(this);
+            return executehostmonthlyGet81.call(this, itemIndex ?? 0);
         case 'hostmonthlyget82':
-            return executehostmonthlyGet82.call(this);
+            return executehostmonthlyGet82.call(this, itemIndex ?? 0);
         case 'hostmonthlyget83':
-            return executehostmonthlyGet83.call(this);
+            return executehostmonthlyGet83.call(this, itemIndex ?? 0);
         case 'hostmonthlyget84':
-            return executehostmonthlyGet84.call(this);
+            return executehostmonthlyGet84.call(this, itemIndex ?? 0);
         case 'hostmonthlyget85':
-            return executehostmonthlyGet85.call(this);
+            return executehostmonthlyGet85.call(this, itemIndex ?? 0);
         case 'hostmonthlyget86':
-            return executehostmonthlyGet86.call(this);
+            return executehostmonthlyGet86.call(this, itemIndex ?? 0);
         case 'hostmonthlyget87':
-            return executehostmonthlyGet87.call(this);
+            return executehostmonthlyGet87.call(this, itemIndex ?? 0);
         case 'hostmonthlyget88':
-            return executehostmonthlyGet88.call(this);
+            return executehostmonthlyGet88.call(this, itemIndex ?? 0);
         case 'hostmonthlyget89':
-            return executehostmonthlyGet89.call(this);
+            return executehostmonthlyGet89.call(this, itemIndex ?? 0);
         case 'hostmonthlyget9':
-            return executehostmonthlyGet9.call(this);
+            return executehostmonthlyGet9.call(this, itemIndex ?? 0);
         case 'hostmonthlyget90':
-            return executehostmonthlyGet90.call(this);
+            return executehostmonthlyGet90.call(this, itemIndex ?? 0);
         case 'hostmonthlyget91':
-            return executehostmonthlyGet91.call(this);
+            return executehostmonthlyGet91.call(this, itemIndex ?? 0);
         case 'hostmonthlyget92':
-            return executehostmonthlyGet92.call(this);
+            return executehostmonthlyGet92.call(this, itemIndex ?? 0);
         case 'hostmonthlyget93':
-            return executehostmonthlyGet93.call(this);
+            return executehostmonthlyGet93.call(this, itemIndex ?? 0);
         case 'hostmonthlyget94':
-            return executehostmonthlyGet94.call(this);
+            return executehostmonthlyGet94.call(this, itemIndex ?? 0);
         case 'hostmonthlyget95':
-            return executehostmonthlyGet95.call(this);
+            return executehostmonthlyGet95.call(this, itemIndex ?? 0);
         case 'hostmonthlyget96':
-            return executehostmonthlyGet96.call(this);
+            return executehostmonthlyGet96.call(this, itemIndex ?? 0);
         case 'hostmonthlyget97':
-            return executehostmonthlyGet97.call(this);
+            return executehostmonthlyGet97.call(this, itemIndex ?? 0);
         case 'hostmonthlyget98':
-            return executehostmonthlyGet98.call(this);
+            return executehostmonthlyGet98.call(this, itemIndex ?? 0);
         case 'hostmonthlyget99':
-            return executehostmonthlyGet99.call(this);
+            return executehostmonthlyGet99.call(this, itemIndex ?? 0);
         case 'ipget':
-            return executeipGet.call(this);
+            return executeipGet.call(this, itemIndex ?? 0);
         case 'lowlatmodelget':
-            return executelowlatmodelGet.call(this);
+            return executelowlatmodelGet.call(this, itemIndex ?? 0);
         case 'lowlatmodelget1':
-            return executelowlatmodelGet1.call(this);
+            return executelowlatmodelGet1.call(this, itemIndex ?? 0);
         case 'modelget':
-            return executemodelGet.call(this);
+            return executemodelGet.call(this, itemIndex ?? 0);
         case 'officeget':
-            return executeofficeGet.call(this);
+            return executeofficeGet.call(this, itemIndex ?? 0);
         case 'optionget':
-            return executeoptionGet.call(this);
+            return executeoptionGet.call(this, itemIndex ?? 0);
         case 'optionsinstallationget':
-            return executeoptionsinstallationGet.call(this);
+            return executeoptionsinstallationGet.call(this, itemIndex ?? 0);
         case 'optionsipv4get':
-            return executeoptionsipv4Get.call(this);
+            return executeoptionsipv4Get.call(this, itemIndex ?? 0);
         case 'optionslineget':
-            return executeoptionslineGet.call(this);
+            return executeoptionslineGet.call(this, itemIndex ?? 0);
         case 'overtheboxofferget':
-            return executeovertheboxofferGet.call(this);
+            return executeovertheboxofferGet.call(this, itemIndex ?? 0);
         case 'privatedatabaseget':
-            return executeprivatedatabaseGet.call(this);
+            return executeprivatedatabaseGet.call(this, itemIndex ?? 0);
         case 'ssdmodelget':
-            return executessdmodelGet.call(this);
+            return executessdmodelGet.call(this, itemIndex ?? 0);
         case 'ssdmodelget1':
-            return executessdmodelGet1.call(this);
+            return executessdmodelGet1.call(this, itemIndex ?? 0);
         case 'ssdmodelget2':
-            return executessdmodelGet2.call(this);
+            return executessdmodelGet2.call(this, itemIndex ?? 0);
         case 'ssdmodelget3':
-            return executessdmodelGet3.call(this);
+            return executessdmodelGet3.call(this, itemIndex ?? 0);
         case 'ssdmodelget4':
-            return executessdmodelGet4.call(this);
+            return executessdmodelGet4.call(this, itemIndex ?? 0);
         case 'ssdmodelget5':
-            return executessdmodelGet5.call(this);
+            return executessdmodelGet5.call(this, itemIndex ?? 0);
         case 'ssdoptionget':
-            return executessdoptionGet.call(this);
+            return executessdoptionGet.call(this, itemIndex ?? 0);
         case 'ssdoptionget1':
-            return executessdoptionGet1.call(this);
+            return executessdoptionGet1.call(this, itemIndex ?? 0);
         case 'ssdoptionget2':
-            return executessdoptionGet2.call(this);
+            return executessdoptionGet2.call(this, itemIndex ?? 0);
         case 'ssdoptionget3':
-            return executessdoptionGet3.call(this);
+            return executessdoptionGet3.call(this, itemIndex ?? 0);
         case 'ssdoptionget4':
-            return executessdoptionGet4.call(this);
+            return executessdoptionGet4.call(this, itemIndex ?? 0);
         case 'ssdoptionget5':
-            return executessdoptionGet5.call(this);
+            return executessdoptionGet5.call(this, itemIndex ?? 0);
         case 'webcdnget':
-            return executewebcdnGet.call(this);
+            return executewebcdnGet.call(this, itemIndex ?? 0);
         case 'webextrasqlpersoget':
-            return executewebextrasqlpersoGet.call(this);
+            return executewebextrasqlpersoGet.call(this, itemIndex ?? 0);
         case 'websslget':
-            return executewebsslGet.call(this);
+            return executewebsslGet.call(this, itemIndex ?? 0);
         case 'xdslinstallationget':
-            return executexdslinstallationGet.call(this);
+            return executexdslinstallationGet.call(this, itemIndex ?? 0);
         case 'xdsloffersget':
-            return executexdsloffersGet.call(this);
+            return executexdsloffersGet.call(this, itemIndex ?? 0);
         case 'zoneoptionget':
-            return executezoneoptionGet.call(this);
+            return executezoneoptionGet.call(this, itemIndex ?? 0);
     }
 
     throw new Error(`Unsupported operation "${operation}" for resource "price"`);

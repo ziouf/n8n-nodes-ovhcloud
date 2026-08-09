@@ -52,10 +52,10 @@ export function description(displayOptions: IDisplayOptions): INodeProperties[] 
  * HTTP method: GET
  * Endpoint: /email/domain/{domain}/redirection
  */
-export async function execute(this: IExecuteFunctions): Promise<INodeExecutionData[]> {
-	const domain = this.getNodeParameter('domain', 0) as string;
-	const from = this.getNodeParameter('from', 0) as string;
-	const to = this.getNodeParameter('to', 0) as string;
+export async function execute(this: IExecuteFunctions, _itemIndex?: number): Promise<INodeExecutionData[]> {
+	const domain = this.getNodeParameter('domain', _itemIndex ?? 0) as string;
+	const from = this.getNodeParameter('from', _itemIndex ?? 0) as string;
+	const to = this.getNodeParameter('to', _itemIndex ?? 0) as string;
 
 	const qs: IDataObject = {
 		from: from,

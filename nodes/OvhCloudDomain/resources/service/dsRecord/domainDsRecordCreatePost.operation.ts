@@ -36,12 +36,12 @@ export function description(displayOptions: IDisplayOptions): INodeProperties[] 
  * HTTP method: POST
  * Endpoint: /domain/{serviceName}/dsRecord
  */
-export async function execute(this: IExecuteFunctions, itemIndex: number): Promise<INodeExecutionData[]> {
+export async function execute(this: IExecuteFunctions, _itemIndex: number): Promise<INodeExecutionData[]> {
 	const client = new ApiClient(this);
-		const serviceName = this.getNodeParameter('serviceName', itemIndex) as string;
+		const serviceName = this.getNodeParameter('serviceName', _itemIndex) as string;
 
 	const body: IDataObject = {};
-		const keys = this.getNodeParameter('keys', itemIndex, '') as string;
+		const keys = this.getNodeParameter('keys', _itemIndex, '') as string;
 		if (keys !== '') body['keys'] = JSON.parse(keys);
 
 	const data = (await client.httpPost(`/domain/${encodeURIComponent(serviceName)}/dsRecord`, body)) as IDataObject;

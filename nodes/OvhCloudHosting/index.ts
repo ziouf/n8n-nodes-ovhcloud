@@ -2709,481 +2709,481 @@ export async function execute(
 	switch (operation) {
 		// ==================== v1 API Operations ====================
 		case 'list':
-			return executeList.call(this, itemIndex);
+			return executeList.call(this, itemIndex ?? 0);
 		case 'findByDomain':
-			return executeFindByDomain.call(this, itemIndex);
+			return executeFindByDomain.call(this, itemIndex ?? 0);
 		case 'get':
-			return executeGet.call(this, itemIndex);
+			return executeGet.call(this, itemIndex ?? 0);
 		case 'listAttachedDomains':
-			return executeListAttachedDomains.call(this, itemIndex);
+			return executeListAttachedDomains.call(this, itemIndex ?? 0);
 		case 'getAttachedDomain':
-			return executeGetAttachedDomain.call(this, itemIndex);
+			return executeGetAttachedDomain.call(this, itemIndex ?? 0);
 		case 'listDatabases':
-			return executeListDatabases.call(this, itemIndex);
+			return executeListDatabases.call(this, itemIndex ?? 0);
 		case 'getDatabase':
-			return executeGetDatabase.call(this, itemIndex);
+			return executeGetDatabase.call(this, itemIndex ?? 0);
 		case 'listCrons':
-			return executeListCrons.call(this, itemIndex);
+			return executeListCrons.call(this, itemIndex ?? 0);
 		case 'getCron':
-			return executeGetCron.call(this, itemIndex);
+			return executeGetCron.call(this, itemIndex ?? 0);
 		case 'listUsers':
-			return executeListUsers.call(this, itemIndex);
+			return executeListUsers.call(this, itemIndex ?? 0);
 		case 'getUser':
-			return executeGetUser.call(this, itemIndex);
+			return executeGetUser.call(this, itemIndex ?? 0);
 		case 'listTasks':
-			return executeListTasks.call(this, itemIndex);
+			return executeListTasks.call(this, itemIndex ?? 0);
 		case 'getTask':
-			return executeGetTask.call(this, itemIndex);
+			return executeGetTask.call(this, itemIndex ?? 0);
 		case 'listEnvVars':
-			return executeListEnvVars.call(this, itemIndex);
+			return executeListEnvVars.call(this, itemIndex ?? 0);
 		case 'getEnvVar':
-			return executeGetEnvVar.call(this, itemIndex);
+			return executeGetEnvVar.call(this, itemIndex ?? 0);
 		case 'listModules':
-			return executeListModules.call(this, itemIndex);
+			return executeListModules.call(this, itemIndex ?? 0);
 		case 'getModule':
-			return executeGetModule.call(this, itemIndex);
+			return executeGetModule.call(this, itemIndex ?? 0);
 		case 'listRuntimes':
-			return executeListRuntimes.call(this, itemIndex);
+			return executeListRuntimes.call(this, itemIndex ?? 0);
 		case 'getRuntime':
-			return executeGetRuntime.call(this, itemIndex);
+			return executeGetRuntime.call(this, itemIndex ?? 0);
 		case 'getSsl':
-			return executeGetSsl.call(this, itemIndex);
+			return executeGetSsl.call(this, itemIndex ?? 0);
 		case 'getEmail':
-			return executeGetEmail.call(this, itemIndex);
+			return executeGetEmail.call(this, itemIndex ?? 0);
 		case 'getServiceInfos':
-			return executeGetServiceInfos.call(this, itemIndex);
+			return executeGetServiceInfos.call(this, itemIndex ?? 0);
 		case 'hostingUpdate':
-			return executeHostingUpdate.call(this, itemIndex);
+			return executeHostingUpdate.call(this, itemIndex ?? 0);
 		case 'configurationPut':
-			return executeConfigurationPut.call(this, itemIndex);
+			return executeConfigurationPut.call(this, itemIndex ?? 0);
 		case 'attachedDomainCreate':
-			return executeAttachedDomainCreate.call(this, itemIndex);
+			return executeAttachedDomainCreate.call(this, itemIndex ?? 0);
 		case 'attachedDomainUpdate':
-			return executeAttachedDomainUpdate.call(this, itemIndex);
+			return executeAttachedDomainUpdate.call(this, itemIndex ?? 0);
 		case 'attachedDomainDelete':
-			return executeAttachedDomainDelete.call(this, itemIndex);
+			return executeAttachedDomainDelete.call(this, itemIndex ?? 0);
 		case 'defaultSslCertificateCreate':
-			return executeDefaultSslCertificateCreate.call(this, itemIndex);
+			return executeDefaultSslCertificateCreate.call(this, itemIndex ?? 0);
 		case 'attachedDomainPurgeCacheCreate':
-			return executeAttachedDomainPurgeCacheCreate.call(this, itemIndex);
+			return executeAttachedDomainPurgeCacheCreate.call(this, itemIndex ?? 0);
 		case 'userUpdatePut':
-			return executeUserUpdatePut.call(this, itemIndex);
+			return executeUserUpdatePut.call(this, itemIndex ?? 0);
 		case 'databaseCreatePost':
-			return executeDatabaseCreatePost.call(this, itemIndex);
+			return executeDatabaseCreatePost.call(this, itemIndex ?? 0);
 		case 'databaseDelete':
-			return executeDatabaseDelete.call(this, itemIndex);
+			return executeDatabaseDelete.call(this, itemIndex ?? 0);
 		case 'importCustomCertificateCreate':
-			return executeImportCustomCertificateCreate.call(this, itemIndex);
+			return executeImportCustomCertificateCreate.call(this, itemIndex ?? 0);
 		case 'envVarSetCreate':
-			return executeEnvVarSetCreate.call(this, itemIndex);
+			return executeEnvVarSetCreate.call(this, itemIndex ?? 0);
 		case 'cronCreatePost':
-			return executeCronCreatePost.call(this, itemIndex);
+			return executeCronCreatePost.call(this, itemIndex ?? 0);
 		case 'cronUpdatePut':
-			return executeCronUpdatePut.call(this, itemIndex);
+			return executeCronUpdatePut.call(this, itemIndex ?? 0);
 		case 'cronDeleteDelete':
-			return executeCronDeleteDelete.call(this, itemIndex);
+			return executeCronDeleteDelete.call(this, itemIndex ?? 0);
 		case 'databaseUpdatePut':
-			return executeDatabaseUpdatePut.call(this, itemIndex);
+			return executeDatabaseUpdatePut.call(this, itemIndex ?? 0);
 		case 'statisticsGet':
-			return executeStatisticsGet.call(this, itemIndex);
+			return executeStatisticsGet.call(this, itemIndex ?? 0);
 		case 'dbCapabilities':
-			return dbCapabilitiesGetExecute.call(this);
+			return dbCapabilitiesGetExecute.call(this, itemIndex ?? 0);
 		case 'dbChangePassword':
-			return dbChangePasswordPutExecute.call(this);
+			return dbChangePasswordPutExecute.call(this, itemIndex ?? 0);
 		case 'dbCopyDatabase':
-			return dbCopyPostExecute.call(this);
+			return dbCopyPostExecute.call(this, itemIndex ?? 0);
 		case 'dbCreateDump':
-			return dbDumpCreatePostExecute.call(this);
+			return dbDumpCreatePostExecute.call(this, itemIndex ?? 0);
 		case 'dbGetDump':
-			return dbDumpGetExecute.call(this);
+			return dbDumpGetExecute.call(this, itemIndex ?? 0);
 		case 'dbImportDump':
-			return dbImportPostExecute.call(this);
+			return dbImportPostExecute.call(this, itemIndex ?? 0);
 		case 'dbListRequests':
-			return dbRequestListGetExecute.call(this);
+			return dbRequestListGetExecute.call(this, itemIndex ?? 0);
 		case 'dbMetricsToken':
-			return dbMetricsTokenGetExecute.call(this);
+			return dbMetricsTokenGetExecute.call(this, itemIndex ?? 0);
 		case 'dbRestore':
-			return dbRestoreCreatePostExecute.call(this);
+			return dbRestoreCreatePostExecute.call(this, itemIndex ?? 0);
 		case 'dbGetRestore':
-			return dbRestoreGetExecute.call(this);
+			return dbRestoreGetExecute.call(this, itemIndex ?? 0);
 		case 'dbStatistics':
-			return dbStatisticsGetExecute.call(this);
+			return dbStatisticsGetExecute.call(this, itemIndex ?? 0);
 		case 'dbCopyList':
-			return dbCopyListGetExecute.call(this, itemIndex);
+			return dbCopyListGetExecute.call(this, itemIndex ?? 0);
 		case 'dbCopyGet':
-			return dbCopyGetGetExecute.call(this, itemIndex);
+			return dbCopyGetGetExecute.call(this, itemIndex ?? 0);
 		case 'dbCopyDelete':
-			return dbCopyDeleteDeleteExecute.call(this, itemIndex);
+			return dbCopyDeleteDeleteExecute.call(this, itemIndex ?? 0);
 		case 'dbCopyRestore':
-			return dbCopyRestorePostExecute.call(this, itemIndex);
+			return dbCopyRestorePostExecute.call(this, itemIndex ?? 0);
 		case 'dbDumpGetById':
-			return dbDumpGetGetExecute.call(this, itemIndex);
+			return dbDumpGetGetExecute.call(this, itemIndex ?? 0);
 		case 'dbDumpDelete':
-			return dbDumpDeleteDeleteExecute.call(this, itemIndex);
+			return dbDumpDeleteDeleteExecute.call(this, itemIndex ?? 0);
 		case 'dbDumpRestore':
-			return dbDumpRestorePostExecute.call(this, itemIndex);
+			return dbDumpRestorePostExecute.call(this, itemIndex ?? 0);
 		case 'dbAvailableTypes':
-			return dbAvailableTypeListGetExecute.call(this, itemIndex);
+			return dbAvailableTypeListGetExecute.call(this, itemIndex ?? 0);
 		case 'dbAvailableVersions':
-			return dbAvailableVersionListGetExecute.call(this, itemIndex);
+			return dbAvailableVersionListGetExecute.call(this, itemIndex ?? 0);
 		case 'dbCreationCapabilities':
-			return dbCreationCapabilitiesGetExecute.call(this, itemIndex);
+			return dbCreationCapabilitiesGetExecute.call(this, itemIndex ?? 0);
 		case 'dumpList':
-			return dumpListGetExecute.call(this, itemIndex);
+			return dumpListGetExecute.call(this, itemIndex ?? 0);
 		case 'dumpGet':
-			return dumpGetGetExecute.call(this, itemIndex);
+			return dumpGetGetExecute.call(this, itemIndex ?? 0);
 		case 'dumpDelete':
-			return dumpDeleteDeleteExecute.call(this, itemIndex);
+			return dumpDeleteDeleteExecute.call(this, itemIndex ?? 0);
 		case 'emailUpdate':
-			return emailUpdatePutExecute.call(this, itemIndex);
+			return emailUpdatePutExecute.call(this, itemIndex ?? 0);
 		case 'emailBounces':
-			return emailBouncesGetExecute.call(this, itemIndex);
+			return emailBouncesGetExecute.call(this, itemIndex ?? 0);
 		case 'emailRequest':
-			return emailRequestPostExecute.call(this, itemIndex);
+			return emailRequestPostExecute.call(this, itemIndex ?? 0);
 		case 'emailVolumes':
-			return emailVolumesGetExecute.call(this, itemIndex);
+			return emailVolumesGetExecute.call(this, itemIndex ?? 0);
 		case 'emailOptionList':
-			return emailOptionListGetExecute.call(this, itemIndex);
+			return emailOptionListGetExecute.call(this, itemIndex ?? 0);
 		case 'emailOptionGet':
-			return emailOptionGetGetExecute.call(this, itemIndex);
+			return emailOptionGetGetExecute.call(this, itemIndex ?? 0);
 		case 'emailOptionServiceInfos':
-			return emailOptionServiceInfosGetExecute.call(this, itemIndex);
+			return emailOptionServiceInfosGetExecute.call(this, itemIndex ?? 0);
 		case 'emailOptionTerminate':
-			return emailOptionTerminatePostExecute.call(this, itemIndex);
+			return emailOptionTerminatePostExecute.call(this, itemIndex ?? 0);
 		case 'userLogsList':
-			return userLogsListGetExecute.call(this, itemIndex);
+			return userLogsListGetExecute.call(this, itemIndex ?? 0);
 		case 'userLogsCreate':
-			return userLogsCreatePostExecute.call(this, itemIndex);
+			return userLogsCreatePostExecute.call(this, itemIndex ?? 0);
 		case 'userLogsDelete':
-			return userLogsDeleteDeleteExecute.call(this, itemIndex);
+			return userLogsDeleteDeleteExecute.call(this, itemIndex ?? 0);
 		case 'userLogsGet':
-			return userLogsGetGetExecute.call(this, itemIndex);
+			return userLogsGetGetExecute.call(this, itemIndex ?? 0);
 		case 'userLogsUpdate':
-			return userLogsUpdatePutExecute.call(this, itemIndex);
+			return userLogsUpdatePutExecute.call(this, itemIndex ?? 0);
 		case 'userLogsChangePassword':
-			return userLogsChangePasswordPostExecute.call(this, itemIndex);
+			return userLogsChangePasswordPostExecute.call(this, itemIndex ?? 0);
 		case 'ownLogsList':
-			return ownLogsListGetExecute.call(this, itemIndex);
+			return ownLogsListGetExecute.call(this, itemIndex ?? 0);
 		case 'ownLogsGet':
-			return ownLogsGetGetExecute.call(this, itemIndex);
+			return ownLogsGetGetExecute.call(this, itemIndex ?? 0);
 		case 'ownLogsUserLogsList':
-			return ownLogsUserLogsListGetExecute.call(this, itemIndex);
+			return ownLogsUserLogsListGetExecute.call(this, itemIndex ?? 0);
 		case 'ownLogsUserLogsCreate':
-			return ownLogsUserLogsCreatePostExecute.call(this, itemIndex);
+			return ownLogsUserLogsCreatePostExecute.call(this, itemIndex ?? 0);
 		case 'ownLogsUserLogsDelete':
-			return ownLogsUserLogsDeleteDeleteExecute.call(this, itemIndex);
+			return ownLogsUserLogsDeleteDeleteExecute.call(this, itemIndex ?? 0);
 		case 'ownLogsUserLogsGet':
-			return ownLogsUserLogsGetGetExecute.call(this, itemIndex);
+			return ownLogsUserLogsGetGetExecute.call(this, itemIndex ?? 0);
 		case 'ownLogsUserLogsUpdate':
-			return ownLogsUserLogsUpdatePutExecute.call(this, itemIndex);
+			return ownLogsUserLogsUpdatePutExecute.call(this, itemIndex ?? 0);
 		case 'ownLogsUserLogsChangePassword':
-			return ownLogsUserLogsChangePasswordPostExecute.call(this, itemIndex);
+			return ownLogsUserLogsChangePasswordPostExecute.call(this, itemIndex ?? 0);
 		case 'logKindList':
-			return logKindListGetExecute.call(this, itemIndex);
+			return logKindListGetExecute.call(this, itemIndex ?? 0);
 		case 'logKindGet':
-			return logKindGetGetExecute.call(this, itemIndex);
+			return logKindGetGetExecute.call(this, itemIndex ?? 0);
 		case 'logSubscriptionList':
-			return logSubscriptionListGetExecute.call(this, itemIndex);
+			return logSubscriptionListGetExecute.call(this, itemIndex ?? 0);
 		case 'logSubscriptionCreate':
-			return logSubscriptionCreatePostExecute.call(this, itemIndex);
+			return logSubscriptionCreatePostExecute.call(this, itemIndex ?? 0);
 		case 'logSubscriptionDelete':
-			return logSubscriptionDeleteDeleteExecute.call(this, itemIndex);
+			return logSubscriptionDeleteDeleteExecute.call(this, itemIndex ?? 0);
 		case 'logSubscriptionGet':
-			return logSubscriptionGetGetExecute.call(this, itemIndex);
+			return logSubscriptionGetGetExecute.call(this, itemIndex ?? 0);
 		case 'logUrl':
-			return logUrlCreatePostExecute.call(this, itemIndex);
+			return logUrlCreatePostExecute.call(this, itemIndex ?? 0);
 		case 'tokenGet':
-			return tokenGetGetExecute.call(this, itemIndex);
+			return tokenGetGetExecute.call(this, itemIndex ?? 0);
 
 		// ==================== Website Operations ====================
 		case 'websiteCreate':
-			return websiteCreatePostExecute.call(this, itemIndex);
+			return websiteCreatePostExecute.call(this, itemIndex ?? 0);
 		case 'websiteDelete':
-			return websiteDeleteDeleteExecute.call(this, itemIndex);
+			return websiteDeleteDeleteExecute.call(this, itemIndex ?? 0);
 		case 'websiteDeployment':
-			return websiteDeploymentCreatePostExecute.call(this, itemIndex);
+			return websiteDeploymentCreatePostExecute.call(this, itemIndex ?? 0);
 		case 'websiteGet':
-			return websiteGetGetExecute.call(this, itemIndex);
+			return websiteGetGetExecute.call(this, itemIndex ?? 0);
 		case 'websiteList':
-			return websiteListGetExecute.call(this, itemIndex);
+			return websiteListGetExecute.call(this, itemIndex ?? 0);
 		case 'websiteUpdate':
-			return websiteUpdatePutExecute.call(this, itemIndex);
+			return websiteUpdatePutExecute.call(this, itemIndex ?? 0);
 		case 'websiteCreationCapabilities':
-			return websiteCreationCapabilitiesGetExecute.call(this, itemIndex);
+			return websiteCreationCapabilitiesGetExecute.call(this, itemIndex ?? 0);
 		case 'websiteDeploymentStatus':
-			return websiteDeploymentGetExecute.call(this, itemIndex);
+			return websiteDeploymentGetExecute.call(this, itemIndex ?? 0);
 
 		// ==================== CDN Operations ====================
 		case 'cdnAvailableOptions':
-			return cdnAvailableOptionsGetExecute.call(this, itemIndex);
+			return cdnAvailableOptionsGetExecute.call(this, itemIndex ?? 0);
 		case 'cdnAddDomain':
-			return cdnDomainCreatePostExecute.call(this, itemIndex);
+			return cdnDomainCreatePostExecute.call(this, itemIndex ?? 0);
 		case 'cdnDeleteDomain':
-			return cdnDomainDeleteDeleteExecute.call(this, itemIndex);
+			return cdnDomainDeleteDeleteExecute.call(this, itemIndex ?? 0);
 		case 'cdnGet':
-			return cdnGetExecute.call(this, itemIndex);
+			return cdnGetExecute.call(this, itemIndex ?? 0);
 		case 'cdnListDomains':
-			return cdnDomainListGetExecute.call(this, itemIndex);
+			return cdnDomainListGetExecute.call(this, itemIndex ?? 0);
 		case 'cdnListOptions':
-			return cdnDomainOptionListGetExecute.call(this, itemIndex);
+			return cdnDomainOptionListGetExecute.call(this, itemIndex ?? 0);
 		case 'cdnListOperations':
-			return cdnOperationListGetExecute.call(this, itemIndex);
+			return cdnOperationListGetExecute.call(this, itemIndex ?? 0);
 		case 'cdnPurgeCache':
-			return cdnDomainPurgePostExecute.call(this, itemIndex);
+			return cdnDomainPurgePostExecute.call(this, itemIndex ?? 0);
 		case 'cdnServiceInfos':
-			return cdnServiceInfosGetExecute.call(this, itemIndex);
+			return cdnServiceInfosGetExecute.call(this, itemIndex ?? 0);
 		case 'cdnTerminate':
-			return cdnTerminateCreateExecute.call(this, itemIndex);
+			return cdnTerminateCreateExecute.call(this, itemIndex ?? 0);
 		case 'cdnUpdateDomainOption':
-			return cdnDomainOptionUpdatePutExecute.call(this, itemIndex);
+			return cdnDomainOptionUpdatePutExecute.call(this, itemIndex ?? 0);
 		case 'cdnUpdateServiceInfos':
-			return cdnServiceInfosUpdatePutExecute.call(this, itemIndex);
+			return cdnServiceInfosUpdatePutExecute.call(this, itemIndex ?? 0);
 
 		// ==================== Service Management ====================
 		case 'serviceAbuseState':
-			return smAbuseStateGetExecute.call(this);
+			return smAbuseStateGetExecute.call(this, itemIndex ?? 0);
 		case 'serviceAvailableConfigurations':
-			return smAvailableConfigurationsGetExecute.call(this);
+			return smAvailableConfigurationsGetExecute.call(this, itemIndex ?? 0);
 		case 'serviceChangeContact':
-			return smChangeContactPostExecute.call(this);
+			return smChangeContactPostExecute.call(this, itemIndex ?? 0);
 		case 'serviceConfirmTermination':
-			return smConfirmTerminationCreateExecute.call(this);
+			return smConfirmTerminationCreateExecute.call(this, itemIndex ?? 0);
 		case 'serviceMetricsToken':
-			return smMetricsTokenGetExecute.call(this);
+			return smMetricsTokenGetExecute.call(this, itemIndex ?? 0);
 		case 'serviceRequestBoost':
-			return smRequestBoostPostExecute.call(this);
+			return smRequestBoostPostExecute.call(this, itemIndex ?? 0);
 		case 'serviceSupportRequest':
-			return smRequestPostExecute.call(this);
+			return smRequestPostExecute.call(this, itemIndex ?? 0);
 		case 'serviceTerminate':
-			return smTerminateCreateExecute.call(this);
+			return smTerminateCreateExecute.call(this, itemIndex ?? 0);
 		case 'serviceUnblockTCPOut':
-			return smUnblockTCPOutPutExecute.call(this);
+			return smUnblockTCPOutPutExecute.call(this, itemIndex ?? 0);
 		case 'serviceUserLogsToken':
-			return smUserLogsTokenGetExecute.call(this);
+			return smUserLogsTokenGetExecute.call(this, itemIndex ?? 0);
 
 		// ==================== v2 API Operations ====================
 		case 'v2ListResources':
-			return v2ResourceListGetAllExecute.call(this, itemIndex);
+			return v2ResourceListGetAllExecute.call(this, itemIndex ?? 0);
 		case 'v2GetResource':
-			return v2ResourceGetGetExecute.call(this, itemIndex);
+			return v2ResourceGetGetExecute.call(this, itemIndex ?? 0);
 		case 'v2ListAttachedDomains':
-			return v2AttachedDomainListGetExecute.call(this, itemIndex);
+			return v2AttachedDomainListGetExecute.call(this, itemIndex ?? 0);
 		case 'v2GetResourceAttachedDomains':
-			return v2ResourceAttachedDomainListGetExecute.call(this, itemIndex);
+			return v2ResourceAttachedDomainListGetExecute.call(this, itemIndex ?? 0);
 		case 'v2ListCertificates':
-			return v2CertificateListGetExecute.call(this, itemIndex);
+			return v2CertificateListGetExecute.call(this, itemIndex ?? 0);
 		case 'v2ListWebsites':
-			return v2WebsiteListGetExecute.call(this, itemIndex);
+			return v2WebsiteListGetExecute.call(this, itemIndex ?? 0);
 		case 'v2CreateWebsite':
-			return v2WebsiteCreatePostExecute.call(this, itemIndex);
+			return v2WebsiteCreatePostExecute.call(this, itemIndex ?? 0);
 		case 'v2GetWebsite':
-			return v2WebsiteGetGetExecute.call(this, itemIndex);
+			return v2WebsiteGetGetExecute.call(this, itemIndex ?? 0);
 		case 'v2UpdateWebsite':
-			return v2WebsiteUpdatePutExecute.call(this, itemIndex);
+			return v2WebsiteUpdatePutExecute.call(this, itemIndex ?? 0);
 		case 'v2DeleteWebsite':
-			return v2WebsiteDeleteDeleteExecute.call(this);
+			return v2WebsiteDeleteDeleteExecute.call(this, itemIndex ?? 0);
 		case 'v2ListWebsiteDomains':
-			return v2WebsiteDomainListGetExecute.call(this, itemIndex);
+			return v2WebsiteDomainListGetExecute.call(this, itemIndex ?? 0);
 		case 'v2CreateAttachedDomain':
-			return v2AttachedDomainCreateExecute.call(this);
+			return v2AttachedDomainCreateExecute.call(this, itemIndex ?? 0);
 		case 'v2ListResourceAttachedDomains':
-			return v2AttachedDomainListByResourceExecute.call(this);
+			return v2AttachedDomainListByResourceExecute.call(this, itemIndex ?? 0);
 		case 'v2ImportCustomCertificate':
-			return v2ImportCustomCertExecute.call(this);
+			return v2ImportCustomCertExecute.call(this, itemIndex ?? 0);
 		case 'v2DeleteUser':
-			return v2DeleteUserExecute.call(this);
+			return v2DeleteUserExecute.call(this, itemIndex ?? 0);
 		case 'emailCreate':
-			return emailCreatePostExecute.call(this);
+			return emailCreatePostExecute.call(this, itemIndex ?? 0);
 		case 'emailDelete':
-			return emailDeleteDeleteExecute.call(this);
+			return emailDeleteDeleteExecute.call(this, itemIndex ?? 0);
 		case 'emailList':
-			return emailListGetExecute.call(this);
+			return emailListGetExecute.call(this, itemIndex ?? 0);
 		case 'moduleList':
-			return moduleListGetExecute.call(this);
+			return moduleListGetExecute.call(this, itemIndex ?? 0);
 		case 'moduleUpdate':
-			return moduleUpdatePutExecute.call(this);
+			return moduleUpdatePutExecute.call(this, itemIndex ?? 0);
 		case 'privateDatabaseGet':
-			return privateDatabaseGetGetExecute.call(this);
+			return privateDatabaseGetGetExecute.call(this, itemIndex ?? 0);
 		case 'privateDatabaseList':
-			return privateDatabaseListGetExecute.call(this);
+			return privateDatabaseListGetExecute.call(this, itemIndex ?? 0);
 		case 'runtimeCreate':
-			return runtimeCreatePostExecute.call(this);
+			return runtimeCreatePostExecute.call(this, itemIndex ?? 0);
 		case 'runtimeGet2':
-			return runtimeGetGetExecute.call(this);
+			return runtimeGetGetExecute.call(this, itemIndex ?? 0);
 		case 'runtimeList2':
-			return runtimeListGetExecute.call(this);
+			return runtimeListGetExecute.call(this, itemIndex ?? 0);
 		case 'runtimeUpdate':
-			return runtimeUpdatePutExecute.call(this);
+			return runtimeUpdatePutExecute.call(this, itemIndex ?? 0);
 		case 'sslCreate':
-			return sslServiceCreatePostExecute.call(this);
+			return sslServiceCreatePostExecute.call(this, itemIndex ?? 0);
 		case 'sslGet':
-			return sslServiceGetGetExecute.call(this);
+			return sslServiceGetGetExecute.call(this, itemIndex ?? 0);
 		case 'sslList':
-			return sslServiceListGetExecute.call(this);
+			return sslServiceListGetExecute.call(this, itemIndex ?? 0);
 
 		// ==================== Phase 4c - Lot 2 Operations ====================
 		case 'attachedDomainDigStatus':
-			return attachedDomainDigStatusGetExecute.call(this, itemIndex);
+			return attachedDomainDigStatusGetExecute.call(this, itemIndex ?? 0);
 		case 'attachedDomainRestart':
-			return attachedDomainRestartPostExecute.call(this, itemIndex);
+			return attachedDomainRestartPostExecute.call(this, itemIndex ?? 0);
 		case 'attachedDomainSslDelete':
-			return attachedDomainSslDeleteExecute.call(this, itemIndex);
+			return attachedDomainSslDeleteExecute.call(this, itemIndex ?? 0);
 		case 'attachedDomainSslGet':
-			return attachedDomainSslGetExecute.call(this, itemIndex);
+			return attachedDomainSslGetExecute.call(this, itemIndex ?? 0);
 		case 'attachedDomainSslCreate':
-			return attachedDomainSslCreatePostExecute.call(this, itemIndex);
+			return attachedDomainSslCreatePostExecute.call(this, itemIndex ?? 0);
 		case 'attachedDomainSslUpdate':
-			return attachedDomainSslUpdatePutExecute.call(this, itemIndex);
+			return attachedDomainSslUpdatePutExecute.call(this, itemIndex ?? 0);
 		case 'attachedDomainSslRegenerate':
-			return attachedDomainSslRegeneratePostExecute.call(this, itemIndex);
+			return attachedDomainSslRegeneratePostExecute.call(this, itemIndex ?? 0);
 		case 'attachedDomainSslReport':
-			return attachedDomainSslReportGetExecute.call(this, itemIndex);
+			return attachedDomainSslReportGetExecute.call(this, itemIndex ?? 0);
 		case 'boostHistoryList':
-			return boostHistoryListGetExecute.call(this, itemIndex);
+			return boostHistoryListGetExecute.call(this, itemIndex ?? 0);
 		case 'boostHistoryGet':
-			return boostHistoryGetGetExecute.call(this, itemIndex);
+			return boostHistoryGetGetExecute.call(this, itemIndex ?? 0);
 		case 'configurationGet':
-			return configurationGetGetExecute.call(this, itemIndex);
+			return configurationGetGetExecute.call(this, itemIndex ?? 0);
 		case 'cronAvailableLanguageList':
-			return cronAvailableLanguageListGetExecute.call(this, itemIndex);
+			return cronAvailableLanguageListGetExecute.call(this, itemIndex ?? 0);
 		case 'extraSqlPersoList':
-			return extraSqlPersoListGetExecute.call(this, itemIndex);
+			return extraSqlPersoListGetExecute.call(this, itemIndex ?? 0);
 		case 'extraSqlPersoGet':
-			return extraSqlPersoGetGetExecute.call(this, itemIndex);
+			return extraSqlPersoGetGetExecute.call(this, itemIndex ?? 0);
 		case 'extraSqlPersoDatabases':
-			return extraSqlPersoDatabasesGetExecute.call(this, itemIndex);
+			return extraSqlPersoDatabasesGetExecute.call(this, itemIndex ?? 0);
 		case 'extraSqlPersoServiceInfos':
-			return extraSqlPersoServiceInfosGetExecute.call(this, itemIndex);
+			return extraSqlPersoServiceInfosGetExecute.call(this, itemIndex ?? 0);
 		case 'extraSqlPersoServiceInfosUpdate':
-			return extraSqlPersoServiceInfosUpdatePostExecute.call(this, itemIndex);
+			return extraSqlPersoServiceInfosUpdatePostExecute.call(this, itemIndex ?? 0);
 		case 'extraSqlPersoTerminate':
-			return extraSqlPersoTerminatePostExecute.call(this, itemIndex);
+			return extraSqlPersoTerminatePostExecute.call(this, itemIndex ?? 0);
 		case 'freedomList':
-			return freedomListGetExecute.call(this, itemIndex);
+			return freedomListGetExecute.call(this, itemIndex ?? 0);
 		case 'indyList':
-			return indyListGetExecute.call(this, itemIndex);
+			return indyListGetExecute.call(this, itemIndex ?? 0);
 		case 'indyGet':
-			return indyGetGetExecute.call(this, itemIndex);
+			return indyGetGetExecute.call(this, itemIndex ?? 0);
 		case 'sshKeyList':
-			return sshKeyListGetExecute.call(this, itemIndex);
+			return sshKeyListGetExecute.call(this, itemIndex ?? 0);
 		case 'sshKeyCreate':
-			return sshKeyCreatePostExecute.call(this, itemIndex);
+			return sshKeyCreatePostExecute.call(this, itemIndex ?? 0);
 		case 'localSeoAccountList':
-			return localSeoAccountListGetExecute.call(this, itemIndex);
+			return localSeoAccountListGetExecute.call(this, itemIndex ?? 0);
 		case 'localSeoAccountGet':
-			return localSeoAccountGetExecute.call(this, itemIndex);
+			return localSeoAccountGetExecute.call(this, itemIndex ?? 0);
 		case 'localSeoAccountLogin':
-			return localSeoAccountLoginPostExecute.call(this, itemIndex);
+			return localSeoAccountLoginPostExecute.call(this, itemIndex ?? 0);
 		case 'localSeoEmailAvailability':
-			return localSeoEmailAvailabilityGetExecute.call(this, itemIndex);
+			return localSeoEmailAvailabilityGetExecute.call(this, itemIndex ?? 0);
 		case 'localSeoLocationList':
-			return localSeoLocationListGetExecute.call(this, itemIndex);
+			return localSeoLocationListGetExecute.call(this, itemIndex ?? 0);
 		case 'localSeoLocationGet':
-			return localSeoLocationGetExecute.call(this, itemIndex);
+			return localSeoLocationGetExecute.call(this, itemIndex ?? 0);
 		case 'localSeoLocationServiceInfos':
-			return localSeoLocationServiceInfosGetExecute.call(this, itemIndex);
+			return localSeoLocationServiceInfosGetExecute.call(this, itemIndex ?? 0);
 		case 'localSeoLocationServiceInfosUpdate':
-			return localSeoLocationServiceInfosUpdatePostExecute.call(this, itemIndex);
+			return localSeoLocationServiceInfosUpdatePostExecute.call(this, itemIndex ?? 0);
 		case 'localSeoLocationTerminate':
-			return localSeoLocationTerminatePostExecute.call(this, itemIndex);
+			return localSeoLocationTerminatePostExecute.call(this, itemIndex ?? 0);
 		case 'moduleCreate':
-			return moduleCreatePostExecute.call(this, itemIndex);
+			return moduleCreatePostExecute.call(this, itemIndex ?? 0);
 		case 'moduleDelete':
-			return moduleDeleteDeleteExecute.call(this, itemIndex);
+			return moduleDeleteDeleteExecute.call(this, itemIndex ?? 0);
 		case 'ovhConfigList':
-			return ovhConfigListGetExecute.call(this, itemIndex);
+			return ovhConfigListGetExecute.call(this, itemIndex ?? 0);
 		case 'ovhConfigGet':
-			return ovhConfigGetGetExecute.call(this, itemIndex);
+			return ovhConfigGetGetExecute.call(this, itemIndex ?? 0);
 		case 'ovhConfigChangeConfiguration':
-			return ovhConfigChangeConfigurationPostExecute.call(this, itemIndex);
+			return ovhConfigChangeConfigurationPostExecute.call(this, itemIndex ?? 0);
 		case 'ovhConfigRollback':
-			return ovhConfigRollbackPostExecute.call(this, itemIndex);
+			return ovhConfigRollbackPostExecute.call(this, itemIndex ?? 0);
 		case 'ovhConfigCapabilities':
-			return ovhConfigCapabilitiesGetExecute.call(this, itemIndex);
+			return ovhConfigCapabilitiesGetExecute.call(this, itemIndex ?? 0);
 		case 'ovhConfigRecommendedValues':
-			return ovhConfigRecommendedValuesGetExecute.call(this, itemIndex);
+			return ovhConfigRecommendedValuesGetExecute.call(this, itemIndex ?? 0);
 		case 'ovhConfigRefresh':
-			return ovhConfigRefreshPostExecute.call(this, itemIndex);
+			return ovhConfigRefreshPostExecute.call(this, itemIndex ?? 0);
 		case 'privateDatabaseCreationCapabilities':
-			return privateDatabaseCreationCapabilitiesGetExecute.call(this, itemIndex);
+			return privateDatabaseCreationCapabilitiesGetExecute.call(this, itemIndex ?? 0);
 		case 'restoreSnapshot':
-			return restoreSnapshotCreatePostExecute.call(this, itemIndex);
+			return restoreSnapshotCreatePostExecute.call(this, itemIndex ?? 0);
 		case 'runtimeDelete':
-			return runtimeDeleteDeleteExecute.call(this, itemIndex);
+			return runtimeDeleteDeleteExecute.call(this, itemIndex ?? 0);
 		case 'runtimeAttachedDomains':
-			return runtimeAttachedDomainsGetExecute.call(this, itemIndex);
+			return runtimeAttachedDomainsGetExecute.call(this, itemIndex ?? 0);
 		case 'runtimeAvailableTypes':
-			return runtimeAvailableTypesGetExecute.call(this, itemIndex);
+			return runtimeAvailableTypesGetExecute.call(this, itemIndex ?? 0);
 		case 'sslDelete':
-			return sslServiceDeleteDeleteExecute.call(this, itemIndex);
+			return sslServiceDeleteDeleteExecute.call(this, itemIndex ?? 0);
 		case 'sslDomains':
-			return sslServiceDomainsGetExecute.call(this, itemIndex);
+			return sslServiceDomainsGetExecute.call(this, itemIndex ?? 0);
 		case 'sslRegenerate':
-			return sslServiceRegeneratePostExecute.call(this, itemIndex);
+			return sslServiceRegeneratePostExecute.call(this, itemIndex ?? 0);
 		case 'sslReport':
-			return sslServiceReportGetExecute.call(this, itemIndex);
+			return sslServiceReportGetExecute.call(this, itemIndex ?? 0);
 		case 'userCreate':
-			return userCreatePostExecute.call(this, itemIndex);
+			return userCreatePostExecute.call(this, itemIndex ?? 0);
 		case 'userDelete':
-			return userDeleteDeleteExecute.call(this, itemIndex);
+			return userDeleteDeleteExecute.call(this, itemIndex ?? 0);
 		case 'userChangePassword':
-			return userChangePasswordPostExecute.call(this, itemIndex);
+			return userChangePasswordPostExecute.call(this, itemIndex ?? 0);
 		case 'vcsWebhooks':
-			return vcsWebhooksGetExecute.call(this, itemIndex);
+			return vcsWebhooksGetExecute.call(this, itemIndex ?? 0);
 		case 'websiteDeploymentGetById':
-			return websiteDeploymentGetByIdExecute.call(this, itemIndex);
+			return websiteDeploymentGetByIdExecute.call(this, itemIndex ?? 0);
 		case 'websiteDeploymentLogs':
-			return websiteDeploymentLogsGetExecute.call(this, itemIndex);
+			return websiteDeploymentLogsGetExecute.call(this, itemIndex ?? 0);
 
 		// ==================== Phase 4c - lot 3 : Global ====================
 		case 'availableOfferGet':
-			return availableOfferGetExecute.call(this, itemIndex);
+			return availableOfferGetExecute.call(this, itemIndex ?? 0);
 		case 'incidentGet':
-			return incidentGetExecute.call(this, itemIndex);
+			return incidentGetExecute.call(this, itemIndex ?? 0);
 		case 'offerCapabilitiesGet':
-			return offerCapabilitiesGetExecute.call(this, itemIndex);
+			return offerCapabilitiesGetExecute.call(this, itemIndex ?? 0);
 		case 'moduleCatalogList':
-			return moduleCatalogListGetExecute.call(this, itemIndex);
+			return moduleCatalogListGetExecute.call(this, itemIndex ?? 0);
 		case 'moduleCatalogGetById':
-			return moduleCatalogGetByIdExecute.call(this, itemIndex);
+			return moduleCatalogGetByIdExecute.call(this, itemIndex ?? 0);
 		case 'vcsSupported':
-			return vcsSupportedGetExecute.call(this, itemIndex);
+			return vcsSupportedGetExecute.call(this, itemIndex ?? 0);
 		case 'localSeoDirectoriesList':
-			return localSeoDirectoriesListGetExecute.call(this, itemIndex);
+			return localSeoDirectoriesListGetExecute.call(this, itemIndex ?? 0);
 		case 'localSeoEmailAvailabilityGlobal':
-			return localSeoEmailAvailabilityGlobalGetExecute.call(this, itemIndex);
+			return localSeoEmailAvailabilityGlobalGetExecute.call(this, itemIndex ?? 0);
 		case 'localSeoVisibilityCheck':
-			return localSeoVisibilityCheckPostExecute.call(this, itemIndex);
+			return localSeoVisibilityCheckPostExecute.call(this, itemIndex ?? 0);
 		case 'localSeoVisibilityCheckResult':
-			return localSeoVisibilityCheckResultGetExecute.call(this, itemIndex);
+			return localSeoVisibilityCheckResultGetExecute.call(this, itemIndex ?? 0);
 
 		// ==================== Phase 4c - lot 3 : envVar / serviceInfos ====================
 		case 'envVarCreatePost':
-			return envVarCreatePostExecute.call(this, itemIndex);
+			return envVarCreatePostExecute.call(this, itemIndex ?? 0);
 		case 'envVarUpdatePut':
-			return envVarUpdatePutExecute.call(this, itemIndex);
+			return envVarUpdatePutExecute.call(this, itemIndex ?? 0);
 		case 'envVarDeleteDelete':
-			return envVarDeleteDeleteExecute.call(this, itemIndex);
+			return envVarDeleteDeleteExecute.call(this, itemIndex ?? 0);
 		case 'serviceInfosUpdatePut':
-			return serviceInfosUpdatePutExecute.call(this, itemIndex);
+			return serviceInfosUpdatePutExecute.call(this, itemIndex ?? 0);
 
 		// ==================== Phase 4c - lot 3 : CDN ====================
 		case 'cdnDomainGet':
-			return cdnDomainGetGetExecute.call(this, itemIndex);
+			return cdnDomainGetGetExecute.call(this, itemIndex ?? 0);
 		case 'cdnDomainLogs':
-			return cdnDomainLogsGetExecute.call(this, itemIndex);
+			return cdnDomainLogsGetExecute.call(this, itemIndex ?? 0);
 		case 'cdnDomainStatistics':
-			return cdnDomainStatisticsGetExecute.call(this, itemIndex);
+			return cdnDomainStatisticsGetExecute.call(this, itemIndex ?? 0);
 		case 'cdnDomainRefresh':
-			return cdnDomainRefreshPostExecute.call(this, itemIndex);
+			return cdnDomainRefreshPostExecute.call(this, itemIndex ?? 0);
 		case 'cdnDomainOptionCreate':
-			return cdnDomainOptionCreatePostExecute.call(this, itemIndex);
+			return cdnDomainOptionCreatePostExecute.call(this, itemIndex ?? 0);
 		case 'cdnDomainOptionGet':
-			return cdnDomainOptionGetGetExecute.call(this, itemIndex);
+			return cdnDomainOptionGetGetExecute.call(this, itemIndex ?? 0);
 		case 'cdnDomainOptionDelete':
-			return cdnDomainOptionDeleteDeleteExecute.call(this, itemIndex);
+			return cdnDomainOptionDeleteDeleteExecute.call(this, itemIndex ?? 0);
 		case 'cdnOperationGet':
-			return cdnOperationGetGetExecute.call(this, itemIndex);
+			return cdnOperationGetGetExecute.call(this, itemIndex ?? 0);
 
 		default:
 			throw new Error(`Unsupported operation "${operation}" for resource "ovhCloudHosting"`);

@@ -20,7 +20,7 @@ export function description(): INodeProperties[] {
  */
 export async function execute(
 	this: IExecuteFunctions,
-	itemIndex: number,
+	_itemIndex: number,
 ): Promise<INodeExecutionData[]> {
 	const client = new ApiClient(this);
 
@@ -28,6 +28,6 @@ export async function execute(
 	const data = (await client.httpGet(
 		`/dedicated/server/region/availabilities`,
 	)) as IDataObject;
-	const inputData = this.getInputData()[itemIndex];
+	const inputData = this.getInputData()[_itemIndex];
 	return this.helpers.returnJsonArray([{ ...inputData.json, ...data }]);
 }

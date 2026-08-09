@@ -35,9 +35,9 @@ export function description(displayOptions: IDisplayOptions) {
  * HTTP method: GET
  * Endpoint: /dedicated/server/{serviceName}/monitoring
  */
-export async function execute(this: IExecuteFunctions): Promise<INodeExecutionData[]> {
+export async function execute(this: IExecuteFunctions, _itemIndex?: number): Promise<INodeExecutionData[]> {
 	const client = new ApiClient(this);
-	const serviceName = this.getNodeParameter('serviceName', 0, '', {
+	const serviceName = this.getNodeParameter('serviceName', _itemIndex ?? 0, '', {
 		extractValue: true,
 	}) as string;
 	const data = (await client.httpGet(`/dedicated/server/${serviceName}/monitoring`)) as unknown as IDataObject;

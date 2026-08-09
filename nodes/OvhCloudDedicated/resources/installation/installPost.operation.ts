@@ -69,15 +69,15 @@ export function description(displayOptions: IDisplayOptions) {
  * HTTP method: POST
  * Endpoint: /dedicated/server/{serviceName}/install
  */
-export async function execute(this: IExecuteFunctions): Promise<INodeExecutionData[]> {
+export async function execute(this: IExecuteFunctions, _itemIndex?: number): Promise<INodeExecutionData[]> {
 	const client = new ApiClient(this);
-	const serviceName = this.getNodeParameter('serviceName', 0, '', {
+	const serviceName = this.getNodeParameter('serviceName', _itemIndex ?? 0, '', {
 		extractValue: true,
 	}) as string;
-	const templateName = (this.getNodeParameter('templateName', 0) as string) || '';
+	const templateName = (this.getNodeParameter('templateName', _itemIndex ?? 0) as string) || '';
 	const postInstallationScript =
-		(this.getNodeParameter('postInstallationScript', 0, '') as string) || undefined;
-	const hostname = (this.getNodeParameter('hostname', 0, '') as string) || undefined;
+		(this.getNodeParameter('postInstallationScript', _itemIndex ?? 0, '') as string) || undefined;
+	const hostname = (this.getNodeParameter('hostname', _itemIndex ?? 0, '') as string) || undefined;
 
 	const body: IDataObject = { templateName };
 	if (postInstallationScript !== undefined && postInstallationScript !== '') {

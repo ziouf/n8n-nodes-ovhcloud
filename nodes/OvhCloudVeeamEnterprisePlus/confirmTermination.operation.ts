@@ -1,7 +1,7 @@
 import type { IExecuteFunctions, INodeProperties, IDataObject, IDisplayOptions, INodeExecutionData } from 'n8n-workflow';
 import { ApiClient } from '../../shared/transport/ApiClient';
 
-// eslint-disable-next-line @typescript-eslint/no-unused-vars
+ 
 export function description(_displayOptions: IDisplayOptions): INodeProperties[] {
 	return [
 		{
@@ -58,13 +58,13 @@ export function description(_displayOptions: IDisplayOptions): INodeProperties[]
 	];
 }
 
-export async function execute(this: IExecuteFunctions, itemIndex: number): Promise<INodeExecutionData[]> {
+export async function execute(this: IExecuteFunctions, _itemIndex: number): Promise<INodeExecutionData[]> {
 	const client = new ApiClient(this);
-	const serviceName = this.getNodeParameter('serviceName', itemIndex) as string;
-	const token = this.getNodeParameter('token', itemIndex) as string;
-	const reason = this.getNodeParameter('reason', itemIndex) as string | undefined;
-	const futureUse = this.getNodeParameter('futureUse', itemIndex) as string | undefined;
-	const commentary = this.getNodeParameter('commentary', itemIndex) as string | undefined;
+	const serviceName = this.getNodeParameter('serviceName', _itemIndex) as string;
+	const token = this.getNodeParameter('token', _itemIndex) as string;
+	const reason = this.getNodeParameter('reason', _itemIndex) as string | undefined;
+	const futureUse = this.getNodeParameter('futureUse', _itemIndex) as string | undefined;
+	const commentary = this.getNodeParameter('commentary', _itemIndex) as string | undefined;
 
 	const body: IDataObject = {
 		token,

@@ -70,14 +70,14 @@ export function description() {
  * HTTP method: POST
  * Endpoint: /email/exchange/{organizationName}/service/{exchangeService}/publicFolder
  */
-export async function execute(this: IExecuteFunctions): Promise<INodeExecutionData[]> {
-	const organizationName = this.getNodeParameter('organizationName', 0) as string;
-	const exchangeService = this.getNodeParameter('exchangeService', 0) as string;
-	const anonymousPermission = this.getNodeParameter('anonymousPermission', 0) as string;
-	const defaultPermission = this.getNodeParameter('defaultPermission', 0) as string;
-	const path = this.getNodeParameter('path', 0) as string;
-	const quota = this.getNodeParameter('quota', 0) as string;
-	const type = this.getNodeParameter('type', 0) as string;
+export async function execute(this: IExecuteFunctions, _itemIndex?: number): Promise<INodeExecutionData[]> {
+	const organizationName = this.getNodeParameter('organizationName', _itemIndex ?? 0) as string;
+	const exchangeService = this.getNodeParameter('exchangeService', _itemIndex ?? 0) as string;
+	const anonymousPermission = this.getNodeParameter('anonymousPermission', _itemIndex ?? 0) as string;
+	const defaultPermission = this.getNodeParameter('defaultPermission', _itemIndex ?? 0) as string;
+	const path = this.getNodeParameter('path', _itemIndex ?? 0) as string;
+	const quota = this.getNodeParameter('quota', _itemIndex ?? 0) as string;
+	const type = this.getNodeParameter('type', _itemIndex ?? 0) as string;
 
 	const body: IDataObject = {
     anonymousPermission: anonymousPermission,

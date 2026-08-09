@@ -97,36 +97,36 @@ export function description() {
 	return props;
 }
 
-export async function execute(this: IExecuteFunctions): Promise<INodeExecutionData[]> {
+export async function execute(this: IExecuteFunctions, itemIndex?: number): Promise<INodeExecutionData[]> {
 	const operation = this.getNodeParameter('metricsOperation', 0) as string;
 
 	switch (operation) {
 		case 'changeContactPost':
-			return changeContactPost.execute.call(this);
+			return changeContactPost.execute.call(this, itemIndex ?? 0);
 		case 'confirmTerminationPost':
-			return confirmTerminationPost.execute.call(this);
+			return confirmTerminationPost.execute.call(this, itemIndex ?? 0);
 		case 'tokenCreatePost':
-			return tokenCreatePost.execute.call(this);
+			return tokenCreatePost.execute.call(this, itemIndex ?? 0);
 		case 'tokenDelete':
-			return tokenDelete.execute.call(this);
+			return tokenDelete.execute.call(this, itemIndex ?? 0);
 		case 'updatePut':
-			return updatePut.execute.call(this);
+			return updatePut.execute.call(this, itemIndex ?? 0);
 		case 'tokenUpdatePut':
-			return tokenUpdatePut.execute.call(this);
+			return tokenUpdatePut.execute.call(this, itemIndex ?? 0);
 		case 'get':
-			return get.execute.call(this);
+			return get.execute.call(this, itemIndex ?? 0);
 		case 'consumptionGet':
-			return consumptionGet.execute.call(this);
+			return consumptionGet.execute.call(this, itemIndex ?? 0);
 		case 'quotaGet':
-			return quotaGet.execute.call(this);
+			return quotaGet.execute.call(this, itemIndex ?? 0);
 		case 'tokenDetailGet':
-			return tokenDetailGet.execute.call(this);
+			return tokenDetailGet.execute.call(this, itemIndex ?? 0);
 		case 'list':
-			return list.execute.call(this);
+			return list.execute.call(this, itemIndex ?? 0);
 		case 'tokenGet':
-			return tokenGet.execute.call(this);
+			return tokenGet.execute.call(this, itemIndex ?? 0);
 		case 'quotaSetPut':
-			return quotaSetPut.execute.call(this);
+			return quotaSetPut.execute.call(this, itemIndex ?? 0);
 		default:
 			throw new Error(`No handler for operation '${operation}'`);
 	}

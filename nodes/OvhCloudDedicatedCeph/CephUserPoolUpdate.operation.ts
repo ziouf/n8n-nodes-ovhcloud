@@ -34,15 +34,15 @@ export function description(): INodeProperties[] {
  * Endpoint: /dedicated/ceph/{serviceName}/user/{userName}/pool
  */
 export async function execute(this: IExecuteFunctions,
-	itemIndex: number): Promise<INodeExecutionData[]> {
-	const serviceName = this.getNodeParameter('serviceName', itemIndex) as string;
-	const userName = this.getNodeParameter('userName', itemIndex) as string;
-	const classRead = this.getNodeParameter('classRead', itemIndex) as string;
-	const classWrite = this.getNodeParameter('classWrite', itemIndex) as string;
-	const execute = this.getNodeParameter('execute', itemIndex) as string;
-	const poolName = this.getNodeParameter('poolName', itemIndex) as string;
-	const read = this.getNodeParameter('read', itemIndex) as string;
-	const write = this.getNodeParameter('write', itemIndex) as string;
+	_itemIndex: number): Promise<INodeExecutionData[]> {
+	const serviceName = this.getNodeParameter('serviceName', _itemIndex) as string;
+	const userName = this.getNodeParameter('userName', _itemIndex) as string;
+	const classRead = this.getNodeParameter('classRead', _itemIndex) as string;
+	const classWrite = this.getNodeParameter('classWrite', _itemIndex) as string;
+	const execute = this.getNodeParameter('execute', _itemIndex) as string;
+	const poolName = this.getNodeParameter('poolName', _itemIndex) as string;
+	const read = this.getNodeParameter('read', _itemIndex) as string;
+	const write = this.getNodeParameter('write', _itemIndex) as string;
 	const client = new ApiClient(this);
 	const body: IDataObject = {};
 			body['classRead'] = classRead;

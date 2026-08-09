@@ -28,9 +28,9 @@ export function description(displayOptions: IDisplayOptions): INodeProperties[] 
  * HTTP method: GET
  * Endpoint: /price/xdsl/options/ipv4/{ipRange}
  */
-export async function execute(this: IExecuteFunctions): Promise<INodeExecutionData[]> {
+export async function execute(this: IExecuteFunctions, _itemIndex?: number): Promise<INodeExecutionData[]> {
     const client = new ApiClient(this);
-    const ipRange = this.getNodeParameter('ipRange', 0) as string;
+    const ipRange = this.getNodeParameter('ipRange', _itemIndex ?? 0) as string;
     const data = (await client.httpGet(`/price/xdsl/options/ipv4/${ipRange}`)) as IDataObject;
     return this.helpers.returnJsonArray([data]);
 }

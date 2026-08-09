@@ -80,14 +80,14 @@ export function description(displayOptions: IDisplayOptions): INodeProperties[] 
  * HTTP method: POST
  * Endpoint: /telephony/{billingAccount}/ovhPabx/{serviceName}/menu/{menuId}/entry
  */
-export async function execute(this: IExecuteFunctions, itemIndex: number): Promise<INodeExecutionData[]> {
-	const billingAccount = this.getNodeParameter('billingAccount', itemIndex) as string;
-	const menuId = this.getNodeParameter('menuId', itemIndex) as string;
-	const serviceName = this.getNodeParameter('serviceName', itemIndex) as string;
-	const action = this.getNodeParameter('action', itemIndex) as string;
-	const actionParam = this.getNodeParameter('actionParam', itemIndex) as string;
-	const dtmf = this.getNodeParameter('dtmf', itemIndex) as string;
-	const position = this.getNodeParameter('position', itemIndex) as string;
+export async function execute(this: IExecuteFunctions, _itemIndex: number): Promise<INodeExecutionData[]> {
+	const billingAccount = this.getNodeParameter('billingAccount', _itemIndex) as string;
+	const menuId = this.getNodeParameter('menuId', _itemIndex) as string;
+	const serviceName = this.getNodeParameter('serviceName', _itemIndex) as string;
+	const action = this.getNodeParameter('action', _itemIndex) as string;
+	const actionParam = this.getNodeParameter('actionParam', _itemIndex) as string;
+	const dtmf = this.getNodeParameter('dtmf', _itemIndex) as string;
+	const position = this.getNodeParameter('position', _itemIndex) as string;
 
 	const body: IDataObject = {
 		action: action,

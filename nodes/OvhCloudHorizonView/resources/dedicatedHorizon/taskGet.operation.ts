@@ -63,11 +63,11 @@ export function description(displayOptions: IDisplayOptions): INodeProperties[] 
  * HTTP method: GET
  * Endpoint: /horizonView/{serviceName}/dedicatedHorizon/task
  */
-export async function execute(this: IExecuteFunctions): Promise<INodeExecutionData[]> {
+export async function execute(this: IExecuteFunctions, _itemIndex?: number): Promise<INodeExecutionData[]> {
 	const client = new ApiClient(this);
-	const serviceName = this.getNodeParameter('serviceName', 0, '', { extractValue: true }) as string;
+	const serviceName = this.getNodeParameter('serviceName', _itemIndex ?? 0, '', { extractValue: true }) as string;
 
-	const state = (this.getNodeParameter('state', 0, '') as string) || '';
+	const state = (this.getNodeParameter('state', _itemIndex ?? 0, '') as string) || '';
 	const qs: IDataObject = state ? { state } : {};
 
 	const data = (await client.httpGet(

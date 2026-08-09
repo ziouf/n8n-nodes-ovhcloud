@@ -36,10 +36,10 @@ export function description(displayOptions: IDisplayOptions): INodeProperties[] 
  * HTTP method: GET
  * Endpoint: /vrack/{serviceName}/publicRoutingBandwidthLimit
  */
-export async function execute(this: IExecuteFunctions, itemIndex: number): Promise<INodeExecutionData[]> {
-	const serviceName = this.getNodeParameter('serviceName', itemIndex) as string;
+export async function execute(this: IExecuteFunctions, _itemIndex: number): Promise<INodeExecutionData[]> {
+	const serviceName = this.getNodeParameter('serviceName', _itemIndex) as string;
 
-	const region = this.getNodeParameter('region', itemIndex) as string;
+	const region = this.getNodeParameter('region', _itemIndex) as string;
 
 
 const qs: IDataObject = {

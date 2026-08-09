@@ -108,14 +108,14 @@ export function description(displayOptions: IDisplayOptions) {
  * HTTP method: POST
  * Endpoint: /publicCloud/project/{projectId}/instance
  */
-export async function execute(this: IExecuteFunctions): Promise<INodeExecutionData[]> {
+export async function execute(this: IExecuteFunctions, _itemIndex?: number): Promise<INodeExecutionData[]> {
 	const client = new ApiClient(this);
-	const projectId = this.getNodeParameter('publicCloudProjectId', 0, '', {
+	const projectId = this.getNodeParameter('publicCloudProjectId', _itemIndex ?? 0, '', {
 		extractValue: true,
 	}) as string;
-	const availabilityZone = (this.getNodeParameter('availabilityZone', 0) || '') as string;
-	const flavorId = (this.getNodeParameter('flavorId', 0) || '') as string;
-	const imageId = (this.getNodeParameter('imageId', 0) || '') as string;
+	const availabilityZone = (this.getNodeParameter('availabilityZone', _itemIndex ?? 0) || '') as string;
+	const flavorId = (this.getNodeParameter('flavorId', _itemIndex ?? 0) || '') as string;
+	const imageId = (this.getNodeParameter('imageId', _itemIndex ?? 0) || '') as string;
 
 	const body: IDataObject = {
 		availabilityZone,
@@ -123,27 +123,27 @@ export async function execute(this: IExecuteFunctions): Promise<INodeExecutionDa
 		imageId,
 	};
 
-	const networkId = (this.getNodeParameter('networkId', 0) || '') as string;
+	const networkId = (this.getNodeParameter('networkId', _itemIndex ?? 0) || '') as string;
 	if (networkId !== '') {
 		body.networkId = networkId;
 	}
 
-	const namePrefix = (this.getNodeParameter('namePrefix', 0) || '') as string;
+	const namePrefix = (this.getNodeParameter('namePrefix', _itemIndex ?? 0) || '') as string;
 	if (namePrefix !== '') {
 		body.namePrefix = namePrefix;
 	}
 
-	const tags = (this.getNodeParameter('tags', 0) || '') as string;
+	const tags = (this.getNodeParameter('tags', _itemIndex ?? 0) || '') as string;
 	if (tags !== '') {
 		body.tags = tags.split(',').map((t: string) => t.trim());
 	}
 
-	const userData = (this.getNodeParameter('userData', 0) || '') as string;
+	const userData = (this.getNodeParameter('userData', _itemIndex ?? 0) || '') as string;
 	if (userData !== '') {
 		body.userData = userData;
 	}
 
-	const volumeType = (this.getNodeParameter('volumeType', 0) || '') as string;
+	const volumeType = (this.getNodeParameter('volumeType', _itemIndex ?? 0) || '') as string;
 	if (volumeType !== '') {
 		body.volumeType = volumeType;
 	}

@@ -37,10 +37,10 @@ export function description(displayOptions: IDisplayOptions): INodeProperties[] 
  */
 export async function execute(
 	this: IExecuteFunctions,
-	itemIndex: number,
+	_itemIndex: number,
 ): Promise<INodeExecutionData[]> {
-	const serviceName = this.getNodeParameter('serviceName', itemIndex) as string;
-	const databaseName = this.getNodeParameter('databaseName', itemIndex, '') as string;
+	const serviceName = this.getNodeParameter('serviceName', _itemIndex) as string;
+	const databaseName = this.getNodeParameter('databaseName', _itemIndex, '') as string;
 
 	const body: IDataObject = {};
 	if (databaseName) {

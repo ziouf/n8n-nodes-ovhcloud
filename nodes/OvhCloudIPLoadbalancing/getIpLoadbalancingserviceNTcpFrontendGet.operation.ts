@@ -60,13 +60,13 @@ export function description(displayOptions: IDisplayOptions): INodeProperties[] 
  * HTTP method: GET
  * Endpoint: /ipLoadbalancing/{serviceName}/tcp/frontend
  */
-export async function execute(this: IExecuteFunctions, itemIndex: number): Promise<INodeExecutionData[]> {
-	const serviceName = this.getNodeParameter('serviceName', itemIndex) as string;
+export async function execute(this: IExecuteFunctions, _itemIndex: number): Promise<INodeExecutionData[]> {
+	const serviceName = this.getNodeParameter('serviceName', _itemIndex) as string;
 
-	const defaultFarmId = this.getNodeParameter('defaultFarmId', itemIndex) as string;
-	const defaultSslId = this.getNodeParameter('defaultSslId', itemIndex) as string;
-	const port = this.getNodeParameter('port', itemIndex) as string;
-	const zone = this.getNodeParameter('zone', itemIndex) as string;
+	const defaultFarmId = this.getNodeParameter('defaultFarmId', _itemIndex) as string;
+	const defaultSslId = this.getNodeParameter('defaultSslId', _itemIndex) as string;
+	const port = this.getNodeParameter('port', _itemIndex) as string;
+	const zone = this.getNodeParameter('zone', _itemIndex) as string;
 
 
 const qs: IDataObject = {

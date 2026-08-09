@@ -101,14 +101,14 @@ export function description(displayOptions: IDisplayOptions): INodeProperties[] 
  * HTTP method: PUT
  * Endpoint: /publicCloud/project/${projectId}/region/${regionName}/storage/${name}/object/${key}/version/${versionId}
  */
-export async function execute(this: IExecuteFunctions): Promise<INodeExecutionData[]> {
-	const regionName = this.getNodeParameter('regionName', 0) as string;
-	const key = this.getNodeParameter('key', 0) as string;
-	const name = this.getNodeParameter('name', 0) as string;
-	const versionId = this.getNodeParameter('versionId', 0) as string;
-	const legalHold = this.getNodeParameter('legalHold', 0, '') as string;
-	const retention = this.getNodeParameter('retention', 0, '') as string;
-	const restore = this.getNodeParameter('restore', 0, '') as string;
+export async function execute(this: IExecuteFunctions, _itemIndex?: number): Promise<INodeExecutionData[]> {
+	const regionName = this.getNodeParameter('regionName', _itemIndex ?? 0) as string;
+	const key = this.getNodeParameter('key', _itemIndex ?? 0) as string;
+	const name = this.getNodeParameter('name', _itemIndex ?? 0) as string;
+	const versionId = this.getNodeParameter('versionId', _itemIndex ?? 0) as string;
+	const legalHold = this.getNodeParameter('legalHold', _itemIndex ?? 0, '') as string;
+	const retention = this.getNodeParameter('retention', _itemIndex ?? 0, '') as string;
+	const restore = this.getNodeParameter('restore', _itemIndex ?? 0, '') as string;
 	const body: IDataObject = {
 		legalHold: legalHold,
 		retention: retention,
@@ -116,7 +116,7 @@ export async function execute(this: IExecuteFunctions): Promise<INodeExecutionDa
 	};
 
 	const client = new ApiClient(this);
-	const projectId = this.getNodeParameter('publicCloudProjectId', 0, '', {
+	const projectId = this.getNodeParameter('publicCloudProjectId', _itemIndex ?? 0, '', {
 		extractValue: true,
 	}) as string;
 	const data = (await client.httpPut(

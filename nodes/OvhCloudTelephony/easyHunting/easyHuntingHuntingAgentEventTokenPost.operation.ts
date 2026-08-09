@@ -54,11 +54,11 @@ export function description(displayOptions: IDisplayOptions): INodeProperties[] 
  * HTTP method: POST
  * Endpoint: /telephony/{billingAccount}/easyHunting/{serviceName}/hunting/agent/{agentId}/eventToken
  */
-export async function execute(this: IExecuteFunctions, itemIndex: number): Promise<INodeExecutionData[]> {
-	const agentId = this.getNodeParameter('agentId', itemIndex) as string;
-	const billingAccount = this.getNodeParameter('billingAccount', itemIndex) as string;
-	const serviceName = this.getNodeParameter('serviceName', itemIndex) as string;
-	const expiration = this.getNodeParameter('expiration', itemIndex) as string;
+export async function execute(this: IExecuteFunctions, _itemIndex: number): Promise<INodeExecutionData[]> {
+	const agentId = this.getNodeParameter('agentId', _itemIndex) as string;
+	const billingAccount = this.getNodeParameter('billingAccount', _itemIndex) as string;
+	const serviceName = this.getNodeParameter('serviceName', _itemIndex) as string;
+	const expiration = this.getNodeParameter('expiration', _itemIndex) as string;
 
 	const body: IDataObject = {
 		expiration: expiration,

@@ -68,13 +68,13 @@ export function description(displayOptions: IDisplayOptions): INodeProperties[] 
  * HTTP method: POST
  * Endpoint: /telephony/{billingAccount}/line/{serviceName}/phone/rma
  */
-export async function execute(this: IExecuteFunctions, itemIndex: number): Promise<INodeExecutionData[]> {
-	const billingAccount = this.getNodeParameter('billingAccount', itemIndex) as string;
-	const serviceName = this.getNodeParameter('serviceName', itemIndex) as string;
-	const mondialRelayId = this.getNodeParameter('mondialRelayId', itemIndex) as string;
-	const newMerchandise = this.getNodeParameter('newMerchandise', itemIndex) as string;
-	const shippingContactId = this.getNodeParameter('shippingContactId', itemIndex) as string;
-	const typeParam = this.getNodeParameter('type', itemIndex) as string;
+export async function execute(this: IExecuteFunctions, _itemIndex: number): Promise<INodeExecutionData[]> {
+	const billingAccount = this.getNodeParameter('billingAccount', _itemIndex) as string;
+	const serviceName = this.getNodeParameter('serviceName', _itemIndex) as string;
+	const mondialRelayId = this.getNodeParameter('mondialRelayId', _itemIndex) as string;
+	const newMerchandise = this.getNodeParameter('newMerchandise', _itemIndex) as string;
+	const shippingContactId = this.getNodeParameter('shippingContactId', _itemIndex) as string;
+	const typeParam = this.getNodeParameter('type', _itemIndex) as string;
 
 	const body: IDataObject = {
     mondialRelayId: mondialRelayId,

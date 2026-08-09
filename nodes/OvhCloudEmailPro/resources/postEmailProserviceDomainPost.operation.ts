@@ -81,19 +81,19 @@ export function description() {
  * HTTP method: POST
  * Endpoint: /email/pro/{service}/domain
  */
-export async function execute(this: IExecuteFunctions): Promise<INodeExecutionData[]> {
-	const service = this.getNodeParameter('service', 0) as string;
+export async function execute(this: IExecuteFunctions, _itemIndex?: number): Promise<INodeExecutionData[]> {
+	const service = this.getNodeParameter('service', _itemIndex ?? 0) as string;
 
 
 
-	const autoEnableDKIM = this.getNodeParameter('autoEnableDKIM', 0) as string;
-	const configureAutodiscover = this.getNodeParameter('configureAutodiscover', 0) as string;
-	const configureDKIM = this.getNodeParameter('configureDKIM', 0) as string;
-	const configureMx = this.getNodeParameter('configureMx', 0) as string;
-	const configureSPF = this.getNodeParameter('configureSPF', 0) as string;
-	const mxRelay = this.getNodeParameter('mxRelay', 0) as string;
-	const name = this.getNodeParameter('name', 0) as string;
-	const type = this.getNodeParameter('type', 0) as string;
+	const autoEnableDKIM = this.getNodeParameter('autoEnableDKIM', _itemIndex ?? 0) as string;
+	const configureAutodiscover = this.getNodeParameter('configureAutodiscover', _itemIndex ?? 0) as string;
+	const configureDKIM = this.getNodeParameter('configureDKIM', _itemIndex ?? 0) as string;
+	const configureMx = this.getNodeParameter('configureMx', _itemIndex ?? 0) as string;
+	const configureSPF = this.getNodeParameter('configureSPF', _itemIndex ?? 0) as string;
+	const mxRelay = this.getNodeParameter('mxRelay', _itemIndex ?? 0) as string;
+	const name = this.getNodeParameter('name', _itemIndex ?? 0) as string;
+	const type = this.getNodeParameter('type', _itemIndex ?? 0) as string;
 
 
 const body: IDataObject = {

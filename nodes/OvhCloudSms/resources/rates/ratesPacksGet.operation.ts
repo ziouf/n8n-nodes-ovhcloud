@@ -245,9 +245,9 @@ export function description(displayOptions: IDisplayOptions): INodeProperties[] 
  * HTTP method: GET
  * Endpoint: /sms/rates/packs
  */
-export async function execute(this: IExecuteFunctions): Promise<INodeExecutionData[]> {
-	const billingCountry = this.getNodeParameter('billingCountry', 0) as string;
-	const country = this.getNodeParameter('country', 0) as string;
+export async function execute(this: IExecuteFunctions, _itemIndex?: number): Promise<INodeExecutionData[]> {
+	const billingCountry = this.getNodeParameter('billingCountry', _itemIndex ?? 0) as string;
+	const country = this.getNodeParameter('country', _itemIndex ?? 0) as string;
 	const qs: IDataObject = {};
 	qs['country'] = country;
 	if (billingCountry) qs['billingCountry'] = billingCountry;

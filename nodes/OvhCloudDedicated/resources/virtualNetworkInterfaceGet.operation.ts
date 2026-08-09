@@ -29,14 +29,14 @@ export function description(displayOptions: IDisplayOptions): INodeProperties[] 
  */
 export async function execute(
 	this: IExecuteFunctions,
-	itemIndex: number,
+	_itemIndex: number,
 ): Promise<INodeExecutionData[]> {
 	const client = new ApiClient(this);
-	const vniId = this.getNodeParameter('vniId', itemIndex) as string;
+	const vniId = this.getNodeParameter('vniId', _itemIndex) as string;
 
 	const data = (await client.httpGet(
 		`/dedicated/server/virtualNetworkInterface/${encodeURIComponent(String(vniId))}`,
 	)) as IDataObject;
-	const inputData = this.getInputData()[itemIndex];
+	const inputData = this.getInputData()[_itemIndex];
 	return this.helpers.returnJsonArray([{ ...inputData.json, ...data }]);
 }

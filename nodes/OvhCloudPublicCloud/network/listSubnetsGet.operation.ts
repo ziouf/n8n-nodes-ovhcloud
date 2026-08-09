@@ -48,12 +48,12 @@ export function description(displayOptions: IDisplayOptions): INodeProperties[] 
  * HTTP method: GET
  * Endpoint: /publicCloud/project/{projectId}/network/private/{networkId}/subnet
  */
-export async function execute(this: IExecuteFunctions): Promise<INodeExecutionData[]> {
+export async function execute(this: IExecuteFunctions, _itemIndex?: number): Promise<INodeExecutionData[]> {
 	const client = new ApiClient(this);
-	const projectId = this.getNodeParameter('publicCloudProjectId', 0, '', {
+	const projectId = this.getNodeParameter('publicCloudProjectId', _itemIndex ?? 0, '', {
 		extractValue: true,
 	}) as string;
-	const pnId = this.getNodeParameter('pnId', 0) as string;
+	const pnId = this.getNodeParameter('pnId', _itemIndex ?? 0) as string;
 
 	const data = (await client.httpGet(
 		`/publicCloud/project/${projectId}/network/private/${pnId}/subnet`,

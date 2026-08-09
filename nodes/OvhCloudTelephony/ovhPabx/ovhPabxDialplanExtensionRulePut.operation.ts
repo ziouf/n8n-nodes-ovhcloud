@@ -95,16 +95,16 @@ export function description(displayOptions: IDisplayOptions): INodeProperties[] 
  * HTTP method: PUT
  * Endpoint: /telephony/{billingAccount}/ovhPabx/{serviceName}/dialplan/{dialplanId}/extension/{extensionId}/rule/{ruleId}
  */
-export async function execute(this: IExecuteFunctions, itemIndex: number): Promise<INodeExecutionData[]> {
-	const billingAccount = this.getNodeParameter('billingAccount', itemIndex) as string;
-	const dialplanId = this.getNodeParameter('dialplanId', itemIndex) as string;
-	const extensionId = this.getNodeParameter('extensionId', itemIndex) as string;
-	const ruleId = this.getNodeParameter('ruleId', itemIndex) as string;
-	const serviceName = this.getNodeParameter('serviceName', itemIndex) as string;
-	const action = this.getNodeParameter('action', itemIndex) as string;
-	const actionParam = this.getNodeParameter('actionParam', itemIndex) as string;
-	const negativeAction = this.getNodeParameter('negativeAction', itemIndex) as string;
-	const position = this.getNodeParameter('position', itemIndex) as string;
+export async function execute(this: IExecuteFunctions, _itemIndex: number): Promise<INodeExecutionData[]> {
+	const billingAccount = this.getNodeParameter('billingAccount', _itemIndex) as string;
+	const dialplanId = this.getNodeParameter('dialplanId', _itemIndex) as string;
+	const extensionId = this.getNodeParameter('extensionId', _itemIndex) as string;
+	const ruleId = this.getNodeParameter('ruleId', _itemIndex) as string;
+	const serviceName = this.getNodeParameter('serviceName', _itemIndex) as string;
+	const action = this.getNodeParameter('action', _itemIndex) as string;
+	const actionParam = this.getNodeParameter('actionParam', _itemIndex) as string;
+	const negativeAction = this.getNodeParameter('negativeAction', _itemIndex) as string;
+	const position = this.getNodeParameter('position', _itemIndex) as string;
 
 	const body: IDataObject = {
 		action: action,

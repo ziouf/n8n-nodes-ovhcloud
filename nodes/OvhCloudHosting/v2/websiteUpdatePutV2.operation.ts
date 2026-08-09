@@ -37,9 +37,9 @@ export function description(displayOptions: IDisplayOptions): INodeProperties[] 
  * HTTP method: PUT
  * Endpoint: /webhosting/resource/{name}/website/{websiteId}
  */
-export async function execute(this: IExecuteFunctions, itemIndex: number): Promise<INodeExecutionData[]> {
-	const name = this.getNodeParameter('name', itemIndex) as string;
-	const websiteId = this.getNodeParameter('websiteId', itemIndex) as string;
+export async function execute(this: IExecuteFunctions, _itemIndex: number): Promise<INodeExecutionData[]> {
+	const name = this.getNodeParameter('name', _itemIndex) as string;
+	const websiteId = this.getNodeParameter('websiteId', _itemIndex) as string;
 
 	const body: IDataObject = {};
 

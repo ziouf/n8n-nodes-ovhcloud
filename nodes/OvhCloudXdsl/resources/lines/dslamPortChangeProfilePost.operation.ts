@@ -59,11 +59,11 @@ export function description(displayOptions: IDisplayOptions): INodeProperties[] 
  * HTTP method: POST
  * Endpoint: /xdsl/{serviceName}/lines/{number}/dslamPort/changeProfile
  */
-export async function execute(this: IExecuteFunctions): Promise<INodeExecutionData[]> {
+export async function execute(this: IExecuteFunctions, _itemIndex?: number): Promise<INodeExecutionData[]> {
 	const client = new ApiClient(this);
-	const serviceName = this.getNodeParameter('serviceName', 0, '', { extractValue: true }) as string;
-	const number = this.getNodeParameter('number', 0) as string;
-	const profileId = (this.getNodeParameter('profileId', 0, 0) as number) ?? 0;
+	const serviceName = this.getNodeParameter('serviceName', _itemIndex ?? 0, '', { extractValue: true }) as string;
+	const number = this.getNodeParameter('number', _itemIndex ?? 0) as string;
+	const profileId = (this.getNodeParameter('profileId', _itemIndex ?? 0, 0) as number) ?? 0;
 
 	const body: IDataObject = {};
 	if (profileId) body.profileId = profileId;

@@ -27,9 +27,9 @@ export function description(displayOptions: IDisplayOptions): INodeProperties[] 
  * HTTP method: POST
  * Endpoint: /domain/zone/{zoneName}/dnssec
  */
-export async function execute(this: IExecuteFunctions, itemIndex: number): Promise<INodeExecutionData[]> {
+export async function execute(this: IExecuteFunctions, _itemIndex: number): Promise<INodeExecutionData[]> {
 	const client = new ApiClient(this);
-		const zoneName = this.getNodeParameter('zoneName', itemIndex) as string;
+		const zoneName = this.getNodeParameter('zoneName', _itemIndex) as string;
 
 	const data = (await client.httpPost(`/domain/zone/${encodeURIComponent(zoneName)}/dnssec`)) as IDataObject;
 

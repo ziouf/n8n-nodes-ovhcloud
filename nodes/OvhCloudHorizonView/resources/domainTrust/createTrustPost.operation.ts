@@ -69,14 +69,14 @@ export function description(displayOptions: IDisplayOptions): INodeProperties[] 
  * HTTP method: POST
  * Endpoint: /horizonView/{serviceName}/domainTrust/{domainTrustId}/createTrust
  */
-export async function execute(this: IExecuteFunctions): Promise<INodeExecutionData[]> {
+export async function execute(this: IExecuteFunctions, _itemIndex?: number): Promise<INodeExecutionData[]> {
 	const client = new ApiClient(this);
-	const serviceName = this.getNodeParameter('serviceName', 0, '', { extractValue: true }) as string;
-	const domainTrustId = this.getNodeParameter('domainTrustId', 0) as number;
+	const serviceName = this.getNodeParameter('serviceName', _itemIndex ?? 0, '', { extractValue: true }) as string;
+	const domainTrustId = this.getNodeParameter('domainTrustId', _itemIndex ?? 0) as number;
 
 	const body: IDataObject = {
-		passphrase: this.getNodeParameter('passphrase', 0) as string,
-		serviceAccountPassword: this.getNodeParameter('serviceAccountPassword', 0) as string,
+		passphrase: this.getNodeParameter('passphrase', _itemIndex ?? 0) as string,
+		serviceAccountPassword: this.getNodeParameter('serviceAccountPassword', _itemIndex ?? 0) as string,
 	};
 
 	const data = (await client.httpPost(

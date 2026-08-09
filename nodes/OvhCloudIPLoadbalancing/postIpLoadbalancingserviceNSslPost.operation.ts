@@ -60,15 +60,15 @@ export function description(displayOptions: IDisplayOptions): INodeProperties[] 
  * HTTP method: POST
  * Endpoint: /ipLoadbalancing/{serviceName}/ssl
  */
-export async function execute(this: IExecuteFunctions, itemIndex: number): Promise<INodeExecutionData[]> {
-	const serviceName = this.getNodeParameter('serviceName', itemIndex) as string;
+export async function execute(this: IExecuteFunctions, _itemIndex: number): Promise<INodeExecutionData[]> {
+	const serviceName = this.getNodeParameter('serviceName', _itemIndex) as string;
 
 
 
-	const certificate = this.getNodeParameter('certificate', itemIndex) as string;
-	const chain = this.getNodeParameter('chain', itemIndex) as string;
-	const displayName = this.getNodeParameter('displayName', itemIndex) as string;
-	const key = this.getNodeParameter('key', itemIndex) as string;
+	const certificate = this.getNodeParameter('certificate', _itemIndex) as string;
+	const chain = this.getNodeParameter('chain', _itemIndex) as string;
+	const displayName = this.getNodeParameter('displayName', _itemIndex) as string;
+	const key = this.getNodeParameter('key', _itemIndex) as string;
 
 
 const body: IDataObject = {

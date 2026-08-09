@@ -45,12 +45,12 @@ export function description(displayOptions: IDisplayOptions): INodeProperties[] 
  * HTTP method: PUT
  * Endpoint: /telephony/lines/{serviceName}/sim/{simId}
  */
-export async function execute(this: IExecuteFunctions, itemIndex: number): Promise<INodeExecutionData[]> {
-	const serviceName = this.getNodeParameter('serviceName', itemIndex) as string;
-	const simId = this.getNodeParameter('simId', itemIndex) as string;
+export async function execute(this: IExecuteFunctions, _itemIndex: number): Promise<INodeExecutionData[]> {
+	const serviceName = this.getNodeParameter('serviceName', _itemIndex) as string;
+	const simId = this.getNodeParameter('simId', _itemIndex) as string;
 
 
-	const iccid = this.getNodeParameter('iccid', itemIndex) as string;
+	const iccid = this.getNodeParameter('iccid', _itemIndex) as string;
 
 	const body: IDataObject = {
     iccid: iccid

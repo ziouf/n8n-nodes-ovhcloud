@@ -46,10 +46,10 @@ export function description(displayOptions: IDisplayOptions): INodeProperties[] 
  * HTTP method: DELETE
  * Endpoint: /vmwareCloudDirector/organization/{organizationId}/virtualDataCenter/{virtualDataCenterId}/compute/{computeId}
  */
-export async function execute(this: IExecuteFunctions, itemIndex: number): Promise<INodeExecutionData[]> {
-	const organizationId = this.getNodeParameter('organizationId', itemIndex) as string;
-	const virtualDataCenterId = this.getNodeParameter('virtualDataCenterId', itemIndex) as string;
-	const computeId = this.getNodeParameter('computeId', itemIndex) as string;
+export async function execute(this: IExecuteFunctions, _itemIndex: number): Promise<INodeExecutionData[]> {
+	const organizationId = this.getNodeParameter('organizationId', _itemIndex) as string;
+	const virtualDataCenterId = this.getNodeParameter('virtualDataCenterId', _itemIndex) as string;
+	const computeId = this.getNodeParameter('computeId', _itemIndex) as string;
 
 
 	const client = new ApiClient(this);

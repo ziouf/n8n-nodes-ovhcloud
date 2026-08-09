@@ -55,10 +55,10 @@ export function description(displayOptions: IDisplayOptions): INodeProperties[] 
  * HTTP method: DELETE
  * Endpoint: /email/domain/{domain}/mailingList/{name}/moderator/{email}
  */
-export async function execute(this: IExecuteFunctions): Promise<INodeExecutionData[]> {
-	const domain = this.getNodeParameter('domain', 0) as string;
-	const email = this.getNodeParameter('email', 0) as string;
-	const name = this.getNodeParameter('name', 0) as string;
+export async function execute(this: IExecuteFunctions, _itemIndex?: number): Promise<INodeExecutionData[]> {
+	const domain = this.getNodeParameter('domain', _itemIndex ?? 0) as string;
+	const email = this.getNodeParameter('email', _itemIndex ?? 0) as string;
+	const name = this.getNodeParameter('name', _itemIndex ?? 0) as string;
 
 	const client = new ApiClient(this);
 	const data = (await client.httpDelete('/email' + '/domain/' + encodeURIComponent(domain) + '/mailingList/' + encodeURIComponent(name) + '/moderator/' + encodeURIComponent(email))) as IDataObject;

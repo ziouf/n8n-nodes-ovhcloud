@@ -28,8 +28,8 @@ export function description(displayOptions: IDisplayOptions): INodeProperties[] 
  * HTTP method: POST
  * Endpoint: /notification/contactMean/{contactMeanId}/validate
  */
-export async function execute(this: IExecuteFunctions, itemIndex: number): Promise<INodeExecutionData[]> {
-	const contactMeanId = this.getNodeParameter('contactMeanId', itemIndex) as string;
+export async function execute(this: IExecuteFunctions, _itemIndex: number): Promise<INodeExecutionData[]> {
+	const contactMeanId = this.getNodeParameter('contactMeanId', _itemIndex) as string;
 
 	const body: IDataObject = {};
 

@@ -277,39 +277,39 @@ export function description(displayOptions: IDisplayOptions): INodeProperties[] 
  * HTTP method: PUT
  * Endpoint: /telephony/{billingAccount}/service/{serviceName}/directory
  */
-export async function execute(this: IExecuteFunctions, itemIndex: number): Promise<INodeExecutionData[]> {
-	const billingAccount = this.getNodeParameter('billingAccount', itemIndex) as string;
-	const serviceName = this.getNodeParameter('serviceName', itemIndex) as string;
-	const address = this.getNodeParameter('address', itemIndex) as string;
-	const addressExtra = this.getNodeParameter('addressExtra', itemIndex) as string;
-	const ape = this.getNodeParameter('ape', itemIndex) as string;
-	const birthDate = this.getNodeParameter('birthDate', itemIndex) as string;
-	const cedex = this.getNodeParameter('cedex', itemIndex) as string;
-	const city = this.getNodeParameter('city', itemIndex) as string;
-	const country = this.getNodeParameter('country', itemIndex) as string;
-	const directoryServiceCode = this.getNodeParameter('directoryServiceCode', itemIndex) as string;
-	const displayFirstName = this.getNodeParameter('displayFirstName', itemIndex) as string;
-	const displayMarketingDirectory = this.getNodeParameter('displayMarketingDirectory', itemIndex) as string;
-	const displayOnlyCity = this.getNodeParameter('displayOnlyCity', itemIndex) as string;
-	const displaySearchReverse = this.getNodeParameter('displaySearchReverse', itemIndex) as string;
-	const displayUniversalDirectory = this.getNodeParameter('displayUniversalDirectory', itemIndex) as string;
-	const email = this.getNodeParameter('email', itemIndex) as string;
-	const firstName = this.getNodeParameter('firstName', itemIndex) as string;
-	const gender = this.getNodeParameter('gender', itemIndex) as string;
-	const legalForm = this.getNodeParameter('legalForm', itemIndex) as string;
-	const lineDescription = this.getNodeParameter('lineDescription', itemIndex) as string;
-	const name = this.getNodeParameter('name', itemIndex) as string;
-	const occupation = this.getNodeParameter('occupation', itemIndex) as string;
-	const postBox = this.getNodeParameter('postBox', itemIndex) as string;
-	const postCode = this.getNodeParameter('postCode', itemIndex) as string;
-	const siret = this.getNodeParameter('siret', itemIndex) as string;
-	const socialNomination = this.getNodeParameter('socialNomination', itemIndex) as string;
-	const socialNominationExtra = this.getNodeParameter('socialNominationExtra', itemIndex) as string;
-	const urbanDistrict = this.getNodeParameter('urbanDistrict', itemIndex) as string;
-	const wayName = this.getNodeParameter('wayName', itemIndex) as string;
-	const wayNumber = this.getNodeParameter('wayNumber', itemIndex) as string;
-	const wayNumberExtra = this.getNodeParameter('wayNumberExtra', itemIndex) as string;
-	const wayType = this.getNodeParameter('wayType', itemIndex) as string;
+export async function execute(this: IExecuteFunctions, _itemIndex: number): Promise<INodeExecutionData[]> {
+	const billingAccount = this.getNodeParameter('billingAccount', _itemIndex) as string;
+	const serviceName = this.getNodeParameter('serviceName', _itemIndex) as string;
+	const address = this.getNodeParameter('address', _itemIndex) as string;
+	const addressExtra = this.getNodeParameter('addressExtra', _itemIndex) as string;
+	const ape = this.getNodeParameter('ape', _itemIndex) as string;
+	const birthDate = this.getNodeParameter('birthDate', _itemIndex) as string;
+	const cedex = this.getNodeParameter('cedex', _itemIndex) as string;
+	const city = this.getNodeParameter('city', _itemIndex) as string;
+	const country = this.getNodeParameter('country', _itemIndex) as string;
+	const directoryServiceCode = this.getNodeParameter('directoryServiceCode', _itemIndex) as string;
+	const displayFirstName = this.getNodeParameter('displayFirstName', _itemIndex) as string;
+	const displayMarketingDirectory = this.getNodeParameter('displayMarketingDirectory', _itemIndex) as string;
+	const displayOnlyCity = this.getNodeParameter('displayOnlyCity', _itemIndex) as string;
+	const displaySearchReverse = this.getNodeParameter('displaySearchReverse', _itemIndex) as string;
+	const displayUniversalDirectory = this.getNodeParameter('displayUniversalDirectory', _itemIndex) as string;
+	const email = this.getNodeParameter('email', _itemIndex) as string;
+	const firstName = this.getNodeParameter('firstName', _itemIndex) as string;
+	const gender = this.getNodeParameter('gender', _itemIndex) as string;
+	const legalForm = this.getNodeParameter('legalForm', _itemIndex) as string;
+	const lineDescription = this.getNodeParameter('lineDescription', _itemIndex) as string;
+	const name = this.getNodeParameter('name', _itemIndex) as string;
+	const occupation = this.getNodeParameter('occupation', _itemIndex) as string;
+	const postBox = this.getNodeParameter('postBox', _itemIndex) as string;
+	const postCode = this.getNodeParameter('postCode', _itemIndex) as string;
+	const siret = this.getNodeParameter('siret', _itemIndex) as string;
+	const socialNomination = this.getNodeParameter('socialNomination', _itemIndex) as string;
+	const socialNominationExtra = this.getNodeParameter('socialNominationExtra', _itemIndex) as string;
+	const urbanDistrict = this.getNodeParameter('urbanDistrict', _itemIndex) as string;
+	const wayName = this.getNodeParameter('wayName', _itemIndex) as string;
+	const wayNumber = this.getNodeParameter('wayNumber', _itemIndex) as string;
+	const wayNumberExtra = this.getNodeParameter('wayNumberExtra', _itemIndex) as string;
+	const wayType = this.getNodeParameter('wayType', _itemIndex) as string;
 
 	const body: IDataObject = {
 		address: address,

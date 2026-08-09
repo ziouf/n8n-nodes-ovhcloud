@@ -194,66 +194,66 @@ export function description() {
 	return props;
 }
 
-export async function execute(this: IExecuteFunctions): Promise<INodeExecutionData[]> {
+export async function execute(this: IExecuteFunctions, itemIndex?: number): Promise<INodeExecutionData[]> {
 	const operation = this.getNodeParameter('connectivityOperation', 0) as string;
 
 	switch (operation) {
 		case 'recallPost':
-			return recallPost.execute.call(this);
+			return recallPost.execute.call(this, itemIndex ?? 0);
 		case 'recallDelete':
-			return recallDelete.execute.call(this);
+			return recallDelete.execute.call(this, itemIndex ?? 0);
 		case 'recallDetailGet':
-			return recallDetailGet.execute.call(this);
+			return recallDetailGet.execute.call(this, itemIndex ?? 0);
 		case 'testGet':
-			return testGet.execute.call(this);
+			return testGet.execute.call(this, itemIndex ?? 0);
 		case 'recallGet':
-			return recallGet.execute.call(this);
+			return recallGet.execute.call(this, itemIndex ?? 0);
 		case 'genericIncidentPartnersGet':
-			return genericIncidentPartnersGet.execute.call(this);
+			return genericIncidentPartnersGet.execute.call(this, itemIndex ?? 0);
 		case 'genericIncidentPublicGet':
-			return genericIncidentPublicGet.execute.call(this);
+			return genericIncidentPublicGet.execute.call(this, itemIndex ?? 0);
 		case 'workPlannedPartnersGet':
-			return workPlannedPartnersGet.execute.call(this);
+			return workPlannedPartnersGet.execute.call(this, itemIndex ?? 0);
 		case 'workPlannedPublicGet':
-			return workPlannedPublicGet.execute.call(this);
+			return workPlannedPublicGet.execute.call(this, itemIndex ?? 0);
 		case 'searchAddressesPost':
-			return searchAddressesPost.execute.call(this);
+			return searchAddressesPost.execute.call(this, itemIndex ?? 0);
 		case 'searchBuildingDetailsPost':
-			return searchBuildingDetailsPost.execute.call(this);
+			return searchBuildingDetailsPost.execute.call(this, itemIndex ?? 0);
 		case 'searchBuildingsPost':
-			return searchBuildingsPost.execute.call(this);
+			return searchBuildingsPost.execute.call(this, itemIndex ?? 0);
 		case 'searchBuildingsByLinePost':
-			return searchBuildingsByLinePost.execute.call(this);
+			return searchBuildingsByLinePost.execute.call(this, itemIndex ?? 0);
 		case 'searchCitiesPost':
-			return searchCitiesPost.execute.call(this);
+			return searchCitiesPost.execute.call(this, itemIndex ?? 0);
 		case 'searchLinesPost':
-			return searchLinesPost.execute.call(this);
+			return searchLinesPost.execute.call(this, itemIndex ?? 0);
 		case 'searchMeetingsPost':
-			return searchMeetingsPost.execute.call(this);
+			return searchMeetingsPost.execute.call(this, itemIndex ?? 0);
 		case 'searchStreetNumbersPost':
-			return searchStreetNumbersPost.execute.call(this);
+			return searchStreetNumbersPost.execute.call(this, itemIndex ?? 0);
 		case 'searchStreetNumbersDetailsPost':
-			return searchStreetNumbersDetailsPost.execute.call(this);
+			return searchStreetNumbersDetailsPost.execute.call(this, itemIndex ?? 0);
 		case 'searchStreetsPost':
-			return searchStreetsPost.execute.call(this);
+			return searchStreetsPost.execute.call(this, itemIndex ?? 0);
 		case 'testAddressPost':
-			return testAddressPost.execute.call(this);
+			return testAddressPost.execute.call(this, itemIndex ?? 0);
 		case 'testAddressPartnersPost':
-			return testAddressPartnersPost.execute.call(this);
+			return testAddressPartnersPost.execute.call(this, itemIndex ?? 0);
 		case 'testBuildingPost':
-			return testBuildingPost.execute.call(this);
+			return testBuildingPost.execute.call(this, itemIndex ?? 0);
 		case 'testBuildingPartnersPost':
-			return testBuildingPartnersPost.execute.call(this);
+			return testBuildingPartnersPost.execute.call(this, itemIndex ?? 0);
 		case 'testLinePost':
-			return testLinePost.execute.call(this);
+			return testLinePost.execute.call(this, itemIndex ?? 0);
 		case 'testLinePartnersPost':
-			return testLinePartnersPost.execute.call(this);
+			return testLinePartnersPost.execute.call(this, itemIndex ?? 0);
 		case 'testOtpPost':
-			return testOtpPost.execute.call(this);
+			return testOtpPost.execute.call(this, itemIndex ?? 0);
 		case 'testOtpPartnersPost':
-			return testOtpPartnersPost.execute.call(this);
+			return testOtpPartnersPost.execute.call(this, itemIndex ?? 0);
 		case 'recallUpdatePut':
-			return recallUpdatePut.execute.call(this);
+			return recallUpdatePut.execute.call(this, itemIndex ?? 0);
 		default:
 			throw new Error(`No handler for operation '${operation}'`);
 	}

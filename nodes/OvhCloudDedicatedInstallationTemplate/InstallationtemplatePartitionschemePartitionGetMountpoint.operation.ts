@@ -42,10 +42,10 @@ export function description(): INodeProperties[] {
  * Endpoint: /dedicated/installationTemplate/{templateName}/partitionScheme/{schemeName}/partition/{mountpoint}
  */
 export async function execute(this: IExecuteFunctions,
-	itemIndex: number): Promise<INodeExecutionData[]> {
-	const mountpoint = this.getNodeParameter('mountpoint', itemIndex) as string;
-	const schemeName = this.getNodeParameter('schemeName', itemIndex) as string;
-	const templateName = this.getNodeParameter('templateName', itemIndex) as string;
+	_itemIndex: number): Promise<INodeExecutionData[]> {
+	const mountpoint = this.getNodeParameter('mountpoint', _itemIndex) as string;
+	const schemeName = this.getNodeParameter('schemeName', _itemIndex) as string;
+	const templateName = this.getNodeParameter('templateName', _itemIndex) as string;
 	const client = new ApiClient(this);
 	const data = (await client.httpGet('/dedicated/installationTemplate/' + encodeURIComponent(templateName) + '/partitionScheme/' + encodeURIComponent(schemeName) + '/partition/' + encodeURIComponent(mountpoint))) as IDataObject;
 	return this.helpers.returnJsonArray([data]);

@@ -37,9 +37,9 @@ export function description(displayOptions: IDisplayOptions): INodeProperties[] 
  * HTTP method: PUT
  * Endpoint: /ip/{ip}/failover/{failover}
  */
-export async function execute(this: IExecuteFunctions, itemIndex: number): Promise<INodeExecutionData[]> {
-	const ip = this.getNodeParameter('ip', itemIndex) as string;
-	const failover = this.getNodeParameter('failover', itemIndex) as string;
+export async function execute(this: IExecuteFunctions, _itemIndex: number): Promise<INodeExecutionData[]> {
+	const ip = this.getNodeParameter('ip', _itemIndex) as string;
+	const failover = this.getNodeParameter('failover', _itemIndex) as string;
 
 	const body: IDataObject = {};
 

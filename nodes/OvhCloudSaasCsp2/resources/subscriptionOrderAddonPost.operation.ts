@@ -68,12 +68,12 @@ export function description(displayOptions: IDisplayOptions): INodeProperties[] 
  * HTTP method: POST
  * Endpoint: /saas/csp2/{serviceName}/subscription/{id}/orderAddon
  */
-export async function execute(this: IExecuteFunctions): Promise<INodeExecutionData[]> {
+export async function execute(this: IExecuteFunctions, _itemIndex?: number): Promise<INodeExecutionData[]> {
 	const client = new ApiClient(this);
-	const serviceName = this.getNodeParameter('serviceName', 0, '', { extractValue: true }) as string;
-	const id = this.getNodeParameter('id', 0) as number;
-	const licenseId = this.getNodeParameter('licenseId', 0) as number;
-	const quantity = this.getNodeParameter('quantity', 0) as number;
+	const serviceName = this.getNodeParameter('serviceName', _itemIndex ?? 0, '', { extractValue: true }) as string;
+	const id = this.getNodeParameter('id', _itemIndex ?? 0) as number;
+	const licenseId = this.getNodeParameter('licenseId', _itemIndex ?? 0) as number;
+	const quantity = this.getNodeParameter('quantity', _itemIndex ?? 0) as number;
 
 	const body: IDataObject = { licenseId, quantity };
 	const data = (await client.httpPost(

@@ -93,20 +93,20 @@ export function description(displayOptions: IDisplayOptions): INodeProperties[] 
  * HTTP method: POST
  * Endpoint: /publicCloud/project/${projectId}/region/${regionName}/storage/${name}/object/${key}/version/${versionId}/copy
  */
-export async function execute(this: IExecuteFunctions): Promise<INodeExecutionData[]> {
-	const regionName = this.getNodeParameter('regionName', 0) as string;
-	const key = this.getNodeParameter('key', 0) as string;
-	const name = this.getNodeParameter('name', 0) as string;
-	const versionId = this.getNodeParameter('versionId', 0) as string;
-	const destination = this.getNodeParameter('destination', 0, '') as string;
-	const source = this.getNodeParameter('source', 0, '') as string;
+export async function execute(this: IExecuteFunctions, _itemIndex?: number): Promise<INodeExecutionData[]> {
+	const regionName = this.getNodeParameter('regionName', _itemIndex ?? 0) as string;
+	const key = this.getNodeParameter('key', _itemIndex ?? 0) as string;
+	const name = this.getNodeParameter('name', _itemIndex ?? 0) as string;
+	const versionId = this.getNodeParameter('versionId', _itemIndex ?? 0) as string;
+	const destination = this.getNodeParameter('destination', _itemIndex ?? 0, '') as string;
+	const source = this.getNodeParameter('source', _itemIndex ?? 0, '') as string;
 	const body: IDataObject = {
 		destination: destination,
 		source: source
 	};
 
 	const client = new ApiClient(this);
-	const projectId = this.getNodeParameter('publicCloudProjectId', 0, '', {
+	const projectId = this.getNodeParameter('publicCloudProjectId', _itemIndex ?? 0, '', {
 		extractValue: true,
 	}) as string;
 	const data = (await client.httpPost(

@@ -44,17 +44,17 @@ export function description(displayOptions: IDisplayOptions): INodeProperties[] 
  */
 export async function execute(
 	this: IExecuteFunctions,
-	itemIndex: number,
+	_itemIndex: number,
 ): Promise<INodeExecutionData[]> {
 	const client = new ApiClient(this);
 	const qs: IDataObject = {};
-	const active = this.getNodeParameter('active', itemIndex, false) as boolean;
-	const branch = this.getNodeParameter('branch', itemIndex, '') as string;
-	const latest = this.getNodeParameter('latest', itemIndex, false) as boolean;
+	const active = this.getNodeParameter('active', _itemIndex, false) as boolean;
+	const branch = this.getNodeParameter('branch', _itemIndex, '') as string;
+	const latest = this.getNodeParameter('latest', _itemIndex, false) as boolean;
 	if (active !== false) qs.active = active;
 	if (branch) qs.branch = branch;
 	if (latest !== false) qs.latest = latest;
 	const data = (await client.httpGet('/hosting/web/moduleList', qs)) as IDataObject;
-	const inputData = this.getInputData()[itemIndex];
+	const inputData = this.getInputData()[_itemIndex];
 	return this.helpers.returnJsonArray([{ ...inputData.json, ...data }]);
 }

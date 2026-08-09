@@ -110,41 +110,41 @@ export function description(displayOptions: IDisplayOptions): INodeProperties[] 
  */
 export async function execute(
 	this: IExecuteFunctions,
-	itemIndex: number,
+	_itemIndex: number,
 ): Promise<INodeExecutionData[]> {
 	const client = new ApiClient(this);
-	const datacenterId = this.getNodeParameter('datacenterId', itemIndex) as string;
-	const serviceName = this.getNodeParameter('serviceName', itemIndex) as string;
+	const datacenterId = this.getNodeParameter('datacenterId', _itemIndex) as string;
+	const serviceName = this.getNodeParameter('serviceName', _itemIndex) as string;
 	const body: IDataObject = {};
 	const backupDurationInReport = this.getNodeParameter(
 		'backupDurationInReport',
-		itemIndex,
+		_itemIndex,
 	) as boolean;
 	if (backupDurationInReport) {
 		body.backupDurationInReport = backupDurationInReport;
 	}
-	body.backupOffer = this.getNodeParameter('backupOffer', itemIndex) as string;
-	const backupSizeInReport = this.getNodeParameter('backupSizeInReport', itemIndex) as boolean;
+	body.backupOffer = this.getNodeParameter('backupOffer', _itemIndex) as string;
+	const backupSizeInReport = this.getNodeParameter('backupSizeInReport', _itemIndex) as boolean;
 	if (backupSizeInReport) {
 		body.backupSizeInReport = backupSizeInReport;
 	}
-	const diskSizeInReport = this.getNodeParameter('diskSizeInReport', itemIndex) as boolean;
+	const diskSizeInReport = this.getNodeParameter('diskSizeInReport', _itemIndex) as boolean;
 	if (diskSizeInReport) {
 		body.diskSizeInReport = diskSizeInReport;
 	}
-	const fullDayInReport = this.getNodeParameter('fullDayInReport', itemIndex) as boolean;
+	const fullDayInReport = this.getNodeParameter('fullDayInReport', _itemIndex) as boolean;
 	if (fullDayInReport) {
 		body.fullDayInReport = fullDayInReport;
 	}
-	const mailAddress = this.getNodeParameter('mailAddress', itemIndex, '') as string;
+	const mailAddress = this.getNodeParameter('mailAddress', _itemIndex, '') as string;
 	if (mailAddress !== '') {
 		body.mailAddress = mailAddress;
 	}
-	const restorePointInReport = this.getNodeParameter('restorePointInReport', itemIndex) as boolean;
+	const restorePointInReport = this.getNodeParameter('restorePointInReport', _itemIndex) as boolean;
 	if (restorePointInReport) {
 		body.restorePointInReport = restorePointInReport;
 	}
-	const scheduleHour = this.getNodeParameter('scheduleHour', itemIndex, '') as string;
+	const scheduleHour = this.getNodeParameter('scheduleHour', _itemIndex, '') as string;
 	if (scheduleHour !== '') {
 		body.scheduleHour = scheduleHour;
 	}

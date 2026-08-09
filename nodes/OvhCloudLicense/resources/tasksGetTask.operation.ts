@@ -50,10 +50,10 @@ export function description(displayOptions: IDisplayOptions): INodeProperties[] 
  * HTTP method: GET
  * Endpoint: /license/worklight/{serviceName}/tasks/{taskId}
  */
-export async function execute(this: IExecuteFunctions): Promise<INodeExecutionData[]> {
+export async function execute(this: IExecuteFunctions, _itemIndex?: number): Promise<INodeExecutionData[]> {
 	const client = new ApiClient(this);
-	const serviceName = this.getNodeParameter('serviceName', 0, '', { extractValue: true }) as string;
-	const taskId = this.getNodeParameter('taskId', 0) as string;
+	const serviceName = this.getNodeParameter('serviceName', _itemIndex ?? 0, '', { extractValue: true }) as string;
+	const taskId = this.getNodeParameter('taskId', _itemIndex ?? 0) as string;
 	const data = (await client.httpGet(
 		`/license/worklight/${encodeURIComponent(serviceName)}/tasks/${encodeURIComponent(taskId)}`,
 	)) as IDataObject;

@@ -44,11 +44,11 @@ export function description(displayOptions: IDisplayOptions): INodeProperties[] 
  * HTTP method: GET
  * Endpoint: /msServices/{serviceName}/sync/license
  */
-export async function execute(this: IExecuteFunctions, itemIndex: number): Promise<INodeExecutionData[]> {
-	const serviceName = this.getNodeParameter('serviceName', itemIndex) as string;
+export async function execute(this: IExecuteFunctions, _itemIndex: number): Promise<INodeExecutionData[]> {
+	const serviceName = this.getNodeParameter('serviceName', _itemIndex) as string;
 
-	const license = this.getNodeParameter('license', itemIndex) as string;
-	const period = this.getNodeParameter('period', itemIndex) as string;
+	const license = this.getNodeParameter('license', _itemIndex) as string;
+	const period = this.getNodeParameter('period', _itemIndex) as string;
 
 
 const qs: IDataObject = {

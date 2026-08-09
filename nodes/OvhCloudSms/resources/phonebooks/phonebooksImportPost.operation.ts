@@ -46,10 +46,10 @@ export function description(displayOptions: IDisplayOptions): INodeProperties[] 
  * HTTP method: POST
  * Endpoint: /sms/{serviceName}/phonebooks/{bookKey}/import
  */
-export async function execute(this: IExecuteFunctions): Promise<INodeExecutionData[]> {
-	const bookKey = this.getNodeParameter('bookKey', 0) as string;
-	const serviceName = this.getNodeParameter('serviceName', 0, '', { extractValue: true }) as string;
-	const documentId = this.getNodeParameter('documentId', 0) as string;
+export async function execute(this: IExecuteFunctions, _itemIndex?: number): Promise<INodeExecutionData[]> {
+	const bookKey = this.getNodeParameter('bookKey', _itemIndex ?? 0) as string;
+	const serviceName = this.getNodeParameter('serviceName', _itemIndex ?? 0, '', { extractValue: true }) as string;
+	const documentId = this.getNodeParameter('documentId', _itemIndex ?? 0) as string;
 	const body: IDataObject = {};
 	body['documentId'] = documentId;
 	const data = (await new ApiClient(this).httpPost(

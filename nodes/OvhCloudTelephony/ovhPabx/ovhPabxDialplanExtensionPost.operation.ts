@@ -79,14 +79,14 @@ export function description(displayOptions: IDisplayOptions): INodeProperties[] 
  * HTTP method: POST
  * Endpoint: /telephony/{billingAccount}/ovhPabx/{serviceName}/dialplan/{dialplanId}/extension
  */
-export async function execute(this: IExecuteFunctions, itemIndex: number): Promise<INodeExecutionData[]> {
-	const billingAccount = this.getNodeParameter('billingAccount', itemIndex) as string;
-	const dialplanId = this.getNodeParameter('dialplanId', itemIndex) as string;
-	const serviceName = this.getNodeParameter('serviceName', itemIndex) as string;
-	const enable = this.getNodeParameter('enable', itemIndex) as string;
-	const position = this.getNodeParameter('position', itemIndex) as string;
-	const schedulerCategory = this.getNodeParameter('schedulerCategory', itemIndex) as string;
-	const screenListType = this.getNodeParameter('screenListType', itemIndex) as string;
+export async function execute(this: IExecuteFunctions, _itemIndex: number): Promise<INodeExecutionData[]> {
+	const billingAccount = this.getNodeParameter('billingAccount', _itemIndex) as string;
+	const dialplanId = this.getNodeParameter('dialplanId', _itemIndex) as string;
+	const serviceName = this.getNodeParameter('serviceName', _itemIndex) as string;
+	const enable = this.getNodeParameter('enable', _itemIndex) as string;
+	const position = this.getNodeParameter('position', _itemIndex) as string;
+	const schedulerCategory = this.getNodeParameter('schedulerCategory', _itemIndex) as string;
+	const screenListType = this.getNodeParameter('screenListType', _itemIndex) as string;
 
 	const body: IDataObject = {
 		enable: enable,

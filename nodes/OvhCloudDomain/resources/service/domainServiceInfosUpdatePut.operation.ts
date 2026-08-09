@@ -35,12 +35,12 @@ export function description(displayOptions: IDisplayOptions): INodeProperties[] 
  * HTTP method: PUT
  * Endpoint: /domain/{serviceName}/serviceInfos
  */
-export async function execute(this: IExecuteFunctions, itemIndex: number): Promise<INodeExecutionData[]> {
+export async function execute(this: IExecuteFunctions, _itemIndex: number): Promise<INodeExecutionData[]> {
 	const client = new ApiClient(this);
-		const serviceName = this.getNodeParameter('serviceName', itemIndex) as string;
+		const serviceName = this.getNodeParameter('serviceName', _itemIndex) as string;
 
 	const body: IDataObject = {};
-		const renew = this.getNodeParameter('renew', itemIndex, '') as string;
+		const renew = this.getNodeParameter('renew', _itemIndex, '') as string;
 		if (renew !== '') body['renew'] = JSON.parse(renew);
 
 	const data = (await client.httpPut(`/domain/${encodeURIComponent(serviceName)}/serviceInfos`, body)) as IDataObject;

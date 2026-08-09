@@ -29,9 +29,9 @@ export function description(displayOptions: IDisplayOptions): INodeProperties[] 
  */
 export async function execute(
 	this: IExecuteFunctions,
-	itemIndex: number,
+	_itemIndex: number,
 ): Promise<INodeExecutionData[]> {
-	const offer = this.getNodeParameter('offer', itemIndex) as string;
+	const offer = this.getNodeParameter('offer', _itemIndex) as string;
 
 	const qs: IDataObject = {};
 	qs['offer'] = offer;

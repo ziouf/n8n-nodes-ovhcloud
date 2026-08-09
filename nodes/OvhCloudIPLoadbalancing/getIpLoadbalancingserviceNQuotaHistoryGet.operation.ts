@@ -53,13 +53,13 @@ export function description(displayOptions: IDisplayOptions): INodeProperties[] 
  */
 export async function execute(
 	this: IExecuteFunctions,
-	itemIndex: number,
+	_itemIndex: number,
 ): Promise<INodeExecutionData[]> {
-	const serviceName = this.getNodeParameter('serviceName', itemIndex) as string;
+	const serviceName = this.getNodeParameter('serviceName', _itemIndex) as string;
 
-	const historizedDateFrom = this.getNodeParameter('historizedDate.from', itemIndex) as string;
-	const historizedDateTo = this.getNodeParameter('historizedDate.to', itemIndex) as string;
-	const zone = this.getNodeParameter('zone', itemIndex) as string;
+	const historizedDateFrom = this.getNodeParameter('historizedDate.from', _itemIndex) as string;
+	const historizedDateTo = this.getNodeParameter('historizedDate.to', _itemIndex) as string;
+	const zone = this.getNodeParameter('zone', _itemIndex) as string;
 
 	const qs: IDataObject = {
 		'historizedDate.from': historizedDateFrom,

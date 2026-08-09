@@ -30,10 +30,10 @@ export function description(displayOptions: IDisplayOptions): INodeProperties[] 
 	];
 }
 
-export async function execute(this: IExecuteFunctions, itemIndex: number): Promise<INodeExecutionData[]> {
+export async function execute(this: IExecuteFunctions, _itemIndex: number): Promise<INodeExecutionData[]> {
 	const client = new ApiClient(this);
-	const serviceName = this.getNodeParameter('serviceName', itemIndex) as string;
-	const cacheRule = this.getNodeParameter('cacheRule', itemIndex) as string;
+	const serviceName = this.getNodeParameter('serviceName', _itemIndex) as string;
+	const cacheRule = this.getNodeParameter('cacheRule', _itemIndex) as string;
 
 	const qs = {cacheRule: cacheRule};
 

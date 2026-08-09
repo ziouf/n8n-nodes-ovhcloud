@@ -29,9 +29,9 @@ export function description(displayOptions: IDisplayOptions): INodeProperties[] 
  */
 export async function execute(
 	this: IExecuteFunctions,
-	itemIndex: number,
+	_itemIndex: number,
 ): Promise<INodeExecutionData[]> {
-	const routingId = this.getNodeParameter('routingId', itemIndex) as string;
+	const routingId = this.getNodeParameter('routingId', _itemIndex) as string;
 
 	const client = new ApiClient(this);
 	const data = (await client.httpGet('/notification/routing/' + routingId)) as IDataObject;

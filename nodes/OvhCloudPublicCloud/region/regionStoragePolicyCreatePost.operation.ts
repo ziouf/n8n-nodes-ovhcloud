@@ -84,19 +84,19 @@ export function description(displayOptions: IDisplayOptions): INodeProperties[] 
  * HTTP method: POST
  * Endpoint: /publicCloud/project/${projectId}/region/${regionName}/storage/${name}/policy/${userId}
  */
-export async function execute(this: IExecuteFunctions): Promise<INodeExecutionData[]> {
-	const regionName = this.getNodeParameter('regionName', 0) as string;
-	const name = this.getNodeParameter('name', 0) as string;
-	const userId = this.getNodeParameter('userId', 0) as string;
-	const objectKey = this.getNodeParameter('objectKey', 0, '') as string;
-	const roleName = this.getNodeParameter('roleName', 0, '') as string;
+export async function execute(this: IExecuteFunctions, _itemIndex?: number): Promise<INodeExecutionData[]> {
+	const regionName = this.getNodeParameter('regionName', _itemIndex ?? 0) as string;
+	const name = this.getNodeParameter('name', _itemIndex ?? 0) as string;
+	const userId = this.getNodeParameter('userId', _itemIndex ?? 0) as string;
+	const objectKey = this.getNodeParameter('objectKey', _itemIndex ?? 0, '') as string;
+	const roleName = this.getNodeParameter('roleName', _itemIndex ?? 0, '') as string;
 	const body: IDataObject = {
 		objectKey: objectKey,
 		roleName: roleName
 	};
 
 	const client = new ApiClient(this);
-	const projectId = this.getNodeParameter('publicCloudProjectId', 0, '', {
+	const projectId = this.getNodeParameter('publicCloudProjectId', _itemIndex ?? 0, '', {
 		extractValue: true,
 	}) as string;
 	const data = (await client.httpPost(

@@ -36,10 +36,10 @@ export function description(displayOptions: IDisplayOptions): INodeProperties[] 
  * HTTP method: DELETE
  * Endpoint: /domain/{serviceName}/glueRecord/{host}
  */
-export async function execute(this: IExecuteFunctions, itemIndex: number): Promise<INodeExecutionData[]> {
+export async function execute(this: IExecuteFunctions, _itemIndex: number): Promise<INodeExecutionData[]> {
 	const client = new ApiClient(this);
-		const host = this.getNodeParameter('host', itemIndex) as string;
-		const serviceName = this.getNodeParameter('serviceName', itemIndex) as string;
+		const host = this.getNodeParameter('host', _itemIndex) as string;
+		const serviceName = this.getNodeParameter('serviceName', _itemIndex) as string;
 
 	const data = (await client.httpDelete(`/domain/${encodeURIComponent(serviceName)}/glueRecord/${encodeURIComponent(host)}`)) as IDataObject;
 

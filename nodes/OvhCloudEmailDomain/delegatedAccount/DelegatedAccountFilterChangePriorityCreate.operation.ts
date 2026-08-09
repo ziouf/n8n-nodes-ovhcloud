@@ -54,10 +54,10 @@ export function description(displayOptions: IDisplayOptions): INodeProperties[] 
  * HTTP method: POST
  * Endpoint: /email/domain/delegatedAccount/{email}/filter/{name}/changePriority
  */
-export async function execute(this: IExecuteFunctions): Promise<INodeExecutionData[]> {
-	const email = this.getNodeParameter('email', 0) as string;
-	const name = this.getNodeParameter('name', 0) as string;
-	const priority = this.getNodeParameter('priority', 0) as string;
+export async function execute(this: IExecuteFunctions, _itemIndex?: number): Promise<INodeExecutionData[]> {
+	const email = this.getNodeParameter('email', _itemIndex ?? 0) as string;
+	const name = this.getNodeParameter('name', _itemIndex ?? 0) as string;
+	const priority = this.getNodeParameter('priority', _itemIndex ?? 0) as string;
 
 	const body: IDataObject = {
 		priority: priority,

@@ -59,15 +59,15 @@ export function description(displayOptions: IDisplayOptions): INodeProperties[] 
  * HTTP method: POST
  * Endpoint: /cloud/project/{projectId}/role
  */
-export async function execute(this: IExecuteFunctions): Promise<INodeExecutionData[]> {
+export async function execute(this: IExecuteFunctions, _itemIndex?: number): Promise<INodeExecutionData[]> {
 	const client = new ApiClient(this);
-	const projectId = this.getNodeParameter('publicCloudProjectId', 0, '', {
+	const projectId = this.getNodeParameter('publicCloudProjectId', _itemIndex ?? 0, '', {
 		extractValue: true,
 	}) as string;
 
 	const body: IDataObject = {};
-	body['roleName'] = this.getNodeParameter('roleName', 0) as string;
-	body['userId'] = this.getNodeParameter('userId', 0) as string;
+	body['roleName'] = this.getNodeParameter('roleName', _itemIndex ?? 0) as string;
+	body['userId'] = this.getNodeParameter('userId', _itemIndex ?? 0) as string;
 
 	const data = (await client.httpPost(
 		`/cloud/project/${projectId}/role`,

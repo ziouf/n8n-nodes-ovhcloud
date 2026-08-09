@@ -52,11 +52,11 @@ export function description(displayOptions: IDisplayOptions): INodeProperties[] 
  * HTTP method: PUT
  * Endpoint: /telephony/{billingAccount}/screen/{serviceName}
  */
-export async function execute(this: IExecuteFunctions, itemIndex: number): Promise<INodeExecutionData[]> {
-	const billingAccount = this.getNodeParameter('billingAccount', itemIndex) as string;
-	const serviceName = this.getNodeParameter('serviceName', itemIndex) as string;
-	const incomingScreenList = this.getNodeParameter('incomingScreenList', itemIndex) as string;
-	const outgoingScreenList = this.getNodeParameter('outgoingScreenList', itemIndex) as string;
+export async function execute(this: IExecuteFunctions, _itemIndex: number): Promise<INodeExecutionData[]> {
+	const billingAccount = this.getNodeParameter('billingAccount', _itemIndex) as string;
+	const serviceName = this.getNodeParameter('serviceName', _itemIndex) as string;
+	const incomingScreenList = this.getNodeParameter('incomingScreenList', _itemIndex) as string;
+	const outgoingScreenList = this.getNodeParameter('outgoingScreenList', _itemIndex) as string;
 
 	const body: IDataObject = {
 		incomingScreenList: incomingScreenList,

@@ -43,14 +43,14 @@ export function description(displayOptions: IDisplayOptions): INodeProperties[] 
  * HTTP method: GET
  * Endpoint: /domain/zone/{zoneName}/history
  */
-export async function execute(this: IExecuteFunctions, itemIndex: number): Promise<INodeExecutionData[]> {
+export async function execute(this: IExecuteFunctions, _itemIndex: number): Promise<INodeExecutionData[]> {
 	const client = new ApiClient(this);
-		const zoneName = this.getNodeParameter('zoneName', itemIndex) as string;
+		const zoneName = this.getNodeParameter('zoneName', _itemIndex) as string;
 
 	const qs: IDataObject = {};
-		const creationDatefrom = this.getNodeParameter('creationDatefrom', itemIndex, '') as string;
+		const creationDatefrom = this.getNodeParameter('creationDatefrom', _itemIndex, '') as string;
 		if (creationDatefrom !== '' && creationDatefrom !== undefined) qs['creationDate.from'] = creationDatefrom;
-		const creationDateto = this.getNodeParameter('creationDateto', itemIndex, '') as string;
+		const creationDateto = this.getNodeParameter('creationDateto', _itemIndex, '') as string;
 		if (creationDateto !== '' && creationDateto !== undefined) qs['creationDate.to'] = creationDateto;
 
 	const data = (await client.httpGet(`/domain/zone/${encodeURIComponent(zoneName)}/history`, qs)) as IDataObject;

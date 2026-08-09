@@ -46,10 +46,10 @@ export function description(displayOptions: IDisplayOptions): INodeProperties[] 
  * HTTP method: POST
  * Endpoint: /sms/{serviceName}/senders/{sender}/validate
  */
-export async function execute(this: IExecuteFunctions): Promise<INodeExecutionData[]> {
-	const sender = this.getNodeParameter('sender', 0) as string;
-	const serviceName = this.getNodeParameter('serviceName', 0, '', { extractValue: true }) as string;
-	const code = this.getNodeParameter('code', 0) as string;
+export async function execute(this: IExecuteFunctions, _itemIndex?: number): Promise<INodeExecutionData[]> {
+	const sender = this.getNodeParameter('sender', _itemIndex ?? 0) as string;
+	const serviceName = this.getNodeParameter('serviceName', _itemIndex ?? 0, '', { extractValue: true }) as string;
+	const code = this.getNodeParameter('code', _itemIndex ?? 0) as string;
 	const body: IDataObject = {};
 	body['code'] = code;
 	const data = (await new ApiClient(this).httpPost(

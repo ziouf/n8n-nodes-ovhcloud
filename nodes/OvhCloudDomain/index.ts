@@ -1607,248 +1607,248 @@ export function description() {
 	return props;
 }
 
-export async function execute(this: IExecuteFunctions): Promise<INodeExecutionData[]> {
+export async function execute(this: IExecuteFunctions, itemIndex?: number): Promise<INodeExecutionData[]> {
 	const operation = this.getNodeParameter('domainOperation', 0) as string;
 
 	switch (operation) {
 		case 'domainListGet':
-			return executedomainListGet.call(this, 0);
+			return executedomainListGet.call(this, itemIndex ?? 0);
 		case 'domainConfigurationRuleListGet':
-			return executedomainConfigurationRuleListGet.call(this, 0);
+			return executedomainConfigurationRuleListGet.call(this, itemIndex ?? 0);
 		case 'domainConfigurationRuleCheckPost':
-			return executedomainConfigurationRuleCheckPost.call(this, 0);
+			return executedomainConfigurationRuleCheckPost.call(this, itemIndex ?? 0);
 		case 'domainContactListGet':
-			return executedomainContactListGet.call(this, 0);
+			return executedomainContactListGet.call(this, itemIndex ?? 0);
 		case 'domainContactCreatePost':
-			return executedomainContactCreatePost.call(this, 0);
+			return executedomainContactCreatePost.call(this, itemIndex ?? 0);
 		case 'domainContactGetGet':
-			return executedomainContactGetGet.call(this, 0);
+			return executedomainContactGetGet.call(this, itemIndex ?? 0);
 		case 'domainContactUpdatePut':
-			return executedomainContactUpdatePut.call(this, 0);
+			return executedomainContactUpdatePut.call(this, itemIndex ?? 0);
 		case 'domainDataClaimNoticeGetGet':
-			return executedomainDataClaimNoticeGetGet.call(this, 0);
+			return executedomainDataClaimNoticeGetGet.call(this, itemIndex ?? 0);
 		case 'domainDataExtensionListGet':
-			return executedomainDataExtensionListGet.call(this, 0);
+			return executedomainDataExtensionListGet.call(this, itemIndex ?? 0);
 		case 'domainDataSmdListGet':
-			return executedomainDataSmdListGet.call(this, 0);
+			return executedomainDataSmdListGet.call(this, itemIndex ?? 0);
 		case 'domainDataSmdCreatePost':
-			return executedomainDataSmdCreatePost.call(this, 0);
+			return executedomainDataSmdCreatePost.call(this, itemIndex ?? 0);
 		case 'domainDataSmdDeleteDelete':
-			return executedomainDataSmdDeleteDelete.call(this, 0);
+			return executedomainDataSmdDeleteDelete.call(this, itemIndex ?? 0);
 		case 'domainDataSmdGetGet':
-			return executedomainDataSmdGetGet.call(this, 0);
+			return executedomainDataSmdGetGet.call(this, itemIndex ?? 0);
 		case 'domainDataSmdUpdatePut':
-			return executedomainDataSmdUpdatePut.call(this, 0);
+			return executedomainDataSmdUpdatePut.call(this, itemIndex ?? 0);
 		case 'domainExtensionsListGet':
-			return executedomainExtensionsListGet.call(this, 0);
+			return executedomainExtensionsListGet.call(this, itemIndex ?? 0);
 		case 'domainExtensionsByCategoryListGet':
-			return executedomainExtensionsByCategoryListGet.call(this, 0);
+			return executedomainExtensionsByCategoryListGet.call(this, itemIndex ?? 0);
 		case 'domainExtensionsHighlightedListGet':
-			return executedomainExtensionsHighlightedListGet.call(this, 0);
+			return executedomainExtensionsHighlightedListGet.call(this, itemIndex ?? 0);
 		case 'domainExtensionsPricingAttributesListGet':
-			return executedomainExtensionsPricingAttributesListGet.call(this, 0);
+			return executedomainExtensionsPricingAttributesListGet.call(this, itemIndex ?? 0);
 		case 'domainExtensionsGetGet':
-			return executedomainExtensionsGetGet.call(this, 0);
+			return executedomainExtensionsGetGet.call(this, itemIndex ?? 0);
 		case 'domainExtensionsRegistryConfigurationsGetGet':
-			return executedomainExtensionsRegistryConfigurationsGetGet.call(this, 0);
+			return executedomainExtensionsRegistryConfigurationsGetGet.call(this, itemIndex ?? 0);
 		case 'domainZoneListGet':
-			return executedomainZoneListGet.call(this, 0);
+			return executedomainZoneListGet.call(this, itemIndex ?? 0);
 		case 'domainZoneGetGet':
-			return executedomainZoneGetGet.call(this, 0);
+			return executedomainZoneGetGet.call(this, itemIndex ?? 0);
 		case 'domainZoneCapabilitiesGetGet':
-			return executedomainZoneCapabilitiesGetGet.call(this, 0);
+			return executedomainZoneCapabilitiesGetGet.call(this, itemIndex ?? 0);
 		case 'domainZoneChangeContactPost':
-			return executedomainZoneChangeContactPost.call(this, 0);
+			return executedomainZoneChangeContactPost.call(this, itemIndex ?? 0);
 		case 'domainZoneConfirmTerminationPost':
-			return executedomainZoneConfirmTerminationPost.call(this, 0);
+			return executedomainZoneConfirmTerminationPost.call(this, itemIndex ?? 0);
 		case 'domainZoneDnssecDeleteDelete':
-			return executedomainZoneDnssecDeleteDelete.call(this, 0);
+			return executedomainZoneDnssecDeleteDelete.call(this, itemIndex ?? 0);
 		case 'domainZoneDnssecGetGet':
-			return executedomainZoneDnssecGetGet.call(this, 0);
+			return executedomainZoneDnssecGetGet.call(this, itemIndex ?? 0);
 		case 'domainZoneDnssecEnablePost':
-			return executedomainZoneDnssecEnablePost.call(this, 0);
+			return executedomainZoneDnssecEnablePost.call(this, itemIndex ?? 0);
 		case 'domainZoneDynHostLoginListGet':
-			return executedomainZoneDynHostLoginListGet.call(this, 0);
+			return executedomainZoneDynHostLoginListGet.call(this, itemIndex ?? 0);
 		case 'domainZoneDynHostLoginCreatePost':
-			return executedomainZoneDynHostLoginCreatePost.call(this, 0);
+			return executedomainZoneDynHostLoginCreatePost.call(this, itemIndex ?? 0);
 		case 'domainZoneDynHostLoginDeleteDelete':
-			return executedomainZoneDynHostLoginDeleteDelete.call(this, 0);
+			return executedomainZoneDynHostLoginDeleteDelete.call(this, itemIndex ?? 0);
 		case 'domainZoneDynHostLoginGetGet':
-			return executedomainZoneDynHostLoginGetGet.call(this, 0);
+			return executedomainZoneDynHostLoginGetGet.call(this, itemIndex ?? 0);
 		case 'domainZoneDynHostLoginUpdatePut':
-			return executedomainZoneDynHostLoginUpdatePut.call(this, 0);
+			return executedomainZoneDynHostLoginUpdatePut.call(this, itemIndex ?? 0);
 		case 'domainZoneDynHostLoginChangeContactPost':
-			return executedomainZoneDynHostLoginChangeContactPost.call(this, 0);
+			return executedomainZoneDynHostLoginChangeContactPost.call(this, itemIndex ?? 0);
 		case 'domainZoneDynHostRecordListGet':
-			return executedomainZoneDynHostRecordListGet.call(this, 0);
+			return executedomainZoneDynHostRecordListGet.call(this, itemIndex ?? 0);
 		case 'domainZoneDynHostRecordCreatePost':
-			return executedomainZoneDynHostRecordCreatePost.call(this, 0);
+			return executedomainZoneDynHostRecordCreatePost.call(this, itemIndex ?? 0);
 		case 'domainZoneDynHostRecordDeleteDelete':
-			return executedomainZoneDynHostRecordDeleteDelete.call(this, 0);
+			return executedomainZoneDynHostRecordDeleteDelete.call(this, itemIndex ?? 0);
 		case 'domainZoneDynHostRecordGetGet':
-			return executedomainZoneDynHostRecordGetGet.call(this, 0);
+			return executedomainZoneDynHostRecordGetGet.call(this, itemIndex ?? 0);
 		case 'domainZoneDynHostRecordUpdatePut':
-			return executedomainZoneDynHostRecordUpdatePut.call(this, 0);
+			return executedomainZoneDynHostRecordUpdatePut.call(this, itemIndex ?? 0);
 		case 'domainZoneExportGetGet':
-			return executedomainZoneExportGetGet.call(this, 0);
+			return executedomainZoneExportGetGet.call(this, itemIndex ?? 0);
 		case 'domainZoneHistoryListGet':
-			return executedomainZoneHistoryListGet.call(this, 0);
+			return executedomainZoneHistoryListGet.call(this, itemIndex ?? 0);
 		case 'domainZoneHistoryGetGet':
-			return executedomainZoneHistoryGetGet.call(this, 0);
+			return executedomainZoneHistoryGetGet.call(this, itemIndex ?? 0);
 		case 'domainZoneHistoryRestorePost':
-			return executedomainZoneHistoryRestorePost.call(this, 0);
+			return executedomainZoneHistoryRestorePost.call(this, itemIndex ?? 0);
 		case 'domainZoneImportPost':
-			return executedomainZoneImportPost.call(this, 0);
+			return executedomainZoneImportPost.call(this, itemIndex ?? 0);
 		case 'domainZoneOptionListGet':
-			return executedomainZoneOptionListGet.call(this, 0);
+			return executedomainZoneOptionListGet.call(this, itemIndex ?? 0);
 		case 'domainZoneOptionGetGet':
-			return executedomainZoneOptionGetGet.call(this, 0);
+			return executedomainZoneOptionGetGet.call(this, itemIndex ?? 0);
 		case 'domainZoneOptionServiceInfosGetGet':
-			return executedomainZoneOptionServiceInfosGetGet.call(this, 0);
+			return executedomainZoneOptionServiceInfosGetGet.call(this, itemIndex ?? 0);
 		case 'domainZoneOptionServiceInfosUpdatePut':
-			return executedomainZoneOptionServiceInfosUpdatePut.call(this, 0);
+			return executedomainZoneOptionServiceInfosUpdatePut.call(this, itemIndex ?? 0);
 		case 'domainZoneRecordListGet':
-			return executedomainZoneRecordListGet.call(this, 0);
+			return executedomainZoneRecordListGet.call(this, itemIndex ?? 0);
 		case 'domainZoneRecordCreatePost':
-			return executedomainZoneRecordCreatePost.call(this, 0);
+			return executedomainZoneRecordCreatePost.call(this, itemIndex ?? 0);
 		case 'domainZoneRecordDeleteDelete':
-			return executedomainZoneRecordDeleteDelete.call(this, 0);
+			return executedomainZoneRecordDeleteDelete.call(this, itemIndex ?? 0);
 		case 'domainZoneRecordGetGet':
-			return executedomainZoneRecordGetGet.call(this, 0);
+			return executedomainZoneRecordGetGet.call(this, itemIndex ?? 0);
 		case 'domainZoneRecordUpdatePut':
-			return executedomainZoneRecordUpdatePut.call(this, 0);
+			return executedomainZoneRecordUpdatePut.call(this, itemIndex ?? 0);
 		case 'domainZoneRedirectionListGet':
-			return executedomainZoneRedirectionListGet.call(this, 0);
+			return executedomainZoneRedirectionListGet.call(this, itemIndex ?? 0);
 		case 'domainZoneRedirectionCreatePost':
-			return executedomainZoneRedirectionCreatePost.call(this, 0);
+			return executedomainZoneRedirectionCreatePost.call(this, itemIndex ?? 0);
 		case 'domainZoneRedirectionDeleteDelete':
-			return executedomainZoneRedirectionDeleteDelete.call(this, 0);
+			return executedomainZoneRedirectionDeleteDelete.call(this, itemIndex ?? 0);
 		case 'domainZoneRedirectionGetGet':
-			return executedomainZoneRedirectionGetGet.call(this, 0);
+			return executedomainZoneRedirectionGetGet.call(this, itemIndex ?? 0);
 		case 'domainZoneRedirectionUpdatePut':
-			return executedomainZoneRedirectionUpdatePut.call(this, 0);
+			return executedomainZoneRedirectionUpdatePut.call(this, itemIndex ?? 0);
 		case 'domainZoneRefreshPost':
-			return executedomainZoneRefreshPost.call(this, 0);
+			return executedomainZoneRefreshPost.call(this, itemIndex ?? 0);
 		case 'domainZoneResetPost':
-			return executedomainZoneResetPost.call(this, 0);
+			return executedomainZoneResetPost.call(this, itemIndex ?? 0);
 		case 'domainZoneServiceInfosGetGet':
-			return executedomainZoneServiceInfosGetGet.call(this, 0);
+			return executedomainZoneServiceInfosGetGet.call(this, itemIndex ?? 0);
 		case 'domainZoneServiceInfosUpdatePut':
-			return executedomainZoneServiceInfosUpdatePut.call(this, 0);
+			return executedomainZoneServiceInfosUpdatePut.call(this, itemIndex ?? 0);
 		case 'domainZoneSoaGetGet':
-			return executedomainZoneSoaGetGet.call(this, 0);
+			return executedomainZoneSoaGetGet.call(this, itemIndex ?? 0);
 		case 'domainZoneSoaUpdatePut':
-			return executedomainZoneSoaUpdatePut.call(this, 0);
+			return executedomainZoneSoaUpdatePut.call(this, itemIndex ?? 0);
 		case 'domainZoneStatusGetGet':
-			return executedomainZoneStatusGetGet.call(this, 0);
+			return executedomainZoneStatusGetGet.call(this, itemIndex ?? 0);
 		case 'domainZoneTaskListGet':
-			return executedomainZoneTaskListGet.call(this, 0);
+			return executedomainZoneTaskListGet.call(this, itemIndex ?? 0);
 		case 'domainZoneTaskGetGet':
-			return executedomainZoneTaskGetGet.call(this, 0);
+			return executedomainZoneTaskGetGet.call(this, itemIndex ?? 0);
 		case 'domainZoneTaskAcceleratePost':
-			return executedomainZoneTaskAcceleratePost.call(this, 0);
+			return executedomainZoneTaskAcceleratePost.call(this, itemIndex ?? 0);
 		case 'domainZoneTaskCancelPost':
-			return executedomainZoneTaskCancelPost.call(this, 0);
+			return executedomainZoneTaskCancelPost.call(this, itemIndex ?? 0);
 		case 'domainZoneTaskRelaunchPost':
-			return executedomainZoneTaskRelaunchPost.call(this, 0);
+			return executedomainZoneTaskRelaunchPost.call(this, itemIndex ?? 0);
 		case 'domainZoneTerminatePost':
-			return executedomainZoneTerminatePost.call(this, 0);
+			return executedomainZoneTerminatePost.call(this, itemIndex ?? 0);
 		case 'domainGetGet':
-			return executedomainGetGet.call(this, 0);
+			return executedomainGetGet.call(this, itemIndex ?? 0);
 		case 'domainUpdatePut':
-			return executedomainUpdatePut.call(this, 0);
+			return executedomainUpdatePut.call(this, itemIndex ?? 0);
 		case 'domainAuthInfoGetGet':
-			return executedomainAuthInfoGetGet.call(this, 0);
+			return executedomainAuthInfoGetGet.call(this, itemIndex ?? 0);
 		case 'domainChangeContactPost':
-			return executedomainChangeContactPost.call(this, 0);
+			return executedomainChangeContactPost.call(this, itemIndex ?? 0);
 		case 'domainConfigurationsObfuscatedEmailsGetGet':
-			return executedomainConfigurationsObfuscatedEmailsGetGet.call(this, 0);
+			return executedomainConfigurationsObfuscatedEmailsGetGet.call(this, itemIndex ?? 0);
 		case 'domainConfigurationsObfuscatedEmailsUpdatePut':
-			return executedomainConfigurationsObfuscatedEmailsUpdatePut.call(this, 0);
+			return executedomainConfigurationsObfuscatedEmailsUpdatePut.call(this, itemIndex ?? 0);
 		case 'domainConfigurationsObfuscatedEmailsRefreshPost':
-			return executedomainConfigurationsObfuscatedEmailsRefreshPost.call(this, 0);
+			return executedomainConfigurationsObfuscatedEmailsRefreshPost.call(this, itemIndex ?? 0);
 		case 'domainConfigurationsOptinGetGet':
-			return executedomainConfigurationsOptinGetGet.call(this, 0);
+			return executedomainConfigurationsOptinGetGet.call(this, itemIndex ?? 0);
 		case 'domainConfigurationsOptinUpdatePut':
-			return executedomainConfigurationsOptinUpdatePut.call(this, 0);
+			return executedomainConfigurationsOptinUpdatePut.call(this, itemIndex ?? 0);
 		case 'domainDsRecordListGet':
-			return executedomainDsRecordListGet.call(this, 0);
+			return executedomainDsRecordListGet.call(this, itemIndex ?? 0);
 		case 'domainDsRecordCreatePost':
-			return executedomainDsRecordCreatePost.call(this, 0);
+			return executedomainDsRecordCreatePost.call(this, itemIndex ?? 0);
 		case 'domainDsRecordGetGet':
-			return executedomainDsRecordGetGet.call(this, 0);
+			return executedomainDsRecordGetGet.call(this, itemIndex ?? 0);
 		case 'domainGlueRecordListGet':
-			return executedomainGlueRecordListGet.call(this, 0);
+			return executedomainGlueRecordListGet.call(this, itemIndex ?? 0);
 		case 'domainGlueRecordCreatePost':
-			return executedomainGlueRecordCreatePost.call(this, 0);
+			return executedomainGlueRecordCreatePost.call(this, itemIndex ?? 0);
 		case 'domainGlueRecordDeleteDelete':
-			return executedomainGlueRecordDeleteDelete.call(this, 0);
+			return executedomainGlueRecordDeleteDelete.call(this, itemIndex ?? 0);
 		case 'domainGlueRecordGetGet':
-			return executedomainGlueRecordGetGet.call(this, 0);
+			return executedomainGlueRecordGetGet.call(this, itemIndex ?? 0);
 		case 'domainGlueRecordUpdatePost':
-			return executedomainGlueRecordUpdatePost.call(this, 0);
+			return executedomainGlueRecordUpdatePost.call(this, itemIndex ?? 0);
 		case 'domainNameServerListGet':
-			return executedomainNameServerListGet.call(this, 0);
+			return executedomainNameServerListGet.call(this, itemIndex ?? 0);
 		case 'domainNameServerCreatePost':
-			return executedomainNameServerCreatePost.call(this, 0);
+			return executedomainNameServerCreatePost.call(this, itemIndex ?? 0);
 		case 'domainNameServerDeleteDelete':
-			return executedomainNameServerDeleteDelete.call(this, 0);
+			return executedomainNameServerDeleteDelete.call(this, itemIndex ?? 0);
 		case 'domainNameServerGetGet':
-			return executedomainNameServerGetGet.call(this, 0);
+			return executedomainNameServerGetGet.call(this, itemIndex ?? 0);
 		case 'domainNameServerStatusGetGet':
-			return executedomainNameServerStatusGetGet.call(this, 0);
+			return executedomainNameServerStatusGetGet.call(this, itemIndex ?? 0);
 		case 'domainNameServersUpdatePost':
-			return executedomainNameServersUpdatePost.call(this, 0);
+			return executedomainNameServersUpdatePost.call(this, itemIndex ?? 0);
 		case 'domainOptionListGet':
-			return executedomainOptionListGet.call(this, 0);
+			return executedomainOptionListGet.call(this, itemIndex ?? 0);
 		case 'domainOptionDeleteDelete':
-			return executedomainOptionDeleteDelete.call(this, 0);
+			return executedomainOptionDeleteDelete.call(this, itemIndex ?? 0);
 		case 'domainOptionGetGet':
-			return executedomainOptionGetGet.call(this, 0);
+			return executedomainOptionGetGet.call(this, itemIndex ?? 0);
 		case 'domainOptionsGetGet':
-			return executedomainOptionsGetGet.call(this, 0);
+			return executedomainOptionsGetGet.call(this, itemIndex ?? 0);
 		case 'domainOutgoingTransferApprovePost':
-			return executedomainOutgoingTransferApprovePost.call(this, 0);
+			return executedomainOutgoingTransferApprovePost.call(this, itemIndex ?? 0);
 		case 'domainRulesEmailsObfuscationGetGet':
-			return executedomainRulesEmailsObfuscationGetGet.call(this, 0);
+			return executedomainRulesEmailsObfuscationGetGet.call(this, itemIndex ?? 0);
 		case 'domainRulesOptinGetGet':
-			return executedomainRulesOptinGetGet.call(this, 0);
+			return executedomainRulesOptinGetGet.call(this, itemIndex ?? 0);
 		case 'domainServiceInfosGetGet':
-			return executedomainServiceInfosGetGet.call(this, 0);
+			return executedomainServiceInfosGetGet.call(this, itemIndex ?? 0);
 		case 'domainServiceInfosUpdatePut':
-			return executedomainServiceInfosUpdatePut.call(this, 0);
+			return executedomainServiceInfosUpdatePut.call(this, itemIndex ?? 0);
 		case 'domainTaskListGet':
-			return executedomainTaskListGet.call(this, 0);
+			return executedomainTaskListGet.call(this, itemIndex ?? 0);
 		case 'domainTaskGetGet':
-			return executedomainTaskGetGet.call(this, 0);
+			return executedomainTaskGetGet.call(this, itemIndex ?? 0);
 		case 'domainTaskAcceleratePost':
-			return executedomainTaskAcceleratePost.call(this, 0);
+			return executedomainTaskAcceleratePost.call(this, itemIndex ?? 0);
 		case 'domainTaskCancelPost':
-			return executedomainTaskCancelPost.call(this, 0);
+			return executedomainTaskCancelPost.call(this, itemIndex ?? 0);
 		case 'domainTaskRelaunchPost':
-			return executedomainTaskRelaunchPost.call(this, 0);
+			return executedomainTaskRelaunchPost.call(this, itemIndex ?? 0);
 		case 'domainUkOutgoingTransferPost':
-			return executedomainUkOutgoingTransferPost.call(this, 0);
+			return executedomainUkOutgoingTransferPost.call(this, itemIndex ?? 0);
 		case 'domainUkRegistrarsListGet':
-			return executedomainUkRegistrarsListGet.call(this, 0);
+			return executedomainUkRegistrarsListGet.call(this, itemIndex ?? 0);
 		case 'domainAlldomListGet':
-			return executedomainAlldomListGet.call(this, 0);
+			return executedomainAlldomListGet.call(this, itemIndex ?? 0);
 		case 'domainAlldomGetGet':
-			return executedomainAlldomGetGet.call(this, 0);
+			return executedomainAlldomGetGet.call(this, itemIndex ?? 0);
 		case 'domainAlldomTaskListGet':
-			return executedomainAlldomTaskListGet.call(this, 0);
+			return executedomainAlldomTaskListGet.call(this, itemIndex ?? 0);
 		case 'domainAlldomTaskGetGet':
-			return executedomainAlldomTaskGetGet.call(this, 0);
+			return executedomainAlldomTaskGetGet.call(this, itemIndex ?? 0);
 		case 'domainNameListGet':
-			return executedomainNameListGet.call(this, 0);
+			return executedomainNameListGet.call(this, itemIndex ?? 0);
 		case 'domainNameGetGet':
-			return executedomainNameGetGet.call(this, 0);
+			return executedomainNameGetGet.call(this, itemIndex ?? 0);
 		case 'domainNameUpdatePut':
-			return executedomainNameUpdatePut.call(this, 0);
+			return executedomainNameUpdatePut.call(this, itemIndex ?? 0);
 		case 'domainNameTaskListGet':
-			return executedomainNameTaskListGet.call(this, 0);
+			return executedomainNameTaskListGet.call(this, itemIndex ?? 0);
 		case 'domainNameTaskGetGet':
-			return executedomainNameTaskGetGet.call(this, 0);
+			return executedomainNameTaskGetGet.call(this, itemIndex ?? 0);
 		default:
 			throw new Error(`No handler for operation '${operation}'`);
 	}

@@ -273,44 +273,44 @@ export function description() {
  * HTTP method: POST
  * Endpoint: /email/exchange/{organizationName}/service/{exchangeService}/account
  */
-export async function execute(this: IExecuteFunctions): Promise<INodeExecutionData[]> {
-	const organizationName = this.getNodeParameter('organizationName', 0) as string;
-	const exchangeService = this.getNodeParameter('exchangeService', 0) as string;
-	const SAMAccountName = this.getNodeParameter('SAMAccountName', 0) as string;
-	const authenticationPolicyId = this.getNodeParameter('authenticationPolicyId', 0) as string;
-	const city = this.getNodeParameter('city', 0) as string;
-	const company = this.getNodeParameter('company', 0) as string;
-	const countryCode = this.getNodeParameter('countryCode', 0) as string;
-	const description = this.getNodeParameter('description', 0) as string;
-	const displayName = this.getNodeParameter('displayName', 0) as string;
-	const domain = this.getNodeParameter('domain', 0) as string;
-	const fax = this.getNodeParameter('fax', 0) as string;
-	const firstName = this.getNodeParameter('firstName', 0) as string;
-	const forwardingEmail = this.getNodeParameter('forwardingEmail', 0) as string;
-	const hiddenFromGAL = this.getNodeParameter('hiddenFromGAL', 0) as string;
-	const initials = this.getNodeParameter('initials', 0) as string;
-	const jobDepartment = this.getNodeParameter('jobDepartment', 0) as string;
-	const jobTitle = this.getNodeParameter('jobTitle', 0) as string;
-	const lastName = this.getNodeParameter('lastName', 0) as string;
-	const license = this.getNodeParameter('license', 0) as string;
-	const litigation = this.getNodeParameter('litigation', 0) as string;
-	const litigationPeriod = this.getNodeParameter('litigationPeriod', 0) as string;
-	const login = this.getNodeParameter('login', 0) as string;
-	const mailSenderDisplay = this.getNodeParameter('mailSenderDisplay', 0) as string;
-	const mailingFilter = this.getNodeParameter('mailingFilter', 0) as string;
-	const mobile = this.getNodeParameter('mobile', 0) as string;
-	const office = this.getNodeParameter('office', 0) as string;
-	const outlookLicense = this.getNodeParameter('outlookLicense', 0) as string;
-	const password = this.getNodeParameter('password', 0) as string;
-	const phone = this.getNodeParameter('phone', 0) as string;
-	const postalCode = this.getNodeParameter('postalCode', 0) as string;
-	const quota = this.getNodeParameter('quota', 0) as string;
-	const region = this.getNodeParameter('region', 0) as string;
-	const sbrDestination = this.getNodeParameter('sbrDestination', 0) as string;
-	const sendConnectorId = this.getNodeParameter('sendConnectorId', 0) as string;
-	const spamAndVirusConfiguration = this.getNodeParameter('spamAndVirusConfiguration', 0) as string;
-	const storeCopyOfEmail = this.getNodeParameter('storeCopyOfEmail', 0) as string;
-	const streetAddress = this.getNodeParameter('streetAddress', 0) as string;
+export async function execute(this: IExecuteFunctions, _itemIndex?: number): Promise<INodeExecutionData[]> {
+	const organizationName = this.getNodeParameter('organizationName', _itemIndex ?? 0) as string;
+	const exchangeService = this.getNodeParameter('exchangeService', _itemIndex ?? 0) as string;
+	const SAMAccountName = this.getNodeParameter('SAMAccountName', _itemIndex ?? 0) as string;
+	const authenticationPolicyId = this.getNodeParameter('authenticationPolicyId', _itemIndex ?? 0) as string;
+	const city = this.getNodeParameter('city', _itemIndex ?? 0) as string;
+	const company = this.getNodeParameter('company', _itemIndex ?? 0) as string;
+	const countryCode = this.getNodeParameter('countryCode', _itemIndex ?? 0) as string;
+	const description = this.getNodeParameter('description', _itemIndex ?? 0) as string;
+	const displayName = this.getNodeParameter('displayName', _itemIndex ?? 0) as string;
+	const domain = this.getNodeParameter('domain', _itemIndex ?? 0) as string;
+	const fax = this.getNodeParameter('fax', _itemIndex ?? 0) as string;
+	const firstName = this.getNodeParameter('firstName', _itemIndex ?? 0) as string;
+	const forwardingEmail = this.getNodeParameter('forwardingEmail', _itemIndex ?? 0) as string;
+	const hiddenFromGAL = this.getNodeParameter('hiddenFromGAL', _itemIndex ?? 0) as string;
+	const initials = this.getNodeParameter('initials', _itemIndex ?? 0) as string;
+	const jobDepartment = this.getNodeParameter('jobDepartment', _itemIndex ?? 0) as string;
+	const jobTitle = this.getNodeParameter('jobTitle', _itemIndex ?? 0) as string;
+	const lastName = this.getNodeParameter('lastName', _itemIndex ?? 0) as string;
+	const license = this.getNodeParameter('license', _itemIndex ?? 0) as string;
+	const litigation = this.getNodeParameter('litigation', _itemIndex ?? 0) as string;
+	const litigationPeriod = this.getNodeParameter('litigationPeriod', _itemIndex ?? 0) as string;
+	const login = this.getNodeParameter('login', _itemIndex ?? 0) as string;
+	const mailSenderDisplay = this.getNodeParameter('mailSenderDisplay', _itemIndex ?? 0) as string;
+	const mailingFilter = this.getNodeParameter('mailingFilter', _itemIndex ?? 0) as string;
+	const mobile = this.getNodeParameter('mobile', _itemIndex ?? 0) as string;
+	const office = this.getNodeParameter('office', _itemIndex ?? 0) as string;
+	const outlookLicense = this.getNodeParameter('outlookLicense', _itemIndex ?? 0) as string;
+	const password = this.getNodeParameter('password', _itemIndex ?? 0) as string;
+	const phone = this.getNodeParameter('phone', _itemIndex ?? 0) as string;
+	const postalCode = this.getNodeParameter('postalCode', _itemIndex ?? 0) as string;
+	const quota = this.getNodeParameter('quota', _itemIndex ?? 0) as string;
+	const region = this.getNodeParameter('region', _itemIndex ?? 0) as string;
+	const sbrDestination = this.getNodeParameter('sbrDestination', _itemIndex ?? 0) as string;
+	const sendConnectorId = this.getNodeParameter('sendConnectorId', _itemIndex ?? 0) as string;
+	const spamAndVirusConfiguration = this.getNodeParameter('spamAndVirusConfiguration', _itemIndex ?? 0) as string;
+	const storeCopyOfEmail = this.getNodeParameter('storeCopyOfEmail', _itemIndex ?? 0) as string;
+	const streetAddress = this.getNodeParameter('streetAddress', _itemIndex ?? 0) as string;
 
 	const body: IDataObject = {
     SAMAccountName: SAMAccountName,

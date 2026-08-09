@@ -75,13 +75,13 @@ export function description(displayOptions: IDisplayOptions): INodeProperties[] 
  * HTTP method: PUT
  * Endpoint: /cluster/hadoop/{serviceName}/user/{username}
  */
-export async function execute(this: IExecuteFunctions): Promise<INodeExecutionData[]> {
+export async function execute(this: IExecuteFunctions, _itemIndex?: number): Promise<INodeExecutionData[]> {
 	const client = new ApiClient(this);
-	const serviceName = this.getNodeParameter('serviceName', 0, '', { extractValue: true }) as string;
-	const username = this.getNodeParameter('username', 0) as string;
-	const clouderaManager = this.getNodeParameter('clouderaManager', 0) as boolean | undefined;
-	const httpFrontend = this.getNodeParameter('httpFrontend', 0) as boolean | undefined;
-	const hue = this.getNodeParameter('hue', 0) as boolean | undefined;
+	const serviceName = this.getNodeParameter('serviceName', _itemIndex ?? 0, '', { extractValue: true }) as string;
+	const username = this.getNodeParameter('username', _itemIndex ?? 0) as string;
+	const clouderaManager = this.getNodeParameter('clouderaManager', _itemIndex ?? 0) as boolean | undefined;
+	const httpFrontend = this.getNodeParameter('httpFrontend', _itemIndex ?? 0) as boolean | undefined;
+	const hue = this.getNodeParameter('hue', _itemIndex ?? 0) as boolean | undefined;
 
 	const body: IDataObject = {};
 	if (clouderaManager !== undefined) body.clouderaManager = clouderaManager;

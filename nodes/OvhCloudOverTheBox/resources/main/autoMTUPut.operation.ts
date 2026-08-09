@@ -54,10 +54,10 @@ export function description(displayOptions: IDisplayOptions): INodeProperties[] 
  * HTTP method: PUT
  * Endpoint: /overTheBox/{serviceName}/autoMTU
  */
-export async function execute(this: IExecuteFunctions): Promise<INodeExecutionData[]> {
+export async function execute(this: IExecuteFunctions, _itemIndex?: number): Promise<INodeExecutionData[]> {
 	const client = new ApiClient(this);
-	const serviceName = this.getNodeParameter('serviceName', 0, '', { extractValue: true }) as string;
-	const mtuAuto = (this.getNodeParameter('mtuAuto', 0, '') as string) || '';
+	const serviceName = this.getNodeParameter('serviceName', _itemIndex ?? 0, '', { extractValue: true }) as string;
+	const mtuAuto = (this.getNodeParameter('mtuAuto', _itemIndex ?? 0, '') as string) || '';
 
 	const body: IDataObject = {};
 	if (mtuAuto) body.mtuAuto = mtuAuto;

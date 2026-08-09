@@ -47,12 +47,12 @@ export function description(displayOptions: IDisplayOptions): INodeProperties[] 
  */
 export async function execute(
 	this: IExecuteFunctions,
-	itemIndex?: number,
+	_itemIndex?: number,
 ): Promise<INodeExecutionData[]> {
 	const client = new ApiClient(this);
-	const serviceName = this.getNodeParameter('serviceName', itemIndex as number) as string;
-	const ownLogsId = this.getNodeParameter('ownLogsId', itemIndex as number) as number;
-	const login = this.getNodeParameter('login', itemIndex as number) as string;
+	const serviceName = this.getNodeParameter('serviceName', _itemIndex as number) as string;
+	const ownLogsId = this.getNodeParameter('ownLogsId', _itemIndex as number) as number;
+	const login = this.getNodeParameter('login', _itemIndex as number) as string;
 	const data = (await client.httpGet(
 		`/hosting/web/${encodeURIComponent(serviceName)}/ownLogs/${encodeURIComponent(String(ownLogsId))}/userLogs/${encodeURIComponent(login)}`,
 	)) as IDataObject;

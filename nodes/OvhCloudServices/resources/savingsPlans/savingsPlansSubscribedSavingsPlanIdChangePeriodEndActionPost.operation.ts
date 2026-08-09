@@ -56,10 +56,10 @@ export function description(displayOptions: IDisplayOptions): INodeProperties[] 
  * HTTP method: POST
  * Endpoint: /services/{serviceName}/savingsPlans/subscribed/{savingsPlanId}/changePeriodEndAction
  */
-export async function execute(this: IExecuteFunctions, itemIndex: number): Promise<INodeExecutionData[]> {
-	const serviceName = this.getNodeParameter('serviceName', itemIndex) as string;
-	const savingsPlanId = this.getNodeParameter('savingsPlanId', itemIndex) as string;
-	const periodEndAction = this.getNodeParameter('periodEndAction', itemIndex) as string;
+export async function execute(this: IExecuteFunctions, _itemIndex: number): Promise<INodeExecutionData[]> {
+	const serviceName = this.getNodeParameter('serviceName', _itemIndex) as string;
+	const savingsPlanId = this.getNodeParameter('savingsPlanId', _itemIndex) as string;
+	const periodEndAction = this.getNodeParameter('periodEndAction', _itemIndex) as string;
 	const body: IDataObject = { periodEndAction };
 	const client = new ApiClient(this);
 	const data = (await client.httpPost(`/services/${encodeURIComponent(serviceName)}/savingsPlans/subscribed/${encodeURIComponent(savingsPlanId)}/changePeriodEndAction`, body)) as IDataObject;

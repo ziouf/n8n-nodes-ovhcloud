@@ -39,11 +39,11 @@ export function description(displayOptions: IDisplayOptions): INodeProperties[] 
 	];
 }
 
-export async function execute(this: IExecuteFunctions, itemIndex: number): Promise<INodeExecutionData[]> {
+export async function execute(this: IExecuteFunctions, _itemIndex: number): Promise<INodeExecutionData[]> {
 	const client = new ApiClient(this);
-	const serviceName = this.getNodeParameter('serviceName', itemIndex) as string;
-	const duration = this.getNodeParameter('duration', itemIndex) as string;
-	const body = this.getNodeParameter('body', itemIndex) as IDataObject;
+	const serviceName = this.getNodeParameter('serviceName', _itemIndex) as string;
+	const duration = this.getNodeParameter('duration', _itemIndex) as string;
+	const body = this.getNodeParameter('body', _itemIndex) as IDataObject;
 
 	const data = (await client.httpPost(
 		`/order/vps/${serviceName}/additionalDisk/${duration}`,

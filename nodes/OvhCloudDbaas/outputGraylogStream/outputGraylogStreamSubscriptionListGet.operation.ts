@@ -52,15 +52,15 @@ export function description(displayOptions: IDisplayOptions): INodeProperties[] 
  * HTTP method: GET
  * Endpoint: /dbaas/logs/{serviceName}/output/graylog/stream/{streamId}/subscription
  */
-export async function execute(this: IExecuteFunctions, itemIndex: number): Promise<INodeExecutionData[]> {
-	const serviceName = this.getNodeParameter('serviceName', itemIndex) as string;
-	const streamId = this.getNodeParameter('streamId', itemIndex) as string;
+export async function execute(this: IExecuteFunctions, _itemIndex: number): Promise<INodeExecutionData[]> {
+	const serviceName = this.getNodeParameter('serviceName', _itemIndex) as string;
+	const streamId = this.getNodeParameter('streamId', _itemIndex) as string;
 	const qs: IDataObject = {};
-	const resourceName = (this.getNodeParameter('resourceName', itemIndex, '') as string) || '';
+	const resourceName = (this.getNodeParameter('resourceName', _itemIndex, '') as string) || '';
 	if (resourceName) {
 		qs.resourceName = resourceName;
 	}
-	const resourceType = (this.getNodeParameter('resourceType', itemIndex, '') as string) || '';
+	const resourceType = (this.getNodeParameter('resourceType', _itemIndex, '') as string) || '';
 	if (resourceType) {
 		qs.resourceType = resourceType;
 	}

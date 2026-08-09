@@ -74,13 +74,13 @@ export function description(displayOptions: IDisplayOptions): INodeProperties[] 
  * HTTP method: GET
  * Endpoint: /sms/{serviceName}/users/{login}/document
  */
-export async function execute(this: IExecuteFunctions): Promise<INodeExecutionData[]> {
-	const login = this.getNodeParameter('login', 0) as string;
-	const serviceName = this.getNodeParameter('serviceName', 0, '', { extractValue: true }) as string;
-	const creationDatetimeFrom = this.getNodeParameter('creationDatetimeFrom', 0) as string;
-	const creationDatetimeTo = this.getNodeParameter('creationDatetimeTo', 0) as string;
-	const tag = this.getNodeParameter('tag', 0) as string;
-	const wayType = this.getNodeParameter('wayType', 0) as string;
+export async function execute(this: IExecuteFunctions, _itemIndex?: number): Promise<INodeExecutionData[]> {
+	const login = this.getNodeParameter('login', _itemIndex ?? 0) as string;
+	const serviceName = this.getNodeParameter('serviceName', _itemIndex ?? 0, '', { extractValue: true }) as string;
+	const creationDatetimeFrom = this.getNodeParameter('creationDatetimeFrom', _itemIndex ?? 0) as string;
+	const creationDatetimeTo = this.getNodeParameter('creationDatetimeTo', _itemIndex ?? 0) as string;
+	const tag = this.getNodeParameter('tag', _itemIndex ?? 0) as string;
+	const wayType = this.getNodeParameter('wayType', _itemIndex ?? 0) as string;
 	const qs: IDataObject = {};
 	qs['wayType'] = wayType;
 	if (creationDatetimeFrom) qs['creationDatetime.from'] = creationDatetimeFrom;

@@ -55,10 +55,10 @@ export function description(displayOptions: IDisplayOptions): INodeProperties[] 
  * HTTP method: DELETE
  * Endpoint: /email/mxplan/{service}/account/{email}/sendAs/{allowedAccountId}
  */
-export async function execute(this: IExecuteFunctions): Promise<INodeExecutionData[]> {
-	const allowedAccountId = this.getNodeParameter('allowedAccountId', 0) as string;
-	const email = this.getNodeParameter('email', 0) as string;
-	const service = this.getNodeParameter('service', 0) as string;
+export async function execute(this: IExecuteFunctions, _itemIndex?: number): Promise<INodeExecutionData[]> {
+	const allowedAccountId = this.getNodeParameter('allowedAccountId', _itemIndex ?? 0) as string;
+	const email = this.getNodeParameter('email', _itemIndex ?? 0) as string;
+	const service = this.getNodeParameter('service', _itemIndex ?? 0) as string;
 
 	const client = new ApiClient(this);
 	const data = (await client.httpDelete('/email' + '/mxplan/' + encodeURIComponent(service) + '/account/' + encodeURIComponent(email) + '/sendAs/' + encodeURIComponent(allowedAccountId))) as IDataObject;

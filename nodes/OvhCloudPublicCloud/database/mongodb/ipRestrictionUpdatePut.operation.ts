@@ -48,11 +48,11 @@ export function description(displayOptions: IDisplayOptions): INodeProperties[] 
  * HTTP method: PUT
  * Endpoint: /cloud/project/{serviceName}/database/mongodb/{clusterId}/ipRestriction/{ipBlock}
  */
-export async function execute(this: IExecuteFunctions): Promise<INodeExecutionData[]> {
-	const serviceName = this.getNodeParameter('serviceName', 0) as string;
-	const clusterId = this.getNodeParameter('clusterId', 0) as string;
-	const ipBlock = this.getNodeParameter('ipBlock', 0) as string;
-	const description = this.getNodeParameter('description', 0, '') as string;
+export async function execute(this: IExecuteFunctions, _itemIndex?: number): Promise<INodeExecutionData[]> {
+	const serviceName = this.getNodeParameter('serviceName', _itemIndex ?? 0) as string;
+	const clusterId = this.getNodeParameter('clusterId', _itemIndex ?? 0) as string;
+	const ipBlock = this.getNodeParameter('ipBlock', _itemIndex ?? 0) as string;
+	const description = this.getNodeParameter('description', _itemIndex ?? 0, '') as string;
 
 	const body: IDataObject = {
     description: description || undefined

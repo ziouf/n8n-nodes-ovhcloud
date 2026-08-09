@@ -45,10 +45,10 @@ export function description(displayOptions: IDisplayOptions): INodeProperties[] 
  * HTTP method: DELETE
  * Endpoint: /dbaas/logs/{serviceName}/output/graylog/stream/{streamId}/alert/{alertId}
  */
-export async function execute(this: IExecuteFunctions, itemIndex: number): Promise<INodeExecutionData[]> {
-	const serviceName = this.getNodeParameter('serviceName', itemIndex) as string;
-	const alertId = this.getNodeParameter('alertId', itemIndex) as string;
-	const streamId = this.getNodeParameter('streamId', itemIndex) as string;
+export async function execute(this: IExecuteFunctions, _itemIndex: number): Promise<INodeExecutionData[]> {
+	const serviceName = this.getNodeParameter('serviceName', _itemIndex) as string;
+	const alertId = this.getNodeParameter('alertId', _itemIndex) as string;
+	const streamId = this.getNodeParameter('streamId', _itemIndex) as string;
 	const client = new ApiClient(this);
 	const data = (await client.httpDelete(`/dbaas/logs/${encodeURIComponent(serviceName)}/output/graylog/stream/${encodeURIComponent(streamId)}/alert/${encodeURIComponent(alertId)}`)) as IDataObject;
 

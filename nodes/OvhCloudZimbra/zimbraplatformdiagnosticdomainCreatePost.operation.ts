@@ -28,8 +28,8 @@ export function description(displayOptions: IDisplayOptions): INodeProperties[] 
  * HTTP method: POST
  * Endpoint: /zimbra/platform/{platformId}/diagnostic/domain
  */
-export async function execute(this: IExecuteFunctions, itemIndex: number): Promise<INodeExecutionData[]> {
-	const platformId = this.getNodeParameter('platformId', itemIndex) as string;
+export async function execute(this: IExecuteFunctions, _itemIndex: number): Promise<INodeExecutionData[]> {
+	const platformId = this.getNodeParameter('platformId', _itemIndex) as string;
 
 	const body: IDataObject = {};
 

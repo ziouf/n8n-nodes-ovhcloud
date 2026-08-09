@@ -147,14 +147,14 @@ export function description(displayOptions: IDisplayOptions) {
 
 export async function execute(
 	this: IExecuteFunctions,
-	itemIndex: number,
+	_itemIndex: number,
 ): Promise<INodeExecutionData[]> {
 	const client = new ApiClient(this);
-	const subject = this.getNodeParameter('subject', itemIndex, '') as string;
-	const body = this.getNodeParameter('body', itemIndex, '') as string;
-	const category = this.getNodeParameter('category', itemIndex, 'assistance') as string;
-	const product = this.getNodeParameter('product', itemIndex, 'hosting') as string;
-	const serviceName = this.getNodeParameter('serviceName', itemIndex, '') as string;
+	const subject = this.getNodeParameter('subject', _itemIndex, '') as string;
+	const body = this.getNodeParameter('body', _itemIndex, '') as string;
+	const category = this.getNodeParameter('category', _itemIndex, 'assistance') as string;
+	const product = this.getNodeParameter('product', _itemIndex, 'hosting') as string;
+	const serviceName = this.getNodeParameter('serviceName', _itemIndex, '') as string;
 
 	const data: IDataObject = {
 		subject,

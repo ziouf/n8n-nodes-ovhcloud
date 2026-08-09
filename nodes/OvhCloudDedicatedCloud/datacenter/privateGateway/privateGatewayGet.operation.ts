@@ -36,10 +36,10 @@ export function description(displayOptions: IDisplayOptions): INodeProperties[] 
  * HTTP method: GET
  * Endpoint: /dedicatedCloud/{serviceName}/datacenter/{datacenterId}/privateGateway
  */
-export async function execute(this: IExecuteFunctions, itemIndex: number): Promise<INodeExecutionData[]> {
+export async function execute(this: IExecuteFunctions, _itemIndex: number): Promise<INodeExecutionData[]> {
 	const client = new ApiClient(this);
-	const datacenterId = this.getNodeParameter('datacenterId', itemIndex) as string;
-	const serviceName = this.getNodeParameter('serviceName', itemIndex) as string;
+	const datacenterId = this.getNodeParameter('datacenterId', _itemIndex) as string;
+	const serviceName = this.getNodeParameter('serviceName', _itemIndex) as string;
 	const data = (await client.httpGet(`/dedicatedCloud/${serviceName}/datacenter/${datacenterId}/privateGateway`)) as IDataObject;
 	return this.helpers.returnJsonArray([data]);
 }

@@ -50,11 +50,11 @@ export function description(): INodeProperties[] {
  * Endpoint: /dedicated/nasha/{serviceName}/partition/{partitionName}/quota
  */
 export async function execute(this: IExecuteFunctions,
-	itemIndex: number): Promise<INodeExecutionData[]> {
-	const partitionName = this.getNodeParameter('partitionName', itemIndex) as string;
-	const serviceName = this.getNodeParameter('serviceName', itemIndex) as string;
-	const size = this.getNodeParameter('size', itemIndex);
-	const uid = this.getNodeParameter('uid', itemIndex);
+	_itemIndex: number): Promise<INodeExecutionData[]> {
+	const partitionName = this.getNodeParameter('partitionName', _itemIndex) as string;
+	const serviceName = this.getNodeParameter('serviceName', _itemIndex) as string;
+	const size = this.getNodeParameter('size', _itemIndex);
+	const uid = this.getNodeParameter('uid', _itemIndex);
 	const client = new ApiClient(this);
 	const body: IDataObject = {};
 			body['size'] = size;

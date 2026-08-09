@@ -118,17 +118,17 @@ export async function execute(
 
 	switch (operation) {
 		case 'list':
-			return executeList.call(this);
+			return executeList.call(this, itemIndex ?? 0);
 		case 'get':
-			return executeGet.call(this, itemIndex);
+			return executeGet.call(this, itemIndex ?? 0);
 		case 'update':
-			return executeUpdate.call(this);
+			return executeUpdate.call(this, itemIndex ?? 0);
 		case 'terminate':
-			return executeTerminate.call(this);
+			return executeTerminate.call(this, itemIndex ?? 0);
 		case 'listTasks':
-			return executeTaskListGet.call(this, itemIndex);
+			return executeTaskListGet.call(this, itemIndex ?? 0);
 		case 'getTask':
-			return executeTaskGetGet.call(this, itemIndex);
+			return executeTaskGetGet.call(this, itemIndex ?? 0);
 	}
 
 	throw new Error(`Unsupported operation "${operation}" for resource "sslGateway"`);

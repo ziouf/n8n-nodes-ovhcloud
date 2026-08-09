@@ -50,15 +50,15 @@ export function description(displayOptions: IDisplayOptions): INodeProperties[] 
  * HTTP method: GET
  * Endpoint: /cloud/project/{serviceName}/database/postgresql/{clusterId}/currentQueries
  */
-export async function execute(this: IExecuteFunctions): Promise<INodeExecutionData[]> {
+export async function execute(this: IExecuteFunctions, _itemIndex?: number): Promise<INodeExecutionData[]> {
 	const client = new ApiClient(this);
-	const serviceName = this.getNodeParameter('publicCloudProjectId', 0, '', {
+	const serviceName = this.getNodeParameter('publicCloudProjectId', _itemIndex ?? 0, '', {
 		extractValue: true,
 	}) as string;
-	const clusterId = this.getNodeParameter('clusterId', 0) as string;
+	const clusterId = this.getNodeParameter('clusterId', _itemIndex ?? 0) as string;
 
-	const limit = this.getNodeParameter('limit', 0, 0) as number | undefined;
-	const offset = this.getNodeParameter('offset', 0, 0) as number | undefined;
+	const limit = this.getNodeParameter('limit', _itemIndex ?? 0, 0) as number | undefined;
+	const offset = this.getNodeParameter('offset', _itemIndex ?? 0, 0) as number | undefined;
 	const qs: IDataObject = {
 		limit: limit,
 		offset: offset,

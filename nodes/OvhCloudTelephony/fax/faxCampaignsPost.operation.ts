@@ -103,17 +103,17 @@ export function description(displayOptions: IDisplayOptions): INodeProperties[] 
  * HTTP method: POST
  * Endpoint: /telephony/{billingAccount}/fax/{serviceName}/campaigns
  */
-export async function execute(this: IExecuteFunctions, itemIndex: number): Promise<INodeExecutionData[]> {
-	const billingAccount = this.getNodeParameter('billingAccount', itemIndex) as string;
-	const serviceName = this.getNodeParameter('serviceName', itemIndex) as string;
-	const documentId = this.getNodeParameter('documentId', itemIndex) as string;
-	const faxQuality = this.getNodeParameter('faxQuality', itemIndex) as string;
-	const name = this.getNodeParameter('name', itemIndex) as string;
-	const recipientsDocId = this.getNodeParameter('recipientsDocId', itemIndex) as string;
-	const recipientsList = this.getNodeParameter('recipientsList', itemIndex) as string;
-	const recipientsType = this.getNodeParameter('recipientsType', itemIndex) as string;
-	const sendDate = this.getNodeParameter('sendDate', itemIndex) as string;
-	const sendType = this.getNodeParameter('sendType', itemIndex) as string;
+export async function execute(this: IExecuteFunctions, _itemIndex: number): Promise<INodeExecutionData[]> {
+	const billingAccount = this.getNodeParameter('billingAccount', _itemIndex) as string;
+	const serviceName = this.getNodeParameter('serviceName', _itemIndex) as string;
+	const documentId = this.getNodeParameter('documentId', _itemIndex) as string;
+	const faxQuality = this.getNodeParameter('faxQuality', _itemIndex) as string;
+	const name = this.getNodeParameter('name', _itemIndex) as string;
+	const recipientsDocId = this.getNodeParameter('recipientsDocId', _itemIndex) as string;
+	const recipientsList = this.getNodeParameter('recipientsList', _itemIndex) as string;
+	const recipientsType = this.getNodeParameter('recipientsType', _itemIndex) as string;
+	const sendDate = this.getNodeParameter('sendDate', _itemIndex) as string;
+	const sendType = this.getNodeParameter('sendType', _itemIndex) as string;
 
 	const body: IDataObject = {
     documentId: documentId,

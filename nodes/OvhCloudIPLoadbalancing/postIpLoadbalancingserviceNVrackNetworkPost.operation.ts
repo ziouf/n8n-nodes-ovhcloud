@@ -68,16 +68,16 @@ export function description(displayOptions: IDisplayOptions): INodeProperties[] 
  * HTTP method: POST
  * Endpoint: /ipLoadbalancing/{serviceName}/vrack/network
  */
-export async function execute(this: IExecuteFunctions, itemIndex: number): Promise<INodeExecutionData[]> {
-	const serviceName = this.getNodeParameter('serviceName', itemIndex) as string;
+export async function execute(this: IExecuteFunctions, _itemIndex: number): Promise<INodeExecutionData[]> {
+	const serviceName = this.getNodeParameter('serviceName', _itemIndex) as string;
 
 
 
-	const displayName = this.getNodeParameter('displayName', itemIndex) as string;
-	const farmId = this.getNodeParameter('farmId', itemIndex) as string;
-	const natIp = this.getNodeParameter('natIp', itemIndex) as string;
-	const subnet = this.getNodeParameter('subnet', itemIndex) as string;
-	const vlan = this.getNodeParameter('vlan', itemIndex) as string;
+	const displayName = this.getNodeParameter('displayName', _itemIndex) as string;
+	const farmId = this.getNodeParameter('farmId', _itemIndex) as string;
+	const natIp = this.getNodeParameter('natIp', _itemIndex) as string;
+	const subnet = this.getNodeParameter('subnet', _itemIndex) as string;
+	const vlan = this.getNodeParameter('vlan', _itemIndex) as string;
 
 
 const body: IDataObject = {

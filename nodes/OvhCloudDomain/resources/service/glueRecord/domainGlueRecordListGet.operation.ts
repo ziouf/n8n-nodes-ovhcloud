@@ -35,12 +35,12 @@ export function description(displayOptions: IDisplayOptions): INodeProperties[] 
  * HTTP method: GET
  * Endpoint: /domain/{serviceName}/glueRecord
  */
-export async function execute(this: IExecuteFunctions, itemIndex: number): Promise<INodeExecutionData[]> {
+export async function execute(this: IExecuteFunctions, _itemIndex: number): Promise<INodeExecutionData[]> {
 	const client = new ApiClient(this);
-		const serviceName = this.getNodeParameter('serviceName', itemIndex) as string;
+		const serviceName = this.getNodeParameter('serviceName', _itemIndex) as string;
 
 	const qs: IDataObject = {};
-		const host = this.getNodeParameter('host', itemIndex, '') as string;
+		const host = this.getNodeParameter('host', _itemIndex, '') as string;
 		if (host !== '' && host !== undefined) qs['host'] = host;
 
 	const data = (await client.httpGet(`/domain/${encodeURIComponent(serviceName)}/glueRecord`, qs)) as IDataObject;

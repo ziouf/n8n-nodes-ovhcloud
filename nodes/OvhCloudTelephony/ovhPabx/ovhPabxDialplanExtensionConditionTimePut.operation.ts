@@ -87,15 +87,15 @@ export function description(displayOptions: IDisplayOptions): INodeProperties[] 
  * HTTP method: PUT
  * Endpoint: /telephony/{billingAccount}/ovhPabx/{serviceName}/dialplan/{dialplanId}/extension/{extensionId}/conditionTime/{conditionId}
  */
-export async function execute(this: IExecuteFunctions, itemIndex: number): Promise<INodeExecutionData[]> {
-	const billingAccount = this.getNodeParameter('billingAccount', itemIndex) as string;
-	const conditionId = this.getNodeParameter('conditionId', itemIndex) as string;
-	const dialplanId = this.getNodeParameter('dialplanId', itemIndex) as string;
-	const extensionId = this.getNodeParameter('extensionId', itemIndex) as string;
-	const serviceName = this.getNodeParameter('serviceName', itemIndex) as string;
-	const timeFrom = this.getNodeParameter('timeFrom', itemIndex) as string;
-	const timeTo = this.getNodeParameter('timeTo', itemIndex) as string;
-	const weekDay = this.getNodeParameter('weekDay', itemIndex) as string;
+export async function execute(this: IExecuteFunctions, _itemIndex: number): Promise<INodeExecutionData[]> {
+	const billingAccount = this.getNodeParameter('billingAccount', _itemIndex) as string;
+	const conditionId = this.getNodeParameter('conditionId', _itemIndex) as string;
+	const dialplanId = this.getNodeParameter('dialplanId', _itemIndex) as string;
+	const extensionId = this.getNodeParameter('extensionId', _itemIndex) as string;
+	const serviceName = this.getNodeParameter('serviceName', _itemIndex) as string;
+	const timeFrom = this.getNodeParameter('timeFrom', _itemIndex) as string;
+	const timeTo = this.getNodeParameter('timeTo', _itemIndex) as string;
+	const weekDay = this.getNodeParameter('weekDay', _itemIndex) as string;
 
 	const body: IDataObject = {
 		timeFrom: timeFrom,

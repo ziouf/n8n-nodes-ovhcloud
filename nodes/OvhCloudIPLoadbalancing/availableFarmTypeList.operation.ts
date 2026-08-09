@@ -1,7 +1,7 @@
 import type { IExecuteFunctions, INodeProperties, IDisplayOptions, INodeExecutionData } from 'n8n-workflow';
 import { ApiClient } from '../../shared/transport/ApiClient';
 
-// eslint-disable-next-line @typescript-eslint/no-unused-vars
+ 
 export function description(_displayOptions: IDisplayOptions): INodeProperties[] {
 	return [
 		{
@@ -37,10 +37,10 @@ export function description(_displayOptions: IDisplayOptions): INodeProperties[]
 	];
 }
 
-export async function execute(this: IExecuteFunctions, itemIndex: number): Promise<INodeExecutionData[]> {
+export async function execute(this: IExecuteFunctions, _itemIndex: number): Promise<INodeExecutionData[]> {
 	const client = new ApiClient(this);
-	const serviceName = this.getNodeParameter('serviceName', itemIndex) as string;
-	const returnAll = this.getNodeParameter('returnAll', itemIndex) as boolean;
+	const serviceName = this.getNodeParameter('serviceName', _itemIndex) as string;
+	const returnAll = this.getNodeParameter('returnAll', _itemIndex) as boolean;
 	const body = {};
 
 	const data = (await client.httpGet(
@@ -52,6 +52,6 @@ export async function execute(this: IExecuteFunctions, itemIndex: number): Promi
 		return data;
 	}
 
-	const limit = this.getNodeParameter('limit', itemIndex) as number;
+	const limit = this.getNodeParameter('limit', _itemIndex) as number;
 	return data.slice(0, limit);
 }

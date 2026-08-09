@@ -33,6 +33,8 @@ npm test               # Jest (ts-jest)
 - Resources follow a three-export pattern per file: `description`, `execute()`, and optionally `methodsListSearch()` for dynamic dropdowns (e.g., service IDs).
 - Operations in resources use switch statements on an input property; services are listed via the credential's consumer-key-scoped API path under `<host>/api/`.
 - **Pattern de structure par catégorie** : Pour les nodes avec un grand nombre d'opérations (>10), utiliser des sous-dossiers par catégorie de ressources (ex: `nodes/OvhCloudPublicCloud/project/`, `rancher/`, `blockstorage/`) au lieu d'un seul dossier plat. Chaque sous-dossier contient ses propres fichiers `.operation.ts` avec les imports relatifs adaptés (`../../../shared/transport/ApiClient`).
+- **Multi-items correctness** : Toute opération `.operation.ts` qui lit un paramètre utilisateur doit utiliser `getNodeParameter(name, itemIndex ?? 0)` (jamais d'index en dur `0`). La signature `execute` doit être `execute(this, itemIndex?: number)`. Le test `tests/multi-item.test.ts` (garde-fou statique) échoue si cette règle est violée (scan de tous les `.operation.ts` pour `getNodeParameter('x', 0)`).
+- **Concurrence** : `executeTemplate` accepte `{ concurrency: N }` pour traiter les items en parallèle (pool borné, ordre préservé). Actif sur 14 nodes à fort volume (`concurrency: 5`). `ApiClient.paginate()` supporte `PaginationOptions.concurrency` pour le fetch parallèle des pages (défaut 1).
 
 ## What to avoid
 
@@ -40,3 +42,4 @@ npm test               # Jest (ts-jest)
 - Don't hard-code node entries in package.json; let the manifest script do it.
 - Don't bypass OvhCloudApiClient for HTTP requests, even inside tests of unrelated logic (use a proper mock when testing).
 - Don't add manual `.eslintrc*`, `tsconfig` overrides outside tsconfig.json, or Prettier config alongside existing tooling — everything is inherited from the @n8n/node-cli preset.
+- Don't reintroduce `getNodeParameter('x', 0)` hardcoded indices in operation files — the static guardrail test enforces this.

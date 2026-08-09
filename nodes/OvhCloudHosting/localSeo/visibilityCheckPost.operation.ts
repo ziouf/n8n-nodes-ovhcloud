@@ -56,19 +56,19 @@ export function description(displayOptions: IDisplayOptions): INodeProperties[] 
  */
 export async function execute(
 	this: IExecuteFunctions,
-	itemIndex: number,
+	_itemIndex: number,
 ): Promise<INodeExecutionData[]> {
 	const client = new ApiClient(this);
-	const country = this.getNodeParameter('country', itemIndex) as string;
-	const name = this.getNodeParameter('name', itemIndex) as string;
-	const street = this.getNodeParameter('street', itemIndex) as string;
-	const zip = this.getNodeParameter('zip', itemIndex) as string;
+	const country = this.getNodeParameter('country', _itemIndex) as string;
+	const name = this.getNodeParameter('name', _itemIndex) as string;
+	const street = this.getNodeParameter('street', _itemIndex) as string;
+	const zip = this.getNodeParameter('zip', _itemIndex) as string;
 	const data = (await client.httpPost('/hosting/web/localSeo/visibilityCheck', {
 		country,
 		name,
 		street,
 		zip,
 	})) as IDataObject;
-	const inputData = this.getInputData()[itemIndex];
+	const inputData = this.getInputData()[_itemIndex];
 	return this.helpers.returnJsonArray([{ ...inputData.json, ...data }]);
 }

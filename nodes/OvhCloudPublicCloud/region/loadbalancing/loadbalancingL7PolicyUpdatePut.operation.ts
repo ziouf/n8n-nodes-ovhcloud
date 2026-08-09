@@ -140,51 +140,51 @@ export function description(displayOptions: IDisplayOptions): INodeProperties[] 
  * HTTP method: PUT
  * Endpoint: /publicCloud/project/{projectId}/region/{regionName}/loadbalancing/l7Policy/${l7PolicyIdVal}
  */
-export async function execute(this: IExecuteFunctions): Promise<INodeExecutionData[]> {
+export async function execute(this: IExecuteFunctions, _itemIndex?: number): Promise<INodeExecutionData[]> {
 	const client = new ApiClient(this);
-	const projectId = this.getNodeParameter('publicCloudProjectId', 0, '', {
+	const projectId = this.getNodeParameter('publicCloudProjectId', _itemIndex ?? 0, '', {
 		extractValue: true,
 	}) as string;
-	const regionName = this.getNodeParameter('regionName', 0) as string;
+	const regionName = this.getNodeParameter('regionName', _itemIndex ?? 0) as string;
 	const body = {} as import('n8n-workflow').IDataObject;
 
-	const l7PolicyIdVal = (this.getNodeParameter('l7PolicyId', 0) || '') as string;
+	const l7PolicyIdVal = (this.getNodeParameter('l7PolicyId', _itemIndex ?? 0) || '') as string;
 	if (l7PolicyIdVal !== '') {
 		body.l7PolicyId = l7PolicyIdVal;
 	}
-	const nameVal = (this.getNodeParameter('name', 0) || '') as string;
+	const nameVal = (this.getNodeParameter('name', _itemIndex ?? 0) || '') as string;
 	if (nameVal !== '') {
 		body.name = nameVal;
 	}
-	const actionVal = (this.getNodeParameter('action', 0) || '') as string;
+	const actionVal = (this.getNodeParameter('action', _itemIndex ?? 0) || '') as string;
 	if (actionVal !== '') {
 		body.action = actionVal;
 	}
-	const listenerIdVal = (this.getNodeParameter('listenerId', 0) || '') as string;
+	const listenerIdVal = (this.getNodeParameter('listenerId', _itemIndex ?? 0) || '') as string;
 	if (listenerIdVal !== '') {
 		body.listenerId = listenerIdVal;
 	}
-	const positionNum = this.getNodeParameter('position', 0) as number;
+	const positionNum = this.getNodeParameter('position', _itemIndex ?? 0) as number;
 	if (positionNum !== undefined && positionNum !== 0) {
 		body.position = positionNum;
 	}
-	const redirectUrlVal = (this.getNodeParameter('redirectUrl', 0) || '') as string;
+	const redirectUrlVal = (this.getNodeParameter('redirectUrl', _itemIndex ?? 0) || '') as string;
 	if (redirectUrlVal !== '') {
 		body.redirectUrl = redirectUrlVal;
 	}
-	const redirectPrefixVal = (this.getNodeParameter('redirectPrefix', 0) || '') as string;
+	const redirectPrefixVal = (this.getNodeParameter('redirectPrefix', _itemIndex ?? 0) || '') as string;
 	if (redirectPrefixVal !== '') {
 		body.redirectPrefix = redirectPrefixVal;
 	}
-	const redirectPoolIdVal = (this.getNodeParameter('redirectPoolId', 0) || '') as string;
+	const redirectPoolIdVal = (this.getNodeParameter('redirectPoolId', _itemIndex ?? 0) || '') as string;
 	if (redirectPoolIdVal !== '') {
 		body.redirectPoolId = redirectPoolIdVal;
 	}
-	const redirectHttpCodeNum = this.getNodeParameter('redirectHttpCode', 0) as number;
+	const redirectHttpCodeNum = this.getNodeParameter('redirectHttpCode', _itemIndex ?? 0) as number;
 	if (redirectHttpCodeNum !== undefined && redirectHttpCodeNum !== 0) {
 		body.redirectHttpCode = redirectHttpCodeNum;
 	}
-	const descriptionVal = (this.getNodeParameter('description', 0) || '') as string;
+	const descriptionVal = (this.getNodeParameter('description', _itemIndex ?? 0) || '') as string;
 	if (descriptionVal !== '') {
 		body.description = descriptionVal;
 	}

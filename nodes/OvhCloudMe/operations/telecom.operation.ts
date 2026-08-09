@@ -14,6 +14,7 @@ import { ApiClient } from '../../../shared/transport/ApiClient';
 // listFaxCustomDomains
 export async function executeListFaxCustomDomains(
 	this: IExecuteFunctions,
+_itemIndex?: number,
 ): Promise<INodeExecutionData[]> {
 	const client = new ApiClient(this);
 	const ids = (await client.httpGet('/me/fax/customDomains')) as string[];
@@ -42,10 +43,10 @@ export function descriptionGetFaxCustomDomain(displayOptions: IDisplayOptions): 
 
 export async function executeGetFaxCustomDomain(
 	this: IExecuteFunctions,
-	itemIndex: number,
+	_itemIndex: number,
 ): Promise<INodeExecutionData[]> {
 	const client = new ApiClient(this);
-	const id = this.getNodeParameter('id', itemIndex) as string;
+	const id = this.getNodeParameter('id', _itemIndex) as string;
 	const data = (await client.httpGet(`/me/fax/customDomains/${id}`)) as IDataObject;
 	return this.helpers.returnJsonArray([data]);
 }
@@ -57,6 +58,7 @@ export async function executeGetFaxCustomDomain(
 // listTelephonyDefaultIpRestrictions
 export async function executeListTelephonyDefaultIpRestrictions(
 	this: IExecuteFunctions,
+_itemIndex?: number,
 ): Promise<INodeExecutionData[]> {
 	const client = new ApiClient(this);
 	const ids = (await client.httpGet('/me/telephony/defaultIpRestriction')) as string[];
@@ -89,10 +91,10 @@ export function descriptionGetTelephonyDefaultIpRestriction(
 
 export async function executeGetTelephonyDefaultIpRestriction(
 	this: IExecuteFunctions,
-	itemIndex: number,
+	_itemIndex: number,
 ): Promise<INodeExecutionData[]> {
 	const client = new ApiClient(this);
-	const id = this.getNodeParameter('id', itemIndex) as string;
+	const id = this.getNodeParameter('id', _itemIndex) as string;
 	const data = (await client.httpGet(`/me/telephony/defaultIpRestriction/${id}`)) as IDataObject;
 	return this.helpers.returnJsonArray([data]);
 }
@@ -100,6 +102,7 @@ export async function executeGetTelephonyDefaultIpRestriction(
 // getTelephonySettings
 export async function executeGetTelephonySettings(
 	this: IExecuteFunctions,
+_itemIndex?: number,
 ): Promise<INodeExecutionData[]> {
 	const client = new ApiClient(this);
 	const data = (await client.httpGet('/me/telephony/settings')) as IDataObject;
@@ -113,6 +116,7 @@ export async function executeGetTelephonySettings(
 // getXdslSettings
 export async function executeGetXdslSettings(
 	this: IExecuteFunctions,
+_itemIndex?: number,
 ): Promise<INodeExecutionData[]> {
 	const client = new ApiClient(this);
 	const data = (await client.httpGet('/me/xdsl/setting')) as IDataObject;

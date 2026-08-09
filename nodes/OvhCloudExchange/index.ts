@@ -1237,268 +1237,268 @@ export function description() {
 	return props;
 }
 
-export async function execute(this: IExecuteFunctions): Promise<INodeExecutionData[]> {
+export async function execute(this: IExecuteFunctions, itemIndex?: number): Promise<INodeExecutionData[]> {
 	const operation = this.getNodeParameter('exchangeOperation', 0) as string;
 
 	switch (operation) {
 		case 'exchangeMisc':
-			return exchangeExchangeMisc.execute.call(this);
+			return exchangeExchangeMisc.execute.call(this, itemIndex ?? 0);
 		case 'ServiceAccountAliasCreate':
-			return exchangeServiceAccountAliasCreate.execute.call(this);
+			return exchangeServiceAccountAliasCreate.execute.call(this, itemIndex ?? 0);
 		case 'ServiceAccountAliasDelete':
-			return exchangeServiceAccountAliasDelete.execute.call(this);
+			return exchangeServiceAccountAliasDelete.execute.call(this, itemIndex ?? 0);
 		case 'ServiceAccountAliasGet':
-			return exchangeServiceAccountAliasGet.execute.call(this);
+			return exchangeServiceAccountAliasGet.execute.call(this, itemIndex ?? 0);
 		case 'ServiceAccountAliasList':
-			return exchangeServiceAccountAliasList.execute.call(this);
+			return exchangeServiceAccountAliasList.execute.call(this, itemIndex ?? 0);
 		case 'ServiceAccountArchiveCreate':
-			return exchangeServiceAccountArchiveCreate.execute.call(this);
+			return exchangeServiceAccountArchiveCreate.execute.call(this, itemIndex ?? 0);
 		case 'ServiceAccountArchiveDelete':
-			return exchangeServiceAccountArchiveDelete.execute.call(this);
+			return exchangeServiceAccountArchiveDelete.execute.call(this, itemIndex ?? 0);
 		case 'ServiceAccountArchiveList':
-			return exchangeServiceAccountArchiveList.execute.call(this);
+			return exchangeServiceAccountArchiveList.execute.call(this, itemIndex ?? 0);
 		case 'ServiceAccountArchiveUpdate':
-			return exchangeServiceAccountArchiveUpdate.execute.call(this);
+			return exchangeServiceAccountArchiveUpdate.execute.call(this, itemIndex ?? 0);
 		case 'ServiceAccountChangePasswordCreate':
-			return exchangeServiceAccountChangePasswordCreate.execute.call(this);
+			return exchangeServiceAccountChangePasswordCreate.execute.call(this, itemIndex ?? 0);
 		case 'ServiceAccountCreate':
-			return exchangeServiceAccountCreate.execute.call(this);
+			return exchangeServiceAccountCreate.execute.call(this, itemIndex ?? 0);
 		case 'ServiceAccountDelete':
-			return exchangeServiceAccountDelete.execute.call(this);
+			return exchangeServiceAccountDelete.execute.call(this, itemIndex ?? 0);
 		case 'ServiceAccountDiagnosticsCreate':
-			return exchangeServiceAccountDiagnosticsCreate.execute.call(this);
+			return exchangeServiceAccountDiagnosticsCreate.execute.call(this, itemIndex ?? 0);
 		case 'ServiceAccountDiagnosticsList':
-			return exchangeServiceAccountDiagnosticsList.execute.call(this);
+			return exchangeServiceAccountDiagnosticsList.execute.call(this, itemIndex ?? 0);
 		case 'ServiceAccountExportCreate':
-			return exchangeServiceAccountExportCreate.execute.call(this);
+			return exchangeServiceAccountExportCreate.execute.call(this, itemIndex ?? 0);
 		case 'ServiceAccountExportDelete':
-			return exchangeServiceAccountExportDelete.execute.call(this);
+			return exchangeServiceAccountExportDelete.execute.call(this, itemIndex ?? 0);
 		case 'ServiceAccountExportList':
-			return exchangeServiceAccountExportList.execute.call(this);
+			return exchangeServiceAccountExportList.execute.call(this, itemIndex ?? 0);
 		case 'ServiceAccountExportUrlCreate':
-			return exchangeServiceAccountExportUrlCreate.execute.call(this);
+			return exchangeServiceAccountExportUrlCreate.execute.call(this, itemIndex ?? 0);
 		case 'ServiceAccountExportUrlList':
-			return exchangeServiceAccountExportUrlList.execute.call(this);
+			return exchangeServiceAccountExportUrlList.execute.call(this, itemIndex ?? 0);
 		case 'ServiceAccountFullAccessCreate':
-			return exchangeServiceAccountFullAccessCreate.execute.call(this);
+			return exchangeServiceAccountFullAccessCreate.execute.call(this, itemIndex ?? 0);
 		case 'ServiceAccountFullAccessDelete':
-			return exchangeServiceAccountFullAccessDelete.execute.call(this);
+			return exchangeServiceAccountFullAccessDelete.execute.call(this, itemIndex ?? 0);
 		case 'ServiceAccountFullAccessGet':
-			return exchangeServiceAccountFullAccessGet.execute.call(this);
+			return exchangeServiceAccountFullAccessGet.execute.call(this, itemIndex ?? 0);
 		case 'ServiceAccountFullAccessList':
-			return exchangeServiceAccountFullAccessList.execute.call(this);
+			return exchangeServiceAccountFullAccessList.execute.call(this, itemIndex ?? 0);
 		case 'ServiceAccountGet':
-			return exchangeServiceAccountGet.execute.call(this);
+			return exchangeServiceAccountGet.execute.call(this, itemIndex ?? 0);
 		case 'ServiceAccountList':
-			return exchangeServiceAccountList.execute.call(this);
+			return exchangeServiceAccountList.execute.call(this, itemIndex ?? 0);
 		case 'ServiceAccountOutlookUrlCreate':
-			return exchangeServiceAccountOutlookUrlCreate.execute.call(this);
+			return exchangeServiceAccountOutlookUrlCreate.execute.call(this, itemIndex ?? 0);
 		case 'ServiceAccountOutlookUrlList':
-			return exchangeServiceAccountOutlookUrlList.execute.call(this);
+			return exchangeServiceAccountOutlookUrlList.execute.call(this, itemIndex ?? 0);
 		case 'ServiceAccountProtocolList':
-			return exchangeServiceAccountProtocolList.execute.call(this);
+			return exchangeServiceAccountProtocolList.execute.call(this, itemIndex ?? 0);
 		case 'ServiceAccountProtocolUpdate':
-			return exchangeServiceAccountProtocolUpdate.execute.call(this);
+			return exchangeServiceAccountProtocolUpdate.execute.call(this, itemIndex ?? 0);
 		case 'ServiceAccountSendAsCreate':
-			return exchangeServiceAccountSendAsCreate.execute.call(this);
+			return exchangeServiceAccountSendAsCreate.execute.call(this, itemIndex ?? 0);
 		case 'ServiceAccountSendAsDelete':
-			return exchangeServiceAccountSendAsDelete.execute.call(this);
+			return exchangeServiceAccountSendAsDelete.execute.call(this, itemIndex ?? 0);
 		case 'ServiceAccountSendAsGet':
-			return exchangeServiceAccountSendAsGet.execute.call(this);
+			return exchangeServiceAccountSendAsGet.execute.call(this, itemIndex ?? 0);
 		case 'ServiceAccountSendAsList':
-			return exchangeServiceAccountSendAsList.execute.call(this);
+			return exchangeServiceAccountSendAsList.execute.call(this, itemIndex ?? 0);
 		case 'ServiceAccountSendOnBehalfToCreate':
-			return exchangeServiceAccountSendOnBehalfToCreate.execute.call(this);
+			return exchangeServiceAccountSendOnBehalfToCreate.execute.call(this, itemIndex ?? 0);
 		case 'ServiceAccountSendOnBehalfToDelete':
-			return exchangeServiceAccountSendOnBehalfToDelete.execute.call(this);
+			return exchangeServiceAccountSendOnBehalfToDelete.execute.call(this, itemIndex ?? 0);
 		case 'ServiceAccountSendOnBehalfToGet':
-			return exchangeServiceAccountSendOnBehalfToGet.execute.call(this);
+			return exchangeServiceAccountSendOnBehalfToGet.execute.call(this, itemIndex ?? 0);
 		case 'ServiceAccountSendOnBehalfToList':
-			return exchangeServiceAccountSendOnBehalfToList.execute.call(this);
+			return exchangeServiceAccountSendOnBehalfToList.execute.call(this, itemIndex ?? 0);
 		case 'ServiceAccountTasksGet':
-			return exchangeServiceAccountTasksGet.execute.call(this);
+			return exchangeServiceAccountTasksGet.execute.call(this, itemIndex ?? 0);
 		case 'ServiceAccountTasksList':
-			return exchangeServiceAccountTasksList.execute.call(this);
+			return exchangeServiceAccountTasksList.execute.call(this, itemIndex ?? 0);
 		case 'ServiceAccountTerminateCreate':
-			return exchangeServiceAccountTerminateCreate.execute.call(this);
+			return exchangeServiceAccountTerminateCreate.execute.call(this, itemIndex ?? 0);
 		case 'ServiceAccountUpdate':
-			return exchangeServiceAccountUpdate.execute.call(this);
+			return exchangeServiceAccountUpdate.execute.call(this, itemIndex ?? 0);
 		case 'ServiceActivateSharepointCreate':
-			return exchangeServiceActivateSharepointCreate.execute.call(this);
+			return exchangeServiceActivateSharepointCreate.execute.call(this, itemIndex ?? 0);
 		case 'ServiceAuthenticationPolicyGet':
-			return exchangeServiceAuthenticationPolicyGet.execute.call(this);
+			return exchangeServiceAuthenticationPolicyGet.execute.call(this, itemIndex ?? 0);
 		case 'ServiceAuthenticationPolicyList':
-			return exchangeServiceAuthenticationPolicyList.execute.call(this);
+			return exchangeServiceAuthenticationPolicyList.execute.call(this, itemIndex ?? 0);
 		case 'ServiceAuthorizedIpCreate':
-			return exchangeServiceAuthorizedIpCreate.execute.call(this);
+			return exchangeServiceAuthorizedIpCreate.execute.call(this, itemIndex ?? 0);
 		case 'ServiceAuthorizedIpIpDelete':
-			return exchangeServiceAuthorizedIpIpDelete.execute.call(this);
+			return exchangeServiceAuthorizedIpIpDelete.execute.call(this, itemIndex ?? 0);
 		case 'ServiceAuthorizedIpIpGet':
-			return exchangeServiceAuthorizedIpIpGet.execute.call(this);
+			return exchangeServiceAuthorizedIpIpGet.execute.call(this, itemIndex ?? 0);
 		case 'ServiceAuthorizedIpIpUpdate':
-			return exchangeServiceAuthorizedIpIpUpdate.execute.call(this);
+			return exchangeServiceAuthorizedIpIpUpdate.execute.call(this, itemIndex ?? 0);
 		case 'ServiceAuthorizedIpList':
-			return exchangeServiceAuthorizedIpList.execute.call(this);
+			return exchangeServiceAuthorizedIpList.execute.call(this, itemIndex ?? 0);
 		case 'ServiceChangeHostnameCreate':
-			return exchangeServiceChangeHostnameCreate.execute.call(this);
+			return exchangeServiceChangeHostnameCreate.execute.call(this, itemIndex ?? 0);
 		case 'ServiceCustomIsolationCreate':
-			return exchangeServiceCustomIsolationCreate.execute.call(this);
+			return exchangeServiceCustomIsolationCreate.execute.call(this, itemIndex ?? 0);
 		case 'ServiceCustomIsolationDelete':
-			return exchangeServiceCustomIsolationDelete.execute.call(this);
+			return exchangeServiceCustomIsolationDelete.execute.call(this, itemIndex ?? 0);
 		case 'ServiceCustomIsolationGet':
-			return exchangeServiceCustomIsolationGet.execute.call(this);
+			return exchangeServiceCustomIsolationGet.execute.call(this, itemIndex ?? 0);
 		case 'ServiceCustomIsolationList':
-			return exchangeServiceCustomIsolationList.execute.call(this);
+			return exchangeServiceCustomIsolationList.execute.call(this, itemIndex ?? 0);
 		case 'ServiceDcvEmailsList':
-			return exchangeServiceDcvEmailsList.execute.call(this);
+			return exchangeServiceDcvEmailsList.execute.call(this, itemIndex ?? 0);
 		case 'ServiceDeviceClearDeviceCreate':
-			return exchangeServiceDeviceClearDeviceCreate.execute.call(this);
+			return exchangeServiceDeviceClearDeviceCreate.execute.call(this, itemIndex ?? 0);
 		case 'ServiceDeviceGet':
-			return exchangeServiceDeviceGet.execute.call(this);
+			return exchangeServiceDeviceGet.execute.call(this, itemIndex ?? 0);
 		case 'ServiceDeviceList':
-			return exchangeServiceDeviceList.execute.call(this);
+			return exchangeServiceDeviceList.execute.call(this, itemIndex ?? 0);
 		case 'ServiceDeviceUpdate':
-			return exchangeServiceDeviceUpdate.execute.call(this);
+			return exchangeServiceDeviceUpdate.execute.call(this, itemIndex ?? 0);
 		case 'ServiceDomainChangeDefaultSBRUpdate':
-			return exchangeServiceDomainChangeDefaultSBRUpdate.execute.call(this);
+			return exchangeServiceDomainChangeDefaultSBRUpdate.execute.call(this, itemIndex ?? 0);
 		case 'ServiceDomainCreate':
-			return exchangeServiceDomainCreate.execute.call(this);
+			return exchangeServiceDomainCreate.execute.call(this, itemIndex ?? 0);
 		case 'ServiceDomainDelete':
-			return exchangeServiceDomainDelete.execute.call(this);
+			return exchangeServiceDomainDelete.execute.call(this, itemIndex ?? 0);
 		case 'ServiceDomainDisclaimerAttributeList':
-			return exchangeServiceDomainDisclaimerAttributeList.execute.call(this);
+			return exchangeServiceDomainDisclaimerAttributeList.execute.call(this, itemIndex ?? 0);
 		case 'ServiceDomainDisclaimerCreate':
-			return exchangeServiceDomainDisclaimerCreate.execute.call(this);
+			return exchangeServiceDomainDisclaimerCreate.execute.call(this, itemIndex ?? 0);
 		case 'ServiceDomainDisclaimerDelete':
-			return exchangeServiceDomainDisclaimerDelete.execute.call(this);
+			return exchangeServiceDomainDisclaimerDelete.execute.call(this, itemIndex ?? 0);
 		case 'ServiceDomainDisclaimerList':
-			return exchangeServiceDomainDisclaimerList.execute.call(this);
+			return exchangeServiceDomainDisclaimerList.execute.call(this, itemIndex ?? 0);
 		case 'ServiceDomainDisclaimerUpdate':
-			return exchangeServiceDomainDisclaimerUpdate.execute.call(this);
+			return exchangeServiceDomainDisclaimerUpdate.execute.call(this, itemIndex ?? 0);
 		case 'ServiceDomainDkimCreate':
-			return exchangeServiceDomainDkimCreate.execute.call(this);
+			return exchangeServiceDomainDkimCreate.execute.call(this, itemIndex ?? 0);
 		case 'ServiceDomainDkimDelete':
-			return exchangeServiceDomainDkimDelete.execute.call(this);
+			return exchangeServiceDomainDkimDelete.execute.call(this, itemIndex ?? 0);
 		case 'ServiceDomainDkimDisableCreate':
-			return exchangeServiceDomainDkimDisableCreate.execute.call(this);
+			return exchangeServiceDomainDkimDisableCreate.execute.call(this, itemIndex ?? 0);
 		case 'ServiceDomainDkimEnableCreate':
-			return exchangeServiceDomainDkimEnableCreate.execute.call(this);
+			return exchangeServiceDomainDkimEnableCreate.execute.call(this, itemIndex ?? 0);
 		case 'ServiceDomainDkimGet':
-			return exchangeServiceDomainDkimGet.execute.call(this);
+			return exchangeServiceDomainDkimGet.execute.call(this, itemIndex ?? 0);
 		case 'ServiceDomainDkimList':
-			return exchangeServiceDomainDkimList.execute.call(this);
+			return exchangeServiceDomainDkimList.execute.call(this, itemIndex ?? 0);
 		case 'ServiceDomainDkimSelectorList':
-			return exchangeServiceDomainDkimSelectorList.execute.call(this);
+			return exchangeServiceDomainDkimSelectorList.execute.call(this, itemIndex ?? 0);
 		case 'ServiceDomainGet':
-			return exchangeServiceDomainGet.execute.call(this);
+			return exchangeServiceDomainGet.execute.call(this, itemIndex ?? 0);
 		case 'ServiceDomainList':
-			return exchangeServiceDomainList.execute.call(this);
+			return exchangeServiceDomainList.execute.call(this, itemIndex ?? 0);
 		case 'ServiceDomainUpdate':
-			return exchangeServiceDomainUpdate.execute.call(this);
+			return exchangeServiceDomainUpdate.execute.call(this, itemIndex ?? 0);
 		case 'ServiceExternalContactCreate':
-			return exchangeServiceExternalContactCreate.execute.call(this);
+			return exchangeServiceExternalContactCreate.execute.call(this, itemIndex ?? 0);
 		case 'ServiceExternalContactDelete':
-			return exchangeServiceExternalContactDelete.execute.call(this);
+			return exchangeServiceExternalContactDelete.execute.call(this, itemIndex ?? 0);
 		case 'ServiceExternalContactGet':
-			return exchangeServiceExternalContactGet.execute.call(this);
+			return exchangeServiceExternalContactGet.execute.call(this, itemIndex ?? 0);
 		case 'ServiceExternalContactList':
-			return exchangeServiceExternalContactList.execute.call(this);
+			return exchangeServiceExternalContactList.execute.call(this, itemIndex ?? 0);
 		case 'ServiceExternalContactUpdate':
-			return exchangeServiceExternalContactUpdate.execute.call(this);
+			return exchangeServiceExternalContactUpdate.execute.call(this, itemIndex ?? 0);
 		case 'ServiceGet':
-			return exchangeServiceGet.execute.call(this);
+			return exchangeServiceGet.execute.call(this, itemIndex ?? 0);
 		case 'ServiceImpersonatedUserChangePasswordCreate':
-			return exchangeServiceImpersonatedUserChangePasswordCreate.execute.call(this);
+			return exchangeServiceImpersonatedUserChangePasswordCreate.execute.call(this, itemIndex ?? 0);
 		case 'ServiceImpersonatedUserCreate':
-			return exchangeServiceImpersonatedUserCreate.execute.call(this);
+			return exchangeServiceImpersonatedUserCreate.execute.call(this, itemIndex ?? 0);
 		case 'ServiceImpersonatedUserDelete':
-			return exchangeServiceImpersonatedUserDelete.execute.call(this);
+			return exchangeServiceImpersonatedUserDelete.execute.call(this, itemIndex ?? 0);
 		case 'ServiceImpersonatedUserList':
-			return exchangeServiceImpersonatedUserList.execute.call(this);
+			return exchangeServiceImpersonatedUserList.execute.call(this, itemIndex ?? 0);
 		case 'ServiceImpersonationPasswordPolicyList':
-			return exchangeServiceImpersonationPasswordPolicyList.execute.call(this);
+			return exchangeServiceImpersonationPasswordPolicyList.execute.call(this, itemIndex ?? 0);
 		case 'ServiceLicenseList':
-			return exchangeServiceLicenseList.execute.call(this);
+			return exchangeServiceLicenseList.execute.call(this, itemIndex ?? 0);
 		case 'ServiceList':
-			return exchangeServiceList.execute.call(this);
+			return exchangeServiceList.execute.call(this, itemIndex ?? 0);
 		case 'ServiceLogKindGet':
-			return exchangeServiceLogKindGet.execute.call(this);
+			return exchangeServiceLogKindGet.execute.call(this, itemIndex ?? 0);
 		case 'ServiceLogKindList':
-			return exchangeServiceLogKindList.execute.call(this);
+			return exchangeServiceLogKindList.execute.call(this, itemIndex ?? 0);
 		case 'ServiceLogSubscriptionCreate':
-			return exchangeServiceLogSubscriptionCreate.execute.call(this);
+			return exchangeServiceLogSubscriptionCreate.execute.call(this, itemIndex ?? 0);
 		case 'ServiceLogSubscriptionDelete':
-			return exchangeServiceLogSubscriptionDelete.execute.call(this);
+			return exchangeServiceLogSubscriptionDelete.execute.call(this, itemIndex ?? 0);
 		case 'ServiceLogSubscriptionGet':
-			return exchangeServiceLogSubscriptionGet.execute.call(this);
+			return exchangeServiceLogSubscriptionGet.execute.call(this, itemIndex ?? 0);
 		case 'ServiceLogSubscriptionList':
-			return exchangeServiceLogSubscriptionList.execute.call(this);
+			return exchangeServiceLogSubscriptionList.execute.call(this, itemIndex ?? 0);
 		case 'ServiceLogUrlCreate':
-			return exchangeServiceLogUrlCreate.execute.call(this);
+			return exchangeServiceLogUrlCreate.execute.call(this, itemIndex ?? 0);
 		case 'ServiceMailingListAliasCreate':
-			return exchangeServiceMailingListAliasCreate.execute.call(this);
+			return exchangeServiceMailingListAliasCreate.execute.call(this, itemIndex ?? 0);
 		case 'ServiceMailingListAliasDelete':
-			return exchangeServiceMailingListAliasDelete.execute.call(this);
+			return exchangeServiceMailingListAliasDelete.execute.call(this, itemIndex ?? 0);
 		case 'ServiceMailingListAliasGet':
-			return exchangeServiceMailingListAliasGet.execute.call(this);
+			return exchangeServiceMailingListAliasGet.execute.call(this, itemIndex ?? 0);
 		case 'ServiceMailingListAliasList':
-			return exchangeServiceMailingListAliasList.execute.call(this);
+			return exchangeServiceMailingListAliasList.execute.call(this, itemIndex ?? 0);
 		case 'ServiceMailingListCreate':
-			return exchangeServiceMailingListCreate.execute.call(this);
+			return exchangeServiceMailingListCreate.execute.call(this, itemIndex ?? 0);
 		case 'ServiceMailingListDelete':
-			return exchangeServiceMailingListDelete.execute.call(this);
+			return exchangeServiceMailingListDelete.execute.call(this, itemIndex ?? 0);
 		case 'ServiceMailingListGet':
-			return exchangeServiceMailingListGet.execute.call(this);
+			return exchangeServiceMailingListGet.execute.call(this, itemIndex ?? 0);
 		case 'ServiceMailingListList':
-			return exchangeServiceMailingListList.execute.call(this);
+			return exchangeServiceMailingListList.execute.call(this, itemIndex ?? 0);
 		case 'ServiceMailingListManagerAccountCreate':
-			return exchangeServiceMailingListManagerAccountCreate.execute.call(this);
+			return exchangeServiceMailingListManagerAccountCreate.execute.call(this, itemIndex ?? 0);
 		case 'ServiceMailingListManagerAccountList':
-			return exchangeServiceMailingListManagerAccountList.execute.call(this);
+			return exchangeServiceMailingListManagerAccountList.execute.call(this, itemIndex ?? 0);
 		case 'ServiceMailingListManagerAccountManagerAccountIdDelete':
-			return exchangeServiceMailingListManagerAccountManagerAccountIdDelete.execute.call(this);
+			return exchangeServiceMailingListManagerAccountManagerAccountIdDelete.execute.call(this, itemIndex ?? 0);
 		case 'ServiceMailingListManagerAccountManagerAccountIdGet':
-			return exchangeServiceMailingListManagerAccountManagerAccountIdGet.execute.call(this);
+			return exchangeServiceMailingListManagerAccountManagerAccountIdGet.execute.call(this, itemIndex ?? 0);
 		case 'ServiceMailingListMemberAccountCreate':
-			return exchangeServiceMailingListMemberAccountCreate.execute.call(this);
+			return exchangeServiceMailingListMemberAccountCreate.execute.call(this, itemIndex ?? 0);
 		case 'ServiceMailingListMemberAccountList':
-			return exchangeServiceMailingListMemberAccountList.execute.call(this);
+			return exchangeServiceMailingListMemberAccountList.execute.call(this, itemIndex ?? 0);
 		case 'ServiceMailingListMemberAccountMemberAccountIdDelete':
-			return exchangeServiceMailingListMemberAccountMemberAccountIdDelete.execute.call(this);
+			return exchangeServiceMailingListMemberAccountMemberAccountIdDelete.execute.call(this, itemIndex ?? 0);
 		case 'ServiceMailingListMemberAccountMemberAccountIdGet':
-			return exchangeServiceMailingListMemberAccountMemberAccountIdGet.execute.call(this);
+			return exchangeServiceMailingListMemberAccountMemberAccountIdGet.execute.call(this, itemIndex ?? 0);
 		case 'ServiceMailingListMemberContactCreate':
-			return exchangeServiceMailingListMemberContactCreate.execute.call(this);
+			return exchangeServiceMailingListMemberContactCreate.execute.call(this, itemIndex ?? 0);
 		case 'ServiceMailingListMemberContactList':
-			return exchangeServiceMailingListMemberContactList.execute.call(this);
+			return exchangeServiceMailingListMemberContactList.execute.call(this, itemIndex ?? 0);
 		case 'ServiceMailingListMemberContactMemberContactIdDelete':
-			return exchangeServiceMailingListMemberContactMemberContactIdDelete.execute.call(this);
+			return exchangeServiceMailingListMemberContactMemberContactIdDelete.execute.call(this, itemIndex ?? 0);
 		case 'ServiceMailingListMemberContactMemberContactIdGet':
-			return exchangeServiceMailingListMemberContactMemberContactIdGet.execute.call(this);
+			return exchangeServiceMailingListMemberContactMemberContactIdGet.execute.call(this, itemIndex ?? 0);
 		case 'ServiceMailingListSendAsCreate':
-			return exchangeServiceMailingListSendAsCreate.execute.call(this);
+			return exchangeServiceMailingListSendAsCreate.execute.call(this, itemIndex ?? 0);
 		case 'ServiceMailingListSendAsDelete':
-			return exchangeServiceMailingListSendAsDelete.execute.call(this);
+			return exchangeServiceMailingListSendAsDelete.execute.call(this, itemIndex ?? 0);
 		case 'ServiceMailingListSendAsGet':
-			return exchangeServiceMailingListSendAsGet.execute.call(this);
+			return exchangeServiceMailingListSendAsGet.execute.call(this, itemIndex ?? 0);
 		case 'ServiceMailingListSendAsList':
-			return exchangeServiceMailingListSendAsList.execute.call(this);
+			return exchangeServiceMailingListSendAsList.execute.call(this, itemIndex ?? 0);
 		case 'ServiceMailingListSendOnBehalfToCreate':
-			return exchangeServiceMailingListSendOnBehalfToCreate.execute.call(this);
+			return exchangeServiceMailingListSendOnBehalfToCreate.execute.call(this, itemIndex ?? 0);
 		case 'ServiceMailingListSendOnBehalfToDelete':
-			return exchangeServiceMailingListSendOnBehalfToDelete.execute.call(this);
+			return exchangeServiceMailingListSendOnBehalfToDelete.execute.call(this, itemIndex ?? 0);
 		case 'ServiceMailingListSendOnBehalfToGet':
-			return exchangeServiceMailingListSendOnBehalfToGet.execute.call(this);
+			return exchangeServiceMailingListSendOnBehalfToGet.execute.call(this, itemIndex ?? 0);
 		case 'ServiceMailingListSendOnBehalfToList':
-			return exchangeServiceMailingListSendOnBehalfToList.execute.call(this);
+			return exchangeServiceMailingListSendOnBehalfToList.execute.call(this, itemIndex ?? 0);
 		case 'ServiceMailingListUpdate':
-			return exchangeServiceMailingListUpdate.execute.call(this);
+			return exchangeServiceMailingListUpdate.execute.call(this, itemIndex ?? 0);
 		case 'ServiceOutlookAvailabilityList':
-			return exchangeServiceOutlookAvailabilityList.execute.call(this);
+			return exchangeServiceOutlookAvailabilityList.execute.call(this, itemIndex ?? 0);
 		case 'ServiceProtocolActiveSyncMailNotificationCreate':
-			return exchangeServiceProtocolActiveSyncMailNotificationCreate.execute.call(this);
+			return exchangeServiceProtocolActiveSyncMailNotificationCreate.execute.call(this, itemIndex ?? 0);
 		case 'ServiceProtocolActiveSyncMailNotificationList':
-			return exchangeServiceProtocolActiveSyncMailNotificationList.execute.call(this);
+			return exchangeServiceProtocolActiveSyncMailNotificationList.execute.call(this, itemIndex ?? 0);
 		case 'ServiceProtocolActiveSyncMailNotificationNotifiedAccountIdDelete':
 			return exchangeServiceProtocolActiveSyncMailNotificationNotifiedAccountIdDelete.execute.call(
 				this,
@@ -1508,149 +1508,149 @@ export async function execute(this: IExecuteFunctions): Promise<INodeExecutionDa
 				this,
 			);
 		case 'ServiceProtocolList':
-			return exchangeServiceProtocolList.execute.call(this);
+			return exchangeServiceProtocolList.execute.call(this, itemIndex ?? 0);
 		case 'ServiceProtocolUpdate':
-			return exchangeServiceProtocolUpdate.execute.call(this);
+			return exchangeServiceProtocolUpdate.execute.call(this, itemIndex ?? 0);
 		case 'ServicePublicFolderCreate':
-			return exchangeServicePublicFolderCreate.execute.call(this);
+			return exchangeServicePublicFolderCreate.execute.call(this, itemIndex ?? 0);
 		case 'ServicePublicFolderDelete':
-			return exchangeServicePublicFolderDelete.execute.call(this);
+			return exchangeServicePublicFolderDelete.execute.call(this, itemIndex ?? 0);
 		case 'ServicePublicFolderGet':
-			return exchangeServicePublicFolderGet.execute.call(this);
+			return exchangeServicePublicFolderGet.execute.call(this, itemIndex ?? 0);
 		case 'ServicePublicFolderList':
-			return exchangeServicePublicFolderList.execute.call(this);
+			return exchangeServicePublicFolderList.execute.call(this, itemIndex ?? 0);
 		case 'ServicePublicFolderPermissionCreate':
-			return exchangeServicePublicFolderPermissionCreate.execute.call(this);
+			return exchangeServicePublicFolderPermissionCreate.execute.call(this, itemIndex ?? 0);
 		case 'ServicePublicFolderPermissionDelete':
-			return exchangeServicePublicFolderPermissionDelete.execute.call(this);
+			return exchangeServicePublicFolderPermissionDelete.execute.call(this, itemIndex ?? 0);
 		case 'ServicePublicFolderPermissionGet':
-			return exchangeServicePublicFolderPermissionGet.execute.call(this);
+			return exchangeServicePublicFolderPermissionGet.execute.call(this, itemIndex ?? 0);
 		case 'ServicePublicFolderPermissionList':
-			return exchangeServicePublicFolderPermissionList.execute.call(this);
+			return exchangeServicePublicFolderPermissionList.execute.call(this, itemIndex ?? 0);
 		case 'ServicePublicFolderPermissionUpdate':
-			return exchangeServicePublicFolderPermissionUpdate.execute.call(this);
+			return exchangeServicePublicFolderPermissionUpdate.execute.call(this, itemIndex ?? 0);
 		case 'ServicePublicFolderQuotaList':
-			return exchangeServicePublicFolderQuotaList.execute.call(this);
+			return exchangeServicePublicFolderQuotaList.execute.call(this, itemIndex ?? 0);
 		case 'ServicePublicFolderUpdate':
-			return exchangeServicePublicFolderUpdate.execute.call(this);
+			return exchangeServicePublicFolderUpdate.execute.call(this, itemIndex ?? 0);
 		case 'ServiceRemoteMailboxAliasCreate':
-			return exchangeServiceRemoteMailboxAliasCreate.execute.call(this);
+			return exchangeServiceRemoteMailboxAliasCreate.execute.call(this, itemIndex ?? 0);
 		case 'ServiceRemoteMailboxAliasDelete':
-			return exchangeServiceRemoteMailboxAliasDelete.execute.call(this);
+			return exchangeServiceRemoteMailboxAliasDelete.execute.call(this, itemIndex ?? 0);
 		case 'ServiceRemoteMailboxAliasGet':
-			return exchangeServiceRemoteMailboxAliasGet.execute.call(this);
+			return exchangeServiceRemoteMailboxAliasGet.execute.call(this, itemIndex ?? 0);
 		case 'ServiceRemoteMailboxAliasList':
-			return exchangeServiceRemoteMailboxAliasList.execute.call(this);
+			return exchangeServiceRemoteMailboxAliasList.execute.call(this, itemIndex ?? 0);
 		case 'ServiceRemoteMailboxChangePasswordCreate':
-			return exchangeServiceRemoteMailboxChangePasswordCreate.execute.call(this);
+			return exchangeServiceRemoteMailboxChangePasswordCreate.execute.call(this, itemIndex ?? 0);
 		case 'ServiceRemoteMailboxCreate':
-			return exchangeServiceRemoteMailboxCreate.execute.call(this);
+			return exchangeServiceRemoteMailboxCreate.execute.call(this, itemIndex ?? 0);
 		case 'ServiceRemoteMailboxDelete':
-			return exchangeServiceRemoteMailboxDelete.execute.call(this);
+			return exchangeServiceRemoteMailboxDelete.execute.call(this, itemIndex ?? 0);
 		case 'ServiceRemoteMailboxGet':
-			return exchangeServiceRemoteMailboxGet.execute.call(this);
+			return exchangeServiceRemoteMailboxGet.execute.call(this, itemIndex ?? 0);
 		case 'ServiceRemoteMailboxList':
-			return exchangeServiceRemoteMailboxList.execute.call(this);
+			return exchangeServiceRemoteMailboxList.execute.call(this, itemIndex ?? 0);
 		case 'ServiceRemoteMailboxUpdate':
-			return exchangeServiceRemoteMailboxUpdate.execute.call(this);
+			return exchangeServiceRemoteMailboxUpdate.execute.call(this, itemIndex ?? 0);
 		case 'ServiceRenewSslCreate':
-			return exchangeServiceRenewSslCreate.execute.call(this);
+			return exchangeServiceRenewSslCreate.execute.call(this, itemIndex ?? 0);
 		case 'ServiceResourceAccountCreate':
-			return exchangeServiceResourceAccountCreate.execute.call(this);
+			return exchangeServiceResourceAccountCreate.execute.call(this, itemIndex ?? 0);
 		case 'ServiceResourceAccountDelegateCreate':
-			return exchangeServiceResourceAccountDelegateCreate.execute.call(this);
+			return exchangeServiceResourceAccountDelegateCreate.execute.call(this, itemIndex ?? 0);
 		case 'ServiceResourceAccountDelegateDelete':
-			return exchangeServiceResourceAccountDelegateDelete.execute.call(this);
+			return exchangeServiceResourceAccountDelegateDelete.execute.call(this, itemIndex ?? 0);
 		case 'ServiceResourceAccountDelegateGet':
-			return exchangeServiceResourceAccountDelegateGet.execute.call(this);
+			return exchangeServiceResourceAccountDelegateGet.execute.call(this, itemIndex ?? 0);
 		case 'ServiceResourceAccountDelegateList':
-			return exchangeServiceResourceAccountDelegateList.execute.call(this);
+			return exchangeServiceResourceAccountDelegateList.execute.call(this, itemIndex ?? 0);
 		case 'ServiceResourceAccountDelete':
-			return exchangeServiceResourceAccountDelete.execute.call(this);
+			return exchangeServiceResourceAccountDelete.execute.call(this, itemIndex ?? 0);
 		case 'ServiceResourceAccountGet':
-			return exchangeServiceResourceAccountGet.execute.call(this);
+			return exchangeServiceResourceAccountGet.execute.call(this, itemIndex ?? 0);
 		case 'ServiceResourceAccountList':
-			return exchangeServiceResourceAccountList.execute.call(this);
+			return exchangeServiceResourceAccountList.execute.call(this, itemIndex ?? 0);
 		case 'ServiceResourceAccountUpdate':
-			return exchangeServiceResourceAccountUpdate.execute.call(this);
+			return exchangeServiceResourceAccountUpdate.execute.call(this, itemIndex ?? 0);
 		case 'ServiceSendConnectorChangeAuthenticationCreate':
-			return exchangeServiceSendConnectorChangeAuthenticationCreate.execute.call(this);
+			return exchangeServiceSendConnectorChangeAuthenticationCreate.execute.call(this, itemIndex ?? 0);
 		case 'ServiceSendConnectorCreate':
-			return exchangeServiceSendConnectorCreate.execute.call(this);
+			return exchangeServiceSendConnectorCreate.execute.call(this, itemIndex ?? 0);
 		case 'ServiceSendConnectorDelete':
-			return exchangeServiceSendConnectorDelete.execute.call(this);
+			return exchangeServiceSendConnectorDelete.execute.call(this, itemIndex ?? 0);
 		case 'ServiceSendConnectorGet':
-			return exchangeServiceSendConnectorGet.execute.call(this);
+			return exchangeServiceSendConnectorGet.execute.call(this, itemIndex ?? 0);
 		case 'ServiceSendConnectorList':
-			return exchangeServiceSendConnectorList.execute.call(this);
+			return exchangeServiceSendConnectorList.execute.call(this, itemIndex ?? 0);
 		case 'ServiceSendConnectorUpdate':
-			return exchangeServiceSendConnectorUpdate.execute.call(this);
+			return exchangeServiceSendConnectorUpdate.execute.call(this, itemIndex ?? 0);
 		case 'ServiceServerList':
-			return exchangeServiceServerList.execute.call(this);
+			return exchangeServiceServerList.execute.call(this, itemIndex ?? 0);
 		case 'ServiceServerUpdate':
-			return exchangeServiceServerUpdate.execute.call(this);
+			return exchangeServiceServerUpdate.execute.call(this, itemIndex ?? 0);
 		case 'ServiceServiceInfosList':
-			return exchangeServiceServiceInfosList.execute.call(this);
+			return exchangeServiceServiceInfosList.execute.call(this, itemIndex ?? 0);
 		case 'ServiceServiceInfosUpdate':
-			return exchangeServiceServiceInfosUpdate.execute.call(this);
+			return exchangeServiceServiceInfosUpdate.execute.call(this, itemIndex ?? 0);
 		case 'ServiceSharedAccountAliasCreate':
-			return exchangeServiceSharedAccountAliasCreate.execute.call(this);
+			return exchangeServiceSharedAccountAliasCreate.execute.call(this, itemIndex ?? 0);
 		case 'ServiceSharedAccountAliasDelete':
-			return exchangeServiceSharedAccountAliasDelete.execute.call(this);
+			return exchangeServiceSharedAccountAliasDelete.execute.call(this, itemIndex ?? 0);
 		case 'ServiceSharedAccountAliasGet':
-			return exchangeServiceSharedAccountAliasGet.execute.call(this);
+			return exchangeServiceSharedAccountAliasGet.execute.call(this, itemIndex ?? 0);
 		case 'ServiceSharedAccountAliasList':
-			return exchangeServiceSharedAccountAliasList.execute.call(this);
+			return exchangeServiceSharedAccountAliasList.execute.call(this, itemIndex ?? 0);
 		case 'ServiceSharedAccountCreate':
-			return exchangeServiceSharedAccountCreate.execute.call(this);
+			return exchangeServiceSharedAccountCreate.execute.call(this, itemIndex ?? 0);
 		case 'ServiceSharedAccountDelete':
-			return exchangeServiceSharedAccountDelete.execute.call(this);
+			return exchangeServiceSharedAccountDelete.execute.call(this, itemIndex ?? 0);
 		case 'ServiceSharedAccountFullAccessCreate':
-			return exchangeServiceSharedAccountFullAccessCreate.execute.call(this);
+			return exchangeServiceSharedAccountFullAccessCreate.execute.call(this, itemIndex ?? 0);
 		case 'ServiceSharedAccountFullAccessDelete':
-			return exchangeServiceSharedAccountFullAccessDelete.execute.call(this);
+			return exchangeServiceSharedAccountFullAccessDelete.execute.call(this, itemIndex ?? 0);
 		case 'ServiceSharedAccountFullAccessGet':
-			return exchangeServiceSharedAccountFullAccessGet.execute.call(this);
+			return exchangeServiceSharedAccountFullAccessGet.execute.call(this, itemIndex ?? 0);
 		case 'ServiceSharedAccountFullAccessList':
-			return exchangeServiceSharedAccountFullAccessList.execute.call(this);
+			return exchangeServiceSharedAccountFullAccessList.execute.call(this, itemIndex ?? 0);
 		case 'ServiceSharedAccountGet':
-			return exchangeServiceSharedAccountGet.execute.call(this);
+			return exchangeServiceSharedAccountGet.execute.call(this, itemIndex ?? 0);
 		case 'ServiceSharedAccountList':
-			return exchangeServiceSharedAccountList.execute.call(this);
+			return exchangeServiceSharedAccountList.execute.call(this, itemIndex ?? 0);
 		case 'ServiceSharedAccountQuotaList':
-			return exchangeServiceSharedAccountQuotaList.execute.call(this);
+			return exchangeServiceSharedAccountQuotaList.execute.call(this, itemIndex ?? 0);
 		case 'ServiceSharedAccountSendAsCreate':
-			return exchangeServiceSharedAccountSendAsCreate.execute.call(this);
+			return exchangeServiceSharedAccountSendAsCreate.execute.call(this, itemIndex ?? 0);
 		case 'ServiceSharedAccountSendAsDelete':
-			return exchangeServiceSharedAccountSendAsDelete.execute.call(this);
+			return exchangeServiceSharedAccountSendAsDelete.execute.call(this, itemIndex ?? 0);
 		case 'ServiceSharedAccountSendAsGet':
-			return exchangeServiceSharedAccountSendAsGet.execute.call(this);
+			return exchangeServiceSharedAccountSendAsGet.execute.call(this, itemIndex ?? 0);
 		case 'ServiceSharedAccountSendAsList':
-			return exchangeServiceSharedAccountSendAsList.execute.call(this);
+			return exchangeServiceSharedAccountSendAsList.execute.call(this, itemIndex ?? 0);
 		case 'ServiceSharedAccountSendOnBehalfToCreate':
-			return exchangeServiceSharedAccountSendOnBehalfToCreate.execute.call(this);
+			return exchangeServiceSharedAccountSendOnBehalfToCreate.execute.call(this, itemIndex ?? 0);
 		case 'ServiceSharedAccountSendOnBehalfToDelete':
-			return exchangeServiceSharedAccountSendOnBehalfToDelete.execute.call(this);
+			return exchangeServiceSharedAccountSendOnBehalfToDelete.execute.call(this, itemIndex ?? 0);
 		case 'ServiceSharedAccountSendOnBehalfToGet':
-			return exchangeServiceSharedAccountSendOnBehalfToGet.execute.call(this);
+			return exchangeServiceSharedAccountSendOnBehalfToGet.execute.call(this, itemIndex ?? 0);
 		case 'ServiceSharedAccountSendOnBehalfToList':
-			return exchangeServiceSharedAccountSendOnBehalfToList.execute.call(this);
+			return exchangeServiceSharedAccountSendOnBehalfToList.execute.call(this, itemIndex ?? 0);
 		case 'ServiceSharedAccountTasksGet':
-			return exchangeServiceSharedAccountTasksGet.execute.call(this);
+			return exchangeServiceSharedAccountTasksGet.execute.call(this, itemIndex ?? 0);
 		case 'ServiceSharedAccountTasksList':
-			return exchangeServiceSharedAccountTasksList.execute.call(this);
+			return exchangeServiceSharedAccountTasksList.execute.call(this, itemIndex ?? 0);
 		case 'ServiceSharedAccountUpdate':
-			return exchangeServiceSharedAccountUpdate.execute.call(this);
+			return exchangeServiceSharedAccountUpdate.execute.call(this, itemIndex ?? 0);
 		case 'ServiceTaskGet':
-			return exchangeServiceTaskGet.execute.call(this);
+			return exchangeServiceTaskGet.execute.call(this, itemIndex ?? 0);
 		case 'ServiceTaskList':
-			return exchangeServiceTaskList.execute.call(this);
+			return exchangeServiceTaskList.execute.call(this, itemIndex ?? 0);
 		case 'ServiceUpdate':
-			return exchangeServiceUpdate.execute.call(this);
+			return exchangeServiceUpdate.execute.call(this, itemIndex ?? 0);
 		case 'ServiceUpdateDeviceListCreate':
-			return exchangeServiceUpdateDeviceListCreate.execute.call(this);
+			return exchangeServiceUpdateDeviceListCreate.execute.call(this, itemIndex ?? 0);
 		case 'ServiceUpdateFlagsOnAllAccountsCreate':
-			return exchangeServiceUpdateFlagsOnAllAccountsCreate.execute.call(this);
+			return exchangeServiceUpdateFlagsOnAllAccountsCreate.execute.call(this, itemIndex ?? 0);
 		default:
 			throw new Error('No handler for operation ' + operation);
 	}

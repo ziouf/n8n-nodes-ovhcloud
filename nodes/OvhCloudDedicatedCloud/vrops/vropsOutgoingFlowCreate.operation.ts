@@ -53,13 +53,13 @@ export function description(displayOptions: IDisplayOptions): INodeProperties[] 
  * HTTP method: POST
  * Endpoint: /dedicatedCloud/{serviceName}/vrops/outgoingFlow
  */
-export async function execute(this: IExecuteFunctions, itemIndex: number): Promise<INodeExecutionData[]> {
+export async function execute(this: IExecuteFunctions, _itemIndex: number): Promise<INodeExecutionData[]> {
 	const client = new ApiClient(this);
-	const serviceName = this.getNodeParameter('serviceName', itemIndex) as string;
+	const serviceName = this.getNodeParameter('serviceName', _itemIndex) as string;
 	const body: IDataObject = {};
-	const description = this.getNodeParameter('description', itemIndex, '') as string; if (description !== '') { body.description = description; }
-	body.ip = this.getNodeParameter('ip', itemIndex) as string;
-	body.servicePort = this.getNodeParameter('servicePort', itemIndex) as number;
+	const description = this.getNodeParameter('description', _itemIndex, '') as string; if (description !== '') { body.description = description; }
+	body.ip = this.getNodeParameter('ip', _itemIndex) as string;
+	body.servicePort = this.getNodeParameter('servicePort', _itemIndex) as number;
 	const data = (await client.httpPost(`/dedicatedCloud/${serviceName}/vrops/outgoingFlow`, body)) as IDataObject;
 	return this.helpers.returnJsonArray([data]);
 }

@@ -57,14 +57,14 @@ export function description(displayOptions: IDisplayOptions) {
 
 export async function execute(
 	this: IExecuteFunctions,
-	itemIndex: number,
+	_itemIndex: number,
 ): Promise<INodeExecutionData[]> {
 	const client = new ApiClient(this);
-	const ticketId = this.getNodeParameter('ticketId', itemIndex, '', {
+	const ticketId = this.getNodeParameter('ticketId', _itemIndex, '', {
 		extractValue: true,
 	}) as string;
-	const score = this.getNodeParameter('score', itemIndex, 5) as number;
-	const comment = this.getNodeParameter('comment', itemIndex, '') as string;
+	const score = this.getNodeParameter('score', _itemIndex, 5) as number;
+	const comment = this.getNodeParameter('comment', _itemIndex, '') as string;
 
 	const body: IDataObject = {
 		score,

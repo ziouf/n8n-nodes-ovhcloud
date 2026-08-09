@@ -216,76 +216,76 @@ export function description() {
 	return props;
 }
 
-export async function execute(this: IExecuteFunctions): Promise<INodeExecutionData[]> {
+export async function execute(this: IExecuteFunctions, itemIndex?: number): Promise<INodeExecutionData[]> {
 	const operation = this.getNodeParameter('packXdslOperation', 0) as string;
 
 	switch (operation) {
 		case 'domainServicesPost':
-			return domainServicesPost.execute.call(this);
+			return domainServicesPost.execute.call(this, itemIndex ?? 0);
 		case 'emailProServicesPost':
-			return emailProServicesPost.execute.call(this);
+			return emailProServicesPost.execute.call(this, itemIndex ?? 0);
 		case 'hostedEmailServicesPost':
-			return hostedEmailServicesPost.execute.call(this);
+			return hostedEmailServicesPost.execute.call(this, itemIndex ?? 0);
 		case 'cancelResiliationPost':
-			return cancelResiliationPost.execute.call(this);
+			return cancelResiliationPost.execute.call(this, itemIndex ?? 0);
 		case 'changeContactPost':
-			return changeContactPost.execute.call(this);
+			return changeContactPost.execute.call(this, itemIndex ?? 0);
 		case 'hostedEmailServicesDomainChangePasswordPost':
-			return hostedEmailServicesDomainChangePasswordPost.execute.call(this);
+			return hostedEmailServicesDomainChangePasswordPost.execute.call(this, itemIndex ?? 0);
 		case 'emailProOptionsIsEmailAvailableGet':
-			return emailProOptionsIsEmailAvailableGet.execute.call(this);
+			return emailProOptionsIsEmailAvailableGet.execute.call(this, itemIndex ?? 0);
 		case 'exchangeIndividualOptionsIsEmailAvailableGet':
-			return exchangeIndividualOptionsIsEmailAvailableGet.execute.call(this);
+			return exchangeIndividualOptionsIsEmailAvailableGet.execute.call(this, itemIndex ?? 0);
 		case 'canCancelResiliationGet':
-			return canCancelResiliationGet.execute.call(this);
+			return canCancelResiliationGet.execute.call(this, itemIndex ?? 0);
 		case 'hostedEmailServicesDomainDelete':
-			return hostedEmailServicesDomainDelete.execute.call(this);
+			return hostedEmailServicesDomainDelete.execute.call(this, itemIndex ?? 0);
 		case 'addressMoveOffersPost':
-			return offersPost.execute.call(this);
+			return offersPost.execute.call(this, itemIndex ?? 0);
 		case 'addressMoveServicesToDeleteUnpackTermsPost':
-			return servicesToDeleteUnpackTermsPost.execute.call(this);
+			return servicesToDeleteUnpackTermsPost.execute.call(this, itemIndex ?? 0);
 		case 'domainOptionsTldsGet':
-			return optionsTldsGet.execute.call(this);
+			return optionsTldsGet.execute.call(this, itemIndex ?? 0);
 		case 'emailProOptionsDomainsGet':
-			return optionsDomainsGet.execute.call(this);
+			return optionsDomainsGet.execute.call(this, itemIndex ?? 0);
 		case 'exchangeIndividualOptionsDomainsGet':
-			return exchangeIndividualOptionsDomainsGet.execute.call(this);
+			return exchangeIndividualOptionsDomainsGet.execute.call(this, itemIndex ?? 0);
 		case 'hostedEmailOptionsDomainsGet':
-			return hostedEmailOptionsDomainsGet.execute.call(this);
+			return hostedEmailOptionsDomainsGet.execute.call(this, itemIndex ?? 0);
 		case 'contactOwnerGet':
-			return contactOwnerGet.execute.call(this);
+			return contactOwnerGet.execute.call(this, itemIndex ?? 0);
 		case 'exchangeAccountServicesDomainGet':
-			return exchangeAccountServicesDomainGet.execute.call(this);
+			return exchangeAccountServicesDomainGet.execute.call(this, itemIndex ?? 0);
 		case 'hostedEmailServicesDomainAccountGet':
-			return hostedEmailServicesDomainAccountGet.execute.call(this);
+			return hostedEmailServicesDomainAccountGet.execute.call(this, itemIndex ?? 0);
 		case 'hostedEmailServicesDomainConfigurationGet':
-			return hostedEmailServicesDomainConfigurationGet.execute.call(this);
+			return hostedEmailServicesDomainConfigurationGet.execute.call(this, itemIndex ?? 0);
 		case 'hostedEmailServicesDomainGet':
-			return hostedEmailServicesDomainGet.execute.call(this);
+			return hostedEmailServicesDomainGet.execute.call(this, itemIndex ?? 0);
 		case 'migrationOffersPost':
-			return migrationOffersPost.execute.call(this);
+			return migrationOffersPost.execute.call(this, itemIndex ?? 0);
 		case 'migrationServicesToDeleteUnpackTermsPost':
-			return migrationServicesToDeleteUnpackTermsPost.execute.call(this);
+			return migrationServicesToDeleteUnpackTermsPost.execute.call(this, itemIndex ?? 0);
 		case 'get':
-			return get.execute.call(this);
+			return get.execute.call(this, itemIndex ?? 0);
 		case 'domainServicesGet':
-			return domainServicesGet.execute.call(this);
+			return domainServicesGet.execute.call(this, itemIndex ?? 0);
 		case 'emailProServicesGet':
-			return emailProServicesGet.execute.call(this);
+			return emailProServicesGet.execute.call(this, itemIndex ?? 0);
 		case 'exchangeAccountServicesGet':
-			return exchangeAccountServicesGet.execute.call(this);
+			return exchangeAccountServicesGet.execute.call(this, itemIndex ?? 0);
 		case 'exchangeOrganizationServicesGet':
-			return exchangeOrganizationServicesGet.execute.call(this);
+			return exchangeOrganizationServicesGet.execute.call(this, itemIndex ?? 0);
 		case 'hostedEmailServicesGet':
-			return hostedEmailServicesGet.execute.call(this);
+			return hostedEmailServicesGet.execute.call(this, itemIndex ?? 0);
 		case 'list':
-			return list.execute.call(this);
+			return list.execute.call(this, itemIndex ?? 0);
 		case 'migrationMigratePost':
-			return migratePost.execute.call(this);
+			return migratePost.execute.call(this, itemIndex ?? 0);
 		case 'addressMoveMoveOfferPost':
-			return moveOfferPost.execute.call(this);
+			return moveOfferPost.execute.call(this, itemIndex ?? 0);
 		case 'updatePut':
-			return updatePut.execute.call(this);
+			return updatePut.execute.call(this, itemIndex ?? 0);
 		default:
 			throw new Error(`No handler for operation '${operation}'`);
 	}

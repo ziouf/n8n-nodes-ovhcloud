@@ -40,12 +40,12 @@ export function description(displayOptions: IDisplayOptions): INodeProperties[] 
  * HTTP method: GET
  * Endpoint: /publicCloud/project/{projectId}/blockStorage/snapshot
  */
-export async function execute(this: IExecuteFunctions): Promise<INodeExecutionData[]> {
+export async function execute(this: IExecuteFunctions, _itemIndex?: number): Promise<INodeExecutionData[]> {
 	const client = new ApiClient(this);
-	const projectId = this.getNodeParameter('publicCloudProjectId', 0, '', {
+	const projectId = this.getNodeParameter('publicCloudProjectId', _itemIndex ?? 0, '', {
 		extractValue: true,
 	}) as string;
-	const iamTags = this.getNodeParameter('iamTags', 0) as string | undefined;
+	const iamTags = this.getNodeParameter('iamTags', _itemIndex ?? 0) as string | undefined;
 
 	let url = `/publicCloud/project/${projectId}/blockStorage/snapshot`;
 

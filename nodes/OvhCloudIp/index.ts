@@ -1235,189 +1235,189 @@ export async function execute(
 
 	switch (operation) {
 	case 'ipFirewallCreatePost':
-		return executeIpFirewallCreatePost.call(this, itemIndex);
+		return executeIpFirewallCreatePost.call(this, itemIndex ?? 0);
 	case 'ipFirewallRuleCreatePost':
-		return executeIpFirewallRuleCreatePost.call(this, itemIndex);
+		return executeIpFirewallRuleCreatePost.call(this, itemIndex ?? 0);
 	case 'ipGameRuleCreatePost':
-		return executeIpGameRuleCreatePost.call(this, itemIndex);
+		return executeIpGameRuleCreatePost.call(this, itemIndex ?? 0);
 	case 'ipMitigationCreatePost':
-		return executeIpMitigationCreatePost.call(this, itemIndex);
+		return executeIpMitigationCreatePost.call(this, itemIndex ?? 0);
 	case 'ipDelegationCreatePost':
-		return executeIpDelegationCreatePost.call(this, itemIndex);
+		return executeIpDelegationCreatePost.call(this, itemIndex ?? 0);
 	case 'ipReverseCreatePost':
-		return executeIpReverseCreatePost.call(this, itemIndex);
+		return executeIpReverseCreatePost.call(this, itemIndex ?? 0);
 	case 'ipBringYourOwnIpAggregateCreatePost':
-		return executeIpBringYourOwnIpAggregateCreatePost.call(this, itemIndex);
+		return executeIpBringYourOwnIpAggregateCreatePost.call(this, itemIndex ?? 0);
 	case 'ipChangeOrgPost':
-		return executeIpChangeOrgPost.call(this, itemIndex);
+		return executeIpChangeOrgPost.call(this, itemIndex ?? 0);
 	case 'ipServiceChangeContactPost':
-		return executeIpServiceChangeContactPost.call(this, itemIndex);
+		return executeIpServiceChangeContactPost.call(this, itemIndex ?? 0);
 	case 'ipServiceConfirmTerminationPost':
-		return executeIpServiceConfirmTerminationPost.call(this, itemIndex);
+		return executeIpServiceConfirmTerminationPost.call(this, itemIndex ?? 0);
 	case 'ipEquilibriumCreatePost':
-		return executeIpEquilibriumCreatePost.call(this, itemIndex);
+		return executeIpEquilibriumCreatePost.call(this, itemIndex ?? 0);
 	case 'ipFailoverPost':
-		return executeIpFailoverPost.call(this, itemIndex);
+		return executeIpFailoverPost.call(this, itemIndex ?? 0);
 	case 'ipMitigationProfilesCreatePost':
-		return executeIpMitigationProfilesCreatePost.call(this, itemIndex);
+		return executeIpMitigationProfilesCreatePost.call(this, itemIndex ?? 0);
 	case 'ipEquilibriumDeleteDelete':
-		return executeIpEquilibriumDeleteDelete.call(this, itemIndex);
+		return executeIpEquilibriumDeleteDelete.call(this, itemIndex ?? 0);
 	case 'ipEquilibriumDetailDeleteDelete':
-		return executeIpEquilibriumDetailDeleteDelete.call(this, itemIndex);
+		return executeIpEquilibriumDetailDeleteDelete.call(this, itemIndex ?? 0);
 	case 'ipFailoverDeleteDelete':
-		return executeIpFailoverDeleteDelete.call(this, itemIndex);
+		return executeIpFailoverDeleteDelete.call(this, itemIndex ?? 0);
 	case 'ipFirewallDeleteDelete':
-		return executeIpFirewallDeleteDelete.call(this, itemIndex);
+		return executeIpFirewallDeleteDelete.call(this, itemIndex ?? 0);
 	case 'ipFirewallRuleDeleteDelete':
-		return executeIpFirewallRuleDeleteDelete.call(this, itemIndex);
+		return executeIpFirewallRuleDeleteDelete.call(this, itemIndex ?? 0);
 	case 'ipGameRuleDeleteDelete':
-		return executeIpGameRuleDeleteDelete.call(this, itemIndex);
+		return executeIpGameRuleDeleteDelete.call(this, itemIndex ?? 0);
 	case 'ipMitigationDeleteDelete':
-		return executeIpMitigationDeleteDelete.call(this, itemIndex);
+		return executeIpMitigationDeleteDelete.call(this, itemIndex ?? 0);
 	case 'ipMitigationProfilesDeleteDelete':
-		return executeIpMitigationProfilesDeleteDelete.call(this, itemIndex);
+		return executeIpMitigationProfilesDeleteDelete.call(this, itemIndex ?? 0);
 	case 'ipDelegationDeleteDelete':
-		return executeIpDelegationDeleteDelete.call(this, itemIndex);
+		return executeIpDelegationDeleteDelete.call(this, itemIndex ?? 0);
 	case 'ipReverseDeleteDelete':
-		return executeIpReverseDeleteDelete.call(this, itemIndex);
+		return executeIpReverseDeleteDelete.call(this, itemIndex ?? 0);
 	case 'ipMigrationTokenCreatePost':
-		return executeIpMigrationTokenCreatePost.call(this, itemIndex);
+		return executeIpMigrationTokenCreatePost.call(this, itemIndex ?? 0);
 	case 'ipAntihackGetGet':
-		return executeIpAntihackGetGet.call(this, itemIndex);
+		return executeIpAntihackGetGet.call(this, itemIndex ?? 0);
 	case 'ipPhishingGetGet':
-		return executeIpPhishingGetGet.call(this, itemIndex);
+		return executeIpPhishingGetGet.call(this, itemIndex ?? 0);
 	case 'ipArpGetGet':
-		return executeIpArpGetGet.call(this, itemIndex);
+		return executeIpArpGetGet.call(this, itemIndex ?? 0);
 	case 'ipBringYourOwnIpAggregateListGet':
-		return executeIpBringYourOwnIpAggregateListGet.call(this, itemIndex);
+		return executeIpBringYourOwnIpAggregateListGet.call(this, itemIndex ?? 0);
 	case 'ipBringYourOwnIpSliceListGet':
-		return executeIpBringYourOwnIpSliceListGet.call(this, itemIndex);
+		return executeIpBringYourOwnIpSliceListGet.call(this, itemIndex ?? 0);
 	case 'ipLicenseCloudLinuxGet':
-		return executeIpLicenseCloudLinuxGet.call(this, itemIndex);
+		return executeIpLicenseCloudLinuxGet.call(this, itemIndex ?? 0);
 	case 'ipLicenseCpanelGet':
-		return executeIpLicenseCpanelGet.call(this, itemIndex);
+		return executeIpLicenseCpanelGet.call(this, itemIndex ?? 0);
 	case 'ipLicenseDirectadminGet':
-		return executeIpLicenseDirectadminGet.call(this, itemIndex);
+		return executeIpLicenseDirectadminGet.call(this, itemIndex ?? 0);
 	case 'ipEquilibriumDetailGet':
-		return executeIpEquilibriumDetailGet.call(this, itemIndex);
+		return executeIpEquilibriumDetailGet.call(this, itemIndex ?? 0);
 	case 'ipFailoverGetGet':
-		return executeIpFailoverGetGet.call(this, itemIndex);
+		return executeIpFailoverGetGet.call(this, itemIndex ?? 0);
 	case 'ipFirewallGetGet':
-		return executeIpFirewallGetGet.call(this, itemIndex);
+		return executeIpFirewallGetGet.call(this, itemIndex ?? 0);
 	case 'ipFirewallRuleGetGet':
-		return executeIpFirewallRuleGetGet.call(this, itemIndex);
+		return executeIpFirewallRuleGetGet.call(this, itemIndex ?? 0);
 	case 'ipGameGetGet':
-		return executeIpGameGetGet.call(this, itemIndex);
+		return executeIpGameGetGet.call(this, itemIndex ?? 0);
 	case 'ipGameRuleGetGet':
-		return executeIpGameRuleGetGet.call(this, itemIndex);
+		return executeIpGameRuleGetGet.call(this, itemIndex ?? 0);
 	case 'ipGetGet':
-		return executeIpGetGet.call(this, itemIndex);
+		return executeIpGetGet.call(this, itemIndex ?? 0);
 	case 'ipCampusGet':
-		return executeIpCampusGet.call(this, itemIndex);
+		return executeIpCampusGet.call(this, itemIndex ?? 0);
 	case 'ipMoveGetGet':
-		return executeIpMoveGetGet.call(this, itemIndex);
+		return executeIpMoveGetGet.call(this, itemIndex ?? 0);
 	case 'ipServiceGetGet':
-		return executeIpServiceGetGet.call(this, itemIndex);
+		return executeIpServiceGetGet.call(this, itemIndex ?? 0);
 	case 'ipServiceServiceInfosGetGet':
-		return executeIpServiceServiceInfosGetGet.call(this, itemIndex);
+		return executeIpServiceServiceInfosGetGet.call(this, itemIndex ?? 0);
 	case 'ipTaskGetGet':
-		return executeIpTaskGetGet.call(this, itemIndex);
+		return executeIpTaskGetGet.call(this, itemIndex ?? 0);
 	case 'ipMigrationTokenGet':
-		return executeIpMigrationTokenGet.call(this, itemIndex);
+		return executeIpMigrationTokenGet.call(this, itemIndex ?? 0);
 	case 'ipMitigationGetGet':
-		return executeIpMitigationGetGet.call(this, itemIndex);
+		return executeIpMitigationGetGet.call(this, itemIndex ?? 0);
 	case 'ipMitigationProfilesGetGet':
-		return executeIpMitigationProfilesGetGet.call(this, itemIndex);
+		return executeIpMitigationProfilesGetGet.call(this, itemIndex ?? 0);
 	case 'ipLicensePleskGet':
-		return executeIpLicensePleskGet.call(this, itemIndex);
+		return executeIpLicensePleskGet.call(this, itemIndex ?? 0);
 	case 'ipReverseGetGet':
-		return executeIpReverseGetGet.call(this, itemIndex);
+		return executeIpReverseGetGet.call(this, itemIndex ?? 0);
 	case 'ipDelegationGetGet':
-		return executeIpDelegationGetGet.call(this, itemIndex);
+		return executeIpDelegationGetGet.call(this, itemIndex ?? 0);
 	case 'ipRipeGet':
-		return executeIpRipeGet.call(this, itemIndex);
+		return executeIpRipeGet.call(this, itemIndex ?? 0);
 	case 'ipSpamStatsGet':
-		return executeIpSpamStatsGet.call(this, itemIndex);
+		return executeIpSpamStatsGet.call(this, itemIndex ?? 0);
 	case 'ipSpamGetGet':
-		return executeIpSpamGetGet.call(this, itemIndex);
+		return executeIpSpamGetGet.call(this, itemIndex ?? 0);
 	case 'ipLicenseSqlserverGet':
-		return executeIpLicenseSqlserverGet.call(this, itemIndex);
+		return executeIpLicenseSqlserverGet.call(this, itemIndex ?? 0);
 	case 'ipLicenseVirtuozzoGet':
-		return executeIpLicenseVirtuozzoGet.call(this, itemIndex);
+		return executeIpLicenseVirtuozzoGet.call(this, itemIndex ?? 0);
 	case 'ipLicenseWindowsGet':
-		return executeIpLicenseWindowsGet.call(this, itemIndex);
+		return executeIpLicenseWindowsGet.call(this, itemIndex ?? 0);
 	case 'ipLicenseWorklightGet':
-		return executeIpLicenseWorklightGet.call(this, itemIndex);
+		return executeIpLicenseWorklightGet.call(this, itemIndex ?? 0);
 	case 'ipAntihackListGet':
-		return executeIpAntihackListGet.call(this, itemIndex);
+		return executeIpAntihackListGet.call(this, itemIndex ?? 0);
 	case 'ipPhishingListGet':
-		return executeIpPhishingListGet.call(this, itemIndex);
+		return executeIpPhishingListGet.call(this, itemIndex ?? 0);
 	case 'ipArpListGet':
-		return executeIpArpListGet.call(this, itemIndex);
+		return executeIpArpListGet.call(this, itemIndex ?? 0);
 	case 'ipEquilibriumListGet':
-		return executeIpEquilibriumListGet.call(this, itemIndex);
+		return executeIpEquilibriumListGet.call(this, itemIndex ?? 0);
 	case 'ipFirewallListGet':
-		return executeIpFirewallListGet.call(this, itemIndex);
+		return executeIpFirewallListGet.call(this, itemIndex ?? 0);
 	case 'ipFirewallRuleListGet':
-		return executeIpFirewallRuleListGet.call(this, itemIndex);
+		return executeIpFirewallRuleListGet.call(this, itemIndex ?? 0);
 	case 'ipGameListGet':
-		return executeIpGameListGet.call(this, itemIndex);
+		return executeIpGameListGet.call(this, itemIndex ?? 0);
 	case 'ipGameRuleListGet':
-		return executeIpGameRuleListGet.call(this, itemIndex);
+		return executeIpGameRuleListGet.call(this, itemIndex ?? 0);
 	case 'ipServiceListGet':
-		return executeIpServiceListGet.call(this, itemIndex);
+		return executeIpServiceListGet.call(this, itemIndex ?? 0);
 	case 'ipTaskListGet':
-		return executeIpTaskListGet.call(this, itemIndex);
+		return executeIpTaskListGet.call(this, itemIndex ?? 0);
 	case 'ipListGet':
-		return executeIpListGet.call(this, itemIndex);
+		return executeIpListGet.call(this, itemIndex ?? 0);
 	case 'ipMitigationListGet':
-		return executeIpMitigationListGet.call(this, itemIndex);
+		return executeIpMitigationListGet.call(this, itemIndex ?? 0);
 	case 'ipMitigationProfilesListGet':
-		return executeIpMitigationProfilesListGet.call(this, itemIndex);
+		return executeIpMitigationProfilesListGet.call(this, itemIndex ?? 0);
 	case 'ipDelegationListGet':
-		return executeIpDelegationListGet.call(this, itemIndex);
+		return executeIpDelegationListGet.call(this, itemIndex ?? 0);
 	case 'ipReverseListGet':
-		return executeIpReverseListGet.call(this, itemIndex);
+		return executeIpReverseListGet.call(this, itemIndex ?? 0);
 	case 'ipSpamListGet':
-		return executeIpSpamListGet.call(this, itemIndex);
+		return executeIpSpamListGet.call(this, itemIndex ?? 0);
 	case 'ipMovePost':
-		return executeIpMovePost.call(this, itemIndex);
+		return executeIpMovePost.call(this, itemIndex ?? 0);
 	case 'ipParkPost':
-		return executeIpParkPost.call(this, itemIndex);
+		return executeIpParkPost.call(this, itemIndex ?? 0);
 	case 'ipBringYourOwnIpSliceCreatePost':
-		return executeIpBringYourOwnIpSliceCreatePost.call(this, itemIndex);
+		return executeIpBringYourOwnIpSliceCreatePost.call(this, itemIndex ?? 0);
 	case 'ipTerminatePost':
-		return executeIpTerminatePost.call(this, itemIndex);
+		return executeIpTerminatePost.call(this, itemIndex ?? 0);
 	case 'ipServiceTerminatePost':
-		return executeIpServiceTerminatePost.call(this, itemIndex);
+		return executeIpServiceTerminatePost.call(this, itemIndex ?? 0);
 	case 'ipAntihackUnblockPost':
-		return executeIpAntihackUnblockPost.call(this, itemIndex);
+		return executeIpAntihackUnblockPost.call(this, itemIndex ?? 0);
 	case 'ipArpUnblockPost':
-		return executeIpArpUnblockPost.call(this, itemIndex);
+		return executeIpArpUnblockPost.call(this, itemIndex ?? 0);
 	case 'ipSpamUnblockPost':
-		return executeIpSpamUnblockPost.call(this, itemIndex);
+		return executeIpSpamUnblockPost.call(this, itemIndex ?? 0);
 	case 'ipEquilibriumUpdatePut':
-		return executeIpEquilibriumUpdatePut.call(this, itemIndex);
+		return executeIpEquilibriumUpdatePut.call(this, itemIndex ?? 0);
 	case 'ipFailoverUpdatePut':
-		return executeIpFailoverUpdatePut.call(this, itemIndex);
+		return executeIpFailoverUpdatePut.call(this, itemIndex ?? 0);
 	case 'ipFirewallUpdatePut':
-		return executeIpFirewallUpdatePut.call(this, itemIndex);
+		return executeIpFirewallUpdatePut.call(this, itemIndex ?? 0);
 	case 'ipGameUpdatePut':
-		return executeIpGameUpdatePut.call(this, itemIndex);
+		return executeIpGameUpdatePut.call(this, itemIndex ?? 0);
 	case 'ipUpdatePut':
-		return executeIpUpdatePut.call(this, itemIndex);
+		return executeIpUpdatePut.call(this, itemIndex ?? 0);
 	case 'ipServiceUpdatePut':
-		return executeIpServiceUpdatePut.call(this, itemIndex);
+		return executeIpServiceUpdatePut.call(this, itemIndex ?? 0);
 	case 'ipServiceServiceInfosUpdatePut':
-		return executeIpServiceServiceInfosUpdatePut.call(this, itemIndex);
+		return executeIpServiceServiceInfosUpdatePut.call(this, itemIndex ?? 0);
 	case 'ipMitigationUpdatePut':
-		return executeIpMitigationUpdatePut.call(this, itemIndex);
+		return executeIpMitigationUpdatePut.call(this, itemIndex ?? 0);
 	case 'ipMitigationProfilesUpdatePut':
-		return executeIpMitigationProfilesUpdatePut.call(this, itemIndex);
+		return executeIpMitigationProfilesUpdatePut.call(this, itemIndex ?? 0);
 	case 'ipReverseUpdatePut':
-		return executeIpReverseUpdatePut.call(this, itemIndex);
+		return executeIpReverseUpdatePut.call(this, itemIndex ?? 0);
 	case 'ipRipeUpdatePut':
-		return executeIpRipeUpdatePut.call(this, itemIndex);
+		return executeIpRipeUpdatePut.call(this, itemIndex ?? 0);
 
 	}
 

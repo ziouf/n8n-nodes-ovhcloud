@@ -65,11 +65,11 @@ export function description(displayOptions: IDisplayOptions): INodeProperties[] 
  * HTTP method: POST
  * Endpoint: /email/domain/{domain}/changeDnsMXFilter
  */
-export async function execute(this: IExecuteFunctions): Promise<INodeExecutionData[]> {
-	const domain = this.getNodeParameter('domain', 0) as string;
-	const customTarget = this.getNodeParameter('customTarget', 0) as string;
-	const mxFilter = this.getNodeParameter('mxFilter', 0) as string;
-	const subDomain = this.getNodeParameter('subDomain', 0) as string;
+export async function execute(this: IExecuteFunctions, _itemIndex?: number): Promise<INodeExecutionData[]> {
+	const domain = this.getNodeParameter('domain', _itemIndex ?? 0) as string;
+	const customTarget = this.getNodeParameter('customTarget', _itemIndex ?? 0) as string;
+	const mxFilter = this.getNodeParameter('mxFilter', _itemIndex ?? 0) as string;
+	const subDomain = this.getNodeParameter('subDomain', _itemIndex ?? 0) as string;
 
 	const body: IDataObject = {
 		customTarget: customTarget,

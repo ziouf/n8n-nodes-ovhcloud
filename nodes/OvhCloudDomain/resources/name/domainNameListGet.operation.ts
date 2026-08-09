@@ -28,12 +28,12 @@ export function description(displayOptions: IDisplayOptions): INodeProperties[] 
  */
 export async function execute(
 	this: IExecuteFunctions,
-	itemIndex: number,
+	_itemIndex: number,
 ): Promise<INodeExecutionData[]> {
 	const client = new ApiClient(this);
 
 	const qs: IDataObject = {};
-	const searchValue = this.getNodeParameter('searchValue', itemIndex, '') as string;
+	const searchValue = this.getNodeParameter('searchValue', _itemIndex, '') as string;
 	if (searchValue !== '' && searchValue !== undefined) qs['searchValue'] = searchValue;
 
 	const data = (await client.httpGet(`/domain/name`, qs)) as IDataObject;

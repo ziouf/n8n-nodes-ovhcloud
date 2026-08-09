@@ -75,20 +75,20 @@ export function description(displayOptions: IDisplayOptions): INodeProperties[] 
  * HTTP method: POST
  * Endpoint: /publicCloud/project/${projectId}/region/${regionName}/instance/${instanceId}/reinstall
  */
-export async function execute(this: IExecuteFunctions): Promise<INodeExecutionData[]> {
+export async function execute(this: IExecuteFunctions, _itemIndex?: number): Promise<INodeExecutionData[]> {
 	const client = new ApiClient(this);
-	const projectId = this.getNodeParameter('publicCloudProjectId', 0, '', {
+	const projectId = this.getNodeParameter('publicCloudProjectId', _itemIndex ?? 0, '', {
 		extractValue: true,
 	}) as string;
-	const regionName = this.getNodeParameter('regionName', 0) as string;
-	const instanceId = this.getNodeParameter('instanceId', 0) as string;
+	const regionName = this.getNodeParameter('regionName', _itemIndex ?? 0) as string;
+	const instanceId = this.getNodeParameter('instanceId', _itemIndex ?? 0) as string;
 
 	const body: IDataObject = {};
-	if (this.getNodeParameter('monitoring', 0)) {
-		body.monitoring = this.getNodeParameter('monitoring', 0) as string;
+	if (this.getNodeParameter('monitoring', _itemIndex ?? 0)) {
+		body.monitoring = this.getNodeParameter('monitoring', _itemIndex ?? 0) as string;
 	}
-	if (this.getNodeParameter('template', 0)) {
-		body.template = this.getNodeParameter('template', 0) as string;
+	if (this.getNodeParameter('template', _itemIndex ?? 0)) {
+		body.template = this.getNodeParameter('template', _itemIndex ?? 0) as string;
 	}
 	const data = (await client.httpPost(
 		`/publicCloud/project/${projectId}/region/${regionName}/instance/${instanceId}/reinstall`, body

@@ -40,9 +40,9 @@ export function description(displayOptions: IDisplayOptions): INodeProperties[] 
  * HTTP method: POST
  * Endpoint: /email/domain/{domain}/acl
  */
-export async function execute(this: IExecuteFunctions): Promise<INodeExecutionData[]> {
-	const domain = this.getNodeParameter('domain', 0) as string;
-	const accountId = this.getNodeParameter('accountId', 0) as string;
+export async function execute(this: IExecuteFunctions, _itemIndex?: number): Promise<INodeExecutionData[]> {
+	const domain = this.getNodeParameter('domain', _itemIndex ?? 0) as string;
+	const accountId = this.getNodeParameter('accountId', _itemIndex ?? 0) as string;
 
 	const body: IDataObject = {
 		accountId: accountId,

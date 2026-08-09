@@ -67,16 +67,16 @@ export function description(displayOptions: IDisplayOptions): INodeProperties[] 
  * HTTP method: GET
  * Endpoint: /cloud/project/{serviceName}/user/{userId}/rclone
  */
-export async function execute(this: IExecuteFunctions): Promise<INodeExecutionData[]> {
+export async function execute(this: IExecuteFunctions, _itemIndex?: number): Promise<INodeExecutionData[]> {
 	const client = new ApiClient(this);
-	const serviceName = this.getNodeParameter('publicCloudProjectId', 0, '', {
+	const serviceName = this.getNodeParameter('publicCloudProjectId', _itemIndex ?? 0, '', {
 		extractValue: true,
 	}) as string;
-	const userId = this.getNodeParameter('userId', 0) as string;
+	const userId = this.getNodeParameter('userId', _itemIndex ?? 0) as string;
 
 	const qs: IDataObject = {};
-	const region = (this.getNodeParameter('region', 0) || '') as string;
-	const service = (this.getNodeParameter('service', 0) || '') as string;
+	const region = (this.getNodeParameter('region', _itemIndex ?? 0) || '') as string;
+	const service = (this.getNodeParameter('service', _itemIndex ?? 0) || '') as string;
 	qs['region'] = region;
 	if (service) {
 		qs['service'] = service;

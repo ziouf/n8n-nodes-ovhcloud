@@ -26,9 +26,9 @@ export function description(displayOptions: IDisplayOptions): INodeProperties[] 
 	];
 }
 
-export async function execute(this: IExecuteFunctions, itemIndex: number): Promise<INodeExecutionData[]> {
+export async function execute(this: IExecuteFunctions, _itemIndex: number): Promise<INodeExecutionData[]> {
 	const client = new ApiClient(this);
-	const family = this.getNodeParameter('family', itemIndex) as string;
+	const family = this.getNodeParameter('family', _itemIndex) as string;
 	const data = (await client.httpGet(`/order/license/${family}`)) as unknown[];
 
 	if (!Array.isArray(data)) {

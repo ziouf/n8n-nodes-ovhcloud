@@ -100,29 +100,29 @@ export function description(displayOptions: IDisplayOptions): INodeProperties[] 
  * HTTP method: PUT
  * Endpoint: /storage/netapp/{serviceName}/serviceInfos
  */
-export async function execute(this: IExecuteFunctions, itemIndex: number): Promise<INodeExecutionData[]> {
+export async function execute(this: IExecuteFunctions, _itemIndex: number): Promise<INodeExecutionData[]> {
 	const client = new ApiClient(this);
-	const serviceName = this.getNodeParameter('serviceName', itemIndex, '', {
+	const serviceName = this.getNodeParameter('serviceName', _itemIndex, '', {
 				extractValue: true,
 			}) as string;
 	const body: IDataObject = {};
-	const canDeleteAtExpiration = this.getNodeParameter('canDeleteAtExpiration', itemIndex) as boolean;
+	const canDeleteAtExpiration = this.getNodeParameter('canDeleteAtExpiration', _itemIndex) as boolean;
 	if (canDeleteAtExpiration) { body.canDeleteAtExpiration = canDeleteAtExpiration; }
-	const contactAdmin = this.getNodeParameter('contactAdmin', itemIndex, '') as string;
+	const contactAdmin = this.getNodeParameter('contactAdmin', _itemIndex, '') as string;
 	if (contactAdmin !== '') { body.contactAdmin = contactAdmin; }
-	const contactBilling = this.getNodeParameter('contactBilling', itemIndex, '') as string;
+	const contactBilling = this.getNodeParameter('contactBilling', _itemIndex, '') as string;
 	if (contactBilling !== '') { body.contactBilling = contactBilling; }
-	const contactTech = this.getNodeParameter('contactTech', itemIndex, '') as string;
+	const contactTech = this.getNodeParameter('contactTech', _itemIndex, '') as string;
 	if (contactTech !== '') { body.contactTech = contactTech; }
-	const domain = this.getNodeParameter('domain', itemIndex, '') as string;
+	const domain = this.getNodeParameter('domain', _itemIndex, '') as string;
 	if (domain !== '') { body.domain = domain; }
-	const engagedUpTo = this.getNodeParameter('engagedUpTo', itemIndex, '') as string;
+	const engagedUpTo = this.getNodeParameter('engagedUpTo', _itemIndex, '') as string;
 	if (engagedUpTo !== '') { body.engagedUpTo = engagedUpTo; }
-	const expiration = this.getNodeParameter('expiration', itemIndex, '') as string;
+	const expiration = this.getNodeParameter('expiration', _itemIndex, '') as string;
 	if (expiration !== '') { body.expiration = expiration; }
-	const renewalType = this.getNodeParameter('renewalType', itemIndex, '') as string;
+	const renewalType = this.getNodeParameter('renewalType', _itemIndex, '') as string;
 	if (renewalType !== '') { body.renewalType = renewalType; }
-	const status = this.getNodeParameter('status', itemIndex, '') as string;
+	const status = this.getNodeParameter('status', _itemIndex, '') as string;
 	if (status !== '') { body.status = status; }
 	const data = (await client.httpPut(`/storage/netapp/${encodeURIComponent(serviceName)}/serviceInfos`, body)) as IDataObject;
 	return this.helpers.returnJsonArray([data]);

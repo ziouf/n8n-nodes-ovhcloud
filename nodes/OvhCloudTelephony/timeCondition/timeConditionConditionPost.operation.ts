@@ -71,13 +71,13 @@ export function description(displayOptions: IDisplayOptions): INodeProperties[] 
  * HTTP method: POST
  * Endpoint: /telephony/{billingAccount}/timeCondition/{serviceName}/condition
  */
-export async function execute(this: IExecuteFunctions, itemIndex: number): Promise<INodeExecutionData[]> {
-	const billingAccount = this.getNodeParameter('billingAccount', itemIndex) as string;
-	const serviceName = this.getNodeParameter('serviceName', itemIndex) as string;
-	const day = this.getNodeParameter('day', itemIndex) as string;
-	const hourBegin = this.getNodeParameter('hourBegin', itemIndex) as string;
-	const hourEnd = this.getNodeParameter('hourEnd', itemIndex) as string;
-	const policy = this.getNodeParameter('policy', itemIndex) as string;
+export async function execute(this: IExecuteFunctions, _itemIndex: number): Promise<INodeExecutionData[]> {
+	const billingAccount = this.getNodeParameter('billingAccount', _itemIndex) as string;
+	const serviceName = this.getNodeParameter('serviceName', _itemIndex) as string;
+	const day = this.getNodeParameter('day', _itemIndex) as string;
+	const hourBegin = this.getNodeParameter('hourBegin', _itemIndex) as string;
+	const hourEnd = this.getNodeParameter('hourEnd', _itemIndex) as string;
+	const policy = this.getNodeParameter('policy', _itemIndex) as string;
 
 	const body: IDataObject = {
 		day: day,

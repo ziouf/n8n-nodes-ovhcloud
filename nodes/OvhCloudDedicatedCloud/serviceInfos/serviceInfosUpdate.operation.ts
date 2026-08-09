@@ -35,11 +35,11 @@ export function description(displayOptions: IDisplayOptions): INodeProperties[] 
  * HTTP method: PUT
  * Endpoint: /dedicatedCloud/{serviceName}/serviceInfos
  */
-export async function execute(this: IExecuteFunctions, itemIndex: number): Promise<INodeExecutionData[]> {
+export async function execute(this: IExecuteFunctions, _itemIndex: number): Promise<INodeExecutionData[]> {
 	const client = new ApiClient(this);
-	const serviceName = this.getNodeParameter('serviceName', itemIndex) as string;
+	const serviceName = this.getNodeParameter('serviceName', _itemIndex) as string;
 	const body: IDataObject = {};
-	const canDeleteAtExpiration = this.getNodeParameter('canDeleteAtExpiration', itemIndex) as boolean;
+	const canDeleteAtExpiration = this.getNodeParameter('canDeleteAtExpiration', _itemIndex) as boolean;
 	if (canDeleteAtExpiration) { body.canDeleteAtExpiration = canDeleteAtExpiration; }
 	const data = (await client.httpPut(`/dedicatedCloud/${serviceName}/serviceInfos`, body)) as IDataObject;
 	return this.helpers.returnJsonArray([data]);

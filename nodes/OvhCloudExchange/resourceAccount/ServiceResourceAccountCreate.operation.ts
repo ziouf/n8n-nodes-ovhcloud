@@ -126,22 +126,22 @@ export function description() {
  * HTTP method: POST
  * Endpoint: /email/exchange/{organizationName}/service/{exchangeService}/resourceAccount
  */
-export async function execute(this: IExecuteFunctions): Promise<INodeExecutionData[]> {
-	const organizationName = this.getNodeParameter('organizationName', 0) as string;
-	const exchangeService = this.getNodeParameter('exchangeService', 0) as string;
-	const addOrganizerToSubject = this.getNodeParameter('addOrganizerToSubject', 0) as string;
-	const allowConflict = this.getNodeParameter('allowConflict', 0) as string;
-	const bookingWindow = this.getNodeParameter('bookingWindow', 0) as string;
-	const capacity = this.getNodeParameter('capacity', 0) as string;
-	const company = this.getNodeParameter('company', 0) as string;
-	const deleteComments = this.getNodeParameter('deleteComments', 0) as string;
-	const deleteSubject = this.getNodeParameter('deleteSubject', 0) as string;
-	const displayName = this.getNodeParameter('displayName', 0) as string;
-	const location = this.getNodeParameter('location', 0) as string;
-	const maximumDuration = this.getNodeParameter('maximumDuration', 0) as string;
-	const resourceEmailAddress = this.getNodeParameter('resourceEmailAddress', 0) as string;
-	const showMeetingDetails = this.getNodeParameter('showMeetingDetails', 0) as string;
-	const type = this.getNodeParameter('type', 0) as string;
+export async function execute(this: IExecuteFunctions, _itemIndex?: number): Promise<INodeExecutionData[]> {
+	const organizationName = this.getNodeParameter('organizationName', _itemIndex ?? 0) as string;
+	const exchangeService = this.getNodeParameter('exchangeService', _itemIndex ?? 0) as string;
+	const addOrganizerToSubject = this.getNodeParameter('addOrganizerToSubject', _itemIndex ?? 0) as string;
+	const allowConflict = this.getNodeParameter('allowConflict', _itemIndex ?? 0) as string;
+	const bookingWindow = this.getNodeParameter('bookingWindow', _itemIndex ?? 0) as string;
+	const capacity = this.getNodeParameter('capacity', _itemIndex ?? 0) as string;
+	const company = this.getNodeParameter('company', _itemIndex ?? 0) as string;
+	const deleteComments = this.getNodeParameter('deleteComments', _itemIndex ?? 0) as string;
+	const deleteSubject = this.getNodeParameter('deleteSubject', _itemIndex ?? 0) as string;
+	const displayName = this.getNodeParameter('displayName', _itemIndex ?? 0) as string;
+	const location = this.getNodeParameter('location', _itemIndex ?? 0) as string;
+	const maximumDuration = this.getNodeParameter('maximumDuration', _itemIndex ?? 0) as string;
+	const resourceEmailAddress = this.getNodeParameter('resourceEmailAddress', _itemIndex ?? 0) as string;
+	const showMeetingDetails = this.getNodeParameter('showMeetingDetails', _itemIndex ?? 0) as string;
+	const type = this.getNodeParameter('type', _itemIndex ?? 0) as string;
 
 	const body: IDataObject = {
     addOrganizerToSubject: addOrganizerToSubject,

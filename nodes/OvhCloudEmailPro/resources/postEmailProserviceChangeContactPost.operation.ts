@@ -46,14 +46,14 @@ export function description() {
  * HTTP method: POST
  * Endpoint: /email/pro/{service}/changeContact
  */
-export async function execute(this: IExecuteFunctions): Promise<INodeExecutionData[]> {
-	const service = this.getNodeParameter('service', 0) as string;
+export async function execute(this: IExecuteFunctions, _itemIndex?: number): Promise<INodeExecutionData[]> {
+	const service = this.getNodeParameter('service', _itemIndex ?? 0) as string;
 
 
 
-	const contactAdmin = this.getNodeParameter('contactAdmin', 0) as string;
-	const contactBilling = this.getNodeParameter('contactBilling', 0) as string;
-	const contactTech = this.getNodeParameter('contactTech', 0) as string;
+	const contactAdmin = this.getNodeParameter('contactAdmin', _itemIndex ?? 0) as string;
+	const contactBilling = this.getNodeParameter('contactBilling', _itemIndex ?? 0) as string;
+	const contactTech = this.getNodeParameter('contactTech', _itemIndex ?? 0) as string;
 
 
 const body: IDataObject = {

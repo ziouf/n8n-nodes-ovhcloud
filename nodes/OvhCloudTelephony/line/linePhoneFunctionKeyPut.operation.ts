@@ -92,16 +92,16 @@ export function description(displayOptions: IDisplayOptions): INodeProperties[] 
  * HTTP method: PUT
  * Endpoint: /telephony/{billingAccount}/line/{serviceName}/phone/functionKey/{keyNum}
  */
-export async function execute(this: IExecuteFunctions, itemIndex: number): Promise<INodeExecutionData[]> {
-	const billingAccount = this.getNodeParameter('billingAccount', itemIndex) as string;
-	const keyNum = this.getNodeParameter('keyNum', itemIndex) as string;
-	const serviceName = this.getNodeParameter('serviceName', itemIndex) as string;
-	const defaultParam = this.getNodeParameter('default', itemIndex) as string;
-	const functionParam = this.getNodeParameter('function', itemIndex) as string;
-	const keyNum1 = this.getNodeParameter('keyNum', itemIndex) as string;
-	const label = this.getNodeParameter('label', itemIndex) as string;
-	const parameter = this.getNodeParameter('parameter', itemIndex) as string;
-	const typeParam = this.getNodeParameter('type', itemIndex) as string;
+export async function execute(this: IExecuteFunctions, _itemIndex: number): Promise<INodeExecutionData[]> {
+	const billingAccount = this.getNodeParameter('billingAccount', _itemIndex) as string;
+	const keyNum = this.getNodeParameter('keyNum', _itemIndex) as string;
+	const serviceName = this.getNodeParameter('serviceName', _itemIndex) as string;
+	const defaultParam = this.getNodeParameter('default', _itemIndex) as string;
+	const functionParam = this.getNodeParameter('function', _itemIndex) as string;
+	const keyNum1 = this.getNodeParameter('keyNum', _itemIndex) as string;
+	const label = this.getNodeParameter('label', _itemIndex) as string;
+	const parameter = this.getNodeParameter('parameter', _itemIndex) as string;
+	const typeParam = this.getNodeParameter('type', _itemIndex) as string;
 
 	const body: IDataObject = {
     'default': defaultParam,

@@ -36,9 +36,9 @@ export function description(displayOptions: IDisplayOptions): INodeProperties[] 
  * HTTP method: POST
  * Endpoint: /telephony/{billingAccount}/billingAccountSite
  */
-export async function execute(this: IExecuteFunctions, itemIndex: number): Promise<INodeExecutionData[]> {
-	const billingAccount = this.getNodeParameter('billingAccount', itemIndex) as string;
-	const billingAccountSite = this.getNodeParameter('billingAccountSite', itemIndex) as string;
+export async function execute(this: IExecuteFunctions, _itemIndex: number): Promise<INodeExecutionData[]> {
+	const billingAccount = this.getNodeParameter('billingAccount', _itemIndex) as string;
+	const billingAccountSite = this.getNodeParameter('billingAccountSite', _itemIndex) as string;
 
 	const body: IDataObject = {
     billingAccountSite: billingAccountSite

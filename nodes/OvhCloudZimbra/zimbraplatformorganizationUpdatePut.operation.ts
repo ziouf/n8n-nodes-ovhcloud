@@ -37,9 +37,9 @@ export function description(displayOptions: IDisplayOptions): INodeProperties[] 
  * HTTP method: PUT
  * Endpoint: /zimbra/platform/{platformId}/organization/{organizationId}
  */
-export async function execute(this: IExecuteFunctions, itemIndex: number): Promise<INodeExecutionData[]> {
-	const platformId = this.getNodeParameter('platformId', itemIndex) as string;
-	const organizationId = this.getNodeParameter('organizationId', itemIndex) as string;
+export async function execute(this: IExecuteFunctions, _itemIndex: number): Promise<INodeExecutionData[]> {
+	const platformId = this.getNodeParameter('platformId', _itemIndex) as string;
+	const organizationId = this.getNodeParameter('organizationId', _itemIndex) as string;
 
 	const body: IDataObject = {};
 

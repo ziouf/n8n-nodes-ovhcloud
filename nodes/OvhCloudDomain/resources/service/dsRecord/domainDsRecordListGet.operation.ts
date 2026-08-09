@@ -55,14 +55,14 @@ export function description(displayOptions: IDisplayOptions): INodeProperties[] 
  * HTTP method: GET
  * Endpoint: /domain/{serviceName}/dsRecord
  */
-export async function execute(this: IExecuteFunctions, itemIndex: number): Promise<INodeExecutionData[]> {
+export async function execute(this: IExecuteFunctions, _itemIndex: number): Promise<INodeExecutionData[]> {
 	const client = new ApiClient(this);
-		const serviceName = this.getNodeParameter('serviceName', itemIndex) as string;
+		const serviceName = this.getNodeParameter('serviceName', _itemIndex) as string;
 
 	const qs: IDataObject = {};
-		const flags = this.getNodeParameter('flags', itemIndex, '') as string;
+		const flags = this.getNodeParameter('flags', _itemIndex, '') as string;
 		if (flags !== '' && flags !== undefined) qs['flags'] = flags;
-		const status = this.getNodeParameter('status', itemIndex, '') as string;
+		const status = this.getNodeParameter('status', _itemIndex, '') as string;
 		if (status !== '' && status !== undefined) qs['status'] = status;
 
 	const data = (await client.httpGet(`/domain/${encodeURIComponent(serviceName)}/dsRecord`, qs)) as IDataObject;

@@ -123,21 +123,21 @@ export function description(displayOptions: IDisplayOptions): INodeProperties[] 
  * HTTP method: GET
  * Endpoint: /nutanix/availabilities/raw
  */
-export async function execute(this: IExecuteFunctions): Promise<INodeExecutionData[]> {
+export async function execute(this: IExecuteFunctions, _itemIndex?: number): Promise<INodeExecutionData[]> {
 	const client = new ApiClient(this);
-	const quantity = this.getNodeParameter('quantity', 0) as number;
-	const datacenters = (this.getNodeParameter('datacenters', 0, '') as string) || '';
-	const deploymentType = (this.getNodeParameter('deploymentType', 0, '') as string) || '';
-	const erasureCoding = this.getNodeParameter('erasureCoding', 0, false) as boolean;
-	const excludeDatacenters = this.getNodeParameter('excludeDatacenters', 0, false) as boolean;
-	const excludeRegions = this.getNodeParameter('excludeRegions', 0, false) as boolean;
-	const memory = (this.getNodeParameter('memory', 0, '') as string) || '';
-	const planCode = (this.getNodeParameter('planCode', 0, '') as string) || '';
-	const redundancyFactor = this.getNodeParameter('redundancyFactor', 0, 0) as number;
-	const regions = (this.getNodeParameter('regions', 0, '') as string) || '';
-	const server = (this.getNodeParameter('server', 0, '') as string) || '';
-	const storage = (this.getNodeParameter('storage', 0, '') as string) || '';
-	const systemStorage = (this.getNodeParameter('systemStorage', 0, '') as string) || '';
+	const quantity = this.getNodeParameter('quantity', _itemIndex ?? 0) as number;
+	const datacenters = (this.getNodeParameter('datacenters', _itemIndex ?? 0, '') as string) || '';
+	const deploymentType = (this.getNodeParameter('deploymentType', _itemIndex ?? 0, '') as string) || '';
+	const erasureCoding = this.getNodeParameter('erasureCoding', _itemIndex ?? 0, false) as boolean;
+	const excludeDatacenters = this.getNodeParameter('excludeDatacenters', _itemIndex ?? 0, false) as boolean;
+	const excludeRegions = this.getNodeParameter('excludeRegions', _itemIndex ?? 0, false) as boolean;
+	const memory = (this.getNodeParameter('memory', _itemIndex ?? 0, '') as string) || '';
+	const planCode = (this.getNodeParameter('planCode', _itemIndex ?? 0, '') as string) || '';
+	const redundancyFactor = this.getNodeParameter('redundancyFactor', _itemIndex ?? 0, 0) as number;
+	const regions = (this.getNodeParameter('regions', _itemIndex ?? 0, '') as string) || '';
+	const server = (this.getNodeParameter('server', _itemIndex ?? 0, '') as string) || '';
+	const storage = (this.getNodeParameter('storage', _itemIndex ?? 0, '') as string) || '';
+	const systemStorage = (this.getNodeParameter('systemStorage', _itemIndex ?? 0, '') as string) || '';
 
 	const qs: IDataObject = {};
 	if (quantity !== undefined) qs.quantity = quantity;

@@ -53,11 +53,11 @@ export function description(displayOptions: IDisplayOptions): INodeProperties[] 
  * HTTP method: GET
  * Endpoint: /telephony/{billingAccount}/line/{serviceName}/statistics
  */
-export async function execute(this: IExecuteFunctions, itemIndex: number): Promise<INodeExecutionData[]> {
-	const billingAccount = this.getNodeParameter('billingAccount', itemIndex) as string;
-	const serviceName = this.getNodeParameter('serviceName', itemIndex) as string;
-	const timeframe = this.getNodeParameter('timeframe', itemIndex) as string;
-	const typeParam = this.getNodeParameter('type', itemIndex) as string;
+export async function execute(this: IExecuteFunctions, _itemIndex: number): Promise<INodeExecutionData[]> {
+	const billingAccount = this.getNodeParameter('billingAccount', _itemIndex) as string;
+	const serviceName = this.getNodeParameter('serviceName', _itemIndex) as string;
+	const timeframe = this.getNodeParameter('timeframe', _itemIndex) as string;
+	const typeParam = this.getNodeParameter('type', _itemIndex) as string;
 
 	const qs: IDataObject = {
     timeframe: timeframe,

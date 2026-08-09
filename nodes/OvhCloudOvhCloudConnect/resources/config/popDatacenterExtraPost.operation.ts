@@ -85,14 +85,14 @@ export function description(displayOptions: IDisplayOptions): INodeProperties[] 
  * HTTP method: POST
  * Endpoint: /ovhCloudConnect/{serviceName}/config/pop/{popId}/datacenter/{datacenterId}/extra
  */
-export async function execute(this: IExecuteFunctions): Promise<INodeExecutionData[]> {
+export async function execute(this: IExecuteFunctions, _itemIndex?: number): Promise<INodeExecutionData[]> {
 	const client = new ApiClient(this);
-	const serviceName = this.getNodeParameter('serviceName', 0, '', { extractValue: true }) as string;
-	const popId = this.getNodeParameter('popId', 0) as number;
-	const datacenterId = this.getNodeParameter('datacenterId', 0) as number;
-	const nexthop = (this.getNodeParameter('nexthop', 0, '') as string) || '';
-	const subnet = (this.getNodeParameter('subnet', 0, '') as string) || '';
-	const type = (this.getNodeParameter('type', 0, '') as string) || '';
+	const serviceName = this.getNodeParameter('serviceName', _itemIndex ?? 0, '', { extractValue: true }) as string;
+	const popId = this.getNodeParameter('popId', _itemIndex ?? 0) as number;
+	const datacenterId = this.getNodeParameter('datacenterId', _itemIndex ?? 0) as number;
+	const nexthop = (this.getNodeParameter('nexthop', _itemIndex ?? 0, '') as string) || '';
+	const subnet = (this.getNodeParameter('subnet', _itemIndex ?? 0, '') as string) || '';
+	const type = (this.getNodeParameter('type', _itemIndex ?? 0, '') as string) || '';
 
 	const body: IDataObject = {};
 	if (nexthop) body.nexthop = nexthop;

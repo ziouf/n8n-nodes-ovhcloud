@@ -18,9 +18,10 @@ export function description(displayOptions: import('n8n-workflow').IDisplayOptio
 
 export async function execute(
 	this: IExecuteFunctions,
+_itemIndex?: number,
 ): Promise<import('n8n-workflow').INodeExecutionData[]> {
 	const client = new ApiClient(this);
-	const resourceName = this.getNodeParameter('resourceName', 0) as string;
+	const resourceName = this.getNodeParameter('resourceName', _itemIndex ?? 0) as string;
 	const data = (await client.httpPost(
 		`/webhosting/resource/${resourceName}/ssl/import`,
 		{},

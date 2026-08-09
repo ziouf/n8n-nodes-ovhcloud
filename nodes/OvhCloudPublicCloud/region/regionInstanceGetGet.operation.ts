@@ -99,29 +99,29 @@ export function description(displayOptions: IDisplayOptions): INodeProperties[] 
  * HTTP method: GET
  * Endpoint: /publicCloud/project/${projectId}/region/${regionName}/instance/${instanceId}
  */
-export async function execute(this: IExecuteFunctions): Promise<INodeExecutionData[]> {
+export async function execute(this: IExecuteFunctions, _itemIndex?: number): Promise<INodeExecutionData[]> {
 	const client = new ApiClient(this);
-	const projectId = this.getNodeParameter('publicCloudProjectId', 0, '', {
+	const projectId = this.getNodeParameter('publicCloudProjectId', _itemIndex ?? 0, '', {
 		extractValue: true,
 	}) as string;
-	const regionName = this.getNodeParameter('regionName', 0) as string;
-	const instanceId = this.getNodeParameter('instanceId', 0) as string;
+	const regionName = this.getNodeParameter('regionName', _itemIndex ?? 0) as string;
+	const instanceId = this.getNodeParameter('instanceId', _itemIndex ?? 0) as string;
 
 	const qs: IDataObject = {};
-	if (this.getNodeParameter('deleted', 0)) {
-		qs.deleted = this.getNodeParameter('deleted', 0) as string;
+	if (this.getNodeParameter('deleted', _itemIndex ?? 0)) {
+		qs.deleted = this.getNodeParameter('deleted', _itemIndex ?? 0) as string;
 	}
-	if (this.getNodeParameter('withBackups', 0)) {
-		qs.withBackups = this.getNodeParameter('withBackups', 0) as string;
+	if (this.getNodeParameter('withBackups', _itemIndex ?? 0)) {
+		qs.withBackups = this.getNodeParameter('withBackups', _itemIndex ?? 0) as string;
 	}
-	if (this.getNodeParameter('withImage', 0)) {
-		qs.withImage = this.getNodeParameter('withImage', 0) as string;
+	if (this.getNodeParameter('withImage', _itemIndex ?? 0)) {
+		qs.withImage = this.getNodeParameter('withImage', _itemIndex ?? 0) as string;
 	}
-	if (this.getNodeParameter('withNetworks', 0)) {
-		qs.withNetworks = this.getNodeParameter('withNetworks', 0) as string;
+	if (this.getNodeParameter('withNetworks', _itemIndex ?? 0)) {
+		qs.withNetworks = this.getNodeParameter('withNetworks', _itemIndex ?? 0) as string;
 	}
-	if (this.getNodeParameter('withVolumes', 0)) {
-		qs.withVolumes = this.getNodeParameter('withVolumes', 0) as string;
+	if (this.getNodeParameter('withVolumes', _itemIndex ?? 0)) {
+		qs.withVolumes = this.getNodeParameter('withVolumes', _itemIndex ?? 0) as string;
 	}
 	const data = (await client.httpGet(
 		`/publicCloud/project/${projectId}/region/${regionName}/instance/${instanceId}`, qs

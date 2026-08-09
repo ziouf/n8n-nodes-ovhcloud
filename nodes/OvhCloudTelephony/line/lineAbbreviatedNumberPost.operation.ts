@@ -71,13 +71,13 @@ export function description(displayOptions: IDisplayOptions): INodeProperties[] 
  * HTTP method: POST
  * Endpoint: /telephony/{billingAccount}/line/{serviceName}/abbreviatedNumber
  */
-export async function execute(this: IExecuteFunctions, itemIndex: number): Promise<INodeExecutionData[]> {
-	const billingAccount = this.getNodeParameter('billingAccount', itemIndex) as string;
-	const serviceName = this.getNodeParameter('serviceName', itemIndex) as string;
-	const abbreviatedNumber = this.getNodeParameter('abbreviatedNumber', itemIndex) as string;
-	const destinationNumber = this.getNodeParameter('destinationNumber', itemIndex) as string;
-	const name = this.getNodeParameter('name', itemIndex) as string;
-	const surname = this.getNodeParameter('surname', itemIndex) as string;
+export async function execute(this: IExecuteFunctions, _itemIndex: number): Promise<INodeExecutionData[]> {
+	const billingAccount = this.getNodeParameter('billingAccount', _itemIndex) as string;
+	const serviceName = this.getNodeParameter('serviceName', _itemIndex) as string;
+	const abbreviatedNumber = this.getNodeParameter('abbreviatedNumber', _itemIndex) as string;
+	const destinationNumber = this.getNodeParameter('destinationNumber', _itemIndex) as string;
+	const name = this.getNodeParameter('name', _itemIndex) as string;
+	const surname = this.getNodeParameter('surname', _itemIndex) as string;
 
 	const body: IDataObject = {
     abbreviatedNumber: abbreviatedNumber,

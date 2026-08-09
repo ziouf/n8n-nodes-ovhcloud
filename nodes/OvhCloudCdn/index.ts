@@ -610,93 +610,93 @@ export async function execute(
 
 	switch (operation) {
 		case 'servicesListGet':
-			return executeServicesListGet.call(this, itemIndex);
+			return executeServicesListGet.call(this, itemIndex ?? 0);
 		case 'serviceGetGet':
-			return executeServiceGetGet.call(this, itemIndex);
+			return executeServiceGetGet.call(this, itemIndex ?? 0);
 		case 'logKindListGet':
-			return executeLogKindListGet.call(this, itemIndex);
+			return executeLogKindListGet.call(this, itemIndex ?? 0);
 		case 'logKindGetGet':
-			return executeLogKindGetGet.call(this, itemIndex);
+			return executeLogKindGetGet.call(this, itemIndex ?? 0);
 		case 'popsListGet':
-			return executePopsListGet.call(this, itemIndex);
+			return executePopsListGet.call(this, itemIndex ?? 0);
 		case 'popsGetGet':
-			return executePopsGetGet.call(this, itemIndex);
+			return executePopsGetGet.call(this, itemIndex ?? 0);
 		case 'changeContactPost':
-			return executeChangeContactPost.call(this, itemIndex);
+			return executeChangeContactPost.call(this, itemIndex ?? 0);
 		case 'quotaGet':
-			return executeQuotaGet.call(this, itemIndex);
+			return executeQuotaGet.call(this, itemIndex ?? 0);
 		case 'serviceInfosGet':
-			return executeServiceInfosGet.call(this, itemIndex);
+			return executeServiceInfosGet.call(this, itemIndex ?? 0);
 		case 'serviceInfosPut':
-			return executeServiceInfosPut.call(this, itemIndex);
+			return executeServiceInfosPut.call(this, itemIndex ?? 0);
 		case 'logsPost':
-			return executeLogsPost.call(this, itemIndex);
+			return executeLogsPost.call(this, itemIndex ?? 0);
 		case 'domainsListGet':
-			return executeDomainsListGet.call(this, itemIndex);
+			return executeDomainsListGet.call(this, itemIndex ?? 0);
 		case 'domainsCreatePost':
-			return executeDomainsCreatePost.call(this, itemIndex);
+			return executeDomainsCreatePost.call(this, itemIndex ?? 0);
 		case 'domainDeleteDelete':
-			return executeDomainDeleteDelete.call(this, itemIndex);
+			return executeDomainDeleteDelete.call(this, itemIndex ?? 0);
 		case 'domainGetGet':
-			return executeDomainGetGet.call(this, itemIndex);
+			return executeDomainGetGet.call(this, itemIndex ?? 0);
 		case 'domainUpdatePut':
-			return executeDomainUpdatePut.call(this, itemIndex);
+			return executeDomainUpdatePut.call(this, itemIndex ?? 0);
 		case 'backendsListGet':
-			return executeBackendsListGet.call(this, itemIndex);
+			return executeBackendsListGet.call(this, itemIndex ?? 0);
 		case 'backendsCreatePost':
-			return executeBackendsCreatePost.call(this, itemIndex);
+			return executeBackendsCreatePost.call(this, itemIndex ?? 0);
 		case 'backendDeleteDelete':
-			return executeBackendDeleteDelete.call(this, itemIndex);
+			return executeBackendDeleteDelete.call(this, itemIndex ?? 0);
 		case 'backendGetGet':
-			return executeBackendGetGet.call(this, itemIndex);
+			return executeBackendGetGet.call(this, itemIndex ?? 0);
 		case 'cacheRulesListGet':
-			return executeCacheRulesListGet.call(this, itemIndex);
+			return executeCacheRulesListGet.call(this, itemIndex ?? 0);
 		case 'cacheRulesCreatePost':
-			return executeCacheRulesCreatePost.call(this, itemIndex);
+			return executeCacheRulesCreatePost.call(this, itemIndex ?? 0);
 		case 'cacheRuleDeleteDelete':
-			return executeCacheRuleDeleteDelete.call(this, itemIndex);
+			return executeCacheRuleDeleteDelete.call(this, itemIndex ?? 0);
 		case 'cacheRuleGetGet':
-			return executeCacheRuleGetGet.call(this, itemIndex);
+			return executeCacheRuleGetGet.call(this, itemIndex ?? 0);
 		case 'cacheRuleUpdatePut':
-			return executeCacheRuleUpdatePut.call(this, itemIndex);
+			return executeCacheRuleUpdatePut.call(this, itemIndex ?? 0);
 		case 'cacheRuleFlushPost':
-			return executeCacheRuleFlushPost.call(this, itemIndex);
+			return executeCacheRuleFlushPost.call(this, itemIndex ?? 0);
 		case 'cacheRuleTasksListGet':
-			return executeCacheRuleTasksListGet.call(this, itemIndex);
+			return executeCacheRuleTasksListGet.call(this, itemIndex ?? 0);
 		case 'cacheRuleTaskGetGet':
-			return executeCacheRuleTaskGetGet.call(this, itemIndex);
+			return executeCacheRuleTaskGetGet.call(this, itemIndex ?? 0);
 		case 'domainFlushPost':
-			return executeDomainFlushPost.call(this, itemIndex);
+			return executeDomainFlushPost.call(this, itemIndex ?? 0);
 		case 'domainLogsPost':
-			return executeDomainLogsPost.call(this, itemIndex);
+			return executeDomainLogsPost.call(this, itemIndex ?? 0);
 		case 'domainStatisticsGet':
-			return executeDomainStatisticsGet.call(this, itemIndex);
+			return executeDomainStatisticsGet.call(this, itemIndex ?? 0);
 		case 'domainTasksListGet':
-			return executeDomainTasksListGet.call(this, itemIndex);
+			return executeDomainTasksListGet.call(this, itemIndex ?? 0);
 		case 'domainTaskGetGet':
-			return executeDomainTaskGetGet.call(this, itemIndex);
+			return executeDomainTaskGetGet.call(this, itemIndex ?? 0);
 		case 'subscriptionsListGet':
-			return executeSubscriptionsListGet.call(this, itemIndex);
+			return executeSubscriptionsListGet.call(this, itemIndex ?? 0);
 		case 'subscriptionsCreatePost':
-			return executeSubscriptionsCreatePost.call(this, itemIndex);
+			return executeSubscriptionsCreatePost.call(this, itemIndex ?? 0);
 		case 'subscriptionDeleteDelete':
-			return executeSubscriptionDeleteDelete.call(this, itemIndex);
+			return executeSubscriptionDeleteDelete.call(this, itemIndex ?? 0);
 		case 'subscriptionGetGet':
-			return executeSubscriptionGetGet.call(this, itemIndex);
+			return executeSubscriptionGetGet.call(this, itemIndex ?? 0);
 		case 'logUrlPost':
-			return executeLogUrlPost.call(this, itemIndex);
+			return executeLogUrlPost.call(this, itemIndex ?? 0);
 		case 'sslDeleteDelete':
-			return executeSslDeleteDelete.call(this, itemIndex);
+			return executeSslDeleteDelete.call(this, itemIndex ?? 0);
 		case 'sslGetGet':
-			return executeSslGetGet.call(this, itemIndex);
+			return executeSslGetGet.call(this, itemIndex ?? 0);
 		case 'sslCreatePost':
-			return executeSslCreatePost.call(this, itemIndex);
+			return executeSslCreatePost.call(this, itemIndex ?? 0);
 		case 'sslTasksListGet':
-			return executeSslTasksListGet.call(this, itemIndex);
+			return executeSslTasksListGet.call(this, itemIndex ?? 0);
 		case 'sslTaskGetGet':
-			return executeSslTaskGetGet.call(this, itemIndex);
+			return executeSslTaskGetGet.call(this, itemIndex ?? 0);
 		case 'sslUpdatePost':
-			return executeSslUpdatePost.call(this, itemIndex);
+			return executeSslUpdatePost.call(this, itemIndex ?? 0);
 
 	}
 

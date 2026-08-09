@@ -36,10 +36,10 @@ export function description(displayOptions: IDisplayOptions): INodeProperties[] 
  * HTTP method: DELETE
  * Endpoint: /dedicatedCloud/{serviceName}/vrack/{vrack}
  */
-export async function execute(this: IExecuteFunctions, itemIndex: number): Promise<INodeExecutionData[]> {
+export async function execute(this: IExecuteFunctions, _itemIndex: number): Promise<INodeExecutionData[]> {
 	const client = new ApiClient(this);
-	const serviceName = this.getNodeParameter('serviceName', itemIndex) as string;
-	const vrack = this.getNodeParameter('vrack', itemIndex) as string;
+	const serviceName = this.getNodeParameter('serviceName', _itemIndex) as string;
+	const vrack = this.getNodeParameter('vrack', _itemIndex) as string;
 	const data = (await client.httpDelete(`/dedicatedCloud/${serviceName}/vrack/${vrack}`)) as IDataObject;
 	return this.helpers.returnJsonArray([data]);
 }

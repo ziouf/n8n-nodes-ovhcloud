@@ -83,18 +83,18 @@ export function description(displayOptions: IDisplayOptions): INodeProperties[] 
  * HTTP method: POST
  * Endpoint: /domain/zone/{zoneName}/record
  */
-export async function execute(this: IExecuteFunctions, itemIndex: number): Promise<INodeExecutionData[]> {
+export async function execute(this: IExecuteFunctions, _itemIndex: number): Promise<INodeExecutionData[]> {
 	const client = new ApiClient(this);
-		const zoneName = this.getNodeParameter('zoneName', itemIndex) as string;
+		const zoneName = this.getNodeParameter('zoneName', _itemIndex) as string;
 
 	const body: IDataObject = {};
-		const fieldType = this.getNodeParameter('fieldType', itemIndex, '') as string;
+		const fieldType = this.getNodeParameter('fieldType', _itemIndex, '') as string;
 		body['fieldType'] = fieldType;
-		const subDomain = this.getNodeParameter('subDomain', itemIndex, '') as string;
+		const subDomain = this.getNodeParameter('subDomain', _itemIndex, '') as string;
 		if (subDomain !== '') body['subDomain'] = subDomain;
-		const target = this.getNodeParameter('target', itemIndex, '') as string;
+		const target = this.getNodeParameter('target', _itemIndex, '') as string;
 		body['target'] = target;
-		const ttl = this.getNodeParameter('ttl', itemIndex, 0) as number;
+		const ttl = this.getNodeParameter('ttl', _itemIndex, 0) as number;
 		if (ttl !== 0) body['ttl'] = ttl;
 
 	const data = (await client.httpPost(`/domain/zone/${encodeURIComponent(zoneName)}/record`, body)) as IDataObject;

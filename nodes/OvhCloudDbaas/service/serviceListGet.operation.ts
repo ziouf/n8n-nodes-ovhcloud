@@ -26,9 +26,9 @@ export function description(displayOptions: IDisplayOptions): INodeProperties[] 
  * HTTP method: GET
  * Endpoint: /dbaas/logs
  */
-export async function execute(this: IExecuteFunctions, itemIndex: number): Promise<INodeExecutionData[]> {
+export async function execute(this: IExecuteFunctions, _itemIndex: number): Promise<INodeExecutionData[]> {
 	const qs: IDataObject = {};
-	const iamTags = (this.getNodeParameter('iamTags', itemIndex, '') as string) || '';
+	const iamTags = (this.getNodeParameter('iamTags', _itemIndex, '') as string) || '';
 	if (iamTags) {
 		qs.iamTags = JSON.parse(iamTags);
 	}

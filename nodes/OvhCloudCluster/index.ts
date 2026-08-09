@@ -142,21 +142,21 @@ export async function execute(
 
 	switch (operation) {
 		case 'clusterListGet':
-			return executeClusterListGet.call(this, itemIndex);
+			return executeClusterListGet.call(this, itemIndex ?? 0);
 		case 'clusterGetGet':
-			return executeClusterGetGet.call(this, itemIndex);
+			return executeClusterGetGet.call(this, itemIndex ?? 0);
 		case 'clusterUpdatePut':
-			return executeClusterUpdatePut.call(this, itemIndex);
+			return executeClusterUpdatePut.call(this, itemIndex ?? 0);
 		case 'clusterDeleteDelete':
-			return executeClusterDeleteDelete.call(this, itemIndex);
+			return executeClusterDeleteDelete.call(this, itemIndex ?? 0);
 		case 'serviceInfosGetGet':
-			return executeServiceInfosGetGet.call(this, itemIndex);
+			return executeServiceInfosGetGet.call(this, itemIndex ?? 0);
 		case 'reinstallPost':
-			return executeReinstallPost.call(this, itemIndex);
+			return executeReinstallPost.call(this, itemIndex ?? 0);
 		case 'taskListGet':
-			return executeTaskListGet.call(this, itemIndex);
+			return executeTaskListGet.call(this, itemIndex ?? 0);
 		case 'taskGetGet':
-			return executeTaskGetGet.call(this, itemIndex);
+			return executeTaskGetGet.call(this, itemIndex ?? 0);
 
 	}
 

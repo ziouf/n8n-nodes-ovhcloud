@@ -45,10 +45,10 @@ export function description(displayOptions: IDisplayOptions): INodeProperties[] 
  * HTTP method: GET
  * Endpoint: /telephony/{billingAccount}/phonebook/{bookKey}/export
  */
-export async function execute(this: IExecuteFunctions, itemIndex: number): Promise<INodeExecutionData[]> {
-	const billingAccount = this.getNodeParameter('billingAccount', itemIndex) as string;
-	const bookKey = this.getNodeParameter('bookKey', itemIndex) as string;
-	const format = this.getNodeParameter('format', itemIndex) as string;
+export async function execute(this: IExecuteFunctions, _itemIndex: number): Promise<INodeExecutionData[]> {
+	const billingAccount = this.getNodeParameter('billingAccount', _itemIndex) as string;
+	const bookKey = this.getNodeParameter('bookKey', _itemIndex) as string;
+	const format = this.getNodeParameter('format', _itemIndex) as string;
 
 	const qs: IDataObject = {
 		format: format,

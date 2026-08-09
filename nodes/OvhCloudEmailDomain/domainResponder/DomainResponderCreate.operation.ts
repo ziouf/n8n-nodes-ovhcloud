@@ -107,14 +107,14 @@ export function description(displayOptions: IDisplayOptions): INodeProperties[] 
  * HTTP method: POST
  * Endpoint: /email/domain/{domain}/responder
  */
-export async function execute(this: IExecuteFunctions): Promise<INodeExecutionData[]> {
-	const domain = this.getNodeParameter('domain', 0) as string;
-	const account = this.getNodeParameter('account', 0) as string;
-	const content = this.getNodeParameter('content', 0) as string;
-	const copy = this.getNodeParameter('copy', 0) as string;
-	const copyTo = this.getNodeParameter('copyTo', 0) as string;
-	const from = this.getNodeParameter('from', 0) as string;
-	const to = this.getNodeParameter('to', 0) as string;
+export async function execute(this: IExecuteFunctions, _itemIndex?: number): Promise<INodeExecutionData[]> {
+	const domain = this.getNodeParameter('domain', _itemIndex ?? 0) as string;
+	const account = this.getNodeParameter('account', _itemIndex ?? 0) as string;
+	const content = this.getNodeParameter('content', _itemIndex ?? 0) as string;
+	const copy = this.getNodeParameter('copy', _itemIndex ?? 0) as string;
+	const copyTo = this.getNodeParameter('copyTo', _itemIndex ?? 0) as string;
+	const from = this.getNodeParameter('from', _itemIndex ?? 0) as string;
+	const to = this.getNodeParameter('to', _itemIndex ?? 0) as string;
 
 	const body: IDataObject = {
 		account: account,

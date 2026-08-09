@@ -61,13 +61,13 @@ export function description() {
  * HTTP method: POST
  * Endpoint: /email/exchange/{organizationName}/service/{exchangeService}/domain/{domainName}/dkim
  */
-export async function execute(this: IExecuteFunctions): Promise<INodeExecutionData[]> {
-	const organizationName = this.getNodeParameter('organizationName', 0) as string;
-	const exchangeService = this.getNodeParameter('exchangeService', 0) as string;
-	const domainName = this.getNodeParameter('domainName', 0) as string;
-	const autoEnableDKIM = this.getNodeParameter('autoEnableDKIM', 0) as string;
-	const configureDkim = this.getNodeParameter('configureDkim', 0) as string;
-	const selectorName = this.getNodeParameter('selectorName', 0) as string;
+export async function execute(this: IExecuteFunctions, _itemIndex?: number): Promise<INodeExecutionData[]> {
+	const organizationName = this.getNodeParameter('organizationName', _itemIndex ?? 0) as string;
+	const exchangeService = this.getNodeParameter('exchangeService', _itemIndex ?? 0) as string;
+	const domainName = this.getNodeParameter('domainName', _itemIndex ?? 0) as string;
+	const autoEnableDKIM = this.getNodeParameter('autoEnableDKIM', _itemIndex ?? 0) as string;
+	const configureDkim = this.getNodeParameter('configureDkim', _itemIndex ?? 0) as string;
+	const selectorName = this.getNodeParameter('selectorName', _itemIndex ?? 0) as string;
 
 	const body: IDataObject = {
     autoEnableDKIM: autoEnableDKIM,

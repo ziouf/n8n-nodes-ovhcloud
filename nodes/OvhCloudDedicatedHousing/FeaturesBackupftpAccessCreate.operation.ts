@@ -57,11 +57,11 @@ export function description(): INodeProperties[] {
  * Endpoint: /dedicated/housing/{serviceName}/features/backupFTP/access
  */
 export async function execute(this: IExecuteFunctions,
-	itemIndex: number): Promise<INodeExecutionData[]> {
-	const cifs = this.getNodeParameter('cifs', itemIndex);
-	const ipBlock = this.getNodeParameter('ipBlock', itemIndex) as string;
-	const nfs = this.getNodeParameter('nfs', itemIndex);
-	const serviceName = this.getNodeParameter('serviceName', itemIndex) as string;
+	_itemIndex: number): Promise<INodeExecutionData[]> {
+	const cifs = this.getNodeParameter('cifs', _itemIndex);
+	const ipBlock = this.getNodeParameter('ipBlock', _itemIndex) as string;
+	const nfs = this.getNodeParameter('nfs', _itemIndex);
+	const serviceName = this.getNodeParameter('serviceName', _itemIndex) as string;
 	const client = new ApiClient(this);
 	const body: IDataObject = {};
 			body['cifs'] = cifs;

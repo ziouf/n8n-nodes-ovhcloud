@@ -36,12 +36,12 @@ export function description(displayOptions: IDisplayOptions): INodeProperties[] 
  * HTTP method: POST
  * Endpoint: /domain/{serviceName}/configurations/obfuscatedEmails/refresh
  */
-export async function execute(this: IExecuteFunctions, itemIndex: number): Promise<INodeExecutionData[]> {
+export async function execute(this: IExecuteFunctions, _itemIndex: number): Promise<INodeExecutionData[]> {
 	const client = new ApiClient(this);
-		const serviceName = this.getNodeParameter('serviceName', itemIndex) as string;
+		const serviceName = this.getNodeParameter('serviceName', _itemIndex) as string;
 
 	const body: IDataObject = {};
-		const contacts = this.getNodeParameter('contacts', itemIndex, '') as string;
+		const contacts = this.getNodeParameter('contacts', _itemIndex, '') as string;
 		if (contacts !== '') body['contacts'] = JSON.parse(contacts);
 
 	const data = (await client.httpPost(`/domain/${encodeURIComponent(serviceName)}/configurations/obfuscatedEmails/refresh`, body)) as IDataObject;

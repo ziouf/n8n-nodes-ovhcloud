@@ -31,6 +31,6 @@ export class OvhCloudVps extends BaseNode implements INodeType {
 	methods = { listSearch: { getVpsServices } };
 
 	async execute(this: IExecuteFunctions): Promise<INodeExecutionData[][]> {
-		return executeTemplate.call(this, execute);
+		return executeTemplate.call(this, execute, { concurrency: 5 });
 	}
 }

@@ -59,13 +59,13 @@ export function description(displayOptions: IDisplayOptions): INodeProperties[] 
  * HTTP method: POST
  * Endpoint: /cloud/project/{serviceName}/database/kafkaConnect/{clusterId}/user
  */
-export async function execute(this: IExecuteFunctions): Promise<INodeExecutionData[]> {
+export async function execute(this: IExecuteFunctions, _itemIndex?: number): Promise<INodeExecutionData[]> {
 const client = new ApiClient(this);
-const serviceName = this.getNodeParameter('publicCloudProjectId', 0, '', {
+const serviceName = this.getNodeParameter('publicCloudProjectId', _itemIndex ?? 0, '', {
 	extractValue: true,
 }) as string;
-const clusterId = this.getNodeParameter('clusterId', 0) as string;
-const name = this.getNodeParameter('name', 0, '') as string;
+const clusterId = this.getNodeParameter('clusterId', _itemIndex ?? 0) as string;
+const name = this.getNodeParameter('name', _itemIndex ?? 0, '') as string;
 const data = (await client.httpPost(`/cloud/project/${serviceName}/database/kafkaConnect/${clusterId}/user`, { name: name || undefined })) as IDataObject;
 return this.helpers.returnJsonArray([data]);
 }

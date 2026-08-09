@@ -34,9 +34,9 @@ export function description(): INodeProperties[] {
  * Endpoint: /dedicated/ceph/{serviceName}/cephfs/{fsName}/enable
  */
 export async function execute(this: IExecuteFunctions,
-	itemIndex: number): Promise<INodeExecutionData[]> {
-	const fsName = this.getNodeParameter('fsName', itemIndex) as string;
-	const serviceName = this.getNodeParameter('serviceName', itemIndex) as string;
+	_itemIndex: number): Promise<INodeExecutionData[]> {
+	const fsName = this.getNodeParameter('fsName', _itemIndex) as string;
+	const serviceName = this.getNodeParameter('serviceName', _itemIndex) as string;
 	const client = new ApiClient(this);
 	const data = (await client.httpPost('/dedicated/ceph/' + encodeURIComponent(serviceName) + '/cephfs/' + encodeURIComponent(fsName) + '/enable')) as IDataObject;
 	return this.helpers.returnJsonArray([data]);

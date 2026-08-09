@@ -68,14 +68,14 @@ export function description(displayOptions: IDisplayOptions): INodeProperties[] 
  * HTTP method: POST
  * Endpoint: /cloud/project/{serviceName}/database/cassandra
  */
-export async function execute(this: IExecuteFunctions): Promise<INodeExecutionData[]> {
+export async function execute(this: IExecuteFunctions, _itemIndex?: number): Promise<INodeExecutionData[]> {
 	const client = new ApiClient(this);
-	const serviceName = this.getNodeParameter('publicCloudProjectId', 0, '', {
+	const serviceName = this.getNodeParameter('publicCloudProjectId', _itemIndex ?? 0, '', {
 		extractValue: true,
 	}) as string;
-	const region = (this.getNodeParameter('region', 0, '') || '') as string;
-	const flavorName = (this.getNodeParameter('flavorName', 0, '') || '') as string;
-	const version = (this.getNodeParameter('version', 0, '') || '') as string;
+	const region = (this.getNodeParameter('region', _itemIndex ?? 0, '') || '') as string;
+	const flavorName = (this.getNodeParameter('flavorName', _itemIndex ?? 0, '') || '') as string;
+	const version = (this.getNodeParameter('version', _itemIndex ?? 0, '') || '') as string;
 
 	const body: IDataObject = {};
 	if (region) body.region = region;

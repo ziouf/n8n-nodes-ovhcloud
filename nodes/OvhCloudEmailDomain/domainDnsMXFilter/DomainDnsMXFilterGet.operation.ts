@@ -38,9 +38,9 @@ export function description(displayOptions: IDisplayOptions): INodeProperties[] 
  * HTTP method: GET
  * Endpoint: /email/domain/{domain}/dnsMXFilter
  */
-export async function execute(this: IExecuteFunctions): Promise<INodeExecutionData[]> {
-	const domain = this.getNodeParameter('domain', 0) as string;
-	const subDomain = this.getNodeParameter('subDomain', 0) as string;
+export async function execute(this: IExecuteFunctions, _itemIndex?: number): Promise<INodeExecutionData[]> {
+	const domain = this.getNodeParameter('domain', _itemIndex ?? 0) as string;
+	const subDomain = this.getNodeParameter('subDomain', _itemIndex ?? 0) as string;
 
 	const qs: IDataObject = {
 		subDomain: subDomain,

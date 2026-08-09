@@ -65,9 +65,9 @@ export async function execute(
 
 	switch (operation) {
 		case 'networkDefensevaceventListGet':
-			return executeNetworkDefensevaceventListGet.call(this, itemIndex);
+			return executeNetworkDefensevaceventListGet.call(this, itemIndex ?? 0);
 		case 'networkDefensevactrafficListGet':
-			return executeNetworkDefensevactrafficListGet.call(this, itemIndex);
+			return executeNetworkDefensevactrafficListGet.call(this, itemIndex ?? 0);
 
 	}
 

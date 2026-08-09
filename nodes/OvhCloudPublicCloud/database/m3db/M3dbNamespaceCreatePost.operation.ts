@@ -93,22 +93,22 @@ export function description(displayOptions: IDisplayOptions): INodeProperties[] 
  * HTTP method: POST
  * Endpoint: /cloud/project/{serviceName}/database/m3db/{clusterId}/namespace
  */
-export async function execute(this: IExecuteFunctions): Promise<INodeExecutionData[]> {
+export async function execute(this: IExecuteFunctions, _itemIndex?: number): Promise<INodeExecutionData[]> {
 	const client = new ApiClient(this);
-	const serviceName = this.getNodeParameter('publicCloudProjectId', 0, '', {
+	const serviceName = this.getNodeParameter('publicCloudProjectId', _itemIndex ?? 0, '', {
 		extractValue: true,
 	}) as string;
-	const clusterId = this.getNodeParameter('clusterId', 0) as string;
+	const clusterId = this.getNodeParameter('clusterId', _itemIndex ?? 0) as string;
 
 	const body: IDataObject = {};
-	if (this.getNodeParameter('name', 0)) body.name = this.getNodeParameter('name', 0);
-	if (this.getNodeParameter('resolution', 0))
-		body.resolution = this.getNodeParameter('resolution', 0);
-	if (this.getNodeParameter('type', 0)) body.type = this.getNodeParameter('type', 0);
-	if (this.getNodeParameter('snapshotEnabled', 0))
-		body.snapshotEnabled = this.getNodeParameter('snapshotEnabled', 0);
-	if (this.getNodeParameter('writesToCommitLogEnabled', 0))
-		body.writesToCommitLogEnabled = this.getNodeParameter('writesToCommitLogEnabled', 0);
+	if (this.getNodeParameter('name', _itemIndex ?? 0)) body.name = this.getNodeParameter('name', _itemIndex ?? 0);
+	if (this.getNodeParameter('resolution', _itemIndex ?? 0))
+		body.resolution = this.getNodeParameter('resolution', _itemIndex ?? 0);
+	if (this.getNodeParameter('type', _itemIndex ?? 0)) body.type = this.getNodeParameter('type', _itemIndex ?? 0);
+	if (this.getNodeParameter('snapshotEnabled', _itemIndex ?? 0))
+		body.snapshotEnabled = this.getNodeParameter('snapshotEnabled', _itemIndex ?? 0);
+	if (this.getNodeParameter('writesToCommitLogEnabled', _itemIndex ?? 0))
+		body.writesToCommitLogEnabled = this.getNodeParameter('writesToCommitLogEnabled', _itemIndex ?? 0);
 
 	const data = (await client.httpPost(
 		`/cloud/project/${serviceName}/database/m3db/${clusterId}/namespace`,

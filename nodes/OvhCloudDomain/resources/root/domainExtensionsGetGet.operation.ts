@@ -27,9 +27,9 @@ export function description(displayOptions: IDisplayOptions): INodeProperties[] 
  * HTTP method: GET
  * Endpoint: /domain/extensions/{name}
  */
-export async function execute(this: IExecuteFunctions, itemIndex: number): Promise<INodeExecutionData[]> {
+export async function execute(this: IExecuteFunctions, _itemIndex: number): Promise<INodeExecutionData[]> {
 	const client = new ApiClient(this);
-		const name = this.getNodeParameter('name', itemIndex) as string;
+		const name = this.getNodeParameter('name', _itemIndex) as string;
 
 	const data = (await client.httpGet(`/domain/extensions/${encodeURIComponent(name)}`)) as IDataObject;
 

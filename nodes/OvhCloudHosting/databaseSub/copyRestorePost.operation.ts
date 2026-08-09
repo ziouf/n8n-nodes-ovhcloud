@@ -54,15 +54,15 @@ export function description(displayOptions: IDisplayOptions): INodeProperties[] 
  */
 export async function execute(
 	this: IExecuteFunctions,
-	itemIndex?: number,
+	_itemIndex?: number,
 ): Promise<INodeExecutionData[]> {
 	const client = new ApiClient(this);
-	const serviceName = this.getNodeParameter('serviceName', itemIndex as number) as string;
-	const databaseName = this.getNodeParameter('databaseName', itemIndex as number) as string;
-	const copyId = this.getNodeParameter('copyId', itemIndex as number) as string;
+	const serviceName = this.getNodeParameter('serviceName', _itemIndex as number) as string;
+	const databaseName = this.getNodeParameter('databaseName', _itemIndex as number) as string;
+	const copyId = this.getNodeParameter('copyId', _itemIndex as number) as string;
 	const flushDatabase = this.getNodeParameter(
 		'flushDatabase',
-		itemIndex as number,
+		_itemIndex as number,
 		false,
 	) as boolean;
 	const data = (await client.httpPost(

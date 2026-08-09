@@ -37,9 +37,9 @@ export function description(displayOptions: IDisplayOptions): INodeProperties[] 
  * HTTP method: PUT
  * Endpoint: /notification/contactMean/{contactMeanId}/task/{taskId}
  */
-export async function execute(this: IExecuteFunctions, itemIndex: number): Promise<INodeExecutionData[]> {
-	const contactMeanId = this.getNodeParameter('contactMeanId', itemIndex) as string;
-	const taskId = this.getNodeParameter('taskId', itemIndex) as string;
+export async function execute(this: IExecuteFunctions, _itemIndex: number): Promise<INodeExecutionData[]> {
+	const contactMeanId = this.getNodeParameter('contactMeanId', _itemIndex) as string;
+	const taskId = this.getNodeParameter('taskId', _itemIndex) as string;
 
 	const body: IDataObject = {};
 

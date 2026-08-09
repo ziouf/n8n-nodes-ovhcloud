@@ -275,94 +275,94 @@ export function description() {
 	return props;
 }
 
-export async function execute(this: IExecuteFunctions): Promise<INodeExecutionData[]> {
+export async function execute(this: IExecuteFunctions, itemIndex?: number): Promise<INodeExecutionData[]> {
 	const operation = this.getNodeParameter('ovhCloudConnectOperation', 0) as string;
 
 	switch (operation) {
 		case 'changeContactPost':
-			return changeContactPost.execute.call(this);
+			return changeContactPost.execute.call(this, itemIndex ?? 0);
 		case 'confirmTerminationPost':
-			return confirmTerminationPost.execute.call(this);
+			return confirmTerminationPost.execute.call(this, itemIndex ?? 0);
 		case 'logSubscriptionPost':
-			return logSubscriptionPost.execute.call(this);
+			return logSubscriptionPost.execute.call(this, itemIndex ?? 0);
 		case 'monitoringPost':
-			return monitoringPost.execute.call(this);
+			return monitoringPost.execute.call(this, itemIndex ?? 0);
 		case 'popPost':
-			return popPost.execute.call(this);
+			return popPost.execute.call(this, itemIndex ?? 0);
 		case 'popDatacenterPost':
-			return popDatacenterPost.execute.call(this);
+			return popDatacenterPost.execute.call(this, itemIndex ?? 0);
 		case 'popDatacenterExtraPost':
-			return popDatacenterExtraPost.execute.call(this);
+			return popDatacenterExtraPost.execute.call(this, itemIndex ?? 0);
 		case 'diagnosticPost':
-			return diagnosticPost.execute.call(this);
+			return diagnosticPost.execute.call(this, itemIndex ?? 0);
 		case 'migrationPost':
-			return migrationPost.execute.call(this);
+			return migrationPost.execute.call(this, itemIndex ?? 0);
 		case 'logSubscriptionDelete':
-			return logSubscriptionDelete.execute.call(this);
+			return logSubscriptionDelete.execute.call(this, itemIndex ?? 0);
 		case 'monitoringDelete':
-			return monitoringDelete.execute.call(this);
+			return monitoringDelete.execute.call(this, itemIndex ?? 0);
 		case 'popDelete':
-			return popDelete.execute.call(this);
+			return popDelete.execute.call(this, itemIndex ?? 0);
 		case 'popDatacenterDelete':
-			return popDatacenterDelete.execute.call(this);
+			return popDatacenterDelete.execute.call(this, itemIndex ?? 0);
 		case 'popDatacenterExtraDelete':
-			return popDatacenterExtraDelete.execute.call(this);
+			return popDatacenterExtraDelete.execute.call(this, itemIndex ?? 0);
 		case 'logUrlPost':
-			return logUrlPost.execute.call(this);
+			return logUrlPost.execute.call(this, itemIndex ?? 0);
 		case 'interfaceStatisticsGet':
-			return interfaceStatisticsGet.execute.call(this);
+			return interfaceStatisticsGet.execute.call(this, itemIndex ?? 0);
 		case 'interfaceStatusGet':
-			return interfaceStatusGet.execute.call(this);
+			return interfaceStatusGet.execute.call(this, itemIndex ?? 0);
 		case 'logKindNameGet':
-			return logKindNameGet.execute.call(this);
+			return logKindNameGet.execute.call(this, itemIndex ?? 0);
 		case 'logSubscriptionDetailGet':
-			return logSubscriptionDetailGet.execute.call(this);
+			return logSubscriptionDetailGet.execute.call(this, itemIndex ?? 0);
 		case 'get':
-			return get.execute.call(this);
+			return get.execute.call(this, itemIndex ?? 0);
 		case 'popDetailGet':
-			return popDetailGet.execute.call(this);
+			return popDetailGet.execute.call(this, itemIndex ?? 0);
 		case 'popDatacenterDetailGet':
-			return popDatacenterDetailGet.execute.call(this);
+			return popDatacenterDetailGet.execute.call(this, itemIndex ?? 0);
 		case 'popDatacenterExtraDetailGet':
-			return popDatacenterExtraDetailGet.execute.call(this);
+			return popDatacenterExtraDetailGet.execute.call(this, itemIndex ?? 0);
 		case 'popStatisticsGet':
-			return popStatisticsGet.execute.call(this);
+			return popStatisticsGet.execute.call(this, itemIndex ?? 0);
 		case 'popStatusGet':
-			return popStatusGet.execute.call(this);
+			return popStatusGet.execute.call(this, itemIndex ?? 0);
 		case 'diagnosticDetailGet':
-			return diagnosticDetailGet.execute.call(this);
+			return diagnosticDetailGet.execute.call(this, itemIndex ?? 0);
 		case 'incidentDetailGet':
-			return incidentDetailGet.execute.call(this);
+			return incidentDetailGet.execute.call(this, itemIndex ?? 0);
 		case 'interfaceDetailGet':
-			return interfaceDetailGet.execute.call(this);
+			return interfaceDetailGet.execute.call(this, itemIndex ?? 0);
 		case 'migrationGet':
-			return migrationGet.execute.call(this);
+			return migrationGet.execute.call(this, itemIndex ?? 0);
 		case 'logKindGet':
-			return logKindGet.execute.call(this);
+			return logKindGet.execute.call(this, itemIndex ?? 0);
 		case 'logSubscriptionGet':
-			return logSubscriptionGet.execute.call(this);
+			return logSubscriptionGet.execute.call(this, itemIndex ?? 0);
 		case 'list':
-			return list.execute.call(this);
+			return list.execute.call(this, itemIndex ?? 0);
 		case 'popGet':
-			return popGet.execute.call(this);
+			return popGet.execute.call(this, itemIndex ?? 0);
 		case 'popDatacenterGet':
-			return popDatacenterGet.execute.call(this);
+			return popDatacenterGet.execute.call(this, itemIndex ?? 0);
 		case 'popDatacenterExtraGet':
-			return popDatacenterExtraGet.execute.call(this);
+			return popDatacenterExtraGet.execute.call(this, itemIndex ?? 0);
 		case 'diagnosticGet':
-			return diagnosticGet.execute.call(this);
+			return diagnosticGet.execute.call(this, itemIndex ?? 0);
 		case 'incidentGet':
-			return incidentGet.execute.call(this);
+			return incidentGet.execute.call(this, itemIndex ?? 0);
 		case 'interfaceGet':
-			return interfaceGet.execute.call(this);
+			return interfaceGet.execute.call(this, itemIndex ?? 0);
 		case 'monitoringGet':
-			return monitoringGet.execute.call(this);
+			return monitoringGet.execute.call(this, itemIndex ?? 0);
 		case 'interfaceLockPost':
-			return interfaceLockPost.execute.call(this);
+			return interfaceLockPost.execute.call(this, itemIndex ?? 0);
 		case 'interfaceUnlockPost':
-			return interfaceUnlockPost.execute.call(this);
+			return interfaceUnlockPost.execute.call(this, itemIndex ?? 0);
 		case 'updatePut':
-			return updatePut.execute.call(this);
+			return updatePut.execute.call(this, itemIndex ?? 0);
 		default:
 			throw new Error(`No handler for operation '${operation}'`);
 	}

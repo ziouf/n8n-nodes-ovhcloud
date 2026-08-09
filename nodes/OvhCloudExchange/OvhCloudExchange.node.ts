@@ -16,7 +16,7 @@ export class OvhCloudExchange extends BaseNode implements INodeType {
 		icon: OvhCloudIcon,
 		group: ['input'],
 		version: 1,
-		subtitle: '=' + String.fromCharCode(36) + '{"$parameter"}["exchangeOperation"]',
+		subtitle: '={{$parameter["exchangeOperation"]}}',
 		description: 'Manage your OVHcloud Exchange (MSS) services via the /email/exchange API v1',
 		defaults: { name: 'OVH Cloud Exchange' },
 		usableAsTool: true,

@@ -21,11 +21,11 @@ export function description(displayOptions: IDisplayOptions) {
  * HTTP method: GET
  * Endpoint: /dedicated/nasha
  */
-export async function execute(this: IExecuteFunctions): Promise<INodeExecutionData[]> {
+export async function execute(this: IExecuteFunctions, _itemIndex?: number): Promise<INodeExecutionData[]> {
 	const client = new ApiClient(this);
 	const qs: Record<string, string> = {};
 
-	const region = (this.getNodeParameter('region', 0) as string) || undefined;
+	const region = (this.getNodeParameter('region', _itemIndex ?? 0) as string) || undefined;
 	if (region) qs.region = region;
 
 	const data = (await client.httpGet('/dedicated/nasha', qs)) as string[];

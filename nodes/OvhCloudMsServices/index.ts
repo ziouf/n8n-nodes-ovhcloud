@@ -691,59 +691,59 @@ export async function execute(
 
 	switch (operation) {
 		case 'deleteMsServicesserviceNAccountuserPrinMfaDelete':
-			return await executeDeleteMsServicesserviceNAccountuserPrinMfaDelete.call(this, itemIndex);
+			return await executeDeleteMsServicesserviceNAccountuserPrinMfaDelete.call(this, itemIndex ?? 0);
 		case 'deleteMsServicesserviceNAccountuserPrinSyncDelete':
-			return await executeDeleteMsServicesserviceNAccountuserPrinSyncDelete.call(this, itemIndex);
+			return await executeDeleteMsServicesserviceNAccountuserPrinSyncDelete.call(this, itemIndex ?? 0);
 		case 'deleteMsServicesserviceNSyncDelete':
-			return await executeDeleteMsServicesserviceNSyncDelete.call(this, itemIndex);
+			return await executeDeleteMsServicesserviceNSyncDelete.call(this, itemIndex ?? 0);
 		case 'deleteMsServicesserviceNUpnSuffixsuffixDelete':
-			return await executeDeleteMsServicesserviceNUpnSuffixsuffixDelete.call(this, itemIndex);
+			return await executeDeleteMsServicesserviceNUpnSuffixsuffixDelete.call(this, itemIndex ?? 0);
 		case 'getMsServicesserviceNAccountGet':
-			return await executeGetMsServicesserviceNAccountGet.call(this, itemIndex);
+			return await executeGetMsServicesserviceNAccountGet.call(this, itemIndex ?? 0);
 		case 'getMsServicesserviceNAccountuserPrinExchangeGet':
-			return await executeGetMsServicesserviceNAccountuserPrinExchangeGet.call(this, itemIndex);
+			return await executeGetMsServicesserviceNAccountuserPrinExchangeGet.call(this, itemIndex ?? 0);
 		case 'getMsServicesserviceNAccountuserPrinGet':
-			return await executeGetMsServicesserviceNAccountuserPrinGet.call(this, itemIndex);
+			return await executeGetMsServicesserviceNAccountuserPrinGet.call(this, itemIndex ?? 0);
 		case 'getMsServicesserviceNAccountuserPrinMfaGet':
-			return await executeGetMsServicesserviceNAccountuserPrinMfaGet.call(this, itemIndex);
+			return await executeGetMsServicesserviceNAccountuserPrinMfaGet.call(this, itemIndex ?? 0);
 		case 'getMsServicesserviceNAccountuserPrinSharepointGet':
-			return await executeGetMsServicesserviceNAccountuserPrinSharepointGet.call(this, itemIndex);
+			return await executeGetMsServicesserviceNAccountuserPrinSharepointGet.call(this, itemIndex ?? 0);
 		case 'getMsServicesserviceNAccountuserPrinSyncGet':
-			return await executeGetMsServicesserviceNAccountuserPrinSyncGet.call(this, itemIndex);
+			return await executeGetMsServicesserviceNAccountuserPrinSyncGet.call(this, itemIndex ?? 0);
 		case 'getMsServicesserviceNExchangeBillingMigratedGet':
-			return await executeGetMsServicesserviceNExchangeBillingMigratedGet.call(this, itemIndex);
+			return await executeGetMsServicesserviceNExchangeBillingMigratedGet.call(this, itemIndex ?? 0);
 		case 'getMsServicesserviceNExchangeGet':
-			return await executeGetMsServicesserviceNExchangeGet.call(this, itemIndex);
+			return await executeGetMsServicesserviceNExchangeGet.call(this, itemIndex ?? 0);
 		case 'getMsServicesserviceNExchangeTaskGet':
-			return await executeGetMsServicesserviceNExchangeTaskGet.call(this, itemIndex);
+			return await executeGetMsServicesserviceNExchangeTaskGet.call(this, itemIndex ?? 0);
 		case 'getMsServicesserviceNExchangeTaskidGet':
-			return await executeGetMsServicesserviceNExchangeTaskidGet.call(this, itemIndex);
+			return await executeGetMsServicesserviceNExchangeTaskidGet.call(this, itemIndex ?? 0);
 		case 'getMsServicesserviceNSharepointBillingMigratedGet':
-			return await executeGetMsServicesserviceNSharepointBillingMigratedGet.call(this, itemIndex);
+			return await executeGetMsServicesserviceNSharepointBillingMigratedGet.call(this, itemIndex ?? 0);
 		case 'getMsServicesserviceNSharepointGet':
-			return await executeGetMsServicesserviceNSharepointGet.call(this, itemIndex);
+			return await executeGetMsServicesserviceNSharepointGet.call(this, itemIndex ?? 0);
 		case 'getMsServicesserviceNSharepointLicenseGet':
-			return await executeGetMsServicesserviceNSharepointLicenseGet.call(this, itemIndex);
+			return await executeGetMsServicesserviceNSharepointLicenseGet.call(this, itemIndex ?? 0);
 		case 'getMsServicesserviceNSharepointTaskGet':
-			return await executeGetMsServicesserviceNSharepointTaskGet.call(this, itemIndex);
+			return await executeGetMsServicesserviceNSharepointTaskGet.call(this, itemIndex ?? 0);
 		case 'getMsServicesserviceNSharepointTaskidGet':
-			return await executeGetMsServicesserviceNSharepointTaskidGet.call(this, itemIndex);
+			return await executeGetMsServicesserviceNSharepointTaskidGet.call(this, itemIndex ?? 0);
 		case 'getMsServicesserviceNSyncClientSoftwareURLGet':
-			return await executeGetMsServicesserviceNSyncClientSoftwareURLGet.call(this, itemIndex);
+			return await executeGetMsServicesserviceNSyncClientSoftwareURLGet.call(this, itemIndex ?? 0);
 		case 'getMsServicesserviceNSyncGet':
-			return await executeGetMsServicesserviceNSyncGet.call(this, itemIndex);
+			return await executeGetMsServicesserviceNSyncGet.call(this, itemIndex ?? 0);
 		case 'getMsServicesserviceNSyncLicenseGet':
-			return await executeGetMsServicesserviceNSyncLicenseGet.call(this, itemIndex);
+			return await executeGetMsServicesserviceNSyncLicenseGet.call(this, itemIndex ?? 0);
 		case 'getMsServicesserviceNUpnSuffixGet':
-			return await executeGetMsServicesserviceNUpnSuffixGet.call(this, itemIndex);
+			return await executeGetMsServicesserviceNUpnSuffixGet.call(this, itemIndex ?? 0);
 		case 'getMsServicesserviceNUpnSuffixsuffixGet':
-			return await executeGetMsServicesserviceNUpnSuffixsuffixGet.call(this, itemIndex);
+			return await executeGetMsServicesserviceNUpnSuffixsuffixGet.call(this, itemIndex ?? 0);
 		case 'getMsServicesSharepointdomainGet':
-			return await executeGetMsServicesSharepointdomainGet.call(this, itemIndex);
+			return await executeGetMsServicesSharepointdomainGet.call(this, itemIndex ?? 0);
 		case 'getMsServicesSharepointdomainServiceInfosGet':
-			return await executeGetMsServicesSharepointdomainServiceInfosGet.call(this, itemIndex);
+			return await executeGetMsServicesSharepointdomainServiceInfosGet.call(this, itemIndex ?? 0);
 		case 'getMsServicesSharepointGet':
-			return await executeGetMsServicesSharepointGet.call(this, itemIndex);
+			return await executeGetMsServicesSharepointGet.call(this, itemIndex ?? 0);
 		case 'postMsServicesserviceNAccountuserPrinChangePasswordPost':
 			return await executePostMsServicesserviceNAccountuserPrinChangePasswordPost.call(
 				this,
@@ -755,13 +755,13 @@ export async function execute(
 				itemIndex,
 			);
 		case 'postMsServicesserviceNAccountuserPrinMfaDisablePost':
-			return await executePostMsServicesserviceNAccountuserPrinMfaDisablePost.call(this, itemIndex);
+			return await executePostMsServicesserviceNAccountuserPrinMfaDisablePost.call(this, itemIndex ?? 0);
 		case 'postMsServicesserviceNAccountuserPrinMfaEnablePost':
-			return await executePostMsServicesserviceNAccountuserPrinMfaEnablePost.call(this, itemIndex);
+			return await executePostMsServicesserviceNAccountuserPrinMfaEnablePost.call(this, itemIndex ?? 0);
 		case 'postMsServicesserviceNAccountuserPrinMfaPost':
-			return await executePostMsServicesserviceNAccountuserPrinMfaPost.call(this, itemIndex);
+			return await executePostMsServicesserviceNAccountuserPrinMfaPost.call(this, itemIndex ?? 0);
 		case 'postMsServicesserviceNAccountuserPrinMfaResetPost':
-			return await executePostMsServicesserviceNAccountuserPrinMfaResetPost.call(this, itemIndex);
+			return await executePostMsServicesserviceNAccountuserPrinMfaResetPost.call(this, itemIndex ?? 0);
 		case 'postMsServicesserviceNAccountuserPrinSharepointClearSpacePost':
 			return await executePostMsServicesserviceNAccountuserPrinSharepointClearSpacePost.call(
 				this,
@@ -778,36 +778,36 @@ export async function execute(
 				itemIndex,
 			);
 		case 'postMsServicesserviceNAccountuserPrinSyncPost':
-			return await executePostMsServicesserviceNAccountuserPrinSyncPost.call(this, itemIndex);
+			return await executePostMsServicesserviceNAccountuserPrinSyncPost.call(this, itemIndex ?? 0);
 		case 'postMsServicesserviceNChangeContactPost':
-			return await executePostMsServicesserviceNChangeContactPost.call(this, itemIndex);
+			return await executePostMsServicesserviceNChangeContactPost.call(this, itemIndex ?? 0);
 		case 'postMsServicesserviceNCreateMfaOnAllUsersPost':
-			return await executePostMsServicesserviceNCreateMfaOnAllUsersPost.call(this, itemIndex);
+			return await executePostMsServicesserviceNCreateMfaOnAllUsersPost.call(this, itemIndex ?? 0);
 		case 'postMsServicesserviceNRemoveMfaOnAllUsersPost':
-			return await executePostMsServicesserviceNRemoveMfaOnAllUsersPost.call(this, itemIndex);
+			return await executePostMsServicesserviceNRemoveMfaOnAllUsersPost.call(this, itemIndex ?? 0);
 		case 'postMsServicesserviceNSharepointRestoreAdminRightsPost':
 			return await executePostMsServicesserviceNSharepointRestoreAdminRightsPost.call(
 				this,
 				itemIndex,
 			);
 		case 'postMsServicesserviceNSyncChangePasswordPost':
-			return await executePostMsServicesserviceNSyncChangePasswordPost.call(this, itemIndex);
+			return await executePostMsServicesserviceNSyncChangePasswordPost.call(this, itemIndex ?? 0);
 		case 'postMsServicesserviceNSyncClientSoftwareURLPost':
-			return await executePostMsServicesserviceNSyncClientSoftwareURLPost.call(this, itemIndex);
+			return await executePostMsServicesserviceNSyncClientSoftwareURLPost.call(this, itemIndex ?? 0);
 		case 'postMsServicesserviceNUpnSuffixPost':
-			return await executePostMsServicesserviceNUpnSuffixPost.call(this, itemIndex);
+			return await executePostMsServicesserviceNUpnSuffixPost.call(this, itemIndex ?? 0);
 		case 'putMsServicesserviceNAccountuserPrinExchangePut':
-			return await executePutMsServicesserviceNAccountuserPrinExchangePut.call(this, itemIndex);
+			return await executePutMsServicesserviceNAccountuserPrinExchangePut.call(this, itemIndex ?? 0);
 		case 'putMsServicesserviceNAccountuserPrinPut':
-			return await executePutMsServicesserviceNAccountuserPrinPut.call(this, itemIndex);
+			return await executePutMsServicesserviceNAccountuserPrinPut.call(this, itemIndex ?? 0);
 		case 'putMsServicesserviceNAccountuserPrinSharepointPut':
-			return await executePutMsServicesserviceNAccountuserPrinSharepointPut.call(this, itemIndex);
+			return await executePutMsServicesserviceNAccountuserPrinSharepointPut.call(this, itemIndex ?? 0);
 		case 'putMsServicesserviceNExchangePut':
-			return await executePutMsServicesserviceNExchangePut.call(this, itemIndex);
+			return await executePutMsServicesserviceNExchangePut.call(this, itemIndex ?? 0);
 		case 'putMsServicesserviceNSharepointPut':
-			return await executePutMsServicesserviceNSharepointPut.call(this, itemIndex);
+			return await executePutMsServicesserviceNSharepointPut.call(this, itemIndex ?? 0);
 		case 'putMsServicesSharepointdomainServiceInfosPut':
-			return await executePutMsServicesSharepointdomainServiceInfosPut.call(this, itemIndex);
+			return await executePutMsServicesSharepointdomainServiceInfosPut.call(this, itemIndex ?? 0);
 	}
 
 	throw new Error('Unsupported operation ' + operation);

@@ -26,8 +26,8 @@ export function description(): INodeProperties[] {
  * Endpoint: /dedicated/installationTemplate/{templateName}
  */
 export async function execute(this: IExecuteFunctions,
-	itemIndex: number): Promise<INodeExecutionData[]> {
-	const templateName = this.getNodeParameter('templateName', itemIndex) as string;
+	_itemIndex: number): Promise<INodeExecutionData[]> {
+	const templateName = this.getNodeParameter('templateName', _itemIndex) as string;
 	const client = new ApiClient(this);
 	const data = (await client.httpGet('/dedicated/installationTemplate/' + encodeURIComponent(templateName))) as IDataObject;
 	return this.helpers.returnJsonArray([data]);

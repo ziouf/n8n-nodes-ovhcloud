@@ -57,16 +57,16 @@ export function description(displayOptions: IDisplayOptions): INodeProperties[] 
  * HTTP method: PUT
  * Endpoint: /license/worklight/{serviceName}
  */
-export async function execute(this: IExecuteFunctions): Promise<INodeExecutionData[]> {
+export async function execute(this: IExecuteFunctions, _itemIndex?: number): Promise<INodeExecutionData[]> {
 	const client = new ApiClient(this);
-	const serviceName = this.getNodeParameter('serviceName', 0, '', { extractValue: true }) as string;
+	const serviceName = this.getNodeParameter('serviceName', _itemIndex ?? 0, '', { extractValue: true }) as string;
 
 	const body: IDataObject = {};
 
-	const deleteAtExpiration = this.getNodeParameter('deleteAtExpiration', 0) as boolean | undefined;
+	const deleteAtExpiration = this.getNodeParameter('deleteAtExpiration', _itemIndex ?? 0) as boolean | undefined;
 	if (deleteAtExpiration !== undefined) body.deleteAtExpiration = deleteAtExpiration;
 
-	const version = (this.getNodeParameter('version', 0, '') as string) || '';
+	const version = (this.getNodeParameter('version', _itemIndex ?? 0, '') as string) || '';
 	if (version) body.version = version;
 
 	await client.httpPut(`/license/worklight/${encodeURIComponent(serviceName)}`, body);

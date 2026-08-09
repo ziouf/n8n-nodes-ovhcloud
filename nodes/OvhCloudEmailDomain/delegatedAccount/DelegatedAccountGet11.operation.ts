@@ -26,8 +26,8 @@ export function description(displayOptions: IDisplayOptions): INodeProperties[] 
  * HTTP method: POST
  * Endpoint: /email/domain/delegatedAccount/{email}/updateUsage
  */
-export async function execute(this: IExecuteFunctions): Promise<INodeExecutionData[]> {
-	const email = this.getNodeParameter('email', 0) as string;
+export async function execute(this: IExecuteFunctions, _itemIndex?: number): Promise<INodeExecutionData[]> {
+	const email = this.getNodeParameter('email', _itemIndex ?? 0) as string;
 
 	const client = new ApiClient(this);
 	const data = (await client.httpPost('/email' + '/domain' + '/delegatedAccount/' + encodeURIComponent(email) + '/updateUsage')) as IDataObject;

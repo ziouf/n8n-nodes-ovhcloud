@@ -53,11 +53,11 @@ export function description(displayOptions: IDisplayOptions): INodeProperties[] 
  * HTTP method: POST
  * Endpoint: /telephony/{billingAccount}/outplanNotification
  */
-export async function execute(this: IExecuteFunctions, itemIndex: number): Promise<INodeExecutionData[]> {
-	const billingAccount = this.getNodeParameter('billingAccount', itemIndex) as string;
-	const block = this.getNodeParameter('block', itemIndex) as string;
-	const notifyEmail = this.getNodeParameter('notifyEmail', itemIndex) as string;
-	const percentage = this.getNodeParameter('percentage', itemIndex) as string;
+export async function execute(this: IExecuteFunctions, _itemIndex: number): Promise<INodeExecutionData[]> {
+	const billingAccount = this.getNodeParameter('billingAccount', _itemIndex) as string;
+	const block = this.getNodeParameter('block', _itemIndex) as string;
+	const notifyEmail = this.getNodeParameter('notifyEmail', _itemIndex) as string;
+	const percentage = this.getNodeParameter('percentage', _itemIndex) as string;
 
 	const body: IDataObject = {
 		block: block,

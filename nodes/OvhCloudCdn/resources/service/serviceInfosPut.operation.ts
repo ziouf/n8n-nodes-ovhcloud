@@ -59,12 +59,12 @@ export function description(displayOptions: IDisplayOptions): INodeProperties[] 
  * HTTP method: PUT
  * Endpoint: /cdn/dedicated/{serviceName}/serviceInfos
  */
-export async function execute(this: IExecuteFunctions, itemIndex: number): Promise<INodeExecutionData[]> {
-	const serviceName = this.getNodeParameter('serviceName', itemIndex) as string;
-	const canDeleteAtExpiration = (this.getNodeParameter('canDeleteAtExpiration', itemIndex, false) as boolean);
-	const contactAdmin = (this.getNodeParameter('contactAdmin', itemIndex, "") as string);
-	const contactBilling = (this.getNodeParameter('contactBilling', itemIndex, "") as string);
-	const contactTech = (this.getNodeParameter('contactTech', itemIndex, "") as string);
+export async function execute(this: IExecuteFunctions, _itemIndex: number): Promise<INodeExecutionData[]> {
+	const serviceName = this.getNodeParameter('serviceName', _itemIndex) as string;
+	const canDeleteAtExpiration = (this.getNodeParameter('canDeleteAtExpiration', _itemIndex, false) as boolean);
+	const contactAdmin = (this.getNodeParameter('contactAdmin', _itemIndex, "") as string);
+	const contactBilling = (this.getNodeParameter('contactBilling', _itemIndex, "") as string);
+	const contactTech = (this.getNodeParameter('contactTech', _itemIndex, "") as string);
 
 	const body: IDataObject = {};
 	if (canDeleteAtExpiration !== false) body.canDeleteAtExpiration = canDeleteAtExpiration;

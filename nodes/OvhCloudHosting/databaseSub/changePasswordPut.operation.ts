@@ -43,11 +43,11 @@ export function description(displayOptions: IDisplayOptions): INodeProperties[] 
  * HTTP method: PUT
  * Endpoint: /hosting/web/database/{serviceName}/{databaseName}/changePassword
  */
-export async function execute(this: IExecuteFunctions): Promise<INodeExecutionData[]> {
+export async function execute(this: IExecuteFunctions, _itemIndex?: number): Promise<INodeExecutionData[]> {
 	const client = new ApiClient(this);
-	const serviceName = this.getNodeParameter('serviceName', 0) as string;
-	const databaseName = this.getNodeParameter('databaseName', 0) as string;
-	const newPassword = this.getNodeParameter('newPassword', 0) as string;
+	const serviceName = this.getNodeParameter('serviceName', _itemIndex ?? 0) as string;
+	const databaseName = this.getNodeParameter('databaseName', _itemIndex ?? 0) as string;
+	const newPassword = this.getNodeParameter('newPassword', _itemIndex ?? 0) as string;
 	const data = await client.httpPut(
 		`/hosting/web/database/${serviceName}/${databaseName}/changePassword`,
 		{ password: newPassword },

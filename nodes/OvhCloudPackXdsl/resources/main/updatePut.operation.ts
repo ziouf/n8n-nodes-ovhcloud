@@ -49,10 +49,10 @@ export function description(displayOptions: IDisplayOptions): INodeProperties[] 
  * HTTP method: PUT
  * Endpoint: /pack/xdsl/{packName}
  */
-export async function execute(this: IExecuteFunctions): Promise<INodeExecutionData[]> {
+export async function execute(this: IExecuteFunctions, _itemIndex?: number): Promise<INodeExecutionData[]> {
 	const client = new ApiClient(this);
-	const packName = this.getNodeParameter('packName', 0, '', { extractValue: true }) as string;
-	const description = (this.getNodeParameter('description', 0, '') as string) || '';
+	const packName = this.getNodeParameter('packName', _itemIndex ?? 0, '', { extractValue: true }) as string;
+	const description = (this.getNodeParameter('description', _itemIndex ?? 0, '') as string) || '';
 
 	const body: IDataObject = {};
 	if (description) body.description = description;

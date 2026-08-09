@@ -69,13 +69,13 @@ export function description(displayOptions: IDisplayOptions): INodeProperties[] 
  * HTTP method: PUT
  * Endpoint: /telephony/{billingAccount}/carrierSip/{serviceName}/vno/{contractReference}/ranges/{prefix}
  */
-export async function execute(this: IExecuteFunctions, itemIndex: number): Promise<INodeExecutionData[]> {
-	const billingAccount = this.getNodeParameter('billingAccount', itemIndex) as string;
-	const contractReference = this.getNodeParameter('contractReference', itemIndex) as string;
-	const prefix = this.getNodeParameter('prefix', itemIndex) as string;
-	const serviceName = this.getNodeParameter('serviceName', itemIndex) as string;
-	const description = this.getNodeParameter('description', itemIndex) as string;
-	const prefix1 = this.getNodeParameter('prefix', itemIndex) as string;
+export async function execute(this: IExecuteFunctions, _itemIndex: number): Promise<INodeExecutionData[]> {
+	const billingAccount = this.getNodeParameter('billingAccount', _itemIndex) as string;
+	const contractReference = this.getNodeParameter('contractReference', _itemIndex) as string;
+	const prefix = this.getNodeParameter('prefix', _itemIndex) as string;
+	const serviceName = this.getNodeParameter('serviceName', _itemIndex) as string;
+	const description = this.getNodeParameter('description', _itemIndex) as string;
+	const prefix1 = this.getNodeParameter('prefix', _itemIndex) as string;
 
 	const body: IDataObject = {
     description: description,

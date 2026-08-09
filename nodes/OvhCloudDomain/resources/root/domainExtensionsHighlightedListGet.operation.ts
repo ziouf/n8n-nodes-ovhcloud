@@ -44,11 +44,11 @@ export function description(displayOptions: IDisplayOptions): INodeProperties[] 
  * HTTP method: GET
  * Endpoint: /domain/extensions/highlighted
  */
-export async function execute(this: IExecuteFunctions, itemIndex: number): Promise<INodeExecutionData[]> {
+export async function execute(this: IExecuteFunctions, _itemIndex: number): Promise<INodeExecutionData[]> {
 	const client = new ApiClient(this);
 
 	const qs: IDataObject = {};
-		const ovhSubsidiary = this.getNodeParameter('ovhSubsidiary', itemIndex, '') as string;
+		const ovhSubsidiary = this.getNodeParameter('ovhSubsidiary', _itemIndex, '') as string;
 		if (ovhSubsidiary !== '' && ovhSubsidiary !== undefined) qs['ovhSubsidiary'] = ovhSubsidiary;
 
 	const data = (await client.httpGet(`/domain/extensions/highlighted`, qs)) as IDataObject;

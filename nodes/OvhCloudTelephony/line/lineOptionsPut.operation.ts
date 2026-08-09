@@ -324,45 +324,45 @@ export function description(displayOptions: IDisplayOptions): INodeProperties[] 
  * HTTP method: PUT
  * Endpoint: /telephony/{billingAccount}/line/{serviceName}/options
  */
-export async function execute(this: IExecuteFunctions, itemIndex: number): Promise<INodeExecutionData[]> {
-	const billingAccount = this.getNodeParameter('billingAccount', itemIndex) as string;
-	const serviceName = this.getNodeParameter('serviceName', itemIndex) as string;
-	const absentSubscriber = this.getNodeParameter('absentSubscriber', itemIndex) as string;
-	const anonymousCallRejection = this.getNodeParameter('anonymousCallRejection', itemIndex) as string;
-	const callRestrictionIncoming = this.getNodeParameter('callRestrictionIncoming', itemIndex) as string;
-	const callRestrictionOutgoing = this.getNodeParameter('callRestrictionOutgoing', itemIndex) as string;
-	const callWaiting = this.getNodeParameter('callWaiting', itemIndex) as string;
-	const codecs = this.getNodeParameter('codecs', itemIndex) as string;
-	const defaultVoicemail = this.getNodeParameter('defaultVoicemail', itemIndex) as string;
-	const displayNumber = this.getNodeParameter('displayNumber', itemIndex) as string;
-	const doNotDisturb = this.getNodeParameter('doNotDisturb', itemIndex) as string;
-	const domain = this.getNodeParameter('domain', itemIndex) as string;
-	const forwardBackup = this.getNodeParameter('forwardBackup', itemIndex) as string;
-	const forwardBackupNature = this.getNodeParameter('forwardBackupNature', itemIndex) as string;
-	const forwardBackupNumber = this.getNodeParameter('forwardBackupNumber', itemIndex) as string;
-	const forwardBusy = this.getNodeParameter('forwardBusy', itemIndex) as string;
-	const forwardBusyNature = this.getNodeParameter('forwardBusyNature', itemIndex) as string;
-	const forwardBusyNumber = this.getNodeParameter('forwardBusyNumber', itemIndex) as string;
-	const forwardNoReply = this.getNodeParameter('forwardNoReply', itemIndex) as string;
-	const forwardNoReplyDelay = this.getNodeParameter('forwardNoReplyDelay', itemIndex) as string;
-	const forwardNoReplyNature = this.getNodeParameter('forwardNoReplyNature', itemIndex) as string;
-	const forwardNoReplyNumber = this.getNodeParameter('forwardNoReplyNumber', itemIndex) as string;
-	const forwardUnconditional = this.getNodeParameter('forwardUnconditional', itemIndex) as string;
-	const forwardUnconditionalNature = this.getNodeParameter('forwardUnconditionalNature', itemIndex) as string;
-	const forwardUnconditionalNumber = this.getNodeParameter('forwardUnconditionalNumber', itemIndex) as string;
-	const identificationRestriction = this.getNodeParameter('identificationRestriction', itemIndex) as string;
-	const intercom = this.getNodeParameter('intercom', itemIndex) as string;
-	const ipRestrictions = this.getNodeParameter('ipRestrictions', itemIndex) as string;
-	const language = this.getNodeParameter('language', itemIndex) as string;
-	const lockOutCall = this.getNodeParameter('lockOutCall', itemIndex) as string;
-	const lockOutCallPassword = this.getNodeParameter('lockOutCallPassword', itemIndex) as string;
-	const proxy = this.getNodeParameter('proxy', itemIndex) as string;
-	const recordOutgoingCallsBeta = this.getNodeParameter('recordOutgoingCallsBeta', itemIndex) as string;
-	const toneOnCallWaitingSoundId = this.getNodeParameter('toneOnCallWaitingSoundId', itemIndex) as string;
-	const toneOnHoldSoundId = this.getNodeParameter('toneOnHoldSoundId', itemIndex) as string;
-	const toneRingbackSoundId = this.getNodeParameter('toneRingbackSoundId', itemIndex) as string;
-	const voicemailExternalNumber = this.getNodeParameter('voicemailExternalNumber', itemIndex) as string;
-	const voicemailInternalNumber = this.getNodeParameter('voicemailInternalNumber', itemIndex) as string;
+export async function execute(this: IExecuteFunctions, _itemIndex: number): Promise<INodeExecutionData[]> {
+	const billingAccount = this.getNodeParameter('billingAccount', _itemIndex) as string;
+	const serviceName = this.getNodeParameter('serviceName', _itemIndex) as string;
+	const absentSubscriber = this.getNodeParameter('absentSubscriber', _itemIndex) as string;
+	const anonymousCallRejection = this.getNodeParameter('anonymousCallRejection', _itemIndex) as string;
+	const callRestrictionIncoming = this.getNodeParameter('callRestrictionIncoming', _itemIndex) as string;
+	const callRestrictionOutgoing = this.getNodeParameter('callRestrictionOutgoing', _itemIndex) as string;
+	const callWaiting = this.getNodeParameter('callWaiting', _itemIndex) as string;
+	const codecs = this.getNodeParameter('codecs', _itemIndex) as string;
+	const defaultVoicemail = this.getNodeParameter('defaultVoicemail', _itemIndex) as string;
+	const displayNumber = this.getNodeParameter('displayNumber', _itemIndex) as string;
+	const doNotDisturb = this.getNodeParameter('doNotDisturb', _itemIndex) as string;
+	const domain = this.getNodeParameter('domain', _itemIndex) as string;
+	const forwardBackup = this.getNodeParameter('forwardBackup', _itemIndex) as string;
+	const forwardBackupNature = this.getNodeParameter('forwardBackupNature', _itemIndex) as string;
+	const forwardBackupNumber = this.getNodeParameter('forwardBackupNumber', _itemIndex) as string;
+	const forwardBusy = this.getNodeParameter('forwardBusy', _itemIndex) as string;
+	const forwardBusyNature = this.getNodeParameter('forwardBusyNature', _itemIndex) as string;
+	const forwardBusyNumber = this.getNodeParameter('forwardBusyNumber', _itemIndex) as string;
+	const forwardNoReply = this.getNodeParameter('forwardNoReply', _itemIndex) as string;
+	const forwardNoReplyDelay = this.getNodeParameter('forwardNoReplyDelay', _itemIndex) as string;
+	const forwardNoReplyNature = this.getNodeParameter('forwardNoReplyNature', _itemIndex) as string;
+	const forwardNoReplyNumber = this.getNodeParameter('forwardNoReplyNumber', _itemIndex) as string;
+	const forwardUnconditional = this.getNodeParameter('forwardUnconditional', _itemIndex) as string;
+	const forwardUnconditionalNature = this.getNodeParameter('forwardUnconditionalNature', _itemIndex) as string;
+	const forwardUnconditionalNumber = this.getNodeParameter('forwardUnconditionalNumber', _itemIndex) as string;
+	const identificationRestriction = this.getNodeParameter('identificationRestriction', _itemIndex) as string;
+	const intercom = this.getNodeParameter('intercom', _itemIndex) as string;
+	const ipRestrictions = this.getNodeParameter('ipRestrictions', _itemIndex) as string;
+	const language = this.getNodeParameter('language', _itemIndex) as string;
+	const lockOutCall = this.getNodeParameter('lockOutCall', _itemIndex) as string;
+	const lockOutCallPassword = this.getNodeParameter('lockOutCallPassword', _itemIndex) as string;
+	const proxy = this.getNodeParameter('proxy', _itemIndex) as string;
+	const recordOutgoingCallsBeta = this.getNodeParameter('recordOutgoingCallsBeta', _itemIndex) as string;
+	const toneOnCallWaitingSoundId = this.getNodeParameter('toneOnCallWaitingSoundId', _itemIndex) as string;
+	const toneOnHoldSoundId = this.getNodeParameter('toneOnHoldSoundId', _itemIndex) as string;
+	const toneRingbackSoundId = this.getNodeParameter('toneRingbackSoundId', _itemIndex) as string;
+	const voicemailExternalNumber = this.getNodeParameter('voicemailExternalNumber', _itemIndex) as string;
+	const voicemailInternalNumber = this.getNodeParameter('voicemailInternalNumber', _itemIndex) as string;
 
 	const body: IDataObject = {
     absentSubscriber: absentSubscriber,

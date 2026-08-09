@@ -71,12 +71,12 @@ export function description(displayOptions: IDisplayOptions): INodeProperties[] 
  * HTTP method: POST
  * Endpoint: /metrics/{serviceName}/token
  */
-export async function execute(this: IExecuteFunctions): Promise<INodeExecutionData[]> {
+export async function execute(this: IExecuteFunctions, _itemIndex?: number): Promise<INodeExecutionData[]> {
 	const client = new ApiClient(this);
-	const serviceName = this.getNodeParameter('serviceName', 0, '', { extractValue: true }) as string;
-	const permission = this.getNodeParameter('permission', 0) as string;
-	const description = (this.getNodeParameter('description', 0, '') as string) || '';
-	const labels = this.getNodeParameter('labels', 0, '[]') as string;
+	const serviceName = this.getNodeParameter('serviceName', _itemIndex ?? 0, '', { extractValue: true }) as string;
+	const permission = this.getNodeParameter('permission', _itemIndex ?? 0) as string;
+	const description = (this.getNodeParameter('description', _itemIndex ?? 0, '') as string) || '';
+	const labels = this.getNodeParameter('labels', _itemIndex ?? 0, '[]') as string;
 
 	const body: IDataObject = { permission };
 	if (description) body.description = description;

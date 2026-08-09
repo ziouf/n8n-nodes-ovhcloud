@@ -112,17 +112,17 @@ export function description(displayOptions: IDisplayOptions = {} as IDisplayOpti
  * HTTP method: GET
  * Endpoint: /cloud/project/{serviceName}/ai/app
  */
-export async function execute(this: IExecuteFunctions): Promise<INodeExecutionData[]> {
-	const serviceName = this.getNodeParameter('serviceName', 0) as string;
-	const labelSelector = this.getNodeParameter('labelSelector', 0) as string;
-	const order = this.getNodeParameter('order', 0) as string;
-	const page = this.getNodeParameter('page', 0) as string;
-	const size = this.getNodeParameter('size', 0) as string;
-	const sort = this.getNodeParameter('sort', 0) as string;
-	const statusState = this.getNodeParameter('statusState', 0) as string;
-	const updatedAfter = this.getNodeParameter('updatedAfter', 0) as string;
-	const updatedBefore = this.getNodeParameter('updatedBefore', 0) as string;
-	const userName = this.getNodeParameter('userName', 0) as string;
+export async function execute(this: IExecuteFunctions, _itemIndex?: number): Promise<INodeExecutionData[]> {
+	const serviceName = this.getNodeParameter('serviceName', _itemIndex ?? 0) as string;
+	const labelSelector = this.getNodeParameter('labelSelector', _itemIndex ?? 0) as string;
+	const order = this.getNodeParameter('order', _itemIndex ?? 0) as string;
+	const page = this.getNodeParameter('page', _itemIndex ?? 0) as string;
+	const size = this.getNodeParameter('size', _itemIndex ?? 0) as string;
+	const sort = this.getNodeParameter('sort', _itemIndex ?? 0) as string;
+	const statusState = this.getNodeParameter('statusState', _itemIndex ?? 0) as string;
+	const updatedAfter = this.getNodeParameter('updatedAfter', _itemIndex ?? 0) as string;
+	const updatedBefore = this.getNodeParameter('updatedBefore', _itemIndex ?? 0) as string;
+	const userName = this.getNodeParameter('userName', _itemIndex ?? 0) as string;
 
 	const qs: Record<string, string> = {};
 	if (labelSelector) qs.labelSelector = labelSelector;

@@ -49,12 +49,12 @@ export function description(displayOptions: IDisplayOptions) {
  * HTTP method: POST
  * Endpoint: /dedicated/housing/{serviceName}/bandwidth
  */
-export async function execute(this: IExecuteFunctions): Promise<INodeExecutionData[]> {
+export async function execute(this: IExecuteFunctions, _itemIndex?: number): Promise<INodeExecutionData[]> {
 	const client = new ApiClient(this);
-	const serviceName = this.getNodeParameter('serviceName', 0, '', {
+	const serviceName = this.getNodeParameter('serviceName', _itemIndex ?? 0, '', {
 		extractValue: true,
 	}) as string;
-	const bandwidth = (this.getNodeParameter('bandwidth', 0) as string) || '';
+	const bandwidth = (this.getNodeParameter('bandwidth', _itemIndex ?? 0) as string) || '';
 
 	const body: IDataObject = { bandwidth };
 	const data = (await client.httpPost(

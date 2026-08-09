@@ -60,10 +60,10 @@ export function description(displayOptions: IDisplayOptions): INodeProperties[] 
  * HTTP method: GET
  * Endpoint: /cdn/dedicated/{serviceName}/ssl/tasks
  */
-export async function execute(this: IExecuteFunctions, itemIndex: number): Promise<INodeExecutionData[]> {
-	const serviceName = this.getNodeParameter('serviceName', itemIndex) as string;
-	const taskFunction = (this.getNodeParameter('function', itemIndex, '') as string) || '';
-	const status = (this.getNodeParameter('status', itemIndex, '') as string) || '';
+export async function execute(this: IExecuteFunctions, _itemIndex: number): Promise<INodeExecutionData[]> {
+	const serviceName = this.getNodeParameter('serviceName', _itemIndex) as string;
+	const taskFunction = (this.getNodeParameter('function', _itemIndex, '') as string) || '';
+	const status = (this.getNodeParameter('status', _itemIndex, '') as string) || '';
 
 	const qs: IDataObject = {};
 	if (taskFunction) qs.function = taskFunction;

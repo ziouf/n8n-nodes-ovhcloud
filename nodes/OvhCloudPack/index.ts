@@ -116,17 +116,17 @@ export async function execute(
 
 	switch (operation) {
 		case 'packListGet':
-			return executePackListGet.call(this, itemIndex);
+			return executePackListGet.call(this, itemIndex ?? 0);
 		case 'packGetGet':
-			return executePackGetGet.call(this, itemIndex);
+			return executePackGetGet.call(this, itemIndex ?? 0);
 		case 'packUpdatePut':
-			return executePackUpdatePut.call(this, itemIndex);
+			return executePackUpdatePut.call(this, itemIndex ?? 0);
 		case 'packDeleteDelete':
-			return executePackDeleteDelete.call(this, itemIndex);
+			return executePackDeleteDelete.call(this, itemIndex ?? 0);
 		case 'serviceInfosGetGet':
-			return executeServiceInfosGetGet.call(this, itemIndex);
+			return executeServiceInfosGetGet.call(this, itemIndex ?? 0);
 		case 'reinstallPost':
-			return executeReinstallPost.call(this, itemIndex);
+			return executeReinstallPost.call(this, itemIndex ?? 0);
 
 	}
 

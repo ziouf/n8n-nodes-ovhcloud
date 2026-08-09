@@ -45,13 +45,13 @@ export function description(displayOptions: IDisplayOptions): INodeProperties[] 
  * HTTP method: PUT
  * Endpoint: /storage/netapp/{serviceName}
  */
-export async function execute(this: IExecuteFunctions, itemIndex: number): Promise<INodeExecutionData[]> {
+export async function execute(this: IExecuteFunctions, _itemIndex: number): Promise<INodeExecutionData[]> {
 	const client = new ApiClient(this);
-	const serviceName = this.getNodeParameter('serviceName', itemIndex, '', {
+	const serviceName = this.getNodeParameter('serviceName', _itemIndex, '', {
 				extractValue: true,
 			}) as string;
 	const body: IDataObject = {};
-	body.name = this.getNodeParameter('name', itemIndex) as string;
+	body.name = this.getNodeParameter('name', _itemIndex) as string;
 	const data = (await client.httpPut(`/storage/netapp/${encodeURIComponent(serviceName)}`, body)) as IDataObject;
 	return this.helpers.returnJsonArray([data]);
 }

@@ -34,10 +34,10 @@ export function description(displayOptions: IDisplayOptions): INodeProperties[] 
  */
 export async function execute(
 	this: IExecuteFunctions,
-	itemIndex: number,
+	_itemIndex: number,
 ): Promise<INodeExecutionData[]> {
 	const client = new ApiClient(this);
-	const zoneName = this.getNodeParameter('zoneName', itemIndex) as string;
+	const zoneName = this.getNodeParameter('zoneName', _itemIndex) as string;
 
 	const data = (await client.httpPost(
 		`/domain/zone/${encodeURIComponent(zoneName)}/terminate`,

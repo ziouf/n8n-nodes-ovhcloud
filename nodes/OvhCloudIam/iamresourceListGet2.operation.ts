@@ -28,8 +28,8 @@ export function description(displayOptions: IDisplayOptions): INodeProperties[] 
  * HTTP method: GET
  * Endpoint: /iam/resource/{resourceURN}
  */
-export async function execute(this: IExecuteFunctions, itemIndex: number): Promise<INodeExecutionData[]> {
-	const resourceURN = this.getNodeParameter('resourceURN', itemIndex) as string;
+export async function execute(this: IExecuteFunctions, _itemIndex: number): Promise<INodeExecutionData[]> {
+	const resourceURN = this.getNodeParameter('resourceURN', _itemIndex) as string;
 
 
 	const client = new ApiClient(this);

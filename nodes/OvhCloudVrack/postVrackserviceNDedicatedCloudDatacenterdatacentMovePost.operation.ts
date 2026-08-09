@@ -45,13 +45,13 @@ export function description(displayOptions: IDisplayOptions): INodeProperties[] 
  * HTTP method: POST
  * Endpoint: /vrack/{serviceName}/dedicatedCloudDatacenter/{datacenter}/move
  */
-export async function execute(this: IExecuteFunctions, itemIndex: number): Promise<INodeExecutionData[]> {
-	const serviceName = this.getNodeParameter('serviceName', itemIndex) as string;
-	const datacenter = this.getNodeParameter('datacenter', itemIndex) as string;
+export async function execute(this: IExecuteFunctions, _itemIndex: number): Promise<INodeExecutionData[]> {
+	const serviceName = this.getNodeParameter('serviceName', _itemIndex) as string;
+	const datacenter = this.getNodeParameter('datacenter', _itemIndex) as string;
 
 
 
-	const targetServiceName = this.getNodeParameter('targetServiceName', itemIndex) as string;
+	const targetServiceName = this.getNodeParameter('targetServiceName', _itemIndex) as string;
 
 
 const body: IDataObject = {

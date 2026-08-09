@@ -428,65 +428,65 @@ export async function execute(
 
 	switch (operation) {
 		case 'zimbraplatformListGet':
-			return executeZimbraplatformListGet.call(this, itemIndex);
+			return executeZimbraplatformListGet.call(this, itemIndex ?? 0);
 		case 'zimbraplatformListGet2':
-			return executeZimbraplatformListGet2.call(this, itemIndex);
+			return executeZimbraplatformListGet2.call(this, itemIndex ?? 0);
 		case 'zimbraplatformUpdatePut':
-			return executeZimbraplatformUpdatePut.call(this, itemIndex);
+			return executeZimbraplatformUpdatePut.call(this, itemIndex ?? 0);
 		case 'zimbraplatformaccountListGet':
-			return executeZimbraplatformaccountListGet.call(this, itemIndex);
+			return executeZimbraplatformaccountListGet.call(this, itemIndex ?? 0);
 		case 'zimbraplatformaccountCreatePost':
-			return executeZimbraplatformaccountCreatePost.call(this, itemIndex);
+			return executeZimbraplatformaccountCreatePost.call(this, itemIndex ?? 0);
 		case 'zimbraplatformaccountDeleteDelete':
-			return executeZimbraplatformaccountDeleteDelete.call(this, itemIndex);
+			return executeZimbraplatformaccountDeleteDelete.call(this, itemIndex ?? 0);
 		case 'zimbraplatformaccountListGet2':
-			return executeZimbraplatformaccountListGet2.call(this, itemIndex);
+			return executeZimbraplatformaccountListGet2.call(this, itemIndex ?? 0);
 		case 'zimbraplatformaccountUpdatePut':
-			return executeZimbraplatformaccountUpdatePut.call(this, itemIndex);
+			return executeZimbraplatformaccountUpdatePut.call(this, itemIndex ?? 0);
 		case 'zimbraplatformaliasListGet':
-			return executeZimbraplatformaliasListGet.call(this, itemIndex);
+			return executeZimbraplatformaliasListGet.call(this, itemIndex ?? 0);
 		case 'zimbraplatformaliasCreatePost':
-			return executeZimbraplatformaliasCreatePost.call(this, itemIndex);
+			return executeZimbraplatformaliasCreatePost.call(this, itemIndex ?? 0);
 		case 'zimbraplatformaliasDeleteDelete':
-			return executeZimbraplatformaliasDeleteDelete.call(this, itemIndex);
+			return executeZimbraplatformaliasDeleteDelete.call(this, itemIndex ?? 0);
 		case 'zimbraplatformaliasListGet2':
-			return executeZimbraplatformaliasListGet2.call(this, itemIndex);
+			return executeZimbraplatformaliasListGet2.call(this, itemIndex ?? 0);
 		case 'zimbraplatformdiagnosticdomainCreatePost':
-			return executeZimbraplatformdiagnosticdomainCreatePost.call(this, itemIndex);
+			return executeZimbraplatformdiagnosticdomainCreatePost.call(this, itemIndex ?? 0);
 		case 'zimbraplatformdomainListGet':
-			return executeZimbraplatformdomainListGet.call(this, itemIndex);
+			return executeZimbraplatformdomainListGet.call(this, itemIndex ?? 0);
 		case 'zimbraplatformdomainCreatePost':
-			return executeZimbraplatformdomainCreatePost.call(this, itemIndex);
+			return executeZimbraplatformdomainCreatePost.call(this, itemIndex ?? 0);
 		case 'zimbraplatformdomainDeleteDelete':
-			return executeZimbraplatformdomainDeleteDelete.call(this, itemIndex);
+			return executeZimbraplatformdomainDeleteDelete.call(this, itemIndex ?? 0);
 		case 'zimbraplatformdomainListGet2':
-			return executeZimbraplatformdomainListGet2.call(this, itemIndex);
+			return executeZimbraplatformdomainListGet2.call(this, itemIndex ?? 0);
 		case 'zimbraplatformdomainUpdatePut':
-			return executeZimbraplatformdomainUpdatePut.call(this, itemIndex);
+			return executeZimbraplatformdomainUpdatePut.call(this, itemIndex ?? 0);
 		case 'zimbraplatformorganizationListGet':
-			return executeZimbraplatformorganizationListGet.call(this, itemIndex);
+			return executeZimbraplatformorganizationListGet.call(this, itemIndex ?? 0);
 		case 'zimbraplatformorganizationCreatePost':
-			return executeZimbraplatformorganizationCreatePost.call(this, itemIndex);
+			return executeZimbraplatformorganizationCreatePost.call(this, itemIndex ?? 0);
 		case 'zimbraplatformorganizationDeleteDelete':
-			return executeZimbraplatformorganizationDeleteDelete.call(this, itemIndex);
+			return executeZimbraplatformorganizationDeleteDelete.call(this, itemIndex ?? 0);
 		case 'zimbraplatformorganizationListGet2':
-			return executeZimbraplatformorganizationListGet2.call(this, itemIndex);
+			return executeZimbraplatformorganizationListGet2.call(this, itemIndex ?? 0);
 		case 'zimbraplatformorganizationUpdatePut':
-			return executeZimbraplatformorganizationUpdatePut.call(this, itemIndex);
+			return executeZimbraplatformorganizationUpdatePut.call(this, itemIndex ?? 0);
 		case 'zimbraplatformredirectionListGet':
-			return executeZimbraplatformredirectionListGet.call(this, itemIndex);
+			return executeZimbraplatformredirectionListGet.call(this, itemIndex ?? 0);
 		case 'zimbraplatformredirectionCreatePost':
-			return executeZimbraplatformredirectionCreatePost.call(this, itemIndex);
+			return executeZimbraplatformredirectionCreatePost.call(this, itemIndex ?? 0);
 		case 'zimbraplatformredirectionDeleteDelete':
-			return executeZimbraplatformredirectionDeleteDelete.call(this, itemIndex);
+			return executeZimbraplatformredirectionDeleteDelete.call(this, itemIndex ?? 0);
 		case 'zimbraplatformredirectionListGet2':
-			return executeZimbraplatformredirectionListGet2.call(this, itemIndex);
+			return executeZimbraplatformredirectionListGet2.call(this, itemIndex ?? 0);
 		case 'zimbraplatformslotListGet':
-			return executeZimbraplatformslotListGet.call(this, itemIndex);
+			return executeZimbraplatformslotListGet.call(this, itemIndex ?? 0);
 		case 'zimbraplatformslotListGet2':
-			return executeZimbraplatformslotListGet2.call(this, itemIndex);
+			return executeZimbraplatformslotListGet2.call(this, itemIndex ?? 0);
 		case 'zimbraplatformtaskListGet':
-			return executeZimbraplatformtaskListGet.call(this, itemIndex);
+			return executeZimbraplatformtaskListGet.call(this, itemIndex ?? 0);
 
 	}
 

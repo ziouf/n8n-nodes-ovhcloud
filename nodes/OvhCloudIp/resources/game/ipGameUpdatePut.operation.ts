@@ -45,12 +45,12 @@ export function description(displayOptions: IDisplayOptions): INodeProperties[] 
  * Endpoint: /ip/{ip}/game/{ipOnGame}
  */
 
-export async function execute(this: IExecuteFunctions, itemIndex: number): Promise<INodeExecutionData[]> {
-	const ip = this.getNodeParameter('ip', itemIndex) as string;
+export async function execute(this: IExecuteFunctions, _itemIndex: number): Promise<INodeExecutionData[]> {
+	const ip = this.getNodeParameter('ip', _itemIndex) as string;
 
-	const ipOnGame = this.getNodeParameter('ipOnGame', itemIndex) as string;
+	const ipOnGame = this.getNodeParameter('ipOnGame', _itemIndex) as string;
 
-	const firewallModeEnabled = this.getNodeParameter('firewallModeEnabled', itemIndex) as boolean;
+	const firewallModeEnabled = this.getNodeParameter('firewallModeEnabled', _itemIndex) as boolean;
 
 	const body: IDataObject = {};
 	body.firewallModeEnabled = firewallModeEnabled;

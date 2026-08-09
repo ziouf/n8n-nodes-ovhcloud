@@ -45,21 +45,21 @@ export function description(displayOptions: IDisplayOptions) {
 
 export async function execute(
 	this: IExecuteFunctions,
-	itemIndex: number,
+	_itemIndex: number,
 ): Promise<INodeExecutionData[]> {
 	const client = new ApiClient(this);
-	const serviceName = this.getNodeParameter('serviceName', itemIndex, '', {
+	const serviceName = this.getNodeParameter('serviceName', _itemIndex, '', {
 		extractValue: true,
 	}) as string;
 
-	if (!this.getNodeParameter('ipBlockFilter', itemIndex)) {
+	if (!this.getNodeParameter('ipBlockFilter', _itemIndex)) {
 		const data = (await client.httpGet(
 			`/dedicated/server/${serviceName}/features/backupFTP/access`,
 		)) as IDataObject;
 		return this.helpers.returnJsonArray([data]);
 	}
 
-	const ipBlockFilter = this.getNodeParameter('ipBlockFilter', itemIndex) as string;
+	const ipBlockFilter = this.getNodeParameter('ipBlockFilter', _itemIndex) as string;
 	const qs: IDataObject = { ipBlock: ipBlockFilter };
 	const data = (await client.httpGet(
 		`/dedicated/server/${serviceName}/features/backupFTP/access`,

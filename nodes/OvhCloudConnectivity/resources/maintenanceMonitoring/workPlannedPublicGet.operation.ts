@@ -34,10 +34,10 @@ export function description(displayOptions: IDisplayOptions): INodeProperties[] 
  * HTTP method: GET
  * Endpoint: /connectivity/maintenance/workPlanned/public
  */
-export async function execute(this: IExecuteFunctions): Promise<INodeExecutionData[]> {
+export async function execute(this: IExecuteFunctions, _itemIndex?: number): Promise<INodeExecutionData[]> {
 	const client = new ApiClient(this);
-	const beginDate = (this.getNodeParameter('beginDate', 0, '') as string) || '';
-	const endDate = (this.getNodeParameter('endDate', 0, '') as string) || '';
+	const beginDate = (this.getNodeParameter('beginDate', _itemIndex ?? 0, '') as string) || '';
+	const endDate = (this.getNodeParameter('endDate', _itemIndex ?? 0, '') as string) || '';
 
 	const qs: IDataObject = {};
 	if (beginDate) qs.beginDate = beginDate;

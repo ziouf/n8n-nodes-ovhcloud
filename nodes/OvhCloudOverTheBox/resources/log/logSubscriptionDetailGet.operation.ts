@@ -49,10 +49,10 @@ export function description(displayOptions: IDisplayOptions): INodeProperties[] 
  * HTTP method: GET
  * Endpoint: /overTheBox/{serviceName}/log/subscription/{subscriptionId}
  */
-export async function execute(this: IExecuteFunctions): Promise<INodeExecutionData[]> {
+export async function execute(this: IExecuteFunctions, _itemIndex?: number): Promise<INodeExecutionData[]> {
 	const client = new ApiClient(this);
-	const serviceName = this.getNodeParameter('serviceName', 0, '', { extractValue: true }) as string;
-	const subscriptionId = this.getNodeParameter('subscriptionId', 0) as string;
+	const serviceName = this.getNodeParameter('serviceName', _itemIndex ?? 0, '', { extractValue: true }) as string;
+	const subscriptionId = this.getNodeParameter('subscriptionId', _itemIndex ?? 0) as string;
 	const data = (await client.httpGet(
 		`/overTheBox/${encodeURIComponent(serviceName)}/log/subscription/${encodeURIComponent(subscriptionId)}`,
 	)) as IDataObject;

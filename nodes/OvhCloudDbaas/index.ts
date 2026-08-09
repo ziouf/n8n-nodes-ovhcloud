@@ -1545,237 +1545,237 @@ export async function execute(
 
 	switch (operation) {
 		case 'outputOpenSearchAliasIndexCreatePost':
-			return executeOutputOpenSearchAliasIndexCreatePost.call(this, itemIndex);
+			return executeOutputOpenSearchAliasIndexCreatePost.call(this, itemIndex ?? 0);
 		case 'outputOpenSearchAliasStreamCreatePost':
-			return executeOutputOpenSearchAliasStreamCreatePost.call(this, itemIndex);
+			return executeOutputOpenSearchAliasStreamCreatePost.call(this, itemIndex ?? 0);
 		case 'serviceChangeContactPost':
-			return executeServiceChangeContactPost.call(this, itemIndex);
+			return executeServiceChangeContactPost.call(this, itemIndex ?? 0);
 		case 'serviceUserChangePasswordPost':
-			return executeServiceUserChangePasswordPost.call(this, itemIndex);
+			return executeServiceUserChangePasswordPost.call(this, itemIndex ?? 0);
 		case 'rolePermissionAliasCreatePost':
-			return executeRolePermissionAliasCreatePost.call(this, itemIndex);
+			return executeRolePermissionAliasCreatePost.call(this, itemIndex ?? 0);
 		case 'rolePermissionDashboardCreatePost':
-			return executeRolePermissionDashboardCreatePost.call(this, itemIndex);
+			return executeRolePermissionDashboardCreatePost.call(this, itemIndex ?? 0);
 		case 'encryptionKeyCreatePost':
-			return executeEncryptionKeyCreatePost.call(this, itemIndex);
+			return executeEncryptionKeyCreatePost.call(this, itemIndex ?? 0);
 		case 'outputGraylogDashboardCreatePost':
-			return executeOutputGraylogDashboardCreatePost.call(this, itemIndex);
+			return executeOutputGraylogDashboardCreatePost.call(this, itemIndex ?? 0);
 		case 'outputGraylogStreamCreatePost':
-			return executeOutputGraylogStreamCreatePost.call(this, itemIndex);
+			return executeOutputGraylogStreamCreatePost.call(this, itemIndex ?? 0);
 		case 'rolePermissionIndexCreatePost':
-			return executeRolePermissionIndexCreatePost.call(this, itemIndex);
+			return executeRolePermissionIndexCreatePost.call(this, itemIndex ?? 0);
 		case 'inputCreatePost':
-			return executeInputCreatePost.call(this, itemIndex);
+			return executeInputCreatePost.call(this, itemIndex ?? 0);
 		case 'outputOpenSearchAliasCreatePost':
-			return executeOutputOpenSearchAliasCreatePost.call(this, itemIndex);
+			return executeOutputOpenSearchAliasCreatePost.call(this, itemIndex ?? 0);
 		case 'outputOpenSearchOsdCreatePost':
-			return executeOutputOpenSearchOsdCreatePost.call(this, itemIndex);
+			return executeOutputOpenSearchOsdCreatePost.call(this, itemIndex ?? 0);
 		case 'outputOpenSearchIndexCreatePost':
-			return executeOutputOpenSearchIndexCreatePost.call(this, itemIndex);
+			return executeOutputOpenSearchIndexCreatePost.call(this, itemIndex ?? 0);
 		case 'rolePermissionOsdCreatePost':
-			return executeRolePermissionOsdCreatePost.call(this, itemIndex);
+			return executeRolePermissionOsdCreatePost.call(this, itemIndex ?? 0);
 		case 'roleCreatePost':
-			return executeRoleCreatePost.call(this, itemIndex);
+			return executeRoleCreatePost.call(this, itemIndex ?? 0);
 		case 'roleMemberCreatePost':
-			return executeRoleMemberCreatePost.call(this, itemIndex);
+			return executeRoleMemberCreatePost.call(this, itemIndex ?? 0);
 		case 'outputGraylogStreamAlertCreatePost':
-			return executeOutputGraylogStreamAlertCreatePost.call(this, itemIndex);
+			return executeOutputGraylogStreamAlertCreatePost.call(this, itemIndex ?? 0);
 		case 'rolePermissionStreamCreatePost':
-			return executeRolePermissionStreamCreatePost.call(this, itemIndex);
+			return executeRolePermissionStreamCreatePost.call(this, itemIndex ?? 0);
 		case 'outputGraylogStreamRuleCreatePost':
-			return executeOutputGraylogStreamRuleCreatePost.call(this, itemIndex);
+			return executeOutputGraylogStreamRuleCreatePost.call(this, itemIndex ?? 0);
 		case 'tokenCreatePost':
-			return executeTokenCreatePost.call(this, itemIndex);
+			return executeTokenCreatePost.call(this, itemIndex ?? 0);
 		case 'encryptionKeyDeleteDelete':
-			return executeEncryptionKeyDeleteDelete.call(this, itemIndex);
+			return executeEncryptionKeyDeleteDelete.call(this, itemIndex ?? 0);
 		case 'outputGraylogDashboardDeleteDelete':
-			return executeOutputGraylogDashboardDeleteDelete.call(this, itemIndex);
+			return executeOutputGraylogDashboardDeleteDelete.call(this, itemIndex ?? 0);
 		case 'outputGraylogStreamDeleteDelete':
-			return executeOutputGraylogStreamDeleteDelete.call(this, itemIndex);
+			return executeOutputGraylogStreamDeleteDelete.call(this, itemIndex ?? 0);
 		case 'inputDeleteDelete':
-			return executeInputDeleteDelete.call(this, itemIndex);
+			return executeInputDeleteDelete.call(this, itemIndex ?? 0);
 		case 'outputOpenSearchAliasDeleteDelete':
-			return executeOutputOpenSearchAliasDeleteDelete.call(this, itemIndex);
+			return executeOutputOpenSearchAliasDeleteDelete.call(this, itemIndex ?? 0);
 		case 'outputOpenSearchOsdDeleteDelete':
-			return executeOutputOpenSearchOsdDeleteDelete.call(this, itemIndex);
+			return executeOutputOpenSearchOsdDeleteDelete.call(this, itemIndex ?? 0);
 		case 'outputOpenSearchIndexDeleteDelete':
-			return executeOutputOpenSearchIndexDeleteDelete.call(this, itemIndex);
+			return executeOutputOpenSearchIndexDeleteDelete.call(this, itemIndex ?? 0);
 		case 'rolePermissionDeleteDelete':
-			return executeRolePermissionDeleteDelete.call(this, itemIndex);
+			return executeRolePermissionDeleteDelete.call(this, itemIndex ?? 0);
 		case 'roleDeleteDelete':
-			return executeRoleDeleteDelete.call(this, itemIndex);
+			return executeRoleDeleteDelete.call(this, itemIndex ?? 0);
 		case 'roleMemberDeleteDelete':
-			return executeRoleMemberDeleteDelete.call(this, itemIndex);
+			return executeRoleMemberDeleteDelete.call(this, itemIndex ?? 0);
 		case 'outputGraylogStreamAlertDeleteDelete':
-			return executeOutputGraylogStreamAlertDeleteDelete.call(this, itemIndex);
+			return executeOutputGraylogStreamAlertDeleteDelete.call(this, itemIndex ?? 0);
 		case 'outputGraylogStreamRuleDeleteDelete':
-			return executeOutputGraylogStreamRuleDeleteDelete.call(this, itemIndex);
+			return executeOutputGraylogStreamRuleDeleteDelete.call(this, itemIndex ?? 0);
 		case 'outputGraylogStreamSubscriptionDeleteDelete':
-			return executeOutputGraylogStreamSubscriptionDeleteDelete.call(this, itemIndex);
+			return executeOutputGraylogStreamSubscriptionDeleteDelete.call(this, itemIndex ?? 0);
 		case 'tokenDeleteDelete':
-			return executeTokenDeleteDelete.call(this, itemIndex);
+			return executeTokenDeleteDelete.call(this, itemIndex ?? 0);
 		case 'outputOpenSearchAliasIndexDeleteDelete':
-			return executeOutputOpenSearchAliasIndexDeleteDelete.call(this, itemIndex);
+			return executeOutputOpenSearchAliasIndexDeleteDelete.call(this, itemIndex ?? 0);
 		case 'outputOpenSearchAliasStreamDeleteDelete':
-			return executeOutputOpenSearchAliasStreamDeleteDelete.call(this, itemIndex);
+			return executeOutputOpenSearchAliasStreamDeleteDelete.call(this, itemIndex ?? 0);
 		case 'outputGraylogDashboardDuplicatePost':
-			return executeOutputGraylogDashboardDuplicatePost.call(this, itemIndex);
+			return executeOutputGraylogDashboardDuplicatePost.call(this, itemIndex ?? 0);
 		case 'inputEndPost':
-			return executeInputEndPost.call(this, itemIndex);
+			return executeInputEndPost.call(this, itemIndex ?? 0);
 		case 'outputGraylogStreamArchiveUrlPost':
-			return executeOutputGraylogStreamArchiveUrlPost.call(this, itemIndex);
+			return executeOutputGraylogStreamArchiveUrlPost.call(this, itemIndex ?? 0);
 		case 'inputLogsUrlPost':
-			return executeInputLogsUrlPost.call(this, itemIndex);
+			return executeInputLogsUrlPost.call(this, itemIndex ?? 0);
 		case 'outputOpenSearchAliasUrlGet':
-			return executeOutputOpenSearchAliasUrlGet.call(this, itemIndex);
+			return executeOutputOpenSearchAliasUrlGet.call(this, itemIndex ?? 0);
 		case 'clusterGetGet':
-			return executeClusterGetGet.call(this, itemIndex);
+			return executeClusterGetGet.call(this, itemIndex ?? 0);
 		case 'clusterRetentionGetGet':
-			return executeClusterRetentionGetGet.call(this, itemIndex);
+			return executeClusterRetentionGetGet.call(this, itemIndex ?? 0);
 		case 'encryptionKeyGetGet':
-			return executeEncryptionKeyGetGet.call(this, itemIndex);
+			return executeEncryptionKeyGetGet.call(this, itemIndex ?? 0);
 		case 'inputConfigurationFlowggerGet':
-			return executeInputConfigurationFlowggerGet.call(this, itemIndex);
+			return executeInputConfigurationFlowggerGet.call(this, itemIndex ?? 0);
 		case 'outputGraylogDashboardGetGet':
-			return executeOutputGraylogDashboardGetGet.call(this, itemIndex);
+			return executeOutputGraylogDashboardGetGet.call(this, itemIndex ?? 0);
 		case 'outputGraylogDashboardUrlGet':
-			return executeOutputGraylogDashboardUrlGet.call(this, itemIndex);
+			return executeOutputGraylogDashboardUrlGet.call(this, itemIndex ?? 0);
 		case 'outputGraylogStreamGetGet':
-			return executeOutputGraylogStreamGetGet.call(this, itemIndex);
+			return executeOutputGraylogStreamGetGet.call(this, itemIndex ?? 0);
 		case 'outputOpenSearchIndexUrlGet':
-			return executeOutputOpenSearchIndexUrlGet.call(this, itemIndex);
+			return executeOutputOpenSearchIndexUrlGet.call(this, itemIndex ?? 0);
 		case 'inputGetGet':
-			return executeInputGetGet.call(this, itemIndex);
+			return executeInputGetGet.call(this, itemIndex ?? 0);
 		case 'inputConfigtestResultGet':
-			return executeInputConfigtestResultGet.call(this, itemIndex);
+			return executeInputConfigtestResultGet.call(this, itemIndex ?? 0);
 		case 'inputEngineGetGet':
-			return executeInputEngineGetGet.call(this, itemIndex);
+			return executeInputEngineGetGet.call(this, itemIndex ?? 0);
 		case 'inputEngineHelperGetGet':
-			return executeInputEngineHelperGetGet.call(this, itemIndex);
+			return executeInputEngineHelperGetGet.call(this, itemIndex ?? 0);
 		case 'inputUrlGet':
-			return executeInputUrlGet.call(this, itemIndex);
+			return executeInputUrlGet.call(this, itemIndex ?? 0);
 		case 'inputConfigurationLogstashGet':
-			return executeInputConfigurationLogstashGet.call(this, itemIndex);
+			return executeInputConfigurationLogstashGet.call(this, itemIndex ?? 0);
 		case 'outputOpenSearchAliasGetGet':
-			return executeOutputOpenSearchAliasGetGet.call(this, itemIndex);
+			return executeOutputOpenSearchAliasGetGet.call(this, itemIndex ?? 0);
 		case 'outputOpenSearchOsdGetGet':
-			return executeOutputOpenSearchOsdGetGet.call(this, itemIndex);
+			return executeOutputOpenSearchOsdGetGet.call(this, itemIndex ?? 0);
 		case 'outputOpenSearchOsdUrlGet':
-			return executeOutputOpenSearchOsdUrlGet.call(this, itemIndex);
+			return executeOutputOpenSearchOsdUrlGet.call(this, itemIndex ?? 0);
 		case 'outputOpenSearchIndexGetGet':
-			return executeOutputOpenSearchIndexGetGet.call(this, itemIndex);
+			return executeOutputOpenSearchIndexGetGet.call(this, itemIndex ?? 0);
 		case 'rolePermissionGetGet':
-			return executeRolePermissionGetGet.call(this, itemIndex);
+			return executeRolePermissionGetGet.call(this, itemIndex ?? 0);
 		case 'roleGetGet':
-			return executeRoleGetGet.call(this, itemIndex);
+			return executeRoleGetGet.call(this, itemIndex ?? 0);
 		case 'roleMemberGetGet':
-			return executeRoleMemberGetGet.call(this, itemIndex);
+			return executeRoleMemberGetGet.call(this, itemIndex ?? 0);
 		case 'serviceGetGet':
-			return executeServiceGetGet.call(this, itemIndex);
+			return executeServiceGetGet.call(this, itemIndex ?? 0);
 		case 'serviceServiceInfosGet':
-			return executeServiceServiceInfosGet.call(this, itemIndex);
+			return executeServiceServiceInfosGet.call(this, itemIndex ?? 0);
 		case 'serviceMetricsGet':
-			return executeServiceMetricsGet.call(this, itemIndex);
+			return executeServiceMetricsGet.call(this, itemIndex ?? 0);
 		case 'serviceOperationGetGet':
-			return executeServiceOperationGetGet.call(this, itemIndex);
+			return executeServiceOperationGetGet.call(this, itemIndex ?? 0);
 		case 'serviceUrlGet':
-			return executeServiceUrlGet.call(this, itemIndex);
+			return executeServiceUrlGet.call(this, itemIndex ?? 0);
 		case 'outputGraylogStreamAlertGetGet':
-			return executeOutputGraylogStreamAlertGetGet.call(this, itemIndex);
+			return executeOutputGraylogStreamAlertGetGet.call(this, itemIndex ?? 0);
 		case 'outputGraylogStreamArchiveGetGet':
-			return executeOutputGraylogStreamArchiveGetGet.call(this, itemIndex);
+			return executeOutputGraylogStreamArchiveGetGet.call(this, itemIndex ?? 0);
 		case 'outputGraylogStreamRuleGetGet':
-			return executeOutputGraylogStreamRuleGetGet.call(this, itemIndex);
+			return executeOutputGraylogStreamRuleGetGet.call(this, itemIndex ?? 0);
 		case 'outputGraylogStreamSubscriptionGetGet':
-			return executeOutputGraylogStreamSubscriptionGetGet.call(this, itemIndex);
+			return executeOutputGraylogStreamSubscriptionGetGet.call(this, itemIndex ?? 0);
 		case 'outputGraylogStreamUrlGet':
-			return executeOutputGraylogStreamUrlGet.call(this, itemIndex);
+			return executeOutputGraylogStreamUrlGet.call(this, itemIndex ?? 0);
 		case 'tokenGetGet':
-			return executeTokenGetGet.call(this, itemIndex);
+			return executeTokenGetGet.call(this, itemIndex ?? 0);
 		case 'outputOpenSearchAliasIndexListGet':
-			return executeOutputOpenSearchAliasIndexListGet.call(this, itemIndex);
+			return executeOutputOpenSearchAliasIndexListGet.call(this, itemIndex ?? 0);
 		case 'outputOpenSearchAliasStreamListGet':
-			return executeOutputOpenSearchAliasStreamListGet.call(this, itemIndex);
+			return executeOutputOpenSearchAliasStreamListGet.call(this, itemIndex ?? 0);
 		case 'outputGraylogStreamArchiveEncryptionKeyListGet':
-			return executeOutputGraylogStreamArchiveEncryptionKeyListGet.call(this, itemIndex);
+			return executeOutputGraylogStreamArchiveEncryptionKeyListGet.call(this, itemIndex ?? 0);
 		case 'clusterRetentionListGet':
-			return executeClusterRetentionListGet.call(this, itemIndex);
+			return executeClusterRetentionListGet.call(this, itemIndex ?? 0);
 		case 'clusterListGet':
-			return executeClusterListGet.call(this, itemIndex);
+			return executeClusterListGet.call(this, itemIndex ?? 0);
 		case 'encryptionKeyListGet':
-			return executeEncryptionKeyListGet.call(this, itemIndex);
+			return executeEncryptionKeyListGet.call(this, itemIndex ?? 0);
 		case 'outputGraylogDashboardListGet':
-			return executeOutputGraylogDashboardListGet.call(this, itemIndex);
+			return executeOutputGraylogDashboardListGet.call(this, itemIndex ?? 0);
 		case 'outputGraylogStreamListGet':
-			return executeOutputGraylogStreamListGet.call(this, itemIndex);
+			return executeOutputGraylogStreamListGet.call(this, itemIndex ?? 0);
 		case 'inputActionListGet':
-			return executeInputActionListGet.call(this, itemIndex);
+			return executeInputActionListGet.call(this, itemIndex ?? 0);
 		case 'inputEngineHelperListGet':
-			return executeInputEngineHelperListGet.call(this, itemIndex);
+			return executeInputEngineHelperListGet.call(this, itemIndex ?? 0);
 		case 'inputEngineListGet':
-			return executeInputEngineListGet.call(this, itemIndex);
+			return executeInputEngineListGet.call(this, itemIndex ?? 0);
 		case 'inputListGet':
-			return executeInputListGet.call(this, itemIndex);
+			return executeInputListGet.call(this, itemIndex ?? 0);
 		case 'outputOpenSearchAliasListGet':
-			return executeOutputOpenSearchAliasListGet.call(this, itemIndex);
+			return executeOutputOpenSearchAliasListGet.call(this, itemIndex ?? 0);
 		case 'outputOpenSearchOsdListGet':
-			return executeOutputOpenSearchOsdListGet.call(this, itemIndex);
+			return executeOutputOpenSearchOsdListGet.call(this, itemIndex ?? 0);
 		case 'outputOpenSearchIndexListGet':
-			return executeOutputOpenSearchIndexListGet.call(this, itemIndex);
+			return executeOutputOpenSearchIndexListGet.call(this, itemIndex ?? 0);
 		case 'roleMemberListGet':
-			return executeRoleMemberListGet.call(this, itemIndex);
+			return executeRoleMemberListGet.call(this, itemIndex ?? 0);
 		case 'rolePermissionListGet':
-			return executeRolePermissionListGet.call(this, itemIndex);
+			return executeRolePermissionListGet.call(this, itemIndex ?? 0);
 		case 'roleListGet':
-			return executeRoleListGet.call(this, itemIndex);
+			return executeRoleListGet.call(this, itemIndex ?? 0);
 		case 'serviceOperationListGet':
-			return executeServiceOperationListGet.call(this, itemIndex);
+			return executeServiceOperationListGet.call(this, itemIndex ?? 0);
 		case 'serviceListGet':
-			return executeServiceListGet.call(this, itemIndex);
+			return executeServiceListGet.call(this, itemIndex ?? 0);
 		case 'outputGraylogStreamAlertListGet':
-			return executeOutputGraylogStreamAlertListGet.call(this, itemIndex);
+			return executeOutputGraylogStreamAlertListGet.call(this, itemIndex ?? 0);
 		case 'outputGraylogStreamArchiveListGet':
-			return executeOutputGraylogStreamArchiveListGet.call(this, itemIndex);
+			return executeOutputGraylogStreamArchiveListGet.call(this, itemIndex ?? 0);
 		case 'outputGraylogStreamRuleListGet':
-			return executeOutputGraylogStreamRuleListGet.call(this, itemIndex);
+			return executeOutputGraylogStreamRuleListGet.call(this, itemIndex ?? 0);
 		case 'outputGraylogStreamSubscriptionListGet':
-			return executeOutputGraylogStreamSubscriptionListGet.call(this, itemIndex);
+			return executeOutputGraylogStreamSubscriptionListGet.call(this, itemIndex ?? 0);
 		case 'tokenListGet':
-			return executeTokenListGet.call(this, itemIndex);
+			return executeTokenListGet.call(this, itemIndex ?? 0);
 		case 'inputRestartPost':
-			return executeInputRestartPost.call(this, itemIndex);
+			return executeInputRestartPost.call(this, itemIndex ?? 0);
 		case 'inputStartPost':
-			return executeInputStartPost.call(this, itemIndex);
+			return executeInputStartPost.call(this, itemIndex ?? 0);
 		case 'inputConfigtestPost':
-			return executeInputConfigtestPost.call(this, itemIndex);
+			return executeInputConfigtestPost.call(this, itemIndex ?? 0);
 		case 'clusterUpdatePut':
-			return executeClusterUpdatePut.call(this, itemIndex);
+			return executeClusterUpdatePut.call(this, itemIndex ?? 0);
 		case 'inputConfigurationFlowggerUpdatePut':
-			return executeInputConfigurationFlowggerUpdatePut.call(this, itemIndex);
+			return executeInputConfigurationFlowggerUpdatePut.call(this, itemIndex ?? 0);
 		case 'outputGraylogDashboardUpdatePut':
-			return executeOutputGraylogDashboardUpdatePut.call(this, itemIndex);
+			return executeOutputGraylogDashboardUpdatePut.call(this, itemIndex ?? 0);
 		case 'outputGraylogStreamUpdatePut':
-			return executeOutputGraylogStreamUpdatePut.call(this, itemIndex);
+			return executeOutputGraylogStreamUpdatePut.call(this, itemIndex ?? 0);
 		case 'inputUpdatePut':
-			return executeInputUpdatePut.call(this, itemIndex);
+			return executeInputUpdatePut.call(this, itemIndex ?? 0);
 		case 'inputConfigurationLogstashUpdatePut':
-			return executeInputConfigurationLogstashUpdatePut.call(this, itemIndex);
+			return executeInputConfigurationLogstashUpdatePut.call(this, itemIndex ?? 0);
 		case 'outputOpenSearchAliasUpdatePut':
-			return executeOutputOpenSearchAliasUpdatePut.call(this, itemIndex);
+			return executeOutputOpenSearchAliasUpdatePut.call(this, itemIndex ?? 0);
 		case 'outputOpenSearchOsdUpdatePut':
-			return executeOutputOpenSearchOsdUpdatePut.call(this, itemIndex);
+			return executeOutputOpenSearchOsdUpdatePut.call(this, itemIndex ?? 0);
 		case 'outputOpenSearchIndexUpdatePut':
-			return executeOutputOpenSearchIndexUpdatePut.call(this, itemIndex);
+			return executeOutputOpenSearchIndexUpdatePut.call(this, itemIndex ?? 0);
 		case 'roleUpdatePut':
-			return executeRoleUpdatePut.call(this, itemIndex);
+			return executeRoleUpdatePut.call(this, itemIndex ?? 0);
 		case 'roleMemberUpdatePut':
-			return executeRoleMemberUpdatePut.call(this, itemIndex);
+			return executeRoleMemberUpdatePut.call(this, itemIndex ?? 0);
 		case 'serviceUpdatePut':
-			return executeServiceUpdatePut.call(this, itemIndex);
+			return executeServiceUpdatePut.call(this, itemIndex ?? 0);
 		case 'serviceServiceInfosUpdatePut':
-			return executeServiceServiceInfosUpdatePut.call(this, itemIndex);
+			return executeServiceServiceInfosUpdatePut.call(this, itemIndex ?? 0);
 		case 'outputGraylogStreamAlertUpdatePut':
-			return executeOutputGraylogStreamAlertUpdatePut.call(this, itemIndex);
+			return executeOutputGraylogStreamAlertUpdatePut.call(this, itemIndex ?? 0);
 	}
 
 	throw new Error(`Unsupported operation "${operation}" for resource "ovhCloudDbaas"`);

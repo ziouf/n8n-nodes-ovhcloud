@@ -44,11 +44,11 @@ export function description(displayOptions: IDisplayOptions): INodeProperties[] 
  * HTTP method: POST
  * Endpoint: /connectivity/eligibility/search/lines
  */
-export async function execute(this: IExecuteFunctions): Promise<INodeExecutionData[]> {
+export async function execute(this: IExecuteFunctions, _itemIndex?: number): Promise<INodeExecutionData[]> {
 	const client = new ApiClient(this);
-	const streetCode = (this.getNodeParameter('streetCode', 0, '') as string) || '';
-	const streetNumber = (this.getNodeParameter('streetNumber', 0, '') as string) || '';
-	const ownerName = (this.getNodeParameter('ownerName', 0, '') as string) || '';
+	const streetCode = (this.getNodeParameter('streetCode', _itemIndex ?? 0, '') as string) || '';
+	const streetNumber = (this.getNodeParameter('streetNumber', _itemIndex ?? 0, '') as string) || '';
+	const ownerName = (this.getNodeParameter('ownerName', _itemIndex ?? 0, '') as string) || '';
 
 	const body: IDataObject = {};
 	if (streetCode) body.streetCode = streetCode;

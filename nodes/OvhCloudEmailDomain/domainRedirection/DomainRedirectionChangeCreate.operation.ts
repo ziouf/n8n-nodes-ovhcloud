@@ -39,9 +39,9 @@ export function description(displayOptions: IDisplayOptions): INodeProperties[] 
  * HTTP method: POST
  * Endpoint: /email/domain/{domain}/redirection/{id}/changeRedirection
  */
-export async function execute(this: IExecuteFunctions): Promise<INodeExecutionData[]> {
-	const domain = this.getNodeParameter('domain', 0) as string;
-	const id = this.getNodeParameter('id', 0) as string;
+export async function execute(this: IExecuteFunctions, _itemIndex?: number): Promise<INodeExecutionData[]> {
+	const domain = this.getNodeParameter('domain', _itemIndex ?? 0) as string;
+	const id = this.getNodeParameter('id', _itemIndex ?? 0) as string;
 
 	const body: IDataObject = {
 		undefined: undefined,

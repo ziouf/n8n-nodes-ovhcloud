@@ -67,17 +67,17 @@ export function description() {
  * HTTP method: POST
  * Endpoint: /email/pro/{service}/externalContact
  */
-export async function execute(this: IExecuteFunctions): Promise<INodeExecutionData[]> {
-	const service = this.getNodeParameter('service', 0) as string;
+export async function execute(this: IExecuteFunctions, _itemIndex?: number): Promise<INodeExecutionData[]> {
+	const service = this.getNodeParameter('service', _itemIndex ?? 0) as string;
 
 
 
-	const displayName = this.getNodeParameter('displayName', 0) as string;
-	const externalEmailAddress = this.getNodeParameter('externalEmailAddress', 0) as string;
-	const firstName = this.getNodeParameter('firstName', 0) as string;
-	const hiddenFromGAL = this.getNodeParameter('hiddenFromGAL', 0) as string;
-	const initials = this.getNodeParameter('initials', 0) as string;
-	const lastName = this.getNodeParameter('lastName', 0) as string;
+	const displayName = this.getNodeParameter('displayName', _itemIndex ?? 0) as string;
+	const externalEmailAddress = this.getNodeParameter('externalEmailAddress', _itemIndex ?? 0) as string;
+	const firstName = this.getNodeParameter('firstName', _itemIndex ?? 0) as string;
+	const hiddenFromGAL = this.getNodeParameter('hiddenFromGAL', _itemIndex ?? 0) as string;
+	const initials = this.getNodeParameter('initials', _itemIndex ?? 0) as string;
+	const lastName = this.getNodeParameter('lastName', _itemIndex ?? 0) as string;
 
 
 const body: IDataObject = {

@@ -37,9 +37,9 @@ export function description(displayOptions: IDisplayOptions): INodeProperties[] 
  * HTTP method: GET
  * Endpoint: /managedCMS/resource/{serviceId}/website/{websiteId}
  */
-export async function execute(this: IExecuteFunctions, itemIndex: number): Promise<INodeExecutionData[]> {
-	const serviceId = this.getNodeParameter('serviceId', itemIndex) as string;
-	const websiteId = this.getNodeParameter('websiteId', itemIndex) as string;
+export async function execute(this: IExecuteFunctions, _itemIndex: number): Promise<INodeExecutionData[]> {
+	const serviceId = this.getNodeParameter('serviceId', _itemIndex) as string;
+	const websiteId = this.getNodeParameter('websiteId', _itemIndex) as string;
 
 
 	const client = new ApiClient(this);

@@ -37,9 +37,9 @@ export function description(displayOptions: IDisplayOptions): INodeProperties[] 
  * HTTP method: GET
  * Endpoint: /backupServices/tenant/{backupServicesId}/vspc/{vspcTenantId}
  */
-export async function execute(this: IExecuteFunctions, itemIndex: number): Promise<INodeExecutionData[]> {
-	const backupServicesId = this.getNodeParameter('backupServicesId', itemIndex) as string;
-	const vspcTenantId = this.getNodeParameter('vspcTenantId', itemIndex) as string;
+export async function execute(this: IExecuteFunctions, _itemIndex: number): Promise<INodeExecutionData[]> {
+	const backupServicesId = this.getNodeParameter('backupServicesId', _itemIndex) as string;
+	const vspcTenantId = this.getNodeParameter('vspcTenantId', _itemIndex) as string;
 
 
 	const client = new ApiClient(this);

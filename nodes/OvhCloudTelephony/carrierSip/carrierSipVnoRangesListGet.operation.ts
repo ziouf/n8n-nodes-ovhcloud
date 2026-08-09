@@ -44,10 +44,10 @@ export function description(displayOptions: IDisplayOptions): INodeProperties[] 
  * HTTP method: GET
  * Endpoint: /telephony/{billingAccount}/carrierSip/{serviceName}/vno/{contractReference}/ranges
  */
-export async function execute(this: IExecuteFunctions, itemIndex: number): Promise<INodeExecutionData[]> {
-	const billingAccount = this.getNodeParameter('billingAccount', itemIndex) as string;
-	const contractReference = this.getNodeParameter('contractReference', itemIndex) as string;
-	const serviceName = this.getNodeParameter('serviceName', itemIndex) as string;
+export async function execute(this: IExecuteFunctions, _itemIndex: number): Promise<INodeExecutionData[]> {
+	const billingAccount = this.getNodeParameter('billingAccount', _itemIndex) as string;
+	const contractReference = this.getNodeParameter('contractReference', _itemIndex) as string;
+	const serviceName = this.getNodeParameter('serviceName', _itemIndex) as string;
 
 	const client = new ApiClient(this);
 	const data = (await client.httpGet('/telephony/' + billingAccount + '/carrierSip/' + serviceName + '/vno/' + contractReference + '/ranges')) as IDataObject;

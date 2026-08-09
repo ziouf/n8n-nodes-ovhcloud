@@ -139,23 +139,23 @@ export async function execute(this: IExecuteFunctions, itemIndex: number) {
 
 	switch (operation) {
 		case 'createCertificateByResourceName':
-			return executeCreateCertificateByResourceName.call(this, itemIndex);
+			return executeCreateCertificateByResourceName.call(this, itemIndex ?? 0);
 		case 'getCertificate':
-			return executeCertificateGetGet.call(this, itemIndex);
+			return executeCertificateGetGet.call(this, itemIndex ?? 0);
 		case 'getCertificateByResourceName':
-			return executeGetCertificateByResourceName.call(this, itemIndex);
+			return executeGetCertificateByResourceName.call(this, itemIndex ?? 0);
 		case 'getCertificateTask':
-			return executeTaskGetGet.call(this, itemIndex);
+			return executeTaskGetGet.call(this, itemIndex ?? 0);
 		case 'listAllDomains':
-			return executeListAllDomains.call(this);
+			return executeListAllDomains.call(this, itemIndex ?? 0);
 		case 'listCertificateTasks':
-			return executeTaskListGet.call(this, itemIndex);
+			return executeTaskListGet.call(this, itemIndex ?? 0);
 		case 'updateCertificateByResourceName':
-			return executeUpdateCertificateByResourceName.call(this, itemIndex);
+			return executeUpdateCertificateByResourceName.call(this, itemIndex ?? 0);
 		case 'updateServiceInfos':
-			return executeServiceInfosUpdatePut.call(this, itemIndex);
+			return executeServiceInfosUpdatePut.call(this, itemIndex ?? 0);
 		case 'getServiceInfos':
-			return executeServiceInfosGetGet.call(this, itemIndex);
+			return executeServiceInfosGetGet.call(this, itemIndex ?? 0);
 	}
 
 	throw new Error(`Unsupported operation "${operation}" for resource "ssl"`);

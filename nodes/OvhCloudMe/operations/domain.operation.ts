@@ -12,7 +12,7 @@ import { ApiClient } from '../../../shared/transport/ApiClient';
 // ============================================================
 
 // listDnsTasks
-export async function executeListDnsTasks(this: IExecuteFunctions): Promise<INodeExecutionData[]> {
+export async function executeListDnsTasks(this: IExecuteFunctions, _itemIndex?: number): Promise<INodeExecutionData[]> {
 	const client = new ApiClient(this);
 	const ids = (await client.httpGet('/me/task/dns')) as string[];
 	const results: IDataObject[] = [];
@@ -40,10 +40,10 @@ export function descriptionGetDnsTask(displayOptions: IDisplayOptions): INodePro
 
 export async function executeGetDnsTask(
 	this: IExecuteFunctions,
-	itemIndex: number,
+	_itemIndex: number,
 ): Promise<INodeExecutionData[]> {
 	const client = new ApiClient(this);
-	const id = this.getNodeParameter('id', itemIndex) as string;
+	const id = this.getNodeParameter('id', _itemIndex) as string;
 	const data = (await client.httpGet(`/me/task/dns/${id}`)) as IDataObject;
 	return this.helpers.returnJsonArray([data]);
 }
@@ -55,6 +55,7 @@ export async function executeGetDnsTask(
 // listDomainTasks
 export async function executeListDomainTasks(
 	this: IExecuteFunctions,
+_itemIndex?: number,
 ): Promise<INodeExecutionData[]> {
 	const client = new ApiClient(this);
 	const ids = (await client.httpGet('/me/task/domain')) as string[];
@@ -83,10 +84,10 @@ export function descriptionGetDomainTask(displayOptions: IDisplayOptions): INode
 
 export async function executeGetDomainTask(
 	this: IExecuteFunctions,
-	itemIndex: number,
+	_itemIndex: number,
 ): Promise<INodeExecutionData[]> {
 	const client = new ApiClient(this);
-	const id = this.getNodeParameter('id', itemIndex) as string;
+	const id = this.getNodeParameter('id', _itemIndex) as string;
 	const data = (await client.httpGet(`/me/task/domain/${id}`)) as IDataObject;
 	return this.helpers.returnJsonArray([data]);
 }
@@ -110,10 +111,10 @@ export function descriptionListDomainTaskArguments(
 
 export async function executeListDomainTaskArguments(
 	this: IExecuteFunctions,
-	itemIndex: number,
+	_itemIndex: number,
 ): Promise<INodeExecutionData[]> {
 	const client = new ApiClient(this);
-	const id = this.getNodeParameter('id', itemIndex) as string;
+	const id = this.getNodeParameter('id', _itemIndex) as string;
 	const keys = (await client.httpGet(`/me/task/domain/${id}/argument`)) as string[];
 	const results: IDataObject[] = [];
 	for (const key of keys) {
@@ -150,11 +151,11 @@ export function descriptionGetDomainTaskArgument(
 
 export async function executeGetDomainTaskArgument(
 	this: IExecuteFunctions,
-	itemIndex: number,
+	_itemIndex: number,
 ): Promise<INodeExecutionData[]> {
 	const client = new ApiClient(this);
-	const id = this.getNodeParameter('id', itemIndex) as string;
-	const key = this.getNodeParameter('key', itemIndex) as string;
+	const id = this.getNodeParameter('id', _itemIndex) as string;
+	const key = this.getNodeParameter('key', _itemIndex) as string;
 	const data = (await client.httpGet(`/me/task/domain/${id}/argument/${key}`)) as IDataObject;
 	return this.helpers.returnJsonArray([data]);
 }
@@ -178,10 +179,10 @@ export function descriptionGetDomainTaskProgress(
 
 export async function executeGetDomainTaskProgress(
 	this: IExecuteFunctions,
-	itemIndex: number,
+	_itemIndex: number,
 ): Promise<INodeExecutionData[]> {
 	const client = new ApiClient(this);
-	const id = this.getNodeParameter('id', itemIndex) as string;
+	const id = this.getNodeParameter('id', _itemIndex) as string;
 	const data = (await client.httpGet(`/me/task/domain/${id}/progressbar`)) as IDataObject;
 	return this.helpers.returnJsonArray([data]);
 }
@@ -189,6 +190,7 @@ export async function executeGetDomainTaskProgress(
 // listContactChangeTasks
 export async function executeListContactChangeTasks(
 	this: IExecuteFunctions,
+_itemIndex?: number,
 ): Promise<INodeExecutionData[]> {
 	const client = new ApiClient(this);
 	const ids = (await client.httpGet('/me/task/contactChange')) as string[];
@@ -219,10 +221,10 @@ export function descriptionGetContactChangeTask(
 
 export async function executeGetContactChangeTask(
 	this: IExecuteFunctions,
-	itemIndex: number,
+	_itemIndex: number,
 ): Promise<INodeExecutionData[]> {
 	const client = new ApiClient(this);
-	const id = this.getNodeParameter('id', itemIndex) as string;
+	const id = this.getNodeParameter('id', _itemIndex) as string;
 	const data = (await client.httpGet(`/me/task/contactChange/${id}`)) as IDataObject;
 	return this.helpers.returnJsonArray([data]);
 }
@@ -230,6 +232,7 @@ export async function executeGetContactChangeTask(
 // listEmailChangeTasks
 export async function executeListEmailChangeTasks(
 	this: IExecuteFunctions,
+_itemIndex?: number,
 ): Promise<INodeExecutionData[]> {
 	const client = new ApiClient(this);
 	const ids = (await client.httpGet('/me/task/emailChange')) as string[];
@@ -258,10 +261,10 @@ export function descriptionGetEmailChangeTask(displayOptions: IDisplayOptions): 
 
 export async function executeGetEmailChangeTask(
 	this: IExecuteFunctions,
-	itemIndex: number,
+	_itemIndex: number,
 ): Promise<INodeExecutionData[]> {
 	const client = new ApiClient(this);
-	const id = this.getNodeParameter('id', itemIndex) as string;
+	const id = this.getNodeParameter('id', _itemIndex) as string;
 	const data = (await client.httpGet(`/me/task/emailChange/${id}`)) as IDataObject;
 	return this.helpers.returnJsonArray([data]);
 }
@@ -273,6 +276,7 @@ export async function executeGetEmailChangeTask(
 // listSubscriptions
 export async function executeListSubscriptions(
 	this: IExecuteFunctions,
+_itemIndex?: number,
 ): Promise<INodeExecutionData[]> {
 	const client = new ApiClient(this);
 	const data = (await client.httpGet('/me/subscription')) as IDataObject[];
@@ -295,10 +299,10 @@ export function descriptionGetSubscription(displayOptions: IDisplayOptions): INo
 
 export async function executeGetSubscription(
 	this: IExecuteFunctions,
-	itemIndex: number,
+	_itemIndex: number,
 ): Promise<INodeExecutionData[]> {
 	const client = new ApiClient(this);
-	const subscriptionType = this.getNodeParameter('subscriptionType', itemIndex) as string;
+	const subscriptionType = this.getNodeParameter('subscriptionType', _itemIndex) as string;
 	const data = (await client.httpGet(`/me/subscription/${subscriptionType}`)) as IDataObject;
 	return this.helpers.returnJsonArray([data]);
 }

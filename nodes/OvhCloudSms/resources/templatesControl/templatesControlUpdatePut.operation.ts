@@ -62,15 +62,15 @@ export function description(displayOptions: IDisplayOptions): INodeProperties[] 
  * HTTP method: PUT
  * Endpoint: /sms/{serviceName}/templatesControl/{name}
  */
-export async function execute(this: IExecuteFunctions): Promise<INodeExecutionData[]> {
-	const name = this.getNodeParameter('name', 0) as string;
-	const serviceName = this.getNodeParameter('serviceName', 0, '', { extractValue: true }) as string;
+export async function execute(this: IExecuteFunctions, _itemIndex?: number): Promise<INodeExecutionData[]> {
+	const name = this.getNodeParameter('name', _itemIndex ?? 0) as string;
+	const serviceName = this.getNodeParameter('serviceName', _itemIndex ?? 0, '', { extractValue: true }) as string;
 	const body: IDataObject = {};
-	const activity = this.getNodeParameter('activity', 0) as string;
+	const activity = this.getNodeParameter('activity', _itemIndex ?? 0) as string;
 	if (activity) body['activity'] = activity;
-	const description = this.getNodeParameter('description', 0) as string;
+	const description = this.getNodeParameter('description', _itemIndex ?? 0) as string;
 	if (description) body['description'] = description;
-	const message = this.getNodeParameter('message', 0) as string;
+	const message = this.getNodeParameter('message', _itemIndex ?? 0) as string;
 	if (message) body['message'] = message;
 	const data = (await new ApiClient(this).httpPut(
 		`/sms/${encodeURIComponent(serviceName)}/templatesControl/${encodeURIComponent(name)}`,

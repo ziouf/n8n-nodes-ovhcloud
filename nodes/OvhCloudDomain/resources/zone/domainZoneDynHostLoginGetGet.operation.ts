@@ -36,10 +36,10 @@ export function description(displayOptions: IDisplayOptions): INodeProperties[] 
  * HTTP method: GET
  * Endpoint: /domain/zone/{zoneName}/dynHost/login/{login}
  */
-export async function execute(this: IExecuteFunctions, itemIndex: number): Promise<INodeExecutionData[]> {
+export async function execute(this: IExecuteFunctions, _itemIndex: number): Promise<INodeExecutionData[]> {
 	const client = new ApiClient(this);
-		const login = this.getNodeParameter('login', itemIndex) as string;
-		const zoneName = this.getNodeParameter('zoneName', itemIndex) as string;
+		const login = this.getNodeParameter('login', _itemIndex) as string;
+		const zoneName = this.getNodeParameter('zoneName', _itemIndex) as string;
 
 	const data = (await client.httpGet(`/domain/zone/${encodeURIComponent(zoneName)}/dynHost/login/${encodeURIComponent(login)}`)) as IDataObject;
 

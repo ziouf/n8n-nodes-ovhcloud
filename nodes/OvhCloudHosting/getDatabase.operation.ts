@@ -44,12 +44,12 @@ export function description(displayOptions: IDisplayOptions): INodeProperties[] 
 	];
 }
 
-export async function execute(this: IExecuteFunctions, itemIndex: number): Promise<INodeExecutionData[]> {
+export async function execute(this: IExecuteFunctions, _itemIndex: number): Promise<INodeExecutionData[]> {
 	const client = new ApiClient(this);
-	const serviceName = this.getNodeParameter('serviceName', itemIndex, '', {
+	const serviceName = this.getNodeParameter('serviceName', _itemIndex, '', {
 		extractValue: true,
 	}) as string;
-	const databaseName = this.getNodeParameter('databaseName', itemIndex) as string;
+	const databaseName = this.getNodeParameter('databaseName', _itemIndex) as string;
 	const data = (await client.httpGet(
 		`/hosting/web/${serviceName}/database/${databaseName}`,
 	)) as IDataObject;

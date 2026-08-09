@@ -26,8 +26,8 @@ export function description(displayOptions: IDisplayOptions): INodeProperties[] 
  * HTTP method: PUT
  * Endpoint: /email/domain/delegatedAccount/{email}/responder
  */
-export async function execute(this: IExecuteFunctions): Promise<INodeExecutionData[]> {
-	const email = this.getNodeParameter('email', 0) as string;
+export async function execute(this: IExecuteFunctions, _itemIndex?: number): Promise<INodeExecutionData[]> {
+	const email = this.getNodeParameter('email', _itemIndex ?? 0) as string;
 
 	const body: IDataObject = {
 		undefined: undefined,

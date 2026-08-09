@@ -26,10 +26,10 @@ export function description(): INodeProperties[] {
  * Endpoint: /dedicated/ceph/{serviceName}
  */
 export async function execute(this: IExecuteFunctions,
-	itemIndex: number): Promise<INodeExecutionData[]> {
-	const serviceName = this.getNodeParameter('serviceName', itemIndex) as string;
-	const crushTunables = this.getNodeParameter('crushTunables', itemIndex) as string;
-	const label = this.getNodeParameter('label', itemIndex) as string;
+	_itemIndex: number): Promise<INodeExecutionData[]> {
+	const serviceName = this.getNodeParameter('serviceName', _itemIndex) as string;
+	const crushTunables = this.getNodeParameter('crushTunables', _itemIndex) as string;
+	const label = this.getNodeParameter('label', _itemIndex) as string;
 	const client = new ApiClient(this);
 	const body: IDataObject = {};
 			body['crushTunables'] = crushTunables;

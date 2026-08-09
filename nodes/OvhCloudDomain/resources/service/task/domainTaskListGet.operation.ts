@@ -63,16 +63,16 @@ export function description(displayOptions: IDisplayOptions): INodeProperties[] 
  * HTTP method: GET
  * Endpoint: /domain/{serviceName}/task
  */
-export async function execute(this: IExecuteFunctions, itemIndex: number): Promise<INodeExecutionData[]> {
+export async function execute(this: IExecuteFunctions, _itemIndex: number): Promise<INodeExecutionData[]> {
 	const client = new ApiClient(this);
-		const serviceName = this.getNodeParameter('serviceName', itemIndex) as string;
+		const serviceName = this.getNodeParameter('serviceName', _itemIndex) as string;
 
 	const qs: IDataObject = {};
-		const function_ = this.getNodeParameter('function_', itemIndex, '') as string;
+		const function_ = this.getNodeParameter('function_', _itemIndex, '') as string;
 		if (function_ !== '' && function_ !== undefined) qs['function'] = function_;
-		const status = this.getNodeParameter('status', itemIndex, '') as string;
+		const status = this.getNodeParameter('status', _itemIndex, '') as string;
 		if (status !== '' && status !== undefined) qs['status'] = status;
-		const type = this.getNodeParameter('type', itemIndex, '') as string;
+		const type = this.getNodeParameter('type', _itemIndex, '') as string;
 		if (type !== '' && type !== undefined) qs['type'] = type;
 
 	const data = (await client.httpGet(`/domain/${encodeURIComponent(serviceName)}/task`, qs)) as IDataObject;

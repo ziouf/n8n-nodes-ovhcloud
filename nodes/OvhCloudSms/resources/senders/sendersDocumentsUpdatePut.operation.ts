@@ -61,14 +61,14 @@ export function description(displayOptions: IDisplayOptions): INodeProperties[] 
  * HTTP method: PUT
  * Endpoint: /sms/{serviceName}/senders/{sender}/documents/{documentID}
  */
-export async function execute(this: IExecuteFunctions): Promise<INodeExecutionData[]> {
-	const documentID = this.getNodeParameter('documentID', 0) as string;
-	const sender = this.getNodeParameter('sender', 0) as string;
-	const serviceName = this.getNodeParameter('serviceName', 0, '', { extractValue: true }) as string;
+export async function execute(this: IExecuteFunctions, _itemIndex?: number): Promise<INodeExecutionData[]> {
+	const documentID = this.getNodeParameter('documentID', _itemIndex ?? 0) as string;
+	const sender = this.getNodeParameter('sender', _itemIndex ?? 0) as string;
+	const serviceName = this.getNodeParameter('serviceName', _itemIndex ?? 0, '', { extractValue: true }) as string;
 	const body: IDataObject = {};
-	const description = this.getNodeParameter('description', 0) as string;
+	const description = this.getNodeParameter('description', _itemIndex ?? 0) as string;
 	if (description) body['description'] = description;
-	const name = this.getNodeParameter('name', 0) as string;
+	const name = this.getNodeParameter('name', _itemIndex ?? 0) as string;
 	if (name) body['name'] = name;
 	const data = (await new ApiClient(this).httpPut(
 		`/sms/${encodeURIComponent(serviceName)}/senders/${encodeURIComponent(sender)}/documents/${encodeURIComponent(documentID)}`,

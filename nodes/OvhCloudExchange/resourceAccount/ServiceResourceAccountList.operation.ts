@@ -46,11 +46,11 @@ export function description() {
  * HTTP method: GET
  * Endpoint: /email/exchange/{organizationName}/service/{exchangeService}/resourceAccount
  */
-export async function execute(this: IExecuteFunctions): Promise<INodeExecutionData[]> {
-	const organizationName = this.getNodeParameter('organizationName', 0) as string;
-	const exchangeService = this.getNodeParameter('exchangeService', 0) as string;
-	const company = this.getNodeParameter('company', 0) as string;
-	const resourceEmailAddress = this.getNodeParameter('resourceEmailAddress', 0) as string;
+export async function execute(this: IExecuteFunctions, _itemIndex?: number): Promise<INodeExecutionData[]> {
+	const organizationName = this.getNodeParameter('organizationName', _itemIndex ?? 0) as string;
+	const exchangeService = this.getNodeParameter('exchangeService', _itemIndex ?? 0) as string;
+	const company = this.getNodeParameter('company', _itemIndex ?? 0) as string;
+	const resourceEmailAddress = this.getNodeParameter('resourceEmailAddress', _itemIndex ?? 0) as string;
 
 	const qs: IDataObject = {
     company: company,

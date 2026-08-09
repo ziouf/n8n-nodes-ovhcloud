@@ -64,12 +64,12 @@ export function description(displayOptions: IDisplayOptions): INodeProperties[] 
  * HTTP method: POST
  * Endpoint: /sms/{serviceName}/users/{login}/receivers/{slotId}/clean
  */
-export async function execute(this: IExecuteFunctions): Promise<INodeExecutionData[]> {
-	const login = this.getNodeParameter('login', 0) as string;
-	const serviceName = this.getNodeParameter('serviceName', 0, '', { extractValue: true }) as string;
-	const slotId = this.getNodeParameter('slotId', 0) as number;
-	const freemium = this.getNodeParameter('freemium', 0) as boolean;
-	const priceOnly = this.getNodeParameter('priceOnly', 0) as boolean;
+export async function execute(this: IExecuteFunctions, _itemIndex?: number): Promise<INodeExecutionData[]> {
+	const login = this.getNodeParameter('login', _itemIndex ?? 0) as string;
+	const serviceName = this.getNodeParameter('serviceName', _itemIndex ?? 0, '', { extractValue: true }) as string;
+	const slotId = this.getNodeParameter('slotId', _itemIndex ?? 0) as number;
+	const freemium = this.getNodeParameter('freemium', _itemIndex ?? 0) as boolean;
+	const priceOnly = this.getNodeParameter('priceOnly', _itemIndex ?? 0) as boolean;
 	const body: IDataObject = {};
 	body['freemium'] = freemium;
 	body['priceOnly'] = priceOnly;

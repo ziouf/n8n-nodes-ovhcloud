@@ -66,12 +66,12 @@ export function description(displayOptions: IDisplayOptions): INodeProperties[] 
  * HTTP method: POST
  * Endpoint: /overTheBox/{serviceName}/migration/changeOffers
  */
-export async function execute(this: IExecuteFunctions): Promise<INodeExecutionData[]> {
+export async function execute(this: IExecuteFunctions, _itemIndex?: number): Promise<INodeExecutionData[]> {
 	const client = new ApiClient(this);
-	const serviceName = this.getNodeParameter('serviceName', 0, '', { extractValue: true }) as string;
-	const hardwareName = (this.getNodeParameter('hardwareName', 0, '') as string) || '';
-	const offer = (this.getNodeParameter('offer', 0, '') as string) || '';
-	const shippingContactID = (this.getNodeParameter('shippingContactID', 0, '') as string) || '';
+	const serviceName = this.getNodeParameter('serviceName', _itemIndex ?? 0, '', { extractValue: true }) as string;
+	const hardwareName = (this.getNodeParameter('hardwareName', _itemIndex ?? 0, '') as string) || '';
+	const offer = (this.getNodeParameter('offer', _itemIndex ?? 0, '') as string) || '';
+	const shippingContactID = (this.getNodeParameter('shippingContactID', _itemIndex ?? 0, '') as string) || '';
 
 	const body: IDataObject = {};
 	if (hardwareName) body.hardwareName = hardwareName;

@@ -54,11 +54,11 @@ export function description(displayOptions: IDisplayOptions): INodeProperties[] 
  * HTTP method: GET
  * Endpoint: /telephony/{billingAccount}/ovhPabx/{serviceName}/menu/{menuId}/entry/{entryId}
  */
-export async function execute(this: IExecuteFunctions, itemIndex: number): Promise<INodeExecutionData[]> {
-	const billingAccount = this.getNodeParameter('billingAccount', itemIndex) as string;
-	const entryId = this.getNodeParameter('entryId', itemIndex) as string;
-	const menuId = this.getNodeParameter('menuId', itemIndex) as string;
-	const serviceName = this.getNodeParameter('serviceName', itemIndex) as string;
+export async function execute(this: IExecuteFunctions, _itemIndex: number): Promise<INodeExecutionData[]> {
+	const billingAccount = this.getNodeParameter('billingAccount', _itemIndex) as string;
+	const entryId = this.getNodeParameter('entryId', _itemIndex) as string;
+	const menuId = this.getNodeParameter('menuId', _itemIndex) as string;
+	const serviceName = this.getNodeParameter('serviceName', _itemIndex) as string;
 
 	const client = new ApiClient(this);
 	const data = (await client.httpGet('/telephony/' + encodeURIComponent(billingAccount) + '/ovhPabx' + '/' + encodeURIComponent(serviceName) + '/menu' + '/' + encodeURIComponent(menuId) + '/entry' + '/' + encodeURIComponent(entryId))) as IDataObject;

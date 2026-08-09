@@ -51,16 +51,16 @@ export function description(displayOptions: IDisplayOptions): INodeProperties[] 
  * HTTP method: POST
  * Endpoint: /domain/zone/{zoneName}/changeContact
  */
-export async function execute(this: IExecuteFunctions, itemIndex: number): Promise<INodeExecutionData[]> {
+export async function execute(this: IExecuteFunctions, _itemIndex: number): Promise<INodeExecutionData[]> {
 	const client = new ApiClient(this);
-		const zoneName = this.getNodeParameter('zoneName', itemIndex) as string;
+		const zoneName = this.getNodeParameter('zoneName', _itemIndex) as string;
 
 	const body: IDataObject = {};
-		const contactAdmin = this.getNodeParameter('contactAdmin', itemIndex, '') as string;
+		const contactAdmin = this.getNodeParameter('contactAdmin', _itemIndex, '') as string;
 		if (contactAdmin !== '') body['contactAdmin'] = contactAdmin;
-		const contactBilling = this.getNodeParameter('contactBilling', itemIndex, '') as string;
+		const contactBilling = this.getNodeParameter('contactBilling', _itemIndex, '') as string;
 		if (contactBilling !== '') body['contactBilling'] = contactBilling;
-		const contactTech = this.getNodeParameter('contactTech', itemIndex, '') as string;
+		const contactTech = this.getNodeParameter('contactTech', _itemIndex, '') as string;
 		if (contactTech !== '') body['contactTech'] = contactTech;
 
 	const data = (await client.httpPost(`/domain/zone/${encodeURIComponent(zoneName)}/changeContact`, body)) as IDataObject;

@@ -14,6 +14,7 @@ import { ApiClient } from '../../../shared/transport/ApiClient';
 // getPartnerLevel
 export async function executeGetPartnerLevel(
 	this: IExecuteFunctions,
+_itemIndex?: number,
 ): Promise<INodeExecutionData[]> {
 	const client = new ApiClient(this);
 	const data = (await client.httpGet('/me/partnerLevel')) as IDataObject;
@@ -23,6 +24,7 @@ export async function executeGetPartnerLevel(
 // getSupportLevel
 export async function executeGetSupportLevel(
 	this: IExecuteFunctions,
+_itemIndex?: number,
 ): Promise<INodeExecutionData[]> {
 	const client = new ApiClient(this);
 	const data = (await client.httpGet('/me/supportLevel')) as IDataObject;
@@ -34,7 +36,7 @@ export async function executeGetSupportLevel(
 // ============================================================
 
 // listSlas
-export async function executeListSlas(this: IExecuteFunctions): Promise<INodeExecutionData[]> {
+export async function executeListSlas(this: IExecuteFunctions, _itemIndex?: number): Promise<INodeExecutionData[]> {
 	const client = new ApiClient(this);
 	const ids = (await client.httpGet('/me/sla')) as string[];
 	const results: IDataObject[] = [];
@@ -61,10 +63,10 @@ export function descriptionGetSla(displayOptions: IDisplayOptions): INodePropert
 
 export async function executeGetSla(
 	this: IExecuteFunctions,
-	itemIndex: number,
+	_itemIndex: number,
 ): Promise<INodeExecutionData[]> {
 	const client = new ApiClient(this);
-	const id = this.getNodeParameter('id', itemIndex) as string;
+	const id = this.getNodeParameter('id', _itemIndex) as string;
 	const data = (await client.httpGet(`/me/sla/${id}`)) as IDataObject;
 	return this.helpers.returnJsonArray([data]);
 }
@@ -85,10 +87,10 @@ export function descriptionGetSlaCanBeApplied(displayOptions: IDisplayOptions): 
 
 export async function executeGetSlaCanBeApplied(
 	this: IExecuteFunctions,
-	itemIndex: number,
+	_itemIndex: number,
 ): Promise<INodeExecutionData[]> {
 	const client = new ApiClient(this);
-	const id = this.getNodeParameter('id', itemIndex) as string;
+	const id = this.getNodeParameter('id', _itemIndex) as string;
 	const data = (await client.httpGet(`/me/sla/${id}/canBeApplied`)) as IDataObject;
 	return this.helpers.returnJsonArray([data]);
 }
@@ -109,10 +111,10 @@ export function descriptionListSlaServices(displayOptions: IDisplayOptions): INo
 
 export async function executeListSlaServices(
 	this: IExecuteFunctions,
-	itemIndex: number,
+	_itemIndex: number,
 ): Promise<INodeExecutionData[]> {
 	const client = new ApiClient(this);
-	const id = this.getNodeParameter('id', itemIndex) as string;
+	const id = this.getNodeParameter('id', _itemIndex) as string;
 	const serviceIds = (await client.httpGet(`/me/sla/${id}/services`)) as string[];
 	const results: IDataObject[] = [];
 	for (const serviceId of serviceIds) {
@@ -137,10 +139,10 @@ export function descriptionGetSlaStatus(displayOptions: IDisplayOptions): INodeP
 
 export async function executeGetSlaStatus(
 	this: IExecuteFunctions,
-	itemIndex: number,
+	_itemIndex: number,
 ): Promise<INodeExecutionData[]> {
 	const client = new ApiClient(this);
-	const id = this.getNodeParameter('id', itemIndex) as string;
+	const id = this.getNodeParameter('id', _itemIndex) as string;
 	const data = (await client.httpGet(`/me/sla/${id}/status`)) as IDataObject;
 	return this.helpers.returnJsonArray([data]);
 }
@@ -152,6 +154,7 @@ export async function executeGetSlaStatus(
 // listAgreements
 export async function executeListAgreements(
 	this: IExecuteFunctions,
+_itemIndex?: number,
 ): Promise<INodeExecutionData[]> {
 	const client = new ApiClient(this);
 	const ids = (await client.httpGet('/me/agreements')) as string[];
@@ -179,10 +182,10 @@ export function descriptionGetAgreement(displayOptions: IDisplayOptions): INodeP
 
 export async function executeGetAgreement(
 	this: IExecuteFunctions,
-	itemIndex: number,
+	_itemIndex: number,
 ): Promise<INodeExecutionData[]> {
 	const client = new ApiClient(this);
-	const id = this.getNodeParameter('id', itemIndex) as string;
+	const id = this.getNodeParameter('id', _itemIndex) as string;
 	const data = (await client.httpGet(`/me/agreements/${id}`)) as IDataObject;
 	return this.helpers.returnJsonArray([data]);
 }
@@ -205,10 +208,10 @@ export function descriptionGetAgreementContract(
 
 export async function executeGetAgreementContract(
 	this: IExecuteFunctions,
-	itemIndex: number,
+	_itemIndex: number,
 ): Promise<INodeExecutionData[]> {
 	const client = new ApiClient(this);
-	const id = this.getNodeParameter('id', itemIndex) as string;
+	const id = this.getNodeParameter('id', _itemIndex) as string;
 	const data = (await client.httpGet(`/me/agreements/${id}/contract`)) as IDataObject;
 	return this.helpers.returnJsonArray([data]);
 }
@@ -216,6 +219,7 @@ export async function executeGetAgreementContract(
 // listCertificates
 export async function executeListCertificates(
 	this: IExecuteFunctions,
+_itemIndex?: number,
 ): Promise<INodeExecutionData[]> {
 	const client = new ApiClient(this);
 	const data = (await client.httpGet('/me/certificates')) as IDataObject[];
@@ -223,14 +227,14 @@ export async function executeListCertificates(
 }
 
 // getVipStatus
-export async function executeGetVipStatus(this: IExecuteFunctions): Promise<INodeExecutionData[]> {
+export async function executeGetVipStatus(this: IExecuteFunctions, _itemIndex?: number): Promise<INodeExecutionData[]> {
 	const client = new ApiClient(this);
 	const data = (await client.httpGet('/me/vipStatus')) as IDataObject;
 	return this.helpers.returnJsonArray([data]);
 }
 
 // getInsight
-export async function executeGetInsight(this: IExecuteFunctions): Promise<INodeExecutionData[]> {
+export async function executeGetInsight(this: IExecuteFunctions, _itemIndex?: number): Promise<INodeExecutionData[]> {
 	const client = new ApiClient(this);
 	const data = (await client.httpGet('/me/insight')) as IDataObject;
 	return this.helpers.returnJsonArray([data]);
@@ -239,6 +243,7 @@ export async function executeGetInsight(this: IExecuteFunctions): Promise<INodeE
 // getRecommendations
 export async function executeGetRecommendations(
 	this: IExecuteFunctions,
+_itemIndex?: number,
 ): Promise<INodeExecutionData[]> {
 	const client = new ApiClient(this);
 	const data = (await client.httpGet('/me/recommendations')) as IDataObject;
@@ -248,6 +253,7 @@ export async function executeGetRecommendations(
 // getBringYourOwnIpToken
 export async function executeGetBringYourOwnIpToken(
 	this: IExecuteFunctions,
+_itemIndex?: number,
 ): Promise<INodeExecutionData[]> {
 	const client = new ApiClient(this);
 	const data = (await client.httpGet('/me/bringYourOwnIp/token')) as IDataObject;
@@ -259,7 +265,7 @@ export async function executeGetBringYourOwnIpToken(
 // ============================================================
 
 // listAbuse
-export async function executeListAbuse(this: IExecuteFunctions): Promise<INodeExecutionData[]> {
+export async function executeListAbuse(this: IExecuteFunctions, _itemIndex?: number): Promise<INodeExecutionData[]> {
 	const client = new ApiClient(this);
 	const ids = (await client.httpGet('/me/abuse')) as string[];
 	const results: IDataObject[] = [];
@@ -287,10 +293,10 @@ export function descriptionGetAbuse(displayOptions: IDisplayOptions): INodePrope
 
 export async function executeGetAbuse(
 	this: IExecuteFunctions,
-	itemIndex: number,
+	_itemIndex: number,
 ): Promise<INodeExecutionData[]> {
 	const client = new ApiClient(this);
-	const id = this.getNodeParameter('id', itemIndex) as string;
+	const id = this.getNodeParameter('id', _itemIndex) as string;
 	const data = (await client.httpGet(`/me/abuse/${id}`)) as IDataObject;
 	return this.helpers.returnJsonArray([data]);
 }
@@ -298,6 +304,7 @@ export async function executeGetAbuse(
 // getCarbonCalculatorHasInvoice
 export async function executeGetCarbonCalculatorHasInvoice(
 	this: IExecuteFunctions,
+_itemIndex?: number,
 ): Promise<INodeExecutionData[]> {
 	const client = new ApiClient(this);
 	const data = (await client.httpGet('/me/carbonCalculator/hasInvoice')) as IDataObject;
@@ -307,6 +314,7 @@ export async function executeGetCarbonCalculatorHasInvoice(
 // listCarbonCalculatorTasks
 export async function executeListCarbonCalculatorTasks(
 	this: IExecuteFunctions,
+_itemIndex?: number,
 ): Promise<INodeExecutionData[]> {
 	const client = new ApiClient(this);
 	const ids = (await client.httpGet('/me/carbonCalculator/task')) as string[];
@@ -337,10 +345,10 @@ export function descriptionGetCarbonCalculatorTask(
 
 export async function executeGetCarbonCalculatorTask(
 	this: IExecuteFunctions,
-	itemIndex: number,
+	_itemIndex: number,
 ): Promise<INodeExecutionData[]> {
 	const client = new ApiClient(this);
-	const taskId = this.getNodeParameter('taskId', itemIndex) as string;
+	const taskId = this.getNodeParameter('taskId', _itemIndex) as string;
 	const data = (await client.httpGet(`/me/carbonCalculator/task/${taskId}`)) as IDataObject;
 	return this.helpers.returnJsonArray([data]);
 }
@@ -352,6 +360,7 @@ export async function executeGetCarbonCalculatorTask(
 // getAccessRestrictionBackupCode
 export async function executeGetAccessRestrictionBackupCode(
 	this: IExecuteFunctions,
+_itemIndex?: number,
 ): Promise<INodeExecutionData[]> {
 	const client = new ApiClient(this);
 	const data = (await client.httpGet('/me/accessRestriction/backupCode')) as IDataObject;
@@ -361,6 +370,7 @@ export async function executeGetAccessRestrictionBackupCode(
 // getAccessRestrictionDeveloperMode
 export async function executeGetAccessRestrictionDeveloperMode(
 	this: IExecuteFunctions,
+_itemIndex?: number,
 ): Promise<INodeExecutionData[]> {
 	const client = new ApiClient(this);
 	const data = (await client.httpGet('/me/accessRestriction/developerMode')) as IDataObject;
@@ -370,6 +380,7 @@ export async function executeGetAccessRestrictionDeveloperMode(
 // listAccessRestrictionIps
 export async function executeListAccessRestrictionIps(
 	this: IExecuteFunctions,
+_itemIndex?: number,
 ): Promise<INodeExecutionData[]> {
 	const client = new ApiClient(this);
 	const ids = (await client.httpGet('/me/accessRestriction/ip')) as string[];
@@ -399,10 +410,10 @@ export function descriptionGetAccessRestrictionIp(
 
 export async function executeGetAccessRestrictionIp(
 	this: IExecuteFunctions,
-	itemIndex: number,
+	_itemIndex: number,
 ): Promise<INodeExecutionData[]> {
 	const client = new ApiClient(this);
-	const id = this.getNodeParameter('id', itemIndex) as string;
+	const id = this.getNodeParameter('id', _itemIndex) as string;
 	const data = (await client.httpGet(`/me/accessRestriction/ip/${id}`)) as IDataObject;
 	return this.helpers.returnJsonArray([data]);
 }
@@ -410,6 +421,7 @@ export async function executeGetAccessRestrictionIp(
 // getAccessRestrictionIpDefaultRule
 export async function executeGetAccessRestrictionIpDefaultRule(
 	this: IExecuteFunctions,
+_itemIndex?: number,
 ): Promise<INodeExecutionData[]> {
 	const client = new ApiClient(this);
 	const data = (await client.httpGet('/me/accessRestriction/ipDefaultRule')) as IDataObject;
@@ -419,6 +431,7 @@ export async function executeGetAccessRestrictionIpDefaultRule(
 // listAccessRestrictionSms
 export async function executeListAccessRestrictionSms(
 	this: IExecuteFunctions,
+_itemIndex?: number,
 ): Promise<INodeExecutionData[]> {
 	const client = new ApiClient(this);
 	const ids = (await client.httpGet('/me/accessRestriction/sms')) as string[];
@@ -448,10 +461,10 @@ export function descriptionGetAccessRestrictionSms(
 
 export async function executeGetAccessRestrictionSms(
 	this: IExecuteFunctions,
-	itemIndex: number,
+	_itemIndex: number,
 ): Promise<INodeExecutionData[]> {
 	const client = new ApiClient(this);
-	const id = this.getNodeParameter('id', itemIndex) as string;
+	const id = this.getNodeParameter('id', _itemIndex) as string;
 	const data = (await client.httpGet(`/me/accessRestriction/sms/${id}`)) as IDataObject;
 	return this.helpers.returnJsonArray([data]);
 }
@@ -459,6 +472,7 @@ export async function executeGetAccessRestrictionSms(
 // listAccessRestrictionTotp
 export async function executeListAccessRestrictionTotp(
 	this: IExecuteFunctions,
+_itemIndex?: number,
 ): Promise<INodeExecutionData[]> {
 	const client = new ApiClient(this);
 	const ids = (await client.httpGet('/me/accessRestriction/totp')) as string[];
@@ -488,10 +502,10 @@ export function descriptionGetAccessRestrictionTotp(
 
 export async function executeGetAccessRestrictionTotp(
 	this: IExecuteFunctions,
-	itemIndex: number,
+	_itemIndex: number,
 ): Promise<INodeExecutionData[]> {
 	const client = new ApiClient(this);
-	const id = this.getNodeParameter('id', itemIndex) as string;
+	const id = this.getNodeParameter('id', _itemIndex) as string;
 	const data = (await client.httpGet(`/me/accessRestriction/totp/${id}`)) as IDataObject;
 	return this.helpers.returnJsonArray([data]);
 }
@@ -499,6 +513,7 @@ export async function executeGetAccessRestrictionTotp(
 // listAccessRestrictionU2f
 export async function executeListAccessRestrictionU2f(
 	this: IExecuteFunctions,
+_itemIndex?: number,
 ): Promise<INodeExecutionData[]> {
 	const client = new ApiClient(this);
 	const ids = (await client.httpGet('/me/accessRestriction/u2f')) as string[];
@@ -528,10 +543,10 @@ export function descriptionGetAccessRestrictionU2f(
 
 export async function executeGetAccessRestrictionU2f(
 	this: IExecuteFunctions,
-	itemIndex: number,
+	_itemIndex: number,
 ): Promise<INodeExecutionData[]> {
 	const client = new ApiClient(this);
-	const id = this.getNodeParameter('id', itemIndex) as string;
+	const id = this.getNodeParameter('id', _itemIndex) as string;
 	const data = (await client.httpGet(`/me/accessRestriction/u2f/${id}`)) as IDataObject;
 	return this.helpers.returnJsonArray([data]);
 }

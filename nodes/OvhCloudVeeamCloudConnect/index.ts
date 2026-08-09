@@ -102,38 +102,38 @@ export function description() {
 	return props;
 }
 
-export async function execute(this: IExecuteFunctions): Promise<INodeExecutionData[]> {
+export async function execute(this: IExecuteFunctions, itemIndex?: number): Promise<INodeExecutionData[]> {
 	const operation = this.getNodeParameter('veeamCloudConnectOperation', 0) as string;
 
 	switch (operation) {
 		case 'backupRepositoryPost':
-			return backupRepositoryPost.execute.call(this);
+			return backupRepositoryPost.execute.call(this, itemIndex ?? 0);
 		case 'backupRepositoryDelete':
-			return backupRepositoryDelete.execute.call(this);
+			return backupRepositoryDelete.execute.call(this, itemIndex ?? 0);
 		case 'orderableUpgradeGet':
-			return orderableUpgradeGet.execute.call(this);
+			return orderableUpgradeGet.execute.call(this, itemIndex ?? 0);
 		case 'backupRepositoryDetailGet':
-			return backupRepositoryDetailGet.execute.call(this);
+			return backupRepositoryDetailGet.execute.call(this, itemIndex ?? 0);
 		case 'capabilitiesGet':
-			return capabilitiesGet.execute.call(this);
+			return capabilitiesGet.execute.call(this, itemIndex ?? 0);
 		case 'serviceInfosGet':
-			return serviceInfosGet.execute.call(this);
+			return serviceInfosGet.execute.call(this, itemIndex ?? 0);
 		case 'taskDetailGet':
-			return taskDetailGet.execute.call(this);
+			return taskDetailGet.execute.call(this, itemIndex ?? 0);
 		case 'get':
-			return get.execute.call(this);
+			return get.execute.call(this, itemIndex ?? 0);
 		case 'backupRepositoryGet':
-			return backupRepositoryGet.execute.call(this);
+			return backupRepositoryGet.execute.call(this, itemIndex ?? 0);
 		case 'taskGet':
-			return taskGet.execute.call(this);
+			return taskGet.execute.call(this, itemIndex ?? 0);
 		case 'list':
-			return list.execute.call(this);
+			return list.execute.call(this, itemIndex ?? 0);
 		case 'resetPasswordPost':
-			return resetPasswordPost.execute.call(this);
+			return resetPasswordPost.execute.call(this, itemIndex ?? 0);
 		case 'serviceInfosUpdatePut':
-			return serviceInfosUpdatePut.execute.call(this);
+			return serviceInfosUpdatePut.execute.call(this, itemIndex ?? 0);
 		case 'backupRepositoryUpgradeQuotaPost':
-			return backupRepositoryUpgradeQuotaPost.execute.call(this);
+			return backupRepositoryUpgradeQuotaPost.execute.call(this, itemIndex ?? 0);
 		default:
 			throw new Error(`No handler for operation '${operation}'`);
 	}

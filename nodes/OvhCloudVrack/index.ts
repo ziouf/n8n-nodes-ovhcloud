@@ -856,143 +856,143 @@ export async function execute(
 
 	switch (operation) {
 		case 'deleteVrackserviceNCloudProjectprojectDelete':
-			return await executeDeleteVrackserviceNCloudProjectprojectDelete.call(this, itemIndex);
+			return await executeDeleteVrackserviceNCloudProjectprojectDelete.call(this, itemIndex ?? 0);
 		case 'deleteVrackserviceNDedicatedClouddedicateDelete':
-			return await executeDeleteVrackserviceNDedicatedClouddedicateDelete.call(this, itemIndex);
+			return await executeDeleteVrackserviceNDedicatedClouddedicateDelete.call(this, itemIndex ?? 0);
 		case 'deleteVrackserviceNDedicatedServerdedicateDelete':
-			return await executeDeleteVrackserviceNDedicatedServerdedicateDelete.call(this, itemIndex);
+			return await executeDeleteVrackserviceNDedicatedServerdedicateDelete.call(this, itemIndex ?? 0);
 		case 'deleteVrackserviceNDedicatedServerInterfacededicateDelete':
 			return await executeDeleteVrackserviceNDedicatedServerInterfacededicateDelete.call(
 				this,
 				itemIndex,
 			);
 		case 'deleteVrackserviceNIpipDelete':
-			return await executeDeleteVrackserviceNIpipDelete.call(this, itemIndex);
+			return await executeDeleteVrackserviceNIpipDelete.call(this, itemIndex ?? 0);
 		case 'deleteVrackserviceNIpLoadbalancingipLoadbaDelete':
-			return await executeDeleteVrackserviceNIpLoadbalancingipLoadbaDelete.call(this, itemIndex);
+			return await executeDeleteVrackserviceNIpLoadbalancingipLoadbaDelete.call(this, itemIndex ?? 0);
 		case 'deleteVrackserviceNIpv6ipv6Delete':
-			return await executeDeleteVrackserviceNIpv6ipv6Delete.call(this, itemIndex);
+			return await executeDeleteVrackserviceNIpv6ipv6Delete.call(this, itemIndex ?? 0);
 		case 'deleteVrackserviceNIpv6ipv6RoutedSubrangeroutedSuDelete':
 			return await executeDeleteVrackserviceNIpv6ipv6RoutedSubrangeroutedSuDelete.call(
 				this,
 				itemIndex,
 			);
 		case 'deleteVrackserviceNLegacyVracklegacyVrDelete':
-			return await executeDeleteVrackserviceNLegacyVracklegacyVrDelete.call(this, itemIndex);
+			return await executeDeleteVrackserviceNLegacyVracklegacyVrDelete.call(this, itemIndex ?? 0);
 		case 'deleteVrackserviceNOvhCloudConnectovhCloudDelete':
-			return await executeDeleteVrackserviceNOvhCloudConnectovhCloudDelete.call(this, itemIndex);
+			return await executeDeleteVrackserviceNOvhCloudConnectovhCloudDelete.call(this, itemIndex ?? 0);
 		case 'deleteVrackserviceNVrackServicesvrackSerDelete':
-			return await executeDeleteVrackserviceNVrackServicesvrackSerDelete.call(this, itemIndex);
+			return await executeDeleteVrackserviceNVrackServicesvrackSerDelete.call(this, itemIndex ?? 0);
 		case 'getVrackPublicRoutingRegionGet':
-			return await executeGetVrackPublicRoutingRegionGet.call(this, itemIndex);
+			return await executeGetVrackPublicRoutingRegionGet.call(this, itemIndex ?? 0);
 		case 'getVrackserviceNAllowedServicesGet':
-			return await executeGetVrackserviceNAllowedServicesGet.call(this, itemIndex);
+			return await executeGetVrackserviceNAllowedServicesGet.call(this, itemIndex ?? 0);
 		case 'getVrackserviceNCloudProjectGet':
-			return await executeGetVrackserviceNCloudProjectGet.call(this, itemIndex);
+			return await executeGetVrackserviceNCloudProjectGet.call(this, itemIndex ?? 0);
 		case 'getVrackserviceNCloudProjectprojectGet':
-			return await executeGetVrackserviceNCloudProjectprojectGet.call(this, itemIndex);
+			return await executeGetVrackserviceNCloudProjectprojectGet.call(this, itemIndex ?? 0);
 		case 'getVrackserviceNDedicatedCloudDatacenterdatacentAllowedVrackGet':
 			return await executeGetVrackserviceNDedicatedCloudDatacenterdatacentAllowedVrackGet.call(
 				this,
 				itemIndex,
 			);
 		case 'getVrackserviceNDedicatedCloudDatacenterdatacentGet':
-			return await executeGetVrackserviceNDedicatedCloudDatacenterdatacentGet.call(this, itemIndex);
+			return await executeGetVrackserviceNDedicatedCloudDatacenterdatacentGet.call(this, itemIndex ?? 0);
 		case 'getVrackserviceNDedicatedCloudDatacenterGet':
-			return await executeGetVrackserviceNDedicatedCloudDatacenterGet.call(this, itemIndex);
+			return await executeGetVrackserviceNDedicatedCloudDatacenterGet.call(this, itemIndex ?? 0);
 		case 'getVrackserviceNDedicatedClouddedicateGet':
-			return await executeGetVrackserviceNDedicatedClouddedicateGet.call(this, itemIndex);
+			return await executeGetVrackserviceNDedicatedClouddedicateGet.call(this, itemIndex ?? 0);
 		case 'getVrackserviceNDedicatedCloudGet':
-			return await executeGetVrackserviceNDedicatedCloudGet.call(this, itemIndex);
+			return await executeGetVrackserviceNDedicatedCloudGet.call(this, itemIndex ?? 0);
 		case 'getVrackserviceNDedicatedConnectGet':
-			return await executeGetVrackserviceNDedicatedConnectGet.call(this, itemIndex);
+			return await executeGetVrackserviceNDedicatedConnectGet.call(this, itemIndex ?? 0);
 		case 'getVrackserviceNDedicatedConnectnameGet':
-			return await executeGetVrackserviceNDedicatedConnectnameGet.call(this, itemIndex);
+			return await executeGetVrackserviceNDedicatedConnectnameGet.call(this, itemIndex ?? 0);
 		case 'getVrackserviceNDedicatedServerdedicateGet':
-			return await executeGetVrackserviceNDedicatedServerdedicateGet.call(this, itemIndex);
+			return await executeGetVrackserviceNDedicatedServerdedicateGet.call(this, itemIndex ?? 0);
 		case 'getVrackserviceNDedicatedServerdedicateMrtgGet':
-			return await executeGetVrackserviceNDedicatedServerdedicateMrtgGet.call(this, itemIndex);
+			return await executeGetVrackserviceNDedicatedServerdedicateMrtgGet.call(this, itemIndex ?? 0);
 		case 'getVrackserviceNDedicatedServerGet':
-			return await executeGetVrackserviceNDedicatedServerGet.call(this, itemIndex);
+			return await executeGetVrackserviceNDedicatedServerGet.call(this, itemIndex ?? 0);
 		case 'getVrackserviceNDedicatedServerInterfacededicateGet':
-			return await executeGetVrackserviceNDedicatedServerInterfacededicateGet.call(this, itemIndex);
+			return await executeGetVrackserviceNDedicatedServerInterfacededicateGet.call(this, itemIndex ?? 0);
 		case 'getVrackserviceNDedicatedServerInterfaceDetailsGet':
-			return await executeGetVrackserviceNDedicatedServerInterfaceDetailsGet.call(this, itemIndex);
+			return await executeGetVrackserviceNDedicatedServerInterfaceDetailsGet.call(this, itemIndex ?? 0);
 		case 'getVrackserviceNDedicatedServerInterfaceGet':
-			return await executeGetVrackserviceNDedicatedServerInterfaceGet.call(this, itemIndex);
+			return await executeGetVrackserviceNDedicatedServerInterfaceGet.call(this, itemIndex ?? 0);
 		case 'getVrackserviceNEligibleServicesGet':
-			return await executeGetVrackserviceNEligibleServicesGet.call(this, itemIndex);
+			return await executeGetVrackserviceNEligibleServicesGet.call(this, itemIndex ?? 0);
 		case 'getVrackserviceNIpipGet':
-			return await executeGetVrackserviceNIpipGet.call(this, itemIndex);
+			return await executeGetVrackserviceNIpipGet.call(this, itemIndex ?? 0);
 		case 'getVrackserviceNIpLoadbalancingGet':
-			return await executeGetVrackserviceNIpLoadbalancingGet.call(this, itemIndex);
+			return await executeGetVrackserviceNIpLoadbalancingGet.call(this, itemIndex ?? 0);
 		case 'getVrackserviceNIpLoadbalancingipLoadbaGet':
-			return await executeGetVrackserviceNIpLoadbalancingipLoadbaGet.call(this, itemIndex);
+			return await executeGetVrackserviceNIpLoadbalancingipLoadbaGet.call(this, itemIndex ?? 0);
 		case 'getVrackserviceNIpv6Get':
-			return await executeGetVrackserviceNIpv6Get.call(this, itemIndex);
+			return await executeGetVrackserviceNIpv6Get.call(this, itemIndex ?? 0);
 		case 'getVrackserviceNIpv6ipv6BridgedSubrangebridgedSGet':
-			return await executeGetVrackserviceNIpv6ipv6BridgedSubrangebridgedSGet.call(this, itemIndex);
+			return await executeGetVrackserviceNIpv6ipv6BridgedSubrangebridgedSGet.call(this, itemIndex ?? 0);
 		case 'getVrackserviceNIpv6ipv6BridgedSubrangeGet':
-			return await executeGetVrackserviceNIpv6ipv6BridgedSubrangeGet.call(this, itemIndex);
+			return await executeGetVrackserviceNIpv6ipv6BridgedSubrangeGet.call(this, itemIndex ?? 0);
 		case 'getVrackserviceNIpv6ipv6Get':
-			return await executeGetVrackserviceNIpv6ipv6Get.call(this, itemIndex);
+			return await executeGetVrackserviceNIpv6ipv6Get.call(this, itemIndex ?? 0);
 		case 'getVrackserviceNIpv6ipv6RoutedSubrangeGet':
-			return await executeGetVrackserviceNIpv6ipv6RoutedSubrangeGet.call(this, itemIndex);
+			return await executeGetVrackserviceNIpv6ipv6RoutedSubrangeGet.call(this, itemIndex ?? 0);
 		case 'getVrackserviceNIpv6ipv6RoutedSubrangeroutedSuGet':
-			return await executeGetVrackserviceNIpv6ipv6RoutedSubrangeroutedSuGet.call(this, itemIndex);
+			return await executeGetVrackserviceNIpv6ipv6RoutedSubrangeroutedSuGet.call(this, itemIndex ?? 0);
 		case 'getVrackserviceNLegacyVrackGet':
-			return await executeGetVrackserviceNLegacyVrackGet.call(this, itemIndex);
+			return await executeGetVrackserviceNLegacyVrackGet.call(this, itemIndex ?? 0);
 		case 'getVrackserviceNLegacyVracklegacyVrGet':
-			return await executeGetVrackserviceNLegacyVracklegacyVrGet.call(this, itemIndex);
+			return await executeGetVrackserviceNLegacyVracklegacyVrGet.call(this, itemIndex ?? 0);
 		case 'getVrackserviceNOvhCloudConnectGet':
-			return await executeGetVrackserviceNOvhCloudConnectGet.call(this, itemIndex);
+			return await executeGetVrackserviceNOvhCloudConnectGet.call(this, itemIndex ?? 0);
 		case 'getVrackserviceNOvhCloudConnectovhCloudGet':
-			return await executeGetVrackserviceNOvhCloudConnectovhCloudGet.call(this, itemIndex);
+			return await executeGetVrackserviceNOvhCloudConnectovhCloudGet.call(this, itemIndex ?? 0);
 		case 'getVrackserviceNPublicRoutingBandwidthLimitGet':
-			return await executeGetVrackserviceNPublicRoutingBandwidthLimitGet.call(this, itemIndex);
+			return await executeGetVrackserviceNPublicRoutingBandwidthLimitGet.call(this, itemIndex ?? 0);
 		case 'getVrackserviceNServiceInfosGet':
-			return await executeGetVrackserviceNServiceInfosGet.call(this, itemIndex);
+			return await executeGetVrackserviceNServiceInfosGet.call(this, itemIndex ?? 0);
 		case 'getVrackserviceNTaskGet':
-			return await executeGetVrackserviceNTaskGet.call(this, itemIndex);
+			return await executeGetVrackserviceNTaskGet.call(this, itemIndex ?? 0);
 		case 'getVrackserviceNTasktaskIdGet':
-			return await executeGetVrackserviceNTasktaskIdGet.call(this, itemIndex);
+			return await executeGetVrackserviceNTasktaskIdGet.call(this, itemIndex ?? 0);
 		case 'getVrackserviceNVrackServicesGet':
-			return await executeGetVrackserviceNVrackServicesGet.call(this, itemIndex);
+			return await executeGetVrackserviceNVrackServicesGet.call(this, itemIndex ?? 0);
 		case 'getVrackserviceNVrackServicesvrackSerGet':
-			return await executeGetVrackserviceNVrackServicesvrackSerGet.call(this, itemIndex);
+			return await executeGetVrackserviceNVrackServicesvrackSerGet.call(this, itemIndex ?? 0);
 		case 'postVrackserviceNCloudProjectPost':
-			return await executePostVrackserviceNCloudProjectPost.call(this, itemIndex);
+			return await executePostVrackserviceNCloudProjectPost.call(this, itemIndex ?? 0);
 		case 'postVrackserviceNConfirmTerminationPost':
-			return await executePostVrackserviceNConfirmTerminationPost.call(this, itemIndex);
+			return await executePostVrackserviceNConfirmTerminationPost.call(this, itemIndex ?? 0);
 		case 'postVrackserviceNDedicatedCloudDatacenterdatacentMovePost':
 			return await executePostVrackserviceNDedicatedCloudDatacenterdatacentMovePost.call(
 				this,
 				itemIndex,
 			);
 		case 'postVrackserviceNDedicatedCloudPost':
-			return await executePostVrackserviceNDedicatedCloudPost.call(this, itemIndex);
+			return await executePostVrackserviceNDedicatedCloudPost.call(this, itemIndex ?? 0);
 		case 'postVrackserviceNDedicatedServerInterfacePost':
-			return await executePostVrackserviceNDedicatedServerInterfacePost.call(this, itemIndex);
+			return await executePostVrackserviceNDedicatedServerInterfacePost.call(this, itemIndex ?? 0);
 		case 'postVrackserviceNDedicatedServerPost':
-			return await executePostVrackserviceNDedicatedServerPost.call(this, itemIndex);
+			return await executePostVrackserviceNDedicatedServerPost.call(this, itemIndex ?? 0);
 		case 'postVrackserviceNIpLoadbalancingPost':
-			return await executePostVrackserviceNIpLoadbalancingPost.call(this, itemIndex);
+			return await executePostVrackserviceNIpLoadbalancingPost.call(this, itemIndex ?? 0);
 		case 'postVrackserviceNIpv6ipv6RoutedSubrangePost':
-			return await executePostVrackserviceNIpv6ipv6RoutedSubrangePost.call(this, itemIndex);
+			return await executePostVrackserviceNIpv6ipv6RoutedSubrangePost.call(this, itemIndex ?? 0);
 		case 'postVrackserviceNIpv6Post':
-			return await executePostVrackserviceNIpv6Post.call(this, itemIndex);
+			return await executePostVrackserviceNIpv6Post.call(this, itemIndex ?? 0);
 		case 'postVrackserviceNLegacyVrackPost':
-			return await executePostVrackserviceNLegacyVrackPost.call(this, itemIndex);
+			return await executePostVrackserviceNLegacyVrackPost.call(this, itemIndex ?? 0);
 		case 'postVrackserviceNOvhCloudConnectPost':
-			return await executePostVrackserviceNOvhCloudConnectPost.call(this, itemIndex);
+			return await executePostVrackserviceNOvhCloudConnectPost.call(this, itemIndex ?? 0);
 		case 'postVrackserviceNTerminatePost':
-			return await executePostVrackserviceNTerminatePost.call(this, itemIndex);
+			return await executePostVrackserviceNTerminatePost.call(this, itemIndex ?? 0);
 		case 'postVrackserviceNVrackServicesPost':
-			return await executePostVrackserviceNVrackServicesPost.call(this, itemIndex);
+			return await executePostVrackserviceNVrackServicesPost.call(this, itemIndex ?? 0);
 		case 'putVrackserviceNDedicatedConnectnamePut':
-			return await executePutVrackserviceNDedicatedConnectnamePut.call(this, itemIndex);
+			return await executePutVrackserviceNDedicatedConnectnamePut.call(this, itemIndex ?? 0);
 		case 'putVrackserviceNIpv6ipv6BridgedSubrangebridgedSPut':
-			return await executePutVrackserviceNIpv6ipv6BridgedSubrangebridgedSPut.call(this, itemIndex);
+			return await executePutVrackserviceNIpv6ipv6BridgedSubrangebridgedSPut.call(this, itemIndex ?? 0);
 	}
 
 	throw new Error('Unsupported operation ' + operation);

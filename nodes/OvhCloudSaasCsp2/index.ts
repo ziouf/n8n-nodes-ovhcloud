@@ -133,48 +133,48 @@ export function description() {
 	return props;
 }
 
-export async function execute(this: IExecuteFunctions): Promise<INodeExecutionData[]> {
+export async function execute(this: IExecuteFunctions, itemIndex?: number): Promise<INodeExecutionData[]> {
 	const operation = this.getNodeParameter('saasCsp2Operation', 0) as string;
 
 	switch (operation) {
 		case 'subscriptionPost':
-			return subscriptionPost.execute.call(this);
+			return subscriptionPost.execute.call(this, itemIndex ?? 0);
 		case 'subscriptionChangeQuantityPost':
-			return subscriptionChangeQuantityPost.execute.call(this);
+			return subscriptionChangeQuantityPost.execute.call(this, itemIndex ?? 0);
 		case 'subscriptionOrderAddonPost':
-			return subscriptionOrderAddonPost.execute.call(this);
+			return subscriptionOrderAddonPost.execute.call(this, itemIndex ?? 0);
 		case 'subscriptionDelete':
-			return subscriptionDelete.execute.call(this);
+			return subscriptionDelete.execute.call(this, itemIndex ?? 0);
 		case 'subscriptionAddonsSubscriptionIdsGet':
-			return subscriptionAddonsSubscriptionIdsGet.execute.call(this);
+			return subscriptionAddonsSubscriptionIdsGet.execute.call(this, itemIndex ?? 0);
 		case 'subscriptionAvailableAddonLicensesGet':
-			return subscriptionAvailableAddonLicensesGet.execute.call(this);
+			return subscriptionAvailableAddonLicensesGet.execute.call(this, itemIndex ?? 0);
 		case 'billingPeriodPeaksGet':
-			return billingPeriodPeaksGet.execute.call(this);
+			return billingPeriodPeaksGet.execute.call(this, itemIndex ?? 0);
 		case 'get':
-			return get.execute.call(this);
+			return get.execute.call(this, itemIndex ?? 0);
 		case 'orderableLicensesDetailGet':
-			return orderableLicensesDetailGet.execute.call(this);
+			return orderableLicensesDetailGet.execute.call(this, itemIndex ?? 0);
 		case 'orderableLicensesGet':
-			return orderableLicensesGet.execute.call(this);
+			return orderableLicensesGet.execute.call(this, itemIndex ?? 0);
 		case 'serviceInfosGet':
-			return serviceInfosGet.execute.call(this);
+			return serviceInfosGet.execute.call(this, itemIndex ?? 0);
 		case 'subscriptionDetailGet':
-			return subscriptionDetailGet.execute.call(this);
+			return subscriptionDetailGet.execute.call(this, itemIndex ?? 0);
 		case 'subscriptionGet':
-			return subscriptionGet.execute.call(this);
+			return subscriptionGet.execute.call(this, itemIndex ?? 0);
 		case 'taskDetailGet':
-			return taskDetailGet.execute.call(this);
+			return taskDetailGet.execute.call(this, itemIndex ?? 0);
 		case 'taskGet':
-			return taskGet.execute.call(this);
+			return taskGet.execute.call(this, itemIndex ?? 0);
 		case 'usageStatisticsGet':
-			return usageStatisticsGet.execute.call(this);
+			return usageStatisticsGet.execute.call(this, itemIndex ?? 0);
 		case 'list':
-			return list.execute.call(this);
+			return list.execute.call(this, itemIndex ?? 0);
 		case 'updatePut':
-			return updatePut.execute.call(this);
+			return updatePut.execute.call(this, itemIndex ?? 0);
 		case 'serviceInfosUpdatePut':
-			return serviceInfosUpdatePut.execute.call(this);
+			return serviceInfosUpdatePut.execute.call(this, itemIndex ?? 0);
 		default:
 			throw new Error(`No handler for operation '${operation}'`);
 	}

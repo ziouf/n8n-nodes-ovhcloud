@@ -35,11 +35,11 @@ export function description(displayOptions: IDisplayOptions): INodeProperties[] 
  * HTTP method: POST
  * Endpoint: /telephony/numbers/{numberId}/portability
  */
-export async function execute(this: IExecuteFunctions, itemIndex: number): Promise<INodeExecutionData[]> {
-	const numberId = this.getNodeParameter('numberId', itemIndex) as string;
+export async function execute(this: IExecuteFunctions, _itemIndex: number): Promise<INodeExecutionData[]> {
+	const numberId = this.getNodeParameter('numberId', _itemIndex) as string;
 
 
-	const expire = this.getNodeParameter('expire', itemIndex) as string;
+	const expire = this.getNodeParameter('expire', _itemIndex) as string;
 
 	const body: IDataObject = {
     expire: expire

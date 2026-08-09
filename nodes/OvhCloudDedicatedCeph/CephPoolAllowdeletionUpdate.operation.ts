@@ -34,9 +34,9 @@ export function description(): INodeProperties[] {
  * Endpoint: /dedicated/ceph/{serviceName}/pool/{poolName}/allowDeletion
  */
 export async function execute(this: IExecuteFunctions,
-	itemIndex: number): Promise<INodeExecutionData[]> {
-	const poolName = this.getNodeParameter('poolName', itemIndex) as string;
-	const serviceName = this.getNodeParameter('serviceName', itemIndex) as string;
+	_itemIndex: number): Promise<INodeExecutionData[]> {
+	const poolName = this.getNodeParameter('poolName', _itemIndex) as string;
+	const serviceName = this.getNodeParameter('serviceName', _itemIndex) as string;
 	const client = new ApiClient(this);
 	const data = (await client.httpPut('/dedicated/ceph/' + encodeURIComponent(serviceName) + '/pool/' + encodeURIComponent(poolName) + '/allowDeletion')) as IDataObject;
 	return this.helpers.returnJsonArray([data]);

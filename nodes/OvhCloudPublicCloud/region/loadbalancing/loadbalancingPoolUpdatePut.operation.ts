@@ -77,23 +77,23 @@ export function description(displayOptions: IDisplayOptions): INodeProperties[] 
  * HTTP method: PUT
  * Endpoint: /publicCloud/project/{projectId}/region/{regionName}/loadbalancing/pool/${poolIdVal}
  */
-export async function execute(this: IExecuteFunctions): Promise<INodeExecutionData[]> {
+export async function execute(this: IExecuteFunctions, _itemIndex?: number): Promise<INodeExecutionData[]> {
 	const client = new ApiClient(this);
-	const projectId = this.getNodeParameter('publicCloudProjectId', 0, '', {
+	const projectId = this.getNodeParameter('publicCloudProjectId', _itemIndex ?? 0, '', {
 		extractValue: true,
 	}) as string;
-	const regionName = this.getNodeParameter('regionName', 0) as string;
+	const regionName = this.getNodeParameter('regionName', _itemIndex ?? 0) as string;
 	const body = {} as import('n8n-workflow').IDataObject;
 
-	const poolIdVal = (this.getNodeParameter('poolId', 0) || '') as string;
+	const poolIdVal = (this.getNodeParameter('poolId', _itemIndex ?? 0) || '') as string;
 	if (poolIdVal !== '') {
 		body.poolId = poolIdVal;
 	}
-	const nameVal = (this.getNodeParameter('name', 0) || '') as string;
+	const nameVal = (this.getNodeParameter('name', _itemIndex ?? 0) || '') as string;
 	if (nameVal !== '') {
 		body.name = nameVal;
 	}
-	const algorithmVal = (this.getNodeParameter('algorithm', 0) || '') as string;
+	const algorithmVal = (this.getNodeParameter('algorithm', _itemIndex ?? 0) || '') as string;
 	if (algorithmVal !== '') {
 		body.algorithm = algorithmVal;
 	}

@@ -85,18 +85,18 @@ export function description(displayOptions: IDisplayOptions): INodeProperties[] 
  * HTTP method: POST
  * Endpoint: /ipLoadbalancing/{serviceName}/tcp/route/{routeId}/rule
  */
-export async function execute(this: IExecuteFunctions, itemIndex: number): Promise<INodeExecutionData[]> {
-	const serviceName = this.getNodeParameter('serviceName', itemIndex) as string;
-	const routeId = this.getNodeParameter('routeId', itemIndex) as string;
+export async function execute(this: IExecuteFunctions, _itemIndex: number): Promise<INodeExecutionData[]> {
+	const serviceName = this.getNodeParameter('serviceName', _itemIndex) as string;
+	const routeId = this.getNodeParameter('routeId', _itemIndex) as string;
 
 
 
-	const displayName = this.getNodeParameter('displayName', itemIndex) as string;
-	const field = this.getNodeParameter('field', itemIndex) as string;
-	const match = this.getNodeParameter('match', itemIndex) as string;
-	const negate = this.getNodeParameter('negate', itemIndex) as string;
-	const pattern = this.getNodeParameter('pattern', itemIndex) as string;
-	const subField = this.getNodeParameter('subField', itemIndex) as string;
+	const displayName = this.getNodeParameter('displayName', _itemIndex) as string;
+	const field = this.getNodeParameter('field', _itemIndex) as string;
+	const match = this.getNodeParameter('match', _itemIndex) as string;
+	const negate = this.getNodeParameter('negate', _itemIndex) as string;
+	const pattern = this.getNodeParameter('pattern', _itemIndex) as string;
+	const subField = this.getNodeParameter('subField', _itemIndex) as string;
 
 
 const body: IDataObject = {

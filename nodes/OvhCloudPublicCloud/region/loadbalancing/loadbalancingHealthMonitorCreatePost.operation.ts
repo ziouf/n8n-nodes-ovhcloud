@@ -131,47 +131,47 @@ export function description(displayOptions: IDisplayOptions): INodeProperties[] 
  * HTTP method: POST
  * Endpoint: /publicCloud/project/{projectId}/region/{regionName}/loadbalancing/healthMonitor
  */
-export async function execute(this: IExecuteFunctions): Promise<INodeExecutionData[]> {
+export async function execute(this: IExecuteFunctions, _itemIndex?: number): Promise<INodeExecutionData[]> {
 	const client = new ApiClient(this);
-	const projectId = this.getNodeParameter('publicCloudProjectId', 0, '', {
+	const projectId = this.getNodeParameter('publicCloudProjectId', _itemIndex ?? 0, '', {
 		extractValue: true,
 	}) as string;
-	const regionName = this.getNodeParameter('regionName', 0) as string;
+	const regionName = this.getNodeParameter('regionName', _itemIndex ?? 0) as string;
 	const body = {} as import('n8n-workflow').IDataObject;
 
-	const nameVal = (this.getNodeParameter('name', 0) || '') as string;
+	const nameVal = (this.getNodeParameter('name', _itemIndex ?? 0) || '') as string;
 	if (nameVal !== '') {
 		body.name = nameVal;
 	}
-	const monitorTypeVal = (this.getNodeParameter('monitorType', 0) || '') as string;
+	const monitorTypeVal = (this.getNodeParameter('monitorType', _itemIndex ?? 0) || '') as string;
 	if (monitorTypeVal !== '') {
 		body.monitorType = monitorTypeVal;
 	}
-	const delayNum = this.getNodeParameter('delay', 0) as number;
+	const delayNum = this.getNodeParameter('delay', _itemIndex ?? 0) as number;
 	if (delayNum !== undefined && delayNum !== 0) {
 		body.delay = delayNum;
 	}
-	const timeoutNum = this.getNodeParameter('timeout', 0) as number;
+	const timeoutNum = this.getNodeParameter('timeout', _itemIndex ?? 0) as number;
 	if (timeoutNum !== undefined && timeoutNum !== 0) {
 		body.timeout = timeoutNum;
 	}
-	const maxRetriesNum = this.getNodeParameter('maxRetries', 0) as number;
+	const maxRetriesNum = this.getNodeParameter('maxRetries', _itemIndex ?? 0) as number;
 	if (maxRetriesNum !== undefined && maxRetriesNum !== 0) {
 		body.maxRetries = maxRetriesNum;
 	}
-	const maxRetriesDownNum = this.getNodeParameter('maxRetriesDown', 0) as number;
+	const maxRetriesDownNum = this.getNodeParameter('maxRetriesDown', _itemIndex ?? 0) as number;
 	if (maxRetriesDownNum !== undefined && maxRetriesDownNum !== 0) {
 		body.maxRetriesDown = maxRetriesDownNum;
 	}
-	const httpMethodVal = (this.getNodeParameter('httpMethod', 0) || '') as string;
+	const httpMethodVal = (this.getNodeParameter('httpMethod', _itemIndex ?? 0) || '') as string;
 	if (httpMethodVal !== '') {
 		body.httpMethod = httpMethodVal;
 	}
-	const httpPathVal = (this.getNodeParameter('httpPath', 0) || '') as string;
+	const httpPathVal = (this.getNodeParameter('httpPath', _itemIndex ?? 0) || '') as string;
 	if (httpPathVal !== '') {
 		body.httpPath = httpPathVal;
 	}
-	const httpStatusCodeNum = this.getNodeParameter('httpStatusCode', 0) as number;
+	const httpStatusCodeNum = this.getNodeParameter('httpStatusCode', _itemIndex ?? 0) as number;
 	if (httpStatusCodeNum !== undefined && httpStatusCodeNum !== 0) {
 		body.httpStatusCode = httpStatusCodeNum;
 	}

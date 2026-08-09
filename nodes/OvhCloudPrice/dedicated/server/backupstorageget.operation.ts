@@ -27,9 +27,9 @@ export function description(displayOptions: IDisplayOptions): INodeProperties[] 
  * HTTP method: GET
  * Endpoint: /price/dedicated/server/backupStorage/{capacity}
  */
-export async function execute(this: IExecuteFunctions): Promise<INodeExecutionData[]> {
+export async function execute(this: IExecuteFunctions, _itemIndex?: number): Promise<INodeExecutionData[]> {
     const client = new ApiClient(this);
-    const capacity = this.getNodeParameter('capacity', 0) as string;
+    const capacity = this.getNodeParameter('capacity', _itemIndex ?? 0) as string;
     const data = (await client.httpGet(`/price/dedicated/server/backupStorage/${capacity}`)) as IDataObject;
     return this.helpers.returnJsonArray([data]);
 }

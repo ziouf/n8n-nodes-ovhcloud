@@ -40,9 +40,9 @@ export function description(displayOptions: IDisplayOptions): INodeProperties[] 
  * HTTP method: PUT
  * Endpoint: /email/mxplan/{service}/externalContact/{externalEmailAddress}
  */
-export async function execute(this: IExecuteFunctions): Promise<INodeExecutionData[]> {
-	const externalEmailAddress = this.getNodeParameter('externalEmailAddress', 0) as string;
-	const service = this.getNodeParameter('service', 0) as string;
+export async function execute(this: IExecuteFunctions, _itemIndex?: number): Promise<INodeExecutionData[]> {
+	const externalEmailAddress = this.getNodeParameter('externalEmailAddress', _itemIndex ?? 0) as string;
+	const service = this.getNodeParameter('service', _itemIndex ?? 0) as string;
 
 	const body: IDataObject = {
 		undefined: undefined,

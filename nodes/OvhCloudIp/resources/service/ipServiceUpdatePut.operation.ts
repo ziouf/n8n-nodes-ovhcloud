@@ -36,10 +36,10 @@ export function description(displayOptions: IDisplayOptions): INodeProperties[] 
  * Endpoint: /ip/service/{serviceName}
  */
 
-export async function execute(this: IExecuteFunctions, itemIndex: number): Promise<INodeExecutionData[]> {
-	const serviceName = this.getNodeParameter('serviceName', itemIndex) as string;
+export async function execute(this: IExecuteFunctions, _itemIndex: number): Promise<INodeExecutionData[]> {
+	const serviceName = this.getNodeParameter('serviceName', _itemIndex) as string;
 
-	const description = (this.getNodeParameter('description', itemIndex) as string) || '';
+	const description = (this.getNodeParameter('description', _itemIndex) as string) || '';
 
 	const body: IDataObject = {};
 	if (description) body.description = description;

@@ -48,12 +48,12 @@ export function description(displayOptions: IDisplayOptions): INodeProperties[] 
  * HTTP method: GET
  * Endpoint: /cloud/project/{projectId}/loadbalancer/{loadBalancerId}/configuration
  */
-export async function execute(this: IExecuteFunctions): Promise<INodeExecutionData[]> {
+export async function execute(this: IExecuteFunctions, _itemIndex?: number): Promise<INodeExecutionData[]> {
 	const client = new ApiClient(this);
-	const projectId = this.getNodeParameter('publicCloudProjectId', 0, '', {
+	const projectId = this.getNodeParameter('publicCloudProjectId', _itemIndex ?? 0, '', {
 		extractValue: true,
 	}) as string;
-	const loadBalancerId = this.getNodeParameter('loadBalancerId', 0) as string;
+	const loadBalancerId = this.getNodeParameter('loadBalancerId', _itemIndex ?? 0) as string;
 
 	const data = (await client.httpGet(
 		`/cloud/project/${projectId}/loadbalancer/${loadBalancerId}/configuration`,

@@ -37,9 +37,9 @@ export function description(displayOptions: IDisplayOptions): INodeProperties[] 
  * HTTP method: GET
  * Endpoint: /notification/history/{notificationId}/attachment/{attachmentName}
  */
-export async function execute(this: IExecuteFunctions, itemIndex: number): Promise<INodeExecutionData[]> {
-	const notificationId = this.getNodeParameter('notificationId', itemIndex) as string;
-	const attachmentName = this.getNodeParameter('attachmentName', itemIndex) as string;
+export async function execute(this: IExecuteFunctions, _itemIndex: number): Promise<INodeExecutionData[]> {
+	const notificationId = this.getNodeParameter('notificationId', _itemIndex) as string;
+	const attachmentName = this.getNodeParameter('attachmentName', _itemIndex) as string;
 
 
 	const client = new ApiClient(this);

@@ -48,14 +48,14 @@ export function description(displayOptions: IDisplayOptions): INodeProperties[] 
  */
 export async function execute(
 	this: IExecuteFunctions,
-	itemIndex: number,
+	_itemIndex: number,
 ): Promise<INodeExecutionData[]> {
 	const client = new ApiClient(this);
-	const serviceName = this.getNodeParameter('serviceName', itemIndex!, '', {
+	const serviceName = this.getNodeParameter('serviceName', _itemIndex!, '', {
 		extractValue: true,
 	}) as string;
-	const id = this.getNodeParameter('id', itemIndex!) as string;
-	const softwareId = this.getNodeParameter('softwareId', itemIndex!) as string;
+	const id = this.getNodeParameter('id', _itemIndex!) as string;
+	const softwareId = this.getNodeParameter('softwareId', _itemIndex!) as string;
 
 	const data = (await client.httpGet(
 		`/vps/${serviceName}/templates/${id}/software/${softwareId}`,

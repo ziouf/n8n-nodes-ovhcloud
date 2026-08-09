@@ -36,9 +36,9 @@ export function description(displayOptions: IDisplayOptions): INodeProperties[] 
  * HTTP method: GET
  * Endpoint: /sms/{serviceName}/users/{login}/jobs
  */
-export async function execute(this: IExecuteFunctions): Promise<INodeExecutionData[]> {
-	const login = this.getNodeParameter('login', 0) as string;
-	const serviceName = this.getNodeParameter('serviceName', 0, '', { extractValue: true }) as string;
+export async function execute(this: IExecuteFunctions, _itemIndex?: number): Promise<INodeExecutionData[]> {
+	const login = this.getNodeParameter('login', _itemIndex ?? 0) as string;
+	const serviceName = this.getNodeParameter('serviceName', _itemIndex ?? 0, '', { extractValue: true }) as string;
 	const data = (await new ApiClient(this).httpGet(
 		`/sms/${encodeURIComponent(serviceName)}/users/${encodeURIComponent(login)}/jobs`,
 	)) as number[];

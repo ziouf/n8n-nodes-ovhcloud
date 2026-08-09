@@ -44,10 +44,10 @@ export function description(displayOptions: IDisplayOptions): INodeProperties[] 
  * HTTP method: DELETE
  * Endpoint: /telephony/{billingAccount}/line/{serviceName}/abbreviatedNumber/{abbreviatedNumber}
  */
-export async function execute(this: IExecuteFunctions, itemIndex: number): Promise<INodeExecutionData[]> {
-	const abbreviatedNumber = this.getNodeParameter('abbreviatedNumber', itemIndex) as string;
-	const billingAccount = this.getNodeParameter('billingAccount', itemIndex) as string;
-	const serviceName = this.getNodeParameter('serviceName', itemIndex) as string;
+export async function execute(this: IExecuteFunctions, _itemIndex: number): Promise<INodeExecutionData[]> {
+	const abbreviatedNumber = this.getNodeParameter('abbreviatedNumber', _itemIndex) as string;
+	const billingAccount = this.getNodeParameter('billingAccount', _itemIndex) as string;
+	const serviceName = this.getNodeParameter('serviceName', _itemIndex) as string;
 
 	const client = new ApiClient(this);
 	const data = (await client.httpDelete('/telephony/' + billingAccount + '/line/' + serviceName + '/abbreviatedNumber/' + abbreviatedNumber)) as IDataObject;

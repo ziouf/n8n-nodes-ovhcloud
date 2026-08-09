@@ -124,21 +124,21 @@ export async function execute(
 
 	switch (operation) {
 		case 'createRenew':
-			return await executeCreateRenew.call(this);
+			return await executeCreateRenew.call(this, itemIndex ?? 0);
 		case 'get':
-			return await executeGet.call(this, itemIndex);
+			return await executeGet.call(this, itemIndex ?? 0);
 		case 'list':
-			return await executeList.call(this, itemIndex);
+			return await executeList.call(this, itemIndex ?? 0);
 		case 'listRenews':
-			return await executeListRenews.call(this, itemIndex);
+			return await executeListRenews.call(this, itemIndex ?? 0);
 		case 'reopenService':
-			return await executeReopenService.call(this);
+			return await executeReopenService.call(this, itemIndex ?? 0);
 		case 'suspend':
-			return await executeSuspend.call(this);
+			return await executeSuspend.call(this, itemIndex ?? 0);
 		case 'terminate':
-			return await executeTerminate.call(this);
+			return await executeTerminate.call(this, itemIndex ?? 0);
 		case 'updateService':
-			return await executeUpdate.call(this);
+			return await executeUpdate.call(this, itemIndex ?? 0);
 	}
 
 	throw new Error(`Unsupported operation "${operation}" for resource "service"`);

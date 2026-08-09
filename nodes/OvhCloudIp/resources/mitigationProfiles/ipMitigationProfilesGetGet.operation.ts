@@ -37,10 +37,10 @@ export function description(displayOptions: IDisplayOptions): INodeProperties[] 
  * Endpoint: /ip/{ip}/mitigationProfiles/{ipMitigationProfile}
  */
 
-export async function execute(this: IExecuteFunctions, itemIndex: number): Promise<INodeExecutionData[]> {
-	const ip = this.getNodeParameter('ip', itemIndex) as string;
+export async function execute(this: IExecuteFunctions, _itemIndex: number): Promise<INodeExecutionData[]> {
+	const ip = this.getNodeParameter('ip', _itemIndex) as string;
 
-	const ipMitigationProfile = this.getNodeParameter('ipMitigationProfile', itemIndex) as string;
+	const ipMitigationProfile = this.getNodeParameter('ipMitigationProfile', _itemIndex) as string;
 
 	const client = new ApiClient(this);
 	const data = (await client.httpGet(`/ip/${encodeURIComponent(ip)}/mitigationProfiles/${encodeURIComponent(ipMitigationProfile)}`)) as IDataObject;

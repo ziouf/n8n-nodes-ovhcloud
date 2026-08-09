@@ -44,11 +44,11 @@ export function description(displayOptions: IDisplayOptions): INodeProperties[] 
  * Endpoint: /ip/{ip}/ripe
  */
 
-export async function execute(this: IExecuteFunctions, itemIndex: number): Promise<INodeExecutionData[]> {
-	const ip = this.getNodeParameter('ip', itemIndex) as string;
+export async function execute(this: IExecuteFunctions, _itemIndex: number): Promise<INodeExecutionData[]> {
+	const ip = this.getNodeParameter('ip', _itemIndex) as string;
 
-	const description = (this.getNodeParameter('description', itemIndex) as string) || '';
-	const netname = (this.getNodeParameter('netname', itemIndex) as string) || '';
+	const description = (this.getNodeParameter('description', _itemIndex) as string) || '';
+	const netname = (this.getNodeParameter('netname', _itemIndex) as string) || '';
 
 	const body: IDataObject = {};
 	if (description) body.description = description;

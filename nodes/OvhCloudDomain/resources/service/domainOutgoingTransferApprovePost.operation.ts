@@ -47,14 +47,14 @@ export function description(displayOptions: IDisplayOptions): INodeProperties[] 
  * HTTP method: POST
  * Endpoint: /domain/{serviceName}/outgoingTransfer/approve
  */
-export async function execute(this: IExecuteFunctions, itemIndex: number): Promise<INodeExecutionData[]> {
+export async function execute(this: IExecuteFunctions, _itemIndex: number): Promise<INodeExecutionData[]> {
 	const client = new ApiClient(this);
-		const serviceName = this.getNodeParameter('serviceName', itemIndex) as string;
+		const serviceName = this.getNodeParameter('serviceName', _itemIndex) as string;
 
 	const body: IDataObject = {};
-		const approveType = this.getNodeParameter('approveType', itemIndex, '') as string;
+		const approveType = this.getNodeParameter('approveType', _itemIndex, '') as string;
 		if (approveType !== '') body['approveType'] = approveType;
-		const ident = this.getNodeParameter('ident', itemIndex, '') as string;
+		const ident = this.getNodeParameter('ident', _itemIndex, '') as string;
 		if (ident !== '') body['ident'] = ident;
 
 	const data = (await client.httpPost(`/domain/${encodeURIComponent(serviceName)}/outgoingTransfer/approve`, body)) as IDataObject;

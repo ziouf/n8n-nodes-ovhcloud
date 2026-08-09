@@ -14,6 +14,7 @@ import { ApiClient } from '../../../shared/transport/ApiClient';
 // listApiApplications
 export async function executeListApiApplications(
 	this: IExecuteFunctions,
+_itemIndex?: number,
 ): Promise<INodeExecutionData[]> {
 	const client = new ApiClient(this);
 	const applicationIds = (await client.httpGet('/me/api/application')) as string[];
@@ -53,6 +54,7 @@ export async function executeGetApiApplication(
 // listApiCredentials
 export async function executeListApiCredentials(
 	this: IExecuteFunctions,
+_itemIndex?: number,
 ): Promise<INodeExecutionData[]> {
 	const client = new ApiClient(this);
 	const credentialIds = (await client.httpGet('/me/api/credential')) as string[];
@@ -125,6 +127,7 @@ export async function executeGetCredentialApplication(
 // listApiLogKinds
 export async function executeListApiLogKinds(
 	this: IExecuteFunctions,
+_itemIndex?: number,
 ): Promise<INodeExecutionData[]> {
 	const client = new ApiClient(this);
 	const names = (await client.httpGet('/me/api/log/kind')) as string[];
@@ -164,6 +167,7 @@ export async function executeGetApiLogKind(
 // listApiLogSubscriptions
 export async function executeListApiLogSubscriptions(
 	this: IExecuteFunctions,
+_itemIndex?: number,
 ): Promise<INodeExecutionData[]> {
 	const client = new ApiClient(this);
 	const subscriptionIds = (await client.httpGet('/me/api/log/subscription')) as string[];
@@ -205,6 +209,7 @@ export async function executeGetApiLogSubscription(
 // listApiLogsSelf
 export async function executeListApiLogsSelf(
 	this: IExecuteFunctions,
+_itemIndex?: number,
 ): Promise<INodeExecutionData[]> {
 	const client = new ApiClient(this);
 	const logIds = (await client.httpGet('/me/api/logs/self')) as string[];
@@ -244,6 +249,7 @@ export async function executeGetApiLogSelf(
 // listApiLogsServices
 export async function executeListApiLogsServices(
 	this: IExecuteFunctions,
+_itemIndex?: number,
 ): Promise<INodeExecutionData[]> {
 	const client = new ApiClient(this);
 	const logIds = (await client.httpGet('/me/api/logs/services')) as string[];
@@ -287,6 +293,7 @@ export async function executeGetApiLogServices(
 // listOAuth2Clients
 export async function executeListOAuth2Clients(
 	this: IExecuteFunctions,
+_itemIndex?: number,
 ): Promise<INodeExecutionData[]> {
 	const client = new ApiClient(this);
 	const clientIds = (await client.httpGet('/me/api/oauth2/client')) as string[];
@@ -328,7 +335,7 @@ export async function executeGetOAuth2Client(
 // ============================================================
 
 // getAuditLogs
-export async function executeGetAuditLogs(this: IExecuteFunctions): Promise<INodeExecutionData[]> {
+export async function executeGetAuditLogs(this: IExecuteFunctions, _itemIndex?: number): Promise<INodeExecutionData[]> {
 	const client = new ApiClient(this);
 	const data = (await client.httpGet('/me/logs/audit')) as IDataObject[];
 	return this.helpers.returnJsonArray(data);
@@ -337,6 +344,7 @@ export async function executeGetAuditLogs(this: IExecuteFunctions): Promise<INod
 // listAuditLogKinds
 export async function executeListAuditLogKinds(
 	this: IExecuteFunctions,
+_itemIndex?: number,
 ): Promise<INodeExecutionData[]> {
 	const client = new ApiClient(this);
 	const names = (await client.httpGet('/me/logs/audit/log/kind')) as string[];
@@ -376,6 +384,7 @@ export async function executeGetAuditLogKind(
 // listAuditLogSubscriptions
 export async function executeListAuditLogSubscriptions(
 	this: IExecuteFunctions,
+_itemIndex?: number,
 ): Promise<INodeExecutionData[]> {
 	const client = new ApiClient(this);
 	const subscriptionIds = (await client.httpGet('/me/logs/audit/log/subscription')) as string[];

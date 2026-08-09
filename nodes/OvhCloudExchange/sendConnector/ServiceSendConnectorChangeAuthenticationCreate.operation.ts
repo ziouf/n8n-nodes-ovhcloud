@@ -62,13 +62,13 @@ export function description() {
  * HTTP method: POST
  * Endpoint: /email/exchange/{organizationName}/service/{exchangeService}/sendConnector/{id}/changeAuthentication
  */
-export async function execute(this: IExecuteFunctions): Promise<INodeExecutionData[]> {
-	const organizationName = this.getNodeParameter('organizationName', 0) as string;
-	const exchangeService = this.getNodeParameter('exchangeService', 0) as string;
-	const id = this.getNodeParameter('id', 0) as string;
-	const password = this.getNodeParameter('password', 0) as string;
-	const smartHostAuthMechanism = this.getNodeParameter('smartHostAuthMechanism', 0) as string;
-	const user = this.getNodeParameter('user', 0) as string;
+export async function execute(this: IExecuteFunctions, _itemIndex?: number): Promise<INodeExecutionData[]> {
+	const organizationName = this.getNodeParameter('organizationName', _itemIndex ?? 0) as string;
+	const exchangeService = this.getNodeParameter('exchangeService', _itemIndex ?? 0) as string;
+	const id = this.getNodeParameter('id', _itemIndex ?? 0) as string;
+	const password = this.getNodeParameter('password', _itemIndex ?? 0) as string;
+	const smartHostAuthMechanism = this.getNodeParameter('smartHostAuthMechanism', _itemIndex ?? 0) as string;
+	const user = this.getNodeParameter('user', _itemIndex ?? 0) as string;
 
 	const body: IDataObject = {
     password: password,

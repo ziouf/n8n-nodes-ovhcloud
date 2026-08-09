@@ -28,10 +28,10 @@ export function description(displayOptions: IDisplayOptions): INodeProperties[] 
  */
 export async function execute(
 	this: IExecuteFunctions,
-	itemIndex: number,
+	_itemIndex: number,
 ): Promise<INodeExecutionData[]> {
 	const client = new ApiClient(this);
-	const certificateId = this.getNodeParameter('certificateId', itemIndex) as string;
+	const certificateId = this.getNodeParameter('certificateId', _itemIndex) as string;
 	const data = (await client.httpGet(`/ssl/${certificateId}/serviceInfos`)) as IDataObject;
 	return this.helpers.returnJsonArray([data]);
 }

@@ -58,10 +58,10 @@ export function description(displayOptions: IDisplayOptions = {} as IDisplayOpti
  * HTTP method: DELETE
  * Endpoint: /cloud/project/{serviceName}/ai/data/region/{region}/alias/{alias}
  */
-export async function execute(this: IExecuteFunctions): Promise<INodeExecutionData[]> {
-	const serviceName = this.getNodeParameter('serviceName', 0) as string;
-	const region = this.getNodeParameter('region', 0) as string;
-	const alias = this.getNodeParameter('alias', 0) as string;
+export async function execute(this: IExecuteFunctions, _itemIndex?: number): Promise<INodeExecutionData[]> {
+	const serviceName = this.getNodeParameter('serviceName', _itemIndex ?? 0) as string;
+	const region = this.getNodeParameter('region', _itemIndex ?? 0) as string;
+	const alias = this.getNodeParameter('alias', _itemIndex ?? 0) as string;
 
 	const client = new ApiClient(this);
 	const data = (await client.httpDelete('cloud/project' + serviceName + '/ai/data/region/' + region + '/alias/' + alias)) as IDataObject;

@@ -36,12 +36,12 @@ export function description(displayOptions: IDisplayOptions): INodeProperties[] 
  * HTTP method: POST
  * Endpoint: /ipLoadbalancing/{serviceName}/freeCertificate
  */
-export async function execute(this: IExecuteFunctions, itemIndex: number): Promise<INodeExecutionData[]> {
-	const serviceName = this.getNodeParameter('serviceName', itemIndex) as string;
+export async function execute(this: IExecuteFunctions, _itemIndex: number): Promise<INodeExecutionData[]> {
+	const serviceName = this.getNodeParameter('serviceName', _itemIndex) as string;
 
 
 
-	const fqdn = this.getNodeParameter('fqdn', itemIndex) as string;
+	const fqdn = this.getNodeParameter('fqdn', _itemIndex) as string;
 
 
 const body: IDataObject = {

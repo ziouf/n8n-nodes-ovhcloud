@@ -25,8 +25,8 @@ export function description() {
  * HTTP method: GET
  * Endpoint: /email/pro/{service}/serviceInfos
  */
-export async function execute(this: IExecuteFunctions): Promise<INodeExecutionData[]> {
-	const service = this.getNodeParameter('service', 0) as string;
+export async function execute(this: IExecuteFunctions, _itemIndex?: number): Promise<INodeExecutionData[]> {
+	const service = this.getNodeParameter('service', _itemIndex ?? 0) as string;
 
 
 

@@ -40,9 +40,9 @@ export function description(displayOptions: IDisplayOptions): INodeProperties[] 
  * HTTP method: GET
  * Endpoint: /email/domain/{domain}/responder/{account}
  */
-export async function execute(this: IExecuteFunctions): Promise<INodeExecutionData[]> {
-	const account = this.getNodeParameter('account', 0) as string;
-	const domain = this.getNodeParameter('domain', 0) as string;
+export async function execute(this: IExecuteFunctions, _itemIndex?: number): Promise<INodeExecutionData[]> {
+	const account = this.getNodeParameter('account', _itemIndex ?? 0) as string;
+	const domain = this.getNodeParameter('domain', _itemIndex ?? 0) as string;
 
 	const client = new ApiClient(this);
 	const data = (await client.httpGet('/email' + '/domain/' + encodeURIComponent(domain) + '/responder/' + encodeURIComponent(account))) as IDataObject;

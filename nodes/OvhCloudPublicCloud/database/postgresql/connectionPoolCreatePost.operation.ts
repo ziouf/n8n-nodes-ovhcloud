@@ -92,17 +92,17 @@ export function description(displayOptions: IDisplayOptions): INodeProperties[] 
  * HTTP method: POST
  * Endpoint: /cloud/project/{serviceName}/database/postgresql/{clusterId}/connectionPool
  */
-export async function execute(this: IExecuteFunctions): Promise<INodeExecutionData[]> {
+export async function execute(this: IExecuteFunctions, _itemIndex?: number): Promise<INodeExecutionData[]> {
 	const client = new ApiClient(this);
-	const serviceName = this.getNodeParameter('publicCloudProjectId', 0, '', {
+	const serviceName = this.getNodeParameter('publicCloudProjectId', _itemIndex ?? 0, '', {
 		extractValue: true,
 	}) as string;
-	const clusterId = this.getNodeParameter('clusterId', 0) as string;
-	const userId = this.getNodeParameter('userId', 0) as string;
-	const databaseId = this.getNodeParameter('databaseId', 0) as string;
-	const name = (this.getNodeParameter('name', 0, '') || '') as string;
-	const size = (this.getNodeParameter('size', 0, '') || '') as string;
-	const mode = (this.getNodeParameter('mode', 0, '') || '') as string;
+	const clusterId = this.getNodeParameter('clusterId', _itemIndex ?? 0) as string;
+	const userId = this.getNodeParameter('userId', _itemIndex ?? 0) as string;
+	const databaseId = this.getNodeParameter('databaseId', _itemIndex ?? 0) as string;
+	const name = (this.getNodeParameter('name', _itemIndex ?? 0, '') || '') as string;
+	const size = (this.getNodeParameter('size', _itemIndex ?? 0, '') || '') as string;
+	const mode = (this.getNodeParameter('mode', _itemIndex ?? 0, '') || '') as string;
 	const body: IDataObject = {};
 	if (userId) body.userId = userId;
 	if (databaseId) body.databaseId = databaseId;

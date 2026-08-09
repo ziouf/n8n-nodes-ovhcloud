@@ -91,15 +91,15 @@ export async function execute(
 
 	switch (operation) {
 		case 'get':
-			return await executeGet.call(this, itemIndex);
+			return await executeGet.call(this, itemIndex ?? 0);
 		case 'list':
-			return await executeList.call(this, itemIndex);
+			return await executeList.call(this, itemIndex ?? 0);
 		case 'register':
-			return await executeRegister.call(this, itemIndex);
+			return await executeRegister.call(this, itemIndex ?? 0);
 		case 'confirmTermination':
-			return await executeConfirmTermination.call(this, itemIndex);
+			return await executeConfirmTermination.call(this, itemIndex ?? 0);
 		case 'serviceInfos':
-			return await executeServiceInfos.call(this, itemIndex);
+			return await executeServiceInfos.call(this, itemIndex ?? 0);
 	}
 
 	throw new Error(`Unsupported operation "${operation}" for resource "veeamEnterprise"`);

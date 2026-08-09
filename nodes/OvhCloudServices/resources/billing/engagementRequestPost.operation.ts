@@ -37,9 +37,9 @@ export function description(displayOptions: IDisplayOptions): INodeProperties[] 
  * HTTP method: POST
  * Endpoint: /services/{serviceName}/billing/engagement/request
  */
-export async function execute(this: IExecuteFunctions, itemIndex: number): Promise<INodeExecutionData[]> {
-	const serviceName = this.getNodeParameter('serviceName', itemIndex) as string;
-	const pricingMode = this.getNodeParameter('pricingMode', itemIndex) as string;
+export async function execute(this: IExecuteFunctions, _itemIndex: number): Promise<INodeExecutionData[]> {
+	const serviceName = this.getNodeParameter('serviceName', _itemIndex) as string;
+	const pricingMode = this.getNodeParameter('pricingMode', _itemIndex) as string;
 	const body: IDataObject = { pricingMode };
 	const client = new ApiClient(this);
 	const data = (await client.httpPost(`/services/${encodeURIComponent(serviceName)}/billing/engagement/request`, body)) as IDataObject;

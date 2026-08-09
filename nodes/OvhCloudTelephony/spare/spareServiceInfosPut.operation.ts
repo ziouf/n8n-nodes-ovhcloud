@@ -133,22 +133,22 @@ export function description(displayOptions: IDisplayOptions): INodeProperties[] 
  */
 export async function execute(
 	this: IExecuteFunctions,
-	itemIndex: number,
+	_itemIndex: number,
 ): Promise<INodeExecutionData[]> {
-	const spare = this.getNodeParameter('spare', itemIndex) as string;
-	const canDeleteAtExpiration = this.getNodeParameter('canDeleteAtExpiration', itemIndex) as string;
-	const contactAdmin = this.getNodeParameter('contactAdmin', itemIndex) as string;
-	const contactBilling = this.getNodeParameter('contactBilling', itemIndex) as string;
-	const contactTech = this.getNodeParameter('contactTech', itemIndex) as string;
-	const creation = this.getNodeParameter('creation', itemIndex) as string;
-	const domain = this.getNodeParameter('domain', itemIndex) as string;
-	const engagedUpTo = this.getNodeParameter('engagedUpTo', itemIndex) as string;
-	const expiration = this.getNodeParameter('expiration', itemIndex) as string;
-	const possibleRenewPeriod = this.getNodeParameter('possibleRenewPeriod', itemIndex) as string;
-	const renew = this.getNodeParameter('renew', itemIndex) as string;
-	const renewalType = this.getNodeParameter('renewalType', itemIndex) as string;
-	const serviceId = this.getNodeParameter('serviceId', itemIndex) as string;
-	const status = this.getNodeParameter('status', itemIndex) as string;
+	const spare = this.getNodeParameter('spare', _itemIndex) as string;
+	const canDeleteAtExpiration = this.getNodeParameter('canDeleteAtExpiration', _itemIndex) as string;
+	const contactAdmin = this.getNodeParameter('contactAdmin', _itemIndex) as string;
+	const contactBilling = this.getNodeParameter('contactBilling', _itemIndex) as string;
+	const contactTech = this.getNodeParameter('contactTech', _itemIndex) as string;
+	const creation = this.getNodeParameter('creation', _itemIndex) as string;
+	const domain = this.getNodeParameter('domain', _itemIndex) as string;
+	const engagedUpTo = this.getNodeParameter('engagedUpTo', _itemIndex) as string;
+	const expiration = this.getNodeParameter('expiration', _itemIndex) as string;
+	const possibleRenewPeriod = this.getNodeParameter('possibleRenewPeriod', _itemIndex) as string;
+	const renew = this.getNodeParameter('renew', _itemIndex) as string;
+	const renewalType = this.getNodeParameter('renewalType', _itemIndex) as string;
+	const serviceId = this.getNodeParameter('serviceId', _itemIndex) as string;
+	const status = this.getNodeParameter('status', _itemIndex) as string;
 
 	const body: IDataObject = {
 		canDeleteAtExpiration: canDeleteAtExpiration,

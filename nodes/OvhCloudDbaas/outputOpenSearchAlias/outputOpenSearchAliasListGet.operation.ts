@@ -43,14 +43,14 @@ export function description(displayOptions: IDisplayOptions): INodeProperties[] 
  * HTTP method: GET
  * Endpoint: /dbaas/logs/{serviceName}/output/opensearch/alias
  */
-export async function execute(this: IExecuteFunctions, itemIndex: number): Promise<INodeExecutionData[]> {
-	const serviceName = this.getNodeParameter('serviceName', itemIndex) as string;
+export async function execute(this: IExecuteFunctions, _itemIndex: number): Promise<INodeExecutionData[]> {
+	const serviceName = this.getNodeParameter('serviceName', _itemIndex) as string;
 	const qs: IDataObject = {};
-	const iamTags = (this.getNodeParameter('iamTags', itemIndex, '') as string) || '';
+	const iamTags = (this.getNodeParameter('iamTags', _itemIndex, '') as string) || '';
 	if (iamTags) {
 		qs.iamTags = JSON.parse(iamTags);
 	}
-	const namePattern = (this.getNodeParameter('namePattern', itemIndex, '') as string) || '';
+	const namePattern = (this.getNodeParameter('namePattern', _itemIndex, '') as string) || '';
 	if (namePattern) {
 		qs.namePattern = namePattern;
 	}

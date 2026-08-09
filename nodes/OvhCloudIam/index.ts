@@ -441,67 +441,67 @@ export async function execute(
 
 	switch (operation) {
 		case 'iamauthorizationcheckCreatePost':
-			return executeIamauthorizationcheckCreatePost.call(this, itemIndex);
+			return executeIamauthorizationcheckCreatePost.call(this, itemIndex ?? 0);
 		case 'iamlogkindListGet':
-			return executeIamlogkindListGet.call(this, itemIndex);
+			return executeIamlogkindListGet.call(this, itemIndex ?? 0);
 		case 'iamlogkindListGet2':
-			return executeIamlogkindListGet2.call(this, itemIndex);
+			return executeIamlogkindListGet2.call(this, itemIndex ?? 0);
 		case 'iamlogsubscriptionListGet':
-			return executeIamlogsubscriptionListGet.call(this, itemIndex);
+			return executeIamlogsubscriptionListGet.call(this, itemIndex ?? 0);
 		case 'iamlogsubscriptionCreatePost':
-			return executeIamlogsubscriptionCreatePost.call(this, itemIndex);
+			return executeIamlogsubscriptionCreatePost.call(this, itemIndex ?? 0);
 		case 'iamlogsubscriptionDeleteDelete':
-			return executeIamlogsubscriptionDeleteDelete.call(this, itemIndex);
+			return executeIamlogsubscriptionDeleteDelete.call(this, itemIndex ?? 0);
 		case 'iamlogsubscriptionListGet2':
-			return executeIamlogsubscriptionListGet2.call(this, itemIndex);
+			return executeIamlogsubscriptionListGet2.call(this, itemIndex ?? 0);
 		case 'iamlogurlCreatePost':
-			return executeIamlogurlCreatePost.call(this, itemIndex);
+			return executeIamlogurlCreatePost.call(this, itemIndex ?? 0);
 		case 'iampermissionsGroupListGet':
-			return executeIampermissionsGroupListGet.call(this, itemIndex);
+			return executeIampermissionsGroupListGet.call(this, itemIndex ?? 0);
 		case 'iampermissionsGroupCreatePost':
-			return executeIampermissionsGroupCreatePost.call(this, itemIndex);
+			return executeIampermissionsGroupCreatePost.call(this, itemIndex ?? 0);
 		case 'iampermissionsGroupDeleteDelete':
-			return executeIampermissionsGroupDeleteDelete.call(this, itemIndex);
+			return executeIampermissionsGroupDeleteDelete.call(this, itemIndex ?? 0);
 		case 'iampermissionsGroupListGet2':
-			return executeIampermissionsGroupListGet2.call(this, itemIndex);
+			return executeIampermissionsGroupListGet2.call(this, itemIndex ?? 0);
 		case 'iampermissionsGroupUpdatePut':
-			return executeIampermissionsGroupUpdatePut.call(this, itemIndex);
+			return executeIampermissionsGroupUpdatePut.call(this, itemIndex ?? 0);
 		case 'iampolicyListGet':
-			return executeIampolicyListGet.call(this, itemIndex);
+			return executeIampolicyListGet.call(this, itemIndex ?? 0);
 		case 'iampolicyCreatePost':
-			return executeIampolicyCreatePost.call(this, itemIndex);
+			return executeIampolicyCreatePost.call(this, itemIndex ?? 0);
 		case 'iampolicyDeleteDelete':
-			return executeIampolicyDeleteDelete.call(this, itemIndex);
+			return executeIampolicyDeleteDelete.call(this, itemIndex ?? 0);
 		case 'iampolicyListGet2':
-			return executeIampolicyListGet2.call(this, itemIndex);
+			return executeIampolicyListGet2.call(this, itemIndex ?? 0);
 		case 'iampolicyUpdatePut':
-			return executeIampolicyUpdatePut.call(this, itemIndex);
+			return executeIampolicyUpdatePut.call(this, itemIndex ?? 0);
 		case 'iamreferenceactionListGet':
-			return executeIamreferenceactionListGet.call(this, itemIndex);
+			return executeIamreferenceactionListGet.call(this, itemIndex ?? 0);
 		case 'iamreferenceresourcetypeListGet':
-			return executeIamreferenceresourcetypeListGet.call(this, itemIndex);
+			return executeIamreferenceresourcetypeListGet.call(this, itemIndex ?? 0);
 		case 'iamresourceListGet':
-			return executeIamresourceListGet.call(this, itemIndex);
+			return executeIamresourceListGet.call(this, itemIndex ?? 0);
 		case 'iamresourceListGet2':
-			return executeIamresourceListGet2.call(this, itemIndex);
+			return executeIamresourceListGet2.call(this, itemIndex ?? 0);
 		case 'iamresourceUpdatePut':
-			return executeIamresourceUpdatePut.call(this, itemIndex);
+			return executeIamresourceUpdatePut.call(this, itemIndex ?? 0);
 		case 'iamresourceauthorizationcheckCreatePost':
-			return executeIamresourceauthorizationcheckCreatePost.call(this, itemIndex);
+			return executeIamresourceauthorizationcheckCreatePost.call(this, itemIndex ?? 0);
 		case 'iamresourcetagDeleteDelete':
-			return executeIamresourcetagDeleteDelete.call(this, itemIndex);
+			return executeIamresourcetagDeleteDelete.call(this, itemIndex ?? 0);
 		case 'iamresourcetagCreatePost':
-			return executeIamresourcetagCreatePost.call(this, itemIndex);
+			return executeIamresourcetagCreatePost.call(this, itemIndex ?? 0);
 		case 'iamresourceGroupListGet':
-			return executeIamresourceGroupListGet.call(this, itemIndex);
+			return executeIamresourceGroupListGet.call(this, itemIndex ?? 0);
 		case 'iamresourceGroupCreatePost':
-			return executeIamresourceGroupCreatePost.call(this, itemIndex);
+			return executeIamresourceGroupCreatePost.call(this, itemIndex ?? 0);
 		case 'iamresourceGroupDeleteDelete':
-			return executeIamresourceGroupDeleteDelete.call(this, itemIndex);
+			return executeIamresourceGroupDeleteDelete.call(this, itemIndex ?? 0);
 		case 'iamresourceGroupListGet2':
-			return executeIamresourceGroupListGet2.call(this, itemIndex);
+			return executeIamresourceGroupListGet2.call(this, itemIndex ?? 0);
 		case 'iamresourceGroupUpdatePut':
-			return executeIamresourceGroupUpdatePut.call(this, itemIndex);
+			return executeIamresourceGroupUpdatePut.call(this, itemIndex ?? 0);
 
 	}
 

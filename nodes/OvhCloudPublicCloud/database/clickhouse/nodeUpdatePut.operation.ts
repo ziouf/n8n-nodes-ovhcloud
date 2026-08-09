@@ -66,12 +66,12 @@ export function description(displayOptions: IDisplayOptions): INodeProperties[] 
  * HTTP method: PUT
  * Endpoint: /cloud/project/{serviceName}/database/clickhouse/{clusterId}/node/{nodeId}
  */
-export async function execute(this: IExecuteFunctions): Promise<INodeExecutionData[]> {
+export async function execute(this: IExecuteFunctions, _itemIndex?: number): Promise<INodeExecutionData[]> {
 	const client = new ApiClient(this);
-	const nodeId = this.getNodeParameter('nodeId', 0) as string;
-	const clusterId = this.getNodeParameter('clusterId', 0) as string;
-	const serviceName = this.getNodeParameter('publicCloudProjectId', 0, '', { extractValue: true }) as string;
-	const flavor = (this.getNodeParameter('flavor', 0, '') || '') as string;
+	const nodeId = this.getNodeParameter('nodeId', _itemIndex ?? 0) as string;
+	const clusterId = this.getNodeParameter('clusterId', _itemIndex ?? 0) as string;
+	const serviceName = this.getNodeParameter('publicCloudProjectId', _itemIndex ?? 0, '', { extractValue: true }) as string;
+	const flavor = (this.getNodeParameter('flavor', _itemIndex ?? 0, '') || '') as string;
 
 	const body: IDataObject = {};
 	if (flavor) body.flavor = flavor;

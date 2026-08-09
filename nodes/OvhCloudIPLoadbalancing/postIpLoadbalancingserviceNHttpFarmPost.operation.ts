@@ -84,18 +84,18 @@ export function description(displayOptions: IDisplayOptions): INodeProperties[] 
  * HTTP method: POST
  * Endpoint: /ipLoadbalancing/{serviceName}/http/farm
  */
-export async function execute(this: IExecuteFunctions, itemIndex: number): Promise<INodeExecutionData[]> {
-	const serviceName = this.getNodeParameter('serviceName', itemIndex) as string;
+export async function execute(this: IExecuteFunctions, _itemIndex: number): Promise<INodeExecutionData[]> {
+	const serviceName = this.getNodeParameter('serviceName', _itemIndex) as string;
 
 
 
-	const balance = this.getNodeParameter('balance', itemIndex) as string;
-	const displayName = this.getNodeParameter('displayName', itemIndex) as string;
-	const port = this.getNodeParameter('port', itemIndex) as string;
-	const probe = this.getNodeParameter('probe', itemIndex) as string;
-	const stickiness = this.getNodeParameter('stickiness', itemIndex) as string;
-	const vrackNetworkId = this.getNodeParameter('vrackNetworkId', itemIndex) as string;
-	const zone = this.getNodeParameter('zone', itemIndex) as string;
+	const balance = this.getNodeParameter('balance', _itemIndex) as string;
+	const displayName = this.getNodeParameter('displayName', _itemIndex) as string;
+	const port = this.getNodeParameter('port', _itemIndex) as string;
+	const probe = this.getNodeParameter('probe', _itemIndex) as string;
+	const stickiness = this.getNodeParameter('stickiness', _itemIndex) as string;
+	const vrackNetworkId = this.getNodeParameter('vrackNetworkId', _itemIndex) as string;
+	const zone = this.getNodeParameter('zone', _itemIndex) as string;
 
 
 const body: IDataObject = {

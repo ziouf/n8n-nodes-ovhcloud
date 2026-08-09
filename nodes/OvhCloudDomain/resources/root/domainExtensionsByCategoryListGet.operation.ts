@@ -26,11 +26,11 @@ export function description(displayOptions: IDisplayOptions): INodeProperties[] 
  * HTTP method: GET
  * Endpoint: /domain/extensions/byCategory
  */
-export async function execute(this: IExecuteFunctions, itemIndex: number): Promise<INodeExecutionData[]> {
+export async function execute(this: IExecuteFunctions, _itemIndex: number): Promise<INodeExecutionData[]> {
 	const client = new ApiClient(this);
 
 	const qs: IDataObject = {};
-		const categoryType = this.getNodeParameter('categoryType', itemIndex, '') as string;
+		const categoryType = this.getNodeParameter('categoryType', _itemIndex, '') as string;
 		if (categoryType !== '' && categoryType !== undefined) qs['categoryType'] = categoryType;
 
 	const data = (await client.httpGet(`/domain/extensions/byCategory`, qs)) as IDataObject;

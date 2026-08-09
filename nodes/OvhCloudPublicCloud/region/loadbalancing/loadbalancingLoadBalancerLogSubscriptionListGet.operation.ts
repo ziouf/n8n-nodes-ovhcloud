@@ -68,19 +68,19 @@ export function description(displayOptions: IDisplayOptions): INodeProperties[] 
  * HTTP method: GET
  * Endpoint: /publicCloud/project/{projectId}/region/{regionName}/loadbalancing/loadbalancer/${loadBalancerIdVal}/log/subscription
  */
-export async function execute(this: IExecuteFunctions): Promise<INodeExecutionData[]> {
+export async function execute(this: IExecuteFunctions, _itemIndex?: number): Promise<INodeExecutionData[]> {
 	const client = new ApiClient(this);
-	const projectId = this.getNodeParameter('publicCloudProjectId', 0, '', {
+	const projectId = this.getNodeParameter('publicCloudProjectId', _itemIndex ?? 0, '', {
 		extractValue: true,
 	}) as string;
-	const regionName = this.getNodeParameter('regionName', 0) as string;
+	const regionName = this.getNodeParameter('regionName', _itemIndex ?? 0) as string;
 	const qs = {} as IDataObject;
-	const kindVal = this.getNodeParameter('kind', 0) as string;
+	const kindVal = this.getNodeParameter('kind', _itemIndex ?? 0) as string;
 	if (kindVal !== '') {
 		qs.kind = kindVal;
 	}
 
-	const loadBalancerIdVal = this.getNodeParameter('loadBalancerId', 0) as string;
+	const loadBalancerIdVal = this.getNodeParameter('loadBalancerId', _itemIndex ?? 0) as string;
 	const data = (await client.httpGet(
 		`/publicCloud/project/${projectId}/region/${regionName}/loadbalancing/loadbalancer/${loadBalancerIdVal}/log/subscription`,
 		qs,

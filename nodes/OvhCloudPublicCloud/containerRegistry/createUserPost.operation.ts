@@ -50,12 +50,12 @@ export function description(displayOptions: IDisplayOptions): INodeProperties[] 
  * HTTP method: POST
  * Endpoint: /publicCloud/project/{projectId}/containerRegistry/{registryId}/users
  */
-export async function execute(this: IExecuteFunctions): Promise<INodeExecutionData[]> {
+export async function execute(this: IExecuteFunctions, _itemIndex?: number): Promise<INodeExecutionData[]> {
 	const client = new ApiClient(this);
-	const projectId = this.getNodeParameter('publicCloudProjectId', 0, '', {
+	const projectId = this.getNodeParameter('publicCloudProjectId', _itemIndex ?? 0, '', {
 		extractValue: true,
 	}) as string;
-	const registryId = this.getNodeParameter('registryId', 0) as string;
+	const registryId = this.getNodeParameter('registryId', _itemIndex ?? 0) as string;
 
 	const data = (await client.httpPost(
 		`/publicCloud/project/${projectId}/containerRegistry/${registryId}/users`,

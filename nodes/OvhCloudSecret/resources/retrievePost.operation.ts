@@ -38,11 +38,11 @@ export function description(displayOptions: IDisplayOptions): INodeProperties[] 
  * HTTP method: POST
  * Endpoint: /secret/retrieve
  */
-export async function execute(this: IExecuteFunctions): Promise<INodeExecutionData[]> {
+export async function execute(this: IExecuteFunctions, _itemIndex?: number): Promise<INodeExecutionData[]> {
 	const client = new ApiClient(this);
 	const body: IDataObject = {
-		secretKey: this.getNodeParameter('secretKey', 0) as string,
-		secretType: this.getNodeParameter('secretType', 0) as string,
+		secretKey: this.getNodeParameter('secretKey', _itemIndex ?? 0) as string,
+		secretType: this.getNodeParameter('secretType', _itemIndex ?? 0) as string,
 	};
 
 	const data = (await client.httpPost('/secret/retrieve', body)) as IDataObject;

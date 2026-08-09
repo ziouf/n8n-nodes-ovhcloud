@@ -137,16 +137,16 @@ export function description(displayOptions: IDisplayOptions): INodeProperties[] 
  * HTTP method: POST
  * Endpoint: /email/domain/delegatedAccount/{email}/filter
  */
-export async function execute(this: IExecuteFunctions): Promise<INodeExecutionData[]> {
-	const email = this.getNodeParameter('email', 0) as string;
-	const action = this.getNodeParameter('action', 0) as string;
-	const actionParam = this.getNodeParameter('actionParam', 0) as string;
-	const active = this.getNodeParameter('active', 0) as boolean;
-	const header = this.getNodeParameter('header', 0) as string;
-	const name = this.getNodeParameter('name', 0) as string;
-	const operand = this.getNodeParameter('operand', 0) as string;
-	const priority = this.getNodeParameter('priority', 0) as string;
-	const value = this.getNodeParameter('value', 0) as string;
+export async function execute(this: IExecuteFunctions, _itemIndex?: number): Promise<INodeExecutionData[]> {
+	const email = this.getNodeParameter('email', _itemIndex ?? 0) as string;
+	const action = this.getNodeParameter('action', _itemIndex ?? 0) as string;
+	const actionParam = this.getNodeParameter('actionParam', _itemIndex ?? 0) as string;
+	const active = this.getNodeParameter('active', _itemIndex ?? 0) as boolean;
+	const header = this.getNodeParameter('header', _itemIndex ?? 0) as string;
+	const name = this.getNodeParameter('name', _itemIndex ?? 0) as string;
+	const operand = this.getNodeParameter('operand', _itemIndex ?? 0) as string;
+	const priority = this.getNodeParameter('priority', _itemIndex ?? 0) as string;
+	const value = this.getNodeParameter('value', _itemIndex ?? 0) as string;
 
 	const body: IDataObject = {
 		action: action,

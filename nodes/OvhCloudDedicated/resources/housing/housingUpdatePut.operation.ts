@@ -47,12 +47,12 @@ export function description(displayOptions: IDisplayOptions) {
  * HTTP method: PUT
  * Endpoint: /dedicated/housing/{serviceName}
  */
-export async function execute(this: IExecuteFunctions): Promise<INodeExecutionData[]> {
+export async function execute(this: IExecuteFunctions, _itemIndex?: number): Promise<INodeExecutionData[]> {
 	const client = new ApiClient(this);
-	const serviceName = this.getNodeParameter('serviceName', 0, '', {
+	const serviceName = this.getNodeParameter('serviceName', _itemIndex ?? 0, '', {
 		extractValue: true,
 	}) as string;
-	const housing = this.getNodeParameter('housing', 0) as IDataObject;
+	const housing = this.getNodeParameter('housing', _itemIndex ?? 0) as IDataObject;
 	await client.httpPut(`/dedicated/housing/${serviceName}`, housing);
 	return this.helpers.returnJsonArray([{ serviceName, success: true }]);
 }

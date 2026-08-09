@@ -81,21 +81,21 @@ export function description(displayOptions: IDisplayOptions): INodeProperties[] 
  * HTTP method: PUT
  * Endpoint: /domain/zone/{zoneName}/redirection/{id}
  */
-export async function execute(this: IExecuteFunctions, itemIndex: number): Promise<INodeExecutionData[]> {
+export async function execute(this: IExecuteFunctions, _itemIndex: number): Promise<INodeExecutionData[]> {
 	const client = new ApiClient(this);
-		const id = this.getNodeParameter('id', itemIndex) as string;
-		const zoneName = this.getNodeParameter('zoneName', itemIndex) as string;
+		const id = this.getNodeParameter('id', _itemIndex) as string;
+		const zoneName = this.getNodeParameter('zoneName', _itemIndex) as string;
 
 	const body: IDataObject = {};
-		const description = this.getNodeParameter('description', itemIndex, '') as string;
+		const description = this.getNodeParameter('description', _itemIndex, '') as string;
 		if (description !== '') body['description'] = description;
-		const keywords = this.getNodeParameter('keywords', itemIndex, '') as string;
+		const keywords = this.getNodeParameter('keywords', _itemIndex, '') as string;
 		if (keywords !== '') body['keywords'] = keywords;
-		const target = this.getNodeParameter('target', itemIndex, '') as string;
+		const target = this.getNodeParameter('target', _itemIndex, '') as string;
 		if (target !== '') body['target'] = target;
-		const title = this.getNodeParameter('title', itemIndex, '') as string;
+		const title = this.getNodeParameter('title', _itemIndex, '') as string;
 		if (title !== '') body['title'] = title;
-		const type = this.getNodeParameter('type', itemIndex, '') as string;
+		const type = this.getNodeParameter('type', _itemIndex, '') as string;
 		if (type !== '') body['type'] = type;
 
 	const data = (await client.httpPut(`/domain/zone/${encodeURIComponent(zoneName)}/redirection/${encodeURIComponent(id)}`, body)) as IDataObject;

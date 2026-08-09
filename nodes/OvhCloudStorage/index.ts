@@ -648,99 +648,99 @@ export async function execute(
 
 	switch (operation) {
 		case 'accessPathGetGet':
-			return executeaccessPathGetGet.call(this, itemIndex);
+			return executeaccessPathGetGet.call(this, itemIndex ?? 0);
 		case 'accessPathListGet':
-			return executeaccessPathListGet.call(this, itemIndex);
+			return executeaccessPathListGet.call(this, itemIndex ?? 0);
 		case 'aclCreatePost':
-			return executeaclCreatePost.call(this, itemIndex);
+			return executeaclCreatePost.call(this, itemIndex ?? 0);
 		case 'aclDeleteDelete':
-			return executeaclDeleteDelete.call(this, itemIndex);
+			return executeaclDeleteDelete.call(this, itemIndex ?? 0);
 		case 'aclGetGet':
-			return executeaclGetGet.call(this, itemIndex);
+			return executeaclGetGet.call(this, itemIndex ?? 0);
 		case 'aclListGet':
-			return executeaclListGet.call(this, itemIndex);
+			return executeaclListGet.call(this, itemIndex ?? 0);
 		case 'changeContactPost':
-			return executechangeContactPost.call(this, itemIndex);
+			return executechangeContactPost.call(this, itemIndex ?? 0);
 		case 'confirmTerminationPost':
-			return executeconfirmTerminationPost.call(this, itemIndex);
+			return executeconfirmTerminationPost.call(this, itemIndex ?? 0);
 		case 'metricsTokenGet':
-			return executemetricsTokenGet.call(this, itemIndex);
+			return executemetricsTokenGet.call(this, itemIndex ?? 0);
 		case 'networkGetGet':
-			return executenetworkGetGet.call(this, itemIndex);
+			return executenetworkGetGet.call(this, itemIndex ?? 0);
 		case 'networkListGet':
-			return executenetworkListGet.call(this, itemIndex);
+			return executenetworkListGet.call(this, itemIndex ?? 0);
 		case 'serviceGetGet':
-			return executeserviceGetGet.call(this, itemIndex);
+			return executeserviceGetGet.call(this, itemIndex ?? 0);
 		case 'serviceInfosGet':
-			return executeserviceInfosGet.call(this, itemIndex);
+			return executeserviceInfosGet.call(this, itemIndex ?? 0);
 		case 'serviceInfosUpdatePut':
-			return executeserviceInfosUpdatePut.call(this, itemIndex);
+			return executeserviceInfosUpdatePut.call(this, itemIndex ?? 0);
 		case 'serviceListGet':
-			return executeserviceListGet.call(this, itemIndex);
+			return executeserviceListGet.call(this, itemIndex ?? 0);
 		case 'serviceUpdatePut':
-			return executeserviceUpdatePut.call(this, itemIndex);
+			return executeserviceUpdatePut.call(this, itemIndex ?? 0);
 		case 'shareCreatePost':
-			return executeshareCreatePost.call(this, itemIndex);
+			return executeshareCreatePost.call(this, itemIndex ?? 0);
 		case 'shareDeleteDelete':
-			return executeshareDeleteDelete.call(this, itemIndex);
+			return executeshareDeleteDelete.call(this, itemIndex ?? 0);
 		case 'shareExtendPost':
-			return executeshareExtendPost.call(this, itemIndex);
+			return executeshareExtendPost.call(this, itemIndex ?? 0);
 		case 'shareGetGet':
-			return executeshareGetGet.call(this, itemIndex);
+			return executeshareGetGet.call(this, itemIndex ?? 0);
 		case 'shareListGet':
-			return executeshareListGet.call(this, itemIndex);
+			return executeshareListGet.call(this, itemIndex ?? 0);
 		case 'shareReplicationAcceptPost':
-			return executeshareReplicationAcceptPost.call(this, itemIndex);
+			return executeshareReplicationAcceptPost.call(this, itemIndex ?? 0);
 		case 'shareReplicationCreatePost':
-			return executeshareReplicationCreatePost.call(this, itemIndex);
+			return executeshareReplicationCreatePost.call(this, itemIndex ?? 0);
 		case 'shareReplicationCutoverPost':
-			return executeshareReplicationCutoverPost.call(this, itemIndex);
+			return executeshareReplicationCutoverPost.call(this, itemIndex ?? 0);
 		case 'shareReplicationDeleteDelete':
-			return executeshareReplicationDeleteDelete.call(this, itemIndex);
+			return executeshareReplicationDeleteDelete.call(this, itemIndex ?? 0);
 		case 'shareReplicationGetGet':
-			return executeshareReplicationGetGet.call(this, itemIndex);
+			return executeshareReplicationGetGet.call(this, itemIndex ?? 0);
 		case 'shareReplicationListGet':
-			return executeshareReplicationListGet.call(this, itemIndex);
+			return executeshareReplicationListGet.call(this, itemIndex ?? 0);
 		case 'shareReplicationServicesCompatibilityGet':
-			return executeshareReplicationServicesCompatibilityGet.call(this, itemIndex);
+			return executeshareReplicationServicesCompatibilityGet.call(this, itemIndex ?? 0);
 		case 'shareRevertPost':
-			return executeshareRevertPost.call(this, itemIndex);
+			return executeshareRevertPost.call(this, itemIndex ?? 0);
 		case 'shareShrinkPost':
-			return executeshareShrinkPost.call(this, itemIndex);
+			return executeshareShrinkPost.call(this, itemIndex ?? 0);
 		case 'shareSnapshotPolicyGet':
-			return executeshareSnapshotPolicyGet.call(this, itemIndex);
+			return executeshareSnapshotPolicyGet.call(this, itemIndex ?? 0);
 		case 'shareSnapshotPolicyUpdatePut':
-			return executeshareSnapshotPolicyUpdatePut.call(this, itemIndex);
+			return executeshareSnapshotPolicyUpdatePut.call(this, itemIndex ?? 0);
 		case 'shareSnapshotReserveGet':
-			return executeshareSnapshotReserveGet.call(this, itemIndex);
+			return executeshareSnapshotReserveGet.call(this, itemIndex ?? 0);
 		case 'shareSnapshotReserveUpdatePut':
-			return executeshareSnapshotReserveUpdatePut.call(this, itemIndex);
+			return executeshareSnapshotReserveUpdatePut.call(this, itemIndex ?? 0);
 		case 'shareUpdatePut':
-			return executeshareUpdatePut.call(this, itemIndex);
+			return executeshareUpdatePut.call(this, itemIndex ?? 0);
 		case 'snapshotCreatePost':
-			return executesnapshotCreatePost.call(this, itemIndex);
+			return executesnapshotCreatePost.call(this, itemIndex ?? 0);
 		case 'snapshotDeleteDelete':
-			return executesnapshotDeleteDelete.call(this, itemIndex);
+			return executesnapshotDeleteDelete.call(this, itemIndex ?? 0);
 		case 'snapshotGetGet':
-			return executesnapshotGetGet.call(this, itemIndex);
+			return executesnapshotGetGet.call(this, itemIndex ?? 0);
 		case 'snapshotHoldPost':
-			return executesnapshotHoldPost.call(this, itemIndex);
+			return executesnapshotHoldPost.call(this, itemIndex ?? 0);
 		case 'snapshotListGet':
-			return executesnapshotListGet.call(this, itemIndex);
+			return executesnapshotListGet.call(this, itemIndex ?? 0);
 		case 'snapshotPolicyCreatePost':
-			return executesnapshotPolicyCreatePost.call(this, itemIndex);
+			return executesnapshotPolicyCreatePost.call(this, itemIndex ?? 0);
 		case 'snapshotPolicyDeleteDelete':
-			return executesnapshotPolicyDeleteDelete.call(this, itemIndex);
+			return executesnapshotPolicyDeleteDelete.call(this, itemIndex ?? 0);
 		case 'snapshotPolicyGetGet':
-			return executesnapshotPolicyGetGet.call(this, itemIndex);
+			return executesnapshotPolicyGetGet.call(this, itemIndex ?? 0);
 		case 'snapshotPolicyListGet':
-			return executesnapshotPolicyListGet.call(this, itemIndex);
+			return executesnapshotPolicyListGet.call(this, itemIndex ?? 0);
 		case 'snapshotPolicyUpdatePut':
-			return executesnapshotPolicyUpdatePut.call(this, itemIndex);
+			return executesnapshotPolicyUpdatePut.call(this, itemIndex ?? 0);
 		case 'snapshotUpdatePut':
-			return executesnapshotUpdatePut.call(this, itemIndex);
+			return executesnapshotUpdatePut.call(this, itemIndex ?? 0);
 		case 'terminatePost':
-			return executeterminatePost.call(this, itemIndex);
+			return executeterminatePost.call(this, itemIndex ?? 0);
 
 	}
 

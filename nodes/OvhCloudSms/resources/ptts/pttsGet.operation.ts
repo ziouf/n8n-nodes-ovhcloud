@@ -27,8 +27,8 @@ export function description(displayOptions: IDisplayOptions): INodeProperties[] 
  * HTTP method: GET
  * Endpoint: /sms/ptts
  */
-export async function execute(this: IExecuteFunctions): Promise<INodeExecutionData[]> {
-	const ptt = this.getNodeParameter('ptt', 0) as number;
+export async function execute(this: IExecuteFunctions, _itemIndex?: number): Promise<INodeExecutionData[]> {
+	const ptt = this.getNodeParameter('ptt', _itemIndex ?? 0) as number;
 	const qs: IDataObject = {};
 	qs['ptt'] = ptt;
 	const data = (await new ApiClient(this).httpGet(`/sms/ptts`, qs)) as IDataObject;

@@ -28,9 +28,9 @@ export function description(displayOptions: IDisplayOptions): INodeProperties[] 
  * HTTP method: GET
  * Endpoint: /price/dedicated/server/antiDDoSPro/{commercialRange}
  */
-export async function execute(this: IExecuteFunctions): Promise<INodeExecutionData[]> {
+export async function execute(this: IExecuteFunctions, _itemIndex?: number): Promise<INodeExecutionData[]> {
     const client = new ApiClient(this);
-    const commercialRange = this.getNodeParameter('commercialRange', 0) as string;
+    const commercialRange = this.getNodeParameter('commercialRange', _itemIndex ?? 0) as string;
     const data = (await client.httpGet(`/price/dedicated/server/antiDDoSPro/${commercialRange}`)) as IDataObject;
     return this.helpers.returnJsonArray([data]);
 }

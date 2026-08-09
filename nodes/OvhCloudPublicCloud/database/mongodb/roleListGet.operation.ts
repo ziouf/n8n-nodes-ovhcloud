@@ -40,10 +40,10 @@ export function description(displayOptions: IDisplayOptions): INodeProperties[] 
  * HTTP method: GET
  * Endpoint: /cloud/project/{serviceName}/database/mongodb/{clusterId}/roles
  */
-export async function execute(this: IExecuteFunctions): Promise<INodeExecutionData[]> {
-	const serviceName = this.getNodeParameter('serviceName', 0) as string;
-	const clusterId = this.getNodeParameter('clusterId', 0) as string;
-	const advanced = this.getNodeParameter('advanced', 0, '') as string;
+export async function execute(this: IExecuteFunctions, _itemIndex?: number): Promise<INodeExecutionData[]> {
+	const serviceName = this.getNodeParameter('serviceName', _itemIndex ?? 0) as string;
+	const clusterId = this.getNodeParameter('clusterId', _itemIndex ?? 0) as string;
+	const advanced = this.getNodeParameter('advanced', _itemIndex ?? 0, '') as string;
 
 	const qs: IDataObject = {
     advanced: advanced || undefined

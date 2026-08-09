@@ -29,9 +29,9 @@ export function description(displayOptions: IDisplayOptions) {
 	];
 }
 
-export async function execute(this: IExecuteFunctions, itemIndex?: number) {
+export async function execute(this: IExecuteFunctions, _itemIndex?: number) {
 	const client = new ApiClient(this);
-	const serviceName = this.getNodeParameter('serviceName', itemIndex as number, '', {
+	const serviceName = this.getNodeParameter('serviceName', _itemIndex as number, '', {
 		extractValue: true,
 	}) as string;
 

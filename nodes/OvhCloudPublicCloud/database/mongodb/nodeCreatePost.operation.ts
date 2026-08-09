@@ -54,12 +54,12 @@ export function description(displayOptions: IDisplayOptions): INodeProperties[] 
  * HTTP method: POST
  * Endpoint: /cloud/project/{serviceName}/database/mongodb/{clusterId}/node
  */
-export async function execute(this: IExecuteFunctions): Promise<INodeExecutionData[]> {
-	const serviceName = this.getNodeParameter('serviceName', 0) as string;
-	const clusterId = this.getNodeParameter('clusterId', 0) as string;
-	const flavor = this.getNodeParameter('flavor', 0, '') as string;
-	const region = this.getNodeParameter('region', 0, '') as string;
-	const role = this.getNodeParameter('role', 0, '') as string;
+export async function execute(this: IExecuteFunctions, _itemIndex?: number): Promise<INodeExecutionData[]> {
+	const serviceName = this.getNodeParameter('serviceName', _itemIndex ?? 0) as string;
+	const clusterId = this.getNodeParameter('clusterId', _itemIndex ?? 0) as string;
+	const flavor = this.getNodeParameter('flavor', _itemIndex ?? 0, '') as string;
+	const region = this.getNodeParameter('region', _itemIndex ?? 0, '') as string;
+	const role = this.getNodeParameter('role', _itemIndex ?? 0, '') as string;
 
 	const body: IDataObject = {
     flavor: flavor || undefined,

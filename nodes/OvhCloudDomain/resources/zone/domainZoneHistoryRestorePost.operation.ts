@@ -36,10 +36,10 @@ export function description(displayOptions: IDisplayOptions): INodeProperties[] 
  * HTTP method: POST
  * Endpoint: /domain/zone/{zoneName}/history/{creationDate}/restore
  */
-export async function execute(this: IExecuteFunctions, itemIndex: number): Promise<INodeExecutionData[]> {
+export async function execute(this: IExecuteFunctions, _itemIndex: number): Promise<INodeExecutionData[]> {
 	const client = new ApiClient(this);
-		const creationDate = this.getNodeParameter('creationDate', itemIndex) as string;
-		const zoneName = this.getNodeParameter('zoneName', itemIndex) as string;
+		const creationDate = this.getNodeParameter('creationDate', _itemIndex) as string;
+		const zoneName = this.getNodeParameter('zoneName', _itemIndex) as string;
 
 	const data = (await client.httpPost(`/domain/zone/${encodeURIComponent(zoneName)}/history/${encodeURIComponent(creationDate)}/restore`)) as IDataObject;
 

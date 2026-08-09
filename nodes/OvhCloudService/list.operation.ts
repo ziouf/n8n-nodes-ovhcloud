@@ -6,7 +6,7 @@ import type {
 } from 'n8n-workflow';
 import { ApiClient } from '../../shared/transport/ApiClient';
 
-// eslint-disable-next-line @typescript-eslint/no-unused-vars
+ 
 export function description(_displayOptions: IDisplayOptions): INodeProperties[] {
 	return [
 		{
@@ -19,8 +19,8 @@ export function description(_displayOptions: IDisplayOptions): INodeProperties[]
 	];
 }
 
-export async function execute(this: IExecuteFunctions, itemIndex: number): Promise<INodeExecutionData[]> {
-	const withDetails = this.getNodeParameter('withDetails', itemIndex, false) as boolean;
+export async function execute(this: IExecuteFunctions, _itemIndex: number): Promise<INodeExecutionData[]> {
+	const withDetails = this.getNodeParameter('withDetails', _itemIndex, false) as boolean;
 	const client = new ApiClient(this);
 	const ids = (await client.httpGet('/service')) as number[];
 	const outputData = ids.map((id) => ({ serviceId: id }));

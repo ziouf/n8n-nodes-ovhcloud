@@ -65,11 +65,11 @@ export function description(displayOptions: IDisplayOptions): INodeProperties[] 
  * HTTP method: POST
  * Endpoint: /email/domain/{domain}/changeContact
  */
-export async function execute(this: IExecuteFunctions): Promise<INodeExecutionData[]> {
-	const domain = this.getNodeParameter('domain', 0) as string;
-	const contactAdmin = this.getNodeParameter('contactAdmin', 0) as string;
-	const contactBilling = this.getNodeParameter('contactBilling', 0) as string;
-	const contactTech = this.getNodeParameter('contactTech', 0) as string;
+export async function execute(this: IExecuteFunctions, _itemIndex?: number): Promise<INodeExecutionData[]> {
+	const domain = this.getNodeParameter('domain', _itemIndex ?? 0) as string;
+	const contactAdmin = this.getNodeParameter('contactAdmin', _itemIndex ?? 0) as string;
+	const contactBilling = this.getNodeParameter('contactBilling', _itemIndex ?? 0) as string;
+	const contactTech = this.getNodeParameter('contactTech', _itemIndex ?? 0) as string;
 
 	const body: IDataObject = {
 		contactAdmin: contactAdmin,

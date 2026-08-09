@@ -1622,493 +1622,493 @@ export async function execute(
 	switch (operation) {
 		// Phase 1 — Account & Identity
 		case 'getAccount':
-			return await executeGetAccount.call(this);
+			return await executeGetAccount.call(this, itemIndex ?? 0);
 		case 'listOvhAccounts':
-			return await executeListOvhAccounts.call(this);
+			return await executeListOvhAccounts.call(this, itemIndex ?? 0);
 		case 'getOvhAccount':
-			return await executeGetOvhAccount.call(this, itemIndex);
+			return await executeGetOvhAccount.call(this, itemIndex ?? 0);
 		case 'listOvhAccountMovements':
-			return await executeListOvhAccountMovements.call(this, itemIndex);
+			return await executeListOvhAccountMovements.call(this, itemIndex ?? 0);
 		case 'getOvhAccountMovement':
-			return await executeGetOvhAccountMovement.call(this, itemIndex);
+			return await executeGetOvhAccountMovement.call(this, itemIndex ?? 0);
 		case 'listSubAccounts':
-			return await executeListSubAccounts.call(this);
+			return await executeListSubAccounts.call(this, itemIndex ?? 0);
 		case 'getSubAccount':
-			return await executeGetSubAccount.call(this, itemIndex);
+			return await executeGetSubAccount.call(this, itemIndex ?? 0);
 		case 'getAutorenew':
-			return await executeGetAutorenew.call(this);
+			return await executeGetAutorenew.call(this, itemIndex ?? 0);
 		case 'listAvailablePaymentMeans':
-			return await executeListAvailablePaymentMeans.call(this);
+			return await executeListAvailablePaymentMeans.call(this, itemIndex ?? 0);
 		case 'getIdentityProvider':
-			return await executeGetIdentityProvider.call(this);
+			return await executeGetIdentityProvider.call(this, itemIndex ?? 0);
 		case 'listIdentityUsers':
-			return await executeListIdentityUsers.call(this);
+			return await executeListIdentityUsers.call(this, itemIndex ?? 0);
 		case 'getIdentityUser':
-			return await executeGetIdentityUser.call(this, itemIndex);
+			return await executeGetIdentityUser.call(this, itemIndex ?? 0);
 		case 'listUserTokens':
-			return await executeListUserTokens.call(this, itemIndex);
+			return await executeListUserTokens.call(this, itemIndex ?? 0);
 		case 'getUserToken':
-			return await executeGetUserToken.call(this, itemIndex);
+			return await executeGetUserToken.call(this, itemIndex ?? 0);
 		case 'listIdentityGroups':
-			return await executeListIdentityGroups.call(this);
+			return await executeListIdentityGroups.call(this, itemIndex ?? 0);
 		case 'getIdentityGroup':
-			return await executeGetIdentityGroup.call(this, itemIndex);
+			return await executeGetIdentityGroup.call(this, itemIndex ?? 0);
 		case 'listGroupUsers':
-			return await executeListGroupUsers.call(this, itemIndex);
+			return await executeListGroupUsers.call(this, itemIndex ?? 0);
 		case 'listSshKeys':
-			return await executeListSshKeys.call(this);
+			return await executeListSshKeys.call(this, itemIndex ?? 0);
 		case 'getSshKey':
-			return await executeGetSshKey.call(this, itemIndex);
+			return await executeGetSshKey.call(this, itemIndex ?? 0);
 		case 'listConsentCampaigns':
-			return await executeListConsentCampaigns.call(this);
+			return await executeListConsentCampaigns.call(this, itemIndex ?? 0);
 		case 'getConsentCampaign':
-			return await executeGetConsentCampaign.call(this, itemIndex);
+			return await executeGetConsentCampaign.call(this, itemIndex ?? 0);
 		case 'getConsentDecision':
-			return await executeGetConsentDecision.call(this, itemIndex);
+			return await executeGetConsentDecision.call(this, itemIndex ?? 0);
 		// Phase 2 — API & Logs
 		case 'listApiApplications':
-			return await executeListApiApplications.call(this);
+			return await executeListApiApplications.call(this, itemIndex ?? 0);
 		case 'getApiApplication':
-			return await executeGetApiApplication.call(this, itemIndex);
+			return await executeGetApiApplication.call(this, itemIndex ?? 0);
 		case 'listApiCredentials':
-			return await executeListApiCredentials.call(this);
+			return await executeListApiCredentials.call(this, itemIndex ?? 0);
 		case 'getApiCredential':
-			return await executeGetApiCredential.call(this, itemIndex);
+			return await executeGetApiCredential.call(this, itemIndex ?? 0);
 		case 'getCredentialApplication':
-			return await executeGetCredentialApplication.call(this, itemIndex);
+			return await executeGetCredentialApplication.call(this, itemIndex ?? 0);
 		case 'listApiLogKinds':
-			return await executeListApiLogKinds.call(this);
+			return await executeListApiLogKinds.call(this, itemIndex ?? 0);
 		case 'getApiLogKind':
-			return await executeGetApiLogKind.call(this, itemIndex);
+			return await executeGetApiLogKind.call(this, itemIndex ?? 0);
 		case 'listApiLogSubscriptions':
-			return await executeListApiLogSubscriptions.call(this);
+			return await executeListApiLogSubscriptions.call(this, itemIndex ?? 0);
 		case 'getApiLogSubscription':
-			return await executeGetApiLogSubscription.call(this, itemIndex);
+			return await executeGetApiLogSubscription.call(this, itemIndex ?? 0);
 		case 'listApiLogsSelf':
-			return await executeListApiLogsSelf.call(this);
+			return await executeListApiLogsSelf.call(this, itemIndex ?? 0);
 		case 'getApiLogSelf':
-			return await executeGetApiLogSelf.call(this, itemIndex);
+			return await executeGetApiLogSelf.call(this, itemIndex ?? 0);
 		case 'listApiLogsServices':
-			return await executeListApiLogsServices.call(this);
+			return await executeListApiLogsServices.call(this, itemIndex ?? 0);
 		case 'getApiLogServices':
-			return await executeGetApiLogServices.call(this, itemIndex);
+			return await executeGetApiLogServices.call(this, itemIndex ?? 0);
 		case 'listOAuth2Clients':
-			return await executeListOAuth2Clients.call(this);
+			return await executeListOAuth2Clients.call(this, itemIndex ?? 0);
 		case 'getOAuth2Client':
-			return await executeGetOAuth2Client.call(this, itemIndex);
+			return await executeGetOAuth2Client.call(this, itemIndex ?? 0);
 		case 'getAuditLogs':
-			return await executeGetAuditLogs.call(this);
+			return await executeGetAuditLogs.call(this, itemIndex ?? 0);
 		case 'listAuditLogKinds':
-			return await executeListAuditLogKinds.call(this);
+			return await executeListAuditLogKinds.call(this, itemIndex ?? 0);
 		case 'getAuditLogKind':
-			return await executeGetAuditLogKind.call(this, itemIndex);
+			return await executeGetAuditLogKind.call(this, itemIndex ?? 0);
 		case 'listAuditLogSubscriptions':
-			return await executeListAuditLogSubscriptions.call(this);
+			return await executeListAuditLogSubscriptions.call(this, itemIndex ?? 0);
 		case 'getAuditLogSubscription':
-			return await executeGetAuditLogSubscription.call(this, itemIndex);
+			return await executeGetAuditLogSubscription.call(this, itemIndex ?? 0);
 		// Phase 3 — Billing
 		case 'listBills':
-			return await executeListBills.call(this);
+			return await executeListBills.call(this, itemIndex ?? 0);
 		case 'getBill':
-			return await executeGetBill.call(this, itemIndex);
+			return await executeGetBill.call(this, itemIndex ?? 0);
 		case 'getBillDebt':
-			return await executeGetBillDebt.call(this, itemIndex);
+			return await executeGetBillDebt.call(this, itemIndex ?? 0);
 		case 'listBillDebtOperations':
-			return await executeListBillDebtOperations.call(this, itemIndex);
+			return await executeListBillDebtOperations.call(this, itemIndex ?? 0);
 		case 'getBillDebtOperation':
-			return await executeGetBillDebtOperation.call(this, itemIndex);
+			return await executeGetBillDebtOperation.call(this, itemIndex ?? 0);
 		case 'getBillDebtOperationAssociatedObject':
-			return await executeGetBillDebtOperationAssociatedObject.call(this, itemIndex);
+			return await executeGetBillDebtOperationAssociatedObject.call(this, itemIndex ?? 0);
 		case 'listBillDetails':
-			return await executeListBillDetails.call(this, itemIndex);
+			return await executeListBillDetails.call(this, itemIndex ?? 0);
 		case 'getBillDetail':
-			return await executeGetBillDetail.call(this, itemIndex);
+			return await executeGetBillDetail.call(this, itemIndex ?? 0);
 		case 'getBillPayment':
-			return await executeGetBillPayment.call(this, itemIndex);
+			return await executeGetBillPayment.call(this, itemIndex ?? 0);
 		case 'listBillingGroups':
-			return await executeListBillingGroups.call(this);
+			return await executeListBillingGroups.call(this, itemIndex ?? 0);
 		case 'getBillingGroup':
-			return await executeGetBillingGroup.call(this, itemIndex);
+			return await executeGetBillingGroup.call(this, itemIndex ?? 0);
 		case 'listBillingGroupServices':
-			return await executeListBillingGroupServices.call(this, itemIndex);
+			return await executeListBillingGroupServices.call(this, itemIndex ?? 0);
 		case 'getBillingGroupService':
-			return await executeGetBillingGroupService.call(this, itemIndex);
+			return await executeGetBillingGroupService.call(this, itemIndex ?? 0);
 		case 'listPurchaseOrders':
-			return await executeListPurchaseOrders.call(this);
+			return await executeListPurchaseOrders.call(this, itemIndex ?? 0);
 		case 'getPurchaseOrder':
-			return await executeGetPurchaseOrder.call(this, itemIndex);
+			return await executeGetPurchaseOrder.call(this, itemIndex ?? 0);
 		case 'listConsumptionReports':
-			return await executeListConsumptionReports.call(this);
+			return await executeListConsumptionReports.call(this, itemIndex ?? 0);
 		case 'getConsumptionReport':
-			return await executeGetConsumptionReport.call(this, itemIndex);
+			return await executeGetConsumptionReport.call(this, itemIndex ?? 0);
 		// Phase 4 — Payment & Orders
 		case 'listPaymentAvailableMethods':
-			return await executeListPaymentAvailableMethods.call(this);
+			return await executeListPaymentAvailableMethods.call(this, itemIndex ?? 0);
 		case 'listPaymentMethods':
-			return await executeListPaymentMethods.call(this);
+			return await executeListPaymentMethods.call(this, itemIndex ?? 0);
 		case 'getPaymentMethod':
-			return await executeGetPaymentMethod.call(this, itemIndex);
+			return await executeGetPaymentMethod.call(this, itemIndex ?? 0);
 		case 'listPaymentTransactions':
-			return await executeListPaymentTransactions.call(this);
+			return await executeListPaymentTransactions.call(this, itemIndex ?? 0);
 		case 'getPaymentTransaction':
-			return await executeGetPaymentTransaction.call(this, itemIndex);
+			return await executeGetPaymentTransaction.call(this, itemIndex ?? 0);
 		case 'listBankAccounts':
-			return await executeListBankAccounts.call(this);
+			return await executeListBankAccounts.call(this, itemIndex ?? 0);
 		case 'getBankAccount':
-			return await executeGetBankAccount.call(this, itemIndex);
+			return await executeGetBankAccount.call(this, itemIndex ?? 0);
 		case 'listCreditCards':
-			return await executeListCreditCards.call(this);
+			return await executeListCreditCards.call(this, itemIndex ?? 0);
 		case 'getCreditCard':
-			return await executeGetCreditCard.call(this, itemIndex);
+			return await executeGetCreditCard.call(this, itemIndex ?? 0);
 		case 'listDeferredPaymentAccounts':
-			return await executeListDeferredPaymentAccounts.call(this);
+			return await executeListDeferredPaymentAccounts.call(this, itemIndex ?? 0);
 		case 'getDeferredPaymentAccount':
-			return await executeGetDeferredPaymentAccount.call(this, itemIndex);
+			return await executeGetDeferredPaymentAccount.call(this, itemIndex ?? 0);
 		case 'listPaypalAccounts':
-			return await executeListPaypalAccounts.call(this);
+			return await executeListPaypalAccounts.call(this, itemIndex ?? 0);
 		case 'getPaypalAccount':
-			return await executeGetPaypalAccount.call(this, itemIndex);
+			return await executeGetPaypalAccount.call(this, itemIndex ?? 0);
 		case 'listOrders':
-			return await executeListOrders.call(this);
+			return await executeListOrders.call(this, itemIndex ?? 0);
 		case 'getOrder':
-			return await executeGetOrder.call(this, itemIndex);
+			return await executeGetOrder.call(this, itemIndex ?? 0);
 		case 'getOrderAssociatedObject':
-			return await executeGetOrderAssociatedObject.call(this, itemIndex);
+			return await executeGetOrderAssociatedObject.call(this, itemIndex ?? 0);
 		case 'listOrderAvailablePaymentMeans':
-			return await executeListOrderAvailablePaymentMeans.call(this, itemIndex);
+			return await executeListOrderAvailablePaymentMeans.call(this, itemIndex ?? 0);
 		case 'listOrderBalances':
-			return await executeListOrderBalances.call(this, itemIndex);
+			return await executeListOrderBalances.call(this, itemIndex ?? 0);
 		case 'getOrderBalance':
-			return await executeGetOrderBalance.call(this, itemIndex);
+			return await executeGetOrderBalance.call(this, itemIndex ?? 0);
 		case 'getOrderConsumptionDetails':
-			return await executeGetOrderConsumptionDetails.call(this, itemIndex);
+			return await executeGetOrderConsumptionDetails.call(this, itemIndex ?? 0);
 		case 'getOrderDebt':
-			return await executeGetOrderDebt.call(this, itemIndex);
+			return await executeGetOrderDebt.call(this, itemIndex ?? 0);
 		case 'listOrderDebtOperations':
-			return await executeListOrderDebtOperations.call(this, itemIndex);
+			return await executeListOrderDebtOperations.call(this, itemIndex ?? 0);
 		case 'getOrderDebtOperation':
-			return await executeGetOrderDebtOperation.call(this, itemIndex);
+			return await executeGetOrderDebtOperation.call(this, itemIndex ?? 0);
 		case 'getOrderDebtOperationAssociatedObject':
-			return await executeGetOrderDebtOperationAssociatedObject.call(this, itemIndex);
+			return await executeGetOrderDebtOperationAssociatedObject.call(this, itemIndex ?? 0);
 		case 'listOrderDetails':
-			return await executeListOrderDetails.call(this, itemIndex);
+			return await executeListOrderDetails.call(this, itemIndex ?? 0);
 		case 'getOrderDetail':
-			return await executeGetOrderDetail.call(this, itemIndex);
+			return await executeGetOrderDetail.call(this, itemIndex ?? 0);
 		case 'getOrderDetailExtension':
-			return await executeGetOrderDetailExtension.call(this, itemIndex);
+			return await executeGetOrderDetailExtension.call(this, itemIndex ?? 0);
 		case 'getOrderFollowUp':
-			return await executeGetOrderFollowUp.call(this, itemIndex);
+			return await executeGetOrderFollowUp.call(this, itemIndex ?? 0);
 		case 'getOrderPayment':
-			return await executeGetOrderPayment.call(this, itemIndex);
+			return await executeGetOrderPayment.call(this, itemIndex ?? 0);
 		case 'getOrderPaymentMeans':
-			return await executeGetOrderPaymentMeans.call(this, itemIndex);
+			return await executeGetOrderPaymentMeans.call(this, itemIndex ?? 0);
 		case 'listOrderPaymentMethods':
-			return await executeListOrderPaymentMethods.call(this, itemIndex);
+			return await executeListOrderPaymentMethods.call(this, itemIndex ?? 0);
 		case 'getOrderStatus':
-			return await executeGetOrderStatus.call(this, itemIndex);
+			return await executeGetOrderStatus.call(this, itemIndex ?? 0);
 		// Phase 5 — Financial Accounts
 		case 'listCreditBalances':
-			return await executeListCreditBalances.call(this);
+			return await executeListCreditBalances.call(this, itemIndex ?? 0);
 		case 'getCreditBalance':
-			return await executeGetCreditBalance.call(this, itemIndex);
+			return await executeGetCreditBalance.call(this, itemIndex ?? 0);
 		case 'listCreditBalanceMovements':
-			return await executeListCreditBalanceMovements.call(this, itemIndex);
+			return await executeListCreditBalanceMovements.call(this, itemIndex ?? 0);
 		case 'getCreditBalanceMovement':
-			return await executeGetCreditBalanceMovement.call(this, itemIndex);
+			return await executeGetCreditBalanceMovement.call(this, itemIndex ?? 0);
 		case 'getDebtAccount':
-			return await executeGetDebtAccount.call(this);
+			return await executeGetDebtAccount.call(this, itemIndex ?? 0);
 		case 'listDebtAccountDebts':
-			return await executeListDebtAccountDebts.call(this);
+			return await executeListDebtAccountDebts.call(this, itemIndex ?? 0);
 		case 'getDebtAccountDebt':
-			return await executeGetDebtAccountDebt.call(this, itemIndex);
+			return await executeGetDebtAccountDebt.call(this, itemIndex ?? 0);
 		case 'listDebtAccountDebtOperations':
-			return await executeListDebtAccountDebtOperations.call(this, itemIndex);
+			return await executeListDebtAccountDebtOperations.call(this, itemIndex ?? 0);
 		case 'getDebtAccountDebtOperation':
-			return await executeGetDebtAccountDebtOperation.call(this, itemIndex);
+			return await executeGetDebtAccountDebtOperation.call(this, itemIndex ?? 0);
 		case 'getDebtAccountDebtOperationAssociatedObject':
-			return await executeGetDebtAccountDebtOperationAssociatedObject.call(this, itemIndex);
+			return await executeGetDebtAccountDebtOperationAssociatedObject.call(this, itemIndex ?? 0);
 		case 'listDeposits':
-			return await executeListDeposits.call(this);
+			return await executeListDeposits.call(this, itemIndex ?? 0);
 		case 'getDeposit':
-			return await executeGetDeposit.call(this, itemIndex);
+			return await executeGetDeposit.call(this, itemIndex ?? 0);
 		case 'listDepositDetails':
-			return await executeListDepositDetails.call(this, itemIndex);
+			return await executeListDepositDetails.call(this, itemIndex ?? 0);
 		case 'getDepositDetail':
-			return await executeGetDepositDetail.call(this, itemIndex);
+			return await executeGetDepositDetail.call(this, itemIndex ?? 0);
 		case 'listDepositPaidBills':
-			return await executeListDepositPaidBills.call(this, itemIndex);
+			return await executeListDepositPaidBills.call(this, itemIndex ?? 0);
 		case 'getDepositPaidBill':
-			return await executeGetDepositPaidBill.call(this, itemIndex);
+			return await executeGetDepositPaidBill.call(this, itemIndex ?? 0);
 		case 'getDepositPayment':
-			return await executeGetDepositPayment.call(this, itemIndex);
+			return await executeGetDepositPayment.call(this, itemIndex ?? 0);
 		case 'listWithdrawals':
-			return await executeListWithdrawals.call(this);
+			return await executeListWithdrawals.call(this, itemIndex ?? 0);
 		case 'getWithdrawal':
-			return await executeGetWithdrawal.call(this, itemIndex);
+			return await executeGetWithdrawal.call(this, itemIndex ?? 0);
 		case 'listWithdrawalDetails':
-			return await executeListWithdrawalDetails.call(this, itemIndex);
+			return await executeListWithdrawalDetails.call(this, itemIndex ?? 0);
 		case 'getWithdrawalDetail':
-			return await executeGetWithdrawalDetail.call(this, itemIndex);
+			return await executeGetWithdrawalDetail.call(this, itemIndex ?? 0);
 		case 'getWithdrawalPayment':
-			return await executeGetWithdrawalPayment.call(this, itemIndex);
+			return await executeGetWithdrawalPayment.call(this, itemIndex ?? 0);
 		case 'listRefunds':
-			return await executeListRefunds.call(this);
+			return await executeListRefunds.call(this, itemIndex ?? 0);
 		case 'getRefund':
-			return await executeGetRefund.call(this, itemIndex);
+			return await executeGetRefund.call(this, itemIndex ?? 0);
 		case 'listRefundDetails':
-			return await executeListRefundDetails.call(this, itemIndex);
+			return await executeListRefundDetails.call(this, itemIndex ?? 0);
 		case 'getRefundDetail':
-			return await executeGetRefundDetail.call(this, itemIndex);
+			return await executeGetRefundDetail.call(this, itemIndex ?? 0);
 		case 'getRefundPayment':
-			return await executeGetRefundPayment.call(this, itemIndex);
+			return await executeGetRefundPayment.call(this, itemIndex ?? 0);
 		case 'listReverseBills':
-			return await executeListReverseBills.call(this);
+			return await executeListReverseBills.call(this, itemIndex ?? 0);
 		case 'getReverseBill':
-			return await executeGetReverseBill.call(this, itemIndex);
+			return await executeGetReverseBill.call(this, itemIndex ?? 0);
 		case 'listReverseBillDetails':
-			return await executeListReverseBillDetails.call(this, itemIndex);
+			return await executeListReverseBillDetails.call(this, itemIndex ?? 0);
 		case 'getReverseBillDetail':
-			return await executeGetReverseBillDetail.call(this, itemIndex);
+			return await executeGetReverseBillDetail.call(this, itemIndex ?? 0);
 		case 'getReverseBillPayment':
-			return await executeGetReverseBillPayment.call(this, itemIndex);
+			return await executeGetReverseBillPayment.call(this, itemIndex ?? 0);
 		case 'listCorrectiveInvoices':
-			return await executeListCorrectiveInvoices.call(this);
+			return await executeListCorrectiveInvoices.call(this, itemIndex ?? 0);
 		case 'getCorrectiveInvoice':
-			return await executeGetCorrectiveInvoice.call(this, itemIndex);
+			return await executeGetCorrectiveInvoice.call(this, itemIndex ?? 0);
 		case 'getCorrectiveInvoiceDebt':
-			return await executeGetCorrectiveInvoiceDebt.call(this, itemIndex);
+			return await executeGetCorrectiveInvoiceDebt.call(this, itemIndex ?? 0);
 		case 'listCorrectiveInvoiceDebtOperations':
-			return await executeListCorrectiveInvoiceDebtOperations.call(this, itemIndex);
+			return await executeListCorrectiveInvoiceDebtOperations.call(this, itemIndex ?? 0);
 		case 'getCorrectiveInvoiceDebtOperation':
-			return await executeGetCorrectiveInvoiceDebtOperation.call(this, itemIndex);
+			return await executeGetCorrectiveInvoiceDebtOperation.call(this, itemIndex ?? 0);
 		case 'getCorrectiveInvoiceDebtOperationAssociatedObject':
-			return await executeGetCorrectiveInvoiceDebtOperationAssociatedObject.call(this, itemIndex);
+			return await executeGetCorrectiveInvoiceDebtOperationAssociatedObject.call(this, itemIndex ?? 0);
 		case 'listCorrectiveInvoiceDetails':
-			return await executeListCorrectiveInvoiceDetails.call(this, itemIndex);
+			return await executeListCorrectiveInvoiceDetails.call(this, itemIndex ?? 0);
 		case 'getCorrectiveInvoiceDetail':
-			return await executeGetCorrectiveInvoiceDetail.call(this, itemIndex);
+			return await executeGetCorrectiveInvoiceDetail.call(this, itemIndex ?? 0);
 		case 'getCorrectiveInvoicePayment':
-			return await executeGetCorrectiveInvoicePayment.call(this, itemIndex);
+			return await executeGetCorrectiveInvoicePayment.call(this, itemIndex ?? 0);
 		// Phase 6 — Contact & Documents
 		case 'listContacts':
-			return await executeListContacts.call(this);
+			return await executeListContacts.call(this, itemIndex ?? 0);
 		case 'getContact':
-			return await executeGetContact.call(this, itemIndex);
+			return await executeGetContact.call(this, itemIndex ?? 0);
 		case 'getContactFields':
-			return await executeGetContactFields.call(this, itemIndex);
+			return await executeGetContactFields.call(this, itemIndex ?? 0);
 		case 'listDocuments':
-			return await executeListDocuments.call(this);
+			return await executeListDocuments.call(this, itemIndex ?? 0);
 		case 'getDocument':
-			return await executeGetDocument.call(this, itemIndex);
+			return await executeGetDocument.call(this, itemIndex ?? 0);
 		case 'listTags':
-			return await executeListTags.call(this);
+			return await executeListTags.call(this, itemIndex ?? 0);
 		case 'listAvailableTags':
-			return await executeListAvailableTags.call(this);
+			return await executeListAvailableTags.call(this, itemIndex ?? 0);
 		case 'getTag':
-			return await executeGetTag.call(this, itemIndex);
+			return await executeGetTag.call(this, itemIndex ?? 0);
 		// Phase 7 — Partner, SLA & Account Info
 		case 'getPartnerLevel':
-			return await executeGetPartnerLevel.call(this);
+			return await executeGetPartnerLevel.call(this, itemIndex ?? 0);
 		case 'getSupportLevel':
-			return await executeGetSupportLevel.call(this);
+			return await executeGetSupportLevel.call(this, itemIndex ?? 0);
 		case 'listSlas':
-			return await executeListSlas.call(this);
+			return await executeListSlas.call(this, itemIndex ?? 0);
 		case 'getSla':
-			return await executeGetSla.call(this, itemIndex);
+			return await executeGetSla.call(this, itemIndex ?? 0);
 		case 'getSlaCanBeApplied':
-			return await executeGetSlaCanBeApplied.call(this, itemIndex);
+			return await executeGetSlaCanBeApplied.call(this, itemIndex ?? 0);
 		case 'listSlaServices':
-			return await executeListSlaServices.call(this, itemIndex);
+			return await executeListSlaServices.call(this, itemIndex ?? 0);
 		case 'getSlaStatus':
-			return await executeGetSlaStatus.call(this, itemIndex);
+			return await executeGetSlaStatus.call(this, itemIndex ?? 0);
 		case 'listAgreements':
-			return await executeListAgreements.call(this);
+			return await executeListAgreements.call(this, itemIndex ?? 0);
 		case 'getAgreement':
-			return await executeGetAgreement.call(this, itemIndex);
+			return await executeGetAgreement.call(this, itemIndex ?? 0);
 		case 'getAgreementContract':
-			return await executeGetAgreementContract.call(this, itemIndex);
+			return await executeGetAgreementContract.call(this, itemIndex ?? 0);
 		case 'listCertificates':
-			return await executeListCertificates.call(this);
+			return await executeListCertificates.call(this, itemIndex ?? 0);
 		case 'getVipStatus':
-			return await executeGetVipStatus.call(this);
+			return await executeGetVipStatus.call(this, itemIndex ?? 0);
 		case 'getInsight':
-			return await executeGetInsight.call(this);
+			return await executeGetInsight.call(this, itemIndex ?? 0);
 		case 'getRecommendations':
-			return await executeGetRecommendations.call(this);
+			return await executeGetRecommendations.call(this, itemIndex ?? 0);
 		case 'getBringYourOwnIpToken':
-			return await executeGetBringYourOwnIpToken.call(this);
+			return await executeGetBringYourOwnIpToken.call(this, itemIndex ?? 0);
 		case 'listAbuse':
-			return await executeListAbuse.call(this);
+			return await executeListAbuse.call(this, itemIndex ?? 0);
 		case 'getAbuse':
-			return await executeGetAbuse.call(this, itemIndex);
+			return await executeGetAbuse.call(this, itemIndex ?? 0);
 		case 'getCarbonCalculatorHasInvoice':
-			return await executeGetCarbonCalculatorHasInvoice.call(this);
+			return await executeGetCarbonCalculatorHasInvoice.call(this, itemIndex ?? 0);
 		case 'listCarbonCalculatorTasks':
-			return await executeListCarbonCalculatorTasks.call(this);
+			return await executeListCarbonCalculatorTasks.call(this, itemIndex ?? 0);
 		case 'getCarbonCalculatorTask':
-			return await executeGetCarbonCalculatorTask.call(this, itemIndex);
+			return await executeGetCarbonCalculatorTask.call(this, itemIndex ?? 0);
 		case 'getAccessRestrictionBackupCode':
-			return await executeGetAccessRestrictionBackupCode.call(this);
+			return await executeGetAccessRestrictionBackupCode.call(this, itemIndex ?? 0);
 		case 'getAccessRestrictionDeveloperMode':
-			return await executeGetAccessRestrictionDeveloperMode.call(this);
+			return await executeGetAccessRestrictionDeveloperMode.call(this, itemIndex ?? 0);
 		case 'listAccessRestrictionIps':
-			return await executeListAccessRestrictionIps.call(this);
+			return await executeListAccessRestrictionIps.call(this, itemIndex ?? 0);
 		case 'getAccessRestrictionIp':
-			return await executeGetAccessRestrictionIp.call(this, itemIndex);
+			return await executeGetAccessRestrictionIp.call(this, itemIndex ?? 0);
 		case 'getAccessRestrictionIpDefaultRule':
-			return await executeGetAccessRestrictionIpDefaultRule.call(this);
+			return await executeGetAccessRestrictionIpDefaultRule.call(this, itemIndex ?? 0);
 		case 'listAccessRestrictionSms':
-			return await executeListAccessRestrictionSms.call(this);
+			return await executeListAccessRestrictionSms.call(this, itemIndex ?? 0);
 		case 'getAccessRestrictionSms':
-			return await executeGetAccessRestrictionSms.call(this, itemIndex);
+			return await executeGetAccessRestrictionSms.call(this, itemIndex ?? 0);
 		case 'listAccessRestrictionTotp':
-			return await executeListAccessRestrictionTotp.call(this);
+			return await executeListAccessRestrictionTotp.call(this, itemIndex ?? 0);
 		case 'getAccessRestrictionTotp':
-			return await executeGetAccessRestrictionTotp.call(this, itemIndex);
+			return await executeGetAccessRestrictionTotp.call(this, itemIndex ?? 0);
 		case 'listAccessRestrictionU2f':
-			return await executeListAccessRestrictionU2f.call(this);
+			return await executeListAccessRestrictionU2f.call(this, itemIndex ?? 0);
 		case 'getAccessRestrictionU2f':
-			return await executeGetAccessRestrictionU2f.call(this, itemIndex);
+			return await executeGetAccessRestrictionU2f.call(this, itemIndex ?? 0);
 		// Phase 7c — Agreements Lifecycle (accept + contract details)
 		case 'acceptAgreement':
-			return await executeAcceptAgreement.call(this, itemIndex);
+			return await executeAcceptAgreement.call(this, itemIndex ?? 0);
 		case 'getContract':
-			return await executeGetContract.call(this, itemIndex);
+			return await executeGetContract.call(this, itemIndex ?? 0);
 		// Phase 7d — Access Restriction Lifecycle (SOTP/IP/TOTP/U2F/SMS add/delete/enable/disable/sendCode)
 		case 'addSotpSecret':
-			return await executeAddSotpSecret.call(this);
+			return await executeAddSotpSecret.call(this, itemIndex ?? 0);
 		case 'disableSotpAccount':
-			return await executeDisableSotpAccount.call(this);
+			return await executeDisableSotpAccount.call(this, itemIndex ?? 0);
 		case 'enableSotpAccount':
-			return await executeEnableSotpAccount.call(this);
+			return await executeEnableSotpAccount.call(this, itemIndex ?? 0);
 		case 'validateSotpAccount':
-			return await executeValidateSotpAccount.call(this);
+			return await executeValidateSotpAccount.call(this, itemIndex ?? 0);
 		case 'editDeveloperModeRestriction':
-			return await executeEditDeveloperModeRestriction.call(this);
+			return await executeEditDeveloperModeRestriction.call(this, itemIndex ?? 0);
 		case 'addIpRestriction':
-			return await executeAddIpRestriction.call(this);
+			return await executeAddIpRestriction.call(this, itemIndex ?? 0);
 		case 'deleteIpRestriction':
-			return await executeDeleteIpRestriction.call(this);
+			return await executeDeleteIpRestriction.call(this, itemIndex ?? 0);
 		case 'editIpRestriction':
-			return await executeEditIpRestriction.call(this);
+			return await executeEditIpRestriction.call(this, itemIndex ?? 0);
 		case 'enableIpAccount':
-			return await executeEnableIpAccount.call(this);
+			return await executeEnableIpAccount.call(this, itemIndex ?? 0);
 		case 'disableIpAccount':
-			return await executeDisableIpAccount.call(this);
+			return await executeDisableIpAccount.call(this, itemIndex ?? 0);
 		case 'addSmsRestriction':
-			return await executeAddSmsRestriction.call(this);
+			return await executeAddSmsRestriction.call(this, itemIndex ?? 0);
 		case 'deleteSmsRestriction':
-			return await executeDeleteSmsRestriction.call(this);
+			return await executeDeleteSmsRestriction.call(this, itemIndex ?? 0);
 		case 'enableSmsAccount':
-			return await executeEnableSmsAccount.call(this);
+			return await executeEnableSmsAccount.call(this, itemIndex ?? 0);
 		case 'disableSmsAccount':
-			return await executeDisableSmsAccount.call(this);
+			return await executeDisableSmsAccount.call(this, itemIndex ?? 0);
 		case 'sendSmsCode':
-			return await executeSendSmsCode.call(this);
+			return await executeSendSmsCode.call(this, itemIndex ?? 0);
 		case 'validateSmsAccount':
-			return await executeValidateSmsAccount.call(this);
+			return await executeValidateSmsAccount.call(this, itemIndex ?? 0);
 		case 'addTotpRestriction':
-			return await executeAddTotpRestriction.call(this);
+			return await executeAddTotpRestriction.call(this, itemIndex ?? 0);
 		case 'deleteTotpRestriction':
-			return await executeDeleteTotpRestriction.call(this);
+			return await executeDeleteTotpRestriction.call(this, itemIndex ?? 0);
 		case 'enableTotpAccount':
-			return await executeEnableTotpAccount.call(this);
+			return await executeEnableTotpAccount.call(this, itemIndex ?? 0);
 		case 'disableTotpAccount':
-			return await executeDisableTotpAccount.call(this);
+			return await executeDisableTotpAccount.call(this, itemIndex ?? 0);
 		case 'validateTotpAccount':
-			return await executeValidateTotpAccount.call(this);
+			return await executeValidateTotpAccount.call(this, itemIndex ?? 0);
 		case 'editTotpRestriction':
-			return await executeEditTotpRestriction.call(this);
+			return await executeEditTotpRestriction.call(this, itemIndex ?? 0);
 		case 'addU2fRestriction':
-			return await executeAddU2fRestriction.call(this);
+			return await executeAddU2fRestriction.call(this, itemIndex ?? 0);
 		case 'deleteU2fRestriction':
-			return await executeDeleteU2fRestriction.call(this);
+			return await executeDeleteU2fRestriction.call(this, itemIndex ?? 0);
 		case 'enableU2fAccount':
-			return await executeEnableU2fAccount.call(this);
+			return await executeEnableU2fAccount.call(this, itemIndex ?? 0);
 		case 'disableU2fAccount':
-			return await executeDisableU2fAccount.call(this);
+			return await executeDisableU2fAccount.call(this, itemIndex ?? 0);
 		case 'getU2fRestriction':
-			return await executeGetU2fRestriction.call(this);
+			return await executeGetU2fRestriction.call(this, itemIndex ?? 0);
 		case 'editU2fRestriction':
-			return await executeEditU2fRestriction.call(this);
+			return await executeEditU2fRestriction.call(this, itemIndex ?? 0);
 		case 'getTotpRestriction':
-			return await executeGetTotpRestriction.call(this);
+			return await executeGetTotpRestriction.call(this, itemIndex ?? 0);
 
 		// Phase 8 — Notification & Consumption
 		case 'listEmailHistory':
-			return await executeListEmailHistory.call(this);
+			return await executeListEmailHistory.call(this, itemIndex ?? 0);
 		case 'getEmail':
-			return await executeGetEmail.call(this, itemIndex);
+			return await executeGetEmail.call(this, itemIndex ?? 0);
 		case 'getMarketing':
-			return await executeGetMarketing.call(this);
+			return await executeGetMarketing.call(this, itemIndex ?? 0);
 		case 'listAvailableMailingLists':
-			return await executeListAvailableMailingLists.call(this);
+			return await executeListAvailableMailingLists.call(this, itemIndex ?? 0);
 		case 'getCurrentConsumption':
-			return await executeGetCurrentConsumption.call(this);
+			return await executeGetCurrentConsumption.call(this, itemIndex ?? 0);
 		case 'getForecastConsumption':
-			return await executeGetForecastConsumption.call(this);
+			return await executeGetForecastConsumption.call(this, itemIndex ?? 0);
 		case 'getConsumptionHistory':
-			return await executeGetConsumptionHistory.call(this);
+			return await executeGetConsumptionHistory.call(this, itemIndex ?? 0);
 		case 'listMigrations':
-			return await executeListMigrations.call(this);
+			return await executeListMigrations.call(this, itemIndex ?? 0);
 		case 'getMigration':
-			return await executeGetMigration.call(this, itemIndex);
+			return await executeGetMigration.call(this, itemIndex ?? 0);
 		case 'listMigrationContracts':
-			return await executeListMigrationContracts.call(this, itemIndex);
+			return await executeListMigrationContracts.call(this, itemIndex ?? 0);
 		case 'getMigrationContract':
-			return await executeGetMigrationContract.call(this, itemIndex);
+			return await executeGetMigrationContract.call(this, itemIndex ?? 0);
 		case 'getMigrationAgreement':
-			return await executeGetMigrationAgreement.call(this, itemIndex);
+			return await executeGetMigrationAgreement.call(this, itemIndex ?? 0);
 		case 'getFidelityAccount':
-			return await executeGetFidelityAccount.call(this);
+			return await executeGetFidelityAccount.call(this, itemIndex ?? 0);
 		case 'listFidelityMovements':
-			return await executeListFidelityMovements.call(this);
+			return await executeListFidelityMovements.call(this, itemIndex ?? 0);
 		case 'getFidelityMovement':
-			return await executeGetFidelityMovement.call(this, itemIndex);
+			return await executeGetFidelityMovement.call(this, itemIndex ?? 0);
 		case 'listIpOrganisations':
-			return await executeListIpOrganisations.call(this);
+			return await executeListIpOrganisations.call(this, itemIndex ?? 0);
 		case 'getIpOrganisation':
-			return await executeGetIpOrganisation.call(this, itemIndex);
+			return await executeGetIpOrganisation.call(this, itemIndex ?? 0);
 		// Phase 9 — Domain & DNS Tasks
 		case 'listDnsTasks':
-			return await executeListDnsTasks.call(this);
+			return await executeListDnsTasks.call(this, itemIndex ?? 0);
 		case 'getDnsTask':
-			return await executeGetDnsTask.call(this, itemIndex);
+			return await executeGetDnsTask.call(this, itemIndex ?? 0);
 		case 'listDomainTasks':
-			return await executeListDomainTasks.call(this);
+			return await executeListDomainTasks.call(this, itemIndex ?? 0);
 		case 'getDomainTask':
-			return await executeGetDomainTask.call(this, itemIndex);
+			return await executeGetDomainTask.call(this, itemIndex ?? 0);
 		case 'listDomainTaskArguments':
-			return await executeListDomainTaskArguments.call(this, itemIndex);
+			return await executeListDomainTaskArguments.call(this, itemIndex ?? 0);
 		case 'getDomainTaskArgument':
-			return await executeGetDomainTaskArgument.call(this, itemIndex);
+			return await executeGetDomainTaskArgument.call(this, itemIndex ?? 0);
 		case 'getDomainTaskProgress':
-			return await executeGetDomainTaskProgress.call(this, itemIndex);
+			return await executeGetDomainTaskProgress.call(this, itemIndex ?? 0);
 		case 'listContactChangeTasks':
-			return await executeListContactChangeTasks.call(this);
+			return await executeListContactChangeTasks.call(this, itemIndex ?? 0);
 		case 'getContactChangeTask':
-			return await executeGetContactChangeTask.call(this, itemIndex);
+			return await executeGetContactChangeTask.call(this, itemIndex ?? 0);
 		case 'listEmailChangeTasks':
-			return await executeListEmailChangeTasks.call(this);
+			return await executeListEmailChangeTasks.call(this, itemIndex ?? 0);
 		case 'getEmailChangeTask':
-			return await executeGetEmailChangeTask.call(this, itemIndex);
+			return await executeGetEmailChangeTask.call(this, itemIndex ?? 0);
 		case 'listSubscriptions':
-			return await executeListSubscriptions.call(this);
+			return await executeListSubscriptions.call(this, itemIndex ?? 0);
 		case 'getSubscription':
-			return await executeGetSubscription.call(this, itemIndex);
+			return await executeGetSubscription.call(this, itemIndex ?? 0);
 		// Phase 10 — Telecom
 		case 'listFaxCustomDomains':
-			return await executeListFaxCustomDomains.call(this);
+			return await executeListFaxCustomDomains.call(this, itemIndex ?? 0);
 		case 'getFaxCustomDomain':
-			return await executeGetFaxCustomDomain.call(this, itemIndex);
+			return await executeGetFaxCustomDomain.call(this, itemIndex ?? 0);
 		case 'listTelephonyDefaultIpRestrictions':
-			return await executeListTelephonyDefaultIpRestrictions.call(this);
+			return await executeListTelephonyDefaultIpRestrictions.call(this, itemIndex ?? 0);
 		case 'getTelephonyDefaultIpRestriction':
-			return await executeGetTelephonyDefaultIpRestriction.call(this, itemIndex);
+			return await executeGetTelephonyDefaultIpRestriction.call(this, itemIndex ?? 0);
 		case 'getTelephonySettings':
-			return await executeGetTelephonySettings.call(this);
+			return await executeGetTelephonySettings.call(this, itemIndex ?? 0);
 		case 'getXdslSettings':
-			return await executeGetXdslSettings.call(this);
+			return await executeGetXdslSettings.call(this, itemIndex ?? 0);
 	}
 
 	throw new Error(`Unsupported operation "${operation}" for resource "me"`);

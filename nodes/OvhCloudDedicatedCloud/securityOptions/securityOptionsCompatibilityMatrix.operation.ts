@@ -68,16 +68,16 @@ export function description(displayOptions: IDisplayOptions): INodeProperties[] 
  */
 export async function execute(
 	this: IExecuteFunctions,
-	itemIndex: number,
+	_itemIndex: number,
 ): Promise<INodeExecutionData[]> {
 	const client = new ApiClient(this);
-	const serviceName = this.getNodeParameter('serviceName', itemIndex) as string;
+	const serviceName = this.getNodeParameter('serviceName', _itemIndex) as string;
 	const qs: IDataObject = {};
-	const showIncompatible = this.getNodeParameter('showIncompatible', itemIndex) as boolean;
+	const showIncompatible = this.getNodeParameter('showIncompatible', _itemIndex) as boolean;
 	if (showIncompatible) {
 		qs.showIncompatible = showIncompatible;
 	}
-	const showInternal = this.getNodeParameter('showInternal', itemIndex) as boolean;
+	const showInternal = this.getNodeParameter('showInternal', _itemIndex) as boolean;
 	if (showInternal) {
 		qs.showInternal = showInternal;
 	}
@@ -85,12 +85,12 @@ export async function execute(
 		`/dedicatedCloud/${serviceName}/securityOptions/compatibilityMatrix`,
 		qs,
 	)) as IDataObject;
-	const returnAll = this.getNodeParameter('returnAll', itemIndex) as boolean;
+	const returnAll = this.getNodeParameter('returnAll', _itemIndex) as boolean;
 
 	if (returnAll) {
 		return data as unknown as INodeExecutionData[];
 	}
 
-	const limit = this.getNodeParameter('limit', itemIndex) as number;
+	const limit = this.getNodeParameter('limit', _itemIndex) as number;
 	return (data as unknown as INodeExecutionData[]).slice(0, limit);
 }

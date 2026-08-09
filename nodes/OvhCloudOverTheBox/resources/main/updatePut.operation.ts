@@ -65,12 +65,12 @@ export function description(displayOptions: IDisplayOptions): INodeProperties[] 
  * HTTP method: PUT
  * Endpoint: /overTheBox/{serviceName}
  */
-export async function execute(this: IExecuteFunctions): Promise<INodeExecutionData[]> {
+export async function execute(this: IExecuteFunctions, _itemIndex?: number): Promise<INodeExecutionData[]> {
 	const client = new ApiClient(this);
-	const serviceName = this.getNodeParameter('serviceName', 0, '', { extractValue: true }) as string;
-	const autoUpgrade = this.getNodeParameter('autoUpgrade', 0, false) as boolean;
-	const customerDescription = (this.getNodeParameter('customerDescription', 0, '') as string) || '';
-	const releaseChannel = (this.getNodeParameter('releaseChannel', 0, '') as string) || '';
+	const serviceName = this.getNodeParameter('serviceName', _itemIndex ?? 0, '', { extractValue: true }) as string;
+	const autoUpgrade = this.getNodeParameter('autoUpgrade', _itemIndex ?? 0, false) as boolean;
+	const customerDescription = (this.getNodeParameter('customerDescription', _itemIndex ?? 0, '') as string) || '';
+	const releaseChannel = (this.getNodeParameter('releaseChannel', _itemIndex ?? 0, '') as string) || '';
 
 	const body: IDataObject = {};
 	if (autoUpgrade !== undefined) body.autoUpgrade = autoUpgrade;

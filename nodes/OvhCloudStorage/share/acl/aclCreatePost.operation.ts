@@ -85,18 +85,18 @@ export function description(displayOptions: IDisplayOptions): INodeProperties[] 
  * HTTP method: POST
  * Endpoint: /storage/netapp/{serviceName}/share/{shareId}/acl
  */
-export async function execute(this: IExecuteFunctions, itemIndex: number): Promise<INodeExecutionData[]> {
+export async function execute(this: IExecuteFunctions, _itemIndex: number): Promise<INodeExecutionData[]> {
 	const client = new ApiClient(this);
-	const serviceName = this.getNodeParameter('serviceName', itemIndex, '', {
+	const serviceName = this.getNodeParameter('serviceName', _itemIndex, '', {
 				extractValue: true,
 			}) as string;
-	const shareId = this.getNodeParameter('shareId', itemIndex) as string;
+	const shareId = this.getNodeParameter('shareId', _itemIndex) as string;
 	const body: IDataObject = {};
-	body.accessLevel = this.getNodeParameter('accessLevel', itemIndex) as string;
-	body.accessTo = this.getNodeParameter('accessTo', itemIndex) as string;
-	const accessType = this.getNodeParameter('accessType', itemIndex, '') as string;
+	body.accessLevel = this.getNodeParameter('accessLevel', _itemIndex) as string;
+	body.accessTo = this.getNodeParameter('accessTo', _itemIndex) as string;
+	const accessType = this.getNodeParameter('accessType', _itemIndex, '') as string;
 	if (accessType !== '') { body.accessType = accessType; }
-	const status = this.getNodeParameter('status', itemIndex, '') as string;
+	const status = this.getNodeParameter('status', _itemIndex, '') as string;
 	if (status !== '') { body.status = status; }
 	const data = (await client.httpPost(`/storage/netapp/${encodeURIComponent(serviceName)}/share/${encodeURIComponent(shareId)}/acl`, body)) as IDataObject;
 	return this.helpers.returnJsonArray([data]);

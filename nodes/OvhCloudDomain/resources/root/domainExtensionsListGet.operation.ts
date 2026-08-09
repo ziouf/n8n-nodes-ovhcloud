@@ -72,17 +72,17 @@ export function description(displayOptions: IDisplayOptions): INodeProperties[] 
  * HTTP method: GET
  * Endpoint: /domain/extensions
  */
-export async function execute(this: IExecuteFunctions, itemIndex: number): Promise<INodeExecutionData[]> {
+export async function execute(this: IExecuteFunctions, _itemIndex: number): Promise<INodeExecutionData[]> {
 	const client = new ApiClient(this);
 
 	const qs: IDataObject = {};
-		const geolocalizations = this.getNodeParameter('geolocalizations', itemIndex, '') as string;
+		const geolocalizations = this.getNodeParameter('geolocalizations', _itemIndex, '') as string;
 		if (geolocalizations !== '' && geolocalizations !== undefined) qs['geolocalizations'] = geolocalizations;
-		const orderBy = this.getNodeParameter('orderBy', itemIndex, '') as string;
+		const orderBy = this.getNodeParameter('orderBy', _itemIndex, '') as string;
 		if (orderBy !== '' && orderBy !== undefined) qs['orderBy'] = orderBy;
-		const ovhSubsidiary = this.getNodeParameter('ovhSubsidiary', itemIndex, '') as string;
+		const ovhSubsidiary = this.getNodeParameter('ovhSubsidiary', _itemIndex, '') as string;
 		if (ovhSubsidiary !== '' && ovhSubsidiary !== undefined) qs['ovhSubsidiary'] = ovhSubsidiary;
-		const thematics = this.getNodeParameter('thematics', itemIndex, '') as string;
+		const thematics = this.getNodeParameter('thematics', _itemIndex, '') as string;
 		if (thematics !== '' && thematics !== undefined) qs['thematics'] = thematics;
 
 	const data = (await client.httpGet(`/domain/extensions`, qs)) as IDataObject;

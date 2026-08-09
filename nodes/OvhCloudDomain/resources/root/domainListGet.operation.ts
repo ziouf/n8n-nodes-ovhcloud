@@ -26,11 +26,11 @@ export function description(displayOptions: IDisplayOptions): INodeProperties[] 
  * HTTP method: GET
  * Endpoint: /domain
  */
-export async function execute(this: IExecuteFunctions, itemIndex: number): Promise<INodeExecutionData[]> {
+export async function execute(this: IExecuteFunctions, _itemIndex: number): Promise<INodeExecutionData[]> {
 	const client = new ApiClient(this);
 
 	const qs: IDataObject = {};
-		const whoisOwner = this.getNodeParameter('whoisOwner', itemIndex, '') as string;
+		const whoisOwner = this.getNodeParameter('whoisOwner', _itemIndex, '') as string;
 		if (whoisOwner !== '' && whoisOwner !== undefined) qs['whoisOwner'] = whoisOwner;
 
 	const data = (await client.httpGet(`/domain`, qs)) as IDataObject;

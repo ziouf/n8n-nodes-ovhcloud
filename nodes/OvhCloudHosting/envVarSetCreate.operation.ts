@@ -52,14 +52,14 @@ export function description(
 
 export async function execute(
 	this: IExecuteFunctions,
-	itemIndex?: number,
+	_itemIndex?: number,
 ): Promise<INodeExecutionData[]> {
 	const client = new ApiClient(this);
-	const serviceName = this.getNodeParameter('serviceName', itemIndex as number, '', {
+	const serviceName = this.getNodeParameter('serviceName', _itemIndex as number, '', {
 		extractValue: true,
 	}) as string;
-	const key = this.getNodeParameter('key', itemIndex as number) as string;
-	const value = this.getNodeParameter('value', itemIndex as number) as string;
+	const key = this.getNodeParameter('key', _itemIndex as number) as string;
+	const value = this.getNodeParameter('value', _itemIndex as number) as string;
 
 	const data = (await client.httpPost(
 		`/hosting/web/${serviceName}/env/set`,

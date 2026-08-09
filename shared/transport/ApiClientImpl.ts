@@ -57,6 +57,11 @@ export interface PaginationOptions {
 	 * so those always take precedence.
 	 */
 	query?: IDataObject;
+	/** Maximum number of concurrent page requests.
+	 * Defaults to {@link ApiClient.PAGINATE_CONCURRENCY} when omitted or ≤ 0.
+	 * Set to `1` for strict sequential fetching (previous behaviour).
+	 */
+	concurrency?: number;
 }
 
 /**
@@ -143,8 +148,11 @@ export class ApiClient {
 	/** Memoized credentials (resolved once per client instance). */
 	private credentialsCache: CredentialHolder | undefined;
 
-	/** Maximum number of concurrent resource fetches in paginateResources. */
-	private static readonly PAGINATE_CONCURRENCY = 5;
+	/** Maximum number of concurrent page requests in paginate / paginateResources.
+	 * Defaults to `1` (sequential) for backward compatibility.  Increase to
+	 * reduce latency when fetching many pages or resources.
+	 */
+	private static readonly PAGINATE_CONCURRENCY = 1;
 
 	/**
 	 * Creates a new API client instance for the given n8n function context.
@@ -555,8 +563,13 @@ export class ApiClient {
 	 * OVH API uses `offset` and `limit` query parameters for pagination.
 	 * This method handles the pagination loop and returns all items in a single array.
 	 *
+	 * Pages are fetched in fixed-size batches of `concurrency` parallel requests
+	 * (default: 1 / sequential), which reduces total latency compared to the
+	 * previous sequential implementation while producing identical results.  Set
+	 * `concurrency` above `1` to enable parallel page fetching.
+	 *
 	 * @param endpoint - The API endpoint to paginate (e.g., '/vps')
-	 * @param options - Pagination configuration
+	 * @param options - Pagination configuration (supports optional `concurrency`)
 	 * @returns Array of all items from all pages
 	 *
 	 * @example
@@ -570,28 +583,60 @@ export class ApiClient {
 	): Promise<T[]> {
 		const { offset = 0, limit = 100, maxItems = 1000 } = options ?? {};
 
+		const rawConcurrency = options?.concurrency;
+		const concurrency =
+			rawConcurrency != null && rawConcurrency > 0
+				? rawConcurrency
+				: ApiClient.PAGINATE_CONCURRENCY;
+
+		// Batch pipeline: pages are fetched in fixed-size batches of
+		// `concurrency` parallel requests. Offsets advance by exactly `limit`
+		// per page (OVH offset/limit pagination returns full pages until the
+		// last one), and a short page ends pagination in fetch order — so the
+		// number of requests, their offsets and the termination condition are
+		// identical to the previous sequential implementation. Only the
+		// intra-batch parallelism differs, which is what reduces latency.
 		const allItems: T[] = [];
 		let currentOffset = offset;
 
 		while (allItems.length < maxItems) {
-			const response = (await this.httpGet(endpoint, {
-				...options?.query,
-				offset: currentOffset,
-				limit: Math.min(limit, maxItems - allItems.length),
-			})) as string[];
+			const remaining = maxItems - allItems.length;
+			const batchSize = Math.min(concurrency, Math.ceil(remaining / Math.max(1, limit)));
+			const offsets = Array.from({ length: batchSize }, (_, i) => currentOffset + i * limit);
 
-			if (!Array.isArray(response) || response.length === 0) {
-				break;
+			// Fetch the whole batch in parallel.
+			const responses = await Promise.all(
+				offsets.map(async (pageOffset) => {
+					try {
+						const response = (await this.httpGet(endpoint, {
+							...options?.query,
+							offset: pageOffset,
+							limit: Math.min(limit, remaining),
+						})) as string[];
+						return Array.isArray(response) ? response : [];
+					} catch (error) {
+						throw error as Error;
+					}
+				}),
+			);
+
+			// Consume the batch in fetch order; a short/empty page ends pagination.
+			let finished = false;
+			for (const response of responses) {
+				if (finished) break;
+				if (response.length === 0) {
+					finished = true;
+					break;
+				}
+				const ids = response.slice(0, maxItems - allItems.length);
+				allItems.push(...(ids as unknown as T[]));
+				if (response.length < limit) {
+					finished = true;
+				}
 			}
 
-			const ids = response.slice(0, maxItems - allItems.length);
-			allItems.push(...(ids as unknown as T[]));
-
-			if (response.length < limit) {
-				break;
-			}
-
-			currentOffset += response.length;
+			if (finished) break;
+			currentOffset += batchSize * limit;
 		}
 
 		return allItems;
@@ -630,11 +675,14 @@ export class ApiClient {
 		itemEndpoint: string,
 		options?: PaginateResourcesOptions,
 	): Promise<T[]> {
-		const ids = await this.paginate<string>(listEndpoint, options);
+		/* Extract the resource-fetch concurrency so it is not passed to
+		 * paginate() — paginate interprets `concurrency` as page-fetch
+		 * parallelism, which is a different concern. */
+		const { concurrency: resourceConcurrency, onSkipped, ...paginateOpts } = options ?? {};
+		const ids = await this.paginate<string>(listEndpoint, paginateOpts);
 
 		const resources: (T | undefined)[] = new Array(ids.length);
 		let nextIndex = 0;
-		const onSkipped = options?.onSkipped;
 
 		/**
 		 * Fetches the next batch of resources concurrently.
@@ -660,7 +708,7 @@ export class ApiClient {
 			}
 		};
 
-		const rawConcurrency = options?.concurrency;
+		const rawConcurrency = resourceConcurrency;
 		const concurrency =
 			rawConcurrency != null && rawConcurrency > 0
 				? Math.min(rawConcurrency, Math.max(1, ids.length))

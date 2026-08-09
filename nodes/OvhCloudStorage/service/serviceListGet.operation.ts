@@ -26,9 +26,9 @@ export function description(displayOptions: IDisplayOptions): INodeProperties[] 
  * HTTP method: GET
  * Endpoint: /storage/netapp
  */
-export async function execute(this: IExecuteFunctions, itemIndex: number): Promise<INodeExecutionData[]> {
+export async function execute(this: IExecuteFunctions, _itemIndex: number): Promise<INodeExecutionData[]> {
 	const client = new ApiClient(this);
-	const iamTags = this.getNodeParameter('iamTags', itemIndex, '') as string;
+	const iamTags = this.getNodeParameter('iamTags', _itemIndex, '') as string;
 	const qs: IDataObject = {};
 	if (iamTags !== '') { qs.iamTags = iamTags; }
 	const data = (await client.httpGet(`/storage/netapp`, qs)) as IDataObject;

@@ -36,11 +36,11 @@ export function description(displayOptions: IDisplayOptions): INodeProperties[] 
  * HTTP method: POST
  * Endpoint: /telephony/trunks/{serviceName}/hardware
  */
-export async function execute(this: IExecuteFunctions, itemIndex: number): Promise<INodeExecutionData[]> {
-	const serviceName = this.getNodeParameter('serviceName', itemIndex) as string;
+export async function execute(this: IExecuteFunctions, _itemIndex: number): Promise<INodeExecutionData[]> {
+	const serviceName = this.getNodeParameter('serviceName', _itemIndex) as string;
 
 
-	const macAddress = this.getNodeParameter('macAddress', itemIndex) as string;
+	const macAddress = this.getNodeParameter('macAddress', _itemIndex) as string;
 
 	const body: IDataObject = {
     macAddress: macAddress

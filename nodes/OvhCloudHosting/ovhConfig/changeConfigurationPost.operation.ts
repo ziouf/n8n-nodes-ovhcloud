@@ -118,16 +118,16 @@ export function description(displayOptions: IDisplayOptions): INodeProperties[] 
  */
 export async function execute(
 	this: IExecuteFunctions,
-	itemIndex?: number,
+	_itemIndex?: number,
 ): Promise<INodeExecutionData[]> {
 	const client = new ApiClient(this);
-	const serviceName = this.getNodeParameter('serviceName', itemIndex as number) as string;
-	const id = this.getNodeParameter('id', itemIndex as number) as number;
-	const container = this.getNodeParameter('container', itemIndex as number, '') as string;
-	const engineName = this.getNodeParameter('engineName', itemIndex as number, '') as string;
-	const engineVersion = this.getNodeParameter('engineVersion', itemIndex as number, '') as string;
-	const environment = this.getNodeParameter('environment', itemIndex as number, '') as string;
-	const httpFirewall = this.getNodeParameter('httpFirewall', itemIndex as number, '') as string;
+	const serviceName = this.getNodeParameter('serviceName', _itemIndex as number) as string;
+	const id = this.getNodeParameter('id', _itemIndex as number) as number;
+	const container = this.getNodeParameter('container', _itemIndex as number, '') as string;
+	const engineName = this.getNodeParameter('engineName', _itemIndex as number, '') as string;
+	const engineVersion = this.getNodeParameter('engineVersion', _itemIndex as number, '') as string;
+	const environment = this.getNodeParameter('environment', _itemIndex as number, '') as string;
+	const httpFirewall = this.getNodeParameter('httpFirewall', _itemIndex as number, '') as string;
 
 	const body: IDataObject = {};
 	if (container) {

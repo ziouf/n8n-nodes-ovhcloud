@@ -16,7 +16,7 @@ export function description(): INodeProperties[] {
  * HTTP method: GET
  * Endpoint: /saas/csp2
  */
-export async function execute(this: IExecuteFunctions): Promise<INodeExecutionData[]> {
+export async function execute(this: IExecuteFunctions, _itemIndex?: number): Promise<INodeExecutionData[]> {
 	const client = new ApiClient(this);
 	const data = (await client.httpGet('/saas/csp2')) as unknown[];
 	const items = data.map((item) =>

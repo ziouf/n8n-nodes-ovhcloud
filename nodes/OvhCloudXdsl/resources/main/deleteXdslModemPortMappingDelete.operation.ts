@@ -50,10 +50,10 @@ export function description(displayOptions: IDisplayOptions): INodeProperties[] 
  * HTTP method: DELETE
  * Endpoint: /xdsl/{serviceName}/modem/portMappings/{portMapId}
  */
-export async function execute(this: IExecuteFunctions): Promise<INodeExecutionData[]> {
+export async function execute(this: IExecuteFunctions, _itemIndex?: number): Promise<INodeExecutionData[]> {
 	const client = new ApiClient(this);
-	const serviceName = this.getNodeParameter('serviceName', 0, '', { extractValue: true }) as string;
-	const portMapId = this.getNodeParameter('portMapId', 0) as string;
+	const serviceName = this.getNodeParameter('serviceName', _itemIndex ?? 0, '', { extractValue: true }) as string;
+	const portMapId = this.getNodeParameter('portMapId', _itemIndex ?? 0) as string;
 
 	const data = (await client.httpDelete(`/xdsl/${encodeURIComponent(serviceName)}/modem/portMappings/${portMapId}`)) as IDataObject;
 	return this.helpers.returnJsonArray([data]);

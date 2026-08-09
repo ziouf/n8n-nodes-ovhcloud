@@ -54,17 +54,17 @@ export function description(displayOptions: IDisplayOptions): INodeProperties[] 
  */
 export async function execute(
 	this: IExecuteFunctions,
-	itemIndex: number,
+	_itemIndex: number,
 ): Promise<INodeExecutionData[]> {
 	const client = new ApiClient(this);
-	const serviceName = this.getNodeParameter('serviceName', itemIndex) as string;
-	const domain = this.getNodeParameter('domain', itemIndex) as string;
-	const optionName = this.getNodeParameter('optionName', itemIndex) as string;
-	const optionValue = this.getNodeParameter('optionValue', itemIndex) as string;
+	const serviceName = this.getNodeParameter('serviceName', _itemIndex) as string;
+	const domain = this.getNodeParameter('domain', _itemIndex) as string;
+	const optionName = this.getNodeParameter('optionName', _itemIndex) as string;
+	const optionValue = this.getNodeParameter('optionValue', _itemIndex) as string;
 	const data = (await client.httpPut(
 		`/hosting/web/${serviceName}/cdn/domain/${domain}/option/${optionName}`,
 		{ value: optionValue },
 	)) as IDataObject;
-	const inputData = this.getInputData()[itemIndex];
+	const inputData = this.getInputData()[_itemIndex];
 	return this.helpers.returnJsonArray([{ ...inputData.json, ...data }]);
 }

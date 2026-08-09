@@ -31,14 +31,14 @@ export function description() {
 	return props;
 }
 
-export async function execute(this: IExecuteFunctions): Promise<INodeExecutionData[]> {
+export async function execute(this: IExecuteFunctions, itemIndex?: number): Promise<INodeExecutionData[]> {
 	const operation = this.getNodeParameter('contactOperation', 0) as string;
 
 	switch (operation) {
 		case 'formGet':
-			return formGet.execute.call(this);
+			return formGet.execute.call(this, itemIndex ?? 0);
 		case 'formSendPost':
-			return formSendPost.execute.call(this);
+			return formSendPost.execute.call(this, itemIndex ?? 0);
 		default:
 			throw new Error(`No handler for operation '${operation}'`);
 	}

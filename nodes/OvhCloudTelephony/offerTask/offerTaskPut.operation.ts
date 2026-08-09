@@ -44,10 +44,10 @@ export function description(displayOptions: IDisplayOptions): INodeProperties[] 
  * HTTP method: PUT
  * Endpoint: /telephony/{billingAccount}/offerTask/{taskId}
  */
-export async function execute(this: IExecuteFunctions, itemIndex: number): Promise<INodeExecutionData[]> {
-	const billingAccount = this.getNodeParameter('billingAccount', itemIndex) as string;
-	const taskId = this.getNodeParameter('taskId', itemIndex) as string;
-	const executionDate = this.getNodeParameter('executionDate', itemIndex) as string;
+export async function execute(this: IExecuteFunctions, _itemIndex: number): Promise<INodeExecutionData[]> {
+	const billingAccount = this.getNodeParameter('billingAccount', _itemIndex) as string;
+	const taskId = this.getNodeParameter('taskId', _itemIndex) as string;
+	const executionDate = this.getNodeParameter('executionDate', _itemIndex) as string;
 
 	const body: IDataObject = {
 		executionDate: executionDate,

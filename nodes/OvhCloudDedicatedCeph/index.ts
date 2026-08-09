@@ -421,75 +421,75 @@ export async function execute(
 
 	switch (operation) {
 		case 'DedicatedCephTerminateCreate':
-			return executeDedicatedCephTerminateCreatePost.call(this, itemIndex);
+			return executeDedicatedCephTerminateCreatePost.call(this, itemIndex ?? 0);
 		case 'CephUserPoolDelete':
-			return executeCephUserPoolDeleteDelete.call(this, itemIndex);
+			return executeCephUserPoolDeleteDelete.call(this, itemIndex ?? 0);
 		case 'DedicatedCephConfirmterminationCreate':
-			return executeDedicatedCephConfirmterminationCreatePost.call(this, itemIndex);
+			return executeDedicatedCephConfirmterminationCreatePost.call(this, itemIndex ?? 0);
 		case 'DedicatedCephPoolCreate':
-			return executeDedicatedCephPoolCreatePost.call(this, itemIndex);
+			return executeDedicatedCephPoolCreatePost.call(this, itemIndex ?? 0);
 		case 'DedicatedCephUserCreate':
-			return executeDedicatedCephUserCreatePost.call(this, itemIndex);
+			return executeDedicatedCephUserCreatePost.call(this, itemIndex ?? 0);
 		case 'CephUserPoolCreate':
-			return executeCephUserPoolCreatePost.call(this, itemIndex);
+			return executeCephUserPoolCreatePost.call(this, itemIndex ?? 0);
 		case 'DedicatedCephAclCreate':
-			return executeDedicatedCephAclCreatePost.call(this, itemIndex);
+			return executeDedicatedCephAclCreatePost.call(this, itemIndex ?? 0);
 		case 'CephOsdBlocklistDelete':
-			return executeCephOsdBlocklistDeleteDelete.call(this, itemIndex);
+			return executeCephOsdBlocklistDeleteDelete.call(this, itemIndex ?? 0);
 		case 'DedicatedCephPoolDelete':
-			return executeDedicatedCephPoolDeleteDelete.call(this, itemIndex);
+			return executeDedicatedCephPoolDeleteDelete.call(this, itemIndex ?? 0);
 		case 'DedicatedCephUserDelete':
-			return executeDedicatedCephUserDeleteDelete.call(this, itemIndex);
+			return executeDedicatedCephUserDeleteDelete.call(this, itemIndex ?? 0);
 		case 'DedicatedCephAclDelete':
-			return executeDedicatedCephAclDeleteDelete.call(this, itemIndex);
+			return executeDedicatedCephAclDeleteDelete.call(this, itemIndex ?? 0);
 		case 'CephCephfsDisableCreate':
-			return executeCephCephfsDisableCreatePost.call(this, itemIndex);
+			return executeCephCephfsDisableCreatePost.call(this, itemIndex ?? 0);
 		case 'CephCephfsEnableCreate':
-			return executeCephCephfsEnableCreatePost.call(this, itemIndex);
+			return executeCephCephfsEnableCreatePost.call(this, itemIndex ?? 0);
 		case 'DedicatedCephCephfsGetFsname':
-			return executeDedicatedCephCephfsGetFsnameGet.call(this, itemIndex);
+			return executeDedicatedCephCephfsGetFsnameGet.call(this, itemIndex ?? 0);
 		case 'DedicatedCephGetServicename':
-			return executeDedicatedCephGetServicenameGet.call(this, itemIndex);
+			return executeDedicatedCephGetServicenameGet.call(this, itemIndex ?? 0);
 		case 'DedicatedCephHealthGet':
-			return executeDedicatedCephHealthGetGet.call(this, itemIndex);
+			return executeDedicatedCephHealthGetGet.call(this, itemIndex ?? 0);
 		case 'DedicatedCephUserGetUsername':
-			return executeDedicatedCephUserGetUsernameGet.call(this, itemIndex);
+			return executeDedicatedCephUserGetUsernameGet.call(this, itemIndex ?? 0);
 		case 'DedicatedCephPoolGetPoolname':
-			return executeDedicatedCephPoolGetPoolnameGet.call(this, itemIndex);
+			return executeDedicatedCephPoolGetPoolnameGet.call(this, itemIndex ?? 0);
 		case 'DedicatedCephAclGetAclid':
-			return executeDedicatedCephAclGetAclidGet.call(this, itemIndex);
+			return executeDedicatedCephAclGetAclidGet.call(this, itemIndex ?? 0);
 		case 'DedicatedCephAclGet':
-			return executeDedicatedCephAclGetGet.call(this, itemIndex);
+			return executeDedicatedCephAclGetGet.call(this, itemIndex ?? 0);
 		case 'DedicatedCephPoolGet':
-			return executeDedicatedCephPoolGetGet.call(this, itemIndex);
+			return executeDedicatedCephPoolGetGet.call(this, itemIndex ?? 0);
 		case 'DedicatedCephUserGet':
-			return executeDedicatedCephUserGetGet.call(this, itemIndex);
+			return executeDedicatedCephUserGetGet.call(this, itemIndex ?? 0);
 		case 'DedicatedCephServiceinfosGet':
-			return executeDedicatedCephServiceinfosGetGet.call(this, itemIndex);
+			return executeDedicatedCephServiceinfosGetGet.call(this, itemIndex ?? 0);
 		case 'DedicatedCephTaskGetTaskid':
-			return executeDedicatedCephTaskGetTaskidGet.call(this, itemIndex);
+			return executeDedicatedCephTaskGetTaskidGet.call(this, itemIndex ?? 0);
 		case 'DedicatedCephChangecontactCreate':
-			return executeDedicatedCephChangecontactCreatePost.call(this, itemIndex);
+			return executeDedicatedCephChangecontactCreatePost.call(this, itemIndex ?? 0);
 		case 'DedicatedCephGet':
-			return executeDedicatedCephGetGet.call(this, itemIndex);
+			return executeDedicatedCephGetGet.call(this, itemIndex ?? 0);
 		case 'DedicatedCephCephfsGet':
-			return executeDedicatedCephCephfsGetGet.call(this, itemIndex);
+			return executeDedicatedCephCephfsGetGet.call(this, itemIndex ?? 0);
 		case 'DedicatedCephTaskGet':
-			return executeDedicatedCephTaskGetGet.call(this, itemIndex);
+			return executeDedicatedCephTaskGetGet.call(this, itemIndex ?? 0);
 		case 'CephUserPoolGet':
-			return executeCephUserPoolGetGet.call(this, itemIndex);
+			return executeCephUserPoolGetGet.call(this, itemIndex ?? 0);
 		case 'CephPoolAllowdeletionUpdate':
-			return executeCephPoolAllowdeletionUpdatePut.call(this, itemIndex);
+			return executeCephPoolAllowdeletionUpdatePut.call(this, itemIndex ?? 0);
 		case 'DedicatedCephCephfsDelete':
-			return executeDedicatedCephCephfsDeleteDelete.call(this, itemIndex);
+			return executeDedicatedCephCephfsDeleteDelete.call(this, itemIndex ?? 0);
 		case 'CephOsdBlocklistGet':
-			return executeCephOsdBlocklistGetGet.call(this, itemIndex);
+			return executeCephOsdBlocklistGetGet.call(this, itemIndex ?? 0);
 		case 'DedicatedCephUpdate':
-			return executeDedicatedCephUpdatePut.call(this, itemIndex);
+			return executeDedicatedCephUpdatePut.call(this, itemIndex ?? 0);
 		case 'DedicatedCephServiceinfosUpdate':
-			return executeDedicatedCephServiceinfosUpdatePut.call(this, itemIndex);
+			return executeDedicatedCephServiceinfosUpdatePut.call(this, itemIndex ?? 0);
 		case 'CephUserPoolUpdate':
-			return executeCephUserPoolUpdatePut.call(this, itemIndex);
+			return executeCephUserPoolUpdatePut.call(this, itemIndex ?? 0);
 	}
 
 	throw new Error(`Unsupported operation "${operation}" for resource "/dedicated/ceph"`);

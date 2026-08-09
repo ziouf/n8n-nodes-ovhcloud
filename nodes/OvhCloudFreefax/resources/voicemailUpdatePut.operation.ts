@@ -164,9 +164,9 @@ export function description(displayOptions: IDisplayOptions): INodeProperties[] 
  * HTTP method: PUT
  * Endpoint: /freefax/{serviceName}/voicemail
  */
-export async function execute(this: IExecuteFunctions): Promise<INodeExecutionData[]> {
+export async function execute(this: IExecuteFunctions, _itemIndex?: number): Promise<INodeExecutionData[]> {
 	const client = new ApiClient(this);
-	const serviceName = this.getNodeParameter('serviceName', 0, '', { extractValue: true }) as string;
+	const serviceName = this.getNodeParameter('serviceName', _itemIndex ?? 0, '', { extractValue: true }) as string;
 
 	const body: IDataObject = {};
 
@@ -175,10 +175,10 @@ export async function execute(this: IExecuteFunctions): Promise<INodeExecutionDa
 		if (value) body[field] = value;
 	}
 
-	const audioFormat = (this.getNodeParameter('audioFormat', 0, '') as string) || '';
+	const audioFormat = (this.getNodeParameter('audioFormat', _itemIndex ?? 0, '') as string) || '';
 	if (audioFormat) body.audioFormat = audioFormat;
 
-	const greetingType = (this.getNodeParameter('greetingType', 0, '') as string) || '';
+	const greetingType = (this.getNodeParameter('greetingType', _itemIndex ?? 0, '') as string) || '';
 	if (greetingType) body.greetingType = greetingType;
 
 	for (const field of VOICEMAIL_NUMBER_FIELDS) {

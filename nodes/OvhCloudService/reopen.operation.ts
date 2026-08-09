@@ -42,9 +42,9 @@ export function description(displayOptions: IDisplayOptions): INodeProperties[] 
  * @param this - n8n IExecuteFunctions context
  * @returns Array of execution results
  */
-export async function execute(this: IExecuteFunctions): Promise<INodeExecutionData[]> {
+export async function execute(this: IExecuteFunctions, _itemIndex?: number): Promise<INodeExecutionData[]> {
 	const client = new ApiClient(this);
-	const serviceId = this.getNodeParameter('serviceId', 0) as string;
+	const serviceId = this.getNodeParameter('serviceId', _itemIndex ?? 0) as string;
 	const data = (await client.httpPost(`/service/${serviceId}/reopen`, { body: {} })) as IDataObject;
 	return this.helpers.returnJsonArray(data);
 }

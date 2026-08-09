@@ -84,26 +84,26 @@ export function description(displayOptions: IDisplayOptions): INodeProperties[] 
  */
 export async function execute(
 	this: IExecuteFunctions,
-	itemIndex: number,
+	_itemIndex: number,
 ): Promise<INodeExecutionData[]> {
 	const client = new ApiClient(this);
 
 	const qs: IDataObject = {};
-	const action = this.getNodeParameter('action', itemIndex, '') as string;
+	const action = this.getNodeParameter('action', _itemIndex, '') as string;
 	if (action !== '' && action !== undefined) qs['action'] = action;
-	const domain = this.getNodeParameter('domain', itemIndex, '') as string;
+	const domain = this.getNodeParameter('domain', _itemIndex, '') as string;
 	if (domain !== '' && domain !== undefined) qs['domain'] = domain;
 
 	const body: IDataObject = {};
-	const adminAccount = this.getNodeParameter('adminAccount', itemIndex, '') as string;
+	const adminAccount = this.getNodeParameter('adminAccount', _itemIndex, '') as string;
 	if (adminAccount !== '') body['adminAccount'] = JSON.parse(adminAccount);
-	const domainData = this.getNodeParameter('domain', itemIndex, '') as string;
+	const domainData = this.getNodeParameter('domain', _itemIndex, '') as string;
 	if (domainData !== '') body['domain'] = JSON.parse(domainData);
-	const extras = this.getNodeParameter('extras', itemIndex, '') as string;
+	const extras = this.getNodeParameter('extras', _itemIndex, '') as string;
 	if (extras !== '') body['extras'] = JSON.parse(extras);
-	const owner = this.getNodeParameter('owner', itemIndex, '') as string;
+	const owner = this.getNodeParameter('owner', _itemIndex, '') as string;
 	if (owner !== '') body['owner'] = JSON.parse(owner);
-	const techAccount = this.getNodeParameter('techAccount', itemIndex, '') as string;
+	const techAccount = this.getNodeParameter('techAccount', _itemIndex, '') as string;
 	if (techAccount !== '') body['techAccount'] = JSON.parse(techAccount);
 
 	const data = (await client.httpPost(`/domain/configurationRule/check`, body, qs)) as IDataObject;

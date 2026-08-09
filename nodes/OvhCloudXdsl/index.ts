@@ -870,294 +870,294 @@ export function description() {
 	return props;
 }
 
-export async function execute(this: IExecuteFunctions): Promise<INodeExecutionData[]> {
+export async function execute(this: IExecuteFunctions, itemIndex?: number): Promise<INodeExecutionData[]> {
 	const operation = this.getNodeParameter('xdslOperation', 0) as string;
 
 	switch (operation) {
 		case 'antiSpamDetailGet':
-			return antiSpamDetailGet.execute.call(this);
+			return antiSpamDetailGet.execute.call(this, itemIndex ?? 0);
 		case 'antiSpamEvidencesGet':
-			return antiSpamEvidencesGet.execute.call(this);
+			return antiSpamEvidencesGet.execute.call(this, itemIndex ?? 0);
 		case 'antiSpamsGet':
-			return antiSpamsGet.execute.call(this);
+			return antiSpamsGet.execute.call(this, itemIndex ?? 0);
 		case 'canCancelResiliationGet':
-			return canCancelResiliationGet.execute.call(this);
+			return canCancelResiliationGet.execute.call(this, itemIndex ?? 0);
 		case 'cancelResiliationPost':
-			return cancelResiliationPost.execute.call(this);
+			return cancelResiliationPost.execute.call(this, itemIndex ?? 0);
 		case 'changeContactPost':
-			return changeContactPost.execute.call(this);
+			return changeContactPost.execute.call(this, itemIndex ?? 0);
 		case 'deleteXdslEmailProDelete':
-			return deleteXdslEmailProDelete.execute.call(this);
+			return deleteXdslEmailProDelete.execute.call(this, itemIndex ?? 0);
 		case 'deleteXdslModemLanDhcpStaticDelete':
-			return deleteXdslModemLanDhcpStaticDelete.execute.call(this);
+			return deleteXdslModemLanDhcpStaticDelete.execute.call(this, itemIndex ?? 0);
 		case 'deleteXdslModemPortMappingDelete':
-			return deleteXdslModemPortMappingDelete.execute.call(this);
+			return deleteXdslModemPortMappingDelete.execute.call(this, itemIndex ?? 0);
 		case 'deleteXdslMonitoringNotificationDelete':
-			return deleteXdslMonitoringNotificationDelete.execute.call(this);
+			return deleteXdslMonitoringNotificationDelete.execute.call(this, itemIndex ?? 0);
 		case 'deleteXdslRmaDelete':
-			return deleteXdslRmaDelete.execute.call(this);
+			return deleteXdslRmaDelete.execute.call(this, itemIndex ?? 0);
 		case 'deleteXdslSpareDelete':
-			return deleteXdslSpareDelete.execute.call(this);
+			return deleteXdslSpareDelete.execute.call(this, itemIndex ?? 0);
 		case 'deleteXdslTemplateModemDelete':
-			return deleteXdslTemplateModemDelete.execute.call(this);
+			return deleteXdslTemplateModemDelete.execute.call(this, itemIndex ?? 0);
 		case 'diagnosticGet':
-			return diagnosticGet.execute.call(this);
+			return diagnosticGet.execute.call(this, itemIndex ?? 0);
 		case 'diagnosticPost':
-			return diagnosticPost.execute.call(this);
+			return diagnosticPost.execute.call(this, itemIndex ?? 0);
 		case 'dslamPortAvailableProfilesGet':
-			return dslamPortAvailableProfilesGet.execute.call(this);
+			return dslamPortAvailableProfilesGet.execute.call(this, itemIndex ?? 0);
 		case 'dslamPortChangeProfilePost':
-			return dslamPortChangeProfilePost.execute.call(this);
+			return dslamPortChangeProfilePost.execute.call(this, itemIndex ?? 0);
 		case 'dslamPortGet':
-			return dslamPortGet.execute.call(this);
+			return dslamPortGet.execute.call(this, itemIndex ?? 0);
 		case 'dslamPortLogsGet':
-			return dslamPortLogsGet.execute.call(this);
+			return dslamPortLogsGet.execute.call(this, itemIndex ?? 0);
 		case 'dslamPortResetPost':
-			return dslamPortResetPost.execute.call(this);
+			return dslamPortResetPost.execute.call(this, itemIndex ?? 0);
 		case 'extraIpRangeGet':
-			return extraIpRangeGet.execute.call(this);
+			return extraIpRangeGet.execute.call(this, itemIndex ?? 0);
 		case 'extraIpRangeMovePost':
-			return extraIpRangeMovePost.execute.call(this);
+			return extraIpRangeMovePost.execute.call(this, itemIndex ?? 0);
 		case 'fiberEligibilitiesGet':
-			return fiberEligibilitiesGet.execute.call(this);
+			return fiberEligibilitiesGet.execute.call(this, itemIndex ?? 0);
 		case 'fiberEligibilityDetailGet':
-			return fiberEligibilityDetailGet.execute.call(this);
+			return fiberEligibilityDetailGet.execute.call(this, itemIndex ?? 0);
 		case 'get':
-			return get.execute.call(this);
+			return get.execute.call(this, itemIndex ?? 0);
 		case 'getXdslEmailProGet':
-			return getXdslEmailProGet.execute.call(this);
+			return getXdslEmailProGet.execute.call(this, itemIndex ?? 0);
 		case 'getXdslIpGet':
-			return getXdslIpGet.execute.call(this);
+			return getXdslIpGet.execute.call(this, itemIndex ?? 0);
 		case 'getXdslLineGet':
-			return getXdslLineGet.execute.call(this);
+			return getXdslLineGet.execute.call(this, itemIndex ?? 0);
 		case 'getXdslModemBlocIpGet':
-			return getXdslModemBlocIpGet.execute.call(this);
+			return getXdslModemBlocIpGet.execute.call(this, itemIndex ?? 0);
 		case 'getXdslModemCallWaitingGet':
-			return getXdslModemCallWaitingGet.execute.call(this);
+			return getXdslModemCallWaitingGet.execute.call(this, itemIndex ?? 0);
 		case 'getXdslModemComfortExchangeGet':
-			return getXdslModemComfortExchangeGet.execute.call(this);
+			return getXdslModemComfortExchangeGet.execute.call(this, itemIndex ?? 0);
 		case 'getXdslModemConnectedDeviceGet':
-			return getXdslModemConnectedDeviceGet.execute.call(this);
+			return getXdslModemConnectedDeviceGet.execute.call(this, itemIndex ?? 0);
 		case 'getXdslModemContentSharingGet':
-			return getXdslModemContentSharingGet.execute.call(this);
+			return getXdslModemContentSharingGet.execute.call(this, itemIndex ?? 0);
 		case 'getXdslModemFirmwareGet':
-			return getXdslModemFirmwareGet.execute.call(this);
+			return getXdslModemFirmwareGet.execute.call(this, itemIndex ?? 0);
 		case 'getXdslModemFtpGet':
-			return getXdslModemFtpGet.execute.call(this);
+			return getXdslModemFtpGet.execute.call(this, itemIndex ?? 0);
 		case 'getXdslModemIpsecAlgGet':
-			return getXdslModemIpsecAlgGet.execute.call(this);
+			return getXdslModemIpsecAlgGet.execute.call(this, itemIndex ?? 0);
 		case 'getXdslModemLanDhcpDetailGet':
-			return getXdslModemLanDhcpDetailGet.execute.call(this);
+			return getXdslModemLanDhcpDetailGet.execute.call(this, itemIndex ?? 0);
 		case 'getXdslModemLanDhcpGet':
-			return getXdslModemLanDhcpGet.execute.call(this);
+			return getXdslModemLanDhcpGet.execute.call(this, itemIndex ?? 0);
 		case 'getXdslModemLanDhcpStaticDetailGet':
-			return getXdslModemLanDhcpStaticDetailGet.execute.call(this);
+			return getXdslModemLanDhcpStaticDetailGet.execute.call(this, itemIndex ?? 0);
 		case 'getXdslModemLanGet':
-			return getXdslModemLanGet.execute.call(this);
+			return getXdslModemLanGet.execute.call(this, itemIndex ?? 0);
 		case 'getXdslModemPortMappingGet':
-			return getXdslModemPortMappingGet.execute.call(this);
+			return getXdslModemPortMappingGet.execute.call(this, itemIndex ?? 0);
 		case 'getXdslModemSipAlgGet':
-			return getXdslModemSipAlgGet.execute.call(this);
+			return getXdslModemSipAlgGet.execute.call(this, itemIndex ?? 0);
 		case 'getXdslModemUpnpGet':
-			return getXdslModemUpnpGet.execute.call(this);
+			return getXdslModemUpnpGet.execute.call(this, itemIndex ?? 0);
 		case 'getXdslModemWifiGet':
-			return getXdslModemWifiGet.execute.call(this);
+			return getXdslModemWifiGet.execute.call(this, itemIndex ?? 0);
 		case 'getXdslModemWifiQrCodeGet':
-			return getXdslModemWifiQrCodeGet.execute.call(this);
+			return getXdslModemWifiQrCodeGet.execute.call(this, itemIndex ?? 0);
 		case 'getXdslMonitoringNotificationGet':
-			return getXdslMonitoringNotificationGet.execute.call(this);
+			return getXdslMonitoringNotificationGet.execute.call(this, itemIndex ?? 0);
 		case 'getXdslOntGet':
-			return getXdslOntGet.execute.call(this);
+			return getXdslOntGet.execute.call(this, itemIndex ?? 0);
 		case 'getXdslOrderFollowupGet':
-			return getXdslOrderFollowupGet.execute.call(this);
+			return getXdslOrderFollowupGet.execute.call(this, itemIndex ?? 0);
 		case 'getXdslResiliationFollowupGet':
-			return getXdslResiliationFollowupGet.execute.call(this);
+			return getXdslResiliationFollowupGet.execute.call(this, itemIndex ?? 0);
 		case 'getXdslResiliationTermsGet':
-			return getXdslResiliationTermsGet.execute.call(this);
+			return getXdslResiliationTermsGet.execute.call(this, itemIndex ?? 0);
 		case 'getXdslRmaGet':
-			return getXdslRmaGet.execute.call(this);
+			return getXdslRmaGet.execute.call(this, itemIndex ?? 0);
 		case 'getXdslServiceInfosGet':
-			return getXdslServiceInfosGet.execute.call(this);
+			return getXdslServiceInfosGet.execute.call(this, itemIndex ?? 0);
 		case 'getXdslSpareCompatibleReplacementGet':
-			return getXdslSpareCompatibleReplacementGet.execute.call(this);
+			return getXdslSpareCompatibleReplacementGet.execute.call(this, itemIndex ?? 0);
 		case 'getXdslSpareGet':
-			return getXdslSpareGet.execute.call(this);
+			return getXdslSpareGet.execute.call(this, itemIndex ?? 0);
 		case 'getXdslSpareServiceInfosGet':
-			return getXdslSpareServiceInfosGet.execute.call(this);
+			return getXdslSpareServiceInfosGet.execute.call(this, itemIndex ?? 0);
 		case 'getXdslStatisticsGet':
-			return getXdslStatisticsGet.execute.call(this);
+			return getXdslStatisticsGet.execute.call(this, itemIndex ?? 0);
 		case 'getXdslTaskGet':
-			return getXdslTaskGet.execute.call(this);
+			return getXdslTaskGet.execute.call(this, itemIndex ?? 0);
 		case 'getXdslTemplateModemGet':
-			return getXdslTemplateModemGet.execute.call(this);
+			return getXdslTemplateModemGet.execute.call(this, itemIndex ?? 0);
 		case 'getXdslTotalDeconsolidationTermsGet':
-			return getXdslTotalDeconsolidationTermsGet.execute.call(this);
+			return getXdslTotalDeconsolidationTermsGet.execute.call(this, itemIndex ?? 0);
 		case 'incidentDetailGet':
-			return incidentDetailGet.execute.call(this);
+			return incidentDetailGet.execute.call(this, itemIndex ?? 0);
 		case 'incidentGet':
-			return incidentGet.execute.call(this);
+			return incidentGet.execute.call(this, itemIndex ?? 0);
 		case 'incidentsGet':
-			return incidentsGet.execute.call(this);
+			return incidentsGet.execute.call(this, itemIndex ?? 0);
 		case 'ipDelete':
-			return ipDelete.execute.call(this);
+			return ipDelete.execute.call(this, itemIndex ?? 0);
 		case 'ipsGet':
-			return ipsGet.execute.call(this);
+			return ipsGet.execute.call(this, itemIndex ?? 0);
 		case 'ipsPost':
-			return ipsPost.execute.call(this);
+			return ipsPost.execute.call(this, itemIndex ?? 0);
 		case 'lineDiagnosticCancelPost':
-			return lineDiagnosticCancelPost.execute.call(this);
+			return lineDiagnosticCancelPost.execute.call(this, itemIndex ?? 0);
 		case 'lineDiagnosticRunPost':
-			return lineDiagnosticRunPost.execute.call(this);
+			return lineDiagnosticRunPost.execute.call(this, itemIndex ?? 0);
 		case 'linesStatisticsGet':
-			return linesStatisticsGet.execute.call(this);
+			return linesStatisticsGet.execute.call(this, itemIndex ?? 0);
 		case 'list':
-			return list.execute.call(this);
+			return list.execute.call(this, itemIndex ?? 0);
 		case 'listXdslEmailProGet':
-			return listXdslEmailProGet.execute.call(this);
+			return listXdslEmailProGet.execute.call(this, itemIndex ?? 0);
 		case 'listXdslLinesGet':
-			return listXdslLinesGet.execute.call(this);
+			return listXdslLinesGet.execute.call(this, itemIndex ?? 0);
 		case 'listXdslModemAvailableAcsBackendGet':
-			return listXdslModemAvailableAcsBackendGet.execute.call(this);
+			return listXdslModemAvailableAcsBackendGet.execute.call(this, itemIndex ?? 0);
 		case 'listXdslModemAvailableWlanChannelGet':
-			return listXdslModemAvailableWlanChannelGet.execute.call(this);
+			return listXdslModemAvailableWlanChannelGet.execute.call(this, itemIndex ?? 0);
 		case 'listXdslModemConnectedDevicesGet':
-			return listXdslModemConnectedDevicesGet.execute.call(this);
+			return listXdslModemConnectedDevicesGet.execute.call(this, itemIndex ?? 0);
 		case 'listXdslModemFirmwareAvailableGet':
-			return listXdslModemFirmwareAvailableGet.execute.call(this);
+			return listXdslModemFirmwareAvailableGet.execute.call(this, itemIndex ?? 0);
 		case 'listXdslModemLanDhcpStaticGet':
-			return listXdslModemLanDhcpStaticGet.execute.call(this);
+			return listXdslModemLanDhcpStaticGet.execute.call(this, itemIndex ?? 0);
 		case 'listXdslModemLanGet':
-			return listXdslModemLanGet.execute.call(this);
+			return listXdslModemLanGet.execute.call(this, itemIndex ?? 0);
 		case 'listXdslModemPortMappingsGet':
-			return listXdslModemPortMappingsGet.execute.call(this);
+			return listXdslModemPortMappingsGet.execute.call(this, itemIndex ?? 0);
 		case 'listXdslModemWifiGet':
-			return listXdslModemWifiGet.execute.call(this);
+			return listXdslModemWifiGet.execute.call(this, itemIndex ?? 0);
 		case 'listXdslMonitoringNotificationsGet':
-			return listXdslMonitoringNotificationsGet.execute.call(this);
+			return listXdslMonitoringNotificationsGet.execute.call(this, itemIndex ?? 0);
 		case 'listXdslPendingActionsGet':
-			return listXdslPendingActionsGet.execute.call(this);
+			return listXdslPendingActionsGet.execute.call(this, itemIndex ?? 0);
 		case 'listXdslRadiusConnectionLogsGet':
-			return listXdslRadiusConnectionLogsGet.execute.call(this);
+			return listXdslRadiusConnectionLogsGet.execute.call(this, itemIndex ?? 0);
 		case 'listXdslRmaGet':
-			return listXdslRmaGet.execute.call(this);
+			return listXdslRmaGet.execute.call(this, itemIndex ?? 0);
 		case 'listXdslSpareBrandsGet':
-			return listXdslSpareBrandsGet.execute.call(this);
+			return listXdslSpareBrandsGet.execute.call(this, itemIndex ?? 0);
 		case 'listXdslSpareGet':
-			return listXdslSpareGet.execute.call(this);
+			return listXdslSpareGet.execute.call(this, itemIndex ?? 0);
 		case 'listXdslTasksGet':
-			return listXdslTasksGet.execute.call(this);
+			return listXdslTasksGet.execute.call(this, itemIndex ?? 0);
 		case 'listXdslTemplateModemGet':
-			return listXdslTemplateModemGet.execute.call(this);
+			return listXdslTemplateModemGet.execute.call(this, itemIndex ?? 0);
 		case 'logKindGet':
-			return logKindGet.execute.call(this);
+			return logKindGet.execute.call(this, itemIndex ?? 0);
 		case 'logKindNameGet':
-			return logKindNameGet.execute.call(this);
+			return logKindNameGet.execute.call(this, itemIndex ?? 0);
 		case 'logSubscriptionDelete':
-			return logSubscriptionDelete.execute.call(this);
+			return logSubscriptionDelete.execute.call(this, itemIndex ?? 0);
 		case 'logSubscriptionDetailGet':
-			return logSubscriptionDetailGet.execute.call(this);
+			return logSubscriptionDetailGet.execute.call(this, itemIndex ?? 0);
 		case 'logSubscriptionGet':
-			return logSubscriptionGet.execute.call(this);
+			return logSubscriptionGet.execute.call(this, itemIndex ?? 0);
 		case 'logSubscriptionPost':
-			return logSubscriptionPost.execute.call(this);
+			return logSubscriptionPost.execute.call(this, itemIndex ?? 0);
 		case 'logUrlPost':
-			return logUrlPost.execute.call(this);
+			return logUrlPost.execute.call(this, itemIndex ?? 0);
 		case 'mailSendingPost':
-			return mailSendingPost.execute.call(this);
+			return mailSendingPost.execute.call(this, itemIndex ?? 0);
 		case 'modemGet':
-			return modemGet.execute.call(this);
+			return modemGet.execute.call(this, itemIndex ?? 0);
 		case 'modemUpdatePut':
-			return modemUpdatePut.execute.call(this);
+			return modemUpdatePut.execute.call(this, itemIndex ?? 0);
 		case 'postXdslApplyTemplateToModemPost':
-			return postXdslApplyTemplateToModemPost.execute.call(this);
+			return postXdslApplyTemplateToModemPost.execute.call(this, itemIndex ?? 0);
 		case 'postXdslEmailProChangePasswordPost':
-			return postXdslEmailProChangePasswordPost.execute.call(this);
+			return postXdslEmailProChangePasswordPost.execute.call(this, itemIndex ?? 0);
 		case 'postXdslIpv6Post':
-			return postXdslIpv6Post.execute.call(this);
+			return postXdslIpv6Post.execute.call(this, itemIndex ?? 0);
 		case 'postXdslModemBlocIpPost':
-			return postXdslModemBlocIpPost.execute.call(this);
+			return postXdslModemBlocIpPost.execute.call(this, itemIndex ?? 0);
 		case 'postXdslModemCallWaitingPost':
-			return postXdslModemCallWaitingPost.execute.call(this);
+			return postXdslModemCallWaitingPost.execute.call(this, itemIndex ?? 0);
 		case 'postXdslModemComfortExchangePost':
-			return postXdslModemComfortExchangePost.execute.call(this);
+			return postXdslModemComfortExchangePost.execute.call(this, itemIndex ?? 0);
 		case 'postXdslModemContentSharingPost':
-			return postXdslModemContentSharingPost.execute.call(this);
+			return postXdslModemContentSharingPost.execute.call(this, itemIndex ?? 0);
 		case 'postXdslModemFirmwarePost':
-			return postXdslModemFirmwarePost.execute.call(this);
+			return postXdslModemFirmwarePost.execute.call(this, itemIndex ?? 0);
 		case 'postXdslModemFtpPost':
-			return postXdslModemFtpPost.execute.call(this);
+			return postXdslModemFtpPost.execute.call(this, itemIndex ?? 0);
 		case 'postXdslModemIpsecAlgPost':
-			return postXdslModemIpsecAlgPost.execute.call(this);
+			return postXdslModemIpsecAlgPost.execute.call(this, itemIndex ?? 0);
 		case 'postXdslModemLanDhcpStaticPost':
-			return postXdslModemLanDhcpStaticPost.execute.call(this);
+			return postXdslModemLanDhcpStaticPost.execute.call(this, itemIndex ?? 0);
 		case 'postXdslModemPortMappingsPost':
-			return postXdslModemPortMappingsPost.execute.call(this);
+			return postXdslModemPortMappingsPost.execute.call(this, itemIndex ?? 0);
 		case 'postXdslModemRebootPost':
-			return postXdslModemRebootPost.execute.call(this);
+			return postXdslModemRebootPost.execute.call(this, itemIndex ?? 0);
 		case 'postXdslModemReconfigureVoipPost':
-			return postXdslModemReconfigureVoipPost.execute.call(this);
+			return postXdslModemReconfigureVoipPost.execute.call(this, itemIndex ?? 0);
 		case 'postXdslModemRefreshConnectedDevicesPost':
-			return postXdslModemRefreshConnectedDevicesPost.execute.call(this);
+			return postXdslModemRefreshConnectedDevicesPost.execute.call(this, itemIndex ?? 0);
 		case 'postXdslModemResetPortMappingConfigPost':
-			return postXdslModemResetPortMappingConfigPost.execute.call(this);
+			return postXdslModemResetPortMappingConfigPost.execute.call(this, itemIndex ?? 0);
 		case 'postXdslModemResetPost':
-			return postXdslModemResetPost.execute.call(this);
+			return postXdslModemResetPost.execute.call(this, itemIndex ?? 0);
 		case 'postXdslModemRetrieveInfoPost':
-			return postXdslModemRetrieveInfoPost.execute.call(this);
+			return postXdslModemRetrieveInfoPost.execute.call(this, itemIndex ?? 0);
 		case 'postXdslModemSipAlgPost':
-			return postXdslModemSipAlgPost.execute.call(this);
+			return postXdslModemSipAlgPost.execute.call(this, itemIndex ?? 0);
 		case 'postXdslModemUpnpPost':
-			return postXdslModemUpnpPost.execute.call(this);
+			return postXdslModemUpnpPost.execute.call(this, itemIndex ?? 0);
 		case 'postXdslMonitoringNotificationPost':
-			return postXdslMonitoringNotificationPost.execute.call(this);
+			return postXdslMonitoringNotificationPost.execute.call(this, itemIndex ?? 0);
 		case 'postXdslOrderMeetingPost':
-			return postXdslOrderMeetingPost.execute.call(this);
+			return postXdslOrderMeetingPost.execute.call(this, itemIndex ?? 0);
 		case 'postXdslRequestPppLoginMailPost':
-			return postXdslRequestPppLoginMailPost.execute.call(this);
+			return postXdslRequestPppLoginMailPost.execute.call(this, itemIndex ?? 0);
 		case 'postXdslRequestTotalDeconsolidationPost':
-			return postXdslRequestTotalDeconsolidationPost.execute.call(this);
+			return postXdslRequestTotalDeconsolidationPost.execute.call(this, itemIndex ?? 0);
 		case 'postXdslResiliatePost':
-			return postXdslResiliatePost.execute.call(this);
+			return postXdslResiliatePost.execute.call(this, itemIndex ?? 0);
 		case 'postXdslRmaChangeTypePost':
-			return postXdslRmaChangeTypePost.execute.call(this);
+			return postXdslRmaChangeTypePost.execute.call(this, itemIndex ?? 0);
 		case 'postXdslSearchOrderMeetingsPost':
-			return postXdslSearchOrderMeetingsPost.execute.call(this);
+			return postXdslSearchOrderMeetingsPost.execute.call(this, itemIndex ?? 0);
 		case 'postXdslSendOrderToProviderPost':
-			return postXdslSendOrderToProviderPost.execute.call(this);
+			return postXdslSendOrderToProviderPost.execute.call(this, itemIndex ?? 0);
 		case 'postXdslSpareReplacePost':
-			return postXdslSpareReplacePost.execute.call(this);
+			return postXdslSpareReplacePost.execute.call(this, itemIndex ?? 0);
 		case 'postXdslSpareReturnMerchandisePost':
-			return postXdslSpareReturnMerchandisePost.execute.call(this);
+			return postXdslSpareReturnMerchandisePost.execute.call(this, itemIndex ?? 0);
 		case 'postXdslTaskArchivePost':
-			return postXdslTaskArchivePost.execute.call(this);
+			return postXdslTaskArchivePost.execute.call(this, itemIndex ?? 0);
 		case 'postXdslTemplateModemPost':
-			return postXdslTemplateModemPost.execute.call(this);
+			return postXdslTemplateModemPost.execute.call(this, itemIndex ?? 0);
 		case 'postXdslUpdateInvalidOrMissingRioPost':
-			return postXdslUpdateInvalidOrMissingRioPost.execute.call(this);
+			return postXdslUpdateInvalidOrMissingRioPost.execute.call(this, itemIndex ?? 0);
 		case 'putXdslEmailProPut':
-			return putXdslEmailProPut.execute.call(this);
+			return putXdslEmailProPut.execute.call(this, itemIndex ?? 0);
 		case 'putXdslModemLanDhcpPut':
-			return putXdslModemLanDhcpPut.execute.call(this);
+			return putXdslModemLanDhcpPut.execute.call(this, itemIndex ?? 0);
 		case 'putXdslModemLanDhcpStaticPut':
-			return putXdslModemLanDhcpStaticPut.execute.call(this);
+			return putXdslModemLanDhcpStaticPut.execute.call(this, itemIndex ?? 0);
 		case 'putXdslModemLanPut':
-			return putXdslModemLanPut.execute.call(this);
+			return putXdslModemLanPut.execute.call(this, itemIndex ?? 0);
 		case 'putXdslModemPortMappingPut':
-			return putXdslModemPortMappingPut.execute.call(this);
+			return putXdslModemPortMappingPut.execute.call(this, itemIndex ?? 0);
 		case 'putXdslModemWifiPut':
-			return putXdslModemWifiPut.execute.call(this);
+			return putXdslModemWifiPut.execute.call(this, itemIndex ?? 0);
 		case 'putXdslMonitoringNotificationPut':
-			return putXdslMonitoringNotificationPut.execute.call(this);
+			return putXdslMonitoringNotificationPut.execute.call(this, itemIndex ?? 0);
 		case 'putXdslRmaPut':
-			return putXdslRmaPut.execute.call(this);
+			return putXdslRmaPut.execute.call(this, itemIndex ?? 0);
 		case 'putXdslServiceInfosPut':
-			return putXdslServiceInfosPut.execute.call(this);
+			return putXdslServiceInfosPut.execute.call(this, itemIndex ?? 0);
 		case 'putXdslSpareServiceInfosPut':
-			return putXdslSpareServiceInfosPut.execute.call(this);
+			return putXdslSpareServiceInfosPut.execute.call(this, itemIndex ?? 0);
 		case 'putXdslTemplateModemPut':
-			return putXdslTemplateModemPut.execute.call(this);
+			return putXdslTemplateModemPut.execute.call(this, itemIndex ?? 0);
 		case 'updatePut':
-			return updatePut.execute.call(this);
+			return updatePut.execute.call(this, itemIndex ?? 0);
 		default:
 			throw new Error(`No handler for operation '${operation}'`);
 	}

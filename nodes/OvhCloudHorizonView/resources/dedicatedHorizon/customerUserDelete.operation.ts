@@ -50,10 +50,10 @@ export function description(displayOptions: IDisplayOptions): INodeProperties[] 
  * HTTP method: DELETE
  * Endpoint: /horizonView/{serviceName}/dedicatedHorizon/customerUser/{username}
  */
-export async function execute(this: IExecuteFunctions): Promise<INodeExecutionData[]> {
+export async function execute(this: IExecuteFunctions, _itemIndex?: number): Promise<INodeExecutionData[]> {
 	const client = new ApiClient(this);
-	const serviceName = this.getNodeParameter('serviceName', 0, '', { extractValue: true }) as string;
-	const username = this.getNodeParameter('username', 0) as string;
+	const serviceName = this.getNodeParameter('serviceName', _itemIndex ?? 0, '', { extractValue: true }) as string;
+	const username = this.getNodeParameter('username', _itemIndex ?? 0) as string;
 	const data = (await client.httpDelete(
 		`/horizonView/${encodeURIComponent(serviceName)}/dedicatedHorizon/customerUser/${encodeURIComponent(username)}`,
 	)) as IDataObject;

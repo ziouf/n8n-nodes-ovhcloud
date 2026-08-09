@@ -59,13 +59,13 @@ export function description(displayOptions: IDisplayOptions): INodeProperties[] 
  * HTTP method: DELETE
  * Endpoint: /cloud/project/{serviceName}/database/kafkaConnect/{clusterId}/integration/{integrationId}
  */
-export async function execute(this: IExecuteFunctions): Promise<INodeExecutionData[]> {
+export async function execute(this: IExecuteFunctions, _itemIndex?: number): Promise<INodeExecutionData[]> {
 const client = new ApiClient(this);
-const serviceName = this.getNodeParameter('publicCloudProjectId', 0, '', {
+const serviceName = this.getNodeParameter('publicCloudProjectId', _itemIndex ?? 0, '', {
 	extractValue: true,
 }) as string;
-const clusterId = this.getNodeParameter('clusterId', 0) as string;
-const integrationId = this.getNodeParameter('integrationId', 0) as string;
+const clusterId = this.getNodeParameter('clusterId', _itemIndex ?? 0) as string;
+const integrationId = this.getNodeParameter('integrationId', _itemIndex ?? 0) as string;
 await client.httpDelete(`/cloud/project/${serviceName}/database/kafkaConnect/${clusterId}/integration/${integrationId}`);
 	return [];
 }

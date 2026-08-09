@@ -72,14 +72,14 @@ export function description(displayOptions: IDisplayOptions): INodeProperties[] 
  * HTTP method: POST
  * Endpoint: /horizonView/{serviceName}/accessPoint/{accessPointId}/changeSessionTimeout
  */
-export async function execute(this: IExecuteFunctions): Promise<INodeExecutionData[]> {
+export async function execute(this: IExecuteFunctions, _itemIndex?: number): Promise<INodeExecutionData[]> {
 	const client = new ApiClient(this);
-	const serviceName = this.getNodeParameter('serviceName', 0, '', { extractValue: true }) as string;
-	const accessPointId = this.getNodeParameter('accessPointId', 0) as string;
+	const serviceName = this.getNodeParameter('serviceName', _itemIndex ?? 0, '', { extractValue: true }) as string;
+	const accessPointId = this.getNodeParameter('accessPointId', _itemIndex ?? 0) as string;
 
-	const body: IDataObject = { expiration: this.getNodeParameter('expiration', 0) as number };
+	const body: IDataObject = { expiration: this.getNodeParameter('expiration', _itemIndex ?? 0) as number };
 
-	const onSingleAP = (this.getNodeParameter('onSingleAP', 0, '') as string) || '';
+	const onSingleAP = (this.getNodeParameter('onSingleAP', _itemIndex ?? 0, '') as string) || '';
 	if (onSingleAP) body.onSingleAP = onSingleAP;
 
 	const data = (await client.httpPost(

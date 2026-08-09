@@ -117,7 +117,7 @@ export function description(displayOptions: IDisplayOptions): INodeProperties[] 
 			...displayOptions,
 			show: { ...displayOptions?.show, ovhCloudSupportTicketOperation: ['getMessages'] },
 		}),
-		...descriptionList(),
+		...descriptionList(displayOptions),
 		...descriptionReopen({
 			...displayOptions,
 			show: { ...displayOptions?.show, ovhCloudSupportTicketOperation: ['reopen'] },
@@ -143,23 +143,23 @@ export async function execute(
 
 	switch (operation) {
 		case 'canBeScored':
-			return executeCanBeScored.call(this, itemIndex);
+			return executeCanBeScored.call(this, itemIndex ?? 0);
 		case 'close':
-			return executeClose.call(this, itemIndex);
+			return executeClose.call(this, itemIndex ?? 0);
 		case 'create':
-			return executeCreate.call(this, itemIndex);
+			return executeCreate.call(this, itemIndex ?? 0);
 		case 'get':
-			return executeGet.call(this, itemIndex);
+			return executeGet.call(this, itemIndex ?? 0);
 		case 'getMessages':
-			return executeGetMessages.call(this, itemIndex);
+			return executeGetMessages.call(this, itemIndex ?? 0);
 		case 'list':
-			return executeList.call(this);
+			return executeList.call(this, itemIndex ?? 0);
 		case 'reopen':
-			return executeReopen.call(this, itemIndex);
+			return executeReopen.call(this, itemIndex ?? 0);
 		case 'reply':
-			return executeReply.call(this, itemIndex);
+			return executeReply.call(this, itemIndex ?? 0);
 		case 'score':
-			return executeScore.call(this, itemIndex);
+			return executeScore.call(this, itemIndex ?? 0);
 	}
 
 	throw new Error(`Unsupported operation "${operation}" for resource "supportTicket"`);

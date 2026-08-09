@@ -62,12 +62,12 @@ export function description(displayOptions: IDisplayOptions): INodeProperties[] 
  * HTTP method: POST
  * Endpoint: /telephony/{billingAccount}/screen/{serviceName}/screenLists
  */
-export async function execute(this: IExecuteFunctions, itemIndex: number): Promise<INodeExecutionData[]> {
-	const billingAccount = this.getNodeParameter('billingAccount', itemIndex) as string;
-	const serviceName = this.getNodeParameter('serviceName', itemIndex) as string;
-	const callNumber = this.getNodeParameter('callNumber', itemIndex) as string;
-	const nature = this.getNodeParameter('nature', itemIndex) as string;
-	const type = this.getNodeParameter('type', itemIndex) as string;
+export async function execute(this: IExecuteFunctions, _itemIndex: number): Promise<INodeExecutionData[]> {
+	const billingAccount = this.getNodeParameter('billingAccount', _itemIndex) as string;
+	const serviceName = this.getNodeParameter('serviceName', _itemIndex) as string;
+	const callNumber = this.getNodeParameter('callNumber', _itemIndex) as string;
+	const nature = this.getNodeParameter('nature', _itemIndex) as string;
+	const type = this.getNodeParameter('type', _itemIndex) as string;
 
 	const body: IDataObject = {
 		callNumber: callNumber,

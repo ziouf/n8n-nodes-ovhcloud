@@ -68,17 +68,17 @@ export function description(displayOptions: IDisplayOptions): INodeProperties[] 
  * HTTP method: PUT
  * Endpoint: /storage/netapp/{serviceName}/share/{shareId}/snapshot/{snapshotId}
  */
-export async function execute(this: IExecuteFunctions, itemIndex: number): Promise<INodeExecutionData[]> {
+export async function execute(this: IExecuteFunctions, _itemIndex: number): Promise<INodeExecutionData[]> {
 	const client = new ApiClient(this);
-	const serviceName = this.getNodeParameter('serviceName', itemIndex, '', {
+	const serviceName = this.getNodeParameter('serviceName', _itemIndex, '', {
 				extractValue: true,
 			}) as string;
-	const shareId = this.getNodeParameter('shareId', itemIndex) as string;
-	const snapshotId = this.getNodeParameter('snapshotId', itemIndex) as string;
+	const shareId = this.getNodeParameter('shareId', _itemIndex) as string;
+	const snapshotId = this.getNodeParameter('snapshotId', _itemIndex) as string;
 	const body: IDataObject = {};
-	const description = this.getNodeParameter('description', itemIndex, '') as string;
+	const description = this.getNodeParameter('description', _itemIndex, '') as string;
 	if (description !== '') { body.description = description; }
-	const name = this.getNodeParameter('name', itemIndex, '') as string;
+	const name = this.getNodeParameter('name', _itemIndex, '') as string;
 	if (name !== '') { body.name = name; }
 	const data = (await client.httpPut(`/storage/netapp/${encodeURIComponent(serviceName)}/share/${encodeURIComponent(shareId)}/snapshot/${encodeURIComponent(snapshotId)}`, body)) as IDataObject;
 	return this.helpers.returnJsonArray([data]);

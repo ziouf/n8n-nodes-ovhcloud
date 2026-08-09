@@ -37,9 +37,9 @@ export function description(displayOptions: IDisplayOptions): INodeProperties[] 
  * HTTP method: PUT
  * Endpoint: /backupServices/tenant/{backupServicesId}/vault/{vaultId}
  */
-export async function execute(this: IExecuteFunctions, itemIndex: number): Promise<INodeExecutionData[]> {
-	const backupServicesId = this.getNodeParameter('backupServicesId', itemIndex) as string;
-	const vaultId = this.getNodeParameter('vaultId', itemIndex) as string;
+export async function execute(this: IExecuteFunctions, _itemIndex: number): Promise<INodeExecutionData[]> {
+	const backupServicesId = this.getNodeParameter('backupServicesId', _itemIndex) as string;
+	const vaultId = this.getNodeParameter('vaultId', _itemIndex) as string;
 
 	const body: IDataObject = {};
 

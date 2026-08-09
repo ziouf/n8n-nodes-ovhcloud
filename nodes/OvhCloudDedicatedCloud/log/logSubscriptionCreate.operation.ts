@@ -45,12 +45,12 @@ export function description(displayOptions: IDisplayOptions): INodeProperties[] 
  * HTTP method: POST
  * Endpoint: /dedicatedCloud/{serviceName}/log/subscription
  */
-export async function execute(this: IExecuteFunctions, itemIndex: number): Promise<INodeExecutionData[]> {
+export async function execute(this: IExecuteFunctions, _itemIndex: number): Promise<INodeExecutionData[]> {
 	const client = new ApiClient(this);
-	const serviceName = this.getNodeParameter('serviceName', itemIndex) as string;
+	const serviceName = this.getNodeParameter('serviceName', _itemIndex) as string;
 	const body: IDataObject = {};
-	body.kind = this.getNodeParameter('kind', itemIndex) as string;
-	body.streamId = this.getNodeParameter('streamId', itemIndex) as string;
+	body.kind = this.getNodeParameter('kind', _itemIndex) as string;
+	body.streamId = this.getNodeParameter('streamId', _itemIndex) as string;
 	const data = (await client.httpPost(`/dedicatedCloud/${serviceName}/log/subscription`, body)) as IDataObject;
 	return this.helpers.returnJsonArray([data]);
 }

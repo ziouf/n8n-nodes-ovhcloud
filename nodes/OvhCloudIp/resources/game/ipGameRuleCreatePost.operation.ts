@@ -77,13 +77,13 @@ export function description(displayOptions: IDisplayOptions): INodeProperties[] 
  * Endpoint: /ip/{ip}/game/{ipOnGame}/rule
  */
 
-export async function execute(this: IExecuteFunctions, itemIndex: number): Promise<INodeExecutionData[]> {
-	const ip = this.getNodeParameter('ip', itemIndex) as string;
+export async function execute(this: IExecuteFunctions, _itemIndex: number): Promise<INodeExecutionData[]> {
+	const ip = this.getNodeParameter('ip', _itemIndex) as string;
 
-	const ipOnGame = this.getNodeParameter('ipOnGame', itemIndex) as string;
+	const ipOnGame = this.getNodeParameter('ipOnGame', _itemIndex) as string;
 
-	const ports = (this.getNodeParameter('ports', itemIndex) as string) || '';
-	const protocol = (this.getNodeParameter('protocol', itemIndex) as string) || '';
+	const ports = (this.getNodeParameter('ports', _itemIndex) as string) || '';
+	const protocol = (this.getNodeParameter('protocol', _itemIndex) as string) || '';
 
 	const body: IDataObject = {};
 	body.ports = ports;

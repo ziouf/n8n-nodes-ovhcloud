@@ -5,36 +5,39 @@ import { ApiClient } from '../../../shared/transport/ApiClient';
 // SOTP Two-Factor Authentication (POST endpoints)
 // ============================================================
 
-export async function executeAddSotpSecret(this: IExecuteFunctions): Promise<INodeExecutionData[]> {
+export async function executeAddSotpSecret(this: IExecuteFunctions, _itemIndex?: number): Promise<INodeExecutionData[]> {
 	const client = new ApiClient(this);
-	const code = this.getNodeParameter('code', 0) as string;
+	const code = this.getNodeParameter('code', _itemIndex ?? 0) as string;
 	const data = (await client.httpPost('/me/accessRestriction/backupCode', { code })) as IDataObject;
 	return this.helpers.returnJsonArray([data]);
 }
 
 export async function executeDisableSotpAccount(
 	this: IExecuteFunctions,
+_itemIndex?: number,
 ): Promise<INodeExecutionData[]> {
 	const client = new ApiClient(this);
-	const code = this.getNodeParameter('code', 0) as string;
+	const code = this.getNodeParameter('code', _itemIndex ?? 0) as string;
 	await client.httpPost('/me/accessRestriction/backupCode/disable', { code });
 	return this.helpers.returnJsonArray([{ success: true }]);
 }
 
 export async function executeEnableSotpAccount(
 	this: IExecuteFunctions,
+_itemIndex?: number,
 ): Promise<INodeExecutionData[]> {
 	const client = new ApiClient(this);
-	const code = this.getNodeParameter('code', 0) as string;
+	const code = this.getNodeParameter('code', _itemIndex ?? 0) as string;
 	await client.httpPost('/me/accessRestriction/backupCode/enable', { code });
 	return this.helpers.returnJsonArray([{ success: true }]);
 }
 
 export async function executeValidateSotpAccount(
 	this: IExecuteFunctions,
+_itemIndex?: number,
 ): Promise<INodeExecutionData[]> {
 	const client = new ApiClient(this);
-	const code = this.getNodeParameter('code', 0) as string;
+	const code = this.getNodeParameter('code', _itemIndex ?? 0) as string;
 	const data = (await client.httpPost('/me/accessRestriction/backupCode/validate', {
 		code,
 	})) as IDataObject;
@@ -47,11 +50,12 @@ export async function executeValidateSotpAccount(
 
 export async function executeEditDeveloperModeRestriction(
 	this: IExecuteFunctions,
+_itemIndex?: number,
 ): Promise<INodeExecutionData[]> {
 	const client = new ApiClient(this);
 	const body: IDataObject = {};
 
-	const enabledParam = this.getNodeParameter('enabled', 0) as boolean | undefined;
+	const enabledParam = this.getNodeParameter('enabled', _itemIndex ?? 0) as boolean | undefined;
 	if (typeof enabledParam === 'boolean') body.enabled = enabledParam;
 
 	await client.httpPut('/me/accessRestriction/developerMode', body);
@@ -64,34 +68,37 @@ export async function executeEditDeveloperModeRestriction(
 
 export async function executeAddIpRestriction(
 	this: IExecuteFunctions,
+_itemIndex?: number,
 ): Promise<INodeExecutionData[]> {
 	const client = new ApiClient(this);
-	const ip = this.getNodeParameter('ip', 0) as string;
-	const rule = this.getNodeParameter('rule', 0) as string;
-	const warning = this.getNodeParameter('warning', 0) as boolean;
+	const ip = this.getNodeParameter('ip', _itemIndex ?? 0) as string;
+	const rule = this.getNodeParameter('rule', _itemIndex ?? 0) as string;
+	const warning = this.getNodeParameter('warning', _itemIndex ?? 0) as boolean;
 	await client.httpPost('/me/accessRestriction/ip', { ip, rule, warning });
 	return this.helpers.returnJsonArray([{ success: true }]);
 }
 
 export async function executeDeleteIpRestriction(
 	this: IExecuteFunctions,
+_itemIndex?: number,
 ): Promise<INodeExecutionData[]> {
 	const client = new ApiClient(this);
-	const id = this.getNodeParameter('id', 0) as string;
+	const id = this.getNodeParameter('id', _itemIndex ?? 0) as string;
 	await client.httpDelete(`/me/accessRestriction/ip/${id}`);
 	return this.helpers.returnJsonArray([{ success: true }]);
 }
 
 export async function executeEditIpRestriction(
 	this: IExecuteFunctions,
+_itemIndex?: number,
 ): Promise<INodeExecutionData[]> {
 	const client = new ApiClient(this);
-	const id = this.getNodeParameter('id', 0) as string;
+	const id = this.getNodeParameter('id', _itemIndex ?? 0) as string;
 
 	const body: IDataObject = {};
-	const ruleParam = this.getNodeParameter('rule', 0) as string | undefined;
+	const ruleParam = this.getNodeParameter('rule', _itemIndex ?? 0) as string | undefined;
 	if (typeof ruleParam === 'string') body.rule = ruleParam;
-	const warningParam = this.getNodeParameter('warning', 0) as boolean | undefined;
+	const warningParam = this.getNodeParameter('warning', _itemIndex ?? 0) as boolean | undefined;
 	if (typeof warningParam === 'boolean') body.warning = warningParam;
 
 	await client.httpPut(`/me/accessRestriction/ip/${id}`, body);
@@ -104,52 +111,57 @@ export async function executeEditIpRestriction(
 
 export async function executeAddSmsRestriction(
 	this: IExecuteFunctions,
+_itemIndex?: number,
 ): Promise<INodeExecutionData[]> {
 	const client = new ApiClient(this);
-	const phone = this.getNodeParameter('phone', 0) as string;
+	const phone = this.getNodeParameter('phone', _itemIndex ?? 0) as string;
 	const data = (await client.httpPost('/me/accessRestriction/sms', { phone })) as IDataObject;
 	return this.helpers.returnJsonArray([data]);
 }
 
 export async function executeDeleteSmsRestriction(
 	this: IExecuteFunctions,
+_itemIndex?: number,
 ): Promise<INodeExecutionData[]> {
 	const client = new ApiClient(this);
-	const id = this.getNodeParameter('id', 0) as string;
+	const id = this.getNodeParameter('id', _itemIndex ?? 0) as string;
 	await client.httpDelete(`/me/accessRestriction/sms/${id}`);
 	return this.helpers.returnJsonArray([{ success: true }]);
 }
 
 export async function executeEnableSmsAccount(
 	this: IExecuteFunctions,
+_itemIndex?: number,
 ): Promise<INodeExecutionData[]> {
 	const client = new ApiClient(this);
-	const id = this.getNodeParameter('id', 0) as string;
+	const id = this.getNodeParameter('id', _itemIndex ?? 0) as string;
 	await client.httpPost(`/me/accessRestriction/sms/${id}/enable`, {});
 	return this.helpers.returnJsonArray([{ success: true }]);
 }
 
 export async function executeDisableSmsAccount(
 	this: IExecuteFunctions,
+_itemIndex?: number,
 ): Promise<INodeExecutionData[]> {
 	const client = new ApiClient(this);
-	const id = this.getNodeParameter('id', 0) as string;
+	const id = this.getNodeParameter('id', _itemIndex ?? 0) as string;
 	await client.httpPost(`/me/accessRestriction/sms/${id}/disable`, {});
 	return this.helpers.returnJsonArray([{ success: true }]);
 }
 
-export async function executeSendSmsCode(this: IExecuteFunctions): Promise<INodeExecutionData[]> {
+export async function executeSendSmsCode(this: IExecuteFunctions, _itemIndex?: number): Promise<INodeExecutionData[]> {
 	const client = new ApiClient(this);
-	const id = this.getNodeParameter('id', 0) as string;
+	const id = this.getNodeParameter('id', _itemIndex ?? 0) as string;
 	await client.httpPost(`/me/accessRestriction/sms/${id}/sendCode`, {});
 	return this.helpers.returnJsonArray([{ success: true }]);
 }
 
 export async function executeValidateSmsAccount(
 	this: IExecuteFunctions,
+_itemIndex?: number,
 ): Promise<INodeExecutionData[]> {
 	const client = new ApiClient(this);
-	const id = this.getNodeParameter('id', 0) as string;
+	const id = this.getNodeParameter('id', _itemIndex ?? 0) as string;
 	await client.httpPost(`/me/accessRestriction/sms/${id}/validate`, {});
 	return this.helpers.returnJsonArray([{ success: true }]);
 }
@@ -161,6 +173,7 @@ export async function executeValidateSmsAccount(
 
 export async function executeAddTotpRestriction(
 	this: IExecuteFunctions,
+_itemIndex?: number,
 ): Promise<INodeExecutionData[]> {
 	const client = new ApiClient(this);
 	const data = (await client.httpPost('/me/accessRestriction/totp', {})) as IDataObject;
@@ -169,36 +182,40 @@ export async function executeAddTotpRestriction(
 
 export async function executeDeleteTotpRestriction(
 	this: IExecuteFunctions,
+_itemIndex?: number,
 ): Promise<INodeExecutionData[]> {
 	const client = new ApiClient(this);
-	const id = this.getNodeParameter('id', 0) as string;
+	const id = this.getNodeParameter('id', _itemIndex ?? 0) as string;
 	await client.httpDelete(`/me/accessRestriction/totp/${id}`);
 	return this.helpers.returnJsonArray([{ success: true }]);
 }
 
 export async function executeEnableTotpAccount(
 	this: IExecuteFunctions,
+_itemIndex?: number,
 ): Promise<INodeExecutionData[]> {
 	const client = new ApiClient(this);
-	const id = this.getNodeParameter('id', 0) as string;
+	const id = this.getNodeParameter('id', _itemIndex ?? 0) as string;
 	await client.httpPost(`/me/accessRestriction/totp/${id}/enable`, {});
 	return this.helpers.returnJsonArray([{ success: true }]);
 }
 
 export async function executeDisableTotpAccount(
 	this: IExecuteFunctions,
+_itemIndex?: number,
 ): Promise<INodeExecutionData[]> {
 	const client = new ApiClient(this);
-	const id = this.getNodeParameter('id', 0) as string;
+	const id = this.getNodeParameter('id', _itemIndex ?? 0) as string;
 	await client.httpPost(`/me/accessRestriction/totp/${id}/disable`, {});
 	return this.helpers.returnJsonArray([{ success: true }]);
 }
 
 export async function executeValidateTotpAccount(
 	this: IExecuteFunctions,
+_itemIndex?: number,
 ): Promise<INodeExecutionData[]> {
 	const client = new ApiClient(this);
-	const id = this.getNodeParameter('id', 0) as string;
+	const id = this.getNodeParameter('id', _itemIndex ?? 0) as string;
 	await client.httpPost(`/me/accessRestriction/totp/${id}/validate`, {});
 	return this.helpers.returnJsonArray([{ success: true }]);
 }
@@ -210,6 +227,7 @@ export async function executeValidateTotpAccount(
 
 export async function executeAddU2fRestriction(
 	this: IExecuteFunctions,
+_itemIndex?: number,
 ): Promise<INodeExecutionData[]> {
 	const client = new ApiClient(this);
 	const data = (await client.httpPost('/me/accessRestriction/u2f', {})) as IDataObject;
@@ -218,27 +236,30 @@ export async function executeAddU2fRestriction(
 
 export async function executeDeleteU2fRestriction(
 	this: IExecuteFunctions,
+_itemIndex?: number,
 ): Promise<INodeExecutionData[]> {
 	const client = new ApiClient(this);
-	const id = this.getNodeParameter('id', 0) as string;
+	const id = this.getNodeParameter('id', _itemIndex ?? 0) as string;
 	await client.httpDelete(`/me/accessRestriction/u2f/${id}`);
 	return this.helpers.returnJsonArray([{ success: true }]);
 }
 
 export async function executeEnableU2fAccount(
 	this: IExecuteFunctions,
+_itemIndex?: number,
 ): Promise<INodeExecutionData[]> {
 	const client = new ApiClient(this);
-	const id = this.getNodeParameter('id', 0) as string;
+	const id = this.getNodeParameter('id', _itemIndex ?? 0) as string;
 	await client.httpPost(`/me/accessRestriction/u2f/${id}/enable`, {});
 	return this.helpers.returnJsonArray([{ success: true }]);
 }
 
 export async function executeDisableU2fAccount(
 	this: IExecuteFunctions,
+_itemIndex?: number,
 ): Promise<INodeExecutionData[]> {
 	const client = new ApiClient(this);
-	const id = this.getNodeParameter('id', 0) as string;
+	const id = this.getNodeParameter('id', _itemIndex ?? 0) as string;
 	await client.httpPost(`/me/accessRestriction/u2f/${id}/disable`, {});
 	return this.helpers.returnJsonArray([{ success: true }]);
 }
@@ -249,9 +270,10 @@ export async function executeDisableU2fAccount(
 
 export async function executeGetU2fRestriction(
 	this: IExecuteFunctions,
+_itemIndex?: number,
 ): Promise<INodeExecutionData[]> {
 	const client = new ApiClient(this);
-	const id = this.getNodeParameter('id', 0) as string;
+	const id = this.getNodeParameter('id', _itemIndex ?? 0) as string;
 	const data = (await client.httpGet(`/me/accessRestriction/u2f/${id}`)) as IDataObject;
 	return this.helpers.returnJsonArray([data]);
 }
@@ -262,12 +284,13 @@ export async function executeGetU2fRestriction(
 
 export async function executeEditU2fRestriction(
 	this: IExecuteFunctions,
+_itemIndex?: number,
 ): Promise<INodeExecutionData[]> {
 	const client = new ApiClient(this);
-	const id = this.getNodeParameter('id', 0) as string;
+	const id = this.getNodeParameter('id', _itemIndex ?? 0) as string;
 
 	const body: IDataObject = {};
-	const enabledParam = this.getNodeParameter('enabled', 0) as boolean | undefined;
+	const enabledParam = this.getNodeParameter('enabled', _itemIndex ?? 0) as boolean | undefined;
 	if (typeof enabledParam === 'boolean') body.enabled = enabledParam;
 
 	await client.httpPut(`/me/accessRestriction/u2f/${id}`, body);
@@ -280,9 +303,10 @@ export async function executeEditU2fRestriction(
 
 export async function executeGetTotpRestriction(
 	this: IExecuteFunctions,
+_itemIndex?: number,
 ): Promise<INodeExecutionData[]> {
 	const client = new ApiClient(this);
-	const id = this.getNodeParameter('id', 0) as string;
+	const id = this.getNodeParameter('id', _itemIndex ?? 0) as string;
 	const data = (await client.httpGet(`/me/accessRestriction/totp/${id}`)) as IDataObject;
 	return this.helpers.returnJsonArray([data]);
 }
@@ -293,12 +317,13 @@ export async function executeGetTotpRestriction(
 
 export async function executeEditTotpRestriction(
 	this: IExecuteFunctions,
+_itemIndex?: number,
 ): Promise<INodeExecutionData[]> {
 	const client = new ApiClient(this);
-	const id = this.getNodeParameter('id', 0) as string;
+	const id = this.getNodeParameter('id', _itemIndex ?? 0) as string;
 
 	const body: IDataObject = {};
-	const enabledParam = this.getNodeParameter('enabled', 0) as boolean | undefined;
+	const enabledParam = this.getNodeParameter('enabled', _itemIndex ?? 0) as boolean | undefined;
 	if (typeof enabledParam === 'boolean') body.enabled = enabledParam;
 
 	await client.httpPut(`/me/accessRestriction/totp/${id}`, body);
@@ -317,18 +342,20 @@ export async function executeEditTotpRestriction(
 
 export async function executeEnableIpAccount(
 	this: IExecuteFunctions,
+_itemIndex?: number,
 ): Promise<INodeExecutionData[]> {
 	const client = new ApiClient(this);
-	const id = this.getNodeParameter('id', 0) as string;
+	const id = this.getNodeParameter('id', _itemIndex ?? 0) as string;
 	await client.httpPut(`/me/accessRestriction/ip/${id}`, { rule: 'accept' });
 	return this.helpers.returnJsonArray([{ success: true }]);
 }
 
 export async function executeDisableIpAccount(
 	this: IExecuteFunctions,
+_itemIndex?: number,
 ): Promise<INodeExecutionData[]> {
 	const client = new ApiClient(this);
-	const id = this.getNodeParameter('id', 0) as string;
+	const id = this.getNodeParameter('id', _itemIndex ?? 0) as string;
 	await client.httpPut(`/me/accessRestriction/ip/${id}`, { rule: 'deny' });
 	return this.helpers.returnJsonArray([{ success: true }]);
 }

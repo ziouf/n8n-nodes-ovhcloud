@@ -28,9 +28,9 @@ export function description(displayOptions: IDisplayOptions): INodeProperties[] 
 	];
 }
 
-export async function execute(this: IExecuteFunctions, itemIndex: number): Promise<INodeExecutionData[]> {
-	const withDetails = this.getNodeParameter('withDetails', itemIndex, false) as boolean;
-	const withAttachedDomains = this.getNodeParameter('withAttachedDomains', itemIndex, false) as boolean;
+export async function execute(this: IExecuteFunctions, _itemIndex: number): Promise<INodeExecutionData[]> {
+	const withDetails = this.getNodeParameter('withDetails', _itemIndex, false) as boolean;
+	const withAttachedDomains = this.getNodeParameter('withAttachedDomains', _itemIndex, false) as boolean;
 	const client = new ApiClient(this);
 	const names = (await client.httpGet('/hosting/web')) as string[];
     const outputData = names.map((serviceName) => ({ serviceName }));

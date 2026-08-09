@@ -37,9 +37,9 @@ export function description(displayOptions: IDisplayOptions): INodeProperties[] 
  * HTTP method: POST
  * Endpoint: /publicCloud/project/{projectId}/rancher/{rancherId}/adminCredentials
  */
-export async function execute(this: IExecuteFunctions, itemIndex: number): Promise<INodeExecutionData[]> {
-	const projectId = this.getNodeParameter('projectId', itemIndex) as string;
-	const rancherId = this.getNodeParameter('rancherId', itemIndex) as string;
+export async function execute(this: IExecuteFunctions, _itemIndex: number): Promise<INodeExecutionData[]> {
+	const projectId = this.getNodeParameter('projectId', _itemIndex) as string;
+	const rancherId = this.getNodeParameter('rancherId', _itemIndex) as string;
 
 
 	const client = new ApiClient(this);

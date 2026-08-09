@@ -7,7 +7,7 @@ import { ApiClient } from '../../shared/transport/ApiClient';
  * HTTP method: GET
  * Endpoint: /vps/order/rule/datacenter
  */
-export async function execute(this: IExecuteFunctions): Promise<INodeExecutionData[]> {
+export async function execute(this: IExecuteFunctions, _itemIndex?: number): Promise<INodeExecutionData[]> {
 	const client = new ApiClient(this);
 	const data = (await client.httpGet(`/vps/order/rule/datacenter`)) as IDataObject;
 	return this.helpers.returnJsonArray([{ ...data }]);

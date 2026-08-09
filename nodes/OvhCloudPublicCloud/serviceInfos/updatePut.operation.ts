@@ -53,14 +53,14 @@ export function description(displayOptions: IDisplayOptions): INodeProperties[] 
  * HTTP method: PUT
  * Endpoint: /cloud/project/{projectId}/serviceInfos
  */
-export async function execute(this: IExecuteFunctions): Promise<INodeExecutionData[]> {
+export async function execute(this: IExecuteFunctions, _itemIndex?: number): Promise<INodeExecutionData[]> {
 	const client = new ApiClient(this);
-	const projectId = this.getNodeParameter('publicCloudProjectId', 0, '', {
+	const projectId = this.getNodeParameter('publicCloudProjectId', _itemIndex ?? 0, '', {
 		extractValue: true,
 	}) as string;
 
 	const body: IDataObject = {};
-	const renew = this.getNodeParameter('renew', 0) as string;
+	const renew = this.getNodeParameter('renew', _itemIndex ?? 0) as string;
 	if (renew) body['renew'] = renew;
 
 	await client.httpPut(`/cloud/project/${projectId}/serviceInfos`, body);

@@ -35,10 +35,10 @@ export function description(displayOptions: IDisplayOptions): INodeProperties[] 
  * HTTP method: DELETE
  * Endpoint: /dedicatedCloud/{serviceName}/allowedNetwork/{networkAccessId}
  */
-export async function execute(this: IExecuteFunctions, itemIndex: number): Promise<INodeExecutionData[]> {
+export async function execute(this: IExecuteFunctions, _itemIndex: number): Promise<INodeExecutionData[]> {
 	const client = new ApiClient(this);
-	const serviceName = this.getNodeParameter('serviceName', itemIndex) as string;
-	const networkAccessId = this.getNodeParameter('networkAccessId', itemIndex) as string;
+	const serviceName = this.getNodeParameter('serviceName', _itemIndex) as string;
+	const networkAccessId = this.getNodeParameter('networkAccessId', _itemIndex) as string;
 	const data = (await client.httpDelete(`/dedicatedCloud/${serviceName}/allowedNetwork/${networkAccessId}`)) as IDataObject;
 	return this.helpers.returnJsonArray([data]);
 }

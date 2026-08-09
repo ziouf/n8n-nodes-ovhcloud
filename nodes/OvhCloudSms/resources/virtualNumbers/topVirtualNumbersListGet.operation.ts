@@ -26,8 +26,8 @@ export function description(displayOptions: IDisplayOptions): INodeProperties[] 
  * HTTP method: GET
  * Endpoint: /sms/virtualNumbers
  */
-export async function execute(this: IExecuteFunctions): Promise<INodeExecutionData[]> {
-	const iamTags = this.getNodeParameter('iamTags', 0) as string;
+export async function execute(this: IExecuteFunctions, _itemIndex?: number): Promise<INodeExecutionData[]> {
+	const iamTags = this.getNodeParameter('iamTags', _itemIndex ?? 0) as string;
 	const qs: IDataObject = {};
 	if (iamTags) qs['iamTags'] = iamTags;
 	const data = (await new ApiClient(this).httpGet(`/sms/virtualNumbers`, qs)) as string[];

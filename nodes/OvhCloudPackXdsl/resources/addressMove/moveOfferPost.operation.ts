@@ -253,16 +253,16 @@ export function description(displayOptions: IDisplayOptions): INodeProperties[] 
  * HTTP method: POST
  * Endpoint: /pack/xdsl/{packName}/addressMove/moveOffer
  */
-export async function execute(this: IExecuteFunctions): Promise<INodeExecutionData[]> {
+export async function execute(this: IExecuteFunctions, _itemIndex?: number): Promise<INodeExecutionData[]> {
 	const client = new ApiClient(this);
-	const packName = this.getNodeParameter('packName', 0, '', { extractValue: true }) as string;
-	const acceptContracts = this.getNodeParameter('acceptContracts', 0, false) as boolean;
-	const eligibilityReference = this.getNodeParameter('eligibilityReference', 0) as string;
-	const keepCurrentNumber = this.getNodeParameter('keepCurrentNumber', 0, false) as boolean;
-	const modem = this.getNodeParameter('modem', 0) as string;
-	const offerName = this.getNodeParameter('offerName', 0) as string;
-	const otp = this.getNodeParameter('otp', 0, false) as boolean;
-	const productCode = this.getNodeParameter('productCode', 0) as string;
+	const packName = this.getNodeParameter('packName', _itemIndex ?? 0, '', { extractValue: true }) as string;
+	const acceptContracts = this.getNodeParameter('acceptContracts', _itemIndex ?? 0, false) as boolean;
+	const eligibilityReference = this.getNodeParameter('eligibilityReference', _itemIndex ?? 0) as string;
+	const keepCurrentNumber = this.getNodeParameter('keepCurrentNumber', _itemIndex ?? 0, false) as boolean;
+	const modem = this.getNodeParameter('modem', _itemIndex ?? 0) as string;
+	const offerName = this.getNodeParameter('offerName', _itemIndex ?? 0) as string;
+	const otp = this.getNodeParameter('otp', _itemIndex ?? 0, false) as boolean;
+	const productCode = this.getNodeParameter('productCode', _itemIndex ?? 0) as string;
 
 	const body: IDataObject = {
 		acceptContracts,
@@ -274,39 +274,39 @@ export async function execute(this: IExecuteFunctions): Promise<INodeExecutionDa
 		productCode,
 	};
 
-	const building = (this.getNodeParameter('building', 0, '') as string) || '';
+	const building = (this.getNodeParameter('building', _itemIndex ?? 0, '') as string) || '';
 	if (building) body.building = building;
-	const buildingReference = (this.getNodeParameter('buildingReference', 0, '') as string) || '';
+	const buildingReference = (this.getNodeParameter('buildingReference', _itemIndex ?? 0, '') as string) || '';
 	if (buildingReference) body.buildingReference = buildingReference;
-	const contactPhone = (this.getNodeParameter('contactPhone', 0, '') as string) || '';
+	const contactPhone = (this.getNodeParameter('contactPhone', _itemIndex ?? 0, '') as string) || '';
 	if (contactPhone) body.contactPhone = contactPhone;
-	const door = (this.getNodeParameter('door', 0, '') as string) || '';
+	const door = (this.getNodeParameter('door', _itemIndex ?? 0, '') as string) || '';
 	if (door) body.door = door;
-	const engageMonths = this.getNodeParameter('engageMonths', 0, 0) as number;
+	const engageMonths = this.getNodeParameter('engageMonths', _itemIndex ?? 0, 0) as number;
 	if (engageMonths > 0) body.engageMonths = engageMonths;
-	const floor = (this.getNodeParameter('floor', 0, '') as string) || '';
+	const floor = (this.getNodeParameter('floor', _itemIndex ?? 0, '') as string) || '';
 	if (floor) body.floor = floor;
-	const installationType = (this.getNodeParameter('installationType', 0, '') as string) || '';
+	const installationType = (this.getNodeParameter('installationType', _itemIndex ?? 0, '') as string) || '';
 	if (installationType) body.installationType = installationType;
-	const mondialRelayId = this.getNodeParameter('mondialRelayId', 0, 0) as number;
+	const mondialRelayId = this.getNodeParameter('mondialRelayId', _itemIndex ?? 0, 0) as number;
 	if (mondialRelayId > 0) body.mondialRelayId = mondialRelayId;
-	const moveOutDate = (this.getNodeParameter('moveOutDate', 0, '') as string) || '';
+	const moveOutDate = (this.getNodeParameter('moveOutDate', _itemIndex ?? 0, '') as string) || '';
 	if (moveOutDate) body.moveOutDate = moveOutDate;
-	const nicShipping = (this.getNodeParameter('nicShipping', 0, '') as string) || '';
+	const nicShipping = (this.getNodeParameter('nicShipping', _itemIndex ?? 0, '') as string) || '';
 	if (nicShipping) body.nicShipping = nicShipping;
-	const ontShippingContact = (this.getNodeParameter('ontShippingContact', 0, '') as string) || '';
+	const ontShippingContact = (this.getNodeParameter('ontShippingContact', _itemIndex ?? 0, '') as string) || '';
 	if (ontShippingContact) body.ontShippingContact = ontShippingContact;
-	const options = (this.getNodeParameter('options', 0, '') as string) || '';
+	const options = (this.getNodeParameter('options', _itemIndex ?? 0, '') as string) || '';
 	if (options) body.options = JSON.parse(options);
-	const otpReference = (this.getNodeParameter('otpReference', 0, '') as string) || '';
+	const otpReference = (this.getNodeParameter('otpReference', _itemIndex ?? 0, '') as string) || '';
 	if (otpReference) body.otpReference = otpReference;
-	const residence = (this.getNodeParameter('residence', 0, '') as string) || '';
+	const residence = (this.getNodeParameter('residence', _itemIndex ?? 0, '') as string) || '';
 	if (residence) body.residence = residence;
-	const stair = (this.getNodeParameter('stair', 0, '') as string) || '';
+	const stair = (this.getNodeParameter('stair', _itemIndex ?? 0, '') as string) || '';
 	if (stair) body.stair = stair;
-	const subServicesToDelete = (this.getNodeParameter('subServicesToDelete', 0, '') as string) || '';
+	const subServicesToDelete = (this.getNodeParameter('subServicesToDelete', _itemIndex ?? 0, '') as string) || '';
 	if (subServicesToDelete) body.subServicesToDelete = JSON.parse(subServicesToDelete);
-	const subServicesToKeep = (this.getNodeParameter('subServicesToKeep', 0, '') as string) || '';
+	const subServicesToKeep = (this.getNodeParameter('subServicesToKeep', _itemIndex ?? 0, '') as string) || '';
 	if (subServicesToKeep) body.subServicesToKeep = JSON.parse(subServicesToKeep);
 
 	const data = (await client.httpPost(

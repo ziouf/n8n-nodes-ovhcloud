@@ -44,12 +44,12 @@ export function description(displayOptions: IDisplayOptions): INodeProperties[] 
  * HTTP method: POST
  * Endpoint: /dedicatedCloud/{serviceName}/datacenter
  */
-export async function execute(this: IExecuteFunctions, itemIndex: number): Promise<INodeExecutionData[]> {
+export async function execute(this: IExecuteFunctions, _itemIndex: number): Promise<INodeExecutionData[]> {
 	const client = new ApiClient(this);
-	const serviceName = this.getNodeParameter('serviceName', itemIndex) as string;
+	const serviceName = this.getNodeParameter('serviceName', _itemIndex) as string;
 	const body: IDataObject = {};
-	body.commercialRangeName = this.getNodeParameter('commercialRangeName', itemIndex) as string;
-	const vrackName = this.getNodeParameter('vrackName', itemIndex, '') as string;
+	body.commercialRangeName = this.getNodeParameter('commercialRangeName', _itemIndex) as string;
+	const vrackName = this.getNodeParameter('vrackName', _itemIndex, '') as string;
 	if (vrackName !== '') { body.vrackName = vrackName; }
 	const data = (await client.httpPost(`/dedicatedCloud/${serviceName}/datacenter`, body)) as IDataObject;
 	return this.helpers.returnJsonArray([data]);

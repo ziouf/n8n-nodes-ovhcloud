@@ -66,16 +66,16 @@ export function description(displayOptions: IDisplayOptions) {
 	];
 }
 
-export async function execute(this: IExecuteFunctions): Promise<INodeExecutionData[]> {
+export async function execute(this: IExecuteFunctions, _itemIndex?: number): Promise<INodeExecutionData[]> {
 	const client = new ApiClient(this);
-	const projectId = this.getNodeParameter('publicCloudProjectId', 0, '', {
+	const projectId = this.getNodeParameter('publicCloudProjectId', _itemIndex ?? 0, '', {
 		extractValue: true,
 	}) as string;
-	const rancherServiceId = this.getNodeParameter('rancherServiceId', 0, '', {
+	const rancherServiceId = this.getNodeParameter('rancherServiceId', _itemIndex ?? 0, '', {
 		extractValue: true,
 	}) as string;
 
-	const plan = (this.getNodeParameter('plan', 0) || '') as string;
+	const plan = (this.getNodeParameter('plan', _itemIndex ?? 0) || '') as string;
 
 	if (!plan) throw new Error('Plan is required to update a Rancher service');
 

@@ -52,13 +52,13 @@ export function description(displayOptions: IDisplayOptions): INodeProperties[] 
  * HTTP method: GET
  * Endpoint: /storage/netapp/{serviceName}/share
  */
-export async function execute(this: IExecuteFunctions, itemIndex: number): Promise<INodeExecutionData[]> {
+export async function execute(this: IExecuteFunctions, _itemIndex: number): Promise<INodeExecutionData[]> {
 	const client = new ApiClient(this);
-	const serviceName = this.getNodeParameter('serviceName', itemIndex, '', {
+	const serviceName = this.getNodeParameter('serviceName', _itemIndex, '', {
 				extractValue: true,
 			}) as string;
-	const detail = this.getNodeParameter('detail', itemIndex, '') as string;
-	const mountPointName = this.getNodeParameter('mountPointName', itemIndex, '') as string;
+	const detail = this.getNodeParameter('detail', _itemIndex, '') as string;
+	const mountPointName = this.getNodeParameter('mountPointName', _itemIndex, '') as string;
 	const qs: IDataObject = {};
 	if (detail !== '') { qs.detail = detail; }
 	if (mountPointName !== '') { qs.mountPointName = mountPointName; }

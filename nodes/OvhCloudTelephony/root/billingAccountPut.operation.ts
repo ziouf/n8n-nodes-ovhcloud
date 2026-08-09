@@ -115,19 +115,19 @@ export function description(displayOptions: IDisplayOptions): INodeProperties[] 
  * HTTP method: PUT
  * Endpoint: /telephony/{billingAccount}
  */
-export async function execute(this: IExecuteFunctions, itemIndex: number): Promise<INodeExecutionData[]> {
-	const billingAccount = this.getNodeParameter('billingAccount', itemIndex) as string;
-	const allowedOutplan = this.getNodeParameter('allowedOutplan', itemIndex) as string;
-	const billingAccount1 = this.getNodeParameter('billingAccount', itemIndex) as string;
-	const creditThreshold = this.getNodeParameter('creditThreshold', itemIndex) as string;
-	const currentOutplan = this.getNodeParameter('currentOutplan', itemIndex) as string;
-	const description = this.getNodeParameter('description', itemIndex) as string;
-	const hasSpecialNumbers = this.getNodeParameter('hasSpecialNumbers', itemIndex) as string;
-	const hiddenExternalNumber = this.getNodeParameter('hiddenExternalNumber', itemIndex) as string;
-	const overrideDisplayedNumber = this.getNodeParameter('overrideDisplayedNumber', itemIndex) as string;
-	const securityDeposit = this.getNodeParameter('securityDeposit', itemIndex) as string;
-	const status = this.getNodeParameter('status', itemIndex) as string;
-	const trusted = this.getNodeParameter('trusted', itemIndex) as string;
+export async function execute(this: IExecuteFunctions, _itemIndex: number): Promise<INodeExecutionData[]> {
+	const billingAccount = this.getNodeParameter('billingAccount', _itemIndex) as string;
+	const allowedOutplan = this.getNodeParameter('allowedOutplan', _itemIndex) as string;
+	const billingAccount1 = this.getNodeParameter('billingAccount', _itemIndex) as string;
+	const creditThreshold = this.getNodeParameter('creditThreshold', _itemIndex) as string;
+	const currentOutplan = this.getNodeParameter('currentOutplan', _itemIndex) as string;
+	const description = this.getNodeParameter('description', _itemIndex) as string;
+	const hasSpecialNumbers = this.getNodeParameter('hasSpecialNumbers', _itemIndex) as string;
+	const hiddenExternalNumber = this.getNodeParameter('hiddenExternalNumber', _itemIndex) as string;
+	const overrideDisplayedNumber = this.getNodeParameter('overrideDisplayedNumber', _itemIndex) as string;
+	const securityDeposit = this.getNodeParameter('securityDeposit', _itemIndex) as string;
+	const status = this.getNodeParameter('status', _itemIndex) as string;
+	const trusted = this.getNodeParameter('trusted', _itemIndex) as string;
 
 	const body: IDataObject = {
     allowedOutplan: allowedOutplan,

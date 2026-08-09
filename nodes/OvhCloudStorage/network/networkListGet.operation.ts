@@ -44,12 +44,12 @@ export function description(displayOptions: IDisplayOptions): INodeProperties[] 
  * HTTP method: GET
  * Endpoint: /storage/netapp/{serviceName}/network
  */
-export async function execute(this: IExecuteFunctions, itemIndex: number): Promise<INodeExecutionData[]> {
+export async function execute(this: IExecuteFunctions, _itemIndex: number): Promise<INodeExecutionData[]> {
 	const client = new ApiClient(this);
-	const serviceName = this.getNodeParameter('serviceName', itemIndex, '', {
+	const serviceName = this.getNodeParameter('serviceName', _itemIndex, '', {
 				extractValue: true,
 			}) as string;
-	const detail = this.getNodeParameter('detail', itemIndex, '') as string;
+	const detail = this.getNodeParameter('detail', _itemIndex, '') as string;
 	const qs: IDataObject = {};
 	if (detail !== '') { qs.detail = detail; }
 	const data = (await client.httpGet(`/storage/netapp/${encodeURIComponent(serviceName)}/network`, qs)) as IDataObject;

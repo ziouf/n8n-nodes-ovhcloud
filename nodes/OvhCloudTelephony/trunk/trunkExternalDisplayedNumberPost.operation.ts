@@ -53,11 +53,11 @@ export function description(displayOptions: IDisplayOptions): INodeProperties[] 
  * HTTP method: POST
  * Endpoint: /telephony/{billingAccount}/trunk/{serviceName}/externalDisplayedNumber
  */
-export async function execute(this: IExecuteFunctions, itemIndex: number): Promise<INodeExecutionData[]> {
-	const billingAccount = this.getNodeParameter('billingAccount', itemIndex) as string;
-	const serviceName = this.getNodeParameter('serviceName', itemIndex) as string;
-	const autoValidation = this.getNodeParameter('autoValidation', itemIndex) as string;
-	const number = this.getNodeParameter('number', itemIndex) as string;
+export async function execute(this: IExecuteFunctions, _itemIndex: number): Promise<INodeExecutionData[]> {
+	const billingAccount = this.getNodeParameter('billingAccount', _itemIndex) as string;
+	const serviceName = this.getNodeParameter('serviceName', _itemIndex) as string;
+	const autoValidation = this.getNodeParameter('autoValidation', _itemIndex) as string;
+	const number = this.getNodeParameter('number', _itemIndex) as string;
 
 	const body: IDataObject = {
 		autoValidation: autoValidation,

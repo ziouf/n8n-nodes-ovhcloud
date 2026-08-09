@@ -54,13 +54,13 @@ export function description(displayOptions: IDisplayOptions): INodeProperties[] 
 	];
 }
 
-export async function execute(this: IExecuteFunctions, itemIndex: number): Promise<INodeExecutionData[]> {
+export async function execute(this: IExecuteFunctions, _itemIndex: number): Promise<INodeExecutionData[]> {
 	const client = new ApiClient(this);
-	const serviceName = this.getNodeParameter('serviceName', itemIndex) as string;
-	const duration = this.getNodeParameter('duration', itemIndex) as string;
-	const offer = this.getNodeParameter('offer', itemIndex) as string;
-	const startTime = this.getNodeParameter('startTime', itemIndex) as string;
-	const waiveRetractationPeriod = this.getNodeParameter('waiveRetractationPeriod', itemIndex) as boolean;
+	const serviceName = this.getNodeParameter('serviceName', _itemIndex) as string;
+	const duration = this.getNodeParameter('duration', _itemIndex) as string;
+	const offer = this.getNodeParameter('offer', _itemIndex) as string;
+	const startTime = this.getNodeParameter('startTime', _itemIndex) as string;
+	const waiveRetractationPeriod = this.getNodeParameter('waiveRetractationPeriod', _itemIndex) as boolean;
 
 	const qs = {offer: offer, startTime: startTime, waiveRetractationPeriod: waiveRetractationPeriod};
 

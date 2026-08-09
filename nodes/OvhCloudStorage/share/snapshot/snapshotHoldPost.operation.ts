@@ -52,13 +52,13 @@ export function description(displayOptions: IDisplayOptions): INodeProperties[] 
  * HTTP method: POST
  * Endpoint: /storage/netapp/{serviceName}/share/{shareId}/snapshot/{snapshotId}/hold
  */
-export async function execute(this: IExecuteFunctions, itemIndex: number): Promise<INodeExecutionData[]> {
+export async function execute(this: IExecuteFunctions, _itemIndex: number): Promise<INodeExecutionData[]> {
 	const client = new ApiClient(this);
-	const serviceName = this.getNodeParameter('serviceName', itemIndex, '', {
+	const serviceName = this.getNodeParameter('serviceName', _itemIndex, '', {
 				extractValue: true,
 			}) as string;
-	const shareId = this.getNodeParameter('shareId', itemIndex) as string;
-	const snapshotId = this.getNodeParameter('snapshotId', itemIndex) as string;
+	const shareId = this.getNodeParameter('shareId', _itemIndex) as string;
+	const snapshotId = this.getNodeParameter('snapshotId', _itemIndex) as string;
 	const data = (await client.httpPost(`/storage/netapp/${encodeURIComponent(serviceName)}/share/${encodeURIComponent(shareId)}/snapshot/${encodeURIComponent(snapshotId)}/hold`)) as IDataObject;
 	return this.helpers.returnJsonArray([data]);
 }

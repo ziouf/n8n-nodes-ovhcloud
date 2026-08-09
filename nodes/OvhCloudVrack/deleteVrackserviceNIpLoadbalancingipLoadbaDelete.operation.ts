@@ -37,9 +37,9 @@ export function description(displayOptions: IDisplayOptions): INodeProperties[] 
  * HTTP method: DELETE
  * Endpoint: /vrack/{serviceName}/ipLoadbalancing/{ipLoadbalancing}
  */
-export async function execute(this: IExecuteFunctions, itemIndex: number): Promise<INodeExecutionData[]> {
-	const serviceName = this.getNodeParameter('serviceName', itemIndex) as string;
-	const ipLoadbalancing = this.getNodeParameter('ipLoadbalancing', itemIndex) as string;
+export async function execute(this: IExecuteFunctions, _itemIndex: number): Promise<INodeExecutionData[]> {
+	const serviceName = this.getNodeParameter('serviceName', _itemIndex) as string;
+	const ipLoadbalancing = this.getNodeParameter('ipLoadbalancing', _itemIndex) as string;
 
 
 

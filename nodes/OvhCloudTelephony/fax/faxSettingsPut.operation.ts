@@ -131,21 +131,21 @@ export function description(displayOptions: IDisplayOptions): INodeProperties[] 
  * HTTP method: PUT
  * Endpoint: /telephony/{billingAccount}/fax/{serviceName}/settings
  */
-export async function execute(this: IExecuteFunctions, itemIndex: number): Promise<INodeExecutionData[]> {
-	const billingAccount = this.getNodeParameter('billingAccount', itemIndex) as string;
-	const serviceName = this.getNodeParameter('serviceName', itemIndex) as string;
-	const callNumber = this.getNodeParameter('callNumber', itemIndex) as string;
-	const countryCode = this.getNodeParameter('countryCode', itemIndex) as string;
-	const faxMaxCall = this.getNodeParameter('faxMaxCall', itemIndex) as string;
-	const faxQuality = this.getNodeParameter('faxQuality', itemIndex) as string;
-	const faxTagLine = this.getNodeParameter('faxTagLine', itemIndex) as string;
-	const fromEmail = this.getNodeParameter('fromEmail', itemIndex) as string;
-	const fromName = this.getNodeParameter('fromName', itemIndex) as string;
-	const mailFormat = this.getNodeParameter('mailFormat', itemIndex) as string;
-	const receiver = this.getNodeParameter('receiver', itemIndex) as string;
-	const redirectionEmail = this.getNodeParameter('redirectionEmail', itemIndex) as string;
-	const rejectAnonymous = this.getNodeParameter('rejectAnonymous', itemIndex) as string;
-	const sender = this.getNodeParameter('sender', itemIndex) as string;
+export async function execute(this: IExecuteFunctions, _itemIndex: number): Promise<INodeExecutionData[]> {
+	const billingAccount = this.getNodeParameter('billingAccount', _itemIndex) as string;
+	const serviceName = this.getNodeParameter('serviceName', _itemIndex) as string;
+	const callNumber = this.getNodeParameter('callNumber', _itemIndex) as string;
+	const countryCode = this.getNodeParameter('countryCode', _itemIndex) as string;
+	const faxMaxCall = this.getNodeParameter('faxMaxCall', _itemIndex) as string;
+	const faxQuality = this.getNodeParameter('faxQuality', _itemIndex) as string;
+	const faxTagLine = this.getNodeParameter('faxTagLine', _itemIndex) as string;
+	const fromEmail = this.getNodeParameter('fromEmail', _itemIndex) as string;
+	const fromName = this.getNodeParameter('fromName', _itemIndex) as string;
+	const mailFormat = this.getNodeParameter('mailFormat', _itemIndex) as string;
+	const receiver = this.getNodeParameter('receiver', _itemIndex) as string;
+	const redirectionEmail = this.getNodeParameter('redirectionEmail', _itemIndex) as string;
+	const rejectAnonymous = this.getNodeParameter('rejectAnonymous', _itemIndex) as string;
+	const sender = this.getNodeParameter('sender', _itemIndex) as string;
 
 	const body: IDataObject = {
     callNumber: callNumber,

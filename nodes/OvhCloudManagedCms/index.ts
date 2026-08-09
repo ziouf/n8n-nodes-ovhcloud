@@ -259,39 +259,39 @@ export async function execute(
 
 	switch (operation) {
 		case 'managedCMSreferenceavailableCMSListGet':
-			return executeManagedCMSreferenceavailableCMSListGet.call(this, itemIndex);
+			return executeManagedCMSreferenceavailableCMSListGet.call(this, itemIndex ?? 0);
 		case 'managedCMSreferenceavailableLanguagesListGet':
-			return executeManagedCMSreferenceavailableLanguagesListGet.call(this, itemIndex);
+			return executeManagedCMSreferenceavailableLanguagesListGet.call(this, itemIndex ?? 0);
 		case 'managedCMSreferencesupportedPHPVersionsListGet':
-			return executeManagedCMSreferencesupportedPHPVersionsListGet.call(this, itemIndex);
+			return executeManagedCMSreferencesupportedPHPVersionsListGet.call(this, itemIndex ?? 0);
 		case 'managedCMSresourceListGet':
-			return executeManagedCMSresourceListGet.call(this, itemIndex);
+			return executeManagedCMSresourceListGet.call(this, itemIndex ?? 0);
 		case 'managedCMSresourceListGet2':
-			return executeManagedCMSresourceListGet2.call(this, itemIndex);
+			return executeManagedCMSresourceListGet2.call(this, itemIndex ?? 0);
 		case 'managedCMSresourceUpdatePut':
-			return executeManagedCMSresourceUpdatePut.call(this, itemIndex);
+			return executeManagedCMSresourceUpdatePut.call(this, itemIndex ?? 0);
 		case 'managedCMSresourceflushCDNCreatePost':
-			return executeManagedCMSresourceflushCDNCreatePost.call(this, itemIndex);
+			return executeManagedCMSresourceflushCDNCreatePost.call(this, itemIndex ?? 0);
 		case 'managedCMSresourcetaskListGet':
-			return executeManagedCMSresourcetaskListGet.call(this, itemIndex);
+			return executeManagedCMSresourcetaskListGet.call(this, itemIndex ?? 0);
 		case 'managedCMSresourcetaskListGet2':
-			return executeManagedCMSresourcetaskListGet2.call(this, itemIndex);
+			return executeManagedCMSresourcetaskListGet2.call(this, itemIndex ?? 0);
 		case 'managedCMSresourcetaskUpdatePut':
-			return executeManagedCMSresourcetaskUpdatePut.call(this, itemIndex);
+			return executeManagedCMSresourcetaskUpdatePut.call(this, itemIndex ?? 0);
 		case 'managedCMSresourcewebsiteListGet':
-			return executeManagedCMSresourcewebsiteListGet.call(this, itemIndex);
+			return executeManagedCMSresourcewebsiteListGet.call(this, itemIndex ?? 0);
 		case 'managedCMSresourcewebsiteCreatePost':
-			return executeManagedCMSresourcewebsiteCreatePost.call(this, itemIndex);
+			return executeManagedCMSresourcewebsiteCreatePost.call(this, itemIndex ?? 0);
 		case 'managedCMSresourcewebsiteDeleteDelete':
-			return executeManagedCMSresourcewebsiteDeleteDelete.call(this, itemIndex);
+			return executeManagedCMSresourcewebsiteDeleteDelete.call(this, itemIndex ?? 0);
 		case 'managedCMSresourcewebsiteListGet2':
-			return executeManagedCMSresourcewebsiteListGet2.call(this, itemIndex);
+			return executeManagedCMSresourcewebsiteListGet2.call(this, itemIndex ?? 0);
 		case 'managedCMSresourcewebsiteUpdatePut':
-			return executeManagedCMSresourcewebsiteUpdatePut.call(this, itemIndex);
+			return executeManagedCMSresourcewebsiteUpdatePut.call(this, itemIndex ?? 0);
 		case 'managedCMSresourcewebsiteflushCDNCreatePost':
-			return executeManagedCMSresourcewebsiteflushCDNCreatePost.call(this, itemIndex);
+			return executeManagedCMSresourcewebsiteflushCDNCreatePost.call(this, itemIndex ?? 0);
 		case 'managedCMSresourcewebsiteresetDatabasePasswordCreatePost':
-			return executeManagedCMSresourcewebsiteresetDatabasePasswordCreatePost.call(this, itemIndex);
+			return executeManagedCMSresourcewebsiteresetDatabasePasswordCreatePost.call(this, itemIndex ?? 0);
 
 	}
 

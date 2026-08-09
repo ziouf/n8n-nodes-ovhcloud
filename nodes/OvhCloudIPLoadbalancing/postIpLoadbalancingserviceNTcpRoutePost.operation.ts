@@ -60,15 +60,15 @@ export function description(displayOptions: IDisplayOptions): INodeProperties[] 
  * HTTP method: POST
  * Endpoint: /ipLoadbalancing/{serviceName}/tcp/route
  */
-export async function execute(this: IExecuteFunctions, itemIndex: number): Promise<INodeExecutionData[]> {
-	const serviceName = this.getNodeParameter('serviceName', itemIndex) as string;
+export async function execute(this: IExecuteFunctions, _itemIndex: number): Promise<INodeExecutionData[]> {
+	const serviceName = this.getNodeParameter('serviceName', _itemIndex) as string;
 
 
 
-	const action = this.getNodeParameter('action', itemIndex) as string;
-	const displayName = this.getNodeParameter('displayName', itemIndex) as string;
-	const frontendId = this.getNodeParameter('frontendId', itemIndex) as string;
-	const weight = this.getNodeParameter('weight', itemIndex) as string;
+	const action = this.getNodeParameter('action', _itemIndex) as string;
+	const displayName = this.getNodeParameter('displayName', _itemIndex) as string;
+	const frontendId = this.getNodeParameter('frontendId', _itemIndex) as string;
+	const weight = this.getNodeParameter('weight', _itemIndex) as string;
 
 
 const body: IDataObject = {

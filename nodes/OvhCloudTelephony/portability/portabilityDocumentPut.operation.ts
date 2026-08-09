@@ -61,12 +61,12 @@ export function description(displayOptions: IDisplayOptions): INodeProperties[] 
  * HTTP method: PUT
  * Endpoint: /telephony/{billingAccount}/portability/{id}/document/{documentId}
  */
-export async function execute(this: IExecuteFunctions, itemIndex: number): Promise<INodeExecutionData[]> {
-	const billingAccount = this.getNodeParameter('billingAccount', itemIndex) as string;
-	const documentId = this.getNodeParameter('documentId', itemIndex) as string;
-	const id = this.getNodeParameter('id', itemIndex) as string;
-	const description = this.getNodeParameter('description', itemIndex) as string;
-	const name = this.getNodeParameter('name', itemIndex) as string;
+export async function execute(this: IExecuteFunctions, _itemIndex: number): Promise<INodeExecutionData[]> {
+	const billingAccount = this.getNodeParameter('billingAccount', _itemIndex) as string;
+	const documentId = this.getNodeParameter('documentId', _itemIndex) as string;
+	const id = this.getNodeParameter('id', _itemIndex) as string;
+	const description = this.getNodeParameter('description', _itemIndex) as string;
+	const name = this.getNodeParameter('name', _itemIndex) as string;
 
 	const body: IDataObject = {
 		description: description,

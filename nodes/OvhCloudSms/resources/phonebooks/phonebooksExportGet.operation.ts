@@ -47,10 +47,10 @@ export function description(displayOptions: IDisplayOptions): INodeProperties[] 
  * HTTP method: GET
  * Endpoint: /sms/{serviceName}/phonebooks/{bookKey}/export
  */
-export async function execute(this: IExecuteFunctions): Promise<INodeExecutionData[]> {
-	const bookKey = this.getNodeParameter('bookKey', 0) as string;
-	const serviceName = this.getNodeParameter('serviceName', 0, '', { extractValue: true }) as string;
-	const format = this.getNodeParameter('format', 0) as string;
+export async function execute(this: IExecuteFunctions, _itemIndex?: number): Promise<INodeExecutionData[]> {
+	const bookKey = this.getNodeParameter('bookKey', _itemIndex ?? 0) as string;
+	const serviceName = this.getNodeParameter('serviceName', _itemIndex ?? 0, '', { extractValue: true }) as string;
+	const format = this.getNodeParameter('format', _itemIndex ?? 0) as string;
 	const qs: IDataObject = {};
 	qs['format'] = format;
 	const data = (await new ApiClient(this).httpGet(

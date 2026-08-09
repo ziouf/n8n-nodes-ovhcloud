@@ -39,13 +39,13 @@ export function description(displayOptions: IDisplayOptions): INodeProperties[] 
  */
 export async function execute(
 	this: IExecuteFunctions,
-	itemIndex: number,
+	_itemIndex: number,
 ): Promise<INodeExecutionData[]> {
 	const client = new ApiClient(this);
-	const serviceName = this.getNodeParameter('serviceName', itemIndex!, '', {
+	const serviceName = this.getNodeParameter('serviceName', _itemIndex!, '', {
 		extractValue: true,
 	}) as string;
-	const id = this.getNodeParameter('id', itemIndex!) as string;
+	const id = this.getNodeParameter('id', _itemIndex!) as string;
 
 	const data = (await client.httpPut(`/vps/${serviceName}/disks/${id}`, {})) as IDataObject;
 	return this.helpers.returnJsonArray([{ ...data }]);

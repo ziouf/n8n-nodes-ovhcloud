@@ -90,13 +90,13 @@ export function description(displayOptions: IDisplayOptions): INodeProperties[] 
  */
 export async function execute(
 	this: IExecuteFunctions,
-	itemIndex: number,
+	_itemIndex: number,
 ): Promise<INodeExecutionData[]> {
 	const client = new ApiClient(this);
-	const serviceName = this.getNodeParameter('serviceName', itemIndex) as string;
-	const filerId = this.getNodeParameter('filerId', itemIndex) as string;
-	const name = this.getNodeParameter('name', itemIndex, '') as string;
-	const state = this.getNodeParameter('state', itemIndex, '') as string;
+	const serviceName = this.getNodeParameter('serviceName', _itemIndex) as string;
+	const filerId = this.getNodeParameter('filerId', _itemIndex) as string;
+	const name = this.getNodeParameter('name', _itemIndex, '') as string;
+	const state = this.getNodeParameter('state', _itemIndex, '') as string;
 	const qs: IDataObject = {};
 	if (name !== '') {
 		qs.name = name;
@@ -108,12 +108,12 @@ export async function execute(
 		`/dedicatedCloud/${serviceName}/filer/${filerId}/task`,
 		qs,
 	)) as IDataObject;
-	const returnAll = this.getNodeParameter('returnAll', itemIndex) as boolean;
+	const returnAll = this.getNodeParameter('returnAll', _itemIndex) as boolean;
 
 	if (returnAll) {
 		return data as unknown as INodeExecutionData[];
 	}
 
-	const limit = this.getNodeParameter('limit', itemIndex) as number;
+	const limit = this.getNodeParameter('limit', _itemIndex) as number;
 	return (data as unknown as INodeExecutionData[]).slice(0, limit);
 }

@@ -46,12 +46,12 @@ export function description(displayOptions: IDisplayOptions): INodeProperties[] 
  * Endpoint: /ip/{ip}/game/{ipOnGame}/rule/{id}
  */
 
-export async function execute(this: IExecuteFunctions, itemIndex: number): Promise<INodeExecutionData[]> {
-	const ip = this.getNodeParameter('ip', itemIndex) as string;
+export async function execute(this: IExecuteFunctions, _itemIndex: number): Promise<INodeExecutionData[]> {
+	const ip = this.getNodeParameter('ip', _itemIndex) as string;
 
-	const ipOnGame = this.getNodeParameter('ipOnGame', itemIndex) as string;
+	const ipOnGame = this.getNodeParameter('ipOnGame', _itemIndex) as string;
 
-	const id = this.getNodeParameter('id', itemIndex) as string;
+	const id = this.getNodeParameter('id', _itemIndex) as string;
 
 	const client = new ApiClient(this);
 	const data = (await client.httpGet(`/ip/${encodeURIComponent(ip)}/game/${encodeURIComponent(ipOnGame)}/rule/${encodeURIComponent(id)}`)) as IDataObject;

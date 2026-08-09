@@ -120,44 +120,44 @@ export function description() {
 	return props;
 }
 
-export async function execute(this: IExecuteFunctions): Promise<INodeExecutionData[]> {
+export async function execute(this: IExecuteFunctions, itemIndex?: number): Promise<INodeExecutionData[]> {
 	const operation = this.getNodeParameter('nutanixOperation', 0) as string;
 
 	switch (operation) {
 		case 'changeContactPost':
-			return changeContactPost.execute.call(this);
+			return changeContactPost.execute.call(this, itemIndex ?? 0);
 		case 'confirmTerminationPost':
-			return confirmTerminationPost.execute.call(this);
+			return confirmTerminationPost.execute.call(this, itemIndex ?? 0);
 		case 'nodeDeployPut':
-			return nodeDeployPut.execute.call(this);
+			return nodeDeployPut.execute.call(this, itemIndex ?? 0);
 		case 'availabilitiesGet':
-			return availabilitiesGet.execute.call(this);
+			return availabilitiesGet.execute.call(this, itemIndex ?? 0);
 		case 'requirementsGet':
-			return requirementsGet.execute.call(this);
+			return requirementsGet.execute.call(this, itemIndex ?? 0);
 		case 'availableVersionsGet':
-			return availableVersionsGet.execute.call(this);
+			return availableVersionsGet.execute.call(this, itemIndex ?? 0);
 		case 'nodesGet':
-			return nodesGet.execute.call(this);
+			return nodesGet.execute.call(this, itemIndex ?? 0);
 		case 'nodeGet':
-			return nodeGet.execute.call(this);
+			return nodeGet.execute.call(this, itemIndex ?? 0);
 		case 'get':
-			return get.execute.call(this);
+			return get.execute.call(this, itemIndex ?? 0);
 		case 'serviceInfosGet':
-			return serviceInfosGet.execute.call(this);
+			return serviceInfosGet.execute.call(this, itemIndex ?? 0);
 		case 'list':
-			return list.execute.call(this);
+			return list.execute.call(this, itemIndex ?? 0);
 		case 'availabilitiesRawGet':
-			return availabilitiesRawGet.execute.call(this);
+			return availabilitiesRawGet.execute.call(this, itemIndex ?? 0);
 		case 'nodeUpdatePut':
-			return nodeUpdatePut.execute.call(this);
+			return nodeUpdatePut.execute.call(this, itemIndex ?? 0);
 		case 'terminatePost':
-			return terminatePost.execute.call(this);
+			return terminatePost.execute.call(this, itemIndex ?? 0);
 		case 'nodeTerminatePost':
-			return nodeTerminatePost.execute.call(this);
+			return nodeTerminatePost.execute.call(this, itemIndex ?? 0);
 		case 'updatePut':
-			return updatePut.execute.call(this);
+			return updatePut.execute.call(this, itemIndex ?? 0);
 		case 'serviceInfosUpdatePut':
-			return serviceInfosUpdatePut.execute.call(this);
+			return serviceInfosUpdatePut.execute.call(this, itemIndex ?? 0);
 		default:
 			throw new Error(`No handler for operation '${operation}'`);
 	}

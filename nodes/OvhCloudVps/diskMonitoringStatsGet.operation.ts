@@ -43,22 +43,22 @@ export function description(displayOptions: IDisplayOptions): INodeProperties[] 
 
 export async function execute(
 	this: IExecuteFunctions,
-	itemIndex?: number,
+	_itemIndex?: number,
 ): Promise<INodeExecutionData[]> {
 	const client = new ApiClient(this);
-	const serviceName = this.getNodeParameter('serviceName', itemIndex!, '', {
+	const serviceName = this.getNodeParameter('serviceName', _itemIndex!, '', {
 		extractValue: true,
 	}) as string;
 
 	const query: IDataObject = {};
 	try {
-		const fromParam = (this.getNodeParameter('from', itemIndex!) ?? '') as string;
+		const fromParam = (this.getNodeParameter('from', _itemIndex!) ?? '') as string;
 		if (fromParam) query.from = fromParam;
 	} catch {
 		/* optional */
 	}
 	try {
-		const toParam = (this.getNodeParameter('to', itemIndex!) ?? '') as string;
+		const toParam = (this.getNodeParameter('to', _itemIndex!) ?? '') as string;
 		if (toParam) query.to = toParam;
 	} catch {
 		/* optional */

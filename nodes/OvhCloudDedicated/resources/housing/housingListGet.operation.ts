@@ -21,11 +21,11 @@ export function description(displayOptions: IDisplayOptions) {
  * HTTP method: GET
  * Endpoint: /dedicated/housing
  */
-export async function execute(this: IExecuteFunctions): Promise<INodeExecutionData[]> {
+export async function execute(this: IExecuteFunctions, _itemIndex?: number): Promise<INodeExecutionData[]> {
 	const client = new ApiClient(this);
 	const qs: Record<string, string> = {};
 
-	const country = (this.getNodeParameter('country', 0) as string) || undefined;
+	const country = (this.getNodeParameter('country', _itemIndex ?? 0) as string) || undefined;
 	if (country) qs.country = country;
 
 	const data = (await client.httpGet('/dedicated/housing', qs)) as string[];

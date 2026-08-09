@@ -55,11 +55,11 @@ export function description(displayOptions: IDisplayOptions): INodeProperties[] 
  * HTTP method: POST
  * Endpoint: /sms/{serviceName}/templatesControl/{name}/relaunchValidation
  */
-export async function execute(this: IExecuteFunctions): Promise<INodeExecutionData[]> {
-	const name = this.getNodeParameter('name', 0) as string;
-	const serviceName = this.getNodeParameter('serviceName', 0, '', { extractValue: true }) as string;
-	const description = this.getNodeParameter('description', 0) as string;
-	const message = this.getNodeParameter('message', 0) as string;
+export async function execute(this: IExecuteFunctions, _itemIndex?: number): Promise<INodeExecutionData[]> {
+	const name = this.getNodeParameter('name', _itemIndex ?? 0) as string;
+	const serviceName = this.getNodeParameter('serviceName', _itemIndex ?? 0, '', { extractValue: true }) as string;
+	const description = this.getNodeParameter('description', _itemIndex ?? 0) as string;
+	const message = this.getNodeParameter('message', _itemIndex ?? 0) as string;
 	const body: IDataObject = {};
 	body['description'] = description;
 	body['message'] = message;

@@ -92,19 +92,19 @@ export function description(displayOptions: IDisplayOptions): INodeProperties[] 
  * HTTP method: PUT
  * Endpoint: /dedicatedCloud/{serviceName}/user/{userId}/right/{rightId}
  */
-export async function execute(this: IExecuteFunctions, itemIndex: number): Promise<INodeExecutionData[]> {
+export async function execute(this: IExecuteFunctions, _itemIndex: number): Promise<INodeExecutionData[]> {
 	const client = new ApiClient(this);
-	const serviceName = this.getNodeParameter('serviceName', itemIndex) as string;
-	const userId = this.getNodeParameter('userId', itemIndex) as string;
-	const rightId = this.getNodeParameter('rightId', itemIndex) as string;
+	const serviceName = this.getNodeParameter('serviceName', _itemIndex) as string;
+	const userId = this.getNodeParameter('userId', _itemIndex) as string;
+	const rightId = this.getNodeParameter('rightId', _itemIndex) as string;
 	const body: IDataObject = {};
-	const canAddRessource = this.getNodeParameter('canAddRessource', itemIndex) as boolean;
+	const canAddRessource = this.getNodeParameter('canAddRessource', _itemIndex) as boolean;
 	if (canAddRessource) { body.canAddRessource = canAddRessource; }
-	const networkRole = this.getNodeParameter('networkRole', itemIndex, '') as string;
+	const networkRole = this.getNodeParameter('networkRole', _itemIndex, '') as string;
 	if (networkRole !== '') { body.networkRole = networkRole; }
-	const right = this.getNodeParameter('right', itemIndex, '') as string;
+	const right = this.getNodeParameter('right', _itemIndex, '') as string;
 	if (right !== '') { body.right = right; }
-	const vmNetworkRole = this.getNodeParameter('vmNetworkRole', itemIndex, '') as string;
+	const vmNetworkRole = this.getNodeParameter('vmNetworkRole', _itemIndex, '') as string;
 	if (vmNetworkRole !== '') { body.vmNetworkRole = vmNetworkRole; }
 	const data = (await client.httpPut(`/dedicatedCloud/${serviceName}/user/${userId}/right/${rightId}`, body)) as IDataObject;
 	return this.helpers.returnJsonArray([data]);

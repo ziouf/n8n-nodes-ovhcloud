@@ -97,16 +97,16 @@ export function description(displayOptions: IDisplayOptions): INodeProperties[] 
  * HTTP method: PUT
  * Endpoint: /cluster/hadoop/{serviceName}/serviceInfos
  */
-export async function execute(this: IExecuteFunctions): Promise<INodeExecutionData[]> {
+export async function execute(this: IExecuteFunctions, _itemIndex?: number): Promise<INodeExecutionData[]> {
 	const client = new ApiClient(this);
-	const serviceName = this.getNodeParameter('serviceName', 0, '', { extractValue: true }) as string;
-	const contactAdmin = (this.getNodeParameter('contactAdmin', 0, '') as string) || '';
-	const contactBilling = (this.getNodeParameter('contactBilling', 0, '') as string) || '';
-	const contactTech = (this.getNodeParameter('contactTech', 0, '') as string) || '';
-	const domain = (this.getNodeParameter('domain', 0, '') as string) || '';
-	const engagedUpTo = (this.getNodeParameter('engagedUpTo', 0, '') as string) || '';
-	const expiration = (this.getNodeParameter('expiration', 0, '') as string) || '';
-	const possibleRenewPeriod = (this.getNodeParameter('possibleRenewPeriod', 0, '') as string) || '';
+	const serviceName = this.getNodeParameter('serviceName', _itemIndex ?? 0, '', { extractValue: true }) as string;
+	const contactAdmin = (this.getNodeParameter('contactAdmin', _itemIndex ?? 0, '') as string) || '';
+	const contactBilling = (this.getNodeParameter('contactBilling', _itemIndex ?? 0, '') as string) || '';
+	const contactTech = (this.getNodeParameter('contactTech', _itemIndex ?? 0, '') as string) || '';
+	const domain = (this.getNodeParameter('domain', _itemIndex ?? 0, '') as string) || '';
+	const engagedUpTo = (this.getNodeParameter('engagedUpTo', _itemIndex ?? 0, '') as string) || '';
+	const expiration = (this.getNodeParameter('expiration', _itemIndex ?? 0, '') as string) || '';
+	const possibleRenewPeriod = (this.getNodeParameter('possibleRenewPeriod', _itemIndex ?? 0, '') as string) || '';
 
 	const body: IDataObject = {};
 	if (contactAdmin) body.contactAdmin = contactAdmin;

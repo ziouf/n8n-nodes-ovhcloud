@@ -26,8 +26,8 @@ export function description(displayOptions: IDisplayOptions): INodeProperties[] 
  * HTTP method: GET
  * Endpoint: /email/domain/mailingListLimits
  */
-export async function execute(this: IExecuteFunctions): Promise<INodeExecutionData[]> {
-	const moderatorMessage = this.getNodeParameter('moderatorMessage', 0) as string;
+export async function execute(this: IExecuteFunctions, _itemIndex?: number): Promise<INodeExecutionData[]> {
+	const moderatorMessage = this.getNodeParameter('moderatorMessage', _itemIndex ?? 0) as string;
 
 	const qs: IDataObject = {
 		moderatorMessage: moderatorMessage,

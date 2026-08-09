@@ -52,11 +52,11 @@ export function description(displayOptions: IDisplayOptions): INodeProperties[] 
  * HTTP method: POST
  * Endpoint: /telephony/{billingAccount}/line/{serviceName}/dissociateDevice
  */
-export async function execute(this: IExecuteFunctions, itemIndex: number): Promise<INodeExecutionData[]> {
-	const billingAccount = this.getNodeParameter('billingAccount', itemIndex) as string;
-	const serviceName = this.getNodeParameter('serviceName', itemIndex) as string;
-	const ipAddress = this.getNodeParameter('ipAddress', itemIndex) as string;
-	const macAddress = this.getNodeParameter('macAddress', itemIndex) as string;
+export async function execute(this: IExecuteFunctions, _itemIndex: number): Promise<INodeExecutionData[]> {
+	const billingAccount = this.getNodeParameter('billingAccount', _itemIndex) as string;
+	const serviceName = this.getNodeParameter('serviceName', _itemIndex) as string;
+	const ipAddress = this.getNodeParameter('ipAddress', _itemIndex) as string;
+	const macAddress = this.getNodeParameter('macAddress', _itemIndex) as string;
 
 	const body: IDataObject = {
     ipAddress: ipAddress,

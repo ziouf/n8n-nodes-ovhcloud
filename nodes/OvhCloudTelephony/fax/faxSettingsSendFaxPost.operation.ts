@@ -61,12 +61,12 @@ export function description(displayOptions: IDisplayOptions): INodeProperties[] 
  * HTTP method: POST
  * Endpoint: /telephony/{billingAccount}/fax/{serviceName}/settings/sendFax
  */
-export async function execute(this: IExecuteFunctions, itemIndex: number): Promise<INodeExecutionData[]> {
-	const billingAccount = this.getNodeParameter('billingAccount', itemIndex) as string;
-	const serviceName = this.getNodeParameter('serviceName', itemIndex) as string;
-	const dateSchedule = this.getNodeParameter('dateSchedule', itemIndex) as string;
-	const pdfUrl = this.getNodeParameter('pdfUrl', itemIndex) as string;
-	const recipients = this.getNodeParameter('recipients', itemIndex) as string;
+export async function execute(this: IExecuteFunctions, _itemIndex: number): Promise<INodeExecutionData[]> {
+	const billingAccount = this.getNodeParameter('billingAccount', _itemIndex) as string;
+	const serviceName = this.getNodeParameter('serviceName', _itemIndex) as string;
+	const dateSchedule = this.getNodeParameter('dateSchedule', _itemIndex) as string;
+	const pdfUrl = this.getNodeParameter('pdfUrl', _itemIndex) as string;
+	const recipients = this.getNodeParameter('recipients', _itemIndex) as string;
 
 	const body: IDataObject = {
     dateSchedule: dateSchedule,

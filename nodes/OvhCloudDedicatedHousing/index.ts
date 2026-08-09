@@ -219,41 +219,41 @@ export async function execute(
 
 	switch (operation) {
 		case 'FeaturesBackupftpAccessUpdate':
-			return executeFeaturesBackupftpAccessUpdatePut.call(this, itemIndex);
+			return executeFeaturesBackupftpAccessUpdatePut.call(this, itemIndex ?? 0);
 		case 'FeaturesBackupftpPasswordCreate':
-			return executeFeaturesBackupftpPasswordCreatePost.call(this, itemIndex);
+			return executeFeaturesBackupftpPasswordCreatePost.call(this, itemIndex ?? 0);
 		case 'FeaturesBackupftpAccessCreate':
-			return executeFeaturesBackupftpAccessCreatePost.call(this, itemIndex);
+			return executeFeaturesBackupftpAccessCreatePost.call(this, itemIndex ?? 0);
 		case 'HousingFeaturesBackupftpCreate':
-			return executeHousingFeaturesBackupftpCreatePost.call(this, itemIndex);
+			return executeHousingFeaturesBackupftpCreatePost.call(this, itemIndex ?? 0);
 		case 'FeaturesBackupftpAuthorizableblocksGet':
-			return executeFeaturesBackupftpAuthorizableblocksGetGet.call(this, itemIndex);
+			return executeFeaturesBackupftpAuthorizableblocksGetGet.call(this, itemIndex ?? 0);
 		case 'DedicatedHousingServiceinfosGet':
-			return executeDedicatedHousingServiceinfosGetGet.call(this, itemIndex);
+			return executeDedicatedHousingServiceinfosGetGet.call(this, itemIndex ?? 0);
 		case 'DedicatedHousingGetServicename':
-			return executeDedicatedHousingGetServicenameGet.call(this, itemIndex);
+			return executeDedicatedHousingGetServicenameGet.call(this, itemIndex ?? 0);
 		case 'HousingFeaturesBackupftpGet':
-			return executeHousingFeaturesBackupftpGetGet.call(this, itemIndex);
+			return executeHousingFeaturesBackupftpGetGet.call(this, itemIndex ?? 0);
 		case 'FeaturesBackupftpAccessGetIpblock':
-			return executeFeaturesBackupftpAccessGetIpblockGet.call(this, itemIndex);
+			return executeFeaturesBackupftpAccessGetIpblockGet.call(this, itemIndex ?? 0);
 		case 'DedicatedHousingTaskGetTaskid':
-			return executeDedicatedHousingTaskGetTaskidGet.call(this, itemIndex);
+			return executeDedicatedHousingTaskGetTaskidGet.call(this, itemIndex ?? 0);
 		case 'HousingOrderableApcGet':
-			return executeHousingOrderableApcGetGet.call(this, itemIndex);
+			return executeHousingOrderableApcGetGet.call(this, itemIndex ?? 0);
 		case 'DedicatedHousingGet':
-			return executeDedicatedHousingGetGet.call(this, itemIndex);
+			return executeDedicatedHousingGetGet.call(this, itemIndex ?? 0);
 		case 'FeaturesBackupftpAccessGet':
-			return executeFeaturesBackupftpAccessGetGet.call(this, itemIndex);
+			return executeFeaturesBackupftpAccessGetGet.call(this, itemIndex ?? 0);
 		case 'FeaturesBackupftpAccessDelete':
-			return executeFeaturesBackupftpAccessDeleteDelete.call(this, itemIndex);
+			return executeFeaturesBackupftpAccessDeleteDelete.call(this, itemIndex ?? 0);
 		case 'HousingFeaturesBackupftpDelete':
-			return executeHousingFeaturesBackupftpDeleteDelete.call(this, itemIndex);
+			return executeHousingFeaturesBackupftpDeleteDelete.call(this, itemIndex ?? 0);
 		case 'HousingTaskCancelCreate':
-			return executeHousingTaskCancelCreatePost.call(this, itemIndex);
+			return executeHousingTaskCancelCreatePost.call(this, itemIndex ?? 0);
 		case 'DedicatedHousingServiceinfosUpdate':
-			return executeDedicatedHousingServiceinfosUpdatePut.call(this, itemIndex);
+			return executeDedicatedHousingServiceinfosUpdatePut.call(this, itemIndex ?? 0);
 		case 'DedicatedHousingTaskGet':
-			return executeDedicatedHousingTaskGetGet.call(this, itemIndex);
+			return executeDedicatedHousingTaskGetGet.call(this, itemIndex ?? 0);
 	}
 
 	throw new Error(`Unsupported operation "${operation}" for resource "/dedicated/housing"`);

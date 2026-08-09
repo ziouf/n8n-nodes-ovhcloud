@@ -99,14 +99,14 @@ export function description(displayOptions: IDisplayOptions): INodeProperties[] 
  * HTTP method: PUT
  * Endpoint: /publicCloud/project/${projectId}/region/${regionName}/storage/${name}
  */
-export async function execute(this: IExecuteFunctions): Promise<INodeExecutionData[]> {
-	const regionName = this.getNodeParameter('regionName', 0) as string;
-	const name = this.getNodeParameter('name', 0) as string;
-	const encryption = this.getNodeParameter('encryption', 0, '') as string;
-	const lifecycle = this.getNodeParameter('lifecycle', 0, '') as string;
-	const objectLock = this.getNodeParameter('objectLock', 0, '') as string;
-	const replication = this.getNodeParameter('replication', 0, '') as string;
-	const versioning = this.getNodeParameter('versioning', 0, '') as string;
+export async function execute(this: IExecuteFunctions, _itemIndex?: number): Promise<INodeExecutionData[]> {
+	const regionName = this.getNodeParameter('regionName', _itemIndex ?? 0) as string;
+	const name = this.getNodeParameter('name', _itemIndex ?? 0) as string;
+	const encryption = this.getNodeParameter('encryption', _itemIndex ?? 0, '') as string;
+	const lifecycle = this.getNodeParameter('lifecycle', _itemIndex ?? 0, '') as string;
+	const objectLock = this.getNodeParameter('objectLock', _itemIndex ?? 0, '') as string;
+	const replication = this.getNodeParameter('replication', _itemIndex ?? 0, '') as string;
+	const versioning = this.getNodeParameter('versioning', _itemIndex ?? 0, '') as string;
 	const body: IDataObject = {
 		encryption: encryption,
 		lifecycle: lifecycle,
@@ -116,7 +116,7 @@ export async function execute(this: IExecuteFunctions): Promise<INodeExecutionDa
 	};
 
 	const client = new ApiClient(this);
-	const projectId = this.getNodeParameter('publicCloudProjectId', 0, '', {
+	const projectId = this.getNodeParameter('publicCloudProjectId', _itemIndex ?? 0, '', {
 		extractValue: true,
 	}) as string;
 	const data = (await client.httpPut(

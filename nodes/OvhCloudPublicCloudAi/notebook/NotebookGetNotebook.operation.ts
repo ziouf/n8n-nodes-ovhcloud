@@ -49,9 +49,9 @@ export function description(displayOptions: IDisplayOptions = {} as IDisplayOpti
  * HTTP method: GET
  * Endpoint: /cloud/project/{serviceName}/ai/notebook/{notebookId}
  */
-export async function execute(this: IExecuteFunctions): Promise<INodeExecutionData[]> {
-	const serviceName = this.getNodeParameter('serviceName', 0) as string;
-	const notebookId = this.getNodeParameter('notebookId', 0) as string;
+export async function execute(this: IExecuteFunctions, _itemIndex?: number): Promise<INodeExecutionData[]> {
+	const serviceName = this.getNodeParameter('serviceName', _itemIndex ?? 0) as string;
+	const notebookId = this.getNodeParameter('notebookId', _itemIndex ?? 0) as string;
 
 	const client = new ApiClient(this);
 	const data = (await client.httpGet('cloud/project' + serviceName + '/ai/notebook/' + notebookId)) as IDataObject;

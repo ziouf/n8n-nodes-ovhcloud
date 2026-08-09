@@ -67,11 +67,11 @@ export function description(displayOptions: IDisplayOptions): INodeProperties[] 
  * HTTP method: POST
  * Endpoint: /email/domain/{domain}/confirmTermination
  */
-export async function execute(this: IExecuteFunctions): Promise<INodeExecutionData[]> {
-	const domain = this.getNodeParameter('domain', 0) as string;
-	const commentary = this.getNodeParameter('commentary', 0) as string;
-	const reason = this.getNodeParameter('reason', 0) as string;
-	const token = this.getNodeParameter('token', 0) as string;
+export async function execute(this: IExecuteFunctions, _itemIndex?: number): Promise<INodeExecutionData[]> {
+	const domain = this.getNodeParameter('domain', _itemIndex ?? 0) as string;
+	const commentary = this.getNodeParameter('commentary', _itemIndex ?? 0) as string;
+	const reason = this.getNodeParameter('reason', _itemIndex ?? 0) as string;
+	const token = this.getNodeParameter('token', _itemIndex ?? 0) as string;
 
 	const body: IDataObject = {
 		commentary: commentary,

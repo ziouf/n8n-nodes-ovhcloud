@@ -133,21 +133,21 @@ export function description(displayOptions: IDisplayOptions): INodeProperties[] 
  * HTTP method: PUT
  * Endpoint: /telephony/{billingAccount}/voicemail/{serviceName}/settings
  */
-export async function execute(this: IExecuteFunctions, itemIndex: number): Promise<INodeExecutionData[]> {
-	const billingAccount = this.getNodeParameter('billingAccount', itemIndex) as string;
-	const serviceName = this.getNodeParameter('serviceName', itemIndex) as string;
-	const audioFormat = this.getNodeParameter('audioFormat', itemIndex) as string;
-	const doNotRecord = this.getNodeParameter('doNotRecord', itemIndex) as string;
-	const forcePassword = this.getNodeParameter('forcePassword', itemIndex) as string;
-	const fromEmail = this.getNodeParameter('fromEmail', itemIndex) as string;
-	const fromName = this.getNodeParameter('fromName', itemIndex) as string;
-	const fullGreetingSoundId = this.getNodeParameter('fullGreetingSoundId', itemIndex) as string;
-	const greetingType = this.getNodeParameter('greetingType', itemIndex) as string;
-	const keepMessage = this.getNodeParameter('keepMessage', itemIndex) as string;
-	const redirectionEmails = this.getNodeParameter('redirectionEmails', itemIndex) as string;
-	const shortGreetingSoundId = this.getNodeParameter('shortGreetingSoundId', itemIndex) as string;
-	const temporaryGreetingActivated = this.getNodeParameter('temporaryGreetingActivated', itemIndex) as string;
-	const temporaryGreetingSoundId = this.getNodeParameter('temporaryGreetingSoundId', itemIndex) as string;
+export async function execute(this: IExecuteFunctions, _itemIndex: number): Promise<INodeExecutionData[]> {
+	const billingAccount = this.getNodeParameter('billingAccount', _itemIndex) as string;
+	const serviceName = this.getNodeParameter('serviceName', _itemIndex) as string;
+	const audioFormat = this.getNodeParameter('audioFormat', _itemIndex) as string;
+	const doNotRecord = this.getNodeParameter('doNotRecord', _itemIndex) as string;
+	const forcePassword = this.getNodeParameter('forcePassword', _itemIndex) as string;
+	const fromEmail = this.getNodeParameter('fromEmail', _itemIndex) as string;
+	const fromName = this.getNodeParameter('fromName', _itemIndex) as string;
+	const fullGreetingSoundId = this.getNodeParameter('fullGreetingSoundId', _itemIndex) as string;
+	const greetingType = this.getNodeParameter('greetingType', _itemIndex) as string;
+	const keepMessage = this.getNodeParameter('keepMessage', _itemIndex) as string;
+	const redirectionEmails = this.getNodeParameter('redirectionEmails', _itemIndex) as string;
+	const shortGreetingSoundId = this.getNodeParameter('shortGreetingSoundId', _itemIndex) as string;
+	const temporaryGreetingActivated = this.getNodeParameter('temporaryGreetingActivated', _itemIndex) as string;
+	const temporaryGreetingSoundId = this.getNodeParameter('temporaryGreetingSoundId', _itemIndex) as string;
 
 	const body: IDataObject = {
 		audioFormat: audioFormat,

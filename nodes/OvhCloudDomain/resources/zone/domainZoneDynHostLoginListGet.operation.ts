@@ -43,14 +43,14 @@ export function description(displayOptions: IDisplayOptions): INodeProperties[] 
  * HTTP method: GET
  * Endpoint: /domain/zone/{zoneName}/dynHost/login
  */
-export async function execute(this: IExecuteFunctions, itemIndex: number): Promise<INodeExecutionData[]> {
+export async function execute(this: IExecuteFunctions, _itemIndex: number): Promise<INodeExecutionData[]> {
 	const client = new ApiClient(this);
-		const zoneName = this.getNodeParameter('zoneName', itemIndex) as string;
+		const zoneName = this.getNodeParameter('zoneName', _itemIndex) as string;
 
 	const qs: IDataObject = {};
-		const login = this.getNodeParameter('login', itemIndex, '') as string;
+		const login = this.getNodeParameter('login', _itemIndex, '') as string;
 		if (login !== '' && login !== undefined) qs['login'] = login;
-		const subDomain = this.getNodeParameter('subDomain', itemIndex, '') as string;
+		const subDomain = this.getNodeParameter('subDomain', _itemIndex, '') as string;
 		if (subDomain !== '' && subDomain !== undefined) qs['subDomain'] = subDomain;
 
 	const data = (await client.httpGet(`/domain/zone/${encodeURIComponent(zoneName)}/dynHost/login`, qs)) as IDataObject;

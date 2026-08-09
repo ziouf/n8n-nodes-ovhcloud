@@ -53,10 +53,10 @@ export function description(displayOptions: IDisplayOptions): INodeProperties[] 
  * HTTP method: POST
  * Endpoint: /sms/estimate
  */
-export async function execute(this: IExecuteFunctions): Promise<INodeExecutionData[]> {
-	const message = this.getNodeParameter('message', 0) as string;
-	const noStopClause = this.getNodeParameter('noStopClause', 0) as boolean;
-	const senderType = this.getNodeParameter('senderType', 0) as string;
+export async function execute(this: IExecuteFunctions, _itemIndex?: number): Promise<INodeExecutionData[]> {
+	const message = this.getNodeParameter('message', _itemIndex ?? 0) as string;
+	const noStopClause = this.getNodeParameter('noStopClause', _itemIndex ?? 0) as boolean;
+	const senderType = this.getNodeParameter('senderType', _itemIndex ?? 0) as string;
 	const body: IDataObject = {};
 	body['message'] = message;
 	body['noStopClause'] = noStopClause;

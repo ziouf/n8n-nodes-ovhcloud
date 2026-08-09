@@ -50,24 +50,24 @@ export function description(displayOptions: IDisplayOptions): INodeProperties[] 
  * HTTP method: POST
  * Endpoint: /cloud/project/{serviceName}/database/kafka/{clusterId}
  */
-export async function execute(this: IExecuteFunctions): Promise<INodeExecutionData[]> {
+export async function execute(this: IExecuteFunctions, _itemIndex?: number): Promise<INodeExecutionData[]> {
 	const client = new ApiClient(this);
-	const serviceName = this.getNodeParameter('publicCloudProjectId', 0, '', {
+	const serviceName = this.getNodeParameter('publicCloudProjectId', _itemIndex ?? 0, '', {
 		extractValue: true,
 	}) as string;
-	const clusterId = this.getNodeParameter('clusterId', 0) as string;
+	const clusterId = this.getNodeParameter('clusterId', _itemIndex ?? 0) as string;
 	const body: IDataObject = {};
-	const patternType = (this.getNodeParameter('patternType', 0) || '') as string;
+	const patternType = (this.getNodeParameter('patternType', _itemIndex ?? 0) || '') as string;
 	if (patternType) body.patternType = patternType;
-	const host = (this.getNodeParameter('host', 0) || '') as string;
+	const host = (this.getNodeParameter('host', _itemIndex ?? 0) || '') as string;
 	if (host) body.host = host;
-	const name = (this.getNodeParameter('name', 0) || '') as string;
+	const name = (this.getNodeParameter('name', _itemIndex ?? 0) || '') as string;
 	if (name) body.name = name;
-	const operation = (this.getNodeParameter('operation', 0) || '') as string;
+	const operation = (this.getNodeParameter('operation', _itemIndex ?? 0) || '') as string;
 	if (operation) body.operation = operation;
-	const permissionType = (this.getNodeParameter('permissionType', 0) || '') as string;
+	const permissionType = (this.getNodeParameter('permissionType', _itemIndex ?? 0) || '') as string;
 	if (permissionType) body.permissionType = permissionType;
-	const principal = (this.getNodeParameter('principal', 0) || '') as string;
+	const principal = (this.getNodeParameter('principal', _itemIndex ?? 0) || '') as string;
 	if (principal) body.principal = principal;
 
 	const data = (await client.httpPost(

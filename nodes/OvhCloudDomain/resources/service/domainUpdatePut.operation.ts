@@ -61,14 +61,14 @@ export function description(displayOptions: IDisplayOptions): INodeProperties[] 
  * HTTP method: PUT
  * Endpoint: /domain/{serviceName}
  */
-export async function execute(this: IExecuteFunctions, itemIndex: number): Promise<INodeExecutionData[]> {
+export async function execute(this: IExecuteFunctions, _itemIndex: number): Promise<INodeExecutionData[]> {
 	const client = new ApiClient(this);
-		const serviceName = this.getNodeParameter('serviceName', itemIndex) as string;
+		const serviceName = this.getNodeParameter('serviceName', _itemIndex) as string;
 
 	const body: IDataObject = {};
-		const nameServerType = this.getNodeParameter('nameServerType', itemIndex, '') as string;
+		const nameServerType = this.getNodeParameter('nameServerType', _itemIndex, '') as string;
 		if (nameServerType !== '') body['nameServerType'] = nameServerType;
-		const transferLockStatus = this.getNodeParameter('transferLockStatus', itemIndex, '') as string;
+		const transferLockStatus = this.getNodeParameter('transferLockStatus', _itemIndex, '') as string;
 		if (transferLockStatus !== '') body['transferLockStatus'] = transferLockStatus;
 
 	const data = (await client.httpPut(`/domain/${encodeURIComponent(serviceName)}`, body)) as IDataObject;

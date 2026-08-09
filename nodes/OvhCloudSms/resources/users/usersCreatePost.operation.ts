@@ -47,10 +47,10 @@ export function description(displayOptions: IDisplayOptions): INodeProperties[] 
  * HTTP method: POST
  * Endpoint: /sms/{serviceName}/users
  */
-export async function execute(this: IExecuteFunctions): Promise<INodeExecutionData[]> {
-	const serviceName = this.getNodeParameter('serviceName', 0, '', { extractValue: true }) as string;
-	const login = this.getNodeParameter('login', 0) as string;
-	const password = this.getNodeParameter('password', 0) as string;
+export async function execute(this: IExecuteFunctions, _itemIndex?: number): Promise<INodeExecutionData[]> {
+	const serviceName = this.getNodeParameter('serviceName', _itemIndex ?? 0, '', { extractValue: true }) as string;
+	const login = this.getNodeParameter('login', _itemIndex ?? 0) as string;
+	const password = this.getNodeParameter('password', _itemIndex ?? 0) as string;
 	const body: IDataObject = {};
 	body['login'] = login;
 	body['password'] = password;

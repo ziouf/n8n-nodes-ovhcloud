@@ -420,83 +420,83 @@ export async function execute(
 
 	switch (operation) {
 		case 'NashaPartitionAccessCreate':
-			return executeNashaPartitionAccessCreatePost.call(this, itemIndex);
+			return executeNashaPartitionAccessCreatePost.call(this, itemIndex ?? 0);
 		case 'DedicatedNashaUpdate':
-			return executeDedicatedNashaUpdatePut.call(this, itemIndex);
+			return executeDedicatedNashaUpdatePut.call(this, itemIndex ?? 0);
 		case 'DedicatedNashaPartitionUpdate':
-			return executeDedicatedNashaPartitionUpdatePut.call(this, itemIndex);
+			return executeDedicatedNashaPartitionUpdatePut.call(this, itemIndex ?? 0);
 		case 'DedicatedNashaTerminateCreate':
-			return executeDedicatedNashaTerminateCreatePost.call(this, itemIndex);
+			return executeDedicatedNashaTerminateCreatePost.call(this, itemIndex ?? 0);
 		case 'DedicatedNashaConfirmterminationCreate':
-			return executeDedicatedNashaConfirmterminationCreatePost.call(this, itemIndex);
+			return executeDedicatedNashaConfirmterminationCreatePost.call(this, itemIndex ?? 0);
 		case 'DedicatedNashaPartitionCreate':
-			return executeDedicatedNashaPartitionCreatePost.call(this, itemIndex);
+			return executeDedicatedNashaPartitionCreatePost.call(this, itemIndex ?? 0);
 		case 'NashaPartitionCustomsnapshotCreate':
-			return executeNashaPartitionCustomsnapshotCreatePost.call(this, itemIndex);
+			return executeNashaPartitionCustomsnapshotCreatePost.call(this, itemIndex ?? 0);
 		case 'NashaPartitionQuotaDelete':
-			return executeNashaPartitionQuotaDeleteDelete.call(this, itemIndex);
+			return executeNashaPartitionQuotaDeleteDelete.call(this, itemIndex ?? 0);
 		case 'NashaPartitionCustomsnapshotDelete':
-			return executeNashaPartitionCustomsnapshotDeleteDelete.call(this, itemIndex);
+			return executeNashaPartitionCustomsnapshotDeleteDelete.call(this, itemIndex ?? 0);
 		case 'NashaPartitionSnapshotDelete':
-			return executeNashaPartitionSnapshotDeleteDelete.call(this, itemIndex);
+			return executeNashaPartitionSnapshotDeleteDelete.call(this, itemIndex ?? 0);
 		case 'NashaPartitionAccessDelete':
-			return executeNashaPartitionAccessDeleteDelete.call(this, itemIndex);
+			return executeNashaPartitionAccessDeleteDelete.call(this, itemIndex ?? 0);
 		case 'DedicatedNashaPartitionDelete':
-			return executeDedicatedNashaPartitionDeleteDelete.call(this, itemIndex);
+			return executeDedicatedNashaPartitionDeleteDelete.call(this, itemIndex ?? 0);
 		case 'NashaPartitionAccessGet':
-			return executeNashaPartitionAccessGetGet.call(this, itemIndex);
+			return executeNashaPartitionAccessGetGet.call(this, itemIndex ?? 0);
 		case 'NashaPartitionAuthorizableipsGet':
-			return executeNashaPartitionAuthorizableipsGetGet.call(this, itemIndex);
+			return executeNashaPartitionAuthorizableipsGetGet.call(this, itemIndex ?? 0);
 		case 'NashaPartitionAuthorizableblocksGet':
-			return executeNashaPartitionAuthorizableblocksGetGet.call(this, itemIndex);
+			return executeNashaPartitionAuthorizableblocksGetGet.call(this, itemIndex ?? 0);
 		case 'NashaPartitionTemplateusageGet':
-			return executeNashaPartitionTemplateusageGetGet.call(this, itemIndex);
+			return executeNashaPartitionTemplateusageGetGet.call(this, itemIndex ?? 0);
 		case 'NashaPartitionCustomsnapshotGet':
-			return executeNashaPartitionCustomsnapshotGetGet.call(this, itemIndex);
+			return executeNashaPartitionCustomsnapshotGetGet.call(this, itemIndex ?? 0);
 		case 'DedicatedNashaPartitionGet':
-			return executeDedicatedNashaPartitionGetGet.call(this, itemIndex);
+			return executeDedicatedNashaPartitionGetGet.call(this, itemIndex ?? 0);
 		case 'NashaPartitionQuotaGet':
-			return executeNashaPartitionQuotaGetGet.call(this, itemIndex);
+			return executeNashaPartitionQuotaGetGet.call(this, itemIndex ?? 0);
 		case 'NashaPartitionSnapshotGet':
-			return executeNashaPartitionSnapshotGetGet.call(this, itemIndex);
+			return executeNashaPartitionSnapshotGetGet.call(this, itemIndex ?? 0);
 		case 'DedicatedNashaServiceinfosGet':
-			return executeDedicatedNashaServiceinfosGetGet.call(this, itemIndex);
+			return executeDedicatedNashaServiceinfosGetGet.call(this, itemIndex ?? 0);
 		case 'DedicatedNashaGetServicename':
-			return executeDedicatedNashaGetServicenameGet.call(this, itemIndex);
+			return executeDedicatedNashaGetServicenameGet.call(this, itemIndex ?? 0);
 		case 'DedicatedNashaPartitionGetPartitionname':
-			return executeDedicatedNashaPartitionGetPartitionnameGet.call(this, itemIndex);
+			return executeDedicatedNashaPartitionGetPartitionnameGet.call(this, itemIndex ?? 0);
 		case 'NashaPartitionAccessGetIp':
-			return executeNashaPartitionAccessGetIpGet.call(this, itemIndex);
+			return executeNashaPartitionAccessGetIpGet.call(this, itemIndex ?? 0);
 		case 'NashaPartitionCustomsnapshotGetName':
-			return executeNashaPartitionCustomsnapshotGetNameGet.call(this, itemIndex);
+			return executeNashaPartitionCustomsnapshotGetNameGet.call(this, itemIndex ?? 0);
 		case 'NashaPartitionOptionsGet':
-			return executeNashaPartitionOptionsGetGet.call(this, itemIndex);
+			return executeNashaPartitionOptionsGetGet.call(this, itemIndex ?? 0);
 		case 'NashaPartitionQuotaGetUid':
-			return executeNashaPartitionQuotaGetUidGet.call(this, itemIndex);
+			return executeNashaPartitionQuotaGetUidGet.call(this, itemIndex ?? 0);
 		case 'NashaPartitionSnapshotGetSnapshottype':
-			return executeNashaPartitionSnapshotGetSnapshottypeGet.call(this, itemIndex);
+			return executeNashaPartitionSnapshotGetSnapshottypeGet.call(this, itemIndex ?? 0);
 		case 'DedicatedNashaTaskGetTaskid':
-			return executeDedicatedNashaTaskGetTaskidGet.call(this, itemIndex);
+			return executeDedicatedNashaTaskGetTaskidGet.call(this, itemIndex ?? 0);
 		case 'DedicatedNashaChangecontactCreate':
-			return executeDedicatedNashaChangecontactCreatePost.call(this, itemIndex);
+			return executeDedicatedNashaChangecontactCreatePost.call(this, itemIndex ?? 0);
 		case 'DedicatedNashaGet':
-			return executeDedicatedNashaGetGet.call(this, itemIndex);
+			return executeDedicatedNashaGetGet.call(this, itemIndex ?? 0);
 		case 'DedicatedNashaMetricstokenGet':
-			return executeDedicatedNashaMetricstokenGetGet.call(this, itemIndex);
+			return executeDedicatedNashaMetricstokenGetGet.call(this, itemIndex ?? 0);
 		case 'DedicatedNashaUseGet':
-			return executeDedicatedNashaUseGetGet.call(this, itemIndex);
+			return executeDedicatedNashaUseGetGet.call(this, itemIndex ?? 0);
 		case 'NashaPartitionUseGet':
-			return executeNashaPartitionUseGetGet.call(this, itemIndex);
+			return executeNashaPartitionUseGetGet.call(this, itemIndex ?? 0);
 		case 'NashaPartitionSnapshotCreate':
-			return executeNashaPartitionSnapshotCreatePost.call(this, itemIndex);
+			return executeNashaPartitionSnapshotCreatePost.call(this, itemIndex ?? 0);
 		case 'NashaPartitionQuotaCreate':
-			return executeNashaPartitionQuotaCreatePost.call(this, itemIndex);
+			return executeNashaPartitionQuotaCreatePost.call(this, itemIndex ?? 0);
 		case 'NashaPartitionOptionsCreate':
-			return executeNashaPartitionOptionsCreatePost.call(this, itemIndex);
+			return executeNashaPartitionOptionsCreatePost.call(this, itemIndex ?? 0);
 		case 'DedicatedNashaServiceinfosUpdate':
-			return executeDedicatedNashaServiceinfosUpdatePut.call(this, itemIndex);
+			return executeDedicatedNashaServiceinfosUpdatePut.call(this, itemIndex ?? 0);
 		case 'DedicatedNashaTaskGet':
-			return executeDedicatedNashaTaskGetGet.call(this, itemIndex);
+			return executeDedicatedNashaTaskGetGet.call(this, itemIndex ?? 0);
 	}
 
 	throw new Error(`Unsupported operation "${operation}" for resource "/dedicated/nasha"`);

@@ -5287,1148 +5287,1148 @@ export async function execute(
 
 	switch (operation) {
 		case 'cartListGet':
-			return executeCartListGet.call(this, itemIndex);
+			return executeCartListGet.call(this, itemIndex ?? 0);
 		case 'cartCreatePost':
-			return executeCartCreatePost.call(this, itemIndex);
+			return executeCartCreatePost.call(this, itemIndex ?? 0);
 		case 'cartDeleteDelete':
-			return executeCartDeleteDelete.call(this, itemIndex);
+			return executeCartDeleteDelete.call(this, itemIndex ?? 0);
 		case 'cartGetGet':
-			return executeCartGetGet.call(this, itemIndex);
+			return executeCartGetGet.call(this, itemIndex ?? 0);
 		case 'cartUpdatePut':
-			return executeCartUpdatePut.call(this, itemIndex);
+			return executeCartUpdatePut.call(this, itemIndex ?? 0);
 		case 'cartSummaryGet':
-			return executeCartSummaryGet.call(this, itemIndex);
+			return executeCartSummaryGet.call(this, itemIndex ?? 0);
 		case 'cartItemListGet':
-			return executeCartItemListGet.call(this, itemIndex);
+			return executeCartItemListGet.call(this, itemIndex ?? 0);
 		case 'cartItemGetGet':
-			return executeCartItemGetGet.call(this, itemIndex);
+			return executeCartItemGetGet.call(this, itemIndex ?? 0);
 		case 'cartItemUpdatePut':
-			return executeCartItemUpdatePut.call(this, itemIndex);
+			return executeCartItemUpdatePut.call(this, itemIndex ?? 0);
 		case 'cartItemDeleteDelete':
-			return executeCartItemDeleteDelete.call(this, itemIndex);
+			return executeCartItemDeleteDelete.call(this, itemIndex ?? 0);
 		case 'cartItemConfigurationListGet':
-			return executeCartItemConfigurationListGet.call(this, itemIndex);
+			return executeCartItemConfigurationListGet.call(this, itemIndex ?? 0);
 		case 'cartItemConfigurationCreatePost':
-			return executeCartItemConfigurationCreatePost.call(this, itemIndex);
+			return executeCartItemConfigurationCreatePost.call(this, itemIndex ?? 0);
 		case 'cartItemConfigurationGetGet':
-			return executeCartItemConfigurationGetGet.call(this, itemIndex);
+			return executeCartItemConfigurationGetGet.call(this, itemIndex ?? 0);
 		case 'cartItemConfigurationDeleteDelete':
-			return executeCartItemConfigurationDeleteDelete.call(this, itemIndex);
+			return executeCartItemConfigurationDeleteDelete.call(this, itemIndex ?? 0);
 		case 'cartItemRequiredConfigurationListGet':
-			return executeCartItemRequiredConfigurationListGet.call(this, itemIndex);
+			return executeCartItemRequiredConfigurationListGet.call(this, itemIndex ?? 0);
 		case 'cartCouponListGet':
-			return executeCartCouponListGet.call(this, itemIndex);
+			return executeCartCouponListGet.call(this, itemIndex ?? 0);
 		case 'cartCouponCreatePost':
-			return executeCartCouponCreatePost.call(this, itemIndex);
+			return executeCartCouponCreatePost.call(this, itemIndex ?? 0);
 		case 'cartSupportListGet':
-			return executeCartSupportListGet.call(this, itemIndex);
+			return executeCartSupportListGet.call(this, itemIndex ?? 0);
 		case 'cartSupportCreatePost':
-			return executeCartSupportCreatePost.call(this, itemIndex);
+			return executeCartSupportCreatePost.call(this, itemIndex ?? 0);
 		case 'cartCheckoutGet':
-			return executeCartCheckoutGet.call(this, itemIndex);
+			return executeCartCheckoutGet.call(this, itemIndex ?? 0);
 		case 'cartCheckoutPost':
-			return executeCartCheckoutPost.call(this, itemIndex);
+			return executeCartCheckoutPost.call(this, itemIndex ?? 0);
 		case 'cartAssignPost':
-			return executeCartAssignPost.call(this, itemIndex);
+			return executeCartAssignPost.call(this, itemIndex ?? 0);
 		case 'cartCouponDelete':
-			return executeCartCouponDelete.call(this, itemIndex);
+			return executeCartCouponDelete.call(this, itemIndex ?? 0);
 		case 'cartItemConfigurationUpdatePut':
-			return executeCartItemConfigurationUpdatePut.call(this, itemIndex);
+			return executeCartItemConfigurationUpdatePut.call(this, itemIndex ?? 0);
 		case 'cartLicenseHycuGET':
-			return executeCartLicenseHycuGET.call(this, itemIndex);
+			return executeCartLicenseHycuGET.call(this, itemIndex ?? 0);
 		case 'cartLicenseHycuPOST':
-			return executeCartLicenseHycuPOST.call(this, itemIndex);
+			return executeCartLicenseHycuPOST.call(this, itemIndex ?? 0);
 		case 'cartLicensePleskGET':
-			return executeCartLicensePleskGET.call(this, itemIndex);
+			return executeCartLicensePleskGET.call(this, itemIndex ?? 0);
 		case 'cartLicensePleskPOST':
-			return executeCartLicensePleskPOST.call(this, itemIndex);
+			return executeCartLicensePleskPOST.call(this, itemIndex ?? 0);
 		case 'cartLicensePleskOptionsGET':
-			return executeCartLicensePleskOptionsGET.call(this, itemIndex);
+			return executeCartLicensePleskOptionsGET.call(this, itemIndex ?? 0);
 		case 'cartLicensePleskOptionsPOST':
-			return executeCartLicensePleskOptionsPOST.call(this, itemIndex);
+			return executeCartLicensePleskOptionsPOST.call(this, itemIndex ?? 0);
 		case 'cartLicenseSqlServerGET':
-			return executeCartLicenseSqlServerGET.call(this, itemIndex);
+			return executeCartLicenseSqlServerGET.call(this, itemIndex ?? 0);
 		case 'cartLicenseSqlServerPOST':
-			return executeCartLicenseSqlServerPOST.call(this, itemIndex);
+			return executeCartLicenseSqlServerPOST.call(this, itemIndex ?? 0);
 		case 'cartLicenseWindowsGET':
-			return executeCartLicenseWindowsGET.call(this, itemIndex);
+			return executeCartLicenseWindowsGET.call(this, itemIndex ?? 0);
 		case 'cartLicenseWindowsPOST':
-			return executeCartLicenseWindowsPOST.call(this, itemIndex);
+			return executeCartLicenseWindowsPOST.call(this, itemIndex ?? 0);
 		case 'cartLicensecPanelGET':
-			return executeCartLicensecPanelGET.call(this, itemIndex);
+			return executeCartLicensecPanelGET.call(this, itemIndex ?? 0);
 		case 'cartLicensecPanelPOST':
-			return executeCartLicensecPanelPOST.call(this, itemIndex);
+			return executeCartLicensecPanelPOST.call(this, itemIndex ?? 0);
 		case 'cartLogsGET':
-			return executeCartLogsGET.call(this, itemIndex);
+			return executeCartLogsGET.call(this, itemIndex ?? 0);
 		case 'cartLogsPOST':
-			return executeCartLogsPOST.call(this, itemIndex);
+			return executeCartLogsPOST.call(this, itemIndex ?? 0);
 		case 'cartLogsOptionsGET':
-			return executeCartLogsOptionsGET.call(this, itemIndex);
+			return executeCartLogsOptionsGET.call(this, itemIndex ?? 0);
 		case 'cartLogsOptionsPOST':
-			return executeCartLogsOptionsPOST.call(this, itemIndex);
+			return executeCartLogsOptionsPOST.call(this, itemIndex ?? 0);
 		case 'cartManagedCMSGET':
-			return executeCartManagedCMSGET.call(this, itemIndex);
+			return executeCartManagedCMSGET.call(this, itemIndex ?? 0);
 		case 'cartManagedCMSPOST':
-			return executeCartManagedCMSPOST.call(this, itemIndex);
+			return executeCartManagedCMSPOST.call(this, itemIndex ?? 0);
 		case 'cartManagedCMSOptionsGET':
-			return executeCartManagedCMSOptionsGET.call(this, itemIndex);
+			return executeCartManagedCMSOptionsGET.call(this, itemIndex ?? 0);
 		case 'cartManagedCMSOptionsPOST':
-			return executeCartManagedCMSOptionsPOST.call(this, itemIndex);
+			return executeCartManagedCMSOptionsPOST.call(this, itemIndex ?? 0);
 		case 'cartManagedServicesGET':
-			return executeCartManagedServicesGET.call(this, itemIndex);
+			return executeCartManagedServicesGET.call(this, itemIndex ?? 0);
 		case 'cartManagedServicesPOST':
-			return executeCartManagedServicesPOST.call(this, itemIndex);
+			return executeCartManagedServicesPOST.call(this, itemIndex ?? 0);
 		case 'cartManagedServicesOptionsGET':
-			return executeCartManagedServicesOptionsGET.call(this, itemIndex);
+			return executeCartManagedServicesOptionsGET.call(this, itemIndex ?? 0);
 		case 'cartManagedServicesOptionsPOST':
-			return executeCartManagedServicesOptionsPOST.call(this, itemIndex);
+			return executeCartManagedServicesOptionsPOST.call(this, itemIndex ?? 0);
 		case 'cartMetricsGET':
-			return executeCartMetricsGET.call(this, itemIndex);
+			return executeCartMetricsGET.call(this, itemIndex ?? 0);
 		case 'cartMetricsPOST':
-			return executeCartMetricsPOST.call(this, itemIndex);
+			return executeCartMetricsPOST.call(this, itemIndex ?? 0);
 		case 'cartMetricsOptionsGET':
-			return executeCartMetricsOptionsGET.call(this, itemIndex);
+			return executeCartMetricsOptionsGET.call(this, itemIndex ?? 0);
 		case 'cartMetricsOptionsPOST':
-			return executeCartMetricsOptionsPOST.call(this, itemIndex);
+			return executeCartMetricsOptionsPOST.call(this, itemIndex ?? 0);
 		case 'cartMicrosoftGET':
-			return executeCartMicrosoftGET.call(this, itemIndex);
+			return executeCartMicrosoftGET.call(this, itemIndex ?? 0);
 		case 'cartMicrosoftPOST':
-			return executeCartMicrosoftPOST.call(this, itemIndex);
+			return executeCartMicrosoftPOST.call(this, itemIndex ?? 0);
 		case 'cartMicrosoftOptionsGET':
-			return executeCartMicrosoftOptionsGET.call(this, itemIndex);
+			return executeCartMicrosoftOptionsGET.call(this, itemIndex ?? 0);
 		case 'cartMicrosoftOptionsPOST':
-			return executeCartMicrosoftOptionsPOST.call(this, itemIndex);
+			return executeCartMicrosoftOptionsPOST.call(this, itemIndex ?? 0);
 		case 'cartNashaGET':
-			return executeCartNashaGET.call(this, itemIndex);
+			return executeCartNashaGET.call(this, itemIndex ?? 0);
 		case 'cartNashaPOST':
-			return executeCartNashaPOST.call(this, itemIndex);
+			return executeCartNashaPOST.call(this, itemIndex ?? 0);
 		case 'cartNashaOptionsGET':
-			return executeCartNashaOptionsGET.call(this, itemIndex);
+			return executeCartNashaOptionsGET.call(this, itemIndex ?? 0);
 		case 'cartNashaOptionsPOST':
-			return executeCartNashaOptionsPOST.call(this, itemIndex);
+			return executeCartNashaOptionsPOST.call(this, itemIndex ?? 0);
 		case 'cartNetappGET':
-			return executeCartNetappGET.call(this, itemIndex);
+			return executeCartNetappGET.call(this, itemIndex ?? 0);
 		case 'cartNetappPOST':
-			return executeCartNetappPOST.call(this, itemIndex);
+			return executeCartNetappPOST.call(this, itemIndex ?? 0);
 		case 'cartNetappOptionsGET':
-			return executeCartNetappOptionsGET.call(this, itemIndex);
+			return executeCartNetappOptionsGET.call(this, itemIndex ?? 0);
 		case 'cartNetappOptionsPOST':
-			return executeCartNetappOptionsPOST.call(this, itemIndex);
+			return executeCartNetappOptionsPOST.call(this, itemIndex ?? 0);
 		case 'cartNutanixGET':
-			return executeCartNutanixGET.call(this, itemIndex);
+			return executeCartNutanixGET.call(this, itemIndex ?? 0);
 		case 'cartNutanixPOST':
-			return executeCartNutanixPOST.call(this, itemIndex);
+			return executeCartNutanixPOST.call(this, itemIndex ?? 0);
 		case 'cartNutanixOptionsGET':
-			return executeCartNutanixOptionsGET.call(this, itemIndex);
+			return executeCartNutanixOptionsGET.call(this, itemIndex ?? 0);
 		case 'cartNutanixOptionsPOST':
-			return executeCartNutanixOptionsPOST.call(this, itemIndex);
+			return executeCartNutanixOptionsPOST.call(this, itemIndex ?? 0);
 		case 'cartOffice365GET':
-			return executeCartOffice365GET.call(this, itemIndex);
+			return executeCartOffice365GET.call(this, itemIndex ?? 0);
 		case 'cartOffice365POST':
-			return executeCartOffice365POST.call(this, itemIndex);
+			return executeCartOffice365POST.call(this, itemIndex ?? 0);
 		case 'cartOffice365OptionsGET':
-			return executeCartOffice365OptionsGET.call(this, itemIndex);
+			return executeCartOffice365OptionsGET.call(this, itemIndex ?? 0);
 		case 'cartOffice365OptionsPOST':
-			return executeCartOffice365OptionsPOST.call(this, itemIndex);
+			return executeCartOffice365OptionsPOST.call(this, itemIndex ?? 0);
 		case 'cartOffice365PrepaidGET':
-			return executeCartOffice365PrepaidGET.call(this, itemIndex);
+			return executeCartOffice365PrepaidGET.call(this, itemIndex ?? 0);
 		case 'cartOffice365PrepaidPOST':
-			return executeCartOffice365PrepaidPOST.call(this, itemIndex);
+			return executeCartOffice365PrepaidPOST.call(this, itemIndex ?? 0);
 		case 'cartOffice365PrepaidOptionsGET':
-			return executeCartOffice365PrepaidOptionsGET.call(this, itemIndex);
+			return executeCartOffice365PrepaidOptionsGET.call(this, itemIndex ?? 0);
 		case 'cartOffice365PrepaidOptionsPOST':
-			return executeCartOffice365PrepaidOptionsPOST.call(this, itemIndex);
+			return executeCartOffice365PrepaidOptionsPOST.call(this, itemIndex ?? 0);
 		case 'cartOfficePrepaidGET':
-			return executeCartOfficePrepaidGET.call(this, itemIndex);
+			return executeCartOfficePrepaidGET.call(this, itemIndex ?? 0);
 		case 'cartOfficePrepaidPOST':
-			return executeCartOfficePrepaidPOST.call(this, itemIndex);
+			return executeCartOfficePrepaidPOST.call(this, itemIndex ?? 0);
 		case 'cartOfficePrepaidOptionsGET':
-			return executeCartOfficePrepaidOptionsGET.call(this, itemIndex);
+			return executeCartOfficePrepaidOptionsGET.call(this, itemIndex ?? 0);
 		case 'cartOfficePrepaidOptionsPOST':
-			return executeCartOfficePrepaidOptionsPOST.call(this, itemIndex);
+			return executeCartOfficePrepaidOptionsPOST.call(this, itemIndex ?? 0);
 		case 'cartOkmsGET':
-			return executeCartOkmsGET.call(this, itemIndex);
+			return executeCartOkmsGET.call(this, itemIndex ?? 0);
 		case 'cartOkmsPOST':
-			return executeCartOkmsPOST.call(this, itemIndex);
+			return executeCartOkmsPOST.call(this, itemIndex ?? 0);
 		case 'cartOtbGET':
-			return executeCartOtbGET.call(this, itemIndex);
+			return executeCartOtbGET.call(this, itemIndex ?? 0);
 		case 'cartOtbPOST':
-			return executeCartOtbPOST.call(this, itemIndex);
+			return executeCartOtbPOST.call(this, itemIndex ?? 0);
 		case 'cartOtbOptionsGET':
-			return executeCartOtbOptionsGET.call(this, itemIndex);
+			return executeCartOtbOptionsGET.call(this, itemIndex ?? 0);
 		case 'cartOtbOptionsPOST':
-			return executeCartOtbOptionsPOST.call(this, itemIndex);
+			return executeCartOtbOptionsPOST.call(this, itemIndex ?? 0);
 		case 'cartOtbResellerGET':
-			return executeCartOtbResellerGET.call(this, itemIndex);
+			return executeCartOtbResellerGET.call(this, itemIndex ?? 0);
 		case 'cartOtbResellerPOST':
-			return executeCartOtbResellerPOST.call(this, itemIndex);
+			return executeCartOtbResellerPOST.call(this, itemIndex ?? 0);
 		case 'cartOtbResellerOptionsGET':
-			return executeCartOtbResellerOptionsGET.call(this, itemIndex);
+			return executeCartOtbResellerOptionsGET.call(this, itemIndex ?? 0);
 		case 'cartOtbResellerOptionsPOST':
-			return executeCartOtbResellerOptionsPOST.call(this, itemIndex);
+			return executeCartOtbResellerOptionsPOST.call(this, itemIndex ?? 0);
 		case 'cartOvhCloudConnectGET':
-			return executeCartOvhCloudConnectGET.call(this, itemIndex);
+			return executeCartOvhCloudConnectGET.call(this, itemIndex ?? 0);
 		case 'cartOvhCloudConnectPOST':
-			return executeCartOvhCloudConnectPOST.call(this, itemIndex);
+			return executeCartOvhCloudConnectPOST.call(this, itemIndex ?? 0);
 		case 'cartPaasmonGET':
-			return executeCartPaasmonGET.call(this, itemIndex);
+			return executeCartPaasmonGET.call(this, itemIndex ?? 0);
 		case 'cartPaasmonPOST':
-			return executeCartPaasmonPOST.call(this, itemIndex);
+			return executeCartPaasmonPOST.call(this, itemIndex ?? 0);
 		case 'cartPacksProfessionalServicesGET':
-			return executeCartPacksProfessionalServicesGET.call(this, itemIndex);
+			return executeCartPacksProfessionalServicesGET.call(this, itemIndex ?? 0);
 		case 'cartPacksProfessionalServicesPOST':
-			return executeCartPacksProfessionalServicesPOST.call(this, itemIndex);
+			return executeCartPacksProfessionalServicesPOST.call(this, itemIndex ?? 0);
 		case 'cartPacksProfessionalServicesOptionsGET':
-			return executeCartPacksProfessionalServicesOptionsGET.call(this, itemIndex);
+			return executeCartPacksProfessionalServicesOptionsGET.call(this, itemIndex ?? 0);
 		case 'cartPacksProfessionalServicesOptionsPOST':
-			return executeCartPacksProfessionalServicesOptionsPOST.call(this, itemIndex);
+			return executeCartPacksProfessionalServicesOptionsPOST.call(this, itemIndex ?? 0);
 		case 'cartPowerHostingGET':
-			return executeCartPowerHostingGET.call(this, itemIndex);
+			return executeCartPowerHostingGET.call(this, itemIndex ?? 0);
 		case 'cartPowerHostingPOST':
-			return executeCartPowerHostingPOST.call(this, itemIndex);
+			return executeCartPowerHostingPOST.call(this, itemIndex ?? 0);
 		case 'cartPrivateCloudGET':
-			return executeCartPrivateCloudGET.call(this, itemIndex);
+			return executeCartPrivateCloudGET.call(this, itemIndex ?? 0);
 		case 'cartPrivateCloudPOST':
-			return executeCartPrivateCloudPOST.call(this, itemIndex);
+			return executeCartPrivateCloudPOST.call(this, itemIndex ?? 0);
 		case 'cartPrivateCloudOptionsGET':
-			return executeCartPrivateCloudOptionsGET.call(this, itemIndex);
+			return executeCartPrivateCloudOptionsGET.call(this, itemIndex ?? 0);
 		case 'cartPrivateCloudOptionsPOST':
-			return executeCartPrivateCloudOptionsPOST.call(this, itemIndex);
+			return executeCartPrivateCloudOptionsPOST.call(this, itemIndex ?? 0);
 		case 'cartPrivateCloudCDIGET':
-			return executeCartPrivateCloudCDIGET.call(this, itemIndex);
+			return executeCartPrivateCloudCDIGET.call(this, itemIndex ?? 0);
 		case 'cartPrivateCloudCDIPOST':
-			return executeCartPrivateCloudCDIPOST.call(this, itemIndex);
+			return executeCartPrivateCloudCDIPOST.call(this, itemIndex ?? 0);
 		case 'cartPrivateCloudCDIOptionsGET':
-			return executeCartPrivateCloudCDIOptionsGET.call(this, itemIndex);
+			return executeCartPrivateCloudCDIOptionsGET.call(this, itemIndex ?? 0);
 		case 'cartPrivateCloudCDIOptionsPOST':
-			return executeCartPrivateCloudCDIOptionsPOST.call(this, itemIndex);
+			return executeCartPrivateCloudCDIOptionsPOST.call(this, itemIndex ?? 0);
 		case 'cartPrivateCloudDCGET':
-			return executeCartPrivateCloudDCGET.call(this, itemIndex);
+			return executeCartPrivateCloudDCGET.call(this, itemIndex ?? 0);
 		case 'cartPrivateCloudDCPOST':
-			return executeCartPrivateCloudDCPOST.call(this, itemIndex);
+			return executeCartPrivateCloudDCPOST.call(this, itemIndex ?? 0);
 		case 'cartPrivateCloudDCOptionsGET':
-			return executeCartPrivateCloudDCOptionsGET.call(this, itemIndex);
+			return executeCartPrivateCloudDCOptionsGET.call(this, itemIndex ?? 0);
 		case 'cartPrivateCloudDCOptionsPOST':
-			return executeCartPrivateCloudDCOptionsPOST.call(this, itemIndex);
+			return executeCartPrivateCloudDCOptionsPOST.call(this, itemIndex ?? 0);
 		case 'cartPrivateCloudEnterpriseGET':
-			return executeCartPrivateCloudEnterpriseGET.call(this, itemIndex);
+			return executeCartPrivateCloudEnterpriseGET.call(this, itemIndex ?? 0);
 		case 'cartPrivateCloudEnterprisePOST':
-			return executeCartPrivateCloudEnterprisePOST.call(this, itemIndex);
+			return executeCartPrivateCloudEnterprisePOST.call(this, itemIndex ?? 0);
 		case 'cartPrivateCloudEnterpriseOptionsGET':
-			return executeCartPrivateCloudEnterpriseOptionsGET.call(this, itemIndex);
+			return executeCartPrivateCloudEnterpriseOptionsGET.call(this, itemIndex ?? 0);
 		case 'cartPrivateCloudEnterpriseOptionsPOST':
-			return executeCartPrivateCloudEnterpriseOptionsPOST.call(this, itemIndex);
+			return executeCartPrivateCloudEnterpriseOptionsPOST.call(this, itemIndex ?? 0);
 		case 'cartPrivateCloudResellerGET':
-			return executeCartPrivateCloudResellerGET.call(this, itemIndex);
+			return executeCartPrivateCloudResellerGET.call(this, itemIndex ?? 0);
 		case 'cartPrivateCloudResellerPOST':
-			return executeCartPrivateCloudResellerPOST.call(this, itemIndex);
+			return executeCartPrivateCloudResellerPOST.call(this, itemIndex ?? 0);
 		case 'cartPrivateCloudResellerOptionsGET':
-			return executeCartPrivateCloudResellerOptionsGET.call(this, itemIndex);
+			return executeCartPrivateCloudResellerOptionsGET.call(this, itemIndex ?? 0);
 		case 'cartPrivateCloudResellerOptionsPOST':
-			return executeCartPrivateCloudResellerOptionsPOST.call(this, itemIndex);
+			return executeCartPrivateCloudResellerOptionsPOST.call(this, itemIndex ?? 0);
 		case 'cartPrivateCloudResellerEnterpriseGET':
-			return executeCartPrivateCloudResellerEnterpriseGET.call(this, itemIndex);
+			return executeCartPrivateCloudResellerEnterpriseGET.call(this, itemIndex ?? 0);
 		case 'cartPrivateCloudResellerEnterprisePOST':
-			return executeCartPrivateCloudResellerEnterprisePOST.call(this, itemIndex);
+			return executeCartPrivateCloudResellerEnterprisePOST.call(this, itemIndex ?? 0);
 		case 'cartPrivateCloudResellerEnterpriseOptionsGET':
-			return executeCartPrivateCloudResellerEnterpriseOptionsGET.call(this, itemIndex);
+			return executeCartPrivateCloudResellerEnterpriseOptionsGET.call(this, itemIndex ?? 0);
 		case 'cartPrivateCloudResellerEnterpriseOptionsPOST':
-			return executeCartPrivateCloudResellerEnterpriseOptionsPOST.call(this, itemIndex);
+			return executeCartPrivateCloudResellerEnterpriseOptionsPOST.call(this, itemIndex ?? 0);
 		case 'cartPrivateCloudSDDCGET':
-			return executeCartPrivateCloudSDDCGET.call(this, itemIndex);
+			return executeCartPrivateCloudSDDCGET.call(this, itemIndex ?? 0);
 		case 'cartPrivateCloudSDDCPOST':
-			return executeCartPrivateCloudSDDCPOST.call(this, itemIndex);
+			return executeCartPrivateCloudSDDCPOST.call(this, itemIndex ?? 0);
 		case 'cartPrivateCloudSDDCOptionsGET':
-			return executeCartPrivateCloudSDDCOptionsGET.call(this, itemIndex);
+			return executeCartPrivateCloudSDDCOptionsGET.call(this, itemIndex ?? 0);
 		case 'cartPrivateCloudSDDCOptionsPOST':
-			return executeCartPrivateCloudSDDCOptionsPOST.call(this, itemIndex);
+			return executeCartPrivateCloudSDDCOptionsPOST.call(this, itemIndex ?? 0);
 		case 'cartPrivateSQLGET':
-			return executeCartPrivateSQLGET.call(this, itemIndex);
+			return executeCartPrivateSQLGET.call(this, itemIndex ?? 0);
 		case 'cartPrivateSQLPOST':
-			return executeCartPrivateSQLPOST.call(this, itemIndex);
+			return executeCartPrivateSQLPOST.call(this, itemIndex ?? 0);
 		case 'cartResellerGET':
-			return executeCartResellerGET.call(this, itemIndex);
+			return executeCartResellerGET.call(this, itemIndex ?? 0);
 		case 'cartResellerPOST':
-			return executeCartResellerPOST.call(this, itemIndex);
+			return executeCartResellerPOST.call(this, itemIndex ?? 0);
 		case 'cartSharepointGET':
-			return executeCartSharepointGET.call(this, itemIndex);
+			return executeCartSharepointGET.call(this, itemIndex ?? 0);
 		case 'cartSharepointPOST':
-			return executeCartSharepointPOST.call(this, itemIndex);
+			return executeCartSharepointPOST.call(this, itemIndex ?? 0);
 		case 'cartSharepointOptionsGET':
-			return executeCartSharepointOptionsGET.call(this, itemIndex);
+			return executeCartSharepointOptionsGET.call(this, itemIndex ?? 0);
 		case 'cartSharepointOptionsPOST':
-			return executeCartSharepointOptionsPOST.call(this, itemIndex);
+			return executeCartSharepointOptionsPOST.call(this, itemIndex ?? 0);
 		case 'cartSmsGET':
-			return executeCartSmsGET.call(this, itemIndex);
+			return executeCartSmsGET.call(this, itemIndex ?? 0);
 		case 'cartSmsPOST':
-			return executeCartSmsPOST.call(this, itemIndex);
+			return executeCartSmsPOST.call(this, itemIndex ?? 0);
 		case 'cartSncNetworkServicesGET':
-			return executeCartSncNetworkServicesGET.call(this, itemIndex);
+			return executeCartSncNetworkServicesGET.call(this, itemIndex ?? 0);
 		case 'cartSncNetworkServicesPOST':
-			return executeCartSncNetworkServicesPOST.call(this, itemIndex);
+			return executeCartSncNetworkServicesPOST.call(this, itemIndex ?? 0);
 		case 'cartSncNetworkServicesOptionsGET':
-			return executeCartSncNetworkServicesOptionsGET.call(this, itemIndex);
+			return executeCartSncNetworkServicesOptionsGET.call(this, itemIndex ?? 0);
 		case 'cartSncNetworkServicesOptionsPOST':
-			return executeCartSncNetworkServicesOptionsPOST.call(this, itemIndex);
+			return executeCartSncNetworkServicesOptionsPOST.call(this, itemIndex ?? 0);
 		case 'cartSslComodoGET':
-			return executeCartSslComodoGET.call(this, itemIndex);
+			return executeCartSslComodoGET.call(this, itemIndex ?? 0);
 		case 'cartSslComodoPOST':
-			return executeCartSslComodoPOST.call(this, itemIndex);
+			return executeCartSslComodoPOST.call(this, itemIndex ?? 0);
 		case 'cartSslComodoOptionsGET':
-			return executeCartSslComodoOptionsGET.call(this, itemIndex);
+			return executeCartSslComodoOptionsGET.call(this, itemIndex ?? 0);
 		case 'cartSslComodoOptionsPOST':
-			return executeCartSslComodoOptionsPOST.call(this, itemIndex);
+			return executeCartSslComodoOptionsPOST.call(this, itemIndex ?? 0);
 		case 'cartSslGatewayGET':
-			return executeCartSslGatewayGET.call(this, itemIndex);
+			return executeCartSslGatewayGET.call(this, itemIndex ?? 0);
 		case 'cartSslGatewayPOST':
-			return executeCartSslGatewayPOST.call(this, itemIndex);
+			return executeCartSslGatewayPOST.call(this, itemIndex ?? 0);
 		case 'cartSslGatewayOptionsGET':
-			return executeCartSslGatewayOptionsGET.call(this, itemIndex);
+			return executeCartSslGatewayOptionsGET.call(this, itemIndex ?? 0);
 		case 'cartSslGatewayOptionsPOST':
-			return executeCartSslGatewayOptionsPOST.call(this, itemIndex);
+			return executeCartSslGatewayOptionsPOST.call(this, itemIndex ?? 0);
 		case 'cartTelephonyGET':
-			return executeCartTelephonyGET.call(this, itemIndex);
+			return executeCartTelephonyGET.call(this, itemIndex ?? 0);
 		case 'cartTelephonyPOST':
-			return executeCartTelephonyPOST.call(this, itemIndex);
+			return executeCartTelephonyPOST.call(this, itemIndex ?? 0);
 		case 'cartTelephonyOptionsGET':
-			return executeCartTelephonyOptionsGET.call(this, itemIndex);
+			return executeCartTelephonyOptionsGET.call(this, itemIndex ?? 0);
 		case 'cartTelephonyOptionsPOST':
-			return executeCartTelephonyOptionsPOST.call(this, itemIndex);
+			return executeCartTelephonyOptionsPOST.call(this, itemIndex ?? 0);
 		case 'cartVdiGET':
-			return executeCartVdiGET.call(this, itemIndex);
+			return executeCartVdiGET.call(this, itemIndex ?? 0);
 		case 'cartVdiPOST':
-			return executeCartVdiPOST.call(this, itemIndex);
+			return executeCartVdiPOST.call(this, itemIndex ?? 0);
 		case 'cartVdiOptionsGET':
-			return executeCartVdiOptionsGET.call(this, itemIndex);
+			return executeCartVdiOptionsGET.call(this, itemIndex ?? 0);
 		case 'cartVdiOptionsPOST':
-			return executeCartVdiOptionsPOST.call(this, itemIndex);
+			return executeCartVdiOptionsPOST.call(this, itemIndex ?? 0);
 		case 'cartVeeamEnterpriseGET':
-			return executeCartVeeamEnterpriseGET.call(this, itemIndex);
+			return executeCartVeeamEnterpriseGET.call(this, itemIndex ?? 0);
 		case 'cartVeeamEnterprisePOST':
-			return executeCartVeeamEnterprisePOST.call(this, itemIndex);
+			return executeCartVeeamEnterprisePOST.call(this, itemIndex ?? 0);
 		case 'cartVeeamEnterpriseOptionsGET':
-			return executeCartVeeamEnterpriseOptionsGET.call(this, itemIndex);
+			return executeCartVeeamEnterpriseOptionsGET.call(this, itemIndex ?? 0);
 		case 'cartVeeamEnterpriseOptionsPOST':
-			return executeCartVeeamEnterpriseOptionsPOST.call(this, itemIndex);
+			return executeCartVeeamEnterpriseOptionsPOST.call(this, itemIndex ?? 0);
 		case 'cartVeeamccGET':
-			return executeCartVeeamccGET.call(this, itemIndex);
+			return executeCartVeeamccGET.call(this, itemIndex ?? 0);
 		case 'cartVeeamccPOST':
-			return executeCartVeeamccPOST.call(this, itemIndex);
+			return executeCartVeeamccPOST.call(this, itemIndex ?? 0);
 		case 'cartVeeamccOptionsGET':
-			return executeCartVeeamccOptionsGET.call(this, itemIndex);
+			return executeCartVeeamccOptionsGET.call(this, itemIndex ?? 0);
 		case 'cartVeeamccOptionsPOST':
-			return executeCartVeeamccOptionsPOST.call(this, itemIndex);
+			return executeCartVeeamccOptionsPOST.call(this, itemIndex ?? 0);
 		case 'cartVideocenterGET':
-			return executeCartVideocenterGET.call(this, itemIndex);
+			return executeCartVideocenterGET.call(this, itemIndex ?? 0);
 		case 'cartVideocenterPOST':
-			return executeCartVideocenterPOST.call(this, itemIndex);
+			return executeCartVideocenterPOST.call(this, itemIndex ?? 0);
 		case 'cartVideocenterOptionsGET':
-			return executeCartVideocenterOptionsGET.call(this, itemIndex);
+			return executeCartVideocenterOptionsGET.call(this, itemIndex ?? 0);
 		case 'cartVideocenterOptionsPOST':
-			return executeCartVideocenterOptionsPOST.call(this, itemIndex);
+			return executeCartVideocenterOptionsPOST.call(this, itemIndex ?? 0);
 		case 'cartVmwareCloudDirectorGET':
-			return executeCartVmwareCloudDirectorGET.call(this, itemIndex);
+			return executeCartVmwareCloudDirectorGET.call(this, itemIndex ?? 0);
 		case 'cartVmwareCloudDirectorPOST':
-			return executeCartVmwareCloudDirectorPOST.call(this, itemIndex);
+			return executeCartVmwareCloudDirectorPOST.call(this, itemIndex ?? 0);
 		case 'cartVmwareCloudDirectorOptionsGET':
-			return executeCartVmwareCloudDirectorOptionsGET.call(this, itemIndex);
+			return executeCartVmwareCloudDirectorOptionsGET.call(this, itemIndex ?? 0);
 		case 'cartVmwareCloudDirectorOptionsPOST':
-			return executeCartVmwareCloudDirectorOptionsPOST.call(this, itemIndex);
+			return executeCartVmwareCloudDirectorOptionsPOST.call(this, itemIndex ?? 0);
 		case 'cartVmwareCloudDirectorBackupGET':
-			return executeCartVmwareCloudDirectorBackupGET.call(this, itemIndex);
+			return executeCartVmwareCloudDirectorBackupGET.call(this, itemIndex ?? 0);
 		case 'cartVmwareCloudDirectorBackupPOST':
-			return executeCartVmwareCloudDirectorBackupPOST.call(this, itemIndex);
+			return executeCartVmwareCloudDirectorBackupPOST.call(this, itemIndex ?? 0);
 		case 'cartVmwareCloudDirectorBackupOptionsGET':
-			return executeCartVmwareCloudDirectorBackupOptionsGET.call(this, itemIndex);
+			return executeCartVmwareCloudDirectorBackupOptionsGET.call(this, itemIndex ?? 0);
 		case 'cartVmwareCloudDirectorBackupOptionsPOST':
-			return executeCartVmwareCloudDirectorBackupOptionsPOST.call(this, itemIndex);
+			return executeCartVmwareCloudDirectorBackupOptionsPOST.call(this, itemIndex ?? 0);
 		case 'cartVpsGET':
-			return executeCartVpsGET.call(this, itemIndex);
+			return executeCartVpsGET.call(this, itemIndex ?? 0);
 		case 'cartVpsPOST':
-			return executeCartVpsPOST.call(this, itemIndex);
+			return executeCartVpsPOST.call(this, itemIndex ?? 0);
 		case 'cartVpsOptionsGET':
-			return executeCartVpsOptionsGET.call(this, itemIndex);
+			return executeCartVpsOptionsGET.call(this, itemIndex ?? 0);
 		case 'cartVpsOptionsPOST':
-			return executeCartVpsOptionsPOST.call(this, itemIndex);
+			return executeCartVpsOptionsPOST.call(this, itemIndex ?? 0);
 		case 'cartVrackGET':
-			return executeCartVrackGET.call(this, itemIndex);
+			return executeCartVrackGET.call(this, itemIndex ?? 0);
 		case 'cartVrackPOST':
-			return executeCartVrackPOST.call(this, itemIndex);
+			return executeCartVrackPOST.call(this, itemIndex ?? 0);
 		case 'cartVrackOptionsGET':
-			return executeCartVrackOptionsGET.call(this, itemIndex);
+			return executeCartVrackOptionsGET.call(this, itemIndex ?? 0);
 		case 'cartVrackOptionsPOST':
-			return executeCartVrackOptionsPOST.call(this, itemIndex);
+			return executeCartVrackOptionsPOST.call(this, itemIndex ?? 0);
 		case 'cartVrackResellerGET':
-			return executeCartVrackResellerGET.call(this, itemIndex);
+			return executeCartVrackResellerGET.call(this, itemIndex ?? 0);
 		case 'cartVrackResellerPOST':
-			return executeCartVrackResellerPOST.call(this, itemIndex);
+			return executeCartVrackResellerPOST.call(this, itemIndex ?? 0);
 		case 'cartVrackServicesGET':
-			return executeCartVrackServicesGET.call(this, itemIndex);
+			return executeCartVrackServicesGET.call(this, itemIndex ?? 0);
 		case 'cartVrackServicesPOST':
-			return executeCartVrackServicesPOST.call(this, itemIndex);
+			return executeCartVrackServicesPOST.call(this, itemIndex ?? 0);
 		case 'cartWebHostingGET':
-			return executeCartWebHostingGET.call(this, itemIndex);
+			return executeCartWebHostingGET.call(this, itemIndex ?? 0);
 		case 'cartWebHostingPOST':
-			return executeCartWebHostingPOST.call(this, itemIndex);
+			return executeCartWebHostingPOST.call(this, itemIndex ?? 0);
 		case 'cartWebHostingOptionsGET':
-			return executeCartWebHostingOptionsGET.call(this, itemIndex);
+			return executeCartWebHostingOptionsGET.call(this, itemIndex ?? 0);
 		case 'cartWebHostingOptionsPOST':
-			return executeCartWebHostingOptionsPOST.call(this, itemIndex);
+			return executeCartWebHostingOptionsPOST.call(this, itemIndex ?? 0);
 		case 'cartXdslGET':
-			return executeCartXdslGET.call(this, itemIndex);
+			return executeCartXdslGET.call(this, itemIndex ?? 0);
 		case 'cartXdslPOST':
-			return executeCartXdslPOST.call(this, itemIndex);
+			return executeCartXdslPOST.call(this, itemIndex ?? 0);
 		case 'cartXdslOptionsGET':
-			return executeCartXdslOptionsGET.call(this, itemIndex);
+			return executeCartXdslOptionsGET.call(this, itemIndex ?? 0);
 		case 'cartXdslOptionsPOST':
-			return executeCartXdslOptionsPOST.call(this, itemIndex);
+			return executeCartXdslOptionsPOST.call(this, itemIndex ?? 0);
 		case 'cartZimbraGET':
-			return executeCartZimbraGET.call(this, itemIndex);
+			return executeCartZimbraGET.call(this, itemIndex ?? 0);
 		case 'cartZimbraPOST':
-			return executeCartZimbraPOST.call(this, itemIndex);
+			return executeCartZimbraPOST.call(this, itemIndex ?? 0);
 		case 'cartZimbraOptionsGET':
-			return executeCartZimbraOptionsGET.call(this, itemIndex);
+			return executeCartZimbraOptionsGET.call(this, itemIndex ?? 0);
 		case 'cartZimbraOptionsPOST':
-			return executeCartZimbraOptionsPOST.call(this, itemIndex);
+			return executeCartZimbraOptionsPOST.call(this, itemIndex ?? 0);
 		case 'cdnDedicatedBackendOptionsListGet':
-			return executecdnDedicatedBackendOptionsListGet.call(this, itemIndex);
+			return executecdnDedicatedBackendOptionsListGet.call(this, itemIndex ?? 0);
 
 		case 'cdnDedicatedBackendOrderCreatePost':
-			return executecdnDedicatedBackendOrderCreatePost.call(this, itemIndex);
+			return executecdnDedicatedBackendOrderCreatePost.call(this, itemIndex ?? 0);
 
 		case 'cdnDedicatedBackendOrderGet':
-			return executecdnDedicatedBackendOrderGet.call(this, itemIndex);
+			return executecdnDedicatedBackendOrderGet.call(this, itemIndex ?? 0);
 
 		case 'cdnDedicatedCacheRuleOptionsListGet':
-			return executecdnDedicatedCacheRuleOptionsListGet.call(this, itemIndex);
+			return executecdnDedicatedCacheRuleOptionsListGet.call(this, itemIndex ?? 0);
 
 		case 'cdnDedicatedCacheRuleOrderCreatePost':
-			return executecdnDedicatedCacheRuleOrderCreatePost.call(this, itemIndex);
+			return executecdnDedicatedCacheRuleOrderCreatePost.call(this, itemIndex ?? 0);
 
 		case 'cdnDedicatedCacheRuleOrderGet':
-			return executecdnDedicatedCacheRuleOrderGet.call(this, itemIndex);
+			return executecdnDedicatedCacheRuleOrderGet.call(this, itemIndex ?? 0);
 
 		case 'cdnDedicatedListGet':
-			return executecdnDedicatedListGet.call(this, itemIndex);
+			return executecdnDedicatedListGet.call(this, itemIndex ?? 0);
 
 		case 'cdnDedicatedNewDurationGet':
-			return executecdnDedicatedNewDurationGet.call(this, itemIndex);
+			return executecdnDedicatedNewDurationGet.call(this, itemIndex ?? 0);
 
 		case 'cdnDedicatedNewOrderCreatePost':
-			return executecdnDedicatedNewOrderCreatePost.call(this, itemIndex);
+			return executecdnDedicatedNewOrderCreatePost.call(this, itemIndex ?? 0);
 
 		case 'cdnDedicatedNewOrderGet':
-			return executecdnDedicatedNewOrderGet.call(this, itemIndex);
+			return executecdnDedicatedNewOrderGet.call(this, itemIndex ?? 0);
 
 		case 'cdnDedicatedQuotaOptionsListGet':
-			return executecdnDedicatedQuotaOptionsListGet.call(this, itemIndex);
+			return executecdnDedicatedQuotaOptionsListGet.call(this, itemIndex ?? 0);
 
 		case 'cdnDedicatedQuotaOrderCreatePost':
-			return executecdnDedicatedQuotaOrderCreatePost.call(this, itemIndex);
+			return executecdnDedicatedQuotaOrderCreatePost.call(this, itemIndex ?? 0);
 
 		case 'cdnDedicatedQuotaOrderGet':
-			return executecdnDedicatedQuotaOrderGet.call(this, itemIndex);
+			return executecdnDedicatedQuotaOrderGet.call(this, itemIndex ?? 0);
 
 		case 'cdnDedicatedServiceOptionsListGet':
-			return executecdnDedicatedServiceOptionsListGet.call(this, itemIndex);
+			return executecdnDedicatedServiceOptionsListGet.call(this, itemIndex ?? 0);
 
 		case 'domainZoneDnsAnycastOptionsListGet':
-			return executedomainZoneDnsAnycastOptionsListGet.call(this, itemIndex);
+			return executedomainZoneDnsAnycastOptionsListGet.call(this, itemIndex ?? 0);
 
 		case 'domainZoneDnsAnycastOrderCreatePost':
-			return executedomainZoneDnsAnycastOrderCreatePost.call(this, itemIndex);
+			return executedomainZoneDnsAnycastOrderCreatePost.call(this, itemIndex ?? 0);
 
 		case 'domainZoneDnsAnycastOrderGet':
-			return executedomainZoneDnsAnycastOrderGet.call(this, itemIndex);
+			return executedomainZoneDnsAnycastOrderGet.call(this, itemIndex ?? 0);
 
 		case 'domainZoneListGet':
-			return executedomainZoneListGet.call(this, itemIndex);
+			return executedomainZoneListGet.call(this, itemIndex ?? 0);
 
 		case 'domainZoneNewOrderCreatePost':
-			return executedomainZoneNewOrderCreatePost.call(this, itemIndex);
+			return executedomainZoneNewOrderCreatePost.call(this, itemIndex ?? 0);
 
 		case 'domainZoneNewOrderGet':
-			return executedomainZoneNewOrderGet.call(this, itemIndex);
+			return executedomainZoneNewOrderGet.call(this, itemIndex ?? 0);
 
 		case 'domainZoneServiceOptionsListGet':
-			return executedomainZoneServiceOptionsListGet.call(this, itemIndex);
+			return executedomainZoneServiceOptionsListGet.call(this, itemIndex ?? 0);
 
 		case 'emailDomainListGet':
-			return executeemailDomainListGet.call(this, itemIndex);
+			return executeemailDomainListGet.call(this, itemIndex ?? 0);
 
 		case 'emailDomainNewDurationGet':
-			return executeemailDomainNewDurationGet.call(this, itemIndex);
+			return executeemailDomainNewDurationGet.call(this, itemIndex ?? 0);
 
 		case 'emailDomainNewOrderCreatePost':
-			return executeemailDomainNewOrderCreatePost.call(this, itemIndex);
+			return executeemailDomainNewOrderCreatePost.call(this, itemIndex ?? 0);
 
 		case 'emailDomainNewOrderGet':
-			return executeemailDomainNewOrderGet.call(this, itemIndex);
+			return executeemailDomainNewOrderGet.call(this, itemIndex ?? 0);
 
 		case 'emailDomainServiceOptionsListGet':
-			return executeemailDomainServiceOptionsListGet.call(this, itemIndex);
+			return executeemailDomainServiceOptionsListGet.call(this, itemIndex ?? 0);
 
 		case 'emailDomainServiceUpgradeOptionsListGet':
-			return executeemailDomainServiceUpgradeOptionsListGet.call(this, itemIndex);
+			return executeemailDomainServiceUpgradeOptionsListGet.call(this, itemIndex ?? 0);
 
 		case 'emailDomainServiceUpgradeOrderCreatePost':
-			return executeemailDomainServiceUpgradeOrderCreatePost.call(this, itemIndex);
+			return executeemailDomainServiceUpgradeOrderCreatePost.call(this, itemIndex ?? 0);
 
 		case 'emailDomainServiceUpgradeOrderGet':
-			return executeemailDomainServiceUpgradeOrderGet.call(this, itemIndex);
+			return executeemailDomainServiceUpgradeOrderGet.call(this, itemIndex ?? 0);
 
 		case 'hostingWebListGet':
-			return executehostingWebListGet.call(this, itemIndex);
+			return executehostingWebListGet.call(this, itemIndex ?? 0);
 
 		case 'hostingWebServiceOptionsListGet':
-			return executehostingWebServiceOptionsListGet.call(this, itemIndex);
+			return executehostingWebServiceOptionsListGet.call(this, itemIndex ?? 0);
 
 		case 'hostingWebServiceUpgradeOptionsListGet':
-			return executehostingWebServiceUpgradeOptionsListGet.call(this, itemIndex);
+			return executehostingWebServiceUpgradeOptionsListGet.call(this, itemIndex ?? 0);
 
 		case 'hostingWebServiceUpgradeOrderCreatePost':
-			return executehostingWebServiceUpgradeOrderCreatePost.call(this, itemIndex);
+			return executehostingWebServiceUpgradeOrderCreatePost.call(this, itemIndex ?? 0);
 
 		case 'hostingWebServiceUpgradeOrderGet':
-			return executehostingWebServiceUpgradeOrderGet.call(this, itemIndex);
+			return executehostingWebServiceUpgradeOrderGet.call(this, itemIndex ?? 0);
 
 
 		case 'catalogPublicGet':
-			return executeCatalogPublicGet.call(this, itemIndex);
+			return executeCatalogPublicGet.call(this, itemIndex ?? 0);
 		case 'catalogPublicOptionsGet':
-			return executeCatalogPublicOptionsGet.call(this, itemIndex);
+			return executeCatalogPublicOptionsGet.call(this, itemIndex ?? 0);
 		case 'domainGet':
-			return executeDomainGet.call(this, itemIndex);
+			return executeDomainGet.call(this, itemIndex ?? 0);
 		case 'domainOptionsGet':
-			return executeDomainOptionsGet.call(this, itemIndex);
+			return executeDomainOptionsGet.call(this, itemIndex ?? 0);
 		case 'ecoGet':
-			return executeEcoGet.call(this, itemIndex);
+			return executeEcoGet.call(this, itemIndex ?? 0);
 		case 'ecoOptionsGet':
-			return executeEcoOptionsGet.call(this, itemIndex);
+			return executeEcoOptionsGet.call(this, itemIndex ?? 0);
 		case 'emailDomainGet':
-			return executeEmailDomainGet.call(this, itemIndex);
+			return executeEmailDomainGet.call(this, itemIndex ?? 0);
 		case 'emailDomainOptionsGet':
-			return executeEmailDomainOptionsGet.call(this, itemIndex);
+			return executeEmailDomainOptionsGet.call(this, itemIndex ?? 0);
 		case 'emailproGet':
-			return executeEmailproGet.call(this, itemIndex);
+			return executeEmailproGet.call(this, itemIndex ?? 0);
 		case 'emailproOptionsGet':
-			return executeEmailproOptionsGet.call(this, itemIndex);
+			return executeEmailproOptionsGet.call(this, itemIndex ?? 0);
 		case 'exchangeGet':
-			return executeExchangeGet.call(this, itemIndex);
+			return executeExchangeGet.call(this, itemIndex ?? 0);
 		case 'exchangeOptionsGet':
-			return executeExchangeOptionsGet.call(this, itemIndex);
+			return executeExchangeOptionsGet.call(this, itemIndex ?? 0);
 		case 'ipLoadbalancingGet':
-			return executeIpLoadbalancingGet.call(this, itemIndex);
+			return executeIpLoadbalancingGet.call(this, itemIndex ?? 0);
 		case 'ipLoadbalancingOptionsGet':
-			return executeIpLoadbalancingOptionsGet.call(this, itemIndex);
+			return executeIpLoadbalancingOptionsGet.call(this, itemIndex ?? 0);
 		case 'licenseHycuGet':
-			return executeLicenseHycuGet.call(this, itemIndex);
+			return executeLicenseHycuGet.call(this, itemIndex ?? 0);
 		case 'licenseHycuOptionsGet':
-			return executeLicenseHycuOptionsGet.call(this, itemIndex);
+			return executeLicenseHycuOptionsGet.call(this, itemIndex ?? 0);
 		case 'licensePleskGet':
-			return executeLicensePleskGet.call(this, itemIndex);
+			return executeLicensePleskGet.call(this, itemIndex ?? 0);
 		case 'licensePleskOptionsGet':
-			return executeLicensePleskOptionsGet.call(this, itemIndex);
+			return executeLicensePleskOptionsGet.call(this, itemIndex ?? 0);
 		case 'licenseSqlServerGet':
-			return executeLicenseSqlServerGet.call(this, itemIndex);
+			return executeLicenseSqlServerGet.call(this, itemIndex ?? 0);
 		case 'licenseSqlServerOptionsGet':
-			return executeLicenseSqlServerOptionsGet.call(this, itemIndex);
+			return executeLicenseSqlServerOptionsGet.call(this, itemIndex ?? 0);
 		case 'licenseWindowsGet':
-			return executeLicenseWindowsGet.call(this, itemIndex);
+			return executeLicenseWindowsGet.call(this, itemIndex ?? 0);
 		case 'licenseWindowsOptionsGet':
-			return executeLicenseWindowsOptionsGet.call(this, itemIndex);
+			return executeLicenseWindowsOptionsGet.call(this, itemIndex ?? 0);
 		case 'licensecPanelGet':
-			return executeLicensecPanelGet.call(this, itemIndex);
+			return executeLicensecPanelGet.call(this, itemIndex ?? 0);
 		case 'licensecPanelOptionsGet':
-			return executeLicensecPanelOptionsGet.call(this, itemIndex);
+			return executeLicensecPanelOptionsGet.call(this, itemIndex ?? 0);
 		case 'logsGet':
-			return executeLogsGet.call(this, itemIndex);
+			return executeLogsGet.call(this, itemIndex ?? 0);
 		case 'logsOptionsGet':
-			return executeLogsOptionsGet.call(this, itemIndex);
+			return executeLogsOptionsGet.call(this, itemIndex ?? 0);
 		case 'nashaGet':
-			return executeNashaGet.call(this, itemIndex);
+			return executeNashaGet.call(this, itemIndex ?? 0);
 		case 'nashaOptionsGet':
-			return executeNashaOptionsGet.call(this, itemIndex);
+			return executeNashaOptionsGet.call(this, itemIndex ?? 0);
 		case 'netappGet':
-			return executeNetappGet.call(this, itemIndex);
+			return executeNetappGet.call(this, itemIndex ?? 0);
 		case 'netappOptionsGet':
-			return executeNetappOptionsGet.call(this, itemIndex);
+			return executeNetappOptionsGet.call(this, itemIndex ?? 0);
 		case 'nutanixGet':
-			return executeNutanixGet.call(this, itemIndex);
+			return executeNutanixGet.call(this, itemIndex ?? 0);
 		case 'nutanixOptionsGet':
-			return executeNutanixOptionsGet.call(this, itemIndex);
+			return executeNutanixOptionsGet.call(this, itemIndex ?? 0);
 		case 'office365PrepaidGet':
-			return executeOffice365PrepaidGet.call(this, itemIndex);
+			return executeOffice365PrepaidGet.call(this, itemIndex ?? 0);
 		case 'office365PrepaidOptionsGet':
-			return executeOffice365PrepaidOptionsGet.call(this, itemIndex);
+			return executeOffice365PrepaidOptionsGet.call(this, itemIndex ?? 0);
 		case 'officePrepaidGet':
-			return executeOfficePrepaidGet.call(this, itemIndex);
+			return executeOfficePrepaidGet.call(this, itemIndex ?? 0);
 		case 'officePrepaidOptionsGet':
-			return executeOfficePrepaidOptionsGet.call(this, itemIndex);
+			return executeOfficePrepaidOptionsGet.call(this, itemIndex ?? 0);
 		case 'okmsGet':
-			return executeOkmsGet.call(this, itemIndex);
+			return executeOkmsGet.call(this, itemIndex ?? 0);
 		case 'okmsOptionsGet':
-			return executeOkmsOptionsGet.call(this, itemIndex);
+			return executeOkmsOptionsGet.call(this, itemIndex ?? 0);
 		case 'ovhCloudConnectGet':
-			return executeOvhCloudConnectGet.call(this, itemIndex);
+			return executeOvhCloudConnectGet.call(this, itemIndex ?? 0);
 		case 'ovhCloudConnectOptionsGet':
-			return executeOvhCloudConnectOptionsGet.call(this, itemIndex);
+			return executeOvhCloudConnectOptionsGet.call(this, itemIndex ?? 0);
 		case 'packsProfessionalServicesGet':
-			return executePacksProfessionalServicesGet.call(this, itemIndex);
+			return executePacksProfessionalServicesGet.call(this, itemIndex ?? 0);
 		case 'packsProfessionalServicesOptionsGet':
-			return executePacksProfessionalServicesOptionsGet.call(this, itemIndex);
+			return executePacksProfessionalServicesOptionsGet.call(this, itemIndex ?? 0);
 		case 'privateCloudGet':
-			return executePrivateCloudGet.call(this, itemIndex);
+			return executePrivateCloudGet.call(this, itemIndex ?? 0);
 		case 'privateCloudOptionsGet':
-			return executePrivateCloudOptionsGet.call(this, itemIndex);
+			return executePrivateCloudOptionsGet.call(this, itemIndex ?? 0);
 		case 'privateCloudEnterpriseGet':
-			return executePrivateCloudEnterpriseGet.call(this, itemIndex);
+			return executePrivateCloudEnterpriseGet.call(this, itemIndex ?? 0);
 		case 'privateCloudEnterpriseOptionsGet':
-			return executePrivateCloudEnterpriseOptionsGet.call(this, itemIndex);
+			return executePrivateCloudEnterpriseOptionsGet.call(this, itemIndex ?? 0);
 		case 'privateSQLGet':
-			return executePrivateSQLGet.call(this, itemIndex);
+			return executePrivateSQLGet.call(this, itemIndex ?? 0);
 		case 'privateSQLOptionsGet':
-			return executePrivateSQLOptionsGet.call(this, itemIndex);
+			return executePrivateSQLOptionsGet.call(this, itemIndex ?? 0);
 		case 'sslGatewayGet':
-			return executeSslGatewayGet.call(this, itemIndex);
+			return executeSslGatewayGet.call(this, itemIndex ?? 0);
 		case 'sslGatewayOptionsGet':
-			return executeSslGatewayOptionsGet.call(this, itemIndex);
+			return executeSslGatewayOptionsGet.call(this, itemIndex ?? 0);
 		case 'telephonyGet':
-			return executeTelephonyGet.call(this, itemIndex);
+			return executeTelephonyGet.call(this, itemIndex ?? 0);
 		case 'telephonyOptionsGet':
-			return executeTelephonyOptionsGet.call(this, itemIndex);
+			return executeTelephonyOptionsGet.call(this, itemIndex ?? 0);
 		case 'vmwareCloudDirectorGet':
-			return executeVmwareCloudDirectorGet.call(this, itemIndex);
+			return executeVmwareCloudDirectorGet.call(this, itemIndex ?? 0);
 		case 'vmwareCloudDirectorOptionsGet':
-			return executeVmwareCloudDirectorOptionsGet.call(this, itemIndex);
+			return executeVmwareCloudDirectorOptionsGet.call(this, itemIndex ?? 0);
 		case 'vmwareCloudDirectorBackupGet':
-			return executeVmwareCloudDirectorBackupGet.call(this, itemIndex);
+			return executeVmwareCloudDirectorBackupGet.call(this, itemIndex ?? 0);
 		case 'vmwareCloudDirectorBackupOptionsGet':
-			return executeVmwareCloudDirectorBackupOptionsGet.call(this, itemIndex);
+			return executeVmwareCloudDirectorBackupOptionsGet.call(this, itemIndex ?? 0);
 		case 'vpsGet':
-			return executeVpsGet.call(this, itemIndex);
+			return executeVpsGet.call(this, itemIndex ?? 0);
 		case 'vpsOptionsGet':
-			return executeVpsOptionsGet.call(this, itemIndex);
+			return executeVpsOptionsGet.call(this, itemIndex ?? 0);
 		case 'webHostingGet':
-			return executeWebHostingGet.call(this, itemIndex);
+			return executeWebHostingGet.call(this, itemIndex ?? 0);
 		case 'webHostingOptionsGet':
-			return executeWebHostingOptionsGet.call(this, itemIndex);
+			return executeWebHostingOptionsGet.call(this, itemIndex ?? 0);
 		case 'webPaaSGet':
-			return executeWebPaaSGet.call(this, itemIndex);
+			return executeWebPaaSGet.call(this, itemIndex ?? 0);
 		case 'webPaaSOptionsGet':
-			return executeWebPaaSOptionsGet.call(this, itemIndex);
+			return executeWebPaaSOptionsGet.call(this, itemIndex ?? 0);
 		case 'zimbraGet':
-			return executeZimbraGet.call(this, itemIndex);
+			return executeZimbraGet.call(this, itemIndex ?? 0);
 		case 'zimbraOptionsGet':
-			return executeZimbraOptionsGet.call(this, itemIndex);
+			return executeZimbraOptionsGet.call(this, itemIndex ?? 0);
 		case 'licensecPanelListGet':
-			return executeLicensecPanelListGet.call(this, itemIndex);
+			return executeLicensecPanelListGet.call(this, itemIndex ?? 0);
 		case 'licensecPanelNewListGet':
-			return executeLicensecPanelNewListGet.call(this, itemIndex);
+			return executeLicensecPanelNewListGet.call(this, itemIndex ?? 0);
 		case 'licensecPanelNewDurationGet':
-			return executeLicensecPanelNewDurationGet.call(this, itemIndex);
+			return executeLicensecPanelNewDurationGet.call(this, itemIndex ?? 0);
 		case 'licensecPanelServiceGet':
-			return executeLicensecPanelServiceGet.call(this, itemIndex);
+			return executeLicensecPanelServiceGet.call(this, itemIndex ?? 0);
 		case 'licensecPanelServiceUpgradeListGet':
-			return executeLicensecPanelServiceUpgradeListGet.call(this, itemIndex);
+			return executeLicensecPanelServiceUpgradeListGet.call(this, itemIndex ?? 0);
 		case 'licensecPanelServiceUpgradeDurationGet':
-			return executeLicensecPanelServiceUpgradeDurationGet.call(this, itemIndex);
+			return executeLicensecPanelServiceUpgradeDurationGet.call(this, itemIndex ?? 0);
 		case 'licensecPanelNewCreatePost':
-			return executeLicensecPanelNewCreatePost.call(this, itemIndex);
+			return executeLicensecPanelNewCreatePost.call(this, itemIndex ?? 0);
 		case 'licensecPanelServiceUpgradeCreatePost':
-			return executeLicensecPanelServiceUpgradeCreatePost.call(this, itemIndex);
+			return executeLicensecPanelServiceUpgradeCreatePost.call(this, itemIndex ?? 0);
 		case 'licenseofficeListGet':
-			return executeLicenseofficeListGet.call(this, itemIndex);
+			return executeLicenseofficeListGet.call(this, itemIndex ?? 0);
 		case 'licenseofficeNewListGet':
-			return executeLicenseofficeNewListGet.call(this, itemIndex);
+			return executeLicenseofficeNewListGet.call(this, itemIndex ?? 0);
 		case 'licenseofficeNewDurationGet':
-			return executeLicenseofficeNewDurationGet.call(this, itemIndex);
+			return executeLicenseofficeNewDurationGet.call(this, itemIndex ?? 0);
 		case 'licenseofficeServiceGet':
-			return executeLicenseofficeServiceGet.call(this, itemIndex);
+			return executeLicenseofficeServiceGet.call(this, itemIndex ?? 0);
 		case 'licenseofficeServiceUpgradeListGet':
-			return executeLicenseofficeServiceUpgradeListGet.call(this, itemIndex);
+			return executeLicenseofficeServiceUpgradeListGet.call(this, itemIndex ?? 0);
 		case 'licenseofficeServiceUpgradeDurationGet':
-			return executeLicenseofficeServiceUpgradeDurationGet.call(this, itemIndex);
+			return executeLicenseofficeServiceUpgradeDurationGet.call(this, itemIndex ?? 0);
 		case 'licenseofficeNewCreatePost':
-			return executeLicenseofficeNewCreatePost.call(this, itemIndex);
+			return executeLicenseofficeNewCreatePost.call(this, itemIndex ?? 0);
 		case 'licenseofficeServiceUpgradeCreatePost':
-			return executeLicenseofficeServiceUpgradeCreatePost.call(this, itemIndex);
+			return executeLicenseofficeServiceUpgradeCreatePost.call(this, itemIndex ?? 0);
 		case 'licensepleskListGet':
-			return executeLicensepleskListGet.call(this, itemIndex);
+			return executeLicensepleskListGet.call(this, itemIndex ?? 0);
 		case 'licensepleskNewListGet':
-			return executeLicensepleskNewListGet.call(this, itemIndex);
+			return executeLicensepleskNewListGet.call(this, itemIndex ?? 0);
 		case 'licensepleskNewDurationGet':
-			return executeLicensepleskNewDurationGet.call(this, itemIndex);
+			return executeLicensepleskNewDurationGet.call(this, itemIndex ?? 0);
 		case 'licensepleskServiceGet':
-			return executeLicensepleskServiceGet.call(this, itemIndex);
+			return executeLicensepleskServiceGet.call(this, itemIndex ?? 0);
 		case 'licensepleskServiceUpgradeListGet':
-			return executeLicensepleskServiceUpgradeListGet.call(this, itemIndex);
+			return executeLicensepleskServiceUpgradeListGet.call(this, itemIndex ?? 0);
 		case 'licensepleskServiceUpgradeDurationGet':
-			return executeLicensepleskServiceUpgradeDurationGet.call(this, itemIndex);
+			return executeLicensepleskServiceUpgradeDurationGet.call(this, itemIndex ?? 0);
 		case 'licensepleskNewCreatePost':
-			return executeLicensepleskNewCreatePost.call(this, itemIndex);
+			return executeLicensepleskNewCreatePost.call(this, itemIndex ?? 0);
 		case 'licensepleskServiceUpgradeCreatePost':
-			return executeLicensepleskServiceUpgradeCreatePost.call(this, itemIndex);
+			return executeLicensepleskServiceUpgradeCreatePost.call(this, itemIndex ?? 0);
 		case 'licensesqlserverListGet':
-			return executeLicensesqlserverListGet.call(this, itemIndex);
+			return executeLicensesqlserverListGet.call(this, itemIndex ?? 0);
 		case 'licensesqlserverNewListGet':
-			return executeLicensesqlserverNewListGet.call(this, itemIndex);
+			return executeLicensesqlserverNewListGet.call(this, itemIndex ?? 0);
 		case 'licensesqlserverNewDurationGet':
-			return executeLicensesqlserverNewDurationGet.call(this, itemIndex);
+			return executeLicensesqlserverNewDurationGet.call(this, itemIndex ?? 0);
 		case 'licensesqlserverServiceGet':
-			return executeLicensesqlserverServiceGet.call(this, itemIndex);
+			return executeLicensesqlserverServiceGet.call(this, itemIndex ?? 0);
 		case 'licensesqlserverServiceUpgradeListGet':
-			return executeLicensesqlserverServiceUpgradeListGet.call(this, itemIndex);
+			return executeLicensesqlserverServiceUpgradeListGet.call(this, itemIndex ?? 0);
 		case 'licensesqlserverServiceUpgradeDurationGet':
-			return executeLicensesqlserverServiceUpgradeDurationGet.call(this, itemIndex);
+			return executeLicensesqlserverServiceUpgradeDurationGet.call(this, itemIndex ?? 0);
 		case 'licensesqlserverNewCreatePost':
-			return executeLicensesqlserverNewCreatePost.call(this, itemIndex);
+			return executeLicensesqlserverNewCreatePost.call(this, itemIndex ?? 0);
 		case 'licensesqlserverServiceUpgradeCreatePost':
-			return executeLicensesqlserverServiceUpgradeCreatePost.call(this, itemIndex);
+			return executeLicensesqlserverServiceUpgradeCreatePost.call(this, itemIndex ?? 0);
 		case 'licensewindowsListGet':
-			return executeLicensewindowsListGet.call(this, itemIndex);
+			return executeLicensewindowsListGet.call(this, itemIndex ?? 0);
 		case 'licensewindowsNewListGet':
-			return executeLicensewindowsNewListGet.call(this, itemIndex);
+			return executeLicensewindowsNewListGet.call(this, itemIndex ?? 0);
 		case 'licensewindowsNewDurationGet':
-			return executeLicensewindowsNewDurationGet.call(this, itemIndex);
+			return executeLicensewindowsNewDurationGet.call(this, itemIndex ?? 0);
 		case 'licensewindowsServiceGet':
-			return executeLicensewindowsServiceGet.call(this, itemIndex);
+			return executeLicensewindowsServiceGet.call(this, itemIndex ?? 0);
 		case 'licensewindowsServiceUpgradeListGet':
-			return executeLicensewindowsServiceUpgradeListGet.call(this, itemIndex);
+			return executeLicensewindowsServiceUpgradeListGet.call(this, itemIndex ?? 0);
 		case 'licensewindowsServiceUpgradeDurationGet':
-			return executeLicensewindowsServiceUpgradeDurationGet.call(this, itemIndex);
+			return executeLicensewindowsServiceUpgradeDurationGet.call(this, itemIndex ?? 0);
 		case 'licensewindowsNewCreatePost':
-			return executeLicensewindowsNewCreatePost.call(this, itemIndex);
+			return executeLicensewindowsNewCreatePost.call(this, itemIndex ?? 0);
 		case 'licensewindowsServiceUpgradeCreatePost':
-			return executeLicensewindowsServiceUpgradeCreatePost.call(this, itemIndex);
+			return executeLicensewindowsServiceUpgradeCreatePost.call(this, itemIndex ?? 0);
 		case 'emailexchangeOrganizationListGet':
-			return executeEmailexchangeOrganizationListGet.call(this, itemIndex);
+			return executeEmailexchangeOrganizationListGet.call(this, itemIndex ?? 0);
 		case 'emailexchangeServiceGet':
-			return executeEmailexchangeServiceGet.call(this, itemIndex);
+			return executeEmailexchangeServiceGet.call(this, itemIndex ?? 0);
 		case 'emailexchangeServiceCreatePost':
-			return executeEmailexchangeServiceCreatePost.call(this, itemIndex);
+			return executeEmailexchangeServiceCreatePost.call(this, itemIndex ?? 0);
 		case 'emailexchangeAccountGet':
-			return executeEmailexchangeAccountGet.call(this, itemIndex);
+			return executeEmailexchangeAccountGet.call(this, itemIndex ?? 0);
 		case 'emailexchangeAccountUpgradeCreatePost':
-			return executeEmailexchangeAccountUpgradeCreatePost.call(this, itemIndex);
+			return executeEmailexchangeAccountUpgradeCreatePost.call(this, itemIndex ?? 0);
 		case 'emailexchangeDiskSpaceCreatePost':
-			return executeEmailexchangeDiskSpaceCreatePost.call(this, itemIndex);
+			return executeEmailexchangeDiskSpaceCreatePost.call(this, itemIndex ?? 0);
 		case 'emailexchangeOutlookCreatePost':
-			return executeEmailexchangeOutlookCreatePost.call(this, itemIndex);
+			return executeEmailexchangeOutlookCreatePost.call(this, itemIndex ?? 0);
 		case 'emailexchangeUpgradeCreatePost':
-			return executeEmailexchangeUpgradeCreatePost.call(this, itemIndex);
+			return executeEmailexchangeUpgradeCreatePost.call(this, itemIndex ?? 0);
 		case 'emailproOrganizationListGet':
-			return executeEmailproOrganizationListGet.call(this, itemIndex);
+			return executeEmailproOrganizationListGet.call(this, itemIndex ?? 0);
 		case 'emailproOrganizationCreatePost':
-			return executeEmailproOrganizationCreatePost.call(this, itemIndex);
+			return executeEmailproOrganizationCreatePost.call(this, itemIndex ?? 0);
 		case 'vpsadditionalDiskListGet':
-			return executeVpsadditionalDiskListGet.call(this, itemIndex);
+			return executeVpsadditionalDiskListGet.call(this, itemIndex ?? 0);
 		case 'vpsadditionalDiskDurationGet':
-			return executeVpsadditionalDiskDurationGet.call(this, itemIndex);
+			return executeVpsadditionalDiskDurationGet.call(this, itemIndex ?? 0);
 		case 'vpsadditionalDiskCreatePost':
-			return executeVpsadditionalDiskCreatePost.call(this, itemIndex);
+			return executeVpsadditionalDiskCreatePost.call(this, itemIndex ?? 0);
 		case 'vpsautomatedBackupListGet':
-			return executeVpsautomatedBackupListGet.call(this, itemIndex);
+			return executeVpsautomatedBackupListGet.call(this, itemIndex ?? 0);
 		case 'vpsautomatedBackupDurationGet':
-			return executeVpsautomatedBackupDurationGet.call(this, itemIndex);
+			return executeVpsautomatedBackupDurationGet.call(this, itemIndex ?? 0);
 		case 'vpsautomatedBackupCreatePost':
-			return executeVpsautomatedBackupCreatePost.call(this, itemIndex);
+			return executeVpsautomatedBackupCreatePost.call(this, itemIndex ?? 0);
 		case 'vpssnapshotListGet':
-			return executeVpssnapshotListGet.call(this, itemIndex);
+			return executeVpssnapshotListGet.call(this, itemIndex ?? 0);
 		case 'vpssnapshotDurationGet':
-			return executeVpssnapshotDurationGet.call(this, itemIndex);
+			return executeVpssnapshotDurationGet.call(this, itemIndex ?? 0);
 		case 'vpssnapshotCreatePost':
-			return executeVpssnapshotCreatePost.call(this, itemIndex);
+			return executeVpssnapshotCreatePost.call(this, itemIndex ?? 0);
 		case 'cloudprojectListGet':
-			return executeCloudprojectListGet.call(this, itemIndex);
+			return executeCloudprojectListGet.call(this, itemIndex ?? 0);
 		case 'cloudprojectGet':
-			return executeCloudprojectGet.call(this, itemIndex);
+			return executeCloudprojectGet.call(this, itemIndex ?? 0);
 		case 'cloudprojectCreatePost':
-			return executeCloudprojectCreatePost.call(this, itemIndex);
+			return executeCloudprojectCreatePost.call(this, itemIndex ?? 0);
 		case 'freefaxorganizationListGet':
-			return executeFreefaxorganizationListGet.call(this, itemIndex);
+			return executeFreefaxorganizationListGet.call(this, itemIndex ?? 0);
 		case 'freefaxnumberGet':
-			return executeFreefaxnumberGet.call(this, itemIndex);
+			return executeFreefaxnumberGet.call(this, itemIndex ?? 0);
 		case 'freefaxCreatePost':
-			return executeFreefaxCreatePost.call(this, itemIndex);
+			return executeFreefaxCreatePost.call(this, itemIndex ?? 0);
 		case 'overTheBoxListGet':
-			return executeOverTheBoxListGet.call(this, itemIndex);
+			return executeOverTheBoxListGet.call(this, itemIndex ?? 0);
 		case 'overTheBoxGet':
-			return executeOverTheBoxGet.call(this, itemIndex);
+			return executeOverTheBoxGet.call(this, itemIndex ?? 0);
 		case 'overTheBoxCreatePost':
-			return executeOverTheBoxCreatePost.call(this, itemIndex);
+			return executeOverTheBoxCreatePost.call(this, itemIndex ?? 0);
 		case 'overTheBoxOrderCreatePost':
-			return executeOverTheBoxOrderCreatePost.call(this, itemIndex);
+			return executeOverTheBoxOrderCreatePost.call(this, itemIndex ?? 0);
 		case 'overTheBoxDeviceGet':
-			return executeOverTheBoxDeviceGet.call(this, itemIndex);
+			return executeOverTheBoxDeviceGet.call(this, itemIndex ?? 0);
 		case 'saascsp2ListGet':
-			return executeSaascsp2ListGet.call(this, itemIndex);
+			return executeSaascsp2ListGet.call(this, itemIndex ?? 0);
 		case 'saascsp2ProductGet':
-			return executeSaascsp2ProductGet.call(this, itemIndex);
+			return executeSaascsp2ProductGet.call(this, itemIndex ?? 0);
 		case 'saascsp2CreatePost':
-			return executeSaascsp2CreatePost.call(this, itemIndex);
+			return executeSaascsp2CreatePost.call(this, itemIndex ?? 0);
 		case 'smsListGet':
-			return executeSmsListGet.call(this, itemIndex);
+			return executeSmsListGet.call(this, itemIndex ?? 0);
 		case 'smsProductGet':
-			return executeSmsProductGet.call(this, itemIndex);
+			return executeSmsProductGet.call(this, itemIndex ?? 0);
 		case 'smsProductDurationGet':
-			return executeSmsProductDurationGet.call(this, itemIndex);
+			return executeSmsProductDurationGet.call(this, itemIndex ?? 0);
 		case 'smsCreatePost':
-			return executeSmsCreatePost.call(this, itemIndex);
+			return executeSmsCreatePost.call(this, itemIndex ?? 0);
 		case 'smsProductCreatePost':
-			return executeSmsProductCreatePost.call(this, itemIndex);
+			return executeSmsProductCreatePost.call(this, itemIndex ?? 0);
 		case 'veeamCloudConnectListGet':
-			return executeVeeamCloudConnectListGet.call(this, itemIndex);
+			return executeVeeamCloudConnectListGet.call(this, itemIndex ?? 0);
 		case 'veeamCloudConnectGet':
-			return executeVeeamCloudConnectGet.call(this, itemIndex);
+			return executeVeeamCloudConnectGet.call(this, itemIndex ?? 0);
 		case 'veeamCloudConnectCreatePost':
-			return executeVeeamCloudConnectCreatePost.call(this, itemIndex);
+			return executeVeeamCloudConnectCreatePost.call(this, itemIndex ?? 0);
 		case 'veeamCloudConnectConfigCreatePost':
-			return executeVeeamCloudConnectConfigCreatePost.call(this, itemIndex);
+			return executeVeeamCloudConnectConfigCreatePost.call(this, itemIndex ?? 0);
 		case 'veeamCloudConnectOptionCreatePost':
-			return executeVeeamCloudConnectOptionCreatePost.call(this, itemIndex);
+			return executeVeeamCloudConnectOptionCreatePost.call(this, itemIndex ?? 0);
 		case 'xdslspareListGet':
-			return executeXdslspareListGet.call(this, itemIndex);
+			return executeXdslspareListGet.call(this, itemIndex ?? 0);
 		case 'xdslspareCreatePost':
-			return executeXdslspareCreatePost.call(this, itemIndex);
+			return executeXdslspareCreatePost.call(this, itemIndex ?? 0);
 		case 'upgradeBandwidthVrackListGET':
-			return executeupgradeBandwidthVrackListGET.call(this, itemIndex);
+			return executeupgradeBandwidthVrackListGET.call(this, itemIndex ?? 0);
 		case 'upgradeBandwidthVrackPlanGET':
-			return executeupgradeBandwidthVrackPlanGET.call(this, itemIndex);
+			return executeupgradeBandwidthVrackPlanGET.call(this, itemIndex ?? 0);
 		case 'upgradeBandwidthVrackPlanPOST':
-			return executeupgradeBandwidthVrackPlanPOST.call(this, itemIndex);
+			return executeupgradeBandwidthVrackPlanPOST.call(this, itemIndex ?? 0);
 		case 'upgradeBandwidthVrackServiceGET':
-			return executeupgradeBandwidthVrackServiceGET.call(this, itemIndex);
+			return executeupgradeBandwidthVrackServiceGET.call(this, itemIndex ?? 0);
 		case 'upgradeBaremetalPrivateBandwidthListGET':
-			return executeupgradeBaremetalPrivateBandwidthListGET.call(this, itemIndex);
+			return executeupgradeBaremetalPrivateBandwidthListGET.call(this, itemIndex ?? 0);
 		case 'upgradeBaremetalPrivateBandwidthPlanGET':
-			return executeupgradeBaremetalPrivateBandwidthPlanGET.call(this, itemIndex);
+			return executeupgradeBaremetalPrivateBandwidthPlanGET.call(this, itemIndex ?? 0);
 		case 'upgradeBaremetalPrivateBandwidthPlanPOST':
-			return executeupgradeBaremetalPrivateBandwidthPlanPOST.call(this, itemIndex);
+			return executeupgradeBaremetalPrivateBandwidthPlanPOST.call(this, itemIndex ?? 0);
 		case 'upgradeBaremetalPrivateBandwidthServiceGET':
-			return executeupgradeBaremetalPrivateBandwidthServiceGET.call(this, itemIndex);
+			return executeupgradeBaremetalPrivateBandwidthServiceGET.call(this, itemIndex ?? 0);
 		case 'upgradeBaremetalPublicBandwidthListGET':
-			return executeupgradeBaremetalPublicBandwidthListGET.call(this, itemIndex);
+			return executeupgradeBaremetalPublicBandwidthListGET.call(this, itemIndex ?? 0);
 		case 'upgradeBaremetalPublicBandwidthPlanGET':
-			return executeupgradeBaremetalPublicBandwidthPlanGET.call(this, itemIndex);
+			return executeupgradeBaremetalPublicBandwidthPlanGET.call(this, itemIndex ?? 0);
 		case 'upgradeBaremetalPublicBandwidthPlanPOST':
-			return executeupgradeBaremetalPublicBandwidthPlanPOST.call(this, itemIndex);
+			return executeupgradeBaremetalPublicBandwidthPlanPOST.call(this, itemIndex ?? 0);
 		case 'upgradeBaremetalPublicBandwidthServiceGET':
-			return executeupgradeBaremetalPublicBandwidthServiceGET.call(this, itemIndex);
+			return executeupgradeBaremetalPublicBandwidthServiceGET.call(this, itemIndex ?? 0);
 		case 'upgradeCephAASListGET':
-			return executeupgradeCephAASListGET.call(this, itemIndex);
+			return executeupgradeCephAASListGET.call(this, itemIndex ?? 0);
 		case 'upgradeCephAASPlanGET':
-			return executeupgradeCephAASPlanGET.call(this, itemIndex);
+			return executeupgradeCephAASPlanGET.call(this, itemIndex ?? 0);
 		case 'upgradeCephAASPlanPOST':
-			return executeupgradeCephAASPlanPOST.call(this, itemIndex);
+			return executeupgradeCephAASPlanPOST.call(this, itemIndex ?? 0);
 		case 'upgradeCephAASServiceGET':
-			return executeupgradeCephAASServiceGET.call(this, itemIndex);
+			return executeupgradeCephAASServiceGET.call(this, itemIndex ?? 0);
 		case 'upgradeCloudDBListGET':
-			return executeupgradeCloudDBListGET.call(this, itemIndex);
+			return executeupgradeCloudDBListGET.call(this, itemIndex ?? 0);
 		case 'upgradeCloudDBPlanGET':
-			return executeupgradeCloudDBPlanGET.call(this, itemIndex);
+			return executeupgradeCloudDBPlanGET.call(this, itemIndex ?? 0);
 		case 'upgradeCloudDBPlanPOST':
-			return executeupgradeCloudDBPlanPOST.call(this, itemIndex);
+			return executeupgradeCloudDBPlanPOST.call(this, itemIndex ?? 0);
 		case 'upgradeCloudDBServiceGET':
-			return executeupgradeCloudDBServiceGET.call(this, itemIndex);
+			return executeupgradeCloudDBServiceGET.call(this, itemIndex ?? 0);
 		case 'upgradeEmailDomainListGET':
-			return executeupgradeEmailDomainListGET.call(this, itemIndex);
+			return executeupgradeEmailDomainListGET.call(this, itemIndex ?? 0);
 		case 'upgradeEmailDomainPlanGET':
-			return executeupgradeEmailDomainPlanGET.call(this, itemIndex);
+			return executeupgradeEmailDomainPlanGET.call(this, itemIndex ?? 0);
 		case 'upgradeEmailDomainPlanPOST':
-			return executeupgradeEmailDomainPlanPOST.call(this, itemIndex);
+			return executeupgradeEmailDomainPlanPOST.call(this, itemIndex ?? 0);
 		case 'upgradeEmailDomainServiceGET':
-			return executeupgradeEmailDomainServiceGET.call(this, itemIndex);
+			return executeupgradeEmailDomainServiceGET.call(this, itemIndex ?? 0);
 		case 'upgradeIPLoadBalancingListGET':
-			return executeupgradeIPLoadBalancingListGET.call(this, itemIndex);
+			return executeupgradeIPLoadBalancingListGET.call(this, itemIndex ?? 0);
 		case 'upgradeIPLoadBalancingPlanGET':
-			return executeupgradeIPLoadBalancingPlanGET.call(this, itemIndex);
+			return executeupgradeIPLoadBalancingPlanGET.call(this, itemIndex ?? 0);
 		case 'upgradeIPLoadBalancingPlanPOST':
-			return executeupgradeIPLoadBalancingPlanPOST.call(this, itemIndex);
+			return executeupgradeIPLoadBalancingPlanPOST.call(this, itemIndex ?? 0);
 		case 'upgradeIPLoadBalancingServiceGET':
-			return executeupgradeIPLoadBalancingServiceGET.call(this, itemIndex);
+			return executeupgradeIPLoadBalancingServiceGET.call(this, itemIndex ?? 0);
 		case 'upgradeLicenseHycuListGET':
-			return executeupgradeLicenseHycuListGET.call(this, itemIndex);
+			return executeupgradeLicenseHycuListGET.call(this, itemIndex ?? 0);
 		case 'upgradeLicenseHycuPlanGET':
-			return executeupgradeLicenseHycuPlanGET.call(this, itemIndex);
+			return executeupgradeLicenseHycuPlanGET.call(this, itemIndex ?? 0);
 		case 'upgradeLicenseHycuPlanPOST':
-			return executeupgradeLicenseHycuPlanPOST.call(this, itemIndex);
+			return executeupgradeLicenseHycuPlanPOST.call(this, itemIndex ?? 0);
 		case 'upgradeLicenseHycuServiceGET':
-			return executeupgradeLicenseHycuServiceGET.call(this, itemIndex);
+			return executeupgradeLicenseHycuServiceGET.call(this, itemIndex ?? 0);
 		case 'upgradeLicensePleskListGET':
-			return executeupgradeLicensePleskListGET.call(this, itemIndex);
+			return executeupgradeLicensePleskListGET.call(this, itemIndex ?? 0);
 		case 'upgradeLicensePleskPlanGET':
-			return executeupgradeLicensePleskPlanGET.call(this, itemIndex);
+			return executeupgradeLicensePleskPlanGET.call(this, itemIndex ?? 0);
 		case 'upgradeLicensePleskPlanPOST':
-			return executeupgradeLicensePleskPlanPOST.call(this, itemIndex);
+			return executeupgradeLicensePleskPlanPOST.call(this, itemIndex ?? 0);
 		case 'upgradeLicensePleskServiceGET':
-			return executeupgradeLicensePleskServiceGET.call(this, itemIndex);
+			return executeupgradeLicensePleskServiceGET.call(this, itemIndex ?? 0);
 		case 'upgradeLicensecPanelListGET':
-			return executeupgradeLicensecPanelListGET.call(this, itemIndex);
+			return executeupgradeLicensecPanelListGET.call(this, itemIndex ?? 0);
 		case 'upgradeLicensecPanelPlanGET':
-			return executeupgradeLicensecPanelPlanGET.call(this, itemIndex);
+			return executeupgradeLicensecPanelPlanGET.call(this, itemIndex ?? 0);
 		case 'upgradeLicensecPanelPlanPOST':
-			return executeupgradeLicensecPanelPlanPOST.call(this, itemIndex);
+			return executeupgradeLicensecPanelPlanPOST.call(this, itemIndex ?? 0);
 		case 'upgradeLicensecPanelServiceGET':
-			return executeupgradeLicensecPanelServiceGET.call(this, itemIndex);
+			return executeupgradeLicensecPanelServiceGET.call(this, itemIndex ?? 0);
 		case 'upgradeLogsListGET':
-			return executeupgradeLogsListGET.call(this, itemIndex);
+			return executeupgradeLogsListGET.call(this, itemIndex ?? 0);
 		case 'upgradeLogsPlanGET':
-			return executeupgradeLogsPlanGET.call(this, itemIndex);
+			return executeupgradeLogsPlanGET.call(this, itemIndex ?? 0);
 		case 'upgradeLogsPlanPOST':
-			return executeupgradeLogsPlanPOST.call(this, itemIndex);
+			return executeupgradeLogsPlanPOST.call(this, itemIndex ?? 0);
 		case 'upgradeLogsServiceGET':
-			return executeupgradeLogsServiceGET.call(this, itemIndex);
+			return executeupgradeLogsServiceGET.call(this, itemIndex ?? 0);
 		case 'upgradeMetricsListGET':
-			return executeupgradeMetricsListGET.call(this, itemIndex);
+			return executeupgradeMetricsListGET.call(this, itemIndex ?? 0);
 		case 'upgradeMetricsPlanGET':
-			return executeupgradeMetricsPlanGET.call(this, itemIndex);
+			return executeupgradeMetricsPlanGET.call(this, itemIndex ?? 0);
 		case 'upgradeMetricsPlanPOST':
-			return executeupgradeMetricsPlanPOST.call(this, itemIndex);
+			return executeupgradeMetricsPlanPOST.call(this, itemIndex ?? 0);
 		case 'upgradeMetricsServiceGET':
-			return executeupgradeMetricsServiceGET.call(this, itemIndex);
+			return executeupgradeMetricsServiceGET.call(this, itemIndex ?? 0);
 		case 'upgradeMicrosoftExchangeListGET':
-			return executeupgradeMicrosoftExchangeListGET.call(this, itemIndex);
+			return executeupgradeMicrosoftExchangeListGET.call(this, itemIndex ?? 0);
 		case 'upgradeMicrosoftExchangePlanGET':
-			return executeupgradeMicrosoftExchangePlanGET.call(this, itemIndex);
+			return executeupgradeMicrosoftExchangePlanGET.call(this, itemIndex ?? 0);
 		case 'upgradeMicrosoftExchangePlanPOST':
-			return executeupgradeMicrosoftExchangePlanPOST.call(this, itemIndex);
+			return executeupgradeMicrosoftExchangePlanPOST.call(this, itemIndex ?? 0);
 		case 'upgradeMicrosoftExchangeServiceGET':
-			return executeupgradeMicrosoftExchangeServiceGET.call(this, itemIndex);
+			return executeupgradeMicrosoftExchangeServiceGET.call(this, itemIndex ?? 0);
 		case 'upgradePrivateCloudListGET':
-			return executeupgradePrivateCloudListGET.call(this, itemIndex);
+			return executeupgradePrivateCloudListGET.call(this, itemIndex ?? 0);
 		case 'upgradePrivateCloudManagementFeeListGET':
-			return executeupgradePrivateCloudManagementFeeListGET.call(this, itemIndex);
+			return executeupgradePrivateCloudManagementFeeListGET.call(this, itemIndex ?? 0);
 		case 'upgradePrivateCloudManagementFeePlanGET':
-			return executeupgradePrivateCloudManagementFeePlanGET.call(this, itemIndex);
+			return executeupgradePrivateCloudManagementFeePlanGET.call(this, itemIndex ?? 0);
 		case 'upgradePrivateCloudManagementFeePlanPOST':
-			return executeupgradePrivateCloudManagementFeePlanPOST.call(this, itemIndex);
+			return executeupgradePrivateCloudManagementFeePlanPOST.call(this, itemIndex ?? 0);
 		case 'upgradePrivateCloudManagementFeeServiceGET':
-			return executeupgradePrivateCloudManagementFeeServiceGET.call(this, itemIndex);
+			return executeupgradePrivateCloudManagementFeeServiceGET.call(this, itemIndex ?? 0);
 		case 'upgradePrivateCloudPlanGET':
-			return executeupgradePrivateCloudPlanGET.call(this, itemIndex);
+			return executeupgradePrivateCloudPlanGET.call(this, itemIndex ?? 0);
 		case 'upgradePrivateCloudPlanPOST':
-			return executeupgradePrivateCloudPlanPOST.call(this, itemIndex);
+			return executeupgradePrivateCloudPlanPOST.call(this, itemIndex ?? 0);
 		case 'upgradePrivateCloudServiceGET':
-			return executeupgradePrivateCloudServiceGET.call(this, itemIndex);
+			return executeupgradePrivateCloudServiceGET.call(this, itemIndex ?? 0);
 		case 'upgradePrivateSQLListGET':
-			return executeupgradePrivateSQLListGET.call(this, itemIndex);
+			return executeupgradePrivateSQLListGET.call(this, itemIndex ?? 0);
 		case 'upgradePrivateSQLPlanGET':
-			return executeupgradePrivateSQLPlanGET.call(this, itemIndex);
+			return executeupgradePrivateSQLPlanGET.call(this, itemIndex ?? 0);
 		case 'upgradePrivateSQLPlanPOST':
-			return executeupgradePrivateSQLPlanPOST.call(this, itemIndex);
+			return executeupgradePrivateSQLPlanPOST.call(this, itemIndex ?? 0);
 		case 'upgradePrivateSQLServiceGET':
-			return executeupgradePrivateSQLServiceGET.call(this, itemIndex);
+			return executeupgradePrivateSQLServiceGET.call(this, itemIndex ?? 0);
 		case 'upgradeSSLGatewayListGET':
-			return executeupgradeSSLGatewayListGET.call(this, itemIndex);
+			return executeupgradeSSLGatewayListGET.call(this, itemIndex ?? 0);
 		case 'upgradeSSLGatewayPlanGET':
-			return executeupgradeSSLGatewayPlanGET.call(this, itemIndex);
+			return executeupgradeSSLGatewayPlanGET.call(this, itemIndex ?? 0);
 		case 'upgradeSSLGatewayPlanPOST':
-			return executeupgradeSSLGatewayPlanPOST.call(this, itemIndex);
+			return executeupgradeSSLGatewayPlanPOST.call(this, itemIndex ?? 0);
 		case 'upgradeSSLGatewayServiceGET':
-			return executeupgradeSSLGatewayServiceGET.call(this, itemIndex);
+			return executeupgradeSSLGatewayServiceGET.call(this, itemIndex ?? 0);
 		case 'upgradeVPSAdditionalDiskListGET':
-			return executeupgradeVPSAdditionalDiskListGET.call(this, itemIndex);
+			return executeupgradeVPSAdditionalDiskListGET.call(this, itemIndex ?? 0);
 		case 'upgradeVPSAdditionalDiskPlanGET':
-			return executeupgradeVPSAdditionalDiskPlanGET.call(this, itemIndex);
+			return executeupgradeVPSAdditionalDiskPlanGET.call(this, itemIndex ?? 0);
 		case 'upgradeVPSAdditionalDiskPlanPOST':
-			return executeupgradeVPSAdditionalDiskPlanPOST.call(this, itemIndex);
+			return executeupgradeVPSAdditionalDiskPlanPOST.call(this, itemIndex ?? 0);
 		case 'upgradeVPSAdditionalDiskServiceGET':
-			return executeupgradeVPSAdditionalDiskServiceGET.call(this, itemIndex);
+			return executeupgradeVPSAdditionalDiskServiceGET.call(this, itemIndex ?? 0);
 		case 'upgradeVPSListGET':
-			return executeupgradeVPSListGET.call(this, itemIndex);
+			return executeupgradeVPSListGET.call(this, itemIndex ?? 0);
 		case 'upgradeVPSPlanGET':
-			return executeupgradeVPSPlanGET.call(this, itemIndex);
+			return executeupgradeVPSPlanGET.call(this, itemIndex ?? 0);
 		case 'upgradeVPSPlanPOST':
-			return executeupgradeVPSPlanPOST.call(this, itemIndex);
+			return executeupgradeVPSPlanPOST.call(this, itemIndex ?? 0);
 		case 'upgradeVPSServiceGET':
-			return executeupgradeVPSServiceGET.call(this, itemIndex);
+			return executeupgradeVPSServiceGET.call(this, itemIndex ?? 0);
 		case 'upgradeWebHostingListGET':
-			return executeupgradeWebHostingListGET.call(this, itemIndex);
+			return executeupgradeWebHostingListGET.call(this, itemIndex ?? 0);
 		case 'upgradeWebHostingPlanGET':
-			return executeupgradeWebHostingPlanGET.call(this, itemIndex);
+			return executeupgradeWebHostingPlanGET.call(this, itemIndex ?? 0);
 		case 'upgradeWebHostingPlanPOST':
-			return executeupgradeWebHostingPlanPOST.call(this, itemIndex);
+			return executeupgradeWebHostingPlanPOST.call(this, itemIndex ?? 0);
 		case 'upgradeWebHostingServiceGET':
-			return executeupgradeWebHostingServiceGET.call(this, itemIndex);
+			return executeupgradeWebHostingServiceGET.call(this, itemIndex ?? 0);
 		case 'upgradeZimbraListGET':
-			return executeupgradeZimbraListGET.call(this, itemIndex);
+			return executeupgradeZimbraListGET.call(this, itemIndex ?? 0);
 		case 'upgradeZimbraPlanGET':
-			return executeupgradeZimbraPlanGET.call(this, itemIndex);
+			return executeupgradeZimbraPlanGET.call(this, itemIndex ?? 0);
 		case 'upgradeZimbraPlanPOST':
-			return executeupgradeZimbraPlanPOST.call(this, itemIndex);
+			return executeupgradeZimbraPlanPOST.call(this, itemIndex ?? 0);
 		case 'upgradeZimbraServiceGET':
-			return executeupgradeZimbraServiceGET.call(this, itemIndex);
+			return executeupgradeZimbraServiceGET.call(this, itemIndex ?? 0);
 		case 'cartServiceOptionBackupServicesListGET':
-			return executecartServiceOptionBackupServicesListGET.call(this, itemIndex);
+			return executecartServiceOptionBackupServicesListGET.call(this, itemIndex ?? 0);
 		case 'cartServiceOptionBackupServicesServiceGET':
-			return executecartServiceOptionBackupServicesServiceGET.call(this, itemIndex);
+			return executecartServiceOptionBackupServicesServiceGET.call(this, itemIndex ?? 0);
 		case 'cartServiceOptionBaremetalServersListGET':
-			return executecartServiceOptionBaremetalServersListGET.call(this, itemIndex);
+			return executecartServiceOptionBaremetalServersListGET.call(this, itemIndex ?? 0);
 		case 'cartServiceOptionBaremetalServersServiceGET':
-			return executecartServiceOptionBaremetalServersServiceGET.call(this, itemIndex);
+			return executecartServiceOptionBaremetalServersServiceGET.call(this, itemIndex ?? 0);
 		case 'cartServiceOptionBaremetalServersServicePOST':
-			return executecartServiceOptionBaremetalServersServicePOST.call(this, itemIndex);
+			return executecartServiceOptionBaremetalServersServicePOST.call(this, itemIndex ?? 0);
 		case 'cartServiceOptionCloudListGET':
-			return executecartServiceOptionCloudListGET.call(this, itemIndex);
+			return executecartServiceOptionCloudListGET.call(this, itemIndex ?? 0);
 		case 'cartServiceOptionCloudServiceGET':
-			return executecartServiceOptionCloudServiceGET.call(this, itemIndex);
+			return executecartServiceOptionCloudServiceGET.call(this, itemIndex ?? 0);
 		case 'cartServiceOptionCloudServicePOST':
-			return executecartServiceOptionCloudServicePOST.call(this, itemIndex);
+			return executecartServiceOptionCloudServicePOST.call(this, itemIndex ?? 0);
 		case 'cartServiceOptionDNSListGET':
-			return executecartServiceOptionDNSListGET.call(this, itemIndex);
+			return executecartServiceOptionDNSListGET.call(this, itemIndex ?? 0);
 		case 'cartServiceOptionDNSServiceGET':
-			return executecartServiceOptionDNSServiceGET.call(this, itemIndex);
+			return executecartServiceOptionDNSServiceGET.call(this, itemIndex ?? 0);
 		case 'cartServiceOptionDNSServicePOST':
-			return executecartServiceOptionDNSServicePOST.call(this, itemIndex);
+			return executecartServiceOptionDNSServicePOST.call(this, itemIndex ?? 0);
 		case 'cartServiceOptionDedicatedListGET':
-			return executecartServiceOptionDedicatedListGET.call(this, itemIndex);
+			return executecartServiceOptionDedicatedListGET.call(this, itemIndex ?? 0);
 		case 'cartServiceOptionDedicatedServiceGET':
-			return executecartServiceOptionDedicatedServiceGET.call(this, itemIndex);
+			return executecartServiceOptionDedicatedServiceGET.call(this, itemIndex ?? 0);
 		case 'cartServiceOptionDedicatedServicePOST':
-			return executecartServiceOptionDedicatedServicePOST.call(this, itemIndex);
+			return executecartServiceOptionDedicatedServicePOST.call(this, itemIndex ?? 0);
 		case 'cartServiceOptionDomainListGET':
-			return executecartServiceOptionDomainListGET.call(this, itemIndex);
+			return executecartServiceOptionDomainListGET.call(this, itemIndex ?? 0);
 		case 'cartServiceOptionDomainServiceGET':
-			return executecartServiceOptionDomainServiceGET.call(this, itemIndex);
+			return executecartServiceOptionDomainServiceGET.call(this, itemIndex ?? 0);
 		case 'cartServiceOptionDomainServicePOST':
-			return executecartServiceOptionDomainServicePOST.call(this, itemIndex);
+			return executecartServiceOptionDomainServicePOST.call(this, itemIndex ?? 0);
 		case 'cartServiceOptionEmailProListGET':
-			return executecartServiceOptionEmailProListGET.call(this, itemIndex);
+			return executecartServiceOptionEmailProListGET.call(this, itemIndex ?? 0);
 		case 'cartServiceOptionEmailProServiceGET':
-			return executecartServiceOptionEmailProServiceGET.call(this, itemIndex);
+			return executecartServiceOptionEmailProServiceGET.call(this, itemIndex ?? 0);
 		case 'cartServiceOptionEmailProServicePOST':
-			return executecartServiceOptionEmailProServicePOST.call(this, itemIndex);
+			return executecartServiceOptionEmailProServicePOST.call(this, itemIndex ?? 0);
 		case 'cartServiceOptionIPLoadBalancingListGET':
-			return executecartServiceOptionIPLoadBalancingListGET.call(this, itemIndex);
+			return executecartServiceOptionIPLoadBalancingListGET.call(this, itemIndex ?? 0);
 		case 'cartServiceOptionIPLoadBalancingServiceGET':
-			return executecartServiceOptionIPLoadBalancingServiceGET.call(this, itemIndex);
+			return executecartServiceOptionIPLoadBalancingServiceGET.call(this, itemIndex ?? 0);
 		case 'cartServiceOptionIPLoadBalancingServicePOST':
-			return executecartServiceOptionIPLoadBalancingServicePOST.call(this, itemIndex);
+			return executecartServiceOptionIPLoadBalancingServicePOST.call(this, itemIndex ?? 0);
 		case 'cartServiceOptionLicenseHycuListGET':
-			return executecartServiceOptionLicenseHycuListGET.call(this, itemIndex);
+			return executecartServiceOptionLicenseHycuListGET.call(this, itemIndex ?? 0);
 		case 'cartServiceOptionLicenseHycuServiceGET':
-			return executecartServiceOptionLicenseHycuServiceGET.call(this, itemIndex);
+			return executecartServiceOptionLicenseHycuServiceGET.call(this, itemIndex ?? 0);
 		case 'cartServiceOptionLicenseHycuServicePOST':
-			return executecartServiceOptionLicenseHycuServicePOST.call(this, itemIndex);
+			return executecartServiceOptionLicenseHycuServicePOST.call(this, itemIndex ?? 0);
 		case 'cartServiceOptionLogsListGET':
-			return executecartServiceOptionLogsListGET.call(this, itemIndex);
+			return executecartServiceOptionLogsListGET.call(this, itemIndex ?? 0);
 		case 'cartServiceOptionLogsServiceGET':
-			return executecartServiceOptionLogsServiceGET.call(this, itemIndex);
+			return executecartServiceOptionLogsServiceGET.call(this, itemIndex ?? 0);
 		case 'cartServiceOptionLogsServicePOST':
-			return executecartServiceOptionLogsServicePOST.call(this, itemIndex);
+			return executecartServiceOptionLogsServicePOST.call(this, itemIndex ?? 0);
 		case 'cartServiceOptionMicrosoftExchangeListGET':
-			return executecartServiceOptionMicrosoftExchangeListGET.call(this, itemIndex);
+			return executecartServiceOptionMicrosoftExchangeListGET.call(this, itemIndex ?? 0);
 		case 'cartServiceOptionMicrosoftExchangeServiceGET':
-			return executecartServiceOptionMicrosoftExchangeServiceGET.call(this, itemIndex);
+			return executecartServiceOptionMicrosoftExchangeServiceGET.call(this, itemIndex ?? 0);
 		case 'cartServiceOptionMicrosoftExchangeServicePOST':
-			return executecartServiceOptionMicrosoftExchangeServicePOST.call(this, itemIndex);
+			return executecartServiceOptionMicrosoftExchangeServicePOST.call(this, itemIndex ?? 0);
 		case 'cartServiceOptionMicrosoftListGET':
-			return executecartServiceOptionMicrosoftListGET.call(this, itemIndex);
+			return executecartServiceOptionMicrosoftListGET.call(this, itemIndex ?? 0);
 		case 'cartServiceOptionMicrosoftServiceGET':
-			return executecartServiceOptionMicrosoftServiceGET.call(this, itemIndex);
+			return executecartServiceOptionMicrosoftServiceGET.call(this, itemIndex ?? 0);
 		case 'cartServiceOptionMicrosoftServicePOST':
-			return executecartServiceOptionMicrosoftServicePOST.call(this, itemIndex);
+			return executecartServiceOptionMicrosoftServicePOST.call(this, itemIndex ?? 0);
 		case 'cartServiceOptionNutanixListGET':
-			return executecartServiceOptionNutanixListGET.call(this, itemIndex);
+			return executecartServiceOptionNutanixListGET.call(this, itemIndex ?? 0);
 		case 'cartServiceOptionNutanixServiceGET':
-			return executecartServiceOptionNutanixServiceGET.call(this, itemIndex);
+			return executecartServiceOptionNutanixServiceGET.call(this, itemIndex ?? 0);
 		case 'cartServiceOptionNutanixServicePOST':
-			return executecartServiceOptionNutanixServicePOST.call(this, itemIndex);
+			return executecartServiceOptionNutanixServicePOST.call(this, itemIndex ?? 0);
 		case 'cartServiceOptionOffice365PrepaidListGET':
-			return executecartServiceOptionOffice365PrepaidListGET.call(this, itemIndex);
+			return executecartServiceOptionOffice365PrepaidListGET.call(this, itemIndex ?? 0);
 		case 'cartServiceOptionOffice365PrepaidServiceGET':
-			return executecartServiceOptionOffice365PrepaidServiceGET.call(this, itemIndex);
+			return executecartServiceOptionOffice365PrepaidServiceGET.call(this, itemIndex ?? 0);
 		case 'cartServiceOptionOffice365PrepaidServicePOST':
-			return executecartServiceOptionOffice365PrepaidServicePOST.call(this, itemIndex);
+			return executecartServiceOptionOffice365PrepaidServicePOST.call(this, itemIndex ?? 0);
 		case 'cartServiceOptionOfficePrepaidListGET':
-			return executecartServiceOptionOfficePrepaidListGET.call(this, itemIndex);
+			return executecartServiceOptionOfficePrepaidListGET.call(this, itemIndex ?? 0);
 		case 'cartServiceOptionOfficePrepaidServiceGET':
-			return executecartServiceOptionOfficePrepaidServiceGET.call(this, itemIndex);
+			return executecartServiceOptionOfficePrepaidServiceGET.call(this, itemIndex ?? 0);
 		case 'cartServiceOptionOfficePrepaidServicePOST':
-			return executecartServiceOptionOfficePrepaidServicePOST.call(this, itemIndex);
+			return executecartServiceOptionOfficePrepaidServicePOST.call(this, itemIndex ?? 0);
 		case 'cartServiceOptionPrivateCloudEnterpriseListGET':
-			return executecartServiceOptionPrivateCloudEnterpriseListGET.call(this, itemIndex);
+			return executecartServiceOptionPrivateCloudEnterpriseListGET.call(this, itemIndex ?? 0);
 		case 'cartServiceOptionPrivateCloudEnterpriseServiceGET':
-			return executecartServiceOptionPrivateCloudEnterpriseServiceGET.call(this, itemIndex);
+			return executecartServiceOptionPrivateCloudEnterpriseServiceGET.call(this, itemIndex ?? 0);
 		case 'cartServiceOptionPrivateCloudEnterpriseServicePOST':
-			return executecartServiceOptionPrivateCloudEnterpriseServicePOST.call(this, itemIndex);
+			return executecartServiceOptionPrivateCloudEnterpriseServicePOST.call(this, itemIndex ?? 0);
 		case 'cartServiceOptionPrivateCloudListGET':
-			return executecartServiceOptionPrivateCloudListGET.call(this, itemIndex);
+			return executecartServiceOptionPrivateCloudListGET.call(this, itemIndex ?? 0);
 		case 'cartServiceOptionPrivateCloudResellerEnterpriseListGET':
-			return executecartServiceOptionPrivateCloudResellerEnterpriseListGET.call(this, itemIndex);
+			return executecartServiceOptionPrivateCloudResellerEnterpriseListGET.call(this, itemIndex ?? 0);
 		case 'cartServiceOptionPrivateCloudResellerEnterpriseServiceGET':
-			return executecartServiceOptionPrivateCloudResellerEnterpriseServiceGET.call(this, itemIndex);
+			return executecartServiceOptionPrivateCloudResellerEnterpriseServiceGET.call(this, itemIndex ?? 0);
 		case 'cartServiceOptionPrivateCloudResellerEnterpriseServicePOST':
-			return executecartServiceOptionPrivateCloudResellerEnterpriseServicePOST.call(this, itemIndex);
+			return executecartServiceOptionPrivateCloudResellerEnterpriseServicePOST.call(this, itemIndex ?? 0);
 		case 'cartServiceOptionPrivateCloudResellerListGET':
-			return executecartServiceOptionPrivateCloudResellerListGET.call(this, itemIndex);
+			return executecartServiceOptionPrivateCloudResellerListGET.call(this, itemIndex ?? 0);
 		case 'cartServiceOptionPrivateCloudResellerServiceGET':
-			return executecartServiceOptionPrivateCloudResellerServiceGET.call(this, itemIndex);
+			return executecartServiceOptionPrivateCloudResellerServiceGET.call(this, itemIndex ?? 0);
 		case 'cartServiceOptionPrivateCloudResellerServicePOST':
-			return executecartServiceOptionPrivateCloudResellerServicePOST.call(this, itemIndex);
+			return executecartServiceOptionPrivateCloudResellerServicePOST.call(this, itemIndex ?? 0);
 		case 'cartServiceOptionPrivateCloudServiceGET':
-			return executecartServiceOptionPrivateCloudServiceGET.call(this, itemIndex);
+			return executecartServiceOptionPrivateCloudServiceGET.call(this, itemIndex ?? 0);
 		case 'cartServiceOptionPrivateCloudServicePOST':
-			return executecartServiceOptionPrivateCloudServicePOST.call(this, itemIndex);
+			return executecartServiceOptionPrivateCloudServicePOST.call(this, itemIndex ?? 0);
 		case 'cartServiceOptionSMSListGET':
-			return executecartServiceOptionSMSListGET.call(this, itemIndex);
+			return executecartServiceOptionSMSListGET.call(this, itemIndex ?? 0);
 		case 'cartServiceOptionSMSServiceGET':
-			return executecartServiceOptionSMSServiceGET.call(this, itemIndex);
+			return executecartServiceOptionSMSServiceGET.call(this, itemIndex ?? 0);
 		case 'cartServiceOptionSMSServicePOST':
-			return executecartServiceOptionSMSServicePOST.call(this, itemIndex);
+			return executecartServiceOptionSMSServicePOST.call(this, itemIndex ?? 0);
 		case 'cartServiceOptionSSLGatewayListGET':
-			return executecartServiceOptionSSLGatewayListGET.call(this, itemIndex);
+			return executecartServiceOptionSSLGatewayListGET.call(this, itemIndex ?? 0);
 		case 'cartServiceOptionSSLGatewayServiceGET':
-			return executecartServiceOptionSSLGatewayServiceGET.call(this, itemIndex);
+			return executecartServiceOptionSSLGatewayServiceGET.call(this, itemIndex ?? 0);
 		case 'cartServiceOptionSSLGatewayServicePOST':
-			return executecartServiceOptionSSLGatewayServicePOST.call(this, itemIndex);
+			return executecartServiceOptionSSLGatewayServicePOST.call(this, itemIndex ?? 0);
 		case 'cartServiceOptionSharepointListGET':
-			return executecartServiceOptionSharepointListGET.call(this, itemIndex);
+			return executecartServiceOptionSharepointListGET.call(this, itemIndex ?? 0);
 		case 'cartServiceOptionSharepointServiceGET':
-			return executecartServiceOptionSharepointServiceGET.call(this, itemIndex);
+			return executecartServiceOptionSharepointServiceGET.call(this, itemIndex ?? 0);
 		case 'cartServiceOptionSharepointServicePOST':
-			return executecartServiceOptionSharepointServicePOST.call(this, itemIndex);
+			return executecartServiceOptionSharepointServicePOST.call(this, itemIndex ?? 0);
 		case 'cartServiceOptionSncNetworkServicesListGET':
-			return executecartServiceOptionSncNetworkServicesListGET.call(this, itemIndex);
+			return executecartServiceOptionSncNetworkServicesListGET.call(this, itemIndex ?? 0);
 		case 'cartServiceOptionSncNetworkServicesServiceGET':
-			return executecartServiceOptionSncNetworkServicesServiceGET.call(this, itemIndex);
+			return executecartServiceOptionSncNetworkServicesServiceGET.call(this, itemIndex ?? 0);
 		case 'cartServiceOptionSncNetworkServicesServicePOST':
-			return executecartServiceOptionSncNetworkServicesServicePOST.call(this, itemIndex);
+			return executecartServiceOptionSncNetworkServicesServicePOST.call(this, itemIndex ?? 0);
 		case 'cartServiceOptionVDIListGET':
-			return executecartServiceOptionVDIListGET.call(this, itemIndex);
+			return executecartServiceOptionVDIListGET.call(this, itemIndex ?? 0);
 		case 'cartServiceOptionVDIServiceGET':
-			return executecartServiceOptionVDIServiceGET.call(this, itemIndex);
+			return executecartServiceOptionVDIServiceGET.call(this, itemIndex ?? 0);
 		case 'cartServiceOptionVDIServicePOST':
-			return executecartServiceOptionVDIServicePOST.call(this, itemIndex);
+			return executecartServiceOptionVDIServicePOST.call(this, itemIndex ?? 0);
 		case 'cartServiceOptionVPSListGET':
-			return executecartServiceOptionVPSListGET.call(this, itemIndex);
+			return executecartServiceOptionVPSListGET.call(this, itemIndex ?? 0);
 		case 'cartServiceOptionVPSServiceGET':
-			return executecartServiceOptionVPSServiceGET.call(this, itemIndex);
+			return executecartServiceOptionVPSServiceGET.call(this, itemIndex ?? 0);
 		case 'cartServiceOptionVPSServicePOST':
-			return executecartServiceOptionVPSServicePOST.call(this, itemIndex);
+			return executecartServiceOptionVPSServicePOST.call(this, itemIndex ?? 0);
 		case 'cartServiceOptionVmwareCloudDirectorBackupListGET':
-			return executecartServiceOptionVmwareCloudDirectorBackupListGET.call(this, itemIndex);
+			return executecartServiceOptionVmwareCloudDirectorBackupListGET.call(this, itemIndex ?? 0);
 		case 'cartServiceOptionVmwareCloudDirectorBackupServiceGET':
-			return executecartServiceOptionVmwareCloudDirectorBackupServiceGET.call(this, itemIndex);
+			return executecartServiceOptionVmwareCloudDirectorBackupServiceGET.call(this, itemIndex ?? 0);
 		case 'cartServiceOptionVmwareCloudDirectorListGET':
-			return executecartServiceOptionVmwareCloudDirectorListGET.call(this, itemIndex);
+			return executecartServiceOptionVmwareCloudDirectorListGET.call(this, itemIndex ?? 0);
 		case 'cartServiceOptionVmwareCloudDirectorServiceGET':
-			return executecartServiceOptionVmwareCloudDirectorServiceGET.call(this, itemIndex);
+			return executecartServiceOptionVmwareCloudDirectorServiceGET.call(this, itemIndex ?? 0);
 		case 'cartServiceOptionVmwareCloudDirectorServicePOST':
-			return executecartServiceOptionVmwareCloudDirectorServicePOST.call(this, itemIndex);
+			return executecartServiceOptionVmwareCloudDirectorServicePOST.call(this, itemIndex ?? 0);
 		case 'cartServiceOptionVrackListGET':
-			return executecartServiceOptionVrackListGET.call(this, itemIndex);
+			return executecartServiceOptionVrackListGET.call(this, itemIndex ?? 0);
 		case 'cartServiceOptionVrackServiceGET':
-			return executecartServiceOptionVrackServiceGET.call(this, itemIndex);
+			return executecartServiceOptionVrackServiceGET.call(this, itemIndex ?? 0);
 		case 'cartServiceOptionVrackServicePOST':
-			return executecartServiceOptionVrackServicePOST.call(this, itemIndex);
+			return executecartServiceOptionVrackServicePOST.call(this, itemIndex ?? 0);
 		case 'cartServiceOptionWebHostingListGET':
-			return executecartServiceOptionWebHostingListGET.call(this, itemIndex);
+			return executecartServiceOptionWebHostingListGET.call(this, itemIndex ?? 0);
 		case 'cartServiceOptionWebHostingServiceGET':
-			return executecartServiceOptionWebHostingServiceGET.call(this, itemIndex);
+			return executecartServiceOptionWebHostingServiceGET.call(this, itemIndex ?? 0);
 		case 'cartServiceOptionWebHostingServicePOST':
-			return executecartServiceOptionWebHostingServicePOST.call(this, itemIndex);
+			return executecartServiceOptionWebHostingServicePOST.call(this, itemIndex ?? 0);
 	}
 
 	throw new Error(`Unsupported operation "${operation}" for resource "order"`);

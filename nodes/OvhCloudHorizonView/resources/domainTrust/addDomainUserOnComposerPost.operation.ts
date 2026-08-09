@@ -78,15 +78,15 @@ export function description(displayOptions: IDisplayOptions): INodeProperties[] 
  * HTTP method: POST
  * Endpoint: /horizonView/{serviceName}/domainTrust/{domainTrustId}/addDomainUserOnComposer
  */
-export async function execute(this: IExecuteFunctions): Promise<INodeExecutionData[]> {
+export async function execute(this: IExecuteFunctions, _itemIndex?: number): Promise<INodeExecutionData[]> {
 	const client = new ApiClient(this);
-	const serviceName = this.getNodeParameter('serviceName', 0, '', { extractValue: true }) as string;
-	const domainTrustId = this.getNodeParameter('domainTrustId', 0) as number;
+	const serviceName = this.getNodeParameter('serviceName', _itemIndex ?? 0, '', { extractValue: true }) as string;
+	const domainTrustId = this.getNodeParameter('domainTrustId', _itemIndex ?? 0) as number;
 
 	const body: IDataObject = {
-		domain: this.getNodeParameter('domain', 0) as string,
-		username: this.getNodeParameter('username', 0) as string,
-		password: this.getNodeParameter('password', 0) as string,
+		domain: this.getNodeParameter('domain', _itemIndex ?? 0) as string,
+		username: this.getNodeParameter('username', _itemIndex ?? 0) as string,
+		password: this.getNodeParameter('password', _itemIndex ?? 0) as string,
 	};
 
 	const data = (await client.httpPost(

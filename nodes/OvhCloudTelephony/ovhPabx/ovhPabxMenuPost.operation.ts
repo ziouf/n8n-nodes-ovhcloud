@@ -93,16 +93,16 @@ export function description(displayOptions: IDisplayOptions): INodeProperties[] 
  * HTTP method: POST
  * Endpoint: /telephony/{billingAccount}/ovhPabx/{serviceName}/menu
  */
-export async function execute(this: IExecuteFunctions, itemIndex: number): Promise<INodeExecutionData[]> {
-	const billingAccount = this.getNodeParameter('billingAccount', itemIndex) as string;
-	const serviceName = this.getNodeParameter('serviceName', itemIndex) as string;
-	const greetSound = this.getNodeParameter('greetSound', itemIndex) as string;
-	const greetSoundTts = this.getNodeParameter('greetSoundTts', itemIndex) as string;
-	const interDigitTimeout = this.getNodeParameter('interDigitTimeout', itemIndex) as string;
-	const invalidSound = this.getNodeParameter('invalidSound', itemIndex) as string;
-	const invalidSoundTts = this.getNodeParameter('invalidSoundTts', itemIndex) as string;
-	const name = this.getNodeParameter('name', itemIndex) as string;
-	const timeout = this.getNodeParameter('timeout', itemIndex) as string;
+export async function execute(this: IExecuteFunctions, _itemIndex: number): Promise<INodeExecutionData[]> {
+	const billingAccount = this.getNodeParameter('billingAccount', _itemIndex) as string;
+	const serviceName = this.getNodeParameter('serviceName', _itemIndex) as string;
+	const greetSound = this.getNodeParameter('greetSound', _itemIndex) as string;
+	const greetSoundTts = this.getNodeParameter('greetSoundTts', _itemIndex) as string;
+	const interDigitTimeout = this.getNodeParameter('interDigitTimeout', _itemIndex) as string;
+	const invalidSound = this.getNodeParameter('invalidSound', _itemIndex) as string;
+	const invalidSoundTts = this.getNodeParameter('invalidSoundTts', _itemIndex) as string;
+	const name = this.getNodeParameter('name', _itemIndex) as string;
+	const timeout = this.getNodeParameter('timeout', _itemIndex) as string;
 
 	const body: IDataObject = {
 		greetSound: greetSound,

@@ -55,9 +55,9 @@ export function description(displayOptions: IDisplayOptions): INodeProperties[] 
  * HTTP method: PUT
  * Endpoint: /services/{serviceName}/billing/engagement/endRule
  */
-export async function execute(this: IExecuteFunctions, itemIndex: number): Promise<INodeExecutionData[]> {
-	const serviceName = this.getNodeParameter('serviceName', itemIndex) as string;
-	const strategy = this.getNodeParameter('strategy', itemIndex) as string;
+export async function execute(this: IExecuteFunctions, _itemIndex: number): Promise<INodeExecutionData[]> {
+	const serviceName = this.getNodeParameter('serviceName', _itemIndex) as string;
+	const strategy = this.getNodeParameter('strategy', _itemIndex) as string;
 	const body: IDataObject = { strategy };
 	const client = new ApiClient(this);
 	const data = (await client.httpPut(`/services/${encodeURIComponent(serviceName)}/billing/engagement/endRule`, body)) as IDataObject;

@@ -94,15 +94,15 @@ export function description(displayOptions: IDisplayOptions): INodeProperties[] 
  * HTTP method: POST
  * Endpoint: /publicCloud/project/{projectId}/region/{regionName}/volume
  */
-export async function execute(this: IExecuteFunctions): Promise<INodeExecutionData[]> {
+export async function execute(this: IExecuteFunctions, _itemIndex?: number): Promise<INodeExecutionData[]> {
 	const client = new ApiClient(this);
-	const projectId = this.getNodeParameter('publicCloudProjectId', 0, '', {
+	const projectId = this.getNodeParameter('publicCloudProjectId', _itemIndex ?? 0, '', {
 		extractValue: true,
 	}) as string;
-	const regionName = this.getNodeParameter('regionName', 0) as string;
-	const availabilityZone = this.getNodeParameter('availabilityZone', 0) as string;
-	const volumeSize = Number(this.getNodeParameter('volumeSize', 0)) as number;
-	const volumeTypeId = this.getNodeParameter('volumeTypeId', 0) as string;
+	const regionName = this.getNodeParameter('regionName', _itemIndex ?? 0) as string;
+	const availabilityZone = this.getNodeParameter('availabilityZone', _itemIndex ?? 0) as string;
+	const volumeSize = Number(this.getNodeParameter('volumeSize', _itemIndex ?? 0)) as number;
+	const volumeTypeId = this.getNodeParameter('volumeTypeId', _itemIndex ?? 0) as string;
 
 	const body = {
 		availabilityZone,
@@ -110,12 +110,12 @@ export async function execute(this: IExecuteFunctions): Promise<INodeExecutionDa
 		volumeType: { id: volumeTypeId },
 	} as import('n8n-workflow').IDataObject;
 
-	const name = (this.getNodeParameter('volumeName', 0) || '') as string;
+	const name = (this.getNodeParameter('volumeName', _itemIndex ?? 0) || '') as string;
 	if (name !== '') {
 		body.name = name;
 	}
 
-	const desc = (this.getNodeParameter('description', 0) || '') as string;
+	const desc = (this.getNodeParameter('description', _itemIndex ?? 0) || '') as string;
 	if (desc !== '') {
 		body.description = desc;
 	}

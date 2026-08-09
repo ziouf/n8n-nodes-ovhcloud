@@ -122,21 +122,21 @@ export async function execute(
 		case 'DedicatedInstallationtemplateTemplateinfosGet':
 			return executeDedicatedInstallationtemplateTemplateinfosGetGet.call(this, );
 		case 'DedicatedInstallationtemplateGetTemplatename':
-			return executeDedicatedInstallationtemplateGetTemplatenameGet.call(this, itemIndex);
+			return executeDedicatedInstallationtemplateGetTemplatenameGet.call(this, itemIndex ?? 0);
 		case 'DedicatedInstallationtemplatePartitionschemeGetSchemename':
-			return executeDedicatedInstallationtemplatePartitionschemeGetSchemenameGet.call(this, itemIndex);
+			return executeDedicatedInstallationtemplatePartitionschemeGetSchemenameGet.call(this, itemIndex ?? 0);
 		case 'InstallationtemplatePartitionschemeHardwareraidGetName':
-			return executeInstallationtemplatePartitionschemeHardwareraidGetNameGet.call(this, itemIndex);
+			return executeInstallationtemplatePartitionschemeHardwareraidGetNameGet.call(this, itemIndex ?? 0);
 		case 'InstallationtemplatePartitionschemePartitionGetMountpoint':
-			return executeInstallationtemplatePartitionschemePartitionGetMountpointGet.call(this, itemIndex);
+			return executeInstallationtemplatePartitionschemePartitionGetMountpointGet.call(this, itemIndex ?? 0);
 		case 'InstallationtemplatePartitionschemeHardwareraidGet':
-			return executeInstallationtemplatePartitionschemeHardwareraidGetGet.call(this, itemIndex);
+			return executeInstallationtemplatePartitionschemeHardwareraidGetGet.call(this, itemIndex ?? 0);
 		case 'DedicatedInstallationtemplateGet':
 			return executeDedicatedInstallationtemplateGetGet.call(this, );
 		case 'DedicatedInstallationtemplatePartitionschemeGet':
-			return executeDedicatedInstallationtemplatePartitionschemeGetGet.call(this, itemIndex);
+			return executeDedicatedInstallationtemplatePartitionschemeGetGet.call(this, itemIndex ?? 0);
 		case 'InstallationtemplatePartitionschemePartitionGet':
-			return executeInstallationtemplatePartitionschemePartitionGetGet.call(this, itemIndex);
+			return executeInstallationtemplatePartitionschemePartitionGetGet.call(this, itemIndex ?? 0);
 	}
 
 	throw new Error(`Unsupported operation "${operation}" for resource "/dedicated/installationTemplate"`);

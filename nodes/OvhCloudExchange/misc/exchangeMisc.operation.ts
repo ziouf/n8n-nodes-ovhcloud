@@ -16,7 +16,7 @@ export function description() {
  * HTTP method: GET
  * Endpoint: /email/exchange
  */
-export async function execute(this: IExecuteFunctions): Promise<INodeExecutionData[]> {
+export async function execute(this: IExecuteFunctions, _itemIndex?: number): Promise<INodeExecutionData[]> {
 
 	const client = new ApiClient(this);
 	const data = (await client.httpGet("/email/exchange")) as IDataObject;

@@ -37,9 +37,9 @@ export function description(displayOptions: IDisplayOptions): INodeProperties[] 
  * HTTP method: DELETE
  * Endpoint: /okms/resource/{okmsId}/credential/{credentialId}
  */
-export async function execute(this: IExecuteFunctions, itemIndex: number): Promise<INodeExecutionData[]> {
-	const okmsId = this.getNodeParameter('okmsId', itemIndex) as string;
-	const credentialId = this.getNodeParameter('credentialId', itemIndex) as string;
+export async function execute(this: IExecuteFunctions, _itemIndex: number): Promise<INodeExecutionData[]> {
+	const okmsId = this.getNodeParameter('okmsId', _itemIndex) as string;
+	const credentialId = this.getNodeParameter('credentialId', _itemIndex) as string;
 
 
 	const client = new ApiClient(this);

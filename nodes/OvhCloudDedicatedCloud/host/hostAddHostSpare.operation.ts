@@ -54,13 +54,13 @@ export function description(displayOptions: IDisplayOptions): INodeProperties[] 
  * HTTP method: POST
  * Endpoint: /dedicatedCloud/{serviceName}/datacenter/{datacenterId}/host/{hostId}/addHostSpare
  */
-export async function execute(this: IExecuteFunctions, itemIndex: number): Promise<INodeExecutionData[]> {
+export async function execute(this: IExecuteFunctions, _itemIndex: number): Promise<INodeExecutionData[]> {
 	const client = new ApiClient(this);
-	const serviceName = this.getNodeParameter('serviceName', itemIndex) as string;
-	const datacenterId = this.getNodeParameter('datacenterId', itemIndex) as string;
-	const hostId = this.getNodeParameter('hostId', itemIndex) as string;
+	const serviceName = this.getNodeParameter('serviceName', _itemIndex) as string;
+	const datacenterId = this.getNodeParameter('datacenterId', _itemIndex) as string;
+	const hostId = this.getNodeParameter('hostId', _itemIndex) as string;
 	const body: IDataObject = {};
-	body.reason = this.getNodeParameter('reason', itemIndex) as string;
+	body.reason = this.getNodeParameter('reason', _itemIndex) as string;
 	const data = (await client.httpPost(`/dedicatedCloud/${serviceName}/datacenter/${datacenterId}/host/${hostId}/addHostSpare`, body)) as IDataObject;
 	return this.helpers.returnJsonArray([data]);
 }

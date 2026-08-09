@@ -12,7 +12,7 @@ export function description(_displayOptions: IDisplayOptions) {
  * HTTP method: GET
  * Endpoint: /dedicated/cluster
  */
-export async function execute(this: IExecuteFunctions): Promise<INodeExecutionData[]> {
+export async function execute(this: IExecuteFunctions, _itemIndex?: number): Promise<INodeExecutionData[]> {
 	const client = new ApiClient(this);
 	const data = (await client.httpGet('/dedicated/cluster')) as string[];
 	return this.helpers.returnJsonArray(data.map((name) => ({ name })));

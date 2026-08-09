@@ -56,12 +56,12 @@ export function description() {
  * HTTP method: POST
  * Endpoint: /email/exchange/{organizationName}/service/{exchangeService}/publicFolder/{path}/permission
  */
-export async function execute(this: IExecuteFunctions): Promise<INodeExecutionData[]> {
-	const organizationName = this.getNodeParameter('organizationName', 0) as string;
-	const exchangeService = this.getNodeParameter('exchangeService', 0) as string;
-	const path = this.getNodeParameter('path', 0) as string;
-	const accessRights = this.getNodeParameter('accessRights', 0) as string;
-	const allowedAccountId = this.getNodeParameter('allowedAccountId', 0) as string;
+export async function execute(this: IExecuteFunctions, _itemIndex?: number): Promise<INodeExecutionData[]> {
+	const organizationName = this.getNodeParameter('organizationName', _itemIndex ?? 0) as string;
+	const exchangeService = this.getNodeParameter('exchangeService', _itemIndex ?? 0) as string;
+	const path = this.getNodeParameter('path', _itemIndex ?? 0) as string;
+	const accessRights = this.getNodeParameter('accessRights', _itemIndex ?? 0) as string;
+	const allowedAccountId = this.getNodeParameter('allowedAccountId', _itemIndex ?? 0) as string;
 
 	const body: IDataObject = {
     accessRights: accessRights,

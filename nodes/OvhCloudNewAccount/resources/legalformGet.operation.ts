@@ -27,9 +27,9 @@ export function description(displayOptions: IDisplayOptions): INodeProperties[] 
  * HTTP method: GET
  * Endpoint: /newAccount/legalform
  */
-export async function execute(this: IExecuteFunctions): Promise<INodeExecutionData[]> {
+export async function execute(this: IExecuteFunctions, _itemIndex?: number): Promise<INodeExecutionData[]> {
 	const client = new ApiClient(this);
-	const country = this.getNodeParameter('country', 0) as string;
+	const country = this.getNodeParameter('country', _itemIndex ?? 0) as string;
 
 	const data = (await client.httpGet('/newAccount/legalform', { country })) as IDataObject[];
 	return this.helpers.returnJsonArray(data);

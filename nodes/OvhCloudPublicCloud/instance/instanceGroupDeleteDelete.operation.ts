@@ -11,12 +11,12 @@ export function description() {
  * HTTP method: DELETE
  * Endpoint: /publicCloud/project/{projectId}/instance/group/{groupId}
  */
-export async function execute(this: IExecuteFunctions): Promise<INodeExecutionData[]> {
+export async function execute(this: IExecuteFunctions, _itemIndex?: number): Promise<INodeExecutionData[]> {
 	const client = new ApiClient(this);
-	const projectId = this.getNodeParameter('publicCloudProjectId', 0, '', {
+	const projectId = this.getNodeParameter('publicCloudProjectId', _itemIndex ?? 0, '', {
 		extractValue: true,
 	}) as string;
-	const groupId = this.getNodeParameter('groupId', 0) as string;
+	const groupId = this.getNodeParameter('groupId', _itemIndex ?? 0) as string;
 	await client.httpDelete(`/publicCloud/project/${projectId}/instance/group/${groupId}`);
 
 	return this.helpers.returnJsonArray([{ deleted: groupId }]);

@@ -6,10 +6,10 @@ export function description() {
 	return [];
 }
 
-export async function execute(this: IExecuteFunctions): Promise<INodeExecutionData[]> {
+export async function execute(this: IExecuteFunctions, _itemIndex?: number): Promise<INodeExecutionData[]> {
 	const client = new ApiClient(this);
 	try {
-		const svcParam = this.getNodeParameter('serviceName', 0, '') as string;
+		const svcParam = this.getNodeParameter('serviceName', _itemIndex ?? 0, '') as string;
 		const url = `/email/pro/${encodeURIComponent(svcParam)}/suspendStatus`;
 		const body: unknown = await client.httpPut(url, {});
 		return this.helpers.returnJsonArray([body as INodeExecutionData]) as INodeExecutionData[];

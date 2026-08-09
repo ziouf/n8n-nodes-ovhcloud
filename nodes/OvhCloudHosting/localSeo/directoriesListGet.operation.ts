@@ -38,15 +38,15 @@ export function description(displayOptions: IDisplayOptions): INodeProperties[] 
  */
 export async function execute(
 	this: IExecuteFunctions,
-	itemIndex: number,
+	_itemIndex: number,
 ): Promise<INodeExecutionData[]> {
 	const client = new ApiClient(this);
-	const country = this.getNodeParameter('country', itemIndex) as string;
-	const offer = this.getNodeParameter('offer', itemIndex) as string;
+	const country = this.getNodeParameter('country', _itemIndex) as string;
+	const offer = this.getNodeParameter('offer', _itemIndex) as string;
 	const data = (await client.httpGet('/hosting/web/localSeo/directoriesList', {
 		country,
 		offer,
 	})) as IDataObject;
-	const inputData = this.getInputData()[itemIndex];
+	const inputData = this.getInputData()[_itemIndex];
 	return this.helpers.returnJsonArray([{ ...inputData.json, ...data }]);
 }

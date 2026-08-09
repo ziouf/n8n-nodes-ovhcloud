@@ -29,9 +29,9 @@ export function description(displayOptions: IDisplayOptions): INodeProperties[] 
  */
 export async function execute(
 	this: IExecuteFunctions,
-	itemIndex: number,
+	_itemIndex: number,
 ): Promise<INodeExecutionData[]> {
-	const notificationId = this.getNodeParameter('notificationId', itemIndex) as string;
+	const notificationId = this.getNodeParameter('notificationId', _itemIndex) as string;
 
 	const client = new ApiClient(this);
 	const data = (await client.httpGet('/notification/history/' + notificationId)) as IDataObject;

@@ -94,17 +94,17 @@ export function description(displayOptions: IDisplayOptions): INodeProperties[] 
  * HTTP method: POST
  * Endpoint: /cloud/project/{serviceName}/database/mysql/{clusterId}/migration/check
  */
-export async function execute(this: IExecuteFunctions): Promise<INodeExecutionData[]> {
+export async function execute(this: IExecuteFunctions, _itemIndex?: number): Promise<INodeExecutionData[]> {
 	const client = new ApiClient(this);
-	const serviceName = this.getNodeParameter('publicCloudProjectId', 0, '', {
+	const serviceName = this.getNodeParameter('publicCloudProjectId', _itemIndex ?? 0, '', {
 		extractValue: true,
 	}) as string;
-	const clusterId = this.getNodeParameter('clusterId', 0) as string;
-	const sourceHost = (this.getNodeParameter('sourceHost', 0) || '') as string;
-	const sourceUsername = (this.getNodeParameter('sourceUsername', 0) || '') as string;
-	const sourcePassword = (this.getNodeParameter('sourcePassword', 0) || '') as string;
-	const sourcePort = this.getNodeParameter('sourcePort', 0) as number;
-	const sourceSsl = this.getNodeParameter('sourceSsl', 0) as boolean;
+	const clusterId = this.getNodeParameter('clusterId', _itemIndex ?? 0) as string;
+	const sourceHost = (this.getNodeParameter('sourceHost', _itemIndex ?? 0) || '') as string;
+	const sourceUsername = (this.getNodeParameter('sourceUsername', _itemIndex ?? 0) || '') as string;
+	const sourcePassword = (this.getNodeParameter('sourcePassword', _itemIndex ?? 0) || '') as string;
+	const sourcePort = this.getNodeParameter('sourcePort', _itemIndex ?? 0) as number;
+	const sourceSsl = this.getNodeParameter('sourceSsl', _itemIndex ?? 0) as boolean;
 
 	const body: IDataObject = { sourceHost, sourceUsername, sourcePassword };
 	if (sourcePort) body.sourcePort = sourcePort;

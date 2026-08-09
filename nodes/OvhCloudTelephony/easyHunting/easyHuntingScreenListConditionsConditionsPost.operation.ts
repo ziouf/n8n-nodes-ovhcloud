@@ -61,12 +61,12 @@ export function description(displayOptions: IDisplayOptions): INodeProperties[] 
  * HTTP method: POST
  * Endpoint: /telephony/{billingAccount}/easyHunting/{serviceName}/screenListConditions/conditions
  */
-export async function execute(this: IExecuteFunctions, itemIndex: number): Promise<INodeExecutionData[]> {
-	const billingAccount = this.getNodeParameter('billingAccount', itemIndex) as string;
-	const serviceName = this.getNodeParameter('serviceName', itemIndex) as string;
-	const callerIdNumber = this.getNodeParameter('callerIdNumber', itemIndex) as string;
-	const destinationNumber = this.getNodeParameter('destinationNumber', itemIndex) as string;
-	const screenListType = this.getNodeParameter('screenListType', itemIndex) as string;
+export async function execute(this: IExecuteFunctions, _itemIndex: number): Promise<INodeExecutionData[]> {
+	const billingAccount = this.getNodeParameter('billingAccount', _itemIndex) as string;
+	const serviceName = this.getNodeParameter('serviceName', _itemIndex) as string;
+	const callerIdNumber = this.getNodeParameter('callerIdNumber', _itemIndex) as string;
+	const destinationNumber = this.getNodeParameter('destinationNumber', _itemIndex) as string;
+	const screenListType = this.getNodeParameter('screenListType', _itemIndex) as string;
 
 	const body: IDataObject = {
 		callerIdNumber: callerIdNumber,

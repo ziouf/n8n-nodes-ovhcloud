@@ -89,15 +89,15 @@ export function description(displayOptions: IDisplayOptions): INodeProperties[] 
  * HTTP method: POST
  * Endpoint: /telephony/{billingAccount}/ovhPabx/{serviceName}/hunting/agent
  */
-export async function execute(this: IExecuteFunctions, itemIndex: number): Promise<INodeExecutionData[]> {
-	const billingAccount = this.getNodeParameter('billingAccount', itemIndex) as string;
-	const serviceName = this.getNodeParameter('serviceName', itemIndex) as string;
-	const description = this.getNodeParameter('description', itemIndex) as string;
-	const number = this.getNodeParameter('number', itemIndex) as string;
-	const simultaneousLines = this.getNodeParameter('simultaneousLines', itemIndex) as string;
-	const status = this.getNodeParameter('status', itemIndex) as string;
-	const timeout = this.getNodeParameter('timeout', itemIndex) as string;
-	const wrapUpTime = this.getNodeParameter('wrapUpTime', itemIndex) as string;
+export async function execute(this: IExecuteFunctions, _itemIndex: number): Promise<INodeExecutionData[]> {
+	const billingAccount = this.getNodeParameter('billingAccount', _itemIndex) as string;
+	const serviceName = this.getNodeParameter('serviceName', _itemIndex) as string;
+	const description = this.getNodeParameter('description', _itemIndex) as string;
+	const number = this.getNodeParameter('number', _itemIndex) as string;
+	const simultaneousLines = this.getNodeParameter('simultaneousLines', _itemIndex) as string;
+	const status = this.getNodeParameter('status', _itemIndex) as string;
+	const timeout = this.getNodeParameter('timeout', _itemIndex) as string;
+	const wrapUpTime = this.getNodeParameter('wrapUpTime', _itemIndex) as string;
 
 	const body: IDataObject = {
 		description: description,

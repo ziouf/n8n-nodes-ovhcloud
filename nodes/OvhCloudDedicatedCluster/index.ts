@@ -135,23 +135,23 @@ export async function execute(
 
 	switch (operation) {
 		case 'DedicatedClusterTerminateCreate':
-			return executeDedicatedClusterTerminateCreatePost.call(this, itemIndex);
+			return executeDedicatedClusterTerminateCreatePost.call(this, itemIndex ?? 0);
 		case 'DedicatedClusterConfirmterminationCreate':
-			return executeDedicatedClusterConfirmterminationCreatePost.call(this, itemIndex);
+			return executeDedicatedClusterConfirmterminationCreatePost.call(this, itemIndex ?? 0);
 		case 'DedicatedClusterAvailabilitiesGet':
-			return executeDedicatedClusterAvailabilitiesGetGet.call(this, itemIndex);
+			return executeDedicatedClusterAvailabilitiesGetGet.call(this, itemIndex ?? 0);
 		case 'DedicatedClusterGetServicename':
-			return executeDedicatedClusterGetServicenameGet.call(this, itemIndex);
+			return executeDedicatedClusterGetServicenameGet.call(this, itemIndex ?? 0);
 		case 'DedicatedClusterServiceinfosGet':
-			return executeDedicatedClusterServiceinfosGetGet.call(this, itemIndex);
+			return executeDedicatedClusterServiceinfosGetGet.call(this, itemIndex ?? 0);
 		case 'DedicatedClusterChangecontactCreate':
-			return executeDedicatedClusterChangecontactCreatePost.call(this, itemIndex);
+			return executeDedicatedClusterChangecontactCreatePost.call(this, itemIndex ?? 0);
 		case 'DedicatedClusterGet':
-			return executeDedicatedClusterGetGet.call(this, itemIndex);
+			return executeDedicatedClusterGetGet.call(this, itemIndex ?? 0);
 		case 'ClusterAvailabilitiesRawGet':
-			return executeClusterAvailabilitiesRawGetGet.call(this, itemIndex);
+			return executeClusterAvailabilitiesRawGetGet.call(this, itemIndex ?? 0);
 		case 'DedicatedClusterServiceinfosUpdate':
-			return executeDedicatedClusterServiceinfosUpdatePut.call(this, itemIndex);
+			return executeDedicatedClusterServiceinfosUpdatePut.call(this, itemIndex ?? 0);
 	}
 
 	throw new Error(`Unsupported operation "${operation}" for resource "/dedicated/cluster"`);

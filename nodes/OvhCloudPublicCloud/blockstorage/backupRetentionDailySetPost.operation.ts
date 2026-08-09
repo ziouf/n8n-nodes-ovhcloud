@@ -73,13 +73,13 @@ export function description(displayOptions: IDisplayOptions): INodeProperties[] 
  * HTTP method: POST
  * Endpoint: /publicCloud/project/{projectId}/blockStorage/backup/{backupId}/retention/daily/set
  */
-export async function execute(this: IExecuteFunctions): Promise<INodeExecutionData[]> {
+export async function execute(this: IExecuteFunctions, _itemIndex?: number): Promise<INodeExecutionData[]> {
 	const client = new ApiClient(this);
-	const projectId = this.getNodeParameter('publicCloudProjectId', 0, '', {
+	const projectId = this.getNodeParameter('publicCloudProjectId', _itemIndex ?? 0, '', {
 		extractValue: true,
 	}) as string;
-	const backupId = this.getNodeParameter('backupId', 0, '', { extractValue: true }) as string;
-	const retentionAgeDays = Number(this.getNodeParameter('retentionAgeDays', 0)) as number;
+	const backupId = this.getNodeParameter('backupId', _itemIndex ?? 0, '', { extractValue: true }) as string;
+	const retentionAgeDays = Number(this.getNodeParameter('retentionAgeDays', _itemIndex ?? 0)) as number;
 
 	const body: Record<string, unknown> = {};
 

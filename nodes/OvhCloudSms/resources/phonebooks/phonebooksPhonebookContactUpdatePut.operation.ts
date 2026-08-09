@@ -102,24 +102,24 @@ export function description(displayOptions: IDisplayOptions): INodeProperties[] 
  * HTTP method: PUT
  * Endpoint: /sms/{serviceName}/phonebooks/{bookKey}/phonebookContact/{id}
  */
-export async function execute(this: IExecuteFunctions): Promise<INodeExecutionData[]> {
-	const bookKey = this.getNodeParameter('bookKey', 0) as string;
-	const id = this.getNodeParameter('id', 0) as number;
-	const serviceName = this.getNodeParameter('serviceName', 0, '', { extractValue: true }) as string;
+export async function execute(this: IExecuteFunctions, _itemIndex?: number): Promise<INodeExecutionData[]> {
+	const bookKey = this.getNodeParameter('bookKey', _itemIndex ?? 0) as string;
+	const id = this.getNodeParameter('id', _itemIndex ?? 0) as number;
+	const serviceName = this.getNodeParameter('serviceName', _itemIndex ?? 0, '', { extractValue: true }) as string;
 	const body: IDataObject = {};
-	const group = this.getNodeParameter('group', 0) as string;
+	const group = this.getNodeParameter('group', _itemIndex ?? 0) as string;
 	if (group) body['group'] = group;
-	const homeMobile = this.getNodeParameter('homeMobile', 0) as string;
+	const homeMobile = this.getNodeParameter('homeMobile', _itemIndex ?? 0) as string;
 	if (homeMobile) body['homeMobile'] = homeMobile;
-	const homePhone = this.getNodeParameter('homePhone', 0) as string;
+	const homePhone = this.getNodeParameter('homePhone', _itemIndex ?? 0) as string;
 	if (homePhone) body['homePhone'] = homePhone;
-	const name = this.getNodeParameter('name', 0) as string;
+	const name = this.getNodeParameter('name', _itemIndex ?? 0) as string;
 	if (name) body['name'] = name;
-	const surname = this.getNodeParameter('surname', 0) as string;
+	const surname = this.getNodeParameter('surname', _itemIndex ?? 0) as string;
 	if (surname) body['surname'] = surname;
-	const workMobile = this.getNodeParameter('workMobile', 0) as string;
+	const workMobile = this.getNodeParameter('workMobile', _itemIndex ?? 0) as string;
 	if (workMobile) body['workMobile'] = workMobile;
-	const workPhone = this.getNodeParameter('workPhone', 0) as string;
+	const workPhone = this.getNodeParameter('workPhone', _itemIndex ?? 0) as string;
 	if (workPhone) body['workPhone'] = workPhone;
 	const data = (await new ApiClient(this).httpPut(
 		`/sms/${encodeURIComponent(serviceName)}/phonebooks/${encodeURIComponent(bookKey)}/phonebookContact/${id}`,

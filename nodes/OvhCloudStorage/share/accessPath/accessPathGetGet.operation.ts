@@ -52,13 +52,13 @@ export function description(displayOptions: IDisplayOptions): INodeProperties[] 
  * HTTP method: GET
  * Endpoint: /storage/netapp/{serviceName}/share/{shareId}/accessPath/{accessPathId}
  */
-export async function execute(this: IExecuteFunctions, itemIndex: number): Promise<INodeExecutionData[]> {
+export async function execute(this: IExecuteFunctions, _itemIndex: number): Promise<INodeExecutionData[]> {
 	const client = new ApiClient(this);
-	const serviceName = this.getNodeParameter('serviceName', itemIndex, '', {
+	const serviceName = this.getNodeParameter('serviceName', _itemIndex, '', {
 				extractValue: true,
 			}) as string;
-	const accessPathId = this.getNodeParameter('accessPathId', itemIndex) as string;
-	const shareId = this.getNodeParameter('shareId', itemIndex) as string;
+	const accessPathId = this.getNodeParameter('accessPathId', _itemIndex) as string;
+	const shareId = this.getNodeParameter('shareId', _itemIndex) as string;
 	const data = (await client.httpGet(`/storage/netapp/${encodeURIComponent(serviceName)}/share/${encodeURIComponent(shareId)}/accessPath/${encodeURIComponent(accessPathId)}`)) as IDataObject;
 	return this.helpers.returnJsonArray([data]);
 }

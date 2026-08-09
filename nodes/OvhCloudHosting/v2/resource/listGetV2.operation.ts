@@ -17,6 +17,7 @@ export function description() {
 
 export async function execute(
 	this: IExecuteFunctions,
+_itemIndex?: number,
 ): Promise<import('n8n-workflow').INodeExecutionData[]> {
 	const client = new ApiClient(this);
 	const data = (await client.httpGet('/webhosting/resource')) as import('n8n-workflow').IDataObject;

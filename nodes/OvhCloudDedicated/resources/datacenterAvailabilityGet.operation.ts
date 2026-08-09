@@ -84,37 +84,37 @@ export function description(displayOptions: IDisplayOptions): INodeProperties[] 
 	];
 }
 
-export async function execute(this: IExecuteFunctions): Promise<INodeExecutionData[]> {
+export async function execute(this: IExecuteFunctions, _itemIndex?: number): Promise<INodeExecutionData[]> {
 	const client = new ApiClient(this);
 	const qs: IDataObject = {};
 
-	const datacenters = (this.getNodeParameter('datacenters', 0) as string) || undefined;
+	const datacenters = (this.getNodeParameter('datacenters', _itemIndex ?? 0) as string) || undefined;
 	if (datacenters && datacenters.trim() !== '') {
 		qs.datacenters = datacenters.split(',').map((d: string) => d.trim());
 	}
 
-	const excludeDatacenters = this.getNodeParameter('excludeDatacenters', 0) as boolean;
+	const excludeDatacenters = this.getNodeParameter('excludeDatacenters', _itemIndex ?? 0) as boolean;
 	if (excludeDatacenters === true) {
 		qs.excludeDatacenters = true;
 	}
-	const gpu = (this.getNodeParameter('gpu', 0) as string) || undefined;
+	const gpu = (this.getNodeParameter('gpu', _itemIndex ?? 0) as string) || undefined;
 	if (gpu) qs.gpu = gpu;
 
-	const memoryInGB = this.getNodeParameter('memoryInGB', 0) as number | undefined;
+	const memoryInGB = this.getNodeParameter('memoryInGB', _itemIndex ?? 0) as number | undefined;
 	if (typeof memoryInGB === 'number' && memoryInGB > 0) {
 		qs.memoryInGB = memoryInGB;
 	}
 
-	const planCode = (this.getNodeParameter('planCode', 0) as string) || undefined;
+	const planCode = (this.getNodeParameter('planCode', _itemIndex ?? 0) as string) || undefined;
 	if (planCode) qs.planCode = planCode;
 
-	const serverModel = (this.getNodeParameter('serverModel', 0) as string) || undefined;
+	const serverModel = (this.getNodeParameter('serverModel', _itemIndex ?? 0) as string) || undefined;
 	if (serverModel) qs.server = serverModel;
 
-	const storage = (this.getNodeParameter('storage', 0) as string) || undefined;
+	const storage = (this.getNodeParameter('storage', _itemIndex ?? 0) as string) || undefined;
 	if (storage) qs.storage = storage;
 
-	const systemStorage = (this.getNodeParameter('systemStorage', 0) as string) || undefined;
+	const systemStorage = (this.getNodeParameter('systemStorage', _itemIndex ?? 0) as string) || undefined;
 	if (systemStorage) qs.systemStorage = systemStorage;
 
 	const data = (await client.httpGet(

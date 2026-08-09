@@ -65,9 +65,9 @@ export async function execute(
 
 	switch (operation) {
 		case 'commercialCatalogoffersListGet':
-			return executeCommercialCatalogoffersListGet.call(this, itemIndex);
+			return executeCommercialCatalogoffersListGet.call(this, itemIndex ?? 0);
 		case 'commercialCatalogoffersListGet2':
-			return executeCommercialCatalogoffersListGet2.call(this, itemIndex);
+			return executeCommercialCatalogoffersListGet2.call(this, itemIndex ?? 0);
 
 	}
 

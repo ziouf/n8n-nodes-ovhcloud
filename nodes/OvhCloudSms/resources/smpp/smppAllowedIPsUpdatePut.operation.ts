@@ -50,12 +50,12 @@ export function description(displayOptions: IDisplayOptions): INodeProperties[] 
  * HTTP method: PUT
  * Endpoint: /sms/{serviceName}/smpp/allowedIPs
  */
-export async function execute(this: IExecuteFunctions): Promise<INodeExecutionData[]> {
-	const serviceName = this.getNodeParameter('serviceName', 0, '', { extractValue: true }) as string;
+export async function execute(this: IExecuteFunctions, _itemIndex?: number): Promise<INodeExecutionData[]> {
+	const serviceName = this.getNodeParameter('serviceName', _itemIndex ?? 0, '', { extractValue: true }) as string;
 	const body: IDataObject = {};
-	const action = this.getNodeParameter('action', 0) as string;
+	const action = this.getNodeParameter('action', _itemIndex ?? 0) as string;
 	body['action'] = action;
-	const ips = this.getNodeParameter('ips', 0) as string;
+	const ips = this.getNodeParameter('ips', _itemIndex ?? 0) as string;
 	body['ips'] = (ips as string).split(',').map((r: string) => r.trim());
 	const data = (await new ApiClient(this).httpPut(
 		`/sms/${encodeURIComponent(serviceName)}/smpp/allowedIPs`,

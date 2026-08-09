@@ -89,16 +89,16 @@ export function description(displayOptions: IDisplayOptions): INodeProperties[] 
  * HTTP method: POST
  * Endpoint: /cloud/project/{serviceName}/database/kafkaConnect/{clusterId}/integration
  */
-export async function execute(this: IExecuteFunctions): Promise<INodeExecutionData[]> {
+export async function execute(this: IExecuteFunctions, _itemIndex?: number): Promise<INodeExecutionData[]> {
 const client = new ApiClient(this);
-const serviceName = this.getNodeParameter('publicCloudProjectId', 0, '', {
+const serviceName = this.getNodeParameter('publicCloudProjectId', _itemIndex ?? 0, '', {
 	extractValue: true,
 }) as string;
-const clusterId = this.getNodeParameter('clusterId', 0) as string;
-const type = this.getNodeParameter('type', 0, '') as string;
-const sourceServiceId = this.getNodeParameter('sourceServiceId', 0, '') as string;
-const destinationServiceId = this.getNodeParameter('destinationServiceId', 0, '') as string;
-const parameters = this.getNodeParameter('parameters', 0, '') as string;
+const clusterId = this.getNodeParameter('clusterId', _itemIndex ?? 0) as string;
+const type = this.getNodeParameter('type', _itemIndex ?? 0, '') as string;
+const sourceServiceId = this.getNodeParameter('sourceServiceId', _itemIndex ?? 0, '') as string;
+const destinationServiceId = this.getNodeParameter('destinationServiceId', _itemIndex ?? 0, '') as string;
+const parameters = this.getNodeParameter('parameters', _itemIndex ?? 0, '') as string;
 const data = (await client.httpPost(`/cloud/project/${serviceName}/database/kafkaConnect/${clusterId}/integration`, { type: type || undefined, sourceServiceId: sourceServiceId || undefined, destinationServiceId: destinationServiceId || undefined, parameters: parameters ? JSON.parse(parameters) : undefined })) as IDataObject;
 return this.helpers.returnJsonArray([data]);
 }

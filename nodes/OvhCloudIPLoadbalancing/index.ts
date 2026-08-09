@@ -1545,7 +1545,7 @@ export async function execute(
 
 	switch (operation) {
 		case 'deleteIpLoadbalancingserviceNHttpFarmfarmIdDelete':
-			return await executeDeleteIpLoadbalancingserviceNHttpFarmfarmIdDelete.call(this, itemIndex);
+			return await executeDeleteIpLoadbalancingserviceNHttpFarmfarmIdDelete.call(this, itemIndex ?? 0);
 		case 'deleteIpLoadbalancingserviceNHttpFarmfarmIdServerserverIdDelete':
 			return await executeDeleteIpLoadbalancingserviceNHttpFarmfarmIdServerserverIdDelete.call(
 				this,
@@ -1557,7 +1557,7 @@ export async function execute(
 				itemIndex,
 			);
 		case 'deleteIpLoadbalancingserviceNHttpRouterouteIdDelete':
-			return await executeDeleteIpLoadbalancingserviceNHttpRouterouteIdDelete.call(this, itemIndex);
+			return await executeDeleteIpLoadbalancingserviceNHttpRouterouteIdDelete.call(this, itemIndex ?? 0);
 		case 'deleteIpLoadbalancingserviceNHttpRouterouteIdRuleruleIdDelete':
 			return await executeDeleteIpLoadbalancingserviceNHttpRouterouteIdRuleruleIdDelete.call(
 				this,
@@ -1569,9 +1569,9 @@ export async function execute(
 				itemIndex,
 			);
 		case 'deleteIpLoadbalancingserviceNSslidDelete':
-			return await executeDeleteIpLoadbalancingserviceNSslidDelete.call(this, itemIndex);
+			return await executeDeleteIpLoadbalancingserviceNSslidDelete.call(this, itemIndex ?? 0);
 		case 'deleteIpLoadbalancingserviceNTcpFarmfarmIdDelete':
-			return await executeDeleteIpLoadbalancingserviceNTcpFarmfarmIdDelete.call(this, itemIndex);
+			return await executeDeleteIpLoadbalancingserviceNTcpFarmfarmIdDelete.call(this, itemIndex ?? 0);
 		case 'deleteIpLoadbalancingserviceNTcpFarmfarmIdServerserverIdDelete':
 			return await executeDeleteIpLoadbalancingserviceNTcpFarmfarmIdServerserverIdDelete.call(
 				this,
@@ -1583,14 +1583,14 @@ export async function execute(
 				itemIndex,
 			);
 		case 'deleteIpLoadbalancingserviceNTcpRouterouteIdDelete':
-			return await executeDeleteIpLoadbalancingserviceNTcpRouterouteIdDelete.call(this, itemIndex);
+			return await executeDeleteIpLoadbalancingserviceNTcpRouterouteIdDelete.call(this, itemIndex ?? 0);
 		case 'deleteIpLoadbalancingserviceNTcpRouterouteIdRuleruleIdDelete':
 			return await executeDeleteIpLoadbalancingserviceNTcpRouterouteIdRuleruleIdDelete.call(
 				this,
 				itemIndex,
 			);
 		case 'deleteIpLoadbalancingserviceNUdpFarmfarmIdDelete':
-			return await executeDeleteIpLoadbalancingserviceNUdpFarmfarmIdDelete.call(this, itemIndex);
+			return await executeDeleteIpLoadbalancingserviceNUdpFarmfarmIdDelete.call(this, itemIndex ?? 0);
 		case 'deleteIpLoadbalancingserviceNUdpFarmfarmIdServerserverIdDelete':
 			return await executeDeleteIpLoadbalancingserviceNUdpFarmfarmIdServerserverIdDelete.call(
 				this,
@@ -1607,178 +1607,178 @@ export async function execute(
 				itemIndex,
 			);
 		case 'getIpLoadbalancingAvailableZonesGet':
-			return await executeGetIpLoadbalancingAvailableZonesGet.call(this);
+			return await executeGetIpLoadbalancingAvailableZonesGet.call(this, itemIndex ?? 0);
 		case 'getIpLoadbalancingserviceNDefinedFarmsGet':
-			return await executeGetIpLoadbalancingserviceNDefinedFarmsGet.call(this, itemIndex);
+			return await executeGetIpLoadbalancingserviceNDefinedFarmsGet.call(this, itemIndex ?? 0);
 		case 'getIpLoadbalancingserviceNDefinedFrontendsGet':
-			return await executeGetIpLoadbalancingserviceNDefinedFrontendsGet.call(this, itemIndex);
+			return await executeGetIpLoadbalancingserviceNDefinedFrontendsGet.call(this, itemIndex ?? 0);
 		case 'getIpLoadbalancingserviceNDefinedRoutesGet':
-			return await executeGetIpLoadbalancingserviceNDefinedRoutesGet.call(this, itemIndex);
+			return await executeGetIpLoadbalancingserviceNDefinedRoutesGet.call(this, itemIndex ?? 0);
 		case 'getIpLoadbalancingserviceNFailoverGet':
-			return await executeGetIpLoadbalancingserviceNFailoverGet.call(this, itemIndex);
+			return await executeGetIpLoadbalancingserviceNFailoverGet.call(this, itemIndex ?? 0);
 		case 'getIpLoadbalancingserviceNHttpFarmfarmIdGet':
-			return await executeGetIpLoadbalancingserviceNHttpFarmfarmIdGet.call(this, itemIndex);
+			return await executeGetIpLoadbalancingserviceNHttpFarmfarmIdGet.call(this, itemIndex ?? 0);
 		case 'getIpLoadbalancingserviceNHttpFarmfarmIdServerGet':
-			return await executeGetIpLoadbalancingserviceNHttpFarmfarmIdServerGet.call(this, itemIndex);
+			return await executeGetIpLoadbalancingserviceNHttpFarmfarmIdServerGet.call(this, itemIndex ?? 0);
 		case 'getIpLoadbalancingserviceNHttpFarmfarmIdServerserverIdGet':
 			return await executeGetIpLoadbalancingserviceNHttpFarmfarmIdServerserverIdGet.call(
 				this,
 				itemIndex,
 			);
 		case 'getIpLoadbalancingserviceNHttpFarmGet':
-			return await executeGetIpLoadbalancingserviceNHttpFarmGet.call(this, itemIndex);
+			return await executeGetIpLoadbalancingserviceNHttpFarmGet.call(this, itemIndex ?? 0);
 		case 'getIpLoadbalancingserviceNHttpFrontendfrontendGet':
-			return await executeGetIpLoadbalancingserviceNHttpFrontendfrontendGet.call(this, itemIndex);
+			return await executeGetIpLoadbalancingserviceNHttpFrontendfrontendGet.call(this, itemIndex ?? 0);
 		case 'getIpLoadbalancingserviceNHttpFrontendGet':
-			return await executeGetIpLoadbalancingserviceNHttpFrontendGet.call(this, itemIndex);
+			return await executeGetIpLoadbalancingserviceNHttpFrontendGet.call(this, itemIndex ?? 0);
 		case 'getIpLoadbalancingserviceNHttpRouteGet':
-			return await executeGetIpLoadbalancingserviceNHttpRouteGet.call(this, itemIndex);
+			return await executeGetIpLoadbalancingserviceNHttpRouteGet.call(this, itemIndex ?? 0);
 		case 'getIpLoadbalancingserviceNHttpRouterouteIdGet':
-			return await executeGetIpLoadbalancingserviceNHttpRouterouteIdGet.call(this, itemIndex);
+			return await executeGetIpLoadbalancingserviceNHttpRouterouteIdGet.call(this, itemIndex ?? 0);
 		case 'getIpLoadbalancingserviceNHttpRouterouteIdRuleGet':
-			return await executeGetIpLoadbalancingserviceNHttpRouterouteIdRuleGet.call(this, itemIndex);
+			return await executeGetIpLoadbalancingserviceNHttpRouterouteIdRuleGet.call(this, itemIndex ?? 0);
 		case 'getIpLoadbalancingserviceNHttpRouterouteIdRuleruleIdGet':
 			return await executeGetIpLoadbalancingserviceNHttpRouterouteIdRuleruleIdGet.call(
 				this,
 				itemIndex,
 			);
 		case 'getIpLoadbalancingserviceNInstancesStateGet':
-			return await executeGetIpLoadbalancingserviceNInstancesStateGet.call(this, itemIndex);
+			return await executeGetIpLoadbalancingserviceNInstancesStateGet.call(this, itemIndex ?? 0);
 		case 'getIpLoadbalancingserviceNLogKindGet':
-			return await executeGetIpLoadbalancingserviceNLogKindGet.call(this, itemIndex);
+			return await executeGetIpLoadbalancingserviceNLogKindGet.call(this, itemIndex ?? 0);
 		case 'getIpLoadbalancingserviceNLogKindnameGet':
-			return await executeGetIpLoadbalancingserviceNLogKindnameGet.call(this, itemIndex);
+			return await executeGetIpLoadbalancingserviceNLogKindnameGet.call(this, itemIndex ?? 0);
 		case 'getIpLoadbalancingserviceNLogSubscriptionGet':
-			return await executeGetIpLoadbalancingserviceNLogSubscriptionGet.call(this, itemIndex);
+			return await executeGetIpLoadbalancingserviceNLogSubscriptionGet.call(this, itemIndex ?? 0);
 		case 'getIpLoadbalancingserviceNLogSubscriptionsubscripGet':
 			return await executeGetIpLoadbalancingserviceNLogSubscriptionsubscripGet.call(
 				this,
 				itemIndex,
 			);
 		case 'getIpLoadbalancingserviceNMetricsTokenGet':
-			return await executeGetIpLoadbalancingserviceNMetricsTokenGet.call(this, itemIndex);
+			return await executeGetIpLoadbalancingserviceNMetricsTokenGet.call(this, itemIndex ?? 0);
 		case 'getIpLoadbalancingserviceNNatIpGet':
-			return await executeGetIpLoadbalancingserviceNNatIpGet.call(this, itemIndex);
+			return await executeGetIpLoadbalancingserviceNNatIpGet.call(this, itemIndex ?? 0);
 		case 'getIpLoadbalancingserviceNPendingChangesGet':
-			return await executeGetIpLoadbalancingserviceNPendingChangesGet.call(this, itemIndex);
+			return await executeGetIpLoadbalancingserviceNPendingChangesGet.call(this, itemIndex ?? 0);
 		case 'getIpLoadbalancingserviceNQuotaGet':
-			return await executeGetIpLoadbalancingserviceNQuotaGet.call(this, itemIndex);
+			return await executeGetIpLoadbalancingserviceNQuotaGet.call(this, itemIndex ?? 0);
 		case 'getIpLoadbalancingserviceNQuotaHistoryGet':
-			return await executeGetIpLoadbalancingserviceNQuotaHistoryGet.call(this, itemIndex);
+			return await executeGetIpLoadbalancingserviceNQuotaHistoryGet.call(this, itemIndex ?? 0);
 		case 'getIpLoadbalancingserviceNQuotaHistoryidGet':
-			return await executeGetIpLoadbalancingserviceNQuotaHistoryidGet.call(this, itemIndex);
+			return await executeGetIpLoadbalancingserviceNQuotaHistoryidGet.call(this, itemIndex ?? 0);
 		case 'getIpLoadbalancingserviceNQuotazoneGet':
-			return await executeGetIpLoadbalancingserviceNQuotazoneGet.call(this, itemIndex);
+			return await executeGetIpLoadbalancingserviceNQuotazoneGet.call(this, itemIndex ?? 0);
 		case 'getIpLoadbalancingserviceNServiceInfosGet':
-			return await executeGetIpLoadbalancingserviceNServiceInfosGet.call(this, itemIndex);
+			return await executeGetIpLoadbalancingserviceNServiceInfosGet.call(this, itemIndex ?? 0);
 		case 'getIpLoadbalancingserviceNSslGet':
-			return await executeGetIpLoadbalancingserviceNSslGet.call(this, itemIndex);
+			return await executeGetIpLoadbalancingserviceNSslGet.call(this, itemIndex ?? 0);
 		case 'getIpLoadbalancingserviceNSslidGet':
-			return await executeGetIpLoadbalancingserviceNSslidGet.call(this, itemIndex);
+			return await executeGetIpLoadbalancingserviceNSslidGet.call(this, itemIndex ?? 0);
 		case 'getIpLoadbalancingserviceNStatusGet':
-			return await executeGetIpLoadbalancingserviceNStatusGet.call(this, itemIndex);
+			return await executeGetIpLoadbalancingserviceNStatusGet.call(this, itemIndex ?? 0);
 		case 'getIpLoadbalancingserviceNTaskGet':
-			return await executeGetIpLoadbalancingserviceNTaskGet.call(this, itemIndex);
+			return await executeGetIpLoadbalancingserviceNTaskGet.call(this, itemIndex ?? 0);
 		case 'getIpLoadbalancingserviceNTaskidGet':
-			return await executeGetIpLoadbalancingserviceNTaskidGet.call(this, itemIndex);
+			return await executeGetIpLoadbalancingserviceNTaskidGet.call(this, itemIndex ?? 0);
 		case 'getIpLoadbalancingserviceNTcpFarmfarmIdGet':
-			return await executeGetIpLoadbalancingserviceNTcpFarmfarmIdGet.call(this, itemIndex);
+			return await executeGetIpLoadbalancingserviceNTcpFarmfarmIdGet.call(this, itemIndex ?? 0);
 		case 'getIpLoadbalancingserviceNTcpFarmfarmIdServerGet':
-			return await executeGetIpLoadbalancingserviceNTcpFarmfarmIdServerGet.call(this, itemIndex);
+			return await executeGetIpLoadbalancingserviceNTcpFarmfarmIdServerGet.call(this, itemIndex ?? 0);
 		case 'getIpLoadbalancingserviceNTcpFarmfarmIdServerserverIdGet':
 			return await executeGetIpLoadbalancingserviceNTcpFarmfarmIdServerserverIdGet.call(
 				this,
 				itemIndex,
 			);
 		case 'getIpLoadbalancingserviceNTcpFarmGet':
-			return await executeGetIpLoadbalancingserviceNTcpFarmGet.call(this, itemIndex);
+			return await executeGetIpLoadbalancingserviceNTcpFarmGet.call(this, itemIndex ?? 0);
 		case 'getIpLoadbalancingserviceNTcpFrontendfrontendGet':
-			return await executeGetIpLoadbalancingserviceNTcpFrontendfrontendGet.call(this, itemIndex);
+			return await executeGetIpLoadbalancingserviceNTcpFrontendfrontendGet.call(this, itemIndex ?? 0);
 		case 'getIpLoadbalancingserviceNTcpFrontendGet':
-			return await executeGetIpLoadbalancingserviceNTcpFrontendGet.call(this, itemIndex);
+			return await executeGetIpLoadbalancingserviceNTcpFrontendGet.call(this, itemIndex ?? 0);
 		case 'getIpLoadbalancingserviceNTcpRouteGet':
-			return await executeGetIpLoadbalancingserviceNTcpRouteGet.call(this, itemIndex);
+			return await executeGetIpLoadbalancingserviceNTcpRouteGet.call(this, itemIndex ?? 0);
 		case 'getIpLoadbalancingserviceNTcpRouterouteIdGet':
-			return await executeGetIpLoadbalancingserviceNTcpRouterouteIdGet.call(this, itemIndex);
+			return await executeGetIpLoadbalancingserviceNTcpRouterouteIdGet.call(this, itemIndex ?? 0);
 		case 'getIpLoadbalancingserviceNTcpRouterouteIdRuleGet':
-			return await executeGetIpLoadbalancingserviceNTcpRouterouteIdRuleGet.call(this, itemIndex);
+			return await executeGetIpLoadbalancingserviceNTcpRouterouteIdRuleGet.call(this, itemIndex ?? 0);
 		case 'getIpLoadbalancingserviceNTcpRouterouteIdRuleruleIdGet':
 			return await executeGetIpLoadbalancingserviceNTcpRouterouteIdRuleruleIdGet.call(
 				this,
 				itemIndex,
 			);
 		case 'getIpLoadbalancingserviceNUdpFarmfarmIdGet':
-			return await executeGetIpLoadbalancingserviceNUdpFarmfarmIdGet.call(this, itemIndex);
+			return await executeGetIpLoadbalancingserviceNUdpFarmfarmIdGet.call(this, itemIndex ?? 0);
 		case 'getIpLoadbalancingserviceNUdpFarmfarmIdServerGet':
-			return await executeGetIpLoadbalancingserviceNUdpFarmfarmIdServerGet.call(this, itemIndex);
+			return await executeGetIpLoadbalancingserviceNUdpFarmfarmIdServerGet.call(this, itemIndex ?? 0);
 		case 'getIpLoadbalancingserviceNUdpFarmfarmIdServerserverIdGet':
 			return await executeGetIpLoadbalancingserviceNUdpFarmfarmIdServerserverIdGet.call(
 				this,
 				itemIndex,
 			);
 		case 'getIpLoadbalancingserviceNUdpFarmGet':
-			return await executeGetIpLoadbalancingserviceNUdpFarmGet.call(this, itemIndex);
+			return await executeGetIpLoadbalancingserviceNUdpFarmGet.call(this, itemIndex ?? 0);
 		case 'getIpLoadbalancingserviceNUdpFrontendfrontendGet':
-			return await executeGetIpLoadbalancingserviceNUdpFrontendfrontendGet.call(this, itemIndex);
+			return await executeGetIpLoadbalancingserviceNUdpFrontendfrontendGet.call(this, itemIndex ?? 0);
 		case 'getIpLoadbalancingserviceNUdpFrontendGet':
-			return await executeGetIpLoadbalancingserviceNUdpFrontendGet.call(this, itemIndex);
+			return await executeGetIpLoadbalancingserviceNUdpFrontendGet.call(this, itemIndex ?? 0);
 		case 'getIpLoadbalancingserviceNVrackNetworkCreationRulesGet':
 			return await executeGetIpLoadbalancingserviceNVrackNetworkCreationRulesGet.call(
 				this,
 				itemIndex,
 			);
 		case 'getIpLoadbalancingserviceNVrackNetworkGet':
-			return await executeGetIpLoadbalancingserviceNVrackNetworkGet.call(this, itemIndex);
+			return await executeGetIpLoadbalancingserviceNVrackNetworkGet.call(this, itemIndex ?? 0);
 		case 'getIpLoadbalancingserviceNVrackNetworkvrackNetGet':
-			return await executeGetIpLoadbalancingserviceNVrackNetworkvrackNetGet.call(this, itemIndex);
+			return await executeGetIpLoadbalancingserviceNVrackNetworkvrackNetGet.call(this, itemIndex ?? 0);
 		case 'getIpLoadbalancingserviceNVrackStatusGet':
-			return await executeGetIpLoadbalancingserviceNVrackStatusGet.call(this, itemIndex);
+			return await executeGetIpLoadbalancingserviceNVrackStatusGet.call(this, itemIndex ?? 0);
 		case 'getIpLoadbalancingserviceNZoneGet':
-			return await executeGetIpLoadbalancingserviceNZoneGet.call(this, itemIndex);
+			return await executeGetIpLoadbalancingserviceNZoneGet.call(this, itemIndex ?? 0);
 		case 'getIpLoadbalancingserviceNZonenameGet':
-			return await executeGetIpLoadbalancingserviceNZonenameGet.call(this, itemIndex);
+			return await executeGetIpLoadbalancingserviceNZonenameGet.call(this, itemIndex ?? 0);
 		case 'postIpLoadbalancingserviceNConfirmTerminationPost':
-			return await executePostIpLoadbalancingserviceNConfirmTerminationPost.call(this, itemIndex);
+			return await executePostIpLoadbalancingserviceNConfirmTerminationPost.call(this, itemIndex ?? 0);
 		case 'postIpLoadbalancingserviceNFreeCertificatePost':
-			return await executePostIpLoadbalancingserviceNFreeCertificatePost.call(this, itemIndex);
+			return await executePostIpLoadbalancingserviceNFreeCertificatePost.call(this, itemIndex ?? 0);
 		case 'postIpLoadbalancingserviceNHttpFarmfarmIdServerPost':
-			return await executePostIpLoadbalancingserviceNHttpFarmfarmIdServerPost.call(this, itemIndex);
+			return await executePostIpLoadbalancingserviceNHttpFarmfarmIdServerPost.call(this, itemIndex ?? 0);
 		case 'postIpLoadbalancingserviceNHttpFarmPost':
-			return await executePostIpLoadbalancingserviceNHttpFarmPost.call(this, itemIndex);
+			return await executePostIpLoadbalancingserviceNHttpFarmPost.call(this, itemIndex ?? 0);
 		case 'postIpLoadbalancingserviceNHttpFrontendPost':
-			return await executePostIpLoadbalancingserviceNHttpFrontendPost.call(this, itemIndex);
+			return await executePostIpLoadbalancingserviceNHttpFrontendPost.call(this, itemIndex ?? 0);
 		case 'postIpLoadbalancingserviceNHttpRoutePost':
-			return await executePostIpLoadbalancingserviceNHttpRoutePost.call(this, itemIndex);
+			return await executePostIpLoadbalancingserviceNHttpRoutePost.call(this, itemIndex ?? 0);
 		case 'postIpLoadbalancingserviceNHttpRouterouteIdRulePost':
-			return await executePostIpLoadbalancingserviceNHttpRouterouteIdRulePost.call(this, itemIndex);
+			return await executePostIpLoadbalancingserviceNHttpRouterouteIdRulePost.call(this, itemIndex ?? 0);
 		case 'postIpLoadbalancingserviceNLogSubscriptionPost':
-			return await executePostIpLoadbalancingserviceNLogSubscriptionPost.call(this, itemIndex);
+			return await executePostIpLoadbalancingserviceNLogSubscriptionPost.call(this, itemIndex ?? 0);
 		case 'postIpLoadbalancingserviceNLogUrlPost':
-			return await executePostIpLoadbalancingserviceNLogUrlPost.call(this, itemIndex);
+			return await executePostIpLoadbalancingserviceNLogUrlPost.call(this, itemIndex ?? 0);
 		case 'postIpLoadbalancingserviceNRefreshPost':
-			return await executePostIpLoadbalancingserviceNRefreshPost.call(this, itemIndex);
+			return await executePostIpLoadbalancingserviceNRefreshPost.call(this, itemIndex ?? 0);
 		case 'postIpLoadbalancingserviceNSslPost':
-			return await executePostIpLoadbalancingserviceNSslPost.call(this, itemIndex);
+			return await executePostIpLoadbalancingserviceNSslPost.call(this, itemIndex ?? 0);
 		case 'postIpLoadbalancingserviceNTcpFarmfarmIdServerPost':
-			return await executePostIpLoadbalancingserviceNTcpFarmfarmIdServerPost.call(this, itemIndex);
+			return await executePostIpLoadbalancingserviceNTcpFarmfarmIdServerPost.call(this, itemIndex ?? 0);
 		case 'postIpLoadbalancingserviceNTcpFarmPost':
-			return await executePostIpLoadbalancingserviceNTcpFarmPost.call(this, itemIndex);
+			return await executePostIpLoadbalancingserviceNTcpFarmPost.call(this, itemIndex ?? 0);
 		case 'postIpLoadbalancingserviceNTcpFrontendPost':
-			return await executePostIpLoadbalancingserviceNTcpFrontendPost.call(this, itemIndex);
+			return await executePostIpLoadbalancingserviceNTcpFrontendPost.call(this, itemIndex ?? 0);
 		case 'postIpLoadbalancingserviceNTcpRoutePost':
-			return await executePostIpLoadbalancingserviceNTcpRoutePost.call(this, itemIndex);
+			return await executePostIpLoadbalancingserviceNTcpRoutePost.call(this, itemIndex ?? 0);
 		case 'postIpLoadbalancingserviceNTcpRouterouteIdRulePost':
-			return await executePostIpLoadbalancingserviceNTcpRouterouteIdRulePost.call(this, itemIndex);
+			return await executePostIpLoadbalancingserviceNTcpRouterouteIdRulePost.call(this, itemIndex ?? 0);
 		case 'postIpLoadbalancingserviceNTerminatePost':
-			return await executePostIpLoadbalancingserviceNTerminatePost.call(this, itemIndex);
+			return await executePostIpLoadbalancingserviceNTerminatePost.call(this, itemIndex ?? 0);
 		case 'postIpLoadbalancingserviceNUdpFarmfarmIdServerPost':
-			return await executePostIpLoadbalancingserviceNUdpFarmfarmIdServerPost.call(this, itemIndex);
+			return await executePostIpLoadbalancingserviceNUdpFarmfarmIdServerPost.call(this, itemIndex ?? 0);
 		case 'postIpLoadbalancingserviceNUdpFarmPost':
-			return await executePostIpLoadbalancingserviceNUdpFarmPost.call(this, itemIndex);
+			return await executePostIpLoadbalancingserviceNUdpFarmPost.call(this, itemIndex ?? 0);
 		case 'postIpLoadbalancingserviceNUdpFrontendPost':
-			return await executePostIpLoadbalancingserviceNUdpFrontendPost.call(this, itemIndex);
+			return await executePostIpLoadbalancingserviceNUdpFrontendPost.call(this, itemIndex ?? 0);
 		case 'postIpLoadbalancingserviceNVrackNetworkPost':
-			return await executePostIpLoadbalancingserviceNVrackNetworkPost.call(this, itemIndex);
+			return await executePostIpLoadbalancingserviceNVrackNetworkPost.call(this, itemIndex ?? 0);
 		case 'postIpLoadbalancingserviceNVrackNetworkvrackNetUpdateFarmIdPost':
 			return await executePostIpLoadbalancingserviceNVrackNetworkvrackNetUpdateFarmIdPost.call(
 				this,
@@ -1790,56 +1790,56 @@ export async function execute(
 				itemIndex,
 			);
 		case 'postIpLoadbalancingserviceNZonenameTerminatePost':
-			return await executePostIpLoadbalancingserviceNZonenameTerminatePost.call(this, itemIndex);
+			return await executePostIpLoadbalancingserviceNZonenameTerminatePost.call(this, itemIndex ?? 0);
 		case 'putIpLoadbalancingserviceNHttpFarmfarmIdPut':
-			return await executePutIpLoadbalancingserviceNHttpFarmfarmIdPut.call(this, itemIndex);
+			return await executePutIpLoadbalancingserviceNHttpFarmfarmIdPut.call(this, itemIndex ?? 0);
 		case 'putIpLoadbalancingserviceNHttpFarmfarmIdServerserverIdPut':
 			return await executePutIpLoadbalancingserviceNHttpFarmfarmIdServerserverIdPut.call(
 				this,
 				itemIndex,
 			);
 		case 'putIpLoadbalancingserviceNHttpFrontendfrontendPut':
-			return await executePutIpLoadbalancingserviceNHttpFrontendfrontendPut.call(this, itemIndex);
+			return await executePutIpLoadbalancingserviceNHttpFrontendfrontendPut.call(this, itemIndex ?? 0);
 		case 'putIpLoadbalancingserviceNHttpRouterouteIdPut':
-			return await executePutIpLoadbalancingserviceNHttpRouterouteIdPut.call(this, itemIndex);
+			return await executePutIpLoadbalancingserviceNHttpRouterouteIdPut.call(this, itemIndex ?? 0);
 		case 'putIpLoadbalancingserviceNHttpRouterouteIdRuleruleIdPut':
 			return await executePutIpLoadbalancingserviceNHttpRouterouteIdRuleruleIdPut.call(
 				this,
 				itemIndex,
 			);
 		case 'putIpLoadbalancingserviceNQuotazonePut':
-			return await executePutIpLoadbalancingserviceNQuotazonePut.call(this, itemIndex);
+			return await executePutIpLoadbalancingserviceNQuotazonePut.call(this, itemIndex ?? 0);
 		case 'putIpLoadbalancingserviceNServiceInfosPut':
-			return await executePutIpLoadbalancingserviceNServiceInfosPut.call(this, itemIndex);
+			return await executePutIpLoadbalancingserviceNServiceInfosPut.call(this, itemIndex ?? 0);
 		case 'putIpLoadbalancingserviceNSslidPut':
-			return await executePutIpLoadbalancingserviceNSslidPut.call(this, itemIndex);
+			return await executePutIpLoadbalancingserviceNSslidPut.call(this, itemIndex ?? 0);
 		case 'putIpLoadbalancingserviceNTcpFarmfarmIdPut':
-			return await executePutIpLoadbalancingserviceNTcpFarmfarmIdPut.call(this, itemIndex);
+			return await executePutIpLoadbalancingserviceNTcpFarmfarmIdPut.call(this, itemIndex ?? 0);
 		case 'putIpLoadbalancingserviceNTcpFarmfarmIdServerserverIdPut':
 			return await executePutIpLoadbalancingserviceNTcpFarmfarmIdServerserverIdPut.call(
 				this,
 				itemIndex,
 			);
 		case 'putIpLoadbalancingserviceNTcpFrontendfrontendPut':
-			return await executePutIpLoadbalancingserviceNTcpFrontendfrontendPut.call(this, itemIndex);
+			return await executePutIpLoadbalancingserviceNTcpFrontendfrontendPut.call(this, itemIndex ?? 0);
 		case 'putIpLoadbalancingserviceNTcpRouterouteIdPut':
-			return await executePutIpLoadbalancingserviceNTcpRouterouteIdPut.call(this, itemIndex);
+			return await executePutIpLoadbalancingserviceNTcpRouterouteIdPut.call(this, itemIndex ?? 0);
 		case 'putIpLoadbalancingserviceNTcpRouterouteIdRuleruleIdPut':
 			return await executePutIpLoadbalancingserviceNTcpRouterouteIdRuleruleIdPut.call(
 				this,
 				itemIndex,
 			);
 		case 'putIpLoadbalancingserviceNUdpFarmfarmIdPut':
-			return await executePutIpLoadbalancingserviceNUdpFarmfarmIdPut.call(this, itemIndex);
+			return await executePutIpLoadbalancingserviceNUdpFarmfarmIdPut.call(this, itemIndex ?? 0);
 		case 'putIpLoadbalancingserviceNUdpFarmfarmIdServerserverIdPut':
 			return await executePutIpLoadbalancingserviceNUdpFarmfarmIdServerserverIdPut.call(
 				this,
 				itemIndex,
 			);
 		case 'putIpLoadbalancingserviceNUdpFrontendfrontendPut':
-			return await executePutIpLoadbalancingserviceNUdpFrontendfrontendPut.call(this, itemIndex);
+			return await executePutIpLoadbalancingserviceNUdpFrontendfrontendPut.call(this, itemIndex ?? 0);
 		case 'putIpLoadbalancingserviceNVrackNetworkvrackNetPut':
-			return await executePutIpLoadbalancingserviceNVrackNetworkvrackNetPut.call(this, itemIndex);
+			return await executePutIpLoadbalancingserviceNVrackNetworkvrackNetPut.call(this, itemIndex ?? 0);
 	}
 
 	throw new Error('Unsupported operation ' + operation);

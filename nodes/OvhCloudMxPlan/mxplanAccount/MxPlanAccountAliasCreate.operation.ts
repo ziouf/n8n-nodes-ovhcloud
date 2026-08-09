@@ -54,10 +54,10 @@ export function description(displayOptions: IDisplayOptions): INodeProperties[] 
  * HTTP method: POST
  * Endpoint: /email/mxplan/{service}/account/{email}/alias
  */
-export async function execute(this: IExecuteFunctions): Promise<INodeExecutionData[]> {
-	const email = this.getNodeParameter('email', 0) as string;
-	const service = this.getNodeParameter('service', 0) as string;
-	const alias = this.getNodeParameter('alias', 0) as string;
+export async function execute(this: IExecuteFunctions, _itemIndex?: number): Promise<INodeExecutionData[]> {
+	const email = this.getNodeParameter('email', _itemIndex ?? 0) as string;
+	const service = this.getNodeParameter('service', _itemIndex ?? 0) as string;
+	const alias = this.getNodeParameter('alias', _itemIndex ?? 0) as string;
 
 	const body: IDataObject = {
 		alias: alias,

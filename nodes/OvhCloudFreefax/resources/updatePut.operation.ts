@@ -94,26 +94,26 @@ export function description(displayOptions: IDisplayOptions): INodeProperties[] 
  * HTTP method: PUT
  * Endpoint: /freefax/{serviceName}
  */
-export async function execute(this: IExecuteFunctions): Promise<INodeExecutionData[]> {
+export async function execute(this: IExecuteFunctions, _itemIndex?: number): Promise<INodeExecutionData[]> {
 	const client = new ApiClient(this);
-	const serviceName = this.getNodeParameter('serviceName', 0, '', { extractValue: true }) as string;
-	const faxMaxCall = (this.getNodeParameter('faxMaxCall', 0, 3) as number) ?? 3;
+	const serviceName = this.getNodeParameter('serviceName', _itemIndex ?? 0, '', { extractValue: true }) as string;
+	const faxMaxCall = (this.getNodeParameter('faxMaxCall', _itemIndex ?? 0, 3) as number) ?? 3;
 
 	const body: IDataObject = { faxMaxCall };
 
-	const faxQuality = (this.getNodeParameter('faxQuality', 0, '') as string) || '';
+	const faxQuality = (this.getNodeParameter('faxQuality', _itemIndex ?? 0, '') as string) || '';
 	if (faxQuality) body.faxQuality = faxQuality;
 
-	const faxTagLine = (this.getNodeParameter('faxTagLine', 0, '') as string) || '';
+	const faxTagLine = (this.getNodeParameter('faxTagLine', _itemIndex ?? 0, '') as string) || '';
 	if (faxTagLine) body.faxTagLine = faxTagLine;
 
-	const fromEmail = (this.getNodeParameter('fromEmail', 0, '') as string) || '';
+	const fromEmail = (this.getNodeParameter('fromEmail', _itemIndex ?? 0, '') as string) || '';
 	if (fromEmail) body.fromEmail = fromEmail;
 
-	const fromName = (this.getNodeParameter('fromName', 0, '') as string) || '';
+	const fromName = (this.getNodeParameter('fromName', _itemIndex ?? 0, '') as string) || '';
 	if (fromName) body.fromName = fromName;
 
-	const redirectionEmail = (this.getNodeParameter('redirectionEmail', 0, '') as string) || '';
+	const redirectionEmail = (this.getNodeParameter('redirectionEmail', _itemIndex ?? 0, '') as string) || '';
 	if (redirectionEmail) {
 		body.redirectionEmail = redirectionEmail
 			.split(',')

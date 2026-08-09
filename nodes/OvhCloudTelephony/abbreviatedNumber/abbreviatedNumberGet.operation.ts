@@ -36,9 +36,9 @@ export function description(displayOptions: IDisplayOptions): INodeProperties[] 
  * HTTP method: GET
  * Endpoint: /telephony/{billingAccount}/abbreviatedNumber/{abbreviatedNumber}
  */
-export async function execute(this: IExecuteFunctions, itemIndex: number): Promise<INodeExecutionData[]> {
-	const abbreviatedNumber = this.getNodeParameter('abbreviatedNumber', itemIndex) as string;
-	const billingAccount = this.getNodeParameter('billingAccount', itemIndex) as string;
+export async function execute(this: IExecuteFunctions, _itemIndex: number): Promise<INodeExecutionData[]> {
+	const abbreviatedNumber = this.getNodeParameter('abbreviatedNumber', _itemIndex) as string;
+	const billingAccount = this.getNodeParameter('billingAccount', _itemIndex) as string;
 
 	const client = new ApiClient(this);
 	const data = (await client.httpGet('/telephony/' + billingAccount + '/abbreviatedNumber/' + abbreviatedNumber)) as IDataObject;

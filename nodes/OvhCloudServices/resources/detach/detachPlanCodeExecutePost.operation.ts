@@ -73,13 +73,13 @@ export function description(displayOptions: IDisplayOptions): INodeProperties[] 
  * HTTP method: POST
  * Endpoint: /services/{serviceName}/detach/{planCode}/execute
  */
-export async function execute(this: IExecuteFunctions, itemIndex: number): Promise<INodeExecutionData[]> {
-	const serviceName = this.getNodeParameter('serviceName', itemIndex) as string;
-	const planCode = this.getNodeParameter('planCode', itemIndex) as string;
-	const duration = this.getNodeParameter('duration', itemIndex) as string;
-	const pricingMode = this.getNodeParameter('pricingMode', itemIndex) as string;
-	const quantity = this.getNodeParameter('quantity', itemIndex) as number;
-	const autoPayWithPreferredPaymentMethod = this.getNodeParameter('autoPayWithPreferredPaymentMethod', itemIndex, false) as boolean;
+export async function execute(this: IExecuteFunctions, _itemIndex: number): Promise<INodeExecutionData[]> {
+	const serviceName = this.getNodeParameter('serviceName', _itemIndex) as string;
+	const planCode = this.getNodeParameter('planCode', _itemIndex) as string;
+	const duration = this.getNodeParameter('duration', _itemIndex) as string;
+	const pricingMode = this.getNodeParameter('pricingMode', _itemIndex) as string;
+	const quantity = this.getNodeParameter('quantity', _itemIndex) as number;
+	const autoPayWithPreferredPaymentMethod = this.getNodeParameter('autoPayWithPreferredPaymentMethod', _itemIndex, false) as boolean;
 	const body: IDataObject = { duration, pricingMode, quantity };
 	if (autoPayWithPreferredPaymentMethod) body.autoPayWithPreferredPaymentMethod = true;
 	const client = new ApiClient(this);

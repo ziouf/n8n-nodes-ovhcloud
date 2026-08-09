@@ -27,9 +27,9 @@ export function description(displayOptions: IDisplayOptions): INodeProperties[] 
  * HTTP method: GET
  * Endpoint: /domain/data/smd/{smdId}
  */
-export async function execute(this: IExecuteFunctions, itemIndex: number): Promise<INodeExecutionData[]> {
+export async function execute(this: IExecuteFunctions, _itemIndex: number): Promise<INodeExecutionData[]> {
 	const client = new ApiClient(this);
-		const smdId = this.getNodeParameter('smdId', itemIndex) as string;
+		const smdId = this.getNodeParameter('smdId', _itemIndex) as string;
 
 	const data = (await client.httpGet(`/domain/data/smd/${encodeURIComponent(smdId)}`)) as IDataObject;
 

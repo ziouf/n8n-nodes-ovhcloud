@@ -50,9 +50,9 @@ export function description(displayOptions: IDisplayOptions): INodeProperties[] 
  * HTTP method: GET
  * Endpoint: /xdsl/spare/{id}/compatibleReplacement
  */
-export async function execute(this: IExecuteFunctions): Promise<INodeExecutionData[]> {
+export async function execute(this: IExecuteFunctions, _itemIndex?: number): Promise<INodeExecutionData[]> {
 	const client = new ApiClient(this);
-	const id = this.getNodeParameter('id', 0) as string;
+	const id = this.getNodeParameter('id', _itemIndex ?? 0) as string;
 
 	const data = (await client.httpGet(`/xdsl/spare/${id}/compatibleReplacement`)) as IDataObject;
 	return this.helpers.returnJsonArray([data]);

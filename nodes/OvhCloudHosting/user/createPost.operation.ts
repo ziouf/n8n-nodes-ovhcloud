@@ -69,14 +69,14 @@ export function description(displayOptions: IDisplayOptions): INodeProperties[] 
  */
 export async function execute(
 	this: IExecuteFunctions,
-	itemIndex?: number,
+	_itemIndex?: number,
 ): Promise<INodeExecutionData[]> {
 	const client = new ApiClient(this);
-	const serviceName = this.getNodeParameter('serviceName', itemIndex as number) as string;
-	const login = this.getNodeParameter('login', itemIndex as number) as string;
-	const home = this.getNodeParameter('home', itemIndex as number) as string;
-	const password = this.getNodeParameter('password', itemIndex as number) as string;
-	const sshState = this.getNodeParameter('sshState', itemIndex as number, '') as string;
+	const serviceName = this.getNodeParameter('serviceName', _itemIndex as number) as string;
+	const login = this.getNodeParameter('login', _itemIndex as number) as string;
+	const home = this.getNodeParameter('home', _itemIndex as number) as string;
+	const password = this.getNodeParameter('password', _itemIndex as number) as string;
+	const sshState = this.getNodeParameter('sshState', _itemIndex as number, '') as string;
 
 	const body: IDataObject = { home, login, password };
 	if (sshState) {

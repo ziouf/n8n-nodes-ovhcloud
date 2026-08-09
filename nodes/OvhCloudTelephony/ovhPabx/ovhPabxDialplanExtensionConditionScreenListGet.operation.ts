@@ -63,12 +63,12 @@ export function description(displayOptions: IDisplayOptions): INodeProperties[] 
  * HTTP method: GET
  * Endpoint: /telephony/{billingAccount}/ovhPabx/{serviceName}/dialplan/{dialplanId}/extension/{extensionId}/conditionScreenList/{conditionId}
  */
-export async function execute(this: IExecuteFunctions, itemIndex: number): Promise<INodeExecutionData[]> {
-	const billingAccount = this.getNodeParameter('billingAccount', itemIndex) as string;
-	const conditionId = this.getNodeParameter('conditionId', itemIndex) as string;
-	const dialplanId = this.getNodeParameter('dialplanId', itemIndex) as string;
-	const extensionId = this.getNodeParameter('extensionId', itemIndex) as string;
-	const serviceName = this.getNodeParameter('serviceName', itemIndex) as string;
+export async function execute(this: IExecuteFunctions, _itemIndex: number): Promise<INodeExecutionData[]> {
+	const billingAccount = this.getNodeParameter('billingAccount', _itemIndex) as string;
+	const conditionId = this.getNodeParameter('conditionId', _itemIndex) as string;
+	const dialplanId = this.getNodeParameter('dialplanId', _itemIndex) as string;
+	const extensionId = this.getNodeParameter('extensionId', _itemIndex) as string;
+	const serviceName = this.getNodeParameter('serviceName', _itemIndex) as string;
 
 	const client = new ApiClient(this);
 	const data = (await client.httpGet('/telephony/' + encodeURIComponent(billingAccount) + '/ovhPabx' + '/' + encodeURIComponent(serviceName) + '/dialplan' + '/' + encodeURIComponent(dialplanId) + '/extension' + '/' + encodeURIComponent(extensionId) + '/conditionScreenList' + '/' + encodeURIComponent(conditionId))) as IDataObject;

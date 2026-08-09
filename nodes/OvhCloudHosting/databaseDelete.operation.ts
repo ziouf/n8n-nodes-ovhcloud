@@ -43,13 +43,13 @@ export function description(
 
 export async function execute(
 	this: IExecuteFunctions,
-	itemIndex?: number,
+	_itemIndex?: number,
 ): Promise<INodeExecutionData[]> {
 	const client = new ApiClient(this);
-	const serviceName = this.getNodeParameter('serviceName', itemIndex as number, '', {
+	const serviceName = this.getNodeParameter('serviceName', _itemIndex as number, '', {
 		extractValue: true,
 	}) as string;
-	const databaseName = this.getNodeParameter('databaseName', itemIndex as number) as string;
+	const databaseName = this.getNodeParameter('databaseName', _itemIndex as number) as string;
 
 	const data = (await client.httpPost(
 		`/hosting/web/${serviceName}/database/delete`,

@@ -11,8 +11,7 @@ export function description(_displayOptions: IDisplayOptions): INodeProperties[]
 	return [];
 }
 
-// eslint-disable-next-line @typescript-eslint/no-unused-vars
-export async function execute(this: IExecuteFunctions, itemIndex: number): Promise<INodeExecutionData[]> {
+export async function execute(this: IExecuteFunctions, _itemIndex: number): Promise<INodeExecutionData[]> {
 	const client = new ApiClient(this);
 	const data = (await client.httpGet('/order/overTheBox')) as unknown[];
 

@@ -46,10 +46,10 @@ export function description(displayOptions: IDisplayOptions): INodeProperties[] 
  * HTTP method: PUT
  * Endpoint: /vrack/{serviceName}/ipv6/{ipv6}/bridgedSubrange/{bridgedSubrange}
  */
-export async function execute(this: IExecuteFunctions, itemIndex: number): Promise<INodeExecutionData[]> {
-	const serviceName = this.getNodeParameter('serviceName', itemIndex) as string;
-	const ipv6 = this.getNodeParameter('ipv6', itemIndex) as string;
-	const bridgedSubrange = this.getNodeParameter('bridgedSubrange', itemIndex) as string;
+export async function execute(this: IExecuteFunctions, _itemIndex: number): Promise<INodeExecutionData[]> {
+	const serviceName = this.getNodeParameter('serviceName', _itemIndex) as string;
+	const ipv6 = this.getNodeParameter('ipv6', _itemIndex) as string;
+	const bridgedSubrange = this.getNodeParameter('bridgedSubrange', _itemIndex) as string;
 
 
 

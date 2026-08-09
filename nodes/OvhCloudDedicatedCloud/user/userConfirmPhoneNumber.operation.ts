@@ -47,12 +47,12 @@ export function description(displayOptions: IDisplayOptions): INodeProperties[] 
  * HTTP method: POST
  * Endpoint: /dedicatedCloud/{serviceName}/user/{userId}/confirmPhoneNumber
  */
-export async function execute(this: IExecuteFunctions, itemIndex: number): Promise<INodeExecutionData[]> {
+export async function execute(this: IExecuteFunctions, _itemIndex: number): Promise<INodeExecutionData[]> {
 	const client = new ApiClient(this);
-	const serviceName = this.getNodeParameter('serviceName', itemIndex) as string;
-	const userId = this.getNodeParameter('userId', itemIndex) as string;
+	const serviceName = this.getNodeParameter('serviceName', _itemIndex) as string;
+	const userId = this.getNodeParameter('userId', _itemIndex) as string;
 	const body: IDataObject = {};
-	body.token = this.getNodeParameter('token', itemIndex) as string;
+	body.token = this.getNodeParameter('token', _itemIndex) as string;
 	const data = (await client.httpPost(`/dedicatedCloud/${serviceName}/user/${userId}/confirmPhoneNumber`, body)) as IDataObject;
 	return this.helpers.returnJsonArray([data]);
 }

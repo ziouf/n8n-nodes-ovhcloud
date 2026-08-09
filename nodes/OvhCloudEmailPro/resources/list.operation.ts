@@ -6,7 +6,7 @@ export function description() {
 	return [];
 }
 
-export async function execute(this: IExecuteFunctions): Promise<INodeExecutionData[]> {
+export async function execute(this: IExecuteFunctions, _itemIndex?: number): Promise<INodeExecutionData[]> {
 	const client = new ApiClient(this);
 	try {
 		const data: unknown[] = (await client.httpGet('/email/pro')) as unknown[];

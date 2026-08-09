@@ -70,18 +70,18 @@ export function description(displayOptions: IDisplayOptions): INodeProperties[] 
  * HTTP method: PUT
  * Endpoint: /sms/{serviceName}/users/{login}
  */
-export async function execute(this: IExecuteFunctions): Promise<INodeExecutionData[]> {
-	const login = this.getNodeParameter('login', 0) as string;
-	const serviceName = this.getNodeParameter('serviceName', 0, '', { extractValue: true }) as string;
+export async function execute(this: IExecuteFunctions, _itemIndex?: number): Promise<INodeExecutionData[]> {
+	const login = this.getNodeParameter('login', _itemIndex ?? 0) as string;
+	const serviceName = this.getNodeParameter('serviceName', _itemIndex ?? 0, '', { extractValue: true }) as string;
 	const body: IDataObject = {};
-	const callBack = this.getNodeParameter('callBack', 0) as string;
+	const callBack = this.getNodeParameter('callBack', _itemIndex ?? 0) as string;
 	if (callBack) body['callBack'] = callBack;
-	const ipRestrictions = this.getNodeParameter('ipRestrictions', 0) as string;
+	const ipRestrictions = this.getNodeParameter('ipRestrictions', _itemIndex ?? 0) as string;
 	if (ipRestrictions)
 		body['ipRestrictions'] = (ipRestrictions as string).split(',').map((r: string) => r.trim());
-	const password = this.getNodeParameter('password', 0) as string;
+	const password = this.getNodeParameter('password', _itemIndex ?? 0) as string;
 	if (password) body['password'] = password;
-	const stopCallBack = this.getNodeParameter('stopCallBack', 0) as string;
+	const stopCallBack = this.getNodeParameter('stopCallBack', _itemIndex ?? 0) as string;
 	if (stopCallBack) body['stopCallBack'] = stopCallBack;
 	const data = (await new ApiClient(this).httpPut(
 		`/sms/${encodeURIComponent(serviceName)}/users/${encodeURIComponent(login)}`,

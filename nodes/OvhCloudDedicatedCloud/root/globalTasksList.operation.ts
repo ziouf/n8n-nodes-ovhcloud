@@ -191,33 +191,33 @@ export function description(displayOptions: IDisplayOptions): INodeProperties[] 
  * HTTP method: GET
  * Endpoint: /dedicatedCloud/{serviceName}/globalTasks
  */
-export async function execute(this: IExecuteFunctions, itemIndex: number): Promise<INodeExecutionData[]> {
+export async function execute(this: IExecuteFunctions, _itemIndex: number): Promise<INodeExecutionData[]> {
 	const client = new ApiClient(this);
-	const serviceName = this.getNodeParameter('serviceName', itemIndex) as string;
+	const serviceName = this.getNodeParameter('serviceName', _itemIndex) as string;
 	const qs: IDataObject = {};
-	const datacenterId = this.getNodeParameter('datacenterId', itemIndex) as number; if (datacenterId) { qs.datacenterId = datacenterId; }
-	const endDate_from = this.getNodeParameter('endDate.from', itemIndex, '') as string; if (endDate_from !== '') { qs['endDate.from'] = endDate_from; }
-	const endDate_to = this.getNodeParameter('endDate.to', itemIndex, '') as string; if (endDate_to !== '') { qs['endDate.to'] = endDate_to; }
-	const executionDate_from = this.getNodeParameter('executionDate.from', itemIndex, '') as string; if (executionDate_from !== '') { qs['executionDate.from'] = executionDate_from; }
-	const executionDate_to = this.getNodeParameter('executionDate.to', itemIndex, '') as string; if (executionDate_to !== '') { qs['executionDate.to'] = executionDate_to; }
-	const filerId = this.getNodeParameter('filerId', itemIndex) as number; if (filerId) { qs.filerId = filerId; }
-	const hostId = this.getNodeParameter('hostId', itemIndex) as number; if (hostId) { qs.hostId = hostId; }
-	const lastModificationDate_from = this.getNodeParameter('lastModificationDate.from', itemIndex, '') as string; if (lastModificationDate_from !== '') { qs['lastModificationDate.from'] = lastModificationDate_from; }
-	const lastModificationDate_to = this.getNodeParameter('lastModificationDate.to', itemIndex, '') as string; if (lastModificationDate_to !== '') { qs['lastModificationDate.to'] = lastModificationDate_to; }
-	const name = this.getNodeParameter('name', itemIndex, '') as string; if (name !== '') { qs.name = name; }
-	const networkAccessId = this.getNodeParameter('networkAccessId', itemIndex) as number; if (networkAccessId) { qs.networkAccessId = networkAccessId; }
-	const orderId = this.getNodeParameter('orderId', itemIndex) as number; if (orderId) { qs.orderId = orderId; }
-	const parentTaskId = this.getNodeParameter('parentTaskId', itemIndex) as number; if (parentTaskId) { qs.parentTaskId = parentTaskId; }
-	const state = this.getNodeParameter('state', itemIndex, []) as string[]; if (state.length > 0) { qs.state = state; }
-	const userId = this.getNodeParameter('userId', itemIndex) as number; if (userId) { qs.userId = userId; }
-	const vlanId = this.getNodeParameter('vlanId', itemIndex) as number; if (vlanId) { qs.vlanId = vlanId; }
+	const datacenterId = this.getNodeParameter('datacenterId', _itemIndex) as number; if (datacenterId) { qs.datacenterId = datacenterId; }
+	const endDate_from = this.getNodeParameter('endDate.from', _itemIndex, '') as string; if (endDate_from !== '') { qs['endDate.from'] = endDate_from; }
+	const endDate_to = this.getNodeParameter('endDate.to', _itemIndex, '') as string; if (endDate_to !== '') { qs['endDate.to'] = endDate_to; }
+	const executionDate_from = this.getNodeParameter('executionDate.from', _itemIndex, '') as string; if (executionDate_from !== '') { qs['executionDate.from'] = executionDate_from; }
+	const executionDate_to = this.getNodeParameter('executionDate.to', _itemIndex, '') as string; if (executionDate_to !== '') { qs['executionDate.to'] = executionDate_to; }
+	const filerId = this.getNodeParameter('filerId', _itemIndex) as number; if (filerId) { qs.filerId = filerId; }
+	const hostId = this.getNodeParameter('hostId', _itemIndex) as number; if (hostId) { qs.hostId = hostId; }
+	const lastModificationDate_from = this.getNodeParameter('lastModificationDate.from', _itemIndex, '') as string; if (lastModificationDate_from !== '') { qs['lastModificationDate.from'] = lastModificationDate_from; }
+	const lastModificationDate_to = this.getNodeParameter('lastModificationDate.to', _itemIndex, '') as string; if (lastModificationDate_to !== '') { qs['lastModificationDate.to'] = lastModificationDate_to; }
+	const name = this.getNodeParameter('name', _itemIndex, '') as string; if (name !== '') { qs.name = name; }
+	const networkAccessId = this.getNodeParameter('networkAccessId', _itemIndex) as number; if (networkAccessId) { qs.networkAccessId = networkAccessId; }
+	const orderId = this.getNodeParameter('orderId', _itemIndex) as number; if (orderId) { qs.orderId = orderId; }
+	const parentTaskId = this.getNodeParameter('parentTaskId', _itemIndex) as number; if (parentTaskId) { qs.parentTaskId = parentTaskId; }
+	const state = this.getNodeParameter('state', _itemIndex, []) as string[]; if (state.length > 0) { qs.state = state; }
+	const userId = this.getNodeParameter('userId', _itemIndex) as number; if (userId) { qs.userId = userId; }
+	const vlanId = this.getNodeParameter('vlanId', _itemIndex) as number; if (vlanId) { qs.vlanId = vlanId; }
 	const data = (await client.httpGet(`/dedicatedCloud/${serviceName}/globalTasks`, qs)) as IDataObject;
-	const returnAll = this.getNodeParameter('returnAll', itemIndex) as boolean;
+	const returnAll = this.getNodeParameter('returnAll', _itemIndex) as boolean;
 
 	if (returnAll) {
 		return data as unknown as INodeExecutionData[];
 	}
 
-	const limit = this.getNodeParameter('limit', itemIndex) as number;
+	const limit = this.getNodeParameter('limit', _itemIndex) as number;
 	return (data as unknown as INodeExecutionData[]).slice(0, limit);
 }

@@ -1358,219 +1358,219 @@ export async function execute(
 
 	switch (operation) {
 		case 'DelegatedAccountFilterChangeActivityCreate':
-			return executeDelegatedAccountFilterChangeActivityCreate.call(this);
+			return executeDelegatedAccountFilterChangeActivityCreate.call(this, itemIndex ?? 0);
 		case 'DelegatedAccountFilterChangePriorityCreate':
-			return executeDelegatedAccountFilterChangePriorityCreate.call(this);
+			return executeDelegatedAccountFilterChangePriorityCreate.call(this, itemIndex ?? 0);
 		case 'DelegatedAccountFilterCreate':
-			return executeDelegatedAccountFilterCreate.call(this);
+			return executeDelegatedAccountFilterCreate.call(this, itemIndex ?? 0);
 		case 'DelegatedAccountFilterDelete':
-			return executeDelegatedAccountFilterDelete.call(this);
+			return executeDelegatedAccountFilterDelete.call(this, itemIndex ?? 0);
 		case 'DelegatedAccountFilterGet':
-			return executeDelegatedAccountFilterGet.call(this);
+			return executeDelegatedAccountFilterGet.call(this, itemIndex ?? 0);
 		case 'DelegatedAccountFilterList':
-			return executeDelegatedAccountFilterList.call(this);
+			return executeDelegatedAccountFilterList.call(this, itemIndex ?? 0);
 		case 'DelegatedAccountFilterRuleDelete':
-			return executeDelegatedAccountFilterRuleDelete.call(this);
+			return executeDelegatedAccountFilterRuleDelete.call(this, itemIndex ?? 0);
 		case 'DelegatedAccountFilterRuleGet':
-			return executeDelegatedAccountFilterRuleGet.call(this);
+			return executeDelegatedAccountFilterRuleGet.call(this, itemIndex ?? 0);
 		case 'DelegatedAccountGet':
-			return executeDelegatedAccountGet.call(this);
+			return executeDelegatedAccountGet.call(this, itemIndex ?? 0);
 		case 'DelegatedAccountGet10':
-			return executeDelegatedAccountGet10.call(this);
+			return executeDelegatedAccountGet10.call(this, itemIndex ?? 0);
 		case 'DelegatedAccountGet11':
-			return executeDelegatedAccountGet11.call(this);
+			return executeDelegatedAccountGet11.call(this, itemIndex ?? 0);
 		case 'DelegatedAccountGet12':
-			return executeDelegatedAccountGet12.call(this);
+			return executeDelegatedAccountGet12.call(this, itemIndex ?? 0);
 		case 'DelegatedAccountGet2':
-			return executeDelegatedAccountGet2.call(this);
+			return executeDelegatedAccountGet2.call(this, itemIndex ?? 0);
 		case 'DelegatedAccountGet3':
-			return executeDelegatedAccountGet3.call(this);
+			return executeDelegatedAccountGet3.call(this, itemIndex ?? 0);
 		case 'DelegatedAccountGet4':
-			return executeDelegatedAccountGet4.call(this);
+			return executeDelegatedAccountGet4.call(this, itemIndex ?? 0);
 		case 'DelegatedAccountGet5':
-			return executeDelegatedAccountGet5.call(this);
+			return executeDelegatedAccountGet5.call(this, itemIndex ?? 0);
 		case 'DelegatedAccountGet6':
-			return executeDelegatedAccountGet6.call(this);
+			return executeDelegatedAccountGet6.call(this, itemIndex ?? 0);
 		case 'DelegatedAccountGet7':
-			return executeDelegatedAccountGet7.call(this);
+			return executeDelegatedAccountGet7.call(this, itemIndex ?? 0);
 		case 'DelegatedAccountGet8':
-			return executeDelegatedAccountGet8.call(this);
+			return executeDelegatedAccountGet8.call(this, itemIndex ?? 0);
 		case 'DelegatedAccountGet9':
-			return executeDelegatedAccountGet9.call(this);
+			return executeDelegatedAccountGet9.call(this, itemIndex ?? 0);
 		case 'DomainAccountChangePasswordCreate':
-			return executeDomainAccountChangePasswordCreate.call(this);
+			return executeDomainAccountChangePasswordCreate.call(this, itemIndex ?? 0);
 		case 'DomainAccountCreate':
-			return executeDomainAccountCreate.call(this);
+			return executeDomainAccountCreate.call(this, itemIndex ?? 0);
 		case 'DomainAccountDelegationCreate':
-			return executeDomainAccountDelegationCreate.call(this);
+			return executeDomainAccountDelegationCreate.call(this, itemIndex ?? 0);
 		case 'DomainAccountDelegationDelete':
-			return executeDomainAccountDelegationDelete.call(this);
+			return executeDomainAccountDelegationDelete.call(this, itemIndex ?? 0);
 		case 'DomainAccountDelegationGet':
-			return executeDomainAccountDelegationGet.call(this);
+			return executeDomainAccountDelegationGet.call(this, itemIndex ?? 0);
 		case 'DomainAccountDelegationList':
-			return executeDomainAccountDelegationList.call(this);
+			return executeDomainAccountDelegationList.call(this, itemIndex ?? 0);
 		case 'DomainAccountDelete':
-			return executeDomainAccountDelete.call(this);
+			return executeDomainAccountDelete.call(this, itemIndex ?? 0);
 		case 'DomainAccountFilterChangeActivityCreate':
-			return executeDomainAccountFilterChangeActivityCreate.call(this);
+			return executeDomainAccountFilterChangeActivityCreate.call(this, itemIndex ?? 0);
 		case 'DomainAccountFilterChangePriorityCreate':
-			return executeDomainAccountFilterChangePriorityCreate.call(this);
+			return executeDomainAccountFilterChangePriorityCreate.call(this, itemIndex ?? 0);
 		case 'DomainAccountFilterCreate':
-			return executeDomainAccountFilterCreate.call(this);
+			return executeDomainAccountFilterCreate.call(this, itemIndex ?? 0);
 		case 'DomainAccountFilterDelete':
-			return executeDomainAccountFilterDelete.call(this);
+			return executeDomainAccountFilterDelete.call(this, itemIndex ?? 0);
 		case 'DomainAccountFilterGet':
-			return executeDomainAccountFilterGet.call(this);
+			return executeDomainAccountFilterGet.call(this, itemIndex ?? 0);
 		case 'DomainAccountFilterList':
-			return executeDomainAccountFilterList.call(this);
+			return executeDomainAccountFilterList.call(this, itemIndex ?? 0);
 		case 'DomainAccountFilterRuleCreate':
-			return executeDomainAccountFilterRuleCreate.call(this);
+			return executeDomainAccountFilterRuleCreate.call(this, itemIndex ?? 0);
 		case 'DomainAccountFilterRuleDelete':
-			return executeDomainAccountFilterRuleDelete.call(this);
+			return executeDomainAccountFilterRuleDelete.call(this, itemIndex ?? 0);
 		case 'DomainAccountFilterRuleGet':
-			return executeDomainAccountFilterRuleGet.call(this);
+			return executeDomainAccountFilterRuleGet.call(this, itemIndex ?? 0);
 		case 'DomainAccountFilterRuleList':
-			return executeDomainAccountFilterRuleList.call(this);
+			return executeDomainAccountFilterRuleList.call(this, itemIndex ?? 0);
 		case 'DomainAccountGet':
-			return executeDomainAccountGet.call(this);
+			return executeDomainAccountGet.call(this, itemIndex ?? 0);
 		case 'DomainAccountList':
-			return executeDomainAccountList.call(this);
+			return executeDomainAccountList.call(this, itemIndex ?? 0);
 		case 'DomainAccountMigrateCheckGet':
-			return executeDomainAccountMigrateCheckGet.call(this);
+			return executeDomainAccountMigrateCheckGet.call(this, itemIndex ?? 0);
 		case 'DomainAccountMigrateCreate':
-			return executeDomainAccountMigrateCreate.call(this);
+			return executeDomainAccountMigrateCreate.call(this, itemIndex ?? 0);
 		case 'DomainAccountMigrateDestinationEmailGet':
-			return executeDomainAccountMigrateDestinationEmailGet.call(this);
+			return executeDomainAccountMigrateDestinationEmailGet.call(this, itemIndex ?? 0);
 		case 'DomainAccountMigrateDestinationEmailList':
-			return executeDomainAccountMigrateDestinationEmailList.call(this);
+			return executeDomainAccountMigrateDestinationEmailList.call(this, itemIndex ?? 0);
 		case 'DomainAccountMigrateGet':
-			return executeDomainAccountMigrateGet.call(this);
+			return executeDomainAccountMigrateGet.call(this, itemIndex ?? 0);
 		case 'DomainAccountMigrateGet2':
-			return executeDomainAccountMigrateGet2.call(this);
+			return executeDomainAccountMigrateGet2.call(this, itemIndex ?? 0);
 		case 'DomainAccountUpdate':
-			return executeDomainAccountUpdate.call(this);
+			return executeDomainAccountUpdate.call(this, itemIndex ?? 0);
 		case 'DomainAccountUpdateUsagePost':
-			return executeDomainAccountUpdateUsagePost.call(this);
+			return executeDomainAccountUpdateUsagePost.call(this, itemIndex ?? 0);
 		case 'DomainAccountUsageGet':
-			return executeDomainAccountUsageGet.call(this);
+			return executeDomainAccountUsageGet.call(this, itemIndex ?? 0);
 		case 'DomainAclCreate':
-			return executeDomainAclCreate.call(this);
+			return executeDomainAclCreate.call(this, itemIndex ?? 0);
 		case 'DomainAclDelete':
-			return executeDomainAclDelete.call(this);
+			return executeDomainAclDelete.call(this, itemIndex ?? 0);
 		case 'DomainAclGet':
-			return executeDomainAclGet.call(this);
+			return executeDomainAclGet.call(this, itemIndex ?? 0);
 		case 'DomainAclList':
-			return executeDomainAclList.call(this);
+			return executeDomainAclList.call(this, itemIndex ?? 0);
 		case 'DomainChangeContactCreate':
-			return executeDomainChangeContactCreate.call(this);
+			return executeDomainChangeContactCreate.call(this, itemIndex ?? 0);
 		case 'DomainChangeDnsMXFilterCreate':
-			return executeDomainChangeDnsMXFilterCreate.call(this);
+			return executeDomainChangeDnsMXFilterCreate.call(this, itemIndex ?? 0);
 		case 'DomainConfirmTerminationCreate':
-			return executeDomainConfirmTerminationCreate.call(this);
+			return executeDomainConfirmTerminationCreate.call(this, itemIndex ?? 0);
 		case 'DomainDkimDisableUpdate':
-			return executeDomainDkimDisableUpdate.call(this);
+			return executeDomainDkimDisableUpdate.call(this, itemIndex ?? 0);
 		case 'DomainDkimEnableUpdate':
-			return executeDomainDkimEnableUpdate.call(this);
+			return executeDomainDkimEnableUpdate.call(this, itemIndex ?? 0);
 		case 'DomainDkimGet':
-			return executeDomainDkimGet.call(this);
+			return executeDomainDkimGet.call(this, itemIndex ?? 0);
 		case 'DomainDnsMXFilterGet':
-			return executeDomainDnsMXFilterGet.call(this);
+			return executeDomainDnsMXFilterGet.call(this, itemIndex ?? 0);
 		case 'DomainDnsMXRecordsGet':
-			return executeDomainDnsMXRecordsGet.call(this);
+			return executeDomainDnsMXRecordsGet.call(this, itemIndex ?? 0);
 		case 'DomainGet':
-			return executeDomainGet.call(this);
+			return executeDomainGet.call(this, itemIndex ?? 0);
 		case 'DomainList':
-			return executeDomainList.call(this);
+			return executeDomainList.call(this, itemIndex ?? 0);
 		case 'DomainMailingListChangeOptionsCreate':
-			return executeDomainMailingListChangeOptionsCreate.call(this);
+			return executeDomainMailingListChangeOptionsCreate.call(this, itemIndex ?? 0);
 		case 'DomainMailingListCreate':
-			return executeDomainMailingListCreate.call(this);
+			return executeDomainMailingListCreate.call(this, itemIndex ?? 0);
 		case 'DomainMailingListDelete':
-			return executeDomainMailingListDelete.call(this);
+			return executeDomainMailingListDelete.call(this, itemIndex ?? 0);
 		case 'DomainMailingListGet':
-			return executeDomainMailingListGet.call(this);
+			return executeDomainMailingListGet.call(this, itemIndex ?? 0);
 		case 'DomainMailingListList':
-			return executeDomainMailingListList.call(this);
+			return executeDomainMailingListList.call(this, itemIndex ?? 0);
 		case 'DomainMailingListModeratorCreate':
-			return executeDomainMailingListModeratorCreate.call(this);
+			return executeDomainMailingListModeratorCreate.call(this, itemIndex ?? 0);
 		case 'DomainMailingListModeratorDelete':
-			return executeDomainMailingListModeratorDelete.call(this);
+			return executeDomainMailingListModeratorDelete.call(this, itemIndex ?? 0);
 		case 'DomainMailingListModeratorGet':
-			return executeDomainMailingListModeratorGet.call(this);
+			return executeDomainMailingListModeratorGet.call(this, itemIndex ?? 0);
 		case 'DomainMailingListModeratorList':
-			return executeDomainMailingListModeratorList.call(this);
+			return executeDomainMailingListModeratorList.call(this, itemIndex ?? 0);
 		case 'DomainMailingListSendListByEmailCreate':
-			return executeDomainMailingListSendListByEmailCreate.call(this);
+			return executeDomainMailingListSendListByEmailCreate.call(this, itemIndex ?? 0);
 		case 'DomainMailingListSubscriberCreate':
-			return executeDomainMailingListSubscriberCreate.call(this);
+			return executeDomainMailingListSubscriberCreate.call(this, itemIndex ?? 0);
 		case 'DomainMailingListSubscriberDelete':
-			return executeDomainMailingListSubscriberDelete.call(this);
+			return executeDomainMailingListSubscriberDelete.call(this, itemIndex ?? 0);
 		case 'DomainMailingListSubscriberGet':
-			return executeDomainMailingListSubscriberGet.call(this);
+			return executeDomainMailingListSubscriberGet.call(this, itemIndex ?? 0);
 		case 'DomainMailingListSubscriberList':
-			return executeDomainMailingListSubscriberList.call(this);
+			return executeDomainMailingListSubscriberList.call(this, itemIndex ?? 0);
 		case 'DomainMailingListUpdate':
-			return executeDomainMailingListUpdate.call(this);
+			return executeDomainMailingListUpdate.call(this, itemIndex ?? 0);
 		case 'DomainMigrateDelegationV3toV6Create':
-			return executeDomainMigrateDelegationV3toV6Create.call(this);
+			return executeDomainMigrateDelegationV3toV6Create.call(this, itemIndex ?? 0);
 		case 'DomainQuotaGet':
-			return executeDomainQuotaGet.call(this);
+			return executeDomainQuotaGet.call(this, itemIndex ?? 0);
 		case 'DomainRecommendedDNSRecordsGet':
-			return executeDomainRecommendedDNSRecordsGet.call(this);
+			return executeDomainRecommendedDNSRecordsGet.call(this, itemIndex ?? 0);
 		case 'DomainRedirectionChangeCreate':
-			return executeDomainRedirectionChangeCreate.call(this);
+			return executeDomainRedirectionChangeCreate.call(this, itemIndex ?? 0);
 		case 'DomainRedirectionCreate':
-			return executeDomainRedirectionCreate.call(this);
+			return executeDomainRedirectionCreate.call(this, itemIndex ?? 0);
 		case 'DomainRedirectionDelete':
-			return executeDomainRedirectionDelete.call(this);
+			return executeDomainRedirectionDelete.call(this, itemIndex ?? 0);
 		case 'DomainRedirectionGet':
-			return executeDomainRedirectionGet.call(this);
+			return executeDomainRedirectionGet.call(this, itemIndex ?? 0);
 		case 'DomainRedirectionList':
-			return executeDomainRedirectionList.call(this);
+			return executeDomainRedirectionList.call(this, itemIndex ?? 0);
 		case 'DomainResponderCreate':
-			return executeDomainResponderCreate.call(this);
+			return executeDomainResponderCreate.call(this, itemIndex ?? 0);
 		case 'DomainResponderDelete':
-			return executeDomainResponderDelete.call(this);
+			return executeDomainResponderDelete.call(this, itemIndex ?? 0);
 		case 'DomainResponderGet':
-			return executeDomainResponderGet.call(this);
+			return executeDomainResponderGet.call(this, itemIndex ?? 0);
 		case 'DomainResponderList':
-			return executeDomainResponderList.call(this);
+			return executeDomainResponderList.call(this, itemIndex ?? 0);
 		case 'DomainResponderUpdate':
-			return executeDomainResponderUpdate.call(this);
+			return executeDomainResponderUpdate.call(this, itemIndex ?? 0);
 		case 'DomainServiceInfosGet':
-			return executeDomainServiceInfosGet.call(this);
+			return executeDomainServiceInfosGet.call(this, itemIndex ?? 0);
 		case 'DomainServiceInfosUpdate':
-			return executeDomainServiceInfosUpdate.call(this);
+			return executeDomainServiceInfosUpdate.call(this, itemIndex ?? 0);
 		case 'DomainSummaryGet':
-			return executeDomainSummaryGet.call(this);
+			return executeDomainSummaryGet.call(this, itemIndex ?? 0);
 		case 'DomainTaskAccountGet':
-			return executeDomainTaskAccountGet.call(this);
+			return executeDomainTaskAccountGet.call(this, itemIndex ?? 0);
 		case 'DomainTaskAccountList':
-			return executeDomainTaskAccountList.call(this);
+			return executeDomainTaskAccountList.call(this, itemIndex ?? 0);
 		case 'DomainTaskAllGet':
-			return executeDomainTaskAllGet.call(this);
+			return executeDomainTaskAllGet.call(this, itemIndex ?? 0);
 		case 'DomainTaskAllList':
-			return executeDomainTaskAllList.call(this);
+			return executeDomainTaskAllList.call(this, itemIndex ?? 0);
 		case 'DomainTaskFilterGet':
-			return executeDomainTaskFilterGet.call(this);
+			return executeDomainTaskFilterGet.call(this, itemIndex ?? 0);
 		case 'DomainTaskFilterList':
-			return executeDomainTaskFilterList.call(this);
+			return executeDomainTaskFilterList.call(this, itemIndex ?? 0);
 		case 'DomainTaskMailinglistGet':
-			return executeDomainTaskMailinglistGet.call(this);
+			return executeDomainTaskMailinglistGet.call(this, itemIndex ?? 0);
 		case 'DomainTaskMailinglistList':
-			return executeDomainTaskMailinglistList.call(this);
+			return executeDomainTaskMailinglistList.call(this, itemIndex ?? 0);
 		case 'DomainTaskRedirectionGet':
-			return executeDomainTaskRedirectionGet.call(this);
+			return executeDomainTaskRedirectionGet.call(this, itemIndex ?? 0);
 		case 'DomainTaskRedirectionList':
-			return executeDomainTaskRedirectionList.call(this);
+			return executeDomainTaskRedirectionList.call(this, itemIndex ?? 0);
 		case 'DomainTaskResponderGet':
-			return executeDomainTaskResponderGet.call(this);
+			return executeDomainTaskResponderGet.call(this, itemIndex ?? 0);
 		case 'DomainTaskResponderList':
-			return executeDomainTaskResponderList.call(this);
+			return executeDomainTaskResponderList.call(this, itemIndex ?? 0);
 		case 'DomainTerminateCreate':
-			return executeDomainTerminateCreate.call(this);
+			return executeDomainTerminateCreate.call(this, itemIndex ?? 0);
 		case 'MailingListLimitsGet':
-			return executeMailingListLimitsGet.call(this);
+			return executeMailingListLimitsGet.call(this, itemIndex ?? 0);
 	}
 
 	throw new Error(`Unsupported operation "${operation}" for resource "emailDomain"`);

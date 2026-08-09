@@ -28,8 +28,8 @@ export function description(displayOptions: IDisplayOptions): INodeProperties[] 
  * HTTP method: POST
  * Endpoint: /vmwareCloudDirector/organization/{organizationId}/password
  */
-export async function execute(this: IExecuteFunctions, itemIndex: number): Promise<INodeExecutionData[]> {
-	const organizationId = this.getNodeParameter('organizationId', itemIndex) as string;
+export async function execute(this: IExecuteFunctions, _itemIndex: number): Promise<INodeExecutionData[]> {
+	const organizationId = this.getNodeParameter('organizationId', _itemIndex) as string;
 
 
 	const client = new ApiClient(this);

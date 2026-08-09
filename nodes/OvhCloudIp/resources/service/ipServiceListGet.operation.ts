@@ -20,8 +20,8 @@ export function description(displayOptions: IDisplayOptions): INodeProperties[] 
  * Endpoint: /ip/service
  */
 
-export async function execute(this: IExecuteFunctions, itemIndex: number): Promise<INodeExecutionData[]> {
-	void itemIndex;
+export async function execute(this: IExecuteFunctions, _itemIndex: number): Promise<INodeExecutionData[]> {
+	void _itemIndex;
 
 	const client = new ApiClient(this);
 	const data = (await client.httpGet(`/ip/service`)) as IDataObject;

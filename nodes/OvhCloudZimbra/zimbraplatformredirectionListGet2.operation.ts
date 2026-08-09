@@ -37,9 +37,9 @@ export function description(displayOptions: IDisplayOptions): INodeProperties[] 
  * HTTP method: GET
  * Endpoint: /zimbra/platform/{platformId}/redirection/{redirectionId}
  */
-export async function execute(this: IExecuteFunctions, itemIndex: number): Promise<INodeExecutionData[]> {
-	const platformId = this.getNodeParameter('platformId', itemIndex) as string;
-	const redirectionId = this.getNodeParameter('redirectionId', itemIndex) as string;
+export async function execute(this: IExecuteFunctions, _itemIndex: number): Promise<INodeExecutionData[]> {
+	const platformId = this.getNodeParameter('platformId', _itemIndex) as string;
+	const redirectionId = this.getNodeParameter('redirectionId', _itemIndex) as string;
 
 
 	const client = new ApiClient(this);

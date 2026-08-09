@@ -57,10 +57,10 @@ export function description(displayOptions: IDisplayOptions = {} as IDisplayOpti
  * HTTP method: GET
  * Endpoint: /cloud/project/{serviceName}/ai/capabilities/region/{region}/notebook/editor
  */
-export async function execute(this: IExecuteFunctions): Promise<INodeExecutionData[]> {
-	const serviceName = this.getNodeParameter('serviceName', 0) as string;
-	const region = this.getNodeParameter('region', 0) as string;
-	const compatibleWithFramework = this.getNodeParameter('compatibleWithFramework', 0) as string;
+export async function execute(this: IExecuteFunctions, _itemIndex?: number): Promise<INodeExecutionData[]> {
+	const serviceName = this.getNodeParameter('serviceName', _itemIndex ?? 0) as string;
+	const region = this.getNodeParameter('region', _itemIndex ?? 0) as string;
+	const compatibleWithFramework = this.getNodeParameter('compatibleWithFramework', _itemIndex ?? 0) as string;
 
 	const qs: Record<string, string> = {};
 	if (compatibleWithFramework) qs.compatibleWithFramework = compatibleWithFramework;

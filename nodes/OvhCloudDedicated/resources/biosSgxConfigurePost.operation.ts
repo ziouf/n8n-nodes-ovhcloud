@@ -62,11 +62,11 @@ export function description(displayOptions: IDisplayOptions): INodeProperties[] 
 	];
 }
 
-export async function execute(this: IExecuteFunctions): Promise<INodeExecutionData[]> {
+export async function execute(this: IExecuteFunctions, _itemIndex?: number): Promise<INodeExecutionData[]> {
 	const client = new ApiClient(this);
-	const serviceName = this.getNodeParameter('serviceName', 0, '', { extractValue: true }) as string;
-	const prmrr = ((this.getNodeParameter('prmrr', 0) as number) ?? 0) as number;
-	const status = ((this.getNodeParameter('status', 0) as string) ?? 'disabled') as string;
+	const serviceName = this.getNodeParameter('serviceName', _itemIndex ?? 0, '', { extractValue: true }) as string;
+	const prmrr = ((this.getNodeParameter('prmrr', _itemIndex ?? 0) as number) ?? 0) as number;
+	const status = ((this.getNodeParameter('status', _itemIndex ?? 0) as string) ?? 'disabled') as string;
 
 	await client.httpPost(`/dedicated/server/${serviceName}/biosSettings/sgx/configure`, {
 		prmrr,

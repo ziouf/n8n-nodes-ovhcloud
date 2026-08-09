@@ -34,9 +34,9 @@ export function description(): INodeProperties[] {
  * Endpoint: /dedicated/ceph/{serviceName}/task/{taskId}
  */
 export async function execute(this: IExecuteFunctions,
-	itemIndex: number): Promise<INodeExecutionData[]> {
-	const serviceName = this.getNodeParameter('serviceName', itemIndex) as string;
-	const taskId = this.getNodeParameter('taskId', itemIndex) as string;
+	_itemIndex: number): Promise<INodeExecutionData[]> {
+	const serviceName = this.getNodeParameter('serviceName', _itemIndex) as string;
+	const taskId = this.getNodeParameter('taskId', _itemIndex) as string;
 	const client = new ApiClient(this);
 	const data = (await client.httpGet('/dedicated/ceph/' + encodeURIComponent(serviceName) + '/task/' + encodeURIComponent(taskId))) as IDataObject;
 	return this.helpers.returnJsonArray([data]);

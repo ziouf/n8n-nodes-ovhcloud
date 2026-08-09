@@ -34,9 +34,9 @@ export function description(): INodeProperties[] {
  * Endpoint: /dedicated/ceph/{serviceName}/acl/{aclId}
  */
 export async function execute(this: IExecuteFunctions,
-	itemIndex: number): Promise<INodeExecutionData[]> {
-	const aclId = this.getNodeParameter('aclId', itemIndex) as string;
-	const serviceName = this.getNodeParameter('serviceName', itemIndex) as string;
+	_itemIndex: number): Promise<INodeExecutionData[]> {
+	const aclId = this.getNodeParameter('aclId', _itemIndex) as string;
+	const serviceName = this.getNodeParameter('serviceName', _itemIndex) as string;
 	const client = new ApiClient(this);
 	const data = (await client.httpDelete('/dedicated/ceph/' + encodeURIComponent(serviceName) + '/acl/' + encodeURIComponent(aclId))) as IDataObject;
 	return this.helpers.returnJsonArray([data]);

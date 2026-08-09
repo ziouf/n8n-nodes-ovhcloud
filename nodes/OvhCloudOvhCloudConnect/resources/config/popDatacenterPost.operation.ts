@@ -67,12 +67,12 @@ export function description(displayOptions: IDisplayOptions): INodeProperties[] 
  * HTTP method: POST
  * Endpoint: /ovhCloudConnect/{serviceName}/config/pop/{popId}/datacenter
  */
-export async function execute(this: IExecuteFunctions): Promise<INodeExecutionData[]> {
+export async function execute(this: IExecuteFunctions, _itemIndex?: number): Promise<INodeExecutionData[]> {
 	const client = new ApiClient(this);
-	const serviceName = this.getNodeParameter('serviceName', 0, '', { extractValue: true }) as string;
-	const popId = this.getNodeParameter('popId', 0) as number;
-	const ovhCloudConnectServiceId = (this.getNodeParameter('ovhCloudConnectServiceId', 0, '') as string) || '';
-	const ovhCloudConnectServiceNetwork = (this.getNodeParameter('ovhCloudConnectServiceNetwork', 0, '') as string) || '';
+	const serviceName = this.getNodeParameter('serviceName', _itemIndex ?? 0, '', { extractValue: true }) as string;
+	const popId = this.getNodeParameter('popId', _itemIndex ?? 0) as number;
+	const ovhCloudConnectServiceId = (this.getNodeParameter('ovhCloudConnectServiceId', _itemIndex ?? 0, '') as string) || '';
+	const ovhCloudConnectServiceNetwork = (this.getNodeParameter('ovhCloudConnectServiceNetwork', _itemIndex ?? 0, '') as string) || '';
 
 	const body: IDataObject = {};
 	if (ovhCloudConnectServiceId) body.ovhCloudConnectServiceId = ovhCloudConnectServiceId;

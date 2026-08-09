@@ -57,15 +57,15 @@ export function description(displayOptions: IDisplayOptions = {} as IDisplayOpti
  * HTTP method: POST
  * Endpoint: /cloud/project/{serviceName}/ai/data/region/{region}/alias
  */
-export async function execute(this: IExecuteFunctions): Promise<INodeExecutionData[]> {
-	const serviceName = this.getNodeParameter('serviceName', 0) as string;
-	const region = this.getNodeParameter('region', 0) as string;
-	const skipDataStoreConnectionCheck = this.getNodeParameter('skipDataStoreConnectionCheck', 0) as string;
+export async function execute(this: IExecuteFunctions, _itemIndex?: number): Promise<INodeExecutionData[]> {
+	const serviceName = this.getNodeParameter('serviceName', _itemIndex ?? 0) as string;
+	const region = this.getNodeParameter('region', _itemIndex ?? 0) as string;
+	const skipDataStoreConnectionCheck = this.getNodeParameter('skipDataStoreConnectionCheck', _itemIndex ?? 0) as string;
 
 	const qs: Record<string, string> = {};
 	if (skipDataStoreConnectionCheck) qs.skipDataStoreConnectionCheck = skipDataStoreConnectionCheck;
 
-	const body = this.getNodeParameter("body", 0) as IDataObject;
+	const body = this.getNodeParameter('body', _itemIndex ?? 0) as IDataObject;
 
 	const client = new ApiClient(this);
 	const data = (await client.httpPost('cloud/project' + serviceName + '/ai/data/region/' + region + '/alias', body, qs)) as IDataObject;

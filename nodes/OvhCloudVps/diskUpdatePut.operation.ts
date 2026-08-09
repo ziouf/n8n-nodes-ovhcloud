@@ -53,23 +53,23 @@ export function description(displayOptions: IDisplayOptions): INodeProperties[] 
 
 export async function execute(
 	this: IExecuteFunctions,
-	itemIndex?: number,
+	_itemIndex?: number,
 ): Promise<INodeExecutionData[]> {
 	const client = new ApiClient(this);
-	const serviceName = this.getNodeParameter('serviceName', itemIndex!, '', {
+	const serviceName = this.getNodeParameter('serviceName', _itemIndex!, '', {
 		extractValue: true,
 	}) as string;
-	const diskId = this.getNodeParameter('diskId', itemIndex!) as string;
+	const diskId = this.getNodeParameter('diskId', _itemIndex!) as string;
 
 	const body: IDataObject = {};
 	try {
-		const nameParam = (this.getNodeParameter('name', itemIndex!) ?? '') as string;
+		const nameParam = (this.getNodeParameter('name', _itemIndex!) ?? '') as string;
 		if (nameParam) body.name = nameParam;
 	} catch {
 		/* name is optional */
 	}
 	try {
-		const sizeParam = this.getNodeParameter('sizeInGB', itemIndex!, 0);
+		const sizeParam = this.getNodeParameter('sizeInGB', _itemIndex!, 0);
 		if ((sizeParam as number) > 0) body.sizeInGB = sizeParam as number;
 	} catch {
 		/* sizeInGB is optional */

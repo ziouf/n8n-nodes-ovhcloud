@@ -82,21 +82,21 @@ export function description(displayOptions: IDisplayOptions): INodeProperties[] 
  * HTTP method: POST
  * Endpoint: /cloud/project/{projectId}/loadbalancer/{loadBalancerId}/configuration
  */
-export async function execute(this: IExecuteFunctions): Promise<INodeExecutionData[]> {
+export async function execute(this: IExecuteFunctions, _itemIndex?: number): Promise<INodeExecutionData[]> {
 	const client = new ApiClient(this);
-	const projectId = this.getNodeParameter('publicCloudProjectId', 0, '', {
+	const projectId = this.getNodeParameter('publicCloudProjectId', _itemIndex ?? 0, '', {
 		extractValue: true,
 	}) as string;
-	const loadBalancerId = this.getNodeParameter('loadBalancerId', 0) as string;
+	const loadBalancerId = this.getNodeParameter('loadBalancerId', _itemIndex ?? 0) as string;
 
 	const body: IDataObject = {};
-	const backends = this.getNodeParameter('backends', 0) as IDataObject;
+	const backends = this.getNodeParameter('backends', _itemIndex ?? 0) as IDataObject;
 	if (backends) body['backends'] = backends;
 
-	const frontends = this.getNodeParameter('frontends', 0) as IDataObject;
+	const frontends = this.getNodeParameter('frontends', _itemIndex ?? 0) as IDataObject;
 	if (frontends) body['frontends'] = frontends;
 
-	const certificates = this.getNodeParameter('certificates', 0) as IDataObject;
+	const certificates = this.getNodeParameter('certificates', _itemIndex ?? 0) as IDataObject;
 	if (certificates) body['certificates'] = certificates;
 
 	const data = (await client.httpPost(

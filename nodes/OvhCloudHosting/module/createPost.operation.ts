@@ -103,17 +103,17 @@ export function description(displayOptions: IDisplayOptions): INodeProperties[] 
  */
 export async function execute(
 	this: IExecuteFunctions,
-	itemIndex?: number,
+	_itemIndex?: number,
 ): Promise<INodeExecutionData[]> {
 	const client = new ApiClient(this);
-	const serviceName = this.getNodeParameter('serviceName', itemIndex as number) as string;
-	const moduleId = this.getNodeParameter('moduleId', itemIndex as number) as number;
-	const adminName = this.getNodeParameter('adminName', itemIndex as number, '') as string;
-	const adminPassword = this.getNodeParameter('adminPassword', itemIndex as number, '') as string;
-	const domain = this.getNodeParameter('domain', itemIndex as number, '') as string;
-	const language = this.getNodeParameter('language', itemIndex as number, '') as string;
-	const path = this.getNodeParameter('path', itemIndex as number, '') as string;
-	const dependencies = this.getNodeParameter('dependencies', itemIndex as number, '') as string;
+	const serviceName = this.getNodeParameter('serviceName', _itemIndex as number) as string;
+	const moduleId = this.getNodeParameter('moduleId', _itemIndex as number) as number;
+	const adminName = this.getNodeParameter('adminName', _itemIndex as number, '') as string;
+	const adminPassword = this.getNodeParameter('adminPassword', _itemIndex as number, '') as string;
+	const domain = this.getNodeParameter('domain', _itemIndex as number, '') as string;
+	const language = this.getNodeParameter('language', _itemIndex as number, '') as string;
+	const path = this.getNodeParameter('path', _itemIndex as number, '') as string;
+	const dependencies = this.getNodeParameter('dependencies', _itemIndex as number, '') as string;
 
 	const body: IDataObject = { moduleId };
 	if (adminName) {

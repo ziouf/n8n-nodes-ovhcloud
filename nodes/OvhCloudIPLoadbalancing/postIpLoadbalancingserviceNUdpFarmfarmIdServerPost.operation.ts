@@ -69,16 +69,16 @@ export function description(displayOptions: IDisplayOptions): INodeProperties[] 
  * HTTP method: POST
  * Endpoint: /ipLoadbalancing/{serviceName}/udp/farm/{farmId}/server
  */
-export async function execute(this: IExecuteFunctions, itemIndex: number): Promise<INodeExecutionData[]> {
-	const serviceName = this.getNodeParameter('serviceName', itemIndex) as string;
-	const farmId = this.getNodeParameter('farmId', itemIndex) as string;
+export async function execute(this: IExecuteFunctions, _itemIndex: number): Promise<INodeExecutionData[]> {
+	const serviceName = this.getNodeParameter('serviceName', _itemIndex) as string;
+	const farmId = this.getNodeParameter('farmId', _itemIndex) as string;
 
 
 
-	const address = this.getNodeParameter('address', itemIndex) as string;
-	const displayName = this.getNodeParameter('displayName', itemIndex) as string;
-	const port = this.getNodeParameter('port', itemIndex) as string;
-	const status = this.getNodeParameter('status', itemIndex) as string;
+	const address = this.getNodeParameter('address', _itemIndex) as string;
+	const displayName = this.getNodeParameter('displayName', _itemIndex) as string;
+	const port = this.getNodeParameter('port', _itemIndex) as string;
+	const status = this.getNodeParameter('status', _itemIndex) as string;
 
 
 const body: IDataObject = {

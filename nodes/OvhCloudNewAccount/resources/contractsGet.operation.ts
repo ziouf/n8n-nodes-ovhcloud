@@ -36,10 +36,10 @@ export function description(displayOptions: IDisplayOptions): INodeProperties[] 
  * HTTP method: GET
  * Endpoint: /newAccount/contracts
  */
-export async function execute(this: IExecuteFunctions): Promise<INodeExecutionData[]> {
+export async function execute(this: IExecuteFunctions, _itemIndex?: number): Promise<INodeExecutionData[]> {
 	const client = new ApiClient(this);
-	const company = this.getNodeParameter('company', 0) as string;
-	const subsidiary = this.getNodeParameter('subsidiary', 0) as string;
+	const company = this.getNodeParameter('company', _itemIndex ?? 0) as string;
+	const subsidiary = this.getNodeParameter('subsidiary', _itemIndex ?? 0) as string;
 
 	const data = (await client.httpGet('/newAccount/contracts', {
 		company,

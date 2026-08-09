@@ -896,143 +896,143 @@ export async function execute(
 
 	switch (operation) {
 		case 'list':
-			return executeList.call(this);
+			return executeList.call(this, itemIndex ?? 0);
 		case 'get':
-			return executeGet.call(this, itemIndex);
+			return executeGet.call(this, itemIndex ?? 0);
 		case 'authSecretGet':
-			return executeAuthSecretGet.call(this);
+			return executeAuthSecretGet.call(this, itemIndex ?? 0);
 		case 'backupCloudDelete':
-			return executeBackupCloudDelete.call(this);
+			return executeBackupCloudDelete.call(this, itemIndex ?? 0);
 		case 'backupCloudGetByIdGet':
-			return executeBackupCloudGetByIdGet.call(this, itemIndex);
+			return executeBackupCloudGetByIdGet.call(this, itemIndex ?? 0);
 		case 'burstUpdate':
-			return executeBurstUpdate.call(this);
+			return executeBurstUpdate.call(this, itemIndex ?? 0);
 		case 'changeContactCreate':
-			return executeChangeContactCreate.call(this);
+			return executeChangeContactCreate.call(this, itemIndex ?? 0);
 		case 'confirmTerminationCreate':
-			return executeConfirmTerminationCreate.call(this);
+			return executeConfirmTerminationCreate.call(this, itemIndex ?? 0);
 		case 'backupCloudOfferDetailsCreate':
-			return executeBackupCloudOfferDetailsCreate.call(this);
+			return executeBackupCloudOfferDetailsCreate.call(this, itemIndex ?? 0);
 		case 'availabilityRawGet':
-			return executeAvailabilityRawGet.call(this);
+			return executeAvailabilityRawGet.call(this, itemIndex ?? 0);
 		case 'datacenterAvailabilityList':
-			return executeDatacenterAvailabilityList.call(this);
+			return executeDatacenterAvailabilityList.call(this, itemIndex ?? 0);
 		case 'biosSettingsGet':
-			return executeBiosSettingsGet.call(this, itemIndex);
+			return executeBiosSettingsGet.call(this, itemIndex ?? 0);
 		case 'biosSgxGet':
-			return executeBiosSgxGet.call(this, itemIndex);
+			return executeBiosSgxGet.call(this, itemIndex ?? 0);
 		case 'biosSgxConfigurePost':
-			return executeBiosSgxConfigurePost.call(this);
+			return executeBiosSgxConfigurePost.call(this, itemIndex ?? 0);
 		case 'bootListGet':
-			return executeBootListGet.call(this, itemIndex);
+			return executeBootListGet.call(this, itemIndex ?? 0);
 		case 'backupCloudGet':
-			return executeBackupCloudGet.call(this, itemIndex);
+			return executeBackupCloudGet.call(this, itemIndex ?? 0);
 		case 'backupFtpPost':
-			return executeBackupFtpPost.call(this);
+			return executeBackupFtpPost.call(this, itemIndex ?? 0);
 		case 'backupFtpDelete':
-			return executeBackupFtpDelete.call(this);
+			return executeBackupFtpDelete.call(this, itemIndex ?? 0);
 		case 'backupFtpGet':
-			return executeBackupFtpGet.call(this, itemIndex);
+			return executeBackupFtpGet.call(this, itemIndex ?? 0);
 		case 'backupFtpAccessListGet':
-			return executeBackupFtpAccessListGet.call(this, itemIndex);
+			return executeBackupFtpAccessListGet.call(this, itemIndex ?? 0);
 		case 'backupFtpAccessPost':
-			return executeBackupFtpAccessPost.call(this);
+			return executeBackupFtpAccessPost.call(this, itemIndex ?? 0);
 		case 'backupFtpAccessDelete':
-			return executeBackupFtpAccessDelete.call(this);
+			return executeBackupFtpAccessDelete.call(this, itemIndex ?? 0);
 		case 'backupFtpAccessEditPut':
-			return executeBackupFtpAccessEditPut.call(this);
+			return executeBackupFtpAccessEditPut.call(this, itemIndex ?? 0);
 		case 'backupFtpPasswordPost':
-			return executeBackupFtpPasswordPost.call(this);
+			return executeBackupFtpPasswordPost.call(this, itemIndex ?? 0);
 		case 'firewallGet':
-			return executeFirewallGet.call(this, itemIndex);
+			return executeFirewallGet.call(this, itemIndex ?? 0);
 		case 'firewallUpdate':
-			return executeFirewallUpdate.call(this);
+			return executeFirewallUpdate.call(this, itemIndex ?? 0);
 		case 'ipmiGet':
-			return executeIpmiGet.call(this, itemIndex);
+			return executeIpmiGet.call(this, itemIndex ?? 0);
 		case 'optionDelete':
-			return executeOptionDelete.call(this);
+			return executeOptionDelete.call(this, itemIndex ?? 0);
 		case 'serverUpdate':
-			return executeServerUpdate.call(this);
+			return executeServerUpdate.call(this, itemIndex ?? 0);
 		case 'netbootOrderUpdate':
-			return executeNetbootOrderPut.call(this);
+			return executeNetbootOrderPut.call(this, itemIndex ?? 0);
 		case 'taskListGet':
-			return executeTaskListGet.call(this);
+			return executeTaskListGet.call(this, itemIndex ?? 0);
 		case 'taskDetailGet':
-			return executeTaskDetailGet.call(this);
+			return executeTaskDetailGet.call(this, itemIndex ?? 0);
 		// Ceph (Nasha) operations
 		case 'nashaListGet':
-			return executeNashaListGet.call(this);
+			return executeNashaListGet.call(this, itemIndex ?? 0);
 		case 'nashaGetGet':
-			return executeNashaGetGet.call(this);
+			return executeNashaGetGet.call(this, itemIndex ?? 0);
 		case 'snapshotListGet':
-			return executeSnapshotListGet.call(this);
+			return executeSnapshotListGet.call(this, itemIndex ?? 0);
 		case 'snapshotCreatePost':
-			return executeSnapshotCreatePost.call(this);
+			return executeSnapshotCreatePost.call(this, itemIndex ?? 0);
 		case 'snapshotGetGet':
-			return executeSnapshotGetGet.call(this);
+			return executeSnapshotGetGet.call(this, itemIndex ?? 0);
 		case 'snapshotDeleteDelete':
-			return executeSnapshotDeleteDelete.call(this);
+			return executeSnapshotDeleteDelete.call(this, itemIndex ?? 0);
 		case 'shareListGet':
-			return executeShareListGet.call(this);
+			return executeShareListGet.call(this, itemIndex ?? 0);
 		case 'shareCreatePost':
-			return executeShareCreatePost.call(this);
+			return executeShareCreatePost.call(this, itemIndex ?? 0);
 		case 'shareGetGet':
-			return executeShareGetGet.call(this);
+			return executeShareGetGet.call(this, itemIndex ?? 0);
 		case 'shareUpdatePut':
-			return executeShareUpdatePut.call(this);
+			return executeShareUpdatePut.call(this, itemIndex ?? 0);
 		case 'shareDeleteDelete':
-			return executeShareDeleteDelete.call(this);
+			return executeShareDeleteDelete.call(this, itemIndex ?? 0);
 		// Cluster operations
 		case 'clusterListGet':
-			return executeClusterListGet.call(this);
+			return executeClusterListGet.call(this, itemIndex ?? 0);
 		case 'clusterGetGet':
-			return executeClusterGetGet.call(this);
+			return executeClusterGetGet.call(this, itemIndex ?? 0);
 		case 'clusterUpdatePut':
-			return executeClusterUpdatePut.call(this);
+			return executeClusterUpdatePut.call(this, itemIndex ?? 0);
 		case 'clusterDeleteDelete':
-			return executeClusterDeleteDelete.call(this);
+			return executeClusterDeleteDelete.call(this, itemIndex ?? 0);
 		case 'nodeListGet':
-			return executeNodeListGet.call(this);
+			return executeNodeListGet.call(this, itemIndex ?? 0);
 		case 'nodeGetGet':
-			return executeNodeGetGet.call(this);
+			return executeNodeGetGet.call(this, itemIndex ?? 0);
 		case 'nodeUpdatePut':
-			return executeNodeUpdatePut.call(this);
+			return executeNodeUpdatePut.call(this, itemIndex ?? 0);
 		case 'nodeDeleteDelete':
-			return executeNodeDeleteDelete.call(this);
+			return executeNodeDeleteDelete.call(this, itemIndex ?? 0);
 		// Housing operations
 		case 'housingListGet':
-			return executeHousingListGet.call(this);
+			return executeHousingListGet.call(this, itemIndex ?? 0);
 		case 'housingGetGet':
-			return executeHousingGetGet.call(this);
+			return executeHousingGetGet.call(this, itemIndex ?? 0);
 		case 'housingUpdatePut':
-			return executeHousingUpdatePut.call(this);
+			return executeHousingUpdatePut.call(this, itemIndex ?? 0);
 		case 'bandwidthGetGet':
-			return executeBandwidthGetGet.call(this);
+			return executeBandwidthGetGet.call(this, itemIndex ?? 0);
 		case 'bandwidthCreatePost':
-			return executeBandwidthCreatePost.call(this);
+			return executeBandwidthCreatePost.call(this, itemIndex ?? 0);
 		case 'bandwidthVrackGetGet':
-			return executeBandwidthVrackGetGet.call(this);
+			return executeBandwidthVrackGetGet.call(this, itemIndex ?? 0);
 		case 'bandwidthVrackCreatePost':
-			return executeBandwidthVrackCreatePost.call(this);
+			return executeBandwidthVrackCreatePost.call(this, itemIndex ?? 0);
 		// Installation Template operations
 		case 'templateListGet':
-			return executeTemplateListGet.call(this);
+			return executeTemplateListGet.call(this, itemIndex ?? 0);
 		case 'templateGetGet':
-			return executeTemplateGetGet.call(this);
+			return executeTemplateGetGet.call(this, itemIndex ?? 0);
 		case 'installPost':
-			return executeInstallPost.call(this);
+			return executeInstallPost.call(this, itemIndex ?? 0);
 		// Option operations
 		case 'optionListGet':
-			return executeOptionListGet.call(this);
+			return executeOptionListGet.call(this, itemIndex ?? 0);
 		case 'optionGetGet':
-			return executeOptionGetGet.call(this);
+			return executeOptionGetGet.call(this, itemIndex ?? 0);
 		case 'optionCreatePost':
-			return executeOptionCreatePost.call(this);
+			return executeOptionCreatePost.call(this, itemIndex ?? 0);
 		// Monitoring operations
 		case 'monitoringGetGet':
-			return executeMonitoringGetGet.call(this);
+			return executeMonitoringGetGet.call(this, itemIndex ?? 0);
 		case 'monitoringMetricGetGet':
-			return executeMonitoringMetricGetGet.call(this);
+			return executeMonitoringMetricGetGet.call(this, itemIndex ?? 0);
 	}
 
 	throw new Error(`Unsupported operation "${operation}" for resource "dedicatedServer"`);

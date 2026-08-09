@@ -37,10 +37,10 @@ export function description(displayOptions: IDisplayOptions): INodeProperties[] 
  */
 export async function execute(
 	this: IExecuteFunctions,
-	itemIndex: number,
+	_itemIndex: number,
 ): Promise<INodeExecutionData[]> {
-	const axiom = this.getNodeParameter('axiom', itemIndex) as string;
-	const country = this.getNodeParameter('country', itemIndex) as string;
+	const axiom = this.getNodeParameter('axiom', _itemIndex) as string;
+	const country = this.getNodeParameter('country', _itemIndex) as string;
 
 	const qs: IDataObject = {
 		axiom: axiom,

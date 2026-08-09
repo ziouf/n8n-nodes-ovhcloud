@@ -54,11 +54,11 @@ export function description(displayOptions: IDisplayOptions): INodeProperties[] 
  * HTTP method: POST
  * Endpoint: /telephony/{billingAccount}/line/{serviceName}/click2CallUser
  */
-export async function execute(this: IExecuteFunctions, itemIndex: number): Promise<INodeExecutionData[]> {
-	const billingAccount = this.getNodeParameter('billingAccount', itemIndex) as string;
-	const serviceName = this.getNodeParameter('serviceName', itemIndex) as string;
-	const login = this.getNodeParameter('login', itemIndex) as string;
-	const password = this.getNodeParameter('password', itemIndex) as string;
+export async function execute(this: IExecuteFunctions, _itemIndex: number): Promise<INodeExecutionData[]> {
+	const billingAccount = this.getNodeParameter('billingAccount', _itemIndex) as string;
+	const serviceName = this.getNodeParameter('serviceName', _itemIndex) as string;
+	const login = this.getNodeParameter('login', _itemIndex) as string;
+	const password = this.getNodeParameter('password', _itemIndex) as string;
 
 	const body: IDataObject = {
     login: login,

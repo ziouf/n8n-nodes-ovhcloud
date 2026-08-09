@@ -149,55 +149,55 @@ export function description(displayOptions: IDisplayOptions): INodeProperties[] 
  * HTTP method: POST
  * Endpoint: /publicCloud/project/{projectId}/region/{regionName}/loadbalancing/listener
  */
-export async function execute(this: IExecuteFunctions): Promise<INodeExecutionData[]> {
+export async function execute(this: IExecuteFunctions, _itemIndex?: number): Promise<INodeExecutionData[]> {
 	const client = new ApiClient(this);
-	const projectId = this.getNodeParameter('publicCloudProjectId', 0, '', {
+	const projectId = this.getNodeParameter('publicCloudProjectId', _itemIndex ?? 0, '', {
 		extractValue: true,
 	}) as string;
-	const regionName = this.getNodeParameter('regionName', 0) as string;
+	const regionName = this.getNodeParameter('regionName', _itemIndex ?? 0) as string;
 	const body = {} as import('n8n-workflow').IDataObject;
 
-	const nameVal = (this.getNodeParameter('name', 0) || '') as string;
+	const nameVal = (this.getNodeParameter('name', _itemIndex ?? 0) || '') as string;
 	if (nameVal !== '') {
 		body.name = nameVal;
 	}
-	const protocolVal = (this.getNodeParameter('protocol', 0) || '') as string;
+	const protocolVal = (this.getNodeParameter('protocol', _itemIndex ?? 0) || '') as string;
 	if (protocolVal !== '') {
 		body.protocol = protocolVal;
 	}
-	const portNum = this.getNodeParameter('port', 0) as number;
+	const portNum = this.getNodeParameter('port', _itemIndex ?? 0) as number;
 	if (portNum !== undefined && portNum !== 0) {
 		body.port = portNum;
 	}
-	const loadbalancerIdVal = (this.getNodeParameter('loadbalancerId', 0) || '') as string;
+	const loadbalancerIdVal = (this.getNodeParameter('loadbalancerId', _itemIndex ?? 0) || '') as string;
 	if (loadbalancerIdVal !== '') {
 		body.loadbalancerId = loadbalancerIdVal;
 	}
-	const defaultPoolIdVal = (this.getNodeParameter('defaultPoolId', 0) || '') as string;
+	const defaultPoolIdVal = (this.getNodeParameter('defaultPoolId', _itemIndex ?? 0) || '') as string;
 	if (defaultPoolIdVal !== '') {
 		body.defaultPoolId = defaultPoolIdVal;
 	}
-	const certificateIdVal = (this.getNodeParameter('certificateId', 0) || '') as string;
+	const certificateIdVal = (this.getNodeParameter('certificateId', _itemIndex ?? 0) || '') as string;
 	if (certificateIdVal !== '') {
 		body.certificateId = certificateIdVal;
 	}
-	const descriptionVal = (this.getNodeParameter('description', 0) || '') as string;
+	const descriptionVal = (this.getNodeParameter('description', _itemIndex ?? 0) || '') as string;
 	if (descriptionVal !== '') {
 		body.description = descriptionVal;
 	}
-	const timeoutClientDataNum = this.getNodeParameter('timeoutClientData', 0) as number;
+	const timeoutClientDataNum = this.getNodeParameter('timeoutClientData', _itemIndex ?? 0) as number;
 	if (timeoutClientDataNum !== undefined && timeoutClientDataNum !== 0) {
 		body.timeoutClientData = timeoutClientDataNum;
 	}
-	const timeoutMemberDataNum = this.getNodeParameter('timeoutMemberData', 0) as number;
+	const timeoutMemberDataNum = this.getNodeParameter('timeoutMemberData', _itemIndex ?? 0) as number;
 	if (timeoutMemberDataNum !== undefined && timeoutMemberDataNum !== 0) {
 		body.timeoutMemberData = timeoutMemberDataNum;
 	}
-	const tlsVersionsVal = (this.getNodeParameter('tlsVersions', 0) || '') as string;
+	const tlsVersionsVal = (this.getNodeParameter('tlsVersions', _itemIndex ?? 0) || '') as string;
 	if (tlsVersionsVal !== '') {
 		body.tlsVersions = tlsVersionsVal;
 	}
-	const allowedCidrsVal = (this.getNodeParameter('allowedCidrs', 0) || '') as string;
+	const allowedCidrsVal = (this.getNodeParameter('allowedCidrs', _itemIndex ?? 0) || '') as string;
 	if (allowedCidrsVal !== '') {
 		body.allowedCidrs = allowedCidrsVal;
 	}

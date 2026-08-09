@@ -31,6 +31,6 @@ export class OvhCloudSaasCsp2 extends BaseNode implements INodeType {
 	methods = { listSearch: { getSaasCsp2Services } };
 
 	async execute(this: IExecuteFunctions): Promise<INodeExecutionData[][]> {
-		return executeTemplate.call(this, execute);
+		return executeTemplate.call(this, execute, { concurrency: 5 });
 	}
 }

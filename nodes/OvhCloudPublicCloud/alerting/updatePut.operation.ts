@@ -50,12 +50,12 @@ export function description(displayOptions: IDisplayOptions): INodeProperties[] 
  * HTTP method: PUT
  * Endpoint: /cloud/project/{serviceName}/alerting/{alertId}
  */
-export async function execute(this: IExecuteFunctions): Promise<INodeExecutionData[]> {
+export async function execute(this: IExecuteFunctions, _itemIndex?: number): Promise<INodeExecutionData[]> {
     const client = new ApiClient(this);
-    const serviceName = this.getNodeParameter('publicCloudProjectId', 0, '', {
+    const serviceName = this.getNodeParameter('publicCloudProjectId', _itemIndex ?? 0, '', {
         extractValue: true,
     }) as string;
-    const alertId = this.getNodeParameter('alertId', 0) as string;
+    const alertId = this.getNodeParameter('alertId', _itemIndex ?? 0) as string;
     
     const data = (await client.httpPut(
         `/cloud/project/${serviceName}/alerting/${alertId}`,

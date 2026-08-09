@@ -60,13 +60,13 @@ export function description(displayOptions: IDisplayOptions): INodeProperties[] 
  */
 export async function execute(
 	this: IExecuteFunctions,
-	itemIndex: number,
+	_itemIndex: number,
 ): Promise<INodeExecutionData[]> {
-	const bic = this.getNodeParameter('bic', itemIndex) as string;
-	const iban = this.getNodeParameter('iban', itemIndex) as string;
-	const ownerAddress = this.getNodeParameter('ownerAddress', itemIndex) as string;
-	const ownerName = this.getNodeParameter('ownerName', itemIndex) as string;
-	const paymentMeanID = this.getNodeParameter('paymentMeanID', itemIndex) as string;
+	const bic = this.getNodeParameter('bic', _itemIndex) as string;
+	const iban = this.getNodeParameter('iban', _itemIndex) as string;
+	const ownerAddress = this.getNodeParameter('ownerAddress', _itemIndex) as string;
+	const ownerName = this.getNodeParameter('ownerName', _itemIndex) as string;
+	const paymentMeanID = this.getNodeParameter('paymentMeanID', _itemIndex) as string;
 
 	const body: IDataObject = {
 		bic: bic,

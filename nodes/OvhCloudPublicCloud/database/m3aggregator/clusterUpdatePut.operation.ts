@@ -50,12 +50,12 @@ export function description(displayOptions: IDisplayOptions): INodeProperties[] 
  * HTTP method: PUT
  * Endpoint: /cloud/project/{serviceName}/database/m3aggregator/{clusterId}
  */
-export async function execute(this: IExecuteFunctions): Promise<INodeExecutionData[]> {
+export async function execute(this: IExecuteFunctions, _itemIndex?: number): Promise<INodeExecutionData[]> {
 	const client = new ApiClient(this);
-	const publicCloudProjectId = this.getNodeParameter('publicCloudProjectId', 0) as string;
-	const clusterId = this.getNodeParameter('clusterId', 0) as string;
-	const description = this.getNodeParameter('description', 0) as string;
-	const plan = this.getNodeParameter('plan', 0) as string;
+	const publicCloudProjectId = this.getNodeParameter('publicCloudProjectId', _itemIndex ?? 0) as string;
+	const clusterId = this.getNodeParameter('clusterId', _itemIndex ?? 0) as string;
+	const description = this.getNodeParameter('description', _itemIndex ?? 0) as string;
+	const plan = this.getNodeParameter('plan', _itemIndex ?? 0) as string;
 
 	const body: IDataObject = {};
 	if (description) body.description = description;

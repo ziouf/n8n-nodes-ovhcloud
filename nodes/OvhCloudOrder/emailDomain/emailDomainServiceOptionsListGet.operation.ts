@@ -21,9 +21,9 @@ export function description(displayOptions: IDisplayOptions): INodeProperties[] 
 	];
 }
 
-export async function execute(this: IExecuteFunctions, itemIndex: number): Promise<INodeExecutionData[]> {
+export async function execute(this: IExecuteFunctions, _itemIndex: number): Promise<INodeExecutionData[]> {
 	const client = new ApiClient(this);
-	const domain = this.getNodeParameter('domain', itemIndex) as string;
+	const domain = this.getNodeParameter('domain', _itemIndex) as string;
 
 
 	const data = (await client.httpGet(`/order/email/domain/${domain}`)) as IDataObject[];

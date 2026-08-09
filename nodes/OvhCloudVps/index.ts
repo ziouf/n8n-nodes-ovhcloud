@@ -738,125 +738,125 @@ export async function execute(
 
 	switch (operation) {
 		case 'availableUpgradeList':
-			return executeAvailableUpgradeList.call(this, itemIndex);
+			return executeAvailableUpgradeList.call(this, itemIndex ?? 0);
 		case 'automatedBackupList':
-			return executeAutomatedBackupList.call(this, itemIndex);
+			return executeAutomatedBackupList.call(this, itemIndex ?? 0);
 		case 'backupFtpList':
-			return executeBackupFtpList.call(this, itemIndex);
+			return executeBackupFtpList.call(this, itemIndex ?? 0);
 		case 'datacenterList':
-			return executeDatacenterList.call(this, itemIndex);
+			return executeDatacenterList.call(this, itemIndex ?? 0);
 		case 'diskList':
-			return executeDiskList.call(this, itemIndex);
+			return executeDiskList.call(this, itemIndex ?? 0);
 		case 'powerRebootDelete':
-			return executePowerRebootDelete.call(this, itemIndex);
+			return executePowerRebootDelete.call(this, itemIndex ?? 0);
 		case 'powerStartPost':
-			return executePowerStartPost.call(this, itemIndex);
+			return executePowerStartPost.call(this, itemIndex ?? 0);
 		case 'powerStopDelete':
-			return executePowerStopDelete.call(this, itemIndex);
+			return executePowerStopDelete.call(this, itemIndex ?? 0);
 		case 'distributionGet':
-			return executeDistributionGet.call(this, itemIndex);
+			return executeDistributionGet.call(this, itemIndex ?? 0);
 		case 'distributionList':
-			return executeDistributionList.call(this, itemIndex);
+			return executeDistributionList.call(this, itemIndex ?? 0);
 		case 'get':
-			return executeGet.call(this, itemIndex);
+			return executeGet.call(this, itemIndex ?? 0);
 		case 'imageGet':
-			return executeImageGet.call(this, itemIndex);
+			return executeImageGet.call(this, itemIndex ?? 0);
 		case 'imageList':
-			return executeImageList.call(this, itemIndex);
+			return executeImageList.call(this, itemIndex ?? 0);
 		case 'ipGeolocationGet':
-			return executeIpGeolocationGet.call(this, itemIndex);
+			return executeIpGeolocationGet.call(this, itemIndex ?? 0);
 		case 'ipGet':
-			return executeIpGet.call(this, itemIndex);
+			return executeIpGet.call(this, itemIndex ?? 0);
 		case 'ipList':
-			return executeIpList.call(this, itemIndex);
+			return executeIpList.call(this, itemIndex ?? 0);
 		case 'netbootConfigGet':
-			return executeNetbootConfigGet.call(this, itemIndex);
+			return executeNetbootConfigGet.call(this, itemIndex ?? 0);
 		case 'list':
-			return executeList.call(this);
+			return executeList.call(this, itemIndex ?? 0);
 		case 'listSshKeys':
-			return executeSshKeyListGet.call(this, itemIndex);
+			return executeSshKeyListGet.call(this, itemIndex ?? 0);
 		case 'migrationMigrationIdGet':
-			return executeMigrationMigrationIdGet.call(this, itemIndex);
+			return executeMigrationMigrationIdGet.call(this, itemIndex ?? 0);
 		case 'migrationMigrationIdStepGet':
-			return executeMigrationMigrationIdStepGet.call(this, itemIndex);
+			return executeMigrationMigrationIdStepGet.call(this, itemIndex ?? 0);
 		case 'modelList':
-			return executeModelList.call(this, itemIndex);
+			return executeModelList.call(this, itemIndex ?? 0);
 		case 'netbootOrderGet':
-			return executeNetbootOrderGet.call(this, itemIndex);
+			return executeNetbootOrderGet.call(this, itemIndex ?? 0);
 		case 'netbootTemplateDetailsGet':
-			return executeNetbootTemplateDetailsGet.call(this, itemIndex);
+			return executeNetbootTemplateDetailsGet.call(this, itemIndex ?? 0);
 		case 'optionDetailGet':
-			return executeOptionDetailGet.call(this, itemIndex);
+			return executeOptionDetailGet.call(this, itemIndex ?? 0);
 		case 'optionList':
-			return executeOptionList.call(this, itemIndex);
+			return executeOptionList.call(this, itemIndex ?? 0);
 		case 'powerOffGet':
-			return executePowerOffGet.call(this, itemIndex);
+			return executePowerOffGet.call(this, itemIndex ?? 0);
 		case 'rebootHardGet':
-			return executeRebootHardGet.call(this, itemIndex);
+			return executeRebootHardGet.call(this, itemIndex ?? 0);
 		case 'secondaryDnsDomainListDomains':
-			return executeSecondaryDnsDomainListDomains.call(this, itemIndex);
+			return executeSecondaryDnsDomainListDomains.call(this, itemIndex ?? 0);
 		case 'secondaryDnsServerList':
-			return executeSecondaryDnsServerList.call(this, itemIndex);
+			return executeSecondaryDnsServerList.call(this, itemIndex ?? 0);
 		case 'serviceInformationGet':
-			return executeServiceInformationGet.call(this, itemIndex);
+			return executeServiceInformationGet.call(this, itemIndex ?? 0);
 		case 'snapshotListSnapshotsForVps':
-			return executeSnapshotListSnapshotsForVps.call(this, itemIndex);
+			return executeSnapshotListSnapshotsForVps.call(this, itemIndex ?? 0);
 		case 'statusTaskIdGet':
-			return executeStatusTaskIdGet.call(this, itemIndex);
+			return executeStatusTaskIdGet.call(this, itemIndex ?? 0);
 		case 'templateGet':
-			return executeTemplateGet.call(this, itemIndex);
+			return executeTemplateGet.call(this, itemIndex ?? 0);
 		case 'abortSnapshot':
-			return executeAbortSnapshotPost.call(this, itemIndex);
+			return executeAbortSnapshotPost.call(this, itemIndex ?? 0);
 		case 'attachSecondaryDns':
-			return executeSecondaryDnsAttachPut.call(this, itemIndex);
+			return executeSecondaryDnsAttachPut.call(this, itemIndex ?? 0);
 		case 'automatedBackupReschedulePost':
-			return executeAutomatedBackupReschedulePost.call(this, itemIndex);
+			return executeAutomatedBackupReschedulePost.call(this, itemIndex ?? 0);
 		case 'automatedBackupSetPost':
-			return executeAutomatedBackupSetPost.call(this, itemIndex);
+			return executeAutomatedBackupSetPost.call(this, itemIndex ?? 0);
 		case 'datacenterAvailabilityRawGet':
-			return executeDatacenterAvailabilityRawGet.call(this, itemIndex);
+			return executeDatacenterAvailabilityRawGet.call(this, itemIndex ?? 0);
 		case 'createDiskPost':
-			return executeDiskCreatePost.call(this, itemIndex);
+			return executeDiskCreatePost.call(this, itemIndex ?? 0);
 		case 'diskDetailGet':
-			return executeDiskDetailGet.call(this, itemIndex);
+			return executeDiskDetailGet.call(this, itemIndex ?? 0);
 		case 'diskMonitoringStatsGet':
-			return executeDiskMonitoringStatsGet.call(this, itemIndex);
+			return executeDiskMonitoringStatsGet.call(this, itemIndex ?? 0);
 		case 'updateDiskPut':
-			return executeDiskUpdatePut.call(this, itemIndex);
+			return executeDiskUpdatePut.call(this, itemIndex ?? 0);
 		case 'distributionUpdatePut':
-			return executeDistributionUpdatePut.call(this, itemIndex);
+			return executeDistributionUpdatePut.call(this, itemIndex ?? 0);
 		case 'getSnapshotImage':
-			return executeGetSnapshotImage.call(this, itemIndex);
+			return executeGetSnapshotImage.call(this, itemIndex ?? 0);
 		case 'ipCountryAvailableGet':
-			return executeIpCountryAvailableGet.call(this, itemIndex);
+			return executeIpCountryAvailableGet.call(this, itemIndex ?? 0);
 		case 'releaseIpDelete':
-			return executeIpReleaseDelete.call(this, itemIndex);
+			return executeIpReleaseDelete.call(this, itemIndex ?? 0);
 		case 'netbootCreatePost':
-			return executeNetbootCreatePost.call(this, itemIndex);
+			return executeNetbootCreatePost.call(this, itemIndex ?? 0);
 		case 'restorePointListGet':
-			return executeRestorePointListGet.call(this, itemIndex);
+			return executeRestorePointListGet.call(this, itemIndex ?? 0);
 		case 'serviceSecretGet':
-			return executeServiceSecretGet.call(this, itemIndex);
+			return executeServiceSecretGet.call(this, itemIndex ?? 0);
 		case 'snapshotCreatePost':
-			return executeSnapshotCreatePost.call(this, itemIndex);
+			return executeSnapshotCreatePost.call(this, itemIndex ?? 0);
 		case 'revertSnapshot':
-			return executeSnapshotRevertPut.call(this, itemIndex);
+			return executeSnapshotRevertPut.call(this, itemIndex ?? 0);
 		case 'templateApplyPost':
-			return executeTemplateApplyPost.call(this, itemIndex);
+			return executeTemplateApplyPost.call(this, itemIndex ?? 0);
 		case 'automatedBackupRestore':
-			return executeAutomatedBackupRestore.call(this, itemIndex);
+			return executeAutomatedBackupRestore.call(this, itemIndex ?? 0);
 		case 'backupFtpAccessPost':
-			return executeBackupFtpAccessPost.call(this, itemIndex);
+			return executeBackupFtpAccessPost.call(this, itemIndex ?? 0);
 		case 'backupRestoreList':
-			return executeBackupRestoreList.call(this, itemIndex);
+			return executeBackupRestoreList.call(this, itemIndex ?? 0);
 		case 'changeContact':
-			return executeChangeContact.call(this, itemIndex);
+			return executeChangeContact.call(this, itemIndex ?? 0);
 		case 'confirmTermination':
-			return executeConfirmTermination.call(this, itemIndex);
+			return executeConfirmTermination.call(this, itemIndex ?? 0);
 		case 'ipAdd':
-			return executeIpAdd.call(this, itemIndex);
+			return executeIpAdd.call(this, itemIndex ?? 0);
 		case 'vpsUpdate':
-			return executeVpsUpdate.call(this, itemIndex);
+			return executeVpsUpdate.call(this, itemIndex ?? 0);
 	}
 
 	throw new Error(`Unsupported operation "${operation}" for resource "vps"`);

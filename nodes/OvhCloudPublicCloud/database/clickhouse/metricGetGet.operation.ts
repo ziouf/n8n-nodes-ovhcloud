@@ -66,12 +66,12 @@ export function description(displayOptions: IDisplayOptions): INodeProperties[] 
  * HTTP method: GET
  * Endpoint: /cloud/project/{serviceName}/database/clickhouse/{clusterId}/metric/{metricName}
  */
-export async function execute(this: IExecuteFunctions): Promise<INodeExecutionData[]> {
+export async function execute(this: IExecuteFunctions, _itemIndex?: number): Promise<INodeExecutionData[]> {
 	const client = new ApiClient(this);
-	const metricName = this.getNodeParameter('metricName', 0) as string;
-	const clusterId = this.getNodeParameter('clusterId', 0) as string;
-	const serviceName = this.getNodeParameter('publicCloudProjectId', 0, '', { extractValue: true }) as string;
-	const period = (this.getNodeParameter('period', 0, '') || '') as string;
+	const metricName = this.getNodeParameter('metricName', _itemIndex ?? 0) as string;
+	const clusterId = this.getNodeParameter('clusterId', _itemIndex ?? 0) as string;
+	const serviceName = this.getNodeParameter('publicCloudProjectId', _itemIndex ?? 0, '', { extractValue: true }) as string;
+	const period = (this.getNodeParameter('period', _itemIndex ?? 0, '') || '') as string;
 
 	const body: IDataObject = {};
 	if (period) body.period = period;

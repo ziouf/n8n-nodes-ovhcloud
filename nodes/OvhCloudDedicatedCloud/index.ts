@@ -3084,615 +3084,615 @@ export async function execute(
 
 	switch (operation) {
 		case 'get':
-			return await executeGet.call(this, itemIndex);
+			return await executeGet.call(this, itemIndex ?? 0);
 		case 'list':
-			return await executeList.call(this, itemIndex);
+			return await executeList.call(this, itemIndex ?? 0);
 		case 'commercialRangeGet':
-			return await executeCommercialRangeGet.call(this, itemIndex);
+			return await executeCommercialRangeGet.call(this, itemIndex ?? 0);
 		case 'commercialRangeComplianceList':
-			return await executeCommercialRangeComplianceList.call(this, itemIndex);
+			return await executeCommercialRangeComplianceList.call(this, itemIndex ?? 0);
 		case 'commercialRangeOrderableList':
-			return await executeCommercialRangeOrderableList.call(this, itemIndex);
+			return await executeCommercialRangeOrderableList.call(this, itemIndex ?? 0);
 		case 'commercialRangeList':
-			return await executeCommercialRangeList.call(this, itemIndex);
+			return await executeCommercialRangeList.call(this, itemIndex ?? 0);
 		case 'hostProfileGet':
-			return await executeHostProfileGet.call(this, itemIndex);
+			return await executeHostProfileGet.call(this, itemIndex ?? 0);
 		case 'serviceHostProfileGet':
-			return await executeHostProfileServiceGet.call(this, itemIndex);
+			return await executeHostProfileServiceGet.call(this, itemIndex ?? 0);
 		case 'hostProfileList':
-			return await executeHostProfileList.call(this, itemIndex);
+			return await executeHostProfileList.call(this, itemIndex ?? 0);
 		case 'serviceHostProfileList':
-			return await executeHostProfileServiceList.call(this, itemIndex);
+			return await executeHostProfileServiceList.call(this, itemIndex ?? 0);
 		case 'locationGet':
-			return await executeLocationGet.call(this, itemIndex);
+			return await executeLocationGet.call(this, itemIndex ?? 0);
 		case 'locationList':
-			return await executeLocationList.call(this, itemIndex);
+			return await executeLocationList.call(this, itemIndex ?? 0);
 		case 'stockHostList':
-			return await executeStockHostList.call(this, itemIndex);
+			return await executeStockHostList.call(this, itemIndex ?? 0);
 		case 'stockPccList':
-			return await executeStockPccList.call(this, itemIndex);
+			return await executeStockPccList.call(this, itemIndex ?? 0);
 		case 'stockZpoolList':
-			return await executeStockZpoolList.call(this, itemIndex);
+			return await executeStockZpoolList.call(this, itemIndex ?? 0);
 		case 'hypervisorList':
-			return await executeHypervisorList.call(this, itemIndex);
+			return await executeHypervisorList.call(this, itemIndex ?? 0);
 		case 'serviceHypervisorList':
-			return await executeHypervisorServiceList.call(this, itemIndex);
+			return await executeHypervisorServiceList.call(this, itemIndex ?? 0);
 		case 'hypervisorGet':
-			return await executeHypervisorGet.call(this, itemIndex);
+			return await executeHypervisorGet.call(this, itemIndex ?? 0);
 		case 'serviceHypervisorGet':
-			return await executeHypervisorServiceGet.call(this, itemIndex);
+			return await executeHypervisorServiceGet.call(this, itemIndex ?? 0);
 		case 'update':
-			return await executeUpdate.call(this, itemIndex);
+			return await executeUpdate.call(this, itemIndex ?? 0);
 		case 'terminate':
-			return await executeTerminate.call(this, itemIndex);
+			return await executeTerminate.call(this, itemIndex ?? 0);
 		case 'confirmTermination':
-			return await executeConfirmTermination.call(this, itemIndex);
+			return await executeConfirmTermination.call(this, itemIndex ?? 0);
 		case 'changeContact':
-			return await executeChangeContact.call(this, itemIndex);
+			return await executeChangeContact.call(this, itemIndex ?? 0);
 		case 'changeProperties':
-			return await executeChangeProperties.call(this, itemIndex);
+			return await executeChangeProperties.call(this, itemIndex ?? 0);
 		case 'allowedNetworkList':
-			return await executeAllowedNetworkList.call(this, itemIndex);
+			return await executeAllowedNetworkList.call(this, itemIndex ?? 0);
 		case 'allowedNetworkCreate':
-			return await executeAllowedNetworkCreate.call(this, itemIndex);
+			return await executeAllowedNetworkCreate.call(this, itemIndex ?? 0);
 		case 'allowedNetworkGet':
-			return await executeAllowedNetworkGet.call(this, itemIndex);
+			return await executeAllowedNetworkGet.call(this, itemIndex ?? 0);
 		case 'allowedNetworkUpdate':
-			return await executeAllowedNetworkUpdate.call(this, itemIndex);
+			return await executeAllowedNetworkUpdate.call(this, itemIndex ?? 0);
 		case 'allowedNetworkDelete':
-			return await executeAllowedNetworkDelete.call(this, itemIndex);
+			return await executeAllowedNetworkDelete.call(this, itemIndex ?? 0);
 		case 'allowedNetworkTaskList':
-			return await executeAllowedNetworkTaskList.call(this, itemIndex);
+			return await executeAllowedNetworkTaskList.call(this, itemIndex ?? 0);
 		case 'allowedNetworkTaskGet':
-			return await executeAllowedNetworkTaskGet.call(this, itemIndex);
+			return await executeAllowedNetworkTaskGet.call(this, itemIndex ?? 0);
 		case 'allowedNetworkTaskChangeMaintenanceExecutionDate':
-			return await executeAllowedNetworkTaskChangeMaintenanceExecutionDate.call(this, itemIndex);
+			return await executeAllowedNetworkTaskChangeMaintenanceExecutionDate.call(this, itemIndex ?? 0);
 		case 'allowedNetworkTaskResetTaskState':
-			return await executeAllowedNetworkTaskResetTaskState.call(this, itemIndex);
+			return await executeAllowedNetworkTaskResetTaskState.call(this, itemIndex ?? 0);
 		case 'datacenterList':
-			return await executeDatacenterList.call(this, itemIndex);
+			return await executeDatacenterList.call(this, itemIndex ?? 0);
 		case 'datacenterCreate':
-			return await executeDatacenterCreate.call(this, itemIndex);
+			return await executeDatacenterCreate.call(this, itemIndex ?? 0);
 		case 'datacenterGet':
-			return await executeDatacenterGet.call(this, itemIndex);
+			return await executeDatacenterGet.call(this, itemIndex ?? 0);
 		case 'datacenterUpdate':
-			return await executeDatacenterUpdate.call(this, itemIndex);
+			return await executeDatacenterUpdate.call(this, itemIndex ?? 0);
 		case 'datacenterDelete':
-			return await executeDatacenterDelete.call(this, itemIndex);
+			return await executeDatacenterDelete.call(this, itemIndex ?? 0);
 		case 'datacenterBackupRepositoryList':
-			return await executeDatacenterBackupRepositoryList.call(this, itemIndex);
+			return await executeDatacenterBackupRepositoryList.call(this, itemIndex ?? 0);
 		case 'datacenterBackupRepositoryGet':
-			return await executeDatacenterBackupRepositoryGet.call(this, itemIndex);
+			return await executeDatacenterBackupRepositoryGet.call(this, itemIndex ?? 0);
 		case 'datacenterCheckBackupJobs':
-			return await executeDatacenterCheckBackupJobs.call(this, itemIndex);
+			return await executeDatacenterCheckBackupJobs.call(this, itemIndex ?? 0);
 		case 'datacenterOrderableFilerProfiles':
-			return await executeDatacenterOrderableFilerProfiles.call(this, itemIndex);
+			return await executeDatacenterOrderableFilerProfiles.call(this, itemIndex ?? 0);
 		case 'datacenterOrderableHostProfiles':
-			return await executeDatacenterOrderableHostProfiles.call(this, itemIndex);
+			return await executeDatacenterOrderableHostProfiles.call(this, itemIndex ?? 0);
 		case 'datacenterOrderNewFilerHourly':
-			return await executeDatacenterOrderNewFilerHourly.call(this, itemIndex);
+			return await executeDatacenterOrderNewFilerHourly.call(this, itemIndex ?? 0);
 		case 'datacenterOrderNewHostHourly':
-			return await executeDatacenterOrderNewHostHourly.call(this, itemIndex);
+			return await executeDatacenterOrderNewHostHourly.call(this, itemIndex ?? 0);
 		case 'datacenterTaskList':
-			return await executeDatacenterTaskList.call(this, itemIndex);
+			return await executeDatacenterTaskList.call(this, itemIndex ?? 0);
 		case 'datacenterTaskGet':
-			return await executeDatacenterTaskGet.call(this, itemIndex);
+			return await executeDatacenterTaskGet.call(this, itemIndex ?? 0);
 		case 'datacenterTaskChangeMaintenanceExecutionDate':
-			return await executeDatacenterTaskChangeMaintenanceExecutionDate.call(this, itemIndex);
+			return await executeDatacenterTaskChangeMaintenanceExecutionDate.call(this, itemIndex ?? 0);
 		case 'datacenterTaskResetTaskState':
-			return await executeDatacenterTaskResetTaskState.call(this, itemIndex);
+			return await executeDatacenterTaskResetTaskState.call(this, itemIndex ?? 0);
 		case 'hostList':
-			return await executeHostList.call(this, itemIndex);
+			return await executeHostList.call(this, itemIndex ?? 0);
 		case 'hostGet':
-			return await executeHostGet.call(this, itemIndex);
+			return await executeHostGet.call(this, itemIndex ?? 0);
 		case 'hostAddHostSpare':
-			return await executeHostAddHostSpare.call(this, itemIndex);
+			return await executeHostAddHostSpare.call(this, itemIndex ?? 0);
 		case 'hostHourlyConsumption':
-			return await executeHostHourlyConsumption.call(this, itemIndex);
+			return await executeHostHourlyConsumption.call(this, itemIndex ?? 0);
 		case 'hostLocation':
-			return await executeHostLocation.call(this, itemIndex);
+			return await executeHostLocation.call(this, itemIndex ?? 0);
 		case 'hostRemove':
-			return await executeHostRemove.call(this, itemIndex);
+			return await executeHostRemove.call(this, itemIndex ?? 0);
 		case 'hostResilience':
-			return await executeHostResilience.call(this, itemIndex);
+			return await executeHostResilience.call(this, itemIndex ?? 0);
 		case 'hostResilienceCanBeEnabled':
-			return await executeHostResilienceCanBeEnabled.call(this, itemIndex);
+			return await executeHostResilienceCanBeEnabled.call(this, itemIndex ?? 0);
 		case 'hostResilienceDisable':
-			return await executeHostResilienceDisable.call(this, itemIndex);
+			return await executeHostResilienceDisable.call(this, itemIndex ?? 0);
 		case 'hostResilienceEnable':
-			return await executeHostResilienceEnable.call(this, itemIndex);
+			return await executeHostResilienceEnable.call(this, itemIndex ?? 0);
 		case 'hostTaskList':
-			return await executeHostTaskList.call(this, itemIndex);
+			return await executeHostTaskList.call(this, itemIndex ?? 0);
 		case 'hostTaskGet':
-			return await executeHostTaskGet.call(this, itemIndex);
+			return await executeHostTaskGet.call(this, itemIndex ?? 0);
 		case 'hostTaskChangeMaintenanceExecutionDate':
-			return await executeHostTaskChangeMaintenanceExecutionDate.call(this, itemIndex);
+			return await executeHostTaskChangeMaintenanceExecutionDate.call(this, itemIndex ?? 0);
 		case 'hostTaskResetTaskState':
-			return await executeHostTaskResetTaskState.call(this, itemIndex);
+			return await executeHostTaskResetTaskState.call(this, itemIndex ?? 0);
 		case 'filerList':
-			return await executeFilerList.call(this, itemIndex);
+			return await executeFilerList.call(this, itemIndex ?? 0);
 		case 'filerGlobalList':
-			return await executeFilerGlobalList.call(this, itemIndex);
+			return await executeFilerGlobalList.call(this, itemIndex ?? 0);
 		case 'filerGet':
-			return await executeFilerGet.call(this, itemIndex);
+			return await executeFilerGet.call(this, itemIndex ?? 0);
 		case 'filerGlobalGet':
-			return await executeFilerGlobalGet.call(this, itemIndex);
+			return await executeFilerGlobalGet.call(this, itemIndex ?? 0);
 		case 'filerCheckGlobalCompatible':
-			return await executeFilerCheckGlobalCompatible.call(this, itemIndex);
+			return await executeFilerCheckGlobalCompatible.call(this, itemIndex ?? 0);
 		case 'filerGlobalCheckGlobalCompatible':
-			return await executeFilerGlobalCheckGlobalCompatible.call(this, itemIndex);
+			return await executeFilerGlobalCheckGlobalCompatible.call(this, itemIndex ?? 0);
 		case 'filerConvertToGlobal':
-			return await executeFilerConvertToGlobal.call(this, itemIndex);
+			return await executeFilerConvertToGlobal.call(this, itemIndex ?? 0);
 		case 'filerGlobalConvertToGlobal':
-			return await executeFilerGlobalConvertToGlobal.call(this, itemIndex);
+			return await executeFilerGlobalConvertToGlobal.call(this, itemIndex ?? 0);
 		case 'filerHourlyConsumption':
-			return await executeFilerHourlyConsumption.call(this, itemIndex);
+			return await executeFilerHourlyConsumption.call(this, itemIndex ?? 0);
 		case 'filerGlobalHourlyConsumption':
-			return await executeFilerGlobalHourlyConsumption.call(this, itemIndex);
+			return await executeFilerGlobalHourlyConsumption.call(this, itemIndex ?? 0);
 		case 'filerLocation':
-			return await executeFilerLocation.call(this, itemIndex);
+			return await executeFilerLocation.call(this, itemIndex ?? 0);
 		case 'filerGlobalLocation':
-			return await executeFilerGlobalLocation.call(this, itemIndex);
+			return await executeFilerGlobalLocation.call(this, itemIndex ?? 0);
 		case 'filerRemove':
-			return await executeFilerRemove.call(this, itemIndex);
+			return await executeFilerRemove.call(this, itemIndex ?? 0);
 		case 'filerGlobalRemove':
-			return await executeFilerGlobalRemove.call(this, itemIndex);
+			return await executeFilerGlobalRemove.call(this, itemIndex ?? 0);
 		case 'filerTaskList':
-			return await executeFilerTaskList.call(this, itemIndex);
+			return await executeFilerTaskList.call(this, itemIndex ?? 0);
 		case 'filerGlobalTaskList':
-			return await executeFilerGlobalTaskList.call(this, itemIndex);
+			return await executeFilerGlobalTaskList.call(this, itemIndex ?? 0);
 		case 'filerTaskGet':
-			return await executeFilerTaskGet.call(this, itemIndex);
+			return await executeFilerTaskGet.call(this, itemIndex ?? 0);
 		case 'filerGlobalTaskGet':
-			return await executeFilerGlobalTaskGet.call(this, itemIndex);
+			return await executeFilerGlobalTaskGet.call(this, itemIndex ?? 0);
 		case 'filerTaskChangeMaintenanceExecutionDate':
-			return await executeFilerTaskChangeMaintenanceExecutionDate.call(this, itemIndex);
+			return await executeFilerTaskChangeMaintenanceExecutionDate.call(this, itemIndex ?? 0);
 		case 'filerGlobalTaskChangeMaintenanceExecutionDate':
-			return await executeFilerGlobalTaskChangeMaintenanceExecutionDate.call(this, itemIndex);
+			return await executeFilerGlobalTaskChangeMaintenanceExecutionDate.call(this, itemIndex ?? 0);
 		case 'filerTaskResetTaskState':
-			return await executeFilerTaskResetTaskState.call(this, itemIndex);
+			return await executeFilerTaskResetTaskState.call(this, itemIndex ?? 0);
 		case 'filerGlobalTaskResetTaskState':
-			return await executeFilerGlobalTaskResetTaskState.call(this, itemIndex);
+			return await executeFilerGlobalTaskResetTaskState.call(this, itemIndex ?? 0);
 		case 'vmList':
-			return await executeVmList.call(this, itemIndex);
+			return await executeVmList.call(this, itemIndex ?? 0);
 		case 'vmGet':
-			return await executeVmGet.call(this, itemIndex);
+			return await executeVmGet.call(this, itemIndex ?? 0);
 		case 'vmBackupJobGet':
-			return await executeVmBackupJobGet.call(this, itemIndex);
+			return await executeVmBackupJobGet.call(this, itemIndex ?? 0);
 		case 'vmBackupJobUpdate':
-			return await executeVmBackupJobUpdate.call(this, itemIndex);
+			return await executeVmBackupJobUpdate.call(this, itemIndex ?? 0);
 		case 'vmBackupJobDisable':
-			return await executeVmBackupJobDisable.call(this, itemIndex);
+			return await executeVmBackupJobDisable.call(this, itemIndex ?? 0);
 		case 'vmBackupJobEnable':
-			return await executeVmBackupJobEnable.call(this, itemIndex);
+			return await executeVmBackupJobEnable.call(this, itemIndex ?? 0);
 		case 'vmRestorePointsList':
-			return await executeVmRestorePointsList.call(this, itemIndex);
+			return await executeVmRestorePointsList.call(this, itemIndex ?? 0);
 		case 'vmRestorePointGet':
-			return await executeVmRestorePointGet.call(this, itemIndex);
+			return await executeVmRestorePointGet.call(this, itemIndex ?? 0);
 		case 'vmRestorePointRestore':
-			return await executeVmRestorePointRestore.call(this, itemIndex);
+			return await executeVmRestorePointRestore.call(this, itemIndex ?? 0);
 		case 'vmDisableBackup':
-			return await executeVmDisableBackup.call(this, itemIndex);
+			return await executeVmDisableBackup.call(this, itemIndex ?? 0);
 		case 'vmDisableCarp':
-			return await executeVmDisableCarp.call(this, itemIndex);
+			return await executeVmDisableCarp.call(this, itemIndex ?? 0);
 		case 'vmEditBackup':
-			return await executeVmEditBackup.call(this, itemIndex);
+			return await executeVmEditBackup.call(this, itemIndex ?? 0);
 		case 'vmEnableBackup':
-			return await executeVmEnableBackup.call(this, itemIndex);
+			return await executeVmEnableBackup.call(this, itemIndex ?? 0);
 		case 'vmEnableCarp':
-			return await executeVmEnableCarp.call(this, itemIndex);
+			return await executeVmEnableCarp.call(this, itemIndex ?? 0);
 		case 'vmRemoveLicense':
-			return await executeVmRemoveLicense.call(this, itemIndex);
+			return await executeVmRemoveLicense.call(this, itemIndex ?? 0);
 		case 'vmRestoreBackup':
-			return await executeVmRestoreBackup.call(this, itemIndex);
+			return await executeVmRestoreBackup.call(this, itemIndex ?? 0);
 		case 'vmSetLicense':
-			return await executeVmSetLicense.call(this, itemIndex);
+			return await executeVmSetLicense.call(this, itemIndex ?? 0);
 		case 'vmLicensedList':
-			return await executeVmLicensedList.call(this, itemIndex);
+			return await executeVmLicensedList.call(this, itemIndex ?? 0);
 		case 'serviceInfosGet':
-			return await executeServiceInfosGet.call(this, itemIndex);
+			return await executeServiceInfosGet.call(this, itemIndex ?? 0);
 		case 'serviceInfosUpdate':
-			return await executeServiceInfosUpdate.call(this, itemIndex);
+			return await executeServiceInfosUpdate.call(this, itemIndex ?? 0);
 		case 'userList':
-			return await executeUserList.call(this, itemIndex);
+			return await executeUserList.call(this, itemIndex ?? 0);
 		case 'userCreate':
-			return await executeUserCreate.call(this, itemIndex);
+			return await executeUserCreate.call(this, itemIndex ?? 0);
 		case 'userGet':
-			return await executeUserGet.call(this, itemIndex);
+			return await executeUserGet.call(this, itemIndex ?? 0);
 		case 'userDelete':
-			return await executeUserDelete.call(this, itemIndex);
+			return await executeUserDelete.call(this, itemIndex ?? 0);
 		case 'userChangePassword':
-			return await executeUserChangePassword.call(this, itemIndex);
+			return await executeUserChangePassword.call(this, itemIndex ?? 0);
 		case 'userChangeProperties':
-			return await executeUserChangeProperties.call(this, itemIndex);
+			return await executeUserChangeProperties.call(this, itemIndex ?? 0);
 		case 'userConfirmPhoneNumber':
-			return await executeUserConfirmPhoneNumber.call(this, itemIndex);
+			return await executeUserConfirmPhoneNumber.call(this, itemIndex ?? 0);
 		case 'userDisable':
-			return await executeUserDisable.call(this, itemIndex);
+			return await executeUserDisable.call(this, itemIndex ?? 0);
 		case 'userEnable':
-			return await executeUserEnable.call(this, itemIndex);
+			return await executeUserEnable.call(this, itemIndex ?? 0);
 		case 'userObjectRightList':
-			return await executeUserObjectRightList.call(this, itemIndex);
+			return await executeUserObjectRightList.call(this, itemIndex ?? 0);
 		case 'userObjectRightCreate':
-			return await executeUserObjectRightCreate.call(this, itemIndex);
+			return await executeUserObjectRightCreate.call(this, itemIndex ?? 0);
 		case 'userObjectRightGet':
-			return await executeUserObjectRightGet.call(this, itemIndex);
+			return await executeUserObjectRightGet.call(this, itemIndex ?? 0);
 		case 'userObjectRightDelete':
-			return await executeUserObjectRightDelete.call(this, itemIndex);
+			return await executeUserObjectRightDelete.call(this, itemIndex ?? 0);
 		case 'userRightList':
-			return await executeUserRightList.call(this, itemIndex);
+			return await executeUserRightList.call(this, itemIndex ?? 0);
 		case 'userRightGet':
-			return await executeUserRightGet.call(this, itemIndex);
+			return await executeUserRightGet.call(this, itemIndex ?? 0);
 		case 'userRightUpdate':
-			return await executeUserRightUpdate.call(this, itemIndex);
+			return await executeUserRightUpdate.call(this, itemIndex ?? 0);
 		case 'userTaskList':
-			return await executeUserTaskList.call(this, itemIndex);
+			return await executeUserTaskList.call(this, itemIndex ?? 0);
 		case 'userTaskGet':
-			return await executeUserTaskGet.call(this, itemIndex);
+			return await executeUserTaskGet.call(this, itemIndex ?? 0);
 		case 'userTaskChangeMaintenanceExecutionDate':
-			return await executeUserTaskChangeMaintenanceExecutionDate.call(this, itemIndex);
+			return await executeUserTaskChangeMaintenanceExecutionDate.call(this, itemIndex ?? 0);
 		case 'userTaskResetTaskState':
-			return await executeUserTaskResetTaskState.call(this, itemIndex);
+			return await executeUserTaskResetTaskState.call(this, itemIndex ?? 0);
 		case 'taskList':
-			return await executeTaskList.call(this, itemIndex);
+			return await executeTaskList.call(this, itemIndex ?? 0);
 		case 'taskGet':
-			return await executeTaskGet.call(this, itemIndex);
+			return await executeTaskGet.call(this, itemIndex ?? 0);
 		case 'taskChangeMaintenanceExecutionDate':
-			return await executeTaskChangeMaintenanceExecutionDate.call(this, itemIndex);
+			return await executeTaskChangeMaintenanceExecutionDate.call(this, itemIndex ?? 0);
 		case 'taskResetTaskState':
-			return await executeTaskResetTaskState.call(this, itemIndex);
+			return await executeTaskResetTaskState.call(this, itemIndex ?? 0);
 		case 'backupRepositoryList':
-			return await executeBackupRepositoryList.call(this, itemIndex);
+			return await executeBackupRepositoryList.call(this, itemIndex ?? 0);
 		case 'backupRepositoryGet':
-			return await executeBackupRepositoryGet.call(this, itemIndex);
+			return await executeBackupRepositoryGet.call(this, itemIndex ?? 0);
 		case 'ipList':
-			return await executeIpList.call(this, itemIndex);
+			return await executeIpList.call(this, itemIndex ?? 0);
 		case 'ipGet':
-			return await executeIpGet.call(this, itemIndex);
+			return await executeIpGet.call(this, itemIndex ?? 0);
 		case 'ipDetails':
-			return await executeIpDetails.call(this, itemIndex);
+			return await executeIpDetails.call(this, itemIndex ?? 0);
 		case 'ipTaskList':
-			return await executeIpTaskList.call(this, itemIndex);
+			return await executeIpTaskList.call(this, itemIndex ?? 0);
 		case 'ipTaskGet':
-			return await executeIpTaskGet.call(this, itemIndex);
+			return await executeIpTaskGet.call(this, itemIndex ?? 0);
 		case 'ipTaskChangeMaintenanceExecutionDate':
-			return await executeIpTaskChangeMaintenanceExecutionDate.call(this, itemIndex);
+			return await executeIpTaskChangeMaintenanceExecutionDate.call(this, itemIndex ?? 0);
 		case 'ipTaskResetTaskState':
-			return await executeIpTaskResetTaskState.call(this, itemIndex);
+			return await executeIpTaskResetTaskState.call(this, itemIndex ?? 0);
 		case 'zertoDisable':
-			return await executezertoDisable.call(this, itemIndex);
+			return await executezertoDisable.call(this, itemIndex ?? 0);
 		case 'zertoEnable':
-			return await executezertoEnable.call(this, itemIndex);
+			return await executezertoEnable.call(this, itemIndex ?? 0);
 		case 'zertoEndMigration':
-			return await executezertoEndMigration.call(this, itemIndex);
+			return await executezertoEndMigration.call(this, itemIndex ?? 0);
 		case 'zertoEndpointPublicIp':
-			return await executezertoEndpointPublicIp.call(this, itemIndex);
+			return await executezertoEndpointPublicIp.call(this, itemIndex ?? 0);
 		case 'zertoRemoteSiteDelete':
-			return await executezertoRemoteSiteDelete.call(this, itemIndex);
+			return await executezertoRemoteSiteDelete.call(this, itemIndex ?? 0);
 		case 'zertoRemoteSiteList':
-			return await executezertoRemoteSiteList.call(this, itemIndex);
+			return await executezertoRemoteSiteList.call(this, itemIndex ?? 0);
 		case 'zertoRemoteSiteCreate':
-			return await executezertoRemoteSiteCreate.call(this, itemIndex);
+			return await executezertoRemoteSiteCreate.call(this, itemIndex ?? 0);
 		case 'zertoRequestHealthCheck':
-			return await executezertoRequestHealthCheck.call(this, itemIndex);
+			return await executezertoRequestHealthCheck.call(this, itemIndex ?? 0);
 		case 'zertoStartMigration':
-			return await executezertoStartMigration.call(this, itemIndex);
+			return await executezertoStartMigration.call(this, itemIndex ?? 0);
 		case 'zertoStatusGet':
-			return await executezertoStatusGet.call(this, itemIndex);
+			return await executezertoStatusGet.call(this, itemIndex ?? 0);
 		case 'zertoUsageReport':
-			return await executezertoUsageReport.call(this, itemIndex);
+			return await executezertoUsageReport.call(this, itemIndex ?? 0);
 		case 'zertoVraResourcesList':
-			return await executezertoVraResourcesList.call(this, itemIndex);
+			return await executezertoVraResourcesList.call(this, itemIndex ?? 0);
 		case 'zertoVraResourcesUpdate':
-			return await executezertoVraResourcesUpdate.call(this, itemIndex);
+			return await executezertoVraResourcesUpdate.call(this, itemIndex ?? 0);
 		case 'zertoSingleConfigureVpn':
-			return await executezertoSingleConfigureVpn.call(this, itemIndex);
+			return await executezertoSingleConfigureVpn.call(this, itemIndex ?? 0);
 		case 'zertoSingleDefaultLocalVraNetwork':
-			return await executezertoSingleDefaultLocalVraNetwork.call(this, itemIndex);
+			return await executezertoSingleDefaultLocalVraNetwork.call(this, itemIndex ?? 0);
 		case 'zertoSingleDisable':
-			return await executezertoSingleDisable.call(this, itemIndex);
+			return await executezertoSingleDisable.call(this, itemIndex ?? 0);
 		case 'zertoSingleEnable':
-			return await executezertoSingleEnable.call(this, itemIndex);
+			return await executezertoSingleEnable.call(this, itemIndex ?? 0);
 		case 'zertoSingleEndpointPublicIp':
-			return await executezertoSingleEndpointPublicIp.call(this, itemIndex);
+			return await executezertoSingleEndpointPublicIp.call(this, itemIndex ?? 0);
 		case 'zertoSingleRemoteSiteDelete':
-			return await executezertoSingleRemoteSiteDelete.call(this, itemIndex);
+			return await executezertoSingleRemoteSiteDelete.call(this, itemIndex ?? 0);
 		case 'zertoSingleRemoteSiteList':
-			return await executezertoSingleRemoteSiteList.call(this, itemIndex);
+			return await executezertoSingleRemoteSiteList.call(this, itemIndex ?? 0);
 		case 'zertoSingleRemoteSiteCreate':
-			return await executezertoSingleRemoteSiteCreate.call(this, itemIndex);
+			return await executezertoSingleRemoteSiteCreate.call(this, itemIndex ?? 0);
 		case 'zertoSingleRequestPairingToken':
-			return await executezertoSingleRequestPairingToken.call(this, itemIndex);
+			return await executezertoSingleRequestPairingToken.call(this, itemIndex ?? 0);
 		case 'zertoSingleVraResourcesList':
-			return await executezertoSingleVraResourcesList.call(this, itemIndex);
+			return await executezertoSingleVraResourcesList.call(this, itemIndex ?? 0);
 		case 'zertoSingleVraResourcesUpdate':
-			return await executezertoSingleVraResourcesUpdate.call(this, itemIndex);
+			return await executezertoSingleVraResourcesUpdate.call(this, itemIndex ?? 0);
 		case 'datacenterBackupGet':
-			return await executedatacenterBackupGet.call(this, itemIndex);
+			return await executedatacenterBackupGet.call(this, itemIndex ?? 0);
 		case 'datacenterBackupBatchRestore':
-			return await executedatacenterBackupBatchRestore.call(this, itemIndex);
+			return await executedatacenterBackupBatchRestore.call(this, itemIndex ?? 0);
 		case 'datacenterBackupCanOptimizeProxies':
-			return await executedatacenterBackupCanOptimizeProxies.call(this, itemIndex);
+			return await executedatacenterBackupCanOptimizeProxies.call(this, itemIndex ?? 0);
 		case 'datacenterBackupChangeProperties':
-			return await executedatacenterBackupChangeProperties.call(this, itemIndex);
+			return await executedatacenterBackupChangeProperties.call(this, itemIndex ?? 0);
 		case 'datacenterBackupDisable':
-			return await executedatacenterBackupDisable.call(this, itemIndex);
+			return await executedatacenterBackupDisable.call(this, itemIndex ?? 0);
 		case 'datacenterBackupEnable':
-			return await executedatacenterBackupEnable.call(this, itemIndex);
+			return await executedatacenterBackupEnable.call(this, itemIndex ?? 0);
 		case 'datacenterBackupGenerateReport':
-			return await executedatacenterBackupGenerateReport.call(this, itemIndex);
+			return await executedatacenterBackupGenerateReport.call(this, itemIndex ?? 0);
 		case 'datacenterBackupOfferCapabilities':
-			return await executedatacenterBackupOfferCapabilities.call(this, itemIndex);
+			return await executedatacenterBackupOfferCapabilities.call(this, itemIndex ?? 0);
 		case 'datacenterBackupOptimizeProxies':
-			return await executedatacenterBackupOptimizeProxies.call(this, itemIndex);
+			return await executedatacenterBackupOptimizeProxies.call(this, itemIndex ?? 0);
 		case 'nsxtEdgeList':
-			return await executensxtEdgeList.call(this, itemIndex);
+			return await executensxtEdgeList.call(this, itemIndex ?? 0);
 		case 'nsxtEdgeCreate':
-			return await executensxtEdgeCreate.call(this, itemIndex);
+			return await executensxtEdgeCreate.call(this, itemIndex ?? 0);
 		case 'nsxtEdgeDelete':
-			return await executensxtEdgeDelete.call(this, itemIndex);
+			return await executensxtEdgeDelete.call(this, itemIndex ?? 0);
 		case 'nsxtEdgeGet':
-			return await executensxtEdgeGet.call(this, itemIndex);
+			return await executensxtEdgeGet.call(this, itemIndex ?? 0);
 		case 'nsxtEdgesResizingCapabilities':
-			return await executensxtEdgesResizingCapabilities.call(this, itemIndex);
+			return await executensxtEdgesResizingCapabilities.call(this, itemIndex ?? 0);
 		case 'nsxtEdgesScalingCapabilities':
-			return await executensxtEdgesScalingCapabilities.call(this, itemIndex);
+			return await executensxtEdgesScalingCapabilities.call(this, itemIndex ?? 0);
 		case 'nsxtEdgeRelocateEdge':
-			return await executensxtEdgeRelocateEdge.call(this, itemIndex);
+			return await executensxtEdgeRelocateEdge.call(this, itemIndex ?? 0);
 		case 'resizeNsxtEdgeCluster':
-			return await executeresizeNsxtEdgeCluster.call(this, itemIndex);
+			return await executeresizeNsxtEdgeCluster.call(this, itemIndex ?? 0);
 		case 'nsxtEdgeResilience':
-			return await executensxtEdgeResilience.call(this, itemIndex);
+			return await executensxtEdgeResilience.call(this, itemIndex ?? 0);
 		case 'nsxtEdgeResilienceCanBeEnabled':
-			return await executensxtEdgeResilienceCanBeEnabled.call(this, itemIndex);
+			return await executensxtEdgeResilienceCanBeEnabled.call(this, itemIndex ?? 0);
 		case 'nsxtEdgeResilienceDisable':
-			return await executensxtEdgeResilienceDisable.call(this, itemIndex);
+			return await executensxtEdgeResilienceDisable.call(this, itemIndex ?? 0);
 		case 'nsxtEdgeResilienceEnable':
-			return await executensxtEdgeResilienceEnable.call(this, itemIndex);
+			return await executensxtEdgeResilienceEnable.call(this, itemIndex ?? 0);
 		case 'clusterList':
-			return await executeclusterList.call(this, itemIndex);
+			return await executeclusterList.call(this, itemIndex ?? 0);
 		case 'clusterGet':
-			return await executeclusterGet.call(this, itemIndex);
+			return await executeclusterGet.call(this, itemIndex ?? 0);
 		case 'clusterNsxtDelete':
-			return await executeclusterNsxtDelete.call(this, itemIndex);
+			return await executeclusterNsxtDelete.call(this, itemIndex ?? 0);
 		case 'clusterNsxtCreate':
-			return await executeclusterNsxtCreate.call(this, itemIndex);
+			return await executeclusterNsxtCreate.call(this, itemIndex ?? 0);
 		case 'clusterNsxtUpdate':
-			return await executeclusterNsxtUpdate.call(this, itemIndex);
+			return await executeclusterNsxtUpdate.call(this, itemIndex ?? 0);
 		case 'privateGatewayGet':
-			return await executeprivateGatewayGet.call(this, itemIndex);
+			return await executeprivateGatewayGet.call(this, itemIndex ?? 0);
 		case 'privateGatewayDisable':
-			return await executeprivateGatewayDisable.call(this, itemIndex);
+			return await executeprivateGatewayDisable.call(this, itemIndex ?? 0);
 		case 'privateGatewayEnable':
-			return await executeprivateGatewayEnable.call(this, itemIndex);
+			return await executeprivateGatewayEnable.call(this, itemIndex ?? 0);
 		case 'privateGatewayReconfigure':
-			return await executeprivateGatewayReconfigure.call(this, itemIndex);
+			return await executeprivateGatewayReconfigure.call(this, itemIndex ?? 0);
 		case 'federationGet':
-			return await executefederationGet.call(this, itemIndex);
+			return await executefederationGet.call(this, itemIndex ?? 0);
 		case 'federationActiveDirectoryList':
-			return await executefederationActiveDirectoryList.call(this, itemIndex);
+			return await executefederationActiveDirectoryList.call(this, itemIndex ?? 0);
 		case 'federationActiveDirectoryCreate':
-			return await executefederationActiveDirectoryCreate.call(this, itemIndex);
+			return await executefederationActiveDirectoryCreate.call(this, itemIndex ?? 0);
 		case 'federationActiveDirectoryDelete':
-			return await executefederationActiveDirectoryDelete.call(this, itemIndex);
+			return await executefederationActiveDirectoryDelete.call(this, itemIndex ?? 0);
 		case 'federationActiveDirectoryGet':
-			return await executefederationActiveDirectoryGet.call(this, itemIndex);
+			return await executefederationActiveDirectoryGet.call(this, itemIndex ?? 0);
 		case 'federationActiveDirectoryChangeProperties':
-			return await executefederationActiveDirectoryChangeProperties.call(this, itemIndex);
+			return await executefederationActiveDirectoryChangeProperties.call(this, itemIndex ?? 0);
 		case 'federationActiveDirectoryGrantGroup':
-			return await executefederationActiveDirectoryGrantGroup.call(this, itemIndex);
+			return await executefederationActiveDirectoryGrantGroup.call(this, itemIndex ?? 0);
 		case 'federationActiveDirectoryGrantUser':
-			return await executefederationActiveDirectoryGrantUser.call(this, itemIndex);
+			return await executefederationActiveDirectoryGrantUser.call(this, itemIndex ?? 0);
 		case 'hcxGet':
-			return await executehcxGet.call(this, itemIndex);
+			return await executehcxGet.call(this, itemIndex ?? 0);
 		case 'hcxCanBeDisabled':
-			return await executehcxCanBeDisabled.call(this, itemIndex);
+			return await executehcxCanBeDisabled.call(this, itemIndex ?? 0);
 		case 'hcxCanBeEnabled':
-			return await executehcxCanBeEnabled.call(this, itemIndex);
+			return await executehcxCanBeEnabled.call(this, itemIndex ?? 0);
 		case 'hcxDisable':
-			return await executehcxDisable.call(this, itemIndex);
+			return await executehcxDisable.call(this, itemIndex ?? 0);
 		case 'hcxEnable':
-			return await executehcxEnable.call(this, itemIndex);
+			return await executehcxEnable.call(this, itemIndex ?? 0);
 		case 'hdsGet':
-			return await executehdsGet.call(this, itemIndex);
+			return await executehdsGet.call(this, itemIndex ?? 0);
 		case 'hdsCanBeDisabled':
-			return await executehdsCanBeDisabled.call(this, itemIndex);
+			return await executehdsCanBeDisabled.call(this, itemIndex ?? 0);
 		case 'hdsCanBeEnabled':
-			return await executehdsCanBeEnabled.call(this, itemIndex);
+			return await executehdsCanBeEnabled.call(this, itemIndex ?? 0);
 		case 'hdsDisable':
-			return await executehdsDisable.call(this, itemIndex);
+			return await executehdsDisable.call(this, itemIndex ?? 0);
 		case 'hdsEnable':
-			return await executehdsEnable.call(this, itemIndex);
+			return await executehdsEnable.call(this, itemIndex ?? 0);
 		case 'hipaaGet':
-			return await executehipaaGet.call(this, itemIndex);
+			return await executehipaaGet.call(this, itemIndex ?? 0);
 		case 'hipaaCanBeDisabled':
-			return await executehipaaCanBeDisabled.call(this, itemIndex);
+			return await executehipaaCanBeDisabled.call(this, itemIndex ?? 0);
 		case 'hipaaCanBeEnabled':
-			return await executehipaaCanBeEnabled.call(this, itemIndex);
+			return await executehipaaCanBeEnabled.call(this, itemIndex ?? 0);
 		case 'hipaaDisable':
-			return await executehipaaDisable.call(this, itemIndex);
+			return await executehipaaDisable.call(this, itemIndex ?? 0);
 		case 'hipaaEnable':
-			return await executehipaaEnable.call(this, itemIndex);
+			return await executehipaaEnable.call(this, itemIndex ?? 0);
 		case 'pcidssGet':
-			return await executepcidssGet.call(this, itemIndex);
+			return await executepcidssGet.call(this, itemIndex ?? 0);
 		case 'pcidssCanBeDisabled':
-			return await executepcidssCanBeDisabled.call(this, itemIndex);
+			return await executepcidssCanBeDisabled.call(this, itemIndex ?? 0);
 		case 'pcidssCanBeEnabled':
-			return await executepcidssCanBeEnabled.call(this, itemIndex);
+			return await executepcidssCanBeEnabled.call(this, itemIndex ?? 0);
 		case 'pcidssDisable':
-			return await executepcidssDisable.call(this, itemIndex);
+			return await executepcidssDisable.call(this, itemIndex ?? 0);
 		case 'pcidssEnable':
-			return await executepcidssEnable.call(this, itemIndex);
+			return await executepcidssEnable.call(this, itemIndex ?? 0);
 		case 'nsxGet':
-			return await executensxGet.call(this, itemIndex);
+			return await executensxGet.call(this, itemIndex ?? 0);
 		case 'nsxCanBeDisabled':
-			return await executensxCanBeDisabled.call(this, itemIndex);
+			return await executensxCanBeDisabled.call(this, itemIndex ?? 0);
 		case 'nsxCanBeEnabled':
-			return await executensxCanBeEnabled.call(this, itemIndex);
+			return await executensxCanBeEnabled.call(this, itemIndex ?? 0);
 		case 'nsxDisable':
-			return await executensxDisable.call(this, itemIndex);
+			return await executensxDisable.call(this, itemIndex ?? 0);
 		case 'nsxEnable':
-			return await executensxEnable.call(this, itemIndex);
+			return await executensxEnable.call(this, itemIndex ?? 0);
 		case 'sapList':
-			return await executesapList.call(this, itemIndex);
+			return await executesapList.call(this, itemIndex ?? 0);
 		case 'sapCreate':
-			return await executesapCreate.call(this, itemIndex);
+			return await executesapCreate.call(this, itemIndex ?? 0);
 		case 'sapDelete':
-			return await executesapDelete.call(this, itemIndex);
+			return await executesapDelete.call(this, itemIndex ?? 0);
 		case 'sapGet':
-			return await executesapGet.call(this, itemIndex);
+			return await executesapGet.call(this, itemIndex ?? 0);
 		case 'vropsGet':
-			return await executevropsGet.call(this, itemIndex);
+			return await executevropsGet.call(this, itemIndex ?? 0);
 		case 'vropsCanBeDisabled':
-			return await executevropsCanBeDisabled.call(this, itemIndex);
+			return await executevropsCanBeDisabled.call(this, itemIndex ?? 0);
 		case 'vropsCanBeEnabled':
-			return await executevropsCanBeEnabled.call(this, itemIndex);
+			return await executevropsCanBeEnabled.call(this, itemIndex ?? 0);
 		case 'vropsDisable':
-			return await executevropsDisable.call(this, itemIndex);
+			return await executevropsDisable.call(this, itemIndex ?? 0);
 		case 'vropsEnable':
-			return await executevropsEnable.call(this, itemIndex);
+			return await executevropsEnable.call(this, itemIndex ?? 0);
 		case 'vropsOutgoingFlowList':
-			return await executevropsOutgoingFlowList.call(this, itemIndex);
+			return await executevropsOutgoingFlowList.call(this, itemIndex ?? 0);
 		case 'vropsOutgoingFlowCreate':
-			return await executevropsOutgoingFlowCreate.call(this, itemIndex);
+			return await executevropsOutgoingFlowCreate.call(this, itemIndex ?? 0);
 		case 'vropsOutgoingFlowDelete':
-			return await executevropsOutgoingFlowDelete.call(this, itemIndex);
+			return await executevropsOutgoingFlowDelete.call(this, itemIndex ?? 0);
 		case 'vropsOutgoingFlowGet':
-			return await executevropsOutgoingFlowGet.call(this, itemIndex);
+			return await executevropsOutgoingFlowGet.call(this, itemIndex ?? 0);
 		case 'vropsOutgoingFlowChangeProperties':
-			return await executevropsOutgoingFlowChangeProperties.call(this, itemIndex);
+			return await executevropsOutgoingFlowChangeProperties.call(this, itemIndex ?? 0);
 		case 'vropsUpgrade':
-			return await executevropsUpgrade.call(this, itemIndex);
+			return await executevropsUpgrade.call(this, itemIndex ?? 0);
 		case 'iamGet':
-			return await executeiamGet.call(this, itemIndex);
+			return await executeiamGet.call(this, itemIndex ?? 0);
 		case 'iamAddRole':
-			return await executeiamAddRole.call(this, itemIndex);
+			return await executeiamAddRole.call(this, itemIndex ?? 0);
 		case 'iamCanBeDisabled':
-			return await executeiamCanBeDisabled.call(this, itemIndex);
+			return await executeiamCanBeDisabled.call(this, itemIndex ?? 0);
 		case 'iamCanBeEnabled':
-			return await executeiamCanBeEnabled.call(this, itemIndex);
+			return await executeiamCanBeEnabled.call(this, itemIndex ?? 0);
 		case 'iamDisable':
-			return await executeiamDisable.call(this, itemIndex);
+			return await executeiamDisable.call(this, itemIndex ?? 0);
 		case 'iamEnable':
-			return await executeiamEnable.call(this, itemIndex);
+			return await executeiamEnable.call(this, itemIndex ?? 0);
 		case 'logForwarderGet':
-			return await executelogForwarderGet.call(this, itemIndex);
+			return await executelogForwarderGet.call(this, itemIndex ?? 0);
 		case 'logForwarderCanBeDisabled':
-			return await executelogForwarderCanBeDisabled.call(this, itemIndex);
+			return await executelogForwarderCanBeDisabled.call(this, itemIndex ?? 0);
 		case 'logForwarderCanBeEnabled':
-			return await executelogForwarderCanBeEnabled.call(this, itemIndex);
+			return await executelogForwarderCanBeEnabled.call(this, itemIndex ?? 0);
 		case 'logForwarderDisable':
-			return await executelogForwarderDisable.call(this, itemIndex);
+			return await executelogForwarderDisable.call(this, itemIndex ?? 0);
 		case 'logForwarderEnable':
-			return await executelogForwarderEnable.call(this, itemIndex);
+			return await executelogForwarderEnable.call(this, itemIndex ?? 0);
 		case 'logKindList':
-			return await executelogKindList.call(this, itemIndex);
+			return await executelogKindList.call(this, itemIndex ?? 0);
 		case 'logKindGet':
-			return await executelogKindGet.call(this, itemIndex);
+			return await executelogKindGet.call(this, itemIndex ?? 0);
 		case 'logSubscriptionList':
-			return await executelogSubscriptionList.call(this, itemIndex);
+			return await executelogSubscriptionList.call(this, itemIndex ?? 0);
 		case 'logSubscriptionCreate':
-			return await executelogSubscriptionCreate.call(this, itemIndex);
+			return await executelogSubscriptionCreate.call(this, itemIndex ?? 0);
 		case 'logSubscriptionDelete':
-			return await executelogSubscriptionDelete.call(this, itemIndex);
+			return await executelogSubscriptionDelete.call(this, itemIndex ?? 0);
 		case 'logSubscriptionGet':
-			return await executelogSubscriptionGet.call(this, itemIndex);
+			return await executelogSubscriptionGet.call(this, itemIndex ?? 0);
 		case 'logUrlCreate':
-			return await executelogUrlCreate.call(this, itemIndex);
+			return await executelogUrlCreate.call(this, itemIndex ?? 0);
 		case 'twoFAWhitelistList':
-			return await executetwoFAWhitelistList.call(this, itemIndex);
+			return await executetwoFAWhitelistList.call(this, itemIndex ?? 0);
 		case 'twoFAWhitelistCreate':
-			return await executetwoFAWhitelistCreate.call(this, itemIndex);
+			return await executetwoFAWhitelistCreate.call(this, itemIndex ?? 0);
 		case 'twoFAWhitelistDelete':
-			return await executetwoFAWhitelistDelete.call(this, itemIndex);
+			return await executetwoFAWhitelistDelete.call(this, itemIndex ?? 0);
 		case 'twoFAWhitelistGet':
-			return await executetwoFAWhitelistGet.call(this, itemIndex);
+			return await executetwoFAWhitelistGet.call(this, itemIndex ?? 0);
 		case 'twoFAWhitelistChangeProperties':
-			return await executetwoFAWhitelistChangeProperties.call(this, itemIndex);
+			return await executetwoFAWhitelistChangeProperties.call(this, itemIndex ?? 0);
 		case 'vlanList':
-			return await executevlanList.call(this, itemIndex);
+			return await executevlanList.call(this, itemIndex ?? 0);
 		case 'vlanGet':
-			return await executevlanGet.call(this, itemIndex);
+			return await executevlanGet.call(this, itemIndex ?? 0);
 		case 'vendorGet':
-			return await executevendorGet.call(this, itemIndex);
+			return await executevendorGet.call(this, itemIndex ?? 0);
 		case 'vendorObjectTypeList':
-			return await executevendorObjectTypeList.call(this, itemIndex);
+			return await executevendorObjectTypeList.call(this, itemIndex ?? 0);
 		case 'vendorOvhId':
-			return await executevendorOvhId.call(this, itemIndex);
+			return await executevendorOvhId.call(this, itemIndex ?? 0);
 		case 'vmEncryptionGet':
-			return await executevmEncryptionGet.call(this, itemIndex);
+			return await executevmEncryptionGet.call(this, itemIndex ?? 0);
 		case 'vmEncryptionKmsList':
-			return await executevmEncryptionKmsList.call(this, itemIndex);
+			return await executevmEncryptionKmsList.call(this, itemIndex ?? 0);
 		case 'vmEncryptionKmsCreate':
-			return await executevmEncryptionKmsCreate.call(this, itemIndex);
+			return await executevmEncryptionKmsCreate.call(this, itemIndex ?? 0);
 		case 'vmEncryptionKmsDelete':
-			return await executevmEncryptionKmsDelete.call(this, itemIndex);
+			return await executevmEncryptionKmsDelete.call(this, itemIndex ?? 0);
 		case 'vmEncryptionKmsGet':
-			return await executevmEncryptionKmsGet.call(this, itemIndex);
+			return await executevmEncryptionKmsGet.call(this, itemIndex ?? 0);
 		case 'vmEncryptionKmsChangeProperties':
-			return await executevmEncryptionKmsChangeProperties.call(this, itemIndex);
+			return await executevmEncryptionKmsChangeProperties.call(this, itemIndex ?? 0);
 		case 'vrackList':
-			return await executevrackList.call(this, itemIndex);
+			return await executevrackList.call(this, itemIndex ?? 0);
 		case 'vrackDelete':
-			return await executevrackDelete.call(this, itemIndex);
+			return await executevrackDelete.call(this, itemIndex ?? 0);
 		case 'vrackGet':
-			return await executevrackGet.call(this, itemIndex);
+			return await executevrackGet.call(this, itemIndex ?? 0);
 		case 'robotList':
-			return await executerobotList.call(this, itemIndex);
+			return await executerobotList.call(this, itemIndex ?? 0);
 		case 'robotGet':
-			return await executerobotGet.call(this, itemIndex);
+			return await executerobotGet.call(this, itemIndex ?? 0);
 		case 'tagList':
-			return await executetagList.call(this, itemIndex);
+			return await executetagList.call(this, itemIndex ?? 0);
 		case 'tagGet':
-			return await executetagGet.call(this, itemIndex);
+			return await executetagGet.call(this, itemIndex ?? 0);
 		case 'servicePackGet':
-			return await executeservicePackGet.call(this, itemIndex);
+			return await executeservicePackGet.call(this, itemIndex ?? 0);
 		case 'serviceLocationGet':
-			return await executeLocationServiceGet.call(this, itemIndex);
+			return await executeLocationServiceGet.call(this, itemIndex ?? 0);
 		case 'servicePacksList':
-			return await executeservicePacksList.call(this, itemIndex);
+			return await executeservicePacksList.call(this, itemIndex ?? 0);
 		case 'servicePacksGet':
-			return await executeservicePacksGet.call(this, itemIndex);
+			return await executeservicePacksGet.call(this, itemIndex ?? 0);
 		case 'securityOptionsGet':
-			return await executesecurityOptionsGet.call(this, itemIndex);
+			return await executesecurityOptionsGet.call(this, itemIndex ?? 0);
 		case 'securityOptionsCompatibilityMatrix':
-			return await executesecurityOptionsCompatibilityMatrix.call(this, itemIndex);
+			return await executesecurityOptionsCompatibilityMatrix.call(this, itemIndex ?? 0);
 		case 'securityOptionsDependenciesTree':
-			return await executesecurityOptionsDependenciesTree.call(this, itemIndex);
+			return await executesecurityOptionsDependenciesTree.call(this, itemIndex ?? 0);
 		case 'securityOptionsPendingOptions':
-			return await executesecurityOptionsPendingOptions.call(this, itemIndex);
+			return await executesecurityOptionsPendingOptions.call(this, itemIndex ?? 0);
 		case 'securityOptionsResumePendingEnabling':
-			return await executesecurityOptionsResumePendingEnabling.call(this, itemIndex);
+			return await executesecurityOptionsResumePendingEnabling.call(this, itemIndex ?? 0);
 		case 'vcenterVersionGet':
-			return await executevcenterVersionGet.call(this, itemIndex);
+			return await executevcenterVersionGet.call(this, itemIndex ?? 0);
 		case 'capabilitiesGet':
-			return await executecapabilitiesGet.call(this, itemIndex);
+			return await executecapabilitiesGet.call(this, itemIndex ?? 0);
 		case 'canDeployNsxtEdgesOnGlobalDatastores':
-			return await executecanDeployNsxtEdgesOnGlobalDatastores.call(this, itemIndex);
+			return await executecanDeployNsxtEdgesOnGlobalDatastores.call(this, itemIndex ?? 0);
 		case 'generateNsxvInventory':
-			return await executegenerateNsxvInventory.call(this, itemIndex);
+			return await executegenerateNsxvInventory.call(this, itemIndex ?? 0);
 		case 'generateVxlanToVrackMapping':
-			return await executegenerateVxlanToVrackMapping.call(this, itemIndex);
+			return await executegenerateVxlanToVrackMapping.call(this, itemIndex ?? 0);
 		case 'globalTasksList':
-			return await executeglobalTasksList.call(this, itemIndex);
+			return await executeglobalTasksList.call(this, itemIndex ?? 0);
 		case 'newPricesGet':
-			return await executenewPricesGet.call(this, itemIndex);
+			return await executenewPricesGet.call(this, itemIndex ?? 0);
 		case 'nsxtGet':
-			return await executensxtGet.call(this, itemIndex);
+			return await executensxtGet.call(this, itemIndex ?? 0);
 		case 'orderableIpCountriesGet':
-			return await executeorderableIpCountriesGet.call(this, itemIndex);
+			return await executeorderableIpCountriesGet.call(this, itemIndex ?? 0);
 		case 'passwordPolicyGet':
-			return await executepasswordPolicyGet.call(this, itemIndex);
+			return await executepasswordPolicyGet.call(this, itemIndex ?? 0);
 		case 'resetTriggeredAlarm':
-			return await executeresetTriggeredAlarm.call(this, itemIndex);
+			return await executeresetTriggeredAlarm.call(this, itemIndex ?? 0);
 		case 'upgradeHypervisor':
-			return await executeupgradeHypervisor.call(this, itemIndex);
+			return await executeupgradeHypervisor.call(this, itemIndex ?? 0);
 		case 'upgradeVcenter':
-			return await executeupgradeVcenter.call(this, itemIndex);
+			return await executeupgradeVcenter.call(this, itemIndex ?? 0);
 		case 'vmwareCloudDirectorEligibility':
-			return await executevmwareCloudDirectorEligibility.call(this, itemIndex);
+			return await executevmwareCloudDirectorEligibility.call(this, itemIndex ?? 0);
 		case 'orderNewFilerHourly':
-			return await executeorderNewFilerHourly.call(this, itemIndex);
+			return await executeorderNewFilerHourly.call(this, itemIndex ?? 0);
 	}
 
 	throw new Error(`Unsupported operation "${operation}" for resource "dedicatedCloud"`);

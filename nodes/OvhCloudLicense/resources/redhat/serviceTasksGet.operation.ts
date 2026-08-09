@@ -58,11 +58,11 @@ export function description(displayOptions: IDisplayOptions): INodeProperties[] 
  * HTTP method: GET
  * Endpoint: /license/redhat/{serviceName}/tasks
  */
-export async function execute(this: IExecuteFunctions, itemIndex: number): Promise<INodeExecutionData[]> {
+export async function execute(this: IExecuteFunctions, _itemIndex: number): Promise<INodeExecutionData[]> {
 	const client = new ApiClient(this);
-	const serviceName = this.getNodeParameter('serviceName', itemIndex, '', { extractValue: true }) as string;
-	const action = this.getNodeParameter('action', itemIndex, '') as string;
-	const status = this.getNodeParameter('status', itemIndex, '') as string;
+	const serviceName = this.getNodeParameter('serviceName', _itemIndex, '', { extractValue: true }) as string;
+	const action = this.getNodeParameter('action', _itemIndex, '') as string;
+	const status = this.getNodeParameter('status', _itemIndex, '') as string;
 
 	const qs: IDataObject = {
     action: action,

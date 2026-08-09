@@ -57,13 +57,13 @@ export function description(displayOptions: IDisplayOptions) {
  * HTTP method: PUT
  * Endpoint: /dedicated/cluster/{serviceName}/node/{nodeId}
  */
-export async function execute(this: IExecuteFunctions): Promise<INodeExecutionData[]> {
+export async function execute(this: IExecuteFunctions, _itemIndex?: number): Promise<INodeExecutionData[]> {
 	const client = new ApiClient(this);
-	const serviceName = this.getNodeParameter('serviceName', 0, '', {
+	const serviceName = this.getNodeParameter('serviceName', _itemIndex ?? 0, '', {
 		extractValue: true,
 	}) as string;
-	const nodeId = (this.getNodeParameter('nodeId', 0) as string) || '';
-	const node = this.getNodeParameter('node', 0) as IDataObject;
+	const nodeId = (this.getNodeParameter('nodeId', _itemIndex ?? 0) as string) || '';
+	const node = this.getNodeParameter('node', _itemIndex ?? 0) as IDataObject;
 	await client.httpPut(`/dedicated/cluster/${serviceName}/node/${nodeId}`, node);
 	return this.helpers.returnJsonArray([{ nodeId, success: true }]);
 }

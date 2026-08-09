@@ -26,9 +26,9 @@ export function description(): INodeProperties[] {
  * Endpoint: /dedicated/ceph/{serviceName}/pool
  */
 export async function execute(this: IExecuteFunctions,
-	itemIndex: number): Promise<INodeExecutionData[]> {
-	const serviceName = this.getNodeParameter('serviceName', itemIndex) as string;
-	const poolName = this.getNodeParameter('poolName', itemIndex) as string;
+	_itemIndex: number): Promise<INodeExecutionData[]> {
+	const serviceName = this.getNodeParameter('serviceName', _itemIndex) as string;
+	const poolName = this.getNodeParameter('poolName', _itemIndex) as string;
 	const client = new ApiClient(this);
 	const body: IDataObject = {};
 			body['poolName'] = poolName;

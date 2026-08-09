@@ -88,22 +88,22 @@ export function description(displayOptions: IDisplayOptions): INodeProperties[] 
  * HTTP method: GET
  * Endpoint: /dedicatedCloud/{serviceName}/ip/{network}/task
  */
-export async function execute(this: IExecuteFunctions, itemIndex: number): Promise<INodeExecutionData[]> {
+export async function execute(this: IExecuteFunctions, _itemIndex: number): Promise<INodeExecutionData[]> {
 	const client = new ApiClient(this);
-	const serviceName = this.getNodeParameter('serviceName', itemIndex) as string;
-	const network = this.getNodeParameter('network', itemIndex) as string;
-	const name = this.getNodeParameter('name', itemIndex, '') as string;
-	const state = this.getNodeParameter('state', itemIndex, '') as string;
+	const serviceName = this.getNodeParameter('serviceName', _itemIndex) as string;
+	const network = this.getNodeParameter('network', _itemIndex) as string;
+	const name = this.getNodeParameter('name', _itemIndex, '') as string;
+	const state = this.getNodeParameter('state', _itemIndex, '') as string;
 	const qs: IDataObject = {};
 	if (name !== '') { qs.name = name; }
 	if (state !== '') { qs.state = state; }
 	const data = (await client.httpGet(`/dedicatedCloud/${serviceName}/ip/${encodeURIComponent(network)}/task`, qs)) as IDataObject;
-	const returnAll = this.getNodeParameter('returnAll', itemIndex) as boolean;
+	const returnAll = this.getNodeParameter('returnAll', _itemIndex) as boolean;
 
 	if (returnAll) {
 		return data as unknown as INodeExecutionData[];
 	}
 
-	const limit = this.getNodeParameter('limit', itemIndex) as number;
+	const limit = this.getNodeParameter('limit', _itemIndex) as number;
 	return (data as unknown as INodeExecutionData[]).slice(0, limit);
 }

@@ -131,41 +131,41 @@ export function description(displayOptions: IDisplayOptions): INodeProperties[] 
  * HTTP method: POST
  * Endpoint: /publicCloud/project/${projectId}/region/${regionName}/network/${networkId}/subnet
  */
-export async function execute(this: IExecuteFunctions): Promise<INodeExecutionData[]> {
+export async function execute(this: IExecuteFunctions, _itemIndex?: number): Promise<INodeExecutionData[]> {
 	const client = new ApiClient(this);
-	const projectId = this.getNodeParameter('publicCloudProjectId', 0, '', {
+	const projectId = this.getNodeParameter('publicCloudProjectId', _itemIndex ?? 0, '', {
 		extractValue: true,
 	}) as string;
-	const regionName = this.getNodeParameter('regionName', 0) as string;
-	const networkId = this.getNodeParameter('networkId', 0) as string;
+	const regionName = this.getNodeParameter('regionName', _itemIndex ?? 0) as string;
+	const networkId = this.getNodeParameter('networkId', _itemIndex ?? 0) as string;
 
 	const body: IDataObject = {};
-	if (this.getNodeParameter('cidr', 0)) {
-		body.cidr = this.getNodeParameter('cidr', 0) as string;
+	if (this.getNodeParameter('cidr', _itemIndex ?? 0)) {
+		body.cidr = this.getNodeParameter('cidr', _itemIndex ?? 0) as string;
 	}
-	if (this.getNodeParameter('dhcp', 0)) {
-		body.dhcp = this.getNodeParameter('dhcp', 0) as string;
+	if (this.getNodeParameter('dhcp', _itemIndex ?? 0)) {
+		body.dhcp = this.getNodeParameter('dhcp', _itemIndex ?? 0) as string;
 	}
-	if (this.getNodeParameter('ipVersion', 0)) {
-		body.ipVersion = this.getNodeParameter('ipVersion', 0) as string;
+	if (this.getNodeParameter('ipVersion', _itemIndex ?? 0)) {
+		body.ipVersion = this.getNodeParameter('ipVersion', _itemIndex ?? 0) as string;
 	}
-	if (this.getNodeParameter('gatewayIp', 0)) {
-		body.gatewayIp = this.getNodeParameter('gatewayIp', 0) as string;
+	if (this.getNodeParameter('gatewayIp', _itemIndex ?? 0)) {
+		body.gatewayIp = this.getNodeParameter('gatewayIp', _itemIndex ?? 0) as string;
 	}
-	if (this.getNodeParameter('name', 0)) {
-		body.name = this.getNodeParameter('name', 0) as string;
+	if (this.getNodeParameter('name', _itemIndex ?? 0)) {
+		body.name = this.getNodeParameter('name', _itemIndex ?? 0) as string;
 	}
-	if (this.getNodeParameter('allocationPools', 0)) {
-		body.allocationPools = this.getNodeParameter('allocationPools', 0) as string;
+	if (this.getNodeParameter('allocationPools', _itemIndex ?? 0)) {
+		body.allocationPools = this.getNodeParameter('allocationPools', _itemIndex ?? 0) as string;
 	}
-	if (this.getNodeParameter('dnsNameservers', 0)) {
-		body.dnsNameservers = this.getNodeParameter('dnsNameservers', 0) as string;
+	if (this.getNodeParameter('dnsNameservers', _itemIndex ?? 0)) {
+		body.dnsNameservers = this.getNodeParameter('dnsNameservers', _itemIndex ?? 0) as string;
 	}
-	if (this.getNodeParameter('hostRoutes', 0)) {
-		body.hostRoutes = this.getNodeParameter('hostRoutes', 0) as string;
+	if (this.getNodeParameter('hostRoutes', _itemIndex ?? 0)) {
+		body.hostRoutes = this.getNodeParameter('hostRoutes', _itemIndex ?? 0) as string;
 	}
-	if (this.getNodeParameter('subnetId', 0)) {
-		body.subnetId = this.getNodeParameter('subnetId', 0) as string;
+	if (this.getNodeParameter('subnetId', _itemIndex ?? 0)) {
+		body.subnetId = this.getNodeParameter('subnetId', _itemIndex ?? 0) as string;
 	}
 	const data = (await client.httpPost(
 		`/publicCloud/project/${projectId}/region/${regionName}/network/${networkId}/subnet`, body

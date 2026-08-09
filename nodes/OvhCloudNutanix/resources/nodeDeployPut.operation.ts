@@ -75,13 +75,13 @@ export function description(displayOptions: IDisplayOptions): INodeProperties[] 
  * HTTP method: PUT
  * Endpoint: /nutanix/{serviceName}/nodes/{server}/deploy
  */
-export async function execute(this: IExecuteFunctions): Promise<INodeExecutionData[]> {
+export async function execute(this: IExecuteFunctions, _itemIndex?: number): Promise<INodeExecutionData[]> {
 	const client = new ApiClient(this);
-	const serviceName = this.getNodeParameter('serviceName', 0, '', { extractValue: true }) as string;
-	const server = this.getNodeParameter('server', 0) as string;
-	const ahvIp = (this.getNodeParameter('ahvIp', 0, '') as string) || '';
-	const cvmIp = (this.getNodeParameter('cvmIp', 0, '') as string) || '';
-	const version = (this.getNodeParameter('version', 0, '') as string) || '';
+	const serviceName = this.getNodeParameter('serviceName', _itemIndex ?? 0, '', { extractValue: true }) as string;
+	const server = this.getNodeParameter('server', _itemIndex ?? 0) as string;
+	const ahvIp = (this.getNodeParameter('ahvIp', _itemIndex ?? 0, '') as string) || '';
+	const cvmIp = (this.getNodeParameter('cvmIp', _itemIndex ?? 0, '') as string) || '';
+	const version = (this.getNodeParameter('version', _itemIndex ?? 0, '') as string) || '';
 
 	const body: IDataObject = {};
 	if (ahvIp) body.ahvIp = ahvIp;

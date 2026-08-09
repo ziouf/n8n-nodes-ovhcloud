@@ -83,21 +83,21 @@ export function description(displayOptions: IDisplayOptions): INodeProperties[] 
  * HTTP method: POST
  * Endpoint: /dedicatedCloud/{serviceName}/changeProperties
  */
-export async function execute(this: IExecuteFunctions, itemIndex: number): Promise<INodeExecutionData[]> {
+export async function execute(this: IExecuteFunctions, _itemIndex: number): Promise<INodeExecutionData[]> {
 	const client = new ApiClient(this);
-	const serviceName = this.getNodeParameter('serviceName', itemIndex) as string;
+	const serviceName = this.getNodeParameter('serviceName', _itemIndex) as string;
 	const body: IDataObject = {};
-	const description = this.getNodeParameter('description', itemIndex, '') as string;
+	const description = this.getNodeParameter('description', _itemIndex, '') as string;
 	if (description !== '') { body.description = description; }
-	const sslV3 = this.getNodeParameter('sslV3', itemIndex) as boolean;
+	const sslV3 = this.getNodeParameter('sslV3', _itemIndex) as boolean;
 	if (sslV3) { body.sslV3 = sslV3; }
-	const userAccessPolicy = this.getNodeParameter('userAccessPolicy', itemIndex, '') as string;
+	const userAccessPolicy = this.getNodeParameter('userAccessPolicy', _itemIndex, '') as string;
 	if (userAccessPolicy !== '') { body.userAccessPolicy = userAccessPolicy; }
-	const userLimitConcurrentSession = this.getNodeParameter('userLimitConcurrentSession', itemIndex) as number;
+	const userLimitConcurrentSession = this.getNodeParameter('userLimitConcurrentSession', _itemIndex) as number;
 	if (userLimitConcurrentSession) { body.userLimitConcurrentSession = userLimitConcurrentSession; }
-	const userLogoutPolicy = this.getNodeParameter('userLogoutPolicy', itemIndex, '') as string;
+	const userLogoutPolicy = this.getNodeParameter('userLogoutPolicy', _itemIndex, '') as string;
 	if (userLogoutPolicy !== '') { body.userLogoutPolicy = userLogoutPolicy; }
-	const userSessionTimeout = this.getNodeParameter('userSessionTimeout', itemIndex) as number;
+	const userSessionTimeout = this.getNodeParameter('userSessionTimeout', _itemIndex) as number;
 	if (userSessionTimeout) { body.userSessionTimeout = userSessionTimeout; }
 	const data = (await client.httpPost(`/dedicatedCloud/${serviceName}/changeProperties`, body)) as IDataObject;
 	return this.helpers.returnJsonArray([data]);

@@ -44,13 +44,13 @@ export function description(displayOptions: IDisplayOptions): INodeProperties[] 
  * HTTP method: PUT
  * Endpoint: /domain/zone/{zoneName}/dynHost/login/{login}
  */
-export async function execute(this: IExecuteFunctions, itemIndex: number): Promise<INodeExecutionData[]> {
+export async function execute(this: IExecuteFunctions, _itemIndex: number): Promise<INodeExecutionData[]> {
 	const client = new ApiClient(this);
-		const login = this.getNodeParameter('login', itemIndex) as string;
-		const zoneName = this.getNodeParameter('zoneName', itemIndex) as string;
+		const login = this.getNodeParameter('login', _itemIndex) as string;
+		const zoneName = this.getNodeParameter('zoneName', _itemIndex) as string;
 
 	const body: IDataObject = {};
-		const subDomain = this.getNodeParameter('subDomain', itemIndex, '') as string;
+		const subDomain = this.getNodeParameter('subDomain', _itemIndex, '') as string;
 		if (subDomain !== '') body['subDomain'] = subDomain;
 
 	const data = (await client.httpPut(`/domain/zone/${encodeURIComponent(zoneName)}/dynHost/login/${encodeURIComponent(login)}`, body)) as IDataObject;

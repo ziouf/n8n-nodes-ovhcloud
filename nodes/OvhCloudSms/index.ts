@@ -1994,262 +1994,262 @@ export function description(displayOptions: IDisplayOptions = {}) {
 	return properties;
 }
 
-export async function execute(this: IExecuteFunctions): Promise<INodeExecutionData[]> {
+export async function execute(this: IExecuteFunctions, itemIndex?: number): Promise<INodeExecutionData[]> {
 	const operation = this.getNodeParameter('smsOperation', 0) as string;
 
 	switch (operation) {
 		case 'smsListGet':
-			return executeSmsListGet.call(this);
+			return executeSmsListGet.call(this, itemIndex ?? 0);
 		case 'smsCreatePost':
-			return executeSmsCreatePost.call(this);
+			return executeSmsCreatePost.call(this, itemIndex ?? 0);
 		case 'smsGetGet':
-			return executeSmsGetGet.call(this);
+			return executeSmsGetGet.call(this, itemIndex ?? 0);
 		case 'smsDeleteDelete':
-			return executeSmsDeleteDelete.call(this);
+			return executeSmsDeleteDelete.call(this, itemIndex ?? 0);
 		case 'smsRecipientListGet':
-			return executeSmsRecipientListGet.call(this);
+			return executeSmsRecipientListGet.call(this, itemIndex ?? 0);
 		case 'smsTaskListGet':
-			return executeSmsTaskListGet.call(this);
+			return executeSmsTaskListGet.call(this, itemIndex ?? 0);
 		case 'smsTaskGetGet':
-			return executeSmsTaskGetGet.call(this);
+			return executeSmsTaskGetGet.call(this, itemIndex ?? 0);
 		case 'blacklistListGet':
-			return executeBlacklistListGet.call(this);
+			return executeBlacklistListGet.call(this, itemIndex ?? 0);
 		case 'blacklistCreatePost':
-			return executeBlacklistCreatePost.call(this);
+			return executeBlacklistCreatePost.call(this, itemIndex ?? 0);
 		case 'blacklistDeleteDelete':
-			return executeBlacklistDeleteDelete.call(this);
+			return executeBlacklistDeleteDelete.call(this, itemIndex ?? 0);
 		case 'blacklistGetGet':
-			return executeBlacklistGetGet.call(this);
+			return executeBlacklistGetGet.call(this, itemIndex ?? 0);
 		case 'estimatePost':
-			return executeEstimatePost.call(this);
+			return executeEstimatePost.call(this, itemIndex ?? 0);
 		case 'pttsGet':
-			return executePttsGet.call(this);
+			return executePttsGet.call(this, itemIndex ?? 0);
 		case 'ratesDestinationsGet':
-			return executeRatesDestinationsGet.call(this);
+			return executeRatesDestinationsGet.call(this, itemIndex ?? 0);
 		case 'ratesPacksGet':
-			return executeRatesPacksGet.call(this);
+			return executeRatesPacksGet.call(this, itemIndex ?? 0);
 		case 'topVirtualNumbersListGet':
-			return executeTopVirtualNumbersListGet.call(this);
+			return executeTopVirtualNumbersListGet.call(this, itemIndex ?? 0);
 		case 'topVirtualNumbersGetGet':
-			return executeTopVirtualNumbersGetGet.call(this);
+			return executeTopVirtualNumbersGetGet.call(this, itemIndex ?? 0);
 		case 'topVirtualNumbersGet':
-			return executeTopVirtualNumbersGet.call(this);
+			return executeTopVirtualNumbersGet.call(this, itemIndex ?? 0);
 		case 'topVirtualNumbersUpdatePut':
-			return executeTopVirtualNumbersUpdatePut.call(this);
+			return executeTopVirtualNumbersUpdatePut.call(this, itemIndex ?? 0);
 		case 'smsUpdatePut':
-			return executeSmsUpdatePut.call(this);
+			return executeSmsUpdatePut.call(this, itemIndex ?? 0);
 		case 'batchesListGet':
-			return executeBatchesListGet.call(this);
+			return executeBatchesListGet.call(this, itemIndex ?? 0);
 		case 'batchesCreatePost':
-			return executeBatchesCreatePost.call(this);
+			return executeBatchesCreatePost.call(this, itemIndex ?? 0);
 		case 'batchesDeleteDelete':
-			return executeBatchesDeleteDelete.call(this);
+			return executeBatchesDeleteDelete.call(this, itemIndex ?? 0);
 		case 'batchesGetGet':
-			return executeBatchesGetGet.call(this);
+			return executeBatchesGetGet.call(this, itemIndex ?? 0);
 		case 'batchesUpdatePut':
-			return executeBatchesUpdatePut.call(this);
+			return executeBatchesUpdatePut.call(this, itemIndex ?? 0);
 		case 'batchesCancelPost':
-			return executeBatchesCancelPost.call(this);
+			return executeBatchesCancelPost.call(this, itemIndex ?? 0);
 		case 'batchesStatisticsGet':
-			return executeBatchesStatisticsGet.call(this);
+			return executeBatchesStatisticsGet.call(this, itemIndex ?? 0);
 		case 'documentGet':
-			return executeDocumentGet.call(this);
+			return executeDocumentGet.call(this, itemIndex ?? 0);
 		case 'exceptionsListGet':
-			return executeExceptionsListGet.call(this);
+			return executeExceptionsListGet.call(this, itemIndex ?? 0);
 		case 'hlrListGet':
-			return executeHlrListGet.call(this);
+			return executeHlrListGet.call(this, itemIndex ?? 0);
 		case 'hlrCreatePost':
-			return executeHlrCreatePost.call(this);
+			return executeHlrCreatePost.call(this, itemIndex ?? 0);
 		case 'hlrGetGet':
-			return executeHlrGetGet.call(this);
+			return executeHlrGetGet.call(this, itemIndex ?? 0);
 		case 'hlrOperatorGet':
-			return executeHlrOperatorGet.call(this);
+			return executeHlrOperatorGet.call(this, itemIndex ?? 0);
 		case 'incomingListGet':
-			return executeIncomingListGet.call(this);
+			return executeIncomingListGet.call(this, itemIndex ?? 0);
 		case 'incomingDeleteDelete':
-			return executeIncomingDeleteDelete.call(this);
+			return executeIncomingDeleteDelete.call(this, itemIndex ?? 0);
 		case 'incomingGetGet':
-			return executeIncomingGetGet.call(this);
+			return executeIncomingGetGet.call(this, itemIndex ?? 0);
 		case 'jobsListGet':
-			return executeJobsListGet.call(this);
+			return executeJobsListGet.call(this, itemIndex ?? 0);
 		case 'jobsDeleteDelete':
-			return executeJobsDeleteDelete.call(this);
+			return executeJobsDeleteDelete.call(this, itemIndex ?? 0);
 		case 'jobsGetGet':
-			return executeJobsGetGet.call(this);
+			return executeJobsGetGet.call(this, itemIndex ?? 0);
 		case 'outgoingListGet':
-			return executeOutgoingListGet.call(this);
+			return executeOutgoingListGet.call(this, itemIndex ?? 0);
 		case 'outgoingDeleteDelete':
-			return executeOutgoingDeleteDelete.call(this);
+			return executeOutgoingDeleteDelete.call(this, itemIndex ?? 0);
 		case 'outgoingGetGet':
-			return executeOutgoingGetGet.call(this);
+			return executeOutgoingGetGet.call(this, itemIndex ?? 0);
 		case 'outgoingHlrGet':
-			return executeOutgoingHlrGet.call(this);
+			return executeOutgoingHlrGet.call(this, itemIndex ?? 0);
 		case 'phonebooksListGet':
-			return executePhonebooksListGet.call(this);
+			return executePhonebooksListGet.call(this, itemIndex ?? 0);
 		case 'phonebooksCreatePost':
-			return executePhonebooksCreatePost.call(this);
+			return executePhonebooksCreatePost.call(this, itemIndex ?? 0);
 		case 'phonebooksDeleteDelete':
-			return executePhonebooksDeleteDelete.call(this);
+			return executePhonebooksDeleteDelete.call(this, itemIndex ?? 0);
 		case 'phonebooksGetGet':
-			return executePhonebooksGetGet.call(this);
+			return executePhonebooksGetGet.call(this, itemIndex ?? 0);
 		case 'phonebooksUpdatePut':
-			return executePhonebooksUpdatePut.call(this);
+			return executePhonebooksUpdatePut.call(this, itemIndex ?? 0);
 		case 'phonebooksExportGet':
-			return executePhonebooksExportGet.call(this);
+			return executePhonebooksExportGet.call(this, itemIndex ?? 0);
 		case 'phonebooksImportPost':
-			return executePhonebooksImportPost.call(this);
+			return executePhonebooksImportPost.call(this, itemIndex ?? 0);
 		case 'phonebooksPhonebookContactListGet':
-			return executePhonebooksPhonebookContactListGet.call(this);
+			return executePhonebooksPhonebookContactListGet.call(this, itemIndex ?? 0);
 		case 'phonebooksPhonebookContactCreatePost':
-			return executePhonebooksPhonebookContactCreatePost.call(this);
+			return executePhonebooksPhonebookContactCreatePost.call(this, itemIndex ?? 0);
 		case 'phonebooksPhonebookContactDeleteDelete':
-			return executePhonebooksPhonebookContactDeleteDelete.call(this);
+			return executePhonebooksPhonebookContactDeleteDelete.call(this, itemIndex ?? 0);
 		case 'phonebooksPhonebookContactGetGet':
-			return executePhonebooksPhonebookContactGetGet.call(this);
+			return executePhonebooksPhonebookContactGetGet.call(this, itemIndex ?? 0);
 		case 'phonebooksPhonebookContactUpdatePut':
-			return executePhonebooksPhonebookContactUpdatePut.call(this);
+			return executePhonebooksPhonebookContactUpdatePut.call(this, itemIndex ?? 0);
 		case 'receiversCreatePost':
-			return executeReceiversCreatePost.call(this);
+			return executeReceiversCreatePost.call(this, itemIndex ?? 0);
 		case 'receiversDeleteDelete':
-			return executeReceiversDeleteDelete.call(this);
+			return executeReceiversDeleteDelete.call(this, itemIndex ?? 0);
 		case 'receiversGetGet':
-			return executeReceiversGetGet.call(this);
+			return executeReceiversGetGet.call(this, itemIndex ?? 0);
 		case 'receiversUpdatePut':
-			return executeReceiversUpdatePut.call(this);
+			return executeReceiversUpdatePut.call(this, itemIndex ?? 0);
 		case 'receiversCleanPost':
-			return executeReceiversCleanPost.call(this);
+			return executeReceiversCleanPost.call(this, itemIndex ?? 0);
 		case 'receiversCsvGet':
-			return executeReceiversCsvGet.call(this);
+			return executeReceiversCsvGet.call(this, itemIndex ?? 0);
 		case 'seeOffersGet':
-			return executeSeeOffersGet.call(this);
+			return executeSeeOffersGet.call(this, itemIndex ?? 0);
 		case 'sendersListGet':
-			return executeSendersListGet.call(this);
+			return executeSendersListGet.call(this, itemIndex ?? 0);
 		case 'sendersCreatePost':
-			return executeSendersCreatePost.call(this);
+			return executeSendersCreatePost.call(this, itemIndex ?? 0);
 		case 'sendersDeleteDelete':
-			return executeSendersDeleteDelete.call(this);
+			return executeSendersDeleteDelete.call(this, itemIndex ?? 0);
 		case 'sendersGetGet':
-			return executeSendersGetGet.call(this);
+			return executeSendersGetGet.call(this, itemIndex ?? 0);
 		case 'sendersUpdatePut':
-			return executeSendersUpdatePut.call(this);
+			return executeSendersUpdatePut.call(this, itemIndex ?? 0);
 		case 'sendersDocumentsListGet':
-			return executeSendersDocumentsListGet.call(this);
+			return executeSendersDocumentsListGet.call(this, itemIndex ?? 0);
 		case 'sendersDocumentsPost':
-			return executeSendersDocumentsPost.call(this);
+			return executeSendersDocumentsPost.call(this, itemIndex ?? 0);
 		case 'sendersDocumentsGetGet':
-			return executeSendersDocumentsGetGet.call(this);
+			return executeSendersDocumentsGetGet.call(this, itemIndex ?? 0);
 		case 'sendersDocumentsUpdatePut':
-			return executeSendersDocumentsUpdatePut.call(this);
+			return executeSendersDocumentsUpdatePut.call(this, itemIndex ?? 0);
 		case 'sendersValidatePost':
-			return executeSendersValidatePost.call(this);
+			return executeSendersValidatePost.call(this, itemIndex ?? 0);
 		case 'sendersAvailableForValidationGet':
-			return executeSendersAvailableForValidationGet.call(this);
+			return executeSendersAvailableForValidationGet.call(this, itemIndex ?? 0);
 		case 'serviceInfosGet':
-			return executeServiceInfosGet.call(this);
+			return executeServiceInfosGet.call(this, itemIndex ?? 0);
 		case 'serviceInfosUpdatePut':
-			return executeServiceInfosUpdatePut.call(this);
+			return executeServiceInfosUpdatePut.call(this, itemIndex ?? 0);
 		case 'smppAllowedIPsListGet':
-			return executeSmppAllowedIPsListGet.call(this);
+			return executeSmppAllowedIPsListGet.call(this, itemIndex ?? 0);
 		case 'smppAllowedIPsUpdatePut':
-			return executeSmppAllowedIPsUpdatePut.call(this);
+			return executeSmppAllowedIPsUpdatePut.call(this, itemIndex ?? 0);
 		case 'smppPasswordPost':
-			return executeSmppPasswordPost.call(this);
+			return executeSmppPasswordPost.call(this, itemIndex ?? 0);
 		case 'smppSettingsGet':
-			return executeSmppSettingsGet.call(this);
+			return executeSmppSettingsGet.call(this, itemIndex ?? 0);
 		case 'templatesControlListGet':
-			return executeTemplatesControlListGet.call(this);
+			return executeTemplatesControlListGet.call(this, itemIndex ?? 0);
 		case 'templatesControlCreatePost':
-			return executeTemplatesControlCreatePost.call(this);
+			return executeTemplatesControlCreatePost.call(this, itemIndex ?? 0);
 		case 'templatesControlDeleteDelete':
-			return executeTemplatesControlDeleteDelete.call(this);
+			return executeTemplatesControlDeleteDelete.call(this, itemIndex ?? 0);
 		case 'templatesControlGetGet':
-			return executeTemplatesControlGetGet.call(this);
+			return executeTemplatesControlGetGet.call(this, itemIndex ?? 0);
 		case 'templatesControlUpdatePut':
-			return executeTemplatesControlUpdatePut.call(this);
+			return executeTemplatesControlUpdatePut.call(this, itemIndex ?? 0);
 		case 'templatesControlRelaunchValidationPost':
-			return executeTemplatesControlRelaunchValidationPost.call(this);
+			return executeTemplatesControlRelaunchValidationPost.call(this, itemIndex ?? 0);
 		case 'transferCreditsPost':
-			return executeTransferCreditsPost.call(this);
+			return executeTransferCreditsPost.call(this, itemIndex ?? 0);
 		case 'usersListGet':
-			return executeUsersListGet.call(this);
+			return executeUsersListGet.call(this, itemIndex ?? 0);
 		case 'usersCreatePost':
-			return executeUsersCreatePost.call(this);
+			return executeUsersCreatePost.call(this, itemIndex ?? 0);
 		case 'usersDeleteDelete':
-			return executeUsersDeleteDelete.call(this);
+			return executeUsersDeleteDelete.call(this, itemIndex ?? 0);
 		case 'usersGetGet':
-			return executeUsersGetGet.call(this);
+			return executeUsersGetGet.call(this, itemIndex ?? 0);
 		case 'usersUpdatePut':
-			return executeUsersUpdatePut.call(this);
+			return executeUsersUpdatePut.call(this, itemIndex ?? 0);
 		case 'usersDocumentGet':
-			return executeUsersDocumentGet.call(this);
+			return executeUsersDocumentGet.call(this, itemIndex ?? 0);
 		case 'usersIncomingListGet':
-			return executeUsersIncomingListGet.call(this);
+			return executeUsersIncomingListGet.call(this, itemIndex ?? 0);
 		case 'usersIncomingDeleteDelete':
-			return executeUsersIncomingDeleteDelete.call(this);
+			return executeUsersIncomingDeleteDelete.call(this, itemIndex ?? 0);
 		case 'usersIncomingGetGet':
-			return executeUsersIncomingGetGet.call(this);
+			return executeUsersIncomingGetGet.call(this, itemIndex ?? 0);
 		case 'usersJobsListGet':
-			return executeUsersJobsListGet.call(this);
+			return executeUsersJobsListGet.call(this, itemIndex ?? 0);
 		case 'usersJobsSendPost':
-			return executeUsersJobsSendPost.call(this);
+			return executeUsersJobsSendPost.call(this, itemIndex ?? 0);
 		case 'usersJobsDeleteDelete':
-			return executeUsersJobsDeleteDelete.call(this);
+			return executeUsersJobsDeleteDelete.call(this, itemIndex ?? 0);
 		case 'usersJobsGetGet':
-			return executeUsersJobsGetGet.call(this);
+			return executeUsersJobsGetGet.call(this, itemIndex ?? 0);
 		case 'usersOutgoingListGet':
-			return executeUsersOutgoingListGet.call(this);
+			return executeUsersOutgoingListGet.call(this, itemIndex ?? 0);
 		case 'usersOutgoingDeleteDelete':
-			return executeUsersOutgoingDeleteDelete.call(this);
+			return executeUsersOutgoingDeleteDelete.call(this, itemIndex ?? 0);
 		case 'usersOutgoingGetGet':
-			return executeUsersOutgoingGetGet.call(this);
+			return executeUsersOutgoingGetGet.call(this, itemIndex ?? 0);
 		case 'usersOutgoingHlrGet':
-			return executeUsersOutgoingHlrGet.call(this);
+			return executeUsersOutgoingHlrGet.call(this, itemIndex ?? 0);
 		case 'usersReceiversListGet':
-			return executeUsersReceiversListGet.call(this);
+			return executeUsersReceiversListGet.call(this, itemIndex ?? 0);
 		case 'usersReceiversCreatePost':
-			return executeUsersReceiversCreatePost.call(this);
+			return executeUsersReceiversCreatePost.call(this, itemIndex ?? 0);
 		case 'usersReceiversDeleteDelete':
-			return executeUsersReceiversDeleteDelete.call(this);
+			return executeUsersReceiversDeleteDelete.call(this, itemIndex ?? 0);
 		case 'usersReceiversGetGet':
-			return executeUsersReceiversGetGet.call(this);
+			return executeUsersReceiversGetGet.call(this, itemIndex ?? 0);
 		case 'usersReceiversUpdatePut':
-			return executeUsersReceiversUpdatePut.call(this);
+			return executeUsersReceiversUpdatePut.call(this, itemIndex ?? 0);
 		case 'usersReceiversCleanPost':
-			return executeUsersReceiversCleanPost.call(this);
+			return executeUsersReceiversCleanPost.call(this, itemIndex ?? 0);
 		case 'usersReceiversCsvGet':
-			return executeUsersReceiversCsvGet.call(this);
+			return executeUsersReceiversCsvGet.call(this, itemIndex ?? 0);
 		case 'virtualNumbersListGet':
-			return executeVirtualNumbersListGet.call(this);
+			return executeVirtualNumbersListGet.call(this, itemIndex ?? 0);
 		case 'virtualNumbersGetGet':
-			return executeVirtualNumbersGetGet.call(this);
+			return executeVirtualNumbersGetGet.call(this, itemIndex ?? 0);
 		case 'virtualNumbersChatAccessDelete':
-			return executeVirtualNumbersChatAccessDelete.call(this);
+			return executeVirtualNumbersChatAccessDelete.call(this, itemIndex ?? 0);
 		case 'virtualNumbersChatAccessGet':
-			return executeVirtualNumbersChatAccessGet.call(this);
+			return executeVirtualNumbersChatAccessGet.call(this, itemIndex ?? 0);
 		case 'virtualNumbersChatAccessPost':
-			return executeVirtualNumbersChatAccessPost.call(this);
+			return executeVirtualNumbersChatAccessPost.call(this, itemIndex ?? 0);
 		case 'virtualNumbersIncomingListGet':
-			return executeVirtualNumbersIncomingListGet.call(this);
+			return executeVirtualNumbersIncomingListGet.call(this, itemIndex ?? 0);
 		case 'virtualNumbersIncomingDeleteDelete':
-			return executeVirtualNumbersIncomingDeleteDelete.call(this);
+			return executeVirtualNumbersIncomingDeleteDelete.call(this, itemIndex ?? 0);
 		case 'virtualNumbersIncomingGetGet':
-			return executeVirtualNumbersIncomingGetGet.call(this);
+			return executeVirtualNumbersIncomingGetGet.call(this, itemIndex ?? 0);
 		case 'virtualNumbersJobsListGet':
-			return executeVirtualNumbersJobsListGet.call(this);
+			return executeVirtualNumbersJobsListGet.call(this, itemIndex ?? 0);
 		case 'virtualNumbersJobsSendPost':
-			return executeVirtualNumbersJobsSendPost.call(this);
+			return executeVirtualNumbersJobsSendPost.call(this, itemIndex ?? 0);
 		case 'virtualNumbersJobsDeleteDelete':
-			return executeVirtualNumbersJobsDeleteDelete.call(this);
+			return executeVirtualNumbersJobsDeleteDelete.call(this, itemIndex ?? 0);
 		case 'virtualNumbersJobsGetGet':
-			return executeVirtualNumbersJobsGetGet.call(this);
+			return executeVirtualNumbersJobsGetGet.call(this, itemIndex ?? 0);
 		case 'virtualNumbersOutgoingListGet':
-			return executeVirtualNumbersOutgoingListGet.call(this);
+			return executeVirtualNumbersOutgoingListGet.call(this, itemIndex ?? 0);
 		case 'virtualNumbersOutgoingDeleteDelete':
-			return executeVirtualNumbersOutgoingDeleteDelete.call(this);
+			return executeVirtualNumbersOutgoingDeleteDelete.call(this, itemIndex ?? 0);
 		case 'virtualNumbersOutgoingGetGet':
-			return executeVirtualNumbersOutgoingGetGet.call(this);
+			return executeVirtualNumbersOutgoingGetGet.call(this, itemIndex ?? 0);
 		case 'virtualNumbersOutgoingHlrGet':
-			return executeVirtualNumbersOutgoingHlrGet.call(this);
+			return executeVirtualNumbersOutgoingHlrGet.call(this, itemIndex ?? 0);
 		default: {
 			throw new Error(`No handler for operation '${operation}'`);
 		}

@@ -75,17 +75,17 @@ export function description(displayOptions: IDisplayOptions): INodeProperties[] 
  * HTTP method: PUT
  * Endpoint: /cloud/project/{serviceName}/database/m3db/{clusterId}/ipRestriction/{ipBlock}
  */
-export async function execute(this: IExecuteFunctions): Promise<INodeExecutionData[]> {
+export async function execute(this: IExecuteFunctions, _itemIndex?: number): Promise<INodeExecutionData[]> {
 	const client = new ApiClient(this);
-	const serviceName = this.getNodeParameter('publicCloudProjectId', 0, '', {
+	const serviceName = this.getNodeParameter('publicCloudProjectId', _itemIndex ?? 0, '', {
 		extractValue: true,
 }) as string;
-	const clusterId = this.getNodeParameter('clusterId', 0) as string;
-	const ipBlock = this.getNodeParameter('ipBlock', 0) as string;
+	const clusterId = this.getNodeParameter('clusterId', _itemIndex ?? 0) as string;
+	const ipBlock = this.getNodeParameter('ipBlock', _itemIndex ?? 0) as string;
 
 	const body: IDataObject = {};
-	if (this.getNodeParameter('ip', 0)) body.ip = this.getNodeParameter('ip', 0);
-	if (this.getNodeParameter('description', 0)) body.description = this.getNodeParameter('description', 0);
+	if (this.getNodeParameter('ip', _itemIndex ?? 0)) body.ip = this.getNodeParameter('ip', _itemIndex ?? 0);
+	if (this.getNodeParameter('description', _itemIndex ?? 0)) body.description = this.getNodeParameter('description', _itemIndex ?? 0);
 
 	const data = (await client.httpPut(`/cloud/project/${serviceName}/database/m3db/${clusterId}/ipRestriction/${ipBlock}`, body as IDataObject)) as IDataObject;
 

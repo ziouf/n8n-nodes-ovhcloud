@@ -36,10 +36,10 @@ export function description(displayOptions: IDisplayOptions) {
 
 export async function execute(
 	this: IExecuteFunctions,
-	itemIndex: number,
+	_itemIndex: number,
 ): Promise<INodeExecutionData[]> {
 	const client = new ApiClient(this);
-	const ticketId = this.getNodeParameter('ticketId', itemIndex, '', {
+	const ticketId = this.getNodeParameter('ticketId', _itemIndex, '', {
 		extractValue: true,
 	}) as string;
 	const data = (await client.httpPost(`/support/tickets/${ticketId}/reopen`)) as IDataObject;

@@ -106,9 +106,9 @@ export function description(displayOptions: IDisplayOptions): INodeProperties[] 
  * HTTP method: PUT
  * Endpoint: /freefax/{serviceName}/serviceInfos
  */
-export async function execute(this: IExecuteFunctions): Promise<INodeExecutionData[]> {
+export async function execute(this: IExecuteFunctions, _itemIndex?: number): Promise<INodeExecutionData[]> {
 	const client = new ApiClient(this);
-	const serviceName = this.getNodeParameter('serviceName', 0, '', { extractValue: true }) as string;
+	const serviceName = this.getNodeParameter('serviceName', _itemIndex ?? 0, '', { extractValue: true }) as string;
 
 	const body: IDataObject = {};
 
@@ -117,7 +117,7 @@ export async function execute(this: IExecuteFunctions): Promise<INodeExecutionDa
 		if (value) body[field] = value;
 	}
 
-	const possibleRenewPeriod = (this.getNodeParameter('possibleRenewPeriod', 0, '') as string) || '';
+	const possibleRenewPeriod = (this.getNodeParameter('possibleRenewPeriod', _itemIndex ?? 0, '') as string) || '';
 	if (possibleRenewPeriod) {
 		body.possibleRenewPeriod = possibleRenewPeriod
 			.split(',')

@@ -25,12 +25,12 @@ export function description() {
 	return props;
 }
 
-export async function execute(this: IExecuteFunctions): Promise<INodeExecutionData[]> {
+export async function execute(this: IExecuteFunctions, itemIndex?: number): Promise<INodeExecutionData[]> {
 	const operation = this.getNodeParameter('supplyOperation', 0) as string;
 
 	switch (operation) {
 		case 'mondialRelayPost':
-			return mondialRelayPost.execute.call(this);
+			return mondialRelayPost.execute.call(this, itemIndex ?? 0);
 		default:
 			throw new Error(`No handler for operation '${operation}'`);
 	}

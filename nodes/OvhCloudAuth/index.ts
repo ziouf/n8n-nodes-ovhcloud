@@ -55,22 +55,22 @@ export function description() {
 	return props;
 }
 
-export async function execute(this: IExecuteFunctions): Promise<INodeExecutionData[]> {
+export async function execute(this: IExecuteFunctions, itemIndex?: number): Promise<INodeExecutionData[]> {
 	const operation = this.getNodeParameter('authOperation', 0) as string;
 
 	switch (operation) {
 		case 'credentialPost':
-			return credentialPost.execute.call(this);
+			return credentialPost.execute.call(this, itemIndex ?? 0);
 		case 'currentCredentialGet':
-			return currentCredentialGet.execute.call(this);
+			return currentCredentialGet.execute.call(this, itemIndex ?? 0);
 		case 'detailsGet':
-			return detailsGet.execute.call(this);
+			return detailsGet.execute.call(this, itemIndex ?? 0);
 		case 'logoutPost':
-			return logoutPost.execute.call(this);
+			return logoutPost.execute.call(this, itemIndex ?? 0);
 		case 'timeGet':
-			return timeGet.execute.call(this);
+			return timeGet.execute.call(this, itemIndex ?? 0);
 		case 'tokenPost':
-			return tokenPost.execute.call(this);
+			return tokenPost.execute.call(this, itemIndex ?? 0);
 		default:
 			throw new Error(`No handler for operation '${operation}'`);
 	}

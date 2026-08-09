@@ -15,7 +15,7 @@ export function descriptionGetAccount(): INodeProperties[] {
 	return []; // No params needed
 }
 
-export async function executeGetAccount(this: IExecuteFunctions): Promise<INodeExecutionData[]> {
+export async function executeGetAccount(this: IExecuteFunctions, _itemIndex?: number): Promise<INodeExecutionData[]> {
 	const client = new ApiClient(this);
 	const data = (await client.httpGet('/me')) as IDataObject;
 	return this.helpers.returnJsonArray([data]);
@@ -24,6 +24,7 @@ export async function executeGetAccount(this: IExecuteFunctions): Promise<INodeE
 // listOvhAccounts - returns string[] (IDs), need to fetch details
 export async function executeListOvhAccounts(
 	this: IExecuteFunctions,
+	_itemIndex?: number
 ): Promise<INodeExecutionData[]> {
 	const client = new ApiClient(this);
 	const accountIds = (await client.httpGet('/me/ovhAccount')) as string[];
@@ -134,6 +135,7 @@ export async function executeGetOvhAccountMovement(
 // listSubAccounts
 export async function executeListSubAccounts(
 	this: IExecuteFunctions,
+	_itemIndex?: number
 ): Promise<INodeExecutionData[]> {
 	const client = new ApiClient(this);
 	const subAccountIds = (await client.httpGet('/me/subAccount')) as string[];
@@ -170,7 +172,7 @@ export async function executeGetSubAccount(
 }
 
 // getAutorenew
-export async function executeGetAutorenew(this: IExecuteFunctions): Promise<INodeExecutionData[]> {
+export async function executeGetAutorenew(this: IExecuteFunctions, _itemIndex?: number): Promise<INodeExecutionData[]> {
 	const client = new ApiClient(this);
 	const data = (await client.httpGet('/me/autorenew')) as IDataObject;
 	return this.helpers.returnJsonArray([data]);
@@ -179,6 +181,7 @@ export async function executeGetAutorenew(this: IExecuteFunctions): Promise<INod
 // listAvailablePaymentMeans
 export async function executeListAvailablePaymentMeans(
 	this: IExecuteFunctions,
+	_itemIndex?: number
 ): Promise<INodeExecutionData[]> {
 	const client = new ApiClient(this);
 	const data = (await client.httpGet('/me/availableAutomaticPaymentMeans')) as IDataObject;
@@ -192,6 +195,7 @@ export async function executeListAvailablePaymentMeans(
 // getIdentityProvider
 export async function executeGetIdentityProvider(
 	this: IExecuteFunctions,
+	_itemIndex?: number
 ): Promise<INodeExecutionData[]> {
 	const client = new ApiClient(this);
 	const data = (await client.httpGet('/me/identity/provider')) as IDataObject;
@@ -201,6 +205,7 @@ export async function executeGetIdentityProvider(
 // listIdentityUsers
 export async function executeListIdentityUsers(
 	this: IExecuteFunctions,
+	_itemIndex?: number
 ): Promise<INodeExecutionData[]> {
 	const client = new ApiClient(this);
 	const userIds = (await client.httpGet('/me/identity/user')) as string[];
@@ -310,6 +315,7 @@ export async function executeGetUserToken(
 // listIdentityGroups
 export async function executeListIdentityGroups(
 	this: IExecuteFunctions,
+	_itemIndex?: number
 ): Promise<INodeExecutionData[]> {
 	const client = new ApiClient(this);
 	const groupNames = (await client.httpGet('/me/identity/group')) as string[];
@@ -381,7 +387,7 @@ export async function executeListGroupUsers(
 // ============================================================
 
 // listSshKeys
-export async function executeListSshKeys(this: IExecuteFunctions): Promise<INodeExecutionData[]> {
+export async function executeListSshKeys(this: IExecuteFunctions, _itemIndex?: number): Promise<INodeExecutionData[]> {
 	const client = new ApiClient(this);
 	const keyNames = (await client.httpGet('/me/sshKey')) as string[];
 	const results: IDataObject[] = [];
@@ -420,6 +426,7 @@ export async function executeGetSshKey(
 // listConsentCampaigns
 export async function executeListConsentCampaigns(
 	this: IExecuteFunctions,
+	_itemIndex?: number
 ): Promise<INodeExecutionData[]> {
 	const client = new ApiClient(this);
 	const campaigns = (await client.httpGet('/me/consent')) as IDataObject[];

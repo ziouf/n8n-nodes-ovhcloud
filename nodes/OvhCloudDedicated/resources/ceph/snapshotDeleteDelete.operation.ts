@@ -45,12 +45,12 @@ export function description(displayOptions: IDisplayOptions) {
  * HTTP method: DELETE
  * Endpoint: /dedicated/nasha/{serviceName}/snapshot/{snapshotId}
  */
-export async function execute(this: IExecuteFunctions): Promise<INodeExecutionData[]> {
+export async function execute(this: IExecuteFunctions, _itemIndex?: number): Promise<INodeExecutionData[]> {
 	const client = new ApiClient(this);
-	const serviceName = this.getNodeParameter('serviceName', 0, '', {
+	const serviceName = this.getNodeParameter('serviceName', _itemIndex ?? 0, '', {
 		extractValue: true,
 	}) as string;
-	const snapshotId = (this.getNodeParameter('snapshotId', 0) as string) || '';
+	const snapshotId = (this.getNodeParameter('snapshotId', _itemIndex ?? 0) as string) || '';
 	await client.httpDelete(`/dedicated/nasha/${serviceName}/snapshot/${snapshotId}`);
 	return this.helpers.returnJsonArray([{ snapshotId, success: true }]);
 }

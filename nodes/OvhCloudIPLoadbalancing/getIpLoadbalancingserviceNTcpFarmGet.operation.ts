@@ -44,11 +44,11 @@ export function description(displayOptions: IDisplayOptions): INodeProperties[] 
  * HTTP method: GET
  * Endpoint: /ipLoadbalancing/{serviceName}/tcp/farm
  */
-export async function execute(this: IExecuteFunctions, itemIndex: number): Promise<INodeExecutionData[]> {
-	const serviceName = this.getNodeParameter('serviceName', itemIndex) as string;
+export async function execute(this: IExecuteFunctions, _itemIndex: number): Promise<INodeExecutionData[]> {
+	const serviceName = this.getNodeParameter('serviceName', _itemIndex) as string;
 
-	const vrackNetworkId = this.getNodeParameter('vrackNetworkId', itemIndex) as string;
-	const zone = this.getNodeParameter('zone', itemIndex) as string;
+	const vrackNetworkId = this.getNodeParameter('vrackNetworkId', _itemIndex) as string;
+	const zone = this.getNodeParameter('zone', _itemIndex) as string;
 
 
 const qs: IDataObject = {

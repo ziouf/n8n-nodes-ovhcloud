@@ -98,17 +98,17 @@ export function description(displayOptions: IDisplayOptions): INodeProperties[] 
  * HTTP method: PUT
  * Endpoint: /telephony/{billingAccount}/fax/{serviceName}/screenLists
  */
-export async function execute(this: IExecuteFunctions, itemIndex: number): Promise<INodeExecutionData[]> {
-	const billingAccount = this.getNodeParameter('billingAccount', itemIndex) as string;
-	const serviceName = this.getNodeParameter('serviceName', itemIndex) as string;
-	const blacklistedNumbers = this.getNodeParameter('blacklistedNumbers', itemIndex) as string;
-	const blacklistedTSI = this.getNodeParameter('blacklistedTSI', itemIndex) as string;
-	const callNumber = this.getNodeParameter('callNumber', itemIndex) as string;
-	const countryCode = this.getNodeParameter('countryCode', itemIndex) as string;
-	const filteringList = this.getNodeParameter('filteringList', itemIndex) as string;
-	const serviceName1 = this.getNodeParameter('serviceName', itemIndex) as string;
-	const whitelistedNumbers = this.getNodeParameter('whitelistedNumbers', itemIndex) as string;
-	const whitelistedTSI = this.getNodeParameter('whitelistedTSI', itemIndex) as string;
+export async function execute(this: IExecuteFunctions, _itemIndex: number): Promise<INodeExecutionData[]> {
+	const billingAccount = this.getNodeParameter('billingAccount', _itemIndex) as string;
+	const serviceName = this.getNodeParameter('serviceName', _itemIndex) as string;
+	const blacklistedNumbers = this.getNodeParameter('blacklistedNumbers', _itemIndex) as string;
+	const blacklistedTSI = this.getNodeParameter('blacklistedTSI', _itemIndex) as string;
+	const callNumber = this.getNodeParameter('callNumber', _itemIndex) as string;
+	const countryCode = this.getNodeParameter('countryCode', _itemIndex) as string;
+	const filteringList = this.getNodeParameter('filteringList', _itemIndex) as string;
+	const serviceName1 = this.getNodeParameter('serviceName', _itemIndex) as string;
+	const whitelistedNumbers = this.getNodeParameter('whitelistedNumbers', _itemIndex) as string;
+	const whitelistedTSI = this.getNodeParameter('whitelistedTSI', _itemIndex) as string;
 
 	const body: IDataObject = {
     blacklistedNumbers: blacklistedNumbers,

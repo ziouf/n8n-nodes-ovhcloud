@@ -65,9 +65,9 @@ export async function execute(
 
 	switch (operation) {
 		case 'locationListGet':
-			return executeLocationListGet.call(this, itemIndex);
+			return executeLocationListGet.call(this, itemIndex ?? 0);
 		case 'locationListGet2':
-			return executeLocationListGet2.call(this, itemIndex);
+			return executeLocationListGet2.call(this, itemIndex ?? 0);
 
 	}
 

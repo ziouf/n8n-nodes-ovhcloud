@@ -44,12 +44,12 @@ export function description(displayOptions: IDisplayOptions): INodeProperties[] 
  * HTTP method: POST
  * Endpoint: /telephony/lines/{serviceName}/portability
  */
-export async function execute(this: IExecuteFunctions, itemIndex: number): Promise<INodeExecutionData[]> {
-	const serviceName = this.getNodeParameter('serviceName', itemIndex) as string;
+export async function execute(this: IExecuteFunctions, _itemIndex: number): Promise<INodeExecutionData[]> {
+	const serviceName = this.getNodeParameter('serviceName', _itemIndex) as string;
 
 
-	const number = this.getNodeParameter('number', itemIndex) as string;
-	const expire = this.getNodeParameter('expire', itemIndex) as string;
+	const number = this.getNodeParameter('number', _itemIndex) as string;
+	const expire = this.getNodeParameter('expire', _itemIndex) as string;
 
 	const body: IDataObject = {
     number: number,

@@ -67,14 +67,14 @@ export function description() {
  * HTTP method: GET
  * Endpoint: /email/exchange/{organizationName}/service/{exchangeService}/externalContact
  */
-export async function execute(this: IExecuteFunctions): Promise<INodeExecutionData[]> {
-	const organizationName = this.getNodeParameter('organizationName', 0) as string;
-	const exchangeService = this.getNodeParameter('exchangeService', 0) as string;
-	const displayName = this.getNodeParameter('displayName', 0) as string;
-	const externalEmailAddress = this.getNodeParameter('externalEmailAddress', 0) as string;
-	const firstName = this.getNodeParameter('firstName', 0) as string;
-	const id = this.getNodeParameter('id', 0) as string;
-	const lastName = this.getNodeParameter('lastName', 0) as string;
+export async function execute(this: IExecuteFunctions, _itemIndex?: number): Promise<INodeExecutionData[]> {
+	const organizationName = this.getNodeParameter('organizationName', _itemIndex ?? 0) as string;
+	const exchangeService = this.getNodeParameter('exchangeService', _itemIndex ?? 0) as string;
+	const displayName = this.getNodeParameter('displayName', _itemIndex ?? 0) as string;
+	const externalEmailAddress = this.getNodeParameter('externalEmailAddress', _itemIndex ?? 0) as string;
+	const firstName = this.getNodeParameter('firstName', _itemIndex ?? 0) as string;
+	const id = this.getNodeParameter('id', _itemIndex ?? 0) as string;
+	const lastName = this.getNodeParameter('lastName', _itemIndex ?? 0) as string;
 
 	const qs: IDataObject = {
     displayName: displayName,

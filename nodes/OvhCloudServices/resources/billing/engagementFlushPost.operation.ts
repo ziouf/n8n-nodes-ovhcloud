@@ -52,11 +52,11 @@ export function description(displayOptions: IDisplayOptions): INodeProperties[] 
  * HTTP method: POST
  * Endpoint: /services/{serviceName}/billing/engagement/flush
  */
-export async function execute(this: IExecuteFunctions, itemIndex: number): Promise<INodeExecutionData[]> {
-	const serviceName = this.getNodeParameter('serviceName', itemIndex) as string;
-	const autoPayWithPreferredPaymentMethod = this.getNodeParameter('autoPayWithPreferredPaymentMethod', itemIndex, false) as boolean;
-	const dryRun = this.getNodeParameter('dryRun', itemIndex, false) as boolean;
-	const terminateSubscription = this.getNodeParameter('terminateSubscription', itemIndex, false) as boolean;
+export async function execute(this: IExecuteFunctions, _itemIndex: number): Promise<INodeExecutionData[]> {
+	const serviceName = this.getNodeParameter('serviceName', _itemIndex) as string;
+	const autoPayWithPreferredPaymentMethod = this.getNodeParameter('autoPayWithPreferredPaymentMethod', _itemIndex, false) as boolean;
+	const dryRun = this.getNodeParameter('dryRun', _itemIndex, false) as boolean;
+	const terminateSubscription = this.getNodeParameter('terminateSubscription', _itemIndex, false) as boolean;
 	const body: IDataObject = {};
 	if (autoPayWithPreferredPaymentMethod) body.autoPayWithPreferredPaymentMethod = true;
 	if (dryRun) body.dryRun = true;

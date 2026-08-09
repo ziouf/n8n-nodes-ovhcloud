@@ -28,9 +28,9 @@ export function description(displayOptions: IDisplayOptions): INodeProperties[] 
  * HTTP method: GET
  * Endpoint: /price/xdsl/options/line/{lineAction}
  */
-export async function execute(this: IExecuteFunctions): Promise<INodeExecutionData[]> {
+export async function execute(this: IExecuteFunctions, _itemIndex?: number): Promise<INodeExecutionData[]> {
     const client = new ApiClient(this);
-    const lineAction = this.getNodeParameter('lineAction', 0) as string;
+    const lineAction = this.getNodeParameter('lineAction', _itemIndex ?? 0) as string;
     const data = (await client.httpGet(`/price/xdsl/options/line/${lineAction}`)) as IDataObject;
     return this.helpers.returnJsonArray([data]);
 }

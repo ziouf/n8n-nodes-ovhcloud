@@ -38,11 +38,11 @@ export function description(displayOptions: IDisplayOptions): INodeProperties[] 
  */
 export async function execute(
 	this: IExecuteFunctions,
-	itemIndex: number,
+	_itemIndex: number,
 ): Promise<INodeExecutionData[]> {
 	const client = new ApiClient(this);
-	const vrackId = this.getNodeParameter('vrackId', itemIndex) as string;
-	const orderId = this.getNodeParameter('orderId', itemIndex) as string;
+	const vrackId = this.getNodeParameter('vrackId', _itemIndex) as string;
+	const orderId = this.getNodeParameter('orderId', _itemIndex) as string;
 	const data = (await client.httpGet(
 		'/vrack/' + vrackId + '/serviceOrder/' + orderId,
 	)) as IDataObject;

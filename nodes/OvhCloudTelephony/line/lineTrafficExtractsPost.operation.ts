@@ -53,11 +53,11 @@ export function description(displayOptions: IDisplayOptions): INodeProperties[] 
  * HTTP method: POST
  * Endpoint: /telephony/{billingAccount}/line/{serviceName}/trafficExtracts
  */
-export async function execute(this: IExecuteFunctions, itemIndex: number): Promise<INodeExecutionData[]> {
-	const billingAccount = this.getNodeParameter('billingAccount', itemIndex) as string;
-	const serviceName = this.getNodeParameter('serviceName', itemIndex) as string;
-	const dateEnd = this.getNodeParameter('dateEnd', itemIndex) as string;
-	const dateStart = this.getNodeParameter('dateStart', itemIndex) as string;
+export async function execute(this: IExecuteFunctions, _itemIndex: number): Promise<INodeExecutionData[]> {
+	const billingAccount = this.getNodeParameter('billingAccount', _itemIndex) as string;
+	const serviceName = this.getNodeParameter('serviceName', _itemIndex) as string;
+	const dateEnd = this.getNodeParameter('dateEnd', _itemIndex) as string;
+	const dateStart = this.getNodeParameter('dateStart', _itemIndex) as string;
 
 	const body: IDataObject = {
     dateEnd: dateEnd,

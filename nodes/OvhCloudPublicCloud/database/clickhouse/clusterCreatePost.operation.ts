@@ -139,20 +139,20 @@ export function description(displayOptions: IDisplayOptions): INodeProperties[] 
  * HTTP method: POST
  * Endpoint: /cloud/project/{serviceName}/database/clickhouse
  */
-export async function execute(this: IExecuteFunctions): Promise<INodeExecutionData[]> {
+export async function execute(this: IExecuteFunctions, _itemIndex?: number): Promise<INodeExecutionData[]> {
 	const client = new ApiClient(this);
-	const serviceName = this.getNodeParameter('publicCloudProjectId', 0, '', { extractValue: true }) as string;
-	const description = (this.getNodeParameter('description', 0, '') || '') as string;
-	const version = (this.getNodeParameter('version', 0, '') || '') as string;
-	const plan = (this.getNodeParameter('plan', 0, '') || '') as string;
-	const nodesPattern = (this.getNodeParameter('nodesPattern', 0, '') || '') as string;
-	const nodesList = (this.getNodeParameter('nodesList', 0, '') || '') as string;
-	const networkId = (this.getNodeParameter('networkId', 0, '') || '') as string;
-	const subnetId = (this.getNodeParameter('subnetId', 0, '') || '') as string;
-	const backups = (this.getNodeParameter('backups', 0, '') || '') as string;
-	const maintenanceTime = (this.getNodeParameter('maintenanceTime', 0, '') || '') as string;
-	const ipRestrictions = (this.getNodeParameter('ipRestrictions', 0, '') || '') as string;
-	const forkFrom = (this.getNodeParameter('forkFrom', 0, '') || '') as string;
+	const serviceName = this.getNodeParameter('publicCloudProjectId', _itemIndex ?? 0, '', { extractValue: true }) as string;
+	const description = (this.getNodeParameter('description', _itemIndex ?? 0, '') || '') as string;
+	const version = (this.getNodeParameter('version', _itemIndex ?? 0, '') || '') as string;
+	const plan = (this.getNodeParameter('plan', _itemIndex ?? 0, '') || '') as string;
+	const nodesPattern = (this.getNodeParameter('nodesPattern', _itemIndex ?? 0, '') || '') as string;
+	const nodesList = (this.getNodeParameter('nodesList', _itemIndex ?? 0, '') || '') as string;
+	const networkId = (this.getNodeParameter('networkId', _itemIndex ?? 0, '') || '') as string;
+	const subnetId = (this.getNodeParameter('subnetId', _itemIndex ?? 0, '') || '') as string;
+	const backups = (this.getNodeParameter('backups', _itemIndex ?? 0, '') || '') as string;
+	const maintenanceTime = (this.getNodeParameter('maintenanceTime', _itemIndex ?? 0, '') || '') as string;
+	const ipRestrictions = (this.getNodeParameter('ipRestrictions', _itemIndex ?? 0, '') || '') as string;
+	const forkFrom = (this.getNodeParameter('forkFrom', _itemIndex ?? 0, '') || '') as string;
 
 	const body: IDataObject = {};
 	if (description) body.description = description;

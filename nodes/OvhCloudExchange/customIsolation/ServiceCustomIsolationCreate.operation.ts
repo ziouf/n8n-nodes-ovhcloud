@@ -56,12 +56,12 @@ export function description() {
  * HTTP method: POST
  * Endpoint: /email/exchange/{organizationName}/service/{exchangeService}/customIsolation
  */
-export async function execute(this: IExecuteFunctions): Promise<INodeExecutionData[]> {
-	const organizationName = this.getNodeParameter('organizationName', 0) as string;
-	const exchangeService = this.getNodeParameter('exchangeService', 0) as string;
-	const isolationField = this.getNodeParameter('isolationField', 0) as string;
-	const isolationValue = this.getNodeParameter('isolationValue', 0) as string;
-	const name = this.getNodeParameter('name', 0) as string;
+export async function execute(this: IExecuteFunctions, _itemIndex?: number): Promise<INodeExecutionData[]> {
+	const organizationName = this.getNodeParameter('organizationName', _itemIndex ?? 0) as string;
+	const exchangeService = this.getNodeParameter('exchangeService', _itemIndex ?? 0) as string;
+	const isolationField = this.getNodeParameter('isolationField', _itemIndex ?? 0) as string;
+	const isolationValue = this.getNodeParameter('isolationValue', _itemIndex ?? 0) as string;
+	const name = this.getNodeParameter('name', _itemIndex ?? 0) as string;
 
 	const body: IDataObject = {
     isolationField: isolationField,

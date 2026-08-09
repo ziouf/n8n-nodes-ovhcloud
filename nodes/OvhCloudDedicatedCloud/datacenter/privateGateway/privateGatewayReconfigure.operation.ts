@@ -68,15 +68,15 @@ export function description(displayOptions: IDisplayOptions): INodeProperties[] 
  * HTTP method: POST
  * Endpoint: /dedicatedCloud/{serviceName}/datacenter/{datacenterId}/privateGateway/reconfigure
  */
-export async function execute(this: IExecuteFunctions, itemIndex: number): Promise<INodeExecutionData[]> {
+export async function execute(this: IExecuteFunctions, _itemIndex: number): Promise<INodeExecutionData[]> {
 	const client = new ApiClient(this);
-	const datacenterId = this.getNodeParameter('datacenterId', itemIndex) as string;
-	const serviceName = this.getNodeParameter('serviceName', itemIndex) as string;
+	const datacenterId = this.getNodeParameter('datacenterId', _itemIndex) as string;
+	const serviceName = this.getNodeParameter('serviceName', _itemIndex) as string;
 	const body: IDataObject = {};
-	const ip = this.getNodeParameter('ip', itemIndex, '') as string; if (ip !== '') { body.ip = ip; }
-	const netmask = this.getNodeParameter('netmask', itemIndex, '') as string; if (netmask !== '') { body.netmask = netmask; }
-	const newDatacenterId = this.getNodeParameter('newDatacenterId', itemIndex) as number; if (newDatacenterId) { body.newDatacenterId = newDatacenterId; }
-	const portgroup = this.getNodeParameter('portgroup', itemIndex, '') as string; if (portgroup !== '') { body.portgroup = portgroup; }
+	const ip = this.getNodeParameter('ip', _itemIndex, '') as string; if (ip !== '') { body.ip = ip; }
+	const netmask = this.getNodeParameter('netmask', _itemIndex, '') as string; if (netmask !== '') { body.netmask = netmask; }
+	const newDatacenterId = this.getNodeParameter('newDatacenterId', _itemIndex) as number; if (newDatacenterId) { body.newDatacenterId = newDatacenterId; }
+	const portgroup = this.getNodeParameter('portgroup', _itemIndex, '') as string; if (portgroup !== '') { body.portgroup = portgroup; }
 	const data = (await client.httpPost(`/dedicatedCloud/${serviceName}/datacenter/${datacenterId}/privateGateway/reconfigure`, body)) as IDataObject;
 	return this.helpers.returnJsonArray([data]);
 }

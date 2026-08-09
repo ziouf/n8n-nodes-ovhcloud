@@ -64,12 +64,12 @@ export function description(displayOptions: IDisplayOptions): INodeProperties[] 
  * HTTP method: POST
  * Endpoint: /services/{serviceName}/savingsPlans/subscribe/simulate
  */
-export async function execute(this: IExecuteFunctions, itemIndex: number): Promise<INodeExecutionData[]> {
-	const serviceName = this.getNodeParameter('serviceName', itemIndex) as string;
-	const displayName = this.getNodeParameter('displayName', itemIndex) as string;
-	const offerId = this.getNodeParameter('offerId', itemIndex) as string;
-	const size = this.getNodeParameter('size', itemIndex) as number;
-	const startDate = (this.getNodeParameter('startDate', itemIndex, '') as string) || '';
+export async function execute(this: IExecuteFunctions, _itemIndex: number): Promise<INodeExecutionData[]> {
+	const serviceName = this.getNodeParameter('serviceName', _itemIndex) as string;
+	const displayName = this.getNodeParameter('displayName', _itemIndex) as string;
+	const offerId = this.getNodeParameter('offerId', _itemIndex) as string;
+	const size = this.getNodeParameter('size', _itemIndex) as number;
+	const startDate = (this.getNodeParameter('startDate', _itemIndex, '') as string) || '';
 	const body: IDataObject = { displayName, offerId, size };
 	if (startDate) body.startDate = startDate;
 	const client = new ApiClient(this);

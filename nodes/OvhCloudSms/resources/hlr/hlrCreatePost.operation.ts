@@ -44,10 +44,10 @@ export function description(displayOptions: IDisplayOptions): INodeProperties[] 
  * HTTP method: POST
  * Endpoint: /sms/{serviceName}/hlr
  */
-export async function execute(this: IExecuteFunctions): Promise<INodeExecutionData[]> {
-	const serviceName = this.getNodeParameter('serviceName', 0, '', { extractValue: true }) as string;
-	const receivers = this.getNodeParameter('receivers', 0) as string;
-	const receiversDocumentUrl = this.getNodeParameter('receiversDocumentUrl', 0) as string;
+export async function execute(this: IExecuteFunctions, _itemIndex?: number): Promise<INodeExecutionData[]> {
+	const serviceName = this.getNodeParameter('serviceName', _itemIndex ?? 0, '', { extractValue: true }) as string;
+	const receivers = this.getNodeParameter('receivers', _itemIndex ?? 0) as string;
+	const receiversDocumentUrl = this.getNodeParameter('receiversDocumentUrl', _itemIndex ?? 0) as string;
 	const body: IDataObject = {};
 	if (receivers) body['receivers'] = (receivers as string).split(',').map((r: string) => r.trim());
 	if (receiversDocumentUrl) body['receiversDocumentUrl'] = receiversDocumentUrl;

@@ -50,10 +50,10 @@ export function description(displayOptions: IDisplayOptions): INodeProperties[] 
  * HTTP method: PUT
  * Endpoint: /overTheBox/{serviceName}/ipv6
  */
-export async function execute(this: IExecuteFunctions): Promise<INodeExecutionData[]> {
+export async function execute(this: IExecuteFunctions, _itemIndex?: number): Promise<INodeExecutionData[]> {
 	const client = new ApiClient(this);
-	const serviceName = this.getNodeParameter('serviceName', 0, '', { extractValue: true }) as string;
-	const enabled = this.getNodeParameter('enabled', 0, true) as boolean;
+	const serviceName = this.getNodeParameter('serviceName', _itemIndex ?? 0, '', { extractValue: true }) as string;
+	const enabled = this.getNodeParameter('enabled', _itemIndex ?? 0, true) as boolean;
 
 	const body: IDataObject = {};
 	if (enabled !== undefined) body.enabled = enabled;

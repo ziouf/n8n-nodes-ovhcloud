@@ -48,10 +48,10 @@ export function description(displayOptions: IDisplayOptions): INodeProperties[] 
  * HTTP method: DELETE
  * Endpoint: /license/office/{serviceName}/user/{activationEmail}
  */
-export async function execute(this: IExecuteFunctions, itemIndex: number): Promise<INodeExecutionData[]> {
+export async function execute(this: IExecuteFunctions, _itemIndex: number): Promise<INodeExecutionData[]> {
 	const client = new ApiClient(this);
-	const serviceName = this.getNodeParameter('serviceName', itemIndex, '', { extractValue: true }) as string;
-	const activationEmail = this.getNodeParameter('activationEmail', itemIndex) as string;
+	const serviceName = this.getNodeParameter('serviceName', _itemIndex, '', { extractValue: true }) as string;
+	const activationEmail = this.getNodeParameter('activationEmail', _itemIndex) as string;
 	await client.httpDelete('/license/office/' + encodeURIComponent(serviceName) + '/user/' + encodeURIComponent(activationEmail) + '');
 	return this.helpers.returnJsonArray([{ success: true }]);
 }

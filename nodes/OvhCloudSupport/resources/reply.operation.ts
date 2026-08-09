@@ -61,14 +61,14 @@ export function description(displayOptions: IDisplayOptions) {
 
 export async function execute(
 	this: IExecuteFunctions,
-	itemIndex: number,
+	_itemIndex: number,
 ): Promise<INodeExecutionData[]> {
 	const client = new ApiClient(this);
-	const ticketId = this.getNodeParameter('ticketId', itemIndex, '', {
+	const ticketId = this.getNodeParameter('ticketId', _itemIndex, '', {
 		extractValue: true,
 	}) as string;
-	const message = this.getNodeParameter('message', itemIndex, '') as string;
-	const isPrivate = this.getNodeParameter('isPrivate', itemIndex, false) as boolean;
+	const message = this.getNodeParameter('message', _itemIndex, '') as string;
+	const isPrivate = this.getNodeParameter('isPrivate', _itemIndex, false) as boolean;
 
 	const body: IDataObject = {
 		body: message,

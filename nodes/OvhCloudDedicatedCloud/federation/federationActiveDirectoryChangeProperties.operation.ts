@@ -71,15 +71,15 @@ export function description(displayOptions: IDisplayOptions): INodeProperties[] 
  * HTTP method: POST
  * Endpoint: /dedicatedCloud/{serviceName}/federation/activeDirectory/{activeDirectoryId}/changeProperties
  */
-export async function execute(this: IExecuteFunctions, itemIndex: number): Promise<INodeExecutionData[]> {
+export async function execute(this: IExecuteFunctions, _itemIndex: number): Promise<INodeExecutionData[]> {
 	const client = new ApiClient(this);
-	const activeDirectoryId = this.getNodeParameter('activeDirectoryId', itemIndex) as string;
-	const serviceName = this.getNodeParameter('serviceName', itemIndex) as string;
+	const activeDirectoryId = this.getNodeParameter('activeDirectoryId', _itemIndex) as string;
+	const serviceName = this.getNodeParameter('serviceName', _itemIndex) as string;
 	const body: IDataObject = {};
-	const description = this.getNodeParameter('description', itemIndex, '') as string; if (description !== '') { body.description = description; }
-	body.password = this.getNodeParameter('password', itemIndex) as string;
-	const sslThumbprint = this.getNodeParameter('sslThumbprint', itemIndex, '') as string; if (sslThumbprint !== '') { body.sslThumbprint = sslThumbprint; }
-	body.username = this.getNodeParameter('username', itemIndex) as string;
+	const description = this.getNodeParameter('description', _itemIndex, '') as string; if (description !== '') { body.description = description; }
+	body.password = this.getNodeParameter('password', _itemIndex) as string;
+	const sslThumbprint = this.getNodeParameter('sslThumbprint', _itemIndex, '') as string; if (sslThumbprint !== '') { body.sslThumbprint = sslThumbprint; }
+	body.username = this.getNodeParameter('username', _itemIndex) as string;
 	const data = (await client.httpPost(`/dedicatedCloud/${serviceName}/federation/activeDirectory/${activeDirectoryId}/changeProperties`, body)) as IDataObject;
 	return this.helpers.returnJsonArray([data]);
 }

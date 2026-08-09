@@ -43,11 +43,11 @@ export function description(displayOptions: IDisplayOptions): INodeProperties[] 
  * HTTP method: GET
  * Endpoint: /dedicatedCloud/{serviceName}/user/{userId}/right/{rightId}
  */
-export async function execute(this: IExecuteFunctions, itemIndex: number): Promise<INodeExecutionData[]> {
+export async function execute(this: IExecuteFunctions, _itemIndex: number): Promise<INodeExecutionData[]> {
 	const client = new ApiClient(this);
-	const serviceName = this.getNodeParameter('serviceName', itemIndex) as string;
-	const userId = this.getNodeParameter('userId', itemIndex) as string;
-	const rightId = this.getNodeParameter('rightId', itemIndex) as string;
+	const serviceName = this.getNodeParameter('serviceName', _itemIndex) as string;
+	const userId = this.getNodeParameter('userId', _itemIndex) as string;
+	const rightId = this.getNodeParameter('rightId', _itemIndex) as string;
 	const data = (await client.httpGet(`/dedicatedCloud/${serviceName}/user/${userId}/right/${rightId}`)) as IDataObject;
 	return this.helpers.returnJsonArray([data]);
 }

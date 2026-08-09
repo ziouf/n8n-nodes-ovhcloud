@@ -47,11 +47,11 @@ export function description(displayOptions: IDisplayOptions): INodeProperties[] 
  */
 export async function execute(
 	this: IExecuteFunctions,
-	itemIndex: number,
+	_itemIndex: number,
 ): Promise<INodeExecutionData[]> {
-	const serviceName = this.getNodeParameter('serviceName', itemIndex) as string;
-	const databaseName = this.getNodeParameter('databaseName', itemIndex) as string;
-	const id = this.getNodeParameter('id', itemIndex) as number;
+	const serviceName = this.getNodeParameter('serviceName', _itemIndex) as string;
+	const databaseName = this.getNodeParameter('databaseName', _itemIndex) as string;
+	const id = this.getNodeParameter('id', _itemIndex) as number;
 
 	const client = new ApiClient(this);
 	const data = (await client.httpDelete('/hosting' + '/' + 'privateDatabase' + '/' + encodeURIComponent(serviceName) + '/' + 'database' + '/' + encodeURIComponent(databaseName) + '/' + 'copy' + '/' + encodeURIComponent(id))) as IDataObject;

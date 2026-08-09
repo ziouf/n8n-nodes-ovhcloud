@@ -132,21 +132,21 @@ export function description(displayOptions: IDisplayOptions): INodeProperties[] 
  * HTTP method: PUT
  * Endpoint: /telephony/{billingAccount}/conference/{serviceName}/rooms/{roomNumber}
  */
-export async function execute(this: IExecuteFunctions, itemIndex: number): Promise<INodeExecutionData[]> {
-	const billingAccount = this.getNodeParameter('billingAccount', itemIndex) as string;
-	const roomNumber = this.getNodeParameter('roomNumber', itemIndex) as string;
-	const serviceName = this.getNodeParameter('serviceName', itemIndex) as string;
-	const announceFile = this.getNodeParameter('announceFile', itemIndex) as string;
-	const announceSoundId = this.getNodeParameter('announceSoundId', itemIndex) as string;
-	const anonymousRejection = this.getNodeParameter('anonymousRejection', itemIndex) as string;
-	const enterMuted = this.getNodeParameter('enterMuted', itemIndex) as string;
-	const expirationDate = this.getNodeParameter('expirationDate', itemIndex) as string;
-	const language = this.getNodeParameter('language', itemIndex) as string;
-	const pin = this.getNodeParameter('pin', itemIndex) as string;
-	const recordStatus = this.getNodeParameter('recordStatus', itemIndex) as string;
-	const reportEmail = this.getNodeParameter('reportEmail', itemIndex) as string;
-	const reportStatus = this.getNodeParameter('reportStatus', itemIndex) as string;
-	const whiteLabelReport = this.getNodeParameter('whiteLabelReport', itemIndex) as string;
+export async function execute(this: IExecuteFunctions, _itemIndex: number): Promise<INodeExecutionData[]> {
+	const billingAccount = this.getNodeParameter('billingAccount', _itemIndex) as string;
+	const roomNumber = this.getNodeParameter('roomNumber', _itemIndex) as string;
+	const serviceName = this.getNodeParameter('serviceName', _itemIndex) as string;
+	const announceFile = this.getNodeParameter('announceFile', _itemIndex) as string;
+	const announceSoundId = this.getNodeParameter('announceSoundId', _itemIndex) as string;
+	const anonymousRejection = this.getNodeParameter('anonymousRejection', _itemIndex) as string;
+	const enterMuted = this.getNodeParameter('enterMuted', _itemIndex) as string;
+	const expirationDate = this.getNodeParameter('expirationDate', _itemIndex) as string;
+	const language = this.getNodeParameter('language', _itemIndex) as string;
+	const pin = this.getNodeParameter('pin', _itemIndex) as string;
+	const recordStatus = this.getNodeParameter('recordStatus', _itemIndex) as string;
+	const reportEmail = this.getNodeParameter('reportEmail', _itemIndex) as string;
+	const reportStatus = this.getNodeParameter('reportStatus', _itemIndex) as string;
+	const whiteLabelReport = this.getNodeParameter('whiteLabelReport', _itemIndex) as string;
 
 	const body: IDataObject = {
 		announceFile: announceFile,

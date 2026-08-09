@@ -115,20 +115,20 @@ export function description(displayOptions: IDisplayOptions): INodeProperties[] 
  * HTTP method: GET
  * Endpoint: /dedicatedCloud/{serviceName}/datacenter/{datacenterId}/vmLicensed
  */
-export async function execute(this: IExecuteFunctions, itemIndex: number): Promise<INodeExecutionData[]> {
+export async function execute(this: IExecuteFunctions, _itemIndex: number): Promise<INodeExecutionData[]> {
 	const client = new ApiClient(this);
-	const serviceName = this.getNodeParameter('serviceName', itemIndex) as string;
-	const datacenterId = this.getNodeParameter('datacenterId', itemIndex) as string;
-	const kmsLicense = this.getNodeParameter('kmsLicense', itemIndex, '') as string;
+	const serviceName = this.getNodeParameter('serviceName', _itemIndex) as string;
+	const datacenterId = this.getNodeParameter('datacenterId', _itemIndex) as string;
+	const kmsLicense = this.getNodeParameter('kmsLicense', _itemIndex, '') as string;
 	const qs: IDataObject = {};
 	if (kmsLicense !== '') { qs.kmsLicense = kmsLicense; }
 	const data = (await client.httpGet(`/dedicatedCloud/${serviceName}/datacenter/${datacenterId}/vmLicensed`, qs)) as IDataObject;
-	const returnAll = this.getNodeParameter('returnAll', itemIndex) as boolean;
+	const returnAll = this.getNodeParameter('returnAll', _itemIndex) as boolean;
 
 	if (returnAll) {
 		return data as unknown as INodeExecutionData[];
 	}
 
-	const limit = this.getNodeParameter('limit', itemIndex) as number;
+	const limit = this.getNodeParameter('limit', _itemIndex) as number;
 	return (data as unknown as INodeExecutionData[]).slice(0, limit);
 }

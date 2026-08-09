@@ -142,21 +142,21 @@ export async function execute(
 
 	switch (operation) {
 		case 'vrackServicesreferencecompatibleManagedServiceTypeListGet':
-			return executeVrackServicesreferencecompatibleManagedServiceTypeListGet.call(this, itemIndex);
+			return executeVrackServicesreferencecompatibleManagedServiceTypeListGet.call(this, itemIndex ?? 0);
 		case 'vrackServicesreferenceregionListGet':
-			return executeVrackServicesreferenceregionListGet.call(this, itemIndex);
+			return executeVrackServicesreferenceregionListGet.call(this, itemIndex ?? 0);
 		case 'vrackServicesresourceListGet':
-			return executeVrackServicesresourceListGet.call(this, itemIndex);
+			return executeVrackServicesresourceListGet.call(this, itemIndex ?? 0);
 		case 'vrackServicesresourceListGet2':
-			return executeVrackServicesresourceListGet2.call(this, itemIndex);
+			return executeVrackServicesresourceListGet2.call(this, itemIndex ?? 0);
 		case 'vrackServicesresourceUpdatePut':
-			return executeVrackServicesresourceUpdatePut.call(this, itemIndex);
+			return executeVrackServicesresourceUpdatePut.call(this, itemIndex ?? 0);
 		case 'vrackServicesresourceeligibleManagedServiceListGet':
-			return executeVrackServicesresourceeligibleManagedServiceListGet.call(this, itemIndex);
+			return executeVrackServicesresourceeligibleManagedServiceListGet.call(this, itemIndex ?? 0);
 		case 'vrackServicesresourcetaskListGet':
-			return executeVrackServicesresourcetaskListGet.call(this, itemIndex);
+			return executeVrackServicesresourcetaskListGet.call(this, itemIndex ?? 0);
 		case 'vrackServicesresourcetaskListGet2':
-			return executeVrackServicesresourcetaskListGet2.call(this, itemIndex);
+			return executeVrackServicesresourcetaskListGet2.call(this, itemIndex ?? 0);
 
 	}
 

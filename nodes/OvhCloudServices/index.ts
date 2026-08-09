@@ -689,105 +689,105 @@ export async function execute(
 
 	switch (operation) {
 		case 'servicesListGet':
-			return executeServicesListGet.call(this, itemIndex);
+			return executeServicesListGet.call(this, itemIndex ?? 0);
 		case 'servicesGetGet':
-			return executeServicesGetGet.call(this, itemIndex);
+			return executeServicesGetGet.call(this, itemIndex ?? 0);
 		case 'servicesUpdatePut':
-			return executeServicesUpdatePut.call(this, itemIndex);
+			return executeServicesUpdatePut.call(this, itemIndex ?? 0);
 		case 'servicesDeleteDelete':
-			return executeServicesDeleteDelete.call(this, itemIndex);
+			return executeServicesDeleteDelete.call(this, itemIndex ?? 0);
 		case 'reinstallPost':
-			return executeReinstallPost.call(this, itemIndex);
+			return executeReinstallPost.call(this, itemIndex ?? 0);
 		case 'taskListGet':
-			return executeTaskListGet.call(this, itemIndex);
+			return executeTaskListGet.call(this, itemIndex ?? 0);
 		case 'taskGetGet':
-			return executeTaskGetGet.call(this, itemIndex);
+			return executeTaskGetGet.call(this, itemIndex ?? 0);
 		case 'engagementGet':
-			return executeEngagementGet.call(this, itemIndex);
+			return executeEngagementGet.call(this, itemIndex ?? 0);
 		case 'engagementAvailableGet':
-			return executeEngagementAvailableGet.call(this, itemIndex);
+			return executeEngagementAvailableGet.call(this, itemIndex ?? 0);
 		case 'engagementEndRulePut':
-			return executeEngagementEndRulePut.call(this, itemIndex);
+			return executeEngagementEndRulePut.call(this, itemIndex ?? 0);
 		case 'engagementFlushPost':
-			return executeEngagementFlushPost.call(this, itemIndex);
+			return executeEngagementFlushPost.call(this, itemIndex ?? 0);
 		case 'engagementRequestDelete':
-			return executeEngagementRequestDelete.call(this, itemIndex);
+			return executeEngagementRequestDelete.call(this, itemIndex ?? 0);
 		case 'engagementRequestGet':
-			return executeEngagementRequestGet.call(this, itemIndex);
+			return executeEngagementRequestGet.call(this, itemIndex ?? 0);
 		case 'engagementRequestPost':
-			return executeEngagementRequestPost.call(this, itemIndex);
+			return executeEngagementRequestPost.call(this, itemIndex ?? 0);
 		case 'consumptionGet':
-			return executeConsumptionGet.call(this, itemIndex);
+			return executeConsumptionGet.call(this, itemIndex ?? 0);
 		case 'consumptionElementGet':
-			return executeConsumptionElementGet.call(this, itemIndex);
+			return executeConsumptionElementGet.call(this, itemIndex ?? 0);
 		case 'consumptionForecastGet':
-			return executeConsumptionForecastGet.call(this, itemIndex);
+			return executeConsumptionForecastGet.call(this, itemIndex ?? 0);
 		case 'consumptionForecastElementGet':
-			return executeConsumptionForecastElementGet.call(this, itemIndex);
+			return executeConsumptionForecastElementGet.call(this, itemIndex ?? 0);
 		case 'consumptionHistoryGet':
-			return executeConsumptionHistoryGet.call(this, itemIndex);
+			return executeConsumptionHistoryGet.call(this, itemIndex ?? 0);
 		case 'consumptionHistoryIdGet':
-			return executeConsumptionHistoryIdGet.call(this, itemIndex);
+			return executeConsumptionHistoryIdGet.call(this, itemIndex ?? 0);
 		case 'consumptionHistoryIdElementGet':
-			return executeConsumptionHistoryIdElementGet.call(this, itemIndex);
+			return executeConsumptionHistoryIdElementGet.call(this, itemIndex ?? 0);
 		case 'detachGet':
-			return executeDetachGet.call(this, itemIndex);
+			return executeDetachGet.call(this, itemIndex ?? 0);
 		case 'detachPlanCodeGet':
-			return executeDetachPlanCodeGet.call(this, itemIndex);
+			return executeDetachPlanCodeGet.call(this, itemIndex ?? 0);
 		case 'detachPlanCodeExecutePost':
-			return executeDetachPlanCodeExecutePost.call(this, itemIndex);
+			return executeDetachPlanCodeExecutePost.call(this, itemIndex ?? 0);
 		case 'detachPlanCodeOptionsGet':
-			return executeDetachPlanCodeOptionsGet.call(this, itemIndex);
+			return executeDetachPlanCodeOptionsGet.call(this, itemIndex ?? 0);
 		case 'detachPlanCodeSimulatePost':
-			return executeDetachPlanCodeSimulatePost.call(this, itemIndex);
+			return executeDetachPlanCodeSimulatePost.call(this, itemIndex ?? 0);
 		case 'formGet':
-			return executeFormGet.call(this, itemIndex);
+			return executeFormGet.call(this, itemIndex ?? 0);
 		case 'formFormNameGet':
-			return executeFormFormNameGet.call(this, itemIndex);
+			return executeFormFormNameGet.call(this, itemIndex ?? 0);
 		case 'formFormNameAnswerPost':
-			return executeFormFormNameAnswerPost.call(this, itemIndex);
+			return executeFormFormNameAnswerPost.call(this, itemIndex ?? 0);
 		case 'savingsPlansContractsGet':
-			return executeSavingsPlansContractsGet.call(this, itemIndex);
+			return executeSavingsPlansContractsGet.call(this, itemIndex ?? 0);
 		case 'savingsPlansSubscribableGet':
-			return executeSavingsPlansSubscribableGet.call(this, itemIndex);
+			return executeSavingsPlansSubscribableGet.call(this, itemIndex ?? 0);
 		case 'savingsPlansSubscribeExecutePost':
-			return executeSavingsPlansSubscribeExecutePost.call(this, itemIndex);
+			return executeSavingsPlansSubscribeExecutePost.call(this, itemIndex ?? 0);
 		case 'savingsPlansSubscribeSimulatePost':
-			return executeSavingsPlansSubscribeSimulatePost.call(this, itemIndex);
+			return executeSavingsPlansSubscribeSimulatePost.call(this, itemIndex ?? 0);
 		case 'savingsPlansSubscribedGet':
-			return executeSavingsPlansSubscribedGet.call(this, itemIndex);
+			return executeSavingsPlansSubscribedGet.call(this, itemIndex ?? 0);
 		case 'savingsPlansSubscribedSavingsPlanIdGet':
-			return executeSavingsPlansSubscribedSavingsPlanIdGet.call(this, itemIndex);
+			return executeSavingsPlansSubscribedSavingsPlanIdGet.call(this, itemIndex ?? 0);
 		case 'savingsPlansSubscribedSavingsPlanIdPut':
-			return executeSavingsPlansSubscribedSavingsPlanIdPut.call(this, itemIndex);
+			return executeSavingsPlansSubscribedSavingsPlanIdPut.call(this, itemIndex ?? 0);
 		case 'savingsPlansSubscribedSavingsPlanIdChangePeriodEndActionPost':
-			return executeSavingsPlansSubscribedSavingsPlanIdChangePeriodEndActionPost.call(this, itemIndex);
+			return executeSavingsPlansSubscribedSavingsPlanIdChangePeriodEndActionPost.call(this, itemIndex ?? 0);
 		case 'savingsPlansSubscribedSavingsPlanIdChangeSizePost':
-			return executeSavingsPlansSubscribedSavingsPlanIdChangeSizePost.call(this, itemIndex);
+			return executeSavingsPlansSubscribedSavingsPlanIdChangeSizePost.call(this, itemIndex ?? 0);
 		case 'savingsPlansSubscribedSavingsPlanIdPeriodsGet':
-			return executeSavingsPlansSubscribedSavingsPlanIdPeriodsGet.call(this, itemIndex);
+			return executeSavingsPlansSubscribedSavingsPlanIdPeriodsGet.call(this, itemIndex ?? 0);
 		case 'savingsPlansSubscribedSavingsPlanIdTerminatePost':
-			return executeSavingsPlansSubscribedSavingsPlanIdTerminatePost.call(this, itemIndex);
+			return executeSavingsPlansSubscribedSavingsPlanIdTerminatePost.call(this, itemIndex ?? 0);
 		case 'upgradeGet':
-			return executeUpgradeGet.call(this, itemIndex);
+			return executeUpgradeGet.call(this, itemIndex ?? 0);
 		case 'upgradePlanCodeGet':
-			return executeUpgradePlanCodeGet.call(this, itemIndex);
+			return executeUpgradePlanCodeGet.call(this, itemIndex ?? 0);
 		case 'upgradePlanCodeExecutePost':
-			return executeUpgradePlanCodeExecutePost.call(this, itemIndex);
+			return executeUpgradePlanCodeExecutePost.call(this, itemIndex ?? 0);
 		case 'upgradePlanCodeSimulatePost':
-			return executeUpgradePlanCodeSimulatePost.call(this, itemIndex);
+			return executeUpgradePlanCodeSimulatePost.call(this, itemIndex ?? 0);
 		case 'optionsGet':
-			return executeOptionsGet.call(this, itemIndex);
+			return executeOptionsGet.call(this, itemIndex ?? 0);
 		case 'renewPeriodCapacitiesGet':
-			return executeRenewPeriodCapacitiesGet.call(this, itemIndex);
+			return executeRenewPeriodCapacitiesGet.call(this, itemIndex ?? 0);
 		case 'technicalDetailsGet':
-			return executeTechnicalDetailsGet.call(this, itemIndex);
+			return executeTechnicalDetailsGet.call(this, itemIndex ?? 0);
 		case 'terminatePost':
-			return executeTerminatePost.call(this, itemIndex);
+			return executeTerminatePost.call(this, itemIndex ?? 0);
 		case 'terminateConfirmPost':
-			return executeTerminateConfirmPost.call(this, itemIndex);
+			return executeTerminateConfirmPost.call(this, itemIndex ?? 0);
 		case 'terminateSkipRetentionPeriodPost':
-			return executeTerminateSkipRetentionPeriodPost.call(this, itemIndex);
+			return executeTerminateSkipRetentionPeriodPost.call(this, itemIndex ?? 0);
 
 	}
 

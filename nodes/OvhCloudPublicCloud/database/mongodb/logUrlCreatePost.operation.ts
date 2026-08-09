@@ -40,10 +40,10 @@ export function description(displayOptions: IDisplayOptions): INodeProperties[] 
  * HTTP method: POST
  * Endpoint: /cloud/project/{serviceName}/database/mongodb/{clusterId}/log/url
  */
-export async function execute(this: IExecuteFunctions): Promise<INodeExecutionData[]> {
-	const serviceName = this.getNodeParameter('serviceName', 0) as string;
-	const clusterId = this.getNodeParameter('clusterId', 0) as string;
-	const kind = this.getNodeParameter('kind', 0, '') as string;
+export async function execute(this: IExecuteFunctions, _itemIndex?: number): Promise<INodeExecutionData[]> {
+	const serviceName = this.getNodeParameter('serviceName', _itemIndex ?? 0) as string;
+	const clusterId = this.getNodeParameter('clusterId', _itemIndex ?? 0) as string;
+	const kind = this.getNodeParameter('kind', _itemIndex ?? 0, '') as string;
 
 	const body: IDataObject = {
     kind: kind || undefined

@@ -14308,2046 +14308,2046 @@ export async function execute(
 
 	switch (operation) {
 		case 'projectListGet':
-			return projectListGetExecute.call(this);
+			return projectListGetExecute.call(this, itemIndex ?? 0);
 		case 'backupListGet':
-			return backupListGetExecute.call(this);
+			return backupListGetExecute.call(this, itemIndex ?? 0);
 		case 'createBackupPost':
-			return backupCreatePostExecute.call(this);
+			return backupCreatePostExecute.call(this, itemIndex ?? 0);
 		case 'createSnapshotPost':
-			return snapshotCreatePostExecute.call(this);
+			return snapshotCreatePostExecute.call(this, itemIndex ?? 0);
 		case 'createVolumePost':
-			return volumeCreatePostExecute.call(this);
+			return volumeCreatePostExecute.call(this, itemIndex ?? 0);
 		case 'createRancherPost':
-			return rancherServiceCreatePostExecute.call(this);
+			return rancherServiceCreatePostExecute.call(this, itemIndex ?? 0);
 		case 'deleteBackupDelete':
-			return backupDeleteDeleteExecute.call(this);
+			return backupDeleteDeleteExecute.call(this, itemIndex ?? 0);
 		case 'deleteSnapshotDelete':
-			return snapshotDeleteDeleteExecute.call(this);
+			return snapshotDeleteDeleteExecute.call(this, itemIndex ?? 0);
 		case 'deleteRancherDelete':
-			return rancherServiceDeleteDeleteExecute.call(this);
+			return rancherServiceDeleteDeleteExecute.call(this, itemIndex ?? 0);
 		case 'deleteVolumeDelete':
-			return volumeDeleteDeleteExecute.call(this);
+			return volumeDeleteDeleteExecute.call(this, itemIndex ?? 0);
 		case 'rancherAdminCredentialsGet':
-			return rancherAdminCredentialsGetExecute.call(this);
+			return rancherAdminCredentialsGetExecute.call(this, itemIndex ?? 0);
 		case 'rancherAdminCredentialsReset':
-			return rancherAdminCredentialsPostExecute.call(this);
+			return rancherAdminCredentialsPostExecute.call(this, itemIndex ?? 0);
 		case 'rancherTaskListGet':
-			return rancherTaskListGetExecute.call(this);
+			return rancherTaskListGetExecute.call(this, itemIndex ?? 0);
 		case 'rancherTaskDetailGet':
-			return rancherTaskDetailGetExecute.call(this);
+			return rancherTaskDetailGetExecute.call(this, itemIndex ?? 0);
 		case 'rancherEventListGet':
-			return rancherEventListGetExecute.call(this);
+			return rancherEventListGetExecute.call(this, itemIndex ?? 0);
 		case 'getBackupDetail':
-			return backupGetExecute.call(this);
+			return backupGetExecute.call(this, itemIndex ?? 0);
 		case 'getProjectDetail':
-			return projectDetailGetExecute.call(this);
+			return projectDetailGetExecute.call(this, itemIndex ?? 0);
 		case 'getRancherService':
-			return rancherServiceGetExecute.call(this);
+			return rancherServiceGetExecute.call(this, itemIndex ?? 0);
 		case 'getSnapshotDetail':
-			return snapshotGetExecute.call(this);
+			return snapshotGetExecute.call(this, itemIndex ?? 0);
 		case 'getVolumeDetail':
-			return volumeGetExecute.call(this);
+			return volumeGetExecute.call(this, itemIndex ?? 0);
 		case 'rancherPlanCapabilityListGet':
-			return rancherPlanCapabilityListGetExecute.call(this);
+			return rancherPlanCapabilityListGetExecute.call(this, itemIndex ?? 0);
 		case 'rancherServiceListGet':
-			return rancherServiceListGetExecute.call(this);
+			return rancherServiceListGetExecute.call(this, itemIndex ?? 0);
 		case 'rancherVersionCapabilityListGet':
-			return rancherVersionCapabilityListGetExecute.call(this);
+			return rancherVersionCapabilityListGetExecute.call(this, itemIndex ?? 0);
 		case 'snapshotListGet':
-			return snapshotListGetExecute.call(this);
+			return snapshotListGetExecute.call(this, itemIndex ?? 0);
 		case 'updateBackupPut':
-			return backupUpdatePutExecute.call(this);
+			return backupUpdatePutExecute.call(this, itemIndex ?? 0);
 		case 'updateSnapshotPut':
-			return snapshotUpdatePutExecute.call(this);
+			return snapshotUpdatePutExecute.call(this, itemIndex ?? 0);
 		case 'updateRancherPut':
-			return rancherServiceUpdatePutExecute.call(this);
+			return rancherServiceUpdatePutExecute.call(this, itemIndex ?? 0);
 		case 'updateVolumePut':
-			return volumeUpdatePutExecute.call(this);
+			return volumeUpdatePutExecute.call(this, itemIndex ?? 0);
 		case 'volumeListGet':
-			return volumeListGetExecute.call(this);
+			return volumeListGetExecute.call(this, itemIndex ?? 0);
 
 		case 'redisClusterListGet':
-			return redisClusterListGetExecute.call(this);
+			return redisClusterListGetExecute.call(this, itemIndex ?? 0);
 		case 'redisClusterGetGet':
-			return redisClusterGetGetExecute.call(this);
+			return redisClusterGetGetExecute.call(this, itemIndex ?? 0);
 		case 'redisClusterCreatePost':
-			return redisClusterCreatePostExecute.call(this);
+			return redisClusterCreatePostExecute.call(this, itemIndex ?? 0);
 		case 'redisClusterUpdatePut':
-			return redisClusterUpdatePutExecute.call(this);
+			return redisClusterUpdatePutExecute.call(this, itemIndex ?? 0);
 		case 'redisClusterDeleteDelete':
-			return redisClusterDeleteDeleteExecute.call(this);
+			return redisClusterDeleteDeleteExecute.call(this, itemIndex ?? 0);
 		case 'redisBackupListGet':
-			return redisBackupListGetExecute.call(this);
+			return redisBackupListGetExecute.call(this, itemIndex ?? 0);
 		case 'redisBackupGetGet':
-			return redisBackupGetGetExecute.call(this);
+			return redisBackupGetGetExecute.call(this, itemIndex ?? 0);
 		case 'redisAdvancedConfigurationGet':
-			return redisAdvancedConfigurationGetExecute.call(this);
+			return redisAdvancedConfigurationGetExecute.call(this, itemIndex ?? 0);
 		case 'redisAdvancedConfigurationUpdatePut':
-			return redisAdvancedConfigurationUpdatePutExecute.call(this);
+			return redisAdvancedConfigurationUpdatePutExecute.call(this, itemIndex ?? 0);
 		case 'redisCapabilitiesAdvancedConfigurationGet':
-			return redisCapabilitiesAdvancedConfigurationGetExecute.call(this);
+			return redisCapabilitiesAdvancedConfigurationGetExecute.call(this, itemIndex ?? 0);
 		case 'redisCapabilitiesCategoriesGet':
-			return redisCapabilitiesCategoriesGetExecute.call(this);
+			return redisCapabilitiesCategoriesGetExecute.call(this, itemIndex ?? 0);
 		case 'redisCapabilitiesCommandsGet':
-			return redisCapabilitiesCommandsGetExecute.call(this);
+			return redisCapabilitiesCommandsGetExecute.call(this, itemIndex ?? 0);
 		case 'redisCapabilitiesIntegrationGet':
-			return redisCapabilitiesIntegrationGetExecute.call(this);
+			return redisCapabilitiesIntegrationGetExecute.call(this, itemIndex ?? 0);
 		case 'redisIntegrationListGet':
-			return redisIntegrationListGetExecute.call(this);
+			return redisIntegrationListGetExecute.call(this, itemIndex ?? 0);
 		case 'redisIntegrationCreatePost':
-			return redisIntegrationCreatePostExecute.call(this);
+			return redisIntegrationCreatePostExecute.call(this, itemIndex ?? 0);
 		case 'redisIntegrationGetGet':
-			return redisIntegrationGetGetExecute.call(this);
+			return redisIntegrationGetGetExecute.call(this, itemIndex ?? 0);
 		case 'redisIntegrationDeleteDelete':
-			return redisIntegrationDeleteDeleteExecute.call(this);
+			return redisIntegrationDeleteDeleteExecute.call(this, itemIndex ?? 0);
 		case 'redisIpRestrictionListGet':
-			return redisIpRestrictionListGetExecute.call(this);
+			return redisIpRestrictionListGetExecute.call(this, itemIndex ?? 0);
 		case 'redisIpRestrictionCreatePost':
-			return redisIpRestrictionCreatePostExecute.call(this);
+			return redisIpRestrictionCreatePostExecute.call(this, itemIndex ?? 0);
 		case 'redisIpRestrictionGetGet':
-			return redisIpRestrictionGetGetExecute.call(this);
+			return redisIpRestrictionGetGetExecute.call(this, itemIndex ?? 0);
 		case 'redisIpRestrictionUpdatePut':
-			return redisIpRestrictionUpdatePutExecute.call(this);
+			return redisIpRestrictionUpdatePutExecute.call(this, itemIndex ?? 0);
 		case 'redisIpRestrictionDeleteDelete':
-			return redisIpRestrictionDeleteDeleteExecute.call(this);
+			return redisIpRestrictionDeleteDeleteExecute.call(this, itemIndex ?? 0);
 		case 'redisLogKindListGet':
-			return redisLogKindListGetExecute.call(this);
+			return redisLogKindListGetExecute.call(this, itemIndex ?? 0);
 		case 'redisLogKindGet':
-			return redisLogKindGetExecute.call(this);
+			return redisLogKindGetExecute.call(this, itemIndex ?? 0);
 		case 'redisLogSubscriptionListGet':
-			return redisLogSubscriptionListGetExecute.call(this);
+			return redisLogSubscriptionListGetExecute.call(this, itemIndex ?? 0);
 		case 'redisLogSubscriptionCreatePost':
-			return redisLogSubscriptionCreatePostExecute.call(this);
+			return redisLogSubscriptionCreatePostExecute.call(this, itemIndex ?? 0);
 		case 'redisLogSubscriptionGetGet':
-			return redisLogSubscriptionGetGetExecute.call(this);
+			return redisLogSubscriptionGetGetExecute.call(this, itemIndex ?? 0);
 		case 'redisLogSubscriptionDeleteDelete':
-			return redisLogSubscriptionDeleteDeleteExecute.call(this);
+			return redisLogSubscriptionDeleteDeleteExecute.call(this, itemIndex ?? 0);
 		case 'redisLogUrlCreatePost':
-			return redisLogUrlCreatePostExecute.call(this);
+			return redisLogUrlCreatePostExecute.call(this, itemIndex ?? 0);
 		case 'redisLogsGet':
-			return redisLogsGetExecute.call(this);
+			return redisLogsGetExecute.call(this, itemIndex ?? 0);
 		case 'redisMaintenanceListGet':
-			return redisMaintenanceListGetExecute.call(this);
+			return redisMaintenanceListGetExecute.call(this, itemIndex ?? 0);
 		case 'redisMaintenanceGet':
-			return redisMaintenanceGetExecute.call(this);
+			return redisMaintenanceGetExecute.call(this, itemIndex ?? 0);
 		case 'redisMaintenanceApplyPost':
-			return redisMaintenanceApplyPostExecute.call(this);
+			return redisMaintenanceApplyPostExecute.call(this, itemIndex ?? 0);
 		case 'redisMetricListGet':
-			return redisMetricListGetExecute.call(this);
+			return redisMetricListGetExecute.call(this, itemIndex ?? 0);
 		case 'redisMetricGet':
-			return redisMetricGetExecute.call(this);
+			return redisMetricGetExecute.call(this, itemIndex ?? 0);
 		case 'redisNodeListGet':
-			return redisNodeListGetExecute.call(this);
+			return redisNodeListGetExecute.call(this, itemIndex ?? 0);
 		case 'redisNodeGetGet':
-			return redisNodeGetGetExecute.call(this);
+			return redisNodeGetGetExecute.call(this, itemIndex ?? 0);
 		case 'redisPrometheusGet':
-			return redisPrometheusGetExecute.call(this);
+			return redisPrometheusGetExecute.call(this, itemIndex ?? 0);
 		case 'redisPrometheusCredentialsResetPost':
-			return redisPrometheusCredentialsResetPostExecute.call(this);
+			return redisPrometheusCredentialsResetPostExecute.call(this, itemIndex ?? 0);
 		case 'redisUserListGet':
-			return redisUserListGetExecute.call(this);
+			return redisUserListGetExecute.call(this, itemIndex ?? 0);
 		case 'redisUserCreatePost':
-			return redisUserCreatePostExecute.call(this);
+			return redisUserCreatePostExecute.call(this, itemIndex ?? 0);
 		case 'redisUserGetGet':
-			return redisUserGetGetExecute.call(this);
+			return redisUserGetGetExecute.call(this, itemIndex ?? 0);
 		case 'redisUserUpdatePut':
-			return redisUserUpdatePutExecute.call(this);
+			return redisUserUpdatePutExecute.call(this, itemIndex ?? 0);
 		case 'redisUserDeleteDelete':
-			return redisUserDeleteDeleteExecute.call(this);
+			return redisUserDeleteDeleteExecute.call(this, itemIndex ?? 0);
 		case 'redisUserCredentialsResetPost':
-			return redisUserCredentialsResetPostExecute.call(this);
+			return redisUserCredentialsResetPostExecute.call(this, itemIndex ?? 0);
 		case 'valkeyClusterListGet':
-			return valkeyClusterListGetExecute.call(this);
+			return valkeyClusterListGetExecute.call(this, itemIndex ?? 0);
 		case 'valkeyClusterGetGet':
-			return valkeyClusterGetGetExecute.call(this);
+			return valkeyClusterGetGetExecute.call(this, itemIndex ?? 0);
 		case 'valkeyClusterCreatePost':
-			return valkeyClusterCreatePostExecute.call(this);
+			return valkeyClusterCreatePostExecute.call(this, itemIndex ?? 0);
 		case 'valkeyClusterUpdatePut':
-			return valkeyClusterUpdatePutExecute.call(this);
+			return valkeyClusterUpdatePutExecute.call(this, itemIndex ?? 0);
 		case 'valkeyClusterDeleteDelete':
-			return valkeyClusterDeleteDeleteExecute.call(this);
+			return valkeyClusterDeleteDeleteExecute.call(this, itemIndex ?? 0);
 		case 'valkeyBackupListGet':
-			return valkeyBackupListGetExecute.call(this);
+			return valkeyBackupListGetExecute.call(this, itemIndex ?? 0);
 		case 'valkeyBackupCreatePost':
-			return valkeyBackupCreatePostExecute.call(this);
+			return valkeyBackupCreatePostExecute.call(this, itemIndex ?? 0);
 		case 'valkeyBackupGetGet':
-			return valkeyBackupGetGetExecute.call(this);
+			return valkeyBackupGetGetExecute.call(this, itemIndex ?? 0);
 		case 'valkeyBackupDeleteDelete':
-			return valkeyBackupDeleteDeleteExecute.call(this);
+			return valkeyBackupDeleteDeleteExecute.call(this, itemIndex ?? 0);
 		case 'valkeyUserListGet':
-			return valkeyUserListGetExecute.call(this);
+			return valkeyUserListGetExecute.call(this, itemIndex ?? 0);
 		case 'valkeyUserCreatePost':
-			return valkeyUserCreatePostExecute.call(this);
+			return valkeyUserCreatePostExecute.call(this, itemIndex ?? 0);
 		case 'valkeyUserGetGet':
-			return valkeyUserGetGetExecute.call(this);
+			return valkeyUserGetGetExecute.call(this, itemIndex ?? 0);
 		case 'valkeyUserUpdatePut':
-			return valkeyUserUpdatePutExecute.call(this);
+			return valkeyUserUpdatePutExecute.call(this, itemIndex ?? 0);
 		case 'valkeyUserDeleteDelete':
-			return valkeyUserDeleteDeleteExecute.call(this);
+			return valkeyUserDeleteDeleteExecute.call(this, itemIndex ?? 0);
 		case 'valkeyNodeListGet':
-			return valkeyNodeListGetExecute.call(this);
+			return valkeyNodeListGetExecute.call(this, itemIndex ?? 0);
 		case 'valkeyNodeCreatePost':
-			return valkeyNodeCreatePostExecute.call(this);
+			return valkeyNodeCreatePostExecute.call(this, itemIndex ?? 0);
 		case 'valkeyNodeGetGet':
-			return valkeyNodeGetGetExecute.call(this);
+			return valkeyNodeGetGetExecute.call(this, itemIndex ?? 0);
 		case 'valkeyNodeUpdatePut':
-			return valkeyNodeUpdatePutExecute.call(this);
+			return valkeyNodeUpdatePutExecute.call(this, itemIndex ?? 0);
 		case 'valkeyNodeDeleteDelete':
-			return valkeyNodeDeleteDeleteExecute.call(this);
+			return valkeyNodeDeleteDeleteExecute.call(this, itemIndex ?? 0);
 		case 'valkeyIpRestrictionListGet':
-			return valkeyIpRestrictionListGetExecute.call(this);
+			return valkeyIpRestrictionListGetExecute.call(this, itemIndex ?? 0);
 		case 'valkeyIpRestrictionCreatePost':
-			return valkeyIpRestrictionCreatePostExecute.call(this);
+			return valkeyIpRestrictionCreatePostExecute.call(this, itemIndex ?? 0);
 		case 'valkeyLogSubscriptionListGet':
-			return valkeyLogSubscriptionListGetExecute.call(this);
+			return valkeyLogSubscriptionListGetExecute.call(this, itemIndex ?? 0);
 		case 'valkeyLogSubscriptionCreatePost':
-			return valkeyLogSubscriptionCreatePostExecute.call(this);
+			return valkeyLogSubscriptionCreatePostExecute.call(this, itemIndex ?? 0);
 		case 'valkeyLogSubscriptionGetGet':
-			return valkeyLogSubscriptionGetGetExecute.call(this);
+			return valkeyLogSubscriptionGetGetExecute.call(this, itemIndex ?? 0);
 		case 'valkeyMaintenanceGet':
-			return valkeyMaintenanceGetExecute.call(this);
+			return valkeyMaintenanceGetExecute.call(this, itemIndex ?? 0);
 		case 'valkeyMaintenanceUpdatePut':
-			return valkeyMaintenanceUpdatePutExecute.call(this);
+			return valkeyMaintenanceUpdatePutExecute.call(this, itemIndex ?? 0);
 		case 'valkeyMetricGet':
-			return valkeyMetricGetExecute.call(this);
+			return valkeyMetricGetExecute.call(this, itemIndex ?? 0);
 		case 'valkeyPrometheusGet':
-			return valkeyPrometheusGetExecute.call(this);
+			return valkeyPrometheusGetExecute.call(this, itemIndex ?? 0);
 		case 'valkeyCertificateListGet':
-			return valkeyCertificateListGetExecute.call(this);
+			return valkeyCertificateListGetExecute.call(this, itemIndex ?? 0);
 		case 'valkeyCertificateCreatePost':
-			return valkeyCertificateCreatePostExecute.call(this);
+			return valkeyCertificateCreatePostExecute.call(this, itemIndex ?? 0);
 		case 'valkeyIntegrationListGet':
-			return valkeyIntegrationListGetExecute.call(this);
+			return valkeyIntegrationListGetExecute.call(this, itemIndex ?? 0);
 		case 'valkeyIntegrationCreatePost':
-			return valkeyIntegrationCreatePostExecute.call(this);
+			return valkeyIntegrationCreatePostExecute.call(this, itemIndex ?? 0);
 		case 'cassandraClusterListGet':
-			return cassandraClusterListGetExecute.call(this);
+			return cassandraClusterListGetExecute.call(this, itemIndex ?? 0);
 		case 'cassandraClusterGetGet':
-			return cassandraClusterGetGetExecute.call(this);
+			return cassandraClusterGetGetExecute.call(this, itemIndex ?? 0);
 		case 'cassandraClusterCreatePost':
-			return cassandraClusterCreatePostExecute.call(this);
+			return cassandraClusterCreatePostExecute.call(this, itemIndex ?? 0);
 		case 'cassandraClusterUpdatePut':
-			return cassandraClusterUpdatePutExecute.call(this);
+			return cassandraClusterUpdatePutExecute.call(this, itemIndex ?? 0);
 		case 'cassandraClusterDeleteDelete':
-			return cassandraClusterDeleteDeleteExecute.call(this);
+			return cassandraClusterDeleteDeleteExecute.call(this, itemIndex ?? 0);
 		case 'cassandraBackupListGet':
-			return cassandraBackupListGetExecute.call(this);
+			return cassandraBackupListGetExecute.call(this, itemIndex ?? 0);
 		case 'cassandraBackupCreatePost':
-			return cassandraBackupCreatePostExecute.call(this);
+			return cassandraBackupCreatePostExecute.call(this, itemIndex ?? 0);
 		case 'cassandraBackupGetGet':
-			return cassandraBackupGetGetExecute.call(this);
+			return cassandraBackupGetGetExecute.call(this, itemIndex ?? 0);
 		case 'cassandraBackupDeleteDelete':
-			return cassandraBackupDeleteDeleteExecute.call(this);
+			return cassandraBackupDeleteDeleteExecute.call(this, itemIndex ?? 0);
 		case 'cassandraUserListGet':
-			return cassandraUserListGetExecute.call(this);
+			return cassandraUserListGetExecute.call(this, itemIndex ?? 0);
 		case 'cassandraUserCreatePost':
-			return cassandraUserCreatePostExecute.call(this);
+			return cassandraUserCreatePostExecute.call(this, itemIndex ?? 0);
 		case 'cassandraUserGetGet':
-			return cassandraUserGetGetExecute.call(this);
+			return cassandraUserGetGetExecute.call(this, itemIndex ?? 0);
 		case 'cassandraUserUpdatePut':
-			return cassandraUserUpdatePutExecute.call(this);
+			return cassandraUserUpdatePutExecute.call(this, itemIndex ?? 0);
 		case 'cassandraUserDeleteDelete':
-			return cassandraUserDeleteDeleteExecute.call(this);
+			return cassandraUserDeleteDeleteExecute.call(this, itemIndex ?? 0);
 		case 'cassandraNodeListGet':
-			return cassandraNodeListGetExecute.call(this);
+			return cassandraNodeListGetExecute.call(this, itemIndex ?? 0);
 		case 'cassandraNodeCreatePost':
-			return cassandraNodeCreatePostExecute.call(this);
+			return cassandraNodeCreatePostExecute.call(this, itemIndex ?? 0);
 		case 'cassandraNodeGetGet':
-			return cassandraNodeGetGetExecute.call(this);
+			return cassandraNodeGetGetExecute.call(this, itemIndex ?? 0);
 		case 'cassandraNodeUpdatePut':
-			return cassandraNodeUpdatePutExecute.call(this);
+			return cassandraNodeUpdatePutExecute.call(this, itemIndex ?? 0);
 		case 'cassandraNodeDeleteDelete':
-			return cassandraNodeDeleteDeleteExecute.call(this);
+			return cassandraNodeDeleteDeleteExecute.call(this, itemIndex ?? 0);
 		case 'cassandraIpRestrictionListGet':
-			return cassandraIpRestrictionListGetExecute.call(this);
+			return cassandraIpRestrictionListGetExecute.call(this, itemIndex ?? 0);
 		case 'cassandraIpRestrictionCreatePost':
-			return cassandraIpRestrictionCreatePostExecute.call(this);
+			return cassandraIpRestrictionCreatePostExecute.call(this, itemIndex ?? 0);
 		case 'cassandraLogSubscriptionListGet':
-			return cassandraLogSubscriptionListGetExecute.call(this);
+			return cassandraLogSubscriptionListGetExecute.call(this, itemIndex ?? 0);
 		case 'cassandraLogSubscriptionCreatePost':
-			return cassandraLogSubscriptionCreatePostExecute.call(this);
+			return cassandraLogSubscriptionCreatePostExecute.call(this, itemIndex ?? 0);
 		case 'cassandraLogSubscriptionGetGet':
-			return cassandraLogSubscriptionGetGetExecute.call(this);
+			return cassandraLogSubscriptionGetGetExecute.call(this, itemIndex ?? 0);
 		case 'cassandraMaintenanceGet':
-			return cassandraMaintenanceGetExecute.call(this);
+			return cassandraMaintenanceGetExecute.call(this, itemIndex ?? 0);
 		case 'cassandraMaintenanceUpdatePut':
-			return cassandraMaintenanceUpdatePutExecute.call(this);
+			return cassandraMaintenanceUpdatePutExecute.call(this, itemIndex ?? 0);
 		case 'cassandraMetricGet':
-			return cassandraMetricGetExecute.call(this);
+			return cassandraMetricGetExecute.call(this, itemIndex ?? 0);
 		case 'cassandraPrometheusGet':
-			return cassandraPrometheusGetExecute.call(this);
+			return cassandraPrometheusGetExecute.call(this, itemIndex ?? 0);
 		case 'cassandraCertificateListGet':
-			return cassandraCertificateListGetExecute.call(this);
+			return cassandraCertificateListGetExecute.call(this, itemIndex ?? 0);
 		case 'cassandraCertificateCreatePost':
-			return cassandraCertificateCreatePostExecute.call(this);
+			return cassandraCertificateCreatePostExecute.call(this, itemIndex ?? 0);
 		case 'cassandraIntegrationListGet':
-			return cassandraIntegrationListGetExecute.call(this);
+			return cassandraIntegrationListGetExecute.call(this, itemIndex ?? 0);
 		case 'cassandraIntegrationCreatePost':
-			return cassandraIntegrationCreatePostExecute.call(this);
+			return cassandraIntegrationCreatePostExecute.call(this, itemIndex ?? 0);
 		case 'cassandraAdvancedConfigurationGet':
-			return cassandraAdvancedConfigurationGetExecute.call(this);
+			return cassandraAdvancedConfigurationGetExecute.call(this, itemIndex ?? 0);
 		case 'cassandraAdvancedConfigurationUpdatePut':
-			return cassandraAdvancedConfigurationUpdatePutExecute.call(this);
+			return cassandraAdvancedConfigurationUpdatePutExecute.call(this, itemIndex ?? 0);
 		case 'cassandraCapabilitiesAdvancedConfigurationGet':
-			return cassandraCapabilitiesAdvancedConfigurationGetExecute.call(this);
+			return cassandraCapabilitiesAdvancedConfigurationGetExecute.call(this, itemIndex ?? 0);
 		case 'cassandraCapabilitiesIntegrationGet':
-			return cassandraCapabilitiesIntegrationGetExecute.call(this);
+			return cassandraCapabilitiesIntegrationGetExecute.call(this, itemIndex ?? 0);
 		case 'cassandraIntegrationGetGet':
-			return cassandraIntegrationGetGetExecute.call(this);
+			return cassandraIntegrationGetGetExecute.call(this, itemIndex ?? 0);
 		case 'cassandraIntegrationDeleteDelete':
-			return cassandraIntegrationDeleteDeleteExecute.call(this);
+			return cassandraIntegrationDeleteDeleteExecute.call(this, itemIndex ?? 0);
 		case 'cassandraIpRestrictionGetGet':
-			return cassandraIpRestrictionGetGetExecute.call(this);
+			return cassandraIpRestrictionGetGetExecute.call(this, itemIndex ?? 0);
 		case 'cassandraIpRestrictionDeleteDelete':
-			return cassandraIpRestrictionDeleteDeleteExecute.call(this);
+			return cassandraIpRestrictionDeleteDeleteExecute.call(this, itemIndex ?? 0);
 		case 'cassandraIpRestrictionUpdatePut':
-			return cassandraIpRestrictionUpdatePutExecute.call(this);
+			return cassandraIpRestrictionUpdatePutExecute.call(this, itemIndex ?? 0);
 		case 'cassandraLogKindListGet':
-			return cassandraLogKindListGetExecute.call(this);
+			return cassandraLogKindListGetExecute.call(this, itemIndex ?? 0);
 		case 'cassandraLogKindGetGet':
-			return cassandraLogKindGetGetExecute.call(this);
+			return cassandraLogKindGetGetExecute.call(this, itemIndex ?? 0);
 		case 'cassandraLogSubscriptionDeleteDelete':
-			return cassandraLogSubscriptionDeleteDeleteExecute.call(this);
+			return cassandraLogSubscriptionDeleteDeleteExecute.call(this, itemIndex ?? 0);
 		case 'cassandraLogUrlCreatePost':
-			return cassandraLogUrlCreatePostExecute.call(this);
+			return cassandraLogUrlCreatePostExecute.call(this, itemIndex ?? 0);
 		case 'cassandraLogsGet':
-			return cassandraLogsGetExecute.call(this);
+			return cassandraLogsGetExecute.call(this, itemIndex ?? 0);
 		case 'cassandraMaintenanceApplyPost':
-			return cassandraMaintenanceApplyPostExecute.call(this);
+			return cassandraMaintenanceApplyPostExecute.call(this, itemIndex ?? 0);
 		case 'cassandraMaintenanceGetGet':
-			return cassandraMaintenanceGetGetExecute.call(this);
+			return cassandraMaintenanceGetGetExecute.call(this, itemIndex ?? 0);
 		case 'cassandraMetricGetGet':
-			return cassandraMetricGetGetExecute.call(this);
+			return cassandraMetricGetGetExecute.call(this, itemIndex ?? 0);
 		case 'cassandraPrometheusCredentialsResetPost':
-			return cassandraPrometheusCredentialsResetPostExecute.call(this);
+			return cassandraPrometheusCredentialsResetPostExecute.call(this, itemIndex ?? 0);
 		case 'cassandraUserCredentialsResetPost':
-			return cassandraUserCredentialsResetPostExecute.call(this);
+			return cassandraUserCredentialsResetPostExecute.call(this, itemIndex ?? 0);
 		case 'clickhouseClusterListGet':
-			return clickhouseClusterListGetExecute.call(this);
+			return clickhouseClusterListGetExecute.call(this, itemIndex ?? 0);
 		case 'clickhouseClusterGetGet':
-			return clickhouseClusterGetGetExecute.call(this);
+			return clickhouseClusterGetGetExecute.call(this, itemIndex ?? 0);
 		case 'clickhouseClusterCreatePost':
-			return clickhouseClusterCreatePostExecute.call(this);
+			return clickhouseClusterCreatePostExecute.call(this, itemIndex ?? 0);
 		case 'clickhouseClusterUpdatePut':
-			return clickhouseClusterUpdatePutExecute.call(this);
+			return clickhouseClusterUpdatePutExecute.call(this, itemIndex ?? 0);
 		case 'clickhouseClusterDeleteDelete':
-			return clickhouseClusterDeleteDeleteExecute.call(this);
+			return clickhouseClusterDeleteDeleteExecute.call(this, itemIndex ?? 0);
 		case 'clickhouseBackupListGet':
-			return clickhouseBackupListGetExecute.call(this);
+			return clickhouseBackupListGetExecute.call(this, itemIndex ?? 0);
 		case 'clickhouseBackupCreatePost':
-			return clickhouseBackupCreatePostExecute.call(this);
+			return clickhouseBackupCreatePostExecute.call(this, itemIndex ?? 0);
 		case 'clickhouseBackupGetGet':
-			return clickhouseBackupGetGetExecute.call(this);
+			return clickhouseBackupGetGetExecute.call(this, itemIndex ?? 0);
 		case 'clickhouseBackupDeleteDelete':
-			return clickhouseBackupDeleteDeleteExecute.call(this);
+			return clickhouseBackupDeleteDeleteExecute.call(this, itemIndex ?? 0);
 		case 'clickhouseUserListGet':
-			return clickhouseUserListGetExecute.call(this);
+			return clickhouseUserListGetExecute.call(this, itemIndex ?? 0);
 		case 'clickhouseUserCreatePost':
-			return clickhouseUserCreatePostExecute.call(this);
+			return clickhouseUserCreatePostExecute.call(this, itemIndex ?? 0);
 		case 'clickhouseUserGetGet':
-			return clickhouseUserGetGetExecute.call(this);
+			return clickhouseUserGetGetExecute.call(this, itemIndex ?? 0);
 		case 'clickhouseUserUpdatePut':
-			return clickhouseUserUpdatePutExecute.call(this);
+			return clickhouseUserUpdatePutExecute.call(this, itemIndex ?? 0);
 		case 'clickhouseUserDeleteDelete':
-			return clickhouseUserDeleteDeleteExecute.call(this);
+			return clickhouseUserDeleteDeleteExecute.call(this, itemIndex ?? 0);
 		case 'clickhouseNodeListGet':
-			return clickhouseNodeListGetExecute.call(this);
+			return clickhouseNodeListGetExecute.call(this, itemIndex ?? 0);
 		case 'clickhouseNodeCreatePost':
-			return clickhouseNodeCreatePostExecute.call(this);
+			return clickhouseNodeCreatePostExecute.call(this, itemIndex ?? 0);
 		case 'clickhouseNodeGetGet':
-			return clickhouseNodeGetGetExecute.call(this);
+			return clickhouseNodeGetGetExecute.call(this, itemIndex ?? 0);
 		case 'clickhouseNodeUpdatePut':
-			return clickhouseNodeUpdatePutExecute.call(this);
+			return clickhouseNodeUpdatePutExecute.call(this, itemIndex ?? 0);
 		case 'clickhouseNodeDeleteDelete':
-			return clickhouseNodeDeleteDeleteExecute.call(this);
+			return clickhouseNodeDeleteDeleteExecute.call(this, itemIndex ?? 0);
 		case 'clickhouseIpRestrictionListGet':
-			return clickhouseIpRestrictionListGetExecute.call(this);
+			return clickhouseIpRestrictionListGetExecute.call(this, itemIndex ?? 0);
 		case 'clickhouseIpRestrictionCreatePost':
-			return clickhouseIpRestrictionCreatePostExecute.call(this);
+			return clickhouseIpRestrictionCreatePostExecute.call(this, itemIndex ?? 0);
 		case 'clickhouseLogSubscriptionListGet':
-			return clickhouseLogSubscriptionListGetExecute.call(this);
+			return clickhouseLogSubscriptionListGetExecute.call(this, itemIndex ?? 0);
 		case 'clickhouseLogSubscriptionCreatePost':
-			return clickhouseLogSubscriptionCreatePostExecute.call(this);
+			return clickhouseLogSubscriptionCreatePostExecute.call(this, itemIndex ?? 0);
 		case 'clickhouseLogSubscriptionGetGet':
-			return clickhouseLogSubscriptionGetGetExecute.call(this);
+			return clickhouseLogSubscriptionGetGetExecute.call(this, itemIndex ?? 0);
 		case 'clickhouseMaintenanceGet':
-			return clickhouseMaintenanceGetExecute.call(this);
+			return clickhouseMaintenanceGetExecute.call(this, itemIndex ?? 0);
 		case 'clickhouseMaintenanceUpdatePut':
-			return clickhouseMaintenanceUpdatePutExecute.call(this);
+			return clickhouseMaintenanceUpdatePutExecute.call(this, itemIndex ?? 0);
 		case 'clickhouseMetricGet':
-			return clickhouseMetricGetExecute.call(this);
+			return clickhouseMetricGetExecute.call(this, itemIndex ?? 0);
 		case 'clickhousePrometheusGet':
-			return clickhousePrometheusGetExecute.call(this);
+			return clickhousePrometheusGetExecute.call(this, itemIndex ?? 0);
 		case 'clickhouseCertificateListGet':
-			return clickhouseCertificateListGetExecute.call(this);
+			return clickhouseCertificateListGetExecute.call(this, itemIndex ?? 0);
 		case 'clickhouseCertificateCreatePost':
-			return clickhouseCertificateCreatePostExecute.call(this);
+			return clickhouseCertificateCreatePostExecute.call(this, itemIndex ?? 0);
 		case 'clickhouseIntegrationListGet':
-			return clickhouseIntegrationListGetExecute.call(this);
+			return clickhouseIntegrationListGetExecute.call(this, itemIndex ?? 0);
 		case 'clickhouseIntegrationCreatePost':
-			return clickhouseIntegrationCreatePostExecute.call(this);
+			return clickhouseIntegrationCreatePostExecute.call(this, itemIndex ?? 0);
 		case 'grafanaClusterListGet':
-			return grafanaClusterListGetExecute.call(this);
+			return grafanaClusterListGetExecute.call(this, itemIndex ?? 0);
 		case 'grafanaClusterGetGet':
-			return grafanaClusterGetGetExecute.call(this);
+			return grafanaClusterGetGetExecute.call(this, itemIndex ?? 0);
 		case 'grafanaClusterCreatePost':
-			return grafanaClusterCreatePostExecute.call(this);
+			return grafanaClusterCreatePostExecute.call(this, itemIndex ?? 0);
 		case 'grafanaClusterUpdatePut':
-			return grafanaClusterUpdatePutExecute.call(this);
+			return grafanaClusterUpdatePutExecute.call(this, itemIndex ?? 0);
 		case 'grafanaClusterDeleteDelete':
-			return grafanaClusterDeleteDeleteExecute.call(this);
+			return grafanaClusterDeleteDeleteExecute.call(this, itemIndex ?? 0);
 		case 'grafanaBackupListGet':
-			return grafanaBackupListGetExecute.call(this);
+			return grafanaBackupListGetExecute.call(this, itemIndex ?? 0);
 		case 'grafanaBackupGetGet':
-			return grafanaBackupGetGetExecute.call(this);
+			return grafanaBackupGetGetExecute.call(this, itemIndex ?? 0);
 		case 'grafanaUserListGet':
-			return grafanaUserListGetExecute.call(this);
+			return grafanaUserListGetExecute.call(this, itemIndex ?? 0);
 		case 'grafanaUserGetGet':
-			return grafanaUserGetGetExecute.call(this);
+			return grafanaUserGetGetExecute.call(this, itemIndex ?? 0);
 		case 'grafanaUserCredentialsResetPost':
-			return grafanaUserCredentialsResetPostExecute.call(this);
+			return grafanaUserCredentialsResetPostExecute.call(this, itemIndex ?? 0);
 		case 'grafanaNodeListGet':
-			return grafanaNodeListGetExecute.call(this);
+			return grafanaNodeListGetExecute.call(this, itemIndex ?? 0);
 		case 'grafanaNodeGetGet':
-			return grafanaNodeGetGetExecute.call(this);
+			return grafanaNodeGetGetExecute.call(this, itemIndex ?? 0);
 		case 'grafanaIpRestrictionListGet':
-			return grafanaIpRestrictionListGetExecute.call(this);
+			return grafanaIpRestrictionListGetExecute.call(this, itemIndex ?? 0);
 		case 'grafanaIpRestrictionCreatePost':
-			return grafanaIpRestrictionCreatePostExecute.call(this);
+			return grafanaIpRestrictionCreatePostExecute.call(this, itemIndex ?? 0);
 		case 'grafanaIpRestrictionGetGet':
-			return grafanaIpRestrictionGetGetExecute.call(this);
+			return grafanaIpRestrictionGetGetExecute.call(this, itemIndex ?? 0);
 		case 'grafanaIpRestrictionUpdatePut':
-			return grafanaIpRestrictionUpdatePutExecute.call(this);
+			return grafanaIpRestrictionUpdatePutExecute.call(this, itemIndex ?? 0);
 		case 'grafanaIpRestrictionDeleteDelete':
-			return grafanaIpRestrictionDeleteDeleteExecute.call(this);
+			return grafanaIpRestrictionDeleteDeleteExecute.call(this, itemIndex ?? 0);
 		case 'grafanaLogKindListGet':
-			return grafanaLogKindListGetExecute.call(this);
+			return grafanaLogKindListGetExecute.call(this, itemIndex ?? 0);
 		case 'grafanaLogKindGet':
-			return grafanaLogKindGetExecute.call(this);
+			return grafanaLogKindGetExecute.call(this, itemIndex ?? 0);
 		case 'grafanaLogSubscriptionListGet':
-			return grafanaLogSubscriptionListGetExecute.call(this);
+			return grafanaLogSubscriptionListGetExecute.call(this, itemIndex ?? 0);
 		case 'grafanaLogSubscriptionCreatePost':
-			return grafanaLogSubscriptionCreatePostExecute.call(this);
+			return grafanaLogSubscriptionCreatePostExecute.call(this, itemIndex ?? 0);
 		case 'grafanaLogSubscriptionGetGet':
-			return grafanaLogSubscriptionGetGetExecute.call(this);
+			return grafanaLogSubscriptionGetGetExecute.call(this, itemIndex ?? 0);
 		case 'grafanaLogSubscriptionDeleteDelete':
-			return grafanaLogSubscriptionDeleteDeleteExecute.call(this);
+			return grafanaLogSubscriptionDeleteDeleteExecute.call(this, itemIndex ?? 0);
 		case 'grafanaLogUrlCreatePost':
-			return grafanaLogUrlCreatePostExecute.call(this);
+			return grafanaLogUrlCreatePostExecute.call(this, itemIndex ?? 0);
 		case 'grafanaLogsGet':
-			return grafanaLogsGetExecute.call(this);
+			return grafanaLogsGetExecute.call(this, itemIndex ?? 0);
 		case 'grafanaMaintenanceListGet':
-			return grafanaMaintenanceListGetExecute.call(this);
+			return grafanaMaintenanceListGetExecute.call(this, itemIndex ?? 0);
 		case 'grafanaMaintenanceGet':
-			return grafanaMaintenanceGetExecute.call(this);
+			return grafanaMaintenanceGetExecute.call(this, itemIndex ?? 0);
 		case 'grafanaMaintenanceApplyPost':
-			return grafanaMaintenanceApplyPostExecute.call(this);
+			return grafanaMaintenanceApplyPostExecute.call(this, itemIndex ?? 0);
 		case 'grafanaMetricListGet':
-			return grafanaMetricListGetExecute.call(this);
+			return grafanaMetricListGetExecute.call(this, itemIndex ?? 0);
 		case 'grafanaMetricGet':
-			return grafanaMetricGetExecute.call(this);
+			return grafanaMetricGetExecute.call(this, itemIndex ?? 0);
 		case 'grafanaAdvancedConfigurationGet':
-			return grafanaAdvancedConfigurationGetExecute.call(this);
+			return grafanaAdvancedConfigurationGetExecute.call(this, itemIndex ?? 0);
 		case 'grafanaAdvancedConfigurationUpdatePut':
-			return grafanaAdvancedConfigurationUpdatePutExecute.call(this);
+			return grafanaAdvancedConfigurationUpdatePutExecute.call(this, itemIndex ?? 0);
 		case 'grafanaCapabilitiesAdvancedConfigurationGet':
-			return grafanaCapabilitiesAdvancedConfigurationGetExecute.call(this);
+			return grafanaCapabilitiesAdvancedConfigurationGetExecute.call(this, itemIndex ?? 0);
 		case 'grafanaCapabilitiesBackupRegionsGet':
-			return grafanaCapabilitiesBackupRegionsGetExecute.call(this);
+			return grafanaCapabilitiesBackupRegionsGetExecute.call(this, itemIndex ?? 0);
 		case 'grafanaCapabilitiesIntegrationGet':
-			return grafanaCapabilitiesIntegrationGetExecute.call(this);
+			return grafanaCapabilitiesIntegrationGetExecute.call(this, itemIndex ?? 0);
 		case 'grafanaIntegrationListGet':
-			return grafanaIntegrationListGetExecute.call(this);
+			return grafanaIntegrationListGetExecute.call(this, itemIndex ?? 0);
 		case 'grafanaIntegrationCreatePost':
-			return grafanaIntegrationCreatePostExecute.call(this);
+			return grafanaIntegrationCreatePostExecute.call(this, itemIndex ?? 0);
 		case 'grafanaIntegrationGetGet':
-			return grafanaIntegrationGetGetExecute.call(this);
+			return grafanaIntegrationGetGetExecute.call(this, itemIndex ?? 0);
 		case 'grafanaIntegrationDeleteDelete':
-			return grafanaIntegrationDeleteDeleteExecute.call(this);
+			return grafanaIntegrationDeleteDeleteExecute.call(this, itemIndex ?? 0);
 		case 'kafkaClusterListGet':
-			return kafkaClusterListGetExecute.call(this);
+			return kafkaClusterListGetExecute.call(this, itemIndex ?? 0);
 		case 'kafkaClusterGetGet':
-			return kafkaClusterGetGetExecute.call(this);
+			return kafkaClusterGetGetExecute.call(this, itemIndex ?? 0);
 		case 'kafkaClusterCreatePost':
-			return kafkaClusterCreatePostExecute.call(this);
+			return kafkaClusterCreatePostExecute.call(this, itemIndex ?? 0);
 		case 'kafkaClusterUpdatePut':
-			return kafkaClusterUpdatePutExecute.call(this);
+			return kafkaClusterUpdatePutExecute.call(this, itemIndex ?? 0);
 		case 'kafkaClusterDeleteDelete':
-			return kafkaClusterDeleteDeleteExecute.call(this);
+			return kafkaClusterDeleteDeleteExecute.call(this, itemIndex ?? 0);
 		case 'kafkaAclListGet':
-			return kafkaAclListGetExecute.call(this);
+			return kafkaAclListGetExecute.call(this, itemIndex ?? 0);
 		case 'kafkaAclCreatePost':
-			return kafkaAclCreatePostExecute.call(this);
+			return kafkaAclCreatePostExecute.call(this, itemIndex ?? 0);
 		case 'kafkaAclGetGet':
-			return kafkaAclGetGetExecute.call(this);
+			return kafkaAclGetGetExecute.call(this, itemIndex ?? 0);
 		case 'kafkaAclDeleteDelete':
-			return kafkaAclDeleteDeleteExecute.call(this);
+			return kafkaAclDeleteDeleteExecute.call(this, itemIndex ?? 0);
 		case 'kafkaAdvancedConfigurationGet':
-			return kafkaAdvancedConfigurationGetExecute.call(this);
+			return kafkaAdvancedConfigurationGetExecute.call(this, itemIndex ?? 0);
 		case 'kafkaAdvancedConfigurationUpdatePut':
-			return kafkaAdvancedConfigurationUpdatePutExecute.call(this);
+			return kafkaAdvancedConfigurationUpdatePutExecute.call(this, itemIndex ?? 0);
 		case 'kafkaCapabilitiesAdvancedConfigurationGet':
-			return kafkaCapabilitiesAdvancedConfigurationGetExecute.call(this);
+			return kafkaCapabilitiesAdvancedConfigurationGetExecute.call(this, itemIndex ?? 0);
 		case 'kafkaCapabilitiesBackupRegionsGet':
-			return kafkaCapabilitiesBackupRegionsGetExecute.call(this);
+			return kafkaCapabilitiesBackupRegionsGetExecute.call(this, itemIndex ?? 0);
 		case 'kafkaCapabilitiesIntegrationGet':
-			return kafkaCapabilitiesIntegrationGetExecute.call(this);
+			return kafkaCapabilitiesIntegrationGetExecute.call(this, itemIndex ?? 0);
 		case 'kafkaCertificateListGet':
-			return kafkaCertificateListGetExecute.call(this);
+			return kafkaCertificateListGetExecute.call(this, itemIndex ?? 0);
 		case 'kafkaIntegrationListGet':
-			return kafkaIntegrationListGetExecute.call(this);
+			return kafkaIntegrationListGetExecute.call(this, itemIndex ?? 0);
 		case 'kafkaIntegrationCreatePost':
-			return kafkaIntegrationCreatePostExecute.call(this);
+			return kafkaIntegrationCreatePostExecute.call(this, itemIndex ?? 0);
 		case 'kafkaIntegrationGetGet':
-			return kafkaIntegrationGetGetExecute.call(this);
+			return kafkaIntegrationGetGetExecute.call(this, itemIndex ?? 0);
 		case 'kafkaIntegrationDeleteDelete':
-			return kafkaIntegrationDeleteDeleteExecute.call(this);
+			return kafkaIntegrationDeleteDeleteExecute.call(this, itemIndex ?? 0);
 		case 'kafkaIpRestrictionListGet':
-			return kafkaIpRestrictionListGetExecute.call(this);
+			return kafkaIpRestrictionListGetExecute.call(this, itemIndex ?? 0);
 		case 'kafkaIpRestrictionCreatePost':
-			return kafkaIpRestrictionCreatePostExecute.call(this);
+			return kafkaIpRestrictionCreatePostExecute.call(this, itemIndex ?? 0);
 		case 'kafkaIpRestrictionGetGet':
-			return kafkaIpRestrictionGetGetExecute.call(this);
+			return kafkaIpRestrictionGetGetExecute.call(this, itemIndex ?? 0);
 		case 'kafkaIpRestrictionUpdatePut':
-			return kafkaIpRestrictionUpdatePutExecute.call(this);
+			return kafkaIpRestrictionUpdatePutExecute.call(this, itemIndex ?? 0);
 		case 'kafkaIpRestrictionDeleteDelete':
-			return kafkaIpRestrictionDeleteDeleteExecute.call(this);
+			return kafkaIpRestrictionDeleteDeleteExecute.call(this, itemIndex ?? 0);
 		case 'kafkaLogKindListGet':
-			return kafkaLogKindListGetExecute.call(this);
+			return kafkaLogKindListGetExecute.call(this, itemIndex ?? 0);
 		case 'kafkaLogKindGet':
-			return kafkaLogKindGetExecute.call(this);
+			return kafkaLogKindGetExecute.call(this, itemIndex ?? 0);
 		case 'kafkaLogSubscriptionListGet':
-			return kafkaLogSubscriptionListGetExecute.call(this);
+			return kafkaLogSubscriptionListGetExecute.call(this, itemIndex ?? 0);
 		case 'kafkaLogSubscriptionCreatePost':
-			return kafkaLogSubscriptionCreatePostExecute.call(this);
+			return kafkaLogSubscriptionCreatePostExecute.call(this, itemIndex ?? 0);
 		case 'kafkaLogSubscriptionGetGet':
-			return kafkaLogSubscriptionGetGetExecute.call(this);
+			return kafkaLogSubscriptionGetGetExecute.call(this, itemIndex ?? 0);
 		case 'kafkaLogSubscriptionDeleteDelete':
-			return kafkaLogSubscriptionDeleteDeleteExecute.call(this);
+			return kafkaLogSubscriptionDeleteDeleteExecute.call(this, itemIndex ?? 0);
 		case 'kafkaLogUrlCreatePost':
-			return kafkaLogUrlCreatePostExecute.call(this);
+			return kafkaLogUrlCreatePostExecute.call(this, itemIndex ?? 0);
 		case 'kafkaLogsGet':
-			return kafkaLogsGetExecute.call(this);
+			return kafkaLogsGetExecute.call(this, itemIndex ?? 0);
 		case 'kafkaMaintenanceListGet':
-			return kafkaMaintenanceListGetExecute.call(this);
+			return kafkaMaintenanceListGetExecute.call(this, itemIndex ?? 0);
 		case 'kafkaMaintenanceGet':
-			return kafkaMaintenanceGetExecute.call(this);
+			return kafkaMaintenanceGetExecute.call(this, itemIndex ?? 0);
 		case 'kafkaMaintenanceApplyPost':
-			return kafkaMaintenanceApplyPostExecute.call(this);
+			return kafkaMaintenanceApplyPostExecute.call(this, itemIndex ?? 0);
 		case 'kafkaMetricListGet':
-			return kafkaMetricListGetExecute.call(this);
+			return kafkaMetricListGetExecute.call(this, itemIndex ?? 0);
 		case 'kafkaMetricGet':
-			return kafkaMetricGetExecute.call(this);
+			return kafkaMetricGetExecute.call(this, itemIndex ?? 0);
 		case 'kafkaNodeListGet':
-			return kafkaNodeListGetExecute.call(this);
+			return kafkaNodeListGetExecute.call(this, itemIndex ?? 0);
 		case 'kafkaNodeGetGet':
-			return kafkaNodeGetGetExecute.call(this);
+			return kafkaNodeGetGetExecute.call(this, itemIndex ?? 0);
 		case 'kafkaPermissionsGet':
-			return kafkaPermissionsGetExecute.call(this);
+			return kafkaPermissionsGetExecute.call(this, itemIndex ?? 0);
 		case 'kafkaPrometheusGet':
-			return kafkaPrometheusGetExecute.call(this);
+			return kafkaPrometheusGetExecute.call(this, itemIndex ?? 0);
 		case 'kafkaPrometheusCredentialsResetPost':
-			return kafkaPrometheusCredentialsResetPostExecute.call(this);
+			return kafkaPrometheusCredentialsResetPostExecute.call(this, itemIndex ?? 0);
 		case 'kafkaSchemaRegistryAclListGet':
-			return kafkaSchemaRegistryAclListGetExecute.call(this);
+			return kafkaSchemaRegistryAclListGetExecute.call(this, itemIndex ?? 0);
 		case 'kafkaSchemaRegistryAclCreatePost':
-			return kafkaSchemaRegistryAclCreatePostExecute.call(this);
+			return kafkaSchemaRegistryAclCreatePostExecute.call(this, itemIndex ?? 0);
 		case 'kafkaSchemaRegistryAclGetGet':
-			return kafkaSchemaRegistryAclGetGetExecute.call(this);
+			return kafkaSchemaRegistryAclGetGetExecute.call(this, itemIndex ?? 0);
 		case 'kafkaSchemaRegistryAclDeleteDelete':
-			return kafkaSchemaRegistryAclDeleteDeleteExecute.call(this);
+			return kafkaSchemaRegistryAclDeleteDeleteExecute.call(this, itemIndex ?? 0);
 		case 'kafkaTopicListGet':
-			return kafkaTopicListGetExecute.call(this);
+			return kafkaTopicListGetExecute.call(this, itemIndex ?? 0);
 		case 'kafkaTopicCreatePost':
-			return kafkaTopicCreatePostExecute.call(this);
+			return kafkaTopicCreatePostExecute.call(this, itemIndex ?? 0);
 		case 'kafkaTopicGetGet':
-			return kafkaTopicGetGetExecute.call(this);
+			return kafkaTopicGetGetExecute.call(this, itemIndex ?? 0);
 		case 'kafkaTopicUpdatePut':
-			return kafkaTopicUpdatePutExecute.call(this);
+			return kafkaTopicUpdatePutExecute.call(this, itemIndex ?? 0);
 		case 'kafkaTopicDeleteDelete':
-			return kafkaTopicDeleteDeleteExecute.call(this);
+			return kafkaTopicDeleteDeleteExecute.call(this, itemIndex ?? 0);
 		case 'kafkaTopicAclListGet':
-			return kafkaTopicAclListGetExecute.call(this);
+			return kafkaTopicAclListGetExecute.call(this, itemIndex ?? 0);
 		case 'kafkaTopicAclCreatePost':
-			return kafkaTopicAclCreatePostExecute.call(this);
+			return kafkaTopicAclCreatePostExecute.call(this, itemIndex ?? 0);
 		case 'kafkaTopicAclGetGet':
-			return kafkaTopicAclGetGetExecute.call(this);
+			return kafkaTopicAclGetGetExecute.call(this, itemIndex ?? 0);
 		case 'kafkaTopicAclDeleteDelete':
-			return kafkaTopicAclDeleteDeleteExecute.call(this);
+			return kafkaTopicAclDeleteDeleteExecute.call(this, itemIndex ?? 0);
 		case 'kafkaUserListGet':
-			return kafkaUserListGetExecute.call(this);
+			return kafkaUserListGetExecute.call(this, itemIndex ?? 0);
 		case 'kafkaUserCreatePost':
-			return kafkaUserCreatePostExecute.call(this);
+			return kafkaUserCreatePostExecute.call(this, itemIndex ?? 0);
 		case 'kafkaUserGetGet':
-			return kafkaUserGetGetExecute.call(this);
+			return kafkaUserGetGetExecute.call(this, itemIndex ?? 0);
 		case 'kafkaUserDeleteDelete':
-			return kafkaUserDeleteDeleteExecute.call(this);
+			return kafkaUserDeleteDeleteExecute.call(this, itemIndex ?? 0);
 		case 'kafkaUserAccessGet':
-			return kafkaUserAccessGetExecute.call(this);
+			return kafkaUserAccessGetExecute.call(this, itemIndex ?? 0);
 		case 'kafkaUserCredentialsResetPost':
-			return kafkaUserCredentialsResetPostExecute.call(this);
+			return kafkaUserCredentialsResetPostExecute.call(this, itemIndex ?? 0);
 		case 'kafkaConnectClusterListGet':
-			return kafkaConnectClusterListGetExecute.call(this);
+			return kafkaConnectClusterListGetExecute.call(this, itemIndex ?? 0);
 		case 'kafkaConnectClusterGetGet':
-			return kafkaConnectClusterGetGetExecute.call(this);
+			return kafkaConnectClusterGetGetExecute.call(this, itemIndex ?? 0);
 		case 'kafkaConnectClusterCreatePost':
-			return kafkaConnectClusterCreatePostExecute.call(this);
+			return kafkaConnectClusterCreatePostExecute.call(this, itemIndex ?? 0);
 		case 'kafkaConnectClusterUpdatePut':
-			return kafkaConnectClusterUpdatePutExecute.call(this);
+			return kafkaConnectClusterUpdatePutExecute.call(this, itemIndex ?? 0);
 		case 'kafkaConnectClusterDeleteDelete':
-			return kafkaConnectClusterDeleteDeleteExecute.call(this);
+			return kafkaConnectClusterDeleteDeleteExecute.call(this, itemIndex ?? 0);
 		case 'kafkaConnectBackupListGet':
-			return kafkaConnectBackupListGetExecute.call(this);
+			return kafkaConnectBackupListGetExecute.call(this, itemIndex ?? 0);
 		case 'kafkaConnectBackupCreatePost':
-			return kafkaConnectBackupCreatePostExecute.call(this);
+			return kafkaConnectBackupCreatePostExecute.call(this, itemIndex ?? 0);
 		case 'kafkaConnectBackupGetGet':
-			return kafkaConnectBackupGetGetExecute.call(this);
+			return kafkaConnectBackupGetGetExecute.call(this, itemIndex ?? 0);
 		case 'kafkaConnectBackupDeleteDelete':
-			return kafkaConnectBackupDeleteDeleteExecute.call(this);
+			return kafkaConnectBackupDeleteDeleteExecute.call(this, itemIndex ?? 0);
 		case 'kafkaConnectUserListGet':
-			return kafkaConnectUserListGetExecute.call(this);
+			return kafkaConnectUserListGetExecute.call(this, itemIndex ?? 0);
 		case 'kafkaConnectUserCreatePost':
-			return kafkaConnectUserCreatePostExecute.call(this);
+			return kafkaConnectUserCreatePostExecute.call(this, itemIndex ?? 0);
 		case 'kafkaConnectUserGetGet':
-			return kafkaConnectUserGetGetExecute.call(this);
+			return kafkaConnectUserGetGetExecute.call(this, itemIndex ?? 0);
 		case 'kafkaConnectUserUpdatePut':
-			return kafkaConnectUserUpdatePutExecute.call(this);
+			return kafkaConnectUserUpdatePutExecute.call(this, itemIndex ?? 0);
 		case 'kafkaConnectUserDeleteDelete':
-			return kafkaConnectUserDeleteDeleteExecute.call(this);
+			return kafkaConnectUserDeleteDeleteExecute.call(this, itemIndex ?? 0);
 		case 'kafkaConnectNodeListGet':
-			return kafkaConnectNodeListGetExecute.call(this);
+			return kafkaConnectNodeListGetExecute.call(this, itemIndex ?? 0);
 		case 'kafkaConnectNodeCreatePost':
-			return kafkaConnectNodeCreatePostExecute.call(this);
+			return kafkaConnectNodeCreatePostExecute.call(this, itemIndex ?? 0);
 		case 'kafkaConnectNodeGetGet':
-			return kafkaConnectNodeGetGetExecute.call(this);
+			return kafkaConnectNodeGetGetExecute.call(this, itemIndex ?? 0);
 		case 'kafkaConnectNodeUpdatePut':
-			return kafkaConnectNodeUpdatePutExecute.call(this);
+			return kafkaConnectNodeUpdatePutExecute.call(this, itemIndex ?? 0);
 		case 'kafkaConnectNodeDeleteDelete':
-			return kafkaConnectNodeDeleteDeleteExecute.call(this);
+			return kafkaConnectNodeDeleteDeleteExecute.call(this, itemIndex ?? 0);
 		case 'kafkaConnectIpRestrictionListGet':
-			return kafkaConnectIpRestrictionListGetExecute.call(this);
+			return kafkaConnectIpRestrictionListGetExecute.call(this, itemIndex ?? 0);
 		case 'kafkaConnectIpRestrictionCreatePost':
-			return kafkaConnectIpRestrictionCreatePostExecute.call(this);
+			return kafkaConnectIpRestrictionCreatePostExecute.call(this, itemIndex ?? 0);
 		case 'kafkaConnectLogSubscriptionListGet':
-			return kafkaConnectLogSubscriptionListGetExecute.call(this);
+			return kafkaConnectLogSubscriptionListGetExecute.call(this, itemIndex ?? 0);
 		case 'kafkaConnectLogSubscriptionCreatePost':
-			return kafkaConnectLogSubscriptionCreatePostExecute.call(this);
+			return kafkaConnectLogSubscriptionCreatePostExecute.call(this, itemIndex ?? 0);
 		case 'kafkaConnectLogSubscriptionGetGet':
-			return kafkaConnectLogSubscriptionGetGetExecute.call(this);
+			return kafkaConnectLogSubscriptionGetGetExecute.call(this, itemIndex ?? 0);
 		case 'kafkaConnectMaintenanceGet':
-			return kafkaConnectMaintenanceGetExecute.call(this);
+			return kafkaConnectMaintenanceGetExecute.call(this, itemIndex ?? 0);
 		case 'kafkaConnectMaintenanceUpdatePut':
-			return kafkaConnectMaintenanceUpdatePutExecute.call(this);
+			return kafkaConnectMaintenanceUpdatePutExecute.call(this, itemIndex ?? 0);
 		case 'kafkaConnectMetricGet':
-			return kafkaConnectMetricGetExecute.call(this);
+			return kafkaConnectMetricGetExecute.call(this, itemIndex ?? 0);
 		case 'kafkaConnectPrometheusGet':
-			return kafkaConnectPrometheusGetExecute.call(this);
+			return kafkaConnectPrometheusGetExecute.call(this, itemIndex ?? 0);
 		case 'kafkaConnectCertificateListGet':
-			return kafkaConnectCertificateListGetExecute.call(this);
+			return kafkaConnectCertificateListGetExecute.call(this, itemIndex ?? 0);
 		case 'kafkaConnectCertificateCreatePost':
-			return kafkaConnectCertificateCreatePostExecute.call(this);
+			return kafkaConnectCertificateCreatePostExecute.call(this, itemIndex ?? 0);
 		case 'kafkaConnectadvancedConfigurationGet':
-			return kafkaConnectadvancedConfigurationGetExecute.call(this);
+			return kafkaConnectadvancedConfigurationGetExecute.call(this, itemIndex ?? 0);
 		case 'kafkaConnectadvancedConfigurationUpdatePut':
-			return kafkaConnectadvancedConfigurationUpdatePutExecute.call(this);
+			return kafkaConnectadvancedConfigurationUpdatePutExecute.call(this, itemIndex ?? 0);
 		case 'kafkaConnectcapabilitiesAdvancedConfigurationGet':
-			return kafkaConnectcapabilitiesAdvancedConfigurationGetExecute.call(this);
+			return kafkaConnectcapabilitiesAdvancedConfigurationGetExecute.call(this, itemIndex ?? 0);
 		case 'kafkaConnectcapabilitiesBackupRegionsGet':
-			return kafkaConnectcapabilitiesBackupRegionsGetExecute.call(this);
+			return kafkaConnectcapabilitiesBackupRegionsGetExecute.call(this, itemIndex ?? 0);
 		case 'kafkaConnectcapabilitiesConnectorListGet':
-			return kafkaConnectcapabilitiesConnectorListGetExecute.call(this);
+			return kafkaConnectcapabilitiesConnectorListGetExecute.call(this, itemIndex ?? 0);
 		case 'kafkaConnectcapabilitiesConnectorGet':
-			return kafkaConnectcapabilitiesConnectorGetExecute.call(this);
+			return kafkaConnectcapabilitiesConnectorGetExecute.call(this, itemIndex ?? 0);
 		case 'kafkaConnectcapabilitiesConnectorConfigurationGet':
-			return kafkaConnectcapabilitiesConnectorConfigurationGetExecute.call(this);
+			return kafkaConnectcapabilitiesConnectorConfigurationGetExecute.call(this, itemIndex ?? 0);
 		case 'kafkaConnectcapabilitiesConnectorTransformsGet':
-			return kafkaConnectcapabilitiesConnectorTransformsGetExecute.call(this);
+			return kafkaConnectcapabilitiesConnectorTransformsGetExecute.call(this, itemIndex ?? 0);
 		case 'kafkaConnectcapabilitiesIntegrationGet':
-			return kafkaConnectcapabilitiesIntegrationGetExecute.call(this);
+			return kafkaConnectcapabilitiesIntegrationGetExecute.call(this, itemIndex ?? 0);
 		case 'kafkaConnectconnectorListGet':
-			return kafkaConnectconnectorListGetExecute.call(this);
+			return kafkaConnectconnectorListGetExecute.call(this, itemIndex ?? 0);
 		case 'kafkaConnectconnectorCreatePost':
-			return kafkaConnectconnectorCreatePostExecute.call(this);
+			return kafkaConnectconnectorCreatePostExecute.call(this, itemIndex ?? 0);
 		case 'kafkaConnectconnectorGetGet':
-			return kafkaConnectconnectorGetGetExecute.call(this);
+			return kafkaConnectconnectorGetGetExecute.call(this, itemIndex ?? 0);
 		case 'kafkaConnectconnectorUpdatePut':
-			return kafkaConnectconnectorUpdatePutExecute.call(this);
+			return kafkaConnectconnectorUpdatePutExecute.call(this, itemIndex ?? 0);
 		case 'kafkaConnectconnectorDeleteDelete':
-			return kafkaConnectconnectorDeleteDeleteExecute.call(this);
+			return kafkaConnectconnectorDeleteDeleteExecute.call(this, itemIndex ?? 0);
 		case 'kafkaConnectconnectorPausePost':
-			return kafkaConnectconnectorPausePostExecute.call(this);
+			return kafkaConnectconnectorPausePostExecute.call(this, itemIndex ?? 0);
 		case 'kafkaConnectconnectorRestartPost':
-			return kafkaConnectconnectorRestartPostExecute.call(this);
+			return kafkaConnectconnectorRestartPostExecute.call(this, itemIndex ?? 0);
 		case 'kafkaConnectconnectorResumePost':
-			return kafkaConnectconnectorResumePostExecute.call(this);
+			return kafkaConnectconnectorResumePostExecute.call(this, itemIndex ?? 0);
 		case 'kafkaConnectconnectorTaskListGet':
-			return kafkaConnectconnectorTaskListGetExecute.call(this);
+			return kafkaConnectconnectorTaskListGetExecute.call(this, itemIndex ?? 0);
 		case 'kafkaConnectconnectorTaskGet':
-			return kafkaConnectconnectorTaskGetExecute.call(this);
+			return kafkaConnectconnectorTaskGetExecute.call(this, itemIndex ?? 0);
 		case 'kafkaConnectconnectorTaskRestartPost':
-			return kafkaConnectconnectorTaskRestartPostExecute.call(this);
+			return kafkaConnectconnectorTaskRestartPostExecute.call(this, itemIndex ?? 0);
 		case 'kafkaConnectintegrationListGet':
-			return kafkaConnectintegrationListGetExecute.call(this);
+			return kafkaConnectintegrationListGetExecute.call(this, itemIndex ?? 0);
 		case 'kafkaConnectintegrationCreatePost':
-			return kafkaConnectintegrationCreatePostExecute.call(this);
+			return kafkaConnectintegrationCreatePostExecute.call(this, itemIndex ?? 0);
 		case 'kafkaConnectintegrationGetGet':
-			return kafkaConnectintegrationGetGetExecute.call(this);
+			return kafkaConnectintegrationGetGetExecute.call(this, itemIndex ?? 0);
 		case 'kafkaConnectintegrationDeleteDelete':
-			return kafkaConnectintegrationDeleteDeleteExecute.call(this);
+			return kafkaConnectintegrationDeleteDeleteExecute.call(this, itemIndex ?? 0);
 		case 'kafkaConnectipRestrictionGetGet':
-			return kafkaConnectipRestrictionGetGetExecute.call(this);
+			return kafkaConnectipRestrictionGetGetExecute.call(this, itemIndex ?? 0);
 		case 'kafkaConnectipRestrictionUpdatePut':
-			return kafkaConnectipRestrictionUpdatePutExecute.call(this);
+			return kafkaConnectipRestrictionUpdatePutExecute.call(this, itemIndex ?? 0);
 		case 'kafkaConnectipRestrictionDeleteDelete':
-			return kafkaConnectipRestrictionDeleteDeleteExecute.call(this);
+			return kafkaConnectipRestrictionDeleteDeleteExecute.call(this, itemIndex ?? 0);
 		case 'kafkaConnectlogKindListGet':
-			return kafkaConnectlogKindListGetExecute.call(this);
+			return kafkaConnectlogKindListGetExecute.call(this, itemIndex ?? 0);
 		case 'kafkaConnectlogKindGet':
-			return kafkaConnectlogKindGetExecute.call(this);
+			return kafkaConnectlogKindGetExecute.call(this, itemIndex ?? 0);
 		case 'kafkaConnectlogSubscriptionDeleteDelete':
-			return kafkaConnectlogSubscriptionDeleteDeleteExecute.call(this);
+			return kafkaConnectlogSubscriptionDeleteDeleteExecute.call(this, itemIndex ?? 0);
 		case 'kafkaConnectlogUrlCreatePost':
-			return kafkaConnectlogUrlCreatePostExecute.call(this);
+			return kafkaConnectlogUrlCreatePostExecute.call(this, itemIndex ?? 0);
 		case 'kafkaConnectlogsGet':
-			return kafkaConnectlogsGetExecute.call(this);
+			return kafkaConnectlogsGetExecute.call(this, itemIndex ?? 0);
 		case 'kafkaConnectmaintenanceListGet':
-			return kafkaConnectmaintenanceListGetExecute.call(this);
+			return kafkaConnectmaintenanceListGetExecute.call(this, itemIndex ?? 0);
 		case 'kafkaConnectmaintenanceApplyPost':
-			return kafkaConnectmaintenanceApplyPostExecute.call(this);
+			return kafkaConnectmaintenanceApplyPostExecute.call(this, itemIndex ?? 0);
 		case 'kafkaConnectmetricListGet':
-			return kafkaConnectmetricListGetExecute.call(this);
+			return kafkaConnectmetricListGetExecute.call(this, itemIndex ?? 0);
 		case 'kafkaConnectnodeGet':
-			return kafkaConnectnodeGetExecute.call(this);
+			return kafkaConnectnodeGetExecute.call(this, itemIndex ?? 0);
 		case 'kafkaConnectprometheusCredentialsResetPost':
-			return kafkaConnectprometheusCredentialsResetPostExecute.call(this);
+			return kafkaConnectprometheusCredentialsResetPostExecute.call(this, itemIndex ?? 0);
 		case 'kafkaConnectuserCredentialsResetPost':
-			return kafkaConnectuserCredentialsResetPostExecute.call(this);
+			return kafkaConnectuserCredentialsResetPostExecute.call(this, itemIndex ?? 0);
 		case 'kafkaMirrorMakerClusterListGet':
-			return kafkaMirrorMakerClusterListGetExecute.call(this);
+			return kafkaMirrorMakerClusterListGetExecute.call(this, itemIndex ?? 0);
 		case 'kafkaMirrorMakerClusterCreatePost':
-			return kafkaMirrorMakerClusterCreatePostExecute.call(this);
+			return kafkaMirrorMakerClusterCreatePostExecute.call(this, itemIndex ?? 0);
 		case 'kafkaMirrorMakerClusterGetGet':
-			return kafkaMirrorMakerClusterGetGetExecute.call(this);
+			return kafkaMirrorMakerClusterGetGetExecute.call(this, itemIndex ?? 0);
 		case 'kafkaMirrorMakerClusterUpdatePut':
-			return kafkaMirrorMakerClusterUpdatePutExecute.call(this);
+			return kafkaMirrorMakerClusterUpdatePutExecute.call(this, itemIndex ?? 0);
 		case 'kafkaMirrorMakerClusterDeleteDelete':
-			return kafkaMirrorMakerClusterDeleteDeleteExecute.call(this);
+			return kafkaMirrorMakerClusterDeleteDeleteExecute.call(this, itemIndex ?? 0);
 		case 'kafkaMirrorMakerCapabilitiesIntegrationGet':
-			return kafkaMirrorMakerCapabilitiesIntegrationGetExecute.call(this);
+			return kafkaMirrorMakerCapabilitiesIntegrationGetExecute.call(this, itemIndex ?? 0);
 		case 'kafkaMirrorMakerIntegrationGet':
-			return kafkaMirrorMakerIntegrationGetExecute.call(this);
+			return kafkaMirrorMakerIntegrationGetExecute.call(this, itemIndex ?? 0);
 		case 'kafkaMirrorMakerIntegrationCreatePost':
-			return kafkaMirrorMakerIntegrationCreatePostExecute.call(this);
+			return kafkaMirrorMakerIntegrationCreatePostExecute.call(this, itemIndex ?? 0);
 		case 'kafkaMirrorMakerIntegrationDeleteDelete':
-			return kafkaMirrorMakerIntegrationDeleteDeleteExecute.call(this);
+			return kafkaMirrorMakerIntegrationDeleteDeleteExecute.call(this, itemIndex ?? 0);
 		case 'kafkaMirrorMakerIntegrationGetById':
-			return kafkaMirrorMakerIntegrationGetByIdExecute.call(this);
+			return kafkaMirrorMakerIntegrationGetByIdExecute.call(this, itemIndex ?? 0);
 		case 'kafkaMirrorMakerLogKindGet':
-			return kafkaMirrorMakerLogKindGetExecute.call(this);
+			return kafkaMirrorMakerLogKindGetExecute.call(this, itemIndex ?? 0);
 		case 'kafkaMirrorMakerLogKindNameGet':
-			return kafkaMirrorMakerLogKindNameGetExecute.call(this);
+			return kafkaMirrorMakerLogKindNameGetExecute.call(this, itemIndex ?? 0);
 		case 'kafkaMirrorMakerLogSubscriptionCreatePost':
-			return kafkaMirrorMakerLogSubscriptionCreatePostExecute.call(this);
+			return kafkaMirrorMakerLogSubscriptionCreatePostExecute.call(this, itemIndex ?? 0);
 		case 'kafkaMirrorMakerLogSubscriptionDeleteDelete':
-			return kafkaMirrorMakerLogSubscriptionDeleteDeleteExecute.call(this);
+			return kafkaMirrorMakerLogSubscriptionDeleteDeleteExecute.call(this, itemIndex ?? 0);
 		case 'kafkaMirrorMakerLogSubscriptionGetById':
-			return kafkaMirrorMakerLogSubscriptionGetByIdExecute.call(this);
+			return kafkaMirrorMakerLogSubscriptionGetByIdExecute.call(this, itemIndex ?? 0);
 		case 'kafkaMirrorMakerLogUrlPost':
-			return kafkaMirrorMakerLogUrlPostExecute.call(this);
+			return kafkaMirrorMakerLogUrlPostExecute.call(this, itemIndex ?? 0);
 		case 'kafkaMirrorMakerLogsGet':
-			return kafkaMirrorMakerLogsGetExecute.call(this);
+			return kafkaMirrorMakerLogsGetExecute.call(this, itemIndex ?? 0);
 		case 'kafkaMirrorMakerMaintenanceGet':
-			return kafkaMirrorMakerMaintenanceGetExecute.call(this);
+			return kafkaMirrorMakerMaintenanceGetExecute.call(this, itemIndex ?? 0);
 		case 'kafkaMirrorMakerMaintenanceGetById':
-			return kafkaMirrorMakerMaintenanceGetByIdExecute.call(this);
+			return kafkaMirrorMakerMaintenanceGetByIdExecute.call(this, itemIndex ?? 0);
 		case 'kafkaMirrorMakerMaintenanceApplyPost':
-			return kafkaMirrorMakerMaintenanceApplyPostExecute.call(this);
+			return kafkaMirrorMakerMaintenanceApplyPostExecute.call(this, itemIndex ?? 0);
 		case 'kafkaMirrorMakerMetricGet':
-			return kafkaMirrorMakerMetricGetExecute.call(this);
+			return kafkaMirrorMakerMetricGetExecute.call(this, itemIndex ?? 0);
 		case 'kafkaMirrorMakerMetricNameGet':
-			return kafkaMirrorMakerMetricNameGetExecute.call(this);
+			return kafkaMirrorMakerMetricNameGetExecute.call(this, itemIndex ?? 0);
 		case 'kafkaMirrorMakerNodeListGet':
-			return kafkaMirrorMakerNodeListGetExecute.call(this);
+			return kafkaMirrorMakerNodeListGetExecute.call(this, itemIndex ?? 0);
 		case 'kafkaMirrorMakerNodeGetGet':
-			return kafkaMirrorMakerNodeGetGetExecute.call(this);
+			return kafkaMirrorMakerNodeGetGetExecute.call(this, itemIndex ?? 0);
 		case 'kafkaMirrorMakerPrometheusGet':
-			return kafkaMirrorMakerPrometheusGetExecute.call(this);
+			return kafkaMirrorMakerPrometheusGetExecute.call(this, itemIndex ?? 0);
 		case 'kafkaMirrorMakerPrometheusCredentialsResetPost':
-			return kafkaMirrorMakerPrometheusCredentialsResetPostExecute.call(this);
+			return kafkaMirrorMakerPrometheusCredentialsResetPostExecute.call(this, itemIndex ?? 0);
 		case 'kafkaMirrorMakerReplicationGet':
-			return kafkaMirrorMakerReplicationGetExecute.call(this);
+			return kafkaMirrorMakerReplicationGetExecute.call(this, itemIndex ?? 0);
 		case 'kafkaMirrorMakerReplicationCreatePost':
-			return kafkaMirrorMakerReplicationCreatePostExecute.call(this);
+			return kafkaMirrorMakerReplicationCreatePostExecute.call(this, itemIndex ?? 0);
 		case 'kafkaMirrorMakerReplicationDeleteDelete':
-			return kafkaMirrorMakerReplicationDeleteDeleteExecute.call(this);
+			return kafkaMirrorMakerReplicationDeleteDeleteExecute.call(this, itemIndex ?? 0);
 		case 'kafkaMirrorMakerReplicationGetById':
-			return kafkaMirrorMakerReplicationGetByIdExecute.call(this);
+			return kafkaMirrorMakerReplicationGetByIdExecute.call(this, itemIndex ?? 0);
 		case 'kafkaMirrorMakerReplicationUpdatePut':
-			return kafkaMirrorMakerReplicationUpdatePutExecute.call(this);
+			return kafkaMirrorMakerReplicationUpdatePutExecute.call(this, itemIndex ?? 0);
 		case 'm3aggregatorClusterListGet':
-			return m3aggregatorClusterListGetExecute.call(this);
+			return m3aggregatorClusterListGetExecute.call(this, itemIndex ?? 0);
 		case 'm3aggregatorClusterCreatePost':
-			return m3aggregatorClusterCreatePostExecute.call(this);
+			return m3aggregatorClusterCreatePostExecute.call(this, itemIndex ?? 0);
 		case 'm3aggregatorClusterGetGet':
-			return m3aggregatorClusterGetGetExecute.call(this);
+			return m3aggregatorClusterGetGetExecute.call(this, itemIndex ?? 0);
 		case 'm3aggregatorClusterUpdatePut':
-			return m3aggregatorClusterUpdatePutExecute.call(this);
+			return m3aggregatorClusterUpdatePutExecute.call(this, itemIndex ?? 0);
 		case 'm3aggregatorClusterDeleteDelete':
-			return m3aggregatorClusterDeleteDeleteExecute.call(this);
+			return m3aggregatorClusterDeleteDeleteExecute.call(this, itemIndex ?? 0);
 		case 'm3aggregatorCapabilitiesIntegrationGet':
-			return m3aggregatorCapabilitiesIntegrationGetExecute.call(this);
+			return m3aggregatorCapabilitiesIntegrationGetExecute.call(this, itemIndex ?? 0);
 		case 'm3aggregatorIntegrationGet':
-			return m3aggregatorIntegrationGetExecute.call(this);
+			return m3aggregatorIntegrationGetExecute.call(this, itemIndex ?? 0);
 		case 'm3aggregatorIntegrationCreatePost':
-			return m3aggregatorIntegrationCreatePostExecute.call(this);
+			return m3aggregatorIntegrationCreatePostExecute.call(this, itemIndex ?? 0);
 		case 'm3aggregatorIntegrationDeleteDelete':
-			return m3aggregatorIntegrationDeleteDeleteExecute.call(this);
+			return m3aggregatorIntegrationDeleteDeleteExecute.call(this, itemIndex ?? 0);
 		case 'm3aggregatorIntegrationGetById':
-			return m3aggregatorIntegrationGetByIdExecute.call(this);
+			return m3aggregatorIntegrationGetByIdExecute.call(this, itemIndex ?? 0);
 		case 'm3aggregatorLogKindGet':
-			return m3aggregatorLogKindGetExecute.call(this);
+			return m3aggregatorLogKindGetExecute.call(this, itemIndex ?? 0);
 		case 'm3aggregatorLogKindNameGet':
-			return m3aggregatorLogKindNameGetExecute.call(this);
+			return m3aggregatorLogKindNameGetExecute.call(this, itemIndex ?? 0);
 		case 'm3aggregatorLogSubscriptionListGet':
-			return m3aggregatorLogSubscriptionListGetExecute.call(this);
+			return m3aggregatorLogSubscriptionListGetExecute.call(this, itemIndex ?? 0);
 		case 'm3aggregatorLogSubscriptionCreatePost':
-			return m3aggregatorLogSubscriptionCreatePostExecute.call(this);
+			return m3aggregatorLogSubscriptionCreatePostExecute.call(this, itemIndex ?? 0);
 		case 'm3aggregatorLogSubscriptionDeleteDelete':
-			return m3aggregatorLogSubscriptionDeleteDeleteExecute.call(this);
+			return m3aggregatorLogSubscriptionDeleteDeleteExecute.call(this, itemIndex ?? 0);
 		case 'm3aggregatorLogSubscriptionGetById':
-			return m3aggregatorLogSubscriptionGetByIdExecute.call(this);
+			return m3aggregatorLogSubscriptionGetByIdExecute.call(this, itemIndex ?? 0);
 		case 'm3aggregatorLogUrlPost':
-			return m3aggregatorLogUrlPostExecute.call(this);
+			return m3aggregatorLogUrlPostExecute.call(this, itemIndex ?? 0);
 		case 'm3aggregatorLogsGet':
-			return m3aggregatorLogsGetExecute.call(this);
+			return m3aggregatorLogsGetExecute.call(this, itemIndex ?? 0);
 		case 'm3aggregatorMaintenanceGet':
-			return m3aggregatorMaintenanceGetExecute.call(this);
+			return m3aggregatorMaintenanceGetExecute.call(this, itemIndex ?? 0);
 		case 'm3aggregatorMaintenanceGetById':
-			return m3aggregatorMaintenanceGetByIdExecute.call(this);
+			return m3aggregatorMaintenanceGetByIdExecute.call(this, itemIndex ?? 0);
 		case 'm3aggregatorMaintenanceApplyPost':
-			return m3aggregatorMaintenanceApplyPostExecute.call(this);
+			return m3aggregatorMaintenanceApplyPostExecute.call(this, itemIndex ?? 0);
 		case 'm3aggregatorMetricGet':
-			return m3aggregatorMetricGetExecute.call(this);
+			return m3aggregatorMetricGetExecute.call(this, itemIndex ?? 0);
 		case 'm3aggregatorMetricNameGet':
-			return m3aggregatorMetricNameGetExecute.call(this);
+			return m3aggregatorMetricNameGetExecute.call(this, itemIndex ?? 0);
 		case 'm3aggregatorNodeListGet':
-			return m3aggregatorNodeListGetExecute.call(this);
+			return m3aggregatorNodeListGetExecute.call(this, itemIndex ?? 0);
 		case 'm3aggregatorNodeGetGet':
-			return m3aggregatorNodeGetGetExecute.call(this);
+			return m3aggregatorNodeGetGetExecute.call(this, itemIndex ?? 0);
 
 		case 'M3dbClusterListGet':
-			return m3dbClusterListGetExecute.call(this);
+			return m3dbClusterListGetExecute.call(this, itemIndex ?? 0);
 		case 'M3dbClusterCreatePost':
-			return m3dbClusterCreatePostExecute.call(this);
+			return m3dbClusterCreatePostExecute.call(this, itemIndex ?? 0);
 		case 'M3dbClusterDeleteDelete':
-			return m3dbClusterDeleteDeleteExecute.call(this);
+			return m3dbClusterDeleteDeleteExecute.call(this, itemIndex ?? 0);
 		case 'M3dbClusterGetGet':
-			return m3dbClusterGetGetExecute.call(this);
+			return m3dbClusterGetGetExecute.call(this, itemIndex ?? 0);
 		case 'M3dbClusterUpdatePut':
-			return m3dbClusterUpdatePutExecute.call(this);
+			return m3dbClusterUpdatePutExecute.call(this, itemIndex ?? 0);
 		case 'M3dbAdvancedConfigurationGetGet':
-			return m3dbAdvancedConfigurationGetGetExecute.call(this);
+			return m3dbAdvancedConfigurationGetGetExecute.call(this, itemIndex ?? 0);
 		case 'M3dbAdvancedConfigurationUpdatePut':
-			return m3dbAdvancedConfigurationUpdatePutExecute.call(this);
+			return m3dbAdvancedConfigurationUpdatePutExecute.call(this, itemIndex ?? 0);
 		case 'M3dbBackupListGet':
-			return m3dbBackupListGetExecute.call(this);
+			return m3dbBackupListGetExecute.call(this, itemIndex ?? 0);
 		case 'M3dbBackupGetGet':
-			return m3dbBackupGetGetExecute.call(this);
+			return m3dbBackupGetGetExecute.call(this, itemIndex ?? 0);
 		case 'M3dbCapabilitiesAdvancedConfigurationGetGet':
-			return m3dbCapabilitiesAdvancedConfigurationGetGetExecute.call(this);
+			return m3dbCapabilitiesAdvancedConfigurationGetGetExecute.call(this, itemIndex ?? 0);
 		case 'M3dbCapabilitiesIntegrationGetGet':
-			return m3dbCapabilitiesIntegrationGetGetExecute.call(this);
+			return m3dbCapabilitiesIntegrationGetGetExecute.call(this, itemIndex ?? 0);
 		case 'M3dbIntegrationListGet':
-			return m3dbIntegrationListGetExecute.call(this);
+			return m3dbIntegrationListGetExecute.call(this, itemIndex ?? 0);
 		case 'M3dbIntegrationCreatePost':
-			return m3dbIntegrationCreatePostExecute.call(this);
+			return m3dbIntegrationCreatePostExecute.call(this, itemIndex ?? 0);
 		case 'M3dbIntegrationDeleteDelete':
-			return m3dbIntegrationDeleteDeleteExecute.call(this);
+			return m3dbIntegrationDeleteDeleteExecute.call(this, itemIndex ?? 0);
 		case 'M3dbIntegrationGetGet':
-			return m3dbIntegrationGetGetExecute.call(this);
+			return m3dbIntegrationGetGetExecute.call(this, itemIndex ?? 0);
 		case 'M3dbIpRestrictionListGet':
-			return m3dbIpRestrictionListGetExecute.call(this);
+			return m3dbIpRestrictionListGetExecute.call(this, itemIndex ?? 0);
 		case 'M3dbIpRestrictionCreatePost':
-			return m3dbIpRestrictionCreatePostExecute.call(this);
+			return m3dbIpRestrictionCreatePostExecute.call(this, itemIndex ?? 0);
 		case 'M3dbIpRestrictionDeleteDelete':
-			return m3dbIpRestrictionDeleteDeleteExecute.call(this);
+			return m3dbIpRestrictionDeleteDeleteExecute.call(this, itemIndex ?? 0);
 		case 'M3dbIpRestrictionGetGet':
-			return m3dbIpRestrictionGetGetExecute.call(this);
+			return m3dbIpRestrictionGetGetExecute.call(this, itemIndex ?? 0);
 		case 'M3dbIpRestrictionUpdatePut':
-			return m3dbIpRestrictionUpdatePutExecute.call(this);
+			return m3dbIpRestrictionUpdatePutExecute.call(this, itemIndex ?? 0);
 		case 'M3dbLogKindListGet':
-			return m3dbLogKindListGetExecute.call(this);
+			return m3dbLogKindListGetExecute.call(this, itemIndex ?? 0);
 		case 'M3dbLogKindGetGet':
-			return m3dbLogKindGetGetExecute.call(this);
+			return m3dbLogKindGetGetExecute.call(this, itemIndex ?? 0);
 		case 'M3dbLogSubscriptionListGet':
-			return m3dbLogSubscriptionListGetExecute.call(this);
+			return m3dbLogSubscriptionListGetExecute.call(this, itemIndex ?? 0);
 		case 'M3dbLogSubscriptionCreatePost':
-			return m3dbLogSubscriptionCreatePostExecute.call(this);
+			return m3dbLogSubscriptionCreatePostExecute.call(this, itemIndex ?? 0);
 		case 'M3dbLogSubscriptionDeleteDelete':
-			return m3dbLogSubscriptionDeleteDeleteExecute.call(this);
+			return m3dbLogSubscriptionDeleteDeleteExecute.call(this, itemIndex ?? 0);
 		case 'M3dbLogSubscriptionGetGet':
-			return m3dbLogSubscriptionGetGetExecute.call(this);
+			return m3dbLogSubscriptionGetGetExecute.call(this, itemIndex ?? 0);
 		case 'M3dbLogUrlCreatePost':
-			return m3dbLogUrlCreatePostExecute.call(this);
+			return m3dbLogUrlCreatePostExecute.call(this, itemIndex ?? 0);
 		case 'M3dbLogsGet':
-			return m3dbLogsGetExecute.call(this);
+			return m3dbLogsGetExecute.call(this, itemIndex ?? 0);
 		case 'M3dbMaintenanceListGet':
-			return m3dbMaintenanceListGetExecute.call(this);
+			return m3dbMaintenanceListGetExecute.call(this, itemIndex ?? 0);
 		case 'M3dbMaintenanceGetGet':
-			return m3dbMaintenanceGetGetExecute.call(this);
+			return m3dbMaintenanceGetGetExecute.call(this, itemIndex ?? 0);
 		case 'M3dbMaintenanceApplyPost':
-			return m3dbMaintenanceApplyPostExecute.call(this);
+			return m3dbMaintenanceApplyPostExecute.call(this, itemIndex ?? 0);
 		case 'M3dbMetricListGet':
-			return m3dbMetricListGetExecute.call(this);
+			return m3dbMetricListGetExecute.call(this, itemIndex ?? 0);
 		case 'M3dbMetricGetGet':
-			return m3dbMetricGetGetExecute.call(this);
+			return m3dbMetricGetGetExecute.call(this, itemIndex ?? 0);
 		case 'M3dbNamespaceListGet':
-			return m3dbNamespaceListGetExecute.call(this);
+			return m3dbNamespaceListGetExecute.call(this, itemIndex ?? 0);
 		case 'M3dbNamespaceCreatePost':
-			return m3dbNamespaceCreatePostExecute.call(this);
+			return m3dbNamespaceCreatePostExecute.call(this, itemIndex ?? 0);
 		case 'M3dbNamespaceDeleteDelete':
-			return m3dbNamespaceDeleteDeleteExecute.call(this);
+			return m3dbNamespaceDeleteDeleteExecute.call(this, itemIndex ?? 0);
 		case 'M3dbNamespaceGetGet':
-			return m3dbNamespaceGetGetExecute.call(this);
+			return m3dbNamespaceGetGetExecute.call(this, itemIndex ?? 0);
 		case 'M3dbNamespaceUpdatePut':
-			return m3dbNamespaceUpdatePutExecute.call(this);
+			return m3dbNamespaceUpdatePutExecute.call(this, itemIndex ?? 0);
 		case 'M3dbNodeListGet':
-			return m3dbNodeListGetExecute.call(this);
+			return m3dbNodeListGetExecute.call(this, itemIndex ?? 0);
 		case 'M3dbNodeGetGet':
-			return m3dbNodeGetGetExecute.call(this);
+			return m3dbNodeGetGetExecute.call(this, itemIndex ?? 0);
 		case 'M3dbUserListGet':
-			return m3dbUserListGetExecute.call(this);
+			return m3dbUserListGetExecute.call(this, itemIndex ?? 0);
 		case 'M3dbUserCreatePost':
-			return m3dbUserCreatePostExecute.call(this);
+			return m3dbUserCreatePostExecute.call(this, itemIndex ?? 0);
 		case 'M3dbUserDeleteDelete':
-			return m3dbUserDeleteDeleteExecute.call(this);
+			return m3dbUserDeleteDeleteExecute.call(this, itemIndex ?? 0);
 		case 'M3dbUserGetGet':
-			return m3dbUserGetGetExecute.call(this);
+			return m3dbUserGetGetExecute.call(this, itemIndex ?? 0);
 		case 'M3dbUserUpdatePut':
-			return m3dbUserUpdatePutExecute.call(this);
+			return m3dbUserUpdatePutExecute.call(this, itemIndex ?? 0);
 		case 'M3dbUserCredentialsResetPost':
-			return m3dbUserCredentialsResetPostExecute.call(this);
+			return m3dbUserCredentialsResetPostExecute.call(this, itemIndex ?? 0);
 		case 'mongodbClusterListGet':
-			return mongodbClusterListGetExecute.call(this);
+			return mongodbClusterListGetExecute.call(this, itemIndex ?? 0);
 		case 'mongodbClusterGetGet':
-			return mongodbClusterGetGetExecute.call(this);
+			return mongodbClusterGetGetExecute.call(this, itemIndex ?? 0);
 		case 'mongodbClusterCreatePost':
-			return mongodbClusterCreatePostExecute.call(this);
+			return mongodbClusterCreatePostExecute.call(this, itemIndex ?? 0);
 		case 'mongodbClusterUpdatePut':
-			return mongodbClusterUpdatePutExecute.call(this);
+			return mongodbClusterUpdatePutExecute.call(this, itemIndex ?? 0);
 		case 'mongodbClusterDeleteDelete':
-			return mongodbClusterDeleteDeleteExecute.call(this);
+			return mongodbClusterDeleteDeleteExecute.call(this, itemIndex ?? 0);
 		case 'mongodbBackupListGet':
-			return mongodbBackupListGetExecute.call(this);
+			return mongodbBackupListGetExecute.call(this, itemIndex ?? 0);
 		case 'mongodbBackupGetGet':
-			return mongodbBackupGetGetExecute.call(this);
+			return mongodbBackupGetGetExecute.call(this, itemIndex ?? 0);
 		case 'mongodbBackupDeleteDelete':
-			return mongodbBackupDeleteDeleteExecute.call(this);
+			return mongodbBackupDeleteDeleteExecute.call(this, itemIndex ?? 0);
 		case 'mongodbBackupRestorePost':
-			return mongodbBackupRestorePostExecute.call(this);
+			return mongodbBackupRestorePostExecute.call(this, itemIndex ?? 0);
 		case 'mongodbIpRestrictionListGet':
-			return mongodbIpRestrictionListGetExecute.call(this);
+			return mongodbIpRestrictionListGetExecute.call(this, itemIndex ?? 0);
 		case 'mongodbIpRestrictionCreatePost':
-			return mongodbIpRestrictionCreatePostExecute.call(this);
+			return mongodbIpRestrictionCreatePostExecute.call(this, itemIndex ?? 0);
 		case 'mongodbIpRestrictionGetGet':
-			return mongodbIpRestrictionGetGetExecute.call(this);
+			return mongodbIpRestrictionGetGetExecute.call(this, itemIndex ?? 0);
 		case 'mongodbIpRestrictionUpdatePut':
-			return mongodbIpRestrictionUpdatePutExecute.call(this);
+			return mongodbIpRestrictionUpdatePutExecute.call(this, itemIndex ?? 0);
 		case 'mongodbIpRestrictionDeleteDelete':
-			return mongodbIpRestrictionDeleteDeleteExecute.call(this);
+			return mongodbIpRestrictionDeleteDeleteExecute.call(this, itemIndex ?? 0);
 		case 'mongodbLogKindListGet':
-			return mongodbLogKindListGetExecute.call(this);
+			return mongodbLogKindListGetExecute.call(this, itemIndex ?? 0);
 		case 'mongodbLogKindGetGet':
-			return mongodbLogKindGetGetExecute.call(this);
+			return mongodbLogKindGetGetExecute.call(this, itemIndex ?? 0);
 		case 'mongodbLogSubscriptionListGet':
-			return mongodbLogSubscriptionListGetExecute.call(this);
+			return mongodbLogSubscriptionListGetExecute.call(this, itemIndex ?? 0);
 		case 'mongodbLogSubscriptionCreatePost':
-			return mongodbLogSubscriptionCreatePostExecute.call(this);
+			return mongodbLogSubscriptionCreatePostExecute.call(this, itemIndex ?? 0);
 		case 'mongodbLogSubscriptionGetGet':
-			return mongodbLogSubscriptionGetGetExecute.call(this);
+			return mongodbLogSubscriptionGetGetExecute.call(this, itemIndex ?? 0);
 		case 'mongodbLogSubscriptionDeleteDelete':
-			return mongodbLogSubscriptionDeleteDeleteExecute.call(this);
+			return mongodbLogSubscriptionDeleteDeleteExecute.call(this, itemIndex ?? 0);
 		case 'mongodbLogUrlCreatePost':
-			return mongodbLogUrlCreatePostExecute.call(this);
+			return mongodbLogUrlCreatePostExecute.call(this, itemIndex ?? 0);
 		case 'mongodbLogListGet':
-			return mongodbLogListGetExecute.call(this);
+			return mongodbLogListGetExecute.call(this, itemIndex ?? 0);
 		case 'mongodbMaintenanceListGet':
-			return mongodbMaintenanceListGetExecute.call(this);
+			return mongodbMaintenanceListGetExecute.call(this, itemIndex ?? 0);
 		case 'mongodbMaintenanceGetGet':
-			return mongodbMaintenanceGetGetExecute.call(this);
+			return mongodbMaintenanceGetGetExecute.call(this, itemIndex ?? 0);
 		case 'mongodbMaintenanceApplyPost':
-			return mongodbMaintenanceApplyPostExecute.call(this);
+			return mongodbMaintenanceApplyPostExecute.call(this, itemIndex ?? 0);
 		case 'mongodbMetricListGet':
-			return mongodbMetricListGetExecute.call(this);
+			return mongodbMetricListGetExecute.call(this, itemIndex ?? 0);
 		case 'mongodbMetricNameGetGet':
-			return mongodbMetricNameGetGetExecute.call(this);
+			return mongodbMetricNameGetGetExecute.call(this, itemIndex ?? 0);
 		case 'mongodbNodeListGet':
-			return mongodbNodeListGetExecute.call(this);
+			return mongodbNodeListGetExecute.call(this, itemIndex ?? 0);
 		case 'mongodbNodeCreatePost':
-			return mongodbNodeCreatePostExecute.call(this);
+			return mongodbNodeCreatePostExecute.call(this, itemIndex ?? 0);
 		case 'mongodbNodeGetGet':
-			return mongodbNodeGetGetExecute.call(this);
+			return mongodbNodeGetGetExecute.call(this, itemIndex ?? 0);
 		case 'mongodbNodeUpdatePut':
-			return mongodbNodeUpdatePutExecute.call(this);
+			return mongodbNodeUpdatePutExecute.call(this, itemIndex ?? 0);
 		case 'mongodbNodeDeleteDelete':
-			return mongodbNodeDeleteDeleteExecute.call(this);
+			return mongodbNodeDeleteDeleteExecute.call(this, itemIndex ?? 0);
 		case 'mongodbPrometheusGetGet':
-			return mongodbPrometheusGetGetExecute.call(this);
+			return mongodbPrometheusGetGetExecute.call(this, itemIndex ?? 0);
 		case 'mongodbPrometheusCredentialsResetPost':
-			return mongodbPrometheusCredentialsResetPostExecute.call(this);
+			return mongodbPrometheusCredentialsResetPostExecute.call(this, itemIndex ?? 0);
 		case 'mongodbRestoreCreatePost':
-			return mongodbRestoreCreatePostExecute.call(this);
+			return mongodbRestoreCreatePostExecute.call(this, itemIndex ?? 0);
 		case 'mongodbRoleListGet':
-			return mongodbRoleListGetExecute.call(this);
+			return mongodbRoleListGetExecute.call(this, itemIndex ?? 0);
 		case 'mongodbUserListGet':
-			return mongodbUserListGetExecute.call(this);
+			return mongodbUserListGetExecute.call(this, itemIndex ?? 0);
 		case 'mongodbUserCreatePost':
-			return mongodbUserCreatePostExecute.call(this);
+			return mongodbUserCreatePostExecute.call(this, itemIndex ?? 0);
 		case 'mongodbUserGetGet':
-			return mongodbUserGetGetExecute.call(this);
+			return mongodbUserGetGetExecute.call(this, itemIndex ?? 0);
 		case 'mongodbUserUpdatePut':
-			return mongodbUserUpdatePutExecute.call(this);
+			return mongodbUserUpdatePutExecute.call(this, itemIndex ?? 0);
 		case 'mongodbUserDeleteDelete':
-			return mongodbUserDeleteDeleteExecute.call(this);
+			return mongodbUserDeleteDeleteExecute.call(this, itemIndex ?? 0);
 		case 'mongodbUserCredentialsResetPost':
-			return mongodbUserCredentialsResetPostExecute.call(this);
+			return mongodbUserCredentialsResetPostExecute.call(this, itemIndex ?? 0);
 		case 'mysqlClusterListGet':
-			return mysqlClusterListGetExecute.call(this);
+			return mysqlClusterListGetExecute.call(this, itemIndex ?? 0);
 		case 'mysqlClusterGetGet':
-			return mysqlClusterGetGetExecute.call(this);
+			return mysqlClusterGetGetExecute.call(this, itemIndex ?? 0);
 		case 'mysqlClusterCreatePost':
-			return mysqlClusterCreatePostExecute.call(this);
+			return mysqlClusterCreatePostExecute.call(this, itemIndex ?? 0);
 		case 'mysqlClusterUpdatePut':
-			return mysqlClusterUpdatePutExecute.call(this);
+			return mysqlClusterUpdatePutExecute.call(this, itemIndex ?? 0);
 		case 'mysqlClusterDeleteDelete':
-			return mysqlClusterDeleteDeleteExecute.call(this);
+			return mysqlClusterDeleteDeleteExecute.call(this, itemIndex ?? 0);
 		case 'mysqlBackupListGet':
-			return mysqlBackupListGetExecute.call(this);
+			return mysqlBackupListGetExecute.call(this, itemIndex ?? 0);
 		case 'mysqlBackupCreatePost':
-			return mysqlBackupCreatePostExecute.call(this);
+			return mysqlBackupCreatePostExecute.call(this, itemIndex ?? 0);
 		case 'mysqlBackupGetGet':
-			return mysqlBackupGetGetExecute.call(this);
+			return mysqlBackupGetGetExecute.call(this, itemIndex ?? 0);
 		case 'mysqlBackupDeleteDelete':
-			return mysqlBackupDeleteDeleteExecute.call(this);
+			return mysqlBackupDeleteDeleteExecute.call(this, itemIndex ?? 0);
 		case 'mysqlUserListGet':
-			return mysqlUserListGetExecute.call(this);
+			return mysqlUserListGetExecute.call(this, itemIndex ?? 0);
 		case 'mysqlUserCreatePost':
-			return mysqlUserCreatePostExecute.call(this);
+			return mysqlUserCreatePostExecute.call(this, itemIndex ?? 0);
 		case 'mysqlUserGetGet':
-			return mysqlUserGetGetExecute.call(this);
+			return mysqlUserGetGetExecute.call(this, itemIndex ?? 0);
 		case 'mysqlUserUpdatePut':
-			return mysqlUserUpdatePutExecute.call(this);
+			return mysqlUserUpdatePutExecute.call(this, itemIndex ?? 0);
 		case 'mysqlUserDeleteDelete':
-			return mysqlUserDeleteDeleteExecute.call(this);
+			return mysqlUserDeleteDeleteExecute.call(this, itemIndex ?? 0);
 		case 'mysqlNodeListGet':
-			return mysqlNodeListGetExecute.call(this);
+			return mysqlNodeListGetExecute.call(this, itemIndex ?? 0);
 		case 'mysqlNodeCreatePost':
-			return mysqlNodeCreatePostExecute.call(this);
+			return mysqlNodeCreatePostExecute.call(this, itemIndex ?? 0);
 		case 'mysqlNodeGetGet':
-			return mysqlNodeGetGetExecute.call(this);
+			return mysqlNodeGetGetExecute.call(this, itemIndex ?? 0);
 		case 'mysqlNodeUpdatePut':
-			return mysqlNodeUpdatePutExecute.call(this);
+			return mysqlNodeUpdatePutExecute.call(this, itemIndex ?? 0);
 		case 'mysqlNodeDeleteDelete':
-			return mysqlNodeDeleteDeleteExecute.call(this);
+			return mysqlNodeDeleteDeleteExecute.call(this, itemIndex ?? 0);
 		case 'mysqlIpRestrictionListGet':
-			return mysqlIpRestrictionListGetExecute.call(this);
+			return mysqlIpRestrictionListGetExecute.call(this, itemIndex ?? 0);
 		case 'mysqlIpRestrictionCreatePost':
-			return mysqlIpRestrictionCreatePostExecute.call(this);
+			return mysqlIpRestrictionCreatePostExecute.call(this, itemIndex ?? 0);
 		case 'mysqlLogSubscriptionListGet':
-			return mysqlLogSubscriptionListGetExecute.call(this);
+			return mysqlLogSubscriptionListGetExecute.call(this, itemIndex ?? 0);
 		case 'mysqlLogSubscriptionCreatePost':
-			return mysqlLogSubscriptionCreatePostExecute.call(this);
+			return mysqlLogSubscriptionCreatePostExecute.call(this, itemIndex ?? 0);
 		case 'mysqlLogSubscriptionGetGet':
-			return mysqlLogSubscriptionGetGetExecute.call(this);
+			return mysqlLogSubscriptionGetGetExecute.call(this, itemIndex ?? 0);
 		case 'mysqlMaintenanceGet':
-			return mysqlMaintenanceGetExecute.call(this);
+			return mysqlMaintenanceGetExecute.call(this, itemIndex ?? 0);
 		case 'mysqlMaintenanceUpdatePut':
-			return mysqlMaintenanceUpdatePutExecute.call(this);
+			return mysqlMaintenanceUpdatePutExecute.call(this, itemIndex ?? 0);
 		case 'mysqlMetricGet':
-			return mysqlMetricGetExecute.call(this);
+			return mysqlMetricGetExecute.call(this, itemIndex ?? 0);
 		case 'mysqlPrometheusGet':
-			return mysqlPrometheusGetExecute.call(this);
+			return mysqlPrometheusGetExecute.call(this, itemIndex ?? 0);
 		case 'mysqlCertificateListGet':
-			return mysqlCertificateListGetExecute.call(this);
+			return mysqlCertificateListGetExecute.call(this, itemIndex ?? 0);
 		case 'mysqlCertificateCreatePost':
-			return mysqlCertificateCreatePostExecute.call(this);
+			return mysqlCertificateCreatePostExecute.call(this, itemIndex ?? 0);
 		case 'mysqlIntegrationListGet':
-			return mysqlIntegrationListGetExecute.call(this);
+			return mysqlIntegrationListGetExecute.call(this, itemIndex ?? 0);
 		case 'mysqlIntegrationCreatePost':
-			return mysqlIntegrationCreatePostExecute.call(this);
+			return mysqlIntegrationCreatePostExecute.call(this, itemIndex ?? 0);
 		case 'opensearchAdvancedConfigurationListGet':
-			return opensearchAdvancedConfigurationListGetExecute.call(this);
+			return opensearchAdvancedConfigurationListGetExecute.call(this, itemIndex ?? 0);
 		case 'opensearchAdvancedConfigurationUpdatePut':
-			return opensearchAdvancedConfigurationUpdatePutExecute.call(this);
+			return opensearchAdvancedConfigurationUpdatePutExecute.call(this, itemIndex ?? 0);
 		case 'opensearchBackupGetGet':
-			return opensearchBackupGetGetExecute.call(this);
+			return opensearchBackupGetGetExecute.call(this, itemIndex ?? 0);
 		case 'opensearchBackupListGet':
-			return opensearchBackupListGetExecute.call(this);
+			return opensearchBackupListGetExecute.call(this, itemIndex ?? 0);
 		case 'opensearchCapabilitiesAdvancedConfigurationListGet':
-			return opensearchCapabilitiesAdvancedConfigurationListGetExecute.call(this);
+			return opensearchCapabilitiesAdvancedConfigurationListGetExecute.call(this, itemIndex ?? 0);
 		case 'opensearchCapabilitiesBackupRegionsListGet':
-			return opensearchCapabilitiesBackupRegionsListGetExecute.call(this);
+			return opensearchCapabilitiesBackupRegionsListGetExecute.call(this, itemIndex ?? 0);
 		case 'opensearchCapabilitiesIntegrationListGet':
-			return opensearchCapabilitiesIntegrationListGetExecute.call(this);
+			return opensearchCapabilitiesIntegrationListGetExecute.call(this, itemIndex ?? 0);
 		case 'opensearchClusterCreatePost':
-			return opensearchClusterCreatePostExecute.call(this);
+			return opensearchClusterCreatePostExecute.call(this, itemIndex ?? 0);
 		case 'opensearchClusterDeleteDelete':
-			return opensearchClusterDeleteDeleteExecute.call(this);
+			return opensearchClusterDeleteDeleteExecute.call(this, itemIndex ?? 0);
 		case 'opensearchClusterGetGet':
-			return opensearchClusterGetGetExecute.call(this);
+			return opensearchClusterGetGetExecute.call(this, itemIndex ?? 0);
 		case 'opensearchClusterListGet':
-			return opensearchClusterListGetExecute.call(this);
+			return opensearchClusterListGetExecute.call(this, itemIndex ?? 0);
 		case 'opensearchClusterUpdatePut':
-			return opensearchClusterUpdatePutExecute.call(this);
+			return opensearchClusterUpdatePutExecute.call(this, itemIndex ?? 0);
 		case 'opensearchIndexDeleteDelete':
-			return opensearchIndexDeleteDeleteExecute.call(this);
+			return opensearchIndexDeleteDeleteExecute.call(this, itemIndex ?? 0);
 		case 'opensearchIndexGetGet':
-			return opensearchIndexGetGetExecute.call(this);
+			return opensearchIndexGetGetExecute.call(this, itemIndex ?? 0);
 		case 'opensearchIndexListGet':
-			return opensearchIndexListGetExecute.call(this);
+			return opensearchIndexListGetExecute.call(this, itemIndex ?? 0);
 		case 'opensearchIntegrationCreatePost':
-			return opensearchIntegrationCreatePostExecute.call(this);
+			return opensearchIntegrationCreatePostExecute.call(this, itemIndex ?? 0);
 		case 'opensearchIntegrationDeleteDelete':
-			return opensearchIntegrationDeleteDeleteExecute.call(this);
+			return opensearchIntegrationDeleteDeleteExecute.call(this, itemIndex ?? 0);
 		case 'opensearchIntegrationGetGet':
-			return opensearchIntegrationGetGetExecute.call(this);
+			return opensearchIntegrationGetGetExecute.call(this, itemIndex ?? 0);
 		case 'opensearchIntegrationListGet':
-			return opensearchIntegrationListGetExecute.call(this);
+			return opensearchIntegrationListGetExecute.call(this, itemIndex ?? 0);
 		case 'opensearchIpRestrictionCreatePost':
-			return opensearchIpRestrictionCreatePostExecute.call(this);
+			return opensearchIpRestrictionCreatePostExecute.call(this, itemIndex ?? 0);
 		case 'opensearchIpRestrictionDeleteDelete':
-			return opensearchIpRestrictionDeleteDeleteExecute.call(this);
+			return opensearchIpRestrictionDeleteDeleteExecute.call(this, itemIndex ?? 0);
 		case 'opensearchIpRestrictionGetGet':
-			return opensearchIpRestrictionGetGetExecute.call(this);
+			return opensearchIpRestrictionGetGetExecute.call(this, itemIndex ?? 0);
 		case 'opensearchIpRestrictionListGet':
-			return opensearchIpRestrictionListGetExecute.call(this);
+			return opensearchIpRestrictionListGetExecute.call(this, itemIndex ?? 0);
 		case 'opensearchIpRestrictionUpdatePut':
-			return opensearchIpRestrictionUpdatePutExecute.call(this);
+			return opensearchIpRestrictionUpdatePutExecute.call(this, itemIndex ?? 0);
 		case 'opensearchLogKindGet':
-			return opensearchLogKindGetExecute.call(this);
+			return opensearchLogKindGetExecute.call(this, itemIndex ?? 0);
 		case 'opensearchLogKindListGet':
-			return opensearchLogKindListGetExecute.call(this);
+			return opensearchLogKindListGetExecute.call(this, itemIndex ?? 0);
 		case 'opensearchLogSubscriptionCreatePost':
-			return opensearchLogSubscriptionCreatePostExecute.call(this);
+			return opensearchLogSubscriptionCreatePostExecute.call(this, itemIndex ?? 0);
 		case 'opensearchLogSubscriptionDeleteDelete':
-			return opensearchLogSubscriptionDeleteDeleteExecute.call(this);
+			return opensearchLogSubscriptionDeleteDeleteExecute.call(this, itemIndex ?? 0);
 		case 'opensearchLogSubscriptionGet':
-			return opensearchLogSubscriptionGetExecute.call(this);
+			return opensearchLogSubscriptionGetExecute.call(this, itemIndex ?? 0);
 		case 'opensearchLogSubscriptionListGet':
-			return opensearchLogSubscriptionListGetExecute.call(this);
+			return opensearchLogSubscriptionListGetExecute.call(this, itemIndex ?? 0);
 		case 'opensearchLogUrlCreatePost':
-			return opensearchLogUrlCreatePostExecute.call(this);
+			return opensearchLogUrlCreatePostExecute.call(this, itemIndex ?? 0);
 		case 'opensearchLogsListGet':
-			return opensearchLogsListGetExecute.call(this);
+			return opensearchLogsListGetExecute.call(this, itemIndex ?? 0);
 		case 'opensearchMaintenanceApplyPost':
-			return opensearchMaintenanceApplyPostExecute.call(this);
+			return opensearchMaintenanceApplyPostExecute.call(this, itemIndex ?? 0);
 		case 'opensearchMaintenanceGetGet':
-			return opensearchMaintenanceGetGetExecute.call(this);
+			return opensearchMaintenanceGetGetExecute.call(this, itemIndex ?? 0);
 		case 'opensearchMaintenanceListGet':
-			return opensearchMaintenanceListGetExecute.call(this);
+			return opensearchMaintenanceListGetExecute.call(this, itemIndex ?? 0);
 		case 'opensearchMetricGetGet':
-			return opensearchMetricGetGetExecute.call(this);
+			return opensearchMetricGetGetExecute.call(this, itemIndex ?? 0);
 		case 'opensearchMetricListGet':
-			return opensearchMetricListGetExecute.call(this);
+			return opensearchMetricListGetExecute.call(this, itemIndex ?? 0);
 		case 'opensearchNodeGetGet':
-			return opensearchNodeGetGetExecute.call(this);
+			return opensearchNodeGetGetExecute.call(this, itemIndex ?? 0);
 		case 'opensearchNodeListGet':
-			return opensearchNodeListGetExecute.call(this);
+			return opensearchNodeListGetExecute.call(this, itemIndex ?? 0);
 		case 'opensearchPatternCreatePost':
-			return opensearchPatternCreatePostExecute.call(this);
+			return opensearchPatternCreatePostExecute.call(this, itemIndex ?? 0);
 		case 'opensearchPatternDeleteDelete':
-			return opensearchPatternDeleteDeleteExecute.call(this);
+			return opensearchPatternDeleteDeleteExecute.call(this, itemIndex ?? 0);
 		case 'opensearchPatternGetGet':
-			return opensearchPatternGetGetExecute.call(this);
+			return opensearchPatternGetGetExecute.call(this, itemIndex ?? 0);
 		case 'opensearchPatternListGet':
-			return opensearchPatternListGetExecute.call(this);
+			return opensearchPatternListGetExecute.call(this, itemIndex ?? 0);
 		case 'opensearchPermissionsListGet':
-			return opensearchPermissionsListGetExecute.call(this);
+			return opensearchPermissionsListGetExecute.call(this, itemIndex ?? 0);
 		case 'opensearchPrometheusCredentialsResetPost':
-			return opensearchPrometheusCredentialsResetPostExecute.call(this);
+			return opensearchPrometheusCredentialsResetPostExecute.call(this, itemIndex ?? 0);
 		case 'opensearchPrometheusListGet':
-			return opensearchPrometheusListGetExecute.call(this);
+			return opensearchPrometheusListGetExecute.call(this, itemIndex ?? 0);
 		case 'opensearchUserCreatePost':
-			return opensearchUserCreatePostExecute.call(this);
+			return opensearchUserCreatePostExecute.call(this, itemIndex ?? 0);
 		case 'opensearchUserCredentialsResetPost':
-			return opensearchUserCredentialsResetPostExecute.call(this);
+			return opensearchUserCredentialsResetPostExecute.call(this, itemIndex ?? 0);
 		case 'opensearchUserDeleteDelete':
-			return opensearchUserDeleteDeleteExecute.call(this);
+			return opensearchUserDeleteDeleteExecute.call(this, itemIndex ?? 0);
 		case 'opensearchUserGetGet':
-			return opensearchUserGetGetExecute.call(this);
+			return opensearchUserGetGetExecute.call(this, itemIndex ?? 0);
 		case 'opensearchUserListGet':
-			return opensearchUserListGetExecute.call(this);
+			return opensearchUserListGetExecute.call(this, itemIndex ?? 0);
 		case 'opensearchUserUpdatePut':
-			return opensearchUserUpdatePutExecute.call(this);
+			return opensearchUserUpdatePutExecute.call(this, itemIndex ?? 0);
 		case 'postgresqlClusterListGet':
-			return postgresqlClusterListGetExecute.call(this);
+			return postgresqlClusterListGetExecute.call(this, itemIndex ?? 0);
 		case 'postgresqlClusterGetGet':
-			return postgresqlClusterGetGetExecute.call(this);
+			return postgresqlClusterGetGetExecute.call(this, itemIndex ?? 0);
 		case 'postgresqlClusterCreatePost':
-			return postgresqlClusterCreatePostExecute.call(this);
+			return postgresqlClusterCreatePostExecute.call(this, itemIndex ?? 0);
 		case 'postgresqlClusterUpdatePut':
-			return postgresqlClusterUpdatePutExecute.call(this);
+			return postgresqlClusterUpdatePutExecute.call(this, itemIndex ?? 0);
 		case 'postgresqlClusterDeleteDelete':
-			return postgresqlClusterDeleteDeleteExecute.call(this);
+			return postgresqlClusterDeleteDeleteExecute.call(this, itemIndex ?? 0);
 		case 'postgresqlBackupListGet':
-			return postgresqlBackupListGetExecute.call(this);
+			return postgresqlBackupListGetExecute.call(this, itemIndex ?? 0);
 		case 'postgresqlBackupCreatePost':
-			return postgresqlBackupCreatePostExecute.call(this);
+			return postgresqlBackupCreatePostExecute.call(this, itemIndex ?? 0);
 		case 'postgresqlBackupGetGet':
-			return postgresqlBackupGetGetExecute.call(this);
+			return postgresqlBackupGetGetExecute.call(this, itemIndex ?? 0);
 		case 'postgresqlBackupDeleteDelete':
-			return postgresqlBackupDeleteDeleteExecute.call(this);
+			return postgresqlBackupDeleteDeleteExecute.call(this, itemIndex ?? 0);
 		case 'postgresqlUserListGet':
-			return postgresqlUserListGetExecute.call(this);
+			return postgresqlUserListGetExecute.call(this, itemIndex ?? 0);
 		case 'postgresqlUserCreatePost':
-			return postgresqlUserCreatePostExecute.call(this);
+			return postgresqlUserCreatePostExecute.call(this, itemIndex ?? 0);
 		case 'postgresqlUserGetGet':
-			return postgresqlUserGetGetExecute.call(this);
+			return postgresqlUserGetGetExecute.call(this, itemIndex ?? 0);
 		case 'postgresqlUserUpdatePut':
-			return postgresqlUserUpdatePutExecute.call(this);
+			return postgresqlUserUpdatePutExecute.call(this, itemIndex ?? 0);
 		case 'postgresqlUserDeleteDelete':
-			return postgresqlUserDeleteDeleteExecute.call(this);
+			return postgresqlUserDeleteDeleteExecute.call(this, itemIndex ?? 0);
 		case 'postgresqlNodeListGet':
-			return postgresqlNodeListGetExecute.call(this);
+			return postgresqlNodeListGetExecute.call(this, itemIndex ?? 0);
 		case 'postgresqlNodeCreatePost':
-			return postgresqlNodeCreatePostExecute.call(this);
+			return postgresqlNodeCreatePostExecute.call(this, itemIndex ?? 0);
 		case 'postgresqlNodeGetGet':
-			return postgresqlNodeGetGetExecute.call(this);
+			return postgresqlNodeGetGetExecute.call(this, itemIndex ?? 0);
 		case 'postgresqlNodeUpdatePut':
-			return postgresqlNodeUpdatePutExecute.call(this);
+			return postgresqlNodeUpdatePutExecute.call(this, itemIndex ?? 0);
 		case 'postgresqlNodeDeleteDelete':
-			return postgresqlNodeDeleteDeleteExecute.call(this);
+			return postgresqlNodeDeleteDeleteExecute.call(this, itemIndex ?? 0);
 		case 'postgresqlIpRestrictionListGet':
-			return postgresqlIpRestrictionListGetExecute.call(this);
+			return postgresqlIpRestrictionListGetExecute.call(this, itemIndex ?? 0);
 		case 'postgresqlIpRestrictionCreatePost':
-			return postgresqlIpRestrictionCreatePostExecute.call(this);
+			return postgresqlIpRestrictionCreatePostExecute.call(this, itemIndex ?? 0);
 		case 'postgresqlLogSubscriptionListGet':
-			return postgresqlLogSubscriptionListGetExecute.call(this);
+			return postgresqlLogSubscriptionListGetExecute.call(this, itemIndex ?? 0);
 		case 'postgresqlLogSubscriptionCreatePost':
-			return postgresqlLogSubscriptionCreatePostExecute.call(this);
+			return postgresqlLogSubscriptionCreatePostExecute.call(this, itemIndex ?? 0);
 		case 'postgresqlLogSubscriptionGetGet':
-			return postgresqlLogSubscriptionGetGetExecute.call(this);
+			return postgresqlLogSubscriptionGetGetExecute.call(this, itemIndex ?? 0);
 		case 'postgresqlMaintenanceGet':
-			return postgresqlMaintenanceGetExecute.call(this);
+			return postgresqlMaintenanceGetExecute.call(this, itemIndex ?? 0);
 		case 'postgresqlMaintenanceUpdatePut':
-			return postgresqlMaintenanceUpdatePutExecute.call(this);
+			return postgresqlMaintenanceUpdatePutExecute.call(this, itemIndex ?? 0);
 		case 'postgresqlMetricGet':
-			return postgresqlMetricGetExecute.call(this);
+			return postgresqlMetricGetExecute.call(this, itemIndex ?? 0);
 		case 'postgresqlPrometheusGet':
-			return postgresqlPrometheusGetExecute.call(this);
+			return postgresqlPrometheusGetExecute.call(this, itemIndex ?? 0);
 		case 'postgresqlCertificateListGet':
-			return postgresqlCertificateListGetExecute.call(this);
+			return postgresqlCertificateListGetExecute.call(this, itemIndex ?? 0);
 		case 'postgresqlCertificateCreatePost':
-			return postgresqlCertificateCreatePostExecute.call(this);
+			return postgresqlCertificateCreatePostExecute.call(this, itemIndex ?? 0);
 		case 'postgresqlIntegrationListGet':
-			return postgresqlIntegrationListGetExecute.call(this);
+			return postgresqlIntegrationListGetExecute.call(this, itemIndex ?? 0);
 		case 'postgresqlIntegrationCreatePost':
-			return postgresqlIntegrationCreatePostExecute.call(this);
+			return postgresqlIntegrationCreatePostExecute.call(this, itemIndex ?? 0);
 		case 'kubeAuditLogsPost':
-			return kubeAuditLogsPostExecute.call(this);
+			return kubeAuditLogsPostExecute.call(this, itemIndex ?? 0);
 		case 'kubeCustomizationGet':
-			return kubeCustomizationGetExecute.call(this);
+			return kubeCustomizationGetExecute.call(this, itemIndex ?? 0);
 		case 'kubeCustomizationUpdatePut':
-			return kubeCustomizationUpdatePutExecute.call(this);
+			return kubeCustomizationUpdatePutExecute.call(this, itemIndex ?? 0);
 		case 'kubeDeleteDelete':
-			return kubeDeleteDeleteExecute.call(this);
+			return kubeDeleteDeleteExecute.call(this, itemIndex ?? 0);
 		case 'kubeFlavorsGet':
-			return kubeFlavorsGetExecute.call(this);
+			return kubeFlavorsGetExecute.call(this, itemIndex ?? 0);
 		case 'kubeGetGet':
-			return kubeGetGetExecute.call(this);
+			return kubeGetGetExecute.call(this, itemIndex ?? 0);
 		case 'kubeIpRestrictionsDeleteDelete':
-			return kubeIpRestrictionsDeleteDeleteExecute.call(this);
+			return kubeIpRestrictionsDeleteDeleteExecute.call(this, itemIndex ?? 0);
 		case 'kubeIpRestrictionsGet':
-			return kubeIpRestrictionsGetExecute.call(this);
+			return kubeIpRestrictionsGetExecute.call(this, itemIndex ?? 0);
 		case 'kubeIpRestrictionsPost':
-			return kubeIpRestrictionsPostExecute.call(this);
+			return kubeIpRestrictionsPostExecute.call(this, itemIndex ?? 0);
 		case 'kubeIpRestrictionsUpdatePut':
-			return kubeIpRestrictionsUpdatePutExecute.call(this);
+			return kubeIpRestrictionsUpdatePutExecute.call(this, itemIndex ?? 0);
 		case 'kubeKubeconfigPost':
-			return kubeKubeconfigPostExecute.call(this);
+			return kubeKubeconfigPostExecute.call(this, itemIndex ?? 0);
 		case 'kubeKubeconfigResetPost':
-			return kubeKubeconfigResetPostExecute.call(this);
+			return kubeKubeconfigResetPostExecute.call(this, itemIndex ?? 0);
 		case 'kubeListGet':
-			return kubeListGetExecute.call(this);
+			return kubeListGetExecute.call(this, itemIndex ?? 0);
 		case 'kubeLogSubscriptionDeleteDelete':
-			return kubeLogSubscriptionDeleteDeleteExecute.call(this);
+			return kubeLogSubscriptionDeleteDeleteExecute.call(this, itemIndex ?? 0);
 		case 'kubeLogSubscriptionGet':
-			return kubeLogSubscriptionGetExecute.call(this);
+			return kubeLogSubscriptionGetExecute.call(this, itemIndex ?? 0);
 		case 'kubeLogSubscriptionPost':
-			return kubeLogSubscriptionPostExecute.call(this);
+			return kubeLogSubscriptionPostExecute.call(this, itemIndex ?? 0);
 		case 'kubeLogSubscriptionListGet':
-			return kubeLogSubscriptionListGetExecute.call(this);
+			return kubeLogSubscriptionListGetExecute.call(this, itemIndex ?? 0);
 		case 'kubeLogUrlPost':
-			return kubeLogUrlPostExecute.call(this);
+			return kubeLogUrlPostExecute.call(this, itemIndex ?? 0);
 		case 'kubeMetricsEtcdUsageGet':
-			return kubeMetricsEtcdUsageGetExecute.call(this);
+			return kubeMetricsEtcdUsageGetExecute.call(this, itemIndex ?? 0);
 		case 'kubeNodeDeleteDelete':
-			return kubeNodeDeleteDeleteExecute.call(this);
+			return kubeNodeDeleteDeleteExecute.call(this, itemIndex ?? 0);
 		case 'kubeNodeGet':
-			return kubeNodeGetExecute.call(this);
+			return kubeNodeGetExecute.call(this, itemIndex ?? 0);
 		case 'kubeNodeListGet':
-			return kubeNodeListGetExecute.call(this);
+			return kubeNodeListGetExecute.call(this, itemIndex ?? 0);
 		case 'kubeNodepoolCreatePost':
-			return kubeNodepoolCreatePostExecute.call(this);
+			return kubeNodepoolCreatePostExecute.call(this, itemIndex ?? 0);
 		case 'kubeNodepoolListGet':
-			return kubeNodepoolListGetExecute.call(this);
+			return kubeNodepoolListGetExecute.call(this, itemIndex ?? 0);
 		case 'kubeNodepoolDeleteDelete':
-			return kubeNodepoolDeleteDeleteExecute.call(this);
+			return kubeNodepoolDeleteDeleteExecute.call(this, itemIndex ?? 0);
 		case 'kubeNodepoolGetGet':
-			return kubeNodepoolGetGetExecute.call(this);
+			return kubeNodepoolGetGetExecute.call(this, itemIndex ?? 0);
 		case 'kubeNodepoolListNodepoolNodesGet':
-			return kubeNodepoolListNodepoolNodesGetExecute.call(this);
+			return kubeNodepoolListNodepoolNodesGetExecute.call(this, itemIndex ?? 0);
 		case 'kubeNodepoolUpdatePut':
-			return kubeNodepoolUpdatePutExecute.call(this);
+			return kubeNodepoolUpdatePutExecute.call(this, itemIndex ?? 0);
 		case 'kubeOpenIdConnectDeleteDelete':
-			return kubeOpenIdConnectDeleteDeleteExecute.call(this);
+			return kubeOpenIdConnectDeleteDeleteExecute.call(this, itemIndex ?? 0);
 		case 'kubeOpenIdConnectGet':
-			return kubeOpenIdConnectGetExecute.call(this);
+			return kubeOpenIdConnectGetExecute.call(this, itemIndex ?? 0);
 		case 'kubeOpenIdConnectPost':
-			return kubeOpenIdConnectPostExecute.call(this);
+			return kubeOpenIdConnectPostExecute.call(this, itemIndex ?? 0);
 		case 'kubeOpenIdConnectUpdatePut':
-			return kubeOpenIdConnectUpdatePutExecute.call(this);
+			return kubeOpenIdConnectUpdatePutExecute.call(this, itemIndex ?? 0);
 		case 'kubePrivateNetworkConfigurationGet':
-			return kubePrivateNetworkConfigurationGetExecute.call(this);
+			return kubePrivateNetworkConfigurationGetExecute.call(this, itemIndex ?? 0);
 		case 'kubePrivateNetworkConfigurationUpdatePut':
-			return kubePrivateNetworkConfigurationUpdatePutExecute.call(this);
+			return kubePrivateNetworkConfigurationUpdatePutExecute.call(this, itemIndex ?? 0);
 		case 'kubeResetPost':
-			return kubeResetPostExecute.call(this);
+			return kubeResetPostExecute.call(this, itemIndex ?? 0);
 		case 'kubeRestartPost':
-			return kubeRestartPostExecute.call(this);
+			return kubeRestartPostExecute.call(this, itemIndex ?? 0);
 		case 'kubeUpdateLoadBalancersSubnetIdUpdatePut':
-			return kubeUpdateLoadBalancersSubnetIdUpdatePutExecute.call(this);
+			return kubeUpdateLoadBalancersSubnetIdUpdatePutExecute.call(this, itemIndex ?? 0);
 		case 'kubeUpdatePolicyUpdatePut':
-			return kubeUpdatePolicyUpdatePutExecute.call(this);
+			return kubeUpdatePolicyUpdatePutExecute.call(this, itemIndex ?? 0);
 		case 'kubeUpdatePost':
-			return kubeUpdatePostExecute.call(this);
+			return kubeUpdatePostExecute.call(this, itemIndex ?? 0);
 		case 'kubeUpdatePut':
-			return kubeUpdatePutExecute.call(this);
+			return kubeUpdatePutExecute.call(this, itemIndex ?? 0);
 		case 'instanceActiveMonthlyBillingPost':
-			return instanceActiveMonthlyBillingPostExecute.call(this);
+			return instanceActiveMonthlyBillingPostExecute.call(this, itemIndex ?? 0);
 		case 'instanceApplicationAccessPost':
-			return instanceApplicationAccessPostExecute.call(this);
+			return instanceApplicationAccessPostExecute.call(this, itemIndex ?? 0);
 		case 'instanceBulkPost':
-			return instanceBulkPostExecute.call(this);
+			return instanceBulkPostExecute.call(this, itemIndex ?? 0);
 		case 'instanceCreatePost':
-			return instanceCreatePostExecute.call(this);
+			return instanceCreatePostExecute.call(this, itemIndex ?? 0);
 		case 'instanceDeleteDelete':
-			return instanceDeleteDeleteExecute.call(this);
+			return instanceDeleteDeleteExecute.call(this, itemIndex ?? 0);
 		case 'instanceGetGet':
-			return instanceGetGetExecute.call(this);
+			return instanceGetGetExecute.call(this, itemIndex ?? 0);
 		case 'instanceGroupCreatePost':
-			return instanceGroupCreatePostExecute.call(this);
+			return instanceGroupCreatePostExecute.call(this, itemIndex ?? 0);
 		case 'instanceGroupDeleteDelete':
-			return instanceGroupDeleteDeleteExecute.call(this);
+			return instanceGroupDeleteDeleteExecute.call(this, itemIndex ?? 0);
 		case 'instanceGroupGetGet':
-			return instanceGroupGetGetExecute.call(this);
+			return instanceGroupGetGetExecute.call(this, itemIndex ?? 0);
 		case 'instanceGroupListGet':
-			return instanceGroupListGetExecute.call(this);
+			return instanceGroupListGetExecute.call(this, itemIndex ?? 0);
 		case 'instanceInterfaceCreatePost':
-			return instanceInterfaceCreatePostExecute.call(this);
+			return instanceInterfaceCreatePostExecute.call(this, itemIndex ?? 0);
 		case 'instanceInterfaceDeleteDelete':
-			return instanceInterfaceDeleteDeleteExecute.call(this);
+			return instanceInterfaceDeleteDeleteExecute.call(this, itemIndex ?? 0);
 		case 'instanceInterfaceGetGet':
-			return instanceInterfaceGetGetExecute.call(this);
+			return instanceInterfaceGetGetExecute.call(this, itemIndex ?? 0);
 		case 'instanceInterfaceListGet':
-			return instanceInterfaceListGetExecute.call(this);
+			return instanceInterfaceListGetExecute.call(this, itemIndex ?? 0);
 		case 'instanceListGet':
-			return instanceListGetExecute.call(this);
+			return instanceListGetExecute.call(this, itemIndex ?? 0);
 		case 'instanceRebootPost':
-			return instanceRebootPostExecute.call(this);
+			return instanceRebootPostExecute.call(this, itemIndex ?? 0);
 		case 'instanceReinstallPost':
-			return instanceReinstallPostExecute.call(this);
+			return instanceReinstallPostExecute.call(this, itemIndex ?? 0);
 		case 'instanceRescueModePost':
-			return instanceRescueModePostExecute.call(this);
+			return instanceRescueModePostExecute.call(this, itemIndex ?? 0);
 		case 'instanceResizePost':
-			return instanceResizePostExecute.call(this);
+			return instanceResizePostExecute.call(this, itemIndex ?? 0);
 		case 'instanceResumePost':
-			return instanceResumePostExecute.call(this);
+			return instanceResumePostExecute.call(this, itemIndex ?? 0);
 		case 'instanceShelvePost':
-			return instanceShelvePostExecute.call(this);
+			return instanceShelvePostExecute.call(this, itemIndex ?? 0);
 		case 'instanceSnapshotPost':
-			return instanceSnapshotPostExecute.call(this);
+			return instanceSnapshotPostExecute.call(this, itemIndex ?? 0);
 		case 'instanceStartPost':
-			return instanceStartPostExecute.call(this);
+			return instanceStartPostExecute.call(this, itemIndex ?? 0);
 		case 'instanceStopPost':
-			return instanceStopPostExecute.call(this);
+			return instanceStopPostExecute.call(this, itemIndex ?? 0);
 		case 'instanceUnshelvePost':
-			return instanceUnshelvePostExecute.call(this);
+			return instanceUnshelvePostExecute.call(this, itemIndex ?? 0);
 		case 'instanceUpdatePut':
-			return instanceUpdatePutExecute.call(this);
+			return instanceUpdatePutExecute.call(this, itemIndex ?? 0);
 		case 'instanceVncPost':
-			return instanceVncPostExecute.call(this);
+			return instanceVncPostExecute.call(this, itemIndex ?? 0);
 		case 'networkCreatePrivateNetworkPost':
-			return networkCreatePrivateNetworkPostExecute.call(this);
+			return networkCreatePrivateNetworkPostExecute.call(this, itemIndex ?? 0);
 		case 'networkCreateSubnetPost':
-			return networkCreateSubnetPostExecute.call(this);
+			return networkCreateSubnetPostExecute.call(this, itemIndex ?? 0);
 		case 'networkDeletePrivateNetworkDelete':
-			return networkDeletePrivateNetworkDeleteExecute.call(this);
+			return networkDeletePrivateNetworkDeleteExecute.call(this, itemIndex ?? 0);
 		case 'networkDeleteSubnetDelete':
-			return networkDeleteSubnetDeleteExecute.call(this);
+			return networkDeleteSubnetDeleteExecute.call(this, itemIndex ?? 0);
 		case 'networkGetPrivateNetworkDetailGet':
-			return networkGetPrivateNetworkDetailGetExecute.call(this);
+			return networkGetPrivateNetworkDetailGetExecute.call(this, itemIndex ?? 0);
 		case 'networkGetSubnetDetailGet':
-			return networkGetSubnetDetailGetExecute.call(this);
+			return networkGetSubnetDetailGetExecute.call(this, itemIndex ?? 0);
 		case 'networkListPrivateNetworksGet':
-			return networkListPrivateNetworksGetExecute.call(this);
+			return networkListPrivateNetworksGetExecute.call(this, itemIndex ?? 0);
 		case 'networkListPublicNetworksGet':
-			return networkListPublicNetworksGetExecute.call(this);
+			return networkListPublicNetworksGetExecute.call(this, itemIndex ?? 0);
 		case 'networkListSubnetsGet':
-			return networkListSubnetsGetExecute.call(this);
+			return networkListSubnetsGetExecute.call(this, itemIndex ?? 0);
 		case 'networkUpdatePrivateNetworkPut':
-			return networkUpdatePrivateNetworkPutExecute.call(this);
+			return networkUpdatePrivateNetworkPutExecute.call(this, itemIndex ?? 0);
 		case 'networkUpdateSubnetPut':
-			return networkUpdateSubnetPutExecute.call(this);
+			return networkUpdateSubnetPutExecute.call(this, itemIndex ?? 0);
 		case 'networkActivatePrivateNetworkRegionPost':
-			return networkActivatePrivateNetworkRegionPostExecute.call(this);
+			return networkActivatePrivateNetworkRegionPostExecute.call(this, itemIndex ?? 0);
 		case 'regionGetGet':
-			return regionGetGetExecute.call(this);
+			return regionGetGetExecute.call(this, itemIndex ?? 0);
 		case 'regionListGet':
-			return regionListGetExecute.call(this);
+			return regionListGetExecute.call(this, itemIndex ?? 0);
 		case 'regionShareCreatePost':
-			return regionShareCreatePostExecute.call(this);
+			return regionShareCreatePostExecute.call(this, itemIndex ?? 0);
 		case 'regionShareDeleteDelete':
-			return regionShareDeleteDeleteExecute.call(this);
+			return regionShareDeleteDeleteExecute.call(this, itemIndex ?? 0);
 		case 'regionShareGetGet':
-			return regionShareGetGetExecute.call(this);
+			return regionShareGetGetExecute.call(this, itemIndex ?? 0);
 		case 'regionShareListGet':
-			return regionShareListGetExecute.call(this);
+			return regionShareListGetExecute.call(this, itemIndex ?? 0);
 		case 'regionShareSnapshotCreatePost':
-			return regionShareSnapshotCreatePostExecute.call(this);
+			return regionShareSnapshotCreatePostExecute.call(this, itemIndex ?? 0);
 		case 'regionShareSnapshotDeleteDelete':
-			return regionShareSnapshotDeleteDeleteExecute.call(this);
+			return regionShareSnapshotDeleteDeleteExecute.call(this, itemIndex ?? 0);
 		case 'regionShareSnapshotGetGet':
-			return regionShareSnapshotGetGetExecute.call(this);
+			return regionShareSnapshotGetGetExecute.call(this, itemIndex ?? 0);
 		case 'regionShareSnapshotListGet':
-			return regionShareSnapshotListGetExecute.call(this);
+			return regionShareSnapshotListGetExecute.call(this, itemIndex ?? 0);
 		case 'regionShareUpdatePut':
-			return regionShareUpdatePutExecute.call(this);
+			return regionShareUpdatePutExecute.call(this, itemIndex ?? 0);
 		case 'regionVolumeCreatePost':
-			return regionVolumeCreatePostExecute.call(this);
+			return regionVolumeCreatePostExecute.call(this, itemIndex ?? 0);
 		case 'regionVolumeDeleteDelete':
-			return regionVolumeDeleteDeleteExecute.call(this);
+			return regionVolumeDeleteDeleteExecute.call(this, itemIndex ?? 0);
 		case 'regionVolumeGetGet':
-			return regionVolumeGetGetExecute.call(this);
+			return regionVolumeGetGetExecute.call(this, itemIndex ?? 0);
 		case 'regionVolumeListGet':
-			return regionVolumeListGetExecute.call(this);
+			return regionVolumeListGetExecute.call(this, itemIndex ?? 0);
 		case 'regionVolumeUpdatePut':
-			return regionVolumeUpdatePutExecute.call(this);
+			return regionVolumeUpdatePutExecute.call(this, itemIndex ?? 0);
 		case 'regionWorkflowBackupCreatePost':
-			return regionWorkflowBackupCreatePostExecute.call(this);
+			return regionWorkflowBackupCreatePostExecute.call(this, itemIndex ?? 0);
 		case 'regionWorkflowBackupDeleteDelete':
-			return regionWorkflowBackupDeleteDeleteExecute.call(this);
+			return regionWorkflowBackupDeleteDeleteExecute.call(this, itemIndex ?? 0);
 		case 'regionWorkflowBackupGetGet':
-			return regionWorkflowBackupGetGetExecute.call(this);
+			return regionWorkflowBackupGetGetExecute.call(this, itemIndex ?? 0);
 		case 'regionWorkflowBackupUpdatePut':
-			return regionWorkflowBackupUpdatePutExecute.call(this);
+			return regionWorkflowBackupUpdatePutExecute.call(this, itemIndex ?? 0);
 		case 'regionColdArchiveListGet':
-			return regionColdArchiveListGetExecute.call(this);
+			return regionColdArchiveListGetExecute.call(this, itemIndex ?? 0);
 		case 'regionColdArchiveCreatePost':
-			return regionColdArchiveCreatePostExecute.call(this);
+			return regionColdArchiveCreatePostExecute.call(this, itemIndex ?? 0);
 		case 'regionColdArchiveDeleteDelete':
-			return regionColdArchiveDeleteDeleteExecute.call(this);
+			return regionColdArchiveDeleteDeleteExecute.call(this, itemIndex ?? 0);
 		case 'regionColdArchiveGetGet':
-			return regionColdArchiveGetGetExecute.call(this);
+			return regionColdArchiveGetGetExecute.call(this, itemIndex ?? 0);
 		case 'regionColdArchiveArchivePost':
-			return regionColdArchiveArchivePostExecute.call(this);
+			return regionColdArchiveArchivePostExecute.call(this, itemIndex ?? 0);
 		case 'regionColdArchiveDestroyPost':
-			return regionColdArchiveDestroyPostExecute.call(this);
+			return regionColdArchiveDestroyPostExecute.call(this, itemIndex ?? 0);
 		case 'regionColdArchiveObjectDeleteDelete':
-			return regionColdArchiveObjectDeleteDeleteExecute.call(this);
+			return regionColdArchiveObjectDeleteDeleteExecute.call(this, itemIndex ?? 0);
 		case 'regionColdArchivePolicyCreatePost':
-			return regionColdArchivePolicyCreatePostExecute.call(this);
+			return regionColdArchivePolicyCreatePostExecute.call(this, itemIndex ?? 0);
 		case 'regionColdArchivePresignPost':
-			return regionColdArchivePresignPostExecute.call(this);
+			return regionColdArchivePresignPostExecute.call(this, itemIndex ?? 0);
 		case 'regionColdArchiveRestorePost':
-			return regionColdArchiveRestorePostExecute.call(this);
+			return regionColdArchiveRestorePostExecute.call(this, itemIndex ?? 0);
 		case 'regionStorageListGet':
-			return regionStorageListGetExecute.call(this);
+			return regionStorageListGetExecute.call(this, itemIndex ?? 0);
 		case 'regionStorageCreatePost':
-			return regionStorageCreatePostExecute.call(this);
+			return regionStorageCreatePostExecute.call(this, itemIndex ?? 0);
 		case 'regionStorageDeleteDelete':
-			return regionStorageDeleteDeleteExecute.call(this);
+			return regionStorageDeleteDeleteExecute.call(this, itemIndex ?? 0);
 		case 'regionStorageGetGet':
-			return regionStorageGetGetExecute.call(this);
+			return regionStorageGetGetExecute.call(this, itemIndex ?? 0);
 		case 'regionStorageUpdatePut':
-			return regionStorageUpdatePutExecute.call(this);
+			return regionStorageUpdatePutExecute.call(this, itemIndex ?? 0);
 		case 'regionStorageBulkDeleteObjectsPost':
-			return regionStorageBulkDeleteObjectsPostExecute.call(this);
+			return regionStorageBulkDeleteObjectsPostExecute.call(this, itemIndex ?? 0);
 		case 'regionStorageReplicationListGet':
-			return regionStorageReplicationListGetExecute.call(this);
+			return regionStorageReplicationListGetExecute.call(this, itemIndex ?? 0);
 		case 'regionStorageReplicationCreatePost':
-			return regionStorageReplicationCreatePostExecute.call(this);
+			return regionStorageReplicationCreatePostExecute.call(this, itemIndex ?? 0);
 		case 'regionStorageLifecycleDeleteDelete':
-			return regionStorageLifecycleDeleteDeleteExecute.call(this);
+			return regionStorageLifecycleDeleteDeleteExecute.call(this, itemIndex ?? 0);
 		case 'regionStorageLifecycleGetGet':
-			return regionStorageLifecycleGetGetExecute.call(this);
+			return regionStorageLifecycleGetGetExecute.call(this, itemIndex ?? 0);
 		case 'regionStorageLifecycleUpdatePut':
-			return regionStorageLifecycleUpdatePutExecute.call(this);
+			return regionStorageLifecycleUpdatePutExecute.call(this, itemIndex ?? 0);
 		case 'regionStorageObjectListGet':
-			return regionStorageObjectListGetExecute.call(this);
+			return regionStorageObjectListGetExecute.call(this, itemIndex ?? 0);
 		case 'regionStorageObjectCreatePost':
-			return regionStorageObjectCreatePostExecute.call(this);
+			return regionStorageObjectCreatePostExecute.call(this, itemIndex ?? 0);
 		case 'regionStorageObjectDeleteDelete':
-			return regionStorageObjectDeleteDeleteExecute.call(this);
+			return regionStorageObjectDeleteDeleteExecute.call(this, itemIndex ?? 0);
 		case 'regionStorageObjectGetGet':
-			return regionStorageObjectGetGetExecute.call(this);
+			return regionStorageObjectGetGetExecute.call(this, itemIndex ?? 0);
 		case 'regionStorageObjectUpdatePut':
-			return regionStorageObjectUpdatePutExecute.call(this);
+			return regionStorageObjectUpdatePutExecute.call(this, itemIndex ?? 0);
 		case 'regionStorageObjectCopyPost':
-			return regionStorageObjectCopyPostExecute.call(this);
+			return regionStorageObjectCopyPostExecute.call(this, itemIndex ?? 0);
 		case 'regionStorageObjectRestorePost':
-			return regionStorageObjectRestorePostExecute.call(this);
+			return regionStorageObjectRestorePostExecute.call(this, itemIndex ?? 0);
 		case 'regionStorageObjectVersionListGet':
-			return regionStorageObjectVersionListGetExecute.call(this);
+			return regionStorageObjectVersionListGetExecute.call(this, itemIndex ?? 0);
 		case 'regionStorageObjectVersionDeleteDelete':
-			return regionStorageObjectVersionDeleteDeleteExecute.call(this);
+			return regionStorageObjectVersionDeleteDeleteExecute.call(this, itemIndex ?? 0);
 
 		case 'regionInstanceListGet':
-			return regionInstanceListGetExecute.call(this);
+			return regionInstanceListGetExecute.call(this, itemIndex ?? 0);
 		case 'regionInstanceGetGet':
-			return regionInstanceGetGetExecute.call(this);
+			return regionInstanceGetGetExecute.call(this, itemIndex ?? 0);
 		case 'regionInstanceAbortSnapshotPost':
-			return regionInstanceAbortSnapshotPostExecute.call(this);
+			return regionInstanceAbortSnapshotPostExecute.call(this, itemIndex ?? 0);
 		case 'regionInstanceAssociateFloatingIpPost':
-			return regionInstanceAssociateFloatingIpPostExecute.call(this);
+			return regionInstanceAssociateFloatingIpPostExecute.call(this, itemIndex ?? 0);
 		case 'regionInstanceAutobackupPost':
-			return regionInstanceAutobackupPostExecute.call(this);
+			return regionInstanceAutobackupPostExecute.call(this, itemIndex ?? 0);
 		case 'regionInstanceFloatingIpPost':
-			return regionInstanceFloatingIpPostExecute.call(this);
+			return regionInstanceFloatingIpPostExecute.call(this, itemIndex ?? 0);
 		case 'regionInstanceReinstallPost':
-			return regionInstanceReinstallPostExecute.call(this);
+			return regionInstanceReinstallPostExecute.call(this, itemIndex ?? 0);
 		case 'regionInstanceSnapshotPost':
-			return regionInstanceSnapshotPostExecute.call(this);
+			return regionInstanceSnapshotPostExecute.call(this, itemIndex ?? 0);
 		case 'regionKeymanagerCertificateListGet':
-			return regionKeymanagerCertificateListGetExecute.call(this);
+			return regionKeymanagerCertificateListGetExecute.call(this, itemIndex ?? 0);
 		case 'regionKeymanagerCertificateCreatePost':
-			return regionKeymanagerCertificateCreatePostExecute.call(this);
+			return regionKeymanagerCertificateCreatePostExecute.call(this, itemIndex ?? 0);
 		case 'regionKeymanagerCertificateDeleteDelete':
-			return regionKeymanagerCertificateDeleteDeleteExecute.call(this);
+			return regionKeymanagerCertificateDeleteDeleteExecute.call(this, itemIndex ?? 0);
 		case 'regionKeymanagerCertificateGetGet':
-			return regionKeymanagerCertificateGetGetExecute.call(this);
+			return regionKeymanagerCertificateGetGetExecute.call(this, itemIndex ?? 0);
 		case 'regionKeymanagerSecretListGet':
-			return regionKeymanagerSecretListGetExecute.call(this);
+			return regionKeymanagerSecretListGetExecute.call(this, itemIndex ?? 0);
 		case 'regionKeymanagerSecretCreatePost':
-			return regionKeymanagerSecretCreatePostExecute.call(this);
+			return regionKeymanagerSecretCreatePostExecute.call(this, itemIndex ?? 0);
 		case 'regionKeymanagerSecretDeleteDelete':
-			return regionKeymanagerSecretDeleteDeleteExecute.call(this);
+			return regionKeymanagerSecretDeleteDeleteExecute.call(this, itemIndex ?? 0);
 		case 'regionKeymanagerSecretGetGet':
-			return regionKeymanagerSecretGetGetExecute.call(this);
+			return regionKeymanagerSecretGetGetExecute.call(this, itemIndex ?? 0);
 		case 'regionNetworkListGet':
-			return regionNetworkListGetExecute.call(this);
+			return regionNetworkListGetExecute.call(this, itemIndex ?? 0);
 		case 'regionNetworkCreatePost':
-			return regionNetworkCreatePostExecute.call(this);
+			return regionNetworkCreatePostExecute.call(this, itemIndex ?? 0);
 		case 'regionNetworkDeleteDelete':
-			return regionNetworkDeleteDeleteExecute.call(this);
+			return regionNetworkDeleteDeleteExecute.call(this, itemIndex ?? 0);
 		case 'regionNetworkGetGet':
-			return regionNetworkGetGetExecute.call(this);
+			return regionNetworkGetGetExecute.call(this, itemIndex ?? 0);
 		case 'regionNetworkSubnetListGet':
-			return regionNetworkSubnetListGetExecute.call(this);
+			return regionNetworkSubnetListGetExecute.call(this, itemIndex ?? 0);
 		case 'regionNetworkSubnetCreatePost':
-			return regionNetworkSubnetCreatePostExecute.call(this);
+			return regionNetworkSubnetCreatePostExecute.call(this, itemIndex ?? 0);
 		case 'regionNetworkSubnetDeleteDelete':
-			return regionNetworkSubnetDeleteDeleteExecute.call(this);
+			return regionNetworkSubnetDeleteDeleteExecute.call(this, itemIndex ?? 0);
 		case 'regionNetworkSubnetGetGet':
-			return regionNetworkSubnetGetGetExecute.call(this);
+			return regionNetworkSubnetGetGetExecute.call(this, itemIndex ?? 0);
 		case 'regionNetworkSubnetGatewayPost':
-			return regionNetworkSubnetGatewayPostExecute.call(this);
+			return regionNetworkSubnetGatewayPostExecute.call(this, itemIndex ?? 0);
 		case 'regionQuotaListGet':
-			return regionQuotaListGetExecute.call(this);
+			return regionQuotaListGetExecute.call(this, itemIndex ?? 0);
 		case 'regionQuotaAllowedGet':
-			return regionQuotaAllowedGetExecute.call(this);
+			return regionQuotaAllowedGetExecute.call(this, itemIndex ?? 0);
 		case 'regionQuotaStorageGet':
-			return regionQuotaStorageGetExecute.call(this);
+			return regionQuotaStorageGetExecute.call(this, itemIndex ?? 0);
 		case 'regionVolumeBackupListGet':
-			return regionVolumeBackupListGetExecute.call(this);
+			return regionVolumeBackupListGetExecute.call(this, itemIndex ?? 0);
 		case 'regionVolumeBackupCreatePost':
-			return regionVolumeBackupCreatePostExecute.call(this);
+			return regionVolumeBackupCreatePostExecute.call(this, itemIndex ?? 0);
 		case 'regionVolumeBackupDeleteDelete':
-			return regionVolumeBackupDeleteDeleteExecute.call(this);
+			return regionVolumeBackupDeleteDeleteExecute.call(this, itemIndex ?? 0);
 		case 'regionVolumeBackupGetGet':
-			return regionVolumeBackupGetGetExecute.call(this);
+			return regionVolumeBackupGetGetExecute.call(this, itemIndex ?? 0);
 		case 'regionVolumeBackupRestorePost':
-			return regionVolumeBackupRestorePostExecute.call(this);
+			return regionVolumeBackupRestorePostExecute.call(this, itemIndex ?? 0);
 		case 'regionVolumeBackupVolumePost':
-			return regionVolumeBackupVolumePostExecute.call(this);
+			return regionVolumeBackupVolumePostExecute.call(this, itemIndex ?? 0);
 		case 'regionVolumeTypeListGet':
-			return regionVolumeTypeListGetExecute.call(this);
-			return regionStorageObjectVersionDeleteDeleteExecute.call(this);
+			return regionVolumeTypeListGetExecute.call(this, itemIndex ?? 0);
+			return regionStorageObjectVersionDeleteDeleteExecute.call(this, itemIndex ?? 0);
 		case 'regionStorageObjectVersionGetGet':
-			return regionStorageObjectVersionGetGetExecute.call(this);
+			return regionStorageObjectVersionGetGetExecute.call(this, itemIndex ?? 0);
 		case 'regionStorageObjectVersionUpdatePut':
-			return regionStorageObjectVersionUpdatePutExecute.call(this);
+			return regionStorageObjectVersionUpdatePutExecute.call(this, itemIndex ?? 0);
 		case 'regionStorageObjectVersionCopyPost':
-			return regionStorageObjectVersionCopyPostExecute.call(this);
+			return regionStorageObjectVersionCopyPostExecute.call(this, itemIndex ?? 0);
 		case 'regionStorageObjectVersionRestorePost':
-			return regionStorageObjectVersionRestorePostExecute.call(this);
+			return regionStorageObjectVersionRestorePostExecute.call(this, itemIndex ?? 0);
 		case 'regionStoragePolicyCreatePost':
-			return regionStoragePolicyCreatePostExecute.call(this);
+			return regionStoragePolicyCreatePostExecute.call(this, itemIndex ?? 0);
 		case 'regionStoragePresignPost':
-			return regionStoragePresignPostExecute.call(this);
+			return regionStoragePresignPostExecute.call(this, itemIndex ?? 0);
 		case 'floatingIpListGet':
-			return floatingIpListGetExecute.call(this);
+			return floatingIpListGetExecute.call(this, itemIndex ?? 0);
 		case 'floatingIpCreatePost':
-			return floatingIpCreatePostExecute.call(this);
+			return floatingIpCreatePostExecute.call(this, itemIndex ?? 0);
 		case 'floatingIpGetGet':
-			return floatingIpGetGetExecute.call(this);
+			return floatingIpGetGetExecute.call(this, itemIndex ?? 0);
 		case 'floatingIpDeleteDelete':
-			return floatingIpDeleteDeleteExecute.call(this);
+			return floatingIpDeleteDeleteExecute.call(this, itemIndex ?? 0);
 		case 'floatingIpDetachPost':
-			return floatingIpDetachPostExecute.call(this);
+			return floatingIpDetachPostExecute.call(this, itemIndex ?? 0);
 		case 'gatewayListGet':
-			return gatewayListGetExecute.call(this);
+			return gatewayListGetExecute.call(this, itemIndex ?? 0);
 		case 'gatewayCreatePost':
-			return gatewayCreatePostExecute.call(this);
+			return gatewayCreatePostExecute.call(this, itemIndex ?? 0);
 		case 'gatewayGetGet':
-			return gatewayGetGetExecute.call(this);
+			return gatewayGetGetExecute.call(this, itemIndex ?? 0);
 		case 'gatewayUpdatePut':
-			return gatewayUpdatePutExecute.call(this);
+			return gatewayUpdatePutExecute.call(this, itemIndex ?? 0);
 		case 'gatewayDeleteDelete':
-			return gatewayDeleteDeleteExecute.call(this);
+			return gatewayDeleteDeleteExecute.call(this, itemIndex ?? 0);
 		case 'gatewayExposePost':
-			return gatewayExposePostExecute.call(this);
+			return gatewayExposePostExecute.call(this, itemIndex ?? 0);
 		case 'gatewayInterfaceListGet':
-			return gatewayInterfaceListGetExecute.call(this);
+			return gatewayInterfaceListGetExecute.call(this, itemIndex ?? 0);
 		case 'gatewayInterfaceCreatePost':
-			return gatewayInterfaceCreatePostExecute.call(this);
+			return gatewayInterfaceCreatePostExecute.call(this, itemIndex ?? 0);
 		case 'gatewayInterfaceGetGet':
-			return gatewayInterfaceGetGetExecute.call(this);
+			return gatewayInterfaceGetGetExecute.call(this, itemIndex ?? 0);
 		case 'gatewayInterfaceDeleteDelete':
-			return gatewayInterfaceDeleteDeleteExecute.call(this);
+			return gatewayInterfaceDeleteDeleteExecute.call(this, itemIndex ?? 0);
 		case 'loadbalancingFlavorListGet':
-			return loadbalancingFlavorListGetExecute.call(this);
+			return loadbalancingFlavorListGetExecute.call(this, itemIndex ?? 0);
 		case 'loadbalancingFlavorGetGet':
-			return loadbalancingFlavorGetGetExecute.call(this);
+			return loadbalancingFlavorGetGetExecute.call(this, itemIndex ?? 0);
 		case 'loadbalancingHealthMonitorListGet':
-			return loadbalancingHealthMonitorListGetExecute.call(this);
+			return loadbalancingHealthMonitorListGetExecute.call(this, itemIndex ?? 0);
 		case 'loadbalancingHealthMonitorCreatePost':
-			return loadbalancingHealthMonitorCreatePostExecute.call(this);
+			return loadbalancingHealthMonitorCreatePostExecute.call(this, itemIndex ?? 0);
 		case 'loadbalancingHealthMonitorGetGet':
-			return loadbalancingHealthMonitorGetGetExecute.call(this);
+			return loadbalancingHealthMonitorGetGetExecute.call(this, itemIndex ?? 0);
 		case 'loadbalancingHealthMonitorUpdatePut':
-			return loadbalancingHealthMonitorUpdatePutExecute.call(this);
+			return loadbalancingHealthMonitorUpdatePutExecute.call(this, itemIndex ?? 0);
 		case 'loadbalancingHealthMonitorDeleteDelete':
-			return loadbalancingHealthMonitorDeleteDeleteExecute.call(this);
+			return loadbalancingHealthMonitorDeleteDeleteExecute.call(this, itemIndex ?? 0);
 		case 'loadbalancingL7PolicyListGet':
-			return loadbalancingL7PolicyListGetExecute.call(this);
+			return loadbalancingL7PolicyListGetExecute.call(this, itemIndex ?? 0);
 		case 'loadbalancingL7PolicyCreatePost':
-			return loadbalancingL7PolicyCreatePostExecute.call(this);
+			return loadbalancingL7PolicyCreatePostExecute.call(this, itemIndex ?? 0);
 		case 'loadbalancingL7PolicyGetGet':
-			return loadbalancingL7PolicyGetGetExecute.call(this);
+			return loadbalancingL7PolicyGetGetExecute.call(this, itemIndex ?? 0);
 		case 'loadbalancingL7PolicyUpdatePut':
-			return loadbalancingL7PolicyUpdatePutExecute.call(this);
+			return loadbalancingL7PolicyUpdatePutExecute.call(this, itemIndex ?? 0);
 		case 'loadbalancingL7PolicyDeleteDelete':
-			return loadbalancingL7PolicyDeleteDeleteExecute.call(this);
+			return loadbalancingL7PolicyDeleteDeleteExecute.call(this, itemIndex ?? 0);
 		case 'loadbalancingL7PolicyL7RuleListGet':
-			return loadbalancingL7PolicyL7RuleListGetExecute.call(this);
+			return loadbalancingL7PolicyL7RuleListGetExecute.call(this, itemIndex ?? 0);
 		case 'loadbalancingL7PolicyL7RuleCreatePost':
-			return loadbalancingL7PolicyL7RuleCreatePostExecute.call(this);
+			return loadbalancingL7PolicyL7RuleCreatePostExecute.call(this, itemIndex ?? 0);
 		case 'loadbalancingL7PolicyL7RuleGetGet':
-			return loadbalancingL7PolicyL7RuleGetGetExecute.call(this);
+			return loadbalancingL7PolicyL7RuleGetGetExecute.call(this, itemIndex ?? 0);
 		case 'loadbalancingL7PolicyL7RuleUpdatePut':
-			return loadbalancingL7PolicyL7RuleUpdatePutExecute.call(this);
+			return loadbalancingL7PolicyL7RuleUpdatePutExecute.call(this, itemIndex ?? 0);
 		case 'loadbalancingL7PolicyL7RuleDeleteDelete':
-			return loadbalancingL7PolicyL7RuleDeleteDeleteExecute.call(this);
+			return loadbalancingL7PolicyL7RuleDeleteDeleteExecute.call(this, itemIndex ?? 0);
 		case 'loadbalancingListenerListGet':
-			return loadbalancingListenerListGetExecute.call(this);
+			return loadbalancingListenerListGetExecute.call(this, itemIndex ?? 0);
 		case 'loadbalancingListenerCreatePost':
-			return loadbalancingListenerCreatePostExecute.call(this);
+			return loadbalancingListenerCreatePostExecute.call(this, itemIndex ?? 0);
 		case 'loadbalancingListenerGetGet':
-			return loadbalancingListenerGetGetExecute.call(this);
+			return loadbalancingListenerGetGetExecute.call(this, itemIndex ?? 0);
 		case 'loadbalancingListenerUpdatePut':
-			return loadbalancingListenerUpdatePutExecute.call(this);
+			return loadbalancingListenerUpdatePutExecute.call(this, itemIndex ?? 0);
 		case 'loadbalancingListenerDeleteDelete':
-			return loadbalancingListenerDeleteDeleteExecute.call(this);
+			return loadbalancingListenerDeleteDeleteExecute.call(this, itemIndex ?? 0);
 		case 'loadbalancingLoadBalancerListGet':
-			return loadbalancingLoadBalancerListGetExecute.call(this);
+			return loadbalancingLoadBalancerListGetExecute.call(this, itemIndex ?? 0);
 		case 'loadbalancingLoadBalancerCreatePost':
-			return loadbalancingLoadBalancerCreatePostExecute.call(this);
+			return loadbalancingLoadBalancerCreatePostExecute.call(this, itemIndex ?? 0);
 		case 'loadbalancingLoadBalancerGetGet':
-			return loadbalancingLoadBalancerGetGetExecute.call(this);
+			return loadbalancingLoadBalancerGetGetExecute.call(this, itemIndex ?? 0);
 		case 'loadbalancingLoadBalancerUpdatePut':
-			return loadbalancingLoadBalancerUpdatePutExecute.call(this);
+			return loadbalancingLoadBalancerUpdatePutExecute.call(this, itemIndex ?? 0);
 		case 'loadbalancingLoadBalancerDeleteDelete':
-			return loadbalancingLoadBalancerDeleteDeleteExecute.call(this);
+			return loadbalancingLoadBalancerDeleteDeleteExecute.call(this, itemIndex ?? 0);
 		case 'loadbalancingLoadBalancerAssociateFloatingIpPost':
-			return loadbalancingLoadBalancerAssociateFloatingIpPostExecute.call(this);
+			return loadbalancingLoadBalancerAssociateFloatingIpPostExecute.call(this, itemIndex ?? 0);
 		case 'loadbalancingLoadBalancerFloatingIpPost':
-			return loadbalancingLoadBalancerFloatingIpPostExecute.call(this);
+			return loadbalancingLoadBalancerFloatingIpPostExecute.call(this, itemIndex ?? 0);
 		case 'loadbalancingLoadBalancerLogSubscriptionListGet':
-			return loadbalancingLoadBalancerLogSubscriptionListGetExecute.call(this);
+			return loadbalancingLoadBalancerLogSubscriptionListGetExecute.call(this, itemIndex ?? 0);
 		case 'loadbalancingLoadBalancerLogSubscriptionCreatePost':
-			return loadbalancingLoadBalancerLogSubscriptionCreatePostExecute.call(this);
+			return loadbalancingLoadBalancerLogSubscriptionCreatePostExecute.call(this, itemIndex ?? 0);
 		case 'loadbalancingLoadBalancerLogSubscriptionGetGet':
-			return loadbalancingLoadBalancerLogSubscriptionGetGetExecute.call(this);
+			return loadbalancingLoadBalancerLogSubscriptionGetGetExecute.call(this, itemIndex ?? 0);
 		case 'loadbalancingLoadBalancerLogSubscriptionDeleteDelete':
-			return loadbalancingLoadBalancerLogSubscriptionDeleteDeleteExecute.call(this);
+			return loadbalancingLoadBalancerLogSubscriptionDeleteDeleteExecute.call(this, itemIndex ?? 0);
 		case 'loadbalancingLoadBalancerLogUrlPost':
-			return loadbalancingLoadBalancerLogUrlPostExecute.call(this);
+			return loadbalancingLoadBalancerLogUrlPostExecute.call(this, itemIndex ?? 0);
 		case 'loadbalancingLoadBalancerStatsGet':
-			return loadbalancingLoadBalancerStatsGetExecute.call(this);
+			return loadbalancingLoadBalancerStatsGetExecute.call(this, itemIndex ?? 0);
 		case 'loadbalancingLogKindListGet':
-			return loadbalancingLogKindListGetExecute.call(this);
+			return loadbalancingLogKindListGetExecute.call(this, itemIndex ?? 0);
 		case 'loadbalancingLogKindGetGet':
-			return loadbalancingLogKindGetGetExecute.call(this);
+			return loadbalancingLogKindGetGetExecute.call(this, itemIndex ?? 0);
 		case 'loadbalancingPoolListGet':
-			return loadbalancingPoolListGetExecute.call(this);
+			return loadbalancingPoolListGetExecute.call(this, itemIndex ?? 0);
 		case 'loadbalancingPoolCreatePost':
-			return loadbalancingPoolCreatePostExecute.call(this);
+			return loadbalancingPoolCreatePostExecute.call(this, itemIndex ?? 0);
 		case 'loadbalancingPoolGetGet':
-			return loadbalancingPoolGetGetExecute.call(this);
+			return loadbalancingPoolGetGetExecute.call(this, itemIndex ?? 0);
 		case 'loadbalancingPoolUpdatePut':
-			return loadbalancingPoolUpdatePutExecute.call(this);
+			return loadbalancingPoolUpdatePutExecute.call(this, itemIndex ?? 0);
 		case 'loadbalancingPoolDeleteDelete':
-			return loadbalancingPoolDeleteDeleteExecute.call(this);
+			return loadbalancingPoolDeleteDeleteExecute.call(this, itemIndex ?? 0);
 		case 'loadbalancingPoolMemberListGet':
-			return loadbalancingPoolMemberListGetExecute.call(this);
+			return loadbalancingPoolMemberListGetExecute.call(this, itemIndex ?? 0);
 		case 'loadbalancingPoolMemberCreatePost':
-			return loadbalancingPoolMemberCreatePostExecute.call(this);
+			return loadbalancingPoolMemberCreatePostExecute.call(this, itemIndex ?? 0);
 		case 'loadbalancingPoolMemberGetGet':
-			return loadbalancingPoolMemberGetGetExecute.call(this);
+			return loadbalancingPoolMemberGetGetExecute.call(this, itemIndex ?? 0);
 		case 'loadbalancingPoolMemberUpdatePut':
-			return loadbalancingPoolMemberUpdatePutExecute.call(this);
+			return loadbalancingPoolMemberUpdatePutExecute.call(this, itemIndex ?? 0);
 		case 'loadbalancingPoolMemberDeleteDelete':
-			return loadbalancingPoolMemberDeleteDeleteExecute.call(this);
+			return loadbalancingPoolMemberDeleteDeleteExecute.call(this, itemIndex ?? 0);
 
 		case 'userCreatePost':
-			return userCreatePostExecute.call(this);
+			return userCreatePostExecute.call(this, itemIndex ?? 0);
 		case 'userCreateS3CredentialSecretPost':
-			return userCreateS3CredentialSecretPostExecute.call(this);
+			return userCreateS3CredentialSecretPostExecute.call(this, itemIndex ?? 0);
 		case 'userCreateUserPolicyPost':
-			return userCreateUserPolicyPostExecute.call(this);
+			return userCreateUserPolicyPostExecute.call(this, itemIndex ?? 0);
 		case 'userCreateUserRolePost':
-			return userCreateUserRolePostExecute.call(this);
+			return userCreateUserRolePostExecute.call(this, itemIndex ?? 0);
 		case 'userCreateUserS3CredentialsPost':
-			return userCreateUserS3CredentialsPostExecute.call(this);
+			return userCreateUserS3CredentialsPostExecute.call(this, itemIndex ?? 0);
 		case 'userCreateUserTokenPost':
-			return userCreateUserTokenPostExecute.call(this);
+			return userCreateUserTokenPostExecute.call(this, itemIndex ?? 0);
 		case 'userDeleteDelete':
-			return userDeleteDeleteExecute.call(this);
+			return userDeleteDeleteExecute.call(this, itemIndex ?? 0);
 		case 'userDeleteUserRoleDelete':
-			return userDeleteUserRoleDeleteExecute.call(this);
+			return userDeleteUserRoleDeleteExecute.call(this, itemIndex ?? 0);
 		case 'userDeleteUserS3CredentialDelete':
-			return userDeleteUserS3CredentialDeleteExecute.call(this);
+			return userDeleteUserS3CredentialDeleteExecute.call(this, itemIndex ?? 0);
 		case 'userGetDetailGet':
-			return userGetDetailGetExecute.call(this);
+			return userGetDetailGetExecute.call(this, itemIndex ?? 0);
 		case 'userGetUserConfigurationGet':
-			return userGetUserConfigurationGetExecute.call(this);
+			return userGetUserConfigurationGetExecute.call(this, itemIndex ?? 0);
 		case 'userGetUserOpenrcGet':
-			return userGetUserOpenrcGetExecute.call(this);
+			return userGetUserOpenrcGetExecute.call(this, itemIndex ?? 0);
 		case 'userGetUserPolicyGet':
-			return userGetUserPolicyGetExecute.call(this);
+			return userGetUserPolicyGetExecute.call(this, itemIndex ?? 0);
 		case 'userGetUserRcloneGet':
-			return userGetUserRcloneGetExecute.call(this);
+			return userGetUserRcloneGetExecute.call(this, itemIndex ?? 0);
 		case 'userGetUserRoleDetailGet':
-			return userGetUserRoleDetailGetExecute.call(this);
+			return userGetUserRoleDetailGetExecute.call(this, itemIndex ?? 0);
 		case 'userGetUserRoleGet':
-			return userGetUserRoleGetExecute.call(this);
+			return userGetUserRoleGetExecute.call(this, itemIndex ?? 0);
 		case 'userGetUserS3CredentialDetailGet':
-			return userGetUserS3CredentialDetailGetExecute.call(this);
+			return userGetUserS3CredentialDetailGetExecute.call(this, itemIndex ?? 0);
 		case 'userGetUserS3CredentialsGet':
-			return userGetUserS3CredentialsGetExecute.call(this);
+			return userGetUserS3CredentialsGetExecute.call(this, itemIndex ?? 0);
 		case 'userListGet':
-			return userListGetExecute.call(this);
+			return userListGetExecute.call(this, itemIndex ?? 0);
 		case 'userRegeneratePasswordPost':
-			return userRegeneratePasswordPostExecute.call(this);
+			return userRegeneratePasswordPostExecute.call(this, itemIndex ?? 0);
 		case 'userUpdateUserRolePut':
-			return userUpdateUserRolePutExecute.call(this);
+			return userUpdateUserRolePutExecute.call(this, itemIndex ?? 0);
 		case 'cloudAgreementsGet':
-			return cloudAgreementsGetExecute.call(this);
+			return cloudAgreementsGetExecute.call(this, itemIndex ?? 0);
 		case 'cloudEligibilityGet':
-			return cloudEligibilityGetExecute.call(this);
+			return cloudEligibilityGetExecute.call(this, itemIndex ?? 0);
 		case 'cloudOrderListGet':
-			return cloudOrderListGetExecute.call(this);
+			return cloudOrderListGetExecute.call(this, itemIndex ?? 0);
 		case 'cloudOrderRuleAvailabilityGet':
-			return cloudOrderRuleAvailabilityGetExecute.call(this);
+			return cloudOrderRuleAvailabilityGetExecute.call(this, itemIndex ?? 0);
 		case 'aclCreatePost':
-			return aclCreatePostExecute.call(this);
+			return aclCreatePostExecute.call(this, itemIndex ?? 0);
 		case 'aclDeleteDelete':
-			return aclDeleteDeleteExecute.call(this);
+			return aclDeleteDeleteExecute.call(this, itemIndex ?? 0);
 		case 'aclGetDetailGet':
-			return aclGetDetailGetExecute.call(this);
+			return aclGetDetailGetExecute.call(this, itemIndex ?? 0);
 		case 'aclListGet':
-			return aclListGetExecute.call(this);
+			return aclListGetExecute.call(this, itemIndex ?? 0);
 		case 'activateMonthlyBillingPost':
-			return activateMonthlyBillingPostExecute.call(this);
+			return activateMonthlyBillingPostExecute.call(this, itemIndex ?? 0);
 		case 'alertingCreatePost':
-			return alertingCreatePostExecute.call(this);
+			return alertingCreatePostExecute.call(this, itemIndex ?? 0);
 		case 'alertingDeleteDelete':
-			return alertingDeleteDeleteExecute.call(this);
+			return alertingDeleteDeleteExecute.call(this, itemIndex ?? 0);
 		case 'alertingGetDetailGet':
-			return alertingGetDetailGetExecute.call(this);
+			return alertingGetDetailGetExecute.call(this, itemIndex ?? 0);
 		case 'alertingListGet':
-			return alertingListGetExecute.call(this);
+			return alertingListGetExecute.call(this, itemIndex ?? 0);
 		case 'alertingUpdatePut':
-			return alertingUpdatePutExecute.call(this);
+			return alertingUpdatePutExecute.call(this, itemIndex ?? 0);
 		case 'billListGet':
-			return billListGetExecute.call(this);
+			return billListGetExecute.call(this, itemIndex ?? 0);
 		case 'cancelPost':
-			return cancelPostExecute.call(this);
+			return cancelPostExecute.call(this, itemIndex ?? 0);
 		case 'capabilitiesGetKubeDetailGet':
-			return capabilitiesGetKubeDetailGetExecute.call(this);
+			return capabilitiesGetKubeDetailGetExecute.call(this, itemIndex ?? 0);
 		case 'capabilitiesGetLoadbalancerDetailGet':
-			return capabilitiesGetLoadbalancerDetailGetExecute.call(this);
+			return capabilitiesGetLoadbalancerDetailGetExecute.call(this, itemIndex ?? 0);
 		case 'capabilitiesGetRegionDetailGet':
-			return capabilitiesGetRegionDetailGetExecute.call(this);
+			return capabilitiesGetRegionDetailGetExecute.call(this, itemIndex ?? 0);
 		case 'capabilitiesGetRegionProductDetailGet':
-			return capabilitiesGetRegionProductDetailGetExecute.call(this);
+			return capabilitiesGetRegionProductDetailGetExecute.call(this, itemIndex ?? 0);
 		case 'capabilitiesListGet':
-			return capabilitiesListGetExecute.call(this);
+			return capabilitiesListGetExecute.call(this, itemIndex ?? 0);
 		case 'capabilitiesListKubeGet':
-			return capabilitiesListKubeGetExecute.call(this);
+			return capabilitiesListKubeGetExecute.call(this, itemIndex ?? 0);
 		case 'capabilitiesListLoadbalancerGet':
-			return capabilitiesListLoadbalancerGetExecute.call(this);
+			return capabilitiesListLoadbalancerGetExecute.call(this, itemIndex ?? 0);
 		case 'capabilitiesListRegionGet':
-			return capabilitiesListRegionGetExecute.call(this);
+			return capabilitiesListRegionGetExecute.call(this, itemIndex ?? 0);
 		case 'changeContactPost':
-			return changeContactPostExecute.call(this);
+			return changeContactPostExecute.call(this, itemIndex ?? 0);
 		case 'confirmTerminationPost':
-			return confirmTerminationPostExecute.call(this);
+			return confirmTerminationPostExecute.call(this, itemIndex ?? 0);
 		case 'containerRegistryCreatePost':
-			return containerRegistryCreatePostExecute.call(this);
+			return containerRegistryCreatePostExecute.call(this, itemIndex ?? 0);
 		case 'containerRegistryCreateUserPost':
-			return containerRegistryCreateUserPostExecute.call(this);
+			return containerRegistryCreateUserPostExecute.call(this, itemIndex ?? 0);
 		case 'containerRegistryDeleteDelete':
-			return containerRegistryDeleteDeleteExecute.call(this);
+			return containerRegistryDeleteDeleteExecute.call(this, itemIndex ?? 0);
 		case 'containerRegistryDeleteUserDelete':
-			return containerRegistryDeleteUserDeleteExecute.call(this);
+			return containerRegistryDeleteUserDeleteExecute.call(this, itemIndex ?? 0);
 		case 'containerRegistryGetDetailGet':
-			return containerRegistryGetDetailGetExecute.call(this);
+			return containerRegistryGetDetailGetExecute.call(this, itemIndex ?? 0);
 		case 'containerRegistryGetUserDetailGet':
-			return containerRegistryGetUserDetailGetExecute.call(this);
+			return containerRegistryGetUserDetailGetExecute.call(this, itemIndex ?? 0);
 		case 'containerRegistryListGet':
-			return containerRegistryListGetExecute.call(this);
+			return containerRegistryListGetExecute.call(this, itemIndex ?? 0);
 		case 'containerRegistryListUsersGet':
-			return containerRegistryListUsersGetExecute.call(this);
+			return containerRegistryListUsersGetExecute.call(this, itemIndex ?? 0);
 		case 'containerRegistryUpdatePut':
-			return containerRegistryUpdatePutExecute.call(this);
+			return containerRegistryUpdatePutExecute.call(this, itemIndex ?? 0);
 		case 'containerRegistryGetCapabilitiesPlanGet':
-			return containerRegistryGetCapabilitiesPlanGetExecute.call(this);
+			return containerRegistryGetCapabilitiesPlanGetExecute.call(this, itemIndex ?? 0);
 		case 'containerRegistryDeleteIamDelete':
-			return containerRegistryDeleteIamDeleteExecute.call(this);
+			return containerRegistryDeleteIamDeleteExecute.call(this, itemIndex ?? 0);
 		case 'containerRegistryCreateIamPost':
-			return containerRegistryCreateIamPostExecute.call(this);
+			return containerRegistryCreateIamPostExecute.call(this, itemIndex ?? 0);
 		case 'containerRegistryGetIpRestrictionsManagementListGet':
-			return containerRegistryGetIpRestrictionsManagementListGetExecute.call(this);
+			return containerRegistryGetIpRestrictionsManagementListGetExecute.call(this, itemIndex ?? 0);
 		case 'containerRegistryUpdateIpRestrictionsManagementPut':
-			return containerRegistryUpdateIpRestrictionsManagementPutExecute.call(this);
+			return containerRegistryUpdateIpRestrictionsManagementPutExecute.call(this, itemIndex ?? 0);
 		case 'containerRegistryGetIpRestrictionsRegistryListGet':
-			return containerRegistryGetIpRestrictionsRegistryListGetExecute.call(this);
+			return containerRegistryGetIpRestrictionsRegistryListGetExecute.call(this, itemIndex ?? 0);
 		case 'containerRegistryUpdateIpRestrictionsRegistryPut':
-			return containerRegistryUpdateIpRestrictionsRegistryPutExecute.call(this);
+			return containerRegistryUpdateIpRestrictionsRegistryPutExecute.call(this, itemIndex ?? 0);
 		case 'containerRegistryDeleteOpenIdConnectDelete':
-			return containerRegistryDeleteOpenIdConnectDeleteExecute.call(this);
+			return containerRegistryDeleteOpenIdConnectDeleteExecute.call(this, itemIndex ?? 0);
 		case 'containerRegistryGetOpenIdConnectGet':
-			return containerRegistryGetOpenIdConnectGetExecute.call(this);
+			return containerRegistryGetOpenIdConnectGetExecute.call(this, itemIndex ?? 0);
 		case 'containerRegistryCreateOpenIdConnectPost':
-			return containerRegistryCreateOpenIdConnectPostExecute.call(this);
+			return containerRegistryCreateOpenIdConnectPostExecute.call(this, itemIndex ?? 0);
 		case 'containerRegistryUpdateOpenIdConnectPut':
-			return containerRegistryUpdateOpenIdConnectPutExecute.call(this);
+			return containerRegistryUpdateOpenIdConnectPutExecute.call(this, itemIndex ?? 0);
 		case 'containerRegistryGetPlanGet':
-			return containerRegistryGetPlanGetExecute.call(this);
+			return containerRegistryGetPlanGetExecute.call(this, itemIndex ?? 0);
 		case 'containerRegistryUpdatePlanPut':
-			return containerRegistryUpdatePlanPutExecute.call(this);
+			return containerRegistryUpdatePlanPutExecute.call(this, itemIndex ?? 0);
 		case 'containerRegistryCreateUserSetAsAdminPost':
-			return containerRegistryCreateUserSetAsAdminPostExecute.call(this);
+			return containerRegistryCreateUserSetAsAdminPostExecute.call(this, itemIndex ?? 0);
 		case 'creditCreatePost':
-			return creditCreatePostExecute.call(this);
+			return creditCreatePostExecute.call(this, itemIndex ?? 0);
 		case 'creditGetDetailGet':
-			return creditGetDetailGetExecute.call(this);
+			return creditGetDetailGetExecute.call(this, itemIndex ?? 0);
 		case 'creditListGet':
-			return creditListGetExecute.call(this);
+			return creditListGetExecute.call(this, itemIndex ?? 0);
 		case 'flavorGetDetailGet':
-			return flavorGetDetailGetExecute.call(this);
+			return flavorGetDetailGetExecute.call(this, itemIndex ?? 0);
 		case 'flavorListGet':
-			return flavorListGetExecute.call(this);
+			return flavorListGetExecute.call(this, itemIndex ?? 0);
 		case 'imageGetDetailGet':
-			return imageGetDetailGetExecute.call(this);
+			return imageGetDetailGetExecute.call(this, itemIndex ?? 0);
 		case 'imageListGet':
-			return imageListGetExecute.call(this);
+			return imageListGetExecute.call(this, itemIndex ?? 0);
 		case 'ipCreatePost':
-			return ipCreatePostExecute.call(this);
+			return ipCreatePostExecute.call(this, itemIndex ?? 0);
 		case 'ipDeleteDelete':
-			return ipDeleteDeleteExecute.call(this);
+			return ipDeleteDeleteExecute.call(this, itemIndex ?? 0);
 		case 'ipGetDetailGet':
-			return ipGetDetailGetExecute.call(this);
+			return ipGetDetailGetExecute.call(this, itemIndex ?? 0);
 		case 'ipListGet':
-			return ipListGetExecute.call(this);
+			return ipListGetExecute.call(this, itemIndex ?? 0);
 		case 'ipUpdatePut':
-			return ipUpdatePutExecute.call(this);
+			return ipUpdatePutExecute.call(this, itemIndex ?? 0);
 		case 'labCreatePost':
-			return labCreatePostExecute.call(this);
+			return labCreatePostExecute.call(this, itemIndex ?? 0);
 		case 'labAgreementListGet':
-			return labAgreementListGetExecute.call(this);
+			return labAgreementListGetExecute.call(this, itemIndex ?? 0);
 		case 'labDeleteDelete':
-			return labDeleteDeleteExecute.call(this);
+			return labDeleteDeleteExecute.call(this, itemIndex ?? 0);
 		case 'labGetDetailGet':
-			return labGetDetailGetExecute.call(this);
+			return labGetDetailGetExecute.call(this, itemIndex ?? 0);
 		case 'labListGet':
-			return labListGetExecute.call(this);
+			return labListGetExecute.call(this, itemIndex ?? 0);
 		case 'labUpdatePut':
-			return labUpdatePutExecute.call(this);
+			return labUpdatePutExecute.call(this, itemIndex ?? 0);
 		case 'loadbalancerCreatePost':
-			return loadbalancerCreatePostExecute.call(this);
+			return loadbalancerCreatePostExecute.call(this, itemIndex ?? 0);
 		case 'loadbalancerDeleteDelete':
-			return loadbalancerDeleteDeleteExecute.call(this);
+			return loadbalancerDeleteDeleteExecute.call(this, itemIndex ?? 0);
 		case 'loadbalancerGetDetailGet':
-			return loadbalancerGetDetailGetExecute.call(this);
+			return loadbalancerGetDetailGetExecute.call(this, itemIndex ?? 0);
 		case 'loadbalancerListGet':
-			return loadbalancerListGetExecute.call(this);
+			return loadbalancerListGetExecute.call(this, itemIndex ?? 0);
 		case 'loadbalancerUpdatePut':
-			return loadbalancerUpdatePutExecute.call(this);
+			return loadbalancerUpdatePutExecute.call(this, itemIndex ?? 0);
 		case 'operationGetDetailGet':
-			return operationGetDetailGetExecute.call(this);
+			return operationGetDetailGetExecute.call(this, itemIndex ?? 0);
 		case 'operationListGet':
-			return operationListGetExecute.call(this);
+			return operationListGetExecute.call(this, itemIndex ?? 0);
 		case 'quantumGetCapabilitiesDetailGet':
-			return quantumGetCapabilitiesDetailGetExecute.call(this);
+			return quantumGetCapabilitiesDetailGetExecute.call(this, itemIndex ?? 0);
 		case 'quantumGetCapabilitiesRegionDetailGet':
-			return quantumGetCapabilitiesRegionDetailGetExecute.call(this);
+			return quantumGetCapabilitiesRegionDetailGetExecute.call(this, itemIndex ?? 0);
 		case 'quantumListCapabilitiesGet':
-			return quantumListCapabilitiesGetExecute.call(this);
+			return quantumListCapabilitiesGetExecute.call(this, itemIndex ?? 0);
 		case 'quantumListCapabilitiesRegionGet':
-			return quantumListCapabilitiesRegionGetExecute.call(this);
+			return quantumListCapabilitiesRegionGetExecute.call(this, itemIndex ?? 0);
 		case 'quotaListGet':
-			return quotaListGetExecute.call(this);
+			return quotaListGetExecute.call(this, itemIndex ?? 0);
 		case 'regionAvailableCheckRegionAvailableGet':
-			return regionAvailableCheckRegionAvailableGetExecute.call(this);
+			return regionAvailableCheckRegionAvailableGetExecute.call(this, itemIndex ?? 0);
 		case 'retainPost':
-			return retainPostExecute.call(this);
+			return retainPostExecute.call(this, itemIndex ?? 0);
 		case 'roleListGet':
-			return roleListGetExecute.call(this);
+			return roleListGetExecute.call(this, itemIndex ?? 0);
 		case 'serviceInfosGetServiceInfosGet':
-			return serviceInfosGetServiceInfosGetExecute.call(this);
+			return serviceInfosGetServiceInfosGetExecute.call(this, itemIndex ?? 0);
 		case 'snapshotsCreatePost':
-			return snapshotsCreatePostExecute.call(this);
+			return snapshotsCreatePostExecute.call(this, itemIndex ?? 0);
 		case 'snapshotsDeleteDelete':
-			return snapshotsDeleteDeleteExecute.call(this);
+			return snapshotsDeleteDeleteExecute.call(this, itemIndex ?? 0);
 		case 'snapshotsListGet':
-			return snapshotsListGetExecute.call(this);
+			return snapshotsListGetExecute.call(this, itemIndex ?? 0);
 		case 'sshkeyCreatePost':
-			return sshkeyCreatePostExecute.call(this);
+			return sshkeyCreatePostExecute.call(this, itemIndex ?? 0);
 		case 'sshkeyDeleteDelete':
-			return sshkeyDeleteDeleteExecute.call(this);
+			return sshkeyDeleteDeleteExecute.call(this, itemIndex ?? 0);
 		case 'sshkeyListGet':
-			return sshkeyListGetExecute.call(this);
+			return sshkeyListGetExecute.call(this, itemIndex ?? 0);
 		case 'storageCreateContainerPost':
-			return storageCreateContainerPostExecute.call(this);
+			return storageCreateContainerPostExecute.call(this, itemIndex ?? 0);
 		case 'storageDeleteContainerDelete':
-			return storageDeleteContainerDeleteExecute.call(this);
+			return storageDeleteContainerDeleteExecute.call(this, itemIndex ?? 0);
 		case 'storageDeleteDelete':
-			return storageDeleteDeleteExecute.call(this);
+			return storageDeleteDeleteExecute.call(this, itemIndex ?? 0);
 		case 'storageGetContainerDetailGet':
-			return storageGetContainerDetailGetExecute.call(this);
+			return storageGetContainerDetailGetExecute.call(this, itemIndex ?? 0);
 		case 'storageGetDetailGet':
-			return storageGetDetailGetExecute.call(this);
+			return storageGetDetailGetExecute.call(this, itemIndex ?? 0);
 		case 'storageListContainersGet':
-			return storageListContainersGetExecute.call(this);
+			return storageListContainersGetExecute.call(this, itemIndex ?? 0);
 		case 'storageListGet':
-			return storageListGetExecute.call(this);
+			return storageListGetExecute.call(this, itemIndex ?? 0);
 		case 'storageUpdateContainerPut':
-			return storageUpdateContainerPutExecute.call(this);
+			return storageUpdateContainerPutExecute.call(this, itemIndex ?? 0);
 		case 'storageUpdatePut':
-			return storageUpdatePutExecute.call(this);
+			return storageUpdatePutExecute.call(this, itemIndex ?? 0);
 		case 'terminatePost':
-			return terminatePostExecute.call(this);
+			return terminatePostExecute.call(this, itemIndex ?? 0);
 		case 'unleashPost':
-			return unleashPostExecute.call(this);
+			return unleashPostExecute.call(this, itemIndex ?? 0);
 		case 'usageGetCurrentGet':
-			return usageGetCurrentGetExecute.call(this);
+			return usageGetCurrentGetExecute.call(this, itemIndex ?? 0);
 		case 'usageGetForecastGet':
-			return usageGetForecastGetExecute.call(this);
+			return usageGetForecastGetExecute.call(this, itemIndex ?? 0);
 		case 'usageGetHistoryDetailGet':
-			return usageGetHistoryDetailGetExecute.call(this);
+			return usageGetHistoryDetailGetExecute.call(this, itemIndex ?? 0);
 		case 'usageListHistoryGet':
-			return usageListHistoryGetExecute.call(this);
+			return usageListHistoryGetExecute.call(this, itemIndex ?? 0);
 		case 'vrackListGet':
-			return vrackListGetExecute.call(this);
+			return vrackListGetExecute.call(this, itemIndex ?? 0);
 		case 'vrackCreatePost':
-			return vrackCreatePostExecute.call(this);
+			return vrackCreatePostExecute.call(this, itemIndex ?? 0);
 		case 'ipFailoverListGet':
-			return ipFailoverListGetExecute.call(this);
+			return ipFailoverListGetExecute.call(this, itemIndex ?? 0);
 		case 'ipFailoverGetGet':
-			return ipFailoverGetGetExecute.call(this);
+			return ipFailoverGetGetExecute.call(this, itemIndex ?? 0);
 		case 'ipFailoverAttachPost':
-			return ipFailoverAttachPostExecute.call(this);
+			return ipFailoverAttachPostExecute.call(this, itemIndex ?? 0);
 		case 'loadbalancerConfigurationListGet':
-			return loadbalancerConfigurationListGetExecute.call(this);
+			return loadbalancerConfigurationListGetExecute.call(this, itemIndex ?? 0);
 		case 'loadbalancerConfigurationCreatePost':
-			return loadbalancerConfigurationCreatePostExecute.call(this);
+			return loadbalancerConfigurationCreatePostExecute.call(this, itemIndex ?? 0);
 		case 'loadbalancerConfigurationGetGet':
-			return loadbalancerConfigurationGetGetExecute.call(this);
+			return loadbalancerConfigurationGetGetExecute.call(this, itemIndex ?? 0);
 		case 'loadbalancerConfigurationDeleteDelete':
-			return loadbalancerConfigurationDeleteDeleteExecute.call(this);
+			return loadbalancerConfigurationDeleteDeleteExecute.call(this, itemIndex ?? 0);
 		case 'loadbalancerConfigurationApplyPost':
-			return loadbalancerConfigurationApplyPostExecute.call(this);
+			return loadbalancerConfigurationApplyPostExecute.call(this, itemIndex ?? 0);
 		case 'roleCreatePost':
-			return roleCreatePostExecute.call(this);
+			return roleCreatePostExecute.call(this, itemIndex ?? 0);
 		case 'serviceInfosUpdatePut':
-			return serviceInfosUpdatePutExecute.call(this);
+			return serviceInfosUpdatePutExecute.call(this, itemIndex ?? 0);
 		case 'storageAccessPost':
-			return storageAccessPostExecute.call(this);
+			return storageAccessPostExecute.call(this, itemIndex ?? 0);
 		case 'storageQuotaGet':
-			return storageQuotaGetExecute.call(this);
+			return storageQuotaGetExecute.call(this, itemIndex ?? 0);
 		case 'storageCorsPost':
-			return storageCorsPostExecute.call(this);
+			return storageCorsPostExecute.call(this, itemIndex ?? 0);
 		case 'storageCorsDeleteDelete':
-			return storageCorsDeleteDeleteExecute.call(this);
+			return storageCorsDeleteDeleteExecute.call(this, itemIndex ?? 0);
 		case 'storagePublicUrlPost':
-			return storagePublicUrlPostExecute.call(this);
+			return storagePublicUrlPostExecute.call(this, itemIndex ?? 0);
 		case 'storageStaticPost':
-			return storageStaticPostExecute.call(this);
+			return storageStaticPostExecute.call(this, itemIndex ?? 0);
 		case 'storageUserPost':
-			return storageUserPostExecute.call(this);
+			return storageUserPostExecute.call(this, itemIndex ?? 0);
 		case 'volumeSnapshotListGet':
-			return volumeSnapshotListGetExecute.call(this);
+			return volumeSnapshotListGetExecute.call(this, itemIndex ?? 0);
 		case 'volumeSnapshotGetGet':
-			return volumeSnapshotGetGetExecute.call(this);
+			return volumeSnapshotGetGetExecute.call(this, itemIndex ?? 0);
 		case 'volumeSnapshotDeleteDelete':
-			return volumeSnapshotDeleteDeleteExecute.call(this);
+			return volumeSnapshotDeleteDeleteExecute.call(this, itemIndex ?? 0);
 		case 'volumeAttachPost':
-			return volumeAttachPostExecute.call(this);
+			return volumeAttachPostExecute.call(this, itemIndex ?? 0);
 		case 'volumeDetachPost':
-			return volumeDetachPostExecute.call(this);
+			return volumeDetachPostExecute.call(this, itemIndex ?? 0);
 		case 'volumeSnapshotCreatePost':
-			return volumeSnapshotCreatePostExecute.call(this);
+			return volumeSnapshotCreatePostExecute.call(this, itemIndex ?? 0);
 		case 'volumeUpsizePost':
-			return volumeUpsizePostExecute.call(this);
+			return volumeUpsizePostExecute.call(this, itemIndex ?? 0);
 
 		// v2 cases
 		case 'listProjectsV2':
-			return listGetV2Execute.call(this, itemIndex);
+			return listGetV2Execute.call(this, itemIndex ?? 0);
 		case 'getProjectDetailV2':
-			return getDetailGetV2Execute.call(this, itemIndex);
+			return getDetailGetV2Execute.call(this, itemIndex ?? 0);
 		case 'listRancherServicesV2':
-			return serviceListGetV2Execute.call(this, itemIndex);
+			return serviceListGetV2Execute.call(this, itemIndex ?? 0);
 		case 'createRancherServiceV2':
-			return serviceCreatePostV2Execute.call(this, itemIndex);
+			return serviceCreatePostV2Execute.call(this, itemIndex ?? 0);
 		case 'deleteRancherServiceV2':
-			return serviceDeleteDeleteV2Execute.call(this, itemIndex);
+			return serviceDeleteDeleteV2Execute.call(this, itemIndex ?? 0);
 		case 'getRancherServiceV2':
-			return serviceGetGetV2Execute.call(this, itemIndex);
+			return serviceGetGetV2Execute.call(this, itemIndex ?? 0);
 		case 'updateRancherServiceV2':
-			return serviceUpdatePutV2Execute.call(this, itemIndex);
+			return serviceUpdatePutV2Execute.call(this, itemIndex ?? 0);
 		case 'resetRancherAdminPasswordV2':
-			return adminCredentialsResetV2Execute.call(this, itemIndex);
+			return adminCredentialsResetV2Execute.call(this, itemIndex ?? 0);
 		case 'listRancherPlansV2':
-			return planCapabilityListGetV2Execute.call(this, itemIndex);
+			return planCapabilityListGetV2Execute.call(this, itemIndex ?? 0);
 		case 'listRancherVersionsV2':
-			return versionCapabilityListGetV2Execute.call(this, itemIndex);
+			return versionCapabilityListGetV2Execute.call(this, itemIndex ?? 0);
 		case 'listRancherEventsV2':
-			return eventListGetV2Execute.call(this, itemIndex);
+			return eventListGetV2Execute.call(this, itemIndex ?? 0);
 		case 'listRancherTasksV2':
-			return taskListGetV2Execute.call(this, itemIndex);
+			return taskListGetV2Execute.call(this, itemIndex ?? 0);
 		case 'getRancherTaskV2':
-			return taskDetailGetV2Execute.call(this, itemIndex);
+			return taskDetailGetV2Execute.call(this, itemIndex ?? 0);
 		case 'listReferencePlansV2':
-			return referencePlanListGetV2Execute.call(this, itemIndex);
+			return referencePlanListGetV2Execute.call(this, itemIndex ?? 0);
 		case 'listReferenceVersionsV2':
-			return referenceVersionListGetV2Execute.call(this, itemIndex);
+			return referenceVersionListGetV2Execute.call(this, itemIndex ?? 0);
 		case 'listGlobalReferencePlansV2':
-			return globalReferencePlanListGetV2Execute.call(this, itemIndex);
+			return globalReferencePlanListGetV2Execute.call(this, itemIndex ?? 0);
 		case 'listGlobalReferenceVersionsV2':
-			return globalReferenceVersionListGetV2Execute.call(this, itemIndex);
+			return globalReferenceVersionListGetV2Execute.call(this, itemIndex ?? 0);
 		default:
 			throw new Error(`Unsupported operation "${operation}" for resource "publicCloud"`);
 	}

@@ -44,10 +44,10 @@ export function description(displayOptions: IDisplayOptions): INodeProperties[] 
  * HTTP method: GET
  * Endpoint: /cdn/dedicated/{serviceName}/domains/{domain}/cacheRules
  */
-export async function execute(this: IExecuteFunctions, itemIndex: number): Promise<INodeExecutionData[]> {
-	const serviceName = this.getNodeParameter('serviceName', itemIndex) as string;
-	const domain = this.getNodeParameter('domain', itemIndex) as string;
-	const fileMatch = (this.getNodeParameter('fileMatch', itemIndex, '') as string) || '';
+export async function execute(this: IExecuteFunctions, _itemIndex: number): Promise<INodeExecutionData[]> {
+	const serviceName = this.getNodeParameter('serviceName', _itemIndex) as string;
+	const domain = this.getNodeParameter('domain', _itemIndex) as string;
+	const fileMatch = (this.getNodeParameter('fileMatch', _itemIndex, '') as string) || '';
 
 	const qs: IDataObject = {};
 	if (fileMatch) qs.fileMatch = fileMatch;

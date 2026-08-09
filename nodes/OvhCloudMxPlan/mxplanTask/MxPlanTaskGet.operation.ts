@@ -40,9 +40,9 @@ export function description(displayOptions: IDisplayOptions): INodeProperties[] 
  * HTTP method: GET
  * Endpoint: /email/mxplan/{service}/task/{id}
  */
-export async function execute(this: IExecuteFunctions): Promise<INodeExecutionData[]> {
-	const id = this.getNodeParameter('id', 0) as string;
-	const service = this.getNodeParameter('service', 0) as string;
+export async function execute(this: IExecuteFunctions, _itemIndex?: number): Promise<INodeExecutionData[]> {
+	const id = this.getNodeParameter('id', _itemIndex ?? 0) as string;
+	const service = this.getNodeParameter('service', _itemIndex ?? 0) as string;
 
 	const client = new ApiClient(this);
 	const data = (await client.httpGet('/email' + '/mxplan/' + encodeURIComponent(service) + '/task/' + encodeURIComponent(id))) as IDataObject;

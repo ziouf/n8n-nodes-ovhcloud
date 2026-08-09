@@ -43,17 +43,17 @@ export function description(displayOptions: IDisplayOptions): INodeProperties[] 
  * HTTP method: POST
  * Endpoint: /order/cart/{cartId}/checkout
  */
-export async function execute(this: IExecuteFunctions, itemIndex: number): Promise<INodeExecutionData[]> {
+export async function execute(this: IExecuteFunctions, _itemIndex: number): Promise<INodeExecutionData[]> {
 	const client = new ApiClient(this);
-	const cartId = this.getNodeParameter('cartId', itemIndex) as string;
+	const cartId = this.getNodeParameter('cartId', _itemIndex) as string;
 	const autoPayWithPreferredPaymentMethod = this.getNodeParameter(
 		'autoPayWithPreferredPaymentMethod',
-		0,
+		_itemIndex ?? 0,
 		false,
 	) as boolean;
 	const waiveRetractationPeriod = this.getNodeParameter(
 		'waiveRetractationPeriod',
-		0,
+		_itemIndex ?? 0,
 		false,
 	) as boolean;
 

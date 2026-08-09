@@ -68,12 +68,12 @@ export function descriptionGet(displayOptions: IDisplayOptions): INodeProperties
  * HTTP method: GET
  * Endpoint: /publicCloud/project/{projectId}/rancher/{rancherId}/adminCredentials
  */
-export async function executeGet(this: IExecuteFunctions): Promise<INodeExecutionData[]> {
+export async function executeGet(this: IExecuteFunctions, _itemIndex?: number): Promise<INodeExecutionData[]> {
 	const client = new ApiClient(this);
-	const projectId = this.getNodeParameter('publicCloudProjectId', 0, '', {
+	const projectId = this.getNodeParameter('publicCloudProjectId', _itemIndex ?? 0, '', {
 		extractValue: true,
 	}) as string;
-	const rancherServiceId = this.getNodeParameter('rancherServiceId', 0, '', {
+	const rancherServiceId = this.getNodeParameter('rancherServiceId', _itemIndex ?? 0, '', {
 		extractValue: true,
 	}) as string;
 
@@ -145,12 +145,12 @@ export function descriptionPost(displayOptions: IDisplayOptions): INodePropertie
  * HTTP method: POST
  * Endpoint: /publicCloud/project/{projectId}/rancher/{rancherId}/adminCredentials
  */
-export async function executePost(this: IExecuteFunctions): Promise<INodeExecutionData[]> {
+export async function executePost(this: IExecuteFunctions, _itemIndex?: number): Promise<INodeExecutionData[]> {
 	const client = new ApiClient(this);
-	const projectId = this.getNodeParameter('publicCloudProjectId', 0, '', {
+	const projectId = this.getNodeParameter('publicCloudProjectId', _itemIndex ?? 0, '', {
 		extractValue: true,
 	}) as string;
-	const rancherServiceId = this.getNodeParameter('rancherServiceId', 0, '', {
+	const rancherServiceId = this.getNodeParameter('rancherServiceId', _itemIndex ?? 0, '', {
 		extractValue: true,
 	}) as string;
 

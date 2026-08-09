@@ -156,24 +156,24 @@ export function description(displayOptions: IDisplayOptions): INodeProperties[] 
  * HTTP method: PUT
  * Endpoint: /telephony/{billingAccount}/line/{serviceName}/phone/rma/{id}
  */
-export async function execute(this: IExecuteFunctions, itemIndex: number): Promise<INodeExecutionData[]> {
-	const billingAccount = this.getNodeParameter('billingAccount', itemIndex) as string;
-	const id = this.getNodeParameter('id', itemIndex) as string;
-	const serviceName = this.getNodeParameter('serviceName', itemIndex) as string;
-	const cancellable = this.getNodeParameter('cancellable', itemIndex) as string;
-	const creationDatetime = this.getNodeParameter('creationDatetime', itemIndex) as string;
-	const equipmentReference = this.getNodeParameter('equipmentReference', itemIndex) as string;
-	const id1 = this.getNodeParameter('id', itemIndex) as string;
-	const newMerchandise = this.getNodeParameter('newMerchandise', itemIndex) as string;
-	const offerTypeNew = this.getNodeParameter('offerTypeNew', itemIndex) as string;
-	const offerTypeOld = this.getNodeParameter('offerTypeOld', itemIndex) as string;
-	const process = this.getNodeParameter('process', itemIndex) as string;
-	const receptionDatetime = this.getNodeParameter('receptionDatetime', itemIndex) as string;
-	const shippingContact = this.getNodeParameter('shippingContact', itemIndex) as string;
-	const status = this.getNodeParameter('status', itemIndex) as string;
-	const steps = this.getNodeParameter('steps', itemIndex) as string;
-	const terminationDatetime = this.getNodeParameter('terminationDatetime', itemIndex) as string;
-	const typeParam = this.getNodeParameter('type', itemIndex) as string;
+export async function execute(this: IExecuteFunctions, _itemIndex: number): Promise<INodeExecutionData[]> {
+	const billingAccount = this.getNodeParameter('billingAccount', _itemIndex) as string;
+	const id = this.getNodeParameter('id', _itemIndex) as string;
+	const serviceName = this.getNodeParameter('serviceName', _itemIndex) as string;
+	const cancellable = this.getNodeParameter('cancellable', _itemIndex) as string;
+	const creationDatetime = this.getNodeParameter('creationDatetime', _itemIndex) as string;
+	const equipmentReference = this.getNodeParameter('equipmentReference', _itemIndex) as string;
+	const id1 = this.getNodeParameter('id', _itemIndex) as string;
+	const newMerchandise = this.getNodeParameter('newMerchandise', _itemIndex) as string;
+	const offerTypeNew = this.getNodeParameter('offerTypeNew', _itemIndex) as string;
+	const offerTypeOld = this.getNodeParameter('offerTypeOld', _itemIndex) as string;
+	const process = this.getNodeParameter('process', _itemIndex) as string;
+	const receptionDatetime = this.getNodeParameter('receptionDatetime', _itemIndex) as string;
+	const shippingContact = this.getNodeParameter('shippingContact', _itemIndex) as string;
+	const status = this.getNodeParameter('status', _itemIndex) as string;
+	const steps = this.getNodeParameter('steps', _itemIndex) as string;
+	const terminationDatetime = this.getNodeParameter('terminationDatetime', _itemIndex) as string;
+	const typeParam = this.getNodeParameter('type', _itemIndex) as string;
 
 	const body: IDataObject = {
     cancellable: cancellable,

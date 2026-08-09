@@ -47,18 +47,18 @@ export function description(displayOptions: IDisplayOptions): INodeProperties[] 
  */
 export async function execute(
 	this: IExecuteFunctions,
-	itemIndex: number,
+	_itemIndex: number,
 ): Promise<INodeExecutionData[]> {
 	const client = new ApiClient(this);
-	const id = this.getNodeParameter('id', itemIndex) as number;
-	const token = this.getNodeParameter('token', itemIndex) as string;
-	const directory = this.getNodeParameter('directory', itemIndex, '') as string;
+	const id = this.getNodeParameter('id', _itemIndex) as number;
+	const token = this.getNodeParameter('token', _itemIndex) as string;
+	const directory = this.getNodeParameter('directory', _itemIndex, '') as string;
 	const qs: IDataObject = { id, token };
 	if (directory) qs.directory = directory;
 	const data = (await client.httpGet(
 		'/hosting/web/localSeo/visibilityCheckResult',
 		qs,
 	)) as IDataObject;
-	const inputData = this.getInputData()[itemIndex];
+	const inputData = this.getInputData()[_itemIndex];
 	return this.helpers.returnJsonArray([{ ...inputData.json, ...data }]);
 }

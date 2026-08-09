@@ -119,18 +119,18 @@ export function description(displayOptions: IDisplayOptions): INodeProperties[] 
  * HTTP method: PUT
  * Endpoint: /cloud/project/{serviceName}/database/clickhouse/{clusterId}
  */
-export async function execute(this: IExecuteFunctions): Promise<INodeExecutionData[]> {
+export async function execute(this: IExecuteFunctions, _itemIndex?: number): Promise<INodeExecutionData[]> {
 	const client = new ApiClient(this);
-	const clusterId = this.getNodeParameter('clusterId', 0) as string;
-	const serviceName = this.getNodeParameter('publicCloudProjectId', 0, '', { extractValue: true }) as string;
-	const description = (this.getNodeParameter('description', 0, '') || '') as string;
-	const version = (this.getNodeParameter('version', 0, '') || '') as string;
-	const plan = (this.getNodeParameter('plan', 0, '') || '') as string;
-	const backups = (this.getNodeParameter('backups', 0, '') || '') as string;
-	const maintenanceTime = (this.getNodeParameter('maintenanceTime', 0, '') || '') as string;
-	const ipRestrictions = (this.getNodeParameter('ipRestrictions', 0, '') || '') as string;
-	const deletionProtection = this.getNodeParameter('deletionProtection', 0, false) as boolean;
-	const enablePrometheus = this.getNodeParameter('enablePrometheus', 0, false) as boolean;
+	const clusterId = this.getNodeParameter('clusterId', _itemIndex ?? 0) as string;
+	const serviceName = this.getNodeParameter('publicCloudProjectId', _itemIndex ?? 0, '', { extractValue: true }) as string;
+	const description = (this.getNodeParameter('description', _itemIndex ?? 0, '') || '') as string;
+	const version = (this.getNodeParameter('version', _itemIndex ?? 0, '') || '') as string;
+	const plan = (this.getNodeParameter('plan', _itemIndex ?? 0, '') || '') as string;
+	const backups = (this.getNodeParameter('backups', _itemIndex ?? 0, '') || '') as string;
+	const maintenanceTime = (this.getNodeParameter('maintenanceTime', _itemIndex ?? 0, '') || '') as string;
+	const ipRestrictions = (this.getNodeParameter('ipRestrictions', _itemIndex ?? 0, '') || '') as string;
+	const deletionProtection = this.getNodeParameter('deletionProtection', _itemIndex ?? 0, false) as boolean;
+	const enablePrometheus = this.getNodeParameter('enablePrometheus', _itemIndex ?? 0, false) as boolean;
 
 	const body: IDataObject = {};
 	if (description) body.description = description;

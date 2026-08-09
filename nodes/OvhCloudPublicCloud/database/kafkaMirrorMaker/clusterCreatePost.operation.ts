@@ -49,12 +49,12 @@ export function description(displayOptions: IDisplayOptions): INodeProperties[] 
  * HTTP method: POST
  * Endpoint: /cloud/project/${publicCloudProjectId}/database/kafkaMirrorMaker
  */
-export async function execute(this: IExecuteFunctions): Promise<INodeExecutionData[]> {
+export async function execute(this: IExecuteFunctions, _itemIndex?: number): Promise<INodeExecutionData[]> {
 	const client = new ApiClient(this);
-	const publicCloudProjectId = this.getNodeParameter('publicCloudProjectId', 0) as string;
-	const description = this.getNodeParameter('description', 0) as string;
-	const plan = this.getNodeParameter('plan', 0) as string;
-	const version = this.getNodeParameter('version', 0) as string;
+	const publicCloudProjectId = this.getNodeParameter('publicCloudProjectId', _itemIndex ?? 0) as string;
+	const description = this.getNodeParameter('description', _itemIndex ?? 0) as string;
+	const plan = this.getNodeParameter('plan', _itemIndex ?? 0) as string;
+	const version = this.getNodeParameter('version', _itemIndex ?? 0) as string;
 
 	const body: IDataObject = {};
 	if (description) body.description = description;

@@ -55,13 +55,13 @@ export function description(displayOptions: IDisplayOptions): INodeProperties[] 
  * Endpoint: /ip/{ip}/spam/{ipSpamming}/stats
  */
 
-export async function execute(this: IExecuteFunctions, itemIndex: number): Promise<INodeExecutionData[]> {
-	const ip = this.getNodeParameter('ip', itemIndex) as string;
+export async function execute(this: IExecuteFunctions, _itemIndex: number): Promise<INodeExecutionData[]> {
+	const ip = this.getNodeParameter('ip', _itemIndex) as string;
 
-	const ipSpamming = this.getNodeParameter('ipSpamming', itemIndex) as string;
+	const ipSpamming = this.getNodeParameter('ipSpamming', _itemIndex) as string;
 
-	const from = this.getNodeParameter('from', itemIndex) as string;
-	const to = this.getNodeParameter('to', itemIndex) as string;
+	const from = this.getNodeParameter('from', _itemIndex) as string;
+	const to = this.getNodeParameter('to', _itemIndex) as string;
 
 	const qs: IDataObject = {
 		from: from,

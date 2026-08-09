@@ -43,13 +43,13 @@ export function description(
 
 export async function execute(
 	this: IExecuteFunctions,
-	itemIndex?: number,
+	_itemIndex?: number,
 ): Promise<INodeExecutionData[]> {
 	const client = new ApiClient(this);
-	const serviceName = this.getNodeParameter('serviceName', itemIndex as number, '', {
+	const serviceName = this.getNodeParameter('serviceName', _itemIndex as number, '', {
 		extractValue: true,
 	}) as string;
-	const cronId = this.getNodeParameter('cronId', itemIndex as number) as number;
+	const cronId = this.getNodeParameter('cronId', _itemIndex as number) as number;
 	const data = (await client.httpPut(
 		`/hosting/web/${serviceName}/cron/${cronId}`,
 		{} as IDataObject,

@@ -35,11 +35,11 @@ export function description(displayOptions: IDisplayOptions): INodeProperties[] 
  * HTTP method: POST
  * Endpoint: /dedicatedCloud/{serviceName}/vrops/upgrade
  */
-export async function execute(this: IExecuteFunctions, itemIndex: number): Promise<INodeExecutionData[]> {
+export async function execute(this: IExecuteFunctions, _itemIndex: number): Promise<INodeExecutionData[]> {
 	const client = new ApiClient(this);
-	const serviceName = this.getNodeParameter('serviceName', itemIndex) as string;
+	const serviceName = this.getNodeParameter('serviceName', _itemIndex) as string;
 	const body: IDataObject = {};
-	const version = this.getNodeParameter('version', itemIndex, '') as string; if (version !== '') { body.version = version; }
+	const version = this.getNodeParameter('version', _itemIndex, '') as string; if (version !== '') { body.version = version; }
 	const data = (await client.httpPost(`/dedicatedCloud/${serviceName}/vrops/upgrade`, body)) as IDataObject;
 	return this.helpers.returnJsonArray([data]);
 }

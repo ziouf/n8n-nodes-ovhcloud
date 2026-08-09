@@ -19,9 +19,9 @@ export function description(displayOptions: IDisplayOptions): INodeProperties[] 
 	];
 }
 
-export async function execute(this: IExecuteFunctions, itemIndex: number): Promise<INodeExecutionData[]> {
+export async function execute(this: IExecuteFunctions, _itemIndex: number): Promise<INodeExecutionData[]> {
 	const client = new ApiClient(this);
-	const projectId = this.getNodeParameter('projectId', itemIndex) as string;
+	const projectId = this.getNodeParameter('projectId', _itemIndex) as string;
 	const data = (await client.httpGet(`/order/cloud/project/${projectId}`)) as INodeExecutionData;
 	return this.helpers.returnJsonArray([data]);
 }

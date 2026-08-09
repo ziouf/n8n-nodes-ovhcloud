@@ -56,11 +56,11 @@ export function description(displayOptions: IDisplayOptions): INodeProperties[] 
  * HTTP method: DELETE
  * Endpoint: /cloud/project/{serviceName}/database/clickhouse/{clusterId}/log/subscription/{subscriptionId}
  */
-export async function execute(this: IExecuteFunctions): Promise<INodeExecutionData[]> {
+export async function execute(this: IExecuteFunctions, _itemIndex?: number): Promise<INodeExecutionData[]> {
 	const client = new ApiClient(this);
-	const subscriptionId = this.getNodeParameter('subscriptionId', 0) as string;
-	const clusterId = this.getNodeParameter('clusterId', 0) as string;
-	const serviceName = this.getNodeParameter('publicCloudProjectId', 0, '', { extractValue: true }) as string;
+	const subscriptionId = this.getNodeParameter('subscriptionId', _itemIndex ?? 0) as string;
+	const clusterId = this.getNodeParameter('clusterId', _itemIndex ?? 0) as string;
+	const serviceName = this.getNodeParameter('publicCloudProjectId', _itemIndex ?? 0, '', { extractValue: true }) as string;
 
 	await client.httpDelete(`/cloud/project/${serviceName}/database/clickhouse/${clusterId}/log/subscription/${subscriptionId}`);
 

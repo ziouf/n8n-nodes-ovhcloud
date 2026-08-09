@@ -141,22 +141,22 @@ export function description(displayOptions: IDisplayOptions): INodeProperties[] 
  * HTTP method: POST
  * Endpoint: /telephony/{billingAccount}/easyHunting/{serviceName}/hunting/queue
  */
-export async function execute(this: IExecuteFunctions, itemIndex: number): Promise<INodeExecutionData[]> {
-	const billingAccount = this.getNodeParameter('billingAccount', itemIndex) as string;
-	const serviceName = this.getNodeParameter('serviceName', itemIndex) as string;
-	const actionOnClosure = this.getNodeParameter('actionOnClosure', itemIndex) as string;
-	const actionOnClosureParam = this.getNodeParameter('actionOnClosureParam', itemIndex) as string;
-	const actionOnOverflow = this.getNodeParameter('actionOnOverflow', itemIndex) as string;
-	const actionOnOverflowParam = this.getNodeParameter('actionOnOverflowParam', itemIndex) as string;
-	const askForRecordDisabling = this.getNodeParameter('askForRecordDisabling', itemIndex) as string;
-	const description = this.getNodeParameter('description', itemIndex) as string;
-	const maxMember = this.getNodeParameter('maxMember', itemIndex) as string;
-	const maxWaitTime = this.getNodeParameter('maxWaitTime', itemIndex) as string;
-	const record = this.getNodeParameter('record', itemIndex) as string;
-	const recordDisablingDigit = this.getNodeParameter('recordDisablingDigit', itemIndex) as string;
-	const recordDisablingLanguage = this.getNodeParameter('recordDisablingLanguage', itemIndex) as string;
-	const soundOnHold = this.getNodeParameter('soundOnHold', itemIndex) as string;
-	const strategy = this.getNodeParameter('strategy', itemIndex) as string;
+export async function execute(this: IExecuteFunctions, _itemIndex: number): Promise<INodeExecutionData[]> {
+	const billingAccount = this.getNodeParameter('billingAccount', _itemIndex) as string;
+	const serviceName = this.getNodeParameter('serviceName', _itemIndex) as string;
+	const actionOnClosure = this.getNodeParameter('actionOnClosure', _itemIndex) as string;
+	const actionOnClosureParam = this.getNodeParameter('actionOnClosureParam', _itemIndex) as string;
+	const actionOnOverflow = this.getNodeParameter('actionOnOverflow', _itemIndex) as string;
+	const actionOnOverflowParam = this.getNodeParameter('actionOnOverflowParam', _itemIndex) as string;
+	const askForRecordDisabling = this.getNodeParameter('askForRecordDisabling', _itemIndex) as string;
+	const description = this.getNodeParameter('description', _itemIndex) as string;
+	const maxMember = this.getNodeParameter('maxMember', _itemIndex) as string;
+	const maxWaitTime = this.getNodeParameter('maxWaitTime', _itemIndex) as string;
+	const record = this.getNodeParameter('record', _itemIndex) as string;
+	const recordDisablingDigit = this.getNodeParameter('recordDisablingDigit', _itemIndex) as string;
+	const recordDisablingLanguage = this.getNodeParameter('recordDisablingLanguage', _itemIndex) as string;
+	const soundOnHold = this.getNodeParameter('soundOnHold', _itemIndex) as string;
+	const strategy = this.getNodeParameter('strategy', _itemIndex) as string;
 
 	const body: IDataObject = {
 		actionOnClosure: actionOnClosure,

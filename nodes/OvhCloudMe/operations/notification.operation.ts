@@ -14,6 +14,7 @@ import { ApiClient } from '../../../shared/transport/ApiClient';
 // listEmailHistory
 export async function executeListEmailHistory(
 	this: IExecuteFunctions,
+_itemIndex?: number,
 ): Promise<INodeExecutionData[]> {
 	const client = new ApiClient(this);
 	const ids = (await client.httpGet('/me/notification/email/history')) as string[];
@@ -42,10 +43,10 @@ export function descriptionGetEmail(displayOptions: IDisplayOptions): INodePrope
 
 export async function executeGetEmail(
 	this: IExecuteFunctions,
-	itemIndex: number,
+	_itemIndex: number,
 ): Promise<INodeExecutionData[]> {
 	const client = new ApiClient(this);
-	const id = this.getNodeParameter('id', itemIndex) as string;
+	const id = this.getNodeParameter('id', _itemIndex) as string;
 	const data = (await client.httpGet(`/me/notification/email/history/${id}`)) as IDataObject;
 	return this.helpers.returnJsonArray([data]);
 }
@@ -55,7 +56,7 @@ export async function executeGetEmail(
 // ============================================================
 
 // getMarketing
-export async function executeGetMarketing(this: IExecuteFunctions): Promise<INodeExecutionData[]> {
+export async function executeGetMarketing(this: IExecuteFunctions, _itemIndex?: number): Promise<INodeExecutionData[]> {
 	const client = new ApiClient(this);
 	const data = (await client.httpGet('/me/marketing')) as IDataObject;
 	return this.helpers.returnJsonArray([data]);
@@ -64,6 +65,7 @@ export async function executeGetMarketing(this: IExecuteFunctions): Promise<INod
 // listAvailableMailingLists
 export async function executeListAvailableMailingLists(
 	this: IExecuteFunctions,
+_itemIndex?: number,
 ): Promise<INodeExecutionData[]> {
 	const client = new ApiClient(this);
 	const data = (await client.httpGet('/me/mailingList/availableLists')) as IDataObject[];
@@ -77,6 +79,7 @@ export async function executeListAvailableMailingLists(
 // getCurrentConsumption
 export async function executeGetCurrentConsumption(
 	this: IExecuteFunctions,
+_itemIndex?: number,
 ): Promise<INodeExecutionData[]> {
 	const client = new ApiClient(this);
 	const data = (await client.httpGet('/me/consumption/usage/current')) as IDataObject[];
@@ -86,6 +89,7 @@ export async function executeGetCurrentConsumption(
 // getForecastConsumption
 export async function executeGetForecastConsumption(
 	this: IExecuteFunctions,
+_itemIndex?: number,
 ): Promise<INodeExecutionData[]> {
 	const client = new ApiClient(this);
 	const data = (await client.httpGet('/me/consumption/usage/forecast')) as IDataObject[];
@@ -95,6 +99,7 @@ export async function executeGetForecastConsumption(
 // getConsumptionHistory
 export async function executeGetConsumptionHistory(
 	this: IExecuteFunctions,
+_itemIndex?: number,
 ): Promise<INodeExecutionData[]> {
 	const client = new ApiClient(this);
 	const data = (await client.httpGet('/me/consumption/usage/history')) as IDataObject[];
@@ -108,6 +113,7 @@ export async function executeGetConsumptionHistory(
 // listMigrations
 export async function executeListMigrations(
 	this: IExecuteFunctions,
+_itemIndex?: number,
 ): Promise<INodeExecutionData[]> {
 	const client = new ApiClient(this);
 	const ids = (await client.httpGet('/me/migration')) as string[];
@@ -135,10 +141,10 @@ export function descriptionGetMigration(displayOptions: IDisplayOptions): INodeP
 
 export async function executeGetMigration(
 	this: IExecuteFunctions,
-	itemIndex: number,
+	_itemIndex: number,
 ): Promise<INodeExecutionData[]> {
 	const client = new ApiClient(this);
-	const migrationId = this.getNodeParameter('migrationId', itemIndex) as string;
+	const migrationId = this.getNodeParameter('migrationId', _itemIndex) as string;
 	const data = (await client.httpGet(`/me/migration/${migrationId}`)) as IDataObject;
 	return this.helpers.returnJsonArray([data]);
 }
@@ -161,10 +167,10 @@ export function descriptionListMigrationContracts(
 
 export async function executeListMigrationContracts(
 	this: IExecuteFunctions,
-	itemIndex: number,
+	_itemIndex: number,
 ): Promise<INodeExecutionData[]> {
 	const client = new ApiClient(this);
-	const migrationId = this.getNodeParameter('migrationId', itemIndex) as string;
+	const migrationId = this.getNodeParameter('migrationId', _itemIndex) as string;
 	const ids = (await client.httpGet(`/me/migration/${migrationId}/contract`)) as string[];
 	const results: IDataObject[] = [];
 	for (const id of ids) {
@@ -202,11 +208,11 @@ export function descriptionGetMigrationContract(
 
 export async function executeGetMigrationContract(
 	this: IExecuteFunctions,
-	itemIndex: number,
+	_itemIndex: number,
 ): Promise<INodeExecutionData[]> {
 	const client = new ApiClient(this);
-	const migrationId = this.getNodeParameter('migrationId', itemIndex) as string;
-	const contractId = this.getNodeParameter('contractId', itemIndex) as string;
+	const migrationId = this.getNodeParameter('migrationId', _itemIndex) as string;
+	const contractId = this.getNodeParameter('contractId', _itemIndex) as string;
 	const data = (await client.httpGet(
 		`/me/migration/${migrationId}/contract/${contractId}`,
 	)) as IDataObject;
@@ -239,11 +245,11 @@ export function descriptionGetMigrationAgreement(
 
 export async function executeGetMigrationAgreement(
 	this: IExecuteFunctions,
-	itemIndex: number,
+	_itemIndex: number,
 ): Promise<INodeExecutionData[]> {
 	const client = new ApiClient(this);
-	const migrationId = this.getNodeParameter('migrationId', itemIndex) as string;
-	const contractId = this.getNodeParameter('contractId', itemIndex) as string;
+	const migrationId = this.getNodeParameter('migrationId', _itemIndex) as string;
+	const contractId = this.getNodeParameter('contractId', _itemIndex) as string;
 	const data = (await client.httpGet(
 		`/me/migration/${migrationId}/contract/${contractId}/agreement`,
 	)) as IDataObject;
@@ -257,6 +263,7 @@ export async function executeGetMigrationAgreement(
 // getFidelityAccount
 export async function executeGetFidelityAccount(
 	this: IExecuteFunctions,
+_itemIndex?: number,
 ): Promise<INodeExecutionData[]> {
 	const client = new ApiClient(this);
 	const data = (await client.httpGet('/me/fidelityAccount')) as IDataObject;
@@ -266,6 +273,7 @@ export async function executeGetFidelityAccount(
 // listFidelityMovements
 export async function executeListFidelityMovements(
 	this: IExecuteFunctions,
+_itemIndex?: number,
 ): Promise<INodeExecutionData[]> {
 	const client = new ApiClient(this);
 	const ids = (await client.httpGet('/me/fidelityAccount/movements')) as string[];
@@ -294,10 +302,10 @@ export function descriptionGetFidelityMovement(displayOptions: IDisplayOptions):
 
 export async function executeGetFidelityMovement(
 	this: IExecuteFunctions,
-	itemIndex: number,
+	_itemIndex: number,
 ): Promise<INodeExecutionData[]> {
 	const client = new ApiClient(this);
-	const movementId = this.getNodeParameter('movementId', itemIndex) as string;
+	const movementId = this.getNodeParameter('movementId', _itemIndex) as string;
 	const data = (await client.httpGet(`/me/fidelityAccount/movements/${movementId}`)) as IDataObject;
 	return this.helpers.returnJsonArray([data]);
 }
@@ -305,6 +313,7 @@ export async function executeGetFidelityMovement(
 // listIpOrganisations
 export async function executeListIpOrganisations(
 	this: IExecuteFunctions,
+_itemIndex?: number,
 ): Promise<INodeExecutionData[]> {
 	const client = new ApiClient(this);
 	const data = (await client.httpGet('/me/ipOrganisation')) as IDataObject[];
@@ -328,10 +337,10 @@ export function descriptionGetIpOrganisation(displayOptions: IDisplayOptions): I
 
 export async function executeGetIpOrganisation(
 	this: IExecuteFunctions,
-	itemIndex: number,
+	_itemIndex: number,
 ): Promise<INodeExecutionData[]> {
 	const client = new ApiClient(this);
-	const organisationId = this.getNodeParameter('organisationId', itemIndex) as string;
+	const organisationId = this.getNodeParameter('organisationId', _itemIndex) as string;
 	const data = (await client.httpGet(`/me/ipOrganisation/${organisationId}`)) as IDataObject;
 	return this.helpers.returnJsonArray([data]);
 }

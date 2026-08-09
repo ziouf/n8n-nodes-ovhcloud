@@ -102,17 +102,17 @@ export function description(displayOptions: IDisplayOptions): INodeProperties[] 
  * HTTP method: POST
  * Endpoint: /telephony/{billingAccount}/line/{serviceName}/automaticCall
  */
-export async function execute(this: IExecuteFunctions, itemIndex: number): Promise<INodeExecutionData[]> {
-	const billingAccount = this.getNodeParameter('billingAccount', itemIndex) as string;
-	const serviceName = this.getNodeParameter('serviceName', itemIndex) as string;
-	const bridgeNumberDialplan = this.getNodeParameter('bridgeNumberDialplan', itemIndex) as string;
-	const calledNumber = this.getNodeParameter('calledNumber', itemIndex) as string;
-	const callingNumber = this.getNodeParameter('callingNumber', itemIndex) as string;
-	const dialplan = this.getNodeParameter('dialplan', itemIndex) as string;
-	const isAnonymous = this.getNodeParameter('isAnonymous', itemIndex) as string;
-	const playbackAudioFileDialplan = this.getNodeParameter('playbackAudioFileDialplan', itemIndex) as string;
-	const timeout = this.getNodeParameter('timeout', itemIndex) as string;
-	const ttsTextDialplan = this.getNodeParameter('ttsTextDialplan', itemIndex) as string;
+export async function execute(this: IExecuteFunctions, _itemIndex: number): Promise<INodeExecutionData[]> {
+	const billingAccount = this.getNodeParameter('billingAccount', _itemIndex) as string;
+	const serviceName = this.getNodeParameter('serviceName', _itemIndex) as string;
+	const bridgeNumberDialplan = this.getNodeParameter('bridgeNumberDialplan', _itemIndex) as string;
+	const calledNumber = this.getNodeParameter('calledNumber', _itemIndex) as string;
+	const callingNumber = this.getNodeParameter('callingNumber', _itemIndex) as string;
+	const dialplan = this.getNodeParameter('dialplan', _itemIndex) as string;
+	const isAnonymous = this.getNodeParameter('isAnonymous', _itemIndex) as string;
+	const playbackAudioFileDialplan = this.getNodeParameter('playbackAudioFileDialplan', _itemIndex) as string;
+	const timeout = this.getNodeParameter('timeout', _itemIndex) as string;
+	const ttsTextDialplan = this.getNodeParameter('ttsTextDialplan', _itemIndex) as string;
 
 	const body: IDataObject = {
     bridgeNumberDialplan: bridgeNumberDialplan,

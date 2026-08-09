@@ -58,11 +58,11 @@ export function description(displayOptions: IDisplayOptions): INodeProperties[] 
  * HTTP method: GET
  * Endpoint: /license/office/{serviceName}/usageStatistics
  */
-export async function execute(this: IExecuteFunctions, itemIndex: number): Promise<INodeExecutionData[]> {
+export async function execute(this: IExecuteFunctions, _itemIndex: number): Promise<INodeExecutionData[]> {
 	const client = new ApiClient(this);
-	const serviceName = this.getNodeParameter('serviceName', itemIndex, '', { extractValue: true }) as string;
-	const from = this.getNodeParameter('from', itemIndex, '') as string;
-	const to = this.getNodeParameter('to', itemIndex, '') as string;
+	const serviceName = this.getNodeParameter('serviceName', _itemIndex, '', { extractValue: true }) as string;
+	const from = this.getNodeParameter('from', _itemIndex, '') as string;
+	const to = this.getNodeParameter('to', _itemIndex, '') as string;
 
 	const qs: IDataObject = {
     from: from,

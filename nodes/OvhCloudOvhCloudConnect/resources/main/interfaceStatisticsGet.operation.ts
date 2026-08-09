@@ -81,12 +81,12 @@ export function description(displayOptions: IDisplayOptions): INodeProperties[] 
  * HTTP method: GET
  * Endpoint: /ovhCloudConnect/{serviceName}/interface/{id}/statistics
  */
-export async function execute(this: IExecuteFunctions): Promise<INodeExecutionData[]> {
+export async function execute(this: IExecuteFunctions, _itemIndex?: number): Promise<INodeExecutionData[]> {
 	const client = new ApiClient(this);
-	const serviceName = this.getNodeParameter('serviceName', 0, '', { extractValue: true }) as string;
-	const id = this.getNodeParameter('id', 0) as number;
-	const period = (this.getNodeParameter('period', 0, '') as string) || '';
-	const type = (this.getNodeParameter('type', 0, '') as string) || '';
+	const serviceName = this.getNodeParameter('serviceName', _itemIndex ?? 0, '', { extractValue: true }) as string;
+	const id = this.getNodeParameter('id', _itemIndex ?? 0) as number;
+	const period = (this.getNodeParameter('period', _itemIndex ?? 0, '') as string) || '';
+	const type = (this.getNodeParameter('type', _itemIndex ?? 0, '') as string) || '';
 
 	const qs: IDataObject = {};
 	if (period) qs.period = period;

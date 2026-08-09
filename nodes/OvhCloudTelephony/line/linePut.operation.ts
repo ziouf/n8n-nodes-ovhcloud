@@ -123,20 +123,20 @@ export function description(displayOptions: IDisplayOptions): INodeProperties[] 
  * HTTP method: PUT
  * Endpoint: /telephony/{billingAccount}/line/{serviceName}
  */
-export async function execute(this: IExecuteFunctions, itemIndex: number): Promise<INodeExecutionData[]> {
-	const billingAccount = this.getNodeParameter('billingAccount', itemIndex) as string;
-	const serviceName = this.getNodeParameter('serviceName', itemIndex) as string;
-	const canChangePassword = this.getNodeParameter('canChangePassword', itemIndex) as string;
-	const description = this.getNodeParameter('description', itemIndex) as string;
-	const deviceSlot = this.getNodeParameter('deviceSlot', itemIndex) as string;
-	const getPublicOffer = this.getNodeParameter('getPublicOffer', itemIndex) as string;
-	const infrastructure = this.getNodeParameter('infrastructure', itemIndex) as string;
-	const isAttachedToOtherLinesPhone = this.getNodeParameter('isAttachedToOtherLinesPhone', itemIndex) as string;
-	const notifications = this.getNodeParameter('notifications', itemIndex) as string;
-	const offers = this.getNodeParameter('offers', itemIndex) as string;
-	const serviceName1 = this.getNodeParameter('serviceName', itemIndex) as string;
-	const serviceType = this.getNodeParameter('serviceType', itemIndex) as string;
-	const simultaneousLines = this.getNodeParameter('simultaneousLines', itemIndex) as string;
+export async function execute(this: IExecuteFunctions, _itemIndex: number): Promise<INodeExecutionData[]> {
+	const billingAccount = this.getNodeParameter('billingAccount', _itemIndex) as string;
+	const serviceName = this.getNodeParameter('serviceName', _itemIndex) as string;
+	const canChangePassword = this.getNodeParameter('canChangePassword', _itemIndex) as string;
+	const description = this.getNodeParameter('description', _itemIndex) as string;
+	const deviceSlot = this.getNodeParameter('deviceSlot', _itemIndex) as string;
+	const getPublicOffer = this.getNodeParameter('getPublicOffer', _itemIndex) as string;
+	const infrastructure = this.getNodeParameter('infrastructure', _itemIndex) as string;
+	const isAttachedToOtherLinesPhone = this.getNodeParameter('isAttachedToOtherLinesPhone', _itemIndex) as string;
+	const notifications = this.getNodeParameter('notifications', _itemIndex) as string;
+	const offers = this.getNodeParameter('offers', _itemIndex) as string;
+	const serviceName1 = this.getNodeParameter('serviceName', _itemIndex) as string;
+	const serviceType = this.getNodeParameter('serviceType', _itemIndex) as string;
+	const simultaneousLines = this.getNodeParameter('simultaneousLines', _itemIndex) as string;
 
 	const body: IDataObject = {
     canChangePassword: canChangePassword,

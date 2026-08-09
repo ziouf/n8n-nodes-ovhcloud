@@ -59,11 +59,11 @@ export function description(displayOptions: IDisplayOptions): INodeProperties[] 
  * HTTP method: GET
  * Endpoint: /ovhCloudConnect/{serviceName}/config/pop/{popId}/datacenter/{datacenterId}
  */
-export async function execute(this: IExecuteFunctions): Promise<INodeExecutionData[]> {
+export async function execute(this: IExecuteFunctions, _itemIndex?: number): Promise<INodeExecutionData[]> {
 	const client = new ApiClient(this);
-	const serviceName = this.getNodeParameter('serviceName', 0, '', { extractValue: true }) as string;
-	const popId = this.getNodeParameter('popId', 0) as number;
-	const datacenterId = this.getNodeParameter('datacenterId', 0) as number;
+	const serviceName = this.getNodeParameter('serviceName', _itemIndex ?? 0, '', { extractValue: true }) as string;
+	const popId = this.getNodeParameter('popId', _itemIndex ?? 0) as number;
+	const datacenterId = this.getNodeParameter('datacenterId', _itemIndex ?? 0) as number;
 
 	const data = (await client.httpGet(`/ovhCloudConnect/${encodeURIComponent(serviceName)}/config/pop/${encodeURIComponent(popId)}/datacenter/${encodeURIComponent(datacenterId)}`)) as IDataObject;
 	return this.helpers.returnJsonArray([data]);

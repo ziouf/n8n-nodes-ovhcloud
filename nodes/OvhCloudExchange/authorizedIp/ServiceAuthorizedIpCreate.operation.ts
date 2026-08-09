@@ -96,18 +96,18 @@ export function description() {
  * HTTP method: POST
  * Endpoint: /email/exchange/{organizationName}/service/{exchangeService}/authorizedIp
  */
-export async function execute(this: IExecuteFunctions): Promise<INodeExecutionData[]> {
-	const organizationName = this.getNodeParameter('organizationName', 0) as string;
-	const exchangeService = this.getNodeParameter('exchangeService', 0) as string;
-	const HTTPS = this.getNodeParameter('HTTPS', 0) as string;
-	const IMAP = this.getNodeParameter('IMAP', 0) as string;
-	const IMAPS = this.getNodeParameter('IMAPS', 0) as string;
-	const IP = this.getNodeParameter('IP', 0) as string;
-	const POP = this.getNodeParameter('POP', 0) as string;
-	const POPS = this.getNodeParameter('POPS', 0) as string;
-	const SMTP = this.getNodeParameter('SMTP', 0) as string;
-	const SMTPS = this.getNodeParameter('SMTPS', 0) as string;
-	const displayName = this.getNodeParameter('displayName', 0) as string;
+export async function execute(this: IExecuteFunctions, _itemIndex?: number): Promise<INodeExecutionData[]> {
+	const organizationName = this.getNodeParameter('organizationName', _itemIndex ?? 0) as string;
+	const exchangeService = this.getNodeParameter('exchangeService', _itemIndex ?? 0) as string;
+	const HTTPS = this.getNodeParameter('HTTPS', _itemIndex ?? 0) as string;
+	const IMAP = this.getNodeParameter('IMAP', _itemIndex ?? 0) as string;
+	const IMAPS = this.getNodeParameter('IMAPS', _itemIndex ?? 0) as string;
+	const IP = this.getNodeParameter('IP', _itemIndex ?? 0) as string;
+	const POP = this.getNodeParameter('POP', _itemIndex ?? 0) as string;
+	const POPS = this.getNodeParameter('POPS', _itemIndex ?? 0) as string;
+	const SMTP = this.getNodeParameter('SMTP', _itemIndex ?? 0) as string;
+	const SMTPS = this.getNodeParameter('SMTPS', _itemIndex ?? 0) as string;
+	const displayName = this.getNodeParameter('displayName', _itemIndex ?? 0) as string;
 
 	const body: IDataObject = {
     HTTPS: HTTPS,

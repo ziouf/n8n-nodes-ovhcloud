@@ -28,8 +28,8 @@ export function description(displayOptions: IDisplayOptions): INodeProperties[] 
  * HTTP method: PUT
  * Endpoint: /iam/permissionsGroup/{permissionsGroupURN}
  */
-export async function execute(this: IExecuteFunctions, itemIndex: number): Promise<INodeExecutionData[]> {
-	const permissionsGroupURN = this.getNodeParameter('permissionsGroupURN', itemIndex) as string;
+export async function execute(this: IExecuteFunctions, _itemIndex: number): Promise<INodeExecutionData[]> {
+	const permissionsGroupURN = this.getNodeParameter('permissionsGroupURN', _itemIndex) as string;
 
 	const body: IDataObject = {};
 

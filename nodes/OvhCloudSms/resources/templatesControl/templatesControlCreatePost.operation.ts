@@ -76,13 +76,13 @@ export function description(displayOptions: IDisplayOptions): INodeProperties[] 
  * HTTP method: POST
  * Endpoint: /sms/{serviceName}/templatesControl
  */
-export async function execute(this: IExecuteFunctions): Promise<INodeExecutionData[]> {
-	const serviceName = this.getNodeParameter('serviceName', 0, '', { extractValue: true }) as string;
-	const activity = this.getNodeParameter('activity', 0) as string;
-	const description = this.getNodeParameter('description', 0) as string;
-	const message = this.getNodeParameter('message', 0) as string;
-	const name = this.getNodeParameter('name', 0) as string;
-	const reason = this.getNodeParameter('reason', 0) as string;
+export async function execute(this: IExecuteFunctions, _itemIndex?: number): Promise<INodeExecutionData[]> {
+	const serviceName = this.getNodeParameter('serviceName', _itemIndex ?? 0, '', { extractValue: true }) as string;
+	const activity = this.getNodeParameter('activity', _itemIndex ?? 0) as string;
+	const description = this.getNodeParameter('description', _itemIndex ?? 0) as string;
+	const message = this.getNodeParameter('message', _itemIndex ?? 0) as string;
+	const name = this.getNodeParameter('name', _itemIndex ?? 0) as string;
+	const reason = this.getNodeParameter('reason', _itemIndex ?? 0) as string;
 	const body: IDataObject = {};
 	body['activity'] = activity;
 	if (description) body['description'] = description;

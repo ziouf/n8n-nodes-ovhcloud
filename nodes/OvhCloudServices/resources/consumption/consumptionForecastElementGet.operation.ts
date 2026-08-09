@@ -44,10 +44,10 @@ export function description(displayOptions: IDisplayOptions): INodeProperties[] 
  * HTTP method: GET
  * Endpoint: /services/{serviceName}/consumption/forecast/element
  */
-export async function execute(this: IExecuteFunctions, itemIndex: number): Promise<INodeExecutionData[]> {
-	const serviceName = this.getNodeParameter('serviceName', itemIndex) as string;
-	const planFamily = (this.getNodeParameter('planFamily', itemIndex, '') as string) || '';
-	const uniqueId = (this.getNodeParameter('uniqueId', itemIndex, '') as string) || '';
+export async function execute(this: IExecuteFunctions, _itemIndex: number): Promise<INodeExecutionData[]> {
+	const serviceName = this.getNodeParameter('serviceName', _itemIndex) as string;
+	const planFamily = (this.getNodeParameter('planFamily', _itemIndex, '') as string) || '';
+	const uniqueId = (this.getNodeParameter('uniqueId', _itemIndex, '') as string) || '';
 	const qs: IDataObject = {};
 	if (planFamily) qs.planFamily = planFamily;
 	if (uniqueId) qs.uniqueId = uniqueId;

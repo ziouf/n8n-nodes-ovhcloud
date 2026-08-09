@@ -1,7 +1,7 @@
 import type { IExecuteFunctions, INodeProperties, IDataObject, IDisplayOptions, INodeExecutionData } from 'n8n-workflow';
 import { ApiClient } from '../../shared/transport/ApiClient';
 
-// eslint-disable-next-line @typescript-eslint/no-unused-vars
+ 
 export function description(_displayOptions: IDisplayOptions): INodeProperties[] {
 	return [
 		{
@@ -40,12 +40,12 @@ export function description(_displayOptions: IDisplayOptions): INodeProperties[]
 	];
 }
 
-export async function execute(this: IExecuteFunctions, itemIndex: number): Promise<INodeExecutionData[]> {
+export async function execute(this: IExecuteFunctions, _itemIndex: number): Promise<INodeExecutionData[]> {
 	const client = new ApiClient(this);
-	const serviceName = this.getNodeParameter('serviceName', itemIndex) as string;
-	const ip = this.getNodeParameter('ip', itemIndex) as string;
-	const username = this.getNodeParameter('username', itemIndex) as string;
-	const password = this.getNodeParameter('password', itemIndex) as string;
+	const serviceName = this.getNodeParameter('serviceName', _itemIndex) as string;
+	const ip = this.getNodeParameter('ip', _itemIndex) as string;
+	const username = this.getNodeParameter('username', _itemIndex) as string;
+	const password = this.getNodeParameter('password', _itemIndex) as string;
 
 	const body = {
 		ip,

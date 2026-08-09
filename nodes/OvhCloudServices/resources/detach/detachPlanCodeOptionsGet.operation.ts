@@ -37,9 +37,9 @@ export function description(displayOptions: IDisplayOptions): INodeProperties[] 
  * HTTP method: GET
  * Endpoint: /services/{serviceName}/detach/{planCode}/options
  */
-export async function execute(this: IExecuteFunctions, itemIndex: number): Promise<INodeExecutionData[]> {
-	const serviceName = this.getNodeParameter('serviceName', itemIndex) as string;
-	const planCode = this.getNodeParameter('planCode', itemIndex) as string;
+export async function execute(this: IExecuteFunctions, _itemIndex: number): Promise<INodeExecutionData[]> {
+	const serviceName = this.getNodeParameter('serviceName', _itemIndex) as string;
+	const planCode = this.getNodeParameter('planCode', _itemIndex) as string;
 	const client = new ApiClient(this);
 	const data = (await client.httpGet(`/services/${encodeURIComponent(serviceName)}/detach/${encodeURIComponent(planCode)}/options`)) as IDataObject;
 

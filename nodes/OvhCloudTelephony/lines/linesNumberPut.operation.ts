@@ -54,13 +54,13 @@ export function description(displayOptions: IDisplayOptions): INodeProperties[] 
  * HTTP method: PUT
  * Endpoint: /telephony/lines/{serviceName}/number/{numberId}
  */
-export async function execute(this: IExecuteFunctions, itemIndex: number): Promise<INodeExecutionData[]> {
-	const serviceName = this.getNodeParameter('serviceName', itemIndex) as string;
-	const numberId = this.getNodeParameter('numberId', itemIndex) as string;
+export async function execute(this: IExecuteFunctions, _itemIndex: number): Promise<INodeExecutionData[]> {
+	const serviceName = this.getNodeParameter('serviceName', _itemIndex) as string;
+	const numberId = this.getNodeParameter('numberId', _itemIndex) as string;
 
 
-	const country = this.getNodeParameter('country', itemIndex) as string;
-	const number = this.getNodeParameter('number', itemIndex) as string;
+	const country = this.getNodeParameter('country', _itemIndex) as string;
+	const number = this.getNodeParameter('number', _itemIndex) as string;
 
 	const body: IDataObject = {
     country: country,

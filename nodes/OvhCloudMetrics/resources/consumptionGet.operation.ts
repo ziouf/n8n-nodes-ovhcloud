@@ -49,10 +49,10 @@ export function description(displayOptions: IDisplayOptions): INodeProperties[] 
  * HTTP method: GET
  * Endpoint: /metrics/{serviceName}/consumption
  */
-export async function execute(this: IExecuteFunctions): Promise<INodeExecutionData[]> {
+export async function execute(this: IExecuteFunctions, _itemIndex?: number): Promise<INodeExecutionData[]> {
 	const client = new ApiClient(this);
-	const serviceName = this.getNodeParameter('serviceName', 0, '', { extractValue: true }) as string;
-	const duration = this.getNodeParameter('duration', 0, undefined) as number | undefined;
+	const serviceName = this.getNodeParameter('serviceName', _itemIndex ?? 0, '', { extractValue: true }) as string;
+	const duration = this.getNodeParameter('duration', _itemIndex ?? 0, undefined) as number | undefined;
 
 	const qs: IDataObject = {};
 	if (duration !== undefined && !Number.isNaN(duration)) {

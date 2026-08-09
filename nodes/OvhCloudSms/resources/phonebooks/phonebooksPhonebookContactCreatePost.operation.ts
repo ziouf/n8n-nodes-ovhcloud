@@ -96,16 +96,16 @@ export function description(displayOptions: IDisplayOptions): INodeProperties[] 
  * HTTP method: POST
  * Endpoint: /sms/{serviceName}/phonebooks/{bookKey}/phonebookContact
  */
-export async function execute(this: IExecuteFunctions): Promise<INodeExecutionData[]> {
-	const bookKey = this.getNodeParameter('bookKey', 0) as string;
-	const serviceName = this.getNodeParameter('serviceName', 0, '', { extractValue: true }) as string;
-	const group = this.getNodeParameter('group', 0) as string;
-	const homeMobile = this.getNodeParameter('homeMobile', 0) as string;
-	const homePhone = this.getNodeParameter('homePhone', 0) as string;
-	const name = this.getNodeParameter('name', 0) as string;
-	const surname = this.getNodeParameter('surname', 0) as string;
-	const workMobile = this.getNodeParameter('workMobile', 0) as string;
-	const workPhone = this.getNodeParameter('workPhone', 0) as string;
+export async function execute(this: IExecuteFunctions, _itemIndex?: number): Promise<INodeExecutionData[]> {
+	const bookKey = this.getNodeParameter('bookKey', _itemIndex ?? 0) as string;
+	const serviceName = this.getNodeParameter('serviceName', _itemIndex ?? 0, '', { extractValue: true }) as string;
+	const group = this.getNodeParameter('group', _itemIndex ?? 0) as string;
+	const homeMobile = this.getNodeParameter('homeMobile', _itemIndex ?? 0) as string;
+	const homePhone = this.getNodeParameter('homePhone', _itemIndex ?? 0) as string;
+	const name = this.getNodeParameter('name', _itemIndex ?? 0) as string;
+	const surname = this.getNodeParameter('surname', _itemIndex ?? 0) as string;
+	const workMobile = this.getNodeParameter('workMobile', _itemIndex ?? 0) as string;
+	const workPhone = this.getNodeParameter('workPhone', _itemIndex ?? 0) as string;
 	const body: IDataObject = {};
 	body['group'] = group;
 	if (homeMobile) body['homeMobile'] = homeMobile;

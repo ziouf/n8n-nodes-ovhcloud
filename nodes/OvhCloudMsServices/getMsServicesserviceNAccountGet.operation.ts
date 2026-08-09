@@ -52,12 +52,12 @@ export function description(displayOptions: IDisplayOptions): INodeProperties[] 
  * HTTP method: GET
  * Endpoint: /msServices/{serviceName}/account
  */
-export async function execute(this: IExecuteFunctions, itemIndex: number): Promise<INodeExecutionData[]> {
-	const serviceName = this.getNodeParameter('serviceName', itemIndex) as string;
+export async function execute(this: IExecuteFunctions, _itemIndex: number): Promise<INodeExecutionData[]> {
+	const serviceName = this.getNodeParameter('serviceName', _itemIndex) as string;
 
-	const company = this.getNodeParameter('company', itemIndex) as string;
-	const id = this.getNodeParameter('id', itemIndex) as string;
-	const userPrincipalName = this.getNodeParameter('userPrincipalName', itemIndex) as string;
+	const company = this.getNodeParameter('company', _itemIndex) as string;
+	const id = this.getNodeParameter('id', _itemIndex) as string;
+	const userPrincipalName = this.getNodeParameter('userPrincipalName', _itemIndex) as string;
 
 
 const qs: IDataObject = {

@@ -13,10 +13,10 @@ import { ApiClient } from '../../../shared/transport/ApiClient';
 
 export async function executeAcceptAgreement(
 	this: IExecuteFunctions,
-	itemIndex: number,
+	_itemIndex: number,
 ): Promise<INodeExecutionData[]> {
 	const client = new ApiClient(this);
-	const id = this.getNodeParameter('id', itemIndex) as string;
+	const id = this.getNodeParameter('id', _itemIndex) as string;
 	const data = (await client.httpPost(`/me/agreements/${id}/accept`, {})) as IDataObject;
 	return this.helpers.returnJsonArray([data]);
 }
@@ -27,10 +27,10 @@ export async function executeAcceptAgreement(
 
 export async function executeGetContract(
 	this: IExecuteFunctions,
-	itemIndex: number,
+	_itemIndex: number,
 ): Promise<INodeExecutionData[]> {
 	const client = new ApiClient(this);
-	const id = this.getNodeParameter('id', itemIndex) as string;
+	const id = this.getNodeParameter('id', _itemIndex) as string;
 	const data = (await client.httpGet(`/me/agreements/${id}/contract`)) as IDataObject;
 	return this.helpers.returnJsonArray([data]);
 }

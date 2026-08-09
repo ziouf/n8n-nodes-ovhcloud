@@ -51,12 +51,12 @@ export function description(displayOptions: IDisplayOptions): INodeProperties[] 
  * HTTP method: POST
  * Endpoint: /dedicatedCloud/{serviceName}/vendor/ovhId
  */
-export async function execute(this: IExecuteFunctions, itemIndex: number): Promise<INodeExecutionData[]> {
+export async function execute(this: IExecuteFunctions, _itemIndex: number): Promise<INodeExecutionData[]> {
 	const client = new ApiClient(this);
-	const serviceName = this.getNodeParameter('serviceName', itemIndex) as string;
+	const serviceName = this.getNodeParameter('serviceName', _itemIndex) as string;
 	const body: IDataObject = {};
-	body.objectType = this.getNodeParameter('objectType', itemIndex) as string;
-	body.vendorId = this.getNodeParameter('vendorId', itemIndex) as string;
+	body.objectType = this.getNodeParameter('objectType', _itemIndex) as string;
+	body.vendorId = this.getNodeParameter('vendorId', _itemIndex) as string;
 	const data = (await client.httpPost(`/dedicatedCloud/${serviceName}/vendor/ovhId`, body)) as IDataObject;
 	return this.helpers.returnJsonArray([data]);
 }

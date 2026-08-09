@@ -25,8 +25,8 @@ export function description(displayOptions: IDisplayOptions): INodeProperties[] 
  * HTTP method: GET
  * Endpoint: /email/domain
  */
-export async function execute(this: IExecuteFunctions): Promise<INodeExecutionData[]> {
-	const iamTags = this.getNodeParameter('iamTags', 0) as string;
+export async function execute(this: IExecuteFunctions, _itemIndex?: number): Promise<INodeExecutionData[]> {
+	const iamTags = this.getNodeParameter('iamTags', _itemIndex ?? 0) as string;
 
 	const qs: IDataObject = {
 		iamTags: iamTags,

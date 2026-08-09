@@ -65,13 +65,13 @@ export function description(displayOptions: IDisplayOptions): INodeProperties[] 
  * HTTP method: PUT
  * Endpoint: /connectivity/eligibility/recall/{id}
  */
-export async function execute(this: IExecuteFunctions): Promise<INodeExecutionData[]> {
+export async function execute(this: IExecuteFunctions, _itemIndex?: number): Promise<INodeExecutionData[]> {
 	const client = new ApiClient(this);
-	const id = this.getNodeParameter('id', 0) as number;
-	const reference = (this.getNodeParameter('reference', 0, '') as string) || '';
-	const referenceType = (this.getNodeParameter('referenceType', 0, '') as string) || '';
-	const profiberRequest = this.getNodeParameter('profiberRequest', 0, false) as boolean;
-	const dedicatedfiberRequest = this.getNodeParameter('dedicatedfiberRequest', 0, false) as boolean;
+	const id = this.getNodeParameter('id', _itemIndex ?? 0) as number;
+	const reference = (this.getNodeParameter('reference', _itemIndex ?? 0, '') as string) || '';
+	const referenceType = (this.getNodeParameter('referenceType', _itemIndex ?? 0, '') as string) || '';
+	const profiberRequest = this.getNodeParameter('profiberRequest', _itemIndex ?? 0, false) as boolean;
+	const dedicatedfiberRequest = this.getNodeParameter('dedicatedfiberRequest', _itemIndex ?? 0, false) as boolean;
 
 	const body: IDataObject = {};
 	if (reference) body.reference = reference;

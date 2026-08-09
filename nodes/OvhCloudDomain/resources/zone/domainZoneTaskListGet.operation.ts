@@ -65,14 +65,14 @@ export function description(displayOptions: IDisplayOptions): INodeProperties[] 
  * HTTP method: GET
  * Endpoint: /domain/zone/{zoneName}/task
  */
-export async function execute(this: IExecuteFunctions, itemIndex: number): Promise<INodeExecutionData[]> {
+export async function execute(this: IExecuteFunctions, _itemIndex: number): Promise<INodeExecutionData[]> {
 	const client = new ApiClient(this);
-		const zoneName = this.getNodeParameter('zoneName', itemIndex) as string;
+		const zoneName = this.getNodeParameter('zoneName', _itemIndex) as string;
 
 	const qs: IDataObject = {};
-		const function_ = this.getNodeParameter('function_', itemIndex, '') as string;
+		const function_ = this.getNodeParameter('function_', _itemIndex, '') as string;
 		if (function_ !== '' && function_ !== undefined) qs['function'] = function_;
-		const status = this.getNodeParameter('status', itemIndex, '') as string;
+		const status = this.getNodeParameter('status', _itemIndex, '') as string;
 		if (status !== '' && status !== undefined) qs['status'] = status;
 
 	const data = (await client.httpGet(`/domain/zone/${encodeURIComponent(zoneName)}/task`, qs)) as IDataObject;

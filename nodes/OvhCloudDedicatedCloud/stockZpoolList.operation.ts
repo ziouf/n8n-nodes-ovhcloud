@@ -60,11 +60,11 @@ export function description(displayOptions: IDisplayOptions): INodeProperties[] 
  */
 export async function execute(
 	this: IExecuteFunctions,
-	itemIndex: number,
+	_itemIndex: number,
 ): Promise<INodeExecutionData[]> {
 	const client = new ApiClient(this);
-	const pccZone = this.getNodeParameter('pccZone', itemIndex) as string;
-	const profileFilter = this.getNodeParameter('profileFilter', itemIndex, '') as string;
+	const pccZone = this.getNodeParameter('pccZone', _itemIndex) as string;
+	const profileFilter = this.getNodeParameter('profileFilter', _itemIndex, '') as string;
 	const qs: IDataObject = {};
 	if (profileFilter !== '') {
 		qs.profileFilter = profileFilter;
@@ -73,12 +73,12 @@ export async function execute(
 		`/dedicatedCloud/location/${pccZone}/stock/zpool`,
 		qs,
 	)) as IDataObject;
-	const returnAll = this.getNodeParameter('returnAll', itemIndex) as boolean;
+	const returnAll = this.getNodeParameter('returnAll', _itemIndex) as boolean;
 
 	if (returnAll) {
 		return data as unknown as INodeExecutionData[];
 	}
 
-	const limit = this.getNodeParameter('limit', itemIndex) as number;
+	const limit = this.getNodeParameter('limit', _itemIndex) as number;
 	return (data as unknown as INodeExecutionData[]).slice(0, limit);
 }

@@ -37,9 +37,9 @@ export function description(displayOptions: IDisplayOptions): INodeProperties[] 
  * HTTP method: PUT
  * Endpoint: /vmwareCloudDirector/organization/{organizationId}/networkAcl/{id}
  */
-export async function execute(this: IExecuteFunctions, itemIndex: number): Promise<INodeExecutionData[]> {
-	const organizationId = this.getNodeParameter('organizationId', itemIndex) as string;
-	const id = this.getNodeParameter('id', itemIndex) as string;
+export async function execute(this: IExecuteFunctions, _itemIndex: number): Promise<INodeExecutionData[]> {
+	const organizationId = this.getNodeParameter('organizationId', _itemIndex) as string;
+	const id = this.getNodeParameter('id', _itemIndex) as string;
 
 	const body: IDataObject = {};
 

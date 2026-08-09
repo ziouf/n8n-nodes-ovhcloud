@@ -71,14 +71,14 @@ export function description(displayOptions: IDisplayOptions): INodeProperties[] 
  * HTTP method: POST
  * Endpoint: /order/cart/{cartId}/sharepoint/options
  */
-export async function execute(this: IExecuteFunctions, itemIndex: number): Promise<INodeExecutionData[]> {
+export async function execute(this: IExecuteFunctions, _itemIndex: number): Promise<INodeExecutionData[]> {
 	const client = new ApiClient(this);
-	const cartId = this.getNodeParameter('cartId', itemIndex) as string;
-	const duration = this.getNodeParameter('duration', 0, '') as string;
-	const itemId = this.getNodeParameter('itemId', 0, 0) as number;
-	const planCode = this.getNodeParameter('planCode', 0, '') as string;
-	const pricingMode = this.getNodeParameter('pricingMode', 0, '') as string;
-	const quantity = this.getNodeParameter('quantity', 0, 0) as number;
+	const cartId = this.getNodeParameter('cartId', _itemIndex) as string;
+	const duration = this.getNodeParameter('duration', _itemIndex ?? 0, '') as string;
+	const itemId = this.getNodeParameter('itemId', _itemIndex ?? 0, 0) as number;
+	const planCode = this.getNodeParameter('planCode', _itemIndex ?? 0, '') as string;
+	const pricingMode = this.getNodeParameter('pricingMode', _itemIndex ?? 0, '') as string;
+	const quantity = this.getNodeParameter('quantity', _itemIndex ?? 0, 0) as number;
 	const body: IDataObject = {
 		duration: duration,
 		itemId: itemId,

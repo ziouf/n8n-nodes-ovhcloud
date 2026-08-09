@@ -46,10 +46,10 @@ export function description(displayOptions: IDisplayOptions): INodeProperties[] 
  * HTTP method: POST
  * Endpoint: /services/{serviceName}/form/{formName}/answer
  */
-export async function execute(this: IExecuteFunctions, itemIndex: number): Promise<INodeExecutionData[]> {
-	const serviceName = this.getNodeParameter('serviceName', itemIndex) as string;
-	const formName = this.getNodeParameter('formName', itemIndex) as string;
-	const answers = this.getNodeParameter('answers', itemIndex) as string;
+export async function execute(this: IExecuteFunctions, _itemIndex: number): Promise<INodeExecutionData[]> {
+	const serviceName = this.getNodeParameter('serviceName', _itemIndex) as string;
+	const formName = this.getNodeParameter('formName', _itemIndex) as string;
+	const answers = this.getNodeParameter('answers', _itemIndex) as string;
 	const body: IDataObject = { answers: JSON.parse(answers) };
 	const client = new ApiClient(this);
 	const data = (await client.httpPost(`/services/${encodeURIComponent(serviceName)}/form/${encodeURIComponent(formName)}/answer`, body)) as IDataObject;

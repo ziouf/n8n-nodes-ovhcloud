@@ -19,10 +19,10 @@ export function description(): INodeProperties[] {
  * Endpoint: /dedicated/housing
  */
 export async function execute(this: IExecuteFunctions,
-	itemIndex: number): Promise<INodeExecutionData[]> {
+	_itemIndex: number): Promise<INodeExecutionData[]> {
 	const client = new ApiClient(this);
 	const qs: IDataObject = {};
-			qs['iamTags'] = this.getNodeParameter('iamTags', itemIndex, '') as string;
+			qs['iamTags'] = this.getNodeParameter('iamTags', _itemIndex, '') as string;
 	const data = (await client.httpGet('/dedicated/housing', qs)) as IDataObject;
 	return this.helpers.returnJsonArray([data]);
 }

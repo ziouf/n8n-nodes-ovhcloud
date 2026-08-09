@@ -53,11 +53,11 @@ export function description(displayOptions: IDisplayOptions): INodeProperties[] 
  * Endpoint: /ip/{ip}/mitigationProfiles
  */
 
-export async function execute(this: IExecuteFunctions, itemIndex: number): Promise<INodeExecutionData[]> {
-	const ip = this.getNodeParameter('ip', itemIndex) as string;
+export async function execute(this: IExecuteFunctions, _itemIndex: number): Promise<INodeExecutionData[]> {
+	const ip = this.getNodeParameter('ip', _itemIndex) as string;
 
-	const autoMitigationTimeOut = (this.getNodeParameter('autoMitigationTimeOut', itemIndex) as string) || '';
-	const ipMitigationProfile = (this.getNodeParameter('ipMitigationProfile', itemIndex) as string) || '';
+	const autoMitigationTimeOut = (this.getNodeParameter('autoMitigationTimeOut', _itemIndex) as string) || '';
+	const ipMitigationProfile = (this.getNodeParameter('ipMitigationProfile', _itemIndex) as string) || '';
 
 	const body: IDataObject = {};
 	body.autoMitigationTimeOut = autoMitigationTimeOut;

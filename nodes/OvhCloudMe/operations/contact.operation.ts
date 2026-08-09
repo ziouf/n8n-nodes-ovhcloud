@@ -12,7 +12,7 @@ import { ApiClient } from '../../../shared/transport/ApiClient';
 // ============================================================
 
 // listContacts
-export async function executeListContacts(this: IExecuteFunctions): Promise<INodeExecutionData[]> {
+export async function executeListContacts(this: IExecuteFunctions, _itemIndex?: number): Promise<INodeExecutionData[]> {
 	const client = new ApiClient(this);
 	const ids = (await client.httpGet('/me/contact')) as string[];
 	const results: IDataObject[] = [];
@@ -39,10 +39,10 @@ export function descriptionGetContact(displayOptions: IDisplayOptions): INodePro
 
 export async function executeGetContact(
 	this: IExecuteFunctions,
-	itemIndex: number,
+	_itemIndex: number,
 ): Promise<INodeExecutionData[]> {
 	const client = new ApiClient(this);
-	const contactId = this.getNodeParameter('contactId', itemIndex) as string;
+	const contactId = this.getNodeParameter('contactId', _itemIndex) as string;
 	const data = (await client.httpGet(`/me/contact/${contactId}`)) as IDataObject;
 	return this.helpers.returnJsonArray([data]);
 }
@@ -63,10 +63,10 @@ export function descriptionGetContactFields(displayOptions: IDisplayOptions): IN
 
 export async function executeGetContactFields(
 	this: IExecuteFunctions,
-	itemIndex: number,
+	_itemIndex: number,
 ): Promise<INodeExecutionData[]> {
 	const client = new ApiClient(this);
-	const contactId = this.getNodeParameter('contactId', itemIndex) as string;
+	const contactId = this.getNodeParameter('contactId', _itemIndex) as string;
 	const data = (await client.httpGet(`/me/contact/${contactId}/fields`)) as IDataObject;
 	return this.helpers.returnJsonArray([data]);
 }
@@ -76,7 +76,7 @@ export async function executeGetContactFields(
 // ============================================================
 
 // listDocuments
-export async function executeListDocuments(this: IExecuteFunctions): Promise<INodeExecutionData[]> {
+export async function executeListDocuments(this: IExecuteFunctions, _itemIndex?: number): Promise<INodeExecutionData[]> {
 	const client = new ApiClient(this);
 	const ids = (await client.httpGet('/me/document')) as string[];
 	const results: IDataObject[] = [];
@@ -103,10 +103,10 @@ export function descriptionGetDocument(displayOptions: IDisplayOptions): INodePr
 
 export async function executeGetDocument(
 	this: IExecuteFunctions,
-	itemIndex: number,
+	_itemIndex: number,
 ): Promise<INodeExecutionData[]> {
 	const client = new ApiClient(this);
-	const id = this.getNodeParameter('id', itemIndex) as string;
+	const id = this.getNodeParameter('id', _itemIndex) as string;
 	const data = (await client.httpGet(`/me/document/${id}`)) as IDataObject;
 	return this.helpers.returnJsonArray([data]);
 }
@@ -116,7 +116,7 @@ export async function executeGetDocument(
 // ============================================================
 
 // listTags
-export async function executeListTags(this: IExecuteFunctions): Promise<INodeExecutionData[]> {
+export async function executeListTags(this: IExecuteFunctions, _itemIndex?: number): Promise<INodeExecutionData[]> {
 	const client = new ApiClient(this);
 	const data = (await client.httpGet('/me/tag')) as IDataObject[];
 	return this.helpers.returnJsonArray(data);
@@ -125,6 +125,7 @@ export async function executeListTags(this: IExecuteFunctions): Promise<INodeExe
 // listAvailableTags
 export async function executeListAvailableTags(
 	this: IExecuteFunctions,
+_itemIndex?: number,
 ): Promise<INodeExecutionData[]> {
 	const client = new ApiClient(this);
 	const data = (await client.httpGet('/me/tag/available')) as IDataObject[];
@@ -148,10 +149,10 @@ export function descriptionGetTag(displayOptions: IDisplayOptions): INodePropert
 
 export async function executeGetTag(
 	this: IExecuteFunctions,
-	itemIndex: number,
+	_itemIndex: number,
 ): Promise<INodeExecutionData[]> {
 	const client = new ApiClient(this);
-	const tag = this.getNodeParameter('tag', itemIndex) as string;
+	const tag = this.getNodeParameter('tag', _itemIndex) as string;
 	const data = (await client.httpGet(`/me/tag/${tag}`)) as IDataObject;
 	return this.helpers.returnJsonArray([data]);
 }

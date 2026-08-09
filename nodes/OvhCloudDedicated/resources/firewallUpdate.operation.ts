@@ -14,10 +14,10 @@ export function description(displayOptions: IDisplayOptions): INodeProperties[] 
 	];
 }
 
-export async function execute(this: IExecuteFunctions): Promise<INodeExecutionData[]> {
+export async function execute(this: IExecuteFunctions, _itemIndex?: number): Promise<INodeExecutionData[]> {
 	const client = new ApiClient(this);
-	const serviceName = this.getNodeParameter('serviceName', 0, '', { extractValue: true }) as string;
-	const rules = (this.getNodeParameter('rules', 0, ['allowAll']) as string[]) || ['allowAll'];
+	const serviceName = this.getNodeParameter('serviceName', _itemIndex ?? 0, '', { extractValue: true }) as string;
+	const rules = (this.getNodeParameter('rules', _itemIndex ?? 0, ['allowAll']) as string[]) || ['allowAll'];
 	const data = (await client.httpPut(`/dedicated/server/${serviceName}/features/firewall`, { body: { rules } })) as IDataObject;
 	return this.helpers.returnJsonArray([data]);
 }

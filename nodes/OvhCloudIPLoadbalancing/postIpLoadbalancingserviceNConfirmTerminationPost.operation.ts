@@ -61,15 +61,15 @@ export function description(displayOptions: IDisplayOptions): INodeProperties[] 
  * HTTP method: POST
  * Endpoint: /ipLoadbalancing/{serviceName}/confirmTermination
  */
-export async function execute(this: IExecuteFunctions, itemIndex: number): Promise<INodeExecutionData[]> {
-	const serviceName = this.getNodeParameter('serviceName', itemIndex) as string;
+export async function execute(this: IExecuteFunctions, _itemIndex: number): Promise<INodeExecutionData[]> {
+	const serviceName = this.getNodeParameter('serviceName', _itemIndex) as string;
 
 
 
-	const commentary = this.getNodeParameter('commentary', itemIndex) as string;
-	const futureUse = this.getNodeParameter('futureUse', itemIndex) as string;
-	const reason = this.getNodeParameter('reason', itemIndex) as string;
-	const token = this.getNodeParameter('token', itemIndex) as string;
+	const commentary = this.getNodeParameter('commentary', _itemIndex) as string;
+	const futureUse = this.getNodeParameter('futureUse', _itemIndex) as string;
+	const reason = this.getNodeParameter('reason', _itemIndex) as string;
+	const token = this.getNodeParameter('token', _itemIndex) as string;
 
 
 const body: IDataObject = {

@@ -29,10 +29,10 @@ export function description(displayOptions: IDisplayOptions): INodeProperties[] 
  */
 export async function execute(
 	this: IExecuteFunctions,
-	itemIndex: number,
+	_itemIndex: number,
 ): Promise<INodeExecutionData[]> {
 	const client = new ApiClient(this);
-	const domainName = this.getNodeParameter('domainName', itemIndex) as string;
+	const domainName = this.getNodeParameter('domainName', _itemIndex) as string;
 
 	const data = (await client.httpGet(
 		`/domain/name/${encodeURIComponent(domainName)}/task`,

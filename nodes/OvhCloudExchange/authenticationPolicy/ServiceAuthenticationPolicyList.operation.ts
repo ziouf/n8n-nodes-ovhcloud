@@ -130,23 +130,23 @@ export function description() {
  * HTTP method: GET
  * Endpoint: /email/exchange/{organizationName}/service/{exchangeService}/authenticationPolicy
  */
-export async function execute(this: IExecuteFunctions): Promise<INodeExecutionData[]> {
-	const organizationName = this.getNodeParameter('organizationName', 0) as string;
-	const exchangeService = this.getNodeParameter('exchangeService', 0) as string;
-	const blockLegacyAuthActiveSync = this.getNodeParameter('blockLegacyAuthActiveSync', 0) as string;
-	const blockLegacyAuthAutodiscover = this.getNodeParameter('blockLegacyAuthAutodiscover', 0) as string;
-	const blockLegacyAuthImap = this.getNodeParameter('blockLegacyAuthImap', 0) as string;
-	const blockLegacyAuthMapi = this.getNodeParameter('blockLegacyAuthMapi', 0) as string;
-	const blockLegacyAuthOfflineAddressBook = this.getNodeParameter('blockLegacyAuthOfflineAddressBook', 0) as string;
-	const blockLegacyAuthPop = this.getNodeParameter('blockLegacyAuthPop', 0) as string;
-	const blockLegacyAuthWebServices = this.getNodeParameter('blockLegacyAuthWebServices', 0) as string;
-	const blockModernAuthActiveSync = this.getNodeParameter('blockModernAuthActiveSync', 0) as string;
-	const blockModernAuthAutodiscover = this.getNodeParameter('blockModernAuthAutodiscover', 0) as string;
-	const blockModernAuthImap = this.getNodeParameter('blockModernAuthImap', 0) as string;
-	const blockModernAuthMapi = this.getNodeParameter('blockModernAuthMapi', 0) as string;
-	const blockModernAuthOfflineAddressBook = this.getNodeParameter('blockModernAuthOfflineAddressBook', 0) as string;
-	const blockModernAuthPop = this.getNodeParameter('blockModernAuthPop', 0) as string;
-	const blockModernAuthWebServices = this.getNodeParameter('blockModernAuthWebServices', 0) as string;
+export async function execute(this: IExecuteFunctions, _itemIndex?: number): Promise<INodeExecutionData[]> {
+	const organizationName = this.getNodeParameter('organizationName', _itemIndex ?? 0) as string;
+	const exchangeService = this.getNodeParameter('exchangeService', _itemIndex ?? 0) as string;
+	const blockLegacyAuthActiveSync = this.getNodeParameter('blockLegacyAuthActiveSync', _itemIndex ?? 0) as string;
+	const blockLegacyAuthAutodiscover = this.getNodeParameter('blockLegacyAuthAutodiscover', _itemIndex ?? 0) as string;
+	const blockLegacyAuthImap = this.getNodeParameter('blockLegacyAuthImap', _itemIndex ?? 0) as string;
+	const blockLegacyAuthMapi = this.getNodeParameter('blockLegacyAuthMapi', _itemIndex ?? 0) as string;
+	const blockLegacyAuthOfflineAddressBook = this.getNodeParameter('blockLegacyAuthOfflineAddressBook', _itemIndex ?? 0) as string;
+	const blockLegacyAuthPop = this.getNodeParameter('blockLegacyAuthPop', _itemIndex ?? 0) as string;
+	const blockLegacyAuthWebServices = this.getNodeParameter('blockLegacyAuthWebServices', _itemIndex ?? 0) as string;
+	const blockModernAuthActiveSync = this.getNodeParameter('blockModernAuthActiveSync', _itemIndex ?? 0) as string;
+	const blockModernAuthAutodiscover = this.getNodeParameter('blockModernAuthAutodiscover', _itemIndex ?? 0) as string;
+	const blockModernAuthImap = this.getNodeParameter('blockModernAuthImap', _itemIndex ?? 0) as string;
+	const blockModernAuthMapi = this.getNodeParameter('blockModernAuthMapi', _itemIndex ?? 0) as string;
+	const blockModernAuthOfflineAddressBook = this.getNodeParameter('blockModernAuthOfflineAddressBook', _itemIndex ?? 0) as string;
+	const blockModernAuthPop = this.getNodeParameter('blockModernAuthPop', _itemIndex ?? 0) as string;
+	const blockModernAuthWebServices = this.getNodeParameter('blockModernAuthWebServices', _itemIndex ?? 0) as string;
 
 	const qs: IDataObject = {
     blockLegacyAuthActiveSync: blockLegacyAuthActiveSync,

@@ -48,13 +48,13 @@ export function description(
 
 export async function execute(
 	this: IExecuteFunctions,
-	itemIndex?: number,
+	_itemIndex?: number,
 ): Promise<INodeExecutionData[]> {
 	const client = new ApiClient(this);
-	const serviceName = this.getNodeParameter('serviceName', itemIndex as number, '', {
+	const serviceName = this.getNodeParameter('serviceName', _itemIndex as number, '', {
 		extractValue: true,
 	}) as string;
-	const phpVersion = this.getNodeParameter('phpVersion', itemIndex as number) as string;
+	const phpVersion = this.getNodeParameter('phpVersion', _itemIndex as number) as string;
 
 	const body: IDataObject = {};
 	if (phpVersion && phpVersion !== '') {

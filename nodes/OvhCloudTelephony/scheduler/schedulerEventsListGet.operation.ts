@@ -76,14 +76,14 @@ export function description(displayOptions: IDisplayOptions): INodeProperties[] 
  * HTTP method: GET
  * Endpoint: /telephony/{billingAccount}/scheduler/{serviceName}/events
  */
-export async function execute(this: IExecuteFunctions, itemIndex: number): Promise<INodeExecutionData[]> {
-	const billingAccount = this.getNodeParameter('billingAccount', itemIndex) as string;
-	const serviceName = this.getNodeParameter('serviceName', itemIndex) as string;
-	const categories = this.getNodeParameter('categories', itemIndex) as string;
-	const dateEnd_from = this.getNodeParameter('dateEnd.from', itemIndex) as string;
-	const dateEnd_to = this.getNodeParameter('dateEnd.to', itemIndex) as string;
-	const dateStart_from = this.getNodeParameter('dateStart.from', itemIndex) as string;
-	const dateStart_to = this.getNodeParameter('dateStart.to', itemIndex) as string;
+export async function execute(this: IExecuteFunctions, _itemIndex: number): Promise<INodeExecutionData[]> {
+	const billingAccount = this.getNodeParameter('billingAccount', _itemIndex) as string;
+	const serviceName = this.getNodeParameter('serviceName', _itemIndex) as string;
+	const categories = this.getNodeParameter('categories', _itemIndex) as string;
+	const dateEnd_from = this.getNodeParameter('dateEnd.from', _itemIndex) as string;
+	const dateEnd_to = this.getNodeParameter('dateEnd.to', _itemIndex) as string;
+	const dateStart_from = this.getNodeParameter('dateStart.from', _itemIndex) as string;
+	const dateStart_to = this.getNodeParameter('dateStart.to', _itemIndex) as string;
 
 	const qs: IDataObject = {
 		categories: categories,

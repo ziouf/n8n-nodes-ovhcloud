@@ -11,7 +11,7 @@ export function description(): INodeProperties[] {
  * HTTP method: POST
  * Endpoint: /auth/logout
  */
-export async function execute(this: IExecuteFunctions): Promise<INodeExecutionData[]> {
+export async function execute(this: IExecuteFunctions, _itemIndex?: number): Promise<INodeExecutionData[]> {
 	const client = new ApiClient(this);
 	await client.httpPost('/auth/logout', {});
 	return this.helpers.returnJsonArray([{ success: true }]);

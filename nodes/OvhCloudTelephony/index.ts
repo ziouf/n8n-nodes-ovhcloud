@@ -9079,1677 +9079,1677 @@ export async function execute(
 
 	switch (operation) {
 		case 'aliasListGet':
-			return executeAliasListGet.call(this, itemIndex);
+			return executeAliasListGet.call(this, itemIndex ?? 0);
 		case 'aliasGet':
-			return executeAliasGet.call(this, itemIndex);
+			return executeAliasGet.call(this, itemIndex ?? 0);
 		case 'aliasChangeContactPost':
-			return executeAliasChangeContactPost.call(this, itemIndex);
+			return executeAliasChangeContactPost.call(this, itemIndex ?? 0);
 		case 'aliasServiceInfosGet':
-			return executeAliasServiceInfosGet.call(this, itemIndex);
+			return executeAliasServiceInfosGet.call(this, itemIndex ?? 0);
 		case 'aliasServiceInfosPut':
-			return executeAliasServiceInfosPut.call(this, itemIndex);
+			return executeAliasServiceInfosPut.call(this, itemIndex ?? 0);
 		case 'linesListGet':
-			return executeLinesListGet.call(this, itemIndex);
+			return executeLinesListGet.call(this, itemIndex ?? 0);
 		case 'linesGet':
-			return executeLinesGet.call(this, itemIndex);
+			return executeLinesGet.call(this, itemIndex ?? 0);
 		case 'linesChangeContactPost':
-			return executeLinesChangeContactPost.call(this, itemIndex);
+			return executeLinesChangeContactPost.call(this, itemIndex ?? 0);
 		case 'linesServiceInfosGet':
-			return executeLinesServiceInfosGet.call(this, itemIndex);
+			return executeLinesServiceInfosGet.call(this, itemIndex ?? 0);
 		case 'linesServiceInfosPut':
-			return executeLinesServiceInfosPut.call(this, itemIndex);
+			return executeLinesServiceInfosPut.call(this, itemIndex ?? 0);
 		case 'linesHardwareListGet':
-			return executeLinesHardwareListGet.call(this, itemIndex);
+			return executeLinesHardwareListGet.call(this, itemIndex ?? 0);
 		case 'linesHardwarePost':
-			return executeLinesHardwarePost.call(this, itemIndex);
+			return executeLinesHardwarePost.call(this, itemIndex ?? 0);
 		case 'linesNumberListGet':
-			return executeLinesNumberListGet.call(this, itemIndex);
+			return executeLinesNumberListGet.call(this, itemIndex ?? 0);
 		case 'linesNumberPost':
-			return executeLinesNumberPost.call(this, itemIndex);
+			return executeLinesNumberPost.call(this, itemIndex ?? 0);
 		case 'linesNumberGet':
-			return executeLinesNumberGet.call(this, itemIndex);
+			return executeLinesNumberGet.call(this, itemIndex ?? 0);
 		case 'linesNumberPut':
-			return executeLinesNumberPut.call(this, itemIndex);
+			return executeLinesNumberPut.call(this, itemIndex ?? 0);
 		case 'linesNumberDelete':
-			return executeLinesNumberDelete.call(this, itemIndex);
+			return executeLinesNumberDelete.call(this, itemIndex ?? 0);
 		case 'linesPortabilityListGet':
-			return executeLinesPortabilityListGet.call(this, itemIndex);
+			return executeLinesPortabilityListGet.call(this, itemIndex ?? 0);
 		case 'linesPortabilityPost':
-			return executeLinesPortabilityPost.call(this, itemIndex);
+			return executeLinesPortabilityPost.call(this, itemIndex ?? 0);
 		case 'linesPortabilityGet':
-			return executeLinesPortabilityGet.call(this, itemIndex);
+			return executeLinesPortabilityGet.call(this, itemIndex ?? 0);
 		case 'linesPortabilityPut':
-			return executeLinesPortabilityPut.call(this, itemIndex);
+			return executeLinesPortabilityPut.call(this, itemIndex ?? 0);
 		case 'linesPortabilityDelete':
-			return executeLinesPortabilityDelete.call(this, itemIndex);
+			return executeLinesPortabilityDelete.call(this, itemIndex ?? 0);
 		case 'linesSimListGet':
-			return executeLinesSimListGet.call(this, itemIndex);
+			return executeLinesSimListGet.call(this, itemIndex ?? 0);
 		case 'linesSimPost':
-			return executeLinesSimPost.call(this, itemIndex);
+			return executeLinesSimPost.call(this, itemIndex ?? 0);
 		case 'linesSimGet':
-			return executeLinesSimGet.call(this, itemIndex);
+			return executeLinesSimGet.call(this, itemIndex ?? 0);
 		case 'linesSimPut':
-			return executeLinesSimPut.call(this, itemIndex);
+			return executeLinesSimPut.call(this, itemIndex ?? 0);
 		case 'linesSimDelete':
-			return executeLinesSimDelete.call(this, itemIndex);
+			return executeLinesSimDelete.call(this, itemIndex ?? 0);
 		case 'trunksListGet':
-			return executeTrunksListGet.call(this, itemIndex);
+			return executeTrunksListGet.call(this, itemIndex ?? 0);
 		case 'trunksGet':
-			return executeTrunksGet.call(this, itemIndex);
+			return executeTrunksGet.call(this, itemIndex ?? 0);
 		case 'trunksChangeContactPost':
-			return executeTrunksChangeContactPost.call(this, itemIndex);
+			return executeTrunksChangeContactPost.call(this, itemIndex ?? 0);
 		case 'trunksServiceInfosGet':
-			return executeTrunksServiceInfosGet.call(this, itemIndex);
+			return executeTrunksServiceInfosGet.call(this, itemIndex ?? 0);
 		case 'trunksServiceInfosPut':
-			return executeTrunksServiceInfosPut.call(this, itemIndex);
+			return executeTrunksServiceInfosPut.call(this, itemIndex ?? 0);
 		case 'trunksHardwareListGet':
-			return executeTrunksHardwareListGet.call(this, itemIndex);
+			return executeTrunksHardwareListGet.call(this, itemIndex ?? 0);
 		case 'trunksHardwarePost':
-			return executeTrunksHardwarePost.call(this, itemIndex);
+			return executeTrunksHardwarePost.call(this, itemIndex ?? 0);
 		case 'trunksNumberListGet':
-			return executeTrunksNumberListGet.call(this, itemIndex);
+			return executeTrunksNumberListGet.call(this, itemIndex ?? 0);
 		case 'trunksNumberPost':
-			return executeTrunksNumberPost.call(this, itemIndex);
+			return executeTrunksNumberPost.call(this, itemIndex ?? 0);
 		case 'trunksNumberGet':
-			return executeTrunksNumberGet.call(this, itemIndex);
+			return executeTrunksNumberGet.call(this, itemIndex ?? 0);
 		case 'trunksNumberPut':
-			return executeTrunksNumberPut.call(this, itemIndex);
+			return executeTrunksNumberPut.call(this, itemIndex ?? 0);
 		case 'trunksNumberDelete':
-			return executeTrunksNumberDelete.call(this, itemIndex);
+			return executeTrunksNumberDelete.call(this, itemIndex ?? 0);
 		case 'numbersListGet':
-			return executeNumbersListGet.call(this, itemIndex);
+			return executeNumbersListGet.call(this, itemIndex ?? 0);
 		case 'numbersGet':
-			return executeNumbersGet.call(this, itemIndex);
+			return executeNumbersGet.call(this, itemIndex ?? 0);
 		case 'numbersPost':
-			return executeNumbersPost.call(this, itemIndex);
+			return executeNumbersPost.call(this, itemIndex ?? 0);
 		case 'numbersPut':
-			return executeNumbersPut.call(this, itemIndex);
+			return executeNumbersPut.call(this, itemIndex ?? 0);
 		case 'numbersDelete':
-			return executeNumbersDelete.call(this, itemIndex);
+			return executeNumbersDelete.call(this, itemIndex ?? 0);
 		case 'numbersPortabilityListGet':
-			return executeNumbersPortabilityListGet.call(this, itemIndex);
+			return executeNumbersPortabilityListGet.call(this, itemIndex ?? 0);
 		case 'numbersPortabilityPost':
-			return executeNumbersPortabilityPost.call(this, itemIndex);
+			return executeNumbersPortabilityPost.call(this, itemIndex ?? 0);
 		case 'numbersPortabilityGet':
-			return executeNumbersPortabilityGet.call(this, itemIndex);
+			return executeNumbersPortabilityGet.call(this, itemIndex ?? 0);
 		case 'numbersPortabilityPut':
-			return executeNumbersPortabilityPut.call(this, itemIndex);
+			return executeNumbersPortabilityPut.call(this, itemIndex ?? 0);
 		case 'numbersPortabilityDelete':
-			return executeNumbersPortabilityDelete.call(this, itemIndex);
+			return executeNumbersPortabilityDelete.call(this, itemIndex ?? 0);
 		case 'accessoriesGet':
-			return executeAccessoriesGet.call(this, itemIndex);
+			return executeAccessoriesGet.call(this, itemIndex ?? 0);
 		case 'lineOffersGet':
-			return executeLineOffersGet.call(this, itemIndex);
+			return executeLineOffersGet.call(this, itemIndex ?? 0);
 		case 'lineOfferPhonesGet':
-			return executeLineOfferPhonesGet.call(this, itemIndex);
+			return executeLineOfferPhonesGet.call(this, itemIndex ?? 0);
 		case 'faxOffersGet':
-			return executeFaxOffersGet.call(this, itemIndex);
+			return executeFaxOffersGet.call(this, itemIndex ?? 0);
 		case 'lineOfferDetailsGet':
-			return executeLineOfferDetailsGet.call(this, itemIndex);
+			return executeLineOfferDetailsGet.call(this, itemIndex ?? 0);
 		case 'directoriesCitiesGet':
-			return executeDirectoriesCitiesGet.call(this, itemIndex);
+			return executeDirectoriesCitiesGet.call(this, itemIndex ?? 0);
 		case 'directoriesAvailableZipCodesGet':
-			return executeDirectoriesAvailableZipCodesGet.call(this, itemIndex);
+			return executeDirectoriesAvailableZipCodesGet.call(this, itemIndex ?? 0);
 		case 'directoriesServicesGet':
-			return executeDirectoriesServicesGet.call(this, itemIndex);
+			return executeDirectoriesServicesGet.call(this, itemIndex ?? 0);
 		case 'directoriesCountriesGet':
-			return executeDirectoriesCountriesGet.call(this, itemIndex);
+			return executeDirectoriesCountriesGet.call(this, itemIndex ?? 0);
 		case 'telephonyListGet':
-			return executeTelephonyListGet.call(this, itemIndex);
+			return executeTelephonyListGet.call(this, itemIndex ?? 0);
 		case 'sipDomainsGet':
-			return executeSipDomainsGet.call(this, itemIndex);
+			return executeSipDomainsGet.call(this, itemIndex ?? 0);
 		case 'currentOrderIdsGet':
-			return executeCurrentOrderIdsGet.call(this, itemIndex);
+			return executeCurrentOrderIdsGet.call(this, itemIndex ?? 0);
 		case 'searchServicesGet':
-			return executeSearchServicesGet.call(this, itemIndex);
+			return executeSearchServicesGet.call(this, itemIndex ?? 0);
 		case 'setDefaultSipDomainPost':
-			return executeSetDefaultSipDomainPost.call(this, itemIndex);
+			return executeSetDefaultSipDomainPost.call(this, itemIndex ?? 0);
 
 		case 'abbreviatedNumberDelete':
-			return executeabbreviatedNumberDelete.call(this, itemIndex);
+			return executeabbreviatedNumberDelete.call(this, itemIndex ?? 0);
 		case 'abbreviatedNumberGet':
-			return executeabbreviatedNumberGet.call(this, itemIndex);
+			return executeabbreviatedNumberGet.call(this, itemIndex ?? 0);
 		case 'abbreviatedNumberListGet':
-			return executeabbreviatedNumberListGet.call(this, itemIndex);
+			return executeabbreviatedNumberListGet.call(this, itemIndex ?? 0);
 		case 'abbreviatedNumberPost':
-			return executeabbreviatedNumberPost.call(this, itemIndex);
+			return executeabbreviatedNumberPost.call(this, itemIndex ?? 0);
 		case 'abbreviatedNumberPut':
-			return executeabbreviatedNumberPut.call(this, itemIndex);
+			return executeabbreviatedNumberPut.call(this, itemIndex ?? 0);
 		case 'allowedCreditThresholdGet':
-			return executeallowedCreditThresholdGet.call(this, itemIndex);
+			return executeallowedCreditThresholdGet.call(this, itemIndex ?? 0);
 		case 'amountSecurityDepositGet':
-			return executeamountSecurityDepositGet.call(this, itemIndex);
+			return executeamountSecurityDepositGet.call(this, itemIndex ?? 0);
 		case 'billingAccountDelete':
-			return executebillingAccountDelete.call(this, itemIndex);
+			return executebillingAccountDelete.call(this, itemIndex ?? 0);
 		case 'billingAccountGet':
-			return executebillingAccountGet.call(this, itemIndex);
+			return executebillingAccountGet.call(this, itemIndex ?? 0);
 		case 'billingAccountPut':
-			return executebillingAccountPut.call(this, itemIndex);
+			return executebillingAccountPut.call(this, itemIndex ?? 0);
 		case 'billingAccountSiteGet':
-			return executebillingAccountSiteGet.call(this, itemIndex);
+			return executebillingAccountSiteGet.call(this, itemIndex ?? 0);
 		case 'billingAccountSitePost':
-			return executebillingAccountSitePost.call(this, itemIndex);
+			return executebillingAccountSitePost.call(this, itemIndex ?? 0);
 		case 'canTransferSecurityDepositPost':
-			return executecanTransferSecurityDepositPost.call(this, itemIndex);
+			return executecanTransferSecurityDepositPost.call(this, itemIndex ?? 0);
 		case 'cancelTerminationPost':
-			return executecancelTerminationPost.call(this, itemIndex);
+			return executecancelTerminationPost.call(this, itemIndex ?? 0);
 		case 'carrierSipCdrsListGet':
-			return executecarrierSipCdrsListGet.call(this, itemIndex);
+			return executecarrierSipCdrsListGet.call(this, itemIndex ?? 0);
 		case 'carrierSipClusterDetailsListGet':
-			return executecarrierSipClusterDetailsListGet.call(this, itemIndex);
+			return executecarrierSipClusterDetailsListGet.call(this, itemIndex ?? 0);
 		case 'carrierSipEndpointsGet':
-			return executecarrierSipEndpointsGet.call(this, itemIndex);
+			return executecarrierSipEndpointsGet.call(this, itemIndex ?? 0);
 		case 'carrierSipEndpointsListGet':
-			return executecarrierSipEndpointsListGet.call(this, itemIndex);
+			return executecarrierSipEndpointsListGet.call(this, itemIndex ?? 0);
 		case 'carrierSipGet':
-			return executecarrierSipGet.call(this, itemIndex);
+			return executecarrierSipGet.call(this, itemIndex ?? 0);
 		case 'carrierSipListGet':
-			return executecarrierSipListGet.call(this, itemIndex);
+			return executecarrierSipListGet.call(this, itemIndex ?? 0);
 		case 'carrierSipSettingsListGet':
-			return executecarrierSipSettingsListGet.call(this, itemIndex);
+			return executecarrierSipSettingsListGet.call(this, itemIndex ?? 0);
 		case 'carrierSipSettingsPut':
-			return executecarrierSipSettingsPut.call(this, itemIndex);
+			return executecarrierSipSettingsPut.call(this, itemIndex ?? 0);
 		case 'carrierSipVnoGet':
-			return executecarrierSipVnoGet.call(this, itemIndex);
+			return executecarrierSipVnoGet.call(this, itemIndex ?? 0);
 		case 'carrierSipVnoListGet':
-			return executecarrierSipVnoListGet.call(this, itemIndex);
+			return executecarrierSipVnoListGet.call(this, itemIndex ?? 0);
 		case 'carrierSipVnoRangesGet':
-			return executecarrierSipVnoRangesGet.call(this, itemIndex);
+			return executecarrierSipVnoRangesGet.call(this, itemIndex ?? 0);
 		case 'carrierSipVnoRangesListGet':
-			return executecarrierSipVnoRangesListGet.call(this, itemIndex);
+			return executecarrierSipVnoRangesListGet.call(this, itemIndex ?? 0);
 		case 'carrierSipVnoRangesPut':
-			return executecarrierSipVnoRangesPut.call(this, itemIndex);
+			return executecarrierSipVnoRangesPut.call(this, itemIndex ?? 0);
 		case 'changeContactPost':
-			return executechangeContactPost.call(this, itemIndex);
+			return executechangeContactPost.call(this, itemIndex ?? 0);
 		case 'faxCampaignsDelete':
-			return executefaxCampaignsDelete.call(this, itemIndex);
+			return executefaxCampaignsDelete.call(this, itemIndex ?? 0);
 		case 'faxCampaignsDetailListGet':
-			return executefaxCampaignsDetailListGet.call(this, itemIndex);
+			return executefaxCampaignsDetailListGet.call(this, itemIndex ?? 0);
 		case 'faxCampaignsGet':
-			return executefaxCampaignsGet.call(this, itemIndex);
+			return executefaxCampaignsGet.call(this, itemIndex ?? 0);
 		case 'faxCampaignsListGet':
-			return executefaxCampaignsListGet.call(this, itemIndex);
+			return executefaxCampaignsListGet.call(this, itemIndex ?? 0);
 		case 'faxCampaignsPost':
-			return executefaxCampaignsPost.call(this, itemIndex);
+			return executefaxCampaignsPost.call(this, itemIndex ?? 0);
 		case 'faxCampaignsStartPost':
-			return executefaxCampaignsStartPost.call(this, itemIndex);
+			return executefaxCampaignsStartPost.call(this, itemIndex ?? 0);
 		case 'faxCampaignsStopPost':
-			return executefaxCampaignsStopPost.call(this, itemIndex);
+			return executefaxCampaignsStopPost.call(this, itemIndex ?? 0);
 		case 'faxGet':
-			return executefaxGet.call(this, itemIndex);
+			return executefaxGet.call(this, itemIndex ?? 0);
 		case 'faxListGet':
-			return executefaxListGet.call(this, itemIndex);
+			return executefaxListGet.call(this, itemIndex ?? 0);
 		case 'faxPut':
-			return executefaxPut.call(this, itemIndex);
+			return executefaxPut.call(this, itemIndex ?? 0);
 		case 'faxScreenListsDelete':
-			return executefaxScreenListsDelete.call(this, itemIndex);
+			return executefaxScreenListsDelete.call(this, itemIndex ?? 0);
 		case 'faxScreenListsListGet':
-			return executefaxScreenListsListGet.call(this, itemIndex);
+			return executefaxScreenListsListGet.call(this, itemIndex ?? 0);
 		case 'faxScreenListsPost':
-			return executefaxScreenListsPost.call(this, itemIndex);
+			return executefaxScreenListsPost.call(this, itemIndex ?? 0);
 		case 'faxScreenListsPut':
-			return executefaxScreenListsPut.call(this, itemIndex);
+			return executefaxScreenListsPut.call(this, itemIndex ?? 0);
 		case 'faxScreenListsResetPost':
-			return executefaxScreenListsResetPost.call(this, itemIndex);
+			return executefaxScreenListsResetPost.call(this, itemIndex ?? 0);
 		case 'faxSettingsChangePasswordPost':
-			return executefaxSettingsChangePasswordPost.call(this, itemIndex);
+			return executefaxSettingsChangePasswordPost.call(this, itemIndex ?? 0);
 		case 'faxSettingsListGet':
-			return executefaxSettingsListGet.call(this, itemIndex);
+			return executefaxSettingsListGet.call(this, itemIndex ?? 0);
 		case 'faxSettingsPut':
-			return executefaxSettingsPut.call(this, itemIndex);
+			return executefaxSettingsPut.call(this, itemIndex ?? 0);
 		case 'faxSettingsSendFaxPost':
-			return executefaxSettingsSendFaxPost.call(this, itemIndex);
+			return executefaxSettingsSendFaxPost.call(this, itemIndex ?? 0);
 		case 'lineAbbreviatedNumberDelete':
-			return executelineAbbreviatedNumberDelete.call(this, itemIndex);
+			return executelineAbbreviatedNumberDelete.call(this, itemIndex ?? 0);
 		case 'lineAbbreviatedNumberGet':
-			return executelineAbbreviatedNumberGet.call(this, itemIndex);
+			return executelineAbbreviatedNumberGet.call(this, itemIndex ?? 0);
 		case 'lineAbbreviatedNumberListGet':
-			return executelineAbbreviatedNumberListGet.call(this, itemIndex);
+			return executelineAbbreviatedNumberListGet.call(this, itemIndex ?? 0);
 		case 'lineAbbreviatedNumberPost':
-			return executelineAbbreviatedNumberPost.call(this, itemIndex);
+			return executelineAbbreviatedNumberPost.call(this, itemIndex ?? 0);
 		case 'lineAbbreviatedNumberPut':
-			return executelineAbbreviatedNumberPut.call(this, itemIndex);
+			return executelineAbbreviatedNumberPut.call(this, itemIndex ?? 0);
 		case 'lineActivateNewPhoneListGet':
-			return executelineActivateNewPhoneListGet.call(this, itemIndex);
+			return executelineActivateNewPhoneListGet.call(this, itemIndex ?? 0);
 		case 'lineActivateNewPhonePost':
-			return executelineActivateNewPhonePost.call(this, itemIndex);
+			return executelineActivateNewPhonePost.call(this, itemIndex ?? 0);
 		case 'lineAntihackListGet':
-			return executelineAntihackListGet.call(this, itemIndex);
+			return executelineAntihackListGet.call(this, itemIndex ?? 0);
 		case 'lineAntihackPost':
-			return executelineAntihackPost.call(this, itemIndex);
+			return executelineAntihackPost.call(this, itemIndex ?? 0);
 		case 'lineAssociateDevicePost':
-			return executelineAssociateDevicePost.call(this, itemIndex);
+			return executelineAssociateDevicePost.call(this, itemIndex ?? 0);
 		case 'lineAutomaticCallGet':
-			return executelineAutomaticCallGet.call(this, itemIndex);
+			return executelineAutomaticCallGet.call(this, itemIndex ?? 0);
 		case 'lineAutomaticCallListGet':
-			return executelineAutomaticCallListGet.call(this, itemIndex);
+			return executelineAutomaticCallListGet.call(this, itemIndex ?? 0);
 		case 'lineAutomaticCallPost':
-			return executelineAutomaticCallPost.call(this, itemIndex);
+			return executelineAutomaticCallPost.call(this, itemIndex ?? 0);
 		case 'lineAvailableSipDomainsListGet':
-			return executelineAvailableSipDomainsListGet.call(this, itemIndex);
+			return executelineAvailableSipDomainsListGet.call(this, itemIndex ?? 0);
 		case 'lineBlockPost':
-			return executelineBlockPost.call(this, itemIndex);
+			return executelineBlockPost.call(this, itemIndex ?? 0);
 		case 'lineCallsEavesdropPost':
-			return executelineCallsEavesdropPost.call(this, itemIndex);
+			return executelineCallsEavesdropPost.call(this, itemIndex ?? 0);
 		case 'lineCallsGet':
-			return executelineCallsGet.call(this, itemIndex);
+			return executelineCallsGet.call(this, itemIndex ?? 0);
 		case 'lineCallsHangupPost':
-			return executelineCallsHangupPost.call(this, itemIndex);
+			return executelineCallsHangupPost.call(this, itemIndex ?? 0);
 		case 'lineCallsHoldPost':
-			return executelineCallsHoldPost.call(this, itemIndex);
+			return executelineCallsHoldPost.call(this, itemIndex ?? 0);
 		case 'lineCallsInterceptPost':
-			return executelineCallsInterceptPost.call(this, itemIndex);
+			return executelineCallsInterceptPost.call(this, itemIndex ?? 0);
 		case 'lineCallsListGet':
-			return executelineCallsListGet.call(this, itemIndex);
+			return executelineCallsListGet.call(this, itemIndex ?? 0);
 		case 'lineCallsTransferPost':
-			return executelineCallsTransferPost.call(this, itemIndex);
+			return executelineCallsTransferPost.call(this, itemIndex ?? 0);
 		case 'lineCallsWhisperPost':
-			return executelineCallsWhisperPost.call(this, itemIndex);
+			return executelineCallsWhisperPost.call(this, itemIndex ?? 0);
 		case 'lineCanChangePasswordListGet':
-			return executelineCanChangePasswordListGet.call(this, itemIndex);
+			return executelineCanChangePasswordListGet.call(this, itemIndex ?? 0);
 		case 'lineCancelConvertToNumberPost':
-			return executelineCancelConvertToNumberPost.call(this, itemIndex);
+			return executelineCancelConvertToNumberPost.call(this, itemIndex ?? 0);
 		case 'lineChangePasswordPost':
-			return executelineChangePasswordPost.call(this, itemIndex);
+			return executelineChangePasswordPost.call(this, itemIndex ?? 0);
 		case 'lineClick2CallPost':
-			return executelineClick2CallPost.call(this, itemIndex);
+			return executelineClick2CallPost.call(this, itemIndex ?? 0);
 		case 'lineClick2CallUserChangePasswordPost':
-			return executelineClick2CallUserChangePasswordPost.call(this, itemIndex);
+			return executelineClick2CallUserChangePasswordPost.call(this, itemIndex ?? 0);
 		case 'lineClick2CallUserClick2CallPost':
-			return executelineClick2CallUserClick2CallPost.call(this, itemIndex);
+			return executelineClick2CallUserClick2CallPost.call(this, itemIndex ?? 0);
 		case 'lineClick2CallUserDelete':
-			return executelineClick2CallUserDelete.call(this, itemIndex);
+			return executelineClick2CallUserDelete.call(this, itemIndex ?? 0);
 		case 'lineClick2CallUserGet':
-			return executelineClick2CallUserGet.call(this, itemIndex);
+			return executelineClick2CallUserGet.call(this, itemIndex ?? 0);
 		case 'lineClick2CallUserListGet':
-			return executelineClick2CallUserListGet.call(this, itemIndex);
+			return executelineClick2CallUserListGet.call(this, itemIndex ?? 0);
 		case 'lineClick2CallUserPost':
-			return executelineClick2CallUserPost.call(this, itemIndex);
+			return executelineClick2CallUserPost.call(this, itemIndex ?? 0);
 		case 'lineConvertToNumberPost':
-			return executelineConvertToNumberPost.call(this, itemIndex);
+			return executelineConvertToNumberPost.call(this, itemIndex ?? 0);
 		case 'lineDissociateDevicePost':
-			return executelineDissociateDevicePost.call(this, itemIndex);
+			return executelineDissociateDevicePost.call(this, itemIndex ?? 0);
 		case 'lineGet':
-			return executelineGet.call(this, itemIndex);
+			return executelineGet.call(this, itemIndex ?? 0);
 		case 'lineIpsListGet':
-			return executelineIpsListGet.call(this, itemIndex);
+			return executelineIpsListGet.call(this, itemIndex ?? 0);
 		case 'lineLastRegistrationsListGet':
-			return executelineLastRegistrationsListGet.call(this, itemIndex);
+			return executelineLastRegistrationsListGet.call(this, itemIndex ?? 0);
 		case 'lineListAssociablePhonesListGet':
-			return executelineListAssociablePhonesListGet.call(this, itemIndex);
+			return executelineListAssociablePhonesListGet.call(this, itemIndex ?? 0);
 		case 'lineListGet':
-			return executelineListGet.call(this, itemIndex);
+			return executelineListGet.call(this, itemIndex ?? 0);
 		case 'lineMaximumAvailableSimultaneousLinesListGet':
-			return executelineMaximumAvailableSimultaneousLinesListGet.call(this, itemIndex);
+			return executelineMaximumAvailableSimultaneousLinesListGet.call(this, itemIndex ?? 0);
 		case 'lineOfferListGet':
-			return executelineOfferListGet.call(this, itemIndex);
+			return executelineOfferListGet.call(this, itemIndex ?? 0);
 		case 'lineOptionsAvailableCodecsListGet':
-			return executelineOptionsAvailableCodecsListGet.call(this, itemIndex);
+			return executelineOptionsAvailableCodecsListGet.call(this, itemIndex ?? 0);
 		case 'lineOptionsDefaultCodecsListGet':
-			return executelineOptionsDefaultCodecsListGet.call(this, itemIndex);
+			return executelineOptionsDefaultCodecsListGet.call(this, itemIndex ?? 0);
 		case 'lineOptionsListGet':
-			return executelineOptionsListGet.call(this, itemIndex);
+			return executelineOptionsListGet.call(this, itemIndex ?? 0);
 		case 'lineOptionsPut':
-			return executelineOptionsPut.call(this, itemIndex);
+			return executelineOptionsPut.call(this, itemIndex ?? 0);
 		case 'linePhoneAdminCredentialsListGet':
-			return executelinePhoneAdminCredentialsListGet.call(this, itemIndex);
+			return executelinePhoneAdminCredentialsListGet.call(this, itemIndex ?? 0);
 		case 'linePhoneCanBeAssociableListGet':
-			return executelinePhoneCanBeAssociableListGet.call(this, itemIndex);
+			return executelinePhoneCanBeAssociableListGet.call(this, itemIndex ?? 0);
 		case 'linePhoneChangePhoneConfigurationPost':
-			return executelinePhoneChangePhoneConfigurationPost.call(this, itemIndex);
+			return executelinePhoneChangePhoneConfigurationPost.call(this, itemIndex ?? 0);
 		case 'linePhoneFunctionKeyAvailableFunctionListGet':
-			return executelinePhoneFunctionKeyAvailableFunctionListGet.call(this, itemIndex);
+			return executelinePhoneFunctionKeyAvailableFunctionListGet.call(this, itemIndex ?? 0);
 		case 'linePhoneFunctionKeyGet':
-			return executelinePhoneFunctionKeyGet.call(this, itemIndex);
+			return executelinePhoneFunctionKeyGet.call(this, itemIndex ?? 0);
 		case 'linePhoneFunctionKeyListGet':
-			return executelinePhoneFunctionKeyListGet.call(this, itemIndex);
+			return executelinePhoneFunctionKeyListGet.call(this, itemIndex ?? 0);
 		case 'linePhoneFunctionKeyPut':
-			return executelinePhoneFunctionKeyPut.call(this, itemIndex);
+			return executelinePhoneFunctionKeyPut.call(this, itemIndex ?? 0);
 		case 'linePhoneListGet':
-			return executelinePhoneListGet.call(this, itemIndex);
+			return executelinePhoneListGet.call(this, itemIndex ?? 0);
 		case 'linePhoneMerchandiseAvailableListGet':
-			return executelinePhoneMerchandiseAvailableListGet.call(this, itemIndex);
+			return executelinePhoneMerchandiseAvailableListGet.call(this, itemIndex ?? 0);
 		case 'linePhonePhonebookDelete':
-			return executelinePhonePhonebookDelete.call(this, itemIndex);
+			return executelinePhonePhonebookDelete.call(this, itemIndex ?? 0);
 		case 'linePhonePhonebookExportListGet':
-			return executelinePhonePhonebookExportListGet.call(this, itemIndex);
+			return executelinePhonePhonebookExportListGet.call(this, itemIndex ?? 0);
 		case 'linePhonePhonebookGet':
-			return executelinePhonePhonebookGet.call(this, itemIndex);
+			return executelinePhonePhonebookGet.call(this, itemIndex ?? 0);
 		case 'linePhonePhonebookImportPost':
-			return executelinePhonePhonebookImportPost.call(this, itemIndex);
+			return executelinePhonePhonebookImportPost.call(this, itemIndex ?? 0);
 		case 'linePhonePhonebookListGet':
-			return executelinePhonePhonebookListGet.call(this, itemIndex);
+			return executelinePhonePhonebookListGet.call(this, itemIndex ?? 0);
 		case 'linePhonePhonebookPhonebookContactDelete':
-			return executelinePhonePhonebookPhonebookContactDelete.call(this, itemIndex);
+			return executelinePhonePhonebookPhonebookContactDelete.call(this, itemIndex ?? 0);
 		case 'linePhonePhonebookPhonebookContactGet':
-			return executelinePhonePhonebookPhonebookContactGet.call(this, itemIndex);
+			return executelinePhonePhonebookPhonebookContactGet.call(this, itemIndex ?? 0);
 		case 'linePhonePhonebookPhonebookContactListGet':
-			return executelinePhonePhonebookPhonebookContactListGet.call(this, itemIndex);
+			return executelinePhonePhonebookPhonebookContactListGet.call(this, itemIndex ?? 0);
 		case 'linePhonePhonebookPhonebookContactPost':
-			return executelinePhonePhonebookPhonebookContactPost.call(this, itemIndex);
+			return executelinePhonePhonebookPhonebookContactPost.call(this, itemIndex ?? 0);
 		case 'linePhonePhonebookPhonebookContactPut':
-			return executelinePhonePhonebookPhonebookContactPut.call(this, itemIndex);
+			return executelinePhonePhonebookPhonebookContactPut.call(this, itemIndex ?? 0);
 		case 'linePhonePhonebookPost':
-			return executelinePhonePhonebookPost.call(this, itemIndex);
+			return executelinePhonePhonebookPost.call(this, itemIndex ?? 0);
 		case 'linePhonePhonebookPut':
-			return executelinePhonePhonebookPut.call(this, itemIndex);
+			return executelinePhonePhonebookPut.call(this, itemIndex ?? 0);
 		case 'linePhonePut':
-			return executelinePhonePut.call(this, itemIndex);
+			return executelinePhonePut.call(this, itemIndex ?? 0);
 		case 'linePhoneRebootPost':
-			return executelinePhoneRebootPost.call(this, itemIndex);
+			return executelinePhoneRebootPost.call(this, itemIndex ?? 0);
 		case 'linePhoneRefreshScreenPost':
-			return executelinePhoneRefreshScreenPost.call(this, itemIndex);
+			return executelinePhoneRefreshScreenPost.call(this, itemIndex ?? 0);
 		case 'linePhoneResetConfigPost':
-			return executelinePhoneResetConfigPost.call(this, itemIndex);
+			return executelinePhoneResetConfigPost.call(this, itemIndex ?? 0);
 		case 'linePhoneRmaChangeTypePost':
-			return executelinePhoneRmaChangeTypePost.call(this, itemIndex);
+			return executelinePhoneRmaChangeTypePost.call(this, itemIndex ?? 0);
 		case 'linePhoneRmaDelete':
-			return executelinePhoneRmaDelete.call(this, itemIndex);
+			return executelinePhoneRmaDelete.call(this, itemIndex ?? 0);
 		case 'linePhoneRmaGet':
-			return executelinePhoneRmaGet.call(this, itemIndex);
+			return executelinePhoneRmaGet.call(this, itemIndex ?? 0);
 		case 'linePhoneRmaListGet':
-			return executelinePhoneRmaListGet.call(this, itemIndex);
+			return executelinePhoneRmaListGet.call(this, itemIndex ?? 0);
 		case 'linePhoneRmaPost':
-			return executelinePhoneRmaPost.call(this, itemIndex);
+			return executelinePhoneRmaPost.call(this, itemIndex ?? 0);
 		case 'linePhoneRmaPut':
-			return executelinePhoneRmaPut.call(this, itemIndex);
+			return executelinePhoneRmaPut.call(this, itemIndex ?? 0);
 		case 'linePhoneSupportsPhonebookListGet':
-			return executelinePhoneSupportsPhonebookListGet.call(this, itemIndex);
+			return executelinePhoneSupportsPhonebookListGet.call(this, itemIndex ?? 0);
 		case 'linePut':
-			return executelinePut.call(this, itemIndex);
+			return executelinePut.call(this, itemIndex ?? 0);
 		case 'lineRecordsDelete':
-			return executelineRecordsDelete.call(this, itemIndex);
+			return executelineRecordsDelete.call(this, itemIndex ?? 0);
 		case 'lineRecordsGet':
-			return executelineRecordsGet.call(this, itemIndex);
+			return executelineRecordsGet.call(this, itemIndex ?? 0);
 		case 'lineRecordsListGet':
-			return executelineRecordsListGet.call(this, itemIndex);
+			return executelineRecordsListGet.call(this, itemIndex ?? 0);
 		case 'lineRemoveSimultaneousLinesPost':
-			return executelineRemoveSimultaneousLinesPost.call(this, itemIndex);
+			return executelineRemoveSimultaneousLinesPost.call(this, itemIndex ?? 0);
 		case 'lineSimultaneousChannelsDetailsListGet':
-			return executelineSimultaneousChannelsDetailsListGet.call(this, itemIndex);
+			return executelineSimultaneousChannelsDetailsListGet.call(this, itemIndex ?? 0);
 		case 'lineSoftphoneBetaListGet':
-			return executelineSoftphoneBetaListGet.call(this, itemIndex);
+			return executelineSoftphoneBetaListGet.call(this, itemIndex ?? 0);
 		case 'lineSoftphoneBetaPut':
-			return executelineSoftphoneBetaPut.call(this, itemIndex);
+			return executelineSoftphoneBetaPut.call(this, itemIndex ?? 0);
 		case 'lineSoftphoneDevicesDelete':
-			return executelineSoftphoneDevicesDelete.call(this, itemIndex);
+			return executelineSoftphoneDevicesDelete.call(this, itemIndex ?? 0);
 		case 'lineSoftphoneDevicesDisconnectPost':
-			return executelineSoftphoneDevicesDisconnectPost.call(this, itemIndex);
+			return executelineSoftphoneDevicesDisconnectPost.call(this, itemIndex ?? 0);
 		case 'lineSoftphoneDevicesListGet':
-			return executelineSoftphoneDevicesListGet.call(this, itemIndex);
+			return executelineSoftphoneDevicesListGet.call(this, itemIndex ?? 0);
 		case 'lineSoftphoneLogoDelete':
-			return executelineSoftphoneLogoDelete.call(this, itemIndex);
+			return executelineSoftphoneLogoDelete.call(this, itemIndex ?? 0);
 		case 'lineSoftphoneLogoListGet':
-			return executelineSoftphoneLogoListGet.call(this, itemIndex);
+			return executelineSoftphoneLogoListGet.call(this, itemIndex ?? 0);
 		case 'lineSoftphoneLogoPut':
-			return executelineSoftphoneLogoPut.call(this, itemIndex);
+			return executelineSoftphoneLogoPut.call(this, itemIndex ?? 0);
 		case 'lineSoftphoneStatusListGet':
-			return executelineSoftphoneStatusListGet.call(this, itemIndex);
+			return executelineSoftphoneStatusListGet.call(this, itemIndex ?? 0);
 		case 'lineSoftphoneThemeDelete':
-			return executelineSoftphoneThemeDelete.call(this, itemIndex);
+			return executelineSoftphoneThemeDelete.call(this, itemIndex ?? 0);
 		case 'lineSoftphoneThemeListGet':
-			return executelineSoftphoneThemeListGet.call(this, itemIndex);
+			return executelineSoftphoneThemeListGet.call(this, itemIndex ?? 0);
 		case 'lineSoftphoneThemePut':
-			return executelineSoftphoneThemePut.call(this, itemIndex);
+			return executelineSoftphoneThemePut.call(this, itemIndex ?? 0);
 		case 'lineSoftphoneTokenPost':
-			return executelineSoftphoneTokenPost.call(this, itemIndex);
+			return executelineSoftphoneTokenPost.call(this, itemIndex ?? 0);
 		case 'lineStatisticsListGet':
-			return executelineStatisticsListGet.call(this, itemIndex);
+			return executelineStatisticsListGet.call(this, itemIndex ?? 0);
 		case 'lineTonesListGet':
-			return executelineTonesListGet.call(this, itemIndex);
+			return executelineTonesListGet.call(this, itemIndex ?? 0);
 		case 'lineTonesPut':
-			return executelineTonesPut.call(this, itemIndex);
+			return executelineTonesPut.call(this, itemIndex ?? 0);
 		case 'lineTonesToneUploadPost':
-			return executelineTonesToneUploadPost.call(this, itemIndex);
+			return executelineTonesToneUploadPost.call(this, itemIndex ?? 0);
 		case 'lineTrafficExtractsDelete':
-			return executelineTrafficExtractsDelete.call(this, itemIndex);
+			return executelineTrafficExtractsDelete.call(this, itemIndex ?? 0);
 		case 'lineTrafficExtractsGet':
-			return executelineTrafficExtractsGet.call(this, itemIndex);
+			return executelineTrafficExtractsGet.call(this, itemIndex ?? 0);
 		case 'lineTrafficExtractsListGet':
-			return executelineTrafficExtractsListGet.call(this, itemIndex);
+			return executelineTrafficExtractsListGet.call(this, itemIndex ?? 0);
 		case 'lineTrafficExtractsPost':
-			return executelineTrafficExtractsPost.call(this, itemIndex);
+			return executelineTrafficExtractsPost.call(this, itemIndex ?? 0);
 		case 'lineUnblockPost':
-			return executelineUnblockPost.call(this, itemIndex);
+			return executelineUnblockPost.call(this, itemIndex ?? 0);
 		case 'numberCancelConvertToLinePost':
-			return executenumberCancelConvertToLinePost.call(this, itemIndex);
+			return executenumberCancelConvertToLinePost.call(this, itemIndex ?? 0);
 		case 'numberChangeFeatureTypePost':
-			return executenumberChangeFeatureTypePost.call(this, itemIndex);
+			return executenumberChangeFeatureTypePost.call(this, itemIndex ?? 0);
 		case 'numberConvertToLineAvailableOffersListGet':
-			return executenumberConvertToLineAvailableOffersListGet.call(this, itemIndex);
+			return executenumberConvertToLineAvailableOffersListGet.call(this, itemIndex ?? 0);
 		case 'numberConvertToLinePost':
-			return executenumberConvertToLinePost.call(this, itemIndex);
+			return executenumberConvertToLinePost.call(this, itemIndex ?? 0);
 		case 'numberGet':
-			return executenumberGet.call(this, itemIndex);
+			return executenumberGet.call(this, itemIndex ?? 0);
 		case 'numberListGet':
-			return executenumberListGet.call(this, itemIndex);
+			return executenumberListGet.call(this, itemIndex ?? 0);
 		case 'numberPut':
-			return executenumberPut.call(this, itemIndex);
+			return executenumberPut.call(this, itemIndex ?? 0);
 		case 'portabilityGet':
-			return executeportabilityGet.call(this, itemIndex);
+			return executeportabilityGet.call(this, itemIndex ?? 0);
 		case 'serviceInfosListGet':
-			return executeserviceInfosListGet.call(this, itemIndex);
+			return executeserviceInfosListGet.call(this, itemIndex ?? 0);
 		case 'serviceInfosPut':
-			return executeserviceInfosPut.call(this, itemIndex);
+			return executeserviceInfosPut.call(this, itemIndex ?? 0);
 		case 'taskGet':
-			return executetaskGet.call(this, itemIndex);
+			return executetaskGet.call(this, itemIndex ?? 0);
 		case 'taskListGet':
-			return executetaskListGet.call(this, itemIndex);
+			return executetaskListGet.call(this, itemIndex ?? 0);
 		case 'transferSecurityDepositPost':
-			return executetransferSecurityDepositPost.call(this, itemIndex);
+			return executetransferSecurityDepositPost.call(this, itemIndex ?? 0);
 		case 'vxmlGet':
-			return executevxmlGet.call(this, itemIndex);
+			return executevxmlGet.call(this, itemIndex ?? 0);
 		case 'vxmlListGet':
-			return executevxmlListGet.call(this, itemIndex);
+			return executevxmlListGet.call(this, itemIndex ?? 0);
 		case 'vxmlSettingsListGet':
-			return executevxmlSettingsListGet.call(this, itemIndex);
+			return executevxmlSettingsListGet.call(this, itemIndex ?? 0);
 		case 'vxmlSettingsLogsPost':
-			return executevxmlSettingsLogsPost.call(this, itemIndex);
+			return executevxmlSettingsLogsPost.call(this, itemIndex ?? 0);
 		case 'vxmlSettingsPut':
-			return executevxmlSettingsPut.call(this, itemIndex);
+			return executevxmlSettingsPut.call(this, itemIndex ?? 0);
 
 		case 'conferenceListGet':
-			return executeconferenceListGet.call(this, itemIndex);
+			return executeconferenceListGet.call(this, itemIndex ?? 0);
 
 		case 'conferenceGet':
-			return executeconferenceGet.call(this, itemIndex);
+			return executeconferenceGet.call(this, itemIndex ?? 0);
 
 		case 'conferenceAnnounceUploadPost':
-			return executeconferenceAnnounceUploadPost.call(this, itemIndex);
+			return executeconferenceAnnounceUploadPost.call(this, itemIndex ?? 0);
 
 		case 'conferenceHistoriesListGet':
-			return executeconferenceHistoriesListGet.call(this, itemIndex);
+			return executeconferenceHistoriesListGet.call(this, itemIndex ?? 0);
 
 		case 'conferenceHistoriesGet':
-			return executeconferenceHistoriesGet.call(this, itemIndex);
+			return executeconferenceHistoriesGet.call(this, itemIndex ?? 0);
 
 		case 'conferenceInformationsListGet':
-			return executeconferenceInformationsListGet.call(this, itemIndex);
+			return executeconferenceInformationsListGet.call(this, itemIndex ?? 0);
 
 		case 'conferenceLockPost':
-			return executeconferenceLockPost.call(this, itemIndex);
+			return executeconferenceLockPost.call(this, itemIndex ?? 0);
 
 		case 'conferenceParticipantsListGet':
-			return executeconferenceParticipantsListGet.call(this, itemIndex);
+			return executeconferenceParticipantsListGet.call(this, itemIndex ?? 0);
 
 		case 'conferenceParticipantsGet':
-			return executeconferenceParticipantsGet.call(this, itemIndex);
+			return executeconferenceParticipantsGet.call(this, itemIndex ?? 0);
 
 		case 'conferenceParticipantsDeafPost':
-			return executeconferenceParticipantsDeafPost.call(this, itemIndex);
+			return executeconferenceParticipantsDeafPost.call(this, itemIndex ?? 0);
 
 		case 'conferenceParticipantsEnergyPost':
-			return executeconferenceParticipantsEnergyPost.call(this, itemIndex);
+			return executeconferenceParticipantsEnergyPost.call(this, itemIndex ?? 0);
 
 		case 'conferenceParticipantsKickPost':
-			return executeconferenceParticipantsKickPost.call(this, itemIndex);
+			return executeconferenceParticipantsKickPost.call(this, itemIndex ?? 0);
 
 		case 'conferenceParticipantsMutePost':
-			return executeconferenceParticipantsMutePost.call(this, itemIndex);
+			return executeconferenceParticipantsMutePost.call(this, itemIndex ?? 0);
 
 		case 'conferenceParticipantsUndeafPost':
-			return executeconferenceParticipantsUndeafPost.call(this, itemIndex);
+			return executeconferenceParticipantsUndeafPost.call(this, itemIndex ?? 0);
 
 		case 'conferenceParticipantsUnmutePost':
-			return executeconferenceParticipantsUnmutePost.call(this, itemIndex);
+			return executeconferenceParticipantsUnmutePost.call(this, itemIndex ?? 0);
 
 		case 'conferenceRoomsListGet':
-			return executeconferenceRoomsListGet.call(this, itemIndex);
+			return executeconferenceRoomsListGet.call(this, itemIndex ?? 0);
 
 		case 'conferenceRoomsPost':
-			return executeconferenceRoomsPost.call(this, itemIndex);
+			return executeconferenceRoomsPost.call(this, itemIndex ?? 0);
 
 		case 'conferenceRoomsGet':
-			return executeconferenceRoomsGet.call(this, itemIndex);
+			return executeconferenceRoomsGet.call(this, itemIndex ?? 0);
 
 		case 'conferenceRoomsPut':
-			return executeconferenceRoomsPut.call(this, itemIndex);
+			return executeconferenceRoomsPut.call(this, itemIndex ?? 0);
 
 		case 'conferenceRoomsHistoriesListGet':
-			return executeconferenceRoomsHistoriesListGet.call(this, itemIndex);
+			return executeconferenceRoomsHistoriesListGet.call(this, itemIndex ?? 0);
 
 		case 'conferenceRoomsHistoriesGet':
-			return executeconferenceRoomsHistoriesGet.call(this, itemIndex);
+			return executeconferenceRoomsHistoriesGet.call(this, itemIndex ?? 0);
 
 		case 'conferenceRoomsLockPost':
-			return executeconferenceRoomsLockPost.call(this, itemIndex);
+			return executeconferenceRoomsLockPost.call(this, itemIndex ?? 0);
 
 		case 'conferenceRoomsParticipantsListGet':
-			return executeconferenceRoomsParticipantsListGet.call(this, itemIndex);
+			return executeconferenceRoomsParticipantsListGet.call(this, itemIndex ?? 0);
 
 		case 'conferenceRoomsParticipantsGet':
-			return executeconferenceRoomsParticipantsGet.call(this, itemIndex);
+			return executeconferenceRoomsParticipantsGet.call(this, itemIndex ?? 0);
 
 		case 'conferenceRoomsParticipantsDeafPost':
-			return executeconferenceRoomsParticipantsDeafPost.call(this, itemIndex);
+			return executeconferenceRoomsParticipantsDeafPost.call(this, itemIndex ?? 0);
 
 		case 'conferenceRoomsParticipantsEnergyPost':
-			return executeconferenceRoomsParticipantsEnergyPost.call(this, itemIndex);
+			return executeconferenceRoomsParticipantsEnergyPost.call(this, itemIndex ?? 0);
 
 		case 'conferenceRoomsParticipantsKickPost':
-			return executeconferenceRoomsParticipantsKickPost.call(this, itemIndex);
+			return executeconferenceRoomsParticipantsKickPost.call(this, itemIndex ?? 0);
 
 		case 'conferenceRoomsParticipantsMutePost':
-			return executeconferenceRoomsParticipantsMutePost.call(this, itemIndex);
+			return executeconferenceRoomsParticipantsMutePost.call(this, itemIndex ?? 0);
 
 		case 'conferenceRoomsParticipantsUndeafPost':
-			return executeconferenceRoomsParticipantsUndeafPost.call(this, itemIndex);
+			return executeconferenceRoomsParticipantsUndeafPost.call(this, itemIndex ?? 0);
 
 		case 'conferenceRoomsParticipantsUnmutePost':
-			return executeconferenceRoomsParticipantsUnmutePost.call(this, itemIndex);
+			return executeconferenceRoomsParticipantsUnmutePost.call(this, itemIndex ?? 0);
 
 		case 'conferenceRoomsUnlockPost':
-			return executeconferenceRoomsUnlockPost.call(this, itemIndex);
+			return executeconferenceRoomsUnlockPost.call(this, itemIndex ?? 0);
 
 		case 'conferenceRoomsWebAccessListGet':
-			return executeconferenceRoomsWebAccessListGet.call(this, itemIndex);
+			return executeconferenceRoomsWebAccessListGet.call(this, itemIndex ?? 0);
 
 		case 'conferenceRoomsWebAccessPost':
-			return executeconferenceRoomsWebAccessPost.call(this, itemIndex);
+			return executeconferenceRoomsWebAccessPost.call(this, itemIndex ?? 0);
 
 		case 'conferenceRoomsWebAccessDelete':
-			return executeconferenceRoomsWebAccessDelete.call(this, itemIndex);
+			return executeconferenceRoomsWebAccessDelete.call(this, itemIndex ?? 0);
 
 		case 'conferenceRoomsWebAccessGet':
-			return executeconferenceRoomsWebAccessGet.call(this, itemIndex);
+			return executeconferenceRoomsWebAccessGet.call(this, itemIndex ?? 0);
 
 		case 'conferenceRoomsStatsListGet':
-			return executeconferenceRoomsStatsListGet.call(this, itemIndex);
+			return executeconferenceRoomsStatsListGet.call(this, itemIndex ?? 0);
 
 		case 'conferenceSettingsListGet':
-			return executeconferenceSettingsListGet.call(this, itemIndex);
+			return executeconferenceSettingsListGet.call(this, itemIndex ?? 0);
 
 		case 'conferenceSettingsPut':
-			return executeconferenceSettingsPut.call(this, itemIndex);
+			return executeconferenceSettingsPut.call(this, itemIndex ?? 0);
 
 		case 'conferenceUnlockPost':
-			return executeconferenceUnlockPost.call(this, itemIndex);
+			return executeconferenceUnlockPost.call(this, itemIndex ?? 0);
 
 		case 'conferenceWebAccessListGet':
-			return executeconferenceWebAccessListGet.call(this, itemIndex);
+			return executeconferenceWebAccessListGet.call(this, itemIndex ?? 0);
 
 		case 'conferenceWebAccessPost':
-			return executeconferenceWebAccessPost.call(this, itemIndex);
+			return executeconferenceWebAccessPost.call(this, itemIndex ?? 0);
 
 		case 'conferenceWebAccessDelete':
-			return executeconferenceWebAccessDelete.call(this, itemIndex);
+			return executeconferenceWebAccessDelete.call(this, itemIndex ?? 0);
 
 		case 'conferenceWebAccessGet':
-			return executeconferenceWebAccessGet.call(this, itemIndex);
+			return executeconferenceWebAccessGet.call(this, itemIndex ?? 0);
 
 		case 'ddiListGet':
-			return executeddiListGet.call(this, itemIndex);
+			return executeddiListGet.call(this, itemIndex ?? 0);
 
 		case 'ddiGet':
-			return executeddiGet.call(this, itemIndex);
+			return executeddiGet.call(this, itemIndex ?? 0);
 
 		case 'ddiPut':
-			return executeddiPut.call(this, itemIndex);
+			return executeddiPut.call(this, itemIndex ?? 0);
 
 		case 'ddiChangeDestinationPost':
-			return executeddiChangeDestinationPost.call(this, itemIndex);
+			return executeddiChangeDestinationPost.call(this, itemIndex ?? 0);
 
 		case 'easyHuntingListGet':
-			return executeeasyHuntingListGet.call(this, itemIndex);
+			return executeeasyHuntingListGet.call(this, itemIndex ?? 0);
 
 		case 'easyHuntingGet':
-			return executeeasyHuntingGet.call(this, itemIndex);
+			return executeeasyHuntingGet.call(this, itemIndex ?? 0);
 
 		case 'easyHuntingPut':
-			return executeeasyHuntingPut.call(this, itemIndex);
+			return executeeasyHuntingPut.call(this, itemIndex ?? 0);
 
 		case 'easyHuntingHuntingListGet':
-			return executeeasyHuntingHuntingListGet.call(this, itemIndex);
+			return executeeasyHuntingHuntingListGet.call(this, itemIndex ?? 0);
 
 		case 'easyHuntingHuntingPut':
-			return executeeasyHuntingHuntingPut.call(this, itemIndex);
+			return executeeasyHuntingHuntingPut.call(this, itemIndex ?? 0);
 
 		case 'easyHuntingHuntingAgentListGet':
-			return executeeasyHuntingHuntingAgentListGet.call(this, itemIndex);
+			return executeeasyHuntingHuntingAgentListGet.call(this, itemIndex ?? 0);
 
 		case 'easyHuntingHuntingAgentPost':
-			return executeeasyHuntingHuntingAgentPost.call(this, itemIndex);
+			return executeeasyHuntingHuntingAgentPost.call(this, itemIndex ?? 0);
 
 		case 'easyHuntingHuntingAgentDelete':
-			return executeeasyHuntingHuntingAgentDelete.call(this, itemIndex);
+			return executeeasyHuntingHuntingAgentDelete.call(this, itemIndex ?? 0);
 
 		case 'easyHuntingHuntingAgentGet':
-			return executeeasyHuntingHuntingAgentGet.call(this, itemIndex);
+			return executeeasyHuntingHuntingAgentGet.call(this, itemIndex ?? 0);
 
 		case 'easyHuntingHuntingAgentPut':
-			return executeeasyHuntingHuntingAgentPut.call(this, itemIndex);
+			return executeeasyHuntingHuntingAgentPut.call(this, itemIndex ?? 0);
 
 		case 'easyHuntingHuntingAgentBannerAccessDelete':
-			return executeeasyHuntingHuntingAgentBannerAccessDelete.call(this, itemIndex);
+			return executeeasyHuntingHuntingAgentBannerAccessDelete.call(this, itemIndex ?? 0);
 
 		case 'easyHuntingHuntingAgentBannerAccessListGet':
-			return executeeasyHuntingHuntingAgentBannerAccessListGet.call(this, itemIndex);
+			return executeeasyHuntingHuntingAgentBannerAccessListGet.call(this, itemIndex ?? 0);
 
 		case 'easyHuntingHuntingAgentBannerAccessPost':
-			return executeeasyHuntingHuntingAgentBannerAccessPost.call(this, itemIndex);
+			return executeeasyHuntingHuntingAgentBannerAccessPost.call(this, itemIndex ?? 0);
 
 		case 'easyHuntingHuntingAgentCallsListGet':
-			return executeeasyHuntingHuntingAgentCallsListGet.call(this, itemIndex);
+			return executeeasyHuntingHuntingAgentCallsListGet.call(this, itemIndex ?? 0);
 
 		case 'easyHuntingHuntingAgentCallsGet':
-			return executeeasyHuntingHuntingAgentCallsGet.call(this, itemIndex);
+			return executeeasyHuntingHuntingAgentCallsGet.call(this, itemIndex ?? 0);
 
 		case 'easyHuntingHuntingAgentCallsEavesdropPost':
-			return executeeasyHuntingHuntingAgentCallsEavesdropPost.call(this, itemIndex);
+			return executeeasyHuntingHuntingAgentCallsEavesdropPost.call(this, itemIndex ?? 0);
 
 		case 'easyHuntingHuntingAgentCallsHangupPost':
-			return executeeasyHuntingHuntingAgentCallsHangupPost.call(this, itemIndex);
+			return executeeasyHuntingHuntingAgentCallsHangupPost.call(this, itemIndex ?? 0);
 
 		case 'easyHuntingHuntingAgentCallsHoldPost':
-			return executeeasyHuntingHuntingAgentCallsHoldPost.call(this, itemIndex);
+			return executeeasyHuntingHuntingAgentCallsHoldPost.call(this, itemIndex ?? 0);
 
 		case 'easyHuntingHuntingAgentCallsInterceptPost':
-			return executeeasyHuntingHuntingAgentCallsInterceptPost.call(this, itemIndex);
+			return executeeasyHuntingHuntingAgentCallsInterceptPost.call(this, itemIndex ?? 0);
 
 		case 'easyHuntingHuntingAgentCallsTransferPost':
-			return executeeasyHuntingHuntingAgentCallsTransferPost.call(this, itemIndex);
+			return executeeasyHuntingHuntingAgentCallsTransferPost.call(this, itemIndex ?? 0);
 
 		case 'easyHuntingHuntingAgentCallsWhisperPost':
-			return executeeasyHuntingHuntingAgentCallsWhisperPost.call(this, itemIndex);
+			return executeeasyHuntingHuntingAgentCallsWhisperPost.call(this, itemIndex ?? 0);
 
 		case 'easyHuntingHuntingAgentEventTokenDelete':
-			return executeeasyHuntingHuntingAgentEventTokenDelete.call(this, itemIndex);
+			return executeeasyHuntingHuntingAgentEventTokenDelete.call(this, itemIndex ?? 0);
 
 		case 'easyHuntingHuntingAgentEventTokenListGet':
-			return executeeasyHuntingHuntingAgentEventTokenListGet.call(this, itemIndex);
+			return executeeasyHuntingHuntingAgentEventTokenListGet.call(this, itemIndex ?? 0);
 
 		case 'easyHuntingHuntingAgentEventTokenPost':
-			return executeeasyHuntingHuntingAgentEventTokenPost.call(this, itemIndex);
+			return executeeasyHuntingHuntingAgentEventTokenPost.call(this, itemIndex ?? 0);
 
 		case 'easyHuntingHuntingAgentLiveStatusListGet':
-			return executeeasyHuntingHuntingAgentLiveStatusListGet.call(this, itemIndex);
+			return executeeasyHuntingHuntingAgentLiveStatusListGet.call(this, itemIndex ?? 0);
 
 		case 'easyHuntingHuntingAgentQueueListGet':
-			return executeeasyHuntingHuntingAgentQueueListGet.call(this, itemIndex);
+			return executeeasyHuntingHuntingAgentQueueListGet.call(this, itemIndex ?? 0);
 
 		case 'easyHuntingHuntingAgentQueuePost':
-			return executeeasyHuntingHuntingAgentQueuePost.call(this, itemIndex);
+			return executeeasyHuntingHuntingAgentQueuePost.call(this, itemIndex ?? 0);
 
 		case 'easyHuntingHuntingAgentQueueDelete':
-			return executeeasyHuntingHuntingAgentQueueDelete.call(this, itemIndex);
+			return executeeasyHuntingHuntingAgentQueueDelete.call(this, itemIndex ?? 0);
 
 		case 'easyHuntingHuntingAgentQueueGet':
-			return executeeasyHuntingHuntingAgentQueueGet.call(this, itemIndex);
+			return executeeasyHuntingHuntingAgentQueueGet.call(this, itemIndex ?? 0);
 
 		case 'easyHuntingHuntingAgentQueuePut':
-			return executeeasyHuntingHuntingAgentQueuePut.call(this, itemIndex);
+			return executeeasyHuntingHuntingAgentQueuePut.call(this, itemIndex ?? 0);
 
 		case 'easyHuntingHuntingAgentQueueLiveStatusListGet':
-			return executeeasyHuntingHuntingAgentQueueLiveStatusListGet.call(this, itemIndex);
+			return executeeasyHuntingHuntingAgentQueueLiveStatusListGet.call(this, itemIndex ?? 0);
 
 		case 'easyHuntingHuntingCustomStatusListGet':
-			return executeeasyHuntingHuntingCustomStatusListGet.call(this, itemIndex);
+			return executeeasyHuntingHuntingCustomStatusListGet.call(this, itemIndex ?? 0);
 
 		case 'easyHuntingHuntingCustomStatusPost':
-			return executeeasyHuntingHuntingCustomStatusPost.call(this, itemIndex);
+			return executeeasyHuntingHuntingCustomStatusPost.call(this, itemIndex ?? 0);
 
 		case 'easyHuntingHuntingCustomStatusDelete':
-			return executeeasyHuntingHuntingCustomStatusDelete.call(this, itemIndex);
+			return executeeasyHuntingHuntingCustomStatusDelete.call(this, itemIndex ?? 0);
 
 		case 'easyHuntingHuntingCustomStatusGet':
-			return executeeasyHuntingHuntingCustomStatusGet.call(this, itemIndex);
+			return executeeasyHuntingHuntingCustomStatusGet.call(this, itemIndex ?? 0);
 
 		case 'easyHuntingHuntingEventTokenDelete':
-			return executeeasyHuntingHuntingEventTokenDelete.call(this, itemIndex);
+			return executeeasyHuntingHuntingEventTokenDelete.call(this, itemIndex ?? 0);
 
 		case 'easyHuntingHuntingEventTokenListGet':
-			return executeeasyHuntingHuntingEventTokenListGet.call(this, itemIndex);
+			return executeeasyHuntingHuntingEventTokenListGet.call(this, itemIndex ?? 0);
 
 		case 'easyHuntingHuntingEventTokenPost':
-			return executeeasyHuntingHuntingEventTokenPost.call(this, itemIndex);
+			return executeeasyHuntingHuntingEventTokenPost.call(this, itemIndex ?? 0);
 
 		case 'easyHuntingHuntingQueueListGet':
-			return executeeasyHuntingHuntingQueueListGet.call(this, itemIndex);
+			return executeeasyHuntingHuntingQueueListGet.call(this, itemIndex ?? 0);
 
 		case 'easyHuntingHuntingQueuePost':
-			return executeeasyHuntingHuntingQueuePost.call(this, itemIndex);
+			return executeeasyHuntingHuntingQueuePost.call(this, itemIndex ?? 0);
 
 		case 'easyHuntingHuntingQueueDelete':
-			return executeeasyHuntingHuntingQueueDelete.call(this, itemIndex);
+			return executeeasyHuntingHuntingQueueDelete.call(this, itemIndex ?? 0);
 
 		case 'easyHuntingHuntingQueueGet':
-			return executeeasyHuntingHuntingQueueGet.call(this, itemIndex);
+			return executeeasyHuntingHuntingQueueGet.call(this, itemIndex ?? 0);
 
 		case 'easyHuntingHuntingQueuePut':
-			return executeeasyHuntingHuntingQueuePut.call(this, itemIndex);
+			return executeeasyHuntingHuntingQueuePut.call(this, itemIndex ?? 0);
 
 		case 'easyHuntingHuntingQueueAgentListGet':
-			return executeeasyHuntingHuntingQueueAgentListGet.call(this, itemIndex);
+			return executeeasyHuntingHuntingQueueAgentListGet.call(this, itemIndex ?? 0);
 
 		case 'easyHuntingHuntingQueueAgentPost':
-			return executeeasyHuntingHuntingQueueAgentPost.call(this, itemIndex);
+			return executeeasyHuntingHuntingQueueAgentPost.call(this, itemIndex ?? 0);
 
 		case 'easyHuntingHuntingQueueAgentDelete':
-			return executeeasyHuntingHuntingQueueAgentDelete.call(this, itemIndex);
+			return executeeasyHuntingHuntingQueueAgentDelete.call(this, itemIndex ?? 0);
 
 		case 'easyHuntingHuntingQueueAgentGet':
-			return executeeasyHuntingHuntingQueueAgentGet.call(this, itemIndex);
+			return executeeasyHuntingHuntingQueueAgentGet.call(this, itemIndex ?? 0);
 
 		case 'easyHuntingHuntingQueueAgentPut':
-			return executeeasyHuntingHuntingQueueAgentPut.call(this, itemIndex);
+			return executeeasyHuntingHuntingQueueAgentPut.call(this, itemIndex ?? 0);
 
 		case 'easyHuntingHuntingQueueAgentLiveStatusListGet':
-			return executeeasyHuntingHuntingQueueAgentLiveStatusListGet.call(this, itemIndex);
+			return executeeasyHuntingHuntingQueueAgentLiveStatusListGet.call(this, itemIndex ?? 0);
 
 		case 'easyHuntingHuntingQueueLiveCallsListGet':
-			return executeeasyHuntingHuntingQueueLiveCallsListGet.call(this, itemIndex);
+			return executeeasyHuntingHuntingQueueLiveCallsListGet.call(this, itemIndex ?? 0);
 
 		case 'easyHuntingHuntingQueueLiveCallsGet':
-			return executeeasyHuntingHuntingQueueLiveCallsGet.call(this, itemIndex);
+			return executeeasyHuntingHuntingQueueLiveCallsGet.call(this, itemIndex ?? 0);
 
 		case 'easyHuntingHuntingQueueLiveCallsEavesdropPost':
-			return executeeasyHuntingHuntingQueueLiveCallsEavesdropPost.call(this, itemIndex);
+			return executeeasyHuntingHuntingQueueLiveCallsEavesdropPost.call(this, itemIndex ?? 0);
 
 		case 'easyHuntingHuntingQueueLiveCallsHangupPost':
-			return executeeasyHuntingHuntingQueueLiveCallsHangupPost.call(this, itemIndex);
+			return executeeasyHuntingHuntingQueueLiveCallsHangupPost.call(this, itemIndex ?? 0);
 
 		case 'easyHuntingHuntingQueueLiveCallsHoldPost':
-			return executeeasyHuntingHuntingQueueLiveCallsHoldPost.call(this, itemIndex);
+			return executeeasyHuntingHuntingQueueLiveCallsHoldPost.call(this, itemIndex ?? 0);
 
 		case 'easyHuntingHuntingQueueLiveCallsInterceptPost':
-			return executeeasyHuntingHuntingQueueLiveCallsInterceptPost.call(this, itemIndex);
+			return executeeasyHuntingHuntingQueueLiveCallsInterceptPost.call(this, itemIndex ?? 0);
 
 		case 'easyHuntingHuntingQueueLiveCallsTransferPost':
-			return executeeasyHuntingHuntingQueueLiveCallsTransferPost.call(this, itemIndex);
+			return executeeasyHuntingHuntingQueueLiveCallsTransferPost.call(this, itemIndex ?? 0);
 
 		case 'easyHuntingHuntingQueueLiveCallsWhisperPost':
-			return executeeasyHuntingHuntingQueueLiveCallsWhisperPost.call(this, itemIndex);
+			return executeeasyHuntingHuntingQueueLiveCallsWhisperPost.call(this, itemIndex ?? 0);
 
 		case 'easyHuntingHuntingQueueLiveStatisticsListGet':
-			return executeeasyHuntingHuntingQueueLiveStatisticsListGet.call(this, itemIndex);
+			return executeeasyHuntingHuntingQueueLiveStatisticsListGet.call(this, itemIndex ?? 0);
 
 		case 'easyHuntingRecordsListGet':
-			return executeeasyHuntingRecordsListGet.call(this, itemIndex);
+			return executeeasyHuntingRecordsListGet.call(this, itemIndex ?? 0);
 
 		case 'easyHuntingRecordsDelete':
-			return executeeasyHuntingRecordsDelete.call(this, itemIndex);
+			return executeeasyHuntingRecordsDelete.call(this, itemIndex ?? 0);
 
 		case 'easyHuntingRecordsGet':
-			return executeeasyHuntingRecordsGet.call(this, itemIndex);
+			return executeeasyHuntingRecordsGet.call(this, itemIndex ?? 0);
 
 		case 'easyHuntingScreenListConditionsListGet':
-			return executeeasyHuntingScreenListConditionsListGet.call(this, itemIndex);
+			return executeeasyHuntingScreenListConditionsListGet.call(this, itemIndex ?? 0);
 
 		case 'easyHuntingScreenListConditionsPut':
-			return executeeasyHuntingScreenListConditionsPut.call(this, itemIndex);
+			return executeeasyHuntingScreenListConditionsPut.call(this, itemIndex ?? 0);
 
 		case 'easyHuntingScreenListConditionsConditionsListGet':
-			return executeeasyHuntingScreenListConditionsConditionsListGet.call(this, itemIndex);
+			return executeeasyHuntingScreenListConditionsConditionsListGet.call(this, itemIndex ?? 0);
 
 		case 'easyHuntingScreenListConditionsConditionsPost':
-			return executeeasyHuntingScreenListConditionsConditionsPost.call(this, itemIndex);
+			return executeeasyHuntingScreenListConditionsConditionsPost.call(this, itemIndex ?? 0);
 
 		case 'easyHuntingScreenListConditionsConditionsDelete':
-			return executeeasyHuntingScreenListConditionsConditionsDelete.call(this, itemIndex);
+			return executeeasyHuntingScreenListConditionsConditionsDelete.call(this, itemIndex ?? 0);
 
 		case 'easyHuntingScreenListConditionsConditionsGet':
-			return executeeasyHuntingScreenListConditionsConditionsGet.call(this, itemIndex);
+			return executeeasyHuntingScreenListConditionsConditionsGet.call(this, itemIndex ?? 0);
 
 		case 'easyHuntingScreenListConditionsConditionsPut':
-			return executeeasyHuntingScreenListConditionsConditionsPut.call(this, itemIndex);
+			return executeeasyHuntingScreenListConditionsConditionsPut.call(this, itemIndex ?? 0);
 
 		case 'easyHuntingSoundListGet':
-			return executeeasyHuntingSoundListGet.call(this, itemIndex);
+			return executeeasyHuntingSoundListGet.call(this, itemIndex ?? 0);
 
 		case 'easyHuntingSoundDelete':
-			return executeeasyHuntingSoundDelete.call(this, itemIndex);
+			return executeeasyHuntingSoundDelete.call(this, itemIndex ?? 0);
 
 		case 'easyHuntingSoundGet':
-			return executeeasyHuntingSoundGet.call(this, itemIndex);
+			return executeeasyHuntingSoundGet.call(this, itemIndex ?? 0);
 
 		case 'easyHuntingSoundUploadPost':
-			return executeeasyHuntingSoundUploadPost.call(this, itemIndex);
+			return executeeasyHuntingSoundUploadPost.call(this, itemIndex ?? 0);
 
 		case 'easyHuntingTimeConditionsListGet':
-			return executeeasyHuntingTimeConditionsListGet.call(this, itemIndex);
+			return executeeasyHuntingTimeConditionsListGet.call(this, itemIndex ?? 0);
 
 		case 'easyHuntingTimeConditionsPut':
-			return executeeasyHuntingTimeConditionsPut.call(this, itemIndex);
+			return executeeasyHuntingTimeConditionsPut.call(this, itemIndex ?? 0);
 
 		case 'easyHuntingTimeConditionsConditionsListGet':
-			return executeeasyHuntingTimeConditionsConditionsListGet.call(this, itemIndex);
+			return executeeasyHuntingTimeConditionsConditionsListGet.call(this, itemIndex ?? 0);
 
 		case 'easyHuntingTimeConditionsConditionsPost':
-			return executeeasyHuntingTimeConditionsConditionsPost.call(this, itemIndex);
+			return executeeasyHuntingTimeConditionsConditionsPost.call(this, itemIndex ?? 0);
 
 		case 'easyHuntingTimeConditionsConditionsDelete':
-			return executeeasyHuntingTimeConditionsConditionsDelete.call(this, itemIndex);
+			return executeeasyHuntingTimeConditionsConditionsDelete.call(this, itemIndex ?? 0);
 
 		case 'easyHuntingTimeConditionsConditionsGet':
-			return executeeasyHuntingTimeConditionsConditionsGet.call(this, itemIndex);
+			return executeeasyHuntingTimeConditionsConditionsGet.call(this, itemIndex ?? 0);
 
 		case 'easyHuntingTimeConditionsConditionsPut':
-			return executeeasyHuntingTimeConditionsConditionsPut.call(this, itemIndex);
+			return executeeasyHuntingTimeConditionsConditionsPut.call(this, itemIndex ?? 0);
 
 		case 'eventTokenDelete':
-			return executeeventTokenDelete.call(this, itemIndex);
+			return executeeventTokenDelete.call(this, itemIndex ?? 0);
 
 		case 'eventTokenListGet':
-			return executeeventTokenListGet.call(this, itemIndex);
+			return executeeventTokenListGet.call(this, itemIndex ?? 0);
 
 		case 'eventTokenPost':
-			return executeeventTokenPost.call(this, itemIndex);
+			return executeeventTokenPost.call(this, itemIndex ?? 0);
 
 		case 'hasSpecialNumbersListGet':
-			return executehasSpecialNumbersListGet.call(this, itemIndex);
+			return executehasSpecialNumbersListGet.call(this, itemIndex ?? 0);
 
 		case 'historyConsumptionListGet':
-			return executehistoryConsumptionListGet.call(this, itemIndex);
+			return executehistoryConsumptionListGet.call(this, itemIndex ?? 0);
 
 		case 'historyConsumptionGet':
-			return executehistoryConsumptionGet.call(this, itemIndex);
+			return executehistoryConsumptionGet.call(this, itemIndex ?? 0);
 
 		case 'historyConsumptionFileListGet':
-			return executehistoryConsumptionFileListGet.call(this, itemIndex);
+			return executehistoryConsumptionFileListGet.call(this, itemIndex ?? 0);
 
 		case 'historyRepaymentConsumptionListGet':
-			return executehistoryRepaymentConsumptionListGet.call(this, itemIndex);
+			return executehistoryRepaymentConsumptionListGet.call(this, itemIndex ?? 0);
 
 		case 'historyRepaymentConsumptionPost':
-			return executehistoryRepaymentConsumptionPost.call(this, itemIndex);
+			return executehistoryRepaymentConsumptionPost.call(this, itemIndex ?? 0);
 
 		case 'historyRepaymentConsumptionGet':
-			return executehistoryRepaymentConsumptionGet.call(this, itemIndex);
+			return executehistoryRepaymentConsumptionGet.call(this, itemIndex ?? 0);
 
 		case 'historyRepaymentConsumptionDocumentListGet':
-			return executehistoryRepaymentConsumptionDocumentListGet.call(this, itemIndex);
+			return executehistoryRepaymentConsumptionDocumentListGet.call(this, itemIndex ?? 0);
 
 		case 'historyTollfreeConsumptionListGet':
-			return executehistoryTollfreeConsumptionListGet.call(this, itemIndex);
+			return executehistoryTollfreeConsumptionListGet.call(this, itemIndex ?? 0);
 
 		case 'historyTollfreeConsumptionGet':
-			return executehistoryTollfreeConsumptionGet.call(this, itemIndex);
+			return executehistoryTollfreeConsumptionGet.call(this, itemIndex ?? 0);
 
 		case 'historyTollfreeConsumptionDocumentListGet':
-			return executehistoryTollfreeConsumptionDocumentListGet.call(this, itemIndex);
+			return executehistoryTollfreeConsumptionDocumentListGet.call(this, itemIndex ?? 0);
 
 		case 'offerTaskListGet':
-			return executeofferTaskListGet.call(this, itemIndex);
+			return executeofferTaskListGet.call(this, itemIndex ?? 0);
 
 		case 'offerTaskGet':
-			return executeofferTaskGet.call(this, itemIndex);
+			return executeofferTaskGet.call(this, itemIndex ?? 0);
 
 		case 'offerTaskPut':
-			return executeofferTaskPut.call(this, itemIndex);
+			return executeofferTaskPut.call(this, itemIndex ?? 0);
 
 		case 'oldPhoneListGet':
-			return executeoldPhoneListGet.call(this, itemIndex);
+			return executeoldPhoneListGet.call(this, itemIndex ?? 0);
 
 		case 'outplanNotificationListGet':
-			return executeoutplanNotificationListGet.call(this, itemIndex);
+			return executeoutplanNotificationListGet.call(this, itemIndex ?? 0);
 
 		case 'outplanNotificationPost':
-			return executeoutplanNotificationPost.call(this, itemIndex);
+			return executeoutplanNotificationPost.call(this, itemIndex ?? 0);
 
 		case 'outplanNotificationDelete':
-			return executeoutplanNotificationDelete.call(this, itemIndex);
+			return executeoutplanNotificationDelete.call(this, itemIndex ?? 0);
 
 		case 'outplanNotificationGet':
-			return executeoutplanNotificationGet.call(this, itemIndex);
+			return executeoutplanNotificationGet.call(this, itemIndex ?? 0);
 
 		case 'ovhPabxListGet':
-			return executeovhPabxListGet.call(this, itemIndex);
+			return executeovhPabxListGet.call(this, itemIndex ?? 0);
 
 		case 'ovhPabxGet':
-			return executeovhPabxGet.call(this, itemIndex);
+			return executeovhPabxGet.call(this, itemIndex ?? 0);
 
 		case 'ovhPabxPut':
-			return executeovhPabxPut.call(this, itemIndex);
+			return executeovhPabxPut.call(this, itemIndex ?? 0);
 
 		case 'ovhPabxDialplanListGet':
-			return executeovhPabxDialplanListGet.call(this, itemIndex);
+			return executeovhPabxDialplanListGet.call(this, itemIndex ?? 0);
 
 		case 'ovhPabxDialplanPost':
-			return executeovhPabxDialplanPost.call(this, itemIndex);
+			return executeovhPabxDialplanPost.call(this, itemIndex ?? 0);
 
 		case 'ovhPabxDialplanDelete':
-			return executeovhPabxDialplanDelete.call(this, itemIndex);
+			return executeovhPabxDialplanDelete.call(this, itemIndex ?? 0);
 
 		case 'ovhPabxDialplanGet':
-			return executeovhPabxDialplanGet.call(this, itemIndex);
+			return executeovhPabxDialplanGet.call(this, itemIndex ?? 0);
 
 		case 'ovhPabxDialplanPut':
-			return executeovhPabxDialplanPut.call(this, itemIndex);
+			return executeovhPabxDialplanPut.call(this, itemIndex ?? 0);
 
 		case 'ovhPabxDialplanExtensionListGet':
-			return executeovhPabxDialplanExtensionListGet.call(this, itemIndex);
+			return executeovhPabxDialplanExtensionListGet.call(this, itemIndex ?? 0);
 
 		case 'ovhPabxDialplanExtensionPost':
-			return executeovhPabxDialplanExtensionPost.call(this, itemIndex);
+			return executeovhPabxDialplanExtensionPost.call(this, itemIndex ?? 0);
 
 		case 'ovhPabxDialplanExtensionDelete':
-			return executeovhPabxDialplanExtensionDelete.call(this, itemIndex);
+			return executeovhPabxDialplanExtensionDelete.call(this, itemIndex ?? 0);
 
 		case 'ovhPabxDialplanExtensionGet':
-			return executeovhPabxDialplanExtensionGet.call(this, itemIndex);
+			return executeovhPabxDialplanExtensionGet.call(this, itemIndex ?? 0);
 
 		case 'ovhPabxDialplanExtensionPut':
-			return executeovhPabxDialplanExtensionPut.call(this, itemIndex);
+			return executeovhPabxDialplanExtensionPut.call(this, itemIndex ?? 0);
 
 		case 'ovhPabxDialplanExtensionConditionScreenListListGet':
-			return executeovhPabxDialplanExtensionConditionScreenListListGet.call(this, itemIndex);
+			return executeovhPabxDialplanExtensionConditionScreenListListGet.call(this, itemIndex ?? 0);
 
 		case 'ovhPabxDialplanExtensionConditionScreenListPost':
-			return executeovhPabxDialplanExtensionConditionScreenListPost.call(this, itemIndex);
+			return executeovhPabxDialplanExtensionConditionScreenListPost.call(this, itemIndex ?? 0);
 
 		case 'ovhPabxDialplanExtensionConditionScreenListDelete':
-			return executeovhPabxDialplanExtensionConditionScreenListDelete.call(this, itemIndex);
+			return executeovhPabxDialplanExtensionConditionScreenListDelete.call(this, itemIndex ?? 0);
 
 		case 'ovhPabxDialplanExtensionConditionScreenListGet':
-			return executeovhPabxDialplanExtensionConditionScreenListGet.call(this, itemIndex);
+			return executeovhPabxDialplanExtensionConditionScreenListGet.call(this, itemIndex ?? 0);
 
 		case 'ovhPabxDialplanExtensionConditionTimeListGet':
-			return executeovhPabxDialplanExtensionConditionTimeListGet.call(this, itemIndex);
+			return executeovhPabxDialplanExtensionConditionTimeListGet.call(this, itemIndex ?? 0);
 
 		case 'ovhPabxDialplanExtensionConditionTimePost':
-			return executeovhPabxDialplanExtensionConditionTimePost.call(this, itemIndex);
+			return executeovhPabxDialplanExtensionConditionTimePost.call(this, itemIndex ?? 0);
 
 		case 'ovhPabxDialplanExtensionConditionTimeDelete':
-			return executeovhPabxDialplanExtensionConditionTimeDelete.call(this, itemIndex);
+			return executeovhPabxDialplanExtensionConditionTimeDelete.call(this, itemIndex ?? 0);
 
 		case 'ovhPabxDialplanExtensionConditionTimeGet':
-			return executeovhPabxDialplanExtensionConditionTimeGet.call(this, itemIndex);
+			return executeovhPabxDialplanExtensionConditionTimeGet.call(this, itemIndex ?? 0);
 
 		case 'ovhPabxDialplanExtensionConditionTimePut':
-			return executeovhPabxDialplanExtensionConditionTimePut.call(this, itemIndex);
+			return executeovhPabxDialplanExtensionConditionTimePut.call(this, itemIndex ?? 0);
 
 		case 'ovhPabxDialplanExtensionRuleListGet':
-			return executeovhPabxDialplanExtensionRuleListGet.call(this, itemIndex);
+			return executeovhPabxDialplanExtensionRuleListGet.call(this, itemIndex ?? 0);
 
 		case 'ovhPabxDialplanExtensionRulePost':
-			return executeovhPabxDialplanExtensionRulePost.call(this, itemIndex);
+			return executeovhPabxDialplanExtensionRulePost.call(this, itemIndex ?? 0);
 
 		case 'ovhPabxDialplanExtensionRuleDelete':
-			return executeovhPabxDialplanExtensionRuleDelete.call(this, itemIndex);
+			return executeovhPabxDialplanExtensionRuleDelete.call(this, itemIndex ?? 0);
 
 		case 'ovhPabxDialplanExtensionRuleGet':
-			return executeovhPabxDialplanExtensionRuleGet.call(this, itemIndex);
+			return executeovhPabxDialplanExtensionRuleGet.call(this, itemIndex ?? 0);
 
 		case 'ovhPabxDialplanExtensionRulePut':
-			return executeovhPabxDialplanExtensionRulePut.call(this, itemIndex);
+			return executeovhPabxDialplanExtensionRulePut.call(this, itemIndex ?? 0);
 
 		case 'ovhPabxHuntingListGet':
-			return executeovhPabxHuntingListGet.call(this, itemIndex);
+			return executeovhPabxHuntingListGet.call(this, itemIndex ?? 0);
 
 		case 'ovhPabxHuntingPut':
-			return executeovhPabxHuntingPut.call(this, itemIndex);
+			return executeovhPabxHuntingPut.call(this, itemIndex ?? 0);
 
 		case 'ovhPabxHuntingAgentListGet':
-			return executeovhPabxHuntingAgentListGet.call(this, itemIndex);
+			return executeovhPabxHuntingAgentListGet.call(this, itemIndex ?? 0);
 
 		case 'ovhPabxHuntingAgentPost':
-			return executeovhPabxHuntingAgentPost.call(this, itemIndex);
+			return executeovhPabxHuntingAgentPost.call(this, itemIndex ?? 0);
 
 		case 'ovhPabxHuntingAgentDelete':
-			return executeovhPabxHuntingAgentDelete.call(this, itemIndex);
+			return executeovhPabxHuntingAgentDelete.call(this, itemIndex ?? 0);
 
 		case 'ovhPabxHuntingAgentGet':
-			return executeovhPabxHuntingAgentGet.call(this, itemIndex);
+			return executeovhPabxHuntingAgentGet.call(this, itemIndex ?? 0);
 
 		case 'ovhPabxHuntingAgentPut':
-			return executeovhPabxHuntingAgentPut.call(this, itemIndex);
+			return executeovhPabxHuntingAgentPut.call(this, itemIndex ?? 0);
 
 		case 'ovhPabxHuntingAgentBannerAccessDelete':
-			return executeovhPabxHuntingAgentBannerAccessDelete.call(this, itemIndex);
+			return executeovhPabxHuntingAgentBannerAccessDelete.call(this, itemIndex ?? 0);
 
 		case 'ovhPabxHuntingAgentBannerAccessListGet':
-			return executeovhPabxHuntingAgentBannerAccessListGet.call(this, itemIndex);
+			return executeovhPabxHuntingAgentBannerAccessListGet.call(this, itemIndex ?? 0);
 
 		case 'ovhPabxHuntingAgentBannerAccessPost':
-			return executeovhPabxHuntingAgentBannerAccessPost.call(this, itemIndex);
+			return executeovhPabxHuntingAgentBannerAccessPost.call(this, itemIndex ?? 0);
 
 		case 'ovhPabxHuntingAgentCallsListGet':
-			return executeovhPabxHuntingAgentCallsListGet.call(this, itemIndex);
+			return executeovhPabxHuntingAgentCallsListGet.call(this, itemIndex ?? 0);
 
 		case 'ovhPabxHuntingAgentCallsGet':
-			return executeovhPabxHuntingAgentCallsGet.call(this, itemIndex);
+			return executeovhPabxHuntingAgentCallsGet.call(this, itemIndex ?? 0);
 
 		case 'ovhPabxHuntingAgentCallsEavesdropPost':
-			return executeovhPabxHuntingAgentCallsEavesdropPost.call(this, itemIndex);
+			return executeovhPabxHuntingAgentCallsEavesdropPost.call(this, itemIndex ?? 0);
 
 		case 'ovhPabxHuntingAgentCallsHangupPost':
-			return executeovhPabxHuntingAgentCallsHangupPost.call(this, itemIndex);
+			return executeovhPabxHuntingAgentCallsHangupPost.call(this, itemIndex ?? 0);
 
 		case 'ovhPabxHuntingAgentCallsHoldPost':
-			return executeovhPabxHuntingAgentCallsHoldPost.call(this, itemIndex);
+			return executeovhPabxHuntingAgentCallsHoldPost.call(this, itemIndex ?? 0);
 
 		case 'ovhPabxHuntingAgentCallsInterceptPost':
-			return executeovhPabxHuntingAgentCallsInterceptPost.call(this, itemIndex);
+			return executeovhPabxHuntingAgentCallsInterceptPost.call(this, itemIndex ?? 0);
 
 		case 'ovhPabxHuntingAgentCallsTransferPost':
-			return executeovhPabxHuntingAgentCallsTransferPost.call(this, itemIndex);
+			return executeovhPabxHuntingAgentCallsTransferPost.call(this, itemIndex ?? 0);
 
 		case 'ovhPabxHuntingAgentCallsWhisperPost':
-			return executeovhPabxHuntingAgentCallsWhisperPost.call(this, itemIndex);
+			return executeovhPabxHuntingAgentCallsWhisperPost.call(this, itemIndex ?? 0);
 
 		case 'ovhPabxHuntingAgentEventTokenDelete':
-			return executeovhPabxHuntingAgentEventTokenDelete.call(this, itemIndex);
+			return executeovhPabxHuntingAgentEventTokenDelete.call(this, itemIndex ?? 0);
 
 		case 'ovhPabxHuntingAgentEventTokenListGet':
-			return executeovhPabxHuntingAgentEventTokenListGet.call(this, itemIndex);
+			return executeovhPabxHuntingAgentEventTokenListGet.call(this, itemIndex ?? 0);
 
 		case 'ovhPabxHuntingAgentEventTokenPost':
-			return executeovhPabxHuntingAgentEventTokenPost.call(this, itemIndex);
+			return executeovhPabxHuntingAgentEventTokenPost.call(this, itemIndex ?? 0);
 
 		case 'ovhPabxHuntingAgentLiveStatusListGet':
-			return executeovhPabxHuntingAgentLiveStatusListGet.call(this, itemIndex);
+			return executeovhPabxHuntingAgentLiveStatusListGet.call(this, itemIndex ?? 0);
 
 		case 'ovhPabxHuntingAgentQueueListGet':
-			return executeovhPabxHuntingAgentQueueListGet.call(this, itemIndex);
+			return executeovhPabxHuntingAgentQueueListGet.call(this, itemIndex ?? 0);
 
 		case 'ovhPabxHuntingAgentQueuePost':
-			return executeovhPabxHuntingAgentQueuePost.call(this, itemIndex);
+			return executeovhPabxHuntingAgentQueuePost.call(this, itemIndex ?? 0);
 
 		case 'ovhPabxHuntingAgentQueueDelete':
-			return executeovhPabxHuntingAgentQueueDelete.call(this, itemIndex);
+			return executeovhPabxHuntingAgentQueueDelete.call(this, itemIndex ?? 0);
 
 		case 'ovhPabxHuntingAgentQueueGet':
-			return executeovhPabxHuntingAgentQueueGet.call(this, itemIndex);
+			return executeovhPabxHuntingAgentQueueGet.call(this, itemIndex ?? 0);
 
 		case 'ovhPabxHuntingAgentQueuePut':
-			return executeovhPabxHuntingAgentQueuePut.call(this, itemIndex);
+			return executeovhPabxHuntingAgentQueuePut.call(this, itemIndex ?? 0);
 
 		case 'ovhPabxHuntingAgentQueueLiveStatusListGet':
-			return executeovhPabxHuntingAgentQueueLiveStatusListGet.call(this, itemIndex);
+			return executeovhPabxHuntingAgentQueueLiveStatusListGet.call(this, itemIndex ?? 0);
 
 		case 'ovhPabxHuntingCustomStatusListGet':
-			return executeovhPabxHuntingCustomStatusListGet.call(this, itemIndex);
+			return executeovhPabxHuntingCustomStatusListGet.call(this, itemIndex ?? 0);
 
 		case 'ovhPabxHuntingCustomStatusPost':
-			return executeovhPabxHuntingCustomStatusPost.call(this, itemIndex);
+			return executeovhPabxHuntingCustomStatusPost.call(this, itemIndex ?? 0);
 
 		case 'ovhPabxHuntingCustomStatusDelete':
-			return executeovhPabxHuntingCustomStatusDelete.call(this, itemIndex);
+			return executeovhPabxHuntingCustomStatusDelete.call(this, itemIndex ?? 0);
 
 		case 'ovhPabxHuntingCustomStatusGet':
-			return executeovhPabxHuntingCustomStatusGet.call(this, itemIndex);
+			return executeovhPabxHuntingCustomStatusGet.call(this, itemIndex ?? 0);
 
 		case 'ovhPabxHuntingEventTokenDelete':
-			return executeovhPabxHuntingEventTokenDelete.call(this, itemIndex);
+			return executeovhPabxHuntingEventTokenDelete.call(this, itemIndex ?? 0);
 
 		case 'ovhPabxHuntingEventTokenListGet':
-			return executeovhPabxHuntingEventTokenListGet.call(this, itemIndex);
+			return executeovhPabxHuntingEventTokenListGet.call(this, itemIndex ?? 0);
 
 		case 'ovhPabxHuntingEventTokenPost':
-			return executeovhPabxHuntingEventTokenPost.call(this, itemIndex);
+			return executeovhPabxHuntingEventTokenPost.call(this, itemIndex ?? 0);
 
 		case 'ovhPabxHuntingQueueListGet':
-			return executeovhPabxHuntingQueueListGet.call(this, itemIndex);
+			return executeovhPabxHuntingQueueListGet.call(this, itemIndex ?? 0);
 
 		case 'ovhPabxHuntingQueuePost':
-			return executeovhPabxHuntingQueuePost.call(this, itemIndex);
+			return executeovhPabxHuntingQueuePost.call(this, itemIndex ?? 0);
 
 		case 'ovhPabxHuntingQueueDelete':
-			return executeovhPabxHuntingQueueDelete.call(this, itemIndex);
+			return executeovhPabxHuntingQueueDelete.call(this, itemIndex ?? 0);
 
 		case 'ovhPabxHuntingQueueGet':
-			return executeovhPabxHuntingQueueGet.call(this, itemIndex);
+			return executeovhPabxHuntingQueueGet.call(this, itemIndex ?? 0);
 
 		case 'ovhPabxHuntingQueuePut':
-			return executeovhPabxHuntingQueuePut.call(this, itemIndex);
+			return executeovhPabxHuntingQueuePut.call(this, itemIndex ?? 0);
 
 		case 'ovhPabxHuntingQueueAgentListGet':
-			return executeovhPabxHuntingQueueAgentListGet.call(this, itemIndex);
+			return executeovhPabxHuntingQueueAgentListGet.call(this, itemIndex ?? 0);
 
 		case 'ovhPabxHuntingQueueAgentPost':
-			return executeovhPabxHuntingQueueAgentPost.call(this, itemIndex);
+			return executeovhPabxHuntingQueueAgentPost.call(this, itemIndex ?? 0);
 
 		case 'ovhPabxHuntingQueueAgentDelete':
-			return executeovhPabxHuntingQueueAgentDelete.call(this, itemIndex);
+			return executeovhPabxHuntingQueueAgentDelete.call(this, itemIndex ?? 0);
 
 		case 'ovhPabxHuntingQueueAgentGet':
-			return executeovhPabxHuntingQueueAgentGet.call(this, itemIndex);
+			return executeovhPabxHuntingQueueAgentGet.call(this, itemIndex ?? 0);
 
 		case 'ovhPabxHuntingQueueAgentPut':
-			return executeovhPabxHuntingQueueAgentPut.call(this, itemIndex);
+			return executeovhPabxHuntingQueueAgentPut.call(this, itemIndex ?? 0);
 
 		case 'ovhPabxHuntingQueueAgentLiveStatusListGet':
-			return executeovhPabxHuntingQueueAgentLiveStatusListGet.call(this, itemIndex);
+			return executeovhPabxHuntingQueueAgentLiveStatusListGet.call(this, itemIndex ?? 0);
 
 		case 'ovhPabxHuntingQueueLiveCallsListGet':
-			return executeovhPabxHuntingQueueLiveCallsListGet.call(this, itemIndex);
+			return executeovhPabxHuntingQueueLiveCallsListGet.call(this, itemIndex ?? 0);
 
 		case 'ovhPabxHuntingQueueLiveCallsGet':
-			return executeovhPabxHuntingQueueLiveCallsGet.call(this, itemIndex);
+			return executeovhPabxHuntingQueueLiveCallsGet.call(this, itemIndex ?? 0);
 
 		case 'ovhPabxHuntingQueueLiveCallsEavesdropPost':
-			return executeovhPabxHuntingQueueLiveCallsEavesdropPost.call(this, itemIndex);
+			return executeovhPabxHuntingQueueLiveCallsEavesdropPost.call(this, itemIndex ?? 0);
 
 		case 'ovhPabxHuntingQueueLiveCallsHangupPost':
-			return executeovhPabxHuntingQueueLiveCallsHangupPost.call(this, itemIndex);
+			return executeovhPabxHuntingQueueLiveCallsHangupPost.call(this, itemIndex ?? 0);
 
 		case 'ovhPabxHuntingQueueLiveCallsHoldPost':
-			return executeovhPabxHuntingQueueLiveCallsHoldPost.call(this, itemIndex);
+			return executeovhPabxHuntingQueueLiveCallsHoldPost.call(this, itemIndex ?? 0);
 
 		case 'ovhPabxHuntingQueueLiveCallsInterceptPost':
-			return executeovhPabxHuntingQueueLiveCallsInterceptPost.call(this, itemIndex);
+			return executeovhPabxHuntingQueueLiveCallsInterceptPost.call(this, itemIndex ?? 0);
 
 		case 'ovhPabxHuntingQueueLiveCallsTransferPost':
-			return executeovhPabxHuntingQueueLiveCallsTransferPost.call(this, itemIndex);
+			return executeovhPabxHuntingQueueLiveCallsTransferPost.call(this, itemIndex ?? 0);
 
 		case 'ovhPabxHuntingQueueLiveCallsWhisperPost':
-			return executeovhPabxHuntingQueueLiveCallsWhisperPost.call(this, itemIndex);
+			return executeovhPabxHuntingQueueLiveCallsWhisperPost.call(this, itemIndex ?? 0);
 
 		case 'ovhPabxHuntingQueueLiveStatisticsListGet':
-			return executeovhPabxHuntingQueueLiveStatisticsListGet.call(this, itemIndex);
+			return executeovhPabxHuntingQueueLiveStatisticsListGet.call(this, itemIndex ?? 0);
 
 		case 'ovhPabxMenuListGet':
-			return executeovhPabxMenuListGet.call(this, itemIndex);
+			return executeovhPabxMenuListGet.call(this, itemIndex ?? 0);
 
 		case 'ovhPabxMenuPost':
-			return executeovhPabxMenuPost.call(this, itemIndex);
+			return executeovhPabxMenuPost.call(this, itemIndex ?? 0);
 
 		case 'ovhPabxMenuDelete':
-			return executeovhPabxMenuDelete.call(this, itemIndex);
+			return executeovhPabxMenuDelete.call(this, itemIndex ?? 0);
 
 		case 'ovhPabxMenuGet':
-			return executeovhPabxMenuGet.call(this, itemIndex);
+			return executeovhPabxMenuGet.call(this, itemIndex ?? 0);
 
 		case 'ovhPabxMenuPut':
-			return executeovhPabxMenuPut.call(this, itemIndex);
+			return executeovhPabxMenuPut.call(this, itemIndex ?? 0);
 
 		case 'ovhPabxMenuEntryListGet':
-			return executeovhPabxMenuEntryListGet.call(this, itemIndex);
+			return executeovhPabxMenuEntryListGet.call(this, itemIndex ?? 0);
 
 		case 'ovhPabxMenuEntryPost':
-			return executeovhPabxMenuEntryPost.call(this, itemIndex);
+			return executeovhPabxMenuEntryPost.call(this, itemIndex ?? 0);
 
 		case 'ovhPabxMenuEntryDelete':
-			return executeovhPabxMenuEntryDelete.call(this, itemIndex);
+			return executeovhPabxMenuEntryDelete.call(this, itemIndex ?? 0);
 
 		case 'ovhPabxMenuEntryGet':
-			return executeovhPabxMenuEntryGet.call(this, itemIndex);
+			return executeovhPabxMenuEntryGet.call(this, itemIndex ?? 0);
 
 		case 'ovhPabxMenuEntryPut':
-			return executeovhPabxMenuEntryPut.call(this, itemIndex);
+			return executeovhPabxMenuEntryPut.call(this, itemIndex ?? 0);
 
 		case 'ovhPabxRecordsListGet':
-			return executeovhPabxRecordsListGet.call(this, itemIndex);
+			return executeovhPabxRecordsListGet.call(this, itemIndex ?? 0);
 
 		case 'ovhPabxRecordsDelete':
-			return executeovhPabxRecordsDelete.call(this, itemIndex);
+			return executeovhPabxRecordsDelete.call(this, itemIndex ?? 0);
 
 		case 'ovhPabxRecordsGet':
-			return executeovhPabxRecordsGet.call(this, itemIndex);
+			return executeovhPabxRecordsGet.call(this, itemIndex ?? 0);
 
 		case 'ovhPabxSoundListGet':
-			return executeovhPabxSoundListGet.call(this, itemIndex);
+			return executeovhPabxSoundListGet.call(this, itemIndex ?? 0);
 
 		case 'ovhPabxSoundDelete':
-			return executeovhPabxSoundDelete.call(this, itemIndex);
+			return executeovhPabxSoundDelete.call(this, itemIndex ?? 0);
 
 		case 'ovhPabxSoundGet':
-			return executeovhPabxSoundGet.call(this, itemIndex);
+			return executeovhPabxSoundGet.call(this, itemIndex ?? 0);
 
 		case 'ovhPabxSoundUploadPost':
-			return executeovhPabxSoundUploadPost.call(this, itemIndex);
+			return executeovhPabxSoundUploadPost.call(this, itemIndex ?? 0);
 
 		case 'ovhPabxTtsListGet':
-			return executeovhPabxTtsListGet.call(this, itemIndex);
+			return executeovhPabxTtsListGet.call(this, itemIndex ?? 0);
 
 		case 'ovhPabxTtsPost':
-			return executeovhPabxTtsPost.call(this, itemIndex);
+			return executeovhPabxTtsPost.call(this, itemIndex ?? 0);
 
 		case 'ovhPabxTtsDelete':
-			return executeovhPabxTtsDelete.call(this, itemIndex);
+			return executeovhPabxTtsDelete.call(this, itemIndex ?? 0);
 
 		case 'ovhPabxTtsGet':
-			return executeovhPabxTtsGet.call(this, itemIndex);
+			return executeovhPabxTtsGet.call(this, itemIndex ?? 0);
 
 		case 'ovhPabxTtsPut':
-			return executeovhPabxTtsPut.call(this, itemIndex);
+			return executeovhPabxTtsPut.call(this, itemIndex ?? 0);
 
 		case 'phonebookListGet':
-			return executephonebookListGet.call(this, itemIndex);
+			return executephonebookListGet.call(this, itemIndex ?? 0);
 
 		case 'phonebookPost':
-			return executephonebookPost.call(this, itemIndex);
+			return executephonebookPost.call(this, itemIndex ?? 0);
 
 		case 'phonebookDelete':
-			return executephonebookDelete.call(this, itemIndex);
+			return executephonebookDelete.call(this, itemIndex ?? 0);
 
 		case 'phonebookGet':
-			return executephonebookGet.call(this, itemIndex);
+			return executephonebookGet.call(this, itemIndex ?? 0);
 
 		case 'phonebookPut':
-			return executephonebookPut.call(this, itemIndex);
+			return executephonebookPut.call(this, itemIndex ?? 0);
 
 		case 'phonebookExportListGet':
-			return executephonebookExportListGet.call(this, itemIndex);
+			return executephonebookExportListGet.call(this, itemIndex ?? 0);
 
 		case 'phonebookImportPost':
-			return executephonebookImportPost.call(this, itemIndex);
+			return executephonebookImportPost.call(this, itemIndex ?? 0);
 
 		case 'phonebookPhonebookContactListGet':
-			return executephonebookPhonebookContactListGet.call(this, itemIndex);
+			return executephonebookPhonebookContactListGet.call(this, itemIndex ?? 0);
 
 		case 'phonebookPhonebookContactPost':
-			return executephonebookPhonebookContactPost.call(this, itemIndex);
+			return executephonebookPhonebookContactPost.call(this, itemIndex ?? 0);
 
 		case 'phonebookPhonebookContactDelete':
-			return executephonebookPhonebookContactDelete.call(this, itemIndex);
+			return executephonebookPhonebookContactDelete.call(this, itemIndex ?? 0);
 
 		case 'phonebookPhonebookContactGet':
-			return executephonebookPhonebookContactGet.call(this, itemIndex);
+			return executephonebookPhonebookContactGet.call(this, itemIndex ?? 0);
 
 		case 'phonebookPhonebookContactPut':
-			return executephonebookPhonebookContactPut.call(this, itemIndex);
+			return executephonebookPhonebookContactPut.call(this, itemIndex ?? 0);
 
 		case 'portabilityDetailGet':
-			return executeportabilityDetailGet.call(this, itemIndex);
+			return executeportabilityDetailGet.call(this, itemIndex ?? 0);
 
 		case 'portabilityCanBeCancelledListGet':
-			return executeportabilityCanBeCancelledListGet.call(this, itemIndex);
+			return executeportabilityCanBeCancelledListGet.call(this, itemIndex ?? 0);
 
 		case 'portabilityCanBeExecutedListGet':
-			return executeportabilityCanBeExecutedListGet.call(this, itemIndex);
+			return executeportabilityCanBeExecutedListGet.call(this, itemIndex ?? 0);
 
 		case 'portabilityCancelPost':
-			return executeportabilityCancelPost.call(this, itemIndex);
+			return executeportabilityCancelPost.call(this, itemIndex ?? 0);
 
 		case 'portabilityChangeDatePost':
-			return executeportabilityChangeDatePost.call(this, itemIndex);
+			return executeportabilityChangeDatePost.call(this, itemIndex ?? 0);
 
 		case 'portabilityDateCanBeChangedListGet':
-			return executeportabilityDateCanBeChangedListGet.call(this, itemIndex);
+			return executeportabilityDateCanBeChangedListGet.call(this, itemIndex ?? 0);
 
 		case 'portabilityDocumentListGet':
-			return executeportabilityDocumentListGet.call(this, itemIndex);
+			return executeportabilityDocumentListGet.call(this, itemIndex ?? 0);
 
 		case 'portabilityDocumentPost':
-			return executeportabilityDocumentPost.call(this, itemIndex);
+			return executeportabilityDocumentPost.call(this, itemIndex ?? 0);
 
 		case 'portabilityDocumentDelete':
-			return executeportabilityDocumentDelete.call(this, itemIndex);
+			return executeportabilityDocumentDelete.call(this, itemIndex ?? 0);
 
 		case 'portabilityDocumentGet':
-			return executeportabilityDocumentGet.call(this, itemIndex);
+			return executeportabilityDocumentGet.call(this, itemIndex ?? 0);
 
 		case 'portabilityDocumentPut':
-			return executeportabilityDocumentPut.call(this, itemIndex);
+			return executeportabilityDocumentPut.call(this, itemIndex ?? 0);
 
 		case 'portabilityExecutePost':
-			return executeportabilityExecutePost.call(this, itemIndex);
+			return executeportabilityExecutePost.call(this, itemIndex ?? 0);
 
 		case 'portabilityRelaunchListGet':
-			return executeportabilityRelaunchListGet.call(this, itemIndex);
+			return executeportabilityRelaunchListGet.call(this, itemIndex ?? 0);
 
 		case 'portabilityRelaunchPost':
-			return executeportabilityRelaunchPost.call(this, itemIndex);
+			return executeportabilityRelaunchPost.call(this, itemIndex ?? 0);
 
 		case 'portabilityStatusListGet':
-			return executeportabilityStatusListGet.call(this, itemIndex);
+			return executeportabilityStatusListGet.call(this, itemIndex ?? 0);
 
 		case 'redirectListGet':
-			return executeredirectListGet.call(this, itemIndex);
+			return executeredirectListGet.call(this, itemIndex ?? 0);
 
 		case 'redirectGet':
-			return executeredirectGet.call(this, itemIndex);
+			return executeredirectGet.call(this, itemIndex ?? 0);
 
 		case 'redirectPut':
-			return executeredirectPut.call(this, itemIndex);
+			return executeredirectPut.call(this, itemIndex ?? 0);
 
 		case 'redirectChangeDestinationPost':
-			return executeredirectChangeDestinationPost.call(this, itemIndex);
+			return executeredirectChangeDestinationPost.call(this, itemIndex ?? 0);
 
 		case 'rsvaListGet':
-			return executersvaListGet.call(this, itemIndex);
+			return executersvaListGet.call(this, itemIndex ?? 0);
 
 		case 'rsvaGet':
-			return executersvaGet.call(this, itemIndex);
+			return executersvaGet.call(this, itemIndex ?? 0);
 
 		case 'rsvaPut':
-			return executersvaPut.call(this, itemIndex);
+			return executersvaPut.call(this, itemIndex ?? 0);
 
 		case 'rsvaAllowedRateCodesListGet':
-			return executersvaAllowedRateCodesListGet.call(this, itemIndex);
+			return executersvaAllowedRateCodesListGet.call(this, itemIndex ?? 0);
 
 		case 'rsvaCancelScheduledRateCodePost':
-			return executersvaCancelScheduledRateCodePost.call(this, itemIndex);
+			return executersvaCancelScheduledRateCodePost.call(this, itemIndex ?? 0);
 
 		case 'rsvaCurrentRateCodeListGet':
-			return executersvaCurrentRateCodeListGet.call(this, itemIndex);
+			return executersvaCurrentRateCodeListGet.call(this, itemIndex ?? 0);
 
 		case 'rsvaScheduledRateCodeListGet':
-			return executersvaScheduledRateCodeListGet.call(this, itemIndex);
+			return executersvaScheduledRateCodeListGet.call(this, itemIndex ?? 0);
 
 		case 'rsvaScheduleRateCodePost':
-			return executersvaScheduleRateCodePost.call(this, itemIndex);
+			return executersvaScheduleRateCodePost.call(this, itemIndex ?? 0);
 
 		case 'schedulerListGet':
-			return executeschedulerListGet.call(this, itemIndex);
+			return executeschedulerListGet.call(this, itemIndex ?? 0);
 
 		case 'schedulerGet':
-			return executeschedulerGet.call(this, itemIndex);
+			return executeschedulerGet.call(this, itemIndex ?? 0);
 
 		case 'schedulerPut':
-			return executeschedulerPut.call(this, itemIndex);
+			return executeschedulerPut.call(this, itemIndex ?? 0);
 
 		case 'schedulerEventsListGet':
-			return executeschedulerEventsListGet.call(this, itemIndex);
+			return executeschedulerEventsListGet.call(this, itemIndex ?? 0);
 
 		case 'schedulerEventsPost':
-			return executeschedulerEventsPost.call(this, itemIndex);
+			return executeschedulerEventsPost.call(this, itemIndex ?? 0);
 
 		case 'schedulerEventsDelete':
-			return executeschedulerEventsDelete.call(this, itemIndex);
+			return executeschedulerEventsDelete.call(this, itemIndex ?? 0);
 
 		case 'schedulerEventsGet':
-			return executeschedulerEventsGet.call(this, itemIndex);
+			return executeschedulerEventsGet.call(this, itemIndex ?? 0);
 
 		case 'schedulerEventsPut':
-			return executeschedulerEventsPut.call(this, itemIndex);
+			return executeschedulerEventsPut.call(this, itemIndex ?? 0);
 
 		case 'schedulerImportIcsCalendarPost':
-			return executeschedulerImportIcsCalendarPost.call(this, itemIndex);
+			return executeschedulerImportIcsCalendarPost.call(this, itemIndex ?? 0);
 
 		case 'screenListGet':
-			return executescreenListGet.call(this, itemIndex);
+			return executescreenListGet.call(this, itemIndex ?? 0);
 
 		case 'screenGet':
-			return executescreenGet.call(this, itemIndex);
+			return executescreenGet.call(this, itemIndex ?? 0);
 
 		case 'screenPut':
-			return executescreenPut.call(this, itemIndex);
+			return executescreenPut.call(this, itemIndex ?? 0);
 
 		case 'screenScreenListsListGet':
-			return executescreenScreenListsListGet.call(this, itemIndex);
+			return executescreenScreenListsListGet.call(this, itemIndex ?? 0);
 
 		case 'screenScreenListsPost':
-			return executescreenScreenListsPost.call(this, itemIndex);
+			return executescreenScreenListsPost.call(this, itemIndex ?? 0);
 
 		case 'screenScreenListsDelete':
-			return executescreenScreenListsDelete.call(this, itemIndex);
+			return executescreenScreenListsDelete.call(this, itemIndex ?? 0);
 
 		case 'screenScreenListsGet':
-			return executescreenScreenListsGet.call(this, itemIndex);
+			return executescreenScreenListsGet.call(this, itemIndex ?? 0);
 
 		case 'serviceListGet':
-			return executeserviceListGet.call(this, itemIndex);
+			return executeserviceListGet.call(this, itemIndex ?? 0);
 
 		case 'serviceDelete':
-			return executeserviceDelete.call(this, itemIndex);
+			return executeserviceDelete.call(this, itemIndex ?? 0);
 
 		case 'serviceGet':
-			return executeserviceGet.call(this, itemIndex);
+			return executeserviceGet.call(this, itemIndex ?? 0);
 
 		case 'servicePut':
-			return executeservicePut.call(this, itemIndex);
+			return executeservicePut.call(this, itemIndex ?? 0);
 
 		case 'serviceCancelTerminationPost':
-			return executeserviceCancelTerminationPost.call(this, itemIndex);
+			return executeserviceCancelTerminationPost.call(this, itemIndex ?? 0);
 
 		case 'serviceChangeOfBillingAccountPost':
-			return executeserviceChangeOfBillingAccountPost.call(this, itemIndex);
+			return executeserviceChangeOfBillingAccountPost.call(this, itemIndex ?? 0);
 
 		case 'serviceDiagnosticReportsListGet':
-			return executeserviceDiagnosticReportsListGet.call(this, itemIndex);
+			return executeserviceDiagnosticReportsListGet.call(this, itemIndex ?? 0);
 
 		case 'serviceDirectoryListGet':
-			return executeserviceDirectoryListGet.call(this, itemIndex);
+			return executeserviceDirectoryListGet.call(this, itemIndex ?? 0);
 
 		case 'serviceDirectoryPut':
-			return executeserviceDirectoryPut.call(this, itemIndex);
+			return executeserviceDirectoryPut.call(this, itemIndex ?? 0);
 
 		case 'serviceDirectoryFetchEntrepriseInformationsPost':
-			return executeserviceDirectoryFetchEntrepriseInformationsPost.call(this, itemIndex);
+			return executeserviceDirectoryFetchEntrepriseInformationsPost.call(this, itemIndex ?? 0);
 
 		case 'serviceDirectoryGetDirectoryServiceCodeListGet':
-			return executeserviceDirectoryGetDirectoryServiceCodeListGet.call(this, itemIndex);
+			return executeserviceDirectoryGetDirectoryServiceCodeListGet.call(this, itemIndex ?? 0);
 
 		case 'serviceDirectoryGetWayTypesListGet':
-			return executeserviceDirectoryGetWayTypesListGet.call(this, itemIndex);
+			return executeserviceDirectoryGetWayTypesListGet.call(this, itemIndex ?? 0);
 
 		case 'serviceEventTokenDelete':
-			return executeserviceEventTokenDelete.call(this, itemIndex);
+			return executeserviceEventTokenDelete.call(this, itemIndex ?? 0);
 
 		case 'serviceEventTokenListGet':
-			return executeserviceEventTokenListGet.call(this, itemIndex);
+			return executeserviceEventTokenListGet.call(this, itemIndex ?? 0);
 
 		case 'serviceEventTokenPost':
-			return executeserviceEventTokenPost.call(this, itemIndex);
+			return executeserviceEventTokenPost.call(this, itemIndex ?? 0);
 
 		case 'serviceFaxConsumptionListGet':
-			return executeserviceFaxConsumptionListGet.call(this, itemIndex);
+			return executeserviceFaxConsumptionListGet.call(this, itemIndex ?? 0);
 
 		case 'serviceFaxConsumptionGet':
-			return executeserviceFaxConsumptionGet.call(this, itemIndex);
+			return executeserviceFaxConsumptionGet.call(this, itemIndex ?? 0);
 
 		case 'serviceOfferChangeDelete':
-			return executeserviceOfferChangeDelete.call(this, itemIndex);
+			return executeserviceOfferChangeDelete.call(this, itemIndex ?? 0);
 
 		case 'serviceOfferChangeListGet':
-			return executeserviceOfferChangeListGet.call(this, itemIndex);
+			return executeserviceOfferChangeListGet.call(this, itemIndex ?? 0);
 
 		case 'serviceOfferChangePost':
-			return executeserviceOfferChangePost.call(this, itemIndex);
+			return executeserviceOfferChangePost.call(this, itemIndex ?? 0);
 
 		case 'serviceOfferChangesListGet':
-			return executeserviceOfferChangesListGet.call(this, itemIndex);
+			return executeserviceOfferChangesListGet.call(this, itemIndex ?? 0);
 
 		case 'serviceOfferTaskListGet':
-			return executeserviceOfferTaskListGet.call(this, itemIndex);
+			return executeserviceOfferTaskListGet.call(this, itemIndex ?? 0);
 
 		case 'serviceOfferTaskGet':
-			return executeserviceOfferTaskGet.call(this, itemIndex);
+			return executeserviceOfferTaskGet.call(this, itemIndex ?? 0);
 
 		case 'serviceOfferTaskPut':
-			return executeserviceOfferTaskPut.call(this, itemIndex);
+			return executeserviceOfferTaskPut.call(this, itemIndex ?? 0);
 
 		case 'servicePreviousVoiceConsumptionListGet':
-			return executeservicePreviousVoiceConsumptionListGet.call(this, itemIndex);
+			return executeservicePreviousVoiceConsumptionListGet.call(this, itemIndex ?? 0);
 
 		case 'servicePreviousVoiceConsumptionGet':
-			return executeservicePreviousVoiceConsumptionGet.call(this, itemIndex);
+			return executeservicePreviousVoiceConsumptionGet.call(this, itemIndex ?? 0);
 
 		case 'serviceRepaymentConsumptionListGet':
-			return executeserviceRepaymentConsumptionListGet.call(this, itemIndex);
+			return executeserviceRepaymentConsumptionListGet.call(this, itemIndex ?? 0);
 
 		case 'serviceRepaymentConsumptionGet':
-			return executeserviceRepaymentConsumptionGet.call(this, itemIndex);
+			return executeserviceRepaymentConsumptionGet.call(this, itemIndex ?? 0);
 
 		case 'serviceTaskListGet':
-			return executeserviceTaskListGet.call(this, itemIndex);
+			return executeserviceTaskListGet.call(this, itemIndex ?? 0);
 
 		case 'serviceTaskGet':
-			return executeserviceTaskGet.call(this, itemIndex);
+			return executeserviceTaskGet.call(this, itemIndex ?? 0);
 
 		case 'serviceVoiceConsumptionListGet':
-			return executeserviceVoiceConsumptionListGet.call(this, itemIndex);
+			return executeserviceVoiceConsumptionListGet.call(this, itemIndex ?? 0);
 
 		case 'serviceVoiceConsumptionGet':
-			return executeserviceVoiceConsumptionGet.call(this, itemIndex);
+			return executeserviceVoiceConsumptionGet.call(this, itemIndex ?? 0);
 
 		case 'softphoneLogoDelete':
-			return executesoftphoneLogoDelete.call(this, itemIndex);
+			return executesoftphoneLogoDelete.call(this, itemIndex ?? 0);
 
 		case 'softphoneLogoListGet':
-			return executesoftphoneLogoListGet.call(this, itemIndex);
+			return executesoftphoneLogoListGet.call(this, itemIndex ?? 0);
 
 		case 'softphoneLogoPut':
-			return executesoftphoneLogoPut.call(this, itemIndex);
+			return executesoftphoneLogoPut.call(this, itemIndex ?? 0);
 
 		case 'softphoneThemeListGet':
-			return executesoftphoneThemeListGet.call(this, itemIndex);
+			return executesoftphoneThemeListGet.call(this, itemIndex ?? 0);
 
 		case 'softphoneThemePut':
-			return executesoftphoneThemePut.call(this, itemIndex);
+			return executesoftphoneThemePut.call(this, itemIndex ?? 0);
 
 		case 'timeConditionListGet':
-			return executetimeConditionListGet.call(this, itemIndex);
+			return executetimeConditionListGet.call(this, itemIndex ?? 0);
 
 		case 'timeConditionGet':
-			return executetimeConditionGet.call(this, itemIndex);
+			return executetimeConditionGet.call(this, itemIndex ?? 0);
 
 		case 'timeConditionConditionListGet':
-			return executetimeConditionConditionListGet.call(this, itemIndex);
+			return executetimeConditionConditionListGet.call(this, itemIndex ?? 0);
 
 		case 'timeConditionConditionPost':
-			return executetimeConditionConditionPost.call(this, itemIndex);
+			return executetimeConditionConditionPost.call(this, itemIndex ?? 0);
 
 		case 'timeConditionConditionDelete':
-			return executetimeConditionConditionDelete.call(this, itemIndex);
+			return executetimeConditionConditionDelete.call(this, itemIndex ?? 0);
 
 		case 'timeConditionConditionGet':
-			return executetimeConditionConditionGet.call(this, itemIndex);
+			return executetimeConditionConditionGet.call(this, itemIndex ?? 0);
 
 		case 'timeConditionConditionPut':
-			return executetimeConditionConditionPut.call(this, itemIndex);
+			return executetimeConditionConditionPut.call(this, itemIndex ?? 0);
 
 		case 'timeConditionOptionsListGet':
-			return executetimeConditionOptionsListGet.call(this, itemIndex);
+			return executetimeConditionOptionsListGet.call(this, itemIndex ?? 0);
 
 		case 'timeConditionOptionsPut':
-			return executetimeConditionOptionsPut.call(this, itemIndex);
+			return executetimeConditionOptionsPut.call(this, itemIndex ?? 0);
 
 		case 'trunkListGet':
-			return executetrunkListGet.call(this, itemIndex);
+			return executetrunkListGet.call(this, itemIndex ?? 0);
 
 		case 'trunkGet':
-			return executetrunkGet.call(this, itemIndex);
+			return executetrunkGet.call(this, itemIndex ?? 0);
 
 		case 'trunkChannelsPacksRepartitionListGet':
-			return executetrunkChannelsPacksRepartitionListGet.call(this, itemIndex);
+			return executetrunkChannelsPacksRepartitionListGet.call(this, itemIndex ?? 0);
 
 		case 'trunkExternalDisplayedNumberListGet':
-			return executetrunkExternalDisplayedNumberListGet.call(this, itemIndex);
+			return executetrunkExternalDisplayedNumberListGet.call(this, itemIndex ?? 0);
 
 		case 'trunkExternalDisplayedNumberPost':
-			return executetrunkExternalDisplayedNumberPost.call(this, itemIndex);
+			return executetrunkExternalDisplayedNumberPost.call(this, itemIndex ?? 0);
 
 		case 'trunkExternalDisplayedNumberDelete':
-			return executetrunkExternalDisplayedNumberDelete.call(this, itemIndex);
+			return executetrunkExternalDisplayedNumberDelete.call(this, itemIndex ?? 0);
 
 		case 'trunkExternalDisplayedNumberGet':
-			return executetrunkExternalDisplayedNumberGet.call(this, itemIndex);
+			return executetrunkExternalDisplayedNumberGet.call(this, itemIndex ?? 0);
 
 		case 'trunkExternalDisplayedNumberValidatePost':
-			return executetrunkExternalDisplayedNumberValidatePost.call(this, itemIndex);
+			return executetrunkExternalDisplayedNumberValidatePost.call(this, itemIndex ?? 0);
 
 		case 'voicemailListGet':
-			return executevoicemailListGet.call(this, itemIndex);
+			return executevoicemailListGet.call(this, itemIndex ?? 0);
 
 		case 'voicemailGet':
-			return executevoicemailGet.call(this, itemIndex);
+			return executevoicemailGet.call(this, itemIndex ?? 0);
 
 		case 'voicemailPut':
-			return executevoicemailPut.call(this, itemIndex);
+			return executevoicemailPut.call(this, itemIndex ?? 0);
 
 		case 'voicemailDirectoriesListGet':
-			return executevoicemailDirectoriesListGet.call(this, itemIndex);
+			return executevoicemailDirectoriesListGet.call(this, itemIndex ?? 0);
 
 		case 'voicemailDirectoriesDelete':
-			return executevoicemailDirectoriesDelete.call(this, itemIndex);
+			return executevoicemailDirectoriesDelete.call(this, itemIndex ?? 0);
 
 		case 'voicemailDirectoriesGet':
-			return executevoicemailDirectoriesGet.call(this, itemIndex);
+			return executevoicemailDirectoriesGet.call(this, itemIndex ?? 0);
 
 		case 'voicemailDirectoriesDownloadListGet':
-			return executevoicemailDirectoriesDownloadListGet.call(this, itemIndex);
+			return executevoicemailDirectoriesDownloadListGet.call(this, itemIndex ?? 0);
 
 		case 'voicemailDirectoriesMovePost':
-			return executevoicemailDirectoriesMovePost.call(this, itemIndex);
+			return executevoicemailDirectoriesMovePost.call(this, itemIndex ?? 0);
 
 		case 'voicemailDirectoriesTranscriptListGet':
-			return executevoicemailDirectoriesTranscriptListGet.call(this, itemIndex);
+			return executevoicemailDirectoriesTranscriptListGet.call(this, itemIndex ?? 0);
 
 		case 'voicemailGreetingsListGet':
-			return executevoicemailGreetingsListGet.call(this, itemIndex);
+			return executevoicemailGreetingsListGet.call(this, itemIndex ?? 0);
 
 		case 'voicemailGreetingsPost':
-			return executevoicemailGreetingsPost.call(this, itemIndex);
+			return executevoicemailGreetingsPost.call(this, itemIndex ?? 0);
 
 		case 'voicemailGreetingsDelete':
-			return executevoicemailGreetingsDelete.call(this, itemIndex);
+			return executevoicemailGreetingsDelete.call(this, itemIndex ?? 0);
 
 		case 'voicemailGreetingsGet':
-			return executevoicemailGreetingsGet.call(this, itemIndex);
+			return executevoicemailGreetingsGet.call(this, itemIndex ?? 0);
 
 		case 'voicemailGreetingsDownloadListGet':
-			return executevoicemailGreetingsDownloadListGet.call(this, itemIndex);
+			return executevoicemailGreetingsDownloadListGet.call(this, itemIndex ?? 0);
 
 		case 'voicemailGreetingsMovePost':
-			return executevoicemailGreetingsMovePost.call(this, itemIndex);
+			return executevoicemailGreetingsMovePost.call(this, itemIndex ?? 0);
 
 		case 'voicemailMigrateOnNewVersionPost':
-			return executevoicemailMigrateOnNewVersionPost.call(this, itemIndex);
+			return executevoicemailMigrateOnNewVersionPost.call(this, itemIndex ?? 0);
 
 		case 'voicemailSettingsListGet':
-			return executevoicemailSettingsListGet.call(this, itemIndex);
+			return executevoicemailSettingsListGet.call(this, itemIndex ?? 0);
 
 		case 'voicemailSettingsPut':
-			return executevoicemailSettingsPut.call(this, itemIndex);
+			return executevoicemailSettingsPut.call(this, itemIndex ?? 0);
 
 		case 'voicemailSettingsChangePasswordPost':
-			return executevoicemailSettingsChangePasswordPost.call(this, itemIndex);
+			return executevoicemailSettingsChangePasswordPost.call(this, itemIndex ?? 0);
 
 		case 'voicemailSettingsChangeRoutingPost':
-			return executevoicemailSettingsChangeRoutingPost.call(this, itemIndex);
+			return executevoicemailSettingsChangeRoutingPost.call(this, itemIndex ?? 0);
 
 		case 'voicemailSettingsRoutingListGet':
-			return executevoicemailSettingsRoutingListGet.call(this, itemIndex);
+			return executevoicemailSettingsRoutingListGet.call(this, itemIndex ?? 0);
 
 		case 'voicemailSettingsVoicemailNumbersListGet':
-			return executevoicemailSettingsVoicemailNumbersListGet.call(this, itemIndex);
+			return executevoicemailSettingsVoicemailNumbersListGet.call(this, itemIndex ?? 0);
 		case 'numberDetailedZonesListGet':
-			return executenumberDetailedZonesListGet.call(this, itemIndex);
+			return executenumberDetailedZonesListGet.call(this, itemIndex ?? 0);
 		case 'numberRangesListGet':
-			return executenumberRangesListGet.call(this, itemIndex);
+			return executenumberRangesListGet.call(this, itemIndex ?? 0);
 		case 'numberSpecificNumbersListGet':
-			return executenumberSpecificNumbersListGet.call(this, itemIndex);
+			return executenumberSpecificNumbersListGet.call(this, itemIndex ?? 0);
 		case 'numberZonesListGet':
-			return executenumberZonesListGet.call(this, itemIndex);
+			return executenumberZonesListGet.call(this, itemIndex ?? 0);
 		case 'procedureListGet':
-			return executeprocedureListGet.call(this, itemIndex);
+			return executeprocedureListGet.call(this, itemIndex ?? 0);
 		case 'procedurePost':
-			return executeprocedurePost.call(this, itemIndex);
+			return executeprocedurePost.call(this, itemIndex ?? 0);
 		case 'procedureGet':
-			return executeprocedureGet.call(this, itemIndex);
+			return executeprocedureGet.call(this, itemIndex ?? 0);
 		case 'procedureCancelPost':
-			return executeprocedureCancelPost.call(this, itemIndex);
+			return executeprocedureCancelPost.call(this, itemIndex ?? 0);
 		case 'procedureRequiredListGet':
-			return executeprocedureRequiredListGet.call(this, itemIndex);
+			return executeprocedureRequiredListGet.call(this, itemIndex ?? 0);
 		case 'resellerPanelGeneratePasswordPost':
-			return executeresellerPanelGeneratePasswordPost.call(this, itemIndex);
+			return executeresellerPanelGeneratePasswordPost.call(this, itemIndex ?? 0);
 		case 'resellerPanelStatusListGet':
-			return executeresellerPanelStatusListGet.call(this, itemIndex);
+			return executeresellerPanelStatusListGet.call(this, itemIndex ?? 0);
 		case 'softphoneStoreLinksListGet':
-			return executesoftphoneStoreLinksListGet.call(this, itemIndex);
+			return executesoftphoneStoreLinksListGet.call(this, itemIndex ?? 0);
 		case 'softphoneThemesListGet':
-			return executesoftphoneThemesListGet.call(this, itemIndex);
+			return executesoftphoneThemesListGet.call(this, itemIndex ?? 0);
 		case 'softphoneThemesGet':
-			return executesoftphoneThemesGet.call(this, itemIndex);
+			return executesoftphoneThemesGet.call(this, itemIndex ?? 0);
 		case 'soundsListGet':
-			return executesoundsListGet.call(this, itemIndex);
+			return executesoundsListGet.call(this, itemIndex ?? 0);
 		case 'soundsPost':
-			return executesoundsPost.call(this, itemIndex);
+			return executesoundsPost.call(this, itemIndex ?? 0);
 		case 'soundsDelete':
-			return executesoundsDelete.call(this, itemIndex);
+			return executesoundsDelete.call(this, itemIndex ?? 0);
 		case 'soundsGet':
-			return executesoundsGet.call(this, itemIndex);
+			return executesoundsGet.call(this, itemIndex ?? 0);
 		case 'soundsPut':
-			return executesoundsPut.call(this, itemIndex);
+			return executesoundsPut.call(this, itemIndex ?? 0);
 		case 'spareListGet':
-			return executespareListGet.call(this, itemIndex);
+			return executespareListGet.call(this, itemIndex ?? 0);
 		case 'spareDelete':
-			return executespareDelete.call(this, itemIndex);
+			return executespareDelete.call(this, itemIndex ?? 0);
 		case 'spareGet':
-			return executespareGet.call(this, itemIndex);
+			return executespareGet.call(this, itemIndex ?? 0);
 		case 'spareCompatibleReplacementListGet':
-			return executespareCompatibleReplacementListGet.call(this, itemIndex);
+			return executespareCompatibleReplacementListGet.call(this, itemIndex ?? 0);
 		case 'spareReplacePost':
-			return executespareReplacePost.call(this, itemIndex);
+			return executespareReplacePost.call(this, itemIndex ?? 0);
 		case 'spareServiceInfosListGet':
-			return executespareServiceInfosListGet.call(this, itemIndex);
+			return executespareServiceInfosListGet.call(this, itemIndex ?? 0);
 		case 'spareServiceInfosPut':
-			return executespareServiceInfosPut.call(this, itemIndex);
+			return executespareServiceInfosPut.call(this, itemIndex ?? 0);
 		case 'spareBrandsListGet':
-			return executespareBrandsListGet.call(this, itemIndex);
+			return executespareBrandsListGet.call(this, itemIndex ?? 0);
 	}
 
 	throw new Error(`Unsupported operation "${operation}" for resource "telephony"`);

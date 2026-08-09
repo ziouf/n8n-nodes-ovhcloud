@@ -12,10 +12,10 @@ export function description(displayOptions: IDisplayOptions): INodeProperties[] 
 	];
 }
 
-export async function execute(this: IExecuteFunctions): Promise<INodeExecutionData[]> {
+export async function execute(this: IExecuteFunctions, _itemIndex?: number): Promise<INodeExecutionData[]> {
 	const client = new ApiClient(this);
-	const serviceName = this.getNodeParameter('serviceName', 0, '', { extractValue: true }) as string;
-	const offerId = (this.getNodeParameter('offerId', 0, '') as string) || undefined;
+	const serviceName = this.getNodeParameter('serviceName', _itemIndex ?? 0, '', { extractValue: true }) as string;
+	const offerId = (this.getNodeParameter('offerId', _itemIndex ?? 0, '') as string) || undefined;
 	const body: IDataObject = {};
 	if (offerId !== undefined && offerId !== '') { body.offerId = offerId; }
 	const data = (await client.httpPost(`/dedicated/server/${serviceName}/features/backupFTP`, body)) as IDataObject;

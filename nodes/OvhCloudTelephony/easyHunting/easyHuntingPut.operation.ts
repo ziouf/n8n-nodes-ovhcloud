@@ -124,20 +124,20 @@ export function description(displayOptions: IDisplayOptions): INodeProperties[] 
  * HTTP method: PUT
  * Endpoint: /telephony/{billingAccount}/easyHunting/{serviceName}
  */
-export async function execute(this: IExecuteFunctions, itemIndex: number): Promise<INodeExecutionData[]> {
-	const billingAccount = this.getNodeParameter('billingAccount', itemIndex) as string;
-	const serviceName = this.getNodeParameter('serviceName', itemIndex) as string;
-	const anonymousRejection = this.getNodeParameter('anonymousRejection', itemIndex) as string;
-	const description = this.getNodeParameter('description', itemIndex) as string;
-	const maxWaitTime = this.getNodeParameter('maxWaitTime', itemIndex) as string;
-	const queueSize = this.getNodeParameter('queueSize', itemIndex) as string;
-	const showCallerNumber = this.getNodeParameter('showCallerNumber', itemIndex) as string;
-	const statusIvrEnabled = this.getNodeParameter('statusIvrEnabled', itemIndex) as string;
-	const strategy = this.getNodeParameter('strategy', itemIndex) as string;
-	const toneOnClosing = this.getNodeParameter('toneOnClosing', itemIndex) as string;
-	const toneOnHold = this.getNodeParameter('toneOnHold', itemIndex) as string;
-	const toneOnOpening = this.getNodeParameter('toneOnOpening', itemIndex) as string;
-	const voicemail = this.getNodeParameter('voicemail', itemIndex) as string;
+export async function execute(this: IExecuteFunctions, _itemIndex: number): Promise<INodeExecutionData[]> {
+	const billingAccount = this.getNodeParameter('billingAccount', _itemIndex) as string;
+	const serviceName = this.getNodeParameter('serviceName', _itemIndex) as string;
+	const anonymousRejection = this.getNodeParameter('anonymousRejection', _itemIndex) as string;
+	const description = this.getNodeParameter('description', _itemIndex) as string;
+	const maxWaitTime = this.getNodeParameter('maxWaitTime', _itemIndex) as string;
+	const queueSize = this.getNodeParameter('queueSize', _itemIndex) as string;
+	const showCallerNumber = this.getNodeParameter('showCallerNumber', _itemIndex) as string;
+	const statusIvrEnabled = this.getNodeParameter('statusIvrEnabled', _itemIndex) as string;
+	const strategy = this.getNodeParameter('strategy', _itemIndex) as string;
+	const toneOnClosing = this.getNodeParameter('toneOnClosing', _itemIndex) as string;
+	const toneOnHold = this.getNodeParameter('toneOnHold', _itemIndex) as string;
+	const toneOnOpening = this.getNodeParameter('toneOnOpening', _itemIndex) as string;
+	const voicemail = this.getNodeParameter('voicemail', _itemIndex) as string;
 
 	const body: IDataObject = {
 		anonymousRejection: anonymousRejection,

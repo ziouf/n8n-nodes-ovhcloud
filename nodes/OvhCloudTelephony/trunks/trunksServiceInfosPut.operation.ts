@@ -71,15 +71,15 @@ export function description(displayOptions: IDisplayOptions): INodeProperties[] 
  * HTTP method: PUT
  * Endpoint: /telephony/trunks/{serviceName}/serviceInfos
  */
-export async function execute(this: IExecuteFunctions, itemIndex: number): Promise<INodeExecutionData[]> {
-	const serviceName = this.getNodeParameter('serviceName', itemIndex) as string;
+export async function execute(this: IExecuteFunctions, _itemIndex: number): Promise<INodeExecutionData[]> {
+	const serviceName = this.getNodeParameter('serviceName', _itemIndex) as string;
 
 
-	const contactAdmin = this.getNodeParameter('contactAdmin', itemIndex) as string;
-	const contactBilling = this.getNodeParameter('contactBilling', itemIndex) as string;
-	const contactTech = this.getNodeParameter('contactTech', itemIndex) as string;
-	const country = this.getNodeParameter('country', itemIndex) as string;
-	const description = this.getNodeParameter('description', itemIndex) as string;
+	const contactAdmin = this.getNodeParameter('contactAdmin', _itemIndex) as string;
+	const contactBilling = this.getNodeParameter('contactBilling', _itemIndex) as string;
+	const contactTech = this.getNodeParameter('contactTech', _itemIndex) as string;
+	const country = this.getNodeParameter('country', _itemIndex) as string;
+	const description = this.getNodeParameter('description', _itemIndex) as string;
 
 	const body: IDataObject = {
     contactAdmin: contactAdmin,

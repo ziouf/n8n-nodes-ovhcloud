@@ -50,14 +50,14 @@ export function description(displayOptions: IDisplayOptions): INodeProperties[] 
  * HTTP method: PUT
  * Endpoint: /dedicatedCloud/{serviceName}/allowedNetwork/{networkAccessId}
  */
-export async function execute(this: IExecuteFunctions, itemIndex: number): Promise<INodeExecutionData[]> {
+export async function execute(this: IExecuteFunctions, _itemIndex: number): Promise<INodeExecutionData[]> {
 	const client = new ApiClient(this);
-	const serviceName = this.getNodeParameter('serviceName', itemIndex) as string;
-	const networkAccessId = this.getNodeParameter('networkAccessId', itemIndex) as string;
+	const serviceName = this.getNodeParameter('serviceName', _itemIndex) as string;
+	const networkAccessId = this.getNodeParameter('networkAccessId', _itemIndex) as string;
 	const body: IDataObject = {};
-	const description = this.getNodeParameter('description', itemIndex, '') as string;
+	const description = this.getNodeParameter('description', _itemIndex, '') as string;
 	if (description !== '') { body.description = description; }
-	const network = this.getNodeParameter('network', itemIndex, '') as string;
+	const network = this.getNodeParameter('network', _itemIndex, '') as string;
 	if (network !== '') { body.network = network; }
 	const data = (await client.httpPut(`/dedicatedCloud/${serviceName}/allowedNetwork/${networkAccessId}`, body)) as IDataObject;
 	return this.helpers.returnJsonArray([data]);

@@ -60,17 +60,17 @@ export function description(displayOptions: IDisplayOptions): INodeProperties[] 
  * HTTP method: POST
  * Endpoint: /storage/netapp/{serviceName}/shareReplication
  */
-export async function execute(this: IExecuteFunctions, itemIndex: number): Promise<INodeExecutionData[]> {
+export async function execute(this: IExecuteFunctions, _itemIndex: number): Promise<INodeExecutionData[]> {
 	const client = new ApiClient(this);
-	const serviceName = this.getNodeParameter('serviceName', itemIndex, '', {
+	const serviceName = this.getNodeParameter('serviceName', _itemIndex, '', {
 				extractValue: true,
 			}) as string;
 	const body: IDataObject = {};
-	const description = this.getNodeParameter('description', itemIndex, '') as string;
+	const description = this.getNodeParameter('description', _itemIndex, '') as string;
 	if (description !== '') { body.description = description; }
-	const destinationServiceId = this.getNodeParameter('destinationServiceId', itemIndex, '') as string;
+	const destinationServiceId = this.getNodeParameter('destinationServiceId', _itemIndex, '') as string;
 	if (destinationServiceId !== '') { body.destinationServiceId = destinationServiceId; }
-	const sourceShareId = this.getNodeParameter('sourceShareId', itemIndex, '') as string;
+	const sourceShareId = this.getNodeParameter('sourceShareId', _itemIndex, '') as string;
 	if (sourceShareId !== '') { body.sourceShareId = sourceShareId; }
 	const data = (await client.httpPost(`/storage/netapp/${encodeURIComponent(serviceName)}/shareReplication`, body)) as IDataObject;
 	return this.helpers.returnJsonArray([data]);

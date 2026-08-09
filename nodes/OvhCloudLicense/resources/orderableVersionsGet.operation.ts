@@ -27,9 +27,9 @@ export function description(displayOptions: IDisplayOptions): INodeProperties[] 
  * HTTP method: GET
  * Endpoint: /license/worklight/orderableVersions?ip={ip}
  */
-export async function execute(this: IExecuteFunctions): Promise<INodeExecutionData[]> {
+export async function execute(this: IExecuteFunctions, _itemIndex?: number): Promise<INodeExecutionData[]> {
 	const client = new ApiClient(this);
-	const ip = this.getNodeParameter('ip', 0) as string;
+	const ip = this.getNodeParameter('ip', _itemIndex ?? 0) as string;
 	const data = (await client.httpGet(
 		`/license/worklight/orderableVersions?ip=${encodeURIComponent(ip)}`,
 	)) as IDataObject[];

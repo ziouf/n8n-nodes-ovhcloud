@@ -719,329 +719,329 @@ export function description() {
 	return props;
 }
 
-export async function execute(this: IExecuteFunctions): Promise<INodeExecutionData[]> {
+export async function execute(this: IExecuteFunctions, itemIndex?: number): Promise<INodeExecutionData[]> {
 	const operation = this.getNodeParameter('licenseOperation', 0) as string;
 	const licenseType = this.getNodeParameter('licenseType', 0, 'worklight') as string;
 
 	if (licenseType === 'worklight') {
 		switch (operation) {
 			case 'list':
-				return list.execute.call(this);
+				return list.execute.call(this, itemIndex ?? 0);
 			case 'orderableVersionsGet':
-				return orderableVersionsGet.execute.call(this);
+				return orderableVersionsGet.execute.call(this, itemIndex ?? 0);
 			case 'get':
-				return get.execute.call(this);
+				return get.execute.call(this, itemIndex ?? 0);
 			case 'updatePut':
-				return updatePut.execute.call(this);
+				return updatePut.execute.call(this, itemIndex ?? 0);
 			case 'allowedDestinationIpGet':
-				return allowedDestinationIpGet.execute.call(this);
+				return allowedDestinationIpGet.execute.call(this, itemIndex ?? 0);
 			case 'canLicenseBeMovedToGet':
-				return canLicenseBeMovedToGet.execute.call(this);
+				return canLicenseBeMovedToGet.execute.call(this, itemIndex ?? 0);
 			case 'changeIpPost':
-				return changeIpPost.execute.call(this);
+				return changeIpPost.execute.call(this, itemIndex ?? 0);
 			case 'terminatePost':
-				return terminatePost.execute.call(this);
+				return terminatePost.execute.call(this, itemIndex ?? 0);
 			case 'confirmTerminationPost':
-				return confirmTerminationPost.execute.call(this);
+				return confirmTerminationPost.execute.call(this, itemIndex ?? 0);
 			case 'serviceInfosGet':
-				return serviceInfosGet.execute.call(this);
+				return serviceInfosGet.execute.call(this, itemIndex ?? 0);
 			case 'serviceInfosPut':
-				return serviceInfosPut.execute.call(this);
+				return serviceInfosPut.execute.call(this, itemIndex ?? 0);
 			case 'tasksGet':
-				return tasksGet.execute.call(this);
+				return tasksGet.execute.call(this, itemIndex ?? 0);
 			case 'tasksGetTask':
-				return tasksGetTask.execute.call(this);
+				return tasksGetTask.execute.call(this, itemIndex ?? 0);
 		}
 	}
 
 	if (licenseType === 'cloudLinux') {
 		switch (operation) {
 			case 'cloudLinuxListGet':
-				return cloudLinuxListGet.execute.call(this, 0);
+				return cloudLinuxListGet.execute.call(this, itemIndex ?? 0);
 			case 'cloudLinuxOrderableVersionsGet':
-				return cloudLinuxOrderableVersionsGet.execute.call(this, 0);
+				return cloudLinuxOrderableVersionsGet.execute.call(this, itemIndex ?? 0);
 			case 'cloudLinuxServiceGet':
-				return cloudLinuxServiceGet.execute.call(this, 0);
+				return cloudLinuxServiceGet.execute.call(this, itemIndex ?? 0);
 			case 'cloudLinuxServiceConfirmTerminationPost':
-				return cloudLinuxServiceConfirmTerminationPost.execute.call(this, 0);
+				return cloudLinuxServiceConfirmTerminationPost.execute.call(this, itemIndex ?? 0);
 			case 'cloudLinuxServiceInfosGet':
-				return cloudLinuxServiceInfosGet.execute.call(this, 0);
+				return cloudLinuxServiceInfosGet.execute.call(this, itemIndex ?? 0);
 			case 'cloudLinuxServiceTasksGet':
-				return cloudLinuxServiceTasksGet.execute.call(this, 0);
+				return cloudLinuxServiceTasksGet.execute.call(this, itemIndex ?? 0);
 			case 'cloudLinuxServiceTaskGet':
-				return cloudLinuxServiceTaskGet.execute.call(this, 0);
+				return cloudLinuxServiceTaskGet.execute.call(this, itemIndex ?? 0);
 			case 'cloudLinuxServiceTerminatePost':
-				return cloudLinuxServiceTerminatePost.execute.call(this, 0);
+				return cloudLinuxServiceTerminatePost.execute.call(this, itemIndex ?? 0);
 		}
 	}
 
 	if (licenseType === 'cpanel') {
 		switch (operation) {
 			case 'cpanelListGet':
-				return cpanelListGet.execute.call(this, 0);
+				return cpanelListGet.execute.call(this, itemIndex ?? 0);
 			case 'cpanelOrderableVersionsGet':
-				return cpanelOrderableVersionsGet.execute.call(this, 0);
+				return cpanelOrderableVersionsGet.execute.call(this, itemIndex ?? 0);
 			case 'cpanelServiceGet':
-				return cpanelServiceGet.execute.call(this, 0);
+				return cpanelServiceGet.execute.call(this, itemIndex ?? 0);
 			case 'cpanelServiceAllowedDestinationIpGet':
-				return cpanelServiceAllowedDestinationIpGet.execute.call(this, 0);
+				return cpanelServiceAllowedDestinationIpGet.execute.call(this, itemIndex ?? 0);
 			case 'cpanelServiceCanLicenseBeMovedToGet':
-				return cpanelServiceCanLicenseBeMovedToGet.execute.call(this, 0);
+				return cpanelServiceCanLicenseBeMovedToGet.execute.call(this, itemIndex ?? 0);
 			case 'cpanelServiceChangeIpPost':
-				return cpanelServiceChangeIpPost.execute.call(this, 0);
+				return cpanelServiceChangeIpPost.execute.call(this, itemIndex ?? 0);
 			case 'cpanelServiceConfirmTerminationPost':
-				return cpanelServiceConfirmTerminationPost.execute.call(this, 0);
+				return cpanelServiceConfirmTerminationPost.execute.call(this, itemIndex ?? 0);
 			case 'cpanelServiceInfosGet':
-				return cpanelServiceInfosGet.execute.call(this, 0);
+				return cpanelServiceInfosGet.execute.call(this, itemIndex ?? 0);
 			case 'cpanelServiceTasksGet':
-				return cpanelServiceTasksGet.execute.call(this, 0);
+				return cpanelServiceTasksGet.execute.call(this, itemIndex ?? 0);
 			case 'cpanelServiceTaskGet':
-				return cpanelServiceTaskGet.execute.call(this, 0);
+				return cpanelServiceTaskGet.execute.call(this, itemIndex ?? 0);
 			case 'cpanelServiceTerminatePost':
-				return cpanelServiceTerminatePost.execute.call(this, 0);
+				return cpanelServiceTerminatePost.execute.call(this, itemIndex ?? 0);
 		}
 	}
 
 	if (licenseType === 'directadmin') {
 		switch (operation) {
 			case 'directadminListGet':
-				return directadminListGet.execute.call(this, 0);
+				return directadminListGet.execute.call(this, itemIndex ?? 0);
 			case 'directadminOrderableVersionsGet':
-				return directadminOrderableVersionsGet.execute.call(this, 0);
+				return directadminOrderableVersionsGet.execute.call(this, itemIndex ?? 0);
 			case 'directadminServiceGet':
-				return directadminServiceGet.execute.call(this, 0);
+				return directadminServiceGet.execute.call(this, itemIndex ?? 0);
 			case 'directadminServiceAllowedDestinationIpGet':
-				return directadminServiceAllowedDestinationIpGet.execute.call(this, 0);
+				return directadminServiceAllowedDestinationIpGet.execute.call(this, itemIndex ?? 0);
 			case 'directadminServiceCanLicenseBeMovedToGet':
-				return directadminServiceCanLicenseBeMovedToGet.execute.call(this, 0);
+				return directadminServiceCanLicenseBeMovedToGet.execute.call(this, itemIndex ?? 0);
 			case 'directadminServiceChangeIpPost':
-				return directadminServiceChangeIpPost.execute.call(this, 0);
+				return directadminServiceChangeIpPost.execute.call(this, itemIndex ?? 0);
 			case 'directadminServiceChangeOsPost':
-				return directadminServiceChangeOsPost.execute.call(this, 0);
+				return directadminServiceChangeOsPost.execute.call(this, itemIndex ?? 0);
 			case 'directadminServiceConfirmTerminationPost':
-				return directadminServiceConfirmTerminationPost.execute.call(this, 0);
+				return directadminServiceConfirmTerminationPost.execute.call(this, itemIndex ?? 0);
 			case 'directadminServiceInfosGet':
-				return directadminServiceInfosGet.execute.call(this, 0);
+				return directadminServiceInfosGet.execute.call(this, itemIndex ?? 0);
 			case 'directadminServiceTasksGet':
-				return directadminServiceTasksGet.execute.call(this, 0);
+				return directadminServiceTasksGet.execute.call(this, itemIndex ?? 0);
 			case 'directadminServiceTaskGet':
-				return directadminServiceTaskGet.execute.call(this, 0);
+				return directadminServiceTaskGet.execute.call(this, itemIndex ?? 0);
 			case 'directadminServiceTerminatePost':
-				return directadminServiceTerminatePost.execute.call(this, 0);
+				return directadminServiceTerminatePost.execute.call(this, itemIndex ?? 0);
 		}
 	}
 
 	if (licenseType === 'hycu') {
 		switch (operation) {
 			case 'hycuListGet':
-				return hycuListGet.execute.call(this, 0);
+				return hycuListGet.execute.call(this, itemIndex ?? 0);
 			case 'hycuServiceGet':
-				return hycuServiceGet.execute.call(this, 0);
+				return hycuServiceGet.execute.call(this, itemIndex ?? 0);
 			case 'hycuServiceConfirmTerminationPost':
-				return hycuServiceConfirmTerminationPost.execute.call(this, 0);
+				return hycuServiceConfirmTerminationPost.execute.call(this, itemIndex ?? 0);
 			case 'hycuServiceLicenseGet':
-				return hycuServiceLicenseGet.execute.call(this, 0);
+				return hycuServiceLicenseGet.execute.call(this, itemIndex ?? 0);
 			case 'hycuServiceInfosGet':
-				return hycuServiceInfosGet.execute.call(this, 0);
+				return hycuServiceInfosGet.execute.call(this, itemIndex ?? 0);
 			case 'hycuServiceTerminatePost':
-				return hycuServiceTerminatePost.execute.call(this, 0);
+				return hycuServiceTerminatePost.execute.call(this, itemIndex ?? 0);
 			case 'hycuServicePut':
-				return hycuServicePut.execute.call(this, 0);
+				return hycuServicePut.execute.call(this, itemIndex ?? 0);
 			case 'hycuServiceActivatePost':
-				return hycuServiceActivatePost.execute.call(this, 0);
+				return hycuServiceActivatePost.execute.call(this, itemIndex ?? 0);
 			case 'hycuServiceRefreshPost':
-				return hycuServiceRefreshPost.execute.call(this, 0);
+				return hycuServiceRefreshPost.execute.call(this, itemIndex ?? 0);
 			case 'hycuServiceInfosPut':
-				return hycuServiceInfosPut.execute.call(this, 0);
+				return hycuServiceInfosPut.execute.call(this, itemIndex ?? 0);
 		}
 	}
 
 	if (licenseType === 'office') {
 		switch (operation) {
 			case 'officeListGet':
-				return officeListGet.execute.call(this, 0);
+				return officeListGet.execute.call(this, itemIndex ?? 0);
 			case 'officeServiceGet':
-				return officeServiceGet.execute.call(this, 0);
+				return officeServiceGet.execute.call(this, itemIndex ?? 0);
 			case 'officeDomainsListGet':
-				return officeDomainsListGet.execute.call(this, 0);
+				return officeDomainsListGet.execute.call(this, itemIndex ?? 0);
 			case 'officeDomainGet':
-				return officeDomainGet.execute.call(this, 0);
+				return officeDomainGet.execute.call(this, itemIndex ?? 0);
 			case 'officeTasksListGet':
-				return officeTasksListGet.execute.call(this, 0);
+				return officeTasksListGet.execute.call(this, itemIndex ?? 0);
 			case 'officeTaskGet':
-				return officeTaskGet.execute.call(this, 0);
+				return officeTaskGet.execute.call(this, itemIndex ?? 0);
 			case 'officeServiceInfosGet':
-				return officeServiceInfosGet.execute.call(this, 0);
+				return officeServiceInfosGet.execute.call(this, itemIndex ?? 0);
 			case 'officeUsageStatisticsGet':
-				return officeUsageStatisticsGet.execute.call(this, 0);
+				return officeUsageStatisticsGet.execute.call(this, itemIndex ?? 0);
 			case 'officeUsersListGet':
-				return officeUsersListGet.execute.call(this, 0);
+				return officeUsersListGet.execute.call(this, itemIndex ?? 0);
 			case 'officeUserGet':
-				return officeUserGet.execute.call(this, 0);
+				return officeUserGet.execute.call(this, itemIndex ?? 0);
 			case 'officeUserDelete':
-				return officeUserDelete.execute.call(this, 0);
+				return officeUserDelete.execute.call(this, itemIndex ?? 0);
 		}
 	}
 
 	if (licenseType === 'officePrepaid') {
 		switch (operation) {
 			case 'officePrepaidListGet':
-				return officePrepaidListGet.execute.call(this, 0);
+				return officePrepaidListGet.execute.call(this, itemIndex ?? 0);
 			case 'officePrepaidServiceGet':
-				return officePrepaidServiceGet.execute.call(this, 0);
+				return officePrepaidServiceGet.execute.call(this, itemIndex ?? 0);
 			case 'officePrepaidServiceConfirmTerminationPost':
-				return officePrepaidServiceConfirmTerminationPost.execute.call(this, 0);
+				return officePrepaidServiceConfirmTerminationPost.execute.call(this, itemIndex ?? 0);
 			case 'officePrepaidParentTenantGet':
-				return officePrepaidParentTenantGet.execute.call(this, 0);
+				return officePrepaidParentTenantGet.execute.call(this, itemIndex ?? 0);
 			case 'officePrepaidParentTenantAcceptAgreementPost':
-				return officePrepaidParentTenantAcceptAgreementPost.execute.call(this, 0);
+				return officePrepaidParentTenantAcceptAgreementPost.execute.call(this, itemIndex ?? 0);
 			case 'officePrepaidServiceInfosGet':
-				return officePrepaidServiceInfosGet.execute.call(this, 0);
+				return officePrepaidServiceInfosGet.execute.call(this, itemIndex ?? 0);
 			case 'officePrepaidTenantTasksListGet':
-				return officePrepaidTenantTasksListGet.execute.call(this, 0);
+				return officePrepaidTenantTasksListGet.execute.call(this, itemIndex ?? 0);
 			case 'officePrepaidTenantTaskGet':
-				return officePrepaidTenantTaskGet.execute.call(this, 0);
+				return officePrepaidTenantTaskGet.execute.call(this, itemIndex ?? 0);
 			case 'officePrepaidTenantUsageStatisticsGet':
-				return officePrepaidTenantUsageStatisticsGet.execute.call(this, 0);
+				return officePrepaidTenantUsageStatisticsGet.execute.call(this, itemIndex ?? 0);
 			case 'officePrepaidServiceTerminatePost':
-				return officePrepaidServiceTerminatePost.execute.call(this, 0);
+				return officePrepaidServiceTerminatePost.execute.call(this, itemIndex ?? 0);
 			case 'officePrepaidServiceUnconfigurePost':
-				return officePrepaidServiceUnconfigurePost.execute.call(this, 0);
+				return officePrepaidServiceUnconfigurePost.execute.call(this, itemIndex ?? 0);
 		}
 	}
 
 	if (licenseType === 'plesk') {
 		switch (operation) {
 			case 'pleskListGet':
-				return pleskListGet.execute.call(this, 0);
+				return pleskListGet.execute.call(this, itemIndex ?? 0);
 			case 'pleskOrderableVersionsGet':
-				return pleskOrderableVersionsGet.execute.call(this, 0);
+				return pleskOrderableVersionsGet.execute.call(this, itemIndex ?? 0);
 			case 'pleskServiceGet':
-				return pleskServiceGet.execute.call(this, 0);
+				return pleskServiceGet.execute.call(this, itemIndex ?? 0);
 			case 'pleskServiceAllowedDestinationIpGet':
-				return pleskServiceAllowedDestinationIpGet.execute.call(this, 0);
+				return pleskServiceAllowedDestinationIpGet.execute.call(this, itemIndex ?? 0);
 			case 'pleskServiceCanLicenseBeMovedToGet':
-				return pleskServiceCanLicenseBeMovedToGet.execute.call(this, 0);
+				return pleskServiceCanLicenseBeMovedToGet.execute.call(this, itemIndex ?? 0);
 			case 'pleskServiceChangeIpPost':
-				return pleskServiceChangeIpPost.execute.call(this, 0);
+				return pleskServiceChangeIpPost.execute.call(this, itemIndex ?? 0);
 			case 'pleskServiceConfirmTerminationPost':
-				return pleskServiceConfirmTerminationPost.execute.call(this, 0);
+				return pleskServiceConfirmTerminationPost.execute.call(this, itemIndex ?? 0);
 			case 'pleskOptionsListGet':
-				return pleskOptionsListGet.execute.call(this, 0);
+				return pleskOptionsListGet.execute.call(this, itemIndex ?? 0);
 			case 'pleskOptionGet':
-				return pleskOptionGet.execute.call(this, 0);
+				return pleskOptionGet.execute.call(this, itemIndex ?? 0);
 			case 'pleskOptionDelete':
-				return pleskOptionDelete.execute.call(this, 0);
+				return pleskOptionDelete.execute.call(this, itemIndex ?? 0);
 			case 'pleskServiceInfosGet':
-				return pleskServiceInfosGet.execute.call(this, 0);
+				return pleskServiceInfosGet.execute.call(this, itemIndex ?? 0);
 			case 'pleskServiceTasksGet':
-				return pleskServiceTasksGet.execute.call(this, 0);
+				return pleskServiceTasksGet.execute.call(this, itemIndex ?? 0);
 			case 'pleskServiceTaskGet':
-				return pleskServiceTaskGet.execute.call(this, 0);
+				return pleskServiceTaskGet.execute.call(this, itemIndex ?? 0);
 			case 'pleskServiceTerminatePost':
-				return pleskServiceTerminatePost.execute.call(this, 0);
+				return pleskServiceTerminatePost.execute.call(this, itemIndex ?? 0);
 		}
 	}
 
 	if (licenseType === 'redhat') {
 		switch (operation) {
 			case 'redhatListGet':
-				return redhatListGet.execute.call(this, 0);
+				return redhatListGet.execute.call(this, itemIndex ?? 0);
 			case 'redhatServiceGet':
-				return redhatServiceGet.execute.call(this, 0);
+				return redhatServiceGet.execute.call(this, itemIndex ?? 0);
 			case 'redhatServiceConfirmTerminationPost':
-				return redhatServiceConfirmTerminationPost.execute.call(this, 0);
+				return redhatServiceConfirmTerminationPost.execute.call(this, itemIndex ?? 0);
 			case 'redhatServiceInfosGet':
-				return redhatServiceInfosGet.execute.call(this, 0);
+				return redhatServiceInfosGet.execute.call(this, itemIndex ?? 0);
 			case 'redhatServiceTasksGet':
-				return redhatServiceTasksGet.execute.call(this, 0);
+				return redhatServiceTasksGet.execute.call(this, itemIndex ?? 0);
 			case 'redhatServiceTaskGet':
-				return redhatServiceTaskGet.execute.call(this, 0);
+				return redhatServiceTaskGet.execute.call(this, itemIndex ?? 0);
 			case 'redhatServiceTerminatePost':
-				return redhatServiceTerminatePost.execute.call(this, 0);
+				return redhatServiceTerminatePost.execute.call(this, itemIndex ?? 0);
 		}
 	}
 
 	if (licenseType === 'sqlserver') {
 		switch (operation) {
 			case 'sqlserverListGet':
-				return sqlserverListGet.execute.call(this, 0);
+				return sqlserverListGet.execute.call(this, itemIndex ?? 0);
 			case 'sqlserverOrderableVersionsGet':
-				return sqlserverOrderableVersionsGet.execute.call(this, 0);
+				return sqlserverOrderableVersionsGet.execute.call(this, itemIndex ?? 0);
 			case 'sqlserverServiceGet':
-				return sqlserverServiceGet.execute.call(this, 0);
+				return sqlserverServiceGet.execute.call(this, itemIndex ?? 0);
 			case 'sqlserverServiceConfirmTerminationPost':
-				return sqlserverServiceConfirmTerminationPost.execute.call(this, 0);
+				return sqlserverServiceConfirmTerminationPost.execute.call(this, itemIndex ?? 0);
 			case 'sqlserverServiceInfosGet':
-				return sqlserverServiceInfosGet.execute.call(this, 0);
+				return sqlserverServiceInfosGet.execute.call(this, itemIndex ?? 0);
 			case 'sqlserverServiceTasksGet':
-				return sqlserverServiceTasksGet.execute.call(this, 0);
+				return sqlserverServiceTasksGet.execute.call(this, itemIndex ?? 0);
 			case 'sqlserverServiceTaskGet':
-				return sqlserverServiceTaskGet.execute.call(this, 0);
+				return sqlserverServiceTaskGet.execute.call(this, itemIndex ?? 0);
 			case 'sqlserverServiceTerminatePost':
-				return sqlserverServiceTerminatePost.execute.call(this, 0);
+				return sqlserverServiceTerminatePost.execute.call(this, itemIndex ?? 0);
 		}
 	}
 
 	if (licenseType === 'virtuozzo') {
 		switch (operation) {
 			case 'virtuozzoListGet':
-				return virtuozzoListGet.execute.call(this, 0);
+				return virtuozzoListGet.execute.call(this, itemIndex ?? 0);
 			case 'virtuozzoOrderableVersionsGet':
-				return virtuozzoOrderableVersionsGet.execute.call(this, 0);
+				return virtuozzoOrderableVersionsGet.execute.call(this, itemIndex ?? 0);
 			case 'virtuozzoServiceGet':
-				return virtuozzoServiceGet.execute.call(this, 0);
+				return virtuozzoServiceGet.execute.call(this, itemIndex ?? 0);
 			case 'virtuozzoServiceAllowedDestinationIpGet':
-				return virtuozzoServiceAllowedDestinationIpGet.execute.call(this, 0);
+				return virtuozzoServiceAllowedDestinationIpGet.execute.call(this, itemIndex ?? 0);
 			case 'virtuozzoServiceCanLicenseBeMovedToGet':
-				return virtuozzoServiceCanLicenseBeMovedToGet.execute.call(this, 0);
+				return virtuozzoServiceCanLicenseBeMovedToGet.execute.call(this, itemIndex ?? 0);
 			case 'virtuozzoServiceChangeIpPost':
-				return virtuozzoServiceChangeIpPost.execute.call(this, 0);
+				return virtuozzoServiceChangeIpPost.execute.call(this, itemIndex ?? 0);
 			case 'virtuozzoServiceConfirmTerminationPost':
-				return virtuozzoServiceConfirmTerminationPost.execute.call(this, 0);
+				return virtuozzoServiceConfirmTerminationPost.execute.call(this, itemIndex ?? 0);
 			case 'virtuozzoOptionsListGet':
-				return virtuozzoOptionsListGet.execute.call(this, 0);
+				return virtuozzoOptionsListGet.execute.call(this, itemIndex ?? 0);
 			case 'virtuozzoOptionGet':
-				return virtuozzoOptionGet.execute.call(this, 0);
+				return virtuozzoOptionGet.execute.call(this, itemIndex ?? 0);
 			case 'virtuozzoOptionDelete':
-				return virtuozzoOptionDelete.execute.call(this, 0);
+				return virtuozzoOptionDelete.execute.call(this, itemIndex ?? 0);
 			case 'virtuozzoServiceInfosGet':
-				return virtuozzoServiceInfosGet.execute.call(this, 0);
+				return virtuozzoServiceInfosGet.execute.call(this, itemIndex ?? 0);
 			case 'virtuozzoServiceTasksGet':
-				return virtuozzoServiceTasksGet.execute.call(this, 0);
+				return virtuozzoServiceTasksGet.execute.call(this, itemIndex ?? 0);
 			case 'virtuozzoServiceTaskGet':
-				return virtuozzoServiceTaskGet.execute.call(this, 0);
+				return virtuozzoServiceTaskGet.execute.call(this, itemIndex ?? 0);
 			case 'virtuozzoServiceTerminatePost':
-				return virtuozzoServiceTerminatePost.execute.call(this, 0);
+				return virtuozzoServiceTerminatePost.execute.call(this, itemIndex ?? 0);
 		}
 	}
 
 	if (licenseType === 'windows') {
 		switch (operation) {
 			case 'windowsListGet':
-				return windowsListGet.execute.call(this, 0);
+				return windowsListGet.execute.call(this, itemIndex ?? 0);
 			case 'windowsOrderableVersionsGet':
-				return windowsOrderableVersionsGet.execute.call(this, 0);
+				return windowsOrderableVersionsGet.execute.call(this, itemIndex ?? 0);
 			case 'windowsServiceGet':
-				return windowsServiceGet.execute.call(this, 0);
+				return windowsServiceGet.execute.call(this, itemIndex ?? 0);
 			case 'windowsServiceConfirmTerminationPost':
-				return windowsServiceConfirmTerminationPost.execute.call(this, 0);
+				return windowsServiceConfirmTerminationPost.execute.call(this, itemIndex ?? 0);
 			case 'windowsOptionsListGet':
-				return windowsOptionsListGet.execute.call(this, 0);
+				return windowsOptionsListGet.execute.call(this, itemIndex ?? 0);
 			case 'windowsOptionGet':
-				return windowsOptionGet.execute.call(this, 0);
+				return windowsOptionGet.execute.call(this, itemIndex ?? 0);
 			case 'windowsOptionDelete':
-				return windowsOptionDelete.execute.call(this, 0);
+				return windowsOptionDelete.execute.call(this, itemIndex ?? 0);
 			case 'windowsServiceInfosGet':
-				return windowsServiceInfosGet.execute.call(this, 0);
+				return windowsServiceInfosGet.execute.call(this, itemIndex ?? 0);
 			case 'windowsSqlServerPost':
-				return windowsSqlServerPost.execute.call(this, 0);
+				return windowsSqlServerPost.execute.call(this, itemIndex ?? 0);
 			case 'windowsServiceTasksGet':
-				return windowsServiceTasksGet.execute.call(this, 0);
+				return windowsServiceTasksGet.execute.call(this, itemIndex ?? 0);
 			case 'windowsServiceTaskGet':
-				return windowsServiceTaskGet.execute.call(this, 0);
+				return windowsServiceTaskGet.execute.call(this, itemIndex ?? 0);
 			case 'windowsServiceTerminatePost':
-				return windowsServiceTerminatePost.execute.call(this, 0);
+				return windowsServiceTerminatePost.execute.call(this, itemIndex ?? 0);
 		}
 	}
 

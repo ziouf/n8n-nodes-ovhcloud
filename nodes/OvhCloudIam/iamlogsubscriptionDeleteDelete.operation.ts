@@ -28,8 +28,8 @@ export function description(displayOptions: IDisplayOptions): INodeProperties[] 
  * HTTP method: DELETE
  * Endpoint: /iam/log/subscription/{subscriptionId}
  */
-export async function execute(this: IExecuteFunctions, itemIndex: number): Promise<INodeExecutionData[]> {
-	const subscriptionId = this.getNodeParameter('subscriptionId', itemIndex) as string;
+export async function execute(this: IExecuteFunctions, _itemIndex: number): Promise<INodeExecutionData[]> {
+	const subscriptionId = this.getNodeParameter('subscriptionId', _itemIndex) as string;
 
 
 	const client = new ApiClient(this);

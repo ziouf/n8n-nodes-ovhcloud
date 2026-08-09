@@ -28,8 +28,8 @@ export function description(displayOptions: IDisplayOptions): INodeProperties[] 
  * HTTP method: POST
  * Endpoint: /managedCMS/resource/{serviceId}/flushCDN
  */
-export async function execute(this: IExecuteFunctions, itemIndex: number): Promise<INodeExecutionData[]> {
-	const serviceId = this.getNodeParameter('serviceId', itemIndex) as string;
+export async function execute(this: IExecuteFunctions, _itemIndex: number): Promise<INodeExecutionData[]> {
+	const serviceId = this.getNodeParameter('serviceId', _itemIndex) as string;
 
 
 	const client = new ApiClient(this);

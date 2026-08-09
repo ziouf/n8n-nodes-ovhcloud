@@ -44,10 +44,10 @@ export function description(displayOptions: IDisplayOptions): INodeProperties[] 
  * HTTP method: POST
  * Endpoint: /telephony/{billingAccount}/portability/{id}/cancel
  */
-export async function execute(this: IExecuteFunctions, itemIndex: number): Promise<INodeExecutionData[]> {
-	const billingAccount = this.getNodeParameter('billingAccount', itemIndex) as string;
-	const id = this.getNodeParameter('id', itemIndex) as string;
-	const reason = this.getNodeParameter('reason', itemIndex) as string;
+export async function execute(this: IExecuteFunctions, _itemIndex: number): Promise<INodeExecutionData[]> {
+	const billingAccount = this.getNodeParameter('billingAccount', _itemIndex) as string;
+	const id = this.getNodeParameter('id', _itemIndex) as string;
+	const reason = this.getNodeParameter('reason', _itemIndex) as string;
 
 	const body: IDataObject = {
 		reason: reason,

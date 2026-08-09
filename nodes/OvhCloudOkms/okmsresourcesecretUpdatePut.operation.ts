@@ -37,9 +37,9 @@ export function description(displayOptions: IDisplayOptions): INodeProperties[] 
  * HTTP method: PUT
  * Endpoint: /okms/resource/{okmsId}/secret/{path}
  */
-export async function execute(this: IExecuteFunctions, itemIndex: number): Promise<INodeExecutionData[]> {
-	const okmsId = this.getNodeParameter('okmsId', itemIndex) as string;
-	const path = this.getNodeParameter('path', itemIndex) as string;
+export async function execute(this: IExecuteFunctions, _itemIndex: number): Promise<INodeExecutionData[]> {
+	const okmsId = this.getNodeParameter('okmsId', _itemIndex) as string;
+	const path = this.getNodeParameter('path', _itemIndex) as string;
 
 	const body: IDataObject = {};
 

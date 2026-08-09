@@ -45,12 +45,12 @@ export function description(displayOptions: IDisplayOptions): INodeProperties[] 
  */
 export async function execute(
 	this: IExecuteFunctions,
-	itemIndex?: number,
+	_itemIndex?: number,
 ): Promise<INodeExecutionData[]> {
 	const client = new ApiClient(this);
-	const serviceName = this.getNodeParameter('serviceName', itemIndex as number) as string;
-	const databaseName = this.getNodeParameter('databaseName', itemIndex as number, '') as string;
-	const orphan = this.getNodeParameter('orphan', itemIndex as number, false) as boolean;
+	const serviceName = this.getNodeParameter('serviceName', _itemIndex as number) as string;
+	const databaseName = this.getNodeParameter('databaseName', _itemIndex as number, '') as string;
+	const orphan = this.getNodeParameter('orphan', _itemIndex as number, false) as boolean;
 
 	const qs: IDataObject = {};
 	if (databaseName) {

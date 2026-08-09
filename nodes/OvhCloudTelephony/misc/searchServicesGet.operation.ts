@@ -34,9 +34,9 @@ export function description(displayOptions: IDisplayOptions): INodeProperties[] 
  * HTTP method: GET
  * Endpoint: /telephony/searchServices
  */
-export async function execute(this: IExecuteFunctions, itemIndex: number): Promise<INodeExecutionData[]> {
+export async function execute(this: IExecuteFunctions, _itemIndex: number): Promise<INodeExecutionData[]> {
 
-	const domain = this.getNodeParameter('domain', itemIndex) as string;
+	const domain = this.getNodeParameter('domain', _itemIndex) as string;
 
 	const qs: IDataObject = {
     domain: domain

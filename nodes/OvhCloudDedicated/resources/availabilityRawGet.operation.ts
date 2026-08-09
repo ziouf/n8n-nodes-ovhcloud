@@ -5,7 +5,7 @@ export function description() {
 	return [];
 }
 
-export async function execute(this: IExecuteFunctions): Promise<INodeExecutionData[]> {
+export async function execute(this: IExecuteFunctions, _itemIndex?: number): Promise<INodeExecutionData[]> {
 	const client = new ApiClient(this);
 	const data = (await client.httpGet('/dedicated/server/availabilities/raw')) as string[];
 	return this.helpers.returnJsonArray(data.map((name) => ({ name })));

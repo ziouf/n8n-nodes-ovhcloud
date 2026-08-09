@@ -45,11 +45,11 @@ export function description(displayOptions: IDisplayOptions): INodeProperties[] 
  * HTTP method: POST
  * Endpoint: /auth/credential
  */
-export async function execute(this: IExecuteFunctions): Promise<INodeExecutionData[]> {
+export async function execute(this: IExecuteFunctions, _itemIndex?: number): Promise<INodeExecutionData[]> {
 	const client = new ApiClient(this);
-	const accessRules = this.getNodeParameter('accessRules', 0) as IDataObject[];
-	const allowedIPs = this.getNodeParameter('allowedIPs', 0) as string[];
-	const redirection = (this.getNodeParameter('redirection', 0, '') as string) || '';
+	const accessRules = this.getNodeParameter('accessRules', _itemIndex ?? 0) as IDataObject[];
+	const allowedIPs = this.getNodeParameter('allowedIPs', _itemIndex ?? 0) as string[];
+	const redirection = (this.getNodeParameter('redirection', _itemIndex ?? 0, '') as string) || '';
 
 	const body: IDataObject = { accessRules };
 	if (allowedIPs.length > 0) {

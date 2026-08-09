@@ -38,13 +38,13 @@ export function description(displayOptions: IDisplayOptions): INodeProperties[] 
  */
 export async function execute(
 	this: IExecuteFunctions,
-	itemIndex: number,
+	_itemIndex: number,
 ): Promise<INodeExecutionData[]> {
 	const client = new ApiClient(this);
-	const domainName = this.getNodeParameter('domainName', itemIndex) as string;
+	const domainName = this.getNodeParameter('domainName', _itemIndex) as string;
 
 	const body: IDataObject = {};
-	const targetSpec = this.getNodeParameter('targetSpec', itemIndex, '') as string;
+	const targetSpec = this.getNodeParameter('targetSpec', _itemIndex, '') as string;
 	body['targetSpec'] = JSON.parse(targetSpec);
 
 	const data = (await client.httpPut(

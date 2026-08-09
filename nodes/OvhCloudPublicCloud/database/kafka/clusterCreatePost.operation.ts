@@ -41,17 +41,17 @@ export function description(displayOptions: IDisplayOptions): INodeProperties[] 
  * HTTP method: POST
  * Endpoint: /cloud/project/{serviceName}/database/kafka
  */
-export async function execute(this: IExecuteFunctions): Promise<INodeExecutionData[]> {
+export async function execute(this: IExecuteFunctions, _itemIndex?: number): Promise<INodeExecutionData[]> {
 	const client = new ApiClient(this);
-	const serviceName = this.getNodeParameter('publicCloudProjectId', 0, '', {
+	const serviceName = this.getNodeParameter('publicCloudProjectId', _itemIndex ?? 0, '', {
 		extractValue: true,
 	}) as string;
 	const body: IDataObject = {};
-	const description = (this.getNodeParameter('description', 0) || '') as string;
+	const description = (this.getNodeParameter('description', _itemIndex ?? 0) || '') as string;
 	if (description) body.description = description;
-	const plan = (this.getNodeParameter('plan', 0) || '') as string;
+	const plan = (this.getNodeParameter('plan', _itemIndex ?? 0) || '') as string;
 	if (plan) body.plan = plan;
-	const version = (this.getNodeParameter('version', 0) || '') as string;
+	const version = (this.getNodeParameter('version', _itemIndex ?? 0) || '') as string;
 	if (version) body.version = version;
 
 	const data = (await client.httpPost(

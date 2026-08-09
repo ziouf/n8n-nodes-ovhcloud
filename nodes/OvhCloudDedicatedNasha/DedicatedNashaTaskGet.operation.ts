@@ -26,12 +26,12 @@ export function description(): INodeProperties[] {
  * Endpoint: /dedicated/nasha/{serviceName}/task
  */
 export async function execute(this: IExecuteFunctions,
-	itemIndex: number): Promise<INodeExecutionData[]> {
-	const serviceName = this.getNodeParameter('serviceName', itemIndex) as string;
+	_itemIndex: number): Promise<INodeExecutionData[]> {
+	const serviceName = this.getNodeParameter('serviceName', _itemIndex) as string;
 	const client = new ApiClient(this);
 	const qs: IDataObject = {};
-			qs['operation'] = this.getNodeParameter('operation', itemIndex, '') as string;
-		qs['status'] = this.getNodeParameter('status', itemIndex, '') as string;
+			qs['operation'] = this.getNodeParameter('operation', _itemIndex, '') as string;
+		qs['status'] = this.getNodeParameter('status', _itemIndex, '') as string;
 	const data = (await client.httpGet('/dedicated/nasha/' + encodeURIComponent(serviceName) + '/task', qs)) as IDataObject;
 	return this.helpers.returnJsonArray([data]);
 }

@@ -34,9 +34,9 @@ export function description(displayOptions: IDisplayOptions): INodeProperties[] 
  * HTTP method: GET
  * Endpoint: /telephony/availableDefaultSipDomains
  */
-export async function execute(this: IExecuteFunctions, itemIndex: number): Promise<INodeExecutionData[]> {
+export async function execute(this: IExecuteFunctions, _itemIndex: number): Promise<INodeExecutionData[]> {
 
-	const type = this.getNodeParameter('type', itemIndex) as string;
+	const type = this.getNodeParameter('type', _itemIndex) as string;
 
 	const qs: IDataObject = {
     type: type

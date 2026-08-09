@@ -233,35 +233,35 @@ export async function execute(
 
 	switch (operation) {
 		case 'backupServicestenantListGet':
-			return executeBackupServicestenantListGet.call(this, itemIndex);
+			return executeBackupServicestenantListGet.call(this, itemIndex ?? 0);
 		case 'backupServicestenantListGet2':
-			return executeBackupServicestenantListGet2.call(this, itemIndex);
+			return executeBackupServicestenantListGet2.call(this, itemIndex ?? 0);
 		case 'backupServicestenantvaultListGet':
-			return executeBackupServicestenantvaultListGet.call(this, itemIndex);
+			return executeBackupServicestenantvaultListGet.call(this, itemIndex ?? 0);
 		case 'backupServicestenantvaultListGet2':
-			return executeBackupServicestenantvaultListGet2.call(this, itemIndex);
+			return executeBackupServicestenantvaultListGet2.call(this, itemIndex ?? 0);
 		case 'backupServicestenantvaultUpdatePut':
-			return executeBackupServicestenantvaultUpdatePut.call(this, itemIndex);
+			return executeBackupServicestenantvaultUpdatePut.call(this, itemIndex ?? 0);
 		case 'backupServicestenantvspcListGet':
-			return executeBackupServicestenantvspcListGet.call(this, itemIndex);
+			return executeBackupServicestenantvspcListGet.call(this, itemIndex ?? 0);
 		case 'backupServicestenantvspcListGet2':
-			return executeBackupServicestenantvspcListGet2.call(this, itemIndex);
+			return executeBackupServicestenantvspcListGet2.call(this, itemIndex ?? 0);
 		case 'backupServicestenantvspcUpdatePut':
-			return executeBackupServicestenantvspcUpdatePut.call(this, itemIndex);
+			return executeBackupServicestenantvspcUpdatePut.call(this, itemIndex ?? 0);
 		case 'backupServicestenantvspcbackupAgentListGet':
-			return executeBackupServicestenantvspcbackupAgentListGet.call(this, itemIndex);
+			return executeBackupServicestenantvspcbackupAgentListGet.call(this, itemIndex ?? 0);
 		case 'backupServicestenantvspcbackupAgentCreatePost':
-			return executeBackupServicestenantvspcbackupAgentCreatePost.call(this, itemIndex);
+			return executeBackupServicestenantvspcbackupAgentCreatePost.call(this, itemIndex ?? 0);
 		case 'backupServicestenantvspcbackupAgentDeleteDelete':
-			return executeBackupServicestenantvspcbackupAgentDeleteDelete.call(this, itemIndex);
+			return executeBackupServicestenantvspcbackupAgentDeleteDelete.call(this, itemIndex ?? 0);
 		case 'backupServicestenantvspcbackupAgentListGet2':
-			return executeBackupServicestenantvspcbackupAgentListGet2.call(this, itemIndex);
+			return executeBackupServicestenantvspcbackupAgentListGet2.call(this, itemIndex ?? 0);
 		case 'backupServicestenantvspcbackupAgentUpdatePut':
-			return executeBackupServicestenantvspcbackupAgentUpdatePut.call(this, itemIndex);
+			return executeBackupServicestenantvspcbackupAgentUpdatePut.call(this, itemIndex ?? 0);
 		case 'backupServicestenantvspcbackupPoliciesListGet':
-			return executeBackupServicestenantvspcbackupPoliciesListGet.call(this, itemIndex);
+			return executeBackupServicestenantvspcbackupPoliciesListGet.call(this, itemIndex ?? 0);
 		case 'backupServicestenantvspcmanagementAgentListGet':
-			return executeBackupServicestenantvspcmanagementAgentListGet.call(this, itemIndex);
+			return executeBackupServicestenantvspcmanagementAgentListGet.call(this, itemIndex ?? 0);
 
 	}
 

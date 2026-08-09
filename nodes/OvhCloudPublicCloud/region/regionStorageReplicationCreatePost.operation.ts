@@ -107,15 +107,15 @@ export function description(displayOptions: IDisplayOptions): INodeProperties[] 
  * HTTP method: POST
  * Endpoint: /publicCloud/project/${projectId}/region/${regionName}/storage/${name}/job/replication
  */
-export async function execute(this: IExecuteFunctions): Promise<INodeExecutionData[]> {
-	const regionName = this.getNodeParameter('regionName', 0) as string;
-	const name = this.getNodeParameter('name', 0) as string;
-	const deleteMarkerReplication = this.getNodeParameter('deleteMarkerReplication', 0, '') as string;
-	const destination = this.getNodeParameter('destination', 0, '') as string;
-	const filter = this.getNodeParameter('filter', 0, '') as string;
-	const id = this.getNodeParameter('id', 0, '') as string;
-	const priority = this.getNodeParameter('priority', 0, '') as string;
-	const status = this.getNodeParameter('status', 0, '') as string;
+export async function execute(this: IExecuteFunctions, _itemIndex?: number): Promise<INodeExecutionData[]> {
+	const regionName = this.getNodeParameter('regionName', _itemIndex ?? 0) as string;
+	const name = this.getNodeParameter('name', _itemIndex ?? 0) as string;
+	const deleteMarkerReplication = this.getNodeParameter('deleteMarkerReplication', _itemIndex ?? 0, '') as string;
+	const destination = this.getNodeParameter('destination', _itemIndex ?? 0, '') as string;
+	const filter = this.getNodeParameter('filter', _itemIndex ?? 0, '') as string;
+	const id = this.getNodeParameter('id', _itemIndex ?? 0, '') as string;
+	const priority = this.getNodeParameter('priority', _itemIndex ?? 0, '') as string;
+	const status = this.getNodeParameter('status', _itemIndex ?? 0, '') as string;
 	const body: IDataObject = {
 		deleteMarkerReplication: deleteMarkerReplication,
 		destination: destination,
@@ -126,7 +126,7 @@ export async function execute(this: IExecuteFunctions): Promise<INodeExecutionDa
 	};
 
 	const client = new ApiClient(this);
-	const projectId = this.getNodeParameter('publicCloudProjectId', 0, '', {
+	const projectId = this.getNodeParameter('publicCloudProjectId', _itemIndex ?? 0, '', {
 		extractValue: true,
 	}) as string;
 	const data = (await client.httpPost(

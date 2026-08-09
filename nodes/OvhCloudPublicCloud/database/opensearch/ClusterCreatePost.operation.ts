@@ -49,13 +49,13 @@ export function description(displayOptions: IDisplayOptions): INodeProperties[] 
  * HTTP method: POST
  * Endpoint: /cloud/project/{serviceName}/database/opensearch
  */
-export async function execute(this: IExecuteFunctions): Promise<INodeExecutionData[]> {
+export async function execute(this: IExecuteFunctions, _itemIndex?: number): Promise<INodeExecutionData[]> {
 	const client = new ApiClient(this);
-	const serviceName = this.getNodeParameter('publicCloudProjectId', 0, '', {
+	const serviceName = this.getNodeParameter('publicCloudProjectId', _itemIndex ?? 0, '', {
 		extractValue: true,
 	}) as string;
 
-	const body: IDataObject = this.getNodeParameter('body', 0, {}) as IDataObject;
+	const body: IDataObject = this.getNodeParameter('body', _itemIndex ?? 0, {}) as IDataObject;
 	const data = (await client.httpPost(`/cloud/project/${serviceName}/database/opensearch`, body as IDataObject)) as IDataObject;
 
 	if (Array.isArray(data)) {

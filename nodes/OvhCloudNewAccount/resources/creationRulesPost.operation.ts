@@ -22,14 +22,14 @@ export function description(displayOptions: IDisplayOptions): INodeProperties[] 
  * spec defines a GET-only endpoint. The query parameters follow the spec:
  * country, legalform, ovhCompany and ovhSubsidiary (all required).
  */
-export async function execute(this: IExecuteFunctions): Promise<INodeExecutionData[]> {
+export async function execute(this: IExecuteFunctions, _itemIndex?: number): Promise<INodeExecutionData[]> {
 	const client = new ApiClient(this);
 
 	const qs: IDataObject = {
-		country: this.getNodeParameter('country', 0) as string,
-		legalform: this.getNodeParameter('legalform', 0) as string,
-		ovhCompany: this.getNodeParameter('ovhCompany', 0) as string,
-		ovhSubsidiary: this.getNodeParameter('ovhSubsidiary', 0) as string,
+		country: this.getNodeParameter('country', _itemIndex ?? 0) as string,
+		legalform: this.getNodeParameter('legalform', _itemIndex ?? 0) as string,
+		ovhCompany: this.getNodeParameter('ovhCompany', _itemIndex ?? 0) as string,
+		ovhSubsidiary: this.getNodeParameter('ovhSubsidiary', _itemIndex ?? 0) as string,
 	};
 
 	const data = (await client.httpGet('/newAccount/creationRules', qs)) as IDataObject[];

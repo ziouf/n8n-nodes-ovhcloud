@@ -53,12 +53,12 @@ export function description(displayOptions: IDisplayOptions): INodeProperties[] 
  * HTTP method: GET
  * Endpoint: /ipLoadbalancing/{serviceName}/udp/farm/{farmId}/server
  */
-export async function execute(this: IExecuteFunctions, itemIndex: number): Promise<INodeExecutionData[]> {
-	const serviceName = this.getNodeParameter('serviceName', itemIndex) as string;
-	const farmId = this.getNodeParameter('farmId', itemIndex) as string;
+export async function execute(this: IExecuteFunctions, _itemIndex: number): Promise<INodeExecutionData[]> {
+	const serviceName = this.getNodeParameter('serviceName', _itemIndex) as string;
+	const farmId = this.getNodeParameter('farmId', _itemIndex) as string;
 
-	const address = this.getNodeParameter('address', itemIndex) as string;
-	const status = this.getNodeParameter('status', itemIndex) as string;
+	const address = this.getNodeParameter('address', _itemIndex) as string;
+	const status = this.getNodeParameter('status', _itemIndex) as string;
 
 
 const qs: IDataObject = {

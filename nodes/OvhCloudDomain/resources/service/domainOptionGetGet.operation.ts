@@ -36,10 +36,10 @@ export function description(displayOptions: IDisplayOptions): INodeProperties[] 
  * HTTP method: GET
  * Endpoint: /domain/{serviceName}/option/{option}
  */
-export async function execute(this: IExecuteFunctions, itemIndex: number): Promise<INodeExecutionData[]> {
+export async function execute(this: IExecuteFunctions, _itemIndex: number): Promise<INodeExecutionData[]> {
 	const client = new ApiClient(this);
-		const option = this.getNodeParameter('option', itemIndex) as string;
-		const serviceName = this.getNodeParameter('serviceName', itemIndex) as string;
+		const option = this.getNodeParameter('option', _itemIndex) as string;
+		const serviceName = this.getNodeParameter('serviceName', _itemIndex) as string;
 
 	const data = (await client.httpGet(`/domain/${encodeURIComponent(serviceName)}/option/${encodeURIComponent(option)}`)) as IDataObject;
 

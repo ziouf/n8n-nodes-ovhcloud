@@ -454,69 +454,69 @@ export async function execute(
 
 	switch (operation) {
 		case 'okmsreferenceregionsListGet':
-			return executeOkmsreferenceregionsListGet.call(this, itemIndex);
+			return executeOkmsreferenceregionsListGet.call(this, itemIndex ?? 0);
 		case 'okmsreferencesecretConfigListGet':
-			return executeOkmsreferencesecretConfigListGet.call(this, itemIndex);
+			return executeOkmsreferencesecretConfigListGet.call(this, itemIndex ?? 0);
 		case 'okmsreferenceserviceKeyListGet':
-			return executeOkmsreferenceserviceKeyListGet.call(this, itemIndex);
+			return executeOkmsreferenceserviceKeyListGet.call(this, itemIndex ?? 0);
 		case 'okmsresourceListGet':
-			return executeOkmsresourceListGet.call(this, itemIndex);
+			return executeOkmsresourceListGet.call(this, itemIndex ?? 0);
 		case 'okmsresourceListGet2':
-			return executeOkmsresourceListGet2.call(this, itemIndex);
+			return executeOkmsresourceListGet2.call(this, itemIndex ?? 0);
 		case 'okmsresourcecredentialListGet':
-			return executeOkmsresourcecredentialListGet.call(this, itemIndex);
+			return executeOkmsresourcecredentialListGet.call(this, itemIndex ?? 0);
 		case 'okmsresourcecredentialCreatePost':
-			return executeOkmsresourcecredentialCreatePost.call(this, itemIndex);
+			return executeOkmsresourcecredentialCreatePost.call(this, itemIndex ?? 0);
 		case 'okmsresourcecredentialDeleteDelete':
-			return executeOkmsresourcecredentialDeleteDelete.call(this, itemIndex);
+			return executeOkmsresourcecredentialDeleteDelete.call(this, itemIndex ?? 0);
 		case 'okmsresourcecredentialListGet2':
-			return executeOkmsresourcecredentialListGet2.call(this, itemIndex);
+			return executeOkmsresourcecredentialListGet2.call(this, itemIndex ?? 0);
 		case 'okmsresourcelogkindListGet':
-			return executeOkmsresourcelogkindListGet.call(this, itemIndex);
+			return executeOkmsresourcelogkindListGet.call(this, itemIndex ?? 0);
 		case 'okmsresourcelogkindListGet2':
-			return executeOkmsresourcelogkindListGet2.call(this, itemIndex);
+			return executeOkmsresourcelogkindListGet2.call(this, itemIndex ?? 0);
 		case 'okmsresourcelogsubscriptionListGet':
-			return executeOkmsresourcelogsubscriptionListGet.call(this, itemIndex);
+			return executeOkmsresourcelogsubscriptionListGet.call(this, itemIndex ?? 0);
 		case 'okmsresourcelogsubscriptionCreatePost':
-			return executeOkmsresourcelogsubscriptionCreatePost.call(this, itemIndex);
+			return executeOkmsresourcelogsubscriptionCreatePost.call(this, itemIndex ?? 0);
 		case 'okmsresourcelogsubscriptionDeleteDelete':
-			return executeOkmsresourcelogsubscriptionDeleteDelete.call(this, itemIndex);
+			return executeOkmsresourcelogsubscriptionDeleteDelete.call(this, itemIndex ?? 0);
 		case 'okmsresourcelogsubscriptionListGet2':
-			return executeOkmsresourcelogsubscriptionListGet2.call(this, itemIndex);
+			return executeOkmsresourcelogsubscriptionListGet2.call(this, itemIndex ?? 0);
 		case 'okmsresourcelogurlCreatePost':
-			return executeOkmsresourcelogurlCreatePost.call(this, itemIndex);
+			return executeOkmsresourcelogurlCreatePost.call(this, itemIndex ?? 0);
 		case 'okmsresourcesecretListGet':
-			return executeOkmsresourcesecretListGet.call(this, itemIndex);
+			return executeOkmsresourcesecretListGet.call(this, itemIndex ?? 0);
 		case 'okmsresourcesecretCreatePost':
-			return executeOkmsresourcesecretCreatePost.call(this, itemIndex);
+			return executeOkmsresourcesecretCreatePost.call(this, itemIndex ?? 0);
 		case 'okmsresourcesecretDeleteDelete':
-			return executeOkmsresourcesecretDeleteDelete.call(this, itemIndex);
+			return executeOkmsresourcesecretDeleteDelete.call(this, itemIndex ?? 0);
 		case 'okmsresourcesecretListGet2':
-			return executeOkmsresourcesecretListGet2.call(this, itemIndex);
+			return executeOkmsresourcesecretListGet2.call(this, itemIndex ?? 0);
 		case 'okmsresourcesecretUpdatePut':
-			return executeOkmsresourcesecretUpdatePut.call(this, itemIndex);
+			return executeOkmsresourcesecretUpdatePut.call(this, itemIndex ?? 0);
 		case 'okmsresourcesecretversionListGet':
-			return executeOkmsresourcesecretversionListGet.call(this, itemIndex);
+			return executeOkmsresourcesecretversionListGet.call(this, itemIndex ?? 0);
 		case 'okmsresourcesecretversionCreatePost':
-			return executeOkmsresourcesecretversionCreatePost.call(this, itemIndex);
+			return executeOkmsresourcesecretversionCreatePost.call(this, itemIndex ?? 0);
 		case 'okmsresourcesecretversionListGet2':
-			return executeOkmsresourcesecretversionListGet2.call(this, itemIndex);
+			return executeOkmsresourcesecretversionListGet2.call(this, itemIndex ?? 0);
 		case 'okmsresourcesecretversionUpdatePut':
-			return executeOkmsresourcesecretversionUpdatePut.call(this, itemIndex);
+			return executeOkmsresourcesecretversionUpdatePut.call(this, itemIndex ?? 0);
 		case 'okmsresourcesecretConfigListGet':
-			return executeOkmsresourcesecretConfigListGet.call(this, itemIndex);
+			return executeOkmsresourcesecretConfigListGet.call(this, itemIndex ?? 0);
 		case 'okmsresourcesecretConfigUpdatePut':
-			return executeOkmsresourcesecretConfigUpdatePut.call(this, itemIndex);
+			return executeOkmsresourcesecretConfigUpdatePut.call(this, itemIndex ?? 0);
 		case 'okmsresourceserviceKeyListGet':
-			return executeOkmsresourceserviceKeyListGet.call(this, itemIndex);
+			return executeOkmsresourceserviceKeyListGet.call(this, itemIndex ?? 0);
 		case 'okmsresourceserviceKeyCreatePost':
-			return executeOkmsresourceserviceKeyCreatePost.call(this, itemIndex);
+			return executeOkmsresourceserviceKeyCreatePost.call(this, itemIndex ?? 0);
 		case 'okmsresourceserviceKeyDeleteDelete':
-			return executeOkmsresourceserviceKeyDeleteDelete.call(this, itemIndex);
+			return executeOkmsresourceserviceKeyDeleteDelete.call(this, itemIndex ?? 0);
 		case 'okmsresourceserviceKeyListGet2':
-			return executeOkmsresourceserviceKeyListGet2.call(this, itemIndex);
+			return executeOkmsresourceserviceKeyListGet2.call(this, itemIndex ?? 0);
 		case 'okmsresourceserviceKeyUpdatePut':
-			return executeOkmsresourceserviceKeyUpdatePut.call(this, itemIndex);
+			return executeOkmsresourceserviceKeyUpdatePut.call(this, itemIndex ?? 0);
 
 	}
 

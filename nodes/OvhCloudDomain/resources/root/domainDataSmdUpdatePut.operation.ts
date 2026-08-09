@@ -38,13 +38,13 @@ export function description(displayOptions: IDisplayOptions): INodeProperties[] 
  */
 export async function execute(
 	this: IExecuteFunctions,
-	itemIndex: number,
+	_itemIndex: number,
 ): Promise<INodeExecutionData[]> {
 	const client = new ApiClient(this);
-	const smdId = this.getNodeParameter('smdId', itemIndex) as string;
+	const smdId = this.getNodeParameter('smdId', _itemIndex) as string;
 
 	const body: IDataObject = {};
-	const data = this.getNodeParameter('data', itemIndex, '') as string;
+	const data = this.getNodeParameter('data', _itemIndex, '') as string;
 	body['data'] = data;
 
 	const response = (await client.httpPut(

@@ -35,10 +35,10 @@ export function description(displayOptions: IDisplayOptions): INodeProperties[] 
  * HTTP method: POST
  * Endpoint: /connectivity/eligibility/search/buildingDetails
  */
-export async function execute(this: IExecuteFunctions): Promise<INodeExecutionData[]> {
+export async function execute(this: IExecuteFunctions, _itemIndex?: number): Promise<INodeExecutionData[]> {
 	const client = new ApiClient(this);
-	const building = (this.getNodeParameter('building', 0, '') as string) || '';
-	const forceProvider = (this.getNodeParameter('forceProvider', 0, '') as string) || '';
+	const building = (this.getNodeParameter('building', _itemIndex ?? 0, '') as string) || '';
+	const forceProvider = (this.getNodeParameter('forceProvider', _itemIndex ?? 0, '') as string) || '';
 
 	const body: IDataObject = {};
 	if (building) body.building = building;

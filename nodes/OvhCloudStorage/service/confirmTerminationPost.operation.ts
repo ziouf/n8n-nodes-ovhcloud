@@ -109,23 +109,23 @@ export function description(displayOptions: IDisplayOptions): INodeProperties[] 
  * HTTP method: POST
  * Endpoint: /storage/netapp/{serviceName}/confirmTermination
  */
-export async function execute(this: IExecuteFunctions, itemIndex: number): Promise<INodeExecutionData[]> {
+export async function execute(this: IExecuteFunctions, _itemIndex: number): Promise<INodeExecutionData[]> {
 	const client = new ApiClient(this);
-	const serviceName = this.getNodeParameter('serviceName', itemIndex, '', {
+	const serviceName = this.getNodeParameter('serviceName', _itemIndex, '', {
 				extractValue: true,
 			}) as string;
 	const body: IDataObject = {};
-	const commentary = this.getNodeParameter('commentary', itemIndex, '') as string;
+	const commentary = this.getNodeParameter('commentary', _itemIndex, '') as string;
 	if (commentary !== '') { body.commentary = commentary; }
-	const commentaryFutureUse = this.getNodeParameter('commentaryFutureUse', itemIndex, '') as string;
+	const commentaryFutureUse = this.getNodeParameter('commentaryFutureUse', _itemIndex, '') as string;
 	if (commentaryFutureUse !== '') { body.commentaryFutureUse = commentaryFutureUse; }
-	const commentaryReason = this.getNodeParameter('commentaryReason', itemIndex, '') as string;
+	const commentaryReason = this.getNodeParameter('commentaryReason', _itemIndex, '') as string;
 	if (commentaryReason !== '') { body.commentaryReason = commentaryReason; }
-	const futureUse = this.getNodeParameter('futureUse', itemIndex, '') as string;
+	const futureUse = this.getNodeParameter('futureUse', _itemIndex, '') as string;
 	if (futureUse !== '') { body.futureUse = futureUse; }
-	const reason = this.getNodeParameter('reason', itemIndex, '') as string;
+	const reason = this.getNodeParameter('reason', _itemIndex, '') as string;
 	if (reason !== '') { body.reason = reason; }
-	body.token = this.getNodeParameter('token', itemIndex) as string;
+	body.token = this.getNodeParameter('token', _itemIndex) as string;
 	const data = (await client.httpPost(`/storage/netapp/${encodeURIComponent(serviceName)}/confirmTermination`, body)) as IDataObject;
 	return this.helpers.returnJsonArray([data]);
 }

@@ -51,18 +51,18 @@ export function description(displayOptions: IDisplayOptions): INodeProperties[] 
  */
 export async function execute(
 	this: IExecuteFunctions,
-	itemIndex: number,
+	_itemIndex: number,
 ): Promise<INodeExecutionData[]> {
 	const client = new ApiClient(this);
-	const serviceName = this.getNodeParameter('serviceName', itemIndex) as string;
-	const domain = this.getNodeParameter('domain', itemIndex) as string;
-	const period = this.getNodeParameter('period', itemIndex, 'day') as string;
+	const serviceName = this.getNodeParameter('serviceName', _itemIndex) as string;
+	const domain = this.getNodeParameter('domain', _itemIndex) as string;
+	const period = this.getNodeParameter('period', _itemIndex, 'day') as string;
 	const qs: IDataObject = {};
 	if (period) qs.period = period;
 	const data = (await client.httpGet(
 		`/hosting/web/${serviceName}/cdn/domain/${domain}/statistics`,
 		qs,
 	)) as IDataObject;
-	const inputData = this.getInputData()[itemIndex];
+	const inputData = this.getInputData()[_itemIndex];
 	return this.helpers.returnJsonArray([{ ...inputData.json, ...data }]);
 }

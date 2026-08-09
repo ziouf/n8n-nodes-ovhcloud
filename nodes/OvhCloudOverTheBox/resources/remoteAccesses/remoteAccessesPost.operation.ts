@@ -74,13 +74,13 @@ export function description(displayOptions: IDisplayOptions): INodeProperties[] 
  * HTTP method: POST
  * Endpoint: /overTheBox/{serviceName}/remoteAccesses
  */
-export async function execute(this: IExecuteFunctions): Promise<INodeExecutionData[]> {
+export async function execute(this: IExecuteFunctions, _itemIndex?: number): Promise<INodeExecutionData[]> {
 	const client = new ApiClient(this);
-	const serviceName = this.getNodeParameter('serviceName', 0, '', { extractValue: true }) as string;
-	const allowedIp = (this.getNodeParameter('allowedIp', 0, '') as string) || '';
-	const expirationDate = (this.getNodeParameter('expirationDate', 0, '') as string) || '';
-	const exposedPort = this.getNodeParameter('exposedPort', 0, 0) as number;
-	const publicKey = (this.getNodeParameter('publicKey', 0, '') as string) || '';
+	const serviceName = this.getNodeParameter('serviceName', _itemIndex ?? 0, '', { extractValue: true }) as string;
+	const allowedIp = (this.getNodeParameter('allowedIp', _itemIndex ?? 0, '') as string) || '';
+	const expirationDate = (this.getNodeParameter('expirationDate', _itemIndex ?? 0, '') as string) || '';
+	const exposedPort = this.getNodeParameter('exposedPort', _itemIndex ?? 0, 0) as number;
+	const publicKey = (this.getNodeParameter('publicKey', _itemIndex ?? 0, '') as string) || '';
 
 	const body: IDataObject = {};
 	if (allowedIp) body.allowedIp = allowedIp;

@@ -113,17 +113,17 @@ export function description(displayOptions: IDisplayOptions): INodeProperties[] 
  * HTTP method: POST
  * Endpoint: /connectivity/eligibility/search/meetings
  */
-export async function execute(this: IExecuteFunctions): Promise<INodeExecutionData[]> {
+export async function execute(this: IExecuteFunctions, _itemIndex?: number): Promise<INodeExecutionData[]> {
 	const client = new ApiClient(this);
-	const eligibilityReference = (this.getNodeParameter('eligibilityReference', 0, '') as string) || '';
-	const installationType = (this.getNodeParameter('installationType', 0, '') as string) || '';
-	const otp = (this.getNodeParameter('otp', 0, '') as string) || '';
-	const planCode = (this.getNodeParameter('planCode', 0, '') as string) || '';
-	const productCode = (this.getNodeParameter('productCode', 0, '') as string) || '';
-	const siteCompanyName = (this.getNodeParameter('siteCompanyName', 0, '') as string) || '';
-	const technicalVisit = (this.getNodeParameter('technicalVisit', 0, '') as string) || '';
-	const type = (this.getNodeParameter('type', 0, '') as string) || '';
-	const unbundlingType = (this.getNodeParameter('unbundlingType', 0, '') as string) || '';
+	const eligibilityReference = (this.getNodeParameter('eligibilityReference', _itemIndex ?? 0, '') as string) || '';
+	const installationType = (this.getNodeParameter('installationType', _itemIndex ?? 0, '') as string) || '';
+	const otp = (this.getNodeParameter('otp', _itemIndex ?? 0, '') as string) || '';
+	const planCode = (this.getNodeParameter('planCode', _itemIndex ?? 0, '') as string) || '';
+	const productCode = (this.getNodeParameter('productCode', _itemIndex ?? 0, '') as string) || '';
+	const siteCompanyName = (this.getNodeParameter('siteCompanyName', _itemIndex ?? 0, '') as string) || '';
+	const technicalVisit = (this.getNodeParameter('technicalVisit', _itemIndex ?? 0, '') as string) || '';
+	const type = (this.getNodeParameter('type', _itemIndex ?? 0, '') as string) || '';
+	const unbundlingType = (this.getNodeParameter('unbundlingType', _itemIndex ?? 0, '') as string) || '';
 
 	const body: IDataObject = {};
 	if (eligibilityReference) body.eligibilityReference = eligibilityReference;

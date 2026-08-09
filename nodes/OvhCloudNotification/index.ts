@@ -285,43 +285,43 @@ export async function execute(
 
 	switch (operation) {
 		case 'notificationcontactMeanListGet':
-			return executeNotificationcontactMeanListGet.call(this, itemIndex);
+			return executeNotificationcontactMeanListGet.call(this, itemIndex ?? 0);
 		case 'notificationcontactMeanCreatePost':
-			return executeNotificationcontactMeanCreatePost.call(this, itemIndex);
+			return executeNotificationcontactMeanCreatePost.call(this, itemIndex ?? 0);
 		case 'notificationcontactMeanDeleteDelete':
-			return executeNotificationcontactMeanDeleteDelete.call(this, itemIndex);
+			return executeNotificationcontactMeanDeleteDelete.call(this, itemIndex ?? 0);
 		case 'notificationcontactMeanListGet2':
-			return executeNotificationcontactMeanGetDetail.call(this, itemIndex);
+			return executeNotificationcontactMeanGetDetail.call(this, itemIndex ?? 0);
 		case 'notificationcontactMeanUpdatePut':
-			return executeNotificationcontactMeanUpdatePut.call(this, itemIndex);
+			return executeNotificationcontactMeanUpdatePut.call(this, itemIndex ?? 0);
 		case 'notificationcontactMeanrestartValidationCreatePost':
-			return executeNotificationcontactMeanrestartValidationCreatePost.call(this, itemIndex);
+			return executeNotificationcontactMeanrestartValidationCreatePost.call(this, itemIndex ?? 0);
 		case 'notificationcontactMeantaskListGet':
-			return executeNotificationcontactMeantaskListGet.call(this, itemIndex);
+			return executeNotificationcontactMeantaskListGet.call(this, itemIndex ?? 0);
 		case 'notificationcontactMeantaskListGet2':
-			return executeNotificationcontactMeantaskListGet2.call(this, itemIndex);
+			return executeNotificationcontactMeantaskListGet2.call(this, itemIndex ?? 0);
 		case 'notificationcontactMeantaskUpdatePut':
-			return executeNotificationcontactMeantaskUpdatePut.call(this, itemIndex);
+			return executeNotificationcontactMeantaskUpdatePut.call(this, itemIndex ?? 0);
 		case 'notificationcontactMeanvalidateCreatePost':
-			return executeNotificationcontactMeanvalidateCreatePost.call(this, itemIndex);
+			return executeNotificationcontactMeanvalidateCreatePost.call(this, itemIndex ?? 0);
 		case 'notificationhistoryListGet':
-			return executeNotificationhistoryListGet.call(this, itemIndex);
+			return executeNotificationhistoryListGet.call(this, itemIndex ?? 0);
 		case 'notificationhistoryListGet2':
-			return executeNotificationhistoryGetDetail.call(this, itemIndex);
+			return executeNotificationhistoryGetDetail.call(this, itemIndex ?? 0);
 		case 'notificationhistoryattachmentListGet':
-			return executeNotificationhistoryattachmentListGet.call(this, itemIndex);
+			return executeNotificationhistoryattachmentListGet.call(this, itemIndex ?? 0);
 		case 'notificationreferenceListGet':
-			return executeNotificationreferenceListGet.call(this, itemIndex);
+			return executeNotificationreferenceListGet.call(this, itemIndex ?? 0);
 		case 'notificationroutingListGet':
-			return executeNotificationroutingListGet.call(this, itemIndex);
+			return executeNotificationroutingListGet.call(this, itemIndex ?? 0);
 		case 'notificationroutingCreatePost':
-			return executeNotificationroutingCreatePost.call(this, itemIndex);
+			return executeNotificationroutingCreatePost.call(this, itemIndex ?? 0);
 		case 'notificationroutingDeleteDelete':
-			return executeNotificationroutingDeleteDelete.call(this, itemIndex);
+			return executeNotificationroutingDeleteDelete.call(this, itemIndex ?? 0);
 		case 'notificationroutingListGet2':
-			return executeNotificationroutingGetDetail.call(this, itemIndex);
+			return executeNotificationroutingGetDetail.call(this, itemIndex ?? 0);
 		case 'notificationroutingUpdatePut':
-			return executeNotificationroutingUpdatePut.call(this, itemIndex);
+			return executeNotificationroutingUpdatePut.call(this, itemIndex ?? 0);
 	}
 
 	throw new Error(`Unsupported operation "${operation}" for resource "ovhCloudNotification"`);

@@ -51,9 +51,9 @@ export function description(displayOptions: IDisplayOptions): INodeProperties[] 
  * HTTP method: PUT
  * Endpoint: /xdsl/email/pro/{email}
  */
-export async function execute(this: IExecuteFunctions): Promise<INodeExecutionData[]> {
+export async function execute(this: IExecuteFunctions, _itemIndex?: number): Promise<INodeExecutionData[]> {
 	const client = new ApiClient(this);
-	const email = this.getNodeParameter('email', 0) as string;
+	const email = this.getNodeParameter('email', _itemIndex ?? 0) as string;
 
 	const data = (await client.httpPut(`/xdsl/email/pro/${email}`, {})) as IDataObject;
 	return this.helpers.returnJsonArray([data]);

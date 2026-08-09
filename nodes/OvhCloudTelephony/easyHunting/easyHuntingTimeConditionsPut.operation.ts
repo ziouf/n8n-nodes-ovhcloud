@@ -108,18 +108,18 @@ export function description(displayOptions: IDisplayOptions): INodeProperties[] 
  * HTTP method: PUT
  * Endpoint: /telephony/{billingAccount}/easyHunting/{serviceName}/timeConditions
  */
-export async function execute(this: IExecuteFunctions, itemIndex: number): Promise<INodeExecutionData[]> {
-	const billingAccount = this.getNodeParameter('billingAccount', itemIndex) as string;
-	const serviceName = this.getNodeParameter('serviceName', itemIndex) as string;
-	const enable = this.getNodeParameter('enable', itemIndex) as string;
-	const slot1Number = this.getNodeParameter('slot1Number', itemIndex) as string;
-	const slot1Type = this.getNodeParameter('slot1Type', itemIndex) as string;
-	const slot2Number = this.getNodeParameter('slot2Number', itemIndex) as string;
-	const slot2Type = this.getNodeParameter('slot2Type', itemIndex) as string;
-	const slot3Number = this.getNodeParameter('slot3Number', itemIndex) as string;
-	const slot3Type = this.getNodeParameter('slot3Type', itemIndex) as string;
-	const unavailableNumber = this.getNodeParameter('unavailableNumber', itemIndex) as string;
-	const unavailableType = this.getNodeParameter('unavailableType', itemIndex) as string;
+export async function execute(this: IExecuteFunctions, _itemIndex: number): Promise<INodeExecutionData[]> {
+	const billingAccount = this.getNodeParameter('billingAccount', _itemIndex) as string;
+	const serviceName = this.getNodeParameter('serviceName', _itemIndex) as string;
+	const enable = this.getNodeParameter('enable', _itemIndex) as string;
+	const slot1Number = this.getNodeParameter('slot1Number', _itemIndex) as string;
+	const slot1Type = this.getNodeParameter('slot1Type', _itemIndex) as string;
+	const slot2Number = this.getNodeParameter('slot2Number', _itemIndex) as string;
+	const slot2Type = this.getNodeParameter('slot2Type', _itemIndex) as string;
+	const slot3Number = this.getNodeParameter('slot3Number', _itemIndex) as string;
+	const slot3Type = this.getNodeParameter('slot3Type', _itemIndex) as string;
+	const unavailableNumber = this.getNodeParameter('unavailableNumber', _itemIndex) as string;
+	const unavailableType = this.getNodeParameter('unavailableType', _itemIndex) as string;
 
 	const body: IDataObject = {
 		enable: enable,

@@ -177,40 +177,40 @@ export function description(displayOptions: IDisplayOptions): INodeProperties[] 
  * HTTP method: POST
  * Endpoint: /dedicatedCloud/{serviceName}/user
  */
-export async function execute(this: IExecuteFunctions, itemIndex: number): Promise<INodeExecutionData[]> {
+export async function execute(this: IExecuteFunctions, _itemIndex: number): Promise<INodeExecutionData[]> {
 	const client = new ApiClient(this);
-	const serviceName = this.getNodeParameter('serviceName', itemIndex) as string;
+	const serviceName = this.getNodeParameter('serviceName', _itemIndex) as string;
 	const body: IDataObject = {};
-	const canAddRessource = this.getNodeParameter('canAddRessource', itemIndex) as boolean;
+	const canAddRessource = this.getNodeParameter('canAddRessource', _itemIndex) as boolean;
 	if (canAddRessource) { body.canAddRessource = canAddRessource; }
-	const canManageRights = this.getNodeParameter('canManageRights', itemIndex) as boolean;
+	const canManageRights = this.getNodeParameter('canManageRights', _itemIndex) as boolean;
 	if (canManageRights) { body.canManageRights = canManageRights; }
-	const email = this.getNodeParameter('email', itemIndex, '') as string;
+	const email = this.getNodeParameter('email', _itemIndex, '') as string;
 	if (email !== '') { body.email = email; }
-	const encryptionRight = this.getNodeParameter('encryptionRight', itemIndex) as boolean;
+	const encryptionRight = this.getNodeParameter('encryptionRight', _itemIndex) as boolean;
 	if (encryptionRight) { body.encryptionRight = encryptionRight; }
-	const expirationDate = this.getNodeParameter('expirationDate', itemIndex, '') as string;
+	const expirationDate = this.getNodeParameter('expirationDate', _itemIndex, '') as string;
 	if (expirationDate !== '') { body.expirationDate = expirationDate; }
-	const firstName = this.getNodeParameter('firstName', itemIndex, '') as string;
+	const firstName = this.getNodeParameter('firstName', _itemIndex, '') as string;
 	if (firstName !== '') { body.firstName = firstName; }
-	const lastName = this.getNodeParameter('lastName', itemIndex, '') as string;
+	const lastName = this.getNodeParameter('lastName', _itemIndex, '') as string;
 	if (lastName !== '') { body.lastName = lastName; }
-	body.name = this.getNodeParameter('name', itemIndex) as string;
-	const networkRole = this.getNodeParameter('networkRole', itemIndex, '') as string;
+	body.name = this.getNodeParameter('name', _itemIndex) as string;
+	const networkRole = this.getNodeParameter('networkRole', _itemIndex, '') as string;
 	if (networkRole !== '') { body.networkRole = networkRole; }
-	const nsxRight = this.getNodeParameter('nsxRight', itemIndex) as boolean;
+	const nsxRight = this.getNodeParameter('nsxRight', _itemIndex) as boolean;
 	if (nsxRight) { body.nsxRight = nsxRight; }
-	const password = this.getNodeParameter('password', itemIndex, '') as string;
+	const password = this.getNodeParameter('password', _itemIndex, '') as string;
 	if (password !== '') { body.password = password; }
-	const phoneNumber = this.getNodeParameter('phoneNumber', itemIndex, '') as string;
+	const phoneNumber = this.getNodeParameter('phoneNumber', _itemIndex, '') as string;
 	if (phoneNumber !== '') { body.phoneNumber = phoneNumber; }
-	const receiveAlerts = this.getNodeParameter('receiveAlerts', itemIndex) as boolean;
+	const receiveAlerts = this.getNodeParameter('receiveAlerts', _itemIndex) as boolean;
 	if (receiveAlerts) { body.receiveAlerts = receiveAlerts; }
-	const right = this.getNodeParameter('right', itemIndex, '') as string;
+	const right = this.getNodeParameter('right', _itemIndex, '') as string;
 	if (right !== '') { body.right = right; }
-	const tokenValidator = this.getNodeParameter('tokenValidator', itemIndex) as boolean;
+	const tokenValidator = this.getNodeParameter('tokenValidator', _itemIndex) as boolean;
 	if (tokenValidator) { body.tokenValidator = tokenValidator; }
-	const vmNetworkRole = this.getNodeParameter('vmNetworkRole', itemIndex, '') as string;
+	const vmNetworkRole = this.getNodeParameter('vmNetworkRole', _itemIndex, '') as string;
 	if (vmNetworkRole !== '') { body.vmNetworkRole = vmNetworkRole; }
 	const data = (await client.httpPost(`/dedicatedCloud/${serviceName}/user`, body)) as IDataObject;
 	return this.helpers.returnJsonArray([data]);

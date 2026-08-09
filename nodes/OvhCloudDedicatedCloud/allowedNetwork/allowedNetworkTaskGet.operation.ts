@@ -43,11 +43,11 @@ export function description(displayOptions: IDisplayOptions): INodeProperties[] 
  * HTTP method: GET
  * Endpoint: /dedicatedCloud/{serviceName}/allowedNetwork/{networkAccessId}/task/{taskId}
  */
-export async function execute(this: IExecuteFunctions, itemIndex: number): Promise<INodeExecutionData[]> {
+export async function execute(this: IExecuteFunctions, _itemIndex: number): Promise<INodeExecutionData[]> {
 	const client = new ApiClient(this);
-	const serviceName = this.getNodeParameter('serviceName', itemIndex) as string;
-	const networkAccessId = this.getNodeParameter('networkAccessId', itemIndex) as string;
-	const taskId = this.getNodeParameter('taskId', itemIndex) as string;
+	const serviceName = this.getNodeParameter('serviceName', _itemIndex) as string;
+	const networkAccessId = this.getNodeParameter('networkAccessId', _itemIndex) as string;
+	const taskId = this.getNodeParameter('taskId', _itemIndex) as string;
 	const data = (await client.httpGet(`/dedicatedCloud/${serviceName}/allowedNetwork/${networkAccessId}/task/${taskId}`)) as IDataObject;
 	return this.helpers.returnJsonArray([data]);
 }

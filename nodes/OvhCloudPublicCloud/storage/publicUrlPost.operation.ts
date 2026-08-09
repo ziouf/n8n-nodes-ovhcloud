@@ -68,16 +68,16 @@ export function description(displayOptions: IDisplayOptions): INodeProperties[] 
  * HTTP method: POST
  * Endpoint: /cloud/project/{projectId}/storage/{containerId}/publicUrl
  */
-export async function execute(this: IExecuteFunctions): Promise<INodeExecutionData[]> {
+export async function execute(this: IExecuteFunctions, _itemIndex?: number): Promise<INodeExecutionData[]> {
 	const client = new ApiClient(this);
-	const projectId = this.getNodeParameter('publicCloudProjectId', 0, '', {
+	const projectId = this.getNodeParameter('publicCloudProjectId', _itemIndex ?? 0, '', {
 		extractValue: true,
 	}) as string;
-	const containerId = this.getNodeParameter('containerId', 0) as string;
+	const containerId = this.getNodeParameter('containerId', _itemIndex ?? 0) as string;
 
 	const body: IDataObject = {};
-	body['objectName'] = this.getNodeParameter('objectName', 0) as string;
-	body['expirationDate'] = this.getNodeParameter('expirationDate', 0) as string;
+	body['objectName'] = this.getNodeParameter('objectName', _itemIndex ?? 0) as string;
+	body['expirationDate'] = this.getNodeParameter('expirationDate', _itemIndex ?? 0) as string;
 
 	const data = (await client.httpPost(
 		`/cloud/project/${projectId}/storage/${containerId}/publicUrl`,

@@ -28,8 +28,8 @@ export function description(displayOptions: IDisplayOptions): INodeProperties[] 
  * HTTP method: PUT
  * Endpoint: /vrackServices/resource/{vrackServicesId}
  */
-export async function execute(this: IExecuteFunctions, itemIndex: number): Promise<INodeExecutionData[]> {
-	const vrackServicesId = this.getNodeParameter('vrackServicesId', itemIndex) as string;
+export async function execute(this: IExecuteFunctions, _itemIndex: number): Promise<INodeExecutionData[]> {
+	const vrackServicesId = this.getNodeParameter('vrackServicesId', _itemIndex) as string;
 
 	const body: IDataObject = {};
 

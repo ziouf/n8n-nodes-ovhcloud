@@ -52,15 +52,15 @@ export function description(displayOptions: IDisplayOptions): INodeProperties[] 
  * HTTP method: PUT
  * Endpoint: /domain/zone/{zoneName}/dynHost/record/{id}
  */
-export async function execute(this: IExecuteFunctions, itemIndex: number): Promise<INodeExecutionData[]> {
+export async function execute(this: IExecuteFunctions, _itemIndex: number): Promise<INodeExecutionData[]> {
 	const client = new ApiClient(this);
-		const id = this.getNodeParameter('id', itemIndex) as string;
-		const zoneName = this.getNodeParameter('zoneName', itemIndex) as string;
+		const id = this.getNodeParameter('id', _itemIndex) as string;
+		const zoneName = this.getNodeParameter('zoneName', _itemIndex) as string;
 
 	const body: IDataObject = {};
-		const ip = this.getNodeParameter('ip', itemIndex, '') as string;
+		const ip = this.getNodeParameter('ip', _itemIndex, '') as string;
 		if (ip !== '') body['ip'] = ip;
-		const subDomain = this.getNodeParameter('subDomain', itemIndex, '') as string;
+		const subDomain = this.getNodeParameter('subDomain', _itemIndex, '') as string;
 		if (subDomain !== '') body['subDomain'] = subDomain;
 
 	const data = (await client.httpPut(`/domain/zone/${encodeURIComponent(zoneName)}/dynHost/record/${encodeURIComponent(id)}`, body)) as IDataObject;

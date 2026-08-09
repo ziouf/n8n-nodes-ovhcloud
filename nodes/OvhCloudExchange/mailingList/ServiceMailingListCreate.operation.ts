@@ -97,18 +97,18 @@ export function description() {
  * HTTP method: POST
  * Endpoint: /email/exchange/{organizationName}/service/{exchangeService}/mailingList
  */
-export async function execute(this: IExecuteFunctions): Promise<INodeExecutionData[]> {
-	const organizationName = this.getNodeParameter('organizationName', 0) as string;
-	const exchangeService = this.getNodeParameter('exchangeService', 0) as string;
-	const company = this.getNodeParameter('company', 0) as string;
-	const departRestriction = this.getNodeParameter('departRestriction', 0) as string;
-	const displayName = this.getNodeParameter('displayName', 0) as string;
-	const hiddenFromGAL = this.getNodeParameter('hiddenFromGAL', 0) as string;
-	const joinRestriction = this.getNodeParameter('joinRestriction', 0) as string;
-	const mailingListAddress = this.getNodeParameter('mailingListAddress', 0) as string;
-	const maxReceiveSize = this.getNodeParameter('maxReceiveSize', 0) as string;
-	const maxSendSize = this.getNodeParameter('maxSendSize', 0) as string;
-	const senderAuthentification = this.getNodeParameter('senderAuthentification', 0) as string;
+export async function execute(this: IExecuteFunctions, _itemIndex?: number): Promise<INodeExecutionData[]> {
+	const organizationName = this.getNodeParameter('organizationName', _itemIndex ?? 0) as string;
+	const exchangeService = this.getNodeParameter('exchangeService', _itemIndex ?? 0) as string;
+	const company = this.getNodeParameter('company', _itemIndex ?? 0) as string;
+	const departRestriction = this.getNodeParameter('departRestriction', _itemIndex ?? 0) as string;
+	const displayName = this.getNodeParameter('displayName', _itemIndex ?? 0) as string;
+	const hiddenFromGAL = this.getNodeParameter('hiddenFromGAL', _itemIndex ?? 0) as string;
+	const joinRestriction = this.getNodeParameter('joinRestriction', _itemIndex ?? 0) as string;
+	const mailingListAddress = this.getNodeParameter('mailingListAddress', _itemIndex ?? 0) as string;
+	const maxReceiveSize = this.getNodeParameter('maxReceiveSize', _itemIndex ?? 0) as string;
+	const maxSendSize = this.getNodeParameter('maxSendSize', _itemIndex ?? 0) as string;
+	const senderAuthentification = this.getNodeParameter('senderAuthentification', _itemIndex ?? 0) as string;
 
 	const body: IDataObject = {
     company: company,

@@ -47,12 +47,12 @@ export function description(displayOptions: IDisplayOptions): INodeProperties[] 
  */
 export async function execute(
 	this: IExecuteFunctions,
-	itemIndex: number,
+	_itemIndex: number,
 ): Promise<INodeExecutionData[]> {
 	const client = new ApiClient(this);
-	const serviceName = this.getNodeParameter('serviceName', itemIndex) as string;
-	const accessId = this.getNodeParameter('accessId', itemIndex) as string;
-	const protocol = this.getNodeParameter('protocol', itemIndex, '') as string;
+	const serviceName = this.getNodeParameter('serviceName', _itemIndex) as string;
+	const accessId = this.getNodeParameter('accessId', _itemIndex) as string;
+	const protocol = this.getNodeParameter('protocol', _itemIndex, '') as string;
 
 	const body: IDataObject = {};
 		if (protocol) {
@@ -63,6 +63,6 @@ export async function execute(
 		`/dedicated/server/${encodeURIComponent(String(serviceName))}/features/backupFTP/access/${encodeURIComponent(String(accessId))}`,
 		body
 	)) as IDataObject;
-	const inputData = this.getInputData()[itemIndex];
+	const inputData = this.getInputData()[_itemIndex];
 	return this.helpers.returnJsonArray([{ ...inputData.json, ...data }]);
 }

@@ -77,16 +77,16 @@ export function description(displayOptions: IDisplayOptions): INodeProperties[] 
  */
 export async function execute(
 	this: IExecuteFunctions,
-	itemIndex: number,
+	_itemIndex: number,
 ): Promise<INodeExecutionData[]> {
-	const serviceName = this.getNodeParameter('serviceName', itemIndex) as string;
+	const serviceName = this.getNodeParameter('serviceName', _itemIndex) as string;
 
-	const action = this.getNodeParameter('action', itemIndex) as string;
-	const creationDateFrom = this.getNodeParameter('creationDate.from', itemIndex) as string;
-	const creationDateTo = this.getNodeParameter('creationDate.to', itemIndex) as string;
-	const doneDateFrom = this.getNodeParameter('doneDate.from', itemIndex) as string;
-	const doneDateTo = this.getNodeParameter('doneDate.to', itemIndex) as string;
-	const status = this.getNodeParameter('status', itemIndex) as string;
+	const action = this.getNodeParameter('action', _itemIndex) as string;
+	const creationDateFrom = this.getNodeParameter('creationDate.from', _itemIndex) as string;
+	const creationDateTo = this.getNodeParameter('creationDate.to', _itemIndex) as string;
+	const doneDateFrom = this.getNodeParameter('doneDate.from', _itemIndex) as string;
+	const doneDateTo = this.getNodeParameter('doneDate.to', _itemIndex) as string;
+	const status = this.getNodeParameter('status', _itemIndex) as string;
 
 	const qs: IDataObject = {
 		'creationDate.from': creationDateFrom,

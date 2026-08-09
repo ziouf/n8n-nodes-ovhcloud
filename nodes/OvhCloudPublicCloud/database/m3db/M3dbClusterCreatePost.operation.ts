@@ -145,26 +145,26 @@ export function description(displayOptions: IDisplayOptions): INodeProperties[] 
  * HTTP method: POST
  * Endpoint: /cloud/project/{serviceName}/database/m3db
  */
-export async function execute(this: IExecuteFunctions): Promise<INodeExecutionData[]> {
+export async function execute(this: IExecuteFunctions, _itemIndex?: number): Promise<INodeExecutionData[]> {
 	const client = new ApiClient(this);
-	const serviceName = this.getNodeParameter('publicCloudProjectId', 0, '', {
+	const serviceName = this.getNodeParameter('publicCloudProjectId', _itemIndex ?? 0, '', {
 		extractValue: true,
 }) as string;
 
 	const body: IDataObject = {};
-	if (this.getNodeParameter('description', 0)) body.description = this.getNodeParameter('description', 0);
-	if (this.getNodeParameter('plan', 0)) body.plan = this.getNodeParameter('plan', 0);
-	if (this.getNodeParameter('version', 0)) body.version = this.getNodeParameter('version', 0);
-	if (this.getNodeParameter('nodesList', 0)) body.nodesList = this.getNodeParameter('nodesList', 0);
-	if (this.getNodeParameter('nodesPattern', 0)) body.nodesPattern = this.getNodeParameter('nodesPattern', 0);
-	if (this.getNodeParameter('networkId', 0)) body.networkId = this.getNodeParameter('networkId', 0);
-	if (this.getNodeParameter('subnetId', 0)) body.subnetId = this.getNodeParameter('subnetId', 0);
-	if (this.getNodeParameter('disk', 0)) body.disk = this.getNodeParameter('disk', 0);
-	if (this.getNodeParameter('backup', 0)) body.backup = this.getNodeParameter('backup', 0);
-	if (this.getNodeParameter('backupTime', 0)) body.backupTime = this.getNodeParameter('backupTime', 0);
-	if (this.getNodeParameter('maintenanceTime', 0)) body.maintenanceTime = this.getNodeParameter('maintenanceTime', 0);
-	if (this.getNodeParameter('ipRestrictions', 0)) body.ipRestrictions = this.getNodeParameter('ipRestrictions', 0);
-	if (this.getNodeParameter('forkFrom', 0)) body.forkFrom = this.getNodeParameter('forkFrom', 0);
+	if (this.getNodeParameter('description', _itemIndex ?? 0)) body.description = this.getNodeParameter('description', _itemIndex ?? 0);
+	if (this.getNodeParameter('plan', _itemIndex ?? 0)) body.plan = this.getNodeParameter('plan', _itemIndex ?? 0);
+	if (this.getNodeParameter('version', _itemIndex ?? 0)) body.version = this.getNodeParameter('version', _itemIndex ?? 0);
+	if (this.getNodeParameter('nodesList', _itemIndex ?? 0)) body.nodesList = this.getNodeParameter('nodesList', _itemIndex ?? 0);
+	if (this.getNodeParameter('nodesPattern', _itemIndex ?? 0)) body.nodesPattern = this.getNodeParameter('nodesPattern', _itemIndex ?? 0);
+	if (this.getNodeParameter('networkId', _itemIndex ?? 0)) body.networkId = this.getNodeParameter('networkId', _itemIndex ?? 0);
+	if (this.getNodeParameter('subnetId', _itemIndex ?? 0)) body.subnetId = this.getNodeParameter('subnetId', _itemIndex ?? 0);
+	if (this.getNodeParameter('disk', _itemIndex ?? 0)) body.disk = this.getNodeParameter('disk', _itemIndex ?? 0);
+	if (this.getNodeParameter('backup', _itemIndex ?? 0)) body.backup = this.getNodeParameter('backup', _itemIndex ?? 0);
+	if (this.getNodeParameter('backupTime', _itemIndex ?? 0)) body.backupTime = this.getNodeParameter('backupTime', _itemIndex ?? 0);
+	if (this.getNodeParameter('maintenanceTime', _itemIndex ?? 0)) body.maintenanceTime = this.getNodeParameter('maintenanceTime', _itemIndex ?? 0);
+	if (this.getNodeParameter('ipRestrictions', _itemIndex ?? 0)) body.ipRestrictions = this.getNodeParameter('ipRestrictions', _itemIndex ?? 0);
+	if (this.getNodeParameter('forkFrom', _itemIndex ?? 0)) body.forkFrom = this.getNodeParameter('forkFrom', _itemIndex ?? 0);
 
 	const data = (await client.httpPost(`/cloud/project/${serviceName}/database/m3db`, body as IDataObject)) as IDataObject;
 

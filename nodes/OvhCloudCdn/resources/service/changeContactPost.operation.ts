@@ -51,11 +51,11 @@ export function description(displayOptions: IDisplayOptions): INodeProperties[] 
  * HTTP method: POST
  * Endpoint: /cdn/dedicated/{serviceName}/changeContact
  */
-export async function execute(this: IExecuteFunctions, itemIndex: number): Promise<INodeExecutionData[]> {
-	const serviceName = this.getNodeParameter('serviceName', itemIndex) as string;
-	const contactAdmin = (this.getNodeParameter('contactAdmin', itemIndex, "") as string);
-	const contactBilling = (this.getNodeParameter('contactBilling', itemIndex, "") as string);
-	const contactTech = (this.getNodeParameter('contactTech', itemIndex, "") as string);
+export async function execute(this: IExecuteFunctions, _itemIndex: number): Promise<INodeExecutionData[]> {
+	const serviceName = this.getNodeParameter('serviceName', _itemIndex) as string;
+	const contactAdmin = (this.getNodeParameter('contactAdmin', _itemIndex, "") as string);
+	const contactBilling = (this.getNodeParameter('contactBilling', _itemIndex, "") as string);
+	const contactTech = (this.getNodeParameter('contactTech', _itemIndex, "") as string);
 
 	const body: IDataObject = {};
 	if (contactAdmin !== '') body.contactAdmin = contactAdmin;

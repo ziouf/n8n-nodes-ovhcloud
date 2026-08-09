@@ -35,7 +35,9 @@ All nodes share common features across every OVH Cloud endpoint:
 - **Credential memoization** — API credentials are fetched once per node execution and reused across all HTTP calls (`ApiClient.clearCredentialsCache()` to force refresh)
 - **Automatic retry & backoff** — GET requests automatically retry on transient errors (429, 5xx, timeouts) with jitter; POST/PUT/DELETE retries require explicit `*WithRetry` configuration.
 - **Destructive operation warnings** — destructive or irreversible operations (terminate, reinstall, reboot) display a yellow warning notice in the node UI via the shared `destructiveActionNotice()` helper.
-- **Advanced pagination** — `paginateResources()` fetches detail objects in parallel (max 5 concurrent requests) with an `onSkipped` callback for per-resource error tracking; `paginate` supports `maxItems` (default 1000), `query` merging, and automatic mapping to full objects for ID arrays.
+- **Correct multi-items support** — parameters are resolved per item (`getNodeParameter(name, itemIndex ?? 0)`) across all nodes, so workflows with multiple input items use the right parameters for each.
+- **Advanced pagination** — `paginate()` fetches pages in parallel batches (configurable `concurrency`, default 1 for backward compatibility); `paginateResources()` fetches detail objects in parallel (max 5 concurrent requests) with an `onSkipped` callback for per-resource error tracking; `paginate` supports `maxItems` (default 1000), `query` merging, and automatic mapping to full objects for ID arrays.
+- **Multi-items concurrency** — 14 high-volume nodes use a bounded worker pool (`executeTemplate` with `concurrency: 5`) to process workflow items in parallel while preserving output order.
 - **Return Full Objects / Max Items** — list operations (VPS, Dedicated Server) expose a toggle to fetch full resource objects in parallel, with a configurable max item count and a visible warning when some resources could not be fetched.
 
 ### Status
@@ -318,6 +320,12 @@ npm run lint:fix     # Auto-fix linting issues
 npm test
 ```
 
+The test suite covers API spec compliance, pagination, retry logic, credential handling, and concurrency. Key test files:
+
+- **`tests/multi-item.test.ts`** — per-item parameter resolution, order preservation with concurrency, and a static guardrail that fails if any `.operation.ts` uses a hardcoded `getNodeParameter('x', 0)` index.
+- **`tests/paginate-concurrency.test.ts`** — verifies that parallel page fetching produces identical results to sequential pagination, respects `maxItems`, and honors the `concurrency` option.
+- **`tests/base-node.test.ts`** — `runItems()` worker pool, error handling, and ordered output with `concurrency > 1`.
+
 ### Project Structure
 
 ```
@@ -391,24 +399,34 @@ n8n-nodes-ovhcloud/
 │   └── shared/
 │       ├── constants.ts                # Shared constants (icon path, credential name)
 │       ├── nodes/
-│       │   ├── BaseNode.ts           # Abstract base class for all OVH Cloud nodes (executeTemplate supports optional concurrency)
+│       │   ├── BaseNode.ts           # Abstract base class for all OVH Cloud nodes; `executeTemplate` with bounded worker pool (concurrency: 5 on 14 high-volume nodes)
+│       │   ├── itemParameter.ts      # `getItemParameter()` helper — resolves node parameters per item index
 │       │   ├── listOptions.ts        # "Return Full Objects / Max Items" list options helper
 │       │   ├── notices.ts            # Destructive action warning notices
 │       ├── methods/                    # Search list methods for dynamic dropdowns
 │       │   └── listSearch.ts           # createServiceListSearch() factory (deduplicated loaders)
 │       └── transport/                   # API client & authentication
 │           ├── ApiClient.ts             #   abstract interface
-│           ├── ApiClientImpl.ts         #   HTTP implementation (credential memoization + retry + pagination)
+│           ├── ApiClientImpl.ts         #   HTTP implementation (credential memoization + retry + batch-parallel pagination)
 │           └── CredentialHolder.ts      #   OVH SHA1 signature helper
 ├── scripts/
 │   ├── generate-nodes-manifest.js       # Regenerate nodes list in package.json after build
 │   ├── gen-api-docs.sh                  # Generate API documentation from specs
 │   └── get-api-description.sh           # Fetch OVH API JSON specifications
-├── tests/                               # Jest unit & non-regression tests (3000+ tests)
+├── tests/                               # Jest unit & non-regression tests (150+ tests)
+│   ├── base-node.test.ts                # `runItems()` worker pool, error handling, ordered output with concurrency
+│   ├── CredentialHolder.test.ts         # OVH SHA1 signature generation and auth headers
+│   ├── dedicated.operation.test.ts      # Non-regression tests for Dedicated operations
 │   ├── domain-lot1.test.ts              # Tests for all OvhCloudDomain GET operations
 │   ├── helpers.ts                       # Shared test utilities (createMockCtx, invokeOperation)
+│   ├── hosting.operation.test.ts        # Non-regression tests for Hosting operations
+│   ├── list-search.test.ts              # Dynamic dropdown loaders (createServiceListSearch)
+│   ├── multi-item.test.ts               # Per-item parameter resolution + static guardrail for hardcoded indices
+│   ├── paginate-concurrency.test.ts     # Parallel page fetching correctness and maxItems compliance
 │   ├── publicCloud.operation.test.ts    # Non-regression tests for Public Cloud backup & snapshot CRUD ops
-│   └── *.operation.test.ts              # Per-node operation coverage tests
+│   ├── vps-list.test.ts                 # Return Full Objects / Max Items feature tests
+│   ├── vps.operation.test.ts            # Non-regression tests for VPS operations
+│   └── *.test.ts                        # Additional API client, pagination, retry, and spec-coverage tests
 ├── docs/
 │   ├── README.md                        # Documentation index & structure overview
 │   ├── guides/                          # User-facing getting-started guides

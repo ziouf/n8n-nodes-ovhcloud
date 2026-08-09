@@ -53,12 +53,12 @@ export function description() {
  * HTTP method: PUT
  * Endpoint: /email/exchange/{organizationName}/service/{exchangeService}/domain/{domainName}/changeDefaultSBR
  */
-export async function execute(this: IExecuteFunctions): Promise<INodeExecutionData[]> {
-	const organizationName = this.getNodeParameter('organizationName', 0) as string;
-	const exchangeService = this.getNodeParameter('exchangeService', 0) as string;
-	const domainName = this.getNodeParameter('domainName', 0) as string;
-	const sbrDefault = this.getNodeParameter('sbrDefault', 0) as string;
-	const sendConnectorIdDefault = this.getNodeParameter('sendConnectorIdDefault', 0) as string;
+export async function execute(this: IExecuteFunctions, _itemIndex?: number): Promise<INodeExecutionData[]> {
+	const organizationName = this.getNodeParameter('organizationName', _itemIndex ?? 0) as string;
+	const exchangeService = this.getNodeParameter('exchangeService', _itemIndex ?? 0) as string;
+	const domainName = this.getNodeParameter('domainName', _itemIndex ?? 0) as string;
+	const sbrDefault = this.getNodeParameter('sbrDefault', _itemIndex ?? 0) as string;
+	const sendConnectorIdDefault = this.getNodeParameter('sendConnectorIdDefault', _itemIndex ?? 0) as string;
 
 	const body: IDataObject = {
     sbrDefault: sbrDefault,

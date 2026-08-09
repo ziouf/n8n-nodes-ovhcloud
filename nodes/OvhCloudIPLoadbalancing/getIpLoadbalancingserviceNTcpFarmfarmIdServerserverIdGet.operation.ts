@@ -46,10 +46,10 @@ export function description(displayOptions: IDisplayOptions): INodeProperties[] 
  * HTTP method: GET
  * Endpoint: /ipLoadbalancing/{serviceName}/tcp/farm/{farmId}/server/{serverId}
  */
-export async function execute(this: IExecuteFunctions, itemIndex: number): Promise<INodeExecutionData[]> {
-	const serviceName = this.getNodeParameter('serviceName', itemIndex) as string;
-	const farmId = this.getNodeParameter('farmId', itemIndex) as string;
-	const serverId = this.getNodeParameter('serverId', itemIndex) as string;
+export async function execute(this: IExecuteFunctions, _itemIndex: number): Promise<INodeExecutionData[]> {
+	const serviceName = this.getNodeParameter('serviceName', _itemIndex) as string;
+	const farmId = this.getNodeParameter('farmId', _itemIndex) as string;
+	const serverId = this.getNodeParameter('serverId', _itemIndex) as string;
 
 
 

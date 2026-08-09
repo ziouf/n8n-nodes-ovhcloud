@@ -52,11 +52,11 @@ export function description(displayOptions: IDisplayOptions): INodeProperties[] 
  * HTTP method: GET
  * Endpoint: /telephony/{billingAccount}/conference/{serviceName}/histories
  */
-export async function execute(this: IExecuteFunctions, itemIndex: number): Promise<INodeExecutionData[]> {
-	const billingAccount = this.getNodeParameter('billingAccount', itemIndex) as string;
-	const serviceName = this.getNodeParameter('serviceName', itemIndex) as string;
-	const dateBegin_from = this.getNodeParameter('dateBegin.from', itemIndex) as string;
-	const dateBegin_to = this.getNodeParameter('dateBegin.to', itemIndex) as string;
+export async function execute(this: IExecuteFunctions, _itemIndex: number): Promise<INodeExecutionData[]> {
+	const billingAccount = this.getNodeParameter('billingAccount', _itemIndex) as string;
+	const serviceName = this.getNodeParameter('serviceName', _itemIndex) as string;
+	const dateBegin_from = this.getNodeParameter('dateBegin.from', _itemIndex) as string;
+	const dateBegin_to = this.getNodeParameter('dateBegin.to', _itemIndex) as string;
 
 	const qs: IDataObject = {
 		dateBegin_from: dateBegin_from,

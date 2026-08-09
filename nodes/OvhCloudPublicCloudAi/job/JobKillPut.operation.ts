@@ -49,9 +49,9 @@ export function description(displayOptions: IDisplayOptions = {} as IDisplayOpti
  * HTTP method: PUT
  * Endpoint: /cloud/project/{serviceName}/ai/job/{jobId}/kill
  */
-export async function execute(this: IExecuteFunctions): Promise<INodeExecutionData[]> {
-	const serviceName = this.getNodeParameter('serviceName', 0) as string;
-	const jobId = this.getNodeParameter('jobId', 0) as string;
+export async function execute(this: IExecuteFunctions, _itemIndex?: number): Promise<INodeExecutionData[]> {
+	const serviceName = this.getNodeParameter('serviceName', _itemIndex ?? 0) as string;
+	const jobId = this.getNodeParameter('jobId', _itemIndex ?? 0) as string;
 
 	const client = new ApiClient(this);
 	const data = (await client.httpPut('cloud/project' + serviceName + '/ai/job/' + jobId + '/kill')) as IDataObject;

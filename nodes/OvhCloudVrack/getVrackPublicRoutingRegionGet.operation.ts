@@ -27,9 +27,9 @@ export function description(displayOptions: IDisplayOptions): INodeProperties[] 
  * HTTP method: GET
  * Endpoint: /vrack/publicRoutingRegion
  */
-export async function execute(this: IExecuteFunctions, itemIndex: number): Promise<INodeExecutionData[]> {
+export async function execute(this: IExecuteFunctions, _itemIndex: number): Promise<INodeExecutionData[]> {
 
-	const region = this.getNodeParameter('region', itemIndex) as string;
+	const region = this.getNodeParameter('region', _itemIndex) as string;
 
 
 const qs: IDataObject = {

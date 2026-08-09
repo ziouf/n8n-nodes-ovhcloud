@@ -55,16 +55,16 @@ export function description(displayOptions: IDisplayOptions): INodeProperties[] 
  * HTTP method: POST
  * Endpoint: /domain/zone/{zoneName}/dynHost/login
  */
-export async function execute(this: IExecuteFunctions, itemIndex: number): Promise<INodeExecutionData[]> {
+export async function execute(this: IExecuteFunctions, _itemIndex: number): Promise<INodeExecutionData[]> {
 	const client = new ApiClient(this);
-		const zoneName = this.getNodeParameter('zoneName', itemIndex) as string;
+		const zoneName = this.getNodeParameter('zoneName', _itemIndex) as string;
 
 	const body: IDataObject = {};
-		const loginSuffix = this.getNodeParameter('loginSuffix', itemIndex, '') as string;
+		const loginSuffix = this.getNodeParameter('loginSuffix', _itemIndex, '') as string;
 		body['loginSuffix'] = loginSuffix;
-		const password = this.getNodeParameter('password', itemIndex, '') as string;
+		const password = this.getNodeParameter('password', _itemIndex, '') as string;
 		body['password'] = password;
-		const subDomain = this.getNodeParameter('subDomain', itemIndex, '') as string;
+		const subDomain = this.getNodeParameter('subDomain', _itemIndex, '') as string;
 		body['subDomain'] = subDomain;
 
 	const data = (await client.httpPost(`/domain/zone/${encodeURIComponent(zoneName)}/dynHost/login`, body)) as IDataObject;

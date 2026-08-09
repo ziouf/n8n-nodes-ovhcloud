@@ -60,13 +60,13 @@ export function description(displayOptions: IDisplayOptions): INodeProperties[] 
  * HTTP method: PUT
  * Endpoint: /publicCloud/project/{projectId}/cloud/database/kafkaConnect/{serviceName}/user/{userId}
  */
-export async function execute(this: IExecuteFunctions): Promise<INodeExecutionData[]> {
+export async function execute(this: IExecuteFunctions, _itemIndex?: number): Promise<INodeExecutionData[]> {
 	const client = new ApiClient(this);
-	const projectId = this.getNodeParameter('projectId', 0, '', {
+	const projectId = this.getNodeParameter('projectId', _itemIndex ?? 0, '', {
 		extractValue: true,
 	}) as string;
-	const serviceName = this.getNodeParameter('serviceName', 0) as string;
-	const userId = this.getNodeParameter('userId', 0) as string;
+	const serviceName = this.getNodeParameter('serviceName', _itemIndex ?? 0) as string;
+	const userId = this.getNodeParameter('userId', _itemIndex ?? 0) as string;
 
 	const body = {} as IDataObject;
 	const data = (await client.httpPut(`/publicCloud/project/${projectId}/cloud/database/kafkaConnect/${serviceName}/user/${userId}`, body)) as IDataObject;

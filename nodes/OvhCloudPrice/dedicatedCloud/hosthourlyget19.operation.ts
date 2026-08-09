@@ -28,9 +28,9 @@ export function description(displayOptions: IDisplayOptions): INodeProperties[] 
  * HTTP method: GET
  * Endpoint: /price/dedicatedCloud/2016v1/bhs1a/enterprise/host/hourly/{hostProfile}
  */
-export async function execute(this: IExecuteFunctions): Promise<INodeExecutionData[]> {
+export async function execute(this: IExecuteFunctions, _itemIndex?: number): Promise<INodeExecutionData[]> {
     const client = new ApiClient(this);
-    const hostProfile = this.getNodeParameter('hostProfile', 0) as string;
+    const hostProfile = this.getNodeParameter('hostProfile', _itemIndex ?? 0) as string;
     const data = (await client.httpGet(`/price/dedicatedCloud/2016v1/bhs1a/enterprise/host/hourly/${hostProfile}`)) as IDataObject;
     return this.helpers.returnJsonArray([data]);
 }

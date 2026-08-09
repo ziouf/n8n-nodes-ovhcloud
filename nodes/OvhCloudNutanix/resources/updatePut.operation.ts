@@ -193,26 +193,26 @@ export function description(displayOptions: IDisplayOptions): INodeProperties[] 
  * HTTP method: PUT
  * Endpoint: /nutanix/{serviceName}
  */
-export async function execute(this: IExecuteFunctions): Promise<INodeExecutionData[]> {
+export async function execute(this: IExecuteFunctions, _itemIndex?: number): Promise<INodeExecutionData[]> {
 	const client = new ApiClient(this);
-	const serviceName = this.getNodeParameter('serviceName', 0, '', { extractValue: true }) as string;
-	const redeploycluster = this.getNodeParameter('redeploycluster', 0, false) as boolean;
-	const scaleOut = this.getNodeParameter('scaleOut', 0, false) as boolean;
-	const controlPanelURL = (this.getNodeParameter('controlPanelURL', 0, '') as string) || '';
-	const dataserviceIp = (this.getNodeParameter('dataserviceIp', 0, '') as string) || '';
-	const erasureCoding = this.getNodeParameter('erasureCoding', 0, true) as boolean;
-	const gatewayCidr = (this.getNodeParameter('gatewayCidr', 0, '') as string) || '';
-	const infraVlanNumber = this.getNodeParameter('infraVlanNumber', 0, 0) as number;
-	const ipfo = (this.getNodeParameter('ipfo', 0, '') as string) || '';
-	const iplb = (this.getNodeParameter('iplb', 0, '') as string) || '';
-	const license = (this.getNodeParameter('license', 0, '') as string) || '';
-	const name = (this.getNodeParameter('name', 0, '') as string) || '';
-	const prismElementVip = (this.getNodeParameter('prismElementVip', 0, '') as string) || '';
-	const prismSecretId = (this.getNodeParameter('prismSecretId', 0, '') as string) || '';
-	const rackAwareness = this.getNodeParameter('rackAwareness', 0, true) as boolean;
-	const redundancyFactor = this.getNodeParameter('redundancyFactor', 0, 2) as number;
-	const version = (this.getNodeParameter('version', 0, '') as string) || '';
-	const vrack = (this.getNodeParameter('vrack', 0, '') as string) || '';
+	const serviceName = this.getNodeParameter('serviceName', _itemIndex ?? 0, '', { extractValue: true }) as string;
+	const redeploycluster = this.getNodeParameter('redeploycluster', _itemIndex ?? 0, false) as boolean;
+	const scaleOut = this.getNodeParameter('scaleOut', _itemIndex ?? 0, false) as boolean;
+	const controlPanelURL = (this.getNodeParameter('controlPanelURL', _itemIndex ?? 0, '') as string) || '';
+	const dataserviceIp = (this.getNodeParameter('dataserviceIp', _itemIndex ?? 0, '') as string) || '';
+	const erasureCoding = this.getNodeParameter('erasureCoding', _itemIndex ?? 0, true) as boolean;
+	const gatewayCidr = (this.getNodeParameter('gatewayCidr', _itemIndex ?? 0, '') as string) || '';
+	const infraVlanNumber = this.getNodeParameter('infraVlanNumber', _itemIndex ?? 0, 0) as number;
+	const ipfo = (this.getNodeParameter('ipfo', _itemIndex ?? 0, '') as string) || '';
+	const iplb = (this.getNodeParameter('iplb', _itemIndex ?? 0, '') as string) || '';
+	const license = (this.getNodeParameter('license', _itemIndex ?? 0, '') as string) || '';
+	const name = (this.getNodeParameter('name', _itemIndex ?? 0, '') as string) || '';
+	const prismElementVip = (this.getNodeParameter('prismElementVip', _itemIndex ?? 0, '') as string) || '';
+	const prismSecretId = (this.getNodeParameter('prismSecretId', _itemIndex ?? 0, '') as string) || '';
+	const rackAwareness = this.getNodeParameter('rackAwareness', _itemIndex ?? 0, true) as boolean;
+	const redundancyFactor = this.getNodeParameter('redundancyFactor', _itemIndex ?? 0, 2) as number;
+	const version = (this.getNodeParameter('version', _itemIndex ?? 0, '') as string) || '';
+	const vrack = (this.getNodeParameter('vrack', _itemIndex ?? 0, '') as string) || '';
 
 	const qs: IDataObject = {};
 	if (redeploycluster !== undefined) qs.redeploycluster = redeploycluster;

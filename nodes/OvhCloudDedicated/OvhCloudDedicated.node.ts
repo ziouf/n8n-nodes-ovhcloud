@@ -29,6 +29,6 @@ export class OvhCloudDedicated extends BaseNode implements INodeType {
 	};
 
 	async execute(this: IExecuteFunctions): Promise<INodeExecutionData[][]> {
-		return executeTemplate.call(this, execute);
+		return executeTemplate.call(this, execute, { concurrency: 5 });
 	}
 }

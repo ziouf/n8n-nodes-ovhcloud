@@ -44,11 +44,11 @@ export function description(displayOptions: IDisplayOptions): INodeProperties[] 
  * HTTP method: GET
  * Endpoint: /domain/data/extension
  */
-export async function execute(this: IExecuteFunctions, itemIndex: number): Promise<INodeExecutionData[]> {
+export async function execute(this: IExecuteFunctions, _itemIndex: number): Promise<INodeExecutionData[]> {
 	const client = new ApiClient(this);
 
 	const qs: IDataObject = {};
-		const country = this.getNodeParameter('country', itemIndex, '') as string;
+		const country = this.getNodeParameter('country', _itemIndex, '') as string;
 		if (country !== '' && country !== undefined) qs['country'] = country;
 
 	const data = (await client.httpGet(`/domain/data/extension`, qs)) as IDataObject;

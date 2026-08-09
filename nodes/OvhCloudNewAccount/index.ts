@@ -67,26 +67,26 @@ export function description() {
 	return props;
 }
 
-export async function execute(this: IExecuteFunctions): Promise<INodeExecutionData[]> {
+export async function execute(this: IExecuteFunctions, itemIndex?: number): Promise<INodeExecutionData[]> {
 	const operation = this.getNodeParameter('newAccountOperation', 0) as string;
 
 	switch (operation) {
 		case 'newAccountPost':
-			return newAccountPost.execute.call(this);
+			return newAccountPost.execute.call(this, itemIndex ?? 0);
 		case 'areaGet':
-			return areaGet.execute.call(this);
+			return areaGet.execute.call(this, itemIndex ?? 0);
 		case 'contractsGet':
-			return contractsGet.execute.call(this);
+			return contractsGet.execute.call(this, itemIndex ?? 0);
 		case 'corporationTypeGet':
-			return corporationTypeGet.execute.call(this);
+			return corporationTypeGet.execute.call(this, itemIndex ?? 0);
 		case 'countriesGet':
-			return countriesGet.execute.call(this);
+			return countriesGet.execute.call(this, itemIndex ?? 0);
 		case 'creationRulesPost':
-			return creationRulesPost.execute.call(this);
+			return creationRulesPost.execute.call(this, itemIndex ?? 0);
 		case 'legalformGet':
-			return legalformGet.execute.call(this);
+			return legalformGet.execute.call(this, itemIndex ?? 0);
 		case 'rulesPost':
-			return rulesPost.execute.call(this);
+			return rulesPost.execute.call(this, itemIndex ?? 0);
 		default:
 			throw new Error(`No handler for operation '${operation}'`);
 	}

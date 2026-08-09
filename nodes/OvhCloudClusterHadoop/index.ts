@@ -270,94 +270,94 @@ export function description() {
 	return props;
 }
 
-export async function execute(this: IExecuteFunctions): Promise<INodeExecutionData[]> {
+export async function execute(this: IExecuteFunctions, itemIndex?: number): Promise<INodeExecutionData[]> {
 	const operation = this.getNodeParameter('clusterHadoopOperation', 0) as string;
 
 	switch (operation) {
 		case 'userPost':
-			return userPost.execute.call(this);
+			return userPost.execute.call(this, itemIndex ?? 0);
 		case 'networkAclPost':
-			return networkAclPost.execute.call(this);
+			return networkAclPost.execute.call(this, itemIndex ?? 0);
 		case 'nodeRolePost':
-			return nodeRolePost.execute.call(this);
+			return nodeRolePost.execute.call(this, itemIndex ?? 0);
 		case 'nodeDecommissionPost':
-			return nodeDecommissionPost.execute.call(this);
+			return nodeDecommissionPost.execute.call(this, itemIndex ?? 0);
 		case 'userUsernameDelete':
-			return userUsernameDelete.execute.call(this);
+			return userUsernameDelete.execute.call(this, itemIndex ?? 0);
 		case 'networkAclBlockDelete':
-			return networkAclBlockDelete.execute.call(this);
+			return networkAclBlockDelete.execute.call(this, itemIndex ?? 0);
 		case 'nodeDelete':
-			return nodeDelete.execute.call(this);
+			return nodeDelete.execute.call(this, itemIndex ?? 0);
 		case 'nodeRoleTypeDelete':
-			return nodeRoleTypeDelete.execute.call(this);
+			return nodeRoleTypeDelete.execute.call(this, itemIndex ?? 0);
 		case 'get':
-			return get.execute.call(this);
+			return get.execute.call(this, itemIndex ?? 0);
 		case 'consumptionsGet':
-			return consumptionsGet.execute.call(this);
+			return consumptionsGet.execute.call(this, itemIndex ?? 0);
 		case 'orderInformationsGet':
-			return orderInformationsGet.execute.call(this);
+			return orderInformationsGet.execute.call(this, itemIndex ?? 0);
 		case 'networkAclBlockGet':
-			return networkAclBlockGet.execute.call(this);
+			return networkAclBlockGet.execute.call(this, itemIndex ?? 0);
 		case 'nodeBillingProfilesGet':
-			return nodeBillingProfilesGet.execute.call(this);
+			return nodeBillingProfilesGet.execute.call(this, itemIndex ?? 0);
 		case 'nodeConsumptionsGet':
-			return nodeConsumptionsGet.execute.call(this);
+			return nodeConsumptionsGet.execute.call(this, itemIndex ?? 0);
 		case 'nodeGet':
-			return nodeGet.execute.call(this);
+			return nodeGet.execute.call(this, itemIndex ?? 0);
 		case 'nodeRoleTypeGet':
-			return nodeRoleTypeGet.execute.call(this);
+			return nodeRoleTypeGet.execute.call(this, itemIndex ?? 0);
 		case 'orderableNodeProfilesGet':
-			return orderableNodeProfilesGet.execute.call(this);
+			return orderableNodeProfilesGet.execute.call(this, itemIndex ?? 0);
 		case 'orderableNodeProfilesDetailGet':
-			return orderableNodeProfilesDetailGet.execute.call(this);
+			return orderableNodeProfilesDetailGet.execute.call(this, itemIndex ?? 0);
 		case 'serviceInfosGet':
-			return serviceInfosGet.execute.call(this);
+			return serviceInfosGet.execute.call(this, itemIndex ?? 0);
 		case 'taskDetailGet':
-			return taskDetailGet.execute.call(this);
+			return taskDetailGet.execute.call(this, itemIndex ?? 0);
 		case 'userUsernameGet':
-			return userUsernameGet.execute.call(this);
+			return userUsernameGet.execute.call(this, itemIndex ?? 0);
 		case 'nodeRoleGet':
-			return nodeRoleGet.execute.call(this);
+			return nodeRoleGet.execute.call(this, itemIndex ?? 0);
 		case 'taskGet':
-			return taskGet.execute.call(this);
+			return taskGet.execute.call(this, itemIndex ?? 0);
 		case 'userGet':
-			return userGet.execute.call(this);
+			return userGet.execute.call(this, itemIndex ?? 0);
 		case 'list':
-			return list.execute.call(this);
+			return list.execute.call(this, itemIndex ?? 0);
 		case 'networkAclGet':
-			return networkAclGet.execute.call(this);
+			return networkAclGet.execute.call(this, itemIndex ?? 0);
 		case 'orderNewNodeHourlyPost':
-			return orderNewNodeHourlyPost.execute.call(this);
+			return orderNewNodeHourlyPost.execute.call(this, itemIndex ?? 0);
 		case 'nodeRecommissionPost':
-			return nodeRecommissionPost.execute.call(this);
+			return nodeRecommissionPost.execute.call(this, itemIndex ?? 0);
 		case 'userResetPasswordPost':
-			return userResetPasswordPost.execute.call(this);
+			return userResetPasswordPost.execute.call(this, itemIndex ?? 0);
 		case 'restartPost':
-			return restartPost.execute.call(this);
+			return restartPost.execute.call(this, itemIndex ?? 0);
 		case 'nodeRoleTypeRestartPost':
-			return nodeRoleTypeRestartPost.execute.call(this);
+			return nodeRoleTypeRestartPost.execute.call(this, itemIndex ?? 0);
 		case 'serviceRestartPost':
-			return serviceRestartPost.execute.call(this);
+			return serviceRestartPost.execute.call(this, itemIndex ?? 0);
 		case 'startPost':
-			return startPost.execute.call(this);
+			return startPost.execute.call(this, itemIndex ?? 0);
 		case 'nodeRoleTypeStartPost':
-			return nodeRoleTypeStartPost.execute.call(this);
+			return nodeRoleTypeStartPost.execute.call(this, itemIndex ?? 0);
 		case 'serviceStartPost':
-			return serviceStartPost.execute.call(this);
+			return serviceStartPost.execute.call(this, itemIndex ?? 0);
 		case 'stopPost':
-			return stopPost.execute.call(this);
+			return stopPost.execute.call(this, itemIndex ?? 0);
 		case 'nodeRoleTypeStopPost':
-			return nodeRoleTypeStopPost.execute.call(this);
+			return nodeRoleTypeStopPost.execute.call(this, itemIndex ?? 0);
 		case 'serviceStopPost':
-			return serviceStopPost.execute.call(this);
+			return serviceStopPost.execute.call(this, itemIndex ?? 0);
 		case 'terminatePost':
-			return terminatePost.execute.call(this);
+			return terminatePost.execute.call(this, itemIndex ?? 0);
 		case 'networkAclBlockPut':
-			return networkAclBlockPut.execute.call(this);
+			return networkAclBlockPut.execute.call(this, itemIndex ?? 0);
 		case 'serviceInfosUpdatePut':
-			return serviceInfosUpdatePut.execute.call(this);
+			return serviceInfosUpdatePut.execute.call(this, itemIndex ?? 0);
 		case 'userUsernamePut':
-			return userUsernamePut.execute.call(this);
+			return userUsernamePut.execute.call(this, itemIndex ?? 0);
 		default:
 			throw new Error(`No handler for operation '${operation}'`);
 	}

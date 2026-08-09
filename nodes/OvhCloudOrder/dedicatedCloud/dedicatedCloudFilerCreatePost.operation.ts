@@ -28,8 +28,8 @@ export function description(displayOptions: IDisplayOptions): INodeProperties[] 
  * HTTP method: POST
  * Endpoint: /order/dedicatedCloud/{x}/filer/{x}
  */
-export async function execute(this: IExecuteFunctions, itemIndex: number): Promise<INodeExecutionData[]> {
-	const x = this.getNodeParameter('x', itemIndex) as string;
+export async function execute(this: IExecuteFunctions, _itemIndex: number): Promise<INodeExecutionData[]> {
+	const x = this.getNodeParameter('x', _itemIndex) as string;
 	const body: IDataObject = {};
 
 	const client = new ApiClient(this);
