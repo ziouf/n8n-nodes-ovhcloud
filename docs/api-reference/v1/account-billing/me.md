@@ -1105,6 +1105,7 @@ None.
 - **Authentication**: All operations under `/me` require authentication unless explicitly marked as `noAuthentication: true`.
 - **IAM Actions**: These are required permissions for the operations. Ensure your credentials have the necessary IAM roles before attempting to use these endpoints.
 - **Status**: Most operations are in `PRODUCTION` status, meaning they are stable and production-ready. A few are in `BETA` or `ALPHA` status, indicating they may be subject to change or are still in development.
+- **Parallel List Operations**: List operations that fetch full resource details (e.g., `listBills`, `listBillingGroups`, `listBillDetails`, `listBillingGroupServices`, `listPurchaseOrders`, `listConsumptionReports`, `listBillDebtOperations`) fetch each item's details in parallel using a concurrency pool (default 3 concurrent requests). Failed item fetches are silently skipped rather than throwing, so the result array contains only successfully fetched items in their original order.
 
 ---
 
