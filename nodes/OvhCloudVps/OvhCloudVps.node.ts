@@ -8,7 +8,7 @@ import { NodeConnectionTypes } from 'n8n-workflow';
 import { OvhCloudApiSecretName, OvhCloudIcon } from '../../shared/constants';
 import { description, execute } from './index';
 import { getVpsServices } from '../../shared/methods/getVpsServices.method';
-import { BaseNode, executeTemplate } from '../../shared/nodes/BaseNode';
+import { BaseNode, executeTemplate, classifyOperation } from '../../shared/nodes';
 
 export class OvhCloudVps extends BaseNode implements INodeType {
 	description: INodeTypeDescription = {
@@ -31,6 +31,14 @@ export class OvhCloudVps extends BaseNode implements INodeType {
 	methods = { listSearch: { getVpsServices } };
 
 	async execute(this: IExecuteFunctions): Promise<INodeExecutionData[][]> {
-		return executeTemplate.call(this, execute, { concurrency: 5 });
+		return executeTemplate.call(this, execute, {
+			perItemConcurrency: {
+				classify: (ctx, itemIndex) =>
+					classifyOperation(
+						String(ctx.getNodeParameter('vpsOperation', itemIndex, { extractValue: true })),
+					),
+			},
+			errorContext: { resource: 'vps', operationParam: 'vpsOperation' },
+		});
 	}
 }

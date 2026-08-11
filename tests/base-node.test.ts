@@ -7,6 +7,8 @@
  */
 
 import { executeTemplate } from '../shared/nodes/BaseNode';
+import { classifyOperation } from '../shared/nodes/operationClass';
+import type { OperationClass } from '../shared/nodes/operationClass';
 import { NodeApiError } from 'n8n-workflow';
 import type { IExecuteFunctions, INodeExecutionData } from 'n8n-workflow';
 
@@ -20,6 +22,25 @@ function createMockCtx(): jest.Mocked<IExecuteFunctions> {
 			typeVersion: 1,
 			position: [0, 0],
 		})),
+	} as unknown as jest.Mocked<IExecuteFunctions>;
+}
+
+/**
+ * Creates a mock context that also supports `getNodeParameter` (needed for
+ * errorContext enrichment tests).  By default the mock throws so that
+ * existing tests without `getNodeParameter` on the mock don't break.
+ */
+function createMockCtxWithGetNodeParameter(
+	getNodeParameterImpl: IExecuteFunctions['getNodeParameter'],
+): jest.Mocked<IExecuteFunctions> {
+	return {
+		...createMockCtx(),
+		getNodeParameter: jest
+			.fn<
+				Parameters<IExecuteFunctions['getNodeParameter']>,
+				ReturnType<IExecuteFunctions['getNodeParameter']>
+			>()
+			.mockImplementation(getNodeParameterImpl),
 	} as unknown as jest.Mocked<IExecuteFunctions>;
 }
 
@@ -316,6 +337,386 @@ describe('executeTemplate (BaseNode)', () => {
 			expect(result[0].map((d) => (d.json as { done: number }).done)).toEqual([0, 1, 2]);
 			// 3 items × 50ms in parallel ≈ 50ms; sequential would be ≈ 150ms.
 			expect(elapsed).toBeLessThan(120);
+		});
+	});
+
+	// ─── errorContext enrichment tests ─────────────────────────────────
+
+	describe('errorContext enrichment', () => {
+		it('should throw a NodeApiError with resource/operation prefix when continueOnFail is false', async () => {
+			const ctx = createMockCtxWithGetNodeParameter((_name: string, itemIndex: number) => {
+				// Simulate the operation parameter resolving to 'get' for item 0.
+				if (itemIndex === 0) return 'get';
+				return 'unknown';
+			});
+			ctx.getInputData.mockReturnValue([{ json: { id: 1 } }]);
+			ctx.continueOnFail.mockReturnValue(false);
+
+			let caught: unknown;
+			try {
+				await executeTemplate.call(
+					ctx,
+					async function (this: IExecuteFunctions) {
+						throw new Error('api failure');
+					},
+					{
+						concurrency: 1,
+						errorContext: { resource: 'vps', operationParam: 'vpsOperation' },
+					},
+				);
+			} catch (e) {
+				caught = e;
+			}
+
+			expect(caught).toBeInstanceOf(NodeApiError);
+			const err = caught as NodeApiError;
+			expect(err.message).toContain('vps/get');
+			expect(err.message).toContain('api failure');
+			expect(err.description).toContain('vps/get');
+		});
+
+		it('should use resolveOperation override and NOT call getNodeParameter', async () => {
+			const getNodeParameterSpy = jest.fn();
+			const ctx = createMockCtxWithGetNodeParameter(
+				(...args: Parameters<IExecuteFunctions['getNodeParameter']>) => {
+					getNodeParameterSpy(...args);
+					return 'get';
+				},
+			);
+			ctx.getInputData.mockReturnValue([{ json: { id: 1 } }]);
+			ctx.continueOnFail.mockReturnValue(false);
+
+			let caught: unknown;
+			try {
+				await executeTemplate.call(
+					ctx,
+					async function (this: IExecuteFunctions) {
+						throw new Error('boom');
+					},
+					{
+						concurrency: 1,
+						errorContext: {
+							resource: 'vps',
+							operationParam: 'vpsOperation',
+							resolveOperation: () => 'customLabel',
+						},
+					},
+				);
+			} catch (e) {
+				caught = e;
+			}
+
+			expect(getNodeParameterSpy).not.toHaveBeenCalled();
+			expect(caught).toBeInstanceOf(NodeApiError);
+			const err = caught as NodeApiError;
+			expect(err.message).toContain('vps/customLabel');
+			expect(err.message).toContain('boom');
+		});
+
+		it('should enrich json.error with resource/operation prefix when continueOnFail is true', async () => {
+			const ctx = createMockCtxWithGetNodeParameter((_name: string, itemIndex: number) => {
+				if (itemIndex === 0) return 'get';
+				return 'unknown';
+			});
+			ctx.getInputData.mockReturnValue([{ json: { id: 1 } }]);
+			ctx.continueOnFail.mockReturnValue(true);
+
+			const result = await executeTemplate.call(
+				ctx,
+				async function (this: IExecuteFunctions) {
+					throw new Error('api failure');
+				},
+				{
+					concurrency: 1,
+					errorContext: { resource: 'vps', operationParam: 'vpsOperation' },
+				},
+			);
+
+			expect(result).toHaveLength(1);
+			expect(result[0]).toHaveLength(1);
+			expect(result[0][0].json.error).toBe('vps/get: api failure');
+		});
+
+		it('should pass through NodeApiError unchanged (same instance)', async () => {
+			const originalError = new NodeApiError(
+				{ getName: () => 'test' } as never,
+				{ code: 500 } as never,
+			);
+			const ctx = createMockCtxWithGetNodeParameter((_name: string) => 'get');
+			ctx.getInputData.mockReturnValue([{ json: { id: 1 } }]);
+			ctx.continueOnFail.mockReturnValue(false);
+
+			let caught: unknown;
+			try {
+				await executeTemplate.call(
+					ctx,
+					async function (this: IExecuteFunctions) {
+						throw originalError;
+					},
+					{
+						concurrency: 1,
+						errorContext: { resource: 'vps', operationParam: 'vpsOperation' },
+					},
+				);
+			} catch (e) {
+				caught = e;
+			}
+
+			// Must be the exact same instance — no double-wrapping.
+			expect(caught).toBe(originalError);
+		});
+
+		it('should throw with resource/operation prefix in concurrent mode', async () => {
+			const ctx = createMockCtxWithGetNodeParameter((_name: string, itemIndex: number) => {
+				if (itemIndex === 0) return 'list';
+				return 'unknown';
+			});
+			ctx.getInputData.mockReturnValue([{ json: { id: 0 } }, { json: { id: 1 } }]);
+			ctx.continueOnFail.mockReturnValue(false);
+
+			let caught: unknown;
+			try {
+				await executeTemplate.call(
+					ctx,
+					async function (this: IExecuteFunctions, i: number) {
+						if (i === 0) throw new Error('concurrent fail');
+						return [{ json: { ok: true } }];
+					},
+					{
+						concurrency: 2,
+						errorContext: { resource: 'vps', operationParam: 'vpsOperation' },
+					},
+				);
+			} catch (e) {
+				caught = e;
+			}
+
+			expect(caught).toBeInstanceOf(NodeApiError);
+			const err = caught as NodeApiError;
+			expect(err.message).toContain('vps/list');
+			expect(err.message).toContain('concurrent fail');
+		});
+
+		it('should enrich json.error in concurrent mode with continueOnFail true', async () => {
+			const ctx = createMockCtxWithGetNodeParameter((_name: string, itemIndex: number) => {
+				if (itemIndex === 1) return 'get';
+				return 'unknown';
+			});
+			ctx.getInputData.mockReturnValue([
+				{ json: { id: 0 } },
+				{ json: { id: 1 } },
+				{ json: { id: 2 } },
+			]);
+			ctx.continueOnFail.mockReturnValue(true);
+
+			const result = await executeTemplate.call(
+				ctx,
+				async function (this: IExecuteFunctions, i: number) {
+					if (i === 1) throw new Error('item 1 error');
+					return [{ json: { index: i } }];
+				},
+				{
+					concurrency: 2,
+					errorContext: { resource: 'vps', operationParam: 'vpsOperation' },
+				},
+			);
+
+			expect(result[0][1].json.error).toBe('vps/get: item 1 error');
+			expect(result[0][0].json).toEqual({ index: 0 });
+			expect(result[0][2].json).toEqual({ index: 2 });
+		});
+	});
+
+	// ─── perItemConcurrency tests ────────────────────────────────────────
+
+	describe('perItemConcurrency', () => {
+		/** Mock getNodeParameter that returns operation names mapping to desired classes. */
+		function createMockCtxWithClassification(
+			classifyImpl: (itemIndex: number) => OperationClass,
+		): jest.Mocked<IExecuteFunctions> {
+			// Map class → a representative operation keyword that classifyOperation recognizes
+			const opForClass: Record<OperationClass, string> = {
+				read: 'list',
+				write: 'rename',
+				destructive: 'delete',
+			};
+			return {
+				...createMockCtx(),
+				getNodeParameter: jest
+					.fn<
+						Parameters<IExecuteFunctions['getNodeParameter']>,
+						ReturnType<IExecuteFunctions['getNodeParameter']>
+					>()
+					.mockImplementation((_name: string, itemIndex: number) => {
+						return opForClass[classifyImpl(itemIndex)];
+					}),
+			} as unknown as jest.Mocked<IExecuteFunctions>;
+		}
+
+		it('all read → parallel (faster than sequential), results in input order', async () => {
+			const ctx = createMockCtxWithClassification(() => 'read');
+			ctx.getInputData.mockReturnValue([
+				{ json: { id: 0 } },
+				{ json: { id: 1 } },
+				{ json: { id: 2 } },
+			]);
+
+			const delay = (ms: number) => new Promise<void>((r) => setTimeout(r, ms));
+			const start = Date.now();
+
+			const result = await executeTemplate.call(
+				ctx,
+				async function (this: IExecuteFunctions, i: number) {
+					await delay(30);
+					return [{ json: { index: i } }];
+				},
+				{
+					perItemConcurrency: {
+						classify: (c, idx) =>
+							classifyOperation(String(c.getNodeParameter('op', idx, { extractValue: true }))),
+					},
+				},
+			);
+
+			const elapsed = Date.now() - start;
+
+			expect(result[0]).toHaveLength(3);
+			for (let i = 0; i < 3; i++) {
+				expect(result[0][i].json).toEqual({ index: i });
+			}
+			// 3 items × 30ms in parallel ≈ 30ms; sequential would be ≈ 90ms.
+			expect(elapsed).toBeLessThan(60);
+		});
+
+		it('all destructive → strictly sequential (slower than parallel), order preserved', async () => {
+			const ctx = createMockCtxWithClassification(() => 'destructive');
+			ctx.getInputData.mockReturnValue([
+				{ json: { id: 0 } },
+				{ json: { id: 1 } },
+				{ json: { id: 2 } },
+			]);
+
+			const executionOrder: number[] = [];
+			const delay = (ms: number) => new Promise<void>((r) => setTimeout(r, ms));
+			const start = Date.now();
+
+			const result = await executeTemplate.call(
+				ctx,
+				async function (this: IExecuteFunctions, i: number) {
+					executionOrder.push(i);
+					await delay(20);
+					return [{ json: { index: i } }];
+				},
+				{
+					perItemConcurrency: {
+						classify: (c, idx) =>
+							classifyOperation(String(c.getNodeParameter('op', idx, { extractValue: true }))),
+					},
+				},
+			);
+
+			const elapsed = Date.now() - start;
+
+			expect(result[0]).toHaveLength(3);
+			for (let i = 0; i < 3; i++) {
+				expect(result[0][i].json).toEqual({ index: i });
+			}
+			// 3 items × 20ms sequential ≈ 60ms; parallel would be ≈ 20ms.
+			expect(elapsed).toBeGreaterThanOrEqual(50);
+			expect(executionOrder).toEqual([0, 1, 2]);
+		});
+
+		it('mixed reads + destructives: destructive never exceeds 1 in flight', async () => {
+			const ctx = createMockCtxWithClassification((idx) => {
+				// Even indices → read, odd → destructive
+				return idx % 2 === 0 ? 'read' : 'destructive';
+			});
+			ctx.getInputData.mockReturnValue([
+				{ json: { id: 0 } },
+				{ json: { id: 1 } },
+				{ json: { id: 2 } },
+				{ json: { id: 3 } },
+				{ json: { id: 4 } },
+			]);
+
+			const perClassInFlight: Record<OperationClass, number> = {
+				read: 0,
+				write: 0,
+				destructive: 0,
+			};
+			const perClassMaxInFlight: Record<OperationClass, number> = {
+				read: 0,
+				write: 0,
+				destructive: 0,
+			};
+			const delay = (ms: number) => new Promise<void>((r) => setTimeout(r, ms));
+
+			await executeTemplate.call(
+				ctx,
+				async function (this: IExecuteFunctions, i: number) {
+					const op = String(this.getNodeParameter('op', i, { extractValue: true }));
+					const cls = classifyOperation(op);
+					perClassInFlight[cls]++;
+					perClassMaxInFlight[cls] = Math.max(perClassMaxInFlight[cls], perClassInFlight[cls]);
+					await delay(25);
+					perClassInFlight[cls]--;
+					return [{ json: { index: i } }];
+				},
+				{
+					perItemConcurrency: {
+						classify: (c, idx) =>
+							classifyOperation(String(c.getNodeParameter('op', idx, { extractValue: true }))),
+					},
+				},
+			);
+
+			expect(perClassMaxInFlight.destructive).toBeLessThanOrEqual(1);
+			expect(perClassMaxInFlight.read).toBeGreaterThanOrEqual(2);
+		});
+
+		it('classify throwing → falls back to write (no crash)', async () => {
+			const ctx = createMockCtx();
+			ctx.getInputData.mockReturnValue([{ json: { id: 0 } }, { json: { id: 1 } }]);
+
+			const result = await executeTemplate.call(
+				ctx,
+				async function (this: IExecuteFunctions, i: number) {
+					return [{ json: { index: i } }];
+				},
+				{
+					perItemConcurrency: {
+						classify: () => {
+							throw new Error('classification failed');
+						},
+					},
+				},
+			);
+
+			expect(result[0]).toHaveLength(2);
+			expect(result[0][0].json).toEqual({ index: 0 });
+			expect(result[0][1].json).toEqual({ index: 1 });
+		});
+
+		it('legacy concurrency still works without perItemConcurrency', async () => {
+			const ctx = createMockCtx();
+			ctx.getInputData.mockReturnValue([
+				{ json: { id: 0 } },
+				{ json: { id: 1 } },
+				{ json: { id: 2 } },
+			]);
+
+			const result = await executeTemplate.call(
+				ctx,
+				async function (this: IExecuteFunctions, i: number) {
+					return [{ json: { index: i } }];
+				},
+				{ concurrency: 2 },
+			);
+
+			expect(result[0]).toHaveLength(3);
+			for (let i = 0; i < 3; i++) {
+				expect(result[0][i].json).toEqual({ index: i });
+			}
 		});
 	});
 });
