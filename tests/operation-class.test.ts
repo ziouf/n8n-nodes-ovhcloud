@@ -122,6 +122,18 @@ describe('classifyOperation', () => {
 		it('classifies "updateCertificate" as write', () => {
 			expect(classifyOperation('updateCertificate')).toBe('write');
 		});
+
+		it('is case-insensitive: "LIST_vps" → read', () => {
+			expect(classifyOperation('LIST_vps')).toBe('read');
+		});
+
+		it('is case-insensitive: "DELETE_VPS" → destructive', () => {
+			expect(classifyOperation('DELETE_VPS')).toBe('destructive');
+		});
+
+		it('is case-insensitive: "Rename VPS" → write', () => {
+			expect(classifyOperation('Rename VPS')).toBe('write');
+		});
 	});
 
 	describe('destructive takes precedence over read', () => {
