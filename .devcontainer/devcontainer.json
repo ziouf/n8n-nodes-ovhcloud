@@ -51,7 +51,11 @@
 	},
 	"remoteEnv": {
 		"OPENCODE_ENABLE_EXA": "true",
-		"N8N_LOG_LEVEL": "debug"
+		"N8N_LOG_LEVEL": "debug",
+		// Disable n8n diagnostics, version notifications and templates to avoid errors in devcontainer
+		"N8N_DIAGNOSTICS_ENABLED": "false",
+		"N8N_VERSION_NOTIFICATIONS_ENABLED": "false",
+		"N8N_TEMPLATES_ENABLED": "false"
 	},
 	"postCreateCommand": {
 		"n8n-volume": "sudo chown -R node:node /home/node/.n8n-node-cli",
