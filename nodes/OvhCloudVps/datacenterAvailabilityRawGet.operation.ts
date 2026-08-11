@@ -43,10 +43,10 @@ export async function execute(
 	itemIndex?: number,
 ): Promise<INodeExecutionData[]> {
 	const client = new ApiClient(this);
-	const serviceName = this.getNodeParameter('serviceName', itemIndex!, '', {
+	const serviceName = this.getNodeParameter('serviceName', itemIndex ?? 0, '', {
 		extractValue: true,
 	}) as string;
-	const zone = this.getNodeParameter('zone', itemIndex!) as string;
+	const zone = this.getNodeParameter('zone', itemIndex ?? 0) as string;
 
 	const data = (await client.httpGet(`/vps/${serviceName}/datacenter/availabilities/raw`, {
 		query: { zone },

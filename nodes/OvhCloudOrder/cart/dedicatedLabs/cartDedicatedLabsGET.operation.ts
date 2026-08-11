@@ -37,7 +37,7 @@ export function description(displayOptions: IDisplayOptions): INodeProperties[] 
 export async function execute(this: IExecuteFunctions, itemIndex: number): Promise<INodeExecutionData[]> {
 	const client = new ApiClient(this);
 	const cartId = this.getNodeParameter('cartId', itemIndex) as string;
-	const planCode = this.getNodeParameter('planCode', 0, '') as string;
+	const planCode = this.getNodeParameter('planCode', itemIndex ?? 0, '') as string;
 	const qs: IDataObject = {
 		planCode: planCode
 	};

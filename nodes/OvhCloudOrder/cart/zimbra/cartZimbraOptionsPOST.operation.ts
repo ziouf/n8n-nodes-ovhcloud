@@ -74,11 +74,11 @@ export function description(displayOptions: IDisplayOptions): INodeProperties[] 
 export async function execute(this: IExecuteFunctions, itemIndex: number): Promise<INodeExecutionData[]> {
 	const client = new ApiClient(this);
 	const cartId = this.getNodeParameter('cartId', itemIndex) as string;
-	const duration = this.getNodeParameter('duration', 0, '') as string;
-	const itemId = this.getNodeParameter('itemId', 0, 0) as number;
-	const planCode = this.getNodeParameter('planCode', 0, '') as string;
-	const pricingMode = this.getNodeParameter('pricingMode', 0, '') as string;
-	const quantity = this.getNodeParameter('quantity', 0, 0) as number;
+	const duration = this.getNodeParameter('duration', itemIndex ?? 0, '') as string;
+	const itemId = this.getNodeParameter('itemId', itemIndex ?? 0, 0) as number;
+	const planCode = this.getNodeParameter('planCode', itemIndex ?? 0, '') as string;
+	const pricingMode = this.getNodeParameter('pricingMode', itemIndex ?? 0, '') as string;
+	const quantity = this.getNodeParameter('quantity', itemIndex ?? 0, 0) as number;
 	const body: IDataObject = {
 		duration: duration,
 		itemId: itemId,

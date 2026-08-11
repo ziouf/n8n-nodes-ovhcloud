@@ -38,10 +38,10 @@ export async function execute(
 	itemIndex?: number,
 ): Promise<INodeExecutionData[]> {
 	const client = new ApiClient(this);
-	const serviceName = this.getNodeParameter('serviceName', itemIndex!, '', {
+	const serviceName = this.getNodeParameter('serviceName', itemIndex ?? 0, '', {
 		extractValue: true,
 	}) as string;
-	const newContact = this.getNodeParameter('newContact', itemIndex!) as string;
+	const newContact = this.getNodeParameter('newContact', itemIndex ?? 0) as string;
 
 	const data = (await client.httpPost(`/vps/${serviceName}/changeContact`, {
 		newContact,

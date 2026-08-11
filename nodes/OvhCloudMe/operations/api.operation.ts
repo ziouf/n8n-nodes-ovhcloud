@@ -42,10 +42,10 @@ export function descriptionGetApiApplication(displayOptions: IDisplayOptions): I
 
 export async function executeGetApiApplication(
 	this: IExecuteFunctions,
-	_itemIndex: number,
+	_itemIndex?: number,
 ): Promise<INodeExecutionData[]> {
 	const client = new ApiClient(this);
-	const applicationId = this.getNodeParameter('applicationId', _itemIndex) as string;
+	const applicationId = this.getNodeParameter('applicationId', _itemIndex ?? 0) as string;
 	const data = (await client.httpGet(`/me/api/application/${applicationId}`)) as IDataObject;
 	return this.helpers.returnJsonArray([data]);
 }
@@ -81,10 +81,10 @@ export function descriptionGetApiCredential(displayOptions: IDisplayOptions): IN
 
 export async function executeGetApiCredential(
 	this: IExecuteFunctions,
-	_itemIndex: number,
+	_itemIndex?: number,
 ): Promise<INodeExecutionData[]> {
 	const client = new ApiClient(this);
-	const credentialId = this.getNodeParameter('credentialId', _itemIndex) as string;
+	const credentialId = this.getNodeParameter('credentialId', _itemIndex ?? 0) as string;
 	const data = (await client.httpGet(`/me/api/credential/${credentialId}`)) as IDataObject;
 	return this.helpers.returnJsonArray([data]);
 }
@@ -108,10 +108,10 @@ export function descriptionGetCredentialApplication(
 
 export async function executeGetCredentialApplication(
 	this: IExecuteFunctions,
-	_itemIndex: number,
+	_itemIndex?: number,
 ): Promise<INodeExecutionData[]> {
 	const client = new ApiClient(this);
-	const credentialId = this.getNodeParameter('credentialId', _itemIndex) as string;
+	const credentialId = this.getNodeParameter('credentialId', _itemIndex ?? 0) as string;
 	const data = (await client.httpGet(
 		`/me/api/credential/${credentialId}/application`,
 	)) as IDataObject;
@@ -153,10 +153,10 @@ export function descriptionGetApiLogKind(displayOptions: IDisplayOptions): INode
 
 export async function executeGetApiLogKind(
 	this: IExecuteFunctions,
-	_itemIndex: number,
+	_itemIndex?: number,
 ): Promise<INodeExecutionData[]> {
 	const client = new ApiClient(this);
-	const name = this.getNodeParameter('name', _itemIndex) as string;
+	const name = this.getNodeParameter('name', _itemIndex ?? 0) as string;
 	const data = (await client.httpGet(`/me/api/log/kind/${name}`)) as IDataObject;
 	return this.helpers.returnJsonArray([data]);
 }
@@ -194,10 +194,10 @@ export function descriptionGetApiLogSubscription(
 
 export async function executeGetApiLogSubscription(
 	this: IExecuteFunctions,
-	_itemIndex: number,
+	_itemIndex?: number,
 ): Promise<INodeExecutionData[]> {
 	const client = new ApiClient(this);
-	const subscriptionId = this.getNodeParameter('subscriptionId', _itemIndex) as string;
+	const subscriptionId = this.getNodeParameter('subscriptionId', _itemIndex ?? 0) as string;
 	const data = (await client.httpGet(`/me/api/log/subscription/${subscriptionId}`)) as IDataObject;
 	return this.helpers.returnJsonArray([data]);
 }
@@ -233,10 +233,10 @@ export function descriptionGetApiLogSelf(displayOptions: IDisplayOptions): INode
 
 export async function executeGetApiLogSelf(
 	this: IExecuteFunctions,
-	_itemIndex: number,
+	_itemIndex?: number,
 ): Promise<INodeExecutionData[]> {
 	const client = new ApiClient(this);
-	const logId = this.getNodeParameter('logId', _itemIndex) as string;
+	const logId = this.getNodeParameter('logId', _itemIndex ?? 0) as string;
 	const data = (await client.httpGet(`/me/api/logs/self/${logId}`)) as IDataObject;
 	return this.helpers.returnJsonArray([data]);
 }
@@ -272,10 +272,10 @@ export function descriptionGetApiLogServices(displayOptions: IDisplayOptions): I
 
 export async function executeGetApiLogServices(
 	this: IExecuteFunctions,
-	_itemIndex: number,
+	_itemIndex?: number,
 ): Promise<INodeExecutionData[]> {
 	const client = new ApiClient(this);
-	const logId = this.getNodeParameter('logId', _itemIndex) as string;
+	const logId = this.getNodeParameter('logId', _itemIndex ?? 0) as string;
 	const data = (await client.httpGet(`/me/api/logs/services/${logId}`)) as IDataObject;
 	return this.helpers.returnJsonArray([data]);
 }
@@ -315,10 +315,10 @@ export function descriptionGetOAuth2Client(displayOptions: IDisplayOptions): INo
 
 export async function executeGetOAuth2Client(
 	this: IExecuteFunctions,
-	_itemIndex: number,
+	_itemIndex?: number,
 ): Promise<INodeExecutionData[]> {
 	const client = new ApiClient(this);
-	const clientId = this.getNodeParameter('clientId', _itemIndex) as string;
+	const clientId = this.getNodeParameter('clientId', _itemIndex ?? 0) as string;
 	const data = (await client.httpGet(`/me/api/oauth2/client/${clientId}`)) as IDataObject;
 	return this.helpers.returnJsonArray([data]);
 }
@@ -365,10 +365,10 @@ export function descriptionGetAuditLogKind(displayOptions: IDisplayOptions): INo
 
 export async function executeGetAuditLogKind(
 	this: IExecuteFunctions,
-	_itemIndex: number,
+	_itemIndex?: number,
 ): Promise<INodeExecutionData[]> {
 	const client = new ApiClient(this);
-	const name = this.getNodeParameter('name', _itemIndex) as string;
+	const name = this.getNodeParameter('name', _itemIndex ?? 0) as string;
 	const data = (await client.httpGet(`/me/logs/audit/log/kind/${name}`)) as IDataObject;
 	return this.helpers.returnJsonArray([data]);
 }
@@ -406,10 +406,10 @@ export function descriptionGetAuditLogSubscription(
 
 export async function executeGetAuditLogSubscription(
 	this: IExecuteFunctions,
-	_itemIndex: number,
+	_itemIndex?: number,
 ): Promise<INodeExecutionData[]> {
 	const client = new ApiClient(this);
-	const subscriptionId = this.getNodeParameter('subscriptionId', _itemIndex) as string;
+	const subscriptionId = this.getNodeParameter('subscriptionId', _itemIndex ?? 0) as string;
 	const data = (await client.httpGet(
 		`/me/logs/audit/log/subscription/${subscriptionId}`,
 	)) as IDataObject;

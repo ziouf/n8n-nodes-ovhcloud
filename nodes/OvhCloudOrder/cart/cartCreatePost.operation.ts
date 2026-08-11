@@ -36,7 +36,7 @@ export function description(displayOptions: IDisplayOptions): INodeProperties[] 
  */
 export async function execute(this: IExecuteFunctions, itemIndex: number): Promise<INodeExecutionData[]> {
 	const client = new ApiClient(this);
-	const cartId = this.getNodeParameter('cartId', 0, '') as string;
+	const cartId = this.getNodeParameter('cartId', itemIndex ?? 0, '') as string;
 
 	const url = cartId ? `/order/cart/${cartId}` : '/order/cart';
 	const body = this.getNodeParameter('body', itemIndex) as IDataObject;

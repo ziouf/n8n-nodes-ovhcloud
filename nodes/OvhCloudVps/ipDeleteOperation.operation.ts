@@ -37,10 +37,10 @@ export async function execute(
 	itemIndex?: number,
 ): Promise<INodeExecutionData[]> {
 	const client = new ApiClient(this);
-	const serviceName = this.getNodeParameter('serviceName', itemIndex!, '', {
+	const serviceName = this.getNodeParameter('serviceName', itemIndex ?? 0, '', {
 		extractValue: true,
 	}) as string;
-	const ipAddress = this.getNodeParameter('ipAddress', itemIndex!) as string;
+	const ipAddress = this.getNodeParameter('ipAddress', itemIndex ?? 0) as string;
 
 	await client.httpDelete(`/vps/${serviceName}/ips/${encodeURIComponent(ipAddress)}`);
 	return this.helpers.returnJsonArray([{}]);

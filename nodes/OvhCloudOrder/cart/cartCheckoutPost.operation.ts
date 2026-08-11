@@ -48,12 +48,12 @@ export async function execute(this: IExecuteFunctions, itemIndex: number): Promi
 	const cartId = this.getNodeParameter('cartId', itemIndex) as string;
 	const autoPayWithPreferredPaymentMethod = this.getNodeParameter(
 		'autoPayWithPreferredPaymentMethod',
-		0,
+		itemIndex ?? 0,
 		false,
 	) as boolean;
 	const waiveRetractationPeriod = this.getNodeParameter(
 		'waiveRetractationPeriod',
-		0,
+		itemIndex ?? 0,
 		false,
 	) as boolean;
 

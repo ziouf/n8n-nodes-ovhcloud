@@ -772,7 +772,7 @@ export async function execute(
 		case 'netbootConfigGet':
 			return executeNetbootConfigGet.call(this, itemIndex);
 		case 'list':
-			return executeList.call(this);
+			return executeList.call(this, itemIndex);
 		case 'listSshKeys':
 			return executeSshKeyListGet.call(this, itemIndex);
 		case 'migrationMigrationIdGet':

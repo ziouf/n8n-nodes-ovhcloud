@@ -38,10 +38,10 @@ export async function execute(
 	itemIndex?: number,
 ): Promise<INodeExecutionData[]> {
 	const client = new ApiClient(this);
-	const serviceName = this.getNodeParameter('serviceName', itemIndex!, '', {
+	const serviceName = this.getNodeParameter('serviceName', itemIndex ?? 0, '', {
 		extractValue: true,
 	}) as string;
-	const template = this.getNodeParameter('template', itemIndex!) as string;
+	const template = this.getNodeParameter('template', itemIndex ?? 0) as string;
 
 	const body: IDataObject = { template };
 	const data = (await client.httpPost(

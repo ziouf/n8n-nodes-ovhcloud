@@ -50,7 +50,7 @@ export async function execute(this: IExecuteFunctions, itemIndex: number): Promi
 	void planCode; // used in template literal
 	const serviceName = this.getNodeParameter('serviceName', itemIndex) as string;
 	void serviceName; // used in template literal
-	const autoPayWithPreferredPaymentMethod = this.getNodeParameter('autoPayWithPreferredPaymentMethod', 0, false) as boolean;
+	const autoPayWithPreferredPaymentMethod = this.getNodeParameter('autoPayWithPreferredPaymentMethod', itemIndex ?? 0, false) as boolean;
 	const body: IDataObject = {
 		autoPayWithPreferredPaymentMethod,
 	};

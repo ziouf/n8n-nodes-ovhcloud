@@ -38,10 +38,10 @@ export async function execute(
 	itemIndex?: number,
 ): Promise<INodeExecutionData[]> {
 	const client = new ApiClient(this);
-	const serviceName = this.getNodeParameter('serviceName', itemIndex!, '', {
+	const serviceName = this.getNodeParameter('serviceName', itemIndex ?? 0, '', {
 		extractValue: true,
 	}) as string;
-	const order = this.getNodeParameter('order', itemIndex!) as string;
+	const order = this.getNodeParameter('order', itemIndex ?? 0) as string;
 
 	const body: IDataObject = { order };
 	const data = (await client.httpPost(
