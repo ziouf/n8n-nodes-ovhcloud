@@ -35,10 +35,10 @@ export function description(displayOptions: IDisplayOptions): INodeProperties[] 
  * HTTP method: GET
  * Endpoint: /order/cart/{cartId}/webHosting/options
  */
-export async function execute(this: IExecuteFunctions, _itemIndex: number): Promise<INodeExecutionData[]> {
+export async function execute(this: IExecuteFunctions, itemIndex: number): Promise<INodeExecutionData[]> {
 	const client = new ApiClient(this);
-	const cartId = this.getNodeParameter('cartId', _itemIndex) as string;
-	const planCode = this.getNodeParameter('planCode', _itemIndex ?? 0, '') as string;
+	const cartId = this.getNodeParameter('cartId', itemIndex) as string;
+	const planCode = this.getNodeParameter('planCode', itemIndex ?? 0, '') as string;
 	const qs: IDataObject = {
 		planCode: planCode
 	};

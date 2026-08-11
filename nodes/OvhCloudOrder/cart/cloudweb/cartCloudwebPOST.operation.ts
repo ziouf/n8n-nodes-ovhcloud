@@ -62,13 +62,13 @@ export function description(displayOptions: IDisplayOptions): INodeProperties[] 
  * HTTP method: POST
  * Endpoint: /order/cart/{cartId}/cloudweb
  */
-export async function execute(this: IExecuteFunctions, _itemIndex: number): Promise<INodeExecutionData[]> {
+export async function execute(this: IExecuteFunctions, itemIndex: number): Promise<INodeExecutionData[]> {
 	const client = new ApiClient(this);
-	const cartId = this.getNodeParameter('cartId', _itemIndex) as string;
-	const duration = this.getNodeParameter('duration', _itemIndex ?? 0, '') as string;
-	const planCode = this.getNodeParameter('planCode', _itemIndex ?? 0, '') as string;
-	const pricingMode = this.getNodeParameter('pricingMode', _itemIndex ?? 0, '') as string;
-	const quantity = this.getNodeParameter('quantity', _itemIndex ?? 0, 0) as number;
+	const cartId = this.getNodeParameter('cartId', itemIndex) as string;
+	const duration = this.getNodeParameter('duration', itemIndex ?? 0, '') as string;
+	const planCode = this.getNodeParameter('planCode', itemIndex ?? 0, '') as string;
+	const pricingMode = this.getNodeParameter('pricingMode', itemIndex ?? 0, '') as string;
+	const quantity = this.getNodeParameter('quantity', itemIndex ?? 0, 0) as number;
 	const body: IDataObject = {
 		duration: duration,
 		planCode: planCode,

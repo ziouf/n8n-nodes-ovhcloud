@@ -1,28 +1,69 @@
 import type { IExecuteFunctions } from 'n8n-workflow';
 
 /**
- * Reads a node parameter with proper multi-item support.
+ * Resolves a node parameter for a specific input item.
  *
- * Operations invoked by `executeTemplate` receive an `itemIndex` argument.
- * This helper falls back to index 0 when no item index is provided (legacy
- * calls, tests, or list-only operations), keeping the correct multi-item
- * behaviour when one is passed.
+ * Acts as a thin wrapper around `getNodeParameter` that automatically
+ * resolves the item index (defaulting to `0`) and supports an optional
+ * fallback value or options object as the 4th argument.
  *
- * @param ctx     — the n8n execute context (`this` in an operation)
- * @param name    — parameter name as declared in the node definition
- * @param idx     — item index (optional; defaults to 0 for backward compat)
- * @param options — optional extra options passed to `getNodeParameter`
- * @returns       — the resolved parameter value
+ * **Disambiguation rule for the 4th argument:**
+ * - If it is a plain object → treated as **options** (3-arg form)
+ * - Otherwise (string, number, undefined, …) → treated as a **fallback value** (4-arg form)
+ *
+ * @param ctx - The n8n execute context
+ * @param key - Parameter name to resolve
+ * @param idx - Optional item index (defaults to `0`)
+ * @param fallbackOrOptions - Fallback value or options object (see disambiguation above)
+ * @param options - Options object (only used when 4th arg is a fallback value)
+ * @returns The resolved parameter value
  */
-export function getItemParameter<T = unknown>(
+// Overload: getItemParameter(ctx, key, options)
+export function getItemParameter(
 	ctx: IExecuteFunctions,
-	name: string,
-	idx?: number,
+	key: string,
 	options?: Record<string, unknown>,
-): T {
-	// getNodeParameter overloads:
-	//   (name: string, itemIndex: number, options?: IDataObject): T
-	//   (name: string, itemIndex: number, fallback: T, options?: IDataObject): T
-	// We always pass a number; `idx ?? 0` keeps backward compat with tests.
-	return ctx.getNodeParameter(name, idx ?? 0, options) as T;
+): unknown;
+// Overload: getItemParameter(ctx, key, idx, fallback)
+export function getItemParameter(
+	ctx: IExecuteFunctions,
+	key: string,
+	idx: number,
+	fallback?: unknown,
+): unknown;
+// Overload: getItemParameter(ctx, key, idx, fallback, options)
+export function getItemParameter(
+	ctx: IExecuteFunctions,
+	key: string,
+	idx: number,
+	fallback: unknown,
+	options: Record<string, unknown>,
+): unknown;
+// Overload: getItemParameter(ctx, key, idx, options) — options as 4th arg
+export function getItemParameter(
+	ctx: IExecuteFunctions,
+	key: string,
+	idx: number,
+	options: Record<string, unknown>,
+): unknown;
+// Implementation signature (catch-all)
+export function getItemParameter(
+	ctx: IExecuteFunctions,
+	key: string,
+	idxOrOptions?: number | Record<string, unknown>,
+	fallbackOrOptions?: unknown | Record<string, unknown>,
+	options?: Record<string, unknown>,
+): unknown {
+	const idx = typeof idxOrOptions === 'number' ? idxOrOptions : 0;
+	const fallback = typeof fallbackOrOptions === 'object' ? undefined : fallbackOrOptions;
+	const isOptions =
+		fallbackOrOptions !== undefined &&
+		fallbackOrOptions !== null &&
+		typeof fallbackOrOptions === 'object' &&
+		!Array.isArray(fallbackOrOptions);
+
+	if (isOptions) {
+		return ctx.getNodeParameter(key, idx, fallbackOrOptions as Record<string, unknown>);
+	}
+	return ctx.getNodeParameter(key, idx, fallback, options);
 }

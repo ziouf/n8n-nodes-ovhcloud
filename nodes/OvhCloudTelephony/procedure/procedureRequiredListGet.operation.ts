@@ -20,7 +20,7 @@ export function description(_displayOptions: IDisplayOptions): INodeProperties[]
  */
 export async function execute(
 	this: IExecuteFunctions,
-	_itemIndex: number,
+	_itemIndex?: number,
 ): Promise<INodeExecutionData[]> {
 	void _itemIndex;
 

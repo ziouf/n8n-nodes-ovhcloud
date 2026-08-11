@@ -1,5 +1,6 @@
-export { BaseNode, executeTemplate } from './BaseNode';
+export { BaseNode, executeTemplate, type ExecuteTemplateOptions } from './BaseNode';
 export { createError } from './createError';
 export { getItemParameter } from './itemParameter';
+export { classifyOperation, DEFAULT_CLASS_CONCURRENCY } from './operationClass';
 export { fullObjectsListOptions } from './listOptions';
 export { serviceNameLocator, projectIdLocator } from './locators';

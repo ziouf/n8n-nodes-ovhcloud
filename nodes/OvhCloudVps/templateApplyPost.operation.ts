@@ -35,13 +35,13 @@ export function description(displayOptions: IDisplayOptions): INodeProperties[] 
 
 export async function execute(
 	this: IExecuteFunctions,
-	_itemIndex?: number,
+	itemIndex?: number,
 ): Promise<INodeExecutionData[]> {
 	const client = new ApiClient(this);
-	const serviceName = this.getNodeParameter('serviceName', _itemIndex!, '', {
+	const serviceName = this.getNodeParameter('serviceName', itemIndex ?? 0, '', {
 		extractValue: true,
 	}) as string;
-	const template = this.getNodeParameter('template', _itemIndex!) as string;
+	const template = this.getNodeParameter('template', itemIndex ?? 0) as string;
 
 	const body: IDataObject = { template };
 	const data = (await client.httpPost(

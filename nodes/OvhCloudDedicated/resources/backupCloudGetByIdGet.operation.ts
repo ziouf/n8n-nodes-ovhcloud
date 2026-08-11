@@ -46,16 +46,16 @@ export function description(displayOptions: IDisplayOptions) {
 
 export async function execute(
 	this: IExecuteFunctions,
-	_itemIndex?: number,
+	itemIndex?: number,
 ): Promise<INodeExecutionData[]> {
 	const client = new ApiClient(this);
-	const serviceName = this.getNodeParameter('serviceName', _itemIndex!, '', {
+	const serviceName = this.getNodeParameter('serviceName', itemIndex ?? 0, '', {
 		extractValue: true,
 	}) as string;
 
 	let backupId: string | undefined;
 	try {
-		backupId = (this.getNodeParameter('backupId', _itemIndex!) ?? '') as string;
+		backupId = (this.getNodeParameter('backupId', itemIndex ?? 0) ?? '') as string;
 	} catch {
 		throw new Error('"Backup Cloud ID" is required');
 	}
