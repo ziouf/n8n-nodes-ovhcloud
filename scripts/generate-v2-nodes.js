@@ -133,7 +133,7 @@ const SPEC_NODE_MAP = {
 		operation: 'okmsOperation',
 	},
 	managedCMS: {
-		nodeClass: 'OvhCloudManagedCMS',
+		nodeClass: 'OvhCloudManagedCms',
 		displayName: 'OVH Cloud Managed CMS',
 		name: 'ovhCloudManagedCMS',
 		description: 'Manage OVHcloud Managed CMS via /managedCMS API v2',

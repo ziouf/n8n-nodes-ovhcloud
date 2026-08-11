@@ -9,7 +9,7 @@ import { OvhCloudApiSecretName, OvhCloudIcon } from '../../shared/constants';
 import { description, execute } from './index';
 import { BaseNode, executeTemplate } from '../../shared/nodes/BaseNode';
 
-export class OvhCloudManagedCMS extends BaseNode implements INodeType {
+export class OvhCloudManagedCms extends BaseNode implements INodeType {
 	description: INodeTypeDescription = {
 		displayName: 'OVH Cloud Managed CMS',
 		name: 'ovhCloudManagedCms',
