@@ -85,7 +85,7 @@ describe('ApiClient pagination', () => {
 
 	it('should return empty array when first page is empty', async () => {
 		const { client, mockHttpRequest } = createMockClient([]);
-		const result = await client.paginate('/vps');
+		const result = await client.paginate('/vps', { concurrency: 1 });
 		expect(result).toEqual([]);
 		expect(mockHttpRequest).toHaveBeenCalledTimes(1);
 	});
@@ -114,11 +114,13 @@ describe('ApiClient pagination', () => {
 	});
 
 	it('should paginate resources by fetching IDs then details', async () => {
-		const mockHttpRequest = jest
-			.fn()
-			.mockResolvedValueOnce(['vps-1', 'vps-2'])
-			.mockResolvedValueOnce({ serviceId: 'vps-1', ip: '1.2.3.4' })
-			.mockResolvedValueOnce({ serviceId: 'vps-2', ip: '5.6.7.8' });
+		let callCount = 0;
+		const mockHttpRequest = jest.fn().mockImplementation(() => {
+			callCount++;
+			if (callCount === 1) return ['vps-1', 'vps-2'];
+			if (callCount === 2) return { serviceId: 'vps-1', ip: '1.2.3.4' };
+			return { serviceId: 'vps-2', ip: '5.6.7.8' };
+		});
 		const mockGetCredentials = jest.fn().mockResolvedValue({
 			endpoint: 'eu.api.ovh.com/1.0',
 			appKey: 'test-app-key',
@@ -132,19 +134,21 @@ describe('ApiClient pagination', () => {
 			},
 		} as unknown as jest.Mocked<IExecuteFunctions>;
 		const client = new ApiClient(mockCtx);
-		const result = await client.paginateResources('/vps', '/vps/{id}');
+		const result = await client.paginateResources('/vps', '/vps/{id}', { maxItems: 2 });
 		expect(result).toHaveLength(2);
 		expect(result[0]).toEqual({ serviceId: 'vps-1', ip: '1.2.3.4' });
 		expect(result[1]).toEqual({ serviceId: 'vps-2', ip: '5.6.7.8' });
 	});
 
 	it('should skip resources that fail to fetch', async () => {
-		const mockHttpRequest = jest
-			.fn()
-			.mockResolvedValueOnce(['vps-1', 'vps-2', 'vps-3'])
-			.mockResolvedValueOnce({ serviceId: 'vps-1' })
-			.mockRejectedValueOnce(new Error('Not found'))
-			.mockResolvedValueOnce({ serviceId: 'vps-3' });
+		let callCount = 0;
+		const mockHttpRequest = jest.fn().mockImplementation(() => {
+			callCount++;
+			if (callCount === 1) return ['vps-1', 'vps-2', 'vps-3'];
+			if (callCount === 2) return { serviceId: 'vps-1' };
+			if (callCount === 3) throw createApiError('Not found', 404);
+			return { serviceId: 'vps-3' };
+		});
 		const mockGetCredentials = jest.fn().mockResolvedValue({
 			endpoint: 'eu.api.ovh.com/1.0',
 			appKey: 'test-app-key',
@@ -158,18 +162,20 @@ describe('ApiClient pagination', () => {
 			},
 		} as unknown as jest.Mocked<IExecuteFunctions>;
 		const client = new ApiClient(mockCtx);
-		const result = await client.paginateResources('/vps', '/vps/{id}');
+		const result = await client.paginateResources('/vps', '/vps/{id}', { maxItems: 3 });
 		expect(result).toHaveLength(2);
 		expect(result.map((r: Record<string, unknown>) => r.serviceId)).toEqual(['vps-1', 'vps-3']);
 	});
 
 	it('should call onSkipped callback when a resource fails to fetch', async () => {
-		const mockHttpRequest = jest
-			.fn()
-			.mockResolvedValueOnce(['vps-1', 'vps-2', 'vps-3'])
-			.mockResolvedValueOnce({ serviceId: 'vps-1' })
-			.mockRejectedValueOnce(new Error('Not found'))
-			.mockResolvedValueOnce({ serviceId: 'vps-3' });
+		let callCount = 0;
+		const mockHttpRequest = jest.fn().mockImplementation(() => {
+			callCount++;
+			if (callCount === 1) return ['vps-1', 'vps-2', 'vps-3'];
+			if (callCount === 2) return { serviceId: 'vps-1' };
+			if (callCount === 3) throw createApiError('Not found', 404);
+			return { serviceId: 'vps-3' };
+		});
 		const mockGetCredentials = jest.fn().mockResolvedValue({
 			endpoint: 'eu.api.ovh.com/1.0',
 			appKey: 'test-app-key',
@@ -185,6 +191,7 @@ describe('ApiClient pagination', () => {
 		const client = new ApiClient(mockCtx);
 		const skipped: { id: string; error: unknown }[] = [];
 		const result = await client.paginateResources('/vps', '/vps/{id}', {
+			maxItems: 3,
 			onSkipped: (id, error) => skipped.push({ id, error }),
 		});
 		expect(result).toHaveLength(2);
@@ -194,14 +201,13 @@ describe('ApiClient pagination', () => {
 	});
 
 	it('should respect concurrency option', async () => {
-		const mockHttpRequest = jest
-			.fn()
-			.mockResolvedValueOnce(['vps-1', 'vps-2', 'vps-3', 'vps-4', 'vps-5'])
-			.mockResolvedValueOnce({ serviceId: 'vps-1' })
-			.mockResolvedValueOnce({ serviceId: 'vps-2' })
-			.mockResolvedValueOnce({ serviceId: 'vps-3' })
-			.mockResolvedValueOnce({ serviceId: 'vps-4' })
-			.mockResolvedValueOnce({ serviceId: 'vps-5' });
+		let callCount = 0;
+		const mockHttpRequest = jest.fn().mockImplementation(() => {
+			callCount++;
+			if (callCount === 1) return ['vps-1', 'vps-2', 'vps-3', 'vps-4', 'vps-5'];
+			const idx = callCount - 1;
+			return { serviceId: `vps-${idx}` };
+		});
 		const mockGetCredentials = jest.fn().mockResolvedValue({
 			endpoint: 'eu.api.ovh.com/1.0',
 			appKey: 'test-app-key',
@@ -215,7 +221,10 @@ describe('ApiClient pagination', () => {
 			},
 		} as unknown as jest.Mocked<IExecuteFunctions>;
 		const client = new ApiClient(mockCtx);
-		const result = await client.paginateResources('/vps', '/vps/{id}', { concurrency: 2 });
+		const result = await client.paginateResources('/vps', '/vps/{id}', {
+			concurrency: 2,
+			maxItems: 5,
+		});
 		expect(result).toHaveLength(5);
 		expect(result.map((r: Record<string, unknown>) => r.serviceId)).toEqual([
 			'vps-1',
@@ -230,7 +239,7 @@ describe('ApiClient pagination', () => {
 describe('ApiClient retry', () => {
 	jest.setTimeout(15000);
 
-	it('should return success on first attempt', async () => {
+	it('httpGet returns success on first attempt', async () => {
 		const mockHttpRequest = jest.fn().mockResolvedValueOnce({ data: 'success' });
 		const mockGetCredentials = jest.fn().mockResolvedValue({
 			endpoint: 'eu.api.ovh.com/1.0',
@@ -245,12 +254,12 @@ describe('ApiClient retry', () => {
 			},
 		} as unknown as jest.Mocked<IExecuteFunctions>;
 		const client = new ApiClient(mockCtx);
-		const result = await client.httpGetWithRetry('/vps');
+		const result = await client.httpGet('/vps');
 		expect(result).toEqual({ data: 'success' });
 		expect(mockHttpRequest).toHaveBeenCalledTimes(1);
 	});
 
-	it('should retry on transient failure and eventually succeed', async () => {
+	it('httpGet retries on transient failure and eventually succeeds', async () => {
 		const mockHttpRequest = jest
 			.fn()
 			.mockRejectedValueOnce(createApiError('Rate limited', 429))
@@ -269,9 +278,78 @@ describe('ApiClient retry', () => {
 			},
 		} as unknown as jest.Mocked<IExecuteFunctions>;
 		const client = new ApiClient(mockCtx);
-		const result = await client.httpGetWithRetry('/vps');
+		const result = await client.httpGet('/vps');
 		expect(result).toEqual({ data: 'success' });
 		expect(mockHttpRequest).toHaveBeenCalledTimes(3);
+	});
+
+	it('httpPost retries on transient failure and eventually succeeds', async () => {
+		const mockHttpRequest = jest
+			.fn()
+			.mockRejectedValueOnce(createApiError('Server error', 500))
+			.mockResolvedValueOnce({ data: 'created' });
+		const mockGetCredentials = jest.fn().mockResolvedValue({
+			endpoint: 'eu.api.ovh.com/1.0',
+			appKey: 'test-app-key',
+			appSecret: 'test-app-secret',
+			consumerKey: 'test-consumer-key',
+		});
+		const mockCtx = {
+			getCredentials: mockGetCredentials,
+			helpers: {
+				httpRequest: mockHttpRequest as unknown as IExecuteFunctions['helpers']['httpRequest'],
+			},
+		} as unknown as jest.Mocked<IExecuteFunctions>;
+		const client = new ApiClient(mockCtx);
+		const result = await client.httpPost('/vps', { name: 'test' });
+		expect(result).toEqual({ data: 'created' });
+		expect(mockHttpRequest).toHaveBeenCalledTimes(2);
+	});
+
+	it('httpPut retries on transient failure and eventually succeeds', async () => {
+		const mockHttpRequest = jest
+			.fn()
+			.mockRejectedValueOnce(createApiError('Server error', 500))
+			.mockResolvedValueOnce({ data: 'updated' });
+		const mockGetCredentials = jest.fn().mockResolvedValue({
+			endpoint: 'eu.api.ovh.com/1.0',
+			appKey: 'test-app-key',
+			appSecret: 'test-app-secret',
+			consumerKey: 'test-consumer-key',
+		});
+		const mockCtx = {
+			getCredentials: mockGetCredentials,
+			helpers: {
+				httpRequest: mockHttpRequest as unknown as IExecuteFunctions['helpers']['httpRequest'],
+			},
+		} as unknown as jest.Mocked<IExecuteFunctions>;
+		const client = new ApiClient(mockCtx);
+		const result = await client.httpPut('/vps/vps123', { name: 'updated' });
+		expect(result).toEqual({ data: 'updated' });
+		expect(mockHttpRequest).toHaveBeenCalledTimes(2);
+	});
+
+	it('httpDelete retries on transient failure and eventually succeeds', async () => {
+		const mockHttpRequest = jest
+			.fn()
+			.mockRejectedValueOnce(createApiError('Server error', 500))
+			.mockResolvedValueOnce({ success: true });
+		const mockGetCredentials = jest.fn().mockResolvedValue({
+			endpoint: 'eu.api.ovh.com/1.0',
+			appKey: 'test-app-key',
+			appSecret: 'test-app-secret',
+			consumerKey: 'test-consumer-key',
+		});
+		const mockCtx = {
+			getCredentials: mockGetCredentials,
+			helpers: {
+				httpRequest: mockHttpRequest as unknown as IExecuteFunctions['helpers']['httpRequest'],
+			},
+		} as unknown as jest.Mocked<IExecuteFunctions>;
+		const client = new ApiClient(mockCtx);
+		const result = await client.httpDelete('/vps/vps123');
+		expect(result).toEqual({ success: true });
+		expect(mockHttpRequest).toHaveBeenCalledTimes(2);
 	});
 
 	it('should throw after exhausting all retries', async () => {
@@ -293,82 +371,14 @@ describe('ApiClient retry', () => {
 				httpRequest: mockHttpRequest as unknown as IExecuteFunctions['helpers']['httpRequest'],
 			},
 		} as unknown as jest.Mocked<IExecuteFunctions>;
-		const client = new ApiClient(mockCtx);
-		await expect(
-			client.httpGetWithRetry('/vps', undefined, {
-				retry: { maxRetries: 3, initialDelayMs: 1, maxDelayMs: 4, backoffMultiplier: 2 },
-			}),
-		).rejects.toThrow('Rate limited');
+		const client = new ApiClient(mockCtx, {
+			maxRetries: 3,
+			initialDelayMs: 1,
+			maxDelayMs: 4,
+			backoffMultiplier: 2,
+		});
+		await expect(client.httpGet('/vps')).rejects.toThrow('Rate limited');
 		expect(mockHttpRequest).toHaveBeenCalledTimes(4);
-	});
-
-	it('should retry POST on failure', async () => {
-		const mockHttpRequest = jest
-			.fn()
-			.mockRejectedValueOnce(createApiError('Server error', 500))
-			.mockResolvedValueOnce({ data: 'created' });
-		const mockGetCredentials = jest.fn().mockResolvedValue({
-			endpoint: 'eu.api.ovh.com/1.0',
-			appKey: 'test-app-key',
-			appSecret: 'test-app-secret',
-			consumerKey: 'test-consumer-key',
-		});
-		const mockCtx = {
-			getCredentials: mockGetCredentials,
-			helpers: {
-				httpRequest: mockHttpRequest as unknown as IExecuteFunctions['helpers']['httpRequest'],
-			},
-		} as unknown as jest.Mocked<IExecuteFunctions>;
-		const client = new ApiClient(mockCtx);
-		const result = await client.httpPostWithRetry('/vps', { name: 'test' });
-		expect(result).toEqual({ data: 'created' });
-		expect(mockHttpRequest).toHaveBeenCalledTimes(2);
-	});
-
-	it('should retry PUT on failure', async () => {
-		const mockHttpRequest = jest
-			.fn()
-			.mockRejectedValueOnce(createApiError('Server error', 500))
-			.mockResolvedValueOnce({ data: 'updated' });
-		const mockGetCredentials = jest.fn().mockResolvedValue({
-			endpoint: 'eu.api.ovh.com/1.0',
-			appKey: 'test-app-key',
-			appSecret: 'test-app-secret',
-			consumerKey: 'test-consumer-key',
-		});
-		const mockCtx = {
-			getCredentials: mockGetCredentials,
-			helpers: {
-				httpRequest: mockHttpRequest as unknown as IExecuteFunctions['helpers']['httpRequest'],
-			},
-		} as unknown as jest.Mocked<IExecuteFunctions>;
-		const client = new ApiClient(mockCtx);
-		const result = await client.httpPutWithRetry('/vps/vps123', { name: 'updated' });
-		expect(result).toEqual({ data: 'updated' });
-		expect(mockHttpRequest).toHaveBeenCalledTimes(2);
-	});
-
-	it('should retry DELETE on failure', async () => {
-		const mockHttpRequest = jest
-			.fn()
-			.mockRejectedValueOnce(createApiError('Server error', 500))
-			.mockResolvedValueOnce({ success: true });
-		const mockGetCredentials = jest.fn().mockResolvedValue({
-			endpoint: 'eu.api.ovh.com/1.0',
-			appKey: 'test-app-key',
-			appSecret: 'test-app-secret',
-			consumerKey: 'test-consumer-key',
-		});
-		const mockCtx = {
-			getCredentials: mockGetCredentials,
-			helpers: {
-				httpRequest: mockHttpRequest as unknown as IExecuteFunctions['helpers']['httpRequest'],
-			},
-		} as unknown as jest.Mocked<IExecuteFunctions>;
-		const client = new ApiClient(mockCtx);
-		const result = await client.httpDeleteWithRetry('/vps/vps123');
-		expect(result).toEqual({ success: true });
-		expect(mockHttpRequest).toHaveBeenCalledTimes(2);
 	});
 
 	it('should use default retry options when creating client', async () => {

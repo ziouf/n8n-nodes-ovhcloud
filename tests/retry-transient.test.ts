@@ -2,9 +2,8 @@
  * Tests for transient error detection and retry behavior in ApiClient.
  *
  * Verifies that:
- * - httpGet retries automatically on transient errors (5xx, 429)
- * - httpGet does NOT retry on non-transient errors (4xx, unknown)
- * - httpPost does NOT retry by default (safety for destructive operations)
+ * - All verbs (GET, POST, PUT, DELETE) retry automatically on transient errors (5xx, 429)
+ * - All verbs do NOT retry on non-transient errors (4xx, unknown)
  * - Jitter is applied to retry delays
  * - Rate limit retry-after header is respected
  */
@@ -73,11 +72,69 @@ describe('Transient error retry', () => {
 		expect(mockHttpRequest).toHaveBeenCalledTimes(1);
 	});
 
-	it('httpPost does NOT retry by default on 500 (safety)', async () => {
-		const { client, mockHttpRequest } = createMockClient({});
-		mockHttpRequest.mockRejectedValue(createApiError('Server error', 500));
+	it('httpPost retries by default on 500', async () => {
+		const { client, mockHttpRequest } = createMockClient({ data: 'ok' });
+		mockHttpRequest.mockRejectedValueOnce(createApiError('Server error', 500));
 
-		await expect(client.httpPost('/vps', { name: 'test' })).rejects.toThrow('Server error');
+		const promise = client.httpPost('/vps', { name: 'test' });
+		await jest.advanceTimersByTimeAsync(5000);
+		const result = await promise;
+
+		expect(mockHttpRequest).toHaveBeenCalledTimes(2);
+		expect(result).toEqual({ data: 'ok' });
+	});
+
+	it('httpPost does NOT retry on 400 error', async () => {
+		const { client, mockHttpRequest } = createMockClient({});
+		mockHttpRequest.mockRejectedValue(
+			Object.assign(new Error('Bad request'), { code: 400, httpCode: '400' }),
+		);
+
+		await expect(client.httpPost('/vps', { name: 'test' })).rejects.toThrow('Bad request');
+		expect(mockHttpRequest).toHaveBeenCalledTimes(1);
+	});
+
+	it('httpPut retries on 500', async () => {
+		const { client, mockHttpRequest } = createMockClient({ data: 'ok' });
+		mockHttpRequest.mockRejectedValueOnce(createApiError('Server error', 500));
+
+		const promise = client.httpPut('/vps/vps123', { name: 'updated' });
+		await jest.advanceTimersByTimeAsync(5000);
+		const result = await promise;
+
+		expect(mockHttpRequest).toHaveBeenCalledTimes(2);
+		expect(result).toEqual({ data: 'ok' });
+	});
+
+	it('httpPut does NOT retry on 400 error', async () => {
+		const { client, mockHttpRequest } = createMockClient({});
+		mockHttpRequest.mockRejectedValue(
+			Object.assign(new Error('Bad request'), { code: 400, httpCode: '400' }),
+		);
+
+		await expect(client.httpPut('/vps/vps123', { name: 'test' })).rejects.toThrow('Bad request');
+		expect(mockHttpRequest).toHaveBeenCalledTimes(1);
+	});
+
+	it('httpDelete retries on 500', async () => {
+		const { client, mockHttpRequest } = createMockClient({ data: 'ok' });
+		mockHttpRequest.mockRejectedValueOnce(createApiError('Server error', 500));
+
+		const promise = client.httpDelete('/vps/vps123');
+		await jest.advanceTimersByTimeAsync(5000);
+		const result = await promise;
+
+		expect(mockHttpRequest).toHaveBeenCalledTimes(2);
+		expect(result).toEqual({ data: 'ok' });
+	});
+
+	it('httpDelete does NOT retry on 400 error', async () => {
+		const { client, mockHttpRequest } = createMockClient({});
+		mockHttpRequest.mockRejectedValue(
+			Object.assign(new Error('Bad request'), { code: 400, httpCode: '400' }),
+		);
+
+		await expect(client.httpDelete('/vps/vps123')).rejects.toThrow('Bad request');
 		expect(mockHttpRequest).toHaveBeenCalledTimes(1);
 	});
 
