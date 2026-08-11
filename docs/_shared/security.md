@@ -1,5 +1,29 @@
 # Security Considerations
 
+## Endpoint Allow-listing
+
+All credential endpoints are validated against a strict allow-list at construction time and on every `sign()` call. This prevents:
+
+- **DNS rebinding / sub-domain suffix attacks**: `evil.eu.api.ovh.com` is rejected because only exact hostnames match.
+- **Unexpected paths**: Only `''`, `'/'`, or paths starting with `/1.0` are accepted.
+- **Port injection**: Any endpoint containing `:` (e.g. `eu.api.ovh.com:8443`) is rejected before URL parsing.
+
+The seven allowed hosts are:
+
+| Host                    | Region              |
+| ----------------------- | ------------------- |
+| `eu.api.ovh.com`        | Europe              |
+| `ca.api.ovh.com`        | Canada              |
+| `api.us.ovhcloud.com`   | USA                 |
+| `eu.api.soyoustart.com` | Europe (SoYouStart) |
+| `ca.api.soyoustart.com` | Canada (SoYouStart) |
+| `eu.api.kimsufi.com`    | Europe (Kimsufi)    |
+| `ca.api.kimsufi.com`    | Canada (Kimsufi)    |
+
+## Credential-Scoped List-Search Cache Isolation
+
+List-search results are cached per **credential scope** (`endpoint \| sha256(consumerKey)[:16]`) rather than globally. This guarantees that cached results from one credential never leak into another credential's dropdown, even when both credentials point to the same endpoint. The raw consumer key is never exposed in the scope string.
+
 ## Credential Handling
 
 - **Never hardcode credentials**: Always use n8n's credential storage or environment variables.

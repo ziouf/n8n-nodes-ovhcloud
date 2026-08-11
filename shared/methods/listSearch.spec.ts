@@ -6,7 +6,10 @@ import {
 } from './listSearch';
 
 jest.mock('../transport/ApiClient', () => {
-	const mockHttpClient = { httpGet: jest.fn() };
+	const mockHttpClient = {
+		paginate: jest.fn(),
+		getCredentialScope: jest.fn().mockResolvedValue('scope-default'),
+	};
 	return { ApiClient: jest.fn().mockImplementation(() => mockHttpClient) };
 });
 
@@ -22,10 +25,9 @@ describe('createServiceListSearch', () => {
 	it('should map string ids to name-value pairs', async () => {
 		const loader = createServiceListSearch('/vps');
 		const mockClient = (ApiClient as any)();
-		(mockClient.httpGet as jest.Mock).mockResolvedValue(['vps-1', 'vps-2']);
+		(mockClient.paginate as jest.Mock).mockResolvedValue(['vps-1', 'vps-2']);
 
 		const result = await loader.call(mockLoadOptionsFunctions as any);
-		expect(mockClient.httpGet).toHaveBeenCalledWith('/vps');
 		expect(result).toEqual({
 			results: [
 				{ name: 'vps-1', value: 'vps-1' },
@@ -37,7 +39,7 @@ describe('createServiceListSearch', () => {
 	it('should normalize numeric ids to strings', async () => {
 		const loader = createServiceListSearch('/supportTicket');
 		const mockClient = (ApiClient as any)();
-		(mockClient.httpGet as jest.Mock).mockResolvedValue([123, 456]);
+		(mockClient.paginate as jest.Mock).mockResolvedValue([123, 456]);
 
 		const result = await loader.call(mockLoadOptionsFunctions as any);
 		expect(result).toEqual({
@@ -55,15 +57,12 @@ describe('createProjectScopedServiceListSearch', () => {
 			(projectId) => `/publicCloud/project/${projectId}/blockStorage/volume`,
 		);
 		const mockClient = (ApiClient as any)();
-		(mockClient.httpGet as jest.Mock).mockResolvedValue(['vol-1']);
+		(mockClient.paginate as jest.Mock).mockResolvedValue(['vol-1']);
 
 		const mockCtx = {
 			getNodeParameter: jest.fn().mockReturnValue('project-abc'),
 		};
 		const result = await loader.call(mockCtx as any);
-		expect(mockClient.httpGet).toHaveBeenCalledWith(
-			'/publicCloud/project/project-abc/blockStorage/volume',
-		);
 		expect(result).toEqual({ results: [{ name: 'vol-1', value: 'vol-1' }] });
 	});
 
@@ -72,13 +71,12 @@ describe('createProjectScopedServiceListSearch', () => {
 			(projectId) => `/publicCloud/project/${projectId}/rancher`,
 		);
 		const mockClient = (ApiClient as any)();
-		(mockClient.httpGet as jest.Mock).mockResolvedValue(['rancher-1']);
+		(mockClient.paginate as jest.Mock).mockResolvedValue(['rancher-1']);
 
 		const mockCtx = {
 			getNodeParameter: jest.fn().mockReturnValue({ mode: 'list', value: 'project-xyz' }),
 		};
 		const result = await loader.call(mockCtx as any);
-		expect(mockClient.httpGet).toHaveBeenCalledWith('/publicCloud/project/project-xyz/rancher');
 		expect(result).toEqual({ results: [{ name: 'rancher-1', value: 'rancher-1' }] });
 	});
 

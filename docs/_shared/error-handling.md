@@ -27,6 +27,7 @@
 | Error Type               | Cause                                           | Resolution                                                                                  |
 | ------------------------ | ----------------------------------------------- | ------------------------------------------------------------------------------------------- |
 | **Authentication Error** | Invalid or expired credentials                  | Verify `applicationKey`, `applicationSecret`, and `consumerKey` are correct and not expired |
+| **Invalid Endpoint**     | Endpoint not in the OVH allow-list              | Use one of the seven supported OVH endpoints (see Security Considerations)                  |
 | **Permission Denied**    | Missing IAM action for the requested operation  | Ensure API credentials have the required IAM scopes                                         |
 | **Resource Not Found**   | The specified resource does not exist           | Verify the resource identifier is correct and belongs to the expected service               |
 | **Validation Error**     | Missing or invalid required parameters          | Check the operation's parameter table for required fields                                   |
@@ -51,9 +52,11 @@ Examples of common error messages:
 
 ## Retry Logic Recommendations
 
-- **Transient Retry**: All `GET` requests now include an automatic retry mechanism by default for transient errors (e.g., timeouts, 503s).
+- **Transient Retry**: All HTTP verbs (GET, POST, PUT, DELETE) now include an automatic retry mechanism by default for transient errors (e.g., 429 rate limits, 5xx server errors, network failures). 4xx client errors are never retried.
 - **Jitter**: A jitter algorithm is applied to retry delays to prevent request collisions.
 - **`continueOnFail`**: In case of an error during a batch operation, the `continueOnFail` parameter ensures that the current input item is preserved in the output to facilitate debugging and subsequent manual processing.
+- **Automatic resource/operation enrichment**: When a node configures `{ errorContext: { resource: '…', operationParam: '…' } }` on `executeTemplate`, every error is automatically prefixed with `resource/operation: <original message>`. This makes it trivial to identify which OVH Cloud resource and which operation failed — even in batch or concurrent execution. If the caught error is already a `NodeApiError`, it is passed through unchanged (no double-wrapping).
+- **Per-item concurrency classes**: Nodes using `perItemConcurrency` classify each item into one of three classes (`read`, `write`, `destructive`) and manage concurrency per-class: read operations run up to 3 in parallel, while write and destructive operations are limited to 1 in flight. This prevents race conditions on state-mutating operations while maximising throughput for read-only ones. Classification is heuristic-based (keyword matching on the operation string); unknown operations default to `'write'`. If the classify function throws, the item falls back to `'write'` classification. When both `perItemConcurrency` and `concurrency` are provided, `perItemConcurrency` takes precedence.
 - For asynchronous operations that return a task object, continue to poll the task status until completion (`done` or `error`) rather than retrying the operation itself.
 
 ## Handling Asynchronous Tasks

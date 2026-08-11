@@ -7,7 +7,7 @@
  */
 
 import { createHash } from 'crypto';
-import { CredentialHolder } from '../shared/transport/CredentialHolder';
+import { CredentialHolder, validateEndpoint } from '../shared/transport/CredentialHolder';
 import type { IHttpRequestOptions } from 'n8n-workflow';
 
 describe('CredentialHolder', () => {
@@ -529,6 +529,76 @@ describe('CredentialHolder', () => {
 				expect(hash).toHaveLength(40);
 				expect(hash).toMatch(/^[a-f0-9]+$/);
 			});
+		});
+	});
+
+	// ---------------------------------------------------------------------------
+	// Endpoint allow-list validation (S2)
+	// ---------------------------------------------------------------------------
+	describe('endpoint allow-list validation', () => {
+		const allHosts = [
+			'eu.api.ovh.com',
+			'ca.api.ovh.com',
+			'api.us.ovhcloud.com',
+			'eu.api.soyoustart.com',
+			'ca.api.soyoustart.com',
+			'eu.api.kimsufi.com',
+			'ca.api.kimsufi.com',
+		] as const;
+
+		describe('valid endpoints (pass)', () => {
+			it.each([...allHosts, ...allHosts.map((h) => h + '/1.0')])(
+				'should accept host "%s"',
+				(endpoint) => {
+					expect(() => validateEndpoint(endpoint)).not.toThrow();
+				},
+			);
+		});
+
+		describe('invalid endpoints (reject)', () => {
+			const invalidEndpoints = [
+				'http://eu.api.ovh.com', // contains ':'
+				'eu.api.ovh.com.evil.com', // hostname suffix attack
+				'eu.api.ovh.com/2.0', // wrong API version
+				'', // empty string
+				undefined as unknown as string,
+				null as unknown as string,
+				'eu.api.ovh.com:8443', // non-standard port
+				'eu.api.ovh.com:443', // port 443 (still a colon)
+				'evil.com', // completely unknown host
+			];
+
+			it.each(invalidEndpoints)('should reject "%s"', (endpoint) => {
+				expect(() => validateEndpoint(endpoint)).toThrow(/Invalid OVH endpoint/);
+			});
+
+			it.each(invalidEndpoints)(
+				'rejected endpoint "%s" should list allowed hosts in message',
+				(endpoint) => {
+					expect(() => validateEndpoint(endpoint)).toThrow(
+						/Allowed endpoints are: eu\.api\.ovh\.com, ca\.api\.ovh\.com, api\.us\.ovhcloud\.com, eu\.api\.soyoustart\.com, ca\.api\.soyoustart\.com, eu\.api\.kimsufi\.com, ca\.api\.kimsufi\.com/,
+					);
+				},
+			);
+		});
+
+		it('should throw in constructor when endpoint is invalid', () => {
+			expect(
+				() =>
+					new CredentialHolder({
+						endpoint: 'evil.com',
+						appKey: 'key',
+						appSecret: 'secret',
+						consumerKey: 'ck',
+					}),
+			).toThrow(/Invalid OVH endpoint/);
+		});
+
+		it('should reject runtime endpoint tampering in sign()', () => {
+			const holder = new CredentialHolder(validCredentials);
+			// Tamper with the endpoint property directly.
+			(holder as Record<string, unknown>).endpoint = 'evil.com';
+			expect(() => holder.sign({ method: 'GET', url: '/vps' })).toThrow(/Invalid OVH endpoint/);
 		});
 	});
 });

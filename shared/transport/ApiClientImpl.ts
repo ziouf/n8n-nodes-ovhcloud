@@ -4,6 +4,7 @@ import type {
 	IExecuteFunctions,
 	ILoadOptionsFunctions,
 } from 'n8n-workflow';
+import { createHash } from 'crypto';
 import type { OvhCredentialsType } from './CredentialHolder';
 import { CredentialHolder } from './CredentialHolder';
 
@@ -50,8 +51,6 @@ export interface PaginationOptions {
 	 * Set higher for endpoints with many items, but be mindful of memory and API rate limits.
 	 */
 	maxItems?: number;
-	/** API endpoint to paginate (default: same as request endpoint) */
-	endpoint?: string;
 	/** Additional query parameters merged into every page request
 	 * (e.g. `{ routes: '/vps' }`). Merged before `offset`/`limit`,
 	 * so those always take precedence.
@@ -62,22 +61,6 @@ export interface PaginationOptions {
 	 * Set to `1` for strict sequential fetching (previous behaviour).
 	 */
 	concurrency?: number;
-}
-
-/**
- * Result of a paginated request.
- */
-export interface PaginatedResult<T> {
-	/** Array of items from the current page */
-	items: T[];
-	/** Total number of items available */
-	total: number;
-	/** Current offset */
-	offset: number;
-	/** Number of items per page */
-	limit: number;
-	/** Whether there are more pages available */
-	hasMore: boolean;
 }
 
 /**
@@ -112,6 +95,7 @@ const DEFAULT_RETRY_OPTIONS: Required<RetryOptions> = {
  * - Sign requests using the OVH signature algorithm via CredentialHolder
  * - Return parsed response data from the API
  * - Support pagination for list endpoints
+ * - Retry transient errors (429, 5xx, network) with exponential backoff + jitter
  * - Support configurable timeout and retry with exponential backoff
  *
  * This client should be used for all OVH API calls in n8n nodes to ensure
@@ -149,10 +133,10 @@ export class ApiClient {
 	private credentialsCache: CredentialHolder | undefined;
 
 	/** Maximum number of concurrent page requests in paginate / paginateResources.
-	 * Defaults to `1` (sequential) for backward compatibility.  Increase to
-	 * reduce latency when fetching many pages or resources.
+	 * Defaults to `3` for parallel page fetching.  Set to `1` for strict
+	 * sequential fetching (previous behaviour).
 	 */
-	private static readonly PAGINATE_CONCURRENCY = 1;
+	private static readonly PAGINATE_CONCURRENCY = 3;
 
 	/**
 	 * Creates a new API client instance for the given n8n function context.
@@ -196,6 +180,22 @@ export class ApiClient {
 	}
 
 	/**
+	 * Returns a credential-scoped identifier used for cache isolation.
+	 *
+	 * The scope is `endpoint|sha256(consumerKey)[:16]` — the raw consumer key
+	 * is **never** exposed in the scope string.  Different consumer keys or
+	 * endpoints produce different scopes, ensuring that cached list-search
+	 * results from one credential never leak into another.
+	 *
+	 * @returns A deterministic scope string in the format `endpoint|16-hex-chars`
+	 */
+	public async getCredentialScope(): Promise<string> {
+		const credentials = await this.getCredentials();
+		const hash = createHash('sha256').update(credentials.consumerKey).digest('hex').slice(0, 16);
+		return `${credentials.endpoint}|${hash}`;
+	}
+
+	/**
 	 * Makes a GET request to the OVH API (raw, without retry).
 	 *
 	 * @param url - The API endpoint path (without base URL)
@@ -233,7 +233,29 @@ export class ApiClient {
 	}
 
 	/**
-	 * Makes a POST request to the OVH API.
+	 * Makes a POST request to the OVH API (raw, without retry).
+	 *
+	 * @param url - The API endpoint path (without base URL)
+	 * @param body - Optional request body (will be JSON stringified)
+	 * @param qs - Optional query parameters
+	 * @param options - Additional HTTP request options
+	 * @returns The parsed response data from the API
+	 * @throws NodeApiError if the API call fails with an error status
+	 */
+	private async httpPostRaw(
+		url: string,
+		body?: IDataObject,
+		qs?: IDataObject,
+		options?: IHttpRequestOptions,
+	): Promise<unknown> {
+		const credentials = await this.getCredentials();
+		return await this.fn.helpers.httpRequest(
+			credentials.sign({ method: 'POST', url, body, qs, ...options }),
+		);
+	}
+
+	/**
+	 * Makes a POST request to the OVH API with automatic retry on transient errors.
 	 *
 	 * @param url - The API endpoint path (without base URL)
 	 * @param body - Optional request body (will be JSON stringified)
@@ -248,14 +270,33 @@ export class ApiClient {
 		qs?: IDataObject,
 		options?: IHttpRequestOptions,
 	): Promise<unknown> {
+		return this.requestWithRetry(() => this.httpPostRaw(url, body, qs, options));
+	}
+
+	/**
+	 * Makes a PUT request to the OVH API (raw, without retry).
+	 *
+	 * @param url - The API endpoint path (without base URL)
+	 * @param body - Optional request body (will be JSON stringified)
+	 * @param qs - Optional query parameters
+	 * @param options - Additional HTTP request options
+	 * @returns The parsed response data from the API
+	 * @throws NodeApiError if the API call fails with an error status
+	 */
+	private async httpPutRaw(
+		url: string,
+		body?: IDataObject,
+		qs?: IDataObject,
+		options?: IHttpRequestOptions,
+	): Promise<unknown> {
 		const credentials = await this.getCredentials();
 		return await this.fn.helpers.httpRequest(
-			credentials.sign({ method: 'POST', url, body, qs, ...options }),
+			credentials.sign({ method: 'PUT', url, body, qs, ...options }),
 		);
 	}
 
 	/**
-	 * Makes a PUT request to the OVH API.
+	 * Makes a PUT request to the OVH API with automatic retry on transient errors.
 	 *
 	 * @param url - The API endpoint path (without base URL)
 	 * @param body - Optional request body (will be JSON stringified)
@@ -270,14 +311,31 @@ export class ApiClient {
 		qs?: IDataObject,
 		options?: IHttpRequestOptions,
 	): Promise<unknown> {
+		return this.requestWithRetry(() => this.httpPutRaw(url, body, qs, options));
+	}
+
+	/**
+	 * Makes a DELETE request to the OVH API (raw, without retry).
+	 *
+	 * @param url - The API endpoint path (without base URL)
+	 * @param qs - Optional query parameters
+	 * @param options - Additional HTTP request options
+	 * @returns The parsed response data from the API
+	 * @throws NodeApiError if the API call fails with an error status
+	 */
+	private async httpDeleteRaw(
+		url: string,
+		qs?: IDataObject,
+		options?: IHttpRequestOptions,
+	): Promise<unknown> {
 		const credentials = await this.getCredentials();
 		return await this.fn.helpers.httpRequest(
-			credentials.sign({ method: 'PUT', url, body, qs, ...options }),
+			credentials.sign({ method: 'DELETE', url, qs, ...options }),
 		);
 	}
 
 	/**
-	 * Makes a DELETE request to the OVH API.
+	 * Makes a DELETE request to the OVH API with automatic retry on transient errors.
 	 *
 	 * @param url - The API endpoint path (without base URL)
 	 * @param qs - Optional query parameters
@@ -290,10 +348,7 @@ export class ApiClient {
 		qs?: IDataObject,
 		options?: IHttpRequestOptions,
 	): Promise<unknown> {
-		const credentials = await this.getCredentials();
-		return await this.fn.helpers.httpRequest(
-			credentials.sign({ method: 'DELETE', url, qs, ...options }),
-		);
+		return this.requestWithRetry(() => this.httpDeleteRaw(url, qs, options));
 	}
 
 	/**
@@ -424,6 +479,9 @@ export class ApiClient {
 	 * Retries only transient errors (5xx, 429, network errors).
 	 * Applies jitter to avoid thundering-herd on retry.
 	 *
+	 * Note: `isTransientError` never matches 4xx business errors, so retries
+	 * are bounded to transient conditions only — safe for all HTTP verbs.
+	 *
 	 * @param requestFn - Async function that performs the HTTP request
 	 * @param retryOptions - Retry configuration (overrides default)
 	 * @returns The parsed response data
@@ -466,107 +524,15 @@ export class ApiClient {
 	}
 
 	/**
-	 * Makes a GET request with automatic retry.
-	 *
-	 * @param url - The API endpoint path
-	 * @param qs - Optional query parameters
-	 * @param options - Additional HTTP request options including retry config
-	 * @returns The parsed response data
-	 */
-	public async httpGetWithRetry(
-		url: string,
-		qs?: IDataObject,
-		options?: { retry?: Partial<RetryOptions> } & IHttpRequestOptions,
-	): Promise<unknown> {
-		const retryOptions = options?.retry;
-		const httpOptions = { ...options };
-		delete httpOptions.retry;
-		return this.requestWithRetry(
-			() => this.httpGetRaw(url, qs, httpOptions as IHttpRequestOptions),
-			retryOptions,
-		);
-	}
-
-	/**
-	 * Makes a POST request with automatic retry.
-	 *
-	 * @param url - The API endpoint path
-	 * @param body - Optional request body
-	 * @param qs - Optional query parameters
-	 * @param options - Additional HTTP request options including retry config
-	 * @returns The parsed response data
-	 */
-	public async httpPostWithRetry(
-		url: string,
-		body?: IDataObject,
-		qs?: IDataObject,
-		options?: { retry?: Partial<RetryOptions> } & IHttpRequestOptions,
-	): Promise<unknown> {
-		const retryOptions = options?.retry;
-		const httpOptions = { ...options };
-		delete httpOptions.retry;
-		return await this.requestWithRetry(
-			() => this.httpPost(url, body, qs, httpOptions as IHttpRequestOptions),
-			retryOptions,
-		);
-	}
-
-	/**
-	 * Makes a PUT request with automatic retry.
-	 *
-	 * @param url - The API endpoint path
-	 * @param body - Optional request body
-	 * @param qs - Optional query parameters
-	 * @param options - Additional HTTP request options including retry config
-	 * @returns The parsed response data
-	 */
-	public async httpPutWithRetry(
-		url: string,
-		body?: IDataObject,
-		qs?: IDataObject,
-		options?: { retry?: Partial<RetryOptions> } & IHttpRequestOptions,
-	): Promise<unknown> {
-		const retryOptions = options?.retry;
-		const httpOptions = { ...options };
-		delete httpOptions.retry;
-		return await this.requestWithRetry(
-			() => this.httpPut(url, body, qs, httpOptions as IHttpRequestOptions),
-			retryOptions,
-		);
-	}
-
-	/**
-	 * Makes a DELETE request with automatic retry.
-	 *
-	 * @param url - The API endpoint path
-	 * @param qs - Optional query parameters
-	 * @param options - Additional HTTP request options including retry config
-	 * @returns The parsed response data
-	 */
-	public async httpDeleteWithRetry(
-		url: string,
-		qs?: IDataObject,
-		options?: { retry?: Partial<RetryOptions> } & IHttpRequestOptions,
-	): Promise<unknown> {
-		const retryOptions = options?.retry;
-		const httpOptions = { ...options };
-		delete httpOptions.retry;
-		return await this.requestWithRetry(
-			() => this.httpDelete(url, qs, httpOptions as IHttpRequestOptions),
-			retryOptions,
-		);
-	}
-
-	/**
 	 * Paginates through a list endpoint, fetching all items automatically.
 	 *
 	 * OVH API uses `offset` and `limit` query parameters for pagination.
 	 * This method handles the pagination loop and returns all items in a single array.
 	 *
 	 * Pages are fetched in fixed-size batches of `concurrency` parallel requests
-	 * (default: 1 / sequential), which reduces total latency compared to the
+	 * (default: 3 / parallel), which reduces total latency compared to the
 	 * previous sequential implementation while producing identical results.  Set
-	 * `concurrency` above `1` to enable parallel page fetching.
+	 * `concurrency: 1` for strict sequential fetching.
 	 *
 	 * @param endpoint - The API endpoint to paginate (e.g., '/vps')
 	 * @param options - Pagination configuration (supports optional `concurrency`)

@@ -2,6 +2,77 @@ import { createHash } from 'crypto';
 import type { IHttpRequestOptions } from 'n8n-workflow';
 
 /**
+ * Allowed OVH API endpoint hostnames (exact match, no subdomains).
+ */
+const ALLOWED_ENDPOINT_HOSTS = [
+	'eu.api.ovh.com',
+	'ca.api.ovh.com',
+	'api.us.ovhcloud.com',
+	'eu.api.soyoustart.com',
+	'ca.api.soyoustart.com',
+	'eu.api.kimsufi.com',
+	'ca.api.kimsufi.com',
+] as const;
+
+/** Allowed API path prefix. */
+const ALLOWED_ENDPOINT_PATH = '/1.0';
+
+/**
+ * Validates an OVH API endpoint string against an allow-list of known hosts
+ * and the expected API path prefix.
+ *
+ * @param endpoint - The endpoint value from credentials (e.g. `'eu.api.ovh.com/1.0'`)
+ * @throws Error when the endpoint is not a string, not in the allow-list,
+ *         or carries an unexpected path.
+ */
+export function validateEndpoint(endpoint: unknown): void {
+	// --- empty / non-string rejection (before any parsing) ---
+	if (!endpoint || typeof endpoint !== 'string' || endpoint.trim() === '') {
+		throw new Error(
+			`Invalid OVH endpoint: ${endpoint}. Allowed endpoints are: ${ALLOWED_ENDPOINT_HOSTS.join(', ')}`,
+		);
+	}
+
+	// Reject port specifiers BEFORE URL parsing (new URL would silently accept them).
+	if (endpoint.includes(':')) {
+		throw new Error(
+			`Invalid OVH endpoint: ${endpoint}. Allowed endpoints are: ${ALLOWED_ENDPOINT_HOSTS.join(', ')}`,
+		);
+	}
+
+	let url: URL;
+	try {
+		url = new URL('https://' + endpoint);
+	} catch {
+		throw new Error(
+			`Invalid OVH endpoint: ${endpoint}. Allowed endpoints are: ${ALLOWED_ENDPOINT_HOSTS.join(', ')}`,
+		);
+	}
+
+	// Protocol check (always https: by construction, but kept for safety).
+	if (url.protocol !== 'https:') {
+		throw new Error(
+			`Invalid OVH endpoint: ${endpoint}. Allowed endpoints are: ${ALLOWED_ENDPOINT_HOSTS.join(', ')}`,
+		);
+	}
+
+	// Exact hostname match — sub-domain suffix attacks (evil.eu.api.ovh.com) rejected.
+	if (!ALLOWED_ENDPOINT_HOSTS.includes(url.hostname as (typeof ALLOWED_ENDPOINT_HOSTS)[number])) {
+		throw new Error(
+			`Invalid OVH endpoint: ${endpoint}. Allowed endpoints are: ${ALLOWED_ENDPOINT_HOSTS.join(', ')}`,
+		);
+	}
+
+	// Pathname must be '', '/', or start with '/1.0' (trailing slash normalised).
+	const pathname = url.pathname.endsWith('/') ? url.pathname.slice(0, -1) : url.pathname;
+	if (pathname !== '' && pathname !== '/' && !pathname.startsWith(ALLOWED_ENDPOINT_PATH)) {
+		throw new Error(
+			`Invalid OVH endpoint: ${endpoint}. Allowed endpoints are: ${ALLOWED_ENDPOINT_HOSTS.join(', ')}`,
+		);
+	}
+}
+
+/**
  * Type definition for OVH API credentials used in n8n nodes.
  *
  * Contains all required fields for OVH API authentication:
@@ -66,6 +137,7 @@ export class CredentialHolder implements OvhCredentialsType {
 	 * @param credentials - Raw credential object with OVH API credentials
 	 */
 	constructor(credentials: OvhCredentialsType) {
+		validateEndpoint(credentials.endpoint);
 		this.endpoint = credentials.endpoint;
 		this.appKey = credentials.appKey;
 		this.appSecret = credentials.appSecret;
@@ -97,6 +169,7 @@ export class CredentialHolder implements OvhCredentialsType {
 	 * @throws Error if credential fields are missing or malformed
 	 */
 	sign(requestOptions: IHttpRequestOptions): IHttpRequestOptions {
+		validateEndpoint(this.endpoint);
 		const { endpoint, appKey, appSecret, consumerKey } = this;
 		const { url: path, qs = {}, headers = {} } = requestOptions;
 		const baseURL = `https://${endpoint}`;
