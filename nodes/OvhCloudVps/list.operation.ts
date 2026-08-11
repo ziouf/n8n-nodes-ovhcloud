@@ -38,10 +38,15 @@ export async function execute(
 			},
 		});
 		if (skippedIds.length > 0) {
-			data.unshift({
-				warning: `${skippedIds.length} resource(s) could not be fetched and were skipped`,
-				skippedIds,
+			const items = this.helpers.returnJsonArray(data);
+			items.push({
+				json: {
+					warning: `${skippedIds.length} resource(s) could not be fetched and were skipped`,
+					skippedIds,
+				},
+				pairedItem: { item: _itemIndex ?? 0 },
 			});
+			return items;
 		}
 		return this.helpers.returnJsonArray(data);
 	}

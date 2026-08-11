@@ -17,9 +17,16 @@ export function description(displayOptions: IDisplayOptions): INodeProperties[] 
 	];
 }
 
-export async function execute(this: IExecuteFunctions, _itemIndex?: number): Promise<INodeExecutionData[]> {
+export async function execute(
+	this: IExecuteFunctions,
+	_itemIndex?: number,
+): Promise<INodeExecutionData[]> {
 	const client = new ApiClient(this);
-	const returnFullObjects = this.getNodeParameter('returnFullObjects', _itemIndex ?? 0, false) as boolean;
+	const returnFullObjects = this.getNodeParameter(
+		'returnFullObjects',
+		_itemIndex ?? 0,
+		false,
+	) as boolean;
 	const maxItems = this.getNodeParameter('maxItems', _itemIndex ?? 0, 1000) as number;
 
 	if (returnFullObjects) {
@@ -35,10 +42,15 @@ export async function execute(this: IExecuteFunctions, _itemIndex?: number): Pro
 			},
 		);
 		if (skippedIds.length > 0) {
-			data.unshift({
-				warning: `${skippedIds.length} resource(s) could not be fetched and were skipped`,
-				skippedIds,
+			const items = this.helpers.returnJsonArray(data);
+			items.push({
+				json: {
+					warning: `${skippedIds.length} resource(s) could not be fetched and were skipped`,
+					skippedIds,
+				},
+				pairedItem: { item: _itemIndex ?? 0 },
 			});
+			return items;
 		}
 		return this.helpers.returnJsonArray(data);
 	}

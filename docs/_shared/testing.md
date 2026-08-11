@@ -64,6 +64,7 @@ Use the **Debug** node in n8n to inspect the raw request and response data:
 - [ ] Error messages are descriptive and actionable
 - [ ] Asynchronous tasks return task IDs that can be polled
 - [ ] IAM permissions are correctly enforced
+- [ ] **Cursor pagination**: first page returns `paginationToken` when truncated; loader called with token fetches correct offset; short/last page returns no token; round-trip cursor produces next page
 
 ## Linting
 

@@ -131,6 +131,8 @@ Each operation requires specific IAM permissions. These are listed in the **IAM 
 
 Returns an array of VPS service names (e.g., `["vps123456.ovh.net", "vps789012.ovh.net"]`).
 
+> **Note**: When using the **Return Full Objects** option, if some resources cannot be fetched individually, they are surfaced as a trailing `warning` item containing `skippedIds`. The resource list itself remains clean and unpolluted.
+
 ---
 
 ### 2. Get VPS

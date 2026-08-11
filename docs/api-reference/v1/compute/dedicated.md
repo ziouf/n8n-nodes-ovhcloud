@@ -66,6 +66,8 @@ Certaines opérations nécessitent des **permissions IAM** spécifiques. Voici l
       }
       ```
 
+> **Note**: When using the **Return Full Objects** option, if some resources cannot be fetched individually, they are surfaced as a trailing `warning` item containing `skippedIds`. The resource list itself remains clean and unpolluted.
+
 - **Pour `GET /dedicated/server/{serviceName}`** :
   - `serviceName` (path, type : `string`) :
     - **Description** : Le nom interne de votre serveur dédié.

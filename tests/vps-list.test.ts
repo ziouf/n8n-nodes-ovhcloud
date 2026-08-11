@@ -120,9 +120,9 @@ describe('VPS List operation', () => {
 		expect(result).toEqual([{ name: 'vps-1' }, { name: 'vps-2' }]);
 	});
 
-	// ─── Test 5: warning item prepended when resources are skipped ────────
+	// ─── Test 5: warning item appended at end when resources are skipped ──
 
-	it('execute with returnFullObjects=true should prepend warning when onSkipped is called', async () => {
+	it('execute with returnFullObjects=true should append warning as last item when onSkipped is called', async () => {
 		const fullObjects = [{ name: 'vps-1', state: 'running' }];
 		mockClient.paginateResources.mockImplementation(async (_listEndpoint, _itemEndpoint, opts) => {
 			// Simulate a skip callback being invoked
@@ -141,8 +141,45 @@ describe('VPS List operation', () => {
 		const result = await execute.call(mockExecuteFunctions);
 
 		expect(result).toHaveLength(2);
-		expect(result[0]).toHaveProperty('warning');
-		expect(result[0]).toHaveProperty('skippedIds');
-		expect(result[1]).toEqual({ name: 'vps-1', state: 'running' });
+
+		// First item should be the clean resource (no warning/skippedIds)
+		expect(result[0]).toEqual({ name: 'vps-1', state: 'running' });
+		expect(result[0]).not.toHaveProperty('warning');
+		expect(result[0]).not.toHaveProperty('skippedIds');
+
+		// Last item should be the warning item in INodeExecutionData format
+		expect(result[1]).toHaveProperty('json');
+		expect(result[1].json).toHaveProperty('warning');
+		expect(result[1].json).toHaveProperty('skippedIds');
+		expect(Array.isArray(result[1].json.skippedIds)).toBe(true);
+		expect(result[1]).toHaveProperty('pairedItem');
+		expect(result[1].pairedItem).toEqual({ item: 0 });
+	});
+
+	// ─── Test 6: no warning item when no resources are skipped ────────────
+
+	it('execute with returnFullObjects=true should return only resources when nothing is skipped', async () => {
+		const fullObjects = [
+			{ name: 'vps-1', state: 'running' },
+			{ name: 'vps-2', state: 'stopped' },
+		];
+		mockClient.paginateResources.mockResolvedValue(fullObjects);
+
+		mockExecuteFunctions.getNodeParameter = jest.fn().mockImplementation((key: string) => {
+			if (key === 'returnFullObjects') return true;
+			if (key === 'maxItems') return 1000;
+			return '';
+		});
+
+		const result = await execute.call(mockExecuteFunctions);
+
+		expect(result).toHaveLength(2);
+		expect(result).toEqual(fullObjects);
+
+		// No warning items anywhere
+		for (const item of result) {
+			expect(item).not.toHaveProperty('warning');
+			expect(item).not.toHaveProperty('skippedIds');
+		}
 	});
 });
