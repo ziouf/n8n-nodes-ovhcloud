@@ -3,6 +3,9 @@ import tsEslint from 'typescript-eslint';
 
 export default [
 	{
+		ignores: ['coverage/**', 'scripts/**'],
+	},
+	{
 		plugins: {
 			'@typescript-eslint': tsEslint.plugin,
 		},
