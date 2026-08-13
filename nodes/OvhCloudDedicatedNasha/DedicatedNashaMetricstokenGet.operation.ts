@@ -4,17 +4,17 @@ import type {
 	INodeExecutionData,
 	INodeProperties,
 } from 'n8n-workflow';
-import { ApiClient } from '../../shared/transport/ApiClient';
+import { getClient } from '../../shared/transport/ApiClient';
+import { serviceNameLocator } from '../../shared/nodes/locators';
 
 export function description(): INodeProperties[] {
 	return [
 		{
-			displayName: 'Servicename',
-			name: 'serviceName',
-			type: 'string',
-			default: '',
-			required: true,
-			description: 'The internal name of your storage',
+			...serviceNameLocator({
+				searchListMethod: 'getDedicatedNashaServices',
+				displayName: 'Servicename',
+				description: 'The internal name of your storage',
+			}),
 		},
 	];
 }
@@ -27,8 +27,8 @@ export function description(): INodeProperties[] {
  */
 export async function execute(this: IExecuteFunctions,
 	_itemIndex: number): Promise<INodeExecutionData[]> {
-	const serviceName = this.getNodeParameter('serviceName', _itemIndex) as string;
-	const client = new ApiClient(this);
+	const serviceName = this.getNodeParameter('serviceName', _itemIndex, { extractValue: true }) as string;
+	const client = getClient(this);
 	const data = (await client.httpGet('/dedicated/nasha/' + encodeURIComponent(serviceName) + '/metricsToken')) as IDataObject;
 	return this.helpers.returnJsonArray([data]);
 }

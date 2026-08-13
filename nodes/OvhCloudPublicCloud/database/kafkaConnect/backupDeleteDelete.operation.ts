@@ -4,7 +4,8 @@ import type {
 	INodeExecutionData,
 	INodeProperties,
 } from 'n8n-workflow';
-import { ApiClient } from '../../../../shared/transport/ApiClient';
+import { getClient } from '../../../../shared/transport/ApiClient';
+import { serviceNameLocator } from '../../../../shared/nodes/locators';
 
 export function description(displayOptions: IDisplayOptions): INodeProperties[] {
 	return [
@@ -32,21 +33,21 @@ export function description(displayOptions: IDisplayOptions): INodeProperties[] 
 		displayOptions,
 	},
 	{
-		displayName: 'Service Name',
-		name: 'serviceName',
-		type: 'string',
-		default: '',
-		required: true,
-		description: 'The database service name',
-		displayOptions,
-	},
+			...serviceNameLocator({
+				searchListMethod: 'getPublicCloudProjects',
+				displayName: 'Service Name',
+				description: 'The database service name',
+				placeholder: '12345678-1234-1234-1234-1234567890ab',
+			}),
+			displayOptions,
+		},
 	{
 		displayName: 'Backupid',
 		name: 'backupId',
 		type: 'string',
 		default: '',
 		required: true,
-		description: 'The backupId identifier',
+		description: 'Backup ID',
 		displayOptions,
 	},
 	];
@@ -60,7 +61,7 @@ export function description(displayOptions: IDisplayOptions): INodeProperties[] 
  * Endpoint: /publicCloud/project/{projectId}/cloud/database/kafkaConnect/{serviceName}/backup/{backupId}
  */
 export async function execute(this: IExecuteFunctions, _itemIndex?: number): Promise<INodeExecutionData[]> {
-	const client = new ApiClient(this);
+	const client = getClient(this);
 	const projectId = this.getNodeParameter('projectId', _itemIndex ?? 0, '', {
 		extractValue: true,
 	}) as string;

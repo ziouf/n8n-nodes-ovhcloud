@@ -5,7 +5,8 @@ import type {
 	INodeProperties,
 	IDisplayOptions,
 } from 'n8n-workflow';
-import { ApiClient } from '../../shared/transport/ApiClient';
+import { getClient } from '../../shared/transport/ApiClient';
+import { serviceNameLocator } from '../../shared/nodes/locators';
 import { destructiveActionNotice } from '../../shared/nodes/notices';
 
 export function description(displayOptions: IDisplayOptions): INodeProperties[] {
@@ -15,12 +16,12 @@ export function description(displayOptions: IDisplayOptions): INodeProperties[] 
 			displayOptions,
 		),
 		{
-			displayName: 'Servicename',
-			name: 'serviceName',
-			type: 'string',
-			default: '',
-			required: true,
-			description: 'Service name',
+			...serviceNameLocator({
+				searchListMethod: 'getDedicatedCephServices',
+				displayName: 'Service Name',
+				description: 'Service name',
+				placeholder: 'ceph-12345',
+			}),
 			displayOptions,
 		},
 	];
@@ -37,7 +38,7 @@ export async function execute(
 	_itemIndex: number,
 ): Promise<INodeExecutionData[]> {
 	const serviceName = this.getNodeParameter('serviceName', _itemIndex) as string;
-	const client = new ApiClient(this);
+	const client = getClient(this);
 	const data = (await client.httpPost(
 		'/dedicated/ceph/' + encodeURIComponent(serviceName) + '/terminate',
 	)) as IDataObject;

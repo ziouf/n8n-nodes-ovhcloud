@@ -5,17 +5,18 @@ import type {
 	INodeExecutionData,
 	INodeProperties,
 } from 'n8n-workflow';
-import { ApiClient } from '../../../../../shared/transport/ApiClient';
+import { getClient } from '../../../../../shared/transport/ApiClient';
+import { serviceNameLocator } from '../../../../../shared/nodes/locators';
 
 export function description(displayOptions: IDisplayOptions): INodeProperties[] {
 	return [
 		{
-			displayName: 'Service Name',
-			name: 'serviceName',
-			type: 'string',
-			default: '',
-			required: true,
-			description: 'Domain of the service',
+			...serviceNameLocator({
+				searchListMethod: 'getDedicatedCloudServices',
+				displayName: 'Service Name',
+				description: 'Domain of the service',
+				placeholder: '12345678-1234-1234-1234-1234567890ab',
+			}),
 			displayOptions,
 		},
 		{
@@ -60,7 +61,7 @@ export function description(displayOptions: IDisplayOptions): INodeProperties[] 
  * Endpoint: /dedicatedCloud/{serviceName}/datacenter/{datacenterId}/disasterRecovery/zerto/remoteSites
  */
 export async function execute(this: IExecuteFunctions, _itemIndex: number): Promise<INodeExecutionData[]> {
-	const client = new ApiClient(this);
+	const client = getClient(this);
 	const datacenterId = this.getNodeParameter('datacenterId', _itemIndex) as string;
 	const serviceName = this.getNodeParameter('serviceName', _itemIndex) as string;
 	const data = (await client.httpGet(`/dedicatedCloud/${serviceName}/datacenter/${datacenterId}/disasterRecovery/zerto/remoteSites`)) as IDataObject;

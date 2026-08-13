@@ -4,7 +4,8 @@ import type {
 	INodeExecutionData,
 	INodeProperties,
 } from 'n8n-workflow';
-import { ApiClient } from '../../shared/transport/ApiClient';
+import { getClient } from '../../shared/transport/ApiClient';
+import { serviceNameLocator } from '../../shared/nodes/locators';
 
 export function description(): INodeProperties[] {
 	return [
@@ -32,12 +33,11 @@ export function description(): INodeProperties[] {
 			description: 'NFS|CIFS|NFS_CIFS',
 		},
 		{
-			displayName: 'Servicename',
-			name: 'serviceName',
-			type: 'string',
-			default: '',
-			required: true,
-			description: 'The internal name of your storage',
+			...serviceNameLocator({
+				searchListMethod: 'getDedicatedNashaServices',
+				displayName: 'Servicename',
+				description: 'The internal name of your storage',
+			}),
 		},
 		{
 			displayName: 'Size',
@@ -60,9 +60,9 @@ export async function execute(this: IExecuteFunctions,
 	_itemIndex: number): Promise<INodeExecutionData[]> {
 	const partitionName = this.getNodeParameter('partitionName', _itemIndex) as string;
 	const protocol = this.getNodeParameter('protocol', _itemIndex) as string;
-	const serviceName = this.getNodeParameter('serviceName', _itemIndex) as string;
+	const serviceName = this.getNodeParameter('serviceName', _itemIndex, { extractValue: true }) as string;
 	const size = this.getNodeParameter('size', _itemIndex);
-	const client = new ApiClient(this);
+	const client = getClient(this);
 	const body: IDataObject = {};
 			body['partitionName'] = partitionName;
 		body['protocol'] = protocol;

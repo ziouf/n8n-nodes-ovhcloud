@@ -5,17 +5,18 @@ import type {
 	INodeProperties,
 	IDisplayOptions,
 } from 'n8n-workflow';
-import { ApiClient } from '../../../shared/transport/ApiClient';
+import { getClient } from '../../../shared/transport/ApiClient';
+import { serviceNameLocator } from '../../../shared/nodes/locators';
 
 export function description(displayOptions: IDisplayOptions): INodeProperties[] {
 	return [
 		{
-			displayName: 'Service Name',
-			name: 'serviceName',
-			type: 'string',
-			default: '',
-			required: true,
-			description: 'Get planned intervention details',
+			...serviceNameLocator({
+				searchListMethod: 'getDedicatedServerServices',
+				displayName: 'Service Name',
+				description: 'Get planned intervention details',
+				placeholder: 'server-12345',
+			}),
 			displayOptions,
 		},
 		{
@@ -40,7 +41,7 @@ export async function execute(
 	this: IExecuteFunctions,
 	_itemIndex: number,
 ): Promise<INodeExecutionData[]> {
-	const client = new ApiClient(this);
+	const client = getClient(this);
 	const serviceName = this.getNodeParameter('serviceName', _itemIndex) as string;
 	const interventionId = this.getNodeParameter('interventionId', _itemIndex) as string;
 

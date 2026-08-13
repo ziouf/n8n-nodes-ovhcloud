@@ -4,7 +4,8 @@ import type {
 	INodeExecutionData,
 	INodeProperties,
 } from 'n8n-workflow';
-import { ApiClient } from '../../shared/transport/ApiClient';
+import { getClient } from '../../shared/transport/ApiClient';
+import { serviceNameLocator } from '../../shared/nodes/locators';
 
 export function description(): INodeProperties[] {
 	return [
@@ -30,12 +31,11 @@ export function description(): INodeProperties[] {
 			description: 'Reason of your termination request',
 		},
 		{
-			displayName: 'Servicename',
-			name: 'serviceName',
-			type: 'string',
-			default: '',
-			required: true,
-			description: 'The internal name of your storage',
+			...serviceNameLocator({
+				searchListMethod: 'getDedicatedNashaServices',
+				displayName: 'Servicename',
+				description: 'The internal name of your storage',
+			}),
 		},
 		{
 			displayName: 'Token',
@@ -57,9 +57,9 @@ export function description(): INodeProperties[] {
  */
 export async function execute(this: IExecuteFunctions,
 	_itemIndex: number): Promise<INodeExecutionData[]> {
-	const serviceName = this.getNodeParameter('serviceName', _itemIndex) as string;
+	const serviceName = this.getNodeParameter('serviceName', _itemIndex, { extractValue: true }) as string;
 	const token = this.getNodeParameter('token', _itemIndex) as string;
-	const client = new ApiClient(this);
+	const client = getClient(this);
 	const body: IDataObject = {};
 			body['token'] = token;
 	const data = (await client.httpPost('/dedicated/nasha/' + encodeURIComponent(serviceName) + '/confirmTermination', body)) as IDataObject;

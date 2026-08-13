@@ -4,7 +4,8 @@ import type {
 	INodeExecutionData,
 	IDisplayOptions,
 } from 'n8n-workflow';
-import { ApiClient } from '../../../shared/transport/ApiClient';
+import { getClient } from '../../../shared/transport/ApiClient';
+import { serviceNameLocator } from '../../../shared/nodes/locators';
 
 export function description(displayOptions: IDisplayOptions) {
 	return [
@@ -135,11 +136,11 @@ export function description(displayOptions: IDisplayOptions) {
 			displayOptions,
 		},
 		{
-			displayName: 'Service Name',
-			name: 'serviceName',
-			type: 'string',
-			default: '',
-			description: 'The internal name of the service concerned by the ticket',
+			...serviceNameLocator({
+				searchListMethod: 'getSupportTicketServices',
+				displayName: 'Service Name',
+				description: 'The internal name of the service concerned by the ticket',
+			}),
 			displayOptions,
 		},
 	];
@@ -149,12 +150,12 @@ export async function execute(
 	this: IExecuteFunctions,
 	_itemIndex: number,
 ): Promise<INodeExecutionData[]> {
-	const client = new ApiClient(this);
+	const client = getClient(this);
 	const subject = this.getNodeParameter('subject', _itemIndex, '') as string;
 	const body = this.getNodeParameter('body', _itemIndex, '') as string;
 	const category = this.getNodeParameter('category', _itemIndex, 'assistance') as string;
 	const product = this.getNodeParameter('product', _itemIndex, 'hosting') as string;
-	const serviceName = this.getNodeParameter('serviceName', _itemIndex, '') as string;
+	const serviceName = this.getNodeParameter('serviceName', _itemIndex, { extractValue: true }) as string;
 
 	const data: IDataObject = {
 		subject,
