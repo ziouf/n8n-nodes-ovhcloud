@@ -8,7 +8,10 @@ jest.mock('../../../../shared/transport/ApiClient', () => {
 		httpPut: jest.fn(),
 		httpDelete: jest.fn(),
 	};
-	return { ApiClient: jest.fn().mockImplementation(() => mockHttpClient) , getClient: jest.fn(() => mockHttpClient)};
+	return {
+		ApiClient: jest.fn().mockImplementation(() => mockHttpClient),
+		getClient: jest.fn(() => mockHttpClient),
+	};
 });
 
 import { ApiClient } from '../../../../shared/transport/ApiClient';
@@ -34,7 +37,7 @@ describe('outgoingListGet.operation', () => {
 			};
 		});
 
-		it('should call the correct GET endpoint', async () => {
+		it('should call the correct GET endpoint with no filters (qs=undefined)', async () => {
 			const client = new ApiClient(mockExecuteFunctions) as any;
 			client.httpGet.mockResolvedValue([1, 2]);
 
@@ -63,13 +66,60 @@ describe('outgoingListGet.operation', () => {
 					case 'tag':
 						return '';
 					default:
-						return '';
+						return undefined;
 				}
 			});
 
 			const result = await execute.call(mockExecuteFunctions);
-			expect(client.httpGet).toHaveBeenCalledWith('/sms/sms-123/outgoing', {});
+			expect(client.httpGet).toHaveBeenCalledWith('/sms/sms-123/outgoing', undefined);
 			expect(result).toEqual([{ id: 1 }, { id: 2 }]);
+		});
+
+		it('should call the correct GET endpoint with filters applied', async () => {
+			const client = new ApiClient(mockExecuteFunctions) as any;
+			client.httpGet.mockResolvedValue([3, 4]);
+
+			mockExecuteFunctions.getNodeParameter.mockImplementation((param: string): any => {
+				switch (param) {
+					case 'serviceName':
+						return 'sms-456';
+					case 'batchID':
+						return 'BATCH-001';
+					case 'creationDatetimeFrom':
+						return '2024-01-01T00:00:00Z';
+					case 'creationDatetimeTo':
+						return '2024-12-31T23:59:59Z';
+					case 'deliveryReceipt':
+						return 1;
+					case 'differedDelivery':
+						return 0;
+					case 'messageID':
+						return 'MSG-123';
+					case 'ptt':
+						return 0;
+					case 'receiver':
+						return '+33612345678';
+					case 'sender':
+						return 'MyBrand';
+					case 'tag':
+						return 'promo';
+					default:
+						return undefined;
+				}
+			});
+
+			const result = await execute.call(mockExecuteFunctions);
+			expect(client.httpGet).toHaveBeenCalledWith('/sms/sms-456/outgoing', {
+				batchID: 'BATCH-001',
+				'creationDatetime.from': '2024-01-01T00:00:00Z',
+				'creationDatetime.to': '2024-12-31T23:59:59Z',
+				deliveryReceipt: 1,
+				messageID: 'MSG-123',
+				receiver: '+33612345678',
+				sender: 'MyBrand',
+				tag: 'promo',
+			});
+			expect(result).toEqual([{ id: 3 }, { id: 4 }]);
 		});
 	});
 });

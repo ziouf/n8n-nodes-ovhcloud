@@ -1,5 +1,5 @@
+/* eslint-disable n8n-nodes-base/node-filename-against-convention, n8n-nodes-base/node-param-display-name-not-first-position */
 import type {
-	IDataObject,
 	IDisplayOptions,
 	IExecuteFunctions,
 	INodeExecutionData,
@@ -7,6 +7,59 @@ import type {
 } from 'n8n-workflow';
 import { getClient } from '../../../../shared/transport/ApiClient';
 import { serviceNameLocator } from '../../../../shared/nodes/locators';
+import type { FilterDefinition } from '../../../../shared/nodes/filterOptions';
+import { buildFilterQuery } from '../../../../shared/nodes/filterQuery';
+
+/* ------------------------------------------------------------------ */
+/*  Incoming list filter definitions (flat / parameterPath mode)      */
+/* ------------------------------------------------------------------ */
+
+export const INCOMING_LIST_FILTERS: FilterDefinition[] = [
+	{
+		group: 'filters',
+		groupDisplayName: 'Filters',
+		name: 'creationDatetimeFrom',
+		displayName: 'Creation Datetime From',
+		queryParam: 'creationDatetime.from',
+		type: 'string',
+		default: '',
+		description: 'Filter the value of creationDatetime property (>=)',
+		parameterPath: 'creationDatetimeFrom',
+	},
+	{
+		group: 'filters',
+		groupDisplayName: 'Filters',
+		name: 'creationDatetimeTo',
+		displayName: 'Creation Datetime To',
+		queryParam: 'creationDatetime.to',
+		type: 'string',
+		default: '',
+		description: 'Filter the value of creationDatetime property (<=)',
+		parameterPath: 'creationDatetimeTo',
+	},
+	{
+		group: 'filters',
+		groupDisplayName: 'Filters',
+		name: 'sender',
+		displayName: 'Sender',
+		queryParam: 'sender',
+		type: 'string',
+		default: '',
+		description: 'Filter the value of sender property (=)',
+		parameterPath: 'sender',
+	},
+	{
+		group: 'filters',
+		groupDisplayName: 'Filters',
+		name: 'tag',
+		displayName: 'Tag',
+		queryParam: 'tag',
+		type: 'string',
+		default: '',
+		description: 'Filter the value of tag property (=)',
+		parameterPath: 'tag',
+	},
+];
 
 export function description(displayOptions: IDisplayOptions): INodeProperties[] {
 	return [
@@ -60,17 +113,14 @@ export function description(displayOptions: IDisplayOptions): INodeProperties[] 
  * HTTP method: GET
  * Endpoint: /sms/{serviceName}/incoming
  */
-export async function execute(this: IExecuteFunctions, _itemIndex?: number): Promise<INodeExecutionData[]> {
-	const serviceName = this.getNodeParameter('serviceName', _itemIndex ?? 0, '', { extractValue: true }) as string;
-	const creationDatetimeFrom = this.getNodeParameter('creationDatetimeFrom', _itemIndex ?? 0) as string;
-	const creationDatetimeTo = this.getNodeParameter('creationDatetimeTo', _itemIndex ?? 0) as string;
-	const sender = this.getNodeParameter('sender', _itemIndex ?? 0) as string;
-	const tag = this.getNodeParameter('tag', _itemIndex ?? 0) as string;
-	const qs: IDataObject = {};
-	if (creationDatetimeFrom) qs['creationDatetime.from'] = creationDatetimeFrom;
-	if (creationDatetimeTo) qs['creationDatetime.to'] = creationDatetimeTo;
-	if (sender) qs['sender'] = sender;
-	if (tag) qs['tag'] = tag;
+export async function execute(
+	this: IExecuteFunctions,
+	_itemIndex?: number,
+): Promise<INodeExecutionData[]> {
+	const serviceName = this.getNodeParameter('serviceName', _itemIndex ?? 0, '', {
+		extractValue: true,
+	}) as string;
+	const qs = buildFilterQuery(this, _itemIndex ?? 0, INCOMING_LIST_FILTERS);
 	const data = (await getClient(this).httpGet(
 		`/sms/${encodeURIComponent(serviceName)}/incoming`,
 		qs,

@@ -8,7 +8,10 @@ jest.mock('../../../../shared/transport/ApiClient', () => {
 		httpPut: jest.fn(),
 		httpDelete: jest.fn(),
 	};
-	return { ApiClient: jest.fn().mockImplementation(() => mockHttpClient) , getClient: jest.fn(() => mockHttpClient)};
+	return {
+		ApiClient: jest.fn().mockImplementation(() => mockHttpClient),
+		getClient: jest.fn(() => mockHttpClient),
+	};
 });
 
 import { ApiClient } from '../../../../shared/transport/ApiClient';
@@ -34,7 +37,7 @@ describe('incomingListGet.operation', () => {
 			};
 		});
 
-		it('should call the correct GET endpoint', async () => {
+		it('should call the correct GET endpoint with no filters (qs=undefined)', async () => {
 			const client = new ApiClient(mockExecuteFunctions) as any;
 			client.httpGet.mockResolvedValue([1, 2]);
 
@@ -51,13 +54,44 @@ describe('incomingListGet.operation', () => {
 					case 'tag':
 						return '';
 					default:
-						return '';
+						return undefined;
 				}
 			});
 
 			const result = await execute.call(mockExecuteFunctions);
-			expect(client.httpGet).toHaveBeenCalledWith('/sms/sms-123/incoming', {});
+			expect(client.httpGet).toHaveBeenCalledWith('/sms/sms-123/incoming', undefined);
 			expect(result).toEqual([{ id: 1 }, { id: 2 }]);
+		});
+
+		it('should call the correct GET endpoint with filters applied', async () => {
+			const client = new ApiClient(mockExecuteFunctions) as any;
+			client.httpGet.mockResolvedValue([3, 4]);
+
+			mockExecuteFunctions.getNodeParameter.mockImplementation((param: string): any => {
+				switch (param) {
+					case 'serviceName':
+						return 'sms-456';
+					case 'creationDatetimeFrom':
+						return '2024-01-01T00:00:00Z';
+					case 'creationDatetimeTo':
+						return '2024-12-31T23:59:59Z';
+					case 'sender':
+						return 'MyBrand';
+					case 'tag':
+						return 'promo';
+					default:
+						return undefined;
+				}
+			});
+
+			const result = await execute.call(mockExecuteFunctions);
+			expect(client.httpGet).toHaveBeenCalledWith('/sms/sms-456/incoming', {
+				'creationDatetime.from': '2024-01-01T00:00:00Z',
+				'creationDatetime.to': '2024-12-31T23:59:59Z',
+				sender: 'MyBrand',
+				tag: 'promo',
+			});
+			expect(result).toEqual([{ id: 3 }, { id: 4 }]);
 		});
 	});
 });

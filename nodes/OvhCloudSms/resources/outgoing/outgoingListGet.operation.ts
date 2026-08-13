@@ -1,5 +1,5 @@
+/* eslint-disable n8n-nodes-base/node-filename-against-convention, n8n-nodes-base/node-param-display-name-not-first-position */
 import type {
-	IDataObject,
 	IDisplayOptions,
 	IExecuteFunctions,
 	INodeExecutionData,
@@ -7,6 +7,125 @@ import type {
 } from 'n8n-workflow';
 import { getClient } from '../../../../shared/transport/ApiClient';
 import { serviceNameLocator } from '../../../../shared/nodes/locators';
+import type { FilterDefinition } from '../../../../shared/nodes/filterOptions';
+import { buildFilterQuery } from '../../../../shared/nodes/filterQuery';
+
+/* ------------------------------------------------------------------ */
+/*  Outgoing list filter definitions (flat / parameterPath mode)      */
+/* ------------------------------------------------------------------ */
+
+export const OUTGOING_LIST_FILTERS: FilterDefinition[] = [
+	{
+		group: 'filters',
+		groupDisplayName: 'Filters',
+		name: 'batchID',
+		displayName: 'Batch ID',
+		queryParam: 'batchID',
+		type: 'string',
+		default: '',
+		description: 'Filter on batch ID property (=)',
+		parameterPath: 'batchID',
+	},
+	{
+		group: 'filters',
+		groupDisplayName: 'Filters',
+		name: 'creationDatetimeFrom',
+		displayName: 'Creation Datetime From',
+		queryParam: 'creationDatetime.from',
+		type: 'string',
+		default: '',
+		description: 'Filter on creationDatetime property (>=)',
+		parameterPath: 'creationDatetimeFrom',
+	},
+	{
+		group: 'filters',
+		groupDisplayName: 'Filters',
+		name: 'creationDatetimeTo',
+		displayName: 'Creation Datetime To',
+		queryParam: 'creationDatetime.to',
+		type: 'string',
+		default: '',
+		description: 'Filter on creationDatetime property (<=)',
+		parameterPath: 'creationDatetimeTo',
+	},
+	{
+		group: 'filters',
+		groupDisplayName: 'Filters',
+		name: 'deliveryReceipt',
+		displayName: 'Delivery Receipt',
+		queryParam: 'deliveryReceipt',
+		type: 'number',
+		default: 0,
+		description: 'Filter on deliveryReceipt property (=)',
+		parameterPath: 'deliveryReceipt',
+	},
+	{
+		group: 'filters',
+		groupDisplayName: 'Filters',
+		name: 'differedDelivery',
+		displayName: 'Differed Delivery',
+		queryParam: 'differedDelivery',
+		type: 'number',
+		default: 0,
+		description: 'Filter on differedDelivery property (=)',
+		parameterPath: 'differedDelivery',
+	},
+	{
+		group: 'filters',
+		groupDisplayName: 'Filters',
+		name: 'messageID',
+		displayName: 'Message ID',
+		queryParam: 'messageID',
+		type: 'string',
+		default: '',
+		description: 'Filter on message ID property (=)',
+		parameterPath: 'messageID',
+	},
+	{
+		group: 'filters',
+		groupDisplayName: 'Filters',
+		name: 'ptt',
+		displayName: 'Ptt',
+		queryParam: 'ptt',
+		type: 'number',
+		default: 0,
+		description: 'Filter on ptt property (=)',
+		parameterPath: 'ptt',
+	},
+	{
+		group: 'filters',
+		groupDisplayName: 'Filters',
+		name: 'receiver',
+		displayName: 'Receiver',
+		queryParam: 'receiver',
+		type: 'string',
+		default: '',
+		description: 'Filter on receiver property (=)',
+		parameterPath: 'receiver',
+	},
+	{
+		group: 'filters',
+		groupDisplayName: 'Filters',
+		name: 'sender',
+		displayName: 'Sender',
+		queryParam: 'sender',
+		type: 'string',
+		default: '',
+		description: 'Filter on sender property (=)',
+		parameterPath: 'sender',
+	},
+	{
+		group: 'filters',
+		groupDisplayName: 'Filters',
+		name: 'tag',
+		displayName: 'Tag',
+		queryParam: 'tag',
+		type: 'string',
+		default: '',
+		description: 'Filter on tag property (=)',
+		parameterPath: 'tag',
+	},
+];
 
 export function description(displayOptions: IDisplayOptions): INodeProperties[] {
 	return [
@@ -108,29 +227,14 @@ export function description(displayOptions: IDisplayOptions): INodeProperties[] 
  * HTTP method: GET
  * Endpoint: /sms/{serviceName}/outgoing
  */
-export async function execute(this: IExecuteFunctions, _itemIndex?: number): Promise<INodeExecutionData[]> {
-	const serviceName = this.getNodeParameter('serviceName', _itemIndex ?? 0, '', { extractValue: true }) as string;
-	const batchID = this.getNodeParameter('batchID', _itemIndex ?? 0) as string;
-	const creationDatetimeFrom = this.getNodeParameter('creationDatetimeFrom', _itemIndex ?? 0) as string;
-	const creationDatetimeTo = this.getNodeParameter('creationDatetimeTo', _itemIndex ?? 0) as string;
-	const deliveryReceipt = this.getNodeParameter('deliveryReceipt', _itemIndex ?? 0) as number;
-	const differedDelivery = this.getNodeParameter('differedDelivery', _itemIndex ?? 0) as number;
-	const messageID = this.getNodeParameter('messageID', _itemIndex ?? 0) as string;
-	const ptt = this.getNodeParameter('ptt', _itemIndex ?? 0) as number;
-	const receiver = this.getNodeParameter('receiver', _itemIndex ?? 0) as string;
-	const sender = this.getNodeParameter('sender', _itemIndex ?? 0) as string;
-	const tag = this.getNodeParameter('tag', _itemIndex ?? 0) as string;
-	const qs: IDataObject = {};
-	if (batchID) qs['batchID'] = batchID;
-	if (creationDatetimeFrom) qs['creationDatetime.from'] = creationDatetimeFrom;
-	if (creationDatetimeTo) qs['creationDatetime.to'] = creationDatetimeTo;
-	if (deliveryReceipt) qs['deliveryReceipt'] = deliveryReceipt;
-	if (differedDelivery) qs['differedDelivery'] = differedDelivery;
-	if (messageID) qs['messageID'] = messageID;
-	if (ptt) qs['ptt'] = ptt;
-	if (receiver) qs['receiver'] = receiver;
-	if (sender) qs['sender'] = sender;
-	if (tag) qs['tag'] = tag;
+export async function execute(
+	this: IExecuteFunctions,
+	_itemIndex?: number,
+): Promise<INodeExecutionData[]> {
+	const serviceName = this.getNodeParameter('serviceName', _itemIndex ?? 0, '', {
+		extractValue: true,
+	}) as string;
+	const qs = buildFilterQuery(this, _itemIndex ?? 0, OUTGOING_LIST_FILTERS);
 	const data = (await getClient(this).httpGet(
 		`/sms/${encodeURIComponent(serviceName)}/outgoing`,
 		qs,
