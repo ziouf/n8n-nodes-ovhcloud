@@ -5,7 +5,8 @@ import {
 	INodeProperties,
 	IDisplayOptions,
 } from 'n8n-workflow';
-import { ApiClient } from '../../shared/transport/ApiClient';
+import { getClient } from '../../shared/transport/ApiClient';
+import { destructiveActionNotice } from '../../shared/nodes/notices';
 
 /**
  * @brief Suspend Service operation for Service resource
@@ -19,6 +20,7 @@ import { ApiClient } from '../../shared/transport/ApiClient';
  */
 export function description(displayOptions: IDisplayOptions): INodeProperties[] {
 	return [
+		destructiveActionNotice('This will suspend the suspend.', displayOptions),
 		{
 			displayName: 'Service ID',
 			name: 'serviceId',
@@ -43,7 +45,7 @@ export function description(displayOptions: IDisplayOptions): INodeProperties[] 
  * @returns Array of execution results
  */
 export async function execute(this: IExecuteFunctions, _itemIndex?: number): Promise<INodeExecutionData[]> {
-	const client = new ApiClient(this);
+	const client = getClient(this);
 	const serviceId = this.getNodeParameter('serviceId', _itemIndex ?? 0) as string;
 	const data = (await client.httpPost(`/service/${serviceId}/suspend`, {
 		body: {},

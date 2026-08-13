@@ -5,17 +5,20 @@ import type {
 	INodeExecutionData,
 	INodeProperties,
 } from 'n8n-workflow';
-import { ApiClient } from '../../../shared/transport/ApiClient';
+import { getClient } from '../../../shared/transport/ApiClient';
+import { serviceNameLocator } from '../../../shared/nodes/locators';
+import { destructiveActionNotice } from '../../../shared/nodes/notices';
 
 export function description(displayOptions: IDisplayOptions): INodeProperties[] {
 	return [
+		destructiveActionNotice('This action is destructive and cannot be undone.', displayOptions),
 		{
-			displayName: 'Service Name',
-			name: 'serviceName',
-			type: 'string',
-			default: '',
-			required: true,
-			description: 'The name/ID of the VMware on OVHcloud infrastructure',
+			...serviceNameLocator({
+				searchListMethod: 'getDedicatedCloudServices',
+				displayName: 'Service Name',
+				description: 'The name/ID of the VMware on OVHcloud infrastructure',
+				placeholder: '12345678-1234-1234-1234-1234567890ab',
+			}),
 			displayOptions,
 		},
 		{
@@ -44,7 +47,7 @@ export function description(displayOptions: IDisplayOptions): INodeProperties[] 
  * Endpoint: /dedicatedCloud/{serviceName}/user/{userId}/objectRight/{objectRightId}
  */
 export async function execute(this: IExecuteFunctions, _itemIndex: number): Promise<INodeExecutionData[]> {
-	const client = new ApiClient(this);
+	const client = getClient(this);
 	const serviceName = this.getNodeParameter('serviceName', _itemIndex) as string;
 	const userId = this.getNodeParameter('userId', _itemIndex) as string;
 	const objectRightId = this.getNodeParameter('objectRightId', _itemIndex) as string;

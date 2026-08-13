@@ -5,18 +5,20 @@ import type {
 	INodeProperties,
 	INodeExecutionData,
 } from 'n8n-workflow';
-import { ApiClient } from '../../shared/transport/ApiClient';
+import { getClient } from '../../shared/transport/ApiClient';
+import { destructiveActionNotice } from '../../shared/nodes/notices';
 
 
 export function description(displayOptions: IDisplayOptions): INodeProperties[] {
 	return [
+		destructiveActionNotice('This will terminate the IP Load Balancing service. This action is irreversible.', displayOptions),
 		{
 			displayName: 'ServiceName',
 			name: 'serviceName',
 			type: 'string',
 			default: '',
 			required: true,
-			description: 'The servicename identifier',
+			description: 'The service name',
 			displayOptions,
 		},
 	];
@@ -35,7 +37,7 @@ export async function execute(this: IExecuteFunctions, _itemIndex: number): Prom
 
 
 
-	const client = new ApiClient(this);
+	const client = getClient(this);
 	const data = (await client.httpPost('/ipLoadbalancing' + '/' + encodeURIComponent(serviceName) + '/' + 'terminate', {})) as IDataObject;
 	return this.helpers.returnJsonArray([data]);
 }

@@ -5,17 +5,18 @@ import type {
 	INodeExecutionData,
 	INodeProperties,
 } from 'n8n-workflow';
-import { ApiClient } from '../../../shared/transport/ApiClient';
+import { getClient } from '../../../shared/transport/ApiClient';
+import { destructiveActionNotice } from '../../../shared/nodes/notices';
 
 export function description(displayOptions: IDisplayOptions): INodeProperties[] {
 	return [
+		destructiveActionNotice('This will permanently delete the role. This action is irreversible.', displayOptions),
 		{
 			displayName: 'Service Name',
 			name: 'serviceName',
 			type: 'string',
 			default: '',
 			required: true,
-			description: 'The serviceName identifier',
 			displayOptions,
 		},
 		{
@@ -24,7 +25,6 @@ export function description(displayOptions: IDisplayOptions): INodeProperties[] 
 			type: 'string',
 			default: '',
 			required: true,
-			description: 'The roleId identifier',
 			displayOptions,
 		},
 	];
@@ -39,7 +39,7 @@ export function description(displayOptions: IDisplayOptions): INodeProperties[] 
 export async function execute(this: IExecuteFunctions, _itemIndex: number): Promise<INodeExecutionData[]> {
 	const serviceName = this.getNodeParameter('serviceName', _itemIndex) as string;
 	const roleId = this.getNodeParameter('roleId', _itemIndex) as string;
-	const client = new ApiClient(this);
+	const client = getClient(this);
 	const data = (await client.httpDelete(`/dbaas/logs/${encodeURIComponent(serviceName)}/role/${encodeURIComponent(roleId)}`)) as IDataObject;
 
 	return this.helpers.returnJsonArray([data]);

@@ -5,7 +5,8 @@ import type {
 	INodeExecutionData,
 	INodeProperties,
 } from 'n8n-workflow';
-import { ApiClient } from '../../../../shared/transport/ApiClient';
+import { getClient } from '../../../../shared/transport/ApiClient';
+import { destructiveActionNotice } from '../../../../shared/nodes/notices';
 
 const ROLE_TYPES: { name: string; value: string }[] = [
 	{ name: 'Cloudera Manager', value: 'cloudera_manager' },
@@ -33,6 +34,7 @@ const ROLE_TYPES: { name: string; value: string }[] = [
 
 export function description(displayOptions: IDisplayOptions): INodeProperties[] {
 	return [
+		destructiveActionNotice('This action is destructive and cannot be undone.', displayOptions),
 		{
 			displayName: 'Cluster Hadoop Service Name',
 			name: 'serviceName',
@@ -86,7 +88,7 @@ export function description(displayOptions: IDisplayOptions): INodeProperties[] 
  * Endpoint: /cluster/hadoop/{serviceName}/node/{hostname}/role/{type}
  */
 export async function execute(this: IExecuteFunctions, _itemIndex?: number): Promise<INodeExecutionData[]> {
-	const client = new ApiClient(this);
+	const client = getClient(this);
 	const serviceName = this.getNodeParameter('serviceName', _itemIndex ?? 0, '', { extractValue: true }) as string;
 	const hostname = this.getNodeParameter('hostname', _itemIndex ?? 0) as string;
 	const type = this.getNodeParameter('type', _itemIndex ?? 0) as string;

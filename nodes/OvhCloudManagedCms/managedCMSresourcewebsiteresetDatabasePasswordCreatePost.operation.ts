@@ -5,17 +5,19 @@ import type {
 	INodeExecutionData,
 	INodeProperties,
 } from 'n8n-workflow';
-import { ApiClient } from '../../shared/transport/ApiClient';
+import { getClient } from '../../shared/transport/ApiClient';
+import { destructiveActionNotice } from '../../shared/nodes/notices';
 
 export function description(displayOptions: IDisplayOptions): INodeProperties[] {
 	return [
+		destructiveActionNotice('This will reset the Managed CMS database password. This action is irreversible.', displayOptions),
 		{
 			displayName: 'Service ID',
 			name: 'serviceId',
 			type: 'string',
 			default: '',
 			required: true,
-			description: 'The serviceId identifier',
+			description: 'CMS service ID',
 			displayOptions,
 		},
 		{
@@ -24,7 +26,6 @@ export function description(displayOptions: IDisplayOptions): INodeProperties[] 
 			type: 'string',
 			default: '',
 			required: true,
-			description: 'The websiteId identifier',
 			displayOptions,
 		},
 
@@ -42,7 +43,7 @@ export async function execute(this: IExecuteFunctions, _itemIndex: number): Prom
 	const websiteId = this.getNodeParameter('websiteId', _itemIndex) as string;
 
 
-	const client = new ApiClient(this);
+	const client = getClient(this);
 	const data = (await client.httpPost('/managedCMS/resource/' + serviceId + '/website/' + websiteId + '/resetDatabasePassword')) as IDataObject;
 
 	return this.helpers.returnJsonArray([data]);

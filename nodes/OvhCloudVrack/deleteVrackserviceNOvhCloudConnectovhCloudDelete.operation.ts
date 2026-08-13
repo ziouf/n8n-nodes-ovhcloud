@@ -5,18 +5,20 @@ import type {
 	INodeProperties,
 	INodeExecutionData,
 } from 'n8n-workflow';
-import { ApiClient } from '../../shared/transport/ApiClient';
+import { getClient } from '../../shared/transport/ApiClient';
+import { destructiveActionNotice } from '../../shared/nodes/notices';
 
 
 export function description(displayOptions: IDisplayOptions): INodeProperties[] {
 	return [
+		destructiveActionNotice('This action is destructive and cannot be undone.', displayOptions),
 		{
 			displayName: 'ServiceName',
 			name: 'serviceName',
 			type: 'string',
 			default: '',
 			required: true,
-			description: 'The servicename identifier',
+			description: 'The service name',
 			displayOptions,
 		},
 		{
@@ -25,7 +27,7 @@ export function description(displayOptions: IDisplayOptions): INodeProperties[] 
 			type: 'string',
 			default: '',
 			required: true,
-			description: 'The ovhcloudconnect identifier',
+			description: 'The OVH Cloud Connect',
 			displayOptions,
 		},
 	];
@@ -45,7 +47,7 @@ export async function execute(this: IExecuteFunctions, _itemIndex: number): Prom
 
 
 
-	const client = new ApiClient(this);
+	const client = getClient(this);
 	const data = (await client.httpDelete('/vrack' + '/' + encodeURIComponent(serviceName) + '/' + 'ovhCloudConnect' + '/' + encodeURIComponent(ovhCloudConnect))) as IDataObject;
 	return this.helpers.returnJsonArray([data]);
 }

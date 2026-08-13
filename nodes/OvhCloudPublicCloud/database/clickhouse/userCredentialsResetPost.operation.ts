@@ -5,11 +5,13 @@ import type {
 	INodeExecutionData,
 	INodeProperties,
 } from 'n8n-workflow';
-import { ApiClient } from '../../../../shared/transport/ApiClient';
+import { getClient } from '../../../../shared/transport/ApiClient';
+import { destructiveActionNotice } from '../../../../shared/nodes/notices';
 
 export function description(displayOptions: IDisplayOptions): INodeProperties[] {
 	return [
-{
+		destructiveActionNotice('This will reset the clickhouse. This action is irreversible.', displayOptions),
+		{
 		displayName: 'Public Cloud Project',
 		name: 'publicCloudProjectId',
 		type: 'resourceLocator',
@@ -58,7 +60,7 @@ export function description(displayOptions: IDisplayOptions): INodeProperties[] 
  * Endpoint: /cloud/project/{serviceName}/database/clickhouse/{clusterId}/user/{userId}/credentials/reset
  */
 export async function execute(this: IExecuteFunctions, _itemIndex?: number): Promise<INodeExecutionData[]> {
-	const client = new ApiClient(this);
+	const client = getClient(this);
 	const userId = this.getNodeParameter('userId', _itemIndex ?? 0) as string;
 	const clusterId = this.getNodeParameter('clusterId', _itemIndex ?? 0) as string;
 	const serviceName = this.getNodeParameter('publicCloudProjectId', _itemIndex ?? 0, '', { extractValue: true }) as string;

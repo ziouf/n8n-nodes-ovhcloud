@@ -5,18 +5,20 @@ import type {
 	INodeProperties,
 	INodeExecutionData,
 } from 'n8n-workflow';
-import { ApiClient } from '../../shared/transport/ApiClient';
+import { getClient } from '../../shared/transport/ApiClient';
+import { destructiveActionNotice } from '../../shared/nodes/notices';
 
 
 export function description(displayOptions: IDisplayOptions): INodeProperties[] {
 	return [
+		destructiveActionNotice('This will permanently confirm the termination of the VRack service.', displayOptions),
 		{
 			displayName: 'ServiceName',
 			name: 'serviceName',
 			type: 'string',
 			default: '',
 			required: true,
-			description: 'The servicename identifier',
+			description: 'The service name',
 			displayOptions,
 		},
 		{
@@ -79,7 +81,7 @@ const body: IDataObject = {
     token: token
     };
 
-	const client = new ApiClient(this);
+	const client = getClient(this);
 	const data = (await client.httpPost('/vrack' + '/' + encodeURIComponent(serviceName) + '/' + 'confirmTermination', body)) as IDataObject;
 	return this.helpers.returnJsonArray([data]);
 }

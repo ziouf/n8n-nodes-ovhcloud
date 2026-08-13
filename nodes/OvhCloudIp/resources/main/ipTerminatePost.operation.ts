@@ -5,11 +5,13 @@ import type {
 	INodeExecutionData,
 	INodeProperties,
 } from 'n8n-workflow';
-import { ApiClient } from '../../../../shared/transport/ApiClient';
+import { getClient } from '../../../../shared/transport/ApiClient';
+import { destructiveActionNotice } from '../../../../shared/nodes/notices';
 
 export function description(displayOptions: IDisplayOptions): INodeProperties[] {
 	return [
-	{
+		destructiveActionNotice('This will terminate the main service. This action is irreversible.', displayOptions),
+		{
 		displayName: 'Ip',
 		name: 'ip',
 		type: 'string',
@@ -33,7 +35,7 @@ export async function execute(this: IExecuteFunctions, _itemIndex: number): Prom
 
 	const body: IDataObject = {};
 
-	const client = new ApiClient(this);
+	const client = getClient(this);
 	const data = (await client.httpPost(`/ip/${encodeURIComponent(ip)}/terminate`, body)) as IDataObject;
 
 	return this.helpers.returnJsonArray([data]);

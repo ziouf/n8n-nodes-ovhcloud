@@ -1,8 +1,10 @@
 import type { IDataObject, IExecuteFunctions, INodeExecutionData, IDisplayOptions, INodeProperties } from 'n8n-workflow';
-import { ApiClient } from '../../../shared/transport/ApiClient';
+import { getClient } from '../../../shared/transport/ApiClient';
+import { destructiveActionNotice } from '../../../shared/nodes/notices';
 
 export function description(displayOptions: IDisplayOptions): INodeProperties[] {
 	return [
+		destructiveActionNotice('This will permanently confirm the termination of the domain confirm termination create.', displayOptions),
 		{
 			displayName: 'Domain',
 			name: 'domain',
@@ -79,7 +81,7 @@ export async function execute(this: IExecuteFunctions, _itemIndex?: number): Pro
 		token: token,
 	};
 
-	const client = new ApiClient(this);
+	const client = getClient(this);
 	const data = (await client.httpPost('/email' + '/domain/' + encodeURIComponent(domain) + '/confirmTermination', body)) as IDataObject;
 	return this.helpers.returnJsonArray([data]);
 }
