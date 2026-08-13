@@ -1,3 +1,4 @@
+/* eslint-disable n8n-nodes-base/node-filename-against-convention */
 import type {
 	IDataObject,
 	IDisplayOptions,
@@ -6,6 +7,8 @@ import type {
 	INodeProperties,
 } from 'n8n-workflow';
 import { getClient } from '../../../shared/transport/ApiClient';
+import { buildFilterQuery } from '../../../shared/nodes/filterQuery';
+import { filtersCollection, type FilterDefinition } from '../../../shared/nodes/filterOptions';
 
 // ============================================================
 // Groupe A : Credit Balances
@@ -14,7 +17,7 @@ import { getClient } from '../../../shared/transport/ApiClient';
 // listCreditBalances
 export async function executeListCreditBalances(
 	this: IExecuteFunctions,
-_itemIndex?: number,
+	_itemIndex?: number,
 ): Promise<INodeExecutionData[]> {
 	const client = getClient(this);
 	const ids = (await client.httpGet('/me/credit/balance')) as string[];
@@ -130,7 +133,7 @@ export async function executeGetCreditBalanceMovement(
 // getDebtAccount
 export async function executeGetDebtAccount(
 	this: IExecuteFunctions,
-_itemIndex?: number,
+	_itemIndex?: number,
 ): Promise<INodeExecutionData[]> {
 	const client = getClient(this);
 	const data = (await client.httpGet('/me/debtAccount')) as IDataObject;
@@ -140,7 +143,7 @@ _itemIndex?: number,
 // listDebtAccountDebts
 export async function executeListDebtAccountDebts(
 	this: IExecuteFunctions,
-_itemIndex?: number,
+	_itemIndex?: number,
 ): Promise<INodeExecutionData[]> {
 	const client = getClient(this);
 	const ids = (await client.httpGet('/me/debtAccount/debt')) as string[];
@@ -289,10 +292,51 @@ export async function executeGetDebtAccountDebtOperationAssociatedObject(
 // Groupe C : Deposits
 // ============================================================
 
+// Deposit filter definitions (used by both descriptionListDeposits and buildFilterQuery)
+export const DEPOSIT_FILTERS: FilterDefinition[] = [
+	{
+		displayName: 'From (>=)',
+		group: 'dateRange',
+		groupDisplayName: 'Date Range',
+		name: 'from',
+		queryParam: 'date.from',
+		type: 'dateTime',
+		default: '',
+		description: 'Filter deposits from this date (ISO 8601)',
+	},
+	{
+		displayName: 'To (<=)',
+		group: 'dateRange',
+		groupDisplayName: 'Date Range',
+		name: 'to',
+		queryParam: 'date.to',
+		type: 'dateTime',
+		default: '',
+		description: 'Filter deposits up to this date (ISO 8601)',
+	},
+	{
+		displayName: 'Order ID',
+		group: 'ids',
+		groupDisplayName: 'Identifiers',
+		name: 'orderId',
+		queryParam: 'orderId',
+		type: 'number',
+		default: 0,
+	},
+];
+
 // listDeposits
-export async function executeListDeposits(this: IExecuteFunctions, _itemIndex?: number): Promise<INodeExecutionData[]> {
+export function descriptionListDeposits(displayOptions: IDisplayOptions): INodeProperties[] {
+	return filtersCollection(displayOptions, DEPOSIT_FILTERS);
+}
+
+export async function executeListDeposits(
+	this: IExecuteFunctions,
+	itemIndex?: number,
+): Promise<INodeExecutionData[]> {
 	const client = getClient(this);
-	const ids = (await client.httpGet('/me/deposit')) as string[];
+	const qs = buildFilterQuery(this, itemIndex ?? 0, DEPOSIT_FILTERS);
+	const ids = (await client.httpGet('/me/deposit', qs)) as string[];
 	const results: IDataObject[] = [];
 	for (const id of ids) {
 		const details = (await client.httpGet(`/me/deposit/${id}`)) as IDataObject;
@@ -489,7 +533,7 @@ export async function executeGetDepositPayment(
 // listWithdrawals
 export async function executeListWithdrawals(
 	this: IExecuteFunctions,
-_itemIndex?: number,
+	_itemIndex?: number,
 ): Promise<INodeExecutionData[]> {
 	const client = getClient(this);
 	const ids = (await client.httpGet('/me/withdrawal')) as string[];
@@ -624,7 +668,10 @@ export async function executeGetWithdrawalPayment(
 // ============================================================
 
 // listRefunds
-export async function executeListRefunds(this: IExecuteFunctions, _itemIndex?: number): Promise<INodeExecutionData[]> {
+export async function executeListRefunds(
+	this: IExecuteFunctions,
+	_itemIndex?: number,
+): Promise<INodeExecutionData[]> {
 	const client = getClient(this);
 	const ids = (await client.httpGet('/me/refund')) as string[];
 	const results: IDataObject[] = [];
@@ -754,7 +801,7 @@ export async function executeGetRefundPayment(
 // listReverseBills
 export async function executeListReverseBills(
 	this: IExecuteFunctions,
-_itemIndex?: number,
+	_itemIndex?: number,
 ): Promise<INodeExecutionData[]> {
 	const client = getClient(this);
 	const ids = (await client.httpGet('/me/reverseBill')) as string[];
@@ -893,7 +940,7 @@ export async function executeGetReverseBillPayment(
 // listCorrectiveInvoices
 export async function executeListCorrectiveInvoices(
 	this: IExecuteFunctions,
-_itemIndex?: number,
+	_itemIndex?: number,
 ): Promise<INodeExecutionData[]> {
 	const client = getClient(this);
 	const ids = (await client.httpGet('/me/correctiveInvoice')) as string[];

@@ -1,3 +1,4 @@
+/* eslint-disable n8n-nodes-base/node-filename-against-convention, n8n-nodes-base/node-param-default-missing, n8n-nodes-base/node-param-display-name-not-first-position */
 import type {
 	IDataObject,
 	IDisplayOptions,
@@ -6,20 +7,76 @@ import type {
 	INodeProperties,
 } from 'n8n-workflow';
 import { getClient } from '../../../shared/transport/ApiClient';
+import { filtersCollection, type FilterDefinition } from '../../../shared/nodes/filterOptions';
+import { buildFilterQuery } from '../../../shared/nodes/filterQuery';
 
 // ============================================================
 // Groupe A : Bills
 // ============================================================
 
+export const BILL_FILTERS: FilterDefinition[] = [
+	{
+		group: 'dateRange',
+		groupDisplayName: 'Date Range',
+		name: 'from',
+		displayName: 'From (>=)',
+		queryParam: 'date.from',
+		type: 'dateTime',
+		description: 'Filter bills from this date (ISO 8601)',
+	},
+	{
+		group: 'dateRange',
+		groupDisplayName: 'Date Range',
+		name: 'to',
+		displayName: 'To (<=)',
+		queryParam: 'date.to',
+		type: 'dateTime',
+		description: 'Filter bills up to this date (ISO 8601)',
+	},
+	{
+		group: 'ids',
+		groupDisplayName: 'Identifiers',
+		name: 'orderId',
+		displayName: 'Order ID',
+		queryParam: 'orderId',
+		type: 'number',
+		default: 0,
+	},
+	{
+		group: 'category',
+		groupDisplayName: 'Category',
+		name: 'value',
+		displayName: 'Category',
+		queryParam: 'category',
+		type: 'options',
+		description: 'Filter bills by category',
+		options: [
+			{ name: 'Auto Renew', value: 'autorenew' },
+			{ name: 'Early Renewal', value: 'earlyrenewal' },
+			{ name: 'Purchase', value: 'purchase' },
+			{ name: 'Purchase Cloud', value: 'purchase-cloud' },
+			{ name: 'Purchase Servers', value: 'purchase-servers' },
+			{ name: 'Purchase Telecom', value: 'purchase-telecom' },
+			{ name: 'Purchase Web', value: 'purchase-web' },
+		],
+	},
+];
+
+export function descriptionListBills(displayOptions: IDisplayOptions): INodeProperties[] {
+	return filtersCollection(displayOptions, BILL_FILTERS);
+}
+
 // listBills
 export async function executeListBills(
 	this: IExecuteFunctions,
-	_itemIndex?: number,
+	itemIndex?: number,
 ): Promise<INodeExecutionData[]> {
 	const client = getClient(this);
 	// Uses paginateResources for parallel detail fetching (concurrency 3).
 	// Failed item fetches are silently skipped (previously threw).
-	const results = await client.paginateResources<IDataObject>('/me/bill', '/me/bill/{id}');
+	const results = await client.paginateResources<IDataObject>('/me/bill', '/me/bill/{id}', {
+		query: buildFilterQuery(this, itemIndex ?? 0, BILL_FILTERS),
+	});
 	return this.helpers.returnJsonArray(results);
 }
 

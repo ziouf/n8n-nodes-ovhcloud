@@ -130,7 +130,9 @@ describe('Billing list operations', () => {
 
 			const result = await executeListBills.call(mockExecuteFunctions);
 
-			expect(mockClient.paginateResources).toHaveBeenCalledWith('/me/bill', '/me/bill/{id}');
+			expect(mockClient.paginateResources).toHaveBeenCalledWith('/me/bill', '/me/bill/{id}', {
+				query: undefined,
+			});
 			expect(mockClient.httpGet).not.toHaveBeenCalled();
 			expect(result).toEqual(fullObjects);
 		});
@@ -140,7 +142,9 @@ describe('Billing list operations', () => {
 
 			const result = await executeListBills.call(mockExecuteFunctions);
 
-			expect(mockClient.paginateResources).toHaveBeenCalledWith('/me/bill', '/me/bill/{id}');
+			expect(mockClient.paginateResources).toHaveBeenCalledWith('/me/bill', '/me/bill/{id}', {
+				query: undefined,
+			});
 			expect(result).toEqual([]);
 		});
 	});

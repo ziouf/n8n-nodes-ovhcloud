@@ -80,6 +80,7 @@ import {
 
 // Phase 3 — Billing
 import {
+	descriptionListBills,
 	executeListBills,
 	descriptionGetBill,
 	executeGetBill,
@@ -122,6 +123,7 @@ import {
 	executeListPaymentTransactions,
 	executeGetPaymentTransaction,
 	executeListBankAccounts,
+	descriptionListBankAccounts,
 	descriptionGetBankAccount,
 	executeGetBankAccount,
 	executeListCreditCards,
@@ -192,6 +194,7 @@ import {
 	descriptionGetDebtAccountDebtOperationAssociatedObject,
 	executeGetDebtAccountDebtOperationAssociatedObject,
 	executeListDeposits,
+	descriptionListDeposits,
 	descriptionGetDeposit,
 	executeGetDeposit,
 	descriptionListDepositDetails,
@@ -1185,6 +1188,10 @@ export function description(displayOptions: IDisplayOptions): INodeProperties[] 
 			show: { ...displayOptions?.show, meOperation: ['getAuditLogSubscription'] },
 		}),
 		// Phase 3 — Billing
+		...descriptionListBills({
+			...displayOptions,
+			show: { ...displayOptions?.show, meOperation: ['listBills'] },
+		}),
 		...descriptionGetBill({
 			...displayOptions,
 			show: { ...displayOptions?.show, meOperation: ['getBill'] },
@@ -1245,6 +1252,10 @@ export function description(displayOptions: IDisplayOptions): INodeProperties[] 
 		...descriptionGetPaymentTransaction({
 			...displayOptions,
 			show: { ...displayOptions?.show, meOperation: ['getPaymentTransaction'] },
+		}),
+		...descriptionListBankAccounts({
+			...displayOptions,
+			show: { ...displayOptions?.show, meOperation: ['listBankAccounts'] },
 		}),
 		...descriptionGetBankAccount({
 			...displayOptions,
@@ -1365,6 +1376,10 @@ export function description(displayOptions: IDisplayOptions): INodeProperties[] 
 				...displayOptions?.show,
 				meOperation: ['getDebtAccountDebtOperationAssociatedObject'],
 			},
+		}),
+		...descriptionListDeposits({
+			...displayOptions,
+			show: { ...displayOptions?.show, meOperation: ['listDeposits'] },
 		}),
 		...descriptionGetDeposit({
 			...displayOptions,
@@ -1882,7 +1897,10 @@ export async function execute(
 		case 'getCorrectiveInvoiceDebtOperation':
 			return await executeGetCorrectiveInvoiceDebtOperation.call(this, itemIndex ?? 0);
 		case 'getCorrectiveInvoiceDebtOperationAssociatedObject':
-			return await executeGetCorrectiveInvoiceDebtOperationAssociatedObject.call(this, itemIndex ?? 0);
+			return await executeGetCorrectiveInvoiceDebtOperationAssociatedObject.call(
+				this,
+				itemIndex ?? 0,
+			);
 		case 'listCorrectiveInvoiceDetails':
 			return await executeListCorrectiveInvoiceDetails.call(this, itemIndex ?? 0);
 		case 'getCorrectiveInvoiceDetail':

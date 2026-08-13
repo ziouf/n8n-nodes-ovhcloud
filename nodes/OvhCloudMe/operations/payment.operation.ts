@@ -1,3 +1,4 @@
+/* eslint-disable n8n-nodes-base/node-filename-against-convention, n8n-nodes-base/node-param-default-missing */
 import type {
 	IDataObject,
 	IDisplayOptions,
@@ -6,6 +7,8 @@ import type {
 	INodeProperties,
 } from 'n8n-workflow';
 import { getClient } from '../../../shared/transport/ApiClient';
+import { filtersCollection, type FilterDefinition } from '../../../shared/nodes/filterOptions';
+import { buildFilterQuery } from '../../../shared/nodes/filterQuery';
 
 // ============================================================
 // Groupe A : Payment Methods
@@ -14,7 +17,7 @@ import { getClient } from '../../../shared/transport/ApiClient';
 // listPaymentAvailableMethods
 export async function executeListPaymentAvailableMethods(
 	this: IExecuteFunctions,
-_itemIndex?: number,
+	_itemIndex?: number,
 ): Promise<INodeExecutionData[]> {
 	const client = getClient(this);
 	const data = (await client.httpGet('/me/payment/availableMethods')) as IDataObject[];
@@ -24,7 +27,7 @@ _itemIndex?: number,
 // listPaymentMethods
 export async function executeListPaymentMethods(
 	this: IExecuteFunctions,
-_itemIndex?: number,
+	_itemIndex?: number,
 ): Promise<INodeExecutionData[]> {
 	const client = getClient(this);
 	const ids = (await client.httpGet('/me/payment/method')) as string[];
@@ -63,7 +66,7 @@ export async function executeGetPaymentMethod(
 // listPaymentTransactions
 export async function executeListPaymentTransactions(
 	this: IExecuteFunctions,
-_itemIndex?: number,
+	_itemIndex?: number,
 ): Promise<INodeExecutionData[]> {
 	const client = getClient(this);
 	const ids = (await client.httpGet('/me/payment/transaction')) as string[];
@@ -102,12 +105,35 @@ export async function executeGetPaymentTransaction(
 }
 
 // listBankAccounts
+export const BANK_ACCOUNT_FILTERS: FilterDefinition[] = [
+	{
+		group: 'status',
+		groupDisplayName: 'Status',
+		name: 'value',
+		displayName: 'State',
+		queryParam: 'state',
+		type: 'options',
+		description: 'Filter bank accounts by state',
+		options: [
+			{ name: 'Blocked For Incidents', value: 'blockedForIncidents' },
+			{ name: 'Pending Validation', value: 'pendingValidation' },
+			{ name: 'Replaced', value: 'replaced' },
+			{ name: 'Valid', value: 'valid' },
+		],
+	},
+];
+
+export function descriptionListBankAccounts(displayOptions: IDisplayOptions): INodeProperties[] {
+	return filtersCollection(displayOptions, BANK_ACCOUNT_FILTERS);
+}
+
 export async function executeListBankAccounts(
 	this: IExecuteFunctions,
-_itemIndex?: number,
+	itemIndex?: number,
 ): Promise<INodeExecutionData[]> {
 	const client = getClient(this);
-	const ids = (await client.httpGet('/me/paymentMean/bankAccount')) as string[];
+	const query = buildFilterQuery(this, itemIndex ?? 0, BANK_ACCOUNT_FILTERS);
+	const ids = (await client.httpGet('/me/paymentMean/bankAccount', query)) as string[];
 	const results: IDataObject[] = [];
 	for (const id of ids) {
 		const details = (await client.httpGet(`/me/paymentMean/bankAccount/${id}`)) as IDataObject;
@@ -143,7 +169,7 @@ export async function executeGetBankAccount(
 // listCreditCards
 export async function executeListCreditCards(
 	this: IExecuteFunctions,
-_itemIndex?: number,
+	_itemIndex?: number,
 ): Promise<INodeExecutionData[]> {
 	const client = getClient(this);
 	const ids = (await client.httpGet('/me/paymentMean/creditCard')) as string[];
@@ -182,7 +208,7 @@ export async function executeGetCreditCard(
 // listDeferredPaymentAccounts
 export async function executeListDeferredPaymentAccounts(
 	this: IExecuteFunctions,
-_itemIndex?: number,
+	_itemIndex?: number,
 ): Promise<INodeExecutionData[]> {
 	const client = getClient(this);
 	const ids = (await client.httpGet('/me/paymentMean/deferredPaymentAccount')) as string[];
@@ -227,7 +253,7 @@ export async function executeGetDeferredPaymentAccount(
 // listPaypalAccounts
 export async function executeListPaypalAccounts(
 	this: IExecuteFunctions,
-_itemIndex?: number,
+	_itemIndex?: number,
 ): Promise<INodeExecutionData[]> {
 	const client = getClient(this);
 	const ids = (await client.httpGet('/me/paymentMean/paypal')) as string[];
@@ -268,7 +294,10 @@ export async function executeGetPaypalAccount(
 // ============================================================
 
 // listOrders
-export async function executeListOrders(this: IExecuteFunctions, _itemIndex?: number): Promise<INodeExecutionData[]> {
+export async function executeListOrders(
+	this: IExecuteFunctions,
+	_itemIndex?: number,
+): Promise<INodeExecutionData[]> {
 	const client = getClient(this);
 	const ids = (await client.httpGet('/me/order')) as string[];
 	const results: IDataObject[] = [];
