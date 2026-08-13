@@ -4,3 +4,5 @@ export { getItemParameter } from './itemParameter';
 export { classifyOperation, DEFAULT_CLASS_CONCURRENCY } from './operationClass';
 export { fullObjectsListOptions } from './listOptions';
 export { serviceNameLocator, projectIdLocator } from './locators';
+export { filtersCollection, type FilterDefinition } from './filterOptions';
+export { buildFilterQuery, isEmptyFilterValue } from './filterQuery';
