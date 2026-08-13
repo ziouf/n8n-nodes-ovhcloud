@@ -1,5 +1,5 @@
 import type { ILoadOptionsFunctions, INodeListSearchResult } from 'n8n-workflow';
-import { ApiClient } from '../transport/ApiClient';
+import { ApiClient, getClient } from '../transport/ApiClient';
 
 /** Default cache TTL: 5 minutes. */
 const DEFAULT_CACHE_TTL_MS = 5 * 60 * 1000;
@@ -22,13 +22,21 @@ export function clearListSearchCache(): void {
 }
 
 /**
+ * Minimal context interface for list-search loaders.
+ *
+ * In production, `this` is `ILoadOptionsFunctions`. In tests, it's a
+ * minimal mock. This union keeps both paths type-safe without casts.
+ */
+export type ListSearchContext = ILoadOptionsFunctions | ProjectIdContext;
+
+/**
  * A list-search loader bound to a fixed OVH API route.
  *
  * n8n passes the user's typed text as `filter` and, when the user pages
  * in the dropdown, the `paginationToken` returned by a previous call.
  */
 export type ListSearchLoader = (
-	this: ILoadOptionsFunctions,
+	this: ListSearchContext,
 	filter?: string,
 	paginationToken?: string,
 ) => Promise<INodeListSearchResult>;
@@ -54,16 +62,26 @@ export interface ListSearchOptions {
 }
 
 /**
+ * Minimal interface for the context used by resolveProjectId.
+ *
+ * Only requires `getNodeParameter` so that tests can pass a minimal mock
+ * without needing a full `ILoadOptionsFunctions` implementation.
+ */
+export interface ProjectIdContext {
+	getNodeParameter: (name: string, itemIndex: number) => unknown;
+}
+
+/**
  * Reads the `publicCloudProjectId` node parameter, handling both the plain
  * string form and the `{ mode, value }` resourceLocator form used by n8n.
  *
- * @param ctx - The n8n load-options context
+ * @param ctx - The n8n load-options context (or a minimal mock)
  * @param paramName - Parameter to read (default: 'publicCloudProjectId')
  * @returns The resolved project id string
  * @throws Error when the parameter is not a valid string/object
  */
 export function resolveProjectId(
-	ctx: ILoadOptionsFunctions,
+	ctx: ProjectIdContext,
 	paramName = 'publicCloudProjectId',
 ): string {
 	const paramValue = ctx.getNodeParameter(paramName, 0) as string | Record<string, unknown>;
@@ -92,7 +110,7 @@ export function resolveProjectId(
  * @param filterField - Name of the parameter to read (default: 'filter')
  * @returns The filter text, or empty string
  */
-export function getSearchFilter(ctx: ILoadOptionsFunctions, filterField = 'filter'): string {
+export function getSearchFilter(ctx: ProjectIdContext, filterField = 'filter'): string {
 	try {
 		return (ctx.getNodeParameter(filterField, 0) as string) ?? '';
 	} catch {
@@ -275,11 +293,11 @@ export function createServiceListSearch(
 	options?: ListSearchOptions,
 ): ListSearchLoader {
 	return async function (
-		this: ILoadOptionsFunctions,
+		this: ListSearchContext,
 		filterArg?: string,
 		paginationToken?: string,
 	): Promise<INodeListSearchResult> {
-		const client = new ApiClient(this);
+		const client = getClient(this as ILoadOptionsFunctions);
 		const scope = await client.getCredentialScope();
 		const filter =
 			filterArg !== undefined && filterArg !== ''
@@ -311,11 +329,11 @@ export function createProjectScopedServiceListSearch(
 	options?: ListSearchOptions,
 ): ListSearchLoader {
 	return async function (
-		this: ILoadOptionsFunctions,
+		this: ListSearchContext,
 		filterArg?: string,
 		paginationToken?: string,
 	): Promise<INodeListSearchResult> {
-		const client = new ApiClient(this);
+		const client = getClient(this as ILoadOptionsFunctions);
 		const scope = await client.getCredentialScope();
 		const projectId = resolveProjectId(this, paramName);
 		const filter =
