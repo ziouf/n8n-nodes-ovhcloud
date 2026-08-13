@@ -161,7 +161,7 @@ Le nœud est couvert par des tests de non-régression qui vérifient que chaque 
 ### Exécution des Tests
 
 ```bash
-npm test -- tests/domain-lot1.test.ts
+npm test
 ```
 
 Ces tests couvrent :

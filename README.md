@@ -3,7 +3,7 @@
 [![n8n Nodes Base](https://img.shields.io/badge/n8n-nodes_base-orange.svg)](https://docs.n8n.io/integrations/#community-nodes)
 [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
 
-**n8n-nodes-ovhcloud** is a community node for [n8n](https://n8n.io/) that enables seamless integration with OVHcloud APIs. It provides **62 dedicated nodes** to manage your entire OVH Cloud infrastructure — from web hosting and virtual private servers, public cloud projects with Kubernetes and AI services, domain management, dedicated hardware, billing, SMS, telephony, CDN, storage, and more — all orchestrated directly inside your n8n workflows.
+**n8n-nodes-ovhcloud** is a community node for [n8n](https://n8n.io/) that enables seamless integration with OVHcloud APIs. It provides **71 dedicated nodes** to manage your entire OVH Cloud infrastructure — from web hosting and virtual private servers, public cloud projects with Kubernetes and AI services, domain management, dedicated hardware, billing, SMS, telephony, CDN, storage, and more — all orchestrated directly inside your n8n workflows.
 
 > **Note**: n8n is a workflow automation platform released under the [FairCode license](https://docs.n8n.io/sustainable-use-license/).
 
@@ -30,14 +30,14 @@
 All nodes share common features across every OVH Cloud endpoint:
 
 - **Multi-endpoint support**: OVH Europe, Canada, USA, SoYouStart, Kimsufi
-- **SHA1 signature authentication** for secure API requests (via `OvhCloudApiClient`)
+- **SHA1 signature authentication** for secure API requests (via `ApiClient` / `getClient()` factory)
 - **Dynamic list selection** — auto-populate dropdowns with live data via a shared `resourceLocator` factory (e.g. `shared/nodes/locators.ts`) and paginated `searchListMethod` (built on `shared/methods/listSearch.ts`)
-- **Credential memoization** — API credentials are fetched once per node execution and reused across all HTTP calls (`ApiClient.clearCredentialsCache()` to force refresh)
+- **Credential memoization** — API credentials are fetched once per execution and shared between all items and HTTP calls via the `getClient()` factory (client memoized per execution context); call `ApiClient.clearClientCache()` to force refresh.
 - **Automatic retry & backoff** — GET requests automatically retry on transient errors (429, 5xx, timeouts) with jitter; POST/PUT/DELETE retries require explicit `*WithRetry` configuration.
 - **Destructive operation warnings** — destructive or irreversible operations (terminate, reinstall, reboot) display a yellow warning notice in the node UI via the shared `destructiveActionNotice()` helper.
 - **Correct multi-items support** — parameters are resolved per item (`getNodeParameter(name, itemIndex ?? 0)`) across all nodes, so workflows with multiple input items use the right parameters for each.
-- **Advanced pagination** — `paginate()` fetches pages in parallel batches (configurable `concurrency`, default 1 for backward compatibility); `paginateResources()` fetches detail objects in parallel (max 5 concurrent requests) with an `onSkipped` callback for per-resource error tracking; `paginate` supports `maxItems` (default 1000), `query` merging, and automatic mapping to full objects for ID arrays.
-- **Multi-items concurrency** — 14 high-volume nodes use a bounded worker pool (`executeTemplate` with `concurrency: 5`) to process workflow items in parallel while preserving output order.
+- **Advanced pagination** — `paginate()` fetches pages in parallel batches (configurable `concurrency`, default 3, overridable via `OVH_PAGINATE_CONCURRENCY` env var); `paginateResources()` fetches detail objects in parallel (max 5 concurrent requests) with an `onSkipped` callback for per-resource error tracking; `paginate` supports `maxItems` (default 1000), `query` merging, and automatic mapping to full objects for ID arrays.
+- **Multi-items concurrency** — all nodes (71) use `executeTemplate` with `perItemConcurrency` based on operation classification: read operations run up to 3 concurrent workers, write/destructive operations are limited to 1 for consistency, preserving output order.
 - **Return Full Objects / Max Items** — list operations (VPS, Dedicated Server) expose a toggle to fetch full resource objects in parallel, with a configurable max item count and a visible warning when some resources could not be fetched.
 
 ### Status
@@ -46,7 +46,7 @@ All nodes share common features across every OVH Cloud endpoint:
 
 ### Available Nodes
 
-The plugin provides **62 nodes** organized by category:
+The plugin provides **71 nodes** organized by category:
 
 #### 🖥️ Compute & Infrastructure
 
@@ -296,7 +296,7 @@ See the [full authentication guide](docs/guides/authentication-guide.md) for det
 
 ### 3. Use
 
-Add any of the **62 available OVH Cloud nodes** to your workflow — select a resource, pick an operation from the dropdown, fill in parameters (resourceLocator for services with IDs), and execute.
+Add any of the **71 available OVH Cloud nodes** to your workflow — select a resource, pick an operation from the dropdown, fill in parameters (resourceLocator for services with IDs), and execute.
 
 See [workflow examples](docs/guides/examples.md) for common use cases.
 
@@ -399,28 +399,30 @@ n8n-nodes-ovhcloud/
 │   └── shared/
 │       ├── constants.ts                # Shared constants (icon path, credential name)
 │       ├── nodes/
-│       │   ├── BaseNode.ts           # Abstract base class for all OVH Cloud nodes; `executeTemplate` with bounded worker pool (concurrency: 5 on 14 high-volume nodes)
+│       │   ├── BaseNode.ts           # Abstract base class for all OVH Cloud nodes; `executeTemplate` with `perItemConcurrency` (classification read/write/destructive) on all nodes
 │       │   ├── itemParameter.ts      # `getItemParameter()` helper — resolves node parameters per item index
 │       │   ├── listOptions.ts        # "Return Full Objects / Max Items" list options helper
 │       │   ├── notices.ts            # Destructive action warning notices
 │       ├── methods/                    # Search list methods for dynamic dropdowns
-│       │   └── listSearch.ts           # createServiceListSearch() factory (deduplicated loaders)
+│       │   └── listSearch.ts           # createServiceListSearch() factory (deduplicated loaders, bounded cache with MAX_CACHE_ENTRIES)
 │       └── transport/                   # API client & authentication
-│           ├── ApiClient.ts             #   abstract interface
+│           ├── ApiClient.ts             #   `getClient()` factory (shared client per execution) + `clearClientCache()`
 │           ├── ApiClientImpl.ts         #   HTTP implementation (credential memoization + retry + batch-parallel pagination)
 │           └── CredentialHolder.ts      #   OVH SHA1 signature helper
 ├── scripts/
 │   ├── generate-nodes-manifest.js       # Regenerate nodes list in package.json after build
 │   ├── gen-api-docs.sh                  # Generate API documentation from specs
 │   └── get-api-description.sh           # Fetch OVH API JSON specifications
-├── tests/                               # Jest unit & non-regression tests (150+ tests)
+├── tests/                               # Jest unit & non-regression tests (5217 suites / 11606 tests)
 │   ├── base-node.test.ts                # `runItems()` worker pool, error handling, ordered output with concurrency
+│   ├── credential-scope.test.ts         # Scoped memoization and isolation per credentials
 │   ├── CredentialHolder.test.ts         # OVH SHA1 signature generation and auth headers
-│   ├── dedicated.operation.test.ts      # Non-regression tests for Dedicated operations
-│   ├── domain-lot1.test.ts              # Tests for all OvhCloudDomain GET operations
+│   ├── get-client.test.ts               # getClient factory (same instance per context)
 │   ├── helpers.ts                       # Shared test utilities (createMockCtx, invokeOperation)
+│   ├── helpers/mockCtx.ts               # `createMockExecuteFunctions` typed helper
 │   ├── hosting.operation.test.ts        # Non-regression tests for Hosting operations
 │   ├── list-search.test.ts              # Dynamic dropdown loaders (createServiceListSearch)
+│   ├── mockCtx.test.ts                  # Typed mock helper
 │   ├── multi-item.test.ts               # Per-item parameter resolution + static guardrail for hardcoded indices
 │   ├── paginate-concurrency.test.ts     # Parallel page fetching correctness and maxItems compliance
 │   ├── publicCloud.operation.test.ts    # Non-regression tests for Public Cloud backup & snapshot CRUD ops
@@ -438,7 +440,7 @@ n8n-nodes-ovhcloud/
 └── package.json                         # Manifest auto-generated by generate-nodes-manifest.js
 ```
 
-Each node follows the same three-export pattern: `description()`, optional `methodsListSearch()` for dynamic dropdowns, and a single async `execute()` function that switches on an operation parameter. All HTTP calls go through `OvhCloudApiClient` which handles SHA1 signing automatically.
+Each node follows the same three-export pattern: `description()`, optional `methodsListSearch()` for dynamic dropdowns, and a single async `execute()` function that switches on an operation parameter. All HTTP calls go through `ApiClient` (`getClient()` factory) which handles SHA1 signing automatically.
 
 ---
 
