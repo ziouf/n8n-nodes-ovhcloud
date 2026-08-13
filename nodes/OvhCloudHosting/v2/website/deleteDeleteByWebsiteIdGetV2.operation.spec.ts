@@ -3,10 +3,10 @@ import { description, execute } from './deleteDeleteByWebsiteIdGetV2.operation';
 
 jest.mock('../../../../shared/transport/ApiClient', () => {
 	const mockHttpClient = { httpGet: jest.fn(), httpPost: jest.fn(), httpDelete: jest.fn() };
-	return { ApiClient: jest.fn().mockImplementation(() => mockHttpClient) };
+	return { ApiClient: jest.fn().mockImplementation(() => mockHttpClient) , getClient: jest.fn(() => mockHttpClient)};
 });
 
-import { ApiClient } from '../../../../shared/transport/ApiClient';
+import { ApiClient, getClient } from '../../../../shared/transport/ApiClient';
 
 describe('v2/website/deleteDeleteByWebsiteIdGetV2.operation', () => {
 	describe('description', () => {
@@ -45,7 +45,7 @@ describe('v2/website/deleteDeleteByWebsiteIdGetV2.operation', () => {
 
 			const result = await execute.call(mockExecuteFunctions);
 
-			expect(ApiClient).toHaveBeenCalled();
+			expect(getClient).toHaveBeenCalled();
 			expect(client.httpDelete).toHaveBeenCalledWith('/webhosting/resource/myResourceName/website');
 			expect(result).toMatchObject([{}]);
 		});

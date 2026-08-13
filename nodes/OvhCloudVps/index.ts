@@ -242,7 +242,7 @@ export function description(displayOptions: IDisplayOptions): INodeProperties[] 
 			type: 'options',
 			noDataExpression: true,
 			options: [
-				{ name: 'Abort Snapshot', value: 'abortSnapshot' },
+				{ name: 'Abort Snapshot', value: 'abortSnapshot', action: 'Abort a snapshot creation for the VPS' },
 				{
 					name: 'Add Backup FTP Access',
 					value: 'backupFtpAccessPost',
@@ -279,8 +279,8 @@ export function description(displayOptions: IDisplayOptions): INodeProperties[] 
 					value: 'confirmTermination',
 					action: 'Confirm termination of the VPS service (irreversible)',
 				},
-				{ name: 'Create Disk', value: 'createDiskPost' },
-				{ name: 'Create Netboot Order Config', value: 'netbootCreatePost' },
+				{ name: 'Create Disk', value: 'createDiskPost', action: 'Create a new disk for the VPS' },
+				{ name: 'Create Netboot Order Config', value: 'netbootCreatePost', action: 'Create a netboot order configuration for the VPS' },
 				{
 					name: 'Create Snapshot',
 					value: 'snapshotCreatePost',
@@ -471,6 +471,7 @@ export function description(displayOptions: IDisplayOptions): INodeProperties[] 
 				{
 					name: 'Update Distribution',
 					value: 'distributionUpdatePut',
+					action: 'Update the distribution of the VPS',
 				},
 				{
 					name: 'Update VPS',

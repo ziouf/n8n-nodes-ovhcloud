@@ -3,10 +3,10 @@ import { description, execute } from './ipTaskGet.operation';
 
 jest.mock('../../../shared/transport/ApiClient', () => {
 	const mockHttpClient = { httpGet: jest.fn(), httpPost: jest.fn(), httpPut: jest.fn(), httpDelete: jest.fn() };
-	return { ApiClient: jest.fn().mockImplementation(() => mockHttpClient) };
+	return { ApiClient: jest.fn().mockImplementation(() => mockHttpClient) , getClient: jest.fn(() => mockHttpClient)};
 });
 
-import { ApiClient } from '../../../shared/transport/ApiClient';
+import { ApiClient, getClient } from '../../../shared/transport/ApiClient';
 
 describe('ipTaskGet.operation', () => {
 	describe('description', () => {
@@ -39,7 +39,7 @@ describe('ipTaskGet.operation', () => {
 
 			const result = await execute.call(mockExecuteFunctions, 0);
 
-			expect(ApiClient).toHaveBeenCalled();
+			expect(getClient).toHaveBeenCalled();
 			expect(result).toBeDefined();
 			expect(client.httpGet).toHaveBeenCalledWith('/dedicatedCloud/pcc-123-456-789/ip/213.186.33.34%2F24/task/1');
 		});

@@ -8,7 +8,7 @@ jest.mock('../../../../shared/transport/ApiClient', () => {
 		httpPut: jest.fn(),
 		httpDelete: jest.fn(),
 	};
-	return { ApiClient: jest.fn().mockImplementation(() => mockHttpClient) };
+	return { ApiClient: jest.fn().mockImplementation(() => mockHttpClient) , getClient: jest.fn(() => mockHttpClient)};
 });
 
 import { ApiClient } from '../../../../shared/transport/ApiClient';
@@ -18,7 +18,7 @@ describe('ipTerminatePost.operation', () => {
 		it('should return the required parameters', () => {
 			const result = description({ show: {} });
 			expect(result.length).toBeGreaterThanOrEqual(0);
-			expect(result[0]).toMatchObject({ name: 'ip', type: 'string', required: true });
+			expect(result[1]).toMatchObject({ name: 'ip', type: 'string', required: true });
 		});
 	});
 

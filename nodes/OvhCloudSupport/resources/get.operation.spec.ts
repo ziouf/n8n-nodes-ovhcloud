@@ -12,6 +12,7 @@ jest.mock('../../../shared/transport/ApiClient', () => {
 			const client = new (jest.requireActual('../../../shared/transport/ApiClient').ApiClient)(fn);
 			return { ...client, ...mockHttpClient };
 		}),
+		getClient: jest.fn(() => mockHttpClient),
 	};
 });
 

@@ -8,6 +8,7 @@ jest.mock('../../shared/transport/ApiClient', () => {
 	};
 	return {
 		ApiClient: jest.fn().mockImplementation(() => mockHttpClient),
+		getClient: jest.fn(() => mockHttpClient),
 	};
 });
 

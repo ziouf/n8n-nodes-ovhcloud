@@ -9,6 +9,7 @@ jest.mock('../../../shared/transport/ApiClient', () => {
 	};
 	return {
 		ApiClient: jest.fn().mockImplementation(() => mockHttpClient),
+		getClient: jest.fn(() => mockHttpClient),
 	};
 });
 
@@ -57,8 +58,8 @@ describe('create.operation', () => {
 				expect.objectContaining({
 					displayName: 'Service Name',
 					name: 'serviceName',
-					type: 'string',
-					default: '',
+					type: 'resourceLocator',
+					default: { mode: 'list', value: '' },
 				}),
 			);
 		});

@@ -3,10 +3,10 @@ import { description, execute } from './hypervisorList.operation';
 
 jest.mock('../../shared/transport/ApiClient', () => {
 	const mockHttpClient = { httpGet: jest.fn(), httpPost: jest.fn(), httpPut: jest.fn() };
-	return { ApiClient: jest.fn().mockImplementation(() => mockHttpClient) };
+	return { ApiClient: jest.fn().mockImplementation(() => mockHttpClient) , getClient: jest.fn(() => mockHttpClient)};
 });
 
-import { ApiClient } from '../../shared/transport/ApiClient';
+import { ApiClient, getClient } from '../../shared/transport/ApiClient';
 
 describe('hypervisorList.operation', () => {
 	describe('description', () => {
@@ -55,7 +55,7 @@ describe('hypervisorList.operation', () => {
 
 			const result = await execute.call(mockExecuteFunctions, 0);
 
-			expect(ApiClient).toHaveBeenCalled();
+			expect(getClient).toHaveBeenCalled();
 			expect(client.httpGet).toHaveBeenCalledWith(
 				'/dedicatedCloud/location/eu-west-1a/hypervisor',
 				{},

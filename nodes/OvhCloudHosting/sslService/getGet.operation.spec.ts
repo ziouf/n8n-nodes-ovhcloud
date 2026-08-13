@@ -3,10 +3,10 @@ import { description, execute } from './getGet.operation';
 
 jest.mock('../../../shared/transport/ApiClient', () => {
 	const mockHttpClient = { httpGet: jest.fn(), httpPost: jest.fn(), httpPut: jest.fn() };
-	return { ApiClient: jest.fn().mockImplementation(() => mockHttpClient) };
+	return { ApiClient: jest.fn().mockImplementation(() => mockHttpClient) , getClient: jest.fn(() => mockHttpClient)};
 });
 
-import { ApiClient } from '../../../shared/transport/ApiClient';
+import { ApiClient, getClient } from '../../../shared/transport/ApiClient';
 
 describe('sslService/getGet.operation', () => {
 	describe('description', () => {
@@ -54,7 +54,7 @@ describe('sslService/getGet.operation', () => {
 
 			const result = await execute.call(mockExecuteFunctions);
 
-			expect(ApiClient).toHaveBeenCalled();
+			expect(getClient).toHaveBeenCalled();
 			expect(client.httpGet).toHaveBeenCalledWith('/hosting/web/myservice.ovh/ssl/cert-123');
 			expect(result).toMatchObject([mockData]);
 		});

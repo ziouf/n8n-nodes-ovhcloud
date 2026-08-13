@@ -8,10 +8,10 @@ jest.mock('../../../shared/transport/ApiClient', () => {
 		httpPut: jest.fn(),
 		httpDelete: jest.fn(),
 	};
-	return { ApiClient: jest.fn().mockImplementation(() => mockHttpClient) };
+	return { ApiClient: jest.fn().mockImplementation(() => mockHttpClient) , getClient: jest.fn(() => mockHttpClient)};
 });
 
-import { ApiClient } from '../../../shared/transport/ApiClient';
+import { ApiClient, getClient } from '../../../shared/transport/ApiClient';
 
 describe('hosting statisticsGet operation', () => {
 	describe('description', () => {
@@ -73,7 +73,7 @@ describe('hosting statisticsGet operation', () => {
 
 			await execute.call(mockExecuteFunctions, 0);
 
-			expect(ApiClient).toHaveBeenCalled();
+			expect(getClient).toHaveBeenCalled();
 			const client = new ApiClient(mockExecuteFunctions) as any;
 			expect(client.httpGet).toHaveBeenCalledWith('/hosting/web/myservice.ovh/statistics', {
 				period: 'day',

@@ -9,6 +9,7 @@ import { OvhCloudApiSecretName, OvhCloudIcon } from '../../shared/constants';
 import { description, execute } from './index';
 import { BaseNode, executeTemplate, classifyOperation } from '../../shared/nodes';
 
+import { getDomainNames } from '../../shared/methods/getDomainNames.method';
 export class OvhCloudDomain extends BaseNode implements INodeType {
 	description: INodeTypeDescription = {
 		displayName: 'OVH Cloud Domain',
@@ -26,6 +27,7 @@ export class OvhCloudDomain extends BaseNode implements INodeType {
 		credentials: [{ name: OvhCloudApiSecretName, required: true }],
 		properties: [...description()],
 	};
+	methods = { listSearch: { getDomainNames } };
 
 	async execute(this: IExecuteFunctions): Promise<INodeExecutionData[][]> {
 		return executeTemplate.call(this, execute, {

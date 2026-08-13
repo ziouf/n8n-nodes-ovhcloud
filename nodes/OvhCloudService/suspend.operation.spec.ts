@@ -8,6 +8,7 @@ jest.mock('../../shared/transport/ApiClient', () => {
 	};
 	return {
 		ApiClient: jest.fn().mockImplementation(() => mockHttpClient),
+		getClient: jest.fn(() => mockHttpClient),
 	};
 });
 
@@ -18,8 +19,8 @@ describe('suspend.operation', () => {
 		it('should return serviceId param', () => {
 			const result = description({ show: {} });
 
-			expect(result).toHaveLength(1);
-			expect(result[0]).toEqual(
+			expect(result).toHaveLength(2);
+			expect(result[1]).toEqual(
 				expect.objectContaining({
 					displayName: 'Service ID',
 					name: 'serviceId',

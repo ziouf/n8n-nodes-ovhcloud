@@ -9,6 +9,7 @@ import { OvhCloudApiSecretName, OvhCloudIcon } from '../../shared/constants';
 import { description, execute } from './index';
 import { BaseNode, executeTemplate, classifyOperation } from '../../shared/nodes';
 
+import { getDedicatedCloudServices } from '../../shared/methods/getDedicatedCloudServices.method';
 export class OvhCloudDedicatedCloud extends BaseNode implements INodeType {
 	description: INodeTypeDescription = {
 		displayName: 'OVH Dedicated Cloud',
@@ -33,6 +34,7 @@ export class OvhCloudDedicatedCloud extends BaseNode implements INodeType {
 		],
 		properties: [...description({})],
 	};
+	methods = { listSearch: { getDedicatedCloudServices } };
 
 	async execute(this: IExecuteFunctions): Promise<INodeExecutionData[][]> {
 		return executeTemplate.call(this, execute, {

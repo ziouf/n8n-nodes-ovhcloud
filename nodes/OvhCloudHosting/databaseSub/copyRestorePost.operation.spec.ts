@@ -3,10 +3,10 @@ import { description, execute } from './copyRestorePost.operation';
 
 jest.mock('../../../shared/transport/ApiClient', () => {
 	const mockHttpClient = { httpGet: jest.fn(), httpPost: jest.fn(), httpPut: jest.fn(), httpDelete: jest.fn() };
-	return { ApiClient: jest.fn().mockImplementation(() => mockHttpClient) };
+	return { ApiClient: jest.fn().mockImplementation(() => mockHttpClient) , getClient: jest.fn(() => mockHttpClient)};
 });
 
-import { ApiClient } from '../../../shared/transport/ApiClient';
+import { ApiClient, getClient } from '../../../shared/transport/ApiClient';
 
 describe('copyRestorePost.operation', () => {
 		describe('description', () => {
@@ -27,7 +27,7 @@ describe('copyRestorePost.operation', () => {
 						p === 'serviceName' ? 'myservice.ovh' : p === 'databaseName' ? 'mydb' : p === 'copyId' ? '3f2f1e1e-4a3a-4b4b-8c8c-1d1d1d1d1d1d' : p === 'flushDatabase' ? false : 'default-fallback',
 					);
 				await execute.call(mockExecuteFunctions, 0);
-				expect(ApiClient).toHaveBeenCalled();
+				expect(getClient).toHaveBeenCalled();
 				const client = new ApiClient(mockExecuteFunctions) as any;
 			expect(client.httpPost).toHaveBeenCalledWith(`/hosting/web/database/myservice.ovh/mydb/copyRestore`, {copyId: '3f2f1e1e-4a3a-4b4b-8c8c-1d1d1d1d1d1d', flushDatabase: false});
 			});

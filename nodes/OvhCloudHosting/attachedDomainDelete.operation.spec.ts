@@ -8,10 +8,10 @@ jest.mock('../../shared/transport/ApiClient', () => {
 		httpPut: jest.fn(),
 		httpDelete: jest.fn(),
 	};
-	return { ApiClient: jest.fn().mockImplementation(() => mockHttpClient) };
+	return { ApiClient: jest.fn().mockImplementation(() => mockHttpClient) , getClient: jest.fn(() => mockHttpClient)};
 });
 
-import { ApiClient } from '../../shared/transport/ApiClient';
+import { ApiClient, getClient } from '../../shared/transport/ApiClient';
 
 describe('attachedDomainDelete.operation', () => {
 	describe('description', () => {
@@ -60,7 +60,7 @@ describe('attachedDomainDelete.operation', () => {
 
 			const result = await execute.call(mockExecuteFunctions, 0);
 
-			expect(ApiClient).toHaveBeenCalled();
+			expect(getClient).toHaveBeenCalled();
 			const client = new ApiClient(mockExecuteFunctions) as any;
 			expect(client.httpDelete).toHaveBeenCalledWith(
 				'/hosting/web/myservice.ovh/attachedDomain/example.com',
@@ -77,7 +77,7 @@ describe('attachedDomainDelete.operation', () => {
 
 			const result = await execute.call(mockExecuteFunctions, 0);
 
-			expect(ApiClient).toHaveBeenCalled();
+			expect(getClient).toHaveBeenCalled();
 			const client = new ApiClient(mockExecuteFunctions) as any;
 			expect(client.httpDelete).toHaveBeenCalledWith(
 				'/hosting/web/myservice.ovh/attachedDomain/test.org',

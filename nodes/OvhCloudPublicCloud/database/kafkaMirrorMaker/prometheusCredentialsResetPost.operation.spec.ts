@@ -8,7 +8,7 @@ jest.mock('../../../../shared/transport/ApiClient', () => {
 		httpPut: jest.fn(),
 		httpDelete: jest.fn(),
 	};
-	return { ApiClient: jest.fn().mockImplementation(() => mockHttpClient) };
+	return { ApiClient: jest.fn().mockImplementation(() => mockHttpClient) , getClient: jest.fn(() => mockHttpClient)};
 });
 
 import { ApiClient } from '../../../../shared/transport/ApiClient';
@@ -17,7 +17,7 @@ describe('prometheusCredentialsResetPost operation', () => {
 	describe('description', () => {
 		it('should return all required parameters', () => {
 			const result = description({ show: {} });
-			expect(result).toHaveLength(2);
+			expect(result).toHaveLength(3);
 		});
 	});
 

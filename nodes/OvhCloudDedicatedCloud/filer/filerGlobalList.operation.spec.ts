@@ -3,10 +3,10 @@ import { description, execute } from './filerGlobalList.operation';
 
 jest.mock('../../../shared/transport/ApiClient', () => {
 	const mockHttpClient = { httpGet: jest.fn(), httpPost: jest.fn(), httpPut: jest.fn() };
-	return { ApiClient: jest.fn().mockImplementation(() => mockHttpClient) };
+	return { ApiClient: jest.fn().mockImplementation(() => mockHttpClient) , getClient: jest.fn(() => mockHttpClient)};
 });
 
-import { ApiClient } from '../../../shared/transport/ApiClient';
+import { ApiClient, getClient } from '../../../shared/transport/ApiClient';
 
 describe('filerGlobalList.operation', () => {
 	describe('description', () => {
@@ -40,7 +40,7 @@ describe('filerGlobalList.operation', () => {
 
 			const result = await execute.call(mockExecuteFunctions, 0);
 
-			expect(ApiClient).toHaveBeenCalled();
+			expect(getClient).toHaveBeenCalled();
 			expect(client.httpGet).toHaveBeenCalledWith('/dedicatedCloud/pcc-123-456-789/filer');
 			expect(result).toMatchObject([1]);
 		});

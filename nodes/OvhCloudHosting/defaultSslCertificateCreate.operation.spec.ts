@@ -3,10 +3,10 @@ import { description, execute } from './defaultSslCertificateCreate.operation';
 
 jest.mock('../../shared/transport/ApiClient', () => {
 	const mockHttpClient = { httpGet: jest.fn(), httpPost: jest.fn(), httpPut: jest.fn() };
-	return { ApiClient: jest.fn().mockImplementation(() => mockHttpClient) };
+	return { ApiClient: jest.fn().mockImplementation(() => mockHttpClient) , getClient: jest.fn(() => mockHttpClient)};
 });
 
-import { ApiClient } from '../../shared/transport/ApiClient';
+import { ApiClient, getClient } from '../../shared/transport/ApiClient';
 
 describe('defaultSslCertificateCreate.operation', () => {
 	describe('description', () => {
@@ -47,7 +47,7 @@ describe('defaultSslCertificateCreate.operation', () => {
 
 			const result = await execute.call(mockExecuteFunctions, 0);
 
-			expect(ApiClient).toHaveBeenCalled();
+			expect(getClient).toHaveBeenCalled();
 			const client = new ApiClient(mockExecuteFunctions) as any;
 			expect(client.httpPost).toHaveBeenCalledWith(
 				'/hosting/web/myservice.ovh/ssl/defaultSslCertificate',
@@ -63,7 +63,7 @@ describe('defaultSslCertificateCreate.operation', () => {
 
 			await execute.call(mockExecuteFunctions, 0);
 
-			expect(ApiClient).toHaveBeenCalled();
+			expect(getClient).toHaveBeenCalled();
 			const client = new ApiClient(mockExecuteFunctions) as any;
 			expect(client.httpPost).toHaveBeenCalledWith(
 				'/hosting/web/service-from-list.ovh/ssl/defaultSslCertificate',

@@ -3,10 +3,10 @@ import { description, execute } from './subscriptionCreatePost.operation';
 
 jest.mock('../../../shared/transport/ApiClient', () => {
 	const mockHttpClient = { httpGet: jest.fn(), httpPost: jest.fn(), httpPut: jest.fn(), httpDelete: jest.fn() };
-	return { ApiClient: jest.fn().mockImplementation(() => mockHttpClient) };
+	return { ApiClient: jest.fn().mockImplementation(() => mockHttpClient) , getClient: jest.fn(() => mockHttpClient)};
 });
 
-import { ApiClient } from '../../../shared/transport/ApiClient';
+import { ApiClient, getClient } from '../../../shared/transport/ApiClient';
 
 describe('subscriptionCreatePost.operation', () => {
 		describe('description', () => {
@@ -27,7 +27,7 @@ describe('subscriptionCreatePost.operation', () => {
 						p === 'serviceName' ? 'myservice.ovh' : p === 'kind' ? 'audit' : p === 'streamId' ? '3f2f1e1e-4a3a-4b4b-8c8c-1d1d1d1d1d1d' : 'default-fallback',
 					);
 				await execute.call(mockExecuteFunctions, 0);
-				expect(ApiClient).toHaveBeenCalled();
+				expect(getClient).toHaveBeenCalled();
 				const client = new ApiClient(mockExecuteFunctions) as any;
 			expect(client.httpPost).toHaveBeenCalledWith(`/hosting/web/myservice.ovh/log/subscription`, {kind: 'audit', streamId: '3f2f1e1e-4a3a-4b4b-8c8c-1d1d1d1d1d1d'});
 			});

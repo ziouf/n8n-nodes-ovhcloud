@@ -3,10 +3,10 @@ import { description, execute } from './confirmTerminationPost.operation';
 
 jest.mock('../../../shared/transport/ApiClient', () => {
 	const mockHttpClient = { httpGet: jest.fn(), httpPost: jest.fn(), httpPut: jest.fn(), httpDelete: jest.fn() };
-	return { ApiClient: jest.fn().mockImplementation(() => mockHttpClient) };
+	return { ApiClient: jest.fn().mockImplementation(() => mockHttpClient) , getClient: jest.fn(() => mockHttpClient)};
 });
 
-import { ApiClient } from '../../../shared/transport/ApiClient';
+import { ApiClient, getClient } from '../../../shared/transport/ApiClient';
 
 describe('confirmTerminationPost.operation', () => {
 	describe('description', () => {
@@ -43,7 +43,7 @@ describe('confirmTerminationPost.operation', () => {
 
 			const result = await execute.call(mockExecuteFunctions, 0);
 
-			expect(ApiClient).toHaveBeenCalled();
+			expect(getClient).toHaveBeenCalled();
 			expect(result).toBeDefined();
 			expect(client.httpPost).toHaveBeenCalledWith('/storage/netapp/pcc-123-456-789/confirmTermination', { commentary: "value", commentaryFutureUse: "value", commentaryReason: "value", futureUse: "value", reason: "value", token: "value" });
 		});

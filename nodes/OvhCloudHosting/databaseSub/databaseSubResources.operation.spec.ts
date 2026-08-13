@@ -52,9 +52,10 @@ const mockHttpClient = {
 
 jest.mock('../../../shared/transport/ApiClient', () => ({
 	ApiClient: jest.fn().mockImplementation(() => mockHttpClient),
+	getClient: jest.fn(() => mockHttpClient),
 }));
 
-import { ApiClient } from '../../../shared/transport/ApiClient';
+import { ApiClient, getClient } from '../../../shared/transport/ApiClient';
 
 const serviceName = 'myservice.ovh';
 const databaseName = 'mydb';
@@ -105,7 +106,7 @@ describe('OvhCloudHosting Database Sub-Resources', () => {
 			await dbCapabilitiesGetExecute.call(mockFn);
 			expect(mockFn.getNodeParameter).toHaveBeenCalledWith('serviceName', 0);
 			expect(mockFn.getNodeParameter).toHaveBeenCalledWith('databaseName', 0);
-			expect(ApiClient).toHaveBeenCalled();
+			expect(getClient).toHaveBeenCalled();
 			const client = new ApiClient(mockFn) as any;
 			expect(client.httpGet).toHaveBeenCalledWith(
 				`/hosting/web/database/${serviceName}/${databaseName}/capabilities`,
@@ -150,7 +151,7 @@ describe('OvhCloudHosting Database Sub-Resources', () => {
 				(p: string) => baseParams[p as keyof typeof baseParams] ?? 'newpass123',
 			);
 			await dbChangePasswordPutExecute.call(mockFn);
-			expect(ApiClient).toHaveBeenCalled();
+			expect(getClient).toHaveBeenCalled();
 			const client = new ApiClient(mockFn) as any;
 			expect(client.httpPut).toHaveBeenCalledWith(
 				`/hosting/web/database/${serviceName}/${databaseName}/changePassword`,
@@ -195,7 +196,7 @@ describe('OvhCloudHosting Database Sub-Resources', () => {
 				(p: string) => baseParams[p as keyof typeof baseParams] ?? 'targetdb',
 			);
 			await dbCopyPostExecute.call(mockFn);
-			expect(ApiClient).toHaveBeenCalled();
+			expect(getClient).toHaveBeenCalled();
 			const client = new ApiClient(mockFn) as any;
 			expect(client.httpPost).toHaveBeenCalledWith(
 				`/hosting/web/database/${serviceName}/${databaseName}/copy`,
@@ -233,7 +234,7 @@ describe('OvhCloudHosting Database Sub-Resources', () => {
 				(p: string) => baseParams[p as keyof typeof baseParams],
 			);
 			await dbDumpGetExecute.call(mockFn);
-			expect(ApiClient).toHaveBeenCalled();
+			expect(getClient).toHaveBeenCalled();
 			const client = new ApiClient(mockFn) as any;
 			expect(client.httpGet).toHaveBeenCalledWith(
 				`/hosting/web/database/${serviceName}/${databaseName}/dump`,
@@ -270,7 +271,7 @@ describe('OvhCloudHosting Database Sub-Resources', () => {
 				(p: string) => baseParams[p as keyof typeof baseParams],
 			);
 			await dbDumpCreatePostExecute.call(mockFn);
-			expect(ApiClient).toHaveBeenCalled();
+			expect(getClient).toHaveBeenCalled();
 			const client = new ApiClient(mockFn) as any;
 			expect(client.httpPost).toHaveBeenCalledWith(
 				`/hosting/web/database/${serviceName}/${databaseName}/dump`,
@@ -314,7 +315,7 @@ describe('OvhCloudHosting Database Sub-Resources', () => {
 				(p: string) => baseParams[p as keyof typeof baseParams] ?? 'https://example.com/dump.sql',
 			);
 			await dbImportPostExecute.call(mockFn);
-			expect(ApiClient).toHaveBeenCalled();
+			expect(getClient).toHaveBeenCalled();
 			const client = new ApiClient(mockFn) as any;
 			expect(client.httpPost).toHaveBeenCalledWith(
 				`/hosting/web/database/${serviceName}/${databaseName}/import`,
@@ -352,7 +353,7 @@ describe('OvhCloudHosting Database Sub-Resources', () => {
 				(p: string) => baseParams[p as keyof typeof baseParams],
 			);
 			await dbMetricsTokenGetExecute.call(mockFn);
-			expect(ApiClient).toHaveBeenCalled();
+			expect(getClient).toHaveBeenCalled();
 			const client = new ApiClient(mockFn) as any;
 			expect(client.httpGet).toHaveBeenCalledWith(
 				`/hosting/web/database/${serviceName}/${databaseName}/metricsToken`,
@@ -389,7 +390,7 @@ describe('OvhCloudHosting Database Sub-Resources', () => {
 				(p: string) => baseParams[p as keyof typeof baseParams],
 			);
 			await dbRequestListGetExecute.call(mockFn);
-			expect(ApiClient).toHaveBeenCalled();
+			expect(getClient).toHaveBeenCalled();
 			const client = new ApiClient(mockFn) as any;
 			expect(client.httpGet).toHaveBeenCalledWith(
 				`/hosting/web/database/${serviceName}/${databaseName}/request`,
@@ -426,7 +427,7 @@ describe('OvhCloudHosting Database Sub-Resources', () => {
 				(p: string) => baseParams[p as keyof typeof baseParams],
 			);
 			await dbRestoreGetExecute.call(mockFn);
-			expect(ApiClient).toHaveBeenCalled();
+			expect(getClient).toHaveBeenCalled();
 			const client = new ApiClient(mockFn) as any;
 			expect(client.httpGet).toHaveBeenCalledWith(
 				`/hosting/web/database/${serviceName}/${databaseName}/restore`,
@@ -463,7 +464,7 @@ describe('OvhCloudHosting Database Sub-Resources', () => {
 				(p: string) => baseParams[p as keyof typeof baseParams],
 			);
 			await dbRestoreCreatePostExecute.call(mockFn);
-			expect(ApiClient).toHaveBeenCalled();
+			expect(getClient).toHaveBeenCalled();
 			const client = new ApiClient(mockFn) as any;
 			expect(client.httpPost).toHaveBeenCalledWith(
 				`/hosting/web/database/${serviceName}/${databaseName}/restore`,
@@ -495,12 +496,13 @@ describe('OvhCloudHosting Database Sub-Resources', () => {
 			const mockFn: any = {
 				getNodeParameter: jest.fn(),
 				helpers: { returnJsonArray: jest.fn((d: any[]) => d) },
+						getClient: jest.fn(() => mockHttpClient),
 			};
 			mockFn.getNodeParameter.mockImplementation(
 				(p: string) => baseParams[p as keyof typeof baseParams],
 			);
 			await dbStatisticsGetExecute.call(mockFn);
-			expect(ApiClient).toHaveBeenCalled();
+			expect(getClient).toHaveBeenCalled();
 			const client = new ApiClient(mockFn) as any;
 			expect(client.httpGet).toHaveBeenCalledWith(
 				`/hosting/web/database/${serviceName}/${databaseName}/statistics`,
