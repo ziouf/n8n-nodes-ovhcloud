@@ -117,7 +117,10 @@ export function description(displayOptions: IDisplayOptions): INodeProperties[] 
 			...displayOptions,
 			show: { ...displayOptions?.show, ovhCloudSupportTicketOperation: ['getMessages'] },
 		}),
-		...descriptionList(displayOptions),
+		...descriptionList({
+			...displayOptions,
+			show: { ...displayOptions?.show, ovhCloudSupportTicketOperation: ['list'] },
+		}),
 		...descriptionReopen({
 			...displayOptions,
 			show: { ...displayOptions?.show, ovhCloudSupportTicketOperation: ['reopen'] },
