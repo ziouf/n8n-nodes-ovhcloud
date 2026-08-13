@@ -5,7 +5,7 @@ import type {
 	INodeProperties,
 	INodeExecutionData,
 } from 'n8n-workflow';
-import { ApiClient } from '../../shared/transport/ApiClient';
+import { getClient } from '../../shared/transport/ApiClient';
 
 
 export function description(displayOptions: IDisplayOptions): INodeProperties[] {
@@ -16,7 +16,7 @@ export function description(displayOptions: IDisplayOptions): INodeProperties[] 
 			type: 'string',
 			default: '',
 			required: true,
-			description: 'The servicename identifier',
+			description: 'The service name',
 			displayOptions,
 		},
 		{
@@ -25,7 +25,7 @@ export function description(displayOptions: IDisplayOptions): INodeProperties[] 
 			type: 'string',
 			default: '',
 			required: true,
-			description: 'The farmid identifier',
+			description: 'The farm ID',
 			displayOptions,
 		},
 		{
@@ -34,7 +34,7 @@ export function description(displayOptions: IDisplayOptions): INodeProperties[] 
 			type: 'string',
 			default: '',
 			required: true,
-			description: 'The serverid identifier',
+			description: 'The server ID',
 			displayOptions,
 		},
 	];
@@ -55,7 +55,7 @@ export async function execute(this: IExecuteFunctions, _itemIndex: number): Prom
 
 
 
-	const client = new ApiClient(this);
+	const client = getClient(this);
 	const data = (await client.httpPut('/ipLoadbalancing' + '/' + encodeURIComponent(serviceName) + '/' + 'udp' + '/' + 'farm' + '/' + encodeURIComponent(farmId) + '/' + 'server' + '/' + encodeURIComponent(serverId), {})) as IDataObject;
 	return this.helpers.returnJsonArray([data]);
 }

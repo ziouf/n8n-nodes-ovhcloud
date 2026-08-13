@@ -5,7 +5,7 @@ import type {
 	INodeExecutionData,
 	INodeProperties,
 } from 'n8n-workflow';
-import { ApiClient } from '../../../shared/transport/ApiClient';
+import { getClient } from '../../../shared/transport/ApiClient';
 
 /** Enum values accepted by the OVHcloud startup API. */
 const AWARENESS_OPTIONS = [
@@ -218,7 +218,7 @@ export function description(displayOptions: IDisplayOptions): INodeProperties[] 
  * Endpoint: /startup
  */
 export async function execute(this: IExecuteFunctions, _itemIndex?: number): Promise<INodeExecutionData[]> {
-	const client = new ApiClient(this);
+	const client = getClient(this);
 
 	const awarness = this.getNodeParameter('awarness', _itemIndex ?? 0) as string;
 

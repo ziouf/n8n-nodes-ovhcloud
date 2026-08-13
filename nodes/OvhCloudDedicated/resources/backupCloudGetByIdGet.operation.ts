@@ -4,7 +4,7 @@ import type {
 	INodeExecutionData,
 	IDisplayOptions,
 } from 'n8n-workflow';
-import { ApiClient } from '../../../shared/transport/ApiClient';
+import { getClient } from '../../../shared/transport/ApiClient';
 
 export function description(displayOptions: IDisplayOptions) {
 	return [
@@ -48,7 +48,7 @@ export async function execute(
 	this: IExecuteFunctions,
 	itemIndex?: number,
 ): Promise<INodeExecutionData[]> {
-	const client = new ApiClient(this);
+	const client = getClient(this);
 	const serviceName = this.getNodeParameter('serviceName', itemIndex ?? 0, '', {
 		extractValue: true,
 	}) as string;

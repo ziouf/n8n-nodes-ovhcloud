@@ -4,7 +4,7 @@ import type {
 	INodeExecutionData,
 	INodeProperties,
 } from 'n8n-workflow';
-import { ApiClient } from '../../shared/transport/ApiClient';
+import { getClient } from '../../shared/transport/ApiClient';
 
 export function description(): INodeProperties[] {
 	return [
@@ -37,7 +37,7 @@ export async function execute(this: IExecuteFunctions,
 	_itemIndex: number): Promise<INodeExecutionData[]> {
 	const serviceName = this.getNodeParameter('serviceName', _itemIndex) as string;
 	const taskId = this.getNodeParameter('taskId', _itemIndex) as string;
-	const client = new ApiClient(this);
+	const client = getClient(this);
 	const data = (await client.httpGet('/dedicated/housing/' + encodeURIComponent(serviceName) + '/task/' + encodeURIComponent(taskId))) as IDataObject;
 	return this.helpers.returnJsonArray([data]);
 }

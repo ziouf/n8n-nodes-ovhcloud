@@ -5,7 +5,7 @@ import type {
 	INodeExecutionData,
 	INodeProperties,
 } from 'n8n-workflow';
-import { ApiClient } from '../../../shared/transport/ApiClient';
+import { getClient } from '../../../shared/transport/ApiClient';
 
 // ============================================================
 // Groupe A : Account Basics
@@ -16,7 +16,7 @@ export function descriptionGetAccount(): INodeProperties[] {
 }
 
 export async function executeGetAccount(this: IExecuteFunctions, _itemIndex?: number): Promise<INodeExecutionData[]> {
-	const client = new ApiClient(this);
+	const client = getClient(this);
 	const data = (await client.httpGet('/me')) as IDataObject;
 	return this.helpers.returnJsonArray([data]);
 }
@@ -26,7 +26,7 @@ export async function executeListOvhAccounts(
 	this: IExecuteFunctions,
 	_itemIndex?: number
 ): Promise<INodeExecutionData[]> {
-	const client = new ApiClient(this);
+	const client = getClient(this);
 	const accountIds = (await client.httpGet('/me/ovhAccount')) as string[];
 	const results: IDataObject[] = [];
 	for (const id of accountIds) {
@@ -54,7 +54,7 @@ export async function executeGetOvhAccount(
 	this: IExecuteFunctions,
 	_itemIndex?: number,
 ): Promise<INodeExecutionData[]> {
-	const client = new ApiClient(this);
+	const client = getClient(this);
 	const ovhAccountId = this.getNodeParameter('ovhAccountId', _itemIndex ?? 0) as string;
 	const data = (await client.httpGet(`/me/ovhAccount/${ovhAccountId}`)) as IDataObject;
 	return this.helpers.returnJsonArray([data]);
@@ -80,7 +80,7 @@ export async function executeListOvhAccountMovements(
 	this: IExecuteFunctions,
 	_itemIndex?: number,
 ): Promise<INodeExecutionData[]> {
-	const client = new ApiClient(this);
+	const client = getClient(this);
 	const ovhAccountId = this.getNodeParameter('ovhAccountId', _itemIndex ?? 0) as string;
 	const movementIds = (await client.httpGet(
 		`/me/ovhAccount/${ovhAccountId}/movements`,
@@ -123,7 +123,7 @@ export async function executeGetOvhAccountMovement(
 	this: IExecuteFunctions,
 	_itemIndex?: number,
 ): Promise<INodeExecutionData[]> {
-	const client = new ApiClient(this);
+	const client = getClient(this);
 	const ovhAccountId = this.getNodeParameter('ovhAccountId', _itemIndex ?? 0) as string;
 	const movementId = this.getNodeParameter('movementId', _itemIndex ?? 0) as string;
 	const data = (await client.httpGet(
@@ -137,7 +137,7 @@ export async function executeListSubAccounts(
 	this: IExecuteFunctions,
 	_itemIndex?: number
 ): Promise<INodeExecutionData[]> {
-	const client = new ApiClient(this);
+	const client = getClient(this);
 	const subAccountIds = (await client.httpGet('/me/subAccount')) as string[];
 	const results: IDataObject[] = [];
 	for (const id of subAccountIds) {
@@ -165,7 +165,7 @@ export async function executeGetSubAccount(
 	this: IExecuteFunctions,
 	_itemIndex?: number,
 ): Promise<INodeExecutionData[]> {
-	const client = new ApiClient(this);
+	const client = getClient(this);
 	const subAccountId = this.getNodeParameter('subAccountId', _itemIndex ?? 0) as string;
 	const data = (await client.httpGet(`/me/subAccount/${subAccountId}`)) as IDataObject;
 	return this.helpers.returnJsonArray([data]);
@@ -173,7 +173,7 @@ export async function executeGetSubAccount(
 
 // getAutorenew
 export async function executeGetAutorenew(this: IExecuteFunctions, _itemIndex?: number): Promise<INodeExecutionData[]> {
-	const client = new ApiClient(this);
+	const client = getClient(this);
 	const data = (await client.httpGet('/me/autorenew')) as IDataObject;
 	return this.helpers.returnJsonArray([data]);
 }
@@ -183,7 +183,7 @@ export async function executeListAvailablePaymentMeans(
 	this: IExecuteFunctions,
 	_itemIndex?: number
 ): Promise<INodeExecutionData[]> {
-	const client = new ApiClient(this);
+	const client = getClient(this);
 	const data = (await client.httpGet('/me/availableAutomaticPaymentMeans')) as IDataObject;
 	return this.helpers.returnJsonArray([data]);
 }
@@ -197,7 +197,7 @@ export async function executeGetIdentityProvider(
 	this: IExecuteFunctions,
 	_itemIndex?: number
 ): Promise<INodeExecutionData[]> {
-	const client = new ApiClient(this);
+	const client = getClient(this);
 	const data = (await client.httpGet('/me/identity/provider')) as IDataObject;
 	return this.helpers.returnJsonArray([data]);
 }
@@ -207,7 +207,7 @@ export async function executeListIdentityUsers(
 	this: IExecuteFunctions,
 	_itemIndex?: number
 ): Promise<INodeExecutionData[]> {
-	const client = new ApiClient(this);
+	const client = getClient(this);
 	const userIds = (await client.httpGet('/me/identity/user')) as string[];
 	const results: IDataObject[] = [];
 	for (const id of userIds) {
@@ -226,7 +226,7 @@ export function descriptionGetIdentityUser(displayOptions: IDisplayOptions): INo
 			type: 'string',
 			default: '',
 			required: true,
-			description: 'The IAM user identifier',
+			description: 'The IAM user',
 			displayOptions,
 		},
 	];
@@ -236,7 +236,7 @@ export async function executeGetIdentityUser(
 	this: IExecuteFunctions,
 	_itemIndex?: number,
 ): Promise<INodeExecutionData[]> {
-	const client = new ApiClient(this);
+	const client = getClient(this);
 	const user = this.getNodeParameter('user', _itemIndex ?? 0) as string;
 	const data = (await client.httpGet(`/me/identity/user/${user}`)) as IDataObject;
 	return this.helpers.returnJsonArray([data]);
@@ -251,7 +251,7 @@ export function descriptionListUserTokens(displayOptions: IDisplayOptions): INod
 			type: 'string',
 			default: '',
 			required: true,
-			description: 'The IAM user identifier',
+			description: 'The IAM user',
 			displayOptions,
 		},
 	];
@@ -261,7 +261,7 @@ export async function executeListUserTokens(
 	this: IExecuteFunctions,
 	_itemIndex?: number,
 ): Promise<INodeExecutionData[]> {
-	const client = new ApiClient(this);
+	const client = getClient(this);
 	const user = this.getNodeParameter('user', _itemIndex ?? 0) as string;
 	const tokenNames = (await client.httpGet(`/me/identity/user/${user}/token`)) as string[];
 	const results: IDataObject[] = [];
@@ -283,7 +283,7 @@ export function descriptionGetUserToken(displayOptions: IDisplayOptions): INodeP
 			type: 'string',
 			default: '',
 			required: true,
-			description: 'The IAM user identifier',
+			description: 'The IAM user',
 			displayOptions,
 		},
 		{
@@ -303,7 +303,7 @@ export async function executeGetUserToken(
 	this: IExecuteFunctions,
 	_itemIndex?: number,
 ): Promise<INodeExecutionData[]> {
-	const client = new ApiClient(this);
+	const client = getClient(this);
 	const user = this.getNodeParameter('user', _itemIndex ?? 0) as string;
 	const tokenName = this.getNodeParameter('tokenName', _itemIndex ?? 0) as string;
 	const data = (await client.httpGet(
@@ -317,7 +317,7 @@ export async function executeListIdentityGroups(
 	this: IExecuteFunctions,
 	_itemIndex?: number
 ): Promise<INodeExecutionData[]> {
-	const client = new ApiClient(this);
+	const client = getClient(this);
 	const groupNames = (await client.httpGet('/me/identity/group')) as string[];
 	const results: IDataObject[] = [];
 	for (const name of groupNames) {
@@ -336,7 +336,7 @@ export function descriptionGetIdentityGroup(displayOptions: IDisplayOptions): IN
 			type: 'string',
 			default: '',
 			required: true,
-			description: 'The IAM group identifier',
+			description: 'The IAM group',
 			displayOptions,
 		},
 	];
@@ -346,7 +346,7 @@ export async function executeGetIdentityGroup(
 	this: IExecuteFunctions,
 	_itemIndex?: number,
 ): Promise<INodeExecutionData[]> {
-	const client = new ApiClient(this);
+	const client = getClient(this);
 	const group = this.getNodeParameter('group', _itemIndex ?? 0) as string;
 	const data = (await client.httpGet(`/me/identity/group/${group}`)) as IDataObject;
 	return this.helpers.returnJsonArray([data]);
@@ -361,7 +361,7 @@ export function descriptionListGroupUsers(displayOptions: IDisplayOptions): INod
 			type: 'string',
 			default: '',
 			required: true,
-			description: 'The IAM group identifier',
+			description: 'The IAM group',
 			displayOptions,
 		},
 	];
@@ -371,7 +371,7 @@ export async function executeListGroupUsers(
 	this: IExecuteFunctions,
 	_itemIndex?: number,
 ): Promise<INodeExecutionData[]> {
-	const client = new ApiClient(this);
+	const client = getClient(this);
 	const group = this.getNodeParameter('group', _itemIndex ?? 0) as string;
 	const userIds = (await client.httpGet(`/me/identity/group/${group}/user`)) as string[];
 	const results: IDataObject[] = [];
@@ -388,7 +388,7 @@ export async function executeListGroupUsers(
 
 // listSshKeys
 export async function executeListSshKeys(this: IExecuteFunctions, _itemIndex?: number): Promise<INodeExecutionData[]> {
-	const client = new ApiClient(this);
+	const client = getClient(this);
 	const keyNames = (await client.httpGet('/me/sshKey')) as string[];
 	const results: IDataObject[] = [];
 	for (const name of keyNames) {
@@ -417,7 +417,7 @@ export async function executeGetSshKey(
 	this: IExecuteFunctions,
 	_itemIndex?: number,
 ): Promise<INodeExecutionData[]> {
-	const client = new ApiClient(this);
+	const client = getClient(this);
 	const keyName = this.getNodeParameter('keyName', _itemIndex ?? 0) as string;
 	const data = (await client.httpGet(`/me/sshKey/${keyName}`)) as IDataObject;
 	return this.helpers.returnJsonArray([data]);
@@ -428,7 +428,7 @@ export async function executeListConsentCampaigns(
 	this: IExecuteFunctions,
 	_itemIndex?: number
 ): Promise<INodeExecutionData[]> {
-	const client = new ApiClient(this);
+	const client = getClient(this);
 	const campaigns = (await client.httpGet('/me/consent')) as IDataObject[];
 	return this.helpers.returnJsonArray(campaigns);
 }
@@ -452,7 +452,7 @@ export async function executeGetConsentCampaign(
 	this: IExecuteFunctions,
 	_itemIndex?: number,
 ): Promise<INodeExecutionData[]> {
-	const client = new ApiClient(this);
+	const client = getClient(this);
 	const campaignName = this.getNodeParameter('campaignName', _itemIndex ?? 0) as string;
 	const data = (await client.httpGet(`/me/consent/${campaignName}`)) as IDataObject;
 	return this.helpers.returnJsonArray([data]);
@@ -477,7 +477,7 @@ export async function executeGetConsentDecision(
 	this: IExecuteFunctions,
 	_itemIndex?: number,
 ): Promise<INodeExecutionData[]> {
-	const client = new ApiClient(this);
+	const client = getClient(this);
 	const campaignName = this.getNodeParameter('campaignName', _itemIndex ?? 0) as string;
 	const data = (await client.httpGet(`/me/consent/${campaignName}/decision`)) as IDataObject;
 	return this.helpers.returnJsonArray([data]);

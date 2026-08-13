@@ -4,7 +4,7 @@ import type {
 	INodeExecutionData,
 	INodeProperties,
 } from 'n8n-workflow';
-import { ApiClient } from '../../shared/transport/ApiClient';
+import { getClient } from '../../shared/transport/ApiClient';
 
 export function description(): INodeProperties[] {
 	return [
@@ -62,7 +62,7 @@ export async function execute(this: IExecuteFunctions,
 	const ipBlock = this.getNodeParameter('ipBlock', _itemIndex) as string;
 	const nfs = this.getNodeParameter('nfs', _itemIndex);
 	const serviceName = this.getNodeParameter('serviceName', _itemIndex) as string;
-	const client = new ApiClient(this);
+	const client = getClient(this);
 	const body: IDataObject = {};
 			body['cifs'] = cifs;
 		body['ipBlock'] = ipBlock;

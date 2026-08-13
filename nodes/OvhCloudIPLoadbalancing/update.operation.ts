@@ -5,7 +5,7 @@ import type {
 	IDisplayOptions,
 	INodeExecutionData,
 } from 'n8n-workflow';
-import { ApiClient } from '../../shared/transport/ApiClient';
+import { getClient } from '../../shared/transport/ApiClient';
 
  
 export function description(_displayOptions: IDisplayOptions): INodeProperties[] {
@@ -40,7 +40,7 @@ export async function execute(
 	this: IExecuteFunctions,
 	_itemIndex: number,
 ): Promise<INodeExecutionData[]> {
-	const client = new ApiClient(this);
+	const client = getClient(this);
 	const serviceName = this.getNodeParameter('serviceName', _itemIndex) as string;
 	const ip = this.getNodeParameter('ip', _itemIndex) as string;
 	const noSlb = this.getNodeParameter('noSlb', _itemIndex) as boolean;

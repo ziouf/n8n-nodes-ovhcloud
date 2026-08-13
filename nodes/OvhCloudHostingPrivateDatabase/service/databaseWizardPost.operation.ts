@@ -5,7 +5,7 @@ import type {
 	IDisplayOptions,
 	INodeProperties,
 } from 'n8n-workflow';
-import { ApiClient } from '../../../shared/transport/ApiClient';
+import { getClient } from '../../../shared/transport/ApiClient';
 
 export function description(displayOptions: IDisplayOptions): INodeProperties[] {
 	return [
@@ -84,7 +84,7 @@ export async function execute(
 		body['userName'] = userName;
 	}
 
-	const client = new ApiClient(this);
+	const client = getClient(this);
 	const data = (await client.httpPost('/hosting' + '/' + 'privateDatabase' + '/' + encodeURIComponent(serviceName) + '/' + 'databaseWizard', body)) as IDataObject;
 	return this.helpers.returnJsonArray([data]);
 }

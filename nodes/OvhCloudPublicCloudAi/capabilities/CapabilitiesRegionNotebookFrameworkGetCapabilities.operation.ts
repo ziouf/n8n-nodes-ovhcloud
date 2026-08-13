@@ -5,7 +5,7 @@ import type {
 	INodeExecutionData,
 	INodeProperties,
 } from 'n8n-workflow';
-import { ApiClient } from '../../../shared/transport/ApiClient';
+import { getClient } from '../../../shared/transport/ApiClient';
 
 export function description(displayOptions: IDisplayOptions = {} as IDisplayOptions): INodeProperties[] {
 	return [
@@ -63,7 +63,7 @@ export async function execute(this: IExecuteFunctions, _itemIndex?: number): Pro
 	const region = this.getNodeParameter('region', _itemIndex ?? 0) as string;
 	const frameworkId = this.getNodeParameter('frameworkId', _itemIndex ?? 0) as string;
 
-	const client = new ApiClient(this);
+	const client = getClient(this);
 	const data = (await client.httpGet('cloud/project' + serviceName + '/ai/capabilities/region/' + region + '/notebook/framework/' + frameworkId)) as IDataObject;
 
 	return this.helpers.returnJsonArray([data]);

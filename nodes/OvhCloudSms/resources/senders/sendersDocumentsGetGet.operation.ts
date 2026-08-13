@@ -5,7 +5,7 @@ import type {
 	INodeExecutionData,
 	INodeProperties,
 } from 'n8n-workflow';
-import { ApiClient } from '../../../../shared/transport/ApiClient';
+import { getClient } from '../../../../shared/transport/ApiClient';
 import { serviceNameLocator } from '../../../../shared/nodes/locators';
 
 export function description(displayOptions: IDisplayOptions): INodeProperties[] {
@@ -49,7 +49,7 @@ export async function execute(this: IExecuteFunctions, _itemIndex?: number): Pro
 	const documentID = this.getNodeParameter('documentID', _itemIndex ?? 0) as string;
 	const sender = this.getNodeParameter('sender', _itemIndex ?? 0) as string;
 	const serviceName = this.getNodeParameter('serviceName', _itemIndex ?? 0, '', { extractValue: true }) as string;
-	const data = (await new ApiClient(this).httpGet(
+	const data = (await getClient(this).httpGet(
 		`/sms/${encodeURIComponent(serviceName)}/senders/${encodeURIComponent(sender)}/documents/${encodeURIComponent(documentID)}`,
 	)) as IDataObject;
 	return this.helpers.returnJsonArray([data as IDataObject]);

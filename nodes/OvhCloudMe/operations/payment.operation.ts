@@ -5,7 +5,7 @@ import type {
 	INodeExecutionData,
 	INodeProperties,
 } from 'n8n-workflow';
-import { ApiClient } from '../../../shared/transport/ApiClient';
+import { getClient } from '../../../shared/transport/ApiClient';
 
 // ============================================================
 // Groupe A : Payment Methods
@@ -16,7 +16,7 @@ export async function executeListPaymentAvailableMethods(
 	this: IExecuteFunctions,
 _itemIndex?: number,
 ): Promise<INodeExecutionData[]> {
-	const client = new ApiClient(this);
+	const client = getClient(this);
 	const data = (await client.httpGet('/me/payment/availableMethods')) as IDataObject[];
 	return this.helpers.returnJsonArray(data);
 }
@@ -26,7 +26,7 @@ export async function executeListPaymentMethods(
 	this: IExecuteFunctions,
 _itemIndex?: number,
 ): Promise<INodeExecutionData[]> {
-	const client = new ApiClient(this);
+	const client = getClient(this);
 	const ids = (await client.httpGet('/me/payment/method')) as string[];
 	const results: IDataObject[] = [];
 	for (const id of ids) {
@@ -54,7 +54,7 @@ export async function executeGetPaymentMethod(
 	this: IExecuteFunctions,
 	_itemIndex: number,
 ): Promise<INodeExecutionData[]> {
-	const client = new ApiClient(this);
+	const client = getClient(this);
 	const paymentMethodId = this.getNodeParameter('paymentMethodId', _itemIndex) as string;
 	const data = (await client.httpGet(`/me/payment/method/${paymentMethodId}`)) as IDataObject;
 	return this.helpers.returnJsonArray([data]);
@@ -65,7 +65,7 @@ export async function executeListPaymentTransactions(
 	this: IExecuteFunctions,
 _itemIndex?: number,
 ): Promise<INodeExecutionData[]> {
-	const client = new ApiClient(this);
+	const client = getClient(this);
 	const ids = (await client.httpGet('/me/payment/transaction')) as string[];
 	const results: IDataObject[] = [];
 	for (const id of ids) {
@@ -95,7 +95,7 @@ export async function executeGetPaymentTransaction(
 	this: IExecuteFunctions,
 	_itemIndex: number,
 ): Promise<INodeExecutionData[]> {
-	const client = new ApiClient(this);
+	const client = getClient(this);
 	const transactionId = this.getNodeParameter('transactionId', _itemIndex) as string;
 	const data = (await client.httpGet(`/me/payment/transaction/${transactionId}`)) as IDataObject;
 	return this.helpers.returnJsonArray([data]);
@@ -106,7 +106,7 @@ export async function executeListBankAccounts(
 	this: IExecuteFunctions,
 _itemIndex?: number,
 ): Promise<INodeExecutionData[]> {
-	const client = new ApiClient(this);
+	const client = getClient(this);
 	const ids = (await client.httpGet('/me/paymentMean/bankAccount')) as string[];
 	const results: IDataObject[] = [];
 	for (const id of ids) {
@@ -134,7 +134,7 @@ export async function executeGetBankAccount(
 	this: IExecuteFunctions,
 	_itemIndex: number,
 ): Promise<INodeExecutionData[]> {
-	const client = new ApiClient(this);
+	const client = getClient(this);
 	const id = this.getNodeParameter('id', _itemIndex) as string;
 	const data = (await client.httpGet(`/me/paymentMean/bankAccount/${id}`)) as IDataObject;
 	return this.helpers.returnJsonArray([data]);
@@ -145,7 +145,7 @@ export async function executeListCreditCards(
 	this: IExecuteFunctions,
 _itemIndex?: number,
 ): Promise<INodeExecutionData[]> {
-	const client = new ApiClient(this);
+	const client = getClient(this);
 	const ids = (await client.httpGet('/me/paymentMean/creditCard')) as string[];
 	const results: IDataObject[] = [];
 	for (const id of ids) {
@@ -173,7 +173,7 @@ export async function executeGetCreditCard(
 	this: IExecuteFunctions,
 	_itemIndex: number,
 ): Promise<INodeExecutionData[]> {
-	const client = new ApiClient(this);
+	const client = getClient(this);
 	const id = this.getNodeParameter('id', _itemIndex) as string;
 	const data = (await client.httpGet(`/me/paymentMean/creditCard/${id}`)) as IDataObject;
 	return this.helpers.returnJsonArray([data]);
@@ -184,7 +184,7 @@ export async function executeListDeferredPaymentAccounts(
 	this: IExecuteFunctions,
 _itemIndex?: number,
 ): Promise<INodeExecutionData[]> {
-	const client = new ApiClient(this);
+	const client = getClient(this);
 	const ids = (await client.httpGet('/me/paymentMean/deferredPaymentAccount')) as string[];
 	const results: IDataObject[] = [];
 	for (const id of ids) {
@@ -216,7 +216,7 @@ export async function executeGetDeferredPaymentAccount(
 	this: IExecuteFunctions,
 	_itemIndex: number,
 ): Promise<INodeExecutionData[]> {
-	const client = new ApiClient(this);
+	const client = getClient(this);
 	const id = this.getNodeParameter('id', _itemIndex) as string;
 	const data = (await client.httpGet(
 		`/me/paymentMean/deferredPaymentAccount/${id}`,
@@ -229,7 +229,7 @@ export async function executeListPaypalAccounts(
 	this: IExecuteFunctions,
 _itemIndex?: number,
 ): Promise<INodeExecutionData[]> {
-	const client = new ApiClient(this);
+	const client = getClient(this);
 	const ids = (await client.httpGet('/me/paymentMean/paypal')) as string[];
 	const results: IDataObject[] = [];
 	for (const id of ids) {
@@ -257,7 +257,7 @@ export async function executeGetPaypalAccount(
 	this: IExecuteFunctions,
 	_itemIndex: number,
 ): Promise<INodeExecutionData[]> {
-	const client = new ApiClient(this);
+	const client = getClient(this);
 	const id = this.getNodeParameter('id', _itemIndex) as string;
 	const data = (await client.httpGet(`/me/paymentMean/paypal/${id}`)) as IDataObject;
 	return this.helpers.returnJsonArray([data]);
@@ -269,7 +269,7 @@ export async function executeGetPaypalAccount(
 
 // listOrders
 export async function executeListOrders(this: IExecuteFunctions, _itemIndex?: number): Promise<INodeExecutionData[]> {
-	const client = new ApiClient(this);
+	const client = getClient(this);
 	const ids = (await client.httpGet('/me/order')) as string[];
 	const results: IDataObject[] = [];
 	for (const id of ids) {
@@ -297,7 +297,7 @@ export async function executeGetOrder(
 	this: IExecuteFunctions,
 	_itemIndex: number,
 ): Promise<INodeExecutionData[]> {
-	const client = new ApiClient(this);
+	const client = getClient(this);
 	const orderId = this.getNodeParameter('orderId', _itemIndex) as string;
 	const data = (await client.httpGet(`/me/order/${orderId}`)) as IDataObject;
 	return this.helpers.returnJsonArray([data]);
@@ -323,7 +323,7 @@ export async function executeGetOrderAssociatedObject(
 	this: IExecuteFunctions,
 	_itemIndex: number,
 ): Promise<INodeExecutionData[]> {
-	const client = new ApiClient(this);
+	const client = getClient(this);
 	const orderId = this.getNodeParameter('orderId', _itemIndex) as string;
 	const data = (await client.httpGet(`/me/order/${orderId}/associatedObject`)) as IDataObject;
 	return this.helpers.returnJsonArray([data]);
@@ -349,7 +349,7 @@ export async function executeListOrderAvailablePaymentMeans(
 	this: IExecuteFunctions,
 	_itemIndex: number,
 ): Promise<INodeExecutionData[]> {
-	const client = new ApiClient(this);
+	const client = getClient(this);
 	const orderId = this.getNodeParameter('orderId', _itemIndex) as string;
 	const data = (await client.httpGet(
 		`/me/order/${orderId}/availableRegisteredPaymentMean`,
@@ -375,7 +375,7 @@ export async function executeListOrderBalances(
 	this: IExecuteFunctions,
 	_itemIndex: number,
 ): Promise<INodeExecutionData[]> {
-	const client = new ApiClient(this);
+	const client = getClient(this);
 	const orderId = this.getNodeParameter('orderId', _itemIndex) as string;
 	const ids = (await client.httpGet(`/me/order/${orderId}/balance`)) as string[];
 	const results: IDataObject[] = [];
@@ -413,7 +413,7 @@ export async function executeGetOrderBalance(
 	this: IExecuteFunctions,
 	_itemIndex: number,
 ): Promise<INodeExecutionData[]> {
-	const client = new ApiClient(this);
+	const client = getClient(this);
 	const orderId = this.getNodeParameter('orderId', _itemIndex) as string;
 	const balanceName = this.getNodeParameter('balanceName', _itemIndex) as string;
 	const data = (await client.httpGet(`/me/order/${orderId}/balance/${balanceName}`)) as IDataObject;
@@ -440,7 +440,7 @@ export async function executeGetOrderConsumptionDetails(
 	this: IExecuteFunctions,
 	_itemIndex: number,
 ): Promise<INodeExecutionData[]> {
-	const client = new ApiClient(this);
+	const client = getClient(this);
 	const orderId = this.getNodeParameter('orderId', _itemIndex) as string;
 	const data = (await client.httpGet(
 		`/me/order/${orderId}/consumption/details`,
@@ -466,7 +466,7 @@ export async function executeGetOrderDebt(
 	this: IExecuteFunctions,
 	_itemIndex: number,
 ): Promise<INodeExecutionData[]> {
-	const client = new ApiClient(this);
+	const client = getClient(this);
 	const orderId = this.getNodeParameter('orderId', _itemIndex) as string;
 	const data = (await client.httpGet(`/me/order/${orderId}/debt`)) as IDataObject;
 	return this.helpers.returnJsonArray([data]);
@@ -492,7 +492,7 @@ export async function executeListOrderDebtOperations(
 	this: IExecuteFunctions,
 	_itemIndex: number,
 ): Promise<INodeExecutionData[]> {
-	const client = new ApiClient(this);
+	const client = getClient(this);
 	const orderId = this.getNodeParameter('orderId', _itemIndex) as string;
 	const ids = (await client.httpGet(`/me/order/${orderId}/debt/operation`)) as string[];
 	const results: IDataObject[] = [];
@@ -534,7 +534,7 @@ export async function executeGetOrderDebtOperation(
 	this: IExecuteFunctions,
 	_itemIndex: number,
 ): Promise<INodeExecutionData[]> {
-	const client = new ApiClient(this);
+	const client = getClient(this);
 	const orderId = this.getNodeParameter('orderId', _itemIndex) as string;
 	const operationId = this.getNodeParameter('operationId', _itemIndex) as string;
 	const data = (await client.httpGet(
@@ -572,7 +572,7 @@ export async function executeGetOrderDebtOperationAssociatedObject(
 	this: IExecuteFunctions,
 	_itemIndex: number,
 ): Promise<INodeExecutionData[]> {
-	const client = new ApiClient(this);
+	const client = getClient(this);
 	const orderId = this.getNodeParameter('orderId', _itemIndex) as string;
 	const operationId = this.getNodeParameter('operationId', _itemIndex) as string;
 	const data = (await client.httpGet(
@@ -599,7 +599,7 @@ export async function executeListOrderDetails(
 	this: IExecuteFunctions,
 	_itemIndex: number,
 ): Promise<INodeExecutionData[]> {
-	const client = new ApiClient(this);
+	const client = getClient(this);
 	const orderId = this.getNodeParameter('orderId', _itemIndex) as string;
 	const ids = (await client.httpGet(`/me/order/${orderId}/details`)) as string[];
 	const results: IDataObject[] = [];
@@ -636,7 +636,7 @@ export async function executeGetOrderDetail(
 	this: IExecuteFunctions,
 	_itemIndex: number,
 ): Promise<INodeExecutionData[]> {
-	const client = new ApiClient(this);
+	const client = getClient(this);
 	const orderId = this.getNodeParameter('orderId', _itemIndex) as string;
 	const orderDetailId = this.getNodeParameter('orderDetailId', _itemIndex) as string;
 	const data = (await client.httpGet(
@@ -673,7 +673,7 @@ export async function executeGetOrderDetailExtension(
 	this: IExecuteFunctions,
 	_itemIndex: number,
 ): Promise<INodeExecutionData[]> {
-	const client = new ApiClient(this);
+	const client = getClient(this);
 	const orderId = this.getNodeParameter('orderId', _itemIndex) as string;
 	const orderDetailId = this.getNodeParameter('orderDetailId', _itemIndex) as string;
 	const data = (await client.httpGet(
@@ -700,7 +700,7 @@ export async function executeGetOrderFollowUp(
 	this: IExecuteFunctions,
 	_itemIndex: number,
 ): Promise<INodeExecutionData[]> {
-	const client = new ApiClient(this);
+	const client = getClient(this);
 	const orderId = this.getNodeParameter('orderId', _itemIndex) as string;
 	const data = (await client.httpGet(`/me/order/${orderId}/followUp`)) as IDataObject;
 	return this.helpers.returnJsonArray([data]);
@@ -724,7 +724,7 @@ export async function executeGetOrderPayment(
 	this: IExecuteFunctions,
 	_itemIndex: number,
 ): Promise<INodeExecutionData[]> {
-	const client = new ApiClient(this);
+	const client = getClient(this);
 	const orderId = this.getNodeParameter('orderId', _itemIndex) as string;
 	const data = (await client.httpGet(`/me/order/${orderId}/payment`)) as IDataObject;
 	return this.helpers.returnJsonArray([data]);
@@ -750,7 +750,7 @@ export async function executeGetOrderPaymentMeans(
 	this: IExecuteFunctions,
 	_itemIndex: number,
 ): Promise<INodeExecutionData[]> {
-	const client = new ApiClient(this);
+	const client = getClient(this);
 	const orderId = this.getNodeParameter('orderId', _itemIndex) as string;
 	const data = (await client.httpGet(`/me/order/${orderId}/paymentMeans`)) as IDataObject;
 	return this.helpers.returnJsonArray([data]);
@@ -776,7 +776,7 @@ export async function executeListOrderPaymentMethods(
 	this: IExecuteFunctions,
 	_itemIndex: number,
 ): Promise<INodeExecutionData[]> {
-	const client = new ApiClient(this);
+	const client = getClient(this);
 	const orderId = this.getNodeParameter('orderId', _itemIndex) as string;
 	const data = (await client.httpGet(`/me/order/${orderId}/paymentMethods`)) as IDataObject[];
 	return this.helpers.returnJsonArray(data);
@@ -800,7 +800,7 @@ export async function executeGetOrderStatus(
 	this: IExecuteFunctions,
 	_itemIndex: number,
 ): Promise<INodeExecutionData[]> {
-	const client = new ApiClient(this);
+	const client = getClient(this);
 	const orderId = this.getNodeParameter('orderId', _itemIndex) as string;
 	const data = (await client.httpGet(`/me/order/${orderId}/status`)) as IDataObject;
 	return this.helpers.returnJsonArray([data]);

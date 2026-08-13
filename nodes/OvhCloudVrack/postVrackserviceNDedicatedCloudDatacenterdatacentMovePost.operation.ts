@@ -5,7 +5,7 @@ import type {
 	INodeProperties,
 	INodeExecutionData,
 } from 'n8n-workflow';
-import { ApiClient } from '../../shared/transport/ApiClient';
+import { getClient } from '../../shared/transport/ApiClient';
 
 
 export function description(displayOptions: IDisplayOptions): INodeProperties[] {
@@ -16,7 +16,7 @@ export function description(displayOptions: IDisplayOptions): INodeProperties[] 
 			type: 'string',
 			default: '',
 			required: true,
-			description: 'The servicename identifier',
+			description: 'The service name',
 			displayOptions,
 		},
 		{
@@ -25,7 +25,7 @@ export function description(displayOptions: IDisplayOptions): INodeProperties[] 
 			type: 'string',
 			default: '',
 			required: true,
-			description: 'The datacenter identifier',
+			description: 'The data center',
 			displayOptions,
 		},
 		{
@@ -58,7 +58,7 @@ const body: IDataObject = {
     targetServiceName: targetServiceName
     };
 
-	const client = new ApiClient(this);
+	const client = getClient(this);
 	const data = (await client.httpPost('/vrack' + '/' + encodeURIComponent(serviceName) + '/' + 'dedicatedCloudDatacenter' + '/' + encodeURIComponent(datacenter) + '/' + 'move', body)) as IDataObject;
 	return this.helpers.returnJsonArray([data]);
 }

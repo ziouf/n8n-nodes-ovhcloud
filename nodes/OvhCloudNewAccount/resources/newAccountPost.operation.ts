@@ -5,7 +5,7 @@ import type {
 	INodeExecutionData,
 	INodeProperties,
 } from 'n8n-workflow';
-import { ApiClient } from '../../../shared/transport/ApiClient';
+import { getClient } from '../../../shared/transport/ApiClient';
 import { buildNewAccountBody, newAccountStringFieldProperties } from './newAccountCommon';
 
 export function description(displayOptions: IDisplayOptions): INodeProperties[] {
@@ -21,7 +21,7 @@ export function description(displayOptions: IDisplayOptions): INodeProperties[] 
  * Endpoint: /newAccount
  */
 export async function execute(this: IExecuteFunctions, _itemIndex?: number): Promise<INodeExecutionData[]> {
-	const client = new ApiClient(this);
+	const client = getClient(this);
 	const body = buildNewAccountBody(this);
 
 	const data = (await client.httpPost('/newAccount', body)) as IDataObject;

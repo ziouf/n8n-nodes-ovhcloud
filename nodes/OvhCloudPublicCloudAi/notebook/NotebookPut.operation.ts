@@ -5,7 +5,7 @@ import type {
 	INodeExecutionData,
 	INodeProperties,
 } from 'n8n-workflow';
-import { ApiClient } from '../../../shared/transport/ApiClient';
+import { getClient } from '../../../shared/transport/ApiClient';
 
 export function description(displayOptions: IDisplayOptions = {} as IDisplayOptions): INodeProperties[] {
 	return [
@@ -44,7 +44,7 @@ export function description(displayOptions: IDisplayOptions = {} as IDisplayOpti
 }
 
 /**
- * Executes the Update an existing notebook. Only labels update can be done while notebook is running. operation.
+ * Updates an existing notebook. Only labels update can be done while notebook is running.
  *
  * HTTP method: PUT
  * Endpoint: /cloud/project/{serviceName}/ai/notebook/{notebookId}
@@ -55,7 +55,7 @@ export async function execute(this: IExecuteFunctions, _itemIndex?: number): Pro
 
 	const body = this.getNodeParameter('body', _itemIndex ?? 0) as IDataObject;
 
-	const client = new ApiClient(this);
+	const client = getClient(this);
 	const data = (await client.httpPut('cloud/project' + serviceName + '/ai/notebook/' + notebookId, body)) as IDataObject;
 
 	return this.helpers.returnJsonArray([data]);

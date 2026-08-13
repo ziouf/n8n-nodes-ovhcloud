@@ -1,5 +1,5 @@
 import type { IDataObject, IDisplayOptions, IExecuteFunctions, INodeExecutionData, INodeProperties } from 'n8n-workflow';
-import { ApiClient } from '../../../shared/transport/ApiClient';
+import { getClient } from '../../../shared/transport/ApiClient';
 
 /** Updates the firewall configuration for a dedicated server. */
 export function description(displayOptions: IDisplayOptions): INodeProperties[] {
@@ -15,7 +15,7 @@ export function description(displayOptions: IDisplayOptions): INodeProperties[] 
 }
 
 export async function execute(this: IExecuteFunctions, _itemIndex?: number): Promise<INodeExecutionData[]> {
-	const client = new ApiClient(this);
+	const client = getClient(this);
 	const serviceName = this.getNodeParameter('serviceName', _itemIndex ?? 0, '', { extractValue: true }) as string;
 	const rules = (this.getNodeParameter('rules', _itemIndex ?? 0, ['allowAll']) as string[]) || ['allowAll'];
 	const data = (await client.httpPut(`/dedicated/server/${serviceName}/features/firewall`, { body: { rules } })) as IDataObject;

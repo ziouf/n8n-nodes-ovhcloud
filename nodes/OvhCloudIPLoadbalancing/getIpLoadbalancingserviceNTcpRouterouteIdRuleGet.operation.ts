@@ -5,7 +5,7 @@ import type {
 	INodeProperties,
 	INodeExecutionData,
 } from 'n8n-workflow';
-import { ApiClient } from '../../shared/transport/ApiClient';
+import { getClient } from '../../shared/transport/ApiClient';
 
 
 export function description(displayOptions: IDisplayOptions): INodeProperties[] {
@@ -16,7 +16,7 @@ export function description(displayOptions: IDisplayOptions): INodeProperties[] 
 			type: 'string',
 			default: '',
 			required: true,
-			description: 'The servicename identifier',
+			description: 'The service name',
 			displayOptions,
 		},
 		{
@@ -25,7 +25,7 @@ export function description(displayOptions: IDisplayOptions): INodeProperties[] 
 			type: 'string',
 			default: '',
 			required: true,
-			description: 'The routeid identifier',
+			description: 'The route ID',
 			displayOptions,
 		},
 	];
@@ -45,7 +45,7 @@ export async function execute(this: IExecuteFunctions, _itemIndex: number): Prom
 
 
 
-	const client = new ApiClient(this);
+	const client = getClient(this);
 	const data = (await client.httpGet('/ipLoadbalancing' + '/' + encodeURIComponent(serviceName) + '/' + 'tcp' + '/' + 'route' + '/' + encodeURIComponent(routeId) + '/' + 'rule')) as IDataObject;
 	return this.helpers.returnJsonArray([data]);
 }

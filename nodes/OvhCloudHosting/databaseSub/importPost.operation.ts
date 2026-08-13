@@ -4,7 +4,7 @@ import type {
 	INodeProperties,
 	IDisplayOptions,
 } from 'n8n-workflow';
-import { ApiClient } from '../../../shared/transport/ApiClient';
+import { getClient } from '../../../shared/transport/ApiClient';
 
 export function description(displayOptions: IDisplayOptions): INodeProperties[] {
 	return [
@@ -43,7 +43,7 @@ export function description(displayOptions: IDisplayOptions): INodeProperties[] 
  * Endpoint: /hosting/web/database/{serviceName}/{databaseName}/import
  */
 export async function execute(this: IExecuteFunctions, _itemIndex?: number): Promise<INodeExecutionData[]> {
-	const client = new ApiClient(this);
+	const client = getClient(this);
 	const serviceName = this.getNodeParameter('serviceName', _itemIndex ?? 0) as string;
 	const databaseName = this.getNodeParameter('databaseName', _itemIndex ?? 0) as string;
 	const dumpUrl = this.getNodeParameter('dumpUrl', _itemIndex ?? 0) as string;

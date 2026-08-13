@@ -5,7 +5,7 @@ import type {
 	INodeExecutionData,
 	INodeProperties,
 } from 'n8n-workflow';
-import { ApiClient } from '../../../../shared/transport/ApiClient';
+import { getClient } from '../../../../shared/transport/ApiClient';
 
 const TASK_STATUSES: { name: string; value: string }[] = [
 	{ name: 'Cancelled', value: 'cancelled' },
@@ -59,7 +59,7 @@ export function description(displayOptions: IDisplayOptions): INodeProperties[] 
  * Endpoint: /cluster/hadoop/{serviceName}/task
  */
 export async function execute(this: IExecuteFunctions, _itemIndex?: number): Promise<INodeExecutionData[]> {
-	const client = new ApiClient(this);
+	const client = getClient(this);
 	const serviceName = this.getNodeParameter('serviceName', _itemIndex ?? 0, '', { extractValue: true }) as string;
 	const status = (this.getNodeParameter('status', _itemIndex ?? 0, '') as string) || '';
 

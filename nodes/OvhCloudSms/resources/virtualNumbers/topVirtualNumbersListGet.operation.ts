@@ -5,7 +5,7 @@ import type {
 	INodeExecutionData,
 	INodeProperties,
 } from 'n8n-workflow';
-import { ApiClient } from '../../../../shared/transport/ApiClient';
+import { getClient } from '../../../../shared/transport/ApiClient';
 
 export function description(displayOptions: IDisplayOptions): INodeProperties[] {
 	return [
@@ -30,6 +30,6 @@ export async function execute(this: IExecuteFunctions, _itemIndex?: number): Pro
 	const iamTags = this.getNodeParameter('iamTags', _itemIndex ?? 0) as string;
 	const qs: IDataObject = {};
 	if (iamTags) qs['iamTags'] = iamTags;
-	const data = (await new ApiClient(this).httpGet(`/sms/virtualNumbers`, qs)) as string[];
+	const data = (await getClient(this).httpGet(`/sms/virtualNumbers`, qs)) as string[];
 	return this.helpers.returnJsonArray(data.map((v: string) => ({ id: v })));
 }

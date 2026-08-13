@@ -5,7 +5,7 @@ import type {
 	INodeExecutionData,
 	INodeProperties,
 } from 'n8n-workflow';
-import { ApiClient } from '../../../shared/transport/ApiClient';
+import { getClient } from '../../../shared/transport/ApiClient';
 
 export function description(displayOptions: IDisplayOptions): INodeProperties[] {
 	return [
@@ -40,7 +40,7 @@ export async function execute(this: IExecuteFunctions, _itemIndex: number): Prom
 	const abbreviatedNumber = this.getNodeParameter('abbreviatedNumber', _itemIndex) as string;
 	const billingAccount = this.getNodeParameter('billingAccount', _itemIndex) as string;
 
-	const client = new ApiClient(this);
+	const client = getClient(this);
 	const data = (await client.httpDelete('/telephony/' + billingAccount + '/abbreviatedNumber/' + abbreviatedNumber)) as IDataObject;
 	return this.helpers.returnJsonArray([data]);
 }

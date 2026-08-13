@@ -4,7 +4,7 @@ import type {
 	INodeExecutionData,
 	INodeProperties,
 } from 'n8n-workflow';
-import { ApiClient } from '../../../../shared/transport/ApiClient';
+import { getClient } from '../../../../shared/transport/ApiClient';
 
 export function description(displayOptions: IDisplayOptions): INodeProperties[] {
 	return [
@@ -58,7 +58,7 @@ export function description(displayOptions: IDisplayOptions): INodeProperties[] 
  * Endpoint: /cloud/project/{serviceName}/database/clickhouse/{clusterId}/ipRestrictions/{ipRestrictionId}
  */
 export async function execute(this: IExecuteFunctions, _itemIndex?: number): Promise<INodeExecutionData[]> {
-	const client = new ApiClient(this);
+	const client = getClient(this);
 	const ipRestrictionId = this.getNodeParameter('ipRestrictionId', _itemIndex ?? 0) as string;
 	const clusterId = this.getNodeParameter('clusterId', _itemIndex ?? 0) as string;
 	const serviceName = this.getNodeParameter('publicCloudProjectId', _itemIndex ?? 0, '', { extractValue: true }) as string;

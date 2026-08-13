@@ -1,6 +1,6 @@
 import type { IExecuteFunctions, INodeExecutionData, IDisplayOptions } from 'n8n-workflow';
+import { getClient } from '../../shared/transport/ApiClient';
 import { serviceNameLocator } from '../../shared/nodes/locators';
-import { ApiClient } from '../../shared/transport/ApiClient';
 
 export function description(displayOptions: IDisplayOptions) {
 	return [
@@ -20,7 +20,7 @@ export async function execute(
 	this: IExecuteFunctions,
 	_itemIndex: number,
 ): Promise<INodeExecutionData[]> {
-	const client = new ApiClient(this);
+	const client = getClient(this);
 	const serviceName = this.getNodeParameter('serviceName', _itemIndex, '', {
 		extractValue: true,
 	}) as string;

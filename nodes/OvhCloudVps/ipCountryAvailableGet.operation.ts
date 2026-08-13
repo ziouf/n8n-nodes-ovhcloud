@@ -4,8 +4,8 @@ import type {
 	INodeExecutionData,
 	IDisplayOptions,
 } from 'n8n-workflow';
+import { getClient } from '../../shared/transport/ApiClient';
 import { serviceNameLocator } from '../../shared/nodes/locators';
-import { ApiClient } from '../../shared/transport/ApiClient';
 
 /** List available IP countries per region for the VPS. */
 export function description(displayOptions: IDisplayOptions) {
@@ -26,7 +26,7 @@ export async function execute(
 	this: IExecuteFunctions,
 	itemIndex?: number,
 ): Promise<INodeExecutionData[]> {
-	const client = new ApiClient(this);
+	const client = getClient(this);
 	const serviceName = this.getNodeParameter('serviceName', itemIndex ?? 0, '', {
 		extractValue: true,
 	}) as string;

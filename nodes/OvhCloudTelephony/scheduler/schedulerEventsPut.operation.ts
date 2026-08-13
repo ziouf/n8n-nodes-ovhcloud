@@ -5,7 +5,7 @@ import type {
 	INodeExecutionData,
 	INodeProperties,
 } from 'n8n-workflow';
-import { ApiClient } from '../../../shared/transport/ApiClient';
+import { getClient } from '../../../shared/transport/ApiClient';
 
 export function description(displayOptions: IDisplayOptions): INodeProperties[] {
 	return [
@@ -33,7 +33,7 @@ export function description(displayOptions: IDisplayOptions): INodeProperties[] 
 			type: 'string',
 			default: '',
 			required: true,
-			description: 'The unique ICS event identifier',
+			description: 'The ICS event',
 			displayOptions,
 		},
 		{
@@ -103,7 +103,7 @@ export async function execute(this: IExecuteFunctions, _itemIndex: number): Prom
 		title: title,
 	};
 
-	const client = new ApiClient(this);
+	const client = getClient(this);
 	const data = (await client.httpPut('/telephony/' + encodeURIComponent(billingAccount) + '/scheduler' + '/' + encodeURIComponent(serviceName) + '/events' + '/' + encodeURIComponent(uid), body)) as IDataObject;
 	return this.helpers.returnJsonArray([data]);
 }

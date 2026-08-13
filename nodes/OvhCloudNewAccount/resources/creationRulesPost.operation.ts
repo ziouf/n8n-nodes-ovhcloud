@@ -5,7 +5,7 @@ import type {
 	INodeExecutionData,
 	INodeProperties,
 } from 'n8n-workflow';
-import { ApiClient } from '../../../shared/transport/ApiClient';
+import { getClient } from '../../../shared/transport/ApiClient';
 import { newAccountStringFieldProperties } from './newAccountCommon';
 
 export function description(displayOptions: IDisplayOptions): INodeProperties[] {
@@ -23,7 +23,7 @@ export function description(displayOptions: IDisplayOptions): INodeProperties[] 
  * country, legalform, ovhCompany and ovhSubsidiary (all required).
  */
 export async function execute(this: IExecuteFunctions, _itemIndex?: number): Promise<INodeExecutionData[]> {
-	const client = new ApiClient(this);
+	const client = getClient(this);
 
 	const qs: IDataObject = {
 		country: this.getNodeParameter('country', _itemIndex ?? 0) as string,

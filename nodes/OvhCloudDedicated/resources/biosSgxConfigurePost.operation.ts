@@ -4,7 +4,7 @@ import type {
 	INodeExecutionData,
 	INodeProperties,
 } from 'n8n-workflow';
-import { ApiClient } from '../../../shared/transport/ApiClient';
+import { getClient } from '../../../shared/transport/ApiClient';
 
 /** Configures BIOS SGX parameters on a dedicated server (BETA). */
 export function description(displayOptions: IDisplayOptions): INodeProperties[] {
@@ -63,7 +63,7 @@ export function description(displayOptions: IDisplayOptions): INodeProperties[] 
 }
 
 export async function execute(this: IExecuteFunctions, _itemIndex?: number): Promise<INodeExecutionData[]> {
-	const client = new ApiClient(this);
+	const client = getClient(this);
 	const serviceName = this.getNodeParameter('serviceName', _itemIndex ?? 0, '', { extractValue: true }) as string;
 	const prmrr = ((this.getNodeParameter('prmrr', _itemIndex ?? 0) as number) ?? 0) as number;
 	const status = ((this.getNodeParameter('status', _itemIndex ?? 0) as string) ?? 'disabled') as string;

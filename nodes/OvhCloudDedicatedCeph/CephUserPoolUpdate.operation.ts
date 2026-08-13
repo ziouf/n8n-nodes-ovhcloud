@@ -4,7 +4,7 @@ import type {
 	INodeExecutionData,
 	INodeProperties,
 } from 'n8n-workflow';
-import { ApiClient } from '../../shared/transport/ApiClient';
+import { getClient } from '../../shared/transport/ApiClient';
 
 export function description(): INodeProperties[] {
 	return [
@@ -43,7 +43,7 @@ export async function execute(this: IExecuteFunctions,
 	const poolName = this.getNodeParameter('poolName', _itemIndex) as string;
 	const read = this.getNodeParameter('read', _itemIndex) as string;
 	const write = this.getNodeParameter('write', _itemIndex) as string;
-	const client = new ApiClient(this);
+	const client = getClient(this);
 	const body: IDataObject = {};
 			body['classRead'] = classRead;
 		body['classWrite'] = classWrite;

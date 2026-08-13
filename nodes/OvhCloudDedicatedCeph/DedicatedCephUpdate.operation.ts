@@ -4,7 +4,7 @@ import type {
 	INodeExecutionData,
 	INodeProperties,
 } from 'n8n-workflow';
-import { ApiClient } from '../../shared/transport/ApiClient';
+import { getClient } from '../../shared/transport/ApiClient';
 
 export function description(): INodeProperties[] {
 	return [
@@ -30,7 +30,7 @@ export async function execute(this: IExecuteFunctions,
 	const serviceName = this.getNodeParameter('serviceName', _itemIndex) as string;
 	const crushTunables = this.getNodeParameter('crushTunables', _itemIndex) as string;
 	const label = this.getNodeParameter('label', _itemIndex) as string;
-	const client = new ApiClient(this);
+	const client = getClient(this);
 	const body: IDataObject = {};
 			body['crushTunables'] = crushTunables;
 		body['label'] = label;

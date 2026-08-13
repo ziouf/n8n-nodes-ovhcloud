@@ -5,7 +5,7 @@ import type {
     INodeExecutionData,
     INodeProperties,
 } from 'n8n-workflow';
-import { ApiClient } from '../../../shared/transport/ApiClient';
+import { getClient } from '../../../shared/transport/ApiClient';
 
 export function description(displayOptions: IDisplayOptions): INodeProperties[] {
     return [
@@ -29,7 +29,7 @@ export function description(displayOptions: IDisplayOptions): INodeProperties[] 
  * Endpoint: /price/vps/2017v2/cloudram/model/{modelName}
  */
 export async function execute(this: IExecuteFunctions, _itemIndex?: number): Promise<INodeExecutionData[]> {
-    const client = new ApiClient(this);
+    const client = getClient(this);
     const modelName = this.getNodeParameter('modelName', _itemIndex ?? 0) as string;
     const data = (await client.httpGet(`/price/vps/2017v2/cloudram/model/${modelName}`)) as IDataObject;
     return this.helpers.returnJsonArray([data]);

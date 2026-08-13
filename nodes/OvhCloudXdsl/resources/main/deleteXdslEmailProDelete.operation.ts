@@ -5,7 +5,7 @@ import type {
 	IDisplayOptions,
 	INodeProperties,
 } from 'n8n-workflow';
-import { ApiClient } from '../../../../shared/transport/ApiClient';
+import { getClient } from '../../../../shared/transport/ApiClient';
 
 export function description(displayOptions: IDisplayOptions): INodeProperties[] {
 	return [
@@ -52,7 +52,7 @@ export function description(displayOptions: IDisplayOptions): INodeProperties[] 
  * Endpoint: /xdsl/email/pro/{email}
  */
 export async function execute(this: IExecuteFunctions, _itemIndex?: number): Promise<INodeExecutionData[]> {
-	const client = new ApiClient(this);
+	const client = getClient(this);
 	const email = this.getNodeParameter('email', _itemIndex ?? 0) as string;
 
 	const data = (await client.httpDelete(`/xdsl/email/pro/${email}`)) as IDataObject;

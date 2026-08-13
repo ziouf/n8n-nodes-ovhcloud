@@ -5,7 +5,7 @@ import type {
 	INodeExecutionData,
 	INodeProperties,
 } from 'n8n-workflow';
-import { ApiClient } from '../../../shared/transport/ApiClient';
+import { getClient } from '../../../shared/transport/ApiClient';
 
 // ============================================================
 // Groupe A : Bills
@@ -16,7 +16,7 @@ export async function executeListBills(
 	this: IExecuteFunctions,
 	_itemIndex?: number,
 ): Promise<INodeExecutionData[]> {
-	const client = new ApiClient(this);
+	const client = getClient(this);
 	// Uses paginateResources for parallel detail fetching (concurrency 3).
 	// Failed item fetches are silently skipped (previously threw).
 	const results = await client.paginateResources<IDataObject>('/me/bill', '/me/bill/{id}');
@@ -41,7 +41,7 @@ export async function executeGetBill(
 	this: IExecuteFunctions,
 	_itemIndex: number,
 ): Promise<INodeExecutionData[]> {
-	const client = new ApiClient(this);
+	const client = getClient(this);
 	const billId = this.getNodeParameter('billId', _itemIndex) as string;
 	const data = (await client.httpGet(`/me/bill/${billId}`)) as IDataObject;
 	return this.helpers.returnJsonArray([data]);
@@ -65,7 +65,7 @@ export async function executeGetBillDebt(
 	this: IExecuteFunctions,
 	_itemIndex: number,
 ): Promise<INodeExecutionData[]> {
-	const client = new ApiClient(this);
+	const client = getClient(this);
 	const billId = this.getNodeParameter('billId', _itemIndex) as string;
 	const data = (await client.httpGet(`/me/bill/${billId}/debt`)) as IDataObject;
 	return this.helpers.returnJsonArray([data]);
@@ -91,7 +91,7 @@ export async function executeListBillDebtOperations(
 	this: IExecuteFunctions,
 	itemIndex?: number,
 ): Promise<INodeExecutionData[]> {
-	const client = new ApiClient(this);
+	const client = getClient(this);
 	const billId = this.getNodeParameter('billId', itemIndex ?? 0) as string;
 	// Uses paginateResources for parallel detail fetching (concurrency 3).
 	// Failed item fetches are silently skipped (previously threw).
@@ -131,7 +131,7 @@ export async function executeGetBillDebtOperation(
 	this: IExecuteFunctions,
 	_itemIndex: number,
 ): Promise<INodeExecutionData[]> {
-	const client = new ApiClient(this);
+	const client = getClient(this);
 	const billId = this.getNodeParameter('billId', _itemIndex) as string;
 	const operationId = this.getNodeParameter('operationId', _itemIndex) as string;
 	const data = (await client.httpGet(
@@ -169,7 +169,7 @@ export async function executeGetBillDebtOperationAssociatedObject(
 	this: IExecuteFunctions,
 	_itemIndex: number,
 ): Promise<INodeExecutionData[]> {
-	const client = new ApiClient(this);
+	const client = getClient(this);
 	const billId = this.getNodeParameter('billId', _itemIndex) as string;
 	const operationId = this.getNodeParameter('operationId', _itemIndex) as string;
 	const data = (await client.httpGet(
@@ -196,7 +196,7 @@ export async function executeListBillDetails(
 	this: IExecuteFunctions,
 	itemIndex?: number,
 ): Promise<INodeExecutionData[]> {
-	const client = new ApiClient(this);
+	const client = getClient(this);
 	const billId = this.getNodeParameter('billId', itemIndex ?? 0) as string;
 	// Uses paginateResources for parallel detail fetching (concurrency 3).
 	// Failed item fetches are silently skipped (previously threw).
@@ -233,7 +233,7 @@ export async function executeGetBillDetail(
 	this: IExecuteFunctions,
 	_itemIndex: number,
 ): Promise<INodeExecutionData[]> {
-	const client = new ApiClient(this);
+	const client = getClient(this);
 	const billId = this.getNodeParameter('billId', _itemIndex) as string;
 	const billDetailId = this.getNodeParameter('billDetailId', _itemIndex) as string;
 	const data = (await client.httpGet(`/me/bill/${billId}/details/${billDetailId}`)) as IDataObject;
@@ -258,7 +258,7 @@ export async function executeGetBillPayment(
 	this: IExecuteFunctions,
 	_itemIndex: number,
 ): Promise<INodeExecutionData[]> {
-	const client = new ApiClient(this);
+	const client = getClient(this);
 	const billId = this.getNodeParameter('billId', _itemIndex) as string;
 	const data = (await client.httpGet(`/me/bill/${billId}/payment`)) as IDataObject;
 	return this.helpers.returnJsonArray([data]);
@@ -273,7 +273,7 @@ export async function executeListBillingGroups(
 	this: IExecuteFunctions,
 	_itemIndex?: number,
 ): Promise<INodeExecutionData[]> {
-	const client = new ApiClient(this);
+	const client = getClient(this);
 	// Uses paginateResources for parallel detail fetching (concurrency 3).
 	// Failed item fetches are silently skipped (previously threw).
 	const results = await client.paginateResources<IDataObject>(
@@ -302,7 +302,7 @@ export async function executeGetBillingGroup(
 	this: IExecuteFunctions,
 	_itemIndex: number,
 ): Promise<INodeExecutionData[]> {
-	const client = new ApiClient(this);
+	const client = getClient(this);
 	const groupId = this.getNodeParameter('groupId', _itemIndex) as string;
 	const data = (await client.httpGet(`/me/billing/group/${groupId}`)) as IDataObject;
 	return this.helpers.returnJsonArray([data]);
@@ -329,7 +329,7 @@ export async function executeListBillingGroupServices(
 	this: IExecuteFunctions,
 	itemIndex?: number,
 ): Promise<INodeExecutionData[]> {
-	const client = new ApiClient(this);
+	const client = getClient(this);
 	const groupId = this.getNodeParameter('groupId', itemIndex ?? 0) as string;
 	// Uses paginateResources for parallel detail fetching (concurrency 3).
 	// Failed item fetches are silently skipped (previously threw).
@@ -369,7 +369,7 @@ export async function executeGetBillingGroupService(
 	this: IExecuteFunctions,
 	_itemIndex: number,
 ): Promise<INodeExecutionData[]> {
-	const client = new ApiClient(this);
+	const client = getClient(this);
 	const groupId = this.getNodeParameter('groupId', _itemIndex) as string;
 	const serviceId = this.getNodeParameter('serviceId', _itemIndex) as string;
 	const data = (await client.httpGet(
@@ -387,7 +387,7 @@ export async function executeListPurchaseOrders(
 	this: IExecuteFunctions,
 	_itemIndex?: number,
 ): Promise<INodeExecutionData[]> {
-	const client = new ApiClient(this);
+	const client = getClient(this);
 	// Uses paginateResources for parallel detail fetching (concurrency 3).
 	// Failed item fetches are silently skipped (previously threw).
 	const results = await client.paginateResources<IDataObject>(
@@ -415,7 +415,7 @@ export async function executeGetPurchaseOrder(
 	this: IExecuteFunctions,
 	_itemIndex: number,
 ): Promise<INodeExecutionData[]> {
-	const client = new ApiClient(this);
+	const client = getClient(this);
 	const id = this.getNodeParameter('id', _itemIndex) as string;
 	const data = (await client.httpGet(`/me/billing/purchaseOrder/${id}`)) as IDataObject;
 	return this.helpers.returnJsonArray([data]);
@@ -426,7 +426,7 @@ export async function executeListConsumptionReports(
 	this: IExecuteFunctions,
 	_itemIndex?: number,
 ): Promise<INodeExecutionData[]> {
-	const client = new ApiClient(this);
+	const client = getClient(this);
 	// Uses paginateResources for parallel detail fetching (concurrency 3).
 	// Failed item fetches are silently skipped (previously threw).
 	const results = await client.paginateResources<IDataObject>(
@@ -457,7 +457,7 @@ export async function executeGetConsumptionReport(
 	this: IExecuteFunctions,
 	_itemIndex: number,
 ): Promise<INodeExecutionData[]> {
-	const client = new ApiClient(this);
+	const client = getClient(this);
 	const taskId = this.getNodeParameter('taskId', _itemIndex) as string;
 	const data = (await client.httpGet(`/me/billing/report/consumption/${taskId}`)) as IDataObject;
 	return this.helpers.returnJsonArray([data]);

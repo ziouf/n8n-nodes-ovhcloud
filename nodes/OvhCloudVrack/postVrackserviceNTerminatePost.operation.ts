@@ -5,7 +5,7 @@ import type {
 	INodeProperties,
 	INodeExecutionData,
 } from 'n8n-workflow';
-import { ApiClient } from '../../shared/transport/ApiClient';
+import { getClient } from '../../shared/transport/ApiClient';
 import { destructiveActionNotice } from '../../shared/nodes/notices';
 
 export function description(displayOptions: IDisplayOptions): INodeProperties[] {
@@ -20,7 +20,7 @@ export function description(displayOptions: IDisplayOptions): INodeProperties[] 
 			type: 'string',
 			default: '',
 			required: true,
-			description: 'The servicename identifier',
+			description: 'The service name',
 			displayOptions,
 		},
 	];
@@ -38,7 +38,7 @@ export async function execute(
 ): Promise<INodeExecutionData[]> {
 	const serviceName = this.getNodeParameter('serviceName', _itemIndex) as string;
 
-	const client = new ApiClient(this);
+	const client = getClient(this);
 	const data = (await client.httpPost(
 		'/vrack' + '/' + encodeURIComponent(serviceName) + '/' + 'terminate',
 		{},

@@ -3,7 +3,7 @@ import type {
 	IExecuteFunctions,
 	INodeExecutionData,
 } from 'n8n-workflow';
-import { ApiClient } from '../../../shared/transport/ApiClient';
+import { getClient } from '../../../shared/transport/ApiClient';
 
 
 export function description() {
@@ -51,7 +51,7 @@ export async function execute(this: IExecuteFunctions, _itemIndex?: number): Pro
 
 
 
-	const client = new ApiClient(this);
+	const client = getClient(this);
 	const data = (await client.httpDelete('/email' + '/' + 'pro' + '/' + encodeURIComponent(service) + '/' + 'account' + '/' + encodeURIComponent(email) + '/' + 'sendOnBehalfTo' + '/' + encodeURIComponent(allowedAccountId))) as IDataObject;
 	return this.helpers.returnJsonArray([data]);
 }

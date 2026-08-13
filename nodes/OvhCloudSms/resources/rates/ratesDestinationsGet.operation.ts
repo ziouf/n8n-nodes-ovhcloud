@@ -5,7 +5,7 @@ import type {
 	INodeExecutionData,
 	INodeProperties,
 } from 'n8n-workflow';
-import { ApiClient } from '../../../../shared/transport/ApiClient';
+import { getClient } from '../../../../shared/transport/ApiClient';
 
 export function description(displayOptions: IDisplayOptions): INodeProperties[] {
 	return [
@@ -251,6 +251,6 @@ export async function execute(this: IExecuteFunctions, _itemIndex?: number): Pro
 	const qs: IDataObject = {};
 	qs['country'] = country;
 	if (billingCountry) qs['billingCountry'] = billingCountry;
-	const data = (await new ApiClient(this).httpGet(`/sms/rates/destinations`, qs)) as IDataObject;
+	const data = (await getClient(this).httpGet(`/sms/rates/destinations`, qs)) as IDataObject;
 	return this.helpers.returnJsonArray([data as IDataObject]);
 }

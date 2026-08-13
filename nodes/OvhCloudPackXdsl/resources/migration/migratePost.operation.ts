@@ -5,7 +5,7 @@ import type {
 	INodeExecutionData,
 	INodeProperties,
 } from 'n8n-workflow';
-import { ApiClient } from '../../../../shared/transport/ApiClient';
+import { getClient } from '../../../../shared/transport/ApiClient';
 
 const MODEM_OPTIONS: { name: string; value: string }[] = [
 	{ name: 'No', value: 'no' },
@@ -213,7 +213,7 @@ export function description(displayOptions: IDisplayOptions): INodeProperties[] 
  * Endpoint: /pack/xdsl/{packName}/migration/migrate
  */
 export async function execute(this: IExecuteFunctions, _itemIndex?: number): Promise<INodeExecutionData[]> {
-	const client = new ApiClient(this);
+	const client = getClient(this);
 	const packName = this.getNodeParameter('packName', _itemIndex ?? 0, '', { extractValue: true }) as string;
 	const acceptContracts = this.getNodeParameter('acceptContracts', _itemIndex ?? 0, false) as boolean;
 	const modem = this.getNodeParameter('modem', _itemIndex ?? 0) as string;

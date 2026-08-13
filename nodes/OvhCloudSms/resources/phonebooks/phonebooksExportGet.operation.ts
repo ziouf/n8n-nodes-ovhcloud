@@ -5,7 +5,7 @@ import type {
 	INodeExecutionData,
 	INodeProperties,
 } from 'n8n-workflow';
-import { ApiClient } from '../../../../shared/transport/ApiClient';
+import { getClient } from '../../../../shared/transport/ApiClient';
 import { serviceNameLocator } from '../../../../shared/nodes/locators';
 
 export function description(displayOptions: IDisplayOptions): INodeProperties[] {
@@ -53,7 +53,7 @@ export async function execute(this: IExecuteFunctions, _itemIndex?: number): Pro
 	const format = this.getNodeParameter('format', _itemIndex ?? 0) as string;
 	const qs: IDataObject = {};
 	qs['format'] = format;
-	const data = (await new ApiClient(this).httpGet(
+	const data = (await getClient(this).httpGet(
 		`/sms/${encodeURIComponent(serviceName)}/phonebooks/${encodeURIComponent(bookKey)}/export`,
 		qs,
 	)) as IDataObject;

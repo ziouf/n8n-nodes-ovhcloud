@@ -3,7 +3,7 @@ import type {
 	IExecuteFunctions,
 	INodeExecutionData,
 } from 'n8n-workflow';
-import { ApiClient } from '../../../shared/transport/ApiClient';
+import { getClient } from '../../../shared/transport/ApiClient';
 
 
 export function description() {
@@ -22,7 +22,6 @@ export function description() {
 			type: 'string',
 			default: '',
 			required: true,
-			description: 'The ID identifier',
 		},
 	];
 }
@@ -41,7 +40,7 @@ export async function execute(this: IExecuteFunctions, _itemIndex?: number): Pro
 
 
 
-	const client = new ApiClient(this);
+	const client = getClient(this);
 	const data = (await client.httpGet('/email' + '/' + 'pro' + '/' + encodeURIComponent(service) + '/' + 'task' + '/' + encodeURIComponent(id))) as IDataObject;
 	return this.helpers.returnJsonArray([data]);
 }

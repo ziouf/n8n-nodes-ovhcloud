@@ -5,7 +5,7 @@ import type {
 	INodeExecutionData,
 	INodeProperties,
 } from 'n8n-workflow';
-import { ApiClient } from '../../../shared/transport/ApiClient';
+import { getClient } from '../../../shared/transport/ApiClient';
 
 export function description(displayOptions: IDisplayOptions): INodeProperties[] {
 	return [
@@ -73,7 +73,7 @@ export async function execute(this: IExecuteFunctions, _itemIndex?: number): Pro
 	const name = this.getNodeParameter('name', _itemIndex ?? 0) as string;
 	const objectKey = this.getNodeParameter('objectKey', _itemIndex ?? 0) as string;
 
-	const client = new ApiClient(this);
+	const client = getClient(this);
 	const projectId = this.getNodeParameter('publicCloudProjectId', _itemIndex ?? 0, '', {
 		extractValue: true,
 	}) as string;

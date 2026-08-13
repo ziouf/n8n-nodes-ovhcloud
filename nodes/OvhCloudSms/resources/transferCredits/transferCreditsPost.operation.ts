@@ -5,7 +5,7 @@ import type {
 	INodeExecutionData,
 	INodeProperties,
 } from 'n8n-workflow';
-import { ApiClient } from '../../../../shared/transport/ApiClient';
+import { getClient } from '../../../../shared/transport/ApiClient';
 import { serviceNameLocator } from '../../../../shared/nodes/locators';
 
 export function description(displayOptions: IDisplayOptions): INodeProperties[] {
@@ -53,7 +53,7 @@ export async function execute(this: IExecuteFunctions, _itemIndex?: number): Pro
 	const body: IDataObject = {};
 	body['credits'] = credits;
 	body['smsAccountTarget'] = smsAccountTarget;
-	const data = (await new ApiClient(this).httpPost(
+	const data = (await getClient(this).httpPost(
 		`/sms/${encodeURIComponent(serviceName)}/transferCredits`,
 		body,
 	)) as IDataObject;

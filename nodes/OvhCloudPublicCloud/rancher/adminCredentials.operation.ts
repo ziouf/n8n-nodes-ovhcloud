@@ -5,7 +5,7 @@ import type {
 	IDisplayOptions,
 	INodeProperties,
 } from 'n8n-workflow';
-import { ApiClient } from '../../../shared/transport/ApiClient';
+import { getClient } from '../../../shared/transport/ApiClient';
 
 // ============================================================
 // GET /adminCredentials - Get current admin credentials
@@ -69,7 +69,7 @@ export function descriptionGet(displayOptions: IDisplayOptions): INodeProperties
  * Endpoint: /publicCloud/project/{projectId}/rancher/{rancherId}/adminCredentials
  */
 export async function executeGet(this: IExecuteFunctions, _itemIndex?: number): Promise<INodeExecutionData[]> {
-	const client = new ApiClient(this);
+	const client = getClient(this);
 	const projectId = this.getNodeParameter('publicCloudProjectId', _itemIndex ?? 0, '', {
 		extractValue: true,
 	}) as string;
@@ -146,7 +146,7 @@ export function descriptionPost(displayOptions: IDisplayOptions): INodePropertie
  * Endpoint: /publicCloud/project/{projectId}/rancher/{rancherId}/adminCredentials
  */
 export async function executePost(this: IExecuteFunctions, _itemIndex?: number): Promise<INodeExecutionData[]> {
-	const client = new ApiClient(this);
+	const client = getClient(this);
 	const projectId = this.getNodeParameter('publicCloudProjectId', _itemIndex ?? 0, '', {
 		extractValue: true,
 	}) as string;

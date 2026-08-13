@@ -5,7 +5,7 @@ import type {
 	IDisplayOptions,
 	IDataObject,
 } from 'n8n-workflow';
-import { ApiClient } from '../../../../shared/transport/ApiClient';
+import { getClient } from '../../../../shared/transport/ApiClient';
 
 export function description(displayOptions: IDisplayOptions): INodeProperties[] {
 	return [
@@ -70,7 +70,7 @@ export function description(displayOptions: IDisplayOptions): INodeProperties[] 
  * Endpoint: /overTheBox/{serviceName}/statistics
  */
 export async function execute(this: IExecuteFunctions, _itemIndex?: number): Promise<INodeExecutionData[]> {
-	const client = new ApiClient(this);
+	const client = getClient(this);
 	const serviceName = this.getNodeParameter('serviceName', _itemIndex ?? 0, '', { extractValue: true }) as string;
 	const metricsType = (this.getNodeParameter('metricsType', _itemIndex ?? 0, '') as string) || '';
 	const period = (this.getNodeParameter('period', _itemIndex ?? 0, '') as string) || '';

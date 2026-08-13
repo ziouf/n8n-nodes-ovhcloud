@@ -5,7 +5,7 @@ import type {
 	INodeExecutionData,
 	INodeProperties,
 } from 'n8n-workflow';
-import { ApiClient } from '../../shared/transport/ApiClient';
+import { getClient } from '../../shared/transport/ApiClient';
 
 export function description(displayOptions: IDisplayOptions): INodeProperties[] {
 	return [
@@ -15,7 +15,7 @@ export function description(displayOptions: IDisplayOptions): INodeProperties[] 
 			type: 'string',
 			default: '',
 			required: true,
-			description: 'The ip identifier',
+			description: 'The IP address',
 			displayOptions,
 		},
 
@@ -32,7 +32,7 @@ export async function execute(this: IExecuteFunctions, _itemIndex: number): Prom
 	const ip = this.getNodeParameter('ip', _itemIndex) as string;
 
 
-	const client = new ApiClient(this);
+	const client = getClient(this);
 	const data = (await client.httpGet('/ip/' + ip + '/equilibrium')) as IDataObject;
 
 	return this.helpers.returnJsonArray([data]);

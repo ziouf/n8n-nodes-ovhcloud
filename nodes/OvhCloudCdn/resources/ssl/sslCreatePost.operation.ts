@@ -5,7 +5,7 @@ import type {
 	INodeExecutionData,
 	INodeProperties,
 } from 'n8n-workflow';
-import { ApiClient } from '../../../../shared/transport/ApiClient';
+import { getClient } from '../../../../shared/transport/ApiClient';
 
 export function description(displayOptions: IDisplayOptions): INodeProperties[] {
 	return [
@@ -73,7 +73,7 @@ export async function execute(this: IExecuteFunctions, _itemIndex: number): Prom
 	if (key !== '') body.key = key;
 	body.name = name;
 
-	const client = new ApiClient(this);
+	const client = getClient(this);
 	const data = (await client.httpPost(`/cdn/dedicated/${encodeURIComponent(serviceName)}/ssl`, body)) as IDataObject;
 
 	return this.helpers.returnJsonArray([data]);

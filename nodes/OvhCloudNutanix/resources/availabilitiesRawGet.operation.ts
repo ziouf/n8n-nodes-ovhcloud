@@ -5,7 +5,7 @@ import type {
 	IDisplayOptions,
 	IDataObject,
 } from 'n8n-workflow';
-import { ApiClient } from '../../../shared/transport/ApiClient';
+import { getClient } from '../../../shared/transport/ApiClient';
 
 export function description(displayOptions: IDisplayOptions): INodeProperties[] {
 	return [
@@ -124,7 +124,7 @@ export function description(displayOptions: IDisplayOptions): INodeProperties[] 
  * Endpoint: /nutanix/availabilities/raw
  */
 export async function execute(this: IExecuteFunctions, _itemIndex?: number): Promise<INodeExecutionData[]> {
-	const client = new ApiClient(this);
+	const client = getClient(this);
 	const quantity = this.getNodeParameter('quantity', _itemIndex ?? 0) as number;
 	const datacenters = (this.getNodeParameter('datacenters', _itemIndex ?? 0, '') as string) || '';
 	const deploymentType = (this.getNodeParameter('deploymentType', _itemIndex ?? 0, '') as string) || '';

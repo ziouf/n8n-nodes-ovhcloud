@@ -5,7 +5,7 @@ import {
 	INodeProperties,
 	IDisplayOptions,
 } from 'n8n-workflow';
-import { ApiClient } from '../../shared/transport/ApiClient';
+import { getClient } from '../../shared/transport/ApiClient';
 
 /**
  * @brief Create Renew Order operation for Service resource
@@ -43,7 +43,7 @@ export function description(displayOptions: IDisplayOptions): INodeProperties[] 
  * @returns Array of execution results containing the renew order
  */
 export async function execute(this: IExecuteFunctions, _itemIndex?: number): Promise<INodeExecutionData[]> {
-	const client = new ApiClient(this);
+	const client = getClient(this);
 	const serviceId = this.getNodeParameter('serviceId', _itemIndex ?? 0) as string;
 	const data = (await client.httpPost(`/service/${serviceId}/renew`, { body: {} })) as IDataObject;
 	return this.helpers.returnJsonArray(data);
