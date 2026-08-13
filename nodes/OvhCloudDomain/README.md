@@ -10,6 +10,8 @@ This node provides **119 operations** covering the `/domain` API (v1 + v2), grou
 
 This node requires the **OVH Cloud API** credential (`OvhCloudApi`). Requests are signed with SHA1 and dispatched through `ApiClient`.
 
+> **Optional filters**: The **List tasks related to a managed domain name** operation (`domainNameTaskListGet`) supports optional Filters (search, status, type). See [docs/_shared/filtering.md](../../docs/_shared/filtering.md) for details.
+
 ## Available Operations
 
 ### Root ( /domain )

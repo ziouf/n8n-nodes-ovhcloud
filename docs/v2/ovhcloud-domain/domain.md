@@ -128,6 +128,22 @@ Ces opérations nécessitent un paramètre **Zone Name** (resourceLocator) qui i
 3. Aucun paramètre supplémentaire requis (l'endpoint retourne directement un tableau d'objets `Contact[]`)
 4. Cliquer sur "Execute Node" — la liste des contacts sera disponible en sortie
 
+### Lister les tâches d'un nom de domaine
+
+1. Ajouter le node **OVH Cloud Domain** dans votre workflow n8n
+2. Sélectionner l'opération **List tasks related to a managed domain name** depuis le dropdown Operation
+3. Saisir le **Domain Name**
+4. (Optionnel) Utiliser le bloc **Filters** pour filtrer par fonction, statut ou type
+5. Cliquer sur "Execute Node" — la liste des tâches sera disponible en sortie
+
+#### Filtres optionnels
+
+| n8n parameter          | API query param | Type    | Values                                                   |
+| ---------------------- | --------------- | ------- | -------------------------------------------------------- |
+| `filters.search.value` | `function`      | string  | Partial match (free text)                                |
+| `filters.status.value` | `status`        | options | `cancelled`, `doing`, `done`, `error`, `problem`, `todo` |
+| `filters.type.value`   | `type`          | options | `alldom`, `domain`                                       |
+
 ### Récupérer les informations de service d'une zone DNS
 
 1. Ajouter le node **OVH Cloud Domain** dans votre workflow n8n
