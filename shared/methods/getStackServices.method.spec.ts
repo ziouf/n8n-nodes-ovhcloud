@@ -1,52 +1,46 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import { getStackServices } from './getStackServices.method';
+import { createMockApiClient } from '../../tests/helpers/mockClient';
+import { clearListSearchCache } from './listSearch';
 
-jest.mock('../transport/ApiClient', () => {
-	const mockHttpClient = {
-		httpGet: jest.fn(),
-		httpPost: jest.fn(),
-	};
-	return {
-		ApiClient: jest.fn().mockImplementation(() => mockHttpClient),
-	};
-});
+const mockClient = createMockApiClient();
 
-import { ApiClient } from '../transport/ApiClient';
+jest.mock('../transport/ApiClient', () => ({
+	ApiClient: jest.fn(() => mockClient),
+	getClient: jest.fn(() => mockClient),
+}));
 
 describe('getStackServices', () => {
 	let mockLoadOptionsFunctions: any;
 
 	beforeEach(() => {
+		clearListSearchCache();
 		mockLoadOptionsFunctions = {
 			getParentNodeParameter: jest.fn(),
 			getWorkflowStaticData: jest.fn(),
 		};
 	});
 
-	it('should return Stack MIS service names as name-value pairs', async () => {
-		const mockData = ['mis-12345', 'mis-67890'];
-		const mockClient = (ApiClient as any)();
-		(mockClient.httpGet as jest.Mock).mockResolvedValue(mockData);
+	it('should return stack service names as name-value pairs', async () => {
+		mockClient.paginate.mockResolvedValue(['stack-1', 'stack-2']);
 
 		const result = await getStackServices.call(mockLoadOptionsFunctions);
 
-		expect(mockClient.httpGet).toHaveBeenCalledWith('/stack/mis');
+		expect(mockClient.paginate).toHaveBeenCalledWith('/stack/mis', expect.any(Object));
 		expect(result).toEqual({
 			results: [
-				{ name: 'mis-12345', value: 'mis-12345' },
-				{ name: 'mis-67890', value: 'mis-67890' },
+				{ name: 'stack-1', value: 'stack-1' },
+				{ name: 'stack-2', value: 'stack-2' },
 			],
 		});
 	});
 
 	it('should return empty results for empty data', async () => {
-		const mockData: string[] = [];
-		const mockClient = (ApiClient as any)();
-		(mockClient.httpGet as jest.Mock).mockResolvedValue(mockData);
+		mockClient.paginate.mockResolvedValue([]);
 
 		const result = await getStackServices.call(mockLoadOptionsFunctions);
 
-		expect(mockClient.httpGet).toHaveBeenCalledWith('/stack/mis');
+		expect(mockClient.paginate).toHaveBeenCalledWith('/stack/mis', expect.any(Object));
 		expect(result).toEqual({ results: [] });
 	});
 });

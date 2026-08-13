@@ -1,52 +1,46 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import { getMetricsServices } from './getMetricsServices.method';
+import { createMockApiClient } from '../../tests/helpers/mockClient';
+import { clearListSearchCache } from './listSearch';
 
-jest.mock('../transport/ApiClient', () => {
-	const mockHttpClient = {
-		httpGet: jest.fn(),
-		httpPost: jest.fn(),
-	};
-	return {
-		ApiClient: jest.fn().mockImplementation(() => mockHttpClient),
-	};
-});
+const mockClient = createMockApiClient();
 
-import { ApiClient } from '../transport/ApiClient';
+jest.mock('../transport/ApiClient', () => ({
+	ApiClient: jest.fn(() => mockClient),
+	getClient: jest.fn(() => mockClient),
+}));
 
 describe('getMetricsServices', () => {
 	let mockLoadOptionsFunctions: any;
 
 	beforeEach(() => {
+		clearListSearchCache();
 		mockLoadOptionsFunctions = {
 			getParentNodeParameter: jest.fn(),
 			getWorkflowStaticData: jest.fn(),
 		};
 	});
 
-	it('should return Metrics service names as name-value pairs', async () => {
-		const mockData = ['metrics-12345', 'metrics-67890'];
-		const mockClient = (ApiClient as any)();
-		(mockClient.httpGet as jest.Mock).mockResolvedValue(mockData);
+	it('should return metrics service names as name-value pairs', async () => {
+		mockClient.paginate.mockResolvedValue(['metric-1', 'metric-2']);
 
 		const result = await getMetricsServices.call(mockLoadOptionsFunctions);
 
-		expect(mockClient.httpGet).toHaveBeenCalledWith('/metrics');
+		expect(mockClient.paginate).toHaveBeenCalledWith('/metrics', expect.any(Object));
 		expect(result).toEqual({
 			results: [
-				{ name: 'metrics-12345', value: 'metrics-12345' },
-				{ name: 'metrics-67890', value: 'metrics-67890' },
+				{ name: 'metric-1', value: 'metric-1' },
+				{ name: 'metric-2', value: 'metric-2' },
 			],
 		});
 	});
 
 	it('should return empty results for empty data', async () => {
-		const mockData: string[] = [];
-		const mockClient = (ApiClient as any)();
-		(mockClient.httpGet as jest.Mock).mockResolvedValue(mockData);
+		mockClient.paginate.mockResolvedValue([]);
 
 		const result = await getMetricsServices.call(mockLoadOptionsFunctions);
 
-		expect(mockClient.httpGet).toHaveBeenCalledWith('/metrics');
+		expect(mockClient.paginate).toHaveBeenCalledWith('/metrics', expect.any(Object));
 		expect(result).toEqual({ results: [] });
 	});
 });

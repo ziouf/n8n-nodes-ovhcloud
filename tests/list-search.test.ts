@@ -5,17 +5,14 @@ import {
 	buildListSearchResults,
 	clearListSearchCache,
 } from '../shared/methods/listSearch';
+import { createMockApiClient } from './helpers/mockClient';
 
-jest.mock('../shared/transport/ApiClient', () => {
-	const mockHttpClient = {
-		httpGet: jest.fn(),
-		paginate: jest.fn(),
-		getCredentialScope: jest.fn().mockResolvedValue('scope-default'),
-	};
-	return { ApiClient: jest.fn().mockImplementation(() => mockHttpClient) };
-});
+const mockClient = createMockApiClient();
 
-import { ApiClient } from '../shared/transport/ApiClient';
+jest.mock('../shared/transport/ApiClient', () => ({
+	ApiClient: jest.fn(() => mockClient),
+	getClient: jest.fn(() => mockClient),
+}));
 
 describe('createServiceListSearch', () => {
 	let mockLoadOptionsFunctions: any;
@@ -29,8 +26,7 @@ describe('createServiceListSearch', () => {
 	// Test 1: Pagination — first page, not truncated → no cursor
 	it('should paginate and map results with default maxItems', async () => {
 		const loader = createServiceListSearch('/vps');
-		const mockClient = (ApiClient as any)();
-		(mockClient.paginate as jest.Mock).mockResolvedValue(['vps-1', 'vps-2', 'vps-3']);
+		mockClient.paginate.mockResolvedValue(['vps-1', 'vps-2', 'vps-3']);
 
 		const result = await loader.call(mockLoadOptionsFunctions);
 		expect(mockClient.paginate).toHaveBeenCalledWith('/vps', { maxItems: 1001 });
@@ -47,16 +43,8 @@ describe('createServiceListSearch', () => {
 	// Test 2: First page full at maxItems → paginationToken === String(maxItems) (real cursor)
 	it('should return a real paginationToken when first page is full', async () => {
 		const loader = createServiceListSearch('/vps', { maxItems: 5 });
-		const mockClient = (ApiClient as any)();
 		// probe: maxItems + 1 = 6 items returned → truncated
-		(mockClient.paginate as jest.Mock).mockResolvedValue([
-			'vps-1',
-			'vps-2',
-			'vps-3',
-			'vps-4',
-			'vps-5',
-			'vps-6',
-		]);
+		mockClient.paginate.mockResolvedValue(['vps-1', 'vps-2', 'vps-3', 'vps-4', 'vps-5', 'vps-6']);
 
 		const result = await loader.call(mockLoadOptionsFunctions);
 		expect(mockClient.paginate).toHaveBeenCalledWith('/vps', { maxItems: 6 });
@@ -67,8 +55,7 @@ describe('createServiceListSearch', () => {
 	// Test 3: Custom maxItems
 	it('should use custom maxItems from options', async () => {
 		const loader = createServiceListSearch('/vps', { maxItems: 10 });
-		const mockClient = (ApiClient as any)();
-		(mockClient.paginate as jest.Mock).mockResolvedValue(['vps-1']);
+		mockClient.paginate.mockResolvedValue(['vps-1']);
 
 		await loader.call(mockLoadOptionsFunctions);
 		expect(mockClient.paginate).toHaveBeenCalledWith('/vps', { maxItems: 11 });
@@ -79,8 +66,7 @@ describe('createServiceListSearch', () => {
 		const loader = createServiceListSearch('/support/tickets', {
 			map: (id) => `Ticket #${id}`,
 		});
-		const mockClient = (ApiClient as any)();
-		(mockClient.paginate as jest.Mock).mockResolvedValue(['12', '34']);
+		mockClient.paginate.mockResolvedValue(['12', '34']);
 
 		const result = await loader.call(mockLoadOptionsFunctions);
 		expect(result).toEqual({
@@ -94,8 +80,7 @@ describe('createServiceListSearch', () => {
 	// Test 5: Client-side filtering (substring case-insensitive)
 	it('should filter results by filter text (substring, case-insensitive)', async () => {
 		const loader = createServiceListSearch('/vps');
-		const mockClient = (ApiClient as any)();
-		(mockClient.paginate as jest.Mock).mockResolvedValue(['vps-1', 'vps-9', 'vps-99']);
+		mockClient.paginate.mockResolvedValue(['vps-1', 'vps-9', 'vps-99']);
 		mockLoadOptionsFunctions.getNodeParameter = jest.fn().mockReturnValue('vps-9');
 
 		const result = await loader.call(mockLoadOptionsFunctions);
@@ -107,8 +92,7 @@ describe('createServiceListSearch', () => {
 	// Test 6: Case-insensitive filter
 	it('should perform case-insensitive filtering', async () => {
 		const loader = createServiceListSearch('/vps');
-		const mockClient = (ApiClient as any)();
-		(mockClient.paginate as jest.Mock).mockResolvedValue(['vps-1']);
+		mockClient.paginate.mockResolvedValue(['vps-1']);
 		mockLoadOptionsFunctions.getNodeParameter = jest.fn().mockReturnValue('VPS');
 
 		const result = await loader.call(mockLoadOptionsFunctions);
@@ -119,8 +103,7 @@ describe('createServiceListSearch', () => {
 	// Test 7: Filter absent / getNodeParameter throws
 	it('should return all results when filter parameter throws', async () => {
 		const loader = createServiceListSearch('/vps');
-		const mockClient = (ApiClient as any)();
-		(mockClient.paginate as jest.Mock).mockResolvedValue(['vps-1', 'vps-2']);
+		mockClient.paginate.mockResolvedValue(['vps-1', 'vps-2']);
 		mockLoadOptionsFunctions.getNodeParameter = jest.fn().mockImplementation(() => {
 			throw new Error('Parameter not found');
 		});
@@ -136,8 +119,7 @@ describe('createServiceListSearch', () => {
 	// Test 8: Passed filter arg takes precedence over node-param filter
 	it('should use passed filter arg when provided', async () => {
 		const loader = createServiceListSearch('/vps');
-		const mockClient = (ApiClient as any)();
-		(mockClient.paginate as jest.Mock).mockResolvedValue(['vps-1', 'vps-2', 'vps-9']);
+		mockClient.paginate.mockResolvedValue(['vps-1', 'vps-2', 'vps-9']);
 		// Node param says 'vps-1' but passed filter is 'vps-9'
 		mockLoadOptionsFunctions.getNodeParameter = jest.fn().mockReturnValue('vps-1');
 
@@ -149,9 +131,8 @@ describe('createServiceListSearch', () => {
 	// Test 9: Short/last page → no paginationToken
 	it('should not return paginationToken on short last page', async () => {
 		const loader = createServiceListSearch('/vps', { maxItems: 5 });
-		const mockClient = (ApiClient as any)();
 		// Only 3 items returned — not full, so no cursor
-		(mockClient.paginate as jest.Mock).mockResolvedValue(['vps-1', 'vps-2', 'vps-3']);
+		mockClient.paginate.mockResolvedValue(['vps-1', 'vps-2', 'vps-3']);
 
 		const result = await loader.call(mockLoadOptionsFunctions);
 		expect(result.paginationToken).toBeUndefined();
@@ -160,9 +141,8 @@ describe('createServiceListSearch', () => {
 	// Test 10: Loader called with paginationToken → paginate called with offset
 	it('should call paginate with offset when paginationToken is provided', async () => {
 		const loader = createServiceListSearch('/vps', { maxItems: 5 });
-		const mockClient = (ApiClient as any)();
 		// Page at offset 5: 3 items (not full)
-		(mockClient.paginate as jest.Mock).mockResolvedValue(['vps-6', 'vps-7', 'vps-8']);
+		mockClient.paginate.mockResolvedValue(['vps-6', 'vps-7', 'vps-8']);
 
 		const result = await loader.call(mockLoadOptionsFunctions, '', '5');
 		expect(mockClient.paginate).toHaveBeenCalledWith('/vps', { maxItems: 5, offset: 5 });
@@ -174,15 +154,8 @@ describe('createServiceListSearch', () => {
 	// Test 11: Full page with paginationToken → next cursor returned
 	it('should return next paginationToken when paginated page is full', async () => {
 		const loader = createServiceListSearch('/vps', { maxItems: 5 });
-		const mockClient = (ApiClient as any)();
 		// Page at offset 5: exactly 5 items (full)
-		(mockClient.paginate as jest.Mock).mockResolvedValue([
-			'vps-6',
-			'vps-7',
-			'vps-8',
-			'vps-9',
-			'vps-10',
-		]);
+		mockClient.paginate.mockResolvedValue(['vps-6', 'vps-7', 'vps-8', 'vps-9', 'vps-10']);
 
 		const result = await loader.call(mockLoadOptionsFunctions, '', '5');
 		expect(mockClient.paginate).toHaveBeenCalledWith('/vps', { maxItems: 5, offset: 5 });
@@ -192,17 +165,16 @@ describe('createServiceListSearch', () => {
 	// Test 12: Round-trip cursor from truncated first page
 	it('should round-trip: String(maxItems) from truncated first page fetches next page', async () => {
 		const loader = createServiceListSearch('/vps', { maxItems: 3 });
-		const mockClient = (ApiClient as any)();
 
 		// First call: probe returns 4 items → truncated → cursor = '3'
-		(mockClient.paginate as jest.Mock).mockResolvedValueOnce(['vps-1', 'vps-2', 'vps-3', 'vps-4']);
+		mockClient.paginate.mockResolvedValueOnce(['vps-1', 'vps-2', 'vps-3', 'vps-4']);
 
 		const firstResult = await loader.call(mockLoadOptionsFunctions);
 		expect(firstResult.results).toHaveLength(3);
 		expect(firstResult.paginationToken).toBe('3');
 
 		// Second call with cursor '3': fetch offset 3, maxItems 3
-		(mockClient.paginate as jest.Mock).mockResolvedValueOnce(['vps-4', 'vps-5']);
+		mockClient.paginate.mockResolvedValueOnce(['vps-4', 'vps-5']);
 
 		const secondResult = await loader.call(mockLoadOptionsFunctions, '', '3');
 		expect(mockClient.paginate).toHaveBeenNthCalledWith(2, '/vps', { maxItems: 3, offset: 3 });
@@ -213,9 +185,8 @@ describe('createServiceListSearch', () => {
 	// Test 13: NaN cursor defaults to offset 0
 	it('should treat NaN paginationToken as offset 0', async () => {
 		const loader = createServiceListSearch('/vps', { maxItems: 5 });
-		const mockClient = (ApiClient as any)();
 		// NaN token goes through pagination branch (no +1 probe), offset 0
-		(mockClient.paginate as jest.Mock).mockResolvedValue(['vps-1']);
+		mockClient.paginate.mockResolvedValue(['vps-1']);
 
 		await loader.call(mockLoadOptionsFunctions, '', 'not-a-number');
 		expect(mockClient.paginate).toHaveBeenCalledWith('/vps', { maxItems: 5, offset: 0 });
@@ -235,8 +206,7 @@ describe('createProjectScopedServiceListSearch', () => {
 			'publicCloudProjectId',
 			{ maxItems: 5 },
 		);
-		const mockClient = (ApiClient as any)();
-		(mockClient.paginate as jest.Mock).mockResolvedValue(['vol-1']);
+		mockClient.paginate.mockResolvedValue(['vol-1']);
 
 		const mockCtx = {
 			getNodeParameter: jest.fn().mockImplementation((key: string) => {
@@ -260,8 +230,7 @@ describe('createProjectScopedServiceListSearch', () => {
 			(p) => `/publicCloud/project/${p}/blockStorage/volume`,
 			'publicCloudProjectId',
 		);
-		const mockClient = (ApiClient as any)();
-		(mockClient.paginate as jest.Mock).mockResolvedValue(['vol-1']);
+		mockClient.paginate.mockResolvedValue(['vol-1']);
 
 		const mockCtx = {
 			getNodeParameter: jest.fn().mockImplementation((key: string) => {
@@ -285,8 +254,7 @@ describe('createProjectScopedServiceListSearch', () => {
 			'publicCloudProjectId',
 			{ maxItems: 5 },
 		);
-		const mockClient = (ApiClient as any)();
-		(mockClient.paginate as jest.Mock).mockResolvedValue(['vol-6', 'vol-7']);
+		mockClient.paginate.mockResolvedValue(['vol-6', 'vol-7']);
 
 		const mockCtx = {
 			getNodeParameter: jest.fn().mockImplementation((key: string) => {
@@ -309,8 +277,7 @@ describe('createProjectScopedServiceListSearch', () => {
 			(p) => `/publicCloud/project/${p}/blockStorage/volume`,
 			'publicCloudProjectId',
 		);
-		const mockClient = (ApiClient as any)();
-		(mockClient.paginate as jest.Mock).mockResolvedValue(['vol-1', 'vol-a', 'vol-b']);
+		mockClient.paginate.mockResolvedValue(['vol-1', 'vol-a', 'vol-b']);
 
 		const mockCtx = {
 			getNodeParameter: jest.fn().mockImplementation((key: string) => {
@@ -341,8 +308,7 @@ describe('filterProperty', () => {
 			map: (id) => `Ticket #${id}`,
 			filterProperty: 'name',
 		});
-		const mockClient = (ApiClient as any)();
-		(mockClient.paginate as jest.Mock).mockResolvedValue(['12', '34', '56']);
+		mockClient.paginate.mockResolvedValue(['12', '34', '56']);
 		mockLoadOptionsFunctions.getNodeParameter = jest.fn().mockReturnValue('34');
 
 		const result = await loader.call(mockLoadOptionsFunctions);
@@ -354,8 +320,7 @@ describe('filterProperty', () => {
 		const loader = createServiceListSearch('/vps', {
 			filterProperty: 'value',
 		});
-		const mockClient = (ApiClient as any)();
-		(mockClient.paginate as jest.Mock).mockResolvedValue(['vps-1', 'vps-2', 'cd-99']);
+		mockClient.paginate.mockResolvedValue(['vps-1', 'vps-2', 'cd-99']);
 		mockLoadOptionsFunctions.getNodeParameter = jest.fn().mockReturnValue('cd-99');
 
 		const result = await loader.call(mockLoadOptionsFunctions);
@@ -476,11 +441,8 @@ describe('cache isolation by credential scope', () => {
 
 	it('same route, two scopes → paginate called twice (no cross-scope hit)', async () => {
 		const loader = createServiceListSearch('/vps');
-		const mockClient = (ApiClient as any)();
-		(mockClient.getCredentialScope as jest.Mock)
-			.mockResolvedValueOnce('scope-a')
-			.mockResolvedValueOnce('scope-b');
-		(mockClient.paginate as jest.Mock).mockResolvedValue(['vps-1', 'vps-2']);
+		mockClient.getCredentialScope.mockResolvedValueOnce('scope-a').mockResolvedValueOnce('scope-b');
+		mockClient.paginate.mockResolvedValue(['vps-1', 'vps-2']);
 
 		// First call with scope-a
 		await loader.call(mockLoadOptionsFunctions);
@@ -492,9 +454,8 @@ describe('cache isolation by credential scope', () => {
 
 	it('same route + scope twice → cache hit (paginate once)', async () => {
 		const loader = createServiceListSearch('/vps');
-		const mockClient = (ApiClient as any)();
-		(mockClient.getCredentialScope as jest.Mock).mockResolvedValue('scope-a');
-		(mockClient.paginate as jest.Mock).mockResolvedValue(['vps-1', 'vps-2']);
+		mockClient.getCredentialScope.mockResolvedValue('scope-a');
+		mockClient.paginate.mockResolvedValue(['vps-1', 'vps-2']);
 
 		await loader.call(mockLoadOptionsFunctions);
 		await loader.call(mockLoadOptionsFunctions);
@@ -504,9 +465,8 @@ describe('cache isolation by credential scope', () => {
 
 	it('cacheTtlMs: 1 + short await → refetch after TTL', async () => {
 		const loader = createServiceListSearch('/vps', { cacheTtlMs: 1 });
-		const mockClient = (ApiClient as any)();
-		(mockClient.getCredentialScope as jest.Mock).mockResolvedValue('scope-a');
-		(mockClient.paginate as jest.Mock).mockResolvedValue(['vps-1', 'vps-2']);
+		mockClient.getCredentialScope.mockResolvedValue('scope-a');
+		mockClient.paginate.mockResolvedValue(['vps-1', 'vps-2']);
 
 		await loader.call(mockLoadOptionsFunctions);
 		// Wait for TTL to expire
@@ -518,9 +478,8 @@ describe('cache isolation by credential scope', () => {
 
 	it('clearListSearchCache() forces refetch', async () => {
 		const loader = createServiceListSearch('/vps');
-		const mockClient = (ApiClient as any)();
-		(mockClient.getCredentialScope as jest.Mock).mockResolvedValue('scope-a');
-		(mockClient.paginate as jest.Mock).mockResolvedValue(['vps-1', 'vps-2']);
+		mockClient.getCredentialScope.mockResolvedValue('scope-a');
+		mockClient.paginate.mockResolvedValue(['vps-1', 'vps-2']);
 
 		await loader.call(mockLoadOptionsFunctions);
 		clearListSearchCache();
@@ -531,9 +490,8 @@ describe('cache isolation by credential scope', () => {
 
 	it('cacheTtlMs: 0 disables caching', async () => {
 		const loader = createServiceListSearch('/vps', { cacheTtlMs: 0 });
-		const mockClient = (ApiClient as any)();
-		(mockClient.getCredentialScope as jest.Mock).mockResolvedValue('scope-a');
-		(mockClient.paginate as jest.Mock).mockResolvedValue(['vps-1', 'vps-2']);
+		mockClient.getCredentialScope.mockResolvedValue('scope-a');
+		mockClient.paginate.mockResolvedValue(['vps-1', 'vps-2']);
 
 		await loader.call(mockLoadOptionsFunctions);
 		await loader.call(mockLoadOptionsFunctions);
@@ -553,9 +511,8 @@ describe('cache isolation per (scope, route, offset)', () => {
 
 	it('same (scope, route), different offsets → separate fetches', async () => {
 		const loader = createServiceListSearch('/vps', { maxItems: 5 });
-		const mockClient = (ApiClient as any)();
-		(mockClient.getCredentialScope as jest.Mock).mockResolvedValue('scope-a');
-		(mockClient.paginate as jest.Mock).mockResolvedValue(['vps-1', 'vps-2']);
+		mockClient.getCredentialScope.mockResolvedValue('scope-a');
+		mockClient.paginate.mockResolvedValue(['vps-1', 'vps-2']);
 
 		// First call: offset 0 (initial page)
 		await loader.call(mockLoadOptionsFunctions);
@@ -572,9 +529,8 @@ describe('cache isolation per (scope, route, offset)', () => {
 
 	it('same (scope, route, offset) → cache hit', async () => {
 		const loader = createServiceListSearch('/vps', { maxItems: 5 });
-		const mockClient = (ApiClient as any)();
-		(mockClient.getCredentialScope as jest.Mock).mockResolvedValue('scope-a');
-		(mockClient.paginate as jest.Mock).mockResolvedValue(['vps-6', 'vps-7']);
+		mockClient.getCredentialScope.mockResolvedValue('scope-a');
+		mockClient.paginate.mockResolvedValue(['vps-6', 'vps-7']);
 
 		// First call with token '5'
 		await loader.call(mockLoadOptionsFunctions, '', '5');

@@ -9,15 +9,14 @@
  */
 
 import { getServiceIds } from '../shared/methods/getServiceIds.method';
-import { ApiClient } from '../shared/transport/ApiClient';
+import { createMockApiClient } from './helpers/mockClient';
 
-jest.mock('../shared/transport/ApiClient', () => {
-	const mockHttpClient = {
-		httpGet: jest.fn(),
-		paginate: jest.fn(),
-	};
-	return { ApiClient: jest.fn().mockImplementation(() => mockHttpClient) };
-});
+const mockClient = createMockApiClient();
+
+jest.mock('../shared/transport/ApiClient', () => ({
+	ApiClient: jest.fn(() => mockClient),
+	getClient: jest.fn(() => mockClient),
+}));
 
 describe('getServiceIds', () => {
 	let mockLoadOptionsFunctions: any;
@@ -31,10 +30,9 @@ describe('getServiceIds', () => {
 
 	// Test 1: Basic usage — svcType as plain string, no filter
 	it('should call paginate with routes query param and map results', async () => {
-		const mockClient = (ApiClient as any)();
 		mockClient.paginate.mockResolvedValue(['vps123', 'vps456']);
 		mockLoadOptionsFunctions.getNodeParameter = jest.fn(
-			(key: string, _index: number, opts?: any) => {
+			(key: string, _index: number, opts?: Record<string, unknown>) => {
 				if (key === 'svcType') {
 					return opts?.extractValue ? 'vps123' : '/vps';
 				}
@@ -58,10 +56,9 @@ describe('getServiceIds', () => {
 
 	// Test 2: With client-side filter
 	it('should filter results when filter text is provided', async () => {
-		const mockClient = (ApiClient as any)();
 		mockClient.paginate.mockResolvedValue(['vps123', 'vps456', 'host-789']);
 		mockLoadOptionsFunctions.getNodeParameter = jest.fn(
-			(key: string, _index: number, opts?: any) => {
+			(key: string, _index: number, opts?: Record<string, unknown>) => {
 				if (key === 'svcType') {
 					return opts?.extractValue ? 'vps' : '/vps';
 				}
@@ -80,10 +77,9 @@ describe('getServiceIds', () => {
 
 	// Test 3: svcType as { value: 'x' } object (extractValue form)
 	it('should handle svcType as object with value property', async () => {
-		const mockClient = (ApiClient as any)();
 		mockClient.paginate.mockResolvedValue(['host-abc']);
 		mockLoadOptionsFunctions.getNodeParameter = jest.fn(
-			(key: string, _index: number, opts?: any) => {
+			(key: string, _index: number, opts?: Record<string, unknown>) => {
 				if (key === 'svcType') {
 					return opts?.extractValue ? 'hosting/web' : '/hosting/web';
 				}
@@ -101,10 +97,9 @@ describe('getServiceIds', () => {
 
 	// Test 4: Empty results
 	it('should return empty results when paginate returns empty array', async () => {
-		const mockClient = (ApiClient as any)();
 		mockClient.paginate.mockResolvedValue([]);
 		mockLoadOptionsFunctions.getNodeParameter = jest.fn(
-			(key: string, _index: number, opts?: any) => {
+			(key: string, _index: number, opts?: Record<string, unknown>) => {
 				if (key === 'svcType') {
 					return opts?.extractValue ? '/vps' : '/vps';
 				}
@@ -119,10 +114,9 @@ describe('getServiceIds', () => {
 
 	// Test 5: Case-insensitive filter
 	it('should perform case-insensitive filtering', async () => {
-		const mockClient = (ApiClient as any)();
 		mockClient.paginate.mockResolvedValue(['VPS-123']);
 		mockLoadOptionsFunctions.getNodeParameter = jest.fn(
-			(key: string, _index: number, opts?: any) => {
+			(key: string, _index: number, opts?: Record<string, unknown>) => {
 				if (key === 'svcType') {
 					return opts?.extractValue ? '/vps' : '/vps';
 				}

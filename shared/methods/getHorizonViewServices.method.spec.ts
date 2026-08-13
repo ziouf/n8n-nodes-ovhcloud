@@ -1,22 +1,21 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import { getHorizonViewServices } from './getHorizonViewServices.method';
+import { createMockApiClient } from '../../tests/helpers/mockClient';
+import { clearListSearchCache } from './listSearch';
 
-jest.mock('../transport/ApiClient', () => {
-	const mockHttpClient = {
-		httpGet: jest.fn(),
-		httpPost: jest.fn(),
-	};
-	return {
-		ApiClient: jest.fn().mockImplementation(() => mockHttpClient),
-	};
-});
+// Module-level singleton for this test file
+const mockClient = createMockApiClient();
 
-import { ApiClient } from '../transport/ApiClient';
+jest.mock('../transport/ApiClient', () => ({
+	ApiClient: jest.fn(() => mockClient),
+	getClient: jest.fn(() => mockClient),
+}));
 
 describe('getHorizonViewServices', () => {
 	let mockLoadOptionsFunctions: any;
 
 	beforeEach(() => {
+		clearListSearchCache();
 		mockLoadOptionsFunctions = {
 			getParentNodeParameter: jest.fn(),
 			getWorkflowStaticData: jest.fn(),
@@ -24,13 +23,11 @@ describe('getHorizonViewServices', () => {
 	});
 
 	it('should return Horizon View service names as name-value pairs', async () => {
-		const mockData = ['service1', 'service2'];
-		const mockClient = (ApiClient as any)();
-		(mockClient.httpGet as jest.Mock).mockResolvedValue(mockData);
+		mockClient.paginate.mockResolvedValue(['service1', 'service2']);
 
 		const result = await getHorizonViewServices.call(mockLoadOptionsFunctions);
 
-		expect(mockClient.httpGet).toHaveBeenCalledWith('/horizonView');
+		expect(mockClient.paginate).toHaveBeenCalledWith('/horizonView', expect.any(Object));
 		expect(result).toEqual({
 			results: [
 				{ name: 'service1', value: 'service1' },
@@ -40,13 +37,11 @@ describe('getHorizonViewServices', () => {
 	});
 
 	it('should return empty results for empty data', async () => {
-		const mockData: string[] = [];
-		const mockClient = (ApiClient as any)();
-		(mockClient.httpGet as jest.Mock).mockResolvedValue(mockData);
+		mockClient.paginate.mockResolvedValue([]);
 
 		const result = await getHorizonViewServices.call(mockLoadOptionsFunctions);
 
-		expect(mockClient.httpGet).toHaveBeenCalledWith('/horizonView');
+		expect(mockClient.paginate).toHaveBeenCalledWith('/horizonView', expect.any(Object));
 		expect(result).toEqual({ results: [] });
 	});
 });

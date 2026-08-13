@@ -10,15 +10,15 @@
  * - Results are returned in order
  */
 
-jest.mock('../shared/transport/ApiClient', () => {
-	const mockHttpClient = {
-		httpGet: jest.fn(),
-		paginateResources: jest.fn(),
-	};
-	return { ApiClient: jest.fn().mockImplementation(() => mockHttpClient) };
-});
+import { createMockApiClient } from './helpers/mockClient';
 
-import { ApiClient } from '../shared/transport/ApiClient';
+const mockClient = createMockApiClient();
+
+jest.mock('../shared/transport/ApiClient', () => ({
+	ApiClient: jest.fn(() => mockClient),
+	getClient: jest.fn(() => mockClient),
+}));
+
 import {
 	executeListBillDebtOperations,
 	executeListBills,
@@ -34,11 +34,9 @@ import {
 
 describe('Billing list operations', () => {
 	let mockExecuteFunctions: any;
-	let mockClient: any;
 
 	beforeEach(() => {
 		jest.clearAllMocks();
-		mockClient = (ApiClient as any)();
 		mockExecuteFunctions = {
 			getNodeParameter: jest.fn(),
 			helpers: { returnJsonArray: jest.fn((data: unknown[]) => data) },

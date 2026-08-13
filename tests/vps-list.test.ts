@@ -9,25 +9,22 @@
  * - execute() with returnFullObjects undefined falls back to httpGet (default)
  */
 
-jest.mock('../shared/transport/ApiClient', () => {
-	const mockHttpClient = {
-		httpGet: jest.fn(),
-		paginateResources: jest.fn(),
-	};
-	return { ApiClient: jest.fn().mockImplementation(() => mockHttpClient) };
-});
+import { createMockApiClient } from './helpers/mockClient';
 
-import { ApiClient } from '../shared/transport/ApiClient';
+const mockClient = createMockApiClient();
+
+jest.mock('../shared/transport/ApiClient', () => ({
+	ApiClient: jest.fn(() => mockClient),
+	getClient: jest.fn(() => mockClient),
+}));
+
 import { description, execute } from '../nodes/OvhCloudVps/list.operation';
 
 describe('VPS List operation', () => {
 	let mockExecuteFunctions: any;
-	let mockClient: any;
 
 	beforeEach(() => {
 		jest.clearAllMocks();
-		// The mock constructor returns the shared mockHttpClient object
-		mockClient = (ApiClient as any)();
 		mockExecuteFunctions = {
 			getNodeParameter: jest.fn(),
 			helpers: { returnJsonArray: jest.fn((data: unknown[]) => data) },

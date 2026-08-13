@@ -1,52 +1,46 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import { getClusterHadoopServices } from './getClusterHadoopServices.method';
+import { createMockApiClient } from '../../tests/helpers/mockClient';
+import { clearListSearchCache } from './listSearch';
 
-jest.mock('../transport/ApiClient', () => {
-	const mockHttpClient = {
-		httpGet: jest.fn(),
-		httpPost: jest.fn(),
-	};
-	return {
-		ApiClient: jest.fn().mockImplementation(() => mockHttpClient),
-	};
-});
+const mockClient = createMockApiClient();
 
-import { ApiClient } from '../transport/ApiClient';
+jest.mock('../transport/ApiClient', () => ({
+	ApiClient: jest.fn(() => mockClient),
+	getClient: jest.fn(() => mockClient),
+}));
 
 describe('getClusterHadoopServices', () => {
 	let mockLoadOptionsFunctions: any;
 
 	beforeEach(() => {
+		clearListSearchCache();
 		mockLoadOptionsFunctions = {
 			getParentNodeParameter: jest.fn(),
 			getWorkflowStaticData: jest.fn(),
 		};
 	});
 
-	it('should return Cluster Hadoop service names as name-value pairs', async () => {
-		const mockData = ['cluster-12345', 'cluster-67890'];
-		const mockClient = (ApiClient as any)();
-		(mockClient.httpGet as jest.Mock).mockResolvedValue(mockData);
+	it('should return Hadoop cluster service names as name-value pairs', async () => {
+		mockClient.paginate.mockResolvedValue(['cluster-1', 'cluster-2']);
 
 		const result = await getClusterHadoopServices.call(mockLoadOptionsFunctions);
 
-		expect(mockClient.httpGet).toHaveBeenCalledWith('/cluster/hadoop');
+		expect(mockClient.paginate).toHaveBeenCalledWith('/cluster/hadoop', expect.any(Object));
 		expect(result).toEqual({
 			results: [
-				{ name: 'cluster-12345', value: 'cluster-12345' },
-				{ name: 'cluster-67890', value: 'cluster-67890' },
+				{ name: 'cluster-1', value: 'cluster-1' },
+				{ name: 'cluster-2', value: 'cluster-2' },
 			],
 		});
 	});
 
 	it('should return empty results for empty data', async () => {
-		const mockData: string[] = [];
-		const mockClient = (ApiClient as any)();
-		(mockClient.httpGet as jest.Mock).mockResolvedValue(mockData);
+		mockClient.paginate.mockResolvedValue([]);
 
 		const result = await getClusterHadoopServices.call(mockLoadOptionsFunctions);
 
-		expect(mockClient.httpGet).toHaveBeenCalledWith('/cluster/hadoop');
+		expect(mockClient.paginate).toHaveBeenCalledWith('/cluster/hadoop', expect.any(Object));
 		expect(result).toEqual({ results: [] });
 	});
 });

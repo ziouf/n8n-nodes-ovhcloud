@@ -1,53 +1,46 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import { getOvhCloudConnectServices } from './getOvhCloudConnectServices.method';
+import { createMockApiClient } from '../../tests/helpers/mockClient';
+import { clearListSearchCache } from './listSearch';
 
-// Mock ApiClient - no parameter needed since it's not used in the mock
-jest.mock('../transport/ApiClient', () => {
-	const mockHttpClient = {
-		httpGet: jest.fn(),
-		httpPost: jest.fn(),
-	};
-	return {
-		ApiClient: jest.fn().mockImplementation(() => mockHttpClient),
-	};
-});
+const mockClient = createMockApiClient();
 
-import { ApiClient } from '../transport/ApiClient';
+jest.mock('../transport/ApiClient', () => ({
+	ApiClient: jest.fn(() => mockClient),
+	getClient: jest.fn(() => mockClient),
+}));
 
 describe('getOvhCloudConnectServices', () => {
 	let mockLoadOptionsFunctions: any;
 
 	beforeEach(() => {
+		clearListSearchCache();
 		mockLoadOptionsFunctions = {
 			getParentNodeParameter: jest.fn(),
 			getWorkflowStaticData: jest.fn(),
 		};
 	});
 
-	it('should return OvhCloudConnect service names as name-value pairs', async () => {
-		const mockData = ['ovhcloudconnect-12345', 'ovhcloudconnect-12345-2'];
-		const mockClient = (ApiClient as any)();
-		(mockClient.httpGet as jest.Mock).mockResolvedValue(mockData);
+	it('should return OVH Cloud Connect service names as name-value pairs', async () => {
+		mockClient.paginate.mockResolvedValue(['cloud-connect-1', 'cloud-connect-2']);
 
 		const result = await getOvhCloudConnectServices.call(mockLoadOptionsFunctions);
 
-		expect(mockClient.httpGet).toHaveBeenCalledWith('/ovhCloudConnect');
+		expect(mockClient.paginate).toHaveBeenCalledWith('/ovhCloudConnect', expect.any(Object));
 		expect(result).toEqual({
 			results: [
-				{ name: 'ovhcloudconnect-12345', value: 'ovhcloudconnect-12345' },
-				{ name: 'ovhcloudconnect-12345-2', value: 'ovhcloudconnect-12345-2' },
+				{ name: 'cloud-connect-1', value: 'cloud-connect-1' },
+				{ name: 'cloud-connect-2', value: 'cloud-connect-2' },
 			],
 		});
 	});
 
 	it('should return empty results for empty data', async () => {
-		const mockData: string[] = [];
-		const mockClient = (ApiClient as any)();
-		(mockClient.httpGet as jest.Mock).mockResolvedValue(mockData);
+		mockClient.paginate.mockResolvedValue([]);
 
 		const result = await getOvhCloudConnectServices.call(mockLoadOptionsFunctions);
 
-		expect(mockClient.httpGet).toHaveBeenCalledWith('/ovhCloudConnect');
+		expect(mockClient.paginate).toHaveBeenCalledWith('/ovhCloudConnect', expect.any(Object));
 		expect(result).toEqual({ results: [] });
 	});
 });

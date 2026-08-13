@@ -1,23 +1,20 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import { getFreefaxServices } from './getFreefaxServices.method';
+import { createMockApiClient } from '../../tests/helpers/mockClient';
+import { clearListSearchCache } from './listSearch';
 
-// Mock ApiClient - no parameter needed since it's not used in the mock
-jest.mock('../transport/ApiClient', () => {
-	const mockHttpClient = {
-		httpGet: jest.fn(),
-		httpPost: jest.fn(),
-	};
-	return {
-		ApiClient: jest.fn().mockImplementation(() => mockHttpClient),
-	};
-});
+const mockClient = createMockApiClient();
 
-import { ApiClient } from '../transport/ApiClient';
+jest.mock('../transport/ApiClient', () => ({
+	ApiClient: jest.fn(() => mockClient),
+	getClient: jest.fn(() => mockClient),
+}));
 
 describe('getFreefaxServices', () => {
 	let mockLoadOptionsFunctions: any;
 
 	beforeEach(() => {
+		clearListSearchCache();
 		mockLoadOptionsFunctions = {
 			getParentNodeParameter: jest.fn(),
 			getWorkflowStaticData: jest.fn(),
@@ -25,29 +22,25 @@ describe('getFreefaxServices', () => {
 	});
 
 	it('should return Freefax service names as name-value pairs', async () => {
-		const mockData = ['fr12345-ovh', 'fr67890-ovh'];
-		const mockClient = (ApiClient as any)();
-		(mockClient.httpGet as jest.Mock).mockResolvedValue(mockData);
+		mockClient.paginate.mockResolvedValue(['freefax-1', 'freefax-2']);
 
 		const result = await getFreefaxServices.call(mockLoadOptionsFunctions);
 
-		expect(mockClient.httpGet).toHaveBeenCalledWith('/freefax');
+		expect(mockClient.paginate).toHaveBeenCalledWith('/freefax', expect.any(Object));
 		expect(result).toEqual({
 			results: [
-				{ name: 'fr12345-ovh', value: 'fr12345-ovh' },
-				{ name: 'fr67890-ovh', value: 'fr67890-ovh' },
+				{ name: 'freefax-1', value: 'freefax-1' },
+				{ name: 'freefax-2', value: 'freefax-2' },
 			],
 		});
 	});
 
 	it('should return empty results for empty data', async () => {
-		const mockData: string[] = [];
-		const mockClient = (ApiClient as any)();
-		(mockClient.httpGet as jest.Mock).mockResolvedValue(mockData);
+		mockClient.paginate.mockClear().mockResolvedValue([]);
 
 		const result = await getFreefaxServices.call(mockLoadOptionsFunctions);
 
-		expect(mockClient.httpGet).toHaveBeenCalledWith('/freefax');
+		expect(mockClient.paginate).toHaveBeenCalledWith('/freefax', expect.any(Object));
 		expect(result).toEqual({ results: [] });
 	});
 });

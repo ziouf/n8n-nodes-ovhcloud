@@ -1,36 +1,32 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import { getWorkLightLicenses } from './getWorkLightLicenses.method';
+import { createMockApiClient } from '../../tests/helpers/mockClient';
+import { clearListSearchCache } from './listSearch';
 
-jest.mock('../transport/ApiClient', () => {
-	const mockHttpClient = {
-		httpGet: jest.fn(),
-		httpPost: jest.fn(),
-	};
-	return {
-		ApiClient: jest.fn().mockImplementation(() => mockHttpClient),
-	};
-});
+const mockClient = createMockApiClient();
 
-import { ApiClient } from '../transport/ApiClient';
+jest.mock('../transport/ApiClient', () => ({
+	ApiClient: jest.fn(() => mockClient),
+	getClient: jest.fn(() => mockClient),
+}));
 
 describe('getWorkLightLicenses', () => {
 	let mockLoadOptionsFunctions: any;
 
 	beforeEach(() => {
+		clearListSearchCache();
 		mockLoadOptionsFunctions = {
 			getParentNodeParameter: jest.fn(),
 			getWorkflowStaticData: jest.fn(),
 		};
 	});
 
-	it('should return WorkLight license service names as name-value pairs', async () => {
-		const mockData = ['license-1', 'license-2'];
-		const mockClient = (ApiClient as any)();
-		(mockClient.httpGet as jest.Mock).mockResolvedValue(mockData);
+	it('should return Work Light license names as name-value pairs', async () => {
+		mockClient.paginate.mockResolvedValue(['license-1', 'license-2']);
 
 		const result = await getWorkLightLicenses.call(mockLoadOptionsFunctions);
 
-		expect(mockClient.httpGet).toHaveBeenCalledWith('/license/worklight');
+		expect(mockClient.paginate).toHaveBeenCalledWith('/license/worklight', expect.any(Object));
 		expect(result).toEqual({
 			results: [
 				{ name: 'license-1', value: 'license-1' },
@@ -40,13 +36,11 @@ describe('getWorkLightLicenses', () => {
 	});
 
 	it('should return empty results for empty data', async () => {
-		const mockData: string[] = [];
-		const mockClient = (ApiClient as any)();
-		(mockClient.httpGet as jest.Mock).mockResolvedValue(mockData);
+		mockClient.paginate.mockResolvedValue([]);
 
 		const result = await getWorkLightLicenses.call(mockLoadOptionsFunctions);
 
-		expect(mockClient.httpGet).toHaveBeenCalledWith('/license/worklight');
+		expect(mockClient.paginate).toHaveBeenCalledWith('/license/worklight', expect.any(Object));
 		expect(result).toEqual({ results: [] });
 	});
 });
