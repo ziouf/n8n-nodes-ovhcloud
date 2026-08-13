@@ -6,9 +6,10 @@ import type {
 } from 'n8n-workflow';
 import { NodeConnectionTypes } from 'n8n-workflow';
 import { OvhCloudApiSecretName, OvhCloudIcon } from '../../shared/constants';
-import { BaseNode, executeTemplate } from '../../shared/nodes/BaseNode';
+import { BaseNode, executeTemplate, classifyOperation } from '../../shared/nodes';
 import { description, execute } from './index';
 
+import { getDedicatedHousingServices } from '../../shared/methods/getDedicatedHousingServices.method';
 export class OvhCloudDedicatedHousing extends BaseNode implements INodeType {
 	description: INodeTypeDescription = {
 		displayName: 'OVH Cloud Dedicated Housing',
@@ -27,8 +28,17 @@ export class OvhCloudDedicatedHousing extends BaseNode implements INodeType {
 		credentials: [{ name: OvhCloudApiSecretName, required: true }],
 		properties: [...description({})],
 	};
+	methods = { listSearch: { getDedicatedHousingServices } };
 
 	async execute(this: IExecuteFunctions): Promise<INodeExecutionData[][]> {
-		return executeTemplate.call(this, execute);
+		return executeTemplate.call(this, execute, {
+			perItemConcurrency: {
+				classify: (ctx, itemIndex) =>
+					classifyOperation(
+						String(ctx.getNodeParameter('dedicatedHousingOperation', itemIndex, { extractValue: true })),
+					),
+			},
+			errorContext: { resource: 'dedicatedHousing', operationParam: 'dedicatedHousingOperation' },
+		});
 	}
 }

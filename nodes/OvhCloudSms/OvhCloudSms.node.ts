@@ -7,7 +7,7 @@ import type {
 import { NodeConnectionTypes } from 'n8n-workflow';
 import { OvhCloudApiSecretName, OvhCloudIcon } from '../../shared/constants';
 import { description, execute } from './index';
-import { BaseNode, executeTemplate } from '../../shared/nodes/BaseNode';
+import { BaseNode, executeTemplate, classifyOperation } from '../../shared/nodes';
 import { getSmsServices } from '../../shared/methods/getSmsServices.method';
 
 export class OvhCloudSms extends BaseNode implements INodeType {
@@ -30,6 +30,14 @@ export class OvhCloudSms extends BaseNode implements INodeType {
 	methods = { listSearch: { getSmsServices } };
 
 	async execute(this: IExecuteFunctions): Promise<INodeExecutionData[][]> {
-		return executeTemplate.call(this, execute);
+		return executeTemplate.call(this, execute, {
+			perItemConcurrency: {
+				classify: (ctx, itemIndex) =>
+					classifyOperation(
+						String(ctx.getNodeParameter('smsOperation', itemIndex, { extractValue: true })),
+					),
+			},
+			errorContext: { resource: 'sms', operationParam: 'smsOperation' },
+		});
 	}
 }

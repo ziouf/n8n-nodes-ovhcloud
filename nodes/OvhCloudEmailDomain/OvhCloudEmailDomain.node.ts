@@ -7,8 +7,9 @@ import type {
 import { NodeConnectionTypes } from 'n8n-workflow';
 import { OvhCloudApiSecretName, OvhCloudIcon } from '../../shared/constants';
 import { description, execute } from './index';
-import { BaseNode, executeTemplate } from '../../shared/nodes/BaseNode';
+import { BaseNode, executeTemplate, classifyOperation } from '../../shared/nodes';
 
+import { getEmailDomains } from '../../shared/methods/getEmailDomains.method';
 export class OvhCloudEmailDomain extends BaseNode implements INodeType {
 	description: INodeTypeDescription = {
 		displayName: 'OVH Cloud Email Domain',
@@ -25,8 +26,17 @@ export class OvhCloudEmailDomain extends BaseNode implements INodeType {
 		credentials: [{ name: OvhCloudApiSecretName, required: true }],
 		properties: [...description({})],
 	};
+	methods = { listSearch: { getEmailDomains } };
 
 	async execute(this: IExecuteFunctions): Promise<INodeExecutionData[][]> {
-		return executeTemplate.call(this, execute);
+		return executeTemplate.call(this, execute, {
+			perItemConcurrency: {
+				classify: (ctx, itemIndex) =>
+					classifyOperation(
+						String(ctx.getNodeParameter('emailDomainOperation', itemIndex, { extractValue: true })),
+					),
+			},
+			errorContext: { resource: 'emailDomain', operationParam: 'emailDomainOperation' },
+		});
 	}
 }

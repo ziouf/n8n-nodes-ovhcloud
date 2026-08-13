@@ -6,7 +6,7 @@ import type {
 } from 'n8n-workflow';
 import { NodeConnectionTypes } from 'n8n-workflow';
 import { OvhCloudApiSecretName, OvhCloudIcon } from '../../shared/constants';
-import { BaseNode, executeTemplate } from '../../shared/nodes/BaseNode';
+import { BaseNode, executeTemplate, classifyOperation } from '../../shared/nodes';
 import { getOverTheBoxServices } from '../../shared/methods/getOverTheBoxServices.method';
 import { description, execute } from './index';
 
@@ -31,6 +31,14 @@ export class OvhCloudOverTheBox extends BaseNode implements INodeType {
 	methods = { listSearch: { getOverTheBoxServices } };
 
 	async execute(this: IExecuteFunctions): Promise<INodeExecutionData[][]> {
-		return executeTemplate.call(this, execute);
+		return executeTemplate.call(this, execute, {
+			perItemConcurrency: {
+				classify: (ctx, itemIndex) =>
+					classifyOperation(
+						String(ctx.getNodeParameter('overTheBoxOperation', itemIndex, { extractValue: true })),
+					),
+			},
+			errorContext: { resource: 'overthebox', operationParam: 'overTheBoxOperation' },
+		});
 	}
 }

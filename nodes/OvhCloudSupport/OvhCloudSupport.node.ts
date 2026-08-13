@@ -7,8 +7,9 @@ import type {
 import { NodeConnectionTypes } from 'n8n-workflow';
 import { OvhCloudApiSecretName, OvhCloudIcon } from '../../shared/constants';
 import { description, execute } from './index';
-import { BaseNode, executeTemplate } from '../../shared/nodes/BaseNode';
+import { BaseNode, executeTemplate, classifyOperation } from '../../shared/nodes';
 
+import { getSupportTicketServices } from '../../shared/methods/getSupportTicketServices.method';
 export class OvhCloudSupport extends BaseNode implements INodeType {
 	description: INodeTypeDescription = {
 		displayName: 'OVH Cloud Support',
@@ -26,8 +27,17 @@ export class OvhCloudSupport extends BaseNode implements INodeType {
 		credentials: [{ name: OvhCloudApiSecretName, required: true }],
 		properties: [...description({})],
 	};
+	methods = { listSearch: { getSupportTicketServices } };
 
 	async execute(this: IExecuteFunctions): Promise<INodeExecutionData[][]> {
-		return executeTemplate.call(this, execute);
+		return executeTemplate.call(this, execute, {
+			perItemConcurrency: {
+				classify: (ctx, itemIndex) =>
+					classifyOperation(
+						String(ctx.getNodeParameter('ovhCloudSupportTicketOperation', itemIndex, { extractValue: true })),
+					),
+			},
+			errorContext: { resource: 'supportTickets', operationParam: 'ovhCloudSupportTicketOperation' },
+		});
 	}
 }

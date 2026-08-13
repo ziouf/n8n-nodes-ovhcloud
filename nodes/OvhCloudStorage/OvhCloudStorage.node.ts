@@ -8,7 +8,7 @@ import { NodeConnectionTypes } from 'n8n-workflow';
 import { OvhCloudApiSecretName, OvhCloudIcon } from '../../shared/constants';
 import { description, execute } from './index';
 import { getNetAppServices } from '../../shared/methods/getNetAppServices.method';
-import { BaseNode, executeTemplate } from '../../shared/nodes/BaseNode';
+import { BaseNode, executeTemplate, classifyOperation } from '../../shared/nodes';
 
 export class OvhCloudStorage extends BaseNode implements INodeType {
 	description: INodeTypeDescription = {
@@ -38,6 +38,14 @@ export class OvhCloudStorage extends BaseNode implements INodeType {
 	methods = { listSearch: { getNetAppServices } };
 
 	async execute(this: IExecuteFunctions): Promise<INodeExecutionData[][]> {
-		return executeTemplate.call(this, execute);
+		return executeTemplate.call(this, execute, {
+			perItemConcurrency: {
+				classify: (ctx, itemIndex) =>
+					classifyOperation(
+						String(ctx.getNodeParameter('storageOperation', itemIndex, { extractValue: true })),
+					),
+			},
+			errorContext: { resource: 'storageNetapp', operationParam: 'storageOperation' },
+		});
 	}
 }

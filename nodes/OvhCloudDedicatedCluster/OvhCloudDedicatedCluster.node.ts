@@ -6,9 +6,10 @@ import type {
 } from 'n8n-workflow';
 import { NodeConnectionTypes } from 'n8n-workflow';
 import { OvhCloudApiSecretName, OvhCloudIcon } from '../../shared/constants';
-import { BaseNode, executeTemplate } from '../../shared/nodes/BaseNode';
+import { BaseNode, executeTemplate, classifyOperation } from '../../shared/nodes';
 import { description, execute } from './index';
 
+import { getDedicatedClusterServices } from '../../shared/methods/getDedicatedClusterServices.method';
 export class OvhCloudDedicatedCluster extends BaseNode implements INodeType {
 	description: INodeTypeDescription = {
 		displayName: 'OVH Cloud Dedicated Cluster',
@@ -27,8 +28,17 @@ export class OvhCloudDedicatedCluster extends BaseNode implements INodeType {
 		credentials: [{ name: OvhCloudApiSecretName, required: true }],
 		properties: [...description({})],
 	};
+	methods = { listSearch: { getDedicatedClusterServices } };
 
 	async execute(this: IExecuteFunctions): Promise<INodeExecutionData[][]> {
-		return executeTemplate.call(this, execute);
+		return executeTemplate.call(this, execute, {
+			perItemConcurrency: {
+				classify: (ctx, itemIndex) =>
+					classifyOperation(
+						String(ctx.getNodeParameter('dedicatedClusterOperation', itemIndex, { extractValue: true })),
+					),
+			},
+			errorContext: { resource: 'dedicatedCluster', operationParam: 'dedicatedClusterOperation' },
+		});
 	}
 }

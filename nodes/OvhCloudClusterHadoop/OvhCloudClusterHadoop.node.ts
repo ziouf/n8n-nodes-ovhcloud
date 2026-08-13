@@ -7,7 +7,7 @@ import type {
 import { NodeConnectionTypes } from 'n8n-workflow';
 import { OvhCloudApiSecretName, OvhCloudIcon } from '../../shared/constants';
 import { getClusterHadoopServices } from '../../shared/methods/getClusterHadoopServices.method';
-import { BaseNode, executeTemplate } from '../../shared/nodes/BaseNode';
+import { BaseNode, executeTemplate, classifyOperation } from '../../shared/nodes';
 import { description, execute } from './index';
 
 export class OvhCloudClusterHadoop extends BaseNode implements INodeType {
@@ -29,7 +29,15 @@ export class OvhCloudClusterHadoop extends BaseNode implements INodeType {
 	};
 
 	async execute(this: IExecuteFunctions): Promise<INodeExecutionData[][]> {
-		return executeTemplate.call(this, execute);
+		return executeTemplate.call(this, execute, {
+			perItemConcurrency: {
+				classify: (ctx, itemIndex) =>
+					classifyOperation(
+						String(ctx.getNodeParameter('clusterHadoopOperation', itemIndex, { extractValue: true })),
+					),
+			},
+			errorContext: { resource: 'clusterHadoop', operationParam: 'clusterHadoopOperation' },
+		});
 	}
 	methods = { listSearch: { getClusterHadoopServices } };
 }
