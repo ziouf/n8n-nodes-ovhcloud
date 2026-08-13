@@ -22,7 +22,7 @@ describe('domainNameTaskListGet operation', () => {
 	describe('description', () => {
 		it('should return domainName parameter', () => {
 			const result = description({ show: {} });
-			expect(result).toHaveLength(1);
+			expect(result).toHaveLength(2);
 			expect(result[0]).toMatchObject({
 				displayName: 'Domain Name',
 				name: 'domainName',
@@ -30,6 +30,12 @@ describe('domainNameTaskListGet operation', () => {
 				default: '',
 				required: true,
 			});
+		});
+
+		it('should include a filters fixedCollection property', () => {
+			const result = description({ show: {} });
+			expect(result[1].name).toBe('filters');
+			expect(result[1].type).toBe('fixedCollection');
 		});
 	});
 
@@ -47,17 +53,21 @@ describe('domainNameTaskListGet operation', () => {
 			const client = new ApiClient(mockExecuteFunctions) as any;
 			(client.httpGet as jest.Mock).mockResolvedValue(mockData);
 
-			mockExecuteFunctions.getNodeParameter.mockImplementation((param: string): any => {
-				switch (param) {
-					case 'domainName':
-						return 'example.com';
-					default:
-						return '';
-				}
-			});
+			mockExecuteFunctions.getNodeParameter.mockImplementation(
+				(param: string, _idx: number, def?: any): any => {
+					switch (param) {
+						case 'domainName':
+							return 'example.com';
+						case 'filters':
+							return def ?? {};
+						default:
+							return def;
+					}
+				},
+			);
 
 			const result = await execute.call(mockExecuteFunctions, 0);
-			expect(client.httpGet).toHaveBeenCalledWith('/domain/name/example.com/task');
+			expect(client.httpGet).toHaveBeenCalledWith('/domain/name/example.com/task', undefined);
 			expect(result).toMatchObject([mockData]);
 		});
 	});
