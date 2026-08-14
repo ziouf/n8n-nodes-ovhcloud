@@ -5,7 +5,7 @@
  * Verifies that:
  * - description() exposes the returnFullObjects boolean and maxItems number parameters
  * - execute() with returnFullObjects=false calls httpGet (name list)
- * - execute() with returnFullObjects=true calls paginateResources (full objects)
+ * - execute() with returnFullObjects=true calls httpGet for list + details (full objects)
  * - execute() with returnFullObjects undefined falls back to httpGet (default)
  */
 
@@ -33,11 +33,11 @@ describe('VPS List operation', () => {
 
 	// ─── Test 1: description ───────────────────────────────────────────────
 
-	it('description() should return 2 parameters: returnFullObjects and maxItems', () => {
+	it('description() should return 3 parameters: returnFullObjects, maxItems, and filters', () => {
 		const displayOptions = { show: { vpsOperation: ['list'] } };
 		const props = description(displayOptions);
 
-		expect(props).toHaveLength(2);
+		expect(props).toHaveLength(3);
 
 		const toggleParam = props[0];
 		expect(toggleParam.name).toBe('returnFullObjects');
@@ -67,19 +67,22 @@ describe('VPS List operation', () => {
 
 		const result = await execute.call(mockExecuteFunctions);
 
-		expect(mockClient.httpGet).toHaveBeenCalledWith('/vps');
+		expect(mockClient.httpGet).toHaveBeenCalledWith('/vps', undefined);
 		expect(mockClient.paginateResources).not.toHaveBeenCalled();
 		expect(result).toEqual([{ name: 'vps-1' }, { name: 'vps-2' }]);
 	});
 
 	// ─── Test 3: execute with returnFullObjects = true ─────────────────────
 
-	it('execute with returnFullObjects=true should call paginateResources and return full objects', async () => {
+	it('execute with returnFullObjects=true should call httpGet for list and details', async () => {
+		const ids = ['vps-1', 'vps-2'];
 		const fullObjects = [
 			{ name: 'vps-1', state: 'running' },
 			{ name: 'vps-2', state: 'stopped' },
 		];
-		mockClient.paginateResources.mockResolvedValue(fullObjects);
+		mockClient.httpGet.mockResolvedValueOnce(ids);
+		mockClient.httpGet.mockResolvedValueOnce(fullObjects[0]);
+		mockClient.httpGet.mockResolvedValueOnce(fullObjects[1]);
 
 		mockExecuteFunctions.getNodeParameter = jest.fn().mockImplementation((key: string) => {
 			if (key === 'returnFullObjects') return true;
@@ -89,12 +92,9 @@ describe('VPS List operation', () => {
 
 		const result = await execute.call(mockExecuteFunctions);
 
-		expect(mockClient.paginateResources).toHaveBeenCalledWith(
-			'/vps',
-			'/vps/{id}',
-			expect.objectContaining({ maxItems: 1000, onSkipped: expect.any(Function) }),
-		);
-		expect(mockClient.httpGet).not.toHaveBeenCalled();
+		expect(mockClient.httpGet).toHaveBeenCalledWith('/vps', undefined);
+		expect(mockClient.httpGet).toHaveBeenCalledWith('/vps/vps-1');
+		expect(mockClient.httpGet).toHaveBeenCalledWith('/vps/vps-2');
 		expect(result).toEqual(fullObjects);
 	});
 
@@ -112,22 +112,19 @@ describe('VPS List operation', () => {
 
 		const result = await execute.call(mockExecuteFunctions);
 
-		expect(mockClient.httpGet).toHaveBeenCalledWith('/vps');
+		expect(mockClient.httpGet).toHaveBeenCalledWith('/vps', undefined);
 		expect(mockClient.paginateResources).not.toHaveBeenCalled();
 		expect(result).toEqual([{ name: 'vps-1' }, { name: 'vps-2' }]);
 	});
 
 	// ─── Test 5: warning item appended at end when resources are skipped ──
 
-	it('execute with returnFullObjects=true should append warning as last item when onSkipped is called', async () => {
-		const fullObjects = [{ name: 'vps-1', state: 'running' }];
-		mockClient.paginateResources.mockImplementation(async (_listEndpoint, _itemEndpoint, opts) => {
-			// Simulate a skip callback being invoked
-			if (opts?.onSkipped) {
-				opts.onSkipped('vps-2', new Error('Not found'));
-			}
-			return fullObjects;
-		});
+	it('execute with returnFullObjects=true should append warning as last item when fetch fails', async () => {
+		const ids = ['vps-1', 'vps-2'];
+		const fullObject = { name: 'vps-1', state: 'running' };
+		mockClient.httpGet.mockResolvedValueOnce(ids);
+		mockClient.httpGet.mockResolvedValueOnce(fullObject);
+		mockClient.httpGet.mockRejectedValueOnce(new Error('Not found'));
 
 		mockExecuteFunctions.getNodeParameter = jest.fn().mockImplementation((key: string) => {
 			if (key === 'returnFullObjects') return true;
@@ -139,7 +136,7 @@ describe('VPS List operation', () => {
 
 		expect(result).toHaveLength(2);
 
-		// First item should be the clean resource (no warning/skippedIds)
+		// First item should be the clean resource
 		expect(result[0]).toEqual({ name: 'vps-1', state: 'running' });
 		expect(result[0]).not.toHaveProperty('warning');
 		expect(result[0]).not.toHaveProperty('skippedIds');
@@ -156,11 +153,14 @@ describe('VPS List operation', () => {
 	// ─── Test 6: no warning item when no resources are skipped ────────────
 
 	it('execute with returnFullObjects=true should return only resources when nothing is skipped', async () => {
+		const ids = ['vps-1', 'vps-2'];
 		const fullObjects = [
 			{ name: 'vps-1', state: 'running' },
 			{ name: 'vps-2', state: 'stopped' },
 		];
-		mockClient.paginateResources.mockResolvedValue(fullObjects);
+		mockClient.httpGet.mockResolvedValueOnce(ids);
+		mockClient.httpGet.mockResolvedValueOnce(fullObjects[0]);
+		mockClient.httpGet.mockResolvedValueOnce(fullObjects[1]);
 
 		mockExecuteFunctions.getNodeParameter = jest.fn().mockImplementation((key: string) => {
 			if (key === 'returnFullObjects') return true;
@@ -178,5 +178,56 @@ describe('VPS List operation', () => {
 			expect(item).not.toHaveProperty('warning');
 			expect(item).not.toHaveProperty('skippedIds');
 		}
+	});
+
+	// ─── Test 7: maxItems cap applied client-side ─────────────────────────
+
+	it('execute with returnFullObjects=true should cap results to maxItems', async () => {
+		const ids = ['vps-1', 'vps-2', 'vps-3', 'vps-4', 'vps-5'];
+		const fullObjects = [
+			{ name: 'vps-1', state: 'running' },
+			{ name: 'vps-2', state: 'stopped' },
+		];
+		mockClient.httpGet.mockResolvedValueOnce(ids);
+		mockClient.httpGet.mockResolvedValueOnce(fullObjects[0]);
+		mockClient.httpGet.mockResolvedValueOnce(fullObjects[1]);
+
+		mockExecuteFunctions.getNodeParameter = jest.fn().mockImplementation((key: string) => {
+			if (key === 'returnFullObjects') return true;
+			if (key === 'maxItems') return 2;
+			return '';
+		});
+
+		const result = await execute.call(mockExecuteFunctions);
+
+		expect(result).toHaveLength(2);
+		expect(result).toEqual(fullObjects);
+		// Only first 2 IDs should have been fetched
+		expect(mockClient.httpGet).not.toHaveBeenCalledWith('/vps/vps-3');
+	});
+
+	// ─── Test 8: filters passed to httpGet ────────────────────────────────
+
+	it('execute with returnFullObjects=true should pass filter query to list httpGet', async () => {
+		const ids = ['vps-1'];
+		const fullObject = { name: 'vps-1', state: 'running' };
+		const filterQuery = { iamTags: { environment: [{ operator: 'EQ', value: 'prod' }] } };
+		mockClient.httpGet.mockResolvedValueOnce(ids);
+		mockClient.httpGet.mockResolvedValueOnce(fullObject);
+
+		mockExecuteFunctions.getNodeParameter = jest.fn().mockImplementation((key: string) => {
+			if (key === 'returnFullObjects') return true;
+			if (key === 'maxItems') return 1000;
+			if (key === 'filters')
+				return {
+					iamTags: { value: JSON.stringify({ environment: [{ operator: 'EQ', value: 'prod' }] }) },
+				};
+			return '';
+		});
+
+		const result = await execute.call(mockExecuteFunctions);
+
+		expect(mockClient.httpGet).toHaveBeenCalledWith('/vps', filterQuery);
+		expect(result).toEqual([fullObject]);
 	});
 });

@@ -7,6 +7,24 @@ import type {
 } from 'n8n-workflow';
 import { getClient } from '../../shared/transport/ApiClient';
 import { fullObjectsListOptions } from '../../shared/nodes/listOptions';
+import { filtersCollection, type FilterDefinition } from '../../shared/nodes/filterOptions';
+import { buildFilterQuery } from '../../shared/nodes/filterQuery';
+
+// ── Filter definitions ──────────────────────────────────────────────────
+
+export const VPS_LIST_FILTERS: FilterDefinition[] = [
+	{
+		group: 'iamTags',
+		groupDisplayName: 'IAM Tags',
+		name: 'value',
+		displayName: 'IAM Tags',
+		queryParam: 'iamTags',
+		type: 'json',
+		default: '',
+		description:
+			'JSON object mapping tag keys to filter arrays, e.g. {"environment":[{"operator":"EQ","value":"prod"}]}. Operators: EQ, EXISTS, ILIKE, LIKE, NEQ, NEXISTS.',
+	},
+];
 
 export function description(displayOptions: IDisplayOptions): INodeProperties[] {
 	return [
@@ -14,6 +32,7 @@ export function description(displayOptions: IDisplayOptions): INodeProperties[] 
 			...displayOptions,
 			show: { vpsOperation: ['list'] },
 		}),
+		...filtersCollection(displayOptions, VPS_LIST_FILTERS),
 	];
 }
 
@@ -29,14 +48,20 @@ export async function execute(
 	) as boolean;
 	const maxItems = this.getNodeParameter('maxItems', _itemIndex ?? 0, 1000) as number;
 
+	const qs = buildFilterQuery(this, _itemIndex ?? 0, VPS_LIST_FILTERS);
+
 	if (returnFullObjects) {
 		const skippedIds: string[] = [];
-		const data = await client.paginateResources<IDataObject>('/vps', '/vps/{id}', {
-			maxItems,
-			onSkipped: (id) => {
+		const ids = (await client.httpGet('/vps', qs)) as string[];
+		const cappedIds = ids.slice(0, maxItems);
+		const data: IDataObject[] = [];
+		for (const id of cappedIds) {
+			try {
+				data.push((await client.httpGet(`/vps/${id}`)) as IDataObject);
+			} catch {
 				skippedIds.push(id);
-			},
-		});
+			}
+		}
 		if (skippedIds.length > 0) {
 			const items = this.helpers.returnJsonArray(data);
 			items.push({
@@ -51,6 +76,6 @@ export async function execute(
 		return this.helpers.returnJsonArray(data);
 	}
 
-	const data = (await client.httpGet('/vps')) as string[];
+	const data = (await client.httpGet('/vps', qs)) as string[];
 	return this.helpers.returnJsonArray(data.map((name) => ({ name })));
 }
