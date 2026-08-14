@@ -43,7 +43,7 @@ This node provides **59 operations** with **31 tests** for managing OVHcloud res
 | [`ipGet`](./`ipGet`.ts)                                                 | GET    | `/vps/{...}/ip/{...}`                              | 0     |
 | [`ipList`](./`ipList`.ts)                                               | GET    | `/vps/{...}/ip`                                    | 0     |
 | [`ipReleaseDelete`](./`ipReleaseDelete`.ts)                             | DELETE | `/vps/{...}/ips/{...}`                             | 1     |
-| [`list`](./`list`.ts)                                                   | GET    | `...`                                              | 0     | (Includes "Return Full Objects / Max Items" toggle for parallel fetching) |
+| [`list`](./`list`.ts)                                                   | GET    | `...`                                              | 0     | ✅ `iamTags` (json) — Also includes "Return Full Objects / Max Items" toggle for parallel fetching |
 | [`migrationMigrationIdGet`](./`migrationMigrationIdGet`.ts)             | GET    | `/vps/{...}/migrations/2020/migration/{...}`       | 0     |
 | [`migrationMigrationIdStepGet`](./`migrationMigrationIdStepGet`.ts)     | GET    | `/vps/{...}/migrations/2020/migration/{...}/{...}` | 0     |
 | [`modelList`](./`modelList`.ts)                                         | GET    | `/vps/{...}/models`                                | 0     |
@@ -73,3 +73,5 @@ This node provides **59 operations** with **31 tests** for managing OVHcloud res
 | [`vpsUpdate`](./`vpsUpdate`.ts)                                         | PUT    | `/vps/{...}`                                       | 1     |
 
 **Total:** 59 operations, 31 tests
+
+> **Optional filters**: The **List** operation (`list`) supports optional Filters (iamTags). See [docs/_shared/filtering.md](../../docs/_shared/filtering.md) for details.

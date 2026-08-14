@@ -75,8 +75,10 @@ The primary identifier is the **Service Name** (`serviceName`, the internal name
 | `sslDeleteDelete` | DELETE | `/cdn/dedicated/{serviceName}/ssl`                |
 | `sslGetGet`       | GET    | `/cdn/dedicated/{serviceName}/ssl`                |
 | `sslCreatePost`   | POST   | `/cdn/dedicated/{serviceName}/ssl`                |
-| `sslTasksListGet` | GET    | `/cdn/dedicated/{serviceName}/ssl/tasks`          |
+| `sslTasksListGet` | GET    | `/cdn/dedicated/{serviceName}/ssl/tasks`          | ✅ `function`, `status` |
 | `sslTaskGetGet`   | GET    | `/cdn/dedicated/{serviceName}/ssl/tasks/{taskId}` |
 | `sslUpdatePost`   | POST   | `/cdn/dedicated/{serviceName}/ssl/update`         |
 
 **Total:** 44 operations, 44 test suites
+
+> **Optional filters**: The **SSL Tasks List** operation (`sslTasksListGet`) supports optional Filters (function, status — read from flat parameters). See [docs/_shared/filtering.md](../../docs/_shared/filtering.md) for details.

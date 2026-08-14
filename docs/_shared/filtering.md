@@ -28,17 +28,31 @@ n8n parameter paths follow `filters.<group>.<field>`:
 ## Non-breaking guarantee
 
 - **Empty filters = no query params.** If the user does not add any filter group, the API call is exactly as before.
-- **Empty / default values are skipped.** An empty string (`''`), `undefined`, or a number equal to its default (`0`) is never sent to the API. This means you cannot explicitly request the value `0` via a numeric filter — see [Limitation](#known-limitation) below.
+- **Empty / default values are skipped.** An empty string (`''`), `undefined`, or a number equal to its default (`0`) is never sent to the API. This means you cannot explicitly request the value `0` via a numeric filter — see [Known limitation](#known-limitation) below.
 
-## Value type mapping
+## Filter types
 
-| Filter type             | n8n field type | API value                              | Notes                                                      |
-| ----------------------- | -------------- | -------------------------------------- | ---------------------------------------------------------- |
-| `dateTime`              | `dateTime`     | ISO 8601 string (passed through as-is) | e.g. `2024-01-15T10:30:00Z`                                |
-| `number`                | `number`       | Integer                                | Default is `0`; a value of `0` is skipped (see limitation) |
-| `options` (string enum) | `options`      | String from the enum                   | Dropdown in the n8n UI; `noDataExpression: true`           |
-| `options` (boolean)     | `options`      | `true` or `false`                      | Tri-state in the UI: Yes / No / (blank = skipped)          |
-| `string`                | `string`       | Free text                              | Empty strings are skipped                                  |
+Each filter definition specifies a `type` that determines how the value is stored in the n8n UI and how it is sent to the API.
+
+| Type             | n8n field type | API value                              | Notes                                                      |
+| ---------------- | -------------- | -------------------------------------- | ---------------------------------------------------------- |
+| `string`         | `string`       | Free text                              | Empty strings are skipped. Supports `delimiter` option.    |
+| `number`         | `number`       | Integer                                | Default is `0`; a value of `0` is skipped (see limitation) |
+| `dateTime`       | `dateTime`     | ISO 8601 string (passed through as-is) | e.g. `2024-01-15T10:30:00Z`                                |
+| `options`        | `options`      | String or boolean from the enum        | Dropdown in the n8n UI; `noDataExpression: true`           |
+| `options` (bool) | `options`      | `true` / `false`                       | Tri-state in the UI: **Yes** / **No** / (blank = skipped)  |
+| `multiOptions`   | `multiOptions` | Array of strings                       | Multi-select dropdown; empty arrays are skipped            |
+| `json`           | `json`         | JSON object                            | Accepts a JSON string or object; invalid JSON → error      |
+
+### String with delimiter
+
+A `string` type field can include a `delimiter` property (e.g. `','`). When set, the raw value is split on that delimiter, empty tokens are filtered out, and the resulting non-empty tokens are sent as an **array** of repeated query params. For example, entering `a,b,c` with `delimiter: ','` produces `action=a&action=b&action=c`.
+
+### JSON type
+
+The `json` type accepts either a raw JSON object (from a previous node's output) or a JSON string. If a string is provided, it is parsed via `JSON.parse()` — if parsing fails, an explicit error is thrown: `Invalid JSON in filter "..." (queryParam: "..."). Expected a valid JSON object.`
+
+Common use: filtering by IAM tags, e.g. `{"environment":[{"operator":"EQ","value":"prod"}]}`. Supported operators: `EQ`, `EXISTS`, `ILIKE`, `LIKE`, `NEQ`, `NEXISTS`.
 
 ## Client-side vs. API-native pagination
 
@@ -46,20 +60,39 @@ Most list operations use **client-side pagination** via `paginateResources()` (c
 
 One exception is **OvhCloud Support — List** (`/support/tickets`), which uses the API's native `page` / `pageSize` pagination. The filter groups `pagination.pageSize` and `pagination.page` map directly to those query parameters. Note that `/support/tickets` does **not** accept `offset`/`limit`; the `page`/`pageSize` mechanism is distinct from the node-level `maxItems` control.
 
+### Endpoints that do NOT support offset/limit
+
+Some OVHcloud API endpoints reject `offset` and `limit` query parameters with a **400 error** ("Received not described parameters"). List operations on these endpoints fetch the full ID array via a single GET request, then fetch each resource's details sequentially:
+
+- `/me/*` (all Me node list operations: bills, deposits, withdrawals, refunds, reverse bills, corrective invoices, orders, bank accounts, etc.)
+- `/vps` (VPS list)
+- `/dedicated/server` (Dedicated Server list)
+
+For these endpoints, `maxItems` is still available as a **client-side cap** (the ID array is sliced to `maxItems` before fetching details). Client-side pagination (`offset`/`limit`) should only be used on endpoints that declare it in their API spec (e.g. `/cloud/*`, `/xdsl/*`).
+
 ## Known limitation
 
 A numeric filter with a default of `0` cannot be used to explicitly request the value `0`. The `isEmptyFilterValue()` function treats `0` as "not set" and skips it. This is by design — it preserves the non-breaking guarantee (empty form = empty query). If you need to filter by `0`, you must use a different mechanism (e.g. a dedicated parameter outside the filters collection).
 
 ## Operations with optional filters
 
-| Node                     | Operation                | Endpoint                               | Filter groups                                                                          |
-| ------------------------ | ------------------------ | -------------------------------------- | -------------------------------------------------------------------------------------- |
-| **OvhCloud Me**          | List Bills               | `GET /me/bill`                         | `dateRange` (from, to), `ids` (orderId), `category` (value)                            |
-| **OvhCloud Me**          | List Deposits            | `GET /me/deposit`                      | `dateRange` (from, to), `ids` (orderId)                                                |
-| **OvhCloud Me**          | List Bank Accounts       | `GET /me/paymentMean/bankAccount`      | `status` (value)                                                                       |
-| **OvhCloud Support**     | List                     | `GET /support/tickets`                 | `dateRange`, `status`, `category` (category, product), `search`, `flags`, `pagination` |
-| **OvhCloud Hosting Web** | List Tasks               | `GET /hosting/web/{serviceName}/tasks` | `search` (function), `status` (value)                                                  |
-| **OvhCloud Domain**      | List Tasks (domain name) | `GET /domain/name/{domainName}/task`   | `search` (function), `status` (value), `type` (value)                                  |
+| Node                     | Operation                | Endpoint                                     | Filter groups                                                                          |
+| ------------------------ | ------------------------ | -------------------------------------------- | -------------------------------------------------------------------------------------- |
+| **OvhCloud Me**          | List Bills               | `GET /me/bill`                               | `dateRange` (from, to), `ids` (orderId), `category` (value)                            |
+| **OvhCloud Me**          | List Deposits            | `GET /me/deposit`                            | `dateRange` (from, to), `ids` (orderId)                                                |
+| **OvhCloud Me**          | List Bank Accounts       | `GET /me/paymentMean/bankAccount`            | `status` (value)                                                                       |
+| **OvhCloud Me**          | List Corrective Invoices | `GET /me/correctiveInvoice`                  | `dateRange` (from, to), `ids` (orderId), `category` (value)                            |
+| **OvhCloud Me**          | List Refunds             | `GET /me/refund`                             | `dateRange` (from, to), `ids` (orderId)                                                |
+| **OvhCloud Me**          | List Reverse Bills       | `GET /me/reverseBill`                        | `dateRange` (from, to), `ids` (orderId)                                                |
+| **OvhCloud Me**          | List Withdrawals         | `GET /me/withdrawal`                         | `dateRange` (from, to), `ids` (orderId)                                                |
+| **OvhCloud Me**          | List Orders              | `GET /me/order`                              | `dateRange` (from, to)                                                                 |
+| **OvhCloud Support**     | List                     | `GET /support/tickets`                       | `dateRange`, `status`, `category` (category, product), `search`, `flags`, `pagination` |
+| **OvhCloud Hosting Web** | List Tasks               | `GET /hosting/web/{serviceName}/tasks`       | `search` (function), `status` (value)                                                  |
+| **OvhCloud Domain**      | List Tasks (domain name) | `GET /domain/name/{domainName}/task`         | `search` (function), `status` (value), `type` (value)                                  |
+| **OvhCloud CDN**         | SSL Tasks List           | `GET /cdn/dedicated/{serviceName}/ssl/tasks` | `function` (value), `status` (value)                                                   |
+| **OvhCloud IP**          | Firewall Rule List       | `GET /ip/{ip}/firewall/{ipOnFirewall}/rule`  | `state` (creationPending, ok, removalPending)                                          |
+| **OvhCloud VPS**         | List                     | `GET /vps`                                   | `iamTags` (json)                                                                       |
+| **OvhCloud IAM**         | Policy List              | `GET /iam/policy`                            | `action`, `identity`, `resourceURN` (delimiter), `readOnly`, `details` (tri-state)     |
 
 ## Test conformance
 

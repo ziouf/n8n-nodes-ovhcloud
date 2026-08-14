@@ -39,7 +39,7 @@ All nodes share common features across every OVH Cloud endpoint:
 - **Advanced pagination** — `paginate()` fetches pages in parallel batches (configurable `concurrency`, default 3, overridable via `OVH_PAGINATE_CONCURRENCY` env var); `paginateResources()` fetches detail objects in parallel (max 5 concurrent requests) with an `onSkipped` callback for per-resource error tracking; `paginate` supports `maxItems` (default 1000), `query` merging, and automatic mapping to full objects for ID arrays.
 - **Multi-items concurrency** — all nodes (71) use `executeTemplate` with `perItemConcurrency` based on operation classification: read operations run up to 3 concurrent workers, write/destructive operations are limited to 1 for consistency, preserving output order.
 - **Return Full Objects / Max Items** — list operations (VPS, Dedicated Server) expose a toggle to fetch full resource objects in parallel, with a configurable max item count and a visible warning when some resources could not be fetched.
-- **Optional filters on list operations** — select list-type operations across 4 nodes (Me, Support, Hosting, Domain) now expose an optional Filters block. When empty, requests are identical to before (non-breaking); when filled, filters are translated into API query parameters. See [docs/_shared/filtering.md](docs/_shared/filtering.md) for details.
+- **Optional filters on list operations** — select list-type operations across 8 nodes (Me, Support, Hosting, Domain, CDN, IP, VPS, IAM) now expose an optional Filters block. When empty, requests are identical to before (non-breaking); when filled, filters are translated into API query parameters. See [docs/_shared/filtering.md](docs/_shared/filtering.md) for details.
 
 ### Status
 
