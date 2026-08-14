@@ -6,7 +6,7 @@ import type {
 } from 'n8n-workflow';
 import { NodeConnectionTypes } from 'n8n-workflow';
 import { OvhCloudApiSecretName, OvhCloudIcon } from '../../shared/constants';
-import { BaseNode, executeTemplate, classifyOperation } from '../../shared/nodes';
+import { BaseNode } from '../../shared/nodes';
 import { description, execute } from './index';
 
 import { getDedicatedCephServices } from '../../shared/methods';
@@ -30,14 +30,9 @@ export class OvhCloudDedicatedCeph extends BaseNode implements INodeType {
 	methods = { listSearch: { getDedicatedCephServices } };
 
 	async execute(this: IExecuteFunctions): Promise<INodeExecutionData[][]> {
-		return executeTemplate.call(this, execute, {
-			perItemConcurrency: {
-				classify: (ctx, itemIndex) =>
-					classifyOperation(
-						String(ctx.getNodeParameter('dedicatedCephOperation', itemIndex, { extractValue: true })),
-					),
-			},
-			errorContext: { resource: 'dedicatedCeph', operationParam: 'dedicatedCephOperation' },
+		return super.runTemplate.call(this, execute, {
+			resource: 'dedicatedCeph',
+			operationParam: 'dedicatedCephOperation',
 		});
 	}
 }

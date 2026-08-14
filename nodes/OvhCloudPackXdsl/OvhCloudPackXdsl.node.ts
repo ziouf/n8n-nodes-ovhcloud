@@ -7,7 +7,7 @@ import type {
 import { NodeConnectionTypes } from 'n8n-workflow';
 import { OvhCloudApiSecretName, OvhCloudIcon } from '../../shared/constants';
 import { getPackXdslServices } from '../../shared/methods';
-import { BaseNode, executeTemplate, classifyOperation } from '../../shared/nodes';
+import { BaseNode } from '../../shared/nodes';
 import { description, execute } from './index';
 
 export class OvhCloudPackXdsl extends BaseNode implements INodeType {
@@ -30,14 +30,9 @@ export class OvhCloudPackXdsl extends BaseNode implements INodeType {
 	methods = { listSearch: { getPackXdslServices } };
 
 	async execute(this: IExecuteFunctions): Promise<INodeExecutionData[][]> {
-		return executeTemplate.call(this, execute, {
-			perItemConcurrency: {
-				classify: (ctx, itemIndex) =>
-					classifyOperation(
-						String(ctx.getNodeParameter('packXdslOperation', itemIndex, { extractValue: true })),
-					),
-			},
-			errorContext: { resource: 'packXdsl', operationParam: 'packXdslOperation' },
+		return super.runTemplate.call(this, execute, {
+			resource: 'packXdsl',
+			operationParam: 'packXdslOperation',
 		});
 	}
 }

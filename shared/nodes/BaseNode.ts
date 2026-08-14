@@ -7,7 +7,7 @@ import {
 } from 'n8n-workflow';
 import { createError } from './createError';
 import type { OperationClass } from './operationClass';
-import { DEFAULT_CLASS_CONCURRENCY } from './operationClass';
+import { DEFAULT_CLASS_CONCURRENCY, classifyOperation } from './operationClass';
 
 /**
  * Optional configuration for {@link executeTemplate}.
@@ -433,13 +433,45 @@ async function executeWithPerItemConcurrency(
 	return [returnData];
 }
 
+/** Options for {@link BaseNode.runTemplate}. */
+interface RunTemplateOptions {
+	/** Resource slug used in errorContext, e.g. `'vps'`. */
+	resource: string;
+	/** Name of the operation parameter on the node, e.g. `'vpsOperation'`. */
+	operationParam: string;
+}
+
 /**
  * Abstract base class for all OVH Cloud n8n nodes.
  *
  * Concrete classes must:
  * - Declare `description: INodeTypeDescription`
- * - Implement `execute(this: IExecuteFunctions)` by calling `executeTemplate.call(this, fn)`
+ * - Implement `execute(this: IExecuteFunctions)` by calling `super.runTemplate.call(this, execute, {...})`
  */
 export abstract class BaseNode {
 	abstract description: INodeTypeDescription;
+
+	/**
+	 * Runs the node's operation dispatcher through {@link executeTemplate} with
+	 * the standard per-item classification and errorContext wiring shared by
+	 * every OVH Cloud node.
+	 *
+	 * Must be called as `super.runTemplate.call(this, execute, options)` where
+	 * `this` is the n8n `IExecuteFunctions` context.
+	 */
+	protected runTemplate(
+		this: IExecuteFunctions,
+		execute: (this: IExecuteFunctions, itemIndex: number) => Promise<INodeExecutionData[]>,
+		options: RunTemplateOptions,
+	): Promise<INodeExecutionData[][]> {
+		return executeTemplate.call(this, execute, {
+			perItemConcurrency: {
+				classify: (ctx, itemIndex) =>
+					classifyOperation(
+						String(ctx.getNodeParameter(options.operationParam, itemIndex, { extractValue: true })),
+					),
+			},
+			errorContext: { resource: options.resource, operationParam: options.operationParam },
+		});
+	}
 }

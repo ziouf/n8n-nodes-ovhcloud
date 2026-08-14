@@ -7,7 +7,7 @@ import type {
 import { NodeConnectionTypes } from 'n8n-workflow';
 import { OvhCloudApiSecretName, OvhCloudIcon } from '../../shared/constants';
 import { description, execute } from './index';
-import { BaseNode, executeTemplate, classifyOperation } from '../../shared/nodes';
+import { BaseNode } from '../../shared/nodes';
 
 export class OvhCloudIam extends BaseNode implements INodeType {
 	description: INodeTypeDescription = {
@@ -34,14 +34,9 @@ export class OvhCloudIam extends BaseNode implements INodeType {
 	};
 
 	async execute(this: IExecuteFunctions): Promise<INodeExecutionData[][]> {
-		return executeTemplate.call(this, execute, {
-			perItemConcurrency: {
-				classify: (ctx, itemIndex) =>
-					classifyOperation(
-						String(ctx.getNodeParameter('iamOperation', itemIndex, { extractValue: true })),
-					),
-			},
-			errorContext: { resource: 'iam', operationParam: 'iamOperation' },
+		return super.runTemplate.call(this, execute, {
+			resource: 'iam',
+			operationParam: 'iamOperation',
 		});
 	}
 }

@@ -6,7 +6,7 @@ import type {
 } from 'n8n-workflow';
 import { NodeConnectionTypes } from 'n8n-workflow';
 import { OvhCloudApiSecretName, OvhCloudIcon } from '../../shared/constants';
-import { BaseNode, executeTemplate, classifyOperation } from '../../shared/nodes';
+import { BaseNode } from '../../shared/nodes';
 import { getMetricsServices } from '../../shared/methods';
 import { description, execute } from './index';
 
@@ -31,14 +31,9 @@ export class OvhCloudMetrics extends BaseNode implements INodeType {
 	methods = { listSearch: { getMetricsServices } };
 
 	async execute(this: IExecuteFunctions): Promise<INodeExecutionData[][]> {
-		return executeTemplate.call(this, execute, {
-			perItemConcurrency: {
-				classify: (ctx, itemIndex) =>
-					classifyOperation(
-						String(ctx.getNodeParameter('metricsOperation', itemIndex, { extractValue: true })),
-					),
-			},
-			errorContext: { resource: 'metrics', operationParam: 'metricsOperation' },
+		return super.runTemplate.call(this, execute, {
+			resource: 'metrics',
+			operationParam: 'metricsOperation',
 		});
 	}
 }

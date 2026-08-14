@@ -6,7 +6,7 @@ import type {
 } from 'n8n-workflow';
 import { NodeConnectionTypes } from 'n8n-workflow';
 import { OvhCloudApiSecretName, OvhCloudIcon } from '../../shared/constants';
-import { BaseNode, executeTemplate, classifyOperation } from '../../shared/nodes';
+import { BaseNode } from '../../shared/nodes';
 import { getSaasCsp2Services } from '../../shared/methods';
 import { description, execute } from './index';
 
@@ -31,17 +31,9 @@ export class OvhCloudSaasCsp2 extends BaseNode implements INodeType {
 	methods = { listSearch: { getSaasCsp2Services } };
 
 	async execute(this: IExecuteFunctions): Promise<INodeExecutionData[][]> {
-		return executeTemplate.call(this, execute, {
-			perItemConcurrency: {
-				classify: (ctx, itemIndex) =>
-					classifyOperation(
-						String(ctx.getNodeParameter('saasCsp2Operation', itemIndex, { extractValue: true })),
-					),
-			},
-			errorContext: {
-				resource: 'saasCsp2',
-				operationParam: 'saasCsp2Operation',
-			},
+		return super.runTemplate.call(this, execute, {
+			resource: 'saasCsp2',
+			operationParam: 'saasCsp2Operation',
 		});
 	}
 }

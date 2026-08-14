@@ -6,7 +6,7 @@ import type {
 } from 'n8n-workflow';
 import { NodeConnectionTypes } from 'n8n-workflow';
 import { OvhCloudApiSecretName, OvhCloudIcon } from '../../shared/constants';
-import { BaseNode, executeTemplate, classifyOperation } from '../../shared/nodes';
+import { BaseNode } from '../../shared/nodes';
 import { description, execute } from './index';
 
 export class OvhCloudEmailPro extends BaseNode implements INodeType {
@@ -28,17 +28,9 @@ export class OvhCloudEmailPro extends BaseNode implements INodeType {
 	};
 
 	async execute(this: IExecuteFunctions): Promise<INodeExecutionData[][]> {
-		return executeTemplate.call(this, execute, {
-			perItemConcurrency: {
-				classify: (ctx, itemIndex) =>
-					classifyOperation(
-						String(ctx.getNodeParameter('emailProOperation', itemIndex, { extractValue: true })),
-					),
-			},
-			errorContext: {
-				resource: 'emailPro',
-				operationParam: 'emailProOperation',
-			},
+		return super.runTemplate.call(this, execute, {
+			resource: 'emailPro',
+			operationParam: 'emailProOperation',
 		});
 	}
 }

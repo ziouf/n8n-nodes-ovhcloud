@@ -7,7 +7,7 @@ import type {
 import { NodeConnectionTypes } from 'n8n-workflow';
 import { OvhCloudApiSecretName, OvhCloudIcon } from '../../shared/constants';
 import { description, execute } from './index';
-import { BaseNode, executeTemplate, classifyOperation } from '../../shared/nodes';
+import { BaseNode } from '../../shared/nodes';
 
 export class OvhCloudVeeamEnterprisePlus extends BaseNode implements INodeType {
 	description: INodeTypeDescription = {
@@ -35,14 +35,9 @@ export class OvhCloudVeeamEnterprisePlus extends BaseNode implements INodeType {
 	};
 
 	async execute(this: IExecuteFunctions): Promise<INodeExecutionData[][]> {
-		return executeTemplate.call(this, execute, {
-			perItemConcurrency: {
-				classify: (ctx, itemIndex) =>
-					classifyOperation(
-						String(ctx.getNodeParameter('veeamOperation', itemIndex, { extractValue: true })),
-					),
-			},
-			errorContext: { resource: 'veeam', operationParam: 'veeamOperation' },
+		return super.runTemplate.call(this, execute, {
+			resource: 'veeam',
+			operationParam: 'veeamOperation',
 		});
 	}
 }
