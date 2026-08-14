@@ -2,16 +2,17 @@ import type { IExecuteFunctions, ILoadOptionsFunctions } from 'n8n-workflow';
 export { ApiClient } from './ApiClientImpl';
 import { ApiClient } from './ApiClientImpl';
 
-// Use a regular Map instead of WeakMap for compatibility with the test environment.
-// Keys are the n8n execution context objects (this).
-const clientCache = new Map<object, ApiClient>();
+// WeakMap auto-GCs with the execution context — no manual cache clearing needed.
+const clientCache = new WeakMap<object, ApiClient>();
 
 /**
  * Factory mémoïsée : retourne un unique ApiClient par contexte d'exécution.
  *
- * Utilise un Map keyed par `this` (IExecuteFunctions | ILoadOptionsFunctions)
+ * Utilise un WeakMap keyed par `this` (IExecuteFunctions | ILoadOptionsFunctions)
  * pour garantir qu'un seul client est instancié par exécution n8n, évitant
  * les appels redondants à getCredentials() et le gaspillage de mémoire.
+ * Le WeakMap garantit la libération automatique du client quand le contexte
+ * n8n est détruit (fin d'exécution).
  *
  * @param fn - Contexte n8n (execute ou load options)
  * @returns L'ApiClient mémoïsé pour ce contexte
@@ -21,12 +22,4 @@ export function getClient(fn: IExecuteFunctions | ILoadOptionsFunctions): ApiCli
 		clientCache.set(fn, new ApiClient(fn));
 	}
 	return clientCache.get(fn)!;
-}
-
-/**
- * Supprime tous les clients mémoïsés. Utile dans les tests pour forcer
- * la réinitialisation de l'état entre chaque test.
- */
-export function clearClientCache(): void {
-	clientCache.clear();
 }

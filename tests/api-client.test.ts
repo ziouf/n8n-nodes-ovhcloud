@@ -273,12 +273,5 @@ describe('ApiClient', () => {
 			await client.httpPost('/vps', { name: 'test' });
 			expect(mockGetCredentials).toHaveBeenCalledTimes(1);
 		});
-
-		it('should refetch credentials after clearCredentialsCache', async () => {
-			await client.httpGet('/vps');
-			client.clearCredentialsCache();
-			await client.httpGet('/vps');
-			expect(mockGetCredentials).toHaveBeenCalledTimes(2);
-		});
 	});
 });

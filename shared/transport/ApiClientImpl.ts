@@ -171,15 +171,6 @@ export class ApiClient {
 	}
 
 	/**
-	 * Clears the memoized credentials, forcing a fresh fetch on the next request.
-	 *
-	 * Useful when credentials may have been rotated mid-execution.
-	 */
-	public clearCredentialsCache(): void {
-		this.credentialsCache = undefined;
-	}
-
-	/**
 	 * Returns a credential-scoped identifier used for cache isolation.
 	 *
 	 * The scope is `endpoint|sha256(consumerKey)[:16]` — the raw consumer key
@@ -195,63 +186,17 @@ export class ApiClient {
 		return `${credentials.endpoint}|${hash}`;
 	}
 
-	/**
-	 * Makes a GET request to the OVH API (raw, without retry).
-	 *
-	 * @param url - The API endpoint path (without base URL)
-	 * @param qs - Optional query parameters
-	 * @param options - Additional HTTP request options
-	 * @returns The parsed response data from the API
-	 * @throws NodeApiError if the API call fails with an error status
-	 */
-	private async httpGetRaw(
-		url: string,
-		qs?: IDataObject,
-		options?: IHttpRequestOptions,
-	): Promise<unknown> {
-		const credentials = await this.getCredentials();
-		return await this.fn.helpers.httpRequest(
-			credentials.sign({ method: 'GET', url, qs, ...options }),
-		);
-	}
-
-	/**
-	 * Makes a GET request to the OVH API with automatic retry on transient errors.
-	 *
-	 * @param url - The API endpoint path (without base URL)
-	 * @param qs - Optional query parameters
-	 * @param options - Additional HTTP request options
-	 * @returns The parsed response data from the API
-	 * @throws NodeApiError if the API call fails with an error status
-	 */
 	public async httpGet(
 		url: string,
 		qs?: IDataObject,
 		options?: IHttpRequestOptions,
 	): Promise<unknown> {
-		return this.requestWithRetry(() => this.httpGetRaw(url, qs, options));
-	}
-
-	/**
-	 * Makes a POST request to the OVH API (raw, without retry).
-	 *
-	 * @param url - The API endpoint path (without base URL)
-	 * @param body - Optional request body (will be JSON stringified)
-	 * @param qs - Optional query parameters
-	 * @param options - Additional HTTP request options
-	 * @returns The parsed response data from the API
-	 * @throws NodeApiError if the API call fails with an error status
-	 */
-	private async httpPostRaw(
-		url: string,
-		body?: IDataObject,
-		qs?: IDataObject,
-		options?: IHttpRequestOptions,
-	): Promise<unknown> {
-		const credentials = await this.getCredentials();
-		return await this.fn.helpers.httpRequest(
-			credentials.sign({ method: 'POST', url, body, qs, ...options }),
-		);
+		return this.requestWithRetry(async () => {
+			const credentials = await this.getCredentials();
+			return await this.fn.helpers.httpRequest(
+				credentials.sign({ method: 'GET', url, qs, ...options }),
+			);
+		});
 	}
 
 	/**
@@ -270,29 +215,12 @@ export class ApiClient {
 		qs?: IDataObject,
 		options?: IHttpRequestOptions,
 	): Promise<unknown> {
-		return this.requestWithRetry(() => this.httpPostRaw(url, body, qs, options));
-	}
-
-	/**
-	 * Makes a PUT request to the OVH API (raw, without retry).
-	 *
-	 * @param url - The API endpoint path (without base URL)
-	 * @param body - Optional request body (will be JSON stringified)
-	 * @param qs - Optional query parameters
-	 * @param options - Additional HTTP request options
-	 * @returns The parsed response data from the API
-	 * @throws NodeApiError if the API call fails with an error status
-	 */
-	private async httpPutRaw(
-		url: string,
-		body?: IDataObject,
-		qs?: IDataObject,
-		options?: IHttpRequestOptions,
-	): Promise<unknown> {
-		const credentials = await this.getCredentials();
-		return await this.fn.helpers.httpRequest(
-			credentials.sign({ method: 'PUT', url, body, qs, ...options }),
-		);
+		return this.requestWithRetry(async () => {
+			const credentials = await this.getCredentials();
+			return await this.fn.helpers.httpRequest(
+				credentials.sign({ method: 'POST', url, body, qs, ...options }),
+			);
+		});
 	}
 
 	/**
@@ -311,27 +239,12 @@ export class ApiClient {
 		qs?: IDataObject,
 		options?: IHttpRequestOptions,
 	): Promise<unknown> {
-		return this.requestWithRetry(() => this.httpPutRaw(url, body, qs, options));
-	}
-
-	/**
-	 * Makes a DELETE request to the OVH API (raw, without retry).
-	 *
-	 * @param url - The API endpoint path (without base URL)
-	 * @param qs - Optional query parameters
-	 * @param options - Additional HTTP request options
-	 * @returns The parsed response data from the API
-	 * @throws NodeApiError if the API call fails with an error status
-	 */
-	private async httpDeleteRaw(
-		url: string,
-		qs?: IDataObject,
-		options?: IHttpRequestOptions,
-	): Promise<unknown> {
-		const credentials = await this.getCredentials();
-		return await this.fn.helpers.httpRequest(
-			credentials.sign({ method: 'DELETE', url, qs, ...options }),
-		);
+		return this.requestWithRetry(async () => {
+			const credentials = await this.getCredentials();
+			return await this.fn.helpers.httpRequest(
+				credentials.sign({ method: 'PUT', url, body, qs, ...options }),
+			);
+		});
 	}
 
 	/**
@@ -348,7 +261,12 @@ export class ApiClient {
 		qs?: IDataObject,
 		options?: IHttpRequestOptions,
 	): Promise<unknown> {
-		return this.requestWithRetry(() => this.httpDeleteRaw(url, qs, options));
+		return this.requestWithRetry(async () => {
+			const credentials = await this.getCredentials();
+			return await this.fn.helpers.httpRequest(
+				credentials.sign({ method: 'DELETE', url, qs, ...options }),
+			);
+		});
 	}
 
 	/**

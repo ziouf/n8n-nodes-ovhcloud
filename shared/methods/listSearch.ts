@@ -21,6 +21,17 @@ export function clearListSearchCache(): void {
 	listSearchCache.clear();
 }
 
+function getCachedList(cacheKey: string, ttlMs: number): unknown[] | undefined {
+	if (ttlMs <= 0) return undefined;
+	const cached = listSearchCache.get(cacheKey);
+	if (cached && Date.now() - cached.timestamp < ttlMs) return cached.data;
+	return undefined;
+}
+
+function setCachedList(cacheKey: string, data: unknown[]): void {
+	listSearchCache.set(cacheKey, { timestamp: Date.now(), data });
+}
+
 /**
  * Minimal context interface for list-search loaders.
  *
@@ -220,21 +231,16 @@ async function loadAndMapResults(
 		const offset = parseCursor(paginationToken);
 		const cacheKey = `${scope}|${route}|${offset}`;
 
-		// Cache hit with valid TTL — apply filter on cached raw data
-		if (ttlMs > 0) {
-			const cached = listSearchCache.get(cacheKey);
-			if (cached && Date.now() - cached.timestamp < ttlMs) {
-				return buildListSearchResults(cached.data, options, filter, paginationToken);
-			}
+		const cached = getCachedList(cacheKey, ttlMs);
+		if (cached !== undefined) {
+			return buildListSearchResults(cached, options, filter, paginationToken);
 		}
 
 		// Fetch exactly maxItems at offset (no probe)
 		const data = await client.paginate<string>(route, { maxItems, offset });
 
 		// Cache the raw page
-		if (ttlMs > 0) {
-			listSearchCache.set(cacheKey, { timestamp: Date.now(), data });
-		}
+		setCachedList(cacheKey, data);
 
 		// Return next cursor only when the page was full
 		const nextToken = data.length === maxItems ? String(offset + data.length) : undefined;
@@ -245,11 +251,9 @@ async function loadAndMapResults(
 	const cacheKey = `${scope}|${route}|0`;
 
 	// Cache hit with valid TTL — apply filter on cached raw data
-	if (ttlMs > 0) {
-		const cached = listSearchCache.get(cacheKey);
-		if (cached && Date.now() - cached.timestamp < ttlMs) {
-			return buildListSearchResults(cached.data, options, filter);
-		}
+	const cached = getCachedList(cacheKey, ttlMs);
+	if (cached !== undefined) {
+		return buildListSearchResults(cached, options, filter);
 	}
 
 	// Fetch maxItems + 1 to detect truncation
@@ -263,9 +267,7 @@ async function loadAndMapResults(
 	}
 
 	// Cache the raw items (without probe)
-	if (ttlMs > 0) {
-		listSearchCache.set(cacheKey, { timestamp: Date.now(), data });
-	}
+	setCachedList(cacheKey, data);
 
 	// Include real cursor token only when truncated
 	const cursorToken = truncated ? String(maxItems) : undefined;

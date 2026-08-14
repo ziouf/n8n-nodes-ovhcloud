@@ -88,15 +88,4 @@ describe('getCredentialScope', () => {
 
 		expect(ctx.getCredentials).toHaveBeenCalledTimes(1);
 	});
-
-	it('getCredentials is re-fetched after clearCredentialsCache', async () => {
-		const ctx = createContext('eu.api.ovh.com/1.0', 'refresh-key');
-		const client = new ApiClient(ctx);
-
-		await client.getCredentialScope();
-		client.clearCredentialsCache();
-		await client.getCredentialScope();
-
-		expect(ctx.getCredentials).toHaveBeenCalledTimes(2);
-	});
 });

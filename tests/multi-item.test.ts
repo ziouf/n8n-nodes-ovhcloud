@@ -3,9 +3,8 @@
  *
  * Ensures that:
  * 1. executeTemplate resolves parameters per-item (not just item 0).
- * 2. The getItemParameter helper works correctly with and without an explicit index.
- * 3. No operation file uses `_itemIndex!` or `itemIndex!` non-null assertions.
- * 4. No operation file uses the anti-pattern `getNodeParameter('x', 0)` (hardcoded index).
+ * 2. No operation file uses `_itemIndex!` or `itemIndex!` non-null assertions.
+ * 3. No operation file uses the anti-pattern `getNodeParameter('x', 0)` (hardcoded index).
  */
 
 import * as fs from 'fs';
@@ -13,7 +12,7 @@ import * as path from 'path';
 
 import type { IExecuteFunctions } from 'n8n-workflow';
 
-import { executeTemplate, getItemParameter } from '../shared/nodes';
+import { executeTemplate } from '../shared/nodes';
 
 // ---------------------------------------------------------------------------
 // Helpers
@@ -95,146 +94,7 @@ describe('executeTemplate — per-item parameter resolution', () => {
 });
 
 // ---------------------------------------------------------------------------
-// Group B – getItemParameter helper
-// ---------------------------------------------------------------------------
-
-describe('getItemParameter — helper', () => {
-	it('returns the value for the explicit item index', () => {
-		const getNodeParamMock = jest.fn((key: string, idx: number) => `value-for-item-${idx}`);
-		const ctx = {
-			getNodeParameter: getNodeParamMock,
-			getInputData: () => [{ json: {} }],
-			getFirstCollectionItem: () => ({}),
-			continueOnFail: jest.fn().mockReturnValue(false),
-			helpers: {
-				returnJsonArray: (d: unknown[]) => d.map((item) => ({ json: item })),
-			},
-		} as unknown as jest.Mocked<IExecuteFunctions>;
-
-		const result = getItemParameter(ctx, 'value', 2);
-		expect(result).toBe('value-for-item-2');
-		expect(getNodeParamMock).toHaveBeenCalledWith('value', 2, undefined, undefined);
-	});
-
-	it('falls back to item 0 when no index is provided', () => {
-		const getNodeParamMock = jest.fn((key: string, idx: number) => `value-for-item-${idx}`);
-		const ctx = {
-			getNodeParameter: getNodeParamMock,
-			getInputData: () => [{ json: {} }],
-			getFirstCollectionItem: () => ({}),
-			continueOnFail: jest.fn().mockReturnValue(false),
-			helpers: {
-				returnJsonArray: (d: unknown[]) => d.map((item) => ({ json: item })),
-			},
-		} as unknown as jest.Mocked<IExecuteFunctions>;
-
-		const result = getItemParameter(ctx, 'value');
-		expect(result).toBe('value-for-item-0');
-		expect(getNodeParamMock).toHaveBeenCalledWith('value', 0, undefined, undefined);
-	});
-
-	it('delegates extractValue option to getNodeParameter', () => {
-		const getNodeParamMock = jest.fn((_key: string, _idx: number, arg3: unknown) => {
-			// getItemParameter passes options as the 3rd argument (not a fallback value)
-			if (arg3 && typeof arg3 === 'object' && 'extractValue' in arg3) {
-				return 'extracted-val';
-			}
-			return 'normal-val';
-		});
-		const ctx = {
-			getNodeParameter: getNodeParamMock,
-			getInputData: () => [{ json: {} }],
-			getFirstCollectionItem: () => ({}),
-			continueOnFail: jest.fn().mockReturnValue(false),
-			helpers: {
-				returnJsonArray: (d: unknown[]) => d.map((item) => ({ json: item })),
-			},
-		} as unknown as jest.Mocked<IExecuteFunctions>;
-
-		const result = getItemParameter(ctx, 'value', 0, { extractValue: true });
-		expect(result).toBe('extracted-val');
-		expect(getNodeParamMock).toHaveBeenCalledWith('value', 0, {
-			extractValue: true,
-		});
-	});
-
-	it('passes fallback when 4th arg is a non-object value', () => {
-		const getNodeParamMock = jest.fn((...args: unknown[]) => {
-			const arg3 = args[2];
-			if (arg3 !== undefined) {
-				return arg3; // fallback path: 3rd arg is the fallback value
-			}
-			return 'no-fallback';
-		});
-		const ctx = {
-			getNodeParameter: getNodeParamMock,
-			getInputData: () => [{ json: {} }],
-			getFirstCollectionItem: () => ({}),
-			continueOnFail: jest.fn().mockReturnValue(false),
-			helpers: {
-				returnJsonArray: (d: unknown[]) => d.map((item) => ({ json: item })),
-			},
-		} as unknown as jest.Mocked<IExecuteFunctions>;
-
-		const result = getItemParameter(ctx, 'x', 1, 'fallback');
-		expect(result).toBe('fallback');
-		expect(getNodeParamMock).toHaveBeenCalledWith('x', 1, 'fallback', undefined);
-	});
-
-	it('passes fallback + options when 4th arg is non-object and 5th is object', () => {
-		const getNodeParamMock = jest.fn(
-			(_key: string, _idx: number, arg3: unknown, arg4?: unknown) => {
-				if (arg3 !== undefined) {
-					return `fallback:${String(arg3)}|opts:${JSON.stringify(arg4)}`;
-				}
-				return 'no-fallback';
-			},
-		);
-		const ctx = {
-			getNodeParameter: getNodeParamMock,
-			getInputData: () => [{ json: {} }],
-			getFirstCollectionItem: () => ({}),
-			continueOnFail: jest.fn().mockReturnValue(false),
-			helpers: {
-				returnJsonArray: (d: unknown[]) => d.map((item) => ({ json: item })),
-			},
-		} as unknown as jest.Mocked<IExecuteFunctions>;
-
-		const result = getItemParameter(ctx, 'x', 1, 'fallback', {
-			extractValue: true,
-		});
-		expect(result).toBe('fallback:fallback|opts:{"extractValue":true}');
-		expect(getNodeParamMock).toHaveBeenCalledWith('x', 1, 'fallback', {
-			extractValue: true,
-		});
-	});
-
-	it('treats plain object 4th arg as options (3-arg form)', () => {
-		const getNodeParamMock = jest.fn((_key: string, _idx: number, arg3: unknown) => {
-			// 3-arg form with options
-			if (arg3 && typeof arg3 === 'object' && 'someOpt' in arg3) {
-				return `opts:${JSON.stringify(arg3)}`;
-			}
-			return 'no-opts';
-		});
-		const ctx = {
-			getNodeParameter: getNodeParamMock,
-			getInputData: () => [{ json: {} }],
-			getFirstCollectionItem: () => ({}),
-			continueOnFail: jest.fn().mockReturnValue(false),
-			helpers: {
-				returnJsonArray: (d: unknown[]) => d.map((item) => ({ json: item })),
-			},
-		} as unknown as jest.Mocked<IExecuteFunctions>;
-
-		const result = getItemParameter(ctx, 'x', 1, { someOpt: true });
-		expect(result).toBe('opts:{"someOpt":true}');
-		expect(getNodeParamMock).toHaveBeenCalledWith('x', 1, { someOpt: true });
-	});
-});
-
-// ---------------------------------------------------------------------------
-// Group C — Static guardrail: no hardcoded getNodeParameter index 0
+// Group B — Static guardrail: no hardcoded getNodeParameter index 0
 // ---------------------------------------------------------------------------
 
 describe('Static guardrail — no hardcoded getNodeParameter index 0', () => {

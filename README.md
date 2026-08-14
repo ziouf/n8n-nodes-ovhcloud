@@ -32,7 +32,7 @@ All nodes share common features across every OVH Cloud endpoint:
 - **Multi-endpoint support**: OVH Europe, Canada, USA, SoYouStart, Kimsufi
 - **SHA1 signature authentication** for secure API requests (via `ApiClient` / `getClient()` factory)
 - **Dynamic list selection** — auto-populate dropdowns with live data via a shared `resourceLocator` factory (e.g. `shared/nodes/locators.ts`) and paginated `searchListMethod` (built on `shared/methods/listSearch.ts`)
-- **Credential memoization** — API credentials are fetched once per execution and shared between all items and HTTP calls via the `getClient()` factory (client memoized per execution context); call `ApiClient.clearClientCache()` to force refresh.
+- **Credential memoization** — API credentials are fetched once per execution and shared between all items and HTTP calls via the `getClient()` factory (client memoized per execution context).
 - **Automatic retry & backoff** — GET requests automatically retry on transient errors (429, 5xx, timeouts) with jitter; POST/PUT/DELETE retries require explicit `*WithRetry` configuration.
 - **Destructive operation warnings** — destructive or irreversible operations (terminate, reinstall, reboot) display a yellow warning notice in the node UI via the shared `destructiveActionNotice()` helper.
 - **Correct multi-items support** — parameters are resolved per item (`getNodeParameter(name, itemIndex ?? 0)`) across all nodes, so workflows with multiple input items use the right parameters for each.
@@ -401,13 +401,12 @@ n8n-nodes-ovhcloud/
 │       ├── constants.ts                # Shared constants (icon path, credential name)
 │       ├── nodes/
 │       │   ├── BaseNode.ts           # Abstract base class for all OVH Cloud nodes; `executeTemplate` with `perItemConcurrency` (classification read/write/destructive) on all nodes
-│       │   ├── itemParameter.ts      # `getItemParameter()` helper — resolves node parameters per item index
 │       │   ├── listOptions.ts        # "Return Full Objects / Max Items" list options helper
 │       │   ├── notices.ts            # Destructive action warning notices
 │       ├── methods/                    # Search list methods for dynamic dropdowns
 │       │   └── listSearch.ts           # createServiceListSearch() factory (deduplicated loaders, bounded cache with MAX_CACHE_ENTRIES)
 │       └── transport/                   # API client & authentication
-│           ├── ApiClient.ts             #   `getClient()` factory (shared client per execution) + `clearClientCache()`
+│           ├── ApiClient.ts             #   `getClient()` factory (shared client per execution)
 │           ├── ApiClientImpl.ts         #   HTTP implementation (credential memoization + retry + batch-parallel pagination)
 │           └── CredentialHolder.ts      #   OVH SHA1 signature helper
 ├── scripts/

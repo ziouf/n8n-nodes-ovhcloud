@@ -135,7 +135,6 @@
 		"prettier": "3.6.2",
 		"release-it": "^19.0.4",
 		"ts-jest": "^29.4.9",
-		"tsx": "^4.23.1",
 		"typescript": "5.9.2"
 	},
 	"peerDependencies": {
