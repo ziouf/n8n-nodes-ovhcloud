@@ -18,7 +18,7 @@
 		"ghcr.io/devcontainers/features/github-cli:1": {},
 		"ghcr.io/devcontainers-extra/features/npm-packages:1": {
 			"packages": [
-				"opencode-ai",
+				"opencode-ai@1.18.18",
 				"markdownlint-rs",
 				"@code-yeongyu/comment-checker",
 				"@colbymchenry/codegraph"
