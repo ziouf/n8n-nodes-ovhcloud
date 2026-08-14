@@ -122,9 +122,9 @@ describe('list.operation', () => {
 			mockExecuteFunctions.getNodeParameter.mockImplementation((key: string) => {
 				if (key === 'filters') {
 					return {
-						status: { value: 'open' },
-						dateRange: { minCreationDate: '2026-01-01T00:00:00Z' },
-						flags: { archived: true },
+						status: [{ value: 'open' }],
+						dateRange: [{ minCreationDate: '2026-01-01T00:00:00Z' }],
+						flags: [{ archived: true }],
 					};
 				}
 				return {};
@@ -159,7 +159,7 @@ describe('list.operation', () => {
 
 			mockExecuteFunctions.getNodeParameter.mockImplementation((key: string) => {
 				if (key === 'filters') {
-					return { flags: { archived: false } };
+					return { flags: [{ archived: false }] };
 				}
 				return {};
 			});

@@ -69,7 +69,7 @@ describe('IAM policy list filters', () => {
 				switch (param) {
 					case 'filters':
 						return {
-							action: { value: 'account:apiovh:me/get,account:apiovh:me/*' },
+							action: [{ value: 'account:apiovh:me/get,account:apiovh:me/*' }],
 						};
 					default:
 						return {};
@@ -89,7 +89,7 @@ describe('IAM policy list filters', () => {
 			mockExecuteFunctions.getNodeParameter.mockImplementation((param: string): any => {
 				switch (param) {
 					case 'filters':
-						return { readOnly: { value: true } };
+						return { readOnly: [{ value: true }] };
 					default:
 						return {};
 				}
@@ -109,9 +109,9 @@ describe('IAM policy list filters', () => {
 				switch (param) {
 					case 'filters':
 						return {
-							action: { value: 'account:apiovh:me/get' },
-							readOnly: { value: true },
-							details: { value: false },
+							action: [{ value: 'account:apiovh:me/get' }],
+							readOnly: [{ value: true }],
+							details: [{ value: false }],
 						};
 					default:
 						return {};
@@ -133,7 +133,7 @@ describe('IAM policy list filters', () => {
 			mockExecuteFunctions.getNodeParameter.mockImplementation((param: string): any => {
 				switch (param) {
 					case 'filters':
-						return { action: { value: '' } };
+						return { action: [{ value: '' }] };
 					default:
 						return {};
 				}
@@ -150,7 +150,7 @@ describe('IAM policy list filters', () => {
 			mockExecuteFunctions.getNodeParameter.mockImplementation((param: string): any => {
 				switch (param) {
 					case 'filters':
-						return { action: { value: '  ,  ' } };
+						return { action: [{ value: '  ,  ' }] };
 					default:
 						return {};
 				}
@@ -168,7 +168,7 @@ describe('IAM policy list filters', () => {
 				switch (param) {
 					case 'filters':
 						return {
-							action: { value: 'account:apiovh:iam/policy/get' },
+							action: [{ value: 'account:apiovh:iam/policy/get' }],
 						};
 					default:
 						return {};

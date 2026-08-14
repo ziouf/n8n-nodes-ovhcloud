@@ -157,9 +157,9 @@ describe('billing.operation — listBills with filters', () => {
 			mockExecuteFunctions.getNodeParameter.mockImplementation((key: string) => {
 				if (key === 'filters') {
 					return {
-						dateRange: { from: '2026-01-01T00:00:00Z', to: '2026-06-30T00:00:00Z' },
-						ids: { orderId: 5 },
-						category: { value: 'purchase' },
+						dateRange: [{ from: '2026-01-01T00:00:00Z', to: '2026-06-30T00:00:00Z' }],
+						ids: [{ orderId: 5 }],
+						category: [{ value: 'purchase' }],
 					};
 				}
 				return {};
@@ -202,7 +202,7 @@ describe('billing.operation — listBills with filters', () => {
 			mockExecuteFunctions.getNodeParameter.mockImplementation((key: string) => {
 				if (key === 'filters') {
 					return {
-						ids: { orderId: 0 },
+						ids: [{ orderId: 0 }],
 					};
 				}
 				return {};
@@ -239,7 +239,7 @@ describe('billing.operation — listBills with filters', () => {
 			mockExecuteFunctions.getNodeParameter.mockImplementation((key: string) => {
 				if (key === 'filters') {
 					return {
-						dateRange: { from: '2026-01-01T00:00:00Z' },
+						dateRange: [{ from: '2026-01-01T00:00:00Z' }],
 					};
 				}
 				return {};
@@ -259,7 +259,7 @@ describe('billing.operation — listBills with filters', () => {
 			mockExecuteFunctions.getNodeParameter.mockImplementation((key: string) => {
 				if (key === 'filters') {
 					return {
-						dateRange: { from: '', to: '' },
+						dateRange: [{ from: '', to: '' }],
 					};
 				}
 				return {};

@@ -61,7 +61,7 @@ describe('VPS list filters', () => {
 					case 'maxItems':
 						return 1000;
 					case 'filters':
-						return { iamTags: { value: JSON.stringify(parsedIamTags) } };
+						return { iamTags: [{ value: JSON.stringify(parsedIamTags) }] };
 					default:
 						return {};
 				}
@@ -83,7 +83,7 @@ describe('VPS list filters', () => {
 					case 'maxItems':
 						return 1000;
 					case 'filters':
-						return { iamTags: { value: '{invalid json' } };
+						return { iamTags: [{ value: '{invalid json' }] };
 					default:
 						return {};
 				}
@@ -108,7 +108,7 @@ describe('VPS list filters', () => {
 					case 'maxItems':
 						return 100;
 					case 'filters':
-						return { iamTags: { value: JSON.stringify(parsedIamTags) } };
+						return { iamTags: [{ value: JSON.stringify(parsedIamTags) }] };
 					default:
 						return {};
 				}
@@ -154,7 +154,7 @@ describe('VPS list filters', () => {
 					case 'maxItems':
 						return 1000;
 					case 'filters':
-						return { iamTags: { value: '{"env":["prod"]}' } };
+						return { iamTags: [{ value: '{"env":["prod"]}' }] };
 					default:
 						return {};
 				}

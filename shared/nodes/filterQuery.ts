@@ -86,7 +86,20 @@ export function buildFilterQuery(
 		if (def.parameterPath !== undefined) {
 			rawValue = ctx.getNodeParameter(def.parameterPath, itemIndex);
 		} else {
-			const groupObj = ((filters ?? {})[def.group] as IDataObject | undefined) ?? {};
+			const groupValue = (filters ?? {})[def.group];
+			// fixedCollection with multipleValues:true stores each group as an array of
+			// entry objects (e.g. { dateRange: [{ from, to }] }); with multipleValues:false
+			// it stores a single object ({ dateRange: { from, to } }). Handle both shapes.
+			let groupObj: IDataObject = {};
+			if (Array.isArray(groupValue)) {
+				for (const entry of groupValue) {
+					if (typeof entry === 'object' && entry !== null) {
+						Object.assign(groupObj, entry as IDataObject);
+					}
+				}
+			} else if (typeof groupValue === 'object' && groupValue !== null) {
+				groupObj = groupValue as IDataObject;
+			}
 			rawValue = groupObj[def.name];
 		}
 

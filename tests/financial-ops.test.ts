@@ -127,7 +127,7 @@ describe('listDeposits', () => {
 		it('should pass date.from to the API when set', async () => {
 			mockExecuteFunctions.getNodeParameter = jest.fn().mockImplementation((key: string) => {
 				if (key === 'filters') {
-					return { dateRange: { from: '2026-01-01T00:00:00Z' } };
+					return { dateRange: [{ from: '2026-01-01T00:00:00Z' }] };
 				}
 				return {};
 			});
@@ -161,7 +161,7 @@ describe('listDeposits', () => {
 			mockExecuteFunctions.getNodeParameter = jest
 				.fn()
 				.mockImplementation((key: string, idx?: number) => {
-					if (key === 'filters') return { dateRange: { from: `item-${idx}` } };
+					if (key === 'filters') return { dateRange: [{ from: `item-${idx}` }] };
 					return {};
 				});
 
@@ -177,7 +177,7 @@ describe('listDeposits', () => {
 		it('should not include orderId when its value is the default (0)', async () => {
 			mockExecuteFunctions.getNodeParameter = jest.fn().mockImplementation((key: string) => {
 				if (key === 'filters') {
-					return { ids: { orderId: 0 } };
+					return { ids: [{ orderId: 0 }] };
 				}
 				return {};
 			});
@@ -192,7 +192,7 @@ describe('listDeposits', () => {
 		it('should include orderId when it is non-zero', async () => {
 			mockExecuteFunctions.getNodeParameter = jest.fn().mockImplementation((key: string) => {
 				if (key === 'filters') {
-					return { ids: { orderId: 12345 } };
+					return { ids: [{ orderId: 12345 }] };
 				}
 				return {};
 			});
@@ -279,7 +279,7 @@ describe('listWithdrawals', () => {
 		it('should pass date.from and orderId to the API', async () => {
 			mockExecuteFunctions.getNodeParameter = jest.fn().mockImplementation((key: string) => {
 				if (key === 'filters') {
-					return { dateRange: { from: '2026-01-01T00:00:00Z' }, ids: { orderId: 5 } };
+					return { dateRange: [{ from: '2026-01-01T00:00:00Z' }], ids: [{ orderId: 5 }] };
 				}
 				return {};
 			});
@@ -300,7 +300,7 @@ describe('listWithdrawals', () => {
 			mockExecuteFunctions.getNodeParameter = jest
 				.fn()
 				.mockImplementation((key: string, idx?: number) => {
-					if (key === 'filters') return { dateRange: { from: `item-${idx}` } };
+					if (key === 'filters') return { dateRange: [{ from: `item-${idx}` }] };
 					return {};
 				});
 
@@ -376,7 +376,7 @@ describe('listRefunds', () => {
 		it('should pass date.from and orderId to the API', async () => {
 			mockExecuteFunctions.getNodeParameter = jest.fn().mockImplementation((key: string) => {
 				if (key === 'filters') {
-					return { dateRange: { from: '2026-03-01T00:00:00Z' }, ids: { orderId: 42 } };
+					return { dateRange: [{ from: '2026-03-01T00:00:00Z' }], ids: [{ orderId: 42 }] };
 				}
 				return {};
 			});
@@ -397,7 +397,7 @@ describe('listRefunds', () => {
 			mockExecuteFunctions.getNodeParameter = jest
 				.fn()
 				.mockImplementation((key: string, idx?: number) => {
-					if (key === 'filters') return { dateRange: { from: `item-${idx}` } };
+					if (key === 'filters') return { dateRange: [{ from: `item-${idx}` }] };
 					return {};
 				});
 
@@ -473,7 +473,7 @@ describe('listReverseBills', () => {
 		it('should pass date.from and orderId to the API', async () => {
 			mockExecuteFunctions.getNodeParameter = jest.fn().mockImplementation((key: string) => {
 				if (key === 'filters') {
-					return { dateRange: { to: '2026-06-30T23:59:59Z' }, ids: { orderId: 7 } };
+					return { dateRange: [{ to: '2026-06-30T23:59:59Z' }], ids: [{ orderId: 7 }] };
 				}
 				return {};
 			});
@@ -494,7 +494,7 @@ describe('listReverseBills', () => {
 			mockExecuteFunctions.getNodeParameter = jest
 				.fn()
 				.mockImplementation((key: string, idx?: number) => {
-					if (key === 'filters') return { dateRange: { from: `item-${idx}` } };
+					if (key === 'filters') return { dateRange: [{ from: `item-${idx}` }] };
 					return {};
 				});
 
@@ -588,9 +588,9 @@ describe('listCorrectiveInvoices', () => {
 			mockExecuteFunctions.getNodeParameter = jest.fn().mockImplementation((key: string) => {
 				if (key === 'filters') {
 					return {
-						dateRange: { from: '2026-01-01T00:00:00Z' },
-						ids: { orderId: 99 },
-						category: { value: 'purchase-cloud' },
+						dateRange: [{ from: '2026-01-01T00:00:00Z' }],
+						ids: [{ orderId: 99 }],
+						category: [{ value: 'purchase-cloud' }],
 					};
 				}
 				return {};
@@ -609,7 +609,7 @@ describe('listCorrectiveInvoices', () => {
 		it('should skip default orderId (0)', async () => {
 			mockExecuteFunctions.getNodeParameter = jest.fn().mockImplementation((key: string) => {
 				if (key === 'filters') {
-					return { ids: { orderId: 0 } };
+					return { ids: [{ orderId: 0 }] };
 				}
 				return {};
 			});
@@ -627,7 +627,7 @@ describe('listCorrectiveInvoices', () => {
 			mockExecuteFunctions.getNodeParameter = jest
 				.fn()
 				.mockImplementation((key: string, idx?: number) => {
-					if (key === 'filters') return { ids: { orderId: idx ?? 0 } };
+					if (key === 'filters') return { ids: [{ orderId: idx ?? 0 }] };
 					return {};
 				});
 

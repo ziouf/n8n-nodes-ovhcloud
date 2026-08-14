@@ -139,7 +139,7 @@ describe('listBankAccounts', () => {
 		it('should pass state=valid to the API when set', async () => {
 			mockExecuteFunctions.getNodeParameter = jest.fn().mockImplementation((key: string) => {
 				if (key === 'filters') {
-					return { status: { value: 'valid' } };
+					return { status: [{ value: 'valid' }] };
 				}
 				return {};
 			});
@@ -162,7 +162,7 @@ describe('listBankAccounts', () => {
 		it('should pass state=blockedForIncidents to the API', async () => {
 			mockExecuteFunctions.getNodeParameter = jest.fn().mockImplementation((key: string) => {
 				if (key === 'filters') {
-					return { status: { value: 'blockedForIncidents' } };
+					return { status: [{ value: 'blockedForIncidents' }] };
 				}
 				return {};
 			});
@@ -189,7 +189,7 @@ describe('listBankAccounts', () => {
 			mockExecuteFunctions.getNodeParameter = jest
 				.fn()
 				.mockImplementation((key: string, idx?: number) => {
-					if (key === 'filters') return { status: { value: `item-${idx}` } };
+					if (key === 'filters') return { status: [{ value: `item-${idx}` }] };
 					return {};
 				});
 
@@ -205,7 +205,7 @@ describe('listBankAccounts', () => {
 		it('should not include state when the filter value is empty', async () => {
 			mockExecuteFunctions.getNodeParameter = jest.fn().mockImplementation((key: string) => {
 				if (key === 'filters') {
-					return { status: { value: '' } };
+					return { status: [{ value: '' }] };
 				}
 				return {};
 			});
@@ -299,7 +299,7 @@ describe('listOrders', () => {
 		it('should pass date.from and date.to to the API', async () => {
 			mockExecuteFunctions.getNodeParameter = jest.fn().mockImplementation((key: string) => {
 				if (key === 'filters') {
-					return { dateRange: { from: '2026-01-01T00:00:00Z', to: '2026-12-31T23:59:59Z' } };
+					return { dateRange: [{ from: '2026-01-01T00:00:00Z', to: '2026-12-31T23:59:59Z' }] };
 				}
 				return {};
 			});
@@ -320,7 +320,7 @@ describe('listOrders', () => {
 			mockExecuteFunctions.getNodeParameter = jest
 				.fn()
 				.mockImplementation((key: string, idx?: number) => {
-					if (key === 'filters') return { dateRange: { from: `item-${idx}` } };
+					if (key === 'filters') return { dateRange: [{ from: `item-${idx}` }] };
 					return {};
 				});
 

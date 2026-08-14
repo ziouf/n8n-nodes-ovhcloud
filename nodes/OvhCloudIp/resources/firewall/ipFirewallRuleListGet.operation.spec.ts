@@ -77,7 +77,7 @@ describe('ipFirewallRuleListGet.operation', () => {
 					case 'ipOnFirewall':
 						return '5.6.7.9';
 					case 'filters':
-						return { status: { value: 'ok' } };
+						return { status: [{ value: 'ok' }] };
 					default:
 						return {};
 				}
@@ -102,7 +102,7 @@ describe('ipFirewallRuleListGet.operation', () => {
 					case 'ipOnFirewall':
 						return '5.6.7.9';
 					case 'filters':
-						return { status: { value: '' } };
+						return { status: [{ value: '' }] };
 					default:
 						return {};
 				}
@@ -127,7 +127,7 @@ describe('ipFirewallRuleListGet.operation', () => {
 					case 'ipOnFirewall':
 						return '5.6.7.9';
 					case 'filters':
-						return { status: { value: 'ok' } };
+						return { status: [{ value: 'ok' }] };
 					default:
 						return {};
 				}

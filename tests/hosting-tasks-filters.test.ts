@@ -117,8 +117,8 @@ describe('OvhCloudHosting listTasks filters', () => {
 				if (key === 'serviceName') return 'test.tld';
 				if (key === 'filters') {
 					return {
-						search: { value: 'install' },
-						status: { value: 'doing' },
+						search: [{ value: 'install' }],
+						status: [{ value: 'doing' }],
 					};
 				}
 				return def;

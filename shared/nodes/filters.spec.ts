@@ -468,9 +468,29 @@ describe('buildFilterQuery', () => {
 		expect(mockFn).toHaveBeenCalledWith('filters', 0, {});
 	});
 
-	it('maps keys with dot notation (date.from / date.to)', () => {
+	// ─── n8n runtime shape: fixedCollection with multipleValues:true (ARRAY) ──
+	// n8n stores each group as an array of entry objects:
+	//   { dateRange: [{ from, to }], status: [{ value }] }
+	// This is the shape that arrives at runtime in a real n8n workflow.
+
+	it('should read filters from n8n fixedCollection array shape (multipleValues: true)', () => {
 		const mockFn = jest.fn().mockReturnValue({
-			dateRange: { from: '2024-01-01', to: '2024-12-31' },
+			dateRange: [{ from: '2024-01-01', to: '2024-12-31' }],
+			status: [{ value: 'active' }],
+		});
+		const ctx = makeCtx(mockFn);
+		const result = buildFilterQuery(ctx, 0, defs);
+		expect(result).toEqual({
+			'date.from': '2024-01-01',
+			'date.to': '2024-12-31',
+			status: 'active',
+		});
+	});
+
+	it('merges multiple entries in the same group (last-wins per field)', () => {
+		// Two dateRange entries: first has 'from', second overrides with 'to'
+		const mockFn = jest.fn().mockReturnValue({
+			dateRange: [{ from: '2024-01-01', to: '2024-06-30' }, { to: '2024-12-31' }],
 		});
 		const ctx = makeCtx(mockFn);
 		const result = buildFilterQuery(ctx, 0, defs);
@@ -480,9 +500,21 @@ describe('buildFilterQuery', () => {
 		});
 	});
 
-	it('skips empty string values', () => {
+	it('maps keys with dot notation (date.from / date.to) — array shape', () => {
 		const mockFn = jest.fn().mockReturnValue({
-			dateRange: { from: '2024-01-01', to: '' },
+			dateRange: [{ from: '2024-01-01', to: '2024-12-31' }],
+		});
+		const ctx = makeCtx(mockFn);
+		const result = buildFilterQuery(ctx, 0, defs);
+		expect(result).toEqual({
+			'date.from': '2024-01-01',
+			'date.to': '2024-12-31',
+		});
+	});
+
+	it('skips empty string values — array shape', () => {
+		const mockFn = jest.fn().mockReturnValue({
+			dateRange: [{ from: '2024-01-01', to: '' }],
 		});
 		const ctx = makeCtx(mockFn);
 		const result = buildFilterQuery(ctx, 0, defs);
@@ -491,7 +523,7 @@ describe('buildFilterQuery', () => {
 		});
 	});
 
-	it('skips number equal to default (0)', () => {
+	it('skips number equal to default (0) — array shape', () => {
 		const numDef: FilterDefinition[] = [
 			{
 				group: 'limits',
@@ -502,13 +534,13 @@ describe('buildFilterQuery', () => {
 				type: 'number',
 			},
 		];
-		const mockFn = jest.fn().mockReturnValue({ limits: { maxItems: 0 } });
+		const mockFn = jest.fn().mockReturnValue({ limits: [{ maxItems: 0 }] });
 		const ctx = makeCtx(mockFn);
 		const result = buildFilterQuery(ctx, 0, numDef);
 		expect(result).toBeUndefined();
 	});
 
-	it('coerces string "5" to number 5 for type number', () => {
+	it('coerces string "5" to number 5 for type number — array shape', () => {
 		const numDef: FilterDefinition[] = [
 			{
 				group: 'limits',
@@ -519,13 +551,13 @@ describe('buildFilterQuery', () => {
 				type: 'number',
 			},
 		];
-		const mockFn = jest.fn().mockReturnValue({ limits: { maxItems: '5' } });
+		const mockFn = jest.fn().mockReturnValue({ limits: [{ maxItems: '5' }] });
 		const ctx = makeCtx(mockFn);
 		const result = buildFilterQuery(ctx, 0, numDef);
 		expect(result).toEqual({ limit: 5 });
 	});
 
-	it('transmits boolean true/false for options type', () => {
+	it('transmits boolean true/false for options type — array shape', () => {
 		const boolDef: FilterDefinition[] = [
 			{
 				group: 'flags',
@@ -536,21 +568,21 @@ describe('buildFilterQuery', () => {
 				type: 'options',
 			},
 		];
-		const mockFnTrue = jest.fn().mockReturnValue({ flags: { enabled: true } });
+		const mockFnTrue = jest.fn().mockReturnValue({ flags: [{ enabled: true }] });
 		const ctxTrue = makeCtx(mockFnTrue);
 		let result = buildFilterQuery(ctxTrue, 0, boolDef);
 		expect(result).toEqual({ enabled: true });
 
-		const mockFnFalse = jest.fn().mockReturnValue({ flags: { enabled: false } });
+		const mockFnFalse = jest.fn().mockReturnValue({ flags: [{ enabled: false }] });
 		const ctxFalse = makeCtx(mockFnFalse);
 		result = buildFilterQuery(ctxFalse, 0, boolDef);
 		expect(result).toEqual({ enabled: false });
 	});
 
-	it('handles multiple fields within the same group', () => {
+	it('handles multiple fields within the same group — array shape', () => {
 		const mockFn = jest.fn().mockReturnValue({
-			dateRange: { from: '2024-01-01', to: '2024-12-31' },
-			status: { value: 'active' },
+			dateRange: [{ from: '2024-01-01', to: '2024-12-31' }],
+			status: [{ value: 'active' }],
 		});
 		const ctx = makeCtx(mockFn);
 		const result = buildFilterQuery(ctx, 0, defs);
@@ -584,18 +616,18 @@ describe('buildFilterQuery', () => {
 		expect(mockFn).toHaveBeenCalledWith('serviceIds', 0);
 	});
 
-	it('calls getNodeParameter with the correct itemIndex (e.g. 3)', () => {
+	it('calls getNodeParameter with the correct itemIndex (e.g. 3) — array shape', () => {
 		const mockFn = jest.fn().mockReturnValue({
-			dateRange: { from: '2024-01-01' },
+			dateRange: [{ from: '2024-01-01' }],
 		});
 		const ctx = makeCtx(mockFn);
 		buildFilterQuery(ctx, 3, defs);
 		expect(mockFn).toHaveBeenCalledWith('filters', 3, {});
 	});
 
-	it('uses a custom collectionName when provided', () => {
+	it('uses a custom collectionName when provided — array shape', () => {
 		const mockFn = jest.fn().mockReturnValue({
-			status: { value: 'active' },
+			status: [{ value: 'active' }],
 		});
 		const ctx = makeCtx(mockFn);
 		const result = buildFilterQuery(ctx, 0, defs, 'customFilters');
@@ -603,9 +635,39 @@ describe('buildFilterQuery', () => {
 		expect(result).toEqual({ status: 'active' });
 	});
 
+	// ─── Backward compatibility: object shape (multipleValues:false) ──────
+	// When a node uses multipleValues:false, n8n returns an object per group
+	// instead of an array. The code must handle both shapes.
+
+	it('maps keys with dot notation — object shape (backward compat)', () => {
+		const mockFn = jest.fn().mockReturnValue({
+			dateRange: { from: '2024-01-01', to: '2024-12-31' },
+		});
+		const ctx = makeCtx(mockFn);
+		const result = buildFilterQuery(ctx, 0, defs);
+		expect(result).toEqual({
+			'date.from': '2024-01-01',
+			'date.to': '2024-12-31',
+		});
+	});
+
+	it('handles multiple fields within the same group — object shape (backward compat)', () => {
+		const mockFn = jest.fn().mockReturnValue({
+			dateRange: { from: '2024-01-01', to: '2024-12-31' },
+			status: { value: 'active' },
+		});
+		const ctx = makeCtx(mockFn);
+		const result = buildFilterQuery(ctx, 0, defs);
+		expect(result).toEqual({
+			'date.from': '2024-01-01',
+			'date.to': '2024-12-31',
+			status: 'active',
+		});
+	});
+
 	// ─── multiOptions tests ──────────────────────────────────────────────
 
-	it('transmits non-empty array for multiOptions type', () => {
+	it('transmits non-empty array for multiOptions type — array shape', () => {
 		const multiDef: FilterDefinition[] = [
 			{
 				group: 'actions',
@@ -621,7 +683,7 @@ describe('buildFilterQuery', () => {
 			},
 		];
 		const mockFn = jest.fn().mockReturnValue({
-			actions: { value: ['account:apiovh:me/get', 'account:apiovh:me/post'] },
+			actions: [{ value: ['account:apiovh:me/get', 'account:apiovh:me/post'] }],
 		});
 		const ctx = makeCtx(mockFn);
 		const result = buildFilterQuery(ctx, 0, multiDef);
@@ -630,7 +692,7 @@ describe('buildFilterQuery', () => {
 		});
 	});
 
-	it('skips multiOptions when array is empty', () => {
+	it('skips multiOptions when array is empty — array shape', () => {
 		const multiDef: FilterDefinition[] = [
 			{
 				group: 'actions',
@@ -641,13 +703,13 @@ describe('buildFilterQuery', () => {
 				type: 'multiOptions',
 			},
 		];
-		const mockFn = jest.fn().mockReturnValue({ actions: { value: [] } });
+		const mockFn = jest.fn().mockReturnValue({ actions: [{ value: [] }] });
 		const ctx = makeCtx(mockFn);
 		const result = buildFilterQuery(ctx, 0, multiDef);
 		expect(result).toBeUndefined();
 	});
 
-	it('filters out empty string values from multiOptions array', () => {
+	it('filters out empty string values from multiOptions array — array shape', () => {
 		const multiDef: FilterDefinition[] = [
 			{
 				group: 'actions',
@@ -659,7 +721,7 @@ describe('buildFilterQuery', () => {
 			},
 		];
 		const mockFn = jest.fn().mockReturnValue({
-			actions: { value: ['account:apiovh:me/get', '', '  '] },
+			actions: [{ value: ['account:apiovh:me/get', '', '  '] }],
 		});
 		const ctx = makeCtx(mockFn);
 		const result = buildFilterQuery(ctx, 0, multiDef);
@@ -668,7 +730,7 @@ describe('buildFilterQuery', () => {
 
 	// ─── json type tests ─────────────────────────────────────────────────
 
-	it('passthroughs object for json type', () => {
+	it('passthroughs object for json type — array shape', () => {
 		const jsonDef: FilterDefinition[] = [
 			{
 				group: 'tags',
@@ -680,7 +742,7 @@ describe('buildFilterQuery', () => {
 			},
 		];
 		const mockFn = jest.fn().mockReturnValue({
-			tags: { value: { env: [{ operator: 'EQ', value: 'prod' }] } },
+			tags: [{ value: { env: [{ operator: 'EQ', value: 'prod' }] } }],
 		});
 		const ctx = makeCtx(mockFn);
 		const result = buildFilterQuery(ctx, 0, jsonDef);
@@ -689,7 +751,7 @@ describe('buildFilterQuery', () => {
 		});
 	});
 
-	it('parses valid JSON string for json type', () => {
+	it('parses valid JSON string for json type — array shape', () => {
 		const jsonDef: FilterDefinition[] = [
 			{
 				group: 'tags',
@@ -701,7 +763,7 @@ describe('buildFilterQuery', () => {
 			},
 		];
 		const mockFn = jest.fn().mockReturnValue({
-			tags: { value: '{"env":[{"operator":"EQ","value":"prod"}]}' },
+			tags: [{ value: '{"env":[{"operator":"EQ","value":"prod"}]}' }],
 		});
 		const ctx = makeCtx(mockFn);
 		const result = buildFilterQuery(ctx, 0, jsonDef);
@@ -710,7 +772,7 @@ describe('buildFilterQuery', () => {
 		});
 	});
 
-	it('throws on invalid JSON string for json type', () => {
+	it('throws on invalid JSON string for json type — array shape', () => {
 		const jsonDef: FilterDefinition[] = [
 			{
 				group: 'tags',
@@ -721,12 +783,12 @@ describe('buildFilterQuery', () => {
 				type: 'json',
 			},
 		];
-		const mockFn = jest.fn().mockReturnValue({ tags: { value: '{invalid json' } });
+		const mockFn = jest.fn().mockReturnValue({ tags: [{ value: '{invalid json' }] });
 		const ctx = makeCtx(mockFn);
 		expect(() => buildFilterQuery(ctx, 0, jsonDef)).toThrow(/Invalid JSON in filter "IAM Tags"/);
 	});
 
-	it('skips empty string for json type via isEmptyFilterValue', () => {
+	it('skips empty string for json type via isEmptyFilterValue — array shape', () => {
 		const jsonDef: FilterDefinition[] = [
 			{
 				group: 'tags',
@@ -737,7 +799,7 @@ describe('buildFilterQuery', () => {
 				type: 'json',
 			},
 		];
-		const mockFn = jest.fn().mockReturnValue({ tags: { value: '' } });
+		const mockFn = jest.fn().mockReturnValue({ tags: [{ value: '' }] });
 		const ctx = makeCtx(mockFn);
 		const result = buildFilterQuery(ctx, 0, jsonDef);
 		expect(result).toBeUndefined();
@@ -745,7 +807,7 @@ describe('buildFilterQuery', () => {
 
 	// ─── delimiter tests ─────────────────────────────────────────────────
 
-	it('splits string on delimiter and sends as array for string type with delimiter', () => {
+	it('splits string on delimiter and sends as array for string type with delimiter — array shape', () => {
 		const delimDef: FilterDefinition[] = [
 			{
 				group: 'actions',
@@ -758,7 +820,7 @@ describe('buildFilterQuery', () => {
 			},
 		];
 		const mockFn = jest.fn().mockReturnValue({
-			actions: { value: 'account:apiovh:me/get,account:apiovh:me/*' },
+			actions: [{ value: 'account:apiovh:me/get,account:apiovh:me/*' }],
 		});
 		const ctx = makeCtx(mockFn);
 		const result = buildFilterQuery(ctx, 0, delimDef);
@@ -767,7 +829,7 @@ describe('buildFilterQuery', () => {
 		});
 	});
 
-	it('skips delimiter split when resulting array is empty', () => {
+	it('skips delimiter split when resulting array is empty — array shape', () => {
 		const delimDef: FilterDefinition[] = [
 			{
 				group: 'actions',
@@ -779,7 +841,7 @@ describe('buildFilterQuery', () => {
 				delimiter: ',',
 			},
 		];
-		const mockFn = jest.fn().mockReturnValue({ actions: { value: '  ,  ' } });
+		const mockFn = jest.fn().mockReturnValue({ actions: [{ value: '  ,  ' }] });
 		const ctx = makeCtx(mockFn);
 		const result = buildFilterQuery(ctx, 0, delimDef);
 		expect(result).toBeUndefined();
