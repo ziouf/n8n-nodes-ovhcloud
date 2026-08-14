@@ -5,7 +5,7 @@
  * `'read'`, `'write'`, or `'destructive'` classes.
  */
 
-import { classifyOperation, DEFAULT_CLASS_CONCURRENCY } from '../shared/nodes/operationClass';
+import { classifyOperation, DEFAULT_CLASS_CONCURRENCY } from '../shared/nodes/BaseNode';
 
 describe('classifyOperation', () => {
 	describe('read classification', () => {

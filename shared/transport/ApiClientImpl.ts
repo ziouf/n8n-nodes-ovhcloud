@@ -7,6 +7,7 @@ import type {
 import { createHash } from 'crypto';
 import type { OvhCredentialsType } from './CredentialHolder';
 import { CredentialHolder } from './CredentialHolder';
+import { OvhCloudApiSecretName } from '../constants';
 
 /**
  * Type alias for n8n functions context (execute or load options).
@@ -165,7 +166,7 @@ export class ApiClient {
 		if (this.credentialsCache) {
 			return this.credentialsCache;
 		}
-		const rawCredentials = await this.fn.getCredentials('ovhCloud-Api');
+		const rawCredentials = await this.fn.getCredentials(OvhCloudApiSecretName);
 		this.credentialsCache = new CredentialHolder(rawCredentials as OvhCredentialsType);
 		return this.credentialsCache;
 	}

@@ -7,8 +7,8 @@
  */
 
 import { BaseNode, executeTemplate } from '../shared/nodes/BaseNode';
-import { classifyOperation } from '../shared/nodes/operationClass';
-import type { OperationClass } from '../shared/nodes/operationClass';
+import { classifyOperation } from '../shared/nodes/BaseNode';
+import type { OperationClass } from '../shared/nodes/BaseNode';
 import { NodeApiError } from 'n8n-workflow';
 import type { IExecuteFunctions, INodeExecutionData } from 'n8n-workflow';
 
