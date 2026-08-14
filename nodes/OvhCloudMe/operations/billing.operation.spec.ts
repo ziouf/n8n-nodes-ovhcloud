@@ -117,12 +117,17 @@ describe('billing.operation — listBills with filters', () => {
 	// ============================================================
 
 	describe('executeListBills', () => {
-		it('should call paginateResources with correct endpoints and no query when filters are empty', async () => {
+		it('should call httpGet for list and details, no query when filters are empty', async () => {
+			const billIds = ['bill-1', 'bill-2'];
 			const fullObjects = [
 				{ billId: 'bill-1', total: 100.0 },
 				{ billId: 'bill-2', total: 200.0 },
 			];
-			client.paginateResources.mockResolvedValue(fullObjects);
+			// First call: list endpoint returns IDs
+			client.httpGet.mockResolvedValueOnce(billIds);
+			// Subsequent calls: detail endpoints return full objects
+			client.httpGet.mockResolvedValueOnce(fullObjects[0]);
+			client.httpGet.mockResolvedValueOnce(fullObjects[1]);
 
 			mockExecuteFunctions.getNodeParameter.mockImplementation((key: string) => {
 				if (key === 'filters') return {};
@@ -131,15 +136,23 @@ describe('billing.operation — listBills with filters', () => {
 
 			const result = await executeListBills.call(mockExecuteFunctions, 0);
 
-			expect(client.paginateResources).toHaveBeenCalledWith('/me/bill', '/me/bill/{id}', {
-				query: undefined,
-			});
+			expect(client.httpGet).toHaveBeenCalledWith('/me/bill', undefined);
+			expect(client.httpGet).toHaveBeenCalledWith('/me/bill/bill-1');
+			expect(client.httpGet).toHaveBeenCalledWith('/me/bill/bill-2');
 			expect(result).toEqual(fullObjects);
 		});
 
-		it('should call paginateResources with filters when provided', async () => {
-			const fullObjects = [{ billId: 'bill-7', total: 50.0 }];
-			client.paginateResources.mockResolvedValue(fullObjects);
+		it('should call httpGet with filters when provided', async () => {
+			const billIds = ['bill-7'];
+			const fullObject = { billId: 'bill-7', total: 50.0 };
+			const filterQuery = {
+				'date.from': '2026-01-01T00:00:00Z',
+				'date.to': '2026-06-30T00:00:00Z',
+				orderId: 5,
+				category: 'purchase',
+			};
+			client.httpGet.mockResolvedValueOnce(billIds);
+			client.httpGet.mockResolvedValueOnce(fullObject);
 
 			mockExecuteFunctions.getNodeParameter.mockImplementation((key: string) => {
 				if (key === 'filters') {
@@ -154,20 +167,16 @@ describe('billing.operation — listBills with filters', () => {
 
 			const result = await executeListBills.call(mockExecuteFunctions, 0);
 
-			expect(client.paginateResources).toHaveBeenCalledWith('/me/bill', '/me/bill/{id}', {
-				query: {
-					'date.from': '2026-01-01T00:00:00Z',
-					'date.to': '2026-06-30T00:00:00Z',
-					orderId: 5,
-					category: 'purchase',
-				},
-			});
-			expect(result).toEqual([{ billId: 'bill-7', total: 50.0 }]);
+			expect(client.httpGet).toHaveBeenCalledWith('/me/bill', filterQuery);
+			expect(client.httpGet).toHaveBeenCalledWith('/me/bill/bill-7');
+			expect(result).toEqual([fullObject]);
 		});
 
 		it('should pass itemIndex to getNodeParameter', async () => {
-			const fullObjects = [{ billId: 'bill-x' }];
-			client.paginateResources.mockResolvedValue(fullObjects);
+			const billIds = ['bill-x'];
+			const fullObject = { billId: 'bill-x' };
+			client.httpGet.mockResolvedValueOnce(billIds);
+			client.httpGet.mockResolvedValueOnce(fullObject);
 
 			const callArgs: [string, number?][] = [];
 			mockExecuteFunctions.getNodeParameter.mockImplementation((key: string, idx?: number) => {
@@ -185,8 +194,10 @@ describe('billing.operation — listBills with filters', () => {
 		});
 
 		it('should skip orderId when value is 0 (default)', async () => {
-			const fullObjects = [{ billId: 'bill-0' }];
-			client.paginateResources.mockResolvedValue(fullObjects);
+			const billIds = ['bill-0'];
+			const fullObject = { billId: 'bill-0' };
+			client.httpGet.mockResolvedValueOnce(billIds);
+			client.httpGet.mockResolvedValueOnce(fullObject);
 
 			mockExecuteFunctions.getNodeParameter.mockImplementation((key: string) => {
 				if (key === 'filters') {
@@ -199,13 +210,11 @@ describe('billing.operation — listBills with filters', () => {
 
 			await executeListBills.call(mockExecuteFunctions, 0);
 
-			expect(client.paginateResources).toHaveBeenCalledWith('/me/bill', '/me/bill/{id}', {
-				query: undefined,
-			});
+			expect(client.httpGet).toHaveBeenCalledWith('/me/bill', undefined);
 		});
 
 		it('should return empty array when no bills exist', async () => {
-			client.paginateResources.mockResolvedValue([]);
+			client.httpGet.mockResolvedValueOnce([]);
 
 			mockExecuteFunctions.getNodeParameter.mockImplementation((key: string) => {
 				if (key === 'filters') return {};
@@ -214,15 +223,18 @@ describe('billing.operation — listBills with filters', () => {
 
 			const result = await executeListBills.call(mockExecuteFunctions, 0);
 
-			expect(client.paginateResources).toHaveBeenCalledWith('/me/bill', '/me/bill/{id}', {
-				query: undefined,
-			});
+			expect(client.httpGet).toHaveBeenCalledWith('/me/bill', undefined);
 			expect(result).toEqual([]);
 		});
 
 		it('should handle partial filters (only date range)', async () => {
-			const fullObjects = [{ billId: 'bill-date' }];
-			client.paginateResources.mockResolvedValue(fullObjects);
+			const billIds = ['bill-date'];
+			const fullObject = { billId: 'bill-date' };
+			const filterQuery = {
+				'date.from': '2026-01-01T00:00:00Z',
+			};
+			client.httpGet.mockResolvedValueOnce(billIds);
+			client.httpGet.mockResolvedValueOnce(fullObject);
 
 			mockExecuteFunctions.getNodeParameter.mockImplementation((key: string) => {
 				if (key === 'filters') {
@@ -235,16 +247,14 @@ describe('billing.operation — listBills with filters', () => {
 
 			await executeListBills.call(mockExecuteFunctions, 0);
 
-			expect(client.paginateResources).toHaveBeenCalledWith('/me/bill', '/me/bill/{id}', {
-				query: {
-					'date.from': '2026-01-01T00:00:00Z',
-				},
-			});
+			expect(client.httpGet).toHaveBeenCalledWith('/me/bill', filterQuery);
 		});
 
 		it('should skip empty dateRange values', async () => {
-			const fullObjects = [{ billId: 'bill-empty' }];
-			client.paginateResources.mockResolvedValue(fullObjects);
+			const billIds = ['bill-empty'];
+			const fullObject = { billId: 'bill-empty' };
+			client.httpGet.mockResolvedValueOnce(billIds);
+			client.httpGet.mockResolvedValueOnce(fullObject);
 
 			mockExecuteFunctions.getNodeParameter.mockImplementation((key: string) => {
 				if (key === 'filters') {
@@ -257,9 +267,7 @@ describe('billing.operation — listBills with filters', () => {
 
 			await executeListBills.call(mockExecuteFunctions, 0);
 
-			expect(client.paginateResources).toHaveBeenCalledWith('/me/bill', '/me/bill/{id}', {
-				query: undefined,
-			});
+			expect(client.httpGet).toHaveBeenCalledWith('/me/bill', undefined);
 		});
 	});
 });

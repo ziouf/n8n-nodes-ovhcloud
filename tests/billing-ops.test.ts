@@ -1,12 +1,16 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 /**
- * Tests for billing list operations — returnFullObjects + maxItems parameters.
+ * Tests for billing list operations — sequential detail fetching.
  *
  * Verifies that:
- * - executeListBillDebtOperations calls paginateResources with correct endpoints
- * - executeListBills calls paginateResources with correct endpoints
- * - executeListBillingGroups calls paginateResources with correct endpoints
- * - Failed item fetches (onSkipped) are silently skipped, not thrown
+ * - executeListBillDebtOperations calls httpGet for list + details
+ * - executeListBills calls httpGet for list + details
+ * - executeListBillingGroups calls httpGet for list + details
+ * - executeListBillDetails calls httpGet for list + details
+ * - executeListBillingGroupServices calls httpGet for list + details
+ * - executeListPurchaseOrders calls httpGet for list + details
+ * - executeListConsumptionReports calls httpGet for list + details
+ * - Failed item fetches are silently skipped, not thrown
  * - Results are returned in order
  */
 
@@ -46,13 +50,16 @@ describe('Billing list operations', () => {
 	// ─── executeListBillDebtOperations ─────────────────────────────────────
 
 	describe('executeListBillDebtOperations', () => {
-		it('should call paginateResources with correct endpoints and return full objects in order', async () => {
+		it('should call httpGet for list and details, return full objects in order', async () => {
 			const billId = 'bill-123';
+			const ids = ['op-1', 'op-2'];
 			const fullObjects = [
 				{ debtOperationId: 'op-1', amount: 10.5 },
 				{ debtOperationId: 'op-2', amount: 20.0 },
 			];
-			mockClient.paginateResources.mockResolvedValue(fullObjects);
+			mockClient.httpGet.mockResolvedValueOnce(ids);
+			mockClient.httpGet.mockResolvedValueOnce(fullObjects[0]);
+			mockClient.httpGet.mockResolvedValueOnce(fullObjects[1]);
 
 			mockExecuteFunctions.getNodeParameter = jest.fn().mockImplementation((key: string) => {
 				if (key === 'billId') return billId;
@@ -61,36 +68,25 @@ describe('Billing list operations', () => {
 
 			const result = await executeListBillDebtOperations.call(mockExecuteFunctions);
 
-			expect(mockClient.paginateResources).toHaveBeenCalledWith(
-				'/me/bill/bill-123/debt/operation',
-				'/me/bill/bill-123/debt/operation/{id}',
-			);
-			expect(mockClient.httpGet).not.toHaveBeenCalled();
+			expect(mockClient.httpGet).toHaveBeenCalledWith('/me/bill/bill-123/debt/operation');
+			expect(mockClient.httpGet).toHaveBeenCalledWith('/me/bill/bill-123/debt/operation/op-1');
+			expect(mockClient.httpGet).toHaveBeenCalledWith('/me/bill/bill-123/debt/operation/op-2');
 			expect(result).toEqual(fullObjects);
 		});
 
-		it('should skip failed items via onSkipped without throwing', async () => {
+		it('should skip failed items without throwing', async () => {
 			const billId = 'bill-456';
-			const fullObjects = [
-				{ debtOperationId: 'op-1', amount: 10.5 },
-				// op-2 was skipped due to failure
-			];
-			mockClient.paginateResources.mockImplementation(
-				async (_listEndpoint, _itemEndpoint, opts) => {
-					// Simulate onSkipped being called (one item failed)
-					if (opts?.onSkipped) {
-						opts.onSkipped('op-2', new Error('Not found'));
-					}
-					return fullObjects;
-				},
-			);
+			const ids = ['op-1', 'op-2'];
+			const fullObjects = [{ debtOperationId: 'op-1', amount: 10.5 }];
+			mockClient.httpGet.mockResolvedValueOnce(ids);
+			mockClient.httpGet.mockResolvedValueOnce(fullObjects[0]);
+			mockClient.httpGet.mockRejectedValueOnce(new Error('Not found'));
 
 			mockExecuteFunctions.getNodeParameter = jest.fn().mockImplementation((key: string) => {
 				if (key === 'billId') return billId;
 				return '';
 			});
 
-			// Should NOT throw — onSkipped handles the failure internally
 			const result = await executeListBillDebtOperations.call(mockExecuteFunctions);
 
 			expect(result).toHaveLength(1);
@@ -99,7 +95,8 @@ describe('Billing list operations', () => {
 
 		it('should use itemIndex ?? 0 for billId parameter resolution', async () => {
 			const fullObjects = [{ debtOperationId: 'op-1' }];
-			mockClient.paginateResources.mockResolvedValue(fullObjects);
+			mockClient.httpGet.mockResolvedValueOnce(['op-1']);
+			mockClient.httpGet.mockResolvedValueOnce(fullObjects[0]);
 
 			let callCount = 0;
 			mockExecuteFunctions.getNodeParameter = jest
@@ -120,31 +117,33 @@ describe('Billing list operations', () => {
 	// ─── executeListBills ──────────────────────────────────────────────────
 
 	describe('executeListBills', () => {
-		it('should call paginateResources with correct endpoints and return full objects in order', async () => {
+		it('should call httpGet for list and details, return full objects in order', async () => {
+			const ids = ['bill-1', 'bill-2', 'bill-3'];
 			const fullObjects = [
 				{ billId: 'bill-1', total: 100.0 },
 				{ billId: 'bill-2', total: 200.0 },
 				{ billId: 'bill-3', total: 300.0 },
 			];
-			mockClient.paginateResources.mockResolvedValue(fullObjects);
+			mockClient.httpGet.mockResolvedValueOnce(ids);
+			mockClient.httpGet.mockResolvedValueOnce(fullObjects[0]);
+			mockClient.httpGet.mockResolvedValueOnce(fullObjects[1]);
+			mockClient.httpGet.mockResolvedValueOnce(fullObjects[2]);
 
 			const result = await executeListBills.call(mockExecuteFunctions);
 
-			expect(mockClient.paginateResources).toHaveBeenCalledWith('/me/bill', '/me/bill/{id}', {
-				query: undefined,
-			});
-			expect(mockClient.httpGet).not.toHaveBeenCalled();
+			expect(mockClient.httpGet).toHaveBeenCalledWith('/me/bill', undefined);
+			expect(mockClient.httpGet).toHaveBeenCalledWith('/me/bill/bill-1');
+			expect(mockClient.httpGet).toHaveBeenCalledWith('/me/bill/bill-2');
+			expect(mockClient.httpGet).toHaveBeenCalledWith('/me/bill/bill-3');
 			expect(result).toEqual(fullObjects);
 		});
 
 		it('should return empty array when no bills exist', async () => {
-			mockClient.paginateResources.mockResolvedValue([]);
+			mockClient.httpGet.mockResolvedValueOnce([]);
 
 			const result = await executeListBills.call(mockExecuteFunctions);
 
-			expect(mockClient.paginateResources).toHaveBeenCalledWith('/me/bill', '/me/bill/{id}', {
-				query: undefined,
-			});
+			expect(mockClient.httpGet).toHaveBeenCalledWith('/me/bill', undefined);
 			expect(result).toEqual([]);
 		});
 	});
@@ -152,32 +151,30 @@ describe('Billing list operations', () => {
 	// ─── executeListBillingGroups ──────────────────────────────────────────
 
 	describe('executeListBillingGroups', () => {
-		it('should call paginateResources with correct endpoints and return full objects in order', async () => {
+		it('should call httpGet for list and details, return full objects in order', async () => {
+			const ids = ['bg-1', 'bg-2'];
 			const fullObjects = [
 				{ billingGroupId: 'bg-1', description: 'Group 1' },
 				{ billingGroupId: 'bg-2', description: 'Group 2' },
 			];
-			mockClient.paginateResources.mockResolvedValue(fullObjects);
+			mockClient.httpGet.mockResolvedValueOnce(ids);
+			mockClient.httpGet.mockResolvedValueOnce(fullObjects[0]);
+			mockClient.httpGet.mockResolvedValueOnce(fullObjects[1]);
 
 			const result = await executeListBillingGroups.call(mockExecuteFunctions);
 
-			expect(mockClient.paginateResources).toHaveBeenCalledWith(
-				'/me/billing/group',
-				'/me/billing/group/{id}',
-			);
-			expect(mockClient.httpGet).not.toHaveBeenCalled();
+			expect(mockClient.httpGet).toHaveBeenCalledWith('/me/billing/group');
+			expect(mockClient.httpGet).toHaveBeenCalledWith('/me/billing/group/bg-1');
+			expect(mockClient.httpGet).toHaveBeenCalledWith('/me/billing/group/bg-2');
 			expect(result).toEqual(fullObjects);
 		});
 
 		it('should return empty array when no billing groups exist', async () => {
-			mockClient.paginateResources.mockResolvedValue([]);
+			mockClient.httpGet.mockResolvedValueOnce([]);
 
 			const result = await executeListBillingGroups.call(mockExecuteFunctions);
 
-			expect(mockClient.paginateResources).toHaveBeenCalledWith(
-				'/me/billing/group',
-				'/me/billing/group/{id}',
-			);
+			expect(mockClient.httpGet).toHaveBeenCalledWith('/me/billing/group');
 			expect(result).toEqual([]);
 		});
 	});
@@ -185,10 +182,12 @@ describe('Billing list operations', () => {
 	// ─── executeListBillDetails ────────────────────────────────────────────
 
 	describe('executeListBillDetails', () => {
-		it('should call paginateResources with correct endpoints', async () => {
+		it('should call httpGet for list and details', async () => {
 			const billId = 'bill-789';
+			const ids = ['det-1'];
 			const fullObjects = [{ detailId: 'det-1', label: 'Detail 1' }];
-			mockClient.paginateResources.mockResolvedValue(fullObjects);
+			mockClient.httpGet.mockResolvedValueOnce(ids);
+			mockClient.httpGet.mockResolvedValueOnce(fullObjects[0]);
 
 			mockExecuteFunctions.getNodeParameter = jest.fn().mockImplementation((key: string) => {
 				if (key === 'billId') return billId;
@@ -197,10 +196,8 @@ describe('Billing list operations', () => {
 
 			const result = await executeListBillDetails.call(mockExecuteFunctions);
 
-			expect(mockClient.paginateResources).toHaveBeenCalledWith(
-				'/me/bill/bill-789/details',
-				'/me/bill/bill-789/details/{id}',
-			);
+			expect(mockClient.httpGet).toHaveBeenCalledWith('/me/bill/bill-789/details');
+			expect(mockClient.httpGet).toHaveBeenCalledWith('/me/bill/bill-789/details/det-1');
 			expect(result).toEqual(fullObjects);
 		});
 	});
@@ -208,10 +205,12 @@ describe('Billing list operations', () => {
 	// ─── executeListBillingGroupServices ───────────────────────────────────
 
 	describe('executeListBillingGroupServices', () => {
-		it('should call paginateResources with correct endpoints', async () => {
+		it('should call httpGet for list and details', async () => {
 			const groupId = 'group-abc';
+			const ids = ['svc-1'];
 			const fullObjects = [{ serviceId: 'svc-1', serviceName: 'Service 1' }];
-			mockClient.paginateResources.mockResolvedValue(fullObjects);
+			mockClient.httpGet.mockResolvedValueOnce(ids);
+			mockClient.httpGet.mockResolvedValueOnce(fullObjects[0]);
 
 			mockExecuteFunctions.getNodeParameter = jest.fn().mockImplementation((key: string) => {
 				if (key === 'groupId') return groupId;
@@ -220,10 +219,8 @@ describe('Billing list operations', () => {
 
 			const result = await executeListBillingGroupServices.call(mockExecuteFunctions);
 
-			expect(mockClient.paginateResources).toHaveBeenCalledWith(
-				'/me/billing/group/group-abc/service',
-				'/me/billing/group/group-abc/service/{id}',
-			);
+			expect(mockClient.httpGet).toHaveBeenCalledWith('/me/billing/group/group-abc/service');
+			expect(mockClient.httpGet).toHaveBeenCalledWith('/me/billing/group/group-abc/service/svc-1');
 			expect(result).toEqual(fullObjects);
 		});
 	});
@@ -231,16 +228,16 @@ describe('Billing list operations', () => {
 	// ─── executeListPurchaseOrders ─────────────────────────────────────────
 
 	describe('executeListPurchaseOrders', () => {
-		it('should call paginateResources with correct endpoints', async () => {
+		it('should call httpGet for list and details', async () => {
+			const ids = ['po-1'];
 			const fullObjects = [{ orderId: 'po-1', status: 'confirmed' }];
-			mockClient.paginateResources.mockResolvedValue(fullObjects);
+			mockClient.httpGet.mockResolvedValueOnce(ids);
+			mockClient.httpGet.mockResolvedValueOnce(fullObjects[0]);
 
 			const result = await executeListPurchaseOrders.call(mockExecuteFunctions);
 
-			expect(mockClient.paginateResources).toHaveBeenCalledWith(
-				'/me/billing/purchaseOrder',
-				'/me/billing/purchaseOrder/{id}',
-			);
+			expect(mockClient.httpGet).toHaveBeenCalledWith('/me/billing/purchaseOrder');
+			expect(mockClient.httpGet).toHaveBeenCalledWith('/me/billing/purchaseOrder/po-1');
 			expect(result).toEqual(fullObjects);
 		});
 	});
@@ -248,16 +245,16 @@ describe('Billing list operations', () => {
 	// ─── executeListConsumptionReports ─────────────────────────────────────
 
 	describe('executeListConsumptionReports', () => {
-		it('should call paginateResources with correct endpoints', async () => {
+		it('should call httpGet for list and details', async () => {
+			const ids = ['rpt-1'];
 			const fullObjects = [{ taskId: 'rpt-1', type: 'monthly' }];
-			mockClient.paginateResources.mockResolvedValue(fullObjects);
+			mockClient.httpGet.mockResolvedValueOnce(ids);
+			mockClient.httpGet.mockResolvedValueOnce(fullObjects[0]);
 
 			const result = await executeListConsumptionReports.call(mockExecuteFunctions);
 
-			expect(mockClient.paginateResources).toHaveBeenCalledWith(
-				'/me/billing/report/consumption',
-				'/me/billing/report/consumption/{id}',
-			);
+			expect(mockClient.httpGet).toHaveBeenCalledWith('/me/billing/report/consumption');
+			expect(mockClient.httpGet).toHaveBeenCalledWith('/me/billing/report/consumption/rpt-1');
 			expect(result).toEqual(fullObjects);
 		});
 	});

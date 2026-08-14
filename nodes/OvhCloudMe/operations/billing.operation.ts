@@ -72,11 +72,19 @@ export async function executeListBills(
 	itemIndex?: number,
 ): Promise<INodeExecutionData[]> {
 	const client = getClient(this);
-	// Uses paginateResources for parallel detail fetching (concurrency 3).
-	// Failed item fetches are silently skipped (previously threw).
-	const results = await client.paginateResources<IDataObject>('/me/bill', '/me/bill/{id}', {
-		query: buildFilterQuery(this, itemIndex ?? 0, BILL_FILTERS),
-	});
+	const filterQuery = buildFilterQuery(this, itemIndex ?? 0, BILL_FILTERS);
+	// Sequential detail fetching to avoid sending offset/limit on endpoints
+	// that do not declare them in the OVH API spec (400 error).
+	const ids = (await client.httpGet('/me/bill', filterQuery)) as string[];
+	const results: IDataObject[] = [];
+	for (const id of ids) {
+		try {
+			const details = (await client.httpGet(`/me/bill/${id}`)) as IDataObject;
+			results.push(details);
+		} catch {
+			// Failed item fetches are silently skipped.
+		}
+	}
 	return this.helpers.returnJsonArray(results);
 }
 
@@ -150,12 +158,20 @@ export async function executeListBillDebtOperations(
 ): Promise<INodeExecutionData[]> {
 	const client = getClient(this);
 	const billId = this.getNodeParameter('billId', itemIndex ?? 0) as string;
-	// Uses paginateResources for parallel detail fetching (concurrency 3).
-	// Failed item fetches are silently skipped (previously threw).
-	const results = await client.paginateResources<IDataObject>(
-		`/me/bill/${billId}/debt/operation`,
-		`/me/bill/${billId}/debt/operation/{id}`,
-	);
+	// Sequential detail fetching to avoid sending offset/limit on endpoints
+	// that do not declare them in the OVH API spec (400 error).
+	const ids = (await client.httpGet(`/me/bill/${billId}/debt/operation`)) as string[];
+	const results: IDataObject[] = [];
+	for (const id of ids) {
+		try {
+			const details = (await client.httpGet(
+				`/me/bill/${billId}/debt/operation/${id}`,
+			)) as IDataObject;
+			results.push(details);
+		} catch {
+			// Failed item fetches are silently skipped.
+		}
+	}
 	return this.helpers.returnJsonArray(results);
 }
 
@@ -255,12 +271,18 @@ export async function executeListBillDetails(
 ): Promise<INodeExecutionData[]> {
 	const client = getClient(this);
 	const billId = this.getNodeParameter('billId', itemIndex ?? 0) as string;
-	// Uses paginateResources for parallel detail fetching (concurrency 3).
-	// Failed item fetches are silently skipped (previously threw).
-	const results = await client.paginateResources<IDataObject>(
-		`/me/bill/${billId}/details`,
-		`/me/bill/${billId}/details/{id}`,
-	);
+	// Sequential detail fetching to avoid sending offset/limit on endpoints
+	// that do not declare them in the OVH API spec (400 error).
+	const ids = (await client.httpGet(`/me/bill/${billId}/details`)) as string[];
+	const results: IDataObject[] = [];
+	for (const id of ids) {
+		try {
+			const details = (await client.httpGet(`/me/bill/${billId}/details/${id}`)) as IDataObject;
+			results.push(details);
+		} catch {
+			// Failed item fetches are silently skipped.
+		}
+	}
 	return this.helpers.returnJsonArray(results);
 }
 
@@ -331,12 +353,18 @@ export async function executeListBillingGroups(
 	_itemIndex?: number,
 ): Promise<INodeExecutionData[]> {
 	const client = getClient(this);
-	// Uses paginateResources for parallel detail fetching (concurrency 3).
-	// Failed item fetches are silently skipped (previously threw).
-	const results = await client.paginateResources<IDataObject>(
-		'/me/billing/group',
-		'/me/billing/group/{id}',
-	);
+	// Sequential detail fetching to avoid sending offset/limit on endpoints
+	// that do not declare them in the OVH API spec (400 error).
+	const ids = (await client.httpGet('/me/billing/group')) as string[];
+	const results: IDataObject[] = [];
+	for (const id of ids) {
+		try {
+			const details = (await client.httpGet(`/me/billing/group/${id}`)) as IDataObject;
+			results.push(details);
+		} catch {
+			// Failed item fetches are silently skipped.
+		}
+	}
 	return this.helpers.returnJsonArray(results);
 }
 
@@ -388,12 +416,20 @@ export async function executeListBillingGroupServices(
 ): Promise<INodeExecutionData[]> {
 	const client = getClient(this);
 	const groupId = this.getNodeParameter('groupId', itemIndex ?? 0) as string;
-	// Uses paginateResources for parallel detail fetching (concurrency 3).
-	// Failed item fetches are silently skipped (previously threw).
-	const results = await client.paginateResources<IDataObject>(
-		`/me/billing/group/${groupId}/service`,
-		`/me/billing/group/${groupId}/service/{id}`,
-	);
+	// Sequential detail fetching to avoid sending offset/limit on endpoints
+	// that do not declare them in the OVH API spec (400 error).
+	const ids = (await client.httpGet(`/me/billing/group/${groupId}/service`)) as string[];
+	const results: IDataObject[] = [];
+	for (const id of ids) {
+		try {
+			const details = (await client.httpGet(
+				`/me/billing/group/${groupId}/service/${id}`,
+			)) as IDataObject;
+			results.push(details);
+		} catch {
+			// Failed item fetches are silently skipped.
+		}
+	}
 	return this.helpers.returnJsonArray(results);
 }
 
@@ -445,12 +481,18 @@ export async function executeListPurchaseOrders(
 	_itemIndex?: number,
 ): Promise<INodeExecutionData[]> {
 	const client = getClient(this);
-	// Uses paginateResources for parallel detail fetching (concurrency 3).
-	// Failed item fetches are silently skipped (previously threw).
-	const results = await client.paginateResources<IDataObject>(
-		'/me/billing/purchaseOrder',
-		'/me/billing/purchaseOrder/{id}',
-	);
+	// Sequential detail fetching to avoid sending offset/limit on endpoints
+	// that do not declare them in the OVH API spec (400 error).
+	const ids = (await client.httpGet('/me/billing/purchaseOrder')) as string[];
+	const results: IDataObject[] = [];
+	for (const id of ids) {
+		try {
+			const details = (await client.httpGet(`/me/billing/purchaseOrder/${id}`)) as IDataObject;
+			results.push(details);
+		} catch {
+			// Failed item fetches are silently skipped.
+		}
+	}
 	return this.helpers.returnJsonArray(results);
 }
 
@@ -484,12 +526,18 @@ export async function executeListConsumptionReports(
 	_itemIndex?: number,
 ): Promise<INodeExecutionData[]> {
 	const client = getClient(this);
-	// Uses paginateResources for parallel detail fetching (concurrency 3).
-	// Failed item fetches are silently skipped (previously threw).
-	const results = await client.paginateResources<IDataObject>(
-		'/me/billing/report/consumption',
-		'/me/billing/report/consumption/{id}',
-	);
+	// Sequential detail fetching to avoid sending offset/limit on endpoints
+	// that do not declare them in the OVH API spec (400 error).
+	const ids = (await client.httpGet('/me/billing/report/consumption')) as string[];
+	const results: IDataObject[] = [];
+	for (const id of ids) {
+		try {
+			const details = (await client.httpGet(`/me/billing/report/consumption/${id}`)) as IDataObject;
+			results.push(details);
+		} catch {
+			// Failed item fetches are silently skipped.
+		}
+	}
 	return this.helpers.returnJsonArray(results);
 }
 
