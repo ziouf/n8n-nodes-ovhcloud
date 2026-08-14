@@ -26,49 +26,41 @@ const ALLOWED_ENDPOINT_PATH = '/1.0';
  *         or carries an unexpected path.
  */
 export function validateEndpoint(endpoint: unknown): void {
-	// --- empty / non-string rejection (before any parsing) ---
-	if (!endpoint || typeof endpoint !== 'string' || endpoint.trim() === '') {
-		throw new Error(
+	const invalid = () =>
+		new Error(
 			`Invalid OVH endpoint: ${endpoint}. Allowed endpoints are: ${ALLOWED_ENDPOINT_HOSTS.join(', ')}`,
 		);
+	// --- empty / non-string rejection (before any parsing) ---
+	if (!endpoint || typeof endpoint !== 'string' || endpoint.trim() === '') {
+		throw invalid();
 	}
 
 	// Reject port specifiers BEFORE URL parsing (new URL would silently accept them).
 	if (endpoint.includes(':')) {
-		throw new Error(
-			`Invalid OVH endpoint: ${endpoint}. Allowed endpoints are: ${ALLOWED_ENDPOINT_HOSTS.join(', ')}`,
-		);
+		throw invalid();
 	}
 
 	let url: URL;
 	try {
 		url = new URL('https://' + endpoint);
 	} catch {
-		throw new Error(
-			`Invalid OVH endpoint: ${endpoint}. Allowed endpoints are: ${ALLOWED_ENDPOINT_HOSTS.join(', ')}`,
-		);
+		throw invalid();
 	}
 
 	// Protocol check (always https: by construction, but kept for safety).
 	if (url.protocol !== 'https:') {
-		throw new Error(
-			`Invalid OVH endpoint: ${endpoint}. Allowed endpoints are: ${ALLOWED_ENDPOINT_HOSTS.join(', ')}`,
-		);
+		throw invalid();
 	}
 
 	// Exact hostname match — sub-domain suffix attacks (evil.eu.api.ovh.com) rejected.
 	if (!ALLOWED_ENDPOINT_HOSTS.includes(url.hostname as (typeof ALLOWED_ENDPOINT_HOSTS)[number])) {
-		throw new Error(
-			`Invalid OVH endpoint: ${endpoint}. Allowed endpoints are: ${ALLOWED_ENDPOINT_HOSTS.join(', ')}`,
-		);
+		throw invalid();
 	}
 
 	// Pathname must be '', '/', or start with '/1.0' (trailing slash normalised).
 	const pathname = url.pathname.endsWith('/') ? url.pathname.slice(0, -1) : url.pathname;
 	if (pathname !== '' && pathname !== '/' && !pathname.startsWith(ALLOWED_ENDPOINT_PATH)) {
-		throw new Error(
-			`Invalid OVH endpoint: ${endpoint}. Allowed endpoints are: ${ALLOWED_ENDPOINT_HOSTS.join(', ')}`,
-		);
+		throw invalid();
 	}
 }
 

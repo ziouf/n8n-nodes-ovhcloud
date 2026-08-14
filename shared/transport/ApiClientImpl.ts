@@ -279,21 +279,36 @@ export class ApiClient {
 	}
 
 	/**
+	 * Extracts the HTTP status code from a variety of error shapes.
+	 *
+	 * Checks `code` (number), `httpCode` (string → parseInt), and
+	 * `response.status` (number).  Returns `null` when none match.
+	 */
+	private getHttpStatus(error: unknown): number | null {
+		if (!error || typeof error !== 'object') return null;
+		const err = error as {
+			code?: number | string;
+			httpCode?: string;
+			response?: { status?: number };
+		};
+		if (typeof err.code === 'number') return err.code;
+		if (typeof err.httpCode === 'string') return parseInt(err.httpCode, 10);
+		if (typeof err.response?.status === 'number') return err.response.status;
+		return null;
+	}
+
+	/**
 	 * Checks if an error is an HTTP 429 Rate Limit error.
 	 *
 	 * @param error - The error to check
 	 * @returns true if the error is a 429 rate limit error
 	 */
 	private isRateLimitError(error: unknown): boolean {
+		if (this.getHttpStatus(error) === 429) return true;
+		// Residual check for { code: '429' } (string) — getHttpStatus returns NaN for string codes.
 		if (error && typeof error === 'object') {
-			const err = error as {
-				code?: number | string;
-				httpCode?: string;
-				response?: { status?: number };
-			};
-			if (err.code === 429 || err.code === '429') return true;
-			if (err.httpCode === '429') return true;
-			if (err.response?.status === 429) return true;
+			const err = error as { code?: string };
+			if (err.code === '429') return true;
 		}
 		return false;
 	}
@@ -320,10 +335,7 @@ export class ApiClient {
 		};
 
 		// Check HTTP status code from various possible locations
-		let httpStatus: number | null = null;
-		if (typeof err.code === 'number') httpStatus = err.code;
-		else if (typeof err.httpCode === 'string') httpStatus = parseInt(err.httpCode, 10);
-		else if (typeof err.response?.status === 'number') httpStatus = err.response.status;
+		const httpStatus = this.getHttpStatus(error);
 
 		if (httpStatus !== null) {
 			if (httpStatus === 429 || (httpStatus >= 500 && httpStatus <= 599)) return true;
