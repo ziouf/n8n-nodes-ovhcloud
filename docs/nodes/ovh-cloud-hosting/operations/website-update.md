@@ -1,0 +1,27 @@
+# OVH Cloud Hosting — websiteUpdate
+
+> Opération `websiteUpdate` · Fichier source : `nodes/OvhCloudHosting/website/updatePut.operation.ts`
+
+## Requête HTTP
+
+| Méthode | Endpoint |
+| --- | --- |
+| PUT | `/hosting/web/website/{serviceName}{websiteName}` |
+
+## Paramètres
+
+| Paramètre (n8n) | Type | Requis |
+| --- | --- | --- |
+| `serviceName` | string | Oui |
+| `websiteName` | string | Oui |
+| `template` | string | — |
+
+## Filtres optionnels
+
+Aucun filtre optionnel.
+
+## Voir aussi
+
+- [README du node](../README.md)
+- [Documentation du projet](../../../README.md)
+- [Mécanisme des filtres optionnels](../../../_shared/filtering.md)

@@ -1,0 +1,25 @@
+# OVH Cloud Hosting — offerCapabilitiesGet
+
+> Opération `offerCapabilitiesGet` · Fichier source : `nodes/OvhCloudHosting/offerCapabilitiesGet.operation.ts`
+
+## Requête HTTP
+
+| Méthode | Endpoint |
+| --- | --- |
+| GET | `/hosting/web/offerCapabilities` |
+
+## Paramètres
+
+| Paramètre (n8n) | Type | Requis |
+| --- | --- | --- |
+| `offer` | string | Oui |
+
+## Filtres optionnels
+
+Aucun filtre optionnel.
+
+## Voir aussi
+
+- [README du node](../README.md)
+- [Documentation du projet](../../../README.md)
+- [Mécanisme des filtres optionnels](../../../_shared/filtering.md)

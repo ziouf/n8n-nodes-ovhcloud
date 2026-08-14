@@ -1,0 +1,26 @@
+# OVH Cloud Price — Get the Price for Cdn Option
+
+> Opération `webcdnget` · Fichier source : `nodes/OvhCloudPrice/hosting/webcdnget.operation.ts`
+
+## Requête HTTP
+
+| Méthode | Endpoint |
+| --- | --- |
+| GET | `/price/hosting/web/cdn/{cdnName}` |
+
+## Paramètres
+
+| Paramètre (n8n) | Type | Requis |
+| --- | --- | --- |
+| `cdnName` | options | Oui |
+| `Any` | — | — |
+
+## Filtres optionnels
+
+Aucun filtre optionnel.
+
+## Voir aussi
+
+- [README du node](../README.md)
+- [Documentation du projet](../../../README.md)
+- [Mécanisme des filtres optionnels](../../../_shared/filtering.md)

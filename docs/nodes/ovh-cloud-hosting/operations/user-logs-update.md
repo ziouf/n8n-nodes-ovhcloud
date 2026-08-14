@@ -1,0 +1,27 @@
+# OVH Cloud Hosting — userLogsUpdate
+
+> Opération `userLogsUpdate` · Fichier source : `nodes/OvhCloudHosting/userLogs/updatePut.operation.ts`
+
+## Requête HTTP
+
+| Méthode | Endpoint |
+| --- | --- |
+| PUT | `/hosting/web/{param}{param}` |
+
+## Paramètres
+
+| Paramètre (n8n) | Type | Requis |
+| --- | --- | --- |
+| `serviceName` | string | Oui |
+| `login` | string | Oui |
+| `description` | string | Oui |
+
+## Filtres optionnels
+
+Aucun filtre optionnel.
+
+## Voir aussi
+
+- [README du node](../README.md)
+- [Documentation du projet](../../../README.md)
+- [Mécanisme des filtres optionnels](../../../_shared/filtering.md)

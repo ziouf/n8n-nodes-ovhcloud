@@ -1,0 +1,29 @@
+# OVH Cloud Hosting — cdnDomainOptionCreate
+
+> Opération `cdnDomainOptionCreate` · Fichier source : `nodes/OvhCloudHosting/cdn/cdnDomainOptionCreatePost.operation.ts`
+
+## Requête HTTP
+
+| Méthode | Endpoint |
+| --- | --- |
+| POST | `/hosting/web/{serviceName}{domain}` |
+
+## Paramètres
+
+| Paramètre (n8n) | Type | Requis |
+| --- | --- | --- |
+| `serviceName` | string | Oui |
+| `domain` | string | Oui |
+| `optionName` | string | Oui |
+| `enabled` | boolean | Oui |
+| `config` | json | — |
+
+## Filtres optionnels
+
+Aucun filtre optionnel.
+
+## Voir aussi
+
+- [README du node](../README.md)
+- [Documentation du projet](../../../README.md)
+- [Mécanisme des filtres optionnels](../../../_shared/filtering.md)

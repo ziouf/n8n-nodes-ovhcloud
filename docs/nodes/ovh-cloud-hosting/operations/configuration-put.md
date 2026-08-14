@@ -1,0 +1,32 @@
+# OVH Cloud Hosting — Configure Hosting
+
+> Opération `configurationPut` · Fichier source : `nodes/OvhCloudHosting/configurationPut.operation.ts`
+
+## Requête HTTP
+
+| Méthode | Endpoint |
+| --- | --- |
+| PUT | `/hosting/web/{serviceName}` |
+
+## Paramètres
+
+| Paramètre (n8n) | Type | Requis |
+| --- | --- | --- |
+| `serviceName` | resourceLocator | Oui |
+| `list` | list | — |
+| `name` | string | — |
+| `phpVersion` | options | — |
+| `7.4` | — | — |
+| `8.0` | — | — |
+| `8.1` | — | — |
+| `8.2` | — | — |
+
+## Filtres optionnels
+
+Aucun filtre optionnel.
+
+## Voir aussi
+
+- [README du node](../README.md)
+- [Documentation du projet](../../../README.md)
+- [Mécanisme des filtres optionnels](../../../_shared/filtering.md)

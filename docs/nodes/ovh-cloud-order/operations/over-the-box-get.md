@@ -1,0 +1,25 @@
+# OVH Cloud Order — OverTheBox Get
+
+> Opération `overTheBoxGet` · Fichier source : `nodes/OvhCloudOrder/overTheBox/overTheBoxGet.operation.ts`
+
+## Requête HTTP
+
+| Méthode | Endpoint |
+| --- | --- |
+| GET | `/order/overTheBox/{orderId}` |
+
+## Paramètres
+
+| Paramètre (n8n) | Type | Requis |
+| --- | --- | --- |
+| `orderId` | string | Oui |
+
+## Filtres optionnels
+
+Aucun filtre optionnel.
+
+## Voir aussi
+
+- [README du node](../README.md)
+- [Documentation du projet](../../../README.md)
+- [Mécanisme des filtres optionnels](../../../_shared/filtering.md)

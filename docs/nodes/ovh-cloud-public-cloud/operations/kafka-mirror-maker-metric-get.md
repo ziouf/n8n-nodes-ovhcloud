@@ -1,0 +1,27 @@
+# OVH Cloud Public Cloud — kafkaMirrorMakerMetricGet
+
+> Opération `kafkaMirrorMakerMetricGet` · Fichier source : `nodes/OvhCloudPublicCloud/database/kafkaMirrorMaker/metricGet.operation.ts`
+
+## Requête HTTP
+
+| Méthode | Endpoint |
+| --- | --- |
+| GET | `/cloud/project/{publicCloudProjectId}{clusterId}` |
+
+## Paramètres
+
+| Paramètre (n8n) | Type | Requis |
+| --- | --- | --- |
+| `publicCloudProjectId` | resourceLocator | Oui |
+| `clusterId` | string | Oui |
+| `extended` | boolean | — |
+
+## Filtres optionnels
+
+Aucun filtre optionnel.
+
+## Voir aussi
+
+- [README du node](../README.md)
+- [Documentation du projet](../../../README.md)
+- [Mécanisme des filtres optionnels](../../../_shared/filtering.md)

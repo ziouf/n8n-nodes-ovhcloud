@@ -1,0 +1,26 @@
+# OVH Cloud Vrack — Create Vrack ServiceName Ipv6 Ipv6 RoutedSubrange
+
+> Opération `postVrackserviceNIpv6ipv6RoutedSubrangePost` · Fichier source : `nodes/OvhCloudVrack/postVrackserviceNIpv6ipv6RoutedSubrangePost.operation.ts`
+
+## Requête HTTP
+
+Endpoint non détecté statiquement.
+
+## Paramètres
+
+| Paramètre (n8n) | Type | Requis |
+| --- | --- | --- |
+| `serviceName` | string | Oui |
+| `ipv6` | string | Oui |
+| `nexthop` | string | — |
+| `routedSubrange` | string | — |
+
+## Filtres optionnels
+
+Aucun filtre optionnel.
+
+## Voir aussi
+
+- [README du node](../README.md)
+- [Documentation du projet](../../../README.md)
+- [Mécanisme des filtres optionnels](../../../_shared/filtering.md)

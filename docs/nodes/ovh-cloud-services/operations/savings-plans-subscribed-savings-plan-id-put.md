@@ -1,0 +1,27 @@
+# OVH Cloud Services — Update Subscribed Savings Plan
+
+> Opération `savingsPlansSubscribedSavingsPlanIdPut` · Fichier source : `nodes/OvhCloudServices/resources/savingsPlans/savingsPlansSubscribedSavingsPlanIdPut.operation.ts`
+
+## Requête HTTP
+
+| Méthode | Endpoint |
+| --- | --- |
+| PUT | `/services/{param}{param}` |
+
+## Paramètres
+
+| Paramètre (n8n) | Type | Requis |
+| --- | --- | --- |
+| `serviceName` | string | Oui |
+| `savingsPlanId` | string | Oui |
+| `displayName` | string | Oui |
+
+## Filtres optionnels
+
+Aucun filtre optionnel.
+
+## Voir aussi
+
+- [README du node](../README.md)
+- [Documentation du projet](../../../README.md)
+- [Mécanisme des filtres optionnels](../../../_shared/filtering.md)

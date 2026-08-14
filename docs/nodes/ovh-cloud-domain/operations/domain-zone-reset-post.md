@@ -1,0 +1,27 @@
+# OVH Cloud Domain — Reset a DNS Zone
+
+> Opération `domainZoneResetPost` · Fichier source : `nodes/OvhCloudDomain/resources/zone/domainZoneResetPost.operation.ts`
+
+## Requête HTTP
+
+| Méthode | Endpoint |
+| --- | --- |
+| POST | `/domain/zone/{param}` |
+
+## Paramètres
+
+| Paramètre (n8n) | Type | Requis |
+| --- | --- | --- |
+| `zoneName` | string | Oui |
+| `DnsRecords` | json | — |
+| `minimized` | boolean | — |
+
+## Filtres optionnels
+
+Aucun filtre optionnel.
+
+## Voir aussi
+
+- [README du node](../README.md)
+- [Documentation du projet](../../../README.md)
+- [Mécanisme des filtres optionnels](../../../_shared/filtering.md)

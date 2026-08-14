@@ -1,0 +1,27 @@
+# OVH Cloud Dbaas — List Graylog Streams
+
+> Opération `outputGraylogStreamListGet` · Fichier source : `nodes/OvhCloudDbaas/outputGraylogStream/outputGraylogStreamListGet.operation.ts`
+
+## Requête HTTP
+
+| Méthode | Endpoint |
+| --- | --- |
+| GET | `/dbaas/logs/{param}` |
+
+## Paramètres
+
+| Paramètre (n8n) | Type | Requis |
+| --- | --- | --- |
+| `serviceName` | string | Oui |
+| `iamTags` | json | — |
+| `titlePattern` | string | — |
+
+## Filtres optionnels
+
+Aucun filtre optionnel.
+
+## Voir aussi
+
+- [README du node](../README.md)
+- [Documentation du projet](../../../README.md)
+- [Mécanisme des filtres optionnels](../../../_shared/filtering.md)

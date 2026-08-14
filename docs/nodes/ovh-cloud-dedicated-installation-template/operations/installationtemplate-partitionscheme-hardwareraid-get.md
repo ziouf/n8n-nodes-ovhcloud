@@ -1,0 +1,24 @@
+# OVH Cloud Dedicated Installation Template — Hardware Raids Defined In This Partitioning Scheme
+
+> Opération `InstallationtemplatePartitionschemeHardwareraidGet` · Fichier source : `nodes/OvhCloudDedicatedInstallationTemplate/InstallationtemplatePartitionschemeHardwareraidGet.operation.ts`
+
+## Requête HTTP
+
+Endpoint non détecté statiquement.
+
+## Paramètres
+
+| Paramètre (n8n) | Type | Requis |
+| --- | --- | --- |
+| `schemeName` | string | Oui |
+| `templateName` | string | Oui |
+
+## Filtres optionnels
+
+Aucun filtre optionnel.
+
+## Voir aussi
+
+- [README du node](../README.md)
+- [Documentation du projet](../../../README.md)
+- [Mécanisme des filtres optionnels](../../../_shared/filtering.md)

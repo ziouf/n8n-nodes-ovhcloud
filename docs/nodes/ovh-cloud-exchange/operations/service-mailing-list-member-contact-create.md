@@ -1,0 +1,27 @@
+# OVH Cloud Exchange — ServiceMailingListMemberContactCreate
+
+> Opération `ServiceMailingListMemberContactCreate` · Fichier source : `nodes/OvhCloudExchange/mailingList/ServiceMailingListMemberContactCreate.operation.ts`
+
+## Requête HTTP
+
+Endpoint non détecté statiquement.
+
+## Paramètres
+
+| Paramètre (n8n) | Type | Requis |
+| --- | --- | --- |
+| `organizationName` | string | Oui |
+| `exchangeService` | string | Oui |
+| `mailingListAddress` | string | Oui |
+| `memberAccountId` | string | — |
+| `memberContactId` | string | — |
+
+## Filtres optionnels
+
+Aucun filtre optionnel.
+
+## Voir aussi
+
+- [README du node](../README.md)
+- [Documentation du projet](../../../README.md)
+- [Mécanisme des filtres optionnels](../../../_shared/filtering.md)

@@ -1,0 +1,30 @@
+# OVH Cloud Hosting — serviceChangeContact
+
+> Opération `serviceChangeContact` · Fichier source : `nodes/OvhCloudHosting/serviceManagement/changeContactPost.operation.ts`
+
+## Requête HTTP
+
+| Méthode | Endpoint |
+| --- | --- |
+| POST | `/hosting/web/{serviceName}` |
+
+## Paramètres
+
+| Paramètre (n8n) | Type | Requis |
+| --- | --- | --- |
+| `serviceName` | string | Oui |
+| `contactType` | options | Oui |
+| `Administrative` | — | — |
+| `Technical` | — | — |
+| `Billing` | — | — |
+| `contactEmail` | string | Oui |
+
+## Filtres optionnels
+
+Aucun filtre optionnel.
+
+## Voir aussi
+
+- [README du node](../README.md)
+- [Documentation du projet](../../../README.md)
+- [Mécanisme des filtres optionnels](../../../_shared/filtering.md)

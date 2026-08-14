@@ -1,0 +1,27 @@
+# OVH Cloud Dedicated Cloud — Get Hypervisors Stock
+
+> Opération `stockPccList` · Fichier source : `nodes/OvhCloudDedicatedCloud/stockPccList.operation.ts`
+
+## Requête HTTP
+
+| Méthode | Endpoint |
+| --- | --- |
+| GET | `/dedicatedCloud/location/{pccZone}` |
+
+## Paramètres
+
+| Paramètre (n8n) | Type | Requis |
+| --- | --- | --- |
+| `pccZone` | string | Oui |
+| `returnAll` | boolean | — |
+| `limit` | number | — |
+
+## Filtres optionnels
+
+Aucun filtre optionnel.
+
+## Voir aussi
+
+- [README du node](../README.md)
+- [Documentation du projet](../../../README.md)
+- [Mécanisme des filtres optionnels](../../../_shared/filtering.md)

@@ -1,0 +1,32 @@
+# OVH Cloud Dedicated — Datacenter Availability List
+
+> Opération `datacenterAvailabilityList` · Fichier source : `nodes/OvhCloudDedicated/resources/datacenterAvailabilityList.operation.ts`
+
+## Requête HTTP
+
+| Méthode | Endpoint |
+| --- | --- |
+| GET | `/dedicated/server/datacenter/availabilities` |
+
+## Paramètres
+
+| Paramètre (n8n) | Type | Requis |
+| --- | --- | --- |
+| `country` | string | — |
+| `serverHardwareType` | string | — |
+| `memoryType` | string | — |
+| `storageType` | string | — |
+| `gpuName` | string | — |
+| `planCode` | string | — |
+| `datacentersList` | string | — |
+| `excludeDatacenters` | boolean | — |
+
+## Filtres optionnels
+
+Aucun filtre optionnel.
+
+## Voir aussi
+
+- [README du node](../README.md)
+- [Documentation du projet](../../../README.md)
+- [Mécanisme des filtres optionnels](../../../_shared/filtering.md)
