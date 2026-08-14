@@ -7,6 +7,7 @@
  */
 
 import { BaseNode, executeTemplate } from '../shared/nodes/BaseNode';
+import type { INodeTypeDescription } from 'n8n-workflow';
 import { classifyOperation } from '../shared/nodes/BaseNode';
 import type { OperationClass } from '../shared/nodes/BaseNode';
 import { NodeApiError } from 'n8n-workflow';
@@ -724,37 +725,50 @@ describe('executeTemplate (BaseNode)', () => {
 // ─── runTemplate tests ───────────────────────────────────────────────────────
 
 describe('runTemplate', () => {
-	/** Test subclass exposing the protected runTemplate method. */
-	class TestNode extends BaseNode {
+	/** Test subclass exposing the protected `runTemplate` method. */
+	class TestNode extends BaseNode implements IExecuteFunctions {
 		description = {} as unknown as INodeTypeDescription;
+		getInputData: jest.Mocked<IExecuteFunctions['getInputData']>;
+
+		constructor(ctx?: jest.Mocked<IExecuteFunctions>) {
+			super();
+			this.getInputData = (ctx ?? createMockCtx()).getInputData.bind(
+				ctx ?? createMockCtx(),
+			);
+			Object.assign(this, ctx ?? {});
+		}
 
 		public run(
-			ctx: IExecuteFunctions,
 			execute: (this: IExecuteFunctions, itemIndex: number) => Promise<INodeExecutionData[]>,
 			options: { resource: string; operationParam: string },
 		) {
-			return super.runTemplate.call(ctx, execute, options);
+			return super.runTemplate.call(this, execute, options);
 		}
 	}
 
-	function createTestNode(): TestNode {
-		return new TestNode();
+	function createTestNode(ctx?: jest.Mocked<IExecuteFunctions>): TestNode {
+		return new TestNode(ctx);
 	}
 
-	it('delegates to executeTemplate and calls getNodeParameter with the correct parameter name and itemIndex', async () => {
-		const node = createTestNode();
-		const ctx = createMockCtxWithGetNodeParameter((name: string, itemIndex: number) => {
-			expect(name).toBe('myOp');
-			return itemIndex === 0 ? 'list' : 'delete';
+	it('delegates to executeTemplate and calls getNodeParameter with vpsOperation for each itemIndex in order', async () => {
+		let callCount = 0;
+		const mockCtx = createMockCtxWithGetNodeParameter((name: string, itemIndex: number) => {
+			expect(name).toBe('vpsOperation');
+			if (callCount === 0) expect(itemIndex).toBe(0);
+			else expect(itemIndex).toBe(1);
+			callCount++;
+			return 'list';
 		});
-		ctx.getInputData.mockReturnValue([{ json: { id: 0 } }, { json: { id: 1 } }]);
+
+		mockCtx.getInputData.mockReturnValue([{ json: { id: 0 } }, { json: { id: 1 } }]);
+
+		const node = createTestNode(mockCtx);
 
 		const result = await node.run(
-			ctx,
 			async function (this: IExecuteFunctions, i: number) {
 				return [{ json: { index: i } }];
 			},
-			{ resource: 'myres', operationParam: 'myOp' },
+			{ resource: 'vps', operationParam: 'vpsOperation' },
 		);
 
 		expect(result).toHaveLength(1);
@@ -763,40 +777,34 @@ describe('runTemplate', () => {
 		expect(result[0][1].json).toEqual({ index: 1 });
 	});
 
-	it('takes the perItemConcurrency classification path', async () => {
-		const node = createTestNode();
-		const ctx = createMockCtxWithGetNodeParameter((_name: string, itemIndex: number) => {
+	it('takes the perItemConcurrency classification path (classifyOperation returns read for list)', async () => {
+		const mockCtx = createMockCtxWithGetNodeParameter((_name: string, itemIndex: number) => {
 			return itemIndex === 0 ? 'list' : 'rename';
 		});
-		ctx.getInputData.mockReturnValue([{ json: { id: 0 } }, { json: { id: 1 } }]);
+
+		mockCtx.getInputData.mockReturnValue([{ json: { id: 0 } }, { json: { id: 1 } }]);
+
+		const node = createTestNode(mockCtx);
 
 		const result = await node.run(
-			ctx,
 			async function (this: IExecuteFunctions, i: number) {
 				return [{ json: { index: i } }];
 			},
-			{ resource: 'myres', operationParam: 'myOp' },
+			{ resource: 'vps', operationParam: 'vpsOperation' },
 		);
 
-		// If classify was invoked, perItemConcurrency path was taken.
-		// The classify function inside runTemplate calls classifyOperation,
-		// which is imported from operationClass (already tested).
-		// We verify by checking that the result is correct and getNodeParameter
-		// was called with extractValue: true (the classify lambda does this).
 		expect(result[0][0].json).toEqual({ index: 0 });
 		expect(result[0][1].json).toEqual({ index: 1 });
 	});
 
-	it('enriches error message with resource/op when continueOnFail is false', async () => {
-		const node = createTestNode();
-		const ctx = createMockCtxWithGetNodeParameter((_name: string, _itemIndex: number) => 'get');
-		ctx.getInputData.mockReturnValue([{ json: { id: 1 } }]);
-		ctx.continueOnFail.mockReturnValue(false);
+	it('enriches error with vps/<op> when continueOnFail is false and execute throws', async () => {
+		const mockCtx = createMockCtxWithGetNodeParameter((_name: string, _itemIndex: number) => 'get');
+		mockCtx.getInputData.mockReturnValue([{ json: { id: 1 } }]);
+		mockCtx.continueOnFail.mockReturnValue(false);
 
 		let caught: unknown;
 		try {
-			await node.run(
-				ctx,
+			await createTestNode(mockCtx).run(
 				async function (this: IExecuteFunctions) {
 					throw new Error('api failure');
 				},

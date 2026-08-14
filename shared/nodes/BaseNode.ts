@@ -519,6 +519,14 @@ async function executeWithPerItemConcurrency(
 	return [returnData];
 }
 
+/**
+ * Abstract base class for all OVH Cloud n8n nodes.
+ *
+ * Concrete classes must:
+ * - Declare `description: INodeTypeDescription`
+ * - Implement `execute(this: IExecuteFunctions)` by calling `super.runTemplate.call(this, execute, options)`
+ */
+
 /** Options for {@link BaseNode.runTemplate}. */
 interface RunTemplateOptions {
 	/** Resource slug used in errorContext, e.g. `'vps'`. */
@@ -527,13 +535,6 @@ interface RunTemplateOptions {
 	operationParam: string;
 }
 
-/**
- * Abstract base class for all OVH Cloud n8n nodes.
- *
- * Concrete classes must:
- * - Declare `description: INodeTypeDescription`
- * - Implement `execute(this: IExecuteFunctions)` by calling `super.runTemplate.call(this, execute, {...})`
- */
 export abstract class BaseNode {
 	abstract description: INodeTypeDescription;
 

@@ -2,8 +2,7 @@ import type {
 	IExecuteFunctions,
 	INodeExecutionData,
 	INodeType,
-	INodeTypeDescription,
-} from 'n8n-workflow';
+	INodeTypeDescription } from 'n8n-workflow';
 import { NodeConnectionTypes } from 'n8n-workflow';
 import { OvhCloudApiSecretName, OvhCloudIcon } from '../../shared/constants';
 import { description, execute } from './index';
@@ -19,24 +18,18 @@ export class OvhCloudCommercialCatalog extends BaseNode implements INodeType {
 		subtitle: '={{$parameter["commercialCatalogOperation"]}}',
 		description: 'Browse OVHcloud Commercial Catalog via /commercialCatalog API v2',
 		defaults: {
-			name: 'OVH Cloud Commercial Catalog',
-		},
+			name: 'OVH Cloud Commercial Catalog' },
 		usableAsTool: true,
 		inputs: [NodeConnectionTypes.Main],
 		outputs: [NodeConnectionTypes.Main],
 		credentials: [
 			{
 				name: OvhCloudApiSecretName,
-				required: true,
-			},
+				required: true },
 		],
-		properties: [...description({})],
-	};
+		properties: [...description({})] };
 
 	async execute(this: IExecuteFunctions): Promise<INodeExecutionData[][]> {
-		return super.runTemplate.call(this, execute, {
-			resource: 'commercialcatalog',
-			operationParam: 'commercialCatalogOperation',
-		});
+		return super.runTemplate.call(this, execute, { resource: 'commercialcatalog', operationParam: 'commercialCatalogOperation' });
 	}
 }

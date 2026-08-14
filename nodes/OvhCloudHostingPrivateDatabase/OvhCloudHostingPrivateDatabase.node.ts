@@ -2,8 +2,7 @@ import type {
 	IExecuteFunctions,
 	INodeExecutionData,
 	INodeType,
-	INodeTypeDescription,
-} from 'n8n-workflow';
+	INodeTypeDescription } from 'n8n-workflow';
 import { NodeConnectionTypes } from 'n8n-workflow';
 import { OvhCloudApiSecretName, OvhCloudIcon } from '../../shared/constants';
 import { description, execute } from './index';
@@ -27,16 +26,11 @@ export class OvhCloudHostingPrivateDatabase extends BaseNode implements INodeTyp
 		credentials: [
 			{
 				name: OvhCloudApiSecretName,
-				required: true,
-			},
+				required: true },
 		],
-		properties: [...description({})],
-	};
+		properties: [...description({})] };
 
 	async execute(this: IExecuteFunctions): Promise<INodeExecutionData[][]> {
-		return super.runTemplate.call(this, execute, {
-			resource: 'hostingPrivatedatabase',
-			operationParam: 'hostingPrivateDatabaseOperation',
-		});
+		return super.runTemplate.call(this, execute, { resource: 'hostingPrivatedatabase', operationParam: 'hostingPrivateDatabaseOperation' });
 	}
 }

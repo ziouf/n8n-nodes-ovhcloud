@@ -2,8 +2,7 @@ import type {
 	IExecuteFunctions,
 	INodeExecutionData,
 	INodeType,
-	INodeTypeDescription,
-} from 'n8n-workflow';
+	INodeTypeDescription } from 'n8n-workflow';
 import { NodeConnectionTypes } from 'n8n-workflow';
 import { OvhCloudApiSecretName, OvhCloudIcon } from '../../shared/constants';
 import { description, execute } from './index';
@@ -23,13 +22,9 @@ export class OvhCloudExchange extends BaseNode implements INodeType {
 		inputs: [NodeConnectionTypes.Main],
 		outputs: [NodeConnectionTypes.Main],
 		credentials: [{ name: OvhCloudApiSecretName, required: true }],
-		properties: [...description()],
-	};
+		properties: [...description()] };
 
 	async execute(this: IExecuteFunctions): Promise<INodeExecutionData[][]> {
-		return super.runTemplate.call(this, execute, {
-			resource: 'emailExchange',
-			operationParam: 'exchangeOperation',
-		});
+		return super.runTemplate.call(this, execute, { resource: 'emailExchange', operationParam: 'exchangeOperation' });
 	}
 }

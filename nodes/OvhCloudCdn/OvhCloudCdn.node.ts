@@ -2,8 +2,7 @@ import type {
 	IExecuteFunctions,
 	INodeExecutionData,
 	INodeType,
-	INodeTypeDescription,
-} from 'n8n-workflow';
+	INodeTypeDescription } from 'n8n-workflow';
 import { NodeConnectionTypes } from 'n8n-workflow';
 import { OvhCloudApiSecretName, OvhCloudIcon } from '../../shared/constants';
 import { description, execute } from './index';
@@ -20,24 +19,18 @@ export class OvhCloudCdn extends BaseNode implements INodeType {
 			'={{$parameter["cdnOperation"]}}{{ $parameter["serviceName"] ? ": " + ($parameter["serviceName"].value ?? $parameter["serviceName"]) : "" }}',
 		description: 'Manage OVHcloud CDN services via /cdn API v1',
 		defaults: {
-			name: 'OVH Cloud CDN',
-		},
+			name: 'OVH Cloud CDN' },
 		usableAsTool: true,
 		inputs: [NodeConnectionTypes.Main],
 		outputs: [NodeConnectionTypes.Main],
 		credentials: [
 			{
 				name: OvhCloudApiSecretName,
-				required: true,
-			},
+				required: true },
 		],
-		properties: [...description({})],
-	};
+		properties: [...description({})] };
 
 	async execute(this: IExecuteFunctions): Promise<INodeExecutionData[][]> {
-		return super.runTemplate.call(this, execute, {
-			resource: 'cdn',
-			operationParam: 'cdnOperation',
-		});
+		return super.runTemplate.call(this, execute, { resource: 'cdn', operationParam: 'cdnOperation' });
 	}
 }

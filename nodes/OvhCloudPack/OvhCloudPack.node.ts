@@ -2,8 +2,7 @@ import type {
 	IExecuteFunctions,
 	INodeExecutionData,
 	INodeType,
-	INodeTypeDescription,
-} from 'n8n-workflow';
+	INodeTypeDescription } from 'n8n-workflow';
 import { NodeConnectionTypes } from 'n8n-workflow';
 import { OvhCloudApiSecretName, OvhCloudIcon } from '../../shared/constants';
 import { description, execute } from './index';
@@ -20,24 +19,18 @@ export class OvhCloudPack extends BaseNode implements INodeType {
 			'={{$parameter["packOperation"]}}{{ $parameter["serviceName"] ? ": " + ($parameter["serviceName"].value ?? $parameter["serviceName"]) : "" }}',
 		description: 'Manage OVHcloud Pack services via /pack API v1',
 		defaults: {
-			name: 'OVH Cloud Pack',
-		},
+			name: 'OVH Cloud Pack' },
 		usableAsTool: true,
 		inputs: [NodeConnectionTypes.Main],
 		outputs: [NodeConnectionTypes.Main],
 		credentials: [
 			{
 				name: OvhCloudApiSecretName,
-				required: true,
-			},
+				required: true },
 		],
-		properties: [...description({})],
-	};
+		properties: [...description({})] };
 
 	async execute(this: IExecuteFunctions): Promise<INodeExecutionData[][]> {
-		return super.runTemplate.call(this, execute, {
-			resource: 'pack',
-			operationParam: 'packOperation',
-		});
+		return super.runTemplate.call(this, execute, { resource: 'pack', operationParam: 'packOperation' });
 	}
 }

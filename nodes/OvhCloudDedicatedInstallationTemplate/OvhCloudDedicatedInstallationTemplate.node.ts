@@ -2,8 +2,7 @@ import type {
 	IExecuteFunctions,
 	INodeExecutionData,
 	INodeType,
-	INodeTypeDescription,
-} from 'n8n-workflow';
+	INodeTypeDescription } from 'n8n-workflow';
 import { NodeConnectionTypes } from 'n8n-workflow';
 import { OvhCloudApiSecretName, OvhCloudIcon } from '../../shared/constants';
 import { BaseNode } from '../../shared/nodes';
@@ -23,13 +22,9 @@ export class OvhCloudDedicatedInstallationTemplate extends BaseNode implements I
 		inputs: [NodeConnectionTypes.Main],
 		outputs: [NodeConnectionTypes.Main],
 		credentials: [{ name: OvhCloudApiSecretName, required: true }],
-		properties: [...description({})],
-	};
+		properties: [...description({})] };
 
 	async execute(this: IExecuteFunctions): Promise<INodeExecutionData[][]> {
-		return super.runTemplate.call(this, execute, {
-			resource: 'dedicatedInstallationtemplate',
-			operationParam: 'dedicatedInstallationTemplateOperation',
-		});
+		return super.runTemplate.call(this, execute, { resource: 'dedicatedInstallationtemplate', operationParam: 'dedicatedInstallationTemplateOperation' });
 	}
 }
