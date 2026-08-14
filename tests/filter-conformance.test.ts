@@ -15,11 +15,24 @@ import * as path from 'path';
 // ── Imports ────────────────────────────────────────────────────────────────
 
 import { BILL_FILTERS } from '../nodes/OvhCloudMe/operations/billing.operation';
-import { DEPOSIT_FILTERS } from '../nodes/OvhCloudMe/operations/financial.operation';
-import { BANK_ACCOUNT_FILTERS } from '../nodes/OvhCloudMe/operations/payment.operation';
+import {
+	DEPOSIT_FILTERS,
+	WITHDRAWAL_FILTERS,
+	REFUND_FILTERS,
+	REVERSE_BILL_FILTERS,
+	CORRECTIVE_INVOICE_FILTERS,
+} from '../nodes/OvhCloudMe/operations/financial.operation';
+import {
+	BANK_ACCOUNT_FILTERS,
+	ORDER_FILTERS,
+} from '../nodes/OvhCloudMe/operations/payment.operation';
 import { TICKET_FILTERS } from '../nodes/OvhCloudSupport/resources/list.operation';
 import { HOSTING_TASK_FILTERS } from '../nodes/OvhCloudHosting/listTasks.operation';
 import { DOMAIN_NAME_TASK_FILTERS } from '../nodes/OvhCloudDomain/resources/name/domainNameTaskListGet.operation';
+import { SSL_TASKS_LIST_FILTERS } from '../nodes/OvhCloudCdn/resources/ssl/sslTasksListGet.operation';
+import { IP_FIREWALL_RULE_FILTERS } from '../nodes/OvhCloudIp/resources/firewall/ipFirewallRuleListGet.operation';
+import { VPS_LIST_FILTERS } from '../nodes/OvhCloudVps/list.operation';
+import { IAM_POLICY_LIST_FILTERS } from '../nodes/OvhCloudIam/iampolicyListGet.operation';
 
 // ── Types ──────────────────────────────────────────────────────────────────
 
@@ -68,6 +81,41 @@ const REGISTRY: FilterEntry[] = [
 		endpoint: '/me/deposit',
 	},
 	{
+		label: 'WITHDRAWAL_FILTERS',
+		defs: WITHDRAWAL_FILTERS,
+		specFile: 'me.json',
+		version: 'v1',
+		endpoint: '/me/withdrawal',
+	},
+	{
+		label: 'REFUND_FILTERS',
+		defs: REFUND_FILTERS,
+		specFile: 'me.json',
+		version: 'v1',
+		endpoint: '/me/refund',
+	},
+	{
+		label: 'REVERSE_BILL_FILTERS',
+		defs: REVERSE_BILL_FILTERS,
+		specFile: 'me.json',
+		version: 'v1',
+		endpoint: '/me/reverseBill',
+	},
+	{
+		label: 'CORRECTIVE_INVOICE_FILTERS',
+		defs: CORRECTIVE_INVOICE_FILTERS,
+		specFile: 'me.json',
+		version: 'v1',
+		endpoint: '/me/correctiveInvoice',
+	},
+	{
+		label: 'ORDER_FILTERS',
+		defs: ORDER_FILTERS,
+		specFile: 'me.json',
+		version: 'v1',
+		endpoint: '/me/order',
+	},
+	{
 		label: 'BANK_ACCOUNT_FILTERS',
 		defs: BANK_ACCOUNT_FILTERS,
 		specFile: 'me.json',
@@ -94,6 +142,34 @@ const REGISTRY: FilterEntry[] = [
 		specFile: 'domain.json',
 		version: 'v1',
 		endpoint: '/domain/{serviceName}/task',
+	},
+	{
+		label: 'SSL_TASKS_LIST_FILTERS',
+		defs: SSL_TASKS_LIST_FILTERS,
+		specFile: 'cdn.json',
+		version: 'v1',
+		endpoint: '/cdn/dedicated/{serviceName}/ssl/tasks',
+	},
+	{
+		label: 'IP_FIREWALL_RULE_FILTERS',
+		defs: IP_FIREWALL_RULE_FILTERS,
+		specFile: 'ip.json',
+		version: 'v1',
+		endpoint: '/ip/{ip}/firewall/{ipOnFirewall}/rule',
+	},
+	{
+		label: 'VPS_LIST_FILTERS',
+		defs: VPS_LIST_FILTERS,
+		specFile: 'vps.json',
+		version: 'v1',
+		endpoint: '/vps',
+	},
+	{
+		label: 'IAM_POLICY_LIST_FILTERS',
+		defs: IAM_POLICY_LIST_FILTERS,
+		specFile: 'iam.json',
+		version: 'v2',
+		endpoint: '/iam/policy',
 	},
 ];
 
@@ -283,15 +359,24 @@ describe('filter-conformance', () => {
 	// ── Sanity check: registry completeness ────────────────────────────
 
 	it('registry covers at least 6 filter sets', () => {
-		expect(REGISTRY.length).toBeGreaterThanOrEqual(6);
+		expect(REGISTRY.length).toBeGreaterThanOrEqual(15);
 
 		const expectedLabels = [
 			'BILL_FILTERS',
 			'DEPOSIT_FILTERS',
+			'WITHDRAWAL_FILTERS',
+			'REFUND_FILTERS',
+			'REVERSE_BILL_FILTERS',
+			'CORRECTIVE_INVOICE_FILTERS',
+			'ORDER_FILTERS',
 			'BANK_ACCOUNT_FILTERS',
 			'TICKET_FILTERS',
 			'HOSTING_TASK_FILTERS',
 			'DOMAIN_NAME_TASK_FILTERS',
+			'SSL_TASKS_LIST_FILTERS',
+			'IP_FIREWALL_RULE_FILTERS',
+			'VPS_LIST_FILTERS',
+			'IAM_POLICY_LIST_FILTERS',
 		];
 
 		const actualLabels = REGISTRY.map((e) => e.label);
