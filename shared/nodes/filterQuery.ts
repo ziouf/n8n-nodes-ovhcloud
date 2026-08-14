@@ -6,6 +6,7 @@ import type { FilterDefinition } from './filterOptions';
  *
  * - `undefined` / `null` → skip
  * - Empty string (after trim) → skip
+ * - Empty array → skip
  * - `NaN` number → skip
  * - Number equal to its definition's default → skip
  * - Everything else → keep
@@ -16,6 +17,10 @@ export function isEmptyFilterValue(
 ): boolean {
 	if (value === undefined || value === null) {
 		return true;
+	}
+
+	if (Array.isArray(value)) {
+		return value.length === 0;
 	}
 
 	if (typeof value === 'string') {
@@ -35,6 +40,11 @@ export function isEmptyFilterValue(
 
 	if (typeof value === 'boolean') {
 		// Booleans are always meaningful — never skip.
+		return false;
+	}
+
+	// Objects (e.g. parsed JSON) are always meaningful — never skip.
+	if (typeof value === 'object') {
 		return false;
 	}
 
@@ -86,7 +96,7 @@ export function buildFilterQuery(
 		}
 
 		// Normalise the value based on type.
-		let normalized: string | number | boolean;
+		let normalized: string | number | boolean | string[] | object;
 
 		switch (def.type) {
 			case 'number':
@@ -94,14 +104,50 @@ export function buildFilterQuery(
 				break;
 			case 'string':
 			case 'dateTime':
-				normalized = String(rawValue);
+				if (def.delimiter !== undefined) {
+					// Split on delimiter, filter empty tokens, send as array.
+					const tokens = String(rawValue)
+						.split(def.delimiter)
+						.map((t) => t.trim())
+						.filter((t) => t !== '');
+					normalized = tokens;
+				} else {
+					normalized = String(rawValue);
+				}
 				break;
 			case 'options':
 				// Options keep their original type (string | boolean).
 				normalized = rawValue as string | boolean;
 				break;
+			case 'multiOptions':
+				// Filter out non-string / empty values, send remaining as array.
+				normalized = (Array.isArray(rawValue) ? rawValue : [])
+					.filter((v) => typeof v === 'string' && v.trim() !== '')
+					.map((v) => String(v));
+				break;
+			case 'json':
+				if (typeof rawValue === 'object' && rawValue !== null) {
+					// Passthrough: already an object.
+					normalized = rawValue as object;
+				} else if (typeof rawValue === 'string') {
+					try {
+						normalized = JSON.parse(rawValue) as object;
+					} catch {
+						throw new Error(
+							`Invalid JSON in filter "${def.displayName}" (queryParam: "${def.queryParam}"). Expected a valid JSON object.`,
+						);
+					}
+				} else {
+					normalized = String(rawValue);
+				}
+				break;
 			default:
 				normalized = String(rawValue);
+		}
+
+		// Re-check emptiness after normalization (e.g. empty array from delimiter split).
+		if (isEmptyFilterValue(normalized)) {
+			continue;
 		}
 
 		qs[def.queryParam] = normalized;

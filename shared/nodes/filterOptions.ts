@@ -19,8 +19,8 @@ export interface FilterDefinition {
 	displayName: string;
 	/** Query parameter name sent to the OVHcloud API, e.g. `'date.from'`, `'status'`. */
 	queryParam: string;
-	/** Field type. `'options'` requires `options` to be set. */
-	type: 'string' | 'number' | 'dateTime' | 'options';
+	/** Field type. `'options'` requires `options` to be set. `'multiOptions'` behaves like `options` but allows multiple selection. `'json'` expects a JSON value (object or stringified JSON). */
+	type: 'string' | 'number' | 'dateTime' | 'options' | 'json' | 'multiOptions';
 	/** Optional description shown in the UI. */
 	description?: string;
 	/** Default value used when the field is empty. */
@@ -35,6 +35,13 @@ export interface FilterDefinition {
 	 * `filtersCollection()` (it does not appear in the generated UI).
 	 */
 	parameterPath?: string;
+	/**
+	 * When set on a `'string'` type definition, the raw value is split on this
+	 * delimiter (e.g. `','`) and the resulting non-empty tokens are sent as an
+	 * array. Useful for API query params that accept repeated values (e.g.
+	 * `action=a1,a2` → `action: ['a1', 'a2']`).
+	 */
+	delimiter?: string;
 }
 
 /**
@@ -142,6 +149,14 @@ export function filtersCollection(
 			}
 
 			if (def.type === 'options' && def.options) {
+				base.noDataExpression = true;
+				base.options = def.options.map((o) => ({
+					name: o.name,
+					value: o.value,
+				}));
+			}
+
+			if (def.type === 'multiOptions' && def.options) {
 				base.noDataExpression = true;
 				base.options = def.options.map((o) => ({
 					name: o.name,

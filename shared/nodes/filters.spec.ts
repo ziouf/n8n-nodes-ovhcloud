@@ -57,6 +57,18 @@ describe('isEmptyFilterValue', () => {
 	it('returns false for boolean false', () => {
 		expect(isEmptyFilterValue(false)).toBe(false);
 	});
+
+	it('returns true for empty array', () => {
+		expect(isEmptyFilterValue([])).toBe(true);
+	});
+
+	it('returns false for non-empty array', () => {
+		expect(isEmptyFilterValue(['a', 'b'])).toBe(false);
+	});
+
+	it('returns false for object (parsed JSON)', () => {
+		expect(isEmptyFilterValue({ key: 'value' })).toBe(false);
+	});
 });
 
 // ─── filtersCollection ──────────────────────────────────────────────────────
@@ -288,6 +300,55 @@ describe('filtersCollection', () => {
 			{ name: 'Yes', value: true },
 			{ name: 'No', value: false },
 		]);
+	});
+
+	it('adds noDataExpression and options for type "multiOptions"', () => {
+		const multiOptsDef: FilterDefinition[] = [
+			{
+				group: 'actions',
+				groupDisplayName: 'Actions',
+				name: 'value',
+				displayName: 'Actions',
+				queryParam: 'action',
+				type: 'multiOptions',
+				options: [
+					{ name: 'Read', value: 'account:apiovh:me/get' },
+					{ name: 'Write', value: 'account:apiovh:me/post' },
+				],
+			},
+		];
+		const result = filtersCollection(DISPLAY_OPTIONS, multiOptsDef);
+		const collection = result[0]!;
+		const values = (collection.options?.[0] as any)?.values as INodeProperties[];
+		const optField = values[0]!;
+
+		expect(optField.noDataExpression).toBe(true);
+		expect(optField.options).toEqual([
+			{ name: 'Read', value: 'account:apiovh:me/get' },
+			{ name: 'Write', value: 'account:apiovh:me/post' },
+		]);
+	});
+
+	it('generates no options for json type (noDataExpression not set)', () => {
+		const jsonDef: FilterDefinition[] = [
+			{
+				group: 'tags',
+				groupDisplayName: 'IAM Tags',
+				name: 'value',
+				displayName: 'IAM Tags',
+				queryParam: 'iamTags',
+				type: 'json',
+				description: 'JSON object for IAM tag filtering',
+			},
+		];
+		const result = filtersCollection(DISPLAY_OPTIONS, jsonDef);
+		const collection = result[0]!;
+		const values = (collection.options?.[0] as any)?.values as INodeProperties[];
+		const jsonField = values[0]!;
+
+		expect(jsonField.type).toBe('json');
+		expect(jsonField.description).toBe('JSON object for IAM tag filtering');
+		expect(jsonField.options).toBeUndefined();
 	});
 
 	it('respects custom collection options', () => {
@@ -540,5 +601,187 @@ describe('buildFilterQuery', () => {
 		const result = buildFilterQuery(ctx, 0, defs, 'customFilters');
 		expect(mockFn).toHaveBeenCalledWith('customFilters', 0, {});
 		expect(result).toEqual({ status: 'active' });
+	});
+
+	// ─── multiOptions tests ──────────────────────────────────────────────
+
+	it('transmits non-empty array for multiOptions type', () => {
+		const multiDef: FilterDefinition[] = [
+			{
+				group: 'actions',
+				groupDisplayName: 'Actions',
+				name: 'value',
+				displayName: 'Actions',
+				queryParam: 'action',
+				type: 'multiOptions',
+				options: [
+					{ name: 'Read', value: 'account:apiovh:me/get' },
+					{ name: 'Write', value: 'account:apiovh:me/post' },
+				],
+			},
+		];
+		const mockFn = jest.fn().mockReturnValue({
+			actions: { value: ['account:apiovh:me/get', 'account:apiovh:me/post'] },
+		});
+		const ctx = makeCtx(mockFn);
+		const result = buildFilterQuery(ctx, 0, multiDef);
+		expect(result).toEqual({
+			action: ['account:apiovh:me/get', 'account:apiovh:me/post'],
+		});
+	});
+
+	it('skips multiOptions when array is empty', () => {
+		const multiDef: FilterDefinition[] = [
+			{
+				group: 'actions',
+				groupDisplayName: 'Actions',
+				name: 'value',
+				displayName: 'Actions',
+				queryParam: 'action',
+				type: 'multiOptions',
+			},
+		];
+		const mockFn = jest.fn().mockReturnValue({ actions: { value: [] } });
+		const ctx = makeCtx(mockFn);
+		const result = buildFilterQuery(ctx, 0, multiDef);
+		expect(result).toBeUndefined();
+	});
+
+	it('filters out empty string values from multiOptions array', () => {
+		const multiDef: FilterDefinition[] = [
+			{
+				group: 'actions',
+				groupDisplayName: 'Actions',
+				name: 'value',
+				displayName: 'Actions',
+				queryParam: 'action',
+				type: 'multiOptions',
+			},
+		];
+		const mockFn = jest.fn().mockReturnValue({
+			actions: { value: ['account:apiovh:me/get', '', '  '] },
+		});
+		const ctx = makeCtx(mockFn);
+		const result = buildFilterQuery(ctx, 0, multiDef);
+		expect(result).toEqual({ action: ['account:apiovh:me/get'] });
+	});
+
+	// ─── json type tests ─────────────────────────────────────────────────
+
+	it('passthroughs object for json type', () => {
+		const jsonDef: FilterDefinition[] = [
+			{
+				group: 'tags',
+				groupDisplayName: 'IAM Tags',
+				name: 'value',
+				displayName: 'IAM Tags',
+				queryParam: 'iamTags',
+				type: 'json',
+			},
+		];
+		const mockFn = jest.fn().mockReturnValue({
+			tags: { value: { env: [{ operator: 'EQ', value: 'prod' }] } },
+		});
+		const ctx = makeCtx(mockFn);
+		const result = buildFilterQuery(ctx, 0, jsonDef);
+		expect(result).toEqual({
+			iamTags: { env: [{ operator: 'EQ', value: 'prod' }] },
+		});
+	});
+
+	it('parses valid JSON string for json type', () => {
+		const jsonDef: FilterDefinition[] = [
+			{
+				group: 'tags',
+				groupDisplayName: 'IAM Tags',
+				name: 'value',
+				displayName: 'IAM Tags',
+				queryParam: 'iamTags',
+				type: 'json',
+			},
+		];
+		const mockFn = jest.fn().mockReturnValue({
+			tags: { value: '{"env":[{"operator":"EQ","value":"prod"}]}' },
+		});
+		const ctx = makeCtx(mockFn);
+		const result = buildFilterQuery(ctx, 0, jsonDef);
+		expect(result).toEqual({
+			iamTags: { env: [{ operator: 'EQ', value: 'prod' }] },
+		});
+	});
+
+	it('throws on invalid JSON string for json type', () => {
+		const jsonDef: FilterDefinition[] = [
+			{
+				group: 'tags',
+				groupDisplayName: 'IAM Tags',
+				name: 'value',
+				displayName: 'IAM Tags',
+				queryParam: 'iamTags',
+				type: 'json',
+			},
+		];
+		const mockFn = jest.fn().mockReturnValue({ tags: { value: '{invalid json' } });
+		const ctx = makeCtx(mockFn);
+		expect(() => buildFilterQuery(ctx, 0, jsonDef)).toThrow(/Invalid JSON in filter "IAM Tags"/);
+	});
+
+	it('skips empty string for json type via isEmptyFilterValue', () => {
+		const jsonDef: FilterDefinition[] = [
+			{
+				group: 'tags',
+				groupDisplayName: 'IAM Tags',
+				name: 'value',
+				displayName: 'IAM Tags',
+				queryParam: 'iamTags',
+				type: 'json',
+			},
+		];
+		const mockFn = jest.fn().mockReturnValue({ tags: { value: '' } });
+		const ctx = makeCtx(mockFn);
+		const result = buildFilterQuery(ctx, 0, jsonDef);
+		expect(result).toBeUndefined();
+	});
+
+	// ─── delimiter tests ─────────────────────────────────────────────────
+
+	it('splits string on delimiter and sends as array for string type with delimiter', () => {
+		const delimDef: FilterDefinition[] = [
+			{
+				group: 'actions',
+				groupDisplayName: 'Actions',
+				name: 'value',
+				displayName: 'Action URNs',
+				queryParam: 'action',
+				type: 'string',
+				delimiter: ',',
+			},
+		];
+		const mockFn = jest.fn().mockReturnValue({
+			actions: { value: 'account:apiovh:me/get,account:apiovh:me/*' },
+		});
+		const ctx = makeCtx(mockFn);
+		const result = buildFilterQuery(ctx, 0, delimDef);
+		expect(result).toEqual({
+			action: ['account:apiovh:me/get', 'account:apiovh:me/*'],
+		});
+	});
+
+	it('skips delimiter split when resulting array is empty', () => {
+		const delimDef: FilterDefinition[] = [
+			{
+				group: 'actions',
+				groupDisplayName: 'Actions',
+				name: 'value',
+				displayName: 'Action URNs',
+				queryParam: 'action',
+				type: 'string',
+				delimiter: ',',
+			},
+		];
+		const mockFn = jest.fn().mockReturnValue({ actions: { value: '  ,  ' } });
+		const ctx = makeCtx(mockFn);
+		const result = buildFilterQuery(ctx, 0, delimDef);
+		expect(result).toBeUndefined();
 	});
 });
