@@ -5,7 +5,11 @@
 - `credentials/` — credential type definitions (`OvhCloudApi`)
 - `nodes/OvhCloudDedicated|Hosting|Me|Service|Vps/` — five nodes, each with its own directory containing the `.node.ts`, a `resources/` folder, and shared utilities in `shared/shared/`
 - `scripts/generate-nodes-manifest.js` — regenerates `n8n.nodes` entries in package.json from directories under `nodes/`; runs automatically after build via postbuild hook. **Never edit the nodes list by hand.**
-- `docs/v1/`, `docs/v2/`, `docs/_shared/` — per-resource docs + shared boilerplate (auth, errors, type safety, testing checklist)
+- `docs/nodes/` — documentation générée par node et par opération (index + README par node + pages d'opérations)
+- `docs/_shared/` — boilerplate partagé (auth, errors, type safety, testing checklist)
+- `docs/guides/` — guides utilisateur (getting-started, authentication, troubleshooting, examples)
+- `docs/api-reference/` — référence API OVHcloud par endpoint (hors périmètre de ce fichier)
+- `docs/api-specs/` — specs JSON brutes de l'API OVHcloud v1 et v2
 
 ## Commands (exact strings to use)
 
