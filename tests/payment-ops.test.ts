@@ -8,6 +8,8 @@
  * - executeListBankAccounts calls /me/paymentMean/bankAccount with/without query params correctly
  * - Multi-item index resolution uses getNodeParameter('filters', itemIndex)
  * - State filter values match the OVHcloud BankAccountStateEnum
+ *
+ * Extended for Vague 1: listOrders
  */
 
 import { createMockApiClient } from './helpers/mockClient';
@@ -23,6 +25,9 @@ import {
 	executeListBankAccounts,
 	descriptionListBankAccounts,
 	BANK_ACCOUNT_FILTERS,
+	executeListOrders,
+	descriptionListOrders,
+	ORDER_FILTERS,
 } from '../nodes/OvhCloudMe/operations/payment.operation';
 
 describe('listBankAccounts', () => {
@@ -219,6 +224,109 @@ describe('listBankAccounts', () => {
 			await executeListBankAccounts.call(mockExecuteFunctions);
 
 			expect(mockClient.httpGet).toHaveBeenCalledWith('/me/paymentMean/bankAccount', undefined);
+		});
+	});
+});
+
+// ================================================================
+// listOrders
+// ================================================================
+
+describe('listOrders', () => {
+	let mockExecuteFunctions: any;
+
+	beforeEach(() => {
+		jest.clearAllMocks();
+		mockExecuteFunctions = {
+			getNodeParameter: jest.fn(),
+			helpers: { returnJsonArray: jest.fn((data: unknown[]) => data) },
+		};
+	});
+
+	describe('ORDER_FILTERS', () => {
+		it('should have exactly 2 definitions', () => {
+			expect(ORDER_FILTERS).toHaveLength(2);
+		});
+
+		it('should define date.from and date.to query params only (no orderId)', () => {
+			const queryParams = ORDER_FILTERS.map((f) => f.queryParam);
+			expect(queryParams).toContain('date.from');
+			expect(queryParams).toContain('date.to');
+			expect(queryParams).not.toContain('orderId');
+		});
+
+		it('should group both under dateRange', () => {
+			const groups = ORDER_FILTERS.map((f) => f.group);
+			expect(groups).toContain('dateRange');
+			expect(groups).not.toContain('ids');
+		});
+	});
+
+	describe('descriptionListOrders', () => {
+		it('should return a fixedCollection property named "filters"', () => {
+			const props = descriptionListOrders({});
+			expect(props).toHaveLength(1);
+			expect(props[0].name).toBe('filters');
+			expect(props[0].type).toBe('fixedCollection');
+		});
+
+		it('should contain only dateRange group', () => {
+			const props = descriptionListOrders({});
+			const collection = props[0] as any;
+			const optionNames = collection.options.map((o: any) => o.name);
+			expect(optionNames).toContain('dateRange');
+			expect(optionNames).not.toContain('ids');
+		});
+	});
+
+	describe('executeListOrders — no filters', () => {
+		it('should call /me/order with undefined qs', async () => {
+			mockExecuteFunctions.getNodeParameter = jest.fn().mockReturnValue({});
+			mockClient.httpGet.mockImplementation(async (url: string) => {
+				if (url === '/me/order') return ['ord1'];
+				if (url === '/me/order/ord1') return { id: 'ord1' };
+				return {};
+			});
+
+			const result = await executeListOrders.call(mockExecuteFunctions);
+
+			expect(mockClient.httpGet).toHaveBeenNthCalledWith(1, '/me/order', undefined);
+			expect(result).toEqual([{ id: 'ord1' }]);
+		});
+	});
+
+	describe('executeListOrders — with filters', () => {
+		it('should pass date.from and date.to to the API', async () => {
+			mockExecuteFunctions.getNodeParameter = jest.fn().mockImplementation((key: string) => {
+				if (key === 'filters') {
+					return { dateRange: { from: '2026-01-01T00:00:00Z', to: '2026-12-31T23:59:59Z' } };
+				}
+				return {};
+			});
+			mockClient.httpGet.mockResolvedValue([]);
+
+			await executeListOrders.call(mockExecuteFunctions);
+
+			expect(mockClient.httpGet).toHaveBeenCalledWith('/me/order', {
+				'date.from': '2026-01-01T00:00:00Z',
+				'date.to': '2026-12-31T23:59:59Z',
+			});
+		});
+	});
+
+	describe('executeListOrders — multi-item', () => {
+		it('should resolve filters using the provided itemIndex', async () => {
+			mockClient.httpGet.mockResolvedValue([]);
+			mockExecuteFunctions.getNodeParameter = jest
+				.fn()
+				.mockImplementation((key: string, idx?: number) => {
+					if (key === 'filters') return { dateRange: { from: `item-${idx}` } };
+					return {};
+				});
+
+			await executeListOrders.call(mockExecuteFunctions, 4);
+
+			expect(mockExecuteFunctions.getNodeParameter).toHaveBeenCalledWith('filters', 4, {});
 		});
 	});
 });

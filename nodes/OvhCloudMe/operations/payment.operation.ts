@@ -293,13 +293,42 @@ export async function executeGetPaypalAccount(
 // Groupe B : Orders
 // ============================================================
 
+// Order filter definitions (GET /me/order supports date.from, date.to only — no orderId)
+export const ORDER_FILTERS: FilterDefinition[] = [
+	{
+		displayName: 'From (>=)',
+		group: 'dateRange',
+		groupDisplayName: 'Date Range',
+		name: 'from',
+		queryParam: 'date.from',
+		type: 'dateTime',
+		default: '',
+		description: 'Filter orders from this date (ISO 8601)',
+	},
+	{
+		displayName: 'To (<=)',
+		group: 'dateRange',
+		groupDisplayName: 'Date Range',
+		name: 'to',
+		queryParam: 'date.to',
+		type: 'dateTime',
+		default: '',
+		description: 'Filter orders up to this date (ISO 8601)',
+	},
+];
+
+export function descriptionListOrders(displayOptions: IDisplayOptions): INodeProperties[] {
+	return filtersCollection(displayOptions, ORDER_FILTERS);
+}
+
 // listOrders
 export async function executeListOrders(
 	this: IExecuteFunctions,
-	_itemIndex?: number,
+	itemIndex?: number,
 ): Promise<INodeExecutionData[]> {
 	const client = getClient(this);
-	const ids = (await client.httpGet('/me/order')) as string[];
+	const qs = buildFilterQuery(this, itemIndex ?? 0, ORDER_FILTERS);
+	const ids = (await client.httpGet('/me/order', qs)) as string[];
 	const results: IDataObject[] = [];
 	for (const id of ids) {
 		const details = (await client.httpGet(`/me/order/${id}`)) as IDataObject;

@@ -1,4 +1,4 @@
-/* eslint-disable n8n-nodes-base/node-filename-against-convention */
+/* eslint-disable n8n-nodes-base/node-filename-against-convention, n8n-nodes-base/node-param-default-missing */
 import type {
 	IDataObject,
 	IDisplayOptions,
@@ -530,13 +530,51 @@ export async function executeGetDepositPayment(
 // Groupe D : Withdrawals
 // ============================================================
 
+// Withdrawal filter definitions
+export const WITHDRAWAL_FILTERS: FilterDefinition[] = [
+	{
+		displayName: 'From (>=)',
+		group: 'dateRange',
+		groupDisplayName: 'Date Range',
+		name: 'from',
+		queryParam: 'date.from',
+		type: 'dateTime',
+		default: '',
+		description: 'Filter withdrawals from this date (ISO 8601)',
+	},
+	{
+		displayName: 'To (<=)',
+		group: 'dateRange',
+		groupDisplayName: 'Date Range',
+		name: 'to',
+		queryParam: 'date.to',
+		type: 'dateTime',
+		default: '',
+		description: 'Filter withdrawals up to this date (ISO 8601)',
+	},
+	{
+		displayName: 'Order ID',
+		group: 'ids',
+		groupDisplayName: 'Identifiers',
+		name: 'orderId',
+		queryParam: 'orderId',
+		type: 'number',
+		default: 0,
+	},
+];
+
+export function descriptionListWithdrawals(displayOptions: IDisplayOptions): INodeProperties[] {
+	return filtersCollection(displayOptions, WITHDRAWAL_FILTERS);
+}
+
 // listWithdrawals
 export async function executeListWithdrawals(
 	this: IExecuteFunctions,
-	_itemIndex?: number,
+	itemIndex?: number,
 ): Promise<INodeExecutionData[]> {
 	const client = getClient(this);
-	const ids = (await client.httpGet('/me/withdrawal')) as string[];
+	const qs = buildFilterQuery(this, itemIndex ?? 0, WITHDRAWAL_FILTERS);
+	const ids = (await client.httpGet('/me/withdrawal', qs)) as string[];
 	const results: IDataObject[] = [];
 	for (const id of ids) {
 		const details = (await client.httpGet(`/me/withdrawal/${id}`)) as IDataObject;
@@ -667,13 +705,51 @@ export async function executeGetWithdrawalPayment(
 // Groupe E : Refunds
 // ============================================================
 
+// Refund filter definitions
+export const REFUND_FILTERS: FilterDefinition[] = [
+	{
+		displayName: 'From (>=)',
+		group: 'dateRange',
+		groupDisplayName: 'Date Range',
+		name: 'from',
+		queryParam: 'date.from',
+		type: 'dateTime',
+		default: '',
+		description: 'Filter refunds from this date (ISO 8601)',
+	},
+	{
+		displayName: 'To (<=)',
+		group: 'dateRange',
+		groupDisplayName: 'Date Range',
+		name: 'to',
+		queryParam: 'date.to',
+		type: 'dateTime',
+		default: '',
+		description: 'Filter refunds up to this date (ISO 8601)',
+	},
+	{
+		displayName: 'Order ID',
+		group: 'ids',
+		groupDisplayName: 'Identifiers',
+		name: 'orderId',
+		queryParam: 'orderId',
+		type: 'number',
+		default: 0,
+	},
+];
+
+export function descriptionListRefunds(displayOptions: IDisplayOptions): INodeProperties[] {
+	return filtersCollection(displayOptions, REFUND_FILTERS);
+}
+
 // listRefunds
 export async function executeListRefunds(
 	this: IExecuteFunctions,
-	_itemIndex?: number,
+	itemIndex?: number,
 ): Promise<INodeExecutionData[]> {
 	const client = getClient(this);
-	const ids = (await client.httpGet('/me/refund')) as string[];
+	const qs = buildFilterQuery(this, itemIndex ?? 0, REFUND_FILTERS);
+	const ids = (await client.httpGet('/me/refund', qs)) as string[];
 	const results: IDataObject[] = [];
 	for (const id of ids) {
 		const details = (await client.httpGet(`/me/refund/${id}`)) as IDataObject;
@@ -798,13 +874,51 @@ export async function executeGetRefundPayment(
 // Groupe F : Reverse Bills
 // ============================================================
 
+// Reverse Bill filter definitions
+export const REVERSE_BILL_FILTERS: FilterDefinition[] = [
+	{
+		displayName: 'From (>=)',
+		group: 'dateRange',
+		groupDisplayName: 'Date Range',
+		name: 'from',
+		queryParam: 'date.from',
+		type: 'dateTime',
+		default: '',
+		description: 'Filter reverse bills from this date (ISO 8601)',
+	},
+	{
+		displayName: 'To (<=)',
+		group: 'dateRange',
+		groupDisplayName: 'Date Range',
+		name: 'to',
+		queryParam: 'date.to',
+		type: 'dateTime',
+		default: '',
+		description: 'Filter reverse bills up to this date (ISO 8601)',
+	},
+	{
+		displayName: 'Order ID',
+		group: 'ids',
+		groupDisplayName: 'Identifiers',
+		name: 'orderId',
+		queryParam: 'orderId',
+		type: 'number',
+		default: 0,
+	},
+];
+
+export function descriptionListReverseBills(displayOptions: IDisplayOptions): INodeProperties[] {
+	return filtersCollection(displayOptions, REVERSE_BILL_FILTERS);
+}
+
 // listReverseBills
 export async function executeListReverseBills(
 	this: IExecuteFunctions,
-	_itemIndex?: number,
+	itemIndex?: number,
 ): Promise<INodeExecutionData[]> {
 	const client = getClient(this);
-	const ids = (await client.httpGet('/me/reverseBill')) as string[];
+	const qs = buildFilterQuery(this, itemIndex ?? 0, REVERSE_BILL_FILTERS);
+	const ids = (await client.httpGet('/me/reverseBill', qs)) as string[];
 	const results: IDataObject[] = [];
 	for (const id of ids) {
 		const details = (await client.httpGet(`/me/reverseBill/${id}`)) as IDataObject;
@@ -937,13 +1051,70 @@ export async function executeGetReverseBillPayment(
 // Groupe G : Corrective Invoices
 // ============================================================
 
+// Corrective Invoice filter definitions
+export const CORRECTIVE_INVOICE_FILTERS: FilterDefinition[] = [
+	{
+		displayName: 'From (>=)',
+		group: 'dateRange',
+		groupDisplayName: 'Date Range',
+		name: 'from',
+		queryParam: 'date.from',
+		type: 'dateTime',
+		default: '',
+		description: 'Filter corrective invoices from this date (ISO 8601)',
+	},
+	{
+		displayName: 'To (<=)',
+		group: 'dateRange',
+		groupDisplayName: 'Date Range',
+		name: 'to',
+		queryParam: 'date.to',
+		type: 'dateTime',
+		default: '',
+		description: 'Filter corrective invoices up to this date (ISO 8601)',
+	},
+	{
+		displayName: 'Order ID',
+		group: 'ids',
+		groupDisplayName: 'Identifiers',
+		name: 'orderId',
+		queryParam: 'orderId',
+		type: 'number',
+		default: 0,
+	},
+	{
+		displayName: 'Category',
+		group: 'category',
+		groupDisplayName: 'Category',
+		name: 'value',
+		queryParam: 'category',
+		type: 'options',
+		options: [
+			{ name: 'Auto Renew', value: 'autorenew' },
+			{ name: 'Early Renewal', value: 'earlyrenewal' },
+			{ name: 'Purchase', value: 'purchase' },
+			{ name: 'Purchase Cloud', value: 'purchase-cloud' },
+			{ name: 'Purchase Servers', value: 'purchase-servers' },
+			{ name: 'Purchase Telecom', value: 'purchase-telecom' },
+			{ name: 'Purchase Web', value: 'purchase-web' },
+		],
+	},
+];
+
+export function descriptionListCorrectiveInvoices(
+	displayOptions: IDisplayOptions,
+): INodeProperties[] {
+	return filtersCollection(displayOptions, CORRECTIVE_INVOICE_FILTERS);
+}
+
 // listCorrectiveInvoices
 export async function executeListCorrectiveInvoices(
 	this: IExecuteFunctions,
-	_itemIndex?: number,
+	itemIndex?: number,
 ): Promise<INodeExecutionData[]> {
 	const client = getClient(this);
-	const ids = (await client.httpGet('/me/correctiveInvoice')) as string[];
+	const qs = buildFilterQuery(this, itemIndex ?? 0, CORRECTIVE_INVOICE_FILTERS);
+	const ids = (await client.httpGet('/me/correctiveInvoice', qs)) as string[];
 	const results: IDataObject[] = [];
 	for (const id of ids) {
 		const details = (await client.httpGet(`/me/correctiveInvoice/${id}`)) as IDataObject;

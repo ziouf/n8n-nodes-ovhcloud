@@ -136,6 +136,7 @@ import {
 	descriptionGetPaypalAccount,
 	executeGetPaypalAccount,
 	executeListOrders,
+	descriptionListOrders,
 	descriptionGetOrder,
 	executeGetOrder,
 	descriptionGetOrderAssociatedObject,
@@ -208,6 +209,7 @@ import {
 	descriptionGetDepositPayment,
 	executeGetDepositPayment,
 	executeListWithdrawals,
+	descriptionListWithdrawals,
 	descriptionGetWithdrawal,
 	executeGetWithdrawal,
 	descriptionListWithdrawalDetails,
@@ -217,6 +219,7 @@ import {
 	descriptionGetWithdrawalPayment,
 	executeGetWithdrawalPayment,
 	executeListRefunds,
+	descriptionListRefunds,
 	descriptionGetRefund,
 	executeGetRefund,
 	descriptionListRefundDetails,
@@ -226,6 +229,7 @@ import {
 	descriptionGetRefundPayment,
 	executeGetRefundPayment,
 	executeListReverseBills,
+	descriptionListReverseBills,
 	descriptionGetReverseBill,
 	executeGetReverseBill,
 	descriptionListReverseBillDetails,
@@ -235,6 +239,7 @@ import {
 	descriptionGetReverseBillPayment,
 	executeGetReverseBillPayment,
 	executeListCorrectiveInvoices,
+	descriptionListCorrectiveInvoices,
 	descriptionGetCorrectiveInvoice,
 	executeGetCorrectiveInvoice,
 	descriptionGetCorrectiveInvoiceDebt,
@@ -1273,6 +1278,10 @@ export function description(displayOptions: IDisplayOptions): INodeProperties[] 
 			...displayOptions,
 			show: { ...displayOptions?.show, meOperation: ['getPaypalAccount'] },
 		}),
+		...descriptionListOrders({
+			...displayOptions,
+			show: { ...displayOptions?.show, meOperation: ['listOrders'] },
+		}),
 		...descriptionGetOrder({
 			...displayOptions,
 			show: { ...displayOptions?.show, meOperation: ['getOrder'] },
@@ -1405,6 +1414,10 @@ export function description(displayOptions: IDisplayOptions): INodeProperties[] 
 			...displayOptions,
 			show: { ...displayOptions?.show, meOperation: ['getDepositPayment'] },
 		}),
+		...descriptionListWithdrawals({
+			...displayOptions,
+			show: { ...displayOptions?.show, meOperation: ['listWithdrawals'] },
+		}),
 		...descriptionGetWithdrawal({
 			...displayOptions,
 			show: { ...displayOptions?.show, meOperation: ['getWithdrawal'] },
@@ -1420,6 +1433,10 @@ export function description(displayOptions: IDisplayOptions): INodeProperties[] 
 		...descriptionGetWithdrawalPayment({
 			...displayOptions,
 			show: { ...displayOptions?.show, meOperation: ['getWithdrawalPayment'] },
+		}),
+		...descriptionListRefunds({
+			...displayOptions,
+			show: { ...displayOptions?.show, meOperation: ['listRefunds'] },
 		}),
 		...descriptionGetRefund({
 			...displayOptions,
@@ -1437,6 +1454,10 @@ export function description(displayOptions: IDisplayOptions): INodeProperties[] 
 			...displayOptions,
 			show: { ...displayOptions?.show, meOperation: ['getRefundPayment'] },
 		}),
+		...descriptionListReverseBills({
+			...displayOptions,
+			show: { ...displayOptions?.show, meOperation: ['listReverseBills'] },
+		}),
 		...descriptionGetReverseBill({
 			...displayOptions,
 			show: { ...displayOptions?.show, meOperation: ['getReverseBill'] },
@@ -1452,6 +1473,10 @@ export function description(displayOptions: IDisplayOptions): INodeProperties[] 
 		...descriptionGetReverseBillPayment({
 			...displayOptions,
 			show: { ...displayOptions?.show, meOperation: ['getReverseBillPayment'] },
+		}),
+		...descriptionListCorrectiveInvoices({
+			...displayOptions,
+			show: { ...displayOptions?.show, meOperation: ['listCorrectiveInvoices'] },
 		}),
 		...descriptionGetCorrectiveInvoice({
 			...displayOptions,
