@@ -7,7 +7,7 @@ import type {
 import { NodeConnectionTypes } from 'n8n-workflow';
 import { OvhCloudApiSecretName, OvhCloudIcon } from '../../shared/constants';
 import { BaseNode, executeTemplate, classifyOperation } from '../../shared/nodes';
-import { getFreefaxServices } from '../../shared/methods/getFreefaxServices.method';
+import { getFreefaxServices } from '../../shared/methods';
 import { description, execute } from './index';
 
 export class OvhCloudFreefax extends BaseNode implements INodeType {

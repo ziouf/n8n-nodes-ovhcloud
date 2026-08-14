@@ -1,5 +1,5 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import { getClusterHadoopServices } from './getClusterHadoopServices.method';
+import { getClusterHadoopServices } from './index';
 import { createMockApiClient } from '../../tests/helpers/mockClient';
 import { clearListSearchCache } from './listSearch';
 

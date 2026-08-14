@@ -9,7 +9,7 @@ import { OvhCloudApiSecretName, OvhCloudIcon } from '../../shared/constants';
 import { BaseNode, executeTemplate, classifyOperation } from '../../shared/nodes';
 import { description, execute } from './index';
 
-import { getDedicatedCephServices } from '../../shared/methods/getDedicatedCephServices.method';
+import { getDedicatedCephServices } from '../../shared/methods';
 export class OvhCloudDedicatedCeph extends BaseNode implements INodeType {
 	description: INodeTypeDescription = {
 		displayName: 'OVH Cloud Dedicated Ceph',

@@ -1,5 +1,5 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import { getMetricsServices } from './getMetricsServices.method';
+import { getMetricsServices } from './index';
 import { createMockApiClient } from '../../tests/helpers/mockClient';
 import { clearListSearchCache } from './listSearch';
 

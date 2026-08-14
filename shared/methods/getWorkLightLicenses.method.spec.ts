@@ -1,5 +1,5 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import { getWorkLightLicenses } from './getWorkLightLicenses.method';
+import { getWorkLightLicenses } from './index';
 import { createMockApiClient } from '../../tests/helpers/mockClient';
 import { clearListSearchCache } from './listSearch';
 

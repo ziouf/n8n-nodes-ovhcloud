@@ -7,7 +7,7 @@ import type {
 import { NodeConnectionTypes } from 'n8n-workflow';
 import { OvhCloudApiSecretName, OvhCloudIcon } from '../../shared/constants';
 import { BaseNode, executeTemplate, classifyOperation } from '../../shared/nodes';
-import { getWorkLightLicenses } from '../../shared/methods/getWorkLightLicenses.method';
+import { getWorkLightLicenses } from '../../shared/methods';
 import { description, execute } from './index';
 
 export class OvhCloudLicense extends BaseNode implements INodeType {

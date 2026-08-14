@@ -1,5 +1,5 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import { getSaasCsp2Services } from './getSaasCsp2Services.method';
+import { getSaasCsp2Services } from './index';
 import { createMockApiClient } from '../../tests/helpers/mockClient';
 import { clearListSearchCache } from './listSearch';
 

@@ -9,7 +9,7 @@ import { OvhCloudApiSecretName, OvhCloudIcon } from '../../shared/constants';
 import { BaseNode, executeTemplate, classifyOperation } from '../../shared/nodes';
 import { description, execute } from './index';
 
-import { getDedicatedClusterServices } from '../../shared/methods/getDedicatedClusterServices.method';
+import { getDedicatedClusterServices } from '../../shared/methods';
 export class OvhCloudDedicatedCluster extends BaseNode implements INodeType {
 	description: INodeTypeDescription = {
 		displayName: 'OVH Cloud Dedicated Cluster',

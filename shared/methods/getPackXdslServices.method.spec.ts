@@ -1,5 +1,5 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import { getPackXdslServices } from './getPackXdslServices.method';
+import { getPackXdslServices } from './index';
 import { createMockApiClient } from '../../tests/helpers/mockClient';
 import { clearListSearchCache } from './listSearch';
 

@@ -7,7 +7,7 @@ import type {
 import { NodeConnectionTypes } from 'n8n-workflow';
 import { OvhCloudApiSecretName, OvhCloudIcon } from '../../shared/constants';
 import { BaseNode, executeTemplate, classifyOperation } from '../../shared/nodes';
-import { getVeeamCloudConnectServices } from '../../shared/methods/getVeeamCloudConnectServices.method';
+import { getVeeamCloudConnectServices } from '../../shared/methods';
 import { description, execute } from './index';
 
 export class OvhCloudVeeamCloudConnect extends BaseNode implements INodeType {

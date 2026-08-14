@@ -8,7 +8,7 @@ import { NodeConnectionTypes } from 'n8n-workflow';
 import { OvhCloudApiSecretName, OvhCloudIcon } from '../../shared/constants';
 import { description, execute } from './index';
 import { BaseNode, executeTemplate, classifyOperation } from '../../shared/nodes';
-import { getSmsServices } from '../../shared/methods/getSmsServices.method';
+import { getSmsServices } from '../../shared/methods';
 
 export class OvhCloudSms extends BaseNode implements INodeType {
 	description: INodeTypeDescription = {

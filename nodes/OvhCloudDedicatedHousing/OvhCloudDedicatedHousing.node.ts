@@ -9,7 +9,7 @@ import { OvhCloudApiSecretName, OvhCloudIcon } from '../../shared/constants';
 import { BaseNode, executeTemplate, classifyOperation } from '../../shared/nodes';
 import { description, execute } from './index';
 
-import { getDedicatedHousingServices } from '../../shared/methods/getDedicatedHousingServices.method';
+import { getDedicatedHousingServices } from '../../shared/methods';
 export class OvhCloudDedicatedHousing extends BaseNode implements INodeType {
 	description: INodeTypeDescription = {
 		displayName: 'OVH Cloud Dedicated Housing',

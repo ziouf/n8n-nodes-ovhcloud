@@ -9,7 +9,7 @@ import { OvhCloudApiSecretName, OvhCloudIcon } from '../../shared/constants';
 import { description, execute } from './index';
 import { BaseNode, executeTemplate, classifyOperation } from '../../shared/nodes';
 
-import { getEmailDomains } from '../../shared/methods/getEmailDomains.method';
+import { getEmailDomains } from '../../shared/methods';
 export class OvhCloudEmailDomain extends BaseNode implements INodeType {
 	description: INodeTypeDescription = {
 		displayName: 'OVH Cloud Email Domain',

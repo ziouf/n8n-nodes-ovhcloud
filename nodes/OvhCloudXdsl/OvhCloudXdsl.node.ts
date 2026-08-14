@@ -7,7 +7,7 @@ import type {
 import { NodeConnectionTypes } from 'n8n-workflow';
 import { OvhCloudApiSecretName, OvhCloudIcon } from '../../shared/constants';
 import { BaseNode, executeTemplate, classifyOperation } from '../../shared/nodes';
-import { getXdslServices } from '../../shared/methods/getXdslServices.method';
+import { getXdslServices } from '../../shared/methods';
 import { description, execute } from './index';
 
 export class OvhCloudXdsl extends BaseNode implements INodeType {

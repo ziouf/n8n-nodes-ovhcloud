@@ -9,7 +9,7 @@ import { OvhCloudApiSecretName, OvhCloudIcon } from '../../shared/constants';
 import { description, execute } from './index';
 import { BaseNode, executeTemplate, classifyOperation } from '../../shared/nodes';
 
-import { getSupportTicketServices } from '../../shared/methods/getSupportTicketServices.method';
+import { getSupportTicketServices } from '../../shared/methods';
 export class OvhCloudSupport extends BaseNode implements INodeType {
 	description: INodeTypeDescription = {
 		displayName: 'OVH Cloud Support',

@@ -9,7 +9,7 @@ import { OvhCloudApiSecretName, OvhCloudIcon } from '../../shared/constants';
 import { BaseNode, executeTemplate, classifyOperation } from '../../shared/nodes';
 import { description, execute } from './index';
 
-import { getDedicatedNashaServices } from '../../shared/methods/getDedicatedNashaServices.method';
+import { getDedicatedNashaServices } from '../../shared/methods';
 export class OvhCloudDedicatedNasha extends BaseNode implements INodeType {
 	description: INodeTypeDescription = {
 		displayName: 'OVH Cloud Dedicated Nasha',

@@ -1,5 +1,5 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import { getVeeamCloudConnectServices } from './getVeeamCloudConnectServices.method';
+import { getVeeamCloudConnectServices } from './index';
 import { createMockApiClient } from '../../tests/helpers/mockClient';
 import { clearListSearchCache } from './listSearch';
 
