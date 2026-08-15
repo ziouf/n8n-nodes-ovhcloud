@@ -387,7 +387,10 @@ export function runOperationSuite(opts: NodeSuiteOptions): void {
 							},
 						);
 						const ctx = {
-							helpers: { returnJsonArray: jest.fn((items: unknown) => items) },
+							helpers: {
+						// n8n contract: always INodeExecutionData[] (single object wrapped).
+						returnJsonArray: jest.fn((items: unknown) => (Array.isArray(items) ? items : [items])),
+					},
 							// Some operations merge the input item into the output
 							// (e.g. OvhCloudDedicated: `this.getInputData()[_itemIndex]`);
 							// two items cover both index-0 and index-1 calls.
