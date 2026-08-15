@@ -22,7 +22,7 @@ export function description(displayOptions: IDisplayOptions): INodeProperties[] 
  */
 export async function execute(this: IExecuteFunctions, _itemIndex?: number): Promise<INodeExecutionData[]> {
 	const client = getClient(this);
-	const body = buildNewAccountBody(this);
+	const body = buildNewAccountBody(this, _itemIndex ?? 0);
 
 	const data = (await client.httpPost('/newAccount', body)) as IDataObject;
 	return this.helpers.returnJsonArray([data]);

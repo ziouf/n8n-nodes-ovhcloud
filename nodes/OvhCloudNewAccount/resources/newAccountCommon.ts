@@ -122,6 +122,7 @@ export function newAccountStringFieldProperties(
  */
 export function buildNewAccountBody(
 	fn: IExecuteFunctions,
+	itemIndex: number,
 	options: { includeAction?: boolean } = {},
 ): IDataObject {
 	const fieldNames = options.includeAction
@@ -130,7 +131,7 @@ export function buildNewAccountBody(
 
 	const body: IDataObject = {};
 	for (const field of fieldNames) {
-		const value = (fn.getNodeParameter(field, 0, '') as string) || '';
+		const value = (fn.getNodeParameter(field, itemIndex ?? 0, '') as string) || '';
 		if (value) {
 			body[field] = value;
 		}
