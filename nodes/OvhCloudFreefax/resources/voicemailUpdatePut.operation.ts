@@ -171,7 +171,7 @@ export async function execute(this: IExecuteFunctions, _itemIndex?: number): Pro
 	const body: IDataObject = {};
 
 	for (const field of VOICEMAIL_STRING_FIELDS) {
-		const value = (this.getNodeParameter(field, 0, '') as string) || '';
+		const value = (this.getNodeParameter(field, _itemIndex ?? 0, '') as string) || '';
 		if (value) body[field] = value;
 	}
 
@@ -182,12 +182,12 @@ export async function execute(this: IExecuteFunctions, _itemIndex?: number): Pro
 	if (greetingType) body.greetingType = greetingType;
 
 	for (const field of VOICEMAIL_NUMBER_FIELDS) {
-		const value = this.getNodeParameter(field, 0) as number | undefined;
+		const value = this.getNodeParameter(field, _itemIndex ?? 0) as number | undefined;
 		if (value !== undefined) body[field] = value;
 	}
 
 	for (const field of VOICEMAIL_BOOLEAN_FIELDS) {
-		const value = this.getNodeParameter(field, 0) as boolean | undefined;
+		const value = this.getNodeParameter(field, _itemIndex ?? 0) as boolean | undefined;
 		if (value !== undefined) body[field] = value;
 	}
 

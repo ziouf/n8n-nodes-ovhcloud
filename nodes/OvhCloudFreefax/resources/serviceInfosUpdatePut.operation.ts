@@ -113,7 +113,7 @@ export async function execute(this: IExecuteFunctions, _itemIndex?: number): Pro
 	const body: IDataObject = {};
 
 	for (const field of SERVICE_INFOS_STRING_FIELDS) {
-		const value = (this.getNodeParameter(field, 0, '') as string) || '';
+		const value = (this.getNodeParameter(field, _itemIndex ?? 0, '') as string) || '';
 		if (value) body[field] = value;
 	}
 
