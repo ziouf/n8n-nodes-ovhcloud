@@ -15,6 +15,7 @@ npm test
 - **`tests/base-node.test.ts`** — concurrency support in `executeTemplate` (worker pool, result ordering, `continueOnFail` per item, fatal error handling)
 - **`tests/api-client-pagination-retry.test.ts`** — `paginateResources` with `onSkipped` callback and `concurrency` option
 - **`tests/*.operation.test.ts`** — per-node operation coverage tests
+- **`tests/operation-suite/`** — data-driven operation conformance suite (per-`.operation.ts` exports/description/smoke + multi-item, url & verb conformance; pilot: OvhCloudVps)
 - **`tests/helpers.ts`** — shared test utilities (`createMockCtx`, `invokeOperation`)
 
 ## Manual Testing in n8n
