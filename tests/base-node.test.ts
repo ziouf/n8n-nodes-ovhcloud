@@ -6,12 +6,10 @@
  * Also verifies concurrent execution preserves order and continueOnFail semantics.
  */
 
-import { BaseNode, executeTemplate } from '../shared/nodes/BaseNode';
-import type { INodeTypeDescription } from 'n8n-workflow';
-import { classifyOperation } from '../shared/nodes/BaseNode';
+import { BaseNode, executeTemplate, classifyOperation } from '../shared/nodes/BaseNode';
 import type { OperationClass } from '../shared/nodes/BaseNode';
+import type { INodeTypeDescription, IExecuteFunctions, INodeExecutionData } from 'n8n-workflow';
 import { NodeApiError } from 'n8n-workflow';
-import type { IExecuteFunctions, INodeExecutionData } from 'n8n-workflow';
 
 function createMockCtx(): jest.Mocked<IExecuteFunctions> {
 	return {

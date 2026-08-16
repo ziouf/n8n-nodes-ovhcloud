@@ -1766,8 +1766,8 @@ This documentation provides a comprehensive overview of the OVHcloud Public Clou
 
 ## Next Steps
 
-- Review the [n8n OVHcloud Node Implementation](../nodes/OvhCloud/OvhCloud.node.ts) for integration examples.
-- Review the [OVHcloud API Client](../nodes/OvhCloud/shared/OvhCloudApiClient.ts) for authentication and request signing examples.
+- Review the [n8n OVHcloud Public Cloud Node Implementation](../nodes/OvhCloudPublicCloud/OvhCloudPublicCloud.node.ts) for integration examples.
+- Review the [n8n OVHcloud API Client](../../shared/transport/ApiClientImpl.ts) for authentication and request signing examples.
 - Review the [n8n Workflow Examples](../workflows/) for end-user integration examples.
 
 ---

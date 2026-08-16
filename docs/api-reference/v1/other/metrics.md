@@ -8,7 +8,7 @@ The **Metrics** node in the n8n OVHcloud integration provides operations to inte
 
 ## Node Properties
 
-The node properties are defined in the `nodes/OvhCloud/OvhCloud.node.ts` file. The node supports the following operations for the **Metrics** service:
+The node properties are defined in the `nodes/OvhCloudMetrics/OvhCloudMetrics.node.ts` file. The node supports the following operations for the **Metrics** service:
 
 ### Operations
 

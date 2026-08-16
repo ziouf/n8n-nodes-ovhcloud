@@ -45,7 +45,7 @@ n8n-nodes-ovhcloud/
         └── sms.md
 ```
 
-Each operation is implemented as a separate file in `nodes/OvhCloud/SMS/operations/` and follows the same pattern:
+Each operation is implemented as a separate file in `nodes/OvhCloudSms/resources/sms/` and follows the same pattern:
 
 - **Description**: A brief description of the operation.
 - **Execute Function**: Handles the operation logic and HTTP requests.

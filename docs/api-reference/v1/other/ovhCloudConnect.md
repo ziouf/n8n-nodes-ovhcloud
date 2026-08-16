@@ -903,7 +903,7 @@ All operations require authentication via the `OVH API` credential type and are 
 
 - [OVHcloud API Documentation](https://api.ovh.com/)
 - [n8n Workflow Documentation](https://docs.n8n.io/)
-- [OVHcloud Connect Node Source Code](../../nodes/OvhCloud/OvhCloud.node.ts)
+- [OVHcloud Connect Node Source Code](../../nodes/OvhCloudOvhCloudConnect/OvhCloudOvhCloudConnect.node.ts)
 - [OVHcloud IAM Permissions](https://docs.ovh.com/en/public-cloud/iam/iam_permissions.html)
 
 ---

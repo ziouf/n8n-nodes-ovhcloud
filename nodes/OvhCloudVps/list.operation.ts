@@ -1,3 +1,4 @@
+/* eslint-disable n8n-nodes-base/node-filename-against-convention */
 import type {
 	IDataObject,
 	IDisplayOptions,
@@ -14,10 +15,10 @@ import { buildFilterQuery } from '../../shared/nodes/filterQuery';
 
 export const VPS_LIST_FILTERS: FilterDefinition[] = [
 	{
+		displayName: 'IAM Tags',
+		name: 'value',
 		group: 'iamTags',
 		groupDisplayName: 'IAM Tags',
-		name: 'value',
-		displayName: 'IAM Tags',
 		queryParam: 'iamTags',
 		type: 'json',
 		default: '',

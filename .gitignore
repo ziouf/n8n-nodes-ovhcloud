@@ -13,3 +13,9 @@ node_modules/
 .env
 .env.*
 !.env.example
+
+
+# Fichiers résiduels de sessions locales
+build.sh
+execute-build.sh
+run-build.sh
