@@ -3076,9 +3076,9 @@ export function description(displayOptions: IDisplayOptions): INodeProperties[] 
 
 export async function execute(
 	this: IExecuteFunctions,
-	itemIndex: number,
+	itemIndex?: number,
 ): Promise<INodeExecutionData[]> {
-	const operation = this.getNodeParameter('dedicatedCloudOperation', itemIndex, {
+	const operation = this.getNodeParameter('dedicatedCloudOperation', itemIndex ?? 0, {
 		extractValue: true,
 	});
 

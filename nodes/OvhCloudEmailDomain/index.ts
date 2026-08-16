@@ -1350,9 +1350,9 @@ export function description(displayOptions: IDisplayOptions = {}): INodeProperti
 
 export async function execute(
 	this: IExecuteFunctions,
-	itemIndex: number,
+	itemIndex?: number,
 ): Promise<INodeExecutionData[]> {
-	const operation = this.getNodeParameter('emailDomainOperation', itemIndex, {
+	const operation = this.getNodeParameter('emailDomainOperation', itemIndex ?? 0, {
 		extractValue: true,
 	});
 

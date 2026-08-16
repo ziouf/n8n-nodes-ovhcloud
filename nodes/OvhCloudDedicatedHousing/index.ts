@@ -211,9 +211,9 @@ export function description(displayOptions: IDisplayOptions): INodeProperties[] 
 
 export async function execute(
 	this: IExecuteFunctions,
-	itemIndex: number,
+	itemIndex?: number,
 ): Promise<INodeExecutionData[]> {
-	const operation = this.getNodeParameter('dedicatedHousingOperation', itemIndex, {
+	const operation = this.getNodeParameter('dedicatedHousingOperation', itemIndex ?? 0, {
 		extractValue: true,
 	});
 

@@ -118,9 +118,9 @@ export function description(displayOptions: IDisplayOptions): INodeProperties[] 
 
 export async function execute(
 	this: IExecuteFunctions,
-	itemIndex: number,
+	itemIndex?: number,
 ): Promise<INodeExecutionData[]> {
-	const operation = this.getNodeParameter('serviceOperation', itemIndex, { extractValue: true });
+	const operation = this.getNodeParameter('serviceOperation', itemIndex ?? 0, { extractValue: true });
 
 	switch (operation) {
 		case 'createRenew':

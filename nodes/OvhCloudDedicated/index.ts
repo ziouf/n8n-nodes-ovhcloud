@@ -888,9 +888,9 @@ export function description(displayOptions: IDisplayOptions): INodeProperties[] 
 
 export async function execute(
 	this: IExecuteFunctions,
-	itemIndex: number,
+	itemIndex?: number,
 ): Promise<INodeExecutionData[]> {
-	const operation = this.getNodeParameter('dedicatedServerOperation', itemIndex, {
+	const operation = this.getNodeParameter('dedicatedServerOperation', itemIndex ?? 0, {
 		extractValue: true,
 	});
 

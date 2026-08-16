@@ -582,9 +582,9 @@ export function description(displayOptions: IDisplayOptions = {}): INodeProperti
 
 export async function execute(
 	this: IExecuteFunctions,
-	itemIndex: number,
+	itemIndex?: number,
 ): Promise<INodeExecutionData[]> {
-	const operation = this.getNodeParameter('mxPlanOperation', itemIndex, {
+	const operation = this.getNodeParameter('mxPlanOperation', itemIndex ?? 0, {
 		extractValue: true,
 	});
 

@@ -602,9 +602,9 @@ export function description(displayOptions: IDisplayOptions): INodeProperties[] 
 
 export async function execute(
 	this: IExecuteFunctions,
-	itemIndex: number,
+	itemIndex?: number,
 ): Promise<INodeExecutionData[]> {
-	const operation = this.getNodeParameter('cdnOperation', itemIndex, {
+	const operation = this.getNodeParameter('cdnOperation', itemIndex ?? 0, {
 		extractValue: true,
 	});
 

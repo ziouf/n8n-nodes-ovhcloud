@@ -1655,9 +1655,9 @@ export function description(displayOptions: IDisplayOptions): INodeProperties[] 
 
 export async function execute(
 	this: IExecuteFunctions,
-	itemIndex: number,
+	itemIndex?: number,
 ): Promise<INodeExecutionData[]> {
-	const operation = this.getNodeParameter('meOperation', itemIndex, { extractValue: true });
+	const operation = this.getNodeParameter('meOperation', itemIndex ?? 0, { extractValue: true });
 
 	switch (operation) {
 		// Phase 1 — Account & Identity

@@ -85,9 +85,9 @@ export function description(displayOptions: IDisplayOptions): INodeProperties[] 
 
 export async function execute(
 	this: IExecuteFunctions,
-	itemIndex: number,
+	itemIndex?: number,
 ): Promise<INodeExecutionData[]> {
-	const operation = this.getNodeParameter('veeamOperation', itemIndex, { extractValue: true });
+	const operation = this.getNodeParameter('veeamOperation', itemIndex ?? 0, { extractValue: true });
 
 	switch (operation) {
 		case 'get':

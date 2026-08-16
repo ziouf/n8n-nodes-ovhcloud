@@ -268,8 +268,8 @@ export function description(displayOptions: IDisplayOptions): INodeProperties[] 
 	return properties;
 }
 
-export async function execute(this: IExecuteFunctions, itemIndex: number): Promise<INodeExecutionData[]> {
-	const operation = this.getNodeParameter('publicCloudAiOperation', itemIndex, { extractValue: true });
+export async function execute(this: IExecuteFunctions, itemIndex?: number): Promise<INodeExecutionData[]> {
+	const operation = this.getNodeParameter('publicCloudAiOperation', itemIndex ?? 0, { extractValue: true });
 
 	switch (operation) {
 		case 'AppCommandPost': return AppCommandPostExecute.call(this, itemIndex ?? 0);
@@ -359,3 +359,4 @@ export async function execute(this: IExecuteFunctions, itemIndex: number): Promi
 
 	throw new Error(`Unsupported operation "${operation}" for resource "publicCloudAi"`);
 }
+

@@ -134,8 +134,8 @@ export function description(displayOptions: IDisplayOptions) {
 	];
 }
 
-export async function execute(this: IExecuteFunctions, itemIndex: number) {
-	const operation = this.getNodeParameter('sslOperation', itemIndex, { extractValue: true });
+export async function execute(this: IExecuteFunctions, itemIndex?: number) {
+	const operation = this.getNodeParameter('sslOperation', itemIndex ?? 0, { extractValue: true });
 
 	switch (operation) {
 		case 'createCertificateByResourceName':
@@ -160,3 +160,4 @@ export async function execute(this: IExecuteFunctions, itemIndex: number) {
 
 	throw new Error(`Unsupported operation "${operation}" for resource "ssl"`);
 }
+

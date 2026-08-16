@@ -57,9 +57,9 @@ export function description(displayOptions: IDisplayOptions): INodeProperties[] 
 
 export async function execute(
 	this: IExecuteFunctions,
-	itemIndex: number,
+	itemIndex?: number,
 ): Promise<INodeExecutionData[]> {
-	const operation = this.getNodeParameter('locationOperation', itemIndex, {
+	const operation = this.getNodeParameter('locationOperation', itemIndex ?? 0, {
 		extractValue: true,
 	});
 
@@ -73,3 +73,4 @@ export async function execute(
 
 	throw new Error(`Unsupported operation "${operation}" for resource "ovhCloudLocation"`);
 }
+

@@ -2697,7 +2697,7 @@ export function description(displayOptions: IDisplayOptions): INodeProperties[] 
 
 export async function execute(
 	this: IExecuteFunctions,
-	itemIndex: number,
+	itemIndex?: number,
 ): Promise<INodeExecutionData[]> {
 	const apiVersion = this.getNodeParameter('apiVersion', 0) as string;
 	const operation = this.getNodeParameter(
