@@ -36,7 +36,7 @@ export function createOperationDispatcher(
 				noDataExpression: true,
 				options: entries.map(({ name, value, action }) => ({ name, value, action })),
 				default: (entries.find((e) => e.default) ?? entries[0]).value,
-				displayOptions,
+				...(Object.keys(displayOptions).length > 0 ? { displayOptions } : {}),
 			},
 		];
 
