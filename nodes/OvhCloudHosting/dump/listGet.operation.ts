@@ -48,9 +48,9 @@ export async function execute(
 	_itemIndex?: number,
 ): Promise<INodeExecutionData[]> {
 	const client = getClient(this);
-	const serviceName = this.getNodeParameter('serviceName', _itemIndex as number) as string;
-	const databaseName = this.getNodeParameter('databaseName', _itemIndex as number, '') as string;
-	const orphan = this.getNodeParameter('orphan', _itemIndex as number, false) as boolean;
+	const serviceName = this.getNodeParameter('serviceName', _itemIndex ?? 0) as string;
+	const databaseName = this.getNodeParameter('databaseName', _itemIndex ?? 0, '') as string;
+	const orphan = this.getNodeParameter('orphan', _itemIndex ?? 0, false) as boolean;
 
 	const qs: IDataObject = {};
 	if (databaseName) {

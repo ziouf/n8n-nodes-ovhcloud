@@ -41,8 +41,8 @@ export async function execute(
 	_itemIndex?: number,
 ): Promise<INodeExecutionData[]> {
 	const client = getClient(this);
-	const serviceName = this.getNodeParameter('serviceName', _itemIndex as number) as string;
-	const id = this.getNodeParameter('id', _itemIndex as number) as number;
+	const serviceName = this.getNodeParameter('serviceName', _itemIndex ?? 0) as string;
+	const id = this.getNodeParameter('id', _itemIndex ?? 0) as number;
 	const data = (await client.httpDelete(
 		`/hosting/web/${encodeURIComponent(serviceName)}/module/${encodeURIComponent(String(id))}`,
 	)) as IDataObject;

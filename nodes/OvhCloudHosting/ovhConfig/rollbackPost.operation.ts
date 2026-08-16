@@ -50,9 +50,9 @@ export async function execute(
 	_itemIndex?: number,
 ): Promise<INodeExecutionData[]> {
 	const client = getClient(this);
-	const serviceName = this.getNodeParameter('serviceName', _itemIndex as number) as string;
-	const id = this.getNodeParameter('id', _itemIndex as number) as number;
-	const rollbackId = this.getNodeParameter('rollbackId', _itemIndex as number) as number;
+	const serviceName = this.getNodeParameter('serviceName', _itemIndex ?? 0) as string;
+	const id = this.getNodeParameter('id', _itemIndex ?? 0) as number;
+	const rollbackId = this.getNodeParameter('rollbackId', _itemIndex ?? 0) as number;
 	const data = (await client.httpPost(
 		`/hosting/web/${encodeURIComponent(serviceName)}/ovhConfig/${encodeURIComponent(String(id))}/rollback`,
 		{ rollbackId } as IDataObject,

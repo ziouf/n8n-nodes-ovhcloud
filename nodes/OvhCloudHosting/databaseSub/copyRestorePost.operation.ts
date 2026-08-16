@@ -57,12 +57,12 @@ export async function execute(
 	_itemIndex?: number,
 ): Promise<INodeExecutionData[]> {
 	const client = getClient(this);
-	const serviceName = this.getNodeParameter('serviceName', _itemIndex as number) as string;
-	const databaseName = this.getNodeParameter('databaseName', _itemIndex as number) as string;
-	const copyId = this.getNodeParameter('copyId', _itemIndex as number) as string;
+	const serviceName = this.getNodeParameter('serviceName', _itemIndex ?? 0) as string;
+	const databaseName = this.getNodeParameter('databaseName', _itemIndex ?? 0) as string;
+	const copyId = this.getNodeParameter('copyId', _itemIndex ?? 0) as string;
 	const flushDatabase = this.getNodeParameter(
 		'flushDatabase',
-		_itemIndex as number,
+		_itemIndex ?? 0,
 		false,
 	) as boolean;
 	const data = (await client.httpPost(

@@ -51,10 +51,10 @@ export async function execute(
 	_itemIndex?: number,
 ): Promise<INodeExecutionData[]> {
 	const client = getClient(this);
-	const serviceName = this.getNodeParameter('serviceName', _itemIndex as number, '', {
+	const serviceName = this.getNodeParameter('serviceName', _itemIndex ?? 0, '', {
 		extractValue: true,
 	}) as string;
-	const domain = this.getNodeParameter('domain', _itemIndex as number) as string;
+	const domain = this.getNodeParameter('domain', _itemIndex ?? 0) as string;
 
 	await client.httpDelete(`/hosting/web/${serviceName}/attachedDomain/${domain}`);
 	return [{ json: {}, pairedItem: { item: 0 } }];

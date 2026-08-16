@@ -121,13 +121,13 @@ export async function execute(
 	_itemIndex?: number,
 ): Promise<INodeExecutionData[]> {
 	const client = getClient(this);
-	const serviceName = this.getNodeParameter('serviceName', _itemIndex as number) as string;
-	const id = this.getNodeParameter('id', _itemIndex as number) as number;
-	const container = this.getNodeParameter('container', _itemIndex as number, '') as string;
-	const engineName = this.getNodeParameter('engineName', _itemIndex as number, '') as string;
-	const engineVersion = this.getNodeParameter('engineVersion', _itemIndex as number, '') as string;
-	const environment = this.getNodeParameter('environment', _itemIndex as number, '') as string;
-	const httpFirewall = this.getNodeParameter('httpFirewall', _itemIndex as number, '') as string;
+	const serviceName = this.getNodeParameter('serviceName', _itemIndex ?? 0) as string;
+	const id = this.getNodeParameter('id', _itemIndex ?? 0) as number;
+	const container = this.getNodeParameter('container', _itemIndex ?? 0, '') as string;
+	const engineName = this.getNodeParameter('engineName', _itemIndex ?? 0, '') as string;
+	const engineVersion = this.getNodeParameter('engineVersion', _itemIndex ?? 0, '') as string;
+	const environment = this.getNodeParameter('environment', _itemIndex ?? 0, '') as string;
+	const httpFirewall = this.getNodeParameter('httpFirewall', _itemIndex ?? 0, '') as string;
 
 	const body: IDataObject = {};
 	if (container) {

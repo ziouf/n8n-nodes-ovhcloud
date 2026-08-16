@@ -81,19 +81,19 @@ export async function execute(
 	_itemIndex?: number,
 ): Promise<INodeExecutionData[]> {
 	const client = getClient(this);
-	const serviceName = this.getNodeParameter('serviceName', _itemIndex as number) as string;
-	const id = this.getNodeParameter('id', _itemIndex as number) as number;
-	const renewAutomatic = this.getNodeParameter('renewAutomatic', _itemIndex as number) as boolean;
+	const serviceName = this.getNodeParameter('serviceName', _itemIndex ?? 0) as string;
+	const id = this.getNodeParameter('id', _itemIndex ?? 0) as number;
+	const renewAutomatic = this.getNodeParameter('renewAutomatic', _itemIndex ?? 0) as boolean;
 	const renewDeleteAtExpiration = this.getNodeParameter(
 		'renewDeleteAtExpiration',
-		_itemIndex as number,
+		_itemIndex ?? 0,
 	) as boolean;
-	const renewForced = this.getNodeParameter('renewForced', _itemIndex as number) as boolean;
+	const renewForced = this.getNodeParameter('renewForced', _itemIndex ?? 0) as boolean;
 	const renewManualPayment = this.getNodeParameter(
 		'renewManualPayment',
-		_itemIndex as number,
+		_itemIndex ?? 0,
 	) as boolean;
-	const renewPeriod = this.getNodeParameter('renewPeriod', _itemIndex as number) as number;
+	const renewPeriod = this.getNodeParameter('renewPeriod', _itemIndex ?? 0) as number;
 
 	const renew: IDataObject = {
 		automatic: renewAutomatic,

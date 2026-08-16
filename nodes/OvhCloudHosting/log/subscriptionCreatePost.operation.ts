@@ -50,9 +50,9 @@ export async function execute(
 	_itemIndex?: number,
 ): Promise<INodeExecutionData[]> {
 	const client = getClient(this);
-	const serviceName = this.getNodeParameter('serviceName', _itemIndex as number) as string;
-	const kind = this.getNodeParameter('kind', _itemIndex as number) as string;
-	const streamId = this.getNodeParameter('streamId', _itemIndex as number) as string;
+	const serviceName = this.getNodeParameter('serviceName', _itemIndex ?? 0) as string;
+	const kind = this.getNodeParameter('kind', _itemIndex ?? 0) as string;
+	const streamId = this.getNodeParameter('streamId', _itemIndex ?? 0) as string;
 	const data = (await client.httpPost(
 		`/hosting/web/${encodeURIComponent(serviceName)}/log/subscription`,
 		{ kind, streamId } as IDataObject,

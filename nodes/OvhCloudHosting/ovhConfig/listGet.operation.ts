@@ -48,9 +48,9 @@ export async function execute(
 	_itemIndex?: number,
 ): Promise<INodeExecutionData[]> {
 	const client = getClient(this);
-	const serviceName = this.getNodeParameter('serviceName', _itemIndex as number) as string;
-	const historical = this.getNodeParameter('historical', _itemIndex as number, false) as boolean;
-	const path = this.getNodeParameter('path', _itemIndex as number, '') as string;
+	const serviceName = this.getNodeParameter('serviceName', _itemIndex ?? 0) as string;
+	const historical = this.getNodeParameter('historical', _itemIndex ?? 0, false) as boolean;
+	const path = this.getNodeParameter('path', _itemIndex ?? 0, '') as string;
 
 	const qs: IDataObject = {};
 	if (historical) {

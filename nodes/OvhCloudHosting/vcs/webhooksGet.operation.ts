@@ -51,9 +51,9 @@ export async function execute(
 	_itemIndex?: number,
 ): Promise<INodeExecutionData[]> {
 	const client = getClient(this);
-	const serviceName = this.getNodeParameter('serviceName', _itemIndex as number) as string;
-	const path = this.getNodeParameter('path', _itemIndex as number) as string;
-	const vcs = this.getNodeParameter('vcs', _itemIndex as number) as string;
+	const serviceName = this.getNodeParameter('serviceName', _itemIndex ?? 0) as string;
+	const path = this.getNodeParameter('path', _itemIndex ?? 0) as string;
+	const vcs = this.getNodeParameter('vcs', _itemIndex ?? 0) as string;
 	const data = (await client.httpGet(
 		`/hosting/web/${encodeURIComponent(serviceName)}/vcs/webhooks`,
 		{ path, vcs },

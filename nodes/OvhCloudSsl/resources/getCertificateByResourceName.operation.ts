@@ -31,7 +31,7 @@ export function description(displayOptions: IDisplayOptions) {
 
 export async function execute(this: IExecuteFunctions, _itemIndex?: number) {
 	const client = getClient(this);
-	const serviceName = this.getNodeParameter('serviceName', _itemIndex as number, '', {
+	const serviceName = this.getNodeParameter('serviceName', _itemIndex ?? 0, '', {
 		extractValue: true,
 	}) as string;
 

@@ -40,8 +40,8 @@ export async function execute(
 	_itemIndex?: number,
 ): Promise<INodeExecutionData[]> {
 	const client = getClient(this);
-	const serviceName = this.getNodeParameter('serviceName', _itemIndex as number) as string;
-	const databaseName = this.getNodeParameter('databaseName', _itemIndex as number) as string;
+	const serviceName = this.getNodeParameter('serviceName', _itemIndex ?? 0) as string;
+	const databaseName = this.getNodeParameter('databaseName', _itemIndex ?? 0) as string;
 	const data = (await client.httpGet(
 		`/hosting/web/database/${encodeURIComponent(serviceName)}/${encodeURIComponent(databaseName)}/copy`,
 	)) as unknown;

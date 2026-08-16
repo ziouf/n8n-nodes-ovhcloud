@@ -40,8 +40,8 @@ export async function execute(
 	_itemIndex?: number,
 ): Promise<INodeExecutionData[]> {
 	const client = getClient(this);
-	const serviceName = this.getNodeParameter('serviceName', _itemIndex as number) as string;
-	const action = this.getNodeParameter('action', _itemIndex as number) as string;
+	const serviceName = this.getNodeParameter('serviceName', _itemIndex ?? 0) as string;
+	const action = this.getNodeParameter('action', _itemIndex ?? 0) as string;
 	const data = (await client.httpPost(
 		`/hosting/web/${encodeURIComponent(serviceName)}/email/request`,
 		{ action } as IDataObject,

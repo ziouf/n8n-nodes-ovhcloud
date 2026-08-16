@@ -68,11 +68,11 @@ export async function execute(
 	_itemIndex?: number,
 ): Promise<INodeExecutionData[]> {
 	const client = getClient(this);
-	const serviceName = this.getNodeParameter('serviceName', _itemIndex as number) as string;
-	const login = this.getNodeParameter('login', _itemIndex as number) as string;
-	const password = this.getNodeParameter('password', _itemIndex as number) as string;
-	const description = this.getNodeParameter('description', _itemIndex as number) as string;
-	const ownLogsId = this.getNodeParameter('ownLogsId', _itemIndex as number, 0) as number;
+	const serviceName = this.getNodeParameter('serviceName', _itemIndex ?? 0) as string;
+	const login = this.getNodeParameter('login', _itemIndex ?? 0) as string;
+	const password = this.getNodeParameter('password', _itemIndex ?? 0) as string;
+	const description = this.getNodeParameter('description', _itemIndex ?? 0) as string;
+	const ownLogsId = this.getNodeParameter('ownLogsId', _itemIndex ?? 0, 0) as number;
 
 	const body: IDataObject = { description, login, password };
 	if (ownLogsId) {

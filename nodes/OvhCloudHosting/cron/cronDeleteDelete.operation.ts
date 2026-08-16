@@ -46,10 +46,10 @@ export async function execute(
 	_itemIndex?: number,
 ): Promise<INodeExecutionData[]> {
 	const client = getClient(this);
-	const serviceName = this.getNodeParameter('serviceName', _itemIndex as number, '', {
+	const serviceName = this.getNodeParameter('serviceName', _itemIndex ?? 0, '', {
 		extractValue: true,
 	}) as string;
-	const cronId = this.getNodeParameter('cronId', _itemIndex as number) as number;
+	const cronId = this.getNodeParameter('cronId', _itemIndex ?? 0) as number;
 	const data = (await client.httpDelete(
 		`/hosting/web/${serviceName}/cron/${cronId}`,
 	)) as IDataObject;

@@ -106,14 +106,14 @@ export async function execute(
 	_itemIndex?: number,
 ): Promise<INodeExecutionData[]> {
 	const client = getClient(this);
-	const serviceName = this.getNodeParameter('serviceName', _itemIndex as number) as string;
-	const moduleId = this.getNodeParameter('moduleId', _itemIndex as number) as number;
-	const adminName = this.getNodeParameter('adminName', _itemIndex as number, '') as string;
-	const adminPassword = this.getNodeParameter('adminPassword', _itemIndex as number, '') as string;
-	const domain = this.getNodeParameter('domain', _itemIndex as number, '') as string;
-	const language = this.getNodeParameter('language', _itemIndex as number, '') as string;
-	const path = this.getNodeParameter('path', _itemIndex as number, '') as string;
-	const dependencies = this.getNodeParameter('dependencies', _itemIndex as number, '') as string;
+	const serviceName = this.getNodeParameter('serviceName', _itemIndex ?? 0) as string;
+	const moduleId = this.getNodeParameter('moduleId', _itemIndex ?? 0) as number;
+	const adminName = this.getNodeParameter('adminName', _itemIndex ?? 0, '') as string;
+	const adminPassword = this.getNodeParameter('adminPassword', _itemIndex ?? 0, '') as string;
+	const domain = this.getNodeParameter('domain', _itemIndex ?? 0, '') as string;
+	const language = this.getNodeParameter('language', _itemIndex ?? 0, '') as string;
+	const path = this.getNodeParameter('path', _itemIndex ?? 0, '') as string;
+	const dependencies = this.getNodeParameter('dependencies', _itemIndex ?? 0, '') as string;
 
 	const body: IDataObject = { moduleId };
 	if (adminName) {

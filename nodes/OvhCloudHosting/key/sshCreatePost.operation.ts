@@ -59,10 +59,10 @@ export async function execute(
 	_itemIndex?: number,
 ): Promise<INodeExecutionData[]> {
 	const client = getClient(this);
-	const serviceName = this.getNodeParameter('serviceName', _itemIndex as number) as string;
-	const keyName = this.getNodeParameter('keyName', _itemIndex as number) as string;
-	const key = this.getNodeParameter('key', _itemIndex as number) as string;
-	const comment = this.getNodeParameter('comment', _itemIndex as number, '') as string;
+	const serviceName = this.getNodeParameter('serviceName', _itemIndex ?? 0) as string;
+	const keyName = this.getNodeParameter('keyName', _itemIndex ?? 0) as string;
+	const key = this.getNodeParameter('key', _itemIndex ?? 0) as string;
+	const comment = this.getNodeParameter('comment', _itemIndex ?? 0, '') as string;
 
 	const body: IDataObject = { key, keyName };
 	if (comment) {

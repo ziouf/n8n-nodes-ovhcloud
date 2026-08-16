@@ -50,9 +50,9 @@ export async function execute(
 	_itemIndex?: number,
 ): Promise<INodeExecutionData[]> {
 	const client = getClient(this);
-	const serviceName = this.getNodeParameter('serviceName', _itemIndex as number) as string;
-	const ownLogsId = this.getNodeParameter('ownLogsId', _itemIndex as number) as number;
-	const login = this.getNodeParameter('login', _itemIndex as number) as string;
+	const serviceName = this.getNodeParameter('serviceName', _itemIndex ?? 0) as string;
+	const ownLogsId = this.getNodeParameter('ownLogsId', _itemIndex ?? 0) as number;
+	const login = this.getNodeParameter('login', _itemIndex ?? 0) as string;
 	const data = (await client.httpDelete(
 		`/hosting/web/${encodeURIComponent(serviceName)}/ownLogs/${encodeURIComponent(String(ownLogsId))}/userLogs/${encodeURIComponent(login)}`,
 	)) as IDataObject;

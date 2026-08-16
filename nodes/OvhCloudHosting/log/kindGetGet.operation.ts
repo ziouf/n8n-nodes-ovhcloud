@@ -41,8 +41,8 @@ export async function execute(
 	_itemIndex?: number,
 ): Promise<INodeExecutionData[]> {
 	const client = getClient(this);
-	const serviceName = this.getNodeParameter('serviceName', _itemIndex as number) as string;
-	const name = this.getNodeParameter('name', _itemIndex as number) as string;
+	const serviceName = this.getNodeParameter('serviceName', _itemIndex ?? 0) as string;
+	const name = this.getNodeParameter('name', _itemIndex ?? 0) as string;
 	const data = (await client.httpGet(
 		`/hosting/web/${encodeURIComponent(serviceName)}/log/kind/${encodeURIComponent(name)}`,
 	)) as IDataObject;

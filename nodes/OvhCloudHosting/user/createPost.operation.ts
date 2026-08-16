@@ -72,11 +72,11 @@ export async function execute(
 	_itemIndex?: number,
 ): Promise<INodeExecutionData[]> {
 	const client = getClient(this);
-	const serviceName = this.getNodeParameter('serviceName', _itemIndex as number) as string;
-	const login = this.getNodeParameter('login', _itemIndex as number) as string;
-	const home = this.getNodeParameter('home', _itemIndex as number) as string;
-	const password = this.getNodeParameter('password', _itemIndex as number) as string;
-	const sshState = this.getNodeParameter('sshState', _itemIndex as number, '') as string;
+	const serviceName = this.getNodeParameter('serviceName', _itemIndex ?? 0) as string;
+	const login = this.getNodeParameter('login', _itemIndex ?? 0) as string;
+	const home = this.getNodeParameter('home', _itemIndex ?? 0) as string;
+	const password = this.getNodeParameter('password', _itemIndex ?? 0) as string;
+	const sshState = this.getNodeParameter('sshState', _itemIndex ?? 0, '') as string;
 
 	const body: IDataObject = { home, login, password };
 	if (sshState) {

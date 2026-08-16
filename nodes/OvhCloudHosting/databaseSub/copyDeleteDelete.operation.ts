@@ -48,9 +48,9 @@ export async function execute(
 	_itemIndex?: number,
 ): Promise<INodeExecutionData[]> {
 	const client = getClient(this);
-	const serviceName = this.getNodeParameter('serviceName', _itemIndex as number) as string;
-	const databaseName = this.getNodeParameter('databaseName', _itemIndex as number) as string;
-	const copyId = this.getNodeParameter('copyId', _itemIndex as number) as string;
+	const serviceName = this.getNodeParameter('serviceName', _itemIndex ?? 0) as string;
+	const databaseName = this.getNodeParameter('databaseName', _itemIndex ?? 0) as string;
+	const copyId = this.getNodeParameter('copyId', _itemIndex ?? 0) as string;
 	await client.httpDelete(
 		`/hosting/web/database/${encodeURIComponent(serviceName)}/${encodeURIComponent(databaseName)}/copy/${encodeURIComponent(copyId)}`,
 	);

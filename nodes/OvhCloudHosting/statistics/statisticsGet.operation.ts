@@ -66,11 +66,11 @@ export async function execute(
 	_itemIndex?: number,
 ): Promise<INodeExecutionData[]> {
 	const client = getClient(this);
-	const serviceName = this.getNodeParameter('serviceName', _itemIndex as number, '', {
+	const serviceName = this.getNodeParameter('serviceName', _itemIndex ?? 0, '', {
 		extractValue: true,
 	}) as string;
-	const period = this.getNodeParameter('period', _itemIndex as number) as string;
-	const type = this.getNodeParameter('type', _itemIndex as number) as string;
+	const period = this.getNodeParameter('period', _itemIndex ?? 0) as string;
+	const type = this.getNodeParameter('type', _itemIndex ?? 0) as string;
 	const data = (await client.httpGet(`/hosting/web/${serviceName}/statistics`, {
 		period,
 		type,
