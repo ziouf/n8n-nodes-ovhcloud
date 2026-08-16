@@ -14,8 +14,7 @@ interface CachedList {
 const listSearchCache = new Map<string, CachedList>();
 
 /**
- * Clears the module-level list-search cache.
- * Useful in tests to force fresh API calls.
+ * Test-only. Clears the module-level list-search cache so tests can force fresh API calls.
  */
 export function clearListSearchCache(): void {
 	listSearchCache.clear();

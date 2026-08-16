@@ -6,9 +6,9 @@ import type {
 import { NodeConnectionTypes } from 'n8n-workflow';
 import { OvhCloudApiSecretName, OvhCloudIcon } from '../../shared/constants';
 import { description, execute } from './index';
-import { BaseNode, executeTemplate } from '../../shared/nodes';
+import { executeTemplate } from '../../shared/nodes';
 
-export class OvhCloudPrice extends BaseNode implements INodeType {
+export class OvhCloudPrice implements INodeType {
     description: INodeTypeDescription = {
         displayName: 'OVH Cloud Price',
         name: 'ovhCloudPrice',

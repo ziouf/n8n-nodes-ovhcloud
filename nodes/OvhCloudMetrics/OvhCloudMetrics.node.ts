@@ -5,11 +5,11 @@ import type {
 	INodeTypeDescription } from 'n8n-workflow';
 import { NodeConnectionTypes } from 'n8n-workflow';
 import { OvhCloudApiSecretName, OvhCloudIcon } from '../../shared/constants';
-import { BaseNode, executeTemplate } from '../../shared/nodes';
+import { executeTemplate } from '../../shared/nodes';
 import { getMetricsServices } from '../../shared/methods';
 import { description, execute } from './index';
 
-export class OvhCloudMetrics extends BaseNode implements INodeType {
+export class OvhCloudMetrics implements INodeType {
 	description: INodeTypeDescription = {
 		displayName: 'OVH Cloud Metrics',
 		name: 'ovhCloudMetrics',

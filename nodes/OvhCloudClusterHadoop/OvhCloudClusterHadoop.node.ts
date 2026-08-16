@@ -6,10 +6,10 @@ import type {
 import { NodeConnectionTypes } from 'n8n-workflow';
 import { OvhCloudApiSecretName, OvhCloudIcon } from '../../shared/constants';
 import { getClusterHadoopServices } from '../../shared/methods';
-import { BaseNode, executeTemplate } from '../../shared/nodes';
+import { executeTemplate } from '../../shared/nodes';
 import { description, execute } from './index';
 
-export class OvhCloudClusterHadoop extends BaseNode implements INodeType {
+export class OvhCloudClusterHadoop implements INodeType {
 	description: INodeTypeDescription = {
 		displayName: 'OVH Cloud Cluster Hadoop',
 		name: 'ovhCloudClusterHadoop',

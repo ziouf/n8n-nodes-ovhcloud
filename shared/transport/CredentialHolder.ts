@@ -116,7 +116,7 @@ export interface OvhCredentialsType {
  * });
  * ```
  */
-export class CredentialHolder implements OvhCredentialsType {
+export class CredentialHolder {
 	endpoint!: string;
 	appKey!: string;
 	appSecret!: string;

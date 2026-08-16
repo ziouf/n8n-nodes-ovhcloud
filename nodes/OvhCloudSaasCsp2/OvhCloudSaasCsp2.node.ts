@@ -5,11 +5,11 @@ import type {
 	INodeTypeDescription } from 'n8n-workflow';
 import { NodeConnectionTypes } from 'n8n-workflow';
 import { OvhCloudApiSecretName, OvhCloudIcon } from '../../shared/constants';
-import { BaseNode, executeTemplate } from '../../shared/nodes';
+import { executeTemplate } from '../../shared/nodes';
 import { getSaasCsp2Services } from '../../shared/methods';
 import { description, execute } from './index';
 
-export class OvhCloudSaasCsp2 extends BaseNode implements INodeType {
+export class OvhCloudSaasCsp2 implements INodeType {
 	description: INodeTypeDescription = {
 		displayName: 'OVH Cloud SaaS CSP2',
 		name: 'ovhCloudSaasCsp2',

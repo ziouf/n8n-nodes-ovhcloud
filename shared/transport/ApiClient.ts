@@ -163,87 +163,62 @@ export class ApiClient {
 		return `${credentials.endpoint}|${hash}`;
 	}
 
-	public async httpGet(
+	private async request<T>(
+		method: 'GET' | 'POST' | 'PUT' | 'DELETE',
+		url: string,
+		body?: IDataObject,
+		qs?: IDataObject,
+		options?: IHttpRequestOptions,
+	): Promise<T> {
+		return this.requestWithRetry(async () => {
+			const credentials = await this.getCredentials();
+			return (await this.fn.helpers.httpRequest(
+				credentials.sign({ method, url, body, qs, ...options }),
+			)) as T;
+		});
+	}
+
+	public async httpGet<T = unknown>(
 		url: string,
 		qs?: IDataObject,
 		options?: IHttpRequestOptions,
-	): Promise<unknown> {
-		return this.requestWithRetry(async () => {
-			const credentials = await this.getCredentials();
-			return await this.fn.helpers.httpRequest(
-				credentials.sign({ method: 'GET', url, qs, ...options }),
-			);
-		});
+	): Promise<T> {
+		return this.request('GET', url, undefined, qs, options);
 	}
 
 	/**
 	 * Makes a POST request to the OVH API with automatic retry on transient errors.
-	 *
-	 * @param url - The API endpoint path (without base URL)
-	 * @param body - Optional request body (will be JSON stringified)
-	 * @param qs - Optional query parameters
-	 * @param options - Additional HTTP request options
-	 * @returns The parsed response data from the API
-	 * @throws NodeApiError if the API call fails with an error status
 	 */
-	public async httpPost(
+	public async httpPost<T = unknown>(
 		url: string,
 		body?: IDataObject,
 		qs?: IDataObject,
 		options?: IHttpRequestOptions,
-	): Promise<unknown> {
-		return this.requestWithRetry(async () => {
-			const credentials = await this.getCredentials();
-			return await this.fn.helpers.httpRequest(
-				credentials.sign({ method: 'POST', url, body, qs, ...options }),
-			);
-		});
+	): Promise<T> {
+		return this.request('POST', url, body, qs, options);
 	}
 
 	/**
 	 * Makes a PUT request to the OVH API with automatic retry on transient errors.
-	 *
-	 * @param url - The API endpoint path (without base URL)
-	 * @param body - Optional request body (will be JSON stringified)
-	 * @param qs - Optional query parameters
-	 * @param options - Additional HTTP request options
-	 * @returns The parsed response data from the API
-	 * @throws NodeApiError if the API call fails with an error status
 	 */
-	public async httpPut(
+	public async httpPut<T = unknown>(
 		url: string,
 		body?: IDataObject,
 		qs?: IDataObject,
 		options?: IHttpRequestOptions,
-	): Promise<unknown> {
-		return this.requestWithRetry(async () => {
-			const credentials = await this.getCredentials();
-			return await this.fn.helpers.httpRequest(
-				credentials.sign({ method: 'PUT', url, body, qs, ...options }),
-			);
-		});
+	): Promise<T> {
+		return this.request('PUT', url, body, qs, options);
 	}
 
 	/**
 	 * Makes a DELETE request to the OVH API with automatic retry on transient errors.
-	 *
-	 * @param url - The API endpoint path (without base URL)
-	 * @param qs - Optional query parameters
-	 * @param options - Additional HTTP request options
-	 * @returns The parsed response data from the API
-	 * @throws NodeApiError if the API call fails with an error status
 	 */
-	public async httpDelete(
+	public async httpDelete<T = unknown>(
 		url: string,
 		qs?: IDataObject,
 		options?: IHttpRequestOptions,
-	): Promise<unknown> {
-		return this.requestWithRetry(async () => {
-			const credentials = await this.getCredentials();
-			return await this.fn.helpers.httpRequest(
-				credentials.sign({ method: 'DELETE', url, qs, ...options }),
-			);
-		});
+	): Promise<T> {
+		return this.request('DELETE', url, undefined, qs, options);
 	}
 
 	/**

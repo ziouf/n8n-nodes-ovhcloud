@@ -5,10 +5,10 @@ import type {
 	INodeTypeDescription } from 'n8n-workflow';
 import { NodeConnectionTypes } from 'n8n-workflow';
 import { OvhCloudApiSecretName, OvhCloudIcon } from '../../shared/constants';
-import { BaseNode, executeTemplate } from '../../shared/nodes';
+import { executeTemplate } from '../../shared/nodes';
 import { description, execute } from './index';
 
-export class OvhCloudPartner extends BaseNode implements INodeType {
+export class OvhCloudPartner implements INodeType {
 	description: INodeTypeDescription = {
 		displayName: 'OVH Cloud Partner',
 		name: 'ovhCloudPartner',

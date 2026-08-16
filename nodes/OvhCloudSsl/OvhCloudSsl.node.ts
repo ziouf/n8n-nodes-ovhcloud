@@ -6,10 +6,10 @@ import type {
 import { NodeConnectionTypes } from 'n8n-workflow';
 import { OvhCloudApiSecretName, OvhCloudIcon } from '../../shared/constants';
 import { description, execute } from './index';
-import { BaseNode, executeTemplate } from '../../shared/nodes';
+import { executeTemplate } from '../../shared/nodes';
 import { getHostingWebServices } from '../../shared/methods';
 
-export class OvhCloudSsl extends BaseNode implements INodeType {
+export class OvhCloudSsl implements INodeType {
 	description: INodeTypeDescription = {
 		displayName: 'OVH Cloud SSL Certificates',
 		name: 'ovhCloudSsl',

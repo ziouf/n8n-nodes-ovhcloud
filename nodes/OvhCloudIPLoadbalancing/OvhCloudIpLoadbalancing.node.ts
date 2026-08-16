@@ -6,9 +6,9 @@ import type {
 import { NodeConnectionTypes } from 'n8n-workflow';
 import { OvhCloudApiSecretName, OvhCloudIcon } from '../../shared/constants';
 import { description, execute } from './index';
-import { BaseNode, executeTemplate } from '../../shared/nodes';
+import { executeTemplate } from '../../shared/nodes';
 
-export class OvhCloudIpLoadbalancing extends BaseNode implements INodeType {
+export class OvhCloudIpLoadbalancing implements INodeType {
 	description: INodeTypeDescription = {
 		displayName: 'OVH IP Load Balancing',
 		name: 'ovhCloudIpLoadbalancing',

@@ -6,10 +6,10 @@ import type {
 import { NodeConnectionTypes } from 'n8n-workflow';
 import { OvhCloudApiSecretName, OvhCloudIcon } from '../../shared/constants';
 import { getPackXdslServices } from '../../shared/methods';
-import { BaseNode, executeTemplate } from '../../shared/nodes';
+import { executeTemplate } from '../../shared/nodes';
 import { description, execute } from './index';
 
-export class OvhCloudPackXdsl extends BaseNode implements INodeType {
+export class OvhCloudPackXdsl implements INodeType {
 	description: INodeTypeDescription = {
 		displayName: 'OVH Cloud Pack Xdsl',
 		name: 'ovhCloudPackXdsl',

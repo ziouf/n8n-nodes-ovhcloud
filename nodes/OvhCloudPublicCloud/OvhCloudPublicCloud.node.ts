@@ -6,10 +6,10 @@ import type {
 import { NodeConnectionTypes } from 'n8n-workflow';
 import { OvhCloudApiSecretName, OvhCloudIcon } from '../../shared/constants';
 import { description, execute } from './index';
-import { BaseNode, executeTemplate } from '../../shared/nodes';
+import { executeTemplate } from '../../shared/nodes';
 
 import { getPublicCloudProjects } from '../../shared/methods';
-export class OvhCloudPublicCloud extends BaseNode implements INodeType {
+export class OvhCloudPublicCloud implements INodeType {
 	description: INodeTypeDescription = {
 		displayName: 'OVH Cloud Public Cloud',
 		name: 'ovhCloudPublicCloud',

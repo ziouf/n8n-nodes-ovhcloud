@@ -5,11 +5,11 @@ import type {
 	INodeTypeDescription } from 'n8n-workflow';
 import { NodeConnectionTypes } from 'n8n-workflow';
 import { OvhCloudApiSecretName, OvhCloudIcon } from '../../shared/constants';
-import { BaseNode, executeTemplate } from '../../shared/nodes';
+import { executeTemplate } from '../../shared/nodes';
 import { getOverTheBoxServices } from '../../shared/methods';
 import { description, execute } from './index';
 
-export class OvhCloudOverTheBox extends BaseNode implements INodeType {
+export class OvhCloudOverTheBox implements INodeType {
 	description: INodeTypeDescription = {
 		displayName: 'OVH Cloud OverTheBox',
 		name: 'ovhCloudOverTheBox',

@@ -1,7 +1,6 @@
 import {
 	IExecuteFunctions,
 	type INodeExecutionData,
-	type INodeTypeDescription,
 	type JsonObject,
 	NodeApiError,
 } from 'n8n-workflow';
@@ -121,17 +120,4 @@ export async function executeTemplate(
 	}
 
 	return [returnData];
-}
-
-/**
- * Abstract base class for all OVH Cloud n8n nodes.
- *
- * Concrete classes must:
- * - Declare `description: INodeTypeDescription`
- * - Implement `execute(this: IExecuteFunctions)` by calling
- *   `super.executeTemplate.call(this, execute, { errorContext: { resource, operationParam } })`.
- */
-
-export abstract class BaseNode {
-	abstract description: INodeTypeDescription;
 }

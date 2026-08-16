@@ -5,11 +5,11 @@ import type {
 	INodeTypeDescription } from 'n8n-workflow';
 import { NodeConnectionTypes } from 'n8n-workflow';
 import { OvhCloudApiSecretName, OvhCloudIcon } from '../../shared/constants';
-import { BaseNode, executeTemplate } from '../../shared/nodes';
+import { executeTemplate } from '../../shared/nodes';
 import { description, execute } from './index';
 
 import { getDedicatedCephServices } from '../../shared/methods';
-export class OvhCloudDedicatedCeph extends BaseNode implements INodeType {
+export class OvhCloudDedicatedCeph implements INodeType {
 	description: INodeTypeDescription = {
 		displayName: 'OVH Cloud Dedicated Ceph',
 		name: 'ovhCloudDedicatedCeph',

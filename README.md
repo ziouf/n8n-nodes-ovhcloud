@@ -400,7 +400,7 @@ n8n-nodes-ovhcloud/
 │   └── shared/
 │       ├── constants.ts                # Shared constants (icon path, credential name)
 │       ├── nodes/
-│       │   ├── BaseNode.ts           # Abstract base class for all OVH Cloud nodes; `executeTemplate` with `perItemConcurrency` (classification read/write/destructive) on all nodes
+│       │   ├── BaseNode.ts           # Shared `executeTemplate` with errorContext enrichment and perItemConcurrency on all nodes
 │       │   ├── listOptions.ts        # "Return Full Objects / Max Items" list options helper
 │       │   ├── notices.ts            # Destructive action warning notices
 │       ├── methods/                    # Search list methods for dynamic dropdowns
