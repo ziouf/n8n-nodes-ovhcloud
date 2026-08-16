@@ -747,12 +747,12 @@ export async function execute(
 		case 'postMsServicesserviceNAccountuserPrinChangePasswordPost':
 			return await executePostMsServicesserviceNAccountuserPrinChangePasswordPost.call(
 				this,
-				itemIndex,
+				itemIndex ?? 0,
 			);
 		case 'postMsServicesserviceNAccountuserPrinExchangeConfigurePost':
 			return await executePostMsServicesserviceNAccountuserPrinExchangeConfigurePost.call(
 				this,
-				itemIndex,
+				itemIndex ?? 0,
 			);
 		case 'postMsServicesserviceNAccountuserPrinMfaDisablePost':
 			return await executePostMsServicesserviceNAccountuserPrinMfaDisablePost.call(this, itemIndex ?? 0);
@@ -765,17 +765,17 @@ export async function execute(
 		case 'postMsServicesserviceNAccountuserPrinSharepointClearSpacePost':
 			return await executePostMsServicesserviceNAccountuserPrinSharepointClearSpacePost.call(
 				this,
-				itemIndex,
+				itemIndex ?? 0,
 			);
 		case 'postMsServicesserviceNAccountuserPrinSharepointConfigurePost':
 			return await executePostMsServicesserviceNAccountuserPrinSharepointConfigurePost.call(
 				this,
-				itemIndex,
+				itemIndex ?? 0,
 			);
 		case 'postMsServicesserviceNAccountuserPrinSyncConfigurePost':
 			return await executePostMsServicesserviceNAccountuserPrinSyncConfigurePost.call(
 				this,
-				itemIndex,
+				itemIndex ?? 0,
 			);
 		case 'postMsServicesserviceNAccountuserPrinSyncPost':
 			return await executePostMsServicesserviceNAccountuserPrinSyncPost.call(this, itemIndex ?? 0);
@@ -788,7 +788,7 @@ export async function execute(
 		case 'postMsServicesserviceNSharepointRestoreAdminRightsPost':
 			return await executePostMsServicesserviceNSharepointRestoreAdminRightsPost.call(
 				this,
-				itemIndex,
+				itemIndex ?? 0,
 			);
 		case 'postMsServicesserviceNSyncChangePasswordPost':
 			return await executePostMsServicesserviceNSyncChangePasswordPost.call(this, itemIndex ?? 0);

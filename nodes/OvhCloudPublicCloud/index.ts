@@ -14276,7 +14276,7 @@ export async function execute(
 	const apiVersion = this.getNodeParameter('apiVersion', 0) as string;
 	const operation = this.getNodeParameter(
 		apiVersion === 'v2' ? 'publicCloudOperationV2' : 'publicCloudOperation',
-		itemIndex,
+		itemIndex ?? 0,
 		{ extractValue: true },
 	);
 

@@ -43,11 +43,7 @@ export function isEmptyFilterValue(
 		return false;
 	}
 
-	// Objects (e.g. parsed JSON) are always meaningful — never skip.
-	if (typeof value === 'object') {
-		return false;
-	}
-
+	// Objects (e.g. parsed JSON) are always meaningful — never skip; the final return false covers this case too.
 	return false;
 }
 

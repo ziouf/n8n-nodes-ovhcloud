@@ -864,7 +864,7 @@ export async function execute(
 		case 'deleteVrackserviceNDedicatedServerInterfacededicateDelete':
 			return await executeDeleteVrackserviceNDedicatedServerInterfacededicateDelete.call(
 				this,
-				itemIndex,
+				itemIndex ?? 0,
 			);
 		case 'deleteVrackserviceNIpipDelete':
 			return await executeDeleteVrackserviceNIpipDelete.call(this, itemIndex ?? 0);
@@ -875,7 +875,7 @@ export async function execute(
 		case 'deleteVrackserviceNIpv6ipv6RoutedSubrangeroutedSuDelete':
 			return await executeDeleteVrackserviceNIpv6ipv6RoutedSubrangeroutedSuDelete.call(
 				this,
-				itemIndex,
+				itemIndex ?? 0,
 			);
 		case 'deleteVrackserviceNLegacyVracklegacyVrDelete':
 			return await executeDeleteVrackserviceNLegacyVracklegacyVrDelete.call(this, itemIndex ?? 0);
@@ -894,7 +894,7 @@ export async function execute(
 		case 'getVrackserviceNDedicatedCloudDatacenterdatacentAllowedVrackGet':
 			return await executeGetVrackserviceNDedicatedCloudDatacenterdatacentAllowedVrackGet.call(
 				this,
-				itemIndex,
+				itemIndex ?? 0,
 			);
 		case 'getVrackserviceNDedicatedCloudDatacenterdatacentGet':
 			return await executeGetVrackserviceNDedicatedCloudDatacenterdatacentGet.call(this, itemIndex ?? 0);
@@ -967,7 +967,7 @@ export async function execute(
 		case 'postVrackserviceNDedicatedCloudDatacenterdatacentMovePost':
 			return await executePostVrackserviceNDedicatedCloudDatacenterdatacentMovePost.call(
 				this,
-				itemIndex,
+				itemIndex ?? 0,
 			);
 		case 'postVrackserviceNDedicatedCloudPost':
 			return await executePostVrackserviceNDedicatedCloudPost.call(this, itemIndex ?? 0);

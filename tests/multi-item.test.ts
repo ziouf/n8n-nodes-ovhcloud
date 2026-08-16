@@ -67,30 +67,6 @@ describe('executeTemplate — per-item parameter resolution', () => {
 		expect(flat[1].json.v).toBe('item-1');
 		expect(flat[2].json.v).toBe('item-2');
 	});
-
-	it('preserves order with concurrency > 1', async () => {
-		const itemCount = 5;
-		const ctx = createMultiItemCtx(
-			Object.fromEntries(Array.from({ length: itemCount }, (_, i) => [i, { value: `item-${i}` }])),
-		);
-
-		const results = await executeTemplate.call(
-			ctx,
-			async function (this: IExecuteFunctions, itemIndex: number) {
-				// Small delay to simulate real async work and increase chance of reordering
-				await new Promise((r) => setTimeout(r, 10));
-				const v = this.getNodeParameter('value', itemIndex) as string;
-				return [{ json: { v } }];
-			},
-			{ concurrency: 3 },
-		);
-
-		const flat = results.flat();
-		expect(flat).toHaveLength(itemCount);
-		flat.forEach((result, i) => {
-			expect(result.json.v).toBe(`item-${i}`);
-		});
-	});
 });
 
 // ---------------------------------------------------------------------------

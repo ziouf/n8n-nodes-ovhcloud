@@ -21,23 +21,14 @@ type IFunctions = IExecuteFunctions | ILoadOptionsFunctions;
  * Configuration options for paginating through a list endpoint and fetching
  * full resources for each ID.
  *
- * Extends {@link PaginationOptions} with callbacks and concurrency controls.
+/**
+ * Configuration options for paginating through a list endpoint and fetching
+ * full resources for each ID.
+ *
+ * Extends {@link PaginationOptions} with callbacks only.
  */
 export interface PaginateResourcesOptions extends PaginationOptions {
-	/**
-	 * Callback invoked when a resource fails to fetch (e.g. 404 Not Found).
-	 *
-	 * Receives the resource ID and the error that caused the skip.  Use this
-	 * to log warnings, collect failed IDs, or surface them to the user.
-	 */
 	onSkipped?: (id: string, error: unknown) => void;
-	/**
-	 * Maximum number of concurrent resource fetches.
-	 *
-	 * Defaults to {@link ApiClient.PAGINATE_CONCURRENCY} when omitted or ≤ 0.
-	 * Set to `1` for strict sequential fetching.
-	 */
-	concurrency?: number;
 }
 
 /**
@@ -52,16 +43,7 @@ export interface PaginationOptions {
 	 * Set higher for endpoints with many items, but be mindful of memory and API rate limits.
 	 */
 	maxItems?: number;
-	/** Additional query parameters merged into every page request
-	 * (e.g. `{ routes: '/vps' }`). Merged before `offset`/`limit`,
-	 * so those always take precedence.
-	 */
 	query?: IDataObject;
-	/** Maximum number of concurrent page requests.
-	 * Defaults to {@link ApiClient.PAGINATE_CONCURRENCY} when omitted or ≤ 0.
-	 * Set to `1` for strict sequential fetching (previous behaviour).
-	 */
-	concurrency?: number;
 }
 
 /**
@@ -132,12 +114,6 @@ export class ApiClient {
 
 	/** Memoized credentials (resolved once per client instance). */
 	private credentialsCache: CredentialHolder | undefined;
-
-	/** Maximum number of concurrent page requests in paginate / paginateResources.
-	 * Defaults to `3` for parallel page fetching.  Set to `1` for strict
-	 * sequential fetching (previous behaviour).
-	 */
-	private static readonly PAGINATE_CONCURRENCY = 3;
 
 	/**
 	 * Creates a new API client instance for the given n8n function context.
@@ -458,15 +434,11 @@ export class ApiClient {
 	 * Paginates through a list endpoint, fetching all items automatically.
 	 *
 	 * OVH API uses `offset` and `limit` query parameters for pagination.
-	 * This method handles the pagination loop and returns all items in a single array.
-	 *
-	 * Pages are fetched in fixed-size batches of `concurrency` parallel requests
-	 * (default: 3 / parallel), which reduces total latency compared to the
-	 * previous sequential implementation while producing identical results.  Set
-	 * `concurrency: 1` for strict sequential fetching.
+	 * This method handles the sequential pagination loop and returns all
+	 * items in a single array.
 	 *
 	 * @param endpoint - The API endpoint to paginate (e.g., '/vps')
-	 * @param options - Pagination configuration (supports optional `concurrency`)
+	 * @param options - Pagination configuration
 	 * @returns Array of all items from all pages
 	 *
 	 * @example
@@ -480,63 +452,24 @@ export class ApiClient {
 	): Promise<T[]> {
 		const { offset = 0, limit = 100, maxItems = 1000 } = options ?? {};
 
-		const rawConcurrency = options?.concurrency;
-		const concurrency =
-			rawConcurrency != null && rawConcurrency > 0
-				? rawConcurrency
-				: ApiClient.PAGINATE_CONCURRENCY;
-
-		// Batch pipeline: pages are fetched in fixed-size batches of
-		// `concurrency` parallel requests. Offsets advance by exactly `limit`
-		// per page (OVH offset/limit pagination returns full pages until the
-		// last one), and a short page ends pagination in fetch order — so the
-		// number of requests, their offsets and the termination condition are
-		// identical to the previous sequential implementation. Only the
-		// intra-batch parallelism differs, which is what reduces latency.
 		const allItems: T[] = [];
 		let currentOffset = offset;
 
 		while (allItems.length < maxItems) {
 			const remaining = maxItems - allItems.length;
-			const batchSize = Math.min(concurrency, Math.ceil(remaining / Math.max(1, limit)));
-			const offsets = Array.from({ length: batchSize }, (_, i) => currentOffset + i * limit);
-
-			// Fetch the whole batch in parallel.
-			const responses = await Promise.all(
-				offsets.map(async (pageOffset) => {
-					try {
-						const response = (await this.httpGet(endpoint, {
-							...options?.query,
-							offset: pageOffset,
-							limit: Math.min(limit, remaining),
-						})) as string[];
-						return Array.isArray(response) ? response : [];
-					} catch (error) {
-						throw error as Error;
-					}
-				}),
-			);
-
-			// Consume the batch in fetch order; a short/empty page ends pagination.
-			let finished = false;
-			for (const response of responses) {
-				if (finished) break;
-				if (response.length === 0) {
-					finished = true;
-					break;
-				}
-				const ids = response.slice(0, maxItems - allItems.length);
-				allItems.push(...(ids as unknown as T[]));
-				if (response.length < limit) {
-					finished = true;
-				}
-			}
-
-			if (finished) break;
-			currentOffset += batchSize * limit;
+			const response = (await this.httpGet(endpoint, {
+				...options?.query,
+				offset: currentOffset,
+				limit: Math.min(limit, remaining),
+			})) as string[];
+			const ids = Array.isArray(response) ? response : [];
+			if (ids.length === 0) break;
+			allItems.push(...(ids.slice(0, remaining) as unknown as T[]));
+			if (ids.length < limit) break;
+			currentOffset += limit;
 		}
 
-		return allItems;
+			return allItems;
 	}
 
 	/**
@@ -563,7 +496,6 @@ export class ApiClient {
 	 * // With skip tracking
 	 * await client.paginateResources('/vps', '/vps/{id}', {
 	 *   onSkipped: (id, error) => console.warn(`Skipped ${id}:`, error),
-	 *   concurrency: 3,
 	 * });
 	 * ```
 	 */
@@ -572,46 +504,19 @@ export class ApiClient {
 		itemEndpoint: string,
 		options?: PaginateResourcesOptions,
 	): Promise<T[]> {
-		/* Extract the resource-fetch concurrency so it is not passed to
-		 * paginate() — paginate interprets `concurrency` as page-fetch
-		 * parallelism, which is a different concern. */
-		const { concurrency: resourceConcurrency, onSkipped, ...paginateOpts } = options ?? {};
+		const { onSkipped, ...paginateOpts } = options ?? {};
 		const ids = await this.paginate<string>(listEndpoint, paginateOpts);
 
-		const resources: (T | undefined)[] = new Array(ids.length);
-		let nextIndex = 0;
-
-		/**
-		 * Fetches the next batch of resources concurrently.
-		 *
-		 * Workers pull indices off the queue in order, so results can be stored
-		 * back at their original position, preserving the ordering of `ids`
-		 * regardless of completion timing. Individual failures are skipped
-		 * (left as `undefined`) to avoid letting one missing resource fail the
-		 * whole call, mirroring the previous sequential behaviour.
-		 */
-		const worker = async (): Promise<void> => {
-			while (true) {
-				const index = nextIndex++;
-				if (index >= ids.length) {
-					return;
-				}
-				const itemEndpointUrl = itemEndpoint.replace('{id}', ids[index]);
-				try {
-					resources[index] = (await this.httpGet(itemEndpointUrl)) as T;
-				} catch (error) {
-					onSkipped?.(ids[index], error);
-				}
+		const resources: T[] = [];
+		for (const id of ids) {
+			const itemEndpointUrl = itemEndpoint.replace('{id}', id);
+			try {
+				resources.push((await this.httpGet(itemEndpointUrl)) as T);
+			} catch (error) {
+				onSkipped?.(id, error);
 			}
-		};
+		}
 
-		const rawConcurrency = resourceConcurrency;
-		const concurrency =
-			rawConcurrency != null && rawConcurrency > 0
-				? Math.min(rawConcurrency, Math.max(1, ids.length))
-				: Math.min(ApiClient.PAGINATE_CONCURRENCY, Math.max(1, ids.length));
-		await Promise.all(Array.from({ length: concurrency }, () => worker()));
-
-		return resources.filter((resource): resource is T => resource !== undefined);
+		return resources;
 	}
 }

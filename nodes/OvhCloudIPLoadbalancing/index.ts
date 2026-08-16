@@ -1549,24 +1549,24 @@ export async function execute(
 		case 'deleteIpLoadbalancingserviceNHttpFarmfarmIdServerserverIdDelete':
 			return await executeDeleteIpLoadbalancingserviceNHttpFarmfarmIdServerserverIdDelete.call(
 				this,
-				itemIndex,
+				itemIndex ?? 0,
 			);
 		case 'deleteIpLoadbalancingserviceNHttpFrontendfrontendDelete':
 			return await executeDeleteIpLoadbalancingserviceNHttpFrontendfrontendDelete.call(
 				this,
-				itemIndex,
+				itemIndex ?? 0,
 			);
 		case 'deleteIpLoadbalancingserviceNHttpRouterouteIdDelete':
 			return await executeDeleteIpLoadbalancingserviceNHttpRouterouteIdDelete.call(this, itemIndex ?? 0);
 		case 'deleteIpLoadbalancingserviceNHttpRouterouteIdRuleruleIdDelete':
 			return await executeDeleteIpLoadbalancingserviceNHttpRouterouteIdRuleruleIdDelete.call(
 				this,
-				itemIndex,
+				itemIndex ?? 0,
 			);
 		case 'deleteIpLoadbalancingserviceNLogSubscriptionsubscripDelete':
 			return await executeDeleteIpLoadbalancingserviceNLogSubscriptionsubscripDelete.call(
 				this,
-				itemIndex,
+				itemIndex ?? 0,
 			);
 		case 'deleteIpLoadbalancingserviceNSslidDelete':
 			return await executeDeleteIpLoadbalancingserviceNSslidDelete.call(this, itemIndex ?? 0);
@@ -1575,36 +1575,36 @@ export async function execute(
 		case 'deleteIpLoadbalancingserviceNTcpFarmfarmIdServerserverIdDelete':
 			return await executeDeleteIpLoadbalancingserviceNTcpFarmfarmIdServerserverIdDelete.call(
 				this,
-				itemIndex,
+				itemIndex ?? 0,
 			);
 		case 'deleteIpLoadbalancingserviceNTcpFrontendfrontendDelete':
 			return await executeDeleteIpLoadbalancingserviceNTcpFrontendfrontendDelete.call(
 				this,
-				itemIndex,
+				itemIndex ?? 0,
 			);
 		case 'deleteIpLoadbalancingserviceNTcpRouterouteIdDelete':
 			return await executeDeleteIpLoadbalancingserviceNTcpRouterouteIdDelete.call(this, itemIndex ?? 0);
 		case 'deleteIpLoadbalancingserviceNTcpRouterouteIdRuleruleIdDelete':
 			return await executeDeleteIpLoadbalancingserviceNTcpRouterouteIdRuleruleIdDelete.call(
 				this,
-				itemIndex,
+				itemIndex ?? 0,
 			);
 		case 'deleteIpLoadbalancingserviceNUdpFarmfarmIdDelete':
 			return await executeDeleteIpLoadbalancingserviceNUdpFarmfarmIdDelete.call(this, itemIndex ?? 0);
 		case 'deleteIpLoadbalancingserviceNUdpFarmfarmIdServerserverIdDelete':
 			return await executeDeleteIpLoadbalancingserviceNUdpFarmfarmIdServerserverIdDelete.call(
 				this,
-				itemIndex,
+				itemIndex ?? 0,
 			);
 		case 'deleteIpLoadbalancingserviceNUdpFrontendfrontendDelete':
 			return await executeDeleteIpLoadbalancingserviceNUdpFrontendfrontendDelete.call(
 				this,
-				itemIndex,
+				itemIndex ?? 0,
 			);
 		case 'deleteIpLoadbalancingserviceNVrackNetworkvrackNetDelete':
 			return await executeDeleteIpLoadbalancingserviceNVrackNetworkvrackNetDelete.call(
 				this,
-				itemIndex,
+				itemIndex ?? 0,
 			);
 		case 'getIpLoadbalancingAvailableZonesGet':
 			return await executeGetIpLoadbalancingAvailableZonesGet.call(this, itemIndex ?? 0);
@@ -1623,7 +1623,7 @@ export async function execute(
 		case 'getIpLoadbalancingserviceNHttpFarmfarmIdServerserverIdGet':
 			return await executeGetIpLoadbalancingserviceNHttpFarmfarmIdServerserverIdGet.call(
 				this,
-				itemIndex,
+				itemIndex ?? 0,
 			);
 		case 'getIpLoadbalancingserviceNHttpFarmGet':
 			return await executeGetIpLoadbalancingserviceNHttpFarmGet.call(this, itemIndex ?? 0);
@@ -1640,7 +1640,7 @@ export async function execute(
 		case 'getIpLoadbalancingserviceNHttpRouterouteIdRuleruleIdGet':
 			return await executeGetIpLoadbalancingserviceNHttpRouterouteIdRuleruleIdGet.call(
 				this,
-				itemIndex,
+				itemIndex ?? 0,
 			);
 		case 'getIpLoadbalancingserviceNInstancesStateGet':
 			return await executeGetIpLoadbalancingserviceNInstancesStateGet.call(this, itemIndex ?? 0);
@@ -1653,7 +1653,7 @@ export async function execute(
 		case 'getIpLoadbalancingserviceNLogSubscriptionsubscripGet':
 			return await executeGetIpLoadbalancingserviceNLogSubscriptionsubscripGet.call(
 				this,
-				itemIndex,
+				itemIndex ?? 0,
 			);
 		case 'getIpLoadbalancingserviceNMetricsTokenGet':
 			return await executeGetIpLoadbalancingserviceNMetricsTokenGet.call(this, itemIndex ?? 0);
@@ -1688,7 +1688,7 @@ export async function execute(
 		case 'getIpLoadbalancingserviceNTcpFarmfarmIdServerserverIdGet':
 			return await executeGetIpLoadbalancingserviceNTcpFarmfarmIdServerserverIdGet.call(
 				this,
-				itemIndex,
+				itemIndex ?? 0,
 			);
 		case 'getIpLoadbalancingserviceNTcpFarmGet':
 			return await executeGetIpLoadbalancingserviceNTcpFarmGet.call(this, itemIndex ?? 0);
@@ -1705,7 +1705,7 @@ export async function execute(
 		case 'getIpLoadbalancingserviceNTcpRouterouteIdRuleruleIdGet':
 			return await executeGetIpLoadbalancingserviceNTcpRouterouteIdRuleruleIdGet.call(
 				this,
-				itemIndex,
+				itemIndex ?? 0,
 			);
 		case 'getIpLoadbalancingserviceNUdpFarmfarmIdGet':
 			return await executeGetIpLoadbalancingserviceNUdpFarmfarmIdGet.call(this, itemIndex ?? 0);
@@ -1714,7 +1714,7 @@ export async function execute(
 		case 'getIpLoadbalancingserviceNUdpFarmfarmIdServerserverIdGet':
 			return await executeGetIpLoadbalancingserviceNUdpFarmfarmIdServerserverIdGet.call(
 				this,
-				itemIndex,
+				itemIndex ?? 0,
 			);
 		case 'getIpLoadbalancingserviceNUdpFarmGet':
 			return await executeGetIpLoadbalancingserviceNUdpFarmGet.call(this, itemIndex ?? 0);
@@ -1725,7 +1725,7 @@ export async function execute(
 		case 'getIpLoadbalancingserviceNVrackNetworkCreationRulesGet':
 			return await executeGetIpLoadbalancingserviceNVrackNetworkCreationRulesGet.call(
 				this,
-				itemIndex,
+				itemIndex ?? 0,
 			);
 		case 'getIpLoadbalancingserviceNVrackNetworkGet':
 			return await executeGetIpLoadbalancingserviceNVrackNetworkGet.call(this, itemIndex ?? 0);
@@ -1782,12 +1782,12 @@ export async function execute(
 		case 'postIpLoadbalancingserviceNVrackNetworkvrackNetUpdateFarmIdPost':
 			return await executePostIpLoadbalancingserviceNVrackNetworkvrackNetUpdateFarmIdPost.call(
 				this,
-				itemIndex,
+				itemIndex ?? 0,
 			);
 		case 'postIpLoadbalancingserviceNZonenameCancelTerminationPost':
 			return await executePostIpLoadbalancingserviceNZonenameCancelTerminationPost.call(
 				this,
-				itemIndex,
+				itemIndex ?? 0,
 			);
 		case 'postIpLoadbalancingserviceNZonenameTerminatePost':
 			return await executePostIpLoadbalancingserviceNZonenameTerminatePost.call(this, itemIndex ?? 0);
@@ -1796,7 +1796,7 @@ export async function execute(
 		case 'putIpLoadbalancingserviceNHttpFarmfarmIdServerserverIdPut':
 			return await executePutIpLoadbalancingserviceNHttpFarmfarmIdServerserverIdPut.call(
 				this,
-				itemIndex,
+				itemIndex ?? 0,
 			);
 		case 'putIpLoadbalancingserviceNHttpFrontendfrontendPut':
 			return await executePutIpLoadbalancingserviceNHttpFrontendfrontendPut.call(this, itemIndex ?? 0);
@@ -1805,7 +1805,7 @@ export async function execute(
 		case 'putIpLoadbalancingserviceNHttpRouterouteIdRuleruleIdPut':
 			return await executePutIpLoadbalancingserviceNHttpRouterouteIdRuleruleIdPut.call(
 				this,
-				itemIndex,
+				itemIndex ?? 0,
 			);
 		case 'putIpLoadbalancingserviceNQuotazonePut':
 			return await executePutIpLoadbalancingserviceNQuotazonePut.call(this, itemIndex ?? 0);
@@ -1818,7 +1818,7 @@ export async function execute(
 		case 'putIpLoadbalancingserviceNTcpFarmfarmIdServerserverIdPut':
 			return await executePutIpLoadbalancingserviceNTcpFarmfarmIdServerserverIdPut.call(
 				this,
-				itemIndex,
+				itemIndex ?? 0,
 			);
 		case 'putIpLoadbalancingserviceNTcpFrontendfrontendPut':
 			return await executePutIpLoadbalancingserviceNTcpFrontendfrontendPut.call(this, itemIndex ?? 0);
@@ -1827,14 +1827,14 @@ export async function execute(
 		case 'putIpLoadbalancingserviceNTcpRouterouteIdRuleruleIdPut':
 			return await executePutIpLoadbalancingserviceNTcpRouterouteIdRuleruleIdPut.call(
 				this,
-				itemIndex,
+				itemIndex ?? 0,
 			);
 		case 'putIpLoadbalancingserviceNUdpFarmfarmIdPut':
 			return await executePutIpLoadbalancingserviceNUdpFarmfarmIdPut.call(this, itemIndex ?? 0);
 		case 'putIpLoadbalancingserviceNUdpFarmfarmIdServerserverIdPut':
 			return await executePutIpLoadbalancingserviceNUdpFarmfarmIdServerserverIdPut.call(
 				this,
-				itemIndex,
+				itemIndex ?? 0,
 			);
 		case 'putIpLoadbalancingserviceNUdpFrontendfrontendPut':
 			return await executePutIpLoadbalancingserviceNUdpFrontendfrontendPut.call(this, itemIndex ?? 0);
