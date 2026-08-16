@@ -6,7 +6,7 @@ import type {
 import { NodeConnectionTypes } from 'n8n-workflow';
 import { OvhCloudApiSecretName, OvhCloudIcon } from '../../shared/constants';
 import { description, execute } from './index';
-import { BaseNode } from '../../shared/nodes';
+import { BaseNode, executeTemplate } from '../../shared/nodes';
 
 import { getDedicatedServerServices } from '../../shared/methods';
 export class OvhCloudDedicated extends BaseNode implements INodeType {
@@ -29,6 +29,6 @@ export class OvhCloudDedicated extends BaseNode implements INodeType {
 	methods = { listSearch: { getDedicatedServerServices } };
 
 	async execute(this: IExecuteFunctions): Promise<INodeExecutionData[][]> {
-		return super.runTemplate.call(this, execute, { resource: 'dedicated', operationParam: 'dedicatedServerOperation' });
+		return executeTemplate.call(this, execute, { errorContext: { resource: 'dedicated', operationParam: 'dedicatedServerOperation' } });
 	}
 }

@@ -6,7 +6,7 @@ import type {
 import { NodeConnectionTypes } from 'n8n-workflow';
 import { OvhCloudApiSecretName, OvhCloudIcon } from '../../shared/constants';
 import { description, execute } from './index';
-import { BaseNode } from '../../shared/nodes';
+import { BaseNode, executeTemplate } from '../../shared/nodes';
 import { getHostingWebServices } from '../../shared/methods';
 
 export class OvhCloudSsl extends BaseNode implements INodeType {
@@ -29,6 +29,6 @@ export class OvhCloudSsl extends BaseNode implements INodeType {
 	methods = { listSearch: { getHostingWebServices } };
 
 	async execute(this: IExecuteFunctions): Promise<INodeExecutionData[][]> {
-		return super.runTemplate.call(this, execute, { resource: 'ssl', operationParam: 'sslOperation' });
+		return executeTemplate.call(this, execute, { errorContext: { resource: 'ssl', operationParam: 'sslOperation' } });
 	}
 }

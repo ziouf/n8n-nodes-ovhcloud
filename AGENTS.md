@@ -3,9 +3,8 @@
 ## Repo layout (verified)
 
 - `credentials/` — credential type definitions (`OvhCloudApi`)
-- `nodes/OvhCloudDedicated|Hosting|Me|Service|Vps/` — five nodes, each with its own directory containing the `.node.ts`, a `resources/` folder, and shared utilities in `shared/shared/`
+- `nodes/OvhCloudDedicated|Hosting|Me|Service|Vps/` — 71 nodes (répartis sur plusieurs catégories), chacun avec son propre dossier contenant `.node.ts`, un sous-dossier `resources/` (ou des sous-catégories), et des utilitaires partagés dans `shared/`
 - `scripts/generate-nodes-manifest.js` — regenerates `n8n.nodes` entries in package.json from directories under `nodes/`; runs automatically after build via postbuild hook. **Never edit the nodes list by hand.**
-- `docs/nodes/` — documentation générée par node et par opération (index + README par node + pages d'opérations)
 - `docs/_shared/` — boilerplate partagé (auth, errors, type safety, testing checklist)
 - `docs/guides/` — guides utilisateur (getting-started, authentication, troubleshooting, examples)
 - `docs/api-reference/` — référence API OVHcloud par endpoint (hors périmètre de ce fichier)
@@ -21,7 +20,7 @@ npm run lint:fix       # auto-fixable issues only
 npm test               # Jest (ts-jest)
 ```
 
-`npm run build:watch`, `release-it`, and the pre-release hook are available but rarely needed during development. No codegen or migration tools exist in this project; don't invent them.
+`npm run build:watch`, `release-it`, and the pre-release hook are available but rarely needed during development. Only `scripts/generate-nodes-manifest.js` handles the node manifest; there are no codegen or migration tools — don't invent them.
 
 ## TypeScript / lint defaults to trust from config files
 
@@ -38,7 +37,7 @@ npm test               # Jest (ts-jest)
 - Operations in resources use switch statements on an input property; services are listed via the credential's consumer-key-scoped API path under `<host>/api/`.
 - **Pattern de structure par catégorie** : Pour les nodes avec un grand nombre d'opérations (>10), utiliser des sous-dossiers par catégorie de ressources (ex: `nodes/OvhCloudPublicCloud/project/`, `rancher/`, `blockstorage/`) au lieu d'un seul dossier plat. Chaque sous-dossier contient ses propres fichiers `.operation.ts` avec les imports relatifs adaptés (`../../../shared/transport/ApiClient`).
 - **Multi-items correctness** : Toute opération `.operation.ts` qui lit un paramètre utilisateur doit utiliser `getNodeParameter(name, itemIndex ?? 0)` (jamais d'index en dur `0`). La signature `execute` doit être `execute(this, itemIndex?: number)`. Le test `tests/multi-item.test.ts` (garde-fou statique) échoue si cette règle est violée (scan de tous les `.operation.ts` pour `getNodeParameter('x', 0)`).
-- **Exécution séquentielle** : `executeTemplate` (via `BaseNode.runTemplate`) traite les items un par un, dans l'ordre, avec enrichissement automatique des erreurs (`resource/operation`). L'option `concurrency` a été supprimée. `ApiClient.paginate()` et `paginateResources()` sont séquentiels (plus d'option `concurrency`).
+- **Exécution séquentielle** : chaque node appelle directement `executeTemplate.call(this, execute, { errorContext: { resource, operationParam } })` qui traite les items un par un, dans l'ordre, avec enrichissement automatique des erreurs (`resource/operation`). `ApiClient.paginate()` et `paginateResources()` sont séquentiels.
 
 ## What to avoid
 

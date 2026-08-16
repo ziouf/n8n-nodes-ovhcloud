@@ -5,7 +5,7 @@ import type {
 	INodeTypeDescription } from 'n8n-workflow';
 import { NodeConnectionTypes } from 'n8n-workflow';
 import { OvhCloudApiSecretName, OvhCloudIcon } from '../../shared/constants';
-import { BaseNode } from '../../shared/nodes';
+import { BaseNode, executeTemplate } from '../../shared/nodes';
 import { getVipServices } from '../../shared/methods';
 import { description, execute } from './index';
 
@@ -29,6 +29,6 @@ export class OvhCloudVip extends BaseNode implements INodeType {
 	methods = { listSearch: { getVipServices } };
 
 	async execute(this: IExecuteFunctions): Promise<INodeExecutionData[][]> {
-		return super.runTemplate.call(this, execute, { resource: 'vip', operationParam: 'vipOperation' });
+		return executeTemplate.call(this, execute, { errorContext: { resource: 'vip', operationParam: 'vipOperation' } });
 	}
 }

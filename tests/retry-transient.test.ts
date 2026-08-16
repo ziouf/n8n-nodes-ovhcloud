@@ -9,7 +9,7 @@
  */
 
 import type { IExecuteFunctions } from 'n8n-workflow';
-import { ApiClient } from '../shared/transport/ApiClientImpl';
+import { ApiClient } from '../shared/transport/ApiClient';
 
 function createApiError(message: string, status: number, response?: unknown) {
 	return Object.assign(new Error(message), { code: status, httpCode: String(status), response });

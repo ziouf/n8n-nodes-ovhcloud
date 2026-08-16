@@ -6,7 +6,7 @@ import type {
 import { NodeConnectionTypes } from 'n8n-workflow';
 import { OvhCloudApiSecretName, OvhCloudIcon } from '../../shared/constants';
 import { getPackXdslServices } from '../../shared/methods';
-import { BaseNode } from '../../shared/nodes';
+import { BaseNode, executeTemplate } from '../../shared/nodes';
 import { description, execute } from './index';
 
 export class OvhCloudPackXdsl extends BaseNode implements INodeType {
@@ -28,6 +28,6 @@ export class OvhCloudPackXdsl extends BaseNode implements INodeType {
 	methods = { listSearch: { getPackXdslServices } };
 
 	async execute(this: IExecuteFunctions): Promise<INodeExecutionData[][]> {
-		return super.runTemplate.call(this, execute, { resource: 'packXdsl', operationParam: 'packXdslOperation' });
+		return executeTemplate.call(this, execute, { errorContext: { resource: 'packXdsl', operationParam: 'packXdslOperation' } });
 	}
 }

@@ -9,12 +9,6 @@ Welcome to the documentation for the **n8n-nodes-ovhcloud** community node.
 - [Troubleshooting](guides/troubleshooting.md) — Common errors and solutions
 - [Examples](guides/examples.md) — Real-world workflow examples
 
-## Node Documentation
-
-Documentation détaillée par node OVHcloud, générée automatiquement par `scripts/generate-node-docs.js` :
-
-- [Index des nodes](nodes/README.md) — les 71 nodes, avec une page par opération (endpoint, paramètres, filtres optionnels)
-
 ## API Reference
 
 ### V1 API
@@ -58,7 +52,6 @@ Organized by category:
 Raw OVH API specification data (JSON) is available in [api-specs/](api-specs/).
 
 - [V1 specs index](api-specs/v1/README.md) — liste des specs v1 et leur couverture
-- [Coverage report](api-reference/coverage-report.md) — matrice de couverture spec↔node générée par `scripts/compare-coverage.js`
 
 ## External Resources
 

@@ -5,7 +5,7 @@ import type {
 	INodeTypeDescription } from 'n8n-workflow';
 import { NodeConnectionTypes } from 'n8n-workflow';
 import { OvhCloudApiSecretName, OvhCloudIcon } from '../../shared/constants';
-import { BaseNode } from '../../shared/nodes';
+import { BaseNode, executeTemplate } from '../../shared/nodes';
 import { getStackServices } from '../../shared/methods';
 import { description, execute } from './index';
 
@@ -29,6 +29,6 @@ export class OvhCloudStack extends BaseNode implements INodeType {
 	methods = { listSearch: { getStackServices } };
 
 	async execute(this: IExecuteFunctions): Promise<INodeExecutionData[][]> {
-		return super.runTemplate.call(this, execute, { resource: 'stackMis', operationParam: 'stackOperation' });
+		return executeTemplate.call(this, execute, { errorContext: { resource: 'stackMis', operationParam: 'stackOperation' } });
 	}
 }

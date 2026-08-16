@@ -407,7 +407,6 @@ n8n-nodes-ovhcloud/
 │       │   └── listSearch.ts           # createServiceListSearch() factory (deduplicated loaders, bounded cache with MAX_CACHE_ENTRIES)
 │       └── transport/                   # API client & authentication
 │           ├── ApiClient.ts             #   `getClient()` factory (shared client per execution)
-│           ├── ApiClientImpl.ts         #   HTTP implementation (credential memoization + retry + batch-parallel pagination)
 │           └── CredentialHolder.ts      #   OVH SHA1 signature helper
 ├── scripts/
 │   ├── generate-nodes-manifest.js       # Regenerate nodes list in package.json after build

@@ -5,7 +5,7 @@ import type {
 	INodeTypeDescription } from 'n8n-workflow';
 import { NodeConnectionTypes } from 'n8n-workflow';
 import { OvhCloudApiSecretName, OvhCloudIcon } from '../../shared/constants';
-import { BaseNode } from '../../shared/nodes';
+import { BaseNode, executeTemplate } from '../../shared/nodes';
 import { description, execute } from './index';
 
 import { getDedicatedNashaServices } from '../../shared/methods';
@@ -29,6 +29,6 @@ export class OvhCloudDedicatedNasha extends BaseNode implements INodeType {
 	methods = { listSearch: { getDedicatedNashaServices } };
 
 	async execute(this: IExecuteFunctions): Promise<INodeExecutionData[][]> {
-		return super.runTemplate.call(this, execute, { resource: 'dedicatedNasha', operationParam: 'dedicatedNashaOperation' });
+		return executeTemplate.call(this, execute, { errorContext: { resource: 'dedicatedNasha', operationParam: 'dedicatedNashaOperation' } });
 	}
 }

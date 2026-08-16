@@ -9,7 +9,7 @@
 import type { IDataObject, IHttpRequestOptions } from 'n8n-workflow';
 
 /**
- * Configuration options for pagination — copied from ApiClientImpl
+ * Configuration options for pagination — copied from ApiClient
  * to avoid cross-module imports in test helpers.
  */
 export interface PaginationOptions {
@@ -22,7 +22,7 @@ export interface PaginationOptions {
 
 /**
  * Configuration options for paginating through a list endpoint and
- * fetching full resources — copied from ApiClientImpl to avoid
+ * fetching full resources — copied from ApiClient to avoid
  * cross-module imports in test helpers.
  */
 export interface PaginateResourcesOptions extends PaginationOptions {

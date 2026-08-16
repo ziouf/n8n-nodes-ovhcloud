@@ -5,7 +5,7 @@ import type {
 	INodeTypeDescription } from 'n8n-workflow';
 import { NodeConnectionTypes } from 'n8n-workflow';
 import { OvhCloudApiSecretName, OvhCloudIcon } from '../../shared/constants';
-import { BaseNode } from '../../shared/nodes';
+import { BaseNode, executeTemplate } from '../../shared/nodes';
 import { getWorkLightLicenses } from '../../shared/methods';
 import { description, execute } from './index';
 
@@ -29,6 +29,6 @@ export class OvhCloudLicense extends BaseNode implements INodeType {
 	methods = { listSearch: { getWorkLightLicenses } };
 
 	async execute(this: IExecuteFunctions): Promise<INodeExecutionData[][]> {
-		return super.runTemplate.call(this, execute, { resource: 'license', operationParam: 'licenseOperation' });
+		return executeTemplate.call(this, execute, { errorContext: { resource: 'license', operationParam: 'licenseOperation' } });
 	}
 }

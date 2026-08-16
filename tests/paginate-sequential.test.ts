@@ -3,7 +3,7 @@
  */
 
 import type { IExecuteFunctions } from 'n8n-workflow';
-import { ApiClient } from '../shared/transport/ApiClientImpl';
+import { ApiClient } from '../shared/transport/ApiClient';
 
 function generatePageItems(prefix: string, count: number): string[] {
 	return Array.from({ length: count }, (_, i) => `${prefix}-${String(i + 1).padStart(3, '0')}`);

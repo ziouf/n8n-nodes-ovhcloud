@@ -6,7 +6,7 @@ import type {
 import { NodeConnectionTypes } from 'n8n-workflow';
 import { OvhCloudApiSecretName, OvhCloudIcon } from '../../shared/constants';
 import { getClusterHadoopServices } from '../../shared/methods';
-import { BaseNode } from '../../shared/nodes';
+import { BaseNode, executeTemplate } from '../../shared/nodes';
 import { description, execute } from './index';
 
 export class OvhCloudClusterHadoop extends BaseNode implements INodeType {
@@ -27,7 +27,7 @@ export class OvhCloudClusterHadoop extends BaseNode implements INodeType {
 		properties: [...description()] };
 
 	async execute(this: IExecuteFunctions): Promise<INodeExecutionData[][]> {
-		return super.runTemplate.call(this, execute, { resource: 'clusterHadoop', operationParam: 'clusterHadoopOperation' });
+		return executeTemplate.call(this, execute, { errorContext: { resource: 'clusterHadoop', operationParam: 'clusterHadoopOperation' } });
 	}
 	methods = { listSearch: { getClusterHadoopServices } };
 }

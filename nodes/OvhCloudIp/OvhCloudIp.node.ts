@@ -6,7 +6,7 @@ import type {
 import { NodeConnectionTypes } from 'n8n-workflow';
 import { OvhCloudApiSecretName, OvhCloudIcon } from '../../shared/constants';
 import { description, execute } from './index';
-import { BaseNode } from '../../shared/nodes';
+import { BaseNode, executeTemplate } from '../../shared/nodes';
 
 export class OvhCloudIp extends BaseNode implements INodeType {
 	description: INodeTypeDescription = {
@@ -31,6 +31,6 @@ export class OvhCloudIp extends BaseNode implements INodeType {
 		properties: [...description({})] };
 
 	async execute(this: IExecuteFunctions): Promise<INodeExecutionData[][]> {
-		return super.runTemplate.call(this, execute, { resource: 'ip', operationParam: 'ipOperation' });
+		return executeTemplate.call(this, execute, { errorContext: { resource: 'ip', operationParam: 'ipOperation' } });
 	}
 }

@@ -6,7 +6,7 @@ import type {
 import { NodeConnectionTypes } from 'n8n-workflow';
 import { OvhCloudApiSecretName, OvhCloudIcon } from '../../shared/constants';
 import { getHorizonViewServices } from '../../shared/methods';
-import { BaseNode } from '../../shared/nodes';
+import { BaseNode, executeTemplate } from '../../shared/nodes';
 import { description, execute } from './index';
 
 export class OvhCloudHorizonView extends BaseNode implements INodeType {
@@ -27,7 +27,7 @@ export class OvhCloudHorizonView extends BaseNode implements INodeType {
 		properties: [...description()] };
 
 	async execute(this: IExecuteFunctions): Promise<INodeExecutionData[][]> {
-		return super.runTemplate.call(this, execute, { resource: 'horizonview', operationParam: 'horizonViewOperation' });
+		return executeTemplate.call(this, execute, { errorContext: { resource: 'horizonview', operationParam: 'horizonViewOperation' } });
 	}
 	methods = { listSearch: { getHorizonViewServices } };
 }

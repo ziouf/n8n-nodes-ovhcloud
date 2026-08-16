@@ -1,5 +1,5 @@
 /**
- * Tests for the ApiClient wrapper (ApiClientImpl.ts).
+ * Tests for the ApiClient wrapper (ApiClient.ts).
  *
  * Verifies that the ApiClient correctly delegates HTTP calls
  * to the underlying n8n httpRequest helper with proper method
@@ -7,7 +7,7 @@
  */
 
 import type { IExecuteFunctions, IHttpRequestOptions } from 'n8n-workflow';
-import { ApiClient } from '../shared/transport/ApiClientImpl';
+import { ApiClient } from '../shared/transport/ApiClient';
 
 // Module-level mock so we can access .mock directly
 const mockHttpRequest = jest.fn().mockResolvedValue({ data: 'mocked-response' });

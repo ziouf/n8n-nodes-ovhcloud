@@ -3,8 +3,7 @@
  */
 
 import type { IExecuteFunctions } from 'n8n-workflow';
-import { getClient } from '../shared/transport/ApiClient';
-import { ApiClient } from '../shared/transport/ApiClientImpl';
+import { ApiClient, getClient } from '../shared/transport/ApiClient';
 
 describe('getClient', () => {
 	it('returns an ApiClient instance', () => {

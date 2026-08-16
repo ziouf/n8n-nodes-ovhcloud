@@ -117,10 +117,10 @@ export interface OvhCredentialsType {
  * ```
  */
 export class CredentialHolder implements OvhCredentialsType {
-	endpoint: string;
-	appKey: string;
-	appSecret: string;
-	consumerKey: string;
+	endpoint!: string;
+	appKey!: string;
+	appSecret!: string;
+	consumerKey!: string;
 	[key: string]: unknown;
 
 	/**
@@ -130,18 +130,7 @@ export class CredentialHolder implements OvhCredentialsType {
 	 */
 	constructor(credentials: OvhCredentialsType) {
 		validateEndpoint(credentials.endpoint);
-		this.endpoint = credentials.endpoint;
-		this.appKey = credentials.appKey;
-		this.appSecret = credentials.appSecret;
-		this.consumerKey = credentials.consumerKey;
-		for (const key in credentials) {
-			if (
-				Object.prototype.hasOwnProperty.call(credentials, key) &&
-				!['endpoint', 'appKey', 'appSecret', 'consumerKey'].includes(key)
-			) {
-				this[key] = credentials[key];
-			}
-		}
+		Object.assign(this, credentials);
 	}
 
 	/**

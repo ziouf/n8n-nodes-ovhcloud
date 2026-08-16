@@ -6,7 +6,7 @@ import type {
 import { NodeConnectionTypes } from 'n8n-workflow';
 import { OvhCloudApiSecretName, OvhCloudIcon } from '../../shared/constants';
 import { description, execute } from './index';
-import { BaseNode } from '../../shared/nodes';
+import { BaseNode, executeTemplate } from '../../shared/nodes';
 import { getSmsServices } from '../../shared/methods';
 
 export class OvhCloudSms extends BaseNode implements INodeType {
@@ -28,6 +28,6 @@ export class OvhCloudSms extends BaseNode implements INodeType {
 	methods = { listSearch: { getSmsServices } };
 
 	async execute(this: IExecuteFunctions): Promise<INodeExecutionData[][]> {
-		return super.runTemplate.call(this, execute, { resource: 'sms', operationParam: 'smsOperation' });
+		return executeTemplate.call(this, execute, { errorContext: { resource: 'sms', operationParam: 'smsOperation' } });
 	}
 }

@@ -1,7 +1,6 @@
 # API Specifications — V1
 
 > Dossier `docs/api-specs/v1/` : 70 fichiers Swagger 2.0 (`*.json`) + `_index.json`.
-> Les pourcentages de couverture ci-dessous proviennent de [docs/api-reference/coverage-report.md](../api-reference/coverage-report.md) (généré par `scripts/compare-coverage.js`).
 
 Chaque fichier `*.json` correspond à une famille d'endpoints OVHcloud. La couverture mesure la part des endpoints déclarés dans la spec qui sont réellement appelés par les nodes du repo.
 
@@ -107,5 +106,3 @@ Ces specs étaient des placeholders (sans `apis`) et ont été téléchargées d
 ## Résumé
 
 - Specs v1 : 70 fichiers ; endpoints déclarés : **~6624** (toutes versions confondues) ; couverture globale : **48.3%**.
-- Voir le rapport complet : [docs/api-reference/coverage-report.md](../api-reference/coverage-report.md).
-- Voir aussi le rapport de conformité : [docs/api-reference/conformity-report.md](../api-reference/conformity-report.md).

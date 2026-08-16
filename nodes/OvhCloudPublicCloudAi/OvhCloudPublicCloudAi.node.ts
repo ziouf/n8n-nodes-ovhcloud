@@ -7,7 +7,7 @@ import { NodeConnectionTypes } from 'n8n-workflow';
 import { OvhCloudApiSecretName, OvhCloudIcon } from '../../shared/constants';
 import { description, execute } from './index';
 import { getPublicCloudProjects } from '../../shared/methods';
-import { BaseNode } from '../../shared/nodes';
+import { BaseNode, executeTemplate } from '../../shared/nodes';
 
 export class OvhCloudPublicCloudAi extends BaseNode implements INodeType {
 	description: INodeTypeDescription = {
@@ -30,6 +30,6 @@ export class OvhCloudPublicCloudAi extends BaseNode implements INodeType {
 	methods = { listSearch: { getPublicCloudProjects } };
 
 	async execute(this: IExecuteFunctions): Promise<INodeExecutionData[][]> {
-		return super.runTemplate.call(this, execute, { resource: 'publicCloudAi', operationParam: 'publicCloudAiOperation' });
+		return executeTemplate.call(this, execute, { errorContext: { resource: 'publicCloudAi', operationParam: 'publicCloudAiOperation' } });
 	}
 }

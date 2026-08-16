@@ -128,34 +128,10 @@ export async function executeTemplate(
  *
  * Concrete classes must:
  * - Declare `description: INodeTypeDescription`
- * - Implement `execute(this: IExecuteFunctions)` by calling `super.runTemplate.call(this, execute, options)`
+ * - Implement `execute(this: IExecuteFunctions)` by calling
+ *   `super.executeTemplate.call(this, execute, { errorContext: { resource, operationParam } })`.
  */
-
-/** Options for {@link BaseNode.runTemplate}. */
-interface RunTemplateOptions {
-	/** Resource slug used in errorContext, e.g. `'vps'`. */
-	resource: string;
-	/** Name of the operation parameter on the node, e.g. `'vpsOperation'`. */
-	operationParam: string;
-}
 
 export abstract class BaseNode {
 	abstract description: INodeTypeDescription;
-
-	/**
-	 * Runs the node's operation dispatcher through {@link executeTemplate} with
-	 * the standard errorContext wiring shared by every OVH Cloud node.
-	 *
-	 * Must be called as `super.runTemplate.call(this, execute, options)` where
-	 * `this` is the n8n `IExecuteFunctions` context.
-	 */
-	protected runTemplate(
-		this: IExecuteFunctions,
-		execute: (this: IExecuteFunctions, itemIndex: number) => Promise<INodeExecutionData[]>,
-		options: RunTemplateOptions,
-	): Promise<INodeExecutionData[][]> {
-		return executeTemplate.call(this, execute, {
-			errorContext: { resource: options.resource, operationParam: options.operationParam },
-		});
-	}
 }
