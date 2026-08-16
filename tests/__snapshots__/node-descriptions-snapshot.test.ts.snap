@@ -1,0 +1,736 @@
+// Jest Snapshot v1, https://jestjs.io/docs/snapshot-testing
+
+exports[`OvhCloud node descriptions (snapshot reference) OvhCloudAllDom description({}) 1`] = `
+[
+  {
+    "default": "list",
+    "displayName": "Operation",
+    "name": "allDomOperation",
+    "noDataExpression": true,
+    "options": [
+      {
+        "action": "Get properties of an AllDom domain",
+        "name": "Get AllDom Domain Properties",
+        "value": "domainGet",
+      },
+      {
+        "action": "Get service information of an AllDom service",
+        "name": "Get AllDom Service Information",
+        "value": "serviceInfosGet",
+      },
+      {
+        "action": "Get properties of an AllDom service",
+        "name": "Get AllDom Service Properties",
+        "value": "get",
+      },
+      {
+        "action": "List all domains attached to an AllDom service",
+        "name": "List AllDom Domains",
+        "value": "domainList",
+      },
+      {
+        "action": "List all available AllDom services",
+        "name": "List AllDom Services",
+        "value": "list",
+      },
+      {
+        "action": "Update the service information of an AllDom service",
+        "name": "Update AllDom Service Information",
+        "value": "serviceInfosUpdatePut",
+      },
+    ],
+    "type": "options",
+  },
+]
+`;
+
+exports[`OvhCloud node descriptions (snapshot reference) OvhCloudAuth description({}) 1`] = `
+[
+  {
+    "default": undefined,
+    "displayName": "Operation",
+    "name": "authOperation",
+    "noDataExpression": true,
+    "options": [
+      {
+        "action": "Get details on the current authentication (identity and permissions)",
+        "name": "Get Authentication Details",
+        "value": "detailsGet",
+      },
+      {
+        "action": "Get details of the current credential",
+        "name": "Get Current Credential",
+        "value": "currentCredentialGet",
+      },
+      {
+        "action": "Get the current OVH server time as UNIX timestamp",
+        "name": "Get Server Time",
+        "value": "timeGet",
+      },
+      {
+        "action": "Expire the current credential (disconnect)",
+        "name": "Logout",
+        "value": "logoutPost",
+      },
+      {
+        "action": "Request a new credential for your application",
+        "name": "Request Credential",
+        "value": "credentialPost",
+      },
+      {
+        "action": "Generate a unique one-time token (chatbot auth)",
+        "name": "Request Token",
+        "value": "tokenPost",
+      },
+    ],
+    "type": "options",
+  },
+]
+`;
+
+exports[`OvhCloud node descriptions (snapshot reference) OvhCloudCommercialCatalog description({}) 1`] = `
+[
+  {
+    "default": "commercialCatalogoffersListGet",
+    "displayName": "Operation",
+    "displayOptions": {},
+    "name": "commercialCatalogOperation",
+    "noDataExpression": true,
+    "options": [
+      {
+        "action": "List all offers",
+        "name": "List All Offers",
+        "value": "commercialCatalogoffersListGet",
+      },
+      {
+        "action": "Get details of an offer",
+        "name": "Get Details of an Offer",
+        "value": "commercialCatalogoffersListGet2",
+      },
+    ],
+    "type": "options",
+  },
+  {
+    "default": "",
+    "displayName": "ID",
+    "displayOptions": {
+      "show": {
+        "commercialCatalogOperation": [
+          "commercialCatalogoffersListGet2",
+        ],
+      },
+    },
+    "name": "id",
+    "required": true,
+    "type": "string",
+  },
+]
+`;
+
+exports[`OvhCloud node descriptions (snapshot reference) OvhCloudContact description({}) 1`] = `
+[
+  {
+    "default": undefined,
+    "displayName": "Operation",
+    "name": "contactOperation",
+    "noDataExpression": true,
+    "options": [
+      {
+        "action": "Retrieve form characteristics",
+        "name": "Get Form Characteristics",
+        "value": "formGet",
+      },
+      {
+        "action": "Send a form according to the characteristics in /contact/form",
+        "name": "Send Form",
+        "value": "formSendPost",
+      },
+    ],
+    "type": "options",
+  },
+]
+`;
+
+exports[`OvhCloud node descriptions (snapshot reference) OvhCloudEmailPro description({}) 1`] = `
+[
+  {
+    "default": "getServiceByName",
+    "displayName": "Operation",
+    "name": "emailProOperation",
+    "noDataExpression": true,
+    "options": [
+      {
+        "displayName": "Get Email Pro Task",
+        "name": "emailProGetTask",
+        "value": "emailProGetTask",
+      },
+      {
+        "displayName": "List Email Pro Tasks",
+        "name": "emailProListTasks",
+        "value": "emailProListTasks",
+      },
+      {
+        "displayName": "Get Service By Name",
+        "name": "getServiceByName",
+        "value": "getServiceByName",
+      },
+      {
+        "displayName": "List Services",
+        "name": "listServices",
+        "value": "listServices",
+      },
+      {
+        "displayName": "Update Suspend Status By Service Name",
+        "name": "updateSuspendStatusByServiceName",
+        "value": "updateSuspendStatusByServiceName",
+      },
+    ],
+    "type": "options",
+  },
+]
+`;
+
+exports[`OvhCloud node descriptions (snapshot reference) OvhCloudLocation description({}) 1`] = `
+[
+  {
+    "default": "locationListGet",
+    "displayName": "Operation",
+    "displayOptions": {},
+    "name": "locationOperation",
+    "noDataExpression": true,
+    "options": [
+      {
+        "action": "List available regions and their availability zones",
+        "name": "List Available Regions and Their Availability Zones",
+        "value": "locationListGet",
+      },
+      {
+        "action": "Get available region and its availability zones",
+        "name": "Get Available Region and Its Availability Zones",
+        "value": "locationListGet2",
+      },
+    ],
+    "type": "options",
+  },
+  {
+    "default": "",
+    "displayName": "Name",
+    "displayOptions": {
+      "show": {
+        "locationOperation": [
+          "locationListGet2",
+        ],
+      },
+    },
+    "name": "name",
+    "required": true,
+    "type": "string",
+  },
+]
+`;
+
+exports[`OvhCloud node descriptions (snapshot reference) OvhCloudMetrics description({}) 1`] = `
+[
+  {
+    "default": "list",
+    "displayName": "Operation",
+    "name": "metricsOperation",
+    "noDataExpression": true,
+    "options": [
+      {
+        "action": "Launch a contact change procedure for a Metrics service",
+        "name": "Change Metrics Contact",
+        "value": "changeContactPost",
+      },
+      {
+        "action": "Confirm termination of a Metrics service",
+        "name": "Confirm Metrics Service Termination",
+        "value": "confirmTerminationPost",
+      },
+      {
+        "action": "Create a new token for a Metrics service",
+        "name": "Create Metrics Token",
+        "value": "tokenCreatePost",
+      },
+      {
+        "action": "Revoke a Metrics token",
+        "name": "Delete Metrics Token",
+        "value": "tokenDelete",
+      },
+      {
+        "action": "Modify the description of a Metrics service",
+        "name": "Edit Metrics Service",
+        "value": "updatePut",
+      },
+      {
+        "action": "Modify a Metrics token",
+        "name": "Edit Metrics Token",
+        "value": "tokenUpdatePut",
+      },
+      {
+        "action": "Get properties of a Metrics service",
+        "name": "Get Metrics Service",
+        "value": "get",
+      },
+      {
+        "action": "Get consumption for a Metrics service",
+        "name": "Get Metrics Service Consumption",
+        "value": "consumptionGet",
+      },
+      {
+        "action": "Get the quota of a Metrics service",
+        "name": "Get Metrics Service Quota",
+        "value": "quotaGet",
+      },
+      {
+        "action": "Get details of a specific Metrics token",
+        "name": "Get Metrics Token",
+        "value": "tokenDetailGet",
+      },
+      {
+        "action": "List all available Metrics services",
+        "name": "List Metrics Services",
+        "value": "list",
+      },
+      {
+        "action": "List all tokens of a Metrics service",
+        "name": "List Metrics Tokens",
+        "value": "tokenGet",
+      },
+      {
+        "action": "Set the overquota of a Metrics service",
+        "name": "Set Metrics Service Quota",
+        "value": "quotaSetPut",
+      },
+    ],
+    "type": "options",
+  },
+]
+`;
+
+exports[`OvhCloud node descriptions (snapshot reference) OvhCloudNetworkDefense description({}) 1`] = `
+[
+  {
+    "default": "networkDefensevaceventListGet",
+    "displayName": "Operation",
+    "displayOptions": {},
+    "name": "networkDefenseOperation",
+    "noDataExpression": true,
+    "options": [
+      {
+        "action": "Get all Network Defense events",
+        "name": "Get All Network Defense Events",
+        "value": "networkDefensevaceventListGet",
+      },
+      {
+        "action": "Get all Network Defense traffic statistics",
+        "name": "Get All Network Defense Traffic Statistics",
+        "value": "networkDefensevactrafficListGet",
+      },
+    ],
+    "type": "options",
+  },
+]
+`;
+
+exports[`OvhCloud node descriptions (snapshot reference) OvhCloudNewAccount description({}) 1`] = `
+[
+  {
+    "default": "areaGet",
+    "displayName": "Operation",
+    "name": "newAccountOperation",
+    "noDataExpression": true,
+    "options": [
+      {
+        "action": "Create a new OVHcloud identifier (nichandle)",
+        "name": "Create New Account",
+        "value": "newAccountPost",
+      },
+      {
+        "action": "Retrieve all available areas for a given country",
+        "name": "Get Areas",
+        "value": "areaGet",
+      },
+      {
+        "action": "Retrieve contracts governing identifier creation",
+        "name": "Get Contracts",
+        "value": "contractsGet",
+      },
+      {
+        "action": "Retrieve all available corporation types for a given country",
+        "name": "Get Corporation Types",
+        "value": "corporationTypeGet",
+      },
+      {
+        "action": "Retrieve all available countries for an OVH company and subsidiary",
+        "name": "Get Countries",
+        "value": "countriesGet",
+      },
+      {
+        "action": "Retrieve creation rules for identifier fields",
+        "name": "Get Creation Rules",
+        "value": "creationRulesPost",
+      },
+      {
+        "action": "Retrieve all available legal forms for a given country",
+        "name": "Get Legal Forms",
+        "value": "legalformGet",
+      },
+      {
+        "action": "Retrieve rules for creating or updating an identifier",
+        "name": "Get Rules",
+        "value": "rulesPost",
+      },
+    ],
+    "type": "options",
+  },
+]
+`;
+
+exports[`OvhCloud node descriptions (snapshot reference) OvhCloudPartner description({}) 1`] = `
+[
+  {
+    "default": "get",
+    "displayName": "Operation",
+    "name": "partnerOperation",
+    "noDataExpression": true,
+    "options": [
+      {
+        "action": "Retrieve the current status of a partner registration",
+        "name": "Get Partner Status",
+        "value": "get",
+      },
+      {
+        "action": "Register an organization as a partner in the OVHcloud Partner Program",
+        "name": "Register as Partner",
+        "value": "registerPost",
+      },
+    ],
+    "type": "options",
+  },
+]
+`;
+
+exports[`OvhCloud node descriptions (snapshot reference) OvhCloudSecret description({}) 1`] = `
+[
+  {
+    "default": "retrievePost",
+    "displayName": "Operation",
+    "name": "secretOperation",
+    "noDataExpression": true,
+    "options": [
+      {
+        "action": "Retrieve a secret sent by email",
+        "name": "Retrieve Secret",
+        "value": "retrievePost",
+      },
+    ],
+    "type": "options",
+  },
+]
+`;
+
+exports[`OvhCloud node descriptions (snapshot reference) OvhCloudStack description({}) 1`] = `
+[
+  {
+    "default": "list",
+    "displayName": "Operation",
+    "name": "stackOperation",
+    "noDataExpression": true,
+    "options": [
+      {
+        "action": "Get service information of a Stack MIS service",
+        "name": "Get Stack Service Information",
+        "value": "serviceInfosGet",
+      },
+      {
+        "action": "Get properties of a Stack MIS service",
+        "name": "Get Stack Service Properties",
+        "value": "get",
+      },
+      {
+        "action": "List all available Stack MIS services",
+        "name": "List Stack Services",
+        "value": "list",
+      },
+      {
+        "action": "Update the service information of a Stack MIS service",
+        "name": "Update Stack Service Information",
+        "value": "serviceInfosUpdatePut",
+      },
+    ],
+    "type": "options",
+  },
+]
+`;
+
+exports[`OvhCloud node descriptions (snapshot reference) OvhCloudStartup description({}) 1`] = `
+[
+  {
+    "default": "get",
+    "displayName": "Operation",
+    "name": "startupOperation",
+    "noDataExpression": true,
+    "options": [
+      {
+        "action": "Get the status of the registered startup",
+        "name": "Get Startup Status",
+        "value": "get",
+      },
+      {
+        "action": "Register a startup",
+        "name": "Register Startup",
+        "value": "registerPost",
+      },
+    ],
+    "type": "options",
+  },
+]
+`;
+
+exports[`OvhCloud node descriptions (snapshot reference) OvhCloudSupply description({}) 1`] = `
+[
+  {
+    "default": "mondialRelayPost",
+    "displayName": "Operation",
+    "name": "supplyOperation",
+    "noDataExpression": true,
+    "options": [
+      {
+        "action": "Find the 10 nearest MondialRelay points from an address or city",
+        "name": "Find Nearest MondialRelay Points",
+        "value": "mondialRelayPost",
+      },
+    ],
+    "type": "options",
+  },
+]
+`;
+
+exports[`OvhCloud node descriptions (snapshot reference) OvhCloudVeeamEnterprisePlus description({}) 1`] = `
+[
+  {
+    "default": "list",
+    "displayName": "Operation",
+    "displayOptions": {},
+    "name": "veeamOperation",
+    "noDataExpression": true,
+    "options": [
+      {
+        "action": "Confirm service termination",
+        "name": "Confirm Termination",
+        "value": "confirmTermination",
+      },
+      {
+        "action": "Get Veeam Enterprise Plus service details",
+        "name": "Get",
+        "value": "get",
+      },
+      {
+        "action": "Get detailed service information",
+        "name": "Get Service Infos",
+        "value": "serviceInfos",
+      },
+      {
+        "action": "List all Veeam Enterprise Plus services",
+        "name": "List",
+        "value": "list",
+      },
+      {
+        "action": "Register a Veeam backup server",
+        "name": "Register Backup Server",
+        "value": "register",
+      },
+    ],
+    "type": "options",
+  },
+  {
+    "default": "",
+    "description": "The name/ID of the Veeam Enterprise Plus service",
+    "displayName": "Service Name",
+    "name": "serviceName",
+    "required": true,
+    "type": "string",
+  },
+  {
+    "default": false,
+    "description": "Whether to return all results or only up to a given limit",
+    "displayName": "Return All",
+    "name": "returnAll",
+    "type": "boolean",
+  },
+  {
+    "default": 50,
+    "description": "Max number of results to return",
+    "displayName": "Limit",
+    "displayOptions": {
+      "show": {
+        "returnAll": [
+          false,
+        ],
+      },
+    },
+    "name": "limit",
+    "type": "number",
+    "typeOptions": {
+      "minValue": 1,
+    },
+  },
+  {
+    "default": "",
+    "description": "The name/ID of the Veeam Enterprise Plus service",
+    "displayName": "Service Name",
+    "name": "serviceName",
+    "required": true,
+    "type": "string",
+  },
+  {
+    "default": "",
+    "description": "Your Veeam Backup and Replication Server IP",
+    "displayName": "IP",
+    "name": "ip",
+    "required": true,
+    "type": "string",
+  },
+  {
+    "default": "",
+    "description": "Your Veeam Backup and Replication username",
+    "displayName": "Username",
+    "name": "username",
+    "required": true,
+    "type": "string",
+  },
+  {
+    "default": "",
+    "description": "Your Veeam Backup and Replication associated password",
+    "displayName": "Password",
+    "name": "password",
+    "required": true,
+    "type": "string",
+    "typeOptions": {
+      "password": true,
+    },
+  },
+  {
+    "default": "",
+    "description": "The name/ID of the Veeam Enterprise Plus service",
+    "displayName": "Service Name",
+    "name": "serviceName",
+    "required": true,
+    "type": "string",
+  },
+  {
+    "default": "",
+    "description": "The termination token sent by email to the admin contact",
+    "displayName": "Token",
+    "name": "token",
+    "required": true,
+    "type": "string",
+    "typeOptions": {
+      "password": true,
+    },
+  },
+  {
+    "default": "other",
+    "description": "Reason for termination",
+    "displayName": "Reason",
+    "name": "reason",
+    "options": [
+      {
+        "name": "Other",
+        "value": "other",
+      },
+      {
+        "name": "Cost",
+        "value": "cost",
+      },
+      {
+        "name": "Performance",
+        "value": "performance",
+      },
+      {
+        "name": "No Longer Needed",
+        "value": "noLongerNeeded",
+      },
+    ],
+    "type": "options",
+  },
+  {
+    "default": "other",
+    "description": "What next after termination",
+    "displayName": "Future Use",
+    "name": "futureUse",
+    "options": [
+      {
+        "name": "Other",
+        "value": "other",
+      },
+      {
+        "name": "Will Use Again",
+        "value": "willUseAgain",
+      },
+      {
+        "name": "Switching Provider",
+        "value": "switchingProvider",
+      },
+      {
+        "name": "Not Using Anymore",
+        "value": "notUsingAnymore",
+      },
+    ],
+    "type": "options",
+  },
+  {
+    "default": "",
+    "description": "Commentary about your termination request",
+    "displayName": "Commentary",
+    "name": "commentary",
+    "type": "string",
+    "typeOptions": {
+      "rows": 4,
+    },
+  },
+  {
+    "default": "",
+    "description": "The name/ID of the Veeam Enterprise Plus service",
+    "displayName": "Service Name",
+    "name": "serviceName",
+    "required": true,
+    "type": "string",
+  },
+]
+`;
+
+exports[`OvhCloud node descriptions (snapshot reference) OvhCloudVip description({}) 1`] = `
+[
+  {
+    "default": "list",
+    "displayName": "Operation",
+    "name": "vipOperation",
+    "noDataExpression": true,
+    "options": [
+      {
+        "action": "Get service information of a VIP service",
+        "name": "Get VIP Service Information",
+        "value": "serviceInfosGet",
+      },
+      {
+        "action": "Get properties of a VIP service",
+        "name": "Get VIP Service Properties",
+        "value": "get",
+      },
+      {
+        "action": "List all available VIP services",
+        "name": "List VIP Services",
+        "value": "list",
+      },
+      {
+        "action": "Update the service information of a VIP service",
+        "name": "Update VIP Service Information",
+        "value": "serviceInfosUpdatePut",
+      },
+    ],
+    "type": "options",
+  },
+]
+`;
