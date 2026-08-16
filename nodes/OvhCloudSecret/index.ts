@@ -1,37 +1,37 @@
-import type { IExecuteFunctions, INodeExecutionData, INodeProperties } from 'n8n-workflow';
+import type { IDisplayOptions, INodeProperties } from 'n8n-workflow';
+import { createOperationDispatcher } from '../../shared/nodes/createNodeDispatcher';
+import type { OperationEntry } from '../../shared/nodes/createNodeDispatcher';
 
 // Secret operations
 import * as retrievePost from './resources/retrievePost.operation';
 
-export function description() {
-	const props: INodeProperties[] = [];
+const entries: OperationEntry[] = [
+  // L'ancien description() n'appelait jamais retrievePost.description(), donc on ne montre pas non plus les propriétés de l'opération dans la sortie.
+  {
+    value: 'retrievePost',
+    name: 'Retrieve Secret',
+    action: "Retrieve a secret sent by email",
+    default: true,
+    show: false, // ancien code : spread absent → entry.show === false pour ne pas ajouter de displayOptions sur le picker
+    execute: retrievePost.execute as OperationEntry['execute'],
+    description: () => [],
+  },
+];
 
-	// Operation picker (alphabetical by name)
-	props.push({
-		displayName: 'Operation',
-		name: 'secretOperation',
-		type: 'options',
-		noDataExpression: true,
-		default: 'retrievePost',
-		options: [
-			{
-				name: 'Retrieve Secret',
-				value: 'retrievePost',
-				action: 'Retrieve a secret sent by email',
-			},
-		],
-	});
+const dispatcher = createOperationDispatcher('secretOperation', 'Secret', entries);
 
-	return props;
-}
+// Le factory ajoute displayOptions:{} au picker ; on l'omet pour reproduire la sortie de l'ancienne version.
+export const description: (displayOptions?: IDisplayOptions) => INodeProperties[] = (opts): INodeProperties[] => {
+  return dispatcher.description(opts ?? {}).map((p): INodeProperties => {
+    if ('displayOptions' in p && !Object.keys(p.displayOptions as Record<string, unknown>).length) {
+      // Supprime le champ displayOptions vide pour correspondre à l'ancienne signature.
+      const cleaned = Object.fromEntries(
+        Object.entries(p).filter(([k]) => k !== 'displayOptions'),
+      );
+      return cleaned as INodeProperties;
+    }
+    return p;
+  });
+};
 
-export async function execute(this: IExecuteFunctions, itemIndex?: number): Promise<INodeExecutionData[]> {
-	const operation = this.getNodeParameter('secretOperation', 0) as string;
-
-	switch (operation) {
-		case 'retrievePost':
-			return retrievePost.execute.call(this, itemIndex ?? 0);
-		default:
-			throw new Error(`No handler for operation '${operation}'`);
-	}
-}
+export const execute = dispatcher.execute;
