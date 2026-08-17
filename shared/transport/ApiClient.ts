@@ -21,10 +21,6 @@ type IFunctions = IExecuteFunctions | ILoadOptionsFunctions;
  * Configuration options for paginating through a list endpoint and fetching
  * full resources for each ID.
  *
-/**
- * Configuration options for paginating through a list endpoint and fetching
- * full resources for each ID.
- *
  * Extends {@link PaginationOptions} with callbacks only.
  */
 export interface PaginateResourcesOptions extends PaginationOptions {
@@ -444,7 +440,7 @@ export class ApiClient {
 			currentOffset += limit;
 		}
 
-			return allItems;
+		return allItems;
 	}
 
 	/**

@@ -6,7 +6,6 @@ import type {
 } from 'n8n-workflow';
 import { getClient } from '../../shared/transport/ApiClient';
 
- 
 export function description(_displayOptions: IDisplayOptions): INodeProperties[] {
 	return [
 		{
