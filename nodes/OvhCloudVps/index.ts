@@ -1,864 +1,672 @@
-import type {
-	IDisplayOptions,
-	IExecuteFunctions,
-	INodeExecutionData,
-	INodeProperties,
-} from 'n8n-workflow';
-
-import { execute as executeGet, description as descriptionGet } from './get.operation';
-import { execute as executeList, description as descriptionList } from './list.operation';
-import {
-	execute as executeDistributionGet,
-	description as descriptionDistributionGet,
-} from './distributionGet.operation';
-import {
-	execute as executeDistributionList,
-	description as descriptionDistributionList,
-} from './distributionList.operation';
-import {
-	execute as executeImageGet,
-	description as descriptionImageGet,
-} from './imageGet.operation';
-import {
-	execute as executeImageList,
-	description as descriptionImageList,
-} from './imageList.operation';
-import {
-	execute as executeIpGeolocationGet,
-	description as descriptionIpGeolocationGet,
-} from './ipGeolocationGet.operation';
-import { execute as executeIpGet, description as descriptionIpGet } from './ipGet.operation';
-import { execute as executeIpList, description as descriptionIpList } from './ipList.operation';
-import {
-	execute as executeMigrationMigrationIdGet,
-	description as descriptionMigrationMigrationIdGet,
-} from './migrationMigrationIdGet.operation';
-import {
-	execute as executeMigrationMigrationIdStepGet,
-	description as descriptionMigrationMigrationIdStepGet,
-} from './migrationMigrationIdStepGet.operation';
-import {
-	execute as executeModelList,
-	description as descriptionModelList,
-} from './modelList.operation';
-import {
-	execute as executeNetbootConfigGet,
-	description as descriptionNetbootConfigGet,
-} from './netbootConfigGet.operation';
-import {
-	execute as executeNetbootOrderGet,
-	description as descriptionNetbootOrderGet,
-} from './netbootOrderGet.operation';
-import {
-	execute as executeNetbootTemplateDetailsGet,
-	description as descriptionNetbootTemplateDetailsGet,
-} from './netbootTemplateDetailsGet.operation';
-import {
-	execute as executeOptionDetailGet,
-	description as descriptionOptionDetailGet,
-} from './optionDetailGet.operation';
-import {
-	execute as executeOptionList,
-	description as descriptionOptionList,
-} from './optionList.operation';
-import {
-	execute as executePowerOffGet,
-	description as descriptionPowerOffGet,
-} from './powerOffGet.operation';
-import {
-	execute as executeRebootHardGet,
-	description as descriptionRebootHardGet,
-} from './rebootHardGet.operation';
-import {
-	execute as executeSecondaryDnsDomainListDomains,
-	description as descriptionSecondaryDnsDomainListDomains,
-} from './secondaryDnsDomainListDomains.operation';
-import {
-	execute as executeSecondaryDnsServerList,
-	description as descriptionSecondaryDnsServerList,
-} from './secondaryDnsServerList.operation';
-import {
-	execute as executeSecondaryDnsAttachPut,
-	description as descriptionSecondaryDnsAttachPut,
-} from './secondaryDnsAttachPut.operation';
-import {
-	execute as executeServiceInformationGet,
-	description as descriptionServiceInformationGet,
-} from './serviceInformationGet.operation';
-import {
-	execute as executeSnapshotListSnapshotsForVps,
-	description as descriptionSnapshotListSnapshotsForVps,
-} from './snapshotListSnapshotsForVps.operation';
-import {
-	execute as executeStatusTaskIdGet,
-	description as descriptionStatusTaskIdGet,
-} from './statusTaskIdGet.operation';
-import {
-	execute as executeTemplateGet,
-	description as descriptionTemplateGet,
-} from './templateGet.operation';
-import {
-	execute as executeDatacenterList,
-	description as descriptionDatacenterList,
-} from './datacenterList.operation';
-import {
-	execute as executeDiskList,
-	description as descriptionDiskList,
-} from './diskList.operation';
-import {
-	execute as executeAvailableUpgradeList,
-	description as descriptionAvailableUpgradeList,
-} from './availableUpgradeList.operation';
-import {
-	execute as executeBackupFtpList,
-	description as descriptionBackupFtpList,
-} from './backupFtpList.operation';
-import {
-	execute as executeAutomatedBackupList,
-	description as descriptionAutomatedBackupList,
-} from './automatedBackupList.operation';
+import { createOperationDispatcher } from '../../shared/nodes/createNodeDispatcher';
 
 import {
-	execute as executeAbortSnapshotPost,
 	description as descriptionAbortSnapshotPost,
+	execute as executeAbortSnapshotPost,
 } from './abortSnapshotPost.operation';
 import {
-	execute as executeAutomatedBackupReschedulePost,
+	description as descriptionAutomatedBackupList,
+	execute as executeAutomatedBackupList,
+} from './automatedBackupList.operation';
+import {
 	description as descriptionAutomatedBackupReschedulePost,
+	execute as executeAutomatedBackupReschedulePost,
 } from './automatedBackupReschedulePost.operation';
 import {
-	execute as executeAutomatedBackupSetPost,
-	description as descriptionAutomatedBackupSetPost,
-} from './automatedBackupSetPost.operation';
-import {
-	execute as executeDatacenterAvailabilityRawGet,
-	description as descriptionDatacenterAvailabilityRawGet,
-} from './datacenterAvailabilityRawGet.operation';
-import {
-	execute as executeDiskCreatePost,
-	description as descriptionDiskCreatePost,
-} from './diskCreatePost.operation';
-import {
-	execute as executeDiskDetailGet,
-	description as descriptionDiskDetailGet,
-} from './diskGet.operation';
-import {
-	execute as executeDiskMonitoringStatsGet,
-	description as descriptionDiskMonitoringStatsGet,
-} from './diskMonitoringStatsGet.operation';
-import {
-	execute as executeDiskUpdatePut,
-	description as descriptionDiskUpdatePut,
-} from './diskUpdatePut.operation';
-import {
-	execute as executeDistributionUpdatePut,
-	description as descriptionDistributionUpdatePut,
-} from './distributionUpdatePut.operation';
-import {
-	execute as executeGetSnapshotImage,
-	description as descriptionGetSnapshotImage,
-} from './snapshotGetImageGet.operation';
-import {
-	execute as executeIpCountryAvailableGet,
-	description as descriptionIpCountryAvailableGet,
-} from './ipCountryAvailableGet.operation';
-import {
-	execute as executeIpReleaseDelete,
-	description as descriptionIpReleaseDelete,
-} from './ipReleaseDelete.operation';
-import {
-	execute as executeNetbootCreatePost,
-	description as descriptionNetbootCreatePost,
-} from './netbootCreatePost.operation';
-import {
-	execute as executeRestorePointListGet,
-	description as descriptionRestorePointListGet,
-} from './restorePointListGet.operation';
-import {
-	execute as executeServiceSecretGet,
-	description as descriptionServiceSecretGet,
-} from './serviceSecretGet.operation';
-import {
-	execute as executeSnapshotCreatePost,
-	description as descriptionSnapshotCreatePost,
-} from './snapshotCreatePost.operation';
-import {
-	execute as executeSnapshotRevertPut,
-	description as descriptionSnapshotRevertPut,
-} from './snapshotRevertPut.operation';
-import {
-	execute as executeTemplateApplyPost,
-	description as descriptionTemplateApplyPost,
-} from './templateApplyPost.operation';
-
-import {
-	execute as executePowerStartPost,
-	description as descriptionPowerStartPost,
-} from './powerStartPost.operation';
-import {
-	execute as executePowerStopDelete,
-	description as descriptionPowerStopDelete,
-} from './powerStopDelete.operation';
-import {
-	execute as executePowerRebootDelete,
-	description as descriptionPowerRebootDelete,
-} from './powerRebootDelete.operation';
-import {
-	execute as executeSshKeyListGet,
-	description as descriptionSshKeyListGet,
-} from './sshKeyListGet.operation';
-
-// Operations wired from audit (Phase 2a)
-import {
-	execute as executeAutomatedBackupRestore,
 	description as descriptionAutomatedBackupRestore,
+	execute as executeAutomatedBackupRestore,
 } from './automatedBackupRestoreCreate.operation';
 import {
-	execute as executeBackupFtpAccessPost,
+	description as descriptionAutomatedBackupSetPost,
+	execute as executeAutomatedBackupSetPost,
+} from './automatedBackupSetPost.operation';
+import {
+	description as descriptionAvailableUpgradeList,
+	execute as executeAvailableUpgradeList,
+} from './availableUpgradeList.operation';
+import {
 	description as descriptionBackupFtpAccessPost,
+	execute as executeBackupFtpAccessPost,
 } from './backupFtpAccessPostVps.operation';
 import {
-	execute as executeBackupRestoreList,
+	description as descriptionBackupFtpList,
+	execute as executeBackupFtpList,
+} from './backupFtpList.operation';
+import {
 	description as descriptionBackupRestoreList,
+	execute as executeBackupRestoreList,
 } from './backupRestoreListGet.operation';
 import {
-	execute as executeChangeContact,
 	description as descriptionChangeContact,
+	execute as executeChangeContact,
 } from './changeContactCreateVps.operation';
 import {
-	execute as executeConfirmTermination,
 	description as descriptionConfirmTermination,
+	execute as executeConfirmTermination,
 } from './confirmTerminationCreateVps.operation';
-import { execute as executeIpAdd, description as descriptionIpAdd } from './ipAdd.operation';
 import {
-	execute as executeVpsUpdate,
+	description as descriptionDatacenterAvailabilityRawGet,
+	execute as executeDatacenterAvailabilityRawGet,
+} from './datacenterAvailabilityRawGet.operation';
+import {
+	description as descriptionDatacenterList,
+	execute as executeDatacenterList,
+} from './datacenterList.operation';
+import {
+	description as descriptionDiskCreatePost,
+	execute as executeDiskCreatePost,
+} from './diskCreatePost.operation';
+import {
+	description as descriptionDiskDetailGet,
+	execute as executeDiskDetailGet,
+} from './diskGet.operation';
+import {
+	description as descriptionDiskList,
+	execute as executeDiskList,
+} from './diskList.operation';
+import {
+	description as descriptionDiskMonitoringStatsGet,
+	execute as executeDiskMonitoringStatsGet,
+} from './diskMonitoringStatsGet.operation';
+import {
+	description as descriptionDiskUpdatePut,
+	execute as executeDiskUpdatePut,
+} from './diskUpdatePut.operation';
+import {
+	description as descriptionDistributionGet,
+	execute as executeDistributionGet,
+} from './distributionGet.operation';
+import {
+	description as descriptionDistributionList,
+	execute as executeDistributionList,
+} from './distributionList.operation';
+import {
+	description as descriptionDistributionUpdatePut,
+	execute as executeDistributionUpdatePut,
+} from './distributionUpdatePut.operation';
+import {
+	description as descriptionGet,
+	execute as executeGet,
+} from './get.operation';
+import {
+	description as descriptionImageGet,
+	execute as executeImageGet,
+} from './imageGet.operation';
+import {
+	description as descriptionImageList,
+	execute as executeImageList,
+} from './imageList.operation';
+import {
+	description as descriptionIpAdd,
+	execute as executeIpAdd,
+} from './ipAdd.operation';
+import {
+	description as descriptionIpCountryAvailableGet,
+	execute as executeIpCountryAvailableGet,
+} from './ipCountryAvailableGet.operation';
+import {
+	description as descriptionIpGeolocationGet,
+	execute as executeIpGeolocationGet,
+} from './ipGeolocationGet.operation';
+import {
+	description as descriptionIpGet,
+	execute as executeIpGet,
+} from './ipGet.operation';
+import {
+	description as descriptionIpList,
+	execute as executeIpList,
+} from './ipList.operation';
+import {
+	description as descriptionIpReleaseDelete,
+	execute as executeIpReleaseDelete,
+} from './ipReleaseDelete.operation';
+import {
+	description as descriptionList,
+	execute as executeList,
+} from './list.operation';
+import {
+	description as descriptionMigrationMigrationIdGet,
+	execute as executeMigrationMigrationIdGet,
+} from './migrationMigrationIdGet.operation';
+import {
+	description as descriptionMigrationMigrationIdStepGet,
+	execute as executeMigrationMigrationIdStepGet,
+} from './migrationMigrationIdStepGet.operation';
+import {
+	description as descriptionModelList,
+	execute as executeModelList,
+} from './modelList.operation';
+import {
+	description as descriptionNetbootConfigGet,
+	execute as executeNetbootConfigGet,
+} from './netbootConfigGet.operation';
+import {
+	description as descriptionNetbootCreatePost,
+	execute as executeNetbootCreatePost,
+} from './netbootCreatePost.operation';
+import {
+	description as descriptionNetbootOrderGet,
+	execute as executeNetbootOrderGet,
+} from './netbootOrderGet.operation';
+import {
+	description as descriptionNetbootTemplateDetailsGet,
+	execute as executeNetbootTemplateDetailsGet,
+} from './netbootTemplateDetailsGet.operation';
+import {
+	description as descriptionOptionDetailGet,
+	execute as executeOptionDetailGet,
+} from './optionDetailGet.operation';
+import {
+	description as descriptionOptionList,
+	execute as executeOptionList,
+} from './optionList.operation';
+import {
+	description as descriptionPowerOffGet,
+	execute as executePowerOffGet,
+} from './powerOffGet.operation';
+import {
+	description as descriptionPowerRebootDelete,
+	execute as executePowerRebootDelete,
+} from './powerRebootDelete.operation';
+import {
+	description as descriptionPowerStartPost,
+	execute as executePowerStartPost,
+} from './powerStartPost.operation';
+import {
+	description as descriptionPowerStopDelete,
+	execute as executePowerStopDelete,
+} from './powerStopDelete.operation';
+import {
+	description as descriptionRebootHardGet,
+	execute as executeRebootHardGet,
+} from './rebootHardGet.operation';
+import {
+	description as descriptionRestorePointListGet,
+	execute as executeRestorePointListGet,
+} from './restorePointListGet.operation';
+import {
+	description as descriptionSecondaryDnsAttachPut,
+	execute as executeSecondaryDnsAttachPut,
+} from './secondaryDnsAttachPut.operation';
+import {
+	description as descriptionSecondaryDnsDomainListDomains,
+	execute as executeSecondaryDnsDomainListDomains,
+} from './secondaryDnsDomainListDomains.operation';
+import {
+	description as descriptionSecondaryDnsServerList,
+	execute as executeSecondaryDnsServerList,
+} from './secondaryDnsServerList.operation';
+import {
+	description as descriptionServiceInformationGet,
+	execute as executeServiceInformationGet,
+} from './serviceInformationGet.operation';
+import {
+	description as descriptionServiceSecretGet,
+	execute as executeServiceSecretGet,
+} from './serviceSecretGet.operation';
+import {
+	description as descriptionSnapshotCreatePost,
+	execute as executeSnapshotCreatePost,
+} from './snapshotCreatePost.operation';
+import {
+	description as descriptionGetSnapshotImage,
+	execute as executeGetSnapshotImage,
+} from './snapshotGetImageGet.operation';
+import {
+	description as descriptionSnapshotListSnapshotsForVps,
+	execute as executeSnapshotListSnapshotsForVps,
+} from './snapshotListSnapshotsForVps.operation';
+import {
+	description as descriptionSnapshotRevertPut,
+	execute as executeSnapshotRevertPut,
+} from './snapshotRevertPut.operation';
+import {
+	description as descriptionSshKeyListGet,
+	execute as executeSshKeyListGet,
+} from './sshKeyListGet.operation';
+import {
+	description as descriptionStatusTaskIdGet,
+	execute as executeStatusTaskIdGet,
+} from './statusTaskIdGet.operation';
+import {
+	description as descriptionTemplateApplyPost,
+	execute as executeTemplateApplyPost,
+} from './templateApplyPost.operation';
+import {
+	description as descriptionTemplateGet,
+	execute as executeTemplateGet,
+} from './templateGet.operation';
+import {
 	description as descriptionVpsUpdate,
+	execute as executeVpsUpdate,
 } from './vpsUpdate.operation';
-export function description(displayOptions: IDisplayOptions): INodeProperties[] {
-	const operationProperties: INodeProperties[] = [
-		{
-			displayName: 'Operation',
-			name: 'vpsOperation',
-			type: 'options',
-			noDataExpression: true,
-			options: [
-				{ name: 'Abort Snapshot', value: 'abortSnapshot', action: 'Abort a snapshot creation for the VPS' },
-				{
-					name: 'Add Backup FTP Access',
-					value: 'backupFtpAccessPost',
-					action: 'Add an IP access rule to the VPS backup FTP',
-				},
-				{ name: 'Add IP', value: 'ipAdd', action: 'Add a failover IP to the VPS' },
-				{
-					name: 'Apply Netboot Template',
-					value: 'templateApplyPost',
-					action: 'Apply netboot template to the VPS',
-				},
-				{
-					name: 'Attach Secondary DNS',
-					value: 'attachSecondaryDns',
-					action: 'Attach a secondary DNS to a VPS',
-				},
-				{
-					name: 'Change Contact',
-					value: 'changeContact',
-					action: 'Launch a contact change for the VPS service',
-				},
-				{
-					name: 'Check Power Off Status',
-					value: 'powerOffGet',
-					action: 'Check power off status of a VPS',
-				},
-				{
-					name: 'Check Reboot Status',
-					value: 'rebootHardGet',
-					action: 'Check reboot status of a VPS',
-				},
-				{
-					name: 'Confirm Termination',
-					value: 'confirmTermination',
-					action: 'Confirm termination of the VPS service (irreversible)',
-				},
-				{ name: 'Create Disk', value: 'createDiskPost', action: 'Create a new disk for the VPS' },
-				{ name: 'Create Netboot Order Config', value: 'netbootCreatePost', action: 'Create a netboot order configuration for the VPS' },
-				{
-					name: 'Create Snapshot',
-					value: 'snapshotCreatePost',
-					action: 'Create a new snapshot for the VPS',
-				},
-				{ name: 'Get', value: 'get', action: 'Get VPS service details' },
-				{
-					name: 'Get Available IP Countries',
-					value: 'ipCountryAvailableGet',
-					action: 'List available IP countries per region',
-				},
-				{
-					name: 'Get Datacenter Availability',
-					value: 'datacenterAvailabilityRawGet',
-					action: 'Check raw datacenter availability for a VPS',
-				},
-				{
-					name: 'Get Disk Detail',
-					value: 'diskDetailGet',
-					action: 'Get detail of a specific VPS disk',
-				},
-				{
-					name: 'Get Disk Monitoring Stats',
-					value: 'diskMonitoringStatsGet',
-					action: 'Get monitoring stats for a disk',
-				},
-				{ name: 'Get Distribution', value: 'distributionGet', action: 'Get distribution details' },
-				{ name: 'Get Image', value: 'imageGet', action: 'Get image details' },
-				{ name: 'Get IP', value: 'ipGet', action: 'Get IP address details' },
-				{
-					name: 'Get IP Geolocation',
-					value: 'ipGeolocationGet',
-					action: 'Get IP geolocation info',
-				},
-				{
-					name: 'Get Kernel Configs',
-					value: 'netbootConfigGet',
-					action: 'Get kernel/netboot config for a VPS',
-				},
-				{
-					name: 'Get Migration',
-					value: 'migrationMigrationIdGet',
-					action: 'Get migration details by ID',
-				},
-				{
-					name: 'Get Migration Step',
-					value: 'migrationMigrationIdStepGet',
-					action: 'Get migration step details',
-				},
-				{
-					name: 'Get Netboot Order Config',
-					value: 'netbootOrderGet',
-					action: 'Get netboot order configuration',
-				},
-				{
-					name: 'Get Netboot Template Details',
-					value: 'netbootTemplateDetailsGet',
-					action: 'Get netboot template details',
-				},
-				{ name: 'Get Option Details', value: 'optionDetailGet', action: 'Get option type details' },
-				{
-					name: 'Get Service Information',
-					value: 'serviceInformationGet',
-					action: 'Get service information for a VPS',
-				},
-				{
-					name: 'Get Service Secret Key',
-					value: 'serviceSecretGet',
-					action: 'Get authentication secret key for a VPS',
-				},
-				{
-					name: 'Get Snapshot Image',
-					value: 'getSnapshotImage',
-					action: 'Get image of a snapshot',
-				},
-				{
-					name: 'Get Task Status',
-					value: 'statusTaskIdGet',
-					action: 'Check status of a task by ID',
-				},
-				{ name: 'Get Template Details', value: 'templateGet', action: 'Get template details' },
-				{
-					name: 'List Automated Backups',
-					value: 'automatedBackupList',
-					action: 'List automated backups for a VPS',
-				},
-				{
-					name: 'List Available Upgrades',
-					value: 'availableUpgradeList',
-					action: 'Get available upgrades for a VPS',
-				},
-				{
-					name: 'List Backup FTP Configs',
-					value: 'backupFtpList',
-					action: 'List backup FTP configurations',
-				},
-				{
-					name: 'List Backup Restores',
-					value: 'backupRestoreList',
-					action: 'List attached backups available for restore',
-				},
-				{
-					name: 'List Datacenters',
-					value: 'datacenterList',
-					action: 'Get available datacenters for a VPS',
-				},
-				{ name: 'List Disks', value: 'diskList', action: 'List disks attached to a VPS' },
-				{
-					name: 'List Distributions',
-					value: 'distributionList',
-					action: 'List available distributions for a VPS',
-				},
-				{ name: 'List Images', value: 'imageList', action: 'List available images for a VPS' },
-				{ name: 'List IPs', value: 'ipList', action: 'List IPs attached to a VPS' },
-				{ name: 'List Models', value: 'modelList', action: 'List available VPS models' },
-				{ name: 'List Options', value: 'optionList', action: 'List available options for a VPS' },
-				{
-					name: 'List Restore Points',
-					value: 'restorePointListGet',
-					action: 'List restore points for a backup',
-				},
-				{
-					name: 'List Secondary DNS Domains',
-					value: 'secondaryDnsDomainListDomains',
-					action: 'List secondary DNS domains',
-				},
-				{
-					name: 'List Secondary DNS Servers',
-					value: 'secondaryDnsServerList',
-					action: 'List secondary DNS servers',
-				},
-				{
-					name: 'List Snapshots',
-					value: 'snapshotListSnapshotsForVps',
-					action: 'List snapshots for a VPS',
-				},
-				{
-					name: 'List SSH Keys',
-					value: 'listSshKeys',
-					action: 'List SSH keys for a VPS',
-				},
-				{ name: 'List VPS Services', value: 'list', action: 'List all VPS services' },
-				{
-					name: 'Power Off VPS',
-					value: 'powerStopDelete',
-					action: 'Request shutdown for the VPS',
-				},
-				{
-					name: 'Power On VPS',
-					value: 'powerStartPost',
-					action: 'Request power on for the VPS',
-				},
-				{
-					name: 'Reboot VPS',
-					value: 'powerRebootDelete',
-					action: 'Request hard reboot for the VPS',
-				},
-				{
-					name: 'Release IP Address',
-					value: 'releaseIpDelete',
-					action: 'Release an IP address from the VPS',
-				},
-				{
-					name: 'Reschedule Automated Backup',
-					value: 'automatedBackupReschedulePost',
-					action: 'Reschedule an automated backup for a VPS',
-				},
-				{
-					name: 'Restore Automated Backup',
-					value: 'automatedBackupRestore',
-					action: 'Restore the VPS from an automated backup (irreversible)',
-				},
-				{
-					name: 'Revert Snapshot',
-					value: 'revertSnapshot',
-					action: 'Revert the VPS to a specific snapshot',
-				},
-				{
-					name: 'Set Automated Backup Restore Plan',
-					value: 'automatedBackupSetPost',
-					action: 'Set a backup restore plan for a VPS',
-				},
-				{
-					name: 'Update Disk',
-					value: 'updateDiskPut',
-					action: 'Update a specific VPS disk (resize or rename)',
-				},
-				{
-					name: 'Update Distribution',
-					value: 'distributionUpdatePut',
-					action: 'Update the distribution of the VPS',
-				},
-				{
-					name: 'Update VPS',
-					value: 'vpsUpdate',
-					action: 'Update VPS service properties (e.g. name)',
-				},
-			],
-			default: 'get',
-			displayOptions,
-		},
-	];
 
-	const properties: INodeProperties[] = [
-		...operationProperties,
-		...(descriptionAvailableUpgradeList({
-			...displayOptions,
-			show: { vpsOperation: ['availableUpgradeList'] },
-		}) as INodeProperties[]),
-		...(descriptionAutomatedBackupList({
-			...displayOptions,
-			show: { vpsOperation: ['automatedBackupList'] },
-		}) as INodeProperties[]),
-		...(descriptionBackupFtpList({
-			...displayOptions,
-			show: { vpsOperation: ['backupFtpList'] },
-		}) as INodeProperties[]),
-		...(descriptionDatacenterList({
-			...displayOptions,
-			show: { vpsOperation: ['datacenterList'] },
-		}) as INodeProperties[]),
-		...(descriptionDiskList({
-			...displayOptions,
-			show: { vpsOperation: ['diskList'] },
-		}) as INodeProperties[]),
-		...(descriptionPowerStartPost({
-			...displayOptions,
-			show: { vpsOperation: ['powerStartPost'] },
-		}) as INodeProperties[]),
-		...(descriptionPowerStopDelete({
-			...displayOptions,
-			show: { vpsOperation: ['powerStopDelete'] },
-		}) as INodeProperties[]),
-		...(descriptionPowerRebootDelete({
-			...displayOptions,
-			show: { vpsOperation: ['powerRebootDelete'] },
-		}) as INodeProperties[]),
-		...(descriptionDistributionGet({
-			...displayOptions,
-			show: { vpsOperation: ['distributionGet'] },
-		}) as INodeProperties[]),
-		...(descriptionDistributionList({
-			...displayOptions,
-			show: { vpsOperation: ['distributionList'] },
-		}) as INodeProperties[]),
-		...(descriptionGet({
-			...displayOptions,
-			show: { vpsOperation: ['get'] },
-		}) as INodeProperties[]),
-		...(descriptionImageGet({
-			...displayOptions,
-			show: { vpsOperation: ['imageGet'] },
-		}) as INodeProperties[]),
-		...(descriptionImageList({
-			...displayOptions,
-			show: { vpsOperation: ['imageList'] },
-		}) as INodeProperties[]),
-		...(descriptionIpGeolocationGet({
-			...displayOptions,
-			show: { vpsOperation: ['ipGeolocationGet'] },
-		}) as INodeProperties[]),
-		...(descriptionIpGet({
-			...displayOptions,
-			show: { vpsOperation: ['ipGet'] },
-		}) as INodeProperties[]),
-		...(descriptionIpList({
-			...displayOptions,
-			show: { vpsOperation: ['ipList'] },
-		}) as INodeProperties[]),
-		...(descriptionNetbootConfigGet({
-			...displayOptions,
-			show: { vpsOperation: ['netbootConfigGet'] },
-		}) as INodeProperties[]),
-		...(descriptionList({
-			...displayOptions,
-			show: { vpsOperation: ['list'] },
-		}) as INodeProperties[]),
-		...(descriptionSshKeyListGet({
-			...displayOptions,
-			show: { vpsOperation: ['listSshKeys'] },
-		}) as INodeProperties[]),
-		...(descriptionMigrationMigrationIdGet({
-			...displayOptions,
-			show: { vpsOperation: ['migrationMigrationIdGet'] },
-		}) as INodeProperties[]),
-		...(descriptionMigrationMigrationIdStepGet({
-			...displayOptions,
-			show: { vpsOperation: ['migrationMigrationIdStepGet'] },
-		}) as INodeProperties[]),
-		...(descriptionModelList({
-			...displayOptions,
-			show: { vpsOperation: ['modelList'] },
-		}) as INodeProperties[]),
-		...(descriptionNetbootOrderGet({
-			...displayOptions,
-			show: { vpsOperation: ['netbootOrderGet'] },
-		}) as INodeProperties[]),
-		...(descriptionNetbootTemplateDetailsGet({
-			...displayOptions,
-			show: { vpsOperation: ['netbootTemplateDetailsGet'] },
-		}) as INodeProperties[]),
-		...(descriptionOptionDetailGet({
-			...displayOptions,
-			show: { vpsOperation: ['optionDetailGet'] },
-		}) as INodeProperties[]),
-		...(descriptionOptionList({
-			...displayOptions,
-			show: { vpsOperation: ['optionList'] },
-		}) as INodeProperties[]),
-		...(descriptionPowerOffGet({
-			...displayOptions,
-			show: { vpsOperation: ['powerOffGet'] },
-		}) as INodeProperties[]),
-		...(descriptionRebootHardGet({
-			...displayOptions,
-			show: { vpsOperation: ['rebootHardGet'] },
-		}) as INodeProperties[]),
-		...(descriptionSecondaryDnsDomainListDomains({
-			...displayOptions,
-			show: { vpsOperation: ['secondaryDnsDomainListDomains'] },
-		}) as INodeProperties[]),
-		...(descriptionSecondaryDnsServerList({
-			...displayOptions,
-			show: { vpsOperation: ['secondaryDnsServerList'] },
-		}) as INodeProperties[]),
-		...(descriptionServiceInformationGet({
-			...displayOptions,
-			show: { vpsOperation: ['serviceInformationGet'] },
-		}) as INodeProperties[]),
-		...(descriptionSnapshotListSnapshotsForVps({
-			...displayOptions,
-			show: { vpsOperation: ['snapshotListSnapshotsForVps'] },
-		}) as INodeProperties[]),
-		...(descriptionStatusTaskIdGet({
-			...displayOptions,
-			show: { vpsOperation: ['statusTaskIdGet'] },
-		}) as INodeProperties[]),
-		...(descriptionTemplateGet({
-			...displayOptions,
-			show: { vpsOperation: ['templateGet'] },
-		}) as INodeProperties[]),
-		...(descriptionAbortSnapshotPost({
-			...displayOptions,
-			show: { vpsOperation: ['abortSnapshot'] },
-		}) as INodeProperties[]),
-		...(descriptionSecondaryDnsAttachPut({
-			...displayOptions,
-			show: { vpsOperation: ['attachSecondaryDns'] },
-		}) as INodeProperties[]),
-		...(descriptionAutomatedBackupReschedulePost({
-			...displayOptions,
-			show: { vpsOperation: ['automatedBackupReschedulePost'] },
-		}) as INodeProperties[]),
-		...(descriptionAutomatedBackupSetPost({
-			...displayOptions,
-			show: { vpsOperation: ['automatedBackupSetPost'] },
-		}) as INodeProperties[]),
-		...(descriptionDatacenterAvailabilityRawGet({
-			...displayOptions,
-			show: { vpsOperation: ['datacenterAvailabilityRawGet'] },
-		}) as INodeProperties[]),
-		...(descriptionDiskCreatePost({
-			...displayOptions,
-			show: { vpsOperation: ['createDiskPost'] },
-		}) as INodeProperties[]),
-		...(descriptionDiskDetailGet({
-			...displayOptions,
-			show: { vpsOperation: ['diskDetailGet'] },
-		}) as INodeProperties[]),
-		...(descriptionDiskMonitoringStatsGet({
-			...displayOptions,
-			show: { vpsOperation: ['diskMonitoringStatsGet'] },
-		}) as INodeProperties[]),
-		...(descriptionDiskUpdatePut({
-			...displayOptions,
-			show: { vpsOperation: ['updateDiskPut'] },
-		}) as INodeProperties[]),
-		...(descriptionDistributionUpdatePut({
-			...displayOptions,
-			show: { vpsOperation: ['distributionUpdatePut'] },
-		}) as INodeProperties[]),
-		...(descriptionGetSnapshotImage({
-			...displayOptions,
-			show: { vpsOperation: ['getSnapshotImage'] },
-		}) as INodeProperties[]),
-		...(descriptionIpCountryAvailableGet({
-			...displayOptions,
-			show: { vpsOperation: ['ipCountryAvailableGet'] },
-		}) as INodeProperties[]),
-		...(descriptionIpReleaseDelete({
-			...displayOptions,
-			show: { vpsOperation: ['releaseIpDelete'] },
-		}) as INodeProperties[]),
-		...(descriptionNetbootCreatePost({
-			...displayOptions,
-			show: { vpsOperation: ['netbootCreatePost'] },
-		}) as INodeProperties[]),
-		...(descriptionRestorePointListGet({
-			...displayOptions,
-			show: { vpsOperation: ['restorePointListGet'] },
-		}) as INodeProperties[]),
-		...(descriptionServiceSecretGet({
-			...displayOptions,
-			show: { vpsOperation: ['serviceSecretGet'] },
-		}) as INodeProperties[]),
-		...(descriptionSnapshotCreatePost({
-			...displayOptions,
-			show: { vpsOperation: ['snapshotCreatePost'] },
-		}) as INodeProperties[]),
-		...(descriptionSnapshotRevertPut({
-			...displayOptions,
-			show: { vpsOperation: ['revertSnapshot'] },
-		}) as INodeProperties[]),
-		...(descriptionTemplateApplyPost({
-			...displayOptions,
-			show: { vpsOperation: ['templateApplyPost'] },
-		}) as INodeProperties[]),
-		...(descriptionAutomatedBackupRestore({
-			...displayOptions,
-			show: { vpsOperation: ['automatedBackupRestore'] },
-		}) as INodeProperties[]),
-		...(descriptionBackupFtpAccessPost({
-			...displayOptions,
-			show: { vpsOperation: ['backupFtpAccessPost'] },
-		}) as INodeProperties[]),
-		...(descriptionBackupRestoreList({
-			...displayOptions,
-			show: { vpsOperation: ['backupRestoreList'] },
-		}) as INodeProperties[]),
-		...(descriptionChangeContact({
-			...displayOptions,
-			show: { vpsOperation: ['changeContact'] },
-		}) as INodeProperties[]),
-		...(descriptionConfirmTermination({
-			...displayOptions,
-			show: { vpsOperation: ['confirmTermination'] },
-		}) as INodeProperties[]),
-		...(descriptionIpAdd({
-			...displayOptions,
-			show: { vpsOperation: ['ipAdd'] },
-		}) as INodeProperties[]),
-		...(descriptionVpsUpdate({
-			...displayOptions,
-			show: { vpsOperation: ['vpsUpdate'] },
-		}) as INodeProperties[]),
-	];
+const { description, execute } = createOperationDispatcher(
+	'vpsOperation',
+	'vps',
+	[
+	{
+		name: 'Abort Snapshot',
+		value: 'abortSnapshot',
+		action: 'Abort a snapshot creation for the VPS',
+		execute: executeAbortSnapshotPost,
+		description: descriptionAbortSnapshotPost,
+	},
+	{
+		name: 'Add Backup FTP Access',
+		value: 'backupFtpAccessPost',
+		action: 'Add an IP access rule to the VPS backup FTP',
+		execute: executeBackupFtpAccessPost,
+		description: descriptionBackupFtpAccessPost,
+	},
+	{
+		name: 'Add IP',
+		value: 'ipAdd',
+		action: 'Add a failover IP to the VPS',
+		execute: executeIpAdd,
+		description: descriptionIpAdd,
+	},
+	{
+		name: 'Apply Netboot Template',
+		value: 'templateApplyPost',
+		action: 'Apply netboot template to the VPS',
+		execute: executeTemplateApplyPost,
+		description: descriptionTemplateApplyPost,
+	},
+	{
+		name: 'Attach Secondary DNS',
+		value: 'attachSecondaryDns',
+		action: 'Attach a secondary DNS to a VPS',
+		execute: executeSecondaryDnsAttachPut,
+		description: descriptionSecondaryDnsAttachPut,
+	},
+	{
+		name: 'Change Contact',
+		value: 'changeContact',
+		action: 'Launch a contact change for the VPS service',
+		execute: executeChangeContact,
+		description: descriptionChangeContact,
+	},
+	{
+		name: 'Check Power Off Status',
+		value: 'powerOffGet',
+		action: 'Check power off status of a VPS',
+		execute: executePowerOffGet,
+		description: descriptionPowerOffGet,
+	},
+	{
+		name: 'Check Reboot Status',
+		value: 'rebootHardGet',
+		action: 'Check reboot status of a VPS',
+		execute: executeRebootHardGet,
+		description: descriptionRebootHardGet,
+	},
+	{
+		name: 'Confirm Termination',
+		value: 'confirmTermination',
+		action: 'Confirm termination of the VPS service (irreversible)',
+		execute: executeConfirmTermination,
+		description: descriptionConfirmTermination,
+	},
+	{
+		name: 'Create Disk',
+		value: 'createDiskPost',
+		action: 'Create a new disk for the VPS',
+		execute: executeDiskCreatePost,
+		description: descriptionDiskCreatePost,
+	},
+	{
+		name: 'Create Netboot Order Config',
+		value: 'netbootCreatePost',
+		action: 'Create a netboot order configuration for the VPS',
+		execute: executeNetbootCreatePost,
+		description: descriptionNetbootCreatePost,
+	},
+	{
+		name: 'Create Snapshot',
+		value: 'snapshotCreatePost',
+		action: 'Create a new snapshot for the VPS',
+		execute: executeSnapshotCreatePost,
+		description: descriptionSnapshotCreatePost,
+	},
+	{
+		name: 'Get',
+		value: 'get',
+		action: 'Get VPS service details',
+		execute: executeGet,
+		description: descriptionGet,
+		default: true,
+	},
+	{
+		name: 'Get Available IP Countries',
+		value: 'ipCountryAvailableGet',
+		action: 'List available IP countries per region',
+		execute: executeIpCountryAvailableGet,
+		description: descriptionIpCountryAvailableGet,
+	},
+	{
+		name: 'Get Datacenter Availability',
+		value: 'datacenterAvailabilityRawGet',
+		action: 'Check raw datacenter availability for a VPS',
+		execute: executeDatacenterAvailabilityRawGet,
+		description: descriptionDatacenterAvailabilityRawGet,
+	},
+	{
+		name: 'Get Disk Detail',
+		value: 'diskDetailGet',
+		action: 'Get detail of a specific VPS disk',
+		execute: executeDiskDetailGet,
+		description: descriptionDiskDetailGet,
+	},
+	{
+		name: 'Get Disk Monitoring Stats',
+		value: 'diskMonitoringStatsGet',
+		action: 'Get monitoring stats for a disk',
+		execute: executeDiskMonitoringStatsGet,
+		description: descriptionDiskMonitoringStatsGet,
+	},
+	{
+		name: 'Get Distribution',
+		value: 'distributionGet',
+		action: 'Get distribution details',
+		execute: executeDistributionGet,
+		description: descriptionDistributionGet,
+	},
+	{
+		name: 'Get Image',
+		value: 'imageGet',
+		action: 'Get image details',
+		execute: executeImageGet,
+		description: descriptionImageGet,
+	},
+	{
+		name: 'Get IP',
+		value: 'ipGet',
+		action: 'Get IP address details',
+		execute: executeIpGet,
+		description: descriptionIpGet,
+	},
+	{
+		name: 'Get IP Geolocation',
+		value: 'ipGeolocationGet',
+		action: 'Get IP geolocation info',
+		execute: executeIpGeolocationGet,
+		description: descriptionIpGeolocationGet,
+	},
+	{
+		name: 'Get Kernel Configs',
+		value: 'netbootConfigGet',
+		action: 'Get kernel/netboot config for a VPS',
+		execute: executeNetbootConfigGet,
+		description: descriptionNetbootConfigGet,
+	},
+	{
+		name: 'Get Migration',
+		value: 'migrationMigrationIdGet',
+		action: 'Get migration details by ID',
+		execute: executeMigrationMigrationIdGet,
+		description: descriptionMigrationMigrationIdGet,
+	},
+	{
+		name: 'Get Migration Step',
+		value: 'migrationMigrationIdStepGet',
+		action: 'Get migration step details',
+		execute: executeMigrationMigrationIdStepGet,
+		description: descriptionMigrationMigrationIdStepGet,
+	},
+	{
+		name: 'Get Netboot Order Config',
+		value: 'netbootOrderGet',
+		action: 'Get netboot order configuration',
+		execute: executeNetbootOrderGet,
+		description: descriptionNetbootOrderGet,
+	},
+	{
+		name: 'Get Netboot Template Details',
+		value: 'netbootTemplateDetailsGet',
+		action: 'Get netboot template details',
+		execute: executeNetbootTemplateDetailsGet,
+		description: descriptionNetbootTemplateDetailsGet,
+	},
+	{
+		name: 'Get Option Details',
+		value: 'optionDetailGet',
+		action: 'Get option type details',
+		execute: executeOptionDetailGet,
+		description: descriptionOptionDetailGet,
+	},
+	{
+		name: 'Get Service Information',
+		value: 'serviceInformationGet',
+		action: 'Get service information for a VPS',
+		execute: executeServiceInformationGet,
+		description: descriptionServiceInformationGet,
+	},
+	{
+		name: 'Get Service Secret Key',
+		value: 'serviceSecretGet',
+		action: 'Get authentication secret key for a VPS',
+		execute: executeServiceSecretGet,
+		description: descriptionServiceSecretGet,
+	},
+	{
+		name: 'Get Snapshot Image',
+		value: 'getSnapshotImage',
+		action: 'Get image of a snapshot',
+		execute: executeGetSnapshotImage,
+		description: descriptionGetSnapshotImage,
+	},
+	{
+		name: 'Get Task Status',
+		value: 'statusTaskIdGet',
+		action: 'Check status of a task by ID',
+		execute: executeStatusTaskIdGet,
+		description: descriptionStatusTaskIdGet,
+	},
+	{
+		name: 'Get Template Details',
+		value: 'templateGet',
+		action: 'Get template details',
+		execute: executeTemplateGet,
+		description: descriptionTemplateGet,
+	},
+	{
+		name: 'List Automated Backups',
+		value: 'automatedBackupList',
+		action: 'List automated backups for a VPS',
+		execute: executeAutomatedBackupList,
+		description: descriptionAutomatedBackupList,
+	},
+	{
+		name: 'List Available Upgrades',
+		value: 'availableUpgradeList',
+		action: 'Get available upgrades for a VPS',
+		execute: executeAvailableUpgradeList,
+		description: descriptionAvailableUpgradeList,
+	},
+	{
+		name: 'List Backup FTP Configs',
+		value: 'backupFtpList',
+		action: 'List backup FTP configurations',
+		execute: executeBackupFtpList,
+		description: descriptionBackupFtpList,
+	},
+	{
+		name: 'List Backup Restores',
+		value: 'backupRestoreList',
+		action: 'List attached backups available for restore',
+		execute: executeBackupRestoreList,
+		description: descriptionBackupRestoreList,
+	},
+	{
+		name: 'List Datacenters',
+		value: 'datacenterList',
+		action: 'Get available datacenters for a VPS',
+		execute: executeDatacenterList,
+		description: descriptionDatacenterList,
+	},
+	{
+		name: 'List Disks',
+		value: 'diskList',
+		action: 'List disks attached to a VPS',
+		execute: executeDiskList,
+		description: descriptionDiskList,
+	},
+	{
+		name: 'List Distributions',
+		value: 'distributionList',
+		action: 'List available distributions for a VPS',
+		execute: executeDistributionList,
+		description: descriptionDistributionList,
+	},
+	{
+		name: 'List Images',
+		value: 'imageList',
+		action: 'List available images for a VPS',
+		execute: executeImageList,
+		description: descriptionImageList,
+	},
+	{
+		name: 'List IPs',
+		value: 'ipList',
+		action: 'List IPs attached to a VPS',
+		execute: executeIpList,
+		description: descriptionIpList,
+	},
+	{
+		name: 'List Models',
+		value: 'modelList',
+		action: 'List available VPS models',
+		execute: executeModelList,
+		description: descriptionModelList,
+	},
+	{
+		name: 'List Options',
+		value: 'optionList',
+		action: 'List available options for a VPS',
+		execute: executeOptionList,
+		description: descriptionOptionList,
+	},
+	{
+		name: 'List Restore Points',
+		value: 'restorePointListGet',
+		action: 'List restore points for a backup',
+		execute: executeRestorePointListGet,
+		description: descriptionRestorePointListGet,
+	},
+	{
+		name: 'List Secondary DNS Domains',
+		value: 'secondaryDnsDomainListDomains',
+		action: 'List secondary DNS domains',
+		execute: executeSecondaryDnsDomainListDomains,
+		description: descriptionSecondaryDnsDomainListDomains,
+	},
+	{
+		name: 'List Secondary DNS Servers',
+		value: 'secondaryDnsServerList',
+		action: 'List secondary DNS servers',
+		execute: executeSecondaryDnsServerList,
+		description: descriptionSecondaryDnsServerList,
+	},
+	{
+		name: 'List Snapshots',
+		value: 'snapshotListSnapshotsForVps',
+		action: 'List snapshots for a VPS',
+		execute: executeSnapshotListSnapshotsForVps,
+		description: descriptionSnapshotListSnapshotsForVps,
+	},
+	{
+		name: 'List SSH Keys',
+		value: 'listSshKeys',
+		action: 'List SSH keys for a VPS',
+		execute: executeSshKeyListGet,
+		description: descriptionSshKeyListGet,
+	},
+	{
+		name: 'List VPS Services',
+		value: 'list',
+		action: 'List all VPS services',
+		execute: executeList,
+		description: descriptionList,
+	},
+	{
+		name: 'Power Off VPS',
+		value: 'powerStopDelete',
+		action: 'Request shutdown for the VPS',
+		execute: executePowerStopDelete,
+		description: descriptionPowerStopDelete,
+	},
+	{
+		name: 'Power On VPS',
+		value: 'powerStartPost',
+		action: 'Request power on for the VPS',
+		execute: executePowerStartPost,
+		description: descriptionPowerStartPost,
+	},
+	{
+		name: 'Reboot VPS',
+		value: 'powerRebootDelete',
+		action: 'Request hard reboot for the VPS',
+		execute: executePowerRebootDelete,
+		description: descriptionPowerRebootDelete,
+	},
+	{
+		name: 'Release IP Address',
+		value: 'releaseIpDelete',
+		action: 'Release an IP address from the VPS',
+		execute: executeIpReleaseDelete,
+		description: descriptionIpReleaseDelete,
+	},
+	{
+		name: 'Reschedule Automated Backup',
+		value: 'automatedBackupReschedulePost',
+		action: 'Reschedule an automated backup for a VPS',
+		execute: executeAutomatedBackupReschedulePost,
+		description: descriptionAutomatedBackupReschedulePost,
+	},
+	{
+		name: 'Restore Automated Backup',
+		value: 'automatedBackupRestore',
+		action: 'Restore the VPS from an automated backup (irreversible)',
+		execute: executeAutomatedBackupRestore,
+		description: descriptionAutomatedBackupRestore,
+	},
+	{
+		name: 'Revert Snapshot',
+		value: 'revertSnapshot',
+		action: 'Revert the VPS to a specific snapshot',
+		execute: executeSnapshotRevertPut,
+		description: descriptionSnapshotRevertPut,
+	},
+	{
+		name: 'Set Automated Backup Restore Plan',
+		value: 'automatedBackupSetPost',
+		action: 'Set a backup restore plan for a VPS',
+		execute: executeAutomatedBackupSetPost,
+		description: descriptionAutomatedBackupSetPost,
+	},
+	{
+		name: 'Update Disk',
+		value: 'updateDiskPut',
+		action: 'Update a specific VPS disk (resize or rename)',
+		execute: executeDiskUpdatePut,
+		description: descriptionDiskUpdatePut,
+	},
+	{
+		name: 'Update Distribution',
+		value: 'distributionUpdatePut',
+		action: 'Update the distribution of the VPS',
+		execute: executeDistributionUpdatePut,
+		description: descriptionDistributionUpdatePut,
+	},
+	{
+		name: 'Update VPS',
+		value: 'vpsUpdate',
+		action: 'Update VPS service properties (e.g. name)',
+		execute: executeVpsUpdate,
+		description: descriptionVpsUpdate,
+	},
+	],
+);
 
-	return properties;
-}
-
-export async function execute(
-	this: IExecuteFunctions,
-	itemIndex?: number,
-): Promise<INodeExecutionData[]> {
-	const operation = this.getNodeParameter('vpsOperation', itemIndex ?? 0, { extractValue: true });
-
-	switch (operation) {
-		case 'availableUpgradeList':
-			return executeAvailableUpgradeList.call(this, itemIndex ?? 0);
-		case 'automatedBackupList':
-			return executeAutomatedBackupList.call(this, itemIndex ?? 0);
-		case 'backupFtpList':
-			return executeBackupFtpList.call(this, itemIndex ?? 0);
-		case 'datacenterList':
-			return executeDatacenterList.call(this, itemIndex ?? 0);
-		case 'diskList':
-			return executeDiskList.call(this, itemIndex ?? 0);
-		case 'powerRebootDelete':
-			return executePowerRebootDelete.call(this, itemIndex ?? 0);
-		case 'powerStartPost':
-			return executePowerStartPost.call(this, itemIndex ?? 0);
-		case 'powerStopDelete':
-			return executePowerStopDelete.call(this, itemIndex ?? 0);
-		case 'distributionGet':
-			return executeDistributionGet.call(this, itemIndex ?? 0);
-		case 'distributionList':
-			return executeDistributionList.call(this, itemIndex ?? 0);
-		case 'get':
-			return executeGet.call(this, itemIndex ?? 0);
-		case 'imageGet':
-			return executeImageGet.call(this, itemIndex ?? 0);
-		case 'imageList':
-			return executeImageList.call(this, itemIndex ?? 0);
-		case 'ipGeolocationGet':
-			return executeIpGeolocationGet.call(this, itemIndex ?? 0);
-		case 'ipGet':
-			return executeIpGet.call(this, itemIndex ?? 0);
-		case 'ipList':
-			return executeIpList.call(this, itemIndex ?? 0);
-		case 'netbootConfigGet':
-			return executeNetbootConfigGet.call(this, itemIndex ?? 0);
-		case 'list':
-			return executeList.call(this, itemIndex ?? 0);
-		case 'listSshKeys':
-			return executeSshKeyListGet.call(this, itemIndex ?? 0);
-		case 'migrationMigrationIdGet':
-			return executeMigrationMigrationIdGet.call(this, itemIndex ?? 0);
-		case 'migrationMigrationIdStepGet':
-			return executeMigrationMigrationIdStepGet.call(this, itemIndex ?? 0);
-		case 'modelList':
-			return executeModelList.call(this, itemIndex ?? 0);
-		case 'netbootOrderGet':
-			return executeNetbootOrderGet.call(this, itemIndex ?? 0);
-		case 'netbootTemplateDetailsGet':
-			return executeNetbootTemplateDetailsGet.call(this, itemIndex ?? 0);
-		case 'optionDetailGet':
-			return executeOptionDetailGet.call(this, itemIndex ?? 0);
-		case 'optionList':
-			return executeOptionList.call(this, itemIndex ?? 0);
-		case 'powerOffGet':
-			return executePowerOffGet.call(this, itemIndex ?? 0);
-		case 'rebootHardGet':
-			return executeRebootHardGet.call(this, itemIndex ?? 0);
-		case 'secondaryDnsDomainListDomains':
-			return executeSecondaryDnsDomainListDomains.call(this, itemIndex ?? 0);
-		case 'secondaryDnsServerList':
-			return executeSecondaryDnsServerList.call(this, itemIndex ?? 0);
-		case 'serviceInformationGet':
-			return executeServiceInformationGet.call(this, itemIndex ?? 0);
-		case 'snapshotListSnapshotsForVps':
-			return executeSnapshotListSnapshotsForVps.call(this, itemIndex ?? 0);
-		case 'statusTaskIdGet':
-			return executeStatusTaskIdGet.call(this, itemIndex ?? 0);
-		case 'templateGet':
-			return executeTemplateGet.call(this, itemIndex ?? 0);
-		case 'abortSnapshot':
-			return executeAbortSnapshotPost.call(this, itemIndex ?? 0);
-		case 'attachSecondaryDns':
-			return executeSecondaryDnsAttachPut.call(this, itemIndex ?? 0);
-		case 'automatedBackupReschedulePost':
-			return executeAutomatedBackupReschedulePost.call(this, itemIndex ?? 0);
-		case 'automatedBackupSetPost':
-			return executeAutomatedBackupSetPost.call(this, itemIndex ?? 0);
-		case 'datacenterAvailabilityRawGet':
-			return executeDatacenterAvailabilityRawGet.call(this, itemIndex ?? 0);
-		case 'createDiskPost':
-			return executeDiskCreatePost.call(this, itemIndex ?? 0);
-		case 'diskDetailGet':
-			return executeDiskDetailGet.call(this, itemIndex ?? 0);
-		case 'diskMonitoringStatsGet':
-			return executeDiskMonitoringStatsGet.call(this, itemIndex ?? 0);
-		case 'updateDiskPut':
-			return executeDiskUpdatePut.call(this, itemIndex ?? 0);
-		case 'distributionUpdatePut':
-			return executeDistributionUpdatePut.call(this, itemIndex ?? 0);
-		case 'getSnapshotImage':
-			return executeGetSnapshotImage.call(this, itemIndex ?? 0);
-		case 'ipCountryAvailableGet':
-			return executeIpCountryAvailableGet.call(this, itemIndex ?? 0);
-		case 'releaseIpDelete':
-			return executeIpReleaseDelete.call(this, itemIndex ?? 0);
-		case 'netbootCreatePost':
-			return executeNetbootCreatePost.call(this, itemIndex ?? 0);
-		case 'restorePointListGet':
-			return executeRestorePointListGet.call(this, itemIndex ?? 0);
-		case 'serviceSecretGet':
-			return executeServiceSecretGet.call(this, itemIndex ?? 0);
-		case 'snapshotCreatePost':
-			return executeSnapshotCreatePost.call(this, itemIndex ?? 0);
-		case 'revertSnapshot':
-			return executeSnapshotRevertPut.call(this, itemIndex ?? 0);
-		case 'templateApplyPost':
-			return executeTemplateApplyPost.call(this, itemIndex ?? 0);
-		case 'automatedBackupRestore':
-			return executeAutomatedBackupRestore.call(this, itemIndex ?? 0);
-		case 'backupFtpAccessPost':
-			return executeBackupFtpAccessPost.call(this, itemIndex ?? 0);
-		case 'backupRestoreList':
-			return executeBackupRestoreList.call(this, itemIndex ?? 0);
-		case 'changeContact':
-			return executeChangeContact.call(this, itemIndex ?? 0);
-		case 'confirmTermination':
-			return executeConfirmTermination.call(this, itemIndex ?? 0);
-		case 'ipAdd':
-			return executeIpAdd.call(this, itemIndex ?? 0);
-		case 'vpsUpdate':
-			return executeVpsUpdate.call(this, itemIndex ?? 0);
-	}
-
-	throw new Error(`Unsupported operation "${operation}" for resource "vps"`);
-}
+export { description, execute };

@@ -1,77 +1,65 @@
-import type { IExecuteFunctions, INodeExecutionData, INodeProperties } from 'n8n-workflow';
+import { createOperationDispatcher } from '../../shared/nodes/createNodeDispatcher';
 
-// Auth operations
-import * as credentialPost from './resources/credentialPost.operation';
-import * as currentCredentialGet from './resources/currentCredentialGet.operation';
-import * as detailsGet from './resources/detailsGet.operation';
-import * as logoutPost from './resources/logoutPost.operation';
-import * as timeGet from './resources/timeGet.operation';
-import * as tokenPost from './resources/tokenPost.operation';
+import { execute as executeCredentialPost } from './resources/credentialPost.operation';
+import { execute as executeCurrentCredentialGet } from './resources/currentCredentialGet.operation';
+import { execute as executeDetailsGet } from './resources/detailsGet.operation';
+import { execute as executeLogoutPost } from './resources/logoutPost.operation';
+import { execute as executeTimeGet } from './resources/timeGet.operation';
+import { execute as executeTokenPost } from './resources/tokenPost.operation';
 
-export function description() {
-	const props: INodeProperties[] = [];
+// Les opérations Auth n'exposent historiquement aucune sous-propriété dans
+// l'UI : on conserve ce comportement exact (description vide).
+const noProps = (): never[] => [];
 
-	// Operation picker (alphabetical by name)
-	props.push({
-		displayName: 'Operation',
-		name: 'authOperation',
-		type: 'options',
-		noDataExpression: true,
-		default: undefined,
-		options: [
-			{
-				name: 'Get Authentication Details',
-				value: 'detailsGet',
-				action: 'Get details on the current authentication (identity and permissions)',
-			},
-			{
-				name: 'Get Current Credential',
-				value: 'currentCredentialGet',
-				action: 'Get details of the current credential',
-			},
-			{
-				name: 'Get Server Time',
-				value: 'timeGet',
-				action: 'Get the current OVH server time as UNIX timestamp',
-			},
-			{
-				name: 'Logout',
-				value: 'logoutPost',
-				action: 'Expire the current credential (disconnect)',
-			},
-			{
-				name: 'Request Credential',
-				value: 'credentialPost',
-				action: 'Request a new credential for your application',
-			},
-			{
-				name: 'Request Token',
-				value: 'tokenPost',
-				action: 'Generate a unique one-time token (chatbot auth)',
-			},
-		],
-	});
+// Auth conserve volontairement l'absence de défaut du dropdown d'origine.
+const { description, execute } = createOperationDispatcher(
+	'authOperation',
+	'auth',
+	[
+		{
+			name: 'Get Authentication Details',
+			value: 'detailsGet',
+			action: 'Get details on the current authentication (identity and permissions)',
+			execute: executeDetailsGet,
+			description: noProps,
+		},
+		{
+			name: 'Get Current Credential',
+			value: 'currentCredentialGet',
+			action: 'Get details of the current credential',
+			execute: executeCurrentCredentialGet,
+			description: noProps,
+		},
+		{
+			name: 'Get Server Time',
+			value: 'timeGet',
+			action: 'Get the current OVH server time as UNIX timestamp',
+			execute: executeTimeGet,
+			description: noProps,
+		},
+		{
+			name: 'Logout',
+			value: 'logoutPost',
+			action: 'Expire the current credential (disconnect)',
+			execute: executeLogoutPost,
+			description: noProps,
+		},
+		{
+			name: 'Request Credential',
+			value: 'credentialPost',
+			action: 'Request a new credential for your application',
+			execute: executeCredentialPost,
+			description: noProps,
+		},
+		{
+			name: 'Request Token',
+			value: 'tokenPost',
+			action: 'Generate a unique one-time token (chatbot auth)',
+			execute: executeTokenPost,
+			description: noProps,
+		},
+	],
+	{ noDefault: true },
+);
 
-	return props;
-}
-
-export async function execute(this: IExecuteFunctions, itemIndex?: number): Promise<INodeExecutionData[]> {
-	const operation = this.getNodeParameter('authOperation', 0) as string;
-
-	switch (operation) {
-		case 'credentialPost':
-			return credentialPost.execute.call(this, itemIndex ?? 0);
-		case 'currentCredentialGet':
-			return currentCredentialGet.execute.call(this, itemIndex ?? 0);
-		case 'detailsGet':
-			return detailsGet.execute.call(this, itemIndex ?? 0);
-		case 'logoutPost':
-			return logoutPost.execute.call(this, itemIndex ?? 0);
-		case 'timeGet':
-			return timeGet.execute.call(this, itemIndex ?? 0);
-		case 'tokenPost':
-			return tokenPost.execute.call(this, itemIndex ?? 0);
-		default:
-			throw new Error(`No handler for operation '${operation}'`);
-	}
-}
+export { description, execute };
