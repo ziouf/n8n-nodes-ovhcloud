@@ -1,3 +1,4 @@
+import { SERVICE_NAME } from './serviceName';
 import type {
 	IExecuteFunctions,
 	IDataObject,
@@ -5,17 +6,11 @@ import type {
 	INodeExecutionData,
 } from 'n8n-workflow';
 import { getClient } from '../../shared/transport/ApiClient';
-import { serviceNameLocator } from '../../shared/nodes/locators';
 
 export function description(displayOptions: IDisplayOptions) {
 	return [
 		{
-			...serviceNameLocator({
-				searchListMethod: 'getVpsServices',
-				displayName: 'VPS Service Name',
-				description: 'The VPS service name (e.g. vps1234567.ovh.net)',
-				placeholder: 'vps1234567.ovh.net',
-			}),
+			...SERVICE_NAME,
 			displayOptions,
 		},
 	];

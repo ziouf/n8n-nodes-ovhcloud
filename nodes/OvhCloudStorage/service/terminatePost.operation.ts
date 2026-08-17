@@ -1,3 +1,4 @@
+import { SERVICE_NAME } from '../serviceName';
 import type {
 	IDataObject,
 	IDisplayOptions,
@@ -6,7 +7,6 @@ import type {
 	INodeProperties,
 } from 'n8n-workflow';
 import { getClient } from '../../../shared/transport/ApiClient';
-import { serviceNameLocator } from '../../../shared/nodes/locators';
 import { destructiveActionNotice } from '../../../shared/nodes/notices';
 
 export function description(displayOptions: IDisplayOptions): INodeProperties[] {
@@ -16,12 +16,7 @@ export function description(displayOptions: IDisplayOptions): INodeProperties[] 
 			displayOptions,
 		),
 		{
-			...serviceNameLocator({
-				searchListMethod: 'getNetAppServices',
-				displayName: 'NetApp Service Name',
-				description: 'The NetApp service name (uuid), e.g. aaaa-bbbb-cccc-dddd',
-				placeholder: 'xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx',
-			}),
+			...SERVICE_NAME,
 			displayOptions,
 		},
 	];

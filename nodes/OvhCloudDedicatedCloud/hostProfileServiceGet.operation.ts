@@ -1,3 +1,4 @@
+import { SERVICE_NAME_2 } from './serviceName';
 import type {
 	IDataObject,
 	IDisplayOptions,
@@ -6,17 +7,11 @@ import type {
 	INodeProperties,
 } from 'n8n-workflow';
 import { getClient } from '../../shared/transport/ApiClient';
-import { serviceNameLocator } from '../../shared/nodes/locators';
 
 export function description(displayOptions: IDisplayOptions): INodeProperties[] {
 	return [
 		{
-			...serviceNameLocator({
-				searchListMethod: 'getDedicatedCloudServices',
-				displayName: 'Service Name',
-				description: 'The name/ID of the VMware on OVHcloud infrastructure',
-				placeholder: '12345678-1234-1234-1234-1234567890ab',
-			}),
+			...SERVICE_NAME_2,
 			displayOptions,
 		},
 		{
