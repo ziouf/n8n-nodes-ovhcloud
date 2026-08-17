@@ -1,3 +1,4 @@
+import { projectIdLocator } from '../../../../shared/nodes/locators';
 import type {
 	IExecuteFunctions,
 	IDisplayOptions,
@@ -9,13 +10,7 @@ import { getClient } from '../../../../shared/transport/ApiClient';
 export function description(displayOptions: IDisplayOptions): INodeProperties[] {
 	return [
 		{
-			displayName: 'Public Cloud Project',
-			name: 'publicCloudProjectId',
-			type: 'resourceLocator',
-			default: '',
-			required: true,
-			description: 'The Public Cloud project ID',
-			typeOptions: { searchListMethod: 'getPublicCloudProjects' },
+			...projectIdLocator(),
 			displayOptions,
 		},
 	];

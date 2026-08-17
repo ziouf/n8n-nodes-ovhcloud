@@ -1,3 +1,4 @@
+import { projectIdLocator } from '../../../../shared/nodes/locators';
 import type {
 	IDataObject,
 	IExecuteFunctions,
@@ -12,13 +13,7 @@ export function description(displayOptions: IDisplayOptions): INodeProperties[] 
 	return [
 		destructiveActionNotice('This will reset the kafka Mirror Maker. This action is irreversible.', displayOptions),
 		{
-			displayName: 'Public Cloud Project',
-			name: 'publicCloudProjectId',
-			type: 'resourceLocator',
-			default: '',
-			required: true,
-			description: 'The Public Cloud project ID',
-			typeOptions: { searchListMethod: 'getPublicCloudProjects' },
+			...projectIdLocator(),
 			displayOptions,
 		},
 		{
