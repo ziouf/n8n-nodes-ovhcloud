@@ -1,75 +1,34 @@
-import type {
-	IDisplayOptions,
-	IExecuteFunctions,
-	INodeExecutionData,
-	INodeProperties,
-} from 'n8n-workflow';
+import { createOperationDispatcher } from '../../shared/nodes/createNodeDispatcher';
 
 import {
-	execute as executeCommercialCatalogoffersListGet,
 	description as descriptionCommercialCatalogoffersListGet,
+	execute as executeCommercialCatalogoffersListGet,
 } from './commercialCatalogoffersListGet.operation';
 import {
-	execute as executeCommercialCatalogoffersListGet2,
 	description as descriptionCommercialCatalogoffersListGet2,
+	execute as executeCommercialCatalogoffersListGet2,
 } from './commercialCatalogoffersListGet2.operation';
 
-export function description(displayOptions: IDisplayOptions): INodeProperties[] {
-	const operationProperties: INodeProperties[] = [
-		{
-			displayName: 'Operation',
-			name: 'commercialCatalogOperation',
-			type: 'options',
-			noDataExpression: true,
-			options: [
-			{
-				name: 'List All Offers',
-				value: 'commercialCatalogoffersListGet',
-				action: 'List all offers',
-			},
-			{
-				name: 'Get Details of an Offer',
-				value: 'commercialCatalogoffersListGet2',
-				action: 'Get details of an offer',
-			},
+const { description, execute } = createOperationDispatcher(
+	'commercialCatalogOperation',
+	'ovhCloudCommercialCatalog',
+	[
+	{
+		name: 'List All Offers',
+		value: 'commercialCatalogoffersListGet',
+		action: 'List all offers',
+		execute: executeCommercialCatalogoffersListGet,
+		description: descriptionCommercialCatalogoffersListGet,
+		default: true,
+	},
+	{
+		name: 'Get Details of an Offer',
+		value: 'commercialCatalogoffersListGet2',
+		action: 'Get details of an offer',
+		execute: executeCommercialCatalogoffersListGet2,
+		description: descriptionCommercialCatalogoffersListGet2,
+	},
+	],
+);
 
-			],
-			default: 'commercialCatalogoffersListGet',
-			displayOptions,
-		},
-	];
-
-	const properties: INodeProperties[] = [
-		...operationProperties,
-		...(descriptionCommercialCatalogoffersListGet({
-			...displayOptions,
-			show: { commercialCatalogOperation: ['commercialCatalogoffersListGet'] },
-		}) as INodeProperties[]),
-		...(descriptionCommercialCatalogoffersListGet2({
-			...displayOptions,
-			show: { commercialCatalogOperation: ['commercialCatalogoffersListGet2'] },
-		}) as INodeProperties[]),
-
-	];
-
-	return properties;
-}
-
-export async function execute(
-	this: IExecuteFunctions,
-	itemIndex?: number,
-): Promise<INodeExecutionData[]> {
-	const operation = this.getNodeParameter('commercialCatalogOperation', itemIndex ?? 0, {
-		extractValue: true,
-	});
-
-	switch (operation) {
-		case 'commercialCatalogoffersListGet':
-			return executeCommercialCatalogoffersListGet.call(this, itemIndex ?? 0);
-		case 'commercialCatalogoffersListGet2':
-			return executeCommercialCatalogoffersListGet2.call(this, itemIndex ?? 0);
-
-	}
-
-	throw new Error(`Unsupported operation "${operation}" for resource "ovhCloudCommercialCatalog"`);
-}
+export { description, execute };

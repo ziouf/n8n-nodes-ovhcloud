@@ -1,509 +1,353 @@
-import type {
-	IDisplayOptions,
-	IExecuteFunctions,
-	INodeExecutionData,
-	INodeProperties,
-} from 'n8n-workflow';
+import { createOperationDispatcher } from '../../shared/nodes/createNodeDispatcher';
 
 import {
-	execute as executeIamauthorizationcheckCreatePost,
 	description as descriptionIamauthorizationcheckCreatePost,
+	execute as executeIamauthorizationcheckCreatePost,
 } from './iamauthorizationcheckCreatePost.operation';
 import {
-	execute as executeIamlogkindListGet,
 	description as descriptionIamlogkindListGet,
+	execute as executeIamlogkindListGet,
 } from './iamlogkindListGet.operation';
 import {
-	execute as executeIamlogkindListGet2,
 	description as descriptionIamlogkindListGet2,
+	execute as executeIamlogkindListGet2,
 } from './iamlogkindListGet2.operation';
 import {
-	execute as executeIamlogsubscriptionListGet,
-	description as descriptionIamlogsubscriptionListGet,
-} from './iamlogsubscriptionListGet.operation';
-import {
-	execute as executeIamlogsubscriptionCreatePost,
 	description as descriptionIamlogsubscriptionCreatePost,
+	execute as executeIamlogsubscriptionCreatePost,
 } from './iamlogsubscriptionCreatePost.operation';
 import {
-	execute as executeIamlogsubscriptionDeleteDelete,
 	description as descriptionIamlogsubscriptionDeleteDelete,
+	execute as executeIamlogsubscriptionDeleteDelete,
 } from './iamlogsubscriptionDeleteDelete.operation';
 import {
-	execute as executeIamlogsubscriptionListGet2,
+	description as descriptionIamlogsubscriptionListGet,
+	execute as executeIamlogsubscriptionListGet,
+} from './iamlogsubscriptionListGet.operation';
+import {
 	description as descriptionIamlogsubscriptionListGet2,
+	execute as executeIamlogsubscriptionListGet2,
 } from './iamlogsubscriptionListGet2.operation';
 import {
-	execute as executeIamlogurlCreatePost,
 	description as descriptionIamlogurlCreatePost,
+	execute as executeIamlogurlCreatePost,
 } from './iamlogurlCreatePost.operation';
 import {
-	execute as executeIampermissionsGroupListGet,
-	description as descriptionIampermissionsGroupListGet,
-} from './iampermissionsGroupListGet.operation';
-import {
-	execute as executeIampermissionsGroupCreatePost,
 	description as descriptionIampermissionsGroupCreatePost,
+	execute as executeIampermissionsGroupCreatePost,
 } from './iampermissionsGroupCreatePost.operation';
 import {
-	execute as executeIampermissionsGroupDeleteDelete,
 	description as descriptionIampermissionsGroupDeleteDelete,
+	execute as executeIampermissionsGroupDeleteDelete,
 } from './iampermissionsGroupDeleteDelete.operation';
 import {
-	execute as executeIampermissionsGroupListGet2,
+	description as descriptionIampermissionsGroupListGet,
+	execute as executeIampermissionsGroupListGet,
+} from './iampermissionsGroupListGet.operation';
+import {
 	description as descriptionIampermissionsGroupListGet2,
+	execute as executeIampermissionsGroupListGet2,
 } from './iampermissionsGroupListGet2.operation';
 import {
-	execute as executeIampermissionsGroupUpdatePut,
 	description as descriptionIampermissionsGroupUpdatePut,
+	execute as executeIampermissionsGroupUpdatePut,
 } from './iampermissionsGroupUpdatePut.operation';
 import {
-	execute as executeIampolicyListGet,
-	description as descriptionIampolicyListGet,
-} from './iampolicyListGet.operation';
-import {
-	execute as executeIampolicyCreatePost,
 	description as descriptionIampolicyCreatePost,
+	execute as executeIampolicyCreatePost,
 } from './iampolicyCreatePost.operation';
 import {
-	execute as executeIampolicyDeleteDelete,
 	description as descriptionIampolicyDeleteDelete,
+	execute as executeIampolicyDeleteDelete,
 } from './iampolicyDeleteDelete.operation';
 import {
-	execute as executeIampolicyListGet2,
+	description as descriptionIampolicyListGet,
+	execute as executeIampolicyListGet,
+} from './iampolicyListGet.operation';
+import {
 	description as descriptionIampolicyListGet2,
+	execute as executeIampolicyListGet2,
 } from './iampolicyListGet2.operation';
 import {
-	execute as executeIampolicyUpdatePut,
 	description as descriptionIampolicyUpdatePut,
+	execute as executeIampolicyUpdatePut,
 } from './iampolicyUpdatePut.operation';
 import {
-	execute as executeIamreferenceactionListGet,
 	description as descriptionIamreferenceactionListGet,
+	execute as executeIamreferenceactionListGet,
 } from './iamreferenceactionListGet.operation';
 import {
-	execute as executeIamreferenceresourcetypeListGet,
 	description as descriptionIamreferenceresourcetypeListGet,
+	execute as executeIamreferenceresourcetypeListGet,
 } from './iamreferenceresourcetypeListGet.operation';
 import {
-	execute as executeIamresourceListGet,
-	description as descriptionIamresourceListGet,
-} from './iamresourceListGet.operation';
-import {
-	execute as executeIamresourceListGet2,
-	description as descriptionIamresourceListGet2,
-} from './iamresourceListGet2.operation';
-import {
-	execute as executeIamresourceUpdatePut,
-	description as descriptionIamresourceUpdatePut,
-} from './iamresourceUpdatePut.operation';
-import {
-	execute as executeIamresourceauthorizationcheckCreatePost,
-	description as descriptionIamresourceauthorizationcheckCreatePost,
-} from './iamresourceauthorizationcheckCreatePost.operation';
-import {
-	execute as executeIamresourcetagDeleteDelete,
-	description as descriptionIamresourcetagDeleteDelete,
-} from './iamresourcetagDeleteDelete.operation';
-import {
-	execute as executeIamresourcetagCreatePost,
-	description as descriptionIamresourcetagCreatePost,
-} from './iamresourcetagCreatePost.operation';
-import {
-	execute as executeIamresourceGroupListGet,
-	description as descriptionIamresourceGroupListGet,
-} from './iamresourceGroupListGet.operation';
-import {
-	execute as executeIamresourceGroupCreatePost,
 	description as descriptionIamresourceGroupCreatePost,
+	execute as executeIamresourceGroupCreatePost,
 } from './iamresourceGroupCreatePost.operation';
 import {
-	execute as executeIamresourceGroupDeleteDelete,
 	description as descriptionIamresourceGroupDeleteDelete,
+	execute as executeIamresourceGroupDeleteDelete,
 } from './iamresourceGroupDeleteDelete.operation';
 import {
-	execute as executeIamresourceGroupListGet2,
+	description as descriptionIamresourceGroupListGet,
+	execute as executeIamresourceGroupListGet,
+} from './iamresourceGroupListGet.operation';
+import {
 	description as descriptionIamresourceGroupListGet2,
+	execute as executeIamresourceGroupListGet2,
 } from './iamresourceGroupListGet2.operation';
 import {
-	execute as executeIamresourceGroupUpdatePut,
 	description as descriptionIamresourceGroupUpdatePut,
+	execute as executeIamresourceGroupUpdatePut,
 } from './iamresourceGroupUpdatePut.operation';
+import {
+	description as descriptionIamresourceListGet,
+	execute as executeIamresourceListGet,
+} from './iamresourceListGet.operation';
+import {
+	description as descriptionIamresourceListGet2,
+	execute as executeIamresourceListGet2,
+} from './iamresourceListGet2.operation';
+import {
+	description as descriptionIamresourceUpdatePut,
+	execute as executeIamresourceUpdatePut,
+} from './iamresourceUpdatePut.operation';
+import {
+	description as descriptionIamresourceauthorizationcheckCreatePost,
+	execute as executeIamresourceauthorizationcheckCreatePost,
+} from './iamresourceauthorizationcheckCreatePost.operation';
+import {
+	description as descriptionIamresourcetagCreatePost,
+	execute as executeIamresourcetagCreatePost,
+} from './iamresourcetagCreatePost.operation';
+import {
+	description as descriptionIamresourcetagDeleteDelete,
+	execute as executeIamresourcetagDeleteDelete,
+} from './iamresourcetagDeleteDelete.operation';
 
-export function description(displayOptions: IDisplayOptions): INodeProperties[] {
-	const operationProperties: INodeProperties[] = [
-		{
-			displayName: 'Operation',
-			name: 'iamOperation',
-			type: 'options',
-			noDataExpression: true,
-			options: [
-			{
-				name: 'Add a Tag to a Resource',
-				value: 'iamresourcetagCreatePost',
-				action: 'Add a tag to a resource',
-			},
-			{
-				name: 'Create a New Policy',
-				value: 'iampolicyCreatePost',
-				action: 'Create a new policy',
-			},
-			{
-				name: 'Create a New Resource Group',
-				value: 'iamresourceGroupCreatePost',
-				action: 'Create a new resource group',
-			},
-			{
-				name: 'Create a Permissions Group',
-				value: 'iampermissionsGroupCreatePost',
-				action: 'Create a permissions group',
-			},
-			{
-				name: 'Create a Subscription From Logs to a Pre-Existing LDP Stream',
-				value: 'iamlogsubscriptionCreatePost',
-				action: 'Create a subscription from logs to a pre-existing LDP stream',
-			},
-			{
-				name: 'Delete a Subscription',
-				value: 'iamlogsubscriptionDeleteDelete',
-				action: 'Delete a subscription',
-			},
-			{
-				name: 'Delete the Given Permissions Group',
-				value: 'iampermissionsGroupDeleteDelete',
-				action: 'Delete the given permissions group',
-			},
-			{
-				name: 'Delete the Given Policy',
-				value: 'iampolicyDeleteDelete',
-				action: 'Delete the given policy',
-			},
-			{
-				name: 'Delete the Given Resource Group',
-				value: 'iamresourceGroupDeleteDelete',
-				action: 'Delete the given resource group',
-			},
-			{
-				name: 'Generate a Temporary URL to Retrieve Logs',
-				value: 'iamlogurlCreatePost',
-				action: 'Generate a temporary URL to retrieve logs',
-			},
-			{
-				name: 'Get a Log Kind',
-				value: 'iamlogkindListGet2',
-				action: 'Get a log kind',
-			},
-			{
-				name: 'Get Subscription Details',
-				value: 'iamlogsubscriptionListGet2',
-				action: 'Get subscription details',
-			},
-			{
-				name: 'List All Resources',
-				value: 'iamresourceListGet',
-				action: 'List all resources',
-			},
-			{
-				name: 'List Available Log Kinds',
-				value: 'iamlogkindListGet',
-				action: 'List available log kinds',
-			},
-			{
-				name: 'List Subscription IDs for a Cluster',
-				value: 'iamlogsubscriptionListGet',
-				action: 'List subscription IDs for a cluster',
-			},
-			{
-				name: 'Remove a Tag From a Resource',
-				value: 'iamresourcetagDeleteDelete',
-				action: 'Remove a tag from a resource',
-			},
-			{
-				name: 'Retrieve a Resource',
-				value: 'iamresourceListGet2',
-				action: 'Retrieve a resource',
-			},
-			{
-				name: 'Retrieve All Actions',
-				value: 'iamreferenceactionListGet',
-				action: 'Retrieve all actions',
-			},
-			{
-				name: 'Retrieve All Permissions Groups',
-				value: 'iampermissionsGroupListGet',
-				action: 'Retrieve all permissions groups',
-			},
-			{
-				name: 'Retrieve All Policies',
-				value: 'iampolicyListGet',
-				action: 'Retrieve all policies',
-			},
-			{
-				name: 'Retrieve All Resource Groups',
-				value: 'iamresourceGroupListGet',
-				action: 'Retrieve all resource groups',
-			},
-			{
-				name: 'Retrieve All Resource Types',
-				value: 'iamreferenceresourcetypeListGet',
-				action: 'Retrieve all resource types',
-			},
-			{
-				name: 'Retrieve the Given Permissions Group',
-				value: 'iampermissionsGroupListGet2',
-				action: 'Retrieve the given permissions group',
-			},
-			{
-				name: 'Retrieve the Given Policy',
-				value: 'iampolicyListGet2',
-				action: 'Retrieve the given policy',
-			},
-			{
-				name: 'Retrieve the Given Resource Group',
-				value: 'iamresourceGroupListGet2',
-				action: 'Retrieve the given resource group',
-			},
-			{
-				name: 'Update a Permissions Group',
-				value: 'iampermissionsGroupUpdatePut',
-				action: 'Update a permissions group',
-			},
-			{
-				name: 'Update an Existing Policy',
-				value: 'iampolicyUpdatePut',
-				action: 'Update an existing policy',
-			},
-			{
-				name: 'Update an Existing Resource',
-				value: 'iamresourceUpdatePut',
-				action: 'Update an existing resource',
-			},
-			{
-				name: 'Update an Existing Resource Group',
-				value: 'iamresourceGroupUpdatePut',
-				action: 'Update an existing resource group',
-			},
-			{
-				name: 'Validate Authorizations on a Given Resource',
-				value: 'iamresourceauthorizationcheckCreatePost',
-				action: 'Validate authorizations on a given resource',
-			},
-			{
-				name: 'Validate Your Authorizations on Given Resources',
-				value: 'iamauthorizationcheckCreatePost',
-				action: 'Validate your authorizations on given resources',
-			},
-			],
-			default: 'iamauthorizationcheckCreatePost',
-			displayOptions,
-		},
-	];
+const { description, execute } = createOperationDispatcher(
+	'iamOperation',
+	'ovhCloudIam',
+	[
+	{
+		name: 'Add a Tag to a Resource',
+		value: 'iamresourcetagCreatePost',
+		action: 'Add a tag to a resource',
+		execute: executeIamresourcetagCreatePost,
+		description: descriptionIamresourcetagCreatePost,
+	},
+	{
+		name: 'Create a New Policy',
+		value: 'iampolicyCreatePost',
+		action: 'Create a new policy',
+		execute: executeIampolicyCreatePost,
+		description: descriptionIampolicyCreatePost,
+	},
+	{
+		name: 'Create a New Resource Group',
+		value: 'iamresourceGroupCreatePost',
+		action: 'Create a new resource group',
+		execute: executeIamresourceGroupCreatePost,
+		description: descriptionIamresourceGroupCreatePost,
+	},
+	{
+		name: 'Create a Permissions Group',
+		value: 'iampermissionsGroupCreatePost',
+		action: 'Create a permissions group',
+		execute: executeIampermissionsGroupCreatePost,
+		description: descriptionIampermissionsGroupCreatePost,
+	},
+	{
+		name: 'Create a Subscription From Logs to a Pre-Existing LDP Stream',
+		value: 'iamlogsubscriptionCreatePost',
+		action: 'Create a subscription from logs to a pre-existing LDP stream',
+		execute: executeIamlogsubscriptionCreatePost,
+		description: descriptionIamlogsubscriptionCreatePost,
+	},
+	{
+		name: 'Delete a Subscription',
+		value: 'iamlogsubscriptionDeleteDelete',
+		action: 'Delete a subscription',
+		execute: executeIamlogsubscriptionDeleteDelete,
+		description: descriptionIamlogsubscriptionDeleteDelete,
+	},
+	{
+		name: 'Delete the Given Permissions Group',
+		value: 'iampermissionsGroupDeleteDelete',
+		action: 'Delete the given permissions group',
+		execute: executeIampermissionsGroupDeleteDelete,
+		description: descriptionIampermissionsGroupDeleteDelete,
+	},
+	{
+		name: 'Delete the Given Policy',
+		value: 'iampolicyDeleteDelete',
+		action: 'Delete the given policy',
+		execute: executeIampolicyDeleteDelete,
+		description: descriptionIampolicyDeleteDelete,
+	},
+	{
+		name: 'Delete the Given Resource Group',
+		value: 'iamresourceGroupDeleteDelete',
+		action: 'Delete the given resource group',
+		execute: executeIamresourceGroupDeleteDelete,
+		description: descriptionIamresourceGroupDeleteDelete,
+	},
+	{
+		name: 'Generate a Temporary URL to Retrieve Logs',
+		value: 'iamlogurlCreatePost',
+		action: 'Generate a temporary URL to retrieve logs',
+		execute: executeIamlogurlCreatePost,
+		description: descriptionIamlogurlCreatePost,
+	},
+	{
+		name: 'Get a Log Kind',
+		value: 'iamlogkindListGet2',
+		action: 'Get a log kind',
+		execute: executeIamlogkindListGet2,
+		description: descriptionIamlogkindListGet2,
+	},
+	{
+		name: 'Get Subscription Details',
+		value: 'iamlogsubscriptionListGet2',
+		action: 'Get subscription details',
+		execute: executeIamlogsubscriptionListGet2,
+		description: descriptionIamlogsubscriptionListGet2,
+	},
+	{
+		name: 'List All Resources',
+		value: 'iamresourceListGet',
+		action: 'List all resources',
+		execute: executeIamresourceListGet,
+		description: descriptionIamresourceListGet,
+	},
+	{
+		name: 'List Available Log Kinds',
+		value: 'iamlogkindListGet',
+		action: 'List available log kinds',
+		execute: executeIamlogkindListGet,
+		description: descriptionIamlogkindListGet,
+	},
+	{
+		name: 'List Subscription IDs for a Cluster',
+		value: 'iamlogsubscriptionListGet',
+		action: 'List subscription IDs for a cluster',
+		execute: executeIamlogsubscriptionListGet,
+		description: descriptionIamlogsubscriptionListGet,
+	},
+	{
+		name: 'Remove a Tag From a Resource',
+		value: 'iamresourcetagDeleteDelete',
+		action: 'Remove a tag from a resource',
+		execute: executeIamresourcetagDeleteDelete,
+		description: descriptionIamresourcetagDeleteDelete,
+	},
+	{
+		name: 'Retrieve a Resource',
+		value: 'iamresourceListGet2',
+		action: 'Retrieve a resource',
+		execute: executeIamresourceListGet2,
+		description: descriptionIamresourceListGet2,
+	},
+	{
+		name: 'Retrieve All Actions',
+		value: 'iamreferenceactionListGet',
+		action: 'Retrieve all actions',
+		execute: executeIamreferenceactionListGet,
+		description: descriptionIamreferenceactionListGet,
+	},
+	{
+		name: 'Retrieve All Permissions Groups',
+		value: 'iampermissionsGroupListGet',
+		action: 'Retrieve all permissions groups',
+		execute: executeIampermissionsGroupListGet,
+		description: descriptionIampermissionsGroupListGet,
+	},
+	{
+		name: 'Retrieve All Policies',
+		value: 'iampolicyListGet',
+		action: 'Retrieve all policies',
+		execute: executeIampolicyListGet,
+		description: descriptionIampolicyListGet,
+	},
+	{
+		name: 'Retrieve All Resource Groups',
+		value: 'iamresourceGroupListGet',
+		action: 'Retrieve all resource groups',
+		execute: executeIamresourceGroupListGet,
+		description: descriptionIamresourceGroupListGet,
+	},
+	{
+		name: 'Retrieve All Resource Types',
+		value: 'iamreferenceresourcetypeListGet',
+		action: 'Retrieve all resource types',
+		execute: executeIamreferenceresourcetypeListGet,
+		description: descriptionIamreferenceresourcetypeListGet,
+	},
+	{
+		name: 'Retrieve the Given Permissions Group',
+		value: 'iampermissionsGroupListGet2',
+		action: 'Retrieve the given permissions group',
+		execute: executeIampermissionsGroupListGet2,
+		description: descriptionIampermissionsGroupListGet2,
+	},
+	{
+		name: 'Retrieve the Given Policy',
+		value: 'iampolicyListGet2',
+		action: 'Retrieve the given policy',
+		execute: executeIampolicyListGet2,
+		description: descriptionIampolicyListGet2,
+	},
+	{
+		name: 'Retrieve the Given Resource Group',
+		value: 'iamresourceGroupListGet2',
+		action: 'Retrieve the given resource group',
+		execute: executeIamresourceGroupListGet2,
+		description: descriptionIamresourceGroupListGet2,
+	},
+	{
+		name: 'Update a Permissions Group',
+		value: 'iampermissionsGroupUpdatePut',
+		action: 'Update a permissions group',
+		execute: executeIampermissionsGroupUpdatePut,
+		description: descriptionIampermissionsGroupUpdatePut,
+	},
+	{
+		name: 'Update an Existing Policy',
+		value: 'iampolicyUpdatePut',
+		action: 'Update an existing policy',
+		execute: executeIampolicyUpdatePut,
+		description: descriptionIampolicyUpdatePut,
+	},
+	{
+		name: 'Update an Existing Resource',
+		value: 'iamresourceUpdatePut',
+		action: 'Update an existing resource',
+		execute: executeIamresourceUpdatePut,
+		description: descriptionIamresourceUpdatePut,
+	},
+	{
+		name: 'Update an Existing Resource Group',
+		value: 'iamresourceGroupUpdatePut',
+		action: 'Update an existing resource group',
+		execute: executeIamresourceGroupUpdatePut,
+		description: descriptionIamresourceGroupUpdatePut,
+	},
+	{
+		name: 'Validate Authorizations on a Given Resource',
+		value: 'iamresourceauthorizationcheckCreatePost',
+		action: 'Validate authorizations on a given resource',
+		execute: executeIamresourceauthorizationcheckCreatePost,
+		description: descriptionIamresourceauthorizationcheckCreatePost,
+	},
+	{
+		name: 'Validate Your Authorizations on Given Resources',
+		value: 'iamauthorizationcheckCreatePost',
+		action: 'Validate your authorizations on given resources',
+		execute: executeIamauthorizationcheckCreatePost,
+		description: descriptionIamauthorizationcheckCreatePost,
+		default: true,
+	},
+	],
+);
 
-	const properties: INodeProperties[] = [
-		...operationProperties,
-		...(descriptionIamauthorizationcheckCreatePost({
-			...displayOptions,
-			show: { iamOperation: ['iamauthorizationcheckCreatePost'] },
-		}) as INodeProperties[]),
-		...(descriptionIamlogkindListGet({
-			...displayOptions,
-			show: { iamOperation: ['iamlogkindListGet'] },
-		}) as INodeProperties[]),
-		...(descriptionIamlogkindListGet2({
-			...displayOptions,
-			show: { iamOperation: ['iamlogkindListGet2'] },
-		}) as INodeProperties[]),
-		...(descriptionIamlogsubscriptionListGet({
-			...displayOptions,
-			show: { iamOperation: ['iamlogsubscriptionListGet'] },
-		}) as INodeProperties[]),
-		...(descriptionIamlogsubscriptionCreatePost({
-			...displayOptions,
-			show: { iamOperation: ['iamlogsubscriptionCreatePost'] },
-		}) as INodeProperties[]),
-		...(descriptionIamlogsubscriptionDeleteDelete({
-			...displayOptions,
-			show: { iamOperation: ['iamlogsubscriptionDeleteDelete'] },
-		}) as INodeProperties[]),
-		...(descriptionIamlogsubscriptionListGet2({
-			...displayOptions,
-			show: { iamOperation: ['iamlogsubscriptionListGet2'] },
-		}) as INodeProperties[]),
-		...(descriptionIamlogurlCreatePost({
-			...displayOptions,
-			show: { iamOperation: ['iamlogurlCreatePost'] },
-		}) as INodeProperties[]),
-		...(descriptionIampermissionsGroupListGet({
-			...displayOptions,
-			show: { iamOperation: ['iampermissionsGroupListGet'] },
-		}) as INodeProperties[]),
-		...(descriptionIampermissionsGroupCreatePost({
-			...displayOptions,
-			show: { iamOperation: ['iampermissionsGroupCreatePost'] },
-		}) as INodeProperties[]),
-		...(descriptionIampermissionsGroupDeleteDelete({
-			...displayOptions,
-			show: { iamOperation: ['iampermissionsGroupDeleteDelete'] },
-		}) as INodeProperties[]),
-		...(descriptionIampermissionsGroupListGet2({
-			...displayOptions,
-			show: { iamOperation: ['iampermissionsGroupListGet2'] },
-		}) as INodeProperties[]),
-		...(descriptionIampermissionsGroupUpdatePut({
-			...displayOptions,
-			show: { iamOperation: ['iampermissionsGroupUpdatePut'] },
-		}) as INodeProperties[]),
-		...(descriptionIampolicyListGet({
-			...displayOptions,
-			show: { iamOperation: ['iampolicyListGet'] },
-		}) as INodeProperties[]),
-		...(descriptionIampolicyCreatePost({
-			...displayOptions,
-			show: { iamOperation: ['iampolicyCreatePost'] },
-		}) as INodeProperties[]),
-		...(descriptionIampolicyDeleteDelete({
-			...displayOptions,
-			show: { iamOperation: ['iampolicyDeleteDelete'] },
-		}) as INodeProperties[]),
-		...(descriptionIampolicyListGet2({
-			...displayOptions,
-			show: { iamOperation: ['iampolicyListGet2'] },
-		}) as INodeProperties[]),
-		...(descriptionIampolicyUpdatePut({
-			...displayOptions,
-			show: { iamOperation: ['iampolicyUpdatePut'] },
-		}) as INodeProperties[]),
-		...(descriptionIamreferenceactionListGet({
-			...displayOptions,
-			show: { iamOperation: ['iamreferenceactionListGet'] },
-		}) as INodeProperties[]),
-		...(descriptionIamreferenceresourcetypeListGet({
-			...displayOptions,
-			show: { iamOperation: ['iamreferenceresourcetypeListGet'] },
-		}) as INodeProperties[]),
-		...(descriptionIamresourceListGet({
-			...displayOptions,
-			show: { iamOperation: ['iamresourceListGet'] },
-		}) as INodeProperties[]),
-		...(descriptionIamresourceListGet2({
-			...displayOptions,
-			show: { iamOperation: ['iamresourceListGet2'] },
-		}) as INodeProperties[]),
-		...(descriptionIamresourceUpdatePut({
-			...displayOptions,
-			show: { iamOperation: ['iamresourceUpdatePut'] },
-		}) as INodeProperties[]),
-		...(descriptionIamresourceauthorizationcheckCreatePost({
-			...displayOptions,
-			show: { iamOperation: ['iamresourceauthorizationcheckCreatePost'] },
-		}) as INodeProperties[]),
-		...(descriptionIamresourcetagDeleteDelete({
-			...displayOptions,
-			show: { iamOperation: ['iamresourcetagDeleteDelete'] },
-		}) as INodeProperties[]),
-		...(descriptionIamresourcetagCreatePost({
-			...displayOptions,
-			show: { iamOperation: ['iamresourcetagCreatePost'] },
-		}) as INodeProperties[]),
-		...(descriptionIamresourceGroupListGet({
-			...displayOptions,
-			show: { iamOperation: ['iamresourceGroupListGet'] },
-		}) as INodeProperties[]),
-		...(descriptionIamresourceGroupCreatePost({
-			...displayOptions,
-			show: { iamOperation: ['iamresourceGroupCreatePost'] },
-		}) as INodeProperties[]),
-		...(descriptionIamresourceGroupDeleteDelete({
-			...displayOptions,
-			show: { iamOperation: ['iamresourceGroupDeleteDelete'] },
-		}) as INodeProperties[]),
-		...(descriptionIamresourceGroupListGet2({
-			...displayOptions,
-			show: { iamOperation: ['iamresourceGroupListGet2'] },
-		}) as INodeProperties[]),
-		...(descriptionIamresourceGroupUpdatePut({
-			...displayOptions,
-			show: { iamOperation: ['iamresourceGroupUpdatePut'] },
-		}) as INodeProperties[]),
-
-	];
-
-	return properties;
-}
-
-export async function execute(
-	this: IExecuteFunctions,
-	itemIndex?: number,
-): Promise<INodeExecutionData[]> {
-	const operation = this.getNodeParameter('iamOperation', itemIndex ?? 0, {
-		extractValue: true,
-	});
-
-	switch (operation) {
-		case 'iamauthorizationcheckCreatePost':
-			return executeIamauthorizationcheckCreatePost.call(this, itemIndex ?? 0);
-		case 'iamlogkindListGet':
-			return executeIamlogkindListGet.call(this, itemIndex ?? 0);
-		case 'iamlogkindListGet2':
-			return executeIamlogkindListGet2.call(this, itemIndex ?? 0);
-		case 'iamlogsubscriptionListGet':
-			return executeIamlogsubscriptionListGet.call(this, itemIndex ?? 0);
-		case 'iamlogsubscriptionCreatePost':
-			return executeIamlogsubscriptionCreatePost.call(this, itemIndex ?? 0);
-		case 'iamlogsubscriptionDeleteDelete':
-			return executeIamlogsubscriptionDeleteDelete.call(this, itemIndex ?? 0);
-		case 'iamlogsubscriptionListGet2':
-			return executeIamlogsubscriptionListGet2.call(this, itemIndex ?? 0);
-		case 'iamlogurlCreatePost':
-			return executeIamlogurlCreatePost.call(this, itemIndex ?? 0);
-		case 'iampermissionsGroupListGet':
-			return executeIampermissionsGroupListGet.call(this, itemIndex ?? 0);
-		case 'iampermissionsGroupCreatePost':
-			return executeIampermissionsGroupCreatePost.call(this, itemIndex ?? 0);
-		case 'iampermissionsGroupDeleteDelete':
-			return executeIampermissionsGroupDeleteDelete.call(this, itemIndex ?? 0);
-		case 'iampermissionsGroupListGet2':
-			return executeIampermissionsGroupListGet2.call(this, itemIndex ?? 0);
-		case 'iampermissionsGroupUpdatePut':
-			return executeIampermissionsGroupUpdatePut.call(this, itemIndex ?? 0);
-		case 'iampolicyListGet':
-			return executeIampolicyListGet.call(this, itemIndex ?? 0);
-		case 'iampolicyCreatePost':
-			return executeIampolicyCreatePost.call(this, itemIndex ?? 0);
-		case 'iampolicyDeleteDelete':
-			return executeIampolicyDeleteDelete.call(this, itemIndex ?? 0);
-		case 'iampolicyListGet2':
-			return executeIampolicyListGet2.call(this, itemIndex ?? 0);
-		case 'iampolicyUpdatePut':
-			return executeIampolicyUpdatePut.call(this, itemIndex ?? 0);
-		case 'iamreferenceactionListGet':
-			return executeIamreferenceactionListGet.call(this, itemIndex ?? 0);
-		case 'iamreferenceresourcetypeListGet':
-			return executeIamreferenceresourcetypeListGet.call(this, itemIndex ?? 0);
-		case 'iamresourceListGet':
-			return executeIamresourceListGet.call(this, itemIndex ?? 0);
-		case 'iamresourceListGet2':
-			return executeIamresourceListGet2.call(this, itemIndex ?? 0);
-		case 'iamresourceUpdatePut':
-			return executeIamresourceUpdatePut.call(this, itemIndex ?? 0);
-		case 'iamresourceauthorizationcheckCreatePost':
-			return executeIamresourceauthorizationcheckCreatePost.call(this, itemIndex ?? 0);
-		case 'iamresourcetagDeleteDelete':
-			return executeIamresourcetagDeleteDelete.call(this, itemIndex ?? 0);
-		case 'iamresourcetagCreatePost':
-			return executeIamresourcetagCreatePost.call(this, itemIndex ?? 0);
-		case 'iamresourceGroupListGet':
-			return executeIamresourceGroupListGet.call(this, itemIndex ?? 0);
-		case 'iamresourceGroupCreatePost':
-			return executeIamresourceGroupCreatePost.call(this, itemIndex ?? 0);
-		case 'iamresourceGroupDeleteDelete':
-			return executeIamresourceGroupDeleteDelete.call(this, itemIndex ?? 0);
-		case 'iamresourceGroupListGet2':
-			return executeIamresourceGroupListGet2.call(this, itemIndex ?? 0);
-		case 'iamresourceGroupUpdatePut':
-			return executeIamresourceGroupUpdatePut.call(this, itemIndex ?? 0);
-
-	}
-
-	throw new Error(`Unsupported operation "${operation}" for resource "ovhCloudIam"`);
-}
+export { description, execute };

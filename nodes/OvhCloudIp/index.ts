@@ -1,1426 +1,1024 @@
-import type {
-	IDisplayOptions,
-	IExecuteFunctions,
-	INodeExecutionData,
-	INodeProperties,
-} from 'n8n-workflow';
+import { createOperationDispatcher } from '../../shared/nodes/createNodeDispatcher';
 
 import {
-	execute as executeIpFirewallCreatePost,
-	description as descriptionIpFirewallCreatePost,
-} from './resources/firewall/ipFirewallCreatePost.operation';
-import {
-	execute as executeIpFirewallRuleCreatePost,
-	description as descriptionIpFirewallRuleCreatePost,
-} from './resources/firewall/ipFirewallRuleCreatePost.operation';
-import {
-	execute as executeIpGameRuleCreatePost,
-	description as descriptionIpGameRuleCreatePost,
-} from './resources/game/ipGameRuleCreatePost.operation';
-import {
-	execute as executeIpMitigationCreatePost,
-	description as descriptionIpMitigationCreatePost,
-} from './resources/mitigation/ipMitigationCreatePost.operation';
-import {
-	execute as executeIpDelegationCreatePost,
-	description as descriptionIpDelegationCreatePost,
-} from './resources/delegation/ipDelegationCreatePost.operation';
-import {
-	execute as executeIpReverseCreatePost,
-	description as descriptionIpReverseCreatePost,
-} from './resources/reverse/ipReverseCreatePost.operation';
-import {
-	execute as executeIpBringYourOwnIpAggregateCreatePost,
-	description as descriptionIpBringYourOwnIpAggregateCreatePost,
-} from './resources/bringYourOwnIp/ipBringYourOwnIpAggregateCreatePost.operation';
-import {
-	execute as executeIpChangeOrgPost,
-	description as descriptionIpChangeOrgPost,
-} from './resources/main/ipChangeOrgPost.operation';
-import {
-	execute as executeIpServiceChangeContactPost,
-	description as descriptionIpServiceChangeContactPost,
-} from './resources/service/ipServiceChangeContactPost.operation';
-import {
-	execute as executeIpServiceConfirmTerminationPost,
-	description as descriptionIpServiceConfirmTerminationPost,
-} from './resources/service/ipServiceConfirmTerminationPost.operation';
-import {
-	execute as executeIpEquilibriumCreatePost,
 	description as descriptionIpEquilibriumCreatePost,
+	execute as executeIpEquilibriumCreatePost,
 } from './ipEquilibriumCreatePost.operation';
 import {
-	execute as executeIpFailoverPost,
-	description as descriptionIpFailoverPost,
-} from './ipFailoverPost.operation';
-import {
-	execute as executeIpMitigationProfilesCreatePost,
-	description as descriptionIpMitigationProfilesCreatePost,
-} from './resources/mitigationProfiles/ipMitigationProfilesCreatePost.operation';
-import {
-	execute as executeIpEquilibriumDeleteDelete,
 	description as descriptionIpEquilibriumDeleteDelete,
+	execute as executeIpEquilibriumDeleteDelete,
 } from './ipEquilibriumDeleteDelete.operation';
 import {
-	execute as executeIpEquilibriumDetailDeleteDelete,
 	description as descriptionIpEquilibriumDetailDeleteDelete,
+	execute as executeIpEquilibriumDetailDeleteDelete,
 } from './ipEquilibriumDetailDeleteDelete.operation';
 import {
-	execute as executeIpFailoverDeleteDelete,
-	description as descriptionIpFailoverDeleteDelete,
-} from './ipFailoverDeleteDelete.operation';
-import {
-	execute as executeIpFirewallDeleteDelete,
-	description as descriptionIpFirewallDeleteDelete,
-} from './resources/firewall/ipFirewallDeleteDelete.operation';
-import {
-	execute as executeIpFirewallRuleDeleteDelete,
-	description as descriptionIpFirewallRuleDeleteDelete,
-} from './resources/firewall/ipFirewallRuleDeleteDelete.operation';
-import {
-	execute as executeIpGameRuleDeleteDelete,
-	description as descriptionIpGameRuleDeleteDelete,
-} from './resources/game/ipGameRuleDeleteDelete.operation';
-import {
-	execute as executeIpMitigationDeleteDelete,
-	description as descriptionIpMitigationDeleteDelete,
-} from './resources/mitigation/ipMitigationDeleteDelete.operation';
-import {
-	execute as executeIpMitigationProfilesDeleteDelete,
-	description as descriptionIpMitigationProfilesDeleteDelete,
-} from './resources/mitigationProfiles/ipMitigationProfilesDeleteDelete.operation';
-import {
-	execute as executeIpDelegationDeleteDelete,
-	description as descriptionIpDelegationDeleteDelete,
-} from './resources/delegation/ipDelegationDeleteDelete.operation';
-import {
-	execute as executeIpReverseDeleteDelete,
-	description as descriptionIpReverseDeleteDelete,
-} from './resources/reverse/ipReverseDeleteDelete.operation';
-import {
-	execute as executeIpMigrationTokenCreatePost,
-	description as descriptionIpMigrationTokenCreatePost,
-} from './resources/migrationToken/ipMigrationTokenCreatePost.operation';
-import {
-	execute as executeIpAntihackGetGet,
-	description as descriptionIpAntihackGetGet,
-} from './resources/antihack/ipAntihackGetGet.operation';
-import {
-	execute as executeIpPhishingGetGet,
-	description as descriptionIpPhishingGetGet,
-} from './resources/phishing/ipPhishingGetGet.operation';
-import {
-	execute as executeIpArpGetGet,
-	description as descriptionIpArpGetGet,
-} from './resources/arp/ipArpGetGet.operation';
-import {
-	execute as executeIpBringYourOwnIpAggregateListGet,
-	description as descriptionIpBringYourOwnIpAggregateListGet,
-} from './resources/bringYourOwnIp/ipBringYourOwnIpAggregateListGet.operation';
-import {
-	execute as executeIpBringYourOwnIpSliceListGet,
-	description as descriptionIpBringYourOwnIpSliceListGet,
-} from './resources/bringYourOwnIp/ipBringYourOwnIpSliceListGet.operation';
-import {
-	execute as executeIpLicenseCloudLinuxGet,
-	description as descriptionIpLicenseCloudLinuxGet,
-} from './resources/license/ipLicenseCloudLinuxGet.operation';
-import {
-	execute as executeIpLicenseCpanelGet,
-	description as descriptionIpLicenseCpanelGet,
-} from './resources/license/ipLicenseCpanelGet.operation';
-import {
-	execute as executeIpLicenseDirectadminGet,
-	description as descriptionIpLicenseDirectadminGet,
-} from './resources/license/ipLicenseDirectadminGet.operation';
-import {
-	execute as executeIpEquilibriumDetailGet,
 	description as descriptionIpEquilibriumDetailGet,
+	execute as executeIpEquilibriumDetailGet,
 } from './ipEquilibriumDetailGet.operation';
 import {
-	execute as executeIpFailoverGetGet,
-	description as descriptionIpFailoverGetGet,
-} from './ipFailoverGetGet.operation';
-import {
-	execute as executeIpFirewallGetGet,
-	description as descriptionIpFirewallGetGet,
-} from './resources/firewall/ipFirewallGetGet.operation';
-import {
-	execute as executeIpFirewallRuleGetGet,
-	description as descriptionIpFirewallRuleGetGet,
-} from './resources/firewall/ipFirewallRuleGetGet.operation';
-import {
-	execute as executeIpGameGetGet,
-	description as descriptionIpGameGetGet,
-} from './resources/game/ipGameGetGet.operation';
-import {
-	execute as executeIpGameRuleGetGet,
-	description as descriptionIpGameRuleGetGet,
-} from './resources/game/ipGameRuleGetGet.operation';
-import {
-	execute as executeIpGetGet,
-	description as descriptionIpGetGet,
-} from './ipGetGet.operation';
-import {
-	execute as executeIpCampusGet,
-	description as descriptionIpCampusGet,
-} from './resources/main/ipCampusGet.operation';
-import {
-	execute as executeIpMoveGetGet,
-	description as descriptionIpMoveGetGet,
-} from './resources/main/ipMoveGetGet.operation';
-import {
-	execute as executeIpServiceGetGet,
-	description as descriptionIpServiceGetGet,
-} from './resources/service/ipServiceGetGet.operation';
-import {
-	execute as executeIpServiceServiceInfosGetGet,
-	description as descriptionIpServiceServiceInfosGetGet,
-} from './resources/service/ipServiceServiceInfosGetGet.operation';
-import {
-	execute as executeIpTaskGetGet,
-	description as descriptionIpTaskGetGet,
-} from './resources/task/ipTaskGetGet.operation';
-import {
-	execute as executeIpMigrationTokenGet,
-	description as descriptionIpMigrationTokenGet,
-} from './resources/migrationToken/ipMigrationTokenGet.operation';
-import {
-	execute as executeIpMitigationGetGet,
-	description as descriptionIpMitigationGetGet,
-} from './resources/mitigation/ipMitigationGetGet.operation';
-import {
-	execute as executeIpMitigationProfilesGetGet,
-	description as descriptionIpMitigationProfilesGetGet,
-} from './resources/mitigationProfiles/ipMitigationProfilesGetGet.operation';
-import {
-	execute as executeIpLicensePleskGet,
-	description as descriptionIpLicensePleskGet,
-} from './resources/license/ipLicensePleskGet.operation';
-import {
-	execute as executeIpReverseGetGet,
-	description as descriptionIpReverseGetGet,
-} from './ipReverseGetGet.operation';
-import {
-	execute as executeIpDelegationGetGet,
-	description as descriptionIpDelegationGetGet,
-} from './resources/delegation/ipDelegationGetGet.operation';
-import {
-	execute as executeIpRipeGet,
-	description as descriptionIpRipeGet,
-} from './resources/ripe/ipRipeGet.operation';
-import {
-	execute as executeIpSpamStatsGet,
-	description as descriptionIpSpamStatsGet,
-} from './resources/spam/ipSpamStatsGet.operation';
-import {
-	execute as executeIpSpamGetGet,
-	description as descriptionIpSpamGetGet,
-} from './resources/spam/ipSpamGetGet.operation';
-import {
-	execute as executeIpLicenseSqlserverGet,
-	description as descriptionIpLicenseSqlserverGet,
-} from './resources/license/ipLicenseSqlserverGet.operation';
-import {
-	execute as executeIpLicenseVirtuozzoGet,
-	description as descriptionIpLicenseVirtuozzoGet,
-} from './resources/license/ipLicenseVirtuozzoGet.operation';
-import {
-	execute as executeIpLicenseWindowsGet,
-	description as descriptionIpLicenseWindowsGet,
-} from './resources/license/ipLicenseWindowsGet.operation';
-import {
-	execute as executeIpLicenseWorklightGet,
-	description as descriptionIpLicenseWorklightGet,
-} from './resources/license/ipLicenseWorklightGet.operation';
-import {
-	execute as executeIpAntihackListGet,
-	description as descriptionIpAntihackListGet,
-} from './resources/antihack/ipAntihackListGet.operation';
-import {
-	execute as executeIpPhishingListGet,
-	description as descriptionIpPhishingListGet,
-} from './resources/phishing/ipPhishingListGet.operation';
-import {
-	execute as executeIpArpListGet,
-	description as descriptionIpArpListGet,
-} from './resources/arp/ipArpListGet.operation';
-import {
-	execute as executeIpEquilibriumListGet,
 	description as descriptionIpEquilibriumListGet,
+	execute as executeIpEquilibriumListGet,
 } from './ipEquilibriumListGet.operation';
 import {
-	execute as executeIpFirewallListGet,
-	description as descriptionIpFirewallListGet,
-} from './resources/firewall/ipFirewallListGet.operation';
-import {
-	execute as executeIpFirewallRuleListGet,
-	description as descriptionIpFirewallRuleListGet,
-} from './resources/firewall/ipFirewallRuleListGet.operation';
-import {
-	execute as executeIpGameListGet,
-	description as descriptionIpGameListGet,
-} from './resources/game/ipGameListGet.operation';
-import {
-	execute as executeIpGameRuleListGet,
-	description as descriptionIpGameRuleListGet,
-} from './resources/game/ipGameRuleListGet.operation';
-import {
-	execute as executeIpServiceListGet,
-	description as descriptionIpServiceListGet,
-} from './resources/service/ipServiceListGet.operation';
-import {
-	execute as executeIpTaskListGet,
-	description as descriptionIpTaskListGet,
-} from './resources/task/ipTaskListGet.operation';
-import {
-	execute as executeIpListGet,
-	description as descriptionIpListGet,
-} from './ipListGet.operation';
-import {
-	execute as executeIpMitigationListGet,
-	description as descriptionIpMitigationListGet,
-} from './resources/mitigation/ipMitigationListGet.operation';
-import {
-	execute as executeIpMitigationProfilesListGet,
-	description as descriptionIpMitigationProfilesListGet,
-} from './resources/mitigationProfiles/ipMitigationProfilesListGet.operation';
-import {
-	execute as executeIpDelegationListGet,
-	description as descriptionIpDelegationListGet,
-} from './resources/delegation/ipDelegationListGet.operation';
-import {
-	execute as executeIpReverseListGet,
-	description as descriptionIpReverseListGet,
-} from './resources/reverse/ipReverseListGet.operation';
-import {
-	execute as executeIpSpamListGet,
-	description as descriptionIpSpamListGet,
-} from './resources/spam/ipSpamListGet.operation';
-import {
-	execute as executeIpMovePost,
-	description as descriptionIpMovePost,
-} from './resources/main/ipMovePost.operation';
-import {
-	execute as executeIpParkPost,
-	description as descriptionIpParkPost,
-} from './resources/main/ipParkPost.operation';
-import {
-	execute as executeIpBringYourOwnIpSliceCreatePost,
-	description as descriptionIpBringYourOwnIpSliceCreatePost,
-} from './resources/bringYourOwnIp/ipBringYourOwnIpSliceCreatePost.operation';
-import {
-	execute as executeIpTerminatePost,
-	description as descriptionIpTerminatePost,
-} from './resources/main/ipTerminatePost.operation';
-import {
-	execute as executeIpServiceTerminatePost,
-	description as descriptionIpServiceTerminatePost,
-} from './resources/service/ipServiceTerminatePost.operation';
-import {
-	execute as executeIpAntihackUnblockPost,
-	description as descriptionIpAntihackUnblockPost,
-} from './resources/antihack/ipAntihackUnblockPost.operation';
-import {
-	execute as executeIpArpUnblockPost,
-	description as descriptionIpArpUnblockPost,
-} from './resources/arp/ipArpUnblockPost.operation';
-import {
-	execute as executeIpSpamUnblockPost,
-	description as descriptionIpSpamUnblockPost,
-} from './resources/spam/ipSpamUnblockPost.operation';
-import {
-	execute as executeIpEquilibriumUpdatePut,
 	description as descriptionIpEquilibriumUpdatePut,
+	execute as executeIpEquilibriumUpdatePut,
 } from './ipEquilibriumUpdatePut.operation';
 import {
-	execute as executeIpFailoverUpdatePut,
+	description as descriptionIpFailoverDeleteDelete,
+	execute as executeIpFailoverDeleteDelete,
+} from './ipFailoverDeleteDelete.operation';
+import {
+	description as descriptionIpFailoverGetGet,
+	execute as executeIpFailoverGetGet,
+} from './ipFailoverGetGet.operation';
+import {
+	description as descriptionIpFailoverPost,
+	execute as executeIpFailoverPost,
+} from './ipFailoverPost.operation';
+import {
 	description as descriptionIpFailoverUpdatePut,
+	execute as executeIpFailoverUpdatePut,
 } from './ipFailoverUpdatePut.operation';
 import {
-	execute as executeIpFirewallUpdatePut,
-	description as descriptionIpFirewallUpdatePut,
-} from './resources/firewall/ipFirewallUpdatePut.operation';
+	description as descriptionIpGetGet,
+	execute as executeIpGetGet,
+} from './ipGetGet.operation';
 import {
-	execute as executeIpGameUpdatePut,
-	description as descriptionIpGameUpdatePut,
-} from './resources/game/ipGameUpdatePut.operation';
+	description as descriptionIpListGet,
+	execute as executeIpListGet,
+} from './ipListGet.operation';
 import {
-	execute as executeIpUpdatePut,
-	description as descriptionIpUpdatePut,
-} from './resources/main/ipUpdatePut.operation';
+	description as descriptionIpReverseGetGet,
+	execute as executeIpReverseGetGet,
+} from './ipReverseGetGet.operation';
 import {
-	execute as executeIpServiceUpdatePut,
-	description as descriptionIpServiceUpdatePut,
-} from './resources/service/ipServiceUpdatePut.operation';
-import {
-	execute as executeIpServiceServiceInfosUpdatePut,
-	description as descriptionIpServiceServiceInfosUpdatePut,
-} from './resources/service/ipServiceServiceInfosUpdatePut.operation';
-import {
-	execute as executeIpMitigationUpdatePut,
-	description as descriptionIpMitigationUpdatePut,
-} from './resources/mitigation/ipMitigationUpdatePut.operation';
-import {
-	execute as executeIpMitigationProfilesUpdatePut,
-	description as descriptionIpMitigationProfilesUpdatePut,
-} from './resources/mitigationProfiles/ipMitigationProfilesUpdatePut.operation';
-import {
-	execute as executeIpReverseUpdatePut,
 	description as descriptionIpReverseUpdatePut,
+	execute as executeIpReverseUpdatePut,
 } from './ipReverseUpdatePut.operation';
 import {
-	execute as executeIpRipeUpdatePut,
+	description as descriptionIpAntihackGetGet,
+	execute as executeIpAntihackGetGet,
+} from './resources/antihack/ipAntihackGetGet.operation';
+import {
+	description as descriptionIpAntihackListGet,
+	execute as executeIpAntihackListGet,
+} from './resources/antihack/ipAntihackListGet.operation';
+import {
+	description as descriptionIpAntihackUnblockPost,
+	execute as executeIpAntihackUnblockPost,
+} from './resources/antihack/ipAntihackUnblockPost.operation';
+import {
+	description as descriptionIpArpGetGet,
+	execute as executeIpArpGetGet,
+} from './resources/arp/ipArpGetGet.operation';
+import {
+	description as descriptionIpArpListGet,
+	execute as executeIpArpListGet,
+} from './resources/arp/ipArpListGet.operation';
+import {
+	description as descriptionIpArpUnblockPost,
+	execute as executeIpArpUnblockPost,
+} from './resources/arp/ipArpUnblockPost.operation';
+import {
+	description as descriptionIpBringYourOwnIpAggregateCreatePost,
+	execute as executeIpBringYourOwnIpAggregateCreatePost,
+} from './resources/bringYourOwnIp/ipBringYourOwnIpAggregateCreatePost.operation';
+import {
+	description as descriptionIpBringYourOwnIpAggregateListGet,
+	execute as executeIpBringYourOwnIpAggregateListGet,
+} from './resources/bringYourOwnIp/ipBringYourOwnIpAggregateListGet.operation';
+import {
+	description as descriptionIpBringYourOwnIpSliceCreatePost,
+	execute as executeIpBringYourOwnIpSliceCreatePost,
+} from './resources/bringYourOwnIp/ipBringYourOwnIpSliceCreatePost.operation';
+import {
+	description as descriptionIpBringYourOwnIpSliceListGet,
+	execute as executeIpBringYourOwnIpSliceListGet,
+} from './resources/bringYourOwnIp/ipBringYourOwnIpSliceListGet.operation';
+import {
+	description as descriptionIpDelegationCreatePost,
+	execute as executeIpDelegationCreatePost,
+} from './resources/delegation/ipDelegationCreatePost.operation';
+import {
+	description as descriptionIpDelegationDeleteDelete,
+	execute as executeIpDelegationDeleteDelete,
+} from './resources/delegation/ipDelegationDeleteDelete.operation';
+import {
+	description as descriptionIpDelegationGetGet,
+	execute as executeIpDelegationGetGet,
+} from './resources/delegation/ipDelegationGetGet.operation';
+import {
+	description as descriptionIpDelegationListGet,
+	execute as executeIpDelegationListGet,
+} from './resources/delegation/ipDelegationListGet.operation';
+import {
+	description as descriptionIpFirewallCreatePost,
+	execute as executeIpFirewallCreatePost,
+} from './resources/firewall/ipFirewallCreatePost.operation';
+import {
+	description as descriptionIpFirewallDeleteDelete,
+	execute as executeIpFirewallDeleteDelete,
+} from './resources/firewall/ipFirewallDeleteDelete.operation';
+import {
+	description as descriptionIpFirewallGetGet,
+	execute as executeIpFirewallGetGet,
+} from './resources/firewall/ipFirewallGetGet.operation';
+import {
+	description as descriptionIpFirewallListGet,
+	execute as executeIpFirewallListGet,
+} from './resources/firewall/ipFirewallListGet.operation';
+import {
+	description as descriptionIpFirewallRuleCreatePost,
+	execute as executeIpFirewallRuleCreatePost,
+} from './resources/firewall/ipFirewallRuleCreatePost.operation';
+import {
+	description as descriptionIpFirewallRuleDeleteDelete,
+	execute as executeIpFirewallRuleDeleteDelete,
+} from './resources/firewall/ipFirewallRuleDeleteDelete.operation';
+import {
+	description as descriptionIpFirewallRuleGetGet,
+	execute as executeIpFirewallRuleGetGet,
+} from './resources/firewall/ipFirewallRuleGetGet.operation';
+import {
+	description as descriptionIpFirewallRuleListGet,
+	execute as executeIpFirewallRuleListGet,
+} from './resources/firewall/ipFirewallRuleListGet.operation';
+import {
+	description as descriptionIpFirewallUpdatePut,
+	execute as executeIpFirewallUpdatePut,
+} from './resources/firewall/ipFirewallUpdatePut.operation';
+import {
+	description as descriptionIpGameGetGet,
+	execute as executeIpGameGetGet,
+} from './resources/game/ipGameGetGet.operation';
+import {
+	description as descriptionIpGameListGet,
+	execute as executeIpGameListGet,
+} from './resources/game/ipGameListGet.operation';
+import {
+	description as descriptionIpGameRuleCreatePost,
+	execute as executeIpGameRuleCreatePost,
+} from './resources/game/ipGameRuleCreatePost.operation';
+import {
+	description as descriptionIpGameRuleDeleteDelete,
+	execute as executeIpGameRuleDeleteDelete,
+} from './resources/game/ipGameRuleDeleteDelete.operation';
+import {
+	description as descriptionIpGameRuleGetGet,
+	execute as executeIpGameRuleGetGet,
+} from './resources/game/ipGameRuleGetGet.operation';
+import {
+	description as descriptionIpGameRuleListGet,
+	execute as executeIpGameRuleListGet,
+} from './resources/game/ipGameRuleListGet.operation';
+import {
+	description as descriptionIpGameUpdatePut,
+	execute as executeIpGameUpdatePut,
+} from './resources/game/ipGameUpdatePut.operation';
+import {
+	description as descriptionIpLicenseCloudLinuxGet,
+	execute as executeIpLicenseCloudLinuxGet,
+} from './resources/license/ipLicenseCloudLinuxGet.operation';
+import {
+	description as descriptionIpLicenseCpanelGet,
+	execute as executeIpLicenseCpanelGet,
+} from './resources/license/ipLicenseCpanelGet.operation';
+import {
+	description as descriptionIpLicenseDirectadminGet,
+	execute as executeIpLicenseDirectadminGet,
+} from './resources/license/ipLicenseDirectadminGet.operation';
+import {
+	description as descriptionIpLicensePleskGet,
+	execute as executeIpLicensePleskGet,
+} from './resources/license/ipLicensePleskGet.operation';
+import {
+	description as descriptionIpLicenseSqlserverGet,
+	execute as executeIpLicenseSqlserverGet,
+} from './resources/license/ipLicenseSqlserverGet.operation';
+import {
+	description as descriptionIpLicenseVirtuozzoGet,
+	execute as executeIpLicenseVirtuozzoGet,
+} from './resources/license/ipLicenseVirtuozzoGet.operation';
+import {
+	description as descriptionIpLicenseWindowsGet,
+	execute as executeIpLicenseWindowsGet,
+} from './resources/license/ipLicenseWindowsGet.operation';
+import {
+	description as descriptionIpLicenseWorklightGet,
+	execute as executeIpLicenseWorklightGet,
+} from './resources/license/ipLicenseWorklightGet.operation';
+import {
+	description as descriptionIpCampusGet,
+	execute as executeIpCampusGet,
+} from './resources/main/ipCampusGet.operation';
+import {
+	description as descriptionIpChangeOrgPost,
+	execute as executeIpChangeOrgPost,
+} from './resources/main/ipChangeOrgPost.operation';
+import {
+	description as descriptionIpMoveGetGet,
+	execute as executeIpMoveGetGet,
+} from './resources/main/ipMoveGetGet.operation';
+import {
+	description as descriptionIpMovePost,
+	execute as executeIpMovePost,
+} from './resources/main/ipMovePost.operation';
+import {
+	description as descriptionIpParkPost,
+	execute as executeIpParkPost,
+} from './resources/main/ipParkPost.operation';
+import {
+	description as descriptionIpTerminatePost,
+	execute as executeIpTerminatePost,
+} from './resources/main/ipTerminatePost.operation';
+import {
+	description as descriptionIpUpdatePut,
+	execute as executeIpUpdatePut,
+} from './resources/main/ipUpdatePut.operation';
+import {
+	description as descriptionIpMigrationTokenCreatePost,
+	execute as executeIpMigrationTokenCreatePost,
+} from './resources/migrationToken/ipMigrationTokenCreatePost.operation';
+import {
+	description as descriptionIpMigrationTokenGet,
+	execute as executeIpMigrationTokenGet,
+} from './resources/migrationToken/ipMigrationTokenGet.operation';
+import {
+	description as descriptionIpMitigationCreatePost,
+	execute as executeIpMitigationCreatePost,
+} from './resources/mitigation/ipMitigationCreatePost.operation';
+import {
+	description as descriptionIpMitigationDeleteDelete,
+	execute as executeIpMitigationDeleteDelete,
+} from './resources/mitigation/ipMitigationDeleteDelete.operation';
+import {
+	description as descriptionIpMitigationGetGet,
+	execute as executeIpMitigationGetGet,
+} from './resources/mitigation/ipMitigationGetGet.operation';
+import {
+	description as descriptionIpMitigationListGet,
+	execute as executeIpMitigationListGet,
+} from './resources/mitigation/ipMitigationListGet.operation';
+import {
+	description as descriptionIpMitigationUpdatePut,
+	execute as executeIpMitigationUpdatePut,
+} from './resources/mitigation/ipMitigationUpdatePut.operation';
+import {
+	description as descriptionIpMitigationProfilesCreatePost,
+	execute as executeIpMitigationProfilesCreatePost,
+} from './resources/mitigationProfiles/ipMitigationProfilesCreatePost.operation';
+import {
+	description as descriptionIpMitigationProfilesDeleteDelete,
+	execute as executeIpMitigationProfilesDeleteDelete,
+} from './resources/mitigationProfiles/ipMitigationProfilesDeleteDelete.operation';
+import {
+	description as descriptionIpMitigationProfilesGetGet,
+	execute as executeIpMitigationProfilesGetGet,
+} from './resources/mitigationProfiles/ipMitigationProfilesGetGet.operation';
+import {
+	description as descriptionIpMitigationProfilesListGet,
+	execute as executeIpMitigationProfilesListGet,
+} from './resources/mitigationProfiles/ipMitigationProfilesListGet.operation';
+import {
+	description as descriptionIpMitigationProfilesUpdatePut,
+	execute as executeIpMitigationProfilesUpdatePut,
+} from './resources/mitigationProfiles/ipMitigationProfilesUpdatePut.operation';
+import {
+	description as descriptionIpPhishingGetGet,
+	execute as executeIpPhishingGetGet,
+} from './resources/phishing/ipPhishingGetGet.operation';
+import {
+	description as descriptionIpPhishingListGet,
+	execute as executeIpPhishingListGet,
+} from './resources/phishing/ipPhishingListGet.operation';
+import {
+	description as descriptionIpReverseCreatePost,
+	execute as executeIpReverseCreatePost,
+} from './resources/reverse/ipReverseCreatePost.operation';
+import {
+	description as descriptionIpReverseDeleteDelete,
+	execute as executeIpReverseDeleteDelete,
+} from './resources/reverse/ipReverseDeleteDelete.operation';
+import {
+	description as descriptionIpReverseListGet,
+	execute as executeIpReverseListGet,
+} from './resources/reverse/ipReverseListGet.operation';
+import {
+	description as descriptionIpRipeGet,
+	execute as executeIpRipeGet,
+} from './resources/ripe/ipRipeGet.operation';
+import {
 	description as descriptionIpRipeUpdatePut,
+	execute as executeIpRipeUpdatePut,
 } from './resources/ripe/ipRipeUpdatePut.operation';
+import {
+	description as descriptionIpServiceChangeContactPost,
+	execute as executeIpServiceChangeContactPost,
+} from './resources/service/ipServiceChangeContactPost.operation';
+import {
+	description as descriptionIpServiceConfirmTerminationPost,
+	execute as executeIpServiceConfirmTerminationPost,
+} from './resources/service/ipServiceConfirmTerminationPost.operation';
+import {
+	description as descriptionIpServiceGetGet,
+	execute as executeIpServiceGetGet,
+} from './resources/service/ipServiceGetGet.operation';
+import {
+	description as descriptionIpServiceListGet,
+	execute as executeIpServiceListGet,
+} from './resources/service/ipServiceListGet.operation';
+import {
+	description as descriptionIpServiceServiceInfosGetGet,
+	execute as executeIpServiceServiceInfosGetGet,
+} from './resources/service/ipServiceServiceInfosGetGet.operation';
+import {
+	description as descriptionIpServiceServiceInfosUpdatePut,
+	execute as executeIpServiceServiceInfosUpdatePut,
+} from './resources/service/ipServiceServiceInfosUpdatePut.operation';
+import {
+	description as descriptionIpServiceTerminatePost,
+	execute as executeIpServiceTerminatePost,
+} from './resources/service/ipServiceTerminatePost.operation';
+import {
+	description as descriptionIpServiceUpdatePut,
+	execute as executeIpServiceUpdatePut,
+} from './resources/service/ipServiceUpdatePut.operation';
+import {
+	description as descriptionIpSpamGetGet,
+	execute as executeIpSpamGetGet,
+} from './resources/spam/ipSpamGetGet.operation';
+import {
+	description as descriptionIpSpamListGet,
+	execute as executeIpSpamListGet,
+} from './resources/spam/ipSpamListGet.operation';
+import {
+	description as descriptionIpSpamStatsGet,
+	execute as executeIpSpamStatsGet,
+} from './resources/spam/ipSpamStatsGet.operation';
+import {
+	description as descriptionIpSpamUnblockPost,
+	execute as executeIpSpamUnblockPost,
+} from './resources/spam/ipSpamUnblockPost.operation';
+import {
+	description as descriptionIpTaskGetGet,
+	execute as executeIpTaskGetGet,
+} from './resources/task/ipTaskGetGet.operation';
+import {
+	description as descriptionIpTaskListGet,
+	execute as executeIpTaskListGet,
+} from './resources/task/ipTaskListGet.operation';
 
-export function description(displayOptions: IDisplayOptions): INodeProperties[] {
-	const operationProperties: INodeProperties[] = [
-		{
-			displayName: 'Operation',
-			name: 'ipOperation',
-			type: 'options',
-			noDataExpression: true,
-			options: [
-			{
-				name: 'Add Firewall IP',
-				value: 'ipFirewallCreatePost',
-				action: 'Add new IP on firewall',
-			},
-			{
-				name: 'Add Firewall Rule',
-				value: 'ipFirewallRuleCreatePost',
-				action: 'Add new rule on your IP',
-			},
-			{
-				name: 'Add Game Rule',
-				value: 'ipGameRuleCreatePost',
-				action: 'Add new rule on your IP',
-			},
-			{
-				name: 'Add Mitigation IP',
-				value: 'ipMitigationCreatePost',
-				action: 'Add an IP on mitigation',
-			},
-			{
-				name: 'Add Reverse Delegation',
-				value: 'ipDelegationCreatePost',
-				action: 'Add target for reverse delegation on IPv6 subnet',
-			},
-			{
-				name: 'Add Reverse DNS',
-				value: 'ipReverseCreatePost',
-				action: 'Add a reverse DNS entry on an IP',
-			},
-			{
-				name: 'Aggregate BYOIP',
-				value: 'ipBringYourOwnIpAggregateCreatePost',
-				action: 'Aggregate sliced BYOIP Additional IPs into a single bigger Additional IP parent',
-			},
-			{
-				name: 'Change IP Organisation',
-				value: 'ipChangeOrgPost',
-				action: 'Change organisation of this IP',
-			},
-			{
-				name: 'Change IP Service Contact',
-				value: 'ipServiceChangeContactPost',
-				action: 'Launch a contact change procedure',
-			},
-			{
-				name: 'Confirm IP Service Termination',
-				value: 'ipServiceConfirmTerminationPost',
-				action: 'Confirm service termination',
-			},
-			{
-				name: 'Create Equilibrium',
-				value: 'ipEquilibriumCreatePost',
-				action: 'Create an equilibrium config for an IP',
-			},
-			{
-				name: 'Create Failover',
-				value: 'ipFailoverPost',
-				action: 'Create a failover config for an IP',
-			},
-			{
-				name: 'Create Mitigation Profile',
-				value: 'ipMitigationProfilesCreatePost',
-				action: 'Create a new profile for one of your IPs',
-			},
-			{
-				name: 'Delete Equilibrium',
-				value: 'ipEquilibriumDeleteDelete',
-				action: 'Delete an equilibrium config for an IP',
-			},
-			{
-				name: 'Delete Equilibrium Detail',
-				value: 'ipEquilibriumDetailDeleteDelete',
-				action: 'Delete an equilibrium config detail',
-			},
-			{
-				name: 'Delete Failover',
-				value: 'ipFailoverDeleteDelete',
-				action: 'Delete a failover config',
-			},
-			{
-				name: 'Delete Firewall IP',
-				value: 'ipFirewallDeleteDelete',
-				action: 'Delete IP and rules from firewall',
-			},
-			{
-				name: 'Delete Firewall Rule',
-				value: 'ipFirewallRuleDeleteDelete',
-				action: 'Delete a firewall rule',
-			},
-			{
-				name: 'Delete Game Rule',
-				value: 'ipGameRuleDeleteDelete',
-				action: 'Delete a game rule',
-			},
-			{
-				name: 'Delete Mitigation IP',
-				value: 'ipMitigationDeleteDelete',
-				action: 'Delete IP from mitigation',
-			},
-			{
-				name: 'Delete Mitigation Profile',
-				value: 'ipMitigationProfilesDeleteDelete',
-				action: 'Delete a mitigation profile',
-			},
-			{
-				name: 'Delete Reverse Delegation',
-				value: 'ipDelegationDeleteDelete',
-				action: 'Delete a target for reverse delegation on IPv6 subnet',
-			},
-			{
-				name: 'Delete Reverse DNS',
-				value: 'ipReverseDeleteDelete',
-				action: 'Delete a reverse DNS entry on one IP',
-			},
-			{
-				name: 'Generate Migration Token',
-				value: 'ipMigrationTokenCreatePost',
-				action: 'Generate a migration token',
-			},
-			{
-				name: 'Get Anti-Hack Blocked IP',
-				value: 'ipAntihackGetGet',
-				action: 'Get properties of an anti-hack blocked IP',
-			},
-			{
-				name: 'Get Anti-Phishing Entry',
-				value: 'ipPhishingGetGet',
-				action: 'Get properties of a phishing entry',
-			},
-			{
-				name: 'Get ARP Blocked IP',
-				value: 'ipArpGetGet',
-				action: 'Get properties of an ARP blocked IP',
-			},
-			{
-				name: 'Get BYOIP Aggregate Configs',
-				value: 'ipBringYourOwnIpAggregateListGet',
-				action: 'Get available aggregation configurations for this BYOIP Additional IP',
-			},
-			{
-				name: 'Get BYOIP Slice Configs',
-				value: 'ipBringYourOwnIpSliceListGet',
-				action: 'Get available slicing configurations for this BYOIP Additional IP',
-			},
-			{
-				name: 'Get Cloud Linux Licenses',
-				value: 'ipLicenseCloudLinuxGet',
-				action: 'List Cloud Linux licenses associated to this IP',
-			},
-			{
-				name: 'Get Cpanel Licenses',
-				value: 'ipLicenseCpanelGet',
-				action: 'List Cpanel licenses associated to this IP',
-			},
-			{
-				name: 'Get DirectAdmin Licenses',
-				value: 'ipLicenseDirectadminGet',
-				action: 'List DirectAdmin licenses associated to this IP',
-			},
-			{
-				name: 'Get Equilibrium Detail',
-				value: 'ipEquilibriumDetailGet',
-				action: 'Get equilibrium detail',
-			},
-			{
-				name: 'Get Failover',
-				value: 'ipFailoverGetGet',
-				action: 'Get failover details',
-			},
-			{
-				name: 'Get Firewall IP',
-				value: 'ipFirewallGetGet',
-				action: 'Get properties of an IP on firewall',
-			},
-			{
-				name: 'Get Firewall Rule',
-				value: 'ipFirewallRuleGetGet',
-				action: 'Get properties of a firewall rule',
-			},
-			{
-				name: 'Get Game Anti-DDoS IP',
-				value: 'ipGameGetGet',
-				action: 'Get properties of an IP under game anti-ddos',
-			},
-			{
-				name: 'Get Game Rule',
-				value: 'ipGameRuleGetGet',
-				action: 'Get properties of a game rule',
-			},
-			{
-				name: 'Get IP',
-				value: 'ipGetGet',
-				action: 'Get details of an IP address',
-			},
-			{
-				name: 'Get IP Campuses',
-				value: 'ipCampusGet',
-				action: 'Get IP campuses',
-			},
-			{
-				name: 'Get IP Move Destinations',
-				value: 'ipMoveGetGet',
-				action: 'List services available as a destination for this IP',
-			},
-			{
-				name: 'Get IP Service',
-				value: 'ipServiceGetGet',
-				action: 'Get properties of an IP service',
-			},
-			{
-				name: 'Get IP Service Infos',
-				value: 'ipServiceServiceInfosGetGet',
-				action: 'Get service information',
-			},
-			{
-				name: 'Get IP Task',
-				value: 'ipTaskGetGet',
-				action: 'Get properties of an IP task',
-			},
-			{
-				name: 'Get Migration Token',
-				value: 'ipMigrationTokenGet',
-				action: 'Get migration token properties',
-			},
-			{
-				name: 'Get Mitigation IP',
-				value: 'ipMitigationGetGet',
-				action: 'Get properties of an IP on mitigation',
-			},
-			{
-				name: 'Get Mitigation Profile',
-				value: 'ipMitigationProfilesGetGet',
-				action: 'Get properties of a mitigation profile',
-			},
-			{
-				name: 'Get Plesk Licenses',
-				value: 'ipLicensePleskGet',
-				action: 'List Plesk licenses associated to this IP',
-			},
-			{
-				name: 'Get Reverse',
-				value: 'ipReverseGetGet',
-				action: 'Get reverse DNS for an IP',
-			},
-			{
-				name: 'Get Reverse Delegation',
-				value: 'ipDelegationGetGet',
-				action: 'Get properties of a reverse delegation target',
-			},
-			{
-				name: 'Get RIPE Infos',
-				value: 'ipRipeGet',
-				action: 'Get RIPE information of an IP block',
-			},
-			{
-				name: 'Get Spam Stats',
-				value: 'ipSpamStatsGet',
-				action: 'Get statistics about the email traffic',
-			},
-			{
-				name: 'Get Spamming IP',
-				value: 'ipSpamGetGet',
-				action: 'Get properties of an IP which is sending spam',
-			},
-			{
-				name: 'Get SQL Server Licenses',
-				value: 'ipLicenseSqlserverGet',
-				action: 'List SQL Server licenses associated to this IP',
-			},
-			{
-				name: 'Get Virtuozzo Licenses',
-				value: 'ipLicenseVirtuozzoGet',
-				action: 'List Virtuozzo licenses associated to this IP',
-			},
-			{
-				name: 'Get Windows Licenses',
-				value: 'ipLicenseWindowsGet',
-				action: 'List Windows licenses associated to this IP',
-			},
-			{
-				name: 'Get WorkLight Licenses',
-				value: 'ipLicenseWorklightGet',
-				action: 'List WorkLight licenses associated to this IP',
-			},
-			{
-				name: 'List Anti-Hack Blocked IPs',
-				value: 'ipAntihackListGet',
-				action: 'List anti-hack blocked IPs',
-			},
-			{
-				name: 'List Anti-Phishing IPs',
-				value: 'ipPhishingListGet',
-				action: 'List IPs under anti-phishing',
-			},
-			{
-				name: 'List ARP Blocked IPs',
-				value: 'ipArpListGet',
-				action: 'List ARP blocked IPs',
-			},
-			{
-				name: 'List Equilibrium',
-				value: 'ipEquilibriumListGet',
-				action: 'List equilibrium configs for an IP',
-			},
-			{
-				name: 'List Firewall IPs',
-				value: 'ipFirewallListGet',
-				action: 'List IPs under firewall',
-			},
-			{
-				name: 'List Firewall Rules',
-				value: 'ipFirewallRuleListGet',
-				action: 'List rules for this IP',
-			},
-			{
-				name: 'List Game Anti-DDoS IPs',
-				value: 'ipGameListGet',
-				action: 'List IPs under game anti-ddos',
-			},
-			{
-				name: 'List Game Rules',
-				value: 'ipGameRuleListGet',
-				action: 'List IDs of rules configured for this IP',
-			},
-			{
-				name: 'List IP Services',
-				value: 'ipServiceListGet',
-				action: 'List your IP services',
-			},
-			{
-				name: 'List IP Tasks',
-				value: 'ipTaskListGet',
-				action: 'List IP tasks',
-			},
-			{
-				name: 'List IPs',
-				value: 'ipListGet',
-				action: 'List all IP addresses',
-			},
-			{
-				name: 'List Mitigation IPs',
-				value: 'ipMitigationListGet',
-				action: 'List IPs under mitigation',
-			},
-			{
-				name: 'List Mitigation Profiles',
-				value: 'ipMitigationProfilesListGet',
-				action: 'Manage mitigation profiles on your IPs',
-			},
-			{
-				name: 'List Reverse Delegations',
-				value: 'ipDelegationListGet',
-				action: 'List reverse delegations on IPv6 subnet',
-			},
-			{
-				name: 'List Reverse DNS',
-				value: 'ipReverseListGet',
-				action: 'List reverse DNS entries on your IP',
-			},
-			{
-				name: 'List Spamming IPs',
-				value: 'ipSpamListGet',
-				action: 'List IPs sending spam',
-			},
-			{
-				name: 'Move IP',
-				value: 'ipMovePost',
-				action: 'Move this IP to another service',
-			},
-			{
-				name: 'Park IP',
-				value: 'ipParkPost',
-				action: 'Park this IP',
-			},
-			{
-				name: 'Slice BYOIP',
-				value: 'ipBringYourOwnIpSliceCreatePost',
-				action: 'Slice a BYOIP Additional IP into smaller Additional IPs',
-			},
-			{
-				name: 'Terminate IP',
-				value: 'ipTerminatePost',
-				action: 'Delete a failover IP',
-			},
-			{
-				name: 'Terminate IP Service',
-				value: 'ipServiceTerminatePost',
-				action: 'Ask for the termination of your service',
-			},
-			{
-				name: 'Unblock Anti-Hack IP',
-				value: 'ipAntihackUnblockPost',
-				action: 'Unblock this IP',
-			},
-			{
-				name: 'Unblock ARP IP',
-				value: 'ipArpUnblockPost',
-				action: 'Unblock this IP',
-			},
-			{
-				name: 'Unblock Spamming IP',
-				value: 'ipSpamUnblockPost',
-				action: 'Release the IP from anti-spam system',
-			},
-			{
-				name: 'Update Equilibrium',
-				value: 'ipEquilibriumUpdatePut',
-				action: 'Update an equilibrium config',
-			},
-			{
-				name: 'Update Failover',
-				value: 'ipFailoverUpdatePut',
-				action: 'Update a failover config',
-			},
-			{
-				name: 'Update Firewall IP',
-				value: 'ipFirewallUpdatePut',
-				action: 'Alter properties of an IP on firewall',
-			},
-			{
-				name: 'Update Game Anti-DDoS IP',
-				value: 'ipGameUpdatePut',
-				action: 'Alter properties of an IP under game anti-ddos',
-			},
-			{
-				name: 'Update IP',
-				value: 'ipUpdatePut',
-				action: 'Alter properties of an IP block',
-			},
-			{
-				name: 'Update IP Service',
-				value: 'ipServiceUpdatePut',
-				action: 'Alter properties of an IP service',
-			},
-			{
-				name: 'Update IP Service Infos',
-				value: 'ipServiceServiceInfosUpdatePut',
-				action: 'Update service information',
-			},
-			{
-				name: 'Update Mitigation IP',
-				value: 'ipMitigationUpdatePut',
-				action: 'Alter properties of an IP on mitigation',
-			},
-			{
-				name: 'Update Mitigation Profile',
-				value: 'ipMitigationProfilesUpdatePut',
-				action: 'Alter properties of a mitigation profile',
-			},
-			{
-				name: 'Update Reverse',
-				value: 'ipReverseUpdatePut',
-				action: 'Update reverse DNS for an IP',
-			},
-			{
-				name: 'Update RIPE Infos',
-				value: 'ipRipeUpdatePut',
-				action: 'Alter RIPE information of an IP block',
-			},
+const { description, execute } = createOperationDispatcher(
+	'ipOperation',
+	'ovhCloudIp',
+	[
+	{
+		name: 'Add Firewall IP',
+		value: 'ipFirewallCreatePost',
+		action: 'Add new IP on firewall',
+		execute: executeIpFirewallCreatePost,
+		description: descriptionIpFirewallCreatePost,
+	},
+	{
+		name: 'Add Firewall Rule',
+		value: 'ipFirewallRuleCreatePost',
+		action: 'Add new rule on your IP',
+		execute: executeIpFirewallRuleCreatePost,
+		description: descriptionIpFirewallRuleCreatePost,
+	},
+	{
+		name: 'Add Game Rule',
+		value: 'ipGameRuleCreatePost',
+		action: 'Add new rule on your IP',
+		execute: executeIpGameRuleCreatePost,
+		description: descriptionIpGameRuleCreatePost,
+	},
+	{
+		name: 'Add Mitigation IP',
+		value: 'ipMitigationCreatePost',
+		action: 'Add an IP on mitigation',
+		execute: executeIpMitigationCreatePost,
+		description: descriptionIpMitigationCreatePost,
+	},
+	{
+		name: 'Add Reverse Delegation',
+		value: 'ipDelegationCreatePost',
+		action: 'Add target for reverse delegation on IPv6 subnet',
+		execute: executeIpDelegationCreatePost,
+		description: descriptionIpDelegationCreatePost,
+	},
+	{
+		name: 'Add Reverse DNS',
+		value: 'ipReverseCreatePost',
+		action: 'Add a reverse DNS entry on an IP',
+		execute: executeIpReverseCreatePost,
+		description: descriptionIpReverseCreatePost,
+	},
+	{
+		name: 'Aggregate BYOIP',
+		value: 'ipBringYourOwnIpAggregateCreatePost',
+		action: 'Aggregate sliced BYOIP Additional IPs into a single bigger Additional IP parent',
+		execute: executeIpBringYourOwnIpAggregateCreatePost,
+		description: descriptionIpBringYourOwnIpAggregateCreatePost,
+	},
+	{
+		name: 'Change IP Organisation',
+		value: 'ipChangeOrgPost',
+		action: 'Change organisation of this IP',
+		execute: executeIpChangeOrgPost,
+		description: descriptionIpChangeOrgPost,
+	},
+	{
+		name: 'Change IP Service Contact',
+		value: 'ipServiceChangeContactPost',
+		action: 'Launch a contact change procedure',
+		execute: executeIpServiceChangeContactPost,
+		description: descriptionIpServiceChangeContactPost,
+	},
+	{
+		name: 'Confirm IP Service Termination',
+		value: 'ipServiceConfirmTerminationPost',
+		action: 'Confirm service termination',
+		execute: executeIpServiceConfirmTerminationPost,
+		description: descriptionIpServiceConfirmTerminationPost,
+	},
+	{
+		name: 'Create Equilibrium',
+		value: 'ipEquilibriumCreatePost',
+		action: 'Create an equilibrium config for an IP',
+		execute: executeIpEquilibriumCreatePost,
+		description: descriptionIpEquilibriumCreatePost,
+	},
+	{
+		name: 'Create Failover',
+		value: 'ipFailoverPost',
+		action: 'Create a failover config for an IP',
+		execute: executeIpFailoverPost,
+		description: descriptionIpFailoverPost,
+	},
+	{
+		name: 'Create Mitigation Profile',
+		value: 'ipMitigationProfilesCreatePost',
+		action: 'Create a new profile for one of your IPs',
+		execute: executeIpMitigationProfilesCreatePost,
+		description: descriptionIpMitigationProfilesCreatePost,
+	},
+	{
+		name: 'Delete Equilibrium',
+		value: 'ipEquilibriumDeleteDelete',
+		action: 'Delete an equilibrium config for an IP',
+		execute: executeIpEquilibriumDeleteDelete,
+		description: descriptionIpEquilibriumDeleteDelete,
+	},
+	{
+		name: 'Delete Equilibrium Detail',
+		value: 'ipEquilibriumDetailDeleteDelete',
+		action: 'Delete an equilibrium config detail',
+		execute: executeIpEquilibriumDetailDeleteDelete,
+		description: descriptionIpEquilibriumDetailDeleteDelete,
+	},
+	{
+		name: 'Delete Failover',
+		value: 'ipFailoverDeleteDelete',
+		action: 'Delete a failover config',
+		execute: executeIpFailoverDeleteDelete,
+		description: descriptionIpFailoverDeleteDelete,
+	},
+	{
+		name: 'Delete Firewall IP',
+		value: 'ipFirewallDeleteDelete',
+		action: 'Delete IP and rules from firewall',
+		execute: executeIpFirewallDeleteDelete,
+		description: descriptionIpFirewallDeleteDelete,
+	},
+	{
+		name: 'Delete Firewall Rule',
+		value: 'ipFirewallRuleDeleteDelete',
+		action: 'Delete a firewall rule',
+		execute: executeIpFirewallRuleDeleteDelete,
+		description: descriptionIpFirewallRuleDeleteDelete,
+	},
+	{
+		name: 'Delete Game Rule',
+		value: 'ipGameRuleDeleteDelete',
+		action: 'Delete a game rule',
+		execute: executeIpGameRuleDeleteDelete,
+		description: descriptionIpGameRuleDeleteDelete,
+	},
+	{
+		name: 'Delete Mitigation IP',
+		value: 'ipMitigationDeleteDelete',
+		action: 'Delete IP from mitigation',
+		execute: executeIpMitigationDeleteDelete,
+		description: descriptionIpMitigationDeleteDelete,
+	},
+	{
+		name: 'Delete Mitigation Profile',
+		value: 'ipMitigationProfilesDeleteDelete',
+		action: 'Delete a mitigation profile',
+		execute: executeIpMitigationProfilesDeleteDelete,
+		description: descriptionIpMitigationProfilesDeleteDelete,
+	},
+	{
+		name: 'Delete Reverse Delegation',
+		value: 'ipDelegationDeleteDelete',
+		action: 'Delete a target for reverse delegation on IPv6 subnet',
+		execute: executeIpDelegationDeleteDelete,
+		description: descriptionIpDelegationDeleteDelete,
+	},
+	{
+		name: 'Delete Reverse DNS',
+		value: 'ipReverseDeleteDelete',
+		action: 'Delete a reverse DNS entry on one IP',
+		execute: executeIpReverseDeleteDelete,
+		description: descriptionIpReverseDeleteDelete,
+	},
+	{
+		name: 'Generate Migration Token',
+		value: 'ipMigrationTokenCreatePost',
+		action: 'Generate a migration token',
+		execute: executeIpMigrationTokenCreatePost,
+		description: descriptionIpMigrationTokenCreatePost,
+	},
+	{
+		name: 'Get Anti-Hack Blocked IP',
+		value: 'ipAntihackGetGet',
+		action: 'Get properties of an anti-hack blocked IP',
+		execute: executeIpAntihackGetGet,
+		description: descriptionIpAntihackGetGet,
+	},
+	{
+		name: 'Get Anti-Phishing Entry',
+		value: 'ipPhishingGetGet',
+		action: 'Get properties of a phishing entry',
+		execute: executeIpPhishingGetGet,
+		description: descriptionIpPhishingGetGet,
+	},
+	{
+		name: 'Get ARP Blocked IP',
+		value: 'ipArpGetGet',
+		action: 'Get properties of an ARP blocked IP',
+		execute: executeIpArpGetGet,
+		description: descriptionIpArpGetGet,
+	},
+	{
+		name: 'Get BYOIP Aggregate Configs',
+		value: 'ipBringYourOwnIpAggregateListGet',
+		action: 'Get available aggregation configurations for this BYOIP Additional IP',
+		execute: executeIpBringYourOwnIpAggregateListGet,
+		description: descriptionIpBringYourOwnIpAggregateListGet,
+	},
+	{
+		name: 'Get BYOIP Slice Configs',
+		value: 'ipBringYourOwnIpSliceListGet',
+		action: 'Get available slicing configurations for this BYOIP Additional IP',
+		execute: executeIpBringYourOwnIpSliceListGet,
+		description: descriptionIpBringYourOwnIpSliceListGet,
+	},
+	{
+		name: 'Get Cloud Linux Licenses',
+		value: 'ipLicenseCloudLinuxGet',
+		action: 'List Cloud Linux licenses associated to this IP',
+		execute: executeIpLicenseCloudLinuxGet,
+		description: descriptionIpLicenseCloudLinuxGet,
+	},
+	{
+		name: 'Get Cpanel Licenses',
+		value: 'ipLicenseCpanelGet',
+		action: 'List Cpanel licenses associated to this IP',
+		execute: executeIpLicenseCpanelGet,
+		description: descriptionIpLicenseCpanelGet,
+	},
+	{
+		name: 'Get DirectAdmin Licenses',
+		value: 'ipLicenseDirectadminGet',
+		action: 'List DirectAdmin licenses associated to this IP',
+		execute: executeIpLicenseDirectadminGet,
+		description: descriptionIpLicenseDirectadminGet,
+	},
+	{
+		name: 'Get Equilibrium Detail',
+		value: 'ipEquilibriumDetailGet',
+		action: 'Get equilibrium detail',
+		execute: executeIpEquilibriumDetailGet,
+		description: descriptionIpEquilibriumDetailGet,
+	},
+	{
+		name: 'Get Failover',
+		value: 'ipFailoverGetGet',
+		action: 'Get failover details',
+		execute: executeIpFailoverGetGet,
+		description: descriptionIpFailoverGetGet,
+	},
+	{
+		name: 'Get Firewall IP',
+		value: 'ipFirewallGetGet',
+		action: 'Get properties of an IP on firewall',
+		execute: executeIpFirewallGetGet,
+		description: descriptionIpFirewallGetGet,
+	},
+	{
+		name: 'Get Firewall Rule',
+		value: 'ipFirewallRuleGetGet',
+		action: 'Get properties of a firewall rule',
+		execute: executeIpFirewallRuleGetGet,
+		description: descriptionIpFirewallRuleGetGet,
+	},
+	{
+		name: 'Get Game Anti-DDoS IP',
+		value: 'ipGameGetGet',
+		action: 'Get properties of an IP under game anti-ddos',
+		execute: executeIpGameGetGet,
+		description: descriptionIpGameGetGet,
+	},
+	{
+		name: 'Get Game Rule',
+		value: 'ipGameRuleGetGet',
+		action: 'Get properties of a game rule',
+		execute: executeIpGameRuleGetGet,
+		description: descriptionIpGameRuleGetGet,
+	},
+	{
+		name: 'Get IP',
+		value: 'ipGetGet',
+		action: 'Get details of an IP address',
+		execute: executeIpGetGet,
+		description: descriptionIpGetGet,
+	},
+	{
+		name: 'Get IP Campuses',
+		value: 'ipCampusGet',
+		action: 'Get IP campuses',
+		execute: executeIpCampusGet,
+		description: descriptionIpCampusGet,
+	},
+	{
+		name: 'Get IP Move Destinations',
+		value: 'ipMoveGetGet',
+		action: 'List services available as a destination for this IP',
+		execute: executeIpMoveGetGet,
+		description: descriptionIpMoveGetGet,
+	},
+	{
+		name: 'Get IP Service',
+		value: 'ipServiceGetGet',
+		action: 'Get properties of an IP service',
+		execute: executeIpServiceGetGet,
+		description: descriptionIpServiceGetGet,
+	},
+	{
+		name: 'Get IP Service Infos',
+		value: 'ipServiceServiceInfosGetGet',
+		action: 'Get service information',
+		execute: executeIpServiceServiceInfosGetGet,
+		description: descriptionIpServiceServiceInfosGetGet,
+	},
+	{
+		name: 'Get IP Task',
+		value: 'ipTaskGetGet',
+		action: 'Get properties of an IP task',
+		execute: executeIpTaskGetGet,
+		description: descriptionIpTaskGetGet,
+	},
+	{
+		name: 'Get Migration Token',
+		value: 'ipMigrationTokenGet',
+		action: 'Get migration token properties',
+		execute: executeIpMigrationTokenGet,
+		description: descriptionIpMigrationTokenGet,
+	},
+	{
+		name: 'Get Mitigation IP',
+		value: 'ipMitigationGetGet',
+		action: 'Get properties of an IP on mitigation',
+		execute: executeIpMitigationGetGet,
+		description: descriptionIpMitigationGetGet,
+	},
+	{
+		name: 'Get Mitigation Profile',
+		value: 'ipMitigationProfilesGetGet',
+		action: 'Get properties of a mitigation profile',
+		execute: executeIpMitigationProfilesGetGet,
+		description: descriptionIpMitigationProfilesGetGet,
+	},
+	{
+		name: 'Get Plesk Licenses',
+		value: 'ipLicensePleskGet',
+		action: 'List Plesk licenses associated to this IP',
+		execute: executeIpLicensePleskGet,
+		description: descriptionIpLicensePleskGet,
+	},
+	{
+		name: 'Get Reverse',
+		value: 'ipReverseGetGet',
+		action: 'Get reverse DNS for an IP',
+		execute: executeIpReverseGetGet,
+		description: descriptionIpReverseGetGet,
+	},
+	{
+		name: 'Get Reverse Delegation',
+		value: 'ipDelegationGetGet',
+		action: 'Get properties of a reverse delegation target',
+		execute: executeIpDelegationGetGet,
+		description: descriptionIpDelegationGetGet,
+	},
+	{
+		name: 'Get RIPE Infos',
+		value: 'ipRipeGet',
+		action: 'Get RIPE information of an IP block',
+		execute: executeIpRipeGet,
+		description: descriptionIpRipeGet,
+	},
+	{
+		name: 'Get Spam Stats',
+		value: 'ipSpamStatsGet',
+		action: 'Get statistics about the email traffic',
+		execute: executeIpSpamStatsGet,
+		description: descriptionIpSpamStatsGet,
+	},
+	{
+		name: 'Get Spamming IP',
+		value: 'ipSpamGetGet',
+		action: 'Get properties of an IP which is sending spam',
+		execute: executeIpSpamGetGet,
+		description: descriptionIpSpamGetGet,
+	},
+	{
+		name: 'Get SQL Server Licenses',
+		value: 'ipLicenseSqlserverGet',
+		action: 'List SQL Server licenses associated to this IP',
+		execute: executeIpLicenseSqlserverGet,
+		description: descriptionIpLicenseSqlserverGet,
+	},
+	{
+		name: 'Get Virtuozzo Licenses',
+		value: 'ipLicenseVirtuozzoGet',
+		action: 'List Virtuozzo licenses associated to this IP',
+		execute: executeIpLicenseVirtuozzoGet,
+		description: descriptionIpLicenseVirtuozzoGet,
+	},
+	{
+		name: 'Get Windows Licenses',
+		value: 'ipLicenseWindowsGet',
+		action: 'List Windows licenses associated to this IP',
+		execute: executeIpLicenseWindowsGet,
+		description: descriptionIpLicenseWindowsGet,
+	},
+	{
+		name: 'Get WorkLight Licenses',
+		value: 'ipLicenseWorklightGet',
+		action: 'List WorkLight licenses associated to this IP',
+		execute: executeIpLicenseWorklightGet,
+		description: descriptionIpLicenseWorklightGet,
+	},
+	{
+		name: 'List Anti-Hack Blocked IPs',
+		value: 'ipAntihackListGet',
+		action: 'List anti-hack blocked IPs',
+		execute: executeIpAntihackListGet,
+		description: descriptionIpAntihackListGet,
+	},
+	{
+		name: 'List Anti-Phishing IPs',
+		value: 'ipPhishingListGet',
+		action: 'List IPs under anti-phishing',
+		execute: executeIpPhishingListGet,
+		description: descriptionIpPhishingListGet,
+	},
+	{
+		name: 'List ARP Blocked IPs',
+		value: 'ipArpListGet',
+		action: 'List ARP blocked IPs',
+		execute: executeIpArpListGet,
+		description: descriptionIpArpListGet,
+	},
+	{
+		name: 'List Equilibrium',
+		value: 'ipEquilibriumListGet',
+		action: 'List equilibrium configs for an IP',
+		execute: executeIpEquilibriumListGet,
+		description: descriptionIpEquilibriumListGet,
+	},
+	{
+		name: 'List Firewall IPs',
+		value: 'ipFirewallListGet',
+		action: 'List IPs under firewall',
+		execute: executeIpFirewallListGet,
+		description: descriptionIpFirewallListGet,
+	},
+	{
+		name: 'List Firewall Rules',
+		value: 'ipFirewallRuleListGet',
+		action: 'List rules for this IP',
+		execute: executeIpFirewallRuleListGet,
+		description: descriptionIpFirewallRuleListGet,
+	},
+	{
+		name: 'List Game Anti-DDoS IPs',
+		value: 'ipGameListGet',
+		action: 'List IPs under game anti-ddos',
+		execute: executeIpGameListGet,
+		description: descriptionIpGameListGet,
+	},
+	{
+		name: 'List Game Rules',
+		value: 'ipGameRuleListGet',
+		action: 'List IDs of rules configured for this IP',
+		execute: executeIpGameRuleListGet,
+		description: descriptionIpGameRuleListGet,
+	},
+	{
+		name: 'List IP Services',
+		value: 'ipServiceListGet',
+		action: 'List your IP services',
+		execute: executeIpServiceListGet,
+		description: descriptionIpServiceListGet,
+	},
+	{
+		name: 'List IP Tasks',
+		value: 'ipTaskListGet',
+		action: 'List IP tasks',
+		execute: executeIpTaskListGet,
+		description: descriptionIpTaskListGet,
+	},
+	{
+		name: 'List IPs',
+		value: 'ipListGet',
+		action: 'List all IP addresses',
+		execute: executeIpListGet,
+		description: descriptionIpListGet,
+		default: true,
+	},
+	{
+		name: 'List Mitigation IPs',
+		value: 'ipMitigationListGet',
+		action: 'List IPs under mitigation',
+		execute: executeIpMitigationListGet,
+		description: descriptionIpMitigationListGet,
+	},
+	{
+		name: 'List Mitigation Profiles',
+		value: 'ipMitigationProfilesListGet',
+		action: 'Manage mitigation profiles on your IPs',
+		execute: executeIpMitigationProfilesListGet,
+		description: descriptionIpMitigationProfilesListGet,
+	},
+	{
+		name: 'List Reverse Delegations',
+		value: 'ipDelegationListGet',
+		action: 'List reverse delegations on IPv6 subnet',
+		execute: executeIpDelegationListGet,
+		description: descriptionIpDelegationListGet,
+	},
+	{
+		name: 'List Reverse DNS',
+		value: 'ipReverseListGet',
+		action: 'List reverse DNS entries on your IP',
+		execute: executeIpReverseListGet,
+		description: descriptionIpReverseListGet,
+	},
+	{
+		name: 'List Spamming IPs',
+		value: 'ipSpamListGet',
+		action: 'List IPs sending spam',
+		execute: executeIpSpamListGet,
+		description: descriptionIpSpamListGet,
+	},
+	{
+		name: 'Move IP',
+		value: 'ipMovePost',
+		action: 'Move this IP to another service',
+		execute: executeIpMovePost,
+		description: descriptionIpMovePost,
+	},
+	{
+		name: 'Park IP',
+		value: 'ipParkPost',
+		action: 'Park this IP',
+		execute: executeIpParkPost,
+		description: descriptionIpParkPost,
+	},
+	{
+		name: 'Slice BYOIP',
+		value: 'ipBringYourOwnIpSliceCreatePost',
+		action: 'Slice a BYOIP Additional IP into smaller Additional IPs',
+		execute: executeIpBringYourOwnIpSliceCreatePost,
+		description: descriptionIpBringYourOwnIpSliceCreatePost,
+	},
+	{
+		name: 'Terminate IP',
+		value: 'ipTerminatePost',
+		action: 'Delete a failover IP',
+		execute: executeIpTerminatePost,
+		description: descriptionIpTerminatePost,
+	},
+	{
+		name: 'Terminate IP Service',
+		value: 'ipServiceTerminatePost',
+		action: 'Ask for the termination of your service',
+		execute: executeIpServiceTerminatePost,
+		description: descriptionIpServiceTerminatePost,
+	},
+	{
+		name: 'Unblock Anti-Hack IP',
+		value: 'ipAntihackUnblockPost',
+		action: 'Unblock this IP',
+		execute: executeIpAntihackUnblockPost,
+		description: descriptionIpAntihackUnblockPost,
+	},
+	{
+		name: 'Unblock ARP IP',
+		value: 'ipArpUnblockPost',
+		action: 'Unblock this IP',
+		execute: executeIpArpUnblockPost,
+		description: descriptionIpArpUnblockPost,
+	},
+	{
+		name: 'Unblock Spamming IP',
+		value: 'ipSpamUnblockPost',
+		action: 'Release the IP from anti-spam system',
+		execute: executeIpSpamUnblockPost,
+		description: descriptionIpSpamUnblockPost,
+	},
+	{
+		name: 'Update Equilibrium',
+		value: 'ipEquilibriumUpdatePut',
+		action: 'Update an equilibrium config',
+		execute: executeIpEquilibriumUpdatePut,
+		description: descriptionIpEquilibriumUpdatePut,
+	},
+	{
+		name: 'Update Failover',
+		value: 'ipFailoverUpdatePut',
+		action: 'Update a failover config',
+		execute: executeIpFailoverUpdatePut,
+		description: descriptionIpFailoverUpdatePut,
+	},
+	{
+		name: 'Update Firewall IP',
+		value: 'ipFirewallUpdatePut',
+		action: 'Alter properties of an IP on firewall',
+		execute: executeIpFirewallUpdatePut,
+		description: descriptionIpFirewallUpdatePut,
+	},
+	{
+		name: 'Update Game Anti-DDoS IP',
+		value: 'ipGameUpdatePut',
+		action: 'Alter properties of an IP under game anti-ddos',
+		execute: executeIpGameUpdatePut,
+		description: descriptionIpGameUpdatePut,
+	},
+	{
+		name: 'Update IP',
+		value: 'ipUpdatePut',
+		action: 'Alter properties of an IP block',
+		execute: executeIpUpdatePut,
+		description: descriptionIpUpdatePut,
+	},
+	{
+		name: 'Update IP Service',
+		value: 'ipServiceUpdatePut',
+		action: 'Alter properties of an IP service',
+		execute: executeIpServiceUpdatePut,
+		description: descriptionIpServiceUpdatePut,
+	},
+	{
+		name: 'Update IP Service Infos',
+		value: 'ipServiceServiceInfosUpdatePut',
+		action: 'Update service information',
+		execute: executeIpServiceServiceInfosUpdatePut,
+		description: descriptionIpServiceServiceInfosUpdatePut,
+	},
+	{
+		name: 'Update Mitigation IP',
+		value: 'ipMitigationUpdatePut',
+		action: 'Alter properties of an IP on mitigation',
+		execute: executeIpMitigationUpdatePut,
+		description: descriptionIpMitigationUpdatePut,
+	},
+	{
+		name: 'Update Mitigation Profile',
+		value: 'ipMitigationProfilesUpdatePut',
+		action: 'Alter properties of a mitigation profile',
+		execute: executeIpMitigationProfilesUpdatePut,
+		description: descriptionIpMitigationProfilesUpdatePut,
+	},
+	{
+		name: 'Update Reverse',
+		value: 'ipReverseUpdatePut',
+		action: 'Update reverse DNS for an IP',
+		execute: executeIpReverseUpdatePut,
+		description: descriptionIpReverseUpdatePut,
+	},
+	{
+		name: 'Update RIPE Infos',
+		value: 'ipRipeUpdatePut',
+		action: 'Alter RIPE information of an IP block',
+		execute: executeIpRipeUpdatePut,
+		description: descriptionIpRipeUpdatePut,
+	},
+	],
+);
 
-			],
-			default: 'ipListGet',
-			displayOptions,
-		},
-	];
-
-	const properties: INodeProperties[] = [
-		...operationProperties,
-		...(descriptionIpFirewallCreatePost({
-			...displayOptions,
-			show: { ipOperation: ['ipFirewallCreatePost'] },
-		}) as INodeProperties[]),
-		...(descriptionIpFirewallRuleCreatePost({
-			...displayOptions,
-			show: { ipOperation: ['ipFirewallRuleCreatePost'] },
-		}) as INodeProperties[]),
-		...(descriptionIpGameRuleCreatePost({
-			...displayOptions,
-			show: { ipOperation: ['ipGameRuleCreatePost'] },
-		}) as INodeProperties[]),
-		...(descriptionIpMitigationCreatePost({
-			...displayOptions,
-			show: { ipOperation: ['ipMitigationCreatePost'] },
-		}) as INodeProperties[]),
-		...(descriptionIpDelegationCreatePost({
-			...displayOptions,
-			show: { ipOperation: ['ipDelegationCreatePost'] },
-		}) as INodeProperties[]),
-		...(descriptionIpReverseCreatePost({
-			...displayOptions,
-			show: { ipOperation: ['ipReverseCreatePost'] },
-		}) as INodeProperties[]),
-		...(descriptionIpBringYourOwnIpAggregateCreatePost({
-			...displayOptions,
-			show: { ipOperation: ['ipBringYourOwnIpAggregateCreatePost'] },
-		}) as INodeProperties[]),
-		...(descriptionIpChangeOrgPost({
-			...displayOptions,
-			show: { ipOperation: ['ipChangeOrgPost'] },
-		}) as INodeProperties[]),
-		...(descriptionIpServiceChangeContactPost({
-			...displayOptions,
-			show: { ipOperation: ['ipServiceChangeContactPost'] },
-		}) as INodeProperties[]),
-		...(descriptionIpServiceConfirmTerminationPost({
-			...displayOptions,
-			show: { ipOperation: ['ipServiceConfirmTerminationPost'] },
-		}) as INodeProperties[]),
-		...(descriptionIpEquilibriumCreatePost({
-			...displayOptions,
-			show: { ipOperation: ['ipEquilibriumCreatePost'] },
-		}) as INodeProperties[]),
-		...(descriptionIpFailoverPost({
-			...displayOptions,
-			show: { ipOperation: ['ipFailoverPost'] },
-		}) as INodeProperties[]),
-		...(descriptionIpMitigationProfilesCreatePost({
-			...displayOptions,
-			show: { ipOperation: ['ipMitigationProfilesCreatePost'] },
-		}) as INodeProperties[]),
-		...(descriptionIpEquilibriumDeleteDelete({
-			...displayOptions,
-			show: { ipOperation: ['ipEquilibriumDeleteDelete'] },
-		}) as INodeProperties[]),
-		...(descriptionIpEquilibriumDetailDeleteDelete({
-			...displayOptions,
-			show: { ipOperation: ['ipEquilibriumDetailDeleteDelete'] },
-		}) as INodeProperties[]),
-		...(descriptionIpFailoverDeleteDelete({
-			...displayOptions,
-			show: { ipOperation: ['ipFailoverDeleteDelete'] },
-		}) as INodeProperties[]),
-		...(descriptionIpFirewallDeleteDelete({
-			...displayOptions,
-			show: { ipOperation: ['ipFirewallDeleteDelete'] },
-		}) as INodeProperties[]),
-		...(descriptionIpFirewallRuleDeleteDelete({
-			...displayOptions,
-			show: { ipOperation: ['ipFirewallRuleDeleteDelete'] },
-		}) as INodeProperties[]),
-		...(descriptionIpGameRuleDeleteDelete({
-			...displayOptions,
-			show: { ipOperation: ['ipGameRuleDeleteDelete'] },
-		}) as INodeProperties[]),
-		...(descriptionIpMitigationDeleteDelete({
-			...displayOptions,
-			show: { ipOperation: ['ipMitigationDeleteDelete'] },
-		}) as INodeProperties[]),
-		...(descriptionIpMitigationProfilesDeleteDelete({
-			...displayOptions,
-			show: { ipOperation: ['ipMitigationProfilesDeleteDelete'] },
-		}) as INodeProperties[]),
-		...(descriptionIpDelegationDeleteDelete({
-			...displayOptions,
-			show: { ipOperation: ['ipDelegationDeleteDelete'] },
-		}) as INodeProperties[]),
-		...(descriptionIpReverseDeleteDelete({
-			...displayOptions,
-			show: { ipOperation: ['ipReverseDeleteDelete'] },
-		}) as INodeProperties[]),
-		...(descriptionIpMigrationTokenCreatePost({
-			...displayOptions,
-			show: { ipOperation: ['ipMigrationTokenCreatePost'] },
-		}) as INodeProperties[]),
-		...(descriptionIpAntihackGetGet({
-			...displayOptions,
-			show: { ipOperation: ['ipAntihackGetGet'] },
-		}) as INodeProperties[]),
-		...(descriptionIpPhishingGetGet({
-			...displayOptions,
-			show: { ipOperation: ['ipPhishingGetGet'] },
-		}) as INodeProperties[]),
-		...(descriptionIpArpGetGet({
-			...displayOptions,
-			show: { ipOperation: ['ipArpGetGet'] },
-		}) as INodeProperties[]),
-		...(descriptionIpBringYourOwnIpAggregateListGet({
-			...displayOptions,
-			show: { ipOperation: ['ipBringYourOwnIpAggregateListGet'] },
-		}) as INodeProperties[]),
-		...(descriptionIpBringYourOwnIpSliceListGet({
-			...displayOptions,
-			show: { ipOperation: ['ipBringYourOwnIpSliceListGet'] },
-		}) as INodeProperties[]),
-		...(descriptionIpLicenseCloudLinuxGet({
-			...displayOptions,
-			show: { ipOperation: ['ipLicenseCloudLinuxGet'] },
-		}) as INodeProperties[]),
-		...(descriptionIpLicenseCpanelGet({
-			...displayOptions,
-			show: { ipOperation: ['ipLicenseCpanelGet'] },
-		}) as INodeProperties[]),
-		...(descriptionIpLicenseDirectadminGet({
-			...displayOptions,
-			show: { ipOperation: ['ipLicenseDirectadminGet'] },
-		}) as INodeProperties[]),
-		...(descriptionIpEquilibriumDetailGet({
-			...displayOptions,
-			show: { ipOperation: ['ipEquilibriumDetailGet'] },
-		}) as INodeProperties[]),
-		...(descriptionIpFailoverGetGet({
-			...displayOptions,
-			show: { ipOperation: ['ipFailoverGetGet'] },
-		}) as INodeProperties[]),
-		...(descriptionIpFirewallGetGet({
-			...displayOptions,
-			show: { ipOperation: ['ipFirewallGetGet'] },
-		}) as INodeProperties[]),
-		...(descriptionIpFirewallRuleGetGet({
-			...displayOptions,
-			show: { ipOperation: ['ipFirewallRuleGetGet'] },
-		}) as INodeProperties[]),
-		...(descriptionIpGameGetGet({
-			...displayOptions,
-			show: { ipOperation: ['ipGameGetGet'] },
-		}) as INodeProperties[]),
-		...(descriptionIpGameRuleGetGet({
-			...displayOptions,
-			show: { ipOperation: ['ipGameRuleGetGet'] },
-		}) as INodeProperties[]),
-		...(descriptionIpGetGet({
-			...displayOptions,
-			show: { ipOperation: ['ipGetGet'] },
-		}) as INodeProperties[]),
-		...(descriptionIpCampusGet({
-			...displayOptions,
-			show: { ipOperation: ['ipCampusGet'] },
-		}) as INodeProperties[]),
-		...(descriptionIpMoveGetGet({
-			...displayOptions,
-			show: { ipOperation: ['ipMoveGetGet'] },
-		}) as INodeProperties[]),
-		...(descriptionIpServiceGetGet({
-			...displayOptions,
-			show: { ipOperation: ['ipServiceGetGet'] },
-		}) as INodeProperties[]),
-		...(descriptionIpServiceServiceInfosGetGet({
-			...displayOptions,
-			show: { ipOperation: ['ipServiceServiceInfosGetGet'] },
-		}) as INodeProperties[]),
-		...(descriptionIpTaskGetGet({
-			...displayOptions,
-			show: { ipOperation: ['ipTaskGetGet'] },
-		}) as INodeProperties[]),
-		...(descriptionIpMigrationTokenGet({
-			...displayOptions,
-			show: { ipOperation: ['ipMigrationTokenGet'] },
-		}) as INodeProperties[]),
-		...(descriptionIpMitigationGetGet({
-			...displayOptions,
-			show: { ipOperation: ['ipMitigationGetGet'] },
-		}) as INodeProperties[]),
-		...(descriptionIpMitigationProfilesGetGet({
-			...displayOptions,
-			show: { ipOperation: ['ipMitigationProfilesGetGet'] },
-		}) as INodeProperties[]),
-		...(descriptionIpLicensePleskGet({
-			...displayOptions,
-			show: { ipOperation: ['ipLicensePleskGet'] },
-		}) as INodeProperties[]),
-		...(descriptionIpReverseGetGet({
-			...displayOptions,
-			show: { ipOperation: ['ipReverseGetGet'] },
-		}) as INodeProperties[]),
-		...(descriptionIpDelegationGetGet({
-			...displayOptions,
-			show: { ipOperation: ['ipDelegationGetGet'] },
-		}) as INodeProperties[]),
-		...(descriptionIpRipeGet({
-			...displayOptions,
-			show: { ipOperation: ['ipRipeGet'] },
-		}) as INodeProperties[]),
-		...(descriptionIpSpamStatsGet({
-			...displayOptions,
-			show: { ipOperation: ['ipSpamStatsGet'] },
-		}) as INodeProperties[]),
-		...(descriptionIpSpamGetGet({
-			...displayOptions,
-			show: { ipOperation: ['ipSpamGetGet'] },
-		}) as INodeProperties[]),
-		...(descriptionIpLicenseSqlserverGet({
-			...displayOptions,
-			show: { ipOperation: ['ipLicenseSqlserverGet'] },
-		}) as INodeProperties[]),
-		...(descriptionIpLicenseVirtuozzoGet({
-			...displayOptions,
-			show: { ipOperation: ['ipLicenseVirtuozzoGet'] },
-		}) as INodeProperties[]),
-		...(descriptionIpLicenseWindowsGet({
-			...displayOptions,
-			show: { ipOperation: ['ipLicenseWindowsGet'] },
-		}) as INodeProperties[]),
-		...(descriptionIpLicenseWorklightGet({
-			...displayOptions,
-			show: { ipOperation: ['ipLicenseWorklightGet'] },
-		}) as INodeProperties[]),
-		...(descriptionIpAntihackListGet({
-			...displayOptions,
-			show: { ipOperation: ['ipAntihackListGet'] },
-		}) as INodeProperties[]),
-		...(descriptionIpPhishingListGet({
-			...displayOptions,
-			show: { ipOperation: ['ipPhishingListGet'] },
-		}) as INodeProperties[]),
-		...(descriptionIpArpListGet({
-			...displayOptions,
-			show: { ipOperation: ['ipArpListGet'] },
-		}) as INodeProperties[]),
-		...(descriptionIpEquilibriumListGet({
-			...displayOptions,
-			show: { ipOperation: ['ipEquilibriumListGet'] },
-		}) as INodeProperties[]),
-		...(descriptionIpFirewallListGet({
-			...displayOptions,
-			show: { ipOperation: ['ipFirewallListGet'] },
-		}) as INodeProperties[]),
-		...(descriptionIpFirewallRuleListGet({
-			...displayOptions,
-			show: { ipOperation: ['ipFirewallRuleListGet'] },
-		}) as INodeProperties[]),
-		...(descriptionIpGameListGet({
-			...displayOptions,
-			show: { ipOperation: ['ipGameListGet'] },
-		}) as INodeProperties[]),
-		...(descriptionIpGameRuleListGet({
-			...displayOptions,
-			show: { ipOperation: ['ipGameRuleListGet'] },
-		}) as INodeProperties[]),
-		...(descriptionIpServiceListGet({
-			...displayOptions,
-			show: { ipOperation: ['ipServiceListGet'] },
-		}) as INodeProperties[]),
-		...(descriptionIpTaskListGet({
-			...displayOptions,
-			show: { ipOperation: ['ipTaskListGet'] },
-		}) as INodeProperties[]),
-		...(descriptionIpListGet({
-			...displayOptions,
-			show: { ipOperation: ['ipListGet'] },
-		}) as INodeProperties[]),
-		...(descriptionIpMitigationListGet({
-			...displayOptions,
-			show: { ipOperation: ['ipMitigationListGet'] },
-		}) as INodeProperties[]),
-		...(descriptionIpMitigationProfilesListGet({
-			...displayOptions,
-			show: { ipOperation: ['ipMitigationProfilesListGet'] },
-		}) as INodeProperties[]),
-		...(descriptionIpDelegationListGet({
-			...displayOptions,
-			show: { ipOperation: ['ipDelegationListGet'] },
-		}) as INodeProperties[]),
-		...(descriptionIpReverseListGet({
-			...displayOptions,
-			show: { ipOperation: ['ipReverseListGet'] },
-		}) as INodeProperties[]),
-		...(descriptionIpSpamListGet({
-			...displayOptions,
-			show: { ipOperation: ['ipSpamListGet'] },
-		}) as INodeProperties[]),
-		...(descriptionIpMovePost({
-			...displayOptions,
-			show: { ipOperation: ['ipMovePost'] },
-		}) as INodeProperties[]),
-		...(descriptionIpParkPost({
-			...displayOptions,
-			show: { ipOperation: ['ipParkPost'] },
-		}) as INodeProperties[]),
-		...(descriptionIpBringYourOwnIpSliceCreatePost({
-			...displayOptions,
-			show: { ipOperation: ['ipBringYourOwnIpSliceCreatePost'] },
-		}) as INodeProperties[]),
-		...(descriptionIpTerminatePost({
-			...displayOptions,
-			show: { ipOperation: ['ipTerminatePost'] },
-		}) as INodeProperties[]),
-		...(descriptionIpServiceTerminatePost({
-			...displayOptions,
-			show: { ipOperation: ['ipServiceTerminatePost'] },
-		}) as INodeProperties[]),
-		...(descriptionIpAntihackUnblockPost({
-			...displayOptions,
-			show: { ipOperation: ['ipAntihackUnblockPost'] },
-		}) as INodeProperties[]),
-		...(descriptionIpArpUnblockPost({
-			...displayOptions,
-			show: { ipOperation: ['ipArpUnblockPost'] },
-		}) as INodeProperties[]),
-		...(descriptionIpSpamUnblockPost({
-			...displayOptions,
-			show: { ipOperation: ['ipSpamUnblockPost'] },
-		}) as INodeProperties[]),
-		...(descriptionIpEquilibriumUpdatePut({
-			...displayOptions,
-			show: { ipOperation: ['ipEquilibriumUpdatePut'] },
-		}) as INodeProperties[]),
-		...(descriptionIpFailoverUpdatePut({
-			...displayOptions,
-			show: { ipOperation: ['ipFailoverUpdatePut'] },
-		}) as INodeProperties[]),
-		...(descriptionIpFirewallUpdatePut({
-			...displayOptions,
-			show: { ipOperation: ['ipFirewallUpdatePut'] },
-		}) as INodeProperties[]),
-		...(descriptionIpGameUpdatePut({
-			...displayOptions,
-			show: { ipOperation: ['ipGameUpdatePut'] },
-		}) as INodeProperties[]),
-		...(descriptionIpUpdatePut({
-			...displayOptions,
-			show: { ipOperation: ['ipUpdatePut'] },
-		}) as INodeProperties[]),
-		...(descriptionIpServiceUpdatePut({
-			...displayOptions,
-			show: { ipOperation: ['ipServiceUpdatePut'] },
-		}) as INodeProperties[]),
-		...(descriptionIpServiceServiceInfosUpdatePut({
-			...displayOptions,
-			show: { ipOperation: ['ipServiceServiceInfosUpdatePut'] },
-		}) as INodeProperties[]),
-		...(descriptionIpMitigationUpdatePut({
-			...displayOptions,
-			show: { ipOperation: ['ipMitigationUpdatePut'] },
-		}) as INodeProperties[]),
-		...(descriptionIpMitigationProfilesUpdatePut({
-			...displayOptions,
-			show: { ipOperation: ['ipMitigationProfilesUpdatePut'] },
-		}) as INodeProperties[]),
-		...(descriptionIpReverseUpdatePut({
-			...displayOptions,
-			show: { ipOperation: ['ipReverseUpdatePut'] },
-		}) as INodeProperties[]),
-		...(descriptionIpRipeUpdatePut({
-			...displayOptions,
-			show: { ipOperation: ['ipRipeUpdatePut'] },
-		}) as INodeProperties[]),
-
-	];
-
-	return properties;
-}
-
-export async function execute(
-	this: IExecuteFunctions,
-	itemIndex?: number,
-): Promise<INodeExecutionData[]> {
-	const operation = this.getNodeParameter('ipOperation', itemIndex ?? 0, {
-		extractValue: true,
-	});
-
-	switch (operation) {
-	case 'ipFirewallCreatePost':
-		return executeIpFirewallCreatePost.call(this, itemIndex ?? 0);
-	case 'ipFirewallRuleCreatePost':
-		return executeIpFirewallRuleCreatePost.call(this, itemIndex ?? 0);
-	case 'ipGameRuleCreatePost':
-		return executeIpGameRuleCreatePost.call(this, itemIndex ?? 0);
-	case 'ipMitigationCreatePost':
-		return executeIpMitigationCreatePost.call(this, itemIndex ?? 0);
-	case 'ipDelegationCreatePost':
-		return executeIpDelegationCreatePost.call(this, itemIndex ?? 0);
-	case 'ipReverseCreatePost':
-		return executeIpReverseCreatePost.call(this, itemIndex ?? 0);
-	case 'ipBringYourOwnIpAggregateCreatePost':
-		return executeIpBringYourOwnIpAggregateCreatePost.call(this, itemIndex ?? 0);
-	case 'ipChangeOrgPost':
-		return executeIpChangeOrgPost.call(this, itemIndex ?? 0);
-	case 'ipServiceChangeContactPost':
-		return executeIpServiceChangeContactPost.call(this, itemIndex ?? 0);
-	case 'ipServiceConfirmTerminationPost':
-		return executeIpServiceConfirmTerminationPost.call(this, itemIndex ?? 0);
-	case 'ipEquilibriumCreatePost':
-		return executeIpEquilibriumCreatePost.call(this, itemIndex ?? 0);
-	case 'ipFailoverPost':
-		return executeIpFailoverPost.call(this, itemIndex ?? 0);
-	case 'ipMitigationProfilesCreatePost':
-		return executeIpMitigationProfilesCreatePost.call(this, itemIndex ?? 0);
-	case 'ipEquilibriumDeleteDelete':
-		return executeIpEquilibriumDeleteDelete.call(this, itemIndex ?? 0);
-	case 'ipEquilibriumDetailDeleteDelete':
-		return executeIpEquilibriumDetailDeleteDelete.call(this, itemIndex ?? 0);
-	case 'ipFailoverDeleteDelete':
-		return executeIpFailoverDeleteDelete.call(this, itemIndex ?? 0);
-	case 'ipFirewallDeleteDelete':
-		return executeIpFirewallDeleteDelete.call(this, itemIndex ?? 0);
-	case 'ipFirewallRuleDeleteDelete':
-		return executeIpFirewallRuleDeleteDelete.call(this, itemIndex ?? 0);
-	case 'ipGameRuleDeleteDelete':
-		return executeIpGameRuleDeleteDelete.call(this, itemIndex ?? 0);
-	case 'ipMitigationDeleteDelete':
-		return executeIpMitigationDeleteDelete.call(this, itemIndex ?? 0);
-	case 'ipMitigationProfilesDeleteDelete':
-		return executeIpMitigationProfilesDeleteDelete.call(this, itemIndex ?? 0);
-	case 'ipDelegationDeleteDelete':
-		return executeIpDelegationDeleteDelete.call(this, itemIndex ?? 0);
-	case 'ipReverseDeleteDelete':
-		return executeIpReverseDeleteDelete.call(this, itemIndex ?? 0);
-	case 'ipMigrationTokenCreatePost':
-		return executeIpMigrationTokenCreatePost.call(this, itemIndex ?? 0);
-	case 'ipAntihackGetGet':
-		return executeIpAntihackGetGet.call(this, itemIndex ?? 0);
-	case 'ipPhishingGetGet':
-		return executeIpPhishingGetGet.call(this, itemIndex ?? 0);
-	case 'ipArpGetGet':
-		return executeIpArpGetGet.call(this, itemIndex ?? 0);
-	case 'ipBringYourOwnIpAggregateListGet':
-		return executeIpBringYourOwnIpAggregateListGet.call(this, itemIndex ?? 0);
-	case 'ipBringYourOwnIpSliceListGet':
-		return executeIpBringYourOwnIpSliceListGet.call(this, itemIndex ?? 0);
-	case 'ipLicenseCloudLinuxGet':
-		return executeIpLicenseCloudLinuxGet.call(this, itemIndex ?? 0);
-	case 'ipLicenseCpanelGet':
-		return executeIpLicenseCpanelGet.call(this, itemIndex ?? 0);
-	case 'ipLicenseDirectadminGet':
-		return executeIpLicenseDirectadminGet.call(this, itemIndex ?? 0);
-	case 'ipEquilibriumDetailGet':
-		return executeIpEquilibriumDetailGet.call(this, itemIndex ?? 0);
-	case 'ipFailoverGetGet':
-		return executeIpFailoverGetGet.call(this, itemIndex ?? 0);
-	case 'ipFirewallGetGet':
-		return executeIpFirewallGetGet.call(this, itemIndex ?? 0);
-	case 'ipFirewallRuleGetGet':
-		return executeIpFirewallRuleGetGet.call(this, itemIndex ?? 0);
-	case 'ipGameGetGet':
-		return executeIpGameGetGet.call(this, itemIndex ?? 0);
-	case 'ipGameRuleGetGet':
-		return executeIpGameRuleGetGet.call(this, itemIndex ?? 0);
-	case 'ipGetGet':
-		return executeIpGetGet.call(this, itemIndex ?? 0);
-	case 'ipCampusGet':
-		return executeIpCampusGet.call(this, itemIndex ?? 0);
-	case 'ipMoveGetGet':
-		return executeIpMoveGetGet.call(this, itemIndex ?? 0);
-	case 'ipServiceGetGet':
-		return executeIpServiceGetGet.call(this, itemIndex ?? 0);
-	case 'ipServiceServiceInfosGetGet':
-		return executeIpServiceServiceInfosGetGet.call(this, itemIndex ?? 0);
-	case 'ipTaskGetGet':
-		return executeIpTaskGetGet.call(this, itemIndex ?? 0);
-	case 'ipMigrationTokenGet':
-		return executeIpMigrationTokenGet.call(this, itemIndex ?? 0);
-	case 'ipMitigationGetGet':
-		return executeIpMitigationGetGet.call(this, itemIndex ?? 0);
-	case 'ipMitigationProfilesGetGet':
-		return executeIpMitigationProfilesGetGet.call(this, itemIndex ?? 0);
-	case 'ipLicensePleskGet':
-		return executeIpLicensePleskGet.call(this, itemIndex ?? 0);
-	case 'ipReverseGetGet':
-		return executeIpReverseGetGet.call(this, itemIndex ?? 0);
-	case 'ipDelegationGetGet':
-		return executeIpDelegationGetGet.call(this, itemIndex ?? 0);
-	case 'ipRipeGet':
-		return executeIpRipeGet.call(this, itemIndex ?? 0);
-	case 'ipSpamStatsGet':
-		return executeIpSpamStatsGet.call(this, itemIndex ?? 0);
-	case 'ipSpamGetGet':
-		return executeIpSpamGetGet.call(this, itemIndex ?? 0);
-	case 'ipLicenseSqlserverGet':
-		return executeIpLicenseSqlserverGet.call(this, itemIndex ?? 0);
-	case 'ipLicenseVirtuozzoGet':
-		return executeIpLicenseVirtuozzoGet.call(this, itemIndex ?? 0);
-	case 'ipLicenseWindowsGet':
-		return executeIpLicenseWindowsGet.call(this, itemIndex ?? 0);
-	case 'ipLicenseWorklightGet':
-		return executeIpLicenseWorklightGet.call(this, itemIndex ?? 0);
-	case 'ipAntihackListGet':
-		return executeIpAntihackListGet.call(this, itemIndex ?? 0);
-	case 'ipPhishingListGet':
-		return executeIpPhishingListGet.call(this, itemIndex ?? 0);
-	case 'ipArpListGet':
-		return executeIpArpListGet.call(this, itemIndex ?? 0);
-	case 'ipEquilibriumListGet':
-		return executeIpEquilibriumListGet.call(this, itemIndex ?? 0);
-	case 'ipFirewallListGet':
-		return executeIpFirewallListGet.call(this, itemIndex ?? 0);
-	case 'ipFirewallRuleListGet':
-		return executeIpFirewallRuleListGet.call(this, itemIndex ?? 0);
-	case 'ipGameListGet':
-		return executeIpGameListGet.call(this, itemIndex ?? 0);
-	case 'ipGameRuleListGet':
-		return executeIpGameRuleListGet.call(this, itemIndex ?? 0);
-	case 'ipServiceListGet':
-		return executeIpServiceListGet.call(this, itemIndex ?? 0);
-	case 'ipTaskListGet':
-		return executeIpTaskListGet.call(this, itemIndex ?? 0);
-	case 'ipListGet':
-		return executeIpListGet.call(this, itemIndex ?? 0);
-	case 'ipMitigationListGet':
-		return executeIpMitigationListGet.call(this, itemIndex ?? 0);
-	case 'ipMitigationProfilesListGet':
-		return executeIpMitigationProfilesListGet.call(this, itemIndex ?? 0);
-	case 'ipDelegationListGet':
-		return executeIpDelegationListGet.call(this, itemIndex ?? 0);
-	case 'ipReverseListGet':
-		return executeIpReverseListGet.call(this, itemIndex ?? 0);
-	case 'ipSpamListGet':
-		return executeIpSpamListGet.call(this, itemIndex ?? 0);
-	case 'ipMovePost':
-		return executeIpMovePost.call(this, itemIndex ?? 0);
-	case 'ipParkPost':
-		return executeIpParkPost.call(this, itemIndex ?? 0);
-	case 'ipBringYourOwnIpSliceCreatePost':
-		return executeIpBringYourOwnIpSliceCreatePost.call(this, itemIndex ?? 0);
-	case 'ipTerminatePost':
-		return executeIpTerminatePost.call(this, itemIndex ?? 0);
-	case 'ipServiceTerminatePost':
-		return executeIpServiceTerminatePost.call(this, itemIndex ?? 0);
-	case 'ipAntihackUnblockPost':
-		return executeIpAntihackUnblockPost.call(this, itemIndex ?? 0);
-	case 'ipArpUnblockPost':
-		return executeIpArpUnblockPost.call(this, itemIndex ?? 0);
-	case 'ipSpamUnblockPost':
-		return executeIpSpamUnblockPost.call(this, itemIndex ?? 0);
-	case 'ipEquilibriumUpdatePut':
-		return executeIpEquilibriumUpdatePut.call(this, itemIndex ?? 0);
-	case 'ipFailoverUpdatePut':
-		return executeIpFailoverUpdatePut.call(this, itemIndex ?? 0);
-	case 'ipFirewallUpdatePut':
-		return executeIpFirewallUpdatePut.call(this, itemIndex ?? 0);
-	case 'ipGameUpdatePut':
-		return executeIpGameUpdatePut.call(this, itemIndex ?? 0);
-	case 'ipUpdatePut':
-		return executeIpUpdatePut.call(this, itemIndex ?? 0);
-	case 'ipServiceUpdatePut':
-		return executeIpServiceUpdatePut.call(this, itemIndex ?? 0);
-	case 'ipServiceServiceInfosUpdatePut':
-		return executeIpServiceServiceInfosUpdatePut.call(this, itemIndex ?? 0);
-	case 'ipMitigationUpdatePut':
-		return executeIpMitigationUpdatePut.call(this, itemIndex ?? 0);
-	case 'ipMitigationProfilesUpdatePut':
-		return executeIpMitigationProfilesUpdatePut.call(this, itemIndex ?? 0);
-	case 'ipReverseUpdatePut':
-		return executeIpReverseUpdatePut.call(this, itemIndex ?? 0);
-	case 'ipRipeUpdatePut':
-		return executeIpRipeUpdatePut.call(this, itemIndex ?? 0);
-
-	}
-
-	throw new Error(`Unsupported operation "${operation}" for resource "ovhCloudIp"`);
-}
-
+export { description, execute };

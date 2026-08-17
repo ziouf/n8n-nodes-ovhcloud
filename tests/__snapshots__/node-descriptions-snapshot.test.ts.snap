@@ -93,7 +93,6 @@ exports[`OvhCloud node descriptions (snapshot reference) OvhCloudCommercialCatal
   {
     "default": "commercialCatalogoffersListGet",
     "displayName": "Operation",
-    "displayOptions": {},
     "name": "commercialCatalogOperation",
     "noDataExpression": true,
     "options": [
@@ -195,7 +194,6 @@ exports[`OvhCloud node descriptions (snapshot reference) OvhCloudLocation descri
   {
     "default": "locationListGet",
     "displayName": "Operation",
-    "displayOptions": {},
     "name": "locationOperation",
     "noDataExpression": true,
     "options": [
@@ -313,7 +311,6 @@ exports[`OvhCloud node descriptions (snapshot reference) OvhCloudNetworkDefense 
   {
     "default": "networkDefensevaceventListGet",
     "displayName": "Operation",
-    "displayOptions": {},
     "name": "networkDefenseOperation",
     "noDataExpression": true,
     "options": [

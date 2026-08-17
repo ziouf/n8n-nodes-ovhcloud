@@ -1,796 +1,562 @@
-import type {
-	IDisplayOptions,
-	IExecuteFunctions,
-	INodeExecutionData,
-	INodeProperties,
-} from 'n8n-workflow';
+import { createOperationDispatcher } from '../../shared/nodes/createNodeDispatcher';
 
 import {
-	execute as executeServicesListGet,
-	description as descriptionServicesListGet,
-} from './servicesListGet.operation';
-import {
-	execute as executeServicesGetGet,
-	description as descriptionServicesGetGet,
-} from './servicesGetGet.operation';
-import {
-	execute as executeServicesUpdatePut,
-	description as descriptionServicesUpdatePut,
-} from './servicesUpdatePut.operation';
-import {
-	execute as executeServicesDeleteDelete,
-	description as descriptionServicesDeleteDelete,
-} from './servicesDeleteDelete.operation';
-import {
-	execute as executeReinstallPost,
 	description as descriptionReinstallPost,
+	execute as executeReinstallPost,
 } from './reinstallPost.operation';
 import {
-	execute as executeTaskListGet,
-	description as descriptionTaskListGet,
-} from './taskListGet.operation';
-import {
-	execute as executeTaskGetGet,
-	description as descriptionTaskGetGet,
-} from './taskGetGet.operation';
-import {
-	execute as executeEngagementGet,
-	description as descriptionEngagementGet,
-} from './resources/billing/engagementGet.operation';
-import {
-	execute as executeEngagementAvailableGet,
 	description as descriptionEngagementAvailableGet,
+	execute as executeEngagementAvailableGet,
 } from './resources/billing/engagementAvailableGet.operation';
 import {
-	execute as executeEngagementEndRulePut,
 	description as descriptionEngagementEndRulePut,
+	execute as executeEngagementEndRulePut,
 } from './resources/billing/engagementEndRulePut.operation';
 import {
-	execute as executeEngagementFlushPost,
 	description as descriptionEngagementFlushPost,
+	execute as executeEngagementFlushPost,
 } from './resources/billing/engagementFlushPost.operation';
 import {
-	execute as executeEngagementRequestDelete,
+	description as descriptionEngagementGet,
+	execute as executeEngagementGet,
+} from './resources/billing/engagementGet.operation';
+import {
 	description as descriptionEngagementRequestDelete,
+	execute as executeEngagementRequestDelete,
 } from './resources/billing/engagementRequestDelete.operation';
 import {
-	execute as executeEngagementRequestGet,
 	description as descriptionEngagementRequestGet,
+	execute as executeEngagementRequestGet,
 } from './resources/billing/engagementRequestGet.operation';
 import {
-	execute as executeEngagementRequestPost,
 	description as descriptionEngagementRequestPost,
+	execute as executeEngagementRequestPost,
 } from './resources/billing/engagementRequestPost.operation';
 import {
-	execute as executeConsumptionGet,
-	description as descriptionConsumptionGet,
-} from './resources/consumption/consumptionGet.operation';
-import {
-	execute as executeConsumptionElementGet,
 	description as descriptionConsumptionElementGet,
+	execute as executeConsumptionElementGet,
 } from './resources/consumption/consumptionElementGet.operation';
 import {
-	execute as executeConsumptionForecastGet,
-	description as descriptionConsumptionForecastGet,
-} from './resources/consumption/consumptionForecastGet.operation';
-import {
-	execute as executeConsumptionForecastElementGet,
 	description as descriptionConsumptionForecastElementGet,
+	execute as executeConsumptionForecastElementGet,
 } from './resources/consumption/consumptionForecastElementGet.operation';
 import {
-	execute as executeConsumptionHistoryGet,
+	description as descriptionConsumptionForecastGet,
+	execute as executeConsumptionForecastGet,
+} from './resources/consumption/consumptionForecastGet.operation';
+import {
+	description as descriptionConsumptionGet,
+	execute as executeConsumptionGet,
+} from './resources/consumption/consumptionGet.operation';
+import {
 	description as descriptionConsumptionHistoryGet,
+	execute as executeConsumptionHistoryGet,
 } from './resources/consumption/consumptionHistoryGet.operation';
 import {
-	execute as executeConsumptionHistoryIdGet,
-	description as descriptionConsumptionHistoryIdGet,
-} from './resources/consumption/consumptionHistoryIdGet.operation';
-import {
-	execute as executeConsumptionHistoryIdElementGet,
 	description as descriptionConsumptionHistoryIdElementGet,
+	execute as executeConsumptionHistoryIdElementGet,
 } from './resources/consumption/consumptionHistoryIdElementGet.operation';
 import {
-	execute as executeDetachGet,
+	description as descriptionConsumptionHistoryIdGet,
+	execute as executeConsumptionHistoryIdGet,
+} from './resources/consumption/consumptionHistoryIdGet.operation';
+import {
 	description as descriptionDetachGet,
+	execute as executeDetachGet,
 } from './resources/detach/detachGet.operation';
 import {
-	execute as executeDetachPlanCodeGet,
-	description as descriptionDetachPlanCodeGet,
-} from './resources/detach/detachPlanCodeGet.operation';
-import {
-	execute as executeDetachPlanCodeExecutePost,
 	description as descriptionDetachPlanCodeExecutePost,
+	execute as executeDetachPlanCodeExecutePost,
 } from './resources/detach/detachPlanCodeExecutePost.operation';
 import {
-	execute as executeDetachPlanCodeOptionsGet,
+	description as descriptionDetachPlanCodeGet,
+	execute as executeDetachPlanCodeGet,
+} from './resources/detach/detachPlanCodeGet.operation';
+import {
 	description as descriptionDetachPlanCodeOptionsGet,
+	execute as executeDetachPlanCodeOptionsGet,
 } from './resources/detach/detachPlanCodeOptionsGet.operation';
 import {
-	execute as executeDetachPlanCodeSimulatePost,
 	description as descriptionDetachPlanCodeSimulatePost,
+	execute as executeDetachPlanCodeSimulatePost,
 } from './resources/detach/detachPlanCodeSimulatePost.operation';
 import {
-	execute as executeFormGet,
-	description as descriptionFormGet,
-} from './resources/form/formGet.operation';
-import {
-	execute as executeFormFormNameGet,
-	description as descriptionFormFormNameGet,
-} from './resources/form/formFormNameGet.operation';
-import {
-	execute as executeFormFormNameAnswerPost,
 	description as descriptionFormFormNameAnswerPost,
+	execute as executeFormFormNameAnswerPost,
 } from './resources/form/formFormNameAnswerPost.operation';
 import {
-	execute as executeSavingsPlansContractsGet,
-	description as descriptionSavingsPlansContractsGet,
-} from './resources/savingsPlans/savingsPlansContractsGet.operation';
+	description as descriptionFormFormNameGet,
+	execute as executeFormFormNameGet,
+} from './resources/form/formFormNameGet.operation';
 import {
-	execute as executeSavingsPlansSubscribableGet,
-	description as descriptionSavingsPlansSubscribableGet,
-} from './resources/savingsPlans/savingsPlansSubscribableGet.operation';
+	description as descriptionFormGet,
+	execute as executeFormGet,
+} from './resources/form/formGet.operation';
 import {
-	execute as executeSavingsPlansSubscribeExecutePost,
-	description as descriptionSavingsPlansSubscribeExecutePost,
-} from './resources/savingsPlans/savingsPlansSubscribeExecutePost.operation';
-import {
-	execute as executeSavingsPlansSubscribeSimulatePost,
-	description as descriptionSavingsPlansSubscribeSimulatePost,
-} from './resources/savingsPlans/savingsPlansSubscribeSimulatePost.operation';
-import {
-	execute as executeSavingsPlansSubscribedGet,
-	description as descriptionSavingsPlansSubscribedGet,
-} from './resources/savingsPlans/savingsPlansSubscribedGet.operation';
-import {
-	execute as executeSavingsPlansSubscribedSavingsPlanIdGet,
-	description as descriptionSavingsPlansSubscribedSavingsPlanIdGet,
-} from './resources/savingsPlans/savingsPlansSubscribedSavingsPlanIdGet.operation';
-import {
-	execute as executeSavingsPlansSubscribedSavingsPlanIdPut,
-	description as descriptionSavingsPlansSubscribedSavingsPlanIdPut,
-} from './resources/savingsPlans/savingsPlansSubscribedSavingsPlanIdPut.operation';
-import {
-	execute as executeSavingsPlansSubscribedSavingsPlanIdChangePeriodEndActionPost,
-	description as descriptionSavingsPlansSubscribedSavingsPlanIdChangePeriodEndActionPost,
-} from './resources/savingsPlans/savingsPlansSubscribedSavingsPlanIdChangePeriodEndActionPost.operation';
-import {
-	execute as executeSavingsPlansSubscribedSavingsPlanIdChangeSizePost,
-	description as descriptionSavingsPlansSubscribedSavingsPlanIdChangeSizePost,
-} from './resources/savingsPlans/savingsPlansSubscribedSavingsPlanIdChangeSizePost.operation';
-import {
-	execute as executeSavingsPlansSubscribedSavingsPlanIdPeriodsGet,
-	description as descriptionSavingsPlansSubscribedSavingsPlanIdPeriodsGet,
-} from './resources/savingsPlans/savingsPlansSubscribedSavingsPlanIdPeriodsGet.operation';
-import {
-	execute as executeSavingsPlansSubscribedSavingsPlanIdTerminatePost,
-	description as descriptionSavingsPlansSubscribedSavingsPlanIdTerminatePost,
-} from './resources/savingsPlans/savingsPlansSubscribedSavingsPlanIdTerminatePost.operation';
-import {
-	execute as executeUpgradeGet,
-	description as descriptionUpgradeGet,
-} from './resources/upgrade/upgradeGet.operation';
-import {
-	execute as executeUpgradePlanCodeGet,
-	description as descriptionUpgradePlanCodeGet,
-} from './resources/upgrade/upgradePlanCodeGet.operation';
-import {
-	execute as executeUpgradePlanCodeExecutePost,
-	description as descriptionUpgradePlanCodeExecutePost,
-} from './resources/upgrade/upgradePlanCodeExecutePost.operation';
-import {
-	execute as executeUpgradePlanCodeSimulatePost,
-	description as descriptionUpgradePlanCodeSimulatePost,
-} from './resources/upgrade/upgradePlanCodeSimulatePost.operation';
-import {
-	execute as executeOptionsGet,
 	description as descriptionOptionsGet,
+	execute as executeOptionsGet,
 } from './resources/optionsGet.operation';
 import {
-	execute as executeRenewPeriodCapacitiesGet,
 	description as descriptionRenewPeriodCapacitiesGet,
+	execute as executeRenewPeriodCapacitiesGet,
 } from './resources/renewPeriodCapacitiesGet.operation';
 import {
-	execute as executeTechnicalDetailsGet,
+	description as descriptionSavingsPlansContractsGet,
+	execute as executeSavingsPlansContractsGet,
+} from './resources/savingsPlans/savingsPlansContractsGet.operation';
+import {
+	description as descriptionSavingsPlansSubscribableGet,
+	execute as executeSavingsPlansSubscribableGet,
+} from './resources/savingsPlans/savingsPlansSubscribableGet.operation';
+import {
+	description as descriptionSavingsPlansSubscribeExecutePost,
+	execute as executeSavingsPlansSubscribeExecutePost,
+} from './resources/savingsPlans/savingsPlansSubscribeExecutePost.operation';
+import {
+	description as descriptionSavingsPlansSubscribeSimulatePost,
+	execute as executeSavingsPlansSubscribeSimulatePost,
+} from './resources/savingsPlans/savingsPlansSubscribeSimulatePost.operation';
+import {
+	description as descriptionSavingsPlansSubscribedGet,
+	execute as executeSavingsPlansSubscribedGet,
+} from './resources/savingsPlans/savingsPlansSubscribedGet.operation';
+import {
+	description as descriptionSavingsPlansSubscribedSavingsPlanIdChangePeriodEndActionPost,
+	execute as executeSavingsPlansSubscribedSavingsPlanIdChangePeriodEndActionPost,
+} from './resources/savingsPlans/savingsPlansSubscribedSavingsPlanIdChangePeriodEndActionPost.operation';
+import {
+	description as descriptionSavingsPlansSubscribedSavingsPlanIdChangeSizePost,
+	execute as executeSavingsPlansSubscribedSavingsPlanIdChangeSizePost,
+} from './resources/savingsPlans/savingsPlansSubscribedSavingsPlanIdChangeSizePost.operation';
+import {
+	description as descriptionSavingsPlansSubscribedSavingsPlanIdGet,
+	execute as executeSavingsPlansSubscribedSavingsPlanIdGet,
+} from './resources/savingsPlans/savingsPlansSubscribedSavingsPlanIdGet.operation';
+import {
+	description as descriptionSavingsPlansSubscribedSavingsPlanIdPeriodsGet,
+	execute as executeSavingsPlansSubscribedSavingsPlanIdPeriodsGet,
+} from './resources/savingsPlans/savingsPlansSubscribedSavingsPlanIdPeriodsGet.operation';
+import {
+	description as descriptionSavingsPlansSubscribedSavingsPlanIdPut,
+	execute as executeSavingsPlansSubscribedSavingsPlanIdPut,
+} from './resources/savingsPlans/savingsPlansSubscribedSavingsPlanIdPut.operation';
+import {
+	description as descriptionSavingsPlansSubscribedSavingsPlanIdTerminatePost,
+	execute as executeSavingsPlansSubscribedSavingsPlanIdTerminatePost,
+} from './resources/savingsPlans/savingsPlansSubscribedSavingsPlanIdTerminatePost.operation';
+import {
 	description as descriptionTechnicalDetailsGet,
+	execute as executeTechnicalDetailsGet,
 } from './resources/technicalDetailsGet.operation';
 import {
-	execute as executeTerminatePost,
-	description as descriptionTerminatePost,
-} from './resources/terminatePost.operation';
-import {
-	execute as executeTerminateConfirmPost,
 	description as descriptionTerminateConfirmPost,
+	execute as executeTerminateConfirmPost,
 } from './resources/terminateConfirmPost.operation';
 import {
-	execute as executeTerminateSkipRetentionPeriodPost,
+	description as descriptionTerminatePost,
+	execute as executeTerminatePost,
+} from './resources/terminatePost.operation';
+import {
 	description as descriptionTerminateSkipRetentionPeriodPost,
+	execute as executeTerminateSkipRetentionPeriodPost,
 } from './resources/terminateSkipRetentionPeriodPost.operation';
+import {
+	description as descriptionUpgradeGet,
+	execute as executeUpgradeGet,
+} from './resources/upgrade/upgradeGet.operation';
+import {
+	description as descriptionUpgradePlanCodeExecutePost,
+	execute as executeUpgradePlanCodeExecutePost,
+} from './resources/upgrade/upgradePlanCodeExecutePost.operation';
+import {
+	description as descriptionUpgradePlanCodeGet,
+	execute as executeUpgradePlanCodeGet,
+} from './resources/upgrade/upgradePlanCodeGet.operation';
+import {
+	description as descriptionUpgradePlanCodeSimulatePost,
+	execute as executeUpgradePlanCodeSimulatePost,
+} from './resources/upgrade/upgradePlanCodeSimulatePost.operation';
+import {
+	description as descriptionServicesDeleteDelete,
+	execute as executeServicesDeleteDelete,
+} from './servicesDeleteDelete.operation';
+import {
+	description as descriptionServicesGetGet,
+	execute as executeServicesGetGet,
+} from './servicesGetGet.operation';
+import {
+	description as descriptionServicesListGet,
+	execute as executeServicesListGet,
+} from './servicesListGet.operation';
+import {
+	description as descriptionServicesUpdatePut,
+	execute as executeServicesUpdatePut,
+} from './servicesUpdatePut.operation';
+import {
+	description as descriptionTaskGetGet,
+	execute as executeTaskGetGet,
+} from './taskGetGet.operation';
+import {
+	description as descriptionTaskListGet,
+	execute as executeTaskListGet,
+} from './taskListGet.operation';
 
-export function description(displayOptions: IDisplayOptions): INodeProperties[] {
-	const operationProperties: INodeProperties[] = [
-		{
-			displayName: 'Operation',
-			name: 'servicesOperation',
-			type: 'options',
-			noDataExpression: true,
-			options: [
-			{
-				name: 'Answer Form',
-				value: 'formFormNameAnswerPost',
-				action: 'Post answers to the form for your service',
-			},
-			{
-				name: 'Change Savings Plan End Action',
-				value: 'savingsPlansSubscribedSavingsPlanIdChangePeriodEndActionPost',
-				action: 'Change the action occurring at the end of the Savings Plan period',
-			},
-			{
-				name: 'Change Savings Plan Size',
-				value: 'savingsPlansSubscribedSavingsPlanIdChangeSizePost',
-				action: 'Resize the Savings Plan',
-			},
-			{
-				name: 'Confirm Service Termination',
-				value: 'terminateConfirmPost',
-				action: 'Confirm service termination',
-			},
-			{
-				name: 'Delete Engagement Request',
-				value: 'engagementRequestDelete',
-				action: 'Delete the ongoing Engagement request on this Service',
-			},
-			{
-				name: 'Delete Service',
-				value: 'servicesDeleteDelete',
-				action: 'Delete a service',
-			},
-			{
-				name: 'Execute Detach',
-				value: 'detachPlanCodeExecutePost',
-				action: 'Perform the migration to a standalone offer',
-			},
-			{
-				name: 'Execute Upgrade',
-				value: 'upgradePlanCodeExecutePost',
-				action: 'Perform the migration to another offer',
-			},
-			{
-				name: 'Flush Engagement',
-				value: 'engagementFlushPost',
-				action: 'Flush the engagement of this service',
-			},
-			{
-				name: 'Get Consumption',
-				value: 'consumptionGet',
-				action: 'Get a summary of the ongoing consumption of your service',
-			},
-			{
-				name: 'Get Consumption Elements',
-				value: 'consumptionElementGet',
-				action: 'Get each resource consumed by your service',
-			},
-			{
-				name: 'Get Consumption Forecast',
-				value: 'consumptionForecastGet',
-				action: 'Get a summary of the forecasted consumption of your service',
-			},
-			{
-				name: 'Get Consumption History',
-				value: 'consumptionHistoryIdGet',
-				action: 'Get a summary of the past consumption of your service',
-			},
-			{
-				name: 'Get Detach Offer',
-				value: 'detachPlanCodeGet',
-				action: 'View an offer this option can be converted to',
-			},
-			{
-				name: 'Get Engagement',
-				value: 'engagementGet',
-				action: 'Get engagement details',
-			},
-			{
-				name: 'Get Engagement Request',
-				value: 'engagementRequestGet',
-				action: 'Get the ongoing Engagement request on this Service',
-			},
-			{
-				name: 'Get Forecast Consumption Elements',
-				value: 'consumptionForecastElementGet',
-				action: 'Get each resource forecasted consumption of your service',
-			},
-			{
-				name: 'Get Form',
-				value: 'formFormNameGet',
-				action: 'Get specified form description for service',
-			},
-			{
-				name: 'Get History Consumption Elements',
-				value: 'consumptionHistoryIdElementGet',
-				action: 'Get each resource consumed for the given history',
-			},
-			{
-				name: 'Get Renew Period Capacities',
-				value: 'renewPeriodCapacitiesGet',
-				action: 'Get possible renew periods of a service',
-			},
-			{
-				name: 'Get Service',
-				value: 'servicesGetGet',
-				action: 'Get service details',
-			},
-			{
-				name: 'Get Service Options',
-				value: 'optionsGet',
-				action: 'Get options of a service',
-			},
-			{
-				name: 'Get Subscribed Savings Plan',
-				value: 'savingsPlansSubscribedSavingsPlanIdGet',
-				action: 'Fetch a subscribed Savings Plan',
-			},
-			{
-				name: 'Get Task',
-				value: 'taskGetGet',
-				action: 'Get task details',
-			},
-			{
-				name: 'Get Technical Details',
-				value: 'technicalDetailsGet',
-				action: 'View the technical details of the service',
-			},
-			{
-				name: 'Get Upgrade Offer',
-				value: 'upgradePlanCodeGet',
-				action: 'View an offer this option can be converted to',
-			},
-			{
-				name: 'List Available Engagements',
-				value: 'engagementAvailableGet',
-				action: 'List all available engagements a service can subscribe to',
-			},
-			{
-				name: 'List Consumption History',
-				value: 'consumptionHistoryGet',
-				action: 'List consumption history of your service',
-			},
-			{
-				name: 'List Detach Offers',
-				value: 'detachGet',
-				action: 'List offers this option can be converted to',
-			},
-			{
-				name: 'List Detach Options',
-				value: 'detachPlanCodeOptionsGet',
-				action: 'View all offers compatible for the detachment for the given option offer',
-			},
-			{
-				name: 'List Forms',
-				value: 'formGet',
-				action: 'List available forms for service',
-			},
-			{
-				name: 'List Savings Plan Contracts',
-				value: 'savingsPlansContractsGet',
-				action: 'List contracts automatically agreed when subscribing to savings plan for this project',
-			},
-			{
-				name: 'List Savings Plan Periods',
-				value: 'savingsPlansSubscribedSavingsPlanIdPeriodsGet',
-				action: 'List the period history of a given Savings Plan',
-			},
-			{
-				name: 'List Services',
-				value: 'servicesListGet',
-				action: 'List all generic services',
-			},
-			{
-				name: 'List Subscribable Savings Plans',
-				value: 'savingsPlansSubscribableGet',
-				action: 'List subscribable Savings Plan commercial offers for a given Subscription',
-			},
-			{
-				name: 'List Subscribed Savings Plans',
-				value: 'savingsPlansSubscribedGet',
-				action: 'List subscribed Savings Plans',
-			},
-			{
-				name: 'List Tasks',
-				value: 'taskListGet',
-				action: 'List tasks for a service',
-			},
-			{
-				name: 'List Upgrade Offers',
-				value: 'upgradeGet',
-				action: 'List offers this option can be converted to',
-			},
-			{
-				name: 'Reinstall Service',
-				value: 'reinstallPost',
-				action: 'Reinstall a service',
-			},
-			{
-				name: 'Request Engagement',
-				value: 'engagementRequestPost',
-				action: 'Request an Engagement on this Service',
-			},
-			{
-				name: 'Simulate Detach',
-				value: 'detachPlanCodeSimulatePost',
-				action: 'Simulate the migration to a standalone offer',
-			},
-			{
-				name: 'Simulate Savings Plan Subscription',
-				value: 'savingsPlansSubscribeSimulatePost',
-				action: 'Simulate a Subscription to a Savings Plan',
-			},
-			{
-				name: 'Simulate Upgrade',
-				value: 'upgradePlanCodeSimulatePost',
-				action: 'Simulate the conversion to another offer',
-			},
-			{
-				name: 'Skip Retention Period',
-				value: 'terminateSkipRetentionPeriodPost',
-				action: 'Immediately release the resources associated to this Service',
-			},
-			{
-				name: 'Subscribe to Savings Plan',
-				value: 'savingsPlansSubscribeExecutePost',
-				action: 'Subscribe to a Savings Plan, applicable contracts will be automatically agreed to',
-			},
-			{
-				name: 'Terminate Savings Plan',
-				value: 'savingsPlansSubscribedSavingsPlanIdTerminatePost',
-				action: 'Terminate the Savings Plan',
-			},
-			{
-				name: 'Terminate Service',
-				value: 'terminatePost',
-				action: 'Request service termination',
-			},
-			{
-				name: 'Update Engagement End Rule',
-				value: 'engagementEndRulePut',
-				action: 'Change Engagement end rules',
-			},
-			{
-				name: 'Update Service',
-				value: 'servicesUpdatePut',
-				action: 'Update service details',
-			},
-			{
-				name: 'Update Subscribed Savings Plan',
-				value: 'savingsPlansSubscribedSavingsPlanIdPut',
-				action: 'Update a subscribed Savings Plan',
-			},
+const { description, execute } = createOperationDispatcher(
+	'servicesOperation',
+	'ovhCloudServices',
+	[
+	{
+		name: 'Answer Form',
+		value: 'formFormNameAnswerPost',
+		action: 'Post answers to the form for your service',
+		execute: executeFormFormNameAnswerPost,
+		description: descriptionFormFormNameAnswerPost,
+	},
+	{
+		name: 'Change Savings Plan End Action',
+		value: 'savingsPlansSubscribedSavingsPlanIdChangePeriodEndActionPost',
+		action: 'Change the action occurring at the end of the Savings Plan period',
+		execute: executeSavingsPlansSubscribedSavingsPlanIdChangePeriodEndActionPost,
+		description: descriptionSavingsPlansSubscribedSavingsPlanIdChangePeriodEndActionPost,
+	},
+	{
+		name: 'Change Savings Plan Size',
+		value: 'savingsPlansSubscribedSavingsPlanIdChangeSizePost',
+		action: 'Resize the Savings Plan',
+		execute: executeSavingsPlansSubscribedSavingsPlanIdChangeSizePost,
+		description: descriptionSavingsPlansSubscribedSavingsPlanIdChangeSizePost,
+	},
+	{
+		name: 'Confirm Service Termination',
+		value: 'terminateConfirmPost',
+		action: 'Confirm service termination',
+		execute: executeTerminateConfirmPost,
+		description: descriptionTerminateConfirmPost,
+	},
+	{
+		name: 'Delete Engagement Request',
+		value: 'engagementRequestDelete',
+		action: 'Delete the ongoing Engagement request on this Service',
+		execute: executeEngagementRequestDelete,
+		description: descriptionEngagementRequestDelete,
+	},
+	{
+		name: 'Delete Service',
+		value: 'servicesDeleteDelete',
+		action: 'Delete a service',
+		execute: executeServicesDeleteDelete,
+		description: descriptionServicesDeleteDelete,
+	},
+	{
+		name: 'Execute Detach',
+		value: 'detachPlanCodeExecutePost',
+		action: 'Perform the migration to a standalone offer',
+		execute: executeDetachPlanCodeExecutePost,
+		description: descriptionDetachPlanCodeExecutePost,
+	},
+	{
+		name: 'Execute Upgrade',
+		value: 'upgradePlanCodeExecutePost',
+		action: 'Perform the migration to another offer',
+		execute: executeUpgradePlanCodeExecutePost,
+		description: descriptionUpgradePlanCodeExecutePost,
+	},
+	{
+		name: 'Flush Engagement',
+		value: 'engagementFlushPost',
+		action: 'Flush the engagement of this service',
+		execute: executeEngagementFlushPost,
+		description: descriptionEngagementFlushPost,
+	},
+	{
+		name: 'Get Consumption',
+		value: 'consumptionGet',
+		action: 'Get a summary of the ongoing consumption of your service',
+		execute: executeConsumptionGet,
+		description: descriptionConsumptionGet,
+	},
+	{
+		name: 'Get Consumption Elements',
+		value: 'consumptionElementGet',
+		action: 'Get each resource consumed by your service',
+		execute: executeConsumptionElementGet,
+		description: descriptionConsumptionElementGet,
+	},
+	{
+		name: 'Get Consumption Forecast',
+		value: 'consumptionForecastGet',
+		action: 'Get a summary of the forecasted consumption of your service',
+		execute: executeConsumptionForecastGet,
+		description: descriptionConsumptionForecastGet,
+	},
+	{
+		name: 'Get Consumption History',
+		value: 'consumptionHistoryIdGet',
+		action: 'Get a summary of the past consumption of your service',
+		execute: executeConsumptionHistoryIdGet,
+		description: descriptionConsumptionHistoryIdGet,
+	},
+	{
+		name: 'Get Detach Offer',
+		value: 'detachPlanCodeGet',
+		action: 'View an offer this option can be converted to',
+		execute: executeDetachPlanCodeGet,
+		description: descriptionDetachPlanCodeGet,
+	},
+	{
+		name: 'Get Engagement',
+		value: 'engagementGet',
+		action: 'Get engagement details',
+		execute: executeEngagementGet,
+		description: descriptionEngagementGet,
+	},
+	{
+		name: 'Get Engagement Request',
+		value: 'engagementRequestGet',
+		action: 'Get the ongoing Engagement request on this Service',
+		execute: executeEngagementRequestGet,
+		description: descriptionEngagementRequestGet,
+	},
+	{
+		name: 'Get Forecast Consumption Elements',
+		value: 'consumptionForecastElementGet',
+		action: 'Get each resource forecasted consumption of your service',
+		execute: executeConsumptionForecastElementGet,
+		description: descriptionConsumptionForecastElementGet,
+	},
+	{
+		name: 'Get Form',
+		value: 'formFormNameGet',
+		action: 'Get specified form description for service',
+		execute: executeFormFormNameGet,
+		description: descriptionFormFormNameGet,
+	},
+	{
+		name: 'Get History Consumption Elements',
+		value: 'consumptionHistoryIdElementGet',
+		action: 'Get each resource consumed for the given history',
+		execute: executeConsumptionHistoryIdElementGet,
+		description: descriptionConsumptionHistoryIdElementGet,
+	},
+	{
+		name: 'Get Renew Period Capacities',
+		value: 'renewPeriodCapacitiesGet',
+		action: 'Get possible renew periods of a service',
+		execute: executeRenewPeriodCapacitiesGet,
+		description: descriptionRenewPeriodCapacitiesGet,
+	},
+	{
+		name: 'Get Service',
+		value: 'servicesGetGet',
+		action: 'Get service details',
+		execute: executeServicesGetGet,
+		description: descriptionServicesGetGet,
+	},
+	{
+		name: 'Get Service Options',
+		value: 'optionsGet',
+		action: 'Get options of a service',
+		execute: executeOptionsGet,
+		description: descriptionOptionsGet,
+	},
+	{
+		name: 'Get Subscribed Savings Plan',
+		value: 'savingsPlansSubscribedSavingsPlanIdGet',
+		action: 'Fetch a subscribed Savings Plan',
+		execute: executeSavingsPlansSubscribedSavingsPlanIdGet,
+		description: descriptionSavingsPlansSubscribedSavingsPlanIdGet,
+	},
+	{
+		name: 'Get Task',
+		value: 'taskGetGet',
+		action: 'Get task details',
+		execute: executeTaskGetGet,
+		description: descriptionTaskGetGet,
+	},
+	{
+		name: 'Get Technical Details',
+		value: 'technicalDetailsGet',
+		action: 'View the technical details of the service',
+		execute: executeTechnicalDetailsGet,
+		description: descriptionTechnicalDetailsGet,
+	},
+	{
+		name: 'Get Upgrade Offer',
+		value: 'upgradePlanCodeGet',
+		action: 'View an offer this option can be converted to',
+		execute: executeUpgradePlanCodeGet,
+		description: descriptionUpgradePlanCodeGet,
+	},
+	{
+		name: 'List Available Engagements',
+		value: 'engagementAvailableGet',
+		action: 'List all available engagements a service can subscribe to',
+		execute: executeEngagementAvailableGet,
+		description: descriptionEngagementAvailableGet,
+	},
+	{
+		name: 'List Consumption History',
+		value: 'consumptionHistoryGet',
+		action: 'List consumption history of your service',
+		execute: executeConsumptionHistoryGet,
+		description: descriptionConsumptionHistoryGet,
+	},
+	{
+		name: 'List Detach Offers',
+		value: 'detachGet',
+		action: 'List offers this option can be converted to',
+		execute: executeDetachGet,
+		description: descriptionDetachGet,
+	},
+	{
+		name: 'List Detach Options',
+		value: 'detachPlanCodeOptionsGet',
+		action: 'View all offers compatible for the detachment for the given option offer',
+		execute: executeDetachPlanCodeOptionsGet,
+		description: descriptionDetachPlanCodeOptionsGet,
+	},
+	{
+		name: 'List Forms',
+		value: 'formGet',
+		action: 'List available forms for service',
+		execute: executeFormGet,
+		description: descriptionFormGet,
+	},
+	{
+		name: 'List Savings Plan Contracts',
+		value: 'savingsPlansContractsGet',
+		action: 'List contracts automatically agreed when subscribing to savings plan for this project',
+		execute: executeSavingsPlansContractsGet,
+		description: descriptionSavingsPlansContractsGet,
+	},
+	{
+		name: 'List Savings Plan Periods',
+		value: 'savingsPlansSubscribedSavingsPlanIdPeriodsGet',
+		action: 'List the period history of a given Savings Plan',
+		execute: executeSavingsPlansSubscribedSavingsPlanIdPeriodsGet,
+		description: descriptionSavingsPlansSubscribedSavingsPlanIdPeriodsGet,
+	},
+	{
+		name: 'List Services',
+		value: 'servicesListGet',
+		action: 'List all generic services',
+		execute: executeServicesListGet,
+		description: descriptionServicesListGet,
+		default: true,
+	},
+	{
+		name: 'List Subscribable Savings Plans',
+		value: 'savingsPlansSubscribableGet',
+		action: 'List subscribable Savings Plan commercial offers for a given Subscription',
+		execute: executeSavingsPlansSubscribableGet,
+		description: descriptionSavingsPlansSubscribableGet,
+	},
+	{
+		name: 'List Subscribed Savings Plans',
+		value: 'savingsPlansSubscribedGet',
+		action: 'List subscribed Savings Plans',
+		execute: executeSavingsPlansSubscribedGet,
+		description: descriptionSavingsPlansSubscribedGet,
+	},
+	{
+		name: 'List Tasks',
+		value: 'taskListGet',
+		action: 'List tasks for a service',
+		execute: executeTaskListGet,
+		description: descriptionTaskListGet,
+	},
+	{
+		name: 'List Upgrade Offers',
+		value: 'upgradeGet',
+		action: 'List offers this option can be converted to',
+		execute: executeUpgradeGet,
+		description: descriptionUpgradeGet,
+	},
+	{
+		name: 'Reinstall Service',
+		value: 'reinstallPost',
+		action: 'Reinstall a service',
+		execute: executeReinstallPost,
+		description: descriptionReinstallPost,
+	},
+	{
+		name: 'Request Engagement',
+		value: 'engagementRequestPost',
+		action: 'Request an Engagement on this Service',
+		execute: executeEngagementRequestPost,
+		description: descriptionEngagementRequestPost,
+	},
+	{
+		name: 'Simulate Detach',
+		value: 'detachPlanCodeSimulatePost',
+		action: 'Simulate the migration to a standalone offer',
+		execute: executeDetachPlanCodeSimulatePost,
+		description: descriptionDetachPlanCodeSimulatePost,
+	},
+	{
+		name: 'Simulate Savings Plan Subscription',
+		value: 'savingsPlansSubscribeSimulatePost',
+		action: 'Simulate a Subscription to a Savings Plan',
+		execute: executeSavingsPlansSubscribeSimulatePost,
+		description: descriptionSavingsPlansSubscribeSimulatePost,
+	},
+	{
+		name: 'Simulate Upgrade',
+		value: 'upgradePlanCodeSimulatePost',
+		action: 'Simulate the conversion to another offer',
+		execute: executeUpgradePlanCodeSimulatePost,
+		description: descriptionUpgradePlanCodeSimulatePost,
+	},
+	{
+		name: 'Skip Retention Period',
+		value: 'terminateSkipRetentionPeriodPost',
+		action: 'Immediately release the resources associated to this Service',
+		execute: executeTerminateSkipRetentionPeriodPost,
+		description: descriptionTerminateSkipRetentionPeriodPost,
+	},
+	{
+		name: 'Subscribe to Savings Plan',
+		value: 'savingsPlansSubscribeExecutePost',
+		action: 'Subscribe to a Savings Plan, applicable contracts will be automatically agreed to',
+		execute: executeSavingsPlansSubscribeExecutePost,
+		description: descriptionSavingsPlansSubscribeExecutePost,
+	},
+	{
+		name: 'Terminate Savings Plan',
+		value: 'savingsPlansSubscribedSavingsPlanIdTerminatePost',
+		action: 'Terminate the Savings Plan',
+		execute: executeSavingsPlansSubscribedSavingsPlanIdTerminatePost,
+		description: descriptionSavingsPlansSubscribedSavingsPlanIdTerminatePost,
+	},
+	{
+		name: 'Terminate Service',
+		value: 'terminatePost',
+		action: 'Request service termination',
+		execute: executeTerminatePost,
+		description: descriptionTerminatePost,
+	},
+	{
+		name: 'Update Engagement End Rule',
+		value: 'engagementEndRulePut',
+		action: 'Change Engagement end rules',
+		execute: executeEngagementEndRulePut,
+		description: descriptionEngagementEndRulePut,
+	},
+	{
+		name: 'Update Service',
+		value: 'servicesUpdatePut',
+		action: 'Update service details',
+		execute: executeServicesUpdatePut,
+		description: descriptionServicesUpdatePut,
+	},
+	{
+		name: 'Update Subscribed Savings Plan',
+		value: 'savingsPlansSubscribedSavingsPlanIdPut',
+		action: 'Update a subscribed Savings Plan',
+		execute: executeSavingsPlansSubscribedSavingsPlanIdPut,
+		description: descriptionSavingsPlansSubscribedSavingsPlanIdPut,
+	},
+	],
+);
 
-			],
-			default: 'servicesListGet',
-			displayOptions,
-		},
-	];
-
-	const properties: INodeProperties[] = [
-		...operationProperties,
-		...(descriptionServicesListGet({
-			...displayOptions,
-			show: { servicesOperation: ['servicesListGet'] },
-		}) as INodeProperties[]),
-		...(descriptionServicesGetGet({
-			...displayOptions,
-			show: { servicesOperation: ['servicesGetGet'] },
-		}) as INodeProperties[]),
-		...(descriptionServicesUpdatePut({
-			...displayOptions,
-			show: { servicesOperation: ['servicesUpdatePut'] },
-		}) as INodeProperties[]),
-		...(descriptionServicesDeleteDelete({
-			...displayOptions,
-			show: { servicesOperation: ['servicesDeleteDelete'] },
-		}) as INodeProperties[]),
-		...(descriptionReinstallPost({
-			...displayOptions,
-			show: { servicesOperation: ['reinstallPost'] },
-		}) as INodeProperties[]),
-		...(descriptionTaskListGet({
-			...displayOptions,
-			show: { servicesOperation: ['taskListGet'] },
-		}) as INodeProperties[]),
-		...(descriptionTaskGetGet({
-			...displayOptions,
-			show: { servicesOperation: ['taskGetGet'] },
-		}) as INodeProperties[]),
-		...(descriptionEngagementGet({
-			...displayOptions,
-			show: { servicesOperation: ['engagementGet'] },
-		}) as INodeProperties[]),
-		...(descriptionEngagementAvailableGet({
-			...displayOptions,
-			show: { servicesOperation: ['engagementAvailableGet'] },
-		}) as INodeProperties[]),
-		...(descriptionEngagementEndRulePut({
-			...displayOptions,
-			show: { servicesOperation: ['engagementEndRulePut'] },
-		}) as INodeProperties[]),
-		...(descriptionEngagementFlushPost({
-			...displayOptions,
-			show: { servicesOperation: ['engagementFlushPost'] },
-		}) as INodeProperties[]),
-		...(descriptionEngagementRequestDelete({
-			...displayOptions,
-			show: { servicesOperation: ['engagementRequestDelete'] },
-		}) as INodeProperties[]),
-		...(descriptionEngagementRequestGet({
-			...displayOptions,
-			show: { servicesOperation: ['engagementRequestGet'] },
-		}) as INodeProperties[]),
-		...(descriptionEngagementRequestPost({
-			...displayOptions,
-			show: { servicesOperation: ['engagementRequestPost'] },
-		}) as INodeProperties[]),
-		...(descriptionConsumptionGet({
-			...displayOptions,
-			show: { servicesOperation: ['consumptionGet'] },
-		}) as INodeProperties[]),
-		...(descriptionConsumptionElementGet({
-			...displayOptions,
-			show: { servicesOperation: ['consumptionElementGet'] },
-		}) as INodeProperties[]),
-		...(descriptionConsumptionForecastGet({
-			...displayOptions,
-			show: { servicesOperation: ['consumptionForecastGet'] },
-		}) as INodeProperties[]),
-		...(descriptionConsumptionForecastElementGet({
-			...displayOptions,
-			show: { servicesOperation: ['consumptionForecastElementGet'] },
-		}) as INodeProperties[]),
-		...(descriptionConsumptionHistoryGet({
-			...displayOptions,
-			show: { servicesOperation: ['consumptionHistoryGet'] },
-		}) as INodeProperties[]),
-		...(descriptionConsumptionHistoryIdGet({
-			...displayOptions,
-			show: { servicesOperation: ['consumptionHistoryIdGet'] },
-		}) as INodeProperties[]),
-		...(descriptionConsumptionHistoryIdElementGet({
-			...displayOptions,
-			show: { servicesOperation: ['consumptionHistoryIdElementGet'] },
-		}) as INodeProperties[]),
-		...(descriptionDetachGet({
-			...displayOptions,
-			show: { servicesOperation: ['detachGet'] },
-		}) as INodeProperties[]),
-		...(descriptionDetachPlanCodeGet({
-			...displayOptions,
-			show: { servicesOperation: ['detachPlanCodeGet'] },
-		}) as INodeProperties[]),
-		...(descriptionDetachPlanCodeExecutePost({
-			...displayOptions,
-			show: { servicesOperation: ['detachPlanCodeExecutePost'] },
-		}) as INodeProperties[]),
-		...(descriptionDetachPlanCodeOptionsGet({
-			...displayOptions,
-			show: { servicesOperation: ['detachPlanCodeOptionsGet'] },
-		}) as INodeProperties[]),
-		...(descriptionDetachPlanCodeSimulatePost({
-			...displayOptions,
-			show: { servicesOperation: ['detachPlanCodeSimulatePost'] },
-		}) as INodeProperties[]),
-		...(descriptionFormGet({
-			...displayOptions,
-			show: { servicesOperation: ['formGet'] },
-		}) as INodeProperties[]),
-		...(descriptionFormFormNameGet({
-			...displayOptions,
-			show: { servicesOperation: ['formFormNameGet'] },
-		}) as INodeProperties[]),
-		...(descriptionFormFormNameAnswerPost({
-			...displayOptions,
-			show: { servicesOperation: ['formFormNameAnswerPost'] },
-		}) as INodeProperties[]),
-		...(descriptionSavingsPlansContractsGet({
-			...displayOptions,
-			show: { servicesOperation: ['savingsPlansContractsGet'] },
-		}) as INodeProperties[]),
-		...(descriptionSavingsPlansSubscribableGet({
-			...displayOptions,
-			show: { servicesOperation: ['savingsPlansSubscribableGet'] },
-		}) as INodeProperties[]),
-		...(descriptionSavingsPlansSubscribeExecutePost({
-			...displayOptions,
-			show: { servicesOperation: ['savingsPlansSubscribeExecutePost'] },
-		}) as INodeProperties[]),
-		...(descriptionSavingsPlansSubscribeSimulatePost({
-			...displayOptions,
-			show: { servicesOperation: ['savingsPlansSubscribeSimulatePost'] },
-		}) as INodeProperties[]),
-		...(descriptionSavingsPlansSubscribedGet({
-			...displayOptions,
-			show: { servicesOperation: ['savingsPlansSubscribedGet'] },
-		}) as INodeProperties[]),
-		...(descriptionSavingsPlansSubscribedSavingsPlanIdGet({
-			...displayOptions,
-			show: { servicesOperation: ['savingsPlansSubscribedSavingsPlanIdGet'] },
-		}) as INodeProperties[]),
-		...(descriptionSavingsPlansSubscribedSavingsPlanIdPut({
-			...displayOptions,
-			show: { servicesOperation: ['savingsPlansSubscribedSavingsPlanIdPut'] },
-		}) as INodeProperties[]),
-		...(descriptionSavingsPlansSubscribedSavingsPlanIdChangePeriodEndActionPost({
-			...displayOptions,
-			show: { servicesOperation: ['savingsPlansSubscribedSavingsPlanIdChangePeriodEndActionPost'] },
-		}) as INodeProperties[]),
-		...(descriptionSavingsPlansSubscribedSavingsPlanIdChangeSizePost({
-			...displayOptions,
-			show: { servicesOperation: ['savingsPlansSubscribedSavingsPlanIdChangeSizePost'] },
-		}) as INodeProperties[]),
-		...(descriptionSavingsPlansSubscribedSavingsPlanIdPeriodsGet({
-			...displayOptions,
-			show: { servicesOperation: ['savingsPlansSubscribedSavingsPlanIdPeriodsGet'] },
-		}) as INodeProperties[]),
-		...(descriptionSavingsPlansSubscribedSavingsPlanIdTerminatePost({
-			...displayOptions,
-			show: { servicesOperation: ['savingsPlansSubscribedSavingsPlanIdTerminatePost'] },
-		}) as INodeProperties[]),
-		...(descriptionUpgradeGet({
-			...displayOptions,
-			show: { servicesOperation: ['upgradeGet'] },
-		}) as INodeProperties[]),
-		...(descriptionUpgradePlanCodeGet({
-			...displayOptions,
-			show: { servicesOperation: ['upgradePlanCodeGet'] },
-		}) as INodeProperties[]),
-		...(descriptionUpgradePlanCodeExecutePost({
-			...displayOptions,
-			show: { servicesOperation: ['upgradePlanCodeExecutePost'] },
-		}) as INodeProperties[]),
-		...(descriptionUpgradePlanCodeSimulatePost({
-			...displayOptions,
-			show: { servicesOperation: ['upgradePlanCodeSimulatePost'] },
-		}) as INodeProperties[]),
-		...(descriptionOptionsGet({
-			...displayOptions,
-			show: { servicesOperation: ['optionsGet'] },
-		}) as INodeProperties[]),
-		...(descriptionRenewPeriodCapacitiesGet({
-			...displayOptions,
-			show: { servicesOperation: ['renewPeriodCapacitiesGet'] },
-		}) as INodeProperties[]),
-		...(descriptionTechnicalDetailsGet({
-			...displayOptions,
-			show: { servicesOperation: ['technicalDetailsGet'] },
-		}) as INodeProperties[]),
-		...(descriptionTerminatePost({
-			...displayOptions,
-			show: { servicesOperation: ['terminatePost'] },
-		}) as INodeProperties[]),
-		...(descriptionTerminateConfirmPost({
-			...displayOptions,
-			show: { servicesOperation: ['terminateConfirmPost'] },
-		}) as INodeProperties[]),
-		...(descriptionTerminateSkipRetentionPeriodPost({
-			...displayOptions,
-			show: { servicesOperation: ['terminateSkipRetentionPeriodPost'] },
-		}) as INodeProperties[]),
-
-	];
-
-	return properties;
-}
-
-export async function execute(
-	this: IExecuteFunctions,
-	itemIndex?: number,
-): Promise<INodeExecutionData[]> {
-	const operation = this.getNodeParameter('servicesOperation', itemIndex ?? 0, {
-		extractValue: true,
-	});
-
-	switch (operation) {
-		case 'servicesListGet':
-			return executeServicesListGet.call(this, itemIndex ?? 0);
-		case 'servicesGetGet':
-			return executeServicesGetGet.call(this, itemIndex ?? 0);
-		case 'servicesUpdatePut':
-			return executeServicesUpdatePut.call(this, itemIndex ?? 0);
-		case 'servicesDeleteDelete':
-			return executeServicesDeleteDelete.call(this, itemIndex ?? 0);
-		case 'reinstallPost':
-			return executeReinstallPost.call(this, itemIndex ?? 0);
-		case 'taskListGet':
-			return executeTaskListGet.call(this, itemIndex ?? 0);
-		case 'taskGetGet':
-			return executeTaskGetGet.call(this, itemIndex ?? 0);
-		case 'engagementGet':
-			return executeEngagementGet.call(this, itemIndex ?? 0);
-		case 'engagementAvailableGet':
-			return executeEngagementAvailableGet.call(this, itemIndex ?? 0);
-		case 'engagementEndRulePut':
-			return executeEngagementEndRulePut.call(this, itemIndex ?? 0);
-		case 'engagementFlushPost':
-			return executeEngagementFlushPost.call(this, itemIndex ?? 0);
-		case 'engagementRequestDelete':
-			return executeEngagementRequestDelete.call(this, itemIndex ?? 0);
-		case 'engagementRequestGet':
-			return executeEngagementRequestGet.call(this, itemIndex ?? 0);
-		case 'engagementRequestPost':
-			return executeEngagementRequestPost.call(this, itemIndex ?? 0);
-		case 'consumptionGet':
-			return executeConsumptionGet.call(this, itemIndex ?? 0);
-		case 'consumptionElementGet':
-			return executeConsumptionElementGet.call(this, itemIndex ?? 0);
-		case 'consumptionForecastGet':
-			return executeConsumptionForecastGet.call(this, itemIndex ?? 0);
-		case 'consumptionForecastElementGet':
-			return executeConsumptionForecastElementGet.call(this, itemIndex ?? 0);
-		case 'consumptionHistoryGet':
-			return executeConsumptionHistoryGet.call(this, itemIndex ?? 0);
-		case 'consumptionHistoryIdGet':
-			return executeConsumptionHistoryIdGet.call(this, itemIndex ?? 0);
-		case 'consumptionHistoryIdElementGet':
-			return executeConsumptionHistoryIdElementGet.call(this, itemIndex ?? 0);
-		case 'detachGet':
-			return executeDetachGet.call(this, itemIndex ?? 0);
-		case 'detachPlanCodeGet':
-			return executeDetachPlanCodeGet.call(this, itemIndex ?? 0);
-		case 'detachPlanCodeExecutePost':
-			return executeDetachPlanCodeExecutePost.call(this, itemIndex ?? 0);
-		case 'detachPlanCodeOptionsGet':
-			return executeDetachPlanCodeOptionsGet.call(this, itemIndex ?? 0);
-		case 'detachPlanCodeSimulatePost':
-			return executeDetachPlanCodeSimulatePost.call(this, itemIndex ?? 0);
-		case 'formGet':
-			return executeFormGet.call(this, itemIndex ?? 0);
-		case 'formFormNameGet':
-			return executeFormFormNameGet.call(this, itemIndex ?? 0);
-		case 'formFormNameAnswerPost':
-			return executeFormFormNameAnswerPost.call(this, itemIndex ?? 0);
-		case 'savingsPlansContractsGet':
-			return executeSavingsPlansContractsGet.call(this, itemIndex ?? 0);
-		case 'savingsPlansSubscribableGet':
-			return executeSavingsPlansSubscribableGet.call(this, itemIndex ?? 0);
-		case 'savingsPlansSubscribeExecutePost':
-			return executeSavingsPlansSubscribeExecutePost.call(this, itemIndex ?? 0);
-		case 'savingsPlansSubscribeSimulatePost':
-			return executeSavingsPlansSubscribeSimulatePost.call(this, itemIndex ?? 0);
-		case 'savingsPlansSubscribedGet':
-			return executeSavingsPlansSubscribedGet.call(this, itemIndex ?? 0);
-		case 'savingsPlansSubscribedSavingsPlanIdGet':
-			return executeSavingsPlansSubscribedSavingsPlanIdGet.call(this, itemIndex ?? 0);
-		case 'savingsPlansSubscribedSavingsPlanIdPut':
-			return executeSavingsPlansSubscribedSavingsPlanIdPut.call(this, itemIndex ?? 0);
-		case 'savingsPlansSubscribedSavingsPlanIdChangePeriodEndActionPost':
-			return executeSavingsPlansSubscribedSavingsPlanIdChangePeriodEndActionPost.call(this, itemIndex ?? 0);
-		case 'savingsPlansSubscribedSavingsPlanIdChangeSizePost':
-			return executeSavingsPlansSubscribedSavingsPlanIdChangeSizePost.call(this, itemIndex ?? 0);
-		case 'savingsPlansSubscribedSavingsPlanIdPeriodsGet':
-			return executeSavingsPlansSubscribedSavingsPlanIdPeriodsGet.call(this, itemIndex ?? 0);
-		case 'savingsPlansSubscribedSavingsPlanIdTerminatePost':
-			return executeSavingsPlansSubscribedSavingsPlanIdTerminatePost.call(this, itemIndex ?? 0);
-		case 'upgradeGet':
-			return executeUpgradeGet.call(this, itemIndex ?? 0);
-		case 'upgradePlanCodeGet':
-			return executeUpgradePlanCodeGet.call(this, itemIndex ?? 0);
-		case 'upgradePlanCodeExecutePost':
-			return executeUpgradePlanCodeExecutePost.call(this, itemIndex ?? 0);
-		case 'upgradePlanCodeSimulatePost':
-			return executeUpgradePlanCodeSimulatePost.call(this, itemIndex ?? 0);
-		case 'optionsGet':
-			return executeOptionsGet.call(this, itemIndex ?? 0);
-		case 'renewPeriodCapacitiesGet':
-			return executeRenewPeriodCapacitiesGet.call(this, itemIndex ?? 0);
-		case 'technicalDetailsGet':
-			return executeTechnicalDetailsGet.call(this, itemIndex ?? 0);
-		case 'terminatePost':
-			return executeTerminatePost.call(this, itemIndex ?? 0);
-		case 'terminateConfirmPost':
-			return executeTerminateConfirmPost.call(this, itemIndex ?? 0);
-		case 'terminateSkipRetentionPeriodPost':
-			return executeTerminateSkipRetentionPeriodPost.call(this, itemIndex ?? 0);
-
-	}
-
-	throw new Error(`Unsupported operation "${operation}" for resource "ovhCloudServices"`);
-}
-
+export { description, execute };

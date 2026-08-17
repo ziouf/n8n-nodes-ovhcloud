@@ -1,134 +1,78 @@
-import type {
-	IDisplayOptions,
-	IExecuteFunctions,
-	INodeExecutionData,
-	INodeProperties,
-} from 'n8n-workflow';
+import { createOperationDispatcher } from '../../shared/nodes/createNodeDispatcher';
 
 import {
-	execute as executePackListGet,
-	description as descriptionPackListGet,
-} from './packListGet.operation';
-import {
-	execute as executePackGetGet,
-	description as descriptionPackGetGet,
-} from './packGetGet.operation';
-import {
-	execute as executePackUpdatePut,
-	description as descriptionPackUpdatePut,
-} from './packUpdatePut.operation';
-import {
-	execute as executePackDeleteDelete,
 	description as descriptionPackDeleteDelete,
+	execute as executePackDeleteDelete,
 } from './packDeleteDelete.operation';
 import {
-	execute as executeServiceInfosGetGet,
-	description as descriptionServiceInfosGetGet,
-} from './serviceInfosGetGet.operation';
+	description as descriptionPackGetGet,
+	execute as executePackGetGet,
+} from './packGetGet.operation';
 import {
-	execute as executeReinstallPost,
+	description as descriptionPackListGet,
+	execute as executePackListGet,
+} from './packListGet.operation';
+import {
+	description as descriptionPackUpdatePut,
+	execute as executePackUpdatePut,
+} from './packUpdatePut.operation';
+import {
 	description as descriptionReinstallPost,
+	execute as executeReinstallPost,
 } from './reinstallPost.operation';
+import {
+	description as descriptionServiceInfosGetGet,
+	execute as executeServiceInfosGetGet,
+} from './serviceInfosGetGet.operation';
 
-export function description(displayOptions: IDisplayOptions): INodeProperties[] {
-	const operationProperties: INodeProperties[] = [
-		{
-			displayName: 'Operation',
-			name: 'packOperation',
-			type: 'options',
-			noDataExpression: true,
-			options: [
-			{
-				name: 'Delete Pack',
-				value: 'packDeleteDelete',
-				action: 'Delete a pack service',
-			},
-			{
-				name: 'Get Pack',
-				value: 'packGetGet',
-				action: 'Get pack service details',
-			},
-			{
-				name: 'Get Service Infos',
-				value: 'serviceInfosGetGet',
-				action: 'Get service information for a pack',
-			},
-			{
-				name: 'List Packs',
-				value: 'packListGet',
-				action: 'List all pack services',
-			},
-			{
-				name: 'Reinstall Pack',
-				value: 'reinstallPost',
-				action: 'Reinstall a pack service',
-			},
-			{
-				name: 'Update Pack',
-				value: 'packUpdatePut',
-				action: 'Update pack service details',
-			},
-			],
-			default: 'packListGet',
-			displayOptions,
-		},
-	];
+const { description, execute } = createOperationDispatcher(
+	'packOperation',
+	'ovhCloudPack',
+	[
+	{
+		name: 'Delete Pack',
+		value: 'packDeleteDelete',
+		action: 'Delete a pack service',
+		execute: executePackDeleteDelete,
+		description: descriptionPackDeleteDelete,
+	},
+	{
+		name: 'Get Pack',
+		value: 'packGetGet',
+		action: 'Get pack service details',
+		execute: executePackGetGet,
+		description: descriptionPackGetGet,
+	},
+	{
+		name: 'Get Service Infos',
+		value: 'serviceInfosGetGet',
+		action: 'Get service information for a pack',
+		execute: executeServiceInfosGetGet,
+		description: descriptionServiceInfosGetGet,
+	},
+	{
+		name: 'List Packs',
+		value: 'packListGet',
+		action: 'List all pack services',
+		execute: executePackListGet,
+		description: descriptionPackListGet,
+		default: true,
+	},
+	{
+		name: 'Reinstall Pack',
+		value: 'reinstallPost',
+		action: 'Reinstall a pack service',
+		execute: executeReinstallPost,
+		description: descriptionReinstallPost,
+	},
+	{
+		name: 'Update Pack',
+		value: 'packUpdatePut',
+		action: 'Update pack service details',
+		execute: executePackUpdatePut,
+		description: descriptionPackUpdatePut,
+	},
+	],
+);
 
-	const properties: INodeProperties[] = [
-		...operationProperties,
-		...(descriptionPackListGet({
-			...displayOptions,
-			show: { packOperation: ['packListGet'] },
-		}) as INodeProperties[]),
-		...(descriptionPackGetGet({
-			...displayOptions,
-			show: { packOperation: ['packGetGet'] },
-		}) as INodeProperties[]),
-		...(descriptionPackUpdatePut({
-			...displayOptions,
-			show: { packOperation: ['packUpdatePut'] },
-		}) as INodeProperties[]),
-		...(descriptionPackDeleteDelete({
-			...displayOptions,
-			show: { packOperation: ['packDeleteDelete'] },
-		}) as INodeProperties[]),
-		...(descriptionServiceInfosGetGet({
-			...displayOptions,
-			show: { packOperation: ['serviceInfosGetGet'] },
-		}) as INodeProperties[]),
-		...(descriptionReinstallPost({
-			...displayOptions,
-			show: { packOperation: ['reinstallPost'] },
-		}) as INodeProperties[]),
-
-	];
-
-	return properties;
-}
-
-export async function execute(
-	this: IExecuteFunctions,
-	itemIndex?: number,
-): Promise<INodeExecutionData[]> {
-	const operation = this.getNodeParameter('packOperation', itemIndex ?? 0, {
-		extractValue: true,
-	});
-
-	switch (operation) {
-		case 'packListGet':
-			return executePackListGet.call(this, itemIndex ?? 0);
-		case 'packGetGet':
-			return executePackGetGet.call(this, itemIndex ?? 0);
-		case 'packUpdatePut':
-			return executePackUpdatePut.call(this, itemIndex ?? 0);
-		case 'packDeleteDelete':
-			return executePackDeleteDelete.call(this, itemIndex ?? 0);
-		case 'serviceInfosGetGet':
-			return executeServiceInfosGetGet.call(this, itemIndex ?? 0);
-		case 'reinstallPost':
-			return executeReinstallPost.call(this, itemIndex ?? 0);
-
-	}
-
-	throw new Error(`Unsupported operation "${operation}" for resource "ovhCloudPack"`);
-}
+export { description, execute };

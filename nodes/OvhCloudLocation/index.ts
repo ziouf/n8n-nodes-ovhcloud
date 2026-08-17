@@ -1,76 +1,34 @@
-import type {
-	IDisplayOptions,
-	IExecuteFunctions,
-	INodeExecutionData,
-	INodeProperties,
-} from 'n8n-workflow';
+import { createOperationDispatcher } from '../../shared/nodes/createNodeDispatcher';
 
 import {
-	execute as executeLocationListGet,
 	description as descriptionLocationListGet,
+	execute as executeLocationListGet,
 } from './locationListGet.operation';
 import {
-	execute as executeLocationListGet2,
 	description as descriptionLocationListGet2,
+	execute as executeLocationListGet2,
 } from './locationListGet2.operation';
 
-export function description(displayOptions: IDisplayOptions): INodeProperties[] {
-	const operationProperties: INodeProperties[] = [
-		{
-			displayName: 'Operation',
-			name: 'locationOperation',
-			type: 'options',
-			noDataExpression: true,
-			options: [
-			{
-				name: 'List Available Regions and Their Availability Zones',
-				value: 'locationListGet',
-				action: 'List available regions and their availability zones',
-			},
-			{
-				name: 'Get Available Region and Its Availability Zones',
-				value: 'locationListGet2',
-				action: 'Get available region and its availability zones',
-			},
+const { description, execute } = createOperationDispatcher(
+	'locationOperation',
+	'ovhCloudLocation',
+	[
+	{
+		name: 'List Available Regions and Their Availability Zones',
+		value: 'locationListGet',
+		action: 'List available regions and their availability zones',
+		execute: executeLocationListGet,
+		description: descriptionLocationListGet,
+		default: true,
+	},
+	{
+		name: 'Get Available Region and Its Availability Zones',
+		value: 'locationListGet2',
+		action: 'Get available region and its availability zones',
+		execute: executeLocationListGet2,
+		description: descriptionLocationListGet2,
+	},
+	],
+);
 
-			],
-			default: 'locationListGet',
-			displayOptions,
-		},
-	];
-
-	const properties: INodeProperties[] = [
-		...operationProperties,
-		...(descriptionLocationListGet({
-			...displayOptions,
-			show: { locationOperation: ['locationListGet'] },
-		}) as INodeProperties[]),
-		...(descriptionLocationListGet2({
-			...displayOptions,
-			show: { locationOperation: ['locationListGet2'] },
-		}) as INodeProperties[]),
-
-	];
-
-	return properties;
-}
-
-export async function execute(
-	this: IExecuteFunctions,
-	itemIndex?: number,
-): Promise<INodeExecutionData[]> {
-	const operation = this.getNodeParameter('locationOperation', itemIndex ?? 0, {
-		extractValue: true,
-	});
-
-	switch (operation) {
-		case 'locationListGet':
-			return executeLocationListGet.call(this, itemIndex ?? 0);
-		case 'locationListGet2':
-			return executeLocationListGet2.call(this, itemIndex ?? 0);
-
-	}
-
-	throw new Error(`Unsupported operation "${operation}" for resource "ovhCloudLocation"`);
-}
-
+export { description, execute };

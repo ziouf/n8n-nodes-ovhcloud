@@ -1,1782 +1,1288 @@
-import type {
-	IDisplayOptions,
-	IExecuteFunctions,
-	INodeExecutionData,
-	INodeProperties,
-} from 'n8n-workflow';
+import { createOperationDispatcher } from '../../shared/nodes/createNodeDispatcher';
 
 import {
-	execute as executeOutputOpenSearchAliasIndexCreatePost,
-	description as descriptionOutputOpenSearchAliasIndexCreatePost,
-} from './outputOpenSearchAlias/outputOpenSearchAliasIndexCreatePost.operation';
-import {
-	execute as executeOutputOpenSearchAliasStreamCreatePost,
-	description as descriptionOutputOpenSearchAliasStreamCreatePost,
-} from './outputOpenSearchAlias/outputOpenSearchAliasStreamCreatePost.operation';
-import {
-	execute as executeServiceChangeContactPost,
-	description as descriptionServiceChangeContactPost,
-} from './service/serviceChangeContactPost.operation';
-import {
-	execute as executeServiceUserChangePasswordPost,
-	description as descriptionServiceUserChangePasswordPost,
-} from './service/serviceUserChangePasswordPost.operation';
-import {
-	execute as executeRolePermissionAliasCreatePost,
-	description as descriptionRolePermissionAliasCreatePost,
-} from './role/rolePermissionAliasCreatePost.operation';
-import {
-	execute as executeRolePermissionDashboardCreatePost,
-	description as descriptionRolePermissionDashboardCreatePost,
-} from './role/rolePermissionDashboardCreatePost.operation';
-import {
-	execute as executeEncryptionKeyCreatePost,
-	description as descriptionEncryptionKeyCreatePost,
-} from './encryptionKey/encryptionKeyCreatePost.operation';
-import {
-	execute as executeOutputGraylogDashboardCreatePost,
-	description as descriptionOutputGraylogDashboardCreatePost,
-} from './outputGraylogDashboard/outputGraylogDashboardCreatePost.operation';
-import {
-	execute as executeOutputGraylogStreamCreatePost,
-	description as descriptionOutputGraylogStreamCreatePost,
-} from './outputGraylogStream/outputGraylogStreamCreatePost.operation';
-import {
-	execute as executeRolePermissionIndexCreatePost,
-	description as descriptionRolePermissionIndexCreatePost,
-} from './role/rolePermissionIndexCreatePost.operation';
-import {
-	execute as executeInputCreatePost,
-	description as descriptionInputCreatePost,
-} from './input/inputCreatePost.operation';
-import {
-	execute as executeOutputOpenSearchAliasCreatePost,
-	description as descriptionOutputOpenSearchAliasCreatePost,
-} from './outputOpenSearchAlias/outputOpenSearchAliasCreatePost.operation';
-import {
-	execute as executeOutputOpenSearchOsdCreatePost,
-	description as descriptionOutputOpenSearchOsdCreatePost,
-} from './outputOpenSearchOsd/outputOpenSearchOsdCreatePost.operation';
-import {
-	execute as executeOutputOpenSearchIndexCreatePost,
-	description as descriptionOutputOpenSearchIndexCreatePost,
-} from './outputOpenSearchIndex/outputOpenSearchIndexCreatePost.operation';
-import {
-	execute as executeRolePermissionOsdCreatePost,
-	description as descriptionRolePermissionOsdCreatePost,
-} from './role/rolePermissionOsdCreatePost.operation';
-import {
-	execute as executeRoleCreatePost,
-	description as descriptionRoleCreatePost,
-} from './role/roleCreatePost.operation';
-import {
-	execute as executeRoleMemberCreatePost,
-	description as descriptionRoleMemberCreatePost,
-} from './role/roleMemberCreatePost.operation';
-import {
-	execute as executeOutputGraylogStreamAlertCreatePost,
-	description as descriptionOutputGraylogStreamAlertCreatePost,
-} from './outputGraylogStream/outputGraylogStreamAlertCreatePost.operation';
-import {
-	execute as executeRolePermissionStreamCreatePost,
-	description as descriptionRolePermissionStreamCreatePost,
-} from './role/rolePermissionStreamCreatePost.operation';
-import {
-	execute as executeOutputGraylogStreamRuleCreatePost,
-	description as descriptionOutputGraylogStreamRuleCreatePost,
-} from './outputGraylogStream/outputGraylogStreamRuleCreatePost.operation';
-import {
-	execute as executeTokenCreatePost,
-	description as descriptionTokenCreatePost,
-} from './token/tokenCreatePost.operation';
-import {
-	execute as executeEncryptionKeyDeleteDelete,
-	description as descriptionEncryptionKeyDeleteDelete,
-} from './encryptionKey/encryptionKeyDeleteDelete.operation';
-import {
-	execute as executeOutputGraylogDashboardDeleteDelete,
-	description as descriptionOutputGraylogDashboardDeleteDelete,
-} from './outputGraylogDashboard/outputGraylogDashboardDeleteDelete.operation';
-import {
-	execute as executeOutputGraylogStreamDeleteDelete,
-	description as descriptionOutputGraylogStreamDeleteDelete,
-} from './outputGraylogStream/outputGraylogStreamDeleteDelete.operation';
-import {
-	execute as executeInputDeleteDelete,
-	description as descriptionInputDeleteDelete,
-} from './input/inputDeleteDelete.operation';
-import {
-	execute as executeOutputOpenSearchAliasDeleteDelete,
-	description as descriptionOutputOpenSearchAliasDeleteDelete,
-} from './outputOpenSearchAlias/outputOpenSearchAliasDeleteDelete.operation';
-import {
-	execute as executeOutputOpenSearchOsdDeleteDelete,
-	description as descriptionOutputOpenSearchOsdDeleteDelete,
-} from './outputOpenSearchOsd/outputOpenSearchOsdDeleteDelete.operation';
-import {
-	execute as executeOutputOpenSearchIndexDeleteDelete,
-	description as descriptionOutputOpenSearchIndexDeleteDelete,
-} from './outputOpenSearchIndex/outputOpenSearchIndexDeleteDelete.operation';
-import {
-	execute as executeRolePermissionDeleteDelete,
-	description as descriptionRolePermissionDeleteDelete,
-} from './role/rolePermissionDeleteDelete.operation';
-import {
-	execute as executeRoleDeleteDelete,
-	description as descriptionRoleDeleteDelete,
-} from './role/roleDeleteDelete.operation';
-import {
-	execute as executeRoleMemberDeleteDelete,
-	description as descriptionRoleMemberDeleteDelete,
-} from './role/roleMemberDeleteDelete.operation';
-import {
-	execute as executeOutputGraylogStreamAlertDeleteDelete,
-	description as descriptionOutputGraylogStreamAlertDeleteDelete,
-} from './outputGraylogStream/outputGraylogStreamAlertDeleteDelete.operation';
-import {
-	execute as executeOutputGraylogStreamRuleDeleteDelete,
-	description as descriptionOutputGraylogStreamRuleDeleteDelete,
-} from './outputGraylogStream/outputGraylogStreamRuleDeleteDelete.operation';
-import {
-	execute as executeOutputGraylogStreamSubscriptionDeleteDelete,
-	description as descriptionOutputGraylogStreamSubscriptionDeleteDelete,
-} from './outputGraylogStream/outputGraylogStreamSubscriptionDeleteDelete.operation';
-import {
-	execute as executeTokenDeleteDelete,
-	description as descriptionTokenDeleteDelete,
-} from './token/tokenDeleteDelete.operation';
-import {
-	execute as executeOutputOpenSearchAliasIndexDeleteDelete,
-	description as descriptionOutputOpenSearchAliasIndexDeleteDelete,
-} from './outputOpenSearchAlias/outputOpenSearchAliasIndexDeleteDelete.operation';
-import {
-	execute as executeOutputOpenSearchAliasStreamDeleteDelete,
-	description as descriptionOutputOpenSearchAliasStreamDeleteDelete,
-} from './outputOpenSearchAlias/outputOpenSearchAliasStreamDeleteDelete.operation';
-import {
-	execute as executeOutputGraylogDashboardDuplicatePost,
-	description as descriptionOutputGraylogDashboardDuplicatePost,
-} from './outputGraylogDashboard/outputGraylogDashboardDuplicatePost.operation';
-import {
-	execute as executeInputEndPost,
-	description as descriptionInputEndPost,
-} from './input/inputEndPost.operation';
-import {
-	execute as executeOutputGraylogStreamArchiveUrlPost,
-	description as descriptionOutputGraylogStreamArchiveUrlPost,
-} from './outputGraylogStream/outputGraylogStreamArchiveUrlPost.operation';
-import {
-	execute as executeInputLogsUrlPost,
-	description as descriptionInputLogsUrlPost,
-} from './input/inputLogsUrlPost.operation';
-import {
-	execute as executeOutputOpenSearchAliasUrlGet,
-	description as descriptionOutputOpenSearchAliasUrlGet,
-} from './outputOpenSearchAlias/outputOpenSearchAliasUrlGet.operation';
-import {
-	execute as executeClusterGetGet,
 	description as descriptionClusterGetGet,
+	execute as executeClusterGetGet,
 } from './cluster/clusterGetGet.operation';
 import {
-	execute as executeClusterRetentionGetGet,
-	description as descriptionClusterRetentionGetGet,
-} from './cluster/clusterRetentionGetGet.operation';
-import {
-	execute as executeEncryptionKeyGetGet,
-	description as descriptionEncryptionKeyGetGet,
-} from './encryptionKey/encryptionKeyGetGet.operation';
-import {
-	execute as executeInputConfigurationFlowggerGet,
-	description as descriptionInputConfigurationFlowggerGet,
-} from './input/inputConfigurationFlowggerGet.operation';
-import {
-	execute as executeOutputGraylogDashboardGetGet,
-	description as descriptionOutputGraylogDashboardGetGet,
-} from './outputGraylogDashboard/outputGraylogDashboardGetGet.operation';
-import {
-	execute as executeOutputGraylogDashboardUrlGet,
-	description as descriptionOutputGraylogDashboardUrlGet,
-} from './outputGraylogDashboard/outputGraylogDashboardUrlGet.operation';
-import {
-	execute as executeOutputGraylogStreamGetGet,
-	description as descriptionOutputGraylogStreamGetGet,
-} from './outputGraylogStream/outputGraylogStreamGetGet.operation';
-import {
-	execute as executeOutputOpenSearchIndexUrlGet,
-	description as descriptionOutputOpenSearchIndexUrlGet,
-} from './outputOpenSearchIndex/outputOpenSearchIndexUrlGet.operation';
-import {
-	execute as executeInputGetGet,
-	description as descriptionInputGetGet,
-} from './input/inputGetGet.operation';
-import {
-	execute as executeInputConfigtestResultGet,
-	description as descriptionInputConfigtestResultGet,
-} from './input/inputConfigtestResultGet.operation';
-import {
-	execute as executeInputEngineGetGet,
-	description as descriptionInputEngineGetGet,
-} from './input/inputEngineGetGet.operation';
-import {
-	execute as executeInputEngineHelperGetGet,
-	description as descriptionInputEngineHelperGetGet,
-} from './input/inputEngineHelperGetGet.operation';
-import {
-	execute as executeInputUrlGet,
-	description as descriptionInputUrlGet,
-} from './input/inputUrlGet.operation';
-import {
-	execute as executeInputConfigurationLogstashGet,
-	description as descriptionInputConfigurationLogstashGet,
-} from './input/inputConfigurationLogstashGet.operation';
-import {
-	execute as executeOutputOpenSearchAliasGetGet,
-	description as descriptionOutputOpenSearchAliasGetGet,
-} from './outputOpenSearchAlias/outputOpenSearchAliasGetGet.operation';
-import {
-	execute as executeOutputOpenSearchOsdGetGet,
-	description as descriptionOutputOpenSearchOsdGetGet,
-} from './outputOpenSearchOsd/outputOpenSearchOsdGetGet.operation';
-import {
-	execute as executeOutputOpenSearchOsdUrlGet,
-	description as descriptionOutputOpenSearchOsdUrlGet,
-} from './outputOpenSearchOsd/outputOpenSearchOsdUrlGet.operation';
-import {
-	execute as executeOutputOpenSearchIndexGetGet,
-	description as descriptionOutputOpenSearchIndexGetGet,
-} from './outputOpenSearchIndex/outputOpenSearchIndexGetGet.operation';
-import {
-	execute as executeRolePermissionGetGet,
-	description as descriptionRolePermissionGetGet,
-} from './role/rolePermissionGetGet.operation';
-import {
-	execute as executeRoleGetGet,
-	description as descriptionRoleGetGet,
-} from './role/roleGetGet.operation';
-import {
-	execute as executeRoleMemberGetGet,
-	description as descriptionRoleMemberGetGet,
-} from './role/roleMemberGetGet.operation';
-import {
-	execute as executeServiceGetGet,
-	description as descriptionServiceGetGet,
-} from './service/serviceGetGet.operation';
-import {
-	execute as executeServiceServiceInfosGet,
-	description as descriptionServiceServiceInfosGet,
-} from './service/serviceServiceInfosGet.operation';
-import {
-	execute as executeServiceMetricsGet,
-	description as descriptionServiceMetricsGet,
-} from './service/serviceMetricsGet.operation';
-import {
-	execute as executeServiceOperationGetGet,
-	description as descriptionServiceOperationGetGet,
-} from './service/serviceOperationGetGet.operation';
-import {
-	execute as executeServiceUrlGet,
-	description as descriptionServiceUrlGet,
-} from './service/serviceUrlGet.operation';
-import {
-	execute as executeOutputGraylogStreamAlertGetGet,
-	description as descriptionOutputGraylogStreamAlertGetGet,
-} from './outputGraylogStream/outputGraylogStreamAlertGetGet.operation';
-import {
-	execute as executeOutputGraylogStreamArchiveGetGet,
-	description as descriptionOutputGraylogStreamArchiveGetGet,
-} from './outputGraylogStream/outputGraylogStreamArchiveGetGet.operation';
-import {
-	execute as executeOutputGraylogStreamRuleGetGet,
-	description as descriptionOutputGraylogStreamRuleGetGet,
-} from './outputGraylogStream/outputGraylogStreamRuleGetGet.operation';
-import {
-	execute as executeOutputGraylogStreamSubscriptionGetGet,
-	description as descriptionOutputGraylogStreamSubscriptionGetGet,
-} from './outputGraylogStream/outputGraylogStreamSubscriptionGetGet.operation';
-import {
-	execute as executeOutputGraylogStreamUrlGet,
-	description as descriptionOutputGraylogStreamUrlGet,
-} from './outputGraylogStream/outputGraylogStreamUrlGet.operation';
-import {
-	execute as executeTokenGetGet,
-	description as descriptionTokenGetGet,
-} from './token/tokenGetGet.operation';
-import {
-	execute as executeOutputOpenSearchAliasIndexListGet,
-	description as descriptionOutputOpenSearchAliasIndexListGet,
-} from './outputOpenSearchAlias/outputOpenSearchAliasIndexListGet.operation';
-import {
-	execute as executeOutputOpenSearchAliasStreamListGet,
-	description as descriptionOutputOpenSearchAliasStreamListGet,
-} from './outputOpenSearchAlias/outputOpenSearchAliasStreamListGet.operation';
-import {
-	execute as executeOutputGraylogStreamArchiveEncryptionKeyListGet,
-	description as descriptionOutputGraylogStreamArchiveEncryptionKeyListGet,
-} from './outputGraylogStream/outputGraylogStreamArchiveEncryptionKeyListGet.operation';
-import {
-	execute as executeClusterRetentionListGet,
-	description as descriptionClusterRetentionListGet,
-} from './cluster/clusterRetentionListGet.operation';
-import {
-	execute as executeClusterListGet,
 	description as descriptionClusterListGet,
+	execute as executeClusterListGet,
 } from './cluster/clusterListGet.operation';
 import {
-	execute as executeEncryptionKeyListGet,
-	description as descriptionEncryptionKeyListGet,
-} from './encryptionKey/encryptionKeyListGet.operation';
+	description as descriptionClusterRetentionGetGet,
+	execute as executeClusterRetentionGetGet,
+} from './cluster/clusterRetentionGetGet.operation';
 import {
-	execute as executeOutputGraylogDashboardListGet,
-	description as descriptionOutputGraylogDashboardListGet,
-} from './outputGraylogDashboard/outputGraylogDashboardListGet.operation';
+	description as descriptionClusterRetentionListGet,
+	execute as executeClusterRetentionListGet,
+} from './cluster/clusterRetentionListGet.operation';
 import {
-	execute as executeOutputGraylogStreamListGet,
-	description as descriptionOutputGraylogStreamListGet,
-} from './outputGraylogStream/outputGraylogStreamListGet.operation';
-import {
-	execute as executeInputActionListGet,
-	description as descriptionInputActionListGet,
-} from './input/inputActionListGet.operation';
-import {
-	execute as executeInputEngineHelperListGet,
-	description as descriptionInputEngineHelperListGet,
-} from './input/inputEngineHelperListGet.operation';
-import {
-	execute as executeInputEngineListGet,
-	description as descriptionInputEngineListGet,
-} from './input/inputEngineListGet.operation';
-import {
-	execute as executeInputListGet,
-	description as descriptionInputListGet,
-} from './input/inputListGet.operation';
-import {
-	execute as executeOutputOpenSearchAliasListGet,
-	description as descriptionOutputOpenSearchAliasListGet,
-} from './outputOpenSearchAlias/outputOpenSearchAliasListGet.operation';
-import {
-	execute as executeOutputOpenSearchOsdListGet,
-	description as descriptionOutputOpenSearchOsdListGet,
-} from './outputOpenSearchOsd/outputOpenSearchOsdListGet.operation';
-import {
-	execute as executeOutputOpenSearchIndexListGet,
-	description as descriptionOutputOpenSearchIndexListGet,
-} from './outputOpenSearchIndex/outputOpenSearchIndexListGet.operation';
-import {
-	execute as executeRoleMemberListGet,
-	description as descriptionRoleMemberListGet,
-} from './role/roleMemberListGet.operation';
-import {
-	execute as executeRolePermissionListGet,
-	description as descriptionRolePermissionListGet,
-} from './role/rolePermissionListGet.operation';
-import {
-	execute as executeRoleListGet,
-	description as descriptionRoleListGet,
-} from './role/roleListGet.operation';
-import {
-	execute as executeServiceOperationListGet,
-	description as descriptionServiceOperationListGet,
-} from './service/serviceOperationListGet.operation';
-import {
-	execute as executeServiceListGet,
-	description as descriptionServiceListGet,
-} from './service/serviceListGet.operation';
-import {
-	execute as executeOutputGraylogStreamAlertListGet,
-	description as descriptionOutputGraylogStreamAlertListGet,
-} from './outputGraylogStream/outputGraylogStreamAlertListGet.operation';
-import {
-	execute as executeOutputGraylogStreamArchiveListGet,
-	description as descriptionOutputGraylogStreamArchiveListGet,
-} from './outputGraylogStream/outputGraylogStreamArchiveListGet.operation';
-import {
-	execute as executeOutputGraylogStreamRuleListGet,
-	description as descriptionOutputGraylogStreamRuleListGet,
-} from './outputGraylogStream/outputGraylogStreamRuleListGet.operation';
-import {
-	execute as executeOutputGraylogStreamSubscriptionListGet,
-	description as descriptionOutputGraylogStreamSubscriptionListGet,
-} from './outputGraylogStream/outputGraylogStreamSubscriptionListGet.operation';
-import {
-	execute as executeTokenListGet,
-	description as descriptionTokenListGet,
-} from './token/tokenListGet.operation';
-import {
-	execute as executeInputRestartPost,
-	description as descriptionInputRestartPost,
-} from './input/inputRestartPost.operation';
-import {
-	execute as executeInputStartPost,
-	description as descriptionInputStartPost,
-} from './input/inputStartPost.operation';
-import {
-	execute as executeInputConfigtestPost,
-	description as descriptionInputConfigtestPost,
-} from './input/inputConfigtestPost.operation';
-import {
-	execute as executeClusterUpdatePut,
 	description as descriptionClusterUpdatePut,
+	execute as executeClusterUpdatePut,
 } from './cluster/clusterUpdatePut.operation';
 import {
-	execute as executeInputConfigurationFlowggerUpdatePut,
+	description as descriptionEncryptionKeyCreatePost,
+	execute as executeEncryptionKeyCreatePost,
+} from './encryptionKey/encryptionKeyCreatePost.operation';
+import {
+	description as descriptionEncryptionKeyDeleteDelete,
+	execute as executeEncryptionKeyDeleteDelete,
+} from './encryptionKey/encryptionKeyDeleteDelete.operation';
+import {
+	description as descriptionEncryptionKeyGetGet,
+	execute as executeEncryptionKeyGetGet,
+} from './encryptionKey/encryptionKeyGetGet.operation';
+import {
+	description as descriptionEncryptionKeyListGet,
+	execute as executeEncryptionKeyListGet,
+} from './encryptionKey/encryptionKeyListGet.operation';
+import {
+	description as descriptionInputActionListGet,
+	execute as executeInputActionListGet,
+} from './input/inputActionListGet.operation';
+import {
+	description as descriptionInputConfigtestPost,
+	execute as executeInputConfigtestPost,
+} from './input/inputConfigtestPost.operation';
+import {
+	description as descriptionInputConfigtestResultGet,
+	execute as executeInputConfigtestResultGet,
+} from './input/inputConfigtestResultGet.operation';
+import {
+	description as descriptionInputConfigurationFlowggerGet,
+	execute as executeInputConfigurationFlowggerGet,
+} from './input/inputConfigurationFlowggerGet.operation';
+import {
 	description as descriptionInputConfigurationFlowggerUpdatePut,
+	execute as executeInputConfigurationFlowggerUpdatePut,
 } from './input/inputConfigurationFlowggerUpdatePut.operation';
 import {
-	execute as executeOutputGraylogDashboardUpdatePut,
-	description as descriptionOutputGraylogDashboardUpdatePut,
-} from './outputGraylogDashboard/outputGraylogDashboardUpdatePut.operation';
+	description as descriptionInputConfigurationLogstashGet,
+	execute as executeInputConfigurationLogstashGet,
+} from './input/inputConfigurationLogstashGet.operation';
 import {
-	execute as executeOutputGraylogStreamUpdatePut,
-	description as descriptionOutputGraylogStreamUpdatePut,
-} from './outputGraylogStream/outputGraylogStreamUpdatePut.operation';
-import {
-	execute as executeInputUpdatePut,
-	description as descriptionInputUpdatePut,
-} from './input/inputUpdatePut.operation';
-import {
-	execute as executeInputConfigurationLogstashUpdatePut,
 	description as descriptionInputConfigurationLogstashUpdatePut,
+	execute as executeInputConfigurationLogstashUpdatePut,
 } from './input/inputConfigurationLogstashUpdatePut.operation';
 import {
-	execute as executeOutputOpenSearchAliasUpdatePut,
+	description as descriptionInputCreatePost,
+	execute as executeInputCreatePost,
+} from './input/inputCreatePost.operation';
+import {
+	description as descriptionInputDeleteDelete,
+	execute as executeInputDeleteDelete,
+} from './input/inputDeleteDelete.operation';
+import {
+	description as descriptionInputEndPost,
+	execute as executeInputEndPost,
+} from './input/inputEndPost.operation';
+import {
+	description as descriptionInputEngineGetGet,
+	execute as executeInputEngineGetGet,
+} from './input/inputEngineGetGet.operation';
+import {
+	description as descriptionInputEngineHelperGetGet,
+	execute as executeInputEngineHelperGetGet,
+} from './input/inputEngineHelperGetGet.operation';
+import {
+	description as descriptionInputEngineHelperListGet,
+	execute as executeInputEngineHelperListGet,
+} from './input/inputEngineHelperListGet.operation';
+import {
+	description as descriptionInputEngineListGet,
+	execute as executeInputEngineListGet,
+} from './input/inputEngineListGet.operation';
+import {
+	description as descriptionInputGetGet,
+	execute as executeInputGetGet,
+} from './input/inputGetGet.operation';
+import {
+	description as descriptionInputListGet,
+	execute as executeInputListGet,
+} from './input/inputListGet.operation';
+import {
+	description as descriptionInputLogsUrlPost,
+	execute as executeInputLogsUrlPost,
+} from './input/inputLogsUrlPost.operation';
+import {
+	description as descriptionInputRestartPost,
+	execute as executeInputRestartPost,
+} from './input/inputRestartPost.operation';
+import {
+	description as descriptionInputStartPost,
+	execute as executeInputStartPost,
+} from './input/inputStartPost.operation';
+import {
+	description as descriptionInputUpdatePut,
+	execute as executeInputUpdatePut,
+} from './input/inputUpdatePut.operation';
+import {
+	description as descriptionInputUrlGet,
+	execute as executeInputUrlGet,
+} from './input/inputUrlGet.operation';
+import {
+	description as descriptionOutputGraylogDashboardCreatePost,
+	execute as executeOutputGraylogDashboardCreatePost,
+} from './outputGraylogDashboard/outputGraylogDashboardCreatePost.operation';
+import {
+	description as descriptionOutputGraylogDashboardDeleteDelete,
+	execute as executeOutputGraylogDashboardDeleteDelete,
+} from './outputGraylogDashboard/outputGraylogDashboardDeleteDelete.operation';
+import {
+	description as descriptionOutputGraylogDashboardDuplicatePost,
+	execute as executeOutputGraylogDashboardDuplicatePost,
+} from './outputGraylogDashboard/outputGraylogDashboardDuplicatePost.operation';
+import {
+	description as descriptionOutputGraylogDashboardGetGet,
+	execute as executeOutputGraylogDashboardGetGet,
+} from './outputGraylogDashboard/outputGraylogDashboardGetGet.operation';
+import {
+	description as descriptionOutputGraylogDashboardListGet,
+	execute as executeOutputGraylogDashboardListGet,
+} from './outputGraylogDashboard/outputGraylogDashboardListGet.operation';
+import {
+	description as descriptionOutputGraylogDashboardUpdatePut,
+	execute as executeOutputGraylogDashboardUpdatePut,
+} from './outputGraylogDashboard/outputGraylogDashboardUpdatePut.operation';
+import {
+	description as descriptionOutputGraylogDashboardUrlGet,
+	execute as executeOutputGraylogDashboardUrlGet,
+} from './outputGraylogDashboard/outputGraylogDashboardUrlGet.operation';
+import {
+	description as descriptionOutputGraylogStreamAlertCreatePost,
+	execute as executeOutputGraylogStreamAlertCreatePost,
+} from './outputGraylogStream/outputGraylogStreamAlertCreatePost.operation';
+import {
+	description as descriptionOutputGraylogStreamAlertDeleteDelete,
+	execute as executeOutputGraylogStreamAlertDeleteDelete,
+} from './outputGraylogStream/outputGraylogStreamAlertDeleteDelete.operation';
+import {
+	description as descriptionOutputGraylogStreamAlertGetGet,
+	execute as executeOutputGraylogStreamAlertGetGet,
+} from './outputGraylogStream/outputGraylogStreamAlertGetGet.operation';
+import {
+	description as descriptionOutputGraylogStreamAlertListGet,
+	execute as executeOutputGraylogStreamAlertListGet,
+} from './outputGraylogStream/outputGraylogStreamAlertListGet.operation';
+import {
+	description as descriptionOutputGraylogStreamAlertUpdatePut,
+	execute as executeOutputGraylogStreamAlertUpdatePut,
+} from './outputGraylogStream/outputGraylogStreamAlertUpdatePut.operation';
+import {
+	description as descriptionOutputGraylogStreamArchiveEncryptionKeyListGet,
+	execute as executeOutputGraylogStreamArchiveEncryptionKeyListGet,
+} from './outputGraylogStream/outputGraylogStreamArchiveEncryptionKeyListGet.operation';
+import {
+	description as descriptionOutputGraylogStreamArchiveGetGet,
+	execute as executeOutputGraylogStreamArchiveGetGet,
+} from './outputGraylogStream/outputGraylogStreamArchiveGetGet.operation';
+import {
+	description as descriptionOutputGraylogStreamArchiveListGet,
+	execute as executeOutputGraylogStreamArchiveListGet,
+} from './outputGraylogStream/outputGraylogStreamArchiveListGet.operation';
+import {
+	description as descriptionOutputGraylogStreamArchiveUrlPost,
+	execute as executeOutputGraylogStreamArchiveUrlPost,
+} from './outputGraylogStream/outputGraylogStreamArchiveUrlPost.operation';
+import {
+	description as descriptionOutputGraylogStreamCreatePost,
+	execute as executeOutputGraylogStreamCreatePost,
+} from './outputGraylogStream/outputGraylogStreamCreatePost.operation';
+import {
+	description as descriptionOutputGraylogStreamDeleteDelete,
+	execute as executeOutputGraylogStreamDeleteDelete,
+} from './outputGraylogStream/outputGraylogStreamDeleteDelete.operation';
+import {
+	description as descriptionOutputGraylogStreamGetGet,
+	execute as executeOutputGraylogStreamGetGet,
+} from './outputGraylogStream/outputGraylogStreamGetGet.operation';
+import {
+	description as descriptionOutputGraylogStreamListGet,
+	execute as executeOutputGraylogStreamListGet,
+} from './outputGraylogStream/outputGraylogStreamListGet.operation';
+import {
+	description as descriptionOutputGraylogStreamRuleCreatePost,
+	execute as executeOutputGraylogStreamRuleCreatePost,
+} from './outputGraylogStream/outputGraylogStreamRuleCreatePost.operation';
+import {
+	description as descriptionOutputGraylogStreamRuleDeleteDelete,
+	execute as executeOutputGraylogStreamRuleDeleteDelete,
+} from './outputGraylogStream/outputGraylogStreamRuleDeleteDelete.operation';
+import {
+	description as descriptionOutputGraylogStreamRuleGetGet,
+	execute as executeOutputGraylogStreamRuleGetGet,
+} from './outputGraylogStream/outputGraylogStreamRuleGetGet.operation';
+import {
+	description as descriptionOutputGraylogStreamRuleListGet,
+	execute as executeOutputGraylogStreamRuleListGet,
+} from './outputGraylogStream/outputGraylogStreamRuleListGet.operation';
+import {
+	description as descriptionOutputGraylogStreamSubscriptionDeleteDelete,
+	execute as executeOutputGraylogStreamSubscriptionDeleteDelete,
+} from './outputGraylogStream/outputGraylogStreamSubscriptionDeleteDelete.operation';
+import {
+	description as descriptionOutputGraylogStreamSubscriptionGetGet,
+	execute as executeOutputGraylogStreamSubscriptionGetGet,
+} from './outputGraylogStream/outputGraylogStreamSubscriptionGetGet.operation';
+import {
+	description as descriptionOutputGraylogStreamSubscriptionListGet,
+	execute as executeOutputGraylogStreamSubscriptionListGet,
+} from './outputGraylogStream/outputGraylogStreamSubscriptionListGet.operation';
+import {
+	description as descriptionOutputGraylogStreamUpdatePut,
+	execute as executeOutputGraylogStreamUpdatePut,
+} from './outputGraylogStream/outputGraylogStreamUpdatePut.operation';
+import {
+	description as descriptionOutputGraylogStreamUrlGet,
+	execute as executeOutputGraylogStreamUrlGet,
+} from './outputGraylogStream/outputGraylogStreamUrlGet.operation';
+import {
+	description as descriptionOutputOpenSearchAliasCreatePost,
+	execute as executeOutputOpenSearchAliasCreatePost,
+} from './outputOpenSearchAlias/outputOpenSearchAliasCreatePost.operation';
+import {
+	description as descriptionOutputOpenSearchAliasDeleteDelete,
+	execute as executeOutputOpenSearchAliasDeleteDelete,
+} from './outputOpenSearchAlias/outputOpenSearchAliasDeleteDelete.operation';
+import {
+	description as descriptionOutputOpenSearchAliasGetGet,
+	execute as executeOutputOpenSearchAliasGetGet,
+} from './outputOpenSearchAlias/outputOpenSearchAliasGetGet.operation';
+import {
+	description as descriptionOutputOpenSearchAliasIndexCreatePost,
+	execute as executeOutputOpenSearchAliasIndexCreatePost,
+} from './outputOpenSearchAlias/outputOpenSearchAliasIndexCreatePost.operation';
+import {
+	description as descriptionOutputOpenSearchAliasIndexDeleteDelete,
+	execute as executeOutputOpenSearchAliasIndexDeleteDelete,
+} from './outputOpenSearchAlias/outputOpenSearchAliasIndexDeleteDelete.operation';
+import {
+	description as descriptionOutputOpenSearchAliasIndexListGet,
+	execute as executeOutputOpenSearchAliasIndexListGet,
+} from './outputOpenSearchAlias/outputOpenSearchAliasIndexListGet.operation';
+import {
+	description as descriptionOutputOpenSearchAliasListGet,
+	execute as executeOutputOpenSearchAliasListGet,
+} from './outputOpenSearchAlias/outputOpenSearchAliasListGet.operation';
+import {
+	description as descriptionOutputOpenSearchAliasStreamCreatePost,
+	execute as executeOutputOpenSearchAliasStreamCreatePost,
+} from './outputOpenSearchAlias/outputOpenSearchAliasStreamCreatePost.operation';
+import {
+	description as descriptionOutputOpenSearchAliasStreamDeleteDelete,
+	execute as executeOutputOpenSearchAliasStreamDeleteDelete,
+} from './outputOpenSearchAlias/outputOpenSearchAliasStreamDeleteDelete.operation';
+import {
+	description as descriptionOutputOpenSearchAliasStreamListGet,
+	execute as executeOutputOpenSearchAliasStreamListGet,
+} from './outputOpenSearchAlias/outputOpenSearchAliasStreamListGet.operation';
+import {
 	description as descriptionOutputOpenSearchAliasUpdatePut,
+	execute as executeOutputOpenSearchAliasUpdatePut,
 } from './outputOpenSearchAlias/outputOpenSearchAliasUpdatePut.operation';
 import {
-	execute as executeOutputOpenSearchOsdUpdatePut,
-	description as descriptionOutputOpenSearchOsdUpdatePut,
-} from './outputOpenSearchOsd/outputOpenSearchOsdUpdatePut.operation';
+	description as descriptionOutputOpenSearchAliasUrlGet,
+	execute as executeOutputOpenSearchAliasUrlGet,
+} from './outputOpenSearchAlias/outputOpenSearchAliasUrlGet.operation';
 import {
-	execute as executeOutputOpenSearchIndexUpdatePut,
+	description as descriptionOutputOpenSearchIndexCreatePost,
+	execute as executeOutputOpenSearchIndexCreatePost,
+} from './outputOpenSearchIndex/outputOpenSearchIndexCreatePost.operation';
+import {
+	description as descriptionOutputOpenSearchIndexDeleteDelete,
+	execute as executeOutputOpenSearchIndexDeleteDelete,
+} from './outputOpenSearchIndex/outputOpenSearchIndexDeleteDelete.operation';
+import {
+	description as descriptionOutputOpenSearchIndexGetGet,
+	execute as executeOutputOpenSearchIndexGetGet,
+} from './outputOpenSearchIndex/outputOpenSearchIndexGetGet.operation';
+import {
+	description as descriptionOutputOpenSearchIndexListGet,
+	execute as executeOutputOpenSearchIndexListGet,
+} from './outputOpenSearchIndex/outputOpenSearchIndexListGet.operation';
+import {
 	description as descriptionOutputOpenSearchIndexUpdatePut,
+	execute as executeOutputOpenSearchIndexUpdatePut,
 } from './outputOpenSearchIndex/outputOpenSearchIndexUpdatePut.operation';
 import {
-	execute as executeRoleUpdatePut,
-	description as descriptionRoleUpdatePut,
-} from './role/roleUpdatePut.operation';
+	description as descriptionOutputOpenSearchIndexUrlGet,
+	execute as executeOutputOpenSearchIndexUrlGet,
+} from './outputOpenSearchIndex/outputOpenSearchIndexUrlGet.operation';
 import {
-	execute as executeRoleMemberUpdatePut,
+	description as descriptionOutputOpenSearchOsdCreatePost,
+	execute as executeOutputOpenSearchOsdCreatePost,
+} from './outputOpenSearchOsd/outputOpenSearchOsdCreatePost.operation';
+import {
+	description as descriptionOutputOpenSearchOsdDeleteDelete,
+	execute as executeOutputOpenSearchOsdDeleteDelete,
+} from './outputOpenSearchOsd/outputOpenSearchOsdDeleteDelete.operation';
+import {
+	description as descriptionOutputOpenSearchOsdGetGet,
+	execute as executeOutputOpenSearchOsdGetGet,
+} from './outputOpenSearchOsd/outputOpenSearchOsdGetGet.operation';
+import {
+	description as descriptionOutputOpenSearchOsdListGet,
+	execute as executeOutputOpenSearchOsdListGet,
+} from './outputOpenSearchOsd/outputOpenSearchOsdListGet.operation';
+import {
+	description as descriptionOutputOpenSearchOsdUpdatePut,
+	execute as executeOutputOpenSearchOsdUpdatePut,
+} from './outputOpenSearchOsd/outputOpenSearchOsdUpdatePut.operation';
+import {
+	description as descriptionOutputOpenSearchOsdUrlGet,
+	execute as executeOutputOpenSearchOsdUrlGet,
+} from './outputOpenSearchOsd/outputOpenSearchOsdUrlGet.operation';
+import {
+	description as descriptionRoleCreatePost,
+	execute as executeRoleCreatePost,
+} from './role/roleCreatePost.operation';
+import {
+	description as descriptionRoleDeleteDelete,
+	execute as executeRoleDeleteDelete,
+} from './role/roleDeleteDelete.operation';
+import {
+	description as descriptionRoleGetGet,
+	execute as executeRoleGetGet,
+} from './role/roleGetGet.operation';
+import {
+	description as descriptionRoleListGet,
+	execute as executeRoleListGet,
+} from './role/roleListGet.operation';
+import {
+	description as descriptionRoleMemberCreatePost,
+	execute as executeRoleMemberCreatePost,
+} from './role/roleMemberCreatePost.operation';
+import {
+	description as descriptionRoleMemberDeleteDelete,
+	execute as executeRoleMemberDeleteDelete,
+} from './role/roleMemberDeleteDelete.operation';
+import {
+	description as descriptionRoleMemberGetGet,
+	execute as executeRoleMemberGetGet,
+} from './role/roleMemberGetGet.operation';
+import {
+	description as descriptionRoleMemberListGet,
+	execute as executeRoleMemberListGet,
+} from './role/roleMemberListGet.operation';
+import {
 	description as descriptionRoleMemberUpdatePut,
+	execute as executeRoleMemberUpdatePut,
 } from './role/roleMemberUpdatePut.operation';
 import {
-	execute as executeServiceUpdatePut,
-	description as descriptionServiceUpdatePut,
-} from './service/serviceUpdatePut.operation';
+	description as descriptionRolePermissionAliasCreatePost,
+	execute as executeRolePermissionAliasCreatePost,
+} from './role/rolePermissionAliasCreatePost.operation';
 import {
-	execute as executeServiceServiceInfosUpdatePut,
+	description as descriptionRolePermissionDashboardCreatePost,
+	execute as executeRolePermissionDashboardCreatePost,
+} from './role/rolePermissionDashboardCreatePost.operation';
+import {
+	description as descriptionRolePermissionDeleteDelete,
+	execute as executeRolePermissionDeleteDelete,
+} from './role/rolePermissionDeleteDelete.operation';
+import {
+	description as descriptionRolePermissionGetGet,
+	execute as executeRolePermissionGetGet,
+} from './role/rolePermissionGetGet.operation';
+import {
+	description as descriptionRolePermissionIndexCreatePost,
+	execute as executeRolePermissionIndexCreatePost,
+} from './role/rolePermissionIndexCreatePost.operation';
+import {
+	description as descriptionRolePermissionListGet,
+	execute as executeRolePermissionListGet,
+} from './role/rolePermissionListGet.operation';
+import {
+	description as descriptionRolePermissionOsdCreatePost,
+	execute as executeRolePermissionOsdCreatePost,
+} from './role/rolePermissionOsdCreatePost.operation';
+import {
+	description as descriptionRolePermissionStreamCreatePost,
+	execute as executeRolePermissionStreamCreatePost,
+} from './role/rolePermissionStreamCreatePost.operation';
+import {
+	description as descriptionRoleUpdatePut,
+	execute as executeRoleUpdatePut,
+} from './role/roleUpdatePut.operation';
+import {
+	description as descriptionServiceChangeContactPost,
+	execute as executeServiceChangeContactPost,
+} from './service/serviceChangeContactPost.operation';
+import {
+	description as descriptionServiceGetGet,
+	execute as executeServiceGetGet,
+} from './service/serviceGetGet.operation';
+import {
+	description as descriptionServiceListGet,
+	execute as executeServiceListGet,
+} from './service/serviceListGet.operation';
+import {
+	description as descriptionServiceMetricsGet,
+	execute as executeServiceMetricsGet,
+} from './service/serviceMetricsGet.operation';
+import {
+	description as descriptionServiceOperationGetGet,
+	execute as executeServiceOperationGetGet,
+} from './service/serviceOperationGetGet.operation';
+import {
+	description as descriptionServiceOperationListGet,
+	execute as executeServiceOperationListGet,
+} from './service/serviceOperationListGet.operation';
+import {
+	description as descriptionServiceServiceInfosGet,
+	execute as executeServiceServiceInfosGet,
+} from './service/serviceServiceInfosGet.operation';
+import {
 	description as descriptionServiceServiceInfosUpdatePut,
+	execute as executeServiceServiceInfosUpdatePut,
 } from './service/serviceServiceInfosUpdatePut.operation';
 import {
-	execute as executeOutputGraylogStreamAlertUpdatePut,
-	description as descriptionOutputGraylogStreamAlertUpdatePut,
-} from './outputGraylogStream/outputGraylogStreamAlertUpdatePut.operation';
+	description as descriptionServiceUpdatePut,
+	execute as executeServiceUpdatePut,
+} from './service/serviceUpdatePut.operation';
+import {
+	description as descriptionServiceUrlGet,
+	execute as executeServiceUrlGet,
+} from './service/serviceUrlGet.operation';
+import {
+	description as descriptionServiceUserChangePasswordPost,
+	execute as executeServiceUserChangePasswordPost,
+} from './service/serviceUserChangePasswordPost.operation';
+import {
+	description as descriptionTokenCreatePost,
+	execute as executeTokenCreatePost,
+} from './token/tokenCreatePost.operation';
+import {
+	description as descriptionTokenDeleteDelete,
+	execute as executeTokenDeleteDelete,
+} from './token/tokenDeleteDelete.operation';
+import {
+	description as descriptionTokenGetGet,
+	execute as executeTokenGetGet,
+} from './token/tokenGetGet.operation';
+import {
+	description as descriptionTokenListGet,
+	execute as executeTokenListGet,
+} from './token/tokenListGet.operation';
 
-export function description(displayOptions: IDisplayOptions): INodeProperties[] {
-	const operationProperties: INodeProperties[] = [
-		{
-			displayName: 'Operation',
-			name: 'dbaasOperation',
-			type: 'options',
-			noDataExpression: true,
-			options: [
-			{
-				name: 'Attach Index To Alias',
-				value: 'outputOpenSearchAliasIndexCreatePost',
-				action: 'Attach a OpenSearch index to specified OpenSearch alias',
-			},
-			{
-				name: 'Attach Stream To Alias',
-				value: 'outputOpenSearchAliasStreamCreatePost',
-				action: 'Attach a Graylog stream to specified OpenSearch alias',
-			},
-			{
-				name: 'Change Service Contact',
-				value: 'serviceChangeContactPost',
-				action: 'Launch a contact change procedure',
-			},
-			{
-				name: 'Change User Password',
-				value: 'serviceUserChangePasswordPost',
-				action: 'Initiate a password change procedure.',
-			},
-			{
-				name: 'Create Alias Permission',
-				value: 'rolePermissionAliasCreatePost',
-				action: 'Append a OpenSearch alias permission to role',
-			},
-			{
-				name: 'Create Dashboard Permission',
-				value: 'rolePermissionDashboardCreatePost',
-				action: 'Append a graylog dashboard permission to role',
-			},
-			{
-				name: 'Create Encryption Key',
-				value: 'encryptionKeyCreatePost',
-				action: 'Add a new encryption key',
-			},
-			{
-				name: 'Create Graylog Dashboard',
-				value: 'outputGraylogDashboardCreatePost',
-				action: 'Register a new graylog dashboard',
-			},
-			{
-				name: 'Create Graylog Stream',
-				value: 'outputGraylogStreamCreatePost',
-				action: 'Register a new graylog stream',
-			},
-			{
-				name: 'Create Index Permission',
-				value: 'rolePermissionIndexCreatePost',
-				action: 'Append a OpenSearch index permission to role',
-			},
-			{
-				name: 'Create Input',
-				value: 'inputCreatePost',
-				action: 'Register a new input object',
-			},
-			{
-				name: 'Create OpenSearch Alias',
-				value: 'outputOpenSearchAliasCreatePost',
-				action: 'Register a new OpenSearch alias',
-			},
-			{
-				name: 'Create OpenSearch Dashboards',
-				value: 'outputOpenSearchOsdCreatePost',
-				action: 'Register a new OpenSearch Dashboards instance',
-			},
-			{
-				name: 'Create OpenSearch Index',
-				value: 'outputOpenSearchIndexCreatePost',
-				action: 'Register a new OpenSearch index',
-			},
-			{
-				name: 'Create Osd Permission',
-				value: 'rolePermissionOsdCreatePost',
-				action: 'Append a OpenSearch Dashboards permission to role',
-			},
-			{
-				name: 'Create Role',
-				value: 'roleCreatePost',
-				action: 'Register a new role',
-			},
-			{
-				name: 'Create Role Member',
-				value: 'roleMemberCreatePost',
-				action: 'Append user into the member list of specified role',
-			},
-			{
-				name: 'Create Stream Alert',
-				value: 'outputGraylogStreamAlertCreatePost',
-				action: 'Register a new alert on specified graylog stream',
-			},
-			{
-				name: 'Create Stream Permission',
-				value: 'rolePermissionStreamCreatePost',
-				action: 'Append a graylog stream permission to role',
-			},
-			{
-				name: 'Create Stream Rule',
-				value: 'outputGraylogStreamRuleCreatePost',
-				action: 'Register a new rule on specified graylog stream',
-			},
-			{
-				name: 'Create Token',
-				value: 'tokenCreatePost',
-				action: 'Add a new token',
-			},
-			{
-				name: 'Delete Encryption Key',
-				value: 'encryptionKeyDeleteDelete',
-				action: 'Delete the specified encryption key',
-			},
-			{
-				name: 'Delete Graylog Dashboard',
-				value: 'outputGraylogDashboardDeleteDelete',
-				action: 'Remove specified graylog dashboard',
-			},
-			{
-				name: 'Delete Graylog Stream',
-				value: 'outputGraylogStreamDeleteDelete',
-				action: 'Remove specified graylog stream',
-			},
-			{
-				name: 'Delete Input',
-				value: 'inputDeleteDelete',
-				action: 'Remove the specified input object',
-			},
-			{
-				name: 'Delete OpenSearch Alias',
-				value: 'outputOpenSearchAliasDeleteDelete',
-				action: 'Remove specified OpenSearch alias',
-			},
-			{
-				name: 'Delete OpenSearch Dashboards',
-				value: 'outputOpenSearchOsdDeleteDelete',
-				action: 'Remove specified OpenSearch Dashboards instance',
-			},
-			{
-				name: 'Delete OpenSearch Index',
-				value: 'outputOpenSearchIndexDeleteDelete',
-				action: 'Remove specified OpenSearch index',
-			},
-			{
-				name: 'Delete Permission',
-				value: 'rolePermissionDeleteDelete',
-				action: 'Remove specified permission',
-			},
-			{
-				name: 'Delete Role',
-				value: 'roleDeleteDelete',
-				action: 'Remove specified role',
-			},
-			{
-				name: 'Delete Role Member',
-				value: 'roleMemberDeleteDelete',
-				action: 'Remove user from the member list of specified role',
-			},
-			{
-				name: 'Delete Stream Alert',
-				value: 'outputGraylogStreamAlertDeleteDelete',
-				action: 'Remove alert from specified graylog stream',
-			},
-			{
-				name: 'Delete Stream Rule',
-				value: 'outputGraylogStreamRuleDeleteDelete',
-				action: 'Remove specified graylog stream rule',
-			},
-			{
-				name: 'Delete Stream Subscription',
-				value: 'outputGraylogStreamSubscriptionDeleteDelete',
-				action: 'Delete a specified subscription targeting a specified graylog stream',
-			},
-			{
-				name: 'Delete Token',
-				value: 'tokenDeleteDelete',
-				action: 'Delete the specified token',
-			},
-			{
-				name: 'Detach Index From Alias',
-				value: 'outputOpenSearchAliasIndexDeleteDelete',
-				action: 'Detach a OpenSearch index from specified OpenSearch alias',
-			},
-			{
-				name: 'Detach Stream From Alias',
-				value: 'outputOpenSearchAliasStreamDeleteDelete',
-				action: 'Detach a Graylog stream from specified OpenSearch alias',
-			},
-			{
-				name: 'Duplicate Graylog Dashboard',
-				value: 'outputGraylogDashboardDuplicatePost',
-				action: 'Copy all widgets from specified dashboard to a new one',
-			},
-			{
-				name: 'End Input',
-				value: 'inputEndPost',
-				action: 'Schedule the end of specified input',
-			},
-			{
-				name: 'Generate Archive Url',
-				value: 'outputGraylogStreamArchiveUrlPost',
-				action: 'Get a public temporary URL to access the archive',
-			},
-			{
-				name: 'Generate Input Logs Url',
-				value: 'inputLogsUrlPost',
-				action: 'Generate a temporary url to retrieve input logs',
-			},
-			{
-				name: 'Get Alias Urls',
-				value: 'outputOpenSearchAliasUrlGet',
-				action: 'Returns the list of urls of specified alias',
-			},
-			{
-				name: 'Get Cluster',
-				value: 'clusterGetGet',
-				action: 'Returns details of an allowed cluster',
-			},
-			{
-				name: 'Get Cluster Retention',
-				value: 'clusterRetentionGetGet',
-				action: 'Returns details of a retention',
-			},
-			{
-				name: 'Get Encryption Key',
-				value: 'encryptionKeyGetGet',
-				action: 'Return details of an encryption key',
-			},
-			{
-				name: 'Get Flowgger Configuration',
-				value: 'inputConfigurationFlowggerGet',
-				action: 'Returns the flowgger configuration',
-			},
-			{
-				name: 'Get Graylog Dashboard',
-				value: 'outputGraylogDashboardGetGet',
-				action: 'Returns details of specified graylog dashboard',
-			},
-			{
-				name: 'Get Graylog Dashboard Urls',
-				value: 'outputGraylogDashboardUrlGet',
-				action: 'Returns the list of urls of specified graylog dashboard',
-			},
-			{
-				name: 'Get Graylog Stream',
-				value: 'outputGraylogStreamGetGet',
-				action: 'Returns details of specified graylog stream',
-			},
-			{
-				name: 'Get Index Urls',
-				value: 'outputOpenSearchIndexUrlGet',
-				action: 'Returns the list of urls of specified index',
-			},
-			{
-				name: 'Get Input',
-				value: 'inputGetGet',
-				action: 'Returns details of specified input',
-			},
-			{
-				name: 'Get Input Config Test Result',
-				value: 'inputConfigtestResultGet',
-				action: 'Returns the config test operation result',
-			},
-			{
-				name: 'Get Input Engine',
-				value: 'inputEngineGetGet',
-				action: 'Returns details of specified input engine',
-			},
-			{
-				name: 'Get Input Engine Helper',
-				value: 'inputEngineHelperGetGet',
-				action: 'Returns details of specified input engine helper',
-			},
-			{
-				name: 'Get Input Urls',
-				value: 'inputUrlGet',
-				action: 'Returns the list of urls of specified input',
-			},
-			{
-				name: 'Get Logstash Configuration',
-				value: 'inputConfigurationLogstashGet',
-				action: 'Returns the logstash configuration',
-			},
-			{
-				name: 'Get OpenSearch Alias',
-				value: 'outputOpenSearchAliasGetGet',
-				action: 'Returns specified OpenSearch alias',
-			},
-			{
-				name: 'Get OpenSearch Dashboards',
-				value: 'outputOpenSearchOsdGetGet',
-				action: 'Returns specified OpenSearch Dashboards instance',
-			},
-			{
-				name: 'Get OpenSearch Dashboards Urls',
-				value: 'outputOpenSearchOsdUrlGet',
-				action: 'Returns the list of urls of specified OpenSearch Dashboards',
-			},
-			{
-				name: 'Get OpenSearch Index',
-				value: 'outputOpenSearchIndexGetGet',
-				action: 'Returns specified OpenSearch index',
-			},
-			{
-				name: 'Get Permission',
-				value: 'rolePermissionGetGet',
-				action: 'Returns details of specified permission',
-			},
-			{
-				name: 'Get Role',
-				value: 'roleGetGet',
-				action: 'Returns details of specified role',
-			},
-			{
-				name: 'Get Role Member',
-				value: 'roleMemberGetGet',
-				action: 'Returns the member metadata',
-			},
-			{
-				name: 'Get Service',
-				value: 'serviceGetGet',
-				action: 'Returns the service object of connected identity.',
-			},
-			{
-				name: 'Get Service Infos',
-				value: 'serviceServiceInfosGet',
-				action: 'Get service information',
-			},
-			{
-				name: 'Get Service Metrics',
-				value: 'serviceMetricsGet',
-				action: 'Returns Metrics credentials',
-			},
-			{
-				name: 'Get Service Operation',
-				value: 'serviceOperationGetGet',
-				action: 'Returns details of specified operation',
-			},
-			{
-				name: 'Get Service Urls',
-				value: 'serviceUrlGet',
-				action: 'Returns platform useful urls',
-			},
-			{
-				name: 'Get Stream Alert',
-				value: 'outputGraylogStreamAlertGetGet',
-				action: 'Returns details of specified graylog stream alert',
-			},
-			{
-				name: 'Get Stream Archive',
-				value: 'outputGraylogStreamArchiveGetGet',
-				action: 'Returns details of specified archive',
-			},
-			{
-				name: 'Get Stream Rule',
-				value: 'outputGraylogStreamRuleGetGet',
-				action: 'Returns details of specified graylog stream rule',
-			},
-			{
-				name: 'Get Stream Subscription',
-				value: 'outputGraylogStreamSubscriptionGetGet',
-				action: 'Returns details of specified graylog stream subscription',
-			},
-			{
-				name: 'Get Stream Urls',
-				value: 'outputGraylogStreamUrlGet',
-				action: 'Returns the list of urls of specified graylog stream',
-			},
-			{
-				name: 'Get Token',
-				value: 'tokenGetGet',
-				action: 'Returns the specified token',
-			},
-			{
-				name: 'List Alias Indexes',
-				value: 'outputOpenSearchAliasIndexListGet',
-				action: 'Returns the list of OpenSearch indexes attached to specified OpenSearch alias',
-			},
-			{
-				name: 'List Alias Streams',
-				value: 'outputOpenSearchAliasStreamListGet',
-				action: 'Returns the list of Graylog streams attached to specified OpenSearch alias',
-			},
-			{
-				name: 'List Archive Encryption Keys',
-				value: 'outputGraylogStreamArchiveEncryptionKeyListGet',
-				action: 'Get the list of encryption keys used to encrypt the archive',
-			},
-			{
-				name: 'List Cluster Retentions',
-				value: 'clusterRetentionListGet',
-				action: 'List all the retention ID available for a given cluster',
-			},
-			{
-				name: 'List Clusters',
-				value: 'clusterListGet',
-				action: 'Returns the list of allowed cluster',
-			},
-			{
-				name: 'List Encryption Keys',
-				value: 'encryptionKeyListGet',
-				action: 'Return the list of registred encryption keys',
-			},
-			{
-				name: 'List Graylog Dashboards',
-				value: 'outputGraylogDashboardListGet',
-				action: 'Returns the list of graylog dashboards',
-			},
-			{
-				name: 'List Graylog Streams',
-				value: 'outputGraylogStreamListGet',
-				action: 'Returns the list of graylog streams',
-			},
-			{
-				name: 'List Input Actions',
-				value: 'inputActionListGet',
-				action: 'Returns actions of specified input',
-			},
-			{
-				name: 'List Input Engine Helpers',
-				value: 'inputEngineHelperListGet',
-				action: 'Return the list of available helpers for the given input engine',
-			},
-			{
-				name: 'List Input Engines',
-				value: 'inputEngineListGet',
-				action: 'Returns the list of available input engines',
-			},
-			{
-				name: 'List Inputs',
-				value: 'inputListGet',
-				action: 'Returns the list of registered input attached to the logged user',
-			},
-			{
-				name: 'List OpenSearch Aliases',
-				value: 'outputOpenSearchAliasListGet',
-				action: 'Returns the list of alias for connected user',
-			},
-			{
-				name: 'List OpenSearch Dashboards',
-				value: 'outputOpenSearchOsdListGet',
-				action: 'Returns the list of OpenSearch Dashboards instances',
-			},
-			{
-				name: 'List OpenSearch Indexes',
-				value: 'outputOpenSearchIndexListGet',
-				action: 'Returns the list of OpenSearch indexes',
-			},
-			{
-				name: 'List Role Members',
-				value: 'roleMemberListGet',
-				action: 'Returns the member list of specified role',
-			},
-			{
-				name: 'List Role Permissions',
-				value: 'rolePermissionListGet',
-				action: 'Returns the list of permissions of specified role',
-			},
-			{
-				name: 'List Roles',
-				value: 'roleListGet',
-				action: 'Returns the list of roles',
-			},
-			{
-				name: 'List Service Operations',
-				value: 'serviceOperationListGet',
-				action: 'Latest operations',
-			},
-			{
-				name: 'List Services',
-				value: 'serviceListGet',
-				action: 'List available services',
-			},
-			{
-				name: 'List Stream Alerts',
-				value: 'outputGraylogStreamAlertListGet',
-				action: 'Returns the list of configured alerts of specified graylog stream',
-			},
-			{
-				name: 'List Stream Archives',
-				value: 'outputGraylogStreamArchiveListGet',
-				action: 'Returns the list of archives',
-			},
-			{
-				name: 'List Stream Rules',
-				value: 'outputGraylogStreamRuleListGet',
-				action: 'Returns the list of rules of specified graylog stream',
-			},
-			{
-				name: 'List Stream Subscriptions',
-				value: 'outputGraylogStreamSubscriptionListGet',
-				action: 'Returns the list of subscriptions targeting a specified graylog stream',
-			},
-			{
-				name: 'List Tokens',
-				value: 'tokenListGet',
-				action: 'Returns the list of service tokens',
-			},
-			{
-				name: 'Restart Input',
-				value: 'inputRestartPost',
-				action: 'Schedule the restart of specified input',
-			},
-			{
-				name: 'Start Input',
-				value: 'inputStartPost',
-				action: 'Schedule the start of specified input',
-			},
-			{
-				name: 'Test Input Configuration',
-				value: 'inputConfigtestPost',
-				action: 'Validate configuration of specified input',
-			},
-			{
-				name: 'Update Cluster',
-				value: 'clusterUpdatePut',
-				action: 'Update details of an allowed cluster',
-			},
-			{
-				name: 'Update Flowgger Configuration',
-				value: 'inputConfigurationFlowggerUpdatePut',
-				action: 'Update the flowgger configuration',
-			},
-			{
-				name: 'Update Graylog Dashboard',
-				value: 'outputGraylogDashboardUpdatePut',
-				action: 'Update information of specified graylog dashboard',
-			},
-			{
-				name: 'Update Graylog Stream',
-				value: 'outputGraylogStreamUpdatePut',
-				action: 'Update information of specified graylog stream',
-			},
-			{
-				name: 'Update Input',
-				value: 'inputUpdatePut',
-				action: 'Update information of specified input object',
-			},
-			{
-				name: 'Update Logstash Configuration',
-				value: 'inputConfigurationLogstashUpdatePut',
-				action: 'Update the logstash configuration',
-			},
-			{
-				name: 'Update OpenSearch Alias',
-				value: 'outputOpenSearchAliasUpdatePut',
-				action: 'Update specified OpenSearch alias',
-			},
-			{
-				name: 'Update OpenSearch Dashboards',
-				value: 'outputOpenSearchOsdUpdatePut',
-				action: 'Update specified OpenSearch Dashboards instance',
-			},
-			{
-				name: 'Update OpenSearch Index',
-				value: 'outputOpenSearchIndexUpdatePut',
-				action: 'Update specified OpenSearch index',
-			},
-			{
-				name: 'Update Role',
-				value: 'roleUpdatePut',
-				action: 'Update information of specified role',
-			},
-			{
-				name: 'Update Role Member',
-				value: 'roleMemberUpdatePut',
-				action: 'Update the member metadata',
-			},
-			{
-				name: 'Update Service',
-				value: 'serviceUpdatePut',
-				action: 'Update the service properties',
-			},
-			{
-				name: 'Update Service Infos',
-				value: 'serviceServiceInfosUpdatePut',
-				action: 'Update service information',
-			},
-			{
-				name: 'Update Stream Alert',
-				value: 'outputGraylogStreamAlertUpdatePut',
-				action: 'Update alert information of specified graylog stream',
-			},
-			],
-			default: 'serviceListGet',
-			displayOptions,
-		},
-	];
+const { description, execute } = createOperationDispatcher(
+	'dbaasOperation',
+	'ovhCloudDbaas',
+	[
+	{
+		name: 'Attach Index To Alias',
+		value: 'outputOpenSearchAliasIndexCreatePost',
+		action: 'Attach a OpenSearch index to specified OpenSearch alias',
+		execute: executeOutputOpenSearchAliasIndexCreatePost,
+		description: descriptionOutputOpenSearchAliasIndexCreatePost,
+	},
+	{
+		name: 'Attach Stream To Alias',
+		value: 'outputOpenSearchAliasStreamCreatePost',
+		action: 'Attach a Graylog stream to specified OpenSearch alias',
+		execute: executeOutputOpenSearchAliasStreamCreatePost,
+		description: descriptionOutputOpenSearchAliasStreamCreatePost,
+	},
+	{
+		name: 'Change Service Contact',
+		value: 'serviceChangeContactPost',
+		action: 'Launch a contact change procedure',
+		execute: executeServiceChangeContactPost,
+		description: descriptionServiceChangeContactPost,
+	},
+	{
+		name: 'Change User Password',
+		value: 'serviceUserChangePasswordPost',
+		action: 'Initiate a password change procedure.',
+		execute: executeServiceUserChangePasswordPost,
+		description: descriptionServiceUserChangePasswordPost,
+	},
+	{
+		name: 'Create Alias Permission',
+		value: 'rolePermissionAliasCreatePost',
+		action: 'Append a OpenSearch alias permission to role',
+		execute: executeRolePermissionAliasCreatePost,
+		description: descriptionRolePermissionAliasCreatePost,
+	},
+	{
+		name: 'Create Dashboard Permission',
+		value: 'rolePermissionDashboardCreatePost',
+		action: 'Append a graylog dashboard permission to role',
+		execute: executeRolePermissionDashboardCreatePost,
+		description: descriptionRolePermissionDashboardCreatePost,
+	},
+	{
+		name: 'Create Encryption Key',
+		value: 'encryptionKeyCreatePost',
+		action: 'Add a new encryption key',
+		execute: executeEncryptionKeyCreatePost,
+		description: descriptionEncryptionKeyCreatePost,
+	},
+	{
+		name: 'Create Graylog Dashboard',
+		value: 'outputGraylogDashboardCreatePost',
+		action: 'Register a new graylog dashboard',
+		execute: executeOutputGraylogDashboardCreatePost,
+		description: descriptionOutputGraylogDashboardCreatePost,
+	},
+	{
+		name: 'Create Graylog Stream',
+		value: 'outputGraylogStreamCreatePost',
+		action: 'Register a new graylog stream',
+		execute: executeOutputGraylogStreamCreatePost,
+		description: descriptionOutputGraylogStreamCreatePost,
+	},
+	{
+		name: 'Create Index Permission',
+		value: 'rolePermissionIndexCreatePost',
+		action: 'Append a OpenSearch index permission to role',
+		execute: executeRolePermissionIndexCreatePost,
+		description: descriptionRolePermissionIndexCreatePost,
+	},
+	{
+		name: 'Create Input',
+		value: 'inputCreatePost',
+		action: 'Register a new input object',
+		execute: executeInputCreatePost,
+		description: descriptionInputCreatePost,
+	},
+	{
+		name: 'Create OpenSearch Alias',
+		value: 'outputOpenSearchAliasCreatePost',
+		action: 'Register a new OpenSearch alias',
+		execute: executeOutputOpenSearchAliasCreatePost,
+		description: descriptionOutputOpenSearchAliasCreatePost,
+	},
+	{
+		name: 'Create OpenSearch Dashboards',
+		value: 'outputOpenSearchOsdCreatePost',
+		action: 'Register a new OpenSearch Dashboards instance',
+		execute: executeOutputOpenSearchOsdCreatePost,
+		description: descriptionOutputOpenSearchOsdCreatePost,
+	},
+	{
+		name: 'Create OpenSearch Index',
+		value: 'outputOpenSearchIndexCreatePost',
+		action: 'Register a new OpenSearch index',
+		execute: executeOutputOpenSearchIndexCreatePost,
+		description: descriptionOutputOpenSearchIndexCreatePost,
+	},
+	{
+		name: 'Create Osd Permission',
+		value: 'rolePermissionOsdCreatePost',
+		action: 'Append a OpenSearch Dashboards permission to role',
+		execute: executeRolePermissionOsdCreatePost,
+		description: descriptionRolePermissionOsdCreatePost,
+	},
+	{
+		name: 'Create Role',
+		value: 'roleCreatePost',
+		action: 'Register a new role',
+		execute: executeRoleCreatePost,
+		description: descriptionRoleCreatePost,
+	},
+	{
+		name: 'Create Role Member',
+		value: 'roleMemberCreatePost',
+		action: 'Append user into the member list of specified role',
+		execute: executeRoleMemberCreatePost,
+		description: descriptionRoleMemberCreatePost,
+	},
+	{
+		name: 'Create Stream Alert',
+		value: 'outputGraylogStreamAlertCreatePost',
+		action: 'Register a new alert on specified graylog stream',
+		execute: executeOutputGraylogStreamAlertCreatePost,
+		description: descriptionOutputGraylogStreamAlertCreatePost,
+	},
+	{
+		name: 'Create Stream Permission',
+		value: 'rolePermissionStreamCreatePost',
+		action: 'Append a graylog stream permission to role',
+		execute: executeRolePermissionStreamCreatePost,
+		description: descriptionRolePermissionStreamCreatePost,
+	},
+	{
+		name: 'Create Stream Rule',
+		value: 'outputGraylogStreamRuleCreatePost',
+		action: 'Register a new rule on specified graylog stream',
+		execute: executeOutputGraylogStreamRuleCreatePost,
+		description: descriptionOutputGraylogStreamRuleCreatePost,
+	},
+	{
+		name: 'Create Token',
+		value: 'tokenCreatePost',
+		action: 'Add a new token',
+		execute: executeTokenCreatePost,
+		description: descriptionTokenCreatePost,
+	},
+	{
+		name: 'Delete Encryption Key',
+		value: 'encryptionKeyDeleteDelete',
+		action: 'Delete the specified encryption key',
+		execute: executeEncryptionKeyDeleteDelete,
+		description: descriptionEncryptionKeyDeleteDelete,
+	},
+	{
+		name: 'Delete Graylog Dashboard',
+		value: 'outputGraylogDashboardDeleteDelete',
+		action: 'Remove specified graylog dashboard',
+		execute: executeOutputGraylogDashboardDeleteDelete,
+		description: descriptionOutputGraylogDashboardDeleteDelete,
+	},
+	{
+		name: 'Delete Graylog Stream',
+		value: 'outputGraylogStreamDeleteDelete',
+		action: 'Remove specified graylog stream',
+		execute: executeOutputGraylogStreamDeleteDelete,
+		description: descriptionOutputGraylogStreamDeleteDelete,
+	},
+	{
+		name: 'Delete Input',
+		value: 'inputDeleteDelete',
+		action: 'Remove the specified input object',
+		execute: executeInputDeleteDelete,
+		description: descriptionInputDeleteDelete,
+	},
+	{
+		name: 'Delete OpenSearch Alias',
+		value: 'outputOpenSearchAliasDeleteDelete',
+		action: 'Remove specified OpenSearch alias',
+		execute: executeOutputOpenSearchAliasDeleteDelete,
+		description: descriptionOutputOpenSearchAliasDeleteDelete,
+	},
+	{
+		name: 'Delete OpenSearch Dashboards',
+		value: 'outputOpenSearchOsdDeleteDelete',
+		action: 'Remove specified OpenSearch Dashboards instance',
+		execute: executeOutputOpenSearchOsdDeleteDelete,
+		description: descriptionOutputOpenSearchOsdDeleteDelete,
+	},
+	{
+		name: 'Delete OpenSearch Index',
+		value: 'outputOpenSearchIndexDeleteDelete',
+		action: 'Remove specified OpenSearch index',
+		execute: executeOutputOpenSearchIndexDeleteDelete,
+		description: descriptionOutputOpenSearchIndexDeleteDelete,
+	},
+	{
+		name: 'Delete Permission',
+		value: 'rolePermissionDeleteDelete',
+		action: 'Remove specified permission',
+		execute: executeRolePermissionDeleteDelete,
+		description: descriptionRolePermissionDeleteDelete,
+	},
+	{
+		name: 'Delete Role',
+		value: 'roleDeleteDelete',
+		action: 'Remove specified role',
+		execute: executeRoleDeleteDelete,
+		description: descriptionRoleDeleteDelete,
+	},
+	{
+		name: 'Delete Role Member',
+		value: 'roleMemberDeleteDelete',
+		action: 'Remove user from the member list of specified role',
+		execute: executeRoleMemberDeleteDelete,
+		description: descriptionRoleMemberDeleteDelete,
+	},
+	{
+		name: 'Delete Stream Alert',
+		value: 'outputGraylogStreamAlertDeleteDelete',
+		action: 'Remove alert from specified graylog stream',
+		execute: executeOutputGraylogStreamAlertDeleteDelete,
+		description: descriptionOutputGraylogStreamAlertDeleteDelete,
+	},
+	{
+		name: 'Delete Stream Rule',
+		value: 'outputGraylogStreamRuleDeleteDelete',
+		action: 'Remove specified graylog stream rule',
+		execute: executeOutputGraylogStreamRuleDeleteDelete,
+		description: descriptionOutputGraylogStreamRuleDeleteDelete,
+	},
+	{
+		name: 'Delete Stream Subscription',
+		value: 'outputGraylogStreamSubscriptionDeleteDelete',
+		action: 'Delete a specified subscription targeting a specified graylog stream',
+		execute: executeOutputGraylogStreamSubscriptionDeleteDelete,
+		description: descriptionOutputGraylogStreamSubscriptionDeleteDelete,
+	},
+	{
+		name: 'Delete Token',
+		value: 'tokenDeleteDelete',
+		action: 'Delete the specified token',
+		execute: executeTokenDeleteDelete,
+		description: descriptionTokenDeleteDelete,
+	},
+	{
+		name: 'Detach Index From Alias',
+		value: 'outputOpenSearchAliasIndexDeleteDelete',
+		action: 'Detach a OpenSearch index from specified OpenSearch alias',
+		execute: executeOutputOpenSearchAliasIndexDeleteDelete,
+		description: descriptionOutputOpenSearchAliasIndexDeleteDelete,
+	},
+	{
+		name: 'Detach Stream From Alias',
+		value: 'outputOpenSearchAliasStreamDeleteDelete',
+		action: 'Detach a Graylog stream from specified OpenSearch alias',
+		execute: executeOutputOpenSearchAliasStreamDeleteDelete,
+		description: descriptionOutputOpenSearchAliasStreamDeleteDelete,
+	},
+	{
+		name: 'Duplicate Graylog Dashboard',
+		value: 'outputGraylogDashboardDuplicatePost',
+		action: 'Copy all widgets from specified dashboard to a new one',
+		execute: executeOutputGraylogDashboardDuplicatePost,
+		description: descriptionOutputGraylogDashboardDuplicatePost,
+	},
+	{
+		name: 'End Input',
+		value: 'inputEndPost',
+		action: 'Schedule the end of specified input',
+		execute: executeInputEndPost,
+		description: descriptionInputEndPost,
+	},
+	{
+		name: 'Generate Archive Url',
+		value: 'outputGraylogStreamArchiveUrlPost',
+		action: 'Get a public temporary URL to access the archive',
+		execute: executeOutputGraylogStreamArchiveUrlPost,
+		description: descriptionOutputGraylogStreamArchiveUrlPost,
+	},
+	{
+		name: 'Generate Input Logs Url',
+		value: 'inputLogsUrlPost',
+		action: 'Generate a temporary url to retrieve input logs',
+		execute: executeInputLogsUrlPost,
+		description: descriptionInputLogsUrlPost,
+	},
+	{
+		name: 'Get Alias Urls',
+		value: 'outputOpenSearchAliasUrlGet',
+		action: 'Returns the list of urls of specified alias',
+		execute: executeOutputOpenSearchAliasUrlGet,
+		description: descriptionOutputOpenSearchAliasUrlGet,
+	},
+	{
+		name: 'Get Cluster',
+		value: 'clusterGetGet',
+		action: 'Returns details of an allowed cluster',
+		execute: executeClusterGetGet,
+		description: descriptionClusterGetGet,
+	},
+	{
+		name: 'Get Cluster Retention',
+		value: 'clusterRetentionGetGet',
+		action: 'Returns details of a retention',
+		execute: executeClusterRetentionGetGet,
+		description: descriptionClusterRetentionGetGet,
+	},
+	{
+		name: 'Get Encryption Key',
+		value: 'encryptionKeyGetGet',
+		action: 'Return details of an encryption key',
+		execute: executeEncryptionKeyGetGet,
+		description: descriptionEncryptionKeyGetGet,
+	},
+	{
+		name: 'Get Flowgger Configuration',
+		value: 'inputConfigurationFlowggerGet',
+		action: 'Returns the flowgger configuration',
+		execute: executeInputConfigurationFlowggerGet,
+		description: descriptionInputConfigurationFlowggerGet,
+	},
+	{
+		name: 'Get Graylog Dashboard',
+		value: 'outputGraylogDashboardGetGet',
+		action: 'Returns details of specified graylog dashboard',
+		execute: executeOutputGraylogDashboardGetGet,
+		description: descriptionOutputGraylogDashboardGetGet,
+	},
+	{
+		name: 'Get Graylog Dashboard Urls',
+		value: 'outputGraylogDashboardUrlGet',
+		action: 'Returns the list of urls of specified graylog dashboard',
+		execute: executeOutputGraylogDashboardUrlGet,
+		description: descriptionOutputGraylogDashboardUrlGet,
+	},
+	{
+		name: 'Get Graylog Stream',
+		value: 'outputGraylogStreamGetGet',
+		action: 'Returns details of specified graylog stream',
+		execute: executeOutputGraylogStreamGetGet,
+		description: descriptionOutputGraylogStreamGetGet,
+	},
+	{
+		name: 'Get Index Urls',
+		value: 'outputOpenSearchIndexUrlGet',
+		action: 'Returns the list of urls of specified index',
+		execute: executeOutputOpenSearchIndexUrlGet,
+		description: descriptionOutputOpenSearchIndexUrlGet,
+	},
+	{
+		name: 'Get Input',
+		value: 'inputGetGet',
+		action: 'Returns details of specified input',
+		execute: executeInputGetGet,
+		description: descriptionInputGetGet,
+	},
+	{
+		name: 'Get Input Config Test Result',
+		value: 'inputConfigtestResultGet',
+		action: 'Returns the config test operation result',
+		execute: executeInputConfigtestResultGet,
+		description: descriptionInputConfigtestResultGet,
+	},
+	{
+		name: 'Get Input Engine',
+		value: 'inputEngineGetGet',
+		action: 'Returns details of specified input engine',
+		execute: executeInputEngineGetGet,
+		description: descriptionInputEngineGetGet,
+	},
+	{
+		name: 'Get Input Engine Helper',
+		value: 'inputEngineHelperGetGet',
+		action: 'Returns details of specified input engine helper',
+		execute: executeInputEngineHelperGetGet,
+		description: descriptionInputEngineHelperGetGet,
+	},
+	{
+		name: 'Get Input Urls',
+		value: 'inputUrlGet',
+		action: 'Returns the list of urls of specified input',
+		execute: executeInputUrlGet,
+		description: descriptionInputUrlGet,
+	},
+	{
+		name: 'Get Logstash Configuration',
+		value: 'inputConfigurationLogstashGet',
+		action: 'Returns the logstash configuration',
+		execute: executeInputConfigurationLogstashGet,
+		description: descriptionInputConfigurationLogstashGet,
+	},
+	{
+		name: 'Get OpenSearch Alias',
+		value: 'outputOpenSearchAliasGetGet',
+		action: 'Returns specified OpenSearch alias',
+		execute: executeOutputOpenSearchAliasGetGet,
+		description: descriptionOutputOpenSearchAliasGetGet,
+	},
+	{
+		name: 'Get OpenSearch Dashboards',
+		value: 'outputOpenSearchOsdGetGet',
+		action: 'Returns specified OpenSearch Dashboards instance',
+		execute: executeOutputOpenSearchOsdGetGet,
+		description: descriptionOutputOpenSearchOsdGetGet,
+	},
+	{
+		name: 'Get OpenSearch Dashboards Urls',
+		value: 'outputOpenSearchOsdUrlGet',
+		action: 'Returns the list of urls of specified OpenSearch Dashboards',
+		execute: executeOutputOpenSearchOsdUrlGet,
+		description: descriptionOutputOpenSearchOsdUrlGet,
+	},
+	{
+		name: 'Get OpenSearch Index',
+		value: 'outputOpenSearchIndexGetGet',
+		action: 'Returns specified OpenSearch index',
+		execute: executeOutputOpenSearchIndexGetGet,
+		description: descriptionOutputOpenSearchIndexGetGet,
+	},
+	{
+		name: 'Get Permission',
+		value: 'rolePermissionGetGet',
+		action: 'Returns details of specified permission',
+		execute: executeRolePermissionGetGet,
+		description: descriptionRolePermissionGetGet,
+	},
+	{
+		name: 'Get Role',
+		value: 'roleGetGet',
+		action: 'Returns details of specified role',
+		execute: executeRoleGetGet,
+		description: descriptionRoleGetGet,
+	},
+	{
+		name: 'Get Role Member',
+		value: 'roleMemberGetGet',
+		action: 'Returns the member metadata',
+		execute: executeRoleMemberGetGet,
+		description: descriptionRoleMemberGetGet,
+	},
+	{
+		name: 'Get Service',
+		value: 'serviceGetGet',
+		action: 'Returns the service object of connected identity.',
+		execute: executeServiceGetGet,
+		description: descriptionServiceGetGet,
+	},
+	{
+		name: 'Get Service Infos',
+		value: 'serviceServiceInfosGet',
+		action: 'Get service information',
+		execute: executeServiceServiceInfosGet,
+		description: descriptionServiceServiceInfosGet,
+	},
+	{
+		name: 'Get Service Metrics',
+		value: 'serviceMetricsGet',
+		action: 'Returns Metrics credentials',
+		execute: executeServiceMetricsGet,
+		description: descriptionServiceMetricsGet,
+	},
+	{
+		name: 'Get Service Operation',
+		value: 'serviceOperationGetGet',
+		action: 'Returns details of specified operation',
+		execute: executeServiceOperationGetGet,
+		description: descriptionServiceOperationGetGet,
+	},
+	{
+		name: 'Get Service Urls',
+		value: 'serviceUrlGet',
+		action: 'Returns platform useful urls',
+		execute: executeServiceUrlGet,
+		description: descriptionServiceUrlGet,
+	},
+	{
+		name: 'Get Stream Alert',
+		value: 'outputGraylogStreamAlertGetGet',
+		action: 'Returns details of specified graylog stream alert',
+		execute: executeOutputGraylogStreamAlertGetGet,
+		description: descriptionOutputGraylogStreamAlertGetGet,
+	},
+	{
+		name: 'Get Stream Archive',
+		value: 'outputGraylogStreamArchiveGetGet',
+		action: 'Returns details of specified archive',
+		execute: executeOutputGraylogStreamArchiveGetGet,
+		description: descriptionOutputGraylogStreamArchiveGetGet,
+	},
+	{
+		name: 'Get Stream Rule',
+		value: 'outputGraylogStreamRuleGetGet',
+		action: 'Returns details of specified graylog stream rule',
+		execute: executeOutputGraylogStreamRuleGetGet,
+		description: descriptionOutputGraylogStreamRuleGetGet,
+	},
+	{
+		name: 'Get Stream Subscription',
+		value: 'outputGraylogStreamSubscriptionGetGet',
+		action: 'Returns details of specified graylog stream subscription',
+		execute: executeOutputGraylogStreamSubscriptionGetGet,
+		description: descriptionOutputGraylogStreamSubscriptionGetGet,
+	},
+	{
+		name: 'Get Stream Urls',
+		value: 'outputGraylogStreamUrlGet',
+		action: 'Returns the list of urls of specified graylog stream',
+		execute: executeOutputGraylogStreamUrlGet,
+		description: descriptionOutputGraylogStreamUrlGet,
+	},
+	{
+		name: 'Get Token',
+		value: 'tokenGetGet',
+		action: 'Returns the specified token',
+		execute: executeTokenGetGet,
+		description: descriptionTokenGetGet,
+	},
+	{
+		name: 'List Alias Indexes',
+		value: 'outputOpenSearchAliasIndexListGet',
+		action: 'Returns the list of OpenSearch indexes attached to specified OpenSearch alias',
+		execute: executeOutputOpenSearchAliasIndexListGet,
+		description: descriptionOutputOpenSearchAliasIndexListGet,
+	},
+	{
+		name: 'List Alias Streams',
+		value: 'outputOpenSearchAliasStreamListGet',
+		action: 'Returns the list of Graylog streams attached to specified OpenSearch alias',
+		execute: executeOutputOpenSearchAliasStreamListGet,
+		description: descriptionOutputOpenSearchAliasStreamListGet,
+	},
+	{
+		name: 'List Archive Encryption Keys',
+		value: 'outputGraylogStreamArchiveEncryptionKeyListGet',
+		action: 'Get the list of encryption keys used to encrypt the archive',
+		execute: executeOutputGraylogStreamArchiveEncryptionKeyListGet,
+		description: descriptionOutputGraylogStreamArchiveEncryptionKeyListGet,
+	},
+	{
+		name: 'List Cluster Retentions',
+		value: 'clusterRetentionListGet',
+		action: 'List all the retention ID available for a given cluster',
+		execute: executeClusterRetentionListGet,
+		description: descriptionClusterRetentionListGet,
+	},
+	{
+		name: 'List Clusters',
+		value: 'clusterListGet',
+		action: 'Returns the list of allowed cluster',
+		execute: executeClusterListGet,
+		description: descriptionClusterListGet,
+	},
+	{
+		name: 'List Encryption Keys',
+		value: 'encryptionKeyListGet',
+		action: 'Return the list of registred encryption keys',
+		execute: executeEncryptionKeyListGet,
+		description: descriptionEncryptionKeyListGet,
+	},
+	{
+		name: 'List Graylog Dashboards',
+		value: 'outputGraylogDashboardListGet',
+		action: 'Returns the list of graylog dashboards',
+		execute: executeOutputGraylogDashboardListGet,
+		description: descriptionOutputGraylogDashboardListGet,
+	},
+	{
+		name: 'List Graylog Streams',
+		value: 'outputGraylogStreamListGet',
+		action: 'Returns the list of graylog streams',
+		execute: executeOutputGraylogStreamListGet,
+		description: descriptionOutputGraylogStreamListGet,
+	},
+	{
+		name: 'List Input Actions',
+		value: 'inputActionListGet',
+		action: 'Returns actions of specified input',
+		execute: executeInputActionListGet,
+		description: descriptionInputActionListGet,
+	},
+	{
+		name: 'List Input Engine Helpers',
+		value: 'inputEngineHelperListGet',
+		action: 'Return the list of available helpers for the given input engine',
+		execute: executeInputEngineHelperListGet,
+		description: descriptionInputEngineHelperListGet,
+	},
+	{
+		name: 'List Input Engines',
+		value: 'inputEngineListGet',
+		action: 'Returns the list of available input engines',
+		execute: executeInputEngineListGet,
+		description: descriptionInputEngineListGet,
+	},
+	{
+		name: 'List Inputs',
+		value: 'inputListGet',
+		action: 'Returns the list of registered input attached to the logged user',
+		execute: executeInputListGet,
+		description: descriptionInputListGet,
+	},
+	{
+		name: 'List OpenSearch Aliases',
+		value: 'outputOpenSearchAliasListGet',
+		action: 'Returns the list of alias for connected user',
+		execute: executeOutputOpenSearchAliasListGet,
+		description: descriptionOutputOpenSearchAliasListGet,
+	},
+	{
+		name: 'List OpenSearch Dashboards',
+		value: 'outputOpenSearchOsdListGet',
+		action: 'Returns the list of OpenSearch Dashboards instances',
+		execute: executeOutputOpenSearchOsdListGet,
+		description: descriptionOutputOpenSearchOsdListGet,
+	},
+	{
+		name: 'List OpenSearch Indexes',
+		value: 'outputOpenSearchIndexListGet',
+		action: 'Returns the list of OpenSearch indexes',
+		execute: executeOutputOpenSearchIndexListGet,
+		description: descriptionOutputOpenSearchIndexListGet,
+	},
+	{
+		name: 'List Role Members',
+		value: 'roleMemberListGet',
+		action: 'Returns the member list of specified role',
+		execute: executeRoleMemberListGet,
+		description: descriptionRoleMemberListGet,
+	},
+	{
+		name: 'List Role Permissions',
+		value: 'rolePermissionListGet',
+		action: 'Returns the list of permissions of specified role',
+		execute: executeRolePermissionListGet,
+		description: descriptionRolePermissionListGet,
+	},
+	{
+		name: 'List Roles',
+		value: 'roleListGet',
+		action: 'Returns the list of roles',
+		execute: executeRoleListGet,
+		description: descriptionRoleListGet,
+	},
+	{
+		name: 'List Service Operations',
+		value: 'serviceOperationListGet',
+		action: 'Latest operations',
+		execute: executeServiceOperationListGet,
+		description: descriptionServiceOperationListGet,
+	},
+	{
+		name: 'List Services',
+		value: 'serviceListGet',
+		action: 'List available services',
+		execute: executeServiceListGet,
+		description: descriptionServiceListGet,
+		default: true,
+	},
+	{
+		name: 'List Stream Alerts',
+		value: 'outputGraylogStreamAlertListGet',
+		action: 'Returns the list of configured alerts of specified graylog stream',
+		execute: executeOutputGraylogStreamAlertListGet,
+		description: descriptionOutputGraylogStreamAlertListGet,
+	},
+	{
+		name: 'List Stream Archives',
+		value: 'outputGraylogStreamArchiveListGet',
+		action: 'Returns the list of archives',
+		execute: executeOutputGraylogStreamArchiveListGet,
+		description: descriptionOutputGraylogStreamArchiveListGet,
+	},
+	{
+		name: 'List Stream Rules',
+		value: 'outputGraylogStreamRuleListGet',
+		action: 'Returns the list of rules of specified graylog stream',
+		execute: executeOutputGraylogStreamRuleListGet,
+		description: descriptionOutputGraylogStreamRuleListGet,
+	},
+	{
+		name: 'List Stream Subscriptions',
+		value: 'outputGraylogStreamSubscriptionListGet',
+		action: 'Returns the list of subscriptions targeting a specified graylog stream',
+		execute: executeOutputGraylogStreamSubscriptionListGet,
+		description: descriptionOutputGraylogStreamSubscriptionListGet,
+	},
+	{
+		name: 'List Tokens',
+		value: 'tokenListGet',
+		action: 'Returns the list of service tokens',
+		execute: executeTokenListGet,
+		description: descriptionTokenListGet,
+	},
+	{
+		name: 'Restart Input',
+		value: 'inputRestartPost',
+		action: 'Schedule the restart of specified input',
+		execute: executeInputRestartPost,
+		description: descriptionInputRestartPost,
+	},
+	{
+		name: 'Start Input',
+		value: 'inputStartPost',
+		action: 'Schedule the start of specified input',
+		execute: executeInputStartPost,
+		description: descriptionInputStartPost,
+	},
+	{
+		name: 'Test Input Configuration',
+		value: 'inputConfigtestPost',
+		action: 'Validate configuration of specified input',
+		execute: executeInputConfigtestPost,
+		description: descriptionInputConfigtestPost,
+	},
+	{
+		name: 'Update Cluster',
+		value: 'clusterUpdatePut',
+		action: 'Update details of an allowed cluster',
+		execute: executeClusterUpdatePut,
+		description: descriptionClusterUpdatePut,
+	},
+	{
+		name: 'Update Flowgger Configuration',
+		value: 'inputConfigurationFlowggerUpdatePut',
+		action: 'Update the flowgger configuration',
+		execute: executeInputConfigurationFlowggerUpdatePut,
+		description: descriptionInputConfigurationFlowggerUpdatePut,
+	},
+	{
+		name: 'Update Graylog Dashboard',
+		value: 'outputGraylogDashboardUpdatePut',
+		action: 'Update information of specified graylog dashboard',
+		execute: executeOutputGraylogDashboardUpdatePut,
+		description: descriptionOutputGraylogDashboardUpdatePut,
+	},
+	{
+		name: 'Update Graylog Stream',
+		value: 'outputGraylogStreamUpdatePut',
+		action: 'Update information of specified graylog stream',
+		execute: executeOutputGraylogStreamUpdatePut,
+		description: descriptionOutputGraylogStreamUpdatePut,
+	},
+	{
+		name: 'Update Input',
+		value: 'inputUpdatePut',
+		action: 'Update information of specified input object',
+		execute: executeInputUpdatePut,
+		description: descriptionInputUpdatePut,
+	},
+	{
+		name: 'Update Logstash Configuration',
+		value: 'inputConfigurationLogstashUpdatePut',
+		action: 'Update the logstash configuration',
+		execute: executeInputConfigurationLogstashUpdatePut,
+		description: descriptionInputConfigurationLogstashUpdatePut,
+	},
+	{
+		name: 'Update OpenSearch Alias',
+		value: 'outputOpenSearchAliasUpdatePut',
+		action: 'Update specified OpenSearch alias',
+		execute: executeOutputOpenSearchAliasUpdatePut,
+		description: descriptionOutputOpenSearchAliasUpdatePut,
+	},
+	{
+		name: 'Update OpenSearch Dashboards',
+		value: 'outputOpenSearchOsdUpdatePut',
+		action: 'Update specified OpenSearch Dashboards instance',
+		execute: executeOutputOpenSearchOsdUpdatePut,
+		description: descriptionOutputOpenSearchOsdUpdatePut,
+	},
+	{
+		name: 'Update OpenSearch Index',
+		value: 'outputOpenSearchIndexUpdatePut',
+		action: 'Update specified OpenSearch index',
+		execute: executeOutputOpenSearchIndexUpdatePut,
+		description: descriptionOutputOpenSearchIndexUpdatePut,
+	},
+	{
+		name: 'Update Role',
+		value: 'roleUpdatePut',
+		action: 'Update information of specified role',
+		execute: executeRoleUpdatePut,
+		description: descriptionRoleUpdatePut,
+	},
+	{
+		name: 'Update Role Member',
+		value: 'roleMemberUpdatePut',
+		action: 'Update the member metadata',
+		execute: executeRoleMemberUpdatePut,
+		description: descriptionRoleMemberUpdatePut,
+	},
+	{
+		name: 'Update Service',
+		value: 'serviceUpdatePut',
+		action: 'Update the service properties',
+		execute: executeServiceUpdatePut,
+		description: descriptionServiceUpdatePut,
+	},
+	{
+		name: 'Update Service Infos',
+		value: 'serviceServiceInfosUpdatePut',
+		action: 'Update service information',
+		execute: executeServiceServiceInfosUpdatePut,
+		description: descriptionServiceServiceInfosUpdatePut,
+	},
+	{
+		name: 'Update Stream Alert',
+		value: 'outputGraylogStreamAlertUpdatePut',
+		action: 'Update alert information of specified graylog stream',
+		execute: executeOutputGraylogStreamAlertUpdatePut,
+		description: descriptionOutputGraylogStreamAlertUpdatePut,
+	},
+	],
+);
 
-	const properties: INodeProperties[] = [
-		...operationProperties,
-		...descriptionOutputOpenSearchAliasIndexCreatePost({
-			...displayOptions,
-			show: { dbaasOperation: ['outputOpenSearchAliasIndexCreatePost'] },
-		}) as INodeProperties[],
-		...descriptionOutputOpenSearchAliasStreamCreatePost({
-			...displayOptions,
-			show: { dbaasOperation: ['outputOpenSearchAliasStreamCreatePost'] },
-		}) as INodeProperties[],
-		...descriptionServiceChangeContactPost({
-			...displayOptions,
-			show: { dbaasOperation: ['serviceChangeContactPost'] },
-		}) as INodeProperties[],
-		...descriptionServiceUserChangePasswordPost({
-			...displayOptions,
-			show: { dbaasOperation: ['serviceUserChangePasswordPost'] },
-		}) as INodeProperties[],
-		...descriptionRolePermissionAliasCreatePost({
-			...displayOptions,
-			show: { dbaasOperation: ['rolePermissionAliasCreatePost'] },
-		}) as INodeProperties[],
-		...descriptionRolePermissionDashboardCreatePost({
-			...displayOptions,
-			show: { dbaasOperation: ['rolePermissionDashboardCreatePost'] },
-		}) as INodeProperties[],
-		...descriptionEncryptionKeyCreatePost({
-			...displayOptions,
-			show: { dbaasOperation: ['encryptionKeyCreatePost'] },
-		}) as INodeProperties[],
-		...descriptionOutputGraylogDashboardCreatePost({
-			...displayOptions,
-			show: { dbaasOperation: ['outputGraylogDashboardCreatePost'] },
-		}) as INodeProperties[],
-		...descriptionOutputGraylogStreamCreatePost({
-			...displayOptions,
-			show: { dbaasOperation: ['outputGraylogStreamCreatePost'] },
-		}) as INodeProperties[],
-		...descriptionRolePermissionIndexCreatePost({
-			...displayOptions,
-			show: { dbaasOperation: ['rolePermissionIndexCreatePost'] },
-		}) as INodeProperties[],
-		...descriptionInputCreatePost({
-			...displayOptions,
-			show: { dbaasOperation: ['inputCreatePost'] },
-		}) as INodeProperties[],
-		...descriptionOutputOpenSearchAliasCreatePost({
-			...displayOptions,
-			show: { dbaasOperation: ['outputOpenSearchAliasCreatePost'] },
-		}) as INodeProperties[],
-		...descriptionOutputOpenSearchOsdCreatePost({
-			...displayOptions,
-			show: { dbaasOperation: ['outputOpenSearchOsdCreatePost'] },
-		}) as INodeProperties[],
-		...descriptionOutputOpenSearchIndexCreatePost({
-			...displayOptions,
-			show: { dbaasOperation: ['outputOpenSearchIndexCreatePost'] },
-		}) as INodeProperties[],
-		...descriptionRolePermissionOsdCreatePost({
-			...displayOptions,
-			show: { dbaasOperation: ['rolePermissionOsdCreatePost'] },
-		}) as INodeProperties[],
-		...descriptionRoleCreatePost({
-			...displayOptions,
-			show: { dbaasOperation: ['roleCreatePost'] },
-		}) as INodeProperties[],
-		...descriptionRoleMemberCreatePost({
-			...displayOptions,
-			show: { dbaasOperation: ['roleMemberCreatePost'] },
-		}) as INodeProperties[],
-		...descriptionOutputGraylogStreamAlertCreatePost({
-			...displayOptions,
-			show: { dbaasOperation: ['outputGraylogStreamAlertCreatePost'] },
-		}) as INodeProperties[],
-		...descriptionRolePermissionStreamCreatePost({
-			...displayOptions,
-			show: { dbaasOperation: ['rolePermissionStreamCreatePost'] },
-		}) as INodeProperties[],
-		...descriptionOutputGraylogStreamRuleCreatePost({
-			...displayOptions,
-			show: { dbaasOperation: ['outputGraylogStreamRuleCreatePost'] },
-		}) as INodeProperties[],
-		...descriptionTokenCreatePost({
-			...displayOptions,
-			show: { dbaasOperation: ['tokenCreatePost'] },
-		}) as INodeProperties[],
-		...descriptionEncryptionKeyDeleteDelete({
-			...displayOptions,
-			show: { dbaasOperation: ['encryptionKeyDeleteDelete'] },
-		}) as INodeProperties[],
-		...descriptionOutputGraylogDashboardDeleteDelete({
-			...displayOptions,
-			show: { dbaasOperation: ['outputGraylogDashboardDeleteDelete'] },
-		}) as INodeProperties[],
-		...descriptionOutputGraylogStreamDeleteDelete({
-			...displayOptions,
-			show: { dbaasOperation: ['outputGraylogStreamDeleteDelete'] },
-		}) as INodeProperties[],
-		...descriptionInputDeleteDelete({
-			...displayOptions,
-			show: { dbaasOperation: ['inputDeleteDelete'] },
-		}) as INodeProperties[],
-		...descriptionOutputOpenSearchAliasDeleteDelete({
-			...displayOptions,
-			show: { dbaasOperation: ['outputOpenSearchAliasDeleteDelete'] },
-		}) as INodeProperties[],
-		...descriptionOutputOpenSearchOsdDeleteDelete({
-			...displayOptions,
-			show: { dbaasOperation: ['outputOpenSearchOsdDeleteDelete'] },
-		}) as INodeProperties[],
-		...descriptionOutputOpenSearchIndexDeleteDelete({
-			...displayOptions,
-			show: { dbaasOperation: ['outputOpenSearchIndexDeleteDelete'] },
-		}) as INodeProperties[],
-		...descriptionRolePermissionDeleteDelete({
-			...displayOptions,
-			show: { dbaasOperation: ['rolePermissionDeleteDelete'] },
-		}) as INodeProperties[],
-		...descriptionRoleDeleteDelete({
-			...displayOptions,
-			show: { dbaasOperation: ['roleDeleteDelete'] },
-		}) as INodeProperties[],
-		...descriptionRoleMemberDeleteDelete({
-			...displayOptions,
-			show: { dbaasOperation: ['roleMemberDeleteDelete'] },
-		}) as INodeProperties[],
-		...descriptionOutputGraylogStreamAlertDeleteDelete({
-			...displayOptions,
-			show: { dbaasOperation: ['outputGraylogStreamAlertDeleteDelete'] },
-		}) as INodeProperties[],
-		...descriptionOutputGraylogStreamRuleDeleteDelete({
-			...displayOptions,
-			show: { dbaasOperation: ['outputGraylogStreamRuleDeleteDelete'] },
-		}) as INodeProperties[],
-		...descriptionOutputGraylogStreamSubscriptionDeleteDelete({
-			...displayOptions,
-			show: { dbaasOperation: ['outputGraylogStreamSubscriptionDeleteDelete'] },
-		}) as INodeProperties[],
-		...descriptionTokenDeleteDelete({
-			...displayOptions,
-			show: { dbaasOperation: ['tokenDeleteDelete'] },
-		}) as INodeProperties[],
-		...descriptionOutputOpenSearchAliasIndexDeleteDelete({
-			...displayOptions,
-			show: { dbaasOperation: ['outputOpenSearchAliasIndexDeleteDelete'] },
-		}) as INodeProperties[],
-		...descriptionOutputOpenSearchAliasStreamDeleteDelete({
-			...displayOptions,
-			show: { dbaasOperation: ['outputOpenSearchAliasStreamDeleteDelete'] },
-		}) as INodeProperties[],
-		...descriptionOutputGraylogDashboardDuplicatePost({
-			...displayOptions,
-			show: { dbaasOperation: ['outputGraylogDashboardDuplicatePost'] },
-		}) as INodeProperties[],
-		...descriptionInputEndPost({
-			...displayOptions,
-			show: { dbaasOperation: ['inputEndPost'] },
-		}) as INodeProperties[],
-		...descriptionOutputGraylogStreamArchiveUrlPost({
-			...displayOptions,
-			show: { dbaasOperation: ['outputGraylogStreamArchiveUrlPost'] },
-		}) as INodeProperties[],
-		...descriptionInputLogsUrlPost({
-			...displayOptions,
-			show: { dbaasOperation: ['inputLogsUrlPost'] },
-		}) as INodeProperties[],
-		...descriptionOutputOpenSearchAliasUrlGet({
-			...displayOptions,
-			show: { dbaasOperation: ['outputOpenSearchAliasUrlGet'] },
-		}) as INodeProperties[],
-		...descriptionClusterGetGet({
-			...displayOptions,
-			show: { dbaasOperation: ['clusterGetGet'] },
-		}) as INodeProperties[],
-		...descriptionClusterRetentionGetGet({
-			...displayOptions,
-			show: { dbaasOperation: ['clusterRetentionGetGet'] },
-		}) as INodeProperties[],
-		...descriptionEncryptionKeyGetGet({
-			...displayOptions,
-			show: { dbaasOperation: ['encryptionKeyGetGet'] },
-		}) as INodeProperties[],
-		...descriptionInputConfigurationFlowggerGet({
-			...displayOptions,
-			show: { dbaasOperation: ['inputConfigurationFlowggerGet'] },
-		}) as INodeProperties[],
-		...descriptionOutputGraylogDashboardGetGet({
-			...displayOptions,
-			show: { dbaasOperation: ['outputGraylogDashboardGetGet'] },
-		}) as INodeProperties[],
-		...descriptionOutputGraylogDashboardUrlGet({
-			...displayOptions,
-			show: { dbaasOperation: ['outputGraylogDashboardUrlGet'] },
-		}) as INodeProperties[],
-		...descriptionOutputGraylogStreamGetGet({
-			...displayOptions,
-			show: { dbaasOperation: ['outputGraylogStreamGetGet'] },
-		}) as INodeProperties[],
-		...descriptionOutputOpenSearchIndexUrlGet({
-			...displayOptions,
-			show: { dbaasOperation: ['outputOpenSearchIndexUrlGet'] },
-		}) as INodeProperties[],
-		...descriptionInputGetGet({
-			...displayOptions,
-			show: { dbaasOperation: ['inputGetGet'] },
-		}) as INodeProperties[],
-		...descriptionInputConfigtestResultGet({
-			...displayOptions,
-			show: { dbaasOperation: ['inputConfigtestResultGet'] },
-		}) as INodeProperties[],
-		...descriptionInputEngineGetGet({
-			...displayOptions,
-			show: { dbaasOperation: ['inputEngineGetGet'] },
-		}) as INodeProperties[],
-		...descriptionInputEngineHelperGetGet({
-			...displayOptions,
-			show: { dbaasOperation: ['inputEngineHelperGetGet'] },
-		}) as INodeProperties[],
-		...descriptionInputUrlGet({
-			...displayOptions,
-			show: { dbaasOperation: ['inputUrlGet'] },
-		}) as INodeProperties[],
-		...descriptionInputConfigurationLogstashGet({
-			...displayOptions,
-			show: { dbaasOperation: ['inputConfigurationLogstashGet'] },
-		}) as INodeProperties[],
-		...descriptionOutputOpenSearchAliasGetGet({
-			...displayOptions,
-			show: { dbaasOperation: ['outputOpenSearchAliasGetGet'] },
-		}) as INodeProperties[],
-		...descriptionOutputOpenSearchOsdGetGet({
-			...displayOptions,
-			show: { dbaasOperation: ['outputOpenSearchOsdGetGet'] },
-		}) as INodeProperties[],
-		...descriptionOutputOpenSearchOsdUrlGet({
-			...displayOptions,
-			show: { dbaasOperation: ['outputOpenSearchOsdUrlGet'] },
-		}) as INodeProperties[],
-		...descriptionOutputOpenSearchIndexGetGet({
-			...displayOptions,
-			show: { dbaasOperation: ['outputOpenSearchIndexGetGet'] },
-		}) as INodeProperties[],
-		...descriptionRolePermissionGetGet({
-			...displayOptions,
-			show: { dbaasOperation: ['rolePermissionGetGet'] },
-		}) as INodeProperties[],
-		...descriptionRoleGetGet({
-			...displayOptions,
-			show: { dbaasOperation: ['roleGetGet'] },
-		}) as INodeProperties[],
-		...descriptionRoleMemberGetGet({
-			...displayOptions,
-			show: { dbaasOperation: ['roleMemberGetGet'] },
-		}) as INodeProperties[],
-		...descriptionServiceGetGet({
-			...displayOptions,
-			show: { dbaasOperation: ['serviceGetGet'] },
-		}) as INodeProperties[],
-		...descriptionServiceServiceInfosGet({
-			...displayOptions,
-			show: { dbaasOperation: ['serviceServiceInfosGet'] },
-		}) as INodeProperties[],
-		...descriptionServiceMetricsGet({
-			...displayOptions,
-			show: { dbaasOperation: ['serviceMetricsGet'] },
-		}) as INodeProperties[],
-		...descriptionServiceOperationGetGet({
-			...displayOptions,
-			show: { dbaasOperation: ['serviceOperationGetGet'] },
-		}) as INodeProperties[],
-		...descriptionServiceUrlGet({
-			...displayOptions,
-			show: { dbaasOperation: ['serviceUrlGet'] },
-		}) as INodeProperties[],
-		...descriptionOutputGraylogStreamAlertGetGet({
-			...displayOptions,
-			show: { dbaasOperation: ['outputGraylogStreamAlertGetGet'] },
-		}) as INodeProperties[],
-		...descriptionOutputGraylogStreamArchiveGetGet({
-			...displayOptions,
-			show: { dbaasOperation: ['outputGraylogStreamArchiveGetGet'] },
-		}) as INodeProperties[],
-		...descriptionOutputGraylogStreamRuleGetGet({
-			...displayOptions,
-			show: { dbaasOperation: ['outputGraylogStreamRuleGetGet'] },
-		}) as INodeProperties[],
-		...descriptionOutputGraylogStreamSubscriptionGetGet({
-			...displayOptions,
-			show: { dbaasOperation: ['outputGraylogStreamSubscriptionGetGet'] },
-		}) as INodeProperties[],
-		...descriptionOutputGraylogStreamUrlGet({
-			...displayOptions,
-			show: { dbaasOperation: ['outputGraylogStreamUrlGet'] },
-		}) as INodeProperties[],
-		...descriptionTokenGetGet({
-			...displayOptions,
-			show: { dbaasOperation: ['tokenGetGet'] },
-		}) as INodeProperties[],
-		...descriptionOutputOpenSearchAliasIndexListGet({
-			...displayOptions,
-			show: { dbaasOperation: ['outputOpenSearchAliasIndexListGet'] },
-		}) as INodeProperties[],
-		...descriptionOutputOpenSearchAliasStreamListGet({
-			...displayOptions,
-			show: { dbaasOperation: ['outputOpenSearchAliasStreamListGet'] },
-		}) as INodeProperties[],
-		...descriptionOutputGraylogStreamArchiveEncryptionKeyListGet({
-			...displayOptions,
-			show: { dbaasOperation: ['outputGraylogStreamArchiveEncryptionKeyListGet'] },
-		}) as INodeProperties[],
-		...descriptionClusterRetentionListGet({
-			...displayOptions,
-			show: { dbaasOperation: ['clusterRetentionListGet'] },
-		}) as INodeProperties[],
-		...descriptionClusterListGet({
-			...displayOptions,
-			show: { dbaasOperation: ['clusterListGet'] },
-		}) as INodeProperties[],
-		...descriptionEncryptionKeyListGet({
-			...displayOptions,
-			show: { dbaasOperation: ['encryptionKeyListGet'] },
-		}) as INodeProperties[],
-		...descriptionOutputGraylogDashboardListGet({
-			...displayOptions,
-			show: { dbaasOperation: ['outputGraylogDashboardListGet'] },
-		}) as INodeProperties[],
-		...descriptionOutputGraylogStreamListGet({
-			...displayOptions,
-			show: { dbaasOperation: ['outputGraylogStreamListGet'] },
-		}) as INodeProperties[],
-		...descriptionInputActionListGet({
-			...displayOptions,
-			show: { dbaasOperation: ['inputActionListGet'] },
-		}) as INodeProperties[],
-		...descriptionInputEngineHelperListGet({
-			...displayOptions,
-			show: { dbaasOperation: ['inputEngineHelperListGet'] },
-		}) as INodeProperties[],
-		...descriptionInputEngineListGet({
-			...displayOptions,
-			show: { dbaasOperation: ['inputEngineListGet'] },
-		}) as INodeProperties[],
-		...descriptionInputListGet({
-			...displayOptions,
-			show: { dbaasOperation: ['inputListGet'] },
-		}) as INodeProperties[],
-		...descriptionOutputOpenSearchAliasListGet({
-			...displayOptions,
-			show: { dbaasOperation: ['outputOpenSearchAliasListGet'] },
-		}) as INodeProperties[],
-		...descriptionOutputOpenSearchOsdListGet({
-			...displayOptions,
-			show: { dbaasOperation: ['outputOpenSearchOsdListGet'] },
-		}) as INodeProperties[],
-		...descriptionOutputOpenSearchIndexListGet({
-			...displayOptions,
-			show: { dbaasOperation: ['outputOpenSearchIndexListGet'] },
-		}) as INodeProperties[],
-		...descriptionRoleMemberListGet({
-			...displayOptions,
-			show: { dbaasOperation: ['roleMemberListGet'] },
-		}) as INodeProperties[],
-		...descriptionRolePermissionListGet({
-			...displayOptions,
-			show: { dbaasOperation: ['rolePermissionListGet'] },
-		}) as INodeProperties[],
-		...descriptionRoleListGet({
-			...displayOptions,
-			show: { dbaasOperation: ['roleListGet'] },
-		}) as INodeProperties[],
-		...descriptionServiceOperationListGet({
-			...displayOptions,
-			show: { dbaasOperation: ['serviceOperationListGet'] },
-		}) as INodeProperties[],
-		...descriptionServiceListGet({
-			...displayOptions,
-			show: { dbaasOperation: ['serviceListGet'] },
-		}) as INodeProperties[],
-		...descriptionOutputGraylogStreamAlertListGet({
-			...displayOptions,
-			show: { dbaasOperation: ['outputGraylogStreamAlertListGet'] },
-		}) as INodeProperties[],
-		...descriptionOutputGraylogStreamArchiveListGet({
-			...displayOptions,
-			show: { dbaasOperation: ['outputGraylogStreamArchiveListGet'] },
-		}) as INodeProperties[],
-		...descriptionOutputGraylogStreamRuleListGet({
-			...displayOptions,
-			show: { dbaasOperation: ['outputGraylogStreamRuleListGet'] },
-		}) as INodeProperties[],
-		...descriptionOutputGraylogStreamSubscriptionListGet({
-			...displayOptions,
-			show: { dbaasOperation: ['outputGraylogStreamSubscriptionListGet'] },
-		}) as INodeProperties[],
-		...descriptionTokenListGet({
-			...displayOptions,
-			show: { dbaasOperation: ['tokenListGet'] },
-		}) as INodeProperties[],
-		...descriptionInputRestartPost({
-			...displayOptions,
-			show: { dbaasOperation: ['inputRestartPost'] },
-		}) as INodeProperties[],
-		...descriptionInputStartPost({
-			...displayOptions,
-			show: { dbaasOperation: ['inputStartPost'] },
-		}) as INodeProperties[],
-		...descriptionInputConfigtestPost({
-			...displayOptions,
-			show: { dbaasOperation: ['inputConfigtestPost'] },
-		}) as INodeProperties[],
-		...descriptionClusterUpdatePut({
-			...displayOptions,
-			show: { dbaasOperation: ['clusterUpdatePut'] },
-		}) as INodeProperties[],
-		...descriptionInputConfigurationFlowggerUpdatePut({
-			...displayOptions,
-			show: { dbaasOperation: ['inputConfigurationFlowggerUpdatePut'] },
-		}) as INodeProperties[],
-		...descriptionOutputGraylogDashboardUpdatePut({
-			...displayOptions,
-			show: { dbaasOperation: ['outputGraylogDashboardUpdatePut'] },
-		}) as INodeProperties[],
-		...descriptionOutputGraylogStreamUpdatePut({
-			...displayOptions,
-			show: { dbaasOperation: ['outputGraylogStreamUpdatePut'] },
-		}) as INodeProperties[],
-		...descriptionInputUpdatePut({
-			...displayOptions,
-			show: { dbaasOperation: ['inputUpdatePut'] },
-		}) as INodeProperties[],
-		...descriptionInputConfigurationLogstashUpdatePut({
-			...displayOptions,
-			show: { dbaasOperation: ['inputConfigurationLogstashUpdatePut'] },
-		}) as INodeProperties[],
-		...descriptionOutputOpenSearchAliasUpdatePut({
-			...displayOptions,
-			show: { dbaasOperation: ['outputOpenSearchAliasUpdatePut'] },
-		}) as INodeProperties[],
-		...descriptionOutputOpenSearchOsdUpdatePut({
-			...displayOptions,
-			show: { dbaasOperation: ['outputOpenSearchOsdUpdatePut'] },
-		}) as INodeProperties[],
-		...descriptionOutputOpenSearchIndexUpdatePut({
-			...displayOptions,
-			show: { dbaasOperation: ['outputOpenSearchIndexUpdatePut'] },
-		}) as INodeProperties[],
-		...descriptionRoleUpdatePut({
-			...displayOptions,
-			show: { dbaasOperation: ['roleUpdatePut'] },
-		}) as INodeProperties[],
-		...descriptionRoleMemberUpdatePut({
-			...displayOptions,
-			show: { dbaasOperation: ['roleMemberUpdatePut'] },
-		}) as INodeProperties[],
-		...descriptionServiceUpdatePut({
-			...displayOptions,
-			show: { dbaasOperation: ['serviceUpdatePut'] },
-		}) as INodeProperties[],
-		...descriptionServiceServiceInfosUpdatePut({
-			...displayOptions,
-			show: { dbaasOperation: ['serviceServiceInfosUpdatePut'] },
-		}) as INodeProperties[],
-		...descriptionOutputGraylogStreamAlertUpdatePut({
-			...displayOptions,
-			show: { dbaasOperation: ['outputGraylogStreamAlertUpdatePut'] },
-		}) as INodeProperties[],
-	];
-
-	return properties;
-}
-
-export async function execute(
-	this: IExecuteFunctions,
-	itemIndex?: number,
-): Promise<INodeExecutionData[]> {
-	const operation = this.getNodeParameter('dbaasOperation', itemIndex ?? 0, {
-		extractValue: true,
-	});
-
-	switch (operation) {
-		case 'outputOpenSearchAliasIndexCreatePost':
-			return executeOutputOpenSearchAliasIndexCreatePost.call(this, itemIndex ?? 0);
-		case 'outputOpenSearchAliasStreamCreatePost':
-			return executeOutputOpenSearchAliasStreamCreatePost.call(this, itemIndex ?? 0);
-		case 'serviceChangeContactPost':
-			return executeServiceChangeContactPost.call(this, itemIndex ?? 0);
-		case 'serviceUserChangePasswordPost':
-			return executeServiceUserChangePasswordPost.call(this, itemIndex ?? 0);
-		case 'rolePermissionAliasCreatePost':
-			return executeRolePermissionAliasCreatePost.call(this, itemIndex ?? 0);
-		case 'rolePermissionDashboardCreatePost':
-			return executeRolePermissionDashboardCreatePost.call(this, itemIndex ?? 0);
-		case 'encryptionKeyCreatePost':
-			return executeEncryptionKeyCreatePost.call(this, itemIndex ?? 0);
-		case 'outputGraylogDashboardCreatePost':
-			return executeOutputGraylogDashboardCreatePost.call(this, itemIndex ?? 0);
-		case 'outputGraylogStreamCreatePost':
-			return executeOutputGraylogStreamCreatePost.call(this, itemIndex ?? 0);
-		case 'rolePermissionIndexCreatePost':
-			return executeRolePermissionIndexCreatePost.call(this, itemIndex ?? 0);
-		case 'inputCreatePost':
-			return executeInputCreatePost.call(this, itemIndex ?? 0);
-		case 'outputOpenSearchAliasCreatePost':
-			return executeOutputOpenSearchAliasCreatePost.call(this, itemIndex ?? 0);
-		case 'outputOpenSearchOsdCreatePost':
-			return executeOutputOpenSearchOsdCreatePost.call(this, itemIndex ?? 0);
-		case 'outputOpenSearchIndexCreatePost':
-			return executeOutputOpenSearchIndexCreatePost.call(this, itemIndex ?? 0);
-		case 'rolePermissionOsdCreatePost':
-			return executeRolePermissionOsdCreatePost.call(this, itemIndex ?? 0);
-		case 'roleCreatePost':
-			return executeRoleCreatePost.call(this, itemIndex ?? 0);
-		case 'roleMemberCreatePost':
-			return executeRoleMemberCreatePost.call(this, itemIndex ?? 0);
-		case 'outputGraylogStreamAlertCreatePost':
-			return executeOutputGraylogStreamAlertCreatePost.call(this, itemIndex ?? 0);
-		case 'rolePermissionStreamCreatePost':
-			return executeRolePermissionStreamCreatePost.call(this, itemIndex ?? 0);
-		case 'outputGraylogStreamRuleCreatePost':
-			return executeOutputGraylogStreamRuleCreatePost.call(this, itemIndex ?? 0);
-		case 'tokenCreatePost':
-			return executeTokenCreatePost.call(this, itemIndex ?? 0);
-		case 'encryptionKeyDeleteDelete':
-			return executeEncryptionKeyDeleteDelete.call(this, itemIndex ?? 0);
-		case 'outputGraylogDashboardDeleteDelete':
-			return executeOutputGraylogDashboardDeleteDelete.call(this, itemIndex ?? 0);
-		case 'outputGraylogStreamDeleteDelete':
-			return executeOutputGraylogStreamDeleteDelete.call(this, itemIndex ?? 0);
-		case 'inputDeleteDelete':
-			return executeInputDeleteDelete.call(this, itemIndex ?? 0);
-		case 'outputOpenSearchAliasDeleteDelete':
-			return executeOutputOpenSearchAliasDeleteDelete.call(this, itemIndex ?? 0);
-		case 'outputOpenSearchOsdDeleteDelete':
-			return executeOutputOpenSearchOsdDeleteDelete.call(this, itemIndex ?? 0);
-		case 'outputOpenSearchIndexDeleteDelete':
-			return executeOutputOpenSearchIndexDeleteDelete.call(this, itemIndex ?? 0);
-		case 'rolePermissionDeleteDelete':
-			return executeRolePermissionDeleteDelete.call(this, itemIndex ?? 0);
-		case 'roleDeleteDelete':
-			return executeRoleDeleteDelete.call(this, itemIndex ?? 0);
-		case 'roleMemberDeleteDelete':
-			return executeRoleMemberDeleteDelete.call(this, itemIndex ?? 0);
-		case 'outputGraylogStreamAlertDeleteDelete':
-			return executeOutputGraylogStreamAlertDeleteDelete.call(this, itemIndex ?? 0);
-		case 'outputGraylogStreamRuleDeleteDelete':
-			return executeOutputGraylogStreamRuleDeleteDelete.call(this, itemIndex ?? 0);
-		case 'outputGraylogStreamSubscriptionDeleteDelete':
-			return executeOutputGraylogStreamSubscriptionDeleteDelete.call(this, itemIndex ?? 0);
-		case 'tokenDeleteDelete':
-			return executeTokenDeleteDelete.call(this, itemIndex ?? 0);
-		case 'outputOpenSearchAliasIndexDeleteDelete':
-			return executeOutputOpenSearchAliasIndexDeleteDelete.call(this, itemIndex ?? 0);
-		case 'outputOpenSearchAliasStreamDeleteDelete':
-			return executeOutputOpenSearchAliasStreamDeleteDelete.call(this, itemIndex ?? 0);
-		case 'outputGraylogDashboardDuplicatePost':
-			return executeOutputGraylogDashboardDuplicatePost.call(this, itemIndex ?? 0);
-		case 'inputEndPost':
-			return executeInputEndPost.call(this, itemIndex ?? 0);
-		case 'outputGraylogStreamArchiveUrlPost':
-			return executeOutputGraylogStreamArchiveUrlPost.call(this, itemIndex ?? 0);
-		case 'inputLogsUrlPost':
-			return executeInputLogsUrlPost.call(this, itemIndex ?? 0);
-		case 'outputOpenSearchAliasUrlGet':
-			return executeOutputOpenSearchAliasUrlGet.call(this, itemIndex ?? 0);
-		case 'clusterGetGet':
-			return executeClusterGetGet.call(this, itemIndex ?? 0);
-		case 'clusterRetentionGetGet':
-			return executeClusterRetentionGetGet.call(this, itemIndex ?? 0);
-		case 'encryptionKeyGetGet':
-			return executeEncryptionKeyGetGet.call(this, itemIndex ?? 0);
-		case 'inputConfigurationFlowggerGet':
-			return executeInputConfigurationFlowggerGet.call(this, itemIndex ?? 0);
-		case 'outputGraylogDashboardGetGet':
-			return executeOutputGraylogDashboardGetGet.call(this, itemIndex ?? 0);
-		case 'outputGraylogDashboardUrlGet':
-			return executeOutputGraylogDashboardUrlGet.call(this, itemIndex ?? 0);
-		case 'outputGraylogStreamGetGet':
-			return executeOutputGraylogStreamGetGet.call(this, itemIndex ?? 0);
-		case 'outputOpenSearchIndexUrlGet':
-			return executeOutputOpenSearchIndexUrlGet.call(this, itemIndex ?? 0);
-		case 'inputGetGet':
-			return executeInputGetGet.call(this, itemIndex ?? 0);
-		case 'inputConfigtestResultGet':
-			return executeInputConfigtestResultGet.call(this, itemIndex ?? 0);
-		case 'inputEngineGetGet':
-			return executeInputEngineGetGet.call(this, itemIndex ?? 0);
-		case 'inputEngineHelperGetGet':
-			return executeInputEngineHelperGetGet.call(this, itemIndex ?? 0);
-		case 'inputUrlGet':
-			return executeInputUrlGet.call(this, itemIndex ?? 0);
-		case 'inputConfigurationLogstashGet':
-			return executeInputConfigurationLogstashGet.call(this, itemIndex ?? 0);
-		case 'outputOpenSearchAliasGetGet':
-			return executeOutputOpenSearchAliasGetGet.call(this, itemIndex ?? 0);
-		case 'outputOpenSearchOsdGetGet':
-			return executeOutputOpenSearchOsdGetGet.call(this, itemIndex ?? 0);
-		case 'outputOpenSearchOsdUrlGet':
-			return executeOutputOpenSearchOsdUrlGet.call(this, itemIndex ?? 0);
-		case 'outputOpenSearchIndexGetGet':
-			return executeOutputOpenSearchIndexGetGet.call(this, itemIndex ?? 0);
-		case 'rolePermissionGetGet':
-			return executeRolePermissionGetGet.call(this, itemIndex ?? 0);
-		case 'roleGetGet':
-			return executeRoleGetGet.call(this, itemIndex ?? 0);
-		case 'roleMemberGetGet':
-			return executeRoleMemberGetGet.call(this, itemIndex ?? 0);
-		case 'serviceGetGet':
-			return executeServiceGetGet.call(this, itemIndex ?? 0);
-		case 'serviceServiceInfosGet':
-			return executeServiceServiceInfosGet.call(this, itemIndex ?? 0);
-		case 'serviceMetricsGet':
-			return executeServiceMetricsGet.call(this, itemIndex ?? 0);
-		case 'serviceOperationGetGet':
-			return executeServiceOperationGetGet.call(this, itemIndex ?? 0);
-		case 'serviceUrlGet':
-			return executeServiceUrlGet.call(this, itemIndex ?? 0);
-		case 'outputGraylogStreamAlertGetGet':
-			return executeOutputGraylogStreamAlertGetGet.call(this, itemIndex ?? 0);
-		case 'outputGraylogStreamArchiveGetGet':
-			return executeOutputGraylogStreamArchiveGetGet.call(this, itemIndex ?? 0);
-		case 'outputGraylogStreamRuleGetGet':
-			return executeOutputGraylogStreamRuleGetGet.call(this, itemIndex ?? 0);
-		case 'outputGraylogStreamSubscriptionGetGet':
-			return executeOutputGraylogStreamSubscriptionGetGet.call(this, itemIndex ?? 0);
-		case 'outputGraylogStreamUrlGet':
-			return executeOutputGraylogStreamUrlGet.call(this, itemIndex ?? 0);
-		case 'tokenGetGet':
-			return executeTokenGetGet.call(this, itemIndex ?? 0);
-		case 'outputOpenSearchAliasIndexListGet':
-			return executeOutputOpenSearchAliasIndexListGet.call(this, itemIndex ?? 0);
-		case 'outputOpenSearchAliasStreamListGet':
-			return executeOutputOpenSearchAliasStreamListGet.call(this, itemIndex ?? 0);
-		case 'outputGraylogStreamArchiveEncryptionKeyListGet':
-			return executeOutputGraylogStreamArchiveEncryptionKeyListGet.call(this, itemIndex ?? 0);
-		case 'clusterRetentionListGet':
-			return executeClusterRetentionListGet.call(this, itemIndex ?? 0);
-		case 'clusterListGet':
-			return executeClusterListGet.call(this, itemIndex ?? 0);
-		case 'encryptionKeyListGet':
-			return executeEncryptionKeyListGet.call(this, itemIndex ?? 0);
-		case 'outputGraylogDashboardListGet':
-			return executeOutputGraylogDashboardListGet.call(this, itemIndex ?? 0);
-		case 'outputGraylogStreamListGet':
-			return executeOutputGraylogStreamListGet.call(this, itemIndex ?? 0);
-		case 'inputActionListGet':
-			return executeInputActionListGet.call(this, itemIndex ?? 0);
-		case 'inputEngineHelperListGet':
-			return executeInputEngineHelperListGet.call(this, itemIndex ?? 0);
-		case 'inputEngineListGet':
-			return executeInputEngineListGet.call(this, itemIndex ?? 0);
-		case 'inputListGet':
-			return executeInputListGet.call(this, itemIndex ?? 0);
-		case 'outputOpenSearchAliasListGet':
-			return executeOutputOpenSearchAliasListGet.call(this, itemIndex ?? 0);
-		case 'outputOpenSearchOsdListGet':
-			return executeOutputOpenSearchOsdListGet.call(this, itemIndex ?? 0);
-		case 'outputOpenSearchIndexListGet':
-			return executeOutputOpenSearchIndexListGet.call(this, itemIndex ?? 0);
-		case 'roleMemberListGet':
-			return executeRoleMemberListGet.call(this, itemIndex ?? 0);
-		case 'rolePermissionListGet':
-			return executeRolePermissionListGet.call(this, itemIndex ?? 0);
-		case 'roleListGet':
-			return executeRoleListGet.call(this, itemIndex ?? 0);
-		case 'serviceOperationListGet':
-			return executeServiceOperationListGet.call(this, itemIndex ?? 0);
-		case 'serviceListGet':
-			return executeServiceListGet.call(this, itemIndex ?? 0);
-		case 'outputGraylogStreamAlertListGet':
-			return executeOutputGraylogStreamAlertListGet.call(this, itemIndex ?? 0);
-		case 'outputGraylogStreamArchiveListGet':
-			return executeOutputGraylogStreamArchiveListGet.call(this, itemIndex ?? 0);
-		case 'outputGraylogStreamRuleListGet':
-			return executeOutputGraylogStreamRuleListGet.call(this, itemIndex ?? 0);
-		case 'outputGraylogStreamSubscriptionListGet':
-			return executeOutputGraylogStreamSubscriptionListGet.call(this, itemIndex ?? 0);
-		case 'tokenListGet':
-			return executeTokenListGet.call(this, itemIndex ?? 0);
-		case 'inputRestartPost':
-			return executeInputRestartPost.call(this, itemIndex ?? 0);
-		case 'inputStartPost':
-			return executeInputStartPost.call(this, itemIndex ?? 0);
-		case 'inputConfigtestPost':
-			return executeInputConfigtestPost.call(this, itemIndex ?? 0);
-		case 'clusterUpdatePut':
-			return executeClusterUpdatePut.call(this, itemIndex ?? 0);
-		case 'inputConfigurationFlowggerUpdatePut':
-			return executeInputConfigurationFlowggerUpdatePut.call(this, itemIndex ?? 0);
-		case 'outputGraylogDashboardUpdatePut':
-			return executeOutputGraylogDashboardUpdatePut.call(this, itemIndex ?? 0);
-		case 'outputGraylogStreamUpdatePut':
-			return executeOutputGraylogStreamUpdatePut.call(this, itemIndex ?? 0);
-		case 'inputUpdatePut':
-			return executeInputUpdatePut.call(this, itemIndex ?? 0);
-		case 'inputConfigurationLogstashUpdatePut':
-			return executeInputConfigurationLogstashUpdatePut.call(this, itemIndex ?? 0);
-		case 'outputOpenSearchAliasUpdatePut':
-			return executeOutputOpenSearchAliasUpdatePut.call(this, itemIndex ?? 0);
-		case 'outputOpenSearchOsdUpdatePut':
-			return executeOutputOpenSearchOsdUpdatePut.call(this, itemIndex ?? 0);
-		case 'outputOpenSearchIndexUpdatePut':
-			return executeOutputOpenSearchIndexUpdatePut.call(this, itemIndex ?? 0);
-		case 'roleUpdatePut':
-			return executeRoleUpdatePut.call(this, itemIndex ?? 0);
-		case 'roleMemberUpdatePut':
-			return executeRoleMemberUpdatePut.call(this, itemIndex ?? 0);
-		case 'serviceUpdatePut':
-			return executeServiceUpdatePut.call(this, itemIndex ?? 0);
-		case 'serviceServiceInfosUpdatePut':
-			return executeServiceServiceInfosUpdatePut.call(this, itemIndex ?? 0);
-		case 'outputGraylogStreamAlertUpdatePut':
-			return executeOutputGraylogStreamAlertUpdatePut.call(this, itemIndex ?? 0);
-	}
-
-	throw new Error(`Unsupported operation "${operation}" for resource "ovhCloudDbaas"`);
-}
+export { description, execute };

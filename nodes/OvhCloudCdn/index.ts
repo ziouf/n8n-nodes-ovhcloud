@@ -1,704 +1,496 @@
-import type {
-	IDisplayOptions,
-	IExecuteFunctions,
-	INodeExecutionData,
-	INodeProperties,
-} from 'n8n-workflow';
+import { createOperationDispatcher } from '../../shared/nodes/createNodeDispatcher';
 
 import {
-	execute as executeServicesListGet,
-	description as descriptionServicesListGet,
-} from './resources/service/servicesListGet.operation';
-import {
-	execute as executeServiceGetGet,
-	description as descriptionServiceGetGet,
-} from './resources/service/serviceGetGet.operation';
-import {
-	execute as executeLogKindListGet,
-	description as descriptionLogKindListGet,
-} from './resources/service/logKindListGet.operation';
-import {
-	execute as executeLogKindGetGet,
-	description as descriptionLogKindGetGet,
-} from './resources/service/logKindGetGet.operation';
-import {
-	execute as executePopsListGet,
-	description as descriptionPopsListGet,
-} from './resources/service/popsListGet.operation';
-import {
-	execute as executePopsGetGet,
-	description as descriptionPopsGetGet,
-} from './resources/service/popsGetGet.operation';
-import {
-	execute as executeChangeContactPost,
-	description as descriptionChangeContactPost,
-} from './resources/service/changeContactPost.operation';
-import {
-	execute as executeQuotaGet,
-	description as descriptionQuotaGet,
-} from './resources/service/quotaGet.operation';
-import {
-	execute as executeServiceInfosGet,
-	description as descriptionServiceInfosGet,
-} from './resources/service/serviceInfosGet.operation';
-import {
-	execute as executeServiceInfosPut,
-	description as descriptionServiceInfosPut,
-} from './resources/service/serviceInfosPut.operation';
-import {
-	execute as executeLogsPost,
-	description as descriptionLogsPost,
-} from './resources/service/logsPost.operation';
-import {
-	execute as executeDomainsListGet,
-	description as descriptionDomainsListGet,
-} from './resources/domains/domainsListGet.operation';
-import {
-	execute as executeDomainsCreatePost,
-	description as descriptionDomainsCreatePost,
-} from './resources/domains/domainsCreatePost.operation';
-import {
-	execute as executeDomainDeleteDelete,
-	description as descriptionDomainDeleteDelete,
-} from './resources/domains/domainDeleteDelete.operation';
-import {
-	execute as executeDomainGetGet,
-	description as descriptionDomainGetGet,
-} from './resources/domains/domainGetGet.operation';
-import {
-	execute as executeDomainUpdatePut,
-	description as descriptionDomainUpdatePut,
-} from './resources/domains/domainUpdatePut.operation';
-import {
-	execute as executeBackendsListGet,
-	description as descriptionBackendsListGet,
-} from './resources/domains/backendsListGet.operation';
-import {
-	execute as executeBackendsCreatePost,
-	description as descriptionBackendsCreatePost,
-} from './resources/domains/backendsCreatePost.operation';
-import {
-	execute as executeBackendDeleteDelete,
 	description as descriptionBackendDeleteDelete,
+	execute as executeBackendDeleteDelete,
 } from './resources/domains/backendDeleteDelete.operation';
 import {
-	execute as executeBackendGetGet,
 	description as descriptionBackendGetGet,
+	execute as executeBackendGetGet,
 } from './resources/domains/backendGetGet.operation';
 import {
-	execute as executeCacheRulesListGet,
-	description as descriptionCacheRulesListGet,
-} from './resources/domains/cacheRulesListGet.operation';
+	description as descriptionBackendsCreatePost,
+	execute as executeBackendsCreatePost,
+} from './resources/domains/backendsCreatePost.operation';
 import {
-	execute as executeCacheRulesCreatePost,
-	description as descriptionCacheRulesCreatePost,
-} from './resources/domains/cacheRulesCreatePost.operation';
+	description as descriptionBackendsListGet,
+	execute as executeBackendsListGet,
+} from './resources/domains/backendsListGet.operation';
 import {
-	execute as executeCacheRuleDeleteDelete,
 	description as descriptionCacheRuleDeleteDelete,
+	execute as executeCacheRuleDeleteDelete,
 } from './resources/domains/cacheRuleDeleteDelete.operation';
 import {
-	execute as executeCacheRuleGetGet,
-	description as descriptionCacheRuleGetGet,
-} from './resources/domains/cacheRuleGetGet.operation';
-import {
-	execute as executeCacheRuleUpdatePut,
-	description as descriptionCacheRuleUpdatePut,
-} from './resources/domains/cacheRuleUpdatePut.operation';
-import {
-	execute as executeCacheRuleFlushPost,
 	description as descriptionCacheRuleFlushPost,
+	execute as executeCacheRuleFlushPost,
 } from './resources/domains/cacheRuleFlushPost.operation';
 import {
-	execute as executeCacheRuleTasksListGet,
-	description as descriptionCacheRuleTasksListGet,
-} from './resources/domains/cacheRuleTasksListGet.operation';
+	description as descriptionCacheRuleGetGet,
+	execute as executeCacheRuleGetGet,
+} from './resources/domains/cacheRuleGetGet.operation';
 import {
-	execute as executeCacheRuleTaskGetGet,
 	description as descriptionCacheRuleTaskGetGet,
+	execute as executeCacheRuleTaskGetGet,
 } from './resources/domains/cacheRuleTaskGetGet.operation';
 import {
-	execute as executeDomainFlushPost,
+	description as descriptionCacheRuleTasksListGet,
+	execute as executeCacheRuleTasksListGet,
+} from './resources/domains/cacheRuleTasksListGet.operation';
+import {
+	description as descriptionCacheRuleUpdatePut,
+	execute as executeCacheRuleUpdatePut,
+} from './resources/domains/cacheRuleUpdatePut.operation';
+import {
+	description as descriptionCacheRulesCreatePost,
+	execute as executeCacheRulesCreatePost,
+} from './resources/domains/cacheRulesCreatePost.operation';
+import {
+	description as descriptionCacheRulesListGet,
+	execute as executeCacheRulesListGet,
+} from './resources/domains/cacheRulesListGet.operation';
+import {
+	description as descriptionDomainDeleteDelete,
+	execute as executeDomainDeleteDelete,
+} from './resources/domains/domainDeleteDelete.operation';
+import {
 	description as descriptionDomainFlushPost,
+	execute as executeDomainFlushPost,
 } from './resources/domains/domainFlushPost.operation';
 import {
-	execute as executeDomainLogsPost,
+	description as descriptionDomainGetGet,
+	execute as executeDomainGetGet,
+} from './resources/domains/domainGetGet.operation';
+import {
 	description as descriptionDomainLogsPost,
+	execute as executeDomainLogsPost,
 } from './resources/domains/domainLogsPost.operation';
 import {
-	execute as executeDomainStatisticsGet,
 	description as descriptionDomainStatisticsGet,
+	execute as executeDomainStatisticsGet,
 } from './resources/domains/domainStatisticsGet.operation';
 import {
-	execute as executeDomainTasksListGet,
-	description as descriptionDomainTasksListGet,
-} from './resources/domains/domainTasksListGet.operation';
-import {
-	execute as executeDomainTaskGetGet,
 	description as descriptionDomainTaskGetGet,
+	execute as executeDomainTaskGetGet,
 } from './resources/domains/domainTaskGetGet.operation';
 import {
-	execute as executeSubscriptionsListGet,
-	description as descriptionSubscriptionsListGet,
-} from './resources/log/subscriptionsListGet.operation';
+	description as descriptionDomainTasksListGet,
+	execute as executeDomainTasksListGet,
+} from './resources/domains/domainTasksListGet.operation';
 import {
-	execute as executeSubscriptionsCreatePost,
-	description as descriptionSubscriptionsCreatePost,
-} from './resources/log/subscriptionsCreatePost.operation';
+	description as descriptionDomainUpdatePut,
+	execute as executeDomainUpdatePut,
+} from './resources/domains/domainUpdatePut.operation';
 import {
-	execute as executeSubscriptionDeleteDelete,
-	description as descriptionSubscriptionDeleteDelete,
-} from './resources/log/subscriptionDeleteDelete.operation';
+	description as descriptionDomainsCreatePost,
+	execute as executeDomainsCreatePost,
+} from './resources/domains/domainsCreatePost.operation';
 import {
-	execute as executeSubscriptionGetGet,
-	description as descriptionSubscriptionGetGet,
-} from './resources/log/subscriptionGetGet.operation';
+	description as descriptionDomainsListGet,
+	execute as executeDomainsListGet,
+} from './resources/domains/domainsListGet.operation';
 import {
-	execute as executeLogUrlPost,
 	description as descriptionLogUrlPost,
+	execute as executeLogUrlPost,
 } from './resources/log/logUrlPost.operation';
 import {
-	execute as executeSslDeleteDelete,
-	description as descriptionSslDeleteDelete,
-} from './resources/ssl/sslDeleteDelete.operation';
+	description as descriptionSubscriptionDeleteDelete,
+	execute as executeSubscriptionDeleteDelete,
+} from './resources/log/subscriptionDeleteDelete.operation';
 import {
-	execute as executeSslGetGet,
-	description as descriptionSslGetGet,
-} from './resources/ssl/sslGetGet.operation';
+	description as descriptionSubscriptionGetGet,
+	execute as executeSubscriptionGetGet,
+} from './resources/log/subscriptionGetGet.operation';
 import {
-	execute as executeSslCreatePost,
+	description as descriptionSubscriptionsCreatePost,
+	execute as executeSubscriptionsCreatePost,
+} from './resources/log/subscriptionsCreatePost.operation';
+import {
+	description as descriptionSubscriptionsListGet,
+	execute as executeSubscriptionsListGet,
+} from './resources/log/subscriptionsListGet.operation';
+import {
+	description as descriptionChangeContactPost,
+	execute as executeChangeContactPost,
+} from './resources/service/changeContactPost.operation';
+import {
+	description as descriptionLogKindGetGet,
+	execute as executeLogKindGetGet,
+} from './resources/service/logKindGetGet.operation';
+import {
+	description as descriptionLogKindListGet,
+	execute as executeLogKindListGet,
+} from './resources/service/logKindListGet.operation';
+import {
+	description as descriptionLogsPost,
+	execute as executeLogsPost,
+} from './resources/service/logsPost.operation';
+import {
+	description as descriptionPopsGetGet,
+	execute as executePopsGetGet,
+} from './resources/service/popsGetGet.operation';
+import {
+	description as descriptionPopsListGet,
+	execute as executePopsListGet,
+} from './resources/service/popsListGet.operation';
+import {
+	description as descriptionQuotaGet,
+	execute as executeQuotaGet,
+} from './resources/service/quotaGet.operation';
+import {
+	description as descriptionServiceGetGet,
+	execute as executeServiceGetGet,
+} from './resources/service/serviceGetGet.operation';
+import {
+	description as descriptionServiceInfosGet,
+	execute as executeServiceInfosGet,
+} from './resources/service/serviceInfosGet.operation';
+import {
+	description as descriptionServiceInfosPut,
+	execute as executeServiceInfosPut,
+} from './resources/service/serviceInfosPut.operation';
+import {
+	description as descriptionServicesListGet,
+	execute as executeServicesListGet,
+} from './resources/service/servicesListGet.operation';
+import {
 	description as descriptionSslCreatePost,
+	execute as executeSslCreatePost,
 } from './resources/ssl/sslCreatePost.operation';
 import {
-	execute as executeSslTasksListGet,
-	description as descriptionSslTasksListGet,
-} from './resources/ssl/sslTasksListGet.operation';
+	description as descriptionSslDeleteDelete,
+	execute as executeSslDeleteDelete,
+} from './resources/ssl/sslDeleteDelete.operation';
 import {
-	execute as executeSslTaskGetGet,
+	description as descriptionSslGetGet,
+	execute as executeSslGetGet,
+} from './resources/ssl/sslGetGet.operation';
+import {
 	description as descriptionSslTaskGetGet,
+	execute as executeSslTaskGetGet,
 } from './resources/ssl/sslTaskGetGet.operation';
 import {
-	execute as executeSslUpdatePost,
+	description as descriptionSslTasksListGet,
+	execute as executeSslTasksListGet,
+} from './resources/ssl/sslTasksListGet.operation';
+import {
 	description as descriptionSslUpdatePost,
+	execute as executeSslUpdatePost,
 } from './resources/ssl/sslUpdatePost.operation';
 
-export function description(displayOptions: IDisplayOptions): INodeProperties[] {
-	const operationProperties: INodeProperties[] = [
-		{
-			displayName: 'Operation',
-			name: 'cdnOperation',
-			type: 'options',
-			noDataExpression: true,
-			options: [
-			{
-				name: 'Add Backend',
-				value: 'backendsCreatePost',
-				action: 'Add a backend IP',
-			},
-			{
-				name: 'Add Cache Rule',
-				value: 'cacheRulesCreatePost',
-				action: 'Add a cache rule to a domain',
-			},
-			{
-				name: 'Add Domain',
-				value: 'domainsCreatePost',
-				action: 'Add a domain on CDN',
-			},
-			{
-				name: 'Add SSL',
-				value: 'sslCreatePost',
-				action: 'Add a SSL on CDN or generate a Lets Encrypt certificate',
-			},
-			{
-				name: 'Change Contact',
-				value: 'changeContactPost',
-				action: 'Launch a contact change procedure',
-			},
-			{
-				name: 'Create Log Subscription',
-				value: 'subscriptionsCreatePost',
-				action: 'Create a subscription from logs to a pre-existing LDP stream',
-			},
-			{
-				name: 'Delete Backend',
-				value: 'backendDeleteDelete',
-				action: 'Remove a backend IP',
-			},
-			{
-				name: 'Delete Cache Rule',
-				value: 'cacheRuleDeleteDelete',
-				action: 'Remove a cache rule',
-			},
-			{
-				name: 'Delete Domain',
-				value: 'domainDeleteDelete',
-				action: 'Remove a domain from the CDN',
-			},
-			{
-				name: 'Delete Log Subscription',
-				value: 'subscriptionDeleteDelete',
-				action: 'Delete a subscription',
-			},
-			{
-				name: 'Delete SSL',
-				value: 'sslDeleteDelete',
-				action: 'Remove SSL of the CDN',
-			},
-			{
-				name: 'Flush Cache Rule',
-				value: 'cacheRuleFlushPost',
-				action: 'Flush the cache',
-			},
-			{
-				name: 'Flush Domain',
-				value: 'domainFlushPost',
-				action: 'Flush all cache',
-			},
-			{
-				name: 'Generate Log URL',
-				value: 'logUrlPost',
-				action: 'Generate a temporary URL to retrieve logs',
-			},
-			{
-				name: 'Generate Logs URL',
-				value: 'logsPost',
-				action: 'Generate URL to real time logs',
-			},
-			{
-				name: 'Get Backend',
-				value: 'backendGetGet',
-				action: 'Get backend properties',
-			},
-			{
-				name: 'Get Cache Rule',
-				value: 'cacheRuleGetGet',
-				action: 'Get cache rule properties',
-			},
-			{
-				name: 'Get Cache Rule Task',
-				value: 'cacheRuleTaskGetGet',
-				action: 'Get a cache rule task',
-			},
-			{
-				name: 'Get CDN Pop',
-				value: 'popsGetGet',
-				action: 'Get a CDN pop',
-			},
-			{
-				name: 'Get CDN Service',
-				value: 'serviceGetGet',
-				action: 'Get CDN service details',
-			},
-			{
-				name: 'Get Domain',
-				value: 'domainGetGet',
-				action: 'Get domain properties',
-			},
-			{
-				name: 'Get Domain Logs URL',
-				value: 'domainLogsPost',
-				action: 'Generate URL to real time logs',
-			},
-			{
-				name: 'Get Domain Statistics',
-				value: 'domainStatisticsGet',
-				action: 'Return stats about a domain',
-			},
-			{
-				name: 'Get Domain Task',
-				value: 'domainTaskGetGet',
-				action: 'Get a domain task',
-			},
-			{
-				name: 'Get Log Kind',
-				value: 'logKindGetGet',
-				action: 'Get a log kind',
-			},
-			{
-				name: 'Get Log Subscription',
-				value: 'subscriptionGetGet',
-				action: 'Get subscription details',
-			},
-			{
-				name: 'Get Quota',
-				value: 'quotaGet',
-				action: 'Return quota history',
-			},
-			{
-				name: 'Get Service Info',
-				value: 'serviceInfosGet',
-				action: 'Get service information',
-			},
-			{
-				name: 'Get SSL',
-				value: 'sslGetGet',
-				action: 'Get SSL properties',
-			},
-			{
-				name: 'Get SSL Task',
-				value: 'sslTaskGetGet',
-				action: 'Get an SSL task',
-			},
-			{
-				name: 'List Backends',
-				value: 'backendsListGet',
-				action: 'List backends associated to the domain',
-			},
-			{
-				name: 'List Cache Rule Tasks',
-				value: 'cacheRuleTasksListGet',
-				action: 'List tasks associated to the cache rule',
-			},
-			{
-				name: 'List Cache Rules',
-				value: 'cacheRulesListGet',
-				action: 'List cache rules associated to the domain',
-			},
-			{
-				name: 'List CDN Pops',
-				value: 'popsListGet',
-				action: 'List of CDN Pops',
-			},
-			{
-				name: 'List CDN Services',
-				value: 'servicesListGet',
-				action: 'List available CDN services',
-			},
-			{
-				name: 'List Domain Tasks',
-				value: 'domainTasksListGet',
-				action: 'List tasks associated to the domain',
-			},
-			{
-				name: 'List Domains',
-				value: 'domainsListGet',
-				action: 'List domains associated to this anycast',
-			},
-			{
-				name: 'List Log Kinds',
-				value: 'logKindListGet',
-				action: 'List available log kinds',
-			},
-			{
-				name: 'List Log Subscriptions',
-				value: 'subscriptionsListGet',
-				action: 'List subscription IDs for a cluster',
-			},
-			{
-				name: 'List SSL Tasks',
-				value: 'sslTasksListGet',
-				action: 'List tasks associated to the SSL',
-			},
-			{
-				name: 'Update Cache Rule',
-				value: 'cacheRuleUpdatePut',
-				action: 'Alter cache rule properties',
-			},
-			{
-				name: 'Update Domain',
-				value: 'domainUpdatePut',
-				action: 'Alter domain properties',
-			},
-			{
-				name: 'Update Service Info',
-				value: 'serviceInfosPut',
-				action: 'Update service information',
-			},
-			{
-				name: 'Update SSL',
-				value: 'sslUpdatePost',
-				action: 'Update an existing SSL with a custom certificate',
-			},
-			],
-			default: 'servicesListGet',
-			displayOptions,
-		},
-	];
+const { description, execute } = createOperationDispatcher(
+	'cdnOperation',
+	'ovhCloudCdn',
+	[
+	{
+		name: 'Add Backend',
+		value: 'backendsCreatePost',
+		action: 'Add a backend IP',
+		execute: executeBackendsCreatePost,
+		description: descriptionBackendsCreatePost,
+	},
+	{
+		name: 'Add Cache Rule',
+		value: 'cacheRulesCreatePost',
+		action: 'Add a cache rule to a domain',
+		execute: executeCacheRulesCreatePost,
+		description: descriptionCacheRulesCreatePost,
+	},
+	{
+		name: 'Add Domain',
+		value: 'domainsCreatePost',
+		action: 'Add a domain on CDN',
+		execute: executeDomainsCreatePost,
+		description: descriptionDomainsCreatePost,
+	},
+	{
+		name: 'Add SSL',
+		value: 'sslCreatePost',
+		action: 'Add a SSL on CDN or generate a Lets Encrypt certificate',
+		execute: executeSslCreatePost,
+		description: descriptionSslCreatePost,
+	},
+	{
+		name: 'Change Contact',
+		value: 'changeContactPost',
+		action: 'Launch a contact change procedure',
+		execute: executeChangeContactPost,
+		description: descriptionChangeContactPost,
+	},
+	{
+		name: 'Create Log Subscription',
+		value: 'subscriptionsCreatePost',
+		action: 'Create a subscription from logs to a pre-existing LDP stream',
+		execute: executeSubscriptionsCreatePost,
+		description: descriptionSubscriptionsCreatePost,
+	},
+	{
+		name: 'Delete Backend',
+		value: 'backendDeleteDelete',
+		action: 'Remove a backend IP',
+		execute: executeBackendDeleteDelete,
+		description: descriptionBackendDeleteDelete,
+	},
+	{
+		name: 'Delete Cache Rule',
+		value: 'cacheRuleDeleteDelete',
+		action: 'Remove a cache rule',
+		execute: executeCacheRuleDeleteDelete,
+		description: descriptionCacheRuleDeleteDelete,
+	},
+	{
+		name: 'Delete Domain',
+		value: 'domainDeleteDelete',
+		action: 'Remove a domain from the CDN',
+		execute: executeDomainDeleteDelete,
+		description: descriptionDomainDeleteDelete,
+	},
+	{
+		name: 'Delete Log Subscription',
+		value: 'subscriptionDeleteDelete',
+		action: 'Delete a subscription',
+		execute: executeSubscriptionDeleteDelete,
+		description: descriptionSubscriptionDeleteDelete,
+	},
+	{
+		name: 'Delete SSL',
+		value: 'sslDeleteDelete',
+		action: 'Remove SSL of the CDN',
+		execute: executeSslDeleteDelete,
+		description: descriptionSslDeleteDelete,
+	},
+	{
+		name: 'Flush Cache Rule',
+		value: 'cacheRuleFlushPost',
+		action: 'Flush the cache',
+		execute: executeCacheRuleFlushPost,
+		description: descriptionCacheRuleFlushPost,
+	},
+	{
+		name: 'Flush Domain',
+		value: 'domainFlushPost',
+		action: 'Flush all cache',
+		execute: executeDomainFlushPost,
+		description: descriptionDomainFlushPost,
+	},
+	{
+		name: 'Generate Log URL',
+		value: 'logUrlPost',
+		action: 'Generate a temporary URL to retrieve logs',
+		execute: executeLogUrlPost,
+		description: descriptionLogUrlPost,
+	},
+	{
+		name: 'Generate Logs URL',
+		value: 'logsPost',
+		action: 'Generate URL to real time logs',
+		execute: executeLogsPost,
+		description: descriptionLogsPost,
+	},
+	{
+		name: 'Get Backend',
+		value: 'backendGetGet',
+		action: 'Get backend properties',
+		execute: executeBackendGetGet,
+		description: descriptionBackendGetGet,
+	},
+	{
+		name: 'Get Cache Rule',
+		value: 'cacheRuleGetGet',
+		action: 'Get cache rule properties',
+		execute: executeCacheRuleGetGet,
+		description: descriptionCacheRuleGetGet,
+	},
+	{
+		name: 'Get Cache Rule Task',
+		value: 'cacheRuleTaskGetGet',
+		action: 'Get a cache rule task',
+		execute: executeCacheRuleTaskGetGet,
+		description: descriptionCacheRuleTaskGetGet,
+	},
+	{
+		name: 'Get CDN Pop',
+		value: 'popsGetGet',
+		action: 'Get a CDN pop',
+		execute: executePopsGetGet,
+		description: descriptionPopsGetGet,
+	},
+	{
+		name: 'Get CDN Service',
+		value: 'serviceGetGet',
+		action: 'Get CDN service details',
+		execute: executeServiceGetGet,
+		description: descriptionServiceGetGet,
+	},
+	{
+		name: 'Get Domain',
+		value: 'domainGetGet',
+		action: 'Get domain properties',
+		execute: executeDomainGetGet,
+		description: descriptionDomainGetGet,
+	},
+	{
+		name: 'Get Domain Logs URL',
+		value: 'domainLogsPost',
+		action: 'Generate URL to real time logs',
+		execute: executeDomainLogsPost,
+		description: descriptionDomainLogsPost,
+	},
+	{
+		name: 'Get Domain Statistics',
+		value: 'domainStatisticsGet',
+		action: 'Return stats about a domain',
+		execute: executeDomainStatisticsGet,
+		description: descriptionDomainStatisticsGet,
+	},
+	{
+		name: 'Get Domain Task',
+		value: 'domainTaskGetGet',
+		action: 'Get a domain task',
+		execute: executeDomainTaskGetGet,
+		description: descriptionDomainTaskGetGet,
+	},
+	{
+		name: 'Get Log Kind',
+		value: 'logKindGetGet',
+		action: 'Get a log kind',
+		execute: executeLogKindGetGet,
+		description: descriptionLogKindGetGet,
+	},
+	{
+		name: 'Get Log Subscription',
+		value: 'subscriptionGetGet',
+		action: 'Get subscription details',
+		execute: executeSubscriptionGetGet,
+		description: descriptionSubscriptionGetGet,
+	},
+	{
+		name: 'Get Quota',
+		value: 'quotaGet',
+		action: 'Return quota history',
+		execute: executeQuotaGet,
+		description: descriptionQuotaGet,
+	},
+	{
+		name: 'Get Service Info',
+		value: 'serviceInfosGet',
+		action: 'Get service information',
+		execute: executeServiceInfosGet,
+		description: descriptionServiceInfosGet,
+	},
+	{
+		name: 'Get SSL',
+		value: 'sslGetGet',
+		action: 'Get SSL properties',
+		execute: executeSslGetGet,
+		description: descriptionSslGetGet,
+	},
+	{
+		name: 'Get SSL Task',
+		value: 'sslTaskGetGet',
+		action: 'Get an SSL task',
+		execute: executeSslTaskGetGet,
+		description: descriptionSslTaskGetGet,
+	},
+	{
+		name: 'List Backends',
+		value: 'backendsListGet',
+		action: 'List backends associated to the domain',
+		execute: executeBackendsListGet,
+		description: descriptionBackendsListGet,
+	},
+	{
+		name: 'List Cache Rule Tasks',
+		value: 'cacheRuleTasksListGet',
+		action: 'List tasks associated to the cache rule',
+		execute: executeCacheRuleTasksListGet,
+		description: descriptionCacheRuleTasksListGet,
+	},
+	{
+		name: 'List Cache Rules',
+		value: 'cacheRulesListGet',
+		action: 'List cache rules associated to the domain',
+		execute: executeCacheRulesListGet,
+		description: descriptionCacheRulesListGet,
+	},
+	{
+		name: 'List CDN Pops',
+		value: 'popsListGet',
+		action: 'List of CDN Pops',
+		execute: executePopsListGet,
+		description: descriptionPopsListGet,
+	},
+	{
+		name: 'List CDN Services',
+		value: 'servicesListGet',
+		action: 'List available CDN services',
+		execute: executeServicesListGet,
+		description: descriptionServicesListGet,
+		default: true,
+	},
+	{
+		name: 'List Domain Tasks',
+		value: 'domainTasksListGet',
+		action: 'List tasks associated to the domain',
+		execute: executeDomainTasksListGet,
+		description: descriptionDomainTasksListGet,
+	},
+	{
+		name: 'List Domains',
+		value: 'domainsListGet',
+		action: 'List domains associated to this anycast',
+		execute: executeDomainsListGet,
+		description: descriptionDomainsListGet,
+	},
+	{
+		name: 'List Log Kinds',
+		value: 'logKindListGet',
+		action: 'List available log kinds',
+		execute: executeLogKindListGet,
+		description: descriptionLogKindListGet,
+	},
+	{
+		name: 'List Log Subscriptions',
+		value: 'subscriptionsListGet',
+		action: 'List subscription IDs for a cluster',
+		execute: executeSubscriptionsListGet,
+		description: descriptionSubscriptionsListGet,
+	},
+	{
+		name: 'List SSL Tasks',
+		value: 'sslTasksListGet',
+		action: 'List tasks associated to the SSL',
+		execute: executeSslTasksListGet,
+		description: descriptionSslTasksListGet,
+	},
+	{
+		name: 'Update Cache Rule',
+		value: 'cacheRuleUpdatePut',
+		action: 'Alter cache rule properties',
+		execute: executeCacheRuleUpdatePut,
+		description: descriptionCacheRuleUpdatePut,
+	},
+	{
+		name: 'Update Domain',
+		value: 'domainUpdatePut',
+		action: 'Alter domain properties',
+		execute: executeDomainUpdatePut,
+		description: descriptionDomainUpdatePut,
+	},
+	{
+		name: 'Update Service Info',
+		value: 'serviceInfosPut',
+		action: 'Update service information',
+		execute: executeServiceInfosPut,
+		description: descriptionServiceInfosPut,
+	},
+	{
+		name: 'Update SSL',
+		value: 'sslUpdatePost',
+		action: 'Update an existing SSL with a custom certificate',
+		execute: executeSslUpdatePost,
+		description: descriptionSslUpdatePost,
+	},
+	],
+);
 
-	const properties: INodeProperties[] = [
-		...operationProperties,
-		...(descriptionServicesListGet({
-			...displayOptions,
-			show: { cdnOperation: ['servicesListGet'] },
-		}) as INodeProperties[]),
-		...(descriptionServiceGetGet({
-			...displayOptions,
-			show: { cdnOperation: ['serviceGetGet'] },
-		}) as INodeProperties[]),
-		...(descriptionLogKindListGet({
-			...displayOptions,
-			show: { cdnOperation: ['logKindListGet'] },
-		}) as INodeProperties[]),
-		...(descriptionLogKindGetGet({
-			...displayOptions,
-			show: { cdnOperation: ['logKindGetGet'] },
-		}) as INodeProperties[]),
-		...(descriptionPopsListGet({
-			...displayOptions,
-			show: { cdnOperation: ['popsListGet'] },
-		}) as INodeProperties[]),
-		...(descriptionPopsGetGet({
-			...displayOptions,
-			show: { cdnOperation: ['popsGetGet'] },
-		}) as INodeProperties[]),
-		...(descriptionChangeContactPost({
-			...displayOptions,
-			show: { cdnOperation: ['changeContactPost'] },
-		}) as INodeProperties[]),
-		...(descriptionQuotaGet({
-			...displayOptions,
-			show: { cdnOperation: ['quotaGet'] },
-		}) as INodeProperties[]),
-		...(descriptionServiceInfosGet({
-			...displayOptions,
-			show: { cdnOperation: ['serviceInfosGet'] },
-		}) as INodeProperties[]),
-		...(descriptionServiceInfosPut({
-			...displayOptions,
-			show: { cdnOperation: ['serviceInfosPut'] },
-		}) as INodeProperties[]),
-		...(descriptionLogsPost({
-			...displayOptions,
-			show: { cdnOperation: ['logsPost'] },
-		}) as INodeProperties[]),
-		...(descriptionDomainsListGet({
-			...displayOptions,
-			show: { cdnOperation: ['domainsListGet'] },
-		}) as INodeProperties[]),
-		...(descriptionDomainsCreatePost({
-			...displayOptions,
-			show: { cdnOperation: ['domainsCreatePost'] },
-		}) as INodeProperties[]),
-		...(descriptionDomainDeleteDelete({
-			...displayOptions,
-			show: { cdnOperation: ['domainDeleteDelete'] },
-		}) as INodeProperties[]),
-		...(descriptionDomainGetGet({
-			...displayOptions,
-			show: { cdnOperation: ['domainGetGet'] },
-		}) as INodeProperties[]),
-		...(descriptionDomainUpdatePut({
-			...displayOptions,
-			show: { cdnOperation: ['domainUpdatePut'] },
-		}) as INodeProperties[]),
-		...(descriptionBackendsListGet({
-			...displayOptions,
-			show: { cdnOperation: ['backendsListGet'] },
-		}) as INodeProperties[]),
-		...(descriptionBackendsCreatePost({
-			...displayOptions,
-			show: { cdnOperation: ['backendsCreatePost'] },
-		}) as INodeProperties[]),
-		...(descriptionBackendDeleteDelete({
-			...displayOptions,
-			show: { cdnOperation: ['backendDeleteDelete'] },
-		}) as INodeProperties[]),
-		...(descriptionBackendGetGet({
-			...displayOptions,
-			show: { cdnOperation: ['backendGetGet'] },
-		}) as INodeProperties[]),
-		...(descriptionCacheRulesListGet({
-			...displayOptions,
-			show: { cdnOperation: ['cacheRulesListGet'] },
-		}) as INodeProperties[]),
-		...(descriptionCacheRulesCreatePost({
-			...displayOptions,
-			show: { cdnOperation: ['cacheRulesCreatePost'] },
-		}) as INodeProperties[]),
-		...(descriptionCacheRuleDeleteDelete({
-			...displayOptions,
-			show: { cdnOperation: ['cacheRuleDeleteDelete'] },
-		}) as INodeProperties[]),
-		...(descriptionCacheRuleGetGet({
-			...displayOptions,
-			show: { cdnOperation: ['cacheRuleGetGet'] },
-		}) as INodeProperties[]),
-		...(descriptionCacheRuleUpdatePut({
-			...displayOptions,
-			show: { cdnOperation: ['cacheRuleUpdatePut'] },
-		}) as INodeProperties[]),
-		...(descriptionCacheRuleFlushPost({
-			...displayOptions,
-			show: { cdnOperation: ['cacheRuleFlushPost'] },
-		}) as INodeProperties[]),
-		...(descriptionCacheRuleTasksListGet({
-			...displayOptions,
-			show: { cdnOperation: ['cacheRuleTasksListGet'] },
-		}) as INodeProperties[]),
-		...(descriptionCacheRuleTaskGetGet({
-			...displayOptions,
-			show: { cdnOperation: ['cacheRuleTaskGetGet'] },
-		}) as INodeProperties[]),
-		...(descriptionDomainFlushPost({
-			...displayOptions,
-			show: { cdnOperation: ['domainFlushPost'] },
-		}) as INodeProperties[]),
-		...(descriptionDomainLogsPost({
-			...displayOptions,
-			show: { cdnOperation: ['domainLogsPost'] },
-		}) as INodeProperties[]),
-		...(descriptionDomainStatisticsGet({
-			...displayOptions,
-			show: { cdnOperation: ['domainStatisticsGet'] },
-		}) as INodeProperties[]),
-		...(descriptionDomainTasksListGet({
-			...displayOptions,
-			show: { cdnOperation: ['domainTasksListGet'] },
-		}) as INodeProperties[]),
-		...(descriptionDomainTaskGetGet({
-			...displayOptions,
-			show: { cdnOperation: ['domainTaskGetGet'] },
-		}) as INodeProperties[]),
-		...(descriptionSubscriptionsListGet({
-			...displayOptions,
-			show: { cdnOperation: ['subscriptionsListGet'] },
-		}) as INodeProperties[]),
-		...(descriptionSubscriptionsCreatePost({
-			...displayOptions,
-			show: { cdnOperation: ['subscriptionsCreatePost'] },
-		}) as INodeProperties[]),
-		...(descriptionSubscriptionDeleteDelete({
-			...displayOptions,
-			show: { cdnOperation: ['subscriptionDeleteDelete'] },
-		}) as INodeProperties[]),
-		...(descriptionSubscriptionGetGet({
-			...displayOptions,
-			show: { cdnOperation: ['subscriptionGetGet'] },
-		}) as INodeProperties[]),
-		...(descriptionLogUrlPost({
-			...displayOptions,
-			show: { cdnOperation: ['logUrlPost'] },
-		}) as INodeProperties[]),
-		...(descriptionSslDeleteDelete({
-			...displayOptions,
-			show: { cdnOperation: ['sslDeleteDelete'] },
-		}) as INodeProperties[]),
-		...(descriptionSslGetGet({
-			...displayOptions,
-			show: { cdnOperation: ['sslGetGet'] },
-		}) as INodeProperties[]),
-		...(descriptionSslCreatePost({
-			...displayOptions,
-			show: { cdnOperation: ['sslCreatePost'] },
-		}) as INodeProperties[]),
-		...(descriptionSslTasksListGet({
-			...displayOptions,
-			show: { cdnOperation: ['sslTasksListGet'] },
-		}) as INodeProperties[]),
-		...(descriptionSslTaskGetGet({
-			...displayOptions,
-			show: { cdnOperation: ['sslTaskGetGet'] },
-		}) as INodeProperties[]),
-		...(descriptionSslUpdatePost({
-			...displayOptions,
-			show: { cdnOperation: ['sslUpdatePost'] },
-		}) as INodeProperties[]),
-
-	];
-
-	return properties;
-}
-
-export async function execute(
-	this: IExecuteFunctions,
-	itemIndex?: number,
-): Promise<INodeExecutionData[]> {
-	const operation = this.getNodeParameter('cdnOperation', itemIndex ?? 0, {
-		extractValue: true,
-	});
-
-	switch (operation) {
-		case 'servicesListGet':
-			return executeServicesListGet.call(this, itemIndex ?? 0);
-		case 'serviceGetGet':
-			return executeServiceGetGet.call(this, itemIndex ?? 0);
-		case 'logKindListGet':
-			return executeLogKindListGet.call(this, itemIndex ?? 0);
-		case 'logKindGetGet':
-			return executeLogKindGetGet.call(this, itemIndex ?? 0);
-		case 'popsListGet':
-			return executePopsListGet.call(this, itemIndex ?? 0);
-		case 'popsGetGet':
-			return executePopsGetGet.call(this, itemIndex ?? 0);
-		case 'changeContactPost':
-			return executeChangeContactPost.call(this, itemIndex ?? 0);
-		case 'quotaGet':
-			return executeQuotaGet.call(this, itemIndex ?? 0);
-		case 'serviceInfosGet':
-			return executeServiceInfosGet.call(this, itemIndex ?? 0);
-		case 'serviceInfosPut':
-			return executeServiceInfosPut.call(this, itemIndex ?? 0);
-		case 'logsPost':
-			return executeLogsPost.call(this, itemIndex ?? 0);
-		case 'domainsListGet':
-			return executeDomainsListGet.call(this, itemIndex ?? 0);
-		case 'domainsCreatePost':
-			return executeDomainsCreatePost.call(this, itemIndex ?? 0);
-		case 'domainDeleteDelete':
-			return executeDomainDeleteDelete.call(this, itemIndex ?? 0);
-		case 'domainGetGet':
-			return executeDomainGetGet.call(this, itemIndex ?? 0);
-		case 'domainUpdatePut':
-			return executeDomainUpdatePut.call(this, itemIndex ?? 0);
-		case 'backendsListGet':
-			return executeBackendsListGet.call(this, itemIndex ?? 0);
-		case 'backendsCreatePost':
-			return executeBackendsCreatePost.call(this, itemIndex ?? 0);
-		case 'backendDeleteDelete':
-			return executeBackendDeleteDelete.call(this, itemIndex ?? 0);
-		case 'backendGetGet':
-			return executeBackendGetGet.call(this, itemIndex ?? 0);
-		case 'cacheRulesListGet':
-			return executeCacheRulesListGet.call(this, itemIndex ?? 0);
-		case 'cacheRulesCreatePost':
-			return executeCacheRulesCreatePost.call(this, itemIndex ?? 0);
-		case 'cacheRuleDeleteDelete':
-			return executeCacheRuleDeleteDelete.call(this, itemIndex ?? 0);
-		case 'cacheRuleGetGet':
-			return executeCacheRuleGetGet.call(this, itemIndex ?? 0);
-		case 'cacheRuleUpdatePut':
-			return executeCacheRuleUpdatePut.call(this, itemIndex ?? 0);
-		case 'cacheRuleFlushPost':
-			return executeCacheRuleFlushPost.call(this, itemIndex ?? 0);
-		case 'cacheRuleTasksListGet':
-			return executeCacheRuleTasksListGet.call(this, itemIndex ?? 0);
-		case 'cacheRuleTaskGetGet':
-			return executeCacheRuleTaskGetGet.call(this, itemIndex ?? 0);
-		case 'domainFlushPost':
-			return executeDomainFlushPost.call(this, itemIndex ?? 0);
-		case 'domainLogsPost':
-			return executeDomainLogsPost.call(this, itemIndex ?? 0);
-		case 'domainStatisticsGet':
-			return executeDomainStatisticsGet.call(this, itemIndex ?? 0);
-		case 'domainTasksListGet':
-			return executeDomainTasksListGet.call(this, itemIndex ?? 0);
-		case 'domainTaskGetGet':
-			return executeDomainTaskGetGet.call(this, itemIndex ?? 0);
-		case 'subscriptionsListGet':
-			return executeSubscriptionsListGet.call(this, itemIndex ?? 0);
-		case 'subscriptionsCreatePost':
-			return executeSubscriptionsCreatePost.call(this, itemIndex ?? 0);
-		case 'subscriptionDeleteDelete':
-			return executeSubscriptionDeleteDelete.call(this, itemIndex ?? 0);
-		case 'subscriptionGetGet':
-			return executeSubscriptionGetGet.call(this, itemIndex ?? 0);
-		case 'logUrlPost':
-			return executeLogUrlPost.call(this, itemIndex ?? 0);
-		case 'sslDeleteDelete':
-			return executeSslDeleteDelete.call(this, itemIndex ?? 0);
-		case 'sslGetGet':
-			return executeSslGetGet.call(this, itemIndex ?? 0);
-		case 'sslCreatePost':
-			return executeSslCreatePost.call(this, itemIndex ?? 0);
-		case 'sslTasksListGet':
-			return executeSslTasksListGet.call(this, itemIndex ?? 0);
-		case 'sslTaskGetGet':
-			return executeSslTaskGetGet.call(this, itemIndex ?? 0);
-		case 'sslUpdatePost':
-			return executeSslUpdatePost.call(this, itemIndex ?? 0);
-
-	}
-
-	throw new Error(`Unsupported operation "${operation}" for resource "ovhCloudCdn"`);
-}
+export { description, execute };

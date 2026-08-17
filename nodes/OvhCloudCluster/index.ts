@@ -1,164 +1,100 @@
-import type {
-	IDisplayOptions,
-	IExecuteFunctions,
-	INodeExecutionData,
-	INodeProperties,
-} from 'n8n-workflow';
+import { createOperationDispatcher } from '../../shared/nodes/createNodeDispatcher';
 
 import {
-	execute as executeClusterListGet,
-	description as descriptionClusterListGet,
-} from './clusterListGet.operation';
-import {
-	execute as executeClusterGetGet,
-	description as descriptionClusterGetGet,
-} from './clusterGetGet.operation';
-import {
-	execute as executeClusterUpdatePut,
-	description as descriptionClusterUpdatePut,
-} from './clusterUpdatePut.operation';
-import {
-	execute as executeClusterDeleteDelete,
 	description as descriptionClusterDeleteDelete,
+	execute as executeClusterDeleteDelete,
 } from './clusterDeleteDelete.operation';
 import {
-	execute as executeServiceInfosGetGet,
-	description as descriptionServiceInfosGetGet,
-} from './serviceInfosGetGet.operation';
+	description as descriptionClusterGetGet,
+	execute as executeClusterGetGet,
+} from './clusterGetGet.operation';
 import {
-	execute as executeReinstallPost,
+	description as descriptionClusterListGet,
+	execute as executeClusterListGet,
+} from './clusterListGet.operation';
+import {
+	description as descriptionClusterUpdatePut,
+	execute as executeClusterUpdatePut,
+} from './clusterUpdatePut.operation';
+import {
 	description as descriptionReinstallPost,
+	execute as executeReinstallPost,
 } from './reinstallPost.operation';
 import {
-	execute as executeTaskListGet,
-	description as descriptionTaskListGet,
-} from './taskListGet.operation';
+	description as descriptionServiceInfosGetGet,
+	execute as executeServiceInfosGetGet,
+} from './serviceInfosGetGet.operation';
 import {
-	execute as executeTaskGetGet,
 	description as descriptionTaskGetGet,
+	execute as executeTaskGetGet,
 } from './taskGetGet.operation';
+import {
+	description as descriptionTaskListGet,
+	execute as executeTaskListGet,
+} from './taskListGet.operation';
 
-export function description(displayOptions: IDisplayOptions): INodeProperties[] {
-	const operationProperties: INodeProperties[] = [
-		{
-			displayName: 'Operation',
-			name: 'clusterOperation',
-			type: 'options',
-			noDataExpression: true,
-			options: [
-			{
-				name: 'Delete Cluster',
-				value: 'clusterDeleteDelete',
-				action: 'Delete a cluster service',
-			},
-			{
-				name: 'Get Cluster',
-				value: 'clusterGetGet',
-				action: 'Get cluster details',
-			},
-			{
-				name: 'Get Service Infos',
-				value: 'serviceInfosGetGet',
-				action: 'Get service information for a cluster',
-			},
-			{
-				name: 'Get Task',
-				value: 'taskGetGet',
-				action: 'Get task details',
-			},
-			{
-				name: 'List Clusters',
-				value: 'clusterListGet',
-				action: 'List all cluster services',
-			},
-			{
-				name: 'List Tasks',
-				value: 'taskListGet',
-				action: 'List tasks for a cluster',
-			},
-			{
-				name: 'Reinstall Cluster',
-				value: 'reinstallPost',
-				action: 'Reinstall a cluster service',
-			},
-			{
-				name: 'Update Cluster',
-				value: 'clusterUpdatePut',
-				action: 'Update cluster details',
-			},
-			],
-			default: 'clusterListGet',
-			displayOptions,
-		},
-	];
+const { description, execute } = createOperationDispatcher(
+	'clusterOperation',
+	'ovhCloudCluster',
+	[
+	{
+		name: 'Delete Cluster',
+		value: 'clusterDeleteDelete',
+		action: 'Delete a cluster service',
+		execute: executeClusterDeleteDelete,
+		description: descriptionClusterDeleteDelete,
+	},
+	{
+		name: 'Get Cluster',
+		value: 'clusterGetGet',
+		action: 'Get cluster details',
+		execute: executeClusterGetGet,
+		description: descriptionClusterGetGet,
+	},
+	{
+		name: 'Get Service Infos',
+		value: 'serviceInfosGetGet',
+		action: 'Get service information for a cluster',
+		execute: executeServiceInfosGetGet,
+		description: descriptionServiceInfosGetGet,
+	},
+	{
+		name: 'Get Task',
+		value: 'taskGetGet',
+		action: 'Get task details',
+		execute: executeTaskGetGet,
+		description: descriptionTaskGetGet,
+	},
+	{
+		name: 'List Clusters',
+		value: 'clusterListGet',
+		action: 'List all cluster services',
+		execute: executeClusterListGet,
+		description: descriptionClusterListGet,
+		default: true,
+	},
+	{
+		name: 'List Tasks',
+		value: 'taskListGet',
+		action: 'List tasks for a cluster',
+		execute: executeTaskListGet,
+		description: descriptionTaskListGet,
+	},
+	{
+		name: 'Reinstall Cluster',
+		value: 'reinstallPost',
+		action: 'Reinstall a cluster service',
+		execute: executeReinstallPost,
+		description: descriptionReinstallPost,
+	},
+	{
+		name: 'Update Cluster',
+		value: 'clusterUpdatePut',
+		action: 'Update cluster details',
+		execute: executeClusterUpdatePut,
+		description: descriptionClusterUpdatePut,
+	},
+	],
+);
 
-	const properties: INodeProperties[] = [
-		...operationProperties,
-		...(descriptionClusterListGet({
-			...displayOptions,
-			show: { clusterOperation: ['clusterListGet'] },
-		}) as INodeProperties[]),
-		...(descriptionClusterGetGet({
-			...displayOptions,
-			show: { clusterOperation: ['clusterGetGet'] },
-		}) as INodeProperties[]),
-		...(descriptionClusterUpdatePut({
-			...displayOptions,
-			show: { clusterOperation: ['clusterUpdatePut'] },
-		}) as INodeProperties[]),
-		...(descriptionClusterDeleteDelete({
-			...displayOptions,
-			show: { clusterOperation: ['clusterDeleteDelete'] },
-		}) as INodeProperties[]),
-		...(descriptionServiceInfosGetGet({
-			...displayOptions,
-			show: { clusterOperation: ['serviceInfosGetGet'] },
-		}) as INodeProperties[]),
-		...(descriptionReinstallPost({
-			...displayOptions,
-			show: { clusterOperation: ['reinstallPost'] },
-		}) as INodeProperties[]),
-		...(descriptionTaskListGet({
-			...displayOptions,
-			show: { clusterOperation: ['taskListGet'] },
-		}) as INodeProperties[]),
-		...(descriptionTaskGetGet({
-			...displayOptions,
-			show: { clusterOperation: ['taskGetGet'] },
-		}) as INodeProperties[]),
-
-	];
-
-	return properties;
-}
-
-export async function execute(
-	this: IExecuteFunctions,
-	itemIndex?: number,
-): Promise<INodeExecutionData[]> {
-	const operation = this.getNodeParameter('clusterOperation', itemIndex ?? 0, {
-		extractValue: true,
-	});
-
-	switch (operation) {
-		case 'clusterListGet':
-			return executeClusterListGet.call(this, itemIndex ?? 0);
-		case 'clusterGetGet':
-			return executeClusterGetGet.call(this, itemIndex ?? 0);
-		case 'clusterUpdatePut':
-			return executeClusterUpdatePut.call(this, itemIndex ?? 0);
-		case 'clusterDeleteDelete':
-			return executeClusterDeleteDelete.call(this, itemIndex ?? 0);
-		case 'serviceInfosGetGet':
-			return executeServiceInfosGetGet.call(this, itemIndex ?? 0);
-		case 'reinstallPost':
-			return executeReinstallPost.call(this, itemIndex ?? 0);
-		case 'taskListGet':
-			return executeTaskListGet.call(this, itemIndex ?? 0);
-		case 'taskGetGet':
-			return executeTaskGetGet.call(this, itemIndex ?? 0);
-
-	}
-
-	throw new Error(`Unsupported operation "${operation}" for resource "ovhCloudCluster"`);
-}
+export { description, execute };
