@@ -10,14 +10,14 @@ import { serviceNameLocator } from '../../../../shared/nodes/locators';
 export function description(displayOptions: IDisplayOptions) {
 	return [
 				{
-			...serviceNameLocator({
-			searchListMethod: 'nashaListGet',
-			displayName: 'Nasha Service Name',
-			description: 'The Nasha (NAS) service name (e.g. ns12345678.ovh.net)',
-			placeholder: 'ns12345678.ovh.net',
-			}),
-			displayOptions,
-		},
+					...serviceNameLocator({
+						searchListMethod: 'nashaListGet',
+						displayName: 'Nasha Service Name',
+						description: 'The Nasha (NAS) service name (e.g. ns12345678.ovh.net)',
+						placeholder: 'ns12345678.ovh.net',
+					}),
+					displayOptions,
+				},
 		{
 			displayName: 'Snapshot ID',
 			name: 'snapshotId',

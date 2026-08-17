@@ -6,14 +6,14 @@ import { serviceNameLocator } from '../../../shared/nodes/locators';
 export function description(displayOptions: IDisplayOptions): INodeProperties[] {
 	return [
 				{
-			...serviceNameLocator({
-			searchListMethod: 'getDedicatedServerServices',
-			displayName: 'Dedicated Server Service Name',
-			description: 'The dedicated server service name (e.g. ns123456.ip-123-45-678.eu)',
-			placeholder: 'ns123456.ip-123-45-678.eu',
-			}),
-			displayOptions,
-		},
+					...serviceNameLocator({
+						searchListMethod: 'getDedicatedServerServices',
+						displayName: 'Dedicated Server Service Name',
+						description: 'The dedicated server service name (e.g. ns123456.ip-123-45-678.eu)',
+						placeholder: 'ns123456.ip-123-45-678.eu',
+					}),
+					displayOptions,
+				},
 		{ displayName: 'Rules', name: 'rules', type: 'multiOptions', options: [
 			{ name: 'Allow All', value: 'allowAll' }, { name: 'Deny All', value: 'denyAll' }, { name: 'Default Rules', value: 'defaultRules' }, { name: 'Custom Rules', value: 'customRules' },
 		], default: ['allowAll'], description: "Firewall rules to apply (select one or more)", displayOptions, },

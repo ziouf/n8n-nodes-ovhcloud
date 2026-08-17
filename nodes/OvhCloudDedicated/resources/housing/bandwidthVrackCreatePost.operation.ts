@@ -10,14 +10,14 @@ import { serviceNameLocator } from '../../../../shared/nodes/locators';
 export function description(displayOptions: IDisplayOptions) {
 	return [
 				{
-			...serviceNameLocator({
-			searchListMethod: 'housingListGet',
-			displayName: 'Housing Service Name',
-			description: '',
-			placeholder: 'h12345678.ovh.net',
-			}),
-			displayOptions,
-		},
+					...serviceNameLocator({
+						searchListMethod: 'housingListGet',
+						displayName: 'Housing Service Name',
+						description: '',
+						placeholder: 'h12345678.ovh.net',
+					}),
+					displayOptions,
+				},
 		{
 			displayName: 'vRack',
 			name: 'vrack',

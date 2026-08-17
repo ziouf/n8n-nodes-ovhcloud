@@ -10,14 +10,14 @@ import { serviceNameLocator } from '../../../../shared/nodes/locators';
 export function description(displayOptions: IDisplayOptions) {
 	return [
 				{
-			...serviceNameLocator({
-			searchListMethod: 'clusterListGet',
-			displayName: 'Cluster Service Name',
-			description: '',
-			placeholder: 'my-cluster',
-			}),
-			displayOptions,
-		},
+					...serviceNameLocator({
+						searchListMethod: 'clusterListGet',
+						displayName: 'Cluster Service Name',
+						description: '',
+						placeholder: 'my-cluster',
+					}),
+					displayOptions,
+				},
 		{
 			displayName: 'Cluster Properties',
 			name: 'cluster',

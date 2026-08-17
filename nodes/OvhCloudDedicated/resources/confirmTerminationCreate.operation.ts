@@ -8,14 +8,14 @@ export function description(displayOptions: IDisplayOptions): INodeProperties[] 
 	return [
 		destructiveActionNotice('This will permanently confirm the termination of the confirm termination create.', displayOptions),
 				{
-			...serviceNameLocator({
-			searchListMethod: 'getDedicatedServerServices',
-			displayName: 'Dedicated Server Service Name',
-			description: 'The dedicated server service name (e.g. ns123456.ip-123-45-678.eu)',
-			placeholder: 'ns123456.ip-123-45-678.eu',
-			}),
-			displayOptions,
-		},
+					...serviceNameLocator({
+						searchListMethod: 'getDedicatedServerServices',
+						displayName: 'Dedicated Server Service Name',
+						description: 'The dedicated server service name (e.g. ns123456.ip-123-45-678.eu)',
+						placeholder: 'ns123456.ip-123-45-678.eu',
+					}),
+					displayOptions,
+				},
 	];
 }
 
