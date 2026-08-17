@@ -70,6 +70,33 @@ describe('createOperationDispatcher', () => {
 		expect(props[2].displayOptions).toEqual({ show: { opParam: ['b'] } });
 	});
 
+	it('merges extraShow into each gated entry show block', () => {
+		const { description } = createOperationDispatcher(
+			'opParam',
+			'res',
+			[makeEntry('a', 'e')],
+			{ extraShow: { apiVersion: ['v2'] } },
+		);
+		const props = description({});
+		expect(props[1].displayOptions).toEqual({
+			show: { apiVersion: ['v2'], opParam: ['a'] },
+		});
+	});
+
+	it('applies operationDisplayOptions to the Operation selector only', () => {
+		const { description } = createOperationDispatcher(
+			'opParam',
+			'res',
+			[makeEntry('a', 'e')],
+			{ operationDisplayOptions: { show: { apiVersion: ['v1'] } } },
+		);
+		const props = description({});
+		expect(props[0].name).toBe('opParam');
+		expect(props[0].displayOptions).toEqual({ show: { apiVersion: ['v1'] } });
+		// the entry keeps its own gating (no apiVersion leak)
+		expect(props[1].displayOptions).toEqual({ show: { opParam: ['a'] } });
+	});
+
 	it('respects noDefault (no preselected operation)', () => {
 		const { description } = createOperationDispatcher(
 			'opParam',

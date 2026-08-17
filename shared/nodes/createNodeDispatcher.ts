@@ -42,6 +42,17 @@ export interface OperationDispatcherOptions {
 	 * ship without a preselected operation.
 	 */
 	noDefault?: boolean;
+	/**
+	 * Display options applied to the Operation selector itself (e.g. to show
+	 * it only for a parent `apiVersion` value). Independent from the per-entry
+	 * `show` gating.
+	 */
+	operationDisplayOptions?: IDisplayOptions;
+	/**
+	 * Extra `show` keys merged into every gated entry's `show` block — used by
+	 * multi-level nodes (e.g. `show: { apiVersion: ['v2'], opParam: ['x'] }`).
+	 */
+	extraShow?: IDisplayOptions['show'];
 }
 
 export function createOperationDispatcher(
@@ -63,6 +74,7 @@ export function createOperationDispatcher(
 					: (options.defaultOperation ??
 						(entries.find((e) => e.default) ?? entries[0]).value),
 				...(Object.keys(displayOptions).length > 0 ? { displayOptions } : {}),
+				...(options.operationDisplayOptions ? { displayOptions: options.operationDisplayOptions } : {}),
 			},
 		];
 
@@ -74,7 +86,10 @@ export function createOperationDispatcher(
 						? entry.description({} as IDisplayOptions)
 						: entry.description({
 								...displayOptions,
-								show: { [operationParam]: [entry.value] },
+								show: {
+									...(options.extraShow ?? {}),
+									[operationParam]: [entry.value],
+								},
 							});
 				return (props ?? []) as unknown as INodeProperties[];
 			}),

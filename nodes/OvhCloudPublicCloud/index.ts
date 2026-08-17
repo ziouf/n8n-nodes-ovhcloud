@@ -1,16324 +1,11747 @@
-import type {
-	IDisplayOptions,
-	IExecuteFunctions,
-	INodeExecutionData,
-	INodeProperties,
-} from 'n8n-workflow';
+import { createOperationDispatcher } from '../../shared/nodes/createNodeDispatcher';
+import type { IDisplayOptions, IExecuteFunctions, INodeExecutionData, INodeProperties } from 'n8n-workflow';
 
-	import {
-	description as projectListGetDescription,
-	execute as projectListGetExecute,
-} from './project/listGet.operation';
-	import {
-	description as projectDetailGetDescription,
-	execute as projectDetailGetExecute,
-} from './project/getDetailGet.operation';
-
-	import {
-	description as listGetV2Description,
-	execute as listGetV2Execute,
-} from './project/listGetV2.operation';
-	import {
-	description as getDetailGetV2Description,
-	execute as getDetailGetV2Execute,
-} from './project/getDetailGetV2.operation';
-
-	import {
-	description as cloudAgreementsGetDescription,
-	execute as cloudAgreementsGetExecute,
-} from './cloud/agreementsGet.operation';
-	import {
-	description as cloudEligibilityGetDescription,
-	execute as cloudEligibilityGetExecute,
-} from './cloud/eligibilityGet.operation';
-	import {
-	description as cloudOrderListGetDescription,
-	execute as cloudOrderListGetExecute,
-} from './cloud/orderListGet.operation';
-	import {
-	description as cloudOrderRuleAvailabilityGetDescription,
-	execute as cloudOrderRuleAvailabilityGetExecute,
-} from './cloud/orderRuleAvailabilityGet.operation';
-
-	import {
-	description as rancherServiceListGetDescription,
-	execute as rancherServiceListGetExecute,
-} from './rancher/serviceListGet.operation';
-	import {
-	description as rancherServiceGetDescription,
-	execute as rancherServiceGetExecute,
-} from './rancher/serviceGet.operation';
-	import {
-	description as rancherPlanCapabilityListGetDescription,
-	execute as rancherPlanCapabilityListGetExecute,
-} from './rancher/planCapabilityListGet.operation';
-	import {
-	description as rancherVersionCapabilityListGetDescription,
-	execute as rancherVersionCapabilityListGetExecute,
-} from './rancher/versionCapabilityListGet.operation';
-	import {
-	description as rancherServiceCreatePostDescription,
-	execute as rancherServiceCreatePostExecute,
-} from './rancher/serviceCreatePost.operation';
-	import {
-	description as rancherServiceUpdatePutDescription,
-	execute as rancherServiceUpdatePutExecute,
-} from './rancher/serviceUpdatePut.operation';
-	import {
-	description as rancherServiceDeleteDeleteDescription,
-	execute as rancherServiceDeleteDeleteExecute,
-} from './rancher/serviceDeleteDelete.operation';
 import {
-	descriptionGet as rancherAdminCredentialsGetDescription,
-	descriptionPost as rancherAdminCredentialsPostDescription,
-	executeGet as rancherAdminCredentialsGetExecute,
-	executePost as rancherAdminCredentialsPostExecute,
-} from './rancher/adminCredentials.operation';
-	import {
-	description as rancherTaskListGetDescription,
-	execute as rancherTaskListGetExecute,
-} from './rancher/taskListGet.operation';
-	import {
-	description as rancherTaskDetailGetDescription,
-	execute as rancherTaskDetailGetExecute,
-} from './rancher/taskDetailGet.operation';
-	import {
-	description as rancherEventListGetDescription,
-	execute as rancherEventListGetExecute,
-} from './rancher/eventListGet.operation';
+	execute as aclCreatePostExecute,
+	description as aclCreatePostDescription,
+} from './acl/createPost.operation';
 
-	import {
-	description as serviceListGetV2Description,
-	execute as serviceListGetV2Execute,
-} from './rancher/serviceListGetV2.operation';
-	import {
-	description as serviceCreatePostV2Description,
-	execute as serviceCreatePostV2Execute,
-} from './rancher/serviceCreatePostV2.operation';
-	import {
-	description as serviceDeleteDeleteV2Description,
-	execute as serviceDeleteDeleteV2Execute,
-} from './rancher/serviceDeleteDeleteV2.operation';
-	import {
-	description as serviceGetGetV2Description,
-	execute as serviceGetGetV2Execute,
-} from './rancher/serviceGetGetV2.operation';
-	import {
-	description as serviceUpdatePutV2Description,
-	execute as serviceUpdatePutV2Execute,
-} from './rancher/serviceUpdatePutV2.operation';
-	import {
-	description as adminCredentialsResetV2Description,
-	execute as adminCredentialsResetV2Execute,
-} from './rancher/adminCredentialsResetV2.operation';
-	import {
-	description as planCapabilityListGetV2Description,
-	execute as planCapabilityListGetV2Execute,
-} from './rancher/planCapabilityListGetV2.operation';
-	import {
-	description as versionCapabilityListGetV2Description,
-	execute as versionCapabilityListGetV2Execute,
-} from './rancher/versionCapabilityListGetV2.operation';
-	import {
-	description as eventListGetV2Description,
-	execute as eventListGetV2Execute,
-} from './rancher/eventListGetV2.operation';
-	import {
-	description as taskListGetV2Description,
-	execute as taskListGetV2Execute,
-} from './rancher/taskListGetV2.operation';
-	import {
-	description as taskDetailGetV2Description,
-	execute as taskDetailGetV2Execute,
-} from './rancher/taskDetailGetV2.operation';
-	import {
-	description as referencePlanListGetV2Description,
-	execute as referencePlanListGetV2Execute,
-} from './rancher/referencePlanListGetV2.operation';
-	import {
-	description as referenceVersionListGetV2Description,
-	execute as referenceVersionListGetV2Execute,
-} from './rancher/referenceVersionListGetV2.operation';
-	import {
-	description as globalReferencePlanListGetV2Description,
-	execute as globalReferencePlanListGetV2Execute,
-} from './rancher/globalReferencePlanListGetV2.operation';
-	import {
-	description as globalReferenceVersionListGetV2Description,
-	execute as globalReferenceVersionListGetV2Execute,
-} from './rancher/globalReferenceVersionListGetV2.operation';
+import {
+	execute as aclDeleteDeleteExecute,
+	description as aclDeleteDeleteDescription,
+} from './acl/deleteDelete.operation';
 
-	import {
-	description as volumeListGetDescription,
-	execute as volumeListGetExecute,
-} from './blockstorage/volumeListGet.operation';
-	import {
-	description as volumeGetDescription,
-	execute as volumeGetExecute,
-} from './blockstorage/volumeGet.operation';
-	import {
-	description as volumeCreatePostDescription,
-	execute as volumeCreatePostExecute,
-} from './blockstorage/volumeCreatePost.operation';
-	import {
-	description as volumeUpdatePutDescription,
-	execute as volumeUpdatePutExecute,
-} from './blockstorage/volumeUpdatePut.operation';
-	import {
-	description as volumeDeleteDeleteDescription,
-	execute as volumeDeleteDeleteExecute,
-} from './blockstorage/volumeDeleteDelete.operation';
+import {
+	execute as aclGetDetailGetExecute,
+	description as aclGetDetailGetDescription,
+} from './acl/getDetailGet.operation';
 
-	import {
-	description as backupListGetDescription,
-	execute as backupListGetExecute,
-} from './blockstorage/backupListGet.operation';
-	import {
-	description as backupGetDescription,
-	execute as backupGetExecute,
-} from './blockstorage/backupGet.operation';
-	import {
-	description as backupCreatePostDescription,
+import {
+	execute as aclListGetExecute,
+	description as aclListGetDescription,
+} from './acl/listGet.operation';
+
+import {
+	execute as activateMonthlyBillingPostExecute,
+	description as activateMonthlyBillingPostDescription,
+} from './activateMonthlyBilling/activateMonthlyBillingPost.operation';
+
+import {
+	execute as alertingCreatePostExecute,
+	description as alertingCreatePostDescription,
+} from './alerting/createPost.operation';
+
+import {
+	execute as alertingDeleteDeleteExecute,
+	description as alertingDeleteDeleteDescription,
+} from './alerting/deleteDelete.operation';
+
+import {
+	execute as alertingGetDetailGetExecute,
+	description as alertingGetDetailGetDescription,
+} from './alerting/getDetailGet.operation';
+
+import {
+	execute as alertingListGetExecute,
+	description as alertingListGetDescription,
+} from './alerting/listGet.operation';
+
+import {
+	execute as alertingUpdatePutExecute,
+	description as alertingUpdatePutDescription,
+} from './alerting/updatePut.operation';
+
+import {
+	execute as billListGetExecute,
+	description as billListGetDescription,
+} from './bill/listGet.operation';
+
+import {
 	execute as backupCreatePostExecute,
+	description as backupCreatePostDescription,
 } from './blockstorage/backupCreatePost.operation';
-	import {
-	description as backupUpdatePutDescription,
-	execute as backupUpdatePutExecute,
-} from './blockstorage/backupUpdatePut.operation';
-	import {
-	description as backupDeleteDeleteDescription,
+
+import {
 	execute as backupDeleteDeleteExecute,
+	description as backupDeleteDeleteDescription,
 } from './blockstorage/backupDeleteDelete.operation';
 
-	import {
-	description as snapshotListGetDescription,
-	execute as snapshotListGetExecute,
-} from './blockstorage/snapshotListGet.operation';
-	import {
-	description as snapshotGetDescription,
-	execute as snapshotGetExecute,
-} from './blockstorage/snapshotGet.operation';
-	import {
-	description as snapshotCreatePostDescription,
+import {
+	execute as backupGetExecute,
+	description as backupGetDescription,
+} from './blockstorage/backupGet.operation';
+
+import {
+	execute as backupListGetExecute,
+	description as backupListGetDescription,
+} from './blockstorage/backupListGet.operation';
+
+import {
+	execute as backupUpdatePutExecute,
+	description as backupUpdatePutDescription,
+} from './blockstorage/backupUpdatePut.operation';
+
+import {
 	execute as snapshotCreatePostExecute,
+	description as snapshotCreatePostDescription,
 } from './blockstorage/snapshotCreatePost.operation';
-	import {
-	description as snapshotUpdatePutDescription,
-	execute as snapshotUpdatePutExecute,
-} from './blockstorage/snapshotUpdatePut.operation';
-	import {
-	description as snapshotDeleteDeleteDescription,
+
+import {
 	execute as snapshotDeleteDeleteExecute,
+	description as snapshotDeleteDeleteDescription,
 } from './blockstorage/snapshotDeleteDelete.operation';
 
-	import {
-	description as redisClusterListGetDescription,
-	execute as redisClusterListGetExecute,
-} from './database/redis/clusterListGet.operation';
-
-	import {
-	description as redisClusterGetGetDescription,
-	execute as redisClusterGetGetExecute,
-} from './database/redis/clusterGetGet.operation';
-
-	import {
-	description as redisClusterCreatePostDescription,
-	execute as redisClusterCreatePostExecute,
-} from './database/redis/clusterCreatePost.operation';
-
-	import {
-	description as redisClusterUpdatePutDescription,
-	execute as redisClusterUpdatePutExecute,
-} from './database/redis/clusterUpdatePut.operation';
-
-	import {
-	description as redisClusterDeleteDeleteDescription,
-	execute as redisClusterDeleteDeleteExecute,
-} from './database/redis/clusterDeleteDelete.operation';
-
-	import {
-	description as redisBackupListGetDescription,
-	execute as redisBackupListGetExecute,
-} from './database/redis/backupListGet.operation';
-
-	import {
-	description as redisBackupGetGetDescription,
-	execute as redisBackupGetGetExecute,
-} from './database/redis/backupGetGet.operation';
-
-	import {
-	description as redisAdvancedConfigurationGetDescription,
-	execute as redisAdvancedConfigurationGetExecute,
-} from './database/redis/advancedConfigurationGet.operation';
-
-	import {
-	description as redisAdvancedConfigurationUpdatePutDescription,
-	execute as redisAdvancedConfigurationUpdatePutExecute,
-} from './database/redis/advancedConfigurationUpdatePut.operation';
-
-	import {
-	description as redisCapabilitiesAdvancedConfigurationGetDescription,
-	execute as redisCapabilitiesAdvancedConfigurationGetExecute,
-} from './database/redis/capabilitiesAdvancedConfigurationGet.operation';
-
-	import {
-	description as redisCapabilitiesCategoriesGetDescription,
-	execute as redisCapabilitiesCategoriesGetExecute,
-} from './database/redis/capabilitiesCategoriesGet.operation';
-
-	import {
-	description as redisCapabilitiesCommandsGetDescription,
-	execute as redisCapabilitiesCommandsGetExecute,
-} from './database/redis/capabilitiesCommandsGet.operation';
-
-	import {
-	description as redisCapabilitiesIntegrationGetDescription,
-	execute as redisCapabilitiesIntegrationGetExecute,
-} from './database/redis/capabilitiesIntegrationGet.operation';
-
-	import {
-	description as redisIntegrationListGetDescription,
-	execute as redisIntegrationListGetExecute,
-} from './database/redis/integrationListGet.operation';
-
-	import {
-	description as redisIntegrationCreatePostDescription,
-	execute as redisIntegrationCreatePostExecute,
-} from './database/redis/integrationCreatePost.operation';
-
-	import {
-	description as redisIntegrationGetGetDescription,
-	execute as redisIntegrationGetGetExecute,
-} from './database/redis/integrationGetGet.operation';
-
-	import {
-	description as redisIntegrationDeleteDeleteDescription,
-	execute as redisIntegrationDeleteDeleteExecute,
-} from './database/redis/integrationDeleteDelete.operation';
-
-	import {
-	description as redisIpRestrictionListGetDescription,
-	execute as redisIpRestrictionListGetExecute,
-} from './database/redis/ipRestrictionListGet.operation';
-
-	import {
-	description as redisIpRestrictionCreatePostDescription,
-	execute as redisIpRestrictionCreatePostExecute,
-} from './database/redis/ipRestrictionCreatePost.operation';
-
-	import {
-	description as redisIpRestrictionGetGetDescription,
-	execute as redisIpRestrictionGetGetExecute,
-} from './database/redis/ipRestrictionGetGet.operation';
-
-	import {
-	description as redisIpRestrictionUpdatePutDescription,
-	execute as redisIpRestrictionUpdatePutExecute,
-} from './database/redis/ipRestrictionUpdatePut.operation';
-
-	import {
-	description as redisIpRestrictionDeleteDeleteDescription,
-	execute as redisIpRestrictionDeleteDeleteExecute,
-} from './database/redis/ipRestrictionDeleteDelete.operation';
-
-	import {
-	description as redisLogKindListGetDescription,
-	execute as redisLogKindListGetExecute,
-} from './database/redis/logKindListGet.operation';
-
-	import {
-	description as redisLogKindGetDescription,
-	execute as redisLogKindGetExecute,
-} from './database/redis/logKindGet.operation';
-
-	import {
-	description as redisLogSubscriptionListGetDescription,
-	execute as redisLogSubscriptionListGetExecute,
-} from './database/redis/logSubscriptionListGet.operation';
-
-	import {
-	description as redisLogSubscriptionCreatePostDescription,
-	execute as redisLogSubscriptionCreatePostExecute,
-} from './database/redis/logSubscriptionCreatePost.operation';
-
-	import {
-	description as redisLogSubscriptionGetGetDescription,
-	execute as redisLogSubscriptionGetGetExecute,
-} from './database/redis/logSubscriptionGetGet.operation';
-
-	import {
-	description as redisLogSubscriptionDeleteDeleteDescription,
-	execute as redisLogSubscriptionDeleteDeleteExecute,
-} from './database/redis/logSubscriptionDeleteDelete.operation';
-
-	import {
-	description as redisLogUrlCreatePostDescription,
-	execute as redisLogUrlCreatePostExecute,
-} from './database/redis/logUrlCreatePost.operation';
-
-	import {
-	description as redisLogsGetDescription,
-	execute as redisLogsGetExecute,
-} from './database/redis/logsGet.operation';
-
-	import {
-	description as redisMaintenanceListGetDescription,
-	execute as redisMaintenanceListGetExecute,
-} from './database/redis/maintenanceListGet.operation';
-
-	import {
-	description as redisMaintenanceGetDescription,
-	execute as redisMaintenanceGetExecute,
-} from './database/redis/maintenanceGet.operation';
-
-	import {
-	description as redisMaintenanceApplyPostDescription,
-	execute as redisMaintenanceApplyPostExecute,
-} from './database/redis/maintenanceApplyPost.operation';
-
-	import {
-	description as redisMetricListGetDescription,
-	execute as redisMetricListGetExecute,
-} from './database/redis/metricListGet.operation';
-
-	import {
-	description as redisMetricGetDescription,
-	execute as redisMetricGetExecute,
-} from './database/redis/metricGet.operation';
-
-	import {
-	description as redisNodeListGetDescription,
-	execute as redisNodeListGetExecute,
-} from './database/redis/nodeListGet.operation';
-
-	import {
-	description as redisNodeGetGetDescription,
-	execute as redisNodeGetGetExecute,
-} from './database/redis/nodeGetGet.operation';
-
-	import {
-	description as redisPrometheusGetDescription,
-	execute as redisPrometheusGetExecute,
-} from './database/redis/prometheusGet.operation';
-
-	import {
-	description as redisPrometheusCredentialsResetPostDescription,
-	execute as redisPrometheusCredentialsResetPostExecute,
-} from './database/redis/prometheusCredentialsResetPost.operation';
-
-	import {
-	description as redisUserListGetDescription,
-	execute as redisUserListGetExecute,
-} from './database/redis/userListGet.operation';
-
-	import {
-	description as redisUserCreatePostDescription,
-	execute as redisUserCreatePostExecute,
-} from './database/redis/userCreatePost.operation';
-
-	import {
-	description as redisUserGetGetDescription,
-	execute as redisUserGetGetExecute,
-} from './database/redis/userGetGet.operation';
-
-	import {
-	description as redisUserUpdatePutDescription,
-	execute as redisUserUpdatePutExecute,
-} from './database/redis/userUpdatePut.operation';
-
-	import {
-	description as redisUserDeleteDeleteDescription,
-	execute as redisUserDeleteDeleteExecute,
-} from './database/redis/userDeleteDelete.operation';
-
-	import {
-	description as redisUserCredentialsResetPostDescription,
-	execute as redisUserCredentialsResetPostExecute,
-} from './database/redis/userCredentialsResetPost.operation';
-
-	import {
-	description as valkeyClusterListGetDescription,
-	execute as valkeyClusterListGetExecute,
-} from './database/valkey/clusterListGet.operation';
-
-	import {
-	description as valkeyClusterGetGetDescription,
-	execute as valkeyClusterGetGetExecute,
-} from './database/valkey/clusterGetGet.operation';
-
-	import {
-	description as valkeyClusterCreatePostDescription,
-	execute as valkeyClusterCreatePostExecute,
-} from './database/valkey/clusterCreatePost.operation';
-
-	import {
-	description as valkeyClusterUpdatePutDescription,
-	execute as valkeyClusterUpdatePutExecute,
-} from './database/valkey/clusterUpdatePut.operation';
-
-	import {
-	description as valkeyClusterDeleteDeleteDescription,
-	execute as valkeyClusterDeleteDeleteExecute,
-} from './database/valkey/clusterDeleteDelete.operation';
-
-	import {
-	description as valkeyBackupListGetDescription,
-	execute as valkeyBackupListGetExecute,
-} from './database/valkey/backupListGet.operation';
-
-	import {
-	description as valkeyBackupGetGetDescription,
-	execute as valkeyBackupGetGetExecute,
-} from './database/valkey/backupGetGet.operation';
-
-	import {
-	description as valkeyUserListGetDescription,
-	execute as valkeyUserListGetExecute,
-} from './database/valkey/userListGet.operation';
-
-	import {
-	description as valkeyUserCreatePostDescription,
-	execute as valkeyUserCreatePostExecute,
-} from './database/valkey/userCreatePost.operation';
-
-	import {
-	description as valkeyUserGetGetDescription,
-	execute as valkeyUserGetGetExecute,
-} from './database/valkey/userGetGet.operation';
-
-	import {
-	description as valkeyUserUpdatePutDescription,
-	execute as valkeyUserUpdatePutExecute,
-} from './database/valkey/userUpdatePut.operation';
-
-	import {
-	description as valkeyUserDeleteDeleteDescription,
-	execute as valkeyUserDeleteDeleteExecute,
-} from './database/valkey/userDeleteDelete.operation';
-
-	import {
-	description as valkeyNodeListGetDescription,
-	execute as valkeyNodeListGetExecute,
-} from './database/valkey/nodeListGet.operation';
-
-	import {
-	description as valkeyNodeGetGetDescription,
-	execute as valkeyNodeGetGetExecute,
-} from './database/valkey/nodeGetGet.operation';
-
-	import {
-	description as valkeyLogSubscriptionListGetDescription,
-	execute as valkeyLogSubscriptionListGetExecute,
-} from './database/valkey/logSubscriptionListGet.operation';
-
-	import {
-	description as valkeyLogSubscriptionCreatePostDescription,
-	execute as valkeyLogSubscriptionCreatePostExecute,
-} from './database/valkey/logSubscriptionCreatePost.operation';
-
-	import {
-	description as valkeyLogSubscriptionGetGetDescription,
-	execute as valkeyLogSubscriptionGetGetExecute,
-} from './database/valkey/logSubscriptionGetGet.operation';
-
-	import {
-	description as valkeyMaintenanceGetDescription,
-	execute as valkeyMaintenanceGetExecute,
-} from './database/valkey/maintenanceGet.operation';
-
-	import {
-	description as valkeyMetricGetDescription,
-	execute as valkeyMetricGetExecute,
-} from './database/valkey/metricGet.operation';
-
-	import {
-	description as valkeyPrometheusGetDescription,
-	execute as valkeyPrometheusGetExecute,
-} from './database/valkey/prometheusGet.operation';
-
-	import {
-	description as valkeyIntegrationListGetDescription,
-	execute as valkeyIntegrationListGetExecute,
-} from './database/valkey/integrationListGet.operation';
-
-	import {
-	description as valkeyIntegrationCreatePostDescription,
-	execute as valkeyIntegrationCreatePostExecute,
-} from './database/valkey/integrationCreatePost.operation';
-
-	import {
-	description as valkeyBackupCreatePostDescription,
-	execute as valkeyBackupCreatePostExecute,
-} from './database/valkey/backupCreatePost.operation';
-	import {
-	description as valkeyBackupDeleteDeleteDescription,
-	execute as valkeyBackupDeleteDeleteExecute,
-} from './database/valkey/backupDeleteDelete.operation';
-	import {
-	description as valkeyNodeCreatePostDescription,
-	execute as valkeyNodeCreatePostExecute,
-} from './database/valkey/nodeCreatePost.operation';
-	import {
-	description as valkeyNodeUpdatePutDescription,
-	execute as valkeyNodeUpdatePutExecute,
-} from './database/valkey/nodeUpdatePut.operation';
-	import {
-	description as valkeyNodeDeleteDeleteDescription,
-	execute as valkeyNodeDeleteDeleteExecute,
-} from './database/valkey/nodeDeleteDelete.operation';
-	import {
-	description as valkeyIpRestrictionListGetDescription,
-	execute as valkeyIpRestrictionListGetExecute,
-} from './database/valkey/ipRestrictionListGet.operation';
-	import {
-	description as valkeyIpRestrictionCreatePostDescription,
-	execute as valkeyIpRestrictionCreatePostExecute,
-} from './database/valkey/ipRestrictionCreatePost.operation';
-	import {
-	description as valkeyMaintenanceUpdatePutDescription,
-	execute as valkeyMaintenanceUpdatePutExecute,
-} from './database/valkey/maintenanceUpdatePut.operation';
-	import {
-	description as valkeyCertificateListGetDescription,
-	execute as valkeyCertificateListGetExecute,
-} from './database/valkey/certificateListGet.operation';
-	import {
-	description as valkeyCertificateCreatePostDescription,
-	execute as valkeyCertificateCreatePostExecute,
-} from './database/valkey/certificateCreatePost.operation';
-
-	import {
-	description as cassandraClusterListGetDescription,
-	execute as cassandraClusterListGetExecute,
-} from './database/cassandra/clusterListGet.operation';
-	import {
-	description as cassandraClusterGetGetDescription,
-	execute as cassandraClusterGetGetExecute,
-} from './database/cassandra/clusterGetGet.operation';
-	import {
-	description as cassandraClusterCreatePostDescription,
-	execute as cassandraClusterCreatePostExecute,
-} from './database/cassandra/clusterCreatePost.operation';
-	import {
-	description as cassandraClusterUpdatePutDescription,
-	execute as cassandraClusterUpdatePutExecute,
-} from './database/cassandra/clusterUpdatePut.operation';
-	import {
-	description as cassandraClusterDeleteDeleteDescription,
-	execute as cassandraClusterDeleteDeleteExecute,
-} from './database/cassandra/clusterDeleteDelete.operation';
-	import {
-	description as cassandraBackupListGetDescription,
-	execute as cassandraBackupListGetExecute,
-} from './database/cassandra/backupListGet.operation';
-	import {
-	description as cassandraBackupCreatePostDescription,
-	execute as cassandraBackupCreatePostExecute,
-} from './database/cassandra/backupCreatePost.operation';
-	import {
-	description as cassandraBackupGetGetDescription,
-	execute as cassandraBackupGetGetExecute,
-} from './database/cassandra/backupGetGet.operation';
-	import {
-	description as cassandraBackupDeleteDeleteDescription,
-	execute as cassandraBackupDeleteDeleteExecute,
-} from './database/cassandra/backupDeleteDelete.operation';
-	import {
-	description as cassandraUserListGetDescription,
-	execute as cassandraUserListGetExecute,
-} from './database/cassandra/userListGet.operation';
-	import {
-	description as cassandraUserCreatePostDescription,
-	execute as cassandraUserCreatePostExecute,
-} from './database/cassandra/userCreatePost.operation';
-	import {
-	description as cassandraUserGetGetDescription,
-	execute as cassandraUserGetGetExecute,
-} from './database/cassandra/userGetGet.operation';
-	import {
-	description as cassandraUserUpdatePutDescription,
-	execute as cassandraUserUpdatePutExecute,
-} from './database/cassandra/userUpdatePut.operation';
-	import {
-	description as cassandraUserDeleteDeleteDescription,
-	execute as cassandraUserDeleteDeleteExecute,
-} from './database/cassandra/userDeleteDelete.operation';
-	import {
-	description as cassandraNodeListGetDescription,
-	execute as cassandraNodeListGetExecute,
-} from './database/cassandra/nodeListGet.operation';
-	import {
-	description as cassandraNodeCreatePostDescription,
-	execute as cassandraNodeCreatePostExecute,
-} from './database/cassandra/nodeCreatePost.operation';
-	import {
-	description as cassandraNodeGetGetDescription,
-	execute as cassandraNodeGetGetExecute,
-} from './database/cassandra/nodeGetGet.operation';
-	import {
-	description as cassandraNodeUpdatePutDescription,
-	execute as cassandraNodeUpdatePutExecute,
-} from './database/cassandra/nodeUpdatePut.operation';
-	import {
-	description as cassandraNodeDeleteDeleteDescription,
-	execute as cassandraNodeDeleteDeleteExecute,
-} from './database/cassandra/nodeDeleteDelete.operation';
-	import {
-	description as cassandraIpRestrictionListGetDescription,
-	execute as cassandraIpRestrictionListGetExecute,
-} from './database/cassandra/ipRestrictionListGet.operation';
-	import {
-	description as cassandraIpRestrictionCreatePostDescription,
-	execute as cassandraIpRestrictionCreatePostExecute,
-} from './database/cassandra/ipRestrictionCreatePost.operation';
-	import {
-	description as cassandraLogSubscriptionListGetDescription,
-	execute as cassandraLogSubscriptionListGetExecute,
-} from './database/cassandra/logSubscriptionListGet.operation';
-	import {
-	description as cassandraLogSubscriptionCreatePostDescription,
-	execute as cassandraLogSubscriptionCreatePostExecute,
-} from './database/cassandra/logSubscriptionCreatePost.operation';
-	import {
-	description as cassandraLogSubscriptionGetGetDescription,
-	execute as cassandraLogSubscriptionGetGetExecute,
-} from './database/cassandra/logSubscriptionGetGet.operation';
-	import {
-	description as cassandraMaintenanceGetDescription,
-	execute as cassandraMaintenanceGetExecute,
-} from './database/cassandra/maintenanceGet.operation';
-	import {
-	description as cassandraMaintenanceUpdatePutDescription,
-	execute as cassandraMaintenanceUpdatePutExecute,
-} from './database/cassandra/maintenanceUpdatePut.operation';
-	import {
-	description as cassandraMetricGetDescription,
-	execute as cassandraMetricGetExecute,
-} from './database/cassandra/metricGet.operation';
-	import {
-	description as cassandraPrometheusGetDescription,
-	execute as cassandraPrometheusGetExecute,
-} from './database/cassandra/prometheusGet.operation';
-	import {
-	description as cassandraCertificateListGetDescription,
-	execute as cassandraCertificateListGetExecute,
-} from './database/cassandra/certificateListGet.operation';
-	import {
-	description as cassandraCertificateCreatePostDescription,
-	execute as cassandraCertificateCreatePostExecute,
-} from './database/cassandra/certificateCreatePost.operation';
-	import {
-	description as cassandraIntegrationListGetDescription,
-	execute as cassandraIntegrationListGetExecute,
-} from './database/cassandra/integrationListGet.operation';
-	import {
-	description as cassandraIntegrationCreatePostDescription,
-	execute as cassandraIntegrationCreatePostExecute,
-} from './database/cassandra/integrationCreatePost.operation';
-	import {
-	description as cassandraAdvancedConfigurationGetDescription,
+import {
+	execute as snapshotGetExecute,
+	description as snapshotGetDescription,
+} from './blockstorage/snapshotGet.operation';
+
+import {
+	execute as snapshotListGetExecute,
+	description as snapshotListGetDescription,
+} from './blockstorage/snapshotListGet.operation';
+
+import {
+	execute as snapshotUpdatePutExecute,
+	description as snapshotUpdatePutDescription,
+} from './blockstorage/snapshotUpdatePut.operation';
+
+import {
+	execute as volumeCreatePostExecute,
+	description as volumeCreatePostDescription,
+} from './blockstorage/volumeCreatePost.operation';
+
+import {
+	execute as volumeDeleteDeleteExecute,
+	description as volumeDeleteDeleteDescription,
+} from './blockstorage/volumeDeleteDelete.operation';
+
+import {
+	execute as volumeGetExecute,
+	description as volumeGetDescription,
+} from './blockstorage/volumeGet.operation';
+
+import {
+	execute as volumeListGetExecute,
+	description as volumeListGetDescription,
+} from './blockstorage/volumeListGet.operation';
+
+import {
+	execute as volumeUpdatePutExecute,
+	description as volumeUpdatePutDescription,
+} from './blockstorage/volumeUpdatePut.operation';
+
+import {
+	execute as cancelPostExecute,
+	description as cancelPostDescription,
+} from './cancel/cancelPost.operation';
+
+import {
+	execute as capabilitiesGetKubeDetailGetExecute,
+	description as capabilitiesGetKubeDetailGetDescription,
+} from './capabilities/getKubeDetailGet.operation';
+
+import {
+	execute as capabilitiesGetLoadbalancerDetailGetExecute,
+	description as capabilitiesGetLoadbalancerDetailGetDescription,
+} from './capabilities/getLoadbalancerDetailGet.operation';
+
+import {
+	execute as capabilitiesGetRegionDetailGetExecute,
+	description as capabilitiesGetRegionDetailGetDescription,
+} from './capabilities/getRegionDetailGet.operation';
+
+import {
+	execute as capabilitiesGetRegionProductDetailGetExecute,
+	description as capabilitiesGetRegionProductDetailGetDescription,
+} from './capabilities/getRegionProductDetailGet.operation';
+
+import {
+	execute as capabilitiesListGetExecute,
+	description as capabilitiesListGetDescription,
+} from './capabilities/listGet.operation';
+
+import {
+	execute as capabilitiesListKubeGetExecute,
+	description as capabilitiesListKubeGetDescription,
+} from './capabilities/listKubeGet.operation';
+
+import {
+	execute as capabilitiesListLoadbalancerGetExecute,
+	description as capabilitiesListLoadbalancerGetDescription,
+} from './capabilities/listLoadbalancerGet.operation';
+
+import {
+	execute as capabilitiesListRegionGetExecute,
+	description as capabilitiesListRegionGetDescription,
+} from './capabilities/listRegionGet.operation';
+
+import {
+	execute as changeContactPostExecute,
+	description as changeContactPostDescription,
+} from './changeContact/changeContactPost.operation';
+
+import {
+	execute as cloudAgreementsGetExecute,
+	description as cloudAgreementsGetDescription,
+} from './cloud/agreementsGet.operation';
+
+import {
+	execute as cloudEligibilityGetExecute,
+	description as cloudEligibilityGetDescription,
+} from './cloud/eligibilityGet.operation';
+
+import {
+	execute as cloudOrderListGetExecute,
+	description as cloudOrderListGetDescription,
+} from './cloud/orderListGet.operation';
+
+import {
+	execute as cloudOrderRuleAvailabilityGetExecute,
+	description as cloudOrderRuleAvailabilityGetDescription,
+} from './cloud/orderRuleAvailabilityGet.operation';
+
+import {
+	execute as confirmTerminationPostExecute,
+	description as confirmTerminationPostDescription,
+} from './confirmTermination/confirmTerminationPost.operation';
+
+import {
+	execute as containerRegistryCreateIamPostExecute,
+	description as containerRegistryCreateIamPostDescription,
+} from './containerRegistry/createIamPost.operation';
+
+import {
+	execute as containerRegistryCreateOpenIdConnectPostExecute,
+	description as containerRegistryCreateOpenIdConnectPostDescription,
+} from './containerRegistry/createOpenIdConnectPost.operation';
+
+import {
+	execute as containerRegistryCreatePostExecute,
+	description as containerRegistryCreatePostDescription,
+} from './containerRegistry/createPost.operation';
+
+import {
+	execute as containerRegistryCreateUserPostExecute,
+	description as containerRegistryCreateUserPostDescription,
+} from './containerRegistry/createUserPost.operation';
+
+import {
+	execute as containerRegistryCreateUserSetAsAdminPostExecute,
+	description as containerRegistryCreateUserSetAsAdminPostDescription,
+} from './containerRegistry/createUserSetAsAdminPost.operation';
+
+import {
+	execute as containerRegistryDeleteDeleteExecute,
+	description as containerRegistryDeleteDeleteDescription,
+} from './containerRegistry/deleteDelete.operation';
+
+import {
+	execute as containerRegistryDeleteIamDeleteExecute,
+	description as containerRegistryDeleteIamDeleteDescription,
+} from './containerRegistry/deleteIamDelete.operation';
+
+import {
+	execute as containerRegistryDeleteOpenIdConnectDeleteExecute,
+	description as containerRegistryDeleteOpenIdConnectDeleteDescription,
+} from './containerRegistry/deleteOpenIdConnectDelete.operation';
+
+import {
+	execute as containerRegistryDeleteUserDeleteExecute,
+	description as containerRegistryDeleteUserDeleteDescription,
+} from './containerRegistry/deleteUserDelete.operation';
+
+import {
+	execute as containerRegistryGetCapabilitiesPlanGetExecute,
+	description as containerRegistryGetCapabilitiesPlanGetDescription,
+} from './containerRegistry/getCapabilitiesPlanGet.operation';
+
+import {
+	execute as containerRegistryGetDetailGetExecute,
+	description as containerRegistryGetDetailGetDescription,
+} from './containerRegistry/getDetailGet.operation';
+
+import {
+	execute as containerRegistryGetIpRestrictionsManagementListGetExecute,
+	description as containerRegistryGetIpRestrictionsManagementListGetDescription,
+} from './containerRegistry/getIpRestrictionsManagementListGet.operation';
+
+import {
+	execute as containerRegistryGetIpRestrictionsRegistryListGetExecute,
+	description as containerRegistryGetIpRestrictionsRegistryListGetDescription,
+} from './containerRegistry/getIpRestrictionsRegistryListGet.operation';
+
+import {
+	execute as containerRegistryGetOpenIdConnectGetExecute,
+	description as containerRegistryGetOpenIdConnectGetDescription,
+} from './containerRegistry/getOpenIdConnectGet.operation';
+
+import {
+	execute as containerRegistryGetPlanGetExecute,
+	description as containerRegistryGetPlanGetDescription,
+} from './containerRegistry/getPlanGet.operation';
+
+import {
+	execute as containerRegistryGetUserDetailGetExecute,
+	description as containerRegistryGetUserDetailGetDescription,
+} from './containerRegistry/getUserDetailGet.operation';
+
+import {
+	execute as containerRegistryListGetExecute,
+	description as containerRegistryListGetDescription,
+} from './containerRegistry/listGet.operation';
+
+import {
+	execute as containerRegistryListUsersGetExecute,
+	description as containerRegistryListUsersGetDescription,
+} from './containerRegistry/listUsersGet.operation';
+
+import {
+	execute as containerRegistryUpdateIpRestrictionsManagementPutExecute,
+	description as containerRegistryUpdateIpRestrictionsManagementPutDescription,
+} from './containerRegistry/updateIpRestrictionsManagementPut.operation';
+
+import {
+	execute as containerRegistryUpdateIpRestrictionsRegistryPutExecute,
+	description as containerRegistryUpdateIpRestrictionsRegistryPutDescription,
+} from './containerRegistry/updateIpRestrictionsRegistryPut.operation';
+
+import {
+	execute as containerRegistryUpdateOpenIdConnectPutExecute,
+	description as containerRegistryUpdateOpenIdConnectPutDescription,
+} from './containerRegistry/updateOpenIdConnectPut.operation';
+
+import {
+	execute as containerRegistryUpdatePlanPutExecute,
+	description as containerRegistryUpdatePlanPutDescription,
+} from './containerRegistry/updatePlanPut.operation';
+
+import {
+	execute as containerRegistryUpdatePutExecute,
+	description as containerRegistryUpdatePutDescription,
+} from './containerRegistry/updatePut.operation';
+
+import {
+	execute as creditCreatePostExecute,
+	description as creditCreatePostDescription,
+} from './credit/createPost.operation';
+
+import {
+	execute as creditGetDetailGetExecute,
+	description as creditGetDetailGetDescription,
+} from './credit/getDetailGet.operation';
+
+import {
+	execute as creditListGetExecute,
+	description as creditListGetDescription,
+} from './credit/listGet.operation';
+
+import {
 	execute as cassandraAdvancedConfigurationGetExecute,
+	description as cassandraAdvancedConfigurationGetDescription,
 } from './database/cassandra/advancedConfigurationGet.operation';
-	import {
-	description as cassandraAdvancedConfigurationUpdatePutDescription,
+
+import {
 	execute as cassandraAdvancedConfigurationUpdatePutExecute,
+	description as cassandraAdvancedConfigurationUpdatePutDescription,
 } from './database/cassandra/advancedConfigurationUpdatePut.operation';
-	import {
-	description as cassandraCapabilitiesAdvancedConfigurationGetDescription,
+
+import {
+	execute as cassandraBackupCreatePostExecute,
+	description as cassandraBackupCreatePostDescription,
+} from './database/cassandra/backupCreatePost.operation';
+
+import {
+	execute as cassandraBackupDeleteDeleteExecute,
+	description as cassandraBackupDeleteDeleteDescription,
+} from './database/cassandra/backupDeleteDelete.operation';
+
+import {
+	execute as cassandraBackupGetGetExecute,
+	description as cassandraBackupGetGetDescription,
+} from './database/cassandra/backupGetGet.operation';
+
+import {
+	execute as cassandraBackupListGetExecute,
+	description as cassandraBackupListGetDescription,
+} from './database/cassandra/backupListGet.operation';
+
+import {
 	execute as cassandraCapabilitiesAdvancedConfigurationGetExecute,
+	description as cassandraCapabilitiesAdvancedConfigurationGetDescription,
 } from './database/cassandra/capabilitiesAdvancedConfigurationGet.operation';
-	import {
-	description as cassandraCapabilitiesIntegrationGetDescription,
+
+import {
 	execute as cassandraCapabilitiesIntegrationGetExecute,
+	description as cassandraCapabilitiesIntegrationGetDescription,
 } from './database/cassandra/capabilitiesIntegrationGet.operation';
-	import {
-	description as cassandraIntegrationGetGetDescription,
-	execute as cassandraIntegrationGetGetExecute,
-} from './database/cassandra/integrationGetGet.operation';
-	import {
-	description as cassandraIntegrationDeleteDeleteDescription,
+
+import {
+	execute as cassandraCertificateCreatePostExecute,
+	description as cassandraCertificateCreatePostDescription,
+} from './database/cassandra/certificateCreatePost.operation';
+
+import {
+	execute as cassandraCertificateListGetExecute,
+	description as cassandraCertificateListGetDescription,
+} from './database/cassandra/certificateListGet.operation';
+
+import {
+	execute as cassandraClusterCreatePostExecute,
+	description as cassandraClusterCreatePostDescription,
+} from './database/cassandra/clusterCreatePost.operation';
+
+import {
+	execute as cassandraClusterDeleteDeleteExecute,
+	description as cassandraClusterDeleteDeleteDescription,
+} from './database/cassandra/clusterDeleteDelete.operation';
+
+import {
+	execute as cassandraClusterGetGetExecute,
+	description as cassandraClusterGetGetDescription,
+} from './database/cassandra/clusterGetGet.operation';
+
+import {
+	execute as cassandraClusterListGetExecute,
+	description as cassandraClusterListGetDescription,
+} from './database/cassandra/clusterListGet.operation';
+
+import {
+	execute as cassandraClusterUpdatePutExecute,
+	description as cassandraClusterUpdatePutDescription,
+} from './database/cassandra/clusterUpdatePut.operation';
+
+import {
+	execute as cassandraIntegrationCreatePostExecute,
+	description as cassandraIntegrationCreatePostDescription,
+} from './database/cassandra/integrationCreatePost.operation';
+
+import {
 	execute as cassandraIntegrationDeleteDeleteExecute,
+	description as cassandraIntegrationDeleteDeleteDescription,
 } from './database/cassandra/integrationDeleteDelete.operation';
-	import {
-	description as cassandraIpRestrictionGetGetDescription,
-	execute as cassandraIpRestrictionGetGetExecute,
-} from './database/cassandra/ipRestrictionGetGet.operation';
-	import {
-	description as cassandraIpRestrictionDeleteDeleteDescription,
+
+import {
+	execute as cassandraIntegrationGetGetExecute,
+	description as cassandraIntegrationGetGetDescription,
+} from './database/cassandra/integrationGetGet.operation';
+
+import {
+	execute as cassandraIntegrationListGetExecute,
+	description as cassandraIntegrationListGetDescription,
+} from './database/cassandra/integrationListGet.operation';
+
+import {
+	execute as cassandraIpRestrictionCreatePostExecute,
+	description as cassandraIpRestrictionCreatePostDescription,
+} from './database/cassandra/ipRestrictionCreatePost.operation';
+
+import {
 	execute as cassandraIpRestrictionDeleteDeleteExecute,
+	description as cassandraIpRestrictionDeleteDeleteDescription,
 } from './database/cassandra/ipRestrictionDeleteDelete.operation';
-	import {
-	description as cassandraIpRestrictionUpdatePutDescription,
+
+import {
+	execute as cassandraIpRestrictionGetGetExecute,
+	description as cassandraIpRestrictionGetGetDescription,
+} from './database/cassandra/ipRestrictionGetGet.operation';
+
+import {
+	execute as cassandraIpRestrictionListGetExecute,
+	description as cassandraIpRestrictionListGetDescription,
+} from './database/cassandra/ipRestrictionListGet.operation';
+
+import {
 	execute as cassandraIpRestrictionUpdatePutExecute,
+	description as cassandraIpRestrictionUpdatePutDescription,
 } from './database/cassandra/ipRestrictionUpdatePut.operation';
-	import {
-	description as cassandraLogKindListGetDescription,
-	execute as cassandraLogKindListGetExecute,
-} from './database/cassandra/logKindListGet.operation';
-	import {
-	description as cassandraLogKindGetGetDescription,
+
+import {
 	execute as cassandraLogKindGetGetExecute,
+	description as cassandraLogKindGetGetDescription,
 } from './database/cassandra/logKindGetGet.operation';
-	import {
-	description as cassandraLogSubscriptionDeleteDeleteDescription,
+
+import {
+	execute as cassandraLogKindListGetExecute,
+	description as cassandraLogKindListGetDescription,
+} from './database/cassandra/logKindListGet.operation';
+
+import {
+	execute as cassandraLogSubscriptionCreatePostExecute,
+	description as cassandraLogSubscriptionCreatePostDescription,
+} from './database/cassandra/logSubscriptionCreatePost.operation';
+
+import {
 	execute as cassandraLogSubscriptionDeleteDeleteExecute,
+	description as cassandraLogSubscriptionDeleteDeleteDescription,
 } from './database/cassandra/logSubscriptionDeleteDelete.operation';
-	import {
-	description as cassandraLogUrlCreatePostDescription,
+
+import {
+	execute as cassandraLogSubscriptionGetGetExecute,
+	description as cassandraLogSubscriptionGetGetDescription,
+} from './database/cassandra/logSubscriptionGetGet.operation';
+
+import {
+	execute as cassandraLogSubscriptionListGetExecute,
+	description as cassandraLogSubscriptionListGetDescription,
+} from './database/cassandra/logSubscriptionListGet.operation';
+
+import {
 	execute as cassandraLogUrlCreatePostExecute,
+	description as cassandraLogUrlCreatePostDescription,
 } from './database/cassandra/logUrlCreatePost.operation';
-	import {
-	description as cassandraLogsGetDescription,
+
+import {
 	execute as cassandraLogsGetExecute,
+	description as cassandraLogsGetDescription,
 } from './database/cassandra/logsGet.operation';
-	import {
-	description as cassandraMaintenanceApplyPostDescription,
+
+import {
 	execute as cassandraMaintenanceApplyPostExecute,
+	description as cassandraMaintenanceApplyPostDescription,
 } from './database/cassandra/maintenanceApplyPost.operation';
-	import {
-	description as cassandraMaintenanceGetGetDescription,
+
+import {
+	execute as cassandraMaintenanceGetExecute,
+	description as cassandraMaintenanceGetDescription,
+} from './database/cassandra/maintenanceGet.operation';
+
+import {
 	execute as cassandraMaintenanceGetGetExecute,
+	description as cassandraMaintenanceGetGetDescription,
 } from './database/cassandra/maintenanceGetGet.operation';
-	import {
-	description as cassandraMetricGetGetDescription,
+
+import {
+	execute as cassandraMaintenanceUpdatePutExecute,
+	description as cassandraMaintenanceUpdatePutDescription,
+} from './database/cassandra/maintenanceUpdatePut.operation';
+
+import {
+	execute as cassandraMetricGetExecute,
+	description as cassandraMetricGetDescription,
+} from './database/cassandra/metricGet.operation';
+
+import {
 	execute as cassandraMetricGetGetExecute,
+	description as cassandraMetricGetGetDescription,
 } from './database/cassandra/metricGetGet.operation';
-	import {
-	description as cassandraPrometheusCredentialsResetPostDescription,
+
+import {
+	execute as cassandraNodeCreatePostExecute,
+	description as cassandraNodeCreatePostDescription,
+} from './database/cassandra/nodeCreatePost.operation';
+
+import {
+	execute as cassandraNodeDeleteDeleteExecute,
+	description as cassandraNodeDeleteDeleteDescription,
+} from './database/cassandra/nodeDeleteDelete.operation';
+
+import {
+	execute as cassandraNodeGetGetExecute,
+	description as cassandraNodeGetGetDescription,
+} from './database/cassandra/nodeGetGet.operation';
+
+import {
+	execute as cassandraNodeListGetExecute,
+	description as cassandraNodeListGetDescription,
+} from './database/cassandra/nodeListGet.operation';
+
+import {
+	execute as cassandraNodeUpdatePutExecute,
+	description as cassandraNodeUpdatePutDescription,
+} from './database/cassandra/nodeUpdatePut.operation';
+
+import {
 	execute as cassandraPrometheusCredentialsResetPostExecute,
+	description as cassandraPrometheusCredentialsResetPostDescription,
 } from './database/cassandra/prometheusCredentialsResetPost.operation';
-	import {
-	description as cassandraUserCredentialsResetPostDescription,
+
+import {
+	execute as cassandraPrometheusGetExecute,
+	description as cassandraPrometheusGetDescription,
+} from './database/cassandra/prometheusGet.operation';
+
+import {
+	execute as cassandraUserCreatePostExecute,
+	description as cassandraUserCreatePostDescription,
+} from './database/cassandra/userCreatePost.operation';
+
+import {
 	execute as cassandraUserCredentialsResetPostExecute,
+	description as cassandraUserCredentialsResetPostDescription,
 } from './database/cassandra/userCredentialsResetPost.operation';
-	import {
-	description as clickhouseClusterListGetDescription,
-	execute as clickhouseClusterListGetExecute,
-} from './database/clickhouse/clusterListGet.operation';
-	import {
-	description as clickhouseClusterGetGetDescription,
-	execute as clickhouseClusterGetGetExecute,
-} from './database/clickhouse/clusterGetGet.operation';
-	import {
-	description as clickhouseClusterCreatePostDescription,
-	execute as clickhouseClusterCreatePostExecute,
-} from './database/clickhouse/clusterCreatePost.operation';
-	import {
-	description as clickhouseClusterUpdatePutDescription,
-	execute as clickhouseClusterUpdatePutExecute,
-} from './database/clickhouse/clusterUpdatePut.operation';
-	import {
-	description as clickhouseClusterDeleteDeleteDescription,
-	execute as clickhouseClusterDeleteDeleteExecute,
-} from './database/clickhouse/clusterDeleteDelete.operation';
-	import {
-	description as clickhouseBackupListGetDescription,
-	execute as clickhouseBackupListGetExecute,
-} from './database/clickhouse/backupListGet.operation';
-	import {
-	description as clickhouseBackupCreatePostDescription,
+
+import {
+	execute as cassandraUserDeleteDeleteExecute,
+	description as cassandraUserDeleteDeleteDescription,
+} from './database/cassandra/userDeleteDelete.operation';
+
+import {
+	execute as cassandraUserGetGetExecute,
+	description as cassandraUserGetGetDescription,
+} from './database/cassandra/userGetGet.operation';
+
+import {
+	execute as cassandraUserListGetExecute,
+	description as cassandraUserListGetDescription,
+} from './database/cassandra/userListGet.operation';
+
+import {
+	execute as cassandraUserUpdatePutExecute,
+	description as cassandraUserUpdatePutDescription,
+} from './database/cassandra/userUpdatePut.operation';
+
+import {
 	execute as clickhouseBackupCreatePostExecute,
+	description as clickhouseBackupCreatePostDescription,
 } from './database/clickhouse/backupCreatePost.operation';
-	import {
-	description as clickhouseBackupGetGetDescription,
-	execute as clickhouseBackupGetGetExecute,
-} from './database/clickhouse/backupGetGet.operation';
-	import {
-	description as clickhouseBackupDeleteDeleteDescription,
+
+import {
 	execute as clickhouseBackupDeleteDeleteExecute,
+	description as clickhouseBackupDeleteDeleteDescription,
 } from './database/clickhouse/backupDeleteDelete.operation';
-	import {
-	description as clickhouseUserListGetDescription,
-	execute as clickhouseUserListGetExecute,
-} from './database/clickhouse/userListGet.operation';
-	import {
-	description as clickhouseUserCreatePostDescription,
-	execute as clickhouseUserCreatePostExecute,
-} from './database/clickhouse/userCreatePost.operation';
-	import {
-	description as clickhouseUserGetGetDescription,
-	execute as clickhouseUserGetGetExecute,
-} from './database/clickhouse/userGetGet.operation';
-	import {
-	description as clickhouseUserUpdatePutDescription,
-	execute as clickhouseUserUpdatePutExecute,
-} from './database/clickhouse/userUpdatePut.operation';
-	import {
-	description as clickhouseUserDeleteDeleteDescription,
-	execute as clickhouseUserDeleteDeleteExecute,
-} from './database/clickhouse/userDeleteDelete.operation';
-	import {
-	description as clickhouseNodeListGetDescription,
-	execute as clickhouseNodeListGetExecute,
-} from './database/clickhouse/nodeListGet.operation';
-	import {
-	description as clickhouseNodeCreatePostDescription,
-	execute as clickhouseNodeCreatePostExecute,
-} from './database/clickhouse/nodeCreatePost.operation';
-	import {
-	description as clickhouseNodeGetGetDescription,
-	execute as clickhouseNodeGetGetExecute,
-} from './database/clickhouse/nodeGetGet.operation';
-	import {
-	description as clickhouseNodeUpdatePutDescription,
-	execute as clickhouseNodeUpdatePutExecute,
-} from './database/clickhouse/nodeUpdatePut.operation';
-	import {
-	description as clickhouseNodeDeleteDeleteDescription,
-	execute as clickhouseNodeDeleteDeleteExecute,
-} from './database/clickhouse/nodeDeleteDelete.operation';
-	import {
-	description as clickhouseIpRestrictionListGetDescription,
-	execute as clickhouseIpRestrictionListGetExecute,
-} from './database/clickhouse/ipRestrictionListGet.operation';
-	import {
-	description as clickhouseIpRestrictionCreatePostDescription,
-	execute as clickhouseIpRestrictionCreatePostExecute,
-} from './database/clickhouse/ipRestrictionCreatePost.operation';
-	import {
-	description as clickhouseLogSubscriptionListGetDescription,
-	execute as clickhouseLogSubscriptionListGetExecute,
-} from './database/clickhouse/logSubscriptionListGet.operation';
-	import {
-	description as clickhouseLogSubscriptionCreatePostDescription,
-	execute as clickhouseLogSubscriptionCreatePostExecute,
-} from './database/clickhouse/logSubscriptionCreatePost.operation';
-	import {
-	description as clickhouseLogSubscriptionGetGetDescription,
-	execute as clickhouseLogSubscriptionGetGetExecute,
-} from './database/clickhouse/logSubscriptionGetGet.operation';
-	import {
-	description as clickhouseMaintenanceGetDescription,
-	execute as clickhouseMaintenanceGetExecute,
-} from './database/clickhouse/maintenanceGet.operation';
-	import {
-	description as clickhouseMaintenanceUpdatePutDescription,
-	execute as clickhouseMaintenanceUpdatePutExecute,
-} from './database/clickhouse/maintenanceUpdatePut.operation';
-	import {
-	description as clickhouseMetricGetDescription,
-	execute as clickhouseMetricGetExecute,
-} from './database/clickhouse/metricGet.operation';
-	import {
-	description as clickhousePrometheusGetDescription,
-	execute as clickhousePrometheusGetExecute,
-} from './database/clickhouse/prometheusGet.operation';
-	import {
-	description as clickhouseCertificateListGetDescription,
-	execute as clickhouseCertificateListGetExecute,
-} from './database/clickhouse/certificateListGet.operation';
-	import {
-	description as clickhouseCertificateCreatePostDescription,
+
+import {
+	execute as clickhouseBackupGetGetExecute,
+	description as clickhouseBackupGetGetDescription,
+} from './database/clickhouse/backupGetGet.operation';
+
+import {
+	execute as clickhouseBackupListGetExecute,
+	description as clickhouseBackupListGetDescription,
+} from './database/clickhouse/backupListGet.operation';
+
+import {
 	execute as clickhouseCertificateCreatePostExecute,
+	description as clickhouseCertificateCreatePostDescription,
 } from './database/clickhouse/certificateCreatePost.operation';
-	import {
-	description as clickhouseIntegrationListGetDescription,
-	execute as clickhouseIntegrationListGetExecute,
-} from './database/clickhouse/integrationListGet.operation';
-	import {
-	description as clickhouseIntegrationCreatePostDescription,
+
+import {
+	execute as clickhouseCertificateListGetExecute,
+	description as clickhouseCertificateListGetDescription,
+} from './database/clickhouse/certificateListGet.operation';
+
+import {
+	execute as clickhouseClusterCreatePostExecute,
+	description as clickhouseClusterCreatePostDescription,
+} from './database/clickhouse/clusterCreatePost.operation';
+
+import {
+	execute as clickhouseClusterDeleteDeleteExecute,
+	description as clickhouseClusterDeleteDeleteDescription,
+} from './database/clickhouse/clusterDeleteDelete.operation';
+
+import {
+	execute as clickhouseClusterGetGetExecute,
+	description as clickhouseClusterGetGetDescription,
+} from './database/clickhouse/clusterGetGet.operation';
+
+import {
+	execute as clickhouseClusterListGetExecute,
+	description as clickhouseClusterListGetDescription,
+} from './database/clickhouse/clusterListGet.operation';
+
+import {
+	execute as clickhouseClusterUpdatePutExecute,
+	description as clickhouseClusterUpdatePutDescription,
+} from './database/clickhouse/clusterUpdatePut.operation';
+
+import {
 	execute as clickhouseIntegrationCreatePostExecute,
+	description as clickhouseIntegrationCreatePostDescription,
 } from './database/clickhouse/integrationCreatePost.operation';
-	import {
-	description as grafanaClusterListGetDescription,
-	execute as grafanaClusterListGetExecute,
-} from './database/grafana/clusterListGet.operation';
-	import {
-	description as grafanaClusterGetGetDescription,
-	execute as grafanaClusterGetGetExecute,
-} from './database/grafana/clusterGetGet.operation';
-	import {
-	description as grafanaClusterCreatePostDescription,
-	execute as grafanaClusterCreatePostExecute,
-} from './database/grafana/clusterCreatePost.operation';
-	import {
-	description as grafanaClusterUpdatePutDescription,
-	execute as grafanaClusterUpdatePutExecute,
-} from './database/grafana/clusterUpdatePut.operation';
-	import {
-	description as grafanaClusterDeleteDeleteDescription,
-	execute as grafanaClusterDeleteDeleteExecute,
-} from './database/grafana/clusterDeleteDelete.operation';
-	import {
-	description as grafanaBackupListGetDescription,
-	execute as grafanaBackupListGetExecute,
-} from './database/grafana/backupListGet.operation';
-	import {
-	description as grafanaBackupGetGetDescription,
-	execute as grafanaBackupGetGetExecute,
-} from './database/grafana/backupGetGet.operation';
-	import {
-	description as grafanaUserListGetDescription,
-	execute as grafanaUserListGetExecute,
-} from './database/grafana/userListGet.operation';
-	import {
-	description as grafanaUserGetGetDescription,
-	execute as grafanaUserGetGetExecute,
-} from './database/grafana/userGetGet.operation';
-	import {
-	description as grafanaUserCredentialsResetPostDescription,
-	execute as grafanaUserCredentialsResetPostExecute,
-} from './database/grafana/userCredentialsResetPost.operation';
-	import {
-	description as grafanaNodeListGetDescription,
-	execute as grafanaNodeListGetExecute,
-} from './database/grafana/nodeListGet.operation';
-	import {
-	description as grafanaNodeGetGetDescription,
-	execute as grafanaNodeGetGetExecute,
-} from './database/grafana/nodeGetGet.operation';
-	import {
-	description as grafanaIpRestrictionListGetDescription,
-	execute as grafanaIpRestrictionListGetExecute,
-} from './database/grafana/ipRestrictionListGet.operation';
-	import {
-	description as grafanaIpRestrictionCreatePostDescription,
-	execute as grafanaIpRestrictionCreatePostExecute,
-} from './database/grafana/ipRestrictionCreatePost.operation';
-	import {
-	description as grafanaIpRestrictionGetGetDescription,
-	execute as grafanaIpRestrictionGetGetExecute,
-} from './database/grafana/ipRestrictionGetGet.operation';
-	import {
-	description as grafanaIpRestrictionUpdatePutDescription,
-	execute as grafanaIpRestrictionUpdatePutExecute,
-} from './database/grafana/ipRestrictionUpdatePut.operation';
-	import {
-	description as grafanaIpRestrictionDeleteDeleteDescription,
-	execute as grafanaIpRestrictionDeleteDeleteExecute,
-} from './database/grafana/ipRestrictionDeleteDelete.operation';
-	import {
-	description as grafanaLogKindListGetDescription,
-	execute as grafanaLogKindListGetExecute,
-} from './database/grafana/logKindListGet.operation';
-	import {
-	description as grafanaLogKindGetDescription,
-	execute as grafanaLogKindGetExecute,
-} from './database/grafana/logKindGet.operation';
-	import {
-	description as grafanaLogSubscriptionListGetDescription,
-	execute as grafanaLogSubscriptionListGetExecute,
-} from './database/grafana/logSubscriptionListGet.operation';
-	import {
-	description as grafanaLogSubscriptionCreatePostDescription,
-	execute as grafanaLogSubscriptionCreatePostExecute,
-} from './database/grafana/logSubscriptionCreatePost.operation';
-	import {
-	description as grafanaLogSubscriptionGetGetDescription,
-	execute as grafanaLogSubscriptionGetGetExecute,
-} from './database/grafana/logSubscriptionGetGet.operation';
-	import {
-	description as grafanaLogSubscriptionDeleteDeleteDescription,
-	execute as grafanaLogSubscriptionDeleteDeleteExecute,
-} from './database/grafana/logSubscriptionDeleteDelete.operation';
-	import {
-	description as grafanaLogUrlCreatePostDescription,
-	execute as grafanaLogUrlCreatePostExecute,
-} from './database/grafana/logUrlCreatePost.operation';
-	import {
-	description as grafanaLogsGetDescription,
-	execute as grafanaLogsGetExecute,
-} from './database/grafana/logsGet.operation';
-	import {
-	description as grafanaMaintenanceListGetDescription,
-	execute as grafanaMaintenanceListGetExecute,
-} from './database/grafana/maintenanceListGet.operation';
-	import {
-	description as grafanaMaintenanceGetDescription,
-	execute as grafanaMaintenanceGetExecute,
-} from './database/grafana/maintenanceGet.operation';
-	import {
-	description as grafanaMaintenanceApplyPostDescription,
-	execute as grafanaMaintenanceApplyPostExecute,
-} from './database/grafana/maintenanceApplyPost.operation';
-	import {
-	description as grafanaMetricListGetDescription,
-	execute as grafanaMetricListGetExecute,
-} from './database/grafana/metricListGet.operation';
-	import {
-	description as grafanaMetricGetDescription,
-	execute as grafanaMetricGetExecute,
-} from './database/grafana/metricGet.operation';
-	import {
-	description as grafanaAdvancedConfigurationGetDescription,
+
+import {
+	execute as clickhouseIntegrationListGetExecute,
+	description as clickhouseIntegrationListGetDescription,
+} from './database/clickhouse/integrationListGet.operation';
+
+import {
+	execute as clickhouseIpRestrictionCreatePostExecute,
+	description as clickhouseIpRestrictionCreatePostDescription,
+} from './database/clickhouse/ipRestrictionCreatePost.operation';
+
+import {
+	execute as clickhouseIpRestrictionListGetExecute,
+	description as clickhouseIpRestrictionListGetDescription,
+} from './database/clickhouse/ipRestrictionListGet.operation';
+
+import {
+	execute as clickhouseLogSubscriptionCreatePostExecute,
+	description as clickhouseLogSubscriptionCreatePostDescription,
+} from './database/clickhouse/logSubscriptionCreatePost.operation';
+
+import {
+	execute as clickhouseLogSubscriptionGetGetExecute,
+	description as clickhouseLogSubscriptionGetGetDescription,
+} from './database/clickhouse/logSubscriptionGetGet.operation';
+
+import {
+	execute as clickhouseLogSubscriptionListGetExecute,
+	description as clickhouseLogSubscriptionListGetDescription,
+} from './database/clickhouse/logSubscriptionListGet.operation';
+
+import {
+	execute as clickhouseMaintenanceGetExecute,
+	description as clickhouseMaintenanceGetDescription,
+} from './database/clickhouse/maintenanceGet.operation';
+
+import {
+	execute as clickhouseMaintenanceUpdatePutExecute,
+	description as clickhouseMaintenanceUpdatePutDescription,
+} from './database/clickhouse/maintenanceUpdatePut.operation';
+
+import {
+	execute as clickhouseMetricGetExecute,
+	description as clickhouseMetricGetDescription,
+} from './database/clickhouse/metricGet.operation';
+
+import {
+	execute as clickhouseNodeCreatePostExecute,
+	description as clickhouseNodeCreatePostDescription,
+} from './database/clickhouse/nodeCreatePost.operation';
+
+import {
+	execute as clickhouseNodeDeleteDeleteExecute,
+	description as clickhouseNodeDeleteDeleteDescription,
+} from './database/clickhouse/nodeDeleteDelete.operation';
+
+import {
+	execute as clickhouseNodeGetGetExecute,
+	description as clickhouseNodeGetGetDescription,
+} from './database/clickhouse/nodeGetGet.operation';
+
+import {
+	execute as clickhouseNodeListGetExecute,
+	description as clickhouseNodeListGetDescription,
+} from './database/clickhouse/nodeListGet.operation';
+
+import {
+	execute as clickhouseNodeUpdatePutExecute,
+	description as clickhouseNodeUpdatePutDescription,
+} from './database/clickhouse/nodeUpdatePut.operation';
+
+import {
+	execute as clickhousePrometheusGetExecute,
+	description as clickhousePrometheusGetDescription,
+} from './database/clickhouse/prometheusGet.operation';
+
+import {
+	execute as clickhouseUserCreatePostExecute,
+	description as clickhouseUserCreatePostDescription,
+} from './database/clickhouse/userCreatePost.operation';
+
+import {
+	execute as clickhouseUserDeleteDeleteExecute,
+	description as clickhouseUserDeleteDeleteDescription,
+} from './database/clickhouse/userDeleteDelete.operation';
+
+import {
+	execute as clickhouseUserGetGetExecute,
+	description as clickhouseUserGetGetDescription,
+} from './database/clickhouse/userGetGet.operation';
+
+import {
+	execute as clickhouseUserListGetExecute,
+	description as clickhouseUserListGetDescription,
+} from './database/clickhouse/userListGet.operation';
+
+import {
+	execute as clickhouseUserUpdatePutExecute,
+	description as clickhouseUserUpdatePutDescription,
+} from './database/clickhouse/userUpdatePut.operation';
+
+import {
 	execute as grafanaAdvancedConfigurationGetExecute,
+	description as grafanaAdvancedConfigurationGetDescription,
 } from './database/grafana/advancedConfigurationGet.operation';
-	import {
-	description as grafanaAdvancedConfigurationUpdatePutDescription,
+
+import {
 	execute as grafanaAdvancedConfigurationUpdatePutExecute,
+	description as grafanaAdvancedConfigurationUpdatePutDescription,
 } from './database/grafana/advancedConfigurationUpdatePut.operation';
-	import {
-	description as grafanaCapabilitiesAdvancedConfigurationGetDescription,
+
+import {
+	execute as grafanaBackupGetGetExecute,
+	description as grafanaBackupGetGetDescription,
+} from './database/grafana/backupGetGet.operation';
+
+import {
+	execute as grafanaBackupListGetExecute,
+	description as grafanaBackupListGetDescription,
+} from './database/grafana/backupListGet.operation';
+
+import {
 	execute as grafanaCapabilitiesAdvancedConfigurationGetExecute,
+	description as grafanaCapabilitiesAdvancedConfigurationGetDescription,
 } from './database/grafana/capabilitiesAdvancedConfigurationGet.operation';
-	import {
-	description as grafanaCapabilitiesBackupRegionsGetDescription,
+
+import {
 	execute as grafanaCapabilitiesBackupRegionsGetExecute,
+	description as grafanaCapabilitiesBackupRegionsGetDescription,
 } from './database/grafana/capabilitiesBackupRegionsGet.operation';
-	import {
-	description as grafanaCapabilitiesIntegrationGetDescription,
+
+import {
 	execute as grafanaCapabilitiesIntegrationGetExecute,
+	description as grafanaCapabilitiesIntegrationGetDescription,
 } from './database/grafana/capabilitiesIntegrationGet.operation';
-	import {
-	description as grafanaIntegrationListGetDescription,
-	execute as grafanaIntegrationListGetExecute,
-} from './database/grafana/integrationListGet.operation';
-	import {
-	description as grafanaIntegrationCreatePostDescription,
+
+import {
+	execute as grafanaClusterCreatePostExecute,
+	description as grafanaClusterCreatePostDescription,
+} from './database/grafana/clusterCreatePost.operation';
+
+import {
+	execute as grafanaClusterDeleteDeleteExecute,
+	description as grafanaClusterDeleteDeleteDescription,
+} from './database/grafana/clusterDeleteDelete.operation';
+
+import {
+	execute as grafanaClusterGetGetExecute,
+	description as grafanaClusterGetGetDescription,
+} from './database/grafana/clusterGetGet.operation';
+
+import {
+	execute as grafanaClusterListGetExecute,
+	description as grafanaClusterListGetDescription,
+} from './database/grafana/clusterListGet.operation';
+
+import {
+	execute as grafanaClusterUpdatePutExecute,
+	description as grafanaClusterUpdatePutDescription,
+} from './database/grafana/clusterUpdatePut.operation';
+
+import {
 	execute as grafanaIntegrationCreatePostExecute,
+	description as grafanaIntegrationCreatePostDescription,
 } from './database/grafana/integrationCreatePost.operation';
-	import {
-	description as grafanaIntegrationGetGetDescription,
-	execute as grafanaIntegrationGetGetExecute,
-} from './database/grafana/integrationGetGet.operation';
-	import {
-	description as grafanaIntegrationDeleteDeleteDescription,
+
+import {
 	execute as grafanaIntegrationDeleteDeleteExecute,
+	description as grafanaIntegrationDeleteDeleteDescription,
 } from './database/grafana/integrationDeleteDelete.operation';
 
-	import {
-	description as kafkaClusterListGetDescription,
-	execute as kafkaClusterListGetExecute,
-} from './database/kafka/clusterListGet.operation';
-	import {
-	description as kafkaClusterGetGetDescription,
-	execute as kafkaClusterGetGetExecute,
-} from './database/kafka/clusterGetGet.operation';
-	import {
-	description as kafkaClusterCreatePostDescription,
-	execute as kafkaClusterCreatePostExecute,
-} from './database/kafka/clusterCreatePost.operation';
-	import {
-	description as kafkaClusterUpdatePutDescription,
-	execute as kafkaClusterUpdatePutExecute,
-} from './database/kafka/clusterUpdatePut.operation';
-	import {
-	description as kafkaClusterDeleteDeleteDescription,
-	execute as kafkaClusterDeleteDeleteExecute,
-} from './database/kafka/clusterDeleteDelete.operation';
-	import {
-	description as kafkaAclListGetDescription,
-	execute as kafkaAclListGetExecute,
-} from './database/kafka/aclListGet.operation';
-	import {
-	description as kafkaAclCreatePostDescription,
+import {
+	execute as grafanaIntegrationGetGetExecute,
+	description as grafanaIntegrationGetGetDescription,
+} from './database/grafana/integrationGetGet.operation';
+
+import {
+	execute as grafanaIntegrationListGetExecute,
+	description as grafanaIntegrationListGetDescription,
+} from './database/grafana/integrationListGet.operation';
+
+import {
+	execute as grafanaIpRestrictionCreatePostExecute,
+	description as grafanaIpRestrictionCreatePostDescription,
+} from './database/grafana/ipRestrictionCreatePost.operation';
+
+import {
+	execute as grafanaIpRestrictionDeleteDeleteExecute,
+	description as grafanaIpRestrictionDeleteDeleteDescription,
+} from './database/grafana/ipRestrictionDeleteDelete.operation';
+
+import {
+	execute as grafanaIpRestrictionGetGetExecute,
+	description as grafanaIpRestrictionGetGetDescription,
+} from './database/grafana/ipRestrictionGetGet.operation';
+
+import {
+	execute as grafanaIpRestrictionListGetExecute,
+	description as grafanaIpRestrictionListGetDescription,
+} from './database/grafana/ipRestrictionListGet.operation';
+
+import {
+	execute as grafanaIpRestrictionUpdatePutExecute,
+	description as grafanaIpRestrictionUpdatePutDescription,
+} from './database/grafana/ipRestrictionUpdatePut.operation';
+
+import {
+	execute as grafanaLogKindGetExecute,
+	description as grafanaLogKindGetDescription,
+} from './database/grafana/logKindGet.operation';
+
+import {
+	execute as grafanaLogKindListGetExecute,
+	description as grafanaLogKindListGetDescription,
+} from './database/grafana/logKindListGet.operation';
+
+import {
+	execute as grafanaLogSubscriptionCreatePostExecute,
+	description as grafanaLogSubscriptionCreatePostDescription,
+} from './database/grafana/logSubscriptionCreatePost.operation';
+
+import {
+	execute as grafanaLogSubscriptionDeleteDeleteExecute,
+	description as grafanaLogSubscriptionDeleteDeleteDescription,
+} from './database/grafana/logSubscriptionDeleteDelete.operation';
+
+import {
+	execute as grafanaLogSubscriptionGetGetExecute,
+	description as grafanaLogSubscriptionGetGetDescription,
+} from './database/grafana/logSubscriptionGetGet.operation';
+
+import {
+	execute as grafanaLogSubscriptionListGetExecute,
+	description as grafanaLogSubscriptionListGetDescription,
+} from './database/grafana/logSubscriptionListGet.operation';
+
+import {
+	execute as grafanaLogUrlCreatePostExecute,
+	description as grafanaLogUrlCreatePostDescription,
+} from './database/grafana/logUrlCreatePost.operation';
+
+import {
+	execute as grafanaLogsGetExecute,
+	description as grafanaLogsGetDescription,
+} from './database/grafana/logsGet.operation';
+
+import {
+	execute as grafanaMaintenanceApplyPostExecute,
+	description as grafanaMaintenanceApplyPostDescription,
+} from './database/grafana/maintenanceApplyPost.operation';
+
+import {
+	execute as grafanaMaintenanceGetExecute,
+	description as grafanaMaintenanceGetDescription,
+} from './database/grafana/maintenanceGet.operation';
+
+import {
+	execute as grafanaMaintenanceListGetExecute,
+	description as grafanaMaintenanceListGetDescription,
+} from './database/grafana/maintenanceListGet.operation';
+
+import {
+	execute as grafanaMetricGetExecute,
+	description as grafanaMetricGetDescription,
+} from './database/grafana/metricGet.operation';
+
+import {
+	execute as grafanaMetricListGetExecute,
+	description as grafanaMetricListGetDescription,
+} from './database/grafana/metricListGet.operation';
+
+import {
+	execute as grafanaNodeGetGetExecute,
+	description as grafanaNodeGetGetDescription,
+} from './database/grafana/nodeGetGet.operation';
+
+import {
+	execute as grafanaNodeListGetExecute,
+	description as grafanaNodeListGetDescription,
+} from './database/grafana/nodeListGet.operation';
+
+import {
+	execute as grafanaUserCredentialsResetPostExecute,
+	description as grafanaUserCredentialsResetPostDescription,
+} from './database/grafana/userCredentialsResetPost.operation';
+
+import {
+	execute as grafanaUserGetGetExecute,
+	description as grafanaUserGetGetDescription,
+} from './database/grafana/userGetGet.operation';
+
+import {
+	execute as grafanaUserListGetExecute,
+	description as grafanaUserListGetDescription,
+} from './database/grafana/userListGet.operation';
+
+import {
 	execute as kafkaAclCreatePostExecute,
+	description as kafkaAclCreatePostDescription,
 } from './database/kafka/aclCreatePost.operation';
-	import {
-	description as kafkaAclGetGetDescription,
-	execute as kafkaAclGetGetExecute,
-} from './database/kafka/aclGetGet.operation';
-	import {
-	description as kafkaAclDeleteDeleteDescription,
+
+import {
 	execute as kafkaAclDeleteDeleteExecute,
+	description as kafkaAclDeleteDeleteDescription,
 } from './database/kafka/aclDeleteDelete.operation';
-	import {
-	description as kafkaAdvancedConfigurationGetDescription,
+
+import {
+	execute as kafkaAclGetGetExecute,
+	description as kafkaAclGetGetDescription,
+} from './database/kafka/aclGetGet.operation';
+
+import {
+	execute as kafkaAclListGetExecute,
+	description as kafkaAclListGetDescription,
+} from './database/kafka/aclListGet.operation';
+
+import {
 	execute as kafkaAdvancedConfigurationGetExecute,
+	description as kafkaAdvancedConfigurationGetDescription,
 } from './database/kafka/advancedConfigurationGet.operation';
-	import {
-	description as kafkaAdvancedConfigurationUpdatePutDescription,
+
+import {
 	execute as kafkaAdvancedConfigurationUpdatePutExecute,
+	description as kafkaAdvancedConfigurationUpdatePutDescription,
 } from './database/kafka/advancedConfigurationUpdatePut.operation';
-	import {
-	description as kafkaCapabilitiesAdvancedConfigurationGetDescription,
+
+import {
 	execute as kafkaCapabilitiesAdvancedConfigurationGetExecute,
+	description as kafkaCapabilitiesAdvancedConfigurationGetDescription,
 } from './database/kafka/capabilitiesAdvancedConfigurationGet.operation';
-	import {
-	description as kafkaCapabilitiesBackupRegionsGetDescription,
+
+import {
 	execute as kafkaCapabilitiesBackupRegionsGetExecute,
+	description as kafkaCapabilitiesBackupRegionsGetDescription,
 } from './database/kafka/capabilitiesBackupRegionsGet.operation';
-	import {
-	description as kafkaCapabilitiesIntegrationGetDescription,
+
+import {
 	execute as kafkaCapabilitiesIntegrationGetExecute,
+	description as kafkaCapabilitiesIntegrationGetDescription,
 } from './database/kafka/capabilitiesIntegrationGet.operation';
-	import {
-	description as kafkaCertificateListGetDescription,
+
+import {
 	execute as kafkaCertificateListGetExecute,
+	description as kafkaCertificateListGetDescription,
 } from './database/kafka/certificateListGet.operation';
-	import {
-	description as kafkaIntegrationListGetDescription,
-	execute as kafkaIntegrationListGetExecute,
-} from './database/kafka/integrationListGet.operation';
-	import {
-	description as kafkaIntegrationCreatePostDescription,
+
+import {
+	execute as kafkaClusterCreatePostExecute,
+	description as kafkaClusterCreatePostDescription,
+} from './database/kafka/clusterCreatePost.operation';
+
+import {
+	execute as kafkaClusterDeleteDeleteExecute,
+	description as kafkaClusterDeleteDeleteDescription,
+} from './database/kafka/clusterDeleteDelete.operation';
+
+import {
+	execute as kafkaClusterGetGetExecute,
+	description as kafkaClusterGetGetDescription,
+} from './database/kafka/clusterGetGet.operation';
+
+import {
+	execute as kafkaClusterListGetExecute,
+	description as kafkaClusterListGetDescription,
+} from './database/kafka/clusterListGet.operation';
+
+import {
+	execute as kafkaClusterUpdatePutExecute,
+	description as kafkaClusterUpdatePutDescription,
+} from './database/kafka/clusterUpdatePut.operation';
+
+import {
 	execute as kafkaIntegrationCreatePostExecute,
+	description as kafkaIntegrationCreatePostDescription,
 } from './database/kafka/integrationCreatePost.operation';
-	import {
-	description as kafkaIntegrationGetGetDescription,
-	execute as kafkaIntegrationGetGetExecute,
-} from './database/kafka/integrationGetGet.operation';
-	import {
-	description as kafkaIntegrationDeleteDeleteDescription,
+
+import {
 	execute as kafkaIntegrationDeleteDeleteExecute,
+	description as kafkaIntegrationDeleteDeleteDescription,
 } from './database/kafka/integrationDeleteDelete.operation';
-	import {
-	description as kafkaIpRestrictionListGetDescription,
-	execute as kafkaIpRestrictionListGetExecute,
-} from './database/kafka/ipRestrictionListGet.operation';
-	import {
-	description as kafkaIpRestrictionCreatePostDescription,
+
+import {
+	execute as kafkaIntegrationGetGetExecute,
+	description as kafkaIntegrationGetGetDescription,
+} from './database/kafka/integrationGetGet.operation';
+
+import {
+	execute as kafkaIntegrationListGetExecute,
+	description as kafkaIntegrationListGetDescription,
+} from './database/kafka/integrationListGet.operation';
+
+import {
 	execute as kafkaIpRestrictionCreatePostExecute,
+	description as kafkaIpRestrictionCreatePostDescription,
 } from './database/kafka/ipRestrictionCreatePost.operation';
-	import {
-	description as kafkaIpRestrictionGetGetDescription,
-	execute as kafkaIpRestrictionGetGetExecute,
-} from './database/kafka/ipRestrictionGetGet.operation';
-	import {
-	description as kafkaIpRestrictionUpdatePutDescription,
-	execute as kafkaIpRestrictionUpdatePutExecute,
-} from './database/kafka/ipRestrictionUpdatePut.operation';
-	import {
-	description as kafkaIpRestrictionDeleteDeleteDescription,
+
+import {
 	execute as kafkaIpRestrictionDeleteDeleteExecute,
+	description as kafkaIpRestrictionDeleteDeleteDescription,
 } from './database/kafka/ipRestrictionDeleteDelete.operation';
-	import {
-	description as kafkaLogKindListGetDescription,
-	execute as kafkaLogKindListGetExecute,
-} from './database/kafka/logKindListGet.operation';
-	import {
-	description as kafkaLogKindGetDescription,
+
+import {
+	execute as kafkaIpRestrictionGetGetExecute,
+	description as kafkaIpRestrictionGetGetDescription,
+} from './database/kafka/ipRestrictionGetGet.operation';
+
+import {
+	execute as kafkaIpRestrictionListGetExecute,
+	description as kafkaIpRestrictionListGetDescription,
+} from './database/kafka/ipRestrictionListGet.operation';
+
+import {
+	execute as kafkaIpRestrictionUpdatePutExecute,
+	description as kafkaIpRestrictionUpdatePutDescription,
+} from './database/kafka/ipRestrictionUpdatePut.operation';
+
+import {
 	execute as kafkaLogKindGetExecute,
+	description as kafkaLogKindGetDescription,
 } from './database/kafka/logKindGet.operation';
-	import {
-	description as kafkaLogSubscriptionListGetDescription,
-	execute as kafkaLogSubscriptionListGetExecute,
-} from './database/kafka/logSubscriptionListGet.operation';
-	import {
-	description as kafkaLogSubscriptionCreatePostDescription,
+
+import {
+	execute as kafkaLogKindListGetExecute,
+	description as kafkaLogKindListGetDescription,
+} from './database/kafka/logKindListGet.operation';
+
+import {
 	execute as kafkaLogSubscriptionCreatePostExecute,
+	description as kafkaLogSubscriptionCreatePostDescription,
 } from './database/kafka/logSubscriptionCreatePost.operation';
-	import {
-	description as kafkaLogSubscriptionGetGetDescription,
-	execute as kafkaLogSubscriptionGetGetExecute,
-} from './database/kafka/logSubscriptionGetGet.operation';
-	import {
-	description as kafkaLogSubscriptionDeleteDeleteDescription,
+
+import {
 	execute as kafkaLogSubscriptionDeleteDeleteExecute,
+	description as kafkaLogSubscriptionDeleteDeleteDescription,
 } from './database/kafka/logSubscriptionDeleteDelete.operation';
-	import {
-	description as kafkaLogUrlCreatePostDescription,
+
+import {
+	execute as kafkaLogSubscriptionGetGetExecute,
+	description as kafkaLogSubscriptionGetGetDescription,
+} from './database/kafka/logSubscriptionGetGet.operation';
+
+import {
+	execute as kafkaLogSubscriptionListGetExecute,
+	description as kafkaLogSubscriptionListGetDescription,
+} from './database/kafka/logSubscriptionListGet.operation';
+
+import {
 	execute as kafkaLogUrlCreatePostExecute,
+	description as kafkaLogUrlCreatePostDescription,
 } from './database/kafka/logUrlCreatePost.operation';
-	import {
-	description as kafkaLogsGetDescription,
+
+import {
 	execute as kafkaLogsGetExecute,
+	description as kafkaLogsGetDescription,
 } from './database/kafka/logsGet.operation';
-	import {
-	description as kafkaMaintenanceListGetDescription,
-	execute as kafkaMaintenanceListGetExecute,
-} from './database/kafka/maintenanceListGet.operation';
-	import {
-	description as kafkaMaintenanceGetDescription,
-	execute as kafkaMaintenanceGetExecute,
-} from './database/kafka/maintenanceGet.operation';
-	import {
-	description as kafkaMaintenanceApplyPostDescription,
+
+import {
 	execute as kafkaMaintenanceApplyPostExecute,
+	description as kafkaMaintenanceApplyPostDescription,
 } from './database/kafka/maintenanceApplyPost.operation';
-	import {
-	description as kafkaMetricListGetDescription,
-	execute as kafkaMetricListGetExecute,
-} from './database/kafka/metricListGet.operation';
-	import {
-	description as kafkaMetricGetDescription,
+
+import {
+	execute as kafkaMaintenanceGetExecute,
+	description as kafkaMaintenanceGetDescription,
+} from './database/kafka/maintenanceGet.operation';
+
+import {
+	execute as kafkaMaintenanceListGetExecute,
+	description as kafkaMaintenanceListGetDescription,
+} from './database/kafka/maintenanceListGet.operation';
+
+import {
 	execute as kafkaMetricGetExecute,
+	description as kafkaMetricGetDescription,
 } from './database/kafka/metricGet.operation';
-	import {
-	description as kafkaNodeListGetDescription,
-	execute as kafkaNodeListGetExecute,
-} from './database/kafka/nodeListGet.operation';
-	import {
-	description as kafkaNodeGetGetDescription,
+
+import {
+	execute as kafkaMetricListGetExecute,
+	description as kafkaMetricListGetDescription,
+} from './database/kafka/metricListGet.operation';
+
+import {
 	execute as kafkaNodeGetGetExecute,
+	description as kafkaNodeGetGetDescription,
 } from './database/kafka/nodeGetGet.operation';
-	import {
-	description as kafkaPermissionsGetDescription,
+
+import {
+	execute as kafkaNodeListGetExecute,
+	description as kafkaNodeListGetDescription,
+} from './database/kafka/nodeListGet.operation';
+
+import {
 	execute as kafkaPermissionsGetExecute,
+	description as kafkaPermissionsGetDescription,
 } from './database/kafka/permissionsGet.operation';
-	import {
-	description as kafkaPrometheusGetDescription,
-	execute as kafkaPrometheusGetExecute,
-} from './database/kafka/prometheusGet.operation';
-	import {
-	description as kafkaPrometheusCredentialsResetPostDescription,
+
+import {
 	execute as kafkaPrometheusCredentialsResetPostExecute,
+	description as kafkaPrometheusCredentialsResetPostDescription,
 } from './database/kafka/prometheusCredentialsResetPost.operation';
-	import {
-	description as kafkaSchemaRegistryAclListGetDescription,
-	execute as kafkaSchemaRegistryAclListGetExecute,
-} from './database/kafka/schemaRegistryAclListGet.operation';
-	import {
-	description as kafkaSchemaRegistryAclCreatePostDescription,
+
+import {
+	execute as kafkaPrometheusGetExecute,
+	description as kafkaPrometheusGetDescription,
+} from './database/kafka/prometheusGet.operation';
+
+import {
 	execute as kafkaSchemaRegistryAclCreatePostExecute,
+	description as kafkaSchemaRegistryAclCreatePostDescription,
 } from './database/kafka/schemaRegistryAclCreatePost.operation';
-	import {
-	description as kafkaSchemaRegistryAclGetGetDescription,
-	execute as kafkaSchemaRegistryAclGetGetExecute,
-} from './database/kafka/schemaRegistryAclGetGet.operation';
-	import {
-	description as kafkaSchemaRegistryAclDeleteDeleteDescription,
+
+import {
 	execute as kafkaSchemaRegistryAclDeleteDeleteExecute,
+	description as kafkaSchemaRegistryAclDeleteDeleteDescription,
 } from './database/kafka/schemaRegistryAclDeleteDelete.operation';
-	import {
-	description as kafkaTopicListGetDescription,
-	execute as kafkaTopicListGetExecute,
-} from './database/kafka/topicListGet.operation';
-	import {
-	description as kafkaTopicCreatePostDescription,
-	execute as kafkaTopicCreatePostExecute,
-} from './database/kafka/topicCreatePost.operation';
-	import {
-	description as kafkaTopicGetGetDescription,
-	execute as kafkaTopicGetGetExecute,
-} from './database/kafka/topicGetGet.operation';
-	import {
-	description as kafkaTopicUpdatePutDescription,
-	execute as kafkaTopicUpdatePutExecute,
-} from './database/kafka/topicUpdatePut.operation';
-	import {
-	description as kafkaTopicDeleteDeleteDescription,
-	execute as kafkaTopicDeleteDeleteExecute,
-} from './database/kafka/topicDeleteDelete.operation';
-	import {
-	description as kafkaTopicAclListGetDescription,
-	execute as kafkaTopicAclListGetExecute,
-} from './database/kafka/topicAclListGet.operation';
-	import {
-	description as kafkaTopicAclCreatePostDescription,
+
+import {
+	execute as kafkaSchemaRegistryAclGetGetExecute,
+	description as kafkaSchemaRegistryAclGetGetDescription,
+} from './database/kafka/schemaRegistryAclGetGet.operation';
+
+import {
+	execute as kafkaSchemaRegistryAclListGetExecute,
+	description as kafkaSchemaRegistryAclListGetDescription,
+} from './database/kafka/schemaRegistryAclListGet.operation';
+
+import {
 	execute as kafkaTopicAclCreatePostExecute,
+	description as kafkaTopicAclCreatePostDescription,
 } from './database/kafka/topicAclCreatePost.operation';
-	import {
-	description as kafkaTopicAclGetGetDescription,
-	execute as kafkaTopicAclGetGetExecute,
-} from './database/kafka/topicAclGetGet.operation';
-	import {
-	description as kafkaTopicAclDeleteDeleteDescription,
+
+import {
 	execute as kafkaTopicAclDeleteDeleteExecute,
+	description as kafkaTopicAclDeleteDeleteDescription,
 } from './database/kafka/topicAclDeleteDelete.operation';
-	import {
-	description as kafkaUserListGetDescription,
-	execute as kafkaUserListGetExecute,
-} from './database/kafka/userListGet.operation';
-	import {
-	description as kafkaUserCreatePostDescription,
-	execute as kafkaUserCreatePostExecute,
-} from './database/kafka/userCreatePost.operation';
-	import {
-	description as kafkaUserGetGetDescription,
-	execute as kafkaUserGetGetExecute,
-} from './database/kafka/userGetGet.operation';
-	import {
-	description as kafkaUserDeleteDeleteDescription,
-	execute as kafkaUserDeleteDeleteExecute,
-} from './database/kafka/userDeleteDelete.operation';
-	import {
-	description as kafkaUserAccessGetDescription,
+
+import {
+	execute as kafkaTopicAclGetGetExecute,
+	description as kafkaTopicAclGetGetDescription,
+} from './database/kafka/topicAclGetGet.operation';
+
+import {
+	execute as kafkaTopicAclListGetExecute,
+	description as kafkaTopicAclListGetDescription,
+} from './database/kafka/topicAclListGet.operation';
+
+import {
+	execute as kafkaTopicCreatePostExecute,
+	description as kafkaTopicCreatePostDescription,
+} from './database/kafka/topicCreatePost.operation';
+
+import {
+	execute as kafkaTopicDeleteDeleteExecute,
+	description as kafkaTopicDeleteDeleteDescription,
+} from './database/kafka/topicDeleteDelete.operation';
+
+import {
+	execute as kafkaTopicGetGetExecute,
+	description as kafkaTopicGetGetDescription,
+} from './database/kafka/topicGetGet.operation';
+
+import {
+	execute as kafkaTopicListGetExecute,
+	description as kafkaTopicListGetDescription,
+} from './database/kafka/topicListGet.operation';
+
+import {
+	execute as kafkaTopicUpdatePutExecute,
+	description as kafkaTopicUpdatePutDescription,
+} from './database/kafka/topicUpdatePut.operation';
+
+import {
 	execute as kafkaUserAccessGetExecute,
+	description as kafkaUserAccessGetDescription,
 } from './database/kafka/userAccessGet.operation';
-	import {
-	description as kafkaUserCredentialsResetPostDescription,
+
+import {
+	execute as kafkaUserCreatePostExecute,
+	description as kafkaUserCreatePostDescription,
+} from './database/kafka/userCreatePost.operation';
+
+import {
 	execute as kafkaUserCredentialsResetPostExecute,
+	description as kafkaUserCredentialsResetPostDescription,
 } from './database/kafka/userCredentialsResetPost.operation';
 
-	import {
-	description as kafkaConnectClusterListGetDescription,
-	execute as kafkaConnectClusterListGetExecute,
-} from './database/kafkaConnect/clusterListGet.operation';
-	import {
-	description as kafkaConnectClusterGetGetDescription,
-	execute as kafkaConnectClusterGetGetExecute,
-} from './database/kafkaConnect/clusterGetGet.operation';
-	import {
-	description as kafkaConnectClusterCreatePostDescription,
-	execute as kafkaConnectClusterCreatePostExecute,
-} from './database/kafkaConnect/clusterCreatePost.operation';
-	import {
-	description as kafkaConnectClusterUpdatePutDescription,
-	execute as kafkaConnectClusterUpdatePutExecute,
-} from './database/kafkaConnect/clusterUpdatePut.operation';
-	import {
-	description as kafkaConnectClusterDeleteDeleteDescription,
-	execute as kafkaConnectClusterDeleteDeleteExecute,
-} from './database/kafkaConnect/clusterDeleteDelete.operation';
-	import {
-	description as kafkaConnectBackupListGetDescription,
-	execute as kafkaConnectBackupListGetExecute,
-} from './database/kafkaConnect/backupListGet.operation';
-	import {
-	description as kafkaConnectBackupCreatePostDescription,
-	execute as kafkaConnectBackupCreatePostExecute,
-} from './database/kafkaConnect/backupCreatePost.operation';
-	import {
-	description as kafkaConnectBackupGetGetDescription,
-	execute as kafkaConnectBackupGetGetExecute,
-} from './database/kafkaConnect/backupGetGet.operation';
-	import {
-	description as kafkaConnectBackupDeleteDeleteDescription,
-	execute as kafkaConnectBackupDeleteDeleteExecute,
-} from './database/kafkaConnect/backupDeleteDelete.operation';
-	import {
-	description as kafkaConnectUserListGetDescription,
-	execute as kafkaConnectUserListGetExecute,
-} from './database/kafkaConnect/userListGet.operation';
-	import {
-	description as kafkaConnectUserCreatePostDescription,
-	execute as kafkaConnectUserCreatePostExecute,
-} from './database/kafkaConnect/userCreatePost.operation';
-	import {
-	description as kafkaConnectUserGetGetDescription,
-	execute as kafkaConnectUserGetGetExecute,
-} from './database/kafkaConnect/userGetGet.operation';
-	import {
-	description as kafkaConnectUserUpdatePutDescription,
-	execute as kafkaConnectUserUpdatePutExecute,
-} from './database/kafkaConnect/userUpdatePut.operation';
-	import {
-	description as kafkaConnectUserDeleteDeleteDescription,
-	execute as kafkaConnectUserDeleteDeleteExecute,
-} from './database/kafkaConnect/userDeleteDelete.operation';
-	import {
-	description as kafkaConnectNodeListGetDescription,
-	execute as kafkaConnectNodeListGetExecute,
-} from './database/kafkaConnect/nodeListGet.operation';
-	import {
-	description as kafkaConnectNodeCreatePostDescription,
-	execute as kafkaConnectNodeCreatePostExecute,
-} from './database/kafkaConnect/nodeCreatePost.operation';
-	import {
-	description as kafkaConnectNodeGetGetDescription,
-	execute as kafkaConnectNodeGetGetExecute,
-} from './database/kafkaConnect/nodeGetGet.operation';
-	import {
-	description as kafkaConnectNodeUpdatePutDescription,
-	execute as kafkaConnectNodeUpdatePutExecute,
-} from './database/kafkaConnect/nodeUpdatePut.operation';
-	import {
-	description as kafkaConnectNodeDeleteDeleteDescription,
-	execute as kafkaConnectNodeDeleteDeleteExecute,
-} from './database/kafkaConnect/nodeDeleteDelete.operation';
-	import {
-	description as kafkaConnectIpRestrictionListGetDescription,
-	execute as kafkaConnectIpRestrictionListGetExecute,
-} from './database/kafkaConnect/ipRestrictionListGet.operation';
-	import {
-	description as kafkaConnectIpRestrictionCreatePostDescription,
-	execute as kafkaConnectIpRestrictionCreatePostExecute,
-} from './database/kafkaConnect/ipRestrictionCreatePost.operation';
-	import {
-	description as kafkaConnectLogSubscriptionListGetDescription,
-	execute as kafkaConnectLogSubscriptionListGetExecute,
-} from './database/kafkaConnect/logSubscriptionListGet.operation';
-	import {
-	description as kafkaConnectLogSubscriptionCreatePostDescription,
-	execute as kafkaConnectLogSubscriptionCreatePostExecute,
-} from './database/kafkaConnect/logSubscriptionCreatePost.operation';
-	import {
-	description as kafkaConnectLogSubscriptionGetGetDescription,
-	execute as kafkaConnectLogSubscriptionGetGetExecute,
-} from './database/kafkaConnect/logSubscriptionGetGet.operation';
-	import {
-	description as kafkaConnectMaintenanceGetDescription,
-	execute as kafkaConnectMaintenanceGetExecute,
-} from './database/kafkaConnect/maintenanceGet.operation';
-	import {
-	description as kafkaConnectMaintenanceUpdatePutDescription,
-	execute as kafkaConnectMaintenanceUpdatePutExecute,
-} from './database/kafkaConnect/maintenanceUpdatePut.operation';
-	import {
-	description as kafkaConnectMetricGetDescription,
-	execute as kafkaConnectMetricGetExecute,
-} from './database/kafkaConnect/metricGet.operation';
-	import {
-	description as kafkaConnectPrometheusGetDescription,
-	execute as kafkaConnectPrometheusGetExecute,
-} from './database/kafkaConnect/prometheusGet.operation';
-	import {
-	description as kafkaConnectCertificateListGetDescription,
-	execute as kafkaConnectCertificateListGetExecute,
-} from './database/kafkaConnect/certificateListGet.operation';
-	import {
-	description as kafkaConnectCertificateCreatePostDescription,
-	execute as kafkaConnectCertificateCreatePostExecute,
-} from './database/kafkaConnect/certificateCreatePost.operation';
-	import {
-	description as kafkaConnectadvancedConfigurationGetDescription,
+import {
+	execute as kafkaUserDeleteDeleteExecute,
+	description as kafkaUserDeleteDeleteDescription,
+} from './database/kafka/userDeleteDelete.operation';
+
+import {
+	execute as kafkaUserGetGetExecute,
+	description as kafkaUserGetGetDescription,
+} from './database/kafka/userGetGet.operation';
+
+import {
+	execute as kafkaUserListGetExecute,
+	description as kafkaUserListGetDescription,
+} from './database/kafka/userListGet.operation';
+
+import {
 	execute as kafkaConnectadvancedConfigurationGetExecute,
+	description as kafkaConnectadvancedConfigurationGetDescription,
 } from './database/kafkaConnect/advancedConfigurationGet.operation';
-	import {
-	description as kafkaConnectadvancedConfigurationUpdatePutDescription,
+
+import {
 	execute as kafkaConnectadvancedConfigurationUpdatePutExecute,
+	description as kafkaConnectadvancedConfigurationUpdatePutDescription,
 } from './database/kafkaConnect/advancedConfigurationUpdatePut.operation';
-	import {
-	description as kafkaConnectcapabilitiesAdvancedConfigurationGetDescription,
+
+import {
+	execute as kafkaConnectBackupCreatePostExecute,
+	description as kafkaConnectBackupCreatePostDescription,
+} from './database/kafkaConnect/backupCreatePost.operation';
+
+import {
+	execute as kafkaConnectBackupDeleteDeleteExecute,
+	description as kafkaConnectBackupDeleteDeleteDescription,
+} from './database/kafkaConnect/backupDeleteDelete.operation';
+
+import {
+	execute as kafkaConnectBackupGetGetExecute,
+	description as kafkaConnectBackupGetGetDescription,
+} from './database/kafkaConnect/backupGetGet.operation';
+
+import {
+	execute as kafkaConnectBackupListGetExecute,
+	description as kafkaConnectBackupListGetDescription,
+} from './database/kafkaConnect/backupListGet.operation';
+
+import {
 	execute as kafkaConnectcapabilitiesAdvancedConfigurationGetExecute,
+	description as kafkaConnectcapabilitiesAdvancedConfigurationGetDescription,
 } from './database/kafkaConnect/capabilitiesAdvancedConfigurationGet.operation';
-	import {
-	description as kafkaConnectcapabilitiesBackupRegionsGetDescription,
+
+import {
 	execute as kafkaConnectcapabilitiesBackupRegionsGetExecute,
+	description as kafkaConnectcapabilitiesBackupRegionsGetDescription,
 } from './database/kafkaConnect/capabilitiesBackupRegionsGet.operation';
-	import {
-	description as kafkaConnectcapabilitiesConnectorListGetDescription,
-	execute as kafkaConnectcapabilitiesConnectorListGetExecute,
-} from './database/kafkaConnect/capabilitiesConnectorListGet.operation';
-	import {
-	description as kafkaConnectcapabilitiesConnectorGetDescription,
-	execute as kafkaConnectcapabilitiesConnectorGetExecute,
-} from './database/kafkaConnect/capabilitiesConnectorGet.operation';
-	import {
-	description as kafkaConnectcapabilitiesConnectorConfigurationGetDescription,
+
+import {
 	execute as kafkaConnectcapabilitiesConnectorConfigurationGetExecute,
+	description as kafkaConnectcapabilitiesConnectorConfigurationGetDescription,
 } from './database/kafkaConnect/capabilitiesConnectorConfigurationGet.operation';
-	import {
-	description as kafkaConnectcapabilitiesConnectorTransformsGetDescription,
+
+import {
+	execute as kafkaConnectcapabilitiesConnectorGetExecute,
+	description as kafkaConnectcapabilitiesConnectorGetDescription,
+} from './database/kafkaConnect/capabilitiesConnectorGet.operation';
+
+import {
+	execute as kafkaConnectcapabilitiesConnectorListGetExecute,
+	description as kafkaConnectcapabilitiesConnectorListGetDescription,
+} from './database/kafkaConnect/capabilitiesConnectorListGet.operation';
+
+import {
 	execute as kafkaConnectcapabilitiesConnectorTransformsGetExecute,
+	description as kafkaConnectcapabilitiesConnectorTransformsGetDescription,
 } from './database/kafkaConnect/capabilitiesConnectorTransformsGet.operation';
-	import {
-	description as kafkaConnectcapabilitiesIntegrationGetDescription,
+
+import {
 	execute as kafkaConnectcapabilitiesIntegrationGetExecute,
+	description as kafkaConnectcapabilitiesIntegrationGetDescription,
 } from './database/kafkaConnect/capabilitiesIntegrationGet.operation';
-	import {
-	description as kafkaConnectconnectorListGetDescription,
-	execute as kafkaConnectconnectorListGetExecute,
-} from './database/kafkaConnect/connectorListGet.operation';
-	import {
-	description as kafkaConnectconnectorCreatePostDescription,
+
+import {
+	execute as kafkaConnectCertificateCreatePostExecute,
+	description as kafkaConnectCertificateCreatePostDescription,
+} from './database/kafkaConnect/certificateCreatePost.operation';
+
+import {
+	execute as kafkaConnectCertificateListGetExecute,
+	description as kafkaConnectCertificateListGetDescription,
+} from './database/kafkaConnect/certificateListGet.operation';
+
+import {
+	execute as kafkaConnectClusterCreatePostExecute,
+	description as kafkaConnectClusterCreatePostDescription,
+} from './database/kafkaConnect/clusterCreatePost.operation';
+
+import {
+	execute as kafkaConnectClusterDeleteDeleteExecute,
+	description as kafkaConnectClusterDeleteDeleteDescription,
+} from './database/kafkaConnect/clusterDeleteDelete.operation';
+
+import {
+	execute as kafkaConnectClusterGetGetExecute,
+	description as kafkaConnectClusterGetGetDescription,
+} from './database/kafkaConnect/clusterGetGet.operation';
+
+import {
+	execute as kafkaConnectClusterListGetExecute,
+	description as kafkaConnectClusterListGetDescription,
+} from './database/kafkaConnect/clusterListGet.operation';
+
+import {
+	execute as kafkaConnectClusterUpdatePutExecute,
+	description as kafkaConnectClusterUpdatePutDescription,
+} from './database/kafkaConnect/clusterUpdatePut.operation';
+
+import {
 	execute as kafkaConnectconnectorCreatePostExecute,
+	description as kafkaConnectconnectorCreatePostDescription,
 } from './database/kafkaConnect/connectorCreatePost.operation';
-	import {
-	description as kafkaConnectconnectorGetGetDescription,
-	execute as kafkaConnectconnectorGetGetExecute,
-} from './database/kafkaConnect/connectorGetGet.operation';
-	import {
-	description as kafkaConnectconnectorUpdatePutDescription,
-	execute as kafkaConnectconnectorUpdatePutExecute,
-} from './database/kafkaConnect/connectorUpdatePut.operation';
-	import {
-	description as kafkaConnectconnectorDeleteDeleteDescription,
+
+import {
 	execute as kafkaConnectconnectorDeleteDeleteExecute,
+	description as kafkaConnectconnectorDeleteDeleteDescription,
 } from './database/kafkaConnect/connectorDeleteDelete.operation';
-	import {
-	description as kafkaConnectconnectorPausePostDescription,
+
+import {
+	execute as kafkaConnectconnectorGetGetExecute,
+	description as kafkaConnectconnectorGetGetDescription,
+} from './database/kafkaConnect/connectorGetGet.operation';
+
+import {
+	execute as kafkaConnectconnectorListGetExecute,
+	description as kafkaConnectconnectorListGetDescription,
+} from './database/kafkaConnect/connectorListGet.operation';
+
+import {
 	execute as kafkaConnectconnectorPausePostExecute,
+	description as kafkaConnectconnectorPausePostDescription,
 } from './database/kafkaConnect/connectorPausePost.operation';
-	import {
-	description as kafkaConnectconnectorRestartPostDescription,
+
+import {
 	execute as kafkaConnectconnectorRestartPostExecute,
+	description as kafkaConnectconnectorRestartPostDescription,
 } from './database/kafkaConnect/connectorRestartPost.operation';
-	import {
-	description as kafkaConnectconnectorResumePostDescription,
+
+import {
 	execute as kafkaConnectconnectorResumePostExecute,
+	description as kafkaConnectconnectorResumePostDescription,
 } from './database/kafkaConnect/connectorResumePost.operation';
-	import {
-	description as kafkaConnectconnectorTaskListGetDescription,
-	execute as kafkaConnectconnectorTaskListGetExecute,
-} from './database/kafkaConnect/connectorTaskListGet.operation';
-	import {
-	description as kafkaConnectconnectorTaskGetDescription,
+
+import {
 	execute as kafkaConnectconnectorTaskGetExecute,
+	description as kafkaConnectconnectorTaskGetDescription,
 } from './database/kafkaConnect/connectorTaskGet.operation';
-	import {
-	description as kafkaConnectconnectorTaskRestartPostDescription,
+
+import {
+	execute as kafkaConnectconnectorTaskListGetExecute,
+	description as kafkaConnectconnectorTaskListGetDescription,
+} from './database/kafkaConnect/connectorTaskListGet.operation';
+
+import {
 	execute as kafkaConnectconnectorTaskRestartPostExecute,
+	description as kafkaConnectconnectorTaskRestartPostDescription,
 } from './database/kafkaConnect/connectorTaskRestartPost.operation';
-	import {
-	description as kafkaConnectintegrationListGetDescription,
-	execute as kafkaConnectintegrationListGetExecute,
-} from './database/kafkaConnect/integrationListGet.operation';
-	import {
-	description as kafkaConnectintegrationCreatePostDescription,
+
+import {
+	execute as kafkaConnectconnectorUpdatePutExecute,
+	description as kafkaConnectconnectorUpdatePutDescription,
+} from './database/kafkaConnect/connectorUpdatePut.operation';
+
+import {
 	execute as kafkaConnectintegrationCreatePostExecute,
+	description as kafkaConnectintegrationCreatePostDescription,
 } from './database/kafkaConnect/integrationCreatePost.operation';
-	import {
-	description as kafkaConnectintegrationGetGetDescription,
-	execute as kafkaConnectintegrationGetGetExecute,
-} from './database/kafkaConnect/integrationGetGet.operation';
-	import {
-	description as kafkaConnectintegrationDeleteDeleteDescription,
+
+import {
 	execute as kafkaConnectintegrationDeleteDeleteExecute,
+	description as kafkaConnectintegrationDeleteDeleteDescription,
 } from './database/kafkaConnect/integrationDeleteDelete.operation';
-	import {
-	description as kafkaConnectipRestrictionGetGetDescription,
-	execute as kafkaConnectipRestrictionGetGetExecute,
-} from './database/kafkaConnect/ipRestrictionGetGet.operation';
-	import {
-	description as kafkaConnectipRestrictionUpdatePutDescription,
-	execute as kafkaConnectipRestrictionUpdatePutExecute,
-} from './database/kafkaConnect/ipRestrictionUpdatePut.operation';
-	import {
-	description as kafkaConnectipRestrictionDeleteDeleteDescription,
+
+import {
+	execute as kafkaConnectintegrationGetGetExecute,
+	description as kafkaConnectintegrationGetGetDescription,
+} from './database/kafkaConnect/integrationGetGet.operation';
+
+import {
+	execute as kafkaConnectintegrationListGetExecute,
+	description as kafkaConnectintegrationListGetDescription,
+} from './database/kafkaConnect/integrationListGet.operation';
+
+import {
+	execute as kafkaConnectIpRestrictionCreatePostExecute,
+	description as kafkaConnectIpRestrictionCreatePostDescription,
+} from './database/kafkaConnect/ipRestrictionCreatePost.operation';
+
+import {
 	execute as kafkaConnectipRestrictionDeleteDeleteExecute,
+	description as kafkaConnectipRestrictionDeleteDeleteDescription,
 } from './database/kafkaConnect/ipRestrictionDeleteDelete.operation';
-	import {
-	description as kafkaConnectlogKindListGetDescription,
-	execute as kafkaConnectlogKindListGetExecute,
-} from './database/kafkaConnect/logKindListGet.operation';
-	import {
-	description as kafkaConnectlogKindGetDescription,
+
+import {
+	execute as kafkaConnectipRestrictionGetGetExecute,
+	description as kafkaConnectipRestrictionGetGetDescription,
+} from './database/kafkaConnect/ipRestrictionGetGet.operation';
+
+import {
+	execute as kafkaConnectIpRestrictionListGetExecute,
+	description as kafkaConnectIpRestrictionListGetDescription,
+} from './database/kafkaConnect/ipRestrictionListGet.operation';
+
+import {
+	execute as kafkaConnectipRestrictionUpdatePutExecute,
+	description as kafkaConnectipRestrictionUpdatePutDescription,
+} from './database/kafkaConnect/ipRestrictionUpdatePut.operation';
+
+import {
 	execute as kafkaConnectlogKindGetExecute,
+	description as kafkaConnectlogKindGetDescription,
 } from './database/kafkaConnect/logKindGet.operation';
-	import {
-	description as kafkaConnectlogSubscriptionDeleteDeleteDescription,
+
+import {
+	execute as kafkaConnectlogKindListGetExecute,
+	description as kafkaConnectlogKindListGetDescription,
+} from './database/kafkaConnect/logKindListGet.operation';
+
+import {
+	execute as kafkaConnectLogSubscriptionCreatePostExecute,
+	description as kafkaConnectLogSubscriptionCreatePostDescription,
+} from './database/kafkaConnect/logSubscriptionCreatePost.operation';
+
+import {
 	execute as kafkaConnectlogSubscriptionDeleteDeleteExecute,
+	description as kafkaConnectlogSubscriptionDeleteDeleteDescription,
 } from './database/kafkaConnect/logSubscriptionDeleteDelete.operation';
-	import {
-	description as kafkaConnectlogUrlCreatePostDescription,
+
+import {
+	execute as kafkaConnectLogSubscriptionGetGetExecute,
+	description as kafkaConnectLogSubscriptionGetGetDescription,
+} from './database/kafkaConnect/logSubscriptionGetGet.operation';
+
+import {
+	execute as kafkaConnectLogSubscriptionListGetExecute,
+	description as kafkaConnectLogSubscriptionListGetDescription,
+} from './database/kafkaConnect/logSubscriptionListGet.operation';
+
+import {
 	execute as kafkaConnectlogUrlCreatePostExecute,
+	description as kafkaConnectlogUrlCreatePostDescription,
 } from './database/kafkaConnect/logUrlCreatePost.operation';
-	import {
-	description as kafkaConnectlogsGetDescription,
+
+import {
 	execute as kafkaConnectlogsGetExecute,
+	description as kafkaConnectlogsGetDescription,
 } from './database/kafkaConnect/logsGet.operation';
-	import {
-	description as kafkaConnectmaintenanceListGetDescription,
-	execute as kafkaConnectmaintenanceListGetExecute,
-} from './database/kafkaConnect/maintenanceListGet.operation';
-	import {
-	description as kafkaConnectmaintenanceApplyPostDescription,
+
+import {
 	execute as kafkaConnectmaintenanceApplyPostExecute,
+	description as kafkaConnectmaintenanceApplyPostDescription,
 } from './database/kafkaConnect/maintenanceApplyPost.operation';
-	import {
-	description as kafkaConnectmetricListGetDescription,
+
+import {
+	execute as kafkaConnectMaintenanceGetExecute,
+	description as kafkaConnectMaintenanceGetDescription,
+} from './database/kafkaConnect/maintenanceGet.operation';
+
+import {
+	execute as kafkaConnectmaintenanceListGetExecute,
+	description as kafkaConnectmaintenanceListGetDescription,
+} from './database/kafkaConnect/maintenanceListGet.operation';
+
+import {
+	execute as kafkaConnectMaintenanceUpdatePutExecute,
+	description as kafkaConnectMaintenanceUpdatePutDescription,
+} from './database/kafkaConnect/maintenanceUpdatePut.operation';
+
+import {
+	execute as kafkaConnectMetricGetExecute,
+	description as kafkaConnectMetricGetDescription,
+} from './database/kafkaConnect/metricGet.operation';
+
+import {
 	execute as kafkaConnectmetricListGetExecute,
+	description as kafkaConnectmetricListGetDescription,
 } from './database/kafkaConnect/metricListGet.operation';
-	import {
-	description as kafkaConnectnodeGetDescription,
+
+import {
+	execute as kafkaConnectNodeCreatePostExecute,
+	description as kafkaConnectNodeCreatePostDescription,
+} from './database/kafkaConnect/nodeCreatePost.operation';
+
+import {
+	execute as kafkaConnectNodeDeleteDeleteExecute,
+	description as kafkaConnectNodeDeleteDeleteDescription,
+} from './database/kafkaConnect/nodeDeleteDelete.operation';
+
+import {
 	execute as kafkaConnectnodeGetExecute,
+	description as kafkaConnectnodeGetDescription,
 } from './database/kafkaConnect/nodeGet.operation';
-	import {
-	description as kafkaConnectprometheusCredentialsResetPostDescription,
+
+import {
+	execute as kafkaConnectNodeGetGetExecute,
+	description as kafkaConnectNodeGetGetDescription,
+} from './database/kafkaConnect/nodeGetGet.operation';
+
+import {
+	execute as kafkaConnectNodeListGetExecute,
+	description as kafkaConnectNodeListGetDescription,
+} from './database/kafkaConnect/nodeListGet.operation';
+
+import {
+	execute as kafkaConnectNodeUpdatePutExecute,
+	description as kafkaConnectNodeUpdatePutDescription,
+} from './database/kafkaConnect/nodeUpdatePut.operation';
+
+import {
 	execute as kafkaConnectprometheusCredentialsResetPostExecute,
+	description as kafkaConnectprometheusCredentialsResetPostDescription,
 } from './database/kafkaConnect/prometheusCredentialsResetPost.operation';
-	import {
-	description as kafkaConnectuserCredentialsResetPostDescription,
+
+import {
+	execute as kafkaConnectPrometheusGetExecute,
+	description as kafkaConnectPrometheusGetDescription,
+} from './database/kafkaConnect/prometheusGet.operation';
+
+import {
+	execute as kafkaConnectUserCreatePostExecute,
+	description as kafkaConnectUserCreatePostDescription,
+} from './database/kafkaConnect/userCreatePost.operation';
+
+import {
 	execute as kafkaConnectuserCredentialsResetPostExecute,
+	description as kafkaConnectuserCredentialsResetPostDescription,
 } from './database/kafkaConnect/userCredentialsResetPost.operation';
 
-	import {
-	description as kafkaMirrorMakerClusterListGetDescription,
-	execute as kafkaMirrorMakerClusterListGetExecute,
-} from './database/kafkaMirrorMaker/clusterListGet.operation';
+import {
+	execute as kafkaConnectUserDeleteDeleteExecute,
+	description as kafkaConnectUserDeleteDeleteDescription,
+} from './database/kafkaConnect/userDeleteDelete.operation';
 
-	import {
-	description as kafkaMirrorMakerClusterCreatePostDescription,
-	execute as kafkaMirrorMakerClusterCreatePostExecute,
-} from './database/kafkaMirrorMaker/clusterCreatePost.operation';
+import {
+	execute as kafkaConnectUserGetGetExecute,
+	description as kafkaConnectUserGetGetDescription,
+} from './database/kafkaConnect/userGetGet.operation';
 
-	import {
-	description as kafkaMirrorMakerClusterGetGetDescription,
-	execute as kafkaMirrorMakerClusterGetGetExecute,
-} from './database/kafkaMirrorMaker/clusterGetGet.operation';
+import {
+	execute as kafkaConnectUserListGetExecute,
+	description as kafkaConnectUserListGetDescription,
+} from './database/kafkaConnect/userListGet.operation';
 
-	import {
-	description as kafkaMirrorMakerClusterUpdatePutDescription,
-	execute as kafkaMirrorMakerClusterUpdatePutExecute,
-} from './database/kafkaMirrorMaker/clusterUpdatePut.operation';
+import {
+	execute as kafkaConnectUserUpdatePutExecute,
+	description as kafkaConnectUserUpdatePutDescription,
+} from './database/kafkaConnect/userUpdatePut.operation';
 
-	import {
-	description as kafkaMirrorMakerClusterDeleteDeleteDescription,
-	execute as kafkaMirrorMakerClusterDeleteDeleteExecute,
-} from './database/kafkaMirrorMaker/clusterDeleteDelete.operation';
-
-	import {
-	description as kafkaMirrorMakerCapabilitiesIntegrationGetDescription,
+import {
 	execute as kafkaMirrorMakerCapabilitiesIntegrationGetExecute,
+	description as kafkaMirrorMakerCapabilitiesIntegrationGetDescription,
 } from './database/kafkaMirrorMaker/capabilitiesIntegrationGet.operation';
 
-	import {
-	description as kafkaMirrorMakerIntegrationGetDescription,
-	execute as kafkaMirrorMakerIntegrationGetExecute,
-} from './database/kafkaMirrorMaker/integrationGet.operation';
+import {
+	execute as kafkaMirrorMakerClusterCreatePostExecute,
+	description as kafkaMirrorMakerClusterCreatePostDescription,
+} from './database/kafkaMirrorMaker/clusterCreatePost.operation';
 
-	import {
-	description as kafkaMirrorMakerIntegrationCreatePostDescription,
+import {
+	execute as kafkaMirrorMakerClusterDeleteDeleteExecute,
+	description as kafkaMirrorMakerClusterDeleteDeleteDescription,
+} from './database/kafkaMirrorMaker/clusterDeleteDelete.operation';
+
+import {
+	execute as kafkaMirrorMakerClusterGetGetExecute,
+	description as kafkaMirrorMakerClusterGetGetDescription,
+} from './database/kafkaMirrorMaker/clusterGetGet.operation';
+
+import {
+	execute as kafkaMirrorMakerClusterListGetExecute,
+	description as kafkaMirrorMakerClusterListGetDescription,
+} from './database/kafkaMirrorMaker/clusterListGet.operation';
+
+import {
+	execute as kafkaMirrorMakerClusterUpdatePutExecute,
+	description as kafkaMirrorMakerClusterUpdatePutDescription,
+} from './database/kafkaMirrorMaker/clusterUpdatePut.operation';
+
+import {
 	execute as kafkaMirrorMakerIntegrationCreatePostExecute,
+	description as kafkaMirrorMakerIntegrationCreatePostDescription,
 } from './database/kafkaMirrorMaker/integrationCreatePost.operation';
 
-	import {
-	description as kafkaMirrorMakerIntegrationDeleteDeleteDescription,
+import {
 	execute as kafkaMirrorMakerIntegrationDeleteDeleteExecute,
+	description as kafkaMirrorMakerIntegrationDeleteDeleteDescription,
 } from './database/kafkaMirrorMaker/integrationDeleteDelete.operation';
 
-	import {
-	description as kafkaMirrorMakerIntegrationGetByIdDescription,
+import {
+	execute as kafkaMirrorMakerIntegrationGetExecute,
+	description as kafkaMirrorMakerIntegrationGetDescription,
+} from './database/kafkaMirrorMaker/integrationGet.operation';
+
+import {
 	execute as kafkaMirrorMakerIntegrationGetByIdExecute,
+	description as kafkaMirrorMakerIntegrationGetByIdDescription,
 } from './database/kafkaMirrorMaker/integrationGetById.operation';
 
-	import {
-	description as kafkaMirrorMakerLogKindGetDescription,
+import {
 	execute as kafkaMirrorMakerLogKindGetExecute,
+	description as kafkaMirrorMakerLogKindGetDescription,
 } from './database/kafkaMirrorMaker/logKindGet.operation';
 
-	import {
-	description as kafkaMirrorMakerLogKindNameGetDescription,
+import {
 	execute as kafkaMirrorMakerLogKindNameGetExecute,
+	description as kafkaMirrorMakerLogKindNameGetDescription,
 } from './database/kafkaMirrorMaker/logKindNameGet.operation';
 
-	import {
-	description as kafkaMirrorMakerLogSubscriptionCreatePostDescription,
+import {
 	execute as kafkaMirrorMakerLogSubscriptionCreatePostExecute,
+	description as kafkaMirrorMakerLogSubscriptionCreatePostDescription,
 } from './database/kafkaMirrorMaker/logSubscriptionCreatePost.operation';
 
-	import {
-	description as kafkaMirrorMakerLogSubscriptionDeleteDeleteDescription,
+import {
 	execute as kafkaMirrorMakerLogSubscriptionDeleteDeleteExecute,
+	description as kafkaMirrorMakerLogSubscriptionDeleteDeleteDescription,
 } from './database/kafkaMirrorMaker/logSubscriptionDeleteDelete.operation';
 
-	import {
-	description as kafkaMirrorMakerLogSubscriptionGetByIdDescription,
+import {
 	execute as kafkaMirrorMakerLogSubscriptionGetByIdExecute,
+	description as kafkaMirrorMakerLogSubscriptionGetByIdDescription,
 } from './database/kafkaMirrorMaker/logSubscriptionGetById.operation';
 
-	import {
-	description as kafkaMirrorMakerLogUrlPostDescription,
+import {
 	execute as kafkaMirrorMakerLogUrlPostExecute,
+	description as kafkaMirrorMakerLogUrlPostDescription,
 } from './database/kafkaMirrorMaker/logUrlPost.operation';
 
-	import {
-	description as kafkaMirrorMakerLogsGetDescription,
+import {
 	execute as kafkaMirrorMakerLogsGetExecute,
+	description as kafkaMirrorMakerLogsGetDescription,
 } from './database/kafkaMirrorMaker/logsGet.operation';
 
-	import {
-	description as kafkaMirrorMakerMaintenanceGetDescription,
-	execute as kafkaMirrorMakerMaintenanceGetExecute,
-} from './database/kafkaMirrorMaker/maintenanceGet.operation';
-
-	import {
-	description as kafkaMirrorMakerMaintenanceGetByIdDescription,
-	execute as kafkaMirrorMakerMaintenanceGetByIdExecute,
-} from './database/kafkaMirrorMaker/maintenanceGetById.operation';
-
-	import {
-	description as kafkaMirrorMakerMaintenanceApplyPostDescription,
+import {
 	execute as kafkaMirrorMakerMaintenanceApplyPostExecute,
+	description as kafkaMirrorMakerMaintenanceApplyPostDescription,
 } from './database/kafkaMirrorMaker/maintenanceApplyPost.operation';
 
-	import {
-	description as kafkaMirrorMakerMetricGetDescription,
+import {
+	execute as kafkaMirrorMakerMaintenanceGetExecute,
+	description as kafkaMirrorMakerMaintenanceGetDescription,
+} from './database/kafkaMirrorMaker/maintenanceGet.operation';
+
+import {
+	execute as kafkaMirrorMakerMaintenanceGetByIdExecute,
+	description as kafkaMirrorMakerMaintenanceGetByIdDescription,
+} from './database/kafkaMirrorMaker/maintenanceGetById.operation';
+
+import {
 	execute as kafkaMirrorMakerMetricGetExecute,
+	description as kafkaMirrorMakerMetricGetDescription,
 } from './database/kafkaMirrorMaker/metricGet.operation';
 
-	import {
-	description as kafkaMirrorMakerMetricNameGetDescription,
+import {
 	execute as kafkaMirrorMakerMetricNameGetExecute,
+	description as kafkaMirrorMakerMetricNameGetDescription,
 } from './database/kafkaMirrorMaker/metricNameGet.operation';
 
-	import {
-	description as kafkaMirrorMakerNodeListGetDescription,
-	execute as kafkaMirrorMakerNodeListGetExecute,
-} from './database/kafkaMirrorMaker/nodeListGet.operation';
-
-	import {
-	description as kafkaMirrorMakerNodeGetGetDescription,
+import {
 	execute as kafkaMirrorMakerNodeGetGetExecute,
+	description as kafkaMirrorMakerNodeGetGetDescription,
 } from './database/kafkaMirrorMaker/nodeGetGet.operation';
 
-	import {
-	description as kafkaMirrorMakerPrometheusGetDescription,
-	execute as kafkaMirrorMakerPrometheusGetExecute,
-} from './database/kafkaMirrorMaker/prometheusGet.operation';
+import {
+	execute as kafkaMirrorMakerNodeListGetExecute,
+	description as kafkaMirrorMakerNodeListGetDescription,
+} from './database/kafkaMirrorMaker/nodeListGet.operation';
 
-	import {
-	description as kafkaMirrorMakerPrometheusCredentialsResetPostDescription,
+import {
 	execute as kafkaMirrorMakerPrometheusCredentialsResetPostExecute,
+	description as kafkaMirrorMakerPrometheusCredentialsResetPostDescription,
 } from './database/kafkaMirrorMaker/prometheusCredentialsResetPost.operation';
 
-	import {
-	description as kafkaMirrorMakerReplicationGetDescription,
-	execute as kafkaMirrorMakerReplicationGetExecute,
-} from './database/kafkaMirrorMaker/replicationGet.operation';
+import {
+	execute as kafkaMirrorMakerPrometheusGetExecute,
+	description as kafkaMirrorMakerPrometheusGetDescription,
+} from './database/kafkaMirrorMaker/prometheusGet.operation';
 
-	import {
-	description as kafkaMirrorMakerReplicationCreatePostDescription,
+import {
 	execute as kafkaMirrorMakerReplicationCreatePostExecute,
+	description as kafkaMirrorMakerReplicationCreatePostDescription,
 } from './database/kafkaMirrorMaker/replicationCreatePost.operation';
 
-	import {
-	description as kafkaMirrorMakerReplicationDeleteDeleteDescription,
+import {
 	execute as kafkaMirrorMakerReplicationDeleteDeleteExecute,
+	description as kafkaMirrorMakerReplicationDeleteDeleteDescription,
 } from './database/kafkaMirrorMaker/replicationDeleteDelete.operation';
 
-	import {
-	description as kafkaMirrorMakerReplicationGetByIdDescription,
+import {
+	execute as kafkaMirrorMakerReplicationGetExecute,
+	description as kafkaMirrorMakerReplicationGetDescription,
+} from './database/kafkaMirrorMaker/replicationGet.operation';
+
+import {
 	execute as kafkaMirrorMakerReplicationGetByIdExecute,
+	description as kafkaMirrorMakerReplicationGetByIdDescription,
 } from './database/kafkaMirrorMaker/replicationGetById.operation';
 
-	import {
-	description as kafkaMirrorMakerReplicationUpdatePutDescription,
+import {
 	execute as kafkaMirrorMakerReplicationUpdatePutExecute,
+	description as kafkaMirrorMakerReplicationUpdatePutDescription,
 } from './database/kafkaMirrorMaker/replicationUpdatePut.operation';
 
-	import {
-	description as m3aggregatorClusterListGetDescription,
-	execute as m3aggregatorClusterListGetExecute,
-} from './database/m3aggregator/clusterListGet.operation';
-	import {
-	description as m3aggregatorClusterCreatePostDescription,
-	execute as m3aggregatorClusterCreatePostExecute,
-} from './database/m3aggregator/clusterCreatePost.operation';
-	import {
-	description as m3aggregatorClusterGetGetDescription,
-	execute as m3aggregatorClusterGetGetExecute,
-} from './database/m3aggregator/clusterGetGet.operation';
-	import {
-	description as m3aggregatorClusterUpdatePutDescription,
-	execute as m3aggregatorClusterUpdatePutExecute,
-} from './database/m3aggregator/clusterUpdatePut.operation';
-	import {
-	description as m3aggregatorClusterDeleteDeleteDescription,
-	execute as m3aggregatorClusterDeleteDeleteExecute,
-} from './database/m3aggregator/clusterDeleteDelete.operation';
-	import {
-	description as m3aggregatorCapabilitiesIntegrationGetDescription,
+import {
 	execute as m3aggregatorCapabilitiesIntegrationGetExecute,
+	description as m3aggregatorCapabilitiesIntegrationGetDescription,
 } from './database/m3aggregator/capabilitiesIntegrationGet.operation';
-	import {
-	description as m3aggregatorIntegrationGetDescription,
-	execute as m3aggregatorIntegrationGetExecute,
-} from './database/m3aggregator/integrationGet.operation';
-	import {
-	description as m3aggregatorIntegrationCreatePostDescription,
+
+import {
+	execute as m3aggregatorClusterCreatePostExecute,
+	description as m3aggregatorClusterCreatePostDescription,
+} from './database/m3aggregator/clusterCreatePost.operation';
+
+import {
+	execute as m3aggregatorClusterDeleteDeleteExecute,
+	description as m3aggregatorClusterDeleteDeleteDescription,
+} from './database/m3aggregator/clusterDeleteDelete.operation';
+
+import {
+	execute as m3aggregatorClusterGetGetExecute,
+	description as m3aggregatorClusterGetGetDescription,
+} from './database/m3aggregator/clusterGetGet.operation';
+
+import {
+	execute as m3aggregatorClusterListGetExecute,
+	description as m3aggregatorClusterListGetDescription,
+} from './database/m3aggregator/clusterListGet.operation';
+
+import {
+	execute as m3aggregatorClusterUpdatePutExecute,
+	description as m3aggregatorClusterUpdatePutDescription,
+} from './database/m3aggregator/clusterUpdatePut.operation';
+
+import {
 	execute as m3aggregatorIntegrationCreatePostExecute,
+	description as m3aggregatorIntegrationCreatePostDescription,
 } from './database/m3aggregator/integrationCreatePost.operation';
-	import {
-	description as m3aggregatorIntegrationDeleteDeleteDescription,
+
+import {
 	execute as m3aggregatorIntegrationDeleteDeleteExecute,
+	description as m3aggregatorIntegrationDeleteDeleteDescription,
 } from './database/m3aggregator/integrationDeleteDelete.operation';
-	import {
-	description as m3aggregatorIntegrationGetByIdDescription,
+
+import {
+	execute as m3aggregatorIntegrationGetExecute,
+	description as m3aggregatorIntegrationGetDescription,
+} from './database/m3aggregator/integrationGet.operation';
+
+import {
 	execute as m3aggregatorIntegrationGetByIdExecute,
+	description as m3aggregatorIntegrationGetByIdDescription,
 } from './database/m3aggregator/integrationGetById.operation';
-	import {
-	description as m3aggregatorLogKindGetDescription,
+
+import {
 	execute as m3aggregatorLogKindGetExecute,
+	description as m3aggregatorLogKindGetDescription,
 } from './database/m3aggregator/logKindGet.operation';
-	import {
-	description as m3aggregatorLogKindNameGetDescription,
+
+import {
 	execute as m3aggregatorLogKindNameGetExecute,
+	description as m3aggregatorLogKindNameGetDescription,
 } from './database/m3aggregator/logKindNameGet.operation';
-	import {
-	description as m3aggregatorLogSubscriptionListGetDescription,
-	execute as m3aggregatorLogSubscriptionListGetExecute,
-} from './database/m3aggregator/logSubscriptionListGet.operation';
-	import {
-	description as m3aggregatorLogSubscriptionCreatePostDescription,
+
+import {
 	execute as m3aggregatorLogSubscriptionCreatePostExecute,
+	description as m3aggregatorLogSubscriptionCreatePostDescription,
 } from './database/m3aggregator/logSubscriptionCreatePost.operation';
-	import {
-	description as m3aggregatorLogSubscriptionDeleteDeleteDescription,
+
+import {
 	execute as m3aggregatorLogSubscriptionDeleteDeleteExecute,
+	description as m3aggregatorLogSubscriptionDeleteDeleteDescription,
 } from './database/m3aggregator/logSubscriptionDeleteDelete.operation';
-	import {
-	description as m3aggregatorLogSubscriptionGetByIdDescription,
+
+import {
 	execute as m3aggregatorLogSubscriptionGetByIdExecute,
+	description as m3aggregatorLogSubscriptionGetByIdDescription,
 } from './database/m3aggregator/logSubscriptionGetById.operation';
-	import {
-	description as m3aggregatorLogUrlPostDescription,
+
+import {
+	execute as m3aggregatorLogSubscriptionListGetExecute,
+	description as m3aggregatorLogSubscriptionListGetDescription,
+} from './database/m3aggregator/logSubscriptionListGet.operation';
+
+import {
 	execute as m3aggregatorLogUrlPostExecute,
+	description as m3aggregatorLogUrlPostDescription,
 } from './database/m3aggregator/logUrlPost.operation';
-	import {
-	description as m3aggregatorLogsGetDescription,
+
+import {
 	execute as m3aggregatorLogsGetExecute,
+	description as m3aggregatorLogsGetDescription,
 } from './database/m3aggregator/logsGet.operation';
-	import {
-	description as m3aggregatorMaintenanceGetDescription,
-	execute as m3aggregatorMaintenanceGetExecute,
-} from './database/m3aggregator/maintenanceGet.operation';
-	import {
-	description as m3aggregatorMaintenanceGetByIdDescription,
-	execute as m3aggregatorMaintenanceGetByIdExecute,
-} from './database/m3aggregator/maintenanceGetById.operation';
-	import {
-	description as m3aggregatorMaintenanceApplyPostDescription,
+
+import {
 	execute as m3aggregatorMaintenanceApplyPostExecute,
+	description as m3aggregatorMaintenanceApplyPostDescription,
 } from './database/m3aggregator/maintenanceApplyPost.operation';
-	import {
-	description as m3aggregatorMetricGetDescription,
+
+import {
+	execute as m3aggregatorMaintenanceGetExecute,
+	description as m3aggregatorMaintenanceGetDescription,
+} from './database/m3aggregator/maintenanceGet.operation';
+
+import {
+	execute as m3aggregatorMaintenanceGetByIdExecute,
+	description as m3aggregatorMaintenanceGetByIdDescription,
+} from './database/m3aggregator/maintenanceGetById.operation';
+
+import {
 	execute as m3aggregatorMetricGetExecute,
+	description as m3aggregatorMetricGetDescription,
 } from './database/m3aggregator/metricGet.operation';
-	import {
-	description as m3aggregatorMetricNameGetDescription,
+
+import {
 	execute as m3aggregatorMetricNameGetExecute,
+	description as m3aggregatorMetricNameGetDescription,
 } from './database/m3aggregator/metricNameGet.operation';
-	import {
-	description as m3aggregatorNodeListGetDescription,
-	execute as m3aggregatorNodeListGetExecute,
-} from './database/m3aggregator/nodeListGet.operation';
-	import {
-	description as m3aggregatorNodeGetGetDescription,
+
+import {
 	execute as m3aggregatorNodeGetGetExecute,
+	description as m3aggregatorNodeGetGetDescription,
 } from './database/m3aggregator/nodeGetGet.operation';
 
-	import {
-	description as m3dbClusterListGetDescription,
-	execute as m3dbClusterListGetExecute,
-} from './database/m3db/M3dbClusterListGet.operation';
-	import {
-	description as m3dbClusterCreatePostDescription,
-	execute as m3dbClusterCreatePostExecute,
-} from './database/m3db/M3dbClusterCreatePost.operation';
-	import {
-	description as m3dbClusterDeleteDeleteDescription,
-	execute as m3dbClusterDeleteDeleteExecute,
-} from './database/m3db/M3dbClusterDeleteDelete.operation';
-	import {
-	description as m3dbClusterGetGetDescription,
-	execute as m3dbClusterGetGetExecute,
-} from './database/m3db/M3dbClusterGetGet.operation';
-	import {
-	description as m3dbClusterUpdatePutDescription,
-	execute as m3dbClusterUpdatePutExecute,
-} from './database/m3db/M3dbClusterUpdatePut.operation';
-	import {
-	description as m3dbAdvancedConfigurationGetGetDescription,
+import {
+	execute as m3aggregatorNodeListGetExecute,
+	description as m3aggregatorNodeListGetDescription,
+} from './database/m3aggregator/nodeListGet.operation';
+
+import {
 	execute as m3dbAdvancedConfigurationGetGetExecute,
+	description as m3dbAdvancedConfigurationGetGetDescription,
 } from './database/m3db/M3dbAdvancedConfigurationGetGet.operation';
-	import {
-	description as m3dbAdvancedConfigurationUpdatePutDescription,
+
+import {
 	execute as m3dbAdvancedConfigurationUpdatePutExecute,
+	description as m3dbAdvancedConfigurationUpdatePutDescription,
 } from './database/m3db/M3dbAdvancedConfigurationUpdatePut.operation';
-	import {
-	description as m3dbBackupListGetDescription,
-	execute as m3dbBackupListGetExecute,
-} from './database/m3db/M3dbBackupListGet.operation';
-	import {
-	description as m3dbBackupGetGetDescription,
+
+import {
 	execute as m3dbBackupGetGetExecute,
+	description as m3dbBackupGetGetDescription,
 } from './database/m3db/M3dbBackupGetGet.operation';
-	import {
-	description as m3dbCapabilitiesAdvancedConfigurationGetGetDescription,
+
+import {
+	execute as m3dbBackupListGetExecute,
+	description as m3dbBackupListGetDescription,
+} from './database/m3db/M3dbBackupListGet.operation';
+
+import {
 	execute as m3dbCapabilitiesAdvancedConfigurationGetGetExecute,
+	description as m3dbCapabilitiesAdvancedConfigurationGetGetDescription,
 } from './database/m3db/M3dbCapabilitiesAdvancedConfigurationGetGet.operation';
-	import {
-	description as m3dbCapabilitiesIntegrationGetGetDescription,
+
+import {
 	execute as m3dbCapabilitiesIntegrationGetGetExecute,
+	description as m3dbCapabilitiesIntegrationGetGetDescription,
 } from './database/m3db/M3dbCapabilitiesIntegrationGetGet.operation';
-	import {
-	description as m3dbIntegrationListGetDescription,
-	execute as m3dbIntegrationListGetExecute,
-} from './database/m3db/M3dbIntegrationListGet.operation';
-	import {
-	description as m3dbIntegrationCreatePostDescription,
+
+import {
+	execute as m3dbClusterCreatePostExecute,
+	description as m3dbClusterCreatePostDescription,
+} from './database/m3db/M3dbClusterCreatePost.operation';
+
+import {
+	execute as m3dbClusterDeleteDeleteExecute,
+	description as m3dbClusterDeleteDeleteDescription,
+} from './database/m3db/M3dbClusterDeleteDelete.operation';
+
+import {
+	execute as m3dbClusterGetGetExecute,
+	description as m3dbClusterGetGetDescription,
+} from './database/m3db/M3dbClusterGetGet.operation';
+
+import {
+	execute as m3dbClusterListGetExecute,
+	description as m3dbClusterListGetDescription,
+} from './database/m3db/M3dbClusterListGet.operation';
+
+import {
+	execute as m3dbClusterUpdatePutExecute,
+	description as m3dbClusterUpdatePutDescription,
+} from './database/m3db/M3dbClusterUpdatePut.operation';
+
+import {
 	execute as m3dbIntegrationCreatePostExecute,
+	description as m3dbIntegrationCreatePostDescription,
 } from './database/m3db/M3dbIntegrationCreatePost.operation';
-	import {
-	description as m3dbIntegrationDeleteDeleteDescription,
+
+import {
 	execute as m3dbIntegrationDeleteDeleteExecute,
+	description as m3dbIntegrationDeleteDeleteDescription,
 } from './database/m3db/M3dbIntegrationDeleteDelete.operation';
-	import {
-	description as m3dbIntegrationGetGetDescription,
+
+import {
 	execute as m3dbIntegrationGetGetExecute,
+	description as m3dbIntegrationGetGetDescription,
 } from './database/m3db/M3dbIntegrationGetGet.operation';
-	import {
-	description as m3dbIpRestrictionListGetDescription,
-	execute as m3dbIpRestrictionListGetExecute,
-} from './database/m3db/M3dbIpRestrictionListGet.operation';
-	import {
-	description as m3dbIpRestrictionCreatePostDescription,
+
+import {
+	execute as m3dbIntegrationListGetExecute,
+	description as m3dbIntegrationListGetDescription,
+} from './database/m3db/M3dbIntegrationListGet.operation';
+
+import {
 	execute as m3dbIpRestrictionCreatePostExecute,
+	description as m3dbIpRestrictionCreatePostDescription,
 } from './database/m3db/M3dbIpRestrictionCreatePost.operation';
-	import {
-	description as m3dbIpRestrictionDeleteDeleteDescription,
+
+import {
 	execute as m3dbIpRestrictionDeleteDeleteExecute,
+	description as m3dbIpRestrictionDeleteDeleteDescription,
 } from './database/m3db/M3dbIpRestrictionDeleteDelete.operation';
-	import {
-	description as m3dbIpRestrictionGetGetDescription,
+
+import {
 	execute as m3dbIpRestrictionGetGetExecute,
+	description as m3dbIpRestrictionGetGetDescription,
 } from './database/m3db/M3dbIpRestrictionGetGet.operation';
-	import {
-	description as m3dbIpRestrictionUpdatePutDescription,
+
+import {
+	execute as m3dbIpRestrictionListGetExecute,
+	description as m3dbIpRestrictionListGetDescription,
+} from './database/m3db/M3dbIpRestrictionListGet.operation';
+
+import {
 	execute as m3dbIpRestrictionUpdatePutExecute,
+	description as m3dbIpRestrictionUpdatePutDescription,
 } from './database/m3db/M3dbIpRestrictionUpdatePut.operation';
-	import {
-	description as m3dbLogKindListGetDescription,
-	execute as m3dbLogKindListGetExecute,
-} from './database/m3db/M3dbLogKindListGet.operation';
-	import {
-	description as m3dbLogKindGetGetDescription,
+
+import {
 	execute as m3dbLogKindGetGetExecute,
+	description as m3dbLogKindGetGetDescription,
 } from './database/m3db/M3dbLogKindGetGet.operation';
-	import {
-	description as m3dbLogSubscriptionListGetDescription,
-	execute as m3dbLogSubscriptionListGetExecute,
-} from './database/m3db/M3dbLogSubscriptionListGet.operation';
-	import {
-	description as m3dbLogSubscriptionCreatePostDescription,
+
+import {
+	execute as m3dbLogKindListGetExecute,
+	description as m3dbLogKindListGetDescription,
+} from './database/m3db/M3dbLogKindListGet.operation';
+
+import {
 	execute as m3dbLogSubscriptionCreatePostExecute,
+	description as m3dbLogSubscriptionCreatePostDescription,
 } from './database/m3db/M3dbLogSubscriptionCreatePost.operation';
-	import {
-	description as m3dbLogSubscriptionDeleteDeleteDescription,
+
+import {
 	execute as m3dbLogSubscriptionDeleteDeleteExecute,
+	description as m3dbLogSubscriptionDeleteDeleteDescription,
 } from './database/m3db/M3dbLogSubscriptionDeleteDelete.operation';
-	import {
-	description as m3dbLogSubscriptionGetGetDescription,
+
+import {
 	execute as m3dbLogSubscriptionGetGetExecute,
+	description as m3dbLogSubscriptionGetGetDescription,
 } from './database/m3db/M3dbLogSubscriptionGetGet.operation';
-	import {
-	description as m3dbLogUrlCreatePostDescription,
+
+import {
+	execute as m3dbLogSubscriptionListGetExecute,
+	description as m3dbLogSubscriptionListGetDescription,
+} from './database/m3db/M3dbLogSubscriptionListGet.operation';
+
+import {
 	execute as m3dbLogUrlCreatePostExecute,
+	description as m3dbLogUrlCreatePostDescription,
 } from './database/m3db/M3dbLogUrlCreatePost.operation';
-	import {
-	description as m3dbLogsGetDescription,
+
+import {
 	execute as m3dbLogsGetExecute,
+	description as m3dbLogsGetDescription,
 } from './database/m3db/M3dbLogsGet.operation';
-	import {
-	description as m3dbMaintenanceListGetDescription,
-	execute as m3dbMaintenanceListGetExecute,
-} from './database/m3db/M3dbMaintenanceListGet.operation';
-	import {
-	description as m3dbMaintenanceGetGetDescription,
-	execute as m3dbMaintenanceGetGetExecute,
-} from './database/m3db/M3dbMaintenanceGetGet.operation';
-	import {
-	description as m3dbMaintenanceApplyPostDescription,
+
+import {
 	execute as m3dbMaintenanceApplyPostExecute,
+	description as m3dbMaintenanceApplyPostDescription,
 } from './database/m3db/M3dbMaintenanceApplyPost.operation';
-	import {
-	description as m3dbMetricListGetDescription,
-	execute as m3dbMetricListGetExecute,
-} from './database/m3db/M3dbMetricListGet.operation';
-	import {
-	description as m3dbMetricGetGetDescription,
+
+import {
+	execute as m3dbMaintenanceGetGetExecute,
+	description as m3dbMaintenanceGetGetDescription,
+} from './database/m3db/M3dbMaintenanceGetGet.operation';
+
+import {
+	execute as m3dbMaintenanceListGetExecute,
+	description as m3dbMaintenanceListGetDescription,
+} from './database/m3db/M3dbMaintenanceListGet.operation';
+
+import {
 	execute as m3dbMetricGetGetExecute,
+	description as m3dbMetricGetGetDescription,
 } from './database/m3db/M3dbMetricGetGet.operation';
-	import {
-	description as m3dbNamespaceListGetDescription,
-	execute as m3dbNamespaceListGetExecute,
-} from './database/m3db/M3dbNamespaceListGet.operation';
-	import {
-	description as m3dbNamespaceCreatePostDescription,
+
+import {
+	execute as m3dbMetricListGetExecute,
+	description as m3dbMetricListGetDescription,
+} from './database/m3db/M3dbMetricListGet.operation';
+
+import {
 	execute as m3dbNamespaceCreatePostExecute,
+	description as m3dbNamespaceCreatePostDescription,
 } from './database/m3db/M3dbNamespaceCreatePost.operation';
-	import {
-	description as m3dbNamespaceDeleteDeleteDescription,
+
+import {
 	execute as m3dbNamespaceDeleteDeleteExecute,
+	description as m3dbNamespaceDeleteDeleteDescription,
 } from './database/m3db/M3dbNamespaceDeleteDelete.operation';
-	import {
-	description as m3dbNamespaceGetGetDescription,
+
+import {
 	execute as m3dbNamespaceGetGetExecute,
+	description as m3dbNamespaceGetGetDescription,
 } from './database/m3db/M3dbNamespaceGetGet.operation';
-	import {
-	description as m3dbNamespaceUpdatePutDescription,
+
+import {
+	execute as m3dbNamespaceListGetExecute,
+	description as m3dbNamespaceListGetDescription,
+} from './database/m3db/M3dbNamespaceListGet.operation';
+
+import {
 	execute as m3dbNamespaceUpdatePutExecute,
+	description as m3dbNamespaceUpdatePutDescription,
 } from './database/m3db/M3dbNamespaceUpdatePut.operation';
-	import {
-	description as m3dbNodeListGetDescription,
-	execute as m3dbNodeListGetExecute,
-} from './database/m3db/M3dbNodeListGet.operation';
-	import {
-	description as m3dbNodeGetGetDescription,
+
+import {
 	execute as m3dbNodeGetGetExecute,
+	description as m3dbNodeGetGetDescription,
 } from './database/m3db/M3dbNodeGetGet.operation';
-	import {
-	description as m3dbUserListGetDescription,
-	execute as m3dbUserListGetExecute,
-} from './database/m3db/M3dbUserListGet.operation';
-	import {
-	description as m3dbUserCreatePostDescription,
+
+import {
+	execute as m3dbNodeListGetExecute,
+	description as m3dbNodeListGetDescription,
+} from './database/m3db/M3dbNodeListGet.operation';
+
+import {
 	execute as m3dbUserCreatePostExecute,
+	description as m3dbUserCreatePostDescription,
 } from './database/m3db/M3dbUserCreatePost.operation';
-	import {
-	description as m3dbUserDeleteDeleteDescription,
-	execute as m3dbUserDeleteDeleteExecute,
-} from './database/m3db/M3dbUserDeleteDelete.operation';
-	import {
-	description as m3dbUserGetGetDescription,
-	execute as m3dbUserGetGetExecute,
-} from './database/m3db/M3dbUserGetGet.operation';
-	import {
-	description as m3dbUserUpdatePutDescription,
-	execute as m3dbUserUpdatePutExecute,
-} from './database/m3db/M3dbUserUpdatePut.operation';
-	import {
-	description as m3dbUserCredentialsResetPostDescription,
+
+import {
 	execute as m3dbUserCredentialsResetPostExecute,
+	description as m3dbUserCredentialsResetPostDescription,
 } from './database/m3db/M3dbUserCredentialsResetPost.operation';
 
-	import {
-	description as mongodbClusterListGetDescription,
-	execute as mongodbClusterListGetExecute,
-} from './database/mongodb/clusterListGet.operation';
+import {
+	execute as m3dbUserDeleteDeleteExecute,
+	description as m3dbUserDeleteDeleteDescription,
+} from './database/m3db/M3dbUserDeleteDelete.operation';
 
-	import {
-	description as mongodbClusterGetGetDescription,
-	execute as mongodbClusterGetGetExecute,
-} from './database/mongodb/clusterGetGet.operation';
+import {
+	execute as m3dbUserGetGetExecute,
+	description as m3dbUserGetGetDescription,
+} from './database/m3db/M3dbUserGetGet.operation';
 
-	import {
-	description as mongodbClusterCreatePostDescription,
-	execute as mongodbClusterCreatePostExecute,
-} from './database/mongodb/clusterCreatePost.operation';
+import {
+	execute as m3dbUserListGetExecute,
+	description as m3dbUserListGetDescription,
+} from './database/m3db/M3dbUserListGet.operation';
 
-	import {
-	description as mongodbClusterUpdatePutDescription,
-	execute as mongodbClusterUpdatePutExecute,
-} from './database/mongodb/clusterUpdatePut.operation';
+import {
+	execute as m3dbUserUpdatePutExecute,
+	description as m3dbUserUpdatePutDescription,
+} from './database/m3db/M3dbUserUpdatePut.operation';
 
-	import {
-	description as mongodbClusterDeleteDeleteDescription,
-	execute as mongodbClusterDeleteDeleteExecute,
-} from './database/mongodb/clusterDeleteDelete.operation';
-
-	import {
-	description as mongodbBackupListGetDescription,
-	execute as mongodbBackupListGetExecute,
-} from './database/mongodb/backupListGet.operation';
-
-	import {
-	description as mongodbBackupGetGetDescription,
-	execute as mongodbBackupGetGetExecute,
-} from './database/mongodb/backupGetGet.operation';
-
-	import {
-	description as mongodbBackupDeleteDeleteDescription,
+import {
 	execute as mongodbBackupDeleteDeleteExecute,
+	description as mongodbBackupDeleteDeleteDescription,
 } from './database/mongodb/backupDeleteDelete.operation';
 
-	import {
-	description as mongodbBackupRestorePostDescription,
+import {
+	execute as mongodbBackupGetGetExecute,
+	description as mongodbBackupGetGetDescription,
+} from './database/mongodb/backupGetGet.operation';
+
+import {
+	execute as mongodbBackupListGetExecute,
+	description as mongodbBackupListGetDescription,
+} from './database/mongodb/backupListGet.operation';
+
+import {
 	execute as mongodbBackupRestorePostExecute,
+	description as mongodbBackupRestorePostDescription,
 } from './database/mongodb/backupRestorePost.operation';
 
-	import {
-	description as mongodbIpRestrictionListGetDescription,
-	execute as mongodbIpRestrictionListGetExecute,
-} from './database/mongodb/ipRestrictionListGet.operation';
+import {
+	execute as mongodbClusterCreatePostExecute,
+	description as mongodbClusterCreatePostDescription,
+} from './database/mongodb/clusterCreatePost.operation';
 
-	import {
-	description as mongodbIpRestrictionCreatePostDescription,
+import {
+	execute as mongodbClusterDeleteDeleteExecute,
+	description as mongodbClusterDeleteDeleteDescription,
+} from './database/mongodb/clusterDeleteDelete.operation';
+
+import {
+	execute as mongodbClusterGetGetExecute,
+	description as mongodbClusterGetGetDescription,
+} from './database/mongodb/clusterGetGet.operation';
+
+import {
+	execute as mongodbClusterListGetExecute,
+	description as mongodbClusterListGetDescription,
+} from './database/mongodb/clusterListGet.operation';
+
+import {
+	execute as mongodbClusterUpdatePutExecute,
+	description as mongodbClusterUpdatePutDescription,
+} from './database/mongodb/clusterUpdatePut.operation';
+
+import {
 	execute as mongodbIpRestrictionCreatePostExecute,
+	description as mongodbIpRestrictionCreatePostDescription,
 } from './database/mongodb/ipRestrictionCreatePost.operation';
 
-	import {
-	description as mongodbIpRestrictionGetGetDescription,
-	execute as mongodbIpRestrictionGetGetExecute,
-} from './database/mongodb/ipRestrictionGetGet.operation';
-
-	import {
-	description as mongodbIpRestrictionUpdatePutDescription,
-	execute as mongodbIpRestrictionUpdatePutExecute,
-} from './database/mongodb/ipRestrictionUpdatePut.operation';
-
-	import {
-	description as mongodbIpRestrictionDeleteDeleteDescription,
+import {
 	execute as mongodbIpRestrictionDeleteDeleteExecute,
+	description as mongodbIpRestrictionDeleteDeleteDescription,
 } from './database/mongodb/ipRestrictionDeleteDelete.operation';
 
-	import {
-	description as mongodbLogKindListGetDescription,
-	execute as mongodbLogKindListGetExecute,
-} from './database/mongodb/logKindListGet.operation';
+import {
+	execute as mongodbIpRestrictionGetGetExecute,
+	description as mongodbIpRestrictionGetGetDescription,
+} from './database/mongodb/ipRestrictionGetGet.operation';
 
-	import {
-	description as mongodbLogKindGetGetDescription,
+import {
+	execute as mongodbIpRestrictionListGetExecute,
+	description as mongodbIpRestrictionListGetDescription,
+} from './database/mongodb/ipRestrictionListGet.operation';
+
+import {
+	execute as mongodbIpRestrictionUpdatePutExecute,
+	description as mongodbIpRestrictionUpdatePutDescription,
+} from './database/mongodb/ipRestrictionUpdatePut.operation';
+
+import {
 	execute as mongodbLogKindGetGetExecute,
+	description as mongodbLogKindGetGetDescription,
 } from './database/mongodb/logKindGetGet.operation';
 
-	import {
-	description as mongodbLogSubscriptionListGetDescription,
-	execute as mongodbLogSubscriptionListGetExecute,
-} from './database/mongodb/logSubscriptionListGet.operation';
+import {
+	execute as mongodbLogKindListGetExecute,
+	description as mongodbLogKindListGetDescription,
+} from './database/mongodb/logKindListGet.operation';
 
-	import {
-	description as mongodbLogSubscriptionCreatePostDescription,
-	execute as mongodbLogSubscriptionCreatePostExecute,
-} from './database/mongodb/logSubscriptionCreatePost.operation';
-
-	import {
-	description as mongodbLogSubscriptionGetGetDescription,
-	execute as mongodbLogSubscriptionGetGetExecute,
-} from './database/mongodb/logSubscriptionGetGet.operation';
-
-	import {
-	description as mongodbLogSubscriptionDeleteDeleteDescription,
-	execute as mongodbLogSubscriptionDeleteDeleteExecute,
-} from './database/mongodb/logSubscriptionDeleteDelete.operation';
-
-	import {
-	description as mongodbLogUrlCreatePostDescription,
-	execute as mongodbLogUrlCreatePostExecute,
-} from './database/mongodb/logUrlCreatePost.operation';
-
-	import {
-	description as mongodbLogListGetDescription,
+import {
 	execute as mongodbLogListGetExecute,
+	description as mongodbLogListGetDescription,
 } from './database/mongodb/logListGet.operation';
 
-	import {
-	description as mongodbMaintenanceListGetDescription,
-	execute as mongodbMaintenanceListGetExecute,
-} from './database/mongodb/maintenanceListGet.operation';
+import {
+	execute as mongodbLogSubscriptionCreatePostExecute,
+	description as mongodbLogSubscriptionCreatePostDescription,
+} from './database/mongodb/logSubscriptionCreatePost.operation';
 
-	import {
-	description as mongodbMaintenanceGetGetDescription,
-	execute as mongodbMaintenanceGetGetExecute,
-} from './database/mongodb/maintenanceGetGet.operation';
+import {
+	execute as mongodbLogSubscriptionDeleteDeleteExecute,
+	description as mongodbLogSubscriptionDeleteDeleteDescription,
+} from './database/mongodb/logSubscriptionDeleteDelete.operation';
 
-	import {
-	description as mongodbMaintenanceApplyPostDescription,
+import {
+	execute as mongodbLogSubscriptionGetGetExecute,
+	description as mongodbLogSubscriptionGetGetDescription,
+} from './database/mongodb/logSubscriptionGetGet.operation';
+
+import {
+	execute as mongodbLogSubscriptionListGetExecute,
+	description as mongodbLogSubscriptionListGetDescription,
+} from './database/mongodb/logSubscriptionListGet.operation';
+
+import {
+	execute as mongodbLogUrlCreatePostExecute,
+	description as mongodbLogUrlCreatePostDescription,
+} from './database/mongodb/logUrlCreatePost.operation';
+
+import {
 	execute as mongodbMaintenanceApplyPostExecute,
+	description as mongodbMaintenanceApplyPostDescription,
 } from './database/mongodb/maintenanceApplyPost.operation';
 
-	import {
-	description as mongodbMetricListGetDescription,
+import {
+	execute as mongodbMaintenanceGetGetExecute,
+	description as mongodbMaintenanceGetGetDescription,
+} from './database/mongodb/maintenanceGetGet.operation';
+
+import {
+	execute as mongodbMaintenanceListGetExecute,
+	description as mongodbMaintenanceListGetDescription,
+} from './database/mongodb/maintenanceListGet.operation';
+
+import {
 	execute as mongodbMetricListGetExecute,
+	description as mongodbMetricListGetDescription,
 } from './database/mongodb/metricListGet.operation';
 
-	import {
-	description as mongodbMetricNameGetGetDescription,
+import {
 	execute as mongodbMetricNameGetGetExecute,
+	description as mongodbMetricNameGetGetDescription,
 } from './database/mongodb/metricNameGetGet.operation';
 
-	import {
-	description as mongodbNodeListGetDescription,
-	execute as mongodbNodeListGetExecute,
-} from './database/mongodb/nodeListGet.operation';
-
-	import {
-	description as mongodbNodeCreatePostDescription,
+import {
 	execute as mongodbNodeCreatePostExecute,
+	description as mongodbNodeCreatePostDescription,
 } from './database/mongodb/nodeCreatePost.operation';
 
-	import {
-	description as mongodbNodeGetGetDescription,
-	execute as mongodbNodeGetGetExecute,
-} from './database/mongodb/nodeGetGet.operation';
-
-	import {
-	description as mongodbNodeUpdatePutDescription,
-	execute as mongodbNodeUpdatePutExecute,
-} from './database/mongodb/nodeUpdatePut.operation';
-
-	import {
-	description as mongodbNodeDeleteDeleteDescription,
+import {
 	execute as mongodbNodeDeleteDeleteExecute,
+	description as mongodbNodeDeleteDeleteDescription,
 } from './database/mongodb/nodeDeleteDelete.operation';
 
-	import {
-	description as mongodbPrometheusGetGetDescription,
-	execute as mongodbPrometheusGetGetExecute,
-} from './database/mongodb/prometheusGetGet.operation';
+import {
+	execute as mongodbNodeGetGetExecute,
+	description as mongodbNodeGetGetDescription,
+} from './database/mongodb/nodeGetGet.operation';
 
-	import {
-	description as mongodbPrometheusCredentialsResetPostDescription,
+import {
+	execute as mongodbNodeListGetExecute,
+	description as mongodbNodeListGetDescription,
+} from './database/mongodb/nodeListGet.operation';
+
+import {
+	execute as mongodbNodeUpdatePutExecute,
+	description as mongodbNodeUpdatePutDescription,
+} from './database/mongodb/nodeUpdatePut.operation';
+
+import {
 	execute as mongodbPrometheusCredentialsResetPostExecute,
+	description as mongodbPrometheusCredentialsResetPostDescription,
 } from './database/mongodb/prometheusCredentialsResetPost.operation';
 
-	import {
-	description as mongodbRestoreCreatePostDescription,
+import {
+	execute as mongodbPrometheusGetGetExecute,
+	description as mongodbPrometheusGetGetDescription,
+} from './database/mongodb/prometheusGetGet.operation';
+
+import {
 	execute as mongodbRestoreCreatePostExecute,
+	description as mongodbRestoreCreatePostDescription,
 } from './database/mongodb/restoreCreatePost.operation';
 
-	import {
-	description as mongodbRoleListGetDescription,
+import {
 	execute as mongodbRoleListGetExecute,
+	description as mongodbRoleListGetDescription,
 } from './database/mongodb/roleListGet.operation';
 
-	import {
-	description as mongodbUserListGetDescription,
-	execute as mongodbUserListGetExecute,
-} from './database/mongodb/userListGet.operation';
-
-	import {
-	description as mongodbUserCreatePostDescription,
+import {
 	execute as mongodbUserCreatePostExecute,
+	description as mongodbUserCreatePostDescription,
 } from './database/mongodb/userCreatePost.operation';
 
-	import {
-	description as mongodbUserGetGetDescription,
-	execute as mongodbUserGetGetExecute,
-} from './database/mongodb/userGetGet.operation';
-
-	import {
-	description as mongodbUserUpdatePutDescription,
-	execute as mongodbUserUpdatePutExecute,
-} from './database/mongodb/userUpdatePut.operation';
-
-	import {
-	description as mongodbUserDeleteDeleteDescription,
-	execute as mongodbUserDeleteDeleteExecute,
-} from './database/mongodb/userDeleteDelete.operation';
-
-	import {
-	description as mongodbUserCredentialsResetPostDescription,
+import {
 	execute as mongodbUserCredentialsResetPostExecute,
+	description as mongodbUserCredentialsResetPostDescription,
 } from './database/mongodb/userCredentialsResetPost.operation';
 
-	import {
-	description as mysqlClusterListGetDescription,
-	execute as mysqlClusterListGetExecute,
-} from './database/mysql/clusterListGet.operation';
-	import {
-	description as mysqlClusterGetGetDescription,
-	execute as mysqlClusterGetGetExecute,
-} from './database/mysql/clusterGetGet.operation';
-	import {
-	description as mysqlClusterCreatePostDescription,
-	execute as mysqlClusterCreatePostExecute,
-} from './database/mysql/clusterCreatePost.operation';
-	import {
-	description as mysqlClusterUpdatePutDescription,
-	execute as mysqlClusterUpdatePutExecute,
-} from './database/mysql/clusterUpdatePut.operation';
-	import {
-	description as mysqlClusterDeleteDeleteDescription,
-	execute as mysqlClusterDeleteDeleteExecute,
-} from './database/mysql/clusterDeleteDelete.operation';
-	import {
-	description as mysqlBackupListGetDescription,
-	execute as mysqlBackupListGetExecute,
-} from './database/mysql/backupListGet.operation';
-	import {
-	description as mysqlBackupCreatePostDescription,
+import {
+	execute as mongodbUserDeleteDeleteExecute,
+	description as mongodbUserDeleteDeleteDescription,
+} from './database/mongodb/userDeleteDelete.operation';
+
+import {
+	execute as mongodbUserGetGetExecute,
+	description as mongodbUserGetGetDescription,
+} from './database/mongodb/userGetGet.operation';
+
+import {
+	execute as mongodbUserListGetExecute,
+	description as mongodbUserListGetDescription,
+} from './database/mongodb/userListGet.operation';
+
+import {
+	execute as mongodbUserUpdatePutExecute,
+	description as mongodbUserUpdatePutDescription,
+} from './database/mongodb/userUpdatePut.operation';
+
+import {
 	execute as mysqlBackupCreatePostExecute,
+	description as mysqlBackupCreatePostDescription,
 } from './database/mysql/backupCreatePost.operation';
-	import {
-	description as mysqlBackupGetGetDescription,
-	execute as mysqlBackupGetGetExecute,
-} from './database/mysql/backupGetGet.operation';
-	import {
-	description as mysqlBackupDeleteDeleteDescription,
+
+import {
 	execute as mysqlBackupDeleteDeleteExecute,
+	description as mysqlBackupDeleteDeleteDescription,
 } from './database/mysql/backupDeleteDelete.operation';
-	import {
-	description as mysqlUserListGetDescription,
-	execute as mysqlUserListGetExecute,
-} from './database/mysql/userListGet.operation';
-	import {
-	description as mysqlUserCreatePostDescription,
-	execute as mysqlUserCreatePostExecute,
-} from './database/mysql/userCreatePost.operation';
-	import {
-	description as mysqlUserGetGetDescription,
-	execute as mysqlUserGetGetExecute,
-} from './database/mysql/userGetGet.operation';
-	import {
-	description as mysqlUserUpdatePutDescription,
-	execute as mysqlUserUpdatePutExecute,
-} from './database/mysql/userUpdatePut.operation';
-	import {
-	description as mysqlUserDeleteDeleteDescription,
-	execute as mysqlUserDeleteDeleteExecute,
-} from './database/mysql/userDeleteDelete.operation';
-	import {
-	description as mysqlNodeListGetDescription,
-	execute as mysqlNodeListGetExecute,
-} from './database/mysql/nodeListGet.operation';
-	import {
-	description as mysqlNodeCreatePostDescription,
-	execute as mysqlNodeCreatePostExecute,
-} from './database/mysql/nodeCreatePost.operation';
-	import {
-	description as mysqlNodeGetGetDescription,
-	execute as mysqlNodeGetGetExecute,
-} from './database/mysql/nodeGetGet.operation';
-	import {
-	description as mysqlNodeUpdatePutDescription,
-	execute as mysqlNodeUpdatePutExecute,
-} from './database/mysql/nodeUpdatePut.operation';
-	import {
-	description as mysqlNodeDeleteDeleteDescription,
-	execute as mysqlNodeDeleteDeleteExecute,
-} from './database/mysql/nodeDeleteDelete.operation';
-	import {
-	description as mysqlIpRestrictionListGetDescription,
-	execute as mysqlIpRestrictionListGetExecute,
-} from './database/mysql/ipRestrictionListGet.operation';
-	import {
-	description as mysqlIpRestrictionCreatePostDescription,
-	execute as mysqlIpRestrictionCreatePostExecute,
-} from './database/mysql/ipRestrictionCreatePost.operation';
-	import {
-	description as mysqlLogSubscriptionListGetDescription,
-	execute as mysqlLogSubscriptionListGetExecute,
-} from './database/mysql/logSubscriptionListGet.operation';
-	import {
-	description as mysqlLogSubscriptionCreatePostDescription,
-	execute as mysqlLogSubscriptionCreatePostExecute,
-} from './database/mysql/logSubscriptionCreatePost.operation';
-	import {
-	description as mysqlLogSubscriptionGetGetDescription,
-	execute as mysqlLogSubscriptionGetGetExecute,
-} from './database/mysql/logSubscriptionGetGet.operation';
-	import {
-	description as mysqlMaintenanceGetDescription,
-	execute as mysqlMaintenanceGetExecute,
-} from './database/mysql/maintenanceGet.operation';
-	import {
-	description as mysqlMaintenanceUpdatePutDescription,
-	execute as mysqlMaintenanceUpdatePutExecute,
-} from './database/mysql/maintenanceUpdatePut.operation';
-	import {
-	description as mysqlMetricGetDescription,
-	execute as mysqlMetricGetExecute,
-} from './database/mysql/metricGet.operation';
-	import {
-	description as mysqlPrometheusGetDescription,
-	execute as mysqlPrometheusGetExecute,
-} from './database/mysql/prometheusGet.operation';
-	import {
-	description as mysqlCertificateListGetDescription,
-	execute as mysqlCertificateListGetExecute,
-} from './database/mysql/certificateListGet.operation';
-	import {
-	description as mysqlCertificateCreatePostDescription,
+
+import {
+	execute as mysqlBackupGetGetExecute,
+	description as mysqlBackupGetGetDescription,
+} from './database/mysql/backupGetGet.operation';
+
+import {
+	execute as mysqlBackupListGetExecute,
+	description as mysqlBackupListGetDescription,
+} from './database/mysql/backupListGet.operation';
+
+import {
 	execute as mysqlCertificateCreatePostExecute,
+	description as mysqlCertificateCreatePostDescription,
 } from './database/mysql/certificateCreatePost.operation';
-	import {
-	description as mysqlIntegrationListGetDescription,
-	execute as mysqlIntegrationListGetExecute,
-} from './database/mysql/integrationListGet.operation';
-	import {
-	description as mysqlIntegrationCreatePostDescription,
+
+import {
+	execute as mysqlCertificateListGetExecute,
+	description as mysqlCertificateListGetDescription,
+} from './database/mysql/certificateListGet.operation';
+
+import {
+	execute as mysqlClusterCreatePostExecute,
+	description as mysqlClusterCreatePostDescription,
+} from './database/mysql/clusterCreatePost.operation';
+
+import {
+	execute as mysqlClusterDeleteDeleteExecute,
+	description as mysqlClusterDeleteDeleteDescription,
+} from './database/mysql/clusterDeleteDelete.operation';
+
+import {
+	execute as mysqlClusterGetGetExecute,
+	description as mysqlClusterGetGetDescription,
+} from './database/mysql/clusterGetGet.operation';
+
+import {
+	execute as mysqlClusterListGetExecute,
+	description as mysqlClusterListGetDescription,
+} from './database/mysql/clusterListGet.operation';
+
+import {
+	execute as mysqlClusterUpdatePutExecute,
+	description as mysqlClusterUpdatePutDescription,
+} from './database/mysql/clusterUpdatePut.operation';
+
+import {
 	execute as mysqlIntegrationCreatePostExecute,
+	description as mysqlIntegrationCreatePostDescription,
 } from './database/mysql/integrationCreatePost.operation';
-	import {
-	description as opensearchAdvancedConfigurationListGetDescription,
+
+import {
+	execute as mysqlIntegrationListGetExecute,
+	description as mysqlIntegrationListGetDescription,
+} from './database/mysql/integrationListGet.operation';
+
+import {
+	execute as mysqlIpRestrictionCreatePostExecute,
+	description as mysqlIpRestrictionCreatePostDescription,
+} from './database/mysql/ipRestrictionCreatePost.operation';
+
+import {
+	execute as mysqlIpRestrictionListGetExecute,
+	description as mysqlIpRestrictionListGetDescription,
+} from './database/mysql/ipRestrictionListGet.operation';
+
+import {
+	execute as mysqlLogSubscriptionCreatePostExecute,
+	description as mysqlLogSubscriptionCreatePostDescription,
+} from './database/mysql/logSubscriptionCreatePost.operation';
+
+import {
+	execute as mysqlLogSubscriptionGetGetExecute,
+	description as mysqlLogSubscriptionGetGetDescription,
+} from './database/mysql/logSubscriptionGetGet.operation';
+
+import {
+	execute as mysqlLogSubscriptionListGetExecute,
+	description as mysqlLogSubscriptionListGetDescription,
+} from './database/mysql/logSubscriptionListGet.operation';
+
+import {
+	execute as mysqlMaintenanceGetExecute,
+	description as mysqlMaintenanceGetDescription,
+} from './database/mysql/maintenanceGet.operation';
+
+import {
+	execute as mysqlMaintenanceUpdatePutExecute,
+	description as mysqlMaintenanceUpdatePutDescription,
+} from './database/mysql/maintenanceUpdatePut.operation';
+
+import {
+	execute as mysqlMetricGetExecute,
+	description as mysqlMetricGetDescription,
+} from './database/mysql/metricGet.operation';
+
+import {
+	execute as mysqlNodeCreatePostExecute,
+	description as mysqlNodeCreatePostDescription,
+} from './database/mysql/nodeCreatePost.operation';
+
+import {
+	execute as mysqlNodeDeleteDeleteExecute,
+	description as mysqlNodeDeleteDeleteDescription,
+} from './database/mysql/nodeDeleteDelete.operation';
+
+import {
+	execute as mysqlNodeGetGetExecute,
+	description as mysqlNodeGetGetDescription,
+} from './database/mysql/nodeGetGet.operation';
+
+import {
+	execute as mysqlNodeListGetExecute,
+	description as mysqlNodeListGetDescription,
+} from './database/mysql/nodeListGet.operation';
+
+import {
+	execute as mysqlNodeUpdatePutExecute,
+	description as mysqlNodeUpdatePutDescription,
+} from './database/mysql/nodeUpdatePut.operation';
+
+import {
+	execute as mysqlPrometheusGetExecute,
+	description as mysqlPrometheusGetDescription,
+} from './database/mysql/prometheusGet.operation';
+
+import {
+	execute as mysqlUserCreatePostExecute,
+	description as mysqlUserCreatePostDescription,
+} from './database/mysql/userCreatePost.operation';
+
+import {
+	execute as mysqlUserDeleteDeleteExecute,
+	description as mysqlUserDeleteDeleteDescription,
+} from './database/mysql/userDeleteDelete.operation';
+
+import {
+	execute as mysqlUserGetGetExecute,
+	description as mysqlUserGetGetDescription,
+} from './database/mysql/userGetGet.operation';
+
+import {
+	execute as mysqlUserListGetExecute,
+	description as mysqlUserListGetDescription,
+} from './database/mysql/userListGet.operation';
+
+import {
+	execute as mysqlUserUpdatePutExecute,
+	description as mysqlUserUpdatePutDescription,
+} from './database/mysql/userUpdatePut.operation';
+
+import {
 	execute as opensearchAdvancedConfigurationListGetExecute,
+	description as opensearchAdvancedConfigurationListGetDescription,
 } from './database/opensearch/AdvancedConfigurationListGet.operation';
-	import {
-	description as opensearchAdvancedConfigurationUpdatePutDescription,
+
+import {
 	execute as opensearchAdvancedConfigurationUpdatePutExecute,
+	description as opensearchAdvancedConfigurationUpdatePutDescription,
 } from './database/opensearch/AdvancedConfigurationUpdatePut.operation';
-	import {
-	description as opensearchBackupGetGetDescription,
+
+import {
 	execute as opensearchBackupGetGetExecute,
+	description as opensearchBackupGetGetDescription,
 } from './database/opensearch/BackupGetGet.operation';
-	import {
-	description as opensearchBackupListGetDescription,
+
+import {
 	execute as opensearchBackupListGetExecute,
+	description as opensearchBackupListGetDescription,
 } from './database/opensearch/BackupListGet.operation';
-	import {
-	description as opensearchCapabilitiesAdvancedConfigurationListGetDescription,
+
+import {
 	execute as opensearchCapabilitiesAdvancedConfigurationListGetExecute,
+	description as opensearchCapabilitiesAdvancedConfigurationListGetDescription,
 } from './database/opensearch/CapabilitiesAdvancedConfigurationListGet.operation';
-	import {
-	description as opensearchCapabilitiesBackupRegionsListGetDescription,
+
+import {
 	execute as opensearchCapabilitiesBackupRegionsListGetExecute,
+	description as opensearchCapabilitiesBackupRegionsListGetDescription,
 } from './database/opensearch/CapabilitiesBackupRegionsListGet.operation';
-	import {
-	description as opensearchCapabilitiesIntegrationListGetDescription,
+
+import {
 	execute as opensearchCapabilitiesIntegrationListGetExecute,
+	description as opensearchCapabilitiesIntegrationListGetDescription,
 } from './database/opensearch/CapabilitiesIntegrationListGet.operation';
-	import {
-	description as opensearchClusterCreatePostDescription,
+
+import {
 	execute as opensearchClusterCreatePostExecute,
+	description as opensearchClusterCreatePostDescription,
 } from './database/opensearch/ClusterCreatePost.operation';
-	import {
-	description as opensearchClusterDeleteDeleteDescription,
+
+import {
 	execute as opensearchClusterDeleteDeleteExecute,
+	description as opensearchClusterDeleteDeleteDescription,
 } from './database/opensearch/ClusterDeleteDelete.operation';
-	import {
-	description as opensearchClusterGetGetDescription,
+
+import {
 	execute as opensearchClusterGetGetExecute,
+	description as opensearchClusterGetGetDescription,
 } from './database/opensearch/ClusterGetGet.operation';
-	import {
-	description as opensearchClusterListGetDescription,
+
+import {
 	execute as opensearchClusterListGetExecute,
+	description as opensearchClusterListGetDescription,
 } from './database/opensearch/ClusterListGet.operation';
-	import {
-	description as opensearchClusterUpdatePutDescription,
+
+import {
 	execute as opensearchClusterUpdatePutExecute,
+	description as opensearchClusterUpdatePutDescription,
 } from './database/opensearch/ClusterUpdatePut.operation';
-	import {
-	description as opensearchIndexDeleteDeleteDescription,
+
+import {
 	execute as opensearchIndexDeleteDeleteExecute,
+	description as opensearchIndexDeleteDeleteDescription,
 } from './database/opensearch/IndexDeleteDelete.operation';
-	import {
-	description as opensearchIndexGetGetDescription,
+
+import {
 	execute as opensearchIndexGetGetExecute,
+	description as opensearchIndexGetGetDescription,
 } from './database/opensearch/IndexGetGet.operation';
-	import {
-	description as opensearchIndexListGetDescription,
+
+import {
 	execute as opensearchIndexListGetExecute,
+	description as opensearchIndexListGetDescription,
 } from './database/opensearch/IndexListGet.operation';
-	import {
-	description as opensearchIntegrationCreatePostDescription,
+
+import {
 	execute as opensearchIntegrationCreatePostExecute,
+	description as opensearchIntegrationCreatePostDescription,
 } from './database/opensearch/IntegrationCreatePost.operation';
-	import {
-	description as opensearchIntegrationDeleteDeleteDescription,
+
+import {
 	execute as opensearchIntegrationDeleteDeleteExecute,
+	description as opensearchIntegrationDeleteDeleteDescription,
 } from './database/opensearch/IntegrationDeleteDelete.operation';
-	import {
-	description as opensearchIntegrationGetGetDescription,
+
+import {
 	execute as opensearchIntegrationGetGetExecute,
+	description as opensearchIntegrationGetGetDescription,
 } from './database/opensearch/IntegrationGetGet.operation';
-	import {
-	description as opensearchIntegrationListGetDescription,
+
+import {
 	execute as opensearchIntegrationListGetExecute,
+	description as opensearchIntegrationListGetDescription,
 } from './database/opensearch/IntegrationListGet.operation';
-	import {
-	description as opensearchIpRestrictionCreatePostDescription,
+
+import {
 	execute as opensearchIpRestrictionCreatePostExecute,
+	description as opensearchIpRestrictionCreatePostDescription,
 } from './database/opensearch/IpRestrictionCreatePost.operation';
-	import {
-	description as opensearchIpRestrictionDeleteDeleteDescription,
+
+import {
 	execute as opensearchIpRestrictionDeleteDeleteExecute,
+	description as opensearchIpRestrictionDeleteDeleteDescription,
 } from './database/opensearch/IpRestrictionDeleteDelete.operation';
-	import {
-	description as opensearchIpRestrictionGetGetDescription,
+
+import {
 	execute as opensearchIpRestrictionGetGetExecute,
+	description as opensearchIpRestrictionGetGetDescription,
 } from './database/opensearch/IpRestrictionGetGet.operation';
-	import {
-	description as opensearchIpRestrictionListGetDescription,
+
+import {
 	execute as opensearchIpRestrictionListGetExecute,
+	description as opensearchIpRestrictionListGetDescription,
 } from './database/opensearch/IpRestrictionListGet.operation';
-	import {
-	description as opensearchIpRestrictionUpdatePutDescription,
+
+import {
 	execute as opensearchIpRestrictionUpdatePutExecute,
+	description as opensearchIpRestrictionUpdatePutDescription,
 } from './database/opensearch/IpRestrictionUpdatePut.operation';
-	import {
-	description as opensearchLogKindGetDescription,
+
+import {
 	execute as opensearchLogKindGetExecute,
+	description as opensearchLogKindGetDescription,
 } from './database/opensearch/LogKindGet.operation';
-	import {
-	description as opensearchLogKindListGetDescription,
+
+import {
 	execute as opensearchLogKindListGetExecute,
+	description as opensearchLogKindListGetDescription,
 } from './database/opensearch/LogKindListGet.operation';
-	import {
-	description as opensearchLogSubscriptionCreatePostDescription,
+
+import {
 	execute as opensearchLogSubscriptionCreatePostExecute,
+	description as opensearchLogSubscriptionCreatePostDescription,
 } from './database/opensearch/LogSubscriptionCreatePost.operation';
-	import {
-	description as opensearchLogSubscriptionDeleteDeleteDescription,
+
+import {
 	execute as opensearchLogSubscriptionDeleteDeleteExecute,
+	description as opensearchLogSubscriptionDeleteDeleteDescription,
 } from './database/opensearch/LogSubscriptionDeleteDelete.operation';
-	import {
-	description as opensearchLogSubscriptionGetDescription,
+
+import {
 	execute as opensearchLogSubscriptionGetExecute,
+	description as opensearchLogSubscriptionGetDescription,
 } from './database/opensearch/LogSubscriptionGet.operation';
-	import {
-	description as opensearchLogSubscriptionListGetDescription,
+
+import {
 	execute as opensearchLogSubscriptionListGetExecute,
+	description as opensearchLogSubscriptionListGetDescription,
 } from './database/opensearch/LogSubscriptionListGet.operation';
-	import {
-	description as opensearchLogUrlCreatePostDescription,
+
+import {
 	execute as opensearchLogUrlCreatePostExecute,
+	description as opensearchLogUrlCreatePostDescription,
 } from './database/opensearch/LogUrlCreatePost.operation';
-	import {
-	description as opensearchLogsListGetDescription,
+
+import {
 	execute as opensearchLogsListGetExecute,
+	description as opensearchLogsListGetDescription,
 } from './database/opensearch/LogsListGet.operation';
-	import {
-	description as opensearchMaintenanceApplyPostDescription,
+
+import {
 	execute as opensearchMaintenanceApplyPostExecute,
+	description as opensearchMaintenanceApplyPostDescription,
 } from './database/opensearch/MaintenanceApplyPost.operation';
-	import {
-	description as opensearchMaintenanceGetGetDescription,
+
+import {
 	execute as opensearchMaintenanceGetGetExecute,
+	description as opensearchMaintenanceGetGetDescription,
 } from './database/opensearch/MaintenanceGetGet.operation';
-	import {
-	description as opensearchMaintenanceListGetDescription,
+
+import {
 	execute as opensearchMaintenanceListGetExecute,
+	description as opensearchMaintenanceListGetDescription,
 } from './database/opensearch/MaintenanceListGet.operation';
-	import {
-	description as opensearchMetricGetGetDescription,
+
+import {
 	execute as opensearchMetricGetGetExecute,
+	description as opensearchMetricGetGetDescription,
 } from './database/opensearch/MetricGetGet.operation';
-	import {
-	description as opensearchMetricListGetDescription,
+
+import {
 	execute as opensearchMetricListGetExecute,
+	description as opensearchMetricListGetDescription,
 } from './database/opensearch/MetricListGet.operation';
-	import {
-	description as opensearchNodeGetGetDescription,
+
+import {
 	execute as opensearchNodeGetGetExecute,
+	description as opensearchNodeGetGetDescription,
 } from './database/opensearch/NodeGetGet.operation';
-	import {
-	description as opensearchNodeListGetDescription,
+
+import {
 	execute as opensearchNodeListGetExecute,
+	description as opensearchNodeListGetDescription,
 } from './database/opensearch/NodeListGet.operation';
-	import {
-	description as opensearchPatternCreatePostDescription,
+
+import {
 	execute as opensearchPatternCreatePostExecute,
+	description as opensearchPatternCreatePostDescription,
 } from './database/opensearch/PatternCreatePost.operation';
-	import {
-	description as opensearchPatternDeleteDeleteDescription,
+
+import {
 	execute as opensearchPatternDeleteDeleteExecute,
+	description as opensearchPatternDeleteDeleteDescription,
 } from './database/opensearch/PatternDeleteDelete.operation';
-	import {
-	description as opensearchPatternGetGetDescription,
+
+import {
 	execute as opensearchPatternGetGetExecute,
+	description as opensearchPatternGetGetDescription,
 } from './database/opensearch/PatternGetGet.operation';
-	import {
-	description as opensearchPatternListGetDescription,
+
+import {
 	execute as opensearchPatternListGetExecute,
+	description as opensearchPatternListGetDescription,
 } from './database/opensearch/PatternListGet.operation';
-	import {
-	description as opensearchPermissionsListGetDescription,
+
+import {
 	execute as opensearchPermissionsListGetExecute,
+	description as opensearchPermissionsListGetDescription,
 } from './database/opensearch/PermissionsListGet.operation';
-	import {
-	description as opensearchPrometheusCredentialsResetPostDescription,
+
+import {
 	execute as opensearchPrometheusCredentialsResetPostExecute,
+	description as opensearchPrometheusCredentialsResetPostDescription,
 } from './database/opensearch/PrometheusCredentialsResetPost.operation';
-	import {
-	description as opensearchPrometheusListGetDescription,
+
+import {
 	execute as opensearchPrometheusListGetExecute,
+	description as opensearchPrometheusListGetDescription,
 } from './database/opensearch/PrometheusListGet.operation';
-	import {
-	description as opensearchUserCreatePostDescription,
+
+import {
 	execute as opensearchUserCreatePostExecute,
+	description as opensearchUserCreatePostDescription,
 } from './database/opensearch/UserCreatePost.operation';
-	import {
-	description as opensearchUserCredentialsResetPostDescription,
+
+import {
 	execute as opensearchUserCredentialsResetPostExecute,
+	description as opensearchUserCredentialsResetPostDescription,
 } from './database/opensearch/UserCredentialsResetPost.operation';
-	import {
-	description as opensearchUserDeleteDeleteDescription,
+
+import {
 	execute as opensearchUserDeleteDeleteExecute,
+	description as opensearchUserDeleteDeleteDescription,
 } from './database/opensearch/UserDeleteDelete.operation';
-	import {
-	description as opensearchUserGetGetDescription,
+
+import {
 	execute as opensearchUserGetGetExecute,
+	description as opensearchUserGetGetDescription,
 } from './database/opensearch/UserGetGet.operation';
-	import {
-	description as opensearchUserListGetDescription,
+
+import {
 	execute as opensearchUserListGetExecute,
+	description as opensearchUserListGetDescription,
 } from './database/opensearch/UserListGet.operation';
-	import {
-	description as opensearchUserUpdatePutDescription,
+
+import {
 	execute as opensearchUserUpdatePutExecute,
+	description as opensearchUserUpdatePutDescription,
 } from './database/opensearch/UserUpdatePut.operation';
-	import {
-	description as postgresqlClusterListGetDescription,
-	execute as postgresqlClusterListGetExecute,
-} from './database/postgresql/clusterListGet.operation';
-	import {
-	description as postgresqlClusterGetGetDescription,
-	execute as postgresqlClusterGetGetExecute,
-} from './database/postgresql/clusterGetGet.operation';
-	import {
-	description as postgresqlClusterCreatePostDescription,
-	execute as postgresqlClusterCreatePostExecute,
-} from './database/postgresql/clusterCreatePost.operation';
-	import {
-	description as postgresqlClusterUpdatePutDescription,
-	execute as postgresqlClusterUpdatePutExecute,
-} from './database/postgresql/clusterUpdatePut.operation';
-	import {
-	description as postgresqlClusterDeleteDeleteDescription,
-	execute as postgresqlClusterDeleteDeleteExecute,
-} from './database/postgresql/clusterDeleteDelete.operation';
-	import {
-	description as postgresqlBackupListGetDescription,
-	execute as postgresqlBackupListGetExecute,
-} from './database/postgresql/backupListGet.operation';
-	import {
-	description as postgresqlBackupGetGetDescription,
-	execute as postgresqlBackupGetGetExecute,
-} from './database/postgresql/backupGetGet.operation';
-	import {
-	description as postgresqlBackupCreatePostDescription,
+
+import {
 	execute as postgresqlBackupCreatePostExecute,
+	description as postgresqlBackupCreatePostDescription,
 } from './database/postgresql/backupCreatePost.operation';
-	import {
-	description as postgresqlBackupDeleteDeleteDescription,
+
+import {
 	execute as postgresqlBackupDeleteDeleteExecute,
+	description as postgresqlBackupDeleteDeleteDescription,
 } from './database/postgresql/backupDeleteDelete.operation';
-	import {
-	description as postgresqlUserListGetDescription,
-	execute as postgresqlUserListGetExecute,
-} from './database/postgresql/userListGet.operation';
-	import {
-	description as postgresqlUserCreatePostDescription,
-	execute as postgresqlUserCreatePostExecute,
-} from './database/postgresql/userCreatePost.operation';
-	import {
-	description as postgresqlUserGetGetDescription,
-	execute as postgresqlUserGetGetExecute,
-} from './database/postgresql/userGetGet.operation';
-	import {
-	description as postgresqlUserUpdatePutDescription,
-	execute as postgresqlUserUpdatePutExecute,
-} from './database/postgresql/userUpdatePut.operation';
-	import {
-	description as postgresqlUserDeleteDeleteDescription,
-	execute as postgresqlUserDeleteDeleteExecute,
-} from './database/postgresql/userDeleteDelete.operation';
-	import {
-	description as postgresqlNodeListGetDescription,
-	execute as postgresqlNodeListGetExecute,
-} from './database/postgresql/nodeListGet.operation';
-	import {
-	description as postgresqlNodeGetGetDescription,
-	execute as postgresqlNodeGetGetExecute,
-} from './database/postgresql/nodeGetGet.operation';
-	import {
-	description as postgresqlNodeCreatePostDescription,
-	execute as postgresqlNodeCreatePostExecute,
-} from './database/postgresql/nodeCreatePost.operation';
-	import {
-	description as postgresqlNodeUpdatePutDescription,
-	execute as postgresqlNodeUpdatePutExecute,
-} from './database/postgresql/nodeUpdatePut.operation';
-	import {
-	description as postgresqlNodeDeleteDeleteDescription,
-	execute as postgresqlNodeDeleteDeleteExecute,
-} from './database/postgresql/nodeDeleteDelete.operation';
-	import {
-	description as postgresqlIpRestrictionListGetDescription,
-	execute as postgresqlIpRestrictionListGetExecute,
-} from './database/postgresql/ipRestrictionListGet.operation';
-	import {
-	description as postgresqlIpRestrictionCreatePostDescription,
-	execute as postgresqlIpRestrictionCreatePostExecute,
-} from './database/postgresql/ipRestrictionCreatePost.operation';
-	import {
-	description as postgresqlLogSubscriptionListGetDescription,
-	execute as postgresqlLogSubscriptionListGetExecute,
-} from './database/postgresql/logSubscriptionListGet.operation';
-	import {
-	description as postgresqlLogSubscriptionCreatePostDescription,
-	execute as postgresqlLogSubscriptionCreatePostExecute,
-} from './database/postgresql/logSubscriptionCreatePost.operation';
-	import {
-	description as postgresqlLogSubscriptionGetGetDescription,
-	execute as postgresqlLogSubscriptionGetGetExecute,
-} from './database/postgresql/logSubscriptionGetGet.operation';
-	import {
-	description as postgresqlMaintenanceGetDescription,
-	execute as postgresqlMaintenanceGetExecute,
-} from './database/postgresql/maintenanceGet.operation';
-	import {
-	description as postgresqlMaintenanceUpdatePutDescription,
-	execute as postgresqlMaintenanceUpdatePutExecute,
-} from './database/postgresql/maintenanceUpdatePut.operation';
-	import {
-	description as postgresqlMetricGetDescription,
-	execute as postgresqlMetricGetExecute,
-} from './database/postgresql/metricGet.operation';
-	import {
-	description as postgresqlPrometheusGetDescription,
-	execute as postgresqlPrometheusGetExecute,
-} from './database/postgresql/prometheusGet.operation';
-	import {
-	description as postgresqlCertificateListGetDescription,
-	execute as postgresqlCertificateListGetExecute,
-} from './database/postgresql/certificateListGet.operation';
-	import {
-	description as postgresqlCertificateCreatePostDescription,
+
+import {
+	execute as postgresqlBackupGetGetExecute,
+	description as postgresqlBackupGetGetDescription,
+} from './database/postgresql/backupGetGet.operation';
+
+import {
+	execute as postgresqlBackupListGetExecute,
+	description as postgresqlBackupListGetDescription,
+} from './database/postgresql/backupListGet.operation';
+
+import {
 	execute as postgresqlCertificateCreatePostExecute,
+	description as postgresqlCertificateCreatePostDescription,
 } from './database/postgresql/certificateCreatePost.operation';
-	import {
-	description as postgresqlIntegrationListGetDescription,
-	execute as postgresqlIntegrationListGetExecute,
-} from './database/postgresql/integrationListGet.operation';
-	import {
-	description as postgresqlIntegrationCreatePostDescription,
+
+import {
+	execute as postgresqlCertificateListGetExecute,
+	description as postgresqlCertificateListGetDescription,
+} from './database/postgresql/certificateListGet.operation';
+
+import {
+	execute as postgresqlClusterCreatePostExecute,
+	description as postgresqlClusterCreatePostDescription,
+} from './database/postgresql/clusterCreatePost.operation';
+
+import {
+	execute as postgresqlClusterDeleteDeleteExecute,
+	description as postgresqlClusterDeleteDeleteDescription,
+} from './database/postgresql/clusterDeleteDelete.operation';
+
+import {
+	execute as postgresqlClusterGetGetExecute,
+	description as postgresqlClusterGetGetDescription,
+} from './database/postgresql/clusterGetGet.operation';
+
+import {
+	execute as postgresqlClusterListGetExecute,
+	description as postgresqlClusterListGetDescription,
+} from './database/postgresql/clusterListGet.operation';
+
+import {
+	execute as postgresqlClusterUpdatePutExecute,
+	description as postgresqlClusterUpdatePutDescription,
+} from './database/postgresql/clusterUpdatePut.operation';
+
+import {
 	execute as postgresqlIntegrationCreatePostExecute,
+	description as postgresqlIntegrationCreatePostDescription,
 } from './database/postgresql/integrationCreatePost.operation';
-	import {
-	description as kubeAuditLogsPostDescription,
-	execute as kubeAuditLogsPostExecute,
-} from './kube/kubeAuditLogsPost.operation';
-	import {
-	description as kubeCustomizationGetDescription,
-	execute as kubeCustomizationGetExecute,
-} from './kube/kubeCustomizationGet.operation';
-	import {
-	description as kubeCustomizationUpdatePutDescription,
-	execute as kubeCustomizationUpdatePutExecute,
-} from './kube/kubeCustomizationUpdatePut.operation';
-	import {
-	description as kubeDeleteDeleteDescription,
-	execute as kubeDeleteDeleteExecute,
-} from './kube/kubeDeleteDelete.operation';
-	import {
-	description as kubeFlavorsGetDescription,
-	execute as kubeFlavorsGetExecute,
-} from './kube/kubeFlavorsGet.operation';
-	import {
-	description as kubeGetGetDescription,
-	execute as kubeGetGetExecute,
-} from './kube/kubeGetGet.operation';
-	import {
-	description as kubeIpRestrictionsDeleteDeleteDescription,
-	execute as kubeIpRestrictionsDeleteDeleteExecute,
-} from './kube/kubeIpRestrictionsDeleteDelete.operation';
-	import {
-	description as kubeIpRestrictionsGetDescription,
-	execute as kubeIpRestrictionsGetExecute,
-} from './kube/kubeIpRestrictionsGet.operation';
-	import {
-	description as kubeIpRestrictionsPostDescription,
-	execute as kubeIpRestrictionsPostExecute,
-} from './kube/kubeIpRestrictionsPost.operation';
-	import {
-	description as kubeIpRestrictionsUpdatePutDescription,
-	execute as kubeIpRestrictionsUpdatePutExecute,
-} from './kube/kubeIpRestrictionsUpdatePut.operation';
-	import {
-	description as kubeKubeconfigPostDescription,
-	execute as kubeKubeconfigPostExecute,
-} from './kube/kubeKubeconfigPost.operation';
-	import {
-	description as kubeKubeconfigResetPostDescription,
-	execute as kubeKubeconfigResetPostExecute,
-} from './kube/kubeKubeconfigResetPost.operation';
-	import {
-	description as kubeListGetDescription,
-	execute as kubeListGetExecute,
-} from './kube/kubeListGet.operation';
-	import {
-	description as kubeLogSubscriptionDeleteDeleteDescription,
-	execute as kubeLogSubscriptionDeleteDeleteExecute,
-} from './kube/kubeLogSubscriptionDeleteDelete.operation';
-	import {
-	description as kubeLogSubscriptionGetDescription,
-	execute as kubeLogSubscriptionGetExecute,
-} from './kube/kubeLogSubscriptionGet.operation';
-	import {
-	description as kubeLogSubscriptionPostDescription,
-	execute as kubeLogSubscriptionPostExecute,
-} from './kube/kubeLogSubscriptionPost.operation';
-	import {
-	description as kubeLogSubscriptionListGetDescription,
-	execute as kubeLogSubscriptionListGetExecute,
-} from './kube/kubeLogSubscriptionListGet.operation';
-	import {
-	description as kubeLogUrlPostDescription,
-	execute as kubeLogUrlPostExecute,
-} from './kube/kubeLogUrlPost.operation';
-	import {
-	description as kubeMetricsEtcdUsageGetDescription,
-	execute as kubeMetricsEtcdUsageGetExecute,
-} from './kube/kubeMetricsEtcdUsageGet.operation';
-	import {
-	description as kubeNodeDeleteDeleteDescription,
-	execute as kubeNodeDeleteDeleteExecute,
-} from './kube/kubeNodeDeleteDelete.operation';
-	import {
-	description as kubeNodeGetDescription,
-	execute as kubeNodeGetExecute,
-} from './kube/kubeNodeGet.operation';
-	import {
-	description as kubeNodeListGetDescription,
-	execute as kubeNodeListGetExecute,
-} from './kube/kubeNodeListGet.operation';
-	import {
-	description as kubeNodepoolCreatePostDescription,
-	execute as kubeNodepoolCreatePostExecute,
-} from './kube/kubeNodepoolCreatePost.operation';
-	import {
-	description as kubeNodepoolListGetDescription,
-	execute as kubeNodepoolListGetExecute,
-} from './kube/kubeNodepoolListGet.operation';
-	import {
-	description as kubeNodepoolDeleteDeleteDescription,
-	execute as kubeNodepoolDeleteDeleteExecute,
-} from './kube/kubeNodepoolDeleteDelete.operation';
-	import {
-	description as kubeNodepoolGetGetDescription,
-	execute as kubeNodepoolGetGetExecute,
-} from './kube/kubeNodepoolGetGet.operation';
-	import {
-	description as kubeNodepoolListNodepoolNodesGetDescription,
-	execute as kubeNodepoolListNodepoolNodesGetExecute,
-} from './kube/kubeNodepoolListNodepoolNodesGet.operation';
-	import {
-	description as kubeNodepoolUpdatePutDescription,
-	execute as kubeNodepoolUpdatePutExecute,
-} from './kube/kubeNodepoolUpdatePut.operation';
-	import {
-	description as kubeOpenIdConnectDeleteDeleteDescription,
-	execute as kubeOpenIdConnectDeleteDeleteExecute,
-} from './kube/kubeOpenIdConnectDeleteDelete.operation';
-	import {
-	description as kubeOpenIdConnectGetDescription,
-	execute as kubeOpenIdConnectGetExecute,
-} from './kube/kubeOpenIdConnectGet.operation';
-	import {
-	description as kubeOpenIdConnectPostDescription,
-	execute as kubeOpenIdConnectPostExecute,
-} from './kube/kubeOpenIdConnectPost.operation';
-	import {
-	description as kubeOpenIdConnectUpdatePutDescription,
-	execute as kubeOpenIdConnectUpdatePutExecute,
-} from './kube/kubeOpenIdConnectUpdatePut.operation';
-	import {
-	description as kubePrivateNetworkConfigurationGetDescription,
-	execute as kubePrivateNetworkConfigurationGetExecute,
-} from './kube/kubePrivateNetworkConfigurationGet.operation';
-	import {
-	description as kubePrivateNetworkConfigurationUpdatePutDescription,
-	execute as kubePrivateNetworkConfigurationUpdatePutExecute,
-} from './kube/kubePrivateNetworkConfigurationUpdatePut.operation';
-	import {
-	description as kubeResetPostDescription,
-	execute as kubeResetPostExecute,
-} from './kube/kubeResetPost.operation';
-	import {
-	description as kubeRestartPostDescription,
-	execute as kubeRestartPostExecute,
-} from './kube/kubeRestartPost.operation';
-	import {
-	description as kubeUpdateLoadBalancersSubnetIdUpdatePutDescription,
-	execute as kubeUpdateLoadBalancersSubnetIdUpdatePutExecute,
-} from './kube/kubeUpdateLoadBalancersSubnetIdUpdatePut.operation';
-	import {
-	description as kubeUpdatePolicyUpdatePutDescription,
-	execute as kubeUpdatePolicyUpdatePutExecute,
-} from './kube/kubeUpdatePolicyUpdatePut.operation';
-	import {
-	description as kubeUpdatePostDescription,
-	execute as kubeUpdatePostExecute,
-} from './kube/kubeUpdatePost.operation';
-	import {
-	description as kubeUpdatePutDescription,
-	execute as kubeUpdatePutExecute,
-} from './kube/kubeUpdatePut.operation';
-	import {
-	description as instanceActiveMonthlyBillingPostDescription,
-	execute as instanceActiveMonthlyBillingPostExecute,
-} from './instance/instanceActiveMonthlyBillingPost.operation';
-	import {
-	description as instanceApplicationAccessPostDescription,
-	execute as instanceApplicationAccessPostExecute,
-} from './instance/instanceApplicationAccessPost.operation';
-	import {
-	description as instanceBulkPostDescription,
-	execute as instanceBulkPostExecute,
-} from './instance/instanceBulkPost.operation';
-	import {
-	description as instanceCreatePostDescription,
-	execute as instanceCreatePostExecute,
-} from './instance/instanceCreatePost.operation';
-	import {
-	description as instanceDeleteDeleteDescription,
-	execute as instanceDeleteDeleteExecute,
-} from './instance/instanceDeleteDelete.operation';
-	import {
-	description as instanceGetGetDescription,
-	execute as instanceGetGetExecute,
-} from './instance/instanceGetGet.operation';
-	import {
-	description as instanceGroupCreatePostDescription,
-	execute as instanceGroupCreatePostExecute,
-} from './instance/instanceGroupCreatePost.operation';
-	import {
-	description as instanceGroupDeleteDeleteDescription,
-	execute as instanceGroupDeleteDeleteExecute,
-} from './instance/instanceGroupDeleteDelete.operation';
-	import {
-	description as instanceGroupGetGetDescription,
-	execute as instanceGroupGetGetExecute,
-} from './instance/instanceGroupGetGet.operation';
-	import {
-	description as instanceGroupListGetDescription,
-	execute as instanceGroupListGetExecute,
-} from './instance/instanceGroupListGet.operation';
-	import {
-	description as instanceInterfaceCreatePostDescription,
-	execute as instanceInterfaceCreatePostExecute,
-} from './instance/instanceInterfaceCreatePost.operation';
-	import {
-	description as instanceInterfaceDeleteDeleteDescription,
-	execute as instanceInterfaceDeleteDeleteExecute,
-} from './instance/instanceInterfaceDeleteDelete.operation';
-	import {
-	description as instanceInterfaceGetGetDescription,
-	execute as instanceInterfaceGetGetExecute,
-} from './instance/instanceInterfaceGetGet.operation';
-	import {
-	description as instanceInterfaceListGetDescription,
-	execute as instanceInterfaceListGetExecute,
-} from './instance/instanceInterfaceListGet.operation';
-	import {
-	description as instanceListGetDescription,
-	execute as instanceListGetExecute,
-} from './instance/instanceListGet.operation';
-	import {
-	description as instanceRebootPostDescription,
-	execute as instanceRebootPostExecute,
-} from './instance/instanceRebootPost.operation';
-	import {
-	description as instanceReinstallPostDescription,
-	execute as instanceReinstallPostExecute,
-} from './instance/instanceReinstallPost.operation';
-	import {
-	description as instanceRescueModePostDescription,
-	execute as instanceRescueModePostExecute,
-} from './instance/instanceRescueModePost.operation';
-	import {
-	description as instanceResizePostDescription,
-	execute as instanceResizePostExecute,
-} from './instance/instanceResizePost.operation';
-	import {
-	description as instanceResumePostDescription,
-	execute as instanceResumePostExecute,
-} from './instance/instanceResumePost.operation';
-	import {
-	description as instanceShelvePostDescription,
-	execute as instanceShelvePostExecute,
-} from './instance/instanceShelvePost.operation';
-	import {
-	description as instanceSnapshotPostDescription,
-	execute as instanceSnapshotPostExecute,
-} from './instance/instanceSnapshotPost.operation';
-	import {
-	description as instanceStartPostDescription,
-	execute as instanceStartPostExecute,
-} from './instance/instanceStartPost.operation';
-	import {
-	description as instanceStopPostDescription,
-	execute as instanceStopPostExecute,
-} from './instance/instanceStopPost.operation';
-	import {
-	description as instanceUnshelvePostDescription,
-	execute as instanceUnshelvePostExecute,
-} from './instance/instanceUnshelvePost.operation';
-	import {
-	description as instanceUpdatePutDescription,
-	execute as instanceUpdatePutExecute,
-} from './instance/instanceUpdatePut.operation';
-	import {
-	description as instanceVncPostDescription,
-	execute as instanceVncPostExecute,
-} from './instance/instanceVncPost.operation';
-	import {
-	description as networkCreatePrivateNetworkPostDescription,
-	execute as networkCreatePrivateNetworkPostExecute,
-} from './network/createPrivateNetworkPost.operation';
-	import {
-	description as networkCreateSubnetPostDescription,
-	execute as networkCreateSubnetPostExecute,
-} from './network/createSubnetPost.operation';
-	import {
-	description as networkDeletePrivateNetworkDeleteDescription,
-	execute as networkDeletePrivateNetworkDeleteExecute,
-} from './network/deletePrivateNetworkDelete.operation';
-	import {
-	description as networkDeleteSubnetDeleteDescription,
-	execute as networkDeleteSubnetDeleteExecute,
-} from './network/deleteSubnetDelete.operation';
-	import {
-	description as networkGetPrivateNetworkDetailGetDescription,
-	execute as networkGetPrivateNetworkDetailGetExecute,
-} from './network/getPrivateNetworkDetailGet.operation';
-	import {
-	description as networkGetSubnetDetailGetDescription,
-	execute as networkGetSubnetDetailGetExecute,
-} from './network/getSubnetDetailGet.operation';
-	import {
-	description as networkListPrivateNetworksGetDescription,
-	execute as networkListPrivateNetworksGetExecute,
-} from './network/listPrivateNetworksGet.operation';
-	import {
-	description as networkListPublicNetworksGetDescription,
-	execute as networkListPublicNetworksGetExecute,
-} from './network/listPublicNetworksGet.operation';
-	import {
-	description as networkListSubnetsGetDescription,
-	execute as networkListSubnetsGetExecute,
-} from './network/listSubnetsGet.operation';
-	import {
-	description as networkUpdatePrivateNetworkPutDescription,
-	execute as networkUpdatePrivateNetworkPutExecute,
-} from './network/updatePrivateNetworkPut.operation';
-	import {
-	description as networkUpdateSubnetPutDescription,
-	execute as networkUpdateSubnetPutExecute,
-} from './network/updateSubnetPut.operation';
-	import {
-	description as networkActivatePrivateNetworkRegionPostDescription,
-	execute as networkActivatePrivateNetworkRegionPostExecute,
-} from './network/activatePrivateNetworkRegionPost.operation';
-	import {
-	description as regionGetGetDescription,
-	execute as regionGetGetExecute,
-} from './region/regionGetGet.operation';
-	import {
-	description as regionListGetDescription,
-	execute as regionListGetExecute,
-} from './region/regionListGet.operation';
-	import {
-	description as regionShareCreatePostDescription,
-	execute as regionShareCreatePostExecute,
-} from './region/regionShareCreatePost.operation';
-	import {
-	description as regionShareDeleteDeleteDescription,
-	execute as regionShareDeleteDeleteExecute,
-} from './region/regionShareDeleteDelete.operation';
-	import {
-	description as regionShareGetGetDescription,
-	execute as regionShareGetGetExecute,
-} from './region/regionShareGetGet.operation';
-	import {
-	description as regionShareListGetDescription,
-	execute as regionShareListGetExecute,
-} from './region/regionShareListGet.operation';
-	import {
-	description as regionShareSnapshotCreatePostDescription,
-	execute as regionShareSnapshotCreatePostExecute,
-} from './region/regionShareSnapshotCreatePost.operation';
-	import {
-	description as regionShareSnapshotDeleteDeleteDescription,
-	execute as regionShareSnapshotDeleteDeleteExecute,
-} from './region/regionShareSnapshotDeleteDelete.operation';
-	import {
-	description as regionShareSnapshotGetGetDescription,
-	execute as regionShareSnapshotGetGetExecute,
-} from './region/regionShareSnapshotGetGet.operation';
-	import {
-	description as regionShareSnapshotListGetDescription,
-	execute as regionShareSnapshotListGetExecute,
-} from './region/regionShareSnapshotListGet.operation';
-	import {
-	description as regionShareUpdatePutDescription,
-	execute as regionShareUpdatePutExecute,
-} from './region/regionShareUpdatePut.operation';
-	import {
-	description as regionVolumeCreatePostDescription,
-	execute as regionVolumeCreatePostExecute,
-} from './region/regionVolumeCreatePost.operation';
-	import {
-	description as regionVolumeDeleteDeleteDescription,
-	execute as regionVolumeDeleteDeleteExecute,
-} from './region/regionVolumeDeleteDelete.operation';
-	import {
-	description as regionVolumeGetGetDescription,
-	execute as regionVolumeGetGetExecute,
-} from './region/regionVolumeGetGet.operation';
-	import {
-	description as regionVolumeListGetDescription,
-	execute as regionVolumeListGetExecute,
-} from './region/regionVolumeListGet.operation';
-	import {
-	description as regionVolumeUpdatePutDescription,
-	execute as regionVolumeUpdatePutExecute,
-} from './region/regionVolumeUpdatePut.operation';
-	import {
-	description as regionWorkflowBackupCreatePostDescription,
-	execute as regionWorkflowBackupCreatePostExecute,
-} from './region/regionWorkflowBackupCreatePost.operation';
-	import {
-	description as regionWorkflowBackupDeleteDeleteDescription,
-	execute as regionWorkflowBackupDeleteDeleteExecute,
-} from './region/regionWorkflowBackupDeleteDelete.operation';
-	import {
-	description as regionWorkflowBackupGetGetDescription,
-	execute as regionWorkflowBackupGetGetExecute,
-} from './region/regionWorkflowBackupGetGet.operation';
-	import {
-	description as regionWorkflowBackupUpdatePutDescription,
-	execute as regionWorkflowBackupUpdatePutExecute,
-} from './region/regionWorkflowBackupUpdatePut.operation';
-
-	import {
-	description as regionColdArchiveListGetDescription,
-	execute as regionColdArchiveListGetExecute,
-} from './region/regionColdArchiveListGet.operation';
-	import {
-	description as regionColdArchiveCreatePostDescription,
-	execute as regionColdArchiveCreatePostExecute,
-} from './region/regionColdArchiveCreatePost.operation';
-	import {
-	description as regionColdArchiveDeleteDeleteDescription,
-	execute as regionColdArchiveDeleteDeleteExecute,
-} from './region/regionColdArchiveDeleteDelete.operation';
-	import {
-	description as regionColdArchiveGetGetDescription,
-	execute as regionColdArchiveGetGetExecute,
-} from './region/regionColdArchiveGetGet.operation';
-	import {
-	description as regionColdArchiveArchivePostDescription,
-	execute as regionColdArchiveArchivePostExecute,
-} from './region/regionColdArchiveArchivePost.operation';
-	import {
-	description as regionColdArchiveDestroyPostDescription,
-	execute as regionColdArchiveDestroyPostExecute,
-} from './region/regionColdArchiveDestroyPost.operation';
-	import {
-	description as regionColdArchiveObjectDeleteDeleteDescription,
-	execute as regionColdArchiveObjectDeleteDeleteExecute,
-} from './region/regionColdArchiveObjectDeleteDelete.operation';
-	import {
-	description as regionColdArchivePolicyCreatePostDescription,
-	execute as regionColdArchivePolicyCreatePostExecute,
-} from './region/regionColdArchivePolicyCreatePost.operation';
-	import {
-	description as regionColdArchivePresignPostDescription,
-	execute as regionColdArchivePresignPostExecute,
-} from './region/regionColdArchivePresignPost.operation';
-	import {
-	description as regionColdArchiveRestorePostDescription,
-	execute as regionColdArchiveRestorePostExecute,
-} from './region/regionColdArchiveRestorePost.operation';
-	import {
-	description as regionStorageListGetDescription,
-	execute as regionStorageListGetExecute,
-} from './region/regionStorageListGet.operation';
-	import {
-	description as regionStorageCreatePostDescription,
-	execute as regionStorageCreatePostExecute,
-} from './region/regionStorageCreatePost.operation';
-	import {
-	description as regionStorageDeleteDeleteDescription,
-	execute as regionStorageDeleteDeleteExecute,
-} from './region/regionStorageDeleteDelete.operation';
-	import {
-	description as regionStorageGetGetDescription,
-	execute as regionStorageGetGetExecute,
-} from './region/regionStorageGetGet.operation';
-	import {
-	description as regionStorageUpdatePutDescription,
-	execute as regionStorageUpdatePutExecute,
-} from './region/regionStorageUpdatePut.operation';
-	import {
-	description as regionStorageBulkDeleteObjectsPostDescription,
-	execute as regionStorageBulkDeleteObjectsPostExecute,
-} from './region/regionStorageBulkDeleteObjectsPost.operation';
-	import {
-	description as regionStorageReplicationListGetDescription,
-	execute as regionStorageReplicationListGetExecute,
-} from './region/regionStorageReplicationListGet.operation';
-	import {
-	description as regionStorageReplicationCreatePostDescription,
-	execute as regionStorageReplicationCreatePostExecute,
-} from './region/regionStorageReplicationCreatePost.operation';
-	import {
-	description as regionStorageLifecycleDeleteDeleteDescription,
-	execute as regionStorageLifecycleDeleteDeleteExecute,
-} from './region/regionStorageLifecycleDeleteDelete.operation';
-	import {
-	description as regionStorageLifecycleGetGetDescription,
-	execute as regionStorageLifecycleGetGetExecute,
-} from './region/regionStorageLifecycleGetGet.operation';
-	import {
-	description as regionStorageLifecycleUpdatePutDescription,
-	execute as regionStorageLifecycleUpdatePutExecute,
-} from './region/regionStorageLifecycleUpdatePut.operation';
-	import {
-	description as regionStorageObjectListGetDescription,
-	execute as regionStorageObjectListGetExecute,
-} from './region/regionStorageObjectListGet.operation';
-	import {
-	description as regionStorageObjectCreatePostDescription,
-	execute as regionStorageObjectCreatePostExecute,
-} from './region/regionStorageObjectCreatePost.operation';
-	import {
-	description as regionStorageObjectDeleteDeleteDescription,
-	execute as regionStorageObjectDeleteDeleteExecute,
-} from './region/regionStorageObjectDeleteDelete.operation';
-	import {
-	description as regionStorageObjectGetGetDescription,
-	execute as regionStorageObjectGetGetExecute,
-} from './region/regionStorageObjectGetGet.operation';
-	import {
-	description as regionStorageObjectUpdatePutDescription,
-	execute as regionStorageObjectUpdatePutExecute,
-} from './region/regionStorageObjectUpdatePut.operation';
-	import {
-	description as regionStorageObjectCopyPostDescription,
-	execute as regionStorageObjectCopyPostExecute,
-} from './region/regionStorageObjectCopyPost.operation';
-	import {
-	description as regionStorageObjectRestorePostDescription,
-	execute as regionStorageObjectRestorePostExecute,
-} from './region/regionStorageObjectRestorePost.operation';
-	import {
-	description as regionStorageObjectVersionListGetDescription,
-	execute as regionStorageObjectVersionListGetExecute,
-} from './region/regionStorageObjectVersionListGet.operation';
-	import {
-	description as regionStorageObjectVersionDeleteDeleteDescription,
-	execute as regionStorageObjectVersionDeleteDeleteExecute,
-} from './region/regionStorageObjectVersionDeleteDelete.operation';
-
-	import {
-	description as regionInstanceListGetDescription,
-	execute as regionInstanceListGetExecute,
-} from './region/regionInstanceListGet.operation';
-	import {
-	description as regionInstanceGetGetDescription,
-	execute as regionInstanceGetGetExecute,
-} from './region/regionInstanceGetGet.operation';
-	import {
-	description as regionInstanceAbortSnapshotPostDescription,
-	execute as regionInstanceAbortSnapshotPostExecute,
-} from './region/regionInstanceAbortSnapshotPost.operation';
-	import {
-	description as regionInstanceAssociateFloatingIpPostDescription,
-	execute as regionInstanceAssociateFloatingIpPostExecute,
-} from './region/regionInstanceAssociateFloatingIpPost.operation';
-	import {
-	description as regionInstanceAutobackupPostDescription,
-	execute as regionInstanceAutobackupPostExecute,
-} from './region/regionInstanceAutobackupPost.operation';
-	import {
-	description as regionInstanceFloatingIpPostDescription,
-	execute as regionInstanceFloatingIpPostExecute,
-} from './region/regionInstanceFloatingIpPost.operation';
-	import {
-	description as regionInstanceReinstallPostDescription,
-	execute as regionInstanceReinstallPostExecute,
-} from './region/regionInstanceReinstallPost.operation';
-	import {
-	description as regionInstanceSnapshotPostDescription,
-	execute as regionInstanceSnapshotPostExecute,
-} from './region/regionInstanceSnapshotPost.operation';
-	import {
-	description as regionKeymanagerCertificateListGetDescription,
-	execute as regionKeymanagerCertificateListGetExecute,
-} from './region/regionKeymanagerCertificateListGet.operation';
-	import {
-	description as regionKeymanagerCertificateCreatePostDescription,
-	execute as regionKeymanagerCertificateCreatePostExecute,
-} from './region/regionKeymanagerCertificateCreatePost.operation';
-	import {
-	description as regionKeymanagerCertificateDeleteDeleteDescription,
-	execute as regionKeymanagerCertificateDeleteDeleteExecute,
-} from './region/regionKeymanagerCertificateDeleteDelete.operation';
-	import {
-	description as regionKeymanagerCertificateGetGetDescription,
-	execute as regionKeymanagerCertificateGetGetExecute,
-} from './region/regionKeymanagerCertificateGetGet.operation';
-	import {
-	description as regionKeymanagerSecretListGetDescription,
-	execute as regionKeymanagerSecretListGetExecute,
-} from './region/regionKeymanagerSecretListGet.operation';
-	import {
-	description as regionKeymanagerSecretCreatePostDescription,
-	execute as regionKeymanagerSecretCreatePostExecute,
-} from './region/regionKeymanagerSecretCreatePost.operation';
-	import {
-	description as regionKeymanagerSecretDeleteDeleteDescription,
-	execute as regionKeymanagerSecretDeleteDeleteExecute,
-} from './region/regionKeymanagerSecretDeleteDelete.operation';
-	import {
-	description as regionKeymanagerSecretGetGetDescription,
-	execute as regionKeymanagerSecretGetGetExecute,
-} from './region/regionKeymanagerSecretGetGet.operation';
-	import {
-	description as regionNetworkListGetDescription,
-	execute as regionNetworkListGetExecute,
-} from './region/regionNetworkListGet.operation';
-	import {
-	description as regionNetworkCreatePostDescription,
-	execute as regionNetworkCreatePostExecute,
-} from './region/regionNetworkCreatePost.operation';
-	import {
-	description as regionNetworkDeleteDeleteDescription,
-	execute as regionNetworkDeleteDeleteExecute,
-} from './region/regionNetworkDeleteDelete.operation';
-	import {
-	description as regionNetworkGetGetDescription,
-	execute as regionNetworkGetGetExecute,
-} from './region/regionNetworkGetGet.operation';
-	import {
-	description as regionNetworkSubnetListGetDescription,
-	execute as regionNetworkSubnetListGetExecute,
-} from './region/regionNetworkSubnetListGet.operation';
-	import {
-	description as regionNetworkSubnetCreatePostDescription,
-	execute as regionNetworkSubnetCreatePostExecute,
-} from './region/regionNetworkSubnetCreatePost.operation';
-	import {
-	description as regionNetworkSubnetDeleteDeleteDescription,
-	execute as regionNetworkSubnetDeleteDeleteExecute,
-} from './region/regionNetworkSubnetDeleteDelete.operation';
-	import {
-	description as regionNetworkSubnetGetGetDescription,
-	execute as regionNetworkSubnetGetGetExecute,
-} from './region/regionNetworkSubnetGetGet.operation';
-	import {
-	description as regionNetworkSubnetGatewayPostDescription,
-	execute as regionNetworkSubnetGatewayPostExecute,
-} from './region/regionNetworkSubnetGatewayPost.operation';
-	import {
-	description as regionQuotaListGetDescription,
-	execute as regionQuotaListGetExecute,
-} from './region/regionQuotaListGet.operation';
-	import {
-	description as regionQuotaAllowedGetDescription,
-	execute as regionQuotaAllowedGetExecute,
-} from './region/regionQuotaAllowedGet.operation';
-	import {
-	description as regionQuotaStorageGetDescription,
-	execute as regionQuotaStorageGetExecute,
-} from './region/regionQuotaStorageGet.operation';
-	import {
-	description as regionVolumeBackupListGetDescription,
-	execute as regionVolumeBackupListGetExecute,
-} from './region/regionVolumeBackupListGet.operation';
-	import {
-	description as regionVolumeBackupCreatePostDescription,
-	execute as regionVolumeBackupCreatePostExecute,
-} from './region/regionVolumeBackupCreatePost.operation';
-	import {
-	description as regionVolumeBackupDeleteDeleteDescription,
-	execute as regionVolumeBackupDeleteDeleteExecute,
-} from './region/regionVolumeBackupDeleteDelete.operation';
-	import {
-	description as regionVolumeBackupGetGetDescription,
-	execute as regionVolumeBackupGetGetExecute,
-} from './region/regionVolumeBackupGetGet.operation';
-	import {
-	description as regionVolumeBackupRestorePostDescription,
-	execute as regionVolumeBackupRestorePostExecute,
-} from './region/regionVolumeBackupRestorePost.operation';
-	import {
-	description as regionVolumeBackupVolumePostDescription,
-	execute as regionVolumeBackupVolumePostExecute,
-} from './region/regionVolumeBackupVolumePost.operation';
-	import {
-	description as regionVolumeTypeListGetDescription,
-	execute as regionVolumeTypeListGetExecute,
-} from './region/regionVolumeTypeListGet.operation';
-	import {
-	description as regionStorageObjectVersionGetGetDescription,
-	execute as regionStorageObjectVersionGetGetExecute,
-} from './region/regionStorageObjectVersionGetGet.operation';
-	import {
-	description as regionStorageObjectVersionUpdatePutDescription,
-	execute as regionStorageObjectVersionUpdatePutExecute,
-} from './region/regionStorageObjectVersionUpdatePut.operation';
-	import {
-	description as regionStorageObjectVersionCopyPostDescription,
-	execute as regionStorageObjectVersionCopyPostExecute,
-} from './region/regionStorageObjectVersionCopyPost.operation';
-	import {
-	description as regionStorageObjectVersionRestorePostDescription,
-	execute as regionStorageObjectVersionRestorePostExecute,
-} from './region/regionStorageObjectVersionRestorePost.operation';
-	import {
-	description as regionStoragePolicyCreatePostDescription,
-	execute as regionStoragePolicyCreatePostExecute,
-} from './region/regionStoragePolicyCreatePost.operation';
-
-import { execute as floatingIpListGetExecute } from './region/floatingip/floatingIpListGet.operation';
-
-import { execute as floatingIpCreatePostExecute } from './region/floatingip/floatingIpCreatePost.operation';
-
-import { execute as floatingIpGetGetExecute } from './region/floatingip/floatingIpGetGet.operation';
-
-import { execute as floatingIpDeleteDeleteExecute } from './region/floatingip/floatingIpDeleteDelete.operation';
-
-import { execute as floatingIpDetachPostExecute } from './region/floatingip/floatingIpDetachPost.operation';
-
-import { execute as gatewayListGetExecute } from './region/gateway/gatewayListGet.operation';
-
-import { execute as gatewayCreatePostExecute } from './region/gateway/gatewayCreatePost.operation';
-
-import { execute as gatewayGetGetExecute } from './region/gateway/gatewayGetGet.operation';
-
-import { execute as gatewayUpdatePutExecute } from './region/gateway/gatewayUpdatePut.operation';
-
-import { execute as gatewayDeleteDeleteExecute } from './region/gateway/gatewayDeleteDelete.operation';
-
-import { execute as gatewayExposePostExecute } from './region/gateway/gatewayExposePost.operation';
-
-import { execute as gatewayInterfaceListGetExecute } from './region/gateway/gatewayInterfaceListGet.operation';
-
-import { execute as gatewayInterfaceCreatePostExecute } from './region/gateway/gatewayInterfaceCreatePost.operation';
-
-import { execute as gatewayInterfaceGetGetExecute } from './region/gateway/gatewayInterfaceGetGet.operation';
-
-import { execute as gatewayInterfaceDeleteDeleteExecute } from './region/gateway/gatewayInterfaceDeleteDelete.operation';
-
-import { execute as loadbalancingFlavorListGetExecute } from './region/loadbalancing/loadbalancingFlavorListGet.operation';
-
-import { execute as loadbalancingFlavorGetGetExecute } from './region/loadbalancing/loadbalancingFlavorGetGet.operation';
-
-import { execute as loadbalancingHealthMonitorListGetExecute } from './region/loadbalancing/loadbalancingHealthMonitorListGet.operation';
-
-import { execute as loadbalancingHealthMonitorCreatePostExecute } from './region/loadbalancing/loadbalancingHealthMonitorCreatePost.operation';
-
-import { execute as loadbalancingHealthMonitorGetGetExecute } from './region/loadbalancing/loadbalancingHealthMonitorGetGet.operation';
-
-import { execute as loadbalancingHealthMonitorUpdatePutExecute } from './region/loadbalancing/loadbalancingHealthMonitorUpdatePut.operation';
-
-import { execute as loadbalancingHealthMonitorDeleteDeleteExecute } from './region/loadbalancing/loadbalancingHealthMonitorDeleteDelete.operation';
-
-import { execute as loadbalancingL7PolicyListGetExecute } from './region/loadbalancing/loadbalancingL7PolicyListGet.operation';
-
-import { execute as loadbalancingL7PolicyCreatePostExecute } from './region/loadbalancing/loadbalancingL7PolicyCreatePost.operation';
-
-import { execute as loadbalancingL7PolicyGetGetExecute } from './region/loadbalancing/loadbalancingL7PolicyGetGet.operation';
-
-import { execute as loadbalancingL7PolicyUpdatePutExecute } from './region/loadbalancing/loadbalancingL7PolicyUpdatePut.operation';
-
-import { execute as loadbalancingL7PolicyDeleteDeleteExecute } from './region/loadbalancing/loadbalancingL7PolicyDeleteDelete.operation';
-
-import { execute as loadbalancingL7PolicyL7RuleListGetExecute } from './region/loadbalancing/loadbalancingL7PolicyL7RuleListGet.operation';
-
-import { execute as loadbalancingL7PolicyL7RuleCreatePostExecute } from './region/loadbalancing/loadbalancingL7PolicyL7RuleCreatePost.operation';
-
-import { execute as loadbalancingL7PolicyL7RuleGetGetExecute } from './region/loadbalancing/loadbalancingL7PolicyL7RuleGetGet.operation';
-
-import { execute as loadbalancingL7PolicyL7RuleUpdatePutExecute } from './region/loadbalancing/loadbalancingL7PolicyL7RuleUpdatePut.operation';
-
-import { execute as loadbalancingL7PolicyL7RuleDeleteDeleteExecute } from './region/loadbalancing/loadbalancingL7PolicyL7RuleDeleteDelete.operation';
-
-import { execute as loadbalancingListenerListGetExecute } from './region/loadbalancing/loadbalancingListenerListGet.operation';
-
-import { execute as loadbalancingListenerCreatePostExecute } from './region/loadbalancing/loadbalancingListenerCreatePost.operation';
-
-import { execute as loadbalancingListenerGetGetExecute } from './region/loadbalancing/loadbalancingListenerGetGet.operation';
-
-import { execute as loadbalancingListenerUpdatePutExecute } from './region/loadbalancing/loadbalancingListenerUpdatePut.operation';
-
-import { execute as loadbalancingListenerDeleteDeleteExecute } from './region/loadbalancing/loadbalancingListenerDeleteDelete.operation';
-
-import { execute as loadbalancingLoadBalancerListGetExecute } from './region/loadbalancing/loadbalancingLoadBalancerListGet.operation';
-
-import { execute as loadbalancingLoadBalancerCreatePostExecute } from './region/loadbalancing/loadbalancingLoadBalancerCreatePost.operation';
-
-import { execute as loadbalancingLoadBalancerGetGetExecute } from './region/loadbalancing/loadbalancingLoadBalancerGetGet.operation';
-
-import { execute as loadbalancingLoadBalancerUpdatePutExecute } from './region/loadbalancing/loadbalancingLoadBalancerUpdatePut.operation';
-
-import { execute as loadbalancingLoadBalancerDeleteDeleteExecute } from './region/loadbalancing/loadbalancingLoadBalancerDeleteDelete.operation';
-
-import { execute as loadbalancingLoadBalancerAssociateFloatingIpPostExecute } from './region/loadbalancing/loadbalancingLoadBalancerAssociateFloatingIpPost.operation';
-
-import { execute as loadbalancingLoadBalancerFloatingIpPostExecute } from './region/loadbalancing/loadbalancingLoadBalancerFloatingIpPost.operation';
-
-import { execute as loadbalancingLoadBalancerLogSubscriptionListGetExecute } from './region/loadbalancing/loadbalancingLoadBalancerLogSubscriptionListGet.operation';
-
-import { execute as loadbalancingLoadBalancerLogSubscriptionCreatePostExecute } from './region/loadbalancing/loadbalancingLoadBalancerLogSubscriptionCreatePost.operation';
-
-import { execute as loadbalancingLoadBalancerLogSubscriptionGetGetExecute } from './region/loadbalancing/loadbalancingLoadBalancerLogSubscriptionGetGet.operation';
-
-import { execute as loadbalancingLoadBalancerLogSubscriptionDeleteDeleteExecute } from './region/loadbalancing/loadbalancingLoadBalancerLogSubscriptionDeleteDelete.operation';
-
-import { execute as loadbalancingLoadBalancerLogUrlPostExecute } from './region/loadbalancing/loadbalancingLoadBalancerLogUrlPost.operation';
-
-import { execute as loadbalancingLoadBalancerStatsGetExecute } from './region/loadbalancing/loadbalancingLoadBalancerStatsGet.operation';
-
-import { execute as loadbalancingLogKindListGetExecute } from './region/loadbalancing/loadbalancingLogKindListGet.operation';
-
-import { execute as loadbalancingLogKindGetGetExecute } from './region/loadbalancing/loadbalancingLogKindGetGet.operation';
-
-import { execute as loadbalancingPoolListGetExecute } from './region/loadbalancing/loadbalancingPoolListGet.operation';
-
-import { execute as loadbalancingPoolCreatePostExecute } from './region/loadbalancing/loadbalancingPoolCreatePost.operation';
-
-import { execute as loadbalancingPoolGetGetExecute } from './region/loadbalancing/loadbalancingPoolGetGet.operation';
-
-import { execute as loadbalancingPoolUpdatePutExecute } from './region/loadbalancing/loadbalancingPoolUpdatePut.operation';
-
-import { execute as loadbalancingPoolDeleteDeleteExecute } from './region/loadbalancing/loadbalancingPoolDeleteDelete.operation';
-
-import { execute as loadbalancingPoolMemberListGetExecute } from './region/loadbalancing/loadbalancingPoolMemberListGet.operation';
-
-import { execute as loadbalancingPoolMemberCreatePostExecute } from './region/loadbalancing/loadbalancingPoolMemberCreatePost.operation';
-
-import { execute as loadbalancingPoolMemberGetGetExecute } from './region/loadbalancing/loadbalancingPoolMemberGetGet.operation';
-
-import { execute as loadbalancingPoolMemberUpdatePutExecute } from './region/loadbalancing/loadbalancingPoolMemberUpdatePut.operation';
-
-import { execute as loadbalancingPoolMemberDeleteDeleteExecute } from './region/loadbalancing/loadbalancingPoolMemberDeleteDelete.operation';
-	import {
-	description as regionStoragePresignPostDescription,
-	execute as regionStoragePresignPostExecute,
-} from './region/regionStoragePresignPost.operation';
-
-	import {
-	description as userCreatePostDescription,
-	execute as userCreatePostExecute,
-} from './user/createPost.operation';
-	import {
-	description as userCreateS3CredentialSecretPostDescription,
-	execute as userCreateS3CredentialSecretPostExecute,
-} from './user/createS3CredentialSecretPost.operation';
-	import {
-	description as userCreateUserPolicyPostDescription,
-	execute as userCreateUserPolicyPostExecute,
-} from './user/createUserPolicyPost.operation';
-	import {
-	description as userCreateUserRolePostDescription,
-	execute as userCreateUserRolePostExecute,
-} from './user/createUserRolePost.operation';
-	import {
-	description as userCreateUserS3CredentialsPostDescription,
-	execute as userCreateUserS3CredentialsPostExecute,
-} from './user/createUserS3CredentialsPost.operation';
-	import {
-	description as userCreateUserTokenPostDescription,
-	execute as userCreateUserTokenPostExecute,
-} from './user/createUserTokenPost.operation';
-	import {
-	description as userDeleteDeleteDescription,
-	execute as userDeleteDeleteExecute,
-} from './user/deleteDelete.operation';
-	import {
-	description as userDeleteUserRoleDeleteDescription,
-	execute as userDeleteUserRoleDeleteExecute,
-} from './user/deleteUserRoleDelete.operation';
-	import {
-	description as userDeleteUserS3CredentialDeleteDescription,
-	execute as userDeleteUserS3CredentialDeleteExecute,
-} from './user/deleteUserS3CredentialDelete.operation';
-	import {
-	description as userGetDetailGetDescription,
-	execute as userGetDetailGetExecute,
-} from './user/getDetailGet.operation';
-	import {
-	description as userGetUserConfigurationGetDescription,
-	execute as userGetUserConfigurationGetExecute,
-} from './user/getUserConfigurationGet.operation';
-	import {
-	description as userGetUserOpenrcGetDescription,
-	execute as userGetUserOpenrcGetExecute,
-} from './user/getUserOpenrcGet.operation';
-	import {
-	description as userGetUserPolicyGetDescription,
-	execute as userGetUserPolicyGetExecute,
-} from './user/getUserPolicyGet.operation';
-	import {
-	description as userGetUserRcloneGetDescription,
-	execute as userGetUserRcloneGetExecute,
-} from './user/getUserRcloneGet.operation';
-	import {
-	description as userGetUserRoleDetailGetDescription,
-	execute as userGetUserRoleDetailGetExecute,
-} from './user/getUserRoleDetailGet.operation';
-	import {
-	description as userGetUserRoleGetDescription,
-	execute as userGetUserRoleGetExecute,
-} from './user/getUserRoleGet.operation';
-	import {
-	description as userGetUserS3CredentialDetailGetDescription,
-	execute as userGetUserS3CredentialDetailGetExecute,
-} from './user/getUserS3CredentialDetailGet.operation';
-	import {
-	description as userGetUserS3CredentialsGetDescription,
-	execute as userGetUserS3CredentialsGetExecute,
-} from './user/getUserS3CredentialsGet.operation';
-	import {
-	description as userListGetDescription,
-	execute as userListGetExecute,
-} from './user/listGet.operation';
-	import {
-	description as userRegeneratePasswordPostDescription,
-	execute as userRegeneratePasswordPostExecute,
-} from './user/regeneratePasswordPost.operation';
-	import {
-	description as userUpdateUserRolePutDescription,
-	execute as userUpdateUserRolePutExecute,
-} from './user/updateUserRolePut.operation';
-	import {
-	description as aclCreatePostDescription,
-	execute as aclCreatePostExecute,
-} from './acl/createPost.operation';
-	import {
-	description as aclDeleteDeleteDescription,
-	execute as aclDeleteDeleteExecute,
-} from './acl/deleteDelete.operation';
-	import {
-	description as aclGetDetailGetDescription,
-	execute as aclGetDetailGetExecute,
-} from './acl/getDetailGet.operation';
-	import {
-	description as aclListGetDescription,
-	execute as aclListGetExecute,
-} from './acl/listGet.operation';
-	import {
-	description as activateMonthlyBillingPostDescription,
-	execute as activateMonthlyBillingPostExecute,
-} from './activateMonthlyBilling/activateMonthlyBillingPost.operation';
-	import {
-	description as alertingCreatePostDescription,
-	execute as alertingCreatePostExecute,
-} from './alerting/createPost.operation';
-	import {
-	description as alertingDeleteDeleteDescription,
-	execute as alertingDeleteDeleteExecute,
-} from './alerting/deleteDelete.operation';
-	import {
-	description as alertingGetDetailGetDescription,
-	execute as alertingGetDetailGetExecute,
-} from './alerting/getDetailGet.operation';
-	import {
-	description as alertingListGetDescription,
-	execute as alertingListGetExecute,
-} from './alerting/listGet.operation';
-	import {
-	description as alertingUpdatePutDescription,
-	execute as alertingUpdatePutExecute,
-} from './alerting/updatePut.operation';
-	import {
-	description as billListGetDescription,
-	execute as billListGetExecute,
-} from './bill/listGet.operation';
-	import {
-	description as cancelPostDescription,
-	execute as cancelPostExecute,
-} from './cancel/cancelPost.operation';
-	import {
-	description as capabilitiesGetKubeDetailGetDescription,
-	execute as capabilitiesGetKubeDetailGetExecute,
-} from './capabilities/getKubeDetailGet.operation';
-	import {
-	description as capabilitiesGetLoadbalancerDetailGetDescription,
-	execute as capabilitiesGetLoadbalancerDetailGetExecute,
-} from './capabilities/getLoadbalancerDetailGet.operation';
-	import {
-	description as capabilitiesGetRegionDetailGetDescription,
-	execute as capabilitiesGetRegionDetailGetExecute,
-} from './capabilities/getRegionDetailGet.operation';
-	import {
-	description as capabilitiesGetRegionProductDetailGetDescription,
-	execute as capabilitiesGetRegionProductDetailGetExecute,
-} from './capabilities/getRegionProductDetailGet.operation';
-	import {
-	description as capabilitiesListGetDescription,
-	execute as capabilitiesListGetExecute,
-} from './capabilities/listGet.operation';
-	import {
-	description as capabilitiesListKubeGetDescription,
-	execute as capabilitiesListKubeGetExecute,
-} from './capabilities/listKubeGet.operation';
-	import {
-	description as capabilitiesListLoadbalancerGetDescription,
-	execute as capabilitiesListLoadbalancerGetExecute,
-} from './capabilities/listLoadbalancerGet.operation';
-	import {
-	description as capabilitiesListRegionGetDescription,
-	execute as capabilitiesListRegionGetExecute,
-} from './capabilities/listRegionGet.operation';
-	import {
-	description as changeContactPostDescription,
-	execute as changeContactPostExecute,
-} from './changeContact/changeContactPost.operation';
-	import {
-	description as confirmTerminationPostDescription,
-	execute as confirmTerminationPostExecute,
-} from './confirmTermination/confirmTerminationPost.operation';
-	import {
-	description as containerRegistryCreatePostDescription,
-	execute as containerRegistryCreatePostExecute,
-} from './containerRegistry/createPost.operation';
-	import {
-	description as containerRegistryCreateUserPostDescription,
-	execute as containerRegistryCreateUserPostExecute,
-} from './containerRegistry/createUserPost.operation';
-	import {
-	description as containerRegistryDeleteDeleteDescription,
-	execute as containerRegistryDeleteDeleteExecute,
-} from './containerRegistry/deleteDelete.operation';
-	import {
-	description as containerRegistryDeleteUserDeleteDescription,
-	execute as containerRegistryDeleteUserDeleteExecute,
-} from './containerRegistry/deleteUserDelete.operation';
-	import {
-	description as containerRegistryGetDetailGetDescription,
-	execute as containerRegistryGetDetailGetExecute,
-} from './containerRegistry/getDetailGet.operation';
-	import {
-	description as containerRegistryGetUserDetailGetDescription,
-	execute as containerRegistryGetUserDetailGetExecute,
-} from './containerRegistry/getUserDetailGet.operation';
-	import {
-	description as containerRegistryListGetDescription,
-	execute as containerRegistryListGetExecute,
-} from './containerRegistry/listGet.operation';
-	import {
-	description as containerRegistryListUsersGetDescription,
-	execute as containerRegistryListUsersGetExecute,
-} from './containerRegistry/listUsersGet.operation';
-	import {
-	description as containerRegistryUpdatePutDescription,
-	execute as containerRegistryUpdatePutExecute,
-} from './containerRegistry/updatePut.operation';
-	import {
-	description as containerRegistryGetCapabilitiesPlanGetDescription,
-	execute as containerRegistryGetCapabilitiesPlanGetExecute,
-} from './containerRegistry/getCapabilitiesPlanGet.operation';
-	import {
-	description as containerRegistryDeleteIamDeleteDescription,
-	execute as containerRegistryDeleteIamDeleteExecute,
-} from './containerRegistry/deleteIamDelete.operation';
-	import {
-	description as containerRegistryCreateIamPostDescription,
-	execute as containerRegistryCreateIamPostExecute,
-} from './containerRegistry/createIamPost.operation';
-	import {
-	description as containerRegistryGetIpRestrictionsManagementListGetDescription,
-	execute as containerRegistryGetIpRestrictionsManagementListGetExecute,
-} from './containerRegistry/getIpRestrictionsManagementListGet.operation';
-	import {
-	description as containerRegistryUpdateIpRestrictionsManagementPutDescription,
-	execute as containerRegistryUpdateIpRestrictionsManagementPutExecute,
-} from './containerRegistry/updateIpRestrictionsManagementPut.operation';
-	import {
-	description as containerRegistryGetIpRestrictionsRegistryListGetDescription,
-	execute as containerRegistryGetIpRestrictionsRegistryListGetExecute,
-} from './containerRegistry/getIpRestrictionsRegistryListGet.operation';
-	import {
-	description as containerRegistryUpdateIpRestrictionsRegistryPutDescription,
-	execute as containerRegistryUpdateIpRestrictionsRegistryPutExecute,
-} from './containerRegistry/updateIpRestrictionsRegistryPut.operation';
-	import {
-	description as containerRegistryDeleteOpenIdConnectDeleteDescription,
-	execute as containerRegistryDeleteOpenIdConnectDeleteExecute,
-} from './containerRegistry/deleteOpenIdConnectDelete.operation';
-	import {
-	description as containerRegistryGetOpenIdConnectGetDescription,
-	execute as containerRegistryGetOpenIdConnectGetExecute,
-} from './containerRegistry/getOpenIdConnectGet.operation';
-	import {
-	description as containerRegistryCreateOpenIdConnectPostDescription,
-	execute as containerRegistryCreateOpenIdConnectPostExecute,
-} from './containerRegistry/createOpenIdConnectPost.operation';
-	import {
-	description as containerRegistryUpdateOpenIdConnectPutDescription,
-	execute as containerRegistryUpdateOpenIdConnectPutExecute,
-} from './containerRegistry/updateOpenIdConnectPut.operation';
-	import {
-	description as containerRegistryGetPlanGetDescription,
-	execute as containerRegistryGetPlanGetExecute,
-} from './containerRegistry/getPlanGet.operation';
-	import {
-	description as containerRegistryUpdatePlanPutDescription,
-	execute as containerRegistryUpdatePlanPutExecute,
-} from './containerRegistry/updatePlanPut.operation';
-	import {
-	description as containerRegistryCreateUserSetAsAdminPostDescription,
-	execute as containerRegistryCreateUserSetAsAdminPostExecute,
-} from './containerRegistry/createUserSetAsAdminPost.operation';
-	import {
-	description as creditCreatePostDescription,
-	execute as creditCreatePostExecute,
-} from './credit/createPost.operation';
-	import {
-	description as creditGetDetailGetDescription,
-	execute as creditGetDetailGetExecute,
-} from './credit/getDetailGet.operation';
-	import {
-	description as creditListGetDescription,
-	execute as creditListGetExecute,
-} from './credit/listGet.operation';
-	import {
-	description as flavorGetDetailGetDescription,
+
+import {
+	execute as postgresqlIntegrationListGetExecute,
+	description as postgresqlIntegrationListGetDescription,
+} from './database/postgresql/integrationListGet.operation';
+
+import {
+	execute as postgresqlIpRestrictionCreatePostExecute,
+	description as postgresqlIpRestrictionCreatePostDescription,
+} from './database/postgresql/ipRestrictionCreatePost.operation';
+
+import {
+	execute as postgresqlIpRestrictionListGetExecute,
+	description as postgresqlIpRestrictionListGetDescription,
+} from './database/postgresql/ipRestrictionListGet.operation';
+
+import {
+	execute as postgresqlLogSubscriptionCreatePostExecute,
+	description as postgresqlLogSubscriptionCreatePostDescription,
+} from './database/postgresql/logSubscriptionCreatePost.operation';
+
+import {
+	execute as postgresqlLogSubscriptionGetGetExecute,
+	description as postgresqlLogSubscriptionGetGetDescription,
+} from './database/postgresql/logSubscriptionGetGet.operation';
+
+import {
+	execute as postgresqlLogSubscriptionListGetExecute,
+	description as postgresqlLogSubscriptionListGetDescription,
+} from './database/postgresql/logSubscriptionListGet.operation';
+
+import {
+	execute as postgresqlMaintenanceGetExecute,
+	description as postgresqlMaintenanceGetDescription,
+} from './database/postgresql/maintenanceGet.operation';
+
+import {
+	execute as postgresqlMaintenanceUpdatePutExecute,
+	description as postgresqlMaintenanceUpdatePutDescription,
+} from './database/postgresql/maintenanceUpdatePut.operation';
+
+import {
+	execute as postgresqlMetricGetExecute,
+	description as postgresqlMetricGetDescription,
+} from './database/postgresql/metricGet.operation';
+
+import {
+	execute as postgresqlNodeCreatePostExecute,
+	description as postgresqlNodeCreatePostDescription,
+} from './database/postgresql/nodeCreatePost.operation';
+
+import {
+	execute as postgresqlNodeDeleteDeleteExecute,
+	description as postgresqlNodeDeleteDeleteDescription,
+} from './database/postgresql/nodeDeleteDelete.operation';
+
+import {
+	execute as postgresqlNodeGetGetExecute,
+	description as postgresqlNodeGetGetDescription,
+} from './database/postgresql/nodeGetGet.operation';
+
+import {
+	execute as postgresqlNodeListGetExecute,
+	description as postgresqlNodeListGetDescription,
+} from './database/postgresql/nodeListGet.operation';
+
+import {
+	execute as postgresqlNodeUpdatePutExecute,
+	description as postgresqlNodeUpdatePutDescription,
+} from './database/postgresql/nodeUpdatePut.operation';
+
+import {
+	execute as postgresqlPrometheusGetExecute,
+	description as postgresqlPrometheusGetDescription,
+} from './database/postgresql/prometheusGet.operation';
+
+import {
+	execute as postgresqlUserCreatePostExecute,
+	description as postgresqlUserCreatePostDescription,
+} from './database/postgresql/userCreatePost.operation';
+
+import {
+	execute as postgresqlUserDeleteDeleteExecute,
+	description as postgresqlUserDeleteDeleteDescription,
+} from './database/postgresql/userDeleteDelete.operation';
+
+import {
+	execute as postgresqlUserGetGetExecute,
+	description as postgresqlUserGetGetDescription,
+} from './database/postgresql/userGetGet.operation';
+
+import {
+	execute as postgresqlUserListGetExecute,
+	description as postgresqlUserListGetDescription,
+} from './database/postgresql/userListGet.operation';
+
+import {
+	execute as postgresqlUserUpdatePutExecute,
+	description as postgresqlUserUpdatePutDescription,
+} from './database/postgresql/userUpdatePut.operation';
+
+import {
+	execute as redisAdvancedConfigurationGetExecute,
+	description as redisAdvancedConfigurationGetDescription,
+} from './database/redis/advancedConfigurationGet.operation';
+
+import {
+	execute as redisAdvancedConfigurationUpdatePutExecute,
+	description as redisAdvancedConfigurationUpdatePutDescription,
+} from './database/redis/advancedConfigurationUpdatePut.operation';
+
+import {
+	execute as redisBackupGetGetExecute,
+	description as redisBackupGetGetDescription,
+} from './database/redis/backupGetGet.operation';
+
+import {
+	execute as redisBackupListGetExecute,
+	description as redisBackupListGetDescription,
+} from './database/redis/backupListGet.operation';
+
+import {
+	execute as redisCapabilitiesAdvancedConfigurationGetExecute,
+	description as redisCapabilitiesAdvancedConfigurationGetDescription,
+} from './database/redis/capabilitiesAdvancedConfigurationGet.operation';
+
+import {
+	execute as redisCapabilitiesCategoriesGetExecute,
+	description as redisCapabilitiesCategoriesGetDescription,
+} from './database/redis/capabilitiesCategoriesGet.operation';
+
+import {
+	execute as redisCapabilitiesCommandsGetExecute,
+	description as redisCapabilitiesCommandsGetDescription,
+} from './database/redis/capabilitiesCommandsGet.operation';
+
+import {
+	execute as redisCapabilitiesIntegrationGetExecute,
+	description as redisCapabilitiesIntegrationGetDescription,
+} from './database/redis/capabilitiesIntegrationGet.operation';
+
+import {
+	execute as redisClusterCreatePostExecute,
+	description as redisClusterCreatePostDescription,
+} from './database/redis/clusterCreatePost.operation';
+
+import {
+	execute as redisClusterDeleteDeleteExecute,
+	description as redisClusterDeleteDeleteDescription,
+} from './database/redis/clusterDeleteDelete.operation';
+
+import {
+	execute as redisClusterGetGetExecute,
+	description as redisClusterGetGetDescription,
+} from './database/redis/clusterGetGet.operation';
+
+import {
+	execute as redisClusterListGetExecute,
+	description as redisClusterListGetDescription,
+} from './database/redis/clusterListGet.operation';
+
+import {
+	execute as redisClusterUpdatePutExecute,
+	description as redisClusterUpdatePutDescription,
+} from './database/redis/clusterUpdatePut.operation';
+
+import {
+	execute as redisIntegrationCreatePostExecute,
+	description as redisIntegrationCreatePostDescription,
+} from './database/redis/integrationCreatePost.operation';
+
+import {
+	execute as redisIntegrationDeleteDeleteExecute,
+	description as redisIntegrationDeleteDeleteDescription,
+} from './database/redis/integrationDeleteDelete.operation';
+
+import {
+	execute as redisIntegrationGetGetExecute,
+	description as redisIntegrationGetGetDescription,
+} from './database/redis/integrationGetGet.operation';
+
+import {
+	execute as redisIntegrationListGetExecute,
+	description as redisIntegrationListGetDescription,
+} from './database/redis/integrationListGet.operation';
+
+import {
+	execute as redisIpRestrictionCreatePostExecute,
+	description as redisIpRestrictionCreatePostDescription,
+} from './database/redis/ipRestrictionCreatePost.operation';
+
+import {
+	execute as redisIpRestrictionDeleteDeleteExecute,
+	description as redisIpRestrictionDeleteDeleteDescription,
+} from './database/redis/ipRestrictionDeleteDelete.operation';
+
+import {
+	execute as redisIpRestrictionGetGetExecute,
+	description as redisIpRestrictionGetGetDescription,
+} from './database/redis/ipRestrictionGetGet.operation';
+
+import {
+	execute as redisIpRestrictionListGetExecute,
+	description as redisIpRestrictionListGetDescription,
+} from './database/redis/ipRestrictionListGet.operation';
+
+import {
+	execute as redisIpRestrictionUpdatePutExecute,
+	description as redisIpRestrictionUpdatePutDescription,
+} from './database/redis/ipRestrictionUpdatePut.operation';
+
+import {
+	execute as redisLogKindGetExecute,
+	description as redisLogKindGetDescription,
+} from './database/redis/logKindGet.operation';
+
+import {
+	execute as redisLogKindListGetExecute,
+	description as redisLogKindListGetDescription,
+} from './database/redis/logKindListGet.operation';
+
+import {
+	execute as redisLogSubscriptionCreatePostExecute,
+	description as redisLogSubscriptionCreatePostDescription,
+} from './database/redis/logSubscriptionCreatePost.operation';
+
+import {
+	execute as redisLogSubscriptionDeleteDeleteExecute,
+	description as redisLogSubscriptionDeleteDeleteDescription,
+} from './database/redis/logSubscriptionDeleteDelete.operation';
+
+import {
+	execute as redisLogSubscriptionGetGetExecute,
+	description as redisLogSubscriptionGetGetDescription,
+} from './database/redis/logSubscriptionGetGet.operation';
+
+import {
+	execute as redisLogSubscriptionListGetExecute,
+	description as redisLogSubscriptionListGetDescription,
+} from './database/redis/logSubscriptionListGet.operation';
+
+import {
+	execute as redisLogUrlCreatePostExecute,
+	description as redisLogUrlCreatePostDescription,
+} from './database/redis/logUrlCreatePost.operation';
+
+import {
+	execute as redisLogsGetExecute,
+	description as redisLogsGetDescription,
+} from './database/redis/logsGet.operation';
+
+import {
+	execute as redisMaintenanceApplyPostExecute,
+	description as redisMaintenanceApplyPostDescription,
+} from './database/redis/maintenanceApplyPost.operation';
+
+import {
+	execute as redisMaintenanceGetExecute,
+	description as redisMaintenanceGetDescription,
+} from './database/redis/maintenanceGet.operation';
+
+import {
+	execute as redisMaintenanceListGetExecute,
+	description as redisMaintenanceListGetDescription,
+} from './database/redis/maintenanceListGet.operation';
+
+import {
+	execute as redisMetricGetExecute,
+	description as redisMetricGetDescription,
+} from './database/redis/metricGet.operation';
+
+import {
+	execute as redisMetricListGetExecute,
+	description as redisMetricListGetDescription,
+} from './database/redis/metricListGet.operation';
+
+import {
+	execute as redisNodeGetGetExecute,
+	description as redisNodeGetGetDescription,
+} from './database/redis/nodeGetGet.operation';
+
+import {
+	execute as redisNodeListGetExecute,
+	description as redisNodeListGetDescription,
+} from './database/redis/nodeListGet.operation';
+
+import {
+	execute as redisPrometheusCredentialsResetPostExecute,
+	description as redisPrometheusCredentialsResetPostDescription,
+} from './database/redis/prometheusCredentialsResetPost.operation';
+
+import {
+	execute as redisPrometheusGetExecute,
+	description as redisPrometheusGetDescription,
+} from './database/redis/prometheusGet.operation';
+
+import {
+	execute as redisUserCreatePostExecute,
+	description as redisUserCreatePostDescription,
+} from './database/redis/userCreatePost.operation';
+
+import {
+	execute as redisUserCredentialsResetPostExecute,
+	description as redisUserCredentialsResetPostDescription,
+} from './database/redis/userCredentialsResetPost.operation';
+
+import {
+	execute as redisUserDeleteDeleteExecute,
+	description as redisUserDeleteDeleteDescription,
+} from './database/redis/userDeleteDelete.operation';
+
+import {
+	execute as redisUserGetGetExecute,
+	description as redisUserGetGetDescription,
+} from './database/redis/userGetGet.operation';
+
+import {
+	execute as redisUserListGetExecute,
+	description as redisUserListGetDescription,
+} from './database/redis/userListGet.operation';
+
+import {
+	execute as redisUserUpdatePutExecute,
+	description as redisUserUpdatePutDescription,
+} from './database/redis/userUpdatePut.operation';
+
+import {
+	execute as valkeyBackupCreatePostExecute,
+	description as valkeyBackupCreatePostDescription,
+} from './database/valkey/backupCreatePost.operation';
+
+import {
+	execute as valkeyBackupDeleteDeleteExecute,
+	description as valkeyBackupDeleteDeleteDescription,
+} from './database/valkey/backupDeleteDelete.operation';
+
+import {
+	execute as valkeyBackupGetGetExecute,
+	description as valkeyBackupGetGetDescription,
+} from './database/valkey/backupGetGet.operation';
+
+import {
+	execute as valkeyBackupListGetExecute,
+	description as valkeyBackupListGetDescription,
+} from './database/valkey/backupListGet.operation';
+
+import {
+	execute as valkeyCertificateCreatePostExecute,
+	description as valkeyCertificateCreatePostDescription,
+} from './database/valkey/certificateCreatePost.operation';
+
+import {
+	execute as valkeyCertificateListGetExecute,
+	description as valkeyCertificateListGetDescription,
+} from './database/valkey/certificateListGet.operation';
+
+import {
+	execute as valkeyClusterCreatePostExecute,
+	description as valkeyClusterCreatePostDescription,
+} from './database/valkey/clusterCreatePost.operation';
+
+import {
+	execute as valkeyClusterDeleteDeleteExecute,
+	description as valkeyClusterDeleteDeleteDescription,
+} from './database/valkey/clusterDeleteDelete.operation';
+
+import {
+	execute as valkeyClusterGetGetExecute,
+	description as valkeyClusterGetGetDescription,
+} from './database/valkey/clusterGetGet.operation';
+
+import {
+	execute as valkeyClusterListGetExecute,
+	description as valkeyClusterListGetDescription,
+} from './database/valkey/clusterListGet.operation';
+
+import {
+	execute as valkeyClusterUpdatePutExecute,
+	description as valkeyClusterUpdatePutDescription,
+} from './database/valkey/clusterUpdatePut.operation';
+
+import {
+	execute as valkeyIntegrationCreatePostExecute,
+	description as valkeyIntegrationCreatePostDescription,
+} from './database/valkey/integrationCreatePost.operation';
+
+import {
+	execute as valkeyIntegrationListGetExecute,
+	description as valkeyIntegrationListGetDescription,
+} from './database/valkey/integrationListGet.operation';
+
+import {
+	execute as valkeyIpRestrictionCreatePostExecute,
+	description as valkeyIpRestrictionCreatePostDescription,
+} from './database/valkey/ipRestrictionCreatePost.operation';
+
+import {
+	execute as valkeyIpRestrictionListGetExecute,
+	description as valkeyIpRestrictionListGetDescription,
+} from './database/valkey/ipRestrictionListGet.operation';
+
+import {
+	execute as valkeyLogSubscriptionCreatePostExecute,
+	description as valkeyLogSubscriptionCreatePostDescription,
+} from './database/valkey/logSubscriptionCreatePost.operation';
+
+import {
+	execute as valkeyLogSubscriptionGetGetExecute,
+	description as valkeyLogSubscriptionGetGetDescription,
+} from './database/valkey/logSubscriptionGetGet.operation';
+
+import {
+	execute as valkeyLogSubscriptionListGetExecute,
+	description as valkeyLogSubscriptionListGetDescription,
+} from './database/valkey/logSubscriptionListGet.operation';
+
+import {
+	execute as valkeyMaintenanceGetExecute,
+	description as valkeyMaintenanceGetDescription,
+} from './database/valkey/maintenanceGet.operation';
+
+import {
+	execute as valkeyMaintenanceUpdatePutExecute,
+	description as valkeyMaintenanceUpdatePutDescription,
+} from './database/valkey/maintenanceUpdatePut.operation';
+
+import {
+	execute as valkeyMetricGetExecute,
+	description as valkeyMetricGetDescription,
+} from './database/valkey/metricGet.operation';
+
+import {
+	execute as valkeyNodeCreatePostExecute,
+	description as valkeyNodeCreatePostDescription,
+} from './database/valkey/nodeCreatePost.operation';
+
+import {
+	execute as valkeyNodeDeleteDeleteExecute,
+	description as valkeyNodeDeleteDeleteDescription,
+} from './database/valkey/nodeDeleteDelete.operation';
+
+import {
+	execute as valkeyNodeGetGetExecute,
+	description as valkeyNodeGetGetDescription,
+} from './database/valkey/nodeGetGet.operation';
+
+import {
+	execute as valkeyNodeListGetExecute,
+	description as valkeyNodeListGetDescription,
+} from './database/valkey/nodeListGet.operation';
+
+import {
+	execute as valkeyNodeUpdatePutExecute,
+	description as valkeyNodeUpdatePutDescription,
+} from './database/valkey/nodeUpdatePut.operation';
+
+import {
+	execute as valkeyPrometheusGetExecute,
+	description as valkeyPrometheusGetDescription,
+} from './database/valkey/prometheusGet.operation';
+
+import {
+	execute as valkeyUserCreatePostExecute,
+	description as valkeyUserCreatePostDescription,
+} from './database/valkey/userCreatePost.operation';
+
+import {
+	execute as valkeyUserDeleteDeleteExecute,
+	description as valkeyUserDeleteDeleteDescription,
+} from './database/valkey/userDeleteDelete.operation';
+
+import {
+	execute as valkeyUserGetGetExecute,
+	description as valkeyUserGetGetDescription,
+} from './database/valkey/userGetGet.operation';
+
+import {
+	execute as valkeyUserListGetExecute,
+	description as valkeyUserListGetDescription,
+} from './database/valkey/userListGet.operation';
+
+import {
+	execute as valkeyUserUpdatePutExecute,
+	description as valkeyUserUpdatePutDescription,
+} from './database/valkey/userUpdatePut.operation';
+
+import {
 	execute as flavorGetDetailGetExecute,
+	description as flavorGetDetailGetDescription,
 } from './flavor/getDetailGet.operation';
-	import {
-	description as flavorListGetDescription,
-	execute as flavorListGetExecute,
-} from './flavor/listGet.operation';
-	import {
-	description as imageGetDetailGetDescription,
-	execute as imageGetDetailGetExecute,
-} from './image/getDetailGet.operation';
-	import {
-	description as imageListGetDescription,
-	execute as imageListGetExecute,
-} from './image/listGet.operation';
-	import {
-	description as ipCreatePostDescription,
-	execute as ipCreatePostExecute,
-} from './ip/createPost.operation';
-	import {
-	description as ipDeleteDeleteDescription,
-	execute as ipDeleteDeleteExecute,
-} from './ip/deleteDelete.operation';
-	import {
-	description as ipGetDetailGetDescription,
-	execute as ipGetDetailGetExecute,
-} from './ip/getDetailGet.operation';
-	import {
-	description as ipListGetDescription,
-	execute as ipListGetExecute,
-} from './ip/listGet.operation';
-	import {
-	description as ipUpdatePutDescription,
-	execute as ipUpdatePutExecute,
-} from './ip/updatePut.operation';
-	import {
-	description as labAgreementListGetDescription,
-	execute as labAgreementListGetExecute,
-} from './lab/agreementListGet.operation';
-	import {
-	description as labCreatePostDescription,
-	execute as labCreatePostExecute,
-} from './lab/createPost.operation';
-	import {
-	description as labGetDetailGetDescription,
-	execute as labGetDetailGetExecute,
-} from './lab/getDetailGet.operation';
-	import {
-	description as labListGetDescription,
-	execute as labListGetExecute,
-} from './lab/listGet.operation';
-	import {
-	description as loadbalancerCreatePostDescription,
-	execute as loadbalancerCreatePostExecute,
-} from './loadbalancer/createPost.operation';
-	import {
-	description as loadbalancerDeleteDeleteDescription,
-	execute as loadbalancerDeleteDeleteExecute,
-} from './loadbalancer/deleteDelete.operation';
-	import {
-	description as loadbalancerGetDetailGetDescription,
-	execute as loadbalancerGetDetailGetExecute,
-} from './loadbalancer/getDetailGet.operation';
-	import {
-	description as loadbalancerListGetDescription,
-	execute as loadbalancerListGetExecute,
-} from './loadbalancer/listGet.operation';
-	import {
-	description as loadbalancerUpdatePutDescription,
-	execute as loadbalancerUpdatePutExecute,
-} from './loadbalancer/updatePut.operation';
-	import {
-	description as operationGetDetailGetDescription,
-	execute as operationGetDetailGetExecute,
-} from './operation/getDetailGet.operation';
-	import {
-	description as operationListGetDescription,
-	execute as operationListGetExecute,
-} from './operation/listGet.operation';
-	import {
-	description as quantumGetCapabilitiesDetailGetDescription,
-	execute as quantumGetCapabilitiesDetailGetExecute,
-} from './quantum/getCapabilitiesDetailGet.operation';
-	import {
-	description as quantumGetCapabilitiesRegionDetailGetDescription,
-	execute as quantumGetCapabilitiesRegionDetailGetExecute,
-} from './quantum/getCapabilitiesRegionDetailGet.operation';
-	import {
-	description as quantumListCapabilitiesGetDescription,
-	execute as quantumListCapabilitiesGetExecute,
-} from './quantum/listCapabilitiesGet.operation';
-	import {
-	description as quantumListCapabilitiesRegionGetDescription,
-	execute as quantumListCapabilitiesRegionGetExecute,
-} from './quantum/listCapabilitiesRegionGet.operation';
-	import {
-	description as quotaListGetDescription,
-	execute as quotaListGetExecute,
-} from './quota/listGet.operation';
-	import {
-	description as regionAvailableCheckRegionAvailableGetDescription,
-	execute as regionAvailableCheckRegionAvailableGetExecute,
-} from './regionAvailable/checkRegionAvailableGet.operation';
-	import {
-	description as retainPostDescription,
-	execute as retainPostExecute,
-} from './retain/retainPost.operation';
-	import {
-	description as roleListGetDescription,
-	execute as roleListGetExecute,
-} from './role/listGet.operation';
-	import {
-	description as serviceInfosGetServiceInfosGetDescription,
-	execute as serviceInfosGetServiceInfosGetExecute,
-} from './serviceInfos/getServiceInfosGet.operation';
-	import {
-	description as snapshotsCreatePostDescription,
-	execute as snapshotsCreatePostExecute,
-} from './snapshot/createPost.operation';
-	import {
-	description as snapshotsDeleteDeleteDescription,
-	execute as snapshotsDeleteDeleteExecute,
-} from './snapshot/deleteDelete.operation';
-	import {
-	description as snapshotsListGetDescription,
-	execute as snapshotsListGetExecute,
-} from './snapshot/listGet.operation';
-	import {
-	description as sshkeyCreatePostDescription,
-	execute as sshkeyCreatePostExecute,
-} from './sshkey/createPost.operation';
-	import {
-	description as sshkeyDeleteDeleteDescription,
-	execute as sshkeyDeleteDeleteExecute,
-} from './sshkey/deleteDelete.operation';
-	import {
-	description as sshkeyListGetDescription,
-	execute as sshkeyListGetExecute,
-} from './sshkey/listGet.operation';
-	import {
-	description as storageCreateContainerPostDescription,
-	execute as storageCreateContainerPostExecute,
-} from './storage/createContainerPost.operation';
-	import {
-	description as storageDeleteContainerDeleteDescription,
-	execute as storageDeleteContainerDeleteExecute,
-} from './storage/deleteContainerDelete.operation';
-	import {
-	description as storageDeleteDeleteDescription,
-	execute as storageDeleteDeleteExecute,
-} from './storage/deleteDelete.operation';
-	import {
-	description as storageGetContainerDetailGetDescription,
-	execute as storageGetContainerDetailGetExecute,
-} from './storage/getContainerDetailGet.operation';
-	import {
-	description as storageGetDetailGetDescription,
-	execute as storageGetDetailGetExecute,
-} from './storage/getDetailGet.operation';
-	import {
-	description as storageListContainersGetDescription,
-	execute as storageListContainersGetExecute,
-} from './storage/listContainersGet.operation';
-	import {
-	description as storageListGetDescription,
-	execute as storageListGetExecute,
-} from './storage/listGet.operation';
-	import {
-	description as storageUpdateContainerPutDescription,
-	execute as storageUpdateContainerPutExecute,
-} from './storage/updateContainerPut.operation';
-	import {
-	description as storageUpdatePutDescription,
-	execute as storageUpdatePutExecute,
-} from './storage/updatePut.operation';
-	import {
-	description as terminatePostDescription,
-	execute as terminatePostExecute,
-} from './terminate/terminatePost.operation';
-	import {
-	description as unleashPostDescription,
-	execute as unleashPostExecute,
-} from './unleash/unleashPost.operation';
-	import {
-	description as usageGetCurrentGetDescription,
-	execute as usageGetCurrentGetExecute,
-} from './usage/getCurrentGet.operation';
-	import {
-	description as usageGetForecastGetDescription,
-	execute as usageGetForecastGetExecute,
-} from './usage/getForecastGet.operation';
-	import {
-	description as usageGetHistoryDetailGetDescription,
-	execute as usageGetHistoryDetailGetExecute,
-} from './usage/getHistoryDetailGet.operation';
-	import {
-	description as usageListHistoryGetDescription,
-	execute as usageListHistoryGetExecute,
-} from './usage/listHistoryGet.operation';
-	import {
-	description as vrackListGetDescription,
-	execute as vrackListGetExecute,
-} from './vrack/listGet.operation';
 
-// IP failover operations
-	import {
-	description as ipFailoverListGetDescription,
-	execute as ipFailoverListGetExecute,
-} from './ip/failoverListGet.operation';
-	import {
-	description as ipFailoverGetGetDescription,
-	execute as ipFailoverGetGetExecute,
-} from './ip/failoverGetGet.operation';
-	import {
-	description as ipFailoverAttachPostDescription,
+import {
+	execute as flavorListGetExecute,
+	description as flavorListGetDescription,
+} from './flavor/listGet.operation';
+
+import {
+	execute as imageGetDetailGetExecute,
+	description as imageGetDetailGetDescription,
+} from './image/getDetailGet.operation';
+
+import {
+	execute as imageListGetExecute,
+	description as imageListGetDescription,
+} from './image/listGet.operation';
+
+import {
+	execute as instanceActiveMonthlyBillingPostExecute,
+	description as instanceActiveMonthlyBillingPostDescription,
+} from './instance/instanceActiveMonthlyBillingPost.operation';
+
+import {
+	execute as instanceApplicationAccessPostExecute,
+	description as instanceApplicationAccessPostDescription,
+} from './instance/instanceApplicationAccessPost.operation';
+
+import {
+	execute as instanceBulkPostExecute,
+	description as instanceBulkPostDescription,
+} from './instance/instanceBulkPost.operation';
+
+import {
+	execute as instanceCreatePostExecute,
+	description as instanceCreatePostDescription,
+} from './instance/instanceCreatePost.operation';
+
+import {
+	execute as instanceDeleteDeleteExecute,
+	description as instanceDeleteDeleteDescription,
+} from './instance/instanceDeleteDelete.operation';
+
+import {
+	execute as instanceGetGetExecute,
+	description as instanceGetGetDescription,
+} from './instance/instanceGetGet.operation';
+
+import {
+	execute as instanceGroupCreatePostExecute,
+	description as instanceGroupCreatePostDescription,
+} from './instance/instanceGroupCreatePost.operation';
+
+import {
+	execute as instanceGroupDeleteDeleteExecute,
+	description as instanceGroupDeleteDeleteDescription,
+} from './instance/instanceGroupDeleteDelete.operation';
+
+import {
+	execute as instanceGroupGetGetExecute,
+	description as instanceGroupGetGetDescription,
+} from './instance/instanceGroupGetGet.operation';
+
+import {
+	execute as instanceGroupListGetExecute,
+	description as instanceGroupListGetDescription,
+} from './instance/instanceGroupListGet.operation';
+
+import {
+	execute as instanceInterfaceCreatePostExecute,
+	description as instanceInterfaceCreatePostDescription,
+} from './instance/instanceInterfaceCreatePost.operation';
+
+import {
+	execute as instanceInterfaceDeleteDeleteExecute,
+	description as instanceInterfaceDeleteDeleteDescription,
+} from './instance/instanceInterfaceDeleteDelete.operation';
+
+import {
+	execute as instanceInterfaceGetGetExecute,
+	description as instanceInterfaceGetGetDescription,
+} from './instance/instanceInterfaceGetGet.operation';
+
+import {
+	execute as instanceInterfaceListGetExecute,
+	description as instanceInterfaceListGetDescription,
+} from './instance/instanceInterfaceListGet.operation';
+
+import {
+	execute as instanceListGetExecute,
+	description as instanceListGetDescription,
+} from './instance/instanceListGet.operation';
+
+import {
+	execute as instanceRebootPostExecute,
+	description as instanceRebootPostDescription,
+} from './instance/instanceRebootPost.operation';
+
+import {
+	execute as instanceReinstallPostExecute,
+	description as instanceReinstallPostDescription,
+} from './instance/instanceReinstallPost.operation';
+
+import {
+	execute as instanceRescueModePostExecute,
+	description as instanceRescueModePostDescription,
+} from './instance/instanceRescueModePost.operation';
+
+import {
+	execute as instanceResizePostExecute,
+	description as instanceResizePostDescription,
+} from './instance/instanceResizePost.operation';
+
+import {
+	execute as instanceResumePostExecute,
+	description as instanceResumePostDescription,
+} from './instance/instanceResumePost.operation';
+
+import {
+	execute as instanceShelvePostExecute,
+	description as instanceShelvePostDescription,
+} from './instance/instanceShelvePost.operation';
+
+import {
+	execute as instanceSnapshotPostExecute,
+	description as instanceSnapshotPostDescription,
+} from './instance/instanceSnapshotPost.operation';
+
+import {
+	execute as instanceStartPostExecute,
+	description as instanceStartPostDescription,
+} from './instance/instanceStartPost.operation';
+
+import {
+	execute as instanceStopPostExecute,
+	description as instanceStopPostDescription,
+} from './instance/instanceStopPost.operation';
+
+import {
+	execute as instanceUnshelvePostExecute,
+	description as instanceUnshelvePostDescription,
+} from './instance/instanceUnshelvePost.operation';
+
+import {
+	execute as instanceUpdatePutExecute,
+	description as instanceUpdatePutDescription,
+} from './instance/instanceUpdatePut.operation';
+
+import {
+	execute as instanceVncPostExecute,
+	description as instanceVncPostDescription,
+} from './instance/instanceVncPost.operation';
+
+import {
+	execute as ipCreatePostExecute,
+	description as ipCreatePostDescription,
+} from './ip/createPost.operation';
+
+import {
+	execute as ipDeleteDeleteExecute,
+	description as ipDeleteDeleteDescription,
+} from './ip/deleteDelete.operation';
+
+import {
 	execute as ipFailoverAttachPostExecute,
+	description as ipFailoverAttachPostDescription,
 } from './ip/failoverAttachPost.operation';
 
-// Loadbalancer configuration operations
-	import {
-	description as loadbalancerConfigurationListGetDescription,
-	execute as loadbalancerConfigurationListGetExecute,
-} from './loadbalancer/configurationListGet.operation';
-	import {
-	description as loadbalancerConfigurationCreatePostDescription,
-	execute as loadbalancerConfigurationCreatePostExecute,
-} from './loadbalancer/configurationCreatePost.operation';
-	import {
-	description as loadbalancerConfigurationDeleteDeleteDescription,
-	execute as loadbalancerConfigurationDeleteDeleteExecute,
-} from './loadbalancer/configurationDeleteDelete.operation';
-	import {
-	description as loadbalancerConfigurationGetGetDescription,
-	execute as loadbalancerConfigurationGetGetExecute,
-} from './loadbalancer/configurationGetGet.operation';
-	import {
-	description as loadbalancerConfigurationApplyPostDescription,
+import {
+	execute as ipFailoverGetGetExecute,
+	description as ipFailoverGetGetDescription,
+} from './ip/failoverGetGet.operation';
+
+import {
+	execute as ipFailoverListGetExecute,
+	description as ipFailoverListGetDescription,
+} from './ip/failoverListGet.operation';
+
+import {
+	execute as ipGetDetailGetExecute,
+	description as ipGetDetailGetDescription,
+} from './ip/getDetailGet.operation';
+
+import {
+	execute as ipListGetExecute,
+	description as ipListGetDescription,
+} from './ip/listGet.operation';
+
+import {
+	execute as ipUpdatePutExecute,
+	description as ipUpdatePutDescription,
+} from './ip/updatePut.operation';
+
+import {
+	execute as kubeAuditLogsPostExecute,
+	description as kubeAuditLogsPostDescription,
+} from './kube/kubeAuditLogsPost.operation';
+
+import {
+	execute as kubeCustomizationGetExecute,
+	description as kubeCustomizationGetDescription,
+} from './kube/kubeCustomizationGet.operation';
+
+import {
+	execute as kubeCustomizationUpdatePutExecute,
+	description as kubeCustomizationUpdatePutDescription,
+} from './kube/kubeCustomizationUpdatePut.operation';
+
+import {
+	execute as kubeDeleteDeleteExecute,
+	description as kubeDeleteDeleteDescription,
+} from './kube/kubeDeleteDelete.operation';
+
+import {
+	execute as kubeFlavorsGetExecute,
+	description as kubeFlavorsGetDescription,
+} from './kube/kubeFlavorsGet.operation';
+
+import {
+	execute as kubeGetGetExecute,
+	description as kubeGetGetDescription,
+} from './kube/kubeGetGet.operation';
+
+import {
+	execute as kubeIpRestrictionsDeleteDeleteExecute,
+	description as kubeIpRestrictionsDeleteDeleteDescription,
+} from './kube/kubeIpRestrictionsDeleteDelete.operation';
+
+import {
+	execute as kubeIpRestrictionsGetExecute,
+	description as kubeIpRestrictionsGetDescription,
+} from './kube/kubeIpRestrictionsGet.operation';
+
+import {
+	execute as kubeIpRestrictionsPostExecute,
+	description as kubeIpRestrictionsPostDescription,
+} from './kube/kubeIpRestrictionsPost.operation';
+
+import {
+	execute as kubeIpRestrictionsUpdatePutExecute,
+	description as kubeIpRestrictionsUpdatePutDescription,
+} from './kube/kubeIpRestrictionsUpdatePut.operation';
+
+import {
+	execute as kubeKubeconfigPostExecute,
+	description as kubeKubeconfigPostDescription,
+} from './kube/kubeKubeconfigPost.operation';
+
+import {
+	execute as kubeKubeconfigResetPostExecute,
+	description as kubeKubeconfigResetPostDescription,
+} from './kube/kubeKubeconfigResetPost.operation';
+
+import {
+	execute as kubeListGetExecute,
+	description as kubeListGetDescription,
+} from './kube/kubeListGet.operation';
+
+import {
+	execute as kubeLogSubscriptionDeleteDeleteExecute,
+	description as kubeLogSubscriptionDeleteDeleteDescription,
+} from './kube/kubeLogSubscriptionDeleteDelete.operation';
+
+import {
+	execute as kubeLogSubscriptionGetExecute,
+	description as kubeLogSubscriptionGetDescription,
+} from './kube/kubeLogSubscriptionGet.operation';
+
+import {
+	execute as kubeLogSubscriptionListGetExecute,
+	description as kubeLogSubscriptionListGetDescription,
+} from './kube/kubeLogSubscriptionListGet.operation';
+
+import {
+	execute as kubeLogSubscriptionPostExecute,
+	description as kubeLogSubscriptionPostDescription,
+} from './kube/kubeLogSubscriptionPost.operation';
+
+import {
+	execute as kubeLogUrlPostExecute,
+	description as kubeLogUrlPostDescription,
+} from './kube/kubeLogUrlPost.operation';
+
+import {
+	execute as kubeMetricsEtcdUsageGetExecute,
+	description as kubeMetricsEtcdUsageGetDescription,
+} from './kube/kubeMetricsEtcdUsageGet.operation';
+
+import {
+	execute as kubeNodeDeleteDeleteExecute,
+	description as kubeNodeDeleteDeleteDescription,
+} from './kube/kubeNodeDeleteDelete.operation';
+
+import {
+	execute as kubeNodeGetExecute,
+	description as kubeNodeGetDescription,
+} from './kube/kubeNodeGet.operation';
+
+import {
+	execute as kubeNodeListGetExecute,
+	description as kubeNodeListGetDescription,
+} from './kube/kubeNodeListGet.operation';
+
+import {
+	execute as kubeNodepoolCreatePostExecute,
+	description as kubeNodepoolCreatePostDescription,
+} from './kube/kubeNodepoolCreatePost.operation';
+
+import {
+	execute as kubeNodepoolDeleteDeleteExecute,
+	description as kubeNodepoolDeleteDeleteDescription,
+} from './kube/kubeNodepoolDeleteDelete.operation';
+
+import {
+	execute as kubeNodepoolGetGetExecute,
+	description as kubeNodepoolGetGetDescription,
+} from './kube/kubeNodepoolGetGet.operation';
+
+import {
+	execute as kubeNodepoolListGetExecute,
+	description as kubeNodepoolListGetDescription,
+} from './kube/kubeNodepoolListGet.operation';
+
+import {
+	execute as kubeNodepoolListNodepoolNodesGetExecute,
+	description as kubeNodepoolListNodepoolNodesGetDescription,
+} from './kube/kubeNodepoolListNodepoolNodesGet.operation';
+
+import {
+	execute as kubeNodepoolUpdatePutExecute,
+	description as kubeNodepoolUpdatePutDescription,
+} from './kube/kubeNodepoolUpdatePut.operation';
+
+import {
+	execute as kubeOpenIdConnectDeleteDeleteExecute,
+	description as kubeOpenIdConnectDeleteDeleteDescription,
+} from './kube/kubeOpenIdConnectDeleteDelete.operation';
+
+import {
+	execute as kubeOpenIdConnectGetExecute,
+	description as kubeOpenIdConnectGetDescription,
+} from './kube/kubeOpenIdConnectGet.operation';
+
+import {
+	execute as kubeOpenIdConnectPostExecute,
+	description as kubeOpenIdConnectPostDescription,
+} from './kube/kubeOpenIdConnectPost.operation';
+
+import {
+	execute as kubeOpenIdConnectUpdatePutExecute,
+	description as kubeOpenIdConnectUpdatePutDescription,
+} from './kube/kubeOpenIdConnectUpdatePut.operation';
+
+import {
+	execute as kubePrivateNetworkConfigurationGetExecute,
+	description as kubePrivateNetworkConfigurationGetDescription,
+} from './kube/kubePrivateNetworkConfigurationGet.operation';
+
+import {
+	execute as kubePrivateNetworkConfigurationUpdatePutExecute,
+	description as kubePrivateNetworkConfigurationUpdatePutDescription,
+} from './kube/kubePrivateNetworkConfigurationUpdatePut.operation';
+
+import {
+	execute as kubeResetPostExecute,
+	description as kubeResetPostDescription,
+} from './kube/kubeResetPost.operation';
+
+import {
+	execute as kubeRestartPostExecute,
+	description as kubeRestartPostDescription,
+} from './kube/kubeRestartPost.operation';
+
+import {
+	execute as kubeUpdateLoadBalancersSubnetIdUpdatePutExecute,
+	description as kubeUpdateLoadBalancersSubnetIdUpdatePutDescription,
+} from './kube/kubeUpdateLoadBalancersSubnetIdUpdatePut.operation';
+
+import {
+	execute as kubeUpdatePolicyUpdatePutExecute,
+	description as kubeUpdatePolicyUpdatePutDescription,
+} from './kube/kubeUpdatePolicyUpdatePut.operation';
+
+import {
+	execute as kubeUpdatePostExecute,
+	description as kubeUpdatePostDescription,
+} from './kube/kubeUpdatePost.operation';
+
+import {
+	execute as kubeUpdatePutExecute,
+	description as kubeUpdatePutDescription,
+} from './kube/kubeUpdatePut.operation';
+
+import {
+	execute as labAgreementListGetExecute,
+	description as labAgreementListGetDescription,
+} from './lab/agreementListGet.operation';
+
+import {
+	execute as labCreatePostExecute,
+	description as labCreatePostDescription,
+} from './lab/createPost.operation';
+
+import {
+	execute as labGetDetailGetExecute,
+	description as labGetDetailGetDescription,
+} from './lab/getDetailGet.operation';
+
+import {
+	execute as labListGetExecute,
+	description as labListGetDescription,
+} from './lab/listGet.operation';
+
+import {
 	execute as loadbalancerConfigurationApplyPostExecute,
+	description as loadbalancerConfigurationApplyPostDescription,
 } from './loadbalancer/configurationApplyPost.operation';
 
-// Role operations
-	import {
-	description as roleCreatePostDescription,
+import {
+	execute as loadbalancerConfigurationCreatePostExecute,
+	description as loadbalancerConfigurationCreatePostDescription,
+} from './loadbalancer/configurationCreatePost.operation';
+
+import {
+	execute as loadbalancerConfigurationDeleteDeleteExecute,
+	description as loadbalancerConfigurationDeleteDeleteDescription,
+} from './loadbalancer/configurationDeleteDelete.operation';
+
+import {
+	execute as loadbalancerConfigurationGetGetExecute,
+	description as loadbalancerConfigurationGetGetDescription,
+} from './loadbalancer/configurationGetGet.operation';
+
+import {
+	execute as loadbalancerConfigurationListGetExecute,
+	description as loadbalancerConfigurationListGetDescription,
+} from './loadbalancer/configurationListGet.operation';
+
+import {
+	execute as loadbalancerCreatePostExecute,
+	description as loadbalancerCreatePostDescription,
+} from './loadbalancer/createPost.operation';
+
+import {
+	execute as loadbalancerDeleteDeleteExecute,
+	description as loadbalancerDeleteDeleteDescription,
+} from './loadbalancer/deleteDelete.operation';
+
+import {
+	execute as loadbalancerGetDetailGetExecute,
+	description as loadbalancerGetDetailGetDescription,
+} from './loadbalancer/getDetailGet.operation';
+
+import {
+	execute as loadbalancerListGetExecute,
+	description as loadbalancerListGetDescription,
+} from './loadbalancer/listGet.operation';
+
+import {
+	execute as loadbalancerUpdatePutExecute,
+	description as loadbalancerUpdatePutDescription,
+} from './loadbalancer/updatePut.operation';
+
+import {
+	execute as networkActivatePrivateNetworkRegionPostExecute,
+	description as networkActivatePrivateNetworkRegionPostDescription,
+} from './network/activatePrivateNetworkRegionPost.operation';
+
+import {
+	execute as networkCreatePrivateNetworkPostExecute,
+	description as networkCreatePrivateNetworkPostDescription,
+} from './network/createPrivateNetworkPost.operation';
+
+import {
+	execute as networkCreateSubnetPostExecute,
+	description as networkCreateSubnetPostDescription,
+} from './network/createSubnetPost.operation';
+
+import {
+	execute as networkDeletePrivateNetworkDeleteExecute,
+	description as networkDeletePrivateNetworkDeleteDescription,
+} from './network/deletePrivateNetworkDelete.operation';
+
+import {
+	execute as networkDeleteSubnetDeleteExecute,
+	description as networkDeleteSubnetDeleteDescription,
+} from './network/deleteSubnetDelete.operation';
+
+import {
+	execute as networkGetPrivateNetworkDetailGetExecute,
+	description as networkGetPrivateNetworkDetailGetDescription,
+} from './network/getPrivateNetworkDetailGet.operation';
+
+import {
+	execute as networkGetSubnetDetailGetExecute,
+	description as networkGetSubnetDetailGetDescription,
+} from './network/getSubnetDetailGet.operation';
+
+import {
+	execute as networkListPrivateNetworksGetExecute,
+	description as networkListPrivateNetworksGetDescription,
+} from './network/listPrivateNetworksGet.operation';
+
+import {
+	execute as networkListPublicNetworksGetExecute,
+	description as networkListPublicNetworksGetDescription,
+} from './network/listPublicNetworksGet.operation';
+
+import {
+	execute as networkListSubnetsGetExecute,
+	description as networkListSubnetsGetDescription,
+} from './network/listSubnetsGet.operation';
+
+import {
+	execute as networkUpdatePrivateNetworkPutExecute,
+	description as networkUpdatePrivateNetworkPutDescription,
+} from './network/updatePrivateNetworkPut.operation';
+
+import {
+	execute as networkUpdateSubnetPutExecute,
+	description as networkUpdateSubnetPutDescription,
+} from './network/updateSubnetPut.operation';
+
+import {
+	execute as operationGetDetailGetExecute,
+	description as operationGetDetailGetDescription,
+} from './operation/getDetailGet.operation';
+
+import {
+	execute as operationListGetExecute,
+	description as operationListGetDescription,
+} from './operation/listGet.operation';
+
+import {
+	execute as projectDetailGetExecute,
+	description as projectDetailGetDescription,
+} from './project/getDetailGet.operation';
+
+import {
+	execute as getDetailGetV2Execute,
+	description as getDetailGetV2Description,
+} from './project/getDetailGetV2.operation';
+
+import {
+	execute as projectListGetExecute,
+	description as projectListGetDescription,
+} from './project/listGet.operation';
+
+import {
+	execute as listGetV2Execute,
+} from './project/listGetV2.operation';
+
+import {
+	execute as quantumGetCapabilitiesDetailGetExecute,
+	description as quantumGetCapabilitiesDetailGetDescription,
+} from './quantum/getCapabilitiesDetailGet.operation';
+
+import {
+	execute as quantumGetCapabilitiesRegionDetailGetExecute,
+	description as quantumGetCapabilitiesRegionDetailGetDescription,
+} from './quantum/getCapabilitiesRegionDetailGet.operation';
+
+import {
+	execute as quantumListCapabilitiesGetExecute,
+	description as quantumListCapabilitiesGetDescription,
+} from './quantum/listCapabilitiesGet.operation';
+
+import {
+	execute as quantumListCapabilitiesRegionGetExecute,
+	description as quantumListCapabilitiesRegionGetDescription,
+} from './quantum/listCapabilitiesRegionGet.operation';
+
+import {
+	execute as quotaListGetExecute,
+	description as quotaListGetDescription,
+} from './quota/listGet.operation';
+
+import {
+	executeGet as rancherAdminCredentialsGetExecute,
+	descriptionGet as rancherAdminCredentialsGetDescription,
+	executePost as rancherAdminCredentialsPostExecute,
+	descriptionPost as rancherAdminCredentialsPostDescription,
+} from './rancher/adminCredentials.operation';
+
+import {
+	execute as adminCredentialsResetV2Execute,
+	description as adminCredentialsResetV2Description,
+} from './rancher/adminCredentialsResetV2.operation';
+
+import {
+	execute as rancherEventListGetExecute,
+	description as rancherEventListGetDescription,
+} from './rancher/eventListGet.operation';
+
+import {
+	execute as eventListGetV2Execute,
+	description as eventListGetV2Description,
+} from './rancher/eventListGetV2.operation';
+
+import {
+	execute as globalReferencePlanListGetV2Execute,
+	description as globalReferencePlanListGetV2Description,
+} from './rancher/globalReferencePlanListGetV2.operation';
+
+import {
+	execute as globalReferenceVersionListGetV2Execute,
+	description as globalReferenceVersionListGetV2Description,
+} from './rancher/globalReferenceVersionListGetV2.operation';
+
+import {
+	execute as rancherPlanCapabilityListGetExecute,
+	description as rancherPlanCapabilityListGetDescription,
+} from './rancher/planCapabilityListGet.operation';
+
+import {
+	execute as planCapabilityListGetV2Execute,
+	description as planCapabilityListGetV2Description,
+} from './rancher/planCapabilityListGetV2.operation';
+
+import {
+	execute as referencePlanListGetV2Execute,
+	description as referencePlanListGetV2Description,
+} from './rancher/referencePlanListGetV2.operation';
+
+import {
+	execute as referenceVersionListGetV2Execute,
+	description as referenceVersionListGetV2Description,
+} from './rancher/referenceVersionListGetV2.operation';
+
+import {
+	execute as rancherServiceCreatePostExecute,
+	description as rancherServiceCreatePostDescription,
+} from './rancher/serviceCreatePost.operation';
+
+import {
+	execute as serviceCreatePostV2Execute,
+	description as serviceCreatePostV2Description,
+} from './rancher/serviceCreatePostV2.operation';
+
+import {
+	execute as rancherServiceDeleteDeleteExecute,
+	description as rancherServiceDeleteDeleteDescription,
+} from './rancher/serviceDeleteDelete.operation';
+
+import {
+	execute as serviceDeleteDeleteV2Execute,
+	description as serviceDeleteDeleteV2Description,
+} from './rancher/serviceDeleteDeleteV2.operation';
+
+import {
+	execute as rancherServiceGetExecute,
+	description as rancherServiceGetDescription,
+} from './rancher/serviceGet.operation';
+
+import {
+	execute as serviceGetGetV2Execute,
+	description as serviceGetGetV2Description,
+} from './rancher/serviceGetGetV2.operation';
+
+import {
+	execute as rancherServiceListGetExecute,
+	description as rancherServiceListGetDescription,
+} from './rancher/serviceListGet.operation';
+
+import {
+	execute as serviceListGetV2Execute,
+	description as serviceListGetV2Description,
+} from './rancher/serviceListGetV2.operation';
+
+import {
+	execute as rancherServiceUpdatePutExecute,
+	description as rancherServiceUpdatePutDescription,
+} from './rancher/serviceUpdatePut.operation';
+
+import {
+	execute as serviceUpdatePutV2Execute,
+	description as serviceUpdatePutV2Description,
+} from './rancher/serviceUpdatePutV2.operation';
+
+import {
+	execute as rancherTaskDetailGetExecute,
+	description as rancherTaskDetailGetDescription,
+} from './rancher/taskDetailGet.operation';
+
+import {
+	execute as taskDetailGetV2Execute,
+	description as taskDetailGetV2Description,
+} from './rancher/taskDetailGetV2.operation';
+
+import {
+	execute as rancherTaskListGetExecute,
+	description as rancherTaskListGetDescription,
+} from './rancher/taskListGet.operation';
+
+import {
+	execute as taskListGetV2Execute,
+	description as taskListGetV2Description,
+} from './rancher/taskListGetV2.operation';
+
+import {
+	execute as rancherVersionCapabilityListGetExecute,
+	description as rancherVersionCapabilityListGetDescription,
+} from './rancher/versionCapabilityListGet.operation';
+
+import {
+	execute as versionCapabilityListGetV2Execute,
+	description as versionCapabilityListGetV2Description,
+} from './rancher/versionCapabilityListGetV2.operation';
+
+import {
+	execute as floatingIpCreatePostExecute,
+} from './region/floatingip/floatingIpCreatePost.operation';
+
+import {
+	execute as floatingIpDeleteDeleteExecute,
+} from './region/floatingip/floatingIpDeleteDelete.operation';
+
+import {
+	execute as floatingIpDetachPostExecute,
+} from './region/floatingip/floatingIpDetachPost.operation';
+
+import {
+	execute as floatingIpGetGetExecute,
+} from './region/floatingip/floatingIpGetGet.operation';
+
+import {
+	execute as floatingIpListGetExecute,
+} from './region/floatingip/floatingIpListGet.operation';
+
+import {
+	execute as gatewayCreatePostExecute,
+} from './region/gateway/gatewayCreatePost.operation';
+
+import {
+	execute as gatewayDeleteDeleteExecute,
+} from './region/gateway/gatewayDeleteDelete.operation';
+
+import {
+	execute as gatewayExposePostExecute,
+} from './region/gateway/gatewayExposePost.operation';
+
+import {
+	execute as gatewayGetGetExecute,
+} from './region/gateway/gatewayGetGet.operation';
+
+import {
+	execute as gatewayInterfaceCreatePostExecute,
+} from './region/gateway/gatewayInterfaceCreatePost.operation';
+
+import {
+	execute as gatewayInterfaceDeleteDeleteExecute,
+} from './region/gateway/gatewayInterfaceDeleteDelete.operation';
+
+import {
+	execute as gatewayInterfaceGetGetExecute,
+} from './region/gateway/gatewayInterfaceGetGet.operation';
+
+import {
+	execute as gatewayInterfaceListGetExecute,
+} from './region/gateway/gatewayInterfaceListGet.operation';
+
+import {
+	execute as gatewayListGetExecute,
+} from './region/gateway/gatewayListGet.operation';
+
+import {
+	execute as gatewayUpdatePutExecute,
+} from './region/gateway/gatewayUpdatePut.operation';
+
+import {
+	execute as loadbalancingFlavorGetGetExecute,
+} from './region/loadbalancing/loadbalancingFlavorGetGet.operation';
+
+import {
+	execute as loadbalancingFlavorListGetExecute,
+} from './region/loadbalancing/loadbalancingFlavorListGet.operation';
+
+import {
+	execute as loadbalancingHealthMonitorCreatePostExecute,
+} from './region/loadbalancing/loadbalancingHealthMonitorCreatePost.operation';
+
+import {
+	execute as loadbalancingHealthMonitorDeleteDeleteExecute,
+} from './region/loadbalancing/loadbalancingHealthMonitorDeleteDelete.operation';
+
+import {
+	execute as loadbalancingHealthMonitorGetGetExecute,
+} from './region/loadbalancing/loadbalancingHealthMonitorGetGet.operation';
+
+import {
+	execute as loadbalancingHealthMonitorListGetExecute,
+} from './region/loadbalancing/loadbalancingHealthMonitorListGet.operation';
+
+import {
+	execute as loadbalancingHealthMonitorUpdatePutExecute,
+} from './region/loadbalancing/loadbalancingHealthMonitorUpdatePut.operation';
+
+import {
+	execute as loadbalancingL7PolicyCreatePostExecute,
+} from './region/loadbalancing/loadbalancingL7PolicyCreatePost.operation';
+
+import {
+	execute as loadbalancingL7PolicyDeleteDeleteExecute,
+} from './region/loadbalancing/loadbalancingL7PolicyDeleteDelete.operation';
+
+import {
+	execute as loadbalancingL7PolicyGetGetExecute,
+} from './region/loadbalancing/loadbalancingL7PolicyGetGet.operation';
+
+import {
+	execute as loadbalancingL7PolicyL7RuleCreatePostExecute,
+} from './region/loadbalancing/loadbalancingL7PolicyL7RuleCreatePost.operation';
+
+import {
+	execute as loadbalancingL7PolicyL7RuleDeleteDeleteExecute,
+} from './region/loadbalancing/loadbalancingL7PolicyL7RuleDeleteDelete.operation';
+
+import {
+	execute as loadbalancingL7PolicyL7RuleGetGetExecute,
+} from './region/loadbalancing/loadbalancingL7PolicyL7RuleGetGet.operation';
+
+import {
+	execute as loadbalancingL7PolicyL7RuleListGetExecute,
+} from './region/loadbalancing/loadbalancingL7PolicyL7RuleListGet.operation';
+
+import {
+	execute as loadbalancingL7PolicyL7RuleUpdatePutExecute,
+} from './region/loadbalancing/loadbalancingL7PolicyL7RuleUpdatePut.operation';
+
+import {
+	execute as loadbalancingL7PolicyListGetExecute,
+} from './region/loadbalancing/loadbalancingL7PolicyListGet.operation';
+
+import {
+	execute as loadbalancingL7PolicyUpdatePutExecute,
+} from './region/loadbalancing/loadbalancingL7PolicyUpdatePut.operation';
+
+import {
+	execute as loadbalancingListenerCreatePostExecute,
+} from './region/loadbalancing/loadbalancingListenerCreatePost.operation';
+
+import {
+	execute as loadbalancingListenerDeleteDeleteExecute,
+} from './region/loadbalancing/loadbalancingListenerDeleteDelete.operation';
+
+import {
+	execute as loadbalancingListenerGetGetExecute,
+} from './region/loadbalancing/loadbalancingListenerGetGet.operation';
+
+import {
+	execute as loadbalancingListenerListGetExecute,
+} from './region/loadbalancing/loadbalancingListenerListGet.operation';
+
+import {
+	execute as loadbalancingListenerUpdatePutExecute,
+} from './region/loadbalancing/loadbalancingListenerUpdatePut.operation';
+
+import {
+	execute as loadbalancingLoadBalancerAssociateFloatingIpPostExecute,
+} from './region/loadbalancing/loadbalancingLoadBalancerAssociateFloatingIpPost.operation';
+
+import {
+	execute as loadbalancingLoadBalancerCreatePostExecute,
+} from './region/loadbalancing/loadbalancingLoadBalancerCreatePost.operation';
+
+import {
+	execute as loadbalancingLoadBalancerDeleteDeleteExecute,
+} from './region/loadbalancing/loadbalancingLoadBalancerDeleteDelete.operation';
+
+import {
+	execute as loadbalancingLoadBalancerFloatingIpPostExecute,
+} from './region/loadbalancing/loadbalancingLoadBalancerFloatingIpPost.operation';
+
+import {
+	execute as loadbalancingLoadBalancerGetGetExecute,
+} from './region/loadbalancing/loadbalancingLoadBalancerGetGet.operation';
+
+import {
+	execute as loadbalancingLoadBalancerListGetExecute,
+} from './region/loadbalancing/loadbalancingLoadBalancerListGet.operation';
+
+import {
+	execute as loadbalancingLoadBalancerLogSubscriptionCreatePostExecute,
+} from './region/loadbalancing/loadbalancingLoadBalancerLogSubscriptionCreatePost.operation';
+
+import {
+	execute as loadbalancingLoadBalancerLogSubscriptionDeleteDeleteExecute,
+} from './region/loadbalancing/loadbalancingLoadBalancerLogSubscriptionDeleteDelete.operation';
+
+import {
+	execute as loadbalancingLoadBalancerLogSubscriptionGetGetExecute,
+} from './region/loadbalancing/loadbalancingLoadBalancerLogSubscriptionGetGet.operation';
+
+import {
+	execute as loadbalancingLoadBalancerLogSubscriptionListGetExecute,
+} from './region/loadbalancing/loadbalancingLoadBalancerLogSubscriptionListGet.operation';
+
+import {
+	execute as loadbalancingLoadBalancerLogUrlPostExecute,
+} from './region/loadbalancing/loadbalancingLoadBalancerLogUrlPost.operation';
+
+import {
+	execute as loadbalancingLoadBalancerStatsGetExecute,
+} from './region/loadbalancing/loadbalancingLoadBalancerStatsGet.operation';
+
+import {
+	execute as loadbalancingLoadBalancerUpdatePutExecute,
+} from './region/loadbalancing/loadbalancingLoadBalancerUpdatePut.operation';
+
+import {
+	execute as loadbalancingLogKindGetGetExecute,
+} from './region/loadbalancing/loadbalancingLogKindGetGet.operation';
+
+import {
+	execute as loadbalancingLogKindListGetExecute,
+} from './region/loadbalancing/loadbalancingLogKindListGet.operation';
+
+import {
+	execute as loadbalancingPoolCreatePostExecute,
+} from './region/loadbalancing/loadbalancingPoolCreatePost.operation';
+
+import {
+	execute as loadbalancingPoolDeleteDeleteExecute,
+} from './region/loadbalancing/loadbalancingPoolDeleteDelete.operation';
+
+import {
+	execute as loadbalancingPoolGetGetExecute,
+} from './region/loadbalancing/loadbalancingPoolGetGet.operation';
+
+import {
+	execute as loadbalancingPoolListGetExecute,
+} from './region/loadbalancing/loadbalancingPoolListGet.operation';
+
+import {
+	execute as loadbalancingPoolMemberCreatePostExecute,
+} from './region/loadbalancing/loadbalancingPoolMemberCreatePost.operation';
+
+import {
+	execute as loadbalancingPoolMemberDeleteDeleteExecute,
+} from './region/loadbalancing/loadbalancingPoolMemberDeleteDelete.operation';
+
+import {
+	execute as loadbalancingPoolMemberGetGetExecute,
+} from './region/loadbalancing/loadbalancingPoolMemberGetGet.operation';
+
+import {
+	execute as loadbalancingPoolMemberListGetExecute,
+} from './region/loadbalancing/loadbalancingPoolMemberListGet.operation';
+
+import {
+	execute as loadbalancingPoolMemberUpdatePutExecute,
+} from './region/loadbalancing/loadbalancingPoolMemberUpdatePut.operation';
+
+import {
+	execute as loadbalancingPoolUpdatePutExecute,
+} from './region/loadbalancing/loadbalancingPoolUpdatePut.operation';
+
+import {
+	execute as regionColdArchiveArchivePostExecute,
+	description as regionColdArchiveArchivePostDescription,
+} from './region/regionColdArchiveArchivePost.operation';
+
+import {
+	execute as regionColdArchiveCreatePostExecute,
+	description as regionColdArchiveCreatePostDescription,
+} from './region/regionColdArchiveCreatePost.operation';
+
+import {
+	execute as regionColdArchiveDeleteDeleteExecute,
+	description as regionColdArchiveDeleteDeleteDescription,
+} from './region/regionColdArchiveDeleteDelete.operation';
+
+import {
+	execute as regionColdArchiveDestroyPostExecute,
+	description as regionColdArchiveDestroyPostDescription,
+} from './region/regionColdArchiveDestroyPost.operation';
+
+import {
+	execute as regionColdArchiveGetGetExecute,
+	description as regionColdArchiveGetGetDescription,
+} from './region/regionColdArchiveGetGet.operation';
+
+import {
+	execute as regionColdArchiveListGetExecute,
+	description as regionColdArchiveListGetDescription,
+} from './region/regionColdArchiveListGet.operation';
+
+import {
+	execute as regionColdArchiveObjectDeleteDeleteExecute,
+	description as regionColdArchiveObjectDeleteDeleteDescription,
+} from './region/regionColdArchiveObjectDeleteDelete.operation';
+
+import {
+	execute as regionColdArchivePolicyCreatePostExecute,
+	description as regionColdArchivePolicyCreatePostDescription,
+} from './region/regionColdArchivePolicyCreatePost.operation';
+
+import {
+	execute as regionColdArchivePresignPostExecute,
+	description as regionColdArchivePresignPostDescription,
+} from './region/regionColdArchivePresignPost.operation';
+
+import {
+	execute as regionColdArchiveRestorePostExecute,
+	description as regionColdArchiveRestorePostDescription,
+} from './region/regionColdArchiveRestorePost.operation';
+
+import {
+	execute as regionGetGetExecute,
+	description as regionGetGetDescription,
+} from './region/regionGetGet.operation';
+
+import {
+	execute as regionListGetExecute,
+	description as regionListGetDescription,
+} from './region/regionListGet.operation';
+
+import {
+	execute as regionShareCreatePostExecute,
+	description as regionShareCreatePostDescription,
+} from './region/regionShareCreatePost.operation';
+
+import {
+	execute as regionShareDeleteDeleteExecute,
+	description as regionShareDeleteDeleteDescription,
+} from './region/regionShareDeleteDelete.operation';
+
+import {
+	execute as regionShareGetGetExecute,
+	description as regionShareGetGetDescription,
+} from './region/regionShareGetGet.operation';
+
+import {
+	execute as regionShareListGetExecute,
+	description as regionShareListGetDescription,
+} from './region/regionShareListGet.operation';
+
+import {
+	execute as regionShareSnapshotCreatePostExecute,
+	description as regionShareSnapshotCreatePostDescription,
+} from './region/regionShareSnapshotCreatePost.operation';
+
+import {
+	execute as regionShareSnapshotDeleteDeleteExecute,
+	description as regionShareSnapshotDeleteDeleteDescription,
+} from './region/regionShareSnapshotDeleteDelete.operation';
+
+import {
+	execute as regionShareSnapshotGetGetExecute,
+	description as regionShareSnapshotGetGetDescription,
+} from './region/regionShareSnapshotGetGet.operation';
+
+import {
+	execute as regionShareSnapshotListGetExecute,
+	description as regionShareSnapshotListGetDescription,
+} from './region/regionShareSnapshotListGet.operation';
+
+import {
+	execute as regionShareUpdatePutExecute,
+	description as regionShareUpdatePutDescription,
+} from './region/regionShareUpdatePut.operation';
+
+import {
+	execute as regionStorageBulkDeleteObjectsPostExecute,
+	description as regionStorageBulkDeleteObjectsPostDescription,
+} from './region/regionStorageBulkDeleteObjectsPost.operation';
+
+import {
+	execute as regionStorageCreatePostExecute,
+	description as regionStorageCreatePostDescription,
+} from './region/regionStorageCreatePost.operation';
+
+import {
+	execute as regionStorageDeleteDeleteExecute,
+	description as regionStorageDeleteDeleteDescription,
+} from './region/regionStorageDeleteDelete.operation';
+
+import {
+	execute as regionStorageGetGetExecute,
+	description as regionStorageGetGetDescription,
+} from './region/regionStorageGetGet.operation';
+
+import {
+	execute as regionStorageLifecycleDeleteDeleteExecute,
+	description as regionStorageLifecycleDeleteDeleteDescription,
+} from './region/regionStorageLifecycleDeleteDelete.operation';
+
+import {
+	execute as regionStorageLifecycleGetGetExecute,
+	description as regionStorageLifecycleGetGetDescription,
+} from './region/regionStorageLifecycleGetGet.operation';
+
+import {
+	execute as regionStorageLifecycleUpdatePutExecute,
+	description as regionStorageLifecycleUpdatePutDescription,
+} from './region/regionStorageLifecycleUpdatePut.operation';
+
+import {
+	execute as regionStorageListGetExecute,
+	description as regionStorageListGetDescription,
+} from './region/regionStorageListGet.operation';
+
+import {
+	execute as regionStorageObjectCopyPostExecute,
+	description as regionStorageObjectCopyPostDescription,
+} from './region/regionStorageObjectCopyPost.operation';
+
+import {
+	execute as regionStorageObjectCreatePostExecute,
+	description as regionStorageObjectCreatePostDescription,
+} from './region/regionStorageObjectCreatePost.operation';
+
+import {
+	execute as regionStorageObjectDeleteDeleteExecute,
+	description as regionStorageObjectDeleteDeleteDescription,
+} from './region/regionStorageObjectDeleteDelete.operation';
+
+import {
+	execute as regionStorageObjectGetGetExecute,
+	description as regionStorageObjectGetGetDescription,
+} from './region/regionStorageObjectGetGet.operation';
+
+import {
+	execute as regionStorageObjectListGetExecute,
+	description as regionStorageObjectListGetDescription,
+} from './region/regionStorageObjectListGet.operation';
+
+import {
+	execute as regionStorageObjectRestorePostExecute,
+	description as regionStorageObjectRestorePostDescription,
+} from './region/regionStorageObjectRestorePost.operation';
+
+import {
+	execute as regionStorageObjectUpdatePutExecute,
+	description as regionStorageObjectUpdatePutDescription,
+} from './region/regionStorageObjectUpdatePut.operation';
+
+import {
+	execute as regionStorageObjectVersionCopyPostExecute,
+	description as regionStorageObjectVersionCopyPostDescription,
+} from './region/regionStorageObjectVersionCopyPost.operation';
+
+import {
+	execute as regionStorageObjectVersionDeleteDeleteExecute,
+	description as regionStorageObjectVersionDeleteDeleteDescription,
+} from './region/regionStorageObjectVersionDeleteDelete.operation';
+
+import {
+	execute as regionStorageObjectVersionGetGetExecute,
+	description as regionStorageObjectVersionGetGetDescription,
+} from './region/regionStorageObjectVersionGetGet.operation';
+
+import {
+	execute as regionStorageObjectVersionListGetExecute,
+	description as regionStorageObjectVersionListGetDescription,
+} from './region/regionStorageObjectVersionListGet.operation';
+
+import {
+	execute as regionStorageObjectVersionRestorePostExecute,
+	description as regionStorageObjectVersionRestorePostDescription,
+} from './region/regionStorageObjectVersionRestorePost.operation';
+
+import {
+	execute as regionStorageObjectVersionUpdatePutExecute,
+	description as regionStorageObjectVersionUpdatePutDescription,
+} from './region/regionStorageObjectVersionUpdatePut.operation';
+
+import {
+	execute as regionStoragePolicyCreatePostExecute,
+	description as regionStoragePolicyCreatePostDescription,
+} from './region/regionStoragePolicyCreatePost.operation';
+
+import {
+	execute as regionStoragePresignPostExecute,
+	description as regionStoragePresignPostDescription,
+} from './region/regionStoragePresignPost.operation';
+
+import {
+	execute as regionStorageReplicationCreatePostExecute,
+	description as regionStorageReplicationCreatePostDescription,
+} from './region/regionStorageReplicationCreatePost.operation';
+
+import {
+	execute as regionStorageReplicationListGetExecute,
+	description as regionStorageReplicationListGetDescription,
+} from './region/regionStorageReplicationListGet.operation';
+
+import {
+	execute as regionStorageUpdatePutExecute,
+	description as regionStorageUpdatePutDescription,
+} from './region/regionStorageUpdatePut.operation';
+
+import {
+	execute as regionVolumeCreatePostExecute,
+	description as regionVolumeCreatePostDescription,
+} from './region/regionVolumeCreatePost.operation';
+
+import {
+	execute as regionVolumeDeleteDeleteExecute,
+	description as regionVolumeDeleteDeleteDescription,
+} from './region/regionVolumeDeleteDelete.operation';
+
+import {
+	execute as regionVolumeGetGetExecute,
+	description as regionVolumeGetGetDescription,
+} from './region/regionVolumeGetGet.operation';
+
+import {
+	execute as regionVolumeListGetExecute,
+	description as regionVolumeListGetDescription,
+} from './region/regionVolumeListGet.operation';
+
+import {
+	execute as regionVolumeUpdatePutExecute,
+	description as regionVolumeUpdatePutDescription,
+} from './region/regionVolumeUpdatePut.operation';
+
+import {
+	execute as regionWorkflowBackupCreatePostExecute,
+	description as regionWorkflowBackupCreatePostDescription,
+} from './region/regionWorkflowBackupCreatePost.operation';
+
+import {
+	execute as regionWorkflowBackupDeleteDeleteExecute,
+	description as regionWorkflowBackupDeleteDeleteDescription,
+} from './region/regionWorkflowBackupDeleteDelete.operation';
+
+import {
+	execute as regionWorkflowBackupGetGetExecute,
+	description as regionWorkflowBackupGetGetDescription,
+} from './region/regionWorkflowBackupGetGet.operation';
+
+import {
+	execute as regionWorkflowBackupUpdatePutExecute,
+	description as regionWorkflowBackupUpdatePutDescription,
+} from './region/regionWorkflowBackupUpdatePut.operation';
+
+import {
+	execute as regionAvailableCheckRegionAvailableGetExecute,
+	description as regionAvailableCheckRegionAvailableGetDescription,
+} from './regionAvailable/checkRegionAvailableGet.operation';
+
+import {
+	execute as retainPostExecute,
+	description as retainPostDescription,
+} from './retain/retainPost.operation';
+
+import {
 	execute as roleCreatePostExecute,
+	description as roleCreatePostDescription,
 } from './role/createPost.operation';
 
-// ServiceInfos operations
-	import {
-	description as serviceInfosUpdatePutDescription,
+import {
+	execute as roleListGetExecute,
+	description as roleListGetDescription,
+} from './role/listGet.operation';
+
+import {
+	execute as serviceInfosGetServiceInfosGetExecute,
+	description as serviceInfosGetServiceInfosGetDescription,
+} from './serviceInfos/getServiceInfosGet.operation';
+
+import {
 	execute as serviceInfosUpdatePutExecute,
+	description as serviceInfosUpdatePutDescription,
 } from './serviceInfos/updatePut.operation';
 
-// Storage operations
-	import {
-	description as storageAccessPostDescription,
+import {
+	execute as snapshotsCreatePostExecute,
+	description as snapshotsCreatePostDescription,
+} from './snapshot/createPost.operation';
+
+import {
+	execute as snapshotsDeleteDeleteExecute,
+	description as snapshotsDeleteDeleteDescription,
+} from './snapshot/deleteDelete.operation';
+
+import {
+	execute as snapshotsListGetExecute,
+	description as snapshotsListGetDescription,
+} from './snapshot/listGet.operation';
+
+import {
+	execute as sshkeyCreatePostExecute,
+	description as sshkeyCreatePostDescription,
+} from './sshkey/createPost.operation';
+
+import {
+	execute as sshkeyDeleteDeleteExecute,
+	description as sshkeyDeleteDeleteDescription,
+} from './sshkey/deleteDelete.operation';
+
+import {
+	execute as sshkeyListGetExecute,
+	description as sshkeyListGetDescription,
+} from './sshkey/listGet.operation';
+
+import {
 	execute as storageAccessPostExecute,
+	description as storageAccessPostDescription,
 } from './storage/accessPost.operation';
-	import {
-	description as storageQuotaGetDescription,
-	execute as storageQuotaGetExecute,
-} from './storage/quotaGet.operation';
-	import {
-	description as storageCorsPostDescription,
-	execute as storageCorsPostExecute,
-} from './storage/corsPost.operation';
-	import {
-	description as storageCorsDeleteDeleteDescription,
+
+import {
 	execute as storageCorsDeleteDeleteExecute,
+	description as storageCorsDeleteDeleteDescription,
 } from './storage/corsDeleteDelete.operation';
-	import {
-	description as storagePublicUrlPostDescription,
+
+import {
+	execute as storageCorsPostExecute,
+	description as storageCorsPostDescription,
+} from './storage/corsPost.operation';
+
+import {
+	execute as storageCreateContainerPostExecute,
+	description as storageCreateContainerPostDescription,
+} from './storage/createContainerPost.operation';
+
+import {
+	execute as storageDeleteContainerDeleteExecute,
+	description as storageDeleteContainerDeleteDescription,
+} from './storage/deleteContainerDelete.operation';
+
+import {
+	execute as storageDeleteDeleteExecute,
+	description as storageDeleteDeleteDescription,
+} from './storage/deleteDelete.operation';
+
+import {
+	execute as storageGetContainerDetailGetExecute,
+	description as storageGetContainerDetailGetDescription,
+} from './storage/getContainerDetailGet.operation';
+
+import {
+	execute as storageGetDetailGetExecute,
+	description as storageGetDetailGetDescription,
+} from './storage/getDetailGet.operation';
+
+import {
+	execute as storageListContainersGetExecute,
+	description as storageListContainersGetDescription,
+} from './storage/listContainersGet.operation';
+
+import {
+	execute as storageListGetExecute,
+	description as storageListGetDescription,
+} from './storage/listGet.operation';
+
+import {
 	execute as storagePublicUrlPostExecute,
+	description as storagePublicUrlPostDescription,
 } from './storage/publicUrlPost.operation';
-	import {
-	description as storageStaticPostDescription,
+
+import {
+	execute as storageQuotaGetExecute,
+	description as storageQuotaGetDescription,
+} from './storage/quotaGet.operation';
+
+import {
 	execute as storageStaticPostExecute,
+	description as storageStaticPostDescription,
 } from './storage/staticPost.operation';
-	import {
-	description as storageUserPostDescription,
+
+import {
+	execute as storageUpdateContainerPutExecute,
+	description as storageUpdateContainerPutDescription,
+} from './storage/updateContainerPut.operation';
+
+import {
+	execute as storageUpdatePutExecute,
+	description as storageUpdatePutDescription,
+} from './storage/updatePut.operation';
+
+import {
 	execute as storageUserPostExecute,
+	description as storageUserPostDescription,
 } from './storage/userPost.operation';
 
-// Volume operations
-	import {
-	description as volumeSnapshotListGetDescription,
-	execute as volumeSnapshotListGetExecute,
-} from './volume/snapshotListGet.operation';
-	import {
-	description as volumeSnapshotGetGetDescription,
-	execute as volumeSnapshotGetGetExecute,
-} from './volume/snapshotGetGet.operation';
-	import {
-	description as volumeSnapshotDeleteDeleteDescription,
-	execute as volumeSnapshotDeleteDeleteExecute,
-} from './volume/snapshotDeleteDelete.operation';
-	import {
-	description as volumeAttachPostDescription,
+import {
+	execute as terminatePostExecute,
+	description as terminatePostDescription,
+} from './terminate/terminatePost.operation';
+
+import {
+	execute as unleashPostExecute,
+	description as unleashPostDescription,
+} from './unleash/unleashPost.operation';
+
+import {
+	execute as usageGetCurrentGetExecute,
+	description as usageGetCurrentGetDescription,
+} from './usage/getCurrentGet.operation';
+
+import {
+	execute as usageGetForecastGetExecute,
+	description as usageGetForecastGetDescription,
+} from './usage/getForecastGet.operation';
+
+import {
+	execute as usageGetHistoryDetailGetExecute,
+	description as usageGetHistoryDetailGetDescription,
+} from './usage/getHistoryDetailGet.operation';
+
+import {
+	execute as usageListHistoryGetExecute,
+	description as usageListHistoryGetDescription,
+} from './usage/listHistoryGet.operation';
+
+import {
+	execute as userCreatePostExecute,
+	description as userCreatePostDescription,
+} from './user/createPost.operation';
+
+import {
+	execute as userCreateS3CredentialSecretPostExecute,
+	description as userCreateS3CredentialSecretPostDescription,
+} from './user/createS3CredentialSecretPost.operation';
+
+import {
+	execute as userCreateUserPolicyPostExecute,
+	description as userCreateUserPolicyPostDescription,
+} from './user/createUserPolicyPost.operation';
+
+import {
+	execute as userCreateUserRolePostExecute,
+	description as userCreateUserRolePostDescription,
+} from './user/createUserRolePost.operation';
+
+import {
+	execute as userCreateUserS3CredentialsPostExecute,
+	description as userCreateUserS3CredentialsPostDescription,
+} from './user/createUserS3CredentialsPost.operation';
+
+import {
+	execute as userCreateUserTokenPostExecute,
+	description as userCreateUserTokenPostDescription,
+} from './user/createUserTokenPost.operation';
+
+import {
+	execute as userDeleteDeleteExecute,
+	description as userDeleteDeleteDescription,
+} from './user/deleteDelete.operation';
+
+import {
+	execute as userDeleteUserRoleDeleteExecute,
+	description as userDeleteUserRoleDeleteDescription,
+} from './user/deleteUserRoleDelete.operation';
+
+import {
+	execute as userDeleteUserS3CredentialDeleteExecute,
+	description as userDeleteUserS3CredentialDeleteDescription,
+} from './user/deleteUserS3CredentialDelete.operation';
+
+import {
+	execute as userGetDetailGetExecute,
+	description as userGetDetailGetDescription,
+} from './user/getDetailGet.operation';
+
+import {
+	execute as userGetUserConfigurationGetExecute,
+	description as userGetUserConfigurationGetDescription,
+} from './user/getUserConfigurationGet.operation';
+
+import {
+	execute as userGetUserOpenrcGetExecute,
+	description as userGetUserOpenrcGetDescription,
+} from './user/getUserOpenrcGet.operation';
+
+import {
+	execute as userGetUserPolicyGetExecute,
+	description as userGetUserPolicyGetDescription,
+} from './user/getUserPolicyGet.operation';
+
+import {
+	execute as userGetUserRcloneGetExecute,
+	description as userGetUserRcloneGetDescription,
+} from './user/getUserRcloneGet.operation';
+
+import {
+	execute as userGetUserRoleDetailGetExecute,
+	description as userGetUserRoleDetailGetDescription,
+} from './user/getUserRoleDetailGet.operation';
+
+import {
+	execute as userGetUserRoleGetExecute,
+	description as userGetUserRoleGetDescription,
+} from './user/getUserRoleGet.operation';
+
+import {
+	execute as userGetUserS3CredentialDetailGetExecute,
+	description as userGetUserS3CredentialDetailGetDescription,
+} from './user/getUserS3CredentialDetailGet.operation';
+
+import {
+	execute as userGetUserS3CredentialsGetExecute,
+	description as userGetUserS3CredentialsGetDescription,
+} from './user/getUserS3CredentialsGet.operation';
+
+import {
+	execute as userListGetExecute,
+	description as userListGetDescription,
+} from './user/listGet.operation';
+
+import {
+	execute as userRegeneratePasswordPostExecute,
+	description as userRegeneratePasswordPostDescription,
+} from './user/regeneratePasswordPost.operation';
+
+import {
+	execute as userUpdateUserRolePutExecute,
+	description as userUpdateUserRolePutDescription,
+} from './user/updateUserRolePut.operation';
+
+import {
 	execute as volumeAttachPostExecute,
+	description as volumeAttachPostDescription,
 } from './volume/attachPost.operation';
-	import {
-	description as volumeDetachPostDescription,
+
+import {
 	execute as volumeDetachPostExecute,
+	description as volumeDetachPostDescription,
 } from './volume/detachPost.operation';
-	import {
-	description as volumeSnapshotCreatePostDescription,
+
+import {
 	execute as volumeSnapshotCreatePostExecute,
+	description as volumeSnapshotCreatePostDescription,
 } from './volume/snapshotCreatePost.operation';
-	import {
-	description as volumeUpsizePostDescription,
+
+import {
+	execute as volumeSnapshotDeleteDeleteExecute,
+	description as volumeSnapshotDeleteDeleteDescription,
+} from './volume/snapshotDeleteDelete.operation';
+
+import {
+	execute as volumeSnapshotGetGetExecute,
+	description as volumeSnapshotGetGetDescription,
+} from './volume/snapshotGetGet.operation';
+
+import {
+	execute as volumeSnapshotListGetExecute,
+	description as volumeSnapshotListGetDescription,
+} from './volume/snapshotListGet.operation';
+
+import {
 	execute as volumeUpsizePostExecute,
+	description as volumeUpsizePostDescription,
 } from './volume/upsizePost.operation';
 
-// Vrack operations
-	import {
-	description as vrackCreatePostDescription,
+import {
 	execute as vrackCreatePostExecute,
+	description as vrackCreatePostDescription,
 } from './vrack/createPost.operation';
 
+import {
+	execute as vrackListGetExecute,
+	description as vrackListGetDescription,
+} from './vrack/listGet.operation';
+
+const noProps = (): never[] => [];
+
+const apiVersionSelector: INodeProperties = {
+	displayName: 'API Version',
+	name: 'apiVersion',
+	type: 'options',
+	options: [
+		{ name: 'V1 API', value: 'v1' },
+		{ name: 'V2 API', value: 'v2' },
+	],
+	default: 'v1',
+	description: 'Select the API version to use',
+};
+
+const v1 = createOperationDispatcher(
+	'publicCloudOperation',
+	'publicCloud',
+	[
+	{
+		name: 'Create Backup',
+		value: 'createBackupPost',
+		action: 'Create a new block storage backup',
+		execute: backupCreatePostExecute,
+		description: backupCreatePostDescription,
+	},
+	{
+		name: 'Create Snapshot',
+		value: 'createSnapshotPost',
+		action: 'Create a new block storage snapshot',
+		execute: snapshotCreatePostExecute,
+		description: snapshotCreatePostDescription,
+	},
+	{
+		name: 'Create Volume',
+		value: 'createVolumePost',
+		action: 'Create a new block storage volume',
+		execute: volumeCreatePostExecute,
+		description: volumeCreatePostDescription,
+	},
+	{
+		name: 'Create Rancher Service',
+		value: 'createRancherPost',
+		action: 'Create a new Rancher service for a project',
+		execute: rancherServiceCreatePostExecute,
+		description: rancherServiceCreatePostDescription,
+	},
+	{
+		name: 'Delete Backup',
+		value: 'deleteBackupDelete',
+		action: 'Delete a specific backup',
+		execute: backupDeleteDeleteExecute,
+		description: backupDeleteDeleteDescription,
+	},
+	{
+		name: 'Delete Snapshot',
+		value: 'deleteSnapshotDelete',
+		action: 'Delete a specific snapshot',
+		execute: snapshotDeleteDeleteExecute,
+		description: snapshotDeleteDeleteDescription,
+	},
+	{
+		name: 'Delete Rancher Service',
+		value: 'deleteRancherDelete',
+		action: 'Delete a specific Rancher service',
+		execute: rancherServiceDeleteDeleteExecute,
+		description: rancherServiceDeleteDeleteDescription,
+	},
+	{
+		name: 'Delete Volume',
+		value: 'deleteVolumeDelete',
+		action: 'Delete a specific volume',
+		execute: volumeDeleteDeleteExecute,
+		description: volumeDeleteDeleteDescription,
+	},
+	{
+		name: 'Get Backup Details',
+		value: 'getBackupDetail',
+		action: 'Get details of a specific backup',
+		execute: backupGetExecute,
+		description: backupGetDescription,
+	},
+	{
+		name: 'Get Project Details',
+		value: 'getProjectDetail',
+		action: 'Get details of a specific Public Cloud project',
+		execute: projectDetailGetExecute,
+		description: projectDetailGetDescription,
+	},
+	{
+		name: 'Get Rancher Service',
+		value: 'getRancherService',
+		action: 'Get details of a specific Rancher service',
+		execute: rancherServiceGetExecute,
+		description: rancherServiceGetDescription,
+	},
+	{
+		name: 'Get Snapshot Details',
+		value: 'getSnapshotDetail',
+		action: 'Get details of a specific snapshot',
+		execute: snapshotGetExecute,
+		description: snapshotGetDescription,
+	},
+	{
+		name: 'Get Volume Details',
+		value: 'getVolumeDetail',
+		action: 'Get details of a specific volume',
+		execute: volumeGetExecute,
+		description: volumeGetDescription,
+	},
+	{
+		name: 'List Backups',
+		value: 'backupListGet',
+		action: 'List block storage backups in a project',
+		execute: backupListGetExecute,
+		description: backupListGetDescription,
+	},
+	{
+		name: 'List Projects',
+		value: 'projectListGet',
+		action: 'List all Public Cloud projects',
+		execute: projectListGetExecute,
+		description: projectListGetDescription,
+		show: false,
+		default: true,
+	},
+	{
+		name: 'List Plan Capabilities',
+		value: 'rancherPlanCapabilityListGet',
+		action: 'List available plan capabilities for a Rancher service',
+		execute: rancherPlanCapabilityListGetExecute,
+		description: rancherPlanCapabilityListGetDescription,
+	},
+	{
+		name: 'List Rancher Services',
+		value: 'rancherServiceListGet',
+		action: 'List Rancher services for a project',
+		execute: rancherServiceListGetExecute,
+		description: rancherServiceListGetDescription,
+	},
+	{
+		name: 'List Tasks',
+		value: 'rancherTaskListGet',
+		action: 'List all tasks for a Rancher service',
+		execute: rancherTaskListGetExecute,
+		description: rancherTaskListGetDescription,
+	},
+	{
+		name: 'Get Task',
+		value: 'rancherTaskDetailGet',
+		action: 'Get details of a specific Rancher task',
+		execute: rancherTaskDetailGetExecute,
+		description: rancherTaskDetailGetDescription,
+	},
+	{
+		name: 'List Events',
+		value: 'rancherEventListGet',
+		action: 'List all events for a Rancher service',
+		execute: rancherEventListGetExecute,
+		description: rancherEventListGetDescription,
+	},
+	{
+		name: 'Get Admin Credentials',
+		value: 'rancherAdminCredentialsGet',
+		action: 'Get admin credentials for a Rancher service',
+		execute: rancherAdminCredentialsGetExecute,
+		description: rancherAdminCredentialsGetDescription,
+	},
+	{
+		name: 'Reset Admin Credentials',
+		value: 'rancherAdminCredentialsReset',
+		action: 'Reset admin password for a Rancher service',
+		execute: rancherAdminCredentialsPostExecute,
+		description: rancherAdminCredentialsPostDescription,
+	},
+	{
+		name: 'List Snapshots',
+		value: 'snapshotListGet',
+		action: 'List block storage snapshots in a project',
+		execute: snapshotListGetExecute,
+		description: snapshotListGetDescription,
+	},
+	{
+		name: 'List Version Capabilities',
+		value: 'rancherVersionCapabilityListGet',
+		action: 'List available version capabilities for a Rancher service',
+		execute: rancherVersionCapabilityListGetExecute,
+		description: rancherVersionCapabilityListGetDescription,
+	},
+	{
+		name: 'List Volumes',
+		value: 'volumeListGet',
+		action: 'List block storage volumes in a project',
+		execute: volumeListGetExecute,
+		description: volumeListGetDescription,
+	},
+	{
+		name: 'Update Backup',
+		value: 'updateBackupPut',
+		action: 'Update an existing backup',
+		execute: backupUpdatePutExecute,
+		description: backupUpdatePutDescription,
+	},
+	{
+		name: 'Update Snapshot',
+		value: 'updateSnapshotPut',
+		action: 'Update an existing snapshot',
+		execute: snapshotUpdatePutExecute,
+		description: snapshotUpdatePutDescription,
+	},
+	{
+		name: 'Update Volume',
+		value: 'updateVolumePut',
+		action: 'Update an existing volume',
+		execute: volumeUpdatePutExecute,
+		description: volumeUpdatePutDescription,
+	},
+	{
+		name: 'Update Rancher Service',
+		value: 'updateRancherPut',
+		action: 'Update a specific Rancher service (plan change)',
+		execute: rancherServiceUpdatePutExecute,
+		description: rancherServiceUpdatePutDescription,
+	},
+	{
+		name: 'redisClusterListGet',
+		value: 'redisClusterListGet',
+		action: 'List Redis clusters in a project',
+		execute: redisClusterListGetExecute,
+		description: redisClusterListGetDescription,
+	},
+	{
+		name: 'redisClusterGetGet',
+		value: 'redisClusterGetGet',
+		action: 'Get Redis cluster',
+		execute: redisClusterGetGetExecute,
+		description: redisClusterGetGetDescription,
+	},
+	{
+		name: 'redisClusterCreatePost',
+		value: 'redisClusterCreatePost',
+		action: 'Create Redis cluster',
+		execute: redisClusterCreatePostExecute,
+		description: redisClusterCreatePostDescription,
+	},
+	{
+		name: 'redisClusterUpdatePut',
+		value: 'redisClusterUpdatePut',
+		action: 'Update Redis cluster',
+		execute: redisClusterUpdatePutExecute,
+		description: redisClusterUpdatePutDescription,
+	},
+	{
+		name: 'redisClusterDeleteDelete',
+		value: 'redisClusterDeleteDelete',
+		action: 'Delete Redis cluster',
+		execute: redisClusterDeleteDeleteExecute,
+		description: redisClusterDeleteDeleteDescription,
+	},
+	{
+		name: 'redisBackupListGet',
+		value: 'redisBackupListGet',
+		action: 'List Redis backups',
+		execute: redisBackupListGetExecute,
+		description: redisBackupListGetDescription,
+	},
+	{
+		name: 'redisBackupGetGet',
+		value: 'redisBackupGetGet',
+		action: 'Get Redis backup',
+		execute: redisBackupGetGetExecute,
+		description: redisBackupGetGetDescription,
+	},
+	{
+		name: 'redisAdvancedConfigurationGet',
+		value: 'redisAdvancedConfigurationGet',
+		action: 'Get Redis advanced configuration',
+		execute: redisAdvancedConfigurationGetExecute,
+		description: redisAdvancedConfigurationGetDescription,
+	},
+	{
+		name: 'redisAdvancedConfigurationUpdatePut',
+		value: 'redisAdvancedConfigurationUpdatePut',
+		action: 'Update Redis advanced configuration',
+		execute: redisAdvancedConfigurationUpdatePutExecute,
+		description: redisAdvancedConfigurationUpdatePutDescription,
+	},
+	{
+		name: 'redisCapabilitiesAdvancedConfigurationGet',
+		value: 'redisCapabilitiesAdvancedConfigurationGet',
+		action: 'Get Redis advanced configuration capabilities',
+		execute: redisCapabilitiesAdvancedConfigurationGetExecute,
+		description: redisCapabilitiesAdvancedConfigurationGetDescription,
+	},
+	{
+		name: 'redisCapabilitiesCategoriesGet',
+		value: 'redisCapabilitiesCategoriesGet',
+		action: 'Get Redis categories capabilities',
+		execute: redisCapabilitiesCategoriesGetExecute,
+		description: redisCapabilitiesCategoriesGetDescription,
+	},
+	{
+		name: 'redisCapabilitiesCommandsGet',
+		value: 'redisCapabilitiesCommandsGet',
+		action: 'Get Redis commands capabilities',
+		execute: redisCapabilitiesCommandsGetExecute,
+		description: redisCapabilitiesCommandsGetDescription,
+	},
+	{
+		name: 'redisCapabilitiesIntegrationGet',
+		value: 'redisCapabilitiesIntegrationGet',
+		action: 'Get Redis integration capabilities',
+		execute: redisCapabilitiesIntegrationGetExecute,
+		description: redisCapabilitiesIntegrationGetDescription,
+	},
+	{
+		name: 'redisIntegrationListGet',
+		value: 'redisIntegrationListGet',
+		action: 'List Redis integrations',
+		execute: redisIntegrationListGetExecute,
+		description: redisIntegrationListGetDescription,
+	},
+	{
+		name: 'redisIntegrationCreatePost',
+		value: 'redisIntegrationCreatePost',
+		action: 'Create Redis integration',
+		execute: redisIntegrationCreatePostExecute,
+		description: redisIntegrationCreatePostDescription,
+	},
+	{
+		name: 'redisIntegrationGetGet',
+		value: 'redisIntegrationGetGet',
+		action: 'Get Redis integration',
+		execute: redisIntegrationGetGetExecute,
+		description: redisIntegrationGetGetDescription,
+	},
+	{
+		name: 'redisIntegrationDeleteDelete',
+		value: 'redisIntegrationDeleteDelete',
+		action: 'Delete Redis integration',
+		execute: redisIntegrationDeleteDeleteExecute,
+		description: redisIntegrationDeleteDeleteDescription,
+	},
+	{
+		name: 'redisIpRestrictionListGet',
+		value: 'redisIpRestrictionListGet',
+		action: 'List Redis IP restrictions',
+		execute: redisIpRestrictionListGetExecute,
+		description: redisIpRestrictionListGetDescription,
+	},
+	{
+		name: 'redisIpRestrictionCreatePost',
+		value: 'redisIpRestrictionCreatePost',
+		action: 'Create Redis IP restriction',
+		execute: redisIpRestrictionCreatePostExecute,
+		description: redisIpRestrictionCreatePostDescription,
+	},
+	{
+		name: 'redisIpRestrictionGetGet',
+		value: 'redisIpRestrictionGetGet',
+		action: 'Get Redis IP restriction',
+		execute: redisIpRestrictionGetGetExecute,
+		description: redisIpRestrictionGetGetDescription,
+	},
+	{
+		name: 'redisIpRestrictionUpdatePut',
+		value: 'redisIpRestrictionUpdatePut',
+		action: 'Update Redis IP restriction',
+		execute: redisIpRestrictionUpdatePutExecute,
+		description: redisIpRestrictionUpdatePutDescription,
+	},
+	{
+		name: 'redisIpRestrictionDeleteDelete',
+		value: 'redisIpRestrictionDeleteDelete',
+		action: 'Delete Redis IP restriction',
+		execute: redisIpRestrictionDeleteDeleteExecute,
+		description: redisIpRestrictionDeleteDeleteDescription,
+	},
+	{
+		name: 'redisLogKindListGet',
+		value: 'redisLogKindListGet',
+		action: 'List Redis log kinds',
+		execute: redisLogKindListGetExecute,
+		description: redisLogKindListGetDescription,
+	},
+	{
+		name: 'redisLogKindGet',
+		value: 'redisLogKindGet',
+		action: 'Get Redis log kind',
+		execute: redisLogKindGetExecute,
+		description: redisLogKindGetDescription,
+	},
+	{
+		name: 'redisLogSubscriptionListGet',
+		value: 'redisLogSubscriptionListGet',
+		action: 'List Redis log subscriptions',
+		execute: redisLogSubscriptionListGetExecute,
+		description: redisLogSubscriptionListGetDescription,
+	},
+	{
+		name: 'redisLogSubscriptionCreatePost',
+		value: 'redisLogSubscriptionCreatePost',
+		action: 'Create Redis log subscription',
+		execute: redisLogSubscriptionCreatePostExecute,
+		description: redisLogSubscriptionCreatePostDescription,
+	},
+	{
+		name: 'redisLogSubscriptionGetGet',
+		value: 'redisLogSubscriptionGetGet',
+		action: 'Get Redis log subscription',
+		execute: redisLogSubscriptionGetGetExecute,
+		description: redisLogSubscriptionGetGetDescription,
+	},
+	{
+		name: 'redisLogSubscriptionDeleteDelete',
+		value: 'redisLogSubscriptionDeleteDelete',
+		action: 'Delete Redis log subscription',
+		execute: redisLogSubscriptionDeleteDeleteExecute,
+		description: redisLogSubscriptionDeleteDeleteDescription,
+	},
+	{
+		name: 'redisLogUrlCreatePost',
+		value: 'redisLogUrlCreatePost',
+		action: 'Generate Redis log URL',
+		execute: redisLogUrlCreatePostExecute,
+		description: redisLogUrlCreatePostDescription,
+	},
+	{
+		name: 'redisLogsGet',
+		value: 'redisLogsGet',
+		action: 'Get Redis logs',
+		execute: redisLogsGetExecute,
+		description: redisLogsGetDescription,
+	},
+	{
+		name: 'redisMaintenanceListGet',
+		value: 'redisMaintenanceListGet',
+		action: 'List Redis maintenances',
+		execute: redisMaintenanceListGetExecute,
+		description: redisMaintenanceListGetDescription,
+	},
+	{
+		name: 'redisMaintenanceGet',
+		value: 'redisMaintenanceGet',
+		action: 'Get Redis maintenance',
+		execute: redisMaintenanceGetExecute,
+		description: redisMaintenanceGetDescription,
+	},
+	{
+		name: 'redisMaintenanceApplyPost',
+		value: 'redisMaintenanceApplyPost',
+		action: 'Apply Redis maintenance',
+		execute: redisMaintenanceApplyPostExecute,
+		description: redisMaintenanceApplyPostDescription,
+	},
+	{
+		name: 'redisMetricListGet',
+		value: 'redisMetricListGet',
+		action: 'List Redis metrics',
+		execute: redisMetricListGetExecute,
+		description: redisMetricListGetDescription,
+	},
+	{
+		name: 'redisMetricGet',
+		value: 'redisMetricGet',
+		action: 'Get Redis metric',
+		execute: redisMetricGetExecute,
+		description: redisMetricGetDescription,
+	},
+	{
+		name: 'redisNodeListGet',
+		value: 'redisNodeListGet',
+		action: 'List Redis nodes',
+		execute: redisNodeListGetExecute,
+		description: redisNodeListGetDescription,
+	},
+	{
+		name: 'redisNodeGetGet',
+		value: 'redisNodeGetGet',
+		action: 'Get Redis node',
+		execute: redisNodeGetGetExecute,
+		description: redisNodeGetGetDescription,
+	},
+	{
+		name: 'redisPrometheusGet',
+		value: 'redisPrometheusGet',
+		action: 'Get Redis prometheus endpoint',
+		execute: redisPrometheusGetExecute,
+		description: redisPrometheusGetDescription,
+	},
+	{
+		name: 'redisPrometheusCredentialsResetPost',
+		value: 'redisPrometheusCredentialsResetPost',
+		action: 'Reset Redis prometheus credentials',
+		execute: redisPrometheusCredentialsResetPostExecute,
+		description: redisPrometheusCredentialsResetPostDescription,
+	},
+	{
+		name: 'redisUserListGet',
+		value: 'redisUserListGet',
+		action: 'List Redis users',
+		execute: redisUserListGetExecute,
+		description: redisUserListGetDescription,
+	},
+	{
+		name: 'redisUserCreatePost',
+		value: 'redisUserCreatePost',
+		action: 'Create Redis user',
+		execute: redisUserCreatePostExecute,
+		description: redisUserCreatePostDescription,
+	},
+	{
+		name: 'redisUserGetGet',
+		value: 'redisUserGetGet',
+		action: 'Get Redis user',
+		execute: redisUserGetGetExecute,
+		description: redisUserGetGetDescription,
+	},
+	{
+		name: 'redisUserUpdatePut',
+		value: 'redisUserUpdatePut',
+		action: 'Update Redis user',
+		execute: redisUserUpdatePutExecute,
+		description: redisUserUpdatePutDescription,
+	},
+	{
+		name: 'redisUserDeleteDelete',
+		value: 'redisUserDeleteDelete',
+		action: 'Delete Redis user',
+		execute: redisUserDeleteDeleteExecute,
+		description: redisUserDeleteDeleteDescription,
+	},
+	{
+		name: 'redisUserCredentialsResetPost',
+		value: 'redisUserCredentialsResetPost',
+		action: 'Reset Redis user credentials',
+		execute: redisUserCredentialsResetPostExecute,
+		description: redisUserCredentialsResetPostDescription,
+	},
+	{
+		name: 'cassandraClusterListGet',
+		value: 'cassandraClusterListGet',
+		action: 'List Cassandra clusters in a project',
+		execute: cassandraClusterListGetExecute,
+		description: cassandraClusterListGetDescription,
+	},
+	{
+		name: 'cassandraClusterGetGet',
+		value: 'cassandraClusterGetGet',
+		action: 'Get Cassandra cluster',
+		execute: cassandraClusterGetGetExecute,
+		description: cassandraClusterGetGetDescription,
+	},
+	{
+		name: 'cassandraClusterCreatePost',
+		value: 'cassandraClusterCreatePost',
+		action: 'Create Cassandra cluster',
+		execute: cassandraClusterCreatePostExecute,
+		description: cassandraClusterCreatePostDescription,
+	},
+	{
+		name: 'cassandraClusterUpdatePut',
+		value: 'cassandraClusterUpdatePut',
+		action: 'Update Cassandra cluster',
+		execute: cassandraClusterUpdatePutExecute,
+		description: cassandraClusterUpdatePutDescription,
+	},
+	{
+		name: 'cassandraClusterDeleteDelete',
+		value: 'cassandraClusterDeleteDelete',
+		action: 'Delete Cassandra cluster',
+		execute: cassandraClusterDeleteDeleteExecute,
+		description: cassandraClusterDeleteDeleteDescription,
+	},
+	{
+		name: 'cassandraBackupListGet',
+		value: 'cassandraBackupListGet',
+		action: 'List Cassandra backups',
+		execute: cassandraBackupListGetExecute,
+		description: cassandraBackupListGetDescription,
+	},
+	{
+		name: 'cassandraBackupCreatePost',
+		value: 'cassandraBackupCreatePost',
+		action: 'Create Cassandra backup',
+		execute: cassandraBackupCreatePostExecute,
+		description: cassandraBackupCreatePostDescription,
+	},
+	{
+		name: 'cassandraBackupGetGet',
+		value: 'cassandraBackupGetGet',
+		action: 'Get Cassandra backup',
+		execute: cassandraBackupGetGetExecute,
+		description: cassandraBackupGetGetDescription,
+	},
+	{
+		name: 'cassandraBackupDeleteDelete',
+		value: 'cassandraBackupDeleteDelete',
+		action: 'Delete Cassandra backup',
+		execute: cassandraBackupDeleteDeleteExecute,
+		description: cassandraBackupDeleteDeleteDescription,
+	},
+	{
+		name: 'cassandraUserListGet',
+		value: 'cassandraUserListGet',
+		action: 'List Cassandra users',
+		execute: cassandraUserListGetExecute,
+		description: cassandraUserListGetDescription,
+	},
+	{
+		name: 'cassandraUserCreatePost',
+		value: 'cassandraUserCreatePost',
+		action: 'Create Cassandra user',
+		execute: cassandraUserCreatePostExecute,
+		description: cassandraUserCreatePostDescription,
+	},
+	{
+		name: 'cassandraUserGetGet',
+		value: 'cassandraUserGetGet',
+		action: 'Get Cassandra user',
+		execute: cassandraUserGetGetExecute,
+		description: cassandraUserGetGetDescription,
+	},
+	{
+		name: 'cassandraUserUpdatePut',
+		value: 'cassandraUserUpdatePut',
+		action: 'Update Cassandra user',
+		execute: cassandraUserUpdatePutExecute,
+		description: cassandraUserUpdatePutDescription,
+	},
+	{
+		name: 'cassandraUserDeleteDelete',
+		value: 'cassandraUserDeleteDelete',
+		action: 'Delete Cassandra user',
+		execute: cassandraUserDeleteDeleteExecute,
+		description: cassandraUserDeleteDeleteDescription,
+	},
+	{
+		name: 'cassandraNodeListGet',
+		value: 'cassandraNodeListGet',
+		action: 'List Cassandra nodes',
+		execute: cassandraNodeListGetExecute,
+		description: cassandraNodeListGetDescription,
+	},
+	{
+		name: 'cassandraNodeCreatePost',
+		value: 'cassandraNodeCreatePost',
+		action: 'Create Cassandra node',
+		execute: cassandraNodeCreatePostExecute,
+		description: cassandraNodeCreatePostDescription,
+	},
+	{
+		name: 'cassandraNodeGetGet',
+		value: 'cassandraNodeGetGet',
+		action: 'Get Cassandra node',
+		execute: cassandraNodeGetGetExecute,
+		description: cassandraNodeGetGetDescription,
+	},
+	{
+		name: 'cassandraNodeUpdatePut',
+		value: 'cassandraNodeUpdatePut',
+		action: 'Update Cassandra node',
+		execute: cassandraNodeUpdatePutExecute,
+		description: cassandraNodeUpdatePutDescription,
+	},
+	{
+		name: 'cassandraNodeDeleteDelete',
+		value: 'cassandraNodeDeleteDelete',
+		action: 'Delete Cassandra node',
+		execute: cassandraNodeDeleteDeleteExecute,
+		description: cassandraNodeDeleteDeleteDescription,
+	},
+	{
+		name: 'cassandraIpRestrictionListGet',
+		value: 'cassandraIpRestrictionListGet',
+		action: 'List Cassandra IP restrictions',
+		execute: cassandraIpRestrictionListGetExecute,
+		description: cassandraIpRestrictionListGetDescription,
+	},
+	{
+		name: 'cassandraIpRestrictionCreatePost',
+		value: 'cassandraIpRestrictionCreatePost',
+		action: 'Create Cassandra IP restriction',
+		execute: cassandraIpRestrictionCreatePostExecute,
+		description: cassandraIpRestrictionCreatePostDescription,
+	},
+	{
+		name: 'cassandraLogSubscriptionListGet',
+		value: 'cassandraLogSubscriptionListGet',
+		action: 'List Cassandra log subscriptions',
+		execute: cassandraLogSubscriptionListGetExecute,
+		description: cassandraLogSubscriptionListGetDescription,
+	},
+	{
+		name: 'cassandraLogSubscriptionCreatePost',
+		value: 'cassandraLogSubscriptionCreatePost',
+		action: 'Create Cassandra log subscription',
+		execute: cassandraLogSubscriptionCreatePostExecute,
+		description: cassandraLogSubscriptionCreatePostDescription,
+	},
+	{
+		name: 'cassandraLogSubscriptionGetGet',
+		value: 'cassandraLogSubscriptionGetGet',
+		action: 'Get Cassandra log subscription',
+		execute: cassandraLogSubscriptionGetGetExecute,
+		description: cassandraLogSubscriptionGetGetDescription,
+	},
+	{
+		name: 'cassandraMaintenanceGet',
+		value: 'cassandraMaintenanceGet',
+		action: 'Get Cassandra maintenance',
+		execute: cassandraMaintenanceGetExecute,
+		description: cassandraMaintenanceGetDescription,
+	},
+	{
+		name: 'cassandraMaintenanceUpdatePut',
+		value: 'cassandraMaintenanceUpdatePut',
+		action: 'Update Cassandra maintenance',
+		execute: cassandraMaintenanceUpdatePutExecute,
+		description: cassandraMaintenanceUpdatePutDescription,
+	},
+	{
+		name: 'cassandraMetricGet',
+		value: 'cassandraMetricGet',
+		action: 'Get Cassandra metric',
+		execute: cassandraMetricGetExecute,
+		description: cassandraMetricGetDescription,
+	},
+	{
+		name: 'cassandraPrometheusGet',
+		value: 'cassandraPrometheusGet',
+		action: 'Get Cassandra prometheus',
+		execute: cassandraPrometheusGetExecute,
+		description: cassandraPrometheusGetDescription,
+	},
+	{
+		name: 'cassandraCertificateListGet',
+		value: 'cassandraCertificateListGet',
+		action: 'List Cassandra certificates',
+		execute: cassandraCertificateListGetExecute,
+		description: cassandraCertificateListGetDescription,
+	},
+	{
+		name: 'cassandraCertificateCreatePost',
+		value: 'cassandraCertificateCreatePost',
+		action: 'Create Cassandra certificate',
+		execute: cassandraCertificateCreatePostExecute,
+		description: cassandraCertificateCreatePostDescription,
+	},
+	{
+		name: 'cassandraIntegrationListGet',
+		value: 'cassandraIntegrationListGet',
+		action: 'List Cassandra integrations',
+		execute: cassandraIntegrationListGetExecute,
+		description: cassandraIntegrationListGetDescription,
+	},
+	{
+		name: 'cassandraIntegrationCreatePost',
+		value: 'cassandraIntegrationCreatePost',
+		action: 'Create Cassandra integration',
+		execute: cassandraIntegrationCreatePostExecute,
+		description: cassandraIntegrationCreatePostDescription,
+	},
+	{
+		name: 'cassandraAdvancedConfigurationGet',
+		value: 'cassandraAdvancedConfigurationGet',
+		action: 'Get Cassandra advanced configuration',
+		execute: cassandraAdvancedConfigurationGetExecute,
+		description: cassandraAdvancedConfigurationGetDescription,
+	},
+	{
+		name: 'cassandraAdvancedConfigurationUpdatePut',
+		value: 'cassandraAdvancedConfigurationUpdatePut',
+		action: 'Update Cassandra advanced configuration',
+		execute: cassandraAdvancedConfigurationUpdatePutExecute,
+		description: cassandraAdvancedConfigurationUpdatePutDescription,
+	},
+	{
+		name: 'cassandraCapabilitiesAdvancedConfigurationGet',
+		value: 'cassandraCapabilitiesAdvancedConfigurationGet',
+		action: 'Get Cassandra capabilities advanced configuration',
+		execute: cassandraCapabilitiesAdvancedConfigurationGetExecute,
+		description: cassandraCapabilitiesAdvancedConfigurationGetDescription,
+	},
+	{
+		name: 'cassandraCapabilitiesIntegrationGet',
+		value: 'cassandraCapabilitiesIntegrationGet',
+		action: 'Get Cassandra capabilities integration',
+		execute: cassandraCapabilitiesIntegrationGetExecute,
+		description: cassandraCapabilitiesIntegrationGetDescription,
+	},
+	{
+		name: 'cassandraIntegrationGetGet',
+		value: 'cassandraIntegrationGetGet',
+		action: 'Get Cassandra integration',
+		execute: cassandraIntegrationGetGetExecute,
+		description: cassandraIntegrationGetGetDescription,
+	},
+	{
+		name: 'cassandraIntegrationDeleteDelete',
+		value: 'cassandraIntegrationDeleteDelete',
+		action: 'Delete Cassandra integration',
+		execute: cassandraIntegrationDeleteDeleteExecute,
+		description: cassandraIntegrationDeleteDeleteDescription,
+	},
+	{
+		name: 'cassandraIpRestrictionGetGet',
+		value: 'cassandraIpRestrictionGetGet',
+		action: 'Get Cassandra IP restriction',
+		execute: cassandraIpRestrictionGetGetExecute,
+		description: cassandraIpRestrictionGetGetDescription,
+	},
+	{
+		name: 'cassandraIpRestrictionDeleteDelete',
+		value: 'cassandraIpRestrictionDeleteDelete',
+		action: 'Delete Cassandra IP restriction',
+		execute: cassandraIpRestrictionDeleteDeleteExecute,
+		description: cassandraIpRestrictionDeleteDeleteDescription,
+	},
+	{
+		name: 'cassandraIpRestrictionUpdatePut',
+		value: 'cassandraIpRestrictionUpdatePut',
+		action: 'Update Cassandra IP restriction',
+		execute: cassandraIpRestrictionUpdatePutExecute,
+		description: cassandraIpRestrictionUpdatePutDescription,
+	},
+	{
+		name: 'cassandraLogKindListGet',
+		value: 'cassandraLogKindListGet',
+		action: 'List Cassandra log kinds',
+		execute: cassandraLogKindListGetExecute,
+		description: cassandraLogKindListGetDescription,
+	},
+	{
+		name: 'cassandraLogKindGetGet',
+		value: 'cassandraLogKindGetGet',
+		action: 'Get Cassandra log kind',
+		execute: cassandraLogKindGetGetExecute,
+		description: cassandraLogKindGetGetDescription,
+	},
+	{
+		name: 'cassandraLogSubscriptionDeleteDelete',
+		value: 'cassandraLogSubscriptionDeleteDelete',
+		action: 'Delete Cassandra log subscription',
+		execute: cassandraLogSubscriptionDeleteDeleteExecute,
+		description: cassandraLogSubscriptionDeleteDeleteDescription,
+	},
+	{
+		name: 'cassandraLogUrlCreatePost',
+		value: 'cassandraLogUrlCreatePost',
+		action: 'Create Cassandra log URL',
+		execute: cassandraLogUrlCreatePostExecute,
+		description: cassandraLogUrlCreatePostDescription,
+	},
+	{
+		name: 'cassandraLogsGet',
+		value: 'cassandraLogsGet',
+		action: 'Get Cassandra logs',
+		execute: cassandraLogsGetExecute,
+		description: cassandraLogsGetDescription,
+	},
+	{
+		name: 'cassandraMaintenanceApplyPost',
+		value: 'cassandraMaintenanceApplyPost',
+		action: 'Apply Cassandra maintenance',
+		execute: cassandraMaintenanceApplyPostExecute,
+		description: cassandraMaintenanceApplyPostDescription,
+	},
+	{
+		name: 'cassandraMaintenanceGetGet',
+		value: 'cassandraMaintenanceGetGet',
+		action: 'Get Cassandra maintenance details',
+		execute: cassandraMaintenanceGetGetExecute,
+		description: cassandraMaintenanceGetGetDescription,
+	},
+	{
+		name: 'cassandraMetricGetGet',
+		value: 'cassandraMetricGetGet',
+		action: 'Get Cassandra metric values',
+		execute: cassandraMetricGetGetExecute,
+		description: cassandraMetricGetGetDescription,
+	},
+	{
+		name: 'cassandraPrometheusCredentialsResetPost',
+		value: 'cassandraPrometheusCredentialsResetPost',
+		action: 'Reset Cassandra Prometheus credentials',
+		execute: cassandraPrometheusCredentialsResetPostExecute,
+		description: cassandraPrometheusCredentialsResetPostDescription,
+	},
+	{
+		name: 'cassandraUserCredentialsResetPost',
+		value: 'cassandraUserCredentialsResetPost',
+		action: 'Reset Cassandra user credentials',
+		execute: cassandraUserCredentialsResetPostExecute,
+		description: cassandraUserCredentialsResetPostDescription,
+	},
+	{
+		name: 'clickhouseClusterListGet',
+		value: 'clickhouseClusterListGet',
+		action: 'List ClickHouse clusters in a project',
+		execute: clickhouseClusterListGetExecute,
+		description: clickhouseClusterListGetDescription,
+	},
+	{
+		name: 'clickhouseClusterGetGet',
+		value: 'clickhouseClusterGetGet',
+		action: 'Get ClickHouse cluster',
+		execute: clickhouseClusterGetGetExecute,
+		description: clickhouseClusterGetGetDescription,
+	},
+	{
+		name: 'clickhouseClusterCreatePost',
+		value: 'clickhouseClusterCreatePost',
+		action: 'Create ClickHouse cluster',
+		execute: clickhouseClusterCreatePostExecute,
+		description: clickhouseClusterCreatePostDescription,
+	},
+	{
+		name: 'clickhouseClusterUpdatePut',
+		value: 'clickhouseClusterUpdatePut',
+		action: 'Update ClickHouse cluster',
+		execute: clickhouseClusterUpdatePutExecute,
+		description: clickhouseClusterUpdatePutDescription,
+	},
+	{
+		name: 'clickhouseClusterDeleteDelete',
+		value: 'clickhouseClusterDeleteDelete',
+		action: 'Delete ClickHouse cluster',
+		execute: clickhouseClusterDeleteDeleteExecute,
+		description: clickhouseClusterDeleteDeleteDescription,
+	},
+	{
+		name: 'clickhouseBackupListGet',
+		value: 'clickhouseBackupListGet',
+		action: 'List ClickHouse backups',
+		execute: clickhouseBackupListGetExecute,
+		description: clickhouseBackupListGetDescription,
+	},
+	{
+		name: 'clickhouseBackupCreatePost',
+		value: 'clickhouseBackupCreatePost',
+		action: 'Create ClickHouse backup',
+		execute: clickhouseBackupCreatePostExecute,
+		description: clickhouseBackupCreatePostDescription,
+	},
+	{
+		name: 'clickhouseBackupGetGet',
+		value: 'clickhouseBackupGetGet',
+		action: 'Get ClickHouse backup',
+		execute: clickhouseBackupGetGetExecute,
+		description: clickhouseBackupGetGetDescription,
+	},
+	{
+		name: 'clickhouseBackupDeleteDelete',
+		value: 'clickhouseBackupDeleteDelete',
+		action: 'Delete ClickHouse backup',
+		execute: clickhouseBackupDeleteDeleteExecute,
+		description: clickhouseBackupDeleteDeleteDescription,
+	},
+	{
+		name: 'clickhouseUserListGet',
+		value: 'clickhouseUserListGet',
+		action: 'List ClickHouse users',
+		execute: clickhouseUserListGetExecute,
+		description: clickhouseUserListGetDescription,
+	},
+	{
+		name: 'clickhouseUserCreatePost',
+		value: 'clickhouseUserCreatePost',
+		action: 'Create ClickHouse user',
+		execute: clickhouseUserCreatePostExecute,
+		description: clickhouseUserCreatePostDescription,
+	},
+	{
+		name: 'clickhouseUserGetGet',
+		value: 'clickhouseUserGetGet',
+		action: 'Get ClickHouse user',
+		execute: clickhouseUserGetGetExecute,
+		description: clickhouseUserGetGetDescription,
+	},
+	{
+		name: 'clickhouseUserUpdatePut',
+		value: 'clickhouseUserUpdatePut',
+		action: 'Update ClickHouse user',
+		execute: clickhouseUserUpdatePutExecute,
+		description: clickhouseUserUpdatePutDescription,
+	},
+	{
+		name: 'clickhouseUserDeleteDelete',
+		value: 'clickhouseUserDeleteDelete',
+		action: 'Delete ClickHouse user',
+		execute: clickhouseUserDeleteDeleteExecute,
+		description: clickhouseUserDeleteDeleteDescription,
+	},
+	{
+		name: 'clickhouseNodeListGet',
+		value: 'clickhouseNodeListGet',
+		action: 'List ClickHouse nodes',
+		execute: clickhouseNodeListGetExecute,
+		description: clickhouseNodeListGetDescription,
+	},
+	{
+		name: 'clickhouseNodeCreatePost',
+		value: 'clickhouseNodeCreatePost',
+		action: 'Create ClickHouse node',
+		execute: clickhouseNodeCreatePostExecute,
+		description: clickhouseNodeCreatePostDescription,
+	},
+	{
+		name: 'clickhouseNodeGetGet',
+		value: 'clickhouseNodeGetGet',
+		action: 'Get ClickHouse node',
+		execute: clickhouseNodeGetGetExecute,
+		description: clickhouseNodeGetGetDescription,
+	},
+	{
+		name: 'clickhouseNodeUpdatePut',
+		value: 'clickhouseNodeUpdatePut',
+		action: 'Update ClickHouse node',
+		execute: clickhouseNodeUpdatePutExecute,
+		description: clickhouseNodeUpdatePutDescription,
+	},
+	{
+		name: 'clickhouseNodeDeleteDelete',
+		value: 'clickhouseNodeDeleteDelete',
+		action: 'Delete ClickHouse node',
+		execute: clickhouseNodeDeleteDeleteExecute,
+		description: clickhouseNodeDeleteDeleteDescription,
+	},
+	{
+		name: 'clickhouseIpRestrictionListGet',
+		value: 'clickhouseIpRestrictionListGet',
+		action: 'List ClickHouse IP restrictions',
+		execute: clickhouseIpRestrictionListGetExecute,
+		description: clickhouseIpRestrictionListGetDescription,
+	},
+	{
+		name: 'clickhouseIpRestrictionCreatePost',
+		value: 'clickhouseIpRestrictionCreatePost',
+		action: 'Create ClickHouse IP restriction',
+		execute: clickhouseIpRestrictionCreatePostExecute,
+		description: clickhouseIpRestrictionCreatePostDescription,
+	},
+	{
+		name: 'clickhouseLogSubscriptionListGet',
+		value: 'clickhouseLogSubscriptionListGet',
+		action: 'List ClickHouse log subscriptions',
+		execute: clickhouseLogSubscriptionListGetExecute,
+		description: clickhouseLogSubscriptionListGetDescription,
+	},
+	{
+		name: 'clickhouseLogSubscriptionCreatePost',
+		value: 'clickhouseLogSubscriptionCreatePost',
+		action: 'Create ClickHouse log subscription',
+		execute: clickhouseLogSubscriptionCreatePostExecute,
+		description: clickhouseLogSubscriptionCreatePostDescription,
+	},
+	{
+		name: 'clickhouseLogSubscriptionGetGet',
+		value: 'clickhouseLogSubscriptionGetGet',
+		action: 'Get ClickHouse log subscription',
+		execute: clickhouseLogSubscriptionGetGetExecute,
+		description: clickhouseLogSubscriptionGetGetDescription,
+	},
+	{
+		name: 'clickhouseMaintenanceGet',
+		value: 'clickhouseMaintenanceGet',
+		action: 'Get ClickHouse maintenance',
+		execute: clickhouseMaintenanceGetExecute,
+		description: clickhouseMaintenanceGetDescription,
+	},
+	{
+		name: 'clickhouseMaintenanceUpdatePut',
+		value: 'clickhouseMaintenanceUpdatePut',
+		action: 'Update ClickHouse maintenance',
+		execute: clickhouseMaintenanceUpdatePutExecute,
+		description: clickhouseMaintenanceUpdatePutDescription,
+	},
+	{
+		name: 'clickhouseMetricGet',
+		value: 'clickhouseMetricGet',
+		action: 'Get ClickHouse metric',
+		execute: clickhouseMetricGetExecute,
+		description: clickhouseMetricGetDescription,
+	},
+	{
+		name: 'clickhousePrometheusGet',
+		value: 'clickhousePrometheusGet',
+		action: 'Get ClickHouse prometheus',
+		execute: clickhousePrometheusGetExecute,
+		description: clickhousePrometheusGetDescription,
+	},
+	{
+		name: 'clickhouseCertificateListGet',
+		value: 'clickhouseCertificateListGet',
+		action: 'List ClickHouse certificates',
+		execute: clickhouseCertificateListGetExecute,
+		description: clickhouseCertificateListGetDescription,
+	},
+	{
+		name: 'clickhouseCertificateCreatePost',
+		value: 'clickhouseCertificateCreatePost',
+		action: 'Create ClickHouse certificate',
+		execute: clickhouseCertificateCreatePostExecute,
+		description: clickhouseCertificateCreatePostDescription,
+	},
+	{
+		name: 'clickhouseIntegrationListGet',
+		value: 'clickhouseIntegrationListGet',
+		action: 'List ClickHouse integrations',
+		execute: clickhouseIntegrationListGetExecute,
+		description: clickhouseIntegrationListGetDescription,
+	},
+	{
+		name: 'clickhouseIntegrationCreatePost',
+		value: 'clickhouseIntegrationCreatePost',
+		action: 'Create ClickHouse integration',
+		execute: clickhouseIntegrationCreatePostExecute,
+		description: clickhouseIntegrationCreatePostDescription,
+	},
+	{
+		name: 'grafanaClusterListGet',
+		value: 'grafanaClusterListGet',
+		action: 'List Grafana clusters in a project',
+		execute: grafanaClusterListGetExecute,
+		description: grafanaClusterListGetDescription,
+	},
+	{
+		name: 'grafanaClusterGetGet',
+		value: 'grafanaClusterGetGet',
+		action: 'Get Grafana cluster',
+		execute: grafanaClusterGetGetExecute,
+		description: grafanaClusterGetGetDescription,
+	},
+	{
+		name: 'grafanaClusterCreatePost',
+		value: 'grafanaClusterCreatePost',
+		action: 'Create Grafana cluster',
+		execute: grafanaClusterCreatePostExecute,
+		description: grafanaClusterCreatePostDescription,
+	},
+	{
+		name: 'grafanaClusterUpdatePut',
+		value: 'grafanaClusterUpdatePut',
+		action: 'Update Grafana cluster',
+		execute: grafanaClusterUpdatePutExecute,
+		description: grafanaClusterUpdatePutDescription,
+	},
+	{
+		name: 'grafanaClusterDeleteDelete',
+		value: 'grafanaClusterDeleteDelete',
+		action: 'Delete Grafana cluster',
+		execute: grafanaClusterDeleteDeleteExecute,
+		description: grafanaClusterDeleteDeleteDescription,
+	},
+	{
+		name: 'grafanaBackupListGet',
+		value: 'grafanaBackupListGet',
+		action: 'List Grafana backups',
+		execute: grafanaBackupListGetExecute,
+		description: grafanaBackupListGetDescription,
+	},
+	{
+		name: 'grafanaBackupGetGet',
+		value: 'grafanaBackupGetGet',
+		action: 'Get Grafana backup',
+		execute: grafanaBackupGetGetExecute,
+		description: grafanaBackupGetGetDescription,
+	},
+	{
+		name: 'grafanaUserListGet',
+		value: 'grafanaUserListGet',
+		action: 'List Grafana users',
+		execute: grafanaUserListGetExecute,
+		description: grafanaUserListGetDescription,
+	},
+	{
+		name: 'grafanaUserGetGet',
+		value: 'grafanaUserGetGet',
+		action: 'Get Grafana user',
+		execute: grafanaUserGetGetExecute,
+		description: grafanaUserGetGetDescription,
+	},
+	{
+		name: 'grafanaUserCredentialsResetPost',
+		value: 'grafanaUserCredentialsResetPost',
+		action: 'Reset Grafana user credentials',
+		execute: grafanaUserCredentialsResetPostExecute,
+		description: grafanaUserCredentialsResetPostDescription,
+	},
+	{
+		name: 'grafanaNodeListGet',
+		value: 'grafanaNodeListGet',
+		action: 'List Grafana nodes',
+		execute: grafanaNodeListGetExecute,
+		description: grafanaNodeListGetDescription,
+	},
+	{
+		name: 'grafanaNodeGetGet',
+		value: 'grafanaNodeGetGet',
+		action: 'Get Grafana node',
+		execute: grafanaNodeGetGetExecute,
+		description: grafanaNodeGetGetDescription,
+	},
+	{
+		name: 'grafanaIpRestrictionListGet',
+		value: 'grafanaIpRestrictionListGet',
+		action: 'List Grafana IP restrictions',
+		execute: grafanaIpRestrictionListGetExecute,
+		description: grafanaIpRestrictionListGetDescription,
+	},
+	{
+		name: 'grafanaIpRestrictionCreatePost',
+		value: 'grafanaIpRestrictionCreatePost',
+		action: 'Create Grafana IP restriction',
+		execute: grafanaIpRestrictionCreatePostExecute,
+		description: grafanaIpRestrictionCreatePostDescription,
+	},
+	{
+		name: 'grafanaIpRestrictionGetGet',
+		value: 'grafanaIpRestrictionGetGet',
+		action: 'Get Grafana IP restriction',
+		execute: grafanaIpRestrictionGetGetExecute,
+		description: grafanaIpRestrictionGetGetDescription,
+	},
+	{
+		name: 'grafanaIpRestrictionUpdatePut',
+		value: 'grafanaIpRestrictionUpdatePut',
+		action: 'Update Grafana IP restriction',
+		execute: grafanaIpRestrictionUpdatePutExecute,
+		description: grafanaIpRestrictionUpdatePutDescription,
+	},
+	{
+		name: 'grafanaIpRestrictionDeleteDelete',
+		value: 'grafanaIpRestrictionDeleteDelete',
+		action: 'Delete Grafana IP restriction',
+		execute: grafanaIpRestrictionDeleteDeleteExecute,
+		description: grafanaIpRestrictionDeleteDeleteDescription,
+	},
+	{
+		name: 'grafanaLogKindListGet',
+		value: 'grafanaLogKindListGet',
+		action: 'List Grafana log kinds',
+		execute: grafanaLogKindListGetExecute,
+		description: grafanaLogKindListGetDescription,
+	},
+	{
+		name: 'grafanaLogKindGet',
+		value: 'grafanaLogKindGet',
+		action: 'Get Grafana log kind',
+		execute: grafanaLogKindGetExecute,
+		description: grafanaLogKindGetDescription,
+	},
+	{
+		name: 'grafanaLogSubscriptionListGet',
+		value: 'grafanaLogSubscriptionListGet',
+		action: 'List Grafana log subscriptions',
+		execute: grafanaLogSubscriptionListGetExecute,
+		description: grafanaLogSubscriptionListGetDescription,
+	},
+	{
+		name: 'grafanaLogSubscriptionCreatePost',
+		value: 'grafanaLogSubscriptionCreatePost',
+		action: 'Create Grafana log subscription',
+		execute: grafanaLogSubscriptionCreatePostExecute,
+		description: grafanaLogSubscriptionCreatePostDescription,
+	},
+	{
+		name: 'grafanaLogSubscriptionGetGet',
+		value: 'grafanaLogSubscriptionGetGet',
+		action: 'Get Grafana log subscription',
+		execute: grafanaLogSubscriptionGetGetExecute,
+		description: grafanaLogSubscriptionGetGetDescription,
+	},
+	{
+		name: 'grafanaLogSubscriptionDeleteDelete',
+		value: 'grafanaLogSubscriptionDeleteDelete',
+		action: 'Delete Grafana log subscription',
+		execute: grafanaLogSubscriptionDeleteDeleteExecute,
+		description: grafanaLogSubscriptionDeleteDeleteDescription,
+	},
+	{
+		name: 'grafanaLogUrlCreatePost',
+		value: 'grafanaLogUrlCreatePost',
+		action: 'Get Grafana log URL',
+		execute: grafanaLogUrlCreatePostExecute,
+		description: grafanaLogUrlCreatePostDescription,
+	},
+	{
+		name: 'grafanaLogsGet',
+		value: 'grafanaLogsGet',
+		action: 'Get Grafana logs',
+		execute: grafanaLogsGetExecute,
+		description: grafanaLogsGetDescription,
+	},
+	{
+		name: 'grafanaMaintenanceListGet',
+		value: 'grafanaMaintenanceListGet',
+		action: 'List Grafana maintenances',
+		execute: grafanaMaintenanceListGetExecute,
+		description: grafanaMaintenanceListGetDescription,
+	},
+	{
+		name: 'grafanaMaintenanceGet',
+		value: 'grafanaMaintenanceGet',
+		action: 'Get Grafana maintenance',
+		execute: grafanaMaintenanceGetExecute,
+		description: grafanaMaintenanceGetDescription,
+	},
+	{
+		name: 'grafanaMaintenanceApplyPost',
+		value: 'grafanaMaintenanceApplyPost',
+		action: 'Apply Grafana maintenance',
+		execute: grafanaMaintenanceApplyPostExecute,
+		description: grafanaMaintenanceApplyPostDescription,
+	},
+	{
+		name: 'grafanaMetricListGet',
+		value: 'grafanaMetricListGet',
+		action: 'List Grafana metrics',
+		execute: grafanaMetricListGetExecute,
+		description: grafanaMetricListGetDescription,
+	},
+	{
+		name: 'grafanaMetricGet',
+		value: 'grafanaMetricGet',
+		action: 'Get Grafana metric',
+		execute: grafanaMetricGetExecute,
+		description: grafanaMetricGetDescription,
+	},
+	{
+		name: 'grafanaAdvancedConfigurationGet',
+		value: 'grafanaAdvancedConfigurationGet',
+		action: 'Get Grafana advanced configuration',
+		execute: grafanaAdvancedConfigurationGetExecute,
+		description: grafanaAdvancedConfigurationGetDescription,
+	},
+	{
+		name: 'grafanaAdvancedConfigurationUpdatePut',
+		value: 'grafanaAdvancedConfigurationUpdatePut',
+		action: 'Update Grafana advanced configuration',
+		execute: grafanaAdvancedConfigurationUpdatePutExecute,
+		description: grafanaAdvancedConfigurationUpdatePutDescription,
+	},
+	{
+		name: 'grafanaCapabilitiesAdvancedConfigurationGet',
+		value: 'grafanaCapabilitiesAdvancedConfigurationGet',
+		action: 'Get Grafana advanced configuration capabilities',
+		execute: grafanaCapabilitiesAdvancedConfigurationGetExecute,
+		description: grafanaCapabilitiesAdvancedConfigurationGetDescription,
+	},
+	{
+		name: 'grafanaCapabilitiesBackupRegionsGet',
+		value: 'grafanaCapabilitiesBackupRegionsGet',
+		action: 'Get Grafana backup regions capabilities',
+		execute: grafanaCapabilitiesBackupRegionsGetExecute,
+		description: grafanaCapabilitiesBackupRegionsGetDescription,
+	},
+	{
+		name: 'grafanaCapabilitiesIntegrationGet',
+		value: 'grafanaCapabilitiesIntegrationGet',
+		action: 'Get Grafana integration capabilities',
+		execute: grafanaCapabilitiesIntegrationGetExecute,
+		description: grafanaCapabilitiesIntegrationGetDescription,
+	},
+	{
+		name: 'grafanaIntegrationListGet',
+		value: 'grafanaIntegrationListGet',
+		action: 'List Grafana integrations',
+		execute: grafanaIntegrationListGetExecute,
+		description: grafanaIntegrationListGetDescription,
+	},
+	{
+		name: 'grafanaIntegrationCreatePost',
+		value: 'grafanaIntegrationCreatePost',
+		action: 'Create Grafana integration',
+		execute: grafanaIntegrationCreatePostExecute,
+		description: grafanaIntegrationCreatePostDescription,
+	},
+	{
+		name: 'grafanaIntegrationGetGet',
+		value: 'grafanaIntegrationGetGet',
+		action: 'Get Grafana integration',
+		execute: grafanaIntegrationGetGetExecute,
+		description: grafanaIntegrationGetGetDescription,
+	},
+	{
+		name: 'grafanaIntegrationDeleteDelete',
+		value: 'grafanaIntegrationDeleteDelete',
+		action: 'Delete Grafana integration',
+		execute: grafanaIntegrationDeleteDeleteExecute,
+		description: grafanaIntegrationDeleteDeleteDescription,
+	},
+	{
+		name: 'kafkaClusterListGet',
+		value: 'kafkaClusterListGet',
+		action: 'List Kafka clusters in a project',
+		execute: kafkaClusterListGetExecute,
+		description: kafkaClusterListGetDescription,
+	},
+	{
+		name: 'kafkaClusterGetGet',
+		value: 'kafkaClusterGetGet',
+		action: 'Get Kafka cluster',
+		execute: kafkaClusterGetGetExecute,
+		description: kafkaClusterGetGetDescription,
+	},
+	{
+		name: 'kafkaClusterCreatePost',
+		value: 'kafkaClusterCreatePost',
+		action: 'Create Kafka cluster',
+		execute: kafkaClusterCreatePostExecute,
+		description: kafkaClusterCreatePostDescription,
+	},
+	{
+		name: 'kafkaClusterUpdatePut',
+		value: 'kafkaClusterUpdatePut',
+		action: 'Update Kafka cluster',
+		execute: kafkaClusterUpdatePutExecute,
+		description: kafkaClusterUpdatePutDescription,
+	},
+	{
+		name: 'kafkaClusterDeleteDelete',
+		value: 'kafkaClusterDeleteDelete',
+		action: 'Delete Kafka cluster',
+		execute: kafkaClusterDeleteDeleteExecute,
+		description: kafkaClusterDeleteDeleteDescription,
+	},
+	{
+		name: 'kafkaAclListGet',
+		value: 'kafkaAclListGet',
+		action: 'List Kafka ACLs',
+		execute: kafkaAclListGetExecute,
+		description: kafkaAclListGetDescription,
+	},
+	{
+		name: 'kafkaAclCreatePost',
+		value: 'kafkaAclCreatePost',
+		action: 'Create Kafka ACL',
+		execute: kafkaAclCreatePostExecute,
+		description: kafkaAclCreatePostDescription,
+	},
+	{
+		name: 'kafkaAclGetGet',
+		value: 'kafkaAclGetGet',
+		action: 'Get Kafka ACL',
+		execute: kafkaAclGetGetExecute,
+		description: kafkaAclGetGetDescription,
+	},
+	{
+		name: 'kafkaAclDeleteDelete',
+		value: 'kafkaAclDeleteDelete',
+		action: 'Delete Kafka ACL',
+		execute: kafkaAclDeleteDeleteExecute,
+		description: kafkaAclDeleteDeleteDescription,
+	},
+	{
+		name: 'kafkaAdvancedConfigurationGet',
+		value: 'kafkaAdvancedConfigurationGet',
+		action: 'Get Kafka advanced configuration',
+		execute: kafkaAdvancedConfigurationGetExecute,
+		description: kafkaAdvancedConfigurationGetDescription,
+	},
+	{
+		name: 'kafkaAdvancedConfigurationUpdatePut',
+		value: 'kafkaAdvancedConfigurationUpdatePut',
+		action: 'Update Kafka advanced configuration',
+		execute: kafkaAdvancedConfigurationUpdatePutExecute,
+		description: kafkaAdvancedConfigurationUpdatePutDescription,
+	},
+	{
+		name: 'kafkaCapabilitiesAdvancedConfigurationGet',
+		value: 'kafkaCapabilitiesAdvancedConfigurationGet',
+		action: 'Get Kafka advanced configuration capabilities',
+		execute: kafkaCapabilitiesAdvancedConfigurationGetExecute,
+		description: kafkaCapabilitiesAdvancedConfigurationGetDescription,
+	},
+	{
+		name: 'kafkaCapabilitiesBackupRegionsGet',
+		value: 'kafkaCapabilitiesBackupRegionsGet',
+		action: 'Get Kafka backup regions capabilities',
+		execute: kafkaCapabilitiesBackupRegionsGetExecute,
+		description: kafkaCapabilitiesBackupRegionsGetDescription,
+	},
+	{
+		name: 'kafkaCapabilitiesIntegrationGet',
+		value: 'kafkaCapabilitiesIntegrationGet',
+		action: 'Get Kafka integration capabilities',
+		execute: kafkaCapabilitiesIntegrationGetExecute,
+		description: kafkaCapabilitiesIntegrationGetDescription,
+	},
+	{
+		name: 'kafkaCertificateListGet',
+		value: 'kafkaCertificateListGet',
+		action: 'List Kafka certificates',
+		execute: kafkaCertificateListGetExecute,
+		description: kafkaCertificateListGetDescription,
+	},
+	{
+		name: 'kafkaIntegrationListGet',
+		value: 'kafkaIntegrationListGet',
+		action: 'List Kafka integrations',
+		execute: kafkaIntegrationListGetExecute,
+		description: kafkaIntegrationListGetDescription,
+	},
+	{
+		name: 'kafkaIntegrationCreatePost',
+		value: 'kafkaIntegrationCreatePost',
+		action: 'Create Kafka integration',
+		execute: kafkaIntegrationCreatePostExecute,
+		description: kafkaIntegrationCreatePostDescription,
+	},
+	{
+		name: 'kafkaIntegrationGetGet',
+		value: 'kafkaIntegrationGetGet',
+		action: 'Get Kafka integration',
+		execute: kafkaIntegrationGetGetExecute,
+		description: kafkaIntegrationGetGetDescription,
+	},
+	{
+		name: 'kafkaIntegrationDeleteDelete',
+		value: 'kafkaIntegrationDeleteDelete',
+		action: 'Delete Kafka integration',
+		execute: kafkaIntegrationDeleteDeleteExecute,
+		description: kafkaIntegrationDeleteDeleteDescription,
+	},
+	{
+		name: 'kafkaIpRestrictionListGet',
+		value: 'kafkaIpRestrictionListGet',
+		action: 'List Kafka IP restrictions',
+		execute: kafkaIpRestrictionListGetExecute,
+		description: kafkaIpRestrictionListGetDescription,
+	},
+	{
+		name: 'kafkaIpRestrictionCreatePost',
+		value: 'kafkaIpRestrictionCreatePost',
+		action: 'Create Kafka IP restriction',
+		execute: kafkaIpRestrictionCreatePostExecute,
+		description: kafkaIpRestrictionCreatePostDescription,
+	},
+	{
+		name: 'kafkaIpRestrictionGetGet',
+		value: 'kafkaIpRestrictionGetGet',
+		action: 'Get Kafka IP restriction',
+		execute: kafkaIpRestrictionGetGetExecute,
+		description: kafkaIpRestrictionGetGetDescription,
+	},
+	{
+		name: 'kafkaIpRestrictionUpdatePut',
+		value: 'kafkaIpRestrictionUpdatePut',
+		action: 'Update Kafka IP restriction',
+		execute: kafkaIpRestrictionUpdatePutExecute,
+		description: kafkaIpRestrictionUpdatePutDescription,
+	},
+	{
+		name: 'kafkaIpRestrictionDeleteDelete',
+		value: 'kafkaIpRestrictionDeleteDelete',
+		action: 'Delete Kafka IP restriction',
+		execute: kafkaIpRestrictionDeleteDeleteExecute,
+		description: kafkaIpRestrictionDeleteDeleteDescription,
+	},
+	{
+		name: 'kafkaLogKindListGet',
+		value: 'kafkaLogKindListGet',
+		action: 'List Kafka log kinds',
+		execute: kafkaLogKindListGetExecute,
+		description: kafkaLogKindListGetDescription,
+	},
+	{
+		name: 'kafkaLogKindGet',
+		value: 'kafkaLogKindGet',
+		action: 'Get Kafka log kind',
+		execute: kafkaLogKindGetExecute,
+		description: kafkaLogKindGetDescription,
+	},
+	{
+		name: 'kafkaLogSubscriptionListGet',
+		value: 'kafkaLogSubscriptionListGet',
+		action: 'List Kafka log subscriptions',
+		execute: kafkaLogSubscriptionListGetExecute,
+		description: kafkaLogSubscriptionListGetDescription,
+	},
+	{
+		name: 'kafkaLogSubscriptionCreatePost',
+		value: 'kafkaLogSubscriptionCreatePost',
+		action: 'Create Kafka log subscription',
+		execute: kafkaLogSubscriptionCreatePostExecute,
+		description: kafkaLogSubscriptionCreatePostDescription,
+	},
+	{
+		name: 'kafkaLogSubscriptionGetGet',
+		value: 'kafkaLogSubscriptionGetGet',
+		action: 'Get Kafka log subscription',
+		execute: kafkaLogSubscriptionGetGetExecute,
+		description: kafkaLogSubscriptionGetGetDescription,
+	},
+	{
+		name: 'kafkaLogSubscriptionDeleteDelete',
+		value: 'kafkaLogSubscriptionDeleteDelete',
+		action: 'Delete Kafka log subscription',
+		execute: kafkaLogSubscriptionDeleteDeleteExecute,
+		description: kafkaLogSubscriptionDeleteDeleteDescription,
+	},
+	{
+		name: 'kafkaLogUrlCreatePost',
+		value: 'kafkaLogUrlCreatePost',
+		action: 'Generate Kafka log URL',
+		execute: kafkaLogUrlCreatePostExecute,
+		description: kafkaLogUrlCreatePostDescription,
+	},
+	{
+		name: 'kafkaLogsGet',
+		value: 'kafkaLogsGet',
+		action: 'Get Kafka logs',
+		execute: kafkaLogsGetExecute,
+		description: kafkaLogsGetDescription,
+	},
+	{
+		name: 'kafkaMaintenanceListGet',
+		value: 'kafkaMaintenanceListGet',
+		action: 'List Kafka maintenances',
+		execute: kafkaMaintenanceListGetExecute,
+		description: kafkaMaintenanceListGetDescription,
+	},
+	{
+		name: 'kafkaMaintenanceGet',
+		value: 'kafkaMaintenanceGet',
+		action: 'Get Kafka maintenance',
+		execute: kafkaMaintenanceGetExecute,
+		description: kafkaMaintenanceGetDescription,
+	},
+	{
+		name: 'kafkaMaintenanceApplyPost',
+		value: 'kafkaMaintenanceApplyPost',
+		action: 'Apply Kafka maintenance',
+		execute: kafkaMaintenanceApplyPostExecute,
+		description: kafkaMaintenanceApplyPostDescription,
+	},
+	{
+		name: 'kafkaMetricListGet',
+		value: 'kafkaMetricListGet',
+		action: 'List Kafka metrics',
+		execute: kafkaMetricListGetExecute,
+		description: kafkaMetricListGetDescription,
+	},
+	{
+		name: 'kafkaMetricGet',
+		value: 'kafkaMetricGet',
+		action: 'Get Kafka metric',
+		execute: kafkaMetricGetExecute,
+		description: kafkaMetricGetDescription,
+	},
+	{
+		name: 'kafkaNodeListGet',
+		value: 'kafkaNodeListGet',
+		action: 'List Kafka nodes',
+		execute: kafkaNodeListGetExecute,
+		description: kafkaNodeListGetDescription,
+	},
+	{
+		name: 'kafkaNodeGetGet',
+		value: 'kafkaNodeGetGet',
+		action: 'Get Kafka node',
+		execute: kafkaNodeGetGetExecute,
+		description: kafkaNodeGetGetDescription,
+	},
+	{
+		name: 'kafkaPermissionsGet',
+		value: 'kafkaPermissionsGet',
+		action: 'Get Kafka permissions',
+		execute: kafkaPermissionsGetExecute,
+		description: kafkaPermissionsGetDescription,
+	},
+	{
+		name: 'kafkaPrometheusGet',
+		value: 'kafkaPrometheusGet',
+		action: 'Get Kafka prometheus endpoint',
+		execute: kafkaPrometheusGetExecute,
+		description: kafkaPrometheusGetDescription,
+	},
+	{
+		name: 'kafkaPrometheusCredentialsResetPost',
+		value: 'kafkaPrometheusCredentialsResetPost',
+		action: 'Reset Kafka prometheus credentials',
+		execute: kafkaPrometheusCredentialsResetPostExecute,
+		description: kafkaPrometheusCredentialsResetPostDescription,
+	},
+	{
+		name: 'kafkaSchemaRegistryAclListGet',
+		value: 'kafkaSchemaRegistryAclListGet',
+		action: 'List Kafka schema registry ACLs',
+		execute: kafkaSchemaRegistryAclListGetExecute,
+		description: kafkaSchemaRegistryAclListGetDescription,
+	},
+	{
+		name: 'kafkaSchemaRegistryAclCreatePost',
+		value: 'kafkaSchemaRegistryAclCreatePost',
+		action: 'Create Kafka schema registry ACL',
+		execute: kafkaSchemaRegistryAclCreatePostExecute,
+		description: kafkaSchemaRegistryAclCreatePostDescription,
+	},
+	{
+		name: 'kafkaSchemaRegistryAclGetGet',
+		value: 'kafkaSchemaRegistryAclGetGet',
+		action: 'Get Kafka schema registry ACL',
+		execute: kafkaSchemaRegistryAclGetGetExecute,
+		description: kafkaSchemaRegistryAclGetGetDescription,
+	},
+	{
+		name: 'kafkaSchemaRegistryAclDeleteDelete',
+		value: 'kafkaSchemaRegistryAclDeleteDelete',
+		action: 'Delete Kafka schema registry ACL',
+		execute: kafkaSchemaRegistryAclDeleteDeleteExecute,
+		description: kafkaSchemaRegistryAclDeleteDeleteDescription,
+	},
+	{
+		name: 'kafkaTopicListGet',
+		value: 'kafkaTopicListGet',
+		action: 'List Kafka topics',
+		execute: kafkaTopicListGetExecute,
+		description: kafkaTopicListGetDescription,
+	},
+	{
+		name: 'kafkaTopicCreatePost',
+		value: 'kafkaTopicCreatePost',
+		action: 'Create Kafka topic',
+		execute: kafkaTopicCreatePostExecute,
+		description: kafkaTopicCreatePostDescription,
+	},
+	{
+		name: 'kafkaTopicGetGet',
+		value: 'kafkaTopicGetGet',
+		action: 'Get Kafka topic',
+		execute: kafkaTopicGetGetExecute,
+		description: kafkaTopicGetGetDescription,
+	},
+	{
+		name: 'kafkaTopicUpdatePut',
+		value: 'kafkaTopicUpdatePut',
+		action: 'Update Kafka topic',
+		execute: kafkaTopicUpdatePutExecute,
+		description: kafkaTopicUpdatePutDescription,
+	},
+	{
+		name: 'kafkaTopicDeleteDelete',
+		value: 'kafkaTopicDeleteDelete',
+		action: 'Delete Kafka topic',
+		execute: kafkaTopicDeleteDeleteExecute,
+		description: kafkaTopicDeleteDeleteDescription,
+	},
+	{
+		name: 'kafkaTopicAclListGet',
+		value: 'kafkaTopicAclListGet',
+		action: 'List Kafka topic ACLs',
+		execute: kafkaTopicAclListGetExecute,
+		description: kafkaTopicAclListGetDescription,
+	},
+	{
+		name: 'kafkaTopicAclCreatePost',
+		value: 'kafkaTopicAclCreatePost',
+		action: 'Create Kafka topic ACL',
+		execute: kafkaTopicAclCreatePostExecute,
+		description: kafkaTopicAclCreatePostDescription,
+	},
+	{
+		name: 'kafkaTopicAclGetGet',
+		value: 'kafkaTopicAclGetGet',
+		action: 'Get Kafka topic ACL',
+		execute: kafkaTopicAclGetGetExecute,
+		description: kafkaTopicAclGetGetDescription,
+	},
+	{
+		name: 'kafkaTopicAclDeleteDelete',
+		value: 'kafkaTopicAclDeleteDelete',
+		action: 'Delete Kafka topic ACL',
+		execute: kafkaTopicAclDeleteDeleteExecute,
+		description: kafkaTopicAclDeleteDeleteDescription,
+	},
+	{
+		name: 'kafkaUserListGet',
+		value: 'kafkaUserListGet',
+		action: 'List Kafka users',
+		execute: kafkaUserListGetExecute,
+		description: kafkaUserListGetDescription,
+	},
+	{
+		name: 'kafkaUserCreatePost',
+		value: 'kafkaUserCreatePost',
+		action: 'Create Kafka user',
+		execute: kafkaUserCreatePostExecute,
+		description: kafkaUserCreatePostDescription,
+	},
+	{
+		name: 'kafkaUserGetGet',
+		value: 'kafkaUserGetGet',
+		action: 'Get Kafka user',
+		execute: kafkaUserGetGetExecute,
+		description: kafkaUserGetGetDescription,
+	},
+	{
+		name: 'kafkaUserDeleteDelete',
+		value: 'kafkaUserDeleteDelete',
+		action: 'Delete Kafka user',
+		execute: kafkaUserDeleteDeleteExecute,
+		description: kafkaUserDeleteDeleteDescription,
+	},
+	{
+		name: 'kafkaUserAccessGet',
+		value: 'kafkaUserAccessGet',
+		action: 'Get Kafka user access',
+		execute: kafkaUserAccessGetExecute,
+		description: kafkaUserAccessGetDescription,
+	},
+	{
+		name: 'kafkaUserCredentialsResetPost',
+		value: 'kafkaUserCredentialsResetPost',
+		action: 'Reset Kafka user credentials',
+		execute: kafkaUserCredentialsResetPostExecute,
+		description: kafkaUserCredentialsResetPostDescription,
+	},
+	{
+		name: 'kafkaConnectClusterListGet',
+		value: 'kafkaConnectClusterListGet',
+		action: 'List Kafka Connect clusters in a project',
+		execute: kafkaConnectClusterListGetExecute,
+		description: kafkaConnectClusterListGetDescription,
+	},
+	{
+		name: 'kafkaConnectClusterGetGet',
+		value: 'kafkaConnectClusterGetGet',
+		action: 'Get Kafka Connect cluster',
+		execute: kafkaConnectClusterGetGetExecute,
+		description: kafkaConnectClusterGetGetDescription,
+	},
+	{
+		name: 'kafkaConnectClusterCreatePost',
+		value: 'kafkaConnectClusterCreatePost',
+		action: 'Create Kafka Connect cluster',
+		execute: kafkaConnectClusterCreatePostExecute,
+		description: kafkaConnectClusterCreatePostDescription,
+	},
+	{
+		name: 'kafkaConnectClusterUpdatePut',
+		value: 'kafkaConnectClusterUpdatePut',
+		action: 'Update Kafka Connect cluster',
+		execute: kafkaConnectClusterUpdatePutExecute,
+		description: kafkaConnectClusterUpdatePutDescription,
+	},
+	{
+		name: 'kafkaConnectClusterDeleteDelete',
+		value: 'kafkaConnectClusterDeleteDelete',
+		action: 'Delete Kafka Connect cluster',
+		execute: kafkaConnectClusterDeleteDeleteExecute,
+		description: kafkaConnectClusterDeleteDeleteDescription,
+	},
+	{
+		name: 'kafkaConnectBackupListGet',
+		value: 'kafkaConnectBackupListGet',
+		action: 'List Kafka Connect backups',
+		execute: kafkaConnectBackupListGetExecute,
+		description: kafkaConnectBackupListGetDescription,
+	},
+	{
+		name: 'kafkaConnectBackupCreatePost',
+		value: 'kafkaConnectBackupCreatePost',
+		action: 'Create Kafka Connect backup',
+		execute: kafkaConnectBackupCreatePostExecute,
+		description: kafkaConnectBackupCreatePostDescription,
+	},
+	{
+		name: 'kafkaConnectBackupGetGet',
+		value: 'kafkaConnectBackupGetGet',
+		action: 'Get Kafka Connect backup',
+		execute: kafkaConnectBackupGetGetExecute,
+		description: kafkaConnectBackupGetGetDescription,
+	},
+	{
+		name: 'kafkaConnectBackupDeleteDelete',
+		value: 'kafkaConnectBackupDeleteDelete',
+		action: 'Delete Kafka Connect backup',
+		execute: kafkaConnectBackupDeleteDeleteExecute,
+		description: kafkaConnectBackupDeleteDeleteDescription,
+	},
+	{
+		name: 'kafkaConnectUserListGet',
+		value: 'kafkaConnectUserListGet',
+		action: 'List Kafka Connect users',
+		execute: kafkaConnectUserListGetExecute,
+		description: kafkaConnectUserListGetDescription,
+	},
+	{
+		name: 'kafkaConnectUserCreatePost',
+		value: 'kafkaConnectUserCreatePost',
+		action: 'Create Kafka Connect user',
+		execute: kafkaConnectUserCreatePostExecute,
+		description: kafkaConnectUserCreatePostDescription,
+	},
+	{
+		name: 'kafkaConnectUserGetGet',
+		value: 'kafkaConnectUserGetGet',
+		action: 'Get Kafka Connect user',
+		execute: kafkaConnectUserGetGetExecute,
+		description: kafkaConnectUserGetGetDescription,
+	},
+	{
+		name: 'kafkaConnectUserUpdatePut',
+		value: 'kafkaConnectUserUpdatePut',
+		action: 'Update Kafka Connect user',
+		execute: kafkaConnectUserUpdatePutExecute,
+		description: kafkaConnectUserUpdatePutDescription,
+	},
+	{
+		name: 'kafkaConnectUserDeleteDelete',
+		value: 'kafkaConnectUserDeleteDelete',
+		action: 'Delete Kafka Connect user',
+		execute: kafkaConnectUserDeleteDeleteExecute,
+		description: kafkaConnectUserDeleteDeleteDescription,
+	},
+	{
+		name: 'kafkaConnectNodeListGet',
+		value: 'kafkaConnectNodeListGet',
+		action: 'List Kafka Connect nodes',
+		execute: kafkaConnectNodeListGetExecute,
+		description: kafkaConnectNodeListGetDescription,
+	},
+	{
+		name: 'kafkaConnectNodeCreatePost',
+		value: 'kafkaConnectNodeCreatePost',
+		action: 'Create Kafka Connect node',
+		execute: kafkaConnectNodeCreatePostExecute,
+		description: kafkaConnectNodeCreatePostDescription,
+	},
+	{
+		name: 'kafkaConnectNodeGetGet',
+		value: 'kafkaConnectNodeGetGet',
+		action: 'Get Kafka Connect node',
+		execute: kafkaConnectNodeGetGetExecute,
+		description: kafkaConnectNodeGetGetDescription,
+	},
+	{
+		name: 'kafkaConnectNodeUpdatePut',
+		value: 'kafkaConnectNodeUpdatePut',
+		action: 'Update Kafka Connect node',
+		execute: kafkaConnectNodeUpdatePutExecute,
+		description: kafkaConnectNodeUpdatePutDescription,
+	},
+	{
+		name: 'kafkaConnectNodeDeleteDelete',
+		value: 'kafkaConnectNodeDeleteDelete',
+		action: 'Delete Kafka Connect node',
+		execute: kafkaConnectNodeDeleteDeleteExecute,
+		description: kafkaConnectNodeDeleteDeleteDescription,
+	},
+	{
+		name: 'kafkaConnectIpRestrictionListGet',
+		value: 'kafkaConnectIpRestrictionListGet',
+		action: 'List Kafka Connect IP restrictions',
+		execute: kafkaConnectIpRestrictionListGetExecute,
+		description: kafkaConnectIpRestrictionListGetDescription,
+	},
+	{
+		name: 'kafkaConnectIpRestrictionCreatePost',
+		value: 'kafkaConnectIpRestrictionCreatePost',
+		action: 'Create Kafka Connect IP restriction',
+		execute: kafkaConnectIpRestrictionCreatePostExecute,
+		description: kafkaConnectIpRestrictionCreatePostDescription,
+	},
+	{
+		name: 'kafkaConnectLogSubscriptionListGet',
+		value: 'kafkaConnectLogSubscriptionListGet',
+		action: 'List Kafka Connect log subscriptions',
+		execute: kafkaConnectLogSubscriptionListGetExecute,
+		description: kafkaConnectLogSubscriptionListGetDescription,
+	},
+	{
+		name: 'kafkaConnectLogSubscriptionCreatePost',
+		value: 'kafkaConnectLogSubscriptionCreatePost',
+		action: 'Create Kafka Connect log subscription',
+		execute: kafkaConnectLogSubscriptionCreatePostExecute,
+		description: kafkaConnectLogSubscriptionCreatePostDescription,
+	},
+	{
+		name: 'kafkaConnectLogSubscriptionGetGet',
+		value: 'kafkaConnectLogSubscriptionGetGet',
+		action: 'Get Kafka Connect log subscription',
+		execute: kafkaConnectLogSubscriptionGetGetExecute,
+		description: kafkaConnectLogSubscriptionGetGetDescription,
+	},
+	{
+		name: 'kafkaConnectMaintenanceGet',
+		value: 'kafkaConnectMaintenanceGet',
+		action: 'Get Kafka Connect maintenance',
+		execute: kafkaConnectMaintenanceGetExecute,
+		description: kafkaConnectMaintenanceGetDescription,
+	},
+	{
+		name: 'kafkaConnectMaintenanceUpdatePut',
+		value: 'kafkaConnectMaintenanceUpdatePut',
+		action: 'Update Kafka Connect maintenance',
+		execute: kafkaConnectMaintenanceUpdatePutExecute,
+		description: kafkaConnectMaintenanceUpdatePutDescription,
+	},
+	{
+		name: 'kafkaConnectMetricGet',
+		value: 'kafkaConnectMetricGet',
+		action: 'Get Kafka Connect metric',
+		execute: kafkaConnectMetricGetExecute,
+		description: kafkaConnectMetricGetDescription,
+	},
+	{
+		name: 'kafkaConnectPrometheusGet',
+		value: 'kafkaConnectPrometheusGet',
+		action: 'Get Kafka Connect prometheus',
+		execute: kafkaConnectPrometheusGetExecute,
+		description: kafkaConnectPrometheusGetDescription,
+	},
+	{
+		name: 'kafkaConnectCertificateListGet',
+		value: 'kafkaConnectCertificateListGet',
+		action: 'List Kafka Connect certificates',
+		execute: kafkaConnectCertificateListGetExecute,
+		description: kafkaConnectCertificateListGetDescription,
+	},
+	{
+		name: 'kafkaConnectCertificateCreatePost',
+		value: 'kafkaConnectCertificateCreatePost',
+		action: 'Create Kafka Connect certificate',
+		execute: kafkaConnectCertificateCreatePostExecute,
+		description: kafkaConnectCertificateCreatePostDescription,
+	},
+	{
+		name: 'kafkaConnectadvancedConfigurationGet',
+		value: 'kafkaConnectadvancedConfigurationGet',
+		action: 'Get Advanced Configuration',
+		execute: kafkaConnectadvancedConfigurationGetExecute,
+		description: kafkaConnectadvancedConfigurationGetDescription,
+	},
+	{
+		name: 'kafkaConnectadvancedConfigurationUpdatePut',
+		value: 'kafkaConnectadvancedConfigurationUpdatePut',
+		action: 'Update Advanced Configuration',
+		execute: kafkaConnectadvancedConfigurationUpdatePutExecute,
+		description: kafkaConnectadvancedConfigurationUpdatePutDescription,
+	},
+	{
+		name: 'kafkaConnectcapabilitiesAdvancedConfigurationGet',
+		value: 'kafkaConnectcapabilitiesAdvancedConfigurationGet',
+		action: 'Get Advanced Configuration Capabilities',
+		execute: kafkaConnectcapabilitiesAdvancedConfigurationGetExecute,
+		description: kafkaConnectcapabilitiesAdvancedConfigurationGetDescription,
+	},
+	{
+		name: 'kafkaConnectcapabilitiesBackupRegionsGet',
+		value: 'kafkaConnectcapabilitiesBackupRegionsGet',
+		action: 'Get Backup Regions Capabilities',
+		execute: kafkaConnectcapabilitiesBackupRegionsGetExecute,
+		description: kafkaConnectcapabilitiesBackupRegionsGetDescription,
+	},
+	{
+		name: 'kafkaConnectcapabilitiesConnectorListGet',
+		value: 'kafkaConnectcapabilitiesConnectorListGet',
+		action: 'List Connector Capabilities',
+		execute: kafkaConnectcapabilitiesConnectorListGetExecute,
+		description: kafkaConnectcapabilitiesConnectorListGetDescription,
+	},
+	{
+		name: 'kafkaConnectcapabilitiesConnectorGet',
+		value: 'kafkaConnectcapabilitiesConnectorGet',
+		action: 'Get Connector Capability',
+		execute: kafkaConnectcapabilitiesConnectorGetExecute,
+		description: kafkaConnectcapabilitiesConnectorGetDescription,
+	},
+	{
+		name: 'kafkaConnectcapabilitiesConnectorConfigurationGet',
+		value: 'kafkaConnectcapabilitiesConnectorConfigurationGet',
+		action: 'Get Connector Configuration',
+		execute: kafkaConnectcapabilitiesConnectorConfigurationGetExecute,
+		description: kafkaConnectcapabilitiesConnectorConfigurationGetDescription,
+	},
+	{
+		name: 'kafkaConnectcapabilitiesConnectorTransformsGet',
+		value: 'kafkaConnectcapabilitiesConnectorTransformsGet',
+		action: 'Get Connector Transforms',
+		execute: kafkaConnectcapabilitiesConnectorTransformsGetExecute,
+		description: kafkaConnectcapabilitiesConnectorTransformsGetDescription,
+	},
+	{
+		name: 'kafkaConnectcapabilitiesIntegrationGet',
+		value: 'kafkaConnectcapabilitiesIntegrationGet',
+		action: 'Get Integration Capabilities',
+		execute: kafkaConnectcapabilitiesIntegrationGetExecute,
+		description: kafkaConnectcapabilitiesIntegrationGetDescription,
+	},
+	{
+		name: 'kafkaConnectconnectorListGet',
+		value: 'kafkaConnectconnectorListGet',
+		action: 'List Connectors',
+		execute: kafkaConnectconnectorListGetExecute,
+		description: kafkaConnectconnectorListGetDescription,
+	},
+	{
+		name: 'kafkaConnectconnectorCreatePost',
+		value: 'kafkaConnectconnectorCreatePost',
+		action: 'Create a Connector',
+		execute: kafkaConnectconnectorCreatePostExecute,
+		description: kafkaConnectconnectorCreatePostDescription,
+	},
+	{
+		name: 'kafkaConnectconnectorGetGet',
+		value: 'kafkaConnectconnectorGetGet',
+		action: 'Get Connector Details',
+		execute: kafkaConnectconnectorGetGetExecute,
+		description: kafkaConnectconnectorGetGetDescription,
+	},
+	{
+		name: 'kafkaConnectconnectorUpdatePut',
+		value: 'kafkaConnectconnectorUpdatePut',
+		action: 'Update a Connector',
+		execute: kafkaConnectconnectorUpdatePutExecute,
+		description: kafkaConnectconnectorUpdatePutDescription,
+	},
+	{
+		name: 'kafkaConnectconnectorDeleteDelete',
+		value: 'kafkaConnectconnectorDeleteDelete',
+		action: 'Delete a Connector',
+		execute: kafkaConnectconnectorDeleteDeleteExecute,
+		description: kafkaConnectconnectorDeleteDeleteDescription,
+	},
+	{
+		name: 'kafkaConnectconnectorPausePost',
+		value: 'kafkaConnectconnectorPausePost',
+		action: 'Pause a Connector',
+		execute: kafkaConnectconnectorPausePostExecute,
+		description: kafkaConnectconnectorPausePostDescription,
+	},
+	{
+		name: 'kafkaConnectconnectorRestartPost',
+		value: 'kafkaConnectconnectorRestartPost',
+		action: 'Restart a Connector',
+		execute: kafkaConnectconnectorRestartPostExecute,
+		description: kafkaConnectconnectorRestartPostDescription,
+	},
+	{
+		name: 'kafkaConnectconnectorResumePost',
+		value: 'kafkaConnectconnectorResumePost',
+		action: 'Resume a Connector',
+		execute: kafkaConnectconnectorResumePostExecute,
+		description: kafkaConnectconnectorResumePostDescription,
+	},
+	{
+		name: 'kafkaConnectconnectorTaskListGet',
+		value: 'kafkaConnectconnectorTaskListGet',
+		action: 'List Connector Tasks',
+		execute: kafkaConnectconnectorTaskListGetExecute,
+		description: kafkaConnectconnectorTaskListGetDescription,
+	},
+	{
+		name: 'kafkaConnectconnectorTaskGet',
+		value: 'kafkaConnectconnectorTaskGet',
+		action: 'Get Connector Task Details',
+		execute: kafkaConnectconnectorTaskGetExecute,
+		description: kafkaConnectconnectorTaskGetDescription,
+	},
+	{
+		name: 'kafkaConnectconnectorTaskRestartPost',
+		value: 'kafkaConnectconnectorTaskRestartPost',
+		action: 'Restart a Connector Task',
+		execute: kafkaConnectconnectorTaskRestartPostExecute,
+		description: kafkaConnectconnectorTaskRestartPostDescription,
+	},
+	{
+		name: 'kafkaConnectintegrationListGet',
+		value: 'kafkaConnectintegrationListGet',
+		action: 'List Integrations',
+		execute: kafkaConnectintegrationListGetExecute,
+		description: kafkaConnectintegrationListGetDescription,
+	},
+	{
+		name: 'kafkaConnectintegrationCreatePost',
+		value: 'kafkaConnectintegrationCreatePost',
+		action: 'Create an Integration',
+		execute: kafkaConnectintegrationCreatePostExecute,
+		description: kafkaConnectintegrationCreatePostDescription,
+	},
+	{
+		name: 'kafkaConnectintegrationGetGet',
+		value: 'kafkaConnectintegrationGetGet',
+		action: 'Get Integration Details',
+		execute: kafkaConnectintegrationGetGetExecute,
+		description: kafkaConnectintegrationGetGetDescription,
+	},
+	{
+		name: 'kafkaConnectintegrationDeleteDelete',
+		value: 'kafkaConnectintegrationDeleteDelete',
+		action: 'Delete an Integration',
+		execute: kafkaConnectintegrationDeleteDeleteExecute,
+		description: kafkaConnectintegrationDeleteDeleteDescription,
+	},
+	{
+		name: 'kafkaConnectipRestrictionGetGet',
+		value: 'kafkaConnectipRestrictionGetGet',
+		action: 'Get IP Restriction Details',
+		execute: kafkaConnectipRestrictionGetGetExecute,
+		description: kafkaConnectipRestrictionGetGetDescription,
+	},
+	{
+		name: 'kafkaConnectipRestrictionUpdatePut',
+		value: 'kafkaConnectipRestrictionUpdatePut',
+		action: 'Update an IP Restriction',
+		execute: kafkaConnectipRestrictionUpdatePutExecute,
+		description: kafkaConnectipRestrictionUpdatePutDescription,
+	},
+	{
+		name: 'kafkaConnectipRestrictionDeleteDelete',
+		value: 'kafkaConnectipRestrictionDeleteDelete',
+		action: 'Delete an IP Restriction',
+		execute: kafkaConnectipRestrictionDeleteDeleteExecute,
+		description: kafkaConnectipRestrictionDeleteDeleteDescription,
+	},
+	{
+		name: 'kafkaConnectlogKindListGet',
+		value: 'kafkaConnectlogKindListGet',
+		action: 'List Log Kinds',
+		execute: kafkaConnectlogKindListGetExecute,
+		description: kafkaConnectlogKindListGetDescription,
+	},
+	{
+		name: 'kafkaConnectlogKindGet',
+		value: 'kafkaConnectlogKindGet',
+		action: 'Get a Log Kind',
+		execute: kafkaConnectlogKindGetExecute,
+		description: kafkaConnectlogKindGetDescription,
+	},
+	{
+		name: 'kafkaConnectlogSubscriptionDeleteDelete',
+		value: 'kafkaConnectlogSubscriptionDeleteDelete',
+		action: 'Delete a Log Subscription',
+		execute: kafkaConnectlogSubscriptionDeleteDeleteExecute,
+		description: kafkaConnectlogSubscriptionDeleteDeleteDescription,
+	},
+	{
+		name: 'kafkaConnectlogUrlCreatePost',
+		value: 'kafkaConnectlogUrlCreatePost',
+		action: 'Generate Log URL',
+		execute: kafkaConnectlogUrlCreatePostExecute,
+		description: kafkaConnectlogUrlCreatePostDescription,
+	},
+	{
+		name: 'kafkaConnectlogsGet',
+		value: 'kafkaConnectlogsGet',
+		action: 'Get Logs',
+		execute: kafkaConnectlogsGetExecute,
+		description: kafkaConnectlogsGetDescription,
+	},
+	{
+		name: 'kafkaConnectmaintenanceListGet',
+		value: 'kafkaConnectmaintenanceListGet',
+		action: 'List Maintenances',
+		execute: kafkaConnectmaintenanceListGetExecute,
+		description: kafkaConnectmaintenanceListGetDescription,
+	},
+	{
+		name: 'kafkaConnectmaintenanceApplyPost',
+		value: 'kafkaConnectmaintenanceApplyPost',
+		action: 'Apply Maintenance',
+		execute: kafkaConnectmaintenanceApplyPostExecute,
+		description: kafkaConnectmaintenanceApplyPostDescription,
+	},
+	{
+		name: 'kafkaConnectmetricListGet',
+		value: 'kafkaConnectmetricListGet',
+		action: 'List Metrics',
+		execute: kafkaConnectmetricListGetExecute,
+		description: kafkaConnectmetricListGetDescription,
+	},
+	{
+		name: 'kafkaConnectnodeGet',
+		value: 'kafkaConnectnodeGet',
+		action: 'Get a Node',
+		execute: kafkaConnectnodeGetExecute,
+		description: kafkaConnectnodeGetDescription,
+	},
+	{
+		name: 'kafkaConnectprometheusCredentialsResetPost',
+		value: 'kafkaConnectprometheusCredentialsResetPost',
+		action: 'Reset Prometheus Credentials',
+		execute: kafkaConnectprometheusCredentialsResetPostExecute,
+		description: kafkaConnectprometheusCredentialsResetPostDescription,
+	},
+	{
+		name: 'kafkaConnectuserCredentialsResetPost',
+		value: 'kafkaConnectuserCredentialsResetPost',
+		action: 'Reset User Credentials',
+		execute: kafkaConnectuserCredentialsResetPostExecute,
+		description: kafkaConnectuserCredentialsResetPostDescription,
+	},
+	{
+		name: 'kafkaMirrorMakerClusterListGet',
+		value: 'kafkaMirrorMakerClusterListGet',
+		action: 'kafkaMirrorMakerClusterListGet',
+		execute: kafkaMirrorMakerClusterListGetExecute,
+		description: kafkaMirrorMakerClusterListGetDescription,
+	},
+	{
+		name: 'kafkaMirrorMakerClusterCreatePost',
+		value: 'kafkaMirrorMakerClusterCreatePost',
+		action: 'kafkaMirrorMakerClusterCreatePost',
+		execute: kafkaMirrorMakerClusterCreatePostExecute,
+		description: kafkaMirrorMakerClusterCreatePostDescription,
+	},
+	{
+		name: 'kafkaMirrorMakerClusterGetGet',
+		value: 'kafkaMirrorMakerClusterGetGet',
+		action: 'kafkaMirrorMakerClusterGetGet',
+		execute: kafkaMirrorMakerClusterGetGetExecute,
+		description: kafkaMirrorMakerClusterGetGetDescription,
+	},
+	{
+		name: 'kafkaMirrorMakerClusterUpdatePut',
+		value: 'kafkaMirrorMakerClusterUpdatePut',
+		action: 'kafkaMirrorMakerClusterUpdatePut',
+		execute: kafkaMirrorMakerClusterUpdatePutExecute,
+		description: kafkaMirrorMakerClusterUpdatePutDescription,
+	},
+	{
+		name: 'kafkaMirrorMakerClusterDeleteDelete',
+		value: 'kafkaMirrorMakerClusterDeleteDelete',
+		action: 'kafkaMirrorMakerClusterDeleteDelete',
+		execute: kafkaMirrorMakerClusterDeleteDeleteExecute,
+		description: kafkaMirrorMakerClusterDeleteDeleteDescription,
+	},
+	{
+		name: 'kafkaMirrorMakerCapabilitiesIntegrationGet',
+		value: 'kafkaMirrorMakerCapabilitiesIntegrationGet',
+		action: 'kafkaMirrorMakerCapabilitiesIntegrationGet',
+		execute: kafkaMirrorMakerCapabilitiesIntegrationGetExecute,
+		description: kafkaMirrorMakerCapabilitiesIntegrationGetDescription,
+	},
+	{
+		name: 'kafkaMirrorMakerIntegrationGet',
+		value: 'kafkaMirrorMakerIntegrationGet',
+		action: 'kafkaMirrorMakerIntegrationGet',
+		execute: kafkaMirrorMakerIntegrationGetExecute,
+		description: kafkaMirrorMakerIntegrationGetDescription,
+	},
+	{
+		name: 'kafkaMirrorMakerIntegrationCreatePost',
+		value: 'kafkaMirrorMakerIntegrationCreatePost',
+		action: 'kafkaMirrorMakerIntegrationCreatePost',
+		execute: kafkaMirrorMakerIntegrationCreatePostExecute,
+		description: kafkaMirrorMakerIntegrationCreatePostDescription,
+	},
+	{
+		name: 'kafkaMirrorMakerIntegrationDeleteDelete',
+		value: 'kafkaMirrorMakerIntegrationDeleteDelete',
+		action: 'kafkaMirrorMakerIntegrationDeleteDelete',
+		execute: kafkaMirrorMakerIntegrationDeleteDeleteExecute,
+		description: kafkaMirrorMakerIntegrationDeleteDeleteDescription,
+	},
+	{
+		name: 'kafkaMirrorMakerIntegrationGetById',
+		value: 'kafkaMirrorMakerIntegrationGetById',
+		action: 'kafkaMirrorMakerIntegrationGetById',
+		execute: kafkaMirrorMakerIntegrationGetByIdExecute,
+		description: kafkaMirrorMakerIntegrationGetByIdDescription,
+	},
+	{
+		name: 'kafkaMirrorMakerLogKindGet',
+		value: 'kafkaMirrorMakerLogKindGet',
+		action: 'kafkaMirrorMakerLogKindGet',
+		execute: kafkaMirrorMakerLogKindGetExecute,
+		description: kafkaMirrorMakerLogKindGetDescription,
+	},
+	{
+		name: 'kafkaMirrorMakerLogKindNameGet',
+		value: 'kafkaMirrorMakerLogKindNameGet',
+		action: 'kafkaMirrorMakerLogKindNameGet',
+		execute: kafkaMirrorMakerLogKindNameGetExecute,
+		description: kafkaMirrorMakerLogKindNameGetDescription,
+	},
+	{
+		name: 'kafkaMirrorMakerLogSubscriptionCreatePost',
+		value: 'kafkaMirrorMakerLogSubscriptionCreatePost',
+		action: 'kafkaMirrorMakerLogSubscriptionCreatePost',
+		execute: kafkaMirrorMakerLogSubscriptionCreatePostExecute,
+		description: kafkaMirrorMakerLogSubscriptionCreatePostDescription,
+	},
+	{
+		name: 'kafkaMirrorMakerLogSubscriptionDeleteDelete',
+		value: 'kafkaMirrorMakerLogSubscriptionDeleteDelete',
+		action: 'kafkaMirrorMakerLogSubscriptionDeleteDelete',
+		execute: kafkaMirrorMakerLogSubscriptionDeleteDeleteExecute,
+		description: kafkaMirrorMakerLogSubscriptionDeleteDeleteDescription,
+	},
+	{
+		name: 'kafkaMirrorMakerLogSubscriptionGetById',
+		value: 'kafkaMirrorMakerLogSubscriptionGetById',
+		action: 'kafkaMirrorMakerLogSubscriptionGetById',
+		execute: kafkaMirrorMakerLogSubscriptionGetByIdExecute,
+		description: kafkaMirrorMakerLogSubscriptionGetByIdDescription,
+	},
+	{
+		name: 'kafkaMirrorMakerLogUrlPost',
+		value: 'kafkaMirrorMakerLogUrlPost',
+		action: 'kafkaMirrorMakerLogUrlPost',
+		execute: kafkaMirrorMakerLogUrlPostExecute,
+		description: kafkaMirrorMakerLogUrlPostDescription,
+	},
+	{
+		name: 'kafkaMirrorMakerLogsGet',
+		value: 'kafkaMirrorMakerLogsGet',
+		action: 'kafkaMirrorMakerLogsGet',
+		execute: kafkaMirrorMakerLogsGetExecute,
+		description: kafkaMirrorMakerLogsGetDescription,
+	},
+	{
+		name: 'kafkaMirrorMakerMaintenanceGet',
+		value: 'kafkaMirrorMakerMaintenanceGet',
+		action: 'kafkaMirrorMakerMaintenanceGet',
+		execute: kafkaMirrorMakerMaintenanceGetExecute,
+		description: kafkaMirrorMakerMaintenanceGetDescription,
+	},
+	{
+		name: 'kafkaMirrorMakerMaintenanceGetById',
+		value: 'kafkaMirrorMakerMaintenanceGetById',
+		action: 'kafkaMirrorMakerMaintenanceGetById',
+		execute: kafkaMirrorMakerMaintenanceGetByIdExecute,
+		description: kafkaMirrorMakerMaintenanceGetByIdDescription,
+	},
+	{
+		name: 'kafkaMirrorMakerMaintenanceApplyPost',
+		value: 'kafkaMirrorMakerMaintenanceApplyPost',
+		action: 'kafkaMirrorMakerMaintenanceApplyPost',
+		execute: kafkaMirrorMakerMaintenanceApplyPostExecute,
+		description: kafkaMirrorMakerMaintenanceApplyPostDescription,
+	},
+	{
+		name: 'kafkaMirrorMakerMetricGet',
+		value: 'kafkaMirrorMakerMetricGet',
+		action: 'kafkaMirrorMakerMetricGet',
+		execute: kafkaMirrorMakerMetricGetExecute,
+		description: kafkaMirrorMakerMetricGetDescription,
+	},
+	{
+		name: 'kafkaMirrorMakerMetricNameGet',
+		value: 'kafkaMirrorMakerMetricNameGet',
+		action: 'kafkaMirrorMakerMetricNameGet',
+		execute: kafkaMirrorMakerMetricNameGetExecute,
+		description: kafkaMirrorMakerMetricNameGetDescription,
+	},
+	{
+		name: 'kafkaMirrorMakerNodeListGet',
+		value: 'kafkaMirrorMakerNodeListGet',
+		action: 'kafkaMirrorMakerNodeListGet',
+		execute: kafkaMirrorMakerNodeListGetExecute,
+		description: kafkaMirrorMakerNodeListGetDescription,
+	},
+	{
+		name: 'kafkaMirrorMakerNodeGetGet',
+		value: 'kafkaMirrorMakerNodeGetGet',
+		action: 'kafkaMirrorMakerNodeGetGet',
+		execute: kafkaMirrorMakerNodeGetGetExecute,
+		description: kafkaMirrorMakerNodeGetGetDescription,
+	},
+	{
+		name: 'kafkaMirrorMakerPrometheusGet',
+		value: 'kafkaMirrorMakerPrometheusGet',
+		action: 'kafkaMirrorMakerPrometheusGet',
+		execute: kafkaMirrorMakerPrometheusGetExecute,
+		description: kafkaMirrorMakerPrometheusGetDescription,
+	},
+	{
+		name: 'kafkaMirrorMakerPrometheusCredentialsResetPost',
+		value: 'kafkaMirrorMakerPrometheusCredentialsResetPost',
+		action: 'kafkaMirrorMakerPrometheusCredentialsResetPost',
+		execute: kafkaMirrorMakerPrometheusCredentialsResetPostExecute,
+		description: kafkaMirrorMakerPrometheusCredentialsResetPostDescription,
+	},
+	{
+		name: 'kafkaMirrorMakerReplicationGet',
+		value: 'kafkaMirrorMakerReplicationGet',
+		action: 'kafkaMirrorMakerReplicationGet',
+		execute: kafkaMirrorMakerReplicationGetExecute,
+		description: kafkaMirrorMakerReplicationGetDescription,
+	},
+	{
+		name: 'kafkaMirrorMakerReplicationCreatePost',
+		value: 'kafkaMirrorMakerReplicationCreatePost',
+		action: 'kafkaMirrorMakerReplicationCreatePost',
+		execute: kafkaMirrorMakerReplicationCreatePostExecute,
+		description: kafkaMirrorMakerReplicationCreatePostDescription,
+	},
+	{
+		name: 'kafkaMirrorMakerReplicationDeleteDelete',
+		value: 'kafkaMirrorMakerReplicationDeleteDelete',
+		action: 'kafkaMirrorMakerReplicationDeleteDelete',
+		execute: kafkaMirrorMakerReplicationDeleteDeleteExecute,
+		description: kafkaMirrorMakerReplicationDeleteDeleteDescription,
+	},
+	{
+		name: 'kafkaMirrorMakerReplicationGetById',
+		value: 'kafkaMirrorMakerReplicationGetById',
+		action: 'kafkaMirrorMakerReplicationGetById',
+		execute: kafkaMirrorMakerReplicationGetByIdExecute,
+		description: kafkaMirrorMakerReplicationGetByIdDescription,
+	},
+	{
+		name: 'kafkaMirrorMakerReplicationUpdatePut',
+		value: 'kafkaMirrorMakerReplicationUpdatePut',
+		action: 'kafkaMirrorMakerReplicationUpdatePut',
+		execute: kafkaMirrorMakerReplicationUpdatePutExecute,
+		description: kafkaMirrorMakerReplicationUpdatePutDescription,
+	},
+	{
+		name: 'm3aggregatorClusterListGet',
+		value: 'm3aggregatorClusterListGet',
+		action: 'List M3 Aggregator clusters in a project',
+		execute: m3aggregatorClusterListGetExecute,
+		description: m3aggregatorClusterListGetDescription,
+	},
+	{
+		name: 'm3aggregatorClusterCreatePost',
+		value: 'm3aggregatorClusterCreatePost',
+		action: 'Create M3 Aggregator cluster',
+		execute: m3aggregatorClusterCreatePostExecute,
+		description: m3aggregatorClusterCreatePostDescription,
+	},
+	{
+		name: 'm3aggregatorClusterGetGet',
+		value: 'm3aggregatorClusterGetGet',
+		action: 'Get M3 Aggregator cluster',
+		execute: m3aggregatorClusterGetGetExecute,
+		description: m3aggregatorClusterGetGetDescription,
+	},
+	{
+		name: 'm3aggregatorClusterUpdatePut',
+		value: 'm3aggregatorClusterUpdatePut',
+		action: 'Update M3 Aggregator cluster',
+		execute: m3aggregatorClusterUpdatePutExecute,
+		description: m3aggregatorClusterUpdatePutDescription,
+	},
+	{
+		name: 'm3aggregatorClusterDeleteDelete',
+		value: 'm3aggregatorClusterDeleteDelete',
+		action: 'Delete M3 Aggregator cluster',
+		execute: m3aggregatorClusterDeleteDeleteExecute,
+		description: m3aggregatorClusterDeleteDeleteDescription,
+	},
+	{
+		name: 'm3aggregatorCapabilitiesIntegrationGet',
+		value: 'm3aggregatorCapabilitiesIntegrationGet',
+		action: 'Get integration capabilities related to the m3aggregator service',
+		execute: m3aggregatorCapabilitiesIntegrationGetExecute,
+		description: m3aggregatorCapabilitiesIntegrationGetDescription,
+	},
+	{
+		name: 'm3aggregatorIntegrationGet',
+		value: 'm3aggregatorIntegrationGet',
+		action: 'List integrations',
+		execute: m3aggregatorIntegrationGetExecute,
+		description: m3aggregatorIntegrationGetDescription,
+	},
+	{
+		name: 'm3aggregatorIntegrationCreatePost',
+		value: 'm3aggregatorIntegrationCreatePost',
+		action: 'Create an integration',
+		execute: m3aggregatorIntegrationCreatePostExecute,
+		description: m3aggregatorIntegrationCreatePostDescription,
+	},
+	{
+		name: 'm3aggregatorIntegrationDeleteDelete',
+		value: 'm3aggregatorIntegrationDeleteDelete',
+		action: 'Delete an integration',
+		execute: m3aggregatorIntegrationDeleteDeleteExecute,
+		description: m3aggregatorIntegrationDeleteDeleteDescription,
+	},
+	{
+		name: 'm3aggregatorIntegrationGetById',
+		value: 'm3aggregatorIntegrationGetById',
+		action: 'Get an integration',
+		execute: m3aggregatorIntegrationGetByIdExecute,
+		description: m3aggregatorIntegrationGetByIdDescription,
+	},
+	{
+		name: 'm3aggregatorLogKindGet',
+		value: 'm3aggregatorLogKindGet',
+		action: 'List available log kinds',
+		execute: m3aggregatorLogKindGetExecute,
+		description: m3aggregatorLogKindGetDescription,
+	},
+	{
+		name: 'm3aggregatorLogKindNameGet',
+		value: 'm3aggregatorLogKindNameGet',
+		action: 'Get a log kind',
+		execute: m3aggregatorLogKindNameGetExecute,
+		description: m3aggregatorLogKindNameGetDescription,
+	},
+	{
+		name: 'm3aggregatorLogSubscriptionListGet',
+		value: 'm3aggregatorLogSubscriptionListGet',
+		action: 'List subscription IDs for a cluster',
+		execute: m3aggregatorLogSubscriptionListGetExecute,
+		description: m3aggregatorLogSubscriptionListGetDescription,
+	},
+	{
+		name: 'm3aggregatorLogSubscriptionCreatePost',
+		value: 'm3aggregatorLogSubscriptionCreatePost',
+		action: 'Create subscription to log to customer for a m3aggregator',
+		execute: m3aggregatorLogSubscriptionCreatePostExecute,
+		description: m3aggregatorLogSubscriptionCreatePostDescription,
+	},
+	{
+		name: 'm3aggregatorLogSubscriptionDeleteDelete',
+		value: 'm3aggregatorLogSubscriptionDeleteDelete',
+		action: 'Delete a subscription',
+		execute: m3aggregatorLogSubscriptionDeleteDeleteExecute,
+		description: m3aggregatorLogSubscriptionDeleteDeleteDescription,
+	},
+	{
+		name: 'm3aggregatorLogSubscriptionGetById',
+		value: 'm3aggregatorLogSubscriptionGetById',
+		action: 'Get subscription details',
+		execute: m3aggregatorLogSubscriptionGetByIdExecute,
+		description: m3aggregatorLogSubscriptionGetByIdDescription,
+	},
+	{
+		name: 'm3aggregatorLogUrlPost',
+		value: 'm3aggregatorLogUrlPost',
+		action: 'Generate a temporary URL to retrieve logs',
+		execute: m3aggregatorLogUrlPostExecute,
+		description: m3aggregatorLogUrlPostDescription,
+	},
+	{
+		name: 'm3aggregatorLogsGet',
+		value: 'm3aggregatorLogsGet',
+		action: 'Retrieve the most recent m3aggregator log messages',
+		execute: m3aggregatorLogsGetExecute,
+		description: m3aggregatorLogsGetDescription,
+	},
+	{
+		name: 'm3aggregatorMaintenanceGet',
+		value: 'm3aggregatorMaintenanceGet',
+		action: 'List maintenances for the m3aggregator cluster',
+		execute: m3aggregatorMaintenanceGetExecute,
+		description: m3aggregatorMaintenanceGetDescription,
+	},
+	{
+		name: 'm3aggregatorMaintenanceGetById',
+		value: 'm3aggregatorMaintenanceGetById',
+		action: 'Get the maintenance for the m3aggregator cluster',
+		execute: m3aggregatorMaintenanceGetByIdExecute,
+		description: m3aggregatorMaintenanceGetByIdDescription,
+	},
+	{
+		name: 'm3aggregatorMaintenanceApplyPost',
+		value: 'm3aggregatorMaintenanceApplyPost',
+		action: 'Apply the maintenance',
+		execute: m3aggregatorMaintenanceApplyPostExecute,
+		description: m3aggregatorMaintenanceApplyPostDescription,
+	},
+	{
+		name: 'm3aggregatorMetricGet',
+		value: 'm3aggregatorMetricGet',
+		action: 'List available metrics for the m3aggregator',
+		execute: m3aggregatorMetricGetExecute,
+		description: m3aggregatorMetricGetDescription,
+	},
+	{
+		name: 'm3aggregatorMetricNameGet',
+		value: 'm3aggregatorMetricNameGet',
+		action: 'Get the metric values for the m3aggregator',
+		execute: m3aggregatorMetricNameGetExecute,
+		description: m3aggregatorMetricNameGetDescription,
+	},
+	{
+		name: 'm3aggregatorNodeListGet',
+		value: 'm3aggregatorNodeListGet',
+		action: 'List nodes of the m3aggregator',
+		execute: m3aggregatorNodeListGetExecute,
+		description: m3aggregatorNodeListGetDescription,
+	},
+	{
+		name: 'm3aggregatorNodeGetGet',
+		value: 'm3aggregatorNodeGetGet',
+		action: 'Get m3aggregator nodes',
+		execute: m3aggregatorNodeGetGetExecute,
+		description: m3aggregatorNodeGetGetDescription,
+	},
+	{
+		name: 'M3dbClusterListGet',
+		value: 'M3dbClusterListGet',
+		action: 'List all the m3db clusters of the project',
+		execute: m3dbClusterListGetExecute,
+		description: m3dbClusterListGetDescription,
+	},
+	{
+		name: 'M3dbClusterCreatePost',
+		value: 'M3dbClusterCreatePost',
+		action: 'Create a new m3db cluster',
+		execute: m3dbClusterCreatePostExecute,
+		description: m3dbClusterCreatePostDescription,
+	},
+	{
+		name: 'M3dbClusterDeleteDelete',
+		value: 'M3dbClusterDeleteDelete',
+		action: 'Delete a m3db cluster',
+		execute: m3dbClusterDeleteDeleteExecute,
+		description: m3dbClusterDeleteDeleteDescription,
+	},
+	{
+		name: 'M3dbClusterGetGet',
+		value: 'M3dbClusterGetGet',
+		action: 'Get m3db cluster properties',
+		execute: m3dbClusterGetGetExecute,
+		description: m3dbClusterGetGetDescription,
+	},
+	{
+		name: 'M3dbClusterUpdatePut',
+		value: 'M3dbClusterUpdatePut',
+		action: 'Update an existing m3db cluster',
+		execute: m3dbClusterUpdatePutExecute,
+		description: m3dbClusterUpdatePutDescription,
+	},
+	{
+		name: 'M3dbAdvancedConfigurationGetGet',
+		value: 'M3dbAdvancedConfigurationGetGet',
+		action: 'Get m3db advanced configuration',
+		execute: m3dbAdvancedConfigurationGetGetExecute,
+		description: m3dbAdvancedConfigurationGetGetDescription,
+	},
+	{
+		name: 'M3dbAdvancedConfigurationUpdatePut',
+		value: 'M3dbAdvancedConfigurationUpdatePut',
+		action: 'Update m3db advanced configuration',
+		execute: m3dbAdvancedConfigurationUpdatePutExecute,
+		description: m3dbAdvancedConfigurationUpdatePutDescription,
+	},
+	{
+		name: 'M3dbBackupListGet',
+		value: 'M3dbBackupListGet',
+		action: 'List backups of the m3db',
+		execute: m3dbBackupListGetExecute,
+		description: m3dbBackupListGetDescription,
+	},
+	{
+		name: 'M3dbBackupGetGet',
+		value: 'M3dbBackupGetGet',
+		action: 'Get m3db backups',
+		execute: m3dbBackupGetGetExecute,
+		description: m3dbBackupGetGetDescription,
+	},
+	{
+		name: 'M3dbCapabilitiesAdvancedConfigurationGetGet',
+		value: 'M3dbCapabilitiesAdvancedConfigurationGetGet',
+		action: 'Get m3db advanced configuration fields',
+		execute: m3dbCapabilitiesAdvancedConfigurationGetGetExecute,
+		description: m3dbCapabilitiesAdvancedConfigurationGetGetDescription,
+	},
+	{
+		name: 'M3dbCapabilitiesIntegrationGetGet',
+		value: 'M3dbCapabilitiesIntegrationGetGet',
+		action: 'Get integration capabilities related to the m3db service',
+		execute: m3dbCapabilitiesIntegrationGetGetExecute,
+		description: m3dbCapabilitiesIntegrationGetGetDescription,
+	},
+	{
+		name: 'M3dbIntegrationListGet',
+		value: 'M3dbIntegrationListGet',
+		action: 'List integrations',
+		execute: m3dbIntegrationListGetExecute,
+		description: m3dbIntegrationListGetDescription,
+	},
+	{
+		name: 'M3dbIntegrationCreatePost',
+		value: 'M3dbIntegrationCreatePost',
+		action: 'Create a new integration',
+		execute: m3dbIntegrationCreatePostExecute,
+		description: m3dbIntegrationCreatePostDescription,
+	},
+	{
+		name: 'M3dbIntegrationDeleteDelete',
+		value: 'M3dbIntegrationDeleteDelete',
+		action: 'Delete an integration',
+		execute: m3dbIntegrationDeleteDeleteExecute,
+		description: m3dbIntegrationDeleteDeleteDescription,
+	},
+	{
+		name: 'M3dbIntegrationGetGet',
+		value: 'M3dbIntegrationGetGet',
+		action: 'Get an integration',
+		execute: m3dbIntegrationGetGetExecute,
+		description: m3dbIntegrationGetGetDescription,
+	},
+	{
+		name: 'M3dbIpRestrictionListGet',
+		value: 'M3dbIpRestrictionListGet',
+		action: 'List m3db ip restrictions',
+		execute: m3dbIpRestrictionListGetExecute,
+		description: m3dbIpRestrictionListGetDescription,
+	},
+	{
+		name: 'M3dbIpRestrictionCreatePost',
+		value: 'M3dbIpRestrictionCreatePost',
+		action: 'Add ip restrictions to the m3db',
+		execute: m3dbIpRestrictionCreatePostExecute,
+		description: m3dbIpRestrictionCreatePostDescription,
+	},
+	{
+		name: 'M3dbIpRestrictionDeleteDelete',
+		value: 'M3dbIpRestrictionDeleteDelete',
+		action: 'Deletes the given IP from the restricted IPs of the m3db',
+		execute: m3dbIpRestrictionDeleteDeleteExecute,
+		description: m3dbIpRestrictionDeleteDeleteDescription,
+	},
+	{
+		name: 'M3dbIpRestrictionGetGet',
+		value: 'M3dbIpRestrictionGetGet',
+		action: 'Get m3db ip restrictions',
+		execute: m3dbIpRestrictionGetGetExecute,
+		description: m3dbIpRestrictionGetGetDescription,
+	},
+	{
+		name: 'M3dbIpRestrictionUpdatePut',
+		value: 'M3dbIpRestrictionUpdatePut',
+		action: 'Changes the list of ip restrictions to the m3db',
+		execute: m3dbIpRestrictionUpdatePutExecute,
+		description: m3dbIpRestrictionUpdatePutDescription,
+	},
+	{
+		name: 'M3dbLogKindListGet',
+		value: 'M3dbLogKindListGet',
+		action: 'List available log kinds',
+		execute: m3dbLogKindListGetExecute,
+		description: m3dbLogKindListGetDescription,
+	},
+	{
+		name: 'M3dbLogKindGetGet',
+		value: 'M3dbLogKindGetGet',
+		action: 'Get a log kind',
+		execute: m3dbLogKindGetGetExecute,
+		description: m3dbLogKindGetGetDescription,
+	},
+	{
+		name: 'M3dbLogSubscriptionListGet',
+		value: 'M3dbLogSubscriptionListGet',
+		action: 'List subscription IDs for a cluster',
+		execute: m3dbLogSubscriptionListGetExecute,
+		description: m3dbLogSubscriptionListGetDescription,
+	},
+	{
+		name: 'M3dbLogSubscriptionCreatePost',
+		value: 'M3dbLogSubscriptionCreatePost',
+		action: 'Create subscription to log to customer for a m3db',
+		execute: m3dbLogSubscriptionCreatePostExecute,
+		description: m3dbLogSubscriptionCreatePostDescription,
+	},
+	{
+		name: 'M3dbLogSubscriptionDeleteDelete',
+		value: 'M3dbLogSubscriptionDeleteDelete',
+		action: 'Delete a subscription',
+		execute: m3dbLogSubscriptionDeleteDeleteExecute,
+		description: m3dbLogSubscriptionDeleteDeleteDescription,
+	},
+	{
+		name: 'M3dbLogSubscriptionGetGet',
+		value: 'M3dbLogSubscriptionGetGet',
+		action: 'Get subscription details',
+		execute: m3dbLogSubscriptionGetGetExecute,
+		description: m3dbLogSubscriptionGetGetDescription,
+	},
+	{
+		name: 'M3dbLogUrlCreatePost',
+		value: 'M3dbLogUrlCreatePost',
+		action: 'Generate a temporary URL to retrieve logs',
+		execute: m3dbLogUrlCreatePostExecute,
+		description: m3dbLogUrlCreatePostDescription,
+	},
+	{
+		name: 'M3dbLogsGet',
+		value: 'M3dbLogsGet',
+		action: 'Retrieve the most recent m3db log messages (limited to 1000)',
+		execute: m3dbLogsGetExecute,
+		description: m3dbLogsGetDescription,
+	},
+	{
+		name: 'M3dbMaintenanceListGet',
+		value: 'M3dbMaintenanceListGet',
+		action: 'List maintenances for the m3db cluster',
+		execute: m3dbMaintenanceListGetExecute,
+		description: m3dbMaintenanceListGetDescription,
+	},
+	{
+		name: 'M3dbMaintenanceGetGet',
+		value: 'M3dbMaintenanceGetGet',
+		action: 'Get the maintenance for the m3db cluster',
+		execute: m3dbMaintenanceGetGetExecute,
+		description: m3dbMaintenanceGetGetDescription,
+	},
+	{
+		name: 'M3dbMaintenanceApplyPost',
+		value: 'M3dbMaintenanceApplyPost',
+		action: 'Apply the maintenance',
+		execute: m3dbMaintenanceApplyPostExecute,
+		description: m3dbMaintenanceApplyPostDescription,
+	},
+	{
+		name: 'M3dbMetricListGet',
+		value: 'M3dbMetricListGet',
+		action: 'List available metrics for the m3db cluster',
+		execute: m3dbMetricListGetExecute,
+		description: m3dbMetricListGetDescription,
+	},
+	{
+		name: 'M3dbMetricGetGet',
+		value: 'M3dbMetricGetGet',
+		action: 'Get the metric values for the m3db cluster',
+		execute: m3dbMetricGetGetExecute,
+		description: m3dbMetricGetGetDescription,
+	},
+	{
+		name: 'M3dbNamespaceListGet',
+		value: 'M3dbNamespaceListGet',
+		action: 'List namespaces of the m3db',
+		execute: m3dbNamespaceListGetExecute,
+		description: m3dbNamespaceListGetDescription,
+	},
+	{
+		name: 'M3dbNamespaceCreatePost',
+		value: 'M3dbNamespaceCreatePost',
+		action: 'Create a new namespace on the m3db cluster',
+		execute: m3dbNamespaceCreatePostExecute,
+		description: m3dbNamespaceCreatePostDescription,
+	},
+	{
+		name: 'M3dbNamespaceDeleteDelete',
+		value: 'M3dbNamespaceDeleteDelete',
+		action: 'Delete m3db namespace',
+		execute: m3dbNamespaceDeleteDeleteExecute,
+		description: m3dbNamespaceDeleteDeleteDescription,
+	},
+	{
+		name: 'M3dbNamespaceGetGet',
+		value: 'M3dbNamespaceGetGet',
+		action: 'Get m3db namespaces',
+		execute: m3dbNamespaceGetGetExecute,
+		description: m3dbNamespaceGetGetDescription,
+	},
+	{
+		name: 'M3dbNamespaceUpdatePut',
+		value: 'M3dbNamespaceUpdatePut',
+		action: 'Updates the namespace on the m3db cluster',
+		execute: m3dbNamespaceUpdatePutExecute,
+		description: m3dbNamespaceUpdatePutDescription,
+	},
+	{
+		name: 'M3dbNodeListGet',
+		value: 'M3dbNodeListGet',
+		action: 'List nodes of the m3db',
+		execute: m3dbNodeListGetExecute,
+		description: m3dbNodeListGetDescription,
+	},
+	{
+		name: 'M3dbNodeGetGet',
+		value: 'M3dbNodeGetGet',
+		action: 'Get m3db nodes',
+		execute: m3dbNodeGetGetExecute,
+		description: m3dbNodeGetGetDescription,
+	},
+	{
+		name: 'M3dbUserListGet',
+		value: 'M3dbUserListGet',
+		action: 'List users of the m3db',
+		execute: m3dbUserListGetExecute,
+		description: m3dbUserListGetDescription,
+	},
+	{
+		name: 'M3dbUserCreatePost',
+		value: 'M3dbUserCreatePost',
+		action: 'Create a new user on the m3db cluster',
+		execute: m3dbUserCreatePostExecute,
+		description: m3dbUserCreatePostDescription,
+	},
+	{
+		name: 'M3dbUserDeleteDelete',
+		value: 'M3dbUserDeleteDelete',
+		action: 'Delete m3db user',
+		execute: m3dbUserDeleteDeleteExecute,
+		description: m3dbUserDeleteDeleteDescription,
+	},
+	{
+		name: 'M3dbUserGetGet',
+		value: 'M3dbUserGetGet',
+		action: 'Get m3db users',
+		execute: m3dbUserGetGetExecute,
+		description: m3dbUserGetGetDescription,
+	},
+	{
+		name: 'M3dbUserUpdatePut',
+		value: 'M3dbUserUpdatePut',
+		action: 'Updates the user on the m3db cluster',
+		execute: m3dbUserUpdatePutExecute,
+		description: m3dbUserUpdatePutDescription,
+	},
+	{
+		name: 'M3dbUserCredentialsResetPost',
+		value: 'M3dbUserCredentialsResetPost',
+		action: 'Reset the password of a user',
+		execute: m3dbUserCredentialsResetPostExecute,
+		description: m3dbUserCredentialsResetPostDescription,
+	},
+	{
+		name: 'mongodbClusterListGet',
+		value: 'mongodbClusterListGet',
+		action: 'List MongoDB Clusters',
+		execute: mongodbClusterListGetExecute,
+		description: mongodbClusterListGetDescription,
+	},
+	{
+		name: 'mongodbClusterGetGet',
+		value: 'mongodbClusterGetGet',
+		action: 'Get MongoDB Cluster',
+		execute: mongodbClusterGetGetExecute,
+		description: mongodbClusterGetGetDescription,
+	},
+	{
+		name: 'mongodbClusterCreatePost',
+		value: 'mongodbClusterCreatePost',
+		action: 'Create MongoDB Cluster',
+		execute: mongodbClusterCreatePostExecute,
+		description: mongodbClusterCreatePostDescription,
+	},
+	{
+		name: 'mongodbClusterUpdatePut',
+		value: 'mongodbClusterUpdatePut',
+		action: 'Update MongoDB Cluster',
+		execute: mongodbClusterUpdatePutExecute,
+		description: mongodbClusterUpdatePutDescription,
+	},
+	{
+		name: 'mongodbClusterDeleteDelete',
+		value: 'mongodbClusterDeleteDelete',
+		action: 'Delete MongoDB Cluster',
+		execute: mongodbClusterDeleteDeleteExecute,
+		description: mongodbClusterDeleteDeleteDescription,
+	},
+	{
+		name: 'mongodbBackupListGet',
+		value: 'mongodbBackupListGet',
+		action: 'List MongoDB Backups',
+		execute: mongodbBackupListGetExecute,
+		description: mongodbBackupListGetDescription,
+	},
+	{
+		name: 'mongodbBackupGetGet',
+		value: 'mongodbBackupGetGet',
+		action: 'Get MongoDB Backup',
+		execute: mongodbBackupGetGetExecute,
+		description: mongodbBackupGetGetDescription,
+	},
+	{
+		name: 'mongodbBackupDeleteDelete',
+		value: 'mongodbBackupDeleteDelete',
+		action: 'Delete MongoDB Backup',
+		execute: mongodbBackupDeleteDeleteExecute,
+		description: mongodbBackupDeleteDeleteDescription,
+	},
+	{
+		name: 'mongodbBackupRestorePost',
+		value: 'mongodbBackupRestorePost',
+		action: 'Restore MongoDB Backup',
+		execute: mongodbBackupRestorePostExecute,
+		description: mongodbBackupRestorePostDescription,
+	},
+	{
+		name: 'mongodbIpRestrictionListGet',
+		value: 'mongodbIpRestrictionListGet',
+		action: 'List MongoDB IP Restrictions',
+		execute: mongodbIpRestrictionListGetExecute,
+		description: mongodbIpRestrictionListGetDescription,
+	},
+	{
+		name: 'mongodbIpRestrictionCreatePost',
+		value: 'mongodbIpRestrictionCreatePost',
+		action: 'Create MongoDB IP Restriction',
+		execute: mongodbIpRestrictionCreatePostExecute,
+		description: mongodbIpRestrictionCreatePostDescription,
+	},
+	{
+		name: 'mongodbIpRestrictionGetGet',
+		value: 'mongodbIpRestrictionGetGet',
+		action: 'Get MongoDB IP Restriction',
+		execute: mongodbIpRestrictionGetGetExecute,
+		description: mongodbIpRestrictionGetGetDescription,
+	},
+	{
+		name: 'mongodbIpRestrictionUpdatePut',
+		value: 'mongodbIpRestrictionUpdatePut',
+		action: 'Update MongoDB IP Restriction',
+		execute: mongodbIpRestrictionUpdatePutExecute,
+		description: mongodbIpRestrictionUpdatePutDescription,
+	},
+	{
+		name: 'mongodbIpRestrictionDeleteDelete',
+		value: 'mongodbIpRestrictionDeleteDelete',
+		action: 'Delete MongoDB IP Restriction',
+		execute: mongodbIpRestrictionDeleteDeleteExecute,
+		description: mongodbIpRestrictionDeleteDeleteDescription,
+	},
+	{
+		name: 'mongodbLogKindListGet',
+		value: 'mongodbLogKindListGet',
+		action: 'List MongoDB Log Kinds',
+		execute: mongodbLogKindListGetExecute,
+		description: mongodbLogKindListGetDescription,
+	},
+	{
+		name: 'mongodbLogKindGetGet',
+		value: 'mongodbLogKindGetGet',
+		action: 'Get MongoDB Log Kind',
+		execute: mongodbLogKindGetGetExecute,
+		description: mongodbLogKindGetGetDescription,
+	},
+	{
+		name: 'mongodbLogSubscriptionListGet',
+		value: 'mongodbLogSubscriptionListGet',
+		action: 'List MongoDB Log Subscriptions',
+		execute: mongodbLogSubscriptionListGetExecute,
+		description: mongodbLogSubscriptionListGetDescription,
+	},
+	{
+		name: 'mongodbLogSubscriptionCreatePost',
+		value: 'mongodbLogSubscriptionCreatePost',
+		action: 'Create MongoDB Log Subscription',
+		execute: mongodbLogSubscriptionCreatePostExecute,
+		description: mongodbLogSubscriptionCreatePostDescription,
+	},
+	{
+		name: 'mongodbLogSubscriptionGetGet',
+		value: 'mongodbLogSubscriptionGetGet',
+		action: 'Get MongoDB Log Subscription',
+		execute: mongodbLogSubscriptionGetGetExecute,
+		description: mongodbLogSubscriptionGetGetDescription,
+	},
+	{
+		name: 'mongodbLogSubscriptionDeleteDelete',
+		value: 'mongodbLogSubscriptionDeleteDelete',
+		action: 'Delete MongoDB Log Subscription',
+		execute: mongodbLogSubscriptionDeleteDeleteExecute,
+		description: mongodbLogSubscriptionDeleteDeleteDescription,
+	},
+	{
+		name: 'mongodbLogUrlCreatePost',
+		value: 'mongodbLogUrlCreatePost',
+		action: 'Create MongoDB Log URL',
+		execute: mongodbLogUrlCreatePostExecute,
+		description: mongodbLogUrlCreatePostDescription,
+	},
+	{
+		name: 'mongodbLogListGet',
+		value: 'mongodbLogListGet',
+		action: 'List MongoDB Logs',
+		execute: mongodbLogListGetExecute,
+		description: mongodbLogListGetDescription,
+	},
+	{
+		name: 'mongodbMaintenanceListGet',
+		value: 'mongodbMaintenanceListGet',
+		action: 'List MongoDB Maintenances',
+		execute: mongodbMaintenanceListGetExecute,
+		description: mongodbMaintenanceListGetDescription,
+	},
+	{
+		name: 'mongodbMaintenanceGetGet',
+		value: 'mongodbMaintenanceGetGet',
+		action: 'Get MongoDB Maintenance',
+		execute: mongodbMaintenanceGetGetExecute,
+		description: mongodbMaintenanceGetGetDescription,
+	},
+	{
+		name: 'mongodbMaintenanceApplyPost',
+		value: 'mongodbMaintenanceApplyPost',
+		action: 'Apply MongoDB Maintenance',
+		execute: mongodbMaintenanceApplyPostExecute,
+		description: mongodbMaintenanceApplyPostDescription,
+	},
+	{
+		name: 'mongodbMetricListGet',
+		value: 'mongodbMetricListGet',
+		action: 'List MongoDB Metrics',
+		execute: mongodbMetricListGetExecute,
+		description: mongodbMetricListGetDescription,
+	},
+	{
+		name: 'mongodbMetricNameGetGet',
+		value: 'mongodbMetricNameGetGet',
+		action: 'Get MongoDB Metric',
+		execute: mongodbMetricNameGetGetExecute,
+		description: mongodbMetricNameGetGetDescription,
+	},
+	{
+		name: 'mongodbNodeListGet',
+		value: 'mongodbNodeListGet',
+		action: 'List MongoDB Nodes',
+		execute: mongodbNodeListGetExecute,
+		description: mongodbNodeListGetDescription,
+	},
+	{
+		name: 'mongodbNodeCreatePost',
+		value: 'mongodbNodeCreatePost',
+		action: 'Create MongoDB Node',
+		execute: mongodbNodeCreatePostExecute,
+		description: mongodbNodeCreatePostDescription,
+	},
+	{
+		name: 'mongodbNodeGetGet',
+		value: 'mongodbNodeGetGet',
+		action: 'Get MongoDB Node',
+		execute: mongodbNodeGetGetExecute,
+		description: mongodbNodeGetGetDescription,
+	},
+	{
+		name: 'mongodbNodeUpdatePut',
+		value: 'mongodbNodeUpdatePut',
+		action: 'Update MongoDB Node',
+		execute: mongodbNodeUpdatePutExecute,
+		description: mongodbNodeUpdatePutDescription,
+	},
+	{
+		name: 'mongodbNodeDeleteDelete',
+		value: 'mongodbNodeDeleteDelete',
+		action: 'Delete MongoDB Node',
+		execute: mongodbNodeDeleteDeleteExecute,
+		description: mongodbNodeDeleteDeleteDescription,
+	},
+	{
+		name: 'mongodbPrometheusGetGet',
+		value: 'mongodbPrometheusGetGet',
+		action: 'Get MongoDB Prometheus',
+		execute: mongodbPrometheusGetGetExecute,
+		description: mongodbPrometheusGetGetDescription,
+	},
+	{
+		name: 'mongodbPrometheusCredentialsResetPost',
+		value: 'mongodbPrometheusCredentialsResetPost',
+		action: 'Reset MongoDB Prometheus Credentials',
+		execute: mongodbPrometheusCredentialsResetPostExecute,
+		description: mongodbPrometheusCredentialsResetPostDescription,
+	},
+	{
+		name: 'mongodbRestoreCreatePost',
+		value: 'mongodbRestoreCreatePost',
+		action: 'Restore MongoDB Cluster',
+		execute: mongodbRestoreCreatePostExecute,
+		description: mongodbRestoreCreatePostDescription,
+	},
+	{
+		name: 'mongodbRoleListGet',
+		value: 'mongodbRoleListGet',
+		action: 'List MongoDB Roles',
+		execute: mongodbRoleListGetExecute,
+		description: mongodbRoleListGetDescription,
+	},
+	{
+		name: 'mongodbUserListGet',
+		value: 'mongodbUserListGet',
+		action: 'List MongoDB Users',
+		execute: mongodbUserListGetExecute,
+		description: mongodbUserListGetDescription,
+	},
+	{
+		name: 'mongodbUserCreatePost',
+		value: 'mongodbUserCreatePost',
+		action: 'Create MongoDB User',
+		execute: mongodbUserCreatePostExecute,
+		description: mongodbUserCreatePostDescription,
+	},
+	{
+		name: 'mongodbUserGetGet',
+		value: 'mongodbUserGetGet',
+		action: 'Get MongoDB User',
+		execute: mongodbUserGetGetExecute,
+		description: mongodbUserGetGetDescription,
+	},
+	{
+		name: 'mongodbUserUpdatePut',
+		value: 'mongodbUserUpdatePut',
+		action: 'Update MongoDB User',
+		execute: mongodbUserUpdatePutExecute,
+		description: mongodbUserUpdatePutDescription,
+	},
+	{
+		name: 'mongodbUserDeleteDelete',
+		value: 'mongodbUserDeleteDelete',
+		action: 'Delete MongoDB User',
+		execute: mongodbUserDeleteDeleteExecute,
+		description: mongodbUserDeleteDeleteDescription,
+	},
+	{
+		name: 'mongodbUserCredentialsResetPost',
+		value: 'mongodbUserCredentialsResetPost',
+		action: 'Reset MongoDB User Credentials',
+		execute: mongodbUserCredentialsResetPostExecute,
+		description: mongodbUserCredentialsResetPostDescription,
+	},
+	{
+		name: 'mysqlClusterListGet',
+		value: 'mysqlClusterListGet',
+		action: 'List MySQL clusters in a project',
+		execute: mysqlClusterListGetExecute,
+		description: mysqlClusterListGetDescription,
+	},
+	{
+		name: 'mysqlClusterGetGet',
+		value: 'mysqlClusterGetGet',
+		action: 'Get MySQL cluster',
+		execute: mysqlClusterGetGetExecute,
+		description: mysqlClusterGetGetDescription,
+	},
+	{
+		name: 'mysqlClusterCreatePost',
+		value: 'mysqlClusterCreatePost',
+		action: 'Create MySQL cluster',
+		execute: mysqlClusterCreatePostExecute,
+		description: mysqlClusterCreatePostDescription,
+	},
+	{
+		name: 'mysqlClusterUpdatePut',
+		value: 'mysqlClusterUpdatePut',
+		action: 'Update MySQL cluster',
+		execute: mysqlClusterUpdatePutExecute,
+		description: mysqlClusterUpdatePutDescription,
+	},
+	{
+		name: 'mysqlClusterDeleteDelete',
+		value: 'mysqlClusterDeleteDelete',
+		action: 'Delete MySQL cluster',
+		execute: mysqlClusterDeleteDeleteExecute,
+		description: mysqlClusterDeleteDeleteDescription,
+	},
+	{
+		name: 'mysqlBackupListGet',
+		value: 'mysqlBackupListGet',
+		action: 'List MySQL backups',
+		execute: mysqlBackupListGetExecute,
+		description: mysqlBackupListGetDescription,
+	},
+	{
+		name: 'mysqlBackupCreatePost',
+		value: 'mysqlBackupCreatePost',
+		action: 'Create MySQL backup',
+		execute: mysqlBackupCreatePostExecute,
+		description: mysqlBackupCreatePostDescription,
+	},
+	{
+		name: 'mysqlBackupGetGet',
+		value: 'mysqlBackupGetGet',
+		action: 'Get MySQL backup',
+		execute: mysqlBackupGetGetExecute,
+		description: mysqlBackupGetGetDescription,
+	},
+	{
+		name: 'mysqlBackupDeleteDelete',
+		value: 'mysqlBackupDeleteDelete',
+		action: 'Delete MySQL backup',
+		execute: mysqlBackupDeleteDeleteExecute,
+		description: mysqlBackupDeleteDeleteDescription,
+	},
+	{
+		name: 'mysqlUserListGet',
+		value: 'mysqlUserListGet',
+		action: 'List MySQL users',
+		execute: mysqlUserListGetExecute,
+		description: mysqlUserListGetDescription,
+	},
+	{
+		name: 'mysqlUserCreatePost',
+		value: 'mysqlUserCreatePost',
+		action: 'Create MySQL user',
+		execute: mysqlUserCreatePostExecute,
+		description: mysqlUserCreatePostDescription,
+	},
+	{
+		name: 'mysqlUserGetGet',
+		value: 'mysqlUserGetGet',
+		action: 'Get MySQL user',
+		execute: mysqlUserGetGetExecute,
+		description: mysqlUserGetGetDescription,
+	},
+	{
+		name: 'mysqlUserUpdatePut',
+		value: 'mysqlUserUpdatePut',
+		action: 'Update MySQL user',
+		execute: mysqlUserUpdatePutExecute,
+		description: mysqlUserUpdatePutDescription,
+	},
+	{
+		name: 'mysqlUserDeleteDelete',
+		value: 'mysqlUserDeleteDelete',
+		action: 'Delete MySQL user',
+		execute: mysqlUserDeleteDeleteExecute,
+		description: mysqlUserDeleteDeleteDescription,
+	},
+	{
+		name: 'mysqlNodeListGet',
+		value: 'mysqlNodeListGet',
+		action: 'List MySQL nodes',
+		execute: mysqlNodeListGetExecute,
+		description: mysqlNodeListGetDescription,
+	},
+	{
+		name: 'mysqlNodeCreatePost',
+		value: 'mysqlNodeCreatePost',
+		action: 'Create MySQL node',
+		execute: mysqlNodeCreatePostExecute,
+		description: mysqlNodeCreatePostDescription,
+	},
+	{
+		name: 'mysqlNodeGetGet',
+		value: 'mysqlNodeGetGet',
+		action: 'Get MySQL node',
+		execute: mysqlNodeGetGetExecute,
+		description: mysqlNodeGetGetDescription,
+	},
+	{
+		name: 'mysqlNodeUpdatePut',
+		value: 'mysqlNodeUpdatePut',
+		action: 'Update MySQL node',
+		execute: mysqlNodeUpdatePutExecute,
+		description: mysqlNodeUpdatePutDescription,
+	},
+	{
+		name: 'mysqlNodeDeleteDelete',
+		value: 'mysqlNodeDeleteDelete',
+		action: 'Delete MySQL node',
+		execute: mysqlNodeDeleteDeleteExecute,
+		description: mysqlNodeDeleteDeleteDescription,
+	},
+	{
+		name: 'mysqlIpRestrictionListGet',
+		value: 'mysqlIpRestrictionListGet',
+		action: 'List MySQL IP restrictions',
+		execute: mysqlIpRestrictionListGetExecute,
+		description: mysqlIpRestrictionListGetDescription,
+	},
+	{
+		name: 'mysqlIpRestrictionCreatePost',
+		value: 'mysqlIpRestrictionCreatePost',
+		action: 'Create MySQL IP restriction',
+		execute: mysqlIpRestrictionCreatePostExecute,
+		description: mysqlIpRestrictionCreatePostDescription,
+	},
+	{
+		name: 'mysqlLogSubscriptionListGet',
+		value: 'mysqlLogSubscriptionListGet',
+		action: 'List MySQL log subscriptions',
+		execute: mysqlLogSubscriptionListGetExecute,
+		description: mysqlLogSubscriptionListGetDescription,
+	},
+	{
+		name: 'mysqlLogSubscriptionCreatePost',
+		value: 'mysqlLogSubscriptionCreatePost',
+		action: 'Create MySQL log subscription',
+		execute: mysqlLogSubscriptionCreatePostExecute,
+		description: mysqlLogSubscriptionCreatePostDescription,
+	},
+	{
+		name: 'mysqlLogSubscriptionGetGet',
+		value: 'mysqlLogSubscriptionGetGet',
+		action: 'Get MySQL log subscription',
+		execute: mysqlLogSubscriptionGetGetExecute,
+		description: mysqlLogSubscriptionGetGetDescription,
+	},
+	{
+		name: 'mysqlMaintenanceGet',
+		value: 'mysqlMaintenanceGet',
+		action: 'Get MySQL maintenance',
+		execute: mysqlMaintenanceGetExecute,
+		description: mysqlMaintenanceGetDescription,
+	},
+	{
+		name: 'mysqlMaintenanceUpdatePut',
+		value: 'mysqlMaintenanceUpdatePut',
+		action: 'Update MySQL maintenance',
+		execute: mysqlMaintenanceUpdatePutExecute,
+		description: mysqlMaintenanceUpdatePutDescription,
+	},
+	{
+		name: 'mysqlMetricGet',
+		value: 'mysqlMetricGet',
+		action: 'Get MySQL metric',
+		execute: mysqlMetricGetExecute,
+		description: mysqlMetricGetDescription,
+	},
+	{
+		name: 'mysqlPrometheusGet',
+		value: 'mysqlPrometheusGet',
+		action: 'Get MySQL prometheus',
+		execute: mysqlPrometheusGetExecute,
+		description: mysqlPrometheusGetDescription,
+	},
+	{
+		name: 'mysqlCertificateListGet',
+		value: 'mysqlCertificateListGet',
+		action: 'List MySQL certificates',
+		execute: mysqlCertificateListGetExecute,
+		description: mysqlCertificateListGetDescription,
+	},
+	{
+		name: 'mysqlCertificateCreatePost',
+		value: 'mysqlCertificateCreatePost',
+		action: 'Create MySQL certificate',
+		execute: mysqlCertificateCreatePostExecute,
+		description: mysqlCertificateCreatePostDescription,
+	},
+	{
+		name: 'mysqlIntegrationListGet',
+		value: 'mysqlIntegrationListGet',
+		action: 'List MySQL integrations',
+		execute: mysqlIntegrationListGetExecute,
+		description: mysqlIntegrationListGetDescription,
+	},
+	{
+		name: 'mysqlIntegrationCreatePost',
+		value: 'mysqlIntegrationCreatePost',
+		action: 'Create MySQL integration',
+		execute: mysqlIntegrationCreatePostExecute,
+		description: mysqlIntegrationCreatePostDescription,
+	},
+	{
+		name: 'opensearchAdvancedConfigurationListGet',
+		value: 'opensearchAdvancedConfigurationListGet',
+		action: 'List Advanced Configuration OpenSearch',
+		execute: opensearchAdvancedConfigurationListGetExecute,
+		description: opensearchAdvancedConfigurationListGetDescription,
+	},
+	{
+		name: 'opensearchAdvancedConfigurationUpdatePut',
+		value: 'opensearchAdvancedConfigurationUpdatePut',
+		action: 'Update Advanced Configuration OpenSearch',
+		execute: opensearchAdvancedConfigurationUpdatePutExecute,
+		description: opensearchAdvancedConfigurationUpdatePutDescription,
+	},
+	{
+		name: 'opensearchBackupGetGet',
+		value: 'opensearchBackupGetGet',
+		action: 'Get Backup OpenSearch',
+		execute: opensearchBackupGetGetExecute,
+		description: opensearchBackupGetGetDescription,
+	},
+	{
+		name: 'opensearchBackupListGet',
+		value: 'opensearchBackupListGet',
+		action: 'List Backup OpenSearch',
+		execute: opensearchBackupListGetExecute,
+		description: opensearchBackupListGetDescription,
+	},
+	{
+		name: 'opensearchCapabilitiesAdvancedConfigurationListGet',
+		value: 'opensearchCapabilitiesAdvancedConfigurationListGet',
+		action: 'List Capabilities Advanced Configuration OpenSearch',
+		execute: opensearchCapabilitiesAdvancedConfigurationListGetExecute,
+		description: opensearchCapabilitiesAdvancedConfigurationListGetDescription,
+	},
+	{
+		name: 'opensearchCapabilitiesBackupRegionsListGet',
+		value: 'opensearchCapabilitiesBackupRegionsListGet',
+		action: 'List Capabilities Backup Regions OpenSearch',
+		execute: opensearchCapabilitiesBackupRegionsListGetExecute,
+		description: opensearchCapabilitiesBackupRegionsListGetDescription,
+	},
+	{
+		name: 'opensearchCapabilitiesIntegrationListGet',
+		value: 'opensearchCapabilitiesIntegrationListGet',
+		action: 'List Capabilities Integration OpenSearch',
+		execute: opensearchCapabilitiesIntegrationListGetExecute,
+		description: opensearchCapabilitiesIntegrationListGetDescription,
+	},
+	{
+		name: 'opensearchClusterCreatePost',
+		value: 'opensearchClusterCreatePost',
+		action: 'Create Cluster OpenSearch',
+		execute: opensearchClusterCreatePostExecute,
+		description: opensearchClusterCreatePostDescription,
+	},
+	{
+		name: 'opensearchClusterDeleteDelete',
+		value: 'opensearchClusterDeleteDelete',
+		action: 'Delete Cluster OpenSearch',
+		execute: opensearchClusterDeleteDeleteExecute,
+		description: opensearchClusterDeleteDeleteDescription,
+	},
+	{
+		name: 'opensearchClusterGetGet',
+		value: 'opensearchClusterGetGet',
+		action: 'Get Cluster OpenSearch',
+		execute: opensearchClusterGetGetExecute,
+		description: opensearchClusterGetGetDescription,
+	},
+	{
+		name: 'opensearchClusterListGet',
+		value: 'opensearchClusterListGet',
+		action: 'List Cluster OpenSearch',
+		execute: opensearchClusterListGetExecute,
+		description: opensearchClusterListGetDescription,
+	},
+	{
+		name: 'opensearchClusterUpdatePut',
+		value: 'opensearchClusterUpdatePut',
+		action: 'Update Cluster OpenSearch',
+		execute: opensearchClusterUpdatePutExecute,
+		description: opensearchClusterUpdatePutDescription,
+	},
+	{
+		name: 'opensearchIndexDeleteDelete',
+		value: 'opensearchIndexDeleteDelete',
+		action: 'Delete Index OpenSearch',
+		execute: opensearchIndexDeleteDeleteExecute,
+		description: opensearchIndexDeleteDeleteDescription,
+	},
+	{
+		name: 'opensearchIndexGetGet',
+		value: 'opensearchIndexGetGet',
+		action: 'Get Index OpenSearch',
+		execute: opensearchIndexGetGetExecute,
+		description: opensearchIndexGetGetDescription,
+	},
+	{
+		name: 'opensearchIndexListGet',
+		value: 'opensearchIndexListGet',
+		action: 'List Index OpenSearch',
+		execute: opensearchIndexListGetExecute,
+		description: opensearchIndexListGetDescription,
+	},
+	{
+		name: 'opensearchIntegrationCreatePost',
+		value: 'opensearchIntegrationCreatePost',
+		action: 'Create Integration OpenSearch',
+		execute: opensearchIntegrationCreatePostExecute,
+		description: opensearchIntegrationCreatePostDescription,
+	},
+	{
+		name: 'opensearchIntegrationDeleteDelete',
+		value: 'opensearchIntegrationDeleteDelete',
+		action: 'Delete Integration OpenSearch',
+		execute: opensearchIntegrationDeleteDeleteExecute,
+		description: opensearchIntegrationDeleteDeleteDescription,
+	},
+	{
+		name: 'opensearchIntegrationGetGet',
+		value: 'opensearchIntegrationGetGet',
+		action: 'Get Integration OpenSearch',
+		execute: opensearchIntegrationGetGetExecute,
+		description: opensearchIntegrationGetGetDescription,
+	},
+	{
+		name: 'opensearchIntegrationListGet',
+		value: 'opensearchIntegrationListGet',
+		action: 'List Integration OpenSearch',
+		execute: opensearchIntegrationListGetExecute,
+		description: opensearchIntegrationListGetDescription,
+	},
+	{
+		name: 'opensearchIpRestrictionCreatePost',
+		value: 'opensearchIpRestrictionCreatePost',
+		action: 'Create Ip Restriction OpenSearch',
+		execute: opensearchIpRestrictionCreatePostExecute,
+		description: opensearchIpRestrictionCreatePostDescription,
+	},
+	{
+		name: 'opensearchIpRestrictionDeleteDelete',
+		value: 'opensearchIpRestrictionDeleteDelete',
+		action: 'Delete Ip Restriction OpenSearch',
+		execute: opensearchIpRestrictionDeleteDeleteExecute,
+		description: opensearchIpRestrictionDeleteDeleteDescription,
+	},
+	{
+		name: 'opensearchIpRestrictionGetGet',
+		value: 'opensearchIpRestrictionGetGet',
+		action: 'Get Ip Restriction OpenSearch',
+		execute: opensearchIpRestrictionGetGetExecute,
+		description: opensearchIpRestrictionGetGetDescription,
+	},
+	{
+		name: 'opensearchIpRestrictionListGet',
+		value: 'opensearchIpRestrictionListGet',
+		action: 'List Ip Restriction OpenSearch',
+		execute: opensearchIpRestrictionListGetExecute,
+		description: opensearchIpRestrictionListGetDescription,
+	},
+	{
+		name: 'opensearchIpRestrictionUpdatePut',
+		value: 'opensearchIpRestrictionUpdatePut',
+		action: 'Update Ip Restriction OpenSearch',
+		execute: opensearchIpRestrictionUpdatePutExecute,
+		description: opensearchIpRestrictionUpdatePutDescription,
+	},
+	{
+		name: 'opensearchLogKindGet',
+		value: 'opensearchLogKindGet',
+		action: 'Cluster OpenSearch',
+		execute: opensearchLogKindGetExecute,
+		description: opensearchLogKindGetDescription,
+	},
+	{
+		name: 'opensearchLogKindListGet',
+		value: 'opensearchLogKindListGet',
+		action: 'List Log Kind OpenSearch',
+		execute: opensearchLogKindListGetExecute,
+		description: opensearchLogKindListGetDescription,
+	},
+	{
+		name: 'opensearchLogSubscriptionCreatePost',
+		value: 'opensearchLogSubscriptionCreatePost',
+		action: 'Create Log Subscription OpenSearch',
+		execute: opensearchLogSubscriptionCreatePostExecute,
+		description: opensearchLogSubscriptionCreatePostDescription,
+	},
+	{
+		name: 'opensearchLogSubscriptionDeleteDelete',
+		value: 'opensearchLogSubscriptionDeleteDelete',
+		action: 'Delete Log Subscription OpenSearch',
+		execute: opensearchLogSubscriptionDeleteDeleteExecute,
+		description: opensearchLogSubscriptionDeleteDeleteDescription,
+	},
+	{
+		name: 'opensearchLogSubscriptionGet',
+		value: 'opensearchLogSubscriptionGet',
+		action: 'Cluster OpenSearch',
+		execute: opensearchLogSubscriptionGetExecute,
+		description: opensearchLogSubscriptionGetDescription,
+	},
+	{
+		name: 'opensearchLogSubscriptionListGet',
+		value: 'opensearchLogSubscriptionListGet',
+		action: 'List Log Subscription OpenSearch',
+		execute: opensearchLogSubscriptionListGetExecute,
+		description: opensearchLogSubscriptionListGetDescription,
+	},
+	{
+		name: 'opensearchLogUrlCreatePost',
+		value: 'opensearchLogUrlCreatePost',
+		action: 'Create Log Url OpenSearch',
+		execute: opensearchLogUrlCreatePostExecute,
+		description: opensearchLogUrlCreatePostDescription,
+	},
+	{
+		name: 'opensearchLogsListGet',
+		value: 'opensearchLogsListGet',
+		action: 'List Logs OpenSearch',
+		execute: opensearchLogsListGetExecute,
+		description: opensearchLogsListGetDescription,
+	},
+	{
+		name: 'opensearchMaintenanceApplyPost',
+		value: 'opensearchMaintenanceApplyPost',
+		action: 'Cluster OpenSearch',
+		execute: opensearchMaintenanceApplyPostExecute,
+		description: opensearchMaintenanceApplyPostDescription,
+	},
+	{
+		name: 'opensearchMaintenanceGetGet',
+		value: 'opensearchMaintenanceGetGet',
+		action: 'Get Maintenance OpenSearch',
+		execute: opensearchMaintenanceGetGetExecute,
+		description: opensearchMaintenanceGetGetDescription,
+	},
+	{
+		name: 'opensearchMaintenanceListGet',
+		value: 'opensearchMaintenanceListGet',
+		action: 'List Maintenance OpenSearch',
+		execute: opensearchMaintenanceListGetExecute,
+		description: opensearchMaintenanceListGetDescription,
+	},
+	{
+		name: 'opensearchMetricGetGet',
+		value: 'opensearchMetricGetGet',
+		action: 'Get Metric OpenSearch',
+		execute: opensearchMetricGetGetExecute,
+		description: opensearchMetricGetGetDescription,
+	},
+	{
+		name: 'opensearchMetricListGet',
+		value: 'opensearchMetricListGet',
+		action: 'List Metric OpenSearch',
+		execute: opensearchMetricListGetExecute,
+		description: opensearchMetricListGetDescription,
+	},
+	{
+		name: 'opensearchNodeGetGet',
+		value: 'opensearchNodeGetGet',
+		action: 'Get Node OpenSearch',
+		execute: opensearchNodeGetGetExecute,
+		description: opensearchNodeGetGetDescription,
+	},
+	{
+		name: 'opensearchNodeListGet',
+		value: 'opensearchNodeListGet',
+		action: 'List Node OpenSearch',
+		execute: opensearchNodeListGetExecute,
+		description: opensearchNodeListGetDescription,
+	},
+	{
+		name: 'opensearchPatternCreatePost',
+		value: 'opensearchPatternCreatePost',
+		action: 'Create Pattern OpenSearch',
+		execute: opensearchPatternCreatePostExecute,
+		description: opensearchPatternCreatePostDescription,
+	},
+	{
+		name: 'opensearchPatternDeleteDelete',
+		value: 'opensearchPatternDeleteDelete',
+		action: 'Delete Pattern OpenSearch',
+		execute: opensearchPatternDeleteDeleteExecute,
+		description: opensearchPatternDeleteDeleteDescription,
+	},
+	{
+		name: 'opensearchPatternGetGet',
+		value: 'opensearchPatternGetGet',
+		action: 'Get Pattern OpenSearch',
+		execute: opensearchPatternGetGetExecute,
+		description: opensearchPatternGetGetDescription,
+	},
+	{
+		name: 'opensearchPatternListGet',
+		value: 'opensearchPatternListGet',
+		action: 'List Pattern OpenSearch',
+		execute: opensearchPatternListGetExecute,
+		description: opensearchPatternListGetDescription,
+	},
+	{
+		name: 'opensearchPermissionsListGet',
+		value: 'opensearchPermissionsListGet',
+		action: 'List Permissions OpenSearch',
+		execute: opensearchPermissionsListGetExecute,
+		description: opensearchPermissionsListGetDescription,
+	},
+	{
+		name: 'opensearchPrometheusCredentialsResetPost',
+		value: 'opensearchPrometheusCredentialsResetPost',
+		action: 'Cluster OpenSearch',
+		execute: opensearchPrometheusCredentialsResetPostExecute,
+		description: opensearchPrometheusCredentialsResetPostDescription,
+	},
+	{
+		name: 'opensearchPrometheusListGet',
+		value: 'opensearchPrometheusListGet',
+		action: 'List Prometheus OpenSearch',
+		execute: opensearchPrometheusListGetExecute,
+		description: opensearchPrometheusListGetDescription,
+	},
+	{
+		name: 'opensearchUserCreatePost',
+		value: 'opensearchUserCreatePost',
+		action: 'Create User OpenSearch',
+		execute: opensearchUserCreatePostExecute,
+		description: opensearchUserCreatePostDescription,
+	},
+	{
+		name: 'opensearchUserCredentialsResetPost',
+		value: 'opensearchUserCredentialsResetPost',
+		action: 'Cluster OpenSearch',
+		execute: opensearchUserCredentialsResetPostExecute,
+		description: opensearchUserCredentialsResetPostDescription,
+	},
+	{
+		name: 'opensearchUserDeleteDelete',
+		value: 'opensearchUserDeleteDelete',
+		action: 'Delete User OpenSearch',
+		execute: opensearchUserDeleteDeleteExecute,
+		description: opensearchUserDeleteDeleteDescription,
+	},
+	{
+		name: 'opensearchUserGetGet',
+		value: 'opensearchUserGetGet',
+		action: 'Get User OpenSearch',
+		execute: opensearchUserGetGetExecute,
+		description: opensearchUserGetGetDescription,
+	},
+	{
+		name: 'opensearchUserListGet',
+		value: 'opensearchUserListGet',
+		action: 'List User OpenSearch',
+		execute: opensearchUserListGetExecute,
+		description: opensearchUserListGetDescription,
+	},
+	{
+		name: 'opensearchUserUpdatePut',
+		value: 'opensearchUserUpdatePut',
+		action: 'Update User OpenSearch',
+		execute: opensearchUserUpdatePutExecute,
+		description: opensearchUserUpdatePutDescription,
+	},
+	{
+		name: 'postgresqlClusterListGet',
+		value: 'postgresqlClusterListGet',
+		action: 'List PostgreSQL clusters in a project',
+		execute: postgresqlClusterListGetExecute,
+		description: postgresqlClusterListGetDescription,
+	},
+	{
+		name: 'postgresqlClusterGetGet',
+		value: 'postgresqlClusterGetGet',
+		action: 'Get PostgreSQL cluster',
+		execute: postgresqlClusterGetGetExecute,
+		description: postgresqlClusterGetGetDescription,
+	},
+	{
+		name: 'postgresqlClusterCreatePost',
+		value: 'postgresqlClusterCreatePost',
+		action: 'Create PostgreSQL cluster',
+		execute: postgresqlClusterCreatePostExecute,
+		description: postgresqlClusterCreatePostDescription,
+	},
+	{
+		name: 'postgresqlClusterUpdatePut',
+		value: 'postgresqlClusterUpdatePut',
+		action: 'Update PostgreSQL cluster',
+		execute: postgresqlClusterUpdatePutExecute,
+		description: postgresqlClusterUpdatePutDescription,
+	},
+	{
+		name: 'postgresqlClusterDeleteDelete',
+		value: 'postgresqlClusterDeleteDelete',
+		action: 'Delete PostgreSQL cluster',
+		execute: postgresqlClusterDeleteDeleteExecute,
+		description: postgresqlClusterDeleteDeleteDescription,
+	},
+	{
+		name: 'postgresqlBackupListGet',
+		value: 'postgresqlBackupListGet',
+		action: 'List PostgreSQL backups',
+		execute: postgresqlBackupListGetExecute,
+		description: postgresqlBackupListGetDescription,
+	},
+	{
+		name: 'postgresqlBackupCreatePost',
+		value: 'postgresqlBackupCreatePost',
+		action: 'Create PostgreSQL backup',
+		execute: postgresqlBackupCreatePostExecute,
+		description: postgresqlBackupCreatePostDescription,
+	},
+	{
+		name: 'postgresqlBackupGetGet',
+		value: 'postgresqlBackupGetGet',
+		action: 'Get PostgreSQL backup',
+		execute: postgresqlBackupGetGetExecute,
+		description: postgresqlBackupGetGetDescription,
+	},
+	{
+		name: 'postgresqlBackupDeleteDelete',
+		value: 'postgresqlBackupDeleteDelete',
+		action: 'Delete PostgreSQL backup',
+		execute: postgresqlBackupDeleteDeleteExecute,
+		description: postgresqlBackupDeleteDeleteDescription,
+	},
+	{
+		name: 'postgresqlUserListGet',
+		value: 'postgresqlUserListGet',
+		action: 'List PostgreSQL users',
+		execute: postgresqlUserListGetExecute,
+		description: postgresqlUserListGetDescription,
+	},
+	{
+		name: 'postgresqlUserCreatePost',
+		value: 'postgresqlUserCreatePost',
+		action: 'Create PostgreSQL user',
+		execute: postgresqlUserCreatePostExecute,
+		description: postgresqlUserCreatePostDescription,
+	},
+	{
+		name: 'postgresqlUserGetGet',
+		value: 'postgresqlUserGetGet',
+		action: 'Get PostgreSQL user',
+		execute: postgresqlUserGetGetExecute,
+		description: postgresqlUserGetGetDescription,
+	},
+	{
+		name: 'postgresqlUserUpdatePut',
+		value: 'postgresqlUserUpdatePut',
+		action: 'Update PostgreSQL user',
+		execute: postgresqlUserUpdatePutExecute,
+		description: postgresqlUserUpdatePutDescription,
+	},
+	{
+		name: 'postgresqlUserDeleteDelete',
+		value: 'postgresqlUserDeleteDelete',
+		action: 'Delete PostgreSQL user',
+		execute: postgresqlUserDeleteDeleteExecute,
+		description: postgresqlUserDeleteDeleteDescription,
+	},
+	{
+		name: 'postgresqlNodeListGet',
+		value: 'postgresqlNodeListGet',
+		action: 'List PostgreSQL nodes',
+		execute: postgresqlNodeListGetExecute,
+		description: postgresqlNodeListGetDescription,
+	},
+	{
+		name: 'postgresqlNodeCreatePost',
+		value: 'postgresqlNodeCreatePost',
+		action: 'Create PostgreSQL node',
+		execute: postgresqlNodeCreatePostExecute,
+		description: postgresqlNodeCreatePostDescription,
+	},
+	{
+		name: 'postgresqlNodeGetGet',
+		value: 'postgresqlNodeGetGet',
+		action: 'Get PostgreSQL node',
+		execute: postgresqlNodeGetGetExecute,
+		description: postgresqlNodeGetGetDescription,
+	},
+	{
+		name: 'postgresqlNodeUpdatePut',
+		value: 'postgresqlNodeUpdatePut',
+		action: 'Update PostgreSQL node',
+		execute: postgresqlNodeUpdatePutExecute,
+		description: postgresqlNodeUpdatePutDescription,
+	},
+	{
+		name: 'postgresqlNodeDeleteDelete',
+		value: 'postgresqlNodeDeleteDelete',
+		action: 'Delete PostgreSQL node',
+		execute: postgresqlNodeDeleteDeleteExecute,
+		description: postgresqlNodeDeleteDeleteDescription,
+	},
+	{
+		name: 'postgresqlIpRestrictionListGet',
+		value: 'postgresqlIpRestrictionListGet',
+		action: 'List PostgreSQL IP restrictions',
+		execute: postgresqlIpRestrictionListGetExecute,
+		description: postgresqlIpRestrictionListGetDescription,
+	},
+	{
+		name: 'postgresqlIpRestrictionCreatePost',
+		value: 'postgresqlIpRestrictionCreatePost',
+		action: 'Create PostgreSQL IP restriction',
+		execute: postgresqlIpRestrictionCreatePostExecute,
+		description: postgresqlIpRestrictionCreatePostDescription,
+	},
+	{
+		name: 'postgresqlLogSubscriptionListGet',
+		value: 'postgresqlLogSubscriptionListGet',
+		action: 'List PostgreSQL log subscriptions',
+		execute: postgresqlLogSubscriptionListGetExecute,
+		description: postgresqlLogSubscriptionListGetDescription,
+	},
+	{
+		name: 'postgresqlLogSubscriptionCreatePost',
+		value: 'postgresqlLogSubscriptionCreatePost',
+		action: 'Create PostgreSQL log subscription',
+		execute: postgresqlLogSubscriptionCreatePostExecute,
+		description: postgresqlLogSubscriptionCreatePostDescription,
+	},
+	{
+		name: 'postgresqlLogSubscriptionGetGet',
+		value: 'postgresqlLogSubscriptionGetGet',
+		action: 'Get PostgreSQL log subscription',
+		execute: postgresqlLogSubscriptionGetGetExecute,
+		description: postgresqlLogSubscriptionGetGetDescription,
+	},
+	{
+		name: 'postgresqlMaintenanceGet',
+		value: 'postgresqlMaintenanceGet',
+		action: 'Get PostgreSQL maintenance',
+		execute: postgresqlMaintenanceGetExecute,
+		description: postgresqlMaintenanceGetDescription,
+	},
+	{
+		name: 'postgresqlMaintenanceUpdatePut',
+		value: 'postgresqlMaintenanceUpdatePut',
+		action: 'Update PostgreSQL maintenance',
+		execute: postgresqlMaintenanceUpdatePutExecute,
+		description: postgresqlMaintenanceUpdatePutDescription,
+	},
+	{
+		name: 'postgresqlMetricGet',
+		value: 'postgresqlMetricGet',
+		action: 'Get PostgreSQL metric',
+		execute: postgresqlMetricGetExecute,
+		description: postgresqlMetricGetDescription,
+	},
+	{
+		name: 'postgresqlPrometheusGet',
+		value: 'postgresqlPrometheusGet',
+		action: 'Get PostgreSQL prometheus',
+		execute: postgresqlPrometheusGetExecute,
+		description: postgresqlPrometheusGetDescription,
+	},
+	{
+		name: 'postgresqlCertificateListGet',
+		value: 'postgresqlCertificateListGet',
+		action: 'List PostgreSQL certificates',
+		execute: postgresqlCertificateListGetExecute,
+		description: postgresqlCertificateListGetDescription,
+	},
+	{
+		name: 'postgresqlCertificateCreatePost',
+		value: 'postgresqlCertificateCreatePost',
+		action: 'Create PostgreSQL certificate',
+		execute: postgresqlCertificateCreatePostExecute,
+		description: postgresqlCertificateCreatePostDescription,
+	},
+	{
+		name: 'postgresqlIntegrationListGet',
+		value: 'postgresqlIntegrationListGet',
+		action: 'List PostgreSQL integrations',
+		execute: postgresqlIntegrationListGetExecute,
+		description: postgresqlIntegrationListGetDescription,
+	},
+	{
+		name: 'postgresqlIntegrationCreatePost',
+		value: 'postgresqlIntegrationCreatePost',
+		action: 'Create PostgreSQL integration',
+		execute: postgresqlIntegrationCreatePostExecute,
+		description: postgresqlIntegrationCreatePostDescription,
+	},
+	{
+		name: 'valkeyClusterListGet',
+		value: 'valkeyClusterListGet',
+		action: 'List Valkey clusters in a project',
+		execute: valkeyClusterListGetExecute,
+		description: valkeyClusterListGetDescription,
+	},
+	{
+		name: 'valkeyClusterGetGet',
+		value: 'valkeyClusterGetGet',
+		action: 'Get Valkey cluster',
+		execute: valkeyClusterGetGetExecute,
+		description: valkeyClusterGetGetDescription,
+	},
+	{
+		name: 'valkeyClusterCreatePost',
+		value: 'valkeyClusterCreatePost',
+		action: 'Create Valkey cluster',
+		execute: valkeyClusterCreatePostExecute,
+		description: valkeyClusterCreatePostDescription,
+	},
+	{
+		name: 'valkeyClusterUpdatePut',
+		value: 'valkeyClusterUpdatePut',
+		action: 'Update Valkey cluster',
+		execute: valkeyClusterUpdatePutExecute,
+		description: valkeyClusterUpdatePutDescription,
+	},
+	{
+		name: 'valkeyClusterDeleteDelete',
+		value: 'valkeyClusterDeleteDelete',
+		action: 'Delete Valkey cluster',
+		execute: valkeyClusterDeleteDeleteExecute,
+		description: valkeyClusterDeleteDeleteDescription,
+	},
+	{
+		name: 'valkeyBackupListGet',
+		value: 'valkeyBackupListGet',
+		action: 'List Valkey backups',
+		execute: valkeyBackupListGetExecute,
+		description: valkeyBackupListGetDescription,
+	},
+	{
+		name: 'valkeyBackupCreatePost',
+		value: 'valkeyBackupCreatePost',
+		action: 'Create Valkey backup',
+		execute: valkeyBackupCreatePostExecute,
+		description: valkeyBackupCreatePostDescription,
+	},
+	{
+		name: 'valkeyBackupGetGet',
+		value: 'valkeyBackupGetGet',
+		action: 'Get Valkey backup',
+		execute: valkeyBackupGetGetExecute,
+		description: valkeyBackupGetGetDescription,
+	},
+	{
+		name: 'valkeyBackupDeleteDelete',
+		value: 'valkeyBackupDeleteDelete',
+		action: 'Delete Valkey backup',
+		execute: valkeyBackupDeleteDeleteExecute,
+		description: valkeyBackupDeleteDeleteDescription,
+	},
+	{
+		name: 'valkeyUserListGet',
+		value: 'valkeyUserListGet',
+		action: 'List Valkey users',
+		execute: valkeyUserListGetExecute,
+		description: valkeyUserListGetDescription,
+	},
+	{
+		name: 'valkeyUserCreatePost',
+		value: 'valkeyUserCreatePost',
+		action: 'Create Valkey user',
+		execute: valkeyUserCreatePostExecute,
+		description: valkeyUserCreatePostDescription,
+	},
+	{
+		name: 'valkeyUserGetGet',
+		value: 'valkeyUserGetGet',
+		action: 'Get Valkey user',
+		execute: valkeyUserGetGetExecute,
+		description: valkeyUserGetGetDescription,
+	},
+	{
+		name: 'valkeyUserUpdatePut',
+		value: 'valkeyUserUpdatePut',
+		action: 'Update Valkey user',
+		execute: valkeyUserUpdatePutExecute,
+		description: valkeyUserUpdatePutDescription,
+	},
+	{
+		name: 'valkeyUserDeleteDelete',
+		value: 'valkeyUserDeleteDelete',
+		action: 'Delete Valkey user',
+		execute: valkeyUserDeleteDeleteExecute,
+		description: valkeyUserDeleteDeleteDescription,
+	},
+	{
+		name: 'valkeyNodeListGet',
+		value: 'valkeyNodeListGet',
+		action: 'List Valkey nodes',
+		execute: valkeyNodeListGetExecute,
+		description: valkeyNodeListGetDescription,
+	},
+	{
+		name: 'valkeyNodeCreatePost',
+		value: 'valkeyNodeCreatePost',
+		action: 'Create Valkey node',
+		execute: valkeyNodeCreatePostExecute,
+		description: valkeyNodeCreatePostDescription,
+	},
+	{
+		name: 'valkeyNodeGetGet',
+		value: 'valkeyNodeGetGet',
+		action: 'Get Valkey node',
+		execute: valkeyNodeGetGetExecute,
+		description: valkeyNodeGetGetDescription,
+	},
+	{
+		name: 'valkeyNodeUpdatePut',
+		value: 'valkeyNodeUpdatePut',
+		action: 'Update Valkey node',
+		execute: valkeyNodeUpdatePutExecute,
+		description: valkeyNodeUpdatePutDescription,
+	},
+	{
+		name: 'valkeyNodeDeleteDelete',
+		value: 'valkeyNodeDeleteDelete',
+		action: 'Delete Valkey node',
+		execute: valkeyNodeDeleteDeleteExecute,
+		description: valkeyNodeDeleteDeleteDescription,
+	},
+	{
+		name: 'valkeyIpRestrictionListGet',
+		value: 'valkeyIpRestrictionListGet',
+		action: 'List Valkey IP restrictions',
+		execute: valkeyIpRestrictionListGetExecute,
+		description: valkeyIpRestrictionListGetDescription,
+	},
+	{
+		name: 'valkeyIpRestrictionCreatePost',
+		value: 'valkeyIpRestrictionCreatePost',
+		action: 'Create Valkey IP restriction',
+		execute: valkeyIpRestrictionCreatePostExecute,
+		description: valkeyIpRestrictionCreatePostDescription,
+	},
+	{
+		name: 'valkeyLogSubscriptionListGet',
+		value: 'valkeyLogSubscriptionListGet',
+		action: 'List Valkey log subscriptions',
+		execute: valkeyLogSubscriptionListGetExecute,
+		description: valkeyLogSubscriptionListGetDescription,
+	},
+	{
+		name: 'valkeyLogSubscriptionCreatePost',
+		value: 'valkeyLogSubscriptionCreatePost',
+		action: 'Create Valkey log subscription',
+		execute: valkeyLogSubscriptionCreatePostExecute,
+		description: valkeyLogSubscriptionCreatePostDescription,
+	},
+	{
+		name: 'valkeyLogSubscriptionGetGet',
+		value: 'valkeyLogSubscriptionGetGet',
+		action: 'Get Valkey log subscription',
+		execute: valkeyLogSubscriptionGetGetExecute,
+		description: valkeyLogSubscriptionGetGetDescription,
+	},
+	{
+		name: 'valkeyMaintenanceGet',
+		value: 'valkeyMaintenanceGet',
+		action: 'Get Valkey maintenance',
+		execute: valkeyMaintenanceGetExecute,
+		description: valkeyMaintenanceGetDescription,
+	},
+	{
+		name: 'valkeyMaintenanceUpdatePut',
+		value: 'valkeyMaintenanceUpdatePut',
+		action: 'Update Valkey maintenance',
+		execute: valkeyMaintenanceUpdatePutExecute,
+		description: valkeyMaintenanceUpdatePutDescription,
+	},
+	{
+		name: 'valkeyMetricGet',
+		value: 'valkeyMetricGet',
+		action: 'Get Valkey metric',
+		execute: valkeyMetricGetExecute,
+		description: valkeyMetricGetDescription,
+	},
+	{
+		name: 'valkeyPrometheusGet',
+		value: 'valkeyPrometheusGet',
+		action: 'Get Valkey prometheus',
+		execute: valkeyPrometheusGetExecute,
+		description: valkeyPrometheusGetDescription,
+	},
+	{
+		name: 'valkeyCertificateListGet',
+		value: 'valkeyCertificateListGet',
+		action: 'List Valkey certificates',
+		execute: valkeyCertificateListGetExecute,
+		description: valkeyCertificateListGetDescription,
+	},
+	{
+		name: 'valkeyCertificateCreatePost',
+		value: 'valkeyCertificateCreatePost',
+		action: 'Create Valkey certificate',
+		execute: valkeyCertificateCreatePostExecute,
+		description: valkeyCertificateCreatePostDescription,
+	},
+	{
+		name: 'valkeyIntegrationListGet',
+		value: 'valkeyIntegrationListGet',
+		action: 'List Valkey integrations',
+		execute: valkeyIntegrationListGetExecute,
+		description: valkeyIntegrationListGetDescription,
+	},
+	{
+		name: 'valkeyIntegrationCreatePost',
+		value: 'valkeyIntegrationCreatePost',
+		action: 'Create Valkey integration',
+		execute: valkeyIntegrationCreatePostExecute,
+		description: valkeyIntegrationCreatePostDescription,
+	},
+	{
+		name: 'kubeAuditLogsPost',
+		value: 'kubeAuditLogsPost',
+		action: 'Create Kubernetes audit logs',
+		execute: kubeAuditLogsPostExecute,
+		description: kubeAuditLogsPostDescription,
+	},
+	{
+		name: 'kubeCustomizationGet',
+		value: 'kubeCustomizationGet',
+		action: 'Get Kubernetes customization',
+		execute: kubeCustomizationGetExecute,
+		description: kubeCustomizationGetDescription,
+	},
+	{
+		name: 'kubeCustomizationUpdatePut',
+		value: 'kubeCustomizationUpdatePut',
+		action: 'Update Kubernetes customization',
+		execute: kubeCustomizationUpdatePutExecute,
+		description: kubeCustomizationUpdatePutDescription,
+	},
+	{
+		name: 'kubeDeleteDelete',
+		value: 'kubeDeleteDelete',
+		action: 'Delete Kubernetes cluster',
+		execute: kubeDeleteDeleteExecute,
+		description: kubeDeleteDeleteDescription,
+	},
+	{
+		name: 'kubeFlavorsGet',
+		value: 'kubeFlavorsGet',
+		action: 'List Kubernetes flavors',
+		execute: kubeFlavorsGetExecute,
+		description: kubeFlavorsGetDescription,
+	},
+	{
+		name: 'kubeGetGet',
+		value: 'kubeGetGet',
+		action: 'Get Kubernetes cluster',
+		execute: kubeGetGetExecute,
+		description: kubeGetGetDescription,
+	},
+	{
+		name: 'kubeIpRestrictionsDeleteDelete',
+		value: 'kubeIpRestrictionsDeleteDelete',
+		action: 'Delete Kubernetes IP restriction',
+		execute: kubeIpRestrictionsDeleteDeleteExecute,
+		description: kubeIpRestrictionsDeleteDeleteDescription,
+	},
+	{
+		name: 'kubeIpRestrictionsGet',
+		value: 'kubeIpRestrictionsGet',
+		action: 'List Kubernetes IP restrictions',
+		execute: kubeIpRestrictionsGetExecute,
+		description: kubeIpRestrictionsGetDescription,
+	},
+	{
+		name: 'kubeIpRestrictionsPost',
+		value: 'kubeIpRestrictionsPost',
+		action: 'Create Kubernetes IP restriction',
+		execute: kubeIpRestrictionsPostExecute,
+		description: kubeIpRestrictionsPostDescription,
+	},
+	{
+		name: 'kubeIpRestrictionsUpdatePut',
+		value: 'kubeIpRestrictionsUpdatePut',
+		action: 'Update Kubernetes IP restrictions',
+		execute: kubeIpRestrictionsUpdatePutExecute,
+		description: kubeIpRestrictionsUpdatePutDescription,
+	},
+	{
+		name: 'kubeKubeconfigPost',
+		value: 'kubeKubeconfigPost',
+		action: 'Get Kubernetes kubeconfig',
+		execute: kubeKubeconfigPostExecute,
+		description: kubeKubeconfigPostDescription,
+	},
+	{
+		name: 'kubeKubeconfigResetPost',
+		value: 'kubeKubeconfigResetPost',
+		action: 'Reset Kubernetes kubeconfig',
+		execute: kubeKubeconfigResetPostExecute,
+		description: kubeKubeconfigResetPostDescription,
+	},
+	{
+		name: 'kubeListGet',
+		value: 'kubeListGet',
+		action: 'List Kubernetes clusters in a project',
+		execute: kubeListGetExecute,
+		description: kubeListGetDescription,
+	},
+	{
+		name: 'kubeLogSubscriptionDeleteDelete',
+		value: 'kubeLogSubscriptionDeleteDelete',
+		action: 'Delete Kubernetes log subscription',
+		execute: kubeLogSubscriptionDeleteDeleteExecute,
+		description: kubeLogSubscriptionDeleteDeleteDescription,
+	},
+	{
+		name: 'kubeLogSubscriptionGet',
+		value: 'kubeLogSubscriptionGet',
+		action: 'Get Kubernetes log subscription',
+		execute: kubeLogSubscriptionGetExecute,
+		description: kubeLogSubscriptionGetDescription,
+	},
+	{
+		name: 'kubeLogSubscriptionPost',
+		value: 'kubeLogSubscriptionPost',
+		action: 'Create Kubernetes log subscription',
+		execute: kubeLogSubscriptionPostExecute,
+		description: kubeLogSubscriptionPostDescription,
+	},
+	{
+		name: 'kubeLogSubscriptionListGet',
+		value: 'kubeLogSubscriptionListGet',
+		action: 'List Kubernetes log subscriptions',
+		execute: kubeLogSubscriptionListGetExecute,
+		description: kubeLogSubscriptionListGetDescription,
+	},
+	{
+		name: 'kubeLogUrlPost',
+		value: 'kubeLogUrlPost',
+		action: 'Get Kubernetes log URL',
+		execute: kubeLogUrlPostExecute,
+		description: kubeLogUrlPostDescription,
+	},
+	{
+		name: 'kubeMetricsEtcdUsageGet',
+		value: 'kubeMetricsEtcdUsageGet',
+		action: 'Get Kubernetes etcd usage metrics',
+		execute: kubeMetricsEtcdUsageGetExecute,
+		description: kubeMetricsEtcdUsageGetDescription,
+	},
+	{
+		name: 'kubeNodeDeleteDelete',
+		value: 'kubeNodeDeleteDelete',
+		action: 'Delete Kubernetes node',
+		execute: kubeNodeDeleteDeleteExecute,
+		description: kubeNodeDeleteDeleteDescription,
+	},
+	{
+		name: 'kubeNodeGet',
+		value: 'kubeNodeGet',
+		action: 'Get Kubernetes node',
+		execute: kubeNodeGetExecute,
+		description: kubeNodeGetDescription,
+	},
+	{
+		name: 'kubeNodeListGet',
+		value: 'kubeNodeListGet',
+		action: 'List Kubernetes nodes',
+		execute: kubeNodeListGetExecute,
+		description: kubeNodeListGetDescription,
+	},
+	{
+		name: 'kubeNodepoolCreatePost',
+		value: 'kubeNodepoolCreatePost',
+		action: 'Create Kubernetes nodepool',
+		execute: kubeNodepoolCreatePostExecute,
+		description: kubeNodepoolCreatePostDescription,
+	},
+	{
+		name: 'kubeNodepoolListGet',
+		value: 'kubeNodepoolListGet',
+		action: 'List Kubernetes nodepools',
+		execute: kubeNodepoolListGetExecute,
+		description: kubeNodepoolListGetDescription,
+	},
+	{
+		name: 'kubeNodepoolDeleteDelete',
+		value: 'kubeNodepoolDeleteDelete',
+		action: 'Delete Kubernetes nodepool',
+		execute: kubeNodepoolDeleteDeleteExecute,
+		description: kubeNodepoolDeleteDeleteDescription,
+	},
+	{
+		name: 'kubeNodepoolGetGet',
+		value: 'kubeNodepoolGetGet',
+		action: 'Get Kubernetes nodepool',
+		execute: kubeNodepoolGetGetExecute,
+		description: kubeNodepoolGetGetDescription,
+	},
+	{
+		name: 'kubeNodepoolListNodepoolNodesGet',
+		value: 'kubeNodepoolListNodepoolNodesGet',
+		action: 'List Kubernetes nodepool nodes',
+		execute: kubeNodepoolListNodepoolNodesGetExecute,
+		description: kubeNodepoolListNodepoolNodesGetDescription,
+	},
+	{
+		name: 'kubeNodepoolUpdatePut',
+		value: 'kubeNodepoolUpdatePut',
+		action: 'Update Kubernetes nodepool',
+		execute: kubeNodepoolUpdatePutExecute,
+		description: kubeNodepoolUpdatePutDescription,
+	},
+	{
+		name: 'kubeOpenIdConnectDeleteDelete',
+		value: 'kubeOpenIdConnectDeleteDelete',
+		action: 'Delete Kubernetes OpenID Connect configuration',
+		execute: kubeOpenIdConnectDeleteDeleteExecute,
+		description: kubeOpenIdConnectDeleteDeleteDescription,
+	},
+	{
+		name: 'kubeOpenIdConnectGet',
+		value: 'kubeOpenIdConnectGet',
+		action: 'Get Kubernetes OpenID Connect configuration',
+		execute: kubeOpenIdConnectGetExecute,
+		description: kubeOpenIdConnectGetDescription,
+	},
+	{
+		name: 'kubeOpenIdConnectPost',
+		value: 'kubeOpenIdConnectPost',
+		action: 'Create Kubernetes OpenID Connect configuration',
+		execute: kubeOpenIdConnectPostExecute,
+		description: kubeOpenIdConnectPostDescription,
+	},
+	{
+		name: 'kubeOpenIdConnectUpdatePut',
+		value: 'kubeOpenIdConnectUpdatePut',
+		action: 'Update Kubernetes OpenID Connect configuration',
+		execute: kubeOpenIdConnectUpdatePutExecute,
+		description: kubeOpenIdConnectUpdatePutDescription,
+	},
+	{
+		name: 'kubePrivateNetworkConfigurationGet',
+		value: 'kubePrivateNetworkConfigurationGet',
+		action: 'Get Kubernetes private network configuration',
+		execute: kubePrivateNetworkConfigurationGetExecute,
+		description: kubePrivateNetworkConfigurationGetDescription,
+	},
+	{
+		name: 'kubePrivateNetworkConfigurationUpdatePut',
+		value: 'kubePrivateNetworkConfigurationUpdatePut',
+		action: 'Update Kubernetes private network configuration',
+		execute: kubePrivateNetworkConfigurationUpdatePutExecute,
+		description: kubePrivateNetworkConfigurationUpdatePutDescription,
+	},
+	{
+		name: 'kubeResetPost',
+		value: 'kubeResetPost',
+		action: 'Reset Kubernetes cluster',
+		execute: kubeResetPostExecute,
+		description: kubeResetPostDescription,
+	},
+	{
+		name: 'kubeRestartPost',
+		value: 'kubeRestartPost',
+		action: 'Restart Kubernetes cluster',
+		execute: kubeRestartPostExecute,
+		description: kubeRestartPostDescription,
+	},
+	{
+		name: 'kubeUpdateLoadBalancersSubnetIdUpdatePut',
+		value: 'kubeUpdateLoadBalancersSubnetIdUpdatePut',
+		action: 'Update Kubernetes load balancer subnet ID',
+		execute: kubeUpdateLoadBalancersSubnetIdUpdatePutExecute,
+		description: kubeUpdateLoadBalancersSubnetIdUpdatePutDescription,
+	},
+	{
+		name: 'kubeUpdatePolicyUpdatePut',
+		value: 'kubeUpdatePolicyUpdatePut',
+		action: 'Update Kubernetes update policy',
+		execute: kubeUpdatePolicyUpdatePutExecute,
+		description: kubeUpdatePolicyUpdatePutDescription,
+	},
+	{
+		name: 'kubeUpdatePost',
+		value: 'kubeUpdatePost',
+		action: 'Update Kubernetes cluster',
+		execute: kubeUpdatePostExecute,
+		description: kubeUpdatePostDescription,
+	},
+	{
+		name: 'kubeUpdatePut',
+		value: 'kubeUpdatePut',
+		action: 'Update Kubernetes cluster',
+		execute: kubeUpdatePutExecute,
+		description: kubeUpdatePutDescription,
+	},
+	{
+		name: 'instanceActiveMonthlyBillingPost',
+		value: 'instanceActiveMonthlyBillingPost',
+		action: 'Activate monthly billing for instance',
+		execute: instanceActiveMonthlyBillingPostExecute,
+		description: instanceActiveMonthlyBillingPostDescription,
+	},
+	{
+		name: 'instanceApplicationAccessPost',
+		value: 'instanceApplicationAccessPost',
+		action: 'Get instance application access',
+		execute: instanceApplicationAccessPostExecute,
+		description: instanceApplicationAccessPostDescription,
+	},
+	{
+		name: 'instanceBulkPost',
+		value: 'instanceBulkPost',
+		action: 'Bulk create instances',
+		execute: instanceBulkPostExecute,
+		description: instanceBulkPostDescription,
+	},
+	{
+		name: 'instanceCreatePost',
+		value: 'instanceCreatePost',
+		action: 'Create instance',
+		execute: instanceCreatePostExecute,
+		description: instanceCreatePostDescription,
+	},
+	{
+		name: 'instanceDeleteDelete',
+		value: 'instanceDeleteDelete',
+		action: 'Delete instance',
+		execute: instanceDeleteDeleteExecute,
+		description: instanceDeleteDeleteDescription,
+	},
+	{
+		name: 'instanceGetGet',
+		value: 'instanceGetGet',
+		action: 'Get instance',
+		execute: instanceGetGetExecute,
+		description: instanceGetGetDescription,
+	},
+	{
+		name: 'instanceGroupCreatePost',
+		value: 'instanceGroupCreatePost',
+		action: 'Create instance group',
+		execute: instanceGroupCreatePostExecute,
+		description: instanceGroupCreatePostDescription,
+	},
+	{
+		name: 'instanceGroupDeleteDelete',
+		value: 'instanceGroupDeleteDelete',
+		action: 'Delete instance group',
+		execute: instanceGroupDeleteDeleteExecute,
+		description: instanceGroupDeleteDeleteDescription,
+		show: false,
+	},
+	{
+		name: 'instanceGroupGetGet',
+		value: 'instanceGroupGetGet',
+		action: 'Get instance group',
+		execute: instanceGroupGetGetExecute,
+		description: instanceGroupGetGetDescription,
+		show: false,
+	},
+	{
+		name: 'instanceGroupListGet',
+		value: 'instanceGroupListGet',
+		action: 'List instance groups',
+		execute: instanceGroupListGetExecute,
+		description: instanceGroupListGetDescription,
+		show: false,
+	},
+	{
+		name: 'instanceInterfaceCreatePost',
+		value: 'instanceInterfaceCreatePost',
+		action: 'Create instance interface',
+		execute: instanceInterfaceCreatePostExecute,
+		description: instanceInterfaceCreatePostDescription,
+	},
+	{
+		name: 'instanceInterfaceDeleteDelete',
+		value: 'instanceInterfaceDeleteDelete',
+		action: 'Delete instance interface',
+		execute: instanceInterfaceDeleteDeleteExecute,
+		description: instanceInterfaceDeleteDeleteDescription,
+	},
+	{
+		name: 'instanceInterfaceGetGet',
+		value: 'instanceInterfaceGetGet',
+		action: 'Get instance interface',
+		execute: instanceInterfaceGetGetExecute,
+		description: instanceInterfaceGetGetDescription,
+	},
+	{
+		name: 'instanceInterfaceListGet',
+		value: 'instanceInterfaceListGet',
+		action: 'List instance interfaces',
+		execute: instanceInterfaceListGetExecute,
+		description: instanceInterfaceListGetDescription,
+	},
+	{
+		name: 'instanceListGet',
+		value: 'instanceListGet',
+		action: 'List instances in a project',
+		execute: instanceListGetExecute,
+		description: instanceListGetDescription,
+		show: false,
+	},
+	{
+		name: 'instanceRebootPost',
+		value: 'instanceRebootPost',
+		action: 'Reboot instance',
+		execute: instanceRebootPostExecute,
+		description: instanceRebootPostDescription,
+	},
+	{
+		name: 'instanceReinstallPost',
+		value: 'instanceReinstallPost',
+		action: 'Reinstall instance',
+		execute: instanceReinstallPostExecute,
+		description: instanceReinstallPostDescription,
+	},
+	{
+		name: 'instanceRescueModePost',
+		value: 'instanceRescueModePost',
+		action: 'Set instance rescue mode',
+		execute: instanceRescueModePostExecute,
+		description: instanceRescueModePostDescription,
+	},
+	{
+		name: 'instanceResizePost',
+		value: 'instanceResizePost',
+		action: 'Resize instance',
+		execute: instanceResizePostExecute,
+		description: instanceResizePostDescription,
+	},
+	{
+		name: 'instanceResumePost',
+		value: 'instanceResumePost',
+		action: 'Resume instance',
+		execute: instanceResumePostExecute,
+		description: instanceResumePostDescription,
+	},
+	{
+		name: 'instanceShelvePost',
+		value: 'instanceShelvePost',
+		action: 'Shelve instance',
+		execute: instanceShelvePostExecute,
+		description: instanceShelvePostDescription,
+	},
+	{
+		name: 'instanceSnapshotPost',
+		value: 'instanceSnapshotPost',
+		action: 'Create instance snapshot',
+		execute: instanceSnapshotPostExecute,
+		description: instanceSnapshotPostDescription,
+	},
+	{
+		name: 'instanceStartPost',
+		value: 'instanceStartPost',
+		action: 'Start instance',
+		execute: instanceStartPostExecute,
+		description: instanceStartPostDescription,
+	},
+	{
+		name: 'instanceStopPost',
+		value: 'instanceStopPost',
+		action: 'Stop instance',
+		execute: instanceStopPostExecute,
+		description: instanceStopPostDescription,
+	},
+	{
+		name: 'instanceUnshelvePost',
+		value: 'instanceUnshelvePost',
+		action: 'Unshelve instance',
+		execute: instanceUnshelvePostExecute,
+		description: instanceUnshelvePostDescription,
+	},
+	{
+		name: 'instanceUpdatePut',
+		value: 'instanceUpdatePut',
+		action: 'Update instance',
+		execute: instanceUpdatePutExecute,
+		description: instanceUpdatePutDescription,
+	},
+	{
+		name: 'instanceVncPost',
+		value: 'instanceVncPost',
+		action: 'Get instance VNC console',
+		execute: instanceVncPostExecute,
+		description: instanceVncPostDescription,
+	},
+	{
+		name: 'networkCreatePrivateNetworkPost',
+		value: 'networkCreatePrivateNetworkPost',
+		action: 'Create private network',
+		execute: networkCreatePrivateNetworkPostExecute,
+		description: networkCreatePrivateNetworkPostDescription,
+	},
+	{
+		name: 'networkCreateSubnetPost',
+		value: 'networkCreateSubnetPost',
+		action: 'Create subnet',
+		execute: networkCreateSubnetPostExecute,
+		description: networkCreateSubnetPostDescription,
+	},
+	{
+		name: 'networkDeletePrivateNetworkDelete',
+		value: 'networkDeletePrivateNetworkDelete',
+		action: 'Delete private network',
+		execute: networkDeletePrivateNetworkDeleteExecute,
+		description: networkDeletePrivateNetworkDeleteDescription,
+	},
+	{
+		name: 'networkDeleteSubnetDelete',
+		value: 'networkDeleteSubnetDelete',
+		action: 'Delete subnet',
+		execute: networkDeleteSubnetDeleteExecute,
+		description: networkDeleteSubnetDeleteDescription,
+	},
+	{
+		name: 'networkGetPrivateNetworkDetailGet',
+		value: 'networkGetPrivateNetworkDetailGet',
+		action: 'Get private network',
+		execute: networkGetPrivateNetworkDetailGetExecute,
+		description: networkGetPrivateNetworkDetailGetDescription,
+	},
+	{
+		name: 'networkGetSubnetDetailGet',
+		value: 'networkGetSubnetDetailGet',
+		action: 'Get subnet',
+		execute: networkGetSubnetDetailGetExecute,
+		description: networkGetSubnetDetailGetDescription,
+	},
+	{
+		name: 'networkListPrivateNetworksGet',
+		value: 'networkListPrivateNetworksGet',
+		action: 'List private networks in a project',
+		execute: networkListPrivateNetworksGetExecute,
+		description: networkListPrivateNetworksGetDescription,
+	},
+	{
+		name: 'networkListPublicNetworksGet',
+		value: 'networkListPublicNetworksGet',
+		action: 'List public networks in a project',
+		execute: networkListPublicNetworksGetExecute,
+		description: networkListPublicNetworksGetDescription,
+	},
+	{
+		name: 'networkListSubnetsGet',
+		value: 'networkListSubnetsGet',
+		action: 'List subnets in a project',
+		execute: networkListSubnetsGetExecute,
+		description: networkListSubnetsGetDescription,
+	},
+	{
+		name: 'networkUpdatePrivateNetworkPut',
+		value: 'networkUpdatePrivateNetworkPut',
+		action: 'Update private network',
+		execute: networkUpdatePrivateNetworkPutExecute,
+		description: networkUpdatePrivateNetworkPutDescription,
+	},
+	{
+		name: 'networkUpdateSubnetPut',
+		value: 'networkUpdateSubnetPut',
+		action: 'Update subnet',
+		execute: networkUpdateSubnetPutExecute,
+		description: networkUpdateSubnetPutDescription,
+	},
+	{
+		name: 'networkActivatePrivateNetworkRegionPost',
+		value: 'networkActivatePrivateNetworkRegionPost',
+		action: 'Activate private network region',
+		execute: networkActivatePrivateNetworkRegionPostExecute,
+		description: networkActivatePrivateNetworkRegionPostDescription,
+	},
+	{
+		name: 'regionGetGet',
+		value: 'regionGetGet',
+		action: 'Get region',
+		execute: regionGetGetExecute,
+		description: regionGetGetDescription,
+	},
+	{
+		name: 'regionListGet',
+		value: 'regionListGet',
+		action: 'List regions in a project',
+		execute: regionListGetExecute,
+		description: regionListGetDescription,
+	},
+	{
+		name: 'regionShareCreatePost',
+		value: 'regionShareCreatePost',
+		action: 'Create region share',
+		execute: regionShareCreatePostExecute,
+		description: regionShareCreatePostDescription,
+	},
+	{
+		name: 'regionShareDeleteDelete',
+		value: 'regionShareDeleteDelete',
+		action: 'Delete region share',
+		execute: regionShareDeleteDeleteExecute,
+		description: regionShareDeleteDeleteDescription,
+	},
+	{
+		name: 'regionShareGetGet',
+		value: 'regionShareGetGet',
+		action: 'Get region share',
+		execute: regionShareGetGetExecute,
+		description: regionShareGetGetDescription,
+	},
+	{
+		name: 'regionShareListGet',
+		value: 'regionShareListGet',
+		action: 'List region shares',
+		execute: regionShareListGetExecute,
+		description: regionShareListGetDescription,
+	},
+	{
+		name: 'regionShareSnapshotCreatePost',
+		value: 'regionShareSnapshotCreatePost',
+		action: 'Create region share snapshot',
+		execute: regionShareSnapshotCreatePostExecute,
+		description: regionShareSnapshotCreatePostDescription,
+	},
+	{
+		name: 'regionShareSnapshotDeleteDelete',
+		value: 'regionShareSnapshotDeleteDelete',
+		action: 'Delete region share snapshot',
+		execute: regionShareSnapshotDeleteDeleteExecute,
+		description: regionShareSnapshotDeleteDeleteDescription,
+	},
+	{
+		name: 'regionShareSnapshotGetGet',
+		value: 'regionShareSnapshotGetGet',
+		action: 'Get region share snapshot',
+		execute: regionShareSnapshotGetGetExecute,
+		description: regionShareSnapshotGetGetDescription,
+	},
+	{
+		name: 'regionShareSnapshotListGet',
+		value: 'regionShareSnapshotListGet',
+		action: 'List region share snapshots',
+		execute: regionShareSnapshotListGetExecute,
+		description: regionShareSnapshotListGetDescription,
+	},
+	{
+		name: 'regionShareUpdatePut',
+		value: 'regionShareUpdatePut',
+		action: 'Update region share',
+		execute: regionShareUpdatePutExecute,
+		description: regionShareUpdatePutDescription,
+	},
+	{
+		name: 'regionVolumeCreatePost',
+		value: 'regionVolumeCreatePost',
+		action: 'Create region volume',
+		execute: regionVolumeCreatePostExecute,
+		description: regionVolumeCreatePostDescription,
+	},
+	{
+		name: 'regionVolumeDeleteDelete',
+		value: 'regionVolumeDeleteDelete',
+		action: 'Delete region volume',
+		execute: regionVolumeDeleteDeleteExecute,
+		description: regionVolumeDeleteDeleteDescription,
+	},
+	{
+		name: 'regionVolumeGetGet',
+		value: 'regionVolumeGetGet',
+		action: 'Get region volume',
+		execute: regionVolumeGetGetExecute,
+		description: regionVolumeGetGetDescription,
+	},
+	{
+		name: 'regionVolumeListGet',
+		value: 'regionVolumeListGet',
+		action: 'List region volumes',
+		execute: regionVolumeListGetExecute,
+		description: regionVolumeListGetDescription,
+	},
+	{
+		name: 'regionVolumeUpdatePut',
+		value: 'regionVolumeUpdatePut',
+		action: 'Update region volume',
+		execute: regionVolumeUpdatePutExecute,
+		description: regionVolumeUpdatePutDescription,
+	},
+	{
+		name: 'regionWorkflowBackupCreatePost',
+		value: 'regionWorkflowBackupCreatePost',
+		action: 'Create region workflow backup',
+		execute: regionWorkflowBackupCreatePostExecute,
+		description: regionWorkflowBackupCreatePostDescription,
+	},
+	{
+		name: 'regionWorkflowBackupDeleteDelete',
+		value: 'regionWorkflowBackupDeleteDelete',
+		action: 'Delete region workflow backup',
+		execute: regionWorkflowBackupDeleteDeleteExecute,
+		description: regionWorkflowBackupDeleteDeleteDescription,
+	},
+	{
+		name: 'regionWorkflowBackupGetGet',
+		value: 'regionWorkflowBackupGetGet',
+		action: 'Get region workflow backup',
+		execute: regionWorkflowBackupGetGetExecute,
+		description: regionWorkflowBackupGetGetDescription,
+	},
+	{
+		name: 'regionWorkflowBackupUpdatePut',
+		value: 'regionWorkflowBackupUpdatePut',
+		action: 'Update region workflow backup',
+		execute: regionWorkflowBackupUpdatePutExecute,
+		description: regionWorkflowBackupUpdatePutDescription,
+	},
+	{
+		name: 'regionColdArchiveListGet',
+		value: 'regionColdArchiveListGet',
+		action: 'List cold archive containers',
+		execute: regionColdArchiveListGetExecute,
+		description: regionColdArchiveListGetDescription,
+	},
+	{
+		name: 'regionColdArchiveCreatePost',
+		value: 'regionColdArchiveCreatePost',
+		action: 'Create cold archive container',
+		execute: regionColdArchiveCreatePostExecute,
+		description: regionColdArchiveCreatePostDescription,
+	},
+	{
+		name: 'regionColdArchiveDeleteDelete',
+		value: 'regionColdArchiveDeleteDelete',
+		action: 'Delete cold archive container',
+		execute: regionColdArchiveDeleteDeleteExecute,
+		description: regionColdArchiveDeleteDeleteDescription,
+	},
+	{
+		name: 'regionColdArchiveGetGet',
+		value: 'regionColdArchiveGetGet',
+		action: 'Get cold archive container',
+		execute: regionColdArchiveGetGetExecute,
+		description: regionColdArchiveGetGetDescription,
+	},
+	{
+		name: 'regionColdArchiveArchivePost',
+		value: 'regionColdArchiveArchivePost',
+		action: 'Archive cold archive container',
+		execute: regionColdArchiveArchivePostExecute,
+		description: regionColdArchiveArchivePostDescription,
+	},
+	{
+		name: 'regionColdArchiveDestroyPost',
+		value: 'regionColdArchiveDestroyPost',
+		action: 'Destroy cold archive container',
+		execute: regionColdArchiveDestroyPostExecute,
+		description: regionColdArchiveDestroyPostDescription,
+	},
+	{
+		name: 'regionColdArchiveObjectDeleteDelete',
+		value: 'regionColdArchiveObjectDeleteDelete',
+		action: 'Delete cold archive object',
+		execute: regionColdArchiveObjectDeleteDeleteExecute,
+		description: regionColdArchiveObjectDeleteDeleteDescription,
+	},
+	{
+		name: 'regionColdArchivePolicyCreatePost',
+		value: 'regionColdArchivePolicyCreatePost',
+		action: 'Add cold archive policy',
+		execute: regionColdArchivePolicyCreatePostExecute,
+		description: regionColdArchivePolicyCreatePostDescription,
+	},
+	{
+		name: 'regionColdArchivePresignPost',
+		value: 'regionColdArchivePresignPost',
+		action: 'Generate cold archive presigned URL',
+		execute: regionColdArchivePresignPostExecute,
+		description: regionColdArchivePresignPostDescription,
+	},
+	{
+		name: 'regionColdArchiveRestorePost',
+		value: 'regionColdArchiveRestorePost',
+		action: 'Restore cold archive container',
+		execute: regionColdArchiveRestorePostExecute,
+		description: regionColdArchiveRestorePostDescription,
+	},
+	{
+		name: 'regionStorageListGet',
+		value: 'regionStorageListGet',
+		action: 'List storage containers',
+		execute: regionStorageListGetExecute,
+		description: regionStorageListGetDescription,
+	},
+	{
+		name: 'regionStorageCreatePost',
+		value: 'regionStorageCreatePost',
+		action: 'Create storage container',
+		execute: regionStorageCreatePostExecute,
+		description: regionStorageCreatePostDescription,
+	},
+	{
+		name: 'regionStorageDeleteDelete',
+		value: 'regionStorageDeleteDelete',
+		action: 'Delete storage container',
+		execute: regionStorageDeleteDeleteExecute,
+		description: regionStorageDeleteDeleteDescription,
+	},
+	{
+		name: 'regionStorageGetGet',
+		value: 'regionStorageGetGet',
+		action: 'Get storage container',
+		execute: regionStorageGetGetExecute,
+		description: regionStorageGetGetDescription,
+	},
+	{
+		name: 'regionStorageUpdatePut',
+		value: 'regionStorageUpdatePut',
+		action: 'Update storage container',
+		execute: regionStorageUpdatePutExecute,
+		description: regionStorageUpdatePutDescription,
+	},
+	{
+		name: 'regionStorageBulkDeleteObjectsPost',
+		value: 'regionStorageBulkDeleteObjectsPost',
+		action: 'Bulk delete storage objects',
+		execute: regionStorageBulkDeleteObjectsPostExecute,
+		description: regionStorageBulkDeleteObjectsPostDescription,
+	},
+	{
+		name: 'regionStorageReplicationListGet',
+		value: 'regionStorageReplicationListGet',
+		action: 'List storage replication jobs',
+		execute: regionStorageReplicationListGetExecute,
+		description: regionStorageReplicationListGetDescription,
+	},
+	{
+		name: 'regionStorageReplicationCreatePost',
+		value: 'regionStorageReplicationCreatePost',
+		action: 'Create storage replication job',
+		execute: regionStorageReplicationCreatePostExecute,
+		description: regionStorageReplicationCreatePostDescription,
+	},
+	{
+		name: 'regionStorageLifecycleDeleteDelete',
+		value: 'regionStorageLifecycleDeleteDelete',
+		action: 'Delete storage lifecycle',
+		execute: regionStorageLifecycleDeleteDeleteExecute,
+		description: regionStorageLifecycleDeleteDeleteDescription,
+	},
+	{
+		name: 'regionStorageLifecycleGetGet',
+		value: 'regionStorageLifecycleGetGet',
+		action: 'Get storage lifecycle',
+		execute: regionStorageLifecycleGetGetExecute,
+		description: regionStorageLifecycleGetGetDescription,
+	},
+	{
+		name: 'regionStorageLifecycleUpdatePut',
+		value: 'regionStorageLifecycleUpdatePut',
+		action: 'Update storage lifecycle',
+		execute: regionStorageLifecycleUpdatePutExecute,
+		description: regionStorageLifecycleUpdatePutDescription,
+	},
+	{
+		name: 'regionStorageObjectListGet',
+		value: 'regionStorageObjectListGet',
+		action: 'List storage objects',
+		execute: regionStorageObjectListGetExecute,
+		description: regionStorageObjectListGetDescription,
+	},
+	{
+		name: 'regionStorageObjectCreatePost',
+		value: 'regionStorageObjectCreatePost',
+		action: 'Create storage object',
+		execute: regionStorageObjectCreatePostExecute,
+		description: regionStorageObjectCreatePostDescription,
+	},
+	{
+		name: 'regionStorageObjectDeleteDelete',
+		value: 'regionStorageObjectDeleteDelete',
+		action: 'Delete storage object',
+		execute: regionStorageObjectDeleteDeleteExecute,
+		description: regionStorageObjectDeleteDeleteDescription,
+	},
+	{
+		name: 'regionStorageObjectGetGet',
+		value: 'regionStorageObjectGetGet',
+		action: 'Get storage object',
+		execute: regionStorageObjectGetGetExecute,
+		description: regionStorageObjectGetGetDescription,
+	},
+	{
+		name: 'regionStorageObjectUpdatePut',
+		value: 'regionStorageObjectUpdatePut',
+		action: 'Update storage object',
+		execute: regionStorageObjectUpdatePutExecute,
+		description: regionStorageObjectUpdatePutDescription,
+	},
+	{
+		name: 'regionStorageObjectCopyPost',
+		value: 'regionStorageObjectCopyPost',
+		action: 'Copy storage object',
+		execute: regionStorageObjectCopyPostExecute,
+		description: regionStorageObjectCopyPostDescription,
+	},
+	{
+		name: 'regionStorageObjectRestorePost',
+		value: 'regionStorageObjectRestorePost',
+		action: 'Restore storage object',
+		execute: regionStorageObjectRestorePostExecute,
+		description: regionStorageObjectRestorePostDescription,
+	},
+	{
+		name: 'regionStorageObjectVersionListGet',
+		value: 'regionStorageObjectVersionListGet',
+		action: 'List storage object versions',
+		execute: regionStorageObjectVersionListGetExecute,
+		description: regionStorageObjectVersionListGetDescription,
+	},
+	{
+		name: 'regionStorageObjectVersionDeleteDelete',
+		value: 'regionStorageObjectVersionDeleteDelete',
+		action: 'Delete storage object version',
+		execute: regionStorageObjectVersionDeleteDeleteExecute,
+		description: regionStorageObjectVersionDeleteDeleteDescription,
+	},
+	{
+		name: 'regionStorageObjectVersionGetGet',
+		value: 'regionStorageObjectVersionGetGet',
+		action: 'Get storage object version',
+		execute: regionStorageObjectVersionGetGetExecute,
+		description: regionStorageObjectVersionGetGetDescription,
+	},
+	{
+		name: 'regionStorageObjectVersionUpdatePut',
+		value: 'regionStorageObjectVersionUpdatePut',
+		action: 'Update storage object version',
+		execute: regionStorageObjectVersionUpdatePutExecute,
+		description: regionStorageObjectVersionUpdatePutDescription,
+	},
+	{
+		name: 'regionStorageObjectVersionCopyPost',
+		value: 'regionStorageObjectVersionCopyPost',
+		action: 'Copy storage object version',
+		execute: regionStorageObjectVersionCopyPostExecute,
+		description: regionStorageObjectVersionCopyPostDescription,
+	},
+	{
+		name: 'regionStorageObjectVersionRestorePost',
+		value: 'regionStorageObjectVersionRestorePost',
+		action: 'Restore storage object version',
+		execute: regionStorageObjectVersionRestorePostExecute,
+		description: regionStorageObjectVersionRestorePostDescription,
+	},
+	{
+		name: 'regionStoragePolicyCreatePost',
+		value: 'regionStoragePolicyCreatePost',
+		action: 'Add storage policy',
+		execute: regionStoragePolicyCreatePostExecute,
+		description: regionStoragePolicyCreatePostDescription,
+	},
+	{
+		name: 'regionStoragePresignPost',
+		value: 'regionStoragePresignPost',
+		action: 'Generate storage presigned URL',
+		execute: regionStoragePresignPostExecute,
+		description: regionStoragePresignPostDescription,
+	},
+	{
+		name: 'floatingIpListGet',
+		value: 'floatingIpListGet',
+		action: 'floatingIpListGet',
+		execute: floatingIpListGetExecute,
+		description: noProps,
+	},
+	{
+		name: 'floatingIpCreatePost',
+		value: 'floatingIpCreatePost',
+		action: 'floatingIpCreatePost',
+		execute: floatingIpCreatePostExecute,
+		description: noProps,
+	},
+	{
+		name: 'floatingIpGetGet',
+		value: 'floatingIpGetGet',
+		action: 'floatingIpGetGet',
+		execute: floatingIpGetGetExecute,
+		description: noProps,
+	},
+	{
+		name: 'floatingIpDeleteDelete',
+		value: 'floatingIpDeleteDelete',
+		action: 'floatingIpDeleteDelete',
+		execute: floatingIpDeleteDeleteExecute,
+		description: noProps,
+	},
+	{
+		name: 'floatingIpDetachPost',
+		value: 'floatingIpDetachPost',
+		action: 'floatingIpDetachPost',
+		execute: floatingIpDetachPostExecute,
+		description: noProps,
+	},
+	{
+		name: 'gatewayListGet',
+		value: 'gatewayListGet',
+		action: 'gatewayListGet',
+		execute: gatewayListGetExecute,
+		description: noProps,
+	},
+	{
+		name: 'gatewayCreatePost',
+		value: 'gatewayCreatePost',
+		action: 'gatewayCreatePost',
+		execute: gatewayCreatePostExecute,
+		description: noProps,
+	},
+	{
+		name: 'gatewayGetGet',
+		value: 'gatewayGetGet',
+		action: 'gatewayGetGet',
+		execute: gatewayGetGetExecute,
+		description: noProps,
+	},
+	{
+		name: 'gatewayUpdatePut',
+		value: 'gatewayUpdatePut',
+		action: 'gatewayUpdatePut',
+		execute: gatewayUpdatePutExecute,
+		description: noProps,
+	},
+	{
+		name: 'gatewayDeleteDelete',
+		value: 'gatewayDeleteDelete',
+		action: 'gatewayDeleteDelete',
+		execute: gatewayDeleteDeleteExecute,
+		description: noProps,
+	},
+	{
+		name: 'gatewayExposePost',
+		value: 'gatewayExposePost',
+		action: 'gatewayExposePost',
+		execute: gatewayExposePostExecute,
+		description: noProps,
+	},
+	{
+		name: 'gatewayInterfaceListGet',
+		value: 'gatewayInterfaceListGet',
+		action: 'gatewayInterfaceListGet',
+		execute: gatewayInterfaceListGetExecute,
+		description: noProps,
+	},
+	{
+		name: 'gatewayInterfaceCreatePost',
+		value: 'gatewayInterfaceCreatePost',
+		action: 'gatewayInterfaceCreatePost',
+		execute: gatewayInterfaceCreatePostExecute,
+		description: noProps,
+	},
+	{
+		name: 'gatewayInterfaceGetGet',
+		value: 'gatewayInterfaceGetGet',
+		action: 'gatewayInterfaceGetGet',
+		execute: gatewayInterfaceGetGetExecute,
+		description: noProps,
+	},
+	{
+		name: 'gatewayInterfaceDeleteDelete',
+		value: 'gatewayInterfaceDeleteDelete',
+		action: 'gatewayInterfaceDeleteDelete',
+		execute: gatewayInterfaceDeleteDeleteExecute,
+		description: noProps,
+	},
+	{
+		name: 'loadbalancingFlavorListGet',
+		value: 'loadbalancingFlavorListGet',
+		action: 'loadbalancingFlavorListGet',
+		execute: loadbalancingFlavorListGetExecute,
+		description: noProps,
+	},
+	{
+		name: 'loadbalancingFlavorGetGet',
+		value: 'loadbalancingFlavorGetGet',
+		action: 'loadbalancingFlavorGetGet',
+		execute: loadbalancingFlavorGetGetExecute,
+		description: noProps,
+	},
+	{
+		name: 'loadbalancingHealthMonitorListGet',
+		value: 'loadbalancingHealthMonitorListGet',
+		action: 'loadbalancingHealthMonitorListGet',
+		execute: loadbalancingHealthMonitorListGetExecute,
+		description: noProps,
+	},
+	{
+		name: 'loadbalancingHealthMonitorCreatePost',
+		value: 'loadbalancingHealthMonitorCreatePost',
+		action: 'loadbalancingHealthMonitorCreatePost',
+		execute: loadbalancingHealthMonitorCreatePostExecute,
+		description: noProps,
+	},
+	{
+		name: 'loadbalancingHealthMonitorGetGet',
+		value: 'loadbalancingHealthMonitorGetGet',
+		action: 'loadbalancingHealthMonitorGetGet',
+		execute: loadbalancingHealthMonitorGetGetExecute,
+		description: noProps,
+	},
+	{
+		name: 'loadbalancingHealthMonitorUpdatePut',
+		value: 'loadbalancingHealthMonitorUpdatePut',
+		action: 'loadbalancingHealthMonitorUpdatePut',
+		execute: loadbalancingHealthMonitorUpdatePutExecute,
+		description: noProps,
+	},
+	{
+		name: 'loadbalancingHealthMonitorDeleteDelete',
+		value: 'loadbalancingHealthMonitorDeleteDelete',
+		action: 'loadbalancingHealthMonitorDeleteDelete',
+		execute: loadbalancingHealthMonitorDeleteDeleteExecute,
+		description: noProps,
+	},
+	{
+		name: 'loadbalancingL7PolicyListGet',
+		value: 'loadbalancingL7PolicyListGet',
+		action: 'loadbalancingL7PolicyListGet',
+		execute: loadbalancingL7PolicyListGetExecute,
+		description: noProps,
+	},
+	{
+		name: 'loadbalancingL7PolicyCreatePost',
+		value: 'loadbalancingL7PolicyCreatePost',
+		action: 'loadbalancingL7PolicyCreatePost',
+		execute: loadbalancingL7PolicyCreatePostExecute,
+		description: noProps,
+	},
+	{
+		name: 'loadbalancingL7PolicyGetGet',
+		value: 'loadbalancingL7PolicyGetGet',
+		action: 'loadbalancingL7PolicyGetGet',
+		execute: loadbalancingL7PolicyGetGetExecute,
+		description: noProps,
+	},
+	{
+		name: 'loadbalancingL7PolicyUpdatePut',
+		value: 'loadbalancingL7PolicyUpdatePut',
+		action: 'loadbalancingL7PolicyUpdatePut',
+		execute: loadbalancingL7PolicyUpdatePutExecute,
+		description: noProps,
+	},
+	{
+		name: 'loadbalancingL7PolicyDeleteDelete',
+		value: 'loadbalancingL7PolicyDeleteDelete',
+		action: 'loadbalancingL7PolicyDeleteDelete',
+		execute: loadbalancingL7PolicyDeleteDeleteExecute,
+		description: noProps,
+	},
+	{
+		name: 'loadbalancingL7PolicyL7RuleListGet',
+		value: 'loadbalancingL7PolicyL7RuleListGet',
+		action: 'loadbalancingL7PolicyL7RuleListGet',
+		execute: loadbalancingL7PolicyL7RuleListGetExecute,
+		description: noProps,
+	},
+	{
+		name: 'loadbalancingL7PolicyL7RuleCreatePost',
+		value: 'loadbalancingL7PolicyL7RuleCreatePost',
+		action: 'loadbalancingL7PolicyL7RuleCreatePost',
+		execute: loadbalancingL7PolicyL7RuleCreatePostExecute,
+		description: noProps,
+	},
+	{
+		name: 'loadbalancingL7PolicyL7RuleGetGet',
+		value: 'loadbalancingL7PolicyL7RuleGetGet',
+		action: 'loadbalancingL7PolicyL7RuleGetGet',
+		execute: loadbalancingL7PolicyL7RuleGetGetExecute,
+		description: noProps,
+	},
+	{
+		name: 'loadbalancingL7PolicyL7RuleUpdatePut',
+		value: 'loadbalancingL7PolicyL7RuleUpdatePut',
+		action: 'loadbalancingL7PolicyL7RuleUpdatePut',
+		execute: loadbalancingL7PolicyL7RuleUpdatePutExecute,
+		description: noProps,
+	},
+	{
+		name: 'loadbalancingL7PolicyL7RuleDeleteDelete',
+		value: 'loadbalancingL7PolicyL7RuleDeleteDelete',
+		action: 'loadbalancingL7PolicyL7RuleDeleteDelete',
+		execute: loadbalancingL7PolicyL7RuleDeleteDeleteExecute,
+		description: noProps,
+	},
+	{
+		name: 'loadbalancingListenerListGet',
+		value: 'loadbalancingListenerListGet',
+		action: 'loadbalancingListenerListGet',
+		execute: loadbalancingListenerListGetExecute,
+		description: noProps,
+	},
+	{
+		name: 'loadbalancingListenerCreatePost',
+		value: 'loadbalancingListenerCreatePost',
+		action: 'loadbalancingListenerCreatePost',
+		execute: loadbalancingListenerCreatePostExecute,
+		description: noProps,
+	},
+	{
+		name: 'loadbalancingListenerGetGet',
+		value: 'loadbalancingListenerGetGet',
+		action: 'loadbalancingListenerGetGet',
+		execute: loadbalancingListenerGetGetExecute,
+		description: noProps,
+	},
+	{
+		name: 'loadbalancingListenerUpdatePut',
+		value: 'loadbalancingListenerUpdatePut',
+		action: 'loadbalancingListenerUpdatePut',
+		execute: loadbalancingListenerUpdatePutExecute,
+		description: noProps,
+	},
+	{
+		name: 'loadbalancingListenerDeleteDelete',
+		value: 'loadbalancingListenerDeleteDelete',
+		action: 'loadbalancingListenerDeleteDelete',
+		execute: loadbalancingListenerDeleteDeleteExecute,
+		description: noProps,
+	},
+	{
+		name: 'loadbalancingLoadBalancerListGet',
+		value: 'loadbalancingLoadBalancerListGet',
+		action: 'loadbalancingLoadBalancerListGet',
+		execute: loadbalancingLoadBalancerListGetExecute,
+		description: noProps,
+	},
+	{
+		name: 'loadbalancingLoadBalancerCreatePost',
+		value: 'loadbalancingLoadBalancerCreatePost',
+		action: 'loadbalancingLoadBalancerCreatePost',
+		execute: loadbalancingLoadBalancerCreatePostExecute,
+		description: noProps,
+	},
+	{
+		name: 'loadbalancingLoadBalancerGetGet',
+		value: 'loadbalancingLoadBalancerGetGet',
+		action: 'loadbalancingLoadBalancerGetGet',
+		execute: loadbalancingLoadBalancerGetGetExecute,
+		description: noProps,
+	},
+	{
+		name: 'loadbalancingLoadBalancerUpdatePut',
+		value: 'loadbalancingLoadBalancerUpdatePut',
+		action: 'loadbalancingLoadBalancerUpdatePut',
+		execute: loadbalancingLoadBalancerUpdatePutExecute,
+		description: noProps,
+	},
+	{
+		name: 'loadbalancingLoadBalancerDeleteDelete',
+		value: 'loadbalancingLoadBalancerDeleteDelete',
+		action: 'loadbalancingLoadBalancerDeleteDelete',
+		execute: loadbalancingLoadBalancerDeleteDeleteExecute,
+		description: noProps,
+	},
+	{
+		name: 'loadbalancingLoadBalancerAssociateFloatingIpPost',
+		value: 'loadbalancingLoadBalancerAssociateFloatingIpPost',
+		action: 'loadbalancingLoadBalancerAssociateFloatingIpPost',
+		execute: loadbalancingLoadBalancerAssociateFloatingIpPostExecute,
+		description: noProps,
+	},
+	{
+		name: 'loadbalancingLoadBalancerFloatingIpPost',
+		value: 'loadbalancingLoadBalancerFloatingIpPost',
+		action: 'loadbalancingLoadBalancerFloatingIpPost',
+		execute: loadbalancingLoadBalancerFloatingIpPostExecute,
+		description: noProps,
+	},
+	{
+		name: 'loadbalancingLoadBalancerLogSubscriptionListGet',
+		value: 'loadbalancingLoadBalancerLogSubscriptionListGet',
+		action: 'loadbalancingLoadBalancerLogSubscriptionListGet',
+		execute: loadbalancingLoadBalancerLogSubscriptionListGetExecute,
+		description: noProps,
+	},
+	{
+		name: 'loadbalancingLoadBalancerLogSubscriptionCreatePost',
+		value: 'loadbalancingLoadBalancerLogSubscriptionCreatePost',
+		action: 'loadbalancingLoadBalancerLogSubscriptionCreatePost',
+		execute: loadbalancingLoadBalancerLogSubscriptionCreatePostExecute,
+		description: noProps,
+	},
+	{
+		name: 'loadbalancingLoadBalancerLogSubscriptionGetGet',
+		value: 'loadbalancingLoadBalancerLogSubscriptionGetGet',
+		action: 'loadbalancingLoadBalancerLogSubscriptionGetGet',
+		execute: loadbalancingLoadBalancerLogSubscriptionGetGetExecute,
+		description: noProps,
+	},
+	{
+		name: 'loadbalancingLoadBalancerLogSubscriptionDeleteDelete',
+		value: 'loadbalancingLoadBalancerLogSubscriptionDeleteDelete',
+		action: 'loadbalancingLoadBalancerLogSubscriptionDeleteDelete',
+		execute: loadbalancingLoadBalancerLogSubscriptionDeleteDeleteExecute,
+		description: noProps,
+	},
+	{
+		name: 'loadbalancingLoadBalancerLogUrlPost',
+		value: 'loadbalancingLoadBalancerLogUrlPost',
+		action: 'loadbalancingLoadBalancerLogUrlPost',
+		execute: loadbalancingLoadBalancerLogUrlPostExecute,
+		description: noProps,
+	},
+	{
+		name: 'loadbalancingLoadBalancerStatsGet',
+		value: 'loadbalancingLoadBalancerStatsGet',
+		action: 'loadbalancingLoadBalancerStatsGet',
+		execute: loadbalancingLoadBalancerStatsGetExecute,
+		description: noProps,
+	},
+	{
+		name: 'loadbalancingLogKindListGet',
+		value: 'loadbalancingLogKindListGet',
+		action: 'loadbalancingLogKindListGet',
+		execute: loadbalancingLogKindListGetExecute,
+		description: noProps,
+	},
+	{
+		name: 'loadbalancingLogKindGetGet',
+		value: 'loadbalancingLogKindGetGet',
+		action: 'loadbalancingLogKindGetGet',
+		execute: loadbalancingLogKindGetGetExecute,
+		description: noProps,
+	},
+	{
+		name: 'loadbalancingPoolListGet',
+		value: 'loadbalancingPoolListGet',
+		action: 'loadbalancingPoolListGet',
+		execute: loadbalancingPoolListGetExecute,
+		description: noProps,
+	},
+	{
+		name: 'loadbalancingPoolCreatePost',
+		value: 'loadbalancingPoolCreatePost',
+		action: 'loadbalancingPoolCreatePost',
+		execute: loadbalancingPoolCreatePostExecute,
+		description: noProps,
+	},
+	{
+		name: 'loadbalancingPoolGetGet',
+		value: 'loadbalancingPoolGetGet',
+		action: 'loadbalancingPoolGetGet',
+		execute: loadbalancingPoolGetGetExecute,
+		description: noProps,
+	},
+	{
+		name: 'loadbalancingPoolUpdatePut',
+		value: 'loadbalancingPoolUpdatePut',
+		action: 'loadbalancingPoolUpdatePut',
+		execute: loadbalancingPoolUpdatePutExecute,
+		description: noProps,
+	},
+	{
+		name: 'loadbalancingPoolDeleteDelete',
+		value: 'loadbalancingPoolDeleteDelete',
+		action: 'loadbalancingPoolDeleteDelete',
+		execute: loadbalancingPoolDeleteDeleteExecute,
+		description: noProps,
+	},
+	{
+		name: 'loadbalancingPoolMemberListGet',
+		value: 'loadbalancingPoolMemberListGet',
+		action: 'loadbalancingPoolMemberListGet',
+		execute: loadbalancingPoolMemberListGetExecute,
+		description: noProps,
+	},
+	{
+		name: 'loadbalancingPoolMemberCreatePost',
+		value: 'loadbalancingPoolMemberCreatePost',
+		action: 'loadbalancingPoolMemberCreatePost',
+		execute: loadbalancingPoolMemberCreatePostExecute,
+		description: noProps,
+	},
+	{
+		name: 'loadbalancingPoolMemberGetGet',
+		value: 'loadbalancingPoolMemberGetGet',
+		action: 'loadbalancingPoolMemberGetGet',
+		execute: loadbalancingPoolMemberGetGetExecute,
+		description: noProps,
+	},
+	{
+		name: 'loadbalancingPoolMemberUpdatePut',
+		value: 'loadbalancingPoolMemberUpdatePut',
+		action: 'loadbalancingPoolMemberUpdatePut',
+		execute: loadbalancingPoolMemberUpdatePutExecute,
+		description: noProps,
+	},
+	{
+		name: 'loadbalancingPoolMemberDeleteDelete',
+		value: 'loadbalancingPoolMemberDeleteDelete',
+		action: 'loadbalancingPoolMemberDeleteDelete',
+		execute: loadbalancingPoolMemberDeleteDeleteExecute,
+		description: noProps,
+	},
+	{
+		name: 'userCreatePost',
+		value: 'userCreatePost',
+		action: 'Create user',
+		execute: userCreatePostExecute,
+		description: userCreatePostDescription,
+	},
+	{
+		name: 'userCreateS3CredentialSecretPost',
+		value: 'userCreateS3CredentialSecretPost',
+		action: 'Create user S3 credential secret',
+		execute: userCreateS3CredentialSecretPostExecute,
+		description: userCreateS3CredentialSecretPostDescription,
+	},
+	{
+		name: 'userCreateUserPolicyPost',
+		value: 'userCreateUserPolicyPost',
+		action: 'Create user policy',
+		execute: userCreateUserPolicyPostExecute,
+		description: userCreateUserPolicyPostDescription,
+	},
+	{
+		name: 'userCreateUserRolePost',
+		value: 'userCreateUserRolePost',
+		action: 'Create user role',
+		execute: userCreateUserRolePostExecute,
+		description: userCreateUserRolePostDescription,
+	},
+	{
+		name: 'userCreateUserS3CredentialsPost',
+		value: 'userCreateUserS3CredentialsPost',
+		action: 'Create user S3 credentials',
+		execute: userCreateUserS3CredentialsPostExecute,
+		description: userCreateUserS3CredentialsPostDescription,
+	},
+	{
+		name: 'userCreateUserTokenPost',
+		value: 'userCreateUserTokenPost',
+		action: 'Create user token',
+		execute: userCreateUserTokenPostExecute,
+		description: userCreateUserTokenPostDescription,
+	},
+	{
+		name: 'userDeleteDelete',
+		value: 'userDeleteDelete',
+		action: 'Delete user',
+		execute: userDeleteDeleteExecute,
+		description: userDeleteDeleteDescription,
+	},
+	{
+		name: 'userDeleteUserRoleDelete',
+		value: 'userDeleteUserRoleDelete',
+		action: 'Delete user role',
+		execute: userDeleteUserRoleDeleteExecute,
+		description: userDeleteUserRoleDeleteDescription,
+	},
+	{
+		name: 'userDeleteUserS3CredentialDelete',
+		value: 'userDeleteUserS3CredentialDelete',
+		action: 'Delete user S3 credential',
+		execute: userDeleteUserS3CredentialDeleteExecute,
+		description: userDeleteUserS3CredentialDeleteDescription,
+	},
+	{
+		name: 'userGetDetailGet',
+		value: 'userGetDetailGet',
+		action: 'Get user',
+		execute: userGetDetailGetExecute,
+		description: userGetDetailGetDescription,
+	},
+	{
+		name: 'userGetUserConfigurationGet',
+		value: 'userGetUserConfigurationGet',
+		action: 'Get user configuration',
+		execute: userGetUserConfigurationGetExecute,
+		description: userGetUserConfigurationGetDescription,
+	},
+	{
+		name: 'userGetUserOpenrcGet',
+		value: 'userGetUserOpenrcGet',
+		action: 'Get user OpenRC file',
+		execute: userGetUserOpenrcGetExecute,
+		description: userGetUserOpenrcGetDescription,
+	},
+	{
+		name: 'userGetUserPolicyGet',
+		value: 'userGetUserPolicyGet',
+		action: 'Get user policy',
+		execute: userGetUserPolicyGetExecute,
+		description: userGetUserPolicyGetDescription,
+	},
+	{
+		name: 'userGetUserRcloneGet',
+		value: 'userGetUserRcloneGet',
+		action: 'Get user rclone configuration',
+		execute: userGetUserRcloneGetExecute,
+		description: userGetUserRcloneGetDescription,
+	},
+	{
+		name: 'userGetUserRoleDetailGet',
+		value: 'userGetUserRoleDetailGet',
+		action: 'Get user role',
+		execute: userGetUserRoleDetailGetExecute,
+		description: userGetUserRoleDetailGetDescription,
+	},
+	{
+		name: 'userGetUserRoleGet',
+		value: 'userGetUserRoleGet',
+		action: 'List user roles',
+		execute: userGetUserRoleGetExecute,
+		description: userGetUserRoleGetDescription,
+	},
+	{
+		name: 'userGetUserS3CredentialDetailGet',
+		value: 'userGetUserS3CredentialDetailGet',
+		action: 'Get user S3 credential',
+		execute: userGetUserS3CredentialDetailGetExecute,
+		description: userGetUserS3CredentialDetailGetDescription,
+	},
+	{
+		name: 'userGetUserS3CredentialsGet',
+		value: 'userGetUserS3CredentialsGet',
+		action: 'List user S3 credentials',
+		execute: userGetUserS3CredentialsGetExecute,
+		description: userGetUserS3CredentialsGetDescription,
+	},
+	{
+		name: 'userListGet',
+		value: 'userListGet',
+		action: 'List users in a project',
+		execute: userListGetExecute,
+		description: userListGetDescription,
+	},
+	{
+		name: 'userRegeneratePasswordPost',
+		value: 'userRegeneratePasswordPost',
+		action: 'Regenerate user password',
+		execute: userRegeneratePasswordPostExecute,
+		description: userRegeneratePasswordPostDescription,
+	},
+	{
+		name: 'userUpdateUserRolePut',
+		value: 'userUpdateUserRolePut',
+		action: 'Update user role',
+		execute: userUpdateUserRolePutExecute,
+		description: userUpdateUserRolePutDescription,
+	},
+	{
+		name: 'cloudAgreementsGet',
+		value: 'cloudAgreementsGet',
+		action: 'Get agreements',
+		execute: cloudAgreementsGetExecute,
+		description: cloudAgreementsGetDescription,
+	},
+	{
+		name: 'cloudEligibilityGet',
+		value: 'cloudEligibilityGet',
+		action: 'Get eligibility',
+		execute: cloudEligibilityGetExecute,
+		description: cloudEligibilityGetDescription,
+	},
+	{
+		name: 'cloudOrderListGet',
+		value: 'cloudOrderListGet',
+		action: 'List orders',
+		execute: cloudOrderListGetExecute,
+		description: cloudOrderListGetDescription,
+	},
+	{
+		name: 'cloudOrderRuleAvailabilityGet',
+		value: 'cloudOrderRuleAvailabilityGet',
+		action: 'Get order rule availability',
+		execute: cloudOrderRuleAvailabilityGetExecute,
+		description: cloudOrderRuleAvailabilityGetDescription,
+	},
+	{
+		name: 'aclCreatePost',
+		value: 'aclCreatePost',
+		action: 'Create ACL',
+		execute: aclCreatePostExecute,
+		description: aclCreatePostDescription,
+	},
+	{
+		name: 'aclDeleteDelete',
+		value: 'aclDeleteDelete',
+		action: 'Delete ACL',
+		execute: aclDeleteDeleteExecute,
+		description: aclDeleteDeleteDescription,
+	},
+	{
+		name: 'aclGetDetailGet',
+		value: 'aclGetDetailGet',
+		action: 'Get ACL details',
+		execute: aclGetDetailGetExecute,
+		description: aclGetDetailGetDescription,
+	},
+	{
+		name: 'aclListGet',
+		value: 'aclListGet',
+		action: 'List ACLs in a project',
+		execute: aclListGetExecute,
+		description: aclListGetDescription,
+	},
+	{
+		name: 'activateMonthlyBillingPost',
+		value: 'activateMonthlyBillingPost',
+		action: 'Activate monthly billing',
+		execute: activateMonthlyBillingPostExecute,
+		description: activateMonthlyBillingPostDescription,
+	},
+	{
+		name: 'alertingCreatePost',
+		value: 'alertingCreatePost',
+		action: 'Create alert',
+		execute: alertingCreatePostExecute,
+		description: alertingCreatePostDescription,
+	},
+	{
+		name: 'alertingDeleteDelete',
+		value: 'alertingDeleteDelete',
+		action: 'Delete alert',
+		execute: alertingDeleteDeleteExecute,
+		description: alertingDeleteDeleteDescription,
+	},
+	{
+		name: 'alertingGetDetailGet',
+		value: 'alertingGetDetailGet',
+		action: 'Get alert',
+		execute: alertingGetDetailGetExecute,
+		description: alertingGetDetailGetDescription,
+	},
+	{
+		name: 'alertingListGet',
+		value: 'alertingListGet',
+		action: 'List alerts in a project',
+		execute: alertingListGetExecute,
+		description: alertingListGetDescription,
+	},
+	{
+		name: 'alertingUpdatePut',
+		value: 'alertingUpdatePut',
+		action: 'Update alert',
+		execute: alertingUpdatePutExecute,
+		description: alertingUpdatePutDescription,
+	},
+	{
+		name: 'billListGet',
+		value: 'billListGet',
+		action: 'List bills',
+		execute: billListGetExecute,
+		description: billListGetDescription,
+	},
+	{
+		name: 'cancelPost',
+		value: 'cancelPost',
+		action: 'Cancel project',
+		execute: cancelPostExecute,
+		description: cancelPostDescription,
+	},
+	{
+		name: 'capabilitiesGetKubeDetailGet',
+		value: 'capabilitiesGetKubeDetailGet',
+		action: 'Get Kube capabilities',
+		execute: capabilitiesGetKubeDetailGetExecute,
+		description: capabilitiesGetKubeDetailGetDescription,
+	},
+	{
+		name: 'capabilitiesGetLoadbalancerDetailGet',
+		value: 'capabilitiesGetLoadbalancerDetailGet',
+		action: 'Get load balancer capabilities',
+		execute: capabilitiesGetLoadbalancerDetailGetExecute,
+		description: capabilitiesGetLoadbalancerDetailGetDescription,
+	},
+	{
+		name: 'capabilitiesGetRegionDetailGet',
+		value: 'capabilitiesGetRegionDetailGet',
+		action: 'Get region capabilities',
+		execute: capabilitiesGetRegionDetailGetExecute,
+		description: capabilitiesGetRegionDetailGetDescription,
+	},
+	{
+		name: 'capabilitiesGetRegionProductDetailGet',
+		value: 'capabilitiesGetRegionProductDetailGet',
+		action: 'Get region product capabilities',
+		execute: capabilitiesGetRegionProductDetailGetExecute,
+		description: capabilitiesGetRegionProductDetailGetDescription,
+	},
+	{
+		name: 'capabilitiesListGet',
+		value: 'capabilitiesListGet',
+		action: 'List capabilities',
+		execute: capabilitiesListGetExecute,
+		description: capabilitiesListGetDescription,
+	},
+	{
+		name: 'capabilitiesListKubeGet',
+		value: 'capabilitiesListKubeGet',
+		action: 'List Kube capabilities',
+		execute: capabilitiesListKubeGetExecute,
+		description: capabilitiesListKubeGetDescription,
+	},
+	{
+		name: 'capabilitiesListLoadbalancerGet',
+		value: 'capabilitiesListLoadbalancerGet',
+		action: 'List load balancer capabilities',
+		execute: capabilitiesListLoadbalancerGetExecute,
+		description: capabilitiesListLoadbalancerGetDescription,
+	},
+	{
+		name: 'capabilitiesListRegionGet',
+		value: 'capabilitiesListRegionGet',
+		action: 'List region capabilities',
+		execute: capabilitiesListRegionGetExecute,
+		description: capabilitiesListRegionGetDescription,
+	},
+	{
+		name: 'changeContactPost',
+		value: 'changeContactPost',
+		action: 'Change project contact',
+		execute: changeContactPostExecute,
+		description: changeContactPostDescription,
+	},
+	{
+		name: 'confirmTerminationPost',
+		value: 'confirmTerminationPost',
+		action: 'Confirm termination',
+		execute: confirmTerminationPostExecute,
+		description: confirmTerminationPostDescription,
+	},
+	{
+		name: 'containerRegistryCreatePost',
+		value: 'containerRegistryCreatePost',
+		action: 'Create container registry',
+		execute: containerRegistryCreatePostExecute,
+		description: containerRegistryCreatePostDescription,
+	},
+	{
+		name: 'containerRegistryCreateUserPost',
+		value: 'containerRegistryCreateUserPost',
+		action: 'Create registry user',
+		execute: containerRegistryCreateUserPostExecute,
+		description: containerRegistryCreateUserPostDescription,
+	},
+	{
+		name: 'containerRegistryDeleteDelete',
+		value: 'containerRegistryDeleteDelete',
+		action: 'Delete container registry',
+		execute: containerRegistryDeleteDeleteExecute,
+		description: containerRegistryDeleteDeleteDescription,
+	},
+	{
+		name: 'containerRegistryDeleteUserDelete',
+		value: 'containerRegistryDeleteUserDelete',
+		action: 'Delete registry user',
+		execute: containerRegistryDeleteUserDeleteExecute,
+		description: containerRegistryDeleteUserDeleteDescription,
+	},
+	{
+		name: 'containerRegistryGetDetailGet',
+		value: 'containerRegistryGetDetailGet',
+		action: 'Get container registry',
+		execute: containerRegistryGetDetailGetExecute,
+		description: containerRegistryGetDetailGetDescription,
+	},
+	{
+		name: 'containerRegistryGetUserDetailGet',
+		value: 'containerRegistryGetUserDetailGet',
+		action: 'Get registry user',
+		execute: containerRegistryGetUserDetailGetExecute,
+		description: containerRegistryGetUserDetailGetDescription,
+	},
+	{
+		name: 'containerRegistryListGet',
+		value: 'containerRegistryListGet',
+		action: 'List container registries in a project',
+		execute: containerRegistryListGetExecute,
+		description: containerRegistryListGetDescription,
+	},
+	{
+		name: 'containerRegistryListUsersGet',
+		value: 'containerRegistryListUsersGet',
+		action: 'List registry users',
+		execute: containerRegistryListUsersGetExecute,
+		description: containerRegistryListUsersGetDescription,
+	},
+	{
+		name: 'containerRegistryUpdatePut',
+		value: 'containerRegistryUpdatePut',
+		action: 'Update container registry',
+		execute: containerRegistryUpdatePutExecute,
+		description: containerRegistryUpdatePutDescription,
+	},
+	{
+		name: 'containerRegistryGetCapabilitiesPlanGet',
+		value: 'containerRegistryGetCapabilitiesPlanGet',
+		action: 'Get container registry capabilities plan',
+		execute: containerRegistryGetCapabilitiesPlanGetExecute,
+		description: containerRegistryGetCapabilitiesPlanGetDescription,
+	},
+	{
+		name: 'containerRegistryDeleteIamDelete',
+		value: 'containerRegistryDeleteIamDelete',
+		action: 'Delete IAM',
+		execute: containerRegistryDeleteIamDeleteExecute,
+		description: containerRegistryDeleteIamDeleteDescription,
+	},
+	{
+		name: 'containerRegistryCreateIamPost',
+		value: 'containerRegistryCreateIamPost',
+		action: 'Create IAM',
+		execute: containerRegistryCreateIamPostExecute,
+		description: containerRegistryCreateIamPostDescription,
+	},
+	{
+		name: 'containerRegistryGetIpRestrictionsManagementListGet',
+		value: 'containerRegistryGetIpRestrictionsManagementListGet',
+		action: 'Get IP restrictions management',
+		execute: containerRegistryGetIpRestrictionsManagementListGetExecute,
+		description: containerRegistryGetIpRestrictionsManagementListGetDescription,
+	},
+	{
+		name: 'containerRegistryUpdateIpRestrictionsManagementPut',
+		value: 'containerRegistryUpdateIpRestrictionsManagementPut',
+		action: 'Update IP restrictions management',
+		execute: containerRegistryUpdateIpRestrictionsManagementPutExecute,
+		description: containerRegistryUpdateIpRestrictionsManagementPutDescription,
+	},
+	{
+		name: 'containerRegistryGetIpRestrictionsRegistryListGet',
+		value: 'containerRegistryGetIpRestrictionsRegistryListGet',
+		action: 'Get IP restrictions registry',
+		execute: containerRegistryGetIpRestrictionsRegistryListGetExecute,
+		description: containerRegistryGetIpRestrictionsRegistryListGetDescription,
+	},
+	{
+		name: 'containerRegistryUpdateIpRestrictionsRegistryPut',
+		value: 'containerRegistryUpdateIpRestrictionsRegistryPut',
+		action: 'Update IP restrictions registry',
+		execute: containerRegistryUpdateIpRestrictionsRegistryPutExecute,
+		description: containerRegistryUpdateIpRestrictionsRegistryPutDescription,
+	},
+	{
+		name: 'containerRegistryDeleteOpenIdConnectDelete',
+		value: 'containerRegistryDeleteOpenIdConnectDelete',
+		action: 'Delete OpenID Connect',
+		execute: containerRegistryDeleteOpenIdConnectDeleteExecute,
+		description: containerRegistryDeleteOpenIdConnectDeleteDescription,
+	},
+	{
+		name: 'containerRegistryGetOpenIdConnectGet',
+		value: 'containerRegistryGetOpenIdConnectGet',
+		action: 'Get OpenID Connect',
+		execute: containerRegistryGetOpenIdConnectGetExecute,
+		description: containerRegistryGetOpenIdConnectGetDescription,
+	},
+	{
+		name: 'containerRegistryCreateOpenIdConnectPost',
+		value: 'containerRegistryCreateOpenIdConnectPost',
+		action: 'Create OpenID Connect',
+		execute: containerRegistryCreateOpenIdConnectPostExecute,
+		description: containerRegistryCreateOpenIdConnectPostDescription,
+	},
+	{
+		name: 'containerRegistryUpdateOpenIdConnectPut',
+		value: 'containerRegistryUpdateOpenIdConnectPut',
+		action: 'Update OpenID Connect',
+		execute: containerRegistryUpdateOpenIdConnectPutExecute,
+		description: containerRegistryUpdateOpenIdConnectPutDescription,
+	},
+	{
+		name: 'containerRegistryGetPlanGet',
+		value: 'containerRegistryGetPlanGet',
+		action: 'Get plan',
+		execute: containerRegistryGetPlanGetExecute,
+		description: containerRegistryGetPlanGetDescription,
+	},
+	{
+		name: 'containerRegistryUpdatePlanPut',
+		value: 'containerRegistryUpdatePlanPut',
+		action: 'Update plan',
+		execute: containerRegistryUpdatePlanPutExecute,
+		description: containerRegistryUpdatePlanPutDescription,
+	},
+	{
+		name: 'containerRegistryCreateUserSetAsAdminPost',
+		value: 'containerRegistryCreateUserSetAsAdminPost',
+		action: 'Set user as admin',
+		execute: containerRegistryCreateUserSetAsAdminPostExecute,
+		description: containerRegistryCreateUserSetAsAdminPostDescription,
+	},
+	{
+		name: 'creditCreatePost',
+		value: 'creditCreatePost',
+		action: 'Add credit to project',
+		execute: creditCreatePostExecute,
+		description: creditCreatePostDescription,
+	},
+	{
+		name: 'creditGetDetailGet',
+		value: 'creditGetDetailGet',
+		action: 'Get credit',
+		execute: creditGetDetailGetExecute,
+		description: creditGetDetailGetDescription,
+	},
+	{
+		name: 'creditListGet',
+		value: 'creditListGet',
+		action: 'List credits',
+		execute: creditListGetExecute,
+		description: creditListGetDescription,
+	},
+	{
+		name: 'flavorGetDetailGet',
+		value: 'flavorGetDetailGet',
+		action: 'Get flavor',
+		execute: flavorGetDetailGetExecute,
+		description: flavorGetDetailGetDescription,
+	},
+	{
+		name: 'flavorListGet',
+		value: 'flavorListGet',
+		action: 'List flavors',
+		execute: flavorListGetExecute,
+		description: flavorListGetDescription,
+	},
+	{
+		name: 'imageGetDetailGet',
+		value: 'imageGetDetailGet',
+		action: 'Get image',
+		execute: imageGetDetailGetExecute,
+		description: imageGetDetailGetDescription,
+	},
+	{
+		name: 'imageListGet',
+		value: 'imageListGet',
+		action: 'List images',
+		execute: imageListGetExecute,
+		description: imageListGetDescription,
+	},
+	{
+		name: 'ipCreatePost',
+		value: 'ipCreatePost',
+		action: 'Create IP address',
+		execute: ipCreatePostExecute,
+		description: ipCreatePostDescription,
+	},
+	{
+		name: 'ipDeleteDelete',
+		value: 'ipDeleteDelete',
+		action: 'Delete IP address',
+		execute: ipDeleteDeleteExecute,
+		description: ipDeleteDeleteDescription,
+	},
+	{
+		name: 'ipGetDetailGet',
+		value: 'ipGetDetailGet',
+		action: 'Get IP address',
+		execute: ipGetDetailGetExecute,
+		description: ipGetDetailGetDescription,
+	},
+	{
+		name: 'ipListGet',
+		value: 'ipListGet',
+		action: 'List IP addresses in a project',
+		execute: ipListGetExecute,
+		description: ipListGetDescription,
+	},
+	{
+		name: 'ipUpdatePut',
+		value: 'ipUpdatePut',
+		action: 'Update IP address',
+		execute: ipUpdatePutExecute,
+		description: ipUpdatePutDescription,
+	},
+	{
+		name: 'labCreatePost',
+		value: 'labCreatePost',
+		action: 'Create lab',
+		execute: labCreatePostExecute,
+		description: labCreatePostDescription,
+	},
+	{
+		name: 'labAgreementListGet',
+		value: 'labAgreementListGet',
+		action: 'List lab agreements',
+		execute: labAgreementListGetExecute,
+		description: labAgreementListGetDescription,
+	},
+	{
+		name: 'labGetDetailGet',
+		value: 'labGetDetailGet',
+		action: 'Get lab',
+		execute: labGetDetailGetExecute,
+		description: labGetDetailGetDescription,
+	},
+	{
+		name: 'labListGet',
+		value: 'labListGet',
+		action: 'List labs',
+		execute: labListGetExecute,
+		description: labListGetDescription,
+	},
+	{
+		name: 'loadbalancerCreatePost',
+		value: 'loadbalancerCreatePost',
+		action: 'Create load balancer',
+		execute: loadbalancerCreatePostExecute,
+		description: loadbalancerCreatePostDescription,
+	},
+	{
+		name: 'loadbalancerDeleteDelete',
+		value: 'loadbalancerDeleteDelete',
+		action: 'Delete load balancer',
+		execute: loadbalancerDeleteDeleteExecute,
+		description: loadbalancerDeleteDeleteDescription,
+	},
+	{
+		name: 'loadbalancerGetDetailGet',
+		value: 'loadbalancerGetDetailGet',
+		action: 'Get load balancer',
+		execute: loadbalancerGetDetailGetExecute,
+		description: loadbalancerGetDetailGetDescription,
+	},
+	{
+		name: 'loadbalancerListGet',
+		value: 'loadbalancerListGet',
+		action: 'List load balancers in a project',
+		execute: loadbalancerListGetExecute,
+		description: loadbalancerListGetDescription,
+	},
+	{
+		name: 'loadbalancerUpdatePut',
+		value: 'loadbalancerUpdatePut',
+		action: 'Update load balancer',
+		execute: loadbalancerUpdatePutExecute,
+		description: loadbalancerUpdatePutDescription,
+	},
+	{
+		name: 'operationGetDetailGet',
+		value: 'operationGetDetailGet',
+		action: 'Get operation',
+		execute: operationGetDetailGetExecute,
+		description: operationGetDetailGetDescription,
+	},
+	{
+		name: 'operationListGet',
+		value: 'operationListGet',
+		action: 'List operations',
+		execute: operationListGetExecute,
+		description: operationListGetDescription,
+	},
+	{
+		name: 'quantumGetCapabilitiesDetailGet',
+		value: 'quantumGetCapabilitiesDetailGet',
+		action: 'Get quantum capability',
+		execute: quantumGetCapabilitiesDetailGetExecute,
+		description: quantumGetCapabilitiesDetailGetDescription,
+	},
+	{
+		name: 'quantumGetCapabilitiesRegionDetailGet',
+		value: 'quantumGetCapabilitiesRegionDetailGet',
+		action: 'Get quantum region capability',
+		execute: quantumGetCapabilitiesRegionDetailGetExecute,
+		description: quantumGetCapabilitiesRegionDetailGetDescription,
+	},
+	{
+		name: 'quantumListCapabilitiesGet',
+		value: 'quantumListCapabilitiesGet',
+		action: 'List quantum capabilities',
+		execute: quantumListCapabilitiesGetExecute,
+		description: quantumListCapabilitiesGetDescription,
+	},
+	{
+		name: 'quantumListCapabilitiesRegionGet',
+		value: 'quantumListCapabilitiesRegionGet',
+		action: 'List quantum region capabilities',
+		execute: quantumListCapabilitiesRegionGetExecute,
+		description: quantumListCapabilitiesRegionGetDescription,
+	},
+	{
+		name: 'quotaListGet',
+		value: 'quotaListGet',
+		action: 'List quota',
+		execute: quotaListGetExecute,
+		description: quotaListGetDescription,
+	},
+	{
+		name: 'regionAvailableCheckRegionAvailableGet',
+		value: 'regionAvailableCheckRegionAvailableGet',
+		action: 'Check region availability',
+		execute: regionAvailableCheckRegionAvailableGetExecute,
+		description: regionAvailableCheckRegionAvailableGetDescription,
+	},
+	{
+		name: 'retainPost',
+		value: 'retainPost',
+		action: 'Retain project',
+		execute: retainPostExecute,
+		description: retainPostDescription,
+	},
+	{
+		name: 'roleListGet',
+		value: 'roleListGet',
+		action: 'List roles',
+		execute: roleListGetExecute,
+		description: roleListGetDescription,
+	},
+	{
+		name: 'serviceInfosGetServiceInfosGet',
+		value: 'serviceInfosGetServiceInfosGet',
+		action: 'Get service information',
+		execute: serviceInfosGetServiceInfosGetExecute,
+		description: serviceInfosGetServiceInfosGetDescription,
+	},
+	{
+		name: 'snapshotsCreatePost',
+		value: 'snapshotsCreatePost',
+		action: 'Create snapshot',
+		execute: snapshotsCreatePostExecute,
+		description: snapshotsCreatePostDescription,
+	},
+	{
+		name: 'snapshotsDeleteDelete',
+		value: 'snapshotsDeleteDelete',
+		action: 'Delete snapshot',
+		execute: snapshotsDeleteDeleteExecute,
+		description: snapshotsDeleteDeleteDescription,
+	},
+	{
+		name: 'snapshotsListGet',
+		value: 'snapshotsListGet',
+		action: 'List snapshots',
+		execute: snapshotsListGetExecute,
+		description: snapshotsListGetDescription,
+	},
+	{
+		name: 'sshkeyCreatePost',
+		value: 'sshkeyCreatePost',
+		action: 'Create SSH key',
+		execute: sshkeyCreatePostExecute,
+		description: sshkeyCreatePostDescription,
+	},
+	{
+		name: 'sshkeyDeleteDelete',
+		value: 'sshkeyDeleteDelete',
+		action: 'Delete SSH key',
+		execute: sshkeyDeleteDeleteExecute,
+		description: sshkeyDeleteDeleteDescription,
+	},
+	{
+		name: 'sshkeyListGet',
+		value: 'sshkeyListGet',
+		action: 'List SSH keys',
+		execute: sshkeyListGetExecute,
+		description: sshkeyListGetDescription,
+	},
+	{
+		name: 'storageCreateContainerPost',
+		value: 'storageCreateContainerPost',
+		action: 'Create storage container',
+		execute: storageCreateContainerPostExecute,
+		description: storageCreateContainerPostDescription,
+	},
+	{
+		name: 'storageDeleteContainerDelete',
+		value: 'storageDeleteContainerDelete',
+		action: 'Delete storage container',
+		execute: storageDeleteContainerDeleteExecute,
+		description: storageDeleteContainerDeleteDescription,
+	},
+	{
+		name: 'storageDeleteDelete',
+		value: 'storageDeleteDelete',
+		action: 'Delete storage',
+		execute: storageDeleteDeleteExecute,
+		description: storageDeleteDeleteDescription,
+	},
+	{
+		name: 'storageGetContainerDetailGet',
+		value: 'storageGetContainerDetailGet',
+		action: 'Get storage container',
+		execute: storageGetContainerDetailGetExecute,
+		description: storageGetContainerDetailGetDescription,
+	},
+	{
+		name: 'storageGetDetailGet',
+		value: 'storageGetDetailGet',
+		action: 'Get storage',
+		execute: storageGetDetailGetExecute,
+		description: storageGetDetailGetDescription,
+	},
+	{
+		name: 'storageListContainersGet',
+		value: 'storageListContainersGet',
+		action: 'List storage containers',
+		execute: storageListContainersGetExecute,
+		description: storageListContainersGetDescription,
+	},
+	{
+		name: 'storageListGet',
+		value: 'storageListGet',
+		action: 'List storages in a project',
+		execute: storageListGetExecute,
+		description: storageListGetDescription,
+	},
+	{
+		name: 'storageUpdateContainerPut',
+		value: 'storageUpdateContainerPut',
+		action: 'Update storage container',
+		execute: storageUpdateContainerPutExecute,
+		description: storageUpdateContainerPutDescription,
+	},
+	{
+		name: 'storageUpdatePut',
+		value: 'storageUpdatePut',
+		action: 'Update storage',
+		execute: storageUpdatePutExecute,
+		description: storageUpdatePutDescription,
+	},
+	{
+		name: 'terminatePost',
+		value: 'terminatePost',
+		action: 'Terminate project',
+		execute: terminatePostExecute,
+		description: terminatePostDescription,
+	},
+	{
+		name: 'unleashPost',
+		value: 'unleashPost',
+		action: 'Unleash project',
+		execute: unleashPostExecute,
+		description: unleashPostDescription,
+	},
+	{
+		name: 'usageGetCurrentGet',
+		value: 'usageGetCurrentGet',
+		action: 'Get current usage',
+		execute: usageGetCurrentGetExecute,
+		description: usageGetCurrentGetDescription,
+	},
+	{
+		name: 'usageGetForecastGet',
+		value: 'usageGetForecastGet',
+		action: 'Get usage forecast',
+		execute: usageGetForecastGetExecute,
+		description: usageGetForecastGetDescription,
+	},
+	{
+		name: 'usageGetHistoryDetailGet',
+		value: 'usageGetHistoryDetailGet',
+		action: 'Get usage history',
+		execute: usageGetHistoryDetailGetExecute,
+		description: usageGetHistoryDetailGetDescription,
+	},
+	{
+		name: 'usageListHistoryGet',
+		value: 'usageListHistoryGet',
+		action: 'List usage history',
+		execute: usageListHistoryGetExecute,
+		description: usageListHistoryGetDescription,
+	},
+	{
+		name: 'vrackListGet',
+		value: 'vrackListGet',
+		action: 'List vRacks',
+		execute: vrackListGetExecute,
+		description: vrackListGetDescription,
+	},
+	{
+		name: 'Attach vRack',
+		value: 'vrackCreatePost',
+		action: 'Order and attach a new vRack to your project',
+		execute: vrackCreatePostExecute,
+		description: vrackCreatePostDescription,
+	},
+	{
+		name: 'List Failover IPs',
+		value: 'ipFailoverListGet',
+		action: 'List failover IPs in your project',
+		execute: ipFailoverListGetExecute,
+		description: ipFailoverListGetDescription,
+	},
+	{
+		name: 'Get Failover IP',
+		value: 'ipFailoverGetGet',
+		action: 'Get details of a failover IP',
+		execute: ipFailoverGetGetExecute,
+		description: ipFailoverGetGetDescription,
+	},
+	{
+		name: 'Attach Failover IP',
+		value: 'ipFailoverAttachPost',
+		action: 'Attach a failover IP to an instance',
+		execute: ipFailoverAttachPostExecute,
+		description: ipFailoverAttachPostDescription,
+	},
+	{
+		name: 'List LB Configurations',
+		value: 'loadbalancerConfigurationListGet',
+		action: 'List load balancer configuration versions',
+		execute: loadbalancerConfigurationListGetExecute,
+		description: loadbalancerConfigurationListGetDescription,
+	},
+	{
+		name: 'Create LB Configuration',
+		value: 'loadbalancerConfigurationCreatePost',
+		action: 'Create a load balancer configuration',
+		execute: loadbalancerConfigurationCreatePostExecute,
+		description: loadbalancerConfigurationCreatePostDescription,
+	},
+	{
+		name: 'Get LB Configuration',
+		value: 'loadbalancerConfigurationGetGet',
+		action: 'Get a load balancer configuration version',
+		execute: loadbalancerConfigurationGetGetExecute,
+		description: loadbalancerConfigurationGetGetDescription,
+	},
+	{
+		name: 'Delete LB Configuration',
+		value: 'loadbalancerConfigurationDeleteDelete',
+		action: 'Delete a load balancer configuration version',
+		execute: loadbalancerConfigurationDeleteDeleteExecute,
+		description: loadbalancerConfigurationDeleteDeleteDescription,
+	},
+	{
+		name: 'Apply LB Configuration',
+		value: 'loadbalancerConfigurationApplyPost',
+		action: 'Apply a load balancer configuration',
+		execute: loadbalancerConfigurationApplyPostExecute,
+		description: loadbalancerConfigurationApplyPostDescription,
+	},
+	{
+		name: 'Assign Role',
+		value: 'roleCreatePost',
+		action: 'Assign a role to a user in your project',
+		execute: roleCreatePostExecute,
+		description: roleCreatePostDescription,
+	},
+	{
+		name: 'Update Service Info',
+		value: 'serviceInfosUpdatePut',
+		action: 'Update service information (e.g. renew mode)',
+		execute: serviceInfosUpdatePutExecute,
+		description: serviceInfosUpdatePutDescription,
+	},
+	{
+		name: 'Get Storage Access',
+		value: 'storageAccessPost',
+		action: 'Get SWIFT storage API access credentials',
+		execute: storageAccessPostExecute,
+		description: storageAccessPostDescription,
+	},
+	{
+		name: 'Get Storage Quota',
+		value: 'storageQuotaGet',
+		action: 'List storage quotas for your project',
+		execute: storageQuotaGetExecute,
+		description: storageQuotaGetDescription,
+	},
+	{
+		name: 'Add CORS',
+		value: 'storageCorsPost',
+		action: 'Add CORS support to a SWIFT container',
+		execute: storageCorsPostExecute,
+		description: storageCorsPostDescription,
+	},
+	{
+		name: 'Delete CORS',
+		value: 'storageCorsDeleteDelete',
+		action: 'Delete CORS support from a SWIFT container',
+		execute: storageCorsDeleteDeleteExecute,
+		description: storageCorsDeleteDeleteDescription,
+	},
+	{
+		name: 'Get Public URL',
+		value: 'storagePublicUrlPost',
+		action: 'Get a temporary public URL for a SWIFT object',
+		execute: storagePublicUrlPostExecute,
+		description: storagePublicUrlPostDescription,
+	},
+	{
+		name: 'Deploy Static Website',
+		value: 'storageStaticPost',
+		action: 'Deploy a SWIFT container as a static website',
+		execute: storageStaticPostExecute,
+		description: storageStaticPostDescription,
+	},
+	{
+		name: 'Create OpenStack User',
+		value: 'storageUserPost',
+		action: 'Create an OpenStack user for a SWIFT container',
+		execute: storageUserPostExecute,
+		description: storageUserPostDescription,
+	},
+	{
+		name: 'List Volume Snapshots',
+		value: 'volumeSnapshotListGet',
+		action: 'List volume snapshots in your project',
+		execute: volumeSnapshotListGetExecute,
+		description: volumeSnapshotListGetDescription,
+	},
+	{
+		name: 'Get Volume Snapshot',
+		value: 'volumeSnapshotGetGet',
+		action: 'Get details of a volume snapshot',
+		execute: volumeSnapshotGetGetExecute,
+		description: volumeSnapshotGetGetDescription,
+	},
+	{
+		name: 'Delete Volume Snapshot',
+		value: 'volumeSnapshotDeleteDelete',
+		action: 'Delete a volume snapshot',
+		execute: volumeSnapshotDeleteDeleteExecute,
+		description: volumeSnapshotDeleteDeleteDescription,
+	},
+	{
+		name: 'Attach Volume',
+		value: 'volumeAttachPost',
+		action: 'Attach a volume to an instance',
+		execute: volumeAttachPostExecute,
+		description: volumeAttachPostDescription,
+	},
+	{
+		name: 'Detach Volume',
+		value: 'volumeDetachPost',
+		action: 'Detach a volume from an instance',
+		execute: volumeDetachPostExecute,
+		description: volumeDetachPostDescription,
+	},
+	{
+		name: 'Create Volume Snapshot',
+		value: 'volumeSnapshotCreatePost',
+		action: 'Create a snapshot from a volume',
+		execute: volumeSnapshotCreatePostExecute,
+		description: volumeSnapshotCreatePostDescription,
+	},
+	{
+		name: 'Upsize Volume',
+		value: 'volumeUpsizePost',
+		action: 'Extend a volume size',
+		execute: volumeUpsizePostExecute,
+		description: volumeUpsizePostDescription,
+	},
+	],
+	{ operationDisplayOptions: { show: { apiVersion: ['v1'] } } },
+);
+
+const v2 = createOperationDispatcher(
+	'publicCloudOperationV2',
+	'publicCloud',
+	[
+	{
+		name: 'V2 - Create Rancher Service',
+		value: 'createRancherServiceV2',
+		action: 'createRancherServiceV2',
+		execute: serviceCreatePostV2Execute,
+		description: serviceCreatePostV2Description,
+	},
+	{
+		name: 'V2 - Delete Rancher Service',
+		value: 'deleteRancherServiceV2',
+		action: 'deleteRancherServiceV2',
+		execute: serviceDeleteDeleteV2Execute,
+		description: serviceDeleteDeleteV2Description,
+	},
+	{
+		name: 'V2 - Get Project Detail',
+		value: 'getProjectDetailV2',
+		action: 'getProjectDetailV2',
+		execute: getDetailGetV2Execute,
+		description: getDetailGetV2Description,
+	},
+	{
+		name: 'V2 - Get Rancher Service',
+		value: 'getRancherServiceV2',
+		action: 'getRancherServiceV2',
+		execute: serviceGetGetV2Execute,
+		description: serviceGetGetV2Description,
+	},
+	{
+		name: 'V2 - Get Rancher Task',
+		value: 'getRancherTaskV2',
+		action: 'getRancherTaskV2',
+		execute: taskDetailGetV2Execute,
+		description: taskDetailGetV2Description,
+	},
+	{
+		name: 'V2 - List Global Reference Plans',
+		value: 'listGlobalReferencePlansV2',
+		action: 'listGlobalReferencePlansV2',
+		execute: globalReferencePlanListGetV2Execute,
+		description: globalReferencePlanListGetV2Description,
+	},
+	{
+		name: 'V2 - List Global Reference Versions',
+		value: 'listGlobalReferenceVersionsV2',
+		action: 'listGlobalReferenceVersionsV2',
+		execute: globalReferenceVersionListGetV2Execute,
+		description: globalReferenceVersionListGetV2Description,
+	},
+	{
+		name: 'V2 - List Projects',
+		value: 'listProjectsV2',
+		action: 'listProjectsV2',
+		execute: listGetV2Execute,
+		description: backupListGetDescription,
+		default: true,
+	},
+	{
+		name: 'V2 - List Rancher Events',
+		value: 'listRancherEventsV2',
+		action: 'listRancherEventsV2',
+		execute: eventListGetV2Execute,
+		description: eventListGetV2Description,
+	},
+	{
+		name: 'V2 - List Rancher Plans',
+		value: 'listRancherPlansV2',
+		action: 'listRancherPlansV2',
+		execute: planCapabilityListGetV2Execute,
+		description: planCapabilityListGetV2Description,
+	},
+	{
+		name: 'V2 - List Rancher Services',
+		value: 'listRancherServicesV2',
+		action: 'listRancherServicesV2',
+		execute: serviceListGetV2Execute,
+		description: serviceListGetV2Description,
+	},
+	{
+		name: 'V2 - List Rancher Tasks',
+		value: 'listRancherTasksV2',
+		action: 'listRancherTasksV2',
+		execute: taskListGetV2Execute,
+		description: taskListGetV2Description,
+	},
+	{
+		name: 'V2 - List Rancher Versions',
+		value: 'listRancherVersionsV2',
+		action: 'listRancherVersionsV2',
+		execute: versionCapabilityListGetV2Execute,
+		description: versionCapabilityListGetV2Description,
+	},
+	{
+		name: 'V2 - List Reference Plans',
+		value: 'listReferencePlansV2',
+		action: 'listReferencePlansV2',
+		execute: referencePlanListGetV2Execute,
+		description: referencePlanListGetV2Description,
+	},
+	{
+		name: 'V2 - List Reference Versions',
+		value: 'listReferenceVersionsV2',
+		action: 'listReferenceVersionsV2',
+		execute: referenceVersionListGetV2Execute,
+		description: referenceVersionListGetV2Description,
+	},
+	{
+		name: 'V2 - Reset Rancher Admin Password',
+		value: 'resetRancherAdminPasswordV2',
+		action: 'resetRancherAdminPasswordV2',
+		execute: adminCredentialsResetV2Execute,
+		description: adminCredentialsResetV2Description,
+	},
+	{
+		name: 'V2 - Update Rancher Service',
+		value: 'updateRancherServiceV2',
+		action: 'updateRancherServiceV2',
+		execute: serviceUpdatePutV2Execute,
+		description: serviceUpdatePutV2Description,
+	},
+	],
+	{
+		operationDisplayOptions: { show: { apiVersion: ['v2'] } },
+		extraShow: { apiVersion: ['v2'] },
+	},
+);
+
 export function description(displayOptions: IDisplayOptions): INodeProperties[] {
-	const properties: INodeProperties[] = [];
-
-	// API Version selector (parent)
-	properties.push({
-		displayName: 'API Version',
-		name: 'apiVersion',
-		type: 'options',
-		options: [
-			{ name: 'V1 API', value: 'v1' },
-			{ name: 'V2 API', value: 'v2' },
-		],
-		default: 'v1',
-		description: 'Select the API version to use',
-	});
-
-	properties.push({
-		displayName: 'Operation',
-		name: 'publicCloudOperation',
-		type: 'options',
-		noDataExpression: true,
-		displayOptions: {
-			show: {
-				apiVersion: ['v1'],
-			},
-		},
-		// eslint-disable-next-line n8n-nodes-base/node-param-options-type-unsorted-items
-		options: [
-			{
-				name: 'Create Backup',
-				value: 'createBackupPost',
-				action: 'Create a new block storage backup',
-			},
-			{
-				name: 'Create Snapshot',
-				value: 'createSnapshotPost',
-				action: 'Create a new block storage snapshot',
-			},
-			{
-				name: 'Create Volume',
-				value: 'createVolumePost',
-				action: 'Create a new block storage volume',
-			},
-			{
-				name: 'Create Rancher Service',
-				value: 'createRancherPost',
-				action: 'Create a new Rancher service for a project',
-			},
-			{ name: 'Delete Backup', value: 'deleteBackupDelete', action: 'Delete a specific backup' },
-			{
-				name: 'Delete Snapshot',
-				value: 'deleteSnapshotDelete',
-				action: 'Delete a specific snapshot',
-			},
-			{
-				name: 'Delete Rancher Service',
-				value: 'deleteRancherDelete',
-				action: 'Delete a specific Rancher service',
-			},
-			{ name: 'Delete Volume', value: 'deleteVolumeDelete', action: 'Delete a specific volume' },
-			{
-				name: 'Get Backup Details',
-				value: 'getBackupDetail',
-				action: 'Get details of a specific backup',
-			},
-			{
-				name: 'Get Project Details',
-				value: 'getProjectDetail',
-				action: 'Get details of a specific Public Cloud project',
-			},
-			{
-				name: 'Get Rancher Service',
-				value: 'getRancherService',
-				action: 'Get details of a specific Rancher service',
-			},
-			{
-				name: 'Get Snapshot Details',
-				value: 'getSnapshotDetail',
-				action: 'Get details of a specific snapshot',
-			},
-			{
-				name: 'Get Volume Details',
-				value: 'getVolumeDetail',
-				action: 'Get details of a specific volume',
-			},
-			{
-				name: 'List Backups',
-				value: 'backupListGet',
-				action: 'List block storage backups in a project',
-			},
-			{ name: 'List Projects', value: 'projectListGet', action: 'List all Public Cloud projects' },
-			{
-				name: 'List Plan Capabilities',
-				value: 'rancherPlanCapabilityListGet',
-				action: 'List available plan capabilities for a Rancher service',
-			},
-			{
-				name: 'List Rancher Services',
-				value: 'rancherServiceListGet',
-				action: 'List Rancher services for a project',
-			},
-			{
-				name: 'List Tasks',
-				value: 'rancherTaskListGet',
-				action: 'List all tasks for a Rancher service',
-			},
-			{
-				name: 'Get Task',
-				value: 'rancherTaskDetailGet',
-				action: 'Get details of a specific Rancher task',
-			},
-			{
-				name: 'List Events',
-				value: 'rancherEventListGet',
-				action: 'List all events for a Rancher service',
-			},
-			{
-				name: 'Get Admin Credentials',
-				value: 'rancherAdminCredentialsGet',
-				action: 'Get admin credentials for a Rancher service',
-			},
-			{
-				name: 'Reset Admin Credentials',
-				value: 'rancherAdminCredentialsReset',
-				action: 'Reset admin password for a Rancher service',
-			},
-			{
-				name: 'List Snapshots',
-				value: 'snapshotListGet',
-				action: 'List block storage snapshots in a project',
-			},
-			{
-				name: 'List Version Capabilities',
-				value: 'rancherVersionCapabilityListGet',
-				action: 'List available version capabilities for a Rancher service',
-			},
-			{
-				name: 'List Volumes',
-				value: 'volumeListGet',
-				action: 'List block storage volumes in a project',
-			},
-			{ name: 'Update Backup', value: 'updateBackupPut', action: 'Update an existing backup' },
-			{
-				name: 'Update Snapshot',
-				value: 'updateSnapshotPut',
-				action: 'Update an existing snapshot',
-			},
-			{ name: 'Update Volume', value: 'updateVolumePut', action: 'Update an existing volume' },
-			{
-				name: 'Update Rancher Service',
-				value: 'updateRancherPut',
-				action: 'Update a specific Rancher service (plan change)',
-			},
-			{
-				name: 'redisClusterListGet',
-				value: 'redisClusterListGet',
-				action: 'List Redis clusters in a project',
-			},
-			{
-				name: 'redisClusterGetGet',
-				value: 'redisClusterGetGet',
-				action: 'Get Redis cluster',
-			},
-			{
-				name: 'redisClusterCreatePost',
-				value: 'redisClusterCreatePost',
-				action: 'Create Redis cluster',
-			},
-			{
-				name: 'redisClusterUpdatePut',
-				value: 'redisClusterUpdatePut',
-				action: 'Update Redis cluster',
-			},
-			{
-				name: 'redisClusterDeleteDelete',
-				value: 'redisClusterDeleteDelete',
-				action: 'Delete Redis cluster',
-			},
-			{
-				name: 'redisBackupListGet',
-				value: 'redisBackupListGet',
-				action: 'List Redis backups',
-			},
-			{
-				name: 'redisBackupGetGet',
-				value: 'redisBackupGetGet',
-				action: 'Get Redis backup',
-			},
-			{
-				name: 'redisAdvancedConfigurationGet',
-				value: 'redisAdvancedConfigurationGet',
-				action: 'Get Redis advanced configuration',
-			},
-			{
-				name: 'redisAdvancedConfigurationUpdatePut',
-				value: 'redisAdvancedConfigurationUpdatePut',
-				action: 'Update Redis advanced configuration',
-			},
-			{
-				name: 'redisCapabilitiesAdvancedConfigurationGet',
-				value: 'redisCapabilitiesAdvancedConfigurationGet',
-				action: 'Get Redis advanced configuration capabilities',
-			},
-			{
-				name: 'redisCapabilitiesCategoriesGet',
-				value: 'redisCapabilitiesCategoriesGet',
-				action: 'Get Redis categories capabilities',
-			},
-			{
-				name: 'redisCapabilitiesCommandsGet',
-				value: 'redisCapabilitiesCommandsGet',
-				action: 'Get Redis commands capabilities',
-			},
-			{
-				name: 'redisCapabilitiesIntegrationGet',
-				value: 'redisCapabilitiesIntegrationGet',
-				action: 'Get Redis integration capabilities',
-			},
-			{
-				name: 'redisIntegrationListGet',
-				value: 'redisIntegrationListGet',
-				action: 'List Redis integrations',
-			},
-			{
-				name: 'redisIntegrationCreatePost',
-				value: 'redisIntegrationCreatePost',
-				action: 'Create Redis integration',
-			},
-			{
-				name: 'redisIntegrationGetGet',
-				value: 'redisIntegrationGetGet',
-				action: 'Get Redis integration',
-			},
-			{
-				name: 'redisIntegrationDeleteDelete',
-				value: 'redisIntegrationDeleteDelete',
-				action: 'Delete Redis integration',
-			},
-			{
-				name: 'redisIpRestrictionListGet',
-				value: 'redisIpRestrictionListGet',
-				action: 'List Redis IP restrictions',
-			},
-			{
-				name: 'redisIpRestrictionCreatePost',
-				value: 'redisIpRestrictionCreatePost',
-				action: 'Create Redis IP restriction',
-			},
-			{
-				name: 'redisIpRestrictionGetGet',
-				value: 'redisIpRestrictionGetGet',
-				action: 'Get Redis IP restriction',
-			},
-			{
-				name: 'redisIpRestrictionUpdatePut',
-				value: 'redisIpRestrictionUpdatePut',
-				action: 'Update Redis IP restriction',
-			},
-			{
-				name: 'redisIpRestrictionDeleteDelete',
-				value: 'redisIpRestrictionDeleteDelete',
-				action: 'Delete Redis IP restriction',
-			},
-			{
-				name: 'redisLogKindListGet',
-				value: 'redisLogKindListGet',
-				action: 'List Redis log kinds',
-			},
-			{
-				name: 'redisLogKindGet',
-				value: 'redisLogKindGet',
-				action: 'Get Redis log kind',
-			},
-			{
-				name: 'redisLogSubscriptionListGet',
-				value: 'redisLogSubscriptionListGet',
-				action: 'List Redis log subscriptions',
-			},
-			{
-				name: 'redisLogSubscriptionCreatePost',
-				value: 'redisLogSubscriptionCreatePost',
-				action: 'Create Redis log subscription',
-			},
-			{
-				name: 'redisLogSubscriptionGetGet',
-				value: 'redisLogSubscriptionGetGet',
-				action: 'Get Redis log subscription',
-			},
-			{
-				name: 'redisLogSubscriptionDeleteDelete',
-				value: 'redisLogSubscriptionDeleteDelete',
-				action: 'Delete Redis log subscription',
-			},
-			{
-				name: 'redisLogUrlCreatePost',
-				value: 'redisLogUrlCreatePost',
-				action: 'Generate Redis log URL',
-			},
-			{
-				name: 'redisLogsGet',
-				value: 'redisLogsGet',
-				action: 'Get Redis logs',
-			},
-			{
-				name: 'redisMaintenanceListGet',
-				value: 'redisMaintenanceListGet',
-				action: 'List Redis maintenances',
-			},
-			{
-				name: 'redisMaintenanceGet',
-				value: 'redisMaintenanceGet',
-				action: 'Get Redis maintenance',
-			},
-			{
-				name: 'redisMaintenanceApplyPost',
-				value: 'redisMaintenanceApplyPost',
-				action: 'Apply Redis maintenance',
-			},
-			{
-				name: 'redisMetricListGet',
-				value: 'redisMetricListGet',
-				action: 'List Redis metrics',
-			},
-			{
-				name: 'redisMetricGet',
-				value: 'redisMetricGet',
-				action: 'Get Redis metric',
-			},
-			{
-				name: 'redisNodeListGet',
-				value: 'redisNodeListGet',
-				action: 'List Redis nodes',
-			},
-			{
-				name: 'redisNodeGetGet',
-				value: 'redisNodeGetGet',
-				action: 'Get Redis node',
-			},
-			{
-				name: 'redisPrometheusGet',
-				value: 'redisPrometheusGet',
-				action: 'Get Redis prometheus endpoint',
-			},
-			{
-				name: 'redisPrometheusCredentialsResetPost',
-				value: 'redisPrometheusCredentialsResetPost',
-				action: 'Reset Redis prometheus credentials',
-			},
-			{
-				name: 'redisUserListGet',
-				value: 'redisUserListGet',
-				action: 'List Redis users',
-			},
-			{
-				name: 'redisUserCreatePost',
-				value: 'redisUserCreatePost',
-				action: 'Create Redis user',
-			},
-			{
-				name: 'redisUserGetGet',
-				value: 'redisUserGetGet',
-				action: 'Get Redis user',
-			},
-			{
-				name: 'redisUserUpdatePut',
-				value: 'redisUserUpdatePut',
-				action: 'Update Redis user',
-			},
-			{
-				name: 'redisUserDeleteDelete',
-				value: 'redisUserDeleteDelete',
-				action: 'Delete Redis user',
-			},
-			{
-				name: 'redisUserCredentialsResetPost',
-				value: 'redisUserCredentialsResetPost',
-				action: 'Reset Redis user credentials',
-			},
-			{
-				name: 'cassandraClusterListGet',
-				value: 'cassandraClusterListGet',
-				action: 'List Cassandra clusters in a project',
-			},
-			{
-				name: 'cassandraClusterGetGet',
-				value: 'cassandraClusterGetGet',
-				action: 'Get Cassandra cluster',
-			},
-			{
-				name: 'cassandraClusterCreatePost',
-				value: 'cassandraClusterCreatePost',
-				action: 'Create Cassandra cluster',
-			},
-			{
-				name: 'cassandraClusterUpdatePut',
-				value: 'cassandraClusterUpdatePut',
-				action: 'Update Cassandra cluster',
-			},
-			{
-				name: 'cassandraClusterDeleteDelete',
-				value: 'cassandraClusterDeleteDelete',
-				action: 'Delete Cassandra cluster',
-			},
-			{
-				name: 'cassandraBackupListGet',
-				value: 'cassandraBackupListGet',
-				action: 'List Cassandra backups',
-			},
-			{
-				name: 'cassandraBackupCreatePost',
-				value: 'cassandraBackupCreatePost',
-				action: 'Create Cassandra backup',
-			},
-			{
-				name: 'cassandraBackupGetGet',
-				value: 'cassandraBackupGetGet',
-				action: 'Get Cassandra backup',
-			},
-			{
-				name: 'cassandraBackupDeleteDelete',
-				value: 'cassandraBackupDeleteDelete',
-				action: 'Delete Cassandra backup',
-			},
-			{
-				name: 'cassandraUserListGet',
-				value: 'cassandraUserListGet',
-				action: 'List Cassandra users',
-			},
-			{
-				name: 'cassandraUserCreatePost',
-				value: 'cassandraUserCreatePost',
-				action: 'Create Cassandra user',
-			},
-			{
-				name: 'cassandraUserGetGet',
-				value: 'cassandraUserGetGet',
-				action: 'Get Cassandra user',
-			},
-			{
-				name: 'cassandraUserUpdatePut',
-				value: 'cassandraUserUpdatePut',
-				action: 'Update Cassandra user',
-			},
-			{
-				name: 'cassandraUserDeleteDelete',
-				value: 'cassandraUserDeleteDelete',
-				action: 'Delete Cassandra user',
-			},
-			{
-				name: 'cassandraNodeListGet',
-				value: 'cassandraNodeListGet',
-				action: 'List Cassandra nodes',
-			},
-			{
-				name: 'cassandraNodeCreatePost',
-				value: 'cassandraNodeCreatePost',
-				action: 'Create Cassandra node',
-			},
-			{
-				name: 'cassandraNodeGetGet',
-				value: 'cassandraNodeGetGet',
-				action: 'Get Cassandra node',
-			},
-			{
-				name: 'cassandraNodeUpdatePut',
-				value: 'cassandraNodeUpdatePut',
-				action: 'Update Cassandra node',
-			},
-			{
-				name: 'cassandraNodeDeleteDelete',
-				value: 'cassandraNodeDeleteDelete',
-				action: 'Delete Cassandra node',
-			},
-			{
-				name: 'cassandraIpRestrictionListGet',
-				value: 'cassandraIpRestrictionListGet',
-				action: 'List Cassandra IP restrictions',
-			},
-			{
-				name: 'cassandraIpRestrictionCreatePost',
-				value: 'cassandraIpRestrictionCreatePost',
-				action: 'Create Cassandra IP restriction',
-			},
-			{
-				name: 'cassandraLogSubscriptionListGet',
-				value: 'cassandraLogSubscriptionListGet',
-				action: 'List Cassandra log subscriptions',
-			},
-			{
-				name: 'cassandraLogSubscriptionCreatePost',
-				value: 'cassandraLogSubscriptionCreatePost',
-				action: 'Create Cassandra log subscription',
-			},
-			{
-				name: 'cassandraLogSubscriptionGetGet',
-				value: 'cassandraLogSubscriptionGetGet',
-				action: 'Get Cassandra log subscription',
-			},
-			{
-				name: 'cassandraMaintenanceGet',
-				value: 'cassandraMaintenanceGet',
-				action: 'Get Cassandra maintenance',
-			},
-			{
-				name: 'cassandraMaintenanceUpdatePut',
-				value: 'cassandraMaintenanceUpdatePut',
-				action: 'Update Cassandra maintenance',
-			},
-			{
-				name: 'cassandraMetricGet',
-				value: 'cassandraMetricGet',
-				action: 'Get Cassandra metric',
-			},
-			{
-				name: 'cassandraPrometheusGet',
-				value: 'cassandraPrometheusGet',
-				action: 'Get Cassandra prometheus',
-			},
-			{
-				name: 'cassandraCertificateListGet',
-				value: 'cassandraCertificateListGet',
-				action: 'List Cassandra certificates',
-			},
-			{
-				name: 'cassandraCertificateCreatePost',
-				value: 'cassandraCertificateCreatePost',
-				action: 'Create Cassandra certificate',
-			},
-			{
-				name: 'cassandraIntegrationListGet',
-				value: 'cassandraIntegrationListGet',
-				action: 'List Cassandra integrations',
-			},
-			{
-				name: 'cassandraIntegrationCreatePost',
-				value: 'cassandraIntegrationCreatePost',
-				action: 'Create Cassandra integration',
-			},
-			{
-				name: 'cassandraAdvancedConfigurationGet',
-				value: 'cassandraAdvancedConfigurationGet',
-				action: 'Get Cassandra advanced configuration',
-			},
-			{
-				name: 'cassandraAdvancedConfigurationUpdatePut',
-				value: 'cassandraAdvancedConfigurationUpdatePut',
-				action: 'Update Cassandra advanced configuration',
-			},
-			{
-				name: 'cassandraCapabilitiesAdvancedConfigurationGet',
-				value: 'cassandraCapabilitiesAdvancedConfigurationGet',
-				action: 'Get Cassandra capabilities advanced configuration',
-			},
-			{
-				name: 'cassandraCapabilitiesIntegrationGet',
-				value: 'cassandraCapabilitiesIntegrationGet',
-				action: 'Get Cassandra capabilities integration',
-			},
-			{
-				name: 'cassandraIntegrationGetGet',
-				value: 'cassandraIntegrationGetGet',
-				action: 'Get Cassandra integration',
-			},
-			{
-				name: 'cassandraIntegrationDeleteDelete',
-				value: 'cassandraIntegrationDeleteDelete',
-				action: 'Delete Cassandra integration',
-			},
-			{
-				name: 'cassandraIpRestrictionGetGet',
-				value: 'cassandraIpRestrictionGetGet',
-				action: 'Get Cassandra IP restriction',
-			},
-			{
-				name: 'cassandraIpRestrictionDeleteDelete',
-				value: 'cassandraIpRestrictionDeleteDelete',
-				action: 'Delete Cassandra IP restriction',
-			},
-			{
-				name: 'cassandraIpRestrictionUpdatePut',
-				value: 'cassandraIpRestrictionUpdatePut',
-				action: 'Update Cassandra IP restriction',
-			},
-			{
-				name: 'cassandraLogKindListGet',
-				value: 'cassandraLogKindListGet',
-				action: 'List Cassandra log kinds',
-			},
-			{
-				name: 'cassandraLogKindGetGet',
-				value: 'cassandraLogKindGetGet',
-				action: 'Get Cassandra log kind',
-			},
-			{
-				name: 'cassandraLogSubscriptionDeleteDelete',
-				value: 'cassandraLogSubscriptionDeleteDelete',
-				action: 'Delete Cassandra log subscription',
-			},
-			{
-				name: 'cassandraLogUrlCreatePost',
-				value: 'cassandraLogUrlCreatePost',
-				action: 'Create Cassandra log URL',
-			},
-			{
-				name: 'cassandraLogsGet',
-				value: 'cassandraLogsGet',
-				action: 'Get Cassandra logs',
-			},
-			{
-				name: 'cassandraMaintenanceApplyPost',
-				value: 'cassandraMaintenanceApplyPost',
-				action: 'Apply Cassandra maintenance',
-			},
-			{
-				name: 'cassandraMaintenanceGetGet',
-				value: 'cassandraMaintenanceGetGet',
-				action: 'Get Cassandra maintenance details',
-			},
-			{
-				name: 'cassandraMetricGetGet',
-				value: 'cassandraMetricGetGet',
-				action: 'Get Cassandra metric values',
-			},
-			{
-				name: 'cassandraPrometheusCredentialsResetPost',
-				value: 'cassandraPrometheusCredentialsResetPost',
-				action: 'Reset Cassandra Prometheus credentials',
-			},
-			{
-				name: 'cassandraUserCredentialsResetPost',
-				value: 'cassandraUserCredentialsResetPost',
-				action: 'Reset Cassandra user credentials',
-			},
-			{
-				name: 'clickhouseClusterListGet',
-				value: 'clickhouseClusterListGet',
-				action: 'List ClickHouse clusters in a project',
-			},
-			{
-				name: 'clickhouseClusterGetGet',
-				value: 'clickhouseClusterGetGet',
-				action: 'Get ClickHouse cluster',
-			},
-			{
-				name: 'clickhouseClusterCreatePost',
-				value: 'clickhouseClusterCreatePost',
-				action: 'Create ClickHouse cluster',
-			},
-			{
-				name: 'clickhouseClusterUpdatePut',
-				value: 'clickhouseClusterUpdatePut',
-				action: 'Update ClickHouse cluster',
-			},
-			{
-				name: 'clickhouseClusterDeleteDelete',
-				value: 'clickhouseClusterDeleteDelete',
-				action: 'Delete ClickHouse cluster',
-			},
-			{
-				name: 'clickhouseBackupListGet',
-				value: 'clickhouseBackupListGet',
-				action: 'List ClickHouse backups',
-			},
-			{
-				name: 'clickhouseBackupCreatePost',
-				value: 'clickhouseBackupCreatePost',
-				action: 'Create ClickHouse backup',
-			},
-			{
-				name: 'clickhouseBackupGetGet',
-				value: 'clickhouseBackupGetGet',
-				action: 'Get ClickHouse backup',
-			},
-			{
-				name: 'clickhouseBackupDeleteDelete',
-				value: 'clickhouseBackupDeleteDelete',
-				action: 'Delete ClickHouse backup',
-			},
-			{
-				name: 'clickhouseUserListGet',
-				value: 'clickhouseUserListGet',
-				action: 'List ClickHouse users',
-			},
-			{
-				name: 'clickhouseUserCreatePost',
-				value: 'clickhouseUserCreatePost',
-				action: 'Create ClickHouse user',
-			},
-			{
-				name: 'clickhouseUserGetGet',
-				value: 'clickhouseUserGetGet',
-				action: 'Get ClickHouse user',
-			},
-			{
-				name: 'clickhouseUserUpdatePut',
-				value: 'clickhouseUserUpdatePut',
-				action: 'Update ClickHouse user',
-			},
-			{
-				name: 'clickhouseUserDeleteDelete',
-				value: 'clickhouseUserDeleteDelete',
-				action: 'Delete ClickHouse user',
-			},
-			{
-				name: 'clickhouseNodeListGet',
-				value: 'clickhouseNodeListGet',
-				action: 'List ClickHouse nodes',
-			},
-			{
-				name: 'clickhouseNodeCreatePost',
-				value: 'clickhouseNodeCreatePost',
-				action: 'Create ClickHouse node',
-			},
-			{
-				name: 'clickhouseNodeGetGet',
-				value: 'clickhouseNodeGetGet',
-				action: 'Get ClickHouse node',
-			},
-			{
-				name: 'clickhouseNodeUpdatePut',
-				value: 'clickhouseNodeUpdatePut',
-				action: 'Update ClickHouse node',
-			},
-			{
-				name: 'clickhouseNodeDeleteDelete',
-				value: 'clickhouseNodeDeleteDelete',
-				action: 'Delete ClickHouse node',
-			},
-			{
-				name: 'clickhouseIpRestrictionListGet',
-				value: 'clickhouseIpRestrictionListGet',
-				action: 'List ClickHouse IP restrictions',
-			},
-			{
-				name: 'clickhouseIpRestrictionCreatePost',
-				value: 'clickhouseIpRestrictionCreatePost',
-				action: 'Create ClickHouse IP restriction',
-			},
-			{
-				name: 'clickhouseLogSubscriptionListGet',
-				value: 'clickhouseLogSubscriptionListGet',
-				action: 'List ClickHouse log subscriptions',
-			},
-			{
-				name: 'clickhouseLogSubscriptionCreatePost',
-				value: 'clickhouseLogSubscriptionCreatePost',
-				action: 'Create ClickHouse log subscription',
-			},
-			{
-				name: 'clickhouseLogSubscriptionGetGet',
-				value: 'clickhouseLogSubscriptionGetGet',
-				action: 'Get ClickHouse log subscription',
-			},
-			{
-				name: 'clickhouseMaintenanceGet',
-				value: 'clickhouseMaintenanceGet',
-				action: 'Get ClickHouse maintenance',
-			},
-			{
-				name: 'clickhouseMaintenanceUpdatePut',
-				value: 'clickhouseMaintenanceUpdatePut',
-				action: 'Update ClickHouse maintenance',
-			},
-			{
-				name: 'clickhouseMetricGet',
-				value: 'clickhouseMetricGet',
-				action: 'Get ClickHouse metric',
-			},
-			{
-				name: 'clickhousePrometheusGet',
-				value: 'clickhousePrometheusGet',
-				action: 'Get ClickHouse prometheus',
-			},
-			{
-				name: 'clickhouseCertificateListGet',
-				value: 'clickhouseCertificateListGet',
-				action: 'List ClickHouse certificates',
-			},
-			{
-				name: 'clickhouseCertificateCreatePost',
-				value: 'clickhouseCertificateCreatePost',
-				action: 'Create ClickHouse certificate',
-			},
-			{
-				name: 'clickhouseIntegrationListGet',
-				value: 'clickhouseIntegrationListGet',
-				action: 'List ClickHouse integrations',
-			},
-			{
-				name: 'clickhouseIntegrationCreatePost',
-				value: 'clickhouseIntegrationCreatePost',
-				action: 'Create ClickHouse integration',
-			},
-			{
-				name: 'grafanaClusterListGet',
-				value: 'grafanaClusterListGet',
-				action: 'List Grafana clusters in a project',
-			},
-			{
-				name: 'grafanaClusterGetGet',
-				value: 'grafanaClusterGetGet',
-				action: 'Get Grafana cluster',
-			},
-			{
-				name: 'grafanaClusterCreatePost',
-				value: 'grafanaClusterCreatePost',
-				action: 'Create Grafana cluster',
-			},
-			{
-				name: 'grafanaClusterUpdatePut',
-				value: 'grafanaClusterUpdatePut',
-				action: 'Update Grafana cluster',
-			},
-			{
-				name: 'grafanaClusterDeleteDelete',
-				value: 'grafanaClusterDeleteDelete',
-				action: 'Delete Grafana cluster',
-			},
-			{
-				name: 'grafanaBackupListGet',
-				value: 'grafanaBackupListGet',
-				action: 'List Grafana backups',
-			},
-			{
-				name: 'grafanaBackupGetGet',
-				value: 'grafanaBackupGetGet',
-				action: 'Get Grafana backup',
-			},
-			{
-				name: 'grafanaUserListGet',
-				value: 'grafanaUserListGet',
-				action: 'List Grafana users',
-			},
-			{
-				name: 'grafanaUserGetGet',
-				value: 'grafanaUserGetGet',
-				action: 'Get Grafana user',
-			},
-			{
-				name: 'grafanaUserCredentialsResetPost',
-				value: 'grafanaUserCredentialsResetPost',
-				action: 'Reset Grafana user credentials',
-			},
-			{
-				name: 'grafanaNodeListGet',
-				value: 'grafanaNodeListGet',
-				action: 'List Grafana nodes',
-			},
-			{
-				name: 'grafanaNodeGetGet',
-				value: 'grafanaNodeGetGet',
-				action: 'Get Grafana node',
-			},
-			{
-				name: 'grafanaIpRestrictionListGet',
-				value: 'grafanaIpRestrictionListGet',
-				action: 'List Grafana IP restrictions',
-			},
-			{
-				name: 'grafanaIpRestrictionCreatePost',
-				value: 'grafanaIpRestrictionCreatePost',
-				action: 'Create Grafana IP restriction',
-			},
-			{
-				name: 'grafanaIpRestrictionGetGet',
-				value: 'grafanaIpRestrictionGetGet',
-				action: 'Get Grafana IP restriction',
-			},
-			{
-				name: 'grafanaIpRestrictionUpdatePut',
-				value: 'grafanaIpRestrictionUpdatePut',
-				action: 'Update Grafana IP restriction',
-			},
-			{
-				name: 'grafanaIpRestrictionDeleteDelete',
-				value: 'grafanaIpRestrictionDeleteDelete',
-				action: 'Delete Grafana IP restriction',
-			},
-			{
-				name: 'grafanaLogKindListGet',
-				value: 'grafanaLogKindListGet',
-				action: 'List Grafana log kinds',
-			},
-			{
-				name: 'grafanaLogKindGet',
-				value: 'grafanaLogKindGet',
-				action: 'Get Grafana log kind',
-			},
-			{
-				name: 'grafanaLogSubscriptionListGet',
-				value: 'grafanaLogSubscriptionListGet',
-				action: 'List Grafana log subscriptions',
-			},
-			{
-				name: 'grafanaLogSubscriptionCreatePost',
-				value: 'grafanaLogSubscriptionCreatePost',
-				action: 'Create Grafana log subscription',
-			},
-			{
-				name: 'grafanaLogSubscriptionGetGet',
-				value: 'grafanaLogSubscriptionGetGet',
-				action: 'Get Grafana log subscription',
-			},
-			{
-				name: 'grafanaLogSubscriptionDeleteDelete',
-				value: 'grafanaLogSubscriptionDeleteDelete',
-				action: 'Delete Grafana log subscription',
-			},
-			{
-				name: 'grafanaLogUrlCreatePost',
-				value: 'grafanaLogUrlCreatePost',
-				action: 'Get Grafana log URL',
-			},
-			{
-				name: 'grafanaLogsGet',
-				value: 'grafanaLogsGet',
-				action: 'Get Grafana logs',
-			},
-			{
-				name: 'grafanaMaintenanceListGet',
-				value: 'grafanaMaintenanceListGet',
-				action: 'List Grafana maintenances',
-			},
-			{
-				name: 'grafanaMaintenanceGet',
-				value: 'grafanaMaintenanceGet',
-				action: 'Get Grafana maintenance',
-			},
-			{
-				name: 'grafanaMaintenanceApplyPost',
-				value: 'grafanaMaintenanceApplyPost',
-				action: 'Apply Grafana maintenance',
-			},
-			{
-				name: 'grafanaMetricListGet',
-				value: 'grafanaMetricListGet',
-				action: 'List Grafana metrics',
-			},
-			{
-				name: 'grafanaMetricGet',
-				value: 'grafanaMetricGet',
-				action: 'Get Grafana metric',
-			},
-			{
-				name: 'grafanaAdvancedConfigurationGet',
-				value: 'grafanaAdvancedConfigurationGet',
-				action: 'Get Grafana advanced configuration',
-			},
-			{
-				name: 'grafanaAdvancedConfigurationUpdatePut',
-				value: 'grafanaAdvancedConfigurationUpdatePut',
-				action: 'Update Grafana advanced configuration',
-			},
-			{
-				name: 'grafanaCapabilitiesAdvancedConfigurationGet',
-				value: 'grafanaCapabilitiesAdvancedConfigurationGet',
-				action: 'Get Grafana advanced configuration capabilities',
-			},
-			{
-				name: 'grafanaCapabilitiesBackupRegionsGet',
-				value: 'grafanaCapabilitiesBackupRegionsGet',
-				action: 'Get Grafana backup regions capabilities',
-			},
-			{
-				name: 'grafanaCapabilitiesIntegrationGet',
-				value: 'grafanaCapabilitiesIntegrationGet',
-				action: 'Get Grafana integration capabilities',
-			},
-			{
-				name: 'grafanaIntegrationListGet',
-				value: 'grafanaIntegrationListGet',
-				action: 'List Grafana integrations',
-			},
-			{
-				name: 'grafanaIntegrationCreatePost',
-				value: 'grafanaIntegrationCreatePost',
-				action: 'Create Grafana integration',
-			},
-			{
-				name: 'grafanaIntegrationGetGet',
-				value: 'grafanaIntegrationGetGet',
-				action: 'Get Grafana integration',
-			},
-			{
-				name: 'grafanaIntegrationDeleteDelete',
-				value: 'grafanaIntegrationDeleteDelete',
-				action: 'Delete Grafana integration',
-			},
-			{
-				name: 'kafkaClusterListGet',
-				value: 'kafkaClusterListGet',
-				action: 'List Kafka clusters in a project',
-			},
-			{
-				name: 'kafkaClusterGetGet',
-				value: 'kafkaClusterGetGet',
-				action: 'Get Kafka cluster',
-			},
-			{
-				name: 'kafkaClusterCreatePost',
-				value: 'kafkaClusterCreatePost',
-				action: 'Create Kafka cluster',
-			},
-			{
-				name: 'kafkaClusterUpdatePut',
-				value: 'kafkaClusterUpdatePut',
-				action: 'Update Kafka cluster',
-			},
-			{
-				name: 'kafkaClusterDeleteDelete',
-				value: 'kafkaClusterDeleteDelete',
-				action: 'Delete Kafka cluster',
-			},
-			{
-				name: 'kafkaAclListGet',
-				value: 'kafkaAclListGet',
-				action: 'List Kafka ACLs',
-			},
-			{
-				name: 'kafkaAclCreatePost',
-				value: 'kafkaAclCreatePost',
-				action: 'Create Kafka ACL',
-			},
-			{
-				name: 'kafkaAclGetGet',
-				value: 'kafkaAclGetGet',
-				action: 'Get Kafka ACL',
-			},
-			{
-				name: 'kafkaAclDeleteDelete',
-				value: 'kafkaAclDeleteDelete',
-				action: 'Delete Kafka ACL',
-			},
-			{
-				name: 'kafkaAdvancedConfigurationGet',
-				value: 'kafkaAdvancedConfigurationGet',
-				action: 'Get Kafka advanced configuration',
-			},
-			{
-				name: 'kafkaAdvancedConfigurationUpdatePut',
-				value: 'kafkaAdvancedConfigurationUpdatePut',
-				action: 'Update Kafka advanced configuration',
-			},
-			{
-				name: 'kafkaCapabilitiesAdvancedConfigurationGet',
-				value: 'kafkaCapabilitiesAdvancedConfigurationGet',
-				action: 'Get Kafka advanced configuration capabilities',
-			},
-			{
-				name: 'kafkaCapabilitiesBackupRegionsGet',
-				value: 'kafkaCapabilitiesBackupRegionsGet',
-				action: 'Get Kafka backup regions capabilities',
-			},
-			{
-				name: 'kafkaCapabilitiesIntegrationGet',
-				value: 'kafkaCapabilitiesIntegrationGet',
-				action: 'Get Kafka integration capabilities',
-			},
-			{
-				name: 'kafkaCertificateListGet',
-				value: 'kafkaCertificateListGet',
-				action: 'List Kafka certificates',
-			},
-			{
-				name: 'kafkaIntegrationListGet',
-				value: 'kafkaIntegrationListGet',
-				action: 'List Kafka integrations',
-			},
-			{
-				name: 'kafkaIntegrationCreatePost',
-				value: 'kafkaIntegrationCreatePost',
-				action: 'Create Kafka integration',
-			},
-			{
-				name: 'kafkaIntegrationGetGet',
-				value: 'kafkaIntegrationGetGet',
-				action: 'Get Kafka integration',
-			},
-			{
-				name: 'kafkaIntegrationDeleteDelete',
-				value: 'kafkaIntegrationDeleteDelete',
-				action: 'Delete Kafka integration',
-			},
-			{
-				name: 'kafkaIpRestrictionListGet',
-				value: 'kafkaIpRestrictionListGet',
-				action: 'List Kafka IP restrictions',
-			},
-			{
-				name: 'kafkaIpRestrictionCreatePost',
-				value: 'kafkaIpRestrictionCreatePost',
-				action: 'Create Kafka IP restriction',
-			},
-			{
-				name: 'kafkaIpRestrictionGetGet',
-				value: 'kafkaIpRestrictionGetGet',
-				action: 'Get Kafka IP restriction',
-			},
-			{
-				name: 'kafkaIpRestrictionUpdatePut',
-				value: 'kafkaIpRestrictionUpdatePut',
-				action: 'Update Kafka IP restriction',
-			},
-			{
-				name: 'kafkaIpRestrictionDeleteDelete',
-				value: 'kafkaIpRestrictionDeleteDelete',
-				action: 'Delete Kafka IP restriction',
-			},
-			{
-				name: 'kafkaLogKindListGet',
-				value: 'kafkaLogKindListGet',
-				action: 'List Kafka log kinds',
-			},
-			{
-				name: 'kafkaLogKindGet',
-				value: 'kafkaLogKindGet',
-				action: 'Get Kafka log kind',
-			},
-			{
-				name: 'kafkaLogSubscriptionListGet',
-				value: 'kafkaLogSubscriptionListGet',
-				action: 'List Kafka log subscriptions',
-			},
-			{
-				name: 'kafkaLogSubscriptionCreatePost',
-				value: 'kafkaLogSubscriptionCreatePost',
-				action: 'Create Kafka log subscription',
-			},
-			{
-				name: 'kafkaLogSubscriptionGetGet',
-				value: 'kafkaLogSubscriptionGetGet',
-				action: 'Get Kafka log subscription',
-			},
-			{
-				name: 'kafkaLogSubscriptionDeleteDelete',
-				value: 'kafkaLogSubscriptionDeleteDelete',
-				action: 'Delete Kafka log subscription',
-			},
-			{
-				name: 'kafkaLogUrlCreatePost',
-				value: 'kafkaLogUrlCreatePost',
-				action: 'Generate Kafka log URL',
-			},
-			{
-				name: 'kafkaLogsGet',
-				value: 'kafkaLogsGet',
-				action: 'Get Kafka logs',
-			},
-			{
-				name: 'kafkaMaintenanceListGet',
-				value: 'kafkaMaintenanceListGet',
-				action: 'List Kafka maintenances',
-			},
-			{
-				name: 'kafkaMaintenanceGet',
-				value: 'kafkaMaintenanceGet',
-				action: 'Get Kafka maintenance',
-			},
-			{
-				name: 'kafkaMaintenanceApplyPost',
-				value: 'kafkaMaintenanceApplyPost',
-				action: 'Apply Kafka maintenance',
-			},
-			{
-				name: 'kafkaMetricListGet',
-				value: 'kafkaMetricListGet',
-				action: 'List Kafka metrics',
-			},
-			{
-				name: 'kafkaMetricGet',
-				value: 'kafkaMetricGet',
-				action: 'Get Kafka metric',
-			},
-			{
-				name: 'kafkaNodeListGet',
-				value: 'kafkaNodeListGet',
-				action: 'List Kafka nodes',
-			},
-			{
-				name: 'kafkaNodeGetGet',
-				value: 'kafkaNodeGetGet',
-				action: 'Get Kafka node',
-			},
-			{
-				name: 'kafkaPermissionsGet',
-				value: 'kafkaPermissionsGet',
-				action: 'Get Kafka permissions',
-			},
-			{
-				name: 'kafkaPrometheusGet',
-				value: 'kafkaPrometheusGet',
-				action: 'Get Kafka prometheus endpoint',
-			},
-			{
-				name: 'kafkaPrometheusCredentialsResetPost',
-				value: 'kafkaPrometheusCredentialsResetPost',
-				action: 'Reset Kafka prometheus credentials',
-			},
-			{
-				name: 'kafkaSchemaRegistryAclListGet',
-				value: 'kafkaSchemaRegistryAclListGet',
-				action: 'List Kafka schema registry ACLs',
-			},
-			{
-				name: 'kafkaSchemaRegistryAclCreatePost',
-				value: 'kafkaSchemaRegistryAclCreatePost',
-				action: 'Create Kafka schema registry ACL',
-			},
-			{
-				name: 'kafkaSchemaRegistryAclGetGet',
-				value: 'kafkaSchemaRegistryAclGetGet',
-				action: 'Get Kafka schema registry ACL',
-			},
-			{
-				name: 'kafkaSchemaRegistryAclDeleteDelete',
-				value: 'kafkaSchemaRegistryAclDeleteDelete',
-				action: 'Delete Kafka schema registry ACL',
-			},
-			{
-				name: 'kafkaTopicListGet',
-				value: 'kafkaTopicListGet',
-				action: 'List Kafka topics',
-			},
-			{
-				name: 'kafkaTopicCreatePost',
-				value: 'kafkaTopicCreatePost',
-				action: 'Create Kafka topic',
-			},
-			{
-				name: 'kafkaTopicGetGet',
-				value: 'kafkaTopicGetGet',
-				action: 'Get Kafka topic',
-			},
-			{
-				name: 'kafkaTopicUpdatePut',
-				value: 'kafkaTopicUpdatePut',
-				action: 'Update Kafka topic',
-			},
-			{
-				name: 'kafkaTopicDeleteDelete',
-				value: 'kafkaTopicDeleteDelete',
-				action: 'Delete Kafka topic',
-			},
-			{
-				name: 'kafkaTopicAclListGet',
-				value: 'kafkaTopicAclListGet',
-				action: 'List Kafka topic ACLs',
-			},
-			{
-				name: 'kafkaTopicAclCreatePost',
-				value: 'kafkaTopicAclCreatePost',
-				action: 'Create Kafka topic ACL',
-			},
-			{
-				name: 'kafkaTopicAclGetGet',
-				value: 'kafkaTopicAclGetGet',
-				action: 'Get Kafka topic ACL',
-			},
-			{
-				name: 'kafkaTopicAclDeleteDelete',
-				value: 'kafkaTopicAclDeleteDelete',
-				action: 'Delete Kafka topic ACL',
-			},
-			{
-				name: 'kafkaUserListGet',
-				value: 'kafkaUserListGet',
-				action: 'List Kafka users',
-			},
-			{
-				name: 'kafkaUserCreatePost',
-				value: 'kafkaUserCreatePost',
-				action: 'Create Kafka user',
-			},
-			{
-				name: 'kafkaUserGetGet',
-				value: 'kafkaUserGetGet',
-				action: 'Get Kafka user',
-			},
-			{
-				name: 'kafkaUserDeleteDelete',
-				value: 'kafkaUserDeleteDelete',
-				action: 'Delete Kafka user',
-			},
-			{
-				name: 'kafkaUserAccessGet',
-				value: 'kafkaUserAccessGet',
-				action: 'Get Kafka user access',
-			},
-			{
-				name: 'kafkaUserCredentialsResetPost',
-				value: 'kafkaUserCredentialsResetPost',
-				action: 'Reset Kafka user credentials',
-			},
-			{
-				name: 'kafkaConnectClusterListGet',
-				value: 'kafkaConnectClusterListGet',
-				action: 'List Kafka Connect clusters in a project',
-			},
-			{
-				name: 'kafkaConnectClusterGetGet',
-				value: 'kafkaConnectClusterGetGet',
-				action: 'Get Kafka Connect cluster',
-			},
-			{
-				name: 'kafkaConnectClusterCreatePost',
-				value: 'kafkaConnectClusterCreatePost',
-				action: 'Create Kafka Connect cluster',
-			},
-			{
-				name: 'kafkaConnectClusterUpdatePut',
-				value: 'kafkaConnectClusterUpdatePut',
-				action: 'Update Kafka Connect cluster',
-			},
-			{
-				name: 'kafkaConnectClusterDeleteDelete',
-				value: 'kafkaConnectClusterDeleteDelete',
-				action: 'Delete Kafka Connect cluster',
-			},
-			{
-				name: 'kafkaConnectBackupListGet',
-				value: 'kafkaConnectBackupListGet',
-				action: 'List Kafka Connect backups',
-			},
-			{
-				name: 'kafkaConnectBackupCreatePost',
-				value: 'kafkaConnectBackupCreatePost',
-				action: 'Create Kafka Connect backup',
-			},
-			{
-				name: 'kafkaConnectBackupGetGet',
-				value: 'kafkaConnectBackupGetGet',
-				action: 'Get Kafka Connect backup',
-			},
-			{
-				name: 'kafkaConnectBackupDeleteDelete',
-				value: 'kafkaConnectBackupDeleteDelete',
-				action: 'Delete Kafka Connect backup',
-			},
-			{
-				name: 'kafkaConnectUserListGet',
-				value: 'kafkaConnectUserListGet',
-				action: 'List Kafka Connect users',
-			},
-			{
-				name: 'kafkaConnectUserCreatePost',
-				value: 'kafkaConnectUserCreatePost',
-				action: 'Create Kafka Connect user',
-			},
-			{
-				name: 'kafkaConnectUserGetGet',
-				value: 'kafkaConnectUserGetGet',
-				action: 'Get Kafka Connect user',
-			},
-			{
-				name: 'kafkaConnectUserUpdatePut',
-				value: 'kafkaConnectUserUpdatePut',
-				action: 'Update Kafka Connect user',
-			},
-			{
-				name: 'kafkaConnectUserDeleteDelete',
-				value: 'kafkaConnectUserDeleteDelete',
-				action: 'Delete Kafka Connect user',
-			},
-			{
-				name: 'kafkaConnectNodeListGet',
-				value: 'kafkaConnectNodeListGet',
-				action: 'List Kafka Connect nodes',
-			},
-			{
-				name: 'kafkaConnectNodeCreatePost',
-				value: 'kafkaConnectNodeCreatePost',
-				action: 'Create Kafka Connect node',
-			},
-			{
-				name: 'kafkaConnectNodeGetGet',
-				value: 'kafkaConnectNodeGetGet',
-				action: 'Get Kafka Connect node',
-			},
-			{
-				name: 'kafkaConnectNodeUpdatePut',
-				value: 'kafkaConnectNodeUpdatePut',
-				action: 'Update Kafka Connect node',
-			},
-			{
-				name: 'kafkaConnectNodeDeleteDelete',
-				value: 'kafkaConnectNodeDeleteDelete',
-				action: 'Delete Kafka Connect node',
-			},
-			{
-				name: 'kafkaConnectIpRestrictionListGet',
-				value: 'kafkaConnectIpRestrictionListGet',
-				action: 'List Kafka Connect IP restrictions',
-			},
-			{
-				name: 'kafkaConnectIpRestrictionCreatePost',
-				value: 'kafkaConnectIpRestrictionCreatePost',
-				action: 'Create Kafka Connect IP restriction',
-			},
-			{
-				name: 'kafkaConnectLogSubscriptionListGet',
-				value: 'kafkaConnectLogSubscriptionListGet',
-				action: 'List Kafka Connect log subscriptions',
-			},
-			{
-				name: 'kafkaConnectLogSubscriptionCreatePost',
-				value: 'kafkaConnectLogSubscriptionCreatePost',
-				action: 'Create Kafka Connect log subscription',
-			},
-			{
-				name: 'kafkaConnectLogSubscriptionGetGet',
-				value: 'kafkaConnectLogSubscriptionGetGet',
-				action: 'Get Kafka Connect log subscription',
-			},
-			{
-				name: 'kafkaConnectMaintenanceGet',
-				value: 'kafkaConnectMaintenanceGet',
-				action: 'Get Kafka Connect maintenance',
-			},
-			{
-				name: 'kafkaConnectMaintenanceUpdatePut',
-				value: 'kafkaConnectMaintenanceUpdatePut',
-				action: 'Update Kafka Connect maintenance',
-			},
-			{
-				name: 'kafkaConnectMetricGet',
-				value: 'kafkaConnectMetricGet',
-				action: 'Get Kafka Connect metric',
-			},
-			{
-				name: 'kafkaConnectPrometheusGet',
-				value: 'kafkaConnectPrometheusGet',
-				action: 'Get Kafka Connect prometheus',
-			},
-			{
-				name: 'kafkaConnectCertificateListGet',
-				value: 'kafkaConnectCertificateListGet',
-				action: 'List Kafka Connect certificates',
-			},
-			{
-				name: 'kafkaConnectCertificateCreatePost',
-				value: 'kafkaConnectCertificateCreatePost',
-				action: 'Create Kafka Connect certificate',
-			},
-			{
-				name: 'kafkaConnectadvancedConfigurationGet',
-				value: 'kafkaConnectadvancedConfigurationGet',
-				action: 'Get Advanced Configuration',
-			},
-			{
-				name: 'kafkaConnectadvancedConfigurationUpdatePut',
-				value: 'kafkaConnectadvancedConfigurationUpdatePut',
-				action: 'Update Advanced Configuration',
-			},
-			{
-				name: 'kafkaConnectcapabilitiesAdvancedConfigurationGet',
-				value: 'kafkaConnectcapabilitiesAdvancedConfigurationGet',
-				action: 'Get Advanced Configuration Capabilities',
-			},
-			{
-				name: 'kafkaConnectcapabilitiesBackupRegionsGet',
-				value: 'kafkaConnectcapabilitiesBackupRegionsGet',
-				action: 'Get Backup Regions Capabilities',
-			},
-			{
-				name: 'kafkaConnectcapabilitiesConnectorListGet',
-				value: 'kafkaConnectcapabilitiesConnectorListGet',
-				action: 'List Connector Capabilities',
-			},
-			{
-				name: 'kafkaConnectcapabilitiesConnectorGet',
-				value: 'kafkaConnectcapabilitiesConnectorGet',
-				action: 'Get Connector Capability',
-			},
-			{
-				name: 'kafkaConnectcapabilitiesConnectorConfigurationGet',
-				value: 'kafkaConnectcapabilitiesConnectorConfigurationGet',
-				action: 'Get Connector Configuration',
-			},
-			{
-				name: 'kafkaConnectcapabilitiesConnectorTransformsGet',
-				value: 'kafkaConnectcapabilitiesConnectorTransformsGet',
-				action: 'Get Connector Transforms',
-			},
-			{
-				name: 'kafkaConnectcapabilitiesIntegrationGet',
-				value: 'kafkaConnectcapabilitiesIntegrationGet',
-				action: 'Get Integration Capabilities',
-			},
-			{
-				name: 'kafkaConnectconnectorListGet',
-				value: 'kafkaConnectconnectorListGet',
-				action: 'List Connectors',
-			},
-			{
-				name: 'kafkaConnectconnectorCreatePost',
-				value: 'kafkaConnectconnectorCreatePost',
-				action: 'Create a Connector',
-			},
-			{
-				name: 'kafkaConnectconnectorGetGet',
-				value: 'kafkaConnectconnectorGetGet',
-				action: 'Get Connector Details',
-			},
-			{
-				name: 'kafkaConnectconnectorUpdatePut',
-				value: 'kafkaConnectconnectorUpdatePut',
-				action: 'Update a Connector',
-			},
-			{
-				name: 'kafkaConnectconnectorDeleteDelete',
-				value: 'kafkaConnectconnectorDeleteDelete',
-				action: 'Delete a Connector',
-			},
-			{
-				name: 'kafkaConnectconnectorPausePost',
-				value: 'kafkaConnectconnectorPausePost',
-				action: 'Pause a Connector',
-			},
-			{
-				name: 'kafkaConnectconnectorRestartPost',
-				value: 'kafkaConnectconnectorRestartPost',
-				action: 'Restart a Connector',
-			},
-			{
-				name: 'kafkaConnectconnectorResumePost',
-				value: 'kafkaConnectconnectorResumePost',
-				action: 'Resume a Connector',
-			},
-			{
-				name: 'kafkaConnectconnectorTaskListGet',
-				value: 'kafkaConnectconnectorTaskListGet',
-				action: 'List Connector Tasks',
-			},
-			{
-				name: 'kafkaConnectconnectorTaskGet',
-				value: 'kafkaConnectconnectorTaskGet',
-				action: 'Get Connector Task Details',
-			},
-			{
-				name: 'kafkaConnectconnectorTaskRestartPost',
-				value: 'kafkaConnectconnectorTaskRestartPost',
-				action: 'Restart a Connector Task',
-			},
-			{
-				name: 'kafkaConnectintegrationListGet',
-				value: 'kafkaConnectintegrationListGet',
-				action: 'List Integrations',
-			},
-			{
-				name: 'kafkaConnectintegrationCreatePost',
-				value: 'kafkaConnectintegrationCreatePost',
-				action: 'Create an Integration',
-			},
-			{
-				name: 'kafkaConnectintegrationGetGet',
-				value: 'kafkaConnectintegrationGetGet',
-				action: 'Get Integration Details',
-			},
-			{
-				name: 'kafkaConnectintegrationDeleteDelete',
-				value: 'kafkaConnectintegrationDeleteDelete',
-				action: 'Delete an Integration',
-			},
-			{
-				name: 'kafkaConnectipRestrictionGetGet',
-				value: 'kafkaConnectipRestrictionGetGet',
-				action: 'Get IP Restriction Details',
-			},
-			{
-				name: 'kafkaConnectipRestrictionUpdatePut',
-				value: 'kafkaConnectipRestrictionUpdatePut',
-				action: 'Update an IP Restriction',
-			},
-			{
-				name: 'kafkaConnectipRestrictionDeleteDelete',
-				value: 'kafkaConnectipRestrictionDeleteDelete',
-				action: 'Delete an IP Restriction',
-			},
-			{
-				name: 'kafkaConnectlogKindListGet',
-				value: 'kafkaConnectlogKindListGet',
-				action: 'List Log Kinds',
-			},
-			{
-				name: 'kafkaConnectlogKindGet',
-				value: 'kafkaConnectlogKindGet',
-				action: 'Get a Log Kind',
-			},
-			{
-				name: 'kafkaConnectlogSubscriptionDeleteDelete',
-				value: 'kafkaConnectlogSubscriptionDeleteDelete',
-				action: 'Delete a Log Subscription',
-			},
-			{
-				name: 'kafkaConnectlogUrlCreatePost',
-				value: 'kafkaConnectlogUrlCreatePost',
-				action: 'Generate Log URL',
-			},
-			{
-				name: 'kafkaConnectlogsGet',
-				value: 'kafkaConnectlogsGet',
-				action: 'Get Logs',
-			},
-			{
-				name: 'kafkaConnectmaintenanceListGet',
-				value: 'kafkaConnectmaintenanceListGet',
-				action: 'List Maintenances',
-			},
-			{
-				name: 'kafkaConnectmaintenanceApplyPost',
-				value: 'kafkaConnectmaintenanceApplyPost',
-				action: 'Apply Maintenance',
-			},
-			{
-				name: 'kafkaConnectmetricListGet',
-				value: 'kafkaConnectmetricListGet',
-				action: 'List Metrics',
-			},
-			{
-				name: 'kafkaConnectnodeGet',
-				value: 'kafkaConnectnodeGet',
-				action: 'Get a Node',
-			},
-			{
-				name: 'kafkaConnectprometheusCredentialsResetPost',
-				value: 'kafkaConnectprometheusCredentialsResetPost',
-				action: 'Reset Prometheus Credentials',
-			},
-			{
-				name: 'kafkaConnectuserCredentialsResetPost',
-				value: 'kafkaConnectuserCredentialsResetPost',
-				action: 'Reset User Credentials',
-			},
-			{
-				name: 'kafkaMirrorMakerClusterListGet',
-				value: 'kafkaMirrorMakerClusterListGet',
-			},
-			{
-				name: 'kafkaMirrorMakerClusterCreatePost',
-				value: 'kafkaMirrorMakerClusterCreatePost',
-			},
-			{
-				name: 'kafkaMirrorMakerClusterGetGet',
-				value: 'kafkaMirrorMakerClusterGetGet',
-			},
-			{
-				name: 'kafkaMirrorMakerClusterUpdatePut',
-				value: 'kafkaMirrorMakerClusterUpdatePut',
-			},
-			{
-				name: 'kafkaMirrorMakerClusterDeleteDelete',
-				value: 'kafkaMirrorMakerClusterDeleteDelete',
-			},
-			{
-				name: 'kafkaMirrorMakerCapabilitiesIntegrationGet',
-				value: 'kafkaMirrorMakerCapabilitiesIntegrationGet',
-			},
-			{
-				name: 'kafkaMirrorMakerIntegrationGet',
-				value: 'kafkaMirrorMakerIntegrationGet',
-			},
-			{
-				name: 'kafkaMirrorMakerIntegrationCreatePost',
-				value: 'kafkaMirrorMakerIntegrationCreatePost',
-			},
-			{
-				name: 'kafkaMirrorMakerIntegrationDeleteDelete',
-				value: 'kafkaMirrorMakerIntegrationDeleteDelete',
-			},
-			{
-				name: 'kafkaMirrorMakerIntegrationGetById',
-				value: 'kafkaMirrorMakerIntegrationGetById',
-			},
-			{
-				name: 'kafkaMirrorMakerLogKindGet',
-				value: 'kafkaMirrorMakerLogKindGet',
-			},
-			{
-				name: 'kafkaMirrorMakerLogKindNameGet',
-				value: 'kafkaMirrorMakerLogKindNameGet',
-			},
-			{
-				name: 'kafkaMirrorMakerLogSubscriptionCreatePost',
-				value: 'kafkaMirrorMakerLogSubscriptionCreatePost',
-			},
-			{
-				name: 'kafkaMirrorMakerLogSubscriptionDeleteDelete',
-				value: 'kafkaMirrorMakerLogSubscriptionDeleteDelete',
-			},
-			{
-				name: 'kafkaMirrorMakerLogSubscriptionGetById',
-				value: 'kafkaMirrorMakerLogSubscriptionGetById',
-			},
-			{
-				name: 'kafkaMirrorMakerLogUrlPost',
-				value: 'kafkaMirrorMakerLogUrlPost',
-			},
-			{
-				name: 'kafkaMirrorMakerLogsGet',
-				value: 'kafkaMirrorMakerLogsGet',
-			},
-			{
-				name: 'kafkaMirrorMakerMaintenanceGet',
-				value: 'kafkaMirrorMakerMaintenanceGet',
-			},
-			{
-				name: 'kafkaMirrorMakerMaintenanceGetById',
-				value: 'kafkaMirrorMakerMaintenanceGetById',
-			},
-			{
-				name: 'kafkaMirrorMakerMaintenanceApplyPost',
-				value: 'kafkaMirrorMakerMaintenanceApplyPost',
-			},
-			{
-				name: 'kafkaMirrorMakerMetricGet',
-				value: 'kafkaMirrorMakerMetricGet',
-			},
-			{
-				name: 'kafkaMirrorMakerMetricNameGet',
-				value: 'kafkaMirrorMakerMetricNameGet',
-			},
-			{
-				name: 'kafkaMirrorMakerNodeListGet',
-				value: 'kafkaMirrorMakerNodeListGet',
-			},
-			{
-				name: 'kafkaMirrorMakerNodeGetGet',
-				value: 'kafkaMirrorMakerNodeGetGet',
-			},
-			{
-				name: 'kafkaMirrorMakerPrometheusGet',
-				value: 'kafkaMirrorMakerPrometheusGet',
-			},
-			{
-				name: 'kafkaMirrorMakerPrometheusCredentialsResetPost',
-				value: 'kafkaMirrorMakerPrometheusCredentialsResetPost',
-			},
-			{
-				name: 'kafkaMirrorMakerReplicationGet',
-				value: 'kafkaMirrorMakerReplicationGet',
-			},
-			{
-				name: 'kafkaMirrorMakerReplicationCreatePost',
-				value: 'kafkaMirrorMakerReplicationCreatePost',
-			},
-			{
-				name: 'kafkaMirrorMakerReplicationDeleteDelete',
-				value: 'kafkaMirrorMakerReplicationDeleteDelete',
-			},
-			{
-				name: 'kafkaMirrorMakerReplicationGetById',
-				value: 'kafkaMirrorMakerReplicationGetById',
-			},
-			{
-				name: 'kafkaMirrorMakerReplicationUpdatePut',
-				value: 'kafkaMirrorMakerReplicationUpdatePut',
-			},
-			{
-				name: 'm3aggregatorClusterListGet',
-				value: 'm3aggregatorClusterListGet',
-				action: 'List M3 Aggregator clusters in a project',
-			},
-			{
-				name: 'm3aggregatorClusterCreatePost',
-				value: 'm3aggregatorClusterCreatePost',
-				action: 'Create M3 Aggregator cluster',
-			},
-			{
-				name: 'm3aggregatorClusterGetGet',
-				value: 'm3aggregatorClusterGetGet',
-				action: 'Get M3 Aggregator cluster',
-			},
-			{
-				name: 'm3aggregatorClusterUpdatePut',
-				value: 'm3aggregatorClusterUpdatePut',
-				action: 'Update M3 Aggregator cluster',
-			},
-			{
-				name: 'm3aggregatorClusterDeleteDelete',
-				value: 'm3aggregatorClusterDeleteDelete',
-				action: 'Delete M3 Aggregator cluster',
-			},
-			{
-				name: 'm3aggregatorCapabilitiesIntegrationGet',
-				value: 'm3aggregatorCapabilitiesIntegrationGet',
-				action: 'Get integration capabilities related to the m3aggregator service',
-			},
-			{
-				name: 'm3aggregatorIntegrationGet',
-				value: 'm3aggregatorIntegrationGet',
-				action: 'List integrations',
-			},
-			{
-				name: 'm3aggregatorIntegrationCreatePost',
-				value: 'm3aggregatorIntegrationCreatePost',
-				action: 'Create an integration',
-			},
-			{
-				name: 'm3aggregatorIntegrationDeleteDelete',
-				value: 'm3aggregatorIntegrationDeleteDelete',
-				action: 'Delete an integration',
-			},
-			{
-				name: 'm3aggregatorIntegrationGetById',
-				value: 'm3aggregatorIntegrationGetById',
-				action: 'Get an integration',
-			},
-			{
-				name: 'm3aggregatorLogKindGet',
-				value: 'm3aggregatorLogKindGet',
-				action: 'List available log kinds',
-			},
-			{
-				name: 'm3aggregatorLogKindNameGet',
-				value: 'm3aggregatorLogKindNameGet',
-				action: 'Get a log kind',
-			},
-			{
-				name: 'm3aggregatorLogSubscriptionListGet',
-				value: 'm3aggregatorLogSubscriptionListGet',
-				action: 'List subscription IDs for a cluster',
-			},
-			{
-				name: 'm3aggregatorLogSubscriptionCreatePost',
-				value: 'm3aggregatorLogSubscriptionCreatePost',
-				action: 'Create subscription to log to customer for a m3aggregator',
-			},
-			{
-				name: 'm3aggregatorLogSubscriptionDeleteDelete',
-				value: 'm3aggregatorLogSubscriptionDeleteDelete',
-				action: 'Delete a subscription',
-			},
-			{
-				name: 'm3aggregatorLogSubscriptionGetById',
-				value: 'm3aggregatorLogSubscriptionGetById',
-				action: 'Get subscription details',
-			},
-			{
-				name: 'm3aggregatorLogUrlPost',
-				value: 'm3aggregatorLogUrlPost',
-				action: 'Generate a temporary URL to retrieve logs',
-			},
-			{
-				name: 'm3aggregatorLogsGet',
-				value: 'm3aggregatorLogsGet',
-				action: 'Retrieve the most recent m3aggregator log messages',
-			},
-			{
-				name: 'm3aggregatorMaintenanceGet',
-				value: 'm3aggregatorMaintenanceGet',
-				action: 'List maintenances for the m3aggregator cluster',
-			},
-			{
-				name: 'm3aggregatorMaintenanceGetById',
-				value: 'm3aggregatorMaintenanceGetById',
-				action: 'Get the maintenance for the m3aggregator cluster',
-			},
-			{
-				name: 'm3aggregatorMaintenanceApplyPost',
-				value: 'm3aggregatorMaintenanceApplyPost',
-				action: 'Apply the maintenance',
-			},
-			{
-				name: 'm3aggregatorMetricGet',
-				value: 'm3aggregatorMetricGet',
-				action: 'List available metrics for the m3aggregator',
-			},
-			{
-				name: 'm3aggregatorMetricNameGet',
-				value: 'm3aggregatorMetricNameGet',
-				action: 'Get the metric values for the m3aggregator',
-			},
-			{
-				name: 'm3aggregatorNodeListGet',
-				value: 'm3aggregatorNodeListGet',
-				action: 'List nodes of the m3aggregator',
-			},
-			{
-				name: 'm3aggregatorNodeGetGet',
-				value: 'm3aggregatorNodeGetGet',
-				action: 'Get m3aggregator nodes',
-			},
-
-			{
-				name: 'M3dbClusterListGet',
-				value: 'M3dbClusterListGet',
-				action: 'List all the m3db clusters of the project',
-			},
-			{
-				name: 'M3dbClusterCreatePost',
-				value: 'M3dbClusterCreatePost',
-				action: 'Create a new m3db cluster',
-			},
-			{
-				name: 'M3dbClusterDeleteDelete',
-				value: 'M3dbClusterDeleteDelete',
-				action: 'Delete a m3db cluster',
-			},
-			{
-				name: 'M3dbClusterGetGet',
-				value: 'M3dbClusterGetGet',
-				action: 'Get m3db cluster properties',
-			},
-			{
-				name: 'M3dbClusterUpdatePut',
-				value: 'M3dbClusterUpdatePut',
-				action: 'Update an existing m3db cluster',
-			},
-			{
-				name: 'M3dbAdvancedConfigurationGetGet',
-				value: 'M3dbAdvancedConfigurationGetGet',
-				action: 'Get m3db advanced configuration',
-			},
-			{
-				name: 'M3dbAdvancedConfigurationUpdatePut',
-				value: 'M3dbAdvancedConfigurationUpdatePut',
-				action: 'Update m3db advanced configuration',
-			},
-			{
-				name: 'M3dbBackupListGet',
-				value: 'M3dbBackupListGet',
-				action: 'List backups of the m3db',
-			},
-			{
-				name: 'M3dbBackupGetGet',
-				value: 'M3dbBackupGetGet',
-				action: 'Get m3db backups',
-			},
-			{
-				name: 'M3dbCapabilitiesAdvancedConfigurationGetGet',
-				value: 'M3dbCapabilitiesAdvancedConfigurationGetGet',
-				action: 'Get m3db advanced configuration fields',
-			},
-			{
-				name: 'M3dbCapabilitiesIntegrationGetGet',
-				value: 'M3dbCapabilitiesIntegrationGetGet',
-				action: 'Get integration capabilities related to the m3db service',
-			},
-			{
-				name: 'M3dbIntegrationListGet',
-				value: 'M3dbIntegrationListGet',
-				action: 'List integrations',
-			},
-			{
-				name: 'M3dbIntegrationCreatePost',
-				value: 'M3dbIntegrationCreatePost',
-				action: 'Create a new integration',
-			},
-			{
-				name: 'M3dbIntegrationDeleteDelete',
-				value: 'M3dbIntegrationDeleteDelete',
-				action: 'Delete an integration',
-			},
-			{
-				name: 'M3dbIntegrationGetGet',
-				value: 'M3dbIntegrationGetGet',
-				action: 'Get an integration',
-			},
-			{
-				name: 'M3dbIpRestrictionListGet',
-				value: 'M3dbIpRestrictionListGet',
-				action: 'List m3db ip restrictions',
-			},
-			{
-				name: 'M3dbIpRestrictionCreatePost',
-				value: 'M3dbIpRestrictionCreatePost',
-				action: 'Add ip restrictions to the m3db',
-			},
-			{
-				name: 'M3dbIpRestrictionDeleteDelete',
-				value: 'M3dbIpRestrictionDeleteDelete',
-				action: 'Deletes the given IP from the restricted IPs of the m3db',
-			},
-			{
-				name: 'M3dbIpRestrictionGetGet',
-				value: 'M3dbIpRestrictionGetGet',
-				action: 'Get m3db ip restrictions',
-			},
-			{
-				name: 'M3dbIpRestrictionUpdatePut',
-				value: 'M3dbIpRestrictionUpdatePut',
-				action: 'Changes the list of ip restrictions to the m3db',
-			},
-			{
-				name: 'M3dbLogKindListGet',
-				value: 'M3dbLogKindListGet',
-				action: 'List available log kinds',
-			},
-			{
-				name: 'M3dbLogKindGetGet',
-				value: 'M3dbLogKindGetGet',
-				action: 'Get a log kind',
-			},
-			{
-				name: 'M3dbLogSubscriptionListGet',
-				value: 'M3dbLogSubscriptionListGet',
-				action: 'List subscription IDs for a cluster',
-			},
-			{
-				name: 'M3dbLogSubscriptionCreatePost',
-				value: 'M3dbLogSubscriptionCreatePost',
-				action: 'Create subscription to log to customer for a m3db',
-			},
-			{
-				name: 'M3dbLogSubscriptionDeleteDelete',
-				value: 'M3dbLogSubscriptionDeleteDelete',
-				action: 'Delete a subscription',
-			},
-			{
-				name: 'M3dbLogSubscriptionGetGet',
-				value: 'M3dbLogSubscriptionGetGet',
-				action: 'Get subscription details',
-			},
-			{
-				name: 'M3dbLogUrlCreatePost',
-				value: 'M3dbLogUrlCreatePost',
-				action: 'Generate a temporary URL to retrieve logs',
-			},
-			{
-				name: 'M3dbLogsGet',
-				value: 'M3dbLogsGet',
-				action: 'Retrieve the most recent m3db log messages (limited to 1000)',
-			},
-			{
-				name: 'M3dbMaintenanceListGet',
-				value: 'M3dbMaintenanceListGet',
-				action: 'List maintenances for the m3db cluster',
-			},
-			{
-				name: 'M3dbMaintenanceGetGet',
-				value: 'M3dbMaintenanceGetGet',
-				action: 'Get the maintenance for the m3db cluster',
-			},
-			{
-				name: 'M3dbMaintenanceApplyPost',
-				value: 'M3dbMaintenanceApplyPost',
-				action: 'Apply the maintenance',
-			},
-			{
-				name: 'M3dbMetricListGet',
-				value: 'M3dbMetricListGet',
-				action: 'List available metrics for the m3db cluster',
-			},
-			{
-				name: 'M3dbMetricGetGet',
-				value: 'M3dbMetricGetGet',
-				action: 'Get the metric values for the m3db cluster',
-			},
-			{
-				name: 'M3dbNamespaceListGet',
-				value: 'M3dbNamespaceListGet',
-				action: 'List namespaces of the m3db',
-			},
-			{
-				name: 'M3dbNamespaceCreatePost',
-				value: 'M3dbNamespaceCreatePost',
-				action: 'Create a new namespace on the m3db cluster',
-			},
-			{
-				name: 'M3dbNamespaceDeleteDelete',
-				value: 'M3dbNamespaceDeleteDelete',
-				action: 'Delete m3db namespace',
-			},
-			{
-				name: 'M3dbNamespaceGetGet',
-				value: 'M3dbNamespaceGetGet',
-				action: 'Get m3db namespaces',
-			},
-			{
-				name: 'M3dbNamespaceUpdatePut',
-				value: 'M3dbNamespaceUpdatePut',
-				action: 'Updates the namespace on the m3db cluster',
-			},
-			{
-				name: 'M3dbNodeListGet',
-				value: 'M3dbNodeListGet',
-				action: 'List nodes of the m3db',
-			},
-			{
-				name: 'M3dbNodeGetGet',
-				value: 'M3dbNodeGetGet',
-				action: 'Get m3db nodes',
-			},
-			{
-				name: 'M3dbUserListGet',
-				value: 'M3dbUserListGet',
-				action: 'List users of the m3db',
-			},
-			{
-				name: 'M3dbUserCreatePost',
-				value: 'M3dbUserCreatePost',
-				action: 'Create a new user on the m3db cluster',
-			},
-			{
-				name: 'M3dbUserDeleteDelete',
-				value: 'M3dbUserDeleteDelete',
-				action: 'Delete m3db user',
-			},
-			{
-				name: 'M3dbUserGetGet',
-				value: 'M3dbUserGetGet',
-				action: 'Get m3db users',
-			},
-			{
-				name: 'M3dbUserUpdatePut',
-				value: 'M3dbUserUpdatePut',
-				action: 'Updates the user on the m3db cluster',
-			},
-			{
-				name: 'M3dbUserCredentialsResetPost',
-				value: 'M3dbUserCredentialsResetPost',
-				action: 'Reset the password of a user',
-			},
-			{
-				name: 'mongodbClusterListGet',
-				value: 'mongodbClusterListGet',
-				action: 'List MongoDB Clusters',
-			},
-			{
-				name: 'mongodbClusterGetGet',
-				value: 'mongodbClusterGetGet',
-				action: 'Get MongoDB Cluster',
-			},
-			{
-				name: 'mongodbClusterCreatePost',
-				value: 'mongodbClusterCreatePost',
-				action: 'Create MongoDB Cluster',
-			},
-			{
-				name: 'mongodbClusterUpdatePut',
-				value: 'mongodbClusterUpdatePut',
-				action: 'Update MongoDB Cluster',
-			},
-			{
-				name: 'mongodbClusterDeleteDelete',
-				value: 'mongodbClusterDeleteDelete',
-				action: 'Delete MongoDB Cluster',
-			},
-			{
-				name: 'mongodbBackupListGet',
-				value: 'mongodbBackupListGet',
-				action: 'List MongoDB Backups',
-			},
-			{
-				name: 'mongodbBackupGetGet',
-				value: 'mongodbBackupGetGet',
-				action: 'Get MongoDB Backup',
-			},
-			{
-				name: 'mongodbBackupDeleteDelete',
-				value: 'mongodbBackupDeleteDelete',
-				action: 'Delete MongoDB Backup',
-			},
-			{
-				name: 'mongodbBackupRestorePost',
-				value: 'mongodbBackupRestorePost',
-				action: 'Restore MongoDB Backup',
-			},
-			{
-				name: 'mongodbIpRestrictionListGet',
-				value: 'mongodbIpRestrictionListGet',
-				action: 'List MongoDB IP Restrictions',
-			},
-			{
-				name: 'mongodbIpRestrictionCreatePost',
-				value: 'mongodbIpRestrictionCreatePost',
-				action: 'Create MongoDB IP Restriction',
-			},
-			{
-				name: 'mongodbIpRestrictionGetGet',
-				value: 'mongodbIpRestrictionGetGet',
-				action: 'Get MongoDB IP Restriction',
-			},
-			{
-				name: 'mongodbIpRestrictionUpdatePut',
-				value: 'mongodbIpRestrictionUpdatePut',
-				action: 'Update MongoDB IP Restriction',
-			},
-			{
-				name: 'mongodbIpRestrictionDeleteDelete',
-				value: 'mongodbIpRestrictionDeleteDelete',
-				action: 'Delete MongoDB IP Restriction',
-			},
-			{
-				name: 'mongodbLogKindListGet',
-				value: 'mongodbLogKindListGet',
-				action: 'List MongoDB Log Kinds',
-			},
-			{
-				name: 'mongodbLogKindGetGet',
-				value: 'mongodbLogKindGetGet',
-				action: 'Get MongoDB Log Kind',
-			},
-			{
-				name: 'mongodbLogSubscriptionListGet',
-				value: 'mongodbLogSubscriptionListGet',
-				action: 'List MongoDB Log Subscriptions',
-			},
-			{
-				name: 'mongodbLogSubscriptionCreatePost',
-				value: 'mongodbLogSubscriptionCreatePost',
-				action: 'Create MongoDB Log Subscription',
-			},
-			{
-				name: 'mongodbLogSubscriptionGetGet',
-				value: 'mongodbLogSubscriptionGetGet',
-				action: 'Get MongoDB Log Subscription',
-			},
-			{
-				name: 'mongodbLogSubscriptionDeleteDelete',
-				value: 'mongodbLogSubscriptionDeleteDelete',
-				action: 'Delete MongoDB Log Subscription',
-			},
-			{
-				name: 'mongodbLogUrlCreatePost',
-				value: 'mongodbLogUrlCreatePost',
-				action: 'Create MongoDB Log URL',
-			},
-			{
-				name: 'mongodbLogListGet',
-				value: 'mongodbLogListGet',
-				action: 'List MongoDB Logs',
-			},
-			{
-				name: 'mongodbMaintenanceListGet',
-				value: 'mongodbMaintenanceListGet',
-				action: 'List MongoDB Maintenances',
-			},
-			{
-				name: 'mongodbMaintenanceGetGet',
-				value: 'mongodbMaintenanceGetGet',
-				action: 'Get MongoDB Maintenance',
-			},
-			{
-				name: 'mongodbMaintenanceApplyPost',
-				value: 'mongodbMaintenanceApplyPost',
-				action: 'Apply MongoDB Maintenance',
-			},
-			{
-				name: 'mongodbMetricListGet',
-				value: 'mongodbMetricListGet',
-				action: 'List MongoDB Metrics',
-			},
-			{
-				name: 'mongodbMetricNameGetGet',
-				value: 'mongodbMetricNameGetGet',
-				action: 'Get MongoDB Metric',
-			},
-			{
-				name: 'mongodbNodeListGet',
-				value: 'mongodbNodeListGet',
-				action: 'List MongoDB Nodes',
-			},
-			{
-				name: 'mongodbNodeCreatePost',
-				value: 'mongodbNodeCreatePost',
-				action: 'Create MongoDB Node',
-			},
-			{
-				name: 'mongodbNodeGetGet',
-				value: 'mongodbNodeGetGet',
-				action: 'Get MongoDB Node',
-			},
-			{
-				name: 'mongodbNodeUpdatePut',
-				value: 'mongodbNodeUpdatePut',
-				action: 'Update MongoDB Node',
-			},
-			{
-				name: 'mongodbNodeDeleteDelete',
-				value: 'mongodbNodeDeleteDelete',
-				action: 'Delete MongoDB Node',
-			},
-			{
-				name: 'mongodbPrometheusGetGet',
-				value: 'mongodbPrometheusGetGet',
-				action: 'Get MongoDB Prometheus',
-			},
-			{
-				name: 'mongodbPrometheusCredentialsResetPost',
-				value: 'mongodbPrometheusCredentialsResetPost',
-				action: 'Reset MongoDB Prometheus Credentials',
-			},
-			{
-				name: 'mongodbRestoreCreatePost',
-				value: 'mongodbRestoreCreatePost',
-				action: 'Restore MongoDB Cluster',
-			},
-			{
-				name: 'mongodbRoleListGet',
-				value: 'mongodbRoleListGet',
-				action: 'List MongoDB Roles',
-			},
-			{
-				name: 'mongodbUserListGet',
-				value: 'mongodbUserListGet',
-				action: 'List MongoDB Users',
-			},
-			{
-				name: 'mongodbUserCreatePost',
-				value: 'mongodbUserCreatePost',
-				action: 'Create MongoDB User',
-			},
-			{
-				name: 'mongodbUserGetGet',
-				value: 'mongodbUserGetGet',
-				action: 'Get MongoDB User',
-			},
-			{
-				name: 'mongodbUserUpdatePut',
-				value: 'mongodbUserUpdatePut',
-				action: 'Update MongoDB User',
-			},
-			{
-				name: 'mongodbUserDeleteDelete',
-				value: 'mongodbUserDeleteDelete',
-				action: 'Delete MongoDB User',
-			},
-			{
-				name: 'mongodbUserCredentialsResetPost',
-				value: 'mongodbUserCredentialsResetPost',
-				action: 'Reset MongoDB User Credentials',
-			},
-			{
-				name: 'mysqlClusterListGet',
-				value: 'mysqlClusterListGet',
-				action: 'List MySQL clusters in a project',
-			},
-			{
-				name: 'mysqlClusterGetGet',
-				value: 'mysqlClusterGetGet',
-				action: 'Get MySQL cluster',
-			},
-			{
-				name: 'mysqlClusterCreatePost',
-				value: 'mysqlClusterCreatePost',
-				action: 'Create MySQL cluster',
-			},
-			{
-				name: 'mysqlClusterUpdatePut',
-				value: 'mysqlClusterUpdatePut',
-				action: 'Update MySQL cluster',
-			},
-			{
-				name: 'mysqlClusterDeleteDelete',
-				value: 'mysqlClusterDeleteDelete',
-				action: 'Delete MySQL cluster',
-			},
-			{
-				name: 'mysqlBackupListGet',
-				value: 'mysqlBackupListGet',
-				action: 'List MySQL backups',
-			},
-			{
-				name: 'mysqlBackupCreatePost',
-				value: 'mysqlBackupCreatePost',
-				action: 'Create MySQL backup',
-			},
-			{
-				name: 'mysqlBackupGetGet',
-				value: 'mysqlBackupGetGet',
-				action: 'Get MySQL backup',
-			},
-			{
-				name: 'mysqlBackupDeleteDelete',
-				value: 'mysqlBackupDeleteDelete',
-				action: 'Delete MySQL backup',
-			},
-			{
-				name: 'mysqlUserListGet',
-				value: 'mysqlUserListGet',
-				action: 'List MySQL users',
-			},
-			{
-				name: 'mysqlUserCreatePost',
-				value: 'mysqlUserCreatePost',
-				action: 'Create MySQL user',
-			},
-			{
-				name: 'mysqlUserGetGet',
-				value: 'mysqlUserGetGet',
-				action: 'Get MySQL user',
-			},
-			{
-				name: 'mysqlUserUpdatePut',
-				value: 'mysqlUserUpdatePut',
-				action: 'Update MySQL user',
-			},
-			{
-				name: 'mysqlUserDeleteDelete',
-				value: 'mysqlUserDeleteDelete',
-				action: 'Delete MySQL user',
-			},
-			{
-				name: 'mysqlNodeListGet',
-				value: 'mysqlNodeListGet',
-				action: 'List MySQL nodes',
-			},
-			{
-				name: 'mysqlNodeCreatePost',
-				value: 'mysqlNodeCreatePost',
-				action: 'Create MySQL node',
-			},
-			{
-				name: 'mysqlNodeGetGet',
-				value: 'mysqlNodeGetGet',
-				action: 'Get MySQL node',
-			},
-			{
-				name: 'mysqlNodeUpdatePut',
-				value: 'mysqlNodeUpdatePut',
-				action: 'Update MySQL node',
-			},
-			{
-				name: 'mysqlNodeDeleteDelete',
-				value: 'mysqlNodeDeleteDelete',
-				action: 'Delete MySQL node',
-			},
-			{
-				name: 'mysqlIpRestrictionListGet',
-				value: 'mysqlIpRestrictionListGet',
-				action: 'List MySQL IP restrictions',
-			},
-			{
-				name: 'mysqlIpRestrictionCreatePost',
-				value: 'mysqlIpRestrictionCreatePost',
-				action: 'Create MySQL IP restriction',
-			},
-			{
-				name: 'mysqlLogSubscriptionListGet',
-				value: 'mysqlLogSubscriptionListGet',
-				action: 'List MySQL log subscriptions',
-			},
-			{
-				name: 'mysqlLogSubscriptionCreatePost',
-				value: 'mysqlLogSubscriptionCreatePost',
-				action: 'Create MySQL log subscription',
-			},
-			{
-				name: 'mysqlLogSubscriptionGetGet',
-				value: 'mysqlLogSubscriptionGetGet',
-				action: 'Get MySQL log subscription',
-			},
-			{
-				name: 'mysqlMaintenanceGet',
-				value: 'mysqlMaintenanceGet',
-				action: 'Get MySQL maintenance',
-			},
-			{
-				name: 'mysqlMaintenanceUpdatePut',
-				value: 'mysqlMaintenanceUpdatePut',
-				action: 'Update MySQL maintenance',
-			},
-			{
-				name: 'mysqlMetricGet',
-				value: 'mysqlMetricGet',
-				action: 'Get MySQL metric',
-			},
-			{
-				name: 'mysqlPrometheusGet',
-				value: 'mysqlPrometheusGet',
-				action: 'Get MySQL prometheus',
-			},
-			{
-				name: 'mysqlCertificateListGet',
-				value: 'mysqlCertificateListGet',
-				action: 'List MySQL certificates',
-			},
-			{
-				name: 'mysqlCertificateCreatePost',
-				value: 'mysqlCertificateCreatePost',
-				action: 'Create MySQL certificate',
-			},
-			{
-				name: 'mysqlIntegrationListGet',
-				value: 'mysqlIntegrationListGet',
-				action: 'List MySQL integrations',
-			},
-			{
-				name: 'mysqlIntegrationCreatePost',
-				value: 'mysqlIntegrationCreatePost',
-				action: 'Create MySQL integration',
-			},
-			{
-				name: 'opensearchAdvancedConfigurationListGet',
-				value: 'opensearchAdvancedConfigurationListGet',
-				action: 'List Advanced Configuration OpenSearch',
-			},
-			{
-				name: 'opensearchAdvancedConfigurationUpdatePut',
-				value: 'opensearchAdvancedConfigurationUpdatePut',
-				action: 'Update Advanced Configuration OpenSearch',
-			},
-			{
-				name: 'opensearchBackupGetGet',
-				value: 'opensearchBackupGetGet',
-				action: 'Get Backup OpenSearch',
-			},
-			{
-				name: 'opensearchBackupListGet',
-				value: 'opensearchBackupListGet',
-				action: 'List Backup OpenSearch',
-			},
-			{
-				name: 'opensearchCapabilitiesAdvancedConfigurationListGet',
-				value: 'opensearchCapabilitiesAdvancedConfigurationListGet',
-				action: 'List Capabilities Advanced Configuration OpenSearch',
-			},
-			{
-				name: 'opensearchCapabilitiesBackupRegionsListGet',
-				value: 'opensearchCapabilitiesBackupRegionsListGet',
-				action: 'List Capabilities Backup Regions OpenSearch',
-			},
-			{
-				name: 'opensearchCapabilitiesIntegrationListGet',
-				value: 'opensearchCapabilitiesIntegrationListGet',
-				action: 'List Capabilities Integration OpenSearch',
-			},
-			{
-				name: 'opensearchClusterCreatePost',
-				value: 'opensearchClusterCreatePost',
-				action: 'Create Cluster OpenSearch',
-			},
-			{
-				name: 'opensearchClusterDeleteDelete',
-				value: 'opensearchClusterDeleteDelete',
-				action: 'Delete Cluster OpenSearch',
-			},
-			{
-				name: 'opensearchClusterGetGet',
-				value: 'opensearchClusterGetGet',
-				action: 'Get Cluster OpenSearch',
-			},
-			{
-				name: 'opensearchClusterListGet',
-				value: 'opensearchClusterListGet',
-				action: 'List Cluster OpenSearch',
-			},
-			{
-				name: 'opensearchClusterUpdatePut',
-				value: 'opensearchClusterUpdatePut',
-				action: 'Update Cluster OpenSearch',
-			},
-			{
-				name: 'opensearchIndexDeleteDelete',
-				value: 'opensearchIndexDeleteDelete',
-				action: 'Delete Index OpenSearch',
-			},
-			{
-				name: 'opensearchIndexGetGet',
-				value: 'opensearchIndexGetGet',
-				action: 'Get Index OpenSearch',
-			},
-			{
-				name: 'opensearchIndexListGet',
-				value: 'opensearchIndexListGet',
-				action: 'List Index OpenSearch',
-			},
-			{
-				name: 'opensearchIntegrationCreatePost',
-				value: 'opensearchIntegrationCreatePost',
-				action: 'Create Integration OpenSearch',
-			},
-			{
-				name: 'opensearchIntegrationDeleteDelete',
-				value: 'opensearchIntegrationDeleteDelete',
-				action: 'Delete Integration OpenSearch',
-			},
-			{
-				name: 'opensearchIntegrationGetGet',
-				value: 'opensearchIntegrationGetGet',
-				action: 'Get Integration OpenSearch',
-			},
-			{
-				name: 'opensearchIntegrationListGet',
-				value: 'opensearchIntegrationListGet',
-				action: 'List Integration OpenSearch',
-			},
-			{
-				name: 'opensearchIpRestrictionCreatePost',
-				value: 'opensearchIpRestrictionCreatePost',
-				action: 'Create Ip Restriction OpenSearch',
-			},
-			{
-				name: 'opensearchIpRestrictionDeleteDelete',
-				value: 'opensearchIpRestrictionDeleteDelete',
-				action: 'Delete Ip Restriction OpenSearch',
-			},
-			{
-				name: 'opensearchIpRestrictionGetGet',
-				value: 'opensearchIpRestrictionGetGet',
-				action: 'Get Ip Restriction OpenSearch',
-			},
-			{
-				name: 'opensearchIpRestrictionListGet',
-				value: 'opensearchIpRestrictionListGet',
-				action: 'List Ip Restriction OpenSearch',
-			},
-			{
-				name: 'opensearchIpRestrictionUpdatePut',
-				value: 'opensearchIpRestrictionUpdatePut',
-				action: 'Update Ip Restriction OpenSearch',
-			},
-			{
-				name: 'opensearchLogKindGet',
-				value: 'opensearchLogKindGet',
-				action: ' Cluster OpenSearch',
-			},
-			{
-				name: 'opensearchLogKindListGet',
-				value: 'opensearchLogKindListGet',
-				action: 'List Log Kind OpenSearch',
-			},
-			{
-				name: 'opensearchLogSubscriptionCreatePost',
-				value: 'opensearchLogSubscriptionCreatePost',
-				action: 'Create Log Subscription OpenSearch',
-			},
-			{
-				name: 'opensearchLogSubscriptionDeleteDelete',
-				value: 'opensearchLogSubscriptionDeleteDelete',
-				action: 'Delete Log Subscription OpenSearch',
-			},
-			{
-				name: 'opensearchLogSubscriptionGet',
-				value: 'opensearchLogSubscriptionGet',
-				action: ' Cluster OpenSearch',
-			},
-			{
-				name: 'opensearchLogSubscriptionListGet',
-				value: 'opensearchLogSubscriptionListGet',
-				action: 'List Log Subscription OpenSearch',
-			},
-			{
-				name: 'opensearchLogUrlCreatePost',
-				value: 'opensearchLogUrlCreatePost',
-				action: 'Create Log Url OpenSearch',
-			},
-			{
-				name: 'opensearchLogsListGet',
-				value: 'opensearchLogsListGet',
-				action: 'List Logs OpenSearch',
-			},
-			{
-				name: 'opensearchMaintenanceApplyPost',
-				value: 'opensearchMaintenanceApplyPost',
-				action: ' Cluster OpenSearch',
-			},
-			{
-				name: 'opensearchMaintenanceGetGet',
-				value: 'opensearchMaintenanceGetGet',
-				action: 'Get Maintenance OpenSearch',
-			},
-			{
-				name: 'opensearchMaintenanceListGet',
-				value: 'opensearchMaintenanceListGet',
-				action: 'List Maintenance OpenSearch',
-			},
-			{
-				name: 'opensearchMetricGetGet',
-				value: 'opensearchMetricGetGet',
-				action: 'Get Metric OpenSearch',
-			},
-			{
-				name: 'opensearchMetricListGet',
-				value: 'opensearchMetricListGet',
-				action: 'List Metric OpenSearch',
-			},
-			{
-				name: 'opensearchNodeGetGet',
-				value: 'opensearchNodeGetGet',
-				action: 'Get Node OpenSearch',
-			},
-			{
-				name: 'opensearchNodeListGet',
-				value: 'opensearchNodeListGet',
-				action: 'List Node OpenSearch',
-			},
-			{
-				name: 'opensearchPatternCreatePost',
-				value: 'opensearchPatternCreatePost',
-				action: 'Create Pattern OpenSearch',
-			},
-			{
-				name: 'opensearchPatternDeleteDelete',
-				value: 'opensearchPatternDeleteDelete',
-				action: 'Delete Pattern OpenSearch',
-			},
-			{
-				name: 'opensearchPatternGetGet',
-				value: 'opensearchPatternGetGet',
-				action: 'Get Pattern OpenSearch',
-			},
-			{
-				name: 'opensearchPatternListGet',
-				value: 'opensearchPatternListGet',
-				action: 'List Pattern OpenSearch',
-			},
-			{
-				name: 'opensearchPermissionsListGet',
-				value: 'opensearchPermissionsListGet',
-				action: 'List Permissions OpenSearch',
-			},
-			{
-				name: 'opensearchPrometheusCredentialsResetPost',
-				value: 'opensearchPrometheusCredentialsResetPost',
-				action: ' Cluster OpenSearch',
-			},
-			{
-				name: 'opensearchPrometheusListGet',
-				value: 'opensearchPrometheusListGet',
-				action: 'List Prometheus OpenSearch',
-			},
-			{
-				name: 'opensearchUserCreatePost',
-				value: 'opensearchUserCreatePost',
-				action: 'Create User OpenSearch',
-			},
-			{
-				name: 'opensearchUserCredentialsResetPost',
-				value: 'opensearchUserCredentialsResetPost',
-				action: ' Cluster OpenSearch',
-			},
-			{
-				name: 'opensearchUserDeleteDelete',
-				value: 'opensearchUserDeleteDelete',
-				action: 'Delete User OpenSearch',
-			},
-			{
-				name: 'opensearchUserGetGet',
-				value: 'opensearchUserGetGet',
-				action: 'Get User OpenSearch',
-			},
-			{
-				name: 'opensearchUserListGet',
-				value: 'opensearchUserListGet',
-				action: 'List User OpenSearch',
-			},
-			{
-				name: 'opensearchUserUpdatePut',
-				value: 'opensearchUserUpdatePut',
-				action: 'Update User OpenSearch',
-			},
-			{
-				name: 'postgresqlClusterListGet',
-				value: 'postgresqlClusterListGet',
-				action: 'List PostgreSQL clusters in a project',
-			},
-			{
-				name: 'postgresqlClusterGetGet',
-				value: 'postgresqlClusterGetGet',
-				action: 'Get PostgreSQL cluster',
-			},
-			{
-				name: 'postgresqlClusterCreatePost',
-				value: 'postgresqlClusterCreatePost',
-				action: 'Create PostgreSQL cluster',
-			},
-			{
-				name: 'postgresqlClusterUpdatePut',
-				value: 'postgresqlClusterUpdatePut',
-				action: 'Update PostgreSQL cluster',
-			},
-			{
-				name: 'postgresqlClusterDeleteDelete',
-				value: 'postgresqlClusterDeleteDelete',
-				action: 'Delete PostgreSQL cluster',
-			},
-			{
-				name: 'postgresqlBackupListGet',
-				value: 'postgresqlBackupListGet',
-				action: 'List PostgreSQL backups',
-			},
-			{
-				name: 'postgresqlBackupCreatePost',
-				value: 'postgresqlBackupCreatePost',
-				action: 'Create PostgreSQL backup',
-			},
-			{
-				name: 'postgresqlBackupGetGet',
-				value: 'postgresqlBackupGetGet',
-				action: 'Get PostgreSQL backup',
-			},
-			{
-				name: 'postgresqlBackupDeleteDelete',
-				value: 'postgresqlBackupDeleteDelete',
-				action: 'Delete PostgreSQL backup',
-			},
-			{
-				name: 'postgresqlUserListGet',
-				value: 'postgresqlUserListGet',
-				action: 'List PostgreSQL users',
-			},
-			{
-				name: 'postgresqlUserCreatePost',
-				value: 'postgresqlUserCreatePost',
-				action: 'Create PostgreSQL user',
-			},
-			{
-				name: 'postgresqlUserGetGet',
-				value: 'postgresqlUserGetGet',
-				action: 'Get PostgreSQL user',
-			},
-			{
-				name: 'postgresqlUserUpdatePut',
-				value: 'postgresqlUserUpdatePut',
-				action: 'Update PostgreSQL user',
-			},
-			{
-				name: 'postgresqlUserDeleteDelete',
-				value: 'postgresqlUserDeleteDelete',
-				action: 'Delete PostgreSQL user',
-			},
-			{
-				name: 'postgresqlNodeListGet',
-				value: 'postgresqlNodeListGet',
-				action: 'List PostgreSQL nodes',
-			},
-			{
-				name: 'postgresqlNodeCreatePost',
-				value: 'postgresqlNodeCreatePost',
-				action: 'Create PostgreSQL node',
-			},
-			{
-				name: 'postgresqlNodeGetGet',
-				value: 'postgresqlNodeGetGet',
-				action: 'Get PostgreSQL node',
-			},
-			{
-				name: 'postgresqlNodeUpdatePut',
-				value: 'postgresqlNodeUpdatePut',
-				action: 'Update PostgreSQL node',
-			},
-			{
-				name: 'postgresqlNodeDeleteDelete',
-				value: 'postgresqlNodeDeleteDelete',
-				action: 'Delete PostgreSQL node',
-			},
-			{
-				name: 'postgresqlIpRestrictionListGet',
-				value: 'postgresqlIpRestrictionListGet',
-				action: 'List PostgreSQL IP restrictions',
-			},
-			{
-				name: 'postgresqlIpRestrictionCreatePost',
-				value: 'postgresqlIpRestrictionCreatePost',
-				action: 'Create PostgreSQL IP restriction',
-			},
-			{
-				name: 'postgresqlLogSubscriptionListGet',
-				value: 'postgresqlLogSubscriptionListGet',
-				action: 'List PostgreSQL log subscriptions',
-			},
-			{
-				name: 'postgresqlLogSubscriptionCreatePost',
-				value: 'postgresqlLogSubscriptionCreatePost',
-				action: 'Create PostgreSQL log subscription',
-			},
-			{
-				name: 'postgresqlLogSubscriptionGetGet',
-				value: 'postgresqlLogSubscriptionGetGet',
-				action: 'Get PostgreSQL log subscription',
-			},
-			{
-				name: 'postgresqlMaintenanceGet',
-				value: 'postgresqlMaintenanceGet',
-				action: 'Get PostgreSQL maintenance',
-			},
-			{
-				name: 'postgresqlMaintenanceUpdatePut',
-				value: 'postgresqlMaintenanceUpdatePut',
-				action: 'Update PostgreSQL maintenance',
-			},
-			{
-				name: 'postgresqlMetricGet',
-				value: 'postgresqlMetricGet',
-				action: 'Get PostgreSQL metric',
-			},
-			{
-				name: 'postgresqlPrometheusGet',
-				value: 'postgresqlPrometheusGet',
-				action: 'Get PostgreSQL prometheus',
-			},
-			{
-				name: 'postgresqlCertificateListGet',
-				value: 'postgresqlCertificateListGet',
-				action: 'List PostgreSQL certificates',
-			},
-			{
-				name: 'postgresqlCertificateCreatePost',
-				value: 'postgresqlCertificateCreatePost',
-				action: 'Create PostgreSQL certificate',
-			},
-			{
-				name: 'postgresqlIntegrationListGet',
-				value: 'postgresqlIntegrationListGet',
-				action: 'List PostgreSQL integrations',
-			},
-			{
-				name: 'postgresqlIntegrationCreatePost',
-				value: 'postgresqlIntegrationCreatePost',
-				action: 'Create PostgreSQL integration',
-			},
-			{
-				name: 'valkeyClusterListGet',
-				value: 'valkeyClusterListGet',
-				action: 'List Valkey clusters in a project',
-			},
-			{
-				name: 'valkeyClusterGetGet',
-				value: 'valkeyClusterGetGet',
-				action: 'Get Valkey cluster',
-			},
-			{
-				name: 'valkeyClusterCreatePost',
-				value: 'valkeyClusterCreatePost',
-				action: 'Create Valkey cluster',
-			},
-			{
-				name: 'valkeyClusterUpdatePut',
-				value: 'valkeyClusterUpdatePut',
-				action: 'Update Valkey cluster',
-			},
-			{
-				name: 'valkeyClusterDeleteDelete',
-				value: 'valkeyClusterDeleteDelete',
-				action: 'Delete Valkey cluster',
-			},
-			{
-				name: 'valkeyBackupListGet',
-				value: 'valkeyBackupListGet',
-				action: 'List Valkey backups',
-			},
-			{
-				name: 'valkeyBackupCreatePost',
-				value: 'valkeyBackupCreatePost',
-				action: 'Create Valkey backup',
-			},
-			{
-				name: 'valkeyBackupGetGet',
-				value: 'valkeyBackupGetGet',
-				action: 'Get Valkey backup',
-			},
-			{
-				name: 'valkeyBackupDeleteDelete',
-				value: 'valkeyBackupDeleteDelete',
-				action: 'Delete Valkey backup',
-			},
-			{
-				name: 'valkeyUserListGet',
-				value: 'valkeyUserListGet',
-				action: 'List Valkey users',
-			},
-			{
-				name: 'valkeyUserCreatePost',
-				value: 'valkeyUserCreatePost',
-				action: 'Create Valkey user',
-			},
-			{
-				name: 'valkeyUserGetGet',
-				value: 'valkeyUserGetGet',
-				action: 'Get Valkey user',
-			},
-			{
-				name: 'valkeyUserUpdatePut',
-				value: 'valkeyUserUpdatePut',
-				action: 'Update Valkey user',
-			},
-			{
-				name: 'valkeyUserDeleteDelete',
-				value: 'valkeyUserDeleteDelete',
-				action: 'Delete Valkey user',
-			},
-			{
-				name: 'valkeyNodeListGet',
-				value: 'valkeyNodeListGet',
-				action: 'List Valkey nodes',
-			},
-			{
-				name: 'valkeyNodeCreatePost',
-				value: 'valkeyNodeCreatePost',
-				action: 'Create Valkey node',
-			},
-			{
-				name: 'valkeyNodeGetGet',
-				value: 'valkeyNodeGetGet',
-				action: 'Get Valkey node',
-			},
-			{
-				name: 'valkeyNodeUpdatePut',
-				value: 'valkeyNodeUpdatePut',
-				action: 'Update Valkey node',
-			},
-			{
-				name: 'valkeyNodeDeleteDelete',
-				value: 'valkeyNodeDeleteDelete',
-				action: 'Delete Valkey node',
-			},
-			{
-				name: 'valkeyIpRestrictionListGet',
-				value: 'valkeyIpRestrictionListGet',
-				action: 'List Valkey IP restrictions',
-			},
-			{
-				name: 'valkeyIpRestrictionCreatePost',
-				value: 'valkeyIpRestrictionCreatePost',
-				action: 'Create Valkey IP restriction',
-			},
-			{
-				name: 'valkeyLogSubscriptionListGet',
-				value: 'valkeyLogSubscriptionListGet',
-				action: 'List Valkey log subscriptions',
-			},
-			{
-				name: 'valkeyLogSubscriptionCreatePost',
-				value: 'valkeyLogSubscriptionCreatePost',
-				action: 'Create Valkey log subscription',
-			},
-			{
-				name: 'valkeyLogSubscriptionGetGet',
-				value: 'valkeyLogSubscriptionGetGet',
-				action: 'Get Valkey log subscription',
-			},
-			{
-				name: 'valkeyMaintenanceGet',
-				value: 'valkeyMaintenanceGet',
-				action: 'Get Valkey maintenance',
-			},
-			{
-				name: 'valkeyMaintenanceUpdatePut',
-				value: 'valkeyMaintenanceUpdatePut',
-				action: 'Update Valkey maintenance',
-			},
-			{
-				name: 'valkeyMetricGet',
-				value: 'valkeyMetricGet',
-				action: 'Get Valkey metric',
-			},
-			{
-				name: 'valkeyPrometheusGet',
-				value: 'valkeyPrometheusGet',
-				action: 'Get Valkey prometheus',
-			},
-			{
-				name: 'valkeyCertificateListGet',
-				value: 'valkeyCertificateListGet',
-				action: 'List Valkey certificates',
-			},
-			{
-				name: 'valkeyCertificateCreatePost',
-				value: 'valkeyCertificateCreatePost',
-				action: 'Create Valkey certificate',
-			},
-			{
-				name: 'valkeyIntegrationListGet',
-				value: 'valkeyIntegrationListGet',
-				action: 'List Valkey integrations',
-			},
-			{
-				name: 'valkeyIntegrationCreatePost',
-				value: 'valkeyIntegrationCreatePost',
-				action: 'Create Valkey integration',
-			},
-			{
-				name: 'kubeAuditLogsPost',
-				value: 'kubeAuditLogsPost',
-				action: 'Create Kubernetes audit logs',
-			},
-			{
-				name: 'kubeCustomizationGet',
-				value: 'kubeCustomizationGet',
-				action: 'Get Kubernetes customization',
-			},
-			{
-				name: 'kubeCustomizationUpdatePut',
-				value: 'kubeCustomizationUpdatePut',
-				action: 'Update Kubernetes customization',
-			},
-			{
-				name: 'kubeDeleteDelete',
-				value: 'kubeDeleteDelete',
-				action: 'Delete Kubernetes cluster',
-			},
-			{
-				name: 'kubeFlavorsGet',
-				value: 'kubeFlavorsGet',
-				action: 'List Kubernetes flavors',
-			},
-			{
-				name: 'kubeGetGet',
-				value: 'kubeGetGet',
-				action: 'Get Kubernetes cluster',
-			},
-			{
-				name: 'kubeIpRestrictionsDeleteDelete',
-				value: 'kubeIpRestrictionsDeleteDelete',
-				action: 'Delete Kubernetes IP restriction',
-			},
-			{
-				name: 'kubeIpRestrictionsGet',
-				value: 'kubeIpRestrictionsGet',
-				action: 'List Kubernetes IP restrictions',
-			},
-			{
-				name: 'kubeIpRestrictionsPost',
-				value: 'kubeIpRestrictionsPost',
-				action: 'Create Kubernetes IP restriction',
-			},
-			{
-				name: 'kubeIpRestrictionsUpdatePut',
-				value: 'kubeIpRestrictionsUpdatePut',
-				action: 'Update Kubernetes IP restrictions',
-			},
-			{
-				name: 'kubeKubeconfigPost',
-				value: 'kubeKubeconfigPost',
-				action: 'Get Kubernetes kubeconfig',
-			},
-			{
-				name: 'kubeKubeconfigResetPost',
-				value: 'kubeKubeconfigResetPost',
-				action: 'Reset Kubernetes kubeconfig',
-			},
-			{
-				name: 'kubeListGet',
-				value: 'kubeListGet',
-				action: 'List Kubernetes clusters in a project',
-			},
-			{
-				name: 'kubeLogSubscriptionDeleteDelete',
-				value: 'kubeLogSubscriptionDeleteDelete',
-				action: 'Delete Kubernetes log subscription',
-			},
-			{
-				name: 'kubeLogSubscriptionGet',
-				value: 'kubeLogSubscriptionGet',
-				action: 'Get Kubernetes log subscription',
-			},
-			{
-				name: 'kubeLogSubscriptionPost',
-				value: 'kubeLogSubscriptionPost',
-				action: 'Create Kubernetes log subscription',
-			},
-			{
-				name: 'kubeLogSubscriptionListGet',
-				value: 'kubeLogSubscriptionListGet',
-				action: 'List Kubernetes log subscriptions',
-			},
-			{
-				name: 'kubeLogUrlPost',
-				value: 'kubeLogUrlPost',
-				action: 'Get Kubernetes log URL',
-			},
-			{
-				name: 'kubeMetricsEtcdUsageGet',
-				value: 'kubeMetricsEtcdUsageGet',
-				action: 'Get Kubernetes etcd usage metrics',
-			},
-			{
-				name: 'kubeNodeDeleteDelete',
-				value: 'kubeNodeDeleteDelete',
-				action: 'Delete Kubernetes node',
-			},
-			{
-				name: 'kubeNodeGet',
-				value: 'kubeNodeGet',
-				action: 'Get Kubernetes node',
-			},
-			{
-				name: 'kubeNodeListGet',
-				value: 'kubeNodeListGet',
-				action: 'List Kubernetes nodes',
-			},
-			{
-				name: 'kubeNodepoolCreatePost',
-				value: 'kubeNodepoolCreatePost',
-				action: 'Create Kubernetes nodepool',
-			},
-			{
-				name: 'kubeNodepoolListGet',
-				value: 'kubeNodepoolListGet',
-				action: 'List Kubernetes nodepools',
-			},
-			{
-				name: 'kubeNodepoolDeleteDelete',
-				value: 'kubeNodepoolDeleteDelete',
-				action: 'Delete Kubernetes nodepool',
-			},
-			{
-				name: 'kubeNodepoolGetGet',
-				value: 'kubeNodepoolGetGet',
-				action: 'Get Kubernetes nodepool',
-			},
-			{
-				name: 'kubeNodepoolListNodepoolNodesGet',
-				value: 'kubeNodepoolListNodepoolNodesGet',
-				action: 'List Kubernetes nodepool nodes',
-			},
-			{
-				name: 'kubeNodepoolUpdatePut',
-				value: 'kubeNodepoolUpdatePut',
-				action: 'Update Kubernetes nodepool',
-			},
-			{
-				name: 'kubeOpenIdConnectDeleteDelete',
-				value: 'kubeOpenIdConnectDeleteDelete',
-				action: 'Delete Kubernetes OpenID Connect configuration',
-			},
-			{
-				name: 'kubeOpenIdConnectGet',
-				value: 'kubeOpenIdConnectGet',
-				action: 'Get Kubernetes OpenID Connect configuration',
-			},
-			{
-				name: 'kubeOpenIdConnectPost',
-				value: 'kubeOpenIdConnectPost',
-				action: 'Create Kubernetes OpenID Connect configuration',
-			},
-			{
-				name: 'kubeOpenIdConnectUpdatePut',
-				value: 'kubeOpenIdConnectUpdatePut',
-				action: 'Update Kubernetes OpenID Connect configuration',
-			},
-			{
-				name: 'kubePrivateNetworkConfigurationGet',
-				value: 'kubePrivateNetworkConfigurationGet',
-				action: 'Get Kubernetes private network configuration',
-			},
-			{
-				name: 'kubePrivateNetworkConfigurationUpdatePut',
-				value: 'kubePrivateNetworkConfigurationUpdatePut',
-				action: 'Update Kubernetes private network configuration',
-			},
-			{
-				name: 'kubeResetPost',
-				value: 'kubeResetPost',
-				action: 'Reset Kubernetes cluster',
-			},
-			{
-				name: 'kubeRestartPost',
-				value: 'kubeRestartPost',
-				action: 'Restart Kubernetes cluster',
-			},
-			{
-				name: 'kubeUpdateLoadBalancersSubnetIdUpdatePut',
-				value: 'kubeUpdateLoadBalancersSubnetIdUpdatePut',
-				action: 'Update Kubernetes load balancer subnet ID',
-			},
-			{
-				name: 'kubeUpdatePolicyUpdatePut',
-				value: 'kubeUpdatePolicyUpdatePut',
-				action: 'Update Kubernetes update policy',
-			},
-			{
-				name: 'kubeUpdatePost',
-				value: 'kubeUpdatePost',
-				action: 'Update Kubernetes cluster',
-			},
-			{
-				name: 'kubeUpdatePut',
-				value: 'kubeUpdatePut',
-				action: 'Update Kubernetes cluster',
-			},
-			{
-				name: 'instanceActiveMonthlyBillingPost',
-				value: 'instanceActiveMonthlyBillingPost',
-				action: 'Activate monthly billing for instance',
-			},
-			{
-				name: 'instanceApplicationAccessPost',
-				value: 'instanceApplicationAccessPost',
-				action: 'Get instance application access',
-			},
-			{
-				name: 'instanceBulkPost',
-				value: 'instanceBulkPost',
-				action: 'Bulk create instances',
-			},
-			{
-				name: 'instanceCreatePost',
-				value: 'instanceCreatePost',
-				action: 'Create instance',
-			},
-			{
-				name: 'instanceDeleteDelete',
-				value: 'instanceDeleteDelete',
-				action: 'Delete instance',
-			},
-			{
-				name: 'instanceGetGet',
-				value: 'instanceGetGet',
-				action: 'Get instance',
-			},
-			{
-				name: 'instanceGroupCreatePost',
-				value: 'instanceGroupCreatePost',
-				action: 'Create instance group',
-			},
-			{
-				name: 'instanceGroupDeleteDelete',
-				value: 'instanceGroupDeleteDelete',
-				action: 'Delete instance group',
-			},
-			{
-				name: 'instanceGroupGetGet',
-				value: 'instanceGroupGetGet',
-				action: 'Get instance group',
-			},
-			{
-				name: 'instanceGroupListGet',
-				value: 'instanceGroupListGet',
-				action: 'List instance groups',
-			},
-			{
-				name: 'instanceInterfaceCreatePost',
-				value: 'instanceInterfaceCreatePost',
-				action: 'Create instance interface',
-			},
-			{
-				name: 'instanceInterfaceDeleteDelete',
-				value: 'instanceInterfaceDeleteDelete',
-				action: 'Delete instance interface',
-			},
-			{
-				name: 'instanceInterfaceGetGet',
-				value: 'instanceInterfaceGetGet',
-				action: 'Get instance interface',
-			},
-			{
-				name: 'instanceInterfaceListGet',
-				value: 'instanceInterfaceListGet',
-				action: 'List instance interfaces',
-			},
-			{
-				name: 'instanceListGet',
-				value: 'instanceListGet',
-				action: 'List instances in a project',
-			},
-			{
-				name: 'instanceRebootPost',
-				value: 'instanceRebootPost',
-				action: 'Reboot instance',
-			},
-			{
-				name: 'instanceReinstallPost',
-				value: 'instanceReinstallPost',
-				action: 'Reinstall instance',
-			},
-			{
-				name: 'instanceRescueModePost',
-				value: 'instanceRescueModePost',
-				action: 'Set instance rescue mode',
-			},
-			{
-				name: 'instanceResizePost',
-				value: 'instanceResizePost',
-				action: 'Resize instance',
-			},
-			{
-				name: 'instanceResumePost',
-				value: 'instanceResumePost',
-				action: 'Resume instance',
-			},
-			{
-				name: 'instanceShelvePost',
-				value: 'instanceShelvePost',
-				action: 'Shelve instance',
-			},
-			{
-				name: 'instanceSnapshotPost',
-				value: 'instanceSnapshotPost',
-				action: 'Create instance snapshot',
-			},
-			{
-				name: 'instanceStartPost',
-				value: 'instanceStartPost',
-				action: 'Start instance',
-			},
-			{
-				name: 'instanceStopPost',
-				value: 'instanceStopPost',
-				action: 'Stop instance',
-			},
-			{
-				name: 'instanceUnshelvePost',
-				value: 'instanceUnshelvePost',
-				action: 'Unshelve instance',
-			},
-			{
-				name: 'instanceUpdatePut',
-				value: 'instanceUpdatePut',
-				action: 'Update instance',
-			},
-			{
-				name: 'instanceVncPost',
-				value: 'instanceVncPost',
-				action: 'Get instance VNC console',
-			},
-			{
-				name: 'networkCreatePrivateNetworkPost',
-				value: 'networkCreatePrivateNetworkPost',
-				action: 'Create private network',
-			},
-			{
-				name: 'networkCreateSubnetPost',
-				value: 'networkCreateSubnetPost',
-				action: 'Create subnet',
-			},
-			{
-				name: 'networkDeletePrivateNetworkDelete',
-				value: 'networkDeletePrivateNetworkDelete',
-				action: 'Delete private network',
-			},
-			{
-				name: 'networkDeleteSubnetDelete',
-				value: 'networkDeleteSubnetDelete',
-				action: 'Delete subnet',
-			},
-			{
-				name: 'networkGetPrivateNetworkDetailGet',
-				value: 'networkGetPrivateNetworkDetailGet',
-				action: 'Get private network',
-			},
-			{
-				name: 'networkGetSubnetDetailGet',
-				value: 'networkGetSubnetDetailGet',
-				action: 'Get subnet',
-			},
-			{
-				name: 'networkListPrivateNetworksGet',
-				value: 'networkListPrivateNetworksGet',
-				action: 'List private networks in a project',
-			},
-			{
-				name: 'networkListPublicNetworksGet',
-				value: 'networkListPublicNetworksGet',
-				action: 'List public networks in a project',
-			},
-			{
-				name: 'networkListSubnetsGet',
-				value: 'networkListSubnetsGet',
-				action: 'List subnets in a project',
-			},
-			{
-				name: 'networkUpdatePrivateNetworkPut',
-				value: 'networkUpdatePrivateNetworkPut',
-				action: 'Update private network',
-			},
-			{
-				name: 'networkUpdateSubnetPut',
-				value: 'networkUpdateSubnetPut',
-				action: 'Update subnet',
-			},
-			{
-				name: 'networkActivatePrivateNetworkRegionPost',
-				value: 'networkActivatePrivateNetworkRegionPost',
-				action: 'Activate private network region',
-			},
-			{
-				name: 'regionGetGet',
-				value: 'regionGetGet',
-				action: 'Get region',
-			},
-			{
-				name: 'regionListGet',
-				value: 'regionListGet',
-				action: 'List regions in a project',
-			},
-			{
-				name: 'regionShareCreatePost',
-				value: 'regionShareCreatePost',
-				action: 'Create region share',
-			},
-			{
-				name: 'regionShareDeleteDelete',
-				value: 'regionShareDeleteDelete',
-				action: 'Delete region share',
-			},
-			{
-				name: 'regionShareGetGet',
-				value: 'regionShareGetGet',
-				action: 'Get region share',
-			},
-			{
-				name: 'regionShareListGet',
-				value: 'regionShareListGet',
-				action: 'List region shares',
-			},
-			{
-				name: 'regionShareSnapshotCreatePost',
-				value: 'regionShareSnapshotCreatePost',
-				action: 'Create region share snapshot',
-			},
-			{
-				name: 'regionShareSnapshotDeleteDelete',
-				value: 'regionShareSnapshotDeleteDelete',
-				action: 'Delete region share snapshot',
-			},
-			{
-				name: 'regionShareSnapshotGetGet',
-				value: 'regionShareSnapshotGetGet',
-				action: 'Get region share snapshot',
-			},
-			{
-				name: 'regionShareSnapshotListGet',
-				value: 'regionShareSnapshotListGet',
-				action: 'List region share snapshots',
-			},
-			{
-				name: 'regionShareUpdatePut',
-				value: 'regionShareUpdatePut',
-				action: 'Update region share',
-			},
-			{
-				name: 'regionVolumeCreatePost',
-				value: 'regionVolumeCreatePost',
-				action: 'Create region volume',
-			},
-			{
-				name: 'regionVolumeDeleteDelete',
-				value: 'regionVolumeDeleteDelete',
-				action: 'Delete region volume',
-			},
-			{
-				name: 'regionVolumeGetGet',
-				value: 'regionVolumeGetGet',
-				action: 'Get region volume',
-			},
-			{
-				name: 'regionVolumeListGet',
-				value: 'regionVolumeListGet',
-				action: 'List region volumes',
-			},
-			{
-				name: 'regionVolumeUpdatePut',
-				value: 'regionVolumeUpdatePut',
-				action: 'Update region volume',
-			},
-			{
-				name: 'regionWorkflowBackupCreatePost',
-				value: 'regionWorkflowBackupCreatePost',
-				action: 'Create region workflow backup',
-			},
-			{
-				name: 'regionWorkflowBackupDeleteDelete',
-				value: 'regionWorkflowBackupDeleteDelete',
-				action: 'Delete region workflow backup',
-			},
-			{
-				name: 'regionWorkflowBackupGetGet',
-				value: 'regionWorkflowBackupGetGet',
-				action: 'Get region workflow backup',
-			},
-			{
-				name: 'regionWorkflowBackupUpdatePut',
-				value: 'regionWorkflowBackupUpdatePut',
-				action: 'Update region workflow backup',
-			},
-			{
-				name: 'regionColdArchiveListGet',
-				value: 'regionColdArchiveListGet',
-				action: 'List cold archive containers',
-			},
-			{
-				name: 'regionColdArchiveCreatePost',
-				value: 'regionColdArchiveCreatePost',
-				action: 'Create cold archive container',
-			},
-			{
-				name: 'regionColdArchiveDeleteDelete',
-				value: 'regionColdArchiveDeleteDelete',
-				action: 'Delete cold archive container',
-			},
-			{
-				name: 'regionColdArchiveGetGet',
-				value: 'regionColdArchiveGetGet',
-				action: 'Get cold archive container',
-			},
-			{
-				name: 'regionColdArchiveArchivePost',
-				value: 'regionColdArchiveArchivePost',
-				action: 'Archive cold archive container',
-			},
-			{
-				name: 'regionColdArchiveDestroyPost',
-				value: 'regionColdArchiveDestroyPost',
-				action: 'Destroy cold archive container',
-			},
-			{
-				name: 'regionColdArchiveObjectDeleteDelete',
-				value: 'regionColdArchiveObjectDeleteDelete',
-				action: 'Delete cold archive object',
-			},
-			{
-				name: 'regionColdArchivePolicyCreatePost',
-				value: 'regionColdArchivePolicyCreatePost',
-				action: 'Add cold archive policy',
-			},
-			{
-				name: 'regionColdArchivePresignPost',
-				value: 'regionColdArchivePresignPost',
-				action: 'Generate cold archive presigned URL',
-			},
-			{
-				name: 'regionColdArchiveRestorePost',
-				value: 'regionColdArchiveRestorePost',
-				action: 'Restore cold archive container',
-			},
-			{
-				name: 'regionStorageListGet',
-				value: 'regionStorageListGet',
-				action: 'List storage containers',
-			},
-			{
-				name: 'regionStorageCreatePost',
-				value: 'regionStorageCreatePost',
-				action: 'Create storage container',
-			},
-			{
-				name: 'regionStorageDeleteDelete',
-				value: 'regionStorageDeleteDelete',
-				action: 'Delete storage container',
-			},
-			{
-				name: 'regionStorageGetGet',
-				value: 'regionStorageGetGet',
-				action: 'Get storage container',
-			},
-			{
-				name: 'regionStorageUpdatePut',
-				value: 'regionStorageUpdatePut',
-				action: 'Update storage container',
-			},
-			{
-				name: 'regionStorageBulkDeleteObjectsPost',
-				value: 'regionStorageBulkDeleteObjectsPost',
-				action: 'Bulk delete storage objects',
-			},
-			{
-				name: 'regionStorageReplicationListGet',
-				value: 'regionStorageReplicationListGet',
-				action: 'List storage replication jobs',
-			},
-			{
-				name: 'regionStorageReplicationCreatePost',
-				value: 'regionStorageReplicationCreatePost',
-				action: 'Create storage replication job',
-			},
-			{
-				name: 'regionStorageLifecycleDeleteDelete',
-				value: 'regionStorageLifecycleDeleteDelete',
-				action: 'Delete storage lifecycle',
-			},
-			{
-				name: 'regionStorageLifecycleGetGet',
-				value: 'regionStorageLifecycleGetGet',
-				action: 'Get storage lifecycle',
-			},
-			{
-				name: 'regionStorageLifecycleUpdatePut',
-				value: 'regionStorageLifecycleUpdatePut',
-				action: 'Update storage lifecycle',
-			},
-			{
-				name: 'regionStorageObjectListGet',
-				value: 'regionStorageObjectListGet',
-				action: 'List storage objects',
-			},
-			{
-				name: 'regionStorageObjectCreatePost',
-				value: 'regionStorageObjectCreatePost',
-				action: 'Create storage object',
-			},
-			{
-				name: 'regionStorageObjectDeleteDelete',
-				value: 'regionStorageObjectDeleteDelete',
-				action: 'Delete storage object',
-			},
-			{
-				name: 'regionStorageObjectGetGet',
-				value: 'regionStorageObjectGetGet',
-				action: 'Get storage object',
-			},
-			{
-				name: 'regionStorageObjectUpdatePut',
-				value: 'regionStorageObjectUpdatePut',
-				action: 'Update storage object',
-			},
-			{
-				name: 'regionStorageObjectCopyPost',
-				value: 'regionStorageObjectCopyPost',
-				action: 'Copy storage object',
-			},
-			{
-				name: 'regionStorageObjectRestorePost',
-				value: 'regionStorageObjectRestorePost',
-				action: 'Restore storage object',
-			},
-			{
-				name: 'regionStorageObjectVersionListGet',
-				value: 'regionStorageObjectVersionListGet',
-				action: 'List storage object versions',
-			},
-			{
-				name: 'regionStorageObjectVersionDeleteDelete',
-				value: 'regionStorageObjectVersionDeleteDelete',
-				action: 'Delete storage object version',
-			},
-			{
-				name: 'regionStorageObjectVersionGetGet',
-				value: 'regionStorageObjectVersionGetGet',
-				action: 'Get storage object version',
-			},
-			{
-				name: 'regionStorageObjectVersionUpdatePut',
-				value: 'regionStorageObjectVersionUpdatePut',
-				action: 'Update storage object version',
-			},
-			{
-				name: 'regionStorageObjectVersionCopyPost',
-				value: 'regionStorageObjectVersionCopyPost',
-				action: 'Copy storage object version',
-			},
-			{
-				name: 'regionStorageObjectVersionRestorePost',
-				value: 'regionStorageObjectVersionRestorePost',
-				action: 'Restore storage object version',
-			},
-			{
-				name: 'regionStoragePolicyCreatePost',
-				value: 'regionStoragePolicyCreatePost',
-				action: 'Add storage policy',
-			},
-			{
-				name: 'regionStoragePresignPost',
-				value: 'regionStoragePresignPost',
-				action: 'Generate storage presigned URL',
-			},
-			{
-				name: 'floatingIpListGet',
-				value: 'floatingIpListGet',
-			},
-			{
-				name: 'floatingIpCreatePost',
-				value: 'floatingIpCreatePost',
-			},
-			{
-				name: 'floatingIpGetGet',
-				value: 'floatingIpGetGet',
-			},
-			{
-				name: 'floatingIpDeleteDelete',
-				value: 'floatingIpDeleteDelete',
-			},
-			{
-				name: 'floatingIpDetachPost',
-				value: 'floatingIpDetachPost',
-			},
-			{
-				name: 'gatewayListGet',
-				value: 'gatewayListGet',
-			},
-			{
-				name: 'gatewayCreatePost',
-				value: 'gatewayCreatePost',
-			},
-			{
-				name: 'gatewayGetGet',
-				value: 'gatewayGetGet',
-			},
-			{
-				name: 'gatewayUpdatePut',
-				value: 'gatewayUpdatePut',
-			},
-			{
-				name: 'gatewayDeleteDelete',
-				value: 'gatewayDeleteDelete',
-			},
-			{
-				name: 'gatewayExposePost',
-				value: 'gatewayExposePost',
-			},
-			{
-				name: 'gatewayInterfaceListGet',
-				value: 'gatewayInterfaceListGet',
-			},
-			{
-				name: 'gatewayInterfaceCreatePost',
-				value: 'gatewayInterfaceCreatePost',
-			},
-			{
-				name: 'gatewayInterfaceGetGet',
-				value: 'gatewayInterfaceGetGet',
-			},
-			{
-				name: 'gatewayInterfaceDeleteDelete',
-				value: 'gatewayInterfaceDeleteDelete',
-			},
-			{
-				name: 'loadbalancingFlavorListGet',
-				value: 'loadbalancingFlavorListGet',
-			},
-			{
-				name: 'loadbalancingFlavorGetGet',
-				value: 'loadbalancingFlavorGetGet',
-			},
-			{
-				name: 'loadbalancingHealthMonitorListGet',
-				value: 'loadbalancingHealthMonitorListGet',
-			},
-			{
-				name: 'loadbalancingHealthMonitorCreatePost',
-				value: 'loadbalancingHealthMonitorCreatePost',
-			},
-			{
-				name: 'loadbalancingHealthMonitorGetGet',
-				value: 'loadbalancingHealthMonitorGetGet',
-			},
-			{
-				name: 'loadbalancingHealthMonitorUpdatePut',
-				value: 'loadbalancingHealthMonitorUpdatePut',
-			},
-			{
-				name: 'loadbalancingHealthMonitorDeleteDelete',
-				value: 'loadbalancingHealthMonitorDeleteDelete',
-			},
-			{
-				name: 'loadbalancingL7PolicyListGet',
-				value: 'loadbalancingL7PolicyListGet',
-			},
-			{
-				name: 'loadbalancingL7PolicyCreatePost',
-				value: 'loadbalancingL7PolicyCreatePost',
-			},
-			{
-				name: 'loadbalancingL7PolicyGetGet',
-				value: 'loadbalancingL7PolicyGetGet',
-			},
-			{
-				name: 'loadbalancingL7PolicyUpdatePut',
-				value: 'loadbalancingL7PolicyUpdatePut',
-			},
-			{
-				name: 'loadbalancingL7PolicyDeleteDelete',
-				value: 'loadbalancingL7PolicyDeleteDelete',
-			},
-			{
-				name: 'loadbalancingL7PolicyL7RuleListGet',
-				value: 'loadbalancingL7PolicyL7RuleListGet',
-			},
-			{
-				name: 'loadbalancingL7PolicyL7RuleCreatePost',
-				value: 'loadbalancingL7PolicyL7RuleCreatePost',
-			},
-			{
-				name: 'loadbalancingL7PolicyL7RuleGetGet',
-				value: 'loadbalancingL7PolicyL7RuleGetGet',
-			},
-			{
-				name: 'loadbalancingL7PolicyL7RuleUpdatePut',
-				value: 'loadbalancingL7PolicyL7RuleUpdatePut',
-			},
-			{
-				name: 'loadbalancingL7PolicyL7RuleDeleteDelete',
-				value: 'loadbalancingL7PolicyL7RuleDeleteDelete',
-			},
-			{
-				name: 'loadbalancingListenerListGet',
-				value: 'loadbalancingListenerListGet',
-			},
-			{
-				name: 'loadbalancingListenerCreatePost',
-				value: 'loadbalancingListenerCreatePost',
-			},
-			{
-				name: 'loadbalancingListenerGetGet',
-				value: 'loadbalancingListenerGetGet',
-			},
-			{
-				name: 'loadbalancingListenerUpdatePut',
-				value: 'loadbalancingListenerUpdatePut',
-			},
-			{
-				name: 'loadbalancingListenerDeleteDelete',
-				value: 'loadbalancingListenerDeleteDelete',
-			},
-			{
-				name: 'loadbalancingLoadBalancerListGet',
-				value: 'loadbalancingLoadBalancerListGet',
-			},
-			{
-				name: 'loadbalancingLoadBalancerCreatePost',
-				value: 'loadbalancingLoadBalancerCreatePost',
-			},
-			{
-				name: 'loadbalancingLoadBalancerGetGet',
-				value: 'loadbalancingLoadBalancerGetGet',
-			},
-			{
-				name: 'loadbalancingLoadBalancerUpdatePut',
-				value: 'loadbalancingLoadBalancerUpdatePut',
-			},
-			{
-				name: 'loadbalancingLoadBalancerDeleteDelete',
-				value: 'loadbalancingLoadBalancerDeleteDelete',
-			},
-			{
-				name: 'loadbalancingLoadBalancerAssociateFloatingIpPost',
-				value: 'loadbalancingLoadBalancerAssociateFloatingIpPost',
-			},
-			{
-				name: 'loadbalancingLoadBalancerFloatingIpPost',
-				value: 'loadbalancingLoadBalancerFloatingIpPost',
-			},
-			{
-				name: 'loadbalancingLoadBalancerLogSubscriptionListGet',
-				value: 'loadbalancingLoadBalancerLogSubscriptionListGet',
-			},
-			{
-				name: 'loadbalancingLoadBalancerLogSubscriptionCreatePost',
-				value: 'loadbalancingLoadBalancerLogSubscriptionCreatePost',
-			},
-			{
-				name: 'loadbalancingLoadBalancerLogSubscriptionGetGet',
-				value: 'loadbalancingLoadBalancerLogSubscriptionGetGet',
-			},
-			{
-				name: 'loadbalancingLoadBalancerLogSubscriptionDeleteDelete',
-				value: 'loadbalancingLoadBalancerLogSubscriptionDeleteDelete',
-			},
-			{
-				name: 'loadbalancingLoadBalancerLogUrlPost',
-				value: 'loadbalancingLoadBalancerLogUrlPost',
-			},
-			{
-				name: 'loadbalancingLoadBalancerStatsGet',
-				value: 'loadbalancingLoadBalancerStatsGet',
-			},
-			{
-				name: 'loadbalancingLogKindListGet',
-				value: 'loadbalancingLogKindListGet',
-			},
-			{
-				name: 'loadbalancingLogKindGetGet',
-				value: 'loadbalancingLogKindGetGet',
-			},
-			{
-				name: 'loadbalancingPoolListGet',
-				value: 'loadbalancingPoolListGet',
-			},
-			{
-				name: 'loadbalancingPoolCreatePost',
-				value: 'loadbalancingPoolCreatePost',
-			},
-			{
-				name: 'loadbalancingPoolGetGet',
-				value: 'loadbalancingPoolGetGet',
-			},
-			{
-				name: 'loadbalancingPoolUpdatePut',
-				value: 'loadbalancingPoolUpdatePut',
-			},
-			{
-				name: 'loadbalancingPoolDeleteDelete',
-				value: 'loadbalancingPoolDeleteDelete',
-			},
-			{
-				name: 'loadbalancingPoolMemberListGet',
-				value: 'loadbalancingPoolMemberListGet',
-			},
-			{
-				name: 'loadbalancingPoolMemberCreatePost',
-				value: 'loadbalancingPoolMemberCreatePost',
-			},
-			{
-				name: 'loadbalancingPoolMemberGetGet',
-				value: 'loadbalancingPoolMemberGetGet',
-			},
-			{
-				name: 'loadbalancingPoolMemberUpdatePut',
-				value: 'loadbalancingPoolMemberUpdatePut',
-			},
-			{
-				name: 'loadbalancingPoolMemberDeleteDelete',
-				value: 'loadbalancingPoolMemberDeleteDelete',
-			},
-			{
-				name: 'userCreatePost',
-				value: 'userCreatePost',
-				action: 'Create user',
-			},
-			{
-				name: 'userCreateS3CredentialSecretPost',
-				value: 'userCreateS3CredentialSecretPost',
-				action: 'Create user S3 credential secret',
-			},
-			{
-				name: 'userCreateUserPolicyPost',
-				value: 'userCreateUserPolicyPost',
-				action: 'Create user policy',
-			},
-			{
-				name: 'userCreateUserRolePost',
-				value: 'userCreateUserRolePost',
-				action: 'Create user role',
-			},
-			{
-				name: 'userCreateUserS3CredentialsPost',
-				value: 'userCreateUserS3CredentialsPost',
-				action: 'Create user S3 credentials',
-			},
-			{
-				name: 'userCreateUserTokenPost',
-				value: 'userCreateUserTokenPost',
-				action: 'Create user token',
-			},
-			{
-				name: 'userDeleteDelete',
-				value: 'userDeleteDelete',
-				action: 'Delete user',
-			},
-			{
-				name: 'userDeleteUserRoleDelete',
-				value: 'userDeleteUserRoleDelete',
-				action: 'Delete user role',
-			},
-			{
-				name: 'userDeleteUserS3CredentialDelete',
-				value: 'userDeleteUserS3CredentialDelete',
-				action: 'Delete user S3 credential',
-			},
-			{
-				name: 'userGetDetailGet',
-				value: 'userGetDetailGet',
-				action: 'Get user',
-			},
-			{
-				name: 'userGetUserConfigurationGet',
-				value: 'userGetUserConfigurationGet',
-				action: 'Get user configuration',
-			},
-			{
-				name: 'userGetUserOpenrcGet',
-				value: 'userGetUserOpenrcGet',
-				action: 'Get user OpenRC file',
-			},
-			{
-				name: 'userGetUserPolicyGet',
-				value: 'userGetUserPolicyGet',
-				action: 'Get user policy',
-			},
-			{
-				name: 'userGetUserRcloneGet',
-				value: 'userGetUserRcloneGet',
-				action: 'Get user rclone configuration',
-			},
-			{
-				name: 'userGetUserRoleDetailGet',
-				value: 'userGetUserRoleDetailGet',
-				action: 'Get user role',
-			},
-			{
-				name: 'userGetUserRoleGet',
-				value: 'userGetUserRoleGet',
-				action: 'List user roles',
-			},
-			{
-				name: 'userGetUserS3CredentialDetailGet',
-				value: 'userGetUserS3CredentialDetailGet',
-				action: 'Get user S3 credential',
-			},
-			{
-				name: 'userGetUserS3CredentialsGet',
-				value: 'userGetUserS3CredentialsGet',
-				action: 'List user S3 credentials',
-			},
-			{
-				name: 'userListGet',
-				value: 'userListGet',
-				action: 'List users in a project',
-			},
-			{
-				name: 'userRegeneratePasswordPost',
-				value: 'userRegeneratePasswordPost',
-				action: 'Regenerate user password',
-			},
-			{
-				name: 'userUpdateUserRolePut',
-				value: 'userUpdateUserRolePut',
-				action: 'Update user role',
-			},
-			{
-				name: 'cloudAgreementsGet',
-				value: 'cloudAgreementsGet',
-				action: 'Get agreements',
-			},
-			{
-				name: 'cloudEligibilityGet',
-				value: 'cloudEligibilityGet',
-				action: 'Get eligibility',
-			},
-			{
-				name: 'cloudOrderListGet',
-				value: 'cloudOrderListGet',
-				action: 'List orders',
-			},
-			{
-				name: 'cloudOrderRuleAvailabilityGet',
-				value: 'cloudOrderRuleAvailabilityGet',
-				action: 'Get order rule availability',
-			},
-			{
-				name: 'aclCreatePost',
-				value: 'aclCreatePost',
-				action: 'Create ACL',
-			},
-			{
-				name: 'aclDeleteDelete',
-				value: 'aclDeleteDelete',
-				action: 'Delete ACL',
-			},
-			{
-				name: 'aclGetDetailGet',
-				value: 'aclGetDetailGet',
-				action: 'Get ACL details',
-			},
-			{
-				name: 'aclListGet',
-				value: 'aclListGet',
-				action: 'List ACLs in a project',
-			},
-			{
-				name: 'activateMonthlyBillingPost',
-				value: 'activateMonthlyBillingPost',
-				action: 'Activate monthly billing',
-			},
-			{
-				name: 'alertingCreatePost',
-				value: 'alertingCreatePost',
-				action: 'Create alert',
-			},
-			{
-				name: 'alertingDeleteDelete',
-				value: 'alertingDeleteDelete',
-				action: 'Delete alert',
-			},
-			{
-				name: 'alertingGetDetailGet',
-				value: 'alertingGetDetailGet',
-				action: 'Get alert',
-			},
-			{
-				name: 'alertingListGet',
-				value: 'alertingListGet',
-				action: 'List alerts in a project',
-			},
-			{
-				name: 'alertingUpdatePut',
-				value: 'alertingUpdatePut',
-				action: 'Update alert',
-			},
-			{
-				name: 'billListGet',
-				value: 'billListGet',
-				action: 'List bills',
-			},
-			{
-				name: 'cancelPost',
-				value: 'cancelPost',
-				action: 'Cancel project',
-			},
-			{
-				name: 'capabilitiesGetKubeDetailGet',
-				value: 'capabilitiesGetKubeDetailGet',
-				action: 'Get Kube capabilities',
-			},
-			{
-				name: 'capabilitiesGetLoadbalancerDetailGet',
-				value: 'capabilitiesGetLoadbalancerDetailGet',
-				action: 'Get load balancer capabilities',
-			},
-			{
-				name: 'capabilitiesGetRegionDetailGet',
-				value: 'capabilitiesGetRegionDetailGet',
-				action: 'Get region capabilities',
-			},
-			{
-				name: 'capabilitiesGetRegionProductDetailGet',
-				value: 'capabilitiesGetRegionProductDetailGet',
-				action: 'Get region product capabilities',
-			},
-			{
-				name: 'capabilitiesListGet',
-				value: 'capabilitiesListGet',
-				action: 'List capabilities',
-			},
-			{
-				name: 'capabilitiesListKubeGet',
-				value: 'capabilitiesListKubeGet',
-				action: 'List Kube capabilities',
-			},
-			{
-				name: 'capabilitiesListLoadbalancerGet',
-				value: 'capabilitiesListLoadbalancerGet',
-				action: 'List load balancer capabilities',
-			},
-			{
-				name: 'capabilitiesListRegionGet',
-				value: 'capabilitiesListRegionGet',
-				action: 'List region capabilities',
-			},
-			{
-				name: 'changeContactPost',
-				value: 'changeContactPost',
-				action: 'Change project contact',
-			},
-			{
-				name: 'confirmTerminationPost',
-				value: 'confirmTerminationPost',
-				action: 'Confirm termination',
-			},
-			{
-				name: 'containerRegistryCreatePost',
-				value: 'containerRegistryCreatePost',
-				action: 'Create container registry',
-			},
-			{
-				name: 'containerRegistryCreateUserPost',
-				value: 'containerRegistryCreateUserPost',
-				action: 'Create registry user',
-			},
-			{
-				name: 'containerRegistryDeleteDelete',
-				value: 'containerRegistryDeleteDelete',
-				action: 'Delete container registry',
-			},
-			{
-				name: 'containerRegistryDeleteUserDelete',
-				value: 'containerRegistryDeleteUserDelete',
-				action: 'Delete registry user',
-			},
-			{
-				name: 'containerRegistryGetDetailGet',
-				value: 'containerRegistryGetDetailGet',
-				action: 'Get container registry',
-			},
-			{
-				name: 'containerRegistryGetUserDetailGet',
-				value: 'containerRegistryGetUserDetailGet',
-				action: 'Get registry user',
-			},
-			{
-				name: 'containerRegistryListGet',
-				value: 'containerRegistryListGet',
-				action: 'List container registries in a project',
-			},
-			{
-				name: 'containerRegistryListUsersGet',
-				value: 'containerRegistryListUsersGet',
-				action: 'List registry users',
-			},
-			{
-				name: 'containerRegistryUpdatePut',
-				value: 'containerRegistryUpdatePut',
-				action: 'Update container registry',
-			},
-			{
-				name: 'containerRegistryGetCapabilitiesPlanGet',
-				value: 'containerRegistryGetCapabilitiesPlanGet',
-				action: 'Get container registry capabilities plan',
-			},
-			{
-				name: 'containerRegistryDeleteIamDelete',
-				value: 'containerRegistryDeleteIamDelete',
-				action: 'Delete IAM',
-			},
-			{
-				name: 'containerRegistryCreateIamPost',
-				value: 'containerRegistryCreateIamPost',
-				action: 'Create IAM',
-			},
-			{
-				name: 'containerRegistryGetIpRestrictionsManagementListGet',
-				value: 'containerRegistryGetIpRestrictionsManagementListGet',
-				action: 'Get IP restrictions management',
-			},
-			{
-				name: 'containerRegistryUpdateIpRestrictionsManagementPut',
-				value: 'containerRegistryUpdateIpRestrictionsManagementPut',
-				action: 'Update IP restrictions management',
-			},
-			{
-				name: 'containerRegistryGetIpRestrictionsRegistryListGet',
-				value: 'containerRegistryGetIpRestrictionsRegistryListGet',
-				action: 'Get IP restrictions registry',
-			},
-			{
-				name: 'containerRegistryUpdateIpRestrictionsRegistryPut',
-				value: 'containerRegistryUpdateIpRestrictionsRegistryPut',
-				action: 'Update IP restrictions registry',
-			},
-			{
-				name: 'containerRegistryDeleteOpenIdConnectDelete',
-				value: 'containerRegistryDeleteOpenIdConnectDelete',
-				action: 'Delete OpenID Connect',
-			},
-			{
-				name: 'containerRegistryGetOpenIdConnectGet',
-				value: 'containerRegistryGetOpenIdConnectGet',
-				action: 'Get OpenID Connect',
-			},
-			{
-				name: 'containerRegistryCreateOpenIdConnectPost',
-				value: 'containerRegistryCreateOpenIdConnectPost',
-				action: 'Create OpenID Connect',
-			},
-			{
-				name: 'containerRegistryUpdateOpenIdConnectPut',
-				value: 'containerRegistryUpdateOpenIdConnectPut',
-				action: 'Update OpenID Connect',
-			},
-			{
-				name: 'containerRegistryGetPlanGet',
-				value: 'containerRegistryGetPlanGet',
-				action: 'Get plan',
-			},
-			{
-				name: 'containerRegistryUpdatePlanPut',
-				value: 'containerRegistryUpdatePlanPut',
-				action: 'Update plan',
-			},
-			{
-				name: 'containerRegistryCreateUserSetAsAdminPost',
-				value: 'containerRegistryCreateUserSetAsAdminPost',
-				action: 'Set user as admin',
-			},
-			{
-				name: 'creditCreatePost',
-				value: 'creditCreatePost',
-				action: 'Add credit to project',
-			},
-			{
-				name: 'creditGetDetailGet',
-				value: 'creditGetDetailGet',
-				action: 'Get credit',
-			},
-			{
-				name: 'creditListGet',
-				value: 'creditListGet',
-				action: 'List credits',
-			},
-			{
-				name: 'flavorGetDetailGet',
-				value: 'flavorGetDetailGet',
-				action: 'Get flavor',
-			},
-			{
-				name: 'flavorListGet',
-				value: 'flavorListGet',
-				action: 'List flavors',
-			},
-			{
-				name: 'imageGetDetailGet',
-				value: 'imageGetDetailGet',
-				action: 'Get image',
-			},
-			{
-				name: 'imageListGet',
-				value: 'imageListGet',
-				action: 'List images',
-			},
-			{
-				name: 'ipCreatePost',
-				value: 'ipCreatePost',
-				action: 'Create IP address',
-			},
-			{
-				name: 'ipDeleteDelete',
-				value: 'ipDeleteDelete',
-				action: 'Delete IP address',
-			},
-			{
-				name: 'ipGetDetailGet',
-				value: 'ipGetDetailGet',
-				action: 'Get IP address',
-			},
-			{
-				name: 'ipListGet',
-				value: 'ipListGet',
-				action: 'List IP addresses in a project',
-			},
-			{
-				name: 'ipUpdatePut',
-				value: 'ipUpdatePut',
-				action: 'Update IP address',
-			},
-			{
-				name: 'labCreatePost',
-				value: 'labCreatePost',
-				action: 'Create lab',
-			},
-			{
-				name: 'labAgreementListGet',
-				value: 'labAgreementListGet',
-				action: 'List lab agreements',
-			},
-			{
-				name: 'labGetDetailGet',
-				value: 'labGetDetailGet',
-				action: 'Get lab',
-			},
-			{
-				name: 'labListGet',
-				value: 'labListGet',
-				action: 'List labs',
-			},
-			{
-				name: 'loadbalancerCreatePost',
-				value: 'loadbalancerCreatePost',
-				action: 'Create load balancer',
-			},
-			{
-				name: 'loadbalancerDeleteDelete',
-				value: 'loadbalancerDeleteDelete',
-				action: 'Delete load balancer',
-			},
-			{
-				name: 'loadbalancerGetDetailGet',
-				value: 'loadbalancerGetDetailGet',
-				action: 'Get load balancer',
-			},
-			{
-				name: 'loadbalancerListGet',
-				value: 'loadbalancerListGet',
-				action: 'List load balancers in a project',
-			},
-			{
-				name: 'loadbalancerUpdatePut',
-				value: 'loadbalancerUpdatePut',
-				action: 'Update load balancer',
-			},
-			{
-				name: 'operationGetDetailGet',
-				value: 'operationGetDetailGet',
-				action: 'Get operation',
-			},
-			{
-				name: 'operationListGet',
-				value: 'operationListGet',
-				action: 'List operations',
-			},
-			{
-				name: 'quantumGetCapabilitiesDetailGet',
-				value: 'quantumGetCapabilitiesDetailGet',
-				action: 'Get quantum capability',
-			},
-			{
-				name: 'quantumGetCapabilitiesRegionDetailGet',
-				value: 'quantumGetCapabilitiesRegionDetailGet',
-				action: 'Get quantum region capability',
-			},
-			{
-				name: 'quantumListCapabilitiesGet',
-				value: 'quantumListCapabilitiesGet',
-				action: 'List quantum capabilities',
-			},
-			{
-				name: 'quantumListCapabilitiesRegionGet',
-				value: 'quantumListCapabilitiesRegionGet',
-				action: 'List quantum region capabilities',
-			},
-			{
-				name: 'quotaListGet',
-				value: 'quotaListGet',
-				action: 'List quota',
-			},
-			{
-				name: 'regionAvailableCheckRegionAvailableGet',
-				value: 'regionAvailableCheckRegionAvailableGet',
-				action: 'Check region availability',
-			},
-			{
-				name: 'retainPost',
-				value: 'retainPost',
-				action: 'Retain project',
-			},
-			{
-				name: 'roleListGet',
-				value: 'roleListGet',
-				action: 'List roles',
-			},
-			{
-				name: 'serviceInfosGetServiceInfosGet',
-				value: 'serviceInfosGetServiceInfosGet',
-				action: 'Get service information',
-			},
-			{
-				name: 'snapshotsCreatePost',
-				value: 'snapshotsCreatePost',
-				action: 'Create snapshot',
-			},
-			{
-				name: 'snapshotsDeleteDelete',
-				value: 'snapshotsDeleteDelete',
-				action: 'Delete snapshot',
-			},
-			{
-				name: 'snapshotsListGet',
-				value: 'snapshotsListGet',
-				action: 'List snapshots',
-			},
-			{
-				name: 'sshkeyCreatePost',
-				value: 'sshkeyCreatePost',
-				action: 'Create SSH key',
-			},
-			{
-				name: 'sshkeyDeleteDelete',
-				value: 'sshkeyDeleteDelete',
-				action: 'Delete SSH key',
-			},
-			{
-				name: 'sshkeyListGet',
-				value: 'sshkeyListGet',
-				action: 'List SSH keys',
-			},
-			{
-				name: 'storageCreateContainerPost',
-				value: 'storageCreateContainerPost',
-				action: 'Create storage container',
-			},
-			{
-				name: 'storageDeleteContainerDelete',
-				value: 'storageDeleteContainerDelete',
-				action: 'Delete storage container',
-			},
-			{
-				name: 'storageDeleteDelete',
-				value: 'storageDeleteDelete',
-				action: 'Delete storage',
-			},
-			{
-				name: 'storageGetContainerDetailGet',
-				value: 'storageGetContainerDetailGet',
-				action: 'Get storage container',
-			},
-			{
-				name: 'storageGetDetailGet',
-				value: 'storageGetDetailGet',
-				action: 'Get storage',
-			},
-			{
-				name: 'storageListContainersGet',
-				value: 'storageListContainersGet',
-				action: 'List storage containers',
-			},
-			{
-				name: 'storageListGet',
-				value: 'storageListGet',
-				action: 'List storages in a project',
-			},
-			{
-				name: 'storageUpdateContainerPut',
-				value: 'storageUpdateContainerPut',
-				action: 'Update storage container',
-			},
-			{
-				name: 'storageUpdatePut',
-				value: 'storageUpdatePut',
-				action: 'Update storage',
-			},
-			{
-				name: 'terminatePost',
-				value: 'terminatePost',
-				action: 'Terminate project',
-			},
-			{
-				name: 'unleashPost',
-				value: 'unleashPost',
-				action: 'Unleash project',
-			},
-			{
-				name: 'usageGetCurrentGet',
-				value: 'usageGetCurrentGet',
-				action: 'Get current usage',
-			},
-			{
-				name: 'usageGetForecastGet',
-				value: 'usageGetForecastGet',
-				action: 'Get usage forecast',
-			},
-			{
-				name: 'usageGetHistoryDetailGet',
-				value: 'usageGetHistoryDetailGet',
-				action: 'Get usage history',
-			},
-			{
-				name: 'usageListHistoryGet',
-				value: 'usageListHistoryGet',
-				action: 'List usage history',
-			},
-			{
-				name: 'vrackListGet',
-				value: 'vrackListGet',
-				action: 'List vRacks',
-			},
-			{
-				name: 'Attach vRack',
-				value: 'vrackCreatePost',
-				action: 'Order and attach a new vRack to your project',
-			},
-			{
-				name: 'List Failover IPs',
-				value: 'ipFailoverListGet',
-				action: 'List failover IPs in your project',
-			},
-			{
-				name: 'Get Failover IP',
-				value: 'ipFailoverGetGet',
-				action: 'Get details of a failover IP',
-			},
-			{
-				name: 'Attach Failover IP',
-				value: 'ipFailoverAttachPost',
-				action: 'Attach a failover IP to an instance',
-			},
-			{
-				name: 'List LB Configurations',
-				value: 'loadbalancerConfigurationListGet',
-				action: 'List load balancer configuration versions',
-			},
-			{
-				name: 'Create LB Configuration',
-				value: 'loadbalancerConfigurationCreatePost',
-				action: 'Create a load balancer configuration',
-			},
-			{
-				name: 'Get LB Configuration',
-				value: 'loadbalancerConfigurationGetGet',
-				action: 'Get a load balancer configuration version',
-			},
-			{
-				name: 'Delete LB Configuration',
-				value: 'loadbalancerConfigurationDeleteDelete',
-				action: 'Delete a load balancer configuration version',
-			},
-			{
-				name: 'Apply LB Configuration',
-				value: 'loadbalancerConfigurationApplyPost',
-				action: 'Apply a load balancer configuration',
-			},
-			{
-				name: 'Assign Role',
-				value: 'roleCreatePost',
-				action: 'Assign a role to a user in your project',
-			},
-			{
-				name: 'Update Service Info',
-				value: 'serviceInfosUpdatePut',
-				action: 'Update service information (e.g. renew mode)',
-			},
-			{
-				name: 'Get Storage Access',
-				value: 'storageAccessPost',
-				action: 'Get SWIFT storage API access credentials',
-			},
-			{
-				name: 'Get Storage Quota',
-				value: 'storageQuotaGet',
-				action: 'List storage quotas for your project',
-			},
-			{
-				name: 'Add CORS',
-				value: 'storageCorsPost',
-				action: 'Add CORS support to a SWIFT container',
-			},
-			{
-				name: 'Delete CORS',
-				value: 'storageCorsDeleteDelete',
-				action: 'Delete CORS support from a SWIFT container',
-			},
-			{
-				name: 'Get Public URL',
-				value: 'storagePublicUrlPost',
-				action: 'Get a temporary public URL for a SWIFT object',
-			},
-			{
-				name: 'Deploy Static Website',
-				value: 'storageStaticPost',
-				action: 'Deploy a SWIFT container as a static website',
-			},
-			{
-				name: 'Create OpenStack User',
-				value: 'storageUserPost',
-				action: 'Create an OpenStack user for a SWIFT container',
-			},
-			{
-				name: 'List Volume Snapshots',
-				value: 'volumeSnapshotListGet',
-				action: 'List volume snapshots in your project',
-			},
-			{
-				name: 'Get Volume Snapshot',
-				value: 'volumeSnapshotGetGet',
-				action: 'Get details of a volume snapshot',
-			},
-			{
-				name: 'Delete Volume Snapshot',
-				value: 'volumeSnapshotDeleteDelete',
-				action: 'Delete a volume snapshot',
-			},
-			{
-				name: 'Attach Volume',
-				value: 'volumeAttachPost',
-				action: 'Attach a volume to an instance',
-			},
-			{
-				name: 'Detach Volume',
-				value: 'volumeDetachPost',
-				action: 'Detach a volume from an instance',
-			},
-			{
-				name: 'Create Volume Snapshot',
-				value: 'volumeSnapshotCreatePost',
-				action: 'Create a snapshot from a volume',
-			},
-			{
-				name: 'Upsize Volume',
-				value: 'volumeUpsizePost',
-				action: 'Extend a volume size',
-			},
-		],
-		default: 'projectListGet',
-	});
-
-	// Separate operation picker for v2
-	properties.push({
-		displayName: 'Operation (v2)',
-		name: 'publicCloudOperationV2',
-		type: 'options',
-		noDataExpression: true,
-		default: 'listProjectsV2',
-		displayOptions: {
-			show: {
-				apiVersion: ['v2'],
-			},
-		},
-		options: [
-			{
-				displayName: 'v2 - Create Rancher Service',
-				name: 'createRancherServiceV2',
-				value: 'createRancherServiceV2',
-			},
-			{
-				displayName: 'v2 - Delete Rancher Service',
-				name: 'deleteRancherServiceV2',
-				value: 'deleteRancherServiceV2',
-			},
-			{
-				displayName: 'v2 - Get Project Detail',
-				name: 'getProjectDetailV2',
-				value: 'getProjectDetailV2',
-			},
-			{
-				displayName: 'v2 - Get Rancher Service',
-				name: 'getRancherServiceV2',
-				value: 'getRancherServiceV2',
-			},
-			{ displayName: 'v2 - Get Rancher Task', name: 'getRancherTaskV2', value: 'getRancherTaskV2' },
-			{
-				displayName: 'v2 - List Global Reference Plans',
-				name: 'listGlobalReferencePlansV2',
-				value: 'listGlobalReferencePlansV2',
-			},
-			{
-				displayName: 'v2 - List Global Reference Versions',
-				name: 'listGlobalReferenceVersionsV2',
-				value: 'listGlobalReferenceVersionsV2',
-			},
-			{ displayName: 'v2 - List Projects', name: 'listProjectsV2', value: 'listProjectsV2' },
-			{
-				displayName: 'v2 - List Rancher Events',
-				name: 'listRancherEventsV2',
-				value: 'listRancherEventsV2',
-			},
-			{
-				displayName: 'v2 - List Rancher Plans',
-				name: 'listRancherPlansV2',
-				value: 'listRancherPlansV2',
-			},
-			{
-				displayName: 'v2 - List Rancher Services',
-				name: 'listRancherServicesV2',
-				value: 'listRancherServicesV2',
-			},
-			{
-				displayName: 'v2 - List Rancher Tasks',
-				name: 'listRancherTasksV2',
-				value: 'listRancherTasksV2',
-			},
-			{
-				displayName: 'v2 - List Rancher Versions',
-				name: 'listRancherVersionsV2',
-				value: 'listRancherVersionsV2',
-			},
-			{
-				displayName: 'v2 - List Reference Plans',
-				name: 'listReferencePlansV2',
-				value: 'listReferencePlansV2',
-			},
-			{
-				displayName: 'v2 - List Reference Versions',
-				name: 'listReferenceVersionsV2',
-				value: 'listReferenceVersionsV2',
-			},
-			{
-				displayName: 'v2 - Reset Rancher Admin Password',
-				name: 'resetRancherAdminPasswordV2',
-				value: 'resetRancherAdminPasswordV2',
-			},
-			{
-				displayName: 'v2 - Update Rancher Service',
-				name: 'updateRancherServiceV2',
-				value: 'updateRancherServiceV2',
-			},
-		],
-	});
-
-	properties.push(...projectListGetDescription());
-
-	properties.push(
-		...(backupListGetDescription({
-			...displayOptions,
-			show: { publicCloudOperation: ['backupListGet'] },
-		}) as INodeProperties[]),
-	);
-	properties.push(
-		...(backupCreatePostDescription({
-			...displayOptions,
-			show: { publicCloudOperation: ['createBackupPost'] },
-		}) as INodeProperties[]),
-	);
-	properties.push(
-		...(snapshotCreatePostDescription({
-			...displayOptions,
-			show: { publicCloudOperation: ['createSnapshotPost'] },
-		}) as INodeProperties[]),
-	);
-	properties.push(
-		...(volumeCreatePostDescription({
-			...displayOptions,
-			show: { publicCloudOperation: ['createVolumePost'] },
-		}) as INodeProperties[]),
-	);
-	properties.push(
-		...(backupDeleteDeleteDescription({
-			...displayOptions,
-			show: { publicCloudOperation: ['deleteBackupDelete'] },
-		}) as INodeProperties[]),
-	);
-	properties.push(
-		...(snapshotDeleteDeleteDescription({
-			...displayOptions,
-			show: { publicCloudOperation: ['deleteSnapshotDelete'] },
-		}) as INodeProperties[]),
-	);
-	properties.push(
-		...(volumeDeleteDeleteDescription({
-			...displayOptions,
-			show: { publicCloudOperation: ['deleteVolumeDelete'] },
-		}) as INodeProperties[]),
-	);
-	properties.push(
-		...(backupGetDescription({
-			...displayOptions,
-			show: { publicCloudOperation: ['getBackupDetail'] },
-		}) as INodeProperties[]),
-	);
-	properties.push(
-		...(projectDetailGetDescription({
-			...displayOptions,
-			show: { publicCloudOperation: ['getProjectDetail'] },
-		}) as INodeProperties[]),
-	);
-	properties.push(
-		...(rancherServiceGetDescription({
-			...displayOptions,
-			show: { publicCloudOperation: ['getRancherService'] },
-		}) as INodeProperties[]),
-	);
-	properties.push(
-		...(snapshotGetDescription({
-			...displayOptions,
-			show: { publicCloudOperation: ['getSnapshotDetail'] },
-		}) as INodeProperties[]),
-	);
-	properties.push(
-		...(volumeGetDescription({
-			...displayOptions,
-			show: { publicCloudOperation: ['getVolumeDetail'] },
-		}) as INodeProperties[]),
-	);
-	properties.push(
-		...(rancherPlanCapabilityListGetDescription({
-			...displayOptions,
-			show: { publicCloudOperation: ['rancherPlanCapabilityListGet'] },
-		}) as INodeProperties[]),
-	);
-	properties.push(
-		...(rancherServiceListGetDescription({
-			...displayOptions,
-			show: { publicCloudOperation: ['rancherServiceListGet'] },
-		}) as INodeProperties[]),
-	);
-	properties.push(
-		...(rancherVersionCapabilityListGetDescription({
-			...displayOptions,
-			show: { publicCloudOperation: ['rancherVersionCapabilityListGet'] },
-		}) as INodeProperties[]),
-	);
-	properties.push(
-		...(snapshotListGetDescription({
-			...displayOptions,
-			show: { publicCloudOperation: ['snapshotListGet'] },
-		}) as INodeProperties[]),
-	);
-	properties.push(
-		...(backupUpdatePutDescription({
-			...displayOptions,
-			show: { publicCloudOperation: ['updateBackupPut'] },
-		}) as INodeProperties[]),
-	);
-	properties.push(
-		...(snapshotUpdatePutDescription({
-			...displayOptions,
-			show: { publicCloudOperation: ['updateSnapshotPut'] },
-		}) as INodeProperties[]),
-	);
-	properties.push(
-		...(volumeUpdatePutDescription({
-			...displayOptions,
-			show: { publicCloudOperation: ['updateVolumePut'] },
-		}) as INodeProperties[]),
-	);
-	properties.push(
-		...(rancherServiceCreatePostDescription({
-			...displayOptions,
-			show: { publicCloudOperation: ['createRancherPost'] },
-		}) as INodeProperties[]),
-	);
-	properties.push(
-		...(rancherServiceUpdatePutDescription({
-			...displayOptions,
-			show: { publicCloudOperation: ['updateRancherPut'] },
-		}) as INodeProperties[]),
-	);
-	properties.push(
-		...(rancherServiceDeleteDeleteDescription({
-			...displayOptions,
-			show: { publicCloudOperation: ['deleteRancherDelete'] },
-		}) as INodeProperties[]),
-	);
-	properties.push(
-		...(rancherAdminCredentialsGetDescription({
-			...displayOptions,
-			show: { publicCloudOperation: ['rancherAdminCredentialsGet'] },
-		}) as INodeProperties[]),
-	);
-	properties.push(
-		...(rancherAdminCredentialsPostDescription({
-			...displayOptions,
-			show: { publicCloudOperation: ['rancherAdminCredentialsReset'] },
-		}) as INodeProperties[]),
-	);
-	properties.push(
-		...(rancherTaskListGetDescription({
-			...displayOptions,
-			show: { publicCloudOperation: ['rancherTaskListGet'] },
-		}) as INodeProperties[]),
-	);
-	properties.push(
-		...(rancherTaskDetailGetDescription({
-			...displayOptions,
-			show: { publicCloudOperation: ['rancherTaskDetailGet'] },
-		}) as INodeProperties[]),
-	);
-	properties.push(
-		...(rancherEventListGetDescription({
-			...displayOptions,
-			show: { publicCloudOperation: ['rancherEventListGet'] },
-		}) as INodeProperties[]),
-	);
-	properties.push(
-		...(volumeListGetDescription({
-			...displayOptions,
-			show: { publicCloudOperation: ['volumeListGet'] },
-		}) as INodeProperties[]),
-	);
-
-	properties.push(
-		...(redisClusterListGetDescription({
-			...displayOptions,
-			show: { publicCloudOperation: ['redisClusterListGet'] },
-		}) as INodeProperties[]),
-	);
-	properties.push(
-		...(redisClusterGetGetDescription({
-			...displayOptions,
-			show: { publicCloudOperation: ['redisClusterGetGet'] },
-		}) as INodeProperties[]),
-	);
-	properties.push(
-		...(redisClusterCreatePostDescription({
-			...displayOptions,
-			show: { publicCloudOperation: ['redisClusterCreatePost'] },
-		}) as INodeProperties[]),
-	);
-	properties.push(
-		...(redisClusterUpdatePutDescription({
-			...displayOptions,
-			show: { publicCloudOperation: ['redisClusterUpdatePut'] },
-		}) as INodeProperties[]),
-	);
-	properties.push(
-		...(redisClusterDeleteDeleteDescription({
-			...displayOptions,
-			show: { publicCloudOperation: ['redisClusterDeleteDelete'] },
-		}) as INodeProperties[]),
-	);
-	properties.push(
-		...(redisBackupListGetDescription({
-			...displayOptions,
-			show: { publicCloudOperation: ['redisBackupListGet'] },
-		}) as INodeProperties[]),
-	);
-	properties.push(
-		...(redisBackupGetGetDescription({
-			...displayOptions,
-			show: { publicCloudOperation: ['redisBackupGetGet'] },
-		}) as INodeProperties[]),
-	);
-	properties.push(
-		...(redisAdvancedConfigurationGetDescription({
-			...displayOptions,
-			show: { publicCloudOperation: ['redisAdvancedConfigurationGet'] },
-		}) as INodeProperties[]),
-	);
-	properties.push(
-		...(redisAdvancedConfigurationUpdatePutDescription({
-			...displayOptions,
-			show: { publicCloudOperation: ['redisAdvancedConfigurationUpdatePut'] },
-		}) as INodeProperties[]),
-	);
-	properties.push(
-		...(redisCapabilitiesAdvancedConfigurationGetDescription({
-			...displayOptions,
-			show: { publicCloudOperation: ['redisCapabilitiesAdvancedConfigurationGet'] },
-		}) as INodeProperties[]),
-	);
-	properties.push(
-		...(redisCapabilitiesCategoriesGetDescription({
-			...displayOptions,
-			show: { publicCloudOperation: ['redisCapabilitiesCategoriesGet'] },
-		}) as INodeProperties[]),
-	);
-	properties.push(
-		...(redisCapabilitiesCommandsGetDescription({
-			...displayOptions,
-			show: { publicCloudOperation: ['redisCapabilitiesCommandsGet'] },
-		}) as INodeProperties[]),
-	);
-	properties.push(
-		...(redisCapabilitiesIntegrationGetDescription({
-			...displayOptions,
-			show: { publicCloudOperation: ['redisCapabilitiesIntegrationGet'] },
-		}) as INodeProperties[]),
-	);
-	properties.push(
-		...(redisIntegrationListGetDescription({
-			...displayOptions,
-			show: { publicCloudOperation: ['redisIntegrationListGet'] },
-		}) as INodeProperties[]),
-	);
-	properties.push(
-		...(redisIntegrationCreatePostDescription({
-			...displayOptions,
-			show: { publicCloudOperation: ['redisIntegrationCreatePost'] },
-		}) as INodeProperties[]),
-	);
-	properties.push(
-		...(redisIntegrationGetGetDescription({
-			...displayOptions,
-			show: { publicCloudOperation: ['redisIntegrationGetGet'] },
-		}) as INodeProperties[]),
-	);
-	properties.push(
-		...(redisIntegrationDeleteDeleteDescription({
-			...displayOptions,
-			show: { publicCloudOperation: ['redisIntegrationDeleteDelete'] },
-		}) as INodeProperties[]),
-	);
-	properties.push(
-		...(redisIpRestrictionListGetDescription({
-			...displayOptions,
-			show: { publicCloudOperation: ['redisIpRestrictionListGet'] },
-		}) as INodeProperties[]),
-	);
-	properties.push(
-		...(redisIpRestrictionCreatePostDescription({
-			...displayOptions,
-			show: { publicCloudOperation: ['redisIpRestrictionCreatePost'] },
-		}) as INodeProperties[]),
-	);
-	properties.push(
-		...(redisIpRestrictionGetGetDescription({
-			...displayOptions,
-			show: { publicCloudOperation: ['redisIpRestrictionGetGet'] },
-		}) as INodeProperties[]),
-	);
-	properties.push(
-		...(redisIpRestrictionUpdatePutDescription({
-			...displayOptions,
-			show: { publicCloudOperation: ['redisIpRestrictionUpdatePut'] },
-		}) as INodeProperties[]),
-	);
-	properties.push(
-		...(redisIpRestrictionDeleteDeleteDescription({
-			...displayOptions,
-			show: { publicCloudOperation: ['redisIpRestrictionDeleteDelete'] },
-		}) as INodeProperties[]),
-	);
-	properties.push(
-		...(redisLogKindListGetDescription({
-			...displayOptions,
-			show: { publicCloudOperation: ['redisLogKindListGet'] },
-		}) as INodeProperties[]),
-	);
-	properties.push(
-		...(redisLogKindGetDescription({
-			...displayOptions,
-			show: { publicCloudOperation: ['redisLogKindGet'] },
-		}) as INodeProperties[]),
-	);
-	properties.push(
-		...(redisLogSubscriptionListGetDescription({
-			...displayOptions,
-			show: { publicCloudOperation: ['redisLogSubscriptionListGet'] },
-		}) as INodeProperties[]),
-	);
-	properties.push(
-		...(redisLogSubscriptionCreatePostDescription({
-			...displayOptions,
-			show: { publicCloudOperation: ['redisLogSubscriptionCreatePost'] },
-		}) as INodeProperties[]),
-	);
-	properties.push(
-		...(redisLogSubscriptionGetGetDescription({
-			...displayOptions,
-			show: { publicCloudOperation: ['redisLogSubscriptionGetGet'] },
-		}) as INodeProperties[]),
-	);
-	properties.push(
-		...(redisLogSubscriptionDeleteDeleteDescription({
-			...displayOptions,
-			show: { publicCloudOperation: ['redisLogSubscriptionDeleteDelete'] },
-		}) as INodeProperties[]),
-	);
-	properties.push(
-		...(redisLogUrlCreatePostDescription({
-			...displayOptions,
-			show: { publicCloudOperation: ['redisLogUrlCreatePost'] },
-		}) as INodeProperties[]),
-	);
-	properties.push(
-		...(redisLogsGetDescription({
-			...displayOptions,
-			show: { publicCloudOperation: ['redisLogsGet'] },
-		}) as INodeProperties[]),
-	);
-	properties.push(
-		...(redisMaintenanceListGetDescription({
-			...displayOptions,
-			show: { publicCloudOperation: ['redisMaintenanceListGet'] },
-		}) as INodeProperties[]),
-	);
-	properties.push(
-		...(redisMaintenanceGetDescription({
-			...displayOptions,
-			show: { publicCloudOperation: ['redisMaintenanceGet'] },
-		}) as INodeProperties[]),
-	);
-	properties.push(
-		...(redisMaintenanceApplyPostDescription({
-			...displayOptions,
-			show: { publicCloudOperation: ['redisMaintenanceApplyPost'] },
-		}) as INodeProperties[]),
-	);
-	properties.push(
-		...(redisMetricListGetDescription({
-			...displayOptions,
-			show: { publicCloudOperation: ['redisMetricListGet'] },
-		}) as INodeProperties[]),
-	);
-	properties.push(
-		...(redisMetricGetDescription({
-			...displayOptions,
-			show: { publicCloudOperation: ['redisMetricGet'] },
-		}) as INodeProperties[]),
-	);
-	properties.push(
-		...(redisNodeListGetDescription({
-			...displayOptions,
-			show: { publicCloudOperation: ['redisNodeListGet'] },
-		}) as INodeProperties[]),
-	);
-	properties.push(
-		...(redisNodeGetGetDescription({
-			...displayOptions,
-			show: { publicCloudOperation: ['redisNodeGetGet'] },
-		}) as INodeProperties[]),
-	);
-	properties.push(
-		...(redisPrometheusGetDescription({
-			...displayOptions,
-			show: { publicCloudOperation: ['redisPrometheusGet'] },
-		}) as INodeProperties[]),
-	);
-	properties.push(
-		...(redisPrometheusCredentialsResetPostDescription({
-			...displayOptions,
-			show: { publicCloudOperation: ['redisPrometheusCredentialsResetPost'] },
-		}) as INodeProperties[]),
-	);
-	properties.push(
-		...(redisUserListGetDescription({
-			...displayOptions,
-			show: { publicCloudOperation: ['redisUserListGet'] },
-		}) as INodeProperties[]),
-	);
-	properties.push(
-		...(redisUserCreatePostDescription({
-			...displayOptions,
-			show: { publicCloudOperation: ['redisUserCreatePost'] },
-		}) as INodeProperties[]),
-	);
-	properties.push(
-		...(redisUserGetGetDescription({
-			...displayOptions,
-			show: { publicCloudOperation: ['redisUserGetGet'] },
-		}) as INodeProperties[]),
-	);
-	properties.push(
-		...(redisUserUpdatePutDescription({
-			...displayOptions,
-			show: { publicCloudOperation: ['redisUserUpdatePut'] },
-		}) as INodeProperties[]),
-	);
-	properties.push(
-		...(redisUserDeleteDeleteDescription({
-			...displayOptions,
-			show: { publicCloudOperation: ['redisUserDeleteDelete'] },
-		}) as INodeProperties[]),
-	);
-	properties.push(
-		...(redisUserCredentialsResetPostDescription({
-			...displayOptions,
-			show: { publicCloudOperation: ['redisUserCredentialsResetPost'] },
-		}) as INodeProperties[]),
-	);
-	properties.push(
-		...(valkeyClusterListGetDescription({
-			...displayOptions,
-			show: { publicCloudOperation: ['valkeyClusterListGet'] },
-		}) as INodeProperties[]),
-	);
-	properties.push(
-		...(valkeyClusterGetGetDescription({
-			...displayOptions,
-			show: { publicCloudOperation: ['valkeyClusterGetGet'] },
-		}) as INodeProperties[]),
-	);
-	properties.push(
-		...(valkeyClusterCreatePostDescription({
-			...displayOptions,
-			show: { publicCloudOperation: ['valkeyClusterCreatePost'] },
-		}) as INodeProperties[]),
-	);
-	properties.push(
-		...(valkeyClusterUpdatePutDescription({
-			...displayOptions,
-			show: { publicCloudOperation: ['valkeyClusterUpdatePut'] },
-		}) as INodeProperties[]),
-	);
-	properties.push(
-		...(valkeyClusterDeleteDeleteDescription({
-			...displayOptions,
-			show: { publicCloudOperation: ['valkeyClusterDeleteDelete'] },
-		}) as INodeProperties[]),
-	);
-	properties.push(
-		...(valkeyBackupListGetDescription({
-			...displayOptions,
-			show: { publicCloudOperation: ['valkeyBackupListGet'] },
-		}) as INodeProperties[]),
-	);
-	properties.push(
-		...(valkeyBackupCreatePostDescription({
-			...displayOptions,
-			show: { publicCloudOperation: ['valkeyBackupCreatePost'] },
-		}) as INodeProperties[]),
-	);
-	properties.push(
-		...(valkeyBackupGetGetDescription({
-			...displayOptions,
-			show: { publicCloudOperation: ['valkeyBackupGetGet'] },
-		}) as INodeProperties[]),
-	);
-	properties.push(
-		...(valkeyBackupDeleteDeleteDescription({
-			...displayOptions,
-			show: { publicCloudOperation: ['valkeyBackupDeleteDelete'] },
-		}) as INodeProperties[]),
-	);
-	properties.push(
-		...(valkeyUserListGetDescription({
-			...displayOptions,
-			show: { publicCloudOperation: ['valkeyUserListGet'] },
-		}) as INodeProperties[]),
-	);
-	properties.push(
-		...(valkeyUserCreatePostDescription({
-			...displayOptions,
-			show: { publicCloudOperation: ['valkeyUserCreatePost'] },
-		}) as INodeProperties[]),
-	);
-	properties.push(
-		...(valkeyUserGetGetDescription({
-			...displayOptions,
-			show: { publicCloudOperation: ['valkeyUserGetGet'] },
-		}) as INodeProperties[]),
-	);
-	properties.push(
-		...(valkeyUserUpdatePutDescription({
-			...displayOptions,
-			show: { publicCloudOperation: ['valkeyUserUpdatePut'] },
-		}) as INodeProperties[]),
-	);
-	properties.push(
-		...(valkeyUserDeleteDeleteDescription({
-			...displayOptions,
-			show: { publicCloudOperation: ['valkeyUserDeleteDelete'] },
-		}) as INodeProperties[]),
-	);
-	properties.push(
-		...(valkeyNodeListGetDescription({
-			...displayOptions,
-			show: { publicCloudOperation: ['valkeyNodeListGet'] },
-		}) as INodeProperties[]),
-	);
-	properties.push(
-		...(valkeyNodeCreatePostDescription({
-			...displayOptions,
-			show: { publicCloudOperation: ['valkeyNodeCreatePost'] },
-		}) as INodeProperties[]),
-	);
-	properties.push(
-		...(valkeyNodeGetGetDescription({
-			...displayOptions,
-			show: { publicCloudOperation: ['valkeyNodeGetGet'] },
-		}) as INodeProperties[]),
-	);
-	properties.push(
-		...(valkeyNodeUpdatePutDescription({
-			...displayOptions,
-			show: { publicCloudOperation: ['valkeyNodeUpdatePut'] },
-		}) as INodeProperties[]),
-	);
-	properties.push(
-		...(valkeyNodeDeleteDeleteDescription({
-			...displayOptions,
-			show: { publicCloudOperation: ['valkeyNodeDeleteDelete'] },
-		}) as INodeProperties[]),
-	);
-	properties.push(
-		...(valkeyIpRestrictionListGetDescription({
-			...displayOptions,
-			show: { publicCloudOperation: ['valkeyIpRestrictionListGet'] },
-		}) as INodeProperties[]),
-	);
-	properties.push(
-		...(valkeyIpRestrictionCreatePostDescription({
-			...displayOptions,
-			show: { publicCloudOperation: ['valkeyIpRestrictionCreatePost'] },
-		}) as INodeProperties[]),
-	);
-	properties.push(
-		...(valkeyLogSubscriptionListGetDescription({
-			...displayOptions,
-			show: { publicCloudOperation: ['valkeyLogSubscriptionListGet'] },
-		}) as INodeProperties[]),
-	);
-	properties.push(
-		...(valkeyLogSubscriptionCreatePostDescription({
-			...displayOptions,
-			show: { publicCloudOperation: ['valkeyLogSubscriptionCreatePost'] },
-		}) as INodeProperties[]),
-	);
-	properties.push(
-		...(valkeyLogSubscriptionGetGetDescription({
-			...displayOptions,
-			show: { publicCloudOperation: ['valkeyLogSubscriptionGetGet'] },
-		}) as INodeProperties[]),
-	);
-	properties.push(
-		...(valkeyMaintenanceGetDescription({
-			...displayOptions,
-			show: { publicCloudOperation: ['valkeyMaintenanceGet'] },
-		}) as INodeProperties[]),
-	);
-	properties.push(
-		...(valkeyMaintenanceUpdatePutDescription({
-			...displayOptions,
-			show: { publicCloudOperation: ['valkeyMaintenanceUpdatePut'] },
-		}) as INodeProperties[]),
-	);
-	properties.push(
-		...(valkeyMetricGetDescription({
-			...displayOptions,
-			show: { publicCloudOperation: ['valkeyMetricGet'] },
-		}) as INodeProperties[]),
-	);
-	properties.push(
-		...(valkeyPrometheusGetDescription({
-			...displayOptions,
-			show: { publicCloudOperation: ['valkeyPrometheusGet'] },
-		}) as INodeProperties[]),
-	);
-	properties.push(
-		...(valkeyCertificateListGetDescription({
-			...displayOptions,
-			show: { publicCloudOperation: ['valkeyCertificateListGet'] },
-		}) as INodeProperties[]),
-	);
-	properties.push(
-		...(valkeyCertificateCreatePostDescription({
-			...displayOptions,
-			show: { publicCloudOperation: ['valkeyCertificateCreatePost'] },
-		}) as INodeProperties[]),
-	);
-	properties.push(
-		...(valkeyIntegrationListGetDescription({
-			...displayOptions,
-			show: { publicCloudOperation: ['valkeyIntegrationListGet'] },
-		}) as INodeProperties[]),
-	);
-	properties.push(
-		...(valkeyIntegrationCreatePostDescription({
-			...displayOptions,
-			show: { publicCloudOperation: ['valkeyIntegrationCreatePost'] },
-		}) as INodeProperties[]),
-	);
-
-	properties.push(
-		...(cassandraClusterListGetDescription({
-			...displayOptions,
-			show: { publicCloudOperation: ['cassandraClusterListGet'] },
-		}) as INodeProperties[]),
-	);
-	properties.push(
-		...(cassandraClusterGetGetDescription({
-			...displayOptions,
-			show: { publicCloudOperation: ['cassandraClusterGetGet'] },
-		}) as INodeProperties[]),
-	);
-	properties.push(
-		...(cassandraClusterCreatePostDescription({
-			...displayOptions,
-			show: { publicCloudOperation: ['cassandraClusterCreatePost'] },
-		}) as INodeProperties[]),
-	);
-	properties.push(
-		...(cassandraClusterUpdatePutDescription({
-			...displayOptions,
-			show: { publicCloudOperation: ['cassandraClusterUpdatePut'] },
-		}) as INodeProperties[]),
-	);
-	properties.push(
-		...(cassandraClusterDeleteDeleteDescription({
-			...displayOptions,
-			show: { publicCloudOperation: ['cassandraClusterDeleteDelete'] },
-		}) as INodeProperties[]),
-	);
-	properties.push(
-		...(cassandraBackupListGetDescription({
-			...displayOptions,
-			show: { publicCloudOperation: ['cassandraBackupListGet'] },
-		}) as INodeProperties[]),
-	);
-	properties.push(
-		...(cassandraBackupCreatePostDescription({
-			...displayOptions,
-			show: { publicCloudOperation: ['cassandraBackupCreatePost'] },
-		}) as INodeProperties[]),
-	);
-	properties.push(
-		...(cassandraBackupGetGetDescription({
-			...displayOptions,
-			show: { publicCloudOperation: ['cassandraBackupGetGet'] },
-		}) as INodeProperties[]),
-	);
-	properties.push(
-		...(cassandraBackupDeleteDeleteDescription({
-			...displayOptions,
-			show: { publicCloudOperation: ['cassandraBackupDeleteDelete'] },
-		}) as INodeProperties[]),
-	);
-	properties.push(
-		...(cassandraUserListGetDescription({
-			...displayOptions,
-			show: { publicCloudOperation: ['cassandraUserListGet'] },
-		}) as INodeProperties[]),
-	);
-	properties.push(
-		...(cassandraUserCreatePostDescription({
-			...displayOptions,
-			show: { publicCloudOperation: ['cassandraUserCreatePost'] },
-		}) as INodeProperties[]),
-	);
-	properties.push(
-		...(cassandraUserGetGetDescription({
-			...displayOptions,
-			show: { publicCloudOperation: ['cassandraUserGetGet'] },
-		}) as INodeProperties[]),
-	);
-	properties.push(
-		...(cassandraUserUpdatePutDescription({
-			...displayOptions,
-			show: { publicCloudOperation: ['cassandraUserUpdatePut'] },
-		}) as INodeProperties[]),
-	);
-	properties.push(
-		...(cassandraUserDeleteDeleteDescription({
-			...displayOptions,
-			show: { publicCloudOperation: ['cassandraUserDeleteDelete'] },
-		}) as INodeProperties[]),
-	);
-	properties.push(
-		...(cassandraNodeListGetDescription({
-			...displayOptions,
-			show: { publicCloudOperation: ['cassandraNodeListGet'] },
-		}) as INodeProperties[]),
-	);
-	properties.push(
-		...(cassandraNodeCreatePostDescription({
-			...displayOptions,
-			show: { publicCloudOperation: ['cassandraNodeCreatePost'] },
-		}) as INodeProperties[]),
-	);
-	properties.push(
-		...(cassandraNodeGetGetDescription({
-			...displayOptions,
-			show: { publicCloudOperation: ['cassandraNodeGetGet'] },
-		}) as INodeProperties[]),
-	);
-	properties.push(
-		...(cassandraNodeUpdatePutDescription({
-			...displayOptions,
-			show: { publicCloudOperation: ['cassandraNodeUpdatePut'] },
-		}) as INodeProperties[]),
-	);
-	properties.push(
-		...(cassandraNodeDeleteDeleteDescription({
-			...displayOptions,
-			show: { publicCloudOperation: ['cassandraNodeDeleteDelete'] },
-		}) as INodeProperties[]),
-	);
-	properties.push(
-		...(cassandraIpRestrictionListGetDescription({
-			...displayOptions,
-			show: { publicCloudOperation: ['cassandraIpRestrictionListGet'] },
-		}) as INodeProperties[]),
-	);
-	properties.push(
-		...(cassandraIpRestrictionCreatePostDescription({
-			...displayOptions,
-			show: { publicCloudOperation: ['cassandraIpRestrictionCreatePost'] },
-		}) as INodeProperties[]),
-	);
-	properties.push(
-		...(cassandraLogSubscriptionListGetDescription({
-			...displayOptions,
-			show: { publicCloudOperation: ['cassandraLogSubscriptionListGet'] },
-		}) as INodeProperties[]),
-	);
-	properties.push(
-		...(cassandraLogSubscriptionCreatePostDescription({
-			...displayOptions,
-			show: { publicCloudOperation: ['cassandraLogSubscriptionCreatePost'] },
-		}) as INodeProperties[]),
-	);
-	properties.push(
-		...(cassandraLogSubscriptionGetGetDescription({
-			...displayOptions,
-			show: { publicCloudOperation: ['cassandraLogSubscriptionGetGet'] },
-		}) as INodeProperties[]),
-	);
-	properties.push(
-		...(cassandraMaintenanceGetDescription({
-			...displayOptions,
-			show: { publicCloudOperation: ['cassandraMaintenanceGet'] },
-		}) as INodeProperties[]),
-	);
-	properties.push(
-		...(cassandraMaintenanceUpdatePutDescription({
-			...displayOptions,
-			show: { publicCloudOperation: ['cassandraMaintenanceUpdatePut'] },
-		}) as INodeProperties[]),
-	);
-	properties.push(
-		...(cassandraMetricGetDescription({
-			...displayOptions,
-			show: { publicCloudOperation: ['cassandraMetricGet'] },
-		}) as INodeProperties[]),
-	);
-	properties.push(
-		...(cassandraPrometheusGetDescription({
-			...displayOptions,
-			show: { publicCloudOperation: ['cassandraPrometheusGet'] },
-		}) as INodeProperties[]),
-	);
-	properties.push(
-		...(cassandraCertificateListGetDescription({
-			...displayOptions,
-			show: { publicCloudOperation: ['cassandraCertificateListGet'] },
-		}) as INodeProperties[]),
-	);
-	properties.push(
-		...(cassandraCertificateCreatePostDescription({
-			...displayOptions,
-			show: { publicCloudOperation: ['cassandraCertificateCreatePost'] },
-		}) as INodeProperties[]),
-	);
-	properties.push(
-		...(cassandraIntegrationListGetDescription({
-			...displayOptions,
-			show: { publicCloudOperation: ['cassandraIntegrationListGet'] },
-		}) as INodeProperties[]),
-	);
-	properties.push(
-		...(cassandraIntegrationCreatePostDescription({
-			...displayOptions,
-			show: { publicCloudOperation: ['cassandraIntegrationCreatePost'] },
-		}) as INodeProperties[]),
-	);
-	properties.push(
-		...(cassandraAdvancedConfigurationGetDescription({
-			...displayOptions,
-			show: { publicCloudOperation: ['cassandraAdvancedConfigurationGet'] },
-		}) as INodeProperties[]),
-	);
-	properties.push(
-		...(cassandraAdvancedConfigurationUpdatePutDescription({
-			...displayOptions,
-			show: { publicCloudOperation: ['cassandraAdvancedConfigurationUpdatePut'] },
-		}) as INodeProperties[]),
-	);
-	properties.push(
-		...(cassandraCapabilitiesAdvancedConfigurationGetDescription({
-			...displayOptions,
-			show: { publicCloudOperation: ['cassandraCapabilitiesAdvancedConfigurationGet'] },
-		}) as INodeProperties[]),
-	);
-	properties.push(
-		...(cassandraCapabilitiesIntegrationGetDescription({
-			...displayOptions,
-			show: { publicCloudOperation: ['cassandraCapabilitiesIntegrationGet'] },
-		}) as INodeProperties[]),
-	);
-	properties.push(
-		...(cassandraIntegrationGetGetDescription({
-			...displayOptions,
-			show: { publicCloudOperation: ['cassandraIntegrationGetGet'] },
-		}) as INodeProperties[]),
-	);
-	properties.push(
-		...(cassandraIntegrationDeleteDeleteDescription({
-			...displayOptions,
-			show: { publicCloudOperation: ['cassandraIntegrationDeleteDelete'] },
-		}) as INodeProperties[]),
-	);
-	properties.push(
-		...(cassandraIpRestrictionGetGetDescription({
-			...displayOptions,
-			show: { publicCloudOperation: ['cassandraIpRestrictionGetGet'] },
-		}) as INodeProperties[]),
-	);
-	properties.push(
-		...(cassandraIpRestrictionDeleteDeleteDescription({
-			...displayOptions,
-			show: { publicCloudOperation: ['cassandraIpRestrictionDeleteDelete'] },
-		}) as INodeProperties[]),
-	);
-	properties.push(
-		...(cassandraIpRestrictionUpdatePutDescription({
-			...displayOptions,
-			show: { publicCloudOperation: ['cassandraIpRestrictionUpdatePut'] },
-		}) as INodeProperties[]),
-	);
-	properties.push(
-		...(cassandraLogKindListGetDescription({
-			...displayOptions,
-			show: { publicCloudOperation: ['cassandraLogKindListGet'] },
-		}) as INodeProperties[]),
-	);
-	properties.push(
-		...(cassandraLogKindGetGetDescription({
-			...displayOptions,
-			show: { publicCloudOperation: ['cassandraLogKindGetGet'] },
-		}) as INodeProperties[]),
-	);
-	properties.push(
-		...(cassandraLogSubscriptionDeleteDeleteDescription({
-			...displayOptions,
-			show: { publicCloudOperation: ['cassandraLogSubscriptionDeleteDelete'] },
-		}) as INodeProperties[]),
-	);
-	properties.push(
-		...(cassandraLogUrlCreatePostDescription({
-			...displayOptions,
-			show: { publicCloudOperation: ['cassandraLogUrlCreatePost'] },
-		}) as INodeProperties[]),
-	);
-	properties.push(
-		...(cassandraLogsGetDescription({
-			...displayOptions,
-			show: { publicCloudOperation: ['cassandraLogsGet'] },
-		}) as INodeProperties[]),
-	);
-	properties.push(
-		...(cassandraMaintenanceApplyPostDescription({
-			...displayOptions,
-			show: { publicCloudOperation: ['cassandraMaintenanceApplyPost'] },
-		}) as INodeProperties[]),
-	);
-	properties.push(
-		...(cassandraMaintenanceGetGetDescription({
-			...displayOptions,
-			show: { publicCloudOperation: ['cassandraMaintenanceGetGet'] },
-		}) as INodeProperties[]),
-	);
-	properties.push(
-		...(cassandraMetricGetGetDescription({
-			...displayOptions,
-			show: { publicCloudOperation: ['cassandraMetricGetGet'] },
-		}) as INodeProperties[]),
-	);
-	properties.push(
-		...(cassandraPrometheusCredentialsResetPostDescription({
-			...displayOptions,
-			show: { publicCloudOperation: ['cassandraPrometheusCredentialsResetPost'] },
-		}) as INodeProperties[]),
-	);
-	properties.push(
-		...(cassandraUserCredentialsResetPostDescription({
-			...displayOptions,
-			show: { publicCloudOperation: ['cassandraUserCredentialsResetPost'] },
-		}) as INodeProperties[]),
-	);
-	properties.push(
-		...(clickhouseClusterListGetDescription({
-			...displayOptions,
-			show: { publicCloudOperation: ['clickhouseClusterListGet'] },
-		}) as INodeProperties[]),
-	);
-	properties.push(
-		...(clickhouseClusterGetGetDescription({
-			...displayOptions,
-			show: { publicCloudOperation: ['clickhouseClusterGetGet'] },
-		}) as INodeProperties[]),
-	);
-	properties.push(
-		...(clickhouseClusterCreatePostDescription({
-			...displayOptions,
-			show: { publicCloudOperation: ['clickhouseClusterCreatePost'] },
-		}) as INodeProperties[]),
-	);
-	properties.push(
-		...(clickhouseClusterUpdatePutDescription({
-			...displayOptions,
-			show: { publicCloudOperation: ['clickhouseClusterUpdatePut'] },
-		}) as INodeProperties[]),
-	);
-	properties.push(
-		...(clickhouseClusterDeleteDeleteDescription({
-			...displayOptions,
-			show: { publicCloudOperation: ['clickhouseClusterDeleteDelete'] },
-		}) as INodeProperties[]),
-	);
-	properties.push(
-		...(clickhouseBackupListGetDescription({
-			...displayOptions,
-			show: { publicCloudOperation: ['clickhouseBackupListGet'] },
-		}) as INodeProperties[]),
-	);
-	properties.push(
-		...(clickhouseBackupCreatePostDescription({
-			...displayOptions,
-			show: { publicCloudOperation: ['clickhouseBackupCreatePost'] },
-		}) as INodeProperties[]),
-	);
-	properties.push(
-		...(clickhouseBackupGetGetDescription({
-			...displayOptions,
-			show: { publicCloudOperation: ['clickhouseBackupGetGet'] },
-		}) as INodeProperties[]),
-	);
-	properties.push(
-		...(clickhouseBackupDeleteDeleteDescription({
-			...displayOptions,
-			show: { publicCloudOperation: ['clickhouseBackupDeleteDelete'] },
-		}) as INodeProperties[]),
-	);
-	properties.push(
-		...(clickhouseUserListGetDescription({
-			...displayOptions,
-			show: { publicCloudOperation: ['clickhouseUserListGet'] },
-		}) as INodeProperties[]),
-	);
-	properties.push(
-		...(clickhouseUserCreatePostDescription({
-			...displayOptions,
-			show: { publicCloudOperation: ['clickhouseUserCreatePost'] },
-		}) as INodeProperties[]),
-	);
-	properties.push(
-		...(clickhouseUserGetGetDescription({
-			...displayOptions,
-			show: { publicCloudOperation: ['clickhouseUserGetGet'] },
-		}) as INodeProperties[]),
-	);
-	properties.push(
-		...(clickhouseUserUpdatePutDescription({
-			...displayOptions,
-			show: { publicCloudOperation: ['clickhouseUserUpdatePut'] },
-		}) as INodeProperties[]),
-	);
-	properties.push(
-		...(clickhouseUserDeleteDeleteDescription({
-			...displayOptions,
-			show: { publicCloudOperation: ['clickhouseUserDeleteDelete'] },
-		}) as INodeProperties[]),
-	);
-	properties.push(
-		...(clickhouseNodeListGetDescription({
-			...displayOptions,
-			show: { publicCloudOperation: ['clickhouseNodeListGet'] },
-		}) as INodeProperties[]),
-	);
-	properties.push(
-		...(clickhouseNodeCreatePostDescription({
-			...displayOptions,
-			show: { publicCloudOperation: ['clickhouseNodeCreatePost'] },
-		}) as INodeProperties[]),
-	);
-	properties.push(
-		...(clickhouseNodeGetGetDescription({
-			...displayOptions,
-			show: { publicCloudOperation: ['clickhouseNodeGetGet'] },
-		}) as INodeProperties[]),
-	);
-	properties.push(
-		...(clickhouseNodeUpdatePutDescription({
-			...displayOptions,
-			show: { publicCloudOperation: ['clickhouseNodeUpdatePut'] },
-		}) as INodeProperties[]),
-	);
-	properties.push(
-		...(clickhouseNodeDeleteDeleteDescription({
-			...displayOptions,
-			show: { publicCloudOperation: ['clickhouseNodeDeleteDelete'] },
-		}) as INodeProperties[]),
-	);
-	properties.push(
-		...(clickhouseIpRestrictionListGetDescription({
-			...displayOptions,
-			show: { publicCloudOperation: ['clickhouseIpRestrictionListGet'] },
-		}) as INodeProperties[]),
-	);
-	properties.push(
-		...(clickhouseIpRestrictionCreatePostDescription({
-			...displayOptions,
-			show: { publicCloudOperation: ['clickhouseIpRestrictionCreatePost'] },
-		}) as INodeProperties[]),
-	);
-	properties.push(
-		...(clickhouseLogSubscriptionListGetDescription({
-			...displayOptions,
-			show: { publicCloudOperation: ['clickhouseLogSubscriptionListGet'] },
-		}) as INodeProperties[]),
-	);
-	properties.push(
-		...(clickhouseLogSubscriptionCreatePostDescription({
-			...displayOptions,
-			show: { publicCloudOperation: ['clickhouseLogSubscriptionCreatePost'] },
-		}) as INodeProperties[]),
-	);
-	properties.push(
-		...(clickhouseLogSubscriptionGetGetDescription({
-			...displayOptions,
-			show: { publicCloudOperation: ['clickhouseLogSubscriptionGetGet'] },
-		}) as INodeProperties[]),
-	);
-	properties.push(
-		...(clickhouseMaintenanceGetDescription({
-			...displayOptions,
-			show: { publicCloudOperation: ['clickhouseMaintenanceGet'] },
-		}) as INodeProperties[]),
-	);
-	properties.push(
-		...(clickhouseMaintenanceUpdatePutDescription({
-			...displayOptions,
-			show: { publicCloudOperation: ['clickhouseMaintenanceUpdatePut'] },
-		}) as INodeProperties[]),
-	);
-	properties.push(
-		...(clickhouseMetricGetDescription({
-			...displayOptions,
-			show: { publicCloudOperation: ['clickhouseMetricGet'] },
-		}) as INodeProperties[]),
-	);
-	properties.push(
-		...(clickhousePrometheusGetDescription({
-			...displayOptions,
-			show: { publicCloudOperation: ['clickhousePrometheusGet'] },
-		}) as INodeProperties[]),
-	);
-	properties.push(
-		...(clickhouseCertificateListGetDescription({
-			...displayOptions,
-			show: { publicCloudOperation: ['clickhouseCertificateListGet'] },
-		}) as INodeProperties[]),
-	);
-	properties.push(
-		...(clickhouseCertificateCreatePostDescription({
-			...displayOptions,
-			show: { publicCloudOperation: ['clickhouseCertificateCreatePost'] },
-		}) as INodeProperties[]),
-	);
-	properties.push(
-		...(clickhouseIntegrationListGetDescription({
-			...displayOptions,
-			show: { publicCloudOperation: ['clickhouseIntegrationListGet'] },
-		}) as INodeProperties[]),
-	);
-	properties.push(
-		...(clickhouseIntegrationCreatePostDescription({
-			...displayOptions,
-			show: { publicCloudOperation: ['clickhouseIntegrationCreatePost'] },
-		}) as INodeProperties[]),
-	);
-	properties.push(
-		...(grafanaClusterListGetDescription({
-			...displayOptions,
-			show: { publicCloudOperation: ['grafanaClusterListGet'] },
-		}) as INodeProperties[]),
-	);
-	properties.push(
-		...(grafanaClusterGetGetDescription({
-			...displayOptions,
-			show: { publicCloudOperation: ['grafanaClusterGetGet'] },
-		}) as INodeProperties[]),
-	);
-	properties.push(
-		...(grafanaClusterCreatePostDescription({
-			...displayOptions,
-			show: { publicCloudOperation: ['grafanaClusterCreatePost'] },
-		}) as INodeProperties[]),
-	);
-	properties.push(
-		...(grafanaClusterUpdatePutDescription({
-			...displayOptions,
-			show: { publicCloudOperation: ['grafanaClusterUpdatePut'] },
-		}) as INodeProperties[]),
-	);
-	properties.push(
-		...(grafanaClusterDeleteDeleteDescription({
-			...displayOptions,
-			show: { publicCloudOperation: ['grafanaClusterDeleteDelete'] },
-		}) as INodeProperties[]),
-	);
-	properties.push(
-		...(grafanaBackupListGetDescription({
-			...displayOptions,
-			show: { publicCloudOperation: ['grafanaBackupListGet'] },
-		}) as INodeProperties[]),
-	);
-	properties.push(
-		...(grafanaBackupGetGetDescription({
-			...displayOptions,
-			show: { publicCloudOperation: ['grafanaBackupGetGet'] },
-		}) as INodeProperties[]),
-	);
-	properties.push(
-		...(grafanaUserListGetDescription({
-			...displayOptions,
-			show: { publicCloudOperation: ['grafanaUserListGet'] },
-		}) as INodeProperties[]),
-	);
-	properties.push(
-		...(grafanaUserGetGetDescription({
-			...displayOptions,
-			show: { publicCloudOperation: ['grafanaUserGetGet'] },
-		}) as INodeProperties[]),
-	);
-	properties.push(
-		...(grafanaUserCredentialsResetPostDescription({
-			...displayOptions,
-			show: { publicCloudOperation: ['grafanaUserCredentialsResetPost'] },
-		}) as INodeProperties[]),
-	);
-	properties.push(
-		...(grafanaNodeListGetDescription({
-			...displayOptions,
-			show: { publicCloudOperation: ['grafanaNodeListGet'] },
-		}) as INodeProperties[]),
-	);
-	properties.push(
-		...(grafanaNodeGetGetDescription({
-			...displayOptions,
-			show: { publicCloudOperation: ['grafanaNodeGetGet'] },
-		}) as INodeProperties[]),
-	);
-	properties.push(
-		...(grafanaIpRestrictionListGetDescription({
-			...displayOptions,
-			show: { publicCloudOperation: ['grafanaIpRestrictionListGet'] },
-		}) as INodeProperties[]),
-	);
-	properties.push(
-		...(grafanaIpRestrictionCreatePostDescription({
-			...displayOptions,
-			show: { publicCloudOperation: ['grafanaIpRestrictionCreatePost'] },
-		}) as INodeProperties[]),
-	);
-	properties.push(
-		...(grafanaIpRestrictionGetGetDescription({
-			...displayOptions,
-			show: { publicCloudOperation: ['grafanaIpRestrictionGetGet'] },
-		}) as INodeProperties[]),
-	);
-	properties.push(
-		...(grafanaIpRestrictionUpdatePutDescription({
-			...displayOptions,
-			show: { publicCloudOperation: ['grafanaIpRestrictionUpdatePut'] },
-		}) as INodeProperties[]),
-	);
-	properties.push(
-		...(grafanaIpRestrictionDeleteDeleteDescription({
-			...displayOptions,
-			show: { publicCloudOperation: ['grafanaIpRestrictionDeleteDelete'] },
-		}) as INodeProperties[]),
-	);
-	properties.push(
-		...(grafanaLogKindListGetDescription({
-			...displayOptions,
-			show: { publicCloudOperation: ['grafanaLogKindListGet'] },
-		}) as INodeProperties[]),
-	);
-	properties.push(
-		...(grafanaLogKindGetDescription({
-			...displayOptions,
-			show: { publicCloudOperation: ['grafanaLogKindGet'] },
-		}) as INodeProperties[]),
-	);
-	properties.push(
-		...(grafanaLogSubscriptionListGetDescription({
-			...displayOptions,
-			show: { publicCloudOperation: ['grafanaLogSubscriptionListGet'] },
-		}) as INodeProperties[]),
-	);
-	properties.push(
-		...(grafanaLogSubscriptionCreatePostDescription({
-			...displayOptions,
-			show: { publicCloudOperation: ['grafanaLogSubscriptionCreatePost'] },
-		}) as INodeProperties[]),
-	);
-	properties.push(
-		...(grafanaLogSubscriptionGetGetDescription({
-			...displayOptions,
-			show: { publicCloudOperation: ['grafanaLogSubscriptionGetGet'] },
-		}) as INodeProperties[]),
-	);
-	properties.push(
-		...(grafanaLogSubscriptionDeleteDeleteDescription({
-			...displayOptions,
-			show: { publicCloudOperation: ['grafanaLogSubscriptionDeleteDelete'] },
-		}) as INodeProperties[]),
-	);
-	properties.push(
-		...(grafanaLogUrlCreatePostDescription({
-			...displayOptions,
-			show: { publicCloudOperation: ['grafanaLogUrlCreatePost'] },
-		}) as INodeProperties[]),
-	);
-	properties.push(
-		...(grafanaLogsGetDescription({
-			...displayOptions,
-			show: { publicCloudOperation: ['grafanaLogsGet'] },
-		}) as INodeProperties[]),
-	);
-	properties.push(
-		...(grafanaMaintenanceListGetDescription({
-			...displayOptions,
-			show: { publicCloudOperation: ['grafanaMaintenanceListGet'] },
-		}) as INodeProperties[]),
-	);
-	properties.push(
-		...(grafanaMaintenanceGetDescription({
-			...displayOptions,
-			show: { publicCloudOperation: ['grafanaMaintenanceGet'] },
-		}) as INodeProperties[]),
-	);
-	properties.push(
-		...(grafanaMaintenanceApplyPostDescription({
-			...displayOptions,
-			show: { publicCloudOperation: ['grafanaMaintenanceApplyPost'] },
-		}) as INodeProperties[]),
-	);
-	properties.push(
-		...(grafanaMetricListGetDescription({
-			...displayOptions,
-			show: { publicCloudOperation: ['grafanaMetricListGet'] },
-		}) as INodeProperties[]),
-	);
-	properties.push(
-		...(grafanaMetricGetDescription({
-			...displayOptions,
-			show: { publicCloudOperation: ['grafanaMetricGet'] },
-		}) as INodeProperties[]),
-	);
-	properties.push(
-		...(grafanaAdvancedConfigurationGetDescription({
-			...displayOptions,
-			show: { publicCloudOperation: ['grafanaAdvancedConfigurationGet'] },
-		}) as INodeProperties[]),
-	);
-	properties.push(
-		...(grafanaAdvancedConfigurationUpdatePutDescription({
-			...displayOptions,
-			show: { publicCloudOperation: ['grafanaAdvancedConfigurationUpdatePut'] },
-		}) as INodeProperties[]),
-	);
-	properties.push(
-		...(grafanaCapabilitiesAdvancedConfigurationGetDescription({
-			...displayOptions,
-			show: { publicCloudOperation: ['grafanaCapabilitiesAdvancedConfigurationGet'] },
-		}) as INodeProperties[]),
-	);
-	properties.push(
-		...(grafanaCapabilitiesBackupRegionsGetDescription({
-			...displayOptions,
-			show: { publicCloudOperation: ['grafanaCapabilitiesBackupRegionsGet'] },
-		}) as INodeProperties[]),
-	);
-	properties.push(
-		...(grafanaCapabilitiesIntegrationGetDescription({
-			...displayOptions,
-			show: { publicCloudOperation: ['grafanaCapabilitiesIntegrationGet'] },
-		}) as INodeProperties[]),
-	);
-	properties.push(
-		...(grafanaIntegrationListGetDescription({
-			...displayOptions,
-			show: { publicCloudOperation: ['grafanaIntegrationListGet'] },
-		}) as INodeProperties[]),
-	);
-	properties.push(
-		...(grafanaIntegrationCreatePostDescription({
-			...displayOptions,
-			show: { publicCloudOperation: ['grafanaIntegrationCreatePost'] },
-		}) as INodeProperties[]),
-	);
-	properties.push(
-		...(grafanaIntegrationGetGetDescription({
-			...displayOptions,
-			show: { publicCloudOperation: ['grafanaIntegrationGetGet'] },
-		}) as INodeProperties[]),
-	);
-	properties.push(
-		...(grafanaIntegrationDeleteDeleteDescription({
-			...displayOptions,
-			show: { publicCloudOperation: ['grafanaIntegrationDeleteDelete'] },
-		}) as INodeProperties[]),
-	);
-
-	properties.push(
-		...(kafkaClusterListGetDescription({
-			...displayOptions,
-			show: { publicCloudOperation: ['kafkaClusterListGet'] },
-		}) as INodeProperties[]),
-	);
-	properties.push(
-		...(kafkaClusterGetGetDescription({
-			...displayOptions,
-			show: { publicCloudOperation: ['kafkaClusterGetGet'] },
-		}) as INodeProperties[]),
-	);
-	properties.push(
-		...(kafkaClusterCreatePostDescription({
-			...displayOptions,
-			show: { publicCloudOperation: ['kafkaClusterCreatePost'] },
-		}) as INodeProperties[]),
-	);
-	properties.push(
-		...(kafkaClusterUpdatePutDescription({
-			...displayOptions,
-			show: { publicCloudOperation: ['kafkaClusterUpdatePut'] },
-		}) as INodeProperties[]),
-	);
-	properties.push(
-		...(kafkaClusterDeleteDeleteDescription({
-			...displayOptions,
-			show: { publicCloudOperation: ['kafkaClusterDeleteDelete'] },
-		}) as INodeProperties[]),
-	);
-	properties.push(
-		...(kafkaAclListGetDescription({
-			...displayOptions,
-			show: { publicCloudOperation: ['kafkaAclListGet'] },
-		}) as INodeProperties[]),
-	);
-	properties.push(
-		...(kafkaAclCreatePostDescription({
-			...displayOptions,
-			show: { publicCloudOperation: ['kafkaAclCreatePost'] },
-		}) as INodeProperties[]),
-	);
-	properties.push(
-		...(kafkaAclGetGetDescription({
-			...displayOptions,
-			show: { publicCloudOperation: ['kafkaAclGetGet'] },
-		}) as INodeProperties[]),
-	);
-	properties.push(
-		...(kafkaAclDeleteDeleteDescription({
-			...displayOptions,
-			show: { publicCloudOperation: ['kafkaAclDeleteDelete'] },
-		}) as INodeProperties[]),
-	);
-	properties.push(
-		...(kafkaAdvancedConfigurationGetDescription({
-			...displayOptions,
-			show: { publicCloudOperation: ['kafkaAdvancedConfigurationGet'] },
-		}) as INodeProperties[]),
-	);
-	properties.push(
-		...(kafkaAdvancedConfigurationUpdatePutDescription({
-			...displayOptions,
-			show: { publicCloudOperation: ['kafkaAdvancedConfigurationUpdatePut'] },
-		}) as INodeProperties[]),
-	);
-	properties.push(
-		...(kafkaCapabilitiesAdvancedConfigurationGetDescription({
-			...displayOptions,
-			show: { publicCloudOperation: ['kafkaCapabilitiesAdvancedConfigurationGet'] },
-		}) as INodeProperties[]),
-	);
-	properties.push(
-		...(kafkaCapabilitiesBackupRegionsGetDescription({
-			...displayOptions,
-			show: { publicCloudOperation: ['kafkaCapabilitiesBackupRegionsGet'] },
-		}) as INodeProperties[]),
-	);
-	properties.push(
-		...(kafkaCapabilitiesIntegrationGetDescription({
-			...displayOptions,
-			show: { publicCloudOperation: ['kafkaCapabilitiesIntegrationGet'] },
-		}) as INodeProperties[]),
-	);
-	properties.push(
-		...(kafkaCertificateListGetDescription({
-			...displayOptions,
-			show: { publicCloudOperation: ['kafkaCertificateListGet'] },
-		}) as INodeProperties[]),
-	);
-	properties.push(
-		...(kafkaIntegrationListGetDescription({
-			...displayOptions,
-			show: { publicCloudOperation: ['kafkaIntegrationListGet'] },
-		}) as INodeProperties[]),
-	);
-	properties.push(
-		...(kafkaIntegrationCreatePostDescription({
-			...displayOptions,
-			show: { publicCloudOperation: ['kafkaIntegrationCreatePost'] },
-		}) as INodeProperties[]),
-	);
-	properties.push(
-		...(kafkaIntegrationGetGetDescription({
-			...displayOptions,
-			show: { publicCloudOperation: ['kafkaIntegrationGetGet'] },
-		}) as INodeProperties[]),
-	);
-	properties.push(
-		...(kafkaIntegrationDeleteDeleteDescription({
-			...displayOptions,
-			show: { publicCloudOperation: ['kafkaIntegrationDeleteDelete'] },
-		}) as INodeProperties[]),
-	);
-	properties.push(
-		...(kafkaIpRestrictionListGetDescription({
-			...displayOptions,
-			show: { publicCloudOperation: ['kafkaIpRestrictionListGet'] },
-		}) as INodeProperties[]),
-	);
-	properties.push(
-		...(kafkaIpRestrictionCreatePostDescription({
-			...displayOptions,
-			show: { publicCloudOperation: ['kafkaIpRestrictionCreatePost'] },
-		}) as INodeProperties[]),
-	);
-	properties.push(
-		...(kafkaIpRestrictionGetGetDescription({
-			...displayOptions,
-			show: { publicCloudOperation: ['kafkaIpRestrictionGetGet'] },
-		}) as INodeProperties[]),
-	);
-	properties.push(
-		...(kafkaIpRestrictionUpdatePutDescription({
-			...displayOptions,
-			show: { publicCloudOperation: ['kafkaIpRestrictionUpdatePut'] },
-		}) as INodeProperties[]),
-	);
-	properties.push(
-		...(kafkaIpRestrictionDeleteDeleteDescription({
-			...displayOptions,
-			show: { publicCloudOperation: ['kafkaIpRestrictionDeleteDelete'] },
-		}) as INodeProperties[]),
-	);
-	properties.push(
-		...(kafkaLogKindListGetDescription({
-			...displayOptions,
-			show: { publicCloudOperation: ['kafkaLogKindListGet'] },
-		}) as INodeProperties[]),
-	);
-	properties.push(
-		...(kafkaLogKindGetDescription({
-			...displayOptions,
-			show: { publicCloudOperation: ['kafkaLogKindGet'] },
-		}) as INodeProperties[]),
-	);
-	properties.push(
-		...(kafkaLogSubscriptionListGetDescription({
-			...displayOptions,
-			show: { publicCloudOperation: ['kafkaLogSubscriptionListGet'] },
-		}) as INodeProperties[]),
-	);
-	properties.push(
-		...(kafkaLogSubscriptionCreatePostDescription({
-			...displayOptions,
-			show: { publicCloudOperation: ['kafkaLogSubscriptionCreatePost'] },
-		}) as INodeProperties[]),
-	);
-	properties.push(
-		...(kafkaLogSubscriptionGetGetDescription({
-			...displayOptions,
-			show: { publicCloudOperation: ['kafkaLogSubscriptionGetGet'] },
-		}) as INodeProperties[]),
-	);
-	properties.push(
-		...(kafkaLogSubscriptionDeleteDeleteDescription({
-			...displayOptions,
-			show: { publicCloudOperation: ['kafkaLogSubscriptionDeleteDelete'] },
-		}) as INodeProperties[]),
-	);
-	properties.push(
-		...(kafkaLogUrlCreatePostDescription({
-			...displayOptions,
-			show: { publicCloudOperation: ['kafkaLogUrlCreatePost'] },
-		}) as INodeProperties[]),
-	);
-	properties.push(
-		...(kafkaLogsGetDescription({
-			...displayOptions,
-			show: { publicCloudOperation: ['kafkaLogsGet'] },
-		}) as INodeProperties[]),
-	);
-	properties.push(
-		...(kafkaMaintenanceListGetDescription({
-			...displayOptions,
-			show: { publicCloudOperation: ['kafkaMaintenanceListGet'] },
-		}) as INodeProperties[]),
-	);
-	properties.push(
-		...(kafkaMaintenanceGetDescription({
-			...displayOptions,
-			show: { publicCloudOperation: ['kafkaMaintenanceGet'] },
-		}) as INodeProperties[]),
-	);
-	properties.push(
-		...(kafkaMaintenanceApplyPostDescription({
-			...displayOptions,
-			show: { publicCloudOperation: ['kafkaMaintenanceApplyPost'] },
-		}) as INodeProperties[]),
-	);
-	properties.push(
-		...(kafkaMetricListGetDescription({
-			...displayOptions,
-			show: { publicCloudOperation: ['kafkaMetricListGet'] },
-		}) as INodeProperties[]),
-	);
-	properties.push(
-		...(kafkaMetricGetDescription({
-			...displayOptions,
-			show: { publicCloudOperation: ['kafkaMetricGet'] },
-		}) as INodeProperties[]),
-	);
-	properties.push(
-		...(kafkaNodeListGetDescription({
-			...displayOptions,
-			show: { publicCloudOperation: ['kafkaNodeListGet'] },
-		}) as INodeProperties[]),
-	);
-	properties.push(
-		...(kafkaNodeGetGetDescription({
-			...displayOptions,
-			show: { publicCloudOperation: ['kafkaNodeGetGet'] },
-		}) as INodeProperties[]),
-	);
-	properties.push(
-		...(kafkaPermissionsGetDescription({
-			...displayOptions,
-			show: { publicCloudOperation: ['kafkaPermissionsGet'] },
-		}) as INodeProperties[]),
-	);
-	properties.push(
-		...(kafkaPrometheusGetDescription({
-			...displayOptions,
-			show: { publicCloudOperation: ['kafkaPrometheusGet'] },
-		}) as INodeProperties[]),
-	);
-	properties.push(
-		...(kafkaPrometheusCredentialsResetPostDescription({
-			...displayOptions,
-			show: { publicCloudOperation: ['kafkaPrometheusCredentialsResetPost'] },
-		}) as INodeProperties[]),
-	);
-	properties.push(
-		...(kafkaSchemaRegistryAclListGetDescription({
-			...displayOptions,
-			show: { publicCloudOperation: ['kafkaSchemaRegistryAclListGet'] },
-		}) as INodeProperties[]),
-	);
-	properties.push(
-		...(kafkaSchemaRegistryAclCreatePostDescription({
-			...displayOptions,
-			show: { publicCloudOperation: ['kafkaSchemaRegistryAclCreatePost'] },
-		}) as INodeProperties[]),
-	);
-	properties.push(
-		...(kafkaSchemaRegistryAclGetGetDescription({
-			...displayOptions,
-			show: { publicCloudOperation: ['kafkaSchemaRegistryAclGetGet'] },
-		}) as INodeProperties[]),
-	);
-	properties.push(
-		...(kafkaSchemaRegistryAclDeleteDeleteDescription({
-			...displayOptions,
-			show: { publicCloudOperation: ['kafkaSchemaRegistryAclDeleteDelete'] },
-		}) as INodeProperties[]),
-	);
-	properties.push(
-		...(kafkaTopicListGetDescription({
-			...displayOptions,
-			show: { publicCloudOperation: ['kafkaTopicListGet'] },
-		}) as INodeProperties[]),
-	);
-	properties.push(
-		...(kafkaTopicCreatePostDescription({
-			...displayOptions,
-			show: { publicCloudOperation: ['kafkaTopicCreatePost'] },
-		}) as INodeProperties[]),
-	);
-	properties.push(
-		...(kafkaTopicGetGetDescription({
-			...displayOptions,
-			show: { publicCloudOperation: ['kafkaTopicGetGet'] },
-		}) as INodeProperties[]),
-	);
-	properties.push(
-		...(kafkaTopicUpdatePutDescription({
-			...displayOptions,
-			show: { publicCloudOperation: ['kafkaTopicUpdatePut'] },
-		}) as INodeProperties[]),
-	);
-	properties.push(
-		...(kafkaTopicDeleteDeleteDescription({
-			...displayOptions,
-			show: { publicCloudOperation: ['kafkaTopicDeleteDelete'] },
-		}) as INodeProperties[]),
-	);
-	properties.push(
-		...(kafkaTopicAclListGetDescription({
-			...displayOptions,
-			show: { publicCloudOperation: ['kafkaTopicAclListGet'] },
-		}) as INodeProperties[]),
-	);
-	properties.push(
-		...(kafkaTopicAclCreatePostDescription({
-			...displayOptions,
-			show: { publicCloudOperation: ['kafkaTopicAclCreatePost'] },
-		}) as INodeProperties[]),
-	);
-	properties.push(
-		...(kafkaTopicAclGetGetDescription({
-			...displayOptions,
-			show: { publicCloudOperation: ['kafkaTopicAclGetGet'] },
-		}) as INodeProperties[]),
-	);
-	properties.push(
-		...(kafkaTopicAclDeleteDeleteDescription({
-			...displayOptions,
-			show: { publicCloudOperation: ['kafkaTopicAclDeleteDelete'] },
-		}) as INodeProperties[]),
-	);
-	properties.push(
-		...(kafkaUserListGetDescription({
-			...displayOptions,
-			show: { publicCloudOperation: ['kafkaUserListGet'] },
-		}) as INodeProperties[]),
-	);
-	properties.push(
-		...(kafkaUserCreatePostDescription({
-			...displayOptions,
-			show: { publicCloudOperation: ['kafkaUserCreatePost'] },
-		}) as INodeProperties[]),
-	);
-	properties.push(
-		...(kafkaUserGetGetDescription({
-			...displayOptions,
-			show: { publicCloudOperation: ['kafkaUserGetGet'] },
-		}) as INodeProperties[]),
-	);
-	properties.push(
-		...(kafkaUserDeleteDeleteDescription({
-			...displayOptions,
-			show: { publicCloudOperation: ['kafkaUserDeleteDelete'] },
-		}) as INodeProperties[]),
-	);
-	properties.push(
-		...(kafkaUserAccessGetDescription({
-			...displayOptions,
-			show: { publicCloudOperation: ['kafkaUserAccessGet'] },
-		}) as INodeProperties[]),
-	);
-	properties.push(
-		...(kafkaUserCredentialsResetPostDescription({
-			...displayOptions,
-			show: { publicCloudOperation: ['kafkaUserCredentialsResetPost'] },
-		}) as INodeProperties[]),
-	);
-	properties.push(
-		...(kafkaConnectClusterListGetDescription({
-			...displayOptions,
-			show: { publicCloudOperation: ['kafkaConnectClusterListGet'] },
-		}) as INodeProperties[]),
-	);
-	properties.push(
-		...(kafkaConnectClusterGetGetDescription({
-			...displayOptions,
-			show: { publicCloudOperation: ['kafkaConnectClusterGetGet'] },
-		}) as INodeProperties[]),
-	);
-	properties.push(
-		...(kafkaConnectClusterCreatePostDescription({
-			...displayOptions,
-			show: { publicCloudOperation: ['kafkaConnectClusterCreatePost'] },
-		}) as INodeProperties[]),
-	);
-	properties.push(
-		...(kafkaConnectClusterUpdatePutDescription({
-			...displayOptions,
-			show: { publicCloudOperation: ['kafkaConnectClusterUpdatePut'] },
-		}) as INodeProperties[]),
-	);
-	properties.push(
-		...(kafkaConnectClusterDeleteDeleteDescription({
-			...displayOptions,
-			show: { publicCloudOperation: ['kafkaConnectClusterDeleteDelete'] },
-		}) as INodeProperties[]),
-	);
-	properties.push(
-		...(kafkaConnectBackupListGetDescription({
-			...displayOptions,
-			show: { publicCloudOperation: ['kafkaConnectBackupListGet'] },
-		}) as INodeProperties[]),
-	);
-	properties.push(
-		...(kafkaConnectBackupCreatePostDescription({
-			...displayOptions,
-			show: { publicCloudOperation: ['kafkaConnectBackupCreatePost'] },
-		}) as INodeProperties[]),
-	);
-	properties.push(
-		...(kafkaConnectBackupGetGetDescription({
-			...displayOptions,
-			show: { publicCloudOperation: ['kafkaConnectBackupGetGet'] },
-		}) as INodeProperties[]),
-	);
-	properties.push(
-		...(kafkaConnectBackupDeleteDeleteDescription({
-			...displayOptions,
-			show: { publicCloudOperation: ['kafkaConnectBackupDeleteDelete'] },
-		}) as INodeProperties[]),
-	);
-	properties.push(
-		...(kafkaConnectUserListGetDescription({
-			...displayOptions,
-			show: { publicCloudOperation: ['kafkaConnectUserListGet'] },
-		}) as INodeProperties[]),
-	);
-	properties.push(
-		...(kafkaConnectUserCreatePostDescription({
-			...displayOptions,
-			show: { publicCloudOperation: ['kafkaConnectUserCreatePost'] },
-		}) as INodeProperties[]),
-	);
-	properties.push(
-		...(kafkaConnectUserGetGetDescription({
-			...displayOptions,
-			show: { publicCloudOperation: ['kafkaConnectUserGetGet'] },
-		}) as INodeProperties[]),
-	);
-	properties.push(
-		...(kafkaConnectUserUpdatePutDescription({
-			...displayOptions,
-			show: { publicCloudOperation: ['kafkaConnectUserUpdatePut'] },
-		}) as INodeProperties[]),
-	);
-	properties.push(
-		...(kafkaConnectUserDeleteDeleteDescription({
-			...displayOptions,
-			show: { publicCloudOperation: ['kafkaConnectUserDeleteDelete'] },
-		}) as INodeProperties[]),
-	);
-	properties.push(
-		...(kafkaConnectNodeListGetDescription({
-			...displayOptions,
-			show: { publicCloudOperation: ['kafkaConnectNodeListGet'] },
-		}) as INodeProperties[]),
-	);
-	properties.push(
-		...(kafkaConnectNodeCreatePostDescription({
-			...displayOptions,
-			show: { publicCloudOperation: ['kafkaConnectNodeCreatePost'] },
-		}) as INodeProperties[]),
-	);
-	properties.push(
-		...(kafkaConnectNodeGetGetDescription({
-			...displayOptions,
-			show: { publicCloudOperation: ['kafkaConnectNodeGetGet'] },
-		}) as INodeProperties[]),
-	);
-	properties.push(
-		...(kafkaConnectNodeUpdatePutDescription({
-			...displayOptions,
-			show: { publicCloudOperation: ['kafkaConnectNodeUpdatePut'] },
-		}) as INodeProperties[]),
-	);
-	properties.push(
-		...(kafkaConnectNodeDeleteDeleteDescription({
-			...displayOptions,
-			show: { publicCloudOperation: ['kafkaConnectNodeDeleteDelete'] },
-		}) as INodeProperties[]),
-	);
-	properties.push(
-		...(kafkaConnectIpRestrictionListGetDescription({
-			...displayOptions,
-			show: { publicCloudOperation: ['kafkaConnectIpRestrictionListGet'] },
-		}) as INodeProperties[]),
-	);
-	properties.push(
-		...(kafkaConnectIpRestrictionCreatePostDescription({
-			...displayOptions,
-			show: { publicCloudOperation: ['kafkaConnectIpRestrictionCreatePost'] },
-		}) as INodeProperties[]),
-	);
-	properties.push(
-		...(kafkaConnectLogSubscriptionListGetDescription({
-			...displayOptions,
-			show: { publicCloudOperation: ['kafkaConnectLogSubscriptionListGet'] },
-		}) as INodeProperties[]),
-	);
-	properties.push(
-		...(kafkaConnectLogSubscriptionCreatePostDescription({
-			...displayOptions,
-			show: { publicCloudOperation: ['kafkaConnectLogSubscriptionCreatePost'] },
-		}) as INodeProperties[]),
-	);
-	properties.push(
-		...(kafkaConnectLogSubscriptionGetGetDescription({
-			...displayOptions,
-			show: { publicCloudOperation: ['kafkaConnectLogSubscriptionGetGet'] },
-		}) as INodeProperties[]),
-	);
-	properties.push(
-		...(kafkaConnectMaintenanceGetDescription({
-			...displayOptions,
-			show: { publicCloudOperation: ['kafkaConnectMaintenanceGet'] },
-		}) as INodeProperties[]),
-	);
-	properties.push(
-		...(kafkaConnectMaintenanceUpdatePutDescription({
-			...displayOptions,
-			show: { publicCloudOperation: ['kafkaConnectMaintenanceUpdatePut'] },
-		}) as INodeProperties[]),
-	);
-	properties.push(
-		...(kafkaConnectMetricGetDescription({
-			...displayOptions,
-			show: { publicCloudOperation: ['kafkaConnectMetricGet'] },
-		}) as INodeProperties[]),
-	);
-	properties.push(
-		...(kafkaConnectPrometheusGetDescription({
-			...displayOptions,
-			show: { publicCloudOperation: ['kafkaConnectPrometheusGet'] },
-		}) as INodeProperties[]),
-	);
-	properties.push(
-		...(kafkaConnectCertificateListGetDescription({
-			...displayOptions,
-			show: { publicCloudOperation: ['kafkaConnectCertificateListGet'] },
-		}) as INodeProperties[]),
-	);
-	properties.push(
-		...(kafkaConnectCertificateCreatePostDescription({
-			...displayOptions,
-			show: { publicCloudOperation: ['kafkaConnectCertificateCreatePost'] },
-		}) as INodeProperties[]),
-	);
-	properties.push(
-		...(kafkaConnectadvancedConfigurationGetDescription({
-			...displayOptions,
-			show: { publicCloudOperation: ['kafkaConnectadvancedConfigurationGet'] },
-		}) as INodeProperties[]),
-	);
-	properties.push(
-		...(kafkaConnectadvancedConfigurationUpdatePutDescription({
-			...displayOptions,
-			show: { publicCloudOperation: ['kafkaConnectadvancedConfigurationUpdatePut'] },
-		}) as INodeProperties[]),
-	);
-	properties.push(
-		...(kafkaConnectcapabilitiesAdvancedConfigurationGetDescription({
-			...displayOptions,
-			show: { publicCloudOperation: ['kafkaConnectcapabilitiesAdvancedConfigurationGet'] },
-		}) as INodeProperties[]),
-	);
-	properties.push(
-		...(kafkaConnectcapabilitiesBackupRegionsGetDescription({
-			...displayOptions,
-			show: { publicCloudOperation: ['kafkaConnectcapabilitiesBackupRegionsGet'] },
-		}) as INodeProperties[]),
-	);
-	properties.push(
-		...(kafkaConnectcapabilitiesConnectorListGetDescription({
-			...displayOptions,
-			show: { publicCloudOperation: ['kafkaConnectcapabilitiesConnectorListGet'] },
-		}) as INodeProperties[]),
-	);
-	properties.push(
-		...(kafkaConnectcapabilitiesConnectorGetDescription({
-			...displayOptions,
-			show: { publicCloudOperation: ['kafkaConnectcapabilitiesConnectorGet'] },
-		}) as INodeProperties[]),
-	);
-	properties.push(
-		...(kafkaConnectcapabilitiesConnectorConfigurationGetDescription({
-			...displayOptions,
-			show: { publicCloudOperation: ['kafkaConnectcapabilitiesConnectorConfigurationGet'] },
-		}) as INodeProperties[]),
-	);
-	properties.push(
-		...(kafkaConnectcapabilitiesConnectorTransformsGetDescription({
-			...displayOptions,
-			show: { publicCloudOperation: ['kafkaConnectcapabilitiesConnectorTransformsGet'] },
-		}) as INodeProperties[]),
-	);
-	properties.push(
-		...(kafkaConnectcapabilitiesIntegrationGetDescription({
-			...displayOptions,
-			show: { publicCloudOperation: ['kafkaConnectcapabilitiesIntegrationGet'] },
-		}) as INodeProperties[]),
-	);
-	properties.push(
-		...(kafkaConnectconnectorListGetDescription({
-			...displayOptions,
-			show: { publicCloudOperation: ['kafkaConnectconnectorListGet'] },
-		}) as INodeProperties[]),
-	);
-	properties.push(
-		...(kafkaConnectconnectorCreatePostDescription({
-			...displayOptions,
-			show: { publicCloudOperation: ['kafkaConnectconnectorCreatePost'] },
-		}) as INodeProperties[]),
-	);
-	properties.push(
-		...(kafkaConnectconnectorGetGetDescription({
-			...displayOptions,
-			show: { publicCloudOperation: ['kafkaConnectconnectorGetGet'] },
-		}) as INodeProperties[]),
-	);
-	properties.push(
-		...(kafkaConnectconnectorUpdatePutDescription({
-			...displayOptions,
-			show: { publicCloudOperation: ['kafkaConnectconnectorUpdatePut'] },
-		}) as INodeProperties[]),
-	);
-	properties.push(
-		...(kafkaConnectconnectorDeleteDeleteDescription({
-			...displayOptions,
-			show: { publicCloudOperation: ['kafkaConnectconnectorDeleteDelete'] },
-		}) as INodeProperties[]),
-	);
-	properties.push(
-		...(kafkaConnectconnectorPausePostDescription({
-			...displayOptions,
-			show: { publicCloudOperation: ['kafkaConnectconnectorPausePost'] },
-		}) as INodeProperties[]),
-	);
-	properties.push(
-		...(kafkaConnectconnectorRestartPostDescription({
-			...displayOptions,
-			show: { publicCloudOperation: ['kafkaConnectconnectorRestartPost'] },
-		}) as INodeProperties[]),
-	);
-	properties.push(
-		...(kafkaConnectconnectorResumePostDescription({
-			...displayOptions,
-			show: { publicCloudOperation: ['kafkaConnectconnectorResumePost'] },
-		}) as INodeProperties[]),
-	);
-	properties.push(
-		...(kafkaConnectconnectorTaskListGetDescription({
-			...displayOptions,
-			show: { publicCloudOperation: ['kafkaConnectconnectorTaskListGet'] },
-		}) as INodeProperties[]),
-	);
-	properties.push(
-		...(kafkaConnectconnectorTaskGetDescription({
-			...displayOptions,
-			show: { publicCloudOperation: ['kafkaConnectconnectorTaskGet'] },
-		}) as INodeProperties[]),
-	);
-	properties.push(
-		...(kafkaConnectconnectorTaskRestartPostDescription({
-			...displayOptions,
-			show: { publicCloudOperation: ['kafkaConnectconnectorTaskRestartPost'] },
-		}) as INodeProperties[]),
-	);
-	properties.push(
-		...(kafkaConnectintegrationListGetDescription({
-			...displayOptions,
-			show: { publicCloudOperation: ['kafkaConnectintegrationListGet'] },
-		}) as INodeProperties[]),
-	);
-	properties.push(
-		...(kafkaConnectintegrationCreatePostDescription({
-			...displayOptions,
-			show: { publicCloudOperation: ['kafkaConnectintegrationCreatePost'] },
-		}) as INodeProperties[]),
-	);
-	properties.push(
-		...(kafkaConnectintegrationGetGetDescription({
-			...displayOptions,
-			show: { publicCloudOperation: ['kafkaConnectintegrationGetGet'] },
-		}) as INodeProperties[]),
-	);
-	properties.push(
-		...(kafkaConnectintegrationDeleteDeleteDescription({
-			...displayOptions,
-			show: { publicCloudOperation: ['kafkaConnectintegrationDeleteDelete'] },
-		}) as INodeProperties[]),
-	);
-	properties.push(
-		...(kafkaConnectipRestrictionGetGetDescription({
-			...displayOptions,
-			show: { publicCloudOperation: ['kafkaConnectipRestrictionGetGet'] },
-		}) as INodeProperties[]),
-	);
-	properties.push(
-		...(kafkaConnectipRestrictionUpdatePutDescription({
-			...displayOptions,
-			show: { publicCloudOperation: ['kafkaConnectipRestrictionUpdatePut'] },
-		}) as INodeProperties[]),
-	);
-	properties.push(
-		...(kafkaConnectipRestrictionDeleteDeleteDescription({
-			...displayOptions,
-			show: { publicCloudOperation: ['kafkaConnectipRestrictionDeleteDelete'] },
-		}) as INodeProperties[]),
-	);
-	properties.push(
-		...(kafkaConnectlogKindListGetDescription({
-			...displayOptions,
-			show: { publicCloudOperation: ['kafkaConnectlogKindListGet'] },
-		}) as INodeProperties[]),
-	);
-	properties.push(
-		...(kafkaConnectlogKindGetDescription({
-			...displayOptions,
-			show: { publicCloudOperation: ['kafkaConnectlogKindGet'] },
-		}) as INodeProperties[]),
-	);
-	properties.push(
-		...(kafkaConnectlogSubscriptionDeleteDeleteDescription({
-			...displayOptions,
-			show: { publicCloudOperation: ['kafkaConnectlogSubscriptionDeleteDelete'] },
-		}) as INodeProperties[]),
-	);
-	properties.push(
-		...(kafkaConnectlogUrlCreatePostDescription({
-			...displayOptions,
-			show: { publicCloudOperation: ['kafkaConnectlogUrlCreatePost'] },
-		}) as INodeProperties[]),
-	);
-	properties.push(
-		...(kafkaConnectlogsGetDescription({
-			...displayOptions,
-			show: { publicCloudOperation: ['kafkaConnectlogsGet'] },
-		}) as INodeProperties[]),
-	);
-	properties.push(
-		...(kafkaConnectmaintenanceListGetDescription({
-			...displayOptions,
-			show: { publicCloudOperation: ['kafkaConnectmaintenanceListGet'] },
-		}) as INodeProperties[]),
-	);
-	properties.push(
-		...(kafkaConnectmaintenanceApplyPostDescription({
-			...displayOptions,
-			show: { publicCloudOperation: ['kafkaConnectmaintenanceApplyPost'] },
-		}) as INodeProperties[]),
-	);
-	properties.push(
-		...(kafkaConnectmetricListGetDescription({
-			...displayOptions,
-			show: { publicCloudOperation: ['kafkaConnectmetricListGet'] },
-		}) as INodeProperties[]),
-	);
-	properties.push(
-		...(kafkaConnectnodeGetDescription({
-			...displayOptions,
-			show: { publicCloudOperation: ['kafkaConnectnodeGet'] },
-		}) as INodeProperties[]),
-	);
-	properties.push(
-		...(kafkaConnectprometheusCredentialsResetPostDescription({
-			...displayOptions,
-			show: { publicCloudOperation: ['kafkaConnectprometheusCredentialsResetPost'] },
-		}) as INodeProperties[]),
-	);
-	properties.push(
-		...(kafkaConnectuserCredentialsResetPostDescription({
-			...displayOptions,
-			show: { publicCloudOperation: ['kafkaConnectuserCredentialsResetPost'] },
-		}) as INodeProperties[]),
-	);
-	properties.push(
-		...(kafkaMirrorMakerClusterListGetDescription({
-			...displayOptions,
-			show: { publicCloudOperation: ['kafkaMirrorMakerClusterListGet'] },
-		}) as INodeProperties[]),
-	);
-	properties.push(
-		...(kafkaMirrorMakerClusterGetGetDescription({
-			...displayOptions,
-			show: { publicCloudOperation: ['kafkaMirrorMakerClusterGetGet'] },
-		}) as INodeProperties[]),
-	);
-	properties.push(
-		...(kafkaMirrorMakerClusterCreatePostDescription({
-			...displayOptions,
-			show: { publicCloudOperation: ['kafkaMirrorMakerClusterCreatePost'] },
-		}) as INodeProperties[]),
-	);
-	properties.push(
-		...(kafkaMirrorMakerClusterUpdatePutDescription({
-			...displayOptions,
-			show: { publicCloudOperation: ['kafkaMirrorMakerClusterUpdatePut'] },
-		}) as INodeProperties[]),
-	);
-	properties.push(
-		...(kafkaMirrorMakerClusterDeleteDeleteDescription({
-			...displayOptions,
-			show: { publicCloudOperation: ['kafkaMirrorMakerClusterDeleteDelete'] },
-		}) as INodeProperties[]),
-	);
-	properties.push(
-		...(kafkaMirrorMakerCapabilitiesIntegrationGetDescription({
-			...displayOptions,
-			show: { publicCloudOperation: ['kafkaMirrorMakerCapabilitiesIntegrationGet'] },
-		}) as INodeProperties[]),
-	);
-	properties.push(
-		...(kafkaMirrorMakerIntegrationGetDescription({
-			...displayOptions,
-			show: { publicCloudOperation: ['kafkaMirrorMakerIntegrationGet'] },
-		}) as INodeProperties[]),
-	);
-	properties.push(
-		...(kafkaMirrorMakerIntegrationCreatePostDescription({
-			...displayOptions,
-			show: { publicCloudOperation: ['kafkaMirrorMakerIntegrationCreatePost'] },
-		}) as INodeProperties[]),
-	);
-	properties.push(
-		...(kafkaMirrorMakerIntegrationDeleteDeleteDescription({
-			...displayOptions,
-			show: { publicCloudOperation: ['kafkaMirrorMakerIntegrationDeleteDelete'] },
-		}) as INodeProperties[]),
-	);
-	properties.push(
-		...(kafkaMirrorMakerIntegrationGetByIdDescription({
-			...displayOptions,
-			show: { publicCloudOperation: ['kafkaMirrorMakerIntegrationGetById'] },
-		}) as INodeProperties[]),
-	);
-	properties.push(
-		...(kafkaMirrorMakerLogKindGetDescription({
-			...displayOptions,
-			show: { publicCloudOperation: ['kafkaMirrorMakerLogKindGet'] },
-		}) as INodeProperties[]),
-	);
-	properties.push(
-		...(kafkaMirrorMakerLogKindNameGetDescription({
-			...displayOptions,
-			show: { publicCloudOperation: ['kafkaMirrorMakerLogKindNameGet'] },
-		}) as INodeProperties[]),
-	);
-	properties.push(
-		...(kafkaMirrorMakerLogSubscriptionCreatePostDescription({
-			...displayOptions,
-			show: { publicCloudOperation: ['kafkaMirrorMakerLogSubscriptionCreatePost'] },
-		}) as INodeProperties[]),
-	);
-	properties.push(
-		...(kafkaMirrorMakerLogSubscriptionDeleteDeleteDescription({
-			...displayOptions,
-			show: { publicCloudOperation: ['kafkaMirrorMakerLogSubscriptionDeleteDelete'] },
-		}) as INodeProperties[]),
-	);
-	properties.push(
-		...(kafkaMirrorMakerLogSubscriptionGetByIdDescription({
-			...displayOptions,
-			show: { publicCloudOperation: ['kafkaMirrorMakerLogSubscriptionGetById'] },
-		}) as INodeProperties[]),
-	);
-	properties.push(
-		...(kafkaMirrorMakerLogUrlPostDescription({
-			...displayOptions,
-			show: { publicCloudOperation: ['kafkaMirrorMakerLogUrlPost'] },
-		}) as INodeProperties[]),
-	);
-	properties.push(
-		...(kafkaMirrorMakerLogsGetDescription({
-			...displayOptions,
-			show: { publicCloudOperation: ['kafkaMirrorMakerLogsGet'] },
-		}) as INodeProperties[]),
-	);
-	properties.push(
-		...(kafkaMirrorMakerMaintenanceGetDescription({
-			...displayOptions,
-			show: { publicCloudOperation: ['kafkaMirrorMakerMaintenanceGet'] },
-		}) as INodeProperties[]),
-	);
-	properties.push(
-		...(kafkaMirrorMakerMaintenanceGetByIdDescription({
-			...displayOptions,
-			show: { publicCloudOperation: ['kafkaMirrorMakerMaintenanceGetById'] },
-		}) as INodeProperties[]),
-	);
-	properties.push(
-		...(kafkaMirrorMakerMaintenanceApplyPostDescription({
-			...displayOptions,
-			show: { publicCloudOperation: ['kafkaMirrorMakerMaintenanceApplyPost'] },
-		}) as INodeProperties[]),
-	);
-	properties.push(
-		...(kafkaMirrorMakerMetricGetDescription({
-			...displayOptions,
-			show: { publicCloudOperation: ['kafkaMirrorMakerMetricGet'] },
-		}) as INodeProperties[]),
-	);
-	properties.push(
-		...(kafkaMirrorMakerMetricNameGetDescription({
-			...displayOptions,
-			show: { publicCloudOperation: ['kafkaMirrorMakerMetricNameGet'] },
-		}) as INodeProperties[]),
-	);
-	properties.push(
-		...(kafkaMirrorMakerNodeListGetDescription({
-			...displayOptions,
-			show: { publicCloudOperation: ['kafkaMirrorMakerNodeListGet'] },
-		}) as INodeProperties[]),
-	);
-	properties.push(
-		...(kafkaMirrorMakerNodeGetGetDescription({
-			...displayOptions,
-			show: { publicCloudOperation: ['kafkaMirrorMakerNodeGetGet'] },
-		}) as INodeProperties[]),
-	);
-	properties.push(
-		...(kafkaMirrorMakerPrometheusGetDescription({
-			...displayOptions,
-			show: { publicCloudOperation: ['kafkaMirrorMakerPrometheusGet'] },
-		}) as INodeProperties[]),
-	);
-	properties.push(
-		...(kafkaMirrorMakerPrometheusCredentialsResetPostDescription({
-			...displayOptions,
-			show: { publicCloudOperation: ['kafkaMirrorMakerPrometheusCredentialsResetPost'] },
-		}) as INodeProperties[]),
-	);
-	properties.push(
-		...(kafkaMirrorMakerReplicationGetDescription({
-			...displayOptions,
-			show: { publicCloudOperation: ['kafkaMirrorMakerReplicationGet'] },
-		}) as INodeProperties[]),
-	);
-	properties.push(
-		...(kafkaMirrorMakerReplicationCreatePostDescription({
-			...displayOptions,
-			show: { publicCloudOperation: ['kafkaMirrorMakerReplicationCreatePost'] },
-		}) as INodeProperties[]),
-	);
-	properties.push(
-		...(kafkaMirrorMakerReplicationDeleteDeleteDescription({
-			...displayOptions,
-			show: { publicCloudOperation: ['kafkaMirrorMakerReplicationDeleteDelete'] },
-		}) as INodeProperties[]),
-	);
-	properties.push(
-		...(kafkaMirrorMakerReplicationGetByIdDescription({
-			...displayOptions,
-			show: { publicCloudOperation: ['kafkaMirrorMakerReplicationGetById'] },
-		}) as INodeProperties[]),
-	);
-	properties.push(
-		...(kafkaMirrorMakerReplicationUpdatePutDescription({
-			...displayOptions,
-			show: { publicCloudOperation: ['kafkaMirrorMakerReplicationUpdatePut'] },
-		}) as INodeProperties[]),
-	);
-	properties.push(
-		...(m3aggregatorClusterListGetDescription({
-			...displayOptions,
-			show: { publicCloudOperation: ['m3aggregatorClusterListGet'] },
-		}) as INodeProperties[]),
-		...(m3aggregatorClusterCreatePostDescription({
-			...displayOptions,
-			show: { publicCloudOperation: ['m3aggregatorClusterCreatePost'] },
-		}) as INodeProperties[]),
-		...(m3aggregatorClusterGetGetDescription({
-			...displayOptions,
-			show: { publicCloudOperation: ['m3aggregatorClusterGetGet'] },
-		}) as INodeProperties[]),
-		...(m3aggregatorClusterUpdatePutDescription({
-			...displayOptions,
-			show: { publicCloudOperation: ['m3aggregatorClusterUpdatePut'] },
-		}) as INodeProperties[]),
-		...(m3aggregatorClusterDeleteDeleteDescription({
-			...displayOptions,
-			show: { publicCloudOperation: ['m3aggregatorClusterDeleteDelete'] },
-		}) as INodeProperties[]),
-		...(m3aggregatorCapabilitiesIntegrationGetDescription({
-			...displayOptions,
-			show: { publicCloudOperation: ['m3aggregatorCapabilitiesIntegrationGet'] },
-		}) as INodeProperties[]),
-		...(m3aggregatorIntegrationGetDescription({
-			...displayOptions,
-			show: { publicCloudOperation: ['m3aggregatorIntegrationGet'] },
-		}) as INodeProperties[]),
-		...(m3aggregatorIntegrationCreatePostDescription({
-			...displayOptions,
-			show: { publicCloudOperation: ['m3aggregatorIntegrationCreatePost'] },
-		}) as INodeProperties[]),
-		...(m3aggregatorIntegrationDeleteDeleteDescription({
-			...displayOptions,
-			show: { publicCloudOperation: ['m3aggregatorIntegrationDeleteDelete'] },
-		}) as INodeProperties[]),
-		...(m3aggregatorIntegrationGetByIdDescription({
-			...displayOptions,
-			show: { publicCloudOperation: ['m3aggregatorIntegrationGetById'] },
-		}) as INodeProperties[]),
-		...(m3aggregatorLogKindGetDescription({
-			...displayOptions,
-			show: { publicCloudOperation: ['m3aggregatorLogKindGet'] },
-		}) as INodeProperties[]),
-		...(m3aggregatorLogKindNameGetDescription({
-			...displayOptions,
-			show: { publicCloudOperation: ['m3aggregatorLogKindNameGet'] },
-		}) as INodeProperties[]),
-		...(m3aggregatorLogSubscriptionListGetDescription({
-			...displayOptions,
-			show: { publicCloudOperation: ['m3aggregatorLogSubscriptionListGet'] },
-		}) as INodeProperties[]),
-		...(m3aggregatorLogSubscriptionCreatePostDescription({
-			...displayOptions,
-			show: { publicCloudOperation: ['m3aggregatorLogSubscriptionCreatePost'] },
-		}) as INodeProperties[]),
-		...(m3aggregatorLogSubscriptionDeleteDeleteDescription({
-			...displayOptions,
-			show: { publicCloudOperation: ['m3aggregatorLogSubscriptionDeleteDelete'] },
-		}) as INodeProperties[]),
-		...(m3aggregatorLogSubscriptionGetByIdDescription({
-			...displayOptions,
-			show: { publicCloudOperation: ['m3aggregatorLogSubscriptionGetById'] },
-		}) as INodeProperties[]),
-		...(m3aggregatorLogUrlPostDescription({
-			...displayOptions,
-			show: { publicCloudOperation: ['m3aggregatorLogUrlPost'] },
-		}) as INodeProperties[]),
-		...(m3aggregatorLogsGetDescription({
-			...displayOptions,
-			show: { publicCloudOperation: ['m3aggregatorLogsGet'] },
-		}) as INodeProperties[]),
-		...(m3aggregatorMaintenanceGetDescription({
-			...displayOptions,
-			show: { publicCloudOperation: ['m3aggregatorMaintenanceGet'] },
-		}) as INodeProperties[]),
-		...(m3aggregatorMaintenanceGetByIdDescription({
-			...displayOptions,
-			show: { publicCloudOperation: ['m3aggregatorMaintenanceGetById'] },
-		}) as INodeProperties[]),
-		...(m3aggregatorMaintenanceApplyPostDescription({
-			...displayOptions,
-			show: { publicCloudOperation: ['m3aggregatorMaintenanceApplyPost'] },
-		}) as INodeProperties[]),
-		...(m3aggregatorMetricGetDescription({
-			...displayOptions,
-			show: { publicCloudOperation: ['m3aggregatorMetricGet'] },
-		}) as INodeProperties[]),
-		...(m3aggregatorMetricNameGetDescription({
-			...displayOptions,
-			show: { publicCloudOperation: ['m3aggregatorMetricNameGet'] },
-		}) as INodeProperties[]),
-		...(m3aggregatorNodeListGetDescription({
-			...displayOptions,
-			show: { publicCloudOperation: ['m3aggregatorNodeListGet'] },
-		}) as INodeProperties[]),
-		...(m3aggregatorNodeGetGetDescription({
-			...displayOptions,
-			show: { publicCloudOperation: ['m3aggregatorNodeGetGet'] },
-		}) as INodeProperties[]),
-	);
-	properties.push(
-		...(m3dbClusterListGetDescription({
-			...displayOptions,
-			show: { publicCloudOperation: ['M3dbClusterListGet'] },
-		}) as INodeProperties[]),
-	);
-	properties.push(
-		...(m3dbClusterCreatePostDescription({
-			...displayOptions,
-			show: { publicCloudOperation: ['M3dbClusterCreatePost'] },
-		}) as INodeProperties[]),
-	);
-	properties.push(
-		...(m3dbClusterDeleteDeleteDescription({
-			...displayOptions,
-			show: { publicCloudOperation: ['M3dbClusterDeleteDelete'] },
-		}) as INodeProperties[]),
-	);
-	properties.push(
-		...(m3dbClusterGetGetDescription({
-			...displayOptions,
-			show: { publicCloudOperation: ['M3dbClusterGetGet'] },
-		}) as INodeProperties[]),
-	);
-	properties.push(
-		...(m3dbClusterUpdatePutDescription({
-			...displayOptions,
-			show: { publicCloudOperation: ['M3dbClusterUpdatePut'] },
-		}) as INodeProperties[]),
-	);
-	properties.push(
-		...(m3dbAdvancedConfigurationGetGetDescription({
-			...displayOptions,
-			show: { publicCloudOperation: ['M3dbAdvancedConfigurationGetGet'] },
-		}) as INodeProperties[]),
-	);
-	properties.push(
-		...(m3dbAdvancedConfigurationUpdatePutDescription({
-			...displayOptions,
-			show: { publicCloudOperation: ['M3dbAdvancedConfigurationUpdatePut'] },
-		}) as INodeProperties[]),
-	);
-	properties.push(
-		...(m3dbBackupListGetDescription({
-			...displayOptions,
-			show: { publicCloudOperation: ['M3dbBackupListGet'] },
-		}) as INodeProperties[]),
-	);
-	properties.push(
-		...(m3dbBackupGetGetDescription({
-			...displayOptions,
-			show: { publicCloudOperation: ['M3dbBackupGetGet'] },
-		}) as INodeProperties[]),
-	);
-	properties.push(
-		...(m3dbCapabilitiesAdvancedConfigurationGetGetDescription({
-			...displayOptions,
-			show: { publicCloudOperation: ['M3dbCapabilitiesAdvancedConfigurationGetGet'] },
-		}) as INodeProperties[]),
-	);
-	properties.push(
-		...(m3dbCapabilitiesIntegrationGetGetDescription({
-			...displayOptions,
-			show: { publicCloudOperation: ['M3dbCapabilitiesIntegrationGetGet'] },
-		}) as INodeProperties[]),
-	);
-	properties.push(
-		...(m3dbIntegrationListGetDescription({
-			...displayOptions,
-			show: { publicCloudOperation: ['M3dbIntegrationListGet'] },
-		}) as INodeProperties[]),
-	);
-	properties.push(
-		...(m3dbIntegrationCreatePostDescription({
-			...displayOptions,
-			show: { publicCloudOperation: ['M3dbIntegrationCreatePost'] },
-		}) as INodeProperties[]),
-	);
-	properties.push(
-		...(m3dbIntegrationDeleteDeleteDescription({
-			...displayOptions,
-			show: { publicCloudOperation: ['M3dbIntegrationDeleteDelete'] },
-		}) as INodeProperties[]),
-	);
-	properties.push(
-		...(m3dbIntegrationGetGetDescription({
-			...displayOptions,
-			show: { publicCloudOperation: ['M3dbIntegrationGetGet'] },
-		}) as INodeProperties[]),
-	);
-	properties.push(
-		...(m3dbIpRestrictionListGetDescription({
-			...displayOptions,
-			show: { publicCloudOperation: ['M3dbIpRestrictionListGet'] },
-		}) as INodeProperties[]),
-	);
-	properties.push(
-		...(m3dbIpRestrictionCreatePostDescription({
-			...displayOptions,
-			show: { publicCloudOperation: ['M3dbIpRestrictionCreatePost'] },
-		}) as INodeProperties[]),
-	);
-	properties.push(
-		...(m3dbIpRestrictionDeleteDeleteDescription({
-			...displayOptions,
-			show: { publicCloudOperation: ['M3dbIpRestrictionDeleteDelete'] },
-		}) as INodeProperties[]),
-	);
-	properties.push(
-		...(m3dbIpRestrictionGetGetDescription({
-			...displayOptions,
-			show: { publicCloudOperation: ['M3dbIpRestrictionGetGet'] },
-		}) as INodeProperties[]),
-	);
-	properties.push(
-		...(m3dbIpRestrictionUpdatePutDescription({
-			...displayOptions,
-			show: { publicCloudOperation: ['M3dbIpRestrictionUpdatePut'] },
-		}) as INodeProperties[]),
-	);
-	properties.push(
-		...(m3dbLogKindListGetDescription({
-			...displayOptions,
-			show: { publicCloudOperation: ['M3dbLogKindListGet'] },
-		}) as INodeProperties[]),
-	);
-	properties.push(
-		...(m3dbLogKindGetGetDescription({
-			...displayOptions,
-			show: { publicCloudOperation: ['M3dbLogKindGetGet'] },
-		}) as INodeProperties[]),
-	);
-	properties.push(
-		...(m3dbLogSubscriptionListGetDescription({
-			...displayOptions,
-			show: { publicCloudOperation: ['M3dbLogSubscriptionListGet'] },
-		}) as INodeProperties[]),
-	);
-	properties.push(
-		...(m3dbLogSubscriptionCreatePostDescription({
-			...displayOptions,
-			show: { publicCloudOperation: ['M3dbLogSubscriptionCreatePost'] },
-		}) as INodeProperties[]),
-	);
-	properties.push(
-		...(m3dbLogSubscriptionDeleteDeleteDescription({
-			...displayOptions,
-			show: { publicCloudOperation: ['M3dbLogSubscriptionDeleteDelete'] },
-		}) as INodeProperties[]),
-	);
-	properties.push(
-		...(m3dbLogSubscriptionGetGetDescription({
-			...displayOptions,
-			show: { publicCloudOperation: ['M3dbLogSubscriptionGetGet'] },
-		}) as INodeProperties[]),
-	);
-	properties.push(
-		...(m3dbLogUrlCreatePostDescription({
-			...displayOptions,
-			show: { publicCloudOperation: ['M3dbLogUrlCreatePost'] },
-		}) as INodeProperties[]),
-	);
-	properties.push(
-		...(m3dbLogsGetDescription({
-			...displayOptions,
-			show: { publicCloudOperation: ['M3dbLogsGet'] },
-		}) as INodeProperties[]),
-	);
-	properties.push(
-		...(m3dbMaintenanceListGetDescription({
-			...displayOptions,
-			show: { publicCloudOperation: ['M3dbMaintenanceListGet'] },
-		}) as INodeProperties[]),
-	);
-	properties.push(
-		...(m3dbMaintenanceGetGetDescription({
-			...displayOptions,
-			show: { publicCloudOperation: ['M3dbMaintenanceGetGet'] },
-		}) as INodeProperties[]),
-	);
-	properties.push(
-		...(m3dbMaintenanceApplyPostDescription({
-			...displayOptions,
-			show: { publicCloudOperation: ['M3dbMaintenanceApplyPost'] },
-		}) as INodeProperties[]),
-	);
-	properties.push(
-		...(m3dbMetricListGetDescription({
-			...displayOptions,
-			show: { publicCloudOperation: ['M3dbMetricListGet'] },
-		}) as INodeProperties[]),
-	);
-	properties.push(
-		...(m3dbMetricGetGetDescription({
-			...displayOptions,
-			show: { publicCloudOperation: ['M3dbMetricGetGet'] },
-		}) as INodeProperties[]),
-	);
-	properties.push(
-		...(m3dbNamespaceListGetDescription({
-			...displayOptions,
-			show: { publicCloudOperation: ['M3dbNamespaceListGet'] },
-		}) as INodeProperties[]),
-	);
-	properties.push(
-		...(m3dbNamespaceCreatePostDescription({
-			...displayOptions,
-			show: { publicCloudOperation: ['M3dbNamespaceCreatePost'] },
-		}) as INodeProperties[]),
-	);
-	properties.push(
-		...(m3dbNamespaceDeleteDeleteDescription({
-			...displayOptions,
-			show: { publicCloudOperation: ['M3dbNamespaceDeleteDelete'] },
-		}) as INodeProperties[]),
-	);
-	properties.push(
-		...(m3dbNamespaceGetGetDescription({
-			...displayOptions,
-			show: { publicCloudOperation: ['M3dbNamespaceGetGet'] },
-		}) as INodeProperties[]),
-	);
-	properties.push(
-		...(m3dbNamespaceUpdatePutDescription({
-			...displayOptions,
-			show: { publicCloudOperation: ['M3dbNamespaceUpdatePut'] },
-		}) as INodeProperties[]),
-	);
-	properties.push(
-		...(m3dbNodeListGetDescription({
-			...displayOptions,
-			show: { publicCloudOperation: ['M3dbNodeListGet'] },
-		}) as INodeProperties[]),
-	);
-	properties.push(
-		...(m3dbNodeGetGetDescription({
-			...displayOptions,
-			show: { publicCloudOperation: ['M3dbNodeGetGet'] },
-		}) as INodeProperties[]),
-	);
-	properties.push(
-		...(m3dbUserListGetDescription({
-			...displayOptions,
-			show: { publicCloudOperation: ['M3dbUserListGet'] },
-		}) as INodeProperties[]),
-	);
-	properties.push(
-		...(m3dbUserCreatePostDescription({
-			...displayOptions,
-			show: { publicCloudOperation: ['M3dbUserCreatePost'] },
-		}) as INodeProperties[]),
-	);
-	properties.push(
-		...(m3dbUserDeleteDeleteDescription({
-			...displayOptions,
-			show: { publicCloudOperation: ['M3dbUserDeleteDelete'] },
-		}) as INodeProperties[]),
-	);
-	properties.push(
-		...(m3dbUserGetGetDescription({
-			...displayOptions,
-			show: { publicCloudOperation: ['M3dbUserGetGet'] },
-		}) as INodeProperties[]),
-	);
-	properties.push(
-		...(m3dbUserUpdatePutDescription({
-			...displayOptions,
-			show: { publicCloudOperation: ['M3dbUserUpdatePut'] },
-		}) as INodeProperties[]),
-	);
-	properties.push(
-		...(m3dbUserCredentialsResetPostDescription({
-			...displayOptions,
-			show: { publicCloudOperation: ['M3dbUserCredentialsResetPost'] },
-		}) as INodeProperties[]),
-	);
-	properties.push(
-		...(mongodbClusterListGetDescription({
-			...displayOptions,
-			show: { publicCloudOperation: ['mongodbClusterListGet'] },
-		}) as INodeProperties[]),
-		...(mongodbClusterGetGetDescription({
-			...displayOptions,
-			show: { publicCloudOperation: ['mongodbClusterGetGet'] },
-		}) as INodeProperties[]),
-		...(mongodbClusterCreatePostDescription({
-			...displayOptions,
-			show: { publicCloudOperation: ['mongodbClusterCreatePost'] },
-		}) as INodeProperties[]),
-		...(mongodbClusterUpdatePutDescription({
-			...displayOptions,
-			show: { publicCloudOperation: ['mongodbClusterUpdatePut'] },
-		}) as INodeProperties[]),
-		...(mongodbClusterDeleteDeleteDescription({
-			...displayOptions,
-			show: { publicCloudOperation: ['mongodbClusterDeleteDelete'] },
-		}) as INodeProperties[]),
-		...(mongodbBackupListGetDescription({
-			...displayOptions,
-			show: { publicCloudOperation: ['mongodbBackupListGet'] },
-		}) as INodeProperties[]),
-		...(mongodbBackupGetGetDescription({
-			...displayOptions,
-			show: { publicCloudOperation: ['mongodbBackupGetGet'] },
-		}) as INodeProperties[]),
-		...(mongodbBackupDeleteDeleteDescription({
-			...displayOptions,
-			show: { publicCloudOperation: ['mongodbBackupDeleteDelete'] },
-		}) as INodeProperties[]),
-		...(mongodbBackupRestorePostDescription({
-			...displayOptions,
-			show: { publicCloudOperation: ['mongodbBackupRestorePost'] },
-		}) as INodeProperties[]),
-		...(mongodbIpRestrictionListGetDescription({
-			...displayOptions,
-			show: { publicCloudOperation: ['mongodbIpRestrictionListGet'] },
-		}) as INodeProperties[]),
-		...(mongodbIpRestrictionCreatePostDescription({
-			...displayOptions,
-			show: { publicCloudOperation: ['mongodbIpRestrictionCreatePost'] },
-		}) as INodeProperties[]),
-		...(mongodbIpRestrictionGetGetDescription({
-			...displayOptions,
-			show: { publicCloudOperation: ['mongodbIpRestrictionGetGet'] },
-		}) as INodeProperties[]),
-		...(mongodbIpRestrictionUpdatePutDescription({
-			...displayOptions,
-			show: { publicCloudOperation: ['mongodbIpRestrictionUpdatePut'] },
-		}) as INodeProperties[]),
-		...(mongodbIpRestrictionDeleteDeleteDescription({
-			...displayOptions,
-			show: { publicCloudOperation: ['mongodbIpRestrictionDeleteDelete'] },
-		}) as INodeProperties[]),
-		...(mongodbLogKindListGetDescription({
-			...displayOptions,
-			show: { publicCloudOperation: ['mongodbLogKindListGet'] },
-		}) as INodeProperties[]),
-		...(mongodbLogKindGetGetDescription({
-			...displayOptions,
-			show: { publicCloudOperation: ['mongodbLogKindGetGet'] },
-		}) as INodeProperties[]),
-		...(mongodbLogSubscriptionListGetDescription({
-			...displayOptions,
-			show: { publicCloudOperation: ['mongodbLogSubscriptionListGet'] },
-		}) as INodeProperties[]),
-		...(mongodbLogSubscriptionCreatePostDescription({
-			...displayOptions,
-			show: { publicCloudOperation: ['mongodbLogSubscriptionCreatePost'] },
-		}) as INodeProperties[]),
-		...(mongodbLogSubscriptionGetGetDescription({
-			...displayOptions,
-			show: { publicCloudOperation: ['mongodbLogSubscriptionGetGet'] },
-		}) as INodeProperties[]),
-		...(mongodbLogSubscriptionDeleteDeleteDescription({
-			...displayOptions,
-			show: { publicCloudOperation: ['mongodbLogSubscriptionDeleteDelete'] },
-		}) as INodeProperties[]),
-		...(mongodbLogUrlCreatePostDescription({
-			...displayOptions,
-			show: { publicCloudOperation: ['mongodbLogUrlCreatePost'] },
-		}) as INodeProperties[]),
-		...(mongodbLogListGetDescription({
-			...displayOptions,
-			show: { publicCloudOperation: ['mongodbLogListGet'] },
-		}) as INodeProperties[]),
-		...(mongodbMaintenanceListGetDescription({
-			...displayOptions,
-			show: { publicCloudOperation: ['mongodbMaintenanceListGet'] },
-		}) as INodeProperties[]),
-		...(mongodbMaintenanceGetGetDescription({
-			...displayOptions,
-			show: { publicCloudOperation: ['mongodbMaintenanceGetGet'] },
-		}) as INodeProperties[]),
-		...(mongodbMaintenanceApplyPostDescription({
-			...displayOptions,
-			show: { publicCloudOperation: ['mongodbMaintenanceApplyPost'] },
-		}) as INodeProperties[]),
-		...(mongodbMetricListGetDescription({
-			...displayOptions,
-			show: { publicCloudOperation: ['mongodbMetricListGet'] },
-		}) as INodeProperties[]),
-		...(mongodbMetricNameGetGetDescription({
-			...displayOptions,
-			show: { publicCloudOperation: ['mongodbMetricNameGetGet'] },
-		}) as INodeProperties[]),
-		...(mongodbNodeListGetDescription({
-			...displayOptions,
-			show: { publicCloudOperation: ['mongodbNodeListGet'] },
-		}) as INodeProperties[]),
-		...(mongodbNodeCreatePostDescription({
-			...displayOptions,
-			show: { publicCloudOperation: ['mongodbNodeCreatePost'] },
-		}) as INodeProperties[]),
-		...(mongodbNodeGetGetDescription({
-			...displayOptions,
-			show: { publicCloudOperation: ['mongodbNodeGetGet'] },
-		}) as INodeProperties[]),
-		...(mongodbNodeUpdatePutDescription({
-			...displayOptions,
-			show: { publicCloudOperation: ['mongodbNodeUpdatePut'] },
-		}) as INodeProperties[]),
-		...(mongodbNodeDeleteDeleteDescription({
-			...displayOptions,
-			show: { publicCloudOperation: ['mongodbNodeDeleteDelete'] },
-		}) as INodeProperties[]),
-		...(mongodbPrometheusGetGetDescription({
-			...displayOptions,
-			show: { publicCloudOperation: ['mongodbPrometheusGetGet'] },
-		}) as INodeProperties[]),
-		...(mongodbPrometheusCredentialsResetPostDescription({
-			...displayOptions,
-			show: { publicCloudOperation: ['mongodbPrometheusCredentialsResetPost'] },
-		}) as INodeProperties[]),
-		...(mongodbRestoreCreatePostDescription({
-			...displayOptions,
-			show: { publicCloudOperation: ['mongodbRestoreCreatePost'] },
-		}) as INodeProperties[]),
-		...(mongodbRoleListGetDescription({
-			...displayOptions,
-			show: { publicCloudOperation: ['mongodbRoleListGet'] },
-		}) as INodeProperties[]),
-		...(mongodbUserListGetDescription({
-			...displayOptions,
-			show: { publicCloudOperation: ['mongodbUserListGet'] },
-		}) as INodeProperties[]),
-		...(mongodbUserCreatePostDescription({
-			...displayOptions,
-			show: { publicCloudOperation: ['mongodbUserCreatePost'] },
-		}) as INodeProperties[]),
-		...(mongodbUserGetGetDescription({
-			...displayOptions,
-			show: { publicCloudOperation: ['mongodbUserGetGet'] },
-		}) as INodeProperties[]),
-		...(mongodbUserUpdatePutDescription({
-			...displayOptions,
-			show: { publicCloudOperation: ['mongodbUserUpdatePut'] },
-		}) as INodeProperties[]),
-		...(mongodbUserDeleteDeleteDescription({
-			...displayOptions,
-			show: { publicCloudOperation: ['mongodbUserDeleteDelete'] },
-		}) as INodeProperties[]),
-		...(mongodbUserCredentialsResetPostDescription({
-			...displayOptions,
-			show: { publicCloudOperation: ['mongodbUserCredentialsResetPost'] },
-		}) as INodeProperties[]),
-	);
-	properties.push(
-		...(mysqlClusterListGetDescription({
-			...displayOptions,
-			show: { publicCloudOperation: ['mysqlClusterListGet'] },
-		}) as INodeProperties[]),
-	);
-	properties.push(
-		...(mysqlClusterGetGetDescription({
-			...displayOptions,
-			show: { publicCloudOperation: ['mysqlClusterGetGet'] },
-		}) as INodeProperties[]),
-	);
-	properties.push(
-		...(mysqlClusterCreatePostDescription({
-			...displayOptions,
-			show: { publicCloudOperation: ['mysqlClusterCreatePost'] },
-		}) as INodeProperties[]),
-	);
-	properties.push(
-		...(mysqlClusterUpdatePutDescription({
-			...displayOptions,
-			show: { publicCloudOperation: ['mysqlClusterUpdatePut'] },
-		}) as INodeProperties[]),
-	);
-	properties.push(
-		...(mysqlClusterDeleteDeleteDescription({
-			...displayOptions,
-			show: { publicCloudOperation: ['mysqlClusterDeleteDelete'] },
-		}) as INodeProperties[]),
-	);
-	properties.push(
-		...(mysqlBackupListGetDescription({
-			...displayOptions,
-			show: { publicCloudOperation: ['mysqlBackupListGet'] },
-		}) as INodeProperties[]),
-	);
-	properties.push(
-		...(mysqlBackupCreatePostDescription({
-			...displayOptions,
-			show: { publicCloudOperation: ['mysqlBackupCreatePost'] },
-		}) as INodeProperties[]),
-	);
-	properties.push(
-		...(mysqlBackupGetGetDescription({
-			...displayOptions,
-			show: { publicCloudOperation: ['mysqlBackupGetGet'] },
-		}) as INodeProperties[]),
-	);
-	properties.push(
-		...(mysqlBackupDeleteDeleteDescription({
-			...displayOptions,
-			show: { publicCloudOperation: ['mysqlBackupDeleteDelete'] },
-		}) as INodeProperties[]),
-	);
-	properties.push(
-		...(mysqlUserListGetDescription({
-			...displayOptions,
-			show: { publicCloudOperation: ['mysqlUserListGet'] },
-		}) as INodeProperties[]),
-	);
-	properties.push(
-		...(mysqlUserCreatePostDescription({
-			...displayOptions,
-			show: { publicCloudOperation: ['mysqlUserCreatePost'] },
-		}) as INodeProperties[]),
-	);
-	properties.push(
-		...(mysqlUserGetGetDescription({
-			...displayOptions,
-			show: { publicCloudOperation: ['mysqlUserGetGet'] },
-		}) as INodeProperties[]),
-	);
-	properties.push(
-		...(mysqlUserUpdatePutDescription({
-			...displayOptions,
-			show: { publicCloudOperation: ['mysqlUserUpdatePut'] },
-		}) as INodeProperties[]),
-	);
-	properties.push(
-		...(mysqlUserDeleteDeleteDescription({
-			...displayOptions,
-			show: { publicCloudOperation: ['mysqlUserDeleteDelete'] },
-		}) as INodeProperties[]),
-	);
-	properties.push(
-		...(mysqlNodeListGetDescription({
-			...displayOptions,
-			show: { publicCloudOperation: ['mysqlNodeListGet'] },
-		}) as INodeProperties[]),
-	);
-	properties.push(
-		...(mysqlNodeCreatePostDescription({
-			...displayOptions,
-			show: { publicCloudOperation: ['mysqlNodeCreatePost'] },
-		}) as INodeProperties[]),
-	);
-	properties.push(
-		...(mysqlNodeGetGetDescription({
-			...displayOptions,
-			show: { publicCloudOperation: ['mysqlNodeGetGet'] },
-		}) as INodeProperties[]),
-	);
-	properties.push(
-		...(mysqlNodeUpdatePutDescription({
-			...displayOptions,
-			show: { publicCloudOperation: ['mysqlNodeUpdatePut'] },
-		}) as INodeProperties[]),
-	);
-	properties.push(
-		...(mysqlNodeDeleteDeleteDescription({
-			...displayOptions,
-			show: { publicCloudOperation: ['mysqlNodeDeleteDelete'] },
-		}) as INodeProperties[]),
-	);
-	properties.push(
-		...(mysqlIpRestrictionListGetDescription({
-			...displayOptions,
-			show: { publicCloudOperation: ['mysqlIpRestrictionListGet'] },
-		}) as INodeProperties[]),
-	);
-	properties.push(
-		...(mysqlIpRestrictionCreatePostDescription({
-			...displayOptions,
-			show: { publicCloudOperation: ['mysqlIpRestrictionCreatePost'] },
-		}) as INodeProperties[]),
-	);
-	properties.push(
-		...(mysqlLogSubscriptionListGetDescription({
-			...displayOptions,
-			show: { publicCloudOperation: ['mysqlLogSubscriptionListGet'] },
-		}) as INodeProperties[]),
-	);
-	properties.push(
-		...(mysqlLogSubscriptionCreatePostDescription({
-			...displayOptions,
-			show: { publicCloudOperation: ['mysqlLogSubscriptionCreatePost'] },
-		}) as INodeProperties[]),
-	);
-	properties.push(
-		...(mysqlLogSubscriptionGetGetDescription({
-			...displayOptions,
-			show: { publicCloudOperation: ['mysqlLogSubscriptionGetGet'] },
-		}) as INodeProperties[]),
-	);
-	properties.push(
-		...(mysqlMaintenanceGetDescription({
-			...displayOptions,
-			show: { publicCloudOperation: ['mysqlMaintenanceGet'] },
-		}) as INodeProperties[]),
-	);
-	properties.push(
-		...(mysqlMaintenanceUpdatePutDescription({
-			...displayOptions,
-			show: { publicCloudOperation: ['mysqlMaintenanceUpdatePut'] },
-		}) as INodeProperties[]),
-	);
-	properties.push(
-		...(mysqlMetricGetDescription({
-			...displayOptions,
-			show: { publicCloudOperation: ['mysqlMetricGet'] },
-		}) as INodeProperties[]),
-	);
-	properties.push(
-		...(mysqlPrometheusGetDescription({
-			...displayOptions,
-			show: { publicCloudOperation: ['mysqlPrometheusGet'] },
-		}) as INodeProperties[]),
-	);
-	properties.push(
-		...(mysqlCertificateListGetDescription({
-			...displayOptions,
-			show: { publicCloudOperation: ['mysqlCertificateListGet'] },
-		}) as INodeProperties[]),
-	);
-	properties.push(
-		...(mysqlCertificateCreatePostDescription({
-			...displayOptions,
-			show: { publicCloudOperation: ['mysqlCertificateCreatePost'] },
-		}) as INodeProperties[]),
-	);
-	properties.push(
-		...(mysqlIntegrationListGetDescription({
-			...displayOptions,
-			show: { publicCloudOperation: ['mysqlIntegrationListGet'] },
-		}) as INodeProperties[]),
-	);
-	properties.push(
-		...(mysqlIntegrationCreatePostDescription({
-			...displayOptions,
-			show: { publicCloudOperation: ['mysqlIntegrationCreatePost'] },
-		}) as INodeProperties[]),
-	);
-	properties.push(
-		...(opensearchAdvancedConfigurationListGetDescription({
-			...displayOptions,
-			show: { publicCloudOperation: ['opensearchAdvancedConfigurationListGet'] },
-		}) as INodeProperties[]),
-		...(opensearchAdvancedConfigurationUpdatePutDescription({
-			...displayOptions,
-			show: { publicCloudOperation: ['opensearchAdvancedConfigurationUpdatePut'] },
-		}) as INodeProperties[]),
-		...(opensearchBackupGetGetDescription({
-			...displayOptions,
-			show: { publicCloudOperation: ['opensearchBackupGetGet'] },
-		}) as INodeProperties[]),
-		...(opensearchBackupListGetDescription({
-			...displayOptions,
-			show: { publicCloudOperation: ['opensearchBackupListGet'] },
-		}) as INodeProperties[]),
-		...(opensearchCapabilitiesAdvancedConfigurationListGetDescription({
-			...displayOptions,
-			show: { publicCloudOperation: ['opensearchCapabilitiesAdvancedConfigurationListGet'] },
-		}) as INodeProperties[]),
-		...(opensearchCapabilitiesBackupRegionsListGetDescription({
-			...displayOptions,
-			show: { publicCloudOperation: ['opensearchCapabilitiesBackupRegionsListGet'] },
-		}) as INodeProperties[]),
-		...(opensearchCapabilitiesIntegrationListGetDescription({
-			...displayOptions,
-			show: { publicCloudOperation: ['opensearchCapabilitiesIntegrationListGet'] },
-		}) as INodeProperties[]),
-		...(opensearchClusterCreatePostDescription({
-			...displayOptions,
-			show: { publicCloudOperation: ['opensearchClusterCreatePost'] },
-		}) as INodeProperties[]),
-		...(opensearchClusterDeleteDeleteDescription({
-			...displayOptions,
-			show: { publicCloudOperation: ['opensearchClusterDeleteDelete'] },
-		}) as INodeProperties[]),
-		...(opensearchClusterGetGetDescription({
-			...displayOptions,
-			show: { publicCloudOperation: ['opensearchClusterGetGet'] },
-		}) as INodeProperties[]),
-		...(opensearchClusterListGetDescription({
-			...displayOptions,
-			show: { publicCloudOperation: ['opensearchClusterListGet'] },
-		}) as INodeProperties[]),
-		...(opensearchClusterUpdatePutDescription({
-			...displayOptions,
-			show: { publicCloudOperation: ['opensearchClusterUpdatePut'] },
-		}) as INodeProperties[]),
-		...(opensearchIndexDeleteDeleteDescription({
-			...displayOptions,
-			show: { publicCloudOperation: ['opensearchIndexDeleteDelete'] },
-		}) as INodeProperties[]),
-		...(opensearchIndexGetGetDescription({
-			...displayOptions,
-			show: { publicCloudOperation: ['opensearchIndexGetGet'] },
-		}) as INodeProperties[]),
-		...(opensearchIndexListGetDescription({
-			...displayOptions,
-			show: { publicCloudOperation: ['opensearchIndexListGet'] },
-		}) as INodeProperties[]),
-		...(opensearchIntegrationCreatePostDescription({
-			...displayOptions,
-			show: { publicCloudOperation: ['opensearchIntegrationCreatePost'] },
-		}) as INodeProperties[]),
-		...(opensearchIntegrationDeleteDeleteDescription({
-			...displayOptions,
-			show: { publicCloudOperation: ['opensearchIntegrationDeleteDelete'] },
-		}) as INodeProperties[]),
-		...(opensearchIntegrationGetGetDescription({
-			...displayOptions,
-			show: { publicCloudOperation: ['opensearchIntegrationGetGet'] },
-		}) as INodeProperties[]),
-		...(opensearchIntegrationListGetDescription({
-			...displayOptions,
-			show: { publicCloudOperation: ['opensearchIntegrationListGet'] },
-		}) as INodeProperties[]),
-		...(opensearchIpRestrictionCreatePostDescription({
-			...displayOptions,
-			show: { publicCloudOperation: ['opensearchIpRestrictionCreatePost'] },
-		}) as INodeProperties[]),
-		...(opensearchIpRestrictionDeleteDeleteDescription({
-			...displayOptions,
-			show: { publicCloudOperation: ['opensearchIpRestrictionDeleteDelete'] },
-		}) as INodeProperties[]),
-		...(opensearchIpRestrictionGetGetDescription({
-			...displayOptions,
-			show: { publicCloudOperation: ['opensearchIpRestrictionGetGet'] },
-		}) as INodeProperties[]),
-		...(opensearchIpRestrictionListGetDescription({
-			...displayOptions,
-			show: { publicCloudOperation: ['opensearchIpRestrictionListGet'] },
-		}) as INodeProperties[]),
-		...(opensearchIpRestrictionUpdatePutDescription({
-			...displayOptions,
-			show: { publicCloudOperation: ['opensearchIpRestrictionUpdatePut'] },
-		}) as INodeProperties[]),
-		...(opensearchLogKindGetDescription({
-			...displayOptions,
-			show: { publicCloudOperation: ['opensearchLogKindGet'] },
-		}) as INodeProperties[]),
-		...(opensearchLogKindListGetDescription({
-			...displayOptions,
-			show: { publicCloudOperation: ['opensearchLogKindListGet'] },
-		}) as INodeProperties[]),
-		...(opensearchLogSubscriptionCreatePostDescription({
-			...displayOptions,
-			show: { publicCloudOperation: ['opensearchLogSubscriptionCreatePost'] },
-		}) as INodeProperties[]),
-		...(opensearchLogSubscriptionDeleteDeleteDescription({
-			...displayOptions,
-			show: { publicCloudOperation: ['opensearchLogSubscriptionDeleteDelete'] },
-		}) as INodeProperties[]),
-		...(opensearchLogSubscriptionGetDescription({
-			...displayOptions,
-			show: { publicCloudOperation: ['opensearchLogSubscriptionGet'] },
-		}) as INodeProperties[]),
-		...(opensearchLogSubscriptionListGetDescription({
-			...displayOptions,
-			show: { publicCloudOperation: ['opensearchLogSubscriptionListGet'] },
-		}) as INodeProperties[]),
-		...(opensearchLogUrlCreatePostDescription({
-			...displayOptions,
-			show: { publicCloudOperation: ['opensearchLogUrlCreatePost'] },
-		}) as INodeProperties[]),
-		...(opensearchLogsListGetDescription({
-			...displayOptions,
-			show: { publicCloudOperation: ['opensearchLogsListGet'] },
-		}) as INodeProperties[]),
-		...(opensearchMaintenanceApplyPostDescription({
-			...displayOptions,
-			show: { publicCloudOperation: ['opensearchMaintenanceApplyPost'] },
-		}) as INodeProperties[]),
-		...(opensearchMaintenanceGetGetDescription({
-			...displayOptions,
-			show: { publicCloudOperation: ['opensearchMaintenanceGetGet'] },
-		}) as INodeProperties[]),
-		...(opensearchMaintenanceListGetDescription({
-			...displayOptions,
-			show: { publicCloudOperation: ['opensearchMaintenanceListGet'] },
-		}) as INodeProperties[]),
-		...(opensearchMetricGetGetDescription({
-			...displayOptions,
-			show: { publicCloudOperation: ['opensearchMetricGetGet'] },
-		}) as INodeProperties[]),
-		...(opensearchMetricListGetDescription({
-			...displayOptions,
-			show: { publicCloudOperation: ['opensearchMetricListGet'] },
-		}) as INodeProperties[]),
-		...(opensearchNodeGetGetDescription({
-			...displayOptions,
-			show: { publicCloudOperation: ['opensearchNodeGetGet'] },
-		}) as INodeProperties[]),
-		...(opensearchNodeListGetDescription({
-			...displayOptions,
-			show: { publicCloudOperation: ['opensearchNodeListGet'] },
-		}) as INodeProperties[]),
-		...(opensearchPatternCreatePostDescription({
-			...displayOptions,
-			show: { publicCloudOperation: ['opensearchPatternCreatePost'] },
-		}) as INodeProperties[]),
-		...(opensearchPatternDeleteDeleteDescription({
-			...displayOptions,
-			show: { publicCloudOperation: ['opensearchPatternDeleteDelete'] },
-		}) as INodeProperties[]),
-		...(opensearchPatternGetGetDescription({
-			...displayOptions,
-			show: { publicCloudOperation: ['opensearchPatternGetGet'] },
-		}) as INodeProperties[]),
-		...(opensearchPatternListGetDescription({
-			...displayOptions,
-			show: { publicCloudOperation: ['opensearchPatternListGet'] },
-		}) as INodeProperties[]),
-		...(opensearchPermissionsListGetDescription({
-			...displayOptions,
-			show: { publicCloudOperation: ['opensearchPermissionsListGet'] },
-		}) as INodeProperties[]),
-		...(opensearchPrometheusCredentialsResetPostDescription({
-			...displayOptions,
-			show: { publicCloudOperation: ['opensearchPrometheusCredentialsResetPost'] },
-		}) as INodeProperties[]),
-		...(opensearchPrometheusListGetDescription({
-			...displayOptions,
-			show: { publicCloudOperation: ['opensearchPrometheusListGet'] },
-		}) as INodeProperties[]),
-		...(opensearchUserCreatePostDescription({
-			...displayOptions,
-			show: { publicCloudOperation: ['opensearchUserCreatePost'] },
-		}) as INodeProperties[]),
-		...(opensearchUserCredentialsResetPostDescription({
-			...displayOptions,
-			show: { publicCloudOperation: ['opensearchUserCredentialsResetPost'] },
-		}) as INodeProperties[]),
-		...(opensearchUserDeleteDeleteDescription({
-			...displayOptions,
-			show: { publicCloudOperation: ['opensearchUserDeleteDelete'] },
-		}) as INodeProperties[]),
-		...(opensearchUserGetGetDescription({
-			...displayOptions,
-			show: { publicCloudOperation: ['opensearchUserGetGet'] },
-		}) as INodeProperties[]),
-		...(opensearchUserListGetDescription({
-			...displayOptions,
-			show: { publicCloudOperation: ['opensearchUserListGet'] },
-		}) as INodeProperties[]),
-		...(opensearchUserUpdatePutDescription({
-			...displayOptions,
-			show: { publicCloudOperation: ['opensearchUserUpdatePut'] },
-		}) as INodeProperties[]),
-		...(postgresqlClusterListGetDescription({
-			...displayOptions,
-			show: { publicCloudOperation: ['postgresqlClusterListGet'] },
-		}) as INodeProperties[]),
-	);
-	properties.push(
-		...(postgresqlClusterGetGetDescription({
-			...displayOptions,
-			show: { publicCloudOperation: ['postgresqlClusterGetGet'] },
-		}) as INodeProperties[]),
-	);
-	properties.push(
-		...(postgresqlClusterCreatePostDescription({
-			...displayOptions,
-			show: { publicCloudOperation: ['postgresqlClusterCreatePost'] },
-		}) as INodeProperties[]),
-	);
-	properties.push(
-		...(postgresqlClusterUpdatePutDescription({
-			...displayOptions,
-			show: { publicCloudOperation: ['postgresqlClusterUpdatePut'] },
-		}) as INodeProperties[]),
-	);
-	properties.push(
-		...(postgresqlClusterDeleteDeleteDescription({
-			...displayOptions,
-			show: { publicCloudOperation: ['postgresqlClusterDeleteDelete'] },
-		}) as INodeProperties[]),
-	);
-	properties.push(
-		...(postgresqlBackupListGetDescription({
-			...displayOptions,
-			show: { publicCloudOperation: ['postgresqlBackupListGet'] },
-		}) as INodeProperties[]),
-	);
-	properties.push(
-		...(postgresqlBackupCreatePostDescription({
-			...displayOptions,
-			show: { publicCloudOperation: ['postgresqlBackupCreatePost'] },
-		}) as INodeProperties[]),
-	);
-	properties.push(
-		...(postgresqlBackupGetGetDescription({
-			...displayOptions,
-			show: { publicCloudOperation: ['postgresqlBackupGetGet'] },
-		}) as INodeProperties[]),
-	);
-	properties.push(
-		...(postgresqlBackupDeleteDeleteDescription({
-			...displayOptions,
-			show: { publicCloudOperation: ['postgresqlBackupDeleteDelete'] },
-		}) as INodeProperties[]),
-	);
-	properties.push(
-		...(postgresqlUserListGetDescription({
-			...displayOptions,
-			show: { publicCloudOperation: ['postgresqlUserListGet'] },
-		}) as INodeProperties[]),
-	);
-	properties.push(
-		...(postgresqlUserCreatePostDescription({
-			...displayOptions,
-			show: { publicCloudOperation: ['postgresqlUserCreatePost'] },
-		}) as INodeProperties[]),
-	);
-	properties.push(
-		...(postgresqlUserGetGetDescription({
-			...displayOptions,
-			show: { publicCloudOperation: ['postgresqlUserGetGet'] },
-		}) as INodeProperties[]),
-	);
-	properties.push(
-		...(postgresqlUserUpdatePutDescription({
-			...displayOptions,
-			show: { publicCloudOperation: ['postgresqlUserUpdatePut'] },
-		}) as INodeProperties[]),
-	);
-	properties.push(
-		...(postgresqlUserDeleteDeleteDescription({
-			...displayOptions,
-			show: { publicCloudOperation: ['postgresqlUserDeleteDelete'] },
-		}) as INodeProperties[]),
-	);
-	properties.push(
-		...(postgresqlNodeListGetDescription({
-			...displayOptions,
-			show: { publicCloudOperation: ['postgresqlNodeListGet'] },
-		}) as INodeProperties[]),
-	);
-	properties.push(
-		...(postgresqlNodeCreatePostDescription({
-			...displayOptions,
-			show: { publicCloudOperation: ['postgresqlNodeCreatePost'] },
-		}) as INodeProperties[]),
-	);
-	properties.push(
-		...(postgresqlNodeGetGetDescription({
-			...displayOptions,
-			show: { publicCloudOperation: ['postgresqlNodeGetGet'] },
-		}) as INodeProperties[]),
-	);
-	properties.push(
-		...(postgresqlNodeUpdatePutDescription({
-			...displayOptions,
-			show: { publicCloudOperation: ['postgresqlNodeUpdatePut'] },
-		}) as INodeProperties[]),
-	);
-	properties.push(
-		...(postgresqlNodeDeleteDeleteDescription({
-			...displayOptions,
-			show: { publicCloudOperation: ['postgresqlNodeDeleteDelete'] },
-		}) as INodeProperties[]),
-	);
-	properties.push(
-		...(postgresqlIpRestrictionListGetDescription({
-			...displayOptions,
-			show: { publicCloudOperation: ['postgresqlIpRestrictionListGet'] },
-		}) as INodeProperties[]),
-	);
-	properties.push(
-		...(postgresqlIpRestrictionCreatePostDescription({
-			...displayOptions,
-			show: { publicCloudOperation: ['postgresqlIpRestrictionCreatePost'] },
-		}) as INodeProperties[]),
-	);
-	properties.push(
-		...(postgresqlLogSubscriptionListGetDescription({
-			...displayOptions,
-			show: { publicCloudOperation: ['postgresqlLogSubscriptionListGet'] },
-		}) as INodeProperties[]),
-	);
-	properties.push(
-		...(postgresqlLogSubscriptionCreatePostDescription({
-			...displayOptions,
-			show: { publicCloudOperation: ['postgresqlLogSubscriptionCreatePost'] },
-		}) as INodeProperties[]),
-	);
-	properties.push(
-		...(postgresqlLogSubscriptionGetGetDescription({
-			...displayOptions,
-			show: { publicCloudOperation: ['postgresqlLogSubscriptionGetGet'] },
-		}) as INodeProperties[]),
-	);
-	properties.push(
-		...(postgresqlMaintenanceGetDescription({
-			...displayOptions,
-			show: { publicCloudOperation: ['postgresqlMaintenanceGet'] },
-		}) as INodeProperties[]),
-	);
-	properties.push(
-		...(postgresqlMaintenanceUpdatePutDescription({
-			...displayOptions,
-			show: { publicCloudOperation: ['postgresqlMaintenanceUpdatePut'] },
-		}) as INodeProperties[]),
-	);
-	properties.push(
-		...(postgresqlMetricGetDescription({
-			...displayOptions,
-			show: { publicCloudOperation: ['postgresqlMetricGet'] },
-		}) as INodeProperties[]),
-	);
-	properties.push(
-		...(postgresqlPrometheusGetDescription({
-			...displayOptions,
-			show: { publicCloudOperation: ['postgresqlPrometheusGet'] },
-		}) as INodeProperties[]),
-	);
-	properties.push(
-		...(postgresqlCertificateListGetDescription({
-			...displayOptions,
-			show: { publicCloudOperation: ['postgresqlCertificateListGet'] },
-		}) as INodeProperties[]),
-	);
-	properties.push(
-		...(postgresqlCertificateCreatePostDescription({
-			...displayOptions,
-			show: { publicCloudOperation: ['postgresqlCertificateCreatePost'] },
-		}) as INodeProperties[]),
-	);
-	properties.push(
-		...(postgresqlIntegrationListGetDescription({
-			...displayOptions,
-			show: { publicCloudOperation: ['postgresqlIntegrationListGet'] },
-		}) as INodeProperties[]),
-	);
-	properties.push(
-		...(postgresqlIntegrationCreatePostDescription({
-			...displayOptions,
-			show: { publicCloudOperation: ['postgresqlIntegrationCreatePost'] },
-		}) as INodeProperties[]),
-	);
-	properties.push(
-		...(kubeAuditLogsPostDescription({
-			...displayOptions,
-			show: { publicCloudOperation: ['kubeAuditLogsPost'] },
-		}) as INodeProperties[]),
-	);
-	properties.push(
-		...(kubeCustomizationGetDescription({
-			...displayOptions,
-			show: { publicCloudOperation: ['kubeCustomizationGet'] },
-		}) as INodeProperties[]),
-	);
-	properties.push(
-		...(kubeCustomizationUpdatePutDescription({
-			...displayOptions,
-			show: { publicCloudOperation: ['kubeCustomizationUpdatePut'] },
-		}) as INodeProperties[]),
-	);
-	properties.push(
-		...(kubeDeleteDeleteDescription({
-			...displayOptions,
-			show: { publicCloudOperation: ['kubeDeleteDelete'] },
-		}) as INodeProperties[]),
-	);
-	properties.push(
-		...(kubeFlavorsGetDescription({
-			...displayOptions,
-			show: { publicCloudOperation: ['kubeFlavorsGet'] },
-		}) as INodeProperties[]),
-	);
-	properties.push(
-		...(kubeGetGetDescription({
-			...displayOptions,
-			show: { publicCloudOperation: ['kubeGetGet'] },
-		}) as INodeProperties[]),
-	);
-	properties.push(
-		...(kubeIpRestrictionsDeleteDeleteDescription({
-			...displayOptions,
-			show: { publicCloudOperation: ['kubeIpRestrictionsDeleteDelete'] },
-		}) as INodeProperties[]),
-	);
-	properties.push(
-		...(kubeIpRestrictionsGetDescription({
-			...displayOptions,
-			show: { publicCloudOperation: ['kubeIpRestrictionsGet'] },
-		}) as INodeProperties[]),
-	);
-	properties.push(
-		...(kubeIpRestrictionsPostDescription({
-			...displayOptions,
-			show: { publicCloudOperation: ['kubeIpRestrictionsPost'] },
-		}) as INodeProperties[]),
-	);
-	properties.push(
-		...(kubeIpRestrictionsUpdatePutDescription({
-			...displayOptions,
-			show: { publicCloudOperation: ['kubeIpRestrictionsUpdatePut'] },
-		}) as INodeProperties[]),
-	);
-	properties.push(
-		...(kubeKubeconfigPostDescription({
-			...displayOptions,
-			show: { publicCloudOperation: ['kubeKubeconfigPost'] },
-		}) as INodeProperties[]),
-	);
-	properties.push(
-		...(kubeKubeconfigResetPostDescription({
-			...displayOptions,
-			show: { publicCloudOperation: ['kubeKubeconfigResetPost'] },
-		}) as INodeProperties[]),
-	);
-	properties.push(
-		...(kubeListGetDescription({
-			...displayOptions,
-			show: { publicCloudOperation: ['kubeListGet'] },
-		}) as INodeProperties[]),
-	);
-	properties.push(
-		...(kubeLogSubscriptionDeleteDeleteDescription({
-			...displayOptions,
-			show: { publicCloudOperation: ['kubeLogSubscriptionDeleteDelete'] },
-		}) as INodeProperties[]),
-	);
-	properties.push(
-		...(kubeLogSubscriptionGetDescription({
-			...displayOptions,
-			show: { publicCloudOperation: ['kubeLogSubscriptionGet'] },
-		}) as INodeProperties[]),
-	);
-	properties.push(
-		...(kubeLogSubscriptionPostDescription({
-			...displayOptions,
-			show: { publicCloudOperation: ['kubeLogSubscriptionPost'] },
-		}) as INodeProperties[]),
-	);
-	properties.push(
-		...(kubeLogSubscriptionListGetDescription({
-			...displayOptions,
-			show: { publicCloudOperation: ['kubeLogSubscriptionListGet'] },
-		}) as INodeProperties[]),
-	);
-	properties.push(
-		...(kubeLogUrlPostDescription({
-			...displayOptions,
-			show: { publicCloudOperation: ['kubeLogUrlPost'] },
-		}) as INodeProperties[]),
-	);
-	properties.push(
-		...(kubeMetricsEtcdUsageGetDescription({
-			...displayOptions,
-			show: { publicCloudOperation: ['kubeMetricsEtcdUsageGet'] },
-		}) as INodeProperties[]),
-	);
-	properties.push(
-		...(kubeNodeDeleteDeleteDescription({
-			...displayOptions,
-			show: { publicCloudOperation: ['kubeNodeDeleteDelete'] },
-		}) as INodeProperties[]),
-	);
-	properties.push(
-		...(kubeNodeGetDescription({
-			...displayOptions,
-			show: { publicCloudOperation: ['kubeNodeGet'] },
-		}) as INodeProperties[]),
-	);
-	properties.push(
-		...(kubeNodeListGetDescription({
-			...displayOptions,
-			show: { publicCloudOperation: ['kubeNodeListGet'] },
-		}) as INodeProperties[]),
-	);
-	properties.push(
-		...(kubeNodepoolCreatePostDescription({
-			...displayOptions,
-			show: { publicCloudOperation: ['kubeNodepoolCreatePost'] },
-		}) as INodeProperties[]),
-	);
-	properties.push(
-		...(kubeNodepoolListGetDescription({
-			...displayOptions,
-			show: { publicCloudOperation: ['kubeNodepoolListGet'] },
-		}) as INodeProperties[]),
-	);
-	properties.push(
-		...(kubeNodepoolDeleteDeleteDescription({
-			...displayOptions,
-			show: { publicCloudOperation: ['kubeNodepoolDeleteDelete'] },
-		}) as INodeProperties[]),
-	);
-	properties.push(
-		...(kubeNodepoolGetGetDescription({
-			...displayOptions,
-			show: { publicCloudOperation: ['kubeNodepoolGetGet'] },
-		}) as INodeProperties[]),
-	);
-	properties.push(
-		...(kubeNodepoolListNodepoolNodesGetDescription({
-			...displayOptions,
-			show: { publicCloudOperation: ['kubeNodepoolListNodepoolNodesGet'] },
-		}) as INodeProperties[]),
-	);
-	properties.push(
-		...(kubeNodepoolUpdatePutDescription({
-			...displayOptions,
-			show: { publicCloudOperation: ['kubeNodepoolUpdatePut'] },
-		}) as INodeProperties[]),
-	);
-	properties.push(
-		...(kubeOpenIdConnectDeleteDeleteDescription({
-			...displayOptions,
-			show: { publicCloudOperation: ['kubeOpenIdConnectDeleteDelete'] },
-		}) as INodeProperties[]),
-	);
-	properties.push(
-		...(kubeOpenIdConnectGetDescription({
-			...displayOptions,
-			show: { publicCloudOperation: ['kubeOpenIdConnectGet'] },
-		}) as INodeProperties[]),
-	);
-	properties.push(
-		...(kubeOpenIdConnectPostDescription({
-			...displayOptions,
-			show: { publicCloudOperation: ['kubeOpenIdConnectPost'] },
-		}) as INodeProperties[]),
-	);
-	properties.push(
-		...(kubeOpenIdConnectUpdatePutDescription({
-			...displayOptions,
-			show: { publicCloudOperation: ['kubeOpenIdConnectUpdatePut'] },
-		}) as INodeProperties[]),
-	);
-	properties.push(
-		...(kubePrivateNetworkConfigurationGetDescription({
-			...displayOptions,
-			show: { publicCloudOperation: ['kubePrivateNetworkConfigurationGet'] },
-		}) as INodeProperties[]),
-	);
-	properties.push(
-		...(kubePrivateNetworkConfigurationUpdatePutDescription({
-			...displayOptions,
-			show: { publicCloudOperation: ['kubePrivateNetworkConfigurationUpdatePut'] },
-		}) as INodeProperties[]),
-	);
-	properties.push(
-		...(kubeResetPostDescription({
-			...displayOptions,
-			show: { publicCloudOperation: ['kubeResetPost'] },
-		}) as INodeProperties[]),
-	);
-	properties.push(
-		...(kubeRestartPostDescription({
-			...displayOptions,
-			show: { publicCloudOperation: ['kubeRestartPost'] },
-		}) as INodeProperties[]),
-	);
-	properties.push(
-		...(kubeUpdateLoadBalancersSubnetIdUpdatePutDescription({
-			...displayOptions,
-			show: { publicCloudOperation: ['kubeUpdateLoadBalancersSubnetIdUpdatePut'] },
-		}) as INodeProperties[]),
-	);
-	properties.push(
-		...(kubeUpdatePolicyUpdatePutDescription({
-			...displayOptions,
-			show: { publicCloudOperation: ['kubeUpdatePolicyUpdatePut'] },
-		}) as INodeProperties[]),
-	);
-	properties.push(
-		...(kubeUpdatePostDescription({
-			...displayOptions,
-			show: { publicCloudOperation: ['kubeUpdatePost'] },
-		}) as INodeProperties[]),
-	);
-	properties.push(
-		...(kubeUpdatePutDescription({
-			...displayOptions,
-			show: { publicCloudOperation: ['kubeUpdatePut'] },
-		}) as INodeProperties[]),
-	);
-	properties.push(
-		...(instanceActiveMonthlyBillingPostDescription({
-			...displayOptions,
-			show: { publicCloudOperation: ['instanceActiveMonthlyBillingPost'] },
-		}) as INodeProperties[]),
-	);
-	properties.push(
-		...(instanceApplicationAccessPostDescription({
-			...displayOptions,
-			show: { publicCloudOperation: ['instanceApplicationAccessPost'] },
-		}) as INodeProperties[]),
-	);
-	properties.push(
-		...(instanceBulkPostDescription({
-			...displayOptions,
-			show: { publicCloudOperation: ['instanceBulkPost'] },
-		}) as INodeProperties[]),
-	);
-	properties.push(
-		...(instanceCreatePostDescription({
-			...displayOptions,
-			show: { publicCloudOperation: ['instanceCreatePost'] },
-		}) as INodeProperties[]),
-	);
-	properties.push(
-		...(instanceDeleteDeleteDescription({
-			...displayOptions,
-			show: { publicCloudOperation: ['instanceDeleteDelete'] },
-		}) as INodeProperties[]),
-	);
-	properties.push(
-		...(instanceGetGetDescription({
-			...displayOptions,
-			show: { publicCloudOperation: ['instanceGetGet'] },
-		}) as INodeProperties[]),
-	);
-	properties.push(
-		...(instanceGroupCreatePostDescription({
-			...displayOptions,
-			show: { publicCloudOperation: ['instanceGroupCreatePost'] },
-		}) as INodeProperties[]),
-	);
-	properties.push(...instanceGroupDeleteDeleteDescription());
-	properties.push(...instanceGroupGetGetDescription());
-	properties.push(...instanceGroupListGetDescription());
-	properties.push(
-		...(instanceInterfaceCreatePostDescription({
-			...displayOptions,
-			show: { publicCloudOperation: ['instanceInterfaceCreatePost'] },
-		}) as INodeProperties[]),
-	);
-	properties.push(
-		...(instanceInterfaceDeleteDeleteDescription({
-			...displayOptions,
-			show: { publicCloudOperation: ['instanceInterfaceDeleteDelete'] },
-		}) as INodeProperties[]),
-	);
-	properties.push(
-		...(instanceInterfaceGetGetDescription({
-			...displayOptions,
-			show: { publicCloudOperation: ['instanceInterfaceGetGet'] },
-		}) as INodeProperties[]),
-	);
-	properties.push(
-		...(instanceInterfaceListGetDescription({
-			...displayOptions,
-			show: { publicCloudOperation: ['instanceInterfaceListGet'] },
-		}) as INodeProperties[]),
-	);
-	properties.push(...instanceListGetDescription());
-	properties.push(
-		...(instanceRebootPostDescription({
-			...displayOptions,
-			show: { publicCloudOperation: ['instanceRebootPost'] },
-		}) as INodeProperties[]),
-	);
-	properties.push(
-		...(instanceReinstallPostDescription({
-			...displayOptions,
-			show: { publicCloudOperation: ['instanceReinstallPost'] },
-		}) as INodeProperties[]),
-	);
-	properties.push(
-		...(instanceRescueModePostDescription({
-			...displayOptions,
-			show: { publicCloudOperation: ['instanceRescueModePost'] },
-		}) as INodeProperties[]),
-	);
-	properties.push(
-		...(instanceResizePostDescription({
-			...displayOptions,
-			show: { publicCloudOperation: ['instanceResizePost'] },
-		}) as INodeProperties[]),
-	);
-	properties.push(
-		...(instanceResumePostDescription({
-			...displayOptions,
-			show: { publicCloudOperation: ['instanceResumePost'] },
-		}) as INodeProperties[]),
-	);
-	properties.push(
-		...(instanceShelvePostDescription({
-			...displayOptions,
-			show: { publicCloudOperation: ['instanceShelvePost'] },
-		}) as INodeProperties[]),
-	);
-	properties.push(
-		...(instanceSnapshotPostDescription({
-			...displayOptions,
-			show: { publicCloudOperation: ['instanceSnapshotPost'] },
-		}) as INodeProperties[]),
-	);
-	properties.push(
-		...(instanceStartPostDescription({
-			...displayOptions,
-			show: { publicCloudOperation: ['instanceStartPost'] },
-		}) as INodeProperties[]),
-	);
-	properties.push(
-		...(instanceStopPostDescription({
-			...displayOptions,
-			show: { publicCloudOperation: ['instanceStopPost'] },
-		}) as INodeProperties[]),
-	);
-	properties.push(
-		...(instanceUnshelvePostDescription({
-			...displayOptions,
-			show: { publicCloudOperation: ['instanceUnshelvePost'] },
-		}) as INodeProperties[]),
-	);
-	properties.push(
-		...(instanceUpdatePutDescription({
-			...displayOptions,
-			show: { publicCloudOperation: ['instanceUpdatePut'] },
-		}) as INodeProperties[]),
-	);
-	properties.push(
-		...(instanceVncPostDescription({
-			...displayOptions,
-			show: { publicCloudOperation: ['instanceVncPost'] },
-		}) as INodeProperties[]),
-	);
-	properties.push(
-		...(networkCreatePrivateNetworkPostDescription({
-			...displayOptions,
-			show: { publicCloudOperation: ['networkCreatePrivateNetworkPost'] },
-		}) as INodeProperties[]),
-	);
-	properties.push(
-		...(networkCreateSubnetPostDescription({
-			...displayOptions,
-			show: { publicCloudOperation: ['networkCreateSubnetPost'] },
-		}) as INodeProperties[]),
-	);
-	properties.push(
-		...(networkDeletePrivateNetworkDeleteDescription({
-			...displayOptions,
-			show: { publicCloudOperation: ['networkDeletePrivateNetworkDelete'] },
-		}) as INodeProperties[]),
-	);
-	properties.push(
-		...(networkDeleteSubnetDeleteDescription({
-			...displayOptions,
-			show: { publicCloudOperation: ['networkDeleteSubnetDelete'] },
-		}) as INodeProperties[]),
-	);
-	properties.push(
-		...(networkGetPrivateNetworkDetailGetDescription({
-			...displayOptions,
-			show: { publicCloudOperation: ['networkGetPrivateNetworkDetailGet'] },
-		}) as INodeProperties[]),
-	);
-	properties.push(
-		...(networkGetSubnetDetailGetDescription({
-			...displayOptions,
-			show: { publicCloudOperation: ['networkGetSubnetDetailGet'] },
-		}) as INodeProperties[]),
-	);
-	properties.push(
-		...(networkListPrivateNetworksGetDescription({
-			...displayOptions,
-			show: { publicCloudOperation: ['networkListPrivateNetworksGet'] },
-		}) as INodeProperties[]),
-	);
-	properties.push(
-		...(networkListPublicNetworksGetDescription({
-			...displayOptions,
-			show: { publicCloudOperation: ['networkListPublicNetworksGet'] },
-		}) as INodeProperties[]),
-	);
-	properties.push(
-		...(networkListSubnetsGetDescription({
-			...displayOptions,
-			show: { publicCloudOperation: ['networkListSubnetsGet'] },
-		}) as INodeProperties[]),
-	);
-	properties.push(
-		...(networkUpdatePrivateNetworkPutDescription({
-			...displayOptions,
-			show: { publicCloudOperation: ['networkUpdatePrivateNetworkPut'] },
-		}) as INodeProperties[]),
-	);
-	properties.push(
-		...(networkUpdateSubnetPutDescription({
-			...displayOptions,
-			show: { publicCloudOperation: ['networkUpdateSubnetPut'] },
-		}) as INodeProperties[]),
-	);
-	properties.push(
-		...(networkActivatePrivateNetworkRegionPostDescription({
-			...displayOptions,
-			show: { publicCloudOperation: ['networkActivatePrivateNetworkRegionPost'] },
-		}) as INodeProperties[]),
-	);
-	properties.push(
-		...(regionGetGetDescription({
-			...displayOptions,
-			show: { publicCloudOperation: ['regionGetGet'] },
-		}) as INodeProperties[]),
-	);
-	properties.push(
-		...(regionListGetDescription({
-			...displayOptions,
-			show: { publicCloudOperation: ['regionListGet'] },
-		}) as INodeProperties[]),
-	);
-	properties.push(
-		...(regionShareCreatePostDescription({
-			...displayOptions,
-			show: { publicCloudOperation: ['regionShareCreatePost'] },
-		}) as INodeProperties[]),
-	);
-	properties.push(
-		...(regionShareDeleteDeleteDescription({
-			...displayOptions,
-			show: { publicCloudOperation: ['regionShareDeleteDelete'] },
-		}) as INodeProperties[]),
-	);
-	properties.push(
-		...(regionShareGetGetDescription({
-			...displayOptions,
-			show: { publicCloudOperation: ['regionShareGetGet'] },
-		}) as INodeProperties[]),
-	);
-	properties.push(
-		...(regionShareListGetDescription({
-			...displayOptions,
-			show: { publicCloudOperation: ['regionShareListGet'] },
-		}) as INodeProperties[]),
-	);
-	properties.push(
-		...(regionShareSnapshotCreatePostDescription({
-			...displayOptions,
-			show: { publicCloudOperation: ['regionShareSnapshotCreatePost'] },
-		}) as INodeProperties[]),
-	);
-	properties.push(
-		...(regionShareSnapshotDeleteDeleteDescription({
-			...displayOptions,
-			show: { publicCloudOperation: ['regionShareSnapshotDeleteDelete'] },
-		}) as INodeProperties[]),
-	);
-	properties.push(
-		...(regionShareSnapshotGetGetDescription({
-			...displayOptions,
-			show: { publicCloudOperation: ['regionShareSnapshotGetGet'] },
-		}) as INodeProperties[]),
-	);
-	properties.push(
-		...(regionShareSnapshotListGetDescription({
-			...displayOptions,
-			show: { publicCloudOperation: ['regionShareSnapshotListGet'] },
-		}) as INodeProperties[]),
-	);
-	properties.push(
-		...(regionShareUpdatePutDescription({
-			...displayOptions,
-			show: { publicCloudOperation: ['regionShareUpdatePut'] },
-		}) as INodeProperties[]),
-	);
-	properties.push(
-		...(regionVolumeCreatePostDescription({
-			...displayOptions,
-			show: { publicCloudOperation: ['regionVolumeCreatePost'] },
-		}) as INodeProperties[]),
-	);
-	properties.push(
-		...(regionVolumeDeleteDeleteDescription({
-			...displayOptions,
-			show: { publicCloudOperation: ['regionVolumeDeleteDelete'] },
-		}) as INodeProperties[]),
-	);
-	properties.push(
-		...(regionVolumeGetGetDescription({
-			...displayOptions,
-			show: { publicCloudOperation: ['regionVolumeGetGet'] },
-		}) as INodeProperties[]),
-	);
-	properties.push(
-		...(regionVolumeListGetDescription({
-			...displayOptions,
-			show: { publicCloudOperation: ['regionVolumeListGet'] },
-		}) as INodeProperties[]),
-	);
-	properties.push(
-		...(regionVolumeUpdatePutDescription({
-			...displayOptions,
-			show: { publicCloudOperation: ['regionVolumeUpdatePut'] },
-		}) as INodeProperties[]),
-	);
-	properties.push(
-		...(regionWorkflowBackupCreatePostDescription({
-			...displayOptions,
-			show: { publicCloudOperation: ['regionWorkflowBackupCreatePost'] },
-		}) as INodeProperties[]),
-	);
-	properties.push(
-		...(regionWorkflowBackupDeleteDeleteDescription({
-			...displayOptions,
-			show: { publicCloudOperation: ['regionWorkflowBackupDeleteDelete'] },
-		}) as INodeProperties[]),
-	);
-	properties.push(
-		...(regionWorkflowBackupGetGetDescription({
-			...displayOptions,
-			show: { publicCloudOperation: ['regionWorkflowBackupGetGet'] },
-		}) as INodeProperties[]),
-	);
-	properties.push(
-		...(regionWorkflowBackupUpdatePutDescription({
-			...displayOptions,
-			show: { publicCloudOperation: ['regionWorkflowBackupUpdatePut'] },
-		}) as INodeProperties[]),
-		...(regionColdArchiveListGetDescription({
-			...displayOptions,
-			show: { publicCloudOperation: ['regionColdArchiveListGet'] },
-		}) as INodeProperties[]),
-		...(regionColdArchiveCreatePostDescription({
-			...displayOptions,
-			show: { publicCloudOperation: ['regionColdArchiveCreatePost'] },
-		}) as INodeProperties[]),
-		...(regionColdArchiveDeleteDeleteDescription({
-			...displayOptions,
-			show: { publicCloudOperation: ['regionColdArchiveDeleteDelete'] },
-		}) as INodeProperties[]),
-		...(regionColdArchiveGetGetDescription({
-			...displayOptions,
-			show: { publicCloudOperation: ['regionColdArchiveGetGet'] },
-		}) as INodeProperties[]),
-		...(regionColdArchiveArchivePostDescription({
-			...displayOptions,
-			show: { publicCloudOperation: ['regionColdArchiveArchivePost'] },
-		}) as INodeProperties[]),
-		...(regionColdArchiveDestroyPostDescription({
-			...displayOptions,
-			show: { publicCloudOperation: ['regionColdArchiveDestroyPost'] },
-		}) as INodeProperties[]),
-		...(regionColdArchiveObjectDeleteDeleteDescription({
-			...displayOptions,
-			show: { publicCloudOperation: ['regionColdArchiveObjectDeleteDelete'] },
-		}) as INodeProperties[]),
-		...(regionColdArchivePolicyCreatePostDescription({
-			...displayOptions,
-			show: { publicCloudOperation: ['regionColdArchivePolicyCreatePost'] },
-		}) as INodeProperties[]),
-		...(regionColdArchivePresignPostDescription({
-			...displayOptions,
-			show: { publicCloudOperation: ['regionColdArchivePresignPost'] },
-		}) as INodeProperties[]),
-		...(regionColdArchiveRestorePostDescription({
-			...displayOptions,
-			show: { publicCloudOperation: ['regionColdArchiveRestorePost'] },
-		}) as INodeProperties[]),
-		...(regionStorageListGetDescription({
-			...displayOptions,
-			show: { publicCloudOperation: ['regionStorageListGet'] },
-		}) as INodeProperties[]),
-		...(regionStorageCreatePostDescription({
-			...displayOptions,
-			show: { publicCloudOperation: ['regionStorageCreatePost'] },
-		}) as INodeProperties[]),
-		...(regionStorageDeleteDeleteDescription({
-			...displayOptions,
-			show: { publicCloudOperation: ['regionStorageDeleteDelete'] },
-		}) as INodeProperties[]),
-		...(regionStorageGetGetDescription({
-			...displayOptions,
-			show: { publicCloudOperation: ['regionStorageGetGet'] },
-		}) as INodeProperties[]),
-		...(regionStorageUpdatePutDescription({
-			...displayOptions,
-			show: { publicCloudOperation: ['regionStorageUpdatePut'] },
-		}) as INodeProperties[]),
-		...(regionStorageBulkDeleteObjectsPostDescription({
-			...displayOptions,
-			show: { publicCloudOperation: ['regionStorageBulkDeleteObjectsPost'] },
-		}) as INodeProperties[]),
-		...(regionStorageReplicationListGetDescription({
-			...displayOptions,
-			show: { publicCloudOperation: ['regionStorageReplicationListGet'] },
-		}) as INodeProperties[]),
-		...(regionStorageReplicationCreatePostDescription({
-			...displayOptions,
-			show: { publicCloudOperation: ['regionStorageReplicationCreatePost'] },
-		}) as INodeProperties[]),
-		...(regionStorageLifecycleDeleteDeleteDescription({
-			...displayOptions,
-			show: { publicCloudOperation: ['regionStorageLifecycleDeleteDelete'] },
-		}) as INodeProperties[]),
-		...(regionStorageLifecycleGetGetDescription({
-			...displayOptions,
-			show: { publicCloudOperation: ['regionStorageLifecycleGetGet'] },
-		}) as INodeProperties[]),
-		...(regionStorageLifecycleUpdatePutDescription({
-			...displayOptions,
-			show: { publicCloudOperation: ['regionStorageLifecycleUpdatePut'] },
-		}) as INodeProperties[]),
-		...(regionStorageObjectListGetDescription({
-			...displayOptions,
-			show: { publicCloudOperation: ['regionStorageObjectListGet'] },
-		}) as INodeProperties[]),
-		...(regionStorageObjectCreatePostDescription({
-			...displayOptions,
-			show: { publicCloudOperation: ['regionStorageObjectCreatePost'] },
-		}) as INodeProperties[]),
-		...(regionStorageObjectDeleteDeleteDescription({
-			...displayOptions,
-			show: { publicCloudOperation: ['regionStorageObjectDeleteDelete'] },
-		}) as INodeProperties[]),
-		...(regionStorageObjectGetGetDescription({
-			...displayOptions,
-			show: { publicCloudOperation: ['regionStorageObjectGetGet'] },
-		}) as INodeProperties[]),
-		...(regionStorageObjectUpdatePutDescription({
-			...displayOptions,
-			show: { publicCloudOperation: ['regionStorageObjectUpdatePut'] },
-		}) as INodeProperties[]),
-		...(regionStorageObjectCopyPostDescription({
-			...displayOptions,
-			show: { publicCloudOperation: ['regionStorageObjectCopyPost'] },
-		}) as INodeProperties[]),
-		...(regionStorageObjectRestorePostDescription({
-			...displayOptions,
-			show: { publicCloudOperation: ['regionStorageObjectRestorePost'] },
-		}) as INodeProperties[]),
-		...(regionStorageObjectVersionListGetDescription({
-			...displayOptions,
-			show: { publicCloudOperation: ['regionStorageObjectVersionListGet'] },
-		}) as INodeProperties[]),
-		...(regionStorageObjectVersionDeleteDeleteDescription({
-			...displayOptions,
-			show: { publicCloudOperation: ['regionStorageObjectVersionDeleteDelete'] },
-		}) as INodeProperties[]),
-		...(regionStorageObjectVersionGetGetDescription({
-			...displayOptions,
-			show: { publicCloudOperation: ['regionStorageObjectVersionGetGet'] },
-		}) as INodeProperties[]),
-		...(regionStorageObjectVersionUpdatePutDescription({
-			...displayOptions,
-			show: { publicCloudOperation: ['regionStorageObjectVersionUpdatePut'] },
-		}) as INodeProperties[]),
-		...(regionStorageObjectVersionCopyPostDescription({
-			...displayOptions,
-			show: { publicCloudOperation: ['regionStorageObjectVersionCopyPost'] },
-		}) as INodeProperties[]),
-		...(regionStorageObjectVersionRestorePostDescription({
-			...displayOptions,
-			show: { publicCloudOperation: ['regionStorageObjectVersionRestorePost'] },
-		}) as INodeProperties[]),
-		...(regionStoragePolicyCreatePostDescription({
-			...displayOptions,
-			show: { publicCloudOperation: ['regionStoragePolicyCreatePost'] },
-		}) as INodeProperties[]),
-		...(regionStoragePresignPostDescription({
-			...displayOptions,
-			show: { publicCloudOperation: ['regionStoragePresignPost'] },
-		}) as INodeProperties[]),
-	);
-	properties.push(
-		...(userCreatePostDescription({
-			...displayOptions,
-			show: { publicCloudOperation: ['userCreatePost'] },
-		}) as INodeProperties[]),
-	);
-	properties.push(
-		...(userCreateS3CredentialSecretPostDescription({
-			...displayOptions,
-			show: { publicCloudOperation: ['userCreateS3CredentialSecretPost'] },
-		}) as INodeProperties[]),
-	);
-	properties.push(
-		...(userCreateUserPolicyPostDescription({
-			...displayOptions,
-			show: { publicCloudOperation: ['userCreateUserPolicyPost'] },
-		}) as INodeProperties[]),
-	);
-	properties.push(
-		...(userCreateUserRolePostDescription({
-			...displayOptions,
-			show: { publicCloudOperation: ['userCreateUserRolePost'] },
-		}) as INodeProperties[]),
-	);
-	properties.push(
-		...(userCreateUserS3CredentialsPostDescription({
-			...displayOptions,
-			show: { publicCloudOperation: ['userCreateUserS3CredentialsPost'] },
-		}) as INodeProperties[]),
-	);
-	properties.push(
-		...(userCreateUserTokenPostDescription({
-			...displayOptions,
-			show: { publicCloudOperation: ['userCreateUserTokenPost'] },
-		}) as INodeProperties[]),
-	);
-	properties.push(
-		...(userDeleteDeleteDescription({
-			...displayOptions,
-			show: { publicCloudOperation: ['userDeleteDelete'] },
-		}) as INodeProperties[]),
-	);
-	properties.push(
-		...(regionInstanceListGetDescription({
-			...displayOptions,
-			show: { publicCloudOperation: ['regionInstanceListGet'] },
-		}) as INodeProperties[]),
-		...(regionInstanceGetGetDescription({
-			...displayOptions,
-			show: { publicCloudOperation: ['regionInstanceGetGet'] },
-		}) as INodeProperties[]),
-		...(regionInstanceAbortSnapshotPostDescription({
-			...displayOptions,
-			show: { publicCloudOperation: ['regionInstanceAbortSnapshotPost'] },
-		}) as INodeProperties[]),
-		...(regionInstanceAssociateFloatingIpPostDescription({
-			...displayOptions,
-			show: { publicCloudOperation: ['regionInstanceAssociateFloatingIpPost'] },
-		}) as INodeProperties[]),
-		...(regionInstanceAutobackupPostDescription({
-			...displayOptions,
-			show: { publicCloudOperation: ['regionInstanceAutobackupPost'] },
-		}) as INodeProperties[]),
-		...(regionInstanceFloatingIpPostDescription({
-			...displayOptions,
-			show: { publicCloudOperation: ['regionInstanceFloatingIpPost'] },
-		}) as INodeProperties[]),
-		...(regionInstanceReinstallPostDescription({
-			...displayOptions,
-			show: { publicCloudOperation: ['regionInstanceReinstallPost'] },
-		}) as INodeProperties[]),
-		...(regionInstanceSnapshotPostDescription({
-			...displayOptions,
-			show: { publicCloudOperation: ['regionInstanceSnapshotPost'] },
-		}) as INodeProperties[]),
-		...(regionKeymanagerCertificateListGetDescription({
-			...displayOptions,
-			show: { publicCloudOperation: ['regionKeymanagerCertificateListGet'] },
-		}) as INodeProperties[]),
-		...(regionKeymanagerCertificateCreatePostDescription({
-			...displayOptions,
-			show: { publicCloudOperation: ['regionKeymanagerCertificateCreatePost'] },
-		}) as INodeProperties[]),
-		...(regionKeymanagerCertificateDeleteDeleteDescription({
-			...displayOptions,
-			show: { publicCloudOperation: ['regionKeymanagerCertificateDeleteDelete'] },
-		}) as INodeProperties[]),
-		...(regionKeymanagerCertificateGetGetDescription({
-			...displayOptions,
-			show: { publicCloudOperation: ['regionKeymanagerCertificateGetGet'] },
-		}) as INodeProperties[]),
-		...(regionKeymanagerSecretListGetDescription({
-			...displayOptions,
-			show: { publicCloudOperation: ['regionKeymanagerSecretListGet'] },
-		}) as INodeProperties[]),
-		...(regionKeymanagerSecretCreatePostDescription({
-			...displayOptions,
-			show: { publicCloudOperation: ['regionKeymanagerSecretCreatePost'] },
-		}) as INodeProperties[]),
-		...(regionKeymanagerSecretDeleteDeleteDescription({
-			...displayOptions,
-			show: { publicCloudOperation: ['regionKeymanagerSecretDeleteDelete'] },
-		}) as INodeProperties[]),
-		...(regionKeymanagerSecretGetGetDescription({
-			...displayOptions,
-			show: { publicCloudOperation: ['regionKeymanagerSecretGetGet'] },
-		}) as INodeProperties[]),
-		...(regionNetworkListGetDescription({
-			...displayOptions,
-			show: { publicCloudOperation: ['regionNetworkListGet'] },
-		}) as INodeProperties[]),
-		...(regionNetworkCreatePostDescription({
-			...displayOptions,
-			show: { publicCloudOperation: ['regionNetworkCreatePost'] },
-		}) as INodeProperties[]),
-		...(regionNetworkDeleteDeleteDescription({
-			...displayOptions,
-			show: { publicCloudOperation: ['regionNetworkDeleteDelete'] },
-		}) as INodeProperties[]),
-		...(regionNetworkGetGetDescription({
-			...displayOptions,
-			show: { publicCloudOperation: ['regionNetworkGetGet'] },
-		}) as INodeProperties[]),
-		...(regionNetworkSubnetListGetDescription({
-			...displayOptions,
-			show: { publicCloudOperation: ['regionNetworkSubnetListGet'] },
-		}) as INodeProperties[]),
-		...(regionNetworkSubnetCreatePostDescription({
-			...displayOptions,
-			show: { publicCloudOperation: ['regionNetworkSubnetCreatePost'] },
-		}) as INodeProperties[]),
-		...(regionNetworkSubnetDeleteDeleteDescription({
-			...displayOptions,
-			show: { publicCloudOperation: ['regionNetworkSubnetDeleteDelete'] },
-		}) as INodeProperties[]),
-		...(regionNetworkSubnetGetGetDescription({
-			...displayOptions,
-			show: { publicCloudOperation: ['regionNetworkSubnetGetGet'] },
-		}) as INodeProperties[]),
-		...(regionNetworkSubnetGatewayPostDescription({
-			...displayOptions,
-			show: { publicCloudOperation: ['regionNetworkSubnetGatewayPost'] },
-		}) as INodeProperties[]),
-		...(regionQuotaListGetDescription({
-			...displayOptions,
-			show: { publicCloudOperation: ['regionQuotaListGet'] },
-		}) as INodeProperties[]),
-		...(regionQuotaAllowedGetDescription({
-			...displayOptions,
-			show: { publicCloudOperation: ['regionQuotaAllowedGet'] },
-		}) as INodeProperties[]),
-		...(regionQuotaStorageGetDescription({
-			...displayOptions,
-			show: { publicCloudOperation: ['regionQuotaStorageGet'] },
-		}) as INodeProperties[]),
-		...(regionVolumeBackupListGetDescription({
-			...displayOptions,
-			show: { publicCloudOperation: ['regionVolumeBackupListGet'] },
-		}) as INodeProperties[]),
-		...(regionVolumeBackupCreatePostDescription({
-			...displayOptions,
-			show: { publicCloudOperation: ['regionVolumeBackupCreatePost'] },
-		}) as INodeProperties[]),
-		...(regionVolumeBackupDeleteDeleteDescription({
-			...displayOptions,
-			show: { publicCloudOperation: ['regionVolumeBackupDeleteDelete'] },
-		}) as INodeProperties[]),
-		...(regionVolumeBackupGetGetDescription({
-			...displayOptions,
-			show: { publicCloudOperation: ['regionVolumeBackupGetGet'] },
-		}) as INodeProperties[]),
-		...(regionVolumeBackupRestorePostDescription({
-			...displayOptions,
-			show: { publicCloudOperation: ['regionVolumeBackupRestorePost'] },
-		}) as INodeProperties[]),
-		...(regionVolumeBackupVolumePostDescription({
-			...displayOptions,
-			show: { publicCloudOperation: ['regionVolumeBackupVolumePost'] },
-		}) as INodeProperties[]),
-		...(regionVolumeTypeListGetDescription({
-			...displayOptions,
-			show: { publicCloudOperation: ['regionVolumeTypeListGet'] },
-		}) as INodeProperties[]),
-		...(userDeleteUserRoleDeleteDescription({
-			...displayOptions,
-			show: { publicCloudOperation: ['userDeleteUserRoleDelete'] },
-		}) as INodeProperties[]),
-	);
-	properties.push(
-		...(userDeleteUserS3CredentialDeleteDescription({
-			...displayOptions,
-			show: { publicCloudOperation: ['userDeleteUserS3CredentialDelete'] },
-		}) as INodeProperties[]),
-	);
-	properties.push(
-		...(userGetDetailGetDescription({
-			...displayOptions,
-			show: { publicCloudOperation: ['userGetDetailGet'] },
-		}) as INodeProperties[]),
-	);
-	properties.push(
-		...(userGetUserConfigurationGetDescription({
-			...displayOptions,
-			show: { publicCloudOperation: ['userGetUserConfigurationGet'] },
-		}) as INodeProperties[]),
-	);
-	properties.push(
-		...(userGetUserOpenrcGetDescription({
-			...displayOptions,
-			show: { publicCloudOperation: ['userGetUserOpenrcGet'] },
-		}) as INodeProperties[]),
-	);
-	properties.push(
-		...(userGetUserPolicyGetDescription({
-			...displayOptions,
-			show: { publicCloudOperation: ['userGetUserPolicyGet'] },
-		}) as INodeProperties[]),
-	);
-	properties.push(
-		...(userGetUserRcloneGetDescription({
-			...displayOptions,
-			show: { publicCloudOperation: ['userGetUserRcloneGet'] },
-		}) as INodeProperties[]),
-	);
-	properties.push(
-		...(userGetUserRoleDetailGetDescription({
-			...displayOptions,
-			show: { publicCloudOperation: ['userGetUserRoleDetailGet'] },
-		}) as INodeProperties[]),
-	);
-	properties.push(
-		...(userGetUserRoleGetDescription({
-			...displayOptions,
-			show: { publicCloudOperation: ['userGetUserRoleGet'] },
-		}) as INodeProperties[]),
-	);
-	properties.push(
-		...(userGetUserS3CredentialDetailGetDescription({
-			...displayOptions,
-			show: { publicCloudOperation: ['userGetUserS3CredentialDetailGet'] },
-		}) as INodeProperties[]),
-	);
-	properties.push(
-		...(userGetUserS3CredentialsGetDescription({
-			...displayOptions,
-			show: { publicCloudOperation: ['userGetUserS3CredentialsGet'] },
-		}) as INodeProperties[]),
-	);
-	properties.push(
-		...(userListGetDescription({
-			...displayOptions,
-			show: { publicCloudOperation: ['userListGet'] },
-		}) as INodeProperties[]),
-	);
-	properties.push(
-		...(userRegeneratePasswordPostDescription({
-			...displayOptions,
-			show: { publicCloudOperation: ['userRegeneratePasswordPost'] },
-		}) as INodeProperties[]),
-	);
-	properties.push(
-		...(userUpdateUserRolePutDescription({
-			...displayOptions,
-			show: { publicCloudOperation: ['userUpdateUserRolePut'] },
-		}) as INodeProperties[]),
-	);
-	properties.push(
-		...(cloudAgreementsGetDescription({
-			...displayOptions,
-			show: { publicCloudOperation: ['cloudAgreementsGet'] },
-		}) as INodeProperties[]),
-	);
-	properties.push(
-		...(cloudEligibilityGetDescription({
-			...displayOptions,
-			show: { publicCloudOperation: ['cloudEligibilityGet'] },
-		}) as INodeProperties[]),
-	);
-	properties.push(
-		...(cloudOrderListGetDescription({
-			...displayOptions,
-			show: { publicCloudOperation: ['cloudOrderListGet'] },
-		}) as INodeProperties[]),
-	);
-	properties.push(
-		...(cloudOrderRuleAvailabilityGetDescription({
-			...displayOptions,
-			show: { publicCloudOperation: ['cloudOrderRuleAvailabilityGet'] },
-		}) as INodeProperties[]),
-	);
-	properties.push(
-		...(aclCreatePostDescription({
-			...displayOptions,
-			show: { publicCloudOperation: ['aclCreatePost'] },
-		}) as INodeProperties[]),
-	);
-	properties.push(
-		...(aclDeleteDeleteDescription({
-			...displayOptions,
-			show: { publicCloudOperation: ['aclDeleteDelete'] },
-		}) as INodeProperties[]),
-	);
-	properties.push(
-		...(aclGetDetailGetDescription({
-			...displayOptions,
-			show: { publicCloudOperation: ['aclGetDetailGet'] },
-		}) as INodeProperties[]),
-	);
-	properties.push(
-		...(aclListGetDescription({
-			...displayOptions,
-			show: { publicCloudOperation: ['aclListGet'] },
-		}) as INodeProperties[]),
-	);
-	properties.push(
-		...(activateMonthlyBillingPostDescription({
-			...displayOptions,
-			show: { publicCloudOperation: ['activateMonthlyBillingPost'] },
-		}) as INodeProperties[]),
-	);
-	properties.push(
-		...(alertingCreatePostDescription({
-			...displayOptions,
-			show: { publicCloudOperation: ['alertingCreatePost'] },
-		}) as INodeProperties[]),
-	);
-	properties.push(
-		...(alertingDeleteDeleteDescription({
-			...displayOptions,
-			show: { publicCloudOperation: ['alertingDeleteDelete'] },
-		}) as INodeProperties[]),
-	);
-	properties.push(
-		...(alertingGetDetailGetDescription({
-			...displayOptions,
-			show: { publicCloudOperation: ['alertingGetDetailGet'] },
-		}) as INodeProperties[]),
-	);
-	properties.push(
-		...(alertingListGetDescription({
-			...displayOptions,
-			show: { publicCloudOperation: ['alertingListGet'] },
-		}) as INodeProperties[]),
-	);
-	properties.push(
-		...(alertingUpdatePutDescription({
-			...displayOptions,
-			show: { publicCloudOperation: ['alertingUpdatePut'] },
-		}) as INodeProperties[]),
-	);
-	properties.push(
-		...(billListGetDescription({
-			...displayOptions,
-			show: { publicCloudOperation: ['billListGet'] },
-		}) as INodeProperties[]),
-	);
-	properties.push(
-		...(cancelPostDescription({
-			...displayOptions,
-			show: { publicCloudOperation: ['cancelPost'] },
-		}) as INodeProperties[]),
-	);
-	properties.push(
-		...(capabilitiesGetKubeDetailGetDescription({
-			...displayOptions,
-			show: { publicCloudOperation: ['capabilitiesGetKubeDetailGet'] },
-		}) as INodeProperties[]),
-	);
-	properties.push(
-		...(capabilitiesGetLoadbalancerDetailGetDescription({
-			...displayOptions,
-			show: { publicCloudOperation: ['capabilitiesGetLoadbalancerDetailGet'] },
-		}) as INodeProperties[]),
-	);
-	properties.push(
-		...(capabilitiesGetRegionDetailGetDescription({
-			...displayOptions,
-			show: { publicCloudOperation: ['capabilitiesGetRegionDetailGet'] },
-		}) as INodeProperties[]),
-	);
-	properties.push(
-		...(capabilitiesGetRegionProductDetailGetDescription({
-			...displayOptions,
-			show: { publicCloudOperation: ['capabilitiesGetRegionProductDetailGet'] },
-		}) as INodeProperties[]),
-	);
-	properties.push(
-		...(capabilitiesListGetDescription({
-			...displayOptions,
-			show: { publicCloudOperation: ['capabilitiesListGet'] },
-		}) as INodeProperties[]),
-	);
-	properties.push(
-		...(capabilitiesListKubeGetDescription({
-			...displayOptions,
-			show: { publicCloudOperation: ['capabilitiesListKubeGet'] },
-		}) as INodeProperties[]),
-	);
-	properties.push(
-		...(capabilitiesListLoadbalancerGetDescription({
-			...displayOptions,
-			show: { publicCloudOperation: ['capabilitiesListLoadbalancerGet'] },
-		}) as INodeProperties[]),
-	);
-	properties.push(
-		...(capabilitiesListRegionGetDescription({
-			...displayOptions,
-			show: { publicCloudOperation: ['capabilitiesListRegionGet'] },
-		}) as INodeProperties[]),
-	);
-	properties.push(
-		...(changeContactPostDescription({
-			...displayOptions,
-			show: { publicCloudOperation: ['changeContactPost'] },
-		}) as INodeProperties[]),
-	);
-	properties.push(
-		...(confirmTerminationPostDescription({
-			...displayOptions,
-			show: { publicCloudOperation: ['confirmTerminationPost'] },
-		}) as INodeProperties[]),
-	);
-	properties.push(
-		...(containerRegistryCreatePostDescription({
-			...displayOptions,
-			show: { publicCloudOperation: ['containerRegistryCreatePost'] },
-		}) as INodeProperties[]),
-	);
-	properties.push(
-		...(containerRegistryCreateUserPostDescription({
-			...displayOptions,
-			show: { publicCloudOperation: ['containerRegistryCreateUserPost'] },
-		}) as INodeProperties[]),
-	);
-	properties.push(
-		...(containerRegistryDeleteDeleteDescription({
-			...displayOptions,
-			show: { publicCloudOperation: ['containerRegistryDeleteDelete'] },
-		}) as INodeProperties[]),
-	);
-	properties.push(
-		...(containerRegistryDeleteUserDeleteDescription({
-			...displayOptions,
-			show: { publicCloudOperation: ['containerRegistryDeleteUserDelete'] },
-		}) as INodeProperties[]),
-	);
-	properties.push(
-		...(containerRegistryGetDetailGetDescription({
-			...displayOptions,
-			show: { publicCloudOperation: ['containerRegistryGetDetailGet'] },
-		}) as INodeProperties[]),
-	);
-	properties.push(
-		...(containerRegistryGetUserDetailGetDescription({
-			...displayOptions,
-			show: { publicCloudOperation: ['containerRegistryGetUserDetailGet'] },
-		}) as INodeProperties[]),
-	);
-	properties.push(
-		...(containerRegistryListGetDescription({
-			...displayOptions,
-			show: { publicCloudOperation: ['containerRegistryListGet'] },
-		}) as INodeProperties[]),
-	);
-	properties.push(
-		...(containerRegistryListUsersGetDescription({
-			...displayOptions,
-			show: { publicCloudOperation: ['containerRegistryListUsersGet'] },
-		}) as INodeProperties[]),
-	);
-	properties.push(
-		...(containerRegistryUpdatePutDescription({
-			...displayOptions,
-			show: { publicCloudOperation: ['containerRegistryUpdatePut'] },
-		}) as INodeProperties[]),
-	);
-	properties.push(
-		...(containerRegistryGetCapabilitiesPlanGetDescription({
-			...displayOptions,
-			show: { publicCloudOperation: ['containerRegistryGetCapabilitiesPlanGet'] },
-		}) as INodeProperties[]),
-	);
-	properties.push(
-		...(containerRegistryDeleteIamDeleteDescription({
-			...displayOptions,
-			show: { publicCloudOperation: ['containerRegistryDeleteIamDelete'] },
-		}) as INodeProperties[]),
-	);
-	properties.push(
-		...(containerRegistryCreateIamPostDescription({
-			...displayOptions,
-			show: { publicCloudOperation: ['containerRegistryCreateIamPost'] },
-		}) as INodeProperties[]),
-	);
-	properties.push(
-		...(containerRegistryGetIpRestrictionsManagementListGetDescription({
-			...displayOptions,
-			show: { publicCloudOperation: ['containerRegistryGetIpRestrictionsManagementListGet'] },
-		}) as INodeProperties[]),
-	);
-	properties.push(
-		...(containerRegistryUpdateIpRestrictionsManagementPutDescription({
-			...displayOptions,
-			show: { publicCloudOperation: ['containerRegistryUpdateIpRestrictionsManagementPut'] },
-		}) as INodeProperties[]),
-	);
-	properties.push(
-		...(containerRegistryGetIpRestrictionsRegistryListGetDescription({
-			...displayOptions,
-			show: { publicCloudOperation: ['containerRegistryGetIpRestrictionsRegistryListGet'] },
-		}) as INodeProperties[]),
-	);
-	properties.push(
-		...(containerRegistryUpdateIpRestrictionsRegistryPutDescription({
-			...displayOptions,
-			show: { publicCloudOperation: ['containerRegistryUpdateIpRestrictionsRegistryPut'] },
-		}) as INodeProperties[]),
-	);
-	properties.push(
-		...(containerRegistryDeleteOpenIdConnectDeleteDescription({
-			...displayOptions,
-			show: { publicCloudOperation: ['containerRegistryDeleteOpenIdConnectDelete'] },
-		}) as INodeProperties[]),
-	);
-	properties.push(
-		...(containerRegistryGetOpenIdConnectGetDescription({
-			...displayOptions,
-			show: { publicCloudOperation: ['containerRegistryGetOpenIdConnectGet'] },
-		}) as INodeProperties[]),
-	);
-	properties.push(
-		...(containerRegistryCreateOpenIdConnectPostDescription({
-			...displayOptions,
-			show: { publicCloudOperation: ['containerRegistryCreateOpenIdConnectPost'] },
-		}) as INodeProperties[]),
-	);
-	properties.push(
-		...(containerRegistryUpdateOpenIdConnectPutDescription({
-			...displayOptions,
-			show: { publicCloudOperation: ['containerRegistryUpdateOpenIdConnectPut'] },
-		}) as INodeProperties[]),
-	);
-	properties.push(
-		...(containerRegistryGetPlanGetDescription({
-			...displayOptions,
-			show: { publicCloudOperation: ['containerRegistryGetPlanGet'] },
-		}) as INodeProperties[]),
-	);
-	properties.push(
-		...(containerRegistryUpdatePlanPutDescription({
-			...displayOptions,
-			show: { publicCloudOperation: ['containerRegistryUpdatePlanPut'] },
-		}) as INodeProperties[]),
-	);
-	properties.push(
-		...(containerRegistryCreateUserSetAsAdminPostDescription({
-			...displayOptions,
-			show: { publicCloudOperation: ['containerRegistryCreateUserSetAsAdminPost'] },
-		}) as INodeProperties[]),
-	);
-	properties.push(
-		...(creditCreatePostDescription({
-			...displayOptions,
-			show: { publicCloudOperation: ['creditCreatePost'] },
-		}) as INodeProperties[]),
-	);
-	properties.push(
-		...(creditGetDetailGetDescription({
-			...displayOptions,
-			show: { publicCloudOperation: ['creditGetDetailGet'] },
-		}) as INodeProperties[]),
-	);
-	properties.push(
-		...(creditListGetDescription({
-			...displayOptions,
-			show: { publicCloudOperation: ['creditListGet'] },
-		}) as INodeProperties[]),
-	);
-	properties.push(
-		...(flavorGetDetailGetDescription({
-			...displayOptions,
-			show: { publicCloudOperation: ['flavorGetDetailGet'] },
-		}) as INodeProperties[]),
-	);
-	properties.push(
-		...(flavorListGetDescription({
-			...displayOptions,
-			show: { publicCloudOperation: ['flavorListGet'] },
-		}) as INodeProperties[]),
-	);
-	properties.push(
-		...(imageGetDetailGetDescription({
-			...displayOptions,
-			show: { publicCloudOperation: ['imageGetDetailGet'] },
-		}) as INodeProperties[]),
-	);
-	properties.push(
-		...(imageListGetDescription({
-			...displayOptions,
-			show: { publicCloudOperation: ['imageListGet'] },
-		}) as INodeProperties[]),
-	);
-	properties.push(
-		...(ipCreatePostDescription({
-			...displayOptions,
-			show: { publicCloudOperation: ['ipCreatePost'] },
-		}) as INodeProperties[]),
-	);
-	properties.push(
-		...(ipDeleteDeleteDescription({
-			...displayOptions,
-			show: { publicCloudOperation: ['ipDeleteDelete'] },
-		}) as INodeProperties[]),
-	);
-	properties.push(
-		...(ipGetDetailGetDescription({
-			...displayOptions,
-			show: { publicCloudOperation: ['ipGetDetailGet'] },
-		}) as INodeProperties[]),
-	);
-	properties.push(
-		...(ipListGetDescription({
-			...displayOptions,
-			show: { publicCloudOperation: ['ipListGet'] },
-		}) as INodeProperties[]),
-	);
-	properties.push(
-		...(ipUpdatePutDescription({
-			...displayOptions,
-			show: { publicCloudOperation: ['ipUpdatePut'] },
-		}) as INodeProperties[]),
-	);
-	properties.push(
-		...(labCreatePostDescription({
-			...displayOptions,
-			show: { publicCloudOperation: ['labCreatePost'] },
-		}) as INodeProperties[]),
-	);
-	properties.push(
-		...(labAgreementListGetDescription({
-			...displayOptions,
-			show: { publicCloudOperation: ['labAgreementListGet'] },
-		}) as INodeProperties[]),
-	);
-	properties.push(
-	);
-	properties.push(
-		...(labGetDetailGetDescription({
-			...displayOptions,
-			show: { publicCloudOperation: ['labGetDetailGet'] },
-		}) as INodeProperties[]),
-	);
-	properties.push(
-		...(labListGetDescription({
-			...displayOptions,
-			show: { publicCloudOperation: ['labListGet'] },
-		}) as INodeProperties[]),
-	);
-	properties.push(
-	);
-	properties.push(
-		...(loadbalancerCreatePostDescription({
-			...displayOptions,
-			show: { publicCloudOperation: ['loadbalancerCreatePost'] },
-		}) as INodeProperties[]),
-	);
-	properties.push(
-		...(loadbalancerDeleteDeleteDescription({
-			...displayOptions,
-			show: { publicCloudOperation: ['loadbalancerDeleteDelete'] },
-		}) as INodeProperties[]),
-	);
-	properties.push(
-		...(loadbalancerGetDetailGetDescription({
-			...displayOptions,
-			show: { publicCloudOperation: ['loadbalancerGetDetailGet'] },
-		}) as INodeProperties[]),
-	);
-	properties.push(
-		...(loadbalancerListGetDescription({
-			...displayOptions,
-			show: { publicCloudOperation: ['loadbalancerListGet'] },
-		}) as INodeProperties[]),
-	);
-	properties.push(
-		...(loadbalancerUpdatePutDescription({
-			...displayOptions,
-			show: { publicCloudOperation: ['loadbalancerUpdatePut'] },
-		}) as INodeProperties[]),
-	);
-	properties.push(
-		...(operationGetDetailGetDescription({
-			...displayOptions,
-			show: { publicCloudOperation: ['operationGetDetailGet'] },
-		}) as INodeProperties[]),
-	);
-	properties.push(
-		...(operationListGetDescription({
-			...displayOptions,
-			show: { publicCloudOperation: ['operationListGet'] },
-		}) as INodeProperties[]),
-	);
-	properties.push(
-		...(quantumGetCapabilitiesDetailGetDescription({
-			...displayOptions,
-			show: { publicCloudOperation: ['quantumGetCapabilitiesDetailGet'] },
-		}) as INodeProperties[]),
-	);
-	properties.push(
-		...(quantumGetCapabilitiesRegionDetailGetDescription({
-			...displayOptions,
-			show: { publicCloudOperation: ['quantumGetCapabilitiesRegionDetailGet'] },
-		}) as INodeProperties[]),
-	);
-	properties.push(
-		...(quantumListCapabilitiesGetDescription({
-			...displayOptions,
-			show: { publicCloudOperation: ['quantumListCapabilitiesGet'] },
-		}) as INodeProperties[]),
-	);
-	properties.push(
-		...(quantumListCapabilitiesRegionGetDescription({
-			...displayOptions,
-			show: { publicCloudOperation: ['quantumListCapabilitiesRegionGet'] },
-		}) as INodeProperties[]),
-	);
-	properties.push(
-		...(quotaListGetDescription({
-			...displayOptions,
-			show: { publicCloudOperation: ['quotaListGet'] },
-		}) as INodeProperties[]),
-	);
-	properties.push(
-		...(regionAvailableCheckRegionAvailableGetDescription({
-			...displayOptions,
-			show: { publicCloudOperation: ['regionAvailableCheckRegionAvailableGet'] },
-		}) as INodeProperties[]),
-	);
-	properties.push(
-		...(retainPostDescription({
-			...displayOptions,
-			show: { publicCloudOperation: ['retainPost'] },
-		}) as INodeProperties[]),
-	);
-	properties.push(
-		...(roleListGetDescription({
-			...displayOptions,
-			show: { publicCloudOperation: ['roleListGet'] },
-		}) as INodeProperties[]),
-	);
-	properties.push(
-		...(serviceInfosGetServiceInfosGetDescription({
-			...displayOptions,
-			show: { publicCloudOperation: ['serviceInfosGetServiceInfosGet'] },
-		}) as INodeProperties[]),
-	);
-	properties.push(
-		...(snapshotsCreatePostDescription({
-			...displayOptions,
-			show: { publicCloudOperation: ['snapshotsCreatePost'] },
-		}) as INodeProperties[]),
-	);
-	properties.push(
-		...(snapshotsDeleteDeleteDescription({
-			...displayOptions,
-			show: { publicCloudOperation: ['snapshotsDeleteDelete'] },
-		}) as INodeProperties[]),
-	);
-	properties.push(
-		...(snapshotsListGetDescription({
-			...displayOptions,
-			show: { publicCloudOperation: ['snapshotsListGet'] },
-		}) as INodeProperties[]),
-	);
-	properties.push(
-		...(sshkeyCreatePostDescription({
-			...displayOptions,
-			show: { publicCloudOperation: ['sshkeyCreatePost'] },
-		}) as INodeProperties[]),
-	);
-	properties.push(
-		...(sshkeyDeleteDeleteDescription({
-			...displayOptions,
-			show: { publicCloudOperation: ['sshkeyDeleteDelete'] },
-		}) as INodeProperties[]),
-	);
-	properties.push(
-		...(sshkeyListGetDescription({
-			...displayOptions,
-			show: { publicCloudOperation: ['sshkeyListGet'] },
-		}) as INodeProperties[]),
-	);
-	properties.push(
-		...(storageCreateContainerPostDescription({
-			...displayOptions,
-			show: { publicCloudOperation: ['storageCreateContainerPost'] },
-		}) as INodeProperties[]),
-	);
-	properties.push(
-		...(storageDeleteContainerDeleteDescription({
-			...displayOptions,
-			show: { publicCloudOperation: ['storageDeleteContainerDelete'] },
-		}) as INodeProperties[]),
-	);
-	properties.push(
-		...(storageDeleteDeleteDescription({
-			...displayOptions,
-			show: { publicCloudOperation: ['storageDeleteDelete'] },
-		}) as INodeProperties[]),
-	);
-	properties.push(
-		...(storageGetContainerDetailGetDescription({
-			...displayOptions,
-			show: { publicCloudOperation: ['storageGetContainerDetailGet'] },
-		}) as INodeProperties[]),
-	);
-	properties.push(
-		...(storageGetDetailGetDescription({
-			...displayOptions,
-			show: { publicCloudOperation: ['storageGetDetailGet'] },
-		}) as INodeProperties[]),
-	);
-	properties.push(
-		...(storageListContainersGetDescription({
-			...displayOptions,
-			show: { publicCloudOperation: ['storageListContainersGet'] },
-		}) as INodeProperties[]),
-	);
-	properties.push(
-		...(storageListGetDescription({
-			...displayOptions,
-			show: { publicCloudOperation: ['storageListGet'] },
-		}) as INodeProperties[]),
-	);
-	properties.push(
-		...(storageUpdateContainerPutDescription({
-			...displayOptions,
-			show: { publicCloudOperation: ['storageUpdateContainerPut'] },
-		}) as INodeProperties[]),
-	);
-	properties.push(
-		...(storageUpdatePutDescription({
-			...displayOptions,
-			show: { publicCloudOperation: ['storageUpdatePut'] },
-		}) as INodeProperties[]),
-	);
-	properties.push(
-		...(terminatePostDescription({
-			...displayOptions,
-			show: { publicCloudOperation: ['terminatePost'] },
-		}) as INodeProperties[]),
-	);
-	properties.push(
-		...(unleashPostDescription({
-			...displayOptions,
-			show: { publicCloudOperation: ['unleashPost'] },
-		}) as INodeProperties[]),
-	);
-	properties.push(
-		...(usageGetCurrentGetDescription({
-			...displayOptions,
-			show: { publicCloudOperation: ['usageGetCurrentGet'] },
-		}) as INodeProperties[]),
-	);
-	properties.push(
-		...(usageGetForecastGetDescription({
-			...displayOptions,
-			show: { publicCloudOperation: ['usageGetForecastGet'] },
-		}) as INodeProperties[]),
-	);
-	properties.push(
-		...(usageGetHistoryDetailGetDescription({
-			...displayOptions,
-			show: { publicCloudOperation: ['usageGetHistoryDetailGet'] },
-		}) as INodeProperties[]),
-	);
-	properties.push(
-		...(usageListHistoryGetDescription({
-			...displayOptions,
-			show: { publicCloudOperation: ['usageListHistoryGet'] },
-		}) as INodeProperties[]),
-	);
-	properties.push(
-		...(vrackListGetDescription({
-			...displayOptions,
-			show: { publicCloudOperation: ['vrackListGet'] },
-		}) as INodeProperties[]),
-	);
-	properties.push(
-		...(vrackCreatePostDescription({
-			...displayOptions,
-			show: { publicCloudOperation: ['vrackCreatePost'] },
-		}) as INodeProperties[]),
-	);
-	properties.push(
-		...(ipFailoverListGetDescription({
-			...displayOptions,
-			show: { publicCloudOperation: ['ipFailoverListGet'] },
-		}) as INodeProperties[]),
-	);
-	properties.push(
-		...(ipFailoverGetGetDescription({
-			...displayOptions,
-			show: { publicCloudOperation: ['ipFailoverGetGet'] },
-		}) as INodeProperties[]),
-	);
-	properties.push(
-		...(ipFailoverAttachPostDescription({
-			...displayOptions,
-			show: { publicCloudOperation: ['ipFailoverAttachPost'] },
-		}) as INodeProperties[]),
-	);
-	properties.push(
-		...(loadbalancerConfigurationListGetDescription({
-			...displayOptions,
-			show: { publicCloudOperation: ['loadbalancerConfigurationListGet'] },
-		}) as INodeProperties[]),
-	);
-	properties.push(
-		...(loadbalancerConfigurationCreatePostDescription({
-			...displayOptions,
-			show: { publicCloudOperation: ['loadbalancerConfigurationCreatePost'] },
-		}) as INodeProperties[]),
-	);
-	properties.push(
-		...(loadbalancerConfigurationGetGetDescription({
-			...displayOptions,
-			show: { publicCloudOperation: ['loadbalancerConfigurationGetGet'] },
-		}) as INodeProperties[]),
-	);
-	properties.push(
-		...(loadbalancerConfigurationDeleteDeleteDescription({
-			...displayOptions,
-			show: { publicCloudOperation: ['loadbalancerConfigurationDeleteDelete'] },
-		}) as INodeProperties[]),
-	);
-	properties.push(
-		...(loadbalancerConfigurationApplyPostDescription({
-			...displayOptions,
-			show: { publicCloudOperation: ['loadbalancerConfigurationApplyPost'] },
-		}) as INodeProperties[]),
-	);
-	properties.push(
-		...(roleCreatePostDescription({
-			...displayOptions,
-			show: { publicCloudOperation: ['roleCreatePost'] },
-		}) as INodeProperties[]),
-	);
-	properties.push(
-		...(serviceInfosUpdatePutDescription({
-			...displayOptions,
-			show: { publicCloudOperation: ['serviceInfosUpdatePut'] },
-		}) as INodeProperties[]),
-	);
-	properties.push(
-		...(storageAccessPostDescription({
-			...displayOptions,
-			show: { publicCloudOperation: ['storageAccessPost'] },
-		}) as INodeProperties[]),
-	);
-	properties.push(
-		...(storageQuotaGetDescription({
-			...displayOptions,
-			show: { publicCloudOperation: ['storageQuotaGet'] },
-		}) as INodeProperties[]),
-	);
-	properties.push(
-		...(storageCorsPostDescription({
-			...displayOptions,
-			show: { publicCloudOperation: ['storageCorsPost'] },
-		}) as INodeProperties[]),
-	);
-	properties.push(
-		...(storageCorsDeleteDeleteDescription({
-			...displayOptions,
-			show: { publicCloudOperation: ['storageCorsDeleteDelete'] },
-		}) as INodeProperties[]),
-	);
-	properties.push(
-		...(storagePublicUrlPostDescription({
-			...displayOptions,
-			show: { publicCloudOperation: ['storagePublicUrlPost'] },
-		}) as INodeProperties[]),
-	);
-	properties.push(
-		...(storageStaticPostDescription({
-			...displayOptions,
-			show: { publicCloudOperation: ['storageStaticPost'] },
-		}) as INodeProperties[]),
-	);
-	properties.push(
-		...(storageUserPostDescription({
-			...displayOptions,
-			show: { publicCloudOperation: ['storageUserPost'] },
-		}) as INodeProperties[]),
-	);
-	properties.push(
-		...(volumeSnapshotListGetDescription({
-			...displayOptions,
-			show: { publicCloudOperation: ['volumeSnapshotListGet'] },
-		}) as INodeProperties[]),
-	);
-	properties.push(
-		...(volumeSnapshotGetGetDescription({
-			...displayOptions,
-			show: { publicCloudOperation: ['volumeSnapshotGetGet'] },
-		}) as INodeProperties[]),
-	);
-	properties.push(
-		...(volumeSnapshotDeleteDeleteDescription({
-			...displayOptions,
-			show: { publicCloudOperation: ['volumeSnapshotDeleteDelete'] },
-		}) as INodeProperties[]),
-	);
-	properties.push(
-		...(volumeAttachPostDescription({
-			...displayOptions,
-			show: { publicCloudOperation: ['volumeAttachPost'] },
-		}) as INodeProperties[]),
-	);
-	properties.push(
-		...(volumeDetachPostDescription({
-			...displayOptions,
-			show: { publicCloudOperation: ['volumeDetachPost'] },
-		}) as INodeProperties[]),
-	);
-	properties.push(
-		...(volumeSnapshotCreatePostDescription({
-			...displayOptions,
-			show: { publicCloudOperation: ['volumeSnapshotCreatePost'] },
-		}) as INodeProperties[]),
-	);
-	properties.push(
-		...(volumeUpsizePostDescription({
-			...displayOptions,
-			show: { publicCloudOperation: ['volumeUpsizePost'] },
-		}) as INodeProperties[]),
-	);
-
-	// v2 operation descriptions
-	properties.push(
-		...(listGetV2Description({
-			...displayOptions,
-			show: { apiVersion: ['v2'], publicCloudOperationV2: ['listProjectsV2'] },
-		}) as INodeProperties[]),
-	);
-	properties.push(
-		...(getDetailGetV2Description({
-			...displayOptions,
-			show: { apiVersion: ['v2'], publicCloudOperationV2: ['getProjectDetailV2'] },
-		}) as INodeProperties[]),
-	);
-	properties.push(
-		...(serviceListGetV2Description({
-			...displayOptions,
-			show: { apiVersion: ['v2'], publicCloudOperationV2: ['listRancherServicesV2'] },
-		}) as INodeProperties[]),
-	);
-	properties.push(
-		...(serviceCreatePostV2Description({
-			...displayOptions,
-			show: { apiVersion: ['v2'], publicCloudOperationV2: ['createRancherServiceV2'] },
-		}) as INodeProperties[]),
-	);
-	properties.push(
-		...(serviceDeleteDeleteV2Description({
-			...displayOptions,
-			show: { apiVersion: ['v2'], publicCloudOperationV2: ['deleteRancherServiceV2'] },
-		}) as INodeProperties[]),
-	);
-	properties.push(
-		...(serviceGetGetV2Description({
-			...displayOptions,
-			show: { apiVersion: ['v2'], publicCloudOperationV2: ['getRancherServiceV2'] },
-		}) as INodeProperties[]),
-	);
-	properties.push(
-		...(serviceUpdatePutV2Description({
-			...displayOptions,
-			show: { apiVersion: ['v2'], publicCloudOperationV2: ['updateRancherServiceV2'] },
-		}) as INodeProperties[]),
-	);
-	properties.push(
-		...(adminCredentialsResetV2Description({
-			...displayOptions,
-			show: { apiVersion: ['v2'], publicCloudOperationV2: ['resetRancherAdminPasswordV2'] },
-		}) as INodeProperties[]),
-	);
-	properties.push(
-		...(planCapabilityListGetV2Description({
-			...displayOptions,
-			show: { apiVersion: ['v2'], publicCloudOperationV2: ['listRancherPlansV2'] },
-		}) as INodeProperties[]),
-	);
-	properties.push(
-		...(versionCapabilityListGetV2Description({
-			...displayOptions,
-			show: { apiVersion: ['v2'], publicCloudOperationV2: ['listRancherVersionsV2'] },
-		}) as INodeProperties[]),
-	);
-	properties.push(
-		...(eventListGetV2Description({
-			...displayOptions,
-			show: { apiVersion: ['v2'], publicCloudOperationV2: ['listRancherEventsV2'] },
-		}) as INodeProperties[]),
-	);
-	properties.push(
-		...(taskListGetV2Description({
-			...displayOptions,
-			show: { apiVersion: ['v2'], publicCloudOperationV2: ['listRancherTasksV2'] },
-		}) as INodeProperties[]),
-	);
-	properties.push(
-		...(taskDetailGetV2Description({
-			...displayOptions,
-			show: { apiVersion: ['v2'], publicCloudOperationV2: ['getRancherTaskV2'] },
-		}) as INodeProperties[]),
-	);
-	properties.push(
-		...(referencePlanListGetV2Description({
-			...displayOptions,
-			show: { apiVersion: ['v2'], publicCloudOperationV2: ['listReferencePlansV2'] },
-		}) as INodeProperties[]),
-	);
-	properties.push(
-		...(referenceVersionListGetV2Description({
-			...displayOptions,
-			show: { apiVersion: ['v2'], publicCloudOperationV2: ['listReferenceVersionsV2'] },
-		}) as INodeProperties[]),
-	);
-	properties.push(
-		...(globalReferencePlanListGetV2Description({
-			...displayOptions,
-			show: { apiVersion: ['v2'], publicCloudOperationV2: ['listGlobalReferencePlansV2'] },
-		}) as INodeProperties[]),
-	);
-	properties.push(
-		...(globalReferenceVersionListGetV2Description({
-			...displayOptions,
-			show: { apiVersion: ['v2'], publicCloudOperationV2: ['listGlobalReferenceVersionsV2'] },
-		}) as INodeProperties[]),
-	);
-	return properties;
+	return [apiVersionSelector, ...v1.description(displayOptions), ...v2.description(displayOptions)];
 }
 
-export async function execute(
-	this: IExecuteFunctions,
-	itemIndex?: number,
-): Promise<INodeExecutionData[]> {
-	const apiVersion = this.getNodeParameter('apiVersion', 0) as string;
-	const operation = this.getNodeParameter(
-		apiVersion === 'v2' ? 'publicCloudOperationV2' : 'publicCloudOperation',
-		itemIndex ?? 0,
-		{ extractValue: true },
-	);
-
-	switch (operation) {
-		case 'projectListGet':
-			return projectListGetExecute.call(this, itemIndex ?? 0);
-		case 'backupListGet':
-			return backupListGetExecute.call(this, itemIndex ?? 0);
-		case 'createBackupPost':
-			return backupCreatePostExecute.call(this, itemIndex ?? 0);
-		case 'createSnapshotPost':
-			return snapshotCreatePostExecute.call(this, itemIndex ?? 0);
-		case 'createVolumePost':
-			return volumeCreatePostExecute.call(this, itemIndex ?? 0);
-		case 'createRancherPost':
-			return rancherServiceCreatePostExecute.call(this, itemIndex ?? 0);
-		case 'deleteBackupDelete':
-			return backupDeleteDeleteExecute.call(this, itemIndex ?? 0);
-		case 'deleteSnapshotDelete':
-			return snapshotDeleteDeleteExecute.call(this, itemIndex ?? 0);
-		case 'deleteRancherDelete':
-			return rancherServiceDeleteDeleteExecute.call(this, itemIndex ?? 0);
-		case 'deleteVolumeDelete':
-			return volumeDeleteDeleteExecute.call(this, itemIndex ?? 0);
-		case 'rancherAdminCredentialsGet':
-			return rancherAdminCredentialsGetExecute.call(this, itemIndex ?? 0);
-		case 'rancherAdminCredentialsReset':
-			return rancherAdminCredentialsPostExecute.call(this, itemIndex ?? 0);
-		case 'rancherTaskListGet':
-			return rancherTaskListGetExecute.call(this, itemIndex ?? 0);
-		case 'rancherTaskDetailGet':
-			return rancherTaskDetailGetExecute.call(this, itemIndex ?? 0);
-		case 'rancherEventListGet':
-			return rancherEventListGetExecute.call(this, itemIndex ?? 0);
-		case 'getBackupDetail':
-			return backupGetExecute.call(this, itemIndex ?? 0);
-		case 'getProjectDetail':
-			return projectDetailGetExecute.call(this, itemIndex ?? 0);
-		case 'getRancherService':
-			return rancherServiceGetExecute.call(this, itemIndex ?? 0);
-		case 'getSnapshotDetail':
-			return snapshotGetExecute.call(this, itemIndex ?? 0);
-		case 'getVolumeDetail':
-			return volumeGetExecute.call(this, itemIndex ?? 0);
-		case 'rancherPlanCapabilityListGet':
-			return rancherPlanCapabilityListGetExecute.call(this, itemIndex ?? 0);
-		case 'rancherServiceListGet':
-			return rancherServiceListGetExecute.call(this, itemIndex ?? 0);
-		case 'rancherVersionCapabilityListGet':
-			return rancherVersionCapabilityListGetExecute.call(this, itemIndex ?? 0);
-		case 'snapshotListGet':
-			return snapshotListGetExecute.call(this, itemIndex ?? 0);
-		case 'updateBackupPut':
-			return backupUpdatePutExecute.call(this, itemIndex ?? 0);
-		case 'updateSnapshotPut':
-			return snapshotUpdatePutExecute.call(this, itemIndex ?? 0);
-		case 'updateRancherPut':
-			return rancherServiceUpdatePutExecute.call(this, itemIndex ?? 0);
-		case 'updateVolumePut':
-			return volumeUpdatePutExecute.call(this, itemIndex ?? 0);
-		case 'volumeListGet':
-			return volumeListGetExecute.call(this, itemIndex ?? 0);
-
-		case 'redisClusterListGet':
-			return redisClusterListGetExecute.call(this, itemIndex ?? 0);
-		case 'redisClusterGetGet':
-			return redisClusterGetGetExecute.call(this, itemIndex ?? 0);
-		case 'redisClusterCreatePost':
-			return redisClusterCreatePostExecute.call(this, itemIndex ?? 0);
-		case 'redisClusterUpdatePut':
-			return redisClusterUpdatePutExecute.call(this, itemIndex ?? 0);
-		case 'redisClusterDeleteDelete':
-			return redisClusterDeleteDeleteExecute.call(this, itemIndex ?? 0);
-		case 'redisBackupListGet':
-			return redisBackupListGetExecute.call(this, itemIndex ?? 0);
-		case 'redisBackupGetGet':
-			return redisBackupGetGetExecute.call(this, itemIndex ?? 0);
-		case 'redisAdvancedConfigurationGet':
-			return redisAdvancedConfigurationGetExecute.call(this, itemIndex ?? 0);
-		case 'redisAdvancedConfigurationUpdatePut':
-			return redisAdvancedConfigurationUpdatePutExecute.call(this, itemIndex ?? 0);
-		case 'redisCapabilitiesAdvancedConfigurationGet':
-			return redisCapabilitiesAdvancedConfigurationGetExecute.call(this, itemIndex ?? 0);
-		case 'redisCapabilitiesCategoriesGet':
-			return redisCapabilitiesCategoriesGetExecute.call(this, itemIndex ?? 0);
-		case 'redisCapabilitiesCommandsGet':
-			return redisCapabilitiesCommandsGetExecute.call(this, itemIndex ?? 0);
-		case 'redisCapabilitiesIntegrationGet':
-			return redisCapabilitiesIntegrationGetExecute.call(this, itemIndex ?? 0);
-		case 'redisIntegrationListGet':
-			return redisIntegrationListGetExecute.call(this, itemIndex ?? 0);
-		case 'redisIntegrationCreatePost':
-			return redisIntegrationCreatePostExecute.call(this, itemIndex ?? 0);
-		case 'redisIntegrationGetGet':
-			return redisIntegrationGetGetExecute.call(this, itemIndex ?? 0);
-		case 'redisIntegrationDeleteDelete':
-			return redisIntegrationDeleteDeleteExecute.call(this, itemIndex ?? 0);
-		case 'redisIpRestrictionListGet':
-			return redisIpRestrictionListGetExecute.call(this, itemIndex ?? 0);
-		case 'redisIpRestrictionCreatePost':
-			return redisIpRestrictionCreatePostExecute.call(this, itemIndex ?? 0);
-		case 'redisIpRestrictionGetGet':
-			return redisIpRestrictionGetGetExecute.call(this, itemIndex ?? 0);
-		case 'redisIpRestrictionUpdatePut':
-			return redisIpRestrictionUpdatePutExecute.call(this, itemIndex ?? 0);
-		case 'redisIpRestrictionDeleteDelete':
-			return redisIpRestrictionDeleteDeleteExecute.call(this, itemIndex ?? 0);
-		case 'redisLogKindListGet':
-			return redisLogKindListGetExecute.call(this, itemIndex ?? 0);
-		case 'redisLogKindGet':
-			return redisLogKindGetExecute.call(this, itemIndex ?? 0);
-		case 'redisLogSubscriptionListGet':
-			return redisLogSubscriptionListGetExecute.call(this, itemIndex ?? 0);
-		case 'redisLogSubscriptionCreatePost':
-			return redisLogSubscriptionCreatePostExecute.call(this, itemIndex ?? 0);
-		case 'redisLogSubscriptionGetGet':
-			return redisLogSubscriptionGetGetExecute.call(this, itemIndex ?? 0);
-		case 'redisLogSubscriptionDeleteDelete':
-			return redisLogSubscriptionDeleteDeleteExecute.call(this, itemIndex ?? 0);
-		case 'redisLogUrlCreatePost':
-			return redisLogUrlCreatePostExecute.call(this, itemIndex ?? 0);
-		case 'redisLogsGet':
-			return redisLogsGetExecute.call(this, itemIndex ?? 0);
-		case 'redisMaintenanceListGet':
-			return redisMaintenanceListGetExecute.call(this, itemIndex ?? 0);
-		case 'redisMaintenanceGet':
-			return redisMaintenanceGetExecute.call(this, itemIndex ?? 0);
-		case 'redisMaintenanceApplyPost':
-			return redisMaintenanceApplyPostExecute.call(this, itemIndex ?? 0);
-		case 'redisMetricListGet':
-			return redisMetricListGetExecute.call(this, itemIndex ?? 0);
-		case 'redisMetricGet':
-			return redisMetricGetExecute.call(this, itemIndex ?? 0);
-		case 'redisNodeListGet':
-			return redisNodeListGetExecute.call(this, itemIndex ?? 0);
-		case 'redisNodeGetGet':
-			return redisNodeGetGetExecute.call(this, itemIndex ?? 0);
-		case 'redisPrometheusGet':
-			return redisPrometheusGetExecute.call(this, itemIndex ?? 0);
-		case 'redisPrometheusCredentialsResetPost':
-			return redisPrometheusCredentialsResetPostExecute.call(this, itemIndex ?? 0);
-		case 'redisUserListGet':
-			return redisUserListGetExecute.call(this, itemIndex ?? 0);
-		case 'redisUserCreatePost':
-			return redisUserCreatePostExecute.call(this, itemIndex ?? 0);
-		case 'redisUserGetGet':
-			return redisUserGetGetExecute.call(this, itemIndex ?? 0);
-		case 'redisUserUpdatePut':
-			return redisUserUpdatePutExecute.call(this, itemIndex ?? 0);
-		case 'redisUserDeleteDelete':
-			return redisUserDeleteDeleteExecute.call(this, itemIndex ?? 0);
-		case 'redisUserCredentialsResetPost':
-			return redisUserCredentialsResetPostExecute.call(this, itemIndex ?? 0);
-		case 'valkeyClusterListGet':
-			return valkeyClusterListGetExecute.call(this, itemIndex ?? 0);
-		case 'valkeyClusterGetGet':
-			return valkeyClusterGetGetExecute.call(this, itemIndex ?? 0);
-		case 'valkeyClusterCreatePost':
-			return valkeyClusterCreatePostExecute.call(this, itemIndex ?? 0);
-		case 'valkeyClusterUpdatePut':
-			return valkeyClusterUpdatePutExecute.call(this, itemIndex ?? 0);
-		case 'valkeyClusterDeleteDelete':
-			return valkeyClusterDeleteDeleteExecute.call(this, itemIndex ?? 0);
-		case 'valkeyBackupListGet':
-			return valkeyBackupListGetExecute.call(this, itemIndex ?? 0);
-		case 'valkeyBackupCreatePost':
-			return valkeyBackupCreatePostExecute.call(this, itemIndex ?? 0);
-		case 'valkeyBackupGetGet':
-			return valkeyBackupGetGetExecute.call(this, itemIndex ?? 0);
-		case 'valkeyBackupDeleteDelete':
-			return valkeyBackupDeleteDeleteExecute.call(this, itemIndex ?? 0);
-		case 'valkeyUserListGet':
-			return valkeyUserListGetExecute.call(this, itemIndex ?? 0);
-		case 'valkeyUserCreatePost':
-			return valkeyUserCreatePostExecute.call(this, itemIndex ?? 0);
-		case 'valkeyUserGetGet':
-			return valkeyUserGetGetExecute.call(this, itemIndex ?? 0);
-		case 'valkeyUserUpdatePut':
-			return valkeyUserUpdatePutExecute.call(this, itemIndex ?? 0);
-		case 'valkeyUserDeleteDelete':
-			return valkeyUserDeleteDeleteExecute.call(this, itemIndex ?? 0);
-		case 'valkeyNodeListGet':
-			return valkeyNodeListGetExecute.call(this, itemIndex ?? 0);
-		case 'valkeyNodeCreatePost':
-			return valkeyNodeCreatePostExecute.call(this, itemIndex ?? 0);
-		case 'valkeyNodeGetGet':
-			return valkeyNodeGetGetExecute.call(this, itemIndex ?? 0);
-		case 'valkeyNodeUpdatePut':
-			return valkeyNodeUpdatePutExecute.call(this, itemIndex ?? 0);
-		case 'valkeyNodeDeleteDelete':
-			return valkeyNodeDeleteDeleteExecute.call(this, itemIndex ?? 0);
-		case 'valkeyIpRestrictionListGet':
-			return valkeyIpRestrictionListGetExecute.call(this, itemIndex ?? 0);
-		case 'valkeyIpRestrictionCreatePost':
-			return valkeyIpRestrictionCreatePostExecute.call(this, itemIndex ?? 0);
-		case 'valkeyLogSubscriptionListGet':
-			return valkeyLogSubscriptionListGetExecute.call(this, itemIndex ?? 0);
-		case 'valkeyLogSubscriptionCreatePost':
-			return valkeyLogSubscriptionCreatePostExecute.call(this, itemIndex ?? 0);
-		case 'valkeyLogSubscriptionGetGet':
-			return valkeyLogSubscriptionGetGetExecute.call(this, itemIndex ?? 0);
-		case 'valkeyMaintenanceGet':
-			return valkeyMaintenanceGetExecute.call(this, itemIndex ?? 0);
-		case 'valkeyMaintenanceUpdatePut':
-			return valkeyMaintenanceUpdatePutExecute.call(this, itemIndex ?? 0);
-		case 'valkeyMetricGet':
-			return valkeyMetricGetExecute.call(this, itemIndex ?? 0);
-		case 'valkeyPrometheusGet':
-			return valkeyPrometheusGetExecute.call(this, itemIndex ?? 0);
-		case 'valkeyCertificateListGet':
-			return valkeyCertificateListGetExecute.call(this, itemIndex ?? 0);
-		case 'valkeyCertificateCreatePost':
-			return valkeyCertificateCreatePostExecute.call(this, itemIndex ?? 0);
-		case 'valkeyIntegrationListGet':
-			return valkeyIntegrationListGetExecute.call(this, itemIndex ?? 0);
-		case 'valkeyIntegrationCreatePost':
-			return valkeyIntegrationCreatePostExecute.call(this, itemIndex ?? 0);
-		case 'cassandraClusterListGet':
-			return cassandraClusterListGetExecute.call(this, itemIndex ?? 0);
-		case 'cassandraClusterGetGet':
-			return cassandraClusterGetGetExecute.call(this, itemIndex ?? 0);
-		case 'cassandraClusterCreatePost':
-			return cassandraClusterCreatePostExecute.call(this, itemIndex ?? 0);
-		case 'cassandraClusterUpdatePut':
-			return cassandraClusterUpdatePutExecute.call(this, itemIndex ?? 0);
-		case 'cassandraClusterDeleteDelete':
-			return cassandraClusterDeleteDeleteExecute.call(this, itemIndex ?? 0);
-		case 'cassandraBackupListGet':
-			return cassandraBackupListGetExecute.call(this, itemIndex ?? 0);
-		case 'cassandraBackupCreatePost':
-			return cassandraBackupCreatePostExecute.call(this, itemIndex ?? 0);
-		case 'cassandraBackupGetGet':
-			return cassandraBackupGetGetExecute.call(this, itemIndex ?? 0);
-		case 'cassandraBackupDeleteDelete':
-			return cassandraBackupDeleteDeleteExecute.call(this, itemIndex ?? 0);
-		case 'cassandraUserListGet':
-			return cassandraUserListGetExecute.call(this, itemIndex ?? 0);
-		case 'cassandraUserCreatePost':
-			return cassandraUserCreatePostExecute.call(this, itemIndex ?? 0);
-		case 'cassandraUserGetGet':
-			return cassandraUserGetGetExecute.call(this, itemIndex ?? 0);
-		case 'cassandraUserUpdatePut':
-			return cassandraUserUpdatePutExecute.call(this, itemIndex ?? 0);
-		case 'cassandraUserDeleteDelete':
-			return cassandraUserDeleteDeleteExecute.call(this, itemIndex ?? 0);
-		case 'cassandraNodeListGet':
-			return cassandraNodeListGetExecute.call(this, itemIndex ?? 0);
-		case 'cassandraNodeCreatePost':
-			return cassandraNodeCreatePostExecute.call(this, itemIndex ?? 0);
-		case 'cassandraNodeGetGet':
-			return cassandraNodeGetGetExecute.call(this, itemIndex ?? 0);
-		case 'cassandraNodeUpdatePut':
-			return cassandraNodeUpdatePutExecute.call(this, itemIndex ?? 0);
-		case 'cassandraNodeDeleteDelete':
-			return cassandraNodeDeleteDeleteExecute.call(this, itemIndex ?? 0);
-		case 'cassandraIpRestrictionListGet':
-			return cassandraIpRestrictionListGetExecute.call(this, itemIndex ?? 0);
-		case 'cassandraIpRestrictionCreatePost':
-			return cassandraIpRestrictionCreatePostExecute.call(this, itemIndex ?? 0);
-		case 'cassandraLogSubscriptionListGet':
-			return cassandraLogSubscriptionListGetExecute.call(this, itemIndex ?? 0);
-		case 'cassandraLogSubscriptionCreatePost':
-			return cassandraLogSubscriptionCreatePostExecute.call(this, itemIndex ?? 0);
-		case 'cassandraLogSubscriptionGetGet':
-			return cassandraLogSubscriptionGetGetExecute.call(this, itemIndex ?? 0);
-		case 'cassandraMaintenanceGet':
-			return cassandraMaintenanceGetExecute.call(this, itemIndex ?? 0);
-		case 'cassandraMaintenanceUpdatePut':
-			return cassandraMaintenanceUpdatePutExecute.call(this, itemIndex ?? 0);
-		case 'cassandraMetricGet':
-			return cassandraMetricGetExecute.call(this, itemIndex ?? 0);
-		case 'cassandraPrometheusGet':
-			return cassandraPrometheusGetExecute.call(this, itemIndex ?? 0);
-		case 'cassandraCertificateListGet':
-			return cassandraCertificateListGetExecute.call(this, itemIndex ?? 0);
-		case 'cassandraCertificateCreatePost':
-			return cassandraCertificateCreatePostExecute.call(this, itemIndex ?? 0);
-		case 'cassandraIntegrationListGet':
-			return cassandraIntegrationListGetExecute.call(this, itemIndex ?? 0);
-		case 'cassandraIntegrationCreatePost':
-			return cassandraIntegrationCreatePostExecute.call(this, itemIndex ?? 0);
-		case 'cassandraAdvancedConfigurationGet':
-			return cassandraAdvancedConfigurationGetExecute.call(this, itemIndex ?? 0);
-		case 'cassandraAdvancedConfigurationUpdatePut':
-			return cassandraAdvancedConfigurationUpdatePutExecute.call(this, itemIndex ?? 0);
-		case 'cassandraCapabilitiesAdvancedConfigurationGet':
-			return cassandraCapabilitiesAdvancedConfigurationGetExecute.call(this, itemIndex ?? 0);
-		case 'cassandraCapabilitiesIntegrationGet':
-			return cassandraCapabilitiesIntegrationGetExecute.call(this, itemIndex ?? 0);
-		case 'cassandraIntegrationGetGet':
-			return cassandraIntegrationGetGetExecute.call(this, itemIndex ?? 0);
-		case 'cassandraIntegrationDeleteDelete':
-			return cassandraIntegrationDeleteDeleteExecute.call(this, itemIndex ?? 0);
-		case 'cassandraIpRestrictionGetGet':
-			return cassandraIpRestrictionGetGetExecute.call(this, itemIndex ?? 0);
-		case 'cassandraIpRestrictionDeleteDelete':
-			return cassandraIpRestrictionDeleteDeleteExecute.call(this, itemIndex ?? 0);
-		case 'cassandraIpRestrictionUpdatePut':
-			return cassandraIpRestrictionUpdatePutExecute.call(this, itemIndex ?? 0);
-		case 'cassandraLogKindListGet':
-			return cassandraLogKindListGetExecute.call(this, itemIndex ?? 0);
-		case 'cassandraLogKindGetGet':
-			return cassandraLogKindGetGetExecute.call(this, itemIndex ?? 0);
-		case 'cassandraLogSubscriptionDeleteDelete':
-			return cassandraLogSubscriptionDeleteDeleteExecute.call(this, itemIndex ?? 0);
-		case 'cassandraLogUrlCreatePost':
-			return cassandraLogUrlCreatePostExecute.call(this, itemIndex ?? 0);
-		case 'cassandraLogsGet':
-			return cassandraLogsGetExecute.call(this, itemIndex ?? 0);
-		case 'cassandraMaintenanceApplyPost':
-			return cassandraMaintenanceApplyPostExecute.call(this, itemIndex ?? 0);
-		case 'cassandraMaintenanceGetGet':
-			return cassandraMaintenanceGetGetExecute.call(this, itemIndex ?? 0);
-		case 'cassandraMetricGetGet':
-			return cassandraMetricGetGetExecute.call(this, itemIndex ?? 0);
-		case 'cassandraPrometheusCredentialsResetPost':
-			return cassandraPrometheusCredentialsResetPostExecute.call(this, itemIndex ?? 0);
-		case 'cassandraUserCredentialsResetPost':
-			return cassandraUserCredentialsResetPostExecute.call(this, itemIndex ?? 0);
-		case 'clickhouseClusterListGet':
-			return clickhouseClusterListGetExecute.call(this, itemIndex ?? 0);
-		case 'clickhouseClusterGetGet':
-			return clickhouseClusterGetGetExecute.call(this, itemIndex ?? 0);
-		case 'clickhouseClusterCreatePost':
-			return clickhouseClusterCreatePostExecute.call(this, itemIndex ?? 0);
-		case 'clickhouseClusterUpdatePut':
-			return clickhouseClusterUpdatePutExecute.call(this, itemIndex ?? 0);
-		case 'clickhouseClusterDeleteDelete':
-			return clickhouseClusterDeleteDeleteExecute.call(this, itemIndex ?? 0);
-		case 'clickhouseBackupListGet':
-			return clickhouseBackupListGetExecute.call(this, itemIndex ?? 0);
-		case 'clickhouseBackupCreatePost':
-			return clickhouseBackupCreatePostExecute.call(this, itemIndex ?? 0);
-		case 'clickhouseBackupGetGet':
-			return clickhouseBackupGetGetExecute.call(this, itemIndex ?? 0);
-		case 'clickhouseBackupDeleteDelete':
-			return clickhouseBackupDeleteDeleteExecute.call(this, itemIndex ?? 0);
-		case 'clickhouseUserListGet':
-			return clickhouseUserListGetExecute.call(this, itemIndex ?? 0);
-		case 'clickhouseUserCreatePost':
-			return clickhouseUserCreatePostExecute.call(this, itemIndex ?? 0);
-		case 'clickhouseUserGetGet':
-			return clickhouseUserGetGetExecute.call(this, itemIndex ?? 0);
-		case 'clickhouseUserUpdatePut':
-			return clickhouseUserUpdatePutExecute.call(this, itemIndex ?? 0);
-		case 'clickhouseUserDeleteDelete':
-			return clickhouseUserDeleteDeleteExecute.call(this, itemIndex ?? 0);
-		case 'clickhouseNodeListGet':
-			return clickhouseNodeListGetExecute.call(this, itemIndex ?? 0);
-		case 'clickhouseNodeCreatePost':
-			return clickhouseNodeCreatePostExecute.call(this, itemIndex ?? 0);
-		case 'clickhouseNodeGetGet':
-			return clickhouseNodeGetGetExecute.call(this, itemIndex ?? 0);
-		case 'clickhouseNodeUpdatePut':
-			return clickhouseNodeUpdatePutExecute.call(this, itemIndex ?? 0);
-		case 'clickhouseNodeDeleteDelete':
-			return clickhouseNodeDeleteDeleteExecute.call(this, itemIndex ?? 0);
-		case 'clickhouseIpRestrictionListGet':
-			return clickhouseIpRestrictionListGetExecute.call(this, itemIndex ?? 0);
-		case 'clickhouseIpRestrictionCreatePost':
-			return clickhouseIpRestrictionCreatePostExecute.call(this, itemIndex ?? 0);
-		case 'clickhouseLogSubscriptionListGet':
-			return clickhouseLogSubscriptionListGetExecute.call(this, itemIndex ?? 0);
-		case 'clickhouseLogSubscriptionCreatePost':
-			return clickhouseLogSubscriptionCreatePostExecute.call(this, itemIndex ?? 0);
-		case 'clickhouseLogSubscriptionGetGet':
-			return clickhouseLogSubscriptionGetGetExecute.call(this, itemIndex ?? 0);
-		case 'clickhouseMaintenanceGet':
-			return clickhouseMaintenanceGetExecute.call(this, itemIndex ?? 0);
-		case 'clickhouseMaintenanceUpdatePut':
-			return clickhouseMaintenanceUpdatePutExecute.call(this, itemIndex ?? 0);
-		case 'clickhouseMetricGet':
-			return clickhouseMetricGetExecute.call(this, itemIndex ?? 0);
-		case 'clickhousePrometheusGet':
-			return clickhousePrometheusGetExecute.call(this, itemIndex ?? 0);
-		case 'clickhouseCertificateListGet':
-			return clickhouseCertificateListGetExecute.call(this, itemIndex ?? 0);
-		case 'clickhouseCertificateCreatePost':
-			return clickhouseCertificateCreatePostExecute.call(this, itemIndex ?? 0);
-		case 'clickhouseIntegrationListGet':
-			return clickhouseIntegrationListGetExecute.call(this, itemIndex ?? 0);
-		case 'clickhouseIntegrationCreatePost':
-			return clickhouseIntegrationCreatePostExecute.call(this, itemIndex ?? 0);
-		case 'grafanaClusterListGet':
-			return grafanaClusterListGetExecute.call(this, itemIndex ?? 0);
-		case 'grafanaClusterGetGet':
-			return grafanaClusterGetGetExecute.call(this, itemIndex ?? 0);
-		case 'grafanaClusterCreatePost':
-			return grafanaClusterCreatePostExecute.call(this, itemIndex ?? 0);
-		case 'grafanaClusterUpdatePut':
-			return grafanaClusterUpdatePutExecute.call(this, itemIndex ?? 0);
-		case 'grafanaClusterDeleteDelete':
-			return grafanaClusterDeleteDeleteExecute.call(this, itemIndex ?? 0);
-		case 'grafanaBackupListGet':
-			return grafanaBackupListGetExecute.call(this, itemIndex ?? 0);
-		case 'grafanaBackupGetGet':
-			return grafanaBackupGetGetExecute.call(this, itemIndex ?? 0);
-		case 'grafanaUserListGet':
-			return grafanaUserListGetExecute.call(this, itemIndex ?? 0);
-		case 'grafanaUserGetGet':
-			return grafanaUserGetGetExecute.call(this, itemIndex ?? 0);
-		case 'grafanaUserCredentialsResetPost':
-			return grafanaUserCredentialsResetPostExecute.call(this, itemIndex ?? 0);
-		case 'grafanaNodeListGet':
-			return grafanaNodeListGetExecute.call(this, itemIndex ?? 0);
-		case 'grafanaNodeGetGet':
-			return grafanaNodeGetGetExecute.call(this, itemIndex ?? 0);
-		case 'grafanaIpRestrictionListGet':
-			return grafanaIpRestrictionListGetExecute.call(this, itemIndex ?? 0);
-		case 'grafanaIpRestrictionCreatePost':
-			return grafanaIpRestrictionCreatePostExecute.call(this, itemIndex ?? 0);
-		case 'grafanaIpRestrictionGetGet':
-			return grafanaIpRestrictionGetGetExecute.call(this, itemIndex ?? 0);
-		case 'grafanaIpRestrictionUpdatePut':
-			return grafanaIpRestrictionUpdatePutExecute.call(this, itemIndex ?? 0);
-		case 'grafanaIpRestrictionDeleteDelete':
-			return grafanaIpRestrictionDeleteDeleteExecute.call(this, itemIndex ?? 0);
-		case 'grafanaLogKindListGet':
-			return grafanaLogKindListGetExecute.call(this, itemIndex ?? 0);
-		case 'grafanaLogKindGet':
-			return grafanaLogKindGetExecute.call(this, itemIndex ?? 0);
-		case 'grafanaLogSubscriptionListGet':
-			return grafanaLogSubscriptionListGetExecute.call(this, itemIndex ?? 0);
-		case 'grafanaLogSubscriptionCreatePost':
-			return grafanaLogSubscriptionCreatePostExecute.call(this, itemIndex ?? 0);
-		case 'grafanaLogSubscriptionGetGet':
-			return grafanaLogSubscriptionGetGetExecute.call(this, itemIndex ?? 0);
-		case 'grafanaLogSubscriptionDeleteDelete':
-			return grafanaLogSubscriptionDeleteDeleteExecute.call(this, itemIndex ?? 0);
-		case 'grafanaLogUrlCreatePost':
-			return grafanaLogUrlCreatePostExecute.call(this, itemIndex ?? 0);
-		case 'grafanaLogsGet':
-			return grafanaLogsGetExecute.call(this, itemIndex ?? 0);
-		case 'grafanaMaintenanceListGet':
-			return grafanaMaintenanceListGetExecute.call(this, itemIndex ?? 0);
-		case 'grafanaMaintenanceGet':
-			return grafanaMaintenanceGetExecute.call(this, itemIndex ?? 0);
-		case 'grafanaMaintenanceApplyPost':
-			return grafanaMaintenanceApplyPostExecute.call(this, itemIndex ?? 0);
-		case 'grafanaMetricListGet':
-			return grafanaMetricListGetExecute.call(this, itemIndex ?? 0);
-		case 'grafanaMetricGet':
-			return grafanaMetricGetExecute.call(this, itemIndex ?? 0);
-		case 'grafanaAdvancedConfigurationGet':
-			return grafanaAdvancedConfigurationGetExecute.call(this, itemIndex ?? 0);
-		case 'grafanaAdvancedConfigurationUpdatePut':
-			return grafanaAdvancedConfigurationUpdatePutExecute.call(this, itemIndex ?? 0);
-		case 'grafanaCapabilitiesAdvancedConfigurationGet':
-			return grafanaCapabilitiesAdvancedConfigurationGetExecute.call(this, itemIndex ?? 0);
-		case 'grafanaCapabilitiesBackupRegionsGet':
-			return grafanaCapabilitiesBackupRegionsGetExecute.call(this, itemIndex ?? 0);
-		case 'grafanaCapabilitiesIntegrationGet':
-			return grafanaCapabilitiesIntegrationGetExecute.call(this, itemIndex ?? 0);
-		case 'grafanaIntegrationListGet':
-			return grafanaIntegrationListGetExecute.call(this, itemIndex ?? 0);
-		case 'grafanaIntegrationCreatePost':
-			return grafanaIntegrationCreatePostExecute.call(this, itemIndex ?? 0);
-		case 'grafanaIntegrationGetGet':
-			return grafanaIntegrationGetGetExecute.call(this, itemIndex ?? 0);
-		case 'grafanaIntegrationDeleteDelete':
-			return grafanaIntegrationDeleteDeleteExecute.call(this, itemIndex ?? 0);
-		case 'kafkaClusterListGet':
-			return kafkaClusterListGetExecute.call(this, itemIndex ?? 0);
-		case 'kafkaClusterGetGet':
-			return kafkaClusterGetGetExecute.call(this, itemIndex ?? 0);
-		case 'kafkaClusterCreatePost':
-			return kafkaClusterCreatePostExecute.call(this, itemIndex ?? 0);
-		case 'kafkaClusterUpdatePut':
-			return kafkaClusterUpdatePutExecute.call(this, itemIndex ?? 0);
-		case 'kafkaClusterDeleteDelete':
-			return kafkaClusterDeleteDeleteExecute.call(this, itemIndex ?? 0);
-		case 'kafkaAclListGet':
-			return kafkaAclListGetExecute.call(this, itemIndex ?? 0);
-		case 'kafkaAclCreatePost':
-			return kafkaAclCreatePostExecute.call(this, itemIndex ?? 0);
-		case 'kafkaAclGetGet':
-			return kafkaAclGetGetExecute.call(this, itemIndex ?? 0);
-		case 'kafkaAclDeleteDelete':
-			return kafkaAclDeleteDeleteExecute.call(this, itemIndex ?? 0);
-		case 'kafkaAdvancedConfigurationGet':
-			return kafkaAdvancedConfigurationGetExecute.call(this, itemIndex ?? 0);
-		case 'kafkaAdvancedConfigurationUpdatePut':
-			return kafkaAdvancedConfigurationUpdatePutExecute.call(this, itemIndex ?? 0);
-		case 'kafkaCapabilitiesAdvancedConfigurationGet':
-			return kafkaCapabilitiesAdvancedConfigurationGetExecute.call(this, itemIndex ?? 0);
-		case 'kafkaCapabilitiesBackupRegionsGet':
-			return kafkaCapabilitiesBackupRegionsGetExecute.call(this, itemIndex ?? 0);
-		case 'kafkaCapabilitiesIntegrationGet':
-			return kafkaCapabilitiesIntegrationGetExecute.call(this, itemIndex ?? 0);
-		case 'kafkaCertificateListGet':
-			return kafkaCertificateListGetExecute.call(this, itemIndex ?? 0);
-		case 'kafkaIntegrationListGet':
-			return kafkaIntegrationListGetExecute.call(this, itemIndex ?? 0);
-		case 'kafkaIntegrationCreatePost':
-			return kafkaIntegrationCreatePostExecute.call(this, itemIndex ?? 0);
-		case 'kafkaIntegrationGetGet':
-			return kafkaIntegrationGetGetExecute.call(this, itemIndex ?? 0);
-		case 'kafkaIntegrationDeleteDelete':
-			return kafkaIntegrationDeleteDeleteExecute.call(this, itemIndex ?? 0);
-		case 'kafkaIpRestrictionListGet':
-			return kafkaIpRestrictionListGetExecute.call(this, itemIndex ?? 0);
-		case 'kafkaIpRestrictionCreatePost':
-			return kafkaIpRestrictionCreatePostExecute.call(this, itemIndex ?? 0);
-		case 'kafkaIpRestrictionGetGet':
-			return kafkaIpRestrictionGetGetExecute.call(this, itemIndex ?? 0);
-		case 'kafkaIpRestrictionUpdatePut':
-			return kafkaIpRestrictionUpdatePutExecute.call(this, itemIndex ?? 0);
-		case 'kafkaIpRestrictionDeleteDelete':
-			return kafkaIpRestrictionDeleteDeleteExecute.call(this, itemIndex ?? 0);
-		case 'kafkaLogKindListGet':
-			return kafkaLogKindListGetExecute.call(this, itemIndex ?? 0);
-		case 'kafkaLogKindGet':
-			return kafkaLogKindGetExecute.call(this, itemIndex ?? 0);
-		case 'kafkaLogSubscriptionListGet':
-			return kafkaLogSubscriptionListGetExecute.call(this, itemIndex ?? 0);
-		case 'kafkaLogSubscriptionCreatePost':
-			return kafkaLogSubscriptionCreatePostExecute.call(this, itemIndex ?? 0);
-		case 'kafkaLogSubscriptionGetGet':
-			return kafkaLogSubscriptionGetGetExecute.call(this, itemIndex ?? 0);
-		case 'kafkaLogSubscriptionDeleteDelete':
-			return kafkaLogSubscriptionDeleteDeleteExecute.call(this, itemIndex ?? 0);
-		case 'kafkaLogUrlCreatePost':
-			return kafkaLogUrlCreatePostExecute.call(this, itemIndex ?? 0);
-		case 'kafkaLogsGet':
-			return kafkaLogsGetExecute.call(this, itemIndex ?? 0);
-		case 'kafkaMaintenanceListGet':
-			return kafkaMaintenanceListGetExecute.call(this, itemIndex ?? 0);
-		case 'kafkaMaintenanceGet':
-			return kafkaMaintenanceGetExecute.call(this, itemIndex ?? 0);
-		case 'kafkaMaintenanceApplyPost':
-			return kafkaMaintenanceApplyPostExecute.call(this, itemIndex ?? 0);
-		case 'kafkaMetricListGet':
-			return kafkaMetricListGetExecute.call(this, itemIndex ?? 0);
-		case 'kafkaMetricGet':
-			return kafkaMetricGetExecute.call(this, itemIndex ?? 0);
-		case 'kafkaNodeListGet':
-			return kafkaNodeListGetExecute.call(this, itemIndex ?? 0);
-		case 'kafkaNodeGetGet':
-			return kafkaNodeGetGetExecute.call(this, itemIndex ?? 0);
-		case 'kafkaPermissionsGet':
-			return kafkaPermissionsGetExecute.call(this, itemIndex ?? 0);
-		case 'kafkaPrometheusGet':
-			return kafkaPrometheusGetExecute.call(this, itemIndex ?? 0);
-		case 'kafkaPrometheusCredentialsResetPost':
-			return kafkaPrometheusCredentialsResetPostExecute.call(this, itemIndex ?? 0);
-		case 'kafkaSchemaRegistryAclListGet':
-			return kafkaSchemaRegistryAclListGetExecute.call(this, itemIndex ?? 0);
-		case 'kafkaSchemaRegistryAclCreatePost':
-			return kafkaSchemaRegistryAclCreatePostExecute.call(this, itemIndex ?? 0);
-		case 'kafkaSchemaRegistryAclGetGet':
-			return kafkaSchemaRegistryAclGetGetExecute.call(this, itemIndex ?? 0);
-		case 'kafkaSchemaRegistryAclDeleteDelete':
-			return kafkaSchemaRegistryAclDeleteDeleteExecute.call(this, itemIndex ?? 0);
-		case 'kafkaTopicListGet':
-			return kafkaTopicListGetExecute.call(this, itemIndex ?? 0);
-		case 'kafkaTopicCreatePost':
-			return kafkaTopicCreatePostExecute.call(this, itemIndex ?? 0);
-		case 'kafkaTopicGetGet':
-			return kafkaTopicGetGetExecute.call(this, itemIndex ?? 0);
-		case 'kafkaTopicUpdatePut':
-			return kafkaTopicUpdatePutExecute.call(this, itemIndex ?? 0);
-		case 'kafkaTopicDeleteDelete':
-			return kafkaTopicDeleteDeleteExecute.call(this, itemIndex ?? 0);
-		case 'kafkaTopicAclListGet':
-			return kafkaTopicAclListGetExecute.call(this, itemIndex ?? 0);
-		case 'kafkaTopicAclCreatePost':
-			return kafkaTopicAclCreatePostExecute.call(this, itemIndex ?? 0);
-		case 'kafkaTopicAclGetGet':
-			return kafkaTopicAclGetGetExecute.call(this, itemIndex ?? 0);
-		case 'kafkaTopicAclDeleteDelete':
-			return kafkaTopicAclDeleteDeleteExecute.call(this, itemIndex ?? 0);
-		case 'kafkaUserListGet':
-			return kafkaUserListGetExecute.call(this, itemIndex ?? 0);
-		case 'kafkaUserCreatePost':
-			return kafkaUserCreatePostExecute.call(this, itemIndex ?? 0);
-		case 'kafkaUserGetGet':
-			return kafkaUserGetGetExecute.call(this, itemIndex ?? 0);
-		case 'kafkaUserDeleteDelete':
-			return kafkaUserDeleteDeleteExecute.call(this, itemIndex ?? 0);
-		case 'kafkaUserAccessGet':
-			return kafkaUserAccessGetExecute.call(this, itemIndex ?? 0);
-		case 'kafkaUserCredentialsResetPost':
-			return kafkaUserCredentialsResetPostExecute.call(this, itemIndex ?? 0);
-		case 'kafkaConnectClusterListGet':
-			return kafkaConnectClusterListGetExecute.call(this, itemIndex ?? 0);
-		case 'kafkaConnectClusterGetGet':
-			return kafkaConnectClusterGetGetExecute.call(this, itemIndex ?? 0);
-		case 'kafkaConnectClusterCreatePost':
-			return kafkaConnectClusterCreatePostExecute.call(this, itemIndex ?? 0);
-		case 'kafkaConnectClusterUpdatePut':
-			return kafkaConnectClusterUpdatePutExecute.call(this, itemIndex ?? 0);
-		case 'kafkaConnectClusterDeleteDelete':
-			return kafkaConnectClusterDeleteDeleteExecute.call(this, itemIndex ?? 0);
-		case 'kafkaConnectBackupListGet':
-			return kafkaConnectBackupListGetExecute.call(this, itemIndex ?? 0);
-		case 'kafkaConnectBackupCreatePost':
-			return kafkaConnectBackupCreatePostExecute.call(this, itemIndex ?? 0);
-		case 'kafkaConnectBackupGetGet':
-			return kafkaConnectBackupGetGetExecute.call(this, itemIndex ?? 0);
-		case 'kafkaConnectBackupDeleteDelete':
-			return kafkaConnectBackupDeleteDeleteExecute.call(this, itemIndex ?? 0);
-		case 'kafkaConnectUserListGet':
-			return kafkaConnectUserListGetExecute.call(this, itemIndex ?? 0);
-		case 'kafkaConnectUserCreatePost':
-			return kafkaConnectUserCreatePostExecute.call(this, itemIndex ?? 0);
-		case 'kafkaConnectUserGetGet':
-			return kafkaConnectUserGetGetExecute.call(this, itemIndex ?? 0);
-		case 'kafkaConnectUserUpdatePut':
-			return kafkaConnectUserUpdatePutExecute.call(this, itemIndex ?? 0);
-		case 'kafkaConnectUserDeleteDelete':
-			return kafkaConnectUserDeleteDeleteExecute.call(this, itemIndex ?? 0);
-		case 'kafkaConnectNodeListGet':
-			return kafkaConnectNodeListGetExecute.call(this, itemIndex ?? 0);
-		case 'kafkaConnectNodeCreatePost':
-			return kafkaConnectNodeCreatePostExecute.call(this, itemIndex ?? 0);
-		case 'kafkaConnectNodeGetGet':
-			return kafkaConnectNodeGetGetExecute.call(this, itemIndex ?? 0);
-		case 'kafkaConnectNodeUpdatePut':
-			return kafkaConnectNodeUpdatePutExecute.call(this, itemIndex ?? 0);
-		case 'kafkaConnectNodeDeleteDelete':
-			return kafkaConnectNodeDeleteDeleteExecute.call(this, itemIndex ?? 0);
-		case 'kafkaConnectIpRestrictionListGet':
-			return kafkaConnectIpRestrictionListGetExecute.call(this, itemIndex ?? 0);
-		case 'kafkaConnectIpRestrictionCreatePost':
-			return kafkaConnectIpRestrictionCreatePostExecute.call(this, itemIndex ?? 0);
-		case 'kafkaConnectLogSubscriptionListGet':
-			return kafkaConnectLogSubscriptionListGetExecute.call(this, itemIndex ?? 0);
-		case 'kafkaConnectLogSubscriptionCreatePost':
-			return kafkaConnectLogSubscriptionCreatePostExecute.call(this, itemIndex ?? 0);
-		case 'kafkaConnectLogSubscriptionGetGet':
-			return kafkaConnectLogSubscriptionGetGetExecute.call(this, itemIndex ?? 0);
-		case 'kafkaConnectMaintenanceGet':
-			return kafkaConnectMaintenanceGetExecute.call(this, itemIndex ?? 0);
-		case 'kafkaConnectMaintenanceUpdatePut':
-			return kafkaConnectMaintenanceUpdatePutExecute.call(this, itemIndex ?? 0);
-		case 'kafkaConnectMetricGet':
-			return kafkaConnectMetricGetExecute.call(this, itemIndex ?? 0);
-		case 'kafkaConnectPrometheusGet':
-			return kafkaConnectPrometheusGetExecute.call(this, itemIndex ?? 0);
-		case 'kafkaConnectCertificateListGet':
-			return kafkaConnectCertificateListGetExecute.call(this, itemIndex ?? 0);
-		case 'kafkaConnectCertificateCreatePost':
-			return kafkaConnectCertificateCreatePostExecute.call(this, itemIndex ?? 0);
-		case 'kafkaConnectadvancedConfigurationGet':
-			return kafkaConnectadvancedConfigurationGetExecute.call(this, itemIndex ?? 0);
-		case 'kafkaConnectadvancedConfigurationUpdatePut':
-			return kafkaConnectadvancedConfigurationUpdatePutExecute.call(this, itemIndex ?? 0);
-		case 'kafkaConnectcapabilitiesAdvancedConfigurationGet':
-			return kafkaConnectcapabilitiesAdvancedConfigurationGetExecute.call(this, itemIndex ?? 0);
-		case 'kafkaConnectcapabilitiesBackupRegionsGet':
-			return kafkaConnectcapabilitiesBackupRegionsGetExecute.call(this, itemIndex ?? 0);
-		case 'kafkaConnectcapabilitiesConnectorListGet':
-			return kafkaConnectcapabilitiesConnectorListGetExecute.call(this, itemIndex ?? 0);
-		case 'kafkaConnectcapabilitiesConnectorGet':
-			return kafkaConnectcapabilitiesConnectorGetExecute.call(this, itemIndex ?? 0);
-		case 'kafkaConnectcapabilitiesConnectorConfigurationGet':
-			return kafkaConnectcapabilitiesConnectorConfigurationGetExecute.call(this, itemIndex ?? 0);
-		case 'kafkaConnectcapabilitiesConnectorTransformsGet':
-			return kafkaConnectcapabilitiesConnectorTransformsGetExecute.call(this, itemIndex ?? 0);
-		case 'kafkaConnectcapabilitiesIntegrationGet':
-			return kafkaConnectcapabilitiesIntegrationGetExecute.call(this, itemIndex ?? 0);
-		case 'kafkaConnectconnectorListGet':
-			return kafkaConnectconnectorListGetExecute.call(this, itemIndex ?? 0);
-		case 'kafkaConnectconnectorCreatePost':
-			return kafkaConnectconnectorCreatePostExecute.call(this, itemIndex ?? 0);
-		case 'kafkaConnectconnectorGetGet':
-			return kafkaConnectconnectorGetGetExecute.call(this, itemIndex ?? 0);
-		case 'kafkaConnectconnectorUpdatePut':
-			return kafkaConnectconnectorUpdatePutExecute.call(this, itemIndex ?? 0);
-		case 'kafkaConnectconnectorDeleteDelete':
-			return kafkaConnectconnectorDeleteDeleteExecute.call(this, itemIndex ?? 0);
-		case 'kafkaConnectconnectorPausePost':
-			return kafkaConnectconnectorPausePostExecute.call(this, itemIndex ?? 0);
-		case 'kafkaConnectconnectorRestartPost':
-			return kafkaConnectconnectorRestartPostExecute.call(this, itemIndex ?? 0);
-		case 'kafkaConnectconnectorResumePost':
-			return kafkaConnectconnectorResumePostExecute.call(this, itemIndex ?? 0);
-		case 'kafkaConnectconnectorTaskListGet':
-			return kafkaConnectconnectorTaskListGetExecute.call(this, itemIndex ?? 0);
-		case 'kafkaConnectconnectorTaskGet':
-			return kafkaConnectconnectorTaskGetExecute.call(this, itemIndex ?? 0);
-		case 'kafkaConnectconnectorTaskRestartPost':
-			return kafkaConnectconnectorTaskRestartPostExecute.call(this, itemIndex ?? 0);
-		case 'kafkaConnectintegrationListGet':
-			return kafkaConnectintegrationListGetExecute.call(this, itemIndex ?? 0);
-		case 'kafkaConnectintegrationCreatePost':
-			return kafkaConnectintegrationCreatePostExecute.call(this, itemIndex ?? 0);
-		case 'kafkaConnectintegrationGetGet':
-			return kafkaConnectintegrationGetGetExecute.call(this, itemIndex ?? 0);
-		case 'kafkaConnectintegrationDeleteDelete':
-			return kafkaConnectintegrationDeleteDeleteExecute.call(this, itemIndex ?? 0);
-		case 'kafkaConnectipRestrictionGetGet':
-			return kafkaConnectipRestrictionGetGetExecute.call(this, itemIndex ?? 0);
-		case 'kafkaConnectipRestrictionUpdatePut':
-			return kafkaConnectipRestrictionUpdatePutExecute.call(this, itemIndex ?? 0);
-		case 'kafkaConnectipRestrictionDeleteDelete':
-			return kafkaConnectipRestrictionDeleteDeleteExecute.call(this, itemIndex ?? 0);
-		case 'kafkaConnectlogKindListGet':
-			return kafkaConnectlogKindListGetExecute.call(this, itemIndex ?? 0);
-		case 'kafkaConnectlogKindGet':
-			return kafkaConnectlogKindGetExecute.call(this, itemIndex ?? 0);
-		case 'kafkaConnectlogSubscriptionDeleteDelete':
-			return kafkaConnectlogSubscriptionDeleteDeleteExecute.call(this, itemIndex ?? 0);
-		case 'kafkaConnectlogUrlCreatePost':
-			return kafkaConnectlogUrlCreatePostExecute.call(this, itemIndex ?? 0);
-		case 'kafkaConnectlogsGet':
-			return kafkaConnectlogsGetExecute.call(this, itemIndex ?? 0);
-		case 'kafkaConnectmaintenanceListGet':
-			return kafkaConnectmaintenanceListGetExecute.call(this, itemIndex ?? 0);
-		case 'kafkaConnectmaintenanceApplyPost':
-			return kafkaConnectmaintenanceApplyPostExecute.call(this, itemIndex ?? 0);
-		case 'kafkaConnectmetricListGet':
-			return kafkaConnectmetricListGetExecute.call(this, itemIndex ?? 0);
-		case 'kafkaConnectnodeGet':
-			return kafkaConnectnodeGetExecute.call(this, itemIndex ?? 0);
-		case 'kafkaConnectprometheusCredentialsResetPost':
-			return kafkaConnectprometheusCredentialsResetPostExecute.call(this, itemIndex ?? 0);
-		case 'kafkaConnectuserCredentialsResetPost':
-			return kafkaConnectuserCredentialsResetPostExecute.call(this, itemIndex ?? 0);
-		case 'kafkaMirrorMakerClusterListGet':
-			return kafkaMirrorMakerClusterListGetExecute.call(this, itemIndex ?? 0);
-		case 'kafkaMirrorMakerClusterCreatePost':
-			return kafkaMirrorMakerClusterCreatePostExecute.call(this, itemIndex ?? 0);
-		case 'kafkaMirrorMakerClusterGetGet':
-			return kafkaMirrorMakerClusterGetGetExecute.call(this, itemIndex ?? 0);
-		case 'kafkaMirrorMakerClusterUpdatePut':
-			return kafkaMirrorMakerClusterUpdatePutExecute.call(this, itemIndex ?? 0);
-		case 'kafkaMirrorMakerClusterDeleteDelete':
-			return kafkaMirrorMakerClusterDeleteDeleteExecute.call(this, itemIndex ?? 0);
-		case 'kafkaMirrorMakerCapabilitiesIntegrationGet':
-			return kafkaMirrorMakerCapabilitiesIntegrationGetExecute.call(this, itemIndex ?? 0);
-		case 'kafkaMirrorMakerIntegrationGet':
-			return kafkaMirrorMakerIntegrationGetExecute.call(this, itemIndex ?? 0);
-		case 'kafkaMirrorMakerIntegrationCreatePost':
-			return kafkaMirrorMakerIntegrationCreatePostExecute.call(this, itemIndex ?? 0);
-		case 'kafkaMirrorMakerIntegrationDeleteDelete':
-			return kafkaMirrorMakerIntegrationDeleteDeleteExecute.call(this, itemIndex ?? 0);
-		case 'kafkaMirrorMakerIntegrationGetById':
-			return kafkaMirrorMakerIntegrationGetByIdExecute.call(this, itemIndex ?? 0);
-		case 'kafkaMirrorMakerLogKindGet':
-			return kafkaMirrorMakerLogKindGetExecute.call(this, itemIndex ?? 0);
-		case 'kafkaMirrorMakerLogKindNameGet':
-			return kafkaMirrorMakerLogKindNameGetExecute.call(this, itemIndex ?? 0);
-		case 'kafkaMirrorMakerLogSubscriptionCreatePost':
-			return kafkaMirrorMakerLogSubscriptionCreatePostExecute.call(this, itemIndex ?? 0);
-		case 'kafkaMirrorMakerLogSubscriptionDeleteDelete':
-			return kafkaMirrorMakerLogSubscriptionDeleteDeleteExecute.call(this, itemIndex ?? 0);
-		case 'kafkaMirrorMakerLogSubscriptionGetById':
-			return kafkaMirrorMakerLogSubscriptionGetByIdExecute.call(this, itemIndex ?? 0);
-		case 'kafkaMirrorMakerLogUrlPost':
-			return kafkaMirrorMakerLogUrlPostExecute.call(this, itemIndex ?? 0);
-		case 'kafkaMirrorMakerLogsGet':
-			return kafkaMirrorMakerLogsGetExecute.call(this, itemIndex ?? 0);
-		case 'kafkaMirrorMakerMaintenanceGet':
-			return kafkaMirrorMakerMaintenanceGetExecute.call(this, itemIndex ?? 0);
-		case 'kafkaMirrorMakerMaintenanceGetById':
-			return kafkaMirrorMakerMaintenanceGetByIdExecute.call(this, itemIndex ?? 0);
-		case 'kafkaMirrorMakerMaintenanceApplyPost':
-			return kafkaMirrorMakerMaintenanceApplyPostExecute.call(this, itemIndex ?? 0);
-		case 'kafkaMirrorMakerMetricGet':
-			return kafkaMirrorMakerMetricGetExecute.call(this, itemIndex ?? 0);
-		case 'kafkaMirrorMakerMetricNameGet':
-			return kafkaMirrorMakerMetricNameGetExecute.call(this, itemIndex ?? 0);
-		case 'kafkaMirrorMakerNodeListGet':
-			return kafkaMirrorMakerNodeListGetExecute.call(this, itemIndex ?? 0);
-		case 'kafkaMirrorMakerNodeGetGet':
-			return kafkaMirrorMakerNodeGetGetExecute.call(this, itemIndex ?? 0);
-		case 'kafkaMirrorMakerPrometheusGet':
-			return kafkaMirrorMakerPrometheusGetExecute.call(this, itemIndex ?? 0);
-		case 'kafkaMirrorMakerPrometheusCredentialsResetPost':
-			return kafkaMirrorMakerPrometheusCredentialsResetPostExecute.call(this, itemIndex ?? 0);
-		case 'kafkaMirrorMakerReplicationGet':
-			return kafkaMirrorMakerReplicationGetExecute.call(this, itemIndex ?? 0);
-		case 'kafkaMirrorMakerReplicationCreatePost':
-			return kafkaMirrorMakerReplicationCreatePostExecute.call(this, itemIndex ?? 0);
-		case 'kafkaMirrorMakerReplicationDeleteDelete':
-			return kafkaMirrorMakerReplicationDeleteDeleteExecute.call(this, itemIndex ?? 0);
-		case 'kafkaMirrorMakerReplicationGetById':
-			return kafkaMirrorMakerReplicationGetByIdExecute.call(this, itemIndex ?? 0);
-		case 'kafkaMirrorMakerReplicationUpdatePut':
-			return kafkaMirrorMakerReplicationUpdatePutExecute.call(this, itemIndex ?? 0);
-		case 'm3aggregatorClusterListGet':
-			return m3aggregatorClusterListGetExecute.call(this, itemIndex ?? 0);
-		case 'm3aggregatorClusterCreatePost':
-			return m3aggregatorClusterCreatePostExecute.call(this, itemIndex ?? 0);
-		case 'm3aggregatorClusterGetGet':
-			return m3aggregatorClusterGetGetExecute.call(this, itemIndex ?? 0);
-		case 'm3aggregatorClusterUpdatePut':
-			return m3aggregatorClusterUpdatePutExecute.call(this, itemIndex ?? 0);
-		case 'm3aggregatorClusterDeleteDelete':
-			return m3aggregatorClusterDeleteDeleteExecute.call(this, itemIndex ?? 0);
-		case 'm3aggregatorCapabilitiesIntegrationGet':
-			return m3aggregatorCapabilitiesIntegrationGetExecute.call(this, itemIndex ?? 0);
-		case 'm3aggregatorIntegrationGet':
-			return m3aggregatorIntegrationGetExecute.call(this, itemIndex ?? 0);
-		case 'm3aggregatorIntegrationCreatePost':
-			return m3aggregatorIntegrationCreatePostExecute.call(this, itemIndex ?? 0);
-		case 'm3aggregatorIntegrationDeleteDelete':
-			return m3aggregatorIntegrationDeleteDeleteExecute.call(this, itemIndex ?? 0);
-		case 'm3aggregatorIntegrationGetById':
-			return m3aggregatorIntegrationGetByIdExecute.call(this, itemIndex ?? 0);
-		case 'm3aggregatorLogKindGet':
-			return m3aggregatorLogKindGetExecute.call(this, itemIndex ?? 0);
-		case 'm3aggregatorLogKindNameGet':
-			return m3aggregatorLogKindNameGetExecute.call(this, itemIndex ?? 0);
-		case 'm3aggregatorLogSubscriptionListGet':
-			return m3aggregatorLogSubscriptionListGetExecute.call(this, itemIndex ?? 0);
-		case 'm3aggregatorLogSubscriptionCreatePost':
-			return m3aggregatorLogSubscriptionCreatePostExecute.call(this, itemIndex ?? 0);
-		case 'm3aggregatorLogSubscriptionDeleteDelete':
-			return m3aggregatorLogSubscriptionDeleteDeleteExecute.call(this, itemIndex ?? 0);
-		case 'm3aggregatorLogSubscriptionGetById':
-			return m3aggregatorLogSubscriptionGetByIdExecute.call(this, itemIndex ?? 0);
-		case 'm3aggregatorLogUrlPost':
-			return m3aggregatorLogUrlPostExecute.call(this, itemIndex ?? 0);
-		case 'm3aggregatorLogsGet':
-			return m3aggregatorLogsGetExecute.call(this, itemIndex ?? 0);
-		case 'm3aggregatorMaintenanceGet':
-			return m3aggregatorMaintenanceGetExecute.call(this, itemIndex ?? 0);
-		case 'm3aggregatorMaintenanceGetById':
-			return m3aggregatorMaintenanceGetByIdExecute.call(this, itemIndex ?? 0);
-		case 'm3aggregatorMaintenanceApplyPost':
-			return m3aggregatorMaintenanceApplyPostExecute.call(this, itemIndex ?? 0);
-		case 'm3aggregatorMetricGet':
-			return m3aggregatorMetricGetExecute.call(this, itemIndex ?? 0);
-		case 'm3aggregatorMetricNameGet':
-			return m3aggregatorMetricNameGetExecute.call(this, itemIndex ?? 0);
-		case 'm3aggregatorNodeListGet':
-			return m3aggregatorNodeListGetExecute.call(this, itemIndex ?? 0);
-		case 'm3aggregatorNodeGetGet':
-			return m3aggregatorNodeGetGetExecute.call(this, itemIndex ?? 0);
-
-		case 'M3dbClusterListGet':
-			return m3dbClusterListGetExecute.call(this, itemIndex ?? 0);
-		case 'M3dbClusterCreatePost':
-			return m3dbClusterCreatePostExecute.call(this, itemIndex ?? 0);
-		case 'M3dbClusterDeleteDelete':
-			return m3dbClusterDeleteDeleteExecute.call(this, itemIndex ?? 0);
-		case 'M3dbClusterGetGet':
-			return m3dbClusterGetGetExecute.call(this, itemIndex ?? 0);
-		case 'M3dbClusterUpdatePut':
-			return m3dbClusterUpdatePutExecute.call(this, itemIndex ?? 0);
-		case 'M3dbAdvancedConfigurationGetGet':
-			return m3dbAdvancedConfigurationGetGetExecute.call(this, itemIndex ?? 0);
-		case 'M3dbAdvancedConfigurationUpdatePut':
-			return m3dbAdvancedConfigurationUpdatePutExecute.call(this, itemIndex ?? 0);
-		case 'M3dbBackupListGet':
-			return m3dbBackupListGetExecute.call(this, itemIndex ?? 0);
-		case 'M3dbBackupGetGet':
-			return m3dbBackupGetGetExecute.call(this, itemIndex ?? 0);
-		case 'M3dbCapabilitiesAdvancedConfigurationGetGet':
-			return m3dbCapabilitiesAdvancedConfigurationGetGetExecute.call(this, itemIndex ?? 0);
-		case 'M3dbCapabilitiesIntegrationGetGet':
-			return m3dbCapabilitiesIntegrationGetGetExecute.call(this, itemIndex ?? 0);
-		case 'M3dbIntegrationListGet':
-			return m3dbIntegrationListGetExecute.call(this, itemIndex ?? 0);
-		case 'M3dbIntegrationCreatePost':
-			return m3dbIntegrationCreatePostExecute.call(this, itemIndex ?? 0);
-		case 'M3dbIntegrationDeleteDelete':
-			return m3dbIntegrationDeleteDeleteExecute.call(this, itemIndex ?? 0);
-		case 'M3dbIntegrationGetGet':
-			return m3dbIntegrationGetGetExecute.call(this, itemIndex ?? 0);
-		case 'M3dbIpRestrictionListGet':
-			return m3dbIpRestrictionListGetExecute.call(this, itemIndex ?? 0);
-		case 'M3dbIpRestrictionCreatePost':
-			return m3dbIpRestrictionCreatePostExecute.call(this, itemIndex ?? 0);
-		case 'M3dbIpRestrictionDeleteDelete':
-			return m3dbIpRestrictionDeleteDeleteExecute.call(this, itemIndex ?? 0);
-		case 'M3dbIpRestrictionGetGet':
-			return m3dbIpRestrictionGetGetExecute.call(this, itemIndex ?? 0);
-		case 'M3dbIpRestrictionUpdatePut':
-			return m3dbIpRestrictionUpdatePutExecute.call(this, itemIndex ?? 0);
-		case 'M3dbLogKindListGet':
-			return m3dbLogKindListGetExecute.call(this, itemIndex ?? 0);
-		case 'M3dbLogKindGetGet':
-			return m3dbLogKindGetGetExecute.call(this, itemIndex ?? 0);
-		case 'M3dbLogSubscriptionListGet':
-			return m3dbLogSubscriptionListGetExecute.call(this, itemIndex ?? 0);
-		case 'M3dbLogSubscriptionCreatePost':
-			return m3dbLogSubscriptionCreatePostExecute.call(this, itemIndex ?? 0);
-		case 'M3dbLogSubscriptionDeleteDelete':
-			return m3dbLogSubscriptionDeleteDeleteExecute.call(this, itemIndex ?? 0);
-		case 'M3dbLogSubscriptionGetGet':
-			return m3dbLogSubscriptionGetGetExecute.call(this, itemIndex ?? 0);
-		case 'M3dbLogUrlCreatePost':
-			return m3dbLogUrlCreatePostExecute.call(this, itemIndex ?? 0);
-		case 'M3dbLogsGet':
-			return m3dbLogsGetExecute.call(this, itemIndex ?? 0);
-		case 'M3dbMaintenanceListGet':
-			return m3dbMaintenanceListGetExecute.call(this, itemIndex ?? 0);
-		case 'M3dbMaintenanceGetGet':
-			return m3dbMaintenanceGetGetExecute.call(this, itemIndex ?? 0);
-		case 'M3dbMaintenanceApplyPost':
-			return m3dbMaintenanceApplyPostExecute.call(this, itemIndex ?? 0);
-		case 'M3dbMetricListGet':
-			return m3dbMetricListGetExecute.call(this, itemIndex ?? 0);
-		case 'M3dbMetricGetGet':
-			return m3dbMetricGetGetExecute.call(this, itemIndex ?? 0);
-		case 'M3dbNamespaceListGet':
-			return m3dbNamespaceListGetExecute.call(this, itemIndex ?? 0);
-		case 'M3dbNamespaceCreatePost':
-			return m3dbNamespaceCreatePostExecute.call(this, itemIndex ?? 0);
-		case 'M3dbNamespaceDeleteDelete':
-			return m3dbNamespaceDeleteDeleteExecute.call(this, itemIndex ?? 0);
-		case 'M3dbNamespaceGetGet':
-			return m3dbNamespaceGetGetExecute.call(this, itemIndex ?? 0);
-		case 'M3dbNamespaceUpdatePut':
-			return m3dbNamespaceUpdatePutExecute.call(this, itemIndex ?? 0);
-		case 'M3dbNodeListGet':
-			return m3dbNodeListGetExecute.call(this, itemIndex ?? 0);
-		case 'M3dbNodeGetGet':
-			return m3dbNodeGetGetExecute.call(this, itemIndex ?? 0);
-		case 'M3dbUserListGet':
-			return m3dbUserListGetExecute.call(this, itemIndex ?? 0);
-		case 'M3dbUserCreatePost':
-			return m3dbUserCreatePostExecute.call(this, itemIndex ?? 0);
-		case 'M3dbUserDeleteDelete':
-			return m3dbUserDeleteDeleteExecute.call(this, itemIndex ?? 0);
-		case 'M3dbUserGetGet':
-			return m3dbUserGetGetExecute.call(this, itemIndex ?? 0);
-		case 'M3dbUserUpdatePut':
-			return m3dbUserUpdatePutExecute.call(this, itemIndex ?? 0);
-		case 'M3dbUserCredentialsResetPost':
-			return m3dbUserCredentialsResetPostExecute.call(this, itemIndex ?? 0);
-		case 'mongodbClusterListGet':
-			return mongodbClusterListGetExecute.call(this, itemIndex ?? 0);
-		case 'mongodbClusterGetGet':
-			return mongodbClusterGetGetExecute.call(this, itemIndex ?? 0);
-		case 'mongodbClusterCreatePost':
-			return mongodbClusterCreatePostExecute.call(this, itemIndex ?? 0);
-		case 'mongodbClusterUpdatePut':
-			return mongodbClusterUpdatePutExecute.call(this, itemIndex ?? 0);
-		case 'mongodbClusterDeleteDelete':
-			return mongodbClusterDeleteDeleteExecute.call(this, itemIndex ?? 0);
-		case 'mongodbBackupListGet':
-			return mongodbBackupListGetExecute.call(this, itemIndex ?? 0);
-		case 'mongodbBackupGetGet':
-			return mongodbBackupGetGetExecute.call(this, itemIndex ?? 0);
-		case 'mongodbBackupDeleteDelete':
-			return mongodbBackupDeleteDeleteExecute.call(this, itemIndex ?? 0);
-		case 'mongodbBackupRestorePost':
-			return mongodbBackupRestorePostExecute.call(this, itemIndex ?? 0);
-		case 'mongodbIpRestrictionListGet':
-			return mongodbIpRestrictionListGetExecute.call(this, itemIndex ?? 0);
-		case 'mongodbIpRestrictionCreatePost':
-			return mongodbIpRestrictionCreatePostExecute.call(this, itemIndex ?? 0);
-		case 'mongodbIpRestrictionGetGet':
-			return mongodbIpRestrictionGetGetExecute.call(this, itemIndex ?? 0);
-		case 'mongodbIpRestrictionUpdatePut':
-			return mongodbIpRestrictionUpdatePutExecute.call(this, itemIndex ?? 0);
-		case 'mongodbIpRestrictionDeleteDelete':
-			return mongodbIpRestrictionDeleteDeleteExecute.call(this, itemIndex ?? 0);
-		case 'mongodbLogKindListGet':
-			return mongodbLogKindListGetExecute.call(this, itemIndex ?? 0);
-		case 'mongodbLogKindGetGet':
-			return mongodbLogKindGetGetExecute.call(this, itemIndex ?? 0);
-		case 'mongodbLogSubscriptionListGet':
-			return mongodbLogSubscriptionListGetExecute.call(this, itemIndex ?? 0);
-		case 'mongodbLogSubscriptionCreatePost':
-			return mongodbLogSubscriptionCreatePostExecute.call(this, itemIndex ?? 0);
-		case 'mongodbLogSubscriptionGetGet':
-			return mongodbLogSubscriptionGetGetExecute.call(this, itemIndex ?? 0);
-		case 'mongodbLogSubscriptionDeleteDelete':
-			return mongodbLogSubscriptionDeleteDeleteExecute.call(this, itemIndex ?? 0);
-		case 'mongodbLogUrlCreatePost':
-			return mongodbLogUrlCreatePostExecute.call(this, itemIndex ?? 0);
-		case 'mongodbLogListGet':
-			return mongodbLogListGetExecute.call(this, itemIndex ?? 0);
-		case 'mongodbMaintenanceListGet':
-			return mongodbMaintenanceListGetExecute.call(this, itemIndex ?? 0);
-		case 'mongodbMaintenanceGetGet':
-			return mongodbMaintenanceGetGetExecute.call(this, itemIndex ?? 0);
-		case 'mongodbMaintenanceApplyPost':
-			return mongodbMaintenanceApplyPostExecute.call(this, itemIndex ?? 0);
-		case 'mongodbMetricListGet':
-			return mongodbMetricListGetExecute.call(this, itemIndex ?? 0);
-		case 'mongodbMetricNameGetGet':
-			return mongodbMetricNameGetGetExecute.call(this, itemIndex ?? 0);
-		case 'mongodbNodeListGet':
-			return mongodbNodeListGetExecute.call(this, itemIndex ?? 0);
-		case 'mongodbNodeCreatePost':
-			return mongodbNodeCreatePostExecute.call(this, itemIndex ?? 0);
-		case 'mongodbNodeGetGet':
-			return mongodbNodeGetGetExecute.call(this, itemIndex ?? 0);
-		case 'mongodbNodeUpdatePut':
-			return mongodbNodeUpdatePutExecute.call(this, itemIndex ?? 0);
-		case 'mongodbNodeDeleteDelete':
-			return mongodbNodeDeleteDeleteExecute.call(this, itemIndex ?? 0);
-		case 'mongodbPrometheusGetGet':
-			return mongodbPrometheusGetGetExecute.call(this, itemIndex ?? 0);
-		case 'mongodbPrometheusCredentialsResetPost':
-			return mongodbPrometheusCredentialsResetPostExecute.call(this, itemIndex ?? 0);
-		case 'mongodbRestoreCreatePost':
-			return mongodbRestoreCreatePostExecute.call(this, itemIndex ?? 0);
-		case 'mongodbRoleListGet':
-			return mongodbRoleListGetExecute.call(this, itemIndex ?? 0);
-		case 'mongodbUserListGet':
-			return mongodbUserListGetExecute.call(this, itemIndex ?? 0);
-		case 'mongodbUserCreatePost':
-			return mongodbUserCreatePostExecute.call(this, itemIndex ?? 0);
-		case 'mongodbUserGetGet':
-			return mongodbUserGetGetExecute.call(this, itemIndex ?? 0);
-		case 'mongodbUserUpdatePut':
-			return mongodbUserUpdatePutExecute.call(this, itemIndex ?? 0);
-		case 'mongodbUserDeleteDelete':
-			return mongodbUserDeleteDeleteExecute.call(this, itemIndex ?? 0);
-		case 'mongodbUserCredentialsResetPost':
-			return mongodbUserCredentialsResetPostExecute.call(this, itemIndex ?? 0);
-		case 'mysqlClusterListGet':
-			return mysqlClusterListGetExecute.call(this, itemIndex ?? 0);
-		case 'mysqlClusterGetGet':
-			return mysqlClusterGetGetExecute.call(this, itemIndex ?? 0);
-		case 'mysqlClusterCreatePost':
-			return mysqlClusterCreatePostExecute.call(this, itemIndex ?? 0);
-		case 'mysqlClusterUpdatePut':
-			return mysqlClusterUpdatePutExecute.call(this, itemIndex ?? 0);
-		case 'mysqlClusterDeleteDelete':
-			return mysqlClusterDeleteDeleteExecute.call(this, itemIndex ?? 0);
-		case 'mysqlBackupListGet':
-			return mysqlBackupListGetExecute.call(this, itemIndex ?? 0);
-		case 'mysqlBackupCreatePost':
-			return mysqlBackupCreatePostExecute.call(this, itemIndex ?? 0);
-		case 'mysqlBackupGetGet':
-			return mysqlBackupGetGetExecute.call(this, itemIndex ?? 0);
-		case 'mysqlBackupDeleteDelete':
-			return mysqlBackupDeleteDeleteExecute.call(this, itemIndex ?? 0);
-		case 'mysqlUserListGet':
-			return mysqlUserListGetExecute.call(this, itemIndex ?? 0);
-		case 'mysqlUserCreatePost':
-			return mysqlUserCreatePostExecute.call(this, itemIndex ?? 0);
-		case 'mysqlUserGetGet':
-			return mysqlUserGetGetExecute.call(this, itemIndex ?? 0);
-		case 'mysqlUserUpdatePut':
-			return mysqlUserUpdatePutExecute.call(this, itemIndex ?? 0);
-		case 'mysqlUserDeleteDelete':
-			return mysqlUserDeleteDeleteExecute.call(this, itemIndex ?? 0);
-		case 'mysqlNodeListGet':
-			return mysqlNodeListGetExecute.call(this, itemIndex ?? 0);
-		case 'mysqlNodeCreatePost':
-			return mysqlNodeCreatePostExecute.call(this, itemIndex ?? 0);
-		case 'mysqlNodeGetGet':
-			return mysqlNodeGetGetExecute.call(this, itemIndex ?? 0);
-		case 'mysqlNodeUpdatePut':
-			return mysqlNodeUpdatePutExecute.call(this, itemIndex ?? 0);
-		case 'mysqlNodeDeleteDelete':
-			return mysqlNodeDeleteDeleteExecute.call(this, itemIndex ?? 0);
-		case 'mysqlIpRestrictionListGet':
-			return mysqlIpRestrictionListGetExecute.call(this, itemIndex ?? 0);
-		case 'mysqlIpRestrictionCreatePost':
-			return mysqlIpRestrictionCreatePostExecute.call(this, itemIndex ?? 0);
-		case 'mysqlLogSubscriptionListGet':
-			return mysqlLogSubscriptionListGetExecute.call(this, itemIndex ?? 0);
-		case 'mysqlLogSubscriptionCreatePost':
-			return mysqlLogSubscriptionCreatePostExecute.call(this, itemIndex ?? 0);
-		case 'mysqlLogSubscriptionGetGet':
-			return mysqlLogSubscriptionGetGetExecute.call(this, itemIndex ?? 0);
-		case 'mysqlMaintenanceGet':
-			return mysqlMaintenanceGetExecute.call(this, itemIndex ?? 0);
-		case 'mysqlMaintenanceUpdatePut':
-			return mysqlMaintenanceUpdatePutExecute.call(this, itemIndex ?? 0);
-		case 'mysqlMetricGet':
-			return mysqlMetricGetExecute.call(this, itemIndex ?? 0);
-		case 'mysqlPrometheusGet':
-			return mysqlPrometheusGetExecute.call(this, itemIndex ?? 0);
-		case 'mysqlCertificateListGet':
-			return mysqlCertificateListGetExecute.call(this, itemIndex ?? 0);
-		case 'mysqlCertificateCreatePost':
-			return mysqlCertificateCreatePostExecute.call(this, itemIndex ?? 0);
-		case 'mysqlIntegrationListGet':
-			return mysqlIntegrationListGetExecute.call(this, itemIndex ?? 0);
-		case 'mysqlIntegrationCreatePost':
-			return mysqlIntegrationCreatePostExecute.call(this, itemIndex ?? 0);
-		case 'opensearchAdvancedConfigurationListGet':
-			return opensearchAdvancedConfigurationListGetExecute.call(this, itemIndex ?? 0);
-		case 'opensearchAdvancedConfigurationUpdatePut':
-			return opensearchAdvancedConfigurationUpdatePutExecute.call(this, itemIndex ?? 0);
-		case 'opensearchBackupGetGet':
-			return opensearchBackupGetGetExecute.call(this, itemIndex ?? 0);
-		case 'opensearchBackupListGet':
-			return opensearchBackupListGetExecute.call(this, itemIndex ?? 0);
-		case 'opensearchCapabilitiesAdvancedConfigurationListGet':
-			return opensearchCapabilitiesAdvancedConfigurationListGetExecute.call(this, itemIndex ?? 0);
-		case 'opensearchCapabilitiesBackupRegionsListGet':
-			return opensearchCapabilitiesBackupRegionsListGetExecute.call(this, itemIndex ?? 0);
-		case 'opensearchCapabilitiesIntegrationListGet':
-			return opensearchCapabilitiesIntegrationListGetExecute.call(this, itemIndex ?? 0);
-		case 'opensearchClusterCreatePost':
-			return opensearchClusterCreatePostExecute.call(this, itemIndex ?? 0);
-		case 'opensearchClusterDeleteDelete':
-			return opensearchClusterDeleteDeleteExecute.call(this, itemIndex ?? 0);
-		case 'opensearchClusterGetGet':
-			return opensearchClusterGetGetExecute.call(this, itemIndex ?? 0);
-		case 'opensearchClusterListGet':
-			return opensearchClusterListGetExecute.call(this, itemIndex ?? 0);
-		case 'opensearchClusterUpdatePut':
-			return opensearchClusterUpdatePutExecute.call(this, itemIndex ?? 0);
-		case 'opensearchIndexDeleteDelete':
-			return opensearchIndexDeleteDeleteExecute.call(this, itemIndex ?? 0);
-		case 'opensearchIndexGetGet':
-			return opensearchIndexGetGetExecute.call(this, itemIndex ?? 0);
-		case 'opensearchIndexListGet':
-			return opensearchIndexListGetExecute.call(this, itemIndex ?? 0);
-		case 'opensearchIntegrationCreatePost':
-			return opensearchIntegrationCreatePostExecute.call(this, itemIndex ?? 0);
-		case 'opensearchIntegrationDeleteDelete':
-			return opensearchIntegrationDeleteDeleteExecute.call(this, itemIndex ?? 0);
-		case 'opensearchIntegrationGetGet':
-			return opensearchIntegrationGetGetExecute.call(this, itemIndex ?? 0);
-		case 'opensearchIntegrationListGet':
-			return opensearchIntegrationListGetExecute.call(this, itemIndex ?? 0);
-		case 'opensearchIpRestrictionCreatePost':
-			return opensearchIpRestrictionCreatePostExecute.call(this, itemIndex ?? 0);
-		case 'opensearchIpRestrictionDeleteDelete':
-			return opensearchIpRestrictionDeleteDeleteExecute.call(this, itemIndex ?? 0);
-		case 'opensearchIpRestrictionGetGet':
-			return opensearchIpRestrictionGetGetExecute.call(this, itemIndex ?? 0);
-		case 'opensearchIpRestrictionListGet':
-			return opensearchIpRestrictionListGetExecute.call(this, itemIndex ?? 0);
-		case 'opensearchIpRestrictionUpdatePut':
-			return opensearchIpRestrictionUpdatePutExecute.call(this, itemIndex ?? 0);
-		case 'opensearchLogKindGet':
-			return opensearchLogKindGetExecute.call(this, itemIndex ?? 0);
-		case 'opensearchLogKindListGet':
-			return opensearchLogKindListGetExecute.call(this, itemIndex ?? 0);
-		case 'opensearchLogSubscriptionCreatePost':
-			return opensearchLogSubscriptionCreatePostExecute.call(this, itemIndex ?? 0);
-		case 'opensearchLogSubscriptionDeleteDelete':
-			return opensearchLogSubscriptionDeleteDeleteExecute.call(this, itemIndex ?? 0);
-		case 'opensearchLogSubscriptionGet':
-			return opensearchLogSubscriptionGetExecute.call(this, itemIndex ?? 0);
-		case 'opensearchLogSubscriptionListGet':
-			return opensearchLogSubscriptionListGetExecute.call(this, itemIndex ?? 0);
-		case 'opensearchLogUrlCreatePost':
-			return opensearchLogUrlCreatePostExecute.call(this, itemIndex ?? 0);
-		case 'opensearchLogsListGet':
-			return opensearchLogsListGetExecute.call(this, itemIndex ?? 0);
-		case 'opensearchMaintenanceApplyPost':
-			return opensearchMaintenanceApplyPostExecute.call(this, itemIndex ?? 0);
-		case 'opensearchMaintenanceGetGet':
-			return opensearchMaintenanceGetGetExecute.call(this, itemIndex ?? 0);
-		case 'opensearchMaintenanceListGet':
-			return opensearchMaintenanceListGetExecute.call(this, itemIndex ?? 0);
-		case 'opensearchMetricGetGet':
-			return opensearchMetricGetGetExecute.call(this, itemIndex ?? 0);
-		case 'opensearchMetricListGet':
-			return opensearchMetricListGetExecute.call(this, itemIndex ?? 0);
-		case 'opensearchNodeGetGet':
-			return opensearchNodeGetGetExecute.call(this, itemIndex ?? 0);
-		case 'opensearchNodeListGet':
-			return opensearchNodeListGetExecute.call(this, itemIndex ?? 0);
-		case 'opensearchPatternCreatePost':
-			return opensearchPatternCreatePostExecute.call(this, itemIndex ?? 0);
-		case 'opensearchPatternDeleteDelete':
-			return opensearchPatternDeleteDeleteExecute.call(this, itemIndex ?? 0);
-		case 'opensearchPatternGetGet':
-			return opensearchPatternGetGetExecute.call(this, itemIndex ?? 0);
-		case 'opensearchPatternListGet':
-			return opensearchPatternListGetExecute.call(this, itemIndex ?? 0);
-		case 'opensearchPermissionsListGet':
-			return opensearchPermissionsListGetExecute.call(this, itemIndex ?? 0);
-		case 'opensearchPrometheusCredentialsResetPost':
-			return opensearchPrometheusCredentialsResetPostExecute.call(this, itemIndex ?? 0);
-		case 'opensearchPrometheusListGet':
-			return opensearchPrometheusListGetExecute.call(this, itemIndex ?? 0);
-		case 'opensearchUserCreatePost':
-			return opensearchUserCreatePostExecute.call(this, itemIndex ?? 0);
-		case 'opensearchUserCredentialsResetPost':
-			return opensearchUserCredentialsResetPostExecute.call(this, itemIndex ?? 0);
-		case 'opensearchUserDeleteDelete':
-			return opensearchUserDeleteDeleteExecute.call(this, itemIndex ?? 0);
-		case 'opensearchUserGetGet':
-			return opensearchUserGetGetExecute.call(this, itemIndex ?? 0);
-		case 'opensearchUserListGet':
-			return opensearchUserListGetExecute.call(this, itemIndex ?? 0);
-		case 'opensearchUserUpdatePut':
-			return opensearchUserUpdatePutExecute.call(this, itemIndex ?? 0);
-		case 'postgresqlClusterListGet':
-			return postgresqlClusterListGetExecute.call(this, itemIndex ?? 0);
-		case 'postgresqlClusterGetGet':
-			return postgresqlClusterGetGetExecute.call(this, itemIndex ?? 0);
-		case 'postgresqlClusterCreatePost':
-			return postgresqlClusterCreatePostExecute.call(this, itemIndex ?? 0);
-		case 'postgresqlClusterUpdatePut':
-			return postgresqlClusterUpdatePutExecute.call(this, itemIndex ?? 0);
-		case 'postgresqlClusterDeleteDelete':
-			return postgresqlClusterDeleteDeleteExecute.call(this, itemIndex ?? 0);
-		case 'postgresqlBackupListGet':
-			return postgresqlBackupListGetExecute.call(this, itemIndex ?? 0);
-		case 'postgresqlBackupCreatePost':
-			return postgresqlBackupCreatePostExecute.call(this, itemIndex ?? 0);
-		case 'postgresqlBackupGetGet':
-			return postgresqlBackupGetGetExecute.call(this, itemIndex ?? 0);
-		case 'postgresqlBackupDeleteDelete':
-			return postgresqlBackupDeleteDeleteExecute.call(this, itemIndex ?? 0);
-		case 'postgresqlUserListGet':
-			return postgresqlUserListGetExecute.call(this, itemIndex ?? 0);
-		case 'postgresqlUserCreatePost':
-			return postgresqlUserCreatePostExecute.call(this, itemIndex ?? 0);
-		case 'postgresqlUserGetGet':
-			return postgresqlUserGetGetExecute.call(this, itemIndex ?? 0);
-		case 'postgresqlUserUpdatePut':
-			return postgresqlUserUpdatePutExecute.call(this, itemIndex ?? 0);
-		case 'postgresqlUserDeleteDelete':
-			return postgresqlUserDeleteDeleteExecute.call(this, itemIndex ?? 0);
-		case 'postgresqlNodeListGet':
-			return postgresqlNodeListGetExecute.call(this, itemIndex ?? 0);
-		case 'postgresqlNodeCreatePost':
-			return postgresqlNodeCreatePostExecute.call(this, itemIndex ?? 0);
-		case 'postgresqlNodeGetGet':
-			return postgresqlNodeGetGetExecute.call(this, itemIndex ?? 0);
-		case 'postgresqlNodeUpdatePut':
-			return postgresqlNodeUpdatePutExecute.call(this, itemIndex ?? 0);
-		case 'postgresqlNodeDeleteDelete':
-			return postgresqlNodeDeleteDeleteExecute.call(this, itemIndex ?? 0);
-		case 'postgresqlIpRestrictionListGet':
-			return postgresqlIpRestrictionListGetExecute.call(this, itemIndex ?? 0);
-		case 'postgresqlIpRestrictionCreatePost':
-			return postgresqlIpRestrictionCreatePostExecute.call(this, itemIndex ?? 0);
-		case 'postgresqlLogSubscriptionListGet':
-			return postgresqlLogSubscriptionListGetExecute.call(this, itemIndex ?? 0);
-		case 'postgresqlLogSubscriptionCreatePost':
-			return postgresqlLogSubscriptionCreatePostExecute.call(this, itemIndex ?? 0);
-		case 'postgresqlLogSubscriptionGetGet':
-			return postgresqlLogSubscriptionGetGetExecute.call(this, itemIndex ?? 0);
-		case 'postgresqlMaintenanceGet':
-			return postgresqlMaintenanceGetExecute.call(this, itemIndex ?? 0);
-		case 'postgresqlMaintenanceUpdatePut':
-			return postgresqlMaintenanceUpdatePutExecute.call(this, itemIndex ?? 0);
-		case 'postgresqlMetricGet':
-			return postgresqlMetricGetExecute.call(this, itemIndex ?? 0);
-		case 'postgresqlPrometheusGet':
-			return postgresqlPrometheusGetExecute.call(this, itemIndex ?? 0);
-		case 'postgresqlCertificateListGet':
-			return postgresqlCertificateListGetExecute.call(this, itemIndex ?? 0);
-		case 'postgresqlCertificateCreatePost':
-			return postgresqlCertificateCreatePostExecute.call(this, itemIndex ?? 0);
-		case 'postgresqlIntegrationListGet':
-			return postgresqlIntegrationListGetExecute.call(this, itemIndex ?? 0);
-		case 'postgresqlIntegrationCreatePost':
-			return postgresqlIntegrationCreatePostExecute.call(this, itemIndex ?? 0);
-		case 'kubeAuditLogsPost':
-			return kubeAuditLogsPostExecute.call(this, itemIndex ?? 0);
-		case 'kubeCustomizationGet':
-			return kubeCustomizationGetExecute.call(this, itemIndex ?? 0);
-		case 'kubeCustomizationUpdatePut':
-			return kubeCustomizationUpdatePutExecute.call(this, itemIndex ?? 0);
-		case 'kubeDeleteDelete':
-			return kubeDeleteDeleteExecute.call(this, itemIndex ?? 0);
-		case 'kubeFlavorsGet':
-			return kubeFlavorsGetExecute.call(this, itemIndex ?? 0);
-		case 'kubeGetGet':
-			return kubeGetGetExecute.call(this, itemIndex ?? 0);
-		case 'kubeIpRestrictionsDeleteDelete':
-			return kubeIpRestrictionsDeleteDeleteExecute.call(this, itemIndex ?? 0);
-		case 'kubeIpRestrictionsGet':
-			return kubeIpRestrictionsGetExecute.call(this, itemIndex ?? 0);
-		case 'kubeIpRestrictionsPost':
-			return kubeIpRestrictionsPostExecute.call(this, itemIndex ?? 0);
-		case 'kubeIpRestrictionsUpdatePut':
-			return kubeIpRestrictionsUpdatePutExecute.call(this, itemIndex ?? 0);
-		case 'kubeKubeconfigPost':
-			return kubeKubeconfigPostExecute.call(this, itemIndex ?? 0);
-		case 'kubeKubeconfigResetPost':
-			return kubeKubeconfigResetPostExecute.call(this, itemIndex ?? 0);
-		case 'kubeListGet':
-			return kubeListGetExecute.call(this, itemIndex ?? 0);
-		case 'kubeLogSubscriptionDeleteDelete':
-			return kubeLogSubscriptionDeleteDeleteExecute.call(this, itemIndex ?? 0);
-		case 'kubeLogSubscriptionGet':
-			return kubeLogSubscriptionGetExecute.call(this, itemIndex ?? 0);
-		case 'kubeLogSubscriptionPost':
-			return kubeLogSubscriptionPostExecute.call(this, itemIndex ?? 0);
-		case 'kubeLogSubscriptionListGet':
-			return kubeLogSubscriptionListGetExecute.call(this, itemIndex ?? 0);
-		case 'kubeLogUrlPost':
-			return kubeLogUrlPostExecute.call(this, itemIndex ?? 0);
-		case 'kubeMetricsEtcdUsageGet':
-			return kubeMetricsEtcdUsageGetExecute.call(this, itemIndex ?? 0);
-		case 'kubeNodeDeleteDelete':
-			return kubeNodeDeleteDeleteExecute.call(this, itemIndex ?? 0);
-		case 'kubeNodeGet':
-			return kubeNodeGetExecute.call(this, itemIndex ?? 0);
-		case 'kubeNodeListGet':
-			return kubeNodeListGetExecute.call(this, itemIndex ?? 0);
-		case 'kubeNodepoolCreatePost':
-			return kubeNodepoolCreatePostExecute.call(this, itemIndex ?? 0);
-		case 'kubeNodepoolListGet':
-			return kubeNodepoolListGetExecute.call(this, itemIndex ?? 0);
-		case 'kubeNodepoolDeleteDelete':
-			return kubeNodepoolDeleteDeleteExecute.call(this, itemIndex ?? 0);
-		case 'kubeNodepoolGetGet':
-			return kubeNodepoolGetGetExecute.call(this, itemIndex ?? 0);
-		case 'kubeNodepoolListNodepoolNodesGet':
-			return kubeNodepoolListNodepoolNodesGetExecute.call(this, itemIndex ?? 0);
-		case 'kubeNodepoolUpdatePut':
-			return kubeNodepoolUpdatePutExecute.call(this, itemIndex ?? 0);
-		case 'kubeOpenIdConnectDeleteDelete':
-			return kubeOpenIdConnectDeleteDeleteExecute.call(this, itemIndex ?? 0);
-		case 'kubeOpenIdConnectGet':
-			return kubeOpenIdConnectGetExecute.call(this, itemIndex ?? 0);
-		case 'kubeOpenIdConnectPost':
-			return kubeOpenIdConnectPostExecute.call(this, itemIndex ?? 0);
-		case 'kubeOpenIdConnectUpdatePut':
-			return kubeOpenIdConnectUpdatePutExecute.call(this, itemIndex ?? 0);
-		case 'kubePrivateNetworkConfigurationGet':
-			return kubePrivateNetworkConfigurationGetExecute.call(this, itemIndex ?? 0);
-		case 'kubePrivateNetworkConfigurationUpdatePut':
-			return kubePrivateNetworkConfigurationUpdatePutExecute.call(this, itemIndex ?? 0);
-		case 'kubeResetPost':
-			return kubeResetPostExecute.call(this, itemIndex ?? 0);
-		case 'kubeRestartPost':
-			return kubeRestartPostExecute.call(this, itemIndex ?? 0);
-		case 'kubeUpdateLoadBalancersSubnetIdUpdatePut':
-			return kubeUpdateLoadBalancersSubnetIdUpdatePutExecute.call(this, itemIndex ?? 0);
-		case 'kubeUpdatePolicyUpdatePut':
-			return kubeUpdatePolicyUpdatePutExecute.call(this, itemIndex ?? 0);
-		case 'kubeUpdatePost':
-			return kubeUpdatePostExecute.call(this, itemIndex ?? 0);
-		case 'kubeUpdatePut':
-			return kubeUpdatePutExecute.call(this, itemIndex ?? 0);
-		case 'instanceActiveMonthlyBillingPost':
-			return instanceActiveMonthlyBillingPostExecute.call(this, itemIndex ?? 0);
-		case 'instanceApplicationAccessPost':
-			return instanceApplicationAccessPostExecute.call(this, itemIndex ?? 0);
-		case 'instanceBulkPost':
-			return instanceBulkPostExecute.call(this, itemIndex ?? 0);
-		case 'instanceCreatePost':
-			return instanceCreatePostExecute.call(this, itemIndex ?? 0);
-		case 'instanceDeleteDelete':
-			return instanceDeleteDeleteExecute.call(this, itemIndex ?? 0);
-		case 'instanceGetGet':
-			return instanceGetGetExecute.call(this, itemIndex ?? 0);
-		case 'instanceGroupCreatePost':
-			return instanceGroupCreatePostExecute.call(this, itemIndex ?? 0);
-		case 'instanceGroupDeleteDelete':
-			return instanceGroupDeleteDeleteExecute.call(this, itemIndex ?? 0);
-		case 'instanceGroupGetGet':
-			return instanceGroupGetGetExecute.call(this, itemIndex ?? 0);
-		case 'instanceGroupListGet':
-			return instanceGroupListGetExecute.call(this, itemIndex ?? 0);
-		case 'instanceInterfaceCreatePost':
-			return instanceInterfaceCreatePostExecute.call(this, itemIndex ?? 0);
-		case 'instanceInterfaceDeleteDelete':
-			return instanceInterfaceDeleteDeleteExecute.call(this, itemIndex ?? 0);
-		case 'instanceInterfaceGetGet':
-			return instanceInterfaceGetGetExecute.call(this, itemIndex ?? 0);
-		case 'instanceInterfaceListGet':
-			return instanceInterfaceListGetExecute.call(this, itemIndex ?? 0);
-		case 'instanceListGet':
-			return instanceListGetExecute.call(this, itemIndex ?? 0);
-		case 'instanceRebootPost':
-			return instanceRebootPostExecute.call(this, itemIndex ?? 0);
-		case 'instanceReinstallPost':
-			return instanceReinstallPostExecute.call(this, itemIndex ?? 0);
-		case 'instanceRescueModePost':
-			return instanceRescueModePostExecute.call(this, itemIndex ?? 0);
-		case 'instanceResizePost':
-			return instanceResizePostExecute.call(this, itemIndex ?? 0);
-		case 'instanceResumePost':
-			return instanceResumePostExecute.call(this, itemIndex ?? 0);
-		case 'instanceShelvePost':
-			return instanceShelvePostExecute.call(this, itemIndex ?? 0);
-		case 'instanceSnapshotPost':
-			return instanceSnapshotPostExecute.call(this, itemIndex ?? 0);
-		case 'instanceStartPost':
-			return instanceStartPostExecute.call(this, itemIndex ?? 0);
-		case 'instanceStopPost':
-			return instanceStopPostExecute.call(this, itemIndex ?? 0);
-		case 'instanceUnshelvePost':
-			return instanceUnshelvePostExecute.call(this, itemIndex ?? 0);
-		case 'instanceUpdatePut':
-			return instanceUpdatePutExecute.call(this, itemIndex ?? 0);
-		case 'instanceVncPost':
-			return instanceVncPostExecute.call(this, itemIndex ?? 0);
-		case 'networkCreatePrivateNetworkPost':
-			return networkCreatePrivateNetworkPostExecute.call(this, itemIndex ?? 0);
-		case 'networkCreateSubnetPost':
-			return networkCreateSubnetPostExecute.call(this, itemIndex ?? 0);
-		case 'networkDeletePrivateNetworkDelete':
-			return networkDeletePrivateNetworkDeleteExecute.call(this, itemIndex ?? 0);
-		case 'networkDeleteSubnetDelete':
-			return networkDeleteSubnetDeleteExecute.call(this, itemIndex ?? 0);
-		case 'networkGetPrivateNetworkDetailGet':
-			return networkGetPrivateNetworkDetailGetExecute.call(this, itemIndex ?? 0);
-		case 'networkGetSubnetDetailGet':
-			return networkGetSubnetDetailGetExecute.call(this, itemIndex ?? 0);
-		case 'networkListPrivateNetworksGet':
-			return networkListPrivateNetworksGetExecute.call(this, itemIndex ?? 0);
-		case 'networkListPublicNetworksGet':
-			return networkListPublicNetworksGetExecute.call(this, itemIndex ?? 0);
-		case 'networkListSubnetsGet':
-			return networkListSubnetsGetExecute.call(this, itemIndex ?? 0);
-		case 'networkUpdatePrivateNetworkPut':
-			return networkUpdatePrivateNetworkPutExecute.call(this, itemIndex ?? 0);
-		case 'networkUpdateSubnetPut':
-			return networkUpdateSubnetPutExecute.call(this, itemIndex ?? 0);
-		case 'networkActivatePrivateNetworkRegionPost':
-			return networkActivatePrivateNetworkRegionPostExecute.call(this, itemIndex ?? 0);
-		case 'regionGetGet':
-			return regionGetGetExecute.call(this, itemIndex ?? 0);
-		case 'regionListGet':
-			return regionListGetExecute.call(this, itemIndex ?? 0);
-		case 'regionShareCreatePost':
-			return regionShareCreatePostExecute.call(this, itemIndex ?? 0);
-		case 'regionShareDeleteDelete':
-			return regionShareDeleteDeleteExecute.call(this, itemIndex ?? 0);
-		case 'regionShareGetGet':
-			return regionShareGetGetExecute.call(this, itemIndex ?? 0);
-		case 'regionShareListGet':
-			return regionShareListGetExecute.call(this, itemIndex ?? 0);
-		case 'regionShareSnapshotCreatePost':
-			return regionShareSnapshotCreatePostExecute.call(this, itemIndex ?? 0);
-		case 'regionShareSnapshotDeleteDelete':
-			return regionShareSnapshotDeleteDeleteExecute.call(this, itemIndex ?? 0);
-		case 'regionShareSnapshotGetGet':
-			return regionShareSnapshotGetGetExecute.call(this, itemIndex ?? 0);
-		case 'regionShareSnapshotListGet':
-			return regionShareSnapshotListGetExecute.call(this, itemIndex ?? 0);
-		case 'regionShareUpdatePut':
-			return regionShareUpdatePutExecute.call(this, itemIndex ?? 0);
-		case 'regionVolumeCreatePost':
-			return regionVolumeCreatePostExecute.call(this, itemIndex ?? 0);
-		case 'regionVolumeDeleteDelete':
-			return regionVolumeDeleteDeleteExecute.call(this, itemIndex ?? 0);
-		case 'regionVolumeGetGet':
-			return regionVolumeGetGetExecute.call(this, itemIndex ?? 0);
-		case 'regionVolumeListGet':
-			return regionVolumeListGetExecute.call(this, itemIndex ?? 0);
-		case 'regionVolumeUpdatePut':
-			return regionVolumeUpdatePutExecute.call(this, itemIndex ?? 0);
-		case 'regionWorkflowBackupCreatePost':
-			return regionWorkflowBackupCreatePostExecute.call(this, itemIndex ?? 0);
-		case 'regionWorkflowBackupDeleteDelete':
-			return regionWorkflowBackupDeleteDeleteExecute.call(this, itemIndex ?? 0);
-		case 'regionWorkflowBackupGetGet':
-			return regionWorkflowBackupGetGetExecute.call(this, itemIndex ?? 0);
-		case 'regionWorkflowBackupUpdatePut':
-			return regionWorkflowBackupUpdatePutExecute.call(this, itemIndex ?? 0);
-		case 'regionColdArchiveListGet':
-			return regionColdArchiveListGetExecute.call(this, itemIndex ?? 0);
-		case 'regionColdArchiveCreatePost':
-			return regionColdArchiveCreatePostExecute.call(this, itemIndex ?? 0);
-		case 'regionColdArchiveDeleteDelete':
-			return regionColdArchiveDeleteDeleteExecute.call(this, itemIndex ?? 0);
-		case 'regionColdArchiveGetGet':
-			return regionColdArchiveGetGetExecute.call(this, itemIndex ?? 0);
-		case 'regionColdArchiveArchivePost':
-			return regionColdArchiveArchivePostExecute.call(this, itemIndex ?? 0);
-		case 'regionColdArchiveDestroyPost':
-			return regionColdArchiveDestroyPostExecute.call(this, itemIndex ?? 0);
-		case 'regionColdArchiveObjectDeleteDelete':
-			return regionColdArchiveObjectDeleteDeleteExecute.call(this, itemIndex ?? 0);
-		case 'regionColdArchivePolicyCreatePost':
-			return regionColdArchivePolicyCreatePostExecute.call(this, itemIndex ?? 0);
-		case 'regionColdArchivePresignPost':
-			return regionColdArchivePresignPostExecute.call(this, itemIndex ?? 0);
-		case 'regionColdArchiveRestorePost':
-			return regionColdArchiveRestorePostExecute.call(this, itemIndex ?? 0);
-		case 'regionStorageListGet':
-			return regionStorageListGetExecute.call(this, itemIndex ?? 0);
-		case 'regionStorageCreatePost':
-			return regionStorageCreatePostExecute.call(this, itemIndex ?? 0);
-		case 'regionStorageDeleteDelete':
-			return regionStorageDeleteDeleteExecute.call(this, itemIndex ?? 0);
-		case 'regionStorageGetGet':
-			return regionStorageGetGetExecute.call(this, itemIndex ?? 0);
-		case 'regionStorageUpdatePut':
-			return regionStorageUpdatePutExecute.call(this, itemIndex ?? 0);
-		case 'regionStorageBulkDeleteObjectsPost':
-			return regionStorageBulkDeleteObjectsPostExecute.call(this, itemIndex ?? 0);
-		case 'regionStorageReplicationListGet':
-			return regionStorageReplicationListGetExecute.call(this, itemIndex ?? 0);
-		case 'regionStorageReplicationCreatePost':
-			return regionStorageReplicationCreatePostExecute.call(this, itemIndex ?? 0);
-		case 'regionStorageLifecycleDeleteDelete':
-			return regionStorageLifecycleDeleteDeleteExecute.call(this, itemIndex ?? 0);
-		case 'regionStorageLifecycleGetGet':
-			return regionStorageLifecycleGetGetExecute.call(this, itemIndex ?? 0);
-		case 'regionStorageLifecycleUpdatePut':
-			return regionStorageLifecycleUpdatePutExecute.call(this, itemIndex ?? 0);
-		case 'regionStorageObjectListGet':
-			return regionStorageObjectListGetExecute.call(this, itemIndex ?? 0);
-		case 'regionStorageObjectCreatePost':
-			return regionStorageObjectCreatePostExecute.call(this, itemIndex ?? 0);
-		case 'regionStorageObjectDeleteDelete':
-			return regionStorageObjectDeleteDeleteExecute.call(this, itemIndex ?? 0);
-		case 'regionStorageObjectGetGet':
-			return regionStorageObjectGetGetExecute.call(this, itemIndex ?? 0);
-		case 'regionStorageObjectUpdatePut':
-			return regionStorageObjectUpdatePutExecute.call(this, itemIndex ?? 0);
-		case 'regionStorageObjectCopyPost':
-			return regionStorageObjectCopyPostExecute.call(this, itemIndex ?? 0);
-		case 'regionStorageObjectRestorePost':
-			return regionStorageObjectRestorePostExecute.call(this, itemIndex ?? 0);
-		case 'regionStorageObjectVersionListGet':
-			return regionStorageObjectVersionListGetExecute.call(this, itemIndex ?? 0);
-		case 'regionStorageObjectVersionDeleteDelete':
-			return regionStorageObjectVersionDeleteDeleteExecute.call(this, itemIndex ?? 0);
-
-		case 'regionInstanceListGet':
-			return regionInstanceListGetExecute.call(this, itemIndex ?? 0);
-		case 'regionInstanceGetGet':
-			return regionInstanceGetGetExecute.call(this, itemIndex ?? 0);
-		case 'regionInstanceAbortSnapshotPost':
-			return regionInstanceAbortSnapshotPostExecute.call(this, itemIndex ?? 0);
-		case 'regionInstanceAssociateFloatingIpPost':
-			return regionInstanceAssociateFloatingIpPostExecute.call(this, itemIndex ?? 0);
-		case 'regionInstanceAutobackupPost':
-			return regionInstanceAutobackupPostExecute.call(this, itemIndex ?? 0);
-		case 'regionInstanceFloatingIpPost':
-			return regionInstanceFloatingIpPostExecute.call(this, itemIndex ?? 0);
-		case 'regionInstanceReinstallPost':
-			return regionInstanceReinstallPostExecute.call(this, itemIndex ?? 0);
-		case 'regionInstanceSnapshotPost':
-			return regionInstanceSnapshotPostExecute.call(this, itemIndex ?? 0);
-		case 'regionKeymanagerCertificateListGet':
-			return regionKeymanagerCertificateListGetExecute.call(this, itemIndex ?? 0);
-		case 'regionKeymanagerCertificateCreatePost':
-			return regionKeymanagerCertificateCreatePostExecute.call(this, itemIndex ?? 0);
-		case 'regionKeymanagerCertificateDeleteDelete':
-			return regionKeymanagerCertificateDeleteDeleteExecute.call(this, itemIndex ?? 0);
-		case 'regionKeymanagerCertificateGetGet':
-			return regionKeymanagerCertificateGetGetExecute.call(this, itemIndex ?? 0);
-		case 'regionKeymanagerSecretListGet':
-			return regionKeymanagerSecretListGetExecute.call(this, itemIndex ?? 0);
-		case 'regionKeymanagerSecretCreatePost':
-			return regionKeymanagerSecretCreatePostExecute.call(this, itemIndex ?? 0);
-		case 'regionKeymanagerSecretDeleteDelete':
-			return regionKeymanagerSecretDeleteDeleteExecute.call(this, itemIndex ?? 0);
-		case 'regionKeymanagerSecretGetGet':
-			return regionKeymanagerSecretGetGetExecute.call(this, itemIndex ?? 0);
-		case 'regionNetworkListGet':
-			return regionNetworkListGetExecute.call(this, itemIndex ?? 0);
-		case 'regionNetworkCreatePost':
-			return regionNetworkCreatePostExecute.call(this, itemIndex ?? 0);
-		case 'regionNetworkDeleteDelete':
-			return regionNetworkDeleteDeleteExecute.call(this, itemIndex ?? 0);
-		case 'regionNetworkGetGet':
-			return regionNetworkGetGetExecute.call(this, itemIndex ?? 0);
-		case 'regionNetworkSubnetListGet':
-			return regionNetworkSubnetListGetExecute.call(this, itemIndex ?? 0);
-		case 'regionNetworkSubnetCreatePost':
-			return regionNetworkSubnetCreatePostExecute.call(this, itemIndex ?? 0);
-		case 'regionNetworkSubnetDeleteDelete':
-			return regionNetworkSubnetDeleteDeleteExecute.call(this, itemIndex ?? 0);
-		case 'regionNetworkSubnetGetGet':
-			return regionNetworkSubnetGetGetExecute.call(this, itemIndex ?? 0);
-		case 'regionNetworkSubnetGatewayPost':
-			return regionNetworkSubnetGatewayPostExecute.call(this, itemIndex ?? 0);
-		case 'regionQuotaListGet':
-			return regionQuotaListGetExecute.call(this, itemIndex ?? 0);
-		case 'regionQuotaAllowedGet':
-			return regionQuotaAllowedGetExecute.call(this, itemIndex ?? 0);
-		case 'regionQuotaStorageGet':
-			return regionQuotaStorageGetExecute.call(this, itemIndex ?? 0);
-		case 'regionVolumeBackupListGet':
-			return regionVolumeBackupListGetExecute.call(this, itemIndex ?? 0);
-		case 'regionVolumeBackupCreatePost':
-			return regionVolumeBackupCreatePostExecute.call(this, itemIndex ?? 0);
-		case 'regionVolumeBackupDeleteDelete':
-			return regionVolumeBackupDeleteDeleteExecute.call(this, itemIndex ?? 0);
-		case 'regionVolumeBackupGetGet':
-			return regionVolumeBackupGetGetExecute.call(this, itemIndex ?? 0);
-		case 'regionVolumeBackupRestorePost':
-			return regionVolumeBackupRestorePostExecute.call(this, itemIndex ?? 0);
-		case 'regionVolumeBackupVolumePost':
-			return regionVolumeBackupVolumePostExecute.call(this, itemIndex ?? 0);
-		case 'regionVolumeTypeListGet':
-			return regionVolumeTypeListGetExecute.call(this, itemIndex ?? 0);
-			return regionStorageObjectVersionDeleteDeleteExecute.call(this, itemIndex ?? 0);
-		case 'regionStorageObjectVersionGetGet':
-			return regionStorageObjectVersionGetGetExecute.call(this, itemIndex ?? 0);
-		case 'regionStorageObjectVersionUpdatePut':
-			return regionStorageObjectVersionUpdatePutExecute.call(this, itemIndex ?? 0);
-		case 'regionStorageObjectVersionCopyPost':
-			return regionStorageObjectVersionCopyPostExecute.call(this, itemIndex ?? 0);
-		case 'regionStorageObjectVersionRestorePost':
-			return regionStorageObjectVersionRestorePostExecute.call(this, itemIndex ?? 0);
-		case 'regionStoragePolicyCreatePost':
-			return regionStoragePolicyCreatePostExecute.call(this, itemIndex ?? 0);
-		case 'regionStoragePresignPost':
-			return regionStoragePresignPostExecute.call(this, itemIndex ?? 0);
-		case 'floatingIpListGet':
-			return floatingIpListGetExecute.call(this, itemIndex ?? 0);
-		case 'floatingIpCreatePost':
-			return floatingIpCreatePostExecute.call(this, itemIndex ?? 0);
-		case 'floatingIpGetGet':
-			return floatingIpGetGetExecute.call(this, itemIndex ?? 0);
-		case 'floatingIpDeleteDelete':
-			return floatingIpDeleteDeleteExecute.call(this, itemIndex ?? 0);
-		case 'floatingIpDetachPost':
-			return floatingIpDetachPostExecute.call(this, itemIndex ?? 0);
-		case 'gatewayListGet':
-			return gatewayListGetExecute.call(this, itemIndex ?? 0);
-		case 'gatewayCreatePost':
-			return gatewayCreatePostExecute.call(this, itemIndex ?? 0);
-		case 'gatewayGetGet':
-			return gatewayGetGetExecute.call(this, itemIndex ?? 0);
-		case 'gatewayUpdatePut':
-			return gatewayUpdatePutExecute.call(this, itemIndex ?? 0);
-		case 'gatewayDeleteDelete':
-			return gatewayDeleteDeleteExecute.call(this, itemIndex ?? 0);
-		case 'gatewayExposePost':
-			return gatewayExposePostExecute.call(this, itemIndex ?? 0);
-		case 'gatewayInterfaceListGet':
-			return gatewayInterfaceListGetExecute.call(this, itemIndex ?? 0);
-		case 'gatewayInterfaceCreatePost':
-			return gatewayInterfaceCreatePostExecute.call(this, itemIndex ?? 0);
-		case 'gatewayInterfaceGetGet':
-			return gatewayInterfaceGetGetExecute.call(this, itemIndex ?? 0);
-		case 'gatewayInterfaceDeleteDelete':
-			return gatewayInterfaceDeleteDeleteExecute.call(this, itemIndex ?? 0);
-		case 'loadbalancingFlavorListGet':
-			return loadbalancingFlavorListGetExecute.call(this, itemIndex ?? 0);
-		case 'loadbalancingFlavorGetGet':
-			return loadbalancingFlavorGetGetExecute.call(this, itemIndex ?? 0);
-		case 'loadbalancingHealthMonitorListGet':
-			return loadbalancingHealthMonitorListGetExecute.call(this, itemIndex ?? 0);
-		case 'loadbalancingHealthMonitorCreatePost':
-			return loadbalancingHealthMonitorCreatePostExecute.call(this, itemIndex ?? 0);
-		case 'loadbalancingHealthMonitorGetGet':
-			return loadbalancingHealthMonitorGetGetExecute.call(this, itemIndex ?? 0);
-		case 'loadbalancingHealthMonitorUpdatePut':
-			return loadbalancingHealthMonitorUpdatePutExecute.call(this, itemIndex ?? 0);
-		case 'loadbalancingHealthMonitorDeleteDelete':
-			return loadbalancingHealthMonitorDeleteDeleteExecute.call(this, itemIndex ?? 0);
-		case 'loadbalancingL7PolicyListGet':
-			return loadbalancingL7PolicyListGetExecute.call(this, itemIndex ?? 0);
-		case 'loadbalancingL7PolicyCreatePost':
-			return loadbalancingL7PolicyCreatePostExecute.call(this, itemIndex ?? 0);
-		case 'loadbalancingL7PolicyGetGet':
-			return loadbalancingL7PolicyGetGetExecute.call(this, itemIndex ?? 0);
-		case 'loadbalancingL7PolicyUpdatePut':
-			return loadbalancingL7PolicyUpdatePutExecute.call(this, itemIndex ?? 0);
-		case 'loadbalancingL7PolicyDeleteDelete':
-			return loadbalancingL7PolicyDeleteDeleteExecute.call(this, itemIndex ?? 0);
-		case 'loadbalancingL7PolicyL7RuleListGet':
-			return loadbalancingL7PolicyL7RuleListGetExecute.call(this, itemIndex ?? 0);
-		case 'loadbalancingL7PolicyL7RuleCreatePost':
-			return loadbalancingL7PolicyL7RuleCreatePostExecute.call(this, itemIndex ?? 0);
-		case 'loadbalancingL7PolicyL7RuleGetGet':
-			return loadbalancingL7PolicyL7RuleGetGetExecute.call(this, itemIndex ?? 0);
-		case 'loadbalancingL7PolicyL7RuleUpdatePut':
-			return loadbalancingL7PolicyL7RuleUpdatePutExecute.call(this, itemIndex ?? 0);
-		case 'loadbalancingL7PolicyL7RuleDeleteDelete':
-			return loadbalancingL7PolicyL7RuleDeleteDeleteExecute.call(this, itemIndex ?? 0);
-		case 'loadbalancingListenerListGet':
-			return loadbalancingListenerListGetExecute.call(this, itemIndex ?? 0);
-		case 'loadbalancingListenerCreatePost':
-			return loadbalancingListenerCreatePostExecute.call(this, itemIndex ?? 0);
-		case 'loadbalancingListenerGetGet':
-			return loadbalancingListenerGetGetExecute.call(this, itemIndex ?? 0);
-		case 'loadbalancingListenerUpdatePut':
-			return loadbalancingListenerUpdatePutExecute.call(this, itemIndex ?? 0);
-		case 'loadbalancingListenerDeleteDelete':
-			return loadbalancingListenerDeleteDeleteExecute.call(this, itemIndex ?? 0);
-		case 'loadbalancingLoadBalancerListGet':
-			return loadbalancingLoadBalancerListGetExecute.call(this, itemIndex ?? 0);
-		case 'loadbalancingLoadBalancerCreatePost':
-			return loadbalancingLoadBalancerCreatePostExecute.call(this, itemIndex ?? 0);
-		case 'loadbalancingLoadBalancerGetGet':
-			return loadbalancingLoadBalancerGetGetExecute.call(this, itemIndex ?? 0);
-		case 'loadbalancingLoadBalancerUpdatePut':
-			return loadbalancingLoadBalancerUpdatePutExecute.call(this, itemIndex ?? 0);
-		case 'loadbalancingLoadBalancerDeleteDelete':
-			return loadbalancingLoadBalancerDeleteDeleteExecute.call(this, itemIndex ?? 0);
-		case 'loadbalancingLoadBalancerAssociateFloatingIpPost':
-			return loadbalancingLoadBalancerAssociateFloatingIpPostExecute.call(this, itemIndex ?? 0);
-		case 'loadbalancingLoadBalancerFloatingIpPost':
-			return loadbalancingLoadBalancerFloatingIpPostExecute.call(this, itemIndex ?? 0);
-		case 'loadbalancingLoadBalancerLogSubscriptionListGet':
-			return loadbalancingLoadBalancerLogSubscriptionListGetExecute.call(this, itemIndex ?? 0);
-		case 'loadbalancingLoadBalancerLogSubscriptionCreatePost':
-			return loadbalancingLoadBalancerLogSubscriptionCreatePostExecute.call(this, itemIndex ?? 0);
-		case 'loadbalancingLoadBalancerLogSubscriptionGetGet':
-			return loadbalancingLoadBalancerLogSubscriptionGetGetExecute.call(this, itemIndex ?? 0);
-		case 'loadbalancingLoadBalancerLogSubscriptionDeleteDelete':
-			return loadbalancingLoadBalancerLogSubscriptionDeleteDeleteExecute.call(this, itemIndex ?? 0);
-		case 'loadbalancingLoadBalancerLogUrlPost':
-			return loadbalancingLoadBalancerLogUrlPostExecute.call(this, itemIndex ?? 0);
-		case 'loadbalancingLoadBalancerStatsGet':
-			return loadbalancingLoadBalancerStatsGetExecute.call(this, itemIndex ?? 0);
-		case 'loadbalancingLogKindListGet':
-			return loadbalancingLogKindListGetExecute.call(this, itemIndex ?? 0);
-		case 'loadbalancingLogKindGetGet':
-			return loadbalancingLogKindGetGetExecute.call(this, itemIndex ?? 0);
-		case 'loadbalancingPoolListGet':
-			return loadbalancingPoolListGetExecute.call(this, itemIndex ?? 0);
-		case 'loadbalancingPoolCreatePost':
-			return loadbalancingPoolCreatePostExecute.call(this, itemIndex ?? 0);
-		case 'loadbalancingPoolGetGet':
-			return loadbalancingPoolGetGetExecute.call(this, itemIndex ?? 0);
-		case 'loadbalancingPoolUpdatePut':
-			return loadbalancingPoolUpdatePutExecute.call(this, itemIndex ?? 0);
-		case 'loadbalancingPoolDeleteDelete':
-			return loadbalancingPoolDeleteDeleteExecute.call(this, itemIndex ?? 0);
-		case 'loadbalancingPoolMemberListGet':
-			return loadbalancingPoolMemberListGetExecute.call(this, itemIndex ?? 0);
-		case 'loadbalancingPoolMemberCreatePost':
-			return loadbalancingPoolMemberCreatePostExecute.call(this, itemIndex ?? 0);
-		case 'loadbalancingPoolMemberGetGet':
-			return loadbalancingPoolMemberGetGetExecute.call(this, itemIndex ?? 0);
-		case 'loadbalancingPoolMemberUpdatePut':
-			return loadbalancingPoolMemberUpdatePutExecute.call(this, itemIndex ?? 0);
-		case 'loadbalancingPoolMemberDeleteDelete':
-			return loadbalancingPoolMemberDeleteDeleteExecute.call(this, itemIndex ?? 0);
-
-		case 'userCreatePost':
-			return userCreatePostExecute.call(this, itemIndex ?? 0);
-		case 'userCreateS3CredentialSecretPost':
-			return userCreateS3CredentialSecretPostExecute.call(this, itemIndex ?? 0);
-		case 'userCreateUserPolicyPost':
-			return userCreateUserPolicyPostExecute.call(this, itemIndex ?? 0);
-		case 'userCreateUserRolePost':
-			return userCreateUserRolePostExecute.call(this, itemIndex ?? 0);
-		case 'userCreateUserS3CredentialsPost':
-			return userCreateUserS3CredentialsPostExecute.call(this, itemIndex ?? 0);
-		case 'userCreateUserTokenPost':
-			return userCreateUserTokenPostExecute.call(this, itemIndex ?? 0);
-		case 'userDeleteDelete':
-			return userDeleteDeleteExecute.call(this, itemIndex ?? 0);
-		case 'userDeleteUserRoleDelete':
-			return userDeleteUserRoleDeleteExecute.call(this, itemIndex ?? 0);
-		case 'userDeleteUserS3CredentialDelete':
-			return userDeleteUserS3CredentialDeleteExecute.call(this, itemIndex ?? 0);
-		case 'userGetDetailGet':
-			return userGetDetailGetExecute.call(this, itemIndex ?? 0);
-		case 'userGetUserConfigurationGet':
-			return userGetUserConfigurationGetExecute.call(this, itemIndex ?? 0);
-		case 'userGetUserOpenrcGet':
-			return userGetUserOpenrcGetExecute.call(this, itemIndex ?? 0);
-		case 'userGetUserPolicyGet':
-			return userGetUserPolicyGetExecute.call(this, itemIndex ?? 0);
-		case 'userGetUserRcloneGet':
-			return userGetUserRcloneGetExecute.call(this, itemIndex ?? 0);
-		case 'userGetUserRoleDetailGet':
-			return userGetUserRoleDetailGetExecute.call(this, itemIndex ?? 0);
-		case 'userGetUserRoleGet':
-			return userGetUserRoleGetExecute.call(this, itemIndex ?? 0);
-		case 'userGetUserS3CredentialDetailGet':
-			return userGetUserS3CredentialDetailGetExecute.call(this, itemIndex ?? 0);
-		case 'userGetUserS3CredentialsGet':
-			return userGetUserS3CredentialsGetExecute.call(this, itemIndex ?? 0);
-		case 'userListGet':
-			return userListGetExecute.call(this, itemIndex ?? 0);
-		case 'userRegeneratePasswordPost':
-			return userRegeneratePasswordPostExecute.call(this, itemIndex ?? 0);
-		case 'userUpdateUserRolePut':
-			return userUpdateUserRolePutExecute.call(this, itemIndex ?? 0);
-		case 'cloudAgreementsGet':
-			return cloudAgreementsGetExecute.call(this, itemIndex ?? 0);
-		case 'cloudEligibilityGet':
-			return cloudEligibilityGetExecute.call(this, itemIndex ?? 0);
-		case 'cloudOrderListGet':
-			return cloudOrderListGetExecute.call(this, itemIndex ?? 0);
-		case 'cloudOrderRuleAvailabilityGet':
-			return cloudOrderRuleAvailabilityGetExecute.call(this, itemIndex ?? 0);
-		case 'aclCreatePost':
-			return aclCreatePostExecute.call(this, itemIndex ?? 0);
-		case 'aclDeleteDelete':
-			return aclDeleteDeleteExecute.call(this, itemIndex ?? 0);
-		case 'aclGetDetailGet':
-			return aclGetDetailGetExecute.call(this, itemIndex ?? 0);
-		case 'aclListGet':
-			return aclListGetExecute.call(this, itemIndex ?? 0);
-		case 'activateMonthlyBillingPost':
-			return activateMonthlyBillingPostExecute.call(this, itemIndex ?? 0);
-		case 'alertingCreatePost':
-			return alertingCreatePostExecute.call(this, itemIndex ?? 0);
-		case 'alertingDeleteDelete':
-			return alertingDeleteDeleteExecute.call(this, itemIndex ?? 0);
-		case 'alertingGetDetailGet':
-			return alertingGetDetailGetExecute.call(this, itemIndex ?? 0);
-		case 'alertingListGet':
-			return alertingListGetExecute.call(this, itemIndex ?? 0);
-		case 'alertingUpdatePut':
-			return alertingUpdatePutExecute.call(this, itemIndex ?? 0);
-		case 'billListGet':
-			return billListGetExecute.call(this, itemIndex ?? 0);
-		case 'cancelPost':
-			return cancelPostExecute.call(this, itemIndex ?? 0);
-		case 'capabilitiesGetKubeDetailGet':
-			return capabilitiesGetKubeDetailGetExecute.call(this, itemIndex ?? 0);
-		case 'capabilitiesGetLoadbalancerDetailGet':
-			return capabilitiesGetLoadbalancerDetailGetExecute.call(this, itemIndex ?? 0);
-		case 'capabilitiesGetRegionDetailGet':
-			return capabilitiesGetRegionDetailGetExecute.call(this, itemIndex ?? 0);
-		case 'capabilitiesGetRegionProductDetailGet':
-			return capabilitiesGetRegionProductDetailGetExecute.call(this, itemIndex ?? 0);
-		case 'capabilitiesListGet':
-			return capabilitiesListGetExecute.call(this, itemIndex ?? 0);
-		case 'capabilitiesListKubeGet':
-			return capabilitiesListKubeGetExecute.call(this, itemIndex ?? 0);
-		case 'capabilitiesListLoadbalancerGet':
-			return capabilitiesListLoadbalancerGetExecute.call(this, itemIndex ?? 0);
-		case 'capabilitiesListRegionGet':
-			return capabilitiesListRegionGetExecute.call(this, itemIndex ?? 0);
-		case 'changeContactPost':
-			return changeContactPostExecute.call(this, itemIndex ?? 0);
-		case 'confirmTerminationPost':
-			return confirmTerminationPostExecute.call(this, itemIndex ?? 0);
-		case 'containerRegistryCreatePost':
-			return containerRegistryCreatePostExecute.call(this, itemIndex ?? 0);
-		case 'containerRegistryCreateUserPost':
-			return containerRegistryCreateUserPostExecute.call(this, itemIndex ?? 0);
-		case 'containerRegistryDeleteDelete':
-			return containerRegistryDeleteDeleteExecute.call(this, itemIndex ?? 0);
-		case 'containerRegistryDeleteUserDelete':
-			return containerRegistryDeleteUserDeleteExecute.call(this, itemIndex ?? 0);
-		case 'containerRegistryGetDetailGet':
-			return containerRegistryGetDetailGetExecute.call(this, itemIndex ?? 0);
-		case 'containerRegistryGetUserDetailGet':
-			return containerRegistryGetUserDetailGetExecute.call(this, itemIndex ?? 0);
-		case 'containerRegistryListGet':
-			return containerRegistryListGetExecute.call(this, itemIndex ?? 0);
-		case 'containerRegistryListUsersGet':
-			return containerRegistryListUsersGetExecute.call(this, itemIndex ?? 0);
-		case 'containerRegistryUpdatePut':
-			return containerRegistryUpdatePutExecute.call(this, itemIndex ?? 0);
-		case 'containerRegistryGetCapabilitiesPlanGet':
-			return containerRegistryGetCapabilitiesPlanGetExecute.call(this, itemIndex ?? 0);
-		case 'containerRegistryDeleteIamDelete':
-			return containerRegistryDeleteIamDeleteExecute.call(this, itemIndex ?? 0);
-		case 'containerRegistryCreateIamPost':
-			return containerRegistryCreateIamPostExecute.call(this, itemIndex ?? 0);
-		case 'containerRegistryGetIpRestrictionsManagementListGet':
-			return containerRegistryGetIpRestrictionsManagementListGetExecute.call(this, itemIndex ?? 0);
-		case 'containerRegistryUpdateIpRestrictionsManagementPut':
-			return containerRegistryUpdateIpRestrictionsManagementPutExecute.call(this, itemIndex ?? 0);
-		case 'containerRegistryGetIpRestrictionsRegistryListGet':
-			return containerRegistryGetIpRestrictionsRegistryListGetExecute.call(this, itemIndex ?? 0);
-		case 'containerRegistryUpdateIpRestrictionsRegistryPut':
-			return containerRegistryUpdateIpRestrictionsRegistryPutExecute.call(this, itemIndex ?? 0);
-		case 'containerRegistryDeleteOpenIdConnectDelete':
-			return containerRegistryDeleteOpenIdConnectDeleteExecute.call(this, itemIndex ?? 0);
-		case 'containerRegistryGetOpenIdConnectGet':
-			return containerRegistryGetOpenIdConnectGetExecute.call(this, itemIndex ?? 0);
-		case 'containerRegistryCreateOpenIdConnectPost':
-			return containerRegistryCreateOpenIdConnectPostExecute.call(this, itemIndex ?? 0);
-		case 'containerRegistryUpdateOpenIdConnectPut':
-			return containerRegistryUpdateOpenIdConnectPutExecute.call(this, itemIndex ?? 0);
-		case 'containerRegistryGetPlanGet':
-			return containerRegistryGetPlanGetExecute.call(this, itemIndex ?? 0);
-		case 'containerRegistryUpdatePlanPut':
-			return containerRegistryUpdatePlanPutExecute.call(this, itemIndex ?? 0);
-		case 'containerRegistryCreateUserSetAsAdminPost':
-			return containerRegistryCreateUserSetAsAdminPostExecute.call(this, itemIndex ?? 0);
-		case 'creditCreatePost':
-			return creditCreatePostExecute.call(this, itemIndex ?? 0);
-		case 'creditGetDetailGet':
-			return creditGetDetailGetExecute.call(this, itemIndex ?? 0);
-		case 'creditListGet':
-			return creditListGetExecute.call(this, itemIndex ?? 0);
-		case 'flavorGetDetailGet':
-			return flavorGetDetailGetExecute.call(this, itemIndex ?? 0);
-		case 'flavorListGet':
-			return flavorListGetExecute.call(this, itemIndex ?? 0);
-		case 'imageGetDetailGet':
-			return imageGetDetailGetExecute.call(this, itemIndex ?? 0);
-		case 'imageListGet':
-			return imageListGetExecute.call(this, itemIndex ?? 0);
-		case 'ipCreatePost':
-			return ipCreatePostExecute.call(this, itemIndex ?? 0);
-		case 'ipDeleteDelete':
-			return ipDeleteDeleteExecute.call(this, itemIndex ?? 0);
-		case 'ipGetDetailGet':
-			return ipGetDetailGetExecute.call(this, itemIndex ?? 0);
-		case 'ipListGet':
-			return ipListGetExecute.call(this, itemIndex ?? 0);
-		case 'ipUpdatePut':
-			return ipUpdatePutExecute.call(this, itemIndex ?? 0);
-		case 'labCreatePost':
-			return labCreatePostExecute.call(this, itemIndex ?? 0);
-		case 'labAgreementListGet':
-			return labAgreementListGetExecute.call(this, itemIndex ?? 0);
-		case 'labGetDetailGet':
-			return labGetDetailGetExecute.call(this, itemIndex ?? 0);
-		case 'labListGet':
-			return labListGetExecute.call(this, itemIndex ?? 0);
-		case 'loadbalancerCreatePost':
-			return loadbalancerCreatePostExecute.call(this, itemIndex ?? 0);
-		case 'loadbalancerDeleteDelete':
-			return loadbalancerDeleteDeleteExecute.call(this, itemIndex ?? 0);
-		case 'loadbalancerGetDetailGet':
-			return loadbalancerGetDetailGetExecute.call(this, itemIndex ?? 0);
-		case 'loadbalancerListGet':
-			return loadbalancerListGetExecute.call(this, itemIndex ?? 0);
-		case 'loadbalancerUpdatePut':
-			return loadbalancerUpdatePutExecute.call(this, itemIndex ?? 0);
-		case 'operationGetDetailGet':
-			return operationGetDetailGetExecute.call(this, itemIndex ?? 0);
-		case 'operationListGet':
-			return operationListGetExecute.call(this, itemIndex ?? 0);
-		case 'quantumGetCapabilitiesDetailGet':
-			return quantumGetCapabilitiesDetailGetExecute.call(this, itemIndex ?? 0);
-		case 'quantumGetCapabilitiesRegionDetailGet':
-			return quantumGetCapabilitiesRegionDetailGetExecute.call(this, itemIndex ?? 0);
-		case 'quantumListCapabilitiesGet':
-			return quantumListCapabilitiesGetExecute.call(this, itemIndex ?? 0);
-		case 'quantumListCapabilitiesRegionGet':
-			return quantumListCapabilitiesRegionGetExecute.call(this, itemIndex ?? 0);
-		case 'quotaListGet':
-			return quotaListGetExecute.call(this, itemIndex ?? 0);
-		case 'regionAvailableCheckRegionAvailableGet':
-			return regionAvailableCheckRegionAvailableGetExecute.call(this, itemIndex ?? 0);
-		case 'retainPost':
-			return retainPostExecute.call(this, itemIndex ?? 0);
-		case 'roleListGet':
-			return roleListGetExecute.call(this, itemIndex ?? 0);
-		case 'serviceInfosGetServiceInfosGet':
-			return serviceInfosGetServiceInfosGetExecute.call(this, itemIndex ?? 0);
-		case 'snapshotsCreatePost':
-			return snapshotsCreatePostExecute.call(this, itemIndex ?? 0);
-		case 'snapshotsDeleteDelete':
-			return snapshotsDeleteDeleteExecute.call(this, itemIndex ?? 0);
-		case 'snapshotsListGet':
-			return snapshotsListGetExecute.call(this, itemIndex ?? 0);
-		case 'sshkeyCreatePost':
-			return sshkeyCreatePostExecute.call(this, itemIndex ?? 0);
-		case 'sshkeyDeleteDelete':
-			return sshkeyDeleteDeleteExecute.call(this, itemIndex ?? 0);
-		case 'sshkeyListGet':
-			return sshkeyListGetExecute.call(this, itemIndex ?? 0);
-		case 'storageCreateContainerPost':
-			return storageCreateContainerPostExecute.call(this, itemIndex ?? 0);
-		case 'storageDeleteContainerDelete':
-			return storageDeleteContainerDeleteExecute.call(this, itemIndex ?? 0);
-		case 'storageDeleteDelete':
-			return storageDeleteDeleteExecute.call(this, itemIndex ?? 0);
-		case 'storageGetContainerDetailGet':
-			return storageGetContainerDetailGetExecute.call(this, itemIndex ?? 0);
-		case 'storageGetDetailGet':
-			return storageGetDetailGetExecute.call(this, itemIndex ?? 0);
-		case 'storageListContainersGet':
-			return storageListContainersGetExecute.call(this, itemIndex ?? 0);
-		case 'storageListGet':
-			return storageListGetExecute.call(this, itemIndex ?? 0);
-		case 'storageUpdateContainerPut':
-			return storageUpdateContainerPutExecute.call(this, itemIndex ?? 0);
-		case 'storageUpdatePut':
-			return storageUpdatePutExecute.call(this, itemIndex ?? 0);
-		case 'terminatePost':
-			return terminatePostExecute.call(this, itemIndex ?? 0);
-		case 'unleashPost':
-			return unleashPostExecute.call(this, itemIndex ?? 0);
-		case 'usageGetCurrentGet':
-			return usageGetCurrentGetExecute.call(this, itemIndex ?? 0);
-		case 'usageGetForecastGet':
-			return usageGetForecastGetExecute.call(this, itemIndex ?? 0);
-		case 'usageGetHistoryDetailGet':
-			return usageGetHistoryDetailGetExecute.call(this, itemIndex ?? 0);
-		case 'usageListHistoryGet':
-			return usageListHistoryGetExecute.call(this, itemIndex ?? 0);
-		case 'vrackListGet':
-			return vrackListGetExecute.call(this, itemIndex ?? 0);
-		case 'vrackCreatePost':
-			return vrackCreatePostExecute.call(this, itemIndex ?? 0);
-		case 'ipFailoverListGet':
-			return ipFailoverListGetExecute.call(this, itemIndex ?? 0);
-		case 'ipFailoverGetGet':
-			return ipFailoverGetGetExecute.call(this, itemIndex ?? 0);
-		case 'ipFailoverAttachPost':
-			return ipFailoverAttachPostExecute.call(this, itemIndex ?? 0);
-		case 'loadbalancerConfigurationListGet':
-			return loadbalancerConfigurationListGetExecute.call(this, itemIndex ?? 0);
-		case 'loadbalancerConfigurationCreatePost':
-			return loadbalancerConfigurationCreatePostExecute.call(this, itemIndex ?? 0);
-		case 'loadbalancerConfigurationGetGet':
-			return loadbalancerConfigurationGetGetExecute.call(this, itemIndex ?? 0);
-		case 'loadbalancerConfigurationDeleteDelete':
-			return loadbalancerConfigurationDeleteDeleteExecute.call(this, itemIndex ?? 0);
-		case 'loadbalancerConfigurationApplyPost':
-			return loadbalancerConfigurationApplyPostExecute.call(this, itemIndex ?? 0);
-		case 'roleCreatePost':
-			return roleCreatePostExecute.call(this, itemIndex ?? 0);
-		case 'serviceInfosUpdatePut':
-			return serviceInfosUpdatePutExecute.call(this, itemIndex ?? 0);
-		case 'storageAccessPost':
-			return storageAccessPostExecute.call(this, itemIndex ?? 0);
-		case 'storageQuotaGet':
-			return storageQuotaGetExecute.call(this, itemIndex ?? 0);
-		case 'storageCorsPost':
-			return storageCorsPostExecute.call(this, itemIndex ?? 0);
-		case 'storageCorsDeleteDelete':
-			return storageCorsDeleteDeleteExecute.call(this, itemIndex ?? 0);
-		case 'storagePublicUrlPost':
-			return storagePublicUrlPostExecute.call(this, itemIndex ?? 0);
-		case 'storageStaticPost':
-			return storageStaticPostExecute.call(this, itemIndex ?? 0);
-		case 'storageUserPost':
-			return storageUserPostExecute.call(this, itemIndex ?? 0);
-		case 'volumeSnapshotListGet':
-			return volumeSnapshotListGetExecute.call(this, itemIndex ?? 0);
-		case 'volumeSnapshotGetGet':
-			return volumeSnapshotGetGetExecute.call(this, itemIndex ?? 0);
-		case 'volumeSnapshotDeleteDelete':
-			return volumeSnapshotDeleteDeleteExecute.call(this, itemIndex ?? 0);
-		case 'volumeAttachPost':
-			return volumeAttachPostExecute.call(this, itemIndex ?? 0);
-		case 'volumeDetachPost':
-			return volumeDetachPostExecute.call(this, itemIndex ?? 0);
-		case 'volumeSnapshotCreatePost':
-			return volumeSnapshotCreatePostExecute.call(this, itemIndex ?? 0);
-		case 'volumeUpsizePost':
-			return volumeUpsizePostExecute.call(this, itemIndex ?? 0);
-
-		// v2 cases
-		case 'listProjectsV2':
-			return listGetV2Execute.call(this, itemIndex ?? 0);
-		case 'getProjectDetailV2':
-			return getDetailGetV2Execute.call(this, itemIndex ?? 0);
-		case 'listRancherServicesV2':
-			return serviceListGetV2Execute.call(this, itemIndex ?? 0);
-		case 'createRancherServiceV2':
-			return serviceCreatePostV2Execute.call(this, itemIndex ?? 0);
-		case 'deleteRancherServiceV2':
-			return serviceDeleteDeleteV2Execute.call(this, itemIndex ?? 0);
-		case 'getRancherServiceV2':
-			return serviceGetGetV2Execute.call(this, itemIndex ?? 0);
-		case 'updateRancherServiceV2':
-			return serviceUpdatePutV2Execute.call(this, itemIndex ?? 0);
-		case 'resetRancherAdminPasswordV2':
-			return adminCredentialsResetV2Execute.call(this, itemIndex ?? 0);
-		case 'listRancherPlansV2':
-			return planCapabilityListGetV2Execute.call(this, itemIndex ?? 0);
-		case 'listRancherVersionsV2':
-			return versionCapabilityListGetV2Execute.call(this, itemIndex ?? 0);
-		case 'listRancherEventsV2':
-			return eventListGetV2Execute.call(this, itemIndex ?? 0);
-		case 'listRancherTasksV2':
-			return taskListGetV2Execute.call(this, itemIndex ?? 0);
-		case 'getRancherTaskV2':
-			return taskDetailGetV2Execute.call(this, itemIndex ?? 0);
-		case 'listReferencePlansV2':
-			return referencePlanListGetV2Execute.call(this, itemIndex ?? 0);
-		case 'listReferenceVersionsV2':
-			return referenceVersionListGetV2Execute.call(this, itemIndex ?? 0);
-		case 'listGlobalReferencePlansV2':
-			return globalReferencePlanListGetV2Execute.call(this, itemIndex ?? 0);
-		case 'listGlobalReferenceVersionsV2':
-			return globalReferenceVersionListGetV2Execute.call(this, itemIndex ?? 0);
-		default:
-			throw new Error(`Unsupported operation "${operation}" for resource "publicCloud"`);
-	}
+export async function execute(this: IExecuteFunctions, itemIndex?: number): Promise<INodeExecutionData[]> {
+	const apiVersion = this.getNodeParameter('apiVersion', itemIndex ?? 0) as string;
+	return apiVersion === 'v2'
+		? v2.execute.call(this, itemIndex ?? 0)
+		: v1.execute.call(this, itemIndex ?? 0);
 }
