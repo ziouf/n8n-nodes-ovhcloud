@@ -1,145 +1,89 @@
-import type {
-	IDisplayOptions,
-	IExecuteFunctions,
-	INodeExecutionData,
-	INodeProperties,
-} from 'n8n-workflow';
-import { execute as executeList, description as descriptionList } from './list.operation';
-import { execute as executeGet, description as descriptionGet } from './get.operation';
-import { execute as executeUpdate, description as descriptionUpdate } from './update.operation';
-import { execute as executeSuspend, description as descriptionSuspend } from './suspend.operation';
+import { createOperationDispatcher } from '../../shared/nodes/createNodeDispatcher';
+
 import {
-	execute as executeTerminate,
-	description as descriptionTerminate,
-} from './terminate.operation';
-import {
-	execute as executeReopenService,
-	description as descriptionReopenService,
-} from './reopen.operation';
-import {
-	execute as executeCreateRenew,
 	description as descriptionCreateRenew,
+	execute as executeCreateRenew,
 } from './createRenew.operation';
 import {
-	execute as executeListRenews,
+	description as descriptionGet,
+	execute as executeGet,
+} from './get.operation';
+import {
+	description as descriptionList,
+	execute as executeList,
+} from './list.operation';
+import {
 	description as descriptionListRenews,
+	execute as executeListRenews,
 } from './listRenews.operation';
+import {
+	description as descriptionReopenService,
+	execute as executeReopenService,
+} from './reopen.operation';
+import {
+	description as descriptionSuspend,
+	execute as executeSuspend,
+} from './suspend.operation';
+import {
+	description as descriptionTerminate,
+	execute as executeTerminate,
+} from './terminate.operation';
 
-export function description(displayOptions: IDisplayOptions): INodeProperties[] {
-	const operationProperties: INodeProperties[] = [
-		{
-			displayName: 'Operation',
-			name: 'serviceOperation',
-			type: 'options',
-			noDataExpression: true,
-			options: [
-				{
-					name: 'Create Renew Order',
-					value: 'createRenew',
-					action: 'Create a renew order for a service',
-				},
-				{
-					name: 'Get',
-					value: 'get',
-					action: 'Get service details',
-				},
-				{
-					name: 'List',
-					value: 'list',
-					action: 'List all services',
-				},
-				{
-					name: 'List Renews',
-					value: 'listRenews',
-					action: 'List possible renews for a service',
-				},
-				{
-					name: 'Reopen Service',
-					value: 'reopenService',
-					action: 'Reopen a suspended service',
-				},
-				{
-					name: 'Suspend Service',
-					value: 'suspend',
-					action: 'Suspend a service',
-				},
-				{
-					name: 'Terminate Service',
-					value: 'terminate',
-					action: 'Terminate a suspended service (irreversible)',
-				},
-				{
-					name: 'Update Service',
-					value: 'updateService',
-					action: "Modify a service's properties",
-				},
-			],
-			default: 'list',
-			displayOptions,
-		},
-	];
+const { description, execute } = createOperationDispatcher(
+	'serviceOperation',
+	'service',
+	[
+	{
+		name: 'Create Renew Order',
+		value: 'createRenew',
+		action: 'Create a renew order for a service',
+		execute: executeCreateRenew,
+		description: descriptionCreateRenew,
+	},
+	{
+		name: 'Get',
+		value: 'get',
+		action: 'Get service details',
+		execute: executeGet,
+		description: descriptionGet,
+	},
+	{
+		name: 'List',
+		value: 'list',
+		action: 'List all services',
+		execute: executeList,
+		description: descriptionList,
+		default: true,
+	},
+	{
+		name: 'List Renews',
+		value: 'listRenews',
+		action: 'List possible renews for a service',
+		execute: executeListRenews,
+		description: descriptionListRenews,
+	},
+	{
+		name: 'Reopen Service',
+		value: 'reopenService',
+		action: 'Reopen a suspended service',
+		execute: executeReopenService,
+		description: descriptionReopenService,
+	},
+	{
+		name: 'Suspend Service',
+		value: 'suspend',
+		action: 'Suspend a service',
+		execute: executeSuspend,
+		description: descriptionSuspend,
+	},
+	{
+		name: 'Terminate Service',
+		value: 'terminate',
+		action: 'Terminate a suspended service (irreversible)',
+		execute: executeTerminate,
+		description: descriptionTerminate,
+	},
+	],
+);
 
-	return [
-		...operationProperties,
-		...descriptionCreateRenew({
-			...displayOptions,
-			show: { ...displayOptions?.show, serviceOperation: ['createRenew'] },
-		}),
-		...descriptionGet({
-			...displayOptions,
-			show: { ...displayOptions?.show, serviceOperation: ['get'] },
-		}),
-		...descriptionList({
-			...displayOptions,
-			show: { ...displayOptions?.show, serviceOperation: ['list'] },
-		}),
-		...descriptionListRenews({
-			...displayOptions,
-			show: { ...displayOptions?.show, serviceOperation: ['listRenews'] },
-		}),
-		...descriptionReopenService({
-			...displayOptions,
-			show: { ...displayOptions?.show, serviceOperation: ['reopenService'] },
-		}),
-		...descriptionSuspend({
-			...displayOptions,
-			show: { ...displayOptions?.show, serviceOperation: ['suspend'] },
-		}),
-		...descriptionTerminate({
-			...displayOptions,
-			show: { ...displayOptions?.show, serviceOperation: ['terminate'] },
-		}),
-		...descriptionUpdate({
-			...displayOptions,
-			show: { ...displayOptions?.show, serviceOperation: ['updateService'] },
-		}),
-	];
-}
-
-export async function execute(
-	this: IExecuteFunctions,
-	itemIndex?: number,
-): Promise<INodeExecutionData[]> {
-	const operation = this.getNodeParameter('serviceOperation', itemIndex ?? 0, { extractValue: true });
-
-	switch (operation) {
-		case 'createRenew':
-			return await executeCreateRenew.call(this, itemIndex ?? 0);
-		case 'get':
-			return await executeGet.call(this, itemIndex ?? 0);
-		case 'list':
-			return await executeList.call(this, itemIndex ?? 0);
-		case 'listRenews':
-			return await executeListRenews.call(this, itemIndex ?? 0);
-		case 'reopenService':
-			return await executeReopenService.call(this, itemIndex ?? 0);
-		case 'suspend':
-			return await executeSuspend.call(this, itemIndex ?? 0);
-		case 'terminate':
-			return await executeTerminate.call(this, itemIndex ?? 0);
-		case 'updateService':
-			return await executeUpdate.call(this, itemIndex ?? 0);
-	}
-
-	throw new Error(`Unsupported operation "${operation}" for resource "service"`);
-}
+export { description, execute };

@@ -509,7 +509,6 @@ exports[`OvhCloud node descriptions (snapshot reference) OvhCloudVeeamEnterprise
   {
     "default": "list",
     "displayName": "Operation",
-    "displayOptions": {},
     "name": "veeamOperation",
     "noDataExpression": true,
     "options": [
@@ -540,73 +539,6 @@ exports[`OvhCloud node descriptions (snapshot reference) OvhCloudVeeamEnterprise
       },
     ],
     "type": "options",
-  },
-  {
-    "default": "",
-    "description": "The name/ID of the Veeam Enterprise Plus service",
-    "displayName": "Service Name",
-    "name": "serviceName",
-    "required": true,
-    "type": "string",
-  },
-  {
-    "default": false,
-    "description": "Whether to return all results or only up to a given limit",
-    "displayName": "Return All",
-    "name": "returnAll",
-    "type": "boolean",
-  },
-  {
-    "default": 50,
-    "description": "Max number of results to return",
-    "displayName": "Limit",
-    "displayOptions": {
-      "show": {
-        "returnAll": [
-          false,
-        ],
-      },
-    },
-    "name": "limit",
-    "type": "number",
-    "typeOptions": {
-      "minValue": 1,
-    },
-  },
-  {
-    "default": "",
-    "description": "The name/ID of the Veeam Enterprise Plus service",
-    "displayName": "Service Name",
-    "name": "serviceName",
-    "required": true,
-    "type": "string",
-  },
-  {
-    "default": "",
-    "description": "Your Veeam Backup and Replication Server IP",
-    "displayName": "IP",
-    "name": "ip",
-    "required": true,
-    "type": "string",
-  },
-  {
-    "default": "",
-    "description": "Your Veeam Backup and Replication username",
-    "displayName": "Username",
-    "name": "username",
-    "required": true,
-    "type": "string",
-  },
-  {
-    "default": "",
-    "description": "Your Veeam Backup and Replication associated password",
-    "displayName": "Password",
-    "name": "password",
-    "required": true,
-    "type": "string",
-    "typeOptions": {
-      "password": true,
-    },
   },
   {
     "default": "",
@@ -694,6 +626,73 @@ exports[`OvhCloud node descriptions (snapshot reference) OvhCloudVeeamEnterprise
     "name": "serviceName",
     "required": true,
     "type": "string",
+  },
+  {
+    "default": "",
+    "description": "The name/ID of the Veeam Enterprise Plus service",
+    "displayName": "Service Name",
+    "name": "serviceName",
+    "required": true,
+    "type": "string",
+  },
+  {
+    "default": false,
+    "description": "Whether to return all results or only up to a given limit",
+    "displayName": "Return All",
+    "name": "returnAll",
+    "type": "boolean",
+  },
+  {
+    "default": 50,
+    "description": "Max number of results to return",
+    "displayName": "Limit",
+    "displayOptions": {
+      "show": {
+        "returnAll": [
+          false,
+        ],
+      },
+    },
+    "name": "limit",
+    "type": "number",
+    "typeOptions": {
+      "minValue": 1,
+    },
+  },
+  {
+    "default": "",
+    "description": "The name/ID of the Veeam Enterprise Plus service",
+    "displayName": "Service Name",
+    "name": "serviceName",
+    "required": true,
+    "type": "string",
+  },
+  {
+    "default": "",
+    "description": "Your Veeam Backup and Replication Server IP",
+    "displayName": "IP",
+    "name": "ip",
+    "required": true,
+    "type": "string",
+  },
+  {
+    "default": "",
+    "description": "Your Veeam Backup and Replication username",
+    "displayName": "Username",
+    "name": "username",
+    "required": true,
+    "type": "string",
+  },
+  {
+    "default": "",
+    "description": "Your Veeam Backup and Replication associated password",
+    "displayName": "Password",
+    "name": "password",
+    "required": true,
+    "type": "string",
+    "typeOptions": {
+      "password": true,
+    },
   },
 ]
 `;

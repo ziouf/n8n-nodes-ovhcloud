@@ -1,170 +1,111 @@
-import type {
-	IDisplayOptions,
-	IExecuteFunctions,
-	INodeExecutionData,
-	INodeProperties,
-} from 'n8n-workflow';
+import { createOperationDispatcher } from '../../shared/nodes/createNodeDispatcher';
 
-import { execute as executeList, description as descriptionList } from './resources/list.operation';
-import { execute as executeGet, description as descriptionGet } from './resources/get.operation';
 import {
-	execute as executeCreate,
-	description as descriptionCreate,
-} from './resources/create.operation';
-import {
-	execute as executeCanBeScored,
 	description as descriptionCanBeScored,
+	execute as executeCanBeScored,
 } from './resources/canBeScored.operation';
 import {
-	execute as executeGetMessages,
-	description as descriptionGetMessages,
-} from './resources/getMessages.operation';
-import {
-	execute as executeClose,
 	description as descriptionClose,
+	execute as executeClose,
 } from './resources/close.operation';
 import {
-	execute as executeReopen,
+	description as descriptionCreate,
+	execute as executeCreate,
+} from './resources/create.operation';
+import {
+	description as descriptionGet,
+	execute as executeGet,
+} from './resources/get.operation';
+import {
+	description as descriptionGetMessages,
+	execute as executeGetMessages,
+} from './resources/getMessages.operation';
+import {
+	description as descriptionList,
+	execute as executeList,
+} from './resources/list.operation';
+import {
 	description as descriptionReopen,
+	execute as executeReopen,
 } from './resources/reopen.operation';
 import {
-	execute as executeReply,
 	description as descriptionReply,
+	execute as executeReply,
 } from './resources/reply.operation';
 import {
-	execute as executeScore,
 	description as descriptionScore,
+	execute as executeScore,
 } from './resources/score.operation';
 
-export function description(displayOptions: IDisplayOptions): INodeProperties[] {
-	const operationProperties: INodeProperties[] = [
-		{
-			displayName: 'Operation',
-			name: 'ovhCloudSupportTicketOperation',
-			type: 'options',
-			noDataExpression: true,
-			options: [
-				{
-					name: 'Can Be Scored',
-					value: 'canBeScored',
-					action: 'Check whether a support ticket can be scored',
-				},
-				{
-					name: 'Close',
-					value: 'close',
-					action: 'Close a support ticket',
-				},
-				{
-					name: 'Create',
-					value: 'create',
-					action: 'Create a support ticket',
-				},
-				{
-					name: 'Get',
-					value: 'get',
-					action: 'Get a support ticket',
-				},
-				{
-					name: 'Get Messages',
-					value: 'getMessages',
-					action: 'Get messages of a support ticket',
-				},
-				{
-					name: 'List',
-					value: 'list',
-					action: 'List all support tickets',
-				},
-				{
-					name: 'Reopen',
-					value: 'reopen',
-					action: 'Reopen a support ticket',
-				},
-				{
-					name: 'Reply',
-					value: 'reply',
-					action: 'Reply to a support ticket',
-				},
-				{
-					name: 'Score',
-					value: 'score',
-					action: 'Score a support ticket',
-				},
-			],
-			default: 'create',
-			displayOptions,
-		},
-	];
+const { description, execute } = createOperationDispatcher(
+	'ovhCloudSupportTicketOperation',
+	'supportTicket',
+	[
+	{
+		name: 'Can Be Scored',
+		value: 'canBeScored',
+		action: 'Check whether a support ticket can be scored',
+		execute: executeCanBeScored,
+		description: descriptionCanBeScored,
+	},
+	{
+		name: 'Close',
+		value: 'close',
+		action: 'Close a support ticket',
+		execute: executeClose,
+		description: descriptionClose,
+	},
+	{
+		name: 'Create',
+		value: 'create',
+		action: 'Create a support ticket',
+		execute: executeCreate,
+		description: descriptionCreate,
+		default: true,
+	},
+	{
+		name: 'Get',
+		value: 'get',
+		action: 'Get a support ticket',
+		execute: executeGet,
+		description: descriptionGet,
+	},
+	{
+		name: 'Get Messages',
+		value: 'getMessages',
+		action: 'Get messages of a support ticket',
+		execute: executeGetMessages,
+		description: descriptionGetMessages,
+	},
+	{
+		name: 'List',
+		value: 'list',
+		action: 'List all support tickets',
+		execute: executeList,
+		description: descriptionList,
+	},
+	{
+		name: 'Reopen',
+		value: 'reopen',
+		action: 'Reopen a support ticket',
+		execute: executeReopen,
+		description: descriptionReopen,
+	},
+	{
+		name: 'Reply',
+		value: 'reply',
+		action: 'Reply to a support ticket',
+		execute: executeReply,
+		description: descriptionReply,
+	},
+	{
+		name: 'Score',
+		value: 'score',
+		action: 'Score a support ticket',
+		execute: executeScore,
+		description: descriptionScore,
+	},
+	],
+);
 
-	return [
-		...operationProperties,
-		...descriptionCanBeScored({
-			...displayOptions,
-			show: { ...displayOptions?.show, ovhCloudSupportTicketOperation: ['canBeScored'] },
-		}),
-		...descriptionClose({
-			...displayOptions,
-			show: { ...displayOptions?.show, ovhCloudSupportTicketOperation: ['close'] },
-		}),
-		...descriptionCreate({
-			...displayOptions,
-			show: { ...displayOptions?.show, ovhCloudSupportTicketOperation: ['create'] },
-		}),
-		...descriptionGet({
-			...displayOptions,
-			show: { ...displayOptions?.show, ovhCloudSupportTicketOperation: ['get'] },
-		}),
-		...descriptionGetMessages({
-			...displayOptions,
-			show: { ...displayOptions?.show, ovhCloudSupportTicketOperation: ['getMessages'] },
-		}),
-		...descriptionList({
-			...displayOptions,
-			show: { ...displayOptions?.show, ovhCloudSupportTicketOperation: ['list'] },
-		}),
-		...descriptionReopen({
-			...displayOptions,
-			show: { ...displayOptions?.show, ovhCloudSupportTicketOperation: ['reopen'] },
-		}),
-		...descriptionReply({
-			...displayOptions,
-			show: { ...displayOptions?.show, ovhCloudSupportTicketOperation: ['reply'] },
-		}),
-		...descriptionScore({
-			...displayOptions,
-			show: { ...displayOptions?.show, ovhCloudSupportTicketOperation: ['score'] },
-		}),
-	] as INodeProperties[];
-}
-
-export async function execute(
-	this: IExecuteFunctions,
-	itemIndex?: number,
-): Promise<INodeExecutionData[]> {
-	const operation = this.getNodeParameter('ovhCloudSupportTicketOperation', itemIndex ?? 0, {
-		extractValue: true,
-	});
-
-	switch (operation) {
-		case 'canBeScored':
-			return executeCanBeScored.call(this, itemIndex ?? 0);
-		case 'close':
-			return executeClose.call(this, itemIndex ?? 0);
-		case 'create':
-			return executeCreate.call(this, itemIndex ?? 0);
-		case 'get':
-			return executeGet.call(this, itemIndex ?? 0);
-		case 'getMessages':
-			return executeGetMessages.call(this, itemIndex ?? 0);
-		case 'list':
-			return executeList.call(this, itemIndex ?? 0);
-		case 'reopen':
-			return executeReopen.call(this, itemIndex ?? 0);
-		case 'reply':
-			return executeReply.call(this, itemIndex ?? 0);
-		case 'score':
-			return executeScore.call(this, itemIndex ?? 0);
-	}
-
-	throw new Error(`Unsupported operation "${operation}" for resource "supportTicket"`);
-}
-
+export { description, execute };

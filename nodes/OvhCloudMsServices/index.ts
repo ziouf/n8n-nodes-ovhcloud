@@ -1,814 +1,562 @@
-import type {
-	IDisplayOptions,
-	IExecuteFunctions,
-	INodeExecutionData,
-	INodeProperties,
-} from 'n8n-workflow';
+import { createOperationDispatcher } from '../../shared/nodes/createNodeDispatcher';
 
 import {
-	execute as executeDeleteMsServicesserviceNAccountuserPrinMfaDelete,
 	description as descriptionDeleteMsServicesserviceNAccountuserPrinMfaDelete,
+	execute as executeDeleteMsServicesserviceNAccountuserPrinMfaDelete,
 } from './deleteMsServicesserviceNAccountuserPrinMfaDelete.operation';
 import {
-	execute as executeDeleteMsServicesserviceNAccountuserPrinSyncDelete,
 	description as descriptionDeleteMsServicesserviceNAccountuserPrinSyncDelete,
+	execute as executeDeleteMsServicesserviceNAccountuserPrinSyncDelete,
 } from './deleteMsServicesserviceNAccountuserPrinSyncDelete.operation';
 import {
-	execute as executeDeleteMsServicesserviceNSyncDelete,
 	description as descriptionDeleteMsServicesserviceNSyncDelete,
+	execute as executeDeleteMsServicesserviceNSyncDelete,
 } from './deleteMsServicesserviceNSyncDelete.operation';
 import {
-	execute as executeDeleteMsServicesserviceNUpnSuffixsuffixDelete,
 	description as descriptionDeleteMsServicesserviceNUpnSuffixsuffixDelete,
+	execute as executeDeleteMsServicesserviceNUpnSuffixsuffixDelete,
 } from './deleteMsServicesserviceNUpnSuffixsuffixDelete.operation';
 import {
-	execute as executeGetMsServicesserviceNAccountGet,
-	description as descriptionGetMsServicesserviceNAccountGet,
-} from './getMsServicesserviceNAccountGet.operation';
-import {
-	execute as executeGetMsServicesserviceNAccountuserPrinExchangeGet,
-	description as descriptionGetMsServicesserviceNAccountuserPrinExchangeGet,
-} from './getMsServicesserviceNAccountuserPrinExchangeGet.operation';
-import {
-	execute as executeGetMsServicesserviceNAccountuserPrinGet,
-	description as descriptionGetMsServicesserviceNAccountuserPrinGet,
-} from './getMsServicesserviceNAccountuserPrinGet.operation';
-import {
-	execute as executeGetMsServicesserviceNAccountuserPrinMfaGet,
-	description as descriptionGetMsServicesserviceNAccountuserPrinMfaGet,
-} from './getMsServicesserviceNAccountuserPrinMfaGet.operation';
-import {
-	execute as executeGetMsServicesserviceNAccountuserPrinSharepointGet,
-	description as descriptionGetMsServicesserviceNAccountuserPrinSharepointGet,
-} from './getMsServicesserviceNAccountuserPrinSharepointGet.operation';
-import {
-	execute as executeGetMsServicesserviceNAccountuserPrinSyncGet,
-	description as descriptionGetMsServicesserviceNAccountuserPrinSyncGet,
-} from './getMsServicesserviceNAccountuserPrinSyncGet.operation';
-import {
-	execute as executeGetMsServicesserviceNExchangeBillingMigratedGet,
-	description as descriptionGetMsServicesserviceNExchangeBillingMigratedGet,
-} from './getMsServicesserviceNExchangeBillingMigratedGet.operation';
-import {
-	execute as executeGetMsServicesserviceNExchangeGet,
-	description as descriptionGetMsServicesserviceNExchangeGet,
-} from './getMsServicesserviceNExchangeGet.operation';
-import {
-	execute as executeGetMsServicesserviceNExchangeTaskGet,
-	description as descriptionGetMsServicesserviceNExchangeTaskGet,
-} from './getMsServicesserviceNExchangeTaskGet.operation';
-import {
-	execute as executeGetMsServicesserviceNExchangeTaskidGet,
-	description as descriptionGetMsServicesserviceNExchangeTaskidGet,
-} from './getMsServicesserviceNExchangeTaskidGet.operation';
-import {
-	execute as executeGetMsServicesserviceNSharepointBillingMigratedGet,
-	description as descriptionGetMsServicesserviceNSharepointBillingMigratedGet,
-} from './getMsServicesserviceNSharepointBillingMigratedGet.operation';
-import {
-	execute as executeGetMsServicesserviceNSharepointGet,
-	description as descriptionGetMsServicesserviceNSharepointGet,
-} from './getMsServicesserviceNSharepointGet.operation';
-import {
-	execute as executeGetMsServicesserviceNSharepointLicenseGet,
-	description as descriptionGetMsServicesserviceNSharepointLicenseGet,
-} from './getMsServicesserviceNSharepointLicenseGet.operation';
-import {
-	execute as executeGetMsServicesserviceNSharepointTaskGet,
-	description as descriptionGetMsServicesserviceNSharepointTaskGet,
-} from './getMsServicesserviceNSharepointTaskGet.operation';
-import {
-	execute as executeGetMsServicesserviceNSharepointTaskidGet,
-	description as descriptionGetMsServicesserviceNSharepointTaskidGet,
-} from './getMsServicesserviceNSharepointTaskidGet.operation';
-import {
-	execute as executeGetMsServicesserviceNSyncClientSoftwareURLGet,
-	description as descriptionGetMsServicesserviceNSyncClientSoftwareURLGet,
-} from './getMsServicesserviceNSyncClientSoftwareURLGet.operation';
-import {
-	execute as executeGetMsServicesserviceNSyncGet,
-	description as descriptionGetMsServicesserviceNSyncGet,
-} from './getMsServicesserviceNSyncGet.operation';
-import {
-	execute as executeGetMsServicesserviceNSyncLicenseGet,
-	description as descriptionGetMsServicesserviceNSyncLicenseGet,
-} from './getMsServicesserviceNSyncLicenseGet.operation';
-import {
-	execute as executeGetMsServicesserviceNUpnSuffixGet,
-	description as descriptionGetMsServicesserviceNUpnSuffixGet,
-} from './getMsServicesserviceNUpnSuffixGet.operation';
-import {
-	execute as executeGetMsServicesserviceNUpnSuffixsuffixGet,
-	description as descriptionGetMsServicesserviceNUpnSuffixsuffixGet,
-} from './getMsServicesserviceNUpnSuffixsuffixGet.operation';
-import {
-	execute as executeGetMsServicesSharepointdomainGet,
-	description as descriptionGetMsServicesSharepointdomainGet,
-} from './getMsServicesSharepointdomainGet.operation';
-import {
-	execute as executeGetMsServicesSharepointdomainServiceInfosGet,
-	description as descriptionGetMsServicesSharepointdomainServiceInfosGet,
-} from './getMsServicesSharepointdomainServiceInfosGet.operation';
-import {
-	execute as executeGetMsServicesSharepointGet,
 	description as descriptionGetMsServicesSharepointGet,
+	execute as executeGetMsServicesSharepointGet,
 } from './getMsServicesSharepointGet.operation';
 import {
-	execute as executePostMsServicesserviceNAccountuserPrinChangePasswordPost,
+	description as descriptionGetMsServicesSharepointdomainGet,
+	execute as executeGetMsServicesSharepointdomainGet,
+} from './getMsServicesSharepointdomainGet.operation';
+import {
+	description as descriptionGetMsServicesSharepointdomainServiceInfosGet,
+	execute as executeGetMsServicesSharepointdomainServiceInfosGet,
+} from './getMsServicesSharepointdomainServiceInfosGet.operation';
+import {
+	description as descriptionGetMsServicesserviceNAccountGet,
+	execute as executeGetMsServicesserviceNAccountGet,
+} from './getMsServicesserviceNAccountGet.operation';
+import {
+	description as descriptionGetMsServicesserviceNAccountuserPrinExchangeGet,
+	execute as executeGetMsServicesserviceNAccountuserPrinExchangeGet,
+} from './getMsServicesserviceNAccountuserPrinExchangeGet.operation';
+import {
+	description as descriptionGetMsServicesserviceNAccountuserPrinGet,
+	execute as executeGetMsServicesserviceNAccountuserPrinGet,
+} from './getMsServicesserviceNAccountuserPrinGet.operation';
+import {
+	description as descriptionGetMsServicesserviceNAccountuserPrinMfaGet,
+	execute as executeGetMsServicesserviceNAccountuserPrinMfaGet,
+} from './getMsServicesserviceNAccountuserPrinMfaGet.operation';
+import {
+	description as descriptionGetMsServicesserviceNAccountuserPrinSharepointGet,
+	execute as executeGetMsServicesserviceNAccountuserPrinSharepointGet,
+} from './getMsServicesserviceNAccountuserPrinSharepointGet.operation';
+import {
+	description as descriptionGetMsServicesserviceNAccountuserPrinSyncGet,
+	execute as executeGetMsServicesserviceNAccountuserPrinSyncGet,
+} from './getMsServicesserviceNAccountuserPrinSyncGet.operation';
+import {
+	description as descriptionGetMsServicesserviceNExchangeBillingMigratedGet,
+	execute as executeGetMsServicesserviceNExchangeBillingMigratedGet,
+} from './getMsServicesserviceNExchangeBillingMigratedGet.operation';
+import {
+	description as descriptionGetMsServicesserviceNExchangeGet,
+	execute as executeGetMsServicesserviceNExchangeGet,
+} from './getMsServicesserviceNExchangeGet.operation';
+import {
+	description as descriptionGetMsServicesserviceNExchangeTaskGet,
+	execute as executeGetMsServicesserviceNExchangeTaskGet,
+} from './getMsServicesserviceNExchangeTaskGet.operation';
+import {
+	description as descriptionGetMsServicesserviceNExchangeTaskidGet,
+	execute as executeGetMsServicesserviceNExchangeTaskidGet,
+} from './getMsServicesserviceNExchangeTaskidGet.operation';
+import {
+	description as descriptionGetMsServicesserviceNSharepointBillingMigratedGet,
+	execute as executeGetMsServicesserviceNSharepointBillingMigratedGet,
+} from './getMsServicesserviceNSharepointBillingMigratedGet.operation';
+import {
+	description as descriptionGetMsServicesserviceNSharepointGet,
+	execute as executeGetMsServicesserviceNSharepointGet,
+} from './getMsServicesserviceNSharepointGet.operation';
+import {
+	description as descriptionGetMsServicesserviceNSharepointLicenseGet,
+	execute as executeGetMsServicesserviceNSharepointLicenseGet,
+} from './getMsServicesserviceNSharepointLicenseGet.operation';
+import {
+	description as descriptionGetMsServicesserviceNSharepointTaskGet,
+	execute as executeGetMsServicesserviceNSharepointTaskGet,
+} from './getMsServicesserviceNSharepointTaskGet.operation';
+import {
+	description as descriptionGetMsServicesserviceNSharepointTaskidGet,
+	execute as executeGetMsServicesserviceNSharepointTaskidGet,
+} from './getMsServicesserviceNSharepointTaskidGet.operation';
+import {
+	description as descriptionGetMsServicesserviceNSyncClientSoftwareURLGet,
+	execute as executeGetMsServicesserviceNSyncClientSoftwareURLGet,
+} from './getMsServicesserviceNSyncClientSoftwareURLGet.operation';
+import {
+	description as descriptionGetMsServicesserviceNSyncGet,
+	execute as executeGetMsServicesserviceNSyncGet,
+} from './getMsServicesserviceNSyncGet.operation';
+import {
+	description as descriptionGetMsServicesserviceNSyncLicenseGet,
+	execute as executeGetMsServicesserviceNSyncLicenseGet,
+} from './getMsServicesserviceNSyncLicenseGet.operation';
+import {
+	description as descriptionGetMsServicesserviceNUpnSuffixGet,
+	execute as executeGetMsServicesserviceNUpnSuffixGet,
+} from './getMsServicesserviceNUpnSuffixGet.operation';
+import {
+	description as descriptionGetMsServicesserviceNUpnSuffixsuffixGet,
+	execute as executeGetMsServicesserviceNUpnSuffixsuffixGet,
+} from './getMsServicesserviceNUpnSuffixsuffixGet.operation';
+import {
 	description as descriptionPostMsServicesserviceNAccountuserPrinChangePasswordPost,
+	execute as executePostMsServicesserviceNAccountuserPrinChangePasswordPost,
 } from './postMsServicesserviceNAccountuserPrinChangePasswordPost.operation';
 import {
-	execute as executePostMsServicesserviceNAccountuserPrinExchangeConfigurePost,
 	description as descriptionPostMsServicesserviceNAccountuserPrinExchangeConfigurePost,
+	execute as executePostMsServicesserviceNAccountuserPrinExchangeConfigurePost,
 } from './postMsServicesserviceNAccountuserPrinExchangeConfigurePost.operation';
 import {
-	execute as executePostMsServicesserviceNAccountuserPrinMfaDisablePost,
 	description as descriptionPostMsServicesserviceNAccountuserPrinMfaDisablePost,
+	execute as executePostMsServicesserviceNAccountuserPrinMfaDisablePost,
 } from './postMsServicesserviceNAccountuserPrinMfaDisablePost.operation';
 import {
-	execute as executePostMsServicesserviceNAccountuserPrinMfaEnablePost,
 	description as descriptionPostMsServicesserviceNAccountuserPrinMfaEnablePost,
+	execute as executePostMsServicesserviceNAccountuserPrinMfaEnablePost,
 } from './postMsServicesserviceNAccountuserPrinMfaEnablePost.operation';
 import {
-	execute as executePostMsServicesserviceNAccountuserPrinMfaPost,
 	description as descriptionPostMsServicesserviceNAccountuserPrinMfaPost,
+	execute as executePostMsServicesserviceNAccountuserPrinMfaPost,
 } from './postMsServicesserviceNAccountuserPrinMfaPost.operation';
 import {
-	execute as executePostMsServicesserviceNAccountuserPrinMfaResetPost,
 	description as descriptionPostMsServicesserviceNAccountuserPrinMfaResetPost,
+	execute as executePostMsServicesserviceNAccountuserPrinMfaResetPost,
 } from './postMsServicesserviceNAccountuserPrinMfaResetPost.operation';
 import {
-	execute as executePostMsServicesserviceNAccountuserPrinSharepointClearSpacePost,
 	description as descriptionPostMsServicesserviceNAccountuserPrinSharepointClearSpacePost,
+	execute as executePostMsServicesserviceNAccountuserPrinSharepointClearSpacePost,
 } from './postMsServicesserviceNAccountuserPrinSharepointClearSpacePost.operation';
 import {
-	execute as executePostMsServicesserviceNAccountuserPrinSharepointConfigurePost,
 	description as descriptionPostMsServicesserviceNAccountuserPrinSharepointConfigurePost,
+	execute as executePostMsServicesserviceNAccountuserPrinSharepointConfigurePost,
 } from './postMsServicesserviceNAccountuserPrinSharepointConfigurePost.operation';
 import {
-	execute as executePostMsServicesserviceNAccountuserPrinSyncConfigurePost,
 	description as descriptionPostMsServicesserviceNAccountuserPrinSyncConfigurePost,
+	execute as executePostMsServicesserviceNAccountuserPrinSyncConfigurePost,
 } from './postMsServicesserviceNAccountuserPrinSyncConfigurePost.operation';
 import {
-	execute as executePostMsServicesserviceNAccountuserPrinSyncPost,
 	description as descriptionPostMsServicesserviceNAccountuserPrinSyncPost,
+	execute as executePostMsServicesserviceNAccountuserPrinSyncPost,
 } from './postMsServicesserviceNAccountuserPrinSyncPost.operation';
 import {
-	execute as executePostMsServicesserviceNChangeContactPost,
 	description as descriptionPostMsServicesserviceNChangeContactPost,
+	execute as executePostMsServicesserviceNChangeContactPost,
 } from './postMsServicesserviceNChangeContactPost.operation';
 import {
-	execute as executePostMsServicesserviceNCreateMfaOnAllUsersPost,
 	description as descriptionPostMsServicesserviceNCreateMfaOnAllUsersPost,
+	execute as executePostMsServicesserviceNCreateMfaOnAllUsersPost,
 } from './postMsServicesserviceNCreateMfaOnAllUsersPost.operation';
 import {
-	execute as executePostMsServicesserviceNRemoveMfaOnAllUsersPost,
 	description as descriptionPostMsServicesserviceNRemoveMfaOnAllUsersPost,
+	execute as executePostMsServicesserviceNRemoveMfaOnAllUsersPost,
 } from './postMsServicesserviceNRemoveMfaOnAllUsersPost.operation';
 import {
-	execute as executePostMsServicesserviceNSharepointRestoreAdminRightsPost,
 	description as descriptionPostMsServicesserviceNSharepointRestoreAdminRightsPost,
+	execute as executePostMsServicesserviceNSharepointRestoreAdminRightsPost,
 } from './postMsServicesserviceNSharepointRestoreAdminRightsPost.operation';
 import {
-	execute as executePostMsServicesserviceNSyncChangePasswordPost,
 	description as descriptionPostMsServicesserviceNSyncChangePasswordPost,
+	execute as executePostMsServicesserviceNSyncChangePasswordPost,
 } from './postMsServicesserviceNSyncChangePasswordPost.operation';
 import {
-	execute as executePostMsServicesserviceNSyncClientSoftwareURLPost,
 	description as descriptionPostMsServicesserviceNSyncClientSoftwareURLPost,
+	execute as executePostMsServicesserviceNSyncClientSoftwareURLPost,
 } from './postMsServicesserviceNSyncClientSoftwareURLPost.operation';
 import {
-	execute as executePostMsServicesserviceNUpnSuffixPost,
 	description as descriptionPostMsServicesserviceNUpnSuffixPost,
+	execute as executePostMsServicesserviceNUpnSuffixPost,
 } from './postMsServicesserviceNUpnSuffixPost.operation';
 import {
-	execute as executePutMsServicesserviceNAccountuserPrinExchangePut,
+	description as descriptionPutMsServicesSharepointdomainServiceInfosPut,
+	execute as executePutMsServicesSharepointdomainServiceInfosPut,
+} from './putMsServicesSharepointdomainServiceInfosPut.operation';
+import {
 	description as descriptionPutMsServicesserviceNAccountuserPrinExchangePut,
+	execute as executePutMsServicesserviceNAccountuserPrinExchangePut,
 } from './putMsServicesserviceNAccountuserPrinExchangePut.operation';
 import {
-	execute as executePutMsServicesserviceNAccountuserPrinPut,
 	description as descriptionPutMsServicesserviceNAccountuserPrinPut,
+	execute as executePutMsServicesserviceNAccountuserPrinPut,
 } from './putMsServicesserviceNAccountuserPrinPut.operation';
 import {
-	execute as executePutMsServicesserviceNAccountuserPrinSharepointPut,
 	description as descriptionPutMsServicesserviceNAccountuserPrinSharepointPut,
+	execute as executePutMsServicesserviceNAccountuserPrinSharepointPut,
 } from './putMsServicesserviceNAccountuserPrinSharepointPut.operation';
 import {
-	execute as executePutMsServicesserviceNExchangePut,
 	description as descriptionPutMsServicesserviceNExchangePut,
+	execute as executePutMsServicesserviceNExchangePut,
 } from './putMsServicesserviceNExchangePut.operation';
 import {
-	execute as executePutMsServicesserviceNSharepointPut,
 	description as descriptionPutMsServicesserviceNSharepointPut,
+	execute as executePutMsServicesserviceNSharepointPut,
 } from './putMsServicesserviceNSharepointPut.operation';
-import {
-	execute as executePutMsServicesSharepointdomainServiceInfosPut,
-	description as descriptionPutMsServicesSharepointdomainServiceInfosPut,
-} from './putMsServicesSharepointdomainServiceInfosPut.operation';
 
-export function description(displayOptions: IDisplayOptions): INodeProperties[] {
-	const operationProperties: INodeProperties[] = [
-		{
-			displayName: 'Operation',
-			name: 'msServicesOperation',
-			type: 'options',
-			noDataExpression: true,
-			options: [
-				{
-					name: 'Create MsServices ServiceName Account UserPrincipalName ChangePassword',
-					value: 'postMsServicesserviceNAccountuserPrinChangePasswordPost',
-					action: 'Change account password',
-				},
-				{
-					name: 'Create MsServices ServiceName Account UserPrincipalName Exchange Configure',
-					value: 'postMsServicesserviceNAccountuserPrinExchangeConfigurePost',
-					action: 'Configure mailbox to be operational',
-				},
-				{
-					name: 'Create MsServices ServiceName Account UserPrincipalName Mfa',
-					value: 'postMsServicesserviceNAccountuserPrinMfaPost',
-					action: 'Create Multi Factor Authentication for this account',
-				},
-				{
-					name: 'Create MsServices ServiceName Account UserPrincipalName Mfa Disable',
-					value: 'postMsServicesserviceNAccountuserPrinMfaDisablePost',
-					action: 'Disable Multi Factor Authentication for a period of time',
-				},
-				{
-					name: 'Create MsServices ServiceName Account UserPrincipalName Mfa Enable',
-					value: 'postMsServicesserviceNAccountuserPrinMfaEnablePost',
-					action: 'Enable Mfa (enabled by default when created)',
-				},
-				{
-					name: 'Create MsServices ServiceName Account UserPrincipalName Mfa Reset',
-					value: 'postMsServicesserviceNAccountuserPrinMfaResetPost',
-					action: 'Reset Multi Factor Authentication status for this account',
-				},
-				{
-					name: 'Create MsServices ServiceName Account UserPrincipalName Sharepoint ClearSpace',
-					value: 'postMsServicesserviceNAccountuserPrinSharepointClearSpacePost',
-					action: 'On-demand MySite clearance',
-				},
-				{
-					name: 'Create MsServices ServiceName Account UserPrincipalName Sharepoint Configure',
-					value: 'postMsServicesserviceNAccountuserPrinSharepointConfigurePost',
-					action: 'Configure sharepoint account to be operational',
-				},
-				{
-					name: 'Create MsServices ServiceName Account UserPrincipalName Sync',
-					value: 'postMsServicesserviceNAccountuserPrinSyncPost',
-					action: 'Create new sync account',
-				},
-				{
-					name: 'Create MsServices ServiceName Account UserPrincipalName Sync Configure',
-					value: 'postMsServicesserviceNAccountuserPrinSyncConfigurePost',
-					action: 'Configure sync account to be operational',
-				},
-				{
-					name: 'Create MsServices ServiceName ChangeContact',
-					value: 'postMsServicesserviceNChangeContactPost',
-					action: 'Launch a contact change procedure',
-				},
-				{
-					name: 'Create MsServices ServiceName CreateMfaOnAllUsers',
-					value: 'postMsServicesserviceNCreateMfaOnAllUsersPost',
-					action: 'Create Mfa on all accounts.',
-				},
-				{
-					name: 'Create MsServices ServiceName RemoveMfaOnAllUsers',
-					value: 'postMsServicesserviceNRemoveMfaOnAllUsersPost',
-					action: 'Remove Mfa on all accounts.',
-				},
-				{
-					name: 'Create MsServices ServiceName Sharepoint RestoreAdminRights',
-					value: 'postMsServicesserviceNSharepointRestoreAdminRightsPost',
-					action: 'Restore administrator rights',
-				},
-				{
-					name: 'Create MsServices ServiceName Sync ChangePassword',
-					value: 'postMsServicesserviceNSyncChangePasswordPost',
-					action: 'Change account password',
-				},
-				{
-					name: 'Create MsServices ServiceName Sync ClientSoftwareURL',
-					value: 'postMsServicesserviceNSyncClientSoftwareURLPost',
-					action: 'Generate temporary link to ADSync software executable',
-				},
-				{
-					name: 'Create MsServices ServiceName UpnSuffix',
-					value: 'postMsServicesserviceNUpnSuffixPost',
-					action: 'Create new UPN suffix',
-				},
-				{
-					name: 'Delete MsServices ServiceName Account UserPrincipalName Mfa',
-					value: 'deleteMsServicesserviceNAccountuserPrinMfaDelete',
-					action: 'Delete Multi Factor Authentication feature for this account',
-				},
-				{
-					name: 'Delete MsServices ServiceName Account UserPrincipalName Sync',
-					value: 'deleteMsServicesserviceNAccountuserPrinSyncDelete',
-					action: 'Delete sync account',
-				},
-				{
-					name: 'Delete MsServices ServiceName Sync',
-					value: 'deleteMsServicesserviceNSyncDelete',
-					action: 'Delete sync service',
-				},
-				{
-					name: 'Delete MsServices ServiceName UpnSuffix Suffix',
-					value: 'deleteMsServicesserviceNUpnSuffixsuffixDelete',
-					action: 'Delete existing UPN suffix',
-				},
-				{
-					name: 'Get MsServices ServiceName Account',
-					value: 'getMsServicesserviceNAccountGet',
-					action: 'Accounts associated to this Active Directory service',
-				},
-				{
-					name: 'Get MsServices ServiceName Account UserPrincipalName',
-					value: 'getMsServicesserviceNAccountuserPrinGet',
-					action: 'Get this object properties',
-				},
-				{
-					name: 'Get MsServices ServiceName Account UserPrincipalName Exchange',
-					value: 'getMsServicesserviceNAccountuserPrinExchangeGet',
-					action: 'Get this object properties',
-				},
-				{
-					name: 'Get MsServices ServiceName Account UserPrincipalName Mfa',
-					value: 'getMsServicesserviceNAccountuserPrinMfaGet',
-					action: 'Get this object properties',
-				},
-				{
-					name: 'Get MsServices ServiceName Account UserPrincipalName Sharepoint',
-					value: 'getMsServicesserviceNAccountuserPrinSharepointGet',
-					action: 'Get this object properties',
-				},
-				{
-					name: 'Get MsServices ServiceName Account UserPrincipalName Sync',
-					value: 'getMsServicesserviceNAccountuserPrinSyncGet',
-					action: 'Get this object properties',
-				},
-				{
-					name: 'Get MsServices ServiceName Exchange',
-					value: 'getMsServicesserviceNExchangeGet',
-					action: 'Get this object properties',
-				},
-				{
-					name: 'Get MsServices ServiceName Exchange BillingMigrated',
-					value: 'getMsServicesserviceNExchangeBillingMigratedGet',
-					action: 'Detects billing transition status for the service',
-				},
-				{
-					name: 'Get MsServices ServiceName Exchange Task',
-					value: 'getMsServicesserviceNExchangeTaskGet',
-					action: 'Pending actions',
-				},
-				{
-					name: 'Get MsServices ServiceName Exchange Task ID',
-					value: 'getMsServicesserviceNExchangeTaskidGet',
-					action: 'Get this object properties',
-				},
-				{
-					name: 'Get MsServices ServiceName Sharepoint',
-					value: 'getMsServicesserviceNSharepointGet',
-					action: 'Get this object properties',
-				},
-				{
-					name: 'Get MsServices ServiceName Sharepoint BillingMigrated',
-					value: 'getMsServicesserviceNSharepointBillingMigratedGet',
-					action: 'Detects billing transition status for the service',
-				},
-				{
-					name: 'Get MsServices ServiceName Sharepoint License',
-					value: 'getMsServicesserviceNSharepointLicenseGet',
-					action: 'Get active licenses for specific period of time',
-				},
-				{
-					name: 'Get MsServices ServiceName Sharepoint Task',
-					value: 'getMsServicesserviceNSharepointTaskGet',
-					action: 'Pending actions',
-				},
-				{
-					name: 'Get MsServices ServiceName Sharepoint Task ID',
-					value: 'getMsServicesserviceNSharepointTaskidGet',
-					action: 'Get this object properties',
-				},
-				{
-					name: 'Get MsServices ServiceName Sync',
-					value: 'getMsServicesserviceNSyncGet',
-					action: 'Get this object properties',
-				},
-				{
-					name: 'Get MsServices ServiceName Sync ClientSoftwareURL',
-					value: 'getMsServicesserviceNSyncClientSoftwareURLGet',
-					action: 'Get this object properties',
-				},
-				{
-					name: 'Get MsServices ServiceName Sync License',
-					value: 'getMsServicesserviceNSyncLicenseGet',
-					action: 'Get active licenses for specific period of time',
-				},
-				{
-					name: 'Get MsServices ServiceName UpnSuffix',
-					value: 'getMsServicesserviceNUpnSuffixGet',
-					action: 'active directory UPN suffix',
-				},
-				{
-					name: 'Get MsServices ServiceName UpnSuffix Suffix',
-					value: 'getMsServicesserviceNUpnSuffixsuffixGet',
-					action: 'Get this object properties',
-				},
-				{
-					name: 'Get MsServices Sharepoint',
-					value: 'getMsServicesSharepointGet',
-					action: 'List available services',
-				},
-				{
-					name: 'Get MsServices Sharepoint Domain',
-					value: 'getMsServicesSharepointdomainGet',
-					action: 'Get this object properties',
-				},
-				{
-					name: 'Get MsServices Sharepoint Domain ServiceInfos',
-					value: 'getMsServicesSharepointdomainServiceInfosGet',
-					action: 'Get service information',
-				},
-				{
-					name: 'Update MsServices ServiceName Account UserPrincipalName',
-					value: 'putMsServicesserviceNAccountuserPrinPut',
-					action: 'Alter this object properties',
-				},
-				{
-					name: 'Update MsServices ServiceName Account UserPrincipalName Exchange',
-					value: 'putMsServicesserviceNAccountuserPrinExchangePut',
-					action: 'Alter this object properties',
-				},
-				{
-					name: 'Update MsServices ServiceName Account UserPrincipalName Sharepoint',
-					value: 'putMsServicesserviceNAccountuserPrinSharepointPut',
-					action: 'Alter this object properties',
-				},
-				{
-					name: 'Update MsServices ServiceName Exchange',
-					value: 'putMsServicesserviceNExchangePut',
-					action: 'Alter this object properties',
-				},
-				{
-					name: 'Update MsServices ServiceName Sharepoint',
-					value: 'putMsServicesserviceNSharepointPut',
-					action: 'Alter this object properties',
-				},
-				{
-					name: 'Update MsServices Sharepoint Domain ServiceInfos',
-					value: 'putMsServicesSharepointdomainServiceInfosPut',
-					action: 'Update service information',
-				},
-			],
-			default: 'deleteMsServicesserviceNAccountuserPrinMfaDelete',
-			displayOptions,
-		},
-	];
+const { description, execute } = createOperationDispatcher(
+	'msServicesOperation',
+	'msservices',
+	[
+	{
+		name: 'Create MsServices ServiceName Account UserPrincipalName ChangePassword',
+		value: 'postMsServicesserviceNAccountuserPrinChangePasswordPost',
+		action: 'Change account password',
+		execute: executePostMsServicesserviceNAccountuserPrinChangePasswordPost,
+		description: descriptionPostMsServicesserviceNAccountuserPrinChangePasswordPost,
+	},
+	{
+		name: 'Create MsServices ServiceName Account UserPrincipalName Exchange Configure',
+		value: 'postMsServicesserviceNAccountuserPrinExchangeConfigurePost',
+		action: 'Configure mailbox to be operational',
+		execute: executePostMsServicesserviceNAccountuserPrinExchangeConfigurePost,
+		description: descriptionPostMsServicesserviceNAccountuserPrinExchangeConfigurePost,
+	},
+	{
+		name: 'Create MsServices ServiceName Account UserPrincipalName Mfa',
+		value: 'postMsServicesserviceNAccountuserPrinMfaPost',
+		action: 'Create Multi Factor Authentication for this account',
+		execute: executePostMsServicesserviceNAccountuserPrinMfaPost,
+		description: descriptionPostMsServicesserviceNAccountuserPrinMfaPost,
+	},
+	{
+		name: 'Create MsServices ServiceName Account UserPrincipalName Mfa Disable',
+		value: 'postMsServicesserviceNAccountuserPrinMfaDisablePost',
+		action: 'Disable Multi Factor Authentication for a period of time',
+		execute: executePostMsServicesserviceNAccountuserPrinMfaDisablePost,
+		description: descriptionPostMsServicesserviceNAccountuserPrinMfaDisablePost,
+	},
+	{
+		name: 'Create MsServices ServiceName Account UserPrincipalName Mfa Enable',
+		value: 'postMsServicesserviceNAccountuserPrinMfaEnablePost',
+		action: 'Enable Mfa (enabled by default when created)',
+		execute: executePostMsServicesserviceNAccountuserPrinMfaEnablePost,
+		description: descriptionPostMsServicesserviceNAccountuserPrinMfaEnablePost,
+	},
+	{
+		name: 'Create MsServices ServiceName Account UserPrincipalName Mfa Reset',
+		value: 'postMsServicesserviceNAccountuserPrinMfaResetPost',
+		action: 'Reset Multi Factor Authentication status for this account',
+		execute: executePostMsServicesserviceNAccountuserPrinMfaResetPost,
+		description: descriptionPostMsServicesserviceNAccountuserPrinMfaResetPost,
+	},
+	{
+		name: 'Create MsServices ServiceName Account UserPrincipalName Sharepoint ClearSpace',
+		value: 'postMsServicesserviceNAccountuserPrinSharepointClearSpacePost',
+		action: 'On-demand MySite clearance',
+		execute: executePostMsServicesserviceNAccountuserPrinSharepointClearSpacePost,
+		description: descriptionPostMsServicesserviceNAccountuserPrinSharepointClearSpacePost,
+	},
+	{
+		name: 'Create MsServices ServiceName Account UserPrincipalName Sharepoint Configure',
+		value: 'postMsServicesserviceNAccountuserPrinSharepointConfigurePost',
+		action: 'Configure sharepoint account to be operational',
+		execute: executePostMsServicesserviceNAccountuserPrinSharepointConfigurePost,
+		description: descriptionPostMsServicesserviceNAccountuserPrinSharepointConfigurePost,
+	},
+	{
+		name: 'Create MsServices ServiceName Account UserPrincipalName Sync',
+		value: 'postMsServicesserviceNAccountuserPrinSyncPost',
+		action: 'Create new sync account',
+		execute: executePostMsServicesserviceNAccountuserPrinSyncPost,
+		description: descriptionPostMsServicesserviceNAccountuserPrinSyncPost,
+	},
+	{
+		name: 'Create MsServices ServiceName Account UserPrincipalName Sync Configure',
+		value: 'postMsServicesserviceNAccountuserPrinSyncConfigurePost',
+		action: 'Configure sync account to be operational',
+		execute: executePostMsServicesserviceNAccountuserPrinSyncConfigurePost,
+		description: descriptionPostMsServicesserviceNAccountuserPrinSyncConfigurePost,
+	},
+	{
+		name: 'Create MsServices ServiceName ChangeContact',
+		value: 'postMsServicesserviceNChangeContactPost',
+		action: 'Launch a contact change procedure',
+		execute: executePostMsServicesserviceNChangeContactPost,
+		description: descriptionPostMsServicesserviceNChangeContactPost,
+	},
+	{
+		name: 'Create MsServices ServiceName CreateMfaOnAllUsers',
+		value: 'postMsServicesserviceNCreateMfaOnAllUsersPost',
+		action: 'Create Mfa on all accounts.',
+		execute: executePostMsServicesserviceNCreateMfaOnAllUsersPost,
+		description: descriptionPostMsServicesserviceNCreateMfaOnAllUsersPost,
+	},
+	{
+		name: 'Create MsServices ServiceName RemoveMfaOnAllUsers',
+		value: 'postMsServicesserviceNRemoveMfaOnAllUsersPost',
+		action: 'Remove Mfa on all accounts.',
+		execute: executePostMsServicesserviceNRemoveMfaOnAllUsersPost,
+		description: descriptionPostMsServicesserviceNRemoveMfaOnAllUsersPost,
+	},
+	{
+		name: 'Create MsServices ServiceName Sharepoint RestoreAdminRights',
+		value: 'postMsServicesserviceNSharepointRestoreAdminRightsPost',
+		action: 'Restore administrator rights',
+		execute: executePostMsServicesserviceNSharepointRestoreAdminRightsPost,
+		description: descriptionPostMsServicesserviceNSharepointRestoreAdminRightsPost,
+	},
+	{
+		name: 'Create MsServices ServiceName Sync ChangePassword',
+		value: 'postMsServicesserviceNSyncChangePasswordPost',
+		action: 'Change account password',
+		execute: executePostMsServicesserviceNSyncChangePasswordPost,
+		description: descriptionPostMsServicesserviceNSyncChangePasswordPost,
+	},
+	{
+		name: 'Create MsServices ServiceName Sync ClientSoftwareURL',
+		value: 'postMsServicesserviceNSyncClientSoftwareURLPost',
+		action: 'Generate temporary link to ADSync software executable',
+		execute: executePostMsServicesserviceNSyncClientSoftwareURLPost,
+		description: descriptionPostMsServicesserviceNSyncClientSoftwareURLPost,
+	},
+	{
+		name: 'Create MsServices ServiceName UpnSuffix',
+		value: 'postMsServicesserviceNUpnSuffixPost',
+		action: 'Create new UPN suffix',
+		execute: executePostMsServicesserviceNUpnSuffixPost,
+		description: descriptionPostMsServicesserviceNUpnSuffixPost,
+	},
+	{
+		name: 'Delete MsServices ServiceName Account UserPrincipalName Mfa',
+		value: 'deleteMsServicesserviceNAccountuserPrinMfaDelete',
+		action: 'Delete Multi Factor Authentication feature for this account',
+		execute: executeDeleteMsServicesserviceNAccountuserPrinMfaDelete,
+		description: descriptionDeleteMsServicesserviceNAccountuserPrinMfaDelete,
+		default: true,
+	},
+	{
+		name: 'Delete MsServices ServiceName Account UserPrincipalName Sync',
+		value: 'deleteMsServicesserviceNAccountuserPrinSyncDelete',
+		action: 'Delete sync account',
+		execute: executeDeleteMsServicesserviceNAccountuserPrinSyncDelete,
+		description: descriptionDeleteMsServicesserviceNAccountuserPrinSyncDelete,
+	},
+	{
+		name: 'Delete MsServices ServiceName Sync',
+		value: 'deleteMsServicesserviceNSyncDelete',
+		action: 'Delete sync service',
+		execute: executeDeleteMsServicesserviceNSyncDelete,
+		description: descriptionDeleteMsServicesserviceNSyncDelete,
+	},
+	{
+		name: 'Delete MsServices ServiceName UpnSuffix Suffix',
+		value: 'deleteMsServicesserviceNUpnSuffixsuffixDelete',
+		action: 'Delete existing UPN suffix',
+		execute: executeDeleteMsServicesserviceNUpnSuffixsuffixDelete,
+		description: descriptionDeleteMsServicesserviceNUpnSuffixsuffixDelete,
+	},
+	{
+		name: 'Get MsServices ServiceName Account',
+		value: 'getMsServicesserviceNAccountGet',
+		action: 'Accounts associated to this Active Directory service',
+		execute: executeGetMsServicesserviceNAccountGet,
+		description: descriptionGetMsServicesserviceNAccountGet,
+	},
+	{
+		name: 'Get MsServices ServiceName Account UserPrincipalName',
+		value: 'getMsServicesserviceNAccountuserPrinGet',
+		action: 'Get this object properties',
+		execute: executeGetMsServicesserviceNAccountuserPrinGet,
+		description: descriptionGetMsServicesserviceNAccountuserPrinGet,
+	},
+	{
+		name: 'Get MsServices ServiceName Account UserPrincipalName Exchange',
+		value: 'getMsServicesserviceNAccountuserPrinExchangeGet',
+		action: 'Get this object properties',
+		execute: executeGetMsServicesserviceNAccountuserPrinExchangeGet,
+		description: descriptionGetMsServicesserviceNAccountuserPrinExchangeGet,
+	},
+	{
+		name: 'Get MsServices ServiceName Account UserPrincipalName Mfa',
+		value: 'getMsServicesserviceNAccountuserPrinMfaGet',
+		action: 'Get this object properties',
+		execute: executeGetMsServicesserviceNAccountuserPrinMfaGet,
+		description: descriptionGetMsServicesserviceNAccountuserPrinMfaGet,
+	},
+	{
+		name: 'Get MsServices ServiceName Account UserPrincipalName Sharepoint',
+		value: 'getMsServicesserviceNAccountuserPrinSharepointGet',
+		action: 'Get this object properties',
+		execute: executeGetMsServicesserviceNAccountuserPrinSharepointGet,
+		description: descriptionGetMsServicesserviceNAccountuserPrinSharepointGet,
+	},
+	{
+		name: 'Get MsServices ServiceName Account UserPrincipalName Sync',
+		value: 'getMsServicesserviceNAccountuserPrinSyncGet',
+		action: 'Get this object properties',
+		execute: executeGetMsServicesserviceNAccountuserPrinSyncGet,
+		description: descriptionGetMsServicesserviceNAccountuserPrinSyncGet,
+	},
+	{
+		name: 'Get MsServices ServiceName Exchange',
+		value: 'getMsServicesserviceNExchangeGet',
+		action: 'Get this object properties',
+		execute: executeGetMsServicesserviceNExchangeGet,
+		description: descriptionGetMsServicesserviceNExchangeGet,
+	},
+	{
+		name: 'Get MsServices ServiceName Exchange BillingMigrated',
+		value: 'getMsServicesserviceNExchangeBillingMigratedGet',
+		action: 'Detects billing transition status for the service',
+		execute: executeGetMsServicesserviceNExchangeBillingMigratedGet,
+		description: descriptionGetMsServicesserviceNExchangeBillingMigratedGet,
+	},
+	{
+		name: 'Get MsServices ServiceName Exchange Task',
+		value: 'getMsServicesserviceNExchangeTaskGet',
+		action: 'Pending actions',
+		execute: executeGetMsServicesserviceNExchangeTaskGet,
+		description: descriptionGetMsServicesserviceNExchangeTaskGet,
+	},
+	{
+		name: 'Get MsServices ServiceName Exchange Task ID',
+		value: 'getMsServicesserviceNExchangeTaskidGet',
+		action: 'Get this object properties',
+		execute: executeGetMsServicesserviceNExchangeTaskidGet,
+		description: descriptionGetMsServicesserviceNExchangeTaskidGet,
+	},
+	{
+		name: 'Get MsServices ServiceName Sharepoint',
+		value: 'getMsServicesserviceNSharepointGet',
+		action: 'Get this object properties',
+		execute: executeGetMsServicesserviceNSharepointGet,
+		description: descriptionGetMsServicesserviceNSharepointGet,
+	},
+	{
+		name: 'Get MsServices ServiceName Sharepoint BillingMigrated',
+		value: 'getMsServicesserviceNSharepointBillingMigratedGet',
+		action: 'Detects billing transition status for the service',
+		execute: executeGetMsServicesserviceNSharepointBillingMigratedGet,
+		description: descriptionGetMsServicesserviceNSharepointBillingMigratedGet,
+	},
+	{
+		name: 'Get MsServices ServiceName Sharepoint License',
+		value: 'getMsServicesserviceNSharepointLicenseGet',
+		action: 'Get active licenses for specific period of time',
+		execute: executeGetMsServicesserviceNSharepointLicenseGet,
+		description: descriptionGetMsServicesserviceNSharepointLicenseGet,
+	},
+	{
+		name: 'Get MsServices ServiceName Sharepoint Task',
+		value: 'getMsServicesserviceNSharepointTaskGet',
+		action: 'Pending actions',
+		execute: executeGetMsServicesserviceNSharepointTaskGet,
+		description: descriptionGetMsServicesserviceNSharepointTaskGet,
+	},
+	{
+		name: 'Get MsServices ServiceName Sharepoint Task ID',
+		value: 'getMsServicesserviceNSharepointTaskidGet',
+		action: 'Get this object properties',
+		execute: executeGetMsServicesserviceNSharepointTaskidGet,
+		description: descriptionGetMsServicesserviceNSharepointTaskidGet,
+	},
+	{
+		name: 'Get MsServices ServiceName Sync',
+		value: 'getMsServicesserviceNSyncGet',
+		action: 'Get this object properties',
+		execute: executeGetMsServicesserviceNSyncGet,
+		description: descriptionGetMsServicesserviceNSyncGet,
+	},
+	{
+		name: 'Get MsServices ServiceName Sync ClientSoftwareURL',
+		value: 'getMsServicesserviceNSyncClientSoftwareURLGet',
+		action: 'Get this object properties',
+		execute: executeGetMsServicesserviceNSyncClientSoftwareURLGet,
+		description: descriptionGetMsServicesserviceNSyncClientSoftwareURLGet,
+	},
+	{
+		name: 'Get MsServices ServiceName Sync License',
+		value: 'getMsServicesserviceNSyncLicenseGet',
+		action: 'Get active licenses for specific period of time',
+		execute: executeGetMsServicesserviceNSyncLicenseGet,
+		description: descriptionGetMsServicesserviceNSyncLicenseGet,
+	},
+	{
+		name: 'Get MsServices ServiceName UpnSuffix',
+		value: 'getMsServicesserviceNUpnSuffixGet',
+		action: 'active directory UPN suffix',
+		execute: executeGetMsServicesserviceNUpnSuffixGet,
+		description: descriptionGetMsServicesserviceNUpnSuffixGet,
+	},
+	{
+		name: 'Get MsServices ServiceName UpnSuffix Suffix',
+		value: 'getMsServicesserviceNUpnSuffixsuffixGet',
+		action: 'Get this object properties',
+		execute: executeGetMsServicesserviceNUpnSuffixsuffixGet,
+		description: descriptionGetMsServicesserviceNUpnSuffixsuffixGet,
+	},
+	{
+		name: 'Get MsServices Sharepoint',
+		value: 'getMsServicesSharepointGet',
+		action: 'List available services',
+		execute: executeGetMsServicesSharepointGet,
+		description: descriptionGetMsServicesSharepointGet,
+	},
+	{
+		name: 'Get MsServices Sharepoint Domain',
+		value: 'getMsServicesSharepointdomainGet',
+		action: 'Get this object properties',
+		execute: executeGetMsServicesSharepointdomainGet,
+		description: descriptionGetMsServicesSharepointdomainGet,
+	},
+	{
+		name: 'Get MsServices Sharepoint Domain ServiceInfos',
+		value: 'getMsServicesSharepointdomainServiceInfosGet',
+		action: 'Get service information',
+		execute: executeGetMsServicesSharepointdomainServiceInfosGet,
+		description: descriptionGetMsServicesSharepointdomainServiceInfosGet,
+	},
+	{
+		name: 'Update MsServices ServiceName Account UserPrincipalName',
+		value: 'putMsServicesserviceNAccountuserPrinPut',
+		action: 'Alter this object properties',
+		execute: executePutMsServicesserviceNAccountuserPrinPut,
+		description: descriptionPutMsServicesserviceNAccountuserPrinPut,
+	},
+	{
+		name: 'Update MsServices ServiceName Account UserPrincipalName Exchange',
+		value: 'putMsServicesserviceNAccountuserPrinExchangePut',
+		action: 'Alter this object properties',
+		execute: executePutMsServicesserviceNAccountuserPrinExchangePut,
+		description: descriptionPutMsServicesserviceNAccountuserPrinExchangePut,
+	},
+	{
+		name: 'Update MsServices ServiceName Account UserPrincipalName Sharepoint',
+		value: 'putMsServicesserviceNAccountuserPrinSharepointPut',
+		action: 'Alter this object properties',
+		execute: executePutMsServicesserviceNAccountuserPrinSharepointPut,
+		description: descriptionPutMsServicesserviceNAccountuserPrinSharepointPut,
+	},
+	{
+		name: 'Update MsServices ServiceName Exchange',
+		value: 'putMsServicesserviceNExchangePut',
+		action: 'Alter this object properties',
+		execute: executePutMsServicesserviceNExchangePut,
+		description: descriptionPutMsServicesserviceNExchangePut,
+	},
+	{
+		name: 'Update MsServices ServiceName Sharepoint',
+		value: 'putMsServicesserviceNSharepointPut',
+		action: 'Alter this object properties',
+		execute: executePutMsServicesserviceNSharepointPut,
+		description: descriptionPutMsServicesserviceNSharepointPut,
+	},
+	{
+		name: 'Update MsServices Sharepoint Domain ServiceInfos',
+		value: 'putMsServicesSharepointdomainServiceInfosPut',
+		action: 'Update service information',
+		execute: executePutMsServicesSharepointdomainServiceInfosPut,
+		description: descriptionPutMsServicesSharepointdomainServiceInfosPut,
+	},
+	],
+);
 
-	const properties: INodeProperties[] = [
-		...operationProperties,
-		...(descriptionDeleteMsServicesserviceNAccountuserPrinMfaDelete({
-			...displayOptions,
-			show: { msServicesOperation: ['deleteMsServicesserviceNAccountuserPrinMfaDelete'] },
-		}) as INodeProperties[]),
-		...(descriptionDeleteMsServicesserviceNAccountuserPrinSyncDelete({
-			...displayOptions,
-			show: { msServicesOperation: ['deleteMsServicesserviceNAccountuserPrinSyncDelete'] },
-		}) as INodeProperties[]),
-		...(descriptionDeleteMsServicesserviceNSyncDelete({
-			...displayOptions,
-			show: { msServicesOperation: ['deleteMsServicesserviceNSyncDelete'] },
-		}) as INodeProperties[]),
-		...(descriptionDeleteMsServicesserviceNUpnSuffixsuffixDelete({
-			...displayOptions,
-			show: { msServicesOperation: ['deleteMsServicesserviceNUpnSuffixsuffixDelete'] },
-		}) as INodeProperties[]),
-		...(descriptionGetMsServicesserviceNAccountGet({
-			...displayOptions,
-			show: { msServicesOperation: ['getMsServicesserviceNAccountGet'] },
-		}) as INodeProperties[]),
-		...(descriptionGetMsServicesserviceNAccountuserPrinExchangeGet({
-			...displayOptions,
-			show: { msServicesOperation: ['getMsServicesserviceNAccountuserPrinExchangeGet'] },
-		}) as INodeProperties[]),
-		...(descriptionGetMsServicesserviceNAccountuserPrinGet({
-			...displayOptions,
-			show: { msServicesOperation: ['getMsServicesserviceNAccountuserPrinGet'] },
-		}) as INodeProperties[]),
-		...(descriptionGetMsServicesserviceNAccountuserPrinMfaGet({
-			...displayOptions,
-			show: { msServicesOperation: ['getMsServicesserviceNAccountuserPrinMfaGet'] },
-		}) as INodeProperties[]),
-		...(descriptionGetMsServicesserviceNAccountuserPrinSharepointGet({
-			...displayOptions,
-			show: { msServicesOperation: ['getMsServicesserviceNAccountuserPrinSharepointGet'] },
-		}) as INodeProperties[]),
-		...(descriptionGetMsServicesserviceNAccountuserPrinSyncGet({
-			...displayOptions,
-			show: { msServicesOperation: ['getMsServicesserviceNAccountuserPrinSyncGet'] },
-		}) as INodeProperties[]),
-		...(descriptionGetMsServicesserviceNExchangeBillingMigratedGet({
-			...displayOptions,
-			show: { msServicesOperation: ['getMsServicesserviceNExchangeBillingMigratedGet'] },
-		}) as INodeProperties[]),
-		...(descriptionGetMsServicesserviceNExchangeGet({
-			...displayOptions,
-			show: { msServicesOperation: ['getMsServicesserviceNExchangeGet'] },
-		}) as INodeProperties[]),
-		...(descriptionGetMsServicesserviceNExchangeTaskGet({
-			...displayOptions,
-			show: { msServicesOperation: ['getMsServicesserviceNExchangeTaskGet'] },
-		}) as INodeProperties[]),
-		...(descriptionGetMsServicesserviceNExchangeTaskidGet({
-			...displayOptions,
-			show: { msServicesOperation: ['getMsServicesserviceNExchangeTaskidGet'] },
-		}) as INodeProperties[]),
-		...(descriptionGetMsServicesserviceNSharepointBillingMigratedGet({
-			...displayOptions,
-			show: { msServicesOperation: ['getMsServicesserviceNSharepointBillingMigratedGet'] },
-		}) as INodeProperties[]),
-		...(descriptionGetMsServicesserviceNSharepointGet({
-			...displayOptions,
-			show: { msServicesOperation: ['getMsServicesserviceNSharepointGet'] },
-		}) as INodeProperties[]),
-		...(descriptionGetMsServicesserviceNSharepointLicenseGet({
-			...displayOptions,
-			show: { msServicesOperation: ['getMsServicesserviceNSharepointLicenseGet'] },
-		}) as INodeProperties[]),
-		...(descriptionGetMsServicesserviceNSharepointTaskGet({
-			...displayOptions,
-			show: { msServicesOperation: ['getMsServicesserviceNSharepointTaskGet'] },
-		}) as INodeProperties[]),
-		...(descriptionGetMsServicesserviceNSharepointTaskidGet({
-			...displayOptions,
-			show: { msServicesOperation: ['getMsServicesserviceNSharepointTaskidGet'] },
-		}) as INodeProperties[]),
-		...(descriptionGetMsServicesserviceNSyncClientSoftwareURLGet({
-			...displayOptions,
-			show: { msServicesOperation: ['getMsServicesserviceNSyncClientSoftwareURLGet'] },
-		}) as INodeProperties[]),
-		...(descriptionGetMsServicesserviceNSyncGet({
-			...displayOptions,
-			show: { msServicesOperation: ['getMsServicesserviceNSyncGet'] },
-		}) as INodeProperties[]),
-		...(descriptionGetMsServicesserviceNSyncLicenseGet({
-			...displayOptions,
-			show: { msServicesOperation: ['getMsServicesserviceNSyncLicenseGet'] },
-		}) as INodeProperties[]),
-		...(descriptionGetMsServicesserviceNUpnSuffixGet({
-			...displayOptions,
-			show: { msServicesOperation: ['getMsServicesserviceNUpnSuffixGet'] },
-		}) as INodeProperties[]),
-		...(descriptionGetMsServicesserviceNUpnSuffixsuffixGet({
-			...displayOptions,
-			show: { msServicesOperation: ['getMsServicesserviceNUpnSuffixsuffixGet'] },
-		}) as INodeProperties[]),
-		...(descriptionGetMsServicesSharepointdomainGet({
-			...displayOptions,
-			show: { msServicesOperation: ['getMsServicesSharepointdomainGet'] },
-		}) as INodeProperties[]),
-		...(descriptionGetMsServicesSharepointdomainServiceInfosGet({
-			...displayOptions,
-			show: { msServicesOperation: ['getMsServicesSharepointdomainServiceInfosGet'] },
-		}) as INodeProperties[]),
-		...(descriptionGetMsServicesSharepointGet({
-			...displayOptions,
-			show: { msServicesOperation: ['getMsServicesSharepointGet'] },
-		}) as INodeProperties[]),
-		...(descriptionPostMsServicesserviceNAccountuserPrinChangePasswordPost({
-			...displayOptions,
-			show: { msServicesOperation: ['postMsServicesserviceNAccountuserPrinChangePasswordPost'] },
-		}) as INodeProperties[]),
-		...(descriptionPostMsServicesserviceNAccountuserPrinExchangeConfigurePost({
-			...displayOptions,
-			show: { msServicesOperation: ['postMsServicesserviceNAccountuserPrinExchangeConfigurePost'] },
-		}) as INodeProperties[]),
-		...(descriptionPostMsServicesserviceNAccountuserPrinMfaDisablePost({
-			...displayOptions,
-			show: { msServicesOperation: ['postMsServicesserviceNAccountuserPrinMfaDisablePost'] },
-		}) as INodeProperties[]),
-		...(descriptionPostMsServicesserviceNAccountuserPrinMfaEnablePost({
-			...displayOptions,
-			show: { msServicesOperation: ['postMsServicesserviceNAccountuserPrinMfaEnablePost'] },
-		}) as INodeProperties[]),
-		...(descriptionPostMsServicesserviceNAccountuserPrinMfaPost({
-			...displayOptions,
-			show: { msServicesOperation: ['postMsServicesserviceNAccountuserPrinMfaPost'] },
-		}) as INodeProperties[]),
-		...(descriptionPostMsServicesserviceNAccountuserPrinMfaResetPost({
-			...displayOptions,
-			show: { msServicesOperation: ['postMsServicesserviceNAccountuserPrinMfaResetPost'] },
-		}) as INodeProperties[]),
-		...(descriptionPostMsServicesserviceNAccountuserPrinSharepointClearSpacePost({
-			...displayOptions,
-			show: {
-				msServicesOperation: ['postMsServicesserviceNAccountuserPrinSharepointClearSpacePost'],
-			},
-		}) as INodeProperties[]),
-		...(descriptionPostMsServicesserviceNAccountuserPrinSharepointConfigurePost({
-			...displayOptions,
-			show: {
-				msServicesOperation: ['postMsServicesserviceNAccountuserPrinSharepointConfigurePost'],
-			},
-		}) as INodeProperties[]),
-		...(descriptionPostMsServicesserviceNAccountuserPrinSyncConfigurePost({
-			...displayOptions,
-			show: { msServicesOperation: ['postMsServicesserviceNAccountuserPrinSyncConfigurePost'] },
-		}) as INodeProperties[]),
-		...(descriptionPostMsServicesserviceNAccountuserPrinSyncPost({
-			...displayOptions,
-			show: { msServicesOperation: ['postMsServicesserviceNAccountuserPrinSyncPost'] },
-		}) as INodeProperties[]),
-		...(descriptionPostMsServicesserviceNChangeContactPost({
-			...displayOptions,
-			show: { msServicesOperation: ['postMsServicesserviceNChangeContactPost'] },
-		}) as INodeProperties[]),
-		...(descriptionPostMsServicesserviceNCreateMfaOnAllUsersPost({
-			...displayOptions,
-			show: { msServicesOperation: ['postMsServicesserviceNCreateMfaOnAllUsersPost'] },
-		}) as INodeProperties[]),
-		...(descriptionPostMsServicesserviceNRemoveMfaOnAllUsersPost({
-			...displayOptions,
-			show: { msServicesOperation: ['postMsServicesserviceNRemoveMfaOnAllUsersPost'] },
-		}) as INodeProperties[]),
-		...(descriptionPostMsServicesserviceNSharepointRestoreAdminRightsPost({
-			...displayOptions,
-			show: { msServicesOperation: ['postMsServicesserviceNSharepointRestoreAdminRightsPost'] },
-		}) as INodeProperties[]),
-		...(descriptionPostMsServicesserviceNSyncChangePasswordPost({
-			...displayOptions,
-			show: { msServicesOperation: ['postMsServicesserviceNSyncChangePasswordPost'] },
-		}) as INodeProperties[]),
-		...(descriptionPostMsServicesserviceNSyncClientSoftwareURLPost({
-			...displayOptions,
-			show: { msServicesOperation: ['postMsServicesserviceNSyncClientSoftwareURLPost'] },
-		}) as INodeProperties[]),
-		...(descriptionPostMsServicesserviceNUpnSuffixPost({
-			...displayOptions,
-			show: { msServicesOperation: ['postMsServicesserviceNUpnSuffixPost'] },
-		}) as INodeProperties[]),
-		...(descriptionPutMsServicesserviceNAccountuserPrinExchangePut({
-			...displayOptions,
-			show: { msServicesOperation: ['putMsServicesserviceNAccountuserPrinExchangePut'] },
-		}) as INodeProperties[]),
-		...(descriptionPutMsServicesserviceNAccountuserPrinPut({
-			...displayOptions,
-			show: { msServicesOperation: ['putMsServicesserviceNAccountuserPrinPut'] },
-		}) as INodeProperties[]),
-		...(descriptionPutMsServicesserviceNAccountuserPrinSharepointPut({
-			...displayOptions,
-			show: { msServicesOperation: ['putMsServicesserviceNAccountuserPrinSharepointPut'] },
-		}) as INodeProperties[]),
-		...(descriptionPutMsServicesserviceNExchangePut({
-			...displayOptions,
-			show: { msServicesOperation: ['putMsServicesserviceNExchangePut'] },
-		}) as INodeProperties[]),
-		...(descriptionPutMsServicesserviceNSharepointPut({
-			...displayOptions,
-			show: { msServicesOperation: ['putMsServicesserviceNSharepointPut'] },
-		}) as INodeProperties[]),
-		...(descriptionPutMsServicesSharepointdomainServiceInfosPut({
-			...displayOptions,
-			show: { msServicesOperation: ['putMsServicesSharepointdomainServiceInfosPut'] },
-		}) as INodeProperties[]),
-	];
-
-	return properties;
-}
-
-export async function execute(
-	this: IExecuteFunctions,
-	itemIndex?: number,
-): Promise<INodeExecutionData[]> {
-	const operation = this.getNodeParameter('msServicesOperation', itemIndex ?? 0, {
-		extractValue: true,
-	});
-
-	switch (operation) {
-		case 'deleteMsServicesserviceNAccountuserPrinMfaDelete':
-			return await executeDeleteMsServicesserviceNAccountuserPrinMfaDelete.call(this, itemIndex ?? 0);
-		case 'deleteMsServicesserviceNAccountuserPrinSyncDelete':
-			return await executeDeleteMsServicesserviceNAccountuserPrinSyncDelete.call(this, itemIndex ?? 0);
-		case 'deleteMsServicesserviceNSyncDelete':
-			return await executeDeleteMsServicesserviceNSyncDelete.call(this, itemIndex ?? 0);
-		case 'deleteMsServicesserviceNUpnSuffixsuffixDelete':
-			return await executeDeleteMsServicesserviceNUpnSuffixsuffixDelete.call(this, itemIndex ?? 0);
-		case 'getMsServicesserviceNAccountGet':
-			return await executeGetMsServicesserviceNAccountGet.call(this, itemIndex ?? 0);
-		case 'getMsServicesserviceNAccountuserPrinExchangeGet':
-			return await executeGetMsServicesserviceNAccountuserPrinExchangeGet.call(this, itemIndex ?? 0);
-		case 'getMsServicesserviceNAccountuserPrinGet':
-			return await executeGetMsServicesserviceNAccountuserPrinGet.call(this, itemIndex ?? 0);
-		case 'getMsServicesserviceNAccountuserPrinMfaGet':
-			return await executeGetMsServicesserviceNAccountuserPrinMfaGet.call(this, itemIndex ?? 0);
-		case 'getMsServicesserviceNAccountuserPrinSharepointGet':
-			return await executeGetMsServicesserviceNAccountuserPrinSharepointGet.call(this, itemIndex ?? 0);
-		case 'getMsServicesserviceNAccountuserPrinSyncGet':
-			return await executeGetMsServicesserviceNAccountuserPrinSyncGet.call(this, itemIndex ?? 0);
-		case 'getMsServicesserviceNExchangeBillingMigratedGet':
-			return await executeGetMsServicesserviceNExchangeBillingMigratedGet.call(this, itemIndex ?? 0);
-		case 'getMsServicesserviceNExchangeGet':
-			return await executeGetMsServicesserviceNExchangeGet.call(this, itemIndex ?? 0);
-		case 'getMsServicesserviceNExchangeTaskGet':
-			return await executeGetMsServicesserviceNExchangeTaskGet.call(this, itemIndex ?? 0);
-		case 'getMsServicesserviceNExchangeTaskidGet':
-			return await executeGetMsServicesserviceNExchangeTaskidGet.call(this, itemIndex ?? 0);
-		case 'getMsServicesserviceNSharepointBillingMigratedGet':
-			return await executeGetMsServicesserviceNSharepointBillingMigratedGet.call(this, itemIndex ?? 0);
-		case 'getMsServicesserviceNSharepointGet':
-			return await executeGetMsServicesserviceNSharepointGet.call(this, itemIndex ?? 0);
-		case 'getMsServicesserviceNSharepointLicenseGet':
-			return await executeGetMsServicesserviceNSharepointLicenseGet.call(this, itemIndex ?? 0);
-		case 'getMsServicesserviceNSharepointTaskGet':
-			return await executeGetMsServicesserviceNSharepointTaskGet.call(this, itemIndex ?? 0);
-		case 'getMsServicesserviceNSharepointTaskidGet':
-			return await executeGetMsServicesserviceNSharepointTaskidGet.call(this, itemIndex ?? 0);
-		case 'getMsServicesserviceNSyncClientSoftwareURLGet':
-			return await executeGetMsServicesserviceNSyncClientSoftwareURLGet.call(this, itemIndex ?? 0);
-		case 'getMsServicesserviceNSyncGet':
-			return await executeGetMsServicesserviceNSyncGet.call(this, itemIndex ?? 0);
-		case 'getMsServicesserviceNSyncLicenseGet':
-			return await executeGetMsServicesserviceNSyncLicenseGet.call(this, itemIndex ?? 0);
-		case 'getMsServicesserviceNUpnSuffixGet':
-			return await executeGetMsServicesserviceNUpnSuffixGet.call(this, itemIndex ?? 0);
-		case 'getMsServicesserviceNUpnSuffixsuffixGet':
-			return await executeGetMsServicesserviceNUpnSuffixsuffixGet.call(this, itemIndex ?? 0);
-		case 'getMsServicesSharepointdomainGet':
-			return await executeGetMsServicesSharepointdomainGet.call(this, itemIndex ?? 0);
-		case 'getMsServicesSharepointdomainServiceInfosGet':
-			return await executeGetMsServicesSharepointdomainServiceInfosGet.call(this, itemIndex ?? 0);
-		case 'getMsServicesSharepointGet':
-			return await executeGetMsServicesSharepointGet.call(this, itemIndex ?? 0);
-		case 'postMsServicesserviceNAccountuserPrinChangePasswordPost':
-			return await executePostMsServicesserviceNAccountuserPrinChangePasswordPost.call(
-				this,
-				itemIndex ?? 0,
-			);
-		case 'postMsServicesserviceNAccountuserPrinExchangeConfigurePost':
-			return await executePostMsServicesserviceNAccountuserPrinExchangeConfigurePost.call(
-				this,
-				itemIndex ?? 0,
-			);
-		case 'postMsServicesserviceNAccountuserPrinMfaDisablePost':
-			return await executePostMsServicesserviceNAccountuserPrinMfaDisablePost.call(this, itemIndex ?? 0);
-		case 'postMsServicesserviceNAccountuserPrinMfaEnablePost':
-			return await executePostMsServicesserviceNAccountuserPrinMfaEnablePost.call(this, itemIndex ?? 0);
-		case 'postMsServicesserviceNAccountuserPrinMfaPost':
-			return await executePostMsServicesserviceNAccountuserPrinMfaPost.call(this, itemIndex ?? 0);
-		case 'postMsServicesserviceNAccountuserPrinMfaResetPost':
-			return await executePostMsServicesserviceNAccountuserPrinMfaResetPost.call(this, itemIndex ?? 0);
-		case 'postMsServicesserviceNAccountuserPrinSharepointClearSpacePost':
-			return await executePostMsServicesserviceNAccountuserPrinSharepointClearSpacePost.call(
-				this,
-				itemIndex ?? 0,
-			);
-		case 'postMsServicesserviceNAccountuserPrinSharepointConfigurePost':
-			return await executePostMsServicesserviceNAccountuserPrinSharepointConfigurePost.call(
-				this,
-				itemIndex ?? 0,
-			);
-		case 'postMsServicesserviceNAccountuserPrinSyncConfigurePost':
-			return await executePostMsServicesserviceNAccountuserPrinSyncConfigurePost.call(
-				this,
-				itemIndex ?? 0,
-			);
-		case 'postMsServicesserviceNAccountuserPrinSyncPost':
-			return await executePostMsServicesserviceNAccountuserPrinSyncPost.call(this, itemIndex ?? 0);
-		case 'postMsServicesserviceNChangeContactPost':
-			return await executePostMsServicesserviceNChangeContactPost.call(this, itemIndex ?? 0);
-		case 'postMsServicesserviceNCreateMfaOnAllUsersPost':
-			return await executePostMsServicesserviceNCreateMfaOnAllUsersPost.call(this, itemIndex ?? 0);
-		case 'postMsServicesserviceNRemoveMfaOnAllUsersPost':
-			return await executePostMsServicesserviceNRemoveMfaOnAllUsersPost.call(this, itemIndex ?? 0);
-		case 'postMsServicesserviceNSharepointRestoreAdminRightsPost':
-			return await executePostMsServicesserviceNSharepointRestoreAdminRightsPost.call(
-				this,
-				itemIndex ?? 0,
-			);
-		case 'postMsServicesserviceNSyncChangePasswordPost':
-			return await executePostMsServicesserviceNSyncChangePasswordPost.call(this, itemIndex ?? 0);
-		case 'postMsServicesserviceNSyncClientSoftwareURLPost':
-			return await executePostMsServicesserviceNSyncClientSoftwareURLPost.call(this, itemIndex ?? 0);
-		case 'postMsServicesserviceNUpnSuffixPost':
-			return await executePostMsServicesserviceNUpnSuffixPost.call(this, itemIndex ?? 0);
-		case 'putMsServicesserviceNAccountuserPrinExchangePut':
-			return await executePutMsServicesserviceNAccountuserPrinExchangePut.call(this, itemIndex ?? 0);
-		case 'putMsServicesserviceNAccountuserPrinPut':
-			return await executePutMsServicesserviceNAccountuserPrinPut.call(this, itemIndex ?? 0);
-		case 'putMsServicesserviceNAccountuserPrinSharepointPut':
-			return await executePutMsServicesserviceNAccountuserPrinSharepointPut.call(this, itemIndex ?? 0);
-		case 'putMsServicesserviceNExchangePut':
-			return await executePutMsServicesserviceNExchangePut.call(this, itemIndex ?? 0);
-		case 'putMsServicesserviceNSharepointPut':
-			return await executePutMsServicesserviceNSharepointPut.call(this, itemIndex ?? 0);
-		case 'putMsServicesSharepointdomainServiceInfosPut':
-			return await executePutMsServicesSharepointdomainServiceInfosPut.call(this, itemIndex ?? 0);
-	}
-
-	throw new Error('Unsupported operation ' + operation);
-}
+export { description, execute };
