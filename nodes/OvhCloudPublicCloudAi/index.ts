@@ -1,362 +1,1010 @@
-import type { IDisplayOptions, IExecuteFunctions, INodeExecutionData, INodeProperties } from 'n8n-workflow';
+import { createOperationDispatcher } from '../../shared/nodes/createNodeDispatcher';
 
-import { description as AppCommandPostDescription, execute as AppCommandPostExecute } from './app/AppCommandPost.operation';
-import { description as AppDatasyncPostDescription, execute as AppDatasyncPostExecute } from './app/AppDatasyncPost.operation';
-import { description as AppDeleteDescription, execute as AppDeleteExecute } from './app/AppDelete.operation';
-import { description as AppGetDescription, execute as AppGetExecute } from './app/AppGet.operation';
-import { description as AppGetAppDescription, execute as AppGetAppExecute } from './app/AppGetApp.operation';
-import { description as AppImagePutDescription, execute as AppImagePutExecute } from './app/AppImagePut.operation';
-import { description as AppLabelPutDescription, execute as AppLabelPutExecute } from './app/AppLabelPut.operation';
-import { description as AppLogGetDescription, execute as AppLogGetExecute } from './app/AppLogGet.operation';
-import { description as AppPostDescription, execute as AppPostExecute } from './app/AppPost.operation';
-import { description as AppPutDescription, execute as AppPutExecute } from './app/AppPut.operation';
-import { description as AppScalingstrategyPutDescription, execute as AppScalingstrategyPutExecute } from './app/AppScalingstrategyPut.operation';
-import { description as AppStartPutDescription, execute as AppStartPutExecute } from './app/AppStartPut.operation';
-import { description as AppStopPutDescription, execute as AppStopPutExecute } from './app/AppStopPut.operation';
-import { description as AuthorizationGetDescription, execute as AuthorizationGetExecute } from './authorization/AuthorizationGet.operation';
-import { description as AuthorizationPostDescription, execute as AuthorizationPostExecute } from './authorization/AuthorizationPost.operation';
-import { description as CapabilitiesFeatureGetDescription, execute as CapabilitiesFeatureGetExecute } from './capabilities/CapabilitiesFeatureGet.operation';
-import { description as CapabilitiesQuotaGetDescription, execute as CapabilitiesQuotaGetExecute } from './capabilities/CapabilitiesQuotaGet.operation';
-import { description as CapabilitiesRegionAppImageGetDescription, execute as CapabilitiesRegionAppImageGetExecute } from './capabilities/CapabilitiesRegionAppImageGet.operation';
-import { description as CapabilitiesRegionDataRegionGetDescription, execute as CapabilitiesRegionDataRegionGetExecute } from './capabilities/CapabilitiesRegionDataRegionGet.operation';
-import { description as CapabilitiesRegionFlavorGetDescription, execute as CapabilitiesRegionFlavorGetExecute } from './capabilities/CapabilitiesRegionFlavorGet.operation';
-import { description as CapabilitiesRegionFlavorGetCapabilitiesDescription, execute as CapabilitiesRegionFlavorGetCapabilitiesExecute } from './capabilities/CapabilitiesRegionFlavorGetCapabilities.operation';
-import { description as CapabilitiesRegionGetDescription, execute as CapabilitiesRegionGetExecute } from './capabilities/CapabilitiesRegionGet.operation';
-import { description as CapabilitiesRegionGetCapabilitiesDescription, execute as CapabilitiesRegionGetCapabilitiesExecute } from './capabilities/CapabilitiesRegionGetCapabilities.operation';
-import { description as CapabilitiesRegionJobImageGetDescription, execute as CapabilitiesRegionJobImageGetExecute } from './capabilities/CapabilitiesRegionJobImageGet.operation';
-import { description as CapabilitiesRegionNotebookEditorGetDescription, execute as CapabilitiesRegionNotebookEditorGetExecute } from './capabilities/CapabilitiesRegionNotebookEditorGet.operation';
-import { description as CapabilitiesRegionNotebookEditorGetCapabilitiesDescription, execute as CapabilitiesRegionNotebookEditorGetCapabilitiesExecute } from './capabilities/CapabilitiesRegionNotebookEditorGetCapabilities.operation';
-import { description as CapabilitiesRegionNotebookFrameworkGetDescription, execute as CapabilitiesRegionNotebookFrameworkGetExecute } from './capabilities/CapabilitiesRegionNotebookFrameworkGet.operation';
-import { description as CapabilitiesRegionNotebookFrameworkGetCapabilitiesDescription, execute as CapabilitiesRegionNotebookFrameworkGetCapabilitiesExecute } from './capabilities/CapabilitiesRegionNotebookFrameworkGetCapabilities.operation';
-import { description as CapabilitiesRegionNotebookWorkspacebackupretentionpolicyGetDescription, execute as CapabilitiesRegionNotebookWorkspacebackupretentionpolicyGetExecute } from './capabilities/CapabilitiesRegionNotebookWorkspacebackupretentionpolicyGet.operation';
-import { description as CapabilitiesRegionNotebookWorkspacebackupretentionpolicyPutDescription, execute as CapabilitiesRegionNotebookWorkspacebackupretentionpolicyPutExecute } from './capabilities/CapabilitiesRegionNotebookWorkspacebackupretentionpolicyPut.operation';
-import { description as CapabilitiesRegionPresetGetDescription, execute as CapabilitiesRegionPresetGetExecute } from './capabilities/CapabilitiesRegionPresetGet.operation';
-import { description as CapabilitiesRegionPresetGetCapabilitiesDescription, execute as CapabilitiesRegionPresetGetCapabilitiesExecute } from './capabilities/CapabilitiesRegionPresetGetCapabilities.operation';
-import { description as DataRegionAliasAuthGetDescription, execute as DataRegionAliasAuthGetExecute } from './data/DataRegionAliasAuthGet.operation';
-import { description as DataRegionAliasDeleteDescription, execute as DataRegionAliasDeleteExecute } from './data/DataRegionAliasDelete.operation';
-import { description as DataRegionAliasGetDescription, execute as DataRegionAliasGetExecute } from './data/DataRegionAliasGet.operation';
-import { description as DataRegionAliasGetDataDescription, execute as DataRegionAliasGetDataExecute } from './data/DataRegionAliasGetData.operation';
-import { description as DataRegionAliasPostDescription, execute as DataRegionAliasPostExecute } from './data/DataRegionAliasPost.operation';
-import { description as DataRegionAliasPutDescription, execute as DataRegionAliasPutExecute } from './data/DataRegionAliasPut.operation';
-import { description as DataRegionGetDescription, execute as DataRegionGetExecute } from './data/DataRegionGet.operation';
-import { description as DataRegionGetDataDescription, execute as DataRegionGetDataExecute } from './data/DataRegionGetData.operation';
-import { description as JobCapabilitiesPresetimageGetDescription, execute as JobCapabilitiesPresetimageGetExecute } from './job/JobCapabilitiesPresetimageGet.operation';
-import { description as JobCommandPostDescription, execute as JobCommandPostExecute } from './job/JobCommandPost.operation';
-import { description as JobDatasyncPostDescription, execute as JobDatasyncPostExecute } from './job/JobDatasyncPost.operation';
-import { description as JobDeleteDescription, execute as JobDeleteExecute } from './job/JobDelete.operation';
-import { description as JobGetDescription, execute as JobGetExecute } from './job/JobGet.operation';
-import { description as JobGetJobDescription, execute as JobGetJobExecute } from './job/JobGetJob.operation';
-import { description as JobKillPutDescription, execute as JobKillPutExecute } from './job/JobKillPut.operation';
-import { description as JobLabelPutDescription, execute as JobLabelPutExecute } from './job/JobLabelPut.operation';
-import { description as JobLogGetDescription, execute as JobLogGetExecute } from './job/JobLogGet.operation';
-import { description as JobPostDescription, execute as JobPostExecute } from './job/JobPost.operation';
-import { description as NotebookBackupForkPostDescription, execute as NotebookBackupForkPostExecute } from './notebook/NotebookBackupForkPost.operation';
-import { description as NotebookBackupGetDescription, execute as NotebookBackupGetExecute } from './notebook/NotebookBackupGet.operation';
-import { description as NotebookBackupGetNotebookDescription, execute as NotebookBackupGetNotebookExecute } from './notebook/NotebookBackupGetNotebook.operation';
-import { description as NotebookCapabilitiesEditorGetDescription, execute as NotebookCapabilitiesEditorGetExecute } from './notebook/NotebookCapabilitiesEditorGet.operation';
-import { description as NotebookCapabilitiesFrameworkGetDescription, execute as NotebookCapabilitiesFrameworkGetExecute } from './notebook/NotebookCapabilitiesFrameworkGet.operation';
-import { description as NotebookCommandPostDescription, execute as NotebookCommandPostExecute } from './notebook/NotebookCommandPost.operation';
-import { description as NotebookDatasyncPostDescription, execute as NotebookDatasyncPostExecute } from './notebook/NotebookDatasyncPost.operation';
-import { description as NotebookDeleteDescription, execute as NotebookDeleteExecute } from './notebook/NotebookDelete.operation';
-import { description as NotebookGetDescription, execute as NotebookGetExecute } from './notebook/NotebookGet.operation';
-import { description as NotebookGetNotebookDescription, execute as NotebookGetNotebookExecute } from './notebook/NotebookGetNotebook.operation';
-import { description as NotebookLabelPutDescription, execute as NotebookLabelPutExecute } from './notebook/NotebookLabelPut.operation';
-import { description as NotebookLogGetDescription, execute as NotebookLogGetExecute } from './notebook/NotebookLogGet.operation';
-import { description as NotebookPostDescription, execute as NotebookPostExecute } from './notebook/NotebookPost.operation';
-import { description as NotebookPutDescription, execute as NotebookPutExecute } from './notebook/NotebookPut.operation';
-import { description as NotebookRestartPutDescription, execute as NotebookRestartPutExecute } from './notebook/NotebookRestartPut.operation';
-import { description as NotebookStartPutDescription, execute as NotebookStartPutExecute } from './notebook/NotebookStartPut.operation';
-import { description as NotebookStopPutDescription, execute as NotebookStopPutExecute } from './notebook/NotebookStopPut.operation';
-import { description as NotebookWorkspacebackupretentionpolicyGetDescription, execute as NotebookWorkspacebackupretentionpolicyGetExecute } from './notebook/NotebookWorkspacebackupretentionpolicyGet.operation';
-import { description as NotebookWorkspacebackupretentionpolicyPutDescription, execute as NotebookWorkspacebackupretentionpolicyPutExecute } from './notebook/NotebookWorkspacebackupretentionpolicyPut.operation';
-import { description as PartnersRegionGetDescription, execute as PartnersRegionGetExecute } from './partners/PartnersRegionGet.operation';
-import { description as PartnersRegionGetPartnersDescription, execute as PartnersRegionGetPartnersExecute } from './partners/PartnersRegionGetPartners.operation';
-import { description as PartnersRegionPartnerGetDescription, execute as PartnersRegionPartnerGetExecute } from './partners/PartnersRegionPartnerGet.operation';
-import { description as PartnersRegionPartnerGetPartnersDescription, execute as PartnersRegionPartnerGetPartnersExecute } from './partners/PartnersRegionPartnerGetPartners.operation';
-import { description as RegistryDeleteDescription, execute as RegistryDeleteExecute } from './registry/RegistryDelete.operation';
-import { description as RegistryGetDescription, execute as RegistryGetExecute } from './registry/RegistryGet.operation';
-import { description as RegistryGetRegistryDescription, execute as RegistryGetRegistryExecute } from './registry/RegistryGetRegistry.operation';
-import { description as RegistryPostDescription, execute as RegistryPostExecute } from './registry/RegistryPost.operation';
-import { description as RegistryPutDescription, execute as RegistryPutExecute } from './registry/RegistryPut.operation';
-import { description as TokenDeleteDescription, execute as TokenDeleteExecute } from './token/TokenDelete.operation';
-import { description as TokenGetDescription, execute as TokenGetExecute } from './token/TokenGet.operation';
-import { description as TokenGetTokenDescription, execute as TokenGetTokenExecute } from './token/TokenGetToken.operation';
-import { description as TokenPostDescription, execute as TokenPostExecute } from './token/TokenPost.operation';
-import { description as TokenRenewPostDescription, execute as TokenRenewPostExecute } from './token/TokenRenewPost.operation';
+import {
+	
+	execute as AppCommandPostExecute,
+} from './app/AppCommandPost.operation';
+import {
+	
+	execute as AppDatasyncPostExecute,
+} from './app/AppDatasyncPost.operation';
+import {
+	
+	execute as AppDeleteExecute,
+} from './app/AppDelete.operation';
+import {
+	
+	execute as AppGetExecute,
+} from './app/AppGet.operation';
+import {
+	
+	execute as AppGetAppExecute,
+} from './app/AppGetApp.operation';
+import {
+	
+	execute as AppImagePutExecute,
+} from './app/AppImagePut.operation';
+import {
+	
+	execute as AppLabelPutExecute,
+} from './app/AppLabelPut.operation';
+import {
+	
+	execute as AppLogGetExecute,
+} from './app/AppLogGet.operation';
+import {
+	
+	execute as AppPostExecute,
+} from './app/AppPost.operation';
+import {
+	
+	execute as AppPutExecute,
+} from './app/AppPut.operation';
+import {
+	
+	execute as AppScalingstrategyPutExecute,
+} from './app/AppScalingstrategyPut.operation';
+import {
+	
+	execute as AppStartPutExecute,
+} from './app/AppStartPut.operation';
+import {
+	
+	execute as AppStopPutExecute,
+} from './app/AppStopPut.operation';
+import {
+	
+	execute as AuthorizationGetExecute,
+} from './authorization/AuthorizationGet.operation';
+import {
+	
+	execute as AuthorizationPostExecute,
+} from './authorization/AuthorizationPost.operation';
+import {
+	
+	execute as CapabilitiesFeatureGetExecute,
+} from './capabilities/CapabilitiesFeatureGet.operation';
+import {
+	
+	execute as CapabilitiesQuotaGetExecute,
+} from './capabilities/CapabilitiesQuotaGet.operation';
+import {
+	
+	execute as CapabilitiesRegionAppImageGetExecute,
+} from './capabilities/CapabilitiesRegionAppImageGet.operation';
+import {
+	
+	execute as CapabilitiesRegionDataRegionGetExecute,
+} from './capabilities/CapabilitiesRegionDataRegionGet.operation';
+import {
+	
+	execute as CapabilitiesRegionFlavorGetExecute,
+} from './capabilities/CapabilitiesRegionFlavorGet.operation';
+import {
+	
+	execute as CapabilitiesRegionFlavorGetCapabilitiesExecute,
+} from './capabilities/CapabilitiesRegionFlavorGetCapabilities.operation';
+import {
+	
+	execute as CapabilitiesRegionGetExecute,
+} from './capabilities/CapabilitiesRegionGet.operation';
+import {
+	
+	execute as CapabilitiesRegionGetCapabilitiesExecute,
+} from './capabilities/CapabilitiesRegionGetCapabilities.operation';
+import {
+	
+	execute as CapabilitiesRegionJobImageGetExecute,
+} from './capabilities/CapabilitiesRegionJobImageGet.operation';
+import {
+	
+	execute as CapabilitiesRegionNotebookEditorGetExecute,
+} from './capabilities/CapabilitiesRegionNotebookEditorGet.operation';
+import {
+	
+	execute as CapabilitiesRegionNotebookEditorGetCapabilitiesExecute,
+} from './capabilities/CapabilitiesRegionNotebookEditorGetCapabilities.operation';
+import {
+	
+	execute as CapabilitiesRegionNotebookFrameworkGetExecute,
+} from './capabilities/CapabilitiesRegionNotebookFrameworkGet.operation';
+import {
+	
+	execute as CapabilitiesRegionNotebookFrameworkGetCapabilitiesExecute,
+} from './capabilities/CapabilitiesRegionNotebookFrameworkGetCapabilities.operation';
+import {
+	
+	execute as CapabilitiesRegionNotebookWorkspacebackupretentionpolicyGetExecute,
+} from './capabilities/CapabilitiesRegionNotebookWorkspacebackupretentionpolicyGet.operation';
+import {
+	
+	execute as CapabilitiesRegionNotebookWorkspacebackupretentionpolicyPutExecute,
+} from './capabilities/CapabilitiesRegionNotebookWorkspacebackupretentionpolicyPut.operation';
+import {
+	
+	execute as CapabilitiesRegionPresetGetExecute,
+} from './capabilities/CapabilitiesRegionPresetGet.operation';
+import {
+	
+	execute as CapabilitiesRegionPresetGetCapabilitiesExecute,
+} from './capabilities/CapabilitiesRegionPresetGetCapabilities.operation';
+import {
+	
+	execute as DataRegionAliasAuthGetExecute,
+} from './data/DataRegionAliasAuthGet.operation';
+import {
+	
+	execute as DataRegionAliasDeleteExecute,
+} from './data/DataRegionAliasDelete.operation';
+import {
+	
+	execute as DataRegionAliasGetExecute,
+} from './data/DataRegionAliasGet.operation';
+import {
+	
+	execute as DataRegionAliasGetDataExecute,
+} from './data/DataRegionAliasGetData.operation';
+import {
+	
+	execute as DataRegionAliasPostExecute,
+} from './data/DataRegionAliasPost.operation';
+import {
+	
+	execute as DataRegionAliasPutExecute,
+} from './data/DataRegionAliasPut.operation';
+import {
+	
+	execute as DataRegionGetExecute,
+} from './data/DataRegionGet.operation';
+import {
+	
+	execute as DataRegionGetDataExecute,
+} from './data/DataRegionGetData.operation';
+import {
+	
+	execute as JobCapabilitiesPresetimageGetExecute,
+} from './job/JobCapabilitiesPresetimageGet.operation';
+import {
+	
+	execute as JobCommandPostExecute,
+} from './job/JobCommandPost.operation';
+import {
+	
+	execute as JobDatasyncPostExecute,
+} from './job/JobDatasyncPost.operation';
+import {
+	
+	execute as JobDeleteExecute,
+} from './job/JobDelete.operation';
+import {
+	
+	execute as JobGetExecute,
+} from './job/JobGet.operation';
+import {
+	
+	execute as JobGetJobExecute,
+} from './job/JobGetJob.operation';
+import {
+	
+	execute as JobKillPutExecute,
+} from './job/JobKillPut.operation';
+import {
+	
+	execute as JobLabelPutExecute,
+} from './job/JobLabelPut.operation';
+import {
+	
+	execute as JobLogGetExecute,
+} from './job/JobLogGet.operation';
+import {
+	
+	execute as JobPostExecute,
+} from './job/JobPost.operation';
+import {
+	
+	execute as NotebookBackupForkPostExecute,
+} from './notebook/NotebookBackupForkPost.operation';
+import {
+	
+	execute as NotebookBackupGetExecute,
+} from './notebook/NotebookBackupGet.operation';
+import {
+	
+	execute as NotebookBackupGetNotebookExecute,
+} from './notebook/NotebookBackupGetNotebook.operation';
+import {
+	
+	execute as NotebookCapabilitiesEditorGetExecute,
+} from './notebook/NotebookCapabilitiesEditorGet.operation';
+import {
+	
+	execute as NotebookCapabilitiesFrameworkGetExecute,
+} from './notebook/NotebookCapabilitiesFrameworkGet.operation';
+import {
+	
+	execute as NotebookCommandPostExecute,
+} from './notebook/NotebookCommandPost.operation';
+import {
+	
+	execute as NotebookDatasyncPostExecute,
+} from './notebook/NotebookDatasyncPost.operation';
+import {
+	
+	execute as NotebookDeleteExecute,
+} from './notebook/NotebookDelete.operation';
+import {
+	
+	execute as NotebookGetExecute,
+} from './notebook/NotebookGet.operation';
+import {
+	
+	execute as NotebookGetNotebookExecute,
+} from './notebook/NotebookGetNotebook.operation';
+import {
+	
+	execute as NotebookLabelPutExecute,
+} from './notebook/NotebookLabelPut.operation';
+import {
+	
+	execute as NotebookLogGetExecute,
+} from './notebook/NotebookLogGet.operation';
+import {
+	
+	execute as NotebookPostExecute,
+} from './notebook/NotebookPost.operation';
+import {
+	
+	execute as NotebookPutExecute,
+} from './notebook/NotebookPut.operation';
+import {
+	
+	execute as NotebookRestartPutExecute,
+} from './notebook/NotebookRestartPut.operation';
+import {
+	
+	execute as NotebookStartPutExecute,
+} from './notebook/NotebookStartPut.operation';
+import {
+	
+	execute as NotebookStopPutExecute,
+} from './notebook/NotebookStopPut.operation';
+import {
+	
+	execute as NotebookWorkspacebackupretentionpolicyGetExecute,
+} from './notebook/NotebookWorkspacebackupretentionpolicyGet.operation';
+import {
+	
+	execute as NotebookWorkspacebackupretentionpolicyPutExecute,
+} from './notebook/NotebookWorkspacebackupretentionpolicyPut.operation';
+import {
+	
+	execute as PartnersRegionGetExecute,
+} from './partners/PartnersRegionGet.operation';
+import {
+	
+	execute as PartnersRegionGetPartnersExecute,
+} from './partners/PartnersRegionGetPartners.operation';
+import {
+	
+	execute as PartnersRegionPartnerGetExecute,
+} from './partners/PartnersRegionPartnerGet.operation';
+import {
+	
+	execute as PartnersRegionPartnerGetPartnersExecute,
+} from './partners/PartnersRegionPartnerGetPartners.operation';
+import {
+	
+	execute as RegistryDeleteExecute,
+} from './registry/RegistryDelete.operation';
+import {
+	
+	execute as RegistryGetExecute,
+} from './registry/RegistryGet.operation';
+import {
+	
+	execute as RegistryGetRegistryExecute,
+} from './registry/RegistryGetRegistry.operation';
+import {
+	
+	execute as RegistryPostExecute,
+} from './registry/RegistryPost.operation';
+import {
+	
+	execute as RegistryPutExecute,
+} from './registry/RegistryPut.operation';
+import {
+	
+	execute as TokenDeleteExecute,
+} from './token/TokenDelete.operation';
+import {
+	
+	execute as TokenGetExecute,
+} from './token/TokenGet.operation';
+import {
+	
+	execute as TokenGetTokenExecute,
+} from './token/TokenGetToken.operation';
+import {
+	
+	execute as TokenPostExecute,
+} from './token/TokenPost.operation';
+import {
+	
+	execute as TokenRenewPostExecute,
+} from './token/TokenRenewPost.operation';
 
-export function description(displayOptions: IDisplayOptions): INodeProperties[] {
-	const properties: INodeProperties[] = [];
+const noProps = (): never[] => [];
 
-	properties.push({
-		displayName: 'Operation',
-		name: 'publicCloudAiOperation',
-		type: 'options',
-		noDataExpression: true,
-		options: [
-				{ name: 'AppCommandPost', value: 'AppCommandPost', action: 'POST /cloud/project/{serviceName}/ai/app/command' },
-				{ name: 'AppDatasyncPost', value: 'AppDatasyncPost', action: 'POST /cloud/project/{serviceName}/ai/app/{appId}/datasync' },
-				{ name: 'AppDelete', value: 'AppDelete', action: 'DELETE /cloud/project/{serviceName}/ai/app/{appId}' },
-				{ name: 'AppGet', value: 'AppGet', action: 'GET /cloud/project/{serviceName}/ai/app' },
-				{ name: 'AppGetApp', value: 'AppGetApp', action: 'GET /cloud/project/{serviceName}/ai/app/{appId}' },
-				{ name: 'AppImagePut', value: 'AppImagePut', action: 'PUT /cloud/project/{serviceName}/ai/app/{appId}/image' },
-				{ name: 'AppLabelPut', value: 'AppLabelPut', action: 'PUT /cloud/project/{serviceName}/ai/app/{appId}/label' },
-				{ name: 'AppLogGet', value: 'AppLogGet', action: 'GET /cloud/project/{serviceName}/ai/app/{appId}/log' },
-				{ name: 'AppPost', value: 'AppPost', action: 'POST /cloud/project/{serviceName}/ai/app' },
-				{ name: 'AppPut', value: 'AppPut', action: 'PUT /cloud/project/{serviceName}/ai/app/{appId}' },
-				{ name: 'AppScalingstrategyPut', value: 'AppScalingstrategyPut', action: 'PUT /cloud/project/{serviceName}/ai/app/{appId}/scalingstrategy' },
-				{ name: 'AppStartPut', value: 'AppStartPut', action: 'PUT /cloud/project/{serviceName}/ai/app/{appId}/start' },
-				{ name: 'AppStopPut', value: 'AppStopPut', action: 'PUT /cloud/project/{serviceName}/ai/app/{appId}/stop' },
-				{ name: 'AuthorizationGet', value: 'AuthorizationGet', action: 'GET /cloud/project/{serviceName}/ai/authorization' },
-				{ name: 'AuthorizationPost', value: 'AuthorizationPost', action: 'POST /cloud/project/{serviceName}/ai/authorization' },
-				{ name: 'CapabilitiesFeatureGet', value: 'CapabilitiesFeatureGet', action: 'GET /cloud/project/{serviceName}/ai/capabilities/feature' },
-				{ name: 'CapabilitiesQuotaGet', value: 'CapabilitiesQuotaGet', action: 'GET /cloud/project/{serviceName}/ai/capabilities/quota' },
-				{ name: 'CapabilitiesRegionAppImageGet', value: 'CapabilitiesRegionAppImageGet', action: 'GET /cloud/project/{serviceName}/ai/capabilities/region/{region}/app/image' },
-				{ name: 'CapabilitiesRegionDataRegionGet', value: 'CapabilitiesRegionDataRegionGet', action: 'GET /cloud/project/{serviceName}/ai/capabilities/region/{region}/data/region' },
-				{ name: 'CapabilitiesRegionFlavorGet', value: 'CapabilitiesRegionFlavorGet', action: 'GET /cloud/project/{serviceName}/ai/capabilities/region/{region}/flavor' },
-				{ name: 'CapabilitiesRegionFlavorGetCapabilities', value: 'CapabilitiesRegionFlavorGetCapabilities', action: 'GET /cloud/project/{serviceName}/ai/capabilities/region/{region}/flavor/{flavorId}' },
-				{ name: 'CapabilitiesRegionGet', value: 'CapabilitiesRegionGet', action: 'GET /cloud/project/{serviceName}/ai/capabilities/region' },
-				{ name: 'CapabilitiesRegionGetCapabilities', value: 'CapabilitiesRegionGetCapabilities', action: 'GET /cloud/project/{serviceName}/ai/capabilities/region/{region}' },
-				{ name: 'CapabilitiesRegionJobImageGet', value: 'CapabilitiesRegionJobImageGet', action: 'GET /cloud/project/{serviceName}/ai/capabilities/region/{region}/job/image' },
-				{ name: 'CapabilitiesRegionNotebookEditorGet', value: 'CapabilitiesRegionNotebookEditorGet', action: 'GET /cloud/project/{serviceName}/ai/capabilities/region/{region}/notebook/editor' },
-				{ name: 'CapabilitiesRegionNotebookEditorGetCapabilities', value: 'CapabilitiesRegionNotebookEditorGetCapabilities', action: 'GET /cloud/project/{serviceName}/ai/capabilities/region/{region}/notebook/editor/{editorId}' },
-				{ name: 'CapabilitiesRegionNotebookFrameworkGet', value: 'CapabilitiesRegionNotebookFrameworkGet', action: 'GET /cloud/project/{serviceName}/ai/capabilities/region/{region}/notebook/framework' },
-				{ name: 'CapabilitiesRegionNotebookFrameworkGetCapabilities', value: 'CapabilitiesRegionNotebookFrameworkGetCapabilities', action: 'GET /cloud/project/{serviceName}/ai/capabilities/region/{region}/notebook/framework/{frameworkId}' },
-				{ name: 'CapabilitiesRegionNotebookWorkspacebackupretentionpolicyGet', value: 'CapabilitiesRegionNotebookWorkspacebackupretentionpolicyGet', action: 'GET /cloud/project/{serviceName}/ai/capabilities/region/{region}/notebook/workspacebackupretentionpolicy' },
-				{ name: 'CapabilitiesRegionNotebookWorkspacebackupretentionpolicyPut', value: 'CapabilitiesRegionNotebookWorkspacebackupretentionpolicyPut', action: 'PUT /cloud/project/{serviceName}/ai/capabilities/region/{region}/notebook/workspacebackupretentionpolicy' },
-				{ name: 'CapabilitiesRegionPresetGet', value: 'CapabilitiesRegionPresetGet', action: 'GET /cloud/project/{serviceName}/ai/capabilities/region/{region}/preset' },
-				{ name: 'CapabilitiesRegionPresetGetCapabilities', value: 'CapabilitiesRegionPresetGetCapabilities', action: 'GET /cloud/project/{serviceName}/ai/capabilities/region/{region}/preset/{presetId}' },
-				{ name: 'DataRegionAliasAuthGet', value: 'DataRegionAliasAuthGet', action: 'GET /cloud/project/{serviceName}/ai/data/region/{region}/alias/{alias}/auth' },
-				{ name: 'DataRegionAliasDelete', value: 'DataRegionAliasDelete', action: 'DELETE /cloud/project/{serviceName}/ai/data/region/{region}/alias/{alias}' },
-				{ name: 'DataRegionAliasGet', value: 'DataRegionAliasGet', action: 'GET /cloud/project/{serviceName}/ai/data/region/{region}/alias' },
-				{ name: 'DataRegionAliasGetData', value: 'DataRegionAliasGetData', action: 'GET /cloud/project/{serviceName}/ai/data/region/{region}/alias/{alias}' },
-				{ name: 'DataRegionAliasPost', value: 'DataRegionAliasPost', action: 'POST /cloud/project/{serviceName}/ai/data/region/{region}/alias' },
-				{ name: 'DataRegionAliasPut', value: 'DataRegionAliasPut', action: 'PUT /cloud/project/{serviceName}/ai/data/region/{region}/alias/{alias}' },
-				{ name: 'DataRegionGet', value: 'DataRegionGet', action: 'GET /cloud/project/{serviceName}/ai/data/region' },
-				{ name: 'DataRegionGetData', value: 'DataRegionGetData', action: 'GET /cloud/project/{serviceName}/ai/data/region/{region}' },
-				{ name: 'JobCapabilitiesPresetimageGet', value: 'JobCapabilitiesPresetimageGet', action: 'GET /cloud/project/{serviceName}/ai/job/capabilities/presetImage' },
-				{ name: 'JobCommandPost', value: 'JobCommandPost', action: 'POST /cloud/project/{serviceName}/ai/job/command' },
-				{ name: 'JobDatasyncPost', value: 'JobDatasyncPost', action: 'POST /cloud/project/{serviceName}/ai/job/{jobId}/datasync' },
-				{ name: 'JobDelete', value: 'JobDelete', action: 'DELETE /cloud/project/{serviceName}/ai/job/{jobId}' },
-				{ name: 'JobGet', value: 'JobGet', action: 'GET /cloud/project/{serviceName}/ai/job' },
-				{ name: 'JobGetJob', value: 'JobGetJob', action: 'GET /cloud/project/{serviceName}/ai/job/{jobId}' },
-				{ name: 'JobKillPut', value: 'JobKillPut', action: 'PUT /cloud/project/{serviceName}/ai/job/{jobId}/kill' },
-				{ name: 'JobLabelPut', value: 'JobLabelPut', action: 'PUT /cloud/project/{serviceName}/ai/job/{jobId}/label' },
-				{ name: 'JobLogGet', value: 'JobLogGet', action: 'GET /cloud/project/{serviceName}/ai/job/{jobId}/log' },
-				{ name: 'JobPost', value: 'JobPost', action: 'POST /cloud/project/{serviceName}/ai/job' },
-				{ name: 'NotebookBackupForkPost', value: 'NotebookBackupForkPost', action: 'POST /cloud/project/{serviceName}/ai/notebook/{notebookId}/backup/{backupId}/fork' },
-				{ name: 'NotebookBackupGet', value: 'NotebookBackupGet', action: 'GET /cloud/project/{serviceName}/ai/notebook/{notebookId}/backup' },
-				{ name: 'NotebookBackupGetNotebook', value: 'NotebookBackupGetNotebook', action: 'GET /cloud/project/{serviceName}/ai/notebook/{notebookId}/backup/{backupId}' },
-				{ name: 'NotebookCapabilitiesEditorGet', value: 'NotebookCapabilitiesEditorGet', action: 'GET /cloud/project/{serviceName}/ai/notebook/capabilities/editor' },
-				{ name: 'NotebookCapabilitiesFrameworkGet', value: 'NotebookCapabilitiesFrameworkGet', action: 'GET /cloud/project/{serviceName}/ai/notebook/capabilities/framework' },
-				{ name: 'NotebookCommandPost', value: 'NotebookCommandPost', action: 'POST /cloud/project/{serviceName}/ai/notebook/command' },
-				{ name: 'NotebookDatasyncPost', value: 'NotebookDatasyncPost', action: 'POST /cloud/project/{serviceName}/ai/notebook/{notebookId}/datasync' },
-				{ name: 'NotebookDelete', value: 'NotebookDelete', action: 'DELETE /cloud/project/{serviceName}/ai/notebook/{notebookId}' },
-				{ name: 'NotebookGet', value: 'NotebookGet', action: 'GET /cloud/project/{serviceName}/ai/notebook' },
-				{ name: 'NotebookGetNotebook', value: 'NotebookGetNotebook', action: 'GET /cloud/project/{serviceName}/ai/notebook/{notebookId}' },
-				{ name: 'NotebookLabelPut', value: 'NotebookLabelPut', action: 'PUT /cloud/project/{serviceName}/ai/notebook/{notebookId}/label' },
-				{ name: 'NotebookLogGet', value: 'NotebookLogGet', action: 'GET /cloud/project/{serviceName}/ai/notebook/{notebookId}/log' },
-				{ name: 'NotebookPost', value: 'NotebookPost', action: 'POST /cloud/project/{serviceName}/ai/notebook' },
-				{ name: 'NotebookPut', value: 'NotebookPut', action: 'PUT /cloud/project/{serviceName}/ai/notebook/{notebookId}' },
-				{ name: 'NotebookRestartPut', value: 'NotebookRestartPut', action: 'PUT /cloud/project/{serviceName}/ai/notebook/{notebookId}/restart' },
-				{ name: 'NotebookStartPut', value: 'NotebookStartPut', action: 'PUT /cloud/project/{serviceName}/ai/notebook/{notebookId}/start' },
-				{ name: 'NotebookStopPut', value: 'NotebookStopPut', action: 'PUT /cloud/project/{serviceName}/ai/notebook/{notebookId}/stop' },
-				{ name: 'NotebookWorkspacebackupretentionpolicyGet', value: 'NotebookWorkspacebackupretentionpolicyGet', action: 'GET /cloud/project/{serviceName}/ai/notebook/{notebookId}/workspacebackupretentionpolicy' },
-				{ name: 'NotebookWorkspacebackupretentionpolicyPut', value: 'NotebookWorkspacebackupretentionpolicyPut', action: 'PUT /cloud/project/{serviceName}/ai/notebook/{notebookId}/workspacebackupretentionpolicy' },
-				{ name: 'PartnersRegionGet', value: 'PartnersRegionGet', action: 'GET /cloud/project/{serviceName}/ai/partners/region' },
-				{ name: 'PartnersRegionGetPartners', value: 'PartnersRegionGetPartners', action: 'GET /cloud/project/{serviceName}/ai/partners/region/{region}' },
-				{ name: 'PartnersRegionPartnerGet', value: 'PartnersRegionPartnerGet', action: 'GET /cloud/project/{serviceName}/ai/partners/region/{region}/partner' },
-				{ name: 'PartnersRegionPartnerGetPartners', value: 'PartnersRegionPartnerGetPartners', action: 'GET /cloud/project/{serviceName}/ai/partners/region/{region}/partner/{partnerId}' },
-				{ name: 'RegistryDelete', value: 'RegistryDelete', action: 'DELETE /cloud/project/{serviceName}/ai/registry/{registryId}' },
-				{ name: 'RegistryGet', value: 'RegistryGet', action: 'GET /cloud/project/{serviceName}/ai/registry' },
-				{ name: 'RegistryGetRegistry', value: 'RegistryGetRegistry', action: 'GET /cloud/project/{serviceName}/ai/registry/{registryId}' },
-				{ name: 'RegistryPost', value: 'RegistryPost', action: 'POST /cloud/project/{serviceName}/ai/registry' },
-				{ name: 'RegistryPut', value: 'RegistryPut', action: 'PUT /cloud/project/{serviceName}/ai/registry/{registryId}' },
-				{ name: 'TokenDelete', value: 'TokenDelete', action: 'DELETE /cloud/project/{serviceName}/ai/token/{id}' },
-				{ name: 'TokenGet', value: 'TokenGet', action: 'GET /cloud/project/{serviceName}/ai/token' },
-				{ name: 'TokenGetToken', value: 'TokenGetToken', action: 'GET /cloud/project/{serviceName}/ai/token/{id}' },
-				{ name: 'TokenPost', value: 'TokenPost', action: 'POST /cloud/project/{serviceName}/ai/token' },
-				{ name: 'TokenRenewPost', value: 'TokenRenewPost', action: 'POST /cloud/project/{serviceName}/ai/token/{id}/renew' },
-		],
-		default: 'AppCommandPost',
-		displayOptions,
-	});
+const { description, execute } = createOperationDispatcher(
+	'publicCloudAiOperation',
+	'publicCloudAi',
+	[
+	{
+		name: 'AppCommandPost',
+		value: 'AppCommandPost',
+		action: 'POST /cloud/project/{serviceName}/ai/app/command',
+		execute: AppCommandPostExecute,
+		description: noProps,
+		show: false,
+		default: true,
+	},
+	{
+		name: 'AppDatasyncPost',
+		value: 'AppDatasyncPost',
+		action: 'POST /cloud/project/{serviceName}/ai/app/{appId}/datasync',
+		execute: AppDatasyncPostExecute,
+		description: noProps,
+		show: false,
+	},
+	{
+		name: 'AppDelete',
+		value: 'AppDelete',
+		action: 'DELETE /cloud/project/{serviceName}/ai/app/{appId}',
+		execute: AppDeleteExecute,
+		description: noProps,
+		show: false,
+	},
+	{
+		name: 'AppGet',
+		value: 'AppGet',
+		action: 'GET /cloud/project/{serviceName}/ai/app',
+		execute: AppGetExecute,
+		description: noProps,
+		show: false,
+	},
+	{
+		name: 'AppGetApp',
+		value: 'AppGetApp',
+		action: 'GET /cloud/project/{serviceName}/ai/app/{appId}',
+		execute: AppGetAppExecute,
+		description: noProps,
+		show: false,
+	},
+	{
+		name: 'AppImagePut',
+		value: 'AppImagePut',
+		action: 'PUT /cloud/project/{serviceName}/ai/app/{appId}/image',
+		execute: AppImagePutExecute,
+		description: noProps,
+		show: false,
+	},
+	{
+		name: 'AppLabelPut',
+		value: 'AppLabelPut',
+		action: 'PUT /cloud/project/{serviceName}/ai/app/{appId}/label',
+		execute: AppLabelPutExecute,
+		description: noProps,
+		show: false,
+	},
+	{
+		name: 'AppLogGet',
+		value: 'AppLogGet',
+		action: 'GET /cloud/project/{serviceName}/ai/app/{appId}/log',
+		execute: AppLogGetExecute,
+		description: noProps,
+		show: false,
+	},
+	{
+		name: 'AppPost',
+		value: 'AppPost',
+		action: 'POST /cloud/project/{serviceName}/ai/app',
+		execute: AppPostExecute,
+		description: noProps,
+		show: false,
+	},
+	{
+		name: 'AppPut',
+		value: 'AppPut',
+		action: 'PUT /cloud/project/{serviceName}/ai/app/{appId}',
+		execute: AppPutExecute,
+		description: noProps,
+		show: false,
+	},
+	{
+		name: 'AppScalingstrategyPut',
+		value: 'AppScalingstrategyPut',
+		action: 'PUT /cloud/project/{serviceName}/ai/app/{appId}/scalingstrategy',
+		execute: AppScalingstrategyPutExecute,
+		description: noProps,
+		show: false,
+	},
+	{
+		name: 'AppStartPut',
+		value: 'AppStartPut',
+		action: 'PUT /cloud/project/{serviceName}/ai/app/{appId}/start',
+		execute: AppStartPutExecute,
+		description: noProps,
+		show: false,
+	},
+	{
+		name: 'AppStopPut',
+		value: 'AppStopPut',
+		action: 'PUT /cloud/project/{serviceName}/ai/app/{appId}/stop',
+		execute: AppStopPutExecute,
+		description: noProps,
+		show: false,
+	},
+	{
+		name: 'AuthorizationGet',
+		value: 'AuthorizationGet',
+		action: 'GET /cloud/project/{serviceName}/ai/authorization',
+		execute: AuthorizationGetExecute,
+		description: noProps,
+		show: false,
+	},
+	{
+		name: 'AuthorizationPost',
+		value: 'AuthorizationPost',
+		action: 'POST /cloud/project/{serviceName}/ai/authorization',
+		execute: AuthorizationPostExecute,
+		description: noProps,
+		show: false,
+	},
+	{
+		name: 'CapabilitiesFeatureGet',
+		value: 'CapabilitiesFeatureGet',
+		action: 'GET /cloud/project/{serviceName}/ai/capabilities/feature',
+		execute: CapabilitiesFeatureGetExecute,
+		description: noProps,
+		show: false,
+	},
+	{
+		name: 'CapabilitiesQuotaGet',
+		value: 'CapabilitiesQuotaGet',
+		action: 'GET /cloud/project/{serviceName}/ai/capabilities/quota',
+		execute: CapabilitiesQuotaGetExecute,
+		description: noProps,
+		show: false,
+	},
+	{
+		name: 'CapabilitiesRegionAppImageGet',
+		value: 'CapabilitiesRegionAppImageGet',
+		action: 'GET /cloud/project/{serviceName}/ai/capabilities/region/{region}/app/image',
+		execute: CapabilitiesRegionAppImageGetExecute,
+		description: noProps,
+		show: false,
+	},
+	{
+		name: 'CapabilitiesRegionDataRegionGet',
+		value: 'CapabilitiesRegionDataRegionGet',
+		action: 'GET /cloud/project/{serviceName}/ai/capabilities/region/{region}/data/region',
+		execute: CapabilitiesRegionDataRegionGetExecute,
+		description: noProps,
+		show: false,
+	},
+	{
+		name: 'CapabilitiesRegionFlavorGet',
+		value: 'CapabilitiesRegionFlavorGet',
+		action: 'GET /cloud/project/{serviceName}/ai/capabilities/region/{region}/flavor',
+		execute: CapabilitiesRegionFlavorGetExecute,
+		description: noProps,
+		show: false,
+	},
+	{
+		name: 'CapabilitiesRegionFlavorGetCapabilities',
+		value: 'CapabilitiesRegionFlavorGetCapabilities',
+		action: 'GET /cloud/project/{serviceName}/ai/capabilities/region/{region}/flavor/{flavorId}',
+		execute: CapabilitiesRegionFlavorGetCapabilitiesExecute,
+		description: noProps,
+		show: false,
+	},
+	{
+		name: 'CapabilitiesRegionGet',
+		value: 'CapabilitiesRegionGet',
+		action: 'GET /cloud/project/{serviceName}/ai/capabilities/region',
+		execute: CapabilitiesRegionGetExecute,
+		description: noProps,
+		show: false,
+	},
+	{
+		name: 'CapabilitiesRegionGetCapabilities',
+		value: 'CapabilitiesRegionGetCapabilities',
+		action: 'GET /cloud/project/{serviceName}/ai/capabilities/region/{region}',
+		execute: CapabilitiesRegionGetCapabilitiesExecute,
+		description: noProps,
+		show: false,
+	},
+	{
+		name: 'CapabilitiesRegionJobImageGet',
+		value: 'CapabilitiesRegionJobImageGet',
+		action: 'GET /cloud/project/{serviceName}/ai/capabilities/region/{region}/job/image',
+		execute: CapabilitiesRegionJobImageGetExecute,
+		description: noProps,
+		show: false,
+	},
+	{
+		name: 'CapabilitiesRegionNotebookEditorGet',
+		value: 'CapabilitiesRegionNotebookEditorGet',
+		action: 'GET /cloud/project/{serviceName}/ai/capabilities/region/{region}/notebook/editor',
+		execute: CapabilitiesRegionNotebookEditorGetExecute,
+		description: noProps,
+		show: false,
+	},
+	{
+		name: 'CapabilitiesRegionNotebookEditorGetCapabilities',
+		value: 'CapabilitiesRegionNotebookEditorGetCapabilities',
+		action: 'GET /cloud/project/{serviceName}/ai/capabilities/region/{region}/notebook/editor/{editorId}',
+		execute: CapabilitiesRegionNotebookEditorGetCapabilitiesExecute,
+		description: noProps,
+		show: false,
+	},
+	{
+		name: 'CapabilitiesRegionNotebookFrameworkGet',
+		value: 'CapabilitiesRegionNotebookFrameworkGet',
+		action: 'GET /cloud/project/{serviceName}/ai/capabilities/region/{region}/notebook/framework',
+		execute: CapabilitiesRegionNotebookFrameworkGetExecute,
+		description: noProps,
+		show: false,
+	},
+	{
+		name: 'CapabilitiesRegionNotebookFrameworkGetCapabilities',
+		value: 'CapabilitiesRegionNotebookFrameworkGetCapabilities',
+		action: 'GET /cloud/project/{serviceName}/ai/capabilities/region/{region}/notebook/framework/{frameworkId}',
+		execute: CapabilitiesRegionNotebookFrameworkGetCapabilitiesExecute,
+		description: noProps,
+		show: false,
+	},
+	{
+		name: 'CapabilitiesRegionNotebookWorkspacebackupretentionpolicyGet',
+		value: 'CapabilitiesRegionNotebookWorkspacebackupretentionpolicyGet',
+		action: 'GET /cloud/project/{serviceName}/ai/capabilities/region/{region}/notebook/workspacebackupretentionpolicy',
+		execute: CapabilitiesRegionNotebookWorkspacebackupretentionpolicyGetExecute,
+		description: noProps,
+		show: false,
+	},
+	{
+		name: 'CapabilitiesRegionNotebookWorkspacebackupretentionpolicyPut',
+		value: 'CapabilitiesRegionNotebookWorkspacebackupretentionpolicyPut',
+		action: 'PUT /cloud/project/{serviceName}/ai/capabilities/region/{region}/notebook/workspacebackupretentionpolicy',
+		execute: CapabilitiesRegionNotebookWorkspacebackupretentionpolicyPutExecute,
+		description: noProps,
+		show: false,
+	},
+	{
+		name: 'CapabilitiesRegionPresetGet',
+		value: 'CapabilitiesRegionPresetGet',
+		action: 'GET /cloud/project/{serviceName}/ai/capabilities/region/{region}/preset',
+		execute: CapabilitiesRegionPresetGetExecute,
+		description: noProps,
+		show: false,
+	},
+	{
+		name: 'CapabilitiesRegionPresetGetCapabilities',
+		value: 'CapabilitiesRegionPresetGetCapabilities',
+		action: 'GET /cloud/project/{serviceName}/ai/capabilities/region/{region}/preset/{presetId}',
+		execute: CapabilitiesRegionPresetGetCapabilitiesExecute,
+		description: noProps,
+		show: false,
+	},
+	{
+		name: 'DataRegionAliasAuthGet',
+		value: 'DataRegionAliasAuthGet',
+		action: 'GET /cloud/project/{serviceName}/ai/data/region/{region}/alias/{alias}/auth',
+		execute: DataRegionAliasAuthGetExecute,
+		description: noProps,
+		show: false,
+	},
+	{
+		name: 'DataRegionAliasDelete',
+		value: 'DataRegionAliasDelete',
+		action: 'DELETE /cloud/project/{serviceName}/ai/data/region/{region}/alias/{alias}',
+		execute: DataRegionAliasDeleteExecute,
+		description: noProps,
+		show: false,
+	},
+	{
+		name: 'DataRegionAliasGet',
+		value: 'DataRegionAliasGet',
+		action: 'GET /cloud/project/{serviceName}/ai/data/region/{region}/alias',
+		execute: DataRegionAliasGetExecute,
+		description: noProps,
+		show: false,
+	},
+	{
+		name: 'DataRegionAliasGetData',
+		value: 'DataRegionAliasGetData',
+		action: 'GET /cloud/project/{serviceName}/ai/data/region/{region}/alias/{alias}',
+		execute: DataRegionAliasGetDataExecute,
+		description: noProps,
+		show: false,
+	},
+	{
+		name: 'DataRegionAliasPost',
+		value: 'DataRegionAliasPost',
+		action: 'POST /cloud/project/{serviceName}/ai/data/region/{region}/alias',
+		execute: DataRegionAliasPostExecute,
+		description: noProps,
+		show: false,
+	},
+	{
+		name: 'DataRegionAliasPut',
+		value: 'DataRegionAliasPut',
+		action: 'PUT /cloud/project/{serviceName}/ai/data/region/{region}/alias/{alias}',
+		execute: DataRegionAliasPutExecute,
+		description: noProps,
+		show: false,
+	},
+	{
+		name: 'DataRegionGet',
+		value: 'DataRegionGet',
+		action: 'GET /cloud/project/{serviceName}/ai/data/region',
+		execute: DataRegionGetExecute,
+		description: noProps,
+		show: false,
+	},
+	{
+		name: 'DataRegionGetData',
+		value: 'DataRegionGetData',
+		action: 'GET /cloud/project/{serviceName}/ai/data/region/{region}',
+		execute: DataRegionGetDataExecute,
+		description: noProps,
+		show: false,
+	},
+	{
+		name: 'JobCapabilitiesPresetimageGet',
+		value: 'JobCapabilitiesPresetimageGet',
+		action: 'GET /cloud/project/{serviceName}/ai/job/capabilities/presetImage',
+		execute: JobCapabilitiesPresetimageGetExecute,
+		description: noProps,
+		show: false,
+	},
+	{
+		name: 'JobCommandPost',
+		value: 'JobCommandPost',
+		action: 'POST /cloud/project/{serviceName}/ai/job/command',
+		execute: JobCommandPostExecute,
+		description: noProps,
+		show: false,
+	},
+	{
+		name: 'JobDatasyncPost',
+		value: 'JobDatasyncPost',
+		action: 'POST /cloud/project/{serviceName}/ai/job/{jobId}/datasync',
+		execute: JobDatasyncPostExecute,
+		description: noProps,
+		show: false,
+	},
+	{
+		name: 'JobDelete',
+		value: 'JobDelete',
+		action: 'DELETE /cloud/project/{serviceName}/ai/job/{jobId}',
+		execute: JobDeleteExecute,
+		description: noProps,
+		show: false,
+	},
+	{
+		name: 'JobGet',
+		value: 'JobGet',
+		action: 'GET /cloud/project/{serviceName}/ai/job',
+		execute: JobGetExecute,
+		description: noProps,
+		show: false,
+	},
+	{
+		name: 'JobGetJob',
+		value: 'JobGetJob',
+		action: 'GET /cloud/project/{serviceName}/ai/job/{jobId}',
+		execute: JobGetJobExecute,
+		description: noProps,
+		show: false,
+	},
+	{
+		name: 'JobKillPut',
+		value: 'JobKillPut',
+		action: 'PUT /cloud/project/{serviceName}/ai/job/{jobId}/kill',
+		execute: JobKillPutExecute,
+		description: noProps,
+		show: false,
+	},
+	{
+		name: 'JobLabelPut',
+		value: 'JobLabelPut',
+		action: 'PUT /cloud/project/{serviceName}/ai/job/{jobId}/label',
+		execute: JobLabelPutExecute,
+		description: noProps,
+		show: false,
+	},
+	{
+		name: 'JobLogGet',
+		value: 'JobLogGet',
+		action: 'GET /cloud/project/{serviceName}/ai/job/{jobId}/log',
+		execute: JobLogGetExecute,
+		description: noProps,
+		show: false,
+	},
+	{
+		name: 'JobPost',
+		value: 'JobPost',
+		action: 'POST /cloud/project/{serviceName}/ai/job',
+		execute: JobPostExecute,
+		description: noProps,
+		show: false,
+	},
+	{
+		name: 'NotebookBackupForkPost',
+		value: 'NotebookBackupForkPost',
+		action: 'POST /cloud/project/{serviceName}/ai/notebook/{notebookId}/backup/{backupId}/fork',
+		execute: NotebookBackupForkPostExecute,
+		description: noProps,
+		show: false,
+	},
+	{
+		name: 'NotebookBackupGet',
+		value: 'NotebookBackupGet',
+		action: 'GET /cloud/project/{serviceName}/ai/notebook/{notebookId}/backup',
+		execute: NotebookBackupGetExecute,
+		description: noProps,
+		show: false,
+	},
+	{
+		name: 'NotebookBackupGetNotebook',
+		value: 'NotebookBackupGetNotebook',
+		action: 'GET /cloud/project/{serviceName}/ai/notebook/{notebookId}/backup/{backupId}',
+		execute: NotebookBackupGetNotebookExecute,
+		description: noProps,
+		show: false,
+	},
+	{
+		name: 'NotebookCapabilitiesEditorGet',
+		value: 'NotebookCapabilitiesEditorGet',
+		action: 'GET /cloud/project/{serviceName}/ai/notebook/capabilities/editor',
+		execute: NotebookCapabilitiesEditorGetExecute,
+		description: noProps,
+		show: false,
+	},
+	{
+		name: 'NotebookCapabilitiesFrameworkGet',
+		value: 'NotebookCapabilitiesFrameworkGet',
+		action: 'GET /cloud/project/{serviceName}/ai/notebook/capabilities/framework',
+		execute: NotebookCapabilitiesFrameworkGetExecute,
+		description: noProps,
+		show: false,
+	},
+	{
+		name: 'NotebookCommandPost',
+		value: 'NotebookCommandPost',
+		action: 'POST /cloud/project/{serviceName}/ai/notebook/command',
+		execute: NotebookCommandPostExecute,
+		description: noProps,
+		show: false,
+	},
+	{
+		name: 'NotebookDatasyncPost',
+		value: 'NotebookDatasyncPost',
+		action: 'POST /cloud/project/{serviceName}/ai/notebook/{notebookId}/datasync',
+		execute: NotebookDatasyncPostExecute,
+		description: noProps,
+		show: false,
+	},
+	{
+		name: 'NotebookDelete',
+		value: 'NotebookDelete',
+		action: 'DELETE /cloud/project/{serviceName}/ai/notebook/{notebookId}',
+		execute: NotebookDeleteExecute,
+		description: noProps,
+		show: false,
+	},
+	{
+		name: 'NotebookGet',
+		value: 'NotebookGet',
+		action: 'GET /cloud/project/{serviceName}/ai/notebook',
+		execute: NotebookGetExecute,
+		description: noProps,
+		show: false,
+	},
+	{
+		name: 'NotebookGetNotebook',
+		value: 'NotebookGetNotebook',
+		action: 'GET /cloud/project/{serviceName}/ai/notebook/{notebookId}',
+		execute: NotebookGetNotebookExecute,
+		description: noProps,
+		show: false,
+	},
+	{
+		name: 'NotebookLabelPut',
+		value: 'NotebookLabelPut',
+		action: 'PUT /cloud/project/{serviceName}/ai/notebook/{notebookId}/label',
+		execute: NotebookLabelPutExecute,
+		description: noProps,
+		show: false,
+	},
+	{
+		name: 'NotebookLogGet',
+		value: 'NotebookLogGet',
+		action: 'GET /cloud/project/{serviceName}/ai/notebook/{notebookId}/log',
+		execute: NotebookLogGetExecute,
+		description: noProps,
+		show: false,
+	},
+	{
+		name: 'NotebookPost',
+		value: 'NotebookPost',
+		action: 'POST /cloud/project/{serviceName}/ai/notebook',
+		execute: NotebookPostExecute,
+		description: noProps,
+		show: false,
+	},
+	{
+		name: 'NotebookPut',
+		value: 'NotebookPut',
+		action: 'PUT /cloud/project/{serviceName}/ai/notebook/{notebookId}',
+		execute: NotebookPutExecute,
+		description: noProps,
+		show: false,
+	},
+	{
+		name: 'NotebookRestartPut',
+		value: 'NotebookRestartPut',
+		action: 'PUT /cloud/project/{serviceName}/ai/notebook/{notebookId}/restart',
+		execute: NotebookRestartPutExecute,
+		description: noProps,
+		show: false,
+	},
+	{
+		name: 'NotebookStartPut',
+		value: 'NotebookStartPut',
+		action: 'PUT /cloud/project/{serviceName}/ai/notebook/{notebookId}/start',
+		execute: NotebookStartPutExecute,
+		description: noProps,
+		show: false,
+	},
+	{
+		name: 'NotebookStopPut',
+		value: 'NotebookStopPut',
+		action: 'PUT /cloud/project/{serviceName}/ai/notebook/{notebookId}/stop',
+		execute: NotebookStopPutExecute,
+		description: noProps,
+		show: false,
+	},
+	{
+		name: 'NotebookWorkspacebackupretentionpolicyGet',
+		value: 'NotebookWorkspacebackupretentionpolicyGet',
+		action: 'GET /cloud/project/{serviceName}/ai/notebook/{notebookId}/workspacebackupretentionpolicy',
+		execute: NotebookWorkspacebackupretentionpolicyGetExecute,
+		description: noProps,
+		show: false,
+	},
+	{
+		name: 'NotebookWorkspacebackupretentionpolicyPut',
+		value: 'NotebookWorkspacebackupretentionpolicyPut',
+		action: 'PUT /cloud/project/{serviceName}/ai/notebook/{notebookId}/workspacebackupretentionpolicy',
+		execute: NotebookWorkspacebackupretentionpolicyPutExecute,
+		description: noProps,
+		show: false,
+	},
+	{
+		name: 'PartnersRegionGet',
+		value: 'PartnersRegionGet',
+		action: 'GET /cloud/project/{serviceName}/ai/partners/region',
+		execute: PartnersRegionGetExecute,
+		description: noProps,
+		show: false,
+	},
+	{
+		name: 'PartnersRegionGetPartners',
+		value: 'PartnersRegionGetPartners',
+		action: 'GET /cloud/project/{serviceName}/ai/partners/region/{region}',
+		execute: PartnersRegionGetPartnersExecute,
+		description: noProps,
+		show: false,
+	},
+	{
+		name: 'PartnersRegionPartnerGet',
+		value: 'PartnersRegionPartnerGet',
+		action: 'GET /cloud/project/{serviceName}/ai/partners/region/{region}/partner',
+		execute: PartnersRegionPartnerGetExecute,
+		description: noProps,
+		show: false,
+	},
+	{
+		name: 'PartnersRegionPartnerGetPartners',
+		value: 'PartnersRegionPartnerGetPartners',
+		action: 'GET /cloud/project/{serviceName}/ai/partners/region/{region}/partner/{partnerId}',
+		execute: PartnersRegionPartnerGetPartnersExecute,
+		description: noProps,
+		show: false,
+	},
+	{
+		name: 'RegistryDelete',
+		value: 'RegistryDelete',
+		action: 'DELETE /cloud/project/{serviceName}/ai/registry/{registryId}',
+		execute: RegistryDeleteExecute,
+		description: noProps,
+		show: false,
+	},
+	{
+		name: 'RegistryGet',
+		value: 'RegistryGet',
+		action: 'GET /cloud/project/{serviceName}/ai/registry',
+		execute: RegistryGetExecute,
+		description: noProps,
+		show: false,
+	},
+	{
+		name: 'RegistryGetRegistry',
+		value: 'RegistryGetRegistry',
+		action: 'GET /cloud/project/{serviceName}/ai/registry/{registryId}',
+		execute: RegistryGetRegistryExecute,
+		description: noProps,
+		show: false,
+	},
+	{
+		name: 'RegistryPost',
+		value: 'RegistryPost',
+		action: 'POST /cloud/project/{serviceName}/ai/registry',
+		execute: RegistryPostExecute,
+		description: noProps,
+		show: false,
+	},
+	{
+		name: 'RegistryPut',
+		value: 'RegistryPut',
+		action: 'PUT /cloud/project/{serviceName}/ai/registry/{registryId}',
+		execute: RegistryPutExecute,
+		description: noProps,
+		show: false,
+	},
+	{
+		name: 'TokenDelete',
+		value: 'TokenDelete',
+		action: 'DELETE /cloud/project/{serviceName}/ai/token/{id}',
+		execute: TokenDeleteExecute,
+		description: noProps,
+		show: false,
+	},
+	{
+		name: 'TokenGet',
+		value: 'TokenGet',
+		action: 'GET /cloud/project/{serviceName}/ai/token',
+		execute: TokenGetExecute,
+		description: noProps,
+		show: false,
+	},
+	{
+		name: 'TokenGetToken',
+		value: 'TokenGetToken',
+		action: 'GET /cloud/project/{serviceName}/ai/token/{id}',
+		execute: TokenGetTokenExecute,
+		description: noProps,
+		show: false,
+	},
+	{
+		name: 'TokenPost',
+		value: 'TokenPost',
+		action: 'POST /cloud/project/{serviceName}/ai/token',
+		execute: TokenPostExecute,
+		description: noProps,
+		show: false,
+	},
+	{
+		name: 'TokenRenewPost',
+		value: 'TokenRenewPost',
+		action: 'POST /cloud/project/{serviceName}/ai/token/{id}/renew',
+		execute: TokenRenewPostExecute,
+		description: noProps,
+		show: false,
+	},
+	],
+);
 
-		properties.push(...AppCommandPostDescription({ ...displayOptions, show: { publicCloudAiOperation: ['AppCommandPost'] } }) as INodeProperties[]);
-		properties.push(...AppDatasyncPostDescription({ ...displayOptions, show: { publicCloudAiOperation: ['AppDatasyncPost'] } }) as INodeProperties[]);
-		properties.push(...AppDeleteDescription({ ...displayOptions, show: { publicCloudAiOperation: ['AppDelete'] } }) as INodeProperties[]);
-		properties.push(...AppGetDescription({ ...displayOptions, show: { publicCloudAiOperation: ['AppGet'] } }) as INodeProperties[]);
-		properties.push(...AppGetAppDescription({ ...displayOptions, show: { publicCloudAiOperation: ['AppGetApp'] } }) as INodeProperties[]);
-		properties.push(...AppImagePutDescription({ ...displayOptions, show: { publicCloudAiOperation: ['AppImagePut'] } }) as INodeProperties[]);
-		properties.push(...AppLabelPutDescription({ ...displayOptions, show: { publicCloudAiOperation: ['AppLabelPut'] } }) as INodeProperties[]);
-		properties.push(...AppLogGetDescription({ ...displayOptions, show: { publicCloudAiOperation: ['AppLogGet'] } }) as INodeProperties[]);
-		properties.push(...AppPostDescription({ ...displayOptions, show: { publicCloudAiOperation: ['AppPost'] } }) as INodeProperties[]);
-		properties.push(...AppPutDescription({ ...displayOptions, show: { publicCloudAiOperation: ['AppPut'] } }) as INodeProperties[]);
-		properties.push(...AppScalingstrategyPutDescription({ ...displayOptions, show: { publicCloudAiOperation: ['AppScalingstrategyPut'] } }) as INodeProperties[]);
-		properties.push(...AppStartPutDescription({ ...displayOptions, show: { publicCloudAiOperation: ['AppStartPut'] } }) as INodeProperties[]);
-		properties.push(...AppStopPutDescription({ ...displayOptions, show: { publicCloudAiOperation: ['AppStopPut'] } }) as INodeProperties[]);
-		properties.push(...AuthorizationGetDescription({ ...displayOptions, show: { publicCloudAiOperation: ['AuthorizationGet'] } }) as INodeProperties[]);
-		properties.push(...AuthorizationPostDescription({ ...displayOptions, show: { publicCloudAiOperation: ['AuthorizationPost'] } }) as INodeProperties[]);
-		properties.push(...CapabilitiesFeatureGetDescription({ ...displayOptions, show: { publicCloudAiOperation: ['CapabilitiesFeatureGet'] } }) as INodeProperties[]);
-		properties.push(...CapabilitiesQuotaGetDescription({ ...displayOptions, show: { publicCloudAiOperation: ['CapabilitiesQuotaGet'] } }) as INodeProperties[]);
-		properties.push(...CapabilitiesRegionAppImageGetDescription({ ...displayOptions, show: { publicCloudAiOperation: ['CapabilitiesRegionAppImageGet'] } }) as INodeProperties[]);
-		properties.push(...CapabilitiesRegionDataRegionGetDescription({ ...displayOptions, show: { publicCloudAiOperation: ['CapabilitiesRegionDataRegionGet'] } }) as INodeProperties[]);
-		properties.push(...CapabilitiesRegionFlavorGetDescription({ ...displayOptions, show: { publicCloudAiOperation: ['CapabilitiesRegionFlavorGet'] } }) as INodeProperties[]);
-		properties.push(...CapabilitiesRegionFlavorGetCapabilitiesDescription({ ...displayOptions, show: { publicCloudAiOperation: ['CapabilitiesRegionFlavorGetCapabilities'] } }) as INodeProperties[]);
-		properties.push(...CapabilitiesRegionGetDescription({ ...displayOptions, show: { publicCloudAiOperation: ['CapabilitiesRegionGet'] } }) as INodeProperties[]);
-		properties.push(...CapabilitiesRegionGetCapabilitiesDescription({ ...displayOptions, show: { publicCloudAiOperation: ['CapabilitiesRegionGetCapabilities'] } }) as INodeProperties[]);
-		properties.push(...CapabilitiesRegionJobImageGetDescription({ ...displayOptions, show: { publicCloudAiOperation: ['CapabilitiesRegionJobImageGet'] } }) as INodeProperties[]);
-		properties.push(...CapabilitiesRegionNotebookEditorGetDescription({ ...displayOptions, show: { publicCloudAiOperation: ['CapabilitiesRegionNotebookEditorGet'] } }) as INodeProperties[]);
-		properties.push(...CapabilitiesRegionNotebookEditorGetCapabilitiesDescription({ ...displayOptions, show: { publicCloudAiOperation: ['CapabilitiesRegionNotebookEditorGetCapabilities'] } }) as INodeProperties[]);
-		properties.push(...CapabilitiesRegionNotebookFrameworkGetDescription({ ...displayOptions, show: { publicCloudAiOperation: ['CapabilitiesRegionNotebookFrameworkGet'] } }) as INodeProperties[]);
-		properties.push(...CapabilitiesRegionNotebookFrameworkGetCapabilitiesDescription({ ...displayOptions, show: { publicCloudAiOperation: ['CapabilitiesRegionNotebookFrameworkGetCapabilities'] } }) as INodeProperties[]);
-		properties.push(...CapabilitiesRegionNotebookWorkspacebackupretentionpolicyGetDescription({ ...displayOptions, show: { publicCloudAiOperation: ['CapabilitiesRegionNotebookWorkspacebackupretentionpolicyGet'] } }) as INodeProperties[]);
-		properties.push(...CapabilitiesRegionNotebookWorkspacebackupretentionpolicyPutDescription({ ...displayOptions, show: { publicCloudAiOperation: ['CapabilitiesRegionNotebookWorkspacebackupretentionpolicyPut'] } }) as INodeProperties[]);
-		properties.push(...CapabilitiesRegionPresetGetDescription({ ...displayOptions, show: { publicCloudAiOperation: ['CapabilitiesRegionPresetGet'] } }) as INodeProperties[]);
-		properties.push(...CapabilitiesRegionPresetGetCapabilitiesDescription({ ...displayOptions, show: { publicCloudAiOperation: ['CapabilitiesRegionPresetGetCapabilities'] } }) as INodeProperties[]);
-		properties.push(...DataRegionAliasAuthGetDescription({ ...displayOptions, show: { publicCloudAiOperation: ['DataRegionAliasAuthGet'] } }) as INodeProperties[]);
-		properties.push(...DataRegionAliasDeleteDescription({ ...displayOptions, show: { publicCloudAiOperation: ['DataRegionAliasDelete'] } }) as INodeProperties[]);
-		properties.push(...DataRegionAliasGetDescription({ ...displayOptions, show: { publicCloudAiOperation: ['DataRegionAliasGet'] } }) as INodeProperties[]);
-		properties.push(...DataRegionAliasGetDataDescription({ ...displayOptions, show: { publicCloudAiOperation: ['DataRegionAliasGetData'] } }) as INodeProperties[]);
-		properties.push(...DataRegionAliasPostDescription({ ...displayOptions, show: { publicCloudAiOperation: ['DataRegionAliasPost'] } }) as INodeProperties[]);
-		properties.push(...DataRegionAliasPutDescription({ ...displayOptions, show: { publicCloudAiOperation: ['DataRegionAliasPut'] } }) as INodeProperties[]);
-		properties.push(...DataRegionGetDescription({ ...displayOptions, show: { publicCloudAiOperation: ['DataRegionGet'] } }) as INodeProperties[]);
-		properties.push(...DataRegionGetDataDescription({ ...displayOptions, show: { publicCloudAiOperation: ['DataRegionGetData'] } }) as INodeProperties[]);
-		properties.push(...JobCapabilitiesPresetimageGetDescription({ ...displayOptions, show: { publicCloudAiOperation: ['JobCapabilitiesPresetimageGet'] } }) as INodeProperties[]);
-		properties.push(...JobCommandPostDescription({ ...displayOptions, show: { publicCloudAiOperation: ['JobCommandPost'] } }) as INodeProperties[]);
-		properties.push(...JobDatasyncPostDescription({ ...displayOptions, show: { publicCloudAiOperation: ['JobDatasyncPost'] } }) as INodeProperties[]);
-		properties.push(...JobDeleteDescription({ ...displayOptions, show: { publicCloudAiOperation: ['JobDelete'] } }) as INodeProperties[]);
-		properties.push(...JobGetDescription({ ...displayOptions, show: { publicCloudAiOperation: ['JobGet'] } }) as INodeProperties[]);
-		properties.push(...JobGetJobDescription({ ...displayOptions, show: { publicCloudAiOperation: ['JobGetJob'] } }) as INodeProperties[]);
-		properties.push(...JobKillPutDescription({ ...displayOptions, show: { publicCloudAiOperation: ['JobKillPut'] } }) as INodeProperties[]);
-		properties.push(...JobLabelPutDescription({ ...displayOptions, show: { publicCloudAiOperation: ['JobLabelPut'] } }) as INodeProperties[]);
-		properties.push(...JobLogGetDescription({ ...displayOptions, show: { publicCloudAiOperation: ['JobLogGet'] } }) as INodeProperties[]);
-		properties.push(...JobPostDescription({ ...displayOptions, show: { publicCloudAiOperation: ['JobPost'] } }) as INodeProperties[]);
-		properties.push(...NotebookBackupForkPostDescription({ ...displayOptions, show: { publicCloudAiOperation: ['NotebookBackupForkPost'] } }) as INodeProperties[]);
-		properties.push(...NotebookBackupGetDescription({ ...displayOptions, show: { publicCloudAiOperation: ['NotebookBackupGet'] } }) as INodeProperties[]);
-		properties.push(...NotebookBackupGetNotebookDescription({ ...displayOptions, show: { publicCloudAiOperation: ['NotebookBackupGetNotebook'] } }) as INodeProperties[]);
-		properties.push(...NotebookCapabilitiesEditorGetDescription({ ...displayOptions, show: { publicCloudAiOperation: ['NotebookCapabilitiesEditorGet'] } }) as INodeProperties[]);
-		properties.push(...NotebookCapabilitiesFrameworkGetDescription({ ...displayOptions, show: { publicCloudAiOperation: ['NotebookCapabilitiesFrameworkGet'] } }) as INodeProperties[]);
-		properties.push(...NotebookCommandPostDescription({ ...displayOptions, show: { publicCloudAiOperation: ['NotebookCommandPost'] } }) as INodeProperties[]);
-		properties.push(...NotebookDatasyncPostDescription({ ...displayOptions, show: { publicCloudAiOperation: ['NotebookDatasyncPost'] } }) as INodeProperties[]);
-		properties.push(...NotebookDeleteDescription({ ...displayOptions, show: { publicCloudAiOperation: ['NotebookDelete'] } }) as INodeProperties[]);
-		properties.push(...NotebookGetDescription({ ...displayOptions, show: { publicCloudAiOperation: ['NotebookGet'] } }) as INodeProperties[]);
-		properties.push(...NotebookGetNotebookDescription({ ...displayOptions, show: { publicCloudAiOperation: ['NotebookGetNotebook'] } }) as INodeProperties[]);
-		properties.push(...NotebookLabelPutDescription({ ...displayOptions, show: { publicCloudAiOperation: ['NotebookLabelPut'] } }) as INodeProperties[]);
-		properties.push(...NotebookLogGetDescription({ ...displayOptions, show: { publicCloudAiOperation: ['NotebookLogGet'] } }) as INodeProperties[]);
-		properties.push(...NotebookPostDescription({ ...displayOptions, show: { publicCloudAiOperation: ['NotebookPost'] } }) as INodeProperties[]);
-		properties.push(...NotebookPutDescription({ ...displayOptions, show: { publicCloudAiOperation: ['NotebookPut'] } }) as INodeProperties[]);
-		properties.push(...NotebookRestartPutDescription({ ...displayOptions, show: { publicCloudAiOperation: ['NotebookRestartPut'] } }) as INodeProperties[]);
-		properties.push(...NotebookStartPutDescription({ ...displayOptions, show: { publicCloudAiOperation: ['NotebookStartPut'] } }) as INodeProperties[]);
-		properties.push(...NotebookStopPutDescription({ ...displayOptions, show: { publicCloudAiOperation: ['NotebookStopPut'] } }) as INodeProperties[]);
-		properties.push(...NotebookWorkspacebackupretentionpolicyGetDescription({ ...displayOptions, show: { publicCloudAiOperation: ['NotebookWorkspacebackupretentionpolicyGet'] } }) as INodeProperties[]);
-		properties.push(...NotebookWorkspacebackupretentionpolicyPutDescription({ ...displayOptions, show: { publicCloudAiOperation: ['NotebookWorkspacebackupretentionpolicyPut'] } }) as INodeProperties[]);
-		properties.push(...PartnersRegionGetDescription({ ...displayOptions, show: { publicCloudAiOperation: ['PartnersRegionGet'] } }) as INodeProperties[]);
-		properties.push(...PartnersRegionGetPartnersDescription({ ...displayOptions, show: { publicCloudAiOperation: ['PartnersRegionGetPartners'] } }) as INodeProperties[]);
-		properties.push(...PartnersRegionPartnerGetDescription({ ...displayOptions, show: { publicCloudAiOperation: ['PartnersRegionPartnerGet'] } }) as INodeProperties[]);
-		properties.push(...PartnersRegionPartnerGetPartnersDescription({ ...displayOptions, show: { publicCloudAiOperation: ['PartnersRegionPartnerGetPartners'] } }) as INodeProperties[]);
-		properties.push(...RegistryDeleteDescription({ ...displayOptions, show: { publicCloudAiOperation: ['RegistryDelete'] } }) as INodeProperties[]);
-		properties.push(...RegistryGetDescription({ ...displayOptions, show: { publicCloudAiOperation: ['RegistryGet'] } }) as INodeProperties[]);
-		properties.push(...RegistryGetRegistryDescription({ ...displayOptions, show: { publicCloudAiOperation: ['RegistryGetRegistry'] } }) as INodeProperties[]);
-		properties.push(...RegistryPostDescription({ ...displayOptions, show: { publicCloudAiOperation: ['RegistryPost'] } }) as INodeProperties[]);
-		properties.push(...RegistryPutDescription({ ...displayOptions, show: { publicCloudAiOperation: ['RegistryPut'] } }) as INodeProperties[]);
-		properties.push(...TokenDeleteDescription({ ...displayOptions, show: { publicCloudAiOperation: ['TokenDelete'] } }) as INodeProperties[]);
-		properties.push(...TokenGetDescription({ ...displayOptions, show: { publicCloudAiOperation: ['TokenGet'] } }) as INodeProperties[]);
-		properties.push(...TokenGetTokenDescription({ ...displayOptions, show: { publicCloudAiOperation: ['TokenGetToken'] } }) as INodeProperties[]);
-		properties.push(...TokenPostDescription({ ...displayOptions, show: { publicCloudAiOperation: ['TokenPost'] } }) as INodeProperties[]);
-		properties.push(...TokenRenewPostDescription({ ...displayOptions, show: { publicCloudAiOperation: ['TokenRenewPost'] } }) as INodeProperties[]);
-
-	return properties;
-}
-
-export async function execute(this: IExecuteFunctions, itemIndex?: number): Promise<INodeExecutionData[]> {
-	const operation = this.getNodeParameter('publicCloudAiOperation', itemIndex ?? 0, { extractValue: true });
-
-	switch (operation) {
-		case 'AppCommandPost': return AppCommandPostExecute.call(this, itemIndex ?? 0);
-		case 'AppDatasyncPost': return AppDatasyncPostExecute.call(this, itemIndex ?? 0);
-		case 'AppDelete': return AppDeleteExecute.call(this, itemIndex ?? 0);
-		case 'AppGet': return AppGetExecute.call(this, itemIndex ?? 0);
-		case 'AppGetApp': return AppGetAppExecute.call(this, itemIndex ?? 0);
-		case 'AppImagePut': return AppImagePutExecute.call(this, itemIndex ?? 0);
-		case 'AppLabelPut': return AppLabelPutExecute.call(this, itemIndex ?? 0);
-		case 'AppLogGet': return AppLogGetExecute.call(this, itemIndex ?? 0);
-		case 'AppPost': return AppPostExecute.call(this, itemIndex ?? 0);
-		case 'AppPut': return AppPutExecute.call(this, itemIndex ?? 0);
-		case 'AppScalingstrategyPut': return AppScalingstrategyPutExecute.call(this, itemIndex ?? 0);
-		case 'AppStartPut': return AppStartPutExecute.call(this, itemIndex ?? 0);
-		case 'AppStopPut': return AppStopPutExecute.call(this, itemIndex ?? 0);
-		case 'AuthorizationGet': return AuthorizationGetExecute.call(this, itemIndex ?? 0);
-		case 'AuthorizationPost': return AuthorizationPostExecute.call(this, itemIndex ?? 0);
-		case 'CapabilitiesFeatureGet': return CapabilitiesFeatureGetExecute.call(this, itemIndex ?? 0);
-		case 'CapabilitiesQuotaGet': return CapabilitiesQuotaGetExecute.call(this, itemIndex ?? 0);
-		case 'CapabilitiesRegionAppImageGet': return CapabilitiesRegionAppImageGetExecute.call(this, itemIndex ?? 0);
-		case 'CapabilitiesRegionDataRegionGet': return CapabilitiesRegionDataRegionGetExecute.call(this, itemIndex ?? 0);
-		case 'CapabilitiesRegionFlavorGet': return CapabilitiesRegionFlavorGetExecute.call(this, itemIndex ?? 0);
-		case 'CapabilitiesRegionFlavorGetCapabilities': return CapabilitiesRegionFlavorGetCapabilitiesExecute.call(this, itemIndex ?? 0);
-		case 'CapabilitiesRegionGet': return CapabilitiesRegionGetExecute.call(this, itemIndex ?? 0);
-		case 'CapabilitiesRegionGetCapabilities': return CapabilitiesRegionGetCapabilitiesExecute.call(this, itemIndex ?? 0);
-		case 'CapabilitiesRegionJobImageGet': return CapabilitiesRegionJobImageGetExecute.call(this, itemIndex ?? 0);
-		case 'CapabilitiesRegionNotebookEditorGet': return CapabilitiesRegionNotebookEditorGetExecute.call(this, itemIndex ?? 0);
-		case 'CapabilitiesRegionNotebookEditorGetCapabilities': return CapabilitiesRegionNotebookEditorGetCapabilitiesExecute.call(this, itemIndex ?? 0);
-		case 'CapabilitiesRegionNotebookFrameworkGet': return CapabilitiesRegionNotebookFrameworkGetExecute.call(this, itemIndex ?? 0);
-		case 'CapabilitiesRegionNotebookFrameworkGetCapabilities': return CapabilitiesRegionNotebookFrameworkGetCapabilitiesExecute.call(this, itemIndex ?? 0);
-		case 'CapabilitiesRegionNotebookWorkspacebackupretentionpolicyGet': return CapabilitiesRegionNotebookWorkspacebackupretentionpolicyGetExecute.call(this, itemIndex ?? 0);
-		case 'CapabilitiesRegionNotebookWorkspacebackupretentionpolicyPut': return CapabilitiesRegionNotebookWorkspacebackupretentionpolicyPutExecute.call(this, itemIndex ?? 0);
-		case 'CapabilitiesRegionPresetGet': return CapabilitiesRegionPresetGetExecute.call(this, itemIndex ?? 0);
-		case 'CapabilitiesRegionPresetGetCapabilities': return CapabilitiesRegionPresetGetCapabilitiesExecute.call(this, itemIndex ?? 0);
-		case 'DataRegionAliasAuthGet': return DataRegionAliasAuthGetExecute.call(this, itemIndex ?? 0);
-		case 'DataRegionAliasDelete': return DataRegionAliasDeleteExecute.call(this, itemIndex ?? 0);
-		case 'DataRegionAliasGet': return DataRegionAliasGetExecute.call(this, itemIndex ?? 0);
-		case 'DataRegionAliasGetData': return DataRegionAliasGetDataExecute.call(this, itemIndex ?? 0);
-		case 'DataRegionAliasPost': return DataRegionAliasPostExecute.call(this, itemIndex ?? 0);
-		case 'DataRegionAliasPut': return DataRegionAliasPutExecute.call(this, itemIndex ?? 0);
-		case 'DataRegionGet': return DataRegionGetExecute.call(this, itemIndex ?? 0);
-		case 'DataRegionGetData': return DataRegionGetDataExecute.call(this, itemIndex ?? 0);
-		case 'JobCapabilitiesPresetimageGet': return JobCapabilitiesPresetimageGetExecute.call(this, itemIndex ?? 0);
-		case 'JobCommandPost': return JobCommandPostExecute.call(this, itemIndex ?? 0);
-		case 'JobDatasyncPost': return JobDatasyncPostExecute.call(this, itemIndex ?? 0);
-		case 'JobDelete': return JobDeleteExecute.call(this, itemIndex ?? 0);
-		case 'JobGet': return JobGetExecute.call(this, itemIndex ?? 0);
-		case 'JobGetJob': return JobGetJobExecute.call(this, itemIndex ?? 0);
-		case 'JobKillPut': return JobKillPutExecute.call(this, itemIndex ?? 0);
-		case 'JobLabelPut': return JobLabelPutExecute.call(this, itemIndex ?? 0);
-		case 'JobLogGet': return JobLogGetExecute.call(this, itemIndex ?? 0);
-		case 'JobPost': return JobPostExecute.call(this, itemIndex ?? 0);
-		case 'NotebookBackupForkPost': return NotebookBackupForkPostExecute.call(this, itemIndex ?? 0);
-		case 'NotebookBackupGet': return NotebookBackupGetExecute.call(this, itemIndex ?? 0);
-		case 'NotebookBackupGetNotebook': return NotebookBackupGetNotebookExecute.call(this, itemIndex ?? 0);
-		case 'NotebookCapabilitiesEditorGet': return NotebookCapabilitiesEditorGetExecute.call(this, itemIndex ?? 0);
-		case 'NotebookCapabilitiesFrameworkGet': return NotebookCapabilitiesFrameworkGetExecute.call(this, itemIndex ?? 0);
-		case 'NotebookCommandPost': return NotebookCommandPostExecute.call(this, itemIndex ?? 0);
-		case 'NotebookDatasyncPost': return NotebookDatasyncPostExecute.call(this, itemIndex ?? 0);
-		case 'NotebookDelete': return NotebookDeleteExecute.call(this, itemIndex ?? 0);
-		case 'NotebookGet': return NotebookGetExecute.call(this, itemIndex ?? 0);
-		case 'NotebookGetNotebook': return NotebookGetNotebookExecute.call(this, itemIndex ?? 0);
-		case 'NotebookLabelPut': return NotebookLabelPutExecute.call(this, itemIndex ?? 0);
-		case 'NotebookLogGet': return NotebookLogGetExecute.call(this, itemIndex ?? 0);
-		case 'NotebookPost': return NotebookPostExecute.call(this, itemIndex ?? 0);
-		case 'NotebookPut': return NotebookPutExecute.call(this, itemIndex ?? 0);
-		case 'NotebookRestartPut': return NotebookRestartPutExecute.call(this, itemIndex ?? 0);
-		case 'NotebookStartPut': return NotebookStartPutExecute.call(this, itemIndex ?? 0);
-		case 'NotebookStopPut': return NotebookStopPutExecute.call(this, itemIndex ?? 0);
-		case 'NotebookWorkspacebackupretentionpolicyGet': return NotebookWorkspacebackupretentionpolicyGetExecute.call(this, itemIndex ?? 0);
-		case 'NotebookWorkspacebackupretentionpolicyPut': return NotebookWorkspacebackupretentionpolicyPutExecute.call(this, itemIndex ?? 0);
-		case 'PartnersRegionGet': return PartnersRegionGetExecute.call(this, itemIndex ?? 0);
-		case 'PartnersRegionGetPartners': return PartnersRegionGetPartnersExecute.call(this, itemIndex ?? 0);
-		case 'PartnersRegionPartnerGet': return PartnersRegionPartnerGetExecute.call(this, itemIndex ?? 0);
-		case 'PartnersRegionPartnerGetPartners': return PartnersRegionPartnerGetPartnersExecute.call(this, itemIndex ?? 0);
-		case 'RegistryDelete': return RegistryDeleteExecute.call(this, itemIndex ?? 0);
-		case 'RegistryGet': return RegistryGetExecute.call(this, itemIndex ?? 0);
-		case 'RegistryGetRegistry': return RegistryGetRegistryExecute.call(this, itemIndex ?? 0);
-		case 'RegistryPost': return RegistryPostExecute.call(this, itemIndex ?? 0);
-		case 'RegistryPut': return RegistryPutExecute.call(this, itemIndex ?? 0);
-		case 'TokenDelete': return TokenDeleteExecute.call(this, itemIndex ?? 0);
-		case 'TokenGet': return TokenGetExecute.call(this, itemIndex ?? 0);
-		case 'TokenGetToken': return TokenGetTokenExecute.call(this, itemIndex ?? 0);
-		case 'TokenPost': return TokenPostExecute.call(this, itemIndex ?? 0);
-		case 'TokenRenewPost': return TokenRenewPostExecute.call(this, itemIndex ?? 0);
-	}
-
-	throw new Error(`Unsupported operation "${operation}" for resource "publicCloudAi"`);
-}
-
+export { description, execute };
