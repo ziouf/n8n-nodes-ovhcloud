@@ -1,496 +1,433 @@
-import type {
-	IDisplayOptions,
-	IExecuteFunctions,
-	INodeExecutionData,
-	INodeProperties,
-} from 'n8n-workflow';
+import { createOperationDispatcher } from '../../shared/nodes/createNodeDispatcher';
 
 import {
-	execute as executeDedicatedCephTerminateCreatePost,
-	description as descriptionDedicatedCephTerminateCreatePost,
-} from './DedicatedCephTerminateCreate.operation';
-
-import {
-	execute as executeCephUserPoolDeleteDelete,
-	description as descriptionCephUserPoolDeleteDelete,
-} from './CephUserPoolDelete.operation';
-
-import {
-	execute as executeDedicatedCephConfirmterminationCreatePost,
-	description as descriptionDedicatedCephConfirmterminationCreatePost,
-} from './DedicatedCephConfirmterminationCreate.operation';
-
-import {
-	execute as executeDedicatedCephPoolCreatePost,
-	description as descriptionDedicatedCephPoolCreatePost,
-} from './DedicatedCephPoolCreate.operation';
-
-import {
-	execute as executeDedicatedCephUserCreatePost,
-	description as descriptionDedicatedCephUserCreatePost,
-} from './DedicatedCephUserCreate.operation';
-
-import {
-	execute as executeCephUserPoolCreatePost,
-	description as descriptionCephUserPoolCreatePost,
-} from './CephUserPoolCreate.operation';
-
-import {
-	execute as executeDedicatedCephAclCreatePost,
-	description as descriptionDedicatedCephAclCreatePost,
-} from './DedicatedCephAclCreate.operation';
-
-import {
-	execute as executeCephOsdBlocklistDeleteDelete,
-	description as descriptionCephOsdBlocklistDeleteDelete,
-} from './CephOsdBlocklistDelete.operation';
-
-import {
-	execute as executeDedicatedCephPoolDeleteDelete,
-	description as descriptionDedicatedCephPoolDeleteDelete,
-} from './DedicatedCephPoolDelete.operation';
-
-import {
-	execute as executeDedicatedCephUserDeleteDelete,
-	description as descriptionDedicatedCephUserDeleteDelete,
-} from './DedicatedCephUserDelete.operation';
-
-import {
-	execute as executeDedicatedCephAclDeleteDelete,
-	description as descriptionDedicatedCephAclDeleteDelete,
-} from './DedicatedCephAclDelete.operation';
-
-import {
-	execute as executeCephCephfsDisableCreatePost,
 	description as descriptionCephCephfsDisableCreatePost,
+	execute as executeCephCephfsDisableCreatePost,
 } from './CephCephfsDisableCreate.operation';
-
 import {
-	execute as executeCephCephfsEnableCreatePost,
 	description as descriptionCephCephfsEnableCreatePost,
+	execute as executeCephCephfsEnableCreatePost,
 } from './CephCephfsEnableCreate.operation';
-
 import {
-	execute as executeDedicatedCephCephfsGetFsnameGet,
+	description as descriptionCephOsdBlocklistDeleteDelete,
+	execute as executeCephOsdBlocklistDeleteDelete,
+} from './CephOsdBlocklistDelete.operation';
+import {
+	description as descriptionCephOsdBlocklistGetGet,
+	execute as executeCephOsdBlocklistGetGet,
+} from './CephOsdBlocklistGet.operation';
+import {
+	description as descriptionCephPoolAllowdeletionUpdatePut,
+	execute as executeCephPoolAllowdeletionUpdatePut,
+} from './CephPoolAllowdeletionUpdate.operation';
+import {
+	description as descriptionCephUserPoolCreatePost,
+	execute as executeCephUserPoolCreatePost,
+} from './CephUserPoolCreate.operation';
+import {
+	description as descriptionCephUserPoolDeleteDelete,
+	execute as executeCephUserPoolDeleteDelete,
+} from './CephUserPoolDelete.operation';
+import {
+	description as descriptionCephUserPoolGetGet,
+	execute as executeCephUserPoolGetGet,
+} from './CephUserPoolGet.operation';
+import {
+	description as descriptionCephUserPoolUpdatePut,
+	execute as executeCephUserPoolUpdatePut,
+} from './CephUserPoolUpdate.operation';
+import {
+	description as descriptionDedicatedCephAclCreatePost,
+	execute as executeDedicatedCephAclCreatePost,
+} from './DedicatedCephAclCreate.operation';
+import {
+	description as descriptionDedicatedCephAclDeleteDelete,
+	execute as executeDedicatedCephAclDeleteDelete,
+} from './DedicatedCephAclDelete.operation';
+import {
+	description as descriptionDedicatedCephAclGetGet,
+	execute as executeDedicatedCephAclGetGet,
+} from './DedicatedCephAclGet.operation';
+import {
+	description as descriptionDedicatedCephAclGetAclidGet,
+	execute as executeDedicatedCephAclGetAclidGet,
+} from './DedicatedCephAclGetAclid.operation';
+import {
+	description as descriptionDedicatedCephCephfsDeleteDelete,
+	execute as executeDedicatedCephCephfsDeleteDelete,
+} from './DedicatedCephCephfsDelete.operation';
+import {
+	description as descriptionDedicatedCephCephfsGetGet,
+	execute as executeDedicatedCephCephfsGetGet,
+} from './DedicatedCephCephfsGet.operation';
+import {
 	description as descriptionDedicatedCephCephfsGetFsnameGet,
+	execute as executeDedicatedCephCephfsGetFsnameGet,
 } from './DedicatedCephCephfsGetFsname.operation';
-
 import {
-	execute as executeDedicatedCephGetServicenameGet,
+	description as descriptionDedicatedCephChangecontactCreatePost,
+	execute as executeDedicatedCephChangecontactCreatePost,
+} from './DedicatedCephChangecontactCreate.operation';
+import {
+	description as descriptionDedicatedCephConfirmterminationCreatePost,
+	execute as executeDedicatedCephConfirmterminationCreatePost,
+} from './DedicatedCephConfirmterminationCreate.operation';
+import {
+	description as descriptionDedicatedCephGetGet,
+	execute as executeDedicatedCephGetGet,
+} from './DedicatedCephGet.operation';
+import {
 	description as descriptionDedicatedCephGetServicenameGet,
+	execute as executeDedicatedCephGetServicenameGet,
 } from './DedicatedCephGetServicename.operation';
-
 import {
-	execute as executeDedicatedCephHealthGetGet,
 	description as descriptionDedicatedCephHealthGetGet,
+	execute as executeDedicatedCephHealthGetGet,
 } from './DedicatedCephHealthGet.operation';
-
 import {
-	execute as executeDedicatedCephUserGetUsernameGet,
+	description as descriptionDedicatedCephPoolCreatePost,
+	execute as executeDedicatedCephPoolCreatePost,
+} from './DedicatedCephPoolCreate.operation';
+import {
+	description as descriptionDedicatedCephPoolDeleteDelete,
+	execute as executeDedicatedCephPoolDeleteDelete,
+} from './DedicatedCephPoolDelete.operation';
+import {
+	description as descriptionDedicatedCephPoolGetGet,
+	execute as executeDedicatedCephPoolGetGet,
+} from './DedicatedCephPoolGet.operation';
+import {
+	description as descriptionDedicatedCephPoolGetPoolnameGet,
+	execute as executeDedicatedCephPoolGetPoolnameGet,
+} from './DedicatedCephPoolGetPoolname.operation';
+import {
+	description as descriptionDedicatedCephServiceinfosGetGet,
+	execute as executeDedicatedCephServiceinfosGetGet,
+} from './DedicatedCephServiceinfosGet.operation';
+import {
+	description as descriptionDedicatedCephServiceinfosUpdatePut,
+	execute as executeDedicatedCephServiceinfosUpdatePut,
+} from './DedicatedCephServiceinfosUpdate.operation';
+import {
+	description as descriptionDedicatedCephTaskGetGet,
+	execute as executeDedicatedCephTaskGetGet,
+} from './DedicatedCephTaskGet.operation';
+import {
+	description as descriptionDedicatedCephTaskGetTaskidGet,
+	execute as executeDedicatedCephTaskGetTaskidGet,
+} from './DedicatedCephTaskGetTaskid.operation';
+import {
+	description as descriptionDedicatedCephTerminateCreatePost,
+	execute as executeDedicatedCephTerminateCreatePost,
+} from './DedicatedCephTerminateCreate.operation';
+import {
+	description as descriptionDedicatedCephUpdatePut,
+	execute as executeDedicatedCephUpdatePut,
+} from './DedicatedCephUpdate.operation';
+import {
+	description as descriptionDedicatedCephUserCreatePost,
+	execute as executeDedicatedCephUserCreatePost,
+} from './DedicatedCephUserCreate.operation';
+import {
+	description as descriptionDedicatedCephUserDeleteDelete,
+	execute as executeDedicatedCephUserDeleteDelete,
+} from './DedicatedCephUserDelete.operation';
+import {
+	description as descriptionDedicatedCephUserGetGet,
+	execute as executeDedicatedCephUserGetGet,
+} from './DedicatedCephUserGet.operation';
+import {
 	description as descriptionDedicatedCephUserGetUsernameGet,
+	execute as executeDedicatedCephUserGetUsernameGet,
 } from './DedicatedCephUserGetUsername.operation';
 
-import {
-	execute as executeDedicatedCephPoolGetPoolnameGet,
-	description as descriptionDedicatedCephPoolGetPoolnameGet,
-} from './DedicatedCephPoolGetPoolname.operation';
 
-import {
-	execute as executeDedicatedCephAclGetAclidGet,
-	description as descriptionDedicatedCephAclGetAclidGet,
-} from './DedicatedCephAclGetAclid.operation';
+const { description, execute } = createOperationDispatcher(
+	'dedicatedCephOperation',
+	'dedicatedceph',
+	[
+	{
+		name: 'Ask For The Termination Of Your Service',
+		value: 'DedicatedCephTerminateCreate',
+		action: 'Ask for the termination of your service',
+		execute: executeDedicatedCephTerminateCreatePost,
+		description: descriptionDedicatedCephTerminateCreatePost,
+		show: false,
+		default: true,
+	},
+	{
+		name: 'Clear User-Pool Permission For Single Pool',
+		value: 'CephUserPoolDelete',
+		action: 'Clear user-pool permission for single pool',
+		execute: executeCephUserPoolDeleteDelete,
+		description: descriptionCephUserPoolDeleteDelete,
+		show: false,
+	},
+	{
+		name: 'Confirm Service Termination',
+		value: 'DedicatedCephConfirmterminationCreate',
+		action: 'Confirm service termination',
+		execute: executeDedicatedCephConfirmterminationCreatePost,
+		description: descriptionDedicatedCephConfirmterminationCreatePost,
+		show: false,
+	},
+	{
+		name: 'Create A New Ceph Pool',
+		value: 'DedicatedCephPoolCreate',
+		action: 'Create a new ceph pool',
+		execute: executeDedicatedCephPoolCreatePost,
+		description: descriptionDedicatedCephPoolCreatePost,
+		show: false,
+	},
+	{
+		name: 'Create A New Ceph User',
+		value: 'DedicatedCephUserCreate',
+		action: 'Create a new ceph user',
+		execute: executeDedicatedCephUserCreatePost,
+		description: descriptionDedicatedCephUserCreatePost,
+		show: false,
+	},
+	{
+		name: 'Create New User-Pool Permissions. All Old Permissions Will Be Cleared',
+		value: 'CephUserPoolCreate',
+		action: 'Create new user-pool permissions. All old permissions will be cleared',
+		execute: executeCephUserPoolCreatePost,
+		description: descriptionCephUserPoolCreatePost,
+		show: false,
+	},
+	{
+		name: 'Create One Or More New Ip Acls',
+		value: 'DedicatedCephAclCreate',
+		action: 'Create one or more new IP ACLs',
+		execute: executeDedicatedCephAclCreatePost,
+		description: descriptionDedicatedCephAclCreatePost,
+		show: false,
+	},
+	{
+		name: 'Delete A Ceph Osd Blocklist Entry. Dangerous',
+		value: 'CephOsdBlocklistDelete',
+		action: 'Delete a Ceph OSD blocklist entry. DANGEROUS',
+		execute: executeCephOsdBlocklistDeleteDelete,
+		description: descriptionCephOsdBlocklistDeleteDelete,
+		show: false,
+	},
+	{
+		name: 'Delete A Single Ceph Pool',
+		value: 'DedicatedCephPoolDelete',
+		action: 'Delete a single ceph pool',
+		execute: executeDedicatedCephPoolDeleteDelete,
+		description: descriptionDedicatedCephPoolDeleteDelete,
+		show: false,
+	},
+	{
+		name: 'Delete An Existing Single Ceph User',
+		value: 'DedicatedCephUserDelete',
+		action: 'Delete an existing single ceph user',
+		execute: executeDedicatedCephUserDeleteDelete,
+		description: descriptionDedicatedCephUserDeleteDelete,
+		show: false,
+	},
+	{
+		name: 'Delete Single Ip Acl',
+		value: 'DedicatedCephAclDelete',
+		action: 'Delete single IP ACL',
+		execute: executeDedicatedCephAclDeleteDelete,
+		description: descriptionDedicatedCephAclDeleteDelete,
+		show: false,
+	},
+	{
+		name: 'Disable Cephfs Filesystem',
+		value: 'CephCephfsDisableCreate',
+		action: 'Disable CephFS filesystem',
+		execute: executeCephCephfsDisableCreatePost,
+		description: descriptionCephCephfsDisableCreatePost,
+		show: false,
+	},
+	{
+		name: 'Enable Cephfs Filesystem',
+		value: 'CephCephfsEnableCreate',
+		action: 'Enable CephFS filesystem',
+		execute: executeCephCephfsEnableCreatePost,
+		description: descriptionCephCephfsEnableCreatePost,
+		show: false,
+	},
+	{
+		name: 'Get Cephfs Filesystem Information',
+		value: 'DedicatedCephCephfsGetFsname',
+		action: 'Get CephFS filesystem information',
+		execute: executeDedicatedCephCephfsGetFsnameGet,
+		description: descriptionDedicatedCephCephfsGetFsnameGet,
+		show: false,
+	},
+	{
+		name: 'Get Cluster Details',
+		value: 'DedicatedCephGetServicename',
+		action: 'Get cluster details',
+		execute: executeDedicatedCephGetServicenameGet,
+		description: descriptionDedicatedCephGetServicenameGet,
+		show: false,
+	},
+	{
+		name: 'Get Cluster Health',
+		value: 'DedicatedCephHealthGet',
+		action: 'Get cluster health',
+		execute: executeDedicatedCephHealthGetGet,
+		description: descriptionDedicatedCephHealthGetGet,
+		show: false,
+	},
+	{
+		name: 'Get Details About A Ceph User',
+		value: 'DedicatedCephUserGetUsername',
+		action: 'Get details about a ceph user',
+		execute: executeDedicatedCephUserGetUsernameGet,
+		description: descriptionDedicatedCephUserGetUsernameGet,
+		show: false,
+	},
+	{
+		name: 'Get Details About An Existing Ceph Pool',
+		value: 'DedicatedCephPoolGetPoolname',
+		action: 'Get details about an existing ceph pool',
+		execute: executeDedicatedCephPoolGetPoolnameGet,
+		description: descriptionDedicatedCephPoolGetPoolnameGet,
+		show: false,
+	},
+	{
+		name: 'Get Details About Ip Acl',
+		value: 'DedicatedCephAclGetAclid',
+		action: 'Get details about IP ACL',
+		execute: executeDedicatedCephAclGetAclidGet,
+		description: descriptionDedicatedCephAclGetAclidGet,
+		show: false,
+	},
+	{
+		name: 'Get List Of All Ip Acls In A Cluster',
+		value: 'DedicatedCephAclGet',
+		action: 'Get list of all IP ACLs in a cluster',
+		execute: executeDedicatedCephAclGetGet,
+		description: descriptionDedicatedCephAclGetGet,
+		show: false,
+	},
+	{
+		name: 'Get List Of All Pools In A Cluster',
+		value: 'DedicatedCephPoolGet',
+		action: 'Get list of all pools in a cluster',
+		execute: executeDedicatedCephPoolGetGet,
+		description: descriptionDedicatedCephPoolGetGet,
+		show: false,
+	},
+	{
+		name: 'Get List Of All Users In A Cluster',
+		value: 'DedicatedCephUserGet',
+		action: 'Get list of all users in a cluster',
+		execute: executeDedicatedCephUserGetGet,
+		description: descriptionDedicatedCephUserGetGet,
+		show: false,
+	},
+	{
+		name: 'Get Service Information',
+		value: 'DedicatedCephServiceinfosGet',
+		action: 'Get service information',
+		execute: executeDedicatedCephServiceinfosGetGet,
+		description: descriptionDedicatedCephServiceinfosGetGet,
+		show: false,
+	},
+	{
+		name: 'Get Task Details',
+		value: 'DedicatedCephTaskGetTaskid',
+		action: 'Get task details',
+		execute: executeDedicatedCephTaskGetTaskidGet,
+		description: descriptionDedicatedCephTaskGetTaskidGet,
+		show: false,
+	},
+	{
+		name: 'Launch A Contact Change Procedure',
+		value: 'DedicatedCephChangecontactCreate',
+		action: 'Launch a contact change procedure',
+		execute: executeDedicatedCephChangecontactCreatePost,
+		description: descriptionDedicatedCephChangecontactCreatePost,
+		show: false,
+	},
+	{
+		name: 'List Available Services',
+		value: 'DedicatedCephGet',
+		action: 'List available services',
+		execute: executeDedicatedCephGetGet,
+		description: descriptionDedicatedCephGetGet,
+		show: false,
+	},
+	{
+		name: 'List Cephfs Filesystems',
+		value: 'DedicatedCephCephfsGet',
+		action: 'List CephFS filesystems',
+		execute: executeDedicatedCephCephfsGetGet,
+		description: descriptionDedicatedCephCephfsGetGet,
+		show: false,
+	},
+	{
+		name: 'List Tasks In Progress',
+		value: 'DedicatedCephTaskGet',
+		action: 'List tasks in progress',
+		execute: executeDedicatedCephTaskGetGet,
+		description: descriptionDedicatedCephTaskGetGet,
+		show: false,
+	},
+	{
+		name: 'List User-Pool Permissions',
+		value: 'CephUserPoolGet',
+		action: 'List user-pool permissions',
+		execute: executeCephUserPoolGetGet,
+		description: descriptionCephUserPoolGetGet,
+		show: false,
+	},
+	{
+		name: 'Open 5 Minutes Window For Deleting Single Ceph Pool',
+		value: 'CephPoolAllowdeletionUpdate',
+		action: 'Open 5 minutes window for deleting single ceph pool',
+		execute: executeCephPoolAllowdeletionUpdatePut,
+		description: descriptionCephPoolAllowdeletionUpdatePut,
+		show: false,
+	},
+	{
+		name: 'Purge Cephfs Filesystem',
+		value: 'DedicatedCephCephfsDelete',
+		action: 'Purge CephFS filesystem',
+		execute: executeDedicatedCephCephfsDeleteDelete,
+		description: descriptionDedicatedCephCephfsDeleteDelete,
+		show: false,
+	},
+	{
+		name: 'Retrieve Ceph Osd Blocklist',
+		value: 'CephOsdBlocklistGet',
+		action: 'Retrieve Ceph OSD blocklist',
+		execute: executeCephOsdBlocklistGetGet,
+		description: descriptionCephOsdBlocklistGetGet,
+		show: false,
+	},
+	{
+		name: 'Update Cluster Details',
+		value: 'DedicatedCephUpdate',
+		action: 'Update cluster details',
+		execute: executeDedicatedCephUpdatePut,
+		description: descriptionDedicatedCephUpdatePut,
+		show: false,
+	},
+	{
+		name: 'Update Service Information',
+		value: 'DedicatedCephServiceinfosUpdate',
+		action: 'Update service information',
+		execute: executeDedicatedCephServiceinfosUpdatePut,
+		description: descriptionDedicatedCephServiceinfosUpdatePut,
+		show: false,
+	},
+	{
+		name: 'Update User-Pool Permission For Single Pool',
+		value: 'CephUserPoolUpdate',
+		action: 'Update user-pool permission for single pool',
+		execute: executeCephUserPoolUpdatePut,
+		description: descriptionCephUserPoolUpdatePut,
+		show: false,
+	},
+	],
+);
 
-import {
-	execute as executeDedicatedCephAclGetGet,
-	description as descriptionDedicatedCephAclGetGet,
-} from './DedicatedCephAclGet.operation';
-
-import {
-	execute as executeDedicatedCephPoolGetGet,
-	description as descriptionDedicatedCephPoolGetGet,
-} from './DedicatedCephPoolGet.operation';
-
-import {
-	execute as executeDedicatedCephUserGetGet,
-	description as descriptionDedicatedCephUserGetGet,
-} from './DedicatedCephUserGet.operation';
-
-import {
-	execute as executeDedicatedCephServiceinfosGetGet,
-	description as descriptionDedicatedCephServiceinfosGetGet,
-} from './DedicatedCephServiceinfosGet.operation';
-
-import {
-	execute as executeDedicatedCephTaskGetTaskidGet,
-	description as descriptionDedicatedCephTaskGetTaskidGet,
-} from './DedicatedCephTaskGetTaskid.operation';
-
-import {
-	execute as executeDedicatedCephChangecontactCreatePost,
-	description as descriptionDedicatedCephChangecontactCreatePost,
-} from './DedicatedCephChangecontactCreate.operation';
-
-import {
-	execute as executeDedicatedCephGetGet,
-	description as descriptionDedicatedCephGetGet,
-} from './DedicatedCephGet.operation';
-
-import {
-	execute as executeDedicatedCephCephfsGetGet,
-	description as descriptionDedicatedCephCephfsGetGet,
-} from './DedicatedCephCephfsGet.operation';
-
-import {
-	execute as executeDedicatedCephTaskGetGet,
-	description as descriptionDedicatedCephTaskGetGet,
-} from './DedicatedCephTaskGet.operation';
-
-import {
-	execute as executeCephUserPoolGetGet,
-	description as descriptionCephUserPoolGetGet,
-} from './CephUserPoolGet.operation';
-
-import {
-	execute as executeCephPoolAllowdeletionUpdatePut,
-	description as descriptionCephPoolAllowdeletionUpdatePut,
-} from './CephPoolAllowdeletionUpdate.operation';
-
-import {
-	execute as executeDedicatedCephCephfsDeleteDelete,
-	description as descriptionDedicatedCephCephfsDeleteDelete,
-} from './DedicatedCephCephfsDelete.operation';
-
-import {
-	execute as executeCephOsdBlocklistGetGet,
-	description as descriptionCephOsdBlocklistGetGet,
-} from './CephOsdBlocklistGet.operation';
-
-import {
-	execute as executeDedicatedCephUpdatePut,
-	description as descriptionDedicatedCephUpdatePut,
-} from './DedicatedCephUpdate.operation';
-
-import {
-	execute as executeDedicatedCephServiceinfosUpdatePut,
-	description as descriptionDedicatedCephServiceinfosUpdatePut,
-} from './DedicatedCephServiceinfosUpdate.operation';
-
-import {
-	execute as executeCephUserPoolUpdatePut,
-	description as descriptionCephUserPoolUpdatePut,
-} from './CephUserPoolUpdate.operation';
-
-export function description(displayOptions: IDisplayOptions): INodeProperties[] {
-	const operationProperties: INodeProperties[] = [
-		{
-			displayName: 'Operation',
-			name: 'dedicatedCephOperation',
-			type: 'options',
-			noDataExpression: true,
-			options: [
-				{
-					name: 'Ask For The Termination Of Your Service',
-					value: 'DedicatedCephTerminateCreate',
-					action: 'Ask for the termination of your service',
-				},
-				{
-					name: 'Clear User-Pool Permission For Single Pool',
-					value: 'CephUserPoolDelete',
-					action: 'Clear user-pool permission for single pool',
-				},
-				{
-					name: 'Confirm Service Termination',
-					value: 'DedicatedCephConfirmterminationCreate',
-					action: 'Confirm service termination',
-				},
-				{
-					name: 'Create A New Ceph Pool',
-					value: 'DedicatedCephPoolCreate',
-					action: 'Create a new ceph pool',
-				},
-				{
-					name: 'Create A New Ceph User',
-					value: 'DedicatedCephUserCreate',
-					action: 'Create a new ceph user',
-				},
-				{
-					name: 'Create New User-Pool Permissions. All Old Permissions Will Be Cleared',
-					value: 'CephUserPoolCreate',
-					action: 'Create new user-pool permissions. All old permissions will be cleared',
-				},
-				{
-					name: 'Create One Or More New Ip Acls',
-					value: 'DedicatedCephAclCreate',
-					action: 'Create one or more new IP ACLs',
-				},
-				{
-					name: 'Delete A Ceph Osd Blocklist Entry. Dangerous',
-					value: 'CephOsdBlocklistDelete',
-					action: 'Delete a Ceph OSD blocklist entry. DANGEROUS',
-				},
-				{
-					name: 'Delete A Single Ceph Pool',
-					value: 'DedicatedCephPoolDelete',
-					action: 'Delete a single ceph pool',
-				},
-				{
-					name: 'Delete An Existing Single Ceph User',
-					value: 'DedicatedCephUserDelete',
-					action: 'Delete an existing single ceph user',
-				},
-				{
-					name: 'Delete Single Ip Acl',
-					value: 'DedicatedCephAclDelete',
-					action: 'Delete single IP ACL',
-				},
-				{
-					name: 'Disable Cephfs Filesystem',
-					value: 'CephCephfsDisableCreate',
-					action: 'Disable CephFS filesystem',
-				},
-				{
-					name: 'Enable Cephfs Filesystem',
-					value: 'CephCephfsEnableCreate',
-					action: 'Enable CephFS filesystem',
-				},
-				{
-					name: 'Get Cephfs Filesystem Information',
-					value: 'DedicatedCephCephfsGetFsname',
-					action: 'Get CephFS filesystem information',
-				},
-				{
-					name: 'Get Cluster Details',
-					value: 'DedicatedCephGetServicename',
-					action: 'Get cluster details',
-				},
-				{
-					name: 'Get Cluster Health',
-					value: 'DedicatedCephHealthGet',
-					action: 'Get cluster health',
-				},
-				{
-					name: 'Get Details About A Ceph User',
-					value: 'DedicatedCephUserGetUsername',
-					action: 'Get details about a ceph user',
-				},
-				{
-					name: 'Get Details About An Existing Ceph Pool',
-					value: 'DedicatedCephPoolGetPoolname',
-					action: 'Get details about an existing ceph pool',
-				},
-				{
-					name: 'Get Details About Ip Acl',
-					value: 'DedicatedCephAclGetAclid',
-					action: 'Get details about IP ACL',
-				},
-				{
-					name: 'Get List Of All Ip Acls In A Cluster',
-					value: 'DedicatedCephAclGet',
-					action: 'Get list of all IP ACLs in a cluster',
-				},
-				{
-					name: 'Get List Of All Pools In A Cluster',
-					value: 'DedicatedCephPoolGet',
-					action: 'Get list of all pools in a cluster',
-				},
-				{
-					name: 'Get List Of All Users In A Cluster',
-					value: 'DedicatedCephUserGet',
-					action: 'Get list of all users in a cluster',
-				},
-				{
-					name: 'Get Service Information',
-					value: 'DedicatedCephServiceinfosGet',
-					action: 'Get service information',
-				},
-				{
-					name: 'Get Task Details',
-					value: 'DedicatedCephTaskGetTaskid',
-					action: 'Get task details',
-				},
-				{
-					name: 'Launch A Contact Change Procedure',
-					value: 'DedicatedCephChangecontactCreate',
-					action: 'Launch a contact change procedure',
-				},
-				{
-					name: 'List Available Services',
-					value: 'DedicatedCephGet',
-					action: 'List available services',
-				},
-				{
-					name: 'List Cephfs Filesystems',
-					value: 'DedicatedCephCephfsGet',
-					action: 'List CephFS filesystems',
-				},
-				{
-					name: 'List Tasks In Progress',
-					value: 'DedicatedCephTaskGet',
-					action: 'List tasks in progress',
-				},
-				{
-					name: 'List User-Pool Permissions',
-					value: 'CephUserPoolGet',
-					action: 'List user-pool permissions',
-				},
-				{
-					name: 'Open 5 Minutes Window For Deleting Single Ceph Pool',
-					value: 'CephPoolAllowdeletionUpdate',
-					action: 'Open 5 minutes window for deleting single ceph pool',
-				},
-				{
-					name: 'Purge Cephfs Filesystem',
-					value: 'DedicatedCephCephfsDelete',
-					action: 'Purge CephFS filesystem',
-				},
-				{
-					name: 'Retrieve Ceph Osd Blocklist',
-					value: 'CephOsdBlocklistGet',
-					action: 'Retrieve Ceph OSD blocklist',
-				},
-				{
-					name: 'Update Cluster Details',
-					value: 'DedicatedCephUpdate',
-					action: 'Update cluster details',
-				},
-				{
-					name: 'Update Service Information',
-					value: 'DedicatedCephServiceinfosUpdate',
-					action: 'Update service information',
-				},
-				{
-					name: 'Update User-Pool Permission For Single Pool',
-					value: 'CephUserPoolUpdate',
-					action: 'Update user-pool permission for single pool',
-				},
-			],
-			default: 'DedicatedCephTerminateCreate',
-			displayOptions,
-		},
-	];
-
-	const properties: INodeProperties[] = [
-		...operationProperties,
-		...descriptionDedicatedCephTerminateCreatePost({}),
-		...descriptionCephUserPoolDeleteDelete(),
-		...descriptionDedicatedCephConfirmterminationCreatePost(),
-		...descriptionDedicatedCephPoolCreatePost(),
-		...descriptionDedicatedCephUserCreatePost(),
-		...descriptionCephUserPoolCreatePost(),
-		...descriptionDedicatedCephAclCreatePost(),
-		...descriptionCephOsdBlocklistDeleteDelete(),
-		...descriptionDedicatedCephPoolDeleteDelete(),
-		...descriptionDedicatedCephUserDeleteDelete(),
-		...descriptionDedicatedCephAclDeleteDelete(),
-		...descriptionCephCephfsDisableCreatePost(),
-		...descriptionCephCephfsEnableCreatePost(),
-		...descriptionDedicatedCephCephfsGetFsnameGet(),
-		...descriptionDedicatedCephGetServicenameGet(),
-		...descriptionDedicatedCephHealthGetGet(),
-		...descriptionDedicatedCephUserGetUsernameGet(),
-		...descriptionDedicatedCephPoolGetPoolnameGet(),
-		...descriptionDedicatedCephAclGetAclidGet(),
-		...descriptionDedicatedCephAclGetGet(),
-		...descriptionDedicatedCephPoolGetGet(),
-		...descriptionDedicatedCephUserGetGet(),
-		...descriptionDedicatedCephServiceinfosGetGet(),
-		...descriptionDedicatedCephTaskGetTaskidGet(),
-		...descriptionDedicatedCephChangecontactCreatePost(),
-		...descriptionDedicatedCephGetGet(),
-		...descriptionDedicatedCephCephfsGetGet(),
-		...descriptionDedicatedCephTaskGetGet(),
-		...descriptionCephUserPoolGetGet(),
-		...descriptionCephPoolAllowdeletionUpdatePut(),
-		...descriptionDedicatedCephCephfsDeleteDelete(),
-		...descriptionCephOsdBlocklistGetGet(),
-		...descriptionDedicatedCephUpdatePut(),
-		...descriptionDedicatedCephServiceinfosUpdatePut(),
-		...descriptionCephUserPoolUpdatePut(),
-	];
-
-	return properties;
-}
-
-export async function execute(
-	this: IExecuteFunctions,
-	itemIndex?: number,
-): Promise<INodeExecutionData[]> {
-	const operation = this.getNodeParameter('dedicatedCephOperation', itemIndex ?? 0, {
-		extractValue: true,
-	});
-
-	switch (operation) {
-		case 'DedicatedCephTerminateCreate':
-			return executeDedicatedCephTerminateCreatePost.call(this, itemIndex ?? 0);
-		case 'CephUserPoolDelete':
-			return executeCephUserPoolDeleteDelete.call(this, itemIndex ?? 0);
-		case 'DedicatedCephConfirmterminationCreate':
-			return executeDedicatedCephConfirmterminationCreatePost.call(this, itemIndex ?? 0);
-		case 'DedicatedCephPoolCreate':
-			return executeDedicatedCephPoolCreatePost.call(this, itemIndex ?? 0);
-		case 'DedicatedCephUserCreate':
-			return executeDedicatedCephUserCreatePost.call(this, itemIndex ?? 0);
-		case 'CephUserPoolCreate':
-			return executeCephUserPoolCreatePost.call(this, itemIndex ?? 0);
-		case 'DedicatedCephAclCreate':
-			return executeDedicatedCephAclCreatePost.call(this, itemIndex ?? 0);
-		case 'CephOsdBlocklistDelete':
-			return executeCephOsdBlocklistDeleteDelete.call(this, itemIndex ?? 0);
-		case 'DedicatedCephPoolDelete':
-			return executeDedicatedCephPoolDeleteDelete.call(this, itemIndex ?? 0);
-		case 'DedicatedCephUserDelete':
-			return executeDedicatedCephUserDeleteDelete.call(this, itemIndex ?? 0);
-		case 'DedicatedCephAclDelete':
-			return executeDedicatedCephAclDeleteDelete.call(this, itemIndex ?? 0);
-		case 'CephCephfsDisableCreate':
-			return executeCephCephfsDisableCreatePost.call(this, itemIndex ?? 0);
-		case 'CephCephfsEnableCreate':
-			return executeCephCephfsEnableCreatePost.call(this, itemIndex ?? 0);
-		case 'DedicatedCephCephfsGetFsname':
-			return executeDedicatedCephCephfsGetFsnameGet.call(this, itemIndex ?? 0);
-		case 'DedicatedCephGetServicename':
-			return executeDedicatedCephGetServicenameGet.call(this, itemIndex ?? 0);
-		case 'DedicatedCephHealthGet':
-			return executeDedicatedCephHealthGetGet.call(this, itemIndex ?? 0);
-		case 'DedicatedCephUserGetUsername':
-			return executeDedicatedCephUserGetUsernameGet.call(this, itemIndex ?? 0);
-		case 'DedicatedCephPoolGetPoolname':
-			return executeDedicatedCephPoolGetPoolnameGet.call(this, itemIndex ?? 0);
-		case 'DedicatedCephAclGetAclid':
-			return executeDedicatedCephAclGetAclidGet.call(this, itemIndex ?? 0);
-		case 'DedicatedCephAclGet':
-			return executeDedicatedCephAclGetGet.call(this, itemIndex ?? 0);
-		case 'DedicatedCephPoolGet':
-			return executeDedicatedCephPoolGetGet.call(this, itemIndex ?? 0);
-		case 'DedicatedCephUserGet':
-			return executeDedicatedCephUserGetGet.call(this, itemIndex ?? 0);
-		case 'DedicatedCephServiceinfosGet':
-			return executeDedicatedCephServiceinfosGetGet.call(this, itemIndex ?? 0);
-		case 'DedicatedCephTaskGetTaskid':
-			return executeDedicatedCephTaskGetTaskidGet.call(this, itemIndex ?? 0);
-		case 'DedicatedCephChangecontactCreate':
-			return executeDedicatedCephChangecontactCreatePost.call(this, itemIndex ?? 0);
-		case 'DedicatedCephGet':
-			return executeDedicatedCephGetGet.call(this, itemIndex ?? 0);
-		case 'DedicatedCephCephfsGet':
-			return executeDedicatedCephCephfsGetGet.call(this, itemIndex ?? 0);
-		case 'DedicatedCephTaskGet':
-			return executeDedicatedCephTaskGetGet.call(this, itemIndex ?? 0);
-		case 'CephUserPoolGet':
-			return executeCephUserPoolGetGet.call(this, itemIndex ?? 0);
-		case 'CephPoolAllowdeletionUpdate':
-			return executeCephPoolAllowdeletionUpdatePut.call(this, itemIndex ?? 0);
-		case 'DedicatedCephCephfsDelete':
-			return executeDedicatedCephCephfsDeleteDelete.call(this, itemIndex ?? 0);
-		case 'CephOsdBlocklistGet':
-			return executeCephOsdBlocklistGetGet.call(this, itemIndex ?? 0);
-		case 'DedicatedCephUpdate':
-			return executeDedicatedCephUpdatePut.call(this, itemIndex ?? 0);
-		case 'DedicatedCephServiceinfosUpdate':
-			return executeDedicatedCephServiceinfosUpdatePut.call(this, itemIndex ?? 0);
-		case 'CephUserPoolUpdate':
-			return executeCephUserPoolUpdatePut.call(this, itemIndex ?? 0);
-	}
-
-	throw new Error(`Unsupported operation "${operation}" for resource "/dedicated/ceph"`);
-}
+export { description, execute };

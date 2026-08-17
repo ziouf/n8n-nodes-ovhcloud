@@ -1,158 +1,121 @@
-import type {
-	IDisplayOptions,
-	IExecuteFunctions,
-	INodeExecutionData,
-	INodeProperties,
-} from 'n8n-workflow';
+import { createOperationDispatcher } from '../../shared/nodes/createNodeDispatcher';
 
 import {
-	execute as executeDedicatedClusterTerminateCreatePost,
+	description as descriptionClusterAvailabilitiesRawGetGet,
+	execute as executeClusterAvailabilitiesRawGetGet,
+} from './ClusterAvailabilitiesRawGet.operation';
+import {
+	description as descriptionDedicatedClusterAvailabilitiesGetGet,
+	execute as executeDedicatedClusterAvailabilitiesGetGet,
+} from './DedicatedClusterAvailabilitiesGet.operation';
+import {
+	description as descriptionDedicatedClusterChangecontactCreatePost,
+	execute as executeDedicatedClusterChangecontactCreatePost,
+} from './DedicatedClusterChangecontactCreate.operation';
+import {
+	description as descriptionDedicatedClusterConfirmterminationCreatePost,
+	execute as executeDedicatedClusterConfirmterminationCreatePost,
+} from './DedicatedClusterConfirmterminationCreate.operation';
+import {
+	description as descriptionDedicatedClusterGetGet,
+	execute as executeDedicatedClusterGetGet,
+} from './DedicatedClusterGet.operation';
+import {
+	description as descriptionDedicatedClusterGetServicenameGet,
+	execute as executeDedicatedClusterGetServicenameGet,
+} from './DedicatedClusterGetServicename.operation';
+import {
+	description as descriptionDedicatedClusterServiceinfosGetGet,
+	execute as executeDedicatedClusterServiceinfosGetGet,
+} from './DedicatedClusterServiceinfosGet.operation';
+import {
+	description as descriptionDedicatedClusterServiceinfosUpdatePut,
+	execute as executeDedicatedClusterServiceinfosUpdatePut,
+} from './DedicatedClusterServiceinfosUpdate.operation';
+import {
 	description as descriptionDedicatedClusterTerminateCreatePost,
+	execute as executeDedicatedClusterTerminateCreatePost,
 } from './DedicatedClusterTerminateCreate.operation';
 
-import {
-	execute as executeDedicatedClusterConfirmterminationCreatePost,
-	description as descriptionDedicatedClusterConfirmterminationCreatePost,
-} from './DedicatedClusterConfirmterminationCreate.operation';
 
-import {
-	execute as executeDedicatedClusterAvailabilitiesGetGet,
-	description as descriptionDedicatedClusterAvailabilitiesGetGet,
-} from './DedicatedClusterAvailabilitiesGet.operation';
+const { description, execute } = createOperationDispatcher(
+	'dedicatedClusterOperation',
+	'dedicatedcluster',
+	[
+	{
+		name: 'Ask For The Termination Of Your Service',
+		value: 'DedicatedClusterTerminateCreate',
+		action: 'Ask for the termination of your service',
+		execute: executeDedicatedClusterTerminateCreatePost,
+		description: descriptionDedicatedClusterTerminateCreatePost,
+		show: false,
+		default: true,
+	},
+	{
+		name: 'Confirm Service Termination',
+		value: 'DedicatedClusterConfirmterminationCreate',
+		action: 'Confirm service termination',
+		execute: executeDedicatedClusterConfirmterminationCreatePost,
+		description: descriptionDedicatedClusterConfirmterminationCreatePost,
+		show: false,
+	},
+	{
+		name: 'Fetch The Availabilities For A Given Cluster Configuration',
+		value: 'DedicatedClusterAvailabilitiesGet',
+		action: 'Fetch the availabilities for a given cluster configuration',
+		execute: executeDedicatedClusterAvailabilitiesGetGet,
+		description: descriptionDedicatedClusterAvailabilitiesGetGet,
+		show: false,
+	},
+	{
+		name: 'Get Cluster Info',
+		value: 'DedicatedClusterGetServicename',
+		action: 'Get cluster info',
+		execute: executeDedicatedClusterGetServicenameGet,
+		description: descriptionDedicatedClusterGetServicenameGet,
+		show: false,
+	},
+	{
+		name: 'Get Service Information',
+		value: 'DedicatedClusterServiceinfosGet',
+		action: 'Get service information',
+		execute: executeDedicatedClusterServiceinfosGetGet,
+		description: descriptionDedicatedClusterServiceinfosGetGet,
+		show: false,
+	},
+	{
+		name: 'Launch A Contact Change Procedure',
+		value: 'DedicatedClusterChangecontactCreate',
+		action: 'Launch a contact change procedure',
+		execute: executeDedicatedClusterChangecontactCreatePost,
+		description: descriptionDedicatedClusterChangecontactCreatePost,
+		show: false,
+	},
+	{
+		name: 'List Dedicated Clusters',
+		value: 'DedicatedClusterGet',
+		action: 'List dedicated clusters',
+		execute: executeDedicatedClusterGetGet,
+		description: descriptionDedicatedClusterGetGet,
+		show: false,
+	},
+	{
+		name: 'List The Raw Availability For Cluster',
+		value: 'ClusterAvailabilitiesRawGet',
+		action: 'List the raw availability for cluster',
+		execute: executeClusterAvailabilitiesRawGetGet,
+		description: descriptionClusterAvailabilitiesRawGetGet,
+		show: false,
+	},
+	{
+		name: 'Update Service Information',
+		value: 'DedicatedClusterServiceinfosUpdate',
+		action: 'Update service information',
+		execute: executeDedicatedClusterServiceinfosUpdatePut,
+		description: descriptionDedicatedClusterServiceinfosUpdatePut,
+		show: false,
+	},
+	],
+);
 
-import {
-	execute as executeDedicatedClusterGetServicenameGet,
-	description as descriptionDedicatedClusterGetServicenameGet,
-} from './DedicatedClusterGetServicename.operation';
-
-import {
-	execute as executeDedicatedClusterServiceinfosGetGet,
-	description as descriptionDedicatedClusterServiceinfosGetGet,
-} from './DedicatedClusterServiceinfosGet.operation';
-
-import {
-	execute as executeDedicatedClusterChangecontactCreatePost,
-	description as descriptionDedicatedClusterChangecontactCreatePost,
-} from './DedicatedClusterChangecontactCreate.operation';
-
-import {
-	execute as executeDedicatedClusterGetGet,
-	description as descriptionDedicatedClusterGetGet,
-} from './DedicatedClusterGet.operation';
-
-import {
-	execute as executeClusterAvailabilitiesRawGetGet,
-	description as descriptionClusterAvailabilitiesRawGetGet,
-} from './ClusterAvailabilitiesRawGet.operation';
-
-import {
-	execute as executeDedicatedClusterServiceinfosUpdatePut,
-	description as descriptionDedicatedClusterServiceinfosUpdatePut,
-} from './DedicatedClusterServiceinfosUpdate.operation';
-
-export function description(displayOptions: IDisplayOptions): INodeProperties[] {
-	const operationProperties: INodeProperties[] = [
-		{
-			displayName: 'Operation',
-			name: 'dedicatedClusterOperation',
-			type: 'options',
-			noDataExpression: true,
-			options: [
-				{
-					name: 'Ask For The Termination Of Your Service',
-					value: 'DedicatedClusterTerminateCreate',
-					action: 'Ask for the termination of your service',
-				},
-				{
-					name: 'Confirm Service Termination',
-					value: 'DedicatedClusterConfirmterminationCreate',
-					action: 'Confirm service termination',
-				},
-				{
-					name: 'Fetch The Availabilities For A Given Cluster Configuration',
-					value: 'DedicatedClusterAvailabilitiesGet',
-					action: 'Fetch the availabilities for a given cluster configuration',
-				},
-				{
-					name: 'Get Cluster Info',
-					value: 'DedicatedClusterGetServicename',
-					action: 'Get cluster info',
-				},
-				{
-					name: 'Get Service Information',
-					value: 'DedicatedClusterServiceinfosGet',
-					action: 'Get service information',
-				},
-				{
-					name: 'Launch A Contact Change Procedure',
-					value: 'DedicatedClusterChangecontactCreate',
-					action: 'Launch a contact change procedure',
-				},
-				{
-					name: 'List Dedicated Clusters',
-					value: 'DedicatedClusterGet',
-					action: 'List dedicated clusters',
-				},
-				{
-					name: 'List The Raw Availability For Cluster',
-					value: 'ClusterAvailabilitiesRawGet',
-					action: 'List the raw availability for cluster',
-				},
-				{
-					name: 'Update Service Information',
-					value: 'DedicatedClusterServiceinfosUpdate',
-					action: 'Update service information',
-				},
-			],
-			default: 'DedicatedClusterTerminateCreate',
-			displayOptions,
-		},
-	];
-
-	const properties: INodeProperties[] = [
-		...operationProperties,
-		...descriptionDedicatedClusterTerminateCreatePost({}),
-		...descriptionDedicatedClusterConfirmterminationCreatePost(),
-		...descriptionDedicatedClusterAvailabilitiesGetGet(),
-		...descriptionDedicatedClusterGetServicenameGet(),
-		...descriptionDedicatedClusterServiceinfosGetGet(),
-		...descriptionDedicatedClusterChangecontactCreatePost(),
-		...descriptionDedicatedClusterGetGet(),
-		...descriptionClusterAvailabilitiesRawGetGet(),
-		...descriptionDedicatedClusterServiceinfosUpdatePut(),
-	];
-
-	return properties;
-}
-
-export async function execute(
-	this: IExecuteFunctions,
-	itemIndex?: number,
-): Promise<INodeExecutionData[]> {
-	const operation = this.getNodeParameter('dedicatedClusterOperation', itemIndex ?? 0, {
-		extractValue: true,
-	});
-
-	switch (operation) {
-		case 'DedicatedClusterTerminateCreate':
-			return executeDedicatedClusterTerminateCreatePost.call(this, itemIndex ?? 0);
-		case 'DedicatedClusterConfirmterminationCreate':
-			return executeDedicatedClusterConfirmterminationCreatePost.call(this, itemIndex ?? 0);
-		case 'DedicatedClusterAvailabilitiesGet':
-			return executeDedicatedClusterAvailabilitiesGetGet.call(this, itemIndex ?? 0);
-		case 'DedicatedClusterGetServicename':
-			return executeDedicatedClusterGetServicenameGet.call(this, itemIndex ?? 0);
-		case 'DedicatedClusterServiceinfosGet':
-			return executeDedicatedClusterServiceinfosGetGet.call(this, itemIndex ?? 0);
-		case 'DedicatedClusterChangecontactCreate':
-			return executeDedicatedClusterChangecontactCreatePost.call(this, itemIndex ?? 0);
-		case 'DedicatedClusterGet':
-			return executeDedicatedClusterGetGet.call(this, itemIndex ?? 0);
-		case 'ClusterAvailabilitiesRawGet':
-			return executeClusterAvailabilitiesRawGetGet.call(this, itemIndex ?? 0);
-		case 'DedicatedClusterServiceinfosUpdate':
-			return executeDedicatedClusterServiceinfosUpdatePut.call(this, itemIndex ?? 0);
-	}
-
-	throw new Error(`Unsupported operation "${operation}" for resource "/dedicated/cluster"`);
-}
+export { description, execute };
