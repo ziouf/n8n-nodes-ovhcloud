@@ -1,1577 +1,1190 @@
-import type {
-	IExecuteFunctions,
-	INodeExecutionData,
-	INodeProperties,
-	IDisplayOptions,
-} from 'n8n-workflow';
+import { createOperationDispatcher } from '../../shared/nodes/createNodeDispatcher';
 
 import {
-	execute as executeDelegatedAccountFilterChangeActivityCreate,
 	description as descriptionDelegatedAccountFilterChangeActivityCreate,
+	execute as executeDelegatedAccountFilterChangeActivityCreate,
 } from './delegatedAccount/DelegatedAccountFilterChangeActivityCreate.operation';
 import {
-	execute as executeDelegatedAccountFilterChangePriorityCreate,
 	description as descriptionDelegatedAccountFilterChangePriorityCreate,
+	execute as executeDelegatedAccountFilterChangePriorityCreate,
 } from './delegatedAccount/DelegatedAccountFilterChangePriorityCreate.operation';
 import {
-	execute as executeDelegatedAccountFilterCreate,
 	description as descriptionDelegatedAccountFilterCreate,
+	execute as executeDelegatedAccountFilterCreate,
 } from './delegatedAccount/DelegatedAccountFilterCreate.operation';
 import {
-	execute as executeDelegatedAccountFilterDelete,
 	description as descriptionDelegatedAccountFilterDelete,
+	execute as executeDelegatedAccountFilterDelete,
 } from './delegatedAccount/DelegatedAccountFilterDelete.operation';
 import {
-	execute as executeDelegatedAccountFilterGet,
 	description as descriptionDelegatedAccountFilterGet,
+	execute as executeDelegatedAccountFilterGet,
 } from './delegatedAccount/DelegatedAccountFilterGet.operation';
 import {
-	execute as executeDelegatedAccountFilterList,
 	description as descriptionDelegatedAccountFilterList,
+	execute as executeDelegatedAccountFilterList,
 } from './delegatedAccount/DelegatedAccountFilterList.operation';
 import {
-	execute as executeDelegatedAccountFilterRuleDelete,
 	description as descriptionDelegatedAccountFilterRuleDelete,
+	execute as executeDelegatedAccountFilterRuleDelete,
 } from './delegatedAccount/DelegatedAccountFilterRuleDelete.operation';
 import {
-	execute as executeDelegatedAccountFilterRuleGet,
 	description as descriptionDelegatedAccountFilterRuleGet,
+	execute as executeDelegatedAccountFilterRuleGet,
 } from './delegatedAccount/DelegatedAccountFilterRuleGet.operation';
 import {
-	execute as executeDelegatedAccountGet,
 	description as descriptionDelegatedAccountGet,
+	execute as executeDelegatedAccountGet,
 } from './delegatedAccount/DelegatedAccountGet.operation';
 import {
-	execute as executeDelegatedAccountGet10,
 	description as descriptionDelegatedAccountGet10,
+	execute as executeDelegatedAccountGet10,
 } from './delegatedAccount/DelegatedAccountGet10.operation';
 import {
-	execute as executeDelegatedAccountGet11,
 	description as descriptionDelegatedAccountGet11,
+	execute as executeDelegatedAccountGet11,
 } from './delegatedAccount/DelegatedAccountGet11.operation';
 import {
-	execute as executeDelegatedAccountGet12,
 	description as descriptionDelegatedAccountGet12,
+	execute as executeDelegatedAccountGet12,
 } from './delegatedAccount/DelegatedAccountGet12.operation';
 import {
-	execute as executeDelegatedAccountGet2,
 	description as descriptionDelegatedAccountGet2,
+	execute as executeDelegatedAccountGet2,
 } from './delegatedAccount/DelegatedAccountGet2.operation';
 import {
-	execute as executeDelegatedAccountGet3,
 	description as descriptionDelegatedAccountGet3,
+	execute as executeDelegatedAccountGet3,
 } from './delegatedAccount/DelegatedAccountGet3.operation';
 import {
-	execute as executeDelegatedAccountGet4,
 	description as descriptionDelegatedAccountGet4,
+	execute as executeDelegatedAccountGet4,
 } from './delegatedAccount/DelegatedAccountGet4.operation';
 import {
-	execute as executeDelegatedAccountGet5,
 	description as descriptionDelegatedAccountGet5,
+	execute as executeDelegatedAccountGet5,
 } from './delegatedAccount/DelegatedAccountGet5.operation';
 import {
-	execute as executeDelegatedAccountGet6,
 	description as descriptionDelegatedAccountGet6,
+	execute as executeDelegatedAccountGet6,
 } from './delegatedAccount/DelegatedAccountGet6.operation';
 import {
-	execute as executeDelegatedAccountGet7,
 	description as descriptionDelegatedAccountGet7,
+	execute as executeDelegatedAccountGet7,
 } from './delegatedAccount/DelegatedAccountGet7.operation';
 import {
-	execute as executeDelegatedAccountGet8,
 	description as descriptionDelegatedAccountGet8,
+	execute as executeDelegatedAccountGet8,
 } from './delegatedAccount/DelegatedAccountGet8.operation';
 import {
-	execute as executeDelegatedAccountGet9,
 	description as descriptionDelegatedAccountGet9,
+	execute as executeDelegatedAccountGet9,
 } from './delegatedAccount/DelegatedAccountGet9.operation';
 import {
-	execute as executeDomainAccountChangePasswordCreate,
 	description as descriptionDomainAccountChangePasswordCreate,
+	execute as executeDomainAccountChangePasswordCreate,
 } from './domainAccount/DomainAccountChangePasswordCreate.operation';
 import {
-	execute as executeDomainAccountCreate,
 	description as descriptionDomainAccountCreate,
+	execute as executeDomainAccountCreate,
 } from './domainAccount/DomainAccountCreate.operation';
 import {
-	execute as executeDomainAccountDelegationCreate,
 	description as descriptionDomainAccountDelegationCreate,
+	execute as executeDomainAccountDelegationCreate,
 } from './domainAccount/DomainAccountDelegationCreate.operation';
 import {
-	execute as executeDomainAccountDelegationDelete,
 	description as descriptionDomainAccountDelegationDelete,
+	execute as executeDomainAccountDelegationDelete,
 } from './domainAccount/DomainAccountDelegationDelete.operation';
 import {
-	execute as executeDomainAccountDelegationGet,
 	description as descriptionDomainAccountDelegationGet,
+	execute as executeDomainAccountDelegationGet,
 } from './domainAccount/DomainAccountDelegationGet.operation';
 import {
-	execute as executeDomainAccountDelegationList,
 	description as descriptionDomainAccountDelegationList,
+	execute as executeDomainAccountDelegationList,
 } from './domainAccount/DomainAccountDelegationList.operation';
 import {
-	execute as executeDomainAccountDelete,
 	description as descriptionDomainAccountDelete,
+	execute as executeDomainAccountDelete,
 } from './domainAccount/DomainAccountDelete.operation';
 import {
-	execute as executeDomainAccountFilterChangeActivityCreate,
 	description as descriptionDomainAccountFilterChangeActivityCreate,
+	execute as executeDomainAccountFilterChangeActivityCreate,
 } from './domainAccount/DomainAccountFilterChangeActivityCreate.operation';
 import {
-	execute as executeDomainAccountFilterChangePriorityCreate,
 	description as descriptionDomainAccountFilterChangePriorityCreate,
+	execute as executeDomainAccountFilterChangePriorityCreate,
 } from './domainAccount/DomainAccountFilterChangePriorityCreate.operation';
 import {
-	execute as executeDomainAccountFilterCreate,
 	description as descriptionDomainAccountFilterCreate,
+	execute as executeDomainAccountFilterCreate,
 } from './domainAccount/DomainAccountFilterCreate.operation';
 import {
-	execute as executeDomainAccountFilterDelete,
 	description as descriptionDomainAccountFilterDelete,
+	execute as executeDomainAccountFilterDelete,
 } from './domainAccount/DomainAccountFilterDelete.operation';
 import {
-	execute as executeDomainAccountFilterGet,
 	description as descriptionDomainAccountFilterGet,
+	execute as executeDomainAccountFilterGet,
 } from './domainAccount/DomainAccountFilterGet.operation';
 import {
-	execute as executeDomainAccountFilterList,
 	description as descriptionDomainAccountFilterList,
+	execute as executeDomainAccountFilterList,
 } from './domainAccount/DomainAccountFilterList.operation';
 import {
-	execute as executeDomainAccountFilterRuleCreate,
 	description as descriptionDomainAccountFilterRuleCreate,
+	execute as executeDomainAccountFilterRuleCreate,
 } from './domainAccount/DomainAccountFilterRuleCreate.operation';
 import {
-	execute as executeDomainAccountFilterRuleDelete,
 	description as descriptionDomainAccountFilterRuleDelete,
+	execute as executeDomainAccountFilterRuleDelete,
 } from './domainAccount/DomainAccountFilterRuleDelete.operation';
 import {
-	execute as executeDomainAccountFilterRuleGet,
 	description as descriptionDomainAccountFilterRuleGet,
+	execute as executeDomainAccountFilterRuleGet,
 } from './domainAccount/DomainAccountFilterRuleGet.operation';
 import {
-	execute as executeDomainAccountFilterRuleList,
 	description as descriptionDomainAccountFilterRuleList,
+	execute as executeDomainAccountFilterRuleList,
 } from './domainAccount/DomainAccountFilterRuleList.operation';
 import {
-	execute as executeDomainAccountGet,
 	description as descriptionDomainAccountGet,
+	execute as executeDomainAccountGet,
 } from './domainAccount/DomainAccountGet.operation';
 import {
-	execute as executeDomainAccountList,
 	description as descriptionDomainAccountList,
+	execute as executeDomainAccountList,
 } from './domainAccount/DomainAccountList.operation';
 import {
-	execute as executeDomainAccountMigrateCheckGet,
 	description as descriptionDomainAccountMigrateCheckGet,
+	execute as executeDomainAccountMigrateCheckGet,
 } from './domainAccount/DomainAccountMigrateCheckGet.operation';
 import {
-	execute as executeDomainAccountMigrateCreate,
 	description as descriptionDomainAccountMigrateCreate,
+	execute as executeDomainAccountMigrateCreate,
 } from './domainAccount/DomainAccountMigrateCreate.operation';
 import {
-	execute as executeDomainAccountMigrateDestinationEmailGet,
 	description as descriptionDomainAccountMigrateDestinationEmailGet,
+	execute as executeDomainAccountMigrateDestinationEmailGet,
 } from './domainAccount/DomainAccountMigrateDestinationEmailGet.operation';
 import {
-	execute as executeDomainAccountMigrateDestinationEmailList,
 	description as descriptionDomainAccountMigrateDestinationEmailList,
+	execute as executeDomainAccountMigrateDestinationEmailList,
 } from './domainAccount/DomainAccountMigrateDestinationEmailList.operation';
 import {
-	execute as executeDomainAccountMigrateGet,
 	description as descriptionDomainAccountMigrateGet,
+	execute as executeDomainAccountMigrateGet,
 } from './domainAccount/DomainAccountMigrateGet.operation';
 import {
-	execute as executeDomainAccountMigrateGet2,
 	description as descriptionDomainAccountMigrateGet2,
+	execute as executeDomainAccountMigrateGet2,
 } from './domainAccount/DomainAccountMigrateGet2.operation';
 import {
-	execute as executeDomainAccountUpdate,
 	description as descriptionDomainAccountUpdate,
+	execute as executeDomainAccountUpdate,
 } from './domainAccount/DomainAccountUpdate.operation';
 import {
-	execute as executeDomainAccountUpdateUsagePost,
 	description as descriptionDomainAccountUpdateUsagePost,
+	execute as executeDomainAccountUpdateUsagePost,
 } from './domainAccount/DomainAccountUpdateUsagePost.operation';
 import {
-	execute as executeDomainAccountUsageGet,
 	description as descriptionDomainAccountUsageGet,
+	execute as executeDomainAccountUsageGet,
 } from './domainAccount/DomainAccountUsageGet.operation';
 import {
-	execute as executeDomainAclCreate,
 	description as descriptionDomainAclCreate,
+	execute as executeDomainAclCreate,
 } from './domainAcl/DomainAclCreate.operation';
 import {
-	execute as executeDomainAclDelete,
 	description as descriptionDomainAclDelete,
+	execute as executeDomainAclDelete,
 } from './domainAcl/DomainAclDelete.operation';
 import {
-	execute as executeDomainAclGet,
 	description as descriptionDomainAclGet,
+	execute as executeDomainAclGet,
 } from './domainAcl/DomainAclGet.operation';
 import {
-	execute as executeDomainAclList,
 	description as descriptionDomainAclList,
+	execute as executeDomainAclList,
 } from './domainAcl/DomainAclList.operation';
 import {
-	execute as executeDomainChangeContactCreate,
 	description as descriptionDomainChangeContactCreate,
+	execute as executeDomainChangeContactCreate,
 } from './domainChangeContact/DomainChangeContactCreate.operation';
 import {
-	execute as executeDomainChangeDnsMXFilterCreate,
 	description as descriptionDomainChangeDnsMXFilterCreate,
+	execute as executeDomainChangeDnsMXFilterCreate,
 } from './domainChangeDnsMXFilter/DomainChangeDnsMXFilterCreate.operation';
 import {
-	execute as executeDomainConfirmTerminationCreate,
 	description as descriptionDomainConfirmTerminationCreate,
+	execute as executeDomainConfirmTerminationCreate,
 } from './domainConfirmTermination/DomainConfirmTerminationCreate.operation';
 import {
-	execute as executeDomainDkimDisableUpdate,
 	description as descriptionDomainDkimDisableUpdate,
+	execute as executeDomainDkimDisableUpdate,
 } from './domainDkim/DomainDkimDisableUpdate.operation';
 import {
-	execute as executeDomainDkimEnableUpdate,
 	description as descriptionDomainDkimEnableUpdate,
+	execute as executeDomainDkimEnableUpdate,
 } from './domainDkim/DomainDkimEnableUpdate.operation';
 import {
-	execute as executeDomainDkimGet,
 	description as descriptionDomainDkimGet,
+	execute as executeDomainDkimGet,
 } from './domainDkim/DomainDkimGet.operation';
 import {
-	execute as executeDomainDnsMXFilterGet,
 	description as descriptionDomainDnsMXFilterGet,
+	execute as executeDomainDnsMXFilterGet,
 } from './domainDnsMXFilter/DomainDnsMXFilterGet.operation';
 import {
-	execute as executeDomainDnsMXRecordsGet,
 	description as descriptionDomainDnsMXRecordsGet,
+	execute as executeDomainDnsMXRecordsGet,
 } from './domainDnsMXRecords/DomainDnsMXRecordsGet.operation';
 import {
-	execute as executeDomainGet,
-	description as descriptionDomainGet,
-} from './misc/DomainGet.operation';
-import {
-	execute as executeDomainList,
-	description as descriptionDomainList,
-} from './misc/DomainList.operation';
-import {
-	execute as executeDomainMailingListChangeOptionsCreate,
 	description as descriptionDomainMailingListChangeOptionsCreate,
+	execute as executeDomainMailingListChangeOptionsCreate,
 } from './domainMailingList/DomainMailingListChangeOptionsCreate.operation';
 import {
-	execute as executeDomainMailingListCreate,
 	description as descriptionDomainMailingListCreate,
+	execute as executeDomainMailingListCreate,
 } from './domainMailingList/DomainMailingListCreate.operation';
 import {
-	execute as executeDomainMailingListDelete,
 	description as descriptionDomainMailingListDelete,
+	execute as executeDomainMailingListDelete,
 } from './domainMailingList/DomainMailingListDelete.operation';
 import {
-	execute as executeDomainMailingListGet,
 	description as descriptionDomainMailingListGet,
+	execute as executeDomainMailingListGet,
 } from './domainMailingList/DomainMailingListGet.operation';
 import {
-	execute as executeDomainMailingListList,
 	description as descriptionDomainMailingListList,
+	execute as executeDomainMailingListList,
 } from './domainMailingList/DomainMailingListList.operation';
 import {
-	execute as executeDomainMailingListModeratorCreate,
 	description as descriptionDomainMailingListModeratorCreate,
+	execute as executeDomainMailingListModeratorCreate,
 } from './domainMailingList/DomainMailingListModeratorCreate.operation';
 import {
-	execute as executeDomainMailingListModeratorDelete,
 	description as descriptionDomainMailingListModeratorDelete,
+	execute as executeDomainMailingListModeratorDelete,
 } from './domainMailingList/DomainMailingListModeratorDelete.operation';
 import {
-	execute as executeDomainMailingListModeratorGet,
 	description as descriptionDomainMailingListModeratorGet,
+	execute as executeDomainMailingListModeratorGet,
 } from './domainMailingList/DomainMailingListModeratorGet.operation';
 import {
-	execute as executeDomainMailingListModeratorList,
 	description as descriptionDomainMailingListModeratorList,
+	execute as executeDomainMailingListModeratorList,
 } from './domainMailingList/DomainMailingListModeratorList.operation';
 import {
-	execute as executeDomainMailingListSendListByEmailCreate,
 	description as descriptionDomainMailingListSendListByEmailCreate,
+	execute as executeDomainMailingListSendListByEmailCreate,
 } from './domainMailingList/DomainMailingListSendListByEmailCreate.operation';
 import {
-	execute as executeDomainMailingListSubscriberCreate,
 	description as descriptionDomainMailingListSubscriberCreate,
+	execute as executeDomainMailingListSubscriberCreate,
 } from './domainMailingList/DomainMailingListSubscriberCreate.operation';
 import {
-	execute as executeDomainMailingListSubscriberDelete,
 	description as descriptionDomainMailingListSubscriberDelete,
+	execute as executeDomainMailingListSubscriberDelete,
 } from './domainMailingList/DomainMailingListSubscriberDelete.operation';
 import {
-	execute as executeDomainMailingListSubscriberGet,
 	description as descriptionDomainMailingListSubscriberGet,
+	execute as executeDomainMailingListSubscriberGet,
 } from './domainMailingList/DomainMailingListSubscriberGet.operation';
 import {
-	execute as executeDomainMailingListSubscriberList,
 	description as descriptionDomainMailingListSubscriberList,
+	execute as executeDomainMailingListSubscriberList,
 } from './domainMailingList/DomainMailingListSubscriberList.operation';
 import {
-	execute as executeDomainMailingListUpdate,
 	description as descriptionDomainMailingListUpdate,
+	execute as executeDomainMailingListUpdate,
 } from './domainMailingList/DomainMailingListUpdate.operation';
 import {
-	execute as executeDomainMigrateDelegationV3toV6Create,
 	description as descriptionDomainMigrateDelegationV3toV6Create,
+	execute as executeDomainMigrateDelegationV3toV6Create,
 } from './domainMigrateDelegation/DomainMigrateDelegationV3toV6Create.operation';
 import {
-	execute as executeDomainQuotaGet,
 	description as descriptionDomainQuotaGet,
+	execute as executeDomainQuotaGet,
 } from './domainQuota/DomainQuotaGet.operation';
 import {
-	execute as executeDomainRecommendedDNSRecordsGet,
 	description as descriptionDomainRecommendedDNSRecordsGet,
+	execute as executeDomainRecommendedDNSRecordsGet,
 } from './domainRecommendedDNSRecords/DomainRecommendedDNSRecordsGet.operation';
 import {
-	execute as executeDomainRedirectionChangeCreate,
 	description as descriptionDomainRedirectionChangeCreate,
+	execute as executeDomainRedirectionChangeCreate,
 } from './domainRedirection/DomainRedirectionChangeCreate.operation';
 import {
-	execute as executeDomainRedirectionCreate,
 	description as descriptionDomainRedirectionCreate,
+	execute as executeDomainRedirectionCreate,
 } from './domainRedirection/DomainRedirectionCreate.operation';
 import {
-	execute as executeDomainRedirectionDelete,
 	description as descriptionDomainRedirectionDelete,
+	execute as executeDomainRedirectionDelete,
 } from './domainRedirection/DomainRedirectionDelete.operation';
 import {
-	execute as executeDomainRedirectionGet,
 	description as descriptionDomainRedirectionGet,
+	execute as executeDomainRedirectionGet,
 } from './domainRedirection/DomainRedirectionGet.operation';
 import {
-	execute as executeDomainRedirectionList,
 	description as descriptionDomainRedirectionList,
+	execute as executeDomainRedirectionList,
 } from './domainRedirection/DomainRedirectionList.operation';
 import {
-	execute as executeDomainResponderCreate,
 	description as descriptionDomainResponderCreate,
+	execute as executeDomainResponderCreate,
 } from './domainResponder/DomainResponderCreate.operation';
 import {
-	execute as executeDomainResponderDelete,
 	description as descriptionDomainResponderDelete,
+	execute as executeDomainResponderDelete,
 } from './domainResponder/DomainResponderDelete.operation';
 import {
-	execute as executeDomainResponderGet,
 	description as descriptionDomainResponderGet,
+	execute as executeDomainResponderGet,
 } from './domainResponder/DomainResponderGet.operation';
 import {
-	execute as executeDomainResponderList,
 	description as descriptionDomainResponderList,
+	execute as executeDomainResponderList,
 } from './domainResponder/DomainResponderList.operation';
 import {
-	execute as executeDomainResponderUpdate,
 	description as descriptionDomainResponderUpdate,
+	execute as executeDomainResponderUpdate,
 } from './domainResponder/DomainResponderUpdate.operation';
 import {
-	execute as executeDomainServiceInfosGet,
 	description as descriptionDomainServiceInfosGet,
+	execute as executeDomainServiceInfosGet,
 } from './domainServiceInfos/DomainServiceInfosGet.operation';
 import {
-	execute as executeDomainServiceInfosUpdate,
 	description as descriptionDomainServiceInfosUpdate,
+	execute as executeDomainServiceInfosUpdate,
 } from './domainServiceInfos/DomainServiceInfosUpdate.operation';
 import {
-	execute as executeDomainSummaryGet,
 	description as descriptionDomainSummaryGet,
+	execute as executeDomainSummaryGet,
 } from './domainSummary/DomainSummaryGet.operation';
 import {
-	execute as executeDomainTaskAccountGet,
 	description as descriptionDomainTaskAccountGet,
+	execute as executeDomainTaskAccountGet,
 } from './domainTask/DomainTaskAccountGet.operation';
 import {
-	execute as executeDomainTaskAccountList,
 	description as descriptionDomainTaskAccountList,
+	execute as executeDomainTaskAccountList,
 } from './domainTask/DomainTaskAccountList.operation';
 import {
-	execute as executeDomainTaskAllGet,
 	description as descriptionDomainTaskAllGet,
+	execute as executeDomainTaskAllGet,
 } from './domainTask/DomainTaskAllGet.operation';
 import {
-	execute as executeDomainTaskAllList,
 	description as descriptionDomainTaskAllList,
+	execute as executeDomainTaskAllList,
 } from './domainTask/DomainTaskAllList.operation';
 import {
-	execute as executeDomainTaskFilterGet,
 	description as descriptionDomainTaskFilterGet,
+	execute as executeDomainTaskFilterGet,
 } from './domainTask/DomainTaskFilterGet.operation';
 import {
-	execute as executeDomainTaskFilterList,
 	description as descriptionDomainTaskFilterList,
+	execute as executeDomainTaskFilterList,
 } from './domainTask/DomainTaskFilterList.operation';
 import {
-	execute as executeDomainTaskMailinglistGet,
 	description as descriptionDomainTaskMailinglistGet,
+	execute as executeDomainTaskMailinglistGet,
 } from './domainTask/DomainTaskMailinglistGet.operation';
 import {
-	execute as executeDomainTaskMailinglistList,
 	description as descriptionDomainTaskMailinglistList,
+	execute as executeDomainTaskMailinglistList,
 } from './domainTask/DomainTaskMailinglistList.operation';
 import {
-	execute as executeDomainTaskRedirectionGet,
 	description as descriptionDomainTaskRedirectionGet,
+	execute as executeDomainTaskRedirectionGet,
 } from './domainTask/DomainTaskRedirectionGet.operation';
 import {
-	execute as executeDomainTaskRedirectionList,
 	description as descriptionDomainTaskRedirectionList,
+	execute as executeDomainTaskRedirectionList,
 } from './domainTask/DomainTaskRedirectionList.operation';
 import {
-	execute as executeDomainTaskResponderGet,
 	description as descriptionDomainTaskResponderGet,
+	execute as executeDomainTaskResponderGet,
 } from './domainTask/DomainTaskResponderGet.operation';
 import {
-	execute as executeDomainTaskResponderList,
 	description as descriptionDomainTaskResponderList,
+	execute as executeDomainTaskResponderList,
 } from './domainTask/DomainTaskResponderList.operation';
 import {
-	execute as executeDomainTerminateCreate,
 	description as descriptionDomainTerminateCreate,
+	execute as executeDomainTerminateCreate,
 } from './domainTerminate/DomainTerminateCreate.operation';
 import {
-	execute as executeMailingListLimitsGet,
+	description as descriptionDomainGet,
+	execute as executeDomainGet,
+} from './misc/DomainGet.operation';
+import {
+	description as descriptionDomainList,
+	execute as executeDomainList,
+} from './misc/DomainList.operation';
+import {
 	description as descriptionMailingListLimitsGet,
+	execute as executeMailingListLimitsGet,
 } from './misc/MailingListLimitsGet.operation';
 
-export function description(displayOptions: IDisplayOptions = {}): INodeProperties[] {
-	const props: INodeProperties[] = [];
 
-	// Operation picker (alphabetical by name)
-	props.push({
-		displayName: 'Operation',
-		name: 'emailDomainOperation',
-		type: 'options',
-		noDataExpression: true,
-		options: [
-			{
-				name: 'DelegatedAccountFilterChangeActivityCreate',
-				value: 'DelegatedAccountFilterChangeActivityCreate',
-			},
-			{
-				name: 'DelegatedAccountFilterChangePriorityCreate',
-				value: 'DelegatedAccountFilterChangePriorityCreate',
-			},
-			{
-				name: 'DelegatedAccountFilterCreate',
-				value: 'DelegatedAccountFilterCreate',
-			},
-			{
-				name: 'DelegatedAccountFilterDelete',
-				value: 'DelegatedAccountFilterDelete',
-			},
-			{
-				name: 'DelegatedAccountFilterGet',
-				value: 'DelegatedAccountFilterGet',
-			},
-			{
-				name: 'DelegatedAccountFilterList',
-				value: 'DelegatedAccountFilterList',
-			},
-			{
-				name: 'DelegatedAccountFilterRuleDelete',
-				value: 'DelegatedAccountFilterRuleDelete',
-			},
-			{
-				name: 'DelegatedAccountFilterRuleGet',
-				value: 'DelegatedAccountFilterRuleGet',
-			},
-			{
-				name: 'DelegatedAccountGet',
-				value: 'DelegatedAccountGet',
-			},
-			{
-				name: 'DelegatedAccountGet10',
-				value: 'DelegatedAccountGet10',
-			},
-			{
-				name: 'DelegatedAccountGet11',
-				value: 'DelegatedAccountGet11',
-			},
-			{
-				name: 'DelegatedAccountGet12',
-				value: 'DelegatedAccountGet12',
-			},
-			{
-				name: 'DelegatedAccountGet2',
-				value: 'DelegatedAccountGet2',
-			},
-			{
-				name: 'DelegatedAccountGet3',
-				value: 'DelegatedAccountGet3',
-			},
-			{
-				name: 'DelegatedAccountGet4',
-				value: 'DelegatedAccountGet4',
-			},
-			{
-				name: 'DelegatedAccountGet5',
-				value: 'DelegatedAccountGet5',
-			},
-			{
-				name: 'DelegatedAccountGet6',
-				value: 'DelegatedAccountGet6',
-			},
-			{
-				name: 'DelegatedAccountGet7',
-				value: 'DelegatedAccountGet7',
-			},
-			{
-				name: 'DelegatedAccountGet8',
-				value: 'DelegatedAccountGet8',
-			},
-			{
-				name: 'DelegatedAccountGet9',
-				value: 'DelegatedAccountGet9',
-			},
-			{
-				name: 'DomainAccountChangePasswordCreate',
-				value: 'DomainAccountChangePasswordCreate',
-			},
-			{
-				name: 'DomainAccountCreate',
-				value: 'DomainAccountCreate',
-			},
-			{
-				name: 'DomainAccountDelegationCreate',
-				value: 'DomainAccountDelegationCreate',
-			},
-			{
-				name: 'DomainAccountDelegationDelete',
-				value: 'DomainAccountDelegationDelete',
-			},
-			{
-				name: 'DomainAccountDelegationGet',
-				value: 'DomainAccountDelegationGet',
-			},
-			{
-				name: 'DomainAccountDelegationList',
-				value: 'DomainAccountDelegationList',
-			},
-			{
-				name: 'DomainAccountDelete',
-				value: 'DomainAccountDelete',
-			},
-			{
-				name: 'DomainAccountFilterChangeActivityCreate',
-				value: 'DomainAccountFilterChangeActivityCreate',
-			},
-			{
-				name: 'DomainAccountFilterChangePriorityCreate',
-				value: 'DomainAccountFilterChangePriorityCreate',
-			},
-			{
-				name: 'DomainAccountFilterCreate',
-				value: 'DomainAccountFilterCreate',
-			},
-			{
-				name: 'DomainAccountFilterDelete',
-				value: 'DomainAccountFilterDelete',
-			},
-			{
-				name: 'DomainAccountFilterGet',
-				value: 'DomainAccountFilterGet',
-			},
-			{
-				name: 'DomainAccountFilterList',
-				value: 'DomainAccountFilterList',
-			},
-			{
-				name: 'DomainAccountFilterRuleCreate',
-				value: 'DomainAccountFilterRuleCreate',
-			},
-			{
-				name: 'DomainAccountFilterRuleDelete',
-				value: 'DomainAccountFilterRuleDelete',
-			},
-			{
-				name: 'DomainAccountFilterRuleGet',
-				value: 'DomainAccountFilterRuleGet',
-			},
-			{
-				name: 'DomainAccountFilterRuleList',
-				value: 'DomainAccountFilterRuleList',
-			},
-			{
-				name: 'DomainAccountGet',
-				value: 'DomainAccountGet',
-			},
-			{
-				name: 'DomainAccountList',
-				value: 'DomainAccountList',
-			},
-			{
-				name: 'DomainAccountMigrateCheckGet',
-				value: 'DomainAccountMigrateCheckGet',
-			},
-			{
-				name: 'DomainAccountMigrateCreate',
-				value: 'DomainAccountMigrateCreate',
-			},
-			{
-				name: 'DomainAccountMigrateDestinationEmailGet',
-				value: 'DomainAccountMigrateDestinationEmailGet',
-			},
-			{
-				name: 'DomainAccountMigrateDestinationEmailList',
-				value: 'DomainAccountMigrateDestinationEmailList',
-			},
-			{
-				name: 'DomainAccountMigrateGet',
-				value: 'DomainAccountMigrateGet',
-			},
-			{
-				name: 'DomainAccountMigrateGet2',
-				value: 'DomainAccountMigrateGet2',
-			},
-			{
-				name: 'DomainAccountUpdate',
-				value: 'DomainAccountUpdate',
-			},
-			{
-				name: 'DomainAccountUpdateUsagePost',
-				value: 'DomainAccountUpdateUsagePost',
-			},
-			{
-				name: 'DomainAccountUsageGet',
-				value: 'DomainAccountUsageGet',
-			},
-			{
-				name: 'DomainAclCreate',
-				value: 'DomainAclCreate',
-			},
-			{
-				name: 'DomainAclDelete',
-				value: 'DomainAclDelete',
-			},
-			{
-				name: 'DomainAclGet',
-				value: 'DomainAclGet',
-			},
-			{
-				name: 'DomainAclList',
-				value: 'DomainAclList',
-			},
-			{
-				name: 'DomainChangeContactCreate',
-				value: 'DomainChangeContactCreate',
-			},
-			{
-				name: 'DomainChangeDnsMXFilterCreate',
-				value: 'DomainChangeDnsMXFilterCreate',
-			},
-			{
-				name: 'DomainConfirmTerminationCreate',
-				value: 'DomainConfirmTerminationCreate',
-			},
-			{
-				name: 'DomainDkimDisableUpdate',
-				value: 'DomainDkimDisableUpdate',
-			},
-			{
-				name: 'DomainDkimEnableUpdate',
-				value: 'DomainDkimEnableUpdate',
-			},
-			{
-				name: 'DomainDkimGet',
-				value: 'DomainDkimGet',
-			},
-			{
-				name: 'DomainDnsMXFilterGet',
-				value: 'DomainDnsMXFilterGet',
-			},
-			{
-				name: 'DomainDnsMXRecordsGet',
-				value: 'DomainDnsMXRecordsGet',
-			},
-			{
-				name: 'DomainGet',
-				value: 'DomainGet',
-			},
-			{
-				name: 'DomainList',
-				value: 'DomainList',
-			},
-			{
-				name: 'DomainMailingListChangeOptionsCreate',
-				value: 'DomainMailingListChangeOptionsCreate',
-			},
-			{
-				name: 'DomainMailingListCreate',
-				value: 'DomainMailingListCreate',
-			},
-			{
-				name: 'DomainMailingListDelete',
-				value: 'DomainMailingListDelete',
-			},
-			{
-				name: 'DomainMailingListGet',
-				value: 'DomainMailingListGet',
-			},
-			{
-				name: 'DomainMailingListList',
-				value: 'DomainMailingListList',
-			},
-			{
-				name: 'DomainMailingListModeratorCreate',
-				value: 'DomainMailingListModeratorCreate',
-			},
-			{
-				name: 'DomainMailingListModeratorDelete',
-				value: 'DomainMailingListModeratorDelete',
-			},
-			{
-				name: 'DomainMailingListModeratorGet',
-				value: 'DomainMailingListModeratorGet',
-			},
-			{
-				name: 'DomainMailingListModeratorList',
-				value: 'DomainMailingListModeratorList',
-			},
-			{
-				name: 'DomainMailingListSendListByEmailCreate',
-				value: 'DomainMailingListSendListByEmailCreate',
-			},
-			{
-				name: 'DomainMailingListSubscriberCreate',
-				value: 'DomainMailingListSubscriberCreate',
-			},
-			{
-				name: 'DomainMailingListSubscriberDelete',
-				value: 'DomainMailingListSubscriberDelete',
-			},
-			{
-				name: 'DomainMailingListSubscriberGet',
-				value: 'DomainMailingListSubscriberGet',
-			},
-			{
-				name: 'DomainMailingListSubscriberList',
-				value: 'DomainMailingListSubscriberList',
-			},
-			{
-				name: 'DomainMailingListUpdate',
-				value: 'DomainMailingListUpdate',
-			},
-			{
-				name: 'DomainMigrateDelegationV3toV6Create',
-				value: 'DomainMigrateDelegationV3toV6Create',
-			},
-			{
-				name: 'DomainQuotaGet',
-				value: 'DomainQuotaGet',
-			},
-			{
-				name: 'DomainRecommendedDNSRecordsGet',
-				value: 'DomainRecommendedDNSRecordsGet',
-			},
-			{
-				name: 'DomainRedirectionChangeCreate',
-				value: 'DomainRedirectionChangeCreate',
-			},
-			{
-				name: 'DomainRedirectionCreate',
-				value: 'DomainRedirectionCreate',
-			},
-			{
-				name: 'DomainRedirectionDelete',
-				value: 'DomainRedirectionDelete',
-			},
-			{
-				name: 'DomainRedirectionGet',
-				value: 'DomainRedirectionGet',
-			},
-			{
-				name: 'DomainRedirectionList',
-				value: 'DomainRedirectionList',
-			},
-			{
-				name: 'DomainResponderCreate',
-				value: 'DomainResponderCreate',
-			},
-			{
-				name: 'DomainResponderDelete',
-				value: 'DomainResponderDelete',
-			},
-			{
-				name: 'DomainResponderGet',
-				value: 'DomainResponderGet',
-			},
-			{
-				name: 'DomainResponderList',
-				value: 'DomainResponderList',
-			},
-			{
-				name: 'DomainResponderUpdate',
-				value: 'DomainResponderUpdate',
-			},
-			{
-				name: 'DomainServiceInfosGet',
-				value: 'DomainServiceInfosGet',
-			},
-			{
-				name: 'DomainServiceInfosUpdate',
-				value: 'DomainServiceInfosUpdate',
-			},
-			{
-				name: 'DomainSummaryGet',
-				value: 'DomainSummaryGet',
-			},
-			{
-				name: 'DomainTaskAccountGet',
-				value: 'DomainTaskAccountGet',
-			},
-			{
-				name: 'DomainTaskAccountList',
-				value: 'DomainTaskAccountList',
-			},
-			{
-				name: 'DomainTaskAllGet',
-				value: 'DomainTaskAllGet',
-			},
-			{
-				name: 'DomainTaskAllList',
-				value: 'DomainTaskAllList',
-			},
-			{
-				name: 'DomainTaskFilterGet',
-				value: 'DomainTaskFilterGet',
-			},
-			{
-				name: 'DomainTaskFilterList',
-				value: 'DomainTaskFilterList',
-			},
-			{
-				name: 'DomainTaskMailinglistGet',
-				value: 'DomainTaskMailinglistGet',
-			},
-			{
-				name: 'DomainTaskMailinglistList',
-				value: 'DomainTaskMailinglistList',
-			},
-			{
-				name: 'DomainTaskRedirectionGet',
-				value: 'DomainTaskRedirectionGet',
-			},
-			{
-				name: 'DomainTaskRedirectionList',
-				value: 'DomainTaskRedirectionList',
-			},
-			{
-				name: 'DomainTaskResponderGet',
-				value: 'DomainTaskResponderGet',
-			},
-			{
-				name: 'DomainTaskResponderList',
-				value: 'DomainTaskResponderList',
-			},
-			{
-				name: 'DomainTerminateCreate',
-				value: 'DomainTerminateCreate',
-			},
-			{
-				name: 'MailingListLimitsGet',
-				value: 'MailingListLimitsGet',
-			},
-		],
-		default: 'DomainTaskFilterGet',
-		displayOptions,
-	});
+const { description, execute } = createOperationDispatcher(
+	'emailDomainOperation',
+	'emailDomain',
+	[
+	{
+		name: 'DelegatedAccountFilterChangeActivityCreate',
+		value: 'DelegatedAccountFilterChangeActivityCreate',
+		action: 'DelegatedAccountFilterChangeActivityCreate',
+		execute: executeDelegatedAccountFilterChangeActivityCreate,
+		description: descriptionDelegatedAccountFilterChangeActivityCreate,
+	},
+	{
+		name: 'DelegatedAccountFilterChangePriorityCreate',
+		value: 'DelegatedAccountFilterChangePriorityCreate',
+		action: 'DelegatedAccountFilterChangePriorityCreate',
+		execute: executeDelegatedAccountFilterChangePriorityCreate,
+		description: descriptionDelegatedAccountFilterChangePriorityCreate,
+	},
+	{
+		name: 'DelegatedAccountFilterCreate',
+		value: 'DelegatedAccountFilterCreate',
+		action: 'DelegatedAccountFilterCreate',
+		execute: executeDelegatedAccountFilterCreate,
+		description: descriptionDelegatedAccountFilterCreate,
+	},
+	{
+		name: 'DelegatedAccountFilterDelete',
+		value: 'DelegatedAccountFilterDelete',
+		action: 'DelegatedAccountFilterDelete',
+		execute: executeDelegatedAccountFilterDelete,
+		description: descriptionDelegatedAccountFilterDelete,
+	},
+	{
+		name: 'DelegatedAccountFilterGet',
+		value: 'DelegatedAccountFilterGet',
+		action: 'DelegatedAccountFilterGet',
+		execute: executeDelegatedAccountFilterGet,
+		description: descriptionDelegatedAccountFilterGet,
+	},
+	{
+		name: 'DelegatedAccountFilterList',
+		value: 'DelegatedAccountFilterList',
+		action: 'DelegatedAccountFilterList',
+		execute: executeDelegatedAccountFilterList,
+		description: descriptionDelegatedAccountFilterList,
+	},
+	{
+		name: 'DelegatedAccountFilterRuleDelete',
+		value: 'DelegatedAccountFilterRuleDelete',
+		action: 'DelegatedAccountFilterRuleDelete',
+		execute: executeDelegatedAccountFilterRuleDelete,
+		description: descriptionDelegatedAccountFilterRuleDelete,
+	},
+	{
+		name: 'DelegatedAccountFilterRuleGet',
+		value: 'DelegatedAccountFilterRuleGet',
+		action: 'DelegatedAccountFilterRuleGet',
+		execute: executeDelegatedAccountFilterRuleGet,
+		description: descriptionDelegatedAccountFilterRuleGet,
+	},
+	{
+		name: 'DelegatedAccountGet',
+		value: 'DelegatedAccountGet',
+		action: 'DelegatedAccountGet',
+		execute: executeDelegatedAccountGet,
+		description: descriptionDelegatedAccountGet,
+	},
+	{
+		name: 'DelegatedAccountGet10',
+		value: 'DelegatedAccountGet10',
+		action: 'DelegatedAccountGet10',
+		execute: executeDelegatedAccountGet10,
+		description: descriptionDelegatedAccountGet10,
+	},
+	{
+		name: 'DelegatedAccountGet11',
+		value: 'DelegatedAccountGet11',
+		action: 'DelegatedAccountGet11',
+		execute: executeDelegatedAccountGet11,
+		description: descriptionDelegatedAccountGet11,
+	},
+	{
+		name: 'DelegatedAccountGet12',
+		value: 'DelegatedAccountGet12',
+		action: 'DelegatedAccountGet12',
+		execute: executeDelegatedAccountGet12,
+		description: descriptionDelegatedAccountGet12,
+	},
+	{
+		name: 'DelegatedAccountGet2',
+		value: 'DelegatedAccountGet2',
+		action: 'DelegatedAccountGet2',
+		execute: executeDelegatedAccountGet2,
+		description: descriptionDelegatedAccountGet2,
+	},
+	{
+		name: 'DelegatedAccountGet3',
+		value: 'DelegatedAccountGet3',
+		action: 'DelegatedAccountGet3',
+		execute: executeDelegatedAccountGet3,
+		description: descriptionDelegatedAccountGet3,
+	},
+	{
+		name: 'DelegatedAccountGet4',
+		value: 'DelegatedAccountGet4',
+		action: 'DelegatedAccountGet4',
+		execute: executeDelegatedAccountGet4,
+		description: descriptionDelegatedAccountGet4,
+	},
+	{
+		name: 'DelegatedAccountGet5',
+		value: 'DelegatedAccountGet5',
+		action: 'DelegatedAccountGet5',
+		execute: executeDelegatedAccountGet5,
+		description: descriptionDelegatedAccountGet5,
+	},
+	{
+		name: 'DelegatedAccountGet6',
+		value: 'DelegatedAccountGet6',
+		action: 'DelegatedAccountGet6',
+		execute: executeDelegatedAccountGet6,
+		description: descriptionDelegatedAccountGet6,
+	},
+	{
+		name: 'DelegatedAccountGet7',
+		value: 'DelegatedAccountGet7',
+		action: 'DelegatedAccountGet7',
+		execute: executeDelegatedAccountGet7,
+		description: descriptionDelegatedAccountGet7,
+	},
+	{
+		name: 'DelegatedAccountGet8',
+		value: 'DelegatedAccountGet8',
+		action: 'DelegatedAccountGet8',
+		execute: executeDelegatedAccountGet8,
+		description: descriptionDelegatedAccountGet8,
+	},
+	{
+		name: 'DelegatedAccountGet9',
+		value: 'DelegatedAccountGet9',
+		action: 'DelegatedAccountGet9',
+		execute: executeDelegatedAccountGet9,
+		description: descriptionDelegatedAccountGet9,
+	},
+	{
+		name: 'DomainAccountChangePasswordCreate',
+		value: 'DomainAccountChangePasswordCreate',
+		action: 'DomainAccountChangePasswordCreate',
+		execute: executeDomainAccountChangePasswordCreate,
+		description: descriptionDomainAccountChangePasswordCreate,
+	},
+	{
+		name: 'DomainAccountCreate',
+		value: 'DomainAccountCreate',
+		action: 'DomainAccountCreate',
+		execute: executeDomainAccountCreate,
+		description: descriptionDomainAccountCreate,
+	},
+	{
+		name: 'DomainAccountDelegationCreate',
+		value: 'DomainAccountDelegationCreate',
+		action: 'DomainAccountDelegationCreate',
+		execute: executeDomainAccountDelegationCreate,
+		description: descriptionDomainAccountDelegationCreate,
+	},
+	{
+		name: 'DomainAccountDelegationDelete',
+		value: 'DomainAccountDelegationDelete',
+		action: 'DomainAccountDelegationDelete',
+		execute: executeDomainAccountDelegationDelete,
+		description: descriptionDomainAccountDelegationDelete,
+	},
+	{
+		name: 'DomainAccountDelegationGet',
+		value: 'DomainAccountDelegationGet',
+		action: 'DomainAccountDelegationGet',
+		execute: executeDomainAccountDelegationGet,
+		description: descriptionDomainAccountDelegationGet,
+	},
+	{
+		name: 'DomainAccountDelegationList',
+		value: 'DomainAccountDelegationList',
+		action: 'DomainAccountDelegationList',
+		execute: executeDomainAccountDelegationList,
+		description: descriptionDomainAccountDelegationList,
+	},
+	{
+		name: 'DomainAccountDelete',
+		value: 'DomainAccountDelete',
+		action: 'DomainAccountDelete',
+		execute: executeDomainAccountDelete,
+		description: descriptionDomainAccountDelete,
+	},
+	{
+		name: 'DomainAccountFilterChangeActivityCreate',
+		value: 'DomainAccountFilterChangeActivityCreate',
+		action: 'DomainAccountFilterChangeActivityCreate',
+		execute: executeDomainAccountFilterChangeActivityCreate,
+		description: descriptionDomainAccountFilterChangeActivityCreate,
+	},
+	{
+		name: 'DomainAccountFilterChangePriorityCreate',
+		value: 'DomainAccountFilterChangePriorityCreate',
+		action: 'DomainAccountFilterChangePriorityCreate',
+		execute: executeDomainAccountFilterChangePriorityCreate,
+		description: descriptionDomainAccountFilterChangePriorityCreate,
+	},
+	{
+		name: 'DomainAccountFilterCreate',
+		value: 'DomainAccountFilterCreate',
+		action: 'DomainAccountFilterCreate',
+		execute: executeDomainAccountFilterCreate,
+		description: descriptionDomainAccountFilterCreate,
+	},
+	{
+		name: 'DomainAccountFilterDelete',
+		value: 'DomainAccountFilterDelete',
+		action: 'DomainAccountFilterDelete',
+		execute: executeDomainAccountFilterDelete,
+		description: descriptionDomainAccountFilterDelete,
+	},
+	{
+		name: 'DomainAccountFilterGet',
+		value: 'DomainAccountFilterGet',
+		action: 'DomainAccountFilterGet',
+		execute: executeDomainAccountFilterGet,
+		description: descriptionDomainAccountFilterGet,
+	},
+	{
+		name: 'DomainAccountFilterList',
+		value: 'DomainAccountFilterList',
+		action: 'DomainAccountFilterList',
+		execute: executeDomainAccountFilterList,
+		description: descriptionDomainAccountFilterList,
+	},
+	{
+		name: 'DomainAccountFilterRuleCreate',
+		value: 'DomainAccountFilterRuleCreate',
+		action: 'DomainAccountFilterRuleCreate',
+		execute: executeDomainAccountFilterRuleCreate,
+		description: descriptionDomainAccountFilterRuleCreate,
+	},
+	{
+		name: 'DomainAccountFilterRuleDelete',
+		value: 'DomainAccountFilterRuleDelete',
+		action: 'DomainAccountFilterRuleDelete',
+		execute: executeDomainAccountFilterRuleDelete,
+		description: descriptionDomainAccountFilterRuleDelete,
+	},
+	{
+		name: 'DomainAccountFilterRuleGet',
+		value: 'DomainAccountFilterRuleGet',
+		action: 'DomainAccountFilterRuleGet',
+		execute: executeDomainAccountFilterRuleGet,
+		description: descriptionDomainAccountFilterRuleGet,
+	},
+	{
+		name: 'DomainAccountFilterRuleList',
+		value: 'DomainAccountFilterRuleList',
+		action: 'DomainAccountFilterRuleList',
+		execute: executeDomainAccountFilterRuleList,
+		description: descriptionDomainAccountFilterRuleList,
+	},
+	{
+		name: 'DomainAccountGet',
+		value: 'DomainAccountGet',
+		action: 'DomainAccountGet',
+		execute: executeDomainAccountGet,
+		description: descriptionDomainAccountGet,
+	},
+	{
+		name: 'DomainAccountList',
+		value: 'DomainAccountList',
+		action: 'DomainAccountList',
+		execute: executeDomainAccountList,
+		description: descriptionDomainAccountList,
+	},
+	{
+		name: 'DomainAccountMigrateCheckGet',
+		value: 'DomainAccountMigrateCheckGet',
+		action: 'DomainAccountMigrateCheckGet',
+		execute: executeDomainAccountMigrateCheckGet,
+		description: descriptionDomainAccountMigrateCheckGet,
+	},
+	{
+		name: 'DomainAccountMigrateCreate',
+		value: 'DomainAccountMigrateCreate',
+		action: 'DomainAccountMigrateCreate',
+		execute: executeDomainAccountMigrateCreate,
+		description: descriptionDomainAccountMigrateCreate,
+	},
+	{
+		name: 'DomainAccountMigrateDestinationEmailGet',
+		value: 'DomainAccountMigrateDestinationEmailGet',
+		action: 'DomainAccountMigrateDestinationEmailGet',
+		execute: executeDomainAccountMigrateDestinationEmailGet,
+		description: descriptionDomainAccountMigrateDestinationEmailGet,
+	},
+	{
+		name: 'DomainAccountMigrateDestinationEmailList',
+		value: 'DomainAccountMigrateDestinationEmailList',
+		action: 'DomainAccountMigrateDestinationEmailList',
+		execute: executeDomainAccountMigrateDestinationEmailList,
+		description: descriptionDomainAccountMigrateDestinationEmailList,
+	},
+	{
+		name: 'DomainAccountMigrateGet',
+		value: 'DomainAccountMigrateGet',
+		action: 'DomainAccountMigrateGet',
+		execute: executeDomainAccountMigrateGet,
+		description: descriptionDomainAccountMigrateGet,
+	},
+	{
+		name: 'DomainAccountMigrateGet2',
+		value: 'DomainAccountMigrateGet2',
+		action: 'DomainAccountMigrateGet2',
+		execute: executeDomainAccountMigrateGet2,
+		description: descriptionDomainAccountMigrateGet2,
+	},
+	{
+		name: 'DomainAccountUpdate',
+		value: 'DomainAccountUpdate',
+		action: 'DomainAccountUpdate',
+		execute: executeDomainAccountUpdate,
+		description: descriptionDomainAccountUpdate,
+	},
+	{
+		name: 'DomainAccountUpdateUsagePost',
+		value: 'DomainAccountUpdateUsagePost',
+		action: 'DomainAccountUpdateUsagePost',
+		execute: executeDomainAccountUpdateUsagePost,
+		description: descriptionDomainAccountUpdateUsagePost,
+	},
+	{
+		name: 'DomainAccountUsageGet',
+		value: 'DomainAccountUsageGet',
+		action: 'DomainAccountUsageGet',
+		execute: executeDomainAccountUsageGet,
+		description: descriptionDomainAccountUsageGet,
+	},
+	{
+		name: 'DomainAclCreate',
+		value: 'DomainAclCreate',
+		action: 'DomainAclCreate',
+		execute: executeDomainAclCreate,
+		description: descriptionDomainAclCreate,
+	},
+	{
+		name: 'DomainAclDelete',
+		value: 'DomainAclDelete',
+		action: 'DomainAclDelete',
+		execute: executeDomainAclDelete,
+		description: descriptionDomainAclDelete,
+	},
+	{
+		name: 'DomainAclGet',
+		value: 'DomainAclGet',
+		action: 'DomainAclGet',
+		execute: executeDomainAclGet,
+		description: descriptionDomainAclGet,
+	},
+	{
+		name: 'DomainAclList',
+		value: 'DomainAclList',
+		action: 'DomainAclList',
+		execute: executeDomainAclList,
+		description: descriptionDomainAclList,
+	},
+	{
+		name: 'DomainChangeContactCreate',
+		value: 'DomainChangeContactCreate',
+		action: 'DomainChangeContactCreate',
+		execute: executeDomainChangeContactCreate,
+		description: descriptionDomainChangeContactCreate,
+	},
+	{
+		name: 'DomainChangeDnsMXFilterCreate',
+		value: 'DomainChangeDnsMXFilterCreate',
+		action: 'DomainChangeDnsMXFilterCreate',
+		execute: executeDomainChangeDnsMXFilterCreate,
+		description: descriptionDomainChangeDnsMXFilterCreate,
+	},
+	{
+		name: 'DomainConfirmTerminationCreate',
+		value: 'DomainConfirmTerminationCreate',
+		action: 'DomainConfirmTerminationCreate',
+		execute: executeDomainConfirmTerminationCreate,
+		description: descriptionDomainConfirmTerminationCreate,
+	},
+	{
+		name: 'DomainDkimDisableUpdate',
+		value: 'DomainDkimDisableUpdate',
+		action: 'DomainDkimDisableUpdate',
+		execute: executeDomainDkimDisableUpdate,
+		description: descriptionDomainDkimDisableUpdate,
+	},
+	{
+		name: 'DomainDkimEnableUpdate',
+		value: 'DomainDkimEnableUpdate',
+		action: 'DomainDkimEnableUpdate',
+		execute: executeDomainDkimEnableUpdate,
+		description: descriptionDomainDkimEnableUpdate,
+	},
+	{
+		name: 'DomainDkimGet',
+		value: 'DomainDkimGet',
+		action: 'DomainDkimGet',
+		execute: executeDomainDkimGet,
+		description: descriptionDomainDkimGet,
+	},
+	{
+		name: 'DomainDnsMXFilterGet',
+		value: 'DomainDnsMXFilterGet',
+		action: 'DomainDnsMXFilterGet',
+		execute: executeDomainDnsMXFilterGet,
+		description: descriptionDomainDnsMXFilterGet,
+	},
+	{
+		name: 'DomainDnsMXRecordsGet',
+		value: 'DomainDnsMXRecordsGet',
+		action: 'DomainDnsMXRecordsGet',
+		execute: executeDomainDnsMXRecordsGet,
+		description: descriptionDomainDnsMXRecordsGet,
+	},
+	{
+		name: 'DomainGet',
+		value: 'DomainGet',
+		action: 'DomainGet',
+		execute: executeDomainGet,
+		description: descriptionDomainGet,
+	},
+	{
+		name: 'DomainList',
+		value: 'DomainList',
+		action: 'DomainList',
+		execute: executeDomainList,
+		description: descriptionDomainList,
+	},
+	{
+		name: 'DomainMailingListChangeOptionsCreate',
+		value: 'DomainMailingListChangeOptionsCreate',
+		action: 'DomainMailingListChangeOptionsCreate',
+		execute: executeDomainMailingListChangeOptionsCreate,
+		description: descriptionDomainMailingListChangeOptionsCreate,
+	},
+	{
+		name: 'DomainMailingListCreate',
+		value: 'DomainMailingListCreate',
+		action: 'DomainMailingListCreate',
+		execute: executeDomainMailingListCreate,
+		description: descriptionDomainMailingListCreate,
+	},
+	{
+		name: 'DomainMailingListDelete',
+		value: 'DomainMailingListDelete',
+		action: 'DomainMailingListDelete',
+		execute: executeDomainMailingListDelete,
+		description: descriptionDomainMailingListDelete,
+	},
+	{
+		name: 'DomainMailingListGet',
+		value: 'DomainMailingListGet',
+		action: 'DomainMailingListGet',
+		execute: executeDomainMailingListGet,
+		description: descriptionDomainMailingListGet,
+	},
+	{
+		name: 'DomainMailingListList',
+		value: 'DomainMailingListList',
+		action: 'DomainMailingListList',
+		execute: executeDomainMailingListList,
+		description: descriptionDomainMailingListList,
+	},
+	{
+		name: 'DomainMailingListModeratorCreate',
+		value: 'DomainMailingListModeratorCreate',
+		action: 'DomainMailingListModeratorCreate',
+		execute: executeDomainMailingListModeratorCreate,
+		description: descriptionDomainMailingListModeratorCreate,
+	},
+	{
+		name: 'DomainMailingListModeratorDelete',
+		value: 'DomainMailingListModeratorDelete',
+		action: 'DomainMailingListModeratorDelete',
+		execute: executeDomainMailingListModeratorDelete,
+		description: descriptionDomainMailingListModeratorDelete,
+	},
+	{
+		name: 'DomainMailingListModeratorGet',
+		value: 'DomainMailingListModeratorGet',
+		action: 'DomainMailingListModeratorGet',
+		execute: executeDomainMailingListModeratorGet,
+		description: descriptionDomainMailingListModeratorGet,
+	},
+	{
+		name: 'DomainMailingListModeratorList',
+		value: 'DomainMailingListModeratorList',
+		action: 'DomainMailingListModeratorList',
+		execute: executeDomainMailingListModeratorList,
+		description: descriptionDomainMailingListModeratorList,
+	},
+	{
+		name: 'DomainMailingListSendListByEmailCreate',
+		value: 'DomainMailingListSendListByEmailCreate',
+		action: 'DomainMailingListSendListByEmailCreate',
+		execute: executeDomainMailingListSendListByEmailCreate,
+		description: descriptionDomainMailingListSendListByEmailCreate,
+	},
+	{
+		name: 'DomainMailingListSubscriberCreate',
+		value: 'DomainMailingListSubscriberCreate',
+		action: 'DomainMailingListSubscriberCreate',
+		execute: executeDomainMailingListSubscriberCreate,
+		description: descriptionDomainMailingListSubscriberCreate,
+	},
+	{
+		name: 'DomainMailingListSubscriberDelete',
+		value: 'DomainMailingListSubscriberDelete',
+		action: 'DomainMailingListSubscriberDelete',
+		execute: executeDomainMailingListSubscriberDelete,
+		description: descriptionDomainMailingListSubscriberDelete,
+	},
+	{
+		name: 'DomainMailingListSubscriberGet',
+		value: 'DomainMailingListSubscriberGet',
+		action: 'DomainMailingListSubscriberGet',
+		execute: executeDomainMailingListSubscriberGet,
+		description: descriptionDomainMailingListSubscriberGet,
+	},
+	{
+		name: 'DomainMailingListSubscriberList',
+		value: 'DomainMailingListSubscriberList',
+		action: 'DomainMailingListSubscriberList',
+		execute: executeDomainMailingListSubscriberList,
+		description: descriptionDomainMailingListSubscriberList,
+	},
+	{
+		name: 'DomainMailingListUpdate',
+		value: 'DomainMailingListUpdate',
+		action: 'DomainMailingListUpdate',
+		execute: executeDomainMailingListUpdate,
+		description: descriptionDomainMailingListUpdate,
+	},
+	{
+		name: 'DomainMigrateDelegationV3toV6Create',
+		value: 'DomainMigrateDelegationV3toV6Create',
+		action: 'DomainMigrateDelegationV3toV6Create',
+		execute: executeDomainMigrateDelegationV3toV6Create,
+		description: descriptionDomainMigrateDelegationV3toV6Create,
+	},
+	{
+		name: 'DomainQuotaGet',
+		value: 'DomainQuotaGet',
+		action: 'DomainQuotaGet',
+		execute: executeDomainQuotaGet,
+		description: descriptionDomainQuotaGet,
+	},
+	{
+		name: 'DomainRecommendedDNSRecordsGet',
+		value: 'DomainRecommendedDNSRecordsGet',
+		action: 'DomainRecommendedDNSRecordsGet',
+		execute: executeDomainRecommendedDNSRecordsGet,
+		description: descriptionDomainRecommendedDNSRecordsGet,
+	},
+	{
+		name: 'DomainRedirectionChangeCreate',
+		value: 'DomainRedirectionChangeCreate',
+		action: 'DomainRedirectionChangeCreate',
+		execute: executeDomainRedirectionChangeCreate,
+		description: descriptionDomainRedirectionChangeCreate,
+	},
+	{
+		name: 'DomainRedirectionCreate',
+		value: 'DomainRedirectionCreate',
+		action: 'DomainRedirectionCreate',
+		execute: executeDomainRedirectionCreate,
+		description: descriptionDomainRedirectionCreate,
+	},
+	{
+		name: 'DomainRedirectionDelete',
+		value: 'DomainRedirectionDelete',
+		action: 'DomainRedirectionDelete',
+		execute: executeDomainRedirectionDelete,
+		description: descriptionDomainRedirectionDelete,
+	},
+	{
+		name: 'DomainRedirectionGet',
+		value: 'DomainRedirectionGet',
+		action: 'DomainRedirectionGet',
+		execute: executeDomainRedirectionGet,
+		description: descriptionDomainRedirectionGet,
+	},
+	{
+		name: 'DomainRedirectionList',
+		value: 'DomainRedirectionList',
+		action: 'DomainRedirectionList',
+		execute: executeDomainRedirectionList,
+		description: descriptionDomainRedirectionList,
+	},
+	{
+		name: 'DomainResponderCreate',
+		value: 'DomainResponderCreate',
+		action: 'DomainResponderCreate',
+		execute: executeDomainResponderCreate,
+		description: descriptionDomainResponderCreate,
+	},
+	{
+		name: 'DomainResponderDelete',
+		value: 'DomainResponderDelete',
+		action: 'DomainResponderDelete',
+		execute: executeDomainResponderDelete,
+		description: descriptionDomainResponderDelete,
+	},
+	{
+		name: 'DomainResponderGet',
+		value: 'DomainResponderGet',
+		action: 'DomainResponderGet',
+		execute: executeDomainResponderGet,
+		description: descriptionDomainResponderGet,
+	},
+	{
+		name: 'DomainResponderList',
+		value: 'DomainResponderList',
+		action: 'DomainResponderList',
+		execute: executeDomainResponderList,
+		description: descriptionDomainResponderList,
+	},
+	{
+		name: 'DomainResponderUpdate',
+		value: 'DomainResponderUpdate',
+		action: 'DomainResponderUpdate',
+		execute: executeDomainResponderUpdate,
+		description: descriptionDomainResponderUpdate,
+	},
+	{
+		name: 'DomainServiceInfosGet',
+		value: 'DomainServiceInfosGet',
+		action: 'DomainServiceInfosGet',
+		execute: executeDomainServiceInfosGet,
+		description: descriptionDomainServiceInfosGet,
+	},
+	{
+		name: 'DomainServiceInfosUpdate',
+		value: 'DomainServiceInfosUpdate',
+		action: 'DomainServiceInfosUpdate',
+		execute: executeDomainServiceInfosUpdate,
+		description: descriptionDomainServiceInfosUpdate,
+	},
+	{
+		name: 'DomainSummaryGet',
+		value: 'DomainSummaryGet',
+		action: 'DomainSummaryGet',
+		execute: executeDomainSummaryGet,
+		description: descriptionDomainSummaryGet,
+	},
+	{
+		name: 'DomainTaskAccountGet',
+		value: 'DomainTaskAccountGet',
+		action: 'DomainTaskAccountGet',
+		execute: executeDomainTaskAccountGet,
+		description: descriptionDomainTaskAccountGet,
+	},
+	{
+		name: 'DomainTaskAccountList',
+		value: 'DomainTaskAccountList',
+		action: 'DomainTaskAccountList',
+		execute: executeDomainTaskAccountList,
+		description: descriptionDomainTaskAccountList,
+	},
+	{
+		name: 'DomainTaskAllGet',
+		value: 'DomainTaskAllGet',
+		action: 'DomainTaskAllGet',
+		execute: executeDomainTaskAllGet,
+		description: descriptionDomainTaskAllGet,
+	},
+	{
+		name: 'DomainTaskAllList',
+		value: 'DomainTaskAllList',
+		action: 'DomainTaskAllList',
+		execute: executeDomainTaskAllList,
+		description: descriptionDomainTaskAllList,
+	},
+	{
+		name: 'DomainTaskFilterGet',
+		value: 'DomainTaskFilterGet',
+		action: 'DomainTaskFilterGet',
+		execute: executeDomainTaskFilterGet,
+		description: descriptionDomainTaskFilterGet,
+		default: true,
+	},
+	{
+		name: 'DomainTaskFilterList',
+		value: 'DomainTaskFilterList',
+		action: 'DomainTaskFilterList',
+		execute: executeDomainTaskFilterList,
+		description: descriptionDomainTaskFilterList,
+	},
+	{
+		name: 'DomainTaskMailinglistGet',
+		value: 'DomainTaskMailinglistGet',
+		action: 'DomainTaskMailinglistGet',
+		execute: executeDomainTaskMailinglistGet,
+		description: descriptionDomainTaskMailinglistGet,
+	},
+	{
+		name: 'DomainTaskMailinglistList',
+		value: 'DomainTaskMailinglistList',
+		action: 'DomainTaskMailinglistList',
+		execute: executeDomainTaskMailinglistList,
+		description: descriptionDomainTaskMailinglistList,
+	},
+	{
+		name: 'DomainTaskRedirectionGet',
+		value: 'DomainTaskRedirectionGet',
+		action: 'DomainTaskRedirectionGet',
+		execute: executeDomainTaskRedirectionGet,
+		description: descriptionDomainTaskRedirectionGet,
+	},
+	{
+		name: 'DomainTaskRedirectionList',
+		value: 'DomainTaskRedirectionList',
+		action: 'DomainTaskRedirectionList',
+		execute: executeDomainTaskRedirectionList,
+		description: descriptionDomainTaskRedirectionList,
+	},
+	{
+		name: 'DomainTaskResponderGet',
+		value: 'DomainTaskResponderGet',
+		action: 'DomainTaskResponderGet',
+		execute: executeDomainTaskResponderGet,
+		description: descriptionDomainTaskResponderGet,
+	},
+	{
+		name: 'DomainTaskResponderList',
+		value: 'DomainTaskResponderList',
+		action: 'DomainTaskResponderList',
+		execute: executeDomainTaskResponderList,
+		description: descriptionDomainTaskResponderList,
+	},
+	{
+		name: 'DomainTerminateCreate',
+		value: 'DomainTerminateCreate',
+		action: 'DomainTerminateCreate',
+		execute: executeDomainTerminateCreate,
+		description: descriptionDomainTerminateCreate,
+	},
+	{
+		name: 'MailingListLimitsGet',
+		value: 'MailingListLimitsGet',
+		action: 'MailingListLimitsGet',
+		execute: executeMailingListLimitsGet,
+		description: descriptionMailingListLimitsGet,
+	},
+	],
+);
 
-	const properties: INodeProperties[] = [
-		...props,
-		...descriptionDelegatedAccountFilterChangeActivityCreate({
-			...displayOptions,
-			show: {
-				...displayOptions?.show,
-				emailDomainOperation: ['DelegatedAccountFilterChangeActivityCreate'],
-			},
-		}),
-		...descriptionDelegatedAccountFilterChangePriorityCreate({
-			...displayOptions,
-			show: {
-				...displayOptions?.show,
-				emailDomainOperation: ['DelegatedAccountFilterChangePriorityCreate'],
-			},
-		}),
-		...descriptionDelegatedAccountFilterCreate({
-			...displayOptions,
-			show: { ...displayOptions?.show, emailDomainOperation: ['DelegatedAccountFilterCreate'] },
-		}),
-		...descriptionDelegatedAccountFilterDelete({
-			...displayOptions,
-			show: { ...displayOptions?.show, emailDomainOperation: ['DelegatedAccountFilterDelete'] },
-		}),
-		...descriptionDelegatedAccountFilterGet({
-			...displayOptions,
-			show: { ...displayOptions?.show, emailDomainOperation: ['DelegatedAccountFilterGet'] },
-		}),
-		...descriptionDelegatedAccountFilterList({
-			...displayOptions,
-			show: { ...displayOptions?.show, emailDomainOperation: ['DelegatedAccountFilterList'] },
-		}),
-		...descriptionDelegatedAccountFilterRuleDelete({
-			...displayOptions,
-			show: { ...displayOptions?.show, emailDomainOperation: ['DelegatedAccountFilterRuleDelete'] },
-		}),
-		...descriptionDelegatedAccountFilterRuleGet({
-			...displayOptions,
-			show: { ...displayOptions?.show, emailDomainOperation: ['DelegatedAccountFilterRuleGet'] },
-		}),
-		...descriptionDelegatedAccountGet({
-			...displayOptions,
-			show: { ...displayOptions?.show, emailDomainOperation: ['DelegatedAccountGet'] },
-		}),
-		...descriptionDelegatedAccountGet10({
-			...displayOptions,
-			show: { ...displayOptions?.show, emailDomainOperation: ['DelegatedAccountGet10'] },
-		}),
-		...descriptionDelegatedAccountGet11({
-			...displayOptions,
-			show: { ...displayOptions?.show, emailDomainOperation: ['DelegatedAccountGet11'] },
-		}),
-		...descriptionDelegatedAccountGet12({
-			...displayOptions,
-			show: { ...displayOptions?.show, emailDomainOperation: ['DelegatedAccountGet12'] },
-		}),
-		...descriptionDelegatedAccountGet2({
-			...displayOptions,
-			show: { ...displayOptions?.show, emailDomainOperation: ['DelegatedAccountGet2'] },
-		}),
-		...descriptionDelegatedAccountGet3({
-			...displayOptions,
-			show: { ...displayOptions?.show, emailDomainOperation: ['DelegatedAccountGet3'] },
-		}),
-		...descriptionDelegatedAccountGet4({
-			...displayOptions,
-			show: { ...displayOptions?.show, emailDomainOperation: ['DelegatedAccountGet4'] },
-		}),
-		...descriptionDelegatedAccountGet5({
-			...displayOptions,
-			show: { ...displayOptions?.show, emailDomainOperation: ['DelegatedAccountGet5'] },
-		}),
-		...descriptionDelegatedAccountGet6({
-			...displayOptions,
-			show: { ...displayOptions?.show, emailDomainOperation: ['DelegatedAccountGet6'] },
-		}),
-		...descriptionDelegatedAccountGet7({
-			...displayOptions,
-			show: { ...displayOptions?.show, emailDomainOperation: ['DelegatedAccountGet7'] },
-		}),
-		...descriptionDelegatedAccountGet8({
-			...displayOptions,
-			show: { ...displayOptions?.show, emailDomainOperation: ['DelegatedAccountGet8'] },
-		}),
-		...descriptionDelegatedAccountGet9({
-			...displayOptions,
-			show: { ...displayOptions?.show, emailDomainOperation: ['DelegatedAccountGet9'] },
-		}),
-		...descriptionDomainAccountChangePasswordCreate({
-			...displayOptions,
-			show: {
-				...displayOptions?.show,
-				emailDomainOperation: ['DomainAccountChangePasswordCreate'],
-			},
-		}),
-		...descriptionDomainAccountCreate({
-			...displayOptions,
-			show: { ...displayOptions?.show, emailDomainOperation: ['DomainAccountCreate'] },
-		}),
-		...descriptionDomainAccountDelegationCreate({
-			...displayOptions,
-			show: { ...displayOptions?.show, emailDomainOperation: ['DomainAccountDelegationCreate'] },
-		}),
-		...descriptionDomainAccountDelegationDelete({
-			...displayOptions,
-			show: { ...displayOptions?.show, emailDomainOperation: ['DomainAccountDelegationDelete'] },
-		}),
-		...descriptionDomainAccountDelegationGet({
-			...displayOptions,
-			show: { ...displayOptions?.show, emailDomainOperation: ['DomainAccountDelegationGet'] },
-		}),
-		...descriptionDomainAccountDelegationList({
-			...displayOptions,
-			show: { ...displayOptions?.show, emailDomainOperation: ['DomainAccountDelegationList'] },
-		}),
-		...descriptionDomainAccountDelete({
-			...displayOptions,
-			show: { ...displayOptions?.show, emailDomainOperation: ['DomainAccountDelete'] },
-		}),
-		...descriptionDomainAccountFilterChangeActivityCreate({
-			...displayOptions,
-			show: {
-				...displayOptions?.show,
-				emailDomainOperation: ['DomainAccountFilterChangeActivityCreate'],
-			},
-		}),
-		...descriptionDomainAccountFilterChangePriorityCreate({
-			...displayOptions,
-			show: {
-				...displayOptions?.show,
-				emailDomainOperation: ['DomainAccountFilterChangePriorityCreate'],
-			},
-		}),
-		...descriptionDomainAccountFilterCreate({
-			...displayOptions,
-			show: { ...displayOptions?.show, emailDomainOperation: ['DomainAccountFilterCreate'] },
-		}),
-		...descriptionDomainAccountFilterDelete({
-			...displayOptions,
-			show: { ...displayOptions?.show, emailDomainOperation: ['DomainAccountFilterDelete'] },
-		}),
-		...descriptionDomainAccountFilterGet({
-			...displayOptions,
-			show: { ...displayOptions?.show, emailDomainOperation: ['DomainAccountFilterGet'] },
-		}),
-		...descriptionDomainAccountFilterList({
-			...displayOptions,
-			show: { ...displayOptions?.show, emailDomainOperation: ['DomainAccountFilterList'] },
-		}),
-		...descriptionDomainAccountFilterRuleCreate({
-			...displayOptions,
-			show: { ...displayOptions?.show, emailDomainOperation: ['DomainAccountFilterRuleCreate'] },
-		}),
-		...descriptionDomainAccountFilterRuleDelete({
-			...displayOptions,
-			show: { ...displayOptions?.show, emailDomainOperation: ['DomainAccountFilterRuleDelete'] },
-		}),
-		...descriptionDomainAccountFilterRuleGet({
-			...displayOptions,
-			show: { ...displayOptions?.show, emailDomainOperation: ['DomainAccountFilterRuleGet'] },
-		}),
-		...descriptionDomainAccountFilterRuleList({
-			...displayOptions,
-			show: { ...displayOptions?.show, emailDomainOperation: ['DomainAccountFilterRuleList'] },
-		}),
-		...descriptionDomainAccountGet({
-			...displayOptions,
-			show: { ...displayOptions?.show, emailDomainOperation: ['DomainAccountGet'] },
-		}),
-		...descriptionDomainAccountList({
-			...displayOptions,
-			show: { ...displayOptions?.show, emailDomainOperation: ['DomainAccountList'] },
-		}),
-		...descriptionDomainAccountMigrateCheckGet({
-			...displayOptions,
-			show: { ...displayOptions?.show, emailDomainOperation: ['DomainAccountMigrateCheckGet'] },
-		}),
-		...descriptionDomainAccountMigrateCreate({
-			...displayOptions,
-			show: { ...displayOptions?.show, emailDomainOperation: ['DomainAccountMigrateCreate'] },
-		}),
-		...descriptionDomainAccountMigrateDestinationEmailGet({
-			...displayOptions,
-			show: {
-				...displayOptions?.show,
-				emailDomainOperation: ['DomainAccountMigrateDestinationEmailGet'],
-			},
-		}),
-		...descriptionDomainAccountMigrateDestinationEmailList({
-			...displayOptions,
-			show: {
-				...displayOptions?.show,
-				emailDomainOperation: ['DomainAccountMigrateDestinationEmailList'],
-			},
-		}),
-		...descriptionDomainAccountMigrateGet({
-			...displayOptions,
-			show: { ...displayOptions?.show, emailDomainOperation: ['DomainAccountMigrateGet'] },
-		}),
-		...descriptionDomainAccountMigrateGet2({
-			...displayOptions,
-			show: { ...displayOptions?.show, emailDomainOperation: ['DomainAccountMigrateGet2'] },
-		}),
-		...descriptionDomainAccountUpdate({
-			...displayOptions,
-			show: { ...displayOptions?.show, emailDomainOperation: ['DomainAccountUpdate'] },
-		}),
-		...descriptionDomainAccountUpdateUsagePost({
-			...displayOptions,
-			show: { ...displayOptions?.show, emailDomainOperation: ['DomainAccountUpdateUsagePost'] },
-		}),
-		...descriptionDomainAccountUsageGet({
-			...displayOptions,
-			show: { ...displayOptions?.show, emailDomainOperation: ['DomainAccountUsageGet'] },
-		}),
-		...descriptionDomainAclCreate({
-			...displayOptions,
-			show: { ...displayOptions?.show, emailDomainOperation: ['DomainAclCreate'] },
-		}),
-		...descriptionDomainAclDelete({
-			...displayOptions,
-			show: { ...displayOptions?.show, emailDomainOperation: ['DomainAclDelete'] },
-		}),
-		...descriptionDomainAclGet({
-			...displayOptions,
-			show: { ...displayOptions?.show, emailDomainOperation: ['DomainAclGet'] },
-		}),
-		...descriptionDomainAclList({
-			...displayOptions,
-			show: { ...displayOptions?.show, emailDomainOperation: ['DomainAclList'] },
-		}),
-		...descriptionDomainChangeContactCreate({
-			...displayOptions,
-			show: { ...displayOptions?.show, emailDomainOperation: ['DomainChangeContactCreate'] },
-		}),
-		...descriptionDomainChangeDnsMXFilterCreate({
-			...displayOptions,
-			show: { ...displayOptions?.show, emailDomainOperation: ['DomainChangeDnsMXFilterCreate'] },
-		}),
-		...descriptionDomainConfirmTerminationCreate({
-			...displayOptions,
-			show: { ...displayOptions?.show, emailDomainOperation: ['DomainConfirmTerminationCreate'] },
-		}),
-		...descriptionDomainDkimDisableUpdate({
-			...displayOptions,
-			show: { ...displayOptions?.show, emailDomainOperation: ['DomainDkimDisableUpdate'] },
-		}),
-		...descriptionDomainDkimEnableUpdate({
-			...displayOptions,
-			show: { ...displayOptions?.show, emailDomainOperation: ['DomainDkimEnableUpdate'] },
-		}),
-		...descriptionDomainDkimGet({
-			...displayOptions,
-			show: { ...displayOptions?.show, emailDomainOperation: ['DomainDkimGet'] },
-		}),
-		...descriptionDomainDnsMXFilterGet({
-			...displayOptions,
-			show: { ...displayOptions?.show, emailDomainOperation: ['DomainDnsMXFilterGet'] },
-		}),
-		...descriptionDomainDnsMXRecordsGet({
-			...displayOptions,
-			show: { ...displayOptions?.show, emailDomainOperation: ['DomainDnsMXRecordsGet'] },
-		}),
-		...descriptionDomainGet({
-			...displayOptions,
-			show: { ...displayOptions?.show, emailDomainOperation: ['DomainGet'] },
-		}),
-		...descriptionDomainList({
-			...displayOptions,
-			show: { ...displayOptions?.show, emailDomainOperation: ['DomainList'] },
-		}),
-		...descriptionDomainMailingListChangeOptionsCreate({
-			...displayOptions,
-			show: {
-				...displayOptions?.show,
-				emailDomainOperation: ['DomainMailingListChangeOptionsCreate'],
-			},
-		}),
-		...descriptionDomainMailingListCreate({
-			...displayOptions,
-			show: { ...displayOptions?.show, emailDomainOperation: ['DomainMailingListCreate'] },
-		}),
-		...descriptionDomainMailingListDelete({
-			...displayOptions,
-			show: { ...displayOptions?.show, emailDomainOperation: ['DomainMailingListDelete'] },
-		}),
-		...descriptionDomainMailingListGet({
-			...displayOptions,
-			show: { ...displayOptions?.show, emailDomainOperation: ['DomainMailingListGet'] },
-		}),
-		...descriptionDomainMailingListList({
-			...displayOptions,
-			show: { ...displayOptions?.show, emailDomainOperation: ['DomainMailingListList'] },
-		}),
-		...descriptionDomainMailingListModeratorCreate({
-			...displayOptions,
-			show: { ...displayOptions?.show, emailDomainOperation: ['DomainMailingListModeratorCreate'] },
-		}),
-		...descriptionDomainMailingListModeratorDelete({
-			...displayOptions,
-			show: { ...displayOptions?.show, emailDomainOperation: ['DomainMailingListModeratorDelete'] },
-		}),
-		...descriptionDomainMailingListModeratorGet({
-			...displayOptions,
-			show: { ...displayOptions?.show, emailDomainOperation: ['DomainMailingListModeratorGet'] },
-		}),
-		...descriptionDomainMailingListModeratorList({
-			...displayOptions,
-			show: { ...displayOptions?.show, emailDomainOperation: ['DomainMailingListModeratorList'] },
-		}),
-		...descriptionDomainMailingListSendListByEmailCreate({
-			...displayOptions,
-			show: {
-				...displayOptions?.show,
-				emailDomainOperation: ['DomainMailingListSendListByEmailCreate'],
-			},
-		}),
-		...descriptionDomainMailingListSubscriberCreate({
-			...displayOptions,
-			show: {
-				...displayOptions?.show,
-				emailDomainOperation: ['DomainMailingListSubscriberCreate'],
-			},
-		}),
-		...descriptionDomainMailingListSubscriberDelete({
-			...displayOptions,
-			show: {
-				...displayOptions?.show,
-				emailDomainOperation: ['DomainMailingListSubscriberDelete'],
-			},
-		}),
-		...descriptionDomainMailingListSubscriberGet({
-			...displayOptions,
-			show: { ...displayOptions?.show, emailDomainOperation: ['DomainMailingListSubscriberGet'] },
-		}),
-		...descriptionDomainMailingListSubscriberList({
-			...displayOptions,
-			show: { ...displayOptions?.show, emailDomainOperation: ['DomainMailingListSubscriberList'] },
-		}),
-		...descriptionDomainMailingListUpdate({
-			...displayOptions,
-			show: { ...displayOptions?.show, emailDomainOperation: ['DomainMailingListUpdate'] },
-		}),
-		...descriptionDomainMigrateDelegationV3toV6Create({
-			...displayOptions,
-			show: {
-				...displayOptions?.show,
-				emailDomainOperation: ['DomainMigrateDelegationV3toV6Create'],
-			},
-		}),
-		...descriptionDomainQuotaGet({
-			...displayOptions,
-			show: { ...displayOptions?.show, emailDomainOperation: ['DomainQuotaGet'] },
-		}),
-		...descriptionDomainRecommendedDNSRecordsGet({
-			...displayOptions,
-			show: { ...displayOptions?.show, emailDomainOperation: ['DomainRecommendedDNSRecordsGet'] },
-		}),
-		...descriptionDomainRedirectionChangeCreate({
-			...displayOptions,
-			show: { ...displayOptions?.show, emailDomainOperation: ['DomainRedirectionChangeCreate'] },
-		}),
-		...descriptionDomainRedirectionCreate({
-			...displayOptions,
-			show: { ...displayOptions?.show, emailDomainOperation: ['DomainRedirectionCreate'] },
-		}),
-		...descriptionDomainRedirectionDelete({
-			...displayOptions,
-			show: { ...displayOptions?.show, emailDomainOperation: ['DomainRedirectionDelete'] },
-		}),
-		...descriptionDomainRedirectionGet({
-			...displayOptions,
-			show: { ...displayOptions?.show, emailDomainOperation: ['DomainRedirectionGet'] },
-		}),
-		...descriptionDomainRedirectionList({
-			...displayOptions,
-			show: { ...displayOptions?.show, emailDomainOperation: ['DomainRedirectionList'] },
-		}),
-		...descriptionDomainResponderCreate({
-			...displayOptions,
-			show: { ...displayOptions?.show, emailDomainOperation: ['DomainResponderCreate'] },
-		}),
-		...descriptionDomainResponderDelete({
-			...displayOptions,
-			show: { ...displayOptions?.show, emailDomainOperation: ['DomainResponderDelete'] },
-		}),
-		...descriptionDomainResponderGet({
-			...displayOptions,
-			show: { ...displayOptions?.show, emailDomainOperation: ['DomainResponderGet'] },
-		}),
-		...descriptionDomainResponderList({
-			...displayOptions,
-			show: { ...displayOptions?.show, emailDomainOperation: ['DomainResponderList'] },
-		}),
-		...descriptionDomainResponderUpdate({
-			...displayOptions,
-			show: { ...displayOptions?.show, emailDomainOperation: ['DomainResponderUpdate'] },
-		}),
-		...descriptionDomainServiceInfosGet({
-			...displayOptions,
-			show: { ...displayOptions?.show, emailDomainOperation: ['DomainServiceInfosGet'] },
-		}),
-		...descriptionDomainServiceInfosUpdate({
-			...displayOptions,
-			show: { ...displayOptions?.show, emailDomainOperation: ['DomainServiceInfosUpdate'] },
-		}),
-		...descriptionDomainSummaryGet({
-			...displayOptions,
-			show: { ...displayOptions?.show, emailDomainOperation: ['DomainSummaryGet'] },
-		}),
-		...descriptionDomainTaskAccountGet({
-			...displayOptions,
-			show: { ...displayOptions?.show, emailDomainOperation: ['DomainTaskAccountGet'] },
-		}),
-		...descriptionDomainTaskAccountList({
-			...displayOptions,
-			show: { ...displayOptions?.show, emailDomainOperation: ['DomainTaskAccountList'] },
-		}),
-		...descriptionDomainTaskAllGet({
-			...displayOptions,
-			show: { ...displayOptions?.show, emailDomainOperation: ['DomainTaskAllGet'] },
-		}),
-		...descriptionDomainTaskAllList({
-			...displayOptions,
-			show: { ...displayOptions?.show, emailDomainOperation: ['DomainTaskAllList'] },
-		}),
-		...descriptionDomainTaskFilterGet({
-			...displayOptions,
-			show: { ...displayOptions?.show, emailDomainOperation: ['DomainTaskFilterGet'] },
-		}),
-		...descriptionDomainTaskFilterList({
-			...displayOptions,
-			show: { ...displayOptions?.show, emailDomainOperation: ['DomainTaskFilterList'] },
-		}),
-		...descriptionDomainTaskMailinglistGet({
-			...displayOptions,
-			show: { ...displayOptions?.show, emailDomainOperation: ['DomainTaskMailinglistGet'] },
-		}),
-		...descriptionDomainTaskMailinglistList({
-			...displayOptions,
-			show: { ...displayOptions?.show, emailDomainOperation: ['DomainTaskMailinglistList'] },
-		}),
-		...descriptionDomainTaskRedirectionGet({
-			...displayOptions,
-			show: { ...displayOptions?.show, emailDomainOperation: ['DomainTaskRedirectionGet'] },
-		}),
-		...descriptionDomainTaskRedirectionList({
-			...displayOptions,
-			show: { ...displayOptions?.show, emailDomainOperation: ['DomainTaskRedirectionList'] },
-		}),
-		...descriptionDomainTaskResponderGet({
-			...displayOptions,
-			show: { ...displayOptions?.show, emailDomainOperation: ['DomainTaskResponderGet'] },
-		}),
-		...descriptionDomainTaskResponderList({
-			...displayOptions,
-			show: { ...displayOptions?.show, emailDomainOperation: ['DomainTaskResponderList'] },
-		}),
-		...descriptionDomainTerminateCreate({
-			...displayOptions,
-			show: { ...displayOptions?.show, emailDomainOperation: ['DomainTerminateCreate'] },
-		}),
-		...descriptionMailingListLimitsGet({
-			...displayOptions,
-			show: { ...displayOptions?.show, emailDomainOperation: ['MailingListLimitsGet'] },
-		}),
-	];
-
-	return properties;
-}
-
-export async function execute(
-	this: IExecuteFunctions,
-	itemIndex?: number,
-): Promise<INodeExecutionData[]> {
-	const operation = this.getNodeParameter('emailDomainOperation', itemIndex ?? 0, {
-		extractValue: true,
-	});
-
-	switch (operation) {
-		case 'DelegatedAccountFilterChangeActivityCreate':
-			return executeDelegatedAccountFilterChangeActivityCreate.call(this, itemIndex ?? 0);
-		case 'DelegatedAccountFilterChangePriorityCreate':
-			return executeDelegatedAccountFilterChangePriorityCreate.call(this, itemIndex ?? 0);
-		case 'DelegatedAccountFilterCreate':
-			return executeDelegatedAccountFilterCreate.call(this, itemIndex ?? 0);
-		case 'DelegatedAccountFilterDelete':
-			return executeDelegatedAccountFilterDelete.call(this, itemIndex ?? 0);
-		case 'DelegatedAccountFilterGet':
-			return executeDelegatedAccountFilterGet.call(this, itemIndex ?? 0);
-		case 'DelegatedAccountFilterList':
-			return executeDelegatedAccountFilterList.call(this, itemIndex ?? 0);
-		case 'DelegatedAccountFilterRuleDelete':
-			return executeDelegatedAccountFilterRuleDelete.call(this, itemIndex ?? 0);
-		case 'DelegatedAccountFilterRuleGet':
-			return executeDelegatedAccountFilterRuleGet.call(this, itemIndex ?? 0);
-		case 'DelegatedAccountGet':
-			return executeDelegatedAccountGet.call(this, itemIndex ?? 0);
-		case 'DelegatedAccountGet10':
-			return executeDelegatedAccountGet10.call(this, itemIndex ?? 0);
-		case 'DelegatedAccountGet11':
-			return executeDelegatedAccountGet11.call(this, itemIndex ?? 0);
-		case 'DelegatedAccountGet12':
-			return executeDelegatedAccountGet12.call(this, itemIndex ?? 0);
-		case 'DelegatedAccountGet2':
-			return executeDelegatedAccountGet2.call(this, itemIndex ?? 0);
-		case 'DelegatedAccountGet3':
-			return executeDelegatedAccountGet3.call(this, itemIndex ?? 0);
-		case 'DelegatedAccountGet4':
-			return executeDelegatedAccountGet4.call(this, itemIndex ?? 0);
-		case 'DelegatedAccountGet5':
-			return executeDelegatedAccountGet5.call(this, itemIndex ?? 0);
-		case 'DelegatedAccountGet6':
-			return executeDelegatedAccountGet6.call(this, itemIndex ?? 0);
-		case 'DelegatedAccountGet7':
-			return executeDelegatedAccountGet7.call(this, itemIndex ?? 0);
-		case 'DelegatedAccountGet8':
-			return executeDelegatedAccountGet8.call(this, itemIndex ?? 0);
-		case 'DelegatedAccountGet9':
-			return executeDelegatedAccountGet9.call(this, itemIndex ?? 0);
-		case 'DomainAccountChangePasswordCreate':
-			return executeDomainAccountChangePasswordCreate.call(this, itemIndex ?? 0);
-		case 'DomainAccountCreate':
-			return executeDomainAccountCreate.call(this, itemIndex ?? 0);
-		case 'DomainAccountDelegationCreate':
-			return executeDomainAccountDelegationCreate.call(this, itemIndex ?? 0);
-		case 'DomainAccountDelegationDelete':
-			return executeDomainAccountDelegationDelete.call(this, itemIndex ?? 0);
-		case 'DomainAccountDelegationGet':
-			return executeDomainAccountDelegationGet.call(this, itemIndex ?? 0);
-		case 'DomainAccountDelegationList':
-			return executeDomainAccountDelegationList.call(this, itemIndex ?? 0);
-		case 'DomainAccountDelete':
-			return executeDomainAccountDelete.call(this, itemIndex ?? 0);
-		case 'DomainAccountFilterChangeActivityCreate':
-			return executeDomainAccountFilterChangeActivityCreate.call(this, itemIndex ?? 0);
-		case 'DomainAccountFilterChangePriorityCreate':
-			return executeDomainAccountFilterChangePriorityCreate.call(this, itemIndex ?? 0);
-		case 'DomainAccountFilterCreate':
-			return executeDomainAccountFilterCreate.call(this, itemIndex ?? 0);
-		case 'DomainAccountFilterDelete':
-			return executeDomainAccountFilterDelete.call(this, itemIndex ?? 0);
-		case 'DomainAccountFilterGet':
-			return executeDomainAccountFilterGet.call(this, itemIndex ?? 0);
-		case 'DomainAccountFilterList':
-			return executeDomainAccountFilterList.call(this, itemIndex ?? 0);
-		case 'DomainAccountFilterRuleCreate':
-			return executeDomainAccountFilterRuleCreate.call(this, itemIndex ?? 0);
-		case 'DomainAccountFilterRuleDelete':
-			return executeDomainAccountFilterRuleDelete.call(this, itemIndex ?? 0);
-		case 'DomainAccountFilterRuleGet':
-			return executeDomainAccountFilterRuleGet.call(this, itemIndex ?? 0);
-		case 'DomainAccountFilterRuleList':
-			return executeDomainAccountFilterRuleList.call(this, itemIndex ?? 0);
-		case 'DomainAccountGet':
-			return executeDomainAccountGet.call(this, itemIndex ?? 0);
-		case 'DomainAccountList':
-			return executeDomainAccountList.call(this, itemIndex ?? 0);
-		case 'DomainAccountMigrateCheckGet':
-			return executeDomainAccountMigrateCheckGet.call(this, itemIndex ?? 0);
-		case 'DomainAccountMigrateCreate':
-			return executeDomainAccountMigrateCreate.call(this, itemIndex ?? 0);
-		case 'DomainAccountMigrateDestinationEmailGet':
-			return executeDomainAccountMigrateDestinationEmailGet.call(this, itemIndex ?? 0);
-		case 'DomainAccountMigrateDestinationEmailList':
-			return executeDomainAccountMigrateDestinationEmailList.call(this, itemIndex ?? 0);
-		case 'DomainAccountMigrateGet':
-			return executeDomainAccountMigrateGet.call(this, itemIndex ?? 0);
-		case 'DomainAccountMigrateGet2':
-			return executeDomainAccountMigrateGet2.call(this, itemIndex ?? 0);
-		case 'DomainAccountUpdate':
-			return executeDomainAccountUpdate.call(this, itemIndex ?? 0);
-		case 'DomainAccountUpdateUsagePost':
-			return executeDomainAccountUpdateUsagePost.call(this, itemIndex ?? 0);
-		case 'DomainAccountUsageGet':
-			return executeDomainAccountUsageGet.call(this, itemIndex ?? 0);
-		case 'DomainAclCreate':
-			return executeDomainAclCreate.call(this, itemIndex ?? 0);
-		case 'DomainAclDelete':
-			return executeDomainAclDelete.call(this, itemIndex ?? 0);
-		case 'DomainAclGet':
-			return executeDomainAclGet.call(this, itemIndex ?? 0);
-		case 'DomainAclList':
-			return executeDomainAclList.call(this, itemIndex ?? 0);
-		case 'DomainChangeContactCreate':
-			return executeDomainChangeContactCreate.call(this, itemIndex ?? 0);
-		case 'DomainChangeDnsMXFilterCreate':
-			return executeDomainChangeDnsMXFilterCreate.call(this, itemIndex ?? 0);
-		case 'DomainConfirmTerminationCreate':
-			return executeDomainConfirmTerminationCreate.call(this, itemIndex ?? 0);
-		case 'DomainDkimDisableUpdate':
-			return executeDomainDkimDisableUpdate.call(this, itemIndex ?? 0);
-		case 'DomainDkimEnableUpdate':
-			return executeDomainDkimEnableUpdate.call(this, itemIndex ?? 0);
-		case 'DomainDkimGet':
-			return executeDomainDkimGet.call(this, itemIndex ?? 0);
-		case 'DomainDnsMXFilterGet':
-			return executeDomainDnsMXFilterGet.call(this, itemIndex ?? 0);
-		case 'DomainDnsMXRecordsGet':
-			return executeDomainDnsMXRecordsGet.call(this, itemIndex ?? 0);
-		case 'DomainGet':
-			return executeDomainGet.call(this, itemIndex ?? 0);
-		case 'DomainList':
-			return executeDomainList.call(this, itemIndex ?? 0);
-		case 'DomainMailingListChangeOptionsCreate':
-			return executeDomainMailingListChangeOptionsCreate.call(this, itemIndex ?? 0);
-		case 'DomainMailingListCreate':
-			return executeDomainMailingListCreate.call(this, itemIndex ?? 0);
-		case 'DomainMailingListDelete':
-			return executeDomainMailingListDelete.call(this, itemIndex ?? 0);
-		case 'DomainMailingListGet':
-			return executeDomainMailingListGet.call(this, itemIndex ?? 0);
-		case 'DomainMailingListList':
-			return executeDomainMailingListList.call(this, itemIndex ?? 0);
-		case 'DomainMailingListModeratorCreate':
-			return executeDomainMailingListModeratorCreate.call(this, itemIndex ?? 0);
-		case 'DomainMailingListModeratorDelete':
-			return executeDomainMailingListModeratorDelete.call(this, itemIndex ?? 0);
-		case 'DomainMailingListModeratorGet':
-			return executeDomainMailingListModeratorGet.call(this, itemIndex ?? 0);
-		case 'DomainMailingListModeratorList':
-			return executeDomainMailingListModeratorList.call(this, itemIndex ?? 0);
-		case 'DomainMailingListSendListByEmailCreate':
-			return executeDomainMailingListSendListByEmailCreate.call(this, itemIndex ?? 0);
-		case 'DomainMailingListSubscriberCreate':
-			return executeDomainMailingListSubscriberCreate.call(this, itemIndex ?? 0);
-		case 'DomainMailingListSubscriberDelete':
-			return executeDomainMailingListSubscriberDelete.call(this, itemIndex ?? 0);
-		case 'DomainMailingListSubscriberGet':
-			return executeDomainMailingListSubscriberGet.call(this, itemIndex ?? 0);
-		case 'DomainMailingListSubscriberList':
-			return executeDomainMailingListSubscriberList.call(this, itemIndex ?? 0);
-		case 'DomainMailingListUpdate':
-			return executeDomainMailingListUpdate.call(this, itemIndex ?? 0);
-		case 'DomainMigrateDelegationV3toV6Create':
-			return executeDomainMigrateDelegationV3toV6Create.call(this, itemIndex ?? 0);
-		case 'DomainQuotaGet':
-			return executeDomainQuotaGet.call(this, itemIndex ?? 0);
-		case 'DomainRecommendedDNSRecordsGet':
-			return executeDomainRecommendedDNSRecordsGet.call(this, itemIndex ?? 0);
-		case 'DomainRedirectionChangeCreate':
-			return executeDomainRedirectionChangeCreate.call(this, itemIndex ?? 0);
-		case 'DomainRedirectionCreate':
-			return executeDomainRedirectionCreate.call(this, itemIndex ?? 0);
-		case 'DomainRedirectionDelete':
-			return executeDomainRedirectionDelete.call(this, itemIndex ?? 0);
-		case 'DomainRedirectionGet':
-			return executeDomainRedirectionGet.call(this, itemIndex ?? 0);
-		case 'DomainRedirectionList':
-			return executeDomainRedirectionList.call(this, itemIndex ?? 0);
-		case 'DomainResponderCreate':
-			return executeDomainResponderCreate.call(this, itemIndex ?? 0);
-		case 'DomainResponderDelete':
-			return executeDomainResponderDelete.call(this, itemIndex ?? 0);
-		case 'DomainResponderGet':
-			return executeDomainResponderGet.call(this, itemIndex ?? 0);
-		case 'DomainResponderList':
-			return executeDomainResponderList.call(this, itemIndex ?? 0);
-		case 'DomainResponderUpdate':
-			return executeDomainResponderUpdate.call(this, itemIndex ?? 0);
-		case 'DomainServiceInfosGet':
-			return executeDomainServiceInfosGet.call(this, itemIndex ?? 0);
-		case 'DomainServiceInfosUpdate':
-			return executeDomainServiceInfosUpdate.call(this, itemIndex ?? 0);
-		case 'DomainSummaryGet':
-			return executeDomainSummaryGet.call(this, itemIndex ?? 0);
-		case 'DomainTaskAccountGet':
-			return executeDomainTaskAccountGet.call(this, itemIndex ?? 0);
-		case 'DomainTaskAccountList':
-			return executeDomainTaskAccountList.call(this, itemIndex ?? 0);
-		case 'DomainTaskAllGet':
-			return executeDomainTaskAllGet.call(this, itemIndex ?? 0);
-		case 'DomainTaskAllList':
-			return executeDomainTaskAllList.call(this, itemIndex ?? 0);
-		case 'DomainTaskFilterGet':
-			return executeDomainTaskFilterGet.call(this, itemIndex ?? 0);
-		case 'DomainTaskFilterList':
-			return executeDomainTaskFilterList.call(this, itemIndex ?? 0);
-		case 'DomainTaskMailinglistGet':
-			return executeDomainTaskMailinglistGet.call(this, itemIndex ?? 0);
-		case 'DomainTaskMailinglistList':
-			return executeDomainTaskMailinglistList.call(this, itemIndex ?? 0);
-		case 'DomainTaskRedirectionGet':
-			return executeDomainTaskRedirectionGet.call(this, itemIndex ?? 0);
-		case 'DomainTaskRedirectionList':
-			return executeDomainTaskRedirectionList.call(this, itemIndex ?? 0);
-		case 'DomainTaskResponderGet':
-			return executeDomainTaskResponderGet.call(this, itemIndex ?? 0);
-		case 'DomainTaskResponderList':
-			return executeDomainTaskResponderList.call(this, itemIndex ?? 0);
-		case 'DomainTerminateCreate':
-			return executeDomainTerminateCreate.call(this, itemIndex ?? 0);
-		case 'MailingListLimitsGet':
-			return executeMailingListLimitsGet.call(this, itemIndex ?? 0);
-	}
-
-	throw new Error(`Unsupported operation "${operation}" for resource "emailDomain"`);
-}
+export { description, execute };

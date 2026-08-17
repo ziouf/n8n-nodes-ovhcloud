@@ -1,687 +1,519 @@
-import type {
-	IExecuteFunctions,
-	INodeExecutionData,
-	INodeProperties,
-	IDisplayOptions,
-} from 'n8n-workflow';
+import { createOperationDispatcher } from '../../shared/nodes/createNodeDispatcher';
 
 import {
-	execute as executeMxPlanAccountAliasCreate,
-	description as descriptionMxPlanAccountAliasCreate,
-} from './mxplanAccount/MxPlanAccountAliasCreate.operation';
-import {
-	execute as executeMxPlanAccountAliasDelete,
-	description as descriptionMxPlanAccountAliasDelete,
-} from './mxplanAccount/MxPlanAccountAliasDelete.operation';
-import {
-	execute as executeMxPlanAccountAliasGet,
-	description as descriptionMxPlanAccountAliasGet,
-} from './mxplanAccount/MxPlanAccountAliasGet.operation';
-import {
-	execute as executeMxPlanAccountAliasList,
-	description as descriptionMxPlanAccountAliasList,
-} from './mxplanAccount/MxPlanAccountAliasList.operation';
-import {
-	execute as executeMxPlanAccountCapabilitiesGet,
-	description as descriptionMxPlanAccountCapabilitiesGet,
-} from './mxplanAccount/MxPlanAccountCapabilitiesGet.operation';
-import {
-	execute as executeMxPlanAccountChangePasswordCreate,
-	description as descriptionMxPlanAccountChangePasswordCreate,
-} from './mxplanAccount/MxPlanAccountChangePasswordCreate.operation';
-import {
-	execute as executeMxPlanAccountDelete,
-	description as descriptionMxPlanAccountDelete,
-} from './mxplanAccount/MxPlanAccountDelete.operation';
-import {
-	execute as executeMxPlanAccountDiagnosticCreate,
-	description as descriptionMxPlanAccountDiagnosticCreate,
-} from './mxplanAccount/MxPlanAccountDiagnosticCreate.operation';
-import {
-	execute as executeMxPlanAccountDiagnosticGet,
-	description as descriptionMxPlanAccountDiagnosticGet,
-} from './mxplanAccount/MxPlanAccountDiagnosticGet.operation';
-import {
-	execute as executeMxPlanAccountFullAccessCreate,
-	description as descriptionMxPlanAccountFullAccessCreate,
-} from './mxplanAccount/MxPlanAccountFullAccessCreate.operation';
-import {
-	execute as executeMxPlanAccountFullAccessDelete,
-	description as descriptionMxPlanAccountFullAccessDelete,
-} from './mxplanAccount/MxPlanAccountFullAccessDelete.operation';
-import {
-	execute as executeMxPlanAccountFullAccessGet,
-	description as descriptionMxPlanAccountFullAccessGet,
-} from './mxplanAccount/MxPlanAccountFullAccessGet.operation';
-import {
-	execute as executeMxPlanAccountFullAccessList,
-	description as descriptionMxPlanAccountFullAccessList,
-} from './mxplanAccount/MxPlanAccountFullAccessList.operation';
-import {
-	execute as executeMxPlanAccountGet,
-	description as descriptionMxPlanAccountGet,
-} from './mxplanAccount/MxPlanAccountGet.operation';
-import {
-	execute as executeMxPlanAccountList,
-	description as descriptionMxPlanAccountList,
-} from './mxplanAccount/MxPlanAccountList.operation';
-import {
-	execute as executeMxPlanAccountSendAsCreate,
-	description as descriptionMxPlanAccountSendAsCreate,
-} from './mxplanAccount/MxPlanAccountSendAsCreate.operation';
-import {
-	execute as executeMxPlanAccountSendAsDelete,
-	description as descriptionMxPlanAccountSendAsDelete,
-} from './mxplanAccount/MxPlanAccountSendAsDelete.operation';
-import {
-	execute as executeMxPlanAccountSendAsGet,
-	description as descriptionMxPlanAccountSendAsGet,
-} from './mxplanAccount/MxPlanAccountSendAsGet.operation';
-import {
-	execute as executeMxPlanAccountSendAsList,
-	description as descriptionMxPlanAccountSendAsList,
-} from './mxplanAccount/MxPlanAccountSendAsList.operation';
-import {
-	execute as executeMxPlanAccountSendOnBehalfToCreate,
-	description as descriptionMxPlanAccountSendOnBehalfToCreate,
-} from './mxplanAccount/MxPlanAccountSendOnBehalfToCreate.operation';
-import {
-	execute as executeMxPlanAccountSendOnBehalfToDelete,
-	description as descriptionMxPlanAccountSendOnBehalfToDelete,
-} from './mxplanAccount/MxPlanAccountSendOnBehalfToDelete.operation';
-import {
-	execute as executeMxPlanAccountSendOnBehalfToGet,
-	description as descriptionMxPlanAccountSendOnBehalfToGet,
-} from './mxplanAccount/MxPlanAccountSendOnBehalfToGet.operation';
-import {
-	execute as executeMxPlanAccountSendOnBehalfToList,
-	description as descriptionMxPlanAccountSendOnBehalfToList,
-} from './mxplanAccount/MxPlanAccountSendOnBehalfToList.operation';
-import {
-	execute as executeMxPlanAccountTaskGet,
-	description as descriptionMxPlanAccountTaskGet,
-} from './mxplanAccount/MxPlanAccountTaskGet.operation';
-import {
-	execute as executeMxPlanAccountTaskList,
-	description as descriptionMxPlanAccountTaskList,
-} from './mxplanAccount/MxPlanAccountTaskList.operation';
-import {
-	execute as executeMxPlanAccountUpdate,
-	description as descriptionMxPlanAccountUpdate,
-} from './mxplanAccount/MxPlanAccountUpdate.operation';
-import {
-	execute as executeMxPlanDomainDisclaimerAttributeGet,
-	description as descriptionMxPlanDomainDisclaimerAttributeGet,
-} from './mxplanDomain/MxPlanDomainDisclaimerAttributeGet.operation';
-import {
-	execute as executeMxPlanDomainDisclaimerCreate,
-	description as descriptionMxPlanDomainDisclaimerCreate,
-} from './mxplanDomain/MxPlanDomainDisclaimerCreate.operation';
-import {
-	execute as executeMxPlanDomainDisclaimerDelete,
-	description as descriptionMxPlanDomainDisclaimerDelete,
-} from './mxplanDomain/MxPlanDomainDisclaimerDelete.operation';
-import {
-	execute as executeMxPlanDomainDisclaimerList,
-	description as descriptionMxPlanDomainDisclaimerList,
-} from './mxplanDomain/MxPlanDomainDisclaimerList.operation';
-import {
-	execute as executeMxPlanDomainDisclaimerUpdate,
-	description as descriptionMxPlanDomainDisclaimerUpdate,
-} from './mxplanDomain/MxPlanDomainDisclaimerUpdate.operation';
-import {
-	execute as executeMxPlanDomainGet,
-	description as descriptionMxPlanDomainGet,
-} from './mxplanDomain/MxPlanDomainGet.operation';
-import {
-	execute as executeMxPlanDomainList,
-	description as descriptionMxPlanDomainList,
-} from './mxplanDomain/MxPlanDomainList.operation';
-import {
-	execute as executeMxPlanDomainUpdate,
-	description as descriptionMxPlanDomainUpdate,
-} from './mxplanDomain/MxPlanDomainUpdate.operation';
-import {
-	execute as executeMxPlanExternalContactCreate,
-	description as descriptionMxPlanExternalContactCreate,
-} from './mxplanExternalContact/MxPlanExternalContactCreate.operation';
-import {
-	execute as executeMxPlanExternalContactDelete,
-	description as descriptionMxPlanExternalContactDelete,
-} from './mxplanExternalContact/MxPlanExternalContactDelete.operation';
-import {
-	execute as executeMxPlanExternalContactGet,
-	description as descriptionMxPlanExternalContactGet,
-} from './mxplanExternalContact/MxPlanExternalContactGet.operation';
-import {
-	execute as executeMxPlanExternalContactList,
-	description as descriptionMxPlanExternalContactList,
-} from './mxplanExternalContact/MxPlanExternalContactList.operation';
-import {
-	execute as executeMxPlanExternalContactUpdate,
-	description as descriptionMxPlanExternalContactUpdate,
-} from './mxplanExternalContact/MxPlanExternalContactUpdate.operation';
-import {
-	execute as executeMxPlanGet,
 	description as descriptionMxPlanGet,
+	execute as executeMxPlanGet,
 } from './misc/MxPlanGet.operation';
 import {
-	execute as executeMxPlanList,
 	description as descriptionMxPlanList,
+	execute as executeMxPlanList,
 } from './misc/MxPlanList.operation';
 import {
-	execute as executeMxPlanPut,
 	description as descriptionMxPlanPut,
+	execute as executeMxPlanPut,
 } from './misc/MxPlanPut.operation';
 import {
-	execute as executeMxPlanServerGet,
+	description as descriptionMxPlanAccountAliasCreate,
+	execute as executeMxPlanAccountAliasCreate,
+} from './mxplanAccount/MxPlanAccountAliasCreate.operation';
+import {
+	description as descriptionMxPlanAccountAliasDelete,
+	execute as executeMxPlanAccountAliasDelete,
+} from './mxplanAccount/MxPlanAccountAliasDelete.operation';
+import {
+	description as descriptionMxPlanAccountAliasGet,
+	execute as executeMxPlanAccountAliasGet,
+} from './mxplanAccount/MxPlanAccountAliasGet.operation';
+import {
+	description as descriptionMxPlanAccountAliasList,
+	execute as executeMxPlanAccountAliasList,
+} from './mxplanAccount/MxPlanAccountAliasList.operation';
+import {
+	description as descriptionMxPlanAccountCapabilitiesGet,
+	execute as executeMxPlanAccountCapabilitiesGet,
+} from './mxplanAccount/MxPlanAccountCapabilitiesGet.operation';
+import {
+	description as descriptionMxPlanAccountChangePasswordCreate,
+	execute as executeMxPlanAccountChangePasswordCreate,
+} from './mxplanAccount/MxPlanAccountChangePasswordCreate.operation';
+import {
+	description as descriptionMxPlanAccountDelete,
+	execute as executeMxPlanAccountDelete,
+} from './mxplanAccount/MxPlanAccountDelete.operation';
+import {
+	description as descriptionMxPlanAccountDiagnosticCreate,
+	execute as executeMxPlanAccountDiagnosticCreate,
+} from './mxplanAccount/MxPlanAccountDiagnosticCreate.operation';
+import {
+	description as descriptionMxPlanAccountDiagnosticGet,
+	execute as executeMxPlanAccountDiagnosticGet,
+} from './mxplanAccount/MxPlanAccountDiagnosticGet.operation';
+import {
+	description as descriptionMxPlanAccountFullAccessCreate,
+	execute as executeMxPlanAccountFullAccessCreate,
+} from './mxplanAccount/MxPlanAccountFullAccessCreate.operation';
+import {
+	description as descriptionMxPlanAccountFullAccessDelete,
+	execute as executeMxPlanAccountFullAccessDelete,
+} from './mxplanAccount/MxPlanAccountFullAccessDelete.operation';
+import {
+	description as descriptionMxPlanAccountFullAccessGet,
+	execute as executeMxPlanAccountFullAccessGet,
+} from './mxplanAccount/MxPlanAccountFullAccessGet.operation';
+import {
+	description as descriptionMxPlanAccountFullAccessList,
+	execute as executeMxPlanAccountFullAccessList,
+} from './mxplanAccount/MxPlanAccountFullAccessList.operation';
+import {
+	description as descriptionMxPlanAccountGet,
+	execute as executeMxPlanAccountGet,
+} from './mxplanAccount/MxPlanAccountGet.operation';
+import {
+	description as descriptionMxPlanAccountList,
+	execute as executeMxPlanAccountList,
+} from './mxplanAccount/MxPlanAccountList.operation';
+import {
+	description as descriptionMxPlanAccountSendAsCreate,
+	execute as executeMxPlanAccountSendAsCreate,
+} from './mxplanAccount/MxPlanAccountSendAsCreate.operation';
+import {
+	description as descriptionMxPlanAccountSendAsDelete,
+	execute as executeMxPlanAccountSendAsDelete,
+} from './mxplanAccount/MxPlanAccountSendAsDelete.operation';
+import {
+	description as descriptionMxPlanAccountSendAsGet,
+	execute as executeMxPlanAccountSendAsGet,
+} from './mxplanAccount/MxPlanAccountSendAsGet.operation';
+import {
+	description as descriptionMxPlanAccountSendAsList,
+	execute as executeMxPlanAccountSendAsList,
+} from './mxplanAccount/MxPlanAccountSendAsList.operation';
+import {
+	description as descriptionMxPlanAccountSendOnBehalfToCreate,
+	execute as executeMxPlanAccountSendOnBehalfToCreate,
+} from './mxplanAccount/MxPlanAccountSendOnBehalfToCreate.operation';
+import {
+	description as descriptionMxPlanAccountSendOnBehalfToDelete,
+	execute as executeMxPlanAccountSendOnBehalfToDelete,
+} from './mxplanAccount/MxPlanAccountSendOnBehalfToDelete.operation';
+import {
+	description as descriptionMxPlanAccountSendOnBehalfToGet,
+	execute as executeMxPlanAccountSendOnBehalfToGet,
+} from './mxplanAccount/MxPlanAccountSendOnBehalfToGet.operation';
+import {
+	description as descriptionMxPlanAccountSendOnBehalfToList,
+	execute as executeMxPlanAccountSendOnBehalfToList,
+} from './mxplanAccount/MxPlanAccountSendOnBehalfToList.operation';
+import {
+	description as descriptionMxPlanAccountTaskGet,
+	execute as executeMxPlanAccountTaskGet,
+} from './mxplanAccount/MxPlanAccountTaskGet.operation';
+import {
+	description as descriptionMxPlanAccountTaskList,
+	execute as executeMxPlanAccountTaskList,
+} from './mxplanAccount/MxPlanAccountTaskList.operation';
+import {
+	description as descriptionMxPlanAccountUpdate,
+	execute as executeMxPlanAccountUpdate,
+} from './mxplanAccount/MxPlanAccountUpdate.operation';
+import {
+	description as descriptionMxPlanDomainDisclaimerAttributeGet,
+	execute as executeMxPlanDomainDisclaimerAttributeGet,
+} from './mxplanDomain/MxPlanDomainDisclaimerAttributeGet.operation';
+import {
+	description as descriptionMxPlanDomainDisclaimerCreate,
+	execute as executeMxPlanDomainDisclaimerCreate,
+} from './mxplanDomain/MxPlanDomainDisclaimerCreate.operation';
+import {
+	description as descriptionMxPlanDomainDisclaimerDelete,
+	execute as executeMxPlanDomainDisclaimerDelete,
+} from './mxplanDomain/MxPlanDomainDisclaimerDelete.operation';
+import {
+	description as descriptionMxPlanDomainDisclaimerList,
+	execute as executeMxPlanDomainDisclaimerList,
+} from './mxplanDomain/MxPlanDomainDisclaimerList.operation';
+import {
+	description as descriptionMxPlanDomainDisclaimerUpdate,
+	execute as executeMxPlanDomainDisclaimerUpdate,
+} from './mxplanDomain/MxPlanDomainDisclaimerUpdate.operation';
+import {
+	description as descriptionMxPlanDomainGet,
+	execute as executeMxPlanDomainGet,
+} from './mxplanDomain/MxPlanDomainGet.operation';
+import {
+	description as descriptionMxPlanDomainList,
+	execute as executeMxPlanDomainList,
+} from './mxplanDomain/MxPlanDomainList.operation';
+import {
+	description as descriptionMxPlanDomainUpdate,
+	execute as executeMxPlanDomainUpdate,
+} from './mxplanDomain/MxPlanDomainUpdate.operation';
+import {
+	description as descriptionMxPlanExternalContactCreate,
+	execute as executeMxPlanExternalContactCreate,
+} from './mxplanExternalContact/MxPlanExternalContactCreate.operation';
+import {
+	description as descriptionMxPlanExternalContactDelete,
+	execute as executeMxPlanExternalContactDelete,
+} from './mxplanExternalContact/MxPlanExternalContactDelete.operation';
+import {
+	description as descriptionMxPlanExternalContactGet,
+	execute as executeMxPlanExternalContactGet,
+} from './mxplanExternalContact/MxPlanExternalContactGet.operation';
+import {
+	description as descriptionMxPlanExternalContactList,
+	execute as executeMxPlanExternalContactList,
+} from './mxplanExternalContact/MxPlanExternalContactList.operation';
+import {
+	description as descriptionMxPlanExternalContactUpdate,
+	execute as executeMxPlanExternalContactUpdate,
+} from './mxplanExternalContact/MxPlanExternalContactUpdate.operation';
+import {
 	description as descriptionMxPlanServerGet,
+	execute as executeMxPlanServerGet,
 } from './mxplanServer/MxPlanServerGet.operation';
 import {
-	execute as executeMxPlanTaskGet,
 	description as descriptionMxPlanTaskGet,
+	execute as executeMxPlanTaskGet,
 } from './mxplanTask/MxPlanTaskGet.operation';
 import {
-	execute as executeMxPlanTaskList,
 	description as descriptionMxPlanTaskList,
+	execute as executeMxPlanTaskList,
 } from './mxplanTask/MxPlanTaskList.operation';
 import {
-	execute as executeMxPlanUpdateFlagsOnAllAccountsCreate,
 	description as descriptionMxPlanUpdateFlagsOnAllAccountsCreate,
+	execute as executeMxPlanUpdateFlagsOnAllAccountsCreate,
 } from './mxplanUpdateFlagsOnAllAccounts/MxPlanUpdateFlagsOnAllAccountsCreate.operation';
 
-export function description(displayOptions: IDisplayOptions = {}): INodeProperties[] {
-	const props: INodeProperties[] = [];
 
-	// Operation picker (alphabetical by name)
-	props.push({
-		displayName: 'Operation',
-		name: 'mxPlanOperation',
-		type: 'options',
-		noDataExpression: true,
-		options: [
-			{
-				name: 'MxPlanAccountAliasCreate',
-				value: 'MxPlanAccountAliasCreate',
-			},
-			{
-				name: 'MxPlanAccountAliasDelete',
-				value: 'MxPlanAccountAliasDelete',
-			},
-			{
-				name: 'MxPlanAccountAliasGet',
-				value: 'MxPlanAccountAliasGet',
-			},
-			{
-				name: 'MxPlanAccountAliasList',
-				value: 'MxPlanAccountAliasList',
-			},
-			{
-				name: 'MxPlanAccountCapabilitiesGet',
-				value: 'MxPlanAccountCapabilitiesGet',
-			},
-			{
-				name: 'MxPlanAccountChangePasswordCreate',
-				value: 'MxPlanAccountChangePasswordCreate',
-			},
-			{
-				name: 'MxPlanAccountDelete',
-				value: 'MxPlanAccountDelete',
-			},
-			{
-				name: 'MxPlanAccountDiagnosticCreate',
-				value: 'MxPlanAccountDiagnosticCreate',
-			},
-			{
-				name: 'MxPlanAccountDiagnosticGet',
-				value: 'MxPlanAccountDiagnosticGet',
-			},
-			{
-				name: 'MxPlanAccountFullAccessCreate',
-				value: 'MxPlanAccountFullAccessCreate',
-			},
-			{
-				name: 'MxPlanAccountFullAccessDelete',
-				value: 'MxPlanAccountFullAccessDelete',
-			},
-			{
-				name: 'MxPlanAccountFullAccessGet',
-				value: 'MxPlanAccountFullAccessGet',
-			},
-			{
-				name: 'MxPlanAccountFullAccessList',
-				value: 'MxPlanAccountFullAccessList',
-			},
-			{
-				name: 'MxPlanAccountGet',
-				value: 'MxPlanAccountGet',
-			},
-			{
-				name: 'MxPlanAccountList',
-				value: 'MxPlanAccountList',
-			},
-			{
-				name: 'MxPlanAccountSendAsCreate',
-				value: 'MxPlanAccountSendAsCreate',
-			},
-			{
-				name: 'MxPlanAccountSendAsDelete',
-				value: 'MxPlanAccountSendAsDelete',
-			},
-			{
-				name: 'MxPlanAccountSendAsGet',
-				value: 'MxPlanAccountSendAsGet',
-			},
-			{
-				name: 'MxPlanAccountSendAsList',
-				value: 'MxPlanAccountSendAsList',
-			},
-			{
-				name: 'MxPlanAccountSendOnBehalfToCreate',
-				value: 'MxPlanAccountSendOnBehalfToCreate',
-			},
-			{
-				name: 'MxPlanAccountSendOnBehalfToDelete',
-				value: 'MxPlanAccountSendOnBehalfToDelete',
-			},
-			{
-				name: 'MxPlanAccountSendOnBehalfToGet',
-				value: 'MxPlanAccountSendOnBehalfToGet',
-			},
-			{
-				name: 'MxPlanAccountSendOnBehalfToList',
-				value: 'MxPlanAccountSendOnBehalfToList',
-			},
-			{
-				name: 'MxPlanAccountTaskGet',
-				value: 'MxPlanAccountTaskGet',
-			},
-			{
-				name: 'MxPlanAccountTaskList',
-				value: 'MxPlanAccountTaskList',
-			},
-			{
-				name: 'MxPlanAccountUpdate',
-				value: 'MxPlanAccountUpdate',
-			},
-			{
-				name: 'MxPlanDomainDisclaimerAttributeGet',
-				value: 'MxPlanDomainDisclaimerAttributeGet',
-			},
-			{
-				name: 'MxPlanDomainDisclaimerCreate',
-				value: 'MxPlanDomainDisclaimerCreate',
-			},
-			{
-				name: 'MxPlanDomainDisclaimerDelete',
-				value: 'MxPlanDomainDisclaimerDelete',
-			},
-			{
-				name: 'MxPlanDomainDisclaimerList',
-				value: 'MxPlanDomainDisclaimerList',
-			},
-			{
-				name: 'MxPlanDomainDisclaimerUpdate',
-				value: 'MxPlanDomainDisclaimerUpdate',
-			},
-			{
-				name: 'MxPlanDomainGet',
-				value: 'MxPlanDomainGet',
-			},
-			{
-				name: 'MxPlanDomainList',
-				value: 'MxPlanDomainList',
-			},
-			{
-				name: 'MxPlanDomainUpdate',
-				value: 'MxPlanDomainUpdate',
-			},
-			{
-				name: 'MxPlanExternalContactCreate',
-				value: 'MxPlanExternalContactCreate',
-			},
-			{
-				name: 'MxPlanExternalContactDelete',
-				value: 'MxPlanExternalContactDelete',
-			},
-			{
-				name: 'MxPlanExternalContactGet',
-				value: 'MxPlanExternalContactGet',
-			},
-			{
-				name: 'MxPlanExternalContactList',
-				value: 'MxPlanExternalContactList',
-			},
-			{
-				name: 'MxPlanExternalContactUpdate',
-				value: 'MxPlanExternalContactUpdate',
-			},
-			{
-				name: 'MxPlanGet',
-				value: 'MxPlanGet',
-			},
-			{
-				name: 'MxPlanList',
-				value: 'MxPlanList',
-			},
-			{
-				name: 'MxPlanPut',
-				value: 'MxPlanPut',
-			},
-			{
-				name: 'MxPlanServerGet',
-				value: 'MxPlanServerGet',
-			},
-			{
-				name: 'MxPlanTaskGet',
-				value: 'MxPlanTaskGet',
-			},
-			{
-				name: 'MxPlanTaskList',
-				value: 'MxPlanTaskList',
-			},
-			{
-				name: 'MxPlanUpdateFlagsOnAllAccountsCreate',
-				value: 'MxPlanUpdateFlagsOnAllAccountsCreate',
-			},
-		],
-		default: 'MxPlanAccountAliasGet',
-		displayOptions,
-	});
+const { description, execute } = createOperationDispatcher(
+	'mxPlanOperation',
+	'emailMxplan',
+	[
+	{
+		name: 'MxPlanAccountAliasCreate',
+		value: 'MxPlanAccountAliasCreate',
+		action: 'MxPlanAccountAliasCreate',
+		execute: executeMxPlanAccountAliasCreate,
+		description: descriptionMxPlanAccountAliasCreate,
+	},
+	{
+		name: 'MxPlanAccountAliasDelete',
+		value: 'MxPlanAccountAliasDelete',
+		action: 'MxPlanAccountAliasDelete',
+		execute: executeMxPlanAccountAliasDelete,
+		description: descriptionMxPlanAccountAliasDelete,
+	},
+	{
+		name: 'MxPlanAccountAliasGet',
+		value: 'MxPlanAccountAliasGet',
+		action: 'MxPlanAccountAliasGet',
+		execute: executeMxPlanAccountAliasGet,
+		description: descriptionMxPlanAccountAliasGet,
+		default: true,
+	},
+	{
+		name: 'MxPlanAccountAliasList',
+		value: 'MxPlanAccountAliasList',
+		action: 'MxPlanAccountAliasList',
+		execute: executeMxPlanAccountAliasList,
+		description: descriptionMxPlanAccountAliasList,
+	},
+	{
+		name: 'MxPlanAccountCapabilitiesGet',
+		value: 'MxPlanAccountCapabilitiesGet',
+		action: 'MxPlanAccountCapabilitiesGet',
+		execute: executeMxPlanAccountCapabilitiesGet,
+		description: descriptionMxPlanAccountCapabilitiesGet,
+	},
+	{
+		name: 'MxPlanAccountChangePasswordCreate',
+		value: 'MxPlanAccountChangePasswordCreate',
+		action: 'MxPlanAccountChangePasswordCreate',
+		execute: executeMxPlanAccountChangePasswordCreate,
+		description: descriptionMxPlanAccountChangePasswordCreate,
+	},
+	{
+		name: 'MxPlanAccountDelete',
+		value: 'MxPlanAccountDelete',
+		action: 'MxPlanAccountDelete',
+		execute: executeMxPlanAccountDelete,
+		description: descriptionMxPlanAccountDelete,
+	},
+	{
+		name: 'MxPlanAccountDiagnosticCreate',
+		value: 'MxPlanAccountDiagnosticCreate',
+		action: 'MxPlanAccountDiagnosticCreate',
+		execute: executeMxPlanAccountDiagnosticCreate,
+		description: descriptionMxPlanAccountDiagnosticCreate,
+	},
+	{
+		name: 'MxPlanAccountDiagnosticGet',
+		value: 'MxPlanAccountDiagnosticGet',
+		action: 'MxPlanAccountDiagnosticGet',
+		execute: executeMxPlanAccountDiagnosticGet,
+		description: descriptionMxPlanAccountDiagnosticGet,
+	},
+	{
+		name: 'MxPlanAccountFullAccessCreate',
+		value: 'MxPlanAccountFullAccessCreate',
+		action: 'MxPlanAccountFullAccessCreate',
+		execute: executeMxPlanAccountFullAccessCreate,
+		description: descriptionMxPlanAccountFullAccessCreate,
+	},
+	{
+		name: 'MxPlanAccountFullAccessDelete',
+		value: 'MxPlanAccountFullAccessDelete',
+		action: 'MxPlanAccountFullAccessDelete',
+		execute: executeMxPlanAccountFullAccessDelete,
+		description: descriptionMxPlanAccountFullAccessDelete,
+	},
+	{
+		name: 'MxPlanAccountFullAccessGet',
+		value: 'MxPlanAccountFullAccessGet',
+		action: 'MxPlanAccountFullAccessGet',
+		execute: executeMxPlanAccountFullAccessGet,
+		description: descriptionMxPlanAccountFullAccessGet,
+	},
+	{
+		name: 'MxPlanAccountFullAccessList',
+		value: 'MxPlanAccountFullAccessList',
+		action: 'MxPlanAccountFullAccessList',
+		execute: executeMxPlanAccountFullAccessList,
+		description: descriptionMxPlanAccountFullAccessList,
+	},
+	{
+		name: 'MxPlanAccountGet',
+		value: 'MxPlanAccountGet',
+		action: 'MxPlanAccountGet',
+		execute: executeMxPlanAccountGet,
+		description: descriptionMxPlanAccountGet,
+	},
+	{
+		name: 'MxPlanAccountList',
+		value: 'MxPlanAccountList',
+		action: 'MxPlanAccountList',
+		execute: executeMxPlanAccountList,
+		description: descriptionMxPlanAccountList,
+	},
+	{
+		name: 'MxPlanAccountSendAsCreate',
+		value: 'MxPlanAccountSendAsCreate',
+		action: 'MxPlanAccountSendAsCreate',
+		execute: executeMxPlanAccountSendAsCreate,
+		description: descriptionMxPlanAccountSendAsCreate,
+	},
+	{
+		name: 'MxPlanAccountSendAsDelete',
+		value: 'MxPlanAccountSendAsDelete',
+		action: 'MxPlanAccountSendAsDelete',
+		execute: executeMxPlanAccountSendAsDelete,
+		description: descriptionMxPlanAccountSendAsDelete,
+	},
+	{
+		name: 'MxPlanAccountSendAsGet',
+		value: 'MxPlanAccountSendAsGet',
+		action: 'MxPlanAccountSendAsGet',
+		execute: executeMxPlanAccountSendAsGet,
+		description: descriptionMxPlanAccountSendAsGet,
+	},
+	{
+		name: 'MxPlanAccountSendAsList',
+		value: 'MxPlanAccountSendAsList',
+		action: 'MxPlanAccountSendAsList',
+		execute: executeMxPlanAccountSendAsList,
+		description: descriptionMxPlanAccountSendAsList,
+	},
+	{
+		name: 'MxPlanAccountSendOnBehalfToCreate',
+		value: 'MxPlanAccountSendOnBehalfToCreate',
+		action: 'MxPlanAccountSendOnBehalfToCreate',
+		execute: executeMxPlanAccountSendOnBehalfToCreate,
+		description: descriptionMxPlanAccountSendOnBehalfToCreate,
+	},
+	{
+		name: 'MxPlanAccountSendOnBehalfToDelete',
+		value: 'MxPlanAccountSendOnBehalfToDelete',
+		action: 'MxPlanAccountSendOnBehalfToDelete',
+		execute: executeMxPlanAccountSendOnBehalfToDelete,
+		description: descriptionMxPlanAccountSendOnBehalfToDelete,
+	},
+	{
+		name: 'MxPlanAccountSendOnBehalfToGet',
+		value: 'MxPlanAccountSendOnBehalfToGet',
+		action: 'MxPlanAccountSendOnBehalfToGet',
+		execute: executeMxPlanAccountSendOnBehalfToGet,
+		description: descriptionMxPlanAccountSendOnBehalfToGet,
+	},
+	{
+		name: 'MxPlanAccountSendOnBehalfToList',
+		value: 'MxPlanAccountSendOnBehalfToList',
+		action: 'MxPlanAccountSendOnBehalfToList',
+		execute: executeMxPlanAccountSendOnBehalfToList,
+		description: descriptionMxPlanAccountSendOnBehalfToList,
+	},
+	{
+		name: 'MxPlanAccountTaskGet',
+		value: 'MxPlanAccountTaskGet',
+		action: 'MxPlanAccountTaskGet',
+		execute: executeMxPlanAccountTaskGet,
+		description: descriptionMxPlanAccountTaskGet,
+	},
+	{
+		name: 'MxPlanAccountTaskList',
+		value: 'MxPlanAccountTaskList',
+		action: 'MxPlanAccountTaskList',
+		execute: executeMxPlanAccountTaskList,
+		description: descriptionMxPlanAccountTaskList,
+	},
+	{
+		name: 'MxPlanAccountUpdate',
+		value: 'MxPlanAccountUpdate',
+		action: 'MxPlanAccountUpdate',
+		execute: executeMxPlanAccountUpdate,
+		description: descriptionMxPlanAccountUpdate,
+	},
+	{
+		name: 'MxPlanDomainDisclaimerAttributeGet',
+		value: 'MxPlanDomainDisclaimerAttributeGet',
+		action: 'MxPlanDomainDisclaimerAttributeGet',
+		execute: executeMxPlanDomainDisclaimerAttributeGet,
+		description: descriptionMxPlanDomainDisclaimerAttributeGet,
+	},
+	{
+		name: 'MxPlanDomainDisclaimerCreate',
+		value: 'MxPlanDomainDisclaimerCreate',
+		action: 'MxPlanDomainDisclaimerCreate',
+		execute: executeMxPlanDomainDisclaimerCreate,
+		description: descriptionMxPlanDomainDisclaimerCreate,
+	},
+	{
+		name: 'MxPlanDomainDisclaimerDelete',
+		value: 'MxPlanDomainDisclaimerDelete',
+		action: 'MxPlanDomainDisclaimerDelete',
+		execute: executeMxPlanDomainDisclaimerDelete,
+		description: descriptionMxPlanDomainDisclaimerDelete,
+	},
+	{
+		name: 'MxPlanDomainDisclaimerList',
+		value: 'MxPlanDomainDisclaimerList',
+		action: 'MxPlanDomainDisclaimerList',
+		execute: executeMxPlanDomainDisclaimerList,
+		description: descriptionMxPlanDomainDisclaimerList,
+	},
+	{
+		name: 'MxPlanDomainDisclaimerUpdate',
+		value: 'MxPlanDomainDisclaimerUpdate',
+		action: 'MxPlanDomainDisclaimerUpdate',
+		execute: executeMxPlanDomainDisclaimerUpdate,
+		description: descriptionMxPlanDomainDisclaimerUpdate,
+	},
+	{
+		name: 'MxPlanDomainGet',
+		value: 'MxPlanDomainGet',
+		action: 'MxPlanDomainGet',
+		execute: executeMxPlanDomainGet,
+		description: descriptionMxPlanDomainGet,
+	},
+	{
+		name: 'MxPlanDomainList',
+		value: 'MxPlanDomainList',
+		action: 'MxPlanDomainList',
+		execute: executeMxPlanDomainList,
+		description: descriptionMxPlanDomainList,
+	},
+	{
+		name: 'MxPlanDomainUpdate',
+		value: 'MxPlanDomainUpdate',
+		action: 'MxPlanDomainUpdate',
+		execute: executeMxPlanDomainUpdate,
+		description: descriptionMxPlanDomainUpdate,
+	},
+	{
+		name: 'MxPlanExternalContactCreate',
+		value: 'MxPlanExternalContactCreate',
+		action: 'MxPlanExternalContactCreate',
+		execute: executeMxPlanExternalContactCreate,
+		description: descriptionMxPlanExternalContactCreate,
+	},
+	{
+		name: 'MxPlanExternalContactDelete',
+		value: 'MxPlanExternalContactDelete',
+		action: 'MxPlanExternalContactDelete',
+		execute: executeMxPlanExternalContactDelete,
+		description: descriptionMxPlanExternalContactDelete,
+	},
+	{
+		name: 'MxPlanExternalContactGet',
+		value: 'MxPlanExternalContactGet',
+		action: 'MxPlanExternalContactGet',
+		execute: executeMxPlanExternalContactGet,
+		description: descriptionMxPlanExternalContactGet,
+	},
+	{
+		name: 'MxPlanExternalContactList',
+		value: 'MxPlanExternalContactList',
+		action: 'MxPlanExternalContactList',
+		execute: executeMxPlanExternalContactList,
+		description: descriptionMxPlanExternalContactList,
+	},
+	{
+		name: 'MxPlanExternalContactUpdate',
+		value: 'MxPlanExternalContactUpdate',
+		action: 'MxPlanExternalContactUpdate',
+		execute: executeMxPlanExternalContactUpdate,
+		description: descriptionMxPlanExternalContactUpdate,
+	},
+	{
+		name: 'MxPlanGet',
+		value: 'MxPlanGet',
+		action: 'MxPlanGet',
+		execute: executeMxPlanGet,
+		description: descriptionMxPlanGet,
+	},
+	{
+		name: 'MxPlanList',
+		value: 'MxPlanList',
+		action: 'MxPlanList',
+		execute: executeMxPlanList,
+		description: descriptionMxPlanList,
+	},
+	{
+		name: 'MxPlanPut',
+		value: 'MxPlanPut',
+		action: 'MxPlanPut',
+		execute: executeMxPlanPut,
+		description: descriptionMxPlanPut,
+	},
+	{
+		name: 'MxPlanServerGet',
+		value: 'MxPlanServerGet',
+		action: 'MxPlanServerGet',
+		execute: executeMxPlanServerGet,
+		description: descriptionMxPlanServerGet,
+	},
+	{
+		name: 'MxPlanTaskGet',
+		value: 'MxPlanTaskGet',
+		action: 'MxPlanTaskGet',
+		execute: executeMxPlanTaskGet,
+		description: descriptionMxPlanTaskGet,
+	},
+	{
+		name: 'MxPlanTaskList',
+		value: 'MxPlanTaskList',
+		action: 'MxPlanTaskList',
+		execute: executeMxPlanTaskList,
+		description: descriptionMxPlanTaskList,
+	},
+	{
+		name: 'MxPlanUpdateFlagsOnAllAccountsCreate',
+		value: 'MxPlanUpdateFlagsOnAllAccountsCreate',
+		action: 'MxPlanUpdateFlagsOnAllAccountsCreate',
+		execute: executeMxPlanUpdateFlagsOnAllAccountsCreate,
+		description: descriptionMxPlanUpdateFlagsOnAllAccountsCreate,
+	},
+	],
+);
 
-	const properties: INodeProperties[] = [
-		...props,
-		...descriptionMxPlanAccountAliasCreate({
-			...displayOptions,
-			show: { ...displayOptions?.show, mxPlanOperation: ['MxPlanAccountAliasCreate'] },
-		}),
-		...descriptionMxPlanAccountAliasDelete({
-			...displayOptions,
-			show: { ...displayOptions?.show, mxPlanOperation: ['MxPlanAccountAliasDelete'] },
-		}),
-		...descriptionMxPlanAccountAliasGet({
-			...displayOptions,
-			show: { ...displayOptions?.show, mxPlanOperation: ['MxPlanAccountAliasGet'] },
-		}),
-		...descriptionMxPlanAccountAliasList({
-			...displayOptions,
-			show: { ...displayOptions?.show, mxPlanOperation: ['MxPlanAccountAliasList'] },
-		}),
-		...descriptionMxPlanAccountCapabilitiesGet({
-			...displayOptions,
-			show: { ...displayOptions?.show, mxPlanOperation: ['MxPlanAccountCapabilitiesGet'] },
-		}),
-		...descriptionMxPlanAccountChangePasswordCreate({
-			...displayOptions,
-			show: { ...displayOptions?.show, mxPlanOperation: ['MxPlanAccountChangePasswordCreate'] },
-		}),
-		...descriptionMxPlanAccountDelete({
-			...displayOptions,
-			show: { ...displayOptions?.show, mxPlanOperation: ['MxPlanAccountDelete'] },
-		}),
-		...descriptionMxPlanAccountDiagnosticCreate({
-			...displayOptions,
-			show: { ...displayOptions?.show, mxPlanOperation: ['MxPlanAccountDiagnosticCreate'] },
-		}),
-		...descriptionMxPlanAccountDiagnosticGet({
-			...displayOptions,
-			show: { ...displayOptions?.show, mxPlanOperation: ['MxPlanAccountDiagnosticGet'] },
-		}),
-		...descriptionMxPlanAccountFullAccessCreate({
-			...displayOptions,
-			show: { ...displayOptions?.show, mxPlanOperation: ['MxPlanAccountFullAccessCreate'] },
-		}),
-		...descriptionMxPlanAccountFullAccessDelete({
-			...displayOptions,
-			show: { ...displayOptions?.show, mxPlanOperation: ['MxPlanAccountFullAccessDelete'] },
-		}),
-		...descriptionMxPlanAccountFullAccessGet({
-			...displayOptions,
-			show: { ...displayOptions?.show, mxPlanOperation: ['MxPlanAccountFullAccessGet'] },
-		}),
-		...descriptionMxPlanAccountFullAccessList({
-			...displayOptions,
-			show: { ...displayOptions?.show, mxPlanOperation: ['MxPlanAccountFullAccessList'] },
-		}),
-		...descriptionMxPlanAccountGet({
-			...displayOptions,
-			show: { ...displayOptions?.show, mxPlanOperation: ['MxPlanAccountGet'] },
-		}),
-		...descriptionMxPlanAccountList({
-			...displayOptions,
-			show: { ...displayOptions?.show, mxPlanOperation: ['MxPlanAccountList'] },
-		}),
-		...descriptionMxPlanAccountSendAsCreate({
-			...displayOptions,
-			show: { ...displayOptions?.show, mxPlanOperation: ['MxPlanAccountSendAsCreate'] },
-		}),
-		...descriptionMxPlanAccountSendAsDelete({
-			...displayOptions,
-			show: { ...displayOptions?.show, mxPlanOperation: ['MxPlanAccountSendAsDelete'] },
-		}),
-		...descriptionMxPlanAccountSendAsGet({
-			...displayOptions,
-			show: { ...displayOptions?.show, mxPlanOperation: ['MxPlanAccountSendAsGet'] },
-		}),
-		...descriptionMxPlanAccountSendAsList({
-			...displayOptions,
-			show: { ...displayOptions?.show, mxPlanOperation: ['MxPlanAccountSendAsList'] },
-		}),
-		...descriptionMxPlanAccountSendOnBehalfToCreate({
-			...displayOptions,
-			show: { ...displayOptions?.show, mxPlanOperation: ['MxPlanAccountSendOnBehalfToCreate'] },
-		}),
-		...descriptionMxPlanAccountSendOnBehalfToDelete({
-			...displayOptions,
-			show: { ...displayOptions?.show, mxPlanOperation: ['MxPlanAccountSendOnBehalfToDelete'] },
-		}),
-		...descriptionMxPlanAccountSendOnBehalfToGet({
-			...displayOptions,
-			show: { ...displayOptions?.show, mxPlanOperation: ['MxPlanAccountSendOnBehalfToGet'] },
-		}),
-		...descriptionMxPlanAccountSendOnBehalfToList({
-			...displayOptions,
-			show: { ...displayOptions?.show, mxPlanOperation: ['MxPlanAccountSendOnBehalfToList'] },
-		}),
-		...descriptionMxPlanAccountTaskGet({
-			...displayOptions,
-			show: { ...displayOptions?.show, mxPlanOperation: ['MxPlanAccountTaskGet'] },
-		}),
-		...descriptionMxPlanAccountTaskList({
-			...displayOptions,
-			show: { ...displayOptions?.show, mxPlanOperation: ['MxPlanAccountTaskList'] },
-		}),
-		...descriptionMxPlanAccountUpdate({
-			...displayOptions,
-			show: { ...displayOptions?.show, mxPlanOperation: ['MxPlanAccountUpdate'] },
-		}),
-		...descriptionMxPlanDomainDisclaimerAttributeGet({
-			...displayOptions,
-			show: { ...displayOptions?.show, mxPlanOperation: ['MxPlanDomainDisclaimerAttributeGet'] },
-		}),
-		...descriptionMxPlanDomainDisclaimerCreate({
-			...displayOptions,
-			show: { ...displayOptions?.show, mxPlanOperation: ['MxPlanDomainDisclaimerCreate'] },
-		}),
-		...descriptionMxPlanDomainDisclaimerDelete({
-			...displayOptions,
-			show: { ...displayOptions?.show, mxPlanOperation: ['MxPlanDomainDisclaimerDelete'] },
-		}),
-		...descriptionMxPlanDomainDisclaimerList({
-			...displayOptions,
-			show: { ...displayOptions?.show, mxPlanOperation: ['MxPlanDomainDisclaimerList'] },
-		}),
-		...descriptionMxPlanDomainDisclaimerUpdate({
-			...displayOptions,
-			show: { ...displayOptions?.show, mxPlanOperation: ['MxPlanDomainDisclaimerUpdate'] },
-		}),
-		...descriptionMxPlanDomainGet({
-			...displayOptions,
-			show: { ...displayOptions?.show, mxPlanOperation: ['MxPlanDomainGet'] },
-		}),
-		...descriptionMxPlanDomainList({
-			...displayOptions,
-			show: { ...displayOptions?.show, mxPlanOperation: ['MxPlanDomainList'] },
-		}),
-		...descriptionMxPlanDomainUpdate({
-			...displayOptions,
-			show: { ...displayOptions?.show, mxPlanOperation: ['MxPlanDomainUpdate'] },
-		}),
-		...descriptionMxPlanExternalContactCreate({
-			...displayOptions,
-			show: { ...displayOptions?.show, mxPlanOperation: ['MxPlanExternalContactCreate'] },
-		}),
-		...descriptionMxPlanExternalContactDelete({
-			...displayOptions,
-			show: { ...displayOptions?.show, mxPlanOperation: ['MxPlanExternalContactDelete'] },
-		}),
-		...descriptionMxPlanExternalContactGet({
-			...displayOptions,
-			show: { ...displayOptions?.show, mxPlanOperation: ['MxPlanExternalContactGet'] },
-		}),
-		...descriptionMxPlanExternalContactList({
-			...displayOptions,
-			show: { ...displayOptions?.show, mxPlanOperation: ['MxPlanExternalContactList'] },
-		}),
-		...descriptionMxPlanExternalContactUpdate({
-			...displayOptions,
-			show: { ...displayOptions?.show, mxPlanOperation: ['MxPlanExternalContactUpdate'] },
-		}),
-		...descriptionMxPlanGet({
-			...displayOptions,
-			show: { ...displayOptions?.show, mxPlanOperation: ['MxPlanGet'] },
-		}),
-		...descriptionMxPlanList({
-			...displayOptions,
-			show: { ...displayOptions?.show, mxPlanOperation: ['MxPlanList'] },
-		}),
-		...descriptionMxPlanPut({
-			...displayOptions,
-			show: { ...displayOptions?.show, mxPlanOperation: ['MxPlanPut'] },
-		}),
-		...descriptionMxPlanServerGet({
-			...displayOptions,
-			show: { ...displayOptions?.show, mxPlanOperation: ['MxPlanServerGet'] },
-		}),
-		...descriptionMxPlanTaskGet({
-			...displayOptions,
-			show: { ...displayOptions?.show, mxPlanOperation: ['MxPlanTaskGet'] },
-		}),
-		...descriptionMxPlanTaskList({
-			...displayOptions,
-			show: { ...displayOptions?.show, mxPlanOperation: ['MxPlanTaskList'] },
-		}),
-		...descriptionMxPlanUpdateFlagsOnAllAccountsCreate({
-			...displayOptions,
-			show: { ...displayOptions?.show, mxPlanOperation: ['MxPlanUpdateFlagsOnAllAccountsCreate'] },
-		}),
-	];
-
-	return properties;
-}
-
-export async function execute(
-	this: IExecuteFunctions,
-	itemIndex?: number,
-): Promise<INodeExecutionData[]> {
-	const operation = this.getNodeParameter('mxPlanOperation', itemIndex ?? 0, {
-		extractValue: true,
-	});
-
-	switch (operation) {
-		case 'MxPlanAccountAliasCreate':
-			return executeMxPlanAccountAliasCreate.call(this, itemIndex ?? 0);
-		case 'MxPlanAccountAliasDelete':
-			return executeMxPlanAccountAliasDelete.call(this, itemIndex ?? 0);
-		case 'MxPlanAccountAliasGet':
-			return executeMxPlanAccountAliasGet.call(this, itemIndex ?? 0);
-		case 'MxPlanAccountAliasList':
-			return executeMxPlanAccountAliasList.call(this, itemIndex ?? 0);
-		case 'MxPlanAccountCapabilitiesGet':
-			return executeMxPlanAccountCapabilitiesGet.call(this, itemIndex ?? 0);
-		case 'MxPlanAccountChangePasswordCreate':
-			return executeMxPlanAccountChangePasswordCreate.call(this, itemIndex ?? 0);
-		case 'MxPlanAccountDelete':
-			return executeMxPlanAccountDelete.call(this, itemIndex ?? 0);
-		case 'MxPlanAccountDiagnosticCreate':
-			return executeMxPlanAccountDiagnosticCreate.call(this, itemIndex ?? 0);
-		case 'MxPlanAccountDiagnosticGet':
-			return executeMxPlanAccountDiagnosticGet.call(this, itemIndex ?? 0);
-		case 'MxPlanAccountFullAccessCreate':
-			return executeMxPlanAccountFullAccessCreate.call(this, itemIndex ?? 0);
-		case 'MxPlanAccountFullAccessDelete':
-			return executeMxPlanAccountFullAccessDelete.call(this, itemIndex ?? 0);
-		case 'MxPlanAccountFullAccessGet':
-			return executeMxPlanAccountFullAccessGet.call(this, itemIndex ?? 0);
-		case 'MxPlanAccountFullAccessList':
-			return executeMxPlanAccountFullAccessList.call(this, itemIndex ?? 0);
-		case 'MxPlanAccountGet':
-			return executeMxPlanAccountGet.call(this, itemIndex ?? 0);
-		case 'MxPlanAccountList':
-			return executeMxPlanAccountList.call(this, itemIndex ?? 0);
-		case 'MxPlanAccountSendAsCreate':
-			return executeMxPlanAccountSendAsCreate.call(this, itemIndex ?? 0);
-		case 'MxPlanAccountSendAsDelete':
-			return executeMxPlanAccountSendAsDelete.call(this, itemIndex ?? 0);
-		case 'MxPlanAccountSendAsGet':
-			return executeMxPlanAccountSendAsGet.call(this, itemIndex ?? 0);
-		case 'MxPlanAccountSendAsList':
-			return executeMxPlanAccountSendAsList.call(this, itemIndex ?? 0);
-		case 'MxPlanAccountSendOnBehalfToCreate':
-			return executeMxPlanAccountSendOnBehalfToCreate.call(this, itemIndex ?? 0);
-		case 'MxPlanAccountSendOnBehalfToDelete':
-			return executeMxPlanAccountSendOnBehalfToDelete.call(this, itemIndex ?? 0);
-		case 'MxPlanAccountSendOnBehalfToGet':
-			return executeMxPlanAccountSendOnBehalfToGet.call(this, itemIndex ?? 0);
-		case 'MxPlanAccountSendOnBehalfToList':
-			return executeMxPlanAccountSendOnBehalfToList.call(this, itemIndex ?? 0);
-		case 'MxPlanAccountTaskGet':
-			return executeMxPlanAccountTaskGet.call(this, itemIndex ?? 0);
-		case 'MxPlanAccountTaskList':
-			return executeMxPlanAccountTaskList.call(this, itemIndex ?? 0);
-		case 'MxPlanAccountUpdate':
-			return executeMxPlanAccountUpdate.call(this, itemIndex ?? 0);
-		case 'MxPlanDomainDisclaimerAttributeGet':
-			return executeMxPlanDomainDisclaimerAttributeGet.call(this, itemIndex ?? 0);
-		case 'MxPlanDomainDisclaimerCreate':
-			return executeMxPlanDomainDisclaimerCreate.call(this, itemIndex ?? 0);
-		case 'MxPlanDomainDisclaimerDelete':
-			return executeMxPlanDomainDisclaimerDelete.call(this, itemIndex ?? 0);
-		case 'MxPlanDomainDisclaimerList':
-			return executeMxPlanDomainDisclaimerList.call(this, itemIndex ?? 0);
-		case 'MxPlanDomainDisclaimerUpdate':
-			return executeMxPlanDomainDisclaimerUpdate.call(this, itemIndex ?? 0);
-		case 'MxPlanDomainGet':
-			return executeMxPlanDomainGet.call(this, itemIndex ?? 0);
-		case 'MxPlanDomainList':
-			return executeMxPlanDomainList.call(this, itemIndex ?? 0);
-		case 'MxPlanDomainUpdate':
-			return executeMxPlanDomainUpdate.call(this, itemIndex ?? 0);
-		case 'MxPlanExternalContactCreate':
-			return executeMxPlanExternalContactCreate.call(this, itemIndex ?? 0);
-		case 'MxPlanExternalContactDelete':
-			return executeMxPlanExternalContactDelete.call(this, itemIndex ?? 0);
-		case 'MxPlanExternalContactGet':
-			return executeMxPlanExternalContactGet.call(this, itemIndex ?? 0);
-		case 'MxPlanExternalContactList':
-			return executeMxPlanExternalContactList.call(this, itemIndex ?? 0);
-		case 'MxPlanExternalContactUpdate':
-			return executeMxPlanExternalContactUpdate.call(this, itemIndex ?? 0);
-		case 'MxPlanGet':
-			return executeMxPlanGet.call(this, itemIndex ?? 0);
-		case 'MxPlanList':
-			return executeMxPlanList.call(this, itemIndex ?? 0);
-		case 'MxPlanPut':
-			return executeMxPlanPut.call(this, itemIndex ?? 0);
-		case 'MxPlanServerGet':
-			return executeMxPlanServerGet.call(this, itemIndex ?? 0);
-		case 'MxPlanTaskGet':
-			return executeMxPlanTaskGet.call(this, itemIndex ?? 0);
-		case 'MxPlanTaskList':
-			return executeMxPlanTaskList.call(this, itemIndex ?? 0);
-		case 'MxPlanUpdateFlagsOnAllAccountsCreate':
-			return executeMxPlanUpdateFlagsOnAllAccountsCreate.call(this, itemIndex ?? 0);
-	}
-
-	throw new Error(`Unsupported operation "${operation}" for resource "emailMxplan"`);
-}
+export { description, execute };
