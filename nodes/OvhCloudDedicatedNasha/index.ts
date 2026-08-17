@@ -1,504 +1,373 @@
-import type {
-	IDisplayOptions,
-	IExecuteFunctions,
-	INodeExecutionData,
-	INodeProperties,
-} from 'n8n-workflow';
+import { createOperationDispatcher } from '../../shared/nodes/createNodeDispatcher';
 
 import {
-	execute as executeNashaPartitionAccessCreatePost,
-	description as descriptionNashaPartitionAccessCreatePost,
-} from './NashaPartitionAccessCreate.operation';
-
-import {
-	execute as executeDedicatedNashaUpdatePut,
-	description as descriptionDedicatedNashaUpdatePut,
-} from './DedicatedNashaUpdate.operation';
-
-import {
-	execute as executeDedicatedNashaPartitionUpdatePut,
-	description as descriptionDedicatedNashaPartitionUpdatePut,
-} from './DedicatedNashaPartitionUpdate.operation';
-
-import {
-	execute as executeDedicatedNashaTerminateCreatePost,
-	description as descriptionDedicatedNashaTerminateCreatePost,
-} from './DedicatedNashaTerminateCreate.operation';
-
-import {
-	execute as executeDedicatedNashaConfirmterminationCreatePost,
-	description as descriptionDedicatedNashaConfirmterminationCreatePost,
-} from './DedicatedNashaConfirmterminationCreate.operation';
-
-import {
-	execute as executeDedicatedNashaPartitionCreatePost,
-	description as descriptionDedicatedNashaPartitionCreatePost,
-} from './DedicatedNashaPartitionCreate.operation';
-
-import {
-	execute as executeNashaPartitionCustomsnapshotCreatePost,
-	description as descriptionNashaPartitionCustomsnapshotCreatePost,
-} from './NashaPartitionCustomsnapshotCreate.operation';
-
-import {
-	execute as executeNashaPartitionQuotaDeleteDelete,
-	description as descriptionNashaPartitionQuotaDeleteDelete,
-} from './NashaPartitionQuotaDelete.operation';
-
-import {
-	execute as executeNashaPartitionCustomsnapshotDeleteDelete,
-	description as descriptionNashaPartitionCustomsnapshotDeleteDelete,
-} from './NashaPartitionCustomsnapshotDelete.operation';
-
-import {
-	execute as executeNashaPartitionSnapshotDeleteDelete,
-	description as descriptionNashaPartitionSnapshotDeleteDelete,
-} from './NashaPartitionSnapshotDelete.operation';
-
-import {
-	execute as executeNashaPartitionAccessDeleteDelete,
-	description as descriptionNashaPartitionAccessDeleteDelete,
-} from './NashaPartitionAccessDelete.operation';
-
-import {
-	execute as executeDedicatedNashaPartitionDeleteDelete,
-	description as descriptionDedicatedNashaPartitionDeleteDelete,
-} from './DedicatedNashaPartitionDelete.operation';
-
-import {
-	execute as executeNashaPartitionAccessGetGet,
-	description as descriptionNashaPartitionAccessGetGet,
-} from './NashaPartitionAccessGet.operation';
-
-import {
-	execute as executeNashaPartitionAuthorizableipsGetGet,
-	description as descriptionNashaPartitionAuthorizableipsGetGet,
-} from './NashaPartitionAuthorizableipsGet.operation';
-
-import {
-	execute as executeNashaPartitionAuthorizableblocksGetGet,
-	description as descriptionNashaPartitionAuthorizableblocksGetGet,
-} from './NashaPartitionAuthorizableblocksGet.operation';
-
-import {
-	execute as executeNashaPartitionTemplateusageGetGet,
-	description as descriptionNashaPartitionTemplateusageGetGet,
-} from './NashaPartitionTemplateusageGet.operation';
-
-import {
-	execute as executeNashaPartitionCustomsnapshotGetGet,
-	description as descriptionNashaPartitionCustomsnapshotGetGet,
-} from './NashaPartitionCustomsnapshotGet.operation';
-
-import {
-	execute as executeDedicatedNashaPartitionGetGet,
-	description as descriptionDedicatedNashaPartitionGetGet,
-} from './DedicatedNashaPartitionGet.operation';
-
-import {
-	execute as executeNashaPartitionQuotaGetGet,
-	description as descriptionNashaPartitionQuotaGetGet,
-} from './NashaPartitionQuotaGet.operation';
-
-import {
-	execute as executeNashaPartitionSnapshotGetGet,
-	description as descriptionNashaPartitionSnapshotGetGet,
-} from './NashaPartitionSnapshotGet.operation';
-
-import {
-	execute as executeDedicatedNashaServiceinfosGetGet,
-	description as descriptionDedicatedNashaServiceinfosGetGet,
-} from './DedicatedNashaServiceinfosGet.operation';
-
-import {
-	execute as executeDedicatedNashaGetServicenameGet,
-	description as descriptionDedicatedNashaGetServicenameGet,
-} from './DedicatedNashaGetServicename.operation';
-
-import {
-	execute as executeDedicatedNashaPartitionGetPartitionnameGet,
-	description as descriptionDedicatedNashaPartitionGetPartitionnameGet,
-} from './DedicatedNashaPartitionGetPartitionname.operation';
-
-import {
-	execute as executeNashaPartitionAccessGetIpGet,
-	description as descriptionNashaPartitionAccessGetIpGet,
-} from './NashaPartitionAccessGetIp.operation';
-
-import {
-	execute as executeNashaPartitionCustomsnapshotGetNameGet,
-	description as descriptionNashaPartitionCustomsnapshotGetNameGet,
-} from './NashaPartitionCustomsnapshotGetName.operation';
-
-import {
-	execute as executeNashaPartitionOptionsGetGet,
-	description as descriptionNashaPartitionOptionsGetGet,
-} from './NashaPartitionOptionsGet.operation';
-
-import {
-	execute as executeNashaPartitionQuotaGetUidGet,
-	description as descriptionNashaPartitionQuotaGetUidGet,
-} from './NashaPartitionQuotaGetUid.operation';
-
-import {
-	execute as executeNashaPartitionSnapshotGetSnapshottypeGet,
-	description as descriptionNashaPartitionSnapshotGetSnapshottypeGet,
-} from './NashaPartitionSnapshotGetSnapshottype.operation';
-
-import {
-	execute as executeDedicatedNashaTaskGetTaskidGet,
-	description as descriptionDedicatedNashaTaskGetTaskidGet,
-} from './DedicatedNashaTaskGetTaskid.operation';
-
-import {
-	execute as executeDedicatedNashaChangecontactCreatePost,
 	description as descriptionDedicatedNashaChangecontactCreatePost,
+	execute as executeDedicatedNashaChangecontactCreatePost,
 } from './DedicatedNashaChangecontactCreate.operation';
-
 import {
-	execute as executeDedicatedNashaGetGet,
+	description as descriptionDedicatedNashaConfirmterminationCreatePost,
+	execute as executeDedicatedNashaConfirmterminationCreatePost,
+} from './DedicatedNashaConfirmterminationCreate.operation';
+import {
 	description as descriptionDedicatedNashaGetGet,
+	execute as executeDedicatedNashaGetGet,
 } from './DedicatedNashaGet.operation';
-
 import {
-	execute as executeDedicatedNashaMetricstokenGetGet,
+	description as descriptionDedicatedNashaGetServicenameGet,
+	execute as executeDedicatedNashaGetServicenameGet,
+} from './DedicatedNashaGetServicename.operation';
+import {
 	description as descriptionDedicatedNashaMetricstokenGetGet,
+	execute as executeDedicatedNashaMetricstokenGetGet,
 } from './DedicatedNashaMetricstokenGet.operation';
-
 import {
-	execute as executeDedicatedNashaUseGetGet,
+	description as descriptionDedicatedNashaPartitionCreatePost,
+	execute as executeDedicatedNashaPartitionCreatePost,
+} from './DedicatedNashaPartitionCreate.operation';
+import {
+	description as descriptionDedicatedNashaPartitionDeleteDelete,
+	execute as executeDedicatedNashaPartitionDeleteDelete,
+} from './DedicatedNashaPartitionDelete.operation';
+import {
+	description as descriptionDedicatedNashaPartitionGetGet,
+	execute as executeDedicatedNashaPartitionGetGet,
+} from './DedicatedNashaPartitionGet.operation';
+import {
+	description as descriptionDedicatedNashaServiceinfosGetGet,
+	execute as executeDedicatedNashaServiceinfosGetGet,
+} from './DedicatedNashaServiceinfosGet.operation';
+import {
+	description as descriptionDedicatedNashaServiceinfosUpdatePut,
+	execute as executeDedicatedNashaServiceinfosUpdatePut,
+} from './DedicatedNashaServiceinfosUpdate.operation';
+import {
+	description as descriptionDedicatedNashaTaskGetGet,
+	execute as executeDedicatedNashaTaskGetGet,
+} from './DedicatedNashaTaskGet.operation';
+import {
+	description as descriptionDedicatedNashaTerminateCreatePost,
+	execute as executeDedicatedNashaTerminateCreatePost,
+} from './DedicatedNashaTerminateCreate.operation';
+import {
+	description as descriptionDedicatedNashaUpdatePut,
+	execute as executeDedicatedNashaUpdatePut,
+} from './DedicatedNashaUpdate.operation';
+import {
 	description as descriptionDedicatedNashaUseGetGet,
+	execute as executeDedicatedNashaUseGetGet,
 } from './DedicatedNashaUseGet.operation';
-
 import {
-	execute as executeNashaPartitionUseGetGet,
+	description as descriptionNashaPartitionAccessCreatePost,
+	execute as executeNashaPartitionAccessCreatePost,
+} from './NashaPartitionAccessCreate.operation';
+import {
+	description as descriptionNashaPartitionAccessDeleteDelete,
+	execute as executeNashaPartitionAccessDeleteDelete,
+} from './NashaPartitionAccessDelete.operation';
+import {
+	description as descriptionNashaPartitionAccessGetGet,
+	execute as executeNashaPartitionAccessGetGet,
+} from './NashaPartitionAccessGet.operation';
+import {
+	description as descriptionNashaPartitionAuthorizableblocksGetGet,
+	execute as executeNashaPartitionAuthorizableblocksGetGet,
+} from './NashaPartitionAuthorizableblocksGet.operation';
+import {
+	description as descriptionNashaPartitionAuthorizableipsGetGet,
+	execute as executeNashaPartitionAuthorizableipsGetGet,
+} from './NashaPartitionAuthorizableipsGet.operation';
+import {
+	description as descriptionNashaPartitionCustomsnapshotCreatePost,
+	execute as executeNashaPartitionCustomsnapshotCreatePost,
+} from './NashaPartitionCustomsnapshotCreate.operation';
+import {
+	description as descriptionNashaPartitionCustomsnapshotDeleteDelete,
+	execute as executeNashaPartitionCustomsnapshotDeleteDelete,
+} from './NashaPartitionCustomsnapshotDelete.operation';
+import {
+	description as descriptionNashaPartitionCustomsnapshotGetGet,
+	execute as executeNashaPartitionCustomsnapshotGetGet,
+} from './NashaPartitionCustomsnapshotGet.operation';
+import {
+	description as descriptionNashaPartitionOptionsCreatePost,
+	execute as executeNashaPartitionOptionsCreatePost,
+} from './NashaPartitionOptionsCreate.operation';
+import {
+	description as descriptionNashaPartitionQuotaCreatePost,
+	execute as executeNashaPartitionQuotaCreatePost,
+} from './NashaPartitionQuotaCreate.operation';
+import {
+	description as descriptionNashaPartitionQuotaDeleteDelete,
+	execute as executeNashaPartitionQuotaDeleteDelete,
+} from './NashaPartitionQuotaDelete.operation';
+import {
+	description as descriptionNashaPartitionQuotaGetGet,
+	execute as executeNashaPartitionQuotaGetGet,
+} from './NashaPartitionQuotaGet.operation';
+import {
+	description as descriptionNashaPartitionSnapshotCreatePost,
+	execute as executeNashaPartitionSnapshotCreatePost,
+} from './NashaPartitionSnapshotCreate.operation';
+import {
+	description as descriptionNashaPartitionSnapshotGetGet,
+	execute as executeNashaPartitionSnapshotGetGet,
+} from './NashaPartitionSnapshotGet.operation';
+import {
+	description as descriptionNashaPartitionTemplateusageGetGet,
+	execute as executeNashaPartitionTemplateusageGetGet,
+} from './NashaPartitionTemplateusageGet.operation';
+import {
 	description as descriptionNashaPartitionUseGetGet,
+	execute as executeNashaPartitionUseGetGet,
 } from './NashaPartitionUseGet.operation';
 
-import {
-	execute as executeNashaPartitionSnapshotCreatePost,
-	description as descriptionNashaPartitionSnapshotCreatePost,
-} from './NashaPartitionSnapshotCreate.operation';
 
-import {
-	execute as executeNashaPartitionQuotaCreatePost,
-	description as descriptionNashaPartitionQuotaCreatePost,
-} from './NashaPartitionQuotaCreate.operation';
+const { description, execute } = createOperationDispatcher(
+	'dedicatedNashaOperation',
+	'dedicatednasha',
+	[
+	{
+		name: 'Add A New Acl Entry',
+		value: 'NashaPartitionAccessCreate',
+		action: 'Add a new ACL entry',
+		execute: executeNashaPartitionAccessCreatePost,
+		description: descriptionNashaPartitionAccessCreatePost,
+		show: false,
+		default: true,
+	},
+	{
+		name: 'Alter This Object Properties',
+		value: 'DedicatedNashaUpdate',
+		action: 'Alter this object properties',
+		execute: executeDedicatedNashaUpdatePut,
+		description: descriptionDedicatedNashaUpdatePut,
+		show: false,
+	},
+	{
+		name: 'Ask For The Termination Of Your Service',
+		value: 'DedicatedNashaTerminateCreate',
+		action: 'Ask for the termination of your service',
+		execute: executeDedicatedNashaTerminateCreatePost,
+		description: descriptionDedicatedNashaTerminateCreatePost,
+		show: false,
+	},
+	{
+		name: 'Confirm Service Termination',
+		value: 'DedicatedNashaConfirmterminationCreate',
+		action: 'Confirm service termination',
+		execute: executeDedicatedNashaConfirmterminationCreatePost,
+		description: descriptionDedicatedNashaConfirmterminationCreatePost,
+		show: false,
+	},
+	{
+		name: 'Create A New Partition',
+		value: 'DedicatedNashaPartitionCreate',
+		action: 'Create a new partition',
+		execute: executeDedicatedNashaPartitionCreatePost,
+		description: descriptionDedicatedNashaPartitionCreatePost,
+		show: false,
+	},
+	{
+		name: 'Create A New Snapshot',
+		value: 'NashaPartitionCustomsnapshotCreate',
+		action: 'Create a new snapshot',
+		execute: executeNashaPartitionCustomsnapshotCreatePost,
+		description: descriptionNashaPartitionCustomsnapshotCreatePost,
+		show: false,
+	},
+	{
+		name: 'Delete A Given Quota',
+		value: 'NashaPartitionQuotaDelete',
+		action: 'Delete a given quota',
+		execute: executeNashaPartitionQuotaDeleteDelete,
+		description: descriptionNashaPartitionQuotaDeleteDelete,
+		show: false,
+	},
+	{
+		name: 'Delete A Given Snapshot',
+		value: 'NashaPartitionCustomsnapshotDelete',
+		action: 'Delete a given snapshot',
+		execute: executeNashaPartitionCustomsnapshotDeleteDelete,
+		description: descriptionNashaPartitionCustomsnapshotDeleteDelete,
+		show: false,
+	},
+	{
+		name: 'Delete An Acl Entry',
+		value: 'NashaPartitionAccessDelete',
+		action: 'Delete an ACL entry',
+		execute: executeNashaPartitionAccessDeleteDelete,
+		description: descriptionNashaPartitionAccessDeleteDelete,
+		show: false,
+	},
+	{
+		name: 'Delete This Partition',
+		value: 'DedicatedNashaPartitionDelete',
+		action: 'Delete this partition',
+		execute: executeDedicatedNashaPartitionDeleteDelete,
+		description: descriptionDedicatedNashaPartitionDeleteDelete,
+		show: false,
+	},
+	{
+		name: 'Get Acl For This Partition',
+		value: 'NashaPartitionAccessGet',
+		action: 'get ACL for this partition',
+		execute: executeNashaPartitionAccessGetGet,
+		description: descriptionNashaPartitionAccessGetGet,
+		show: false,
+	},
+	{
+		name: 'Get All Ips That Can Be Used In The Acl',
+		value: 'NashaPartitionAuthorizableipsGet',
+		action: 'Get all IPs that can be used in the ACL',
+		execute: executeNashaPartitionAuthorizableipsGetGet,
+		description: descriptionNashaPartitionAuthorizableipsGetGet,
+		show: false,
+	},
+	{
+		name: 'Get All Ripe/arin Blocks That Can Be Used In The Acl',
+		value: 'NashaPartitionAuthorizableblocksGet',
+		action: 'Get all RIPE/ARIN blocks that can be used in the ACL',
+		execute: executeNashaPartitionAuthorizableblocksGetGet,
+		description: descriptionNashaPartitionAuthorizableblocksGetGet,
+		show: false,
+	},
+	{
+		name: 'Get All The Template Usages Options Applicable To This Partition.',
+		value: 'NashaPartitionTemplateusageGet',
+		action: 'Get all the template usages options applicable to this partition.',
+		execute: executeNashaPartitionTemplateusageGetGet,
+		description: descriptionNashaPartitionTemplateusageGetGet,
+		show: false,
+	},
+	{
+		name: 'Get Custom Snapshots For This Partition',
+		value: 'NashaPartitionCustomsnapshotGet',
+		action: 'Get custom snapshots for this partition',
+		execute: executeNashaPartitionCustomsnapshotGetGet,
+		description: descriptionNashaPartitionCustomsnapshotGetGet,
+		show: false,
+	},
+	{
+		name: 'Get Partition List',
+		value: 'DedicatedNashaPartitionGet',
+		action: 'Get partition list',
+		execute: executeDedicatedNashaPartitionGetGet,
+		description: descriptionDedicatedNashaPartitionGetGet,
+		show: false,
+	},
+	{
+		name: 'Get Quota For This Partition',
+		value: 'NashaPartitionQuotaGet',
+		action: 'Get quota for this partition',
+		execute: executeNashaPartitionQuotaGetGet,
+		description: descriptionNashaPartitionQuotaGetGet,
+		show: false,
+	},
+	{
+		name: 'Get Scheduled Snapshot Types For This Partition',
+		value: 'NashaPartitionSnapshotGet',
+		action: 'Get scheduled snapshot types for this partition',
+		execute: executeNashaPartitionSnapshotGetGet,
+		description: descriptionNashaPartitionSnapshotGetGet,
+		show: false,
+	},
+	{
+		name: 'Get Service Information',
+		value: 'DedicatedNashaServiceinfosGet',
+		action: 'Get service information',
+		execute: executeDedicatedNashaServiceinfosGetGet,
+		description: descriptionDedicatedNashaServiceinfosGetGet,
+		show: false,
+	},
+	{
+		name: 'Get This Object Properties',
+		value: 'DedicatedNashaGetServicename',
+		action: 'Get this object properties',
+		execute: executeDedicatedNashaGetServicenameGet,
+		description: descriptionDedicatedNashaGetServicenameGet,
+		show: false,
+	},
+	{
+		name: 'Launch A Contact Change Procedure',
+		value: 'DedicatedNashaChangecontactCreate',
+		action: 'Launch a contact change procedure',
+		execute: executeDedicatedNashaChangecontactCreatePost,
+		description: descriptionDedicatedNashaChangecontactCreatePost,
+		show: false,
+	},
+	{
+		name: 'List Available Services',
+		value: 'DedicatedNashaGet',
+		action: 'List available services',
+		execute: executeDedicatedNashaGetGet,
+		description: descriptionDedicatedNashaGetGet,
+		show: false,
+	},
+	{
+		name: 'Return A Read Token For Manager Mimir Metrics',
+		value: 'DedicatedNashaMetricstokenGet',
+		action: 'Return a read token for manager mimir metrics',
+		execute: executeDedicatedNashaMetricstokenGetGet,
+		description: descriptionDedicatedNashaMetricstokenGetGet,
+		show: false,
+	},
+	{
+		name: 'Return Statistics About The Nas',
+		value: 'DedicatedNashaUseGet',
+		action: 'Return statistics about the nas',
+		execute: executeDedicatedNashaUseGetGet,
+		description: descriptionDedicatedNashaUseGetGet,
+		show: false,
+	},
+	{
+		name: 'Return Statistics About The Partition',
+		value: 'NashaPartitionUseGet',
+		action: 'Return statistics about the partition',
+		execute: executeNashaPartitionUseGetGet,
+		description: descriptionNashaPartitionUseGetGet,
+		show: false,
+	},
+	{
+		name: 'Schedule A New Snapshot Type',
+		value: 'NashaPartitionSnapshotCreate',
+		action: 'Schedule a new snapshot type',
+		execute: executeNashaPartitionSnapshotCreatePost,
+		description: descriptionNashaPartitionSnapshotCreatePost,
+		show: false,
+	},
+	{
+		name: 'Set A New Quota',
+		value: 'NashaPartitionQuotaCreate',
+		action: 'Set a new quota',
+		execute: executeNashaPartitionQuotaCreatePost,
+		description: descriptionNashaPartitionQuotaCreatePost,
+		show: false,
+	},
+	{
+		name: 'Setup Options',
+		value: 'NashaPartitionOptionsCreate',
+		action: 'Setup options',
+		execute: executeNashaPartitionOptionsCreatePost,
+		description: descriptionNashaPartitionOptionsCreatePost,
+		show: false,
+	},
+	{
+		name: 'Update Service Information',
+		value: 'DedicatedNashaServiceinfosUpdate',
+		action: 'Update service information',
+		execute: executeDedicatedNashaServiceinfosUpdatePut,
+		description: descriptionDedicatedNashaServiceinfosUpdatePut,
+		show: false,
+	},
+	{
+		name: 'View Task List',
+		value: 'DedicatedNashaTaskGet',
+		action: 'View task list',
+		execute: executeDedicatedNashaTaskGetGet,
+		description: descriptionDedicatedNashaTaskGetGet,
+		show: false,
+	},
+	],
+);
 
-import {
-	execute as executeNashaPartitionOptionsCreatePost,
-	description as descriptionNashaPartitionOptionsCreatePost,
-} from './NashaPartitionOptionsCreate.operation';
-
-import {
-	execute as executeDedicatedNashaServiceinfosUpdatePut,
-	description as descriptionDedicatedNashaServiceinfosUpdatePut,
-} from './DedicatedNashaServiceinfosUpdate.operation';
-
-import {
-	execute as executeDedicatedNashaTaskGetGet,
-	description as descriptionDedicatedNashaTaskGetGet,
-} from './DedicatedNashaTaskGet.operation';
-
-export function description(displayOptions: IDisplayOptions): INodeProperties[] {
-	const operationProperties: INodeProperties[] = [
-		{
-			displayName: 'Operation',
-			name: 'dedicatedNashaOperation',
-			type: 'options',
-			noDataExpression: true,
-			options: [
-				{
-					name: 'Add A New Acl Entry',
-					value: 'NashaPartitionAccessCreate',
-					action: 'Add a new ACL entry',
-				},
-				{
-					name: 'Alter This Object Properties',
-					value: 'DedicatedNashaUpdate',
-					action: 'Alter this object properties',
-				},
-				{
-					name: 'Ask For The Termination Of Your Service',
-					value: 'DedicatedNashaTerminateCreate',
-					action: 'Ask for the termination of your service',
-				},
-				{
-					name: 'Confirm Service Termination',
-					value: 'DedicatedNashaConfirmterminationCreate',
-					action: 'Confirm service termination',
-				},
-				{
-					name: 'Create A New Partition',
-					value: 'DedicatedNashaPartitionCreate',
-					action: 'Create a new partition',
-				},
-				{
-					name: 'Create A New Snapshot',
-					value: 'NashaPartitionCustomsnapshotCreate',
-					action: 'Create a new snapshot',
-				},
-				{
-					name: 'Delete A Given Quota',
-					value: 'NashaPartitionQuotaDelete',
-					action: 'Delete a given quota',
-				},
-				{
-					name: 'Delete A Given Snapshot',
-					value: 'NashaPartitionCustomsnapshotDelete',
-					action: 'Delete a given snapshot',
-				},
-				{
-					name: 'Delete An Acl Entry',
-					value: 'NashaPartitionAccessDelete',
-					action: 'Delete an ACL entry',
-				},
-				{
-					name: 'Delete This Partition',
-					value: 'DedicatedNashaPartitionDelete',
-					action: 'Delete this partition',
-				},
-				{
-					name: 'Get Acl For This Partition',
-					value: 'NashaPartitionAccessGet',
-					action: 'get ACL for this partition',
-				},
-				{
-					name: 'Get All Ips That Can Be Used In The Acl',
-					value: 'NashaPartitionAuthorizableipsGet',
-					action: 'Get all IPs that can be used in the ACL',
-				},
-				{
-					name: 'Get All Ripe/arin Blocks That Can Be Used In The Acl',
-					value: 'NashaPartitionAuthorizableblocksGet',
-					action: 'Get all RIPE/ARIN blocks that can be used in the ACL',
-				},
-				{
-					name: 'Get All The Template Usages Options Applicable To This Partition.',
-					value: 'NashaPartitionTemplateusageGet',
-					action: 'Get all the template usages options applicable to this partition.',
-				},
-				{
-					name: 'Get Custom Snapshots For This Partition',
-					value: 'NashaPartitionCustomsnapshotGet',
-					action: 'Get custom snapshots for this partition',
-				},
-				{
-					name: 'Get Partition List',
-					value: 'DedicatedNashaPartitionGet',
-					action: 'Get partition list',
-				},
-				{
-					name: 'Get Quota For This Partition',
-					value: 'NashaPartitionQuotaGet',
-					action: 'Get quota for this partition',
-				},
-				{
-					name: 'Get Scheduled Snapshot Types For This Partition',
-					value: 'NashaPartitionSnapshotGet',
-					action: 'Get scheduled snapshot types for this partition',
-				},
-				{
-					name: 'Get Service Information',
-					value: 'DedicatedNashaServiceinfosGet',
-					action: 'Get service information',
-				},
-				{
-					name: 'Get This Object Properties',
-					value: 'DedicatedNashaGetServicename',
-					action: 'Get this object properties',
-				},
-				{
-					name: 'Launch A Contact Change Procedure',
-					value: 'DedicatedNashaChangecontactCreate',
-					action: 'Launch a contact change procedure',
-				},
-				{
-					name: 'List Available Services',
-					value: 'DedicatedNashaGet',
-					action: 'List available services',
-				},
-				{
-					name: 'Return A Read Token For Manager Mimir Metrics',
-					value: 'DedicatedNashaMetricstokenGet',
-					action: 'Return a read token for manager mimir metrics',
-				},
-				{
-					name: 'Return Statistics About The Nas',
-					value: 'DedicatedNashaUseGet',
-					action: 'Return statistics about the nas',
-				},
-				{
-					name: 'Return Statistics About The Partition',
-					value: 'NashaPartitionUseGet',
-					action: 'Return statistics about the partition',
-				},
-				{
-					name: 'Schedule A New Snapshot Type',
-					value: 'NashaPartitionSnapshotCreate',
-					action: 'Schedule a new snapshot type',
-				},
-				{
-					name: 'Set A New Quota',
-					value: 'NashaPartitionQuotaCreate',
-					action: 'Set a new quota',
-				},
-				{
-					name: 'Setup Options',
-					value: 'NashaPartitionOptionsCreate',
-					action: 'Setup options',
-				},
-				{
-					name: 'Update Service Information',
-					value: 'DedicatedNashaServiceinfosUpdate',
-					action: 'Update service information',
-				},
-				{
-					name: 'View Task List',
-					value: 'DedicatedNashaTaskGet',
-					action: 'View task list',
-				},
-			],
-			default: 'NashaPartitionAccessCreate',
-			displayOptions,
-		},
-	];
-
-	const properties: INodeProperties[] = [
-		...operationProperties,
-		...descriptionNashaPartitionAccessCreatePost(),
-		...descriptionDedicatedNashaUpdatePut(),
-		...descriptionDedicatedNashaPartitionUpdatePut(),
-		...descriptionDedicatedNashaTerminateCreatePost({}),
-		...descriptionDedicatedNashaConfirmterminationCreatePost(),
-		...descriptionDedicatedNashaPartitionCreatePost(),
-		...descriptionNashaPartitionCustomsnapshotCreatePost(),
-		...descriptionNashaPartitionQuotaDeleteDelete(),
-		...descriptionNashaPartitionCustomsnapshotDeleteDelete(),
-		...descriptionNashaPartitionSnapshotDeleteDelete(),
-		...descriptionNashaPartitionAccessDeleteDelete(),
-		...descriptionDedicatedNashaPartitionDeleteDelete(),
-		...descriptionNashaPartitionAccessGetGet(),
-		...descriptionNashaPartitionAuthorizableipsGetGet(),
-		...descriptionNashaPartitionAuthorizableblocksGetGet(),
-		...descriptionNashaPartitionTemplateusageGetGet(),
-		...descriptionNashaPartitionCustomsnapshotGetGet(),
-		...descriptionDedicatedNashaPartitionGetGet(),
-		...descriptionNashaPartitionQuotaGetGet(),
-		...descriptionNashaPartitionSnapshotGetGet(),
-		...descriptionDedicatedNashaServiceinfosGetGet(),
-		...descriptionDedicatedNashaGetServicenameGet(),
-		...descriptionDedicatedNashaPartitionGetPartitionnameGet(),
-		...descriptionNashaPartitionAccessGetIpGet(),
-		...descriptionNashaPartitionCustomsnapshotGetNameGet(),
-		...descriptionNashaPartitionOptionsGetGet(),
-		...descriptionNashaPartitionQuotaGetUidGet(),
-		...descriptionNashaPartitionSnapshotGetSnapshottypeGet(),
-		...descriptionDedicatedNashaTaskGetTaskidGet(),
-		...descriptionDedicatedNashaChangecontactCreatePost(),
-		...descriptionDedicatedNashaGetGet(),
-		...descriptionDedicatedNashaMetricstokenGetGet(),
-		...descriptionDedicatedNashaUseGetGet(),
-		...descriptionNashaPartitionUseGetGet(),
-		...descriptionNashaPartitionSnapshotCreatePost(),
-		...descriptionNashaPartitionQuotaCreatePost(),
-		...descriptionNashaPartitionOptionsCreatePost(),
-		...descriptionDedicatedNashaServiceinfosUpdatePut(),
-		...descriptionDedicatedNashaTaskGetGet(),
-	];
-
-	return properties;
-}
-
-export async function execute(
-	this: IExecuteFunctions,
-	itemIndex?: number,
-): Promise<INodeExecutionData[]> {
-	const operation = this.getNodeParameter('dedicatedNashaOperation', itemIndex ?? 0, {
-		extractValue: true,
-	});
-
-	switch (operation) {
-		case 'NashaPartitionAccessCreate':
-			return executeNashaPartitionAccessCreatePost.call(this, itemIndex ?? 0);
-		case 'DedicatedNashaUpdate':
-			return executeDedicatedNashaUpdatePut.call(this, itemIndex ?? 0);
-		case 'DedicatedNashaPartitionUpdate':
-			return executeDedicatedNashaPartitionUpdatePut.call(this, itemIndex ?? 0);
-		case 'DedicatedNashaTerminateCreate':
-			return executeDedicatedNashaTerminateCreatePost.call(this, itemIndex ?? 0);
-		case 'DedicatedNashaConfirmterminationCreate':
-			return executeDedicatedNashaConfirmterminationCreatePost.call(this, itemIndex ?? 0);
-		case 'DedicatedNashaPartitionCreate':
-			return executeDedicatedNashaPartitionCreatePost.call(this, itemIndex ?? 0);
-		case 'NashaPartitionCustomsnapshotCreate':
-			return executeNashaPartitionCustomsnapshotCreatePost.call(this, itemIndex ?? 0);
-		case 'NashaPartitionQuotaDelete':
-			return executeNashaPartitionQuotaDeleteDelete.call(this, itemIndex ?? 0);
-		case 'NashaPartitionCustomsnapshotDelete':
-			return executeNashaPartitionCustomsnapshotDeleteDelete.call(this, itemIndex ?? 0);
-		case 'NashaPartitionSnapshotDelete':
-			return executeNashaPartitionSnapshotDeleteDelete.call(this, itemIndex ?? 0);
-		case 'NashaPartitionAccessDelete':
-			return executeNashaPartitionAccessDeleteDelete.call(this, itemIndex ?? 0);
-		case 'DedicatedNashaPartitionDelete':
-			return executeDedicatedNashaPartitionDeleteDelete.call(this, itemIndex ?? 0);
-		case 'NashaPartitionAccessGet':
-			return executeNashaPartitionAccessGetGet.call(this, itemIndex ?? 0);
-		case 'NashaPartitionAuthorizableipsGet':
-			return executeNashaPartitionAuthorizableipsGetGet.call(this, itemIndex ?? 0);
-		case 'NashaPartitionAuthorizableblocksGet':
-			return executeNashaPartitionAuthorizableblocksGetGet.call(this, itemIndex ?? 0);
-		case 'NashaPartitionTemplateusageGet':
-			return executeNashaPartitionTemplateusageGetGet.call(this, itemIndex ?? 0);
-		case 'NashaPartitionCustomsnapshotGet':
-			return executeNashaPartitionCustomsnapshotGetGet.call(this, itemIndex ?? 0);
-		case 'DedicatedNashaPartitionGet':
-			return executeDedicatedNashaPartitionGetGet.call(this, itemIndex ?? 0);
-		case 'NashaPartitionQuotaGet':
-			return executeNashaPartitionQuotaGetGet.call(this, itemIndex ?? 0);
-		case 'NashaPartitionSnapshotGet':
-			return executeNashaPartitionSnapshotGetGet.call(this, itemIndex ?? 0);
-		case 'DedicatedNashaServiceinfosGet':
-			return executeDedicatedNashaServiceinfosGetGet.call(this, itemIndex ?? 0);
-		case 'DedicatedNashaGetServicename':
-			return executeDedicatedNashaGetServicenameGet.call(this, itemIndex ?? 0);
-		case 'DedicatedNashaPartitionGetPartitionname':
-			return executeDedicatedNashaPartitionGetPartitionnameGet.call(this, itemIndex ?? 0);
-		case 'NashaPartitionAccessGetIp':
-			return executeNashaPartitionAccessGetIpGet.call(this, itemIndex ?? 0);
-		case 'NashaPartitionCustomsnapshotGetName':
-			return executeNashaPartitionCustomsnapshotGetNameGet.call(this, itemIndex ?? 0);
-		case 'NashaPartitionOptionsGet':
-			return executeNashaPartitionOptionsGetGet.call(this, itemIndex ?? 0);
-		case 'NashaPartitionQuotaGetUid':
-			return executeNashaPartitionQuotaGetUidGet.call(this, itemIndex ?? 0);
-		case 'NashaPartitionSnapshotGetSnapshottype':
-			return executeNashaPartitionSnapshotGetSnapshottypeGet.call(this, itemIndex ?? 0);
-		case 'DedicatedNashaTaskGetTaskid':
-			return executeDedicatedNashaTaskGetTaskidGet.call(this, itemIndex ?? 0);
-		case 'DedicatedNashaChangecontactCreate':
-			return executeDedicatedNashaChangecontactCreatePost.call(this, itemIndex ?? 0);
-		case 'DedicatedNashaGet':
-			return executeDedicatedNashaGetGet.call(this, itemIndex ?? 0);
-		case 'DedicatedNashaMetricstokenGet':
-			return executeDedicatedNashaMetricstokenGetGet.call(this, itemIndex ?? 0);
-		case 'DedicatedNashaUseGet':
-			return executeDedicatedNashaUseGetGet.call(this, itemIndex ?? 0);
-		case 'NashaPartitionUseGet':
-			return executeNashaPartitionUseGetGet.call(this, itemIndex ?? 0);
-		case 'NashaPartitionSnapshotCreate':
-			return executeNashaPartitionSnapshotCreatePost.call(this, itemIndex ?? 0);
-		case 'NashaPartitionQuotaCreate':
-			return executeNashaPartitionQuotaCreatePost.call(this, itemIndex ?? 0);
-		case 'NashaPartitionOptionsCreate':
-			return executeNashaPartitionOptionsCreatePost.call(this, itemIndex ?? 0);
-		case 'DedicatedNashaServiceinfosUpdate':
-			return executeDedicatedNashaServiceinfosUpdatePut.call(this, itemIndex ?? 0);
-		case 'DedicatedNashaTaskGet':
-			return executeDedicatedNashaTaskGetGet.call(this, itemIndex ?? 0);
-	}
-
-	throw new Error(`Unsupported operation "${operation}" for resource "/dedicated/nasha"`);
-}
-
+export { description, execute };
