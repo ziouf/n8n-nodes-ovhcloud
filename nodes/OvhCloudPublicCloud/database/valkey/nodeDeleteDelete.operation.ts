@@ -1,3 +1,4 @@
+import { SERVICE_NAME } from '../../serviceName';
 import type {
 	IExecuteFunctions,
 	IDisplayOptions,
@@ -5,7 +6,6 @@ import type {
 	INodeProperties,
 } from 'n8n-workflow';
 import { getClient } from '../../../../shared/transport/ApiClient';
-import { serviceNameLocator } from '../../../../shared/nodes/locators';
 
 export function description(displayOptions: IDisplayOptions): INodeProperties[] {
 	return [
@@ -32,12 +32,7 @@ export function description(displayOptions: IDisplayOptions): INodeProperties[] 
 		],
 	},
 	{
-			...serviceNameLocator({
-				searchListMethod: 'getPublicCloudProjects',
-				displayName: 'Service Name',
-				description: 'The database service name',
-				placeholder: '12345678-1234-1234-1234-1234567890ab',
-			}),
+			...SERVICE_NAME,
 			displayOptions,
 		},
 	{

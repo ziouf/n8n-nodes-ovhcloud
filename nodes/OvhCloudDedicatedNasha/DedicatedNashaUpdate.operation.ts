@@ -1,3 +1,4 @@
+import { SERVICE_NAME } from './serviceName';
 import type {
 	IDataObject,
 	IExecuteFunctions,
@@ -5,16 +6,11 @@ import type {
 	INodeProperties,
 } from 'n8n-workflow';
 import { getClient } from '../../shared/transport/ApiClient';
-import { serviceNameLocator } from '../../shared/nodes/locators';
 
 export function description(): INodeProperties[] {
 	return [
 		{
-			...serviceNameLocator({
-				searchListMethod: 'getDedicatedNashaServices',
-				displayName: 'Servicename',
-				description: 'The internal name of your storage',
-			}),
+			...SERVICE_NAME,
 		},
 	];
 }

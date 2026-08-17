@@ -1,3 +1,4 @@
+import { SERVICE_NAME } from '../../serviceName';
 import type {
 	IDataObject,
 	IDisplayOptions,
@@ -6,7 +7,6 @@ import type {
 	INodeProperties,
 } from 'n8n-workflow';
 import { getClient } from '../../../../shared/transport/ApiClient';
-import { serviceNameLocator } from '../../../../shared/nodes/locators';
 
 export function description(displayOptions: IDisplayOptions): INodeProperties[] {
 	return [
@@ -20,12 +20,7 @@ export function description(displayOptions: IDisplayOptions): INodeProperties[] 
 			displayOptions,
 		},
 		{
-			...serviceNameLocator({
-				searchListMethod: 'getSmsServices',
-				displayName: 'Service Name',
-				description: 'The internal name of your SMS offer',
-				placeholder: 'sms-XXXXXX-1',
-			}),
+			...SERVICE_NAME,
 			displayOptions,
 		},
 	];
