@@ -1,999 +1,705 @@
-import type {
-	IDisplayOptions,
-	IExecuteFunctions,
-	INodeExecutionData,
-	INodeProperties,
-} from 'n8n-workflow';
+import { createOperationDispatcher } from '../../shared/nodes/createNodeDispatcher';
 
 import {
-	execute as executeDeleteVrackserviceNCloudProjectprojectDelete,
 	description as descriptionDeleteVrackserviceNCloudProjectprojectDelete,
+	execute as executeDeleteVrackserviceNCloudProjectprojectDelete,
 } from './deleteVrackserviceNCloudProjectprojectDelete.operation';
 import {
-	execute as executeDeleteVrackserviceNDedicatedClouddedicateDelete,
 	description as descriptionDeleteVrackserviceNDedicatedClouddedicateDelete,
+	execute as executeDeleteVrackserviceNDedicatedClouddedicateDelete,
 } from './deleteVrackserviceNDedicatedClouddedicateDelete.operation';
 import {
-	execute as executeDeleteVrackserviceNDedicatedServerdedicateDelete,
-	description as descriptionDeleteVrackserviceNDedicatedServerdedicateDelete,
-} from './deleteVrackserviceNDedicatedServerdedicateDelete.operation';
-import {
-	execute as executeDeleteVrackserviceNDedicatedServerInterfacededicateDelete,
 	description as descriptionDeleteVrackserviceNDedicatedServerInterfacededicateDelete,
+	execute as executeDeleteVrackserviceNDedicatedServerInterfacededicateDelete,
 } from './deleteVrackserviceNDedicatedServerInterfacededicateDelete.operation';
 import {
-	execute as executeDeleteVrackserviceNIpipDelete,
-	description as descriptionDeleteVrackserviceNIpipDelete,
-} from './deleteVrackserviceNIpipDelete.operation';
+	description as descriptionDeleteVrackserviceNDedicatedServerdedicateDelete,
+	execute as executeDeleteVrackserviceNDedicatedServerdedicateDelete,
+} from './deleteVrackserviceNDedicatedServerdedicateDelete.operation';
 import {
-	execute as executeDeleteVrackserviceNIpLoadbalancingipLoadbaDelete,
 	description as descriptionDeleteVrackserviceNIpLoadbalancingipLoadbaDelete,
+	execute as executeDeleteVrackserviceNIpLoadbalancingipLoadbaDelete,
 } from './deleteVrackserviceNIpLoadbalancingipLoadbaDelete.operation';
 import {
-	execute as executeDeleteVrackserviceNIpv6ipv6Delete,
+	description as descriptionDeleteVrackserviceNIpipDelete,
+	execute as executeDeleteVrackserviceNIpipDelete,
+} from './deleteVrackserviceNIpipDelete.operation';
+import {
 	description as descriptionDeleteVrackserviceNIpv6ipv6Delete,
+	execute as executeDeleteVrackserviceNIpv6ipv6Delete,
 } from './deleteVrackserviceNIpv6ipv6Delete.operation';
 import {
-	execute as executeDeleteVrackserviceNIpv6ipv6RoutedSubrangeroutedSuDelete,
 	description as descriptionDeleteVrackserviceNIpv6ipv6RoutedSubrangeroutedSuDelete,
+	execute as executeDeleteVrackserviceNIpv6ipv6RoutedSubrangeroutedSuDelete,
 } from './deleteVrackserviceNIpv6ipv6RoutedSubrangeroutedSuDelete.operation';
 import {
-	execute as executeDeleteVrackserviceNLegacyVracklegacyVrDelete,
 	description as descriptionDeleteVrackserviceNLegacyVracklegacyVrDelete,
+	execute as executeDeleteVrackserviceNLegacyVracklegacyVrDelete,
 } from './deleteVrackserviceNLegacyVracklegacyVrDelete.operation';
 import {
-	execute as executeDeleteVrackserviceNOvhCloudConnectovhCloudDelete,
 	description as descriptionDeleteVrackserviceNOvhCloudConnectovhCloudDelete,
+	execute as executeDeleteVrackserviceNOvhCloudConnectovhCloudDelete,
 } from './deleteVrackserviceNOvhCloudConnectovhCloudDelete.operation';
 import {
-	execute as executeDeleteVrackserviceNVrackServicesvrackSerDelete,
 	description as descriptionDeleteVrackserviceNVrackServicesvrackSerDelete,
+	execute as executeDeleteVrackserviceNVrackServicesvrackSerDelete,
 } from './deleteVrackserviceNVrackServicesvrackSerDelete.operation';
 import {
-	execute as executeGetVrackPublicRoutingRegionGet,
 	description as descriptionGetVrackPublicRoutingRegionGet,
+	execute as executeGetVrackPublicRoutingRegionGet,
 } from './getVrackPublicRoutingRegionGet.operation';
 import {
-	execute as executeGetVrackserviceNAllowedServicesGet,
 	description as descriptionGetVrackserviceNAllowedServicesGet,
+	execute as executeGetVrackserviceNAllowedServicesGet,
 } from './getVrackserviceNAllowedServicesGet.operation';
 import {
-	execute as executeGetVrackserviceNCloudProjectGet,
 	description as descriptionGetVrackserviceNCloudProjectGet,
+	execute as executeGetVrackserviceNCloudProjectGet,
 } from './getVrackserviceNCloudProjectGet.operation';
 import {
-	execute as executeGetVrackserviceNCloudProjectprojectGet,
 	description as descriptionGetVrackserviceNCloudProjectprojectGet,
+	execute as executeGetVrackserviceNCloudProjectprojectGet,
 } from './getVrackserviceNCloudProjectprojectGet.operation';
 import {
-	execute as executeGetVrackserviceNDedicatedCloudDatacenterdatacentAllowedVrackGet,
-	description as descriptionGetVrackserviceNDedicatedCloudDatacenterdatacentAllowedVrackGet,
-} from './getVrackserviceNDedicatedCloudDatacenterdatacentAllowedVrackGet.operation';
-import {
-	execute as executeGetVrackserviceNDedicatedCloudDatacenterdatacentGet,
-	description as descriptionGetVrackserviceNDedicatedCloudDatacenterdatacentGet,
-} from './getVrackserviceNDedicatedCloudDatacenterdatacentGet.operation';
-import {
-	execute as executeGetVrackserviceNDedicatedCloudDatacenterGet,
 	description as descriptionGetVrackserviceNDedicatedCloudDatacenterGet,
+	execute as executeGetVrackserviceNDedicatedCloudDatacenterGet,
 } from './getVrackserviceNDedicatedCloudDatacenterGet.operation';
 import {
-	execute as executeGetVrackserviceNDedicatedClouddedicateGet,
-	description as descriptionGetVrackserviceNDedicatedClouddedicateGet,
-} from './getVrackserviceNDedicatedClouddedicateGet.operation';
+	description as descriptionGetVrackserviceNDedicatedCloudDatacenterdatacentAllowedVrackGet,
+	execute as executeGetVrackserviceNDedicatedCloudDatacenterdatacentAllowedVrackGet,
+} from './getVrackserviceNDedicatedCloudDatacenterdatacentAllowedVrackGet.operation';
 import {
-	execute as executeGetVrackserviceNDedicatedCloudGet,
+	description as descriptionGetVrackserviceNDedicatedCloudDatacenterdatacentGet,
+	execute as executeGetVrackserviceNDedicatedCloudDatacenterdatacentGet,
+} from './getVrackserviceNDedicatedCloudDatacenterdatacentGet.operation';
+import {
 	description as descriptionGetVrackserviceNDedicatedCloudGet,
+	execute as executeGetVrackserviceNDedicatedCloudGet,
 } from './getVrackserviceNDedicatedCloudGet.operation';
 import {
-	execute as executeGetVrackserviceNDedicatedConnectGet,
+	description as descriptionGetVrackserviceNDedicatedClouddedicateGet,
+	execute as executeGetVrackserviceNDedicatedClouddedicateGet,
+} from './getVrackserviceNDedicatedClouddedicateGet.operation';
+import {
 	description as descriptionGetVrackserviceNDedicatedConnectGet,
+	execute as executeGetVrackserviceNDedicatedConnectGet,
 } from './getVrackserviceNDedicatedConnectGet.operation';
 import {
-	execute as executeGetVrackserviceNDedicatedConnectnameGet,
 	description as descriptionGetVrackserviceNDedicatedConnectnameGet,
+	execute as executeGetVrackserviceNDedicatedConnectnameGet,
 } from './getVrackserviceNDedicatedConnectnameGet.operation';
 import {
-	execute as executeGetVrackserviceNDedicatedServerdedicateGet,
-	description as descriptionGetVrackserviceNDedicatedServerdedicateGet,
-} from './getVrackserviceNDedicatedServerdedicateGet.operation';
-import {
-	execute as executeGetVrackserviceNDedicatedServerdedicateMrtgGet,
-	description as descriptionGetVrackserviceNDedicatedServerdedicateMrtgGet,
-} from './getVrackserviceNDedicatedServerdedicateMrtgGet.operation';
-import {
-	execute as executeGetVrackserviceNDedicatedServerGet,
 	description as descriptionGetVrackserviceNDedicatedServerGet,
+	execute as executeGetVrackserviceNDedicatedServerGet,
 } from './getVrackserviceNDedicatedServerGet.operation';
 import {
-	execute as executeGetVrackserviceNDedicatedServerInterfacededicateGet,
-	description as descriptionGetVrackserviceNDedicatedServerInterfacededicateGet,
-} from './getVrackserviceNDedicatedServerInterfacededicateGet.operation';
-import {
-	execute as executeGetVrackserviceNDedicatedServerInterfaceDetailsGet,
 	description as descriptionGetVrackserviceNDedicatedServerInterfaceDetailsGet,
+	execute as executeGetVrackserviceNDedicatedServerInterfaceDetailsGet,
 } from './getVrackserviceNDedicatedServerInterfaceDetailsGet.operation';
 import {
-	execute as executeGetVrackserviceNDedicatedServerInterfaceGet,
 	description as descriptionGetVrackserviceNDedicatedServerInterfaceGet,
+	execute as executeGetVrackserviceNDedicatedServerInterfaceGet,
 } from './getVrackserviceNDedicatedServerInterfaceGet.operation';
 import {
-	execute as executeGetVrackserviceNEligibleServicesGet,
+	description as descriptionGetVrackserviceNDedicatedServerInterfacededicateGet,
+	execute as executeGetVrackserviceNDedicatedServerInterfacededicateGet,
+} from './getVrackserviceNDedicatedServerInterfacededicateGet.operation';
+import {
+	description as descriptionGetVrackserviceNDedicatedServerdedicateGet,
+	execute as executeGetVrackserviceNDedicatedServerdedicateGet,
+} from './getVrackserviceNDedicatedServerdedicateGet.operation';
+import {
+	description as descriptionGetVrackserviceNDedicatedServerdedicateMrtgGet,
+	execute as executeGetVrackserviceNDedicatedServerdedicateMrtgGet,
+} from './getVrackserviceNDedicatedServerdedicateMrtgGet.operation';
+import {
 	description as descriptionGetVrackserviceNEligibleServicesGet,
+	execute as executeGetVrackserviceNEligibleServicesGet,
 } from './getVrackserviceNEligibleServicesGet.operation';
 import {
-	execute as executeGetVrackserviceNIpipGet,
-	description as descriptionGetVrackserviceNIpipGet,
-} from './getVrackserviceNIpipGet.operation';
-import {
-	execute as executeGetVrackserviceNIpLoadbalancingGet,
 	description as descriptionGetVrackserviceNIpLoadbalancingGet,
+	execute as executeGetVrackserviceNIpLoadbalancingGet,
 } from './getVrackserviceNIpLoadbalancingGet.operation';
 import {
-	execute as executeGetVrackserviceNIpLoadbalancingipLoadbaGet,
 	description as descriptionGetVrackserviceNIpLoadbalancingipLoadbaGet,
+	execute as executeGetVrackserviceNIpLoadbalancingipLoadbaGet,
 } from './getVrackserviceNIpLoadbalancingipLoadbaGet.operation';
 import {
-	execute as executeGetVrackserviceNIpv6Get,
+	description as descriptionGetVrackserviceNIpipGet,
+	execute as executeGetVrackserviceNIpipGet,
+} from './getVrackserviceNIpipGet.operation';
+import {
 	description as descriptionGetVrackserviceNIpv6Get,
+	execute as executeGetVrackserviceNIpv6Get,
 } from './getVrackserviceNIpv6Get.operation';
 import {
-	execute as executeGetVrackserviceNIpv6ipv6BridgedSubrangebridgedSGet,
-	description as descriptionGetVrackserviceNIpv6ipv6BridgedSubrangebridgedSGet,
-} from './getVrackserviceNIpv6ipv6BridgedSubrangebridgedSGet.operation';
-import {
-	execute as executeGetVrackserviceNIpv6ipv6BridgedSubrangeGet,
 	description as descriptionGetVrackserviceNIpv6ipv6BridgedSubrangeGet,
+	execute as executeGetVrackserviceNIpv6ipv6BridgedSubrangeGet,
 } from './getVrackserviceNIpv6ipv6BridgedSubrangeGet.operation';
 import {
-	execute as executeGetVrackserviceNIpv6ipv6Get,
+	description as descriptionGetVrackserviceNIpv6ipv6BridgedSubrangebridgedSGet,
+	execute as executeGetVrackserviceNIpv6ipv6BridgedSubrangebridgedSGet,
+} from './getVrackserviceNIpv6ipv6BridgedSubrangebridgedSGet.operation';
+import {
 	description as descriptionGetVrackserviceNIpv6ipv6Get,
+	execute as executeGetVrackserviceNIpv6ipv6Get,
 } from './getVrackserviceNIpv6ipv6Get.operation';
 import {
-	execute as executeGetVrackserviceNIpv6ipv6RoutedSubrangeGet,
 	description as descriptionGetVrackserviceNIpv6ipv6RoutedSubrangeGet,
+	execute as executeGetVrackserviceNIpv6ipv6RoutedSubrangeGet,
 } from './getVrackserviceNIpv6ipv6RoutedSubrangeGet.operation';
 import {
-	execute as executeGetVrackserviceNIpv6ipv6RoutedSubrangeroutedSuGet,
 	description as descriptionGetVrackserviceNIpv6ipv6RoutedSubrangeroutedSuGet,
+	execute as executeGetVrackserviceNIpv6ipv6RoutedSubrangeroutedSuGet,
 } from './getVrackserviceNIpv6ipv6RoutedSubrangeroutedSuGet.operation';
 import {
-	execute as executeGetVrackserviceNLegacyVrackGet,
 	description as descriptionGetVrackserviceNLegacyVrackGet,
+	execute as executeGetVrackserviceNLegacyVrackGet,
 } from './getVrackserviceNLegacyVrackGet.operation';
 import {
-	execute as executeGetVrackserviceNLegacyVracklegacyVrGet,
 	description as descriptionGetVrackserviceNLegacyVracklegacyVrGet,
+	execute as executeGetVrackserviceNLegacyVracklegacyVrGet,
 } from './getVrackserviceNLegacyVracklegacyVrGet.operation';
 import {
-	execute as executeGetVrackserviceNOvhCloudConnectGet,
 	description as descriptionGetVrackserviceNOvhCloudConnectGet,
+	execute as executeGetVrackserviceNOvhCloudConnectGet,
 } from './getVrackserviceNOvhCloudConnectGet.operation';
 import {
-	execute as executeGetVrackserviceNOvhCloudConnectovhCloudGet,
 	description as descriptionGetVrackserviceNOvhCloudConnectovhCloudGet,
+	execute as executeGetVrackserviceNOvhCloudConnectovhCloudGet,
 } from './getVrackserviceNOvhCloudConnectovhCloudGet.operation';
 import {
-	execute as executeGetVrackserviceNPublicRoutingBandwidthLimitGet,
 	description as descriptionGetVrackserviceNPublicRoutingBandwidthLimitGet,
+	execute as executeGetVrackserviceNPublicRoutingBandwidthLimitGet,
 } from './getVrackserviceNPublicRoutingBandwidthLimitGet.operation';
 import {
-	execute as executeGetVrackserviceNServiceInfosGet,
 	description as descriptionGetVrackserviceNServiceInfosGet,
+	execute as executeGetVrackserviceNServiceInfosGet,
 } from './getVrackserviceNServiceInfosGet.operation';
 import {
-	execute as executeGetVrackserviceNTaskGet,
 	description as descriptionGetVrackserviceNTaskGet,
+	execute as executeGetVrackserviceNTaskGet,
 } from './getVrackserviceNTaskGet.operation';
 import {
-	execute as executeGetVrackserviceNTasktaskIdGet,
 	description as descriptionGetVrackserviceNTasktaskIdGet,
+	execute as executeGetVrackserviceNTasktaskIdGet,
 } from './getVrackserviceNTasktaskIdGet.operation';
 import {
-	execute as executeGetVrackserviceNVrackServicesGet,
 	description as descriptionGetVrackserviceNVrackServicesGet,
+	execute as executeGetVrackserviceNVrackServicesGet,
 } from './getVrackserviceNVrackServicesGet.operation';
 import {
-	execute as executeGetVrackserviceNVrackServicesvrackSerGet,
 	description as descriptionGetVrackserviceNVrackServicesvrackSerGet,
+	execute as executeGetVrackserviceNVrackServicesvrackSerGet,
 } from './getVrackserviceNVrackServicesvrackSerGet.operation';
 import {
-	execute as executePostVrackserviceNCloudProjectPost,
 	description as descriptionPostVrackserviceNCloudProjectPost,
+	execute as executePostVrackserviceNCloudProjectPost,
 } from './postVrackserviceNCloudProjectPost.operation';
 import {
-	execute as executePostVrackserviceNConfirmTerminationPost,
 	description as descriptionPostVrackserviceNConfirmTerminationPost,
+	execute as executePostVrackserviceNConfirmTerminationPost,
 } from './postVrackserviceNConfirmTerminationPost.operation';
 import {
-	execute as executePostVrackserviceNDedicatedCloudDatacenterdatacentMovePost,
 	description as descriptionPostVrackserviceNDedicatedCloudDatacenterdatacentMovePost,
+	execute as executePostVrackserviceNDedicatedCloudDatacenterdatacentMovePost,
 } from './postVrackserviceNDedicatedCloudDatacenterdatacentMovePost.operation';
 import {
-	execute as executePostVrackserviceNDedicatedCloudPost,
 	description as descriptionPostVrackserviceNDedicatedCloudPost,
+	execute as executePostVrackserviceNDedicatedCloudPost,
 } from './postVrackserviceNDedicatedCloudPost.operation';
 import {
-	execute as executePostVrackserviceNDedicatedServerInterfacePost,
 	description as descriptionPostVrackserviceNDedicatedServerInterfacePost,
+	execute as executePostVrackserviceNDedicatedServerInterfacePost,
 } from './postVrackserviceNDedicatedServerInterfacePost.operation';
 import {
-	execute as executePostVrackserviceNDedicatedServerPost,
 	description as descriptionPostVrackserviceNDedicatedServerPost,
+	execute as executePostVrackserviceNDedicatedServerPost,
 } from './postVrackserviceNDedicatedServerPost.operation';
 import {
-	execute as executePostVrackserviceNIpLoadbalancingPost,
 	description as descriptionPostVrackserviceNIpLoadbalancingPost,
+	execute as executePostVrackserviceNIpLoadbalancingPost,
 } from './postVrackserviceNIpLoadbalancingPost.operation';
 import {
-	execute as executePostVrackserviceNIpv6ipv6RoutedSubrangePost,
-	description as descriptionPostVrackserviceNIpv6ipv6RoutedSubrangePost,
-} from './postVrackserviceNIpv6ipv6RoutedSubrangePost.operation';
-import {
-	execute as executePostVrackserviceNIpv6Post,
 	description as descriptionPostVrackserviceNIpv6Post,
+	execute as executePostVrackserviceNIpv6Post,
 } from './postVrackserviceNIpv6Post.operation';
 import {
-	execute as executePostVrackserviceNLegacyVrackPost,
+	description as descriptionPostVrackserviceNIpv6ipv6RoutedSubrangePost,
+	execute as executePostVrackserviceNIpv6ipv6RoutedSubrangePost,
+} from './postVrackserviceNIpv6ipv6RoutedSubrangePost.operation';
+import {
 	description as descriptionPostVrackserviceNLegacyVrackPost,
+	execute as executePostVrackserviceNLegacyVrackPost,
 } from './postVrackserviceNLegacyVrackPost.operation';
 import {
-	execute as executePostVrackserviceNOvhCloudConnectPost,
 	description as descriptionPostVrackserviceNOvhCloudConnectPost,
+	execute as executePostVrackserviceNOvhCloudConnectPost,
 } from './postVrackserviceNOvhCloudConnectPost.operation';
 import {
-	execute as executePostVrackserviceNTerminatePost,
 	description as descriptionPostVrackserviceNTerminatePost,
+	execute as executePostVrackserviceNTerminatePost,
 } from './postVrackserviceNTerminatePost.operation';
 import {
-	execute as executePostVrackserviceNVrackServicesPost,
 	description as descriptionPostVrackserviceNVrackServicesPost,
+	execute as executePostVrackserviceNVrackServicesPost,
 } from './postVrackserviceNVrackServicesPost.operation';
 import {
-	execute as executePutVrackserviceNDedicatedConnectnamePut,
 	description as descriptionPutVrackserviceNDedicatedConnectnamePut,
+	execute as executePutVrackserviceNDedicatedConnectnamePut,
 } from './putVrackserviceNDedicatedConnectnamePut.operation';
 import {
-	execute as executePutVrackserviceNIpv6ipv6BridgedSubrangebridgedSPut,
 	description as descriptionPutVrackserviceNIpv6ipv6BridgedSubrangebridgedSPut,
+	execute as executePutVrackserviceNIpv6ipv6BridgedSubrangebridgedSPut,
 } from './putVrackserviceNIpv6ipv6BridgedSubrangebridgedSPut.operation';
 
-export function description(displayOptions: IDisplayOptions): INodeProperties[] {
-	const operationProperties: INodeProperties[] = [
-		{
-			displayName: 'Operation',
-			name: 'vrackOperation',
-			type: 'options',
-			noDataExpression: true,
-			options: [
-				{
-					name: 'Create Vrack ServiceName CloudProject',
-					value: 'postVrackserviceNCloudProjectPost',
-					action: 'add a publicCloud project to this vrack',
-				},
-				{
-					name: 'Create Vrack ServiceName ConfirmTermination',
-					value: 'postVrackserviceNConfirmTerminationPost',
-					action: 'Confirm service termination',
-				},
-				{
-					name: 'Create Vrack ServiceName DedicatedCloud',
-					value: 'postVrackserviceNDedicatedCloudPost',
-					action: 'Add VMware on OVHcloud to vRack',
-				},
-				{
-					name: 'Create Vrack ServiceName DedicatedCloudDatacenter Datacenter Move',
-					value: 'postVrackserviceNDedicatedCloudDatacenterdatacentMovePost',
-					action: 'Move your dedicatedCloud datacenter from a Vrack to another',
-				},
-				{
-					name: 'Create Vrack ServiceName DedicatedServer',
-					value: 'postVrackserviceNDedicatedServerPost',
-					action: 'add a dedicated server to this vrack (LEGACY)',
-				},
-				{
-					name: 'Create Vrack ServiceName DedicatedServerInterface',
-					value: 'postVrackserviceNDedicatedServerInterfacePost',
-					action: 'add a dedicated server interface to this vrack',
-				},
-				{
-					name: 'Create Vrack ServiceName IpLoadbalancing',
-					value: 'postVrackserviceNIpLoadbalancingPost',
-					action: 'add an ipLoadbalancing to this vrack',
-				},
-				{
-					name: 'Create Vrack ServiceName Ipv6',
-					value: 'postVrackserviceNIpv6Post',
-					action: 'add an IP v6 block to this vrack',
-				},
-				{
-					name: 'Create Vrack ServiceName Ipv6 Ipv6 RoutedSubrange',
-					value: 'postVrackserviceNIpv6ipv6RoutedSubrangePost',
-					action: 'route a subrange of your IP v6 block into your vrack',
-				},
-				{
-					name: 'Create Vrack ServiceName LegacyVrack',
-					value: 'postVrackserviceNLegacyVrackPost',
-					action: 'add a legacy vrack (vrackXXXX) to this vrack (pn-XXXX)',
-				},
-				{
-					name: 'Create Vrack ServiceName OvhCloudConnect',
-					value: 'postVrackserviceNOvhCloudConnectPost',
-					action: 'Add an ovhCloudConnect to the vrack',
-				},
-				{
-					name: 'Create Vrack ServiceName Terminate',
-					value: 'postVrackserviceNTerminatePost',
-					action: 'Ask for the termination of your service',
-				},
-				{
-					name: 'Create Vrack ServiceName VrackServices',
-					value: 'postVrackserviceNVrackServicesPost',
-					action: 'Add a vrackServices to the vrack',
-				},
-				{
-					name: 'Delete Vrack ServiceName CloudProject Project',
-					value: 'deleteVrackserviceNCloudProjectprojectDelete',
-					action: 'remove this publicCloud project from this vrack',
-				},
-				{
-					name: 'Delete Vrack ServiceName DedicatedCloud DedicatedCloud',
-					value: 'deleteVrackserviceNDedicatedClouddedicateDelete',
-					action: 'Remove VMware on OVHcloud from vRack',
-				},
-				{
-					name: 'Delete Vrack ServiceName DedicatedServer DedicatedServer',
-					value: 'deleteVrackserviceNDedicatedServerdedicateDelete',
-					action: 'remove this server from this vrack (LEGACY)',
-				},
-				{
-					name: 'Delete Vrack ServiceName DedicatedServerInterface DedicatedServerInterface',
-					value: 'deleteVrackserviceNDedicatedServerInterfacededicateDelete',
-					action: 'remove this server interface from this vrack',
-				},
-				{
-					name: 'Delete Vrack ServiceName Ip Ip',
-					value: 'deleteVrackserviceNIpipDelete',
-					action: 'remove this IP block from this vrack',
-				},
-				{
-					name: 'Delete Vrack ServiceName IpLoadbalancing IpLoadbalancing',
-					value: 'deleteVrackserviceNIpLoadbalancingipLoadbaDelete',
-					action: 'remove this ipLoadbalancing from this vrack',
-				},
-				{
-					name: 'Delete Vrack ServiceName Ipv6 Ipv6',
-					value: 'deleteVrackserviceNIpv6ipv6Delete',
-					action: 'remove this IP v6 block from this vrack',
-				},
-				{
-					name: 'Delete Vrack ServiceName Ipv6 Ipv6 RoutedSubrange RoutedSubrange',
-					value: 'deleteVrackserviceNIpv6ipv6RoutedSubrangeroutedSuDelete',
-					action: 'unroute subrange from your vrack',
-				},
-				{
-					name: 'Delete Vrack ServiceName LegacyVrack LegacyVrack',
-					value: 'deleteVrackserviceNLegacyVracklegacyVrDelete',
-					action: 'remove this legacy vrack (vrackXXXX) from this vrack (pn-XXXX)',
-				},
-				{
-					name: 'Delete Vrack ServiceName OvhCloudConnect OvhCloudConnect',
-					value: 'deleteVrackserviceNOvhCloudConnectovhCloudDelete',
-					action: 'Remove the ovhCloudConnect from the vrack',
-				},
-				{
-					name: 'Delete Vrack ServiceName VrackServices VrackServices',
-					value: 'deleteVrackserviceNVrackServicesvrackSerDelete',
-					action: 'Remove the vrackServices from the vrack',
-				},
-				{
-					name: 'Get Vrack PublicRoutingRegion',
-					value: 'getVrackPublicRoutingRegionGet',
-					action: 'List Regions available to announce IP blocks',
-				},
-				{
-					name: 'Get Vrack ServiceName AllowedServices',
-					value: 'getVrackserviceNAllowedServicesGet',
-					action: 'List all services allowed in this vrack',
-				},
-				{
-					name: 'Get Vrack ServiceName CloudProject',
-					value: 'getVrackserviceNCloudProjectGet',
-					action: 'vrack for publicCloud project',
-				},
-				{
-					name: 'Get Vrack ServiceName CloudProject Project',
-					value: 'getVrackserviceNCloudProjectprojectGet',
-					action: 'Get this object properties',
-				},
-				{
-					name: 'Get Vrack ServiceName DedicatedCloud',
-					value: 'getVrackserviceNDedicatedCloudGet',
-					action: 'vrack dedicated cloud (VmNetwork)',
-				},
-				{
-					name: 'Get Vrack ServiceName DedicatedCloud DedicatedCloud',
-					value: 'getVrackserviceNDedicatedClouddedicateGet',
-					action: 'Get vRack',
-				},
-				{
-					name: 'Get Vrack ServiceName DedicatedCloudDatacenter',
-					value: 'getVrackserviceNDedicatedCloudDatacenterGet',
-					action: 'vrack dedicated cloud datacenter',
-				},
-				{
-					name: 'Get Vrack ServiceName DedicatedCloudDatacenter Datacenter',
-					value: 'getVrackserviceNDedicatedCloudDatacenterdatacentGet',
-					action: 'Get this object properties',
-				},
-				{
-					name: 'Get Vrack ServiceName DedicatedCloudDatacenter Datacenter AllowedVrack',
-					value: 'getVrackserviceNDedicatedCloudDatacenterdatacentAllowedVrackGet',
-					action: 'Vracks allowed for your dedicatedCloud datacenter',
-				},
-				{
-					name: 'Get Vrack ServiceName DedicatedConnect',
-					value: 'getVrackserviceNDedicatedConnectGet',
-					action: 'vrack dedicated connect',
-				},
-				{
-					name: 'Get Vrack ServiceName DedicatedConnect Name',
-					value: 'getVrackserviceNDedicatedConnectnameGet',
-					action: 'Get this object properties',
-				},
-				{
-					name: 'Get Vrack ServiceName DedicatedServer',
-					value: 'getVrackserviceNDedicatedServerGet',
-					action: 'vrack for dedicated server',
-				},
-				{
-					name: 'Get Vrack ServiceName DedicatedServer DedicatedServer',
-					value: 'getVrackserviceNDedicatedServerdedicateGet',
-					action: 'Get this object properties',
-				},
-				{
-					name: 'Get Vrack ServiceName DedicatedServer DedicatedServer Mrtg',
-					value: 'getVrackserviceNDedicatedServerdedicateMrtgGet',
-					action: 'Retrieve vrack traffic graph values (LEGACY)',
-				},
-				{
-					name: 'Get Vrack ServiceName DedicatedServerInterface',
-					value: 'getVrackserviceNDedicatedServerInterfaceGet',
-					action: 'vrack for dedicated server interface',
-				},
-				{
-					name: 'Get Vrack ServiceName DedicatedServerInterface DedicatedServerInterface',
-					value: 'getVrackserviceNDedicatedServerInterfacededicateGet',
-					action: 'Get this object properties',
-				},
-				{
-					name: 'Get Vrack ServiceName DedicatedServerInterfaceDetails',
-					value: 'getVrackserviceNDedicatedServerInterfaceDetailsGet',
-					action: 'Details for all dedicated server interfaces in this vrack',
-				},
-				{
-					name: 'Get Vrack ServiceName EligibleServices',
-					value: 'getVrackserviceNEligibleServicesGet',
-					action: 'List all eligible services for this vRack asynchronously',
-				},
-				{
-					name: 'Get Vrack ServiceName Ip Ip',
-					value: 'getVrackserviceNIpipGet',
-					action: 'Get this object properties',
-				},
-				{
-					name: 'Get Vrack ServiceName IpLoadbalancing',
-					value: 'getVrackserviceNIpLoadbalancingGet',
-					action: 'vrack for ipLoadbalancing',
-				},
-				{
-					name: 'Get Vrack ServiceName IpLoadbalancing IpLoadbalancing',
-					value: 'getVrackserviceNIpLoadbalancingipLoadbaGet',
-					action: 'Get this object properties',
-				},
-				{
-					name: 'Get Vrack ServiceName Ipv6',
-					value: 'getVrackserviceNIpv6Get',
-					action: 'vrack for IP v6 blocks',
-				},
-				{
-					name: 'Get Vrack ServiceName Ipv6 Ipv6',
-					value: 'getVrackserviceNIpv6ipv6Get',
-					action: 'Get this object properties',
-				},
-				{
-					name: 'Get Vrack ServiceName Ipv6 Ipv6 BridgedSubrange',
-					value: 'getVrackserviceNIpv6ipv6BridgedSubrangeGet',
-					action: 'subrange bridged into your vrack',
-				},
-				{
-					name: 'Get Vrack ServiceName Ipv6 Ipv6 BridgedSubrange BridgedSubrange',
-					value: 'getVrackserviceNIpv6ipv6BridgedSubrangebridgedSGet',
-					action: 'Get this object properties',
-				},
-				{
-					name: 'Get Vrack ServiceName Ipv6 Ipv6 RoutedSubrange',
-					value: 'getVrackserviceNIpv6ipv6RoutedSubrangeGet',
-					action: 'subrange routed into your vrack',
-				},
-				{
-					name: 'Get Vrack ServiceName Ipv6 Ipv6 RoutedSubrange RoutedSubrange',
-					value: 'getVrackserviceNIpv6ipv6RoutedSubrangeroutedSuGet',
-					action: 'Get this object properties',
-				},
-				{
-					name: 'Get Vrack ServiceName LegacyVrack',
-					value: 'getVrackserviceNLegacyVrackGet',
-					action: 'vrack for legacy vrack',
-				},
-				{
-					name: 'Get Vrack ServiceName LegacyVrack LegacyVrack',
-					value: 'getVrackserviceNLegacyVracklegacyVrGet',
-					action: 'Get this object properties',
-				},
-				{
-					name: 'Get Vrack ServiceName OvhCloudConnect',
-					value: 'getVrackserviceNOvhCloudConnectGet',
-					action: 'vrack for ovhCloudConnect',
-				},
-				{
-					name: 'Get Vrack ServiceName OvhCloudConnect OvhCloudConnect',
-					value: 'getVrackserviceNOvhCloudConnectovhCloudGet',
-					action: 'Get this object properties',
-				},
-				{
-					name: 'Get Vrack ServiceName PublicRoutingBandwidthLimit',
-					value: 'getVrackserviceNPublicRoutingBandwidthLimitGet',
-					action: 'List public routing bandwidth limit on regions for this vrack',
-				},
-				{
-					name: 'Get Vrack ServiceName ServiceInfos',
-					value: 'getVrackserviceNServiceInfosGet',
-					action: 'Get this object properties',
-				},
-				{
-					name: 'Get Vrack ServiceName Task',
-					value: 'getVrackserviceNTaskGet',
-					action: 'vrack tasks',
-				},
-				{
-					name: 'Get Vrack ServiceName Task TaskId',
-					value: 'getVrackserviceNTasktaskIdGet',
-					action: 'Get this object properties',
-				},
-				{
-					name: 'Get Vrack ServiceName VrackServices',
-					value: 'getVrackserviceNVrackServicesGet',
-					action: 'vrack for vrackServices',
-				},
-				{
-					name: 'Get Vrack ServiceName VrackServices VrackServices',
-					value: 'getVrackserviceNVrackServicesvrackSerGet',
-					action: 'Get this object properties',
-				},
-				{
-					name: 'Update Vrack ServiceName DedicatedConnect Name',
-					value: 'putVrackserviceNDedicatedConnectnamePut',
-					action: 'Alter this object properties',
-				},
-				{
-					name: 'Update Vrack ServiceName Ipv6 Ipv6 BridgedSubrange BridgedSubrange',
-					value: 'putVrackserviceNIpv6ipv6BridgedSubrangebridgedSPut',
-					action: 'Update Slaac status',
-				},
-			],
-			default: 'deleteVrackserviceNCloudProjectprojectDelete',
-			displayOptions,
-		},
-	];
+const { description, execute } = createOperationDispatcher(
+	'vrackOperation',
+	'vrack',
+	[
+	{
+		name: 'Create Vrack ServiceName CloudProject',
+		value: 'postVrackserviceNCloudProjectPost',
+		action: 'add a publicCloud project to this vrack',
+		execute: executePostVrackserviceNCloudProjectPost,
+		description: descriptionPostVrackserviceNCloudProjectPost,
+	},
+	{
+		name: 'Create Vrack ServiceName ConfirmTermination',
+		value: 'postVrackserviceNConfirmTerminationPost',
+		action: 'Confirm service termination',
+		execute: executePostVrackserviceNConfirmTerminationPost,
+		description: descriptionPostVrackserviceNConfirmTerminationPost,
+	},
+	{
+		name: 'Create Vrack ServiceName DedicatedCloud',
+		value: 'postVrackserviceNDedicatedCloudPost',
+		action: 'Add VMware on OVHcloud to vRack',
+		execute: executePostVrackserviceNDedicatedCloudPost,
+		description: descriptionPostVrackserviceNDedicatedCloudPost,
+	},
+	{
+		name: 'Create Vrack ServiceName DedicatedCloudDatacenter Datacenter Move',
+		value: 'postVrackserviceNDedicatedCloudDatacenterdatacentMovePost',
+		action: 'Move your dedicatedCloud datacenter from a Vrack to another',
+		execute: executePostVrackserviceNDedicatedCloudDatacenterdatacentMovePost,
+		description: descriptionPostVrackserviceNDedicatedCloudDatacenterdatacentMovePost,
+	},
+	{
+		name: 'Create Vrack ServiceName DedicatedServer',
+		value: 'postVrackserviceNDedicatedServerPost',
+		action: 'add a dedicated server to this vrack (LEGACY)',
+		execute: executePostVrackserviceNDedicatedServerPost,
+		description: descriptionPostVrackserviceNDedicatedServerPost,
+	},
+	{
+		name: 'Create Vrack ServiceName DedicatedServerInterface',
+		value: 'postVrackserviceNDedicatedServerInterfacePost',
+		action: 'add a dedicated server interface to this vrack',
+		execute: executePostVrackserviceNDedicatedServerInterfacePost,
+		description: descriptionPostVrackserviceNDedicatedServerInterfacePost,
+	},
+	{
+		name: 'Create Vrack ServiceName IpLoadbalancing',
+		value: 'postVrackserviceNIpLoadbalancingPost',
+		action: 'add an ipLoadbalancing to this vrack',
+		execute: executePostVrackserviceNIpLoadbalancingPost,
+		description: descriptionPostVrackserviceNIpLoadbalancingPost,
+	},
+	{
+		name: 'Create Vrack ServiceName Ipv6',
+		value: 'postVrackserviceNIpv6Post',
+		action: 'add an IP v6 block to this vrack',
+		execute: executePostVrackserviceNIpv6Post,
+		description: descriptionPostVrackserviceNIpv6Post,
+	},
+	{
+		name: 'Create Vrack ServiceName Ipv6 Ipv6 RoutedSubrange',
+		value: 'postVrackserviceNIpv6ipv6RoutedSubrangePost',
+		action: 'route a subrange of your IP v6 block into your vrack',
+		execute: executePostVrackserviceNIpv6ipv6RoutedSubrangePost,
+		description: descriptionPostVrackserviceNIpv6ipv6RoutedSubrangePost,
+	},
+	{
+		name: 'Create Vrack ServiceName LegacyVrack',
+		value: 'postVrackserviceNLegacyVrackPost',
+		action: 'add a legacy vrack (vrackXXXX) to this vrack (pn-XXXX)',
+		execute: executePostVrackserviceNLegacyVrackPost,
+		description: descriptionPostVrackserviceNLegacyVrackPost,
+	},
+	{
+		name: 'Create Vrack ServiceName OvhCloudConnect',
+		value: 'postVrackserviceNOvhCloudConnectPost',
+		action: 'Add an ovhCloudConnect to the vrack',
+		execute: executePostVrackserviceNOvhCloudConnectPost,
+		description: descriptionPostVrackserviceNOvhCloudConnectPost,
+	},
+	{
+		name: 'Create Vrack ServiceName Terminate',
+		value: 'postVrackserviceNTerminatePost',
+		action: 'Ask for the termination of your service',
+		execute: executePostVrackserviceNTerminatePost,
+		description: descriptionPostVrackserviceNTerminatePost,
+	},
+	{
+		name: 'Create Vrack ServiceName VrackServices',
+		value: 'postVrackserviceNVrackServicesPost',
+		action: 'Add a vrackServices to the vrack',
+		execute: executePostVrackserviceNVrackServicesPost,
+		description: descriptionPostVrackserviceNVrackServicesPost,
+	},
+	{
+		name: 'Delete Vrack ServiceName CloudProject Project',
+		value: 'deleteVrackserviceNCloudProjectprojectDelete',
+		action: 'remove this publicCloud project from this vrack',
+		execute: executeDeleteVrackserviceNCloudProjectprojectDelete,
+		description: descriptionDeleteVrackserviceNCloudProjectprojectDelete,
+		default: true,
+	},
+	{
+		name: 'Delete Vrack ServiceName DedicatedCloud DedicatedCloud',
+		value: 'deleteVrackserviceNDedicatedClouddedicateDelete',
+		action: 'Remove VMware on OVHcloud from vRack',
+		execute: executeDeleteVrackserviceNDedicatedClouddedicateDelete,
+		description: descriptionDeleteVrackserviceNDedicatedClouddedicateDelete,
+	},
+	{
+		name: 'Delete Vrack ServiceName DedicatedServer DedicatedServer',
+		value: 'deleteVrackserviceNDedicatedServerdedicateDelete',
+		action: 'remove this server from this vrack (LEGACY)',
+		execute: executeDeleteVrackserviceNDedicatedServerdedicateDelete,
+		description: descriptionDeleteVrackserviceNDedicatedServerdedicateDelete,
+	},
+	{
+		name: 'Delete Vrack ServiceName DedicatedServerInterface DedicatedServerInterface',
+		value: 'deleteVrackserviceNDedicatedServerInterfacededicateDelete',
+		action: 'remove this server interface from this vrack',
+		execute: executeDeleteVrackserviceNDedicatedServerInterfacededicateDelete,
+		description: descriptionDeleteVrackserviceNDedicatedServerInterfacededicateDelete,
+	},
+	{
+		name: 'Delete Vrack ServiceName Ip Ip',
+		value: 'deleteVrackserviceNIpipDelete',
+		action: 'remove this IP block from this vrack',
+		execute: executeDeleteVrackserviceNIpipDelete,
+		description: descriptionDeleteVrackserviceNIpipDelete,
+	},
+	{
+		name: 'Delete Vrack ServiceName IpLoadbalancing IpLoadbalancing',
+		value: 'deleteVrackserviceNIpLoadbalancingipLoadbaDelete',
+		action: 'remove this ipLoadbalancing from this vrack',
+		execute: executeDeleteVrackserviceNIpLoadbalancingipLoadbaDelete,
+		description: descriptionDeleteVrackserviceNIpLoadbalancingipLoadbaDelete,
+	},
+	{
+		name: 'Delete Vrack ServiceName Ipv6 Ipv6',
+		value: 'deleteVrackserviceNIpv6ipv6Delete',
+		action: 'remove this IP v6 block from this vrack',
+		execute: executeDeleteVrackserviceNIpv6ipv6Delete,
+		description: descriptionDeleteVrackserviceNIpv6ipv6Delete,
+	},
+	{
+		name: 'Delete Vrack ServiceName Ipv6 Ipv6 RoutedSubrange RoutedSubrange',
+		value: 'deleteVrackserviceNIpv6ipv6RoutedSubrangeroutedSuDelete',
+		action: 'unroute subrange from your vrack',
+		execute: executeDeleteVrackserviceNIpv6ipv6RoutedSubrangeroutedSuDelete,
+		description: descriptionDeleteVrackserviceNIpv6ipv6RoutedSubrangeroutedSuDelete,
+	},
+	{
+		name: 'Delete Vrack ServiceName LegacyVrack LegacyVrack',
+		value: 'deleteVrackserviceNLegacyVracklegacyVrDelete',
+		action: 'remove this legacy vrack (vrackXXXX) from this vrack (pn-XXXX)',
+		execute: executeDeleteVrackserviceNLegacyVracklegacyVrDelete,
+		description: descriptionDeleteVrackserviceNLegacyVracklegacyVrDelete,
+	},
+	{
+		name: 'Delete Vrack ServiceName OvhCloudConnect OvhCloudConnect',
+		value: 'deleteVrackserviceNOvhCloudConnectovhCloudDelete',
+		action: 'Remove the ovhCloudConnect from the vrack',
+		execute: executeDeleteVrackserviceNOvhCloudConnectovhCloudDelete,
+		description: descriptionDeleteVrackserviceNOvhCloudConnectovhCloudDelete,
+	},
+	{
+		name: 'Delete Vrack ServiceName VrackServices VrackServices',
+		value: 'deleteVrackserviceNVrackServicesvrackSerDelete',
+		action: 'Remove the vrackServices from the vrack',
+		execute: executeDeleteVrackserviceNVrackServicesvrackSerDelete,
+		description: descriptionDeleteVrackserviceNVrackServicesvrackSerDelete,
+	},
+	{
+		name: 'Get Vrack PublicRoutingRegion',
+		value: 'getVrackPublicRoutingRegionGet',
+		action: 'List Regions available to announce IP blocks',
+		execute: executeGetVrackPublicRoutingRegionGet,
+		description: descriptionGetVrackPublicRoutingRegionGet,
+	},
+	{
+		name: 'Get Vrack ServiceName AllowedServices',
+		value: 'getVrackserviceNAllowedServicesGet',
+		action: 'List all services allowed in this vrack',
+		execute: executeGetVrackserviceNAllowedServicesGet,
+		description: descriptionGetVrackserviceNAllowedServicesGet,
+	},
+	{
+		name: 'Get Vrack ServiceName CloudProject',
+		value: 'getVrackserviceNCloudProjectGet',
+		action: 'vrack for publicCloud project',
+		execute: executeGetVrackserviceNCloudProjectGet,
+		description: descriptionGetVrackserviceNCloudProjectGet,
+	},
+	{
+		name: 'Get Vrack ServiceName CloudProject Project',
+		value: 'getVrackserviceNCloudProjectprojectGet',
+		action: 'Get this object properties',
+		execute: executeGetVrackserviceNCloudProjectprojectGet,
+		description: descriptionGetVrackserviceNCloudProjectprojectGet,
+	},
+	{
+		name: 'Get Vrack ServiceName DedicatedCloud',
+		value: 'getVrackserviceNDedicatedCloudGet',
+		action: 'vrack dedicated cloud (VmNetwork)',
+		execute: executeGetVrackserviceNDedicatedCloudGet,
+		description: descriptionGetVrackserviceNDedicatedCloudGet,
+	},
+	{
+		name: 'Get Vrack ServiceName DedicatedCloud DedicatedCloud',
+		value: 'getVrackserviceNDedicatedClouddedicateGet',
+		action: 'Get vRack',
+		execute: executeGetVrackserviceNDedicatedClouddedicateGet,
+		description: descriptionGetVrackserviceNDedicatedClouddedicateGet,
+	},
+	{
+		name: 'Get Vrack ServiceName DedicatedCloudDatacenter',
+		value: 'getVrackserviceNDedicatedCloudDatacenterGet',
+		action: 'vrack dedicated cloud datacenter',
+		execute: executeGetVrackserviceNDedicatedCloudDatacenterGet,
+		description: descriptionGetVrackserviceNDedicatedCloudDatacenterGet,
+	},
+	{
+		name: 'Get Vrack ServiceName DedicatedCloudDatacenter Datacenter',
+		value: 'getVrackserviceNDedicatedCloudDatacenterdatacentGet',
+		action: 'Get this object properties',
+		execute: executeGetVrackserviceNDedicatedCloudDatacenterdatacentGet,
+		description: descriptionGetVrackserviceNDedicatedCloudDatacenterdatacentGet,
+	},
+	{
+		name: 'Get Vrack ServiceName DedicatedCloudDatacenter Datacenter AllowedVrack',
+		value: 'getVrackserviceNDedicatedCloudDatacenterdatacentAllowedVrackGet',
+		action: 'Vracks allowed for your dedicatedCloud datacenter',
+		execute: executeGetVrackserviceNDedicatedCloudDatacenterdatacentAllowedVrackGet,
+		description: descriptionGetVrackserviceNDedicatedCloudDatacenterdatacentAllowedVrackGet,
+	},
+	{
+		name: 'Get Vrack ServiceName DedicatedConnect',
+		value: 'getVrackserviceNDedicatedConnectGet',
+		action: 'vrack dedicated connect',
+		execute: executeGetVrackserviceNDedicatedConnectGet,
+		description: descriptionGetVrackserviceNDedicatedConnectGet,
+	},
+	{
+		name: 'Get Vrack ServiceName DedicatedConnect Name',
+		value: 'getVrackserviceNDedicatedConnectnameGet',
+		action: 'Get this object properties',
+		execute: executeGetVrackserviceNDedicatedConnectnameGet,
+		description: descriptionGetVrackserviceNDedicatedConnectnameGet,
+	},
+	{
+		name: 'Get Vrack ServiceName DedicatedServer',
+		value: 'getVrackserviceNDedicatedServerGet',
+		action: 'vrack for dedicated server',
+		execute: executeGetVrackserviceNDedicatedServerGet,
+		description: descriptionGetVrackserviceNDedicatedServerGet,
+	},
+	{
+		name: 'Get Vrack ServiceName DedicatedServer DedicatedServer',
+		value: 'getVrackserviceNDedicatedServerdedicateGet',
+		action: 'Get this object properties',
+		execute: executeGetVrackserviceNDedicatedServerdedicateGet,
+		description: descriptionGetVrackserviceNDedicatedServerdedicateGet,
+	},
+	{
+		name: 'Get Vrack ServiceName DedicatedServer DedicatedServer Mrtg',
+		value: 'getVrackserviceNDedicatedServerdedicateMrtgGet',
+		action: 'Retrieve vrack traffic graph values (LEGACY)',
+		execute: executeGetVrackserviceNDedicatedServerdedicateMrtgGet,
+		description: descriptionGetVrackserviceNDedicatedServerdedicateMrtgGet,
+	},
+	{
+		name: 'Get Vrack ServiceName DedicatedServerInterface',
+		value: 'getVrackserviceNDedicatedServerInterfaceGet',
+		action: 'vrack for dedicated server interface',
+		execute: executeGetVrackserviceNDedicatedServerInterfaceGet,
+		description: descriptionGetVrackserviceNDedicatedServerInterfaceGet,
+	},
+	{
+		name: 'Get Vrack ServiceName DedicatedServerInterface DedicatedServerInterface',
+		value: 'getVrackserviceNDedicatedServerInterfacededicateGet',
+		action: 'Get this object properties',
+		execute: executeGetVrackserviceNDedicatedServerInterfacededicateGet,
+		description: descriptionGetVrackserviceNDedicatedServerInterfacededicateGet,
+	},
+	{
+		name: 'Get Vrack ServiceName DedicatedServerInterfaceDetails',
+		value: 'getVrackserviceNDedicatedServerInterfaceDetailsGet',
+		action: 'Details for all dedicated server interfaces in this vrack',
+		execute: executeGetVrackserviceNDedicatedServerInterfaceDetailsGet,
+		description: descriptionGetVrackserviceNDedicatedServerInterfaceDetailsGet,
+	},
+	{
+		name: 'Get Vrack ServiceName EligibleServices',
+		value: 'getVrackserviceNEligibleServicesGet',
+		action: 'List all eligible services for this vRack asynchronously',
+		execute: executeGetVrackserviceNEligibleServicesGet,
+		description: descriptionGetVrackserviceNEligibleServicesGet,
+	},
+	{
+		name: 'Get Vrack ServiceName Ip Ip',
+		value: 'getVrackserviceNIpipGet',
+		action: 'Get this object properties',
+		execute: executeGetVrackserviceNIpipGet,
+		description: descriptionGetVrackserviceNIpipGet,
+	},
+	{
+		name: 'Get Vrack ServiceName IpLoadbalancing',
+		value: 'getVrackserviceNIpLoadbalancingGet',
+		action: 'vrack for ipLoadbalancing',
+		execute: executeGetVrackserviceNIpLoadbalancingGet,
+		description: descriptionGetVrackserviceNIpLoadbalancingGet,
+	},
+	{
+		name: 'Get Vrack ServiceName IpLoadbalancing IpLoadbalancing',
+		value: 'getVrackserviceNIpLoadbalancingipLoadbaGet',
+		action: 'Get this object properties',
+		execute: executeGetVrackserviceNIpLoadbalancingipLoadbaGet,
+		description: descriptionGetVrackserviceNIpLoadbalancingipLoadbaGet,
+	},
+	{
+		name: 'Get Vrack ServiceName Ipv6',
+		value: 'getVrackserviceNIpv6Get',
+		action: 'vrack for IP v6 blocks',
+		execute: executeGetVrackserviceNIpv6Get,
+		description: descriptionGetVrackserviceNIpv6Get,
+	},
+	{
+		name: 'Get Vrack ServiceName Ipv6 Ipv6',
+		value: 'getVrackserviceNIpv6ipv6Get',
+		action: 'Get this object properties',
+		execute: executeGetVrackserviceNIpv6ipv6Get,
+		description: descriptionGetVrackserviceNIpv6ipv6Get,
+	},
+	{
+		name: 'Get Vrack ServiceName Ipv6 Ipv6 BridgedSubrange',
+		value: 'getVrackserviceNIpv6ipv6BridgedSubrangeGet',
+		action: 'subrange bridged into your vrack',
+		execute: executeGetVrackserviceNIpv6ipv6BridgedSubrangeGet,
+		description: descriptionGetVrackserviceNIpv6ipv6BridgedSubrangeGet,
+	},
+	{
+		name: 'Get Vrack ServiceName Ipv6 Ipv6 BridgedSubrange BridgedSubrange',
+		value: 'getVrackserviceNIpv6ipv6BridgedSubrangebridgedSGet',
+		action: 'Get this object properties',
+		execute: executeGetVrackserviceNIpv6ipv6BridgedSubrangebridgedSGet,
+		description: descriptionGetVrackserviceNIpv6ipv6BridgedSubrangebridgedSGet,
+	},
+	{
+		name: 'Get Vrack ServiceName Ipv6 Ipv6 RoutedSubrange',
+		value: 'getVrackserviceNIpv6ipv6RoutedSubrangeGet',
+		action: 'subrange routed into your vrack',
+		execute: executeGetVrackserviceNIpv6ipv6RoutedSubrangeGet,
+		description: descriptionGetVrackserviceNIpv6ipv6RoutedSubrangeGet,
+	},
+	{
+		name: 'Get Vrack ServiceName Ipv6 Ipv6 RoutedSubrange RoutedSubrange',
+		value: 'getVrackserviceNIpv6ipv6RoutedSubrangeroutedSuGet',
+		action: 'Get this object properties',
+		execute: executeGetVrackserviceNIpv6ipv6RoutedSubrangeroutedSuGet,
+		description: descriptionGetVrackserviceNIpv6ipv6RoutedSubrangeroutedSuGet,
+	},
+	{
+		name: 'Get Vrack ServiceName LegacyVrack',
+		value: 'getVrackserviceNLegacyVrackGet',
+		action: 'vrack for legacy vrack',
+		execute: executeGetVrackserviceNLegacyVrackGet,
+		description: descriptionGetVrackserviceNLegacyVrackGet,
+	},
+	{
+		name: 'Get Vrack ServiceName LegacyVrack LegacyVrack',
+		value: 'getVrackserviceNLegacyVracklegacyVrGet',
+		action: 'Get this object properties',
+		execute: executeGetVrackserviceNLegacyVracklegacyVrGet,
+		description: descriptionGetVrackserviceNLegacyVracklegacyVrGet,
+	},
+	{
+		name: 'Get Vrack ServiceName OvhCloudConnect',
+		value: 'getVrackserviceNOvhCloudConnectGet',
+		action: 'vrack for ovhCloudConnect',
+		execute: executeGetVrackserviceNOvhCloudConnectGet,
+		description: descriptionGetVrackserviceNOvhCloudConnectGet,
+	},
+	{
+		name: 'Get Vrack ServiceName OvhCloudConnect OvhCloudConnect',
+		value: 'getVrackserviceNOvhCloudConnectovhCloudGet',
+		action: 'Get this object properties',
+		execute: executeGetVrackserviceNOvhCloudConnectovhCloudGet,
+		description: descriptionGetVrackserviceNOvhCloudConnectovhCloudGet,
+	},
+	{
+		name: 'Get Vrack ServiceName PublicRoutingBandwidthLimit',
+		value: 'getVrackserviceNPublicRoutingBandwidthLimitGet',
+		action: 'List public routing bandwidth limit on regions for this vrack',
+		execute: executeGetVrackserviceNPublicRoutingBandwidthLimitGet,
+		description: descriptionGetVrackserviceNPublicRoutingBandwidthLimitGet,
+	},
+	{
+		name: 'Get Vrack ServiceName ServiceInfos',
+		value: 'getVrackserviceNServiceInfosGet',
+		action: 'Get this object properties',
+		execute: executeGetVrackserviceNServiceInfosGet,
+		description: descriptionGetVrackserviceNServiceInfosGet,
+	},
+	{
+		name: 'Get Vrack ServiceName Task',
+		value: 'getVrackserviceNTaskGet',
+		action: 'vrack tasks',
+		execute: executeGetVrackserviceNTaskGet,
+		description: descriptionGetVrackserviceNTaskGet,
+	},
+	{
+		name: 'Get Vrack ServiceName Task TaskId',
+		value: 'getVrackserviceNTasktaskIdGet',
+		action: 'Get this object properties',
+		execute: executeGetVrackserviceNTasktaskIdGet,
+		description: descriptionGetVrackserviceNTasktaskIdGet,
+	},
+	{
+		name: 'Get Vrack ServiceName VrackServices',
+		value: 'getVrackserviceNVrackServicesGet',
+		action: 'vrack for vrackServices',
+		execute: executeGetVrackserviceNVrackServicesGet,
+		description: descriptionGetVrackserviceNVrackServicesGet,
+	},
+	{
+		name: 'Get Vrack ServiceName VrackServices VrackServices',
+		value: 'getVrackserviceNVrackServicesvrackSerGet',
+		action: 'Get this object properties',
+		execute: executeGetVrackserviceNVrackServicesvrackSerGet,
+		description: descriptionGetVrackserviceNVrackServicesvrackSerGet,
+	},
+	{
+		name: 'Update Vrack ServiceName DedicatedConnect Name',
+		value: 'putVrackserviceNDedicatedConnectnamePut',
+		action: 'Alter this object properties',
+		execute: executePutVrackserviceNDedicatedConnectnamePut,
+		description: descriptionPutVrackserviceNDedicatedConnectnamePut,
+	},
+	{
+		name: 'Update Vrack ServiceName Ipv6 Ipv6 BridgedSubrange BridgedSubrange',
+		value: 'putVrackserviceNIpv6ipv6BridgedSubrangebridgedSPut',
+		action: 'Update Slaac status',
+		execute: executePutVrackserviceNIpv6ipv6BridgedSubrangebridgedSPut,
+		description: descriptionPutVrackserviceNIpv6ipv6BridgedSubrangebridgedSPut,
+	},
+	],
+);
 
-	const properties: INodeProperties[] = [
-		...operationProperties,
-		...(descriptionDeleteVrackserviceNCloudProjectprojectDelete({
-			...displayOptions,
-			show: { vrackOperation: ['deleteVrackserviceNCloudProjectprojectDelete'] },
-		}) as INodeProperties[]),
-		...(descriptionDeleteVrackserviceNDedicatedClouddedicateDelete({
-			...displayOptions,
-			show: { vrackOperation: ['deleteVrackserviceNDedicatedClouddedicateDelete'] },
-		}) as INodeProperties[]),
-		...(descriptionDeleteVrackserviceNDedicatedServerdedicateDelete({
-			...displayOptions,
-			show: { vrackOperation: ['deleteVrackserviceNDedicatedServerdedicateDelete'] },
-		}) as INodeProperties[]),
-		...(descriptionDeleteVrackserviceNDedicatedServerInterfacededicateDelete({
-			...displayOptions,
-			show: { vrackOperation: ['deleteVrackserviceNDedicatedServerInterfacededicateDelete'] },
-		}) as INodeProperties[]),
-		...(descriptionDeleteVrackserviceNIpipDelete({
-			...displayOptions,
-			show: { vrackOperation: ['deleteVrackserviceNIpipDelete'] },
-		}) as INodeProperties[]),
-		...(descriptionDeleteVrackserviceNIpLoadbalancingipLoadbaDelete({
-			...displayOptions,
-			show: { vrackOperation: ['deleteVrackserviceNIpLoadbalancingipLoadbaDelete'] },
-		}) as INodeProperties[]),
-		...(descriptionDeleteVrackserviceNIpv6ipv6Delete({
-			...displayOptions,
-			show: { vrackOperation: ['deleteVrackserviceNIpv6ipv6Delete'] },
-		}) as INodeProperties[]),
-		...(descriptionDeleteVrackserviceNIpv6ipv6RoutedSubrangeroutedSuDelete({
-			...displayOptions,
-			show: { vrackOperation: ['deleteVrackserviceNIpv6ipv6RoutedSubrangeroutedSuDelete'] },
-		}) as INodeProperties[]),
-		...(descriptionDeleteVrackserviceNLegacyVracklegacyVrDelete({
-			...displayOptions,
-			show: { vrackOperation: ['deleteVrackserviceNLegacyVracklegacyVrDelete'] },
-		}) as INodeProperties[]),
-		...(descriptionDeleteVrackserviceNOvhCloudConnectovhCloudDelete({
-			...displayOptions,
-			show: { vrackOperation: ['deleteVrackserviceNOvhCloudConnectovhCloudDelete'] },
-		}) as INodeProperties[]),
-		...(descriptionDeleteVrackserviceNVrackServicesvrackSerDelete({
-			...displayOptions,
-			show: { vrackOperation: ['deleteVrackserviceNVrackServicesvrackSerDelete'] },
-		}) as INodeProperties[]),
-		...(descriptionGetVrackPublicRoutingRegionGet({
-			...displayOptions,
-			show: { vrackOperation: ['getVrackPublicRoutingRegionGet'] },
-		}) as INodeProperties[]),
-		...(descriptionGetVrackserviceNAllowedServicesGet({
-			...displayOptions,
-			show: { vrackOperation: ['getVrackserviceNAllowedServicesGet'] },
-		}) as INodeProperties[]),
-		...(descriptionGetVrackserviceNCloudProjectGet({
-			...displayOptions,
-			show: { vrackOperation: ['getVrackserviceNCloudProjectGet'] },
-		}) as INodeProperties[]),
-		...(descriptionGetVrackserviceNCloudProjectprojectGet({
-			...displayOptions,
-			show: { vrackOperation: ['getVrackserviceNCloudProjectprojectGet'] },
-		}) as INodeProperties[]),
-		...(descriptionGetVrackserviceNDedicatedCloudDatacenterdatacentAllowedVrackGet({
-			...displayOptions,
-			show: { vrackOperation: ['getVrackserviceNDedicatedCloudDatacenterdatacentAllowedVrackGet'] },
-		}) as INodeProperties[]),
-		...(descriptionGetVrackserviceNDedicatedCloudDatacenterdatacentGet({
-			...displayOptions,
-			show: { vrackOperation: ['getVrackserviceNDedicatedCloudDatacenterdatacentGet'] },
-		}) as INodeProperties[]),
-		...(descriptionGetVrackserviceNDedicatedCloudDatacenterGet({
-			...displayOptions,
-			show: { vrackOperation: ['getVrackserviceNDedicatedCloudDatacenterGet'] },
-		}) as INodeProperties[]),
-		...(descriptionGetVrackserviceNDedicatedClouddedicateGet({
-			...displayOptions,
-			show: { vrackOperation: ['getVrackserviceNDedicatedClouddedicateGet'] },
-		}) as INodeProperties[]),
-		...(descriptionGetVrackserviceNDedicatedCloudGet({
-			...displayOptions,
-			show: { vrackOperation: ['getVrackserviceNDedicatedCloudGet'] },
-		}) as INodeProperties[]),
-		...(descriptionGetVrackserviceNDedicatedConnectGet({
-			...displayOptions,
-			show: { vrackOperation: ['getVrackserviceNDedicatedConnectGet'] },
-		}) as INodeProperties[]),
-		...(descriptionGetVrackserviceNDedicatedConnectnameGet({
-			...displayOptions,
-			show: { vrackOperation: ['getVrackserviceNDedicatedConnectnameGet'] },
-		}) as INodeProperties[]),
-		...(descriptionGetVrackserviceNDedicatedServerdedicateGet({
-			...displayOptions,
-			show: { vrackOperation: ['getVrackserviceNDedicatedServerdedicateGet'] },
-		}) as INodeProperties[]),
-		...(descriptionGetVrackserviceNDedicatedServerdedicateMrtgGet({
-			...displayOptions,
-			show: { vrackOperation: ['getVrackserviceNDedicatedServerdedicateMrtgGet'] },
-		}) as INodeProperties[]),
-		...(descriptionGetVrackserviceNDedicatedServerGet({
-			...displayOptions,
-			show: { vrackOperation: ['getVrackserviceNDedicatedServerGet'] },
-		}) as INodeProperties[]),
-		...(descriptionGetVrackserviceNDedicatedServerInterfacededicateGet({
-			...displayOptions,
-			show: { vrackOperation: ['getVrackserviceNDedicatedServerInterfacededicateGet'] },
-		}) as INodeProperties[]),
-		...(descriptionGetVrackserviceNDedicatedServerInterfaceDetailsGet({
-			...displayOptions,
-			show: { vrackOperation: ['getVrackserviceNDedicatedServerInterfaceDetailsGet'] },
-		}) as INodeProperties[]),
-		...(descriptionGetVrackserviceNDedicatedServerInterfaceGet({
-			...displayOptions,
-			show: { vrackOperation: ['getVrackserviceNDedicatedServerInterfaceGet'] },
-		}) as INodeProperties[]),
-		...(descriptionGetVrackserviceNEligibleServicesGet({
-			...displayOptions,
-			show: { vrackOperation: ['getVrackserviceNEligibleServicesGet'] },
-		}) as INodeProperties[]),
-		...(descriptionGetVrackserviceNIpipGet({
-			...displayOptions,
-			show: { vrackOperation: ['getVrackserviceNIpipGet'] },
-		}) as INodeProperties[]),
-		...(descriptionGetVrackserviceNIpLoadbalancingGet({
-			...displayOptions,
-			show: { vrackOperation: ['getVrackserviceNIpLoadbalancingGet'] },
-		}) as INodeProperties[]),
-		...(descriptionGetVrackserviceNIpLoadbalancingipLoadbaGet({
-			...displayOptions,
-			show: { vrackOperation: ['getVrackserviceNIpLoadbalancingipLoadbaGet'] },
-		}) as INodeProperties[]),
-		...(descriptionGetVrackserviceNIpv6Get({
-			...displayOptions,
-			show: { vrackOperation: ['getVrackserviceNIpv6Get'] },
-		}) as INodeProperties[]),
-		...(descriptionGetVrackserviceNIpv6ipv6BridgedSubrangebridgedSGet({
-			...displayOptions,
-			show: { vrackOperation: ['getVrackserviceNIpv6ipv6BridgedSubrangebridgedSGet'] },
-		}) as INodeProperties[]),
-		...(descriptionGetVrackserviceNIpv6ipv6BridgedSubrangeGet({
-			...displayOptions,
-			show: { vrackOperation: ['getVrackserviceNIpv6ipv6BridgedSubrangeGet'] },
-		}) as INodeProperties[]),
-		...(descriptionGetVrackserviceNIpv6ipv6Get({
-			...displayOptions,
-			show: { vrackOperation: ['getVrackserviceNIpv6ipv6Get'] },
-		}) as INodeProperties[]),
-		...(descriptionGetVrackserviceNIpv6ipv6RoutedSubrangeGet({
-			...displayOptions,
-			show: { vrackOperation: ['getVrackserviceNIpv6ipv6RoutedSubrangeGet'] },
-		}) as INodeProperties[]),
-		...(descriptionGetVrackserviceNIpv6ipv6RoutedSubrangeroutedSuGet({
-			...displayOptions,
-			show: { vrackOperation: ['getVrackserviceNIpv6ipv6RoutedSubrangeroutedSuGet'] },
-		}) as INodeProperties[]),
-		...(descriptionGetVrackserviceNLegacyVrackGet({
-			...displayOptions,
-			show: { vrackOperation: ['getVrackserviceNLegacyVrackGet'] },
-		}) as INodeProperties[]),
-		...(descriptionGetVrackserviceNLegacyVracklegacyVrGet({
-			...displayOptions,
-			show: { vrackOperation: ['getVrackserviceNLegacyVracklegacyVrGet'] },
-		}) as INodeProperties[]),
-		...(descriptionGetVrackserviceNOvhCloudConnectGet({
-			...displayOptions,
-			show: { vrackOperation: ['getVrackserviceNOvhCloudConnectGet'] },
-		}) as INodeProperties[]),
-		...(descriptionGetVrackserviceNOvhCloudConnectovhCloudGet({
-			...displayOptions,
-			show: { vrackOperation: ['getVrackserviceNOvhCloudConnectovhCloudGet'] },
-		}) as INodeProperties[]),
-		...(descriptionGetVrackserviceNPublicRoutingBandwidthLimitGet({
-			...displayOptions,
-			show: { vrackOperation: ['getVrackserviceNPublicRoutingBandwidthLimitGet'] },
-		}) as INodeProperties[]),
-		...(descriptionGetVrackserviceNServiceInfosGet({
-			...displayOptions,
-			show: { vrackOperation: ['getVrackserviceNServiceInfosGet'] },
-		}) as INodeProperties[]),
-		...(descriptionGetVrackserviceNTaskGet({
-			...displayOptions,
-			show: { vrackOperation: ['getVrackserviceNTaskGet'] },
-		}) as INodeProperties[]),
-		...(descriptionGetVrackserviceNTasktaskIdGet({
-			...displayOptions,
-			show: { vrackOperation: ['getVrackserviceNTasktaskIdGet'] },
-		}) as INodeProperties[]),
-		...(descriptionGetVrackserviceNVrackServicesGet({
-			...displayOptions,
-			show: { vrackOperation: ['getVrackserviceNVrackServicesGet'] },
-		}) as INodeProperties[]),
-		...(descriptionGetVrackserviceNVrackServicesvrackSerGet({
-			...displayOptions,
-			show: { vrackOperation: ['getVrackserviceNVrackServicesvrackSerGet'] },
-		}) as INodeProperties[]),
-		...(descriptionPostVrackserviceNCloudProjectPost({
-			...displayOptions,
-			show: { vrackOperation: ['postVrackserviceNCloudProjectPost'] },
-		}) as INodeProperties[]),
-		...(descriptionPostVrackserviceNConfirmTerminationPost({
-			...displayOptions,
-			show: { vrackOperation: ['postVrackserviceNConfirmTerminationPost'] },
-		}) as INodeProperties[]),
-		...(descriptionPostVrackserviceNDedicatedCloudDatacenterdatacentMovePost({
-			...displayOptions,
-			show: { vrackOperation: ['postVrackserviceNDedicatedCloudDatacenterdatacentMovePost'] },
-		}) as INodeProperties[]),
-		...(descriptionPostVrackserviceNDedicatedCloudPost({
-			...displayOptions,
-			show: { vrackOperation: ['postVrackserviceNDedicatedCloudPost'] },
-		}) as INodeProperties[]),
-		...(descriptionPostVrackserviceNDedicatedServerInterfacePost({
-			...displayOptions,
-			show: { vrackOperation: ['postVrackserviceNDedicatedServerInterfacePost'] },
-		}) as INodeProperties[]),
-		...(descriptionPostVrackserviceNDedicatedServerPost({
-			...displayOptions,
-			show: { vrackOperation: ['postVrackserviceNDedicatedServerPost'] },
-		}) as INodeProperties[]),
-		...(descriptionPostVrackserviceNIpLoadbalancingPost({
-			...displayOptions,
-			show: { vrackOperation: ['postVrackserviceNIpLoadbalancingPost'] },
-		}) as INodeProperties[]),
-		...(descriptionPostVrackserviceNIpv6ipv6RoutedSubrangePost({
-			...displayOptions,
-			show: { vrackOperation: ['postVrackserviceNIpv6ipv6RoutedSubrangePost'] },
-		}) as INodeProperties[]),
-		...(descriptionPostVrackserviceNIpv6Post({
-			...displayOptions,
-			show: { vrackOperation: ['postVrackserviceNIpv6Post'] },
-		}) as INodeProperties[]),
-		...(descriptionPostVrackserviceNLegacyVrackPost({
-			...displayOptions,
-			show: { vrackOperation: ['postVrackserviceNLegacyVrackPost'] },
-		}) as INodeProperties[]),
-		...(descriptionPostVrackserviceNOvhCloudConnectPost({
-			...displayOptions,
-			show: { vrackOperation: ['postVrackserviceNOvhCloudConnectPost'] },
-		}) as INodeProperties[]),
-		...(descriptionPostVrackserviceNTerminatePost({
-			...displayOptions,
-			show: { vrackOperation: ['postVrackserviceNTerminatePost'] },
-		}) as INodeProperties[]),
-		...(descriptionPostVrackserviceNVrackServicesPost({
-			...displayOptions,
-			show: { vrackOperation: ['postVrackserviceNVrackServicesPost'] },
-		}) as INodeProperties[]),
-		...(descriptionPutVrackserviceNDedicatedConnectnamePut({
-			...displayOptions,
-			show: { vrackOperation: ['putVrackserviceNDedicatedConnectnamePut'] },
-		}) as INodeProperties[]),
-		...(descriptionPutVrackserviceNIpv6ipv6BridgedSubrangebridgedSPut({
-			...displayOptions,
-			show: { vrackOperation: ['putVrackserviceNIpv6ipv6BridgedSubrangebridgedSPut'] },
-		}) as INodeProperties[]),
-	];
-
-	return properties;
-}
-
-export async function execute(
-	this: IExecuteFunctions,
-	itemIndex?: number,
-): Promise<INodeExecutionData[]> {
-	const operation = this.getNodeParameter('vrackOperation', itemIndex ?? 0, {
-		extractValue: true,
-	});
-
-	switch (operation) {
-		case 'deleteVrackserviceNCloudProjectprojectDelete':
-			return await executeDeleteVrackserviceNCloudProjectprojectDelete.call(this, itemIndex ?? 0);
-		case 'deleteVrackserviceNDedicatedClouddedicateDelete':
-			return await executeDeleteVrackserviceNDedicatedClouddedicateDelete.call(this, itemIndex ?? 0);
-		case 'deleteVrackserviceNDedicatedServerdedicateDelete':
-			return await executeDeleteVrackserviceNDedicatedServerdedicateDelete.call(this, itemIndex ?? 0);
-		case 'deleteVrackserviceNDedicatedServerInterfacededicateDelete':
-			return await executeDeleteVrackserviceNDedicatedServerInterfacededicateDelete.call(
-				this,
-				itemIndex ?? 0,
-			);
-		case 'deleteVrackserviceNIpipDelete':
-			return await executeDeleteVrackserviceNIpipDelete.call(this, itemIndex ?? 0);
-		case 'deleteVrackserviceNIpLoadbalancingipLoadbaDelete':
-			return await executeDeleteVrackserviceNIpLoadbalancingipLoadbaDelete.call(this, itemIndex ?? 0);
-		case 'deleteVrackserviceNIpv6ipv6Delete':
-			return await executeDeleteVrackserviceNIpv6ipv6Delete.call(this, itemIndex ?? 0);
-		case 'deleteVrackserviceNIpv6ipv6RoutedSubrangeroutedSuDelete':
-			return await executeDeleteVrackserviceNIpv6ipv6RoutedSubrangeroutedSuDelete.call(
-				this,
-				itemIndex ?? 0,
-			);
-		case 'deleteVrackserviceNLegacyVracklegacyVrDelete':
-			return await executeDeleteVrackserviceNLegacyVracklegacyVrDelete.call(this, itemIndex ?? 0);
-		case 'deleteVrackserviceNOvhCloudConnectovhCloudDelete':
-			return await executeDeleteVrackserviceNOvhCloudConnectovhCloudDelete.call(this, itemIndex ?? 0);
-		case 'deleteVrackserviceNVrackServicesvrackSerDelete':
-			return await executeDeleteVrackserviceNVrackServicesvrackSerDelete.call(this, itemIndex ?? 0);
-		case 'getVrackPublicRoutingRegionGet':
-			return await executeGetVrackPublicRoutingRegionGet.call(this, itemIndex ?? 0);
-		case 'getVrackserviceNAllowedServicesGet':
-			return await executeGetVrackserviceNAllowedServicesGet.call(this, itemIndex ?? 0);
-		case 'getVrackserviceNCloudProjectGet':
-			return await executeGetVrackserviceNCloudProjectGet.call(this, itemIndex ?? 0);
-		case 'getVrackserviceNCloudProjectprojectGet':
-			return await executeGetVrackserviceNCloudProjectprojectGet.call(this, itemIndex ?? 0);
-		case 'getVrackserviceNDedicatedCloudDatacenterdatacentAllowedVrackGet':
-			return await executeGetVrackserviceNDedicatedCloudDatacenterdatacentAllowedVrackGet.call(
-				this,
-				itemIndex ?? 0,
-			);
-		case 'getVrackserviceNDedicatedCloudDatacenterdatacentGet':
-			return await executeGetVrackserviceNDedicatedCloudDatacenterdatacentGet.call(this, itemIndex ?? 0);
-		case 'getVrackserviceNDedicatedCloudDatacenterGet':
-			return await executeGetVrackserviceNDedicatedCloudDatacenterGet.call(this, itemIndex ?? 0);
-		case 'getVrackserviceNDedicatedClouddedicateGet':
-			return await executeGetVrackserviceNDedicatedClouddedicateGet.call(this, itemIndex ?? 0);
-		case 'getVrackserviceNDedicatedCloudGet':
-			return await executeGetVrackserviceNDedicatedCloudGet.call(this, itemIndex ?? 0);
-		case 'getVrackserviceNDedicatedConnectGet':
-			return await executeGetVrackserviceNDedicatedConnectGet.call(this, itemIndex ?? 0);
-		case 'getVrackserviceNDedicatedConnectnameGet':
-			return await executeGetVrackserviceNDedicatedConnectnameGet.call(this, itemIndex ?? 0);
-		case 'getVrackserviceNDedicatedServerdedicateGet':
-			return await executeGetVrackserviceNDedicatedServerdedicateGet.call(this, itemIndex ?? 0);
-		case 'getVrackserviceNDedicatedServerdedicateMrtgGet':
-			return await executeGetVrackserviceNDedicatedServerdedicateMrtgGet.call(this, itemIndex ?? 0);
-		case 'getVrackserviceNDedicatedServerGet':
-			return await executeGetVrackserviceNDedicatedServerGet.call(this, itemIndex ?? 0);
-		case 'getVrackserviceNDedicatedServerInterfacededicateGet':
-			return await executeGetVrackserviceNDedicatedServerInterfacededicateGet.call(this, itemIndex ?? 0);
-		case 'getVrackserviceNDedicatedServerInterfaceDetailsGet':
-			return await executeGetVrackserviceNDedicatedServerInterfaceDetailsGet.call(this, itemIndex ?? 0);
-		case 'getVrackserviceNDedicatedServerInterfaceGet':
-			return await executeGetVrackserviceNDedicatedServerInterfaceGet.call(this, itemIndex ?? 0);
-		case 'getVrackserviceNEligibleServicesGet':
-			return await executeGetVrackserviceNEligibleServicesGet.call(this, itemIndex ?? 0);
-		case 'getVrackserviceNIpipGet':
-			return await executeGetVrackserviceNIpipGet.call(this, itemIndex ?? 0);
-		case 'getVrackserviceNIpLoadbalancingGet':
-			return await executeGetVrackserviceNIpLoadbalancingGet.call(this, itemIndex ?? 0);
-		case 'getVrackserviceNIpLoadbalancingipLoadbaGet':
-			return await executeGetVrackserviceNIpLoadbalancingipLoadbaGet.call(this, itemIndex ?? 0);
-		case 'getVrackserviceNIpv6Get':
-			return await executeGetVrackserviceNIpv6Get.call(this, itemIndex ?? 0);
-		case 'getVrackserviceNIpv6ipv6BridgedSubrangebridgedSGet':
-			return await executeGetVrackserviceNIpv6ipv6BridgedSubrangebridgedSGet.call(this, itemIndex ?? 0);
-		case 'getVrackserviceNIpv6ipv6BridgedSubrangeGet':
-			return await executeGetVrackserviceNIpv6ipv6BridgedSubrangeGet.call(this, itemIndex ?? 0);
-		case 'getVrackserviceNIpv6ipv6Get':
-			return await executeGetVrackserviceNIpv6ipv6Get.call(this, itemIndex ?? 0);
-		case 'getVrackserviceNIpv6ipv6RoutedSubrangeGet':
-			return await executeGetVrackserviceNIpv6ipv6RoutedSubrangeGet.call(this, itemIndex ?? 0);
-		case 'getVrackserviceNIpv6ipv6RoutedSubrangeroutedSuGet':
-			return await executeGetVrackserviceNIpv6ipv6RoutedSubrangeroutedSuGet.call(this, itemIndex ?? 0);
-		case 'getVrackserviceNLegacyVrackGet':
-			return await executeGetVrackserviceNLegacyVrackGet.call(this, itemIndex ?? 0);
-		case 'getVrackserviceNLegacyVracklegacyVrGet':
-			return await executeGetVrackserviceNLegacyVracklegacyVrGet.call(this, itemIndex ?? 0);
-		case 'getVrackserviceNOvhCloudConnectGet':
-			return await executeGetVrackserviceNOvhCloudConnectGet.call(this, itemIndex ?? 0);
-		case 'getVrackserviceNOvhCloudConnectovhCloudGet':
-			return await executeGetVrackserviceNOvhCloudConnectovhCloudGet.call(this, itemIndex ?? 0);
-		case 'getVrackserviceNPublicRoutingBandwidthLimitGet':
-			return await executeGetVrackserviceNPublicRoutingBandwidthLimitGet.call(this, itemIndex ?? 0);
-		case 'getVrackserviceNServiceInfosGet':
-			return await executeGetVrackserviceNServiceInfosGet.call(this, itemIndex ?? 0);
-		case 'getVrackserviceNTaskGet':
-			return await executeGetVrackserviceNTaskGet.call(this, itemIndex ?? 0);
-		case 'getVrackserviceNTasktaskIdGet':
-			return await executeGetVrackserviceNTasktaskIdGet.call(this, itemIndex ?? 0);
-		case 'getVrackserviceNVrackServicesGet':
-			return await executeGetVrackserviceNVrackServicesGet.call(this, itemIndex ?? 0);
-		case 'getVrackserviceNVrackServicesvrackSerGet':
-			return await executeGetVrackserviceNVrackServicesvrackSerGet.call(this, itemIndex ?? 0);
-		case 'postVrackserviceNCloudProjectPost':
-			return await executePostVrackserviceNCloudProjectPost.call(this, itemIndex ?? 0);
-		case 'postVrackserviceNConfirmTerminationPost':
-			return await executePostVrackserviceNConfirmTerminationPost.call(this, itemIndex ?? 0);
-		case 'postVrackserviceNDedicatedCloudDatacenterdatacentMovePost':
-			return await executePostVrackserviceNDedicatedCloudDatacenterdatacentMovePost.call(
-				this,
-				itemIndex ?? 0,
-			);
-		case 'postVrackserviceNDedicatedCloudPost':
-			return await executePostVrackserviceNDedicatedCloudPost.call(this, itemIndex ?? 0);
-		case 'postVrackserviceNDedicatedServerInterfacePost':
-			return await executePostVrackserviceNDedicatedServerInterfacePost.call(this, itemIndex ?? 0);
-		case 'postVrackserviceNDedicatedServerPost':
-			return await executePostVrackserviceNDedicatedServerPost.call(this, itemIndex ?? 0);
-		case 'postVrackserviceNIpLoadbalancingPost':
-			return await executePostVrackserviceNIpLoadbalancingPost.call(this, itemIndex ?? 0);
-		case 'postVrackserviceNIpv6ipv6RoutedSubrangePost':
-			return await executePostVrackserviceNIpv6ipv6RoutedSubrangePost.call(this, itemIndex ?? 0);
-		case 'postVrackserviceNIpv6Post':
-			return await executePostVrackserviceNIpv6Post.call(this, itemIndex ?? 0);
-		case 'postVrackserviceNLegacyVrackPost':
-			return await executePostVrackserviceNLegacyVrackPost.call(this, itemIndex ?? 0);
-		case 'postVrackserviceNOvhCloudConnectPost':
-			return await executePostVrackserviceNOvhCloudConnectPost.call(this, itemIndex ?? 0);
-		case 'postVrackserviceNTerminatePost':
-			return await executePostVrackserviceNTerminatePost.call(this, itemIndex ?? 0);
-		case 'postVrackserviceNVrackServicesPost':
-			return await executePostVrackserviceNVrackServicesPost.call(this, itemIndex ?? 0);
-		case 'putVrackserviceNDedicatedConnectnamePut':
-			return await executePutVrackserviceNDedicatedConnectnamePut.call(this, itemIndex ?? 0);
-		case 'putVrackserviceNIpv6ipv6BridgedSubrangebridgedSPut':
-			return await executePutVrackserviceNIpv6ipv6BridgedSubrangebridgedSPut.call(this, itemIndex ?? 0);
-	}
-
-	throw new Error('Unsupported operation ' + operation);
-}
+export { description, execute };

@@ -1,1855 +1,1244 @@
-import type { IExecuteFunctions, INodeExecutionData, INodeProperties } from 'n8n-workflow';
+import { createOperationDispatcher } from '../../shared/nodes/createNodeDispatcher';
 
-// root operations
 import {
-	execute as executedomainListGet,
-	description as descriptiondomainListGet,
-} from './resources/root/domainListGet.operation';
-import {
-	execute as executedomainConfigurationRuleListGet,
-	description as descriptiondomainConfigurationRuleListGet,
-} from './resources/root/domainConfigurationRuleListGet.operation';
-import {
-	execute as executedomainConfigurationRuleCheckPost,
-	description as descriptiondomainConfigurationRuleCheckPost,
-} from './resources/root/domainConfigurationRuleCheckPost.operation';
-import {
-	execute as executedomainContactListGet,
-	description as descriptiondomainContactListGet,
-} from './resources/root/domainContactListGet.operation';
-import {
-	execute as executedomainContactCreatePost,
-	description as descriptiondomainContactCreatePost,
-} from './resources/root/domainContactCreatePost.operation';
-import {
-	execute as executedomainContactGetGet,
-	description as descriptiondomainContactGetGet,
-} from './resources/root/domainContactGetGet.operation';
-import {
-	execute as executedomainContactUpdatePut,
-	description as descriptiondomainContactUpdatePut,
-} from './resources/root/domainContactUpdatePut.operation';
-import {
-	execute as executedomainDataClaimNoticeGetGet,
-	description as descriptiondomainDataClaimNoticeGetGet,
-} from './resources/root/domainDataClaimNoticeGetGet.operation';
-import {
-	execute as executedomainDataExtensionListGet,
-	description as descriptiondomainDataExtensionListGet,
-} from './resources/root/domainDataExtensionListGet.operation';
-import {
-	execute as executedomainDataSmdListGet,
-	description as descriptiondomainDataSmdListGet,
-} from './resources/root/domainDataSmdListGet.operation';
-import {
-	execute as executedomainDataSmdCreatePost,
-	description as descriptiondomainDataSmdCreatePost,
-} from './resources/root/domainDataSmdCreatePost.operation';
-import {
-	execute as executedomainDataSmdDeleteDelete,
-	description as descriptiondomainDataSmdDeleteDelete,
-} from './resources/root/domainDataSmdDeleteDelete.operation';
-import {
-	execute as executedomainDataSmdGetGet,
-	description as descriptiondomainDataSmdGetGet,
-} from './resources/root/domainDataSmdGetGet.operation';
-import {
-	execute as executedomainDataSmdUpdatePut,
-	description as descriptiondomainDataSmdUpdatePut,
-} from './resources/root/domainDataSmdUpdatePut.operation';
-import {
-	execute as executedomainExtensionsListGet,
-	description as descriptiondomainExtensionsListGet,
-} from './resources/root/domainExtensionsListGet.operation';
-import {
-	execute as executedomainExtensionsByCategoryListGet,
-	description as descriptiondomainExtensionsByCategoryListGet,
-} from './resources/root/domainExtensionsByCategoryListGet.operation';
-import {
-	execute as executedomainExtensionsHighlightedListGet,
-	description as descriptiondomainExtensionsHighlightedListGet,
-} from './resources/root/domainExtensionsHighlightedListGet.operation';
-import {
-	execute as executedomainExtensionsPricingAttributesListGet,
-	description as descriptiondomainExtensionsPricingAttributesListGet,
-} from './resources/root/domainExtensionsPricingAttributesListGet.operation';
-import {
-	execute as executedomainExtensionsGetGet,
-	description as descriptiondomainExtensionsGetGet,
-} from './resources/root/domainExtensionsGetGet.operation';
-import {
-	execute as executedomainExtensionsRegistryConfigurationsGetGet,
-	description as descriptiondomainExtensionsRegistryConfigurationsGetGet,
-} from './resources/root/domainExtensionsRegistryConfigurationsGetGet.operation';
-
-// zone operations
-import {
-	execute as executedomainZoneListGet,
-	description as descriptiondomainZoneListGet,
-} from './resources/zone/domainZoneListGet.operation';
-import {
-	execute as executedomainZoneGetGet,
-	description as descriptiondomainZoneGetGet,
-} from './resources/zone/domainZoneGetGet.operation';
-import {
-	execute as executedomainZoneCapabilitiesGetGet,
-	description as descriptiondomainZoneCapabilitiesGetGet,
-} from './resources/zone/domainZoneCapabilitiesGetGet.operation';
-import {
-	execute as executedomainZoneChangeContactPost,
-	description as descriptiondomainZoneChangeContactPost,
-} from './resources/zone/domainZoneChangeContactPost.operation';
-import {
-	execute as executedomainZoneConfirmTerminationPost,
-	description as descriptiondomainZoneConfirmTerminationPost,
-} from './resources/zone/domainZoneConfirmTerminationPost.operation';
-import {
-	execute as executedomainZoneDnssecDeleteDelete,
-	description as descriptiondomainZoneDnssecDeleteDelete,
-} from './resources/zone/domainZoneDnssecDeleteDelete.operation';
-import {
-	execute as executedomainZoneDnssecGetGet,
-	description as descriptiondomainZoneDnssecGetGet,
-} from './resources/zone/domainZoneDnssecGetGet.operation';
-import {
-	execute as executedomainZoneDnssecEnablePost,
-	description as descriptiondomainZoneDnssecEnablePost,
-} from './resources/zone/domainZoneDnssecEnablePost.operation';
-import {
-	execute as executedomainZoneDynHostLoginListGet,
-	description as descriptiondomainZoneDynHostLoginListGet,
-} from './resources/zone/domainZoneDynHostLoginListGet.operation';
-import {
-	execute as executedomainZoneDynHostLoginCreatePost,
-	description as descriptiondomainZoneDynHostLoginCreatePost,
-} from './resources/zone/domainZoneDynHostLoginCreatePost.operation';
-import {
-	execute as executedomainZoneDynHostLoginDeleteDelete,
-	description as descriptiondomainZoneDynHostLoginDeleteDelete,
-} from './resources/zone/domainZoneDynHostLoginDeleteDelete.operation';
-import {
-	execute as executedomainZoneDynHostLoginGetGet,
-	description as descriptiondomainZoneDynHostLoginGetGet,
-} from './resources/zone/domainZoneDynHostLoginGetGet.operation';
-import {
-	execute as executedomainZoneDynHostLoginUpdatePut,
-	description as descriptiondomainZoneDynHostLoginUpdatePut,
-} from './resources/zone/domainZoneDynHostLoginUpdatePut.operation';
-import {
-	execute as executedomainZoneDynHostLoginChangeContactPost,
-	description as descriptiondomainZoneDynHostLoginChangeContactPost,
-} from './resources/zone/domainZoneDynHostLoginChangeContactPost.operation';
-import {
-	execute as executedomainZoneDynHostRecordListGet,
-	description as descriptiondomainZoneDynHostRecordListGet,
-} from './resources/zone/domainZoneDynHostRecordListGet.operation';
-import {
-	execute as executedomainZoneDynHostRecordCreatePost,
-	description as descriptiondomainZoneDynHostRecordCreatePost,
-} from './resources/zone/domainZoneDynHostRecordCreatePost.operation';
-import {
-	execute as executedomainZoneDynHostRecordDeleteDelete,
-	description as descriptiondomainZoneDynHostRecordDeleteDelete,
-} from './resources/zone/domainZoneDynHostRecordDeleteDelete.operation';
-import {
-	execute as executedomainZoneDynHostRecordGetGet,
-	description as descriptiondomainZoneDynHostRecordGetGet,
-} from './resources/zone/domainZoneDynHostRecordGetGet.operation';
-import {
-	execute as executedomainZoneDynHostRecordUpdatePut,
-	description as descriptiondomainZoneDynHostRecordUpdatePut,
-} from './resources/zone/domainZoneDynHostRecordUpdatePut.operation';
-import {
-	execute as executedomainZoneExportGetGet,
-	description as descriptiondomainZoneExportGetGet,
-} from './resources/zone/domainZoneExportGetGet.operation';
-import {
-	execute as executedomainZoneHistoryListGet,
-	description as descriptiondomainZoneHistoryListGet,
-} from './resources/zone/domainZoneHistoryListGet.operation';
-import {
-	execute as executedomainZoneHistoryGetGet,
-	description as descriptiondomainZoneHistoryGetGet,
-} from './resources/zone/domainZoneHistoryGetGet.operation';
-import {
-	execute as executedomainZoneHistoryRestorePost,
-	description as descriptiondomainZoneHistoryRestorePost,
-} from './resources/zone/domainZoneHistoryRestorePost.operation';
-import {
-	execute as executedomainZoneImportPost,
-	description as descriptiondomainZoneImportPost,
-} from './resources/zone/domainZoneImportPost.operation';
-import {
-	execute as executedomainZoneOptionListGet,
-	description as descriptiondomainZoneOptionListGet,
-} from './resources/zone/domainZoneOptionListGet.operation';
-import {
-	execute as executedomainZoneOptionGetGet,
-	description as descriptiondomainZoneOptionGetGet,
-} from './resources/zone/domainZoneOptionGetGet.operation';
-import {
-	execute as executedomainZoneOptionServiceInfosGetGet,
-	description as descriptiondomainZoneOptionServiceInfosGetGet,
-} from './resources/zone/domainZoneOptionServiceInfosGetGet.operation';
-import {
-	execute as executedomainZoneOptionServiceInfosUpdatePut,
-	description as descriptiondomainZoneOptionServiceInfosUpdatePut,
-} from './resources/zone/domainZoneOptionServiceInfosUpdatePut.operation';
-import {
-	execute as executedomainZoneRecordListGet,
-	description as descriptiondomainZoneRecordListGet,
-} from './resources/zone/domainZoneRecordListGet.operation';
-import {
-	execute as executedomainZoneRecordCreatePost,
-	description as descriptiondomainZoneRecordCreatePost,
-} from './resources/zone/domainZoneRecordCreatePost.operation';
-import {
-	execute as executedomainZoneRecordDeleteDelete,
-	description as descriptiondomainZoneRecordDeleteDelete,
-} from './resources/zone/domainZoneRecordDeleteDelete.operation';
-import {
-	execute as executedomainZoneRecordGetGet,
-	description as descriptiondomainZoneRecordGetGet,
-} from './resources/zone/domainZoneRecordGetGet.operation';
-import {
-	execute as executedomainZoneRecordUpdatePut,
-	description as descriptiondomainZoneRecordUpdatePut,
-} from './resources/zone/domainZoneRecordUpdatePut.operation';
-import {
-	execute as executedomainZoneRedirectionListGet,
-	description as descriptiondomainZoneRedirectionListGet,
-} from './resources/zone/domainZoneRedirectionListGet.operation';
-import {
-	execute as executedomainZoneRedirectionCreatePost,
-	description as descriptiondomainZoneRedirectionCreatePost,
-} from './resources/zone/domainZoneRedirectionCreatePost.operation';
-import {
-	execute as executedomainZoneRedirectionDeleteDelete,
-	description as descriptiondomainZoneRedirectionDeleteDelete,
-} from './resources/zone/domainZoneRedirectionDeleteDelete.operation';
-import {
-	execute as executedomainZoneRedirectionGetGet,
-	description as descriptiondomainZoneRedirectionGetGet,
-} from './resources/zone/domainZoneRedirectionGetGet.operation';
-import {
-	execute as executedomainZoneRedirectionUpdatePut,
-	description as descriptiondomainZoneRedirectionUpdatePut,
-} from './resources/zone/domainZoneRedirectionUpdatePut.operation';
-import {
-	execute as executedomainZoneRefreshPost,
-	description as descriptiondomainZoneRefreshPost,
-} from './resources/zone/domainZoneRefreshPost.operation';
-import {
-	execute as executedomainZoneResetPost,
-	description as descriptiondomainZoneResetPost,
-} from './resources/zone/domainZoneResetPost.operation';
-import {
-	execute as executedomainZoneServiceInfosGetGet,
-	description as descriptiondomainZoneServiceInfosGetGet,
-} from './resources/zone/domainZoneServiceInfosGetGet.operation';
-import {
-	execute as executedomainZoneServiceInfosUpdatePut,
-	description as descriptiondomainZoneServiceInfosUpdatePut,
-} from './resources/zone/domainZoneServiceInfosUpdatePut.operation';
-import {
-	execute as executedomainZoneSoaGetGet,
-	description as descriptiondomainZoneSoaGetGet,
-} from './resources/zone/domainZoneSoaGetGet.operation';
-import {
-	execute as executedomainZoneSoaUpdatePut,
-	description as descriptiondomainZoneSoaUpdatePut,
-} from './resources/zone/domainZoneSoaUpdatePut.operation';
-import {
-	execute as executedomainZoneStatusGetGet,
-	description as descriptiondomainZoneStatusGetGet,
-} from './resources/zone/domainZoneStatusGetGet.operation';
-import {
-	execute as executedomainZoneTaskListGet,
-	description as descriptiondomainZoneTaskListGet,
-} from './resources/zone/domainZoneTaskListGet.operation';
-import {
-	execute as executedomainZoneTaskGetGet,
-	description as descriptiondomainZoneTaskGetGet,
-} from './resources/zone/domainZoneTaskGetGet.operation';
-import {
-	execute as executedomainZoneTaskAcceleratePost,
-	description as descriptiondomainZoneTaskAcceleratePost,
-} from './resources/zone/domainZoneTaskAcceleratePost.operation';
-import {
-	execute as executedomainZoneTaskCancelPost,
-	description as descriptiondomainZoneTaskCancelPost,
-} from './resources/zone/domainZoneTaskCancelPost.operation';
-import {
-	execute as executedomainZoneTaskRelaunchPost,
-	description as descriptiondomainZoneTaskRelaunchPost,
-} from './resources/zone/domainZoneTaskRelaunchPost.operation';
-import {
-	execute as executedomainZoneTerminatePost,
-	description as descriptiondomainZoneTerminatePost,
-} from './resources/zone/domainZoneTerminatePost.operation';
-
-// service operations
-import {
-	execute as executedomainGetGet,
-	description as descriptiondomainGetGet,
-} from './resources/service/domainGetGet.operation';
-import {
-	execute as executedomainUpdatePut,
-	description as descriptiondomainUpdatePut,
-} from './resources/service/domainUpdatePut.operation';
-import {
-	execute as executedomainAuthInfoGetGet,
-	description as descriptiondomainAuthInfoGetGet,
-} from './resources/service/domainAuthInfoGetGet.operation';
-import {
-	execute as executedomainChangeContactPost,
-	description as descriptiondomainChangeContactPost,
-} from './resources/service/domainChangeContactPost.operation';
-import {
-	execute as executedomainOptionListGet,
-	description as descriptiondomainOptionListGet,
-} from './resources/service/domainOptionListGet.operation';
-import {
-	execute as executedomainOptionDeleteDelete,
-	description as descriptiondomainOptionDeleteDelete,
-} from './resources/service/domainOptionDeleteDelete.operation';
-import {
-	execute as executedomainOptionGetGet,
-	description as descriptiondomainOptionGetGet,
-} from './resources/service/domainOptionGetGet.operation';
-import {
-	execute as executedomainOptionsGetGet,
-	description as descriptiondomainOptionsGetGet,
-} from './resources/service/domainOptionsGetGet.operation';
-import {
-	execute as executedomainOutgoingTransferApprovePost,
-	description as descriptiondomainOutgoingTransferApprovePost,
-} from './resources/service/domainOutgoingTransferApprovePost.operation';
-import {
-	execute as executedomainRulesEmailsObfuscationGetGet,
-	description as descriptiondomainRulesEmailsObfuscationGetGet,
-} from './resources/service/domainRulesEmailsObfuscationGetGet.operation';
-import {
-	execute as executedomainRulesOptinGetGet,
-	description as descriptiondomainRulesOptinGetGet,
-} from './resources/service/domainRulesOptinGetGet.operation';
-import {
-	execute as executedomainServiceInfosGetGet,
-	description as descriptiondomainServiceInfosGetGet,
-} from './resources/service/domainServiceInfosGetGet.operation';
-import {
-	execute as executedomainServiceInfosUpdatePut,
-	description as descriptiondomainServiceInfosUpdatePut,
-} from './resources/service/domainServiceInfosUpdatePut.operation';
-import {
-	execute as executedomainUkOutgoingTransferPost,
-	description as descriptiondomainUkOutgoingTransferPost,
-} from './resources/service/domainUkOutgoingTransferPost.operation';
-import {
-	execute as executedomainUkRegistrarsListGet,
-	description as descriptiondomainUkRegistrarsListGet,
-} from './resources/service/domainUkRegistrarsListGet.operation';
-
-// service/configurations operations
-import {
-	execute as executedomainConfigurationsObfuscatedEmailsGetGet,
-	description as descriptiondomainConfigurationsObfuscatedEmailsGetGet,
-} from './resources/service/configurations/domainConfigurationsObfuscatedEmailsGetGet.operation';
-import {
-	execute as executedomainConfigurationsObfuscatedEmailsUpdatePut,
-	description as descriptiondomainConfigurationsObfuscatedEmailsUpdatePut,
-} from './resources/service/configurations/domainConfigurationsObfuscatedEmailsUpdatePut.operation';
-import {
-	execute as executedomainConfigurationsObfuscatedEmailsRefreshPost,
-	description as descriptiondomainConfigurationsObfuscatedEmailsRefreshPost,
-} from './resources/service/configurations/domainConfigurationsObfuscatedEmailsRefreshPost.operation';
-import {
-	execute as executedomainConfigurationsOptinGetGet,
-	description as descriptiondomainConfigurationsOptinGetGet,
-} from './resources/service/configurations/domainConfigurationsOptinGetGet.operation';
-import {
-	execute as executedomainConfigurationsOptinUpdatePut,
-	description as descriptiondomainConfigurationsOptinUpdatePut,
-} from './resources/service/configurations/domainConfigurationsOptinUpdatePut.operation';
-
-// service/dsRecord operations
-import {
-	execute as executedomainDsRecordListGet,
-	description as descriptiondomainDsRecordListGet,
-} from './resources/service/dsRecord/domainDsRecordListGet.operation';
-import {
-	execute as executedomainDsRecordCreatePost,
-	description as descriptiondomainDsRecordCreatePost,
-} from './resources/service/dsRecord/domainDsRecordCreatePost.operation';
-import {
-	execute as executedomainDsRecordGetGet,
-	description as descriptiondomainDsRecordGetGet,
-} from './resources/service/dsRecord/domainDsRecordGetGet.operation';
-
-// service/glueRecord operations
-import {
-	execute as executedomainGlueRecordListGet,
-	description as descriptiondomainGlueRecordListGet,
-} from './resources/service/glueRecord/domainGlueRecordListGet.operation';
-import {
-	execute as executedomainGlueRecordCreatePost,
-	description as descriptiondomainGlueRecordCreatePost,
-} from './resources/service/glueRecord/domainGlueRecordCreatePost.operation';
-import {
-	execute as executedomainGlueRecordDeleteDelete,
-	description as descriptiondomainGlueRecordDeleteDelete,
-} from './resources/service/glueRecord/domainGlueRecordDeleteDelete.operation';
-import {
-	execute as executedomainGlueRecordGetGet,
-	description as descriptiondomainGlueRecordGetGet,
-} from './resources/service/glueRecord/domainGlueRecordGetGet.operation';
-import {
-	execute as executedomainGlueRecordUpdatePost,
-	description as descriptiondomainGlueRecordUpdatePost,
-} from './resources/service/glueRecord/domainGlueRecordUpdatePost.operation';
-
-// service/nameServer operations
-import {
-	execute as executedomainNameServerListGet,
-	description as descriptiondomainNameServerListGet,
-} from './resources/service/nameServer/domainNameServerListGet.operation';
-import {
-	execute as executedomainNameServerCreatePost,
-	description as descriptiondomainNameServerCreatePost,
-} from './resources/service/nameServer/domainNameServerCreatePost.operation';
-import {
-	execute as executedomainNameServerDeleteDelete,
-	description as descriptiondomainNameServerDeleteDelete,
-} from './resources/service/nameServer/domainNameServerDeleteDelete.operation';
-import {
-	execute as executedomainNameServerGetGet,
-	description as descriptiondomainNameServerGetGet,
-} from './resources/service/nameServer/domainNameServerGetGet.operation';
-import {
-	execute as executedomainNameServerStatusGetGet,
-	description as descriptiondomainNameServerStatusGetGet,
-} from './resources/service/nameServer/domainNameServerStatusGetGet.operation';
-import {
-	execute as executedomainNameServersUpdatePost,
-	description as descriptiondomainNameServersUpdatePost,
-} from './resources/service/nameServer/domainNameServersUpdatePost.operation';
-
-// service/task operations
-import {
-	execute as executedomainTaskListGet,
-	description as descriptiondomainTaskListGet,
-} from './resources/service/task/domainTaskListGet.operation';
-import {
-	execute as executedomainTaskGetGet,
-	description as descriptiondomainTaskGetGet,
-} from './resources/service/task/domainTaskGetGet.operation';
-import {
-	execute as executedomainTaskAcceleratePost,
-	description as descriptiondomainTaskAcceleratePost,
-} from './resources/service/task/domainTaskAcceleratePost.operation';
-import {
-	execute as executedomainTaskCancelPost,
-	description as descriptiondomainTaskCancelPost,
-} from './resources/service/task/domainTaskCancelPost.operation';
-import {
-	execute as executedomainTaskRelaunchPost,
-	description as descriptiondomainTaskRelaunchPost,
-} from './resources/service/task/domainTaskRelaunchPost.operation';
-
-// alldom (v2) operations
-import {
-	execute as executedomainAlldomListGet,
-	description as descriptiondomainAlldomListGet,
-} from './resources/alldom/domainAlldomListGet.operation';
-import {
-	execute as executedomainAlldomGetGet,
 	description as descriptiondomainAlldomGetGet,
+	execute as executedomainAlldomGetGet,
 } from './resources/alldom/domainAlldomGetGet.operation';
 import {
-	execute as executedomainAlldomTaskListGet,
+	description as descriptiondomainAlldomListGet,
+	execute as executedomainAlldomListGet,
+} from './resources/alldom/domainAlldomListGet.operation';
+import {
+	description as descriptiondomainAlldomTaskGetGet,
+	execute as executedomainAlldomTaskGetGet,
+} from './resources/alldom/domainAlldomTaskGetGet.operation';
+import {
 	description as descriptiondomainAlldomTaskListGet,
+	execute as executedomainAlldomTaskListGet,
 } from './resources/alldom/domainAlldomTaskListGet.operation';
 import {
-	execute as executedomainAlldomTaskGetGet,
-	description as descriptiondomainAlldomTaskGetGet,
-} from './resources/alldom/domainAlldomTaskGetGet.operation';
-
-// name (v2) operations
-import {
-	execute as executedomainNameListGet,
-	description as descriptiondomainNameListGet,
-} from './resources/name/domainNameListGet.operation';
-import {
-	execute as executedomainNameGetGet,
 	description as descriptiondomainNameGetGet,
+	execute as executedomainNameGetGet,
 } from './resources/name/domainNameGetGet.operation';
 import {
-	execute as executedomainNameUpdatePut,
-	description as descriptiondomainNameUpdatePut,
-} from './resources/name/domainNameUpdatePut.operation';
+	description as descriptiondomainNameListGet,
+	execute as executedomainNameListGet,
+} from './resources/name/domainNameListGet.operation';
 import {
-	execute as executedomainNameTaskListGet,
+	description as descriptiondomainNameTaskGetGet,
+	execute as executedomainNameTaskGetGet,
+} from './resources/name/domainNameTaskGetGet.operation';
+import {
 	description as descriptiondomainNameTaskListGet,
+	execute as executedomainNameTaskListGet,
 } from './resources/name/domainNameTaskListGet.operation';
 import {
-	execute as executedomainNameTaskGetGet,
-	description as descriptiondomainNameTaskGetGet,
-} from './resources/name/domainNameTaskGetGet.operation';
+	description as descriptiondomainNameUpdatePut,
+	execute as executedomainNameUpdatePut,
+} from './resources/name/domainNameUpdatePut.operation';
+import {
+	description as descriptiondomainConfigurationRuleCheckPost,
+	execute as executedomainConfigurationRuleCheckPost,
+} from './resources/root/domainConfigurationRuleCheckPost.operation';
+import {
+	description as descriptiondomainConfigurationRuleListGet,
+	execute as executedomainConfigurationRuleListGet,
+} from './resources/root/domainConfigurationRuleListGet.operation';
+import {
+	description as descriptiondomainContactCreatePost,
+	execute as executedomainContactCreatePost,
+} from './resources/root/domainContactCreatePost.operation';
+import {
+	description as descriptiondomainContactGetGet,
+	execute as executedomainContactGetGet,
+} from './resources/root/domainContactGetGet.operation';
+import {
+	description as descriptiondomainContactListGet,
+	execute as executedomainContactListGet,
+} from './resources/root/domainContactListGet.operation';
+import {
+	description as descriptiondomainContactUpdatePut,
+	execute as executedomainContactUpdatePut,
+} from './resources/root/domainContactUpdatePut.operation';
+import {
+	description as descriptiondomainDataClaimNoticeGetGet,
+	execute as executedomainDataClaimNoticeGetGet,
+} from './resources/root/domainDataClaimNoticeGetGet.operation';
+import {
+	description as descriptiondomainDataExtensionListGet,
+	execute as executedomainDataExtensionListGet,
+} from './resources/root/domainDataExtensionListGet.operation';
+import {
+	description as descriptiondomainDataSmdCreatePost,
+	execute as executedomainDataSmdCreatePost,
+} from './resources/root/domainDataSmdCreatePost.operation';
+import {
+	description as descriptiondomainDataSmdDeleteDelete,
+	execute as executedomainDataSmdDeleteDelete,
+} from './resources/root/domainDataSmdDeleteDelete.operation';
+import {
+	description as descriptiondomainDataSmdGetGet,
+	execute as executedomainDataSmdGetGet,
+} from './resources/root/domainDataSmdGetGet.operation';
+import {
+	description as descriptiondomainDataSmdListGet,
+	execute as executedomainDataSmdListGet,
+} from './resources/root/domainDataSmdListGet.operation';
+import {
+	description as descriptiondomainDataSmdUpdatePut,
+	execute as executedomainDataSmdUpdatePut,
+} from './resources/root/domainDataSmdUpdatePut.operation';
+import {
+	description as descriptiondomainExtensionsGetGet,
+	execute as executedomainExtensionsGetGet,
+} from './resources/root/domainExtensionsGetGet.operation';
+import {
+	description as descriptiondomainExtensionsHighlightedListGet,
+	execute as executedomainExtensionsHighlightedListGet,
+} from './resources/root/domainExtensionsHighlightedListGet.operation';
+import {
+	description as descriptiondomainExtensionsListGet,
+	execute as executedomainExtensionsListGet,
+} from './resources/root/domainExtensionsListGet.operation';
+import {
+	description as descriptiondomainExtensionsPricingAttributesListGet,
+	execute as executedomainExtensionsPricingAttributesListGet,
+} from './resources/root/domainExtensionsPricingAttributesListGet.operation';
+import {
+	description as descriptiondomainExtensionsRegistryConfigurationsGetGet,
+	execute as executedomainExtensionsRegistryConfigurationsGetGet,
+} from './resources/root/domainExtensionsRegistryConfigurationsGetGet.operation';
+import {
+	description as descriptiondomainListGet,
+	execute as executedomainListGet,
+} from './resources/root/domainListGet.operation';
+import {
+	description as descriptiondomainConfigurationsObfuscatedEmailsGetGet,
+	execute as executedomainConfigurationsObfuscatedEmailsGetGet,
+} from './resources/service/configurations/domainConfigurationsObfuscatedEmailsGetGet.operation';
+import {
+	description as descriptiondomainConfigurationsObfuscatedEmailsRefreshPost,
+	execute as executedomainConfigurationsObfuscatedEmailsRefreshPost,
+} from './resources/service/configurations/domainConfigurationsObfuscatedEmailsRefreshPost.operation';
+import {
+	description as descriptiondomainConfigurationsObfuscatedEmailsUpdatePut,
+	execute as executedomainConfigurationsObfuscatedEmailsUpdatePut,
+} from './resources/service/configurations/domainConfigurationsObfuscatedEmailsUpdatePut.operation';
+import {
+	description as descriptiondomainConfigurationsOptinGetGet,
+	execute as executedomainConfigurationsOptinGetGet,
+} from './resources/service/configurations/domainConfigurationsOptinGetGet.operation';
+import {
+	description as descriptiondomainConfigurationsOptinUpdatePut,
+	execute as executedomainConfigurationsOptinUpdatePut,
+} from './resources/service/configurations/domainConfigurationsOptinUpdatePut.operation';
+import {
+	description as descriptiondomainAuthInfoGetGet,
+	execute as executedomainAuthInfoGetGet,
+} from './resources/service/domainAuthInfoGetGet.operation';
+import {
+	description as descriptiondomainChangeContactPost,
+	execute as executedomainChangeContactPost,
+} from './resources/service/domainChangeContactPost.operation';
+import {
+	description as descriptiondomainGetGet,
+	execute as executedomainGetGet,
+} from './resources/service/domainGetGet.operation';
+import {
+	description as descriptiondomainOptionDeleteDelete,
+	execute as executedomainOptionDeleteDelete,
+} from './resources/service/domainOptionDeleteDelete.operation';
+import {
+	description as descriptiondomainOptionGetGet,
+	execute as executedomainOptionGetGet,
+} from './resources/service/domainOptionGetGet.operation';
+import {
+	description as descriptiondomainOptionListGet,
+	execute as executedomainOptionListGet,
+} from './resources/service/domainOptionListGet.operation';
+import {
+	description as descriptiondomainOptionsGetGet,
+	execute as executedomainOptionsGetGet,
+} from './resources/service/domainOptionsGetGet.operation';
+import {
+	description as descriptiondomainOutgoingTransferApprovePost,
+	execute as executedomainOutgoingTransferApprovePost,
+} from './resources/service/domainOutgoingTransferApprovePost.operation';
+import {
+	description as descriptiondomainRulesEmailsObfuscationGetGet,
+	execute as executedomainRulesEmailsObfuscationGetGet,
+} from './resources/service/domainRulesEmailsObfuscationGetGet.operation';
+import {
+	description as descriptiondomainRulesOptinGetGet,
+	execute as executedomainRulesOptinGetGet,
+} from './resources/service/domainRulesOptinGetGet.operation';
+import {
+	description as descriptiondomainServiceInfosGetGet,
+	execute as executedomainServiceInfosGetGet,
+} from './resources/service/domainServiceInfosGetGet.operation';
+import {
+	description as descriptiondomainServiceInfosUpdatePut,
+	execute as executedomainServiceInfosUpdatePut,
+} from './resources/service/domainServiceInfosUpdatePut.operation';
+import {
+	description as descriptiondomainUkOutgoingTransferPost,
+	execute as executedomainUkOutgoingTransferPost,
+} from './resources/service/domainUkOutgoingTransferPost.operation';
+import {
+	description as descriptiondomainUkRegistrarsListGet,
+	execute as executedomainUkRegistrarsListGet,
+} from './resources/service/domainUkRegistrarsListGet.operation';
+import {
+	description as descriptiondomainUpdatePut,
+	execute as executedomainUpdatePut,
+} from './resources/service/domainUpdatePut.operation';
+import {
+	description as descriptiondomainDsRecordCreatePost,
+	execute as executedomainDsRecordCreatePost,
+} from './resources/service/dsRecord/domainDsRecordCreatePost.operation';
+import {
+	description as descriptiondomainDsRecordGetGet,
+	execute as executedomainDsRecordGetGet,
+} from './resources/service/dsRecord/domainDsRecordGetGet.operation';
+import {
+	description as descriptiondomainGlueRecordCreatePost,
+	execute as executedomainGlueRecordCreatePost,
+} from './resources/service/glueRecord/domainGlueRecordCreatePost.operation';
+import {
+	description as descriptiondomainGlueRecordDeleteDelete,
+	execute as executedomainGlueRecordDeleteDelete,
+} from './resources/service/glueRecord/domainGlueRecordDeleteDelete.operation';
+import {
+	description as descriptiondomainGlueRecordGetGet,
+	execute as executedomainGlueRecordGetGet,
+} from './resources/service/glueRecord/domainGlueRecordGetGet.operation';
+import {
+	description as descriptiondomainGlueRecordListGet,
+	execute as executedomainGlueRecordListGet,
+} from './resources/service/glueRecord/domainGlueRecordListGet.operation';
+import {
+	description as descriptiondomainGlueRecordUpdatePost,
+	execute as executedomainGlueRecordUpdatePost,
+} from './resources/service/glueRecord/domainGlueRecordUpdatePost.operation';
+import {
+	description as descriptiondomainNameServerCreatePost,
+	execute as executedomainNameServerCreatePost,
+} from './resources/service/nameServer/domainNameServerCreatePost.operation';
+import {
+	description as descriptiondomainNameServerDeleteDelete,
+	execute as executedomainNameServerDeleteDelete,
+} from './resources/service/nameServer/domainNameServerDeleteDelete.operation';
+import {
+	description as descriptiondomainNameServerGetGet,
+	execute as executedomainNameServerGetGet,
+} from './resources/service/nameServer/domainNameServerGetGet.operation';
+import {
+	description as descriptiondomainNameServerListGet,
+	execute as executedomainNameServerListGet,
+} from './resources/service/nameServer/domainNameServerListGet.operation';
+import {
+	description as descriptiondomainNameServerStatusGetGet,
+	execute as executedomainNameServerStatusGetGet,
+} from './resources/service/nameServer/domainNameServerStatusGetGet.operation';
+import {
+	description as descriptiondomainNameServersUpdatePost,
+	execute as executedomainNameServersUpdatePost,
+} from './resources/service/nameServer/domainNameServersUpdatePost.operation';
+import {
+	description as descriptiondomainTaskAcceleratePost,
+	execute as executedomainTaskAcceleratePost,
+} from './resources/service/task/domainTaskAcceleratePost.operation';
+import {
+	description as descriptiondomainTaskCancelPost,
+	execute as executedomainTaskCancelPost,
+} from './resources/service/task/domainTaskCancelPost.operation';
+import {
+	description as descriptiondomainTaskGetGet,
+	execute as executedomainTaskGetGet,
+} from './resources/service/task/domainTaskGetGet.operation';
+import {
+	description as descriptiondomainTaskListGet,
+	execute as executedomainTaskListGet,
+} from './resources/service/task/domainTaskListGet.operation';
+import {
+	description as descriptiondomainTaskRelaunchPost,
+	execute as executedomainTaskRelaunchPost,
+} from './resources/service/task/domainTaskRelaunchPost.operation';
+import {
+	description as descriptiondomainZoneCapabilitiesGetGet,
+	execute as executedomainZoneCapabilitiesGetGet,
+} from './resources/zone/domainZoneCapabilitiesGetGet.operation';
+import {
+	description as descriptiondomainZoneChangeContactPost,
+	execute as executedomainZoneChangeContactPost,
+} from './resources/zone/domainZoneChangeContactPost.operation';
+import {
+	description as descriptiondomainZoneConfirmTerminationPost,
+	execute as executedomainZoneConfirmTerminationPost,
+} from './resources/zone/domainZoneConfirmTerminationPost.operation';
+import {
+	description as descriptiondomainZoneDnssecDeleteDelete,
+	execute as executedomainZoneDnssecDeleteDelete,
+} from './resources/zone/domainZoneDnssecDeleteDelete.operation';
+import {
+	description as descriptiondomainZoneDnssecEnablePost,
+	execute as executedomainZoneDnssecEnablePost,
+} from './resources/zone/domainZoneDnssecEnablePost.operation';
+import {
+	description as descriptiondomainZoneDnssecGetGet,
+	execute as executedomainZoneDnssecGetGet,
+} from './resources/zone/domainZoneDnssecGetGet.operation';
+import {
+	description as descriptiondomainZoneDynHostLoginChangeContactPost,
+	execute as executedomainZoneDynHostLoginChangeContactPost,
+} from './resources/zone/domainZoneDynHostLoginChangeContactPost.operation';
+import {
+	description as descriptiondomainZoneDynHostLoginCreatePost,
+	execute as executedomainZoneDynHostLoginCreatePost,
+} from './resources/zone/domainZoneDynHostLoginCreatePost.operation';
+import {
+	description as descriptiondomainZoneDynHostLoginDeleteDelete,
+	execute as executedomainZoneDynHostLoginDeleteDelete,
+} from './resources/zone/domainZoneDynHostLoginDeleteDelete.operation';
+import {
+	description as descriptiondomainZoneDynHostLoginGetGet,
+	execute as executedomainZoneDynHostLoginGetGet,
+} from './resources/zone/domainZoneDynHostLoginGetGet.operation';
+import {
+	description as descriptiondomainZoneDynHostLoginListGet,
+	execute as executedomainZoneDynHostLoginListGet,
+} from './resources/zone/domainZoneDynHostLoginListGet.operation';
+import {
+	description as descriptiondomainZoneDynHostLoginUpdatePut,
+	execute as executedomainZoneDynHostLoginUpdatePut,
+} from './resources/zone/domainZoneDynHostLoginUpdatePut.operation';
+import {
+	description as descriptiondomainZoneDynHostRecordCreatePost,
+	execute as executedomainZoneDynHostRecordCreatePost,
+} from './resources/zone/domainZoneDynHostRecordCreatePost.operation';
+import {
+	description as descriptiondomainZoneDynHostRecordDeleteDelete,
+	execute as executedomainZoneDynHostRecordDeleteDelete,
+} from './resources/zone/domainZoneDynHostRecordDeleteDelete.operation';
+import {
+	description as descriptiondomainZoneDynHostRecordGetGet,
+	execute as executedomainZoneDynHostRecordGetGet,
+} from './resources/zone/domainZoneDynHostRecordGetGet.operation';
+import {
+	description as descriptiondomainZoneDynHostRecordListGet,
+	execute as executedomainZoneDynHostRecordListGet,
+} from './resources/zone/domainZoneDynHostRecordListGet.operation';
+import {
+	description as descriptiondomainZoneDynHostRecordUpdatePut,
+	execute as executedomainZoneDynHostRecordUpdatePut,
+} from './resources/zone/domainZoneDynHostRecordUpdatePut.operation';
+import {
+	description as descriptiondomainZoneExportGetGet,
+	execute as executedomainZoneExportGetGet,
+} from './resources/zone/domainZoneExportGetGet.operation';
+import {
+	description as descriptiondomainZoneGetGet,
+	execute as executedomainZoneGetGet,
+} from './resources/zone/domainZoneGetGet.operation';
+import {
+	description as descriptiondomainZoneHistoryGetGet,
+	execute as executedomainZoneHistoryGetGet,
+} from './resources/zone/domainZoneHistoryGetGet.operation';
+import {
+	description as descriptiondomainZoneHistoryListGet,
+	execute as executedomainZoneHistoryListGet,
+} from './resources/zone/domainZoneHistoryListGet.operation';
+import {
+	description as descriptiondomainZoneHistoryRestorePost,
+	execute as executedomainZoneHistoryRestorePost,
+} from './resources/zone/domainZoneHistoryRestorePost.operation';
+import {
+	description as descriptiondomainZoneImportPost,
+	execute as executedomainZoneImportPost,
+} from './resources/zone/domainZoneImportPost.operation';
+import {
+	description as descriptiondomainZoneListGet,
+	execute as executedomainZoneListGet,
+} from './resources/zone/domainZoneListGet.operation';
+import {
+	description as descriptiondomainZoneOptionGetGet,
+	execute as executedomainZoneOptionGetGet,
+} from './resources/zone/domainZoneOptionGetGet.operation';
+import {
+	description as descriptiondomainZoneOptionListGet,
+	execute as executedomainZoneOptionListGet,
+} from './resources/zone/domainZoneOptionListGet.operation';
+import {
+	description as descriptiondomainZoneOptionServiceInfosGetGet,
+	execute as executedomainZoneOptionServiceInfosGetGet,
+} from './resources/zone/domainZoneOptionServiceInfosGetGet.operation';
+import {
+	description as descriptiondomainZoneOptionServiceInfosUpdatePut,
+	execute as executedomainZoneOptionServiceInfosUpdatePut,
+} from './resources/zone/domainZoneOptionServiceInfosUpdatePut.operation';
+import {
+	description as descriptiondomainZoneRecordGetGet,
+	execute as executedomainZoneRecordGetGet,
+} from './resources/zone/domainZoneRecordGetGet.operation';
+import {
+	description as descriptiondomainZoneRecordListGet,
+	execute as executedomainZoneRecordListGet,
+} from './resources/zone/domainZoneRecordListGet.operation';
+import {
+	description as descriptiondomainZoneRedirectionGetGet,
+	execute as executedomainZoneRedirectionGetGet,
+} from './resources/zone/domainZoneRedirectionGetGet.operation';
+import {
+	description as descriptiondomainZoneRedirectionListGet,
+	execute as executedomainZoneRedirectionListGet,
+} from './resources/zone/domainZoneRedirectionListGet.operation';
+import {
+	description as descriptiondomainZoneRedirectionUpdatePut,
+	execute as executedomainZoneRedirectionUpdatePut,
+} from './resources/zone/domainZoneRedirectionUpdatePut.operation';
+import {
+	description as descriptiondomainZoneRefreshPost,
+	execute as executedomainZoneRefreshPost,
+} from './resources/zone/domainZoneRefreshPost.operation';
+import {
+	description as descriptiondomainZoneResetPost,
+	execute as executedomainZoneResetPost,
+} from './resources/zone/domainZoneResetPost.operation';
+import {
+	description as descriptiondomainZoneServiceInfosGetGet,
+	execute as executedomainZoneServiceInfosGetGet,
+} from './resources/zone/domainZoneServiceInfosGetGet.operation';
+import {
+	description as descriptiondomainZoneServiceInfosUpdatePut,
+	execute as executedomainZoneServiceInfosUpdatePut,
+} from './resources/zone/domainZoneServiceInfosUpdatePut.operation';
+import {
+	description as descriptiondomainZoneSoaGetGet,
+	execute as executedomainZoneSoaGetGet,
+} from './resources/zone/domainZoneSoaGetGet.operation';
+import {
+	description as descriptiondomainZoneSoaUpdatePut,
+	execute as executedomainZoneSoaUpdatePut,
+} from './resources/zone/domainZoneSoaUpdatePut.operation';
+import {
+	description as descriptiondomainZoneStatusGetGet,
+	execute as executedomainZoneStatusGetGet,
+} from './resources/zone/domainZoneStatusGetGet.operation';
+import {
+	description as descriptiondomainZoneTaskAcceleratePost,
+	execute as executedomainZoneTaskAcceleratePost,
+} from './resources/zone/domainZoneTaskAcceleratePost.operation';
+import {
+	description as descriptiondomainZoneTaskCancelPost,
+	execute as executedomainZoneTaskCancelPost,
+} from './resources/zone/domainZoneTaskCancelPost.operation';
+import {
+	description as descriptiondomainZoneTaskGetGet,
+	execute as executedomainZoneTaskGetGet,
+} from './resources/zone/domainZoneTaskGetGet.operation';
+import {
+	description as descriptiondomainZoneTaskListGet,
+	execute as executedomainZoneTaskListGet,
+} from './resources/zone/domainZoneTaskListGet.operation';
+import {
+	description as descriptiondomainZoneTaskRelaunchPost,
+	execute as executedomainZoneTaskRelaunchPost,
+} from './resources/zone/domainZoneTaskRelaunchPost.operation';
+import {
+	description as descriptiondomainZoneTerminatePost,
+	execute as executedomainZoneTerminatePost,
+} from './resources/zone/domainZoneTerminatePost.operation';
 
-export function description() {
-	const props: INodeProperties[] = [];
+const { description, execute } = createOperationDispatcher(
+	'domainOperation',
+	'domain',
+	[
+	{
+		name: 'Accelerate a Zone Task',
+		value: 'domainZoneTaskAcceleratePost',
+		action: 'Accelerate a zone task',
+		execute: executedomainZoneTaskAcceleratePost,
+		description: descriptiondomainZoneTaskAcceleratePost,
+	},
+	{
+		name: 'Accelerate the Task',
+		value: 'domainTaskAcceleratePost',
+		action: 'Accelerate the task',
+		execute: executedomainTaskAcceleratePost,
+		description: descriptiondomainTaskAcceleratePost,
+	},
+	{
+		name: 'Add New Name Server',
+		value: 'domainNameServerCreatePost',
+		action: 'Add new name server',
+		execute: executedomainNameServerCreatePost,
+		description: descriptiondomainNameServerCreatePost,
+	},
+	{
+		name: 'Alter Login Object Properties',
+		value: 'domainZoneDynHostLoginUpdatePut',
+		action: 'Alter login object properties',
+		execute: executedomainZoneDynHostLoginUpdatePut,
+		description: descriptiondomainZoneDynHostLoginUpdatePut,
+	},
+	{
+		name: 'Alter Record Object Properties',
+		value: 'domainZoneDynHostRecordUpdatePut',
+		action: 'Alter record object properties',
+		execute: executedomainZoneDynHostRecordUpdatePut,
+		description: descriptiondomainZoneDynHostRecordUpdatePut,
+	},
+	{
+		name: 'Alter Redirection Object Properties',
+		value: 'domainZoneRedirectionUpdatePut',
+		action: 'Alter redirection object properties',
+		execute: executedomainZoneRedirectionUpdatePut,
+		description: descriptiondomainZoneRedirectionUpdatePut,
+	},
+	{
+		name: 'Alter This Object Properties',
+		value: 'domainZoneOptionServiceInfosUpdatePut',
+		action: 'Alter this object properties',
+		execute: executedomainZoneOptionServiceInfosUpdatePut,
+		description: descriptiondomainZoneOptionServiceInfosUpdatePut,
+	},
+	{
+		name: 'Approve Outgoing Transfer for a Domain',
+		value: 'domainOutgoingTransferApprovePost',
+		action: 'Approve Outgoing Transfer for a domain',
+		execute: executedomainOutgoingTransferApprovePost,
+		description: descriptiondomainOutgoingTransferApprovePost,
+	},
+	{
+		name: 'Ask for the Termination of Your Service',
+		value: 'domainZoneTerminatePost',
+		action: 'Ask for the termination of your service',
+		execute: executedomainZoneTerminatePost,
+		description: descriptiondomainZoneTerminatePost,
+	},
+	{
+		name: 'Cancel a Zone Task',
+		value: 'domainZoneTaskCancelPost',
+		action: 'Cancel a zone task',
+		execute: executedomainZoneTaskCancelPost,
+		description: descriptiondomainZoneTaskCancelPost,
+	},
+	{
+		name: 'Cancel the Task',
+		value: 'domainTaskCancelPost',
+		action: 'Cancel the task',
+		execute: executedomainTaskCancelPost,
+		description: descriptiondomainTaskCancelPost,
+	},
+	{
+		name: 'Change Password of the DynHost Login',
+		value: 'domainZoneDynHostLoginChangeContactPost',
+		action: 'Change password of the DynHost login',
+		execute: executedomainZoneDynHostLoginChangeContactPost,
+		description: descriptiondomainZoneDynHostLoginChangeContactPost,
+	},
+	{
+		name: 'Confirm Service Termination',
+		value: 'domainZoneConfirmTerminationPost',
+		action: 'Confirm service termination',
+		execute: executedomainZoneConfirmTerminationPost,
+		description: descriptiondomainZoneConfirmTerminationPost,
+	},
+	{
+		name: 'Create a Contact',
+		value: 'domainContactCreatePost',
+		action: 'Create a contact',
+		execute: executedomainContactCreatePost,
+		description: descriptiondomainContactCreatePost,
+	},
+	{
+		name: 'Create a Glue Record',
+		value: 'domainGlueRecordCreatePost',
+		action: 'Create a glue record',
+		execute: executedomainGlueRecordCreatePost,
+		description: descriptiondomainGlueRecordCreatePost,
+	},
+	{
+		name: 'Create a New Login',
+		value: 'domainZoneDynHostLoginCreatePost',
+		action: 'Create a new login',
+		execute: executedomainZoneDynHostLoginCreatePost,
+		description: descriptiondomainZoneDynHostLoginCreatePost,
+	},
+	{
+		name: 'Create a New Record',
+		value: 'domainZoneDynHostRecordCreatePost',
+		action: 'Create a new record',
+		execute: executedomainZoneDynHostRecordCreatePost,
+		description: descriptiondomainZoneDynHostRecordCreatePost,
+	},
+	{
+		name: 'Create a SMD File',
+		value: 'domainDataSmdCreatePost',
+		action: 'Create a SMD file',
+		execute: executedomainDataSmdCreatePost,
+		description: descriptiondomainDataSmdCreatePost,
+	},
+	{
+		name: 'Delete a Name Server',
+		value: 'domainNameServerDeleteDelete',
+		action: 'Delete a name server',
+		execute: executedomainNameServerDeleteDelete,
+		description: descriptiondomainNameServerDeleteDelete,
+	},
+	{
+		name: 'Delete a SMD File',
+		value: 'domainDataSmdDeleteDelete',
+		action: 'Delete a SMD file',
+		execute: executedomainDataSmdDeleteDelete,
+		description: descriptiondomainDataSmdDeleteDelete,
+	},
+	{
+		name: 'Delete Login Object',
+		value: 'domainZoneDynHostLoginDeleteDelete',
+		action: 'Delete login object',
+		execute: executedomainZoneDynHostLoginDeleteDelete,
+		description: descriptiondomainZoneDynHostLoginDeleteDelete,
+	},
+	{
+		name: 'Delete Record Object',
+		value: 'domainZoneDynHostRecordDeleteDelete',
+		action: 'Delete record object',
+		execute: executedomainZoneDynHostRecordDeleteDelete,
+		description: descriptiondomainZoneDynHostRecordDeleteDelete,
+	},
+	{
+		name: 'Delete the Glue Record',
+		value: 'domainGlueRecordDeleteDelete',
+		action: 'Delete the glue record',
+		execute: executedomainGlueRecordDeleteDelete,
+		description: descriptiondomainGlueRecordDeleteDelete,
+	},
+	{
+		name: 'Disable DNSSEC',
+		value: 'domainZoneDnssecDeleteDelete',
+		action: 'Disable DNSSEC',
+		execute: executedomainZoneDnssecDeleteDelete,
+		description: descriptiondomainZoneDnssecDeleteDelete,
+	},
+	{
+		name: 'Edit Domain Name Properties',
+		value: 'domainUpdatePut',
+		action: 'Edit domain name properties',
+		execute: executedomainUpdatePut,
+		description: descriptiondomainUpdatePut,
+	},
+	{
+		name: 'Enable DNSSEC',
+		value: 'domainZoneDnssecEnablePost',
+		action: 'Enable DNSSEC',
+		execute: executedomainZoneDnssecEnablePost,
+		description: descriptiondomainZoneDnssecEnablePost,
+	},
+	{
+		name: 'Export DNS Zone',
+		value: 'domainZoneExportGetGet',
+		action: 'Export DNS zone',
+		execute: executedomainZoneExportGetGet,
+		description: descriptiondomainZoneExportGetGet,
+		default: true,
+	},
+	{
+		name: 'Get a dnsZone Service',
+		value: 'domainZoneGetGet',
+		action: 'Get a dnsZone service',
+		execute: executedomainZoneGetGet,
+		description: descriptiondomainZoneGetGet,
+	},
+	{
+		name: 'Get a Domain Name Resource',
+		value: 'domainNameGetGet',
+		action: 'Get a domain name resource',
+		execute: executedomainNameGetGet,
+		description: descriptiondomainNameGetGet,
+	},
+	{
+		name: 'Get a Specific Task Related to a Domain Name Resource',
+		value: 'domainNameTaskGetGet',
+		action: 'Get a specific task related to a domain name resource',
+		execute: executedomainNameTaskGetGet,
+		description: descriptiondomainNameTaskGetGet,
+	},
+	{
+		name: 'Get a Specific Task Related to an AllDom Resource',
+		value: 'domainAlldomTaskGetGet',
+		action: 'Get a specific task related to an AllDom resource',
+		execute: executedomainAlldomTaskGetGet,
+		description: descriptiondomainAlldomTaskGetGet,
+	},
+	{
+		name: 'Get a Zone DNSSEC Status',
+		value: 'domainZoneDnssecGetGet',
+		action: 'Get a zone DNSSEC status',
+		execute: executedomainZoneDnssecGetGet,
+		description: descriptiondomainZoneDnssecGetGet,
+	},
+	{
+		name: 'Get a Zone History',
+		value: 'domainZoneHistoryGetGet',
+		action: 'Get a zone history',
+		execute: executedomainZoneHistoryGetGet,
+		description: descriptiondomainZoneHistoryGetGet,
+	},
+	{
+		name: 'Get a Zone Task',
+		value: 'domainZoneTaskGetGet',
+		action: 'Get a zone task',
+		execute: executedomainZoneTaskGetGet,
+		description: descriptiondomainZoneTaskGetGet,
+	},
+	{
+		name: 'Get an AllDom Resource',
+		value: 'domainAlldomGetGet',
+		action: 'Get an AllDom resource',
+		execute: executedomainAlldomGetGet,
+		description: descriptiondomainAlldomGetGet,
+	},
+	{
+		name: 'Get an Extension',
+		value: 'domainExtensionsGetGet',
+		action: 'Get an extension',
+		execute: executedomainExtensionsGetGet,
+		description: descriptiondomainExtensionsGetGet,
+	},
+	{
+		name: 'Get Configuration Rule Applied for a Domain in a Given Action',
+		value: 'domainConfigurationRuleListGet',
+		action: 'Get configuration rule applied for a domain in a given action',
+		execute: executedomainConfigurationRuleListGet,
+		description: descriptiondomainConfigurationRuleListGet,
+	},
+	{
+		name: 'Get Details About a Contact',
+		value: 'domainContactGetGet',
+		action: 'Get details about a contact',
+		execute: executedomainContactGetGet,
+		description: descriptiondomainContactGetGet,
+	},
+	{
+		name: 'Get Details About a Domain Task',
+		value: 'domainTaskGetGet',
+		action: 'Get details about a domain task',
+		execute: executedomainTaskGetGet,
+		description: descriptiondomainTaskGetGet,
+	},
+	{
+		name: 'Get Details About a SMD File',
+		value: 'domainDataSmdGetGet',
+		action: 'Get details about a SMD file',
+		execute: executedomainDataSmdGetGet,
+		description: descriptiondomainDataSmdGetGet,
+	},
+	{
+		name: 'Get Details on This Domain Option',
+		value: 'domainOptionGetGet',
+		action: 'Get details on this domain option',
+		execute: executedomainOptionGetGet,
+		description: descriptiondomainOptionGetGet,
+	},
+	{
+		name: 'Get Details on This DS Record',
+		value: 'domainDsRecordGetGet',
+		action: 'Get details on this DS Record',
+		execute: executedomainDsRecordGetGet,
+		description: descriptiondomainDsRecordGetGet,
+	},
+	{
+		name: 'Get Domain Name Information',
+		value: 'domainGetGet',
+		action: 'Get domain name information',
+		execute: executedomainGetGet,
+		description: descriptiondomainGetGet,
+	},
+	{
+		name: 'Get Login Object Properties',
+		value: 'domainZoneDynHostLoginGetGet',
+		action: 'Get login object properties',
+		execute: executedomainZoneDynHostLoginGetGet,
+		description: descriptiondomainZoneDynHostLoginGetGet,
+	},
+	{
+		name: 'Get Name Server Status',
+		value: 'domainNameServerStatusGetGet',
+		action: 'Get name server status',
+		execute: executedomainNameServerStatusGetGet,
+		description: descriptiondomainNameServerStatusGetGet,
+	},
+	{
+		name: 'Get Record Object Properties (DynHost)',
+		value: 'domainZoneDynHostRecordGetGet',
+		action: 'Get record object properties (DynHost)',
+		execute: executedomainZoneDynHostRecordGetGet,
+		description: descriptiondomainZoneDynHostRecordGetGet,
+	},
+	{
+		name: 'Get Record Object Properties (Zone)',
+		value: 'domainZoneRecordGetGet',
+		action: 'Get record object properties (Zone)',
+		execute: executedomainZoneRecordGetGet,
+		description: descriptiondomainZoneRecordGetGet,
+	},
+	{
+		name: 'Get Redirection Object Properties',
+		value: 'domainZoneRedirectionGetGet',
+		action: 'Get redirection object properties',
+		execute: executedomainZoneRedirectionGetGet,
+		description: descriptiondomainZoneRedirectionGetGet,
+	},
+	{
+		name: 'Get Service Information (Service)',
+		value: 'domainServiceInfosGetGet',
+		action: 'Get service information (Service)',
+		execute: executedomainServiceInfosGetGet,
+		description: descriptiondomainServiceInfosGetGet,
+	},
+	{
+		name: 'Get Service Information (Zone)',
+		value: 'domainZoneServiceInfosGetGet',
+		action: 'Get service information (Zone)',
+		execute: executedomainZoneServiceInfosGetGet,
+		description: descriptiondomainZoneServiceInfosGetGet,
+	},
+	{
+		name: 'Get the List of Managed Domain Names',
+		value: 'domainListGet',
+		action: 'Get the list of managed domain names',
+		execute: executedomainListGet,
+		description: descriptiondomainListGet,
+	},
+	{
+		name: 'Get This Glue Record',
+		value: 'domainGlueRecordGetGet',
+		action: 'Get this glue record',
+		execute: executedomainGlueRecordGetGet,
+		description: descriptiondomainGlueRecordGetGet,
+	},
+	{
+		name: 'Get This Name Server Configuration',
+		value: 'domainNameServerGetGet',
+		action: 'Get this name server configuration',
+		execute: executedomainNameServerGetGet,
+		description: descriptiondomainNameServerGetGet,
+	},
+	{
+		name: 'Get This Object Properties',
+		value: 'domainZoneOptionServiceInfosGetGet',
+		action: 'Get this object properties',
+		execute: executedomainZoneOptionServiceInfosGetGet,
+		description: descriptiondomainZoneOptionServiceInfosGetGet,
+	},
+	{
+		name: 'Get Zone Capabilities',
+		value: 'domainZoneCapabilitiesGetGet',
+		action: 'Get zone capabilities',
+		execute: executedomainZoneCapabilitiesGetGet,
+		description: descriptiondomainZoneCapabilitiesGetGet,
+	},
+	{
+		name: 'Get Zone Option',
+		value: 'domainZoneOptionGetGet',
+		action: 'Get zone option',
+		execute: executedomainZoneOptionGetGet,
+		description: descriptiondomainZoneOptionGetGet,
+	},
+	{
+		name: 'Get Zone SOA',
+		value: 'domainZoneSoaGetGet',
+		action: 'Get zone SOA',
+		execute: executedomainZoneSoaGetGet,
+		description: descriptiondomainZoneSoaGetGet,
+	},
+	{
+		name: 'Get Zone Status',
+		value: 'domainZoneStatusGetGet',
+		action: 'Get zone status',
+		execute: executedomainZoneStatusGetGet,
+		description: descriptiondomainZoneStatusGetGet,
+	},
+	{
+		name: 'Import a DNS Zone From a Zone File',
+		value: 'domainZoneImportPost',
+		action: 'Import a DNS zone from a zone file',
+		execute: executedomainZoneImportPost,
+		description: descriptiondomainZoneImportPost,
+	},
+	{
+		name: 'Launch a Contact Change Procedure (Service)',
+		value: 'domainChangeContactPost',
+		action: 'Launch a contact change procedure (Service)',
+		execute: executedomainChangeContactPost,
+		description: descriptiondomainChangeContactPost,
+	},
+	{
+		name: 'Launch a Contact Change Procedure (Zone)',
+		value: 'domainZoneChangeContactPost',
+		action: 'Launch a contact change procedure (Zone)',
+		execute: executedomainZoneChangeContactPost,
+		description: descriptiondomainZoneChangeContactPost,
+	},
+	{
+		name: 'List All Contacts',
+		value: 'domainContactListGet',
+		action: 'List all contacts',
+		execute: executedomainContactListGet,
+		description: descriptiondomainContactListGet,
+	},
+	{
+		name: 'List All Domain Name Resources',
+		value: 'domainNameListGet',
+		action: 'List all domain name resources',
+		execute: executedomainNameListGet,
+		description: descriptiondomainNameListGet,
+	},
+	{
+		name: 'List All Domain Tasks',
+		value: 'domainTaskListGet',
+		action: 'List all domain tasks',
+		execute: executedomainTaskListGet,
+		description: descriptiondomainTaskListGet,
+	},
+	{
+		name: 'List All Extensions',
+		value: 'domainExtensionsListGet',
+		action: 'List all extensions',
+		execute: executedomainExtensionsListGet,
+		description: descriptiondomainExtensionsListGet,
+	},
+	{
+		name: 'List All SMD Files',
+		value: 'domainDataSmdListGet',
+		action: 'List all SMD files',
+		execute: executedomainDataSmdListGet,
+		description: descriptiondomainDataSmdListGet,
+	},
+	{
+		name: 'List All the AllDom Resources',
+		value: 'domainAlldomListGet',
+		action: 'List all the AllDom resources',
+		execute: executedomainAlldomListGet,
+		description: descriptiondomainAlldomListGet,
+	},
+	{
+		name: 'List All the Extensions for a Specific Country',
+		value: 'domainDataExtensionListGet',
+		action: 'List all the extensions for a specific country',
+		execute: executedomainDataExtensionListGet,
+		description: descriptiondomainDataExtensionListGet,
+	},
+	{
+		name: 'List dnsZone Services',
+		value: 'domainZoneListGet',
+		action: 'List dnsZone services',
+		execute: executedomainZoneListGet,
+		description: descriptiondomainZoneListGet,
+	},
+	{
+		name: 'List Domain Options',
+		value: 'domainOptionListGet',
+		action: 'List domain options',
+		execute: executedomainOptionListGet,
+		description: descriptiondomainOptionListGet,
+	},
+	{
+		name: 'List Extensions with Their Pricing Attributes',
+		value: 'domainExtensionsPricingAttributesListGet',
+		action: 'List extensions with their pricing attributes',
+		execute: executedomainExtensionsPricingAttributesListGet,
+		description: descriptiondomainExtensionsPricingAttributesListGet,
+	},
+	{
+		name: 'List Highlighted Extensions, Ordered by Decreased Importance',
+		value: 'domainExtensionsHighlightedListGet',
+		action: 'List highlighted extensions, ordered by decreased importance',
+		execute: executedomainExtensionsHighlightedListGet,
+		description: descriptiondomainExtensionsHighlightedListGet,
+	},
+	{
+		name: 'List Login',
+		value: 'domainZoneDynHostLoginListGet',
+		action: 'List login',
+		execute: executedomainZoneDynHostLoginListGet,
+		description: descriptiondomainZoneDynHostLoginListGet,
+	},
+	{
+		name: 'List of Current Name Servers',
+		value: 'domainNameServerListGet',
+		action: 'List of current name servers',
+		execute: executedomainNameServerListGet,
+		description: descriptiondomainNameServerListGet,
+	},
+	{
+		name: 'List of Glue Records',
+		value: 'domainGlueRecordListGet',
+		action: 'List of glue records',
+		execute: executedomainGlueRecordListGet,
+		description: descriptiondomainGlueRecordListGet,
+	},
+	{
+		name: 'List Record (DynHost)',
+		value: 'domainZoneDynHostRecordListGet',
+		action: 'List record (DynHost)',
+		execute: executedomainZoneDynHostRecordListGet,
+		description: descriptiondomainZoneDynHostRecordListGet,
+	},
+	{
+		name: 'List Record (Zone)',
+		value: 'domainZoneRecordListGet',
+		action: 'List record (Zone)',
+		execute: executedomainZoneRecordListGet,
+		description: descriptiondomainZoneRecordListGet,
+	},
+	{
+		name: 'List Redirections',
+		value: 'domainZoneRedirectionListGet',
+		action: 'List redirections',
+		execute: executedomainZoneRedirectionListGet,
+		description: descriptiondomainZoneRedirectionListGet,
+	},
+	{
+		name: 'List Tasks Related to a Domain Name Resource',
+		value: 'domainNameTaskListGet',
+		action: 'List tasks related to a domain name resource',
+		execute: executedomainNameTaskListGet,
+		description: descriptiondomainNameTaskListGet,
+	},
+	{
+		name: 'List Tasks Related to an AllDom Resource',
+		value: 'domainAlldomTaskListGet',
+		action: 'List tasks related to an AllDom resource',
+		execute: executedomainAlldomTaskListGet,
+		description: descriptiondomainAlldomTaskListGet,
+	},
+	{
+		name: 'List Zone Histories',
+		value: 'domainZoneHistoryListGet',
+		action: 'List zone histories',
+		execute: executedomainZoneHistoryListGet,
+		description: descriptiondomainZoneHistoryListGet,
+	},
+	{
+		name: 'List Zone Options',
+		value: 'domainZoneOptionListGet',
+		action: 'List zone options',
+		execute: executedomainZoneOptionListGet,
+		description: descriptiondomainZoneOptionListGet,
+	},
+	{
+		name: 'List Zone Tasks',
+		value: 'domainZoneTaskListGet',
+		action: 'List zone tasks',
+		execute: executedomainZoneTaskListGet,
+		description: descriptiondomainZoneTaskListGet,
+	},
+	{
+		name: 'Refresh a DNS Zone',
+		value: 'domainZoneRefreshPost',
+		action: 'Refresh a DNS zone',
+		execute: executedomainZoneRefreshPost,
+		description: descriptiondomainZoneRefreshPost,
+	},
+	{
+		name: 'Refresh an Obfuscated Emails Configuration with New Values',
+		value: 'domainConfigurationsObfuscatedEmailsRefreshPost',
+		action: 'Refresh an obfuscated emails configuration with new values',
+		execute: executedomainConfigurationsObfuscatedEmailsRefreshPost,
+		description: descriptiondomainConfigurationsObfuscatedEmailsRefreshPost,
+	},
+	{
+		name: 'Relaunch the Task',
+		value: 'domainTaskRelaunchPost',
+		action: 'Relaunch the task',
+		execute: executedomainTaskRelaunchPost,
+		description: descriptiondomainTaskRelaunchPost,
+	},
+	{
+		name: 'Remove a Given Option',
+		value: 'domainOptionDeleteDelete',
+		action: 'Remove a given option',
+		execute: executedomainOptionDeleteDelete,
+		description: descriptiondomainOptionDeleteDelete,
+	},
+	{
+		name: 'Reset a DNS Zone',
+		value: 'domainZoneResetPost',
+		action: 'Reset a DNS zone',
+		execute: executedomainZoneResetPost,
+		description: descriptiondomainZoneResetPost,
+	},
+	{
+		name: 'Restart a Zone Task',
+		value: 'domainZoneTaskRelaunchPost',
+		action: 'Restart a zone task',
+		execute: executedomainZoneTaskRelaunchPost,
+		description: descriptiondomainZoneTaskRelaunchPost,
+	},
+	{
+		name: 'Restore a Backup Point',
+		value: 'domainZoneHistoryRestorePost',
+		action: 'Restore a backup point',
+		execute: executedomainZoneHistoryRestorePost,
+		description: descriptiondomainZoneHistoryRestorePost,
+	},
+	{
+		name: 'Retrieve Claim Notices Associated to a Domain',
+		value: 'domainDataClaimNoticeGetGet',
+		action: 'Retrieve claim notices associated to a domain',
+		execute: executedomainDataClaimNoticeGetGet,
+		description: descriptiondomainDataClaimNoticeGetGet,
+	},
+	{
+		name: 'Retrieve Data About the Options Associated to a Domain',
+		value: 'domainOptionsGetGet',
+		action: 'Retrieve data about the options associated to a domain',
+		execute: executedomainOptionsGetGet,
+		description: descriptiondomainOptionsGetGet,
+	},
+	{
+		name: 'Retrieve Emails Obfuscation Rule',
+		value: 'domainRulesEmailsObfuscationGetGet',
+		action: 'Retrieve emails obfuscation rule',
+		execute: executedomainRulesEmailsObfuscationGetGet,
+		description: descriptiondomainRulesEmailsObfuscationGetGet,
+	},
+	{
+		name: 'Retrieve Obfuscated Emails Configuration',
+		value: 'domainConfigurationsObfuscatedEmailsGetGet',
+		action: 'Retrieve obfuscated emails configuration',
+		execute: executedomainConfigurationsObfuscatedEmailsGetGet,
+		description: descriptiondomainConfigurationsObfuscatedEmailsGetGet,
+	},
+	{
+		name: 'Retrieve Optin Configuration',
+		value: 'domainConfigurationsOptinGetGet',
+		action: 'Retrieve optin configuration',
+		execute: executedomainConfigurationsOptinGetGet,
+		description: descriptiondomainConfigurationsOptinGetGet,
+	},
+	{
+		name: 'Retrieve Optin Rule',
+		value: 'domainRulesOptinGetGet',
+		action: 'Retrieve optin rule',
+		execute: executedomainRulesOptinGetGet,
+		description: descriptiondomainRulesOptinGetGet,
+	},
+	{
+		name: 'Retrieve Registry Configuration for an Extension',
+		value: 'domainExtensionsRegistryConfigurationsGetGet',
+		action: 'Retrieve registry configuration for an extension',
+		execute: executedomainExtensionsRegistryConfigurationsGetGet,
+		description: descriptiondomainExtensionsRegistryConfigurationsGetGet,
+	},
+	{
+		name: 'Return authInfo Code if the Domain Is Unlocked',
+		value: 'domainAuthInfoGetGet',
+		action: 'Return authInfo code if the domain is unlocked',
+		execute: executedomainAuthInfoGetGet,
+		description: descriptiondomainAuthInfoGetGet,
+	},
+	{
+		name: 'Return the List of All .Uk Registrars',
+		value: 'domainUkRegistrarsListGet',
+		action: 'Return the list of all .uk registrars',
+		execute: executedomainUkRegistrarsListGet,
+		description: descriptiondomainUkRegistrarsListGet,
+	},
+	{
+		name: 'Save a New Obfuscated Emails Configuration',
+		value: 'domainConfigurationsObfuscatedEmailsUpdatePut',
+		action: 'Save a new obfuscated emails configuration',
+		execute: executedomainConfigurationsObfuscatedEmailsUpdatePut,
+		description: descriptiondomainConfigurationsObfuscatedEmailsUpdatePut,
+	},
+	{
+		name: 'Save a New Optin Configuration',
+		value: 'domainConfigurationsOptinUpdatePut',
+		action: 'Save a new optin configuration',
+		execute: executedomainConfigurationsOptinUpdatePut,
+		description: descriptiondomainConfigurationsOptinUpdatePut,
+	},
+	{
+		name: 'Schedule an Outgoing Transfer Task for This Domain (.uk Only)',
+		value: 'domainUkOutgoingTransferPost',
+		action: 'Schedule an outgoing transfer task for this domain (.uk only)',
+		execute: executedomainUkOutgoingTransferPost,
+		description: descriptiondomainUkOutgoingTransferPost,
+	},
+	{
+		name: 'Update a Contact',
+		value: 'domainContactUpdatePut',
+		action: 'Update a contact',
+		execute: executedomainContactUpdatePut,
+		description: descriptiondomainContactUpdatePut,
+	},
+	{
+		name: 'Update a SMD File',
+		value: 'domainDataSmdUpdatePut',
+		action: 'Update a SMD file',
+		execute: executedomainDataSmdUpdatePut,
+		description: descriptiondomainDataSmdUpdatePut,
+	},
+	{
+		name: 'Update an Existing Domain Name',
+		value: 'domainNameUpdatePut',
+		action: 'Update an existing domain name',
+		execute: executedomainNameUpdatePut,
+		description: descriptiondomainNameUpdatePut,
+	},
+	{
+		name: 'Update DNS Servers',
+		value: 'domainNameServersUpdatePost',
+		action: 'Update DNS servers',
+		execute: executedomainNameServersUpdatePost,
+		description: descriptiondomainNameServersUpdatePost,
+	},
+	{
+		name: 'Update DS Records',
+		value: 'domainDsRecordCreatePost',
+		action: 'Update DS records',
+		execute: executedomainDsRecordCreatePost,
+		description: descriptiondomainDsRecordCreatePost,
+	},
+	{
+		name: 'Update Service Information (Service)',
+		value: 'domainServiceInfosUpdatePut',
+		action: 'Update service information (Service)',
+		execute: executedomainServiceInfosUpdatePut,
+		description: descriptiondomainServiceInfosUpdatePut,
+	},
+	{
+		name: 'Update Service Information (Zone)',
+		value: 'domainZoneServiceInfosUpdatePut',
+		action: 'Update service information (Zone)',
+		execute: executedomainZoneServiceInfosUpdatePut,
+		description: descriptiondomainZoneServiceInfosUpdatePut,
+	},
+	{
+		name: 'Update the Glue Record',
+		value: 'domainGlueRecordUpdatePost',
+		action: 'Update the glue record',
+		execute: executedomainGlueRecordUpdatePost,
+		description: descriptiondomainGlueRecordUpdatePost,
+	},
+	{
+		name: 'Update Zone SOA',
+		value: 'domainZoneSoaUpdatePut',
+		action: 'Update zone SOA',
+		execute: executedomainZoneSoaUpdatePut,
+		description: descriptiondomainZoneSoaUpdatePut,
+	},
+	{
+		name: 'Validate a Rule Data for a Specified Domain',
+		value: 'domainConfigurationRuleCheckPost',
+		action: 'Validate a rule data for a specified domain',
+		execute: executedomainConfigurationRuleCheckPost,
+		description: descriptiondomainConfigurationRuleCheckPost,
+	},
+	],
+);
 
-	// Operation picker (alphabetical)
-	props.push({
-		displayName: 'Operation',
-		name: 'domainOperation',
-		type: 'options',
-		noDataExpression: true,
-		default: 'domainZoneExportGetGet',
-		options: [
-			{
-				name: 'Accelerate a Zone Task',
-				value: 'domainZoneTaskAcceleratePost',
-				action: 'Accelerate a zone task',
-			},
-			{
-				name: 'Accelerate the Task',
-				value: 'domainTaskAcceleratePost',
-				action: 'Accelerate the task',
-			},
-			{
-				name: 'Add New Name Server',
-				value: 'domainNameServerCreatePost',
-				action: 'Add new name server',
-			},
-			{
-				name: 'Alter Login Object Properties',
-				value: 'domainZoneDynHostLoginUpdatePut',
-				action: 'Alter login object properties',
-			},
-			{
-				name: 'Alter Record Object Properties',
-				value: 'domainZoneDynHostRecordUpdatePut',
-				action: 'Alter record object properties',
-			},
-			{
-				name: "Alter Record Object Properties (Don't Forget to Refresh the Zone)",
-				value: 'domainZoneRecordUpdatePut',
-				action: "Alter record object properties (Don't forget to refresh the zone)",
-			},
-			{
-				name: 'Alter Redirection Object Properties',
-				value: 'domainZoneRedirectionUpdatePut',
-				action: 'Alter redirection object properties',
-			},
-			{
-				name: 'Alter This Object Properties',
-				value: 'domainZoneOptionServiceInfosUpdatePut',
-				action: 'Alter this object properties',
-			},
-			{
-				name: 'Approve Outgoing Transfer for a Domain',
-				value: 'domainOutgoingTransferApprovePost',
-				action: 'Approve Outgoing Transfer for a domain',
-			},
-			{
-				name: 'Ask for the Termination of Your Service',
-				value: 'domainZoneTerminatePost',
-				action: 'Ask for the termination of your service',
-			},
-			{
-				name: 'Cancel a Zone Task',
-				value: 'domainZoneTaskCancelPost',
-				action: 'Cancel a zone task',
-			},
-			{ name: 'Cancel the Task', value: 'domainTaskCancelPost', action: 'Cancel the task' },
-			{
-				name: 'Change Password of the DynHost Login',
-				value: 'domainZoneDynHostLoginChangeContactPost',
-				action: 'Change password of the DynHost login',
-			},
-			{
-				name: 'Confirm Service Termination',
-				value: 'domainZoneConfirmTerminationPost',
-				action: 'Confirm service termination',
-			},
-			{ name: 'Create a Contact', value: 'domainContactCreatePost', action: 'Create a contact' },
-			{
-				name: 'Create a Glue Record',
-				value: 'domainGlueRecordCreatePost',
-				action: 'Create a glue record',
-			},
-			{
-				name: 'Create a New Login',
-				value: 'domainZoneDynHostLoginCreatePost',
-				action: 'Create a new login',
-			},
-			{
-				name: 'Create a New Record',
-				value: 'domainZoneDynHostRecordCreatePost',
-				action: 'Create a new record',
-			},
-			{
-				name: "Create a New Record (Don't Forget to Refresh the Zone)",
-				value: 'domainZoneRecordCreatePost',
-				action: "Create a new record (Don't forget to refresh the zone)",
-			},
-			{
-				name: "Create a New Redirection (Don't Forget to Refresh the Zone)",
-				value: 'domainZoneRedirectionCreatePost',
-				action: "Create a new redirection (Don't forget to refresh the zone)",
-			},
-			{ name: 'Create a SMD File', value: 'domainDataSmdCreatePost', action: 'Create a SMD file' },
-			{
-				name: 'Delete a Name Server',
-				value: 'domainNameServerDeleteDelete',
-				action: 'Delete a name server',
-			},
-			{
-				name: 'Delete a SMD File',
-				value: 'domainDataSmdDeleteDelete',
-				action: 'Delete a SMD file',
-			},
-			{
-				name: 'Delete Login Object',
-				value: 'domainZoneDynHostLoginDeleteDelete',
-				action: 'Delete login object',
-			},
-			{
-				name: 'Delete Record Object',
-				value: 'domainZoneDynHostRecordDeleteDelete',
-				action: 'Delete record object',
-			},
-			{
-				name: "Delete Record Object (Don't Forget to Refresh the Zone)",
-				value: 'domainZoneRecordDeleteDelete',
-				action: "Delete record object (Don't forget to refresh the zone)",
-			},
-			{
-				name: "Delete Redirection Object (Don't Forget to Refresh the Zone)",
-				value: 'domainZoneRedirectionDeleteDelete',
-				action: "Delete redirection object (Don't forget to refresh the zone)",
-			},
-			{
-				name: 'Delete the Glue Record',
-				value: 'domainGlueRecordDeleteDelete',
-				action: 'Delete the glue record',
-			},
-			{ name: 'Disable DNSSEC', value: 'domainZoneDnssecDeleteDelete', action: 'Disable DNSSEC' },
-			{
-				name: 'Edit Domain Name Properties',
-				value: 'domainUpdatePut',
-				action: 'Edit domain name properties',
-			},
-			{ name: 'Enable DNSSEC', value: 'domainZoneDnssecEnablePost', action: 'Enable DNSSEC' },
-			{ name: 'Export DNS Zone', value: 'domainZoneExportGetGet', action: 'Export DNS zone' },
-			{ name: 'Get a dnsZone Service', value: 'domainZoneGetGet', action: 'Get a dnsZone service' },
-			{
-				name: 'Get a Domain Name Resource',
-				value: 'domainNameGetGet',
-				action: 'Get a domain name resource',
-			},
-			{
-				name: 'Get a Specific Task Related to a Domain Name Resource',
-				value: 'domainNameTaskGetGet',
-				action: 'Get a specific task related to a domain name resource',
-			},
-			{
-				name: 'Get a Specific Task Related to an AllDom Resource',
-				value: 'domainAlldomTaskGetGet',
-				action: 'Get a specific task related to an AllDom resource',
-			},
-			{
-				name: 'Get a Zone DNSSEC Status',
-				value: 'domainZoneDnssecGetGet',
-				action: 'Get a zone DNSSEC status',
-			},
-			{
-				name: 'Get a Zone History',
-				value: 'domainZoneHistoryGetGet',
-				action: 'Get a zone history',
-			},
-			{ name: 'Get a Zone Task', value: 'domainZoneTaskGetGet', action: 'Get a zone task' },
-			{
-				name: 'Get an AllDom Resource',
-				value: 'domainAlldomGetGet',
-				action: 'Get an AllDom resource',
-			},
-			{ name: 'Get an Extension', value: 'domainExtensionsGetGet', action: 'Get an extension' },
-			{
-				name: 'Get Configuration Rule Applied for a Domain in a Given Action',
-				value: 'domainConfigurationRuleListGet',
-				action: 'Get configuration rule applied for a domain in a given action',
-			},
-			{
-				name: 'Get Details About a Contact',
-				value: 'domainContactGetGet',
-				action: 'Get details about a contact',
-			},
-			{
-				name: 'Get Details About a Domain Task',
-				value: 'domainTaskGetGet',
-				action: 'Get details about a domain task',
-			},
-			{
-				name: 'Get Details About a SMD File',
-				value: 'domainDataSmdGetGet',
-				action: 'Get details about a SMD file',
-			},
-			{
-				name: 'Get Details on This Domain Option',
-				value: 'domainOptionGetGet',
-				action: 'Get details on this domain option',
-			},
-			{
-				name: 'Get Details on This DS Record',
-				value: 'domainDsRecordGetGet',
-				action: 'Get details on this DS Record',
-			},
-			{
-				name: 'Get Domain Name Information',
-				value: 'domainGetGet',
-				action: 'Get domain name information',
-			},
-			{
-				name: 'Get Login Object Properties',
-				value: 'domainZoneDynHostLoginGetGet',
-				action: 'Get login object properties',
-			},
-			{
-				name: 'Get Name Server Status',
-				value: 'domainNameServerStatusGetGet',
-				action: 'Get name server status',
-			},
-			{
-				name: 'Get Record Object Properties (DynHost)',
-				value: 'domainZoneDynHostRecordGetGet',
-				action: 'Get record object properties (DynHost)',
-			},
-			{
-				name: 'Get Record Object Properties (Zone)',
-				value: 'domainZoneRecordGetGet',
-				action: 'Get record object properties (Zone)',
-			},
-			{
-				name: 'Get Redirection Object Properties',
-				value: 'domainZoneRedirectionGetGet',
-				action: 'Get redirection object properties',
-			},
-			{
-				name: 'Get Service Information (Service)',
-				value: 'domainServiceInfosGetGet',
-				action: 'Get service information (Service)',
-			},
-			{
-				name: 'Get Service Information (Zone)',
-				value: 'domainZoneServiceInfosGetGet',
-				action: 'Get service information (Zone)',
-			},
-			{
-				name: 'Get the List of Managed Domain Names',
-				value: 'domainListGet',
-				action: 'Get the list of managed domain names',
-			},
-			{
-				name: 'Get This Glue Record',
-				value: 'domainGlueRecordGetGet',
-				action: 'Get this glue record',
-			},
-			{
-				name: 'Get This Name Server Configuration',
-				value: 'domainNameServerGetGet',
-				action: 'Get this name server configuration',
-			},
-			{
-				name: 'Get This Object Properties',
-				value: 'domainZoneOptionServiceInfosGetGet',
-				action: 'Get this object properties',
-			},
-			{
-				name: 'Get Zone Capabilities',
-				value: 'domainZoneCapabilitiesGetGet',
-				action: 'Get zone capabilities',
-			},
-			{ name: 'Get Zone Option', value: 'domainZoneOptionGetGet', action: 'Get zone option' },
-			{ name: 'Get Zone SOA', value: 'domainZoneSoaGetGet', action: 'Get zone SOA' },
-			{ name: 'Get Zone Status', value: 'domainZoneStatusGetGet', action: 'Get zone status' },
-			{
-				name: 'Import a DNS Zone From a Zone File',
-				value: 'domainZoneImportPost',
-				action: 'Import a DNS zone from a zone file',
-			},
-			{
-				name: 'Launch a Contact Change Procedure (Service)',
-				value: 'domainChangeContactPost',
-				action: 'Launch a contact change procedure (Service)',
-			},
-			{
-				name: 'Launch a Contact Change Procedure (Zone)',
-				value: 'domainZoneChangeContactPost',
-				action: 'Launch a contact change procedure (Zone)',
-			},
-			{ name: 'List All Contacts', value: 'domainContactListGet', action: 'List all contacts' },
-			{
-				name: 'List All Domain Name Resources',
-				value: 'domainNameListGet',
-				action: 'List all domain name resources',
-			},
-			{
-				name: 'List All Domain Tasks',
-				value: 'domainTaskListGet',
-				action: 'List all domain tasks',
-			},
-			{
-				name: 'List All Extensions',
-				value: 'domainExtensionsListGet',
-				action: 'List all extensions',
-			},
-			{ name: 'List All SMD Files', value: 'domainDataSmdListGet', action: 'List all SMD files' },
-			{
-				name: 'List All the AllDom Resources',
-				value: 'domainAlldomListGet',
-				action: 'List all the AllDom resources',
-			},
-			{
-				name: 'List All the Extensions for a Specific Country',
-				value: 'domainDataExtensionListGet',
-				action: 'List all the extensions for a specific country',
-			},
-			{
-				name: 'List dnsZone Services',
-				value: 'domainZoneListGet',
-				action: 'List dnsZone services',
-			},
-			{ name: 'List Domain Options', value: 'domainOptionListGet', action: 'List domain options' },
-			{
-				name: 'List Extensions with Their Pricing Attributes',
-				value: 'domainExtensionsPricingAttributesListGet',
-				action: 'List extensions with their pricing attributes',
-			},
-			{
-				name: "List Extensions, Grouped by Category Types (Like 'Thematic', 'Geolocalization') and Category Names (Like 'Europe')",
-				value: 'domainExtensionsByCategoryListGet',
-				action:
-					"List extensions, grouped by category types (like 'thematic', 'geolocalization') and category names (like 'europe')",
-			},
-			{
-				name: 'List Highlighted Extensions, Ordered by Decreased Importance',
-				value: 'domainExtensionsHighlightedListGet',
-				action: 'List highlighted extensions, ordered by decreased importance',
-			},
-			{ name: 'List Login', value: 'domainZoneDynHostLoginListGet', action: 'List login' },
-			{
-				name: 'List of Current Name Servers',
-				value: 'domainNameServerListGet',
-				action: 'List of current name servers',
-			},
-			{
-				name: "List of Domain's DS Records",
-				value: 'domainDsRecordListGet',
-				action: "List of domain's DS Records",
-			},
-			{
-				name: 'List of Glue Records',
-				value: 'domainGlueRecordListGet',
-				action: 'List of glue records',
-			},
-			{
-				name: 'List Record (DynHost)',
-				value: 'domainZoneDynHostRecordListGet',
-				action: 'List record (DynHost)',
-			},
-			{
-				name: 'List Record (Zone)',
-				value: 'domainZoneRecordListGet',
-				action: 'List record (Zone)',
-			},
-			{
-				name: 'List Redirections',
-				value: 'domainZoneRedirectionListGet',
-				action: 'List redirections',
-			},
-			{
-				name: 'List Tasks Related to a Domain Name Resource',
-				value: 'domainNameTaskListGet',
-				action: 'List tasks related to a domain name resource',
-			},
-			{
-				name: 'List Tasks Related to an AllDom Resource',
-				value: 'domainAlldomTaskListGet',
-				action: 'List tasks related to an AllDom resource',
-			},
-			{
-				name: 'List Zone Histories',
-				value: 'domainZoneHistoryListGet',
-				action: 'List zone histories',
-			},
-			{ name: 'List Zone Options', value: 'domainZoneOptionListGet', action: 'List zone options' },
-			{ name: 'List Zone Tasks', value: 'domainZoneTaskListGet', action: 'List zone tasks' },
-			{ name: 'Refresh a DNS Zone', value: 'domainZoneRefreshPost', action: 'Refresh a DNS zone' },
-			{
-				name: 'Refresh an Obfuscated Emails Configuration with New Values',
-				value: 'domainConfigurationsObfuscatedEmailsRefreshPost',
-				action: 'Refresh an obfuscated emails configuration with new values',
-			},
-			{ name: 'Relaunch the Task', value: 'domainTaskRelaunchPost', action: 'Relaunch the task' },
-			{
-				name: 'Remove a Given Option',
-				value: 'domainOptionDeleteDelete',
-				action: 'Remove a given option',
-			},
-			{ name: 'Reset a DNS Zone', value: 'domainZoneResetPost', action: 'Reset a DNS zone' },
-			{
-				name: 'Restart a Zone Task',
-				value: 'domainZoneTaskRelaunchPost',
-				action: 'Restart a zone task',
-			},
-			{
-				name: 'Restore a Backup Point',
-				value: 'domainZoneHistoryRestorePost',
-				action: 'Restore a backup point',
-			},
-			{
-				name: 'Retrieve Claim Notices Associated to a Domain',
-				value: 'domainDataClaimNoticeGetGet',
-				action: 'Retrieve claim notices associated to a domain',
-			},
-			{
-				name: 'Retrieve Data About the Options Associated to a Domain',
-				value: 'domainOptionsGetGet',
-				action: 'Retrieve data about the options associated to a domain',
-			},
-			{
-				name: 'Retrieve Emails Obfuscation Rule',
-				value: 'domainRulesEmailsObfuscationGetGet',
-				action: 'Retrieve emails obfuscation rule',
-			},
-			{
-				name: 'Retrieve Obfuscated Emails Configuration',
-				value: 'domainConfigurationsObfuscatedEmailsGetGet',
-				action: 'Retrieve obfuscated emails configuration',
-			},
-			{
-				name: 'Retrieve Optin Configuration',
-				value: 'domainConfigurationsOptinGetGet',
-				action: 'Retrieve optin configuration',
-			},
-			{
-				name: 'Retrieve Optin Rule',
-				value: 'domainRulesOptinGetGet',
-				action: 'Retrieve optin rule',
-			},
-			{
-				name: 'Retrieve Registry Configuration for an Extension',
-				value: 'domainExtensionsRegistryConfigurationsGetGet',
-				action: 'Retrieve registry configuration for an extension',
-			},
-			{
-				name: 'Return authInfo Code if the Domain Is Unlocked',
-				value: 'domainAuthInfoGetGet',
-				action: 'Return authInfo code if the domain is unlocked',
-			},
-			{
-				name: 'Return the List of All .Uk Registrars',
-				value: 'domainUkRegistrarsListGet',
-				action: 'Return the list of all .uk registrars',
-			},
-			{
-				name: 'Save a New Obfuscated Emails Configuration',
-				value: 'domainConfigurationsObfuscatedEmailsUpdatePut',
-				action: 'Save a new obfuscated emails configuration',
-			},
-			{
-				name: 'Save a New Optin Configuration',
-				value: 'domainConfigurationsOptinUpdatePut',
-				action: 'Save a new optin configuration',
-			},
-			{
-				name: 'Schedule an Outgoing Transfer Task for This Domain (.uk Only)',
-				value: 'domainUkOutgoingTransferPost',
-				action: 'Schedule an outgoing transfer task for this domain (.uk only)',
-			},
-			{ name: 'Update a Contact', value: 'domainContactUpdatePut', action: 'Update a contact' },
-			{ name: 'Update a SMD File', value: 'domainDataSmdUpdatePut', action: 'Update a SMD file' },
-			{
-				name: 'Update an Existing Domain Name',
-				value: 'domainNameUpdatePut',
-				action: 'Update an existing domain name',
-			},
-			{
-				name: 'Update DNS Servers',
-				value: 'domainNameServersUpdatePost',
-				action: 'Update DNS servers',
-			},
-			{ name: 'Update DS Records', value: 'domainDsRecordCreatePost', action: 'Update DS records' },
-			{
-				name: 'Update Service Information (Service)',
-				value: 'domainServiceInfosUpdatePut',
-				action: 'Update service information (Service)',
-			},
-			{
-				name: 'Update Service Information (Zone)',
-				value: 'domainZoneServiceInfosUpdatePut',
-				action: 'Update service information (Zone)',
-			},
-			{
-				name: 'Update the Glue Record',
-				value: 'domainGlueRecordUpdatePost',
-				action: 'Update the glue record',
-			},
-			{ name: 'Update Zone SOA', value: 'domainZoneSoaUpdatePut', action: 'Update zone SOA' },
-			{
-				name: 'Validate a Rule Data for a Specified Domain',
-				value: 'domainConfigurationRuleCheckPost',
-				action: 'Validate a rule data for a specified domain',
-			},
-		],
-	});
-
-	props.push(
-		...(descriptiondomainListGet({
-			show: {
-				domainOperation: ['domainListGet'],
-			},
-		}) as INodeProperties[]),
-		...(descriptiondomainConfigurationRuleListGet({
-			show: {
-				domainOperation: ['domainConfigurationRuleListGet'],
-			},
-		}) as INodeProperties[]),
-		...(descriptiondomainConfigurationRuleCheckPost({
-			show: {
-				domainOperation: ['domainConfigurationRuleCheckPost'],
-			},
-		}) as INodeProperties[]),
-		...(descriptiondomainContactListGet({
-			show: {
-				domainOperation: ['domainContactListGet'],
-			},
-		}) as INodeProperties[]),
-		...(descriptiondomainContactCreatePost({
-			show: {
-				domainOperation: ['domainContactCreatePost'],
-			},
-		}) as INodeProperties[]),
-		...(descriptiondomainContactGetGet({
-			show: {
-				domainOperation: ['domainContactGetGet'],
-			},
-		}) as INodeProperties[]),
-		...(descriptiondomainContactUpdatePut({
-			show: {
-				domainOperation: ['domainContactUpdatePut'],
-			},
-		}) as INodeProperties[]),
-		...(descriptiondomainDataClaimNoticeGetGet({
-			show: {
-				domainOperation: ['domainDataClaimNoticeGetGet'],
-			},
-		}) as INodeProperties[]),
-		...(descriptiondomainDataExtensionListGet({
-			show: {
-				domainOperation: ['domainDataExtensionListGet'],
-			},
-		}) as INodeProperties[]),
-		...(descriptiondomainDataSmdListGet({
-			show: {
-				domainOperation: ['domainDataSmdListGet'],
-			},
-		}) as INodeProperties[]),
-		...(descriptiondomainDataSmdCreatePost({
-			show: {
-				domainOperation: ['domainDataSmdCreatePost'],
-			},
-		}) as INodeProperties[]),
-		...(descriptiondomainDataSmdDeleteDelete({
-			show: {
-				domainOperation: ['domainDataSmdDeleteDelete'],
-			},
-		}) as INodeProperties[]),
-		...(descriptiondomainDataSmdGetGet({
-			show: {
-				domainOperation: ['domainDataSmdGetGet'],
-			},
-		}) as INodeProperties[]),
-		...(descriptiondomainDataSmdUpdatePut({
-			show: {
-				domainOperation: ['domainDataSmdUpdatePut'],
-			},
-		}) as INodeProperties[]),
-		...(descriptiondomainExtensionsListGet({
-			show: {
-				domainOperation: ['domainExtensionsListGet'],
-			},
-		}) as INodeProperties[]),
-		...(descriptiondomainExtensionsByCategoryListGet({
-			show: {
-				domainOperation: ['domainExtensionsByCategoryListGet'],
-			},
-		}) as INodeProperties[]),
-		...(descriptiondomainExtensionsHighlightedListGet({
-			show: {
-				domainOperation: ['domainExtensionsHighlightedListGet'],
-			},
-		}) as INodeProperties[]),
-		...(descriptiondomainExtensionsPricingAttributesListGet({
-			show: {
-				domainOperation: ['domainExtensionsPricingAttributesListGet'],
-			},
-		}) as INodeProperties[]),
-		...(descriptiondomainExtensionsGetGet({
-			show: {
-				domainOperation: ['domainExtensionsGetGet'],
-			},
-		}) as INodeProperties[]),
-		...(descriptiondomainExtensionsRegistryConfigurationsGetGet({
-			show: {
-				domainOperation: ['domainExtensionsRegistryConfigurationsGetGet'],
-			},
-		}) as INodeProperties[]),
-		...(descriptiondomainZoneListGet({
-			show: {
-				domainOperation: ['domainZoneListGet'],
-			},
-		}) as INodeProperties[]),
-		...(descriptiondomainZoneGetGet({
-			show: {
-				domainOperation: ['domainZoneGetGet'],
-			},
-		}) as INodeProperties[]),
-		...(descriptiondomainZoneCapabilitiesGetGet({
-			show: {
-				domainOperation: ['domainZoneCapabilitiesGetGet'],
-			},
-		}) as INodeProperties[]),
-		...(descriptiondomainZoneChangeContactPost({
-			show: {
-				domainOperation: ['domainZoneChangeContactPost'],
-			},
-		}) as INodeProperties[]),
-		...(descriptiondomainZoneConfirmTerminationPost({
-			show: {
-				domainOperation: ['domainZoneConfirmTerminationPost'],
-			},
-		}) as INodeProperties[]),
-		...(descriptiondomainZoneDnssecDeleteDelete({
-			show: {
-				domainOperation: ['domainZoneDnssecDeleteDelete'],
-			},
-		}) as INodeProperties[]),
-		...(descriptiondomainZoneDnssecGetGet({
-			show: {
-				domainOperation: ['domainZoneDnssecGetGet'],
-			},
-		}) as INodeProperties[]),
-		...(descriptiondomainZoneDnssecEnablePost({
-			show: {
-				domainOperation: ['domainZoneDnssecEnablePost'],
-			},
-		}) as INodeProperties[]),
-		...(descriptiondomainZoneDynHostLoginListGet({
-			show: {
-				domainOperation: ['domainZoneDynHostLoginListGet'],
-			},
-		}) as INodeProperties[]),
-		...(descriptiondomainZoneDynHostLoginCreatePost({
-			show: {
-				domainOperation: ['domainZoneDynHostLoginCreatePost'],
-			},
-		}) as INodeProperties[]),
-		...(descriptiondomainZoneDynHostLoginDeleteDelete({
-			show: {
-				domainOperation: ['domainZoneDynHostLoginDeleteDelete'],
-			},
-		}) as INodeProperties[]),
-		...(descriptiondomainZoneDynHostLoginGetGet({
-			show: {
-				domainOperation: ['domainZoneDynHostLoginGetGet'],
-			},
-		}) as INodeProperties[]),
-		...(descriptiondomainZoneDynHostLoginUpdatePut({
-			show: {
-				domainOperation: ['domainZoneDynHostLoginUpdatePut'],
-			},
-		}) as INodeProperties[]),
-		...(descriptiondomainZoneDynHostLoginChangeContactPost({
-			show: {
-				domainOperation: ['domainZoneDynHostLoginChangeContactPost'],
-			},
-		}) as INodeProperties[]),
-		...(descriptiondomainZoneDynHostRecordListGet({
-			show: {
-				domainOperation: ['domainZoneDynHostRecordListGet'],
-			},
-		}) as INodeProperties[]),
-		...(descriptiondomainZoneDynHostRecordCreatePost({
-			show: {
-				domainOperation: ['domainZoneDynHostRecordCreatePost'],
-			},
-		}) as INodeProperties[]),
-		...(descriptiondomainZoneDynHostRecordDeleteDelete({
-			show: {
-				domainOperation: ['domainZoneDynHostRecordDeleteDelete'],
-			},
-		}) as INodeProperties[]),
-		...(descriptiondomainZoneDynHostRecordGetGet({
-			show: {
-				domainOperation: ['domainZoneDynHostRecordGetGet'],
-			},
-		}) as INodeProperties[]),
-		...(descriptiondomainZoneDynHostRecordUpdatePut({
-			show: {
-				domainOperation: ['domainZoneDynHostRecordUpdatePut'],
-			},
-		}) as INodeProperties[]),
-		...(descriptiondomainZoneExportGetGet({
-			show: {
-				domainOperation: ['domainZoneExportGetGet'],
-			},
-		}) as INodeProperties[]),
-		...(descriptiondomainZoneHistoryListGet({
-			show: {
-				domainOperation: ['domainZoneHistoryListGet'],
-			},
-		}) as INodeProperties[]),
-		...(descriptiondomainZoneHistoryGetGet({
-			show: {
-				domainOperation: ['domainZoneHistoryGetGet'],
-			},
-		}) as INodeProperties[]),
-		...(descriptiondomainZoneHistoryRestorePost({
-			show: {
-				domainOperation: ['domainZoneHistoryRestorePost'],
-			},
-		}) as INodeProperties[]),
-		...(descriptiondomainZoneImportPost({
-			show: {
-				domainOperation: ['domainZoneImportPost'],
-			},
-		}) as INodeProperties[]),
-		...(descriptiondomainZoneOptionListGet({
-			show: {
-				domainOperation: ['domainZoneOptionListGet'],
-			},
-		}) as INodeProperties[]),
-		...(descriptiondomainZoneOptionGetGet({
-			show: {
-				domainOperation: ['domainZoneOptionGetGet'],
-			},
-		}) as INodeProperties[]),
-		...(descriptiondomainZoneOptionServiceInfosGetGet({
-			show: {
-				domainOperation: ['domainZoneOptionServiceInfosGetGet'],
-			},
-		}) as INodeProperties[]),
-		...(descriptiondomainZoneOptionServiceInfosUpdatePut({
-			show: {
-				domainOperation: ['domainZoneOptionServiceInfosUpdatePut'],
-			},
-		}) as INodeProperties[]),
-		...(descriptiondomainZoneRecordListGet({
-			show: {
-				domainOperation: ['domainZoneRecordListGet'],
-			},
-		}) as INodeProperties[]),
-		...(descriptiondomainZoneRecordCreatePost({
-			show: {
-				domainOperation: ['domainZoneRecordCreatePost'],
-			},
-		}) as INodeProperties[]),
-		...(descriptiondomainZoneRecordDeleteDelete({
-			show: {
-				domainOperation: ['domainZoneRecordDeleteDelete'],
-			},
-		}) as INodeProperties[]),
-		...(descriptiondomainZoneRecordGetGet({
-			show: {
-				domainOperation: ['domainZoneRecordGetGet'],
-			},
-		}) as INodeProperties[]),
-		...(descriptiondomainZoneRecordUpdatePut({
-			show: {
-				domainOperation: ['domainZoneRecordUpdatePut'],
-			},
-		}) as INodeProperties[]),
-		...(descriptiondomainZoneRedirectionListGet({
-			show: {
-				domainOperation: ['domainZoneRedirectionListGet'],
-			},
-		}) as INodeProperties[]),
-		...(descriptiondomainZoneRedirectionCreatePost({
-			show: {
-				domainOperation: ['domainZoneRedirectionCreatePost'],
-			},
-		}) as INodeProperties[]),
-		...(descriptiondomainZoneRedirectionDeleteDelete({
-			show: {
-				domainOperation: ['domainZoneRedirectionDeleteDelete'],
-			},
-		}) as INodeProperties[]),
-		...(descriptiondomainZoneRedirectionGetGet({
-			show: {
-				domainOperation: ['domainZoneRedirectionGetGet'],
-			},
-		}) as INodeProperties[]),
-		...(descriptiondomainZoneRedirectionUpdatePut({
-			show: {
-				domainOperation: ['domainZoneRedirectionUpdatePut'],
-			},
-		}) as INodeProperties[]),
-		...(descriptiondomainZoneRefreshPost({
-			show: {
-				domainOperation: ['domainZoneRefreshPost'],
-			},
-		}) as INodeProperties[]),
-		...(descriptiondomainZoneResetPost({
-			show: {
-				domainOperation: ['domainZoneResetPost'],
-			},
-		}) as INodeProperties[]),
-		...(descriptiondomainZoneServiceInfosGetGet({
-			show: {
-				domainOperation: ['domainZoneServiceInfosGetGet'],
-			},
-		}) as INodeProperties[]),
-		...(descriptiondomainZoneServiceInfosUpdatePut({
-			show: {
-				domainOperation: ['domainZoneServiceInfosUpdatePut'],
-			},
-		}) as INodeProperties[]),
-		...(descriptiondomainZoneSoaGetGet({
-			show: {
-				domainOperation: ['domainZoneSoaGetGet'],
-			},
-		}) as INodeProperties[]),
-		...(descriptiondomainZoneSoaUpdatePut({
-			show: {
-				domainOperation: ['domainZoneSoaUpdatePut'],
-			},
-		}) as INodeProperties[]),
-		...(descriptiondomainZoneStatusGetGet({
-			show: {
-				domainOperation: ['domainZoneStatusGetGet'],
-			},
-		}) as INodeProperties[]),
-		...(descriptiondomainZoneTaskListGet({
-			show: {
-				domainOperation: ['domainZoneTaskListGet'],
-			},
-		}) as INodeProperties[]),
-		...(descriptiondomainZoneTaskGetGet({
-			show: {
-				domainOperation: ['domainZoneTaskGetGet'],
-			},
-		}) as INodeProperties[]),
-		...(descriptiondomainZoneTaskAcceleratePost({
-			show: {
-				domainOperation: ['domainZoneTaskAcceleratePost'],
-			},
-		}) as INodeProperties[]),
-		...(descriptiondomainZoneTaskCancelPost({
-			show: {
-				domainOperation: ['domainZoneTaskCancelPost'],
-			},
-		}) as INodeProperties[]),
-		...(descriptiondomainZoneTaskRelaunchPost({
-			show: {
-				domainOperation: ['domainZoneTaskRelaunchPost'],
-			},
-		}) as INodeProperties[]),
-		...(descriptiondomainZoneTerminatePost({
-			show: {
-				domainOperation: ['domainZoneTerminatePost'],
-			},
-		}) as INodeProperties[]),
-		...(descriptiondomainGetGet({
-			show: {
-				domainOperation: ['domainGetGet'],
-			},
-		}) as INodeProperties[]),
-		...(descriptiondomainUpdatePut({
-			show: {
-				domainOperation: ['domainUpdatePut'],
-			},
-		}) as INodeProperties[]),
-		...(descriptiondomainAuthInfoGetGet({
-			show: {
-				domainOperation: ['domainAuthInfoGetGet'],
-			},
-		}) as INodeProperties[]),
-		...(descriptiondomainChangeContactPost({
-			show: {
-				domainOperation: ['domainChangeContactPost'],
-			},
-		}) as INodeProperties[]),
-		...(descriptiondomainConfigurationsObfuscatedEmailsGetGet({
-			show: {
-				domainOperation: ['domainConfigurationsObfuscatedEmailsGetGet'],
-			},
-		}) as INodeProperties[]),
-		...(descriptiondomainConfigurationsObfuscatedEmailsUpdatePut({
-			show: {
-				domainOperation: ['domainConfigurationsObfuscatedEmailsUpdatePut'],
-			},
-		}) as INodeProperties[]),
-		...(descriptiondomainConfigurationsObfuscatedEmailsRefreshPost({
-			show: {
-				domainOperation: ['domainConfigurationsObfuscatedEmailsRefreshPost'],
-			},
-		}) as INodeProperties[]),
-		...(descriptiondomainConfigurationsOptinGetGet({
-			show: {
-				domainOperation: ['domainConfigurationsOptinGetGet'],
-			},
-		}) as INodeProperties[]),
-		...(descriptiondomainConfigurationsOptinUpdatePut({
-			show: {
-				domainOperation: ['domainConfigurationsOptinUpdatePut'],
-			},
-		}) as INodeProperties[]),
-		...(descriptiondomainDsRecordListGet({
-			show: {
-				domainOperation: ['domainDsRecordListGet'],
-			},
-		}) as INodeProperties[]),
-		...(descriptiondomainDsRecordCreatePost({
-			show: {
-				domainOperation: ['domainDsRecordCreatePost'],
-			},
-		}) as INodeProperties[]),
-		...(descriptiondomainDsRecordGetGet({
-			show: {
-				domainOperation: ['domainDsRecordGetGet'],
-			},
-		}) as INodeProperties[]),
-		...(descriptiondomainGlueRecordListGet({
-			show: {
-				domainOperation: ['domainGlueRecordListGet'],
-			},
-		}) as INodeProperties[]),
-		...(descriptiondomainGlueRecordCreatePost({
-			show: {
-				domainOperation: ['domainGlueRecordCreatePost'],
-			},
-		}) as INodeProperties[]),
-		...(descriptiondomainGlueRecordDeleteDelete({
-			show: {
-				domainOperation: ['domainGlueRecordDeleteDelete'],
-			},
-		}) as INodeProperties[]),
-		...(descriptiondomainGlueRecordGetGet({
-			show: {
-				domainOperation: ['domainGlueRecordGetGet'],
-			},
-		}) as INodeProperties[]),
-		...(descriptiondomainGlueRecordUpdatePost({
-			show: {
-				domainOperation: ['domainGlueRecordUpdatePost'],
-			},
-		}) as INodeProperties[]),
-		...(descriptiondomainNameServerListGet({
-			show: {
-				domainOperation: ['domainNameServerListGet'],
-			},
-		}) as INodeProperties[]),
-		...(descriptiondomainNameServerCreatePost({
-			show: {
-				domainOperation: ['domainNameServerCreatePost'],
-			},
-		}) as INodeProperties[]),
-		...(descriptiondomainNameServerDeleteDelete({
-			show: {
-				domainOperation: ['domainNameServerDeleteDelete'],
-			},
-		}) as INodeProperties[]),
-		...(descriptiondomainNameServerGetGet({
-			show: {
-				domainOperation: ['domainNameServerGetGet'],
-			},
-		}) as INodeProperties[]),
-		...(descriptiondomainNameServerStatusGetGet({
-			show: {
-				domainOperation: ['domainNameServerStatusGetGet'],
-			},
-		}) as INodeProperties[]),
-		...(descriptiondomainNameServersUpdatePost({
-			show: {
-				domainOperation: ['domainNameServersUpdatePost'],
-			},
-		}) as INodeProperties[]),
-		...(descriptiondomainOptionListGet({
-			show: {
-				domainOperation: ['domainOptionListGet'],
-			},
-		}) as INodeProperties[]),
-		...(descriptiondomainOptionDeleteDelete({
-			show: {
-				domainOperation: ['domainOptionDeleteDelete'],
-			},
-		}) as INodeProperties[]),
-		...(descriptiondomainOptionGetGet({
-			show: {
-				domainOperation: ['domainOptionGetGet'],
-			},
-		}) as INodeProperties[]),
-		...(descriptiondomainOptionsGetGet({
-			show: {
-				domainOperation: ['domainOptionsGetGet'],
-			},
-		}) as INodeProperties[]),
-		...(descriptiondomainOutgoingTransferApprovePost({
-			show: {
-				domainOperation: ['domainOutgoingTransferApprovePost'],
-			},
-		}) as INodeProperties[]),
-		...(descriptiondomainRulesEmailsObfuscationGetGet({
-			show: {
-				domainOperation: ['domainRulesEmailsObfuscationGetGet'],
-			},
-		}) as INodeProperties[]),
-		...(descriptiondomainRulesOptinGetGet({
-			show: {
-				domainOperation: ['domainRulesOptinGetGet'],
-			},
-		}) as INodeProperties[]),
-		...(descriptiondomainServiceInfosGetGet({
-			show: {
-				domainOperation: ['domainServiceInfosGetGet'],
-			},
-		}) as INodeProperties[]),
-		...(descriptiondomainServiceInfosUpdatePut({
-			show: {
-				domainOperation: ['domainServiceInfosUpdatePut'],
-			},
-		}) as INodeProperties[]),
-		...(descriptiondomainTaskListGet({
-			show: {
-				domainOperation: ['domainTaskListGet'],
-			},
-		}) as INodeProperties[]),
-		...(descriptiondomainTaskGetGet({
-			show: {
-				domainOperation: ['domainTaskGetGet'],
-			},
-		}) as INodeProperties[]),
-		...(descriptiondomainTaskAcceleratePost({
-			show: {
-				domainOperation: ['domainTaskAcceleratePost'],
-			},
-		}) as INodeProperties[]),
-		...(descriptiondomainTaskCancelPost({
-			show: {
-				domainOperation: ['domainTaskCancelPost'],
-			},
-		}) as INodeProperties[]),
-		...(descriptiondomainTaskRelaunchPost({
-			show: {
-				domainOperation: ['domainTaskRelaunchPost'],
-			},
-		}) as INodeProperties[]),
-		...(descriptiondomainUkOutgoingTransferPost({
-			show: {
-				domainOperation: ['domainUkOutgoingTransferPost'],
-			},
-		}) as INodeProperties[]),
-		...(descriptiondomainUkRegistrarsListGet({
-			show: {
-				domainOperation: ['domainUkRegistrarsListGet'],
-			},
-		}) as INodeProperties[]),
-		...(descriptiondomainAlldomListGet({
-			show: {
-				domainOperation: ['domainAlldomListGet'],
-			},
-		}) as INodeProperties[]),
-		...(descriptiondomainAlldomGetGet({
-			show: {
-				domainOperation: ['domainAlldomGetGet'],
-			},
-		}) as INodeProperties[]),
-		...(descriptiondomainAlldomTaskListGet({
-			show: {
-				domainOperation: ['domainAlldomTaskListGet'],
-			},
-		}) as INodeProperties[]),
-		...(descriptiondomainAlldomTaskGetGet({
-			show: {
-				domainOperation: ['domainAlldomTaskGetGet'],
-			},
-		}) as INodeProperties[]),
-		...(descriptiondomainNameListGet({
-			show: {
-				domainOperation: ['domainNameListGet'],
-			},
-		}) as INodeProperties[]),
-		...(descriptiondomainNameGetGet({
-			show: {
-				domainOperation: ['domainNameGetGet'],
-			},
-		}) as INodeProperties[]),
-		...(descriptiondomainNameUpdatePut({
-			show: {
-				domainOperation: ['domainNameUpdatePut'],
-			},
-		}) as INodeProperties[]),
-		...(descriptiondomainNameTaskListGet({
-			show: {
-				domainOperation: ['domainNameTaskListGet'],
-			},
-		}) as INodeProperties[]),
-		...(descriptiondomainNameTaskGetGet({
-			show: {
-				domainOperation: ['domainNameTaskGetGet'],
-			},
-		}) as INodeProperties[]),
-	);
-
-	return props;
-}
-
-export async function execute(this: IExecuteFunctions, itemIndex?: number): Promise<INodeExecutionData[]> {
-	const operation = this.getNodeParameter('domainOperation', 0) as string;
-
-	switch (operation) {
-		case 'domainListGet':
-			return executedomainListGet.call(this, itemIndex ?? 0);
-		case 'domainConfigurationRuleListGet':
-			return executedomainConfigurationRuleListGet.call(this, itemIndex ?? 0);
-		case 'domainConfigurationRuleCheckPost':
-			return executedomainConfigurationRuleCheckPost.call(this, itemIndex ?? 0);
-		case 'domainContactListGet':
-			return executedomainContactListGet.call(this, itemIndex ?? 0);
-		case 'domainContactCreatePost':
-			return executedomainContactCreatePost.call(this, itemIndex ?? 0);
-		case 'domainContactGetGet':
-			return executedomainContactGetGet.call(this, itemIndex ?? 0);
-		case 'domainContactUpdatePut':
-			return executedomainContactUpdatePut.call(this, itemIndex ?? 0);
-		case 'domainDataClaimNoticeGetGet':
-			return executedomainDataClaimNoticeGetGet.call(this, itemIndex ?? 0);
-		case 'domainDataExtensionListGet':
-			return executedomainDataExtensionListGet.call(this, itemIndex ?? 0);
-		case 'domainDataSmdListGet':
-			return executedomainDataSmdListGet.call(this, itemIndex ?? 0);
-		case 'domainDataSmdCreatePost':
-			return executedomainDataSmdCreatePost.call(this, itemIndex ?? 0);
-		case 'domainDataSmdDeleteDelete':
-			return executedomainDataSmdDeleteDelete.call(this, itemIndex ?? 0);
-		case 'domainDataSmdGetGet':
-			return executedomainDataSmdGetGet.call(this, itemIndex ?? 0);
-		case 'domainDataSmdUpdatePut':
-			return executedomainDataSmdUpdatePut.call(this, itemIndex ?? 0);
-		case 'domainExtensionsListGet':
-			return executedomainExtensionsListGet.call(this, itemIndex ?? 0);
-		case 'domainExtensionsByCategoryListGet':
-			return executedomainExtensionsByCategoryListGet.call(this, itemIndex ?? 0);
-		case 'domainExtensionsHighlightedListGet':
-			return executedomainExtensionsHighlightedListGet.call(this, itemIndex ?? 0);
-		case 'domainExtensionsPricingAttributesListGet':
-			return executedomainExtensionsPricingAttributesListGet.call(this, itemIndex ?? 0);
-		case 'domainExtensionsGetGet':
-			return executedomainExtensionsGetGet.call(this, itemIndex ?? 0);
-		case 'domainExtensionsRegistryConfigurationsGetGet':
-			return executedomainExtensionsRegistryConfigurationsGetGet.call(this, itemIndex ?? 0);
-		case 'domainZoneListGet':
-			return executedomainZoneListGet.call(this, itemIndex ?? 0);
-		case 'domainZoneGetGet':
-			return executedomainZoneGetGet.call(this, itemIndex ?? 0);
-		case 'domainZoneCapabilitiesGetGet':
-			return executedomainZoneCapabilitiesGetGet.call(this, itemIndex ?? 0);
-		case 'domainZoneChangeContactPost':
-			return executedomainZoneChangeContactPost.call(this, itemIndex ?? 0);
-		case 'domainZoneConfirmTerminationPost':
-			return executedomainZoneConfirmTerminationPost.call(this, itemIndex ?? 0);
-		case 'domainZoneDnssecDeleteDelete':
-			return executedomainZoneDnssecDeleteDelete.call(this, itemIndex ?? 0);
-		case 'domainZoneDnssecGetGet':
-			return executedomainZoneDnssecGetGet.call(this, itemIndex ?? 0);
-		case 'domainZoneDnssecEnablePost':
-			return executedomainZoneDnssecEnablePost.call(this, itemIndex ?? 0);
-		case 'domainZoneDynHostLoginListGet':
-			return executedomainZoneDynHostLoginListGet.call(this, itemIndex ?? 0);
-		case 'domainZoneDynHostLoginCreatePost':
-			return executedomainZoneDynHostLoginCreatePost.call(this, itemIndex ?? 0);
-		case 'domainZoneDynHostLoginDeleteDelete':
-			return executedomainZoneDynHostLoginDeleteDelete.call(this, itemIndex ?? 0);
-		case 'domainZoneDynHostLoginGetGet':
-			return executedomainZoneDynHostLoginGetGet.call(this, itemIndex ?? 0);
-		case 'domainZoneDynHostLoginUpdatePut':
-			return executedomainZoneDynHostLoginUpdatePut.call(this, itemIndex ?? 0);
-		case 'domainZoneDynHostLoginChangeContactPost':
-			return executedomainZoneDynHostLoginChangeContactPost.call(this, itemIndex ?? 0);
-		case 'domainZoneDynHostRecordListGet':
-			return executedomainZoneDynHostRecordListGet.call(this, itemIndex ?? 0);
-		case 'domainZoneDynHostRecordCreatePost':
-			return executedomainZoneDynHostRecordCreatePost.call(this, itemIndex ?? 0);
-		case 'domainZoneDynHostRecordDeleteDelete':
-			return executedomainZoneDynHostRecordDeleteDelete.call(this, itemIndex ?? 0);
-		case 'domainZoneDynHostRecordGetGet':
-			return executedomainZoneDynHostRecordGetGet.call(this, itemIndex ?? 0);
-		case 'domainZoneDynHostRecordUpdatePut':
-			return executedomainZoneDynHostRecordUpdatePut.call(this, itemIndex ?? 0);
-		case 'domainZoneExportGetGet':
-			return executedomainZoneExportGetGet.call(this, itemIndex ?? 0);
-		case 'domainZoneHistoryListGet':
-			return executedomainZoneHistoryListGet.call(this, itemIndex ?? 0);
-		case 'domainZoneHistoryGetGet':
-			return executedomainZoneHistoryGetGet.call(this, itemIndex ?? 0);
-		case 'domainZoneHistoryRestorePost':
-			return executedomainZoneHistoryRestorePost.call(this, itemIndex ?? 0);
-		case 'domainZoneImportPost':
-			return executedomainZoneImportPost.call(this, itemIndex ?? 0);
-		case 'domainZoneOptionListGet':
-			return executedomainZoneOptionListGet.call(this, itemIndex ?? 0);
-		case 'domainZoneOptionGetGet':
-			return executedomainZoneOptionGetGet.call(this, itemIndex ?? 0);
-		case 'domainZoneOptionServiceInfosGetGet':
-			return executedomainZoneOptionServiceInfosGetGet.call(this, itemIndex ?? 0);
-		case 'domainZoneOptionServiceInfosUpdatePut':
-			return executedomainZoneOptionServiceInfosUpdatePut.call(this, itemIndex ?? 0);
-		case 'domainZoneRecordListGet':
-			return executedomainZoneRecordListGet.call(this, itemIndex ?? 0);
-		case 'domainZoneRecordCreatePost':
-			return executedomainZoneRecordCreatePost.call(this, itemIndex ?? 0);
-		case 'domainZoneRecordDeleteDelete':
-			return executedomainZoneRecordDeleteDelete.call(this, itemIndex ?? 0);
-		case 'domainZoneRecordGetGet':
-			return executedomainZoneRecordGetGet.call(this, itemIndex ?? 0);
-		case 'domainZoneRecordUpdatePut':
-			return executedomainZoneRecordUpdatePut.call(this, itemIndex ?? 0);
-		case 'domainZoneRedirectionListGet':
-			return executedomainZoneRedirectionListGet.call(this, itemIndex ?? 0);
-		case 'domainZoneRedirectionCreatePost':
-			return executedomainZoneRedirectionCreatePost.call(this, itemIndex ?? 0);
-		case 'domainZoneRedirectionDeleteDelete':
-			return executedomainZoneRedirectionDeleteDelete.call(this, itemIndex ?? 0);
-		case 'domainZoneRedirectionGetGet':
-			return executedomainZoneRedirectionGetGet.call(this, itemIndex ?? 0);
-		case 'domainZoneRedirectionUpdatePut':
-			return executedomainZoneRedirectionUpdatePut.call(this, itemIndex ?? 0);
-		case 'domainZoneRefreshPost':
-			return executedomainZoneRefreshPost.call(this, itemIndex ?? 0);
-		case 'domainZoneResetPost':
-			return executedomainZoneResetPost.call(this, itemIndex ?? 0);
-		case 'domainZoneServiceInfosGetGet':
-			return executedomainZoneServiceInfosGetGet.call(this, itemIndex ?? 0);
-		case 'domainZoneServiceInfosUpdatePut':
-			return executedomainZoneServiceInfosUpdatePut.call(this, itemIndex ?? 0);
-		case 'domainZoneSoaGetGet':
-			return executedomainZoneSoaGetGet.call(this, itemIndex ?? 0);
-		case 'domainZoneSoaUpdatePut':
-			return executedomainZoneSoaUpdatePut.call(this, itemIndex ?? 0);
-		case 'domainZoneStatusGetGet':
-			return executedomainZoneStatusGetGet.call(this, itemIndex ?? 0);
-		case 'domainZoneTaskListGet':
-			return executedomainZoneTaskListGet.call(this, itemIndex ?? 0);
-		case 'domainZoneTaskGetGet':
-			return executedomainZoneTaskGetGet.call(this, itemIndex ?? 0);
-		case 'domainZoneTaskAcceleratePost':
-			return executedomainZoneTaskAcceleratePost.call(this, itemIndex ?? 0);
-		case 'domainZoneTaskCancelPost':
-			return executedomainZoneTaskCancelPost.call(this, itemIndex ?? 0);
-		case 'domainZoneTaskRelaunchPost':
-			return executedomainZoneTaskRelaunchPost.call(this, itemIndex ?? 0);
-		case 'domainZoneTerminatePost':
-			return executedomainZoneTerminatePost.call(this, itemIndex ?? 0);
-		case 'domainGetGet':
-			return executedomainGetGet.call(this, itemIndex ?? 0);
-		case 'domainUpdatePut':
-			return executedomainUpdatePut.call(this, itemIndex ?? 0);
-		case 'domainAuthInfoGetGet':
-			return executedomainAuthInfoGetGet.call(this, itemIndex ?? 0);
-		case 'domainChangeContactPost':
-			return executedomainChangeContactPost.call(this, itemIndex ?? 0);
-		case 'domainConfigurationsObfuscatedEmailsGetGet':
-			return executedomainConfigurationsObfuscatedEmailsGetGet.call(this, itemIndex ?? 0);
-		case 'domainConfigurationsObfuscatedEmailsUpdatePut':
-			return executedomainConfigurationsObfuscatedEmailsUpdatePut.call(this, itemIndex ?? 0);
-		case 'domainConfigurationsObfuscatedEmailsRefreshPost':
-			return executedomainConfigurationsObfuscatedEmailsRefreshPost.call(this, itemIndex ?? 0);
-		case 'domainConfigurationsOptinGetGet':
-			return executedomainConfigurationsOptinGetGet.call(this, itemIndex ?? 0);
-		case 'domainConfigurationsOptinUpdatePut':
-			return executedomainConfigurationsOptinUpdatePut.call(this, itemIndex ?? 0);
-		case 'domainDsRecordListGet':
-			return executedomainDsRecordListGet.call(this, itemIndex ?? 0);
-		case 'domainDsRecordCreatePost':
-			return executedomainDsRecordCreatePost.call(this, itemIndex ?? 0);
-		case 'domainDsRecordGetGet':
-			return executedomainDsRecordGetGet.call(this, itemIndex ?? 0);
-		case 'domainGlueRecordListGet':
-			return executedomainGlueRecordListGet.call(this, itemIndex ?? 0);
-		case 'domainGlueRecordCreatePost':
-			return executedomainGlueRecordCreatePost.call(this, itemIndex ?? 0);
-		case 'domainGlueRecordDeleteDelete':
-			return executedomainGlueRecordDeleteDelete.call(this, itemIndex ?? 0);
-		case 'domainGlueRecordGetGet':
-			return executedomainGlueRecordGetGet.call(this, itemIndex ?? 0);
-		case 'domainGlueRecordUpdatePost':
-			return executedomainGlueRecordUpdatePost.call(this, itemIndex ?? 0);
-		case 'domainNameServerListGet':
-			return executedomainNameServerListGet.call(this, itemIndex ?? 0);
-		case 'domainNameServerCreatePost':
-			return executedomainNameServerCreatePost.call(this, itemIndex ?? 0);
-		case 'domainNameServerDeleteDelete':
-			return executedomainNameServerDeleteDelete.call(this, itemIndex ?? 0);
-		case 'domainNameServerGetGet':
-			return executedomainNameServerGetGet.call(this, itemIndex ?? 0);
-		case 'domainNameServerStatusGetGet':
-			return executedomainNameServerStatusGetGet.call(this, itemIndex ?? 0);
-		case 'domainNameServersUpdatePost':
-			return executedomainNameServersUpdatePost.call(this, itemIndex ?? 0);
-		case 'domainOptionListGet':
-			return executedomainOptionListGet.call(this, itemIndex ?? 0);
-		case 'domainOptionDeleteDelete':
-			return executedomainOptionDeleteDelete.call(this, itemIndex ?? 0);
-		case 'domainOptionGetGet':
-			return executedomainOptionGetGet.call(this, itemIndex ?? 0);
-		case 'domainOptionsGetGet':
-			return executedomainOptionsGetGet.call(this, itemIndex ?? 0);
-		case 'domainOutgoingTransferApprovePost':
-			return executedomainOutgoingTransferApprovePost.call(this, itemIndex ?? 0);
-		case 'domainRulesEmailsObfuscationGetGet':
-			return executedomainRulesEmailsObfuscationGetGet.call(this, itemIndex ?? 0);
-		case 'domainRulesOptinGetGet':
-			return executedomainRulesOptinGetGet.call(this, itemIndex ?? 0);
-		case 'domainServiceInfosGetGet':
-			return executedomainServiceInfosGetGet.call(this, itemIndex ?? 0);
-		case 'domainServiceInfosUpdatePut':
-			return executedomainServiceInfosUpdatePut.call(this, itemIndex ?? 0);
-		case 'domainTaskListGet':
-			return executedomainTaskListGet.call(this, itemIndex ?? 0);
-		case 'domainTaskGetGet':
-			return executedomainTaskGetGet.call(this, itemIndex ?? 0);
-		case 'domainTaskAcceleratePost':
-			return executedomainTaskAcceleratePost.call(this, itemIndex ?? 0);
-		case 'domainTaskCancelPost':
-			return executedomainTaskCancelPost.call(this, itemIndex ?? 0);
-		case 'domainTaskRelaunchPost':
-			return executedomainTaskRelaunchPost.call(this, itemIndex ?? 0);
-		case 'domainUkOutgoingTransferPost':
-			return executedomainUkOutgoingTransferPost.call(this, itemIndex ?? 0);
-		case 'domainUkRegistrarsListGet':
-			return executedomainUkRegistrarsListGet.call(this, itemIndex ?? 0);
-		case 'domainAlldomListGet':
-			return executedomainAlldomListGet.call(this, itemIndex ?? 0);
-		case 'domainAlldomGetGet':
-			return executedomainAlldomGetGet.call(this, itemIndex ?? 0);
-		case 'domainAlldomTaskListGet':
-			return executedomainAlldomTaskListGet.call(this, itemIndex ?? 0);
-		case 'domainAlldomTaskGetGet':
-			return executedomainAlldomTaskGetGet.call(this, itemIndex ?? 0);
-		case 'domainNameListGet':
-			return executedomainNameListGet.call(this, itemIndex ?? 0);
-		case 'domainNameGetGet':
-			return executedomainNameGetGet.call(this, itemIndex ?? 0);
-		case 'domainNameUpdatePut':
-			return executedomainNameUpdatePut.call(this, itemIndex ?? 0);
-		case 'domainNameTaskListGet':
-			return executedomainNameTaskListGet.call(this, itemIndex ?? 0);
-		case 'domainNameTaskGetGet':
-			return executedomainNameTaskGetGet.call(this, itemIndex ?? 0);
-		default:
-			throw new Error(`No handler for operation '${operation}'`);
-	}
-}
+export { description, execute };

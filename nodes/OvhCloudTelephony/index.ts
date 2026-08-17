@@ -1,10756 +1,6887 @@
-import type {
-	IDisplayOptions,
-	IExecuteFunctions,
-	INodeExecutionData,
-	INodeProperties,
-} from 'n8n-workflow';
+import { createOperationDispatcher } from '../../shared/nodes/createNodeDispatcher';
 
 import {
-	execute as executeAliasListGet,
-	description as descriptionAliasListGet,
-} from './aliases/aliasListGet.operation';
-import {
-	execute as executeAliasGet,
-	description as descriptionAliasGet,
-} from './aliases/aliasGet.operation';
-import {
-	execute as executeAliasChangeContactPost,
-	description as descriptionAliasChangeContactPost,
-} from './aliases/aliasChangeContactPost.operation';
-import {
-	execute as executeAliasServiceInfosGet,
-	description as descriptionAliasServiceInfosGet,
-} from './aliases/aliasServiceInfosGet.operation';
-import {
-	execute as executeAliasServiceInfosPut,
-	description as descriptionAliasServiceInfosPut,
-} from './aliases/aliasServiceInfosPut.operation';
-import {
-	execute as executeLinesListGet,
-	description as descriptionLinesListGet,
-} from './lines/linesListGet.operation';
-import {
-	execute as executeLinesGet,
-	description as descriptionLinesGet,
-} from './lines/linesGet.operation';
-import {
-	execute as executeLinesChangeContactPost,
-	description as descriptionLinesChangeContactPost,
-} from './lines/linesChangeContactPost.operation';
-import {
-	execute as executeLinesServiceInfosGet,
-	description as descriptionLinesServiceInfosGet,
-} from './lines/linesServiceInfosGet.operation';
-import {
-	execute as executeLinesServiceInfosPut,
-	description as descriptionLinesServiceInfosPut,
-} from './lines/linesServiceInfosPut.operation';
-import {
-	execute as executeLinesHardwareListGet,
-	description as descriptionLinesHardwareListGet,
-} from './lines/linesHardwareListGet.operation';
-import {
-	execute as executeLinesHardwarePost,
-	description as descriptionLinesHardwarePost,
-} from './lines/linesHardwarePost.operation';
-import {
-	execute as executeLinesNumberListGet,
-	description as descriptionLinesNumberListGet,
-} from './lines/linesNumberListGet.operation';
-import {
-	execute as executeLinesNumberPost,
-	description as descriptionLinesNumberPost,
-} from './lines/linesNumberPost.operation';
-import {
-	execute as executeLinesNumberGet,
-	description as descriptionLinesNumberGet,
-} from './lines/linesNumberGet.operation';
-import {
-	execute as executeLinesNumberPut,
-	description as descriptionLinesNumberPut,
-} from './lines/linesNumberPut.operation';
-import {
-	execute as executeLinesNumberDelete,
-	description as descriptionLinesNumberDelete,
-} from './lines/linesNumberDelete.operation';
-import {
-	execute as executeLinesPortabilityListGet,
-	description as descriptionLinesPortabilityListGet,
-} from './lines/linesPortabilityListGet.operation';
-import {
-	execute as executeLinesPortabilityPost,
-	description as descriptionLinesPortabilityPost,
-} from './lines/linesPortabilityPost.operation';
-import {
-	execute as executeLinesPortabilityGet,
-	description as descriptionLinesPortabilityGet,
-} from './lines/linesPortabilityGet.operation';
-import {
-	execute as executeLinesPortabilityPut,
-	description as descriptionLinesPortabilityPut,
-} from './lines/linesPortabilityPut.operation';
-import {
-	execute as executeLinesPortabilityDelete,
-	description as descriptionLinesPortabilityDelete,
-} from './lines/linesPortabilityDelete.operation';
-import {
-	execute as executeLinesSimListGet,
-	description as descriptionLinesSimListGet,
-} from './lines/linesSimListGet.operation';
-import {
-	execute as executeLinesSimPost,
-	description as descriptionLinesSimPost,
-} from './lines/linesSimPost.operation';
-import {
-	execute as executeLinesSimGet,
-	description as descriptionLinesSimGet,
-} from './lines/linesSimGet.operation';
-import {
-	execute as executeLinesSimPut,
-	description as descriptionLinesSimPut,
-} from './lines/linesSimPut.operation';
-import {
-	execute as executeLinesSimDelete,
-	description as descriptionLinesSimDelete,
-} from './lines/linesSimDelete.operation';
-import {
-	execute as executeTrunksListGet,
-	description as descriptionTrunksListGet,
-} from './trunks/trunksListGet.operation';
-import {
-	execute as executeTrunksGet,
-	description as descriptionTrunksGet,
-} from './trunks/trunksGet.operation';
-import {
-	execute as executeTrunksChangeContactPost,
-	description as descriptionTrunksChangeContactPost,
-} from './trunks/trunksChangeContactPost.operation';
-import {
-	execute as executeTrunksServiceInfosGet,
-	description as descriptionTrunksServiceInfosGet,
-} from './trunks/trunksServiceInfosGet.operation';
-import {
-	execute as executeTrunksServiceInfosPut,
-	description as descriptionTrunksServiceInfosPut,
-} from './trunks/trunksServiceInfosPut.operation';
-import {
-	execute as executeTrunksHardwareListGet,
-	description as descriptionTrunksHardwareListGet,
-} from './trunks/trunksHardwareListGet.operation';
-import {
-	execute as executeTrunksHardwarePost,
-	description as descriptionTrunksHardwarePost,
-} from './trunks/trunksHardwarePost.operation';
-import {
-	execute as executeTrunksNumberListGet,
-	description as descriptionTrunksNumberListGet,
-} from './trunks/trunksNumberListGet.operation';
-import {
-	execute as executeTrunksNumberPost,
-	description as descriptionTrunksNumberPost,
-} from './trunks/trunksNumberPost.operation';
-import {
-	execute as executeTrunksNumberGet,
-	description as descriptionTrunksNumberGet,
-} from './trunks/trunksNumberGet.operation';
-import {
-	execute as executeTrunksNumberPut,
-	description as descriptionTrunksNumberPut,
-} from './trunks/trunksNumberPut.operation';
-import {
-	execute as executeTrunksNumberDelete,
-	description as descriptionTrunksNumberDelete,
-} from './trunks/trunksNumberDelete.operation';
-import {
-	execute as executeNumbersListGet,
-	description as descriptionNumbersListGet,
-} from './numbers/numbersListGet.operation';
-import {
-	execute as executeNumbersGet,
-	description as descriptionNumbersGet,
-} from './numbers/numbersGet.operation';
-import {
-	execute as executeNumbersPost,
-	description as descriptionNumbersPost,
-} from './numbers/numbersPost.operation';
-import {
-	execute as executeNumbersPut,
-	description as descriptionNumbersPut,
-} from './numbers/numbersPut.operation';
-import {
-	execute as executeNumbersDelete,
-	description as descriptionNumbersDelete,
-} from './numbers/numbersDelete.operation';
-import {
-	execute as executeNumbersPortabilityListGet,
-	description as descriptionNumbersPortabilityListGet,
-} from './numbers/numbersPortabilityListGet.operation';
-import {
-	execute as executeNumbersPortabilityPost,
-	description as descriptionNumbersPortabilityPost,
-} from './numbers/numbersPortabilityPost.operation';
-import {
-	execute as executeNumbersPortabilityGet,
-	description as descriptionNumbersPortabilityGet,
-} from './numbers/numbersPortabilityGet.operation';
-import {
-	execute as executeNumbersPortabilityPut,
-	description as descriptionNumbersPortabilityPut,
-} from './numbers/numbersPortabilityPut.operation';
-import {
-	execute as executeNumbersPortabilityDelete,
-	description as descriptionNumbersPortabilityDelete,
-} from './numbers/numbersPortabilityDelete.operation';
-import {
-	execute as executeAccessoriesGet,
-	description as descriptionAccessoriesGet,
-} from './accessories/accessoriesGet.operation';
-import {
-	execute as executeLineOffersGet,
-	description as descriptionLineOffersGet,
-} from './offers/lineOffersGet.operation';
-import {
-	execute as executeLineOfferPhonesGet,
-	description as descriptionLineOfferPhonesGet,
-} from './offers/lineOfferPhonesGet.operation';
-import {
-	execute as executeFaxOffersGet,
-	description as descriptionFaxOffersGet,
-} from './offers/faxOffersGet.operation';
-import {
-	execute as executeLineOfferDetailsGet,
-	description as descriptionLineOfferDetailsGet,
-} from './offers/lineOfferDetailsGet.operation';
-import {
-	execute as executeDirectoriesCitiesGet,
-	description as descriptionDirectoriesCitiesGet,
-} from './directories/directoriesCitiesGet.operation';
-import {
-	execute as executeDirectoriesAvailableZipCodesGet,
-	description as descriptionDirectoriesAvailableZipCodesGet,
-} from './directories/directoriesAvailableZipCodesGet.operation';
-import {
-	execute as executeDirectoriesServicesGet,
-	description as descriptionDirectoriesServicesGet,
-} from './directories/directoriesServicesGet.operation';
-import {
-	execute as executeDirectoriesCountriesGet,
-	description as descriptionDirectoriesCountriesGet,
-} from './directories/directoriesCountriesGet.operation';
-import {
-	execute as executeTelephonyListGet,
-	description as descriptionTelephonyListGet,
-} from './misc/telephonyListGet.operation';
-import {
-	execute as executeSipDomainsGet,
-	description as descriptionSipDomainsGet,
-} from './misc/sipDomainsGet.operation';
-import {
-	execute as executeCurrentOrderIdsGet,
-	description as descriptionCurrentOrderIdsGet,
-} from './misc/currentOrderIdsGet.operation';
-import {
-	execute as executeSearchServicesGet,
-	description as descriptionSearchServicesGet,
-} from './misc/searchServicesGet.operation';
-import {
-	execute as executeSetDefaultSipDomainPost,
-	description as descriptionSetDefaultSipDomainPost,
-} from './misc/setDefaultSipDomainPost.operation';
-
-import {
-	execute as executeabbreviatedNumberDelete,
 	description as descriptionabbreviatedNumberDelete,
+	execute as executeabbreviatedNumberDelete,
 } from './abbreviatedNumber/abbreviatedNumberDelete.operation';
 import {
-	execute as executeabbreviatedNumberGet,
 	description as descriptionabbreviatedNumberGet,
+	execute as executeabbreviatedNumberGet,
 } from './abbreviatedNumber/abbreviatedNumberGet.operation';
 import {
-	execute as executeabbreviatedNumberListGet,
 	description as descriptionabbreviatedNumberListGet,
+	execute as executeabbreviatedNumberListGet,
 } from './abbreviatedNumber/abbreviatedNumberListGet.operation';
 import {
-	execute as executeabbreviatedNumberPost,
 	description as descriptionabbreviatedNumberPost,
+	execute as executeabbreviatedNumberPost,
 } from './abbreviatedNumber/abbreviatedNumberPost.operation';
 import {
-	execute as executeabbreviatedNumberPut,
 	description as descriptionabbreviatedNumberPut,
+	execute as executeabbreviatedNumberPut,
 } from './abbreviatedNumber/abbreviatedNumberPut.operation';
 import {
-	execute as executeallowedCreditThresholdGet,
-	description as descriptionallowedCreditThresholdGet,
-} from './root/allowedCreditThresholdGet.operation';
+	description as descriptionAccessoriesGet,
+	execute as executeAccessoriesGet,
+} from './accessories/accessoriesGet.operation';
 import {
-	execute as executeamountSecurityDepositGet,
-	description as descriptionamountSecurityDepositGet,
-} from './root/amountSecurityDepositGet.operation';
+	description as descriptionAliasChangeContactPost,
+	execute as executeAliasChangeContactPost,
+} from './aliases/aliasChangeContactPost.operation';
 import {
-	execute as executebillingAccountDelete,
-	description as descriptionbillingAccountDelete,
-} from './root/billingAccountDelete.operation';
+	description as descriptionAliasGet,
+	execute as executeAliasGet,
+} from './aliases/aliasGet.operation';
 import {
-	execute as executebillingAccountGet,
-	description as descriptionbillingAccountGet,
-} from './root/billingAccountGet.operation';
+	description as descriptionAliasListGet,
+	execute as executeAliasListGet,
+} from './aliases/aliasListGet.operation';
 import {
-	execute as executebillingAccountPut,
-	description as descriptionbillingAccountPut,
-} from './root/billingAccountPut.operation';
+	description as descriptionAliasServiceInfosGet,
+	execute as executeAliasServiceInfosGet,
+} from './aliases/aliasServiceInfosGet.operation';
 import {
-	execute as executebillingAccountSiteGet,
-	description as descriptionbillingAccountSiteGet,
-} from './root/billingAccountSiteGet.operation';
+	description as descriptionAliasServiceInfosPut,
+	execute as executeAliasServiceInfosPut,
+} from './aliases/aliasServiceInfosPut.operation';
 import {
-	execute as executebillingAccountSitePost,
-	description as descriptionbillingAccountSitePost,
-} from './root/billingAccountSitePost.operation';
-import {
-	execute as executecanTransferSecurityDepositPost,
-	description as descriptioncanTransferSecurityDepositPost,
-} from './root/canTransferSecurityDepositPost.operation';
-import {
-	execute as executecancelTerminationPost,
-	description as descriptioncancelTerminationPost,
-} from './root/cancelTerminationPost.operation';
-import {
-	execute as executecarrierSipCdrsListGet,
 	description as descriptioncarrierSipCdrsListGet,
+	execute as executecarrierSipCdrsListGet,
 } from './carrierSip/carrierSipCdrsListGet.operation';
 import {
-	execute as executecarrierSipClusterDetailsListGet,
 	description as descriptioncarrierSipClusterDetailsListGet,
+	execute as executecarrierSipClusterDetailsListGet,
 } from './carrierSip/carrierSipClusterDetailsListGet.operation';
 import {
-	execute as executecarrierSipEndpointsGet,
 	description as descriptioncarrierSipEndpointsGet,
+	execute as executecarrierSipEndpointsGet,
 } from './carrierSip/carrierSipEndpointsGet.operation';
 import {
-	execute as executecarrierSipEndpointsListGet,
 	description as descriptioncarrierSipEndpointsListGet,
+	execute as executecarrierSipEndpointsListGet,
 } from './carrierSip/carrierSipEndpointsListGet.operation';
 import {
-	execute as executecarrierSipGet,
 	description as descriptioncarrierSipGet,
+	execute as executecarrierSipGet,
 } from './carrierSip/carrierSipGet.operation';
 import {
-	execute as executecarrierSipListGet,
 	description as descriptioncarrierSipListGet,
+	execute as executecarrierSipListGet,
 } from './carrierSip/carrierSipListGet.operation';
 import {
-	execute as executecarrierSipSettingsListGet,
 	description as descriptioncarrierSipSettingsListGet,
+	execute as executecarrierSipSettingsListGet,
 } from './carrierSip/carrierSipSettingsListGet.operation';
 import {
-	execute as executecarrierSipSettingsPut,
 	description as descriptioncarrierSipSettingsPut,
+	execute as executecarrierSipSettingsPut,
 } from './carrierSip/carrierSipSettingsPut.operation';
 import {
-	execute as executecarrierSipVnoGet,
 	description as descriptioncarrierSipVnoGet,
+	execute as executecarrierSipVnoGet,
 } from './carrierSip/carrierSipVnoGet.operation';
 import {
-	execute as executecarrierSipVnoListGet,
 	description as descriptioncarrierSipVnoListGet,
+	execute as executecarrierSipVnoListGet,
 } from './carrierSip/carrierSipVnoListGet.operation';
 import {
-	execute as executecarrierSipVnoRangesGet,
 	description as descriptioncarrierSipVnoRangesGet,
+	execute as executecarrierSipVnoRangesGet,
 } from './carrierSip/carrierSipVnoRangesGet.operation';
 import {
-	execute as executecarrierSipVnoRangesListGet,
 	description as descriptioncarrierSipVnoRangesListGet,
+	execute as executecarrierSipVnoRangesListGet,
 } from './carrierSip/carrierSipVnoRangesListGet.operation';
 import {
-	execute as executecarrierSipVnoRangesPut,
 	description as descriptioncarrierSipVnoRangesPut,
+	execute as executecarrierSipVnoRangesPut,
 } from './carrierSip/carrierSipVnoRangesPut.operation';
 import {
-	execute as executechangeContactPost,
-	description as descriptionchangeContactPost,
-} from './root/changeContactPost.operation';
+	description as descriptionconferenceAnnounceUploadPost,
+	execute as executeconferenceAnnounceUploadPost,
+} from './conference/conferenceAnnounceUploadPost.operation';
 import {
-	execute as executefaxCampaignsDelete,
+	description as descriptionconferenceGet,
+	execute as executeconferenceGet,
+} from './conference/conferenceGet.operation';
+import {
+	description as descriptionconferenceHistoriesGet,
+	execute as executeconferenceHistoriesGet,
+} from './conference/conferenceHistoriesGet.operation';
+import {
+	description as descriptionconferenceHistoriesListGet,
+	execute as executeconferenceHistoriesListGet,
+} from './conference/conferenceHistoriesListGet.operation';
+import {
+	description as descriptionconferenceInformationsListGet,
+	execute as executeconferenceInformationsListGet,
+} from './conference/conferenceInformationsListGet.operation';
+import {
+	description as descriptionconferenceListGet,
+	execute as executeconferenceListGet,
+} from './conference/conferenceListGet.operation';
+import {
+	description as descriptionconferenceLockPost,
+	execute as executeconferenceLockPost,
+} from './conference/conferenceLockPost.operation';
+import {
+	description as descriptionconferenceParticipantsDeafPost,
+	execute as executeconferenceParticipantsDeafPost,
+} from './conference/conferenceParticipantsDeafPost.operation';
+import {
+	description as descriptionconferenceParticipantsEnergyPost,
+	execute as executeconferenceParticipantsEnergyPost,
+} from './conference/conferenceParticipantsEnergyPost.operation';
+import {
+	description as descriptionconferenceParticipantsGet,
+	execute as executeconferenceParticipantsGet,
+} from './conference/conferenceParticipantsGet.operation';
+import {
+	description as descriptionconferenceParticipantsKickPost,
+	execute as executeconferenceParticipantsKickPost,
+} from './conference/conferenceParticipantsKickPost.operation';
+import {
+	description as descriptionconferenceParticipantsListGet,
+	execute as executeconferenceParticipantsListGet,
+} from './conference/conferenceParticipantsListGet.operation';
+import {
+	description as descriptionconferenceParticipantsMutePost,
+	execute as executeconferenceParticipantsMutePost,
+} from './conference/conferenceParticipantsMutePost.operation';
+import {
+	description as descriptionconferenceParticipantsUndeafPost,
+	execute as executeconferenceParticipantsUndeafPost,
+} from './conference/conferenceParticipantsUndeafPost.operation';
+import {
+	description as descriptionconferenceParticipantsUnmutePost,
+	execute as executeconferenceParticipantsUnmutePost,
+} from './conference/conferenceParticipantsUnmutePost.operation';
+import {
+	description as descriptionconferenceRoomsGet,
+	execute as executeconferenceRoomsGet,
+} from './conference/conferenceRoomsGet.operation';
+import {
+	description as descriptionconferenceRoomsHistoriesGet,
+	execute as executeconferenceRoomsHistoriesGet,
+} from './conference/conferenceRoomsHistoriesGet.operation';
+import {
+	description as descriptionconferenceRoomsHistoriesListGet,
+	execute as executeconferenceRoomsHistoriesListGet,
+} from './conference/conferenceRoomsHistoriesListGet.operation';
+import {
+	description as descriptionconferenceRoomsListGet,
+	execute as executeconferenceRoomsListGet,
+} from './conference/conferenceRoomsListGet.operation';
+import {
+	description as descriptionconferenceRoomsLockPost,
+	execute as executeconferenceRoomsLockPost,
+} from './conference/conferenceRoomsLockPost.operation';
+import {
+	description as descriptionconferenceRoomsParticipantsDeafPost,
+	execute as executeconferenceRoomsParticipantsDeafPost,
+} from './conference/conferenceRoomsParticipantsDeafPost.operation';
+import {
+	description as descriptionconferenceRoomsParticipantsEnergyPost,
+	execute as executeconferenceRoomsParticipantsEnergyPost,
+} from './conference/conferenceRoomsParticipantsEnergyPost.operation';
+import {
+	description as descriptionconferenceRoomsParticipantsGet,
+	execute as executeconferenceRoomsParticipantsGet,
+} from './conference/conferenceRoomsParticipantsGet.operation';
+import {
+	description as descriptionconferenceRoomsParticipantsKickPost,
+	execute as executeconferenceRoomsParticipantsKickPost,
+} from './conference/conferenceRoomsParticipantsKickPost.operation';
+import {
+	description as descriptionconferenceRoomsParticipantsListGet,
+	execute as executeconferenceRoomsParticipantsListGet,
+} from './conference/conferenceRoomsParticipantsListGet.operation';
+import {
+	description as descriptionconferenceRoomsParticipantsMutePost,
+	execute as executeconferenceRoomsParticipantsMutePost,
+} from './conference/conferenceRoomsParticipantsMutePost.operation';
+import {
+	description as descriptionconferenceRoomsParticipantsUndeafPost,
+	execute as executeconferenceRoomsParticipantsUndeafPost,
+} from './conference/conferenceRoomsParticipantsUndeafPost.operation';
+import {
+	description as descriptionconferenceRoomsParticipantsUnmutePost,
+	execute as executeconferenceRoomsParticipantsUnmutePost,
+} from './conference/conferenceRoomsParticipantsUnmutePost.operation';
+import {
+	description as descriptionconferenceRoomsPost,
+	execute as executeconferenceRoomsPost,
+} from './conference/conferenceRoomsPost.operation';
+import {
+	description as descriptionconferenceRoomsPut,
+	execute as executeconferenceRoomsPut,
+} from './conference/conferenceRoomsPut.operation';
+import {
+	description as descriptionconferenceRoomsStatsListGet,
+	execute as executeconferenceRoomsStatsListGet,
+} from './conference/conferenceRoomsStatsListGet.operation';
+import {
+	description as descriptionconferenceRoomsUnlockPost,
+	execute as executeconferenceRoomsUnlockPost,
+} from './conference/conferenceRoomsUnlockPost.operation';
+import {
+	description as descriptionconferenceRoomsWebAccessDelete,
+	execute as executeconferenceRoomsWebAccessDelete,
+} from './conference/conferenceRoomsWebAccessDelete.operation';
+import {
+	description as descriptionconferenceRoomsWebAccessGet,
+	execute as executeconferenceRoomsWebAccessGet,
+} from './conference/conferenceRoomsWebAccessGet.operation';
+import {
+	description as descriptionconferenceRoomsWebAccessListGet,
+	execute as executeconferenceRoomsWebAccessListGet,
+} from './conference/conferenceRoomsWebAccessListGet.operation';
+import {
+	description as descriptionconferenceRoomsWebAccessPost,
+	execute as executeconferenceRoomsWebAccessPost,
+} from './conference/conferenceRoomsWebAccessPost.operation';
+import {
+	description as descriptionconferenceSettingsListGet,
+	execute as executeconferenceSettingsListGet,
+} from './conference/conferenceSettingsListGet.operation';
+import {
+	description as descriptionconferenceSettingsPut,
+	execute as executeconferenceSettingsPut,
+} from './conference/conferenceSettingsPut.operation';
+import {
+	description as descriptionconferenceUnlockPost,
+	execute as executeconferenceUnlockPost,
+} from './conference/conferenceUnlockPost.operation';
+import {
+	description as descriptionconferenceWebAccessDelete,
+	execute as executeconferenceWebAccessDelete,
+} from './conference/conferenceWebAccessDelete.operation';
+import {
+	description as descriptionconferenceWebAccessGet,
+	execute as executeconferenceWebAccessGet,
+} from './conference/conferenceWebAccessGet.operation';
+import {
+	description as descriptionconferenceWebAccessListGet,
+	execute as executeconferenceWebAccessListGet,
+} from './conference/conferenceWebAccessListGet.operation';
+import {
+	description as descriptionconferenceWebAccessPost,
+	execute as executeconferenceWebAccessPost,
+} from './conference/conferenceWebAccessPost.operation';
+import {
+	description as descriptionddiChangeDestinationPost,
+	execute as executeddiChangeDestinationPost,
+} from './ddi/ddiChangeDestinationPost.operation';
+import {
+	description as descriptionddiGet,
+	execute as executeddiGet,
+} from './ddi/ddiGet.operation';
+import {
+	description as descriptionddiListGet,
+	execute as executeddiListGet,
+} from './ddi/ddiListGet.operation';
+import {
+	description as descriptionddiPut,
+	execute as executeddiPut,
+} from './ddi/ddiPut.operation';
+import {
+	description as descriptionDirectoriesAvailableZipCodesGet,
+	execute as executeDirectoriesAvailableZipCodesGet,
+} from './directories/directoriesAvailableZipCodesGet.operation';
+import {
+	description as descriptionDirectoriesCitiesGet,
+	execute as executeDirectoriesCitiesGet,
+} from './directories/directoriesCitiesGet.operation';
+import {
+	description as descriptionDirectoriesCountriesGet,
+	execute as executeDirectoriesCountriesGet,
+} from './directories/directoriesCountriesGet.operation';
+import {
+	description as descriptionDirectoriesServicesGet,
+	execute as executeDirectoriesServicesGet,
+} from './directories/directoriesServicesGet.operation';
+import {
+	description as descriptioneasyHuntingGet,
+	execute as executeeasyHuntingGet,
+} from './easyHunting/easyHuntingGet.operation';
+import {
+	description as descriptioneasyHuntingHuntingAgentBannerAccessDelete,
+	execute as executeeasyHuntingHuntingAgentBannerAccessDelete,
+} from './easyHunting/easyHuntingHuntingAgentBannerAccessDelete.operation';
+import {
+	description as descriptioneasyHuntingHuntingAgentBannerAccessListGet,
+	execute as executeeasyHuntingHuntingAgentBannerAccessListGet,
+} from './easyHunting/easyHuntingHuntingAgentBannerAccessListGet.operation';
+import {
+	description as descriptioneasyHuntingHuntingAgentBannerAccessPost,
+	execute as executeeasyHuntingHuntingAgentBannerAccessPost,
+} from './easyHunting/easyHuntingHuntingAgentBannerAccessPost.operation';
+import {
+	description as descriptioneasyHuntingHuntingAgentCallsEavesdropPost,
+	execute as executeeasyHuntingHuntingAgentCallsEavesdropPost,
+} from './easyHunting/easyHuntingHuntingAgentCallsEavesdropPost.operation';
+import {
+	description as descriptioneasyHuntingHuntingAgentCallsGet,
+	execute as executeeasyHuntingHuntingAgentCallsGet,
+} from './easyHunting/easyHuntingHuntingAgentCallsGet.operation';
+import {
+	description as descriptioneasyHuntingHuntingAgentCallsHangupPost,
+	execute as executeeasyHuntingHuntingAgentCallsHangupPost,
+} from './easyHunting/easyHuntingHuntingAgentCallsHangupPost.operation';
+import {
+	description as descriptioneasyHuntingHuntingAgentCallsHoldPost,
+	execute as executeeasyHuntingHuntingAgentCallsHoldPost,
+} from './easyHunting/easyHuntingHuntingAgentCallsHoldPost.operation';
+import {
+	description as descriptioneasyHuntingHuntingAgentCallsInterceptPost,
+	execute as executeeasyHuntingHuntingAgentCallsInterceptPost,
+} from './easyHunting/easyHuntingHuntingAgentCallsInterceptPost.operation';
+import {
+	description as descriptioneasyHuntingHuntingAgentCallsListGet,
+	execute as executeeasyHuntingHuntingAgentCallsListGet,
+} from './easyHunting/easyHuntingHuntingAgentCallsListGet.operation';
+import {
+	description as descriptioneasyHuntingHuntingAgentCallsTransferPost,
+	execute as executeeasyHuntingHuntingAgentCallsTransferPost,
+} from './easyHunting/easyHuntingHuntingAgentCallsTransferPost.operation';
+import {
+	description as descriptioneasyHuntingHuntingAgentCallsWhisperPost,
+	execute as executeeasyHuntingHuntingAgentCallsWhisperPost,
+} from './easyHunting/easyHuntingHuntingAgentCallsWhisperPost.operation';
+import {
+	description as descriptioneasyHuntingHuntingAgentDelete,
+	execute as executeeasyHuntingHuntingAgentDelete,
+} from './easyHunting/easyHuntingHuntingAgentDelete.operation';
+import {
+	description as descriptioneasyHuntingHuntingAgentEventTokenDelete,
+	execute as executeeasyHuntingHuntingAgentEventTokenDelete,
+} from './easyHunting/easyHuntingHuntingAgentEventTokenDelete.operation';
+import {
+	description as descriptioneasyHuntingHuntingAgentEventTokenListGet,
+	execute as executeeasyHuntingHuntingAgentEventTokenListGet,
+} from './easyHunting/easyHuntingHuntingAgentEventTokenListGet.operation';
+import {
+	description as descriptioneasyHuntingHuntingAgentEventTokenPost,
+	execute as executeeasyHuntingHuntingAgentEventTokenPost,
+} from './easyHunting/easyHuntingHuntingAgentEventTokenPost.operation';
+import {
+	description as descriptioneasyHuntingHuntingAgentGet,
+	execute as executeeasyHuntingHuntingAgentGet,
+} from './easyHunting/easyHuntingHuntingAgentGet.operation';
+import {
+	description as descriptioneasyHuntingHuntingAgentListGet,
+	execute as executeeasyHuntingHuntingAgentListGet,
+} from './easyHunting/easyHuntingHuntingAgentListGet.operation';
+import {
+	description as descriptioneasyHuntingHuntingAgentLiveStatusListGet,
+	execute as executeeasyHuntingHuntingAgentLiveStatusListGet,
+} from './easyHunting/easyHuntingHuntingAgentLiveStatusListGet.operation';
+import {
+	description as descriptioneasyHuntingHuntingAgentPost,
+	execute as executeeasyHuntingHuntingAgentPost,
+} from './easyHunting/easyHuntingHuntingAgentPost.operation';
+import {
+	description as descriptioneasyHuntingHuntingAgentPut,
+	execute as executeeasyHuntingHuntingAgentPut,
+} from './easyHunting/easyHuntingHuntingAgentPut.operation';
+import {
+	description as descriptioneasyHuntingHuntingAgentQueueDelete,
+	execute as executeeasyHuntingHuntingAgentQueueDelete,
+} from './easyHunting/easyHuntingHuntingAgentQueueDelete.operation';
+import {
+	description as descriptioneasyHuntingHuntingAgentQueueGet,
+	execute as executeeasyHuntingHuntingAgentQueueGet,
+} from './easyHunting/easyHuntingHuntingAgentQueueGet.operation';
+import {
+	description as descriptioneasyHuntingHuntingAgentQueueListGet,
+	execute as executeeasyHuntingHuntingAgentQueueListGet,
+} from './easyHunting/easyHuntingHuntingAgentQueueListGet.operation';
+import {
+	description as descriptioneasyHuntingHuntingAgentQueueLiveStatusListGet,
+	execute as executeeasyHuntingHuntingAgentQueueLiveStatusListGet,
+} from './easyHunting/easyHuntingHuntingAgentQueueLiveStatusListGet.operation';
+import {
+	description as descriptioneasyHuntingHuntingAgentQueuePost,
+	execute as executeeasyHuntingHuntingAgentQueuePost,
+} from './easyHunting/easyHuntingHuntingAgentQueuePost.operation';
+import {
+	description as descriptioneasyHuntingHuntingAgentQueuePut,
+	execute as executeeasyHuntingHuntingAgentQueuePut,
+} from './easyHunting/easyHuntingHuntingAgentQueuePut.operation';
+import {
+	description as descriptioneasyHuntingHuntingCustomStatusDelete,
+	execute as executeeasyHuntingHuntingCustomStatusDelete,
+} from './easyHunting/easyHuntingHuntingCustomStatusDelete.operation';
+import {
+	description as descriptioneasyHuntingHuntingCustomStatusGet,
+	execute as executeeasyHuntingHuntingCustomStatusGet,
+} from './easyHunting/easyHuntingHuntingCustomStatusGet.operation';
+import {
+	description as descriptioneasyHuntingHuntingCustomStatusListGet,
+	execute as executeeasyHuntingHuntingCustomStatusListGet,
+} from './easyHunting/easyHuntingHuntingCustomStatusListGet.operation';
+import {
+	description as descriptioneasyHuntingHuntingCustomStatusPost,
+	execute as executeeasyHuntingHuntingCustomStatusPost,
+} from './easyHunting/easyHuntingHuntingCustomStatusPost.operation';
+import {
+	description as descriptioneasyHuntingHuntingEventTokenDelete,
+	execute as executeeasyHuntingHuntingEventTokenDelete,
+} from './easyHunting/easyHuntingHuntingEventTokenDelete.operation';
+import {
+	description as descriptioneasyHuntingHuntingEventTokenListGet,
+	execute as executeeasyHuntingHuntingEventTokenListGet,
+} from './easyHunting/easyHuntingHuntingEventTokenListGet.operation';
+import {
+	description as descriptioneasyHuntingHuntingEventTokenPost,
+	execute as executeeasyHuntingHuntingEventTokenPost,
+} from './easyHunting/easyHuntingHuntingEventTokenPost.operation';
+import {
+	description as descriptioneasyHuntingHuntingListGet,
+	execute as executeeasyHuntingHuntingListGet,
+} from './easyHunting/easyHuntingHuntingListGet.operation';
+import {
+	description as descriptioneasyHuntingHuntingPut,
+	execute as executeeasyHuntingHuntingPut,
+} from './easyHunting/easyHuntingHuntingPut.operation';
+import {
+	description as descriptioneasyHuntingHuntingQueueAgentDelete,
+	execute as executeeasyHuntingHuntingQueueAgentDelete,
+} from './easyHunting/easyHuntingHuntingQueueAgentDelete.operation';
+import {
+	description as descriptioneasyHuntingHuntingQueueAgentGet,
+	execute as executeeasyHuntingHuntingQueueAgentGet,
+} from './easyHunting/easyHuntingHuntingQueueAgentGet.operation';
+import {
+	description as descriptioneasyHuntingHuntingQueueAgentListGet,
+	execute as executeeasyHuntingHuntingQueueAgentListGet,
+} from './easyHunting/easyHuntingHuntingQueueAgentListGet.operation';
+import {
+	description as descriptioneasyHuntingHuntingQueueAgentLiveStatusListGet,
+	execute as executeeasyHuntingHuntingQueueAgentLiveStatusListGet,
+} from './easyHunting/easyHuntingHuntingQueueAgentLiveStatusListGet.operation';
+import {
+	description as descriptioneasyHuntingHuntingQueueAgentPost,
+	execute as executeeasyHuntingHuntingQueueAgentPost,
+} from './easyHunting/easyHuntingHuntingQueueAgentPost.operation';
+import {
+	description as descriptioneasyHuntingHuntingQueueAgentPut,
+	execute as executeeasyHuntingHuntingQueueAgentPut,
+} from './easyHunting/easyHuntingHuntingQueueAgentPut.operation';
+import {
+	description as descriptioneasyHuntingHuntingQueueDelete,
+	execute as executeeasyHuntingHuntingQueueDelete,
+} from './easyHunting/easyHuntingHuntingQueueDelete.operation';
+import {
+	description as descriptioneasyHuntingHuntingQueueGet,
+	execute as executeeasyHuntingHuntingQueueGet,
+} from './easyHunting/easyHuntingHuntingQueueGet.operation';
+import {
+	description as descriptioneasyHuntingHuntingQueueListGet,
+	execute as executeeasyHuntingHuntingQueueListGet,
+} from './easyHunting/easyHuntingHuntingQueueListGet.operation';
+import {
+	description as descriptioneasyHuntingHuntingQueueLiveCallsEavesdropPost,
+	execute as executeeasyHuntingHuntingQueueLiveCallsEavesdropPost,
+} from './easyHunting/easyHuntingHuntingQueueLiveCallsEavesdropPost.operation';
+import {
+	description as descriptioneasyHuntingHuntingQueueLiveCallsGet,
+	execute as executeeasyHuntingHuntingQueueLiveCallsGet,
+} from './easyHunting/easyHuntingHuntingQueueLiveCallsGet.operation';
+import {
+	description as descriptioneasyHuntingHuntingQueueLiveCallsHangupPost,
+	execute as executeeasyHuntingHuntingQueueLiveCallsHangupPost,
+} from './easyHunting/easyHuntingHuntingQueueLiveCallsHangupPost.operation';
+import {
+	description as descriptioneasyHuntingHuntingQueueLiveCallsHoldPost,
+	execute as executeeasyHuntingHuntingQueueLiveCallsHoldPost,
+} from './easyHunting/easyHuntingHuntingQueueLiveCallsHoldPost.operation';
+import {
+	description as descriptioneasyHuntingHuntingQueueLiveCallsInterceptPost,
+	execute as executeeasyHuntingHuntingQueueLiveCallsInterceptPost,
+} from './easyHunting/easyHuntingHuntingQueueLiveCallsInterceptPost.operation';
+import {
+	description as descriptioneasyHuntingHuntingQueueLiveCallsListGet,
+	execute as executeeasyHuntingHuntingQueueLiveCallsListGet,
+} from './easyHunting/easyHuntingHuntingQueueLiveCallsListGet.operation';
+import {
+	description as descriptioneasyHuntingHuntingQueueLiveCallsTransferPost,
+	execute as executeeasyHuntingHuntingQueueLiveCallsTransferPost,
+} from './easyHunting/easyHuntingHuntingQueueLiveCallsTransferPost.operation';
+import {
+	description as descriptioneasyHuntingHuntingQueueLiveCallsWhisperPost,
+	execute as executeeasyHuntingHuntingQueueLiveCallsWhisperPost,
+} from './easyHunting/easyHuntingHuntingQueueLiveCallsWhisperPost.operation';
+import {
+	description as descriptioneasyHuntingHuntingQueueLiveStatisticsListGet,
+	execute as executeeasyHuntingHuntingQueueLiveStatisticsListGet,
+} from './easyHunting/easyHuntingHuntingQueueLiveStatisticsListGet.operation';
+import {
+	description as descriptioneasyHuntingHuntingQueuePost,
+	execute as executeeasyHuntingHuntingQueuePost,
+} from './easyHunting/easyHuntingHuntingQueuePost.operation';
+import {
+	description as descriptioneasyHuntingHuntingQueuePut,
+	execute as executeeasyHuntingHuntingQueuePut,
+} from './easyHunting/easyHuntingHuntingQueuePut.operation';
+import {
+	description as descriptioneasyHuntingListGet,
+	execute as executeeasyHuntingListGet,
+} from './easyHunting/easyHuntingListGet.operation';
+import {
+	description as descriptioneasyHuntingPut,
+	execute as executeeasyHuntingPut,
+} from './easyHunting/easyHuntingPut.operation';
+import {
+	description as descriptioneasyHuntingRecordsDelete,
+	execute as executeeasyHuntingRecordsDelete,
+} from './easyHunting/easyHuntingRecordsDelete.operation';
+import {
+	description as descriptioneasyHuntingRecordsGet,
+	execute as executeeasyHuntingRecordsGet,
+} from './easyHunting/easyHuntingRecordsGet.operation';
+import {
+	description as descriptioneasyHuntingRecordsListGet,
+	execute as executeeasyHuntingRecordsListGet,
+} from './easyHunting/easyHuntingRecordsListGet.operation';
+import {
+	description as descriptioneasyHuntingScreenListConditionsConditionsDelete,
+	execute as executeeasyHuntingScreenListConditionsConditionsDelete,
+} from './easyHunting/easyHuntingScreenListConditionsConditionsDelete.operation';
+import {
+	description as descriptioneasyHuntingScreenListConditionsConditionsGet,
+	execute as executeeasyHuntingScreenListConditionsConditionsGet,
+} from './easyHunting/easyHuntingScreenListConditionsConditionsGet.operation';
+import {
+	description as descriptioneasyHuntingScreenListConditionsConditionsListGet,
+	execute as executeeasyHuntingScreenListConditionsConditionsListGet,
+} from './easyHunting/easyHuntingScreenListConditionsConditionsListGet.operation';
+import {
+	description as descriptioneasyHuntingScreenListConditionsConditionsPost,
+	execute as executeeasyHuntingScreenListConditionsConditionsPost,
+} from './easyHunting/easyHuntingScreenListConditionsConditionsPost.operation';
+import {
+	description as descriptioneasyHuntingScreenListConditionsConditionsPut,
+	execute as executeeasyHuntingScreenListConditionsConditionsPut,
+} from './easyHunting/easyHuntingScreenListConditionsConditionsPut.operation';
+import {
+	description as descriptioneasyHuntingScreenListConditionsListGet,
+	execute as executeeasyHuntingScreenListConditionsListGet,
+} from './easyHunting/easyHuntingScreenListConditionsListGet.operation';
+import {
+	description as descriptioneasyHuntingScreenListConditionsPut,
+	execute as executeeasyHuntingScreenListConditionsPut,
+} from './easyHunting/easyHuntingScreenListConditionsPut.operation';
+import {
+	description as descriptioneasyHuntingSoundDelete,
+	execute as executeeasyHuntingSoundDelete,
+} from './easyHunting/easyHuntingSoundDelete.operation';
+import {
+	description as descriptioneasyHuntingSoundGet,
+	execute as executeeasyHuntingSoundGet,
+} from './easyHunting/easyHuntingSoundGet.operation';
+import {
+	description as descriptioneasyHuntingSoundListGet,
+	execute as executeeasyHuntingSoundListGet,
+} from './easyHunting/easyHuntingSoundListGet.operation';
+import {
+	description as descriptioneasyHuntingSoundUploadPost,
+	execute as executeeasyHuntingSoundUploadPost,
+} from './easyHunting/easyHuntingSoundUploadPost.operation';
+import {
+	description as descriptioneasyHuntingTimeConditionsConditionsDelete,
+	execute as executeeasyHuntingTimeConditionsConditionsDelete,
+} from './easyHunting/easyHuntingTimeConditionsConditionsDelete.operation';
+import {
+	description as descriptioneasyHuntingTimeConditionsConditionsGet,
+	execute as executeeasyHuntingTimeConditionsConditionsGet,
+} from './easyHunting/easyHuntingTimeConditionsConditionsGet.operation';
+import {
+	description as descriptioneasyHuntingTimeConditionsConditionsListGet,
+	execute as executeeasyHuntingTimeConditionsConditionsListGet,
+} from './easyHunting/easyHuntingTimeConditionsConditionsListGet.operation';
+import {
+	description as descriptioneasyHuntingTimeConditionsConditionsPost,
+	execute as executeeasyHuntingTimeConditionsConditionsPost,
+} from './easyHunting/easyHuntingTimeConditionsConditionsPost.operation';
+import {
+	description as descriptioneasyHuntingTimeConditionsConditionsPut,
+	execute as executeeasyHuntingTimeConditionsConditionsPut,
+} from './easyHunting/easyHuntingTimeConditionsConditionsPut.operation';
+import {
+	description as descriptioneasyHuntingTimeConditionsListGet,
+	execute as executeeasyHuntingTimeConditionsListGet,
+} from './easyHunting/easyHuntingTimeConditionsListGet.operation';
+import {
+	description as descriptioneasyHuntingTimeConditionsPut,
+	execute as executeeasyHuntingTimeConditionsPut,
+} from './easyHunting/easyHuntingTimeConditionsPut.operation';
+import {
+	description as descriptioneventTokenDelete,
+	execute as executeeventTokenDelete,
+} from './eventToken/eventTokenDelete.operation';
+import {
+	description as descriptioneventTokenListGet,
+	execute as executeeventTokenListGet,
+} from './eventToken/eventTokenListGet.operation';
+import {
+	description as descriptioneventTokenPost,
+	execute as executeeventTokenPost,
+} from './eventToken/eventTokenPost.operation';
+import {
 	description as descriptionfaxCampaignsDelete,
+	execute as executefaxCampaignsDelete,
 } from './fax/faxCampaignsDelete.operation';
 import {
-	execute as executefaxCampaignsDetailListGet,
 	description as descriptionfaxCampaignsDetailListGet,
+	execute as executefaxCampaignsDetailListGet,
 } from './fax/faxCampaignsDetailListGet.operation';
 import {
-	execute as executefaxCampaignsGet,
 	description as descriptionfaxCampaignsGet,
+	execute as executefaxCampaignsGet,
 } from './fax/faxCampaignsGet.operation';
 import {
-	execute as executefaxCampaignsListGet,
 	description as descriptionfaxCampaignsListGet,
+	execute as executefaxCampaignsListGet,
 } from './fax/faxCampaignsListGet.operation';
 import {
-	execute as executefaxCampaignsPost,
 	description as descriptionfaxCampaignsPost,
+	execute as executefaxCampaignsPost,
 } from './fax/faxCampaignsPost.operation';
 import {
-	execute as executefaxCampaignsStartPost,
 	description as descriptionfaxCampaignsStartPost,
+	execute as executefaxCampaignsStartPost,
 } from './fax/faxCampaignsStartPost.operation';
 import {
-	execute as executefaxCampaignsStopPost,
 	description as descriptionfaxCampaignsStopPost,
+	execute as executefaxCampaignsStopPost,
 } from './fax/faxCampaignsStopPost.operation';
-import { execute as executefaxGet, description as descriptionfaxGet } from './fax/faxGet.operation';
 import {
-	execute as executefaxListGet,
+	description as descriptionfaxGet,
+	execute as executefaxGet,
+} from './fax/faxGet.operation';
+import {
 	description as descriptionfaxListGet,
+	execute as executefaxListGet,
 } from './fax/faxListGet.operation';
-import { execute as executefaxPut, description as descriptionfaxPut } from './fax/faxPut.operation';
 import {
-	execute as executefaxScreenListsDelete,
+	description as descriptionfaxPut,
+	execute as executefaxPut,
+} from './fax/faxPut.operation';
+import {
 	description as descriptionfaxScreenListsDelete,
+	execute as executefaxScreenListsDelete,
 } from './fax/faxScreenListsDelete.operation';
 import {
-	execute as executefaxScreenListsListGet,
 	description as descriptionfaxScreenListsListGet,
+	execute as executefaxScreenListsListGet,
 } from './fax/faxScreenListsListGet.operation';
 import {
-	execute as executefaxScreenListsPost,
 	description as descriptionfaxScreenListsPost,
+	execute as executefaxScreenListsPost,
 } from './fax/faxScreenListsPost.operation';
 import {
-	execute as executefaxScreenListsPut,
 	description as descriptionfaxScreenListsPut,
+	execute as executefaxScreenListsPut,
 } from './fax/faxScreenListsPut.operation';
 import {
-	execute as executefaxScreenListsResetPost,
 	description as descriptionfaxScreenListsResetPost,
+	execute as executefaxScreenListsResetPost,
 } from './fax/faxScreenListsResetPost.operation';
 import {
-	execute as executefaxSettingsChangePasswordPost,
 	description as descriptionfaxSettingsChangePasswordPost,
+	execute as executefaxSettingsChangePasswordPost,
 } from './fax/faxSettingsChangePasswordPost.operation';
 import {
-	execute as executefaxSettingsListGet,
 	description as descriptionfaxSettingsListGet,
+	execute as executefaxSettingsListGet,
 } from './fax/faxSettingsListGet.operation';
 import {
-	execute as executefaxSettingsPut,
 	description as descriptionfaxSettingsPut,
+	execute as executefaxSettingsPut,
 } from './fax/faxSettingsPut.operation';
 import {
-	execute as executefaxSettingsSendFaxPost,
 	description as descriptionfaxSettingsSendFaxPost,
+	execute as executefaxSettingsSendFaxPost,
 } from './fax/faxSettingsSendFaxPost.operation';
 import {
-	execute as executelineAbbreviatedNumberDelete,
+	description as descriptionhasSpecialNumbersListGet,
+	execute as executehasSpecialNumbersListGet,
+} from './hasSpecialNumbers/hasSpecialNumbersListGet.operation';
+import {
+	description as descriptionhistoryConsumptionFileListGet,
+	execute as executehistoryConsumptionFileListGet,
+} from './historyConsumption/historyConsumptionFileListGet.operation';
+import {
+	description as descriptionhistoryConsumptionGet,
+	execute as executehistoryConsumptionGet,
+} from './historyConsumption/historyConsumptionGet.operation';
+import {
+	description as descriptionhistoryConsumptionListGet,
+	execute as executehistoryConsumptionListGet,
+} from './historyConsumption/historyConsumptionListGet.operation';
+import {
+	description as descriptionhistoryRepaymentConsumptionDocumentListGet,
+	execute as executehistoryRepaymentConsumptionDocumentListGet,
+} from './historyRepaymentConsumption/historyRepaymentConsumptionDocumentListGet.operation';
+import {
+	description as descriptionhistoryRepaymentConsumptionGet,
+	execute as executehistoryRepaymentConsumptionGet,
+} from './historyRepaymentConsumption/historyRepaymentConsumptionGet.operation';
+import {
+	description as descriptionhistoryRepaymentConsumptionListGet,
+	execute as executehistoryRepaymentConsumptionListGet,
+} from './historyRepaymentConsumption/historyRepaymentConsumptionListGet.operation';
+import {
+	description as descriptionhistoryRepaymentConsumptionPost,
+	execute as executehistoryRepaymentConsumptionPost,
+} from './historyRepaymentConsumption/historyRepaymentConsumptionPost.operation';
+import {
+	description as descriptionhistoryTollfreeConsumptionDocumentListGet,
+	execute as executehistoryTollfreeConsumptionDocumentListGet,
+} from './historyTollfreeConsumption/historyTollfreeConsumptionDocumentListGet.operation';
+import {
+	description as descriptionhistoryTollfreeConsumptionGet,
+	execute as executehistoryTollfreeConsumptionGet,
+} from './historyTollfreeConsumption/historyTollfreeConsumptionGet.operation';
+import {
+	description as descriptionhistoryTollfreeConsumptionListGet,
+	execute as executehistoryTollfreeConsumptionListGet,
+} from './historyTollfreeConsumption/historyTollfreeConsumptionListGet.operation';
+import {
 	description as descriptionlineAbbreviatedNumberDelete,
+	execute as executelineAbbreviatedNumberDelete,
 } from './line/lineAbbreviatedNumberDelete.operation';
 import {
-	execute as executelineAbbreviatedNumberGet,
 	description as descriptionlineAbbreviatedNumberGet,
+	execute as executelineAbbreviatedNumberGet,
 } from './line/lineAbbreviatedNumberGet.operation';
 import {
-	execute as executelineAbbreviatedNumberListGet,
 	description as descriptionlineAbbreviatedNumberListGet,
+	execute as executelineAbbreviatedNumberListGet,
 } from './line/lineAbbreviatedNumberListGet.operation';
 import {
-	execute as executelineAbbreviatedNumberPost,
 	description as descriptionlineAbbreviatedNumberPost,
+	execute as executelineAbbreviatedNumberPost,
 } from './line/lineAbbreviatedNumberPost.operation';
 import {
-	execute as executelineAbbreviatedNumberPut,
 	description as descriptionlineAbbreviatedNumberPut,
+	execute as executelineAbbreviatedNumberPut,
 } from './line/lineAbbreviatedNumberPut.operation';
 import {
-	execute as executelineActivateNewPhoneListGet,
 	description as descriptionlineActivateNewPhoneListGet,
+	execute as executelineActivateNewPhoneListGet,
 } from './line/lineActivateNewPhoneListGet.operation';
 import {
-	execute as executelineActivateNewPhonePost,
 	description as descriptionlineActivateNewPhonePost,
+	execute as executelineActivateNewPhonePost,
 } from './line/lineActivateNewPhonePost.operation';
 import {
-	execute as executelineAntihackListGet,
 	description as descriptionlineAntihackListGet,
+	execute as executelineAntihackListGet,
 } from './line/lineAntihackListGet.operation';
 import {
-	execute as executelineAntihackPost,
 	description as descriptionlineAntihackPost,
+	execute as executelineAntihackPost,
 } from './line/lineAntihackPost.operation';
 import {
-	execute as executelineAssociateDevicePost,
 	description as descriptionlineAssociateDevicePost,
+	execute as executelineAssociateDevicePost,
 } from './line/lineAssociateDevicePost.operation';
 import {
-	execute as executelineAutomaticCallGet,
 	description as descriptionlineAutomaticCallGet,
+	execute as executelineAutomaticCallGet,
 } from './line/lineAutomaticCallGet.operation';
 import {
-	execute as executelineAutomaticCallListGet,
 	description as descriptionlineAutomaticCallListGet,
+	execute as executelineAutomaticCallListGet,
 } from './line/lineAutomaticCallListGet.operation';
 import {
-	execute as executelineAutomaticCallPost,
 	description as descriptionlineAutomaticCallPost,
+	execute as executelineAutomaticCallPost,
 } from './line/lineAutomaticCallPost.operation';
 import {
-	execute as executelineAvailableSipDomainsListGet,
 	description as descriptionlineAvailableSipDomainsListGet,
+	execute as executelineAvailableSipDomainsListGet,
 } from './line/lineAvailableSipDomainsListGet.operation';
 import {
-	execute as executelineBlockPost,
 	description as descriptionlineBlockPost,
+	execute as executelineBlockPost,
 } from './line/lineBlockPost.operation';
 import {
-	execute as executelineCallsEavesdropPost,
 	description as descriptionlineCallsEavesdropPost,
+	execute as executelineCallsEavesdropPost,
 } from './line/lineCallsEavesdropPost.operation';
 import {
-	execute as executelineCallsGet,
 	description as descriptionlineCallsGet,
+	execute as executelineCallsGet,
 } from './line/lineCallsGet.operation';
 import {
-	execute as executelineCallsHangupPost,
 	description as descriptionlineCallsHangupPost,
+	execute as executelineCallsHangupPost,
 } from './line/lineCallsHangupPost.operation';
 import {
-	execute as executelineCallsHoldPost,
 	description as descriptionlineCallsHoldPost,
+	execute as executelineCallsHoldPost,
 } from './line/lineCallsHoldPost.operation';
 import {
-	execute as executelineCallsInterceptPost,
 	description as descriptionlineCallsInterceptPost,
+	execute as executelineCallsInterceptPost,
 } from './line/lineCallsInterceptPost.operation';
 import {
-	execute as executelineCallsListGet,
 	description as descriptionlineCallsListGet,
+	execute as executelineCallsListGet,
 } from './line/lineCallsListGet.operation';
 import {
-	execute as executelineCallsTransferPost,
 	description as descriptionlineCallsTransferPost,
+	execute as executelineCallsTransferPost,
 } from './line/lineCallsTransferPost.operation';
 import {
-	execute as executelineCallsWhisperPost,
 	description as descriptionlineCallsWhisperPost,
+	execute as executelineCallsWhisperPost,
 } from './line/lineCallsWhisperPost.operation';
 import {
-	execute as executelineCanChangePasswordListGet,
 	description as descriptionlineCanChangePasswordListGet,
+	execute as executelineCanChangePasswordListGet,
 } from './line/lineCanChangePasswordListGet.operation';
 import {
-	execute as executelineCancelConvertToNumberPost,
 	description as descriptionlineCancelConvertToNumberPost,
+	execute as executelineCancelConvertToNumberPost,
 } from './line/lineCancelConvertToNumberPost.operation';
 import {
-	execute as executelineChangePasswordPost,
 	description as descriptionlineChangePasswordPost,
+	execute as executelineChangePasswordPost,
 } from './line/lineChangePasswordPost.operation';
 import {
-	execute as executelineClick2CallPost,
 	description as descriptionlineClick2CallPost,
+	execute as executelineClick2CallPost,
 } from './line/lineClick2CallPost.operation';
 import {
-	execute as executelineClick2CallUserChangePasswordPost,
 	description as descriptionlineClick2CallUserChangePasswordPost,
+	execute as executelineClick2CallUserChangePasswordPost,
 } from './line/lineClick2CallUserChangePasswordPost.operation';
 import {
-	execute as executelineClick2CallUserClick2CallPost,
 	description as descriptionlineClick2CallUserClick2CallPost,
+	execute as executelineClick2CallUserClick2CallPost,
 } from './line/lineClick2CallUserClick2CallPost.operation';
 import {
-	execute as executelineClick2CallUserDelete,
 	description as descriptionlineClick2CallUserDelete,
+	execute as executelineClick2CallUserDelete,
 } from './line/lineClick2CallUserDelete.operation';
 import {
-	execute as executelineClick2CallUserGet,
 	description as descriptionlineClick2CallUserGet,
+	execute as executelineClick2CallUserGet,
 } from './line/lineClick2CallUserGet.operation';
 import {
-	execute as executelineClick2CallUserListGet,
 	description as descriptionlineClick2CallUserListGet,
+	execute as executelineClick2CallUserListGet,
 } from './line/lineClick2CallUserListGet.operation';
 import {
-	execute as executelineClick2CallUserPost,
 	description as descriptionlineClick2CallUserPost,
+	execute as executelineClick2CallUserPost,
 } from './line/lineClick2CallUserPost.operation';
 import {
-	execute as executelineConvertToNumberPost,
 	description as descriptionlineConvertToNumberPost,
+	execute as executelineConvertToNumberPost,
 } from './line/lineConvertToNumberPost.operation';
 import {
-	execute as executelineDissociateDevicePost,
 	description as descriptionlineDissociateDevicePost,
+	execute as executelineDissociateDevicePost,
 } from './line/lineDissociateDevicePost.operation';
 import {
-	execute as executelineGet,
 	description as descriptionlineGet,
+	execute as executelineGet,
 } from './line/lineGet.operation';
 import {
-	execute as executelineIpsListGet,
 	description as descriptionlineIpsListGet,
+	execute as executelineIpsListGet,
 } from './line/lineIpsListGet.operation';
 import {
-	execute as executelineLastRegistrationsListGet,
 	description as descriptionlineLastRegistrationsListGet,
+	execute as executelineLastRegistrationsListGet,
 } from './line/lineLastRegistrationsListGet.operation';
 import {
-	execute as executelineListAssociablePhonesListGet,
 	description as descriptionlineListAssociablePhonesListGet,
+	execute as executelineListAssociablePhonesListGet,
 } from './line/lineListAssociablePhonesListGet.operation';
 import {
-	execute as executelineListGet,
 	description as descriptionlineListGet,
+	execute as executelineListGet,
 } from './line/lineListGet.operation';
 import {
-	execute as executelineMaximumAvailableSimultaneousLinesListGet,
 	description as descriptionlineMaximumAvailableSimultaneousLinesListGet,
+	execute as executelineMaximumAvailableSimultaneousLinesListGet,
 } from './line/lineMaximumAvailableSimultaneousLinesListGet.operation';
 import {
-	execute as executelineOfferListGet,
 	description as descriptionlineOfferListGet,
+	execute as executelineOfferListGet,
 } from './line/lineOfferListGet.operation';
 import {
-	execute as executelineOptionsAvailableCodecsListGet,
 	description as descriptionlineOptionsAvailableCodecsListGet,
+	execute as executelineOptionsAvailableCodecsListGet,
 } from './line/lineOptionsAvailableCodecsListGet.operation';
 import {
-	execute as executelineOptionsDefaultCodecsListGet,
 	description as descriptionlineOptionsDefaultCodecsListGet,
+	execute as executelineOptionsDefaultCodecsListGet,
 } from './line/lineOptionsDefaultCodecsListGet.operation';
 import {
-	execute as executelineOptionsListGet,
 	description as descriptionlineOptionsListGet,
+	execute as executelineOptionsListGet,
 } from './line/lineOptionsListGet.operation';
 import {
-	execute as executelineOptionsPut,
 	description as descriptionlineOptionsPut,
+	execute as executelineOptionsPut,
 } from './line/lineOptionsPut.operation';
 import {
-	execute as executelinePhoneAdminCredentialsListGet,
 	description as descriptionlinePhoneAdminCredentialsListGet,
+	execute as executelinePhoneAdminCredentialsListGet,
 } from './line/linePhoneAdminCredentialsListGet.operation';
 import {
-	execute as executelinePhoneCanBeAssociableListGet,
 	description as descriptionlinePhoneCanBeAssociableListGet,
+	execute as executelinePhoneCanBeAssociableListGet,
 } from './line/linePhoneCanBeAssociableListGet.operation';
 import {
-	execute as executelinePhoneChangePhoneConfigurationPost,
 	description as descriptionlinePhoneChangePhoneConfigurationPost,
+	execute as executelinePhoneChangePhoneConfigurationPost,
 } from './line/linePhoneChangePhoneConfigurationPost.operation';
 import {
-	execute as executelinePhoneFunctionKeyAvailableFunctionListGet,
 	description as descriptionlinePhoneFunctionKeyAvailableFunctionListGet,
+	execute as executelinePhoneFunctionKeyAvailableFunctionListGet,
 } from './line/linePhoneFunctionKeyAvailableFunctionListGet.operation';
 import {
-	execute as executelinePhoneFunctionKeyGet,
 	description as descriptionlinePhoneFunctionKeyGet,
+	execute as executelinePhoneFunctionKeyGet,
 } from './line/linePhoneFunctionKeyGet.operation';
 import {
-	execute as executelinePhoneFunctionKeyListGet,
 	description as descriptionlinePhoneFunctionKeyListGet,
+	execute as executelinePhoneFunctionKeyListGet,
 } from './line/linePhoneFunctionKeyListGet.operation';
 import {
-	execute as executelinePhoneFunctionKeyPut,
 	description as descriptionlinePhoneFunctionKeyPut,
+	execute as executelinePhoneFunctionKeyPut,
 } from './line/linePhoneFunctionKeyPut.operation';
 import {
-	execute as executelinePhoneListGet,
 	description as descriptionlinePhoneListGet,
+	execute as executelinePhoneListGet,
 } from './line/linePhoneListGet.operation';
 import {
-	execute as executelinePhoneMerchandiseAvailableListGet,
 	description as descriptionlinePhoneMerchandiseAvailableListGet,
+	execute as executelinePhoneMerchandiseAvailableListGet,
 } from './line/linePhoneMerchandiseAvailableListGet.operation';
 import {
-	execute as executelinePhonePhonebookDelete,
 	description as descriptionlinePhonePhonebookDelete,
+	execute as executelinePhonePhonebookDelete,
 } from './line/linePhonePhonebookDelete.operation';
 import {
-	execute as executelinePhonePhonebookExportListGet,
 	description as descriptionlinePhonePhonebookExportListGet,
+	execute as executelinePhonePhonebookExportListGet,
 } from './line/linePhonePhonebookExportListGet.operation';
 import {
-	execute as executelinePhonePhonebookGet,
 	description as descriptionlinePhonePhonebookGet,
+	execute as executelinePhonePhonebookGet,
 } from './line/linePhonePhonebookGet.operation';
 import {
-	execute as executelinePhonePhonebookImportPost,
 	description as descriptionlinePhonePhonebookImportPost,
+	execute as executelinePhonePhonebookImportPost,
 } from './line/linePhonePhonebookImportPost.operation';
 import {
-	execute as executelinePhonePhonebookListGet,
 	description as descriptionlinePhonePhonebookListGet,
+	execute as executelinePhonePhonebookListGet,
 } from './line/linePhonePhonebookListGet.operation';
 import {
-	execute as executelinePhonePhonebookPhonebookContactDelete,
 	description as descriptionlinePhonePhonebookPhonebookContactDelete,
+	execute as executelinePhonePhonebookPhonebookContactDelete,
 } from './line/linePhonePhonebookPhonebookContactDelete.operation';
 import {
-	execute as executelinePhonePhonebookPhonebookContactGet,
 	description as descriptionlinePhonePhonebookPhonebookContactGet,
+	execute as executelinePhonePhonebookPhonebookContactGet,
 } from './line/linePhonePhonebookPhonebookContactGet.operation';
 import {
-	execute as executelinePhonePhonebookPhonebookContactListGet,
 	description as descriptionlinePhonePhonebookPhonebookContactListGet,
+	execute as executelinePhonePhonebookPhonebookContactListGet,
 } from './line/linePhonePhonebookPhonebookContactListGet.operation';
 import {
-	execute as executelinePhonePhonebookPhonebookContactPost,
 	description as descriptionlinePhonePhonebookPhonebookContactPost,
+	execute as executelinePhonePhonebookPhonebookContactPost,
 } from './line/linePhonePhonebookPhonebookContactPost.operation';
 import {
-	execute as executelinePhonePhonebookPhonebookContactPut,
 	description as descriptionlinePhonePhonebookPhonebookContactPut,
+	execute as executelinePhonePhonebookPhonebookContactPut,
 } from './line/linePhonePhonebookPhonebookContactPut.operation';
 import {
-	execute as executelinePhonePhonebookPost,
 	description as descriptionlinePhonePhonebookPost,
+	execute as executelinePhonePhonebookPost,
 } from './line/linePhonePhonebookPost.operation';
 import {
-	execute as executelinePhonePhonebookPut,
 	description as descriptionlinePhonePhonebookPut,
+	execute as executelinePhonePhonebookPut,
 } from './line/linePhonePhonebookPut.operation';
 import {
-	execute as executelinePhonePut,
 	description as descriptionlinePhonePut,
+	execute as executelinePhonePut,
 } from './line/linePhonePut.operation';
 import {
-	execute as executelinePhoneRebootPost,
 	description as descriptionlinePhoneRebootPost,
+	execute as executelinePhoneRebootPost,
 } from './line/linePhoneRebootPost.operation';
 import {
-	execute as executelinePhoneRefreshScreenPost,
 	description as descriptionlinePhoneRefreshScreenPost,
+	execute as executelinePhoneRefreshScreenPost,
 } from './line/linePhoneRefreshScreenPost.operation';
 import {
-	execute as executelinePhoneResetConfigPost,
 	description as descriptionlinePhoneResetConfigPost,
+	execute as executelinePhoneResetConfigPost,
 } from './line/linePhoneResetConfigPost.operation';
 import {
-	execute as executelinePhoneRmaChangeTypePost,
 	description as descriptionlinePhoneRmaChangeTypePost,
+	execute as executelinePhoneRmaChangeTypePost,
 } from './line/linePhoneRmaChangeTypePost.operation';
 import {
-	execute as executelinePhoneRmaDelete,
 	description as descriptionlinePhoneRmaDelete,
+	execute as executelinePhoneRmaDelete,
 } from './line/linePhoneRmaDelete.operation';
 import {
-	execute as executelinePhoneRmaGet,
 	description as descriptionlinePhoneRmaGet,
+	execute as executelinePhoneRmaGet,
 } from './line/linePhoneRmaGet.operation';
 import {
-	execute as executelinePhoneRmaListGet,
 	description as descriptionlinePhoneRmaListGet,
+	execute as executelinePhoneRmaListGet,
 } from './line/linePhoneRmaListGet.operation';
 import {
-	execute as executelinePhoneRmaPost,
 	description as descriptionlinePhoneRmaPost,
+	execute as executelinePhoneRmaPost,
 } from './line/linePhoneRmaPost.operation';
 import {
-	execute as executelinePhoneRmaPut,
 	description as descriptionlinePhoneRmaPut,
+	execute as executelinePhoneRmaPut,
 } from './line/linePhoneRmaPut.operation';
 import {
-	execute as executelinePhoneSupportsPhonebookListGet,
 	description as descriptionlinePhoneSupportsPhonebookListGet,
+	execute as executelinePhoneSupportsPhonebookListGet,
 } from './line/linePhoneSupportsPhonebookListGet.operation';
 import {
-	execute as executelinePut,
 	description as descriptionlinePut,
+	execute as executelinePut,
 } from './line/linePut.operation';
 import {
-	execute as executelineRecordsDelete,
 	description as descriptionlineRecordsDelete,
+	execute as executelineRecordsDelete,
 } from './line/lineRecordsDelete.operation';
 import {
-	execute as executelineRecordsGet,
 	description as descriptionlineRecordsGet,
+	execute as executelineRecordsGet,
 } from './line/lineRecordsGet.operation';
 import {
-	execute as executelineRecordsListGet,
 	description as descriptionlineRecordsListGet,
+	execute as executelineRecordsListGet,
 } from './line/lineRecordsListGet.operation';
 import {
-	execute as executelineRemoveSimultaneousLinesPost,
 	description as descriptionlineRemoveSimultaneousLinesPost,
+	execute as executelineRemoveSimultaneousLinesPost,
 } from './line/lineRemoveSimultaneousLinesPost.operation';
 import {
-	execute as executelineSimultaneousChannelsDetailsListGet,
 	description as descriptionlineSimultaneousChannelsDetailsListGet,
+	execute as executelineSimultaneousChannelsDetailsListGet,
 } from './line/lineSimultaneousChannelsDetailsListGet.operation';
 import {
-	execute as executelineSoftphoneBetaListGet,
 	description as descriptionlineSoftphoneBetaListGet,
+	execute as executelineSoftphoneBetaListGet,
 } from './line/lineSoftphoneBetaListGet.operation';
 import {
-	execute as executelineSoftphoneBetaPut,
 	description as descriptionlineSoftphoneBetaPut,
+	execute as executelineSoftphoneBetaPut,
 } from './line/lineSoftphoneBetaPut.operation';
 import {
-	execute as executelineSoftphoneDevicesDelete,
 	description as descriptionlineSoftphoneDevicesDelete,
+	execute as executelineSoftphoneDevicesDelete,
 } from './line/lineSoftphoneDevicesDelete.operation';
 import {
-	execute as executelineSoftphoneDevicesDisconnectPost,
 	description as descriptionlineSoftphoneDevicesDisconnectPost,
+	execute as executelineSoftphoneDevicesDisconnectPost,
 } from './line/lineSoftphoneDevicesDisconnectPost.operation';
 import {
-	execute as executelineSoftphoneDevicesListGet,
 	description as descriptionlineSoftphoneDevicesListGet,
+	execute as executelineSoftphoneDevicesListGet,
 } from './line/lineSoftphoneDevicesListGet.operation';
 import {
-	execute as executelineSoftphoneLogoDelete,
 	description as descriptionlineSoftphoneLogoDelete,
+	execute as executelineSoftphoneLogoDelete,
 } from './line/lineSoftphoneLogoDelete.operation';
 import {
-	execute as executelineSoftphoneLogoListGet,
 	description as descriptionlineSoftphoneLogoListGet,
+	execute as executelineSoftphoneLogoListGet,
 } from './line/lineSoftphoneLogoListGet.operation';
 import {
-	execute as executelineSoftphoneLogoPut,
 	description as descriptionlineSoftphoneLogoPut,
+	execute as executelineSoftphoneLogoPut,
 } from './line/lineSoftphoneLogoPut.operation';
 import {
-	execute as executelineSoftphoneStatusListGet,
 	description as descriptionlineSoftphoneStatusListGet,
+	execute as executelineSoftphoneStatusListGet,
 } from './line/lineSoftphoneStatusListGet.operation';
 import {
-	execute as executelineSoftphoneThemeDelete,
 	description as descriptionlineSoftphoneThemeDelete,
+	execute as executelineSoftphoneThemeDelete,
 } from './line/lineSoftphoneThemeDelete.operation';
 import {
-	execute as executelineSoftphoneThemeListGet,
 	description as descriptionlineSoftphoneThemeListGet,
+	execute as executelineSoftphoneThemeListGet,
 } from './line/lineSoftphoneThemeListGet.operation';
 import {
-	execute as executelineSoftphoneThemePut,
 	description as descriptionlineSoftphoneThemePut,
+	execute as executelineSoftphoneThemePut,
 } from './line/lineSoftphoneThemePut.operation';
 import {
-	execute as executelineSoftphoneTokenPost,
 	description as descriptionlineSoftphoneTokenPost,
+	execute as executelineSoftphoneTokenPost,
 } from './line/lineSoftphoneTokenPost.operation';
 import {
-	execute as executelineStatisticsListGet,
 	description as descriptionlineStatisticsListGet,
+	execute as executelineStatisticsListGet,
 } from './line/lineStatisticsListGet.operation';
 import {
-	execute as executelineTonesListGet,
 	description as descriptionlineTonesListGet,
+	execute as executelineTonesListGet,
 } from './line/lineTonesListGet.operation';
 import {
-	execute as executelineTonesPut,
 	description as descriptionlineTonesPut,
+	execute as executelineTonesPut,
 } from './line/lineTonesPut.operation';
 import {
-	execute as executelineTonesToneUploadPost,
 	description as descriptionlineTonesToneUploadPost,
+	execute as executelineTonesToneUploadPost,
 } from './line/lineTonesToneUploadPost.operation';
 import {
-	execute as executelineTrafficExtractsDelete,
 	description as descriptionlineTrafficExtractsDelete,
+	execute as executelineTrafficExtractsDelete,
 } from './line/lineTrafficExtractsDelete.operation';
 import {
-	execute as executelineTrafficExtractsGet,
 	description as descriptionlineTrafficExtractsGet,
+	execute as executelineTrafficExtractsGet,
 } from './line/lineTrafficExtractsGet.operation';
 import {
-	execute as executelineTrafficExtractsListGet,
 	description as descriptionlineTrafficExtractsListGet,
+	execute as executelineTrafficExtractsListGet,
 } from './line/lineTrafficExtractsListGet.operation';
 import {
-	execute as executelineTrafficExtractsPost,
 	description as descriptionlineTrafficExtractsPost,
+	execute as executelineTrafficExtractsPost,
 } from './line/lineTrafficExtractsPost.operation';
 import {
-	execute as executelineUnblockPost,
 	description as descriptionlineUnblockPost,
+	execute as executelineUnblockPost,
 } from './line/lineUnblockPost.operation';
 import {
-	execute as executenumberCancelConvertToLinePost,
+	description as descriptionLinesGet,
+	execute as executeLinesGet,
+} from './lines/linesGet.operation';
+import {
+	description as descriptionLinesHardwareListGet,
+	execute as executeLinesHardwareListGet,
+} from './lines/linesHardwareListGet.operation';
+import {
+	description as descriptionLinesHardwarePost,
+	execute as executeLinesHardwarePost,
+} from './lines/linesHardwarePost.operation';
+import {
+	description as descriptionLinesListGet,
+	execute as executeLinesListGet,
+} from './lines/linesListGet.operation';
+import {
+	description as descriptionLinesNumberDelete,
+	execute as executeLinesNumberDelete,
+} from './lines/linesNumberDelete.operation';
+import {
+	description as descriptionLinesNumberGet,
+	execute as executeLinesNumberGet,
+} from './lines/linesNumberGet.operation';
+import {
+	description as descriptionLinesNumberListGet,
+	execute as executeLinesNumberListGet,
+} from './lines/linesNumberListGet.operation';
+import {
+	description as descriptionLinesNumberPost,
+	execute as executeLinesNumberPost,
+} from './lines/linesNumberPost.operation';
+import {
+	description as descriptionLinesNumberPut,
+	execute as executeLinesNumberPut,
+} from './lines/linesNumberPut.operation';
+import {
+	description as descriptionLinesPortabilityDelete,
+	execute as executeLinesPortabilityDelete,
+} from './lines/linesPortabilityDelete.operation';
+import {
+	description as descriptionLinesPortabilityGet,
+	execute as executeLinesPortabilityGet,
+} from './lines/linesPortabilityGet.operation';
+import {
+	description as descriptionLinesPortabilityListGet,
+	execute as executeLinesPortabilityListGet,
+} from './lines/linesPortabilityListGet.operation';
+import {
+	description as descriptionLinesPortabilityPost,
+	execute as executeLinesPortabilityPost,
+} from './lines/linesPortabilityPost.operation';
+import {
+	description as descriptionLinesPortabilityPut,
+	execute as executeLinesPortabilityPut,
+} from './lines/linesPortabilityPut.operation';
+import {
+	description as descriptionLinesServiceInfosGet,
+	execute as executeLinesServiceInfosGet,
+} from './lines/linesServiceInfosGet.operation';
+import {
+	description as descriptionLinesServiceInfosPut,
+	execute as executeLinesServiceInfosPut,
+} from './lines/linesServiceInfosPut.operation';
+import {
+	description as descriptionLinesSimDelete,
+	execute as executeLinesSimDelete,
+} from './lines/linesSimDelete.operation';
+import {
+	description as descriptionLinesSimGet,
+	execute as executeLinesSimGet,
+} from './lines/linesSimGet.operation';
+import {
+	description as descriptionLinesSimListGet,
+	execute as executeLinesSimListGet,
+} from './lines/linesSimListGet.operation';
+import {
+	description as descriptionLinesSimPost,
+	execute as executeLinesSimPost,
+} from './lines/linesSimPost.operation';
+import {
+	description as descriptionLinesSimPut,
+	execute as executeLinesSimPut,
+} from './lines/linesSimPut.operation';
+import {
+	description as descriptionCurrentOrderIdsGet,
+	execute as executeCurrentOrderIdsGet,
+} from './misc/currentOrderIdsGet.operation';
+import {
+	description as descriptionSearchServicesGet,
+	execute as executeSearchServicesGet,
+} from './misc/searchServicesGet.operation';
+import {
+	description as descriptionSetDefaultSipDomainPost,
+	execute as executeSetDefaultSipDomainPost,
+} from './misc/setDefaultSipDomainPost.operation';
+import {
+	description as descriptionSipDomainsGet,
+	execute as executeSipDomainsGet,
+} from './misc/sipDomainsGet.operation';
+import {
+	description as descriptionTelephonyListGet,
+	execute as executeTelephonyListGet,
+} from './misc/telephonyListGet.operation';
+import {
 	description as descriptionnumberCancelConvertToLinePost,
+	execute as executenumberCancelConvertToLinePost,
 } from './number/numberCancelConvertToLinePost.operation';
 import {
-	execute as executenumberChangeFeatureTypePost,
 	description as descriptionnumberChangeFeatureTypePost,
+	execute as executenumberChangeFeatureTypePost,
 } from './number/numberChangeFeatureTypePost.operation';
 import {
-	execute as executenumberConvertToLineAvailableOffersListGet,
 	description as descriptionnumberConvertToLineAvailableOffersListGet,
+	execute as executenumberConvertToLineAvailableOffersListGet,
 } from './number/numberConvertToLineAvailableOffersListGet.operation';
 import {
-	execute as executenumberConvertToLinePost,
 	description as descriptionnumberConvertToLinePost,
+	execute as executenumberConvertToLinePost,
 } from './number/numberConvertToLinePost.operation';
 import {
-	execute as executenumberGet,
-	description as descriptionnumberGet,
-} from './number/numberGet.operation';
-import {
-	execute as executenumberListGet,
-	description as descriptionnumberListGet,
-} from './number/numberListGet.operation';
-import {
-	execute as executenumberPut,
-	description as descriptionnumberPut,
-} from './number/numberPut.operation';
-import {
-	execute as executeportabilityGet,
-	description as descriptionportabilityGet,
-} from './root/portabilityGet.operation';
-import {
-	execute as executeserviceInfosListGet,
-	description as descriptionserviceInfosListGet,
-} from './serviceInfos/serviceInfosListGet.operation';
-import {
-	execute as executeserviceInfosPut,
-	description as descriptionserviceInfosPut,
-} from './serviceInfos/serviceInfosPut.operation';
-import {
-	execute as executetaskGet,
-	description as descriptiontaskGet,
-} from './task/taskGet.operation';
-import {
-	execute as executetaskListGet,
-	description as descriptiontaskListGet,
-} from './task/taskListGet.operation';
-import {
-	execute as executetransferSecurityDepositPost,
-	description as descriptiontransferSecurityDepositPost,
-} from './root/transferSecurityDepositPost.operation';
-import {
-	execute as executevxmlGet,
-	description as descriptionvxmlGet,
-} from './vxml/vxmlGet.operation';
-import {
-	execute as executevxmlListGet,
-	description as descriptionvxmlListGet,
-} from './vxml/vxmlListGet.operation';
-import {
-	execute as executevxmlSettingsListGet,
-	description as descriptionvxmlSettingsListGet,
-} from './vxml/vxmlSettingsListGet.operation';
-import {
-	execute as executevxmlSettingsLogsPost,
-	description as descriptionvxmlSettingsLogsPost,
-} from './vxml/vxmlSettingsLogsPost.operation';
-import {
-	execute as executevxmlSettingsPut,
-	description as descriptionvxmlSettingsPut,
-} from './vxml/vxmlSettingsPut.operation';
-
-import {
-	execute as executeconferenceListGet,
-	description as descriptionconferenceListGet,
-} from './conference/conferenceListGet.operation';
-
-import {
-	execute as executeconferenceGet,
-	description as descriptionconferenceGet,
-} from './conference/conferenceGet.operation';
-
-import {
-	execute as executeconferenceAnnounceUploadPost,
-	description as descriptionconferenceAnnounceUploadPost,
-} from './conference/conferenceAnnounceUploadPost.operation';
-
-import {
-	execute as executeconferenceHistoriesListGet,
-	description as descriptionconferenceHistoriesListGet,
-} from './conference/conferenceHistoriesListGet.operation';
-
-import {
-	execute as executeconferenceHistoriesGet,
-	description as descriptionconferenceHistoriesGet,
-} from './conference/conferenceHistoriesGet.operation';
-
-import {
-	execute as executeconferenceInformationsListGet,
-	description as descriptionconferenceInformationsListGet,
-} from './conference/conferenceInformationsListGet.operation';
-
-import {
-	execute as executeconferenceLockPost,
-	description as descriptionconferenceLockPost,
-} from './conference/conferenceLockPost.operation';
-
-import {
-	execute as executeconferenceParticipantsListGet,
-	description as descriptionconferenceParticipantsListGet,
-} from './conference/conferenceParticipantsListGet.operation';
-
-import {
-	execute as executeconferenceParticipantsGet,
-	description as descriptionconferenceParticipantsGet,
-} from './conference/conferenceParticipantsGet.operation';
-
-import {
-	execute as executeconferenceParticipantsDeafPost,
-	description as descriptionconferenceParticipantsDeafPost,
-} from './conference/conferenceParticipantsDeafPost.operation';
-
-import {
-	execute as executeconferenceParticipantsEnergyPost,
-	description as descriptionconferenceParticipantsEnergyPost,
-} from './conference/conferenceParticipantsEnergyPost.operation';
-
-import {
-	execute as executeconferenceParticipantsKickPost,
-	description as descriptionconferenceParticipantsKickPost,
-} from './conference/conferenceParticipantsKickPost.operation';
-
-import {
-	execute as executeconferenceParticipantsMutePost,
-	description as descriptionconferenceParticipantsMutePost,
-} from './conference/conferenceParticipantsMutePost.operation';
-
-import {
-	execute as executeconferenceParticipantsUndeafPost,
-	description as descriptionconferenceParticipantsUndeafPost,
-} from './conference/conferenceParticipantsUndeafPost.operation';
-
-import {
-	execute as executeconferenceParticipantsUnmutePost,
-	description as descriptionconferenceParticipantsUnmutePost,
-} from './conference/conferenceParticipantsUnmutePost.operation';
-
-import {
-	execute as executeconferenceRoomsListGet,
-	description as descriptionconferenceRoomsListGet,
-} from './conference/conferenceRoomsListGet.operation';
-
-import {
-	execute as executeconferenceRoomsPost,
-	description as descriptionconferenceRoomsPost,
-} from './conference/conferenceRoomsPost.operation';
-
-import {
-	execute as executeconferenceRoomsGet,
-	description as descriptionconferenceRoomsGet,
-} from './conference/conferenceRoomsGet.operation';
-
-import {
-	execute as executeconferenceRoomsPut,
-	description as descriptionconferenceRoomsPut,
-} from './conference/conferenceRoomsPut.operation';
-
-import {
-	execute as executeconferenceRoomsHistoriesListGet,
-	description as descriptionconferenceRoomsHistoriesListGet,
-} from './conference/conferenceRoomsHistoriesListGet.operation';
-
-import {
-	execute as executeconferenceRoomsHistoriesGet,
-	description as descriptionconferenceRoomsHistoriesGet,
-} from './conference/conferenceRoomsHistoriesGet.operation';
-
-import {
-	execute as executeconferenceRoomsLockPost,
-	description as descriptionconferenceRoomsLockPost,
-} from './conference/conferenceRoomsLockPost.operation';
-
-import {
-	execute as executeconferenceRoomsParticipantsListGet,
-	description as descriptionconferenceRoomsParticipantsListGet,
-} from './conference/conferenceRoomsParticipantsListGet.operation';
-
-import {
-	execute as executeconferenceRoomsParticipantsGet,
-	description as descriptionconferenceRoomsParticipantsGet,
-} from './conference/conferenceRoomsParticipantsGet.operation';
-
-import {
-	execute as executeconferenceRoomsParticipantsDeafPost,
-	description as descriptionconferenceRoomsParticipantsDeafPost,
-} from './conference/conferenceRoomsParticipantsDeafPost.operation';
-
-import {
-	execute as executeconferenceRoomsParticipantsEnergyPost,
-	description as descriptionconferenceRoomsParticipantsEnergyPost,
-} from './conference/conferenceRoomsParticipantsEnergyPost.operation';
-
-import {
-	execute as executeconferenceRoomsParticipantsKickPost,
-	description as descriptionconferenceRoomsParticipantsKickPost,
-} from './conference/conferenceRoomsParticipantsKickPost.operation';
-
-import {
-	execute as executeconferenceRoomsParticipantsMutePost,
-	description as descriptionconferenceRoomsParticipantsMutePost,
-} from './conference/conferenceRoomsParticipantsMutePost.operation';
-
-import {
-	execute as executeconferenceRoomsParticipantsUndeafPost,
-	description as descriptionconferenceRoomsParticipantsUndeafPost,
-} from './conference/conferenceRoomsParticipantsUndeafPost.operation';
-
-import {
-	execute as executeconferenceRoomsParticipantsUnmutePost,
-	description as descriptionconferenceRoomsParticipantsUnmutePost,
-} from './conference/conferenceRoomsParticipantsUnmutePost.operation';
-
-import {
-	execute as executeconferenceRoomsUnlockPost,
-	description as descriptionconferenceRoomsUnlockPost,
-} from './conference/conferenceRoomsUnlockPost.operation';
-
-import {
-	execute as executeconferenceRoomsWebAccessListGet,
-	description as descriptionconferenceRoomsWebAccessListGet,
-} from './conference/conferenceRoomsWebAccessListGet.operation';
-
-import {
-	execute as executeconferenceRoomsWebAccessPost,
-	description as descriptionconferenceRoomsWebAccessPost,
-} from './conference/conferenceRoomsWebAccessPost.operation';
-
-import {
-	execute as executeconferenceRoomsWebAccessDelete,
-	description as descriptionconferenceRoomsWebAccessDelete,
-} from './conference/conferenceRoomsWebAccessDelete.operation';
-
-import {
-	execute as executeconferenceRoomsWebAccessGet,
-	description as descriptionconferenceRoomsWebAccessGet,
-} from './conference/conferenceRoomsWebAccessGet.operation';
-
-import {
-	execute as executeconferenceRoomsStatsListGet,
-	description as descriptionconferenceRoomsStatsListGet,
-} from './conference/conferenceRoomsStatsListGet.operation';
-
-import {
-	execute as executeconferenceSettingsListGet,
-	description as descriptionconferenceSettingsListGet,
-} from './conference/conferenceSettingsListGet.operation';
-
-import {
-	execute as executeconferenceSettingsPut,
-	description as descriptionconferenceSettingsPut,
-} from './conference/conferenceSettingsPut.operation';
-
-import {
-	execute as executeconferenceUnlockPost,
-	description as descriptionconferenceUnlockPost,
-} from './conference/conferenceUnlockPost.operation';
-
-import {
-	execute as executeconferenceWebAccessListGet,
-	description as descriptionconferenceWebAccessListGet,
-} from './conference/conferenceWebAccessListGet.operation';
-
-import {
-	execute as executeconferenceWebAccessPost,
-	description as descriptionconferenceWebAccessPost,
-} from './conference/conferenceWebAccessPost.operation';
-
-import {
-	execute as executeconferenceWebAccessDelete,
-	description as descriptionconferenceWebAccessDelete,
-} from './conference/conferenceWebAccessDelete.operation';
-
-import {
-	execute as executeconferenceWebAccessGet,
-	description as descriptionconferenceWebAccessGet,
-} from './conference/conferenceWebAccessGet.operation';
-
-import {
-	execute as executeddiListGet,
-	description as descriptionddiListGet,
-} from './ddi/ddiListGet.operation';
-
-import { execute as executeddiGet, description as descriptionddiGet } from './ddi/ddiGet.operation';
-
-import { execute as executeddiPut, description as descriptionddiPut } from './ddi/ddiPut.operation';
-
-import {
-	execute as executeddiChangeDestinationPost,
-	description as descriptionddiChangeDestinationPost,
-} from './ddi/ddiChangeDestinationPost.operation';
-
-import {
-	execute as executeeasyHuntingListGet,
-	description as descriptioneasyHuntingListGet,
-} from './easyHunting/easyHuntingListGet.operation';
-
-import {
-	execute as executeeasyHuntingGet,
-	description as descriptioneasyHuntingGet,
-} from './easyHunting/easyHuntingGet.operation';
-
-import {
-	execute as executeeasyHuntingPut,
-	description as descriptioneasyHuntingPut,
-} from './easyHunting/easyHuntingPut.operation';
-
-import {
-	execute as executeeasyHuntingHuntingListGet,
-	description as descriptioneasyHuntingHuntingListGet,
-} from './easyHunting/easyHuntingHuntingListGet.operation';
-
-import {
-	execute as executeeasyHuntingHuntingPut,
-	description as descriptioneasyHuntingHuntingPut,
-} from './easyHunting/easyHuntingHuntingPut.operation';
-
-import {
-	execute as executeeasyHuntingHuntingAgentListGet,
-	description as descriptioneasyHuntingHuntingAgentListGet,
-} from './easyHunting/easyHuntingHuntingAgentListGet.operation';
-
-import {
-	execute as executeeasyHuntingHuntingAgentPost,
-	description as descriptioneasyHuntingHuntingAgentPost,
-} from './easyHunting/easyHuntingHuntingAgentPost.operation';
-
-import {
-	execute as executeeasyHuntingHuntingAgentDelete,
-	description as descriptioneasyHuntingHuntingAgentDelete,
-} from './easyHunting/easyHuntingHuntingAgentDelete.operation';
-
-import {
-	execute as executeeasyHuntingHuntingAgentGet,
-	description as descriptioneasyHuntingHuntingAgentGet,
-} from './easyHunting/easyHuntingHuntingAgentGet.operation';
-
-import {
-	execute as executeeasyHuntingHuntingAgentPut,
-	description as descriptioneasyHuntingHuntingAgentPut,
-} from './easyHunting/easyHuntingHuntingAgentPut.operation';
-
-import {
-	execute as executeeasyHuntingHuntingAgentBannerAccessDelete,
-	description as descriptioneasyHuntingHuntingAgentBannerAccessDelete,
-} from './easyHunting/easyHuntingHuntingAgentBannerAccessDelete.operation';
-
-import {
-	execute as executeeasyHuntingHuntingAgentBannerAccessListGet,
-	description as descriptioneasyHuntingHuntingAgentBannerAccessListGet,
-} from './easyHunting/easyHuntingHuntingAgentBannerAccessListGet.operation';
-
-import {
-	execute as executeeasyHuntingHuntingAgentBannerAccessPost,
-	description as descriptioneasyHuntingHuntingAgentBannerAccessPost,
-} from './easyHunting/easyHuntingHuntingAgentBannerAccessPost.operation';
-
-import {
-	execute as executeeasyHuntingHuntingAgentCallsListGet,
-	description as descriptioneasyHuntingHuntingAgentCallsListGet,
-} from './easyHunting/easyHuntingHuntingAgentCallsListGet.operation';
-
-import {
-	execute as executeeasyHuntingHuntingAgentCallsGet,
-	description as descriptioneasyHuntingHuntingAgentCallsGet,
-} from './easyHunting/easyHuntingHuntingAgentCallsGet.operation';
-
-import {
-	execute as executeeasyHuntingHuntingAgentCallsEavesdropPost,
-	description as descriptioneasyHuntingHuntingAgentCallsEavesdropPost,
-} from './easyHunting/easyHuntingHuntingAgentCallsEavesdropPost.operation';
-
-import {
-	execute as executeeasyHuntingHuntingAgentCallsHangupPost,
-	description as descriptioneasyHuntingHuntingAgentCallsHangupPost,
-} from './easyHunting/easyHuntingHuntingAgentCallsHangupPost.operation';
-
-import {
-	execute as executeeasyHuntingHuntingAgentCallsHoldPost,
-	description as descriptioneasyHuntingHuntingAgentCallsHoldPost,
-} from './easyHunting/easyHuntingHuntingAgentCallsHoldPost.operation';
-
-import {
-	execute as executeeasyHuntingHuntingAgentCallsInterceptPost,
-	description as descriptioneasyHuntingHuntingAgentCallsInterceptPost,
-} from './easyHunting/easyHuntingHuntingAgentCallsInterceptPost.operation';
-
-import {
-	execute as executeeasyHuntingHuntingAgentCallsTransferPost,
-	description as descriptioneasyHuntingHuntingAgentCallsTransferPost,
-} from './easyHunting/easyHuntingHuntingAgentCallsTransferPost.operation';
-
-import {
-	execute as executeeasyHuntingHuntingAgentCallsWhisperPost,
-	description as descriptioneasyHuntingHuntingAgentCallsWhisperPost,
-} from './easyHunting/easyHuntingHuntingAgentCallsWhisperPost.operation';
-
-import {
-	execute as executeeasyHuntingHuntingAgentEventTokenDelete,
-	description as descriptioneasyHuntingHuntingAgentEventTokenDelete,
-} from './easyHunting/easyHuntingHuntingAgentEventTokenDelete.operation';
-
-import {
-	execute as executeeasyHuntingHuntingAgentEventTokenListGet,
-	description as descriptioneasyHuntingHuntingAgentEventTokenListGet,
-} from './easyHunting/easyHuntingHuntingAgentEventTokenListGet.operation';
-
-import {
-	execute as executeeasyHuntingHuntingAgentEventTokenPost,
-	description as descriptioneasyHuntingHuntingAgentEventTokenPost,
-} from './easyHunting/easyHuntingHuntingAgentEventTokenPost.operation';
-
-import {
-	execute as executeeasyHuntingHuntingAgentLiveStatusListGet,
-	description as descriptioneasyHuntingHuntingAgentLiveStatusListGet,
-} from './easyHunting/easyHuntingHuntingAgentLiveStatusListGet.operation';
-
-import {
-	execute as executeeasyHuntingHuntingAgentQueueListGet,
-	description as descriptioneasyHuntingHuntingAgentQueueListGet,
-} from './easyHunting/easyHuntingHuntingAgentQueueListGet.operation';
-
-import {
-	execute as executeeasyHuntingHuntingAgentQueuePost,
-	description as descriptioneasyHuntingHuntingAgentQueuePost,
-} from './easyHunting/easyHuntingHuntingAgentQueuePost.operation';
-
-import {
-	execute as executeeasyHuntingHuntingAgentQueueDelete,
-	description as descriptioneasyHuntingHuntingAgentQueueDelete,
-} from './easyHunting/easyHuntingHuntingAgentQueueDelete.operation';
-
-import {
-	execute as executeeasyHuntingHuntingAgentQueueGet,
-	description as descriptioneasyHuntingHuntingAgentQueueGet,
-} from './easyHunting/easyHuntingHuntingAgentQueueGet.operation';
-
-import {
-	execute as executeeasyHuntingHuntingAgentQueuePut,
-	description as descriptioneasyHuntingHuntingAgentQueuePut,
-} from './easyHunting/easyHuntingHuntingAgentQueuePut.operation';
-
-import {
-	execute as executeeasyHuntingHuntingAgentQueueLiveStatusListGet,
-	description as descriptioneasyHuntingHuntingAgentQueueLiveStatusListGet,
-} from './easyHunting/easyHuntingHuntingAgentQueueLiveStatusListGet.operation';
-
-import {
-	execute as executeeasyHuntingHuntingCustomStatusListGet,
-	description as descriptioneasyHuntingHuntingCustomStatusListGet,
-} from './easyHunting/easyHuntingHuntingCustomStatusListGet.operation';
-
-import {
-	execute as executeeasyHuntingHuntingCustomStatusPost,
-	description as descriptioneasyHuntingHuntingCustomStatusPost,
-} from './easyHunting/easyHuntingHuntingCustomStatusPost.operation';
-
-import {
-	execute as executeeasyHuntingHuntingCustomStatusDelete,
-	description as descriptioneasyHuntingHuntingCustomStatusDelete,
-} from './easyHunting/easyHuntingHuntingCustomStatusDelete.operation';
-
-import {
-	execute as executeeasyHuntingHuntingCustomStatusGet,
-	description as descriptioneasyHuntingHuntingCustomStatusGet,
-} from './easyHunting/easyHuntingHuntingCustomStatusGet.operation';
-
-import {
-	execute as executeeasyHuntingHuntingEventTokenDelete,
-	description as descriptioneasyHuntingHuntingEventTokenDelete,
-} from './easyHunting/easyHuntingHuntingEventTokenDelete.operation';
-
-import {
-	execute as executeeasyHuntingHuntingEventTokenListGet,
-	description as descriptioneasyHuntingHuntingEventTokenListGet,
-} from './easyHunting/easyHuntingHuntingEventTokenListGet.operation';
-
-import {
-	execute as executeeasyHuntingHuntingEventTokenPost,
-	description as descriptioneasyHuntingHuntingEventTokenPost,
-} from './easyHunting/easyHuntingHuntingEventTokenPost.operation';
-
-import {
-	execute as executeeasyHuntingHuntingQueueListGet,
-	description as descriptioneasyHuntingHuntingQueueListGet,
-} from './easyHunting/easyHuntingHuntingQueueListGet.operation';
-
-import {
-	execute as executeeasyHuntingHuntingQueuePost,
-	description as descriptioneasyHuntingHuntingQueuePost,
-} from './easyHunting/easyHuntingHuntingQueuePost.operation';
-
-import {
-	execute as executeeasyHuntingHuntingQueueDelete,
-	description as descriptioneasyHuntingHuntingQueueDelete,
-} from './easyHunting/easyHuntingHuntingQueueDelete.operation';
-
-import {
-	execute as executeeasyHuntingHuntingQueueGet,
-	description as descriptioneasyHuntingHuntingQueueGet,
-} from './easyHunting/easyHuntingHuntingQueueGet.operation';
-
-import {
-	execute as executeeasyHuntingHuntingQueuePut,
-	description as descriptioneasyHuntingHuntingQueuePut,
-} from './easyHunting/easyHuntingHuntingQueuePut.operation';
-
-import {
-	execute as executeeasyHuntingHuntingQueueAgentListGet,
-	description as descriptioneasyHuntingHuntingQueueAgentListGet,
-} from './easyHunting/easyHuntingHuntingQueueAgentListGet.operation';
-
-import {
-	execute as executeeasyHuntingHuntingQueueAgentPost,
-	description as descriptioneasyHuntingHuntingQueueAgentPost,
-} from './easyHunting/easyHuntingHuntingQueueAgentPost.operation';
-
-import {
-	execute as executeeasyHuntingHuntingQueueAgentDelete,
-	description as descriptioneasyHuntingHuntingQueueAgentDelete,
-} from './easyHunting/easyHuntingHuntingQueueAgentDelete.operation';
-
-import {
-	execute as executeeasyHuntingHuntingQueueAgentGet,
-	description as descriptioneasyHuntingHuntingQueueAgentGet,
-} from './easyHunting/easyHuntingHuntingQueueAgentGet.operation';
-
-import {
-	execute as executeeasyHuntingHuntingQueueAgentPut,
-	description as descriptioneasyHuntingHuntingQueueAgentPut,
-} from './easyHunting/easyHuntingHuntingQueueAgentPut.operation';
-
-import {
-	execute as executeeasyHuntingHuntingQueueAgentLiveStatusListGet,
-	description as descriptioneasyHuntingHuntingQueueAgentLiveStatusListGet,
-} from './easyHunting/easyHuntingHuntingQueueAgentLiveStatusListGet.operation';
-
-import {
-	execute as executeeasyHuntingHuntingQueueLiveCallsListGet,
-	description as descriptioneasyHuntingHuntingQueueLiveCallsListGet,
-} from './easyHunting/easyHuntingHuntingQueueLiveCallsListGet.operation';
-
-import {
-	execute as executeeasyHuntingHuntingQueueLiveCallsGet,
-	description as descriptioneasyHuntingHuntingQueueLiveCallsGet,
-} from './easyHunting/easyHuntingHuntingQueueLiveCallsGet.operation';
-
-import {
-	execute as executeeasyHuntingHuntingQueueLiveCallsEavesdropPost,
-	description as descriptioneasyHuntingHuntingQueueLiveCallsEavesdropPost,
-} from './easyHunting/easyHuntingHuntingQueueLiveCallsEavesdropPost.operation';
-
-import {
-	execute as executeeasyHuntingHuntingQueueLiveCallsHangupPost,
-	description as descriptioneasyHuntingHuntingQueueLiveCallsHangupPost,
-} from './easyHunting/easyHuntingHuntingQueueLiveCallsHangupPost.operation';
-
-import {
-	execute as executeeasyHuntingHuntingQueueLiveCallsHoldPost,
-	description as descriptioneasyHuntingHuntingQueueLiveCallsHoldPost,
-} from './easyHunting/easyHuntingHuntingQueueLiveCallsHoldPost.operation';
-
-import {
-	execute as executeeasyHuntingHuntingQueueLiveCallsInterceptPost,
-	description as descriptioneasyHuntingHuntingQueueLiveCallsInterceptPost,
-} from './easyHunting/easyHuntingHuntingQueueLiveCallsInterceptPost.operation';
-
-import {
-	execute as executeeasyHuntingHuntingQueueLiveCallsTransferPost,
-	description as descriptioneasyHuntingHuntingQueueLiveCallsTransferPost,
-} from './easyHunting/easyHuntingHuntingQueueLiveCallsTransferPost.operation';
-
-import {
-	execute as executeeasyHuntingHuntingQueueLiveCallsWhisperPost,
-	description as descriptioneasyHuntingHuntingQueueLiveCallsWhisperPost,
-} from './easyHunting/easyHuntingHuntingQueueLiveCallsWhisperPost.operation';
-
-import {
-	execute as executeeasyHuntingHuntingQueueLiveStatisticsListGet,
-	description as descriptioneasyHuntingHuntingQueueLiveStatisticsListGet,
-} from './easyHunting/easyHuntingHuntingQueueLiveStatisticsListGet.operation';
-
-import {
-	execute as executeeasyHuntingRecordsListGet,
-	description as descriptioneasyHuntingRecordsListGet,
-} from './easyHunting/easyHuntingRecordsListGet.operation';
-
-import {
-	execute as executeeasyHuntingRecordsDelete,
-	description as descriptioneasyHuntingRecordsDelete,
-} from './easyHunting/easyHuntingRecordsDelete.operation';
-
-import {
-	execute as executeeasyHuntingRecordsGet,
-	description as descriptioneasyHuntingRecordsGet,
-} from './easyHunting/easyHuntingRecordsGet.operation';
-
-import {
-	execute as executeeasyHuntingScreenListConditionsListGet,
-	description as descriptioneasyHuntingScreenListConditionsListGet,
-} from './easyHunting/easyHuntingScreenListConditionsListGet.operation';
-
-import {
-	execute as executeeasyHuntingScreenListConditionsPut,
-	description as descriptioneasyHuntingScreenListConditionsPut,
-} from './easyHunting/easyHuntingScreenListConditionsPut.operation';
-
-import {
-	execute as executeeasyHuntingScreenListConditionsConditionsListGet,
-	description as descriptioneasyHuntingScreenListConditionsConditionsListGet,
-} from './easyHunting/easyHuntingScreenListConditionsConditionsListGet.operation';
-
-import {
-	execute as executeeasyHuntingScreenListConditionsConditionsPost,
-	description as descriptioneasyHuntingScreenListConditionsConditionsPost,
-} from './easyHunting/easyHuntingScreenListConditionsConditionsPost.operation';
-
-import {
-	execute as executeeasyHuntingScreenListConditionsConditionsDelete,
-	description as descriptioneasyHuntingScreenListConditionsConditionsDelete,
-} from './easyHunting/easyHuntingScreenListConditionsConditionsDelete.operation';
-
-import {
-	execute as executeeasyHuntingScreenListConditionsConditionsGet,
-	description as descriptioneasyHuntingScreenListConditionsConditionsGet,
-} from './easyHunting/easyHuntingScreenListConditionsConditionsGet.operation';
-
-import {
-	execute as executeeasyHuntingScreenListConditionsConditionsPut,
-	description as descriptioneasyHuntingScreenListConditionsConditionsPut,
-} from './easyHunting/easyHuntingScreenListConditionsConditionsPut.operation';
-
-import {
-	execute as executeeasyHuntingSoundListGet,
-	description as descriptioneasyHuntingSoundListGet,
-} from './easyHunting/easyHuntingSoundListGet.operation';
-
-import {
-	execute as executeeasyHuntingSoundDelete,
-	description as descriptioneasyHuntingSoundDelete,
-} from './easyHunting/easyHuntingSoundDelete.operation';
-
-import {
-	execute as executeeasyHuntingSoundGet,
-	description as descriptioneasyHuntingSoundGet,
-} from './easyHunting/easyHuntingSoundGet.operation';
-
-import {
-	execute as executeeasyHuntingSoundUploadPost,
-	description as descriptioneasyHuntingSoundUploadPost,
-} from './easyHunting/easyHuntingSoundUploadPost.operation';
-
-import {
-	execute as executeeasyHuntingTimeConditionsListGet,
-	description as descriptioneasyHuntingTimeConditionsListGet,
-} from './easyHunting/easyHuntingTimeConditionsListGet.operation';
-
-import {
-	execute as executeeasyHuntingTimeConditionsPut,
-	description as descriptioneasyHuntingTimeConditionsPut,
-} from './easyHunting/easyHuntingTimeConditionsPut.operation';
-
-import {
-	execute as executeeasyHuntingTimeConditionsConditionsListGet,
-	description as descriptioneasyHuntingTimeConditionsConditionsListGet,
-} from './easyHunting/easyHuntingTimeConditionsConditionsListGet.operation';
-
-import {
-	execute as executeeasyHuntingTimeConditionsConditionsPost,
-	description as descriptioneasyHuntingTimeConditionsConditionsPost,
-} from './easyHunting/easyHuntingTimeConditionsConditionsPost.operation';
-
-import {
-	execute as executeeasyHuntingTimeConditionsConditionsDelete,
-	description as descriptioneasyHuntingTimeConditionsConditionsDelete,
-} from './easyHunting/easyHuntingTimeConditionsConditionsDelete.operation';
-
-import {
-	execute as executeeasyHuntingTimeConditionsConditionsGet,
-	description as descriptioneasyHuntingTimeConditionsConditionsGet,
-} from './easyHunting/easyHuntingTimeConditionsConditionsGet.operation';
-
-import {
-	execute as executeeasyHuntingTimeConditionsConditionsPut,
-	description as descriptioneasyHuntingTimeConditionsConditionsPut,
-} from './easyHunting/easyHuntingTimeConditionsConditionsPut.operation';
-
-import {
-	execute as executeeventTokenDelete,
-	description as descriptioneventTokenDelete,
-} from './eventToken/eventTokenDelete.operation';
-
-import {
-	execute as executeeventTokenListGet,
-	description as descriptioneventTokenListGet,
-} from './eventToken/eventTokenListGet.operation';
-
-import {
-	execute as executeeventTokenPost,
-	description as descriptioneventTokenPost,
-} from './eventToken/eventTokenPost.operation';
-
-import {
-	execute as executehasSpecialNumbersListGet,
-	description as descriptionhasSpecialNumbersListGet,
-} from './hasSpecialNumbers/hasSpecialNumbersListGet.operation';
-
-import {
-	execute as executehistoryConsumptionListGet,
-	description as descriptionhistoryConsumptionListGet,
-} from './historyConsumption/historyConsumptionListGet.operation';
-
-import {
-	execute as executehistoryConsumptionGet,
-	description as descriptionhistoryConsumptionGet,
-} from './historyConsumption/historyConsumptionGet.operation';
-
-import {
-	execute as executehistoryConsumptionFileListGet,
-	description as descriptionhistoryConsumptionFileListGet,
-} from './historyConsumption/historyConsumptionFileListGet.operation';
-
-import {
-	execute as executehistoryRepaymentConsumptionListGet,
-	description as descriptionhistoryRepaymentConsumptionListGet,
-} from './historyRepaymentConsumption/historyRepaymentConsumptionListGet.operation';
-
-import {
-	execute as executehistoryRepaymentConsumptionPost,
-	description as descriptionhistoryRepaymentConsumptionPost,
-} from './historyRepaymentConsumption/historyRepaymentConsumptionPost.operation';
-
-import {
-	execute as executehistoryRepaymentConsumptionGet,
-	description as descriptionhistoryRepaymentConsumptionGet,
-} from './historyRepaymentConsumption/historyRepaymentConsumptionGet.operation';
-
-import {
-	execute as executehistoryRepaymentConsumptionDocumentListGet,
-	description as descriptionhistoryRepaymentConsumptionDocumentListGet,
-} from './historyRepaymentConsumption/historyRepaymentConsumptionDocumentListGet.operation';
-
-import {
-	execute as executehistoryTollfreeConsumptionListGet,
-	description as descriptionhistoryTollfreeConsumptionListGet,
-} from './historyTollfreeConsumption/historyTollfreeConsumptionListGet.operation';
-
-import {
-	execute as executehistoryTollfreeConsumptionGet,
-	description as descriptionhistoryTollfreeConsumptionGet,
-} from './historyTollfreeConsumption/historyTollfreeConsumptionGet.operation';
-
-import {
-	execute as executehistoryTollfreeConsumptionDocumentListGet,
-	description as descriptionhistoryTollfreeConsumptionDocumentListGet,
-} from './historyTollfreeConsumption/historyTollfreeConsumptionDocumentListGet.operation';
-
-import {
-	execute as executeofferTaskListGet,
-	description as descriptionofferTaskListGet,
-} from './offerTask/offerTaskListGet.operation';
-
-import {
-	execute as executeofferTaskGet,
-	description as descriptionofferTaskGet,
-} from './offerTask/offerTaskGet.operation';
-
-import {
-	execute as executeofferTaskPut,
-	description as descriptionofferTaskPut,
-} from './offerTask/offerTaskPut.operation';
-
-import {
-	execute as executeoldPhoneListGet,
-	description as descriptionoldPhoneListGet,
-} from './oldPhone/oldPhoneListGet.operation';
-
-import {
-	execute as executeoutplanNotificationListGet,
-	description as descriptionoutplanNotificationListGet,
-} from './outplanNotification/outplanNotificationListGet.operation';
-
-import {
-	execute as executeoutplanNotificationPost,
-	description as descriptionoutplanNotificationPost,
-} from './outplanNotification/outplanNotificationPost.operation';
-
-import {
-	execute as executeoutplanNotificationDelete,
-	description as descriptionoutplanNotificationDelete,
-} from './outplanNotification/outplanNotificationDelete.operation';
-
-import {
-	execute as executeoutplanNotificationGet,
-	description as descriptionoutplanNotificationGet,
-} from './outplanNotification/outplanNotificationGet.operation';
-
-import {
-	execute as executeovhPabxListGet,
-	description as descriptionovhPabxListGet,
-} from './ovhPabx/ovhPabxListGet.operation';
-
-import {
-	execute as executeovhPabxGet,
-	description as descriptionovhPabxGet,
-} from './ovhPabx/ovhPabxGet.operation';
-
-import {
-	execute as executeovhPabxPut,
-	description as descriptionovhPabxPut,
-} from './ovhPabx/ovhPabxPut.operation';
-
-import {
-	execute as executeovhPabxDialplanListGet,
-	description as descriptionovhPabxDialplanListGet,
-} from './ovhPabx/ovhPabxDialplanListGet.operation';
-
-import {
-	execute as executeovhPabxDialplanPost,
-	description as descriptionovhPabxDialplanPost,
-} from './ovhPabx/ovhPabxDialplanPost.operation';
-
-import {
-	execute as executeovhPabxDialplanDelete,
-	description as descriptionovhPabxDialplanDelete,
-} from './ovhPabx/ovhPabxDialplanDelete.operation';
-
-import {
-	execute as executeovhPabxDialplanGet,
-	description as descriptionovhPabxDialplanGet,
-} from './ovhPabx/ovhPabxDialplanGet.operation';
-
-import {
-	execute as executeovhPabxDialplanPut,
-	description as descriptionovhPabxDialplanPut,
-} from './ovhPabx/ovhPabxDialplanPut.operation';
-
-import {
-	execute as executeovhPabxDialplanExtensionListGet,
-	description as descriptionovhPabxDialplanExtensionListGet,
-} from './ovhPabx/ovhPabxDialplanExtensionListGet.operation';
-
-import {
-	execute as executeovhPabxDialplanExtensionPost,
-	description as descriptionovhPabxDialplanExtensionPost,
-} from './ovhPabx/ovhPabxDialplanExtensionPost.operation';
-
-import {
-	execute as executeovhPabxDialplanExtensionDelete,
-	description as descriptionovhPabxDialplanExtensionDelete,
-} from './ovhPabx/ovhPabxDialplanExtensionDelete.operation';
-
-import {
-	execute as executeovhPabxDialplanExtensionGet,
-	description as descriptionovhPabxDialplanExtensionGet,
-} from './ovhPabx/ovhPabxDialplanExtensionGet.operation';
-
-import {
-	execute as executeovhPabxDialplanExtensionPut,
-	description as descriptionovhPabxDialplanExtensionPut,
-} from './ovhPabx/ovhPabxDialplanExtensionPut.operation';
-
-import {
-	execute as executeovhPabxDialplanExtensionConditionScreenListListGet,
-	description as descriptionovhPabxDialplanExtensionConditionScreenListListGet,
-} from './ovhPabx/ovhPabxDialplanExtensionConditionScreenListListGet.operation';
-
-import {
-	execute as executeovhPabxDialplanExtensionConditionScreenListPost,
-	description as descriptionovhPabxDialplanExtensionConditionScreenListPost,
-} from './ovhPabx/ovhPabxDialplanExtensionConditionScreenListPost.operation';
-
-import {
-	execute as executeovhPabxDialplanExtensionConditionScreenListDelete,
-	description as descriptionovhPabxDialplanExtensionConditionScreenListDelete,
-} from './ovhPabx/ovhPabxDialplanExtensionConditionScreenListDelete.operation';
-
-import {
-	execute as executeovhPabxDialplanExtensionConditionScreenListGet,
-	description as descriptionovhPabxDialplanExtensionConditionScreenListGet,
-} from './ovhPabx/ovhPabxDialplanExtensionConditionScreenListGet.operation';
-
-import {
-	execute as executeovhPabxDialplanExtensionConditionTimeListGet,
-	description as descriptionovhPabxDialplanExtensionConditionTimeListGet,
-} from './ovhPabx/ovhPabxDialplanExtensionConditionTimeListGet.operation';
-
-import {
-	execute as executeovhPabxDialplanExtensionConditionTimePost,
-	description as descriptionovhPabxDialplanExtensionConditionTimePost,
-} from './ovhPabx/ovhPabxDialplanExtensionConditionTimePost.operation';
-
-import {
-	execute as executeovhPabxDialplanExtensionConditionTimeDelete,
-	description as descriptionovhPabxDialplanExtensionConditionTimeDelete,
-} from './ovhPabx/ovhPabxDialplanExtensionConditionTimeDelete.operation';
-
-import {
-	execute as executeovhPabxDialplanExtensionConditionTimeGet,
-	description as descriptionovhPabxDialplanExtensionConditionTimeGet,
-} from './ovhPabx/ovhPabxDialplanExtensionConditionTimeGet.operation';
-
-import {
-	execute as executeovhPabxDialplanExtensionConditionTimePut,
-	description as descriptionovhPabxDialplanExtensionConditionTimePut,
-} from './ovhPabx/ovhPabxDialplanExtensionConditionTimePut.operation';
-
-import {
-	execute as executeovhPabxDialplanExtensionRuleListGet,
-	description as descriptionovhPabxDialplanExtensionRuleListGet,
-} from './ovhPabx/ovhPabxDialplanExtensionRuleListGet.operation';
-
-import {
-	execute as executeovhPabxDialplanExtensionRulePost,
-	description as descriptionovhPabxDialplanExtensionRulePost,
-} from './ovhPabx/ovhPabxDialplanExtensionRulePost.operation';
-
-import {
-	execute as executeovhPabxDialplanExtensionRuleDelete,
-	description as descriptionovhPabxDialplanExtensionRuleDelete,
-} from './ovhPabx/ovhPabxDialplanExtensionRuleDelete.operation';
-
-import {
-	execute as executeovhPabxDialplanExtensionRuleGet,
-	description as descriptionovhPabxDialplanExtensionRuleGet,
-} from './ovhPabx/ovhPabxDialplanExtensionRuleGet.operation';
-
-import {
-	execute as executeovhPabxDialplanExtensionRulePut,
-	description as descriptionovhPabxDialplanExtensionRulePut,
-} from './ovhPabx/ovhPabxDialplanExtensionRulePut.operation';
-
-import {
-	execute as executeovhPabxHuntingListGet,
-	description as descriptionovhPabxHuntingListGet,
-} from './ovhPabx/ovhPabxHuntingListGet.operation';
-
-import {
-	execute as executeovhPabxHuntingPut,
-	description as descriptionovhPabxHuntingPut,
-} from './ovhPabx/ovhPabxHuntingPut.operation';
-
-import {
-	execute as executeovhPabxHuntingAgentListGet,
-	description as descriptionovhPabxHuntingAgentListGet,
-} from './ovhPabx/ovhPabxHuntingAgentListGet.operation';
-
-import {
-	execute as executeovhPabxHuntingAgentPost,
-	description as descriptionovhPabxHuntingAgentPost,
-} from './ovhPabx/ovhPabxHuntingAgentPost.operation';
-
-import {
-	execute as executeovhPabxHuntingAgentDelete,
-	description as descriptionovhPabxHuntingAgentDelete,
-} from './ovhPabx/ovhPabxHuntingAgentDelete.operation';
-
-import {
-	execute as executeovhPabxHuntingAgentGet,
-	description as descriptionovhPabxHuntingAgentGet,
-} from './ovhPabx/ovhPabxHuntingAgentGet.operation';
-
-import {
-	execute as executeovhPabxHuntingAgentPut,
-	description as descriptionovhPabxHuntingAgentPut,
-} from './ovhPabx/ovhPabxHuntingAgentPut.operation';
-
-import {
-	execute as executeovhPabxHuntingAgentBannerAccessDelete,
-	description as descriptionovhPabxHuntingAgentBannerAccessDelete,
-} from './ovhPabx/ovhPabxHuntingAgentBannerAccessDelete.operation';
-
-import {
-	execute as executeovhPabxHuntingAgentBannerAccessListGet,
-	description as descriptionovhPabxHuntingAgentBannerAccessListGet,
-} from './ovhPabx/ovhPabxHuntingAgentBannerAccessListGet.operation';
-
-import {
-	execute as executeovhPabxHuntingAgentBannerAccessPost,
-	description as descriptionovhPabxHuntingAgentBannerAccessPost,
-} from './ovhPabx/ovhPabxHuntingAgentBannerAccessPost.operation';
-
-import {
-	execute as executeovhPabxHuntingAgentCallsListGet,
-	description as descriptionovhPabxHuntingAgentCallsListGet,
-} from './ovhPabx/ovhPabxHuntingAgentCallsListGet.operation';
-
-import {
-	execute as executeovhPabxHuntingAgentCallsGet,
-	description as descriptionovhPabxHuntingAgentCallsGet,
-} from './ovhPabx/ovhPabxHuntingAgentCallsGet.operation';
-
-import {
-	execute as executeovhPabxHuntingAgentCallsEavesdropPost,
-	description as descriptionovhPabxHuntingAgentCallsEavesdropPost,
-} from './ovhPabx/ovhPabxHuntingAgentCallsEavesdropPost.operation';
-
-import {
-	execute as executeovhPabxHuntingAgentCallsHangupPost,
-	description as descriptionovhPabxHuntingAgentCallsHangupPost,
-} from './ovhPabx/ovhPabxHuntingAgentCallsHangupPost.operation';
-
-import {
-	execute as executeovhPabxHuntingAgentCallsHoldPost,
-	description as descriptionovhPabxHuntingAgentCallsHoldPost,
-} from './ovhPabx/ovhPabxHuntingAgentCallsHoldPost.operation';
-
-import {
-	execute as executeovhPabxHuntingAgentCallsInterceptPost,
-	description as descriptionovhPabxHuntingAgentCallsInterceptPost,
-} from './ovhPabx/ovhPabxHuntingAgentCallsInterceptPost.operation';
-
-import {
-	execute as executeovhPabxHuntingAgentCallsTransferPost,
-	description as descriptionovhPabxHuntingAgentCallsTransferPost,
-} from './ovhPabx/ovhPabxHuntingAgentCallsTransferPost.operation';
-
-import {
-	execute as executeovhPabxHuntingAgentCallsWhisperPost,
-	description as descriptionovhPabxHuntingAgentCallsWhisperPost,
-} from './ovhPabx/ovhPabxHuntingAgentCallsWhisperPost.operation';
-
-import {
-	execute as executeovhPabxHuntingAgentEventTokenDelete,
-	description as descriptionovhPabxHuntingAgentEventTokenDelete,
-} from './ovhPabx/ovhPabxHuntingAgentEventTokenDelete.operation';
-
-import {
-	execute as executeovhPabxHuntingAgentEventTokenListGet,
-	description as descriptionovhPabxHuntingAgentEventTokenListGet,
-} from './ovhPabx/ovhPabxHuntingAgentEventTokenListGet.operation';
-
-import {
-	execute as executeovhPabxHuntingAgentEventTokenPost,
-	description as descriptionovhPabxHuntingAgentEventTokenPost,
-} from './ovhPabx/ovhPabxHuntingAgentEventTokenPost.operation';
-
-import {
-	execute as executeovhPabxHuntingAgentLiveStatusListGet,
-	description as descriptionovhPabxHuntingAgentLiveStatusListGet,
-} from './ovhPabx/ovhPabxHuntingAgentLiveStatusListGet.operation';
-
-import {
-	execute as executeovhPabxHuntingAgentQueueListGet,
-	description as descriptionovhPabxHuntingAgentQueueListGet,
-} from './ovhPabx/ovhPabxHuntingAgentQueueListGet.operation';
-
-import {
-	execute as executeovhPabxHuntingAgentQueuePost,
-	description as descriptionovhPabxHuntingAgentQueuePost,
-} from './ovhPabx/ovhPabxHuntingAgentQueuePost.operation';
-
-import {
-	execute as executeovhPabxHuntingAgentQueueDelete,
-	description as descriptionovhPabxHuntingAgentQueueDelete,
-} from './ovhPabx/ovhPabxHuntingAgentQueueDelete.operation';
-
-import {
-	execute as executeovhPabxHuntingAgentQueueGet,
-	description as descriptionovhPabxHuntingAgentQueueGet,
-} from './ovhPabx/ovhPabxHuntingAgentQueueGet.operation';
-
-import {
-	execute as executeovhPabxHuntingAgentQueuePut,
-	description as descriptionovhPabxHuntingAgentQueuePut,
-} from './ovhPabx/ovhPabxHuntingAgentQueuePut.operation';
-
-import {
-	execute as executeovhPabxHuntingAgentQueueLiveStatusListGet,
-	description as descriptionovhPabxHuntingAgentQueueLiveStatusListGet,
-} from './ovhPabx/ovhPabxHuntingAgentQueueLiveStatusListGet.operation';
-
-import {
-	execute as executeovhPabxHuntingCustomStatusListGet,
-	description as descriptionovhPabxHuntingCustomStatusListGet,
-} from './ovhPabx/ovhPabxHuntingCustomStatusListGet.operation';
-
-import {
-	execute as executeovhPabxHuntingCustomStatusPost,
-	description as descriptionovhPabxHuntingCustomStatusPost,
-} from './ovhPabx/ovhPabxHuntingCustomStatusPost.operation';
-
-import {
-	execute as executeovhPabxHuntingCustomStatusDelete,
-	description as descriptionovhPabxHuntingCustomStatusDelete,
-} from './ovhPabx/ovhPabxHuntingCustomStatusDelete.operation';
-
-import {
-	execute as executeovhPabxHuntingCustomStatusGet,
-	description as descriptionovhPabxHuntingCustomStatusGet,
-} from './ovhPabx/ovhPabxHuntingCustomStatusGet.operation';
-
-import {
-	execute as executeovhPabxHuntingEventTokenDelete,
-	description as descriptionovhPabxHuntingEventTokenDelete,
-} from './ovhPabx/ovhPabxHuntingEventTokenDelete.operation';
-
-import {
-	execute as executeovhPabxHuntingEventTokenListGet,
-	description as descriptionovhPabxHuntingEventTokenListGet,
-} from './ovhPabx/ovhPabxHuntingEventTokenListGet.operation';
-
-import {
-	execute as executeovhPabxHuntingEventTokenPost,
-	description as descriptionovhPabxHuntingEventTokenPost,
-} from './ovhPabx/ovhPabxHuntingEventTokenPost.operation';
-
-import {
-	execute as executeovhPabxHuntingQueueListGet,
-	description as descriptionovhPabxHuntingQueueListGet,
-} from './ovhPabx/ovhPabxHuntingQueueListGet.operation';
-
-import {
-	execute as executeovhPabxHuntingQueuePost,
-	description as descriptionovhPabxHuntingQueuePost,
-} from './ovhPabx/ovhPabxHuntingQueuePost.operation';
-
-import {
-	execute as executeovhPabxHuntingQueueDelete,
-	description as descriptionovhPabxHuntingQueueDelete,
-} from './ovhPabx/ovhPabxHuntingQueueDelete.operation';
-
-import {
-	execute as executeovhPabxHuntingQueueGet,
-	description as descriptionovhPabxHuntingQueueGet,
-} from './ovhPabx/ovhPabxHuntingQueueGet.operation';
-
-import {
-	execute as executeovhPabxHuntingQueuePut,
-	description as descriptionovhPabxHuntingQueuePut,
-} from './ovhPabx/ovhPabxHuntingQueuePut.operation';
-
-import {
-	execute as executeovhPabxHuntingQueueAgentListGet,
-	description as descriptionovhPabxHuntingQueueAgentListGet,
-} from './ovhPabx/ovhPabxHuntingQueueAgentListGet.operation';
-
-import {
-	execute as executeovhPabxHuntingQueueAgentPost,
-	description as descriptionovhPabxHuntingQueueAgentPost,
-} from './ovhPabx/ovhPabxHuntingQueueAgentPost.operation';
-
-import {
-	execute as executeovhPabxHuntingQueueAgentDelete,
-	description as descriptionovhPabxHuntingQueueAgentDelete,
-} from './ovhPabx/ovhPabxHuntingQueueAgentDelete.operation';
-
-import {
-	execute as executeovhPabxHuntingQueueAgentGet,
-	description as descriptionovhPabxHuntingQueueAgentGet,
-} from './ovhPabx/ovhPabxHuntingQueueAgentGet.operation';
-
-import {
-	execute as executeovhPabxHuntingQueueAgentPut,
-	description as descriptionovhPabxHuntingQueueAgentPut,
-} from './ovhPabx/ovhPabxHuntingQueueAgentPut.operation';
-
-import {
-	execute as executeovhPabxHuntingQueueAgentLiveStatusListGet,
-	description as descriptionovhPabxHuntingQueueAgentLiveStatusListGet,
-} from './ovhPabx/ovhPabxHuntingQueueAgentLiveStatusListGet.operation';
-
-import {
-	execute as executeovhPabxHuntingQueueLiveCallsListGet,
-	description as descriptionovhPabxHuntingQueueLiveCallsListGet,
-} from './ovhPabx/ovhPabxHuntingQueueLiveCallsListGet.operation';
-
-import {
-	execute as executeovhPabxHuntingQueueLiveCallsGet,
-	description as descriptionovhPabxHuntingQueueLiveCallsGet,
-} from './ovhPabx/ovhPabxHuntingQueueLiveCallsGet.operation';
-
-import {
-	execute as executeovhPabxHuntingQueueLiveCallsEavesdropPost,
-	description as descriptionovhPabxHuntingQueueLiveCallsEavesdropPost,
-} from './ovhPabx/ovhPabxHuntingQueueLiveCallsEavesdropPost.operation';
-
-import {
-	execute as executeovhPabxHuntingQueueLiveCallsHangupPost,
-	description as descriptionovhPabxHuntingQueueLiveCallsHangupPost,
-} from './ovhPabx/ovhPabxHuntingQueueLiveCallsHangupPost.operation';
-
-import {
-	execute as executeovhPabxHuntingQueueLiveCallsHoldPost,
-	description as descriptionovhPabxHuntingQueueLiveCallsHoldPost,
-} from './ovhPabx/ovhPabxHuntingQueueLiveCallsHoldPost.operation';
-
-import {
-	execute as executeovhPabxHuntingQueueLiveCallsInterceptPost,
-	description as descriptionovhPabxHuntingQueueLiveCallsInterceptPost,
-} from './ovhPabx/ovhPabxHuntingQueueLiveCallsInterceptPost.operation';
-
-import {
-	execute as executeovhPabxHuntingQueueLiveCallsTransferPost,
-	description as descriptionovhPabxHuntingQueueLiveCallsTransferPost,
-} from './ovhPabx/ovhPabxHuntingQueueLiveCallsTransferPost.operation';
-
-import {
-	execute as executeovhPabxHuntingQueueLiveCallsWhisperPost,
-	description as descriptionovhPabxHuntingQueueLiveCallsWhisperPost,
-} from './ovhPabx/ovhPabxHuntingQueueLiveCallsWhisperPost.operation';
-
-import {
-	execute as executeovhPabxHuntingQueueLiveStatisticsListGet,
-	description as descriptionovhPabxHuntingQueueLiveStatisticsListGet,
-} from './ovhPabx/ovhPabxHuntingQueueLiveStatisticsListGet.operation';
-
-import {
-	execute as executeovhPabxMenuListGet,
-	description as descriptionovhPabxMenuListGet,
-} from './ovhPabx/ovhPabxMenuListGet.operation';
-
-import {
-	execute as executeovhPabxMenuPost,
-	description as descriptionovhPabxMenuPost,
-} from './ovhPabx/ovhPabxMenuPost.operation';
-
-import {
-	execute as executeovhPabxMenuDelete,
-	description as descriptionovhPabxMenuDelete,
-} from './ovhPabx/ovhPabxMenuDelete.operation';
-
-import {
-	execute as executeovhPabxMenuGet,
-	description as descriptionovhPabxMenuGet,
-} from './ovhPabx/ovhPabxMenuGet.operation';
-
-import {
-	execute as executeovhPabxMenuPut,
-	description as descriptionovhPabxMenuPut,
-} from './ovhPabx/ovhPabxMenuPut.operation';
-
-import {
-	execute as executeovhPabxMenuEntryListGet,
-	description as descriptionovhPabxMenuEntryListGet,
-} from './ovhPabx/ovhPabxMenuEntryListGet.operation';
-
-import {
-	execute as executeovhPabxMenuEntryPost,
-	description as descriptionovhPabxMenuEntryPost,
-} from './ovhPabx/ovhPabxMenuEntryPost.operation';
-
-import {
-	execute as executeovhPabxMenuEntryDelete,
-	description as descriptionovhPabxMenuEntryDelete,
-} from './ovhPabx/ovhPabxMenuEntryDelete.operation';
-
-import {
-	execute as executeovhPabxMenuEntryGet,
-	description as descriptionovhPabxMenuEntryGet,
-} from './ovhPabx/ovhPabxMenuEntryGet.operation';
-
-import {
-	execute as executeovhPabxMenuEntryPut,
-	description as descriptionovhPabxMenuEntryPut,
-} from './ovhPabx/ovhPabxMenuEntryPut.operation';
-
-import {
-	execute as executeovhPabxRecordsListGet,
-	description as descriptionovhPabxRecordsListGet,
-} from './ovhPabx/ovhPabxRecordsListGet.operation';
-
-import {
-	execute as executeovhPabxRecordsDelete,
-	description as descriptionovhPabxRecordsDelete,
-} from './ovhPabx/ovhPabxRecordsDelete.operation';
-
-import {
-	execute as executeovhPabxRecordsGet,
-	description as descriptionovhPabxRecordsGet,
-} from './ovhPabx/ovhPabxRecordsGet.operation';
-
-import {
-	execute as executeovhPabxSoundListGet,
-	description as descriptionovhPabxSoundListGet,
-} from './ovhPabx/ovhPabxSoundListGet.operation';
-
-import {
-	execute as executeovhPabxSoundDelete,
-	description as descriptionovhPabxSoundDelete,
-} from './ovhPabx/ovhPabxSoundDelete.operation';
-
-import {
-	execute as executeovhPabxSoundGet,
-	description as descriptionovhPabxSoundGet,
-} from './ovhPabx/ovhPabxSoundGet.operation';
-
-import {
-	execute as executeovhPabxSoundUploadPost,
-	description as descriptionovhPabxSoundUploadPost,
-} from './ovhPabx/ovhPabxSoundUploadPost.operation';
-
-import {
-	execute as executeovhPabxTtsListGet,
-	description as descriptionovhPabxTtsListGet,
-} from './ovhPabx/ovhPabxTtsListGet.operation';
-
-import {
-	execute as executeovhPabxTtsPost,
-	description as descriptionovhPabxTtsPost,
-} from './ovhPabx/ovhPabxTtsPost.operation';
-
-import {
-	execute as executeovhPabxTtsDelete,
-	description as descriptionovhPabxTtsDelete,
-} from './ovhPabx/ovhPabxTtsDelete.operation';
-
-import {
-	execute as executeovhPabxTtsGet,
-	description as descriptionovhPabxTtsGet,
-} from './ovhPabx/ovhPabxTtsGet.operation';
-
-import {
-	execute as executeovhPabxTtsPut,
-	description as descriptionovhPabxTtsPut,
-} from './ovhPabx/ovhPabxTtsPut.operation';
-
-import {
-	execute as executephonebookListGet,
-	description as descriptionphonebookListGet,
-} from './phonebook/phonebookListGet.operation';
-
-import {
-	execute as executephonebookPost,
-	description as descriptionphonebookPost,
-} from './phonebook/phonebookPost.operation';
-
-import {
-	execute as executephonebookDelete,
-	description as descriptionphonebookDelete,
-} from './phonebook/phonebookDelete.operation';
-
-import {
-	execute as executephonebookGet,
-	description as descriptionphonebookGet,
-} from './phonebook/phonebookGet.operation';
-
-import {
-	execute as executephonebookPut,
-	description as descriptionphonebookPut,
-} from './phonebook/phonebookPut.operation';
-
-import {
-	execute as executephonebookExportListGet,
-	description as descriptionphonebookExportListGet,
-} from './phonebook/phonebookExportListGet.operation';
-
-import {
-	execute as executephonebookImportPost,
-	description as descriptionphonebookImportPost,
-} from './phonebook/phonebookImportPost.operation';
-
-import {
-	execute as executephonebookPhonebookContactListGet,
-	description as descriptionphonebookPhonebookContactListGet,
-} from './phonebook/phonebookPhonebookContactListGet.operation';
-
-import {
-	execute as executephonebookPhonebookContactPost,
-	description as descriptionphonebookPhonebookContactPost,
-} from './phonebook/phonebookPhonebookContactPost.operation';
-
-import {
-	execute as executephonebookPhonebookContactDelete,
-	description as descriptionphonebookPhonebookContactDelete,
-} from './phonebook/phonebookPhonebookContactDelete.operation';
-
-import {
-	execute as executephonebookPhonebookContactGet,
-	description as descriptionphonebookPhonebookContactGet,
-} from './phonebook/phonebookPhonebookContactGet.operation';
-
-import {
-	execute as executephonebookPhonebookContactPut,
-	description as descriptionphonebookPhonebookContactPut,
-} from './phonebook/phonebookPhonebookContactPut.operation';
-
-import {
-	execute as executeportabilityDetailGet,
-	description as descriptionportabilityDetailGet,
-} from './portability/portabilityDetailGet.operation';
-
-import {
-	execute as executeportabilityCanBeCancelledListGet,
-	description as descriptionportabilityCanBeCancelledListGet,
-} from './portability/portabilityCanBeCancelledListGet.operation';
-
-import {
-	execute as executeportabilityCanBeExecutedListGet,
-	description as descriptionportabilityCanBeExecutedListGet,
-} from './portability/portabilityCanBeExecutedListGet.operation';
-
-import {
-	execute as executeportabilityCancelPost,
-	description as descriptionportabilityCancelPost,
-} from './portability/portabilityCancelPost.operation';
-
-import {
-	execute as executeportabilityChangeDatePost,
-	description as descriptionportabilityChangeDatePost,
-} from './portability/portabilityChangeDatePost.operation';
-
-import {
-	execute as executeportabilityDateCanBeChangedListGet,
-	description as descriptionportabilityDateCanBeChangedListGet,
-} from './portability/portabilityDateCanBeChangedListGet.operation';
-
-import {
-	execute as executeportabilityDocumentListGet,
-	description as descriptionportabilityDocumentListGet,
-} from './portability/portabilityDocumentListGet.operation';
-
-import {
-	execute as executeportabilityDocumentPost,
-	description as descriptionportabilityDocumentPost,
-} from './portability/portabilityDocumentPost.operation';
-
-import {
-	execute as executeportabilityDocumentDelete,
-	description as descriptionportabilityDocumentDelete,
-} from './portability/portabilityDocumentDelete.operation';
-
-import {
-	execute as executeportabilityDocumentGet,
-	description as descriptionportabilityDocumentGet,
-} from './portability/portabilityDocumentGet.operation';
-
-import {
-	execute as executeportabilityDocumentPut,
-	description as descriptionportabilityDocumentPut,
-} from './portability/portabilityDocumentPut.operation';
-
-import {
-	execute as executeportabilityExecutePost,
-	description as descriptionportabilityExecutePost,
-} from './portability/portabilityExecutePost.operation';
-
-import {
-	execute as executeportabilityRelaunchListGet,
-	description as descriptionportabilityRelaunchListGet,
-} from './portability/portabilityRelaunchListGet.operation';
-
-import {
-	execute as executeportabilityRelaunchPost,
-	description as descriptionportabilityRelaunchPost,
-} from './portability/portabilityRelaunchPost.operation';
-
-import {
-	execute as executeportabilityStatusListGet,
-	description as descriptionportabilityStatusListGet,
-} from './portability/portabilityStatusListGet.operation';
-
-import {
-	execute as executeredirectListGet,
-	description as descriptionredirectListGet,
-} from './redirect/redirectListGet.operation';
-
-import {
-	execute as executeredirectGet,
-	description as descriptionredirectGet,
-} from './redirect/redirectGet.operation';
-
-import {
-	execute as executeredirectPut,
-	description as descriptionredirectPut,
-} from './redirect/redirectPut.operation';
-
-import {
-	execute as executeredirectChangeDestinationPost,
-	description as descriptionredirectChangeDestinationPost,
-} from './redirect/redirectChangeDestinationPost.operation';
-
-import {
-	execute as executersvaListGet,
-	description as descriptionrsvaListGet,
-} from './rsva/rsvaListGet.operation';
-
-import {
-	execute as executersvaGet,
-	description as descriptionrsvaGet,
-} from './rsva/rsvaGet.operation';
-
-import {
-	execute as executersvaPut,
-	description as descriptionrsvaPut,
-} from './rsva/rsvaPut.operation';
-
-import {
-	execute as executersvaAllowedRateCodesListGet,
-	description as descriptionrsvaAllowedRateCodesListGet,
-} from './rsva/rsvaAllowedRateCodesListGet.operation';
-
-import {
-	execute as executersvaCancelScheduledRateCodePost,
-	description as descriptionrsvaCancelScheduledRateCodePost,
-} from './rsva/rsvaCancelScheduledRateCodePost.operation';
-
-import {
-	execute as executersvaCurrentRateCodeListGet,
-	description as descriptionrsvaCurrentRateCodeListGet,
-} from './rsva/rsvaCurrentRateCodeListGet.operation';
-
-import {
-	execute as executersvaScheduledRateCodeListGet,
-	description as descriptionrsvaScheduledRateCodeListGet,
-} from './rsva/rsvaScheduledRateCodeListGet.operation';
-
-import {
-	execute as executersvaScheduleRateCodePost,
-	description as descriptionrsvaScheduleRateCodePost,
-} from './rsva/rsvaScheduleRateCodePost.operation';
-
-import {
-	execute as executeschedulerListGet,
-	description as descriptionschedulerListGet,
-} from './scheduler/schedulerListGet.operation';
-
-import {
-	execute as executeschedulerGet,
-	description as descriptionschedulerGet,
-} from './scheduler/schedulerGet.operation';
-
-import {
-	execute as executeschedulerPut,
-	description as descriptionschedulerPut,
-} from './scheduler/schedulerPut.operation';
-
-import {
-	execute as executeschedulerEventsListGet,
-	description as descriptionschedulerEventsListGet,
-} from './scheduler/schedulerEventsListGet.operation';
-
-import {
-	execute as executeschedulerEventsPost,
-	description as descriptionschedulerEventsPost,
-} from './scheduler/schedulerEventsPost.operation';
-
-import {
-	execute as executeschedulerEventsDelete,
-	description as descriptionschedulerEventsDelete,
-} from './scheduler/schedulerEventsDelete.operation';
-
-import {
-	execute as executeschedulerEventsGet,
-	description as descriptionschedulerEventsGet,
-} from './scheduler/schedulerEventsGet.operation';
-
-import {
-	execute as executeschedulerEventsPut,
-	description as descriptionschedulerEventsPut,
-} from './scheduler/schedulerEventsPut.operation';
-
-import {
-	execute as executeschedulerImportIcsCalendarPost,
-	description as descriptionschedulerImportIcsCalendarPost,
-} from './scheduler/schedulerImportIcsCalendarPost.operation';
-
-import {
-	execute as executescreenListGet,
-	description as descriptionscreenListGet,
-} from './screen/screenListGet.operation';
-
-import {
-	execute as executescreenGet,
-	description as descriptionscreenGet,
-} from './screen/screenGet.operation';
-
-import {
-	execute as executescreenPut,
-	description as descriptionscreenPut,
-} from './screen/screenPut.operation';
-
-import {
-	execute as executescreenScreenListsListGet,
-	description as descriptionscreenScreenListsListGet,
-} from './screen/screenScreenListsListGet.operation';
-
-import {
-	execute as executescreenScreenListsPost,
-	description as descriptionscreenScreenListsPost,
-} from './screen/screenScreenListsPost.operation';
-
-import {
-	execute as executescreenScreenListsDelete,
-	description as descriptionscreenScreenListsDelete,
-} from './screen/screenScreenListsDelete.operation';
-
-import {
-	execute as executescreenScreenListsGet,
-	description as descriptionscreenScreenListsGet,
-} from './screen/screenScreenListsGet.operation';
-
-import {
-	execute as executeserviceListGet,
-	description as descriptionserviceListGet,
-} from './service/serviceListGet.operation';
-
-import {
-	execute as executeserviceDelete,
-	description as descriptionserviceDelete,
-} from './service/serviceDelete.operation';
-
-import {
-	execute as executeserviceGet,
-	description as descriptionserviceGet,
-} from './service/serviceGet.operation';
-
-import {
-	execute as executeservicePut,
-	description as descriptionservicePut,
-} from './service/servicePut.operation';
-
-import {
-	execute as executeserviceCancelTerminationPost,
-	description as descriptionserviceCancelTerminationPost,
-} from './service/serviceCancelTerminationPost.operation';
-
-import {
-	execute as executeserviceChangeOfBillingAccountPost,
-	description as descriptionserviceChangeOfBillingAccountPost,
-} from './service/serviceChangeOfBillingAccountPost.operation';
-
-import {
-	execute as executeserviceDiagnosticReportsListGet,
-	description as descriptionserviceDiagnosticReportsListGet,
-} from './service/serviceDiagnosticReportsListGet.operation';
-
-import {
-	execute as executeserviceDirectoryListGet,
-	description as descriptionserviceDirectoryListGet,
-} from './service/serviceDirectoryListGet.operation';
-
-import {
-	execute as executeserviceDirectoryPut,
-	description as descriptionserviceDirectoryPut,
-} from './service/serviceDirectoryPut.operation';
-
-import {
-	execute as executeserviceDirectoryFetchEntrepriseInformationsPost,
-	description as descriptionserviceDirectoryFetchEntrepriseInformationsPost,
-} from './service/serviceDirectoryFetchEntrepriseInformationsPost.operation';
-
-import {
-	execute as executeserviceDirectoryGetDirectoryServiceCodeListGet,
-	description as descriptionserviceDirectoryGetDirectoryServiceCodeListGet,
-} from './service/serviceDirectoryGetDirectoryServiceCodeListGet.operation';
-
-import {
-	execute as executeserviceDirectoryGetWayTypesListGet,
-	description as descriptionserviceDirectoryGetWayTypesListGet,
-} from './service/serviceDirectoryGetWayTypesListGet.operation';
-
-import {
-	execute as executeserviceEventTokenDelete,
-	description as descriptionserviceEventTokenDelete,
-} from './service/serviceEventTokenDelete.operation';
-
-import {
-	execute as executeserviceEventTokenListGet,
-	description as descriptionserviceEventTokenListGet,
-} from './service/serviceEventTokenListGet.operation';
-
-import {
-	execute as executeserviceEventTokenPost,
-	description as descriptionserviceEventTokenPost,
-} from './service/serviceEventTokenPost.operation';
-
-import {
-	execute as executeserviceFaxConsumptionListGet,
-	description as descriptionserviceFaxConsumptionListGet,
-} from './service/serviceFaxConsumptionListGet.operation';
-
-import {
-	execute as executeserviceFaxConsumptionGet,
-	description as descriptionserviceFaxConsumptionGet,
-} from './service/serviceFaxConsumptionGet.operation';
-
-import {
-	execute as executeserviceOfferChangeDelete,
-	description as descriptionserviceOfferChangeDelete,
-} from './service/serviceOfferChangeDelete.operation';
-
-import {
-	execute as executeserviceOfferChangeListGet,
-	description as descriptionserviceOfferChangeListGet,
-} from './service/serviceOfferChangeListGet.operation';
-
-import {
-	execute as executeserviceOfferChangePost,
-	description as descriptionserviceOfferChangePost,
-} from './service/serviceOfferChangePost.operation';
-
-import {
-	execute as executeserviceOfferChangesListGet,
-	description as descriptionserviceOfferChangesListGet,
-} from './service/serviceOfferChangesListGet.operation';
-
-import {
-	execute as executeserviceOfferTaskListGet,
-	description as descriptionserviceOfferTaskListGet,
-} from './service/serviceOfferTaskListGet.operation';
-
-import {
-	execute as executeserviceOfferTaskGet,
-	description as descriptionserviceOfferTaskGet,
-} from './service/serviceOfferTaskGet.operation';
-
-import {
-	execute as executeserviceOfferTaskPut,
-	description as descriptionserviceOfferTaskPut,
-} from './service/serviceOfferTaskPut.operation';
-
-import {
-	execute as executeservicePreviousVoiceConsumptionListGet,
-	description as descriptionservicePreviousVoiceConsumptionListGet,
-} from './service/servicePreviousVoiceConsumptionListGet.operation';
-
-import {
-	execute as executeservicePreviousVoiceConsumptionGet,
-	description as descriptionservicePreviousVoiceConsumptionGet,
-} from './service/servicePreviousVoiceConsumptionGet.operation';
-
-import {
-	execute as executeserviceRepaymentConsumptionListGet,
-	description as descriptionserviceRepaymentConsumptionListGet,
-} from './service/serviceRepaymentConsumptionListGet.operation';
-
-import {
-	execute as executeserviceRepaymentConsumptionGet,
-	description as descriptionserviceRepaymentConsumptionGet,
-} from './service/serviceRepaymentConsumptionGet.operation';
-
-import {
-	execute as executeserviceTaskListGet,
-	description as descriptionserviceTaskListGet,
-} from './service/serviceTaskListGet.operation';
-
-import {
-	execute as executeserviceTaskGet,
-	description as descriptionserviceTaskGet,
-} from './service/serviceTaskGet.operation';
-
-import {
-	execute as executeserviceVoiceConsumptionListGet,
-	description as descriptionserviceVoiceConsumptionListGet,
-} from './service/serviceVoiceConsumptionListGet.operation';
-
-import {
-	execute as executeserviceVoiceConsumptionGet,
-	description as descriptionserviceVoiceConsumptionGet,
-} from './service/serviceVoiceConsumptionGet.operation';
-
-import {
-	execute as executesoftphoneLogoDelete,
-	description as descriptionsoftphoneLogoDelete,
-} from './softphone/softphoneLogoDelete.operation';
-
-import {
-	execute as executesoftphoneLogoListGet,
-	description as descriptionsoftphoneLogoListGet,
-} from './softphone/softphoneLogoListGet.operation';
-
-import {
-	execute as executesoftphoneLogoPut,
-	description as descriptionsoftphoneLogoPut,
-} from './softphone/softphoneLogoPut.operation';
-
-import {
-	execute as executesoftphoneThemeListGet,
-	description as descriptionsoftphoneThemeListGet,
-} from './softphone/softphoneThemeListGet.operation';
-
-import {
-	execute as executesoftphoneThemePut,
-	description as descriptionsoftphoneThemePut,
-} from './softphone/softphoneThemePut.operation';
-
-import {
-	execute as executetimeConditionListGet,
-	description as descriptiontimeConditionListGet,
-} from './timeCondition/timeConditionListGet.operation';
-
-import {
-	execute as executetimeConditionGet,
-	description as descriptiontimeConditionGet,
-} from './timeCondition/timeConditionGet.operation';
-
-import {
-	execute as executetimeConditionConditionListGet,
-	description as descriptiontimeConditionConditionListGet,
-} from './timeCondition/timeConditionConditionListGet.operation';
-
-import {
-	execute as executetimeConditionConditionPost,
-	description as descriptiontimeConditionConditionPost,
-} from './timeCondition/timeConditionConditionPost.operation';
-
-import {
-	execute as executetimeConditionConditionDelete,
-	description as descriptiontimeConditionConditionDelete,
-} from './timeCondition/timeConditionConditionDelete.operation';
-
-import {
-	execute as executetimeConditionConditionGet,
-	description as descriptiontimeConditionConditionGet,
-} from './timeCondition/timeConditionConditionGet.operation';
-
-import {
-	execute as executetimeConditionConditionPut,
-	description as descriptiontimeConditionConditionPut,
-} from './timeCondition/timeConditionConditionPut.operation';
-
-import {
-	execute as executetimeConditionOptionsListGet,
-	description as descriptiontimeConditionOptionsListGet,
-} from './timeCondition/timeConditionOptionsListGet.operation';
-
-import {
-	execute as executetimeConditionOptionsPut,
-	description as descriptiontimeConditionOptionsPut,
-} from './timeCondition/timeConditionOptionsPut.operation';
-
-import {
-	execute as executetrunkListGet,
-	description as descriptiontrunkListGet,
-} from './trunk/trunkListGet.operation';
-
-import {
-	execute as executetrunkGet,
-	description as descriptiontrunkGet,
-} from './trunk/trunkGet.operation';
-
-import {
-	execute as executetrunkChannelsPacksRepartitionListGet,
-	description as descriptiontrunkChannelsPacksRepartitionListGet,
-} from './trunk/trunkChannelsPacksRepartitionListGet.operation';
-
-import {
-	execute as executetrunkExternalDisplayedNumberListGet,
-	description as descriptiontrunkExternalDisplayedNumberListGet,
-} from './trunk/trunkExternalDisplayedNumberListGet.operation';
-
-import {
-	execute as executetrunkExternalDisplayedNumberPost,
-	description as descriptiontrunkExternalDisplayedNumberPost,
-} from './trunk/trunkExternalDisplayedNumberPost.operation';
-
-import {
-	execute as executetrunkExternalDisplayedNumberDelete,
-	description as descriptiontrunkExternalDisplayedNumberDelete,
-} from './trunk/trunkExternalDisplayedNumberDelete.operation';
-
-import {
-	execute as executetrunkExternalDisplayedNumberGet,
-	description as descriptiontrunkExternalDisplayedNumberGet,
-} from './trunk/trunkExternalDisplayedNumberGet.operation';
-
-import {
-	execute as executetrunkExternalDisplayedNumberValidatePost,
-	description as descriptiontrunkExternalDisplayedNumberValidatePost,
-} from './trunk/trunkExternalDisplayedNumberValidatePost.operation';
-
-import {
-	execute as executevoicemailListGet,
-	description as descriptionvoicemailListGet,
-} from './voicemail/voicemailListGet.operation';
-
-import {
-	execute as executevoicemailGet,
-	description as descriptionvoicemailGet,
-} from './voicemail/voicemailGet.operation';
-
-import {
-	execute as executevoicemailPut,
-	description as descriptionvoicemailPut,
-} from './voicemail/voicemailPut.operation';
-
-import {
-	execute as executevoicemailDirectoriesListGet,
-	description as descriptionvoicemailDirectoriesListGet,
-} from './voicemail/voicemailDirectoriesListGet.operation';
-
-import {
-	execute as executevoicemailDirectoriesDelete,
-	description as descriptionvoicemailDirectoriesDelete,
-} from './voicemail/voicemailDirectoriesDelete.operation';
-
-import {
-	execute as executevoicemailDirectoriesGet,
-	description as descriptionvoicemailDirectoriesGet,
-} from './voicemail/voicemailDirectoriesGet.operation';
-
-import {
-	execute as executevoicemailDirectoriesDownloadListGet,
-	description as descriptionvoicemailDirectoriesDownloadListGet,
-} from './voicemail/voicemailDirectoriesDownloadListGet.operation';
-
-import {
-	execute as executevoicemailDirectoriesMovePost,
-	description as descriptionvoicemailDirectoriesMovePost,
-} from './voicemail/voicemailDirectoriesMovePost.operation';
-
-import {
-	execute as executevoicemailDirectoriesTranscriptListGet,
-	description as descriptionvoicemailDirectoriesTranscriptListGet,
-} from './voicemail/voicemailDirectoriesTranscriptListGet.operation';
-
-import {
-	execute as executevoicemailGreetingsListGet,
-	description as descriptionvoicemailGreetingsListGet,
-} from './voicemail/voicemailGreetingsListGet.operation';
-
-import {
-	execute as executevoicemailGreetingsPost,
-	description as descriptionvoicemailGreetingsPost,
-} from './voicemail/voicemailGreetingsPost.operation';
-
-import {
-	execute as executevoicemailGreetingsDelete,
-	description as descriptionvoicemailGreetingsDelete,
-} from './voicemail/voicemailGreetingsDelete.operation';
-
-import {
-	execute as executevoicemailGreetingsGet,
-	description as descriptionvoicemailGreetingsGet,
-} from './voicemail/voicemailGreetingsGet.operation';
-
-import {
-	execute as executevoicemailGreetingsDownloadListGet,
-	description as descriptionvoicemailGreetingsDownloadListGet,
-} from './voicemail/voicemailGreetingsDownloadListGet.operation';
-
-import {
-	execute as executevoicemailGreetingsMovePost,
-	description as descriptionvoicemailGreetingsMovePost,
-} from './voicemail/voicemailGreetingsMovePost.operation';
-
-import {
-	execute as executevoicemailMigrateOnNewVersionPost,
-	description as descriptionvoicemailMigrateOnNewVersionPost,
-} from './voicemail/voicemailMigrateOnNewVersionPost.operation';
-
-import {
-	execute as executevoicemailSettingsListGet,
-	description as descriptionvoicemailSettingsListGet,
-} from './voicemail/voicemailSettingsListGet.operation';
-
-import {
-	execute as executevoicemailSettingsPut,
-	description as descriptionvoicemailSettingsPut,
-} from './voicemail/voicemailSettingsPut.operation';
-
-import {
-	execute as executevoicemailSettingsChangePasswordPost,
-	description as descriptionvoicemailSettingsChangePasswordPost,
-} from './voicemail/voicemailSettingsChangePasswordPost.operation';
-
-import {
-	execute as executevoicemailSettingsChangeRoutingPost,
-	description as descriptionvoicemailSettingsChangeRoutingPost,
-} from './voicemail/voicemailSettingsChangeRoutingPost.operation';
-
-import {
-	execute as executevoicemailSettingsRoutingListGet,
-	description as descriptionvoicemailSettingsRoutingListGet,
-} from './voicemail/voicemailSettingsRoutingListGet.operation';
-
-import {
-	execute as executevoicemailSettingsVoicemailNumbersListGet,
-	description as descriptionvoicemailSettingsVoicemailNumbersListGet,
-} from './voicemail/voicemailSettingsVoicemailNumbersListGet.operation';
-
-import {
-	execute as executenumberDetailedZonesListGet,
 	description as descriptionnumberDetailedZonesListGet,
+	execute as executenumberDetailedZonesListGet,
 } from './number/numberDetailedZonesListGet.operation';
 import {
-	execute as executenumberRangesListGet,
+	description as descriptionnumberGet,
+	execute as executenumberGet,
+} from './number/numberGet.operation';
+import {
+	description as descriptionnumberListGet,
+	execute as executenumberListGet,
+} from './number/numberListGet.operation';
+import {
+	description as descriptionnumberPut,
+	execute as executenumberPut,
+} from './number/numberPut.operation';
+import {
 	description as descriptionnumberRangesListGet,
+	execute as executenumberRangesListGet,
 } from './number/numberRangesListGet.operation';
 import {
-	execute as executenumberSpecificNumbersListGet,
 	description as descriptionnumberSpecificNumbersListGet,
+	execute as executenumberSpecificNumbersListGet,
 } from './number/numberSpecificNumbersListGet.operation';
 import {
-	execute as executenumberZonesListGet,
 	description as descriptionnumberZonesListGet,
+	execute as executenumberZonesListGet,
 } from './number/numberZonesListGet.operation';
 import {
-	execute as executeprocedureListGet,
-	description as descriptionprocedureListGet,
-} from './procedure/procedureListGet.operation';
+	description as descriptionofferTaskGet,
+	execute as executeofferTaskGet,
+} from './offerTask/offerTaskGet.operation';
 import {
-	execute as executeprocedurePost,
-	description as descriptionprocedurePost,
-} from './procedure/procedurePost.operation';
+	description as descriptionofferTaskListGet,
+	execute as executeofferTaskListGet,
+} from './offerTask/offerTaskListGet.operation';
 import {
-	execute as executeprocedureGet,
-	description as descriptionprocedureGet,
-} from './procedure/procedureGet.operation';
+	description as descriptionofferTaskPut,
+	execute as executeofferTaskPut,
+} from './offerTask/offerTaskPut.operation';
 import {
-	execute as executeprocedureCancelPost,
+	description as descriptionFaxOffersGet,
+	execute as executeFaxOffersGet,
+} from './offers/faxOffersGet.operation';
+import {
+	description as descriptionLineOfferDetailsGet,
+	execute as executeLineOfferDetailsGet,
+} from './offers/lineOfferDetailsGet.operation';
+import {
+	description as descriptionLineOfferPhonesGet,
+	execute as executeLineOfferPhonesGet,
+} from './offers/lineOfferPhonesGet.operation';
+import {
+	description as descriptionLineOffersGet,
+	execute as executeLineOffersGet,
+} from './offers/lineOffersGet.operation';
+import {
+	description as descriptionoldPhoneListGet,
+	execute as executeoldPhoneListGet,
+} from './oldPhone/oldPhoneListGet.operation';
+import {
+	description as descriptionoutplanNotificationDelete,
+	execute as executeoutplanNotificationDelete,
+} from './outplanNotification/outplanNotificationDelete.operation';
+import {
+	description as descriptionoutplanNotificationGet,
+	execute as executeoutplanNotificationGet,
+} from './outplanNotification/outplanNotificationGet.operation';
+import {
+	description as descriptionoutplanNotificationListGet,
+	execute as executeoutplanNotificationListGet,
+} from './outplanNotification/outplanNotificationListGet.operation';
+import {
+	description as descriptionoutplanNotificationPost,
+	execute as executeoutplanNotificationPost,
+} from './outplanNotification/outplanNotificationPost.operation';
+import {
+	description as descriptionovhPabxDialplanDelete,
+	execute as executeovhPabxDialplanDelete,
+} from './ovhPabx/ovhPabxDialplanDelete.operation';
+import {
+	description as descriptionovhPabxDialplanExtensionConditionScreenListDelete,
+	execute as executeovhPabxDialplanExtensionConditionScreenListDelete,
+} from './ovhPabx/ovhPabxDialplanExtensionConditionScreenListDelete.operation';
+import {
+	description as descriptionovhPabxDialplanExtensionConditionScreenListGet,
+	execute as executeovhPabxDialplanExtensionConditionScreenListGet,
+} from './ovhPabx/ovhPabxDialplanExtensionConditionScreenListGet.operation';
+import {
+	description as descriptionovhPabxDialplanExtensionConditionScreenListListGet,
+	execute as executeovhPabxDialplanExtensionConditionScreenListListGet,
+} from './ovhPabx/ovhPabxDialplanExtensionConditionScreenListListGet.operation';
+import {
+	description as descriptionovhPabxDialplanExtensionConditionScreenListPost,
+	execute as executeovhPabxDialplanExtensionConditionScreenListPost,
+} from './ovhPabx/ovhPabxDialplanExtensionConditionScreenListPost.operation';
+import {
+	description as descriptionovhPabxDialplanExtensionConditionTimeDelete,
+	execute as executeovhPabxDialplanExtensionConditionTimeDelete,
+} from './ovhPabx/ovhPabxDialplanExtensionConditionTimeDelete.operation';
+import {
+	description as descriptionovhPabxDialplanExtensionConditionTimeGet,
+	execute as executeovhPabxDialplanExtensionConditionTimeGet,
+} from './ovhPabx/ovhPabxDialplanExtensionConditionTimeGet.operation';
+import {
+	description as descriptionovhPabxDialplanExtensionConditionTimeListGet,
+	execute as executeovhPabxDialplanExtensionConditionTimeListGet,
+} from './ovhPabx/ovhPabxDialplanExtensionConditionTimeListGet.operation';
+import {
+	description as descriptionovhPabxDialplanExtensionConditionTimePost,
+	execute as executeovhPabxDialplanExtensionConditionTimePost,
+} from './ovhPabx/ovhPabxDialplanExtensionConditionTimePost.operation';
+import {
+	description as descriptionovhPabxDialplanExtensionConditionTimePut,
+	execute as executeovhPabxDialplanExtensionConditionTimePut,
+} from './ovhPabx/ovhPabxDialplanExtensionConditionTimePut.operation';
+import {
+	description as descriptionovhPabxDialplanExtensionDelete,
+	execute as executeovhPabxDialplanExtensionDelete,
+} from './ovhPabx/ovhPabxDialplanExtensionDelete.operation';
+import {
+	description as descriptionovhPabxDialplanExtensionGet,
+	execute as executeovhPabxDialplanExtensionGet,
+} from './ovhPabx/ovhPabxDialplanExtensionGet.operation';
+import {
+	description as descriptionovhPabxDialplanExtensionListGet,
+	execute as executeovhPabxDialplanExtensionListGet,
+} from './ovhPabx/ovhPabxDialplanExtensionListGet.operation';
+import {
+	description as descriptionovhPabxDialplanExtensionPost,
+	execute as executeovhPabxDialplanExtensionPost,
+} from './ovhPabx/ovhPabxDialplanExtensionPost.operation';
+import {
+	description as descriptionovhPabxDialplanExtensionPut,
+	execute as executeovhPabxDialplanExtensionPut,
+} from './ovhPabx/ovhPabxDialplanExtensionPut.operation';
+import {
+	description as descriptionovhPabxDialplanExtensionRuleDelete,
+	execute as executeovhPabxDialplanExtensionRuleDelete,
+} from './ovhPabx/ovhPabxDialplanExtensionRuleDelete.operation';
+import {
+	description as descriptionovhPabxDialplanExtensionRuleGet,
+	execute as executeovhPabxDialplanExtensionRuleGet,
+} from './ovhPabx/ovhPabxDialplanExtensionRuleGet.operation';
+import {
+	description as descriptionovhPabxDialplanExtensionRuleListGet,
+	execute as executeovhPabxDialplanExtensionRuleListGet,
+} from './ovhPabx/ovhPabxDialplanExtensionRuleListGet.operation';
+import {
+	description as descriptionovhPabxDialplanExtensionRulePost,
+	execute as executeovhPabxDialplanExtensionRulePost,
+} from './ovhPabx/ovhPabxDialplanExtensionRulePost.operation';
+import {
+	description as descriptionovhPabxDialplanExtensionRulePut,
+	execute as executeovhPabxDialplanExtensionRulePut,
+} from './ovhPabx/ovhPabxDialplanExtensionRulePut.operation';
+import {
+	description as descriptionovhPabxDialplanGet,
+	execute as executeovhPabxDialplanGet,
+} from './ovhPabx/ovhPabxDialplanGet.operation';
+import {
+	description as descriptionovhPabxDialplanListGet,
+	execute as executeovhPabxDialplanListGet,
+} from './ovhPabx/ovhPabxDialplanListGet.operation';
+import {
+	description as descriptionovhPabxDialplanPost,
+	execute as executeovhPabxDialplanPost,
+} from './ovhPabx/ovhPabxDialplanPost.operation';
+import {
+	description as descriptionovhPabxDialplanPut,
+	execute as executeovhPabxDialplanPut,
+} from './ovhPabx/ovhPabxDialplanPut.operation';
+import {
+	description as descriptionovhPabxGet,
+	execute as executeovhPabxGet,
+} from './ovhPabx/ovhPabxGet.operation';
+import {
+	description as descriptionovhPabxHuntingAgentBannerAccessDelete,
+	execute as executeovhPabxHuntingAgentBannerAccessDelete,
+} from './ovhPabx/ovhPabxHuntingAgentBannerAccessDelete.operation';
+import {
+	description as descriptionovhPabxHuntingAgentBannerAccessListGet,
+	execute as executeovhPabxHuntingAgentBannerAccessListGet,
+} from './ovhPabx/ovhPabxHuntingAgentBannerAccessListGet.operation';
+import {
+	description as descriptionovhPabxHuntingAgentBannerAccessPost,
+	execute as executeovhPabxHuntingAgentBannerAccessPost,
+} from './ovhPabx/ovhPabxHuntingAgentBannerAccessPost.operation';
+import {
+	description as descriptionovhPabxHuntingAgentCallsEavesdropPost,
+	execute as executeovhPabxHuntingAgentCallsEavesdropPost,
+} from './ovhPabx/ovhPabxHuntingAgentCallsEavesdropPost.operation';
+import {
+	description as descriptionovhPabxHuntingAgentCallsGet,
+	execute as executeovhPabxHuntingAgentCallsGet,
+} from './ovhPabx/ovhPabxHuntingAgentCallsGet.operation';
+import {
+	description as descriptionovhPabxHuntingAgentCallsHangupPost,
+	execute as executeovhPabxHuntingAgentCallsHangupPost,
+} from './ovhPabx/ovhPabxHuntingAgentCallsHangupPost.operation';
+import {
+	description as descriptionovhPabxHuntingAgentCallsHoldPost,
+	execute as executeovhPabxHuntingAgentCallsHoldPost,
+} from './ovhPabx/ovhPabxHuntingAgentCallsHoldPost.operation';
+import {
+	description as descriptionovhPabxHuntingAgentCallsInterceptPost,
+	execute as executeovhPabxHuntingAgentCallsInterceptPost,
+} from './ovhPabx/ovhPabxHuntingAgentCallsInterceptPost.operation';
+import {
+	description as descriptionovhPabxHuntingAgentCallsListGet,
+	execute as executeovhPabxHuntingAgentCallsListGet,
+} from './ovhPabx/ovhPabxHuntingAgentCallsListGet.operation';
+import {
+	description as descriptionovhPabxHuntingAgentCallsTransferPost,
+	execute as executeovhPabxHuntingAgentCallsTransferPost,
+} from './ovhPabx/ovhPabxHuntingAgentCallsTransferPost.operation';
+import {
+	description as descriptionovhPabxHuntingAgentCallsWhisperPost,
+	execute as executeovhPabxHuntingAgentCallsWhisperPost,
+} from './ovhPabx/ovhPabxHuntingAgentCallsWhisperPost.operation';
+import {
+	description as descriptionovhPabxHuntingAgentDelete,
+	execute as executeovhPabxHuntingAgentDelete,
+} from './ovhPabx/ovhPabxHuntingAgentDelete.operation';
+import {
+	description as descriptionovhPabxHuntingAgentEventTokenDelete,
+	execute as executeovhPabxHuntingAgentEventTokenDelete,
+} from './ovhPabx/ovhPabxHuntingAgentEventTokenDelete.operation';
+import {
+	description as descriptionovhPabxHuntingAgentEventTokenListGet,
+	execute as executeovhPabxHuntingAgentEventTokenListGet,
+} from './ovhPabx/ovhPabxHuntingAgentEventTokenListGet.operation';
+import {
+	description as descriptionovhPabxHuntingAgentEventTokenPost,
+	execute as executeovhPabxHuntingAgentEventTokenPost,
+} from './ovhPabx/ovhPabxHuntingAgentEventTokenPost.operation';
+import {
+	description as descriptionovhPabxHuntingAgentGet,
+	execute as executeovhPabxHuntingAgentGet,
+} from './ovhPabx/ovhPabxHuntingAgentGet.operation';
+import {
+	description as descriptionovhPabxHuntingAgentListGet,
+	execute as executeovhPabxHuntingAgentListGet,
+} from './ovhPabx/ovhPabxHuntingAgentListGet.operation';
+import {
+	description as descriptionovhPabxHuntingAgentLiveStatusListGet,
+	execute as executeovhPabxHuntingAgentLiveStatusListGet,
+} from './ovhPabx/ovhPabxHuntingAgentLiveStatusListGet.operation';
+import {
+	description as descriptionovhPabxHuntingAgentPost,
+	execute as executeovhPabxHuntingAgentPost,
+} from './ovhPabx/ovhPabxHuntingAgentPost.operation';
+import {
+	description as descriptionovhPabxHuntingAgentPut,
+	execute as executeovhPabxHuntingAgentPut,
+} from './ovhPabx/ovhPabxHuntingAgentPut.operation';
+import {
+	description as descriptionovhPabxHuntingAgentQueueDelete,
+	execute as executeovhPabxHuntingAgentQueueDelete,
+} from './ovhPabx/ovhPabxHuntingAgentQueueDelete.operation';
+import {
+	description as descriptionovhPabxHuntingAgentQueueGet,
+	execute as executeovhPabxHuntingAgentQueueGet,
+} from './ovhPabx/ovhPabxHuntingAgentQueueGet.operation';
+import {
+	description as descriptionovhPabxHuntingAgentQueueListGet,
+	execute as executeovhPabxHuntingAgentQueueListGet,
+} from './ovhPabx/ovhPabxHuntingAgentQueueListGet.operation';
+import {
+	description as descriptionovhPabxHuntingAgentQueueLiveStatusListGet,
+	execute as executeovhPabxHuntingAgentQueueLiveStatusListGet,
+} from './ovhPabx/ovhPabxHuntingAgentQueueLiveStatusListGet.operation';
+import {
+	description as descriptionovhPabxHuntingAgentQueuePost,
+	execute as executeovhPabxHuntingAgentQueuePost,
+} from './ovhPabx/ovhPabxHuntingAgentQueuePost.operation';
+import {
+	description as descriptionovhPabxHuntingAgentQueuePut,
+	execute as executeovhPabxHuntingAgentQueuePut,
+} from './ovhPabx/ovhPabxHuntingAgentQueuePut.operation';
+import {
+	description as descriptionovhPabxHuntingCustomStatusDelete,
+	execute as executeovhPabxHuntingCustomStatusDelete,
+} from './ovhPabx/ovhPabxHuntingCustomStatusDelete.operation';
+import {
+	description as descriptionovhPabxHuntingCustomStatusGet,
+	execute as executeovhPabxHuntingCustomStatusGet,
+} from './ovhPabx/ovhPabxHuntingCustomStatusGet.operation';
+import {
+	description as descriptionovhPabxHuntingCustomStatusListGet,
+	execute as executeovhPabxHuntingCustomStatusListGet,
+} from './ovhPabx/ovhPabxHuntingCustomStatusListGet.operation';
+import {
+	description as descriptionovhPabxHuntingCustomStatusPost,
+	execute as executeovhPabxHuntingCustomStatusPost,
+} from './ovhPabx/ovhPabxHuntingCustomStatusPost.operation';
+import {
+	description as descriptionovhPabxHuntingEventTokenDelete,
+	execute as executeovhPabxHuntingEventTokenDelete,
+} from './ovhPabx/ovhPabxHuntingEventTokenDelete.operation';
+import {
+	description as descriptionovhPabxHuntingEventTokenListGet,
+	execute as executeovhPabxHuntingEventTokenListGet,
+} from './ovhPabx/ovhPabxHuntingEventTokenListGet.operation';
+import {
+	description as descriptionovhPabxHuntingEventTokenPost,
+	execute as executeovhPabxHuntingEventTokenPost,
+} from './ovhPabx/ovhPabxHuntingEventTokenPost.operation';
+import {
+	description as descriptionovhPabxHuntingListGet,
+	execute as executeovhPabxHuntingListGet,
+} from './ovhPabx/ovhPabxHuntingListGet.operation';
+import {
+	description as descriptionovhPabxHuntingPut,
+	execute as executeovhPabxHuntingPut,
+} from './ovhPabx/ovhPabxHuntingPut.operation';
+import {
+	description as descriptionovhPabxHuntingQueueAgentDelete,
+	execute as executeovhPabxHuntingQueueAgentDelete,
+} from './ovhPabx/ovhPabxHuntingQueueAgentDelete.operation';
+import {
+	description as descriptionovhPabxHuntingQueueAgentGet,
+	execute as executeovhPabxHuntingQueueAgentGet,
+} from './ovhPabx/ovhPabxHuntingQueueAgentGet.operation';
+import {
+	description as descriptionovhPabxHuntingQueueAgentListGet,
+	execute as executeovhPabxHuntingQueueAgentListGet,
+} from './ovhPabx/ovhPabxHuntingQueueAgentListGet.operation';
+import {
+	description as descriptionovhPabxHuntingQueueAgentLiveStatusListGet,
+	execute as executeovhPabxHuntingQueueAgentLiveStatusListGet,
+} from './ovhPabx/ovhPabxHuntingQueueAgentLiveStatusListGet.operation';
+import {
+	description as descriptionovhPabxHuntingQueueAgentPost,
+	execute as executeovhPabxHuntingQueueAgentPost,
+} from './ovhPabx/ovhPabxHuntingQueueAgentPost.operation';
+import {
+	description as descriptionovhPabxHuntingQueueAgentPut,
+	execute as executeovhPabxHuntingQueueAgentPut,
+} from './ovhPabx/ovhPabxHuntingQueueAgentPut.operation';
+import {
+	description as descriptionovhPabxHuntingQueueDelete,
+	execute as executeovhPabxHuntingQueueDelete,
+} from './ovhPabx/ovhPabxHuntingQueueDelete.operation';
+import {
+	description as descriptionovhPabxHuntingQueueGet,
+	execute as executeovhPabxHuntingQueueGet,
+} from './ovhPabx/ovhPabxHuntingQueueGet.operation';
+import {
+	description as descriptionovhPabxHuntingQueueListGet,
+	execute as executeovhPabxHuntingQueueListGet,
+} from './ovhPabx/ovhPabxHuntingQueueListGet.operation';
+import {
+	description as descriptionovhPabxHuntingQueueLiveCallsEavesdropPost,
+	execute as executeovhPabxHuntingQueueLiveCallsEavesdropPost,
+} from './ovhPabx/ovhPabxHuntingQueueLiveCallsEavesdropPost.operation';
+import {
+	description as descriptionovhPabxHuntingQueueLiveCallsGet,
+	execute as executeovhPabxHuntingQueueLiveCallsGet,
+} from './ovhPabx/ovhPabxHuntingQueueLiveCallsGet.operation';
+import {
+	description as descriptionovhPabxHuntingQueueLiveCallsHangupPost,
+	execute as executeovhPabxHuntingQueueLiveCallsHangupPost,
+} from './ovhPabx/ovhPabxHuntingQueueLiveCallsHangupPost.operation';
+import {
+	description as descriptionovhPabxHuntingQueueLiveCallsHoldPost,
+	execute as executeovhPabxHuntingQueueLiveCallsHoldPost,
+} from './ovhPabx/ovhPabxHuntingQueueLiveCallsHoldPost.operation';
+import {
+	description as descriptionovhPabxHuntingQueueLiveCallsInterceptPost,
+	execute as executeovhPabxHuntingQueueLiveCallsInterceptPost,
+} from './ovhPabx/ovhPabxHuntingQueueLiveCallsInterceptPost.operation';
+import {
+	description as descriptionovhPabxHuntingQueueLiveCallsListGet,
+	execute as executeovhPabxHuntingQueueLiveCallsListGet,
+} from './ovhPabx/ovhPabxHuntingQueueLiveCallsListGet.operation';
+import {
+	description as descriptionovhPabxHuntingQueueLiveCallsTransferPost,
+	execute as executeovhPabxHuntingQueueLiveCallsTransferPost,
+} from './ovhPabx/ovhPabxHuntingQueueLiveCallsTransferPost.operation';
+import {
+	description as descriptionovhPabxHuntingQueueLiveCallsWhisperPost,
+	execute as executeovhPabxHuntingQueueLiveCallsWhisperPost,
+} from './ovhPabx/ovhPabxHuntingQueueLiveCallsWhisperPost.operation';
+import {
+	description as descriptionovhPabxHuntingQueueLiveStatisticsListGet,
+	execute as executeovhPabxHuntingQueueLiveStatisticsListGet,
+} from './ovhPabx/ovhPabxHuntingQueueLiveStatisticsListGet.operation';
+import {
+	description as descriptionovhPabxHuntingQueuePost,
+	execute as executeovhPabxHuntingQueuePost,
+} from './ovhPabx/ovhPabxHuntingQueuePost.operation';
+import {
+	description as descriptionovhPabxHuntingQueuePut,
+	execute as executeovhPabxHuntingQueuePut,
+} from './ovhPabx/ovhPabxHuntingQueuePut.operation';
+import {
+	description as descriptionovhPabxListGet,
+	execute as executeovhPabxListGet,
+} from './ovhPabx/ovhPabxListGet.operation';
+import {
+	description as descriptionovhPabxMenuDelete,
+	execute as executeovhPabxMenuDelete,
+} from './ovhPabx/ovhPabxMenuDelete.operation';
+import {
+	description as descriptionovhPabxMenuEntryDelete,
+	execute as executeovhPabxMenuEntryDelete,
+} from './ovhPabx/ovhPabxMenuEntryDelete.operation';
+import {
+	description as descriptionovhPabxMenuEntryGet,
+	execute as executeovhPabxMenuEntryGet,
+} from './ovhPabx/ovhPabxMenuEntryGet.operation';
+import {
+	description as descriptionovhPabxMenuEntryListGet,
+	execute as executeovhPabxMenuEntryListGet,
+} from './ovhPabx/ovhPabxMenuEntryListGet.operation';
+import {
+	description as descriptionovhPabxMenuEntryPost,
+	execute as executeovhPabxMenuEntryPost,
+} from './ovhPabx/ovhPabxMenuEntryPost.operation';
+import {
+	description as descriptionovhPabxMenuEntryPut,
+	execute as executeovhPabxMenuEntryPut,
+} from './ovhPabx/ovhPabxMenuEntryPut.operation';
+import {
+	description as descriptionovhPabxMenuGet,
+	execute as executeovhPabxMenuGet,
+} from './ovhPabx/ovhPabxMenuGet.operation';
+import {
+	description as descriptionovhPabxMenuListGet,
+	execute as executeovhPabxMenuListGet,
+} from './ovhPabx/ovhPabxMenuListGet.operation';
+import {
+	description as descriptionovhPabxMenuPost,
+	execute as executeovhPabxMenuPost,
+} from './ovhPabx/ovhPabxMenuPost.operation';
+import {
+	description as descriptionovhPabxMenuPut,
+	execute as executeovhPabxMenuPut,
+} from './ovhPabx/ovhPabxMenuPut.operation';
+import {
+	description as descriptionovhPabxPut,
+	execute as executeovhPabxPut,
+} from './ovhPabx/ovhPabxPut.operation';
+import {
+	description as descriptionovhPabxRecordsDelete,
+	execute as executeovhPabxRecordsDelete,
+} from './ovhPabx/ovhPabxRecordsDelete.operation';
+import {
+	description as descriptionovhPabxRecordsGet,
+	execute as executeovhPabxRecordsGet,
+} from './ovhPabx/ovhPabxRecordsGet.operation';
+import {
+	description as descriptionovhPabxRecordsListGet,
+	execute as executeovhPabxRecordsListGet,
+} from './ovhPabx/ovhPabxRecordsListGet.operation';
+import {
+	description as descriptionovhPabxSoundDelete,
+	execute as executeovhPabxSoundDelete,
+} from './ovhPabx/ovhPabxSoundDelete.operation';
+import {
+	description as descriptionovhPabxSoundGet,
+	execute as executeovhPabxSoundGet,
+} from './ovhPabx/ovhPabxSoundGet.operation';
+import {
+	description as descriptionovhPabxSoundListGet,
+	execute as executeovhPabxSoundListGet,
+} from './ovhPabx/ovhPabxSoundListGet.operation';
+import {
+	description as descriptionovhPabxSoundUploadPost,
+	execute as executeovhPabxSoundUploadPost,
+} from './ovhPabx/ovhPabxSoundUploadPost.operation';
+import {
+	description as descriptionovhPabxTtsDelete,
+	execute as executeovhPabxTtsDelete,
+} from './ovhPabx/ovhPabxTtsDelete.operation';
+import {
+	description as descriptionovhPabxTtsGet,
+	execute as executeovhPabxTtsGet,
+} from './ovhPabx/ovhPabxTtsGet.operation';
+import {
+	description as descriptionovhPabxTtsListGet,
+	execute as executeovhPabxTtsListGet,
+} from './ovhPabx/ovhPabxTtsListGet.operation';
+import {
+	description as descriptionovhPabxTtsPost,
+	execute as executeovhPabxTtsPost,
+} from './ovhPabx/ovhPabxTtsPost.operation';
+import {
+	description as descriptionovhPabxTtsPut,
+	execute as executeovhPabxTtsPut,
+} from './ovhPabx/ovhPabxTtsPut.operation';
+import {
+	description as descriptionphonebookDelete,
+	execute as executephonebookDelete,
+} from './phonebook/phonebookDelete.operation';
+import {
+	description as descriptionphonebookExportListGet,
+	execute as executephonebookExportListGet,
+} from './phonebook/phonebookExportListGet.operation';
+import {
+	description as descriptionphonebookGet,
+	execute as executephonebookGet,
+} from './phonebook/phonebookGet.operation';
+import {
+	description as descriptionphonebookImportPost,
+	execute as executephonebookImportPost,
+} from './phonebook/phonebookImportPost.operation';
+import {
+	description as descriptionphonebookListGet,
+	execute as executephonebookListGet,
+} from './phonebook/phonebookListGet.operation';
+import {
+	description as descriptionphonebookPhonebookContactDelete,
+	execute as executephonebookPhonebookContactDelete,
+} from './phonebook/phonebookPhonebookContactDelete.operation';
+import {
+	description as descriptionphonebookPhonebookContactGet,
+	execute as executephonebookPhonebookContactGet,
+} from './phonebook/phonebookPhonebookContactGet.operation';
+import {
+	description as descriptionphonebookPhonebookContactListGet,
+	execute as executephonebookPhonebookContactListGet,
+} from './phonebook/phonebookPhonebookContactListGet.operation';
+import {
+	description as descriptionphonebookPhonebookContactPost,
+	execute as executephonebookPhonebookContactPost,
+} from './phonebook/phonebookPhonebookContactPost.operation';
+import {
+	description as descriptionphonebookPhonebookContactPut,
+	execute as executephonebookPhonebookContactPut,
+} from './phonebook/phonebookPhonebookContactPut.operation';
+import {
+	description as descriptionphonebookPost,
+	execute as executephonebookPost,
+} from './phonebook/phonebookPost.operation';
+import {
+	description as descriptionphonebookPut,
+	execute as executephonebookPut,
+} from './phonebook/phonebookPut.operation';
+import {
+	description as descriptionportabilityCanBeCancelledListGet,
+	execute as executeportabilityCanBeCancelledListGet,
+} from './portability/portabilityCanBeCancelledListGet.operation';
+import {
+	description as descriptionportabilityCanBeExecutedListGet,
+	execute as executeportabilityCanBeExecutedListGet,
+} from './portability/portabilityCanBeExecutedListGet.operation';
+import {
+	description as descriptionportabilityCancelPost,
+	execute as executeportabilityCancelPost,
+} from './portability/portabilityCancelPost.operation';
+import {
+	description as descriptionportabilityChangeDatePost,
+	execute as executeportabilityChangeDatePost,
+} from './portability/portabilityChangeDatePost.operation';
+import {
+	description as descriptionportabilityDateCanBeChangedListGet,
+	execute as executeportabilityDateCanBeChangedListGet,
+} from './portability/portabilityDateCanBeChangedListGet.operation';
+import {
+	description as descriptionportabilityDetailGet,
+	execute as executeportabilityDetailGet,
+} from './portability/portabilityDetailGet.operation';
+import {
+	description as descriptionportabilityDocumentDelete,
+	execute as executeportabilityDocumentDelete,
+} from './portability/portabilityDocumentDelete.operation';
+import {
+	description as descriptionportabilityDocumentGet,
+	execute as executeportabilityDocumentGet,
+} from './portability/portabilityDocumentGet.operation';
+import {
+	description as descriptionportabilityDocumentListGet,
+	execute as executeportabilityDocumentListGet,
+} from './portability/portabilityDocumentListGet.operation';
+import {
+	description as descriptionportabilityDocumentPost,
+	execute as executeportabilityDocumentPost,
+} from './portability/portabilityDocumentPost.operation';
+import {
+	description as descriptionportabilityDocumentPut,
+	execute as executeportabilityDocumentPut,
+} from './portability/portabilityDocumentPut.operation';
+import {
+	description as descriptionportabilityExecutePost,
+	execute as executeportabilityExecutePost,
+} from './portability/portabilityExecutePost.operation';
+import {
+	description as descriptionportabilityRelaunchListGet,
+	execute as executeportabilityRelaunchListGet,
+} from './portability/portabilityRelaunchListGet.operation';
+import {
+	description as descriptionportabilityRelaunchPost,
+	execute as executeportabilityRelaunchPost,
+} from './portability/portabilityRelaunchPost.operation';
+import {
+	description as descriptionportabilityStatusListGet,
+	execute as executeportabilityStatusListGet,
+} from './portability/portabilityStatusListGet.operation';
+import {
 	description as descriptionprocedureCancelPost,
+	execute as executeprocedureCancelPost,
 } from './procedure/procedureCancelPost.operation';
 import {
-	execute as executeprocedureRequiredListGet,
+	description as descriptionprocedureGet,
+	execute as executeprocedureGet,
+} from './procedure/procedureGet.operation';
+import {
+	description as descriptionprocedureListGet,
+	execute as executeprocedureListGet,
+} from './procedure/procedureListGet.operation';
+import {
+	description as descriptionprocedurePost,
+	execute as executeprocedurePost,
+} from './procedure/procedurePost.operation';
+import {
 	description as descriptionprocedureRequiredListGet,
+	execute as executeprocedureRequiredListGet,
 } from './procedure/procedureRequiredListGet.operation';
 import {
-	execute as executeresellerPanelGeneratePasswordPost,
+	description as descriptionredirectChangeDestinationPost,
+	execute as executeredirectChangeDestinationPost,
+} from './redirect/redirectChangeDestinationPost.operation';
+import {
+	description as descriptionredirectGet,
+	execute as executeredirectGet,
+} from './redirect/redirectGet.operation';
+import {
+	description as descriptionredirectListGet,
+	execute as executeredirectListGet,
+} from './redirect/redirectListGet.operation';
+import {
+	description as descriptionredirectPut,
+	execute as executeredirectPut,
+} from './redirect/redirectPut.operation';
+import {
 	description as descriptionresellerPanelGeneratePasswordPost,
+	execute as executeresellerPanelGeneratePasswordPost,
 } from './resellerPanel/resellerPanelGeneratePasswordPost.operation';
 import {
-	execute as executeresellerPanelStatusListGet,
 	description as descriptionresellerPanelStatusListGet,
+	execute as executeresellerPanelStatusListGet,
 } from './resellerPanel/resellerPanelStatusListGet.operation';
 import {
-	execute as executesoftphoneStoreLinksListGet,
+	description as descriptionallowedCreditThresholdGet,
+	execute as executeallowedCreditThresholdGet,
+} from './root/allowedCreditThresholdGet.operation';
+import {
+	description as descriptionamountSecurityDepositGet,
+	execute as executeamountSecurityDepositGet,
+} from './root/amountSecurityDepositGet.operation';
+import {
+	description as descriptionbillingAccountDelete,
+	execute as executebillingAccountDelete,
+} from './root/billingAccountDelete.operation';
+import {
+	description as descriptionbillingAccountGet,
+	execute as executebillingAccountGet,
+} from './root/billingAccountGet.operation';
+import {
+	description as descriptionbillingAccountPut,
+	execute as executebillingAccountPut,
+} from './root/billingAccountPut.operation';
+import {
+	description as descriptionbillingAccountSiteGet,
+	execute as executebillingAccountSiteGet,
+} from './root/billingAccountSiteGet.operation';
+import {
+	description as descriptionbillingAccountSitePost,
+	execute as executebillingAccountSitePost,
+} from './root/billingAccountSitePost.operation';
+import {
+	description as descriptioncanTransferSecurityDepositPost,
+	execute as executecanTransferSecurityDepositPost,
+} from './root/canTransferSecurityDepositPost.operation';
+import {
+	description as descriptioncancelTerminationPost,
+	execute as executecancelTerminationPost,
+} from './root/cancelTerminationPost.operation';
+import {
+	description as descriptionchangeContactPost,
+	execute as executechangeContactPost,
+} from './root/changeContactPost.operation';
+import {
+	description as descriptionportabilityGet,
+	execute as executeportabilityGet,
+} from './root/portabilityGet.operation';
+import {
+	description as descriptiontransferSecurityDepositPost,
+	execute as executetransferSecurityDepositPost,
+} from './root/transferSecurityDepositPost.operation';
+import {
+	description as descriptionrsvaAllowedRateCodesListGet,
+	execute as executersvaAllowedRateCodesListGet,
+} from './rsva/rsvaAllowedRateCodesListGet.operation';
+import {
+	description as descriptionrsvaCancelScheduledRateCodePost,
+	execute as executersvaCancelScheduledRateCodePost,
+} from './rsva/rsvaCancelScheduledRateCodePost.operation';
+import {
+	description as descriptionrsvaCurrentRateCodeListGet,
+	execute as executersvaCurrentRateCodeListGet,
+} from './rsva/rsvaCurrentRateCodeListGet.operation';
+import {
+	description as descriptionrsvaGet,
+	execute as executersvaGet,
+} from './rsva/rsvaGet.operation';
+import {
+	description as descriptionrsvaListGet,
+	execute as executersvaListGet,
+} from './rsva/rsvaListGet.operation';
+import {
+	description as descriptionrsvaPut,
+	execute as executersvaPut,
+} from './rsva/rsvaPut.operation';
+import {
+	description as descriptionrsvaScheduleRateCodePost,
+	execute as executersvaScheduleRateCodePost,
+} from './rsva/rsvaScheduleRateCodePost.operation';
+import {
+	description as descriptionrsvaScheduledRateCodeListGet,
+	execute as executersvaScheduledRateCodeListGet,
+} from './rsva/rsvaScheduledRateCodeListGet.operation';
+import {
+	description as descriptionschedulerEventsDelete,
+	execute as executeschedulerEventsDelete,
+} from './scheduler/schedulerEventsDelete.operation';
+import {
+	description as descriptionschedulerEventsGet,
+	execute as executeschedulerEventsGet,
+} from './scheduler/schedulerEventsGet.operation';
+import {
+	description as descriptionschedulerEventsListGet,
+	execute as executeschedulerEventsListGet,
+} from './scheduler/schedulerEventsListGet.operation';
+import {
+	description as descriptionschedulerEventsPost,
+	execute as executeschedulerEventsPost,
+} from './scheduler/schedulerEventsPost.operation';
+import {
+	description as descriptionschedulerEventsPut,
+	execute as executeschedulerEventsPut,
+} from './scheduler/schedulerEventsPut.operation';
+import {
+	description as descriptionschedulerGet,
+	execute as executeschedulerGet,
+} from './scheduler/schedulerGet.operation';
+import {
+	description as descriptionschedulerImportIcsCalendarPost,
+	execute as executeschedulerImportIcsCalendarPost,
+} from './scheduler/schedulerImportIcsCalendarPost.operation';
+import {
+	description as descriptionschedulerListGet,
+	execute as executeschedulerListGet,
+} from './scheduler/schedulerListGet.operation';
+import {
+	description as descriptionschedulerPut,
+	execute as executeschedulerPut,
+} from './scheduler/schedulerPut.operation';
+import {
+	description as descriptionscreenGet,
+	execute as executescreenGet,
+} from './screen/screenGet.operation';
+import {
+	description as descriptionscreenListGet,
+	execute as executescreenListGet,
+} from './screen/screenListGet.operation';
+import {
+	description as descriptionscreenPut,
+	execute as executescreenPut,
+} from './screen/screenPut.operation';
+import {
+	description as descriptionscreenScreenListsDelete,
+	execute as executescreenScreenListsDelete,
+} from './screen/screenScreenListsDelete.operation';
+import {
+	description as descriptionscreenScreenListsGet,
+	execute as executescreenScreenListsGet,
+} from './screen/screenScreenListsGet.operation';
+import {
+	description as descriptionscreenScreenListsListGet,
+	execute as executescreenScreenListsListGet,
+} from './screen/screenScreenListsListGet.operation';
+import {
+	description as descriptionscreenScreenListsPost,
+	execute as executescreenScreenListsPost,
+} from './screen/screenScreenListsPost.operation';
+import {
+	description as descriptionserviceCancelTerminationPost,
+	execute as executeserviceCancelTerminationPost,
+} from './service/serviceCancelTerminationPost.operation';
+import {
+	description as descriptionserviceChangeOfBillingAccountPost,
+	execute as executeserviceChangeOfBillingAccountPost,
+} from './service/serviceChangeOfBillingAccountPost.operation';
+import {
+	description as descriptionserviceDelete,
+	execute as executeserviceDelete,
+} from './service/serviceDelete.operation';
+import {
+	description as descriptionserviceDiagnosticReportsListGet,
+	execute as executeserviceDiagnosticReportsListGet,
+} from './service/serviceDiagnosticReportsListGet.operation';
+import {
+	description as descriptionserviceDirectoryFetchEntrepriseInformationsPost,
+	execute as executeserviceDirectoryFetchEntrepriseInformationsPost,
+} from './service/serviceDirectoryFetchEntrepriseInformationsPost.operation';
+import {
+	description as descriptionserviceDirectoryGetDirectoryServiceCodeListGet,
+	execute as executeserviceDirectoryGetDirectoryServiceCodeListGet,
+} from './service/serviceDirectoryGetDirectoryServiceCodeListGet.operation';
+import {
+	description as descriptionserviceDirectoryGetWayTypesListGet,
+	execute as executeserviceDirectoryGetWayTypesListGet,
+} from './service/serviceDirectoryGetWayTypesListGet.operation';
+import {
+	description as descriptionserviceDirectoryListGet,
+	execute as executeserviceDirectoryListGet,
+} from './service/serviceDirectoryListGet.operation';
+import {
+	description as descriptionserviceDirectoryPut,
+	execute as executeserviceDirectoryPut,
+} from './service/serviceDirectoryPut.operation';
+import {
+	description as descriptionserviceEventTokenDelete,
+	execute as executeserviceEventTokenDelete,
+} from './service/serviceEventTokenDelete.operation';
+import {
+	description as descriptionserviceEventTokenListGet,
+	execute as executeserviceEventTokenListGet,
+} from './service/serviceEventTokenListGet.operation';
+import {
+	description as descriptionserviceEventTokenPost,
+	execute as executeserviceEventTokenPost,
+} from './service/serviceEventTokenPost.operation';
+import {
+	description as descriptionserviceFaxConsumptionGet,
+	execute as executeserviceFaxConsumptionGet,
+} from './service/serviceFaxConsumptionGet.operation';
+import {
+	description as descriptionserviceFaxConsumptionListGet,
+	execute as executeserviceFaxConsumptionListGet,
+} from './service/serviceFaxConsumptionListGet.operation';
+import {
+	description as descriptionserviceGet,
+	execute as executeserviceGet,
+} from './service/serviceGet.operation';
+import {
+	description as descriptionserviceListGet,
+	execute as executeserviceListGet,
+} from './service/serviceListGet.operation';
+import {
+	description as descriptionserviceOfferChangeDelete,
+	execute as executeserviceOfferChangeDelete,
+} from './service/serviceOfferChangeDelete.operation';
+import {
+	description as descriptionserviceOfferChangeListGet,
+	execute as executeserviceOfferChangeListGet,
+} from './service/serviceOfferChangeListGet.operation';
+import {
+	description as descriptionserviceOfferChangePost,
+	execute as executeserviceOfferChangePost,
+} from './service/serviceOfferChangePost.operation';
+import {
+	description as descriptionserviceOfferChangesListGet,
+	execute as executeserviceOfferChangesListGet,
+} from './service/serviceOfferChangesListGet.operation';
+import {
+	description as descriptionserviceOfferTaskGet,
+	execute as executeserviceOfferTaskGet,
+} from './service/serviceOfferTaskGet.operation';
+import {
+	description as descriptionserviceOfferTaskListGet,
+	execute as executeserviceOfferTaskListGet,
+} from './service/serviceOfferTaskListGet.operation';
+import {
+	description as descriptionserviceOfferTaskPut,
+	execute as executeserviceOfferTaskPut,
+} from './service/serviceOfferTaskPut.operation';
+import {
+	description as descriptionservicePreviousVoiceConsumptionGet,
+	execute as executeservicePreviousVoiceConsumptionGet,
+} from './service/servicePreviousVoiceConsumptionGet.operation';
+import {
+	description as descriptionservicePreviousVoiceConsumptionListGet,
+	execute as executeservicePreviousVoiceConsumptionListGet,
+} from './service/servicePreviousVoiceConsumptionListGet.operation';
+import {
+	description as descriptionservicePut,
+	execute as executeservicePut,
+} from './service/servicePut.operation';
+import {
+	description as descriptionserviceRepaymentConsumptionGet,
+	execute as executeserviceRepaymentConsumptionGet,
+} from './service/serviceRepaymentConsumptionGet.operation';
+import {
+	description as descriptionserviceRepaymentConsumptionListGet,
+	execute as executeserviceRepaymentConsumptionListGet,
+} from './service/serviceRepaymentConsumptionListGet.operation';
+import {
+	description as descriptionserviceTaskGet,
+	execute as executeserviceTaskGet,
+} from './service/serviceTaskGet.operation';
+import {
+	description as descriptionserviceTaskListGet,
+	execute as executeserviceTaskListGet,
+} from './service/serviceTaskListGet.operation';
+import {
+	description as descriptionserviceVoiceConsumptionGet,
+	execute as executeserviceVoiceConsumptionGet,
+} from './service/serviceVoiceConsumptionGet.operation';
+import {
+	description as descriptionserviceVoiceConsumptionListGet,
+	execute as executeserviceVoiceConsumptionListGet,
+} from './service/serviceVoiceConsumptionListGet.operation';
+import {
+	description as descriptionserviceInfosListGet,
+	execute as executeserviceInfosListGet,
+} from './serviceInfos/serviceInfosListGet.operation';
+import {
+	description as descriptionserviceInfosPut,
+	execute as executeserviceInfosPut,
+} from './serviceInfos/serviceInfosPut.operation';
+import {
+	description as descriptionsoftphoneLogoDelete,
+	execute as executesoftphoneLogoDelete,
+} from './softphone/softphoneLogoDelete.operation';
+import {
+	description as descriptionsoftphoneLogoListGet,
+	execute as executesoftphoneLogoListGet,
+} from './softphone/softphoneLogoListGet.operation';
+import {
+	description as descriptionsoftphoneLogoPut,
+	execute as executesoftphoneLogoPut,
+} from './softphone/softphoneLogoPut.operation';
+import {
 	description as descriptionsoftphoneStoreLinksListGet,
+	execute as executesoftphoneStoreLinksListGet,
 } from './softphone/softphoneStoreLinksListGet.operation';
 import {
-	execute as executesoftphoneThemesListGet,
-	description as descriptionsoftphoneThemesListGet,
-} from './softphone/softphoneThemesListGet.operation';
+	description as descriptionsoftphoneThemeListGet,
+	execute as executesoftphoneThemeListGet,
+} from './softphone/softphoneThemeListGet.operation';
 import {
-	execute as executesoftphoneThemesGet,
+	description as descriptionsoftphoneThemePut,
+	execute as executesoftphoneThemePut,
+} from './softphone/softphoneThemePut.operation';
+import {
 	description as descriptionsoftphoneThemesGet,
+	execute as executesoftphoneThemesGet,
 } from './softphone/softphoneThemesGet.operation';
 import {
-	execute as executesoundsListGet,
-	description as descriptionsoundsListGet,
-} from './sounds/soundsListGet.operation';
+	description as descriptionsoftphoneThemesListGet,
+	execute as executesoftphoneThemesListGet,
+} from './softphone/softphoneThemesListGet.operation';
 import {
-	execute as executesoundsPost,
-	description as descriptionsoundsPost,
-} from './sounds/soundsPost.operation';
-import {
-	execute as executesoundsDelete,
 	description as descriptionsoundsDelete,
+	execute as executesoundsDelete,
 } from './sounds/soundsDelete.operation';
 import {
-	execute as executesoundsGet,
 	description as descriptionsoundsGet,
+	execute as executesoundsGet,
 } from './sounds/soundsGet.operation';
 import {
-	execute as executesoundsPut,
+	description as descriptionsoundsListGet,
+	execute as executesoundsListGet,
+} from './sounds/soundsListGet.operation';
+import {
+	description as descriptionsoundsPost,
+	execute as executesoundsPost,
+} from './sounds/soundsPost.operation';
+import {
 	description as descriptionsoundsPut,
+	execute as executesoundsPut,
 } from './sounds/soundsPut.operation';
 import {
-	execute as executespareListGet,
-	description as descriptionspareListGet,
-} from './spare/spareListGet.operation';
+	description as descriptionspareBrandsListGet,
+	execute as executespareBrandsListGet,
+} from './spare/spareBrandsListGet.operation';
 import {
-	execute as executespareDelete,
-	description as descriptionspareDelete,
-} from './spare/spareDelete.operation';
-import {
-	execute as executespareGet,
-	description as descriptionspareGet,
-} from './spare/spareGet.operation';
-import {
-	execute as executespareCompatibleReplacementListGet,
 	description as descriptionspareCompatibleReplacementListGet,
+	execute as executespareCompatibleReplacementListGet,
 } from './spare/spareCompatibleReplacementListGet.operation';
 import {
-	execute as executespareReplacePost,
+	description as descriptionspareDelete,
+	execute as executespareDelete,
+} from './spare/spareDelete.operation';
+import {
+	description as descriptionspareGet,
+	execute as executespareGet,
+} from './spare/spareGet.operation';
+import {
+	description as descriptionspareListGet,
+	execute as executespareListGet,
+} from './spare/spareListGet.operation';
+import {
 	description as descriptionspareReplacePost,
+	execute as executespareReplacePost,
 } from './spare/spareReplacePost.operation';
 import {
-	execute as executespareServiceInfosListGet,
 	description as descriptionspareServiceInfosListGet,
+	execute as executespareServiceInfosListGet,
 } from './spare/spareServiceInfosListGet.operation';
 import {
-	execute as executespareServiceInfosPut,
 	description as descriptionspareServiceInfosPut,
+	execute as executespareServiceInfosPut,
 } from './spare/spareServiceInfosPut.operation';
 import {
-	execute as executespareBrandsListGet,
-	description as descriptionspareBrandsListGet,
-} from './spare/spareBrandsListGet.operation';
-
-export function description(displayOptions: IDisplayOptions): INodeProperties[] {
-	const operationProperties: INodeProperties[] = [
-		{
-			displayName: 'Operation',
-			name: 'telephonyOperation',
-			type: 'options',
-			noDataExpression: true,
-			options: [
-
-{
-					name: 'Abbreviated Number Create',
-					value: 'abbreviatedNumberPost',
-					action: 'Create a new abbreviated number for the billing account',
-				},
-{
-					name: 'Abbreviated Number Delete',
-					value: 'abbreviatedNumberDelete',
-					action: 'Delete the given abbreviated number',
-				},
-{
-					name: 'Abbreviated Number Get',
-					value: 'abbreviatedNumberGet',
-					action: 'Get this object properties',
-				},
-{
-					name: 'Abbreviated Number List',
-					value: 'abbreviatedNumberListGet',
-					action: 'Abbreviated numbers for the billing account',
-				},
-{
-					name: 'Abbreviated Number Update',
-					value: 'abbreviatedNumberPut',
-					action: 'Alter this object properties',
-				},
-{
-					name: 'Billing Account Site',
-					value: 'billingAccountSitePost',
-					action: 'Used to overwrite current billing account feature by the billing account site',
-				},
-{
-					name: 'Can Transfer Security Deposit',
-					value: 'canTransferSecurityDepositPost',
-					action: 'Check if security deposit transfer is possible between two billing accounts',
-				},
-{
-					name: 'Cancel Termination',
-					value: 'cancelTerminationPost',
-					action: 'Cancel the billing account termination',
-				},
-{
-					name: 'Carrier Sip Cdrs List',
-					value: 'carrierSipCdrsListGet',
-					action: 'Get the Call Detail Records of your Carrier SIP service',
-				},
-{
-					name: 'Carrier Sip Cluster Details List',
-					value: 'carrierSipClusterDetailsListGet',
-					action: 'Get details about the carrier sip cluster of your stack',
-				},
-{
-					name: 'Carrier Sip Endpoints Get',
-					value: 'carrierSipEndpointsGet',
-					action: 'Get this object properties',
-				},
-{
-					name: 'Carrier Sip Endpoints List',
-					value: 'carrierSipEndpointsListGet',
-					action:
-						'List of your remote sip endpoints (ips, ports, protocol) of your carrier sip trunk service',
-				},
-{
-					name: 'Carrier Sip Get',
-					value: 'carrierSipGet',
-					action: 'Get this object properties',
-				},
-{
-					name: 'Carrier Sip List',
-					value: 'carrierSipListGet',
-					action: 'Carrier SIP trunks associated with this billing account',
-				},
-{
-					name: 'Carrier Sip Settings List',
-					value: 'carrierSipSettingsListGet',
-					action: 'Get this object properties',
-				},
-{
-					name: 'Carrier Sip Settings Update',
-					value: 'carrierSipSettingsPut',
-					action: 'Alter this object properties',
-				},
-{
-					name: 'Carrier Sip Vno Get',
-					value: 'carrierSipVnoGet',
-					action: 'Get this object properties',
-				},
-{
-					name: 'Carrier Sip Vno List',
-					value: 'carrierSipVnoListGet',
-					action: 'List of your VNO mandates',
-				},
-{
-					name: 'Carrier Sip Vno Ranges Get',
-					value: 'carrierSipVnoRangesGet',
-					action: 'Get this object properties',
-				},
-{
-					name: 'Carrier Sip Vno Ranges List',
-					value: 'carrierSipVnoRangesListGet',
-					action: 'Number ranges associated with you mandate.',
-				},
-{
-					name: 'Carrier Sip Vno Ranges Update',
-					value: 'carrierSipVnoRangesPut',
-					action: 'Alter this object properties',
-				},
-{
-					name: 'Change Billing Contact',
-					value: 'changeContactPost',
-					action: 'Launch a contact change procedure',
-				},
-{
-					name: 'Change Contact',
-					value: 'aliasChangeContactPost',
-					action: 'Launch a contact change procedure for an alias',
-				},
-{
-					name: 'Conference',
-					value: 'conferenceListGet',
-					action: 'Execute the GET on conference',
-				},
-{
-					name: 'Conference (2)',
-					value: 'conferenceGet',
-					action: 'Execute the GET on conference/{x}',
-				},
-{
-					name: 'Conference Announce Upload',
-					value: 'conferenceAnnounceUploadPost',
-					action: 'Execute the POST on conference/{x}/announceUpload',
-				},
-{
-					name: 'Conference Histories',
-					value: 'conferenceHistoriesListGet',
-					action: 'Execute the GET on conference/{x}/histories',
-				},
-{
-					name: 'Conference Histories (2)',
-					value: 'conferenceHistoriesGet',
-					action: 'Execute the GET on conference/{x}/histories/{x}',
-				},
-{
-					name: 'Conference Informations',
-					value: 'conferenceInformationsListGet',
-					action: 'Execute the GET on conference/{x}/informations',
-				},
-{
-					name: 'Conference Lock',
-					value: 'conferenceLockPost',
-					action: 'Execute the POST on conference/{x}/lock',
-				},
-{
-					name: 'Conference Participants',
-					value: 'conferenceParticipantsListGet',
-					action: 'Execute the GET on conference/{x}/participants',
-				},
-{
-					name: 'Conference Participants (2)',
-					value: 'conferenceParticipantsGet',
-					action: 'Execute the GET on conference/{x}/participants/{x}',
-				},
-{
-					name: 'Conference Participants Deaf',
-					value: 'conferenceParticipantsDeafPost',
-					action: 'Execute the POST on conference/{x}/participants/{x}/deaf',
-				},
-{
-					name: 'Conference Participants Energy',
-					value: 'conferenceParticipantsEnergyPost',
-					action: 'Execute the POST on conference/{x}/participants/{x}/energy',
-				},
-{
-					name: 'Conference Participants Kick',
-					value: 'conferenceParticipantsKickPost',
-					action: 'Execute the POST on conference/{x}/participants/{x}/kick',
-				},
-{
-					name: 'Conference Participants Mute',
-					value: 'conferenceParticipantsMutePost',
-					action: 'Execute the POST on conference/{x}/participants/{x}/mute',
-				},
-{
-					name: 'Conference Participants Undeaf',
-					value: 'conferenceParticipantsUndeafPost',
-					action: 'Execute the POST on conference/{x}/participants/{x}/undeaf',
-				},
-{
-					name: 'Conference Participants Unmute',
-					value: 'conferenceParticipantsUnmutePost',
-					action: 'Execute the POST on conference/{x}/participants/{x}/unmute',
-				},
-{
-					name: 'Conference Rooms',
-					value: 'conferenceRoomsListGet',
-					action: 'Execute the GET on conference/{x}/rooms',
-				},
-{
-					name: 'Conference Rooms (2)',
-					value: 'conferenceRoomsPost',
-					action: 'Execute the POST on conference/{x}/rooms',
-				},
-{
-					name: 'Conference Rooms (3)',
-					value: 'conferenceRoomsGet',
-					action: 'Execute the GET on conference/{x}/rooms/{x}',
-				},
-{
-					name: 'Conference Rooms (4)',
-					value: 'conferenceRoomsPut',
-					action: 'Execute the PUT on conference/{x}/rooms/{x}',
-				},
-{
-					name: 'Conference Rooms Histories',
-					value: 'conferenceRoomsHistoriesListGet',
-					action: 'Execute the GET on conference/{x}/rooms/{x}/histories',
-				},
-{
-					name: 'Conference Rooms Histories (2)',
-					value: 'conferenceRoomsHistoriesGet',
-					action: 'Execute the GET on conference/{x}/rooms/{x}/histories/{x}',
-				},
-{
-					name: 'Conference Rooms Lock',
-					value: 'conferenceRoomsLockPost',
-					action: 'Execute the POST on conference/{x}/rooms/{x}/lock',
-				},
-{
-					name: 'Conference Rooms Participants',
-					value: 'conferenceRoomsParticipantsListGet',
-					action: 'Execute the GET on conference/{x}/rooms/{x}/participants',
-				},
-{
-					name: 'Conference Rooms Participants (2)',
-					value: 'conferenceRoomsParticipantsGet',
-					action: 'Execute the GET on conference/{x}/rooms/{x}/participants/{x}',
-				},
-{
-					name: 'Conference Rooms Participants Deaf',
-					value: 'conferenceRoomsParticipantsDeafPost',
-					action: 'Execute the POST on conference/{x}/rooms/{x}/participants/{x}/deaf',
-				},
-{
-					name: 'Conference Rooms Participants Energy',
-					value: 'conferenceRoomsParticipantsEnergyPost',
-					action: 'Execute the POST on conference/{x}/rooms/{x}/participants/{x}/energy',
-				},
-{
-					name: 'Conference Rooms Participants Kick',
-					value: 'conferenceRoomsParticipantsKickPost',
-					action: 'Execute the POST on conference/{x}/rooms/{x}/participants/{x}/kick',
-				},
-{
-					name: 'Conference Rooms Participants Mute',
-					value: 'conferenceRoomsParticipantsMutePost',
-					action: 'Execute the POST on conference/{x}/rooms/{x}/participants/{x}/mute',
-				},
-{
-					name: 'Conference Rooms Participants Undeaf',
-					value: 'conferenceRoomsParticipantsUndeafPost',
-					action: 'Execute the POST on conference/{x}/rooms/{x}/participants/{x}/undeaf',
-				},
-{
-					name: 'Conference Rooms Participants Unmute',
-					value: 'conferenceRoomsParticipantsUnmutePost',
-					action: 'Execute the POST on conference/{x}/rooms/{x}/participants/{x}/unmute',
-				},
-{
-					name: 'Conference Rooms Stats',
-					value: 'conferenceRoomsStatsListGet',
-					action: 'Execute the GET on conference/{x}/roomsStats',
-				},
-{
-					name: 'Conference Rooms Unlock',
-					value: 'conferenceRoomsUnlockPost',
-					action: 'Execute the POST on conference/{x}/rooms/{x}/unlock',
-				},
-{
-					name: 'Conference Rooms Web Access',
-					value: 'conferenceRoomsWebAccessListGet',
-					action: 'Execute the GET on conference/{x}/rooms/{x}/webAccess',
-				},
-{
-					name: 'Conference Rooms Web Access (2)',
-					value: 'conferenceRoomsWebAccessPost',
-					action: 'Execute the POST on conference/{x}/rooms/{x}/webAccess',
-				},
-{
-					name: 'Conference Rooms Web Access (3)',
-					value: 'conferenceRoomsWebAccessDelete',
-					action: 'Execute the DELETE on conference/{x}/rooms/{x}/webAccess/{x}',
-				},
-{
-					name: 'Conference Rooms Web Access (4)',
-					value: 'conferenceRoomsWebAccessGet',
-					action: 'Execute the GET on conference/{x}/rooms/{x}/webAccess/{x}',
-				},
-{
-					name: 'Conference Settings',
-					value: 'conferenceSettingsListGet',
-					action: 'Execute the GET on conference/{x}/settings',
-				},
-{
-					name: 'Conference Settings (2)',
-					value: 'conferenceSettingsPut',
-					action: 'Execute the PUT on conference/{x}/settings',
-				},
-{
-					name: 'Conference Unlock',
-					value: 'conferenceUnlockPost',
-					action: 'Execute the POST on conference/{x}/unlock',
-				},
-{
-					name: 'Conference Web Access',
-					value: 'conferenceWebAccessListGet',
-					action: 'Execute the GET on conference/{x}/webAccess',
-				},
-{
-					name: 'Conference Web Access (2)',
-					value: 'conferenceWebAccessPost',
-					action: 'Execute the POST on conference/{x}/webAccess',
-				},
-{
-					name: 'Conference Web Access (3)',
-					value: 'conferenceWebAccessDelete',
-					action: 'Execute the DELETE on conference/{x}/webAccess/{x}',
-				},
-{
-					name: 'Conference Web Access (4)',
-					value: 'conferenceWebAccessGet',
-					action: 'Execute the GET on conference/{x}/webAccess/{x}',
-				},
-{
-					name: 'Create Hardware',
-					value: 'linesHardwarePost',
-					action: 'Add hardware to a line',
-				},
-{
-					name: 'Create Number',
-					value: 'linesNumberPost',
-					action: 'Add a number to a line',
-				},
-{
-					name: 'Create Portability',
-					value: 'linesPortabilityPost',
-					action: 'Create a portability request for a line',
-				},
-{
-					name: 'Create SIM',
-					value: 'linesSimPost',
-					action: 'Add a SIM to a line',
-				},
-{
-					name: 'Ddi',
-					value: 'ddiListGet',
-					action: 'Execute the GET on ddi',
-				},
-{
-					name: 'Ddi (2)',
-					value: 'ddiGet',
-					action: 'Execute the GET on ddi/{x}',
-				},
-{
-					name: 'Ddi (3)',
-					value: 'ddiPut',
-					action: 'Execute the PUT on ddi/{x}',
-				},
-{
-					name: 'Ddi Change Destination',
-					value: 'ddiChangeDestinationPost',
-					action: 'Execute the POST on ddi/{x}/changeDestination',
-				},
-{
-					name: 'Delete Number',
-					value: 'linesNumberDelete',
-					action: 'Delete a number from a line',
-				},
-{
-					name: 'Delete Portability',
-					value: 'linesPortabilityDelete',
-					action: 'Delete a portability request',
-				},
-{
-					name: 'Delete SIM',
-					value: 'linesSimDelete',
-					action: 'Delete a SIM from a line',
-				},
-{
-					name: 'Easy Hunting',
-					value: 'easyHuntingListGet',
-					action: 'Execute the GET on easyHunting',
-				},
-{
-					name: 'Easy Hunting (2)',
-					value: 'easyHuntingGet',
-					action: 'Execute the GET on easyHunting/{x}',
-				},
-{
-					name: 'Easy Hunting (3)',
-					value: 'easyHuntingPut',
-					action: 'Execute the PUT on easyHunting/{x}',
-				},
-{
-					name: 'Easy Hunting Hunting',
-					value: 'easyHuntingHuntingListGet',
-					action: 'Execute the GET on easyHunting/{x}/hunting',
-				},
-{
-					name: 'Easy Hunting Hunting (2)',
-					value: 'easyHuntingHuntingPut',
-					action: 'Execute the PUT on easyHunting/{x}/hunting',
-				},
-{
-					name: 'Easy Hunting Hunting Agent',
-					value: 'easyHuntingHuntingAgentListGet',
-					action: 'Execute the GET on easyHunting/{x}/hunting/agent',
-				},
-{
-					name: 'Easy Hunting Hunting Agent (2)',
-					value: 'easyHuntingHuntingAgentPost',
-					action: 'Execute the POST on easyHunting/{x}/hunting/agent',
-				},
-{
-					name: 'Easy Hunting Hunting Agent (3)',
-					value: 'easyHuntingHuntingAgentDelete',
-					action: 'Execute the DELETE on easyHunting/{x}/hunting/agent/{x}',
-				},
-{
-					name: 'Easy Hunting Hunting Agent (4)',
-					value: 'easyHuntingHuntingAgentGet',
-					action: 'Execute the GET on easyHunting/{x}/hunting/agent/{x}',
-				},
-{
-					name: 'Easy Hunting Hunting Agent (5)',
-					value: 'easyHuntingHuntingAgentPut',
-					action: 'Execute the PUT on easyHunting/{x}/hunting/agent/{x}',
-				},
-{
-					name: 'Easy Hunting Hunting Agent Banner Access',
-					value: 'easyHuntingHuntingAgentBannerAccessDelete',
-					action: 'Execute the DELETE on easyHunting/{x}/hunting/agent/{x}/bannerAccess',
-				},
-{
-					name: 'Easy Hunting Hunting Agent Banner Access (2)',
-					value: 'easyHuntingHuntingAgentBannerAccessListGet',
-					action: 'Execute the GET on easyHunting/{x}/hunting/agent/{x}/bannerAccess',
-				},
-{
-					name: 'Easy Hunting Hunting Agent Banner Access (3)',
-					value: 'easyHuntingHuntingAgentBannerAccessPost',
-					action: 'Execute the POST on easyHunting/{x}/hunting/agent/{x}/bannerAccess',
-				},
-{
-					name: 'Easy Hunting Hunting Agent Calls',
-					value: 'easyHuntingHuntingAgentCallsListGet',
-					action: 'Execute the GET on easyHunting/{x}/hunting/agent/{x}/calls',
-				},
-{
-					name: 'Easy Hunting Hunting Agent Calls (2)',
-					value: 'easyHuntingHuntingAgentCallsGet',
-					action: 'Execute the GET on easyHunting/{x}/hunting/agent/{x}/calls/{x}',
-				},
-{
-					name: 'Easy Hunting Hunting Agent Calls Eavesdrop',
-					value: 'easyHuntingHuntingAgentCallsEavesdropPost',
-					action: 'Execute the POST on easyHunting/{x}/hunting/agent/{x}/calls/{x}/eavesdrop',
-				},
-{
-					name: 'Easy Hunting Hunting Agent Calls Hangup',
-					value: 'easyHuntingHuntingAgentCallsHangupPost',
-					action: 'Execute the POST on easyHunting/{x}/hunting/agent/{x}/calls/{x}/hangup',
-				},
-{
-					name: 'Easy Hunting Hunting Agent Calls Hold',
-					value: 'easyHuntingHuntingAgentCallsHoldPost',
-					action: 'Execute the POST on easyHunting/{x}/hunting/agent/{x}/calls/{x}/hold',
-				},
-{
-					name: 'Easy Hunting Hunting Agent Calls Intercept',
-					value: 'easyHuntingHuntingAgentCallsInterceptPost',
-					action: 'Execute the POST on easyHunting/{x}/hunting/agent/{x}/calls/{x}/intercept',
-				},
-{
-					name: 'Easy Hunting Hunting Agent Calls Transfer',
-					value: 'easyHuntingHuntingAgentCallsTransferPost',
-					action: 'Execute the POST on easyHunting/{x}/hunting/agent/{x}/calls/{x}/transfer',
-				},
-{
-					name: 'Easy Hunting Hunting Agent Calls Whisper',
-					value: 'easyHuntingHuntingAgentCallsWhisperPost',
-					action: 'Execute the POST on easyHunting/{x}/hunting/agent/{x}/calls/{x}/whisper',
-				},
-{
-					name: 'Easy Hunting Hunting Agent Event Token',
-					value: 'easyHuntingHuntingAgentEventTokenDelete',
-					action: 'Execute the DELETE on easyHunting/{x}/hunting/agent/{x}/eventToken',
-				},
-{
-					name: 'Easy Hunting Hunting Agent Event Token (2)',
-					value: 'easyHuntingHuntingAgentEventTokenListGet',
-					action: 'Execute the GET on easyHunting/{x}/hunting/agent/{x}/eventToken',
-				},
-{
-					name: 'Easy Hunting Hunting Agent Event Token (3)',
-					value: 'easyHuntingHuntingAgentEventTokenPost',
-					action: 'Execute the POST on easyHunting/{x}/hunting/agent/{x}/eventToken',
-				},
-{
-					name: 'Easy Hunting Hunting Agent Live Status',
-					value: 'easyHuntingHuntingAgentLiveStatusListGet',
-					action: 'Execute the GET on easyHunting/{x}/hunting/agent/{x}/liveStatus',
-				},
-{
-					name: 'Easy Hunting Hunting Agent Queue',
-					value: 'easyHuntingHuntingAgentQueueListGet',
-					action: 'Execute the GET on easyHunting/{x}/hunting/agent/{x}/queue',
-				},
-{
-					name: 'Easy Hunting Hunting Agent Queue (2)',
-					value: 'easyHuntingHuntingAgentQueuePost',
-					action: 'Execute the POST on easyHunting/{x}/hunting/agent/{x}/queue',
-				},
-{
-					name: 'Easy Hunting Hunting Agent Queue (3)',
-					value: 'easyHuntingHuntingAgentQueueDelete',
-					action: 'Execute the DELETE on easyHunting/{x}/hunting/agent/{x}/queue/{x}',
-				},
-{
-					name: 'Easy Hunting Hunting Agent Queue (4)',
-					value: 'easyHuntingHuntingAgentQueueGet',
-					action: 'Execute the GET on easyHunting/{x}/hunting/agent/{x}/queue/{x}',
-				},
-{
-					name: 'Easy Hunting Hunting Agent Queue (5)',
-					value: 'easyHuntingHuntingAgentQueuePut',
-					action: 'Execute the PUT on easyHunting/{x}/hunting/agent/{x}/queue/{x}',
-				},
-{
-					name: 'Easy Hunting Hunting Agent Queue Live Status',
-					value: 'easyHuntingHuntingAgentQueueLiveStatusListGet',
-					action: 'Execute the GET on easyHunting/{x}/hunting/agent/{x}/queue/{x}/liveStatus',
-				},
-{
-					name: 'Easy Hunting Hunting Custom Status',
-					value: 'easyHuntingHuntingCustomStatusListGet',
-					action: 'Execute the GET on easyHunting/{x}/hunting/customStatus',
-				},
-{
-					name: 'Easy Hunting Hunting Custom Status (2)',
-					value: 'easyHuntingHuntingCustomStatusPost',
-					action: 'Execute the POST on easyHunting/{x}/hunting/customStatus',
-				},
-{
-					name: 'Easy Hunting Hunting Custom Status (3)',
-					value: 'easyHuntingHuntingCustomStatusDelete',
-					action: 'Execute the DELETE on easyHunting/{x}/hunting/customStatus/{x}',
-				},
-{
-					name: 'Easy Hunting Hunting Custom Status (4)',
-					value: 'easyHuntingHuntingCustomStatusGet',
-					action: 'Execute the GET on easyHunting/{x}/hunting/customStatus/{x}',
-				},
-{
-					name: 'Easy Hunting Hunting Event Token',
-					value: 'easyHuntingHuntingEventTokenDelete',
-					action: 'Execute the DELETE on easyHunting/{x}/hunting/eventToken',
-				},
-{
-					name: 'Easy Hunting Hunting Event Token (2)',
-					value: 'easyHuntingHuntingEventTokenListGet',
-					action: 'Execute the GET on easyHunting/{x}/hunting/eventToken',
-				},
-{
-					name: 'Easy Hunting Hunting Event Token (3)',
-					value: 'easyHuntingHuntingEventTokenPost',
-					action: 'Execute the POST on easyHunting/{x}/hunting/eventToken',
-				},
-{
-					name: 'Easy Hunting Hunting Queue',
-					value: 'easyHuntingHuntingQueueListGet',
-					action: 'Execute the GET on easyHunting/{x}/hunting/queue',
-				},
-{
-					name: 'Easy Hunting Hunting Queue (2)',
-					value: 'easyHuntingHuntingQueuePost',
-					action: 'Execute the POST on easyHunting/{x}/hunting/queue',
-				},
-{
-					name: 'Easy Hunting Hunting Queue (3)',
-					value: 'easyHuntingHuntingQueueDelete',
-					action: 'Execute the DELETE on easyHunting/{x}/hunting/queue/{x}',
-				},
-{
-					name: 'Easy Hunting Hunting Queue (4)',
-					value: 'easyHuntingHuntingQueueGet',
-					action: 'Execute the GET on easyHunting/{x}/hunting/queue/{x}',
-				},
-{
-					name: 'Easy Hunting Hunting Queue (5)',
-					value: 'easyHuntingHuntingQueuePut',
-					action: 'Execute the PUT on easyHunting/{x}/hunting/queue/{x}',
-				},
-{
-					name: 'Easy Hunting Hunting Queue Agent',
-					value: 'easyHuntingHuntingQueueAgentListGet',
-					action: 'Execute the GET on easyHunting/{x}/hunting/queue/{x}/agent',
-				},
-{
-					name: 'Easy Hunting Hunting Queue Agent (2)',
-					value: 'easyHuntingHuntingQueueAgentPost',
-					action: 'Execute the POST on easyHunting/{x}/hunting/queue/{x}/agent',
-				},
-{
-					name: 'Easy Hunting Hunting Queue Agent (3)',
-					value: 'easyHuntingHuntingQueueAgentDelete',
-					action: 'Execute the DELETE on easyHunting/{x}/hunting/queue/{x}/agent/{x}',
-				},
-{
-					name: 'Easy Hunting Hunting Queue Agent (4)',
-					value: 'easyHuntingHuntingQueueAgentGet',
-					action: 'Execute the GET on easyHunting/{x}/hunting/queue/{x}/agent/{x}',
-				},
-{
-					name: 'Easy Hunting Hunting Queue Agent (5)',
-					value: 'easyHuntingHuntingQueueAgentPut',
-					action: 'Execute the PUT on easyHunting/{x}/hunting/queue/{x}/agent/{x}',
-				},
-{
-					name: 'Easy Hunting Hunting Queue Agent Live Status',
-					value: 'easyHuntingHuntingQueueAgentLiveStatusListGet',
-					action: 'Execute the GET on easyHunting/{x}/hunting/queue/{x}/agent/{x}/liveStatus',
-				},
-{
-					name: 'Easy Hunting Hunting Queue Live Calls',
-					value: 'easyHuntingHuntingQueueLiveCallsListGet',
-					action: 'Execute the GET on easyHunting/{x}/hunting/queue/{x}/liveCalls',
-				},
-{
-					name: 'Easy Hunting Hunting Queue Live Calls (2)',
-					value: 'easyHuntingHuntingQueueLiveCallsGet',
-					action: 'Execute the GET on easyHunting/{x}/hunting/queue/{x}/liveCalls/{x}',
-				},
-{
-					name: 'Easy Hunting Hunting Queue Live Calls Eavesdrop',
-					value: 'easyHuntingHuntingQueueLiveCallsEavesdropPost',
-					action: 'Execute the POST on easyHunting/{x}/hunting/queue/{x}/liveCalls/{x}/eavesdrop',
-				},
-{
-					name: 'Easy Hunting Hunting Queue Live Calls Hangup',
-					value: 'easyHuntingHuntingQueueLiveCallsHangupPost',
-					action: 'Execute the POST on easyHunting/{x}/hunting/queue/{x}/liveCalls/{x}/hangup',
-				},
-{
-					name: 'Easy Hunting Hunting Queue Live Calls Hold',
-					value: 'easyHuntingHuntingQueueLiveCallsHoldPost',
-					action: 'Execute the POST on easyHunting/{x}/hunting/queue/{x}/liveCalls/{x}/hold',
-				},
-{
-					name: 'Easy Hunting Hunting Queue Live Calls Intercept',
-					value: 'easyHuntingHuntingQueueLiveCallsInterceptPost',
-					action: 'Execute the POST on easyHunting/{x}/hunting/queue/{x}/liveCalls/{x}/intercept',
-				},
-{
-					name: 'Easy Hunting Hunting Queue Live Calls Transfer',
-					value: 'easyHuntingHuntingQueueLiveCallsTransferPost',
-					action: 'Execute the POST on easyHunting/{x}/hunting/queue/{x}/liveCalls/{x}/transfer',
-				},
-{
-					name: 'Easy Hunting Hunting Queue Live Calls Whisper',
-					value: 'easyHuntingHuntingQueueLiveCallsWhisperPost',
-					action: 'Execute the POST on easyHunting/{x}/hunting/queue/{x}/liveCalls/{x}/whisper',
-				},
-{
-					name: 'Easy Hunting Hunting Queue Live Statistics',
-					value: 'easyHuntingHuntingQueueLiveStatisticsListGet',
-					action: 'Execute the GET on easyHunting/{x}/hunting/queue/{x}/liveStatistics',
-				},
-{
-					name: 'Easy Hunting Records',
-					value: 'easyHuntingRecordsListGet',
-					action: 'Execute the GET on easyHunting/{x}/records',
-				},
-{
-					name: 'Easy Hunting Records (2)',
-					value: 'easyHuntingRecordsDelete',
-					action: 'Execute the DELETE on easyHunting/{x}/records/{x}',
-				},
-{
-					name: 'Easy Hunting Records (3)',
-					value: 'easyHuntingRecordsGet',
-					action: 'Execute the GET on easyHunting/{x}/records/{x}',
-				},
-{
-					name: 'Easy Hunting Screen List Conditions',
-					value: 'easyHuntingScreenListConditionsListGet',
-					action: 'Execute the GET on easyHunting/{x}/screenListConditions',
-				},
-{
-					name: 'Easy Hunting Screen List Conditions (2)',
-					value: 'easyHuntingScreenListConditionsPut',
-					action: 'Execute the PUT on easyHunting/{x}/screenListConditions',
-				},
-{
-					name: 'Easy Hunting Screen List Conditions Conditions',
-					value: 'easyHuntingScreenListConditionsConditionsListGet',
-					action: 'Execute the GET on easyHunting/{x}/screenListConditions/conditions',
-				},
-{
-					name: 'Easy Hunting Screen List Conditions Conditions (2)',
-					value: 'easyHuntingScreenListConditionsConditionsPost',
-					action: 'Execute the POST on easyHunting/{x}/screenListConditions/conditions',
-				},
-{
-					name: 'Easy Hunting Screen List Conditions Conditions (3)',
-					value: 'easyHuntingScreenListConditionsConditionsDelete',
-					action: 'Execute the DELETE on easyHunting/{x}/screenListConditions/conditions/{x}',
-				},
-{
-					name: 'Easy Hunting Screen List Conditions Conditions (4)',
-					value: 'easyHuntingScreenListConditionsConditionsGet',
-					action: 'Execute the GET on easyHunting/{x}/screenListConditions/conditions/{x}',
-				},
-{
-					name: 'Easy Hunting Screen List Conditions Conditions (5)',
-					value: 'easyHuntingScreenListConditionsConditionsPut',
-					action: 'Execute the PUT on easyHunting/{x}/screenListConditions/conditions/{x}',
-				},
-{
-					name: 'Easy Hunting Sound',
-					value: 'easyHuntingSoundListGet',
-					action: 'Execute the GET on easyHunting/{x}/sound',
-				},
-{
-					name: 'Easy Hunting Sound (2)',
-					value: 'easyHuntingSoundDelete',
-					action: 'Execute the DELETE on easyHunting/{x}/sound/{x}',
-				},
-{
-					name: 'Easy Hunting Sound (3)',
-					value: 'easyHuntingSoundGet',
-					action: 'Execute the GET on easyHunting/{x}/sound/{x}',
-				},
-{
-					name: 'Easy Hunting Sound Upload',
-					value: 'easyHuntingSoundUploadPost',
-					action: 'Execute the POST on easyHunting/{x}/soundUpload',
-				},
-{
-					name: 'Easy Hunting Time Conditions',
-					value: 'easyHuntingTimeConditionsListGet',
-					action: 'Execute the GET on easyHunting/{x}/timeConditions',
-				},
-{
-					name: 'Easy Hunting Time Conditions (2)',
-					value: 'easyHuntingTimeConditionsPut',
-					action: 'Execute the PUT on easyHunting/{x}/timeConditions',
-				},
-{
-					name: 'Easy Hunting Time Conditions Conditions',
-					value: 'easyHuntingTimeConditionsConditionsListGet',
-					action: 'Execute the GET on easyHunting/{x}/timeConditions/conditions',
-				},
-{
-					name: 'Easy Hunting Time Conditions Conditions (2)',
-					value: 'easyHuntingTimeConditionsConditionsPost',
-					action: 'Execute the POST on easyHunting/{x}/timeConditions/conditions',
-				},
-{
-					name: 'Easy Hunting Time Conditions Conditions (3)',
-					value: 'easyHuntingTimeConditionsConditionsDelete',
-					action: 'Execute the DELETE on easyHunting/{x}/timeConditions/conditions/{x}',
-				},
-{
-					name: 'Easy Hunting Time Conditions Conditions (4)',
-					value: 'easyHuntingTimeConditionsConditionsGet',
-					action: 'Execute the GET on easyHunting/{x}/timeConditions/conditions/{x}',
-				},
-{
-					name: 'Easy Hunting Time Conditions Conditions (5)',
-					value: 'easyHuntingTimeConditionsConditionsPut',
-					action: 'Execute the PUT on easyHunting/{x}/timeConditions/conditions/{x}',
-				},
-{
-					name: 'Event Token',
-					value: 'eventTokenDelete',
-					action: 'Execute the DELETE on eventToken',
-				},
-{
-					name: 'Event Token (2)',
-					value: 'eventTokenListGet',
-					action: 'Execute the GET on eventToken',
-				},
-{
-					name: 'Event Token (3)',
-					value: 'eventTokenPost',
-					action: 'Execute the POST on eventToken',
-				},
-{
-					name: 'Fax Campaigns Create',
-					value: 'faxCampaignsPost',
-					action: 'Create a new fax campaign',
-				},
-{
-					name: 'Fax Campaigns Delete',
-					value: 'faxCampaignsDelete',
-					action: 'Delete a fax campaign',
-				},
-{
-					name: 'Fax Campaigns Detail List',
-					value: 'faxCampaignsDetailListGet',
-					action: 'Detail of the fax recipients by status',
-				},
-{
-					name: 'Fax Campaigns Get',
-					value: 'faxCampaignsGet',
-					action: 'Get this object properties',
-				},
-{
-					name: 'Fax Campaigns List',
-					value: 'faxCampaignsListGet',
-					action: 'Fax campaigns of the associate fax',
-				},
-{
-					name: 'Fax Campaigns Start Create',
-					value: 'faxCampaignsStartPost',
-					action: 'Start a fax campaign',
-				},
-{
-					name: 'Fax Campaigns Stop Create',
-					value: 'faxCampaignsStopPost',
-					action: 'Stop a fax campaign',
-				},
-{
-					name: 'Fax Get',
-					value: 'faxGet',
-					action: 'Get this object properties',
-				},
-{
-					name: 'Fax List',
-					value: 'faxListGet',
-					action: 'Faxes associated with this billing account',
-				},
-{
-					name: 'Fax Screen Lists Create',
-					value: 'faxScreenListsPost',
-					action: 'Create a new fax ScreenLists',
-				},
-{
-					name: 'Fax Screen Lists Delete',
-					value: 'faxScreenListsDelete',
-					action: 'Delete all fax screenLists',
-				},
-{
-					name: 'Fax Screen Lists List',
-					value: 'faxScreenListsListGet',
-					action: 'Get this object properties',
-				},
-{
-					name: 'Fax Screen Lists Reset Create',
-					value: 'faxScreenListsResetPost',
-					action: 'Reset a specifical fax screenList',
-				},
-{
-					name: 'Fax Screen Lists Update',
-					value: 'faxScreenListsPut',
-					action: 'Alter this object properties',
-				},
-{
-					name: 'Fax Settings Change Password Create',
-					value: 'faxSettingsChangePasswordPost',
-					action: 'Generates a new password for your fax account',
-				},
-{
-					name: 'Fax Settings List',
-					value: 'faxSettingsListGet',
-					action: 'Get this object properties',
-				},
-{
-					name: 'Fax Settings Send Fax Create',
-					value: 'faxSettingsSendFaxPost',
-					action: 'Send a fax',
-				},
-{
-					name: 'Fax Settings Update',
-					value: 'faxSettingsPut',
-					action: 'Alter this object properties',
-				},
-{
-					name: 'Fax Update',
-					value: 'faxPut',
-					action: 'Alter this object properties',
-				},
-{
-					name: 'Get Alias',
-					value: 'aliasGet',
-					action: 'Get alias properties',
-				},
-{
-					name: 'Get Alias Service Info',
-					value: 'aliasServiceInfosGet',
-					action: 'Get service information for an alias',
-				},
-{
-					name: 'Get Allowed Credit Threshold',
-					value: 'allowedCreditThresholdGet',
-					action: 'Get the allowed creditThreshold for this billing account',
-				},
-{
-					name: 'Get Amount Security Deposit',
-					value: 'amountSecurityDepositGet',
-					action: 'Give all amounts availables for your billing account',
-				},
-{
-					name: 'Get Billing Account',
-					value: 'billingAccountGet',
-					action: 'Get this object properties',
-				},
-{
-					name: 'Get Billing Account Site',
-					value: 'billingAccountSiteGet',
-					action:
-						'Current billing account site (billing account features are overwritten by the site)',
-				},
-{
-					name: 'Get Line',
-					value: 'linesGet',
-					action: 'Get line properties',
-				},
-{
-					name: 'Get Line Offer Details',
-					value: 'lineOfferDetailsGet',
-					action: 'Get detailed information about a line offer',
-				},
-{
-					name: 'Get Line Service Info',
-					value: 'linesServiceInfosGet',
-					action: 'Get service information for a line',
-				},
-{
-					name: 'Get Number',
-					value: 'linesNumberGet',
-					action: 'Get number properties',
-				},
-{
-					name: 'Get Offer Phones',
-					value: 'lineOfferPhonesGet',
-					action: 'Get phones for a line offer',
-				},
-{
-					name: 'Get Portability',
-					value: 'linesPortabilityGet',
-					action: 'Get portability details',
-				},
-{
-					name: 'Get SIM',
-					value: 'linesSimGet',
-					action: 'Get SIM properties',
-				},
-{
-					name: 'Get Trunk',
-					value: 'trunksGet',
-					action: 'Get trunk properties',
-				},
-{
-					name: 'Get Trunk Service Info',
-					value: 'trunksServiceInfosGet',
-					action: 'Get service information for a trunk',
-				},
-{
-					name: 'Has Special Numbers',
-					value: 'hasSpecialNumbersListGet',
-					action: 'Execute the GET on hasSpecialNumbers',
-				},
-{
-					name: 'History Consumption',
-					value: 'historyConsumptionListGet',
-					action: 'Execute the GET on historyConsumption',
-				},
-{
-					name: 'History Consumption (2)',
-					value: 'historyConsumptionGet',
-					action: 'Execute the GET on historyConsumption/{x}',
-				},
-{
-					name: 'History Consumption File',
-					value: 'historyConsumptionFileListGet',
-					action: 'Execute the GET on historyConsumption/{x}/file',
-				},
-{
-					name: 'History Repayment Consumption',
-					value: 'historyRepaymentConsumptionListGet',
-					action: 'Execute the GET on historyRepaymentConsumption',
-				},
-{
-					name: 'History Repayment Consumption (2)',
-					value: 'historyRepaymentConsumptionPost',
-					action: 'Execute the POST on historyRepaymentConsumption',
-				},
-{
-					name: 'History Repayment Consumption (3)',
-					value: 'historyRepaymentConsumptionGet',
-					action: 'Execute the GET on historyRepaymentConsumption/{x}',
-				},
-{
-					name: 'History Repayment Consumption Document',
-					value: 'historyRepaymentConsumptionDocumentListGet',
-					action: 'Execute the GET on historyRepaymentConsumption/{x}/document',
-				},
-{
-					name: 'History Tollfree Consumption',
-					value: 'historyTollfreeConsumptionListGet',
-					action: 'Execute the GET on historyTollfreeConsumption',
-				},
-{
-					name: 'History Tollfree Consumption (2)',
-					value: 'historyTollfreeConsumptionGet',
-					action: 'Execute the GET on historyTollfreeConsumption/{x}',
-				},
-{
-					name: 'History Tollfree Consumption Document',
-					value: 'historyTollfreeConsumptionDocumentListGet',
-					action: 'Execute the GET on historyTollfreeConsumption/{x}/document',
-				},
-{
-					name: 'Line Abbreviated Number Create',
-					value: 'lineAbbreviatedNumberPost',
-					action: 'Create a new abbreviated number for the line',
-				},
-{
-					name: 'Line Abbreviated Number Delete',
-					value: 'lineAbbreviatedNumberDelete',
-					action: 'Delete the given abbreviated number',
-				},
-{
-					name: 'Line Abbreviated Number Get',
-					value: 'lineAbbreviatedNumberGet',
-					action: 'Get this object properties',
-				},
-{
-					name: 'Line Abbreviated Number List',
-					value: 'lineAbbreviatedNumberListGet',
-					action: 'Abbreviated numbers for the line',
-				},
-{
-					name: 'Line Abbreviated Number Update',
-					value: 'lineAbbreviatedNumberPut',
-					action: 'Alter this object properties',
-				},
-{
-					name: 'Line Activate New Phone Create',
-					value: 'lineActivateNewPhonePost',
-					action: 'Allow to activate new phone, in case of phone switch',
-				},
-{
-					name: 'Line Activate New Phone List',
-					value: 'lineActivateNewPhoneListGet',
-					action: 'Allow to activate new phone, in case of phone switch',
-				},
-{
-					name: 'Line Antihack Create',
-					value: 'lineAntihackPost',
-					action: 'Clean the antihack or add it on active filter screen list',
-				},
-{
-					name: 'Line Antihack List',
-					value: 'lineAntihackListGet',
-					action: 'Current list of numbers or short code numbers restricted by an auto antihack',
-				},
-{
-					name: 'Line Associate Device Create',
-					value: 'lineAssociateDevicePost',
-					action: 'Associate a device to the current line with the device mac address',
-				},
-{
-					name: 'Line Automatic Call Create',
-					value: 'lineAutomaticCallPost',
-					action: 'Make an automatic phone call. Return generated call identifier',
-				},
-{
-					name: 'Line Automatic Call Get',
-					value: 'lineAutomaticCallGet',
-					action: 'Get this object properties',
-				},
-{
-					name: 'Line Automatic Call List',
-					value: 'lineAutomaticCallListGet',
-					action: 'Automatic Calls made by Calls Generator on this line',
-				},
-{
-					name: 'Line Available Sip Domains List',
-					value: 'lineAvailableSipDomainsListGet',
-					action: 'Listing of domains Sip availables',
-				},
-{
-					name: 'Line Block Create',
-					value: 'lineBlockPost',
-					action:
-						'Block the line. By default it will block incoming and outgoing calls (except for emergency numbers)',
-				},
-{
-					name: 'Line Calls Eavesdrop Create',
-					value: 'lineCallsEavesdropPost',
-					action: 'Eavesdrop on a call',
-				},
-{
-					name: 'Line Calls Get',
-					value: 'lineCallsGet',
-					action: 'Get this object properties',
-				},
-{
-					name: 'Line Calls Hangup Create',
-					value: 'lineCallsHangupPost',
-					action: 'Hangup a call',
-				},
-{
-					name: 'Line Calls Hold Create',
-					value: 'lineCallsHoldPost',
-					action: 'Toogle hold on call',
-				},
-{
-					name: 'Line Calls Intercept Create',
-					value: 'lineCallsInterceptPost',
-					action: 'Intercept a non answered call',
-				},
-{
-					name: 'Line Calls List',
-					value: 'lineCallsListGet',
-					action: 'The active calls of your line as a call center agent',
-				},
-{
-					name: 'Line Calls Transfer Create',
-					value: 'lineCallsTransferPost',
-					action: 'Transfer an answered call',
-				},
-{
-					name: 'Line Calls Whisper Create',
-					value: 'lineCallsWhisperPost',
-					action: 'Whisper on a call',
-				},
-{
-					name: 'Line Can Change Password List',
-					value: 'lineCanChangePasswordListGet',
-					action: 'Ability to manage SIP password on this service',
-				},
-{
-					name: 'Line Cancel Convert To Number Create',
-					value: 'lineCancelConvertToNumberPost',
-					action: 'Cancel a scheduled conversion to number',
-				},
-{
-					name: 'Line Change Password Create',
-					value: 'lineChangePasswordPost',
-					action: 'Change the SIP account password',
-				},
-{
-					name: 'Line Click2 Call Create',
-					value: 'lineClick2CallPost',
-					action: 'Make a phone call from the current line',
-				},
-{
-					name: 'Line Click2 Call User Change Password Create',
-					value: 'lineClick2CallUserChangePasswordPost',
-					action: 'Change the password of the click2call user',
-				},
-{
-					name: 'Line Click2 Call User Click2 Call Create',
-					value: 'lineClick2CallUserClick2CallPost',
-					action: 'Make a phone call from the current line',
-				},
-{
-					name: 'Line Click2 Call User Create',
-					value: 'lineClick2CallUserPost',
-					action: 'Create a new user for click 2 call',
-				},
-{
-					name: 'Line Click2 Call User Delete',
-					value: 'lineClick2CallUserDelete',
-					action: 'Delete a click 2 call user',
-				},
-{
-					name: 'Line Click2 Call User Get',
-					value: 'lineClick2CallUserGet',
-					action: 'Get this object properties',
-				},
-{
-					name: 'Line Click2 Call User List',
-					value: 'lineClick2CallUserListGet',
-					action: 'User which can use click 2 call on the line',
-				},
-{
-					name: 'Line Convert To Number Create',
-					value: 'lineConvertToNumberPost',
-					action: 'Schedule a conversion to number',
-				},
-{
-					name: 'Line Dissociate Device Create',
-					value: 'lineDissociateDevicePost',
-					action: 'Dissociate a device from the current line with the device mac address',
-				},
-{
-					name: 'Line Get',
-					value: 'lineGet',
-					action: 'Get this object properties',
-				},
-{
-					name: 'Line Ips List',
-					value: 'lineIpsListGet',
-					action: 'Listing of last ips registry',
-				},
-{
-					name: 'Line Last Registrations List',
-					value: 'lineLastRegistrationsListGet',
-					action:
-						'List the informations about the last registrations (i.e. IP, port, User-Agent...)',
-				},
-{
-					name: 'Line List',
-					value: 'lineListGet',
-					action: 'Lines associated with this billing account',
-				},
-{
-					name: 'Line List Associable Phones List',
-					value: 'lineListAssociablePhonesListGet',
-					action: 'List phones with available slots where this line can be attached',
-				},
-{
-					name: 'Line Maximum Available Simultaneous Lines List',
-					value: 'lineMaximumAvailableSimultaneousLinesListGet',
-					action: 'Get the maximum available simultaneous lines for this line',
-				},
-{
-					name: 'Line Offer List',
-					value: 'lineOfferListGet',
-					action: 'Return public offer property',
-				},
-{
-					name: 'Line Options Available Codecs List',
-					value: 'lineOptionsAvailableCodecsListGet',
-					action: 'List of codecs combinaisons available for this line',
-				},
-{
-					name: 'Line Options Default Codecs List',
-					value: 'lineOptionsDefaultCodecsListGet',
-					action: 'Get the default codecs for this line if none are set',
-				},
-{
-					name: 'Line Options List',
-					value: 'lineOptionsListGet',
-					action: 'Get this object properties',
-				},
-{
-					name: 'Line Options Update',
-					value: 'lineOptionsPut',
-					action: 'Alter this object properties',
-				},
-{
-					name: 'Line Phone Admin Credentials List',
-					value: 'linePhoneAdminCredentialsListGet',
-					action: 'Returns the administration user and password of the phone if you are a VIP',
-				},
-{
-					name: 'Line Phone Can Be Associable List',
-					value: 'linePhoneCanBeAssociableListGet',
-					action: 'List the phones with Sip slot available',
-				},
-{
-					name: 'Line Phone Change Phone Configuration Create',
-					value: 'linePhoneChangePhoneConfigurationPost',
-					action: 'Edit configuration of the phone remotely by provisioning',
-				},
-{
-					name: 'Line Phone Function Key Available Function List',
-					value: 'linePhoneFunctionKeyAvailableFunctionListGet',
-					action: 'List the available functions for the key',
-				},
-{
-					name: 'Line Phone Function Key Get',
-					value: 'linePhoneFunctionKeyGet',
-					action: 'Get this object properties',
-				},
-{
-					name: 'Line Phone Function Key List',
-					value: 'linePhoneFunctionKeyListGet',
-					action: 'Plug & Phone function keys',
-				},
-{
-					name: 'Line Phone Function Key Update',
-					value: 'linePhoneFunctionKeyPut',
-					action: 'Alter this object properties',
-				},
-{
-					name: 'Line Phone List',
-					value: 'linePhoneListGet',
-					action: 'Get this object properties',
-				},
-{
-					name: 'Line Phone Merchandise Available List',
-					value: 'linePhoneMerchandiseAvailableListGet',
-					action: 'List of available exchange merchandise brand',
-				},
-{
-					name: 'Line Phone Phonebook Create',
-					value: 'linePhonePhonebookPost',
-					action: 'Add a phonebook. Return the bookKey.',
-				},
-{
-					name: 'Line Phone Phonebook Delete',
-					value: 'linePhonePhonebookDelete',
-					action: 'Delete a phonebook',
-				},
-{
-					name: 'Line Phone Phonebook Export List',
-					value: 'linePhonePhonebookExportListGet',
-					action: 'Export the phonebook',
-				},
-{
-					name: 'Line Phone Phonebook Get',
-					value: 'linePhonePhonebookGet',
-					action: 'Get this object properties',
-				},
-{
-					name: 'Line Phone Phonebook Import Create',
-					value: 'linePhonePhonebookImportPost',
-					action: 'Import a contacts file. Supported formats are Excel (.xls and .xlsx) and CSV',
-				},
-{
-					name: 'Line Phone Phonebook List',
-					value: 'linePhonePhonebookListGet',
-					action: 'Return phonebooks associated',
-				},
-{
-					name: 'Line Phone Phonebook Phonebook Contact Create',
-					value: 'linePhonePhonebookPhonebookContactPost',
-					action: 'Create a phonebook contact. Return identifier of the phonebook contact.',
-				},
-{
-					name: 'Line Phone Phonebook Phonebook Contact Delete',
-					value: 'linePhonePhonebookPhonebookContactDelete',
-					action: 'Delete a phonebook contact',
-				},
-{
-					name: 'Line Phone Phonebook Phonebook Contact Get',
-					value: 'linePhonePhonebookPhonebookContactGet',
-					action: 'Get this object properties',
-				},
-{
-					name: 'Line Phone Phonebook Phonebook Contact List',
-					value: 'linePhonePhonebookPhonebookContactListGet',
-					action: 'Phonebook contacts',
-				},
-{
-					name: 'Line Phone Phonebook Phonebook Contact Update',
-					value: 'linePhonePhonebookPhonebookContactPut',
-					action: 'Alter this object properties',
-				},
-{
-					name: 'Line Phone Phonebook Update',
-					value: 'linePhonePhonebookPut',
-					action: 'Alter this object properties',
-				},
-{
-					name: 'Line Phone Reboot Create',
-					value: 'linePhoneRebootPost',
-					action: 'Create a task to reboot the phone',
-				},
-{
-					name: 'Line Phone Refresh Screen Create',
-					value: 'linePhoneRefreshScreenPost',
-					action: 'Create a task to refresh the screen of the MGCP phone',
-				},
-{
-					name: 'Line Phone Reset Config Create',
-					value: 'linePhoneResetConfigPost',
-					action: 'Reinitialize the phone configuration',
-				},
-{
-					name: 'Line Phone Rma Change Type Create',
-					value: 'linePhoneRmaChangeTypePost',
-					action: 'Change RMA type',
-				},
-{
-					name: 'Line Phone Rma Create',
-					value: 'linePhoneRmaPost',
-					action: 'Create a specific rma',
-				},
-{
-					name: 'Line Phone Rma Delete',
-					value: 'linePhoneRmaDelete',
-					action: 'Cancel the rma',
-				},
-{
-					name: 'Line Phone Rma Get',
-					value: 'linePhoneRmaGet',
-					action: 'Get this object properties',
-				},
-{
-					name: 'Line Phone Rma List',
-					value: 'linePhoneRmaListGet',
-					action: 'Return Merchandise Authorisation associated',
-				},
-{
-					name: 'Line Phone Rma Update',
-					value: 'linePhoneRmaPut',
-					action: 'Alter this object properties',
-				},
-{
-					name: 'Line Phone Supports Phonebook List',
-					value: 'linePhoneSupportsPhonebookListGet',
-					action: 'Does the phone manages phonebooks?',
-				},
-{
-					name: 'Line Phone Update',
-					value: 'linePhonePut',
-					action: 'Alter this object properties',
-				},
-{
-					name: 'Line Records Delete',
-					value: 'lineRecordsDelete',
-					action: 'Delete the given record',
-				},
-{
-					name: 'Line Records Get',
-					value: 'lineRecordsGet',
-					action: 'Get this object properties',
-				},
-{
-					name: 'Line Records List',
-					value: 'lineRecordsListGet',
-					action: 'The recordings of your line outgoing calls',
-				},
-{
-					name: 'Line Remove Simultaneous Lines Create',
-					value: 'lineRemoveSimultaneousLinesPost',
-					action: 'Remove extra simultaneous lines',
-				},
-{
-					name: 'Line Simultaneous Channels Details List',
-					value: 'lineSimultaneousChannelsDetailsListGet',
-					action: 'Details about simultaneous channels of this line.',
-				},
-{
-					name: 'Line Softphone Beta List',
-					value: 'lineSoftphoneBetaListGet',
-					action: 'Get beta status for line softphone',
-				},
-{
-					name: 'Line Softphone Beta Update',
-					value: 'lineSoftphoneBetaPut',
-					action: 'Enable or disable beta statuses for line softphone',
-				},
-{
-					name: 'Line Softphone Devices Delete',
-					value: 'lineSoftphoneDevicesDelete',
-					action: 'Delete softphone device',
-				},
-{
-					name: 'Line Softphone Devices Disconnect Create',
-					value: 'lineSoftphoneDevicesDisconnectPost',
-					action: 'Disconnect all devices',
-				},
-{
-					name: 'Line Softphone Devices List',
-					value: 'lineSoftphoneDevicesListGet',
-					action: 'Get softphone devices list',
-				},
-{
-					name: 'Line Softphone Logo Delete',
-					value: 'lineSoftphoneLogoDelete',
-					action: 'Delete line softphone logo',
-				},
-{
-					name: 'Line Softphone Logo List',
-					value: 'lineSoftphoneLogoListGet',
-					action: 'Get line softphone logo',
-				},
-{
-					name: 'Line Softphone Logo Update',
-					value: 'lineSoftphoneLogoPut',
-					action: 'Set line softphone logo',
-				},
-{
-					name: 'Line Softphone Status List',
-					value: 'lineSoftphoneStatusListGet',
-					action: 'Get softphone line status',
-				},
-{
-					name: 'Line Softphone Theme Delete',
-					value: 'lineSoftphoneThemeDelete',
-					action: 'Delete line softphone theme',
-				},
-{
-					name: 'Line Softphone Theme List',
-					value: 'lineSoftphoneThemeListGet',
-					action: 'Get line softphone theme',
-				},
-{
-					name: 'Line Softphone Theme Update',
-					value: 'lineSoftphoneThemePut',
-					action: 'Set line softphone theme',
-				},
-{
-					name: 'Line Softphone Token Create',
-					value: 'lineSoftphoneTokenPost',
-					action: 'Generate provisioning token',
-				},
-{
-					name: 'Line Statistics List',
-					value: 'lineStatisticsListGet',
-					action: 'Get statistics of the current line',
-				},
-{
-					name: 'Line Tones List',
-					value: 'lineTonesListGet',
-					action: 'Get this object properties',
-				},
-{
-					name: 'Line Tones Tone Upload Create',
-					value: 'lineTonesToneUploadPost',
-					action: 'Upload new tone file',
-				},
-{
-					name: 'Line Tones Update',
-					value: 'lineTonesPut',
-					action: 'Alter this object properties',
-				},
-{
-					name: 'Line Traffic Extracts Create',
-					value: 'lineTrafficExtractsPost',
-					action: 'Launch a traffic extract on your line',
-				},
-{
-					name: 'Line Traffic Extracts Delete',
-					value: 'lineTrafficExtractsDelete',
-					action: 'Delete a traffic extract',
-				},
-{
-					name: 'Line Traffic Extracts Get',
-					value: 'lineTrafficExtractsGet',
-					action: 'Get this object properties',
-				},
-{
-					name: 'Line Traffic Extracts List',
-					value: 'lineTrafficExtractsListGet',
-					action: 'The traffic extracts (SIP only) of your line',
-				},
-{
-					name: 'Line Unblock Create',
-					value: 'lineUnblockPost',
-					action: 'Unblock the line. It will remove any incoming and outboing block made earlier',
-				},
-{
-					name: 'Line Update',
-					value: 'linePut',
-					action: 'Alter this object properties',
-				},
-{
-					name: 'List Accessories',
-					value: 'accessoriesGet',
-					action: 'Get available telephony accessories',
-				},
-{
-					name: 'List Account Portabilities',
-					value: 'portabilityGet',
-					action: 'Current number portabilities for this billing account',
-				},
-{
-					name: 'List Aliases',
-					value: 'aliasListGet',
-					action: 'List your telephony aliases',
-				},
-{
-					name: 'List Billing Accounts',
-					value: 'telephonyListGet',
-					action: 'List your telephony billing accounts',
-				},
-{
-					name: 'List Cities',
-					value: 'directoriesCitiesGet',
-					action: 'Get cities by country and zip code',
-				},
-{
-					name: 'List Countries',
-					value: 'directoriesCountriesGet',
-					action: 'Get available countries for telephony',
-				},
-{
-					name: 'List Current Orders',
-					value: 'currentOrderIdsGet',
-					action: 'Get current telephony order IDs',
-				},
-{
-					name: 'List Fax Offers',
-					value: 'faxOffersGet',
-					action: 'Get available fax offers by country',
-				},
-{
-					name: 'List Hardware',
-					value: 'linesHardwareListGet',
-					action: 'List hardware associated with a line',
-				},
-{
-					name: 'List Line Offers',
-					value: 'lineOffersGet',
-					action: 'Get available line offers by country',
-				},
-{
-					name: 'List Lines',
-					value: 'linesListGet',
-					action: 'List your telephony lines',
-				},
-{
-					name: 'List Numbers',
-					value: 'linesNumberListGet',
-					action: 'List numbers associated with a line',
-				},
-{
-					name: 'List Portabilities',
-					value: 'linesPortabilityListGet',
-					action: 'List portabilities for a line',
-				},
-{
-					name: 'List Services',
-					value: 'directoriesServicesGet',
-					action: 'Get available telephony services by country',
-				},
-{
-					name: 'List SIMs',
-					value: 'linesSimListGet',
-					action: 'List SIMs associated with a line',
-				},
-{
-					name: 'List SIP Domains',
-					value: 'sipDomainsGet',
-					action: 'Get available default SIP domains',
-				},
-{
-					name: 'List Trunks',
-					value: 'trunksListGet',
-					action: 'List your telephony trunks',
-				},
-{
-					name: 'List Zip Codes',
-					value: 'directoriesAvailableZipCodesGet',
-					action: 'Get available zip codes by country and number',
-				},
-{
-					name: 'Number Cancel Convert To Line Create',
-					value: 'numberCancelConvertToLinePost',
-					action: 'Cancel a scheduled conversion to line',
-				},
-{
-					name: 'Number Change Feature Type Create',
-					value: 'numberChangeFeatureTypePost',
-					action: 'Change the feature type of the phone number',
-				},
-{
-					name: 'Number Convert To Line Available Offers List',
-					value: 'numberConvertToLineAvailableOffersListGet',
-					action: 'Get the available line offers to schedule a conversion to line',
-				},
-{
-					name: 'Number Convert To Line Create',
-					value: 'numberConvertToLinePost',
-					action: 'Schedule a conversion to line',
-				},
-{
-					name: 'Number Detailed Zones List',
-					value: 'numberDetailedZonesListGet',
-					action: 'Get all available geographic zone with some details, from a country',
-				},
-{
-					name: 'Number Get',
-					value: 'numberGet',
-					action: 'Get this object properties',
-				},
-{
-					name: 'Number List',
-					value: 'numberListGet',
-					action: 'Additional numbers associated with this billing account',
-				},
-{
-					name: 'Number Ranges List',
-					value: 'numberRangesListGet',
-					action: 'Get all available special range from a country',
-				},
-{
-					name: 'Number Specific Numbers List',
-					value: 'numberSpecificNumbersListGet',
-					action: 'Get all available specific number from a country',
-				},
-{
-					name: 'Number Update',
-					value: 'numberPut',
-					action: 'Alter this object properties',
-				},
-{
-					name: 'Number Zones List',
-					value: 'numberZonesListGet',
-					action: 'Get all available geographic zone from a country',
-				},
-{
-					name: 'Offer Task',
-					value: 'offerTaskListGet',
-					action: 'Execute the GET on offerTask',
-				},
-{
-					name: 'Offer Task (2)',
-					value: 'offerTaskGet',
-					action: 'Execute the GET on offerTask/{x}',
-				},
-{
-					name: 'Offer Task (3)',
-					value: 'offerTaskPut',
-					action: 'Execute the PUT on offerTask/{x}',
-				},
-{
-					name: 'Old Phone',
-					value: 'oldPhoneListGet',
-					action: 'Execute the GET on oldPhone',
-				},
-{
-					name: 'Outplan Notification',
-					value: 'outplanNotificationListGet',
-					action: 'Execute the GET on outplanNotification',
-				},
-{
-					name: 'Outplan Notification (2)',
-					value: 'outplanNotificationPost',
-					action: 'Execute the POST on outplanNotification',
-				},
-{
-					name: 'Outplan Notification (3)',
-					value: 'outplanNotificationDelete',
-					action: 'Execute the DELETE on outplanNotification/{x}',
-				},
-{
-					name: 'Outplan Notification (4)',
-					value: 'outplanNotificationGet',
-					action: 'Execute the GET on outplanNotification/{x}',
-				},
-{
-					name: 'Ovh Pabx',
-					value: 'ovhPabxListGet',
-					action: 'Execute the GET on ovhPabx',
-				},
-{
-					name: 'Ovh Pabx (2)',
-					value: 'ovhPabxGet',
-					action: 'Execute the GET on ovhPabx/{x}',
-				},
-{
-					name: 'Ovh Pabx (3)',
-					value: 'ovhPabxPut',
-					action: 'Execute the PUT on ovhPabx/{x}',
-				},
-{
-					name: 'Ovh Pabx Dialplan',
-					value: 'ovhPabxDialplanListGet',
-					action: 'Execute the GET on ovhPabx/{x}/dialplan',
-				},
-{
-					name: 'Ovh Pabx Dialplan (2)',
-					value: 'ovhPabxDialplanPost',
-					action: 'Execute the POST on ovhPabx/{x}/dialplan',
-				},
-{
-					name: 'Ovh Pabx Dialplan (3)',
-					value: 'ovhPabxDialplanDelete',
-					action: 'Execute the DELETE on ovhPabx/{x}/dialplan/{x}',
-				},
-{
-					name: 'Ovh Pabx Dialplan (4)',
-					value: 'ovhPabxDialplanGet',
-					action: 'Execute the GET on ovhPabx/{x}/dialplan/{x}',
-				},
-{
-					name: 'Ovh Pabx Dialplan (5)',
-					value: 'ovhPabxDialplanPut',
-					action: 'Execute the PUT on ovhPabx/{x}/dialplan/{x}',
-				},
-{
-					name: 'Ovh Pabx Dialplan Extension',
-					value: 'ovhPabxDialplanExtensionListGet',
-					action: 'Execute the GET on ovhPabx/{x}/dialplan/{x}/extension',
-				},
-{
-					name: 'Ovh Pabx Dialplan Extension (2)',
-					value: 'ovhPabxDialplanExtensionPost',
-					action: 'Execute the POST on ovhPabx/{x}/dialplan/{x}/extension',
-				},
-{
-					name: 'Ovh Pabx Dialplan Extension (3)',
-					value: 'ovhPabxDialplanExtensionDelete',
-					action: 'Execute the DELETE on ovhPabx/{x}/dialplan/{x}/extension/{x}',
-				},
-{
-					name: 'Ovh Pabx Dialplan Extension (4)',
-					value: 'ovhPabxDialplanExtensionGet',
-					action: 'Execute the GET on ovhPabx/{x}/dialplan/{x}/extension/{x}',
-				},
-{
-					name: 'Ovh Pabx Dialplan Extension (5)',
-					value: 'ovhPabxDialplanExtensionPut',
-					action: 'Execute the PUT on ovhPabx/{x}/dialplan/{x}/extension/{x}',
-				},
-{
-					name: 'Ovh Pabx Dialplan Extension Condition Screen List',
-					value: 'ovhPabxDialplanExtensionConditionScreenListListGet',
-					action: 'Execute the GET on ovhPabx/{x}/dialplan/{x}/extension/{x}/conditionScreenList',
-				},
-{
-					name: 'Ovh Pabx Dialplan Extension Condition Screen List (2)',
-					value: 'ovhPabxDialplanExtensionConditionScreenListPost',
-					action: 'Execute the POST on ovhPabx/{x}/dialplan/{x}/extension/{x}/conditionScreenList',
-				},
-{
-					name: 'Ovh Pabx Dialplan Extension Condition Screen List (3)',
-					value: 'ovhPabxDialplanExtensionConditionScreenListDelete',
-					action:
-						'Execute the DELETE on ovhPabx/{x}/dialplan/{x}/extension/{x}/conditionScreenList/{x}',
-				},
-{
-					name: 'Ovh Pabx Dialplan Extension Condition Screen List (4)',
-					value: 'ovhPabxDialplanExtensionConditionScreenListGet',
-					action:
-						'Execute the GET on ovhPabx/{x}/dialplan/{x}/extension/{x}/conditionScreenList/{x}',
-				},
-{
-					name: 'Ovh Pabx Dialplan Extension Condition Time',
-					value: 'ovhPabxDialplanExtensionConditionTimeListGet',
-					action: 'Execute the GET on ovhPabx/{x}/dialplan/{x}/extension/{x}/conditionTime',
-				},
-{
-					name: 'Ovh Pabx Dialplan Extension Condition Time (2)',
-					value: 'ovhPabxDialplanExtensionConditionTimePost',
-					action: 'Execute the POST on ovhPabx/{x}/dialplan/{x}/extension/{x}/conditionTime',
-				},
-{
-					name: 'Ovh Pabx Dialplan Extension Condition Time (3)',
-					value: 'ovhPabxDialplanExtensionConditionTimeDelete',
-					action: 'Execute the DELETE on ovhPabx/{x}/dialplan/{x}/extension/{x}/conditionTime/{x}',
-				},
-{
-					name: 'Ovh Pabx Dialplan Extension Condition Time (4)',
-					value: 'ovhPabxDialplanExtensionConditionTimeGet',
-					action: 'Execute the GET on ovhPabx/{x}/dialplan/{x}/extension/{x}/conditionTime/{x}',
-				},
-{
-					name: 'Ovh Pabx Dialplan Extension Condition Time (5)',
-					value: 'ovhPabxDialplanExtensionConditionTimePut',
-					action: 'Execute the PUT on ovhPabx/{x}/dialplan/{x}/extension/{x}/conditionTime/{x}',
-				},
-{
-					name: 'Ovh Pabx Dialplan Extension Rule',
-					value: 'ovhPabxDialplanExtensionRuleListGet',
-					action: 'Execute the GET on ovhPabx/{x}/dialplan/{x}/extension/{x}/rule',
-				},
-{
-					name: 'Ovh Pabx Dialplan Extension Rule (2)',
-					value: 'ovhPabxDialplanExtensionRulePost',
-					action: 'Execute the POST on ovhPabx/{x}/dialplan/{x}/extension/{x}/rule',
-				},
-{
-					name: 'Ovh Pabx Dialplan Extension Rule (3)',
-					value: 'ovhPabxDialplanExtensionRuleDelete',
-					action: 'Execute the DELETE on ovhPabx/{x}/dialplan/{x}/extension/{x}/rule/{x}',
-				},
-{
-					name: 'Ovh Pabx Dialplan Extension Rule (4)',
-					value: 'ovhPabxDialplanExtensionRuleGet',
-					action: 'Execute the GET on ovhPabx/{x}/dialplan/{x}/extension/{x}/rule/{x}',
-				},
-{
-					name: 'Ovh Pabx Dialplan Extension Rule (5)',
-					value: 'ovhPabxDialplanExtensionRulePut',
-					action: 'Execute the PUT on ovhPabx/{x}/dialplan/{x}/extension/{x}/rule/{x}',
-				},
-{
-					name: 'Ovh Pabx Hunting',
-					value: 'ovhPabxHuntingListGet',
-					action: 'Execute the GET on ovhPabx/{x}/hunting',
-				},
-{
-					name: 'Ovh Pabx Hunting (2)',
-					value: 'ovhPabxHuntingPut',
-					action: 'Execute the PUT on ovhPabx/{x}/hunting',
-				},
-{
-					name: 'Ovh Pabx Hunting Agent',
-					value: 'ovhPabxHuntingAgentListGet',
-					action: 'Execute the GET on ovhPabx/{x}/hunting/agent',
-				},
-{
-					name: 'Ovh Pabx Hunting Agent (2)',
-					value: 'ovhPabxHuntingAgentPost',
-					action: 'Execute the POST on ovhPabx/{x}/hunting/agent',
-				},
-{
-					name: 'Ovh Pabx Hunting Agent (3)',
-					value: 'ovhPabxHuntingAgentDelete',
-					action: 'Execute the DELETE on ovhPabx/{x}/hunting/agent/{x}',
-				},
-{
-					name: 'Ovh Pabx Hunting Agent (4)',
-					value: 'ovhPabxHuntingAgentGet',
-					action: 'Execute the GET on ovhPabx/{x}/hunting/agent/{x}',
-				},
-{
-					name: 'Ovh Pabx Hunting Agent (5)',
-					value: 'ovhPabxHuntingAgentPut',
-					action: 'Execute the PUT on ovhPabx/{x}/hunting/agent/{x}',
-				},
-{
-					name: 'Ovh Pabx Hunting Agent Banner Access',
-					value: 'ovhPabxHuntingAgentBannerAccessDelete',
-					action: 'Execute the DELETE on ovhPabx/{x}/hunting/agent/{x}/bannerAccess',
-				},
-{
-					name: 'Ovh Pabx Hunting Agent Banner Access (2)',
-					value: 'ovhPabxHuntingAgentBannerAccessListGet',
-					action: 'Execute the GET on ovhPabx/{x}/hunting/agent/{x}/bannerAccess',
-				},
-{
-					name: 'Ovh Pabx Hunting Agent Banner Access (3)',
-					value: 'ovhPabxHuntingAgentBannerAccessPost',
-					action: 'Execute the POST on ovhPabx/{x}/hunting/agent/{x}/bannerAccess',
-				},
-{
-					name: 'Ovh Pabx Hunting Agent Calls',
-					value: 'ovhPabxHuntingAgentCallsListGet',
-					action: 'Execute the GET on ovhPabx/{x}/hunting/agent/{x}/calls',
-				},
-{
-					name: 'Ovh Pabx Hunting Agent Calls (2)',
-					value: 'ovhPabxHuntingAgentCallsGet',
-					action: 'Execute the GET on ovhPabx/{x}/hunting/agent/{x}/calls/{x}',
-				},
-{
-					name: 'Ovh Pabx Hunting Agent Calls Eavesdrop',
-					value: 'ovhPabxHuntingAgentCallsEavesdropPost',
-					action: 'Execute the POST on ovhPabx/{x}/hunting/agent/{x}/calls/{x}/eavesdrop',
-				},
-{
-					name: 'Ovh Pabx Hunting Agent Calls Hangup',
-					value: 'ovhPabxHuntingAgentCallsHangupPost',
-					action: 'Execute the POST on ovhPabx/{x}/hunting/agent/{x}/calls/{x}/hangup',
-				},
-{
-					name: 'Ovh Pabx Hunting Agent Calls Hold',
-					value: 'ovhPabxHuntingAgentCallsHoldPost',
-					action: 'Execute the POST on ovhPabx/{x}/hunting/agent/{x}/calls/{x}/hold',
-				},
-{
-					name: 'Ovh Pabx Hunting Agent Calls Intercept',
-					value: 'ovhPabxHuntingAgentCallsInterceptPost',
-					action: 'Execute the POST on ovhPabx/{x}/hunting/agent/{x}/calls/{x}/intercept',
-				},
-{
-					name: 'Ovh Pabx Hunting Agent Calls Transfer',
-					value: 'ovhPabxHuntingAgentCallsTransferPost',
-					action: 'Execute the POST on ovhPabx/{x}/hunting/agent/{x}/calls/{x}/transfer',
-				},
-{
-					name: 'Ovh Pabx Hunting Agent Calls Whisper',
-					value: 'ovhPabxHuntingAgentCallsWhisperPost',
-					action: 'Execute the POST on ovhPabx/{x}/hunting/agent/{x}/calls/{x}/whisper',
-				},
-{
-					name: 'Ovh Pabx Hunting Agent Event Token',
-					value: 'ovhPabxHuntingAgentEventTokenDelete',
-					action: 'Execute the DELETE on ovhPabx/{x}/hunting/agent/{x}/eventToken',
-				},
-{
-					name: 'Ovh Pabx Hunting Agent Event Token (2)',
-					value: 'ovhPabxHuntingAgentEventTokenListGet',
-					action: 'Execute the GET on ovhPabx/{x}/hunting/agent/{x}/eventToken',
-				},
-{
-					name: 'Ovh Pabx Hunting Agent Event Token (3)',
-					value: 'ovhPabxHuntingAgentEventTokenPost',
-					action: 'Execute the POST on ovhPabx/{x}/hunting/agent/{x}/eventToken',
-				},
-{
-					name: 'Ovh Pabx Hunting Agent Live Status',
-					value: 'ovhPabxHuntingAgentLiveStatusListGet',
-					action: 'Execute the GET on ovhPabx/{x}/hunting/agent/{x}/liveStatus',
-				},
-{
-					name: 'Ovh Pabx Hunting Agent Queue',
-					value: 'ovhPabxHuntingAgentQueueListGet',
-					action: 'Execute the GET on ovhPabx/{x}/hunting/agent/{x}/queue',
-				},
-{
-					name: 'Ovh Pabx Hunting Agent Queue (2)',
-					value: 'ovhPabxHuntingAgentQueuePost',
-					action: 'Execute the POST on ovhPabx/{x}/hunting/agent/{x}/queue',
-				},
-{
-					name: 'Ovh Pabx Hunting Agent Queue (3)',
-					value: 'ovhPabxHuntingAgentQueueDelete',
-					action: 'Execute the DELETE on ovhPabx/{x}/hunting/agent/{x}/queue/{x}',
-				},
-{
-					name: 'Ovh Pabx Hunting Agent Queue (4)',
-					value: 'ovhPabxHuntingAgentQueueGet',
-					action: 'Execute the GET on ovhPabx/{x}/hunting/agent/{x}/queue/{x}',
-				},
-{
-					name: 'Ovh Pabx Hunting Agent Queue (5)',
-					value: 'ovhPabxHuntingAgentQueuePut',
-					action: 'Execute the PUT on ovhPabx/{x}/hunting/agent/{x}/queue/{x}',
-				},
-{
-					name: 'Ovh Pabx Hunting Agent Queue Live Status',
-					value: 'ovhPabxHuntingAgentQueueLiveStatusListGet',
-					action: 'Execute the GET on ovhPabx/{x}/hunting/agent/{x}/queue/{x}/liveStatus',
-				},
-{
-					name: 'Ovh Pabx Hunting Custom Status',
-					value: 'ovhPabxHuntingCustomStatusListGet',
-					action: 'Execute the GET on ovhPabx/{x}/hunting/customStatus',
-				},
-{
-					name: 'Ovh Pabx Hunting Custom Status (2)',
-					value: 'ovhPabxHuntingCustomStatusPost',
-					action: 'Execute the POST on ovhPabx/{x}/hunting/customStatus',
-				},
-{
-					name: 'Ovh Pabx Hunting Custom Status (3)',
-					value: 'ovhPabxHuntingCustomStatusDelete',
-					action: 'Execute the DELETE on ovhPabx/{x}/hunting/customStatus/{x}',
-				},
-{
-					name: 'Ovh Pabx Hunting Custom Status (4)',
-					value: 'ovhPabxHuntingCustomStatusGet',
-					action: 'Execute the GET on ovhPabx/{x}/hunting/customStatus/{x}',
-				},
-{
-					name: 'Ovh Pabx Hunting Event Token',
-					value: 'ovhPabxHuntingEventTokenDelete',
-					action: 'Execute the DELETE on ovhPabx/{x}/hunting/eventToken',
-				},
-{
-					name: 'Ovh Pabx Hunting Event Token (2)',
-					value: 'ovhPabxHuntingEventTokenListGet',
-					action: 'Execute the GET on ovhPabx/{x}/hunting/eventToken',
-				},
-{
-					name: 'Ovh Pabx Hunting Event Token (3)',
-					value: 'ovhPabxHuntingEventTokenPost',
-					action: 'Execute the POST on ovhPabx/{x}/hunting/eventToken',
-				},
-{
-					name: 'Ovh Pabx Hunting Queue',
-					value: 'ovhPabxHuntingQueueListGet',
-					action: 'Execute the GET on ovhPabx/{x}/hunting/queue',
-				},
-{
-					name: 'Ovh Pabx Hunting Queue (2)',
-					value: 'ovhPabxHuntingQueuePost',
-					action: 'Execute the POST on ovhPabx/{x}/hunting/queue',
-				},
-{
-					name: 'Ovh Pabx Hunting Queue (3)',
-					value: 'ovhPabxHuntingQueueDelete',
-					action: 'Execute the DELETE on ovhPabx/{x}/hunting/queue/{x}',
-				},
-{
-					name: 'Ovh Pabx Hunting Queue (4)',
-					value: 'ovhPabxHuntingQueueGet',
-					action: 'Execute the GET on ovhPabx/{x}/hunting/queue/{x}',
-				},
-{
-					name: 'Ovh Pabx Hunting Queue (5)',
-					value: 'ovhPabxHuntingQueuePut',
-					action: 'Execute the PUT on ovhPabx/{x}/hunting/queue/{x}',
-				},
-{
-					name: 'Ovh Pabx Hunting Queue Agent',
-					value: 'ovhPabxHuntingQueueAgentListGet',
-					action: 'Execute the GET on ovhPabx/{x}/hunting/queue/{x}/agent',
-				},
-{
-					name: 'Ovh Pabx Hunting Queue Agent (2)',
-					value: 'ovhPabxHuntingQueueAgentPost',
-					action: 'Execute the POST on ovhPabx/{x}/hunting/queue/{x}/agent',
-				},
-{
-					name: 'Ovh Pabx Hunting Queue Agent (3)',
-					value: 'ovhPabxHuntingQueueAgentDelete',
-					action: 'Execute the DELETE on ovhPabx/{x}/hunting/queue/{x}/agent/{x}',
-				},
-{
-					name: 'Ovh Pabx Hunting Queue Agent (4)',
-					value: 'ovhPabxHuntingQueueAgentGet',
-					action: 'Execute the GET on ovhPabx/{x}/hunting/queue/{x}/agent/{x}',
-				},
-{
-					name: 'Ovh Pabx Hunting Queue Agent (5)',
-					value: 'ovhPabxHuntingQueueAgentPut',
-					action: 'Execute the PUT on ovhPabx/{x}/hunting/queue/{x}/agent/{x}',
-				},
-{
-					name: 'Ovh Pabx Hunting Queue Agent Live Status',
-					value: 'ovhPabxHuntingQueueAgentLiveStatusListGet',
-					action: 'Execute the GET on ovhPabx/{x}/hunting/queue/{x}/agent/{x}/liveStatus',
-				},
-{
-					name: 'Ovh Pabx Hunting Queue Live Calls',
-					value: 'ovhPabxHuntingQueueLiveCallsListGet',
-					action: 'Execute the GET on ovhPabx/{x}/hunting/queue/{x}/liveCalls',
-				},
-{
-					name: 'Ovh Pabx Hunting Queue Live Calls (2)',
-					value: 'ovhPabxHuntingQueueLiveCallsGet',
-					action: 'Execute the GET on ovhPabx/{x}/hunting/queue/{x}/liveCalls/{x}',
-				},
-{
-					name: 'Ovh Pabx Hunting Queue Live Calls Eavesdrop',
-					value: 'ovhPabxHuntingQueueLiveCallsEavesdropPost',
-					action: 'Execute the POST on ovhPabx/{x}/hunting/queue/{x}/liveCalls/{x}/eavesdrop',
-				},
-{
-					name: 'Ovh Pabx Hunting Queue Live Calls Hangup',
-					value: 'ovhPabxHuntingQueueLiveCallsHangupPost',
-					action: 'Execute the POST on ovhPabx/{x}/hunting/queue/{x}/liveCalls/{x}/hangup',
-				},
-{
-					name: 'Ovh Pabx Hunting Queue Live Calls Hold',
-					value: 'ovhPabxHuntingQueueLiveCallsHoldPost',
-					action: 'Execute the POST on ovhPabx/{x}/hunting/queue/{x}/liveCalls/{x}/hold',
-				},
-{
-					name: 'Ovh Pabx Hunting Queue Live Calls Intercept',
-					value: 'ovhPabxHuntingQueueLiveCallsInterceptPost',
-					action: 'Execute the POST on ovhPabx/{x}/hunting/queue/{x}/liveCalls/{x}/intercept',
-				},
-{
-					name: 'Ovh Pabx Hunting Queue Live Calls Transfer',
-					value: 'ovhPabxHuntingQueueLiveCallsTransferPost',
-					action: 'Execute the POST on ovhPabx/{x}/hunting/queue/{x}/liveCalls/{x}/transfer',
-				},
-{
-					name: 'Ovh Pabx Hunting Queue Live Calls Whisper',
-					value: 'ovhPabxHuntingQueueLiveCallsWhisperPost',
-					action: 'Execute the POST on ovhPabx/{x}/hunting/queue/{x}/liveCalls/{x}/whisper',
-				},
-{
-					name: 'Ovh Pabx Hunting Queue Live Statistics',
-					value: 'ovhPabxHuntingQueueLiveStatisticsListGet',
-					action: 'Execute the GET on ovhPabx/{x}/hunting/queue/{x}/liveStatistics',
-				},
-{
-					name: 'Ovh Pabx Menu',
-					value: 'ovhPabxMenuListGet',
-					action: 'Execute the GET on ovhPabx/{x}/menu',
-				},
-{
-					name: 'Ovh Pabx Menu (2)',
-					value: 'ovhPabxMenuPost',
-					action: 'Execute the POST on ovhPabx/{x}/menu',
-				},
-{
-					name: 'Ovh Pabx Menu (3)',
-					value: 'ovhPabxMenuDelete',
-					action: 'Execute the DELETE on ovhPabx/{x}/menu/{x}',
-				},
-{
-					name: 'Ovh Pabx Menu (4)',
-					value: 'ovhPabxMenuGet',
-					action: 'Execute the GET on ovhPabx/{x}/menu/{x}',
-				},
-{
-					name: 'Ovh Pabx Menu (5)',
-					value: 'ovhPabxMenuPut',
-					action: 'Execute the PUT on ovhPabx/{x}/menu/{x}',
-				},
-{
-					name: 'Ovh Pabx Menu Entry',
-					value: 'ovhPabxMenuEntryListGet',
-					action: 'Execute the GET on ovhPabx/{x}/menu/{x}/entry',
-				},
-{
-					name: 'Ovh Pabx Menu Entry (2)',
-					value: 'ovhPabxMenuEntryPost',
-					action: 'Execute the POST on ovhPabx/{x}/menu/{x}/entry',
-				},
-{
-					name: 'Ovh Pabx Menu Entry (3)',
-					value: 'ovhPabxMenuEntryDelete',
-					action: 'Execute the DELETE on ovhPabx/{x}/menu/{x}/entry/{x}',
-				},
-{
-					name: 'Ovh Pabx Menu Entry (4)',
-					value: 'ovhPabxMenuEntryGet',
-					action: 'Execute the GET on ovhPabx/{x}/menu/{x}/entry/{x}',
-				},
-{
-					name: 'Ovh Pabx Menu Entry (5)',
-					value: 'ovhPabxMenuEntryPut',
-					action: 'Execute the PUT on ovhPabx/{x}/menu/{x}/entry/{x}',
-				},
-{
-					name: 'Ovh Pabx Records',
-					value: 'ovhPabxRecordsListGet',
-					action: 'Execute the GET on ovhPabx/{x}/records',
-				},
-{
-					name: 'Ovh Pabx Records (2)',
-					value: 'ovhPabxRecordsDelete',
-					action: 'Execute the DELETE on ovhPabx/{x}/records/{x}',
-				},
-{
-					name: 'Ovh Pabx Records (3)',
-					value: 'ovhPabxRecordsGet',
-					action: 'Execute the GET on ovhPabx/{x}/records/{x}',
-				},
-{
-					name: 'Ovh Pabx Sound',
-					value: 'ovhPabxSoundListGet',
-					action: 'Execute the GET on ovhPabx/{x}/sound',
-				},
-{
-					name: 'Ovh Pabx Sound (2)',
-					value: 'ovhPabxSoundDelete',
-					action: 'Execute the DELETE on ovhPabx/{x}/sound/{x}',
-				},
-{
-					name: 'Ovh Pabx Sound (3)',
-					value: 'ovhPabxSoundGet',
-					action: 'Execute the GET on ovhPabx/{x}/sound/{x}',
-				},
-{
-					name: 'Ovh Pabx Sound Upload',
-					value: 'ovhPabxSoundUploadPost',
-					action: 'Execute the POST on ovhPabx/{x}/soundUpload',
-				},
-{
-					name: 'Ovh Pabx Tts',
-					value: 'ovhPabxTtsListGet',
-					action: 'Execute the GET on ovhPabx/{x}/tts',
-				},
-{
-					name: 'Ovh Pabx Tts (2)',
-					value: 'ovhPabxTtsPost',
-					action: 'Execute the POST on ovhPabx/{x}/tts',
-				},
-{
-					name: 'Ovh Pabx Tts (3)',
-					value: 'ovhPabxTtsDelete',
-					action: 'Execute the DELETE on ovhPabx/{x}/tts/{x}',
-				},
-{
-					name: 'Ovh Pabx Tts (4)',
-					value: 'ovhPabxTtsGet',
-					action: 'Execute the GET on ovhPabx/{x}/tts/{x}',
-				},
-{
-					name: 'Ovh Pabx Tts (5)',
-					value: 'ovhPabxTtsPut',
-					action: 'Execute the PUT on ovhPabx/{x}/tts/{x}',
-				},
-{
-					name: 'Phonebook',
-					value: 'phonebookListGet',
-					action: 'Execute the GET on phonebook',
-				},
-{
-					name: 'Phonebook (2)',
-					value: 'phonebookPost',
-					action: 'Execute the POST on phonebook',
-				},
-{
-					name: 'Phonebook (3)',
-					value: 'phonebookDelete',
-					action: 'Execute the DELETE on phonebook/{x}',
-				},
-{
-					name: 'Phonebook (4)',
-					value: 'phonebookGet',
-					action: 'Execute the GET on phonebook/{x}',
-				},
-{
-					name: 'Phonebook (5)',
-					value: 'phonebookPut',
-					action: 'Execute the PUT on phonebook/{x}',
-				},
-{
-					name: 'Phonebook Export',
-					value: 'phonebookExportListGet',
-					action: 'Execute the GET on phonebook/{x}/export',
-				},
-{
-					name: 'Phonebook Import',
-					value: 'phonebookImportPost',
-					action: 'Execute the POST on phonebook/{x}/import',
-				},
-{
-					name: 'Phonebook Phonebook Contact',
-					value: 'phonebookPhonebookContactListGet',
-					action: 'Execute the GET on phonebook/{x}/phonebookContact',
-				},
-{
-					name: 'Phonebook Phonebook Contact (2)',
-					value: 'phonebookPhonebookContactPost',
-					action: 'Execute the POST on phonebook/{x}/phonebookContact',
-				},
-{
-					name: 'Phonebook Phonebook Contact (3)',
-					value: 'phonebookPhonebookContactDelete',
-					action: 'Execute the DELETE on phonebook/{x}/phonebookContact/{x}',
-				},
-{
-					name: 'Phonebook Phonebook Contact (4)',
-					value: 'phonebookPhonebookContactGet',
-					action: 'Execute the GET on phonebook/{x}/phonebookContact/{x}',
-				},
-{
-					name: 'Phonebook Phonebook Contact (5)',
-					value: 'phonebookPhonebookContactPut',
-					action: 'Execute the PUT on phonebook/{x}/phonebookContact/{x}',
-				},
-{
-					name: 'Portability',
-					value: 'portabilityDetailGet',
-					action: 'Execute the GET on portability/{x}',
-				},
-{
-					name: 'Portability Can Be Cancelled',
-					value: 'portabilityCanBeCancelledListGet',
-					action: 'Execute the GET on portability/{x}/canBeCancelled',
-				},
-{
-					name: 'Portability Can Be Executed',
-					value: 'portabilityCanBeExecutedListGet',
-					action: 'Execute the GET on portability/{x}/canBeExecuted',
-				},
-{
-					name: 'Portability Cancel',
-					value: 'portabilityCancelPost',
-					action: 'Execute the POST on portability/{x}/cancel',
-				},
-{
-					name: 'Portability Change Date',
-					value: 'portabilityChangeDatePost',
-					action: 'Execute the POST on portability/{x}/changeDate',
-				},
-{
-					name: 'Portability Date Can Be Changed',
-					value: 'portabilityDateCanBeChangedListGet',
-					action: 'Execute the GET on portability/{x}/dateCanBeChanged',
-				},
-{
-					name: 'Portability Document',
-					value: 'portabilityDocumentListGet',
-					action: 'Execute the GET on portability/{x}/document',
-				},
-{
-					name: 'Portability Document (2)',
-					value: 'portabilityDocumentPost',
-					action: 'Execute the POST on portability/{x}/document',
-				},
-{
-					name: 'Portability Document (3)',
-					value: 'portabilityDocumentDelete',
-					action: 'Execute the DELETE on portability/{x}/document/{x}',
-				},
-{
-					name: 'Portability Document (4)',
-					value: 'portabilityDocumentGet',
-					action: 'Execute the GET on portability/{x}/document/{x}',
-				},
-{
-					name: 'Portability Document (5)',
-					value: 'portabilityDocumentPut',
-					action: 'Execute the PUT on portability/{x}/document/{x}',
-				},
-{
-					name: 'Portability Execute',
-					value: 'portabilityExecutePost',
-					action: 'Execute the POST on portability/{x}/execute',
-				},
-{
-					name: 'Portability Relaunch',
-					value: 'portabilityRelaunchListGet',
-					action: 'Execute the GET on portability/{x}/relaunch',
-				},
-{
-					name: 'Portability Relaunch (2)',
-					value: 'portabilityRelaunchPost',
-					action: 'Execute the POST on portability/{x}/relaunch',
-				},
-{
-					name: 'Portability Status',
-					value: 'portabilityStatusListGet',
-					action: 'Execute the GET on portability/{x}/status',
-				},
-{
-					name: 'Procedure Cancel',
-					value: 'procedureCancelPost',
-					action: 'Execute the POST on procedure/{id}/cancel',
-				},
-{
-					name: 'Procedure Create',
-					value: 'procedurePost',
-					action: 'Create a telephony procedure',
-				},
-{
-					name: 'Procedure Get',
-					value: 'procedureGet',
-					action: 'Get this object properties',
-				},
-{
-					name: 'Procedure List',
-					value: 'procedureListGet',
-					action: 'Procedures linked to your nichandle',
-				},
-{
-					name: 'Procedure Required List',
-					value: 'procedureRequiredListGet',
-					action: 'Tells whether the procedure is necessary to order telephony products or not',
-				},
-{
-					name: 'Redirect',
-					value: 'redirectListGet',
-					action: 'Execute the GET on redirect',
-				},
-{
-					name: 'Redirect (2)',
-					value: 'redirectGet',
-					action: 'Execute the GET on redirect/{x}',
-				},
-{
-					name: 'Redirect (3)',
-					value: 'redirectPut',
-					action: 'Execute the PUT on redirect/{x}',
-				},
-{
-					name: 'Redirect Change Destination',
-					value: 'redirectChangeDestinationPost',
-					action: 'Execute the POST on redirect/{x}/changeDestination',
-				},
-{
-					name: 'Reseller Panel Generate Password',
-					value: 'resellerPanelGeneratePasswordPost',
-					action: 'Generate a new password for the reseller panel',
-				},
-{
-					name: 'Reseller Panel Status List',
-					value: 'resellerPanelStatusListGet',
-					action: 'Status of customer reseller panel',
-				},
-{
-					name: 'Rsva',
-					value: 'rsvaListGet',
-					action: 'Execute the GET on rsva',
-				},
-{
-					name: 'Rsva (2)',
-					value: 'rsvaGet',
-					action: 'Execute the GET on rsva/{x}',
-				},
-{
-					name: 'Rsva (3)',
-					value: 'rsvaPut',
-					action: 'Execute the PUT on rsva/{x}',
-				},
-{
-					name: 'Rsva Allowed Rate Codes',
-					value: 'rsvaAllowedRateCodesListGet',
-					action: 'Execute the GET on rsva/{x}/allowedRateCodes',
-				},
-{
-					name: 'Rsva Cancel Scheduled Rate Code',
-					value: 'rsvaCancelScheduledRateCodePost',
-					action: 'Execute the POST on rsva/{x}/cancelScheduledRateCode',
-				},
-{
-					name: 'Rsva Current Rate Code',
-					value: 'rsvaCurrentRateCodeListGet',
-					action: 'Execute the GET on rsva/{x}/currentRateCode',
-				},
-{
-					name: 'Rsva Schedule Rate Code',
-					value: 'rsvaScheduleRateCodePost',
-					action: 'Execute the POST on rsva/{x}/scheduleRateCode',
-				},
-{
-					name: 'Rsva Scheduled Rate Code',
-					value: 'rsvaScheduledRateCodeListGet',
-					action: 'Execute the GET on rsva/{x}/scheduledRateCode',
-				},
-{
-					name: 'Scheduler',
-					value: 'schedulerListGet',
-					action: 'Execute the GET on scheduler',
-				},
-{
-					name: 'Scheduler (2)',
-					value: 'schedulerGet',
-					action: 'Execute the GET on scheduler/{x}',
-				},
-{
-					name: 'Scheduler (3)',
-					value: 'schedulerPut',
-					action: 'Execute the PUT on scheduler/{x}',
-				},
-{
-					name: 'Scheduler Events',
-					value: 'schedulerEventsListGet',
-					action: 'Execute the GET on scheduler/{x}/events',
-				},
-{
-					name: 'Scheduler Events (2)',
-					value: 'schedulerEventsPost',
-					action: 'Execute the POST on scheduler/{x}/events',
-				},
-{
-					name: 'Scheduler Events (3)',
-					value: 'schedulerEventsDelete',
-					action: 'Execute the DELETE on scheduler/{x}/events/{x}',
-				},
-{
-					name: 'Scheduler Events (4)',
-					value: 'schedulerEventsGet',
-					action: 'Execute the GET on scheduler/{x}/events/{x}',
-				},
-{
-					name: 'Scheduler Events (5)',
-					value: 'schedulerEventsPut',
-					action: 'Execute the PUT on scheduler/{x}/events/{x}',
-				},
-{
-					name: 'Scheduler Import Ics Calendar',
-					value: 'schedulerImportIcsCalendarPost',
-					action: 'Execute the POST on scheduler/{x}/importIcsCalendar',
-				},
-{
-					name: 'Screen',
-					value: 'screenListGet',
-					action: 'Execute the GET on screen',
-				},
-{
-					name: 'Screen (2)',
-					value: 'screenGet',
-					action: 'Execute the GET on screen/{x}',
-				},
-{
-					name: 'Screen (3)',
-					value: 'screenPut',
-					action: 'Execute the PUT on screen/{x}',
-				},
-{
-					name: 'Screen Screen Lists',
-					value: 'screenScreenListsListGet',
-					action: 'Execute the GET on screen/{x}/screenLists',
-				},
-{
-					name: 'Screen Screen Lists (2)',
-					value: 'screenScreenListsPost',
-					action: 'Execute the POST on screen/{x}/screenLists',
-				},
-{
-					name: 'Screen Screen Lists (3)',
-					value: 'screenScreenListsDelete',
-					action: 'Execute the DELETE on screen/{x}/screenLists/{x}',
-				},
-{
-					name: 'Screen Screen Lists (4)',
-					value: 'screenScreenListsGet',
-					action: 'Execute the GET on screen/{x}/screenLists/{x}',
-				},
-{
-					name: 'Search Services',
-					value: 'searchServicesGet',
-					action: 'Search a service with its domain to get its billing account and type',
-				},
-{
-					name: 'Service',
-					value: 'serviceListGet',
-					action: 'Execute the GET on service',
-				},
-{
-					name: 'Service (2)',
-					value: 'serviceDelete',
-					action: 'Execute the DELETE on service/{x}',
-				},
-{
-					name: 'Service (3)',
-					value: 'serviceGet',
-					action: 'Execute the GET on service/{x}',
-				},
-{
-					name: 'Service (4)',
-					value: 'servicePut',
-					action: 'Execute the PUT on service/{x}',
-				},
-{
-					name: 'Service Cancel Termination',
-					value: 'serviceCancelTerminationPost',
-					action: 'Execute the POST on service/{x}/cancelTermination',
-				},
-{
-					name: 'Service Change Of Billing Account',
-					value: 'serviceChangeOfBillingAccountPost',
-					action: 'Execute the POST on service/{x}/changeOfBillingAccount',
-				},
-{
-					name: 'Service Diagnostic Reports',
-					value: 'serviceDiagnosticReportsListGet',
-					action: 'Execute the GET on service/{x}/diagnosticReports',
-				},
-{
-					name: 'Service Directory',
-					value: 'serviceDirectoryListGet',
-					action: 'Execute the GET on service/{x}/directory',
-				},
-{
-					name: 'Service Directory (2)',
-					value: 'serviceDirectoryPut',
-					action: 'Execute the PUT on service/{x}/directory',
-				},
-{
-					name: 'Service Directory Fetch Entreprise Informations',
-					value: 'serviceDirectoryFetchEntrepriseInformationsPost',
-					action: 'Execute the POST on service/{x}/directory/fetchEntrepriseInformations',
-				},
-{
-					name: 'Service Directory Get Directory Service Code',
-					value: 'serviceDirectoryGetDirectoryServiceCodeListGet',
-					action: 'Execute the GET on service/{x}/directory/getDirectoryServiceCode',
-				},
-{
-					name: 'Service Directory Get Way Types',
-					value: 'serviceDirectoryGetWayTypesListGet',
-					action: 'Execute the GET on service/{x}/directory/getWayTypes',
-				},
-{
-					name: 'Service Event Token',
-					value: 'serviceEventTokenDelete',
-					action: 'Execute the DELETE on service/{x}/eventToken',
-				},
-{
-					name: 'Service Event Token (2)',
-					value: 'serviceEventTokenListGet',
-					action: 'Execute the GET on service/{x}/eventToken',
-				},
-{
-					name: 'Service Event Token (3)',
-					value: 'serviceEventTokenPost',
-					action: 'Execute the POST on service/{x}/eventToken',
-				},
-{
-					name: 'Service Fax Consumption',
-					value: 'serviceFaxConsumptionListGet',
-					action: 'Execute the GET on service/{x}/faxConsumption',
-				},
-{
-					name: 'Service Fax Consumption (2)',
-					value: 'serviceFaxConsumptionGet',
-					action: 'Execute the GET on service/{x}/faxConsumption/{x}',
-				},
-{
-					name: 'Service Infos List',
-					value: 'serviceInfosListGet',
-					action: 'Get service information',
-				},
-{
-					name: 'Service Infos Update',
-					value: 'serviceInfosPut',
-					action: 'Update service information',
-				},
-{
-					name: 'Service Offer Change',
-					value: 'serviceOfferChangeDelete',
-					action: 'Execute the DELETE on service/{x}/offerChange',
-				},
-{
-					name: 'Service Offer Change (2)',
-					value: 'serviceOfferChangeListGet',
-					action: 'Execute the GET on service/{x}/offerChange',
-				},
-{
-					name: 'Service Offer Change (3)',
-					value: 'serviceOfferChangePost',
-					action: 'Execute the POST on service/{x}/offerChange',
-				},
-{
-					name: 'Service Offer Changes',
-					value: 'serviceOfferChangesListGet',
-					action: 'Execute the GET on service/{x}/offerChanges',
-				},
-{
-					name: 'Service Offer Task',
-					value: 'serviceOfferTaskListGet',
-					action: 'Execute the GET on service/{x}/offerTask',
-				},
-{
-					name: 'Service Offer Task (2)',
-					value: 'serviceOfferTaskGet',
-					action: 'Execute the GET on service/{x}/offerTask/{x}',
-				},
-{
-					name: 'Service Offer Task (3)',
-					value: 'serviceOfferTaskPut',
-					action: 'Execute the PUT on service/{x}/offerTask/{x}',
-				},
-{
-					name: 'Service Previous Voice Consumption',
-					value: 'servicePreviousVoiceConsumptionListGet',
-					action: 'Execute the GET on service/{x}/previousVoiceConsumption',
-				},
-{
-					name: 'Service Previous Voice Consumption (2)',
-					value: 'servicePreviousVoiceConsumptionGet',
-					action: 'Execute the GET on service/{x}/previousVoiceConsumption/{x}',
-				},
-{
-					name: 'Service Repayment Consumption',
-					value: 'serviceRepaymentConsumptionListGet',
-					action: 'Execute the GET on service/{x}/repaymentConsumption',
-				},
-{
-					name: 'Service Repayment Consumption (2)',
-					value: 'serviceRepaymentConsumptionGet',
-					action: 'Execute the GET on service/{x}/repaymentConsumption/{x}',
-				},
-{
-					name: 'Service Task',
-					value: 'serviceTaskListGet',
-					action: 'Execute the GET on service/{x}/task',
-				},
-{
-					name: 'Service Task (2)',
-					value: 'serviceTaskGet',
-					action: 'Execute the GET on service/{x}/task/{x}',
-				},
-{
-					name: 'Service Voice Consumption',
-					value: 'serviceVoiceConsumptionListGet',
-					action: 'Execute the GET on service/{x}/voiceConsumption',
-				},
-{
-					name: 'Service Voice Consumption (2)',
-					value: 'serviceVoiceConsumptionGet',
-					action: 'Execute the GET on service/{x}/voiceConsumption/{x}',
-				},
-{
-					name: 'Set Default SIP Domain',
-					value: 'setDefaultSipDomainPost',
-					action: 'Set the default SIP domain for a country and type',
-				},
-{
-					name: 'Softphone Logo',
-					value: 'softphoneLogoDelete',
-					action: 'Execute the DELETE on softphone/logo',
-				},
-{
-					name: 'Softphone Logo (2)',
-					value: 'softphoneLogoListGet',
-					action: 'Execute the GET on softphone/logo',
-				},
-{
-					name: 'Softphone Logo (3)',
-					value: 'softphoneLogoPut',
-					action: 'Execute the PUT on softphone/logo',
-				},
-{
-					name: 'Softphone Store Links List',
-					value: 'softphoneStoreLinksListGet',
-					action: 'Get softphone application stores links',
-				},
-{
-					name: 'Softphone Theme',
-					value: 'softphoneThemeListGet',
-					action: 'Execute the GET on softphone/theme',
-				},
-{
-					name: 'Softphone Theme (2)',
-					value: 'softphoneThemePut',
-					action: 'Execute the PUT on softphone/theme',
-				},
-{
-					name: 'Softphone Theme (3)',
-					value: 'softphoneThemesGet',
-					action: 'Get softphone theme information',
-				},
-{
-					name: 'Softphone Themes List',
-					value: 'softphoneThemesListGet',
-					action: 'Get IDs of available softphone themes',
-				},
-{
-					name: 'Sound Create',
-					value: 'soundsPost',
-					action: 'Create a new sound',
-				},
-{
-					name: 'Sound Delete',
-					value: 'soundsDelete',
-					action: 'Delete the sound',
-				},
-{
-					name: 'Sound Get',
-					value: 'soundsGet',
-					action: 'Get this object properties',
-				},
-{
-					name: 'Sound Update',
-					value: 'soundsPut',
-					action: 'Alter this object properties',
-				},
-{
-					name: 'Sounds List',
-					value: 'soundsListGet',
-					action: 'Sounds attached to this telephony account',
-				},
-{
-					name: 'Spare Brands List',
-					value: 'spareBrandsListGet',
-					action: 'Get all available spare brands',
-				},
-{
-					name: 'Spare Compatible Replacement List',
-					value: 'spareCompatibleReplacementListGet',
-					action: 'Return the list of phone domains compatible to be replaced',
-				},
-{
-					name: 'Spare Delete',
-					value: 'spareDelete',
-					action: 'Delete the spare as if it was not belonging to OVH anymore',
-				},
-{
-					name: 'Spare Get',
-					value: 'spareGet',
-					action: 'Get this object properties',
-				},
-{
-					name: 'Spare List',
-					value: 'spareListGet',
-					action: 'List available services',
-				},
-{
-					name: 'Spare Replace',
-					value: 'spareReplacePost',
-					action: 'Replace the phone by its spare',
-				},
-{
-					name: 'Spare Service Infos List',
-					value: 'spareServiceInfosListGet',
-					action: 'Get service information',
-				},
-{
-					name: 'Spare Service Infos Update',
-					value: 'spareServiceInfosPut',
-					action: 'Update service information',
-				},
-{
-					name: 'Task Get',
-					value: 'taskGet',
-					action: 'Get this object properties',
-				},
-{
-					name: 'Task List',
-					value: 'taskListGet',
-					action: 'Operations on a telephony billing account',
-				},
-{
-					name: 'Terminate Billing Account',
-					value: 'billingAccountDelete',
-					action: 'Ask for a billing account termination.',
-				},
-{
-					name: 'Time Condition',
-					value: 'timeConditionListGet',
-					action: 'Execute the GET on timeCondition',
-				},
-{
-					name: 'Time Condition (2)',
-					value: 'timeConditionGet',
-					action: 'Execute the GET on timeCondition/{x}',
-				},
-{
-					name: 'Time Condition Condition',
-					value: 'timeConditionConditionListGet',
-					action: 'Execute the GET on timeCondition/{x}/condition',
-				},
-{
-					name: 'Time Condition Condition (2)',
-					value: 'timeConditionConditionPost',
-					action: 'Execute the POST on timeCondition/{x}/condition',
-				},
-{
-					name: 'Time Condition Condition (3)',
-					value: 'timeConditionConditionDelete',
-					action: 'Execute the DELETE on timeCondition/{x}/condition/{x}',
-				},
-{
-					name: 'Time Condition Condition (4)',
-					value: 'timeConditionConditionGet',
-					action: 'Execute the GET on timeCondition/{x}/condition/{x}',
-				},
-{
-					name: 'Time Condition Condition (5)',
-					value: 'timeConditionConditionPut',
-					action: 'Execute the PUT on timeCondition/{x}/condition/{x}',
-				},
-{
-					name: 'Time Condition Options',
-					value: 'timeConditionOptionsListGet',
-					action: 'Execute the GET on timeCondition/{x}/options',
-				},
-{
-					name: 'Time Condition Options (2)',
-					value: 'timeConditionOptionsPut',
-					action: 'Execute the PUT on timeCondition/{x}/options',
-				},
-{
-					name: 'Transfer Security Deposit',
-					value: 'transferSecurityDepositPost',
-					action: 'Transfer security deposit between two billing accounts',
-				},
-{
-					name: 'Trunk',
-					value: 'trunkListGet',
-					action: 'Execute the GET on trunk',
-				},
-{
-					name: 'Trunk (2)',
-					value: 'trunkGet',
-					action: 'Execute the GET on trunk/{x}',
-				},
-{
-					name: 'Trunk Channels Packs Repartition',
-					value: 'trunkChannelsPacksRepartitionListGet',
-					action: 'Execute the GET on trunk/{x}/channelsPacksRepartition',
-				},
-{
-					name: 'Trunk External Displayed Number',
-					value: 'trunkExternalDisplayedNumberListGet',
-					action: 'Execute the GET on trunk/{x}/externalDisplayedNumber',
-				},
-{
-					name: 'Trunk External Displayed Number (2)',
-					value: 'trunkExternalDisplayedNumberPost',
-					action: 'Execute the POST on trunk/{x}/externalDisplayedNumber',
-				},
-{
-					name: 'Trunk External Displayed Number (3)',
-					value: 'trunkExternalDisplayedNumberDelete',
-					action: 'Execute the DELETE on trunk/{x}/externalDisplayedNumber/{x}',
-				},
-{
-					name: 'Trunk External Displayed Number (4)',
-					value: 'trunkExternalDisplayedNumberGet',
-					action: 'Execute the GET on trunk/{x}/externalDisplayedNumber/{x}',
-				},
-{
-					name: 'Trunk External Displayed Number Validate',
-					value: 'trunkExternalDisplayedNumberValidatePost',
-					action: 'Execute the POST on trunk/{x}/externalDisplayedNumber/{x}/validate',
-				},
-{
-					name: 'Update Alias Service Info',
-					value: 'aliasServiceInfosPut',
-					action: 'Update service information for an alias',
-				},
-{
-					name: 'Update Billing Account',
-					value: 'billingAccountPut',
-					action: 'Alter this object properties',
-				},
-{
-					name: 'Update Line Service Info',
-					value: 'linesServiceInfosPut',
-					action: 'Update service information for a line',
-				},
-{
-					name: 'Update Number',
-					value: 'linesNumberPut',
-					action: 'Update number properties',
-				},
-{
-					name: 'Update Portability',
-					value: 'linesPortabilityPut',
-					action: 'Update portability properties',
-				},
-{
-					name: 'Update SIM',
-					value: 'linesSimPut',
-					action: 'Update SIM properties',
-				},
-{
-					name: 'Update Trunk Service Info',
-					value: 'trunksServiceInfosPut',
-					action: 'Update service information for a trunk',
-				},
-{
-					name: 'Voicemail',
-					value: 'voicemailListGet',
-					action: 'Execute the GET on voicemail',
-				},
-{
-					name: 'Voicemail (2)',
-					value: 'voicemailGet',
-					action: 'Execute the GET on voicemail/{x}',
-				},
-{
-					name: 'Voicemail (3)',
-					value: 'voicemailPut',
-					action: 'Execute the PUT on voicemail/{x}',
-				},
-{
-					name: 'Voicemail Directories',
-					value: 'voicemailDirectoriesListGet',
-					action: 'Execute the GET on voicemail/{x}/directories',
-				},
-{
-					name: 'Voicemail Directories (2)',
-					value: 'voicemailDirectoriesDelete',
-					action: 'Execute the DELETE on voicemail/{x}/directories/{x}',
-				},
-{
-					name: 'Voicemail Directories (3)',
-					value: 'voicemailDirectoriesGet',
-					action: 'Execute the GET on voicemail/{x}/directories/{x}',
-				},
-{
-					name: 'Voicemail Directories Download',
-					value: 'voicemailDirectoriesDownloadListGet',
-					action: 'Execute the GET on voicemail/{x}/directories/{x}/download',
-				},
-{
-					name: 'Voicemail Directories Move',
-					value: 'voicemailDirectoriesMovePost',
-					action: 'Execute the POST on voicemail/{x}/directories/{x}/move',
-				},
-{
-					name: 'Voicemail Directories Transcript',
-					value: 'voicemailDirectoriesTranscriptListGet',
-					action: 'Execute the GET on voicemail/{x}/directories/{x}/transcript',
-				},
-{
-					name: 'Voicemail Greetings',
-					value: 'voicemailGreetingsListGet',
-					action: 'Execute the GET on voicemail/{x}/greetings',
-				},
-{
-					name: 'Voicemail Greetings (2)',
-					value: 'voicemailGreetingsPost',
-					action: 'Execute the POST on voicemail/{x}/greetings',
-				},
-{
-					name: 'Voicemail Greetings (3)',
-					value: 'voicemailGreetingsDelete',
-					action: 'Execute the DELETE on voicemail/{x}/greetings/{x}',
-				},
-{
-					name: 'Voicemail Greetings (4)',
-					value: 'voicemailGreetingsGet',
-					action: 'Execute the GET on voicemail/{x}/greetings/{x}',
-				},
-{
-					name: 'Voicemail Greetings Download',
-					value: 'voicemailGreetingsDownloadListGet',
-					action: 'Execute the GET on voicemail/{x}/greetings/{x}/download',
-				},
-{
-					name: 'Voicemail Greetings Move',
-					value: 'voicemailGreetingsMovePost',
-					action: 'Execute the POST on voicemail/{x}/greetings/{x}/move',
-				},
-{
-					name: 'Voicemail Migrate On New Version',
-					value: 'voicemailMigrateOnNewVersionPost',
-					action: 'Execute the POST on voicemail/{x}/migrateOnNewVersion',
-				},
-{
-					name: 'Voicemail Settings',
-					value: 'voicemailSettingsListGet',
-					action: 'Execute the GET on voicemail/{x}/settings',
-				},
-{
-					name: 'Voicemail Settings (2)',
-					value: 'voicemailSettingsPut',
-					action: 'Execute the PUT on voicemail/{x}/settings',
-				},
-{
-					name: 'Voicemail Settings Change Password',
-					value: 'voicemailSettingsChangePasswordPost',
-					action: 'Execute the POST on voicemail/{x}/settings/changePassword',
-				},
-{
-					name: 'Voicemail Settings Change Routing',
-					value: 'voicemailSettingsChangeRoutingPost',
-					action: 'Execute the POST on voicemail/{x}/settings/changeRouting',
-				},
-{
-					name: 'Voicemail Settings Routing',
-					value: 'voicemailSettingsRoutingListGet',
-					action: 'Execute the GET on voicemail/{x}/settings/routing',
-				},
-{
-					name: 'Voicemail Settings Voicemail Numbers',
-					value: 'voicemailSettingsVoicemailNumbersListGet',
-					action: 'Execute the GET on voicemail/{x}/settings/voicemailNumbers',
-				},
-{
-					name: 'Vxml Get',
-					value: 'vxmlGet',
-					action: 'Get this object properties',
-				},
-{
-					name: 'Vxml List',
-					value: 'vxmlListGet',
-					action: 'Vxml numbers associated with this billing account',
-				},
-{
-					name: 'Vxml Settings List',
-					value: 'vxmlSettingsListGet',
-					action: 'Get this object properties',
-				},
-{
-					name: 'Vxml Settings Logs Create',
-					value: 'vxmlSettingsLogsPost',
-					action: 'Generate a temporary url to retrieve device logs',
-				},
-{
-					name: 'Vxml Settings Update',
-					value: 'vxmlSettingsPut',
-					action: 'Alter this object properties',
-				}
-
-			],
-			default: 'telephonyListGet',
-			displayOptions,
-		},
-	];
-
-	const properties: INodeProperties[] = [
-		...operationProperties,
-		...(descriptionAliasListGet({
-			...displayOptions,
-			show: { telephonyOperation: ['aliasListGet'] },
-		}) as INodeProperties[]),
-		...(descriptionAliasGet({
-			...displayOptions,
-			show: { telephonyOperation: ['aliasGet'] },
-		}) as INodeProperties[]),
-		...(descriptionAliasChangeContactPost({
-			...displayOptions,
-			show: { telephonyOperation: ['aliasChangeContactPost'] },
-		}) as INodeProperties[]),
-		...(descriptionAliasServiceInfosGet({
-			...displayOptions,
-			show: { telephonyOperation: ['aliasServiceInfosGet'] },
-		}) as INodeProperties[]),
-		...(descriptionAliasServiceInfosPut({
-			...displayOptions,
-			show: { telephonyOperation: ['aliasServiceInfosPut'] },
-		}) as INodeProperties[]),
-		...(descriptionLinesListGet({
-			...displayOptions,
-			show: { telephonyOperation: ['linesListGet'] },
-		}) as INodeProperties[]),
-		...(descriptionLinesGet({
-			...displayOptions,
-			show: { telephonyOperation: ['linesGet'] },
-		}) as INodeProperties[]),
-		...(descriptionLinesChangeContactPost({
-			...displayOptions,
-			show: { telephonyOperation: ['linesChangeContactPost'] },
-		}) as INodeProperties[]),
-		...(descriptionLinesServiceInfosGet({
-			...displayOptions,
-			show: { telephonyOperation: ['linesServiceInfosGet'] },
-		}) as INodeProperties[]),
-		...(descriptionLinesServiceInfosPut({
-			...displayOptions,
-			show: { telephonyOperation: ['linesServiceInfosPut'] },
-		}) as INodeProperties[]),
-		...(descriptionLinesHardwareListGet({
-			...displayOptions,
-			show: { telephonyOperation: ['linesHardwareListGet'] },
-		}) as INodeProperties[]),
-		...(descriptionLinesHardwarePost({
-			...displayOptions,
-			show: { telephonyOperation: ['linesHardwarePost'] },
-		}) as INodeProperties[]),
-		...(descriptionLinesNumberListGet({
-			...displayOptions,
-			show: { telephonyOperation: ['linesNumberListGet'] },
-		}) as INodeProperties[]),
-		...(descriptionLinesNumberPost({
-			...displayOptions,
-			show: { telephonyOperation: ['linesNumberPost'] },
-		}) as INodeProperties[]),
-		...(descriptionLinesNumberGet({
-			...displayOptions,
-			show: { telephonyOperation: ['linesNumberGet'] },
-		}) as INodeProperties[]),
-		...(descriptionLinesNumberPut({
-			...displayOptions,
-			show: { telephonyOperation: ['linesNumberPut'] },
-		}) as INodeProperties[]),
-		...(descriptionLinesNumberDelete({
-			...displayOptions,
-			show: { telephonyOperation: ['linesNumberDelete'] },
-		}) as INodeProperties[]),
-		...(descriptionLinesPortabilityListGet({
-			...displayOptions,
-			show: { telephonyOperation: ['linesPortabilityListGet'] },
-		}) as INodeProperties[]),
-		...(descriptionLinesPortabilityPost({
-			...displayOptions,
-			show: { telephonyOperation: ['linesPortabilityPost'] },
-		}) as INodeProperties[]),
-		...(descriptionLinesPortabilityGet({
-			...displayOptions,
-			show: { telephonyOperation: ['linesPortabilityGet'] },
-		}) as INodeProperties[]),
-		...(descriptionLinesPortabilityPut({
-			...displayOptions,
-			show: { telephonyOperation: ['linesPortabilityPut'] },
-		}) as INodeProperties[]),
-		...(descriptionLinesPortabilityDelete({
-			...displayOptions,
-			show: { telephonyOperation: ['linesPortabilityDelete'] },
-		}) as INodeProperties[]),
-		...(descriptionLinesSimListGet({
-			...displayOptions,
-			show: { telephonyOperation: ['linesSimListGet'] },
-		}) as INodeProperties[]),
-		...(descriptionLinesSimPost({
-			...displayOptions,
-			show: { telephonyOperation: ['linesSimPost'] },
-		}) as INodeProperties[]),
-		...(descriptionLinesSimGet({
-			...displayOptions,
-			show: { telephonyOperation: ['linesSimGet'] },
-		}) as INodeProperties[]),
-		...(descriptionLinesSimPut({
-			...displayOptions,
-			show: { telephonyOperation: ['linesSimPut'] },
-		}) as INodeProperties[]),
-		...(descriptionLinesSimDelete({
-			...displayOptions,
-			show: { telephonyOperation: ['linesSimDelete'] },
-		}) as INodeProperties[]),
-		...(descriptionTrunksListGet({
-			...displayOptions,
-			show: { telephonyOperation: ['trunksListGet'] },
-		}) as INodeProperties[]),
-		...(descriptionTrunksGet({
-			...displayOptions,
-			show: { telephonyOperation: ['trunksGet'] },
-		}) as INodeProperties[]),
-		...(descriptionTrunksChangeContactPost({
-			...displayOptions,
-			show: { telephonyOperation: ['trunksChangeContactPost'] },
-		}) as INodeProperties[]),
-		...(descriptionTrunksServiceInfosGet({
-			...displayOptions,
-			show: { telephonyOperation: ['trunksServiceInfosGet'] },
-		}) as INodeProperties[]),
-		...(descriptionTrunksServiceInfosPut({
-			...displayOptions,
-			show: { telephonyOperation: ['trunksServiceInfosPut'] },
-		}) as INodeProperties[]),
-		...(descriptionTrunksHardwareListGet({
-			...displayOptions,
-			show: { telephonyOperation: ['trunksHardwareListGet'] },
-		}) as INodeProperties[]),
-		...(descriptionTrunksHardwarePost({
-			...displayOptions,
-			show: { telephonyOperation: ['trunksHardwarePost'] },
-		}) as INodeProperties[]),
-		...(descriptionTrunksNumberListGet({
-			...displayOptions,
-			show: { telephonyOperation: ['trunksNumberListGet'] },
-		}) as INodeProperties[]),
-		...(descriptionTrunksNumberPost({
-			...displayOptions,
-			show: { telephonyOperation: ['trunksNumberPost'] },
-		}) as INodeProperties[]),
-		...(descriptionTrunksNumberGet({
-			...displayOptions,
-			show: { telephonyOperation: ['trunksNumberGet'] },
-		}) as INodeProperties[]),
-		...(descriptionTrunksNumberPut({
-			...displayOptions,
-			show: { telephonyOperation: ['trunksNumberPut'] },
-		}) as INodeProperties[]),
-		...(descriptionTrunksNumberDelete({
-			...displayOptions,
-			show: { telephonyOperation: ['trunksNumberDelete'] },
-		}) as INodeProperties[]),
-		...(descriptionNumbersListGet({
-			...displayOptions,
-			show: { telephonyOperation: ['numbersListGet'] },
-		}) as INodeProperties[]),
-		...(descriptionNumbersGet({
-			...displayOptions,
-			show: { telephonyOperation: ['numbersGet'] },
-		}) as INodeProperties[]),
-		...(descriptionNumbersPost({
-			...displayOptions,
-			show: { telephonyOperation: ['numbersPost'] },
-		}) as INodeProperties[]),
-		...(descriptionNumbersPut({
-			...displayOptions,
-			show: { telephonyOperation: ['numbersPut'] },
-		}) as INodeProperties[]),
-		...(descriptionNumbersDelete({
-			...displayOptions,
-			show: { telephonyOperation: ['numbersDelete'] },
-		}) as INodeProperties[]),
-		...(descriptionNumbersPortabilityListGet({
-			...displayOptions,
-			show: { telephonyOperation: ['numbersPortabilityListGet'] },
-		}) as INodeProperties[]),
-		...(descriptionNumbersPortabilityPost({
-			...displayOptions,
-			show: { telephonyOperation: ['numbersPortabilityPost'] },
-		}) as INodeProperties[]),
-		...(descriptionNumbersPortabilityGet({
-			...displayOptions,
-			show: { telephonyOperation: ['numbersPortabilityGet'] },
-		}) as INodeProperties[]),
-		...(descriptionNumbersPortabilityPut({
-			...displayOptions,
-			show: { telephonyOperation: ['numbersPortabilityPut'] },
-		}) as INodeProperties[]),
-		...(descriptionNumbersPortabilityDelete({
-			...displayOptions,
-			show: { telephonyOperation: ['numbersPortabilityDelete'] },
-		}) as INodeProperties[]),
-		...(descriptionAccessoriesGet({
-			...displayOptions,
-			show: { telephonyOperation: ['accessoriesGet'] },
-		}) as INodeProperties[]),
-		...(descriptionLineOffersGet({
-			...displayOptions,
-			show: { telephonyOperation: ['lineOffersGet'] },
-		}) as INodeProperties[]),
-		...(descriptionLineOfferPhonesGet({
-			...displayOptions,
-			show: { telephonyOperation: ['lineOfferPhonesGet'] },
-		}) as INodeProperties[]),
-		...(descriptionFaxOffersGet({
-			...displayOptions,
-			show: { telephonyOperation: ['faxOffersGet'] },
-		}) as INodeProperties[]),
-		...(descriptionLineOfferDetailsGet({
-			...displayOptions,
-			show: { telephonyOperation: ['lineOfferDetailsGet'] },
-		}) as INodeProperties[]),
-		...(descriptionDirectoriesCitiesGet({
-			...displayOptions,
-			show: { telephonyOperation: ['directoriesCitiesGet'] },
-		}) as INodeProperties[]),
-		...(descriptionDirectoriesAvailableZipCodesGet({
-			...displayOptions,
-			show: { telephonyOperation: ['directoriesAvailableZipCodesGet'] },
-		}) as INodeProperties[]),
-		...(descriptionDirectoriesServicesGet({
-			...displayOptions,
-			show: { telephonyOperation: ['directoriesServicesGet'] },
-		}) as INodeProperties[]),
-		...(descriptionDirectoriesCountriesGet({
-			...displayOptions,
-			show: { telephonyOperation: ['directoriesCountriesGet'] },
-		}) as INodeProperties[]),
-		...(descriptionTelephonyListGet({
-			...displayOptions,
-			show: { telephonyOperation: ['telephonyListGet'] },
-		}) as INodeProperties[]),
-		...(descriptionSipDomainsGet({
-			...displayOptions,
-			show: { telephonyOperation: ['sipDomainsGet'] },
-		}) as INodeProperties[]),
-		...(descriptionCurrentOrderIdsGet({
-			...displayOptions,
-			show: { telephonyOperation: ['currentOrderIdsGet'] },
-		}) as INodeProperties[]),
-		...(descriptionSearchServicesGet({
-			...displayOptions,
-			show: { telephonyOperation: ['searchServicesGet'] },
-		}) as INodeProperties[]),
-		...(descriptionSetDefaultSipDomainPost({
-			...displayOptions,
-			show: { telephonyOperation: ['setDefaultSipDomainPost'] },
-		}) as INodeProperties[]),
-
-		...(descriptionabbreviatedNumberDelete({
-			...displayOptions,
-			show: { telephonyOperation: ['abbreviatedNumberDelete'] },
-		}) as INodeProperties[]),
-		...(descriptionabbreviatedNumberGet({
-			...displayOptions,
-			show: { telephonyOperation: ['abbreviatedNumberGet'] },
-		}) as INodeProperties[]),
-		...(descriptionabbreviatedNumberListGet({
-			...displayOptions,
-			show: { telephonyOperation: ['abbreviatedNumberListGet'] },
-		}) as INodeProperties[]),
-		...(descriptionabbreviatedNumberPost({
-			...displayOptions,
-			show: { telephonyOperation: ['abbreviatedNumberPost'] },
-		}) as INodeProperties[]),
-		...(descriptionabbreviatedNumberPut({
-			...displayOptions,
-			show: { telephonyOperation: ['abbreviatedNumberPut'] },
-		}) as INodeProperties[]),
-		...(descriptionallowedCreditThresholdGet({
-			...displayOptions,
-			show: { telephonyOperation: ['allowedCreditThresholdGet'] },
-		}) as INodeProperties[]),
-		...(descriptionamountSecurityDepositGet({
-			...displayOptions,
-			show: { telephonyOperation: ['amountSecurityDepositGet'] },
-		}) as INodeProperties[]),
-		...(descriptionbillingAccountDelete({
-			...displayOptions,
-			show: { telephonyOperation: ['billingAccountDelete'] },
-		}) as INodeProperties[]),
-		...(descriptionbillingAccountGet({
-			...displayOptions,
-			show: { telephonyOperation: ['billingAccountGet'] },
-		}) as INodeProperties[]),
-		...(descriptionbillingAccountPut({
-			...displayOptions,
-			show: { telephonyOperation: ['billingAccountPut'] },
-		}) as INodeProperties[]),
-		...(descriptionbillingAccountSiteGet({
-			...displayOptions,
-			show: { telephonyOperation: ['billingAccountSiteGet'] },
-		}) as INodeProperties[]),
-		...(descriptionbillingAccountSitePost({
-			...displayOptions,
-			show: { telephonyOperation: ['billingAccountSitePost'] },
-		}) as INodeProperties[]),
-		...(descriptioncanTransferSecurityDepositPost({
-			...displayOptions,
-			show: { telephonyOperation: ['canTransferSecurityDepositPost'] },
-		}) as INodeProperties[]),
-		...(descriptioncancelTerminationPost({
-			...displayOptions,
-			show: { telephonyOperation: ['cancelTerminationPost'] },
-		}) as INodeProperties[]),
-		...(descriptioncarrierSipCdrsListGet({
-			...displayOptions,
-			show: { telephonyOperation: ['carrierSipCdrsListGet'] },
-		}) as INodeProperties[]),
-		...(descriptioncarrierSipClusterDetailsListGet({
-			...displayOptions,
-			show: { telephonyOperation: ['carrierSipClusterDetailsListGet'] },
-		}) as INodeProperties[]),
-		...(descriptioncarrierSipEndpointsGet({
-			...displayOptions,
-			show: { telephonyOperation: ['carrierSipEndpointsGet'] },
-		}) as INodeProperties[]),
-		...(descriptioncarrierSipEndpointsListGet({
-			...displayOptions,
-			show: { telephonyOperation: ['carrierSipEndpointsListGet'] },
-		}) as INodeProperties[]),
-		...(descriptioncarrierSipGet({
-			...displayOptions,
-			show: { telephonyOperation: ['carrierSipGet'] },
-		}) as INodeProperties[]),
-		...(descriptioncarrierSipListGet({
-			...displayOptions,
-			show: { telephonyOperation: ['carrierSipListGet'] },
-		}) as INodeProperties[]),
-		...(descriptioncarrierSipSettingsListGet({
-			...displayOptions,
-			show: { telephonyOperation: ['carrierSipSettingsListGet'] },
-		}) as INodeProperties[]),
-		...(descriptioncarrierSipSettingsPut({
-			...displayOptions,
-			show: { telephonyOperation: ['carrierSipSettingsPut'] },
-		}) as INodeProperties[]),
-		...(descriptioncarrierSipVnoGet({
-			...displayOptions,
-			show: { telephonyOperation: ['carrierSipVnoGet'] },
-		}) as INodeProperties[]),
-		...(descriptioncarrierSipVnoListGet({
-			...displayOptions,
-			show: { telephonyOperation: ['carrierSipVnoListGet'] },
-		}) as INodeProperties[]),
-		...(descriptioncarrierSipVnoRangesGet({
-			...displayOptions,
-			show: { telephonyOperation: ['carrierSipVnoRangesGet'] },
-		}) as INodeProperties[]),
-		...(descriptioncarrierSipVnoRangesListGet({
-			...displayOptions,
-			show: { telephonyOperation: ['carrierSipVnoRangesListGet'] },
-		}) as INodeProperties[]),
-		...(descriptioncarrierSipVnoRangesPut({
-			...displayOptions,
-			show: { telephonyOperation: ['carrierSipVnoRangesPut'] },
-		}) as INodeProperties[]),
-		...(descriptionchangeContactPost({
-			...displayOptions,
-			show: { telephonyOperation: ['changeContactPost'] },
-		}) as INodeProperties[]),
-		...(descriptionfaxCampaignsDelete({
-			...displayOptions,
-			show: { telephonyOperation: ['faxCampaignsDelete'] },
-		}) as INodeProperties[]),
-		...(descriptionfaxCampaignsDetailListGet({
-			...displayOptions,
-			show: { telephonyOperation: ['faxCampaignsDetailListGet'] },
-		}) as INodeProperties[]),
-		...(descriptionfaxCampaignsGet({
-			...displayOptions,
-			show: { telephonyOperation: ['faxCampaignsGet'] },
-		}) as INodeProperties[]),
-		...(descriptionfaxCampaignsListGet({
-			...displayOptions,
-			show: { telephonyOperation: ['faxCampaignsListGet'] },
-		}) as INodeProperties[]),
-		...(descriptionfaxCampaignsPost({
-			...displayOptions,
-			show: { telephonyOperation: ['faxCampaignsPost'] },
-		}) as INodeProperties[]),
-		...(descriptionfaxCampaignsStartPost({
-			...displayOptions,
-			show: { telephonyOperation: ['faxCampaignsStartPost'] },
-		}) as INodeProperties[]),
-		...(descriptionfaxCampaignsStopPost({
-			...displayOptions,
-			show: { telephonyOperation: ['faxCampaignsStopPost'] },
-		}) as INodeProperties[]),
-		...(descriptionfaxGet({
-			...displayOptions,
-			show: { telephonyOperation: ['faxGet'] },
-		}) as INodeProperties[]),
-		...(descriptionfaxListGet({
-			...displayOptions,
-			show: { telephonyOperation: ['faxListGet'] },
-		}) as INodeProperties[]),
-		...(descriptionfaxPut({
-			...displayOptions,
-			show: { telephonyOperation: ['faxPut'] },
-		}) as INodeProperties[]),
-		...(descriptionfaxScreenListsDelete({
-			...displayOptions,
-			show: { telephonyOperation: ['faxScreenListsDelete'] },
-		}) as INodeProperties[]),
-		...(descriptionfaxScreenListsListGet({
-			...displayOptions,
-			show: { telephonyOperation: ['faxScreenListsListGet'] },
-		}) as INodeProperties[]),
-		...(descriptionfaxScreenListsPost({
-			...displayOptions,
-			show: { telephonyOperation: ['faxScreenListsPost'] },
-		}) as INodeProperties[]),
-		...(descriptionfaxScreenListsPut({
-			...displayOptions,
-			show: { telephonyOperation: ['faxScreenListsPut'] },
-		}) as INodeProperties[]),
-		...(descriptionfaxScreenListsResetPost({
-			...displayOptions,
-			show: { telephonyOperation: ['faxScreenListsResetPost'] },
-		}) as INodeProperties[]),
-		...(descriptionfaxSettingsChangePasswordPost({
-			...displayOptions,
-			show: { telephonyOperation: ['faxSettingsChangePasswordPost'] },
-		}) as INodeProperties[]),
-		...(descriptionfaxSettingsListGet({
-			...displayOptions,
-			show: { telephonyOperation: ['faxSettingsListGet'] },
-		}) as INodeProperties[]),
-		...(descriptionfaxSettingsPut({
-			...displayOptions,
-			show: { telephonyOperation: ['faxSettingsPut'] },
-		}) as INodeProperties[]),
-		...(descriptionfaxSettingsSendFaxPost({
-			...displayOptions,
-			show: { telephonyOperation: ['faxSettingsSendFaxPost'] },
-		}) as INodeProperties[]),
-		...(descriptionlineAbbreviatedNumberDelete({
-			...displayOptions,
-			show: { telephonyOperation: ['lineAbbreviatedNumberDelete'] },
-		}) as INodeProperties[]),
-		...(descriptionlineAbbreviatedNumberGet({
-			...displayOptions,
-			show: { telephonyOperation: ['lineAbbreviatedNumberGet'] },
-		}) as INodeProperties[]),
-		...(descriptionlineAbbreviatedNumberListGet({
-			...displayOptions,
-			show: { telephonyOperation: ['lineAbbreviatedNumberListGet'] },
-		}) as INodeProperties[]),
-		...(descriptionlineAbbreviatedNumberPost({
-			...displayOptions,
-			show: { telephonyOperation: ['lineAbbreviatedNumberPost'] },
-		}) as INodeProperties[]),
-		...(descriptionlineAbbreviatedNumberPut({
-			...displayOptions,
-			show: { telephonyOperation: ['lineAbbreviatedNumberPut'] },
-		}) as INodeProperties[]),
-		...(descriptionlineActivateNewPhoneListGet({
-			...displayOptions,
-			show: { telephonyOperation: ['lineActivateNewPhoneListGet'] },
-		}) as INodeProperties[]),
-		...(descriptionlineActivateNewPhonePost({
-			...displayOptions,
-			show: { telephonyOperation: ['lineActivateNewPhonePost'] },
-		}) as INodeProperties[]),
-		...(descriptionlineAntihackListGet({
-			...displayOptions,
-			show: { telephonyOperation: ['lineAntihackListGet'] },
-		}) as INodeProperties[]),
-		...(descriptionlineAntihackPost({
-			...displayOptions,
-			show: { telephonyOperation: ['lineAntihackPost'] },
-		}) as INodeProperties[]),
-		...(descriptionlineAssociateDevicePost({
-			...displayOptions,
-			show: { telephonyOperation: ['lineAssociateDevicePost'] },
-		}) as INodeProperties[]),
-		...(descriptionlineAutomaticCallGet({
-			...displayOptions,
-			show: { telephonyOperation: ['lineAutomaticCallGet'] },
-		}) as INodeProperties[]),
-		...(descriptionlineAutomaticCallListGet({
-			...displayOptions,
-			show: { telephonyOperation: ['lineAutomaticCallListGet'] },
-		}) as INodeProperties[]),
-		...(descriptionlineAutomaticCallPost({
-			...displayOptions,
-			show: { telephonyOperation: ['lineAutomaticCallPost'] },
-		}) as INodeProperties[]),
-		...(descriptionlineAvailableSipDomainsListGet({
-			...displayOptions,
-			show: { telephonyOperation: ['lineAvailableSipDomainsListGet'] },
-		}) as INodeProperties[]),
-		...(descriptionlineBlockPost({
-			...displayOptions,
-			show: { telephonyOperation: ['lineBlockPost'] },
-		}) as INodeProperties[]),
-		...(descriptionlineCallsEavesdropPost({
-			...displayOptions,
-			show: { telephonyOperation: ['lineCallsEavesdropPost'] },
-		}) as INodeProperties[]),
-		...(descriptionlineCallsGet({
-			...displayOptions,
-			show: { telephonyOperation: ['lineCallsGet'] },
-		}) as INodeProperties[]),
-		...(descriptionlineCallsHangupPost({
-			...displayOptions,
-			show: { telephonyOperation: ['lineCallsHangupPost'] },
-		}) as INodeProperties[]),
-		...(descriptionlineCallsHoldPost({
-			...displayOptions,
-			show: { telephonyOperation: ['lineCallsHoldPost'] },
-		}) as INodeProperties[]),
-		...(descriptionlineCallsInterceptPost({
-			...displayOptions,
-			show: { telephonyOperation: ['lineCallsInterceptPost'] },
-		}) as INodeProperties[]),
-		...(descriptionlineCallsListGet({
-			...displayOptions,
-			show: { telephonyOperation: ['lineCallsListGet'] },
-		}) as INodeProperties[]),
-		...(descriptionlineCallsTransferPost({
-			...displayOptions,
-			show: { telephonyOperation: ['lineCallsTransferPost'] },
-		}) as INodeProperties[]),
-		...(descriptionlineCallsWhisperPost({
-			...displayOptions,
-			show: { telephonyOperation: ['lineCallsWhisperPost'] },
-		}) as INodeProperties[]),
-		...(descriptionlineCanChangePasswordListGet({
-			...displayOptions,
-			show: { telephonyOperation: ['lineCanChangePasswordListGet'] },
-		}) as INodeProperties[]),
-		...(descriptionlineCancelConvertToNumberPost({
-			...displayOptions,
-			show: { telephonyOperation: ['lineCancelConvertToNumberPost'] },
-		}) as INodeProperties[]),
-		...(descriptionlineChangePasswordPost({
-			...displayOptions,
-			show: { telephonyOperation: ['lineChangePasswordPost'] },
-		}) as INodeProperties[]),
-		...(descriptionlineClick2CallPost({
-			...displayOptions,
-			show: { telephonyOperation: ['lineClick2CallPost'] },
-		}) as INodeProperties[]),
-		...(descriptionlineClick2CallUserChangePasswordPost({
-			...displayOptions,
-			show: { telephonyOperation: ['lineClick2CallUserChangePasswordPost'] },
-		}) as INodeProperties[]),
-		...(descriptionlineClick2CallUserClick2CallPost({
-			...displayOptions,
-			show: { telephonyOperation: ['lineClick2CallUserClick2CallPost'] },
-		}) as INodeProperties[]),
-		...(descriptionlineClick2CallUserDelete({
-			...displayOptions,
-			show: { telephonyOperation: ['lineClick2CallUserDelete'] },
-		}) as INodeProperties[]),
-		...(descriptionlineClick2CallUserGet({
-			...displayOptions,
-			show: { telephonyOperation: ['lineClick2CallUserGet'] },
-		}) as INodeProperties[]),
-		...(descriptionlineClick2CallUserListGet({
-			...displayOptions,
-			show: { telephonyOperation: ['lineClick2CallUserListGet'] },
-		}) as INodeProperties[]),
-		...(descriptionlineClick2CallUserPost({
-			...displayOptions,
-			show: { telephonyOperation: ['lineClick2CallUserPost'] },
-		}) as INodeProperties[]),
-		...(descriptionlineConvertToNumberPost({
-			...displayOptions,
-			show: { telephonyOperation: ['lineConvertToNumberPost'] },
-		}) as INodeProperties[]),
-		...(descriptionlineDissociateDevicePost({
-			...displayOptions,
-			show: { telephonyOperation: ['lineDissociateDevicePost'] },
-		}) as INodeProperties[]),
-		...(descriptionlineGet({
-			...displayOptions,
-			show: { telephonyOperation: ['lineGet'] },
-		}) as INodeProperties[]),
-		...(descriptionlineIpsListGet({
-			...displayOptions,
-			show: { telephonyOperation: ['lineIpsListGet'] },
-		}) as INodeProperties[]),
-		...(descriptionlineLastRegistrationsListGet({
-			...displayOptions,
-			show: { telephonyOperation: ['lineLastRegistrationsListGet'] },
-		}) as INodeProperties[]),
-		...(descriptionlineListAssociablePhonesListGet({
-			...displayOptions,
-			show: { telephonyOperation: ['lineListAssociablePhonesListGet'] },
-		}) as INodeProperties[]),
-		...(descriptionlineListGet({
-			...displayOptions,
-			show: { telephonyOperation: ['lineListGet'] },
-		}) as INodeProperties[]),
-		...(descriptionlineMaximumAvailableSimultaneousLinesListGet({
-			...displayOptions,
-			show: { telephonyOperation: ['lineMaximumAvailableSimultaneousLinesListGet'] },
-		}) as INodeProperties[]),
-		...(descriptionlineOfferListGet({
-			...displayOptions,
-			show: { telephonyOperation: ['lineOfferListGet'] },
-		}) as INodeProperties[]),
-		...(descriptionlineOptionsAvailableCodecsListGet({
-			...displayOptions,
-			show: { telephonyOperation: ['lineOptionsAvailableCodecsListGet'] },
-		}) as INodeProperties[]),
-		...(descriptionlineOptionsDefaultCodecsListGet({
-			...displayOptions,
-			show: { telephonyOperation: ['lineOptionsDefaultCodecsListGet'] },
-		}) as INodeProperties[]),
-		...(descriptionlineOptionsListGet({
-			...displayOptions,
-			show: { telephonyOperation: ['lineOptionsListGet'] },
-		}) as INodeProperties[]),
-		...(descriptionlineOptionsPut({
-			...displayOptions,
-			show: { telephonyOperation: ['lineOptionsPut'] },
-		}) as INodeProperties[]),
-		...(descriptionlinePhoneAdminCredentialsListGet({
-			...displayOptions,
-			show: { telephonyOperation: ['linePhoneAdminCredentialsListGet'] },
-		}) as INodeProperties[]),
-		...(descriptionlinePhoneCanBeAssociableListGet({
-			...displayOptions,
-			show: { telephonyOperation: ['linePhoneCanBeAssociableListGet'] },
-		}) as INodeProperties[]),
-		...(descriptionlinePhoneChangePhoneConfigurationPost({
-			...displayOptions,
-			show: { telephonyOperation: ['linePhoneChangePhoneConfigurationPost'] },
-		}) as INodeProperties[]),
-		...(descriptionlinePhoneFunctionKeyAvailableFunctionListGet({
-			...displayOptions,
-			show: { telephonyOperation: ['linePhoneFunctionKeyAvailableFunctionListGet'] },
-		}) as INodeProperties[]),
-		...(descriptionlinePhoneFunctionKeyGet({
-			...displayOptions,
-			show: { telephonyOperation: ['linePhoneFunctionKeyGet'] },
-		}) as INodeProperties[]),
-		...(descriptionlinePhoneFunctionKeyListGet({
-			...displayOptions,
-			show: { telephonyOperation: ['linePhoneFunctionKeyListGet'] },
-		}) as INodeProperties[]),
-		...(descriptionlinePhoneFunctionKeyPut({
-			...displayOptions,
-			show: { telephonyOperation: ['linePhoneFunctionKeyPut'] },
-		}) as INodeProperties[]),
-		...(descriptionlinePhoneListGet({
-			...displayOptions,
-			show: { telephonyOperation: ['linePhoneListGet'] },
-		}) as INodeProperties[]),
-		...(descriptionlinePhoneMerchandiseAvailableListGet({
-			...displayOptions,
-			show: { telephonyOperation: ['linePhoneMerchandiseAvailableListGet'] },
-		}) as INodeProperties[]),
-		...(descriptionlinePhonePhonebookDelete({
-			...displayOptions,
-			show: { telephonyOperation: ['linePhonePhonebookDelete'] },
-		}) as INodeProperties[]),
-		...(descriptionlinePhonePhonebookExportListGet({
-			...displayOptions,
-			show: { telephonyOperation: ['linePhonePhonebookExportListGet'] },
-		}) as INodeProperties[]),
-		...(descriptionlinePhonePhonebookGet({
-			...displayOptions,
-			show: { telephonyOperation: ['linePhonePhonebookGet'] },
-		}) as INodeProperties[]),
-		...(descriptionlinePhonePhonebookImportPost({
-			...displayOptions,
-			show: { telephonyOperation: ['linePhonePhonebookImportPost'] },
-		}) as INodeProperties[]),
-		...(descriptionlinePhonePhonebookListGet({
-			...displayOptions,
-			show: { telephonyOperation: ['linePhonePhonebookListGet'] },
-		}) as INodeProperties[]),
-		...(descriptionlinePhonePhonebookPhonebookContactDelete({
-			...displayOptions,
-			show: { telephonyOperation: ['linePhonePhonebookPhonebookContactDelete'] },
-		}) as INodeProperties[]),
-		...(descriptionlinePhonePhonebookPhonebookContactGet({
-			...displayOptions,
-			show: { telephonyOperation: ['linePhonePhonebookPhonebookContactGet'] },
-		}) as INodeProperties[]),
-		...(descriptionlinePhonePhonebookPhonebookContactListGet({
-			...displayOptions,
-			show: { telephonyOperation: ['linePhonePhonebookPhonebookContactListGet'] },
-		}) as INodeProperties[]),
-		...(descriptionlinePhonePhonebookPhonebookContactPost({
-			...displayOptions,
-			show: { telephonyOperation: ['linePhonePhonebookPhonebookContactPost'] },
-		}) as INodeProperties[]),
-		...(descriptionlinePhonePhonebookPhonebookContactPut({
-			...displayOptions,
-			show: { telephonyOperation: ['linePhonePhonebookPhonebookContactPut'] },
-		}) as INodeProperties[]),
-		...(descriptionlinePhonePhonebookPost({
-			...displayOptions,
-			show: { telephonyOperation: ['linePhonePhonebookPost'] },
-		}) as INodeProperties[]),
-		...(descriptionlinePhonePhonebookPut({
-			...displayOptions,
-			show: { telephonyOperation: ['linePhonePhonebookPut'] },
-		}) as INodeProperties[]),
-		...(descriptionlinePhonePut({
-			...displayOptions,
-			show: { telephonyOperation: ['linePhonePut'] },
-		}) as INodeProperties[]),
-		...(descriptionlinePhoneRebootPost({
-			...displayOptions,
-			show: { telephonyOperation: ['linePhoneRebootPost'] },
-		}) as INodeProperties[]),
-		...(descriptionlinePhoneRefreshScreenPost({
-			...displayOptions,
-			show: { telephonyOperation: ['linePhoneRefreshScreenPost'] },
-		}) as INodeProperties[]),
-		...(descriptionlinePhoneResetConfigPost({
-			...displayOptions,
-			show: { telephonyOperation: ['linePhoneResetConfigPost'] },
-		}) as INodeProperties[]),
-		...(descriptionlinePhoneRmaChangeTypePost({
-			...displayOptions,
-			show: { telephonyOperation: ['linePhoneRmaChangeTypePost'] },
-		}) as INodeProperties[]),
-		...(descriptionlinePhoneRmaDelete({
-			...displayOptions,
-			show: { telephonyOperation: ['linePhoneRmaDelete'] },
-		}) as INodeProperties[]),
-		...(descriptionlinePhoneRmaGet({
-			...displayOptions,
-			show: { telephonyOperation: ['linePhoneRmaGet'] },
-		}) as INodeProperties[]),
-		...(descriptionlinePhoneRmaListGet({
-			...displayOptions,
-			show: { telephonyOperation: ['linePhoneRmaListGet'] },
-		}) as INodeProperties[]),
-		...(descriptionlinePhoneRmaPost({
-			...displayOptions,
-			show: { telephonyOperation: ['linePhoneRmaPost'] },
-		}) as INodeProperties[]),
-		...(descriptionlinePhoneRmaPut({
-			...displayOptions,
-			show: { telephonyOperation: ['linePhoneRmaPut'] },
-		}) as INodeProperties[]),
-		...(descriptionlinePhoneSupportsPhonebookListGet({
-			...displayOptions,
-			show: { telephonyOperation: ['linePhoneSupportsPhonebookListGet'] },
-		}) as INodeProperties[]),
-		...(descriptionlinePut({
-			...displayOptions,
-			show: { telephonyOperation: ['linePut'] },
-		}) as INodeProperties[]),
-		...(descriptionlineRecordsDelete({
-			...displayOptions,
-			show: { telephonyOperation: ['lineRecordsDelete'] },
-		}) as INodeProperties[]),
-		...(descriptionlineRecordsGet({
-			...displayOptions,
-			show: { telephonyOperation: ['lineRecordsGet'] },
-		}) as INodeProperties[]),
-		...(descriptionlineRecordsListGet({
-			...displayOptions,
-			show: { telephonyOperation: ['lineRecordsListGet'] },
-		}) as INodeProperties[]),
-		...(descriptionlineRemoveSimultaneousLinesPost({
-			...displayOptions,
-			show: { telephonyOperation: ['lineRemoveSimultaneousLinesPost'] },
-		}) as INodeProperties[]),
-		...(descriptionlineSimultaneousChannelsDetailsListGet({
-			...displayOptions,
-			show: { telephonyOperation: ['lineSimultaneousChannelsDetailsListGet'] },
-		}) as INodeProperties[]),
-		...(descriptionlineSoftphoneBetaListGet({
-			...displayOptions,
-			show: { telephonyOperation: ['lineSoftphoneBetaListGet'] },
-		}) as INodeProperties[]),
-		...(descriptionlineSoftphoneBetaPut({
-			...displayOptions,
-			show: { telephonyOperation: ['lineSoftphoneBetaPut'] },
-		}) as INodeProperties[]),
-		...(descriptionlineSoftphoneDevicesDelete({
-			...displayOptions,
-			show: { telephonyOperation: ['lineSoftphoneDevicesDelete'] },
-		}) as INodeProperties[]),
-		...(descriptionlineSoftphoneDevicesDisconnectPost({
-			...displayOptions,
-			show: { telephonyOperation: ['lineSoftphoneDevicesDisconnectPost'] },
-		}) as INodeProperties[]),
-		...(descriptionlineSoftphoneDevicesListGet({
-			...displayOptions,
-			show: { telephonyOperation: ['lineSoftphoneDevicesListGet'] },
-		}) as INodeProperties[]),
-		...(descriptionlineSoftphoneLogoDelete({
-			...displayOptions,
-			show: { telephonyOperation: ['lineSoftphoneLogoDelete'] },
-		}) as INodeProperties[]),
-		...(descriptionlineSoftphoneLogoListGet({
-			...displayOptions,
-			show: { telephonyOperation: ['lineSoftphoneLogoListGet'] },
-		}) as INodeProperties[]),
-		...(descriptionlineSoftphoneLogoPut({
-			...displayOptions,
-			show: { telephonyOperation: ['lineSoftphoneLogoPut'] },
-		}) as INodeProperties[]),
-		...(descriptionlineSoftphoneStatusListGet({
-			...displayOptions,
-			show: { telephonyOperation: ['lineSoftphoneStatusListGet'] },
-		}) as INodeProperties[]),
-		...(descriptionlineSoftphoneThemeDelete({
-			...displayOptions,
-			show: { telephonyOperation: ['lineSoftphoneThemeDelete'] },
-		}) as INodeProperties[]),
-		...(descriptionlineSoftphoneThemeListGet({
-			...displayOptions,
-			show: { telephonyOperation: ['lineSoftphoneThemeListGet'] },
-		}) as INodeProperties[]),
-		...(descriptionlineSoftphoneThemePut({
-			...displayOptions,
-			show: { telephonyOperation: ['lineSoftphoneThemePut'] },
-		}) as INodeProperties[]),
-		...(descriptionlineSoftphoneTokenPost({
-			...displayOptions,
-			show: { telephonyOperation: ['lineSoftphoneTokenPost'] },
-		}) as INodeProperties[]),
-		...(descriptionlineStatisticsListGet({
-			...displayOptions,
-			show: { telephonyOperation: ['lineStatisticsListGet'] },
-		}) as INodeProperties[]),
-		...(descriptionlineTonesListGet({
-			...displayOptions,
-			show: { telephonyOperation: ['lineTonesListGet'] },
-		}) as INodeProperties[]),
-		...(descriptionlineTonesPut({
-			...displayOptions,
-			show: { telephonyOperation: ['lineTonesPut'] },
-		}) as INodeProperties[]),
-		...(descriptionlineTonesToneUploadPost({
-			...displayOptions,
-			show: { telephonyOperation: ['lineTonesToneUploadPost'] },
-		}) as INodeProperties[]),
-		...(descriptionlineTrafficExtractsDelete({
-			...displayOptions,
-			show: { telephonyOperation: ['lineTrafficExtractsDelete'] },
-		}) as INodeProperties[]),
-		...(descriptionlineTrafficExtractsGet({
-			...displayOptions,
-			show: { telephonyOperation: ['lineTrafficExtractsGet'] },
-		}) as INodeProperties[]),
-		...(descriptionlineTrafficExtractsListGet({
-			...displayOptions,
-			show: { telephonyOperation: ['lineTrafficExtractsListGet'] },
-		}) as INodeProperties[]),
-		...(descriptionlineTrafficExtractsPost({
-			...displayOptions,
-			show: { telephonyOperation: ['lineTrafficExtractsPost'] },
-		}) as INodeProperties[]),
-		...(descriptionlineUnblockPost({
-			...displayOptions,
-			show: { telephonyOperation: ['lineUnblockPost'] },
-		}) as INodeProperties[]),
-		...(descriptionnumberCancelConvertToLinePost({
-			...displayOptions,
-			show: { telephonyOperation: ['numberCancelConvertToLinePost'] },
-		}) as INodeProperties[]),
-		...(descriptionnumberChangeFeatureTypePost({
-			...displayOptions,
-			show: { telephonyOperation: ['numberChangeFeatureTypePost'] },
-		}) as INodeProperties[]),
-		...(descriptionnumberConvertToLineAvailableOffersListGet({
-			...displayOptions,
-			show: { telephonyOperation: ['numberConvertToLineAvailableOffersListGet'] },
-		}) as INodeProperties[]),
-		...(descriptionnumberConvertToLinePost({
-			...displayOptions,
-			show: { telephonyOperation: ['numberConvertToLinePost'] },
-		}) as INodeProperties[]),
-		...(descriptionnumberGet({
-			...displayOptions,
-			show: { telephonyOperation: ['numberGet'] },
-		}) as INodeProperties[]),
-		...(descriptionnumberListGet({
-			...displayOptions,
-			show: { telephonyOperation: ['numberListGet'] },
-		}) as INodeProperties[]),
-		...(descriptionnumberPut({
-			...displayOptions,
-			show: { telephonyOperation: ['numberPut'] },
-		}) as INodeProperties[]),
-		...(descriptionportabilityGet({
-			...displayOptions,
-			show: { telephonyOperation: ['portabilityGet'] },
-		}) as INodeProperties[]),
-		...(descriptionserviceInfosListGet({
-			...displayOptions,
-			show: { telephonyOperation: ['serviceInfosListGet'] },
-		}) as INodeProperties[]),
-		...(descriptionserviceInfosPut({
-			...displayOptions,
-			show: { telephonyOperation: ['serviceInfosPut'] },
-		}) as INodeProperties[]),
-		...(descriptiontaskGet({
-			...displayOptions,
-			show: { telephonyOperation: ['taskGet'] },
-		}) as INodeProperties[]),
-		...(descriptiontaskListGet({
-			...displayOptions,
-			show: { telephonyOperation: ['taskListGet'] },
-		}) as INodeProperties[]),
-		...(descriptiontransferSecurityDepositPost({
-			...displayOptions,
-			show: { telephonyOperation: ['transferSecurityDepositPost'] },
-		}) as INodeProperties[]),
-		...(descriptionvxmlGet({
-			...displayOptions,
-			show: { telephonyOperation: ['vxmlGet'] },
-		}) as INodeProperties[]),
-		...(descriptionvxmlListGet({
-			...displayOptions,
-			show: { telephonyOperation: ['vxmlListGet'] },
-		}) as INodeProperties[]),
-		...(descriptionvxmlSettingsListGet({
-			...displayOptions,
-			show: { telephonyOperation: ['vxmlSettingsListGet'] },
-		}) as INodeProperties[]),
-		...(descriptionvxmlSettingsLogsPost({
-			...displayOptions,
-			show: { telephonyOperation: ['vxmlSettingsLogsPost'] },
-		}) as INodeProperties[]),
-		...(descriptionvxmlSettingsPut({
-			...displayOptions,
-			show: { telephonyOperation: ['vxmlSettingsPut'] },
-		}) as INodeProperties[]),
-
-		...(descriptionconferenceListGet({
-			...displayOptions,
-			show: { telephonyOperation: ['conferenceListGet'] },
-		}) as INodeProperties[]),
-
-		...(descriptionconferenceGet({
-			...displayOptions,
-			show: { telephonyOperation: ['conferenceGet'] },
-		}) as INodeProperties[]),
-
-		...(descriptionconferenceAnnounceUploadPost({
-			...displayOptions,
-			show: { telephonyOperation: ['conferenceAnnounceUploadPost'] },
-		}) as INodeProperties[]),
-
-		...(descriptionconferenceHistoriesListGet({
-			...displayOptions,
-			show: { telephonyOperation: ['conferenceHistoriesListGet'] },
-		}) as INodeProperties[]),
-
-		...(descriptionconferenceHistoriesGet({
-			...displayOptions,
-			show: { telephonyOperation: ['conferenceHistoriesGet'] },
-		}) as INodeProperties[]),
-
-		...(descriptionconferenceInformationsListGet({
-			...displayOptions,
-			show: { telephonyOperation: ['conferenceInformationsListGet'] },
-		}) as INodeProperties[]),
-
-		...(descriptionconferenceLockPost({
-			...displayOptions,
-			show: { telephonyOperation: ['conferenceLockPost'] },
-		}) as INodeProperties[]),
-
-		...(descriptionconferenceParticipantsListGet({
-			...displayOptions,
-			show: { telephonyOperation: ['conferenceParticipantsListGet'] },
-		}) as INodeProperties[]),
-
-		...(descriptionconferenceParticipantsGet({
-			...displayOptions,
-			show: { telephonyOperation: ['conferenceParticipantsGet'] },
-		}) as INodeProperties[]),
-
-		...(descriptionconferenceParticipantsDeafPost({
-			...displayOptions,
-			show: { telephonyOperation: ['conferenceParticipantsDeafPost'] },
-		}) as INodeProperties[]),
-
-		...(descriptionconferenceParticipantsEnergyPost({
-			...displayOptions,
-			show: { telephonyOperation: ['conferenceParticipantsEnergyPost'] },
-		}) as INodeProperties[]),
-
-		...(descriptionconferenceParticipantsKickPost({
-			...displayOptions,
-			show: { telephonyOperation: ['conferenceParticipantsKickPost'] },
-		}) as INodeProperties[]),
-
-		...(descriptionconferenceParticipantsMutePost({
-			...displayOptions,
-			show: { telephonyOperation: ['conferenceParticipantsMutePost'] },
-		}) as INodeProperties[]),
-
-		...(descriptionconferenceParticipantsUndeafPost({
-			...displayOptions,
-			show: { telephonyOperation: ['conferenceParticipantsUndeafPost'] },
-		}) as INodeProperties[]),
-
-		...(descriptionconferenceParticipantsUnmutePost({
-			...displayOptions,
-			show: { telephonyOperation: ['conferenceParticipantsUnmutePost'] },
-		}) as INodeProperties[]),
-
-		...(descriptionconferenceRoomsListGet({
-			...displayOptions,
-			show: { telephonyOperation: ['conferenceRoomsListGet'] },
-		}) as INodeProperties[]),
-
-		...(descriptionconferenceRoomsPost({
-			...displayOptions,
-			show: { telephonyOperation: ['conferenceRoomsPost'] },
-		}) as INodeProperties[]),
-
-		...(descriptionconferenceRoomsGet({
-			...displayOptions,
-			show: { telephonyOperation: ['conferenceRoomsGet'] },
-		}) as INodeProperties[]),
-
-		...(descriptionconferenceRoomsPut({
-			...displayOptions,
-			show: { telephonyOperation: ['conferenceRoomsPut'] },
-		}) as INodeProperties[]),
-
-		...(descriptionconferenceRoomsHistoriesListGet({
-			...displayOptions,
-			show: { telephonyOperation: ['conferenceRoomsHistoriesListGet'] },
-		}) as INodeProperties[]),
-
-		...(descriptionconferenceRoomsHistoriesGet({
-			...displayOptions,
-			show: { telephonyOperation: ['conferenceRoomsHistoriesGet'] },
-		}) as INodeProperties[]),
-
-		...(descriptionconferenceRoomsLockPost({
-			...displayOptions,
-			show: { telephonyOperation: ['conferenceRoomsLockPost'] },
-		}) as INodeProperties[]),
-
-		...(descriptionconferenceRoomsParticipantsListGet({
-			...displayOptions,
-			show: { telephonyOperation: ['conferenceRoomsParticipantsListGet'] },
-		}) as INodeProperties[]),
-
-		...(descriptionconferenceRoomsParticipantsGet({
-			...displayOptions,
-			show: { telephonyOperation: ['conferenceRoomsParticipantsGet'] },
-		}) as INodeProperties[]),
-
-		...(descriptionconferenceRoomsParticipantsDeafPost({
-			...displayOptions,
-			show: { telephonyOperation: ['conferenceRoomsParticipantsDeafPost'] },
-		}) as INodeProperties[]),
-
-		...(descriptionconferenceRoomsParticipantsEnergyPost({
-			...displayOptions,
-			show: { telephonyOperation: ['conferenceRoomsParticipantsEnergyPost'] },
-		}) as INodeProperties[]),
-
-		...(descriptionconferenceRoomsParticipantsKickPost({
-			...displayOptions,
-			show: { telephonyOperation: ['conferenceRoomsParticipantsKickPost'] },
-		}) as INodeProperties[]),
-
-		...(descriptionconferenceRoomsParticipantsMutePost({
-			...displayOptions,
-			show: { telephonyOperation: ['conferenceRoomsParticipantsMutePost'] },
-		}) as INodeProperties[]),
-
-		...(descriptionconferenceRoomsParticipantsUndeafPost({
-			...displayOptions,
-			show: { telephonyOperation: ['conferenceRoomsParticipantsUndeafPost'] },
-		}) as INodeProperties[]),
-
-		...(descriptionconferenceRoomsParticipantsUnmutePost({
-			...displayOptions,
-			show: { telephonyOperation: ['conferenceRoomsParticipantsUnmutePost'] },
-		}) as INodeProperties[]),
-
-		...(descriptionconferenceRoomsUnlockPost({
-			...displayOptions,
-			show: { telephonyOperation: ['conferenceRoomsUnlockPost'] },
-		}) as INodeProperties[]),
-
-		...(descriptionconferenceRoomsWebAccessListGet({
-			...displayOptions,
-			show: { telephonyOperation: ['conferenceRoomsWebAccessListGet'] },
-		}) as INodeProperties[]),
-
-		...(descriptionconferenceRoomsWebAccessPost({
-			...displayOptions,
-			show: { telephonyOperation: ['conferenceRoomsWebAccessPost'] },
-		}) as INodeProperties[]),
-
-		...(descriptionconferenceRoomsWebAccessDelete({
-			...displayOptions,
-			show: { telephonyOperation: ['conferenceRoomsWebAccessDelete'] },
-		}) as INodeProperties[]),
-
-		...(descriptionconferenceRoomsWebAccessGet({
-			...displayOptions,
-			show: { telephonyOperation: ['conferenceRoomsWebAccessGet'] },
-		}) as INodeProperties[]),
-
-		...(descriptionconferenceRoomsStatsListGet({
-			...displayOptions,
-			show: { telephonyOperation: ['conferenceRoomsStatsListGet'] },
-		}) as INodeProperties[]),
-
-		...(descriptionconferenceSettingsListGet({
-			...displayOptions,
-			show: { telephonyOperation: ['conferenceSettingsListGet'] },
-		}) as INodeProperties[]),
-
-		...(descriptionconferenceSettingsPut({
-			...displayOptions,
-			show: { telephonyOperation: ['conferenceSettingsPut'] },
-		}) as INodeProperties[]),
-
-		...(descriptionconferenceUnlockPost({
-			...displayOptions,
-			show: { telephonyOperation: ['conferenceUnlockPost'] },
-		}) as INodeProperties[]),
-
-		...(descriptionconferenceWebAccessListGet({
-			...displayOptions,
-			show: { telephonyOperation: ['conferenceWebAccessListGet'] },
-		}) as INodeProperties[]),
-
-		...(descriptionconferenceWebAccessPost({
-			...displayOptions,
-			show: { telephonyOperation: ['conferenceWebAccessPost'] },
-		}) as INodeProperties[]),
-
-		...(descriptionconferenceWebAccessDelete({
-			...displayOptions,
-			show: { telephonyOperation: ['conferenceWebAccessDelete'] },
-		}) as INodeProperties[]),
-
-		...(descriptionconferenceWebAccessGet({
-			...displayOptions,
-			show: { telephonyOperation: ['conferenceWebAccessGet'] },
-		}) as INodeProperties[]),
-
-		...(descriptionddiListGet({
-			...displayOptions,
-			show: { telephonyOperation: ['ddiListGet'] },
-		}) as INodeProperties[]),
-
-		...(descriptionddiGet({
-			...displayOptions,
-			show: { telephonyOperation: ['ddiGet'] },
-		}) as INodeProperties[]),
-
-		...(descriptionddiPut({
-			...displayOptions,
-			show: { telephonyOperation: ['ddiPut'] },
-		}) as INodeProperties[]),
-
-		...(descriptionddiChangeDestinationPost({
-			...displayOptions,
-			show: { telephonyOperation: ['ddiChangeDestinationPost'] },
-		}) as INodeProperties[]),
-
-		...(descriptioneasyHuntingListGet({
-			...displayOptions,
-			show: { telephonyOperation: ['easyHuntingListGet'] },
-		}) as INodeProperties[]),
-
-		...(descriptioneasyHuntingGet({
-			...displayOptions,
-			show: { telephonyOperation: ['easyHuntingGet'] },
-		}) as INodeProperties[]),
-
-		...(descriptioneasyHuntingPut({
-			...displayOptions,
-			show: { telephonyOperation: ['easyHuntingPut'] },
-		}) as INodeProperties[]),
-
-		...(descriptioneasyHuntingHuntingListGet({
-			...displayOptions,
-			show: { telephonyOperation: ['easyHuntingHuntingListGet'] },
-		}) as INodeProperties[]),
-
-		...(descriptioneasyHuntingHuntingPut({
-			...displayOptions,
-			show: { telephonyOperation: ['easyHuntingHuntingPut'] },
-		}) as INodeProperties[]),
-
-		...(descriptioneasyHuntingHuntingAgentListGet({
-			...displayOptions,
-			show: { telephonyOperation: ['easyHuntingHuntingAgentListGet'] },
-		}) as INodeProperties[]),
-
-		...(descriptioneasyHuntingHuntingAgentPost({
-			...displayOptions,
-			show: { telephonyOperation: ['easyHuntingHuntingAgentPost'] },
-		}) as INodeProperties[]),
-
-		...(descriptioneasyHuntingHuntingAgentDelete({
-			...displayOptions,
-			show: { telephonyOperation: ['easyHuntingHuntingAgentDelete'] },
-		}) as INodeProperties[]),
-
-		...(descriptioneasyHuntingHuntingAgentGet({
-			...displayOptions,
-			show: { telephonyOperation: ['easyHuntingHuntingAgentGet'] },
-		}) as INodeProperties[]),
-
-		...(descriptioneasyHuntingHuntingAgentPut({
-			...displayOptions,
-			show: { telephonyOperation: ['easyHuntingHuntingAgentPut'] },
-		}) as INodeProperties[]),
-
-		...(descriptioneasyHuntingHuntingAgentBannerAccessDelete({
-			...displayOptions,
-			show: { telephonyOperation: ['easyHuntingHuntingAgentBannerAccessDelete'] },
-		}) as INodeProperties[]),
-
-		...(descriptioneasyHuntingHuntingAgentBannerAccessListGet({
-			...displayOptions,
-			show: { telephonyOperation: ['easyHuntingHuntingAgentBannerAccessListGet'] },
-		}) as INodeProperties[]),
-
-		...(descriptioneasyHuntingHuntingAgentBannerAccessPost({
-			...displayOptions,
-			show: { telephonyOperation: ['easyHuntingHuntingAgentBannerAccessPost'] },
-		}) as INodeProperties[]),
-
-		...(descriptioneasyHuntingHuntingAgentCallsListGet({
-			...displayOptions,
-			show: { telephonyOperation: ['easyHuntingHuntingAgentCallsListGet'] },
-		}) as INodeProperties[]),
-
-		...(descriptioneasyHuntingHuntingAgentCallsGet({
-			...displayOptions,
-			show: { telephonyOperation: ['easyHuntingHuntingAgentCallsGet'] },
-		}) as INodeProperties[]),
-
-		...(descriptioneasyHuntingHuntingAgentCallsEavesdropPost({
-			...displayOptions,
-			show: { telephonyOperation: ['easyHuntingHuntingAgentCallsEavesdropPost'] },
-		}) as INodeProperties[]),
-
-		...(descriptioneasyHuntingHuntingAgentCallsHangupPost({
-			...displayOptions,
-			show: { telephonyOperation: ['easyHuntingHuntingAgentCallsHangupPost'] },
-		}) as INodeProperties[]),
-
-		...(descriptioneasyHuntingHuntingAgentCallsHoldPost({
-			...displayOptions,
-			show: { telephonyOperation: ['easyHuntingHuntingAgentCallsHoldPost'] },
-		}) as INodeProperties[]),
-
-		...(descriptioneasyHuntingHuntingAgentCallsInterceptPost({
-			...displayOptions,
-			show: { telephonyOperation: ['easyHuntingHuntingAgentCallsInterceptPost'] },
-		}) as INodeProperties[]),
-
-		...(descriptioneasyHuntingHuntingAgentCallsTransferPost({
-			...displayOptions,
-			show: { telephonyOperation: ['easyHuntingHuntingAgentCallsTransferPost'] },
-		}) as INodeProperties[]),
-
-		...(descriptioneasyHuntingHuntingAgentCallsWhisperPost({
-			...displayOptions,
-			show: { telephonyOperation: ['easyHuntingHuntingAgentCallsWhisperPost'] },
-		}) as INodeProperties[]),
-
-		...(descriptioneasyHuntingHuntingAgentEventTokenDelete({
-			...displayOptions,
-			show: { telephonyOperation: ['easyHuntingHuntingAgentEventTokenDelete'] },
-		}) as INodeProperties[]),
-
-		...(descriptioneasyHuntingHuntingAgentEventTokenListGet({
-			...displayOptions,
-			show: { telephonyOperation: ['easyHuntingHuntingAgentEventTokenListGet'] },
-		}) as INodeProperties[]),
-
-		...(descriptioneasyHuntingHuntingAgentEventTokenPost({
-			...displayOptions,
-			show: { telephonyOperation: ['easyHuntingHuntingAgentEventTokenPost'] },
-		}) as INodeProperties[]),
-
-		...(descriptioneasyHuntingHuntingAgentLiveStatusListGet({
-			...displayOptions,
-			show: { telephonyOperation: ['easyHuntingHuntingAgentLiveStatusListGet'] },
-		}) as INodeProperties[]),
-
-		...(descriptioneasyHuntingHuntingAgentQueueListGet({
-			...displayOptions,
-			show: { telephonyOperation: ['easyHuntingHuntingAgentQueueListGet'] },
-		}) as INodeProperties[]),
-
-		...(descriptioneasyHuntingHuntingAgentQueuePost({
-			...displayOptions,
-			show: { telephonyOperation: ['easyHuntingHuntingAgentQueuePost'] },
-		}) as INodeProperties[]),
-
-		...(descriptioneasyHuntingHuntingAgentQueueDelete({
-			...displayOptions,
-			show: { telephonyOperation: ['easyHuntingHuntingAgentQueueDelete'] },
-		}) as INodeProperties[]),
-
-		...(descriptioneasyHuntingHuntingAgentQueueGet({
-			...displayOptions,
-			show: { telephonyOperation: ['easyHuntingHuntingAgentQueueGet'] },
-		}) as INodeProperties[]),
-
-		...(descriptioneasyHuntingHuntingAgentQueuePut({
-			...displayOptions,
-			show: { telephonyOperation: ['easyHuntingHuntingAgentQueuePut'] },
-		}) as INodeProperties[]),
-
-		...(descriptioneasyHuntingHuntingAgentQueueLiveStatusListGet({
-			...displayOptions,
-			show: { telephonyOperation: ['easyHuntingHuntingAgentQueueLiveStatusListGet'] },
-		}) as INodeProperties[]),
-
-		...(descriptioneasyHuntingHuntingCustomStatusListGet({
-			...displayOptions,
-			show: { telephonyOperation: ['easyHuntingHuntingCustomStatusListGet'] },
-		}) as INodeProperties[]),
-
-		...(descriptioneasyHuntingHuntingCustomStatusPost({
-			...displayOptions,
-			show: { telephonyOperation: ['easyHuntingHuntingCustomStatusPost'] },
-		}) as INodeProperties[]),
-
-		...(descriptioneasyHuntingHuntingCustomStatusDelete({
-			...displayOptions,
-			show: { telephonyOperation: ['easyHuntingHuntingCustomStatusDelete'] },
-		}) as INodeProperties[]),
-
-		...(descriptioneasyHuntingHuntingCustomStatusGet({
-			...displayOptions,
-			show: { telephonyOperation: ['easyHuntingHuntingCustomStatusGet'] },
-		}) as INodeProperties[]),
-
-		...(descriptioneasyHuntingHuntingEventTokenDelete({
-			...displayOptions,
-			show: { telephonyOperation: ['easyHuntingHuntingEventTokenDelete'] },
-		}) as INodeProperties[]),
-
-		...(descriptioneasyHuntingHuntingEventTokenListGet({
-			...displayOptions,
-			show: { telephonyOperation: ['easyHuntingHuntingEventTokenListGet'] },
-		}) as INodeProperties[]),
-
-		...(descriptioneasyHuntingHuntingEventTokenPost({
-			...displayOptions,
-			show: { telephonyOperation: ['easyHuntingHuntingEventTokenPost'] },
-		}) as INodeProperties[]),
-
-		...(descriptioneasyHuntingHuntingQueueListGet({
-			...displayOptions,
-			show: { telephonyOperation: ['easyHuntingHuntingQueueListGet'] },
-		}) as INodeProperties[]),
-
-		...(descriptioneasyHuntingHuntingQueuePost({
-			...displayOptions,
-			show: { telephonyOperation: ['easyHuntingHuntingQueuePost'] },
-		}) as INodeProperties[]),
-
-		...(descriptioneasyHuntingHuntingQueueDelete({
-			...displayOptions,
-			show: { telephonyOperation: ['easyHuntingHuntingQueueDelete'] },
-		}) as INodeProperties[]),
-
-		...(descriptioneasyHuntingHuntingQueueGet({
-			...displayOptions,
-			show: { telephonyOperation: ['easyHuntingHuntingQueueGet'] },
-		}) as INodeProperties[]),
-
-		...(descriptioneasyHuntingHuntingQueuePut({
-			...displayOptions,
-			show: { telephonyOperation: ['easyHuntingHuntingQueuePut'] },
-		}) as INodeProperties[]),
-
-		...(descriptioneasyHuntingHuntingQueueAgentListGet({
-			...displayOptions,
-			show: { telephonyOperation: ['easyHuntingHuntingQueueAgentListGet'] },
-		}) as INodeProperties[]),
-
-		...(descriptioneasyHuntingHuntingQueueAgentPost({
-			...displayOptions,
-			show: { telephonyOperation: ['easyHuntingHuntingQueueAgentPost'] },
-		}) as INodeProperties[]),
-
-		...(descriptioneasyHuntingHuntingQueueAgentDelete({
-			...displayOptions,
-			show: { telephonyOperation: ['easyHuntingHuntingQueueAgentDelete'] },
-		}) as INodeProperties[]),
-
-		...(descriptioneasyHuntingHuntingQueueAgentGet({
-			...displayOptions,
-			show: { telephonyOperation: ['easyHuntingHuntingQueueAgentGet'] },
-		}) as INodeProperties[]),
-
-		...(descriptioneasyHuntingHuntingQueueAgentPut({
-			...displayOptions,
-			show: { telephonyOperation: ['easyHuntingHuntingQueueAgentPut'] },
-		}) as INodeProperties[]),
-
-		...(descriptioneasyHuntingHuntingQueueAgentLiveStatusListGet({
-			...displayOptions,
-			show: { telephonyOperation: ['easyHuntingHuntingQueueAgentLiveStatusListGet'] },
-		}) as INodeProperties[]),
-
-		...(descriptioneasyHuntingHuntingQueueLiveCallsListGet({
-			...displayOptions,
-			show: { telephonyOperation: ['easyHuntingHuntingQueueLiveCallsListGet'] },
-		}) as INodeProperties[]),
-
-		...(descriptioneasyHuntingHuntingQueueLiveCallsGet({
-			...displayOptions,
-			show: { telephonyOperation: ['easyHuntingHuntingQueueLiveCallsGet'] },
-		}) as INodeProperties[]),
-
-		...(descriptioneasyHuntingHuntingQueueLiveCallsEavesdropPost({
-			...displayOptions,
-			show: { telephonyOperation: ['easyHuntingHuntingQueueLiveCallsEavesdropPost'] },
-		}) as INodeProperties[]),
-
-		...(descriptioneasyHuntingHuntingQueueLiveCallsHangupPost({
-			...displayOptions,
-			show: { telephonyOperation: ['easyHuntingHuntingQueueLiveCallsHangupPost'] },
-		}) as INodeProperties[]),
-
-		...(descriptioneasyHuntingHuntingQueueLiveCallsHoldPost({
-			...displayOptions,
-			show: { telephonyOperation: ['easyHuntingHuntingQueueLiveCallsHoldPost'] },
-		}) as INodeProperties[]),
-
-		...(descriptioneasyHuntingHuntingQueueLiveCallsInterceptPost({
-			...displayOptions,
-			show: { telephonyOperation: ['easyHuntingHuntingQueueLiveCallsInterceptPost'] },
-		}) as INodeProperties[]),
-
-		...(descriptioneasyHuntingHuntingQueueLiveCallsTransferPost({
-			...displayOptions,
-			show: { telephonyOperation: ['easyHuntingHuntingQueueLiveCallsTransferPost'] },
-		}) as INodeProperties[]),
-
-		...(descriptioneasyHuntingHuntingQueueLiveCallsWhisperPost({
-			...displayOptions,
-			show: { telephonyOperation: ['easyHuntingHuntingQueueLiveCallsWhisperPost'] },
-		}) as INodeProperties[]),
-
-		...(descriptioneasyHuntingHuntingQueueLiveStatisticsListGet({
-			...displayOptions,
-			show: { telephonyOperation: ['easyHuntingHuntingQueueLiveStatisticsListGet'] },
-		}) as INodeProperties[]),
-
-		...(descriptioneasyHuntingRecordsListGet({
-			...displayOptions,
-			show: { telephonyOperation: ['easyHuntingRecordsListGet'] },
-		}) as INodeProperties[]),
-
-		...(descriptioneasyHuntingRecordsDelete({
-			...displayOptions,
-			show: { telephonyOperation: ['easyHuntingRecordsDelete'] },
-		}) as INodeProperties[]),
-
-		...(descriptioneasyHuntingRecordsGet({
-			...displayOptions,
-			show: { telephonyOperation: ['easyHuntingRecordsGet'] },
-		}) as INodeProperties[]),
-
-		...(descriptioneasyHuntingScreenListConditionsListGet({
-			...displayOptions,
-			show: { telephonyOperation: ['easyHuntingScreenListConditionsListGet'] },
-		}) as INodeProperties[]),
-
-		...(descriptioneasyHuntingScreenListConditionsPut({
-			...displayOptions,
-			show: { telephonyOperation: ['easyHuntingScreenListConditionsPut'] },
-		}) as INodeProperties[]),
-
-		...(descriptioneasyHuntingScreenListConditionsConditionsListGet({
-			...displayOptions,
-			show: { telephonyOperation: ['easyHuntingScreenListConditionsConditionsListGet'] },
-		}) as INodeProperties[]),
-
-		...(descriptioneasyHuntingScreenListConditionsConditionsPost({
-			...displayOptions,
-			show: { telephonyOperation: ['easyHuntingScreenListConditionsConditionsPost'] },
-		}) as INodeProperties[]),
-
-		...(descriptioneasyHuntingScreenListConditionsConditionsDelete({
-			...displayOptions,
-			show: { telephonyOperation: ['easyHuntingScreenListConditionsConditionsDelete'] },
-		}) as INodeProperties[]),
-
-		...(descriptioneasyHuntingScreenListConditionsConditionsGet({
-			...displayOptions,
-			show: { telephonyOperation: ['easyHuntingScreenListConditionsConditionsGet'] },
-		}) as INodeProperties[]),
-
-		...(descriptioneasyHuntingScreenListConditionsConditionsPut({
-			...displayOptions,
-			show: { telephonyOperation: ['easyHuntingScreenListConditionsConditionsPut'] },
-		}) as INodeProperties[]),
-
-		...(descriptioneasyHuntingSoundListGet({
-			...displayOptions,
-			show: { telephonyOperation: ['easyHuntingSoundListGet'] },
-		}) as INodeProperties[]),
-
-		...(descriptioneasyHuntingSoundDelete({
-			...displayOptions,
-			show: { telephonyOperation: ['easyHuntingSoundDelete'] },
-		}) as INodeProperties[]),
-
-		...(descriptioneasyHuntingSoundGet({
-			...displayOptions,
-			show: { telephonyOperation: ['easyHuntingSoundGet'] },
-		}) as INodeProperties[]),
-
-		...(descriptioneasyHuntingSoundUploadPost({
-			...displayOptions,
-			show: { telephonyOperation: ['easyHuntingSoundUploadPost'] },
-		}) as INodeProperties[]),
-
-		...(descriptioneasyHuntingTimeConditionsListGet({
-			...displayOptions,
-			show: { telephonyOperation: ['easyHuntingTimeConditionsListGet'] },
-		}) as INodeProperties[]),
-
-		...(descriptioneasyHuntingTimeConditionsPut({
-			...displayOptions,
-			show: { telephonyOperation: ['easyHuntingTimeConditionsPut'] },
-		}) as INodeProperties[]),
-
-		...(descriptioneasyHuntingTimeConditionsConditionsListGet({
-			...displayOptions,
-			show: { telephonyOperation: ['easyHuntingTimeConditionsConditionsListGet'] },
-		}) as INodeProperties[]),
-
-		...(descriptioneasyHuntingTimeConditionsConditionsPost({
-			...displayOptions,
-			show: { telephonyOperation: ['easyHuntingTimeConditionsConditionsPost'] },
-		}) as INodeProperties[]),
-
-		...(descriptioneasyHuntingTimeConditionsConditionsDelete({
-			...displayOptions,
-			show: { telephonyOperation: ['easyHuntingTimeConditionsConditionsDelete'] },
-		}) as INodeProperties[]),
-
-		...(descriptioneasyHuntingTimeConditionsConditionsGet({
-			...displayOptions,
-			show: { telephonyOperation: ['easyHuntingTimeConditionsConditionsGet'] },
-		}) as INodeProperties[]),
-
-		...(descriptioneasyHuntingTimeConditionsConditionsPut({
-			...displayOptions,
-			show: { telephonyOperation: ['easyHuntingTimeConditionsConditionsPut'] },
-		}) as INodeProperties[]),
-
-		...(descriptioneventTokenDelete({
-			...displayOptions,
-			show: { telephonyOperation: ['eventTokenDelete'] },
-		}) as INodeProperties[]),
-
-		...(descriptioneventTokenListGet({
-			...displayOptions,
-			show: { telephonyOperation: ['eventTokenListGet'] },
-		}) as INodeProperties[]),
-
-		...(descriptioneventTokenPost({
-			...displayOptions,
-			show: { telephonyOperation: ['eventTokenPost'] },
-		}) as INodeProperties[]),
-
-		...(descriptionhasSpecialNumbersListGet({
-			...displayOptions,
-			show: { telephonyOperation: ['hasSpecialNumbersListGet'] },
-		}) as INodeProperties[]),
-
-		...(descriptionhistoryConsumptionListGet({
-			...displayOptions,
-			show: { telephonyOperation: ['historyConsumptionListGet'] },
-		}) as INodeProperties[]),
-
-		...(descriptionhistoryConsumptionGet({
-			...displayOptions,
-			show: { telephonyOperation: ['historyConsumptionGet'] },
-		}) as INodeProperties[]),
-
-		...(descriptionhistoryConsumptionFileListGet({
-			...displayOptions,
-			show: { telephonyOperation: ['historyConsumptionFileListGet'] },
-		}) as INodeProperties[]),
-
-		...(descriptionhistoryRepaymentConsumptionListGet({
-			...displayOptions,
-			show: { telephonyOperation: ['historyRepaymentConsumptionListGet'] },
-		}) as INodeProperties[]),
-
-		...(descriptionhistoryRepaymentConsumptionPost({
-			...displayOptions,
-			show: { telephonyOperation: ['historyRepaymentConsumptionPost'] },
-		}) as INodeProperties[]),
-
-		...(descriptionhistoryRepaymentConsumptionGet({
-			...displayOptions,
-			show: { telephonyOperation: ['historyRepaymentConsumptionGet'] },
-		}) as INodeProperties[]),
-
-		...(descriptionhistoryRepaymentConsumptionDocumentListGet({
-			...displayOptions,
-			show: { telephonyOperation: ['historyRepaymentConsumptionDocumentListGet'] },
-		}) as INodeProperties[]),
-
-		...(descriptionhistoryTollfreeConsumptionListGet({
-			...displayOptions,
-			show: { telephonyOperation: ['historyTollfreeConsumptionListGet'] },
-		}) as INodeProperties[]),
-
-		...(descriptionhistoryTollfreeConsumptionGet({
-			...displayOptions,
-			show: { telephonyOperation: ['historyTollfreeConsumptionGet'] },
-		}) as INodeProperties[]),
-
-		...(descriptionhistoryTollfreeConsumptionDocumentListGet({
-			...displayOptions,
-			show: { telephonyOperation: ['historyTollfreeConsumptionDocumentListGet'] },
-		}) as INodeProperties[]),
-
-		...(descriptionofferTaskListGet({
-			...displayOptions,
-			show: { telephonyOperation: ['offerTaskListGet'] },
-		}) as INodeProperties[]),
-
-		...(descriptionofferTaskGet({
-			...displayOptions,
-			show: { telephonyOperation: ['offerTaskGet'] },
-		}) as INodeProperties[]),
-
-		...(descriptionofferTaskPut({
-			...displayOptions,
-			show: { telephonyOperation: ['offerTaskPut'] },
-		}) as INodeProperties[]),
-
-		...(descriptionoldPhoneListGet({
-			...displayOptions,
-			show: { telephonyOperation: ['oldPhoneListGet'] },
-		}) as INodeProperties[]),
-
-		...(descriptionoutplanNotificationListGet({
-			...displayOptions,
-			show: { telephonyOperation: ['outplanNotificationListGet'] },
-		}) as INodeProperties[]),
-
-		...(descriptionoutplanNotificationPost({
-			...displayOptions,
-			show: { telephonyOperation: ['outplanNotificationPost'] },
-		}) as INodeProperties[]),
-
-		...(descriptionoutplanNotificationDelete({
-			...displayOptions,
-			show: { telephonyOperation: ['outplanNotificationDelete'] },
-		}) as INodeProperties[]),
-
-		...(descriptionoutplanNotificationGet({
-			...displayOptions,
-			show: { telephonyOperation: ['outplanNotificationGet'] },
-		}) as INodeProperties[]),
-
-		...(descriptionovhPabxListGet({
-			...displayOptions,
-			show: { telephonyOperation: ['ovhPabxListGet'] },
-		}) as INodeProperties[]),
-
-		...(descriptionovhPabxGet({
-			...displayOptions,
-			show: { telephonyOperation: ['ovhPabxGet'] },
-		}) as INodeProperties[]),
-
-		...(descriptionovhPabxPut({
-			...displayOptions,
-			show: { telephonyOperation: ['ovhPabxPut'] },
-		}) as INodeProperties[]),
-
-		...(descriptionovhPabxDialplanListGet({
-			...displayOptions,
-			show: { telephonyOperation: ['ovhPabxDialplanListGet'] },
-		}) as INodeProperties[]),
-
-		...(descriptionovhPabxDialplanPost({
-			...displayOptions,
-			show: { telephonyOperation: ['ovhPabxDialplanPost'] },
-		}) as INodeProperties[]),
-
-		...(descriptionovhPabxDialplanDelete({
-			...displayOptions,
-			show: { telephonyOperation: ['ovhPabxDialplanDelete'] },
-		}) as INodeProperties[]),
-
-		...(descriptionovhPabxDialplanGet({
-			...displayOptions,
-			show: { telephonyOperation: ['ovhPabxDialplanGet'] },
-		}) as INodeProperties[]),
-
-		...(descriptionovhPabxDialplanPut({
-			...displayOptions,
-			show: { telephonyOperation: ['ovhPabxDialplanPut'] },
-		}) as INodeProperties[]),
-
-		...(descriptionovhPabxDialplanExtensionListGet({
-			...displayOptions,
-			show: { telephonyOperation: ['ovhPabxDialplanExtensionListGet'] },
-		}) as INodeProperties[]),
-
-		...(descriptionovhPabxDialplanExtensionPost({
-			...displayOptions,
-			show: { telephonyOperation: ['ovhPabxDialplanExtensionPost'] },
-		}) as INodeProperties[]),
-
-		...(descriptionovhPabxDialplanExtensionDelete({
-			...displayOptions,
-			show: { telephonyOperation: ['ovhPabxDialplanExtensionDelete'] },
-		}) as INodeProperties[]),
-
-		...(descriptionovhPabxDialplanExtensionGet({
-			...displayOptions,
-			show: { telephonyOperation: ['ovhPabxDialplanExtensionGet'] },
-		}) as INodeProperties[]),
-
-		...(descriptionovhPabxDialplanExtensionPut({
-			...displayOptions,
-			show: { telephonyOperation: ['ovhPabxDialplanExtensionPut'] },
-		}) as INodeProperties[]),
-
-		...(descriptionovhPabxDialplanExtensionConditionScreenListListGet({
-			...displayOptions,
-			show: { telephonyOperation: ['ovhPabxDialplanExtensionConditionScreenListListGet'] },
-		}) as INodeProperties[]),
-
-		...(descriptionovhPabxDialplanExtensionConditionScreenListPost({
-			...displayOptions,
-			show: { telephonyOperation: ['ovhPabxDialplanExtensionConditionScreenListPost'] },
-		}) as INodeProperties[]),
-
-		...(descriptionovhPabxDialplanExtensionConditionScreenListDelete({
-			...displayOptions,
-			show: { telephonyOperation: ['ovhPabxDialplanExtensionConditionScreenListDelete'] },
-		}) as INodeProperties[]),
-
-		...(descriptionovhPabxDialplanExtensionConditionScreenListGet({
-			...displayOptions,
-			show: { telephonyOperation: ['ovhPabxDialplanExtensionConditionScreenListGet'] },
-		}) as INodeProperties[]),
-
-		...(descriptionovhPabxDialplanExtensionConditionTimeListGet({
-			...displayOptions,
-			show: { telephonyOperation: ['ovhPabxDialplanExtensionConditionTimeListGet'] },
-		}) as INodeProperties[]),
-
-		...(descriptionovhPabxDialplanExtensionConditionTimePost({
-			...displayOptions,
-			show: { telephonyOperation: ['ovhPabxDialplanExtensionConditionTimePost'] },
-		}) as INodeProperties[]),
-
-		...(descriptionovhPabxDialplanExtensionConditionTimeDelete({
-			...displayOptions,
-			show: { telephonyOperation: ['ovhPabxDialplanExtensionConditionTimeDelete'] },
-		}) as INodeProperties[]),
-
-		...(descriptionovhPabxDialplanExtensionConditionTimeGet({
-			...displayOptions,
-			show: { telephonyOperation: ['ovhPabxDialplanExtensionConditionTimeGet'] },
-		}) as INodeProperties[]),
-
-		...(descriptionovhPabxDialplanExtensionConditionTimePut({
-			...displayOptions,
-			show: { telephonyOperation: ['ovhPabxDialplanExtensionConditionTimePut'] },
-		}) as INodeProperties[]),
-
-		...(descriptionovhPabxDialplanExtensionRuleListGet({
-			...displayOptions,
-			show: { telephonyOperation: ['ovhPabxDialplanExtensionRuleListGet'] },
-		}) as INodeProperties[]),
-
-		...(descriptionovhPabxDialplanExtensionRulePost({
-			...displayOptions,
-			show: { telephonyOperation: ['ovhPabxDialplanExtensionRulePost'] },
-		}) as INodeProperties[]),
-
-		...(descriptionovhPabxDialplanExtensionRuleDelete({
-			...displayOptions,
-			show: { telephonyOperation: ['ovhPabxDialplanExtensionRuleDelete'] },
-		}) as INodeProperties[]),
-
-		...(descriptionovhPabxDialplanExtensionRuleGet({
-			...displayOptions,
-			show: { telephonyOperation: ['ovhPabxDialplanExtensionRuleGet'] },
-		}) as INodeProperties[]),
-
-		...(descriptionovhPabxDialplanExtensionRulePut({
-			...displayOptions,
-			show: { telephonyOperation: ['ovhPabxDialplanExtensionRulePut'] },
-		}) as INodeProperties[]),
-
-		...(descriptionovhPabxHuntingListGet({
-			...displayOptions,
-			show: { telephonyOperation: ['ovhPabxHuntingListGet'] },
-		}) as INodeProperties[]),
-
-		...(descriptionovhPabxHuntingPut({
-			...displayOptions,
-			show: { telephonyOperation: ['ovhPabxHuntingPut'] },
-		}) as INodeProperties[]),
-
-		...(descriptionovhPabxHuntingAgentListGet({
-			...displayOptions,
-			show: { telephonyOperation: ['ovhPabxHuntingAgentListGet'] },
-		}) as INodeProperties[]),
-
-		...(descriptionovhPabxHuntingAgentPost({
-			...displayOptions,
-			show: { telephonyOperation: ['ovhPabxHuntingAgentPost'] },
-		}) as INodeProperties[]),
-
-		...(descriptionovhPabxHuntingAgentDelete({
-			...displayOptions,
-			show: { telephonyOperation: ['ovhPabxHuntingAgentDelete'] },
-		}) as INodeProperties[]),
-
-		...(descriptionovhPabxHuntingAgentGet({
-			...displayOptions,
-			show: { telephonyOperation: ['ovhPabxHuntingAgentGet'] },
-		}) as INodeProperties[]),
-
-		...(descriptionovhPabxHuntingAgentPut({
-			...displayOptions,
-			show: { telephonyOperation: ['ovhPabxHuntingAgentPut'] },
-		}) as INodeProperties[]),
-
-		...(descriptionovhPabxHuntingAgentBannerAccessDelete({
-			...displayOptions,
-			show: { telephonyOperation: ['ovhPabxHuntingAgentBannerAccessDelete'] },
-		}) as INodeProperties[]),
-
-		...(descriptionovhPabxHuntingAgentBannerAccessListGet({
-			...displayOptions,
-			show: { telephonyOperation: ['ovhPabxHuntingAgentBannerAccessListGet'] },
-		}) as INodeProperties[]),
-
-		...(descriptionovhPabxHuntingAgentBannerAccessPost({
-			...displayOptions,
-			show: { telephonyOperation: ['ovhPabxHuntingAgentBannerAccessPost'] },
-		}) as INodeProperties[]),
-
-		...(descriptionovhPabxHuntingAgentCallsListGet({
-			...displayOptions,
-			show: { telephonyOperation: ['ovhPabxHuntingAgentCallsListGet'] },
-		}) as INodeProperties[]),
-
-		...(descriptionovhPabxHuntingAgentCallsGet({
-			...displayOptions,
-			show: { telephonyOperation: ['ovhPabxHuntingAgentCallsGet'] },
-		}) as INodeProperties[]),
-
-		...(descriptionovhPabxHuntingAgentCallsEavesdropPost({
-			...displayOptions,
-			show: { telephonyOperation: ['ovhPabxHuntingAgentCallsEavesdropPost'] },
-		}) as INodeProperties[]),
-
-		...(descriptionovhPabxHuntingAgentCallsHangupPost({
-			...displayOptions,
-			show: { telephonyOperation: ['ovhPabxHuntingAgentCallsHangupPost'] },
-		}) as INodeProperties[]),
-
-		...(descriptionovhPabxHuntingAgentCallsHoldPost({
-			...displayOptions,
-			show: { telephonyOperation: ['ovhPabxHuntingAgentCallsHoldPost'] },
-		}) as INodeProperties[]),
-
-		...(descriptionovhPabxHuntingAgentCallsInterceptPost({
-			...displayOptions,
-			show: { telephonyOperation: ['ovhPabxHuntingAgentCallsInterceptPost'] },
-		}) as INodeProperties[]),
-
-		...(descriptionovhPabxHuntingAgentCallsTransferPost({
-			...displayOptions,
-			show: { telephonyOperation: ['ovhPabxHuntingAgentCallsTransferPost'] },
-		}) as INodeProperties[]),
-
-		...(descriptionovhPabxHuntingAgentCallsWhisperPost({
-			...displayOptions,
-			show: { telephonyOperation: ['ovhPabxHuntingAgentCallsWhisperPost'] },
-		}) as INodeProperties[]),
-
-		...(descriptionovhPabxHuntingAgentEventTokenDelete({
-			...displayOptions,
-			show: { telephonyOperation: ['ovhPabxHuntingAgentEventTokenDelete'] },
-		}) as INodeProperties[]),
-
-		...(descriptionovhPabxHuntingAgentEventTokenListGet({
-			...displayOptions,
-			show: { telephonyOperation: ['ovhPabxHuntingAgentEventTokenListGet'] },
-		}) as INodeProperties[]),
-
-		...(descriptionovhPabxHuntingAgentEventTokenPost({
-			...displayOptions,
-			show: { telephonyOperation: ['ovhPabxHuntingAgentEventTokenPost'] },
-		}) as INodeProperties[]),
-
-		...(descriptionovhPabxHuntingAgentLiveStatusListGet({
-			...displayOptions,
-			show: { telephonyOperation: ['ovhPabxHuntingAgentLiveStatusListGet'] },
-		}) as INodeProperties[]),
-
-		...(descriptionovhPabxHuntingAgentQueueListGet({
-			...displayOptions,
-			show: { telephonyOperation: ['ovhPabxHuntingAgentQueueListGet'] },
-		}) as INodeProperties[]),
-
-		...(descriptionovhPabxHuntingAgentQueuePost({
-			...displayOptions,
-			show: { telephonyOperation: ['ovhPabxHuntingAgentQueuePost'] },
-		}) as INodeProperties[]),
-
-		...(descriptionovhPabxHuntingAgentQueueDelete({
-			...displayOptions,
-			show: { telephonyOperation: ['ovhPabxHuntingAgentQueueDelete'] },
-		}) as INodeProperties[]),
-
-		...(descriptionovhPabxHuntingAgentQueueGet({
-			...displayOptions,
-			show: { telephonyOperation: ['ovhPabxHuntingAgentQueueGet'] },
-		}) as INodeProperties[]),
-
-		...(descriptionovhPabxHuntingAgentQueuePut({
-			...displayOptions,
-			show: { telephonyOperation: ['ovhPabxHuntingAgentQueuePut'] },
-		}) as INodeProperties[]),
-
-		...(descriptionovhPabxHuntingAgentQueueLiveStatusListGet({
-			...displayOptions,
-			show: { telephonyOperation: ['ovhPabxHuntingAgentQueueLiveStatusListGet'] },
-		}) as INodeProperties[]),
-
-		...(descriptionovhPabxHuntingCustomStatusListGet({
-			...displayOptions,
-			show: { telephonyOperation: ['ovhPabxHuntingCustomStatusListGet'] },
-		}) as INodeProperties[]),
-
-		...(descriptionovhPabxHuntingCustomStatusPost({
-			...displayOptions,
-			show: { telephonyOperation: ['ovhPabxHuntingCustomStatusPost'] },
-		}) as INodeProperties[]),
-
-		...(descriptionovhPabxHuntingCustomStatusDelete({
-			...displayOptions,
-			show: { telephonyOperation: ['ovhPabxHuntingCustomStatusDelete'] },
-		}) as INodeProperties[]),
-
-		...(descriptionovhPabxHuntingCustomStatusGet({
-			...displayOptions,
-			show: { telephonyOperation: ['ovhPabxHuntingCustomStatusGet'] },
-		}) as INodeProperties[]),
-
-		...(descriptionovhPabxHuntingEventTokenDelete({
-			...displayOptions,
-			show: { telephonyOperation: ['ovhPabxHuntingEventTokenDelete'] },
-		}) as INodeProperties[]),
-
-		...(descriptionovhPabxHuntingEventTokenListGet({
-			...displayOptions,
-			show: { telephonyOperation: ['ovhPabxHuntingEventTokenListGet'] },
-		}) as INodeProperties[]),
-
-		...(descriptionovhPabxHuntingEventTokenPost({
-			...displayOptions,
-			show: { telephonyOperation: ['ovhPabxHuntingEventTokenPost'] },
-		}) as INodeProperties[]),
-
-		...(descriptionovhPabxHuntingQueueListGet({
-			...displayOptions,
-			show: { telephonyOperation: ['ovhPabxHuntingQueueListGet'] },
-		}) as INodeProperties[]),
-
-		...(descriptionovhPabxHuntingQueuePost({
-			...displayOptions,
-			show: { telephonyOperation: ['ovhPabxHuntingQueuePost'] },
-		}) as INodeProperties[]),
-
-		...(descriptionovhPabxHuntingQueueDelete({
-			...displayOptions,
-			show: { telephonyOperation: ['ovhPabxHuntingQueueDelete'] },
-		}) as INodeProperties[]),
-
-		...(descriptionovhPabxHuntingQueueGet({
-			...displayOptions,
-			show: { telephonyOperation: ['ovhPabxHuntingQueueGet'] },
-		}) as INodeProperties[]),
-
-		...(descriptionovhPabxHuntingQueuePut({
-			...displayOptions,
-			show: { telephonyOperation: ['ovhPabxHuntingQueuePut'] },
-		}) as INodeProperties[]),
-
-		...(descriptionovhPabxHuntingQueueAgentListGet({
-			...displayOptions,
-			show: { telephonyOperation: ['ovhPabxHuntingQueueAgentListGet'] },
-		}) as INodeProperties[]),
-
-		...(descriptionovhPabxHuntingQueueAgentPost({
-			...displayOptions,
-			show: { telephonyOperation: ['ovhPabxHuntingQueueAgentPost'] },
-		}) as INodeProperties[]),
-
-		...(descriptionovhPabxHuntingQueueAgentDelete({
-			...displayOptions,
-			show: { telephonyOperation: ['ovhPabxHuntingQueueAgentDelete'] },
-		}) as INodeProperties[]),
-
-		...(descriptionovhPabxHuntingQueueAgentGet({
-			...displayOptions,
-			show: { telephonyOperation: ['ovhPabxHuntingQueueAgentGet'] },
-		}) as INodeProperties[]),
-
-		...(descriptionovhPabxHuntingQueueAgentPut({
-			...displayOptions,
-			show: { telephonyOperation: ['ovhPabxHuntingQueueAgentPut'] },
-		}) as INodeProperties[]),
-
-		...(descriptionovhPabxHuntingQueueAgentLiveStatusListGet({
-			...displayOptions,
-			show: { telephonyOperation: ['ovhPabxHuntingQueueAgentLiveStatusListGet'] },
-		}) as INodeProperties[]),
-
-		...(descriptionovhPabxHuntingQueueLiveCallsListGet({
-			...displayOptions,
-			show: { telephonyOperation: ['ovhPabxHuntingQueueLiveCallsListGet'] },
-		}) as INodeProperties[]),
-
-		...(descriptionovhPabxHuntingQueueLiveCallsGet({
-			...displayOptions,
-			show: { telephonyOperation: ['ovhPabxHuntingQueueLiveCallsGet'] },
-		}) as INodeProperties[]),
-
-		...(descriptionovhPabxHuntingQueueLiveCallsEavesdropPost({
-			...displayOptions,
-			show: { telephonyOperation: ['ovhPabxHuntingQueueLiveCallsEavesdropPost'] },
-		}) as INodeProperties[]),
-
-		...(descriptionovhPabxHuntingQueueLiveCallsHangupPost({
-			...displayOptions,
-			show: { telephonyOperation: ['ovhPabxHuntingQueueLiveCallsHangupPost'] },
-		}) as INodeProperties[]),
-
-		...(descriptionovhPabxHuntingQueueLiveCallsHoldPost({
-			...displayOptions,
-			show: { telephonyOperation: ['ovhPabxHuntingQueueLiveCallsHoldPost'] },
-		}) as INodeProperties[]),
-
-		...(descriptionovhPabxHuntingQueueLiveCallsInterceptPost({
-			...displayOptions,
-			show: { telephonyOperation: ['ovhPabxHuntingQueueLiveCallsInterceptPost'] },
-		}) as INodeProperties[]),
-
-		...(descriptionovhPabxHuntingQueueLiveCallsTransferPost({
-			...displayOptions,
-			show: { telephonyOperation: ['ovhPabxHuntingQueueLiveCallsTransferPost'] },
-		}) as INodeProperties[]),
-
-		...(descriptionovhPabxHuntingQueueLiveCallsWhisperPost({
-			...displayOptions,
-			show: { telephonyOperation: ['ovhPabxHuntingQueueLiveCallsWhisperPost'] },
-		}) as INodeProperties[]),
-
-		...(descriptionovhPabxHuntingQueueLiveStatisticsListGet({
-			...displayOptions,
-			show: { telephonyOperation: ['ovhPabxHuntingQueueLiveStatisticsListGet'] },
-		}) as INodeProperties[]),
-
-		...(descriptionovhPabxMenuListGet({
-			...displayOptions,
-			show: { telephonyOperation: ['ovhPabxMenuListGet'] },
-		}) as INodeProperties[]),
-
-		...(descriptionovhPabxMenuPost({
-			...displayOptions,
-			show: { telephonyOperation: ['ovhPabxMenuPost'] },
-		}) as INodeProperties[]),
-
-		...(descriptionovhPabxMenuDelete({
-			...displayOptions,
-			show: { telephonyOperation: ['ovhPabxMenuDelete'] },
-		}) as INodeProperties[]),
-
-		...(descriptionovhPabxMenuGet({
-			...displayOptions,
-			show: { telephonyOperation: ['ovhPabxMenuGet'] },
-		}) as INodeProperties[]),
-
-		...(descriptionovhPabxMenuPut({
-			...displayOptions,
-			show: { telephonyOperation: ['ovhPabxMenuPut'] },
-		}) as INodeProperties[]),
-
-		...(descriptionovhPabxMenuEntryListGet({
-			...displayOptions,
-			show: { telephonyOperation: ['ovhPabxMenuEntryListGet'] },
-		}) as INodeProperties[]),
-
-		...(descriptionovhPabxMenuEntryPost({
-			...displayOptions,
-			show: { telephonyOperation: ['ovhPabxMenuEntryPost'] },
-		}) as INodeProperties[]),
-
-		...(descriptionovhPabxMenuEntryDelete({
-			...displayOptions,
-			show: { telephonyOperation: ['ovhPabxMenuEntryDelete'] },
-		}) as INodeProperties[]),
-
-		...(descriptionovhPabxMenuEntryGet({
-			...displayOptions,
-			show: { telephonyOperation: ['ovhPabxMenuEntryGet'] },
-		}) as INodeProperties[]),
-
-		...(descriptionovhPabxMenuEntryPut({
-			...displayOptions,
-			show: { telephonyOperation: ['ovhPabxMenuEntryPut'] },
-		}) as INodeProperties[]),
-
-		...(descriptionovhPabxRecordsListGet({
-			...displayOptions,
-			show: { telephonyOperation: ['ovhPabxRecordsListGet'] },
-		}) as INodeProperties[]),
-
-		...(descriptionovhPabxRecordsDelete({
-			...displayOptions,
-			show: { telephonyOperation: ['ovhPabxRecordsDelete'] },
-		}) as INodeProperties[]),
-
-		...(descriptionovhPabxRecordsGet({
-			...displayOptions,
-			show: { telephonyOperation: ['ovhPabxRecordsGet'] },
-		}) as INodeProperties[]),
-
-		...(descriptionovhPabxSoundListGet({
-			...displayOptions,
-			show: { telephonyOperation: ['ovhPabxSoundListGet'] },
-		}) as INodeProperties[]),
-
-		...(descriptionovhPabxSoundDelete({
-			...displayOptions,
-			show: { telephonyOperation: ['ovhPabxSoundDelete'] },
-		}) as INodeProperties[]),
-
-		...(descriptionovhPabxSoundGet({
-			...displayOptions,
-			show: { telephonyOperation: ['ovhPabxSoundGet'] },
-		}) as INodeProperties[]),
-
-		...(descriptionovhPabxSoundUploadPost({
-			...displayOptions,
-			show: { telephonyOperation: ['ovhPabxSoundUploadPost'] },
-		}) as INodeProperties[]),
-
-		...(descriptionovhPabxTtsListGet({
-			...displayOptions,
-			show: { telephonyOperation: ['ovhPabxTtsListGet'] },
-		}) as INodeProperties[]),
-
-		...(descriptionovhPabxTtsPost({
-			...displayOptions,
-			show: { telephonyOperation: ['ovhPabxTtsPost'] },
-		}) as INodeProperties[]),
-
-		...(descriptionovhPabxTtsDelete({
-			...displayOptions,
-			show: { telephonyOperation: ['ovhPabxTtsDelete'] },
-		}) as INodeProperties[]),
-
-		...(descriptionovhPabxTtsGet({
-			...displayOptions,
-			show: { telephonyOperation: ['ovhPabxTtsGet'] },
-		}) as INodeProperties[]),
-
-		...(descriptionovhPabxTtsPut({
-			...displayOptions,
-			show: { telephonyOperation: ['ovhPabxTtsPut'] },
-		}) as INodeProperties[]),
-
-		...(descriptionphonebookListGet({
-			...displayOptions,
-			show: { telephonyOperation: ['phonebookListGet'] },
-		}) as INodeProperties[]),
-
-		...(descriptionphonebookPost({
-			...displayOptions,
-			show: { telephonyOperation: ['phonebookPost'] },
-		}) as INodeProperties[]),
-
-		...(descriptionphonebookDelete({
-			...displayOptions,
-			show: { telephonyOperation: ['phonebookDelete'] },
-		}) as INodeProperties[]),
-
-		...(descriptionphonebookGet({
-			...displayOptions,
-			show: { telephonyOperation: ['phonebookGet'] },
-		}) as INodeProperties[]),
-
-		...(descriptionphonebookPut({
-			...displayOptions,
-			show: { telephonyOperation: ['phonebookPut'] },
-		}) as INodeProperties[]),
-
-		...(descriptionphonebookExportListGet({
-			...displayOptions,
-			show: { telephonyOperation: ['phonebookExportListGet'] },
-		}) as INodeProperties[]),
-
-		...(descriptionphonebookImportPost({
-			...displayOptions,
-			show: { telephonyOperation: ['phonebookImportPost'] },
-		}) as INodeProperties[]),
-
-		...(descriptionphonebookPhonebookContactListGet({
-			...displayOptions,
-			show: { telephonyOperation: ['phonebookPhonebookContactListGet'] },
-		}) as INodeProperties[]),
-
-		...(descriptionphonebookPhonebookContactPost({
-			...displayOptions,
-			show: { telephonyOperation: ['phonebookPhonebookContactPost'] },
-		}) as INodeProperties[]),
-
-		...(descriptionphonebookPhonebookContactDelete({
-			...displayOptions,
-			show: { telephonyOperation: ['phonebookPhonebookContactDelete'] },
-		}) as INodeProperties[]),
-
-		...(descriptionphonebookPhonebookContactGet({
-			...displayOptions,
-			show: { telephonyOperation: ['phonebookPhonebookContactGet'] },
-		}) as INodeProperties[]),
-
-		...(descriptionphonebookPhonebookContactPut({
-			...displayOptions,
-			show: { telephonyOperation: ['phonebookPhonebookContactPut'] },
-		}) as INodeProperties[]),
-
-		...(descriptionportabilityDetailGet({
-			...displayOptions,
-			show: { telephonyOperation: ['portabilityDetailGet'] },
-		}) as INodeProperties[]),
-
-		...(descriptionportabilityCanBeCancelledListGet({
-			...displayOptions,
-			show: { telephonyOperation: ['portabilityCanBeCancelledListGet'] },
-		}) as INodeProperties[]),
-
-		...(descriptionportabilityCanBeExecutedListGet({
-			...displayOptions,
-			show: { telephonyOperation: ['portabilityCanBeExecutedListGet'] },
-		}) as INodeProperties[]),
-
-		...(descriptionportabilityCancelPost({
-			...displayOptions,
-			show: { telephonyOperation: ['portabilityCancelPost'] },
-		}) as INodeProperties[]),
-
-		...(descriptionportabilityChangeDatePost({
-			...displayOptions,
-			show: { telephonyOperation: ['portabilityChangeDatePost'] },
-		}) as INodeProperties[]),
-
-		...(descriptionportabilityDateCanBeChangedListGet({
-			...displayOptions,
-			show: { telephonyOperation: ['portabilityDateCanBeChangedListGet'] },
-		}) as INodeProperties[]),
-
-		...(descriptionportabilityDocumentListGet({
-			...displayOptions,
-			show: { telephonyOperation: ['portabilityDocumentListGet'] },
-		}) as INodeProperties[]),
-
-		...(descriptionportabilityDocumentPost({
-			...displayOptions,
-			show: { telephonyOperation: ['portabilityDocumentPost'] },
-		}) as INodeProperties[]),
-
-		...(descriptionportabilityDocumentDelete({
-			...displayOptions,
-			show: { telephonyOperation: ['portabilityDocumentDelete'] },
-		}) as INodeProperties[]),
-
-		...(descriptionportabilityDocumentGet({
-			...displayOptions,
-			show: { telephonyOperation: ['portabilityDocumentGet'] },
-		}) as INodeProperties[]),
-
-		...(descriptionportabilityDocumentPut({
-			...displayOptions,
-			show: { telephonyOperation: ['portabilityDocumentPut'] },
-		}) as INodeProperties[]),
-
-		...(descriptionportabilityExecutePost({
-			...displayOptions,
-			show: { telephonyOperation: ['portabilityExecutePost'] },
-		}) as INodeProperties[]),
-
-		...(descriptionportabilityRelaunchListGet({
-			...displayOptions,
-			show: { telephonyOperation: ['portabilityRelaunchListGet'] },
-		}) as INodeProperties[]),
-
-		...(descriptionportabilityRelaunchPost({
-			...displayOptions,
-			show: { telephonyOperation: ['portabilityRelaunchPost'] },
-		}) as INodeProperties[]),
-
-		...(descriptionportabilityStatusListGet({
-			...displayOptions,
-			show: { telephonyOperation: ['portabilityStatusListGet'] },
-		}) as INodeProperties[]),
-
-		...(descriptionredirectListGet({
-			...displayOptions,
-			show: { telephonyOperation: ['redirectListGet'] },
-		}) as INodeProperties[]),
-
-		...(descriptionredirectGet({
-			...displayOptions,
-			show: { telephonyOperation: ['redirectGet'] },
-		}) as INodeProperties[]),
-
-		...(descriptionredirectPut({
-			...displayOptions,
-			show: { telephonyOperation: ['redirectPut'] },
-		}) as INodeProperties[]),
-
-		...(descriptionredirectChangeDestinationPost({
-			...displayOptions,
-			show: { telephonyOperation: ['redirectChangeDestinationPost'] },
-		}) as INodeProperties[]),
-
-		...(descriptionrsvaListGet({
-			...displayOptions,
-			show: { telephonyOperation: ['rsvaListGet'] },
-		}) as INodeProperties[]),
-
-		...(descriptionrsvaGet({
-			...displayOptions,
-			show: { telephonyOperation: ['rsvaGet'] },
-		}) as INodeProperties[]),
-
-		...(descriptionrsvaPut({
-			...displayOptions,
-			show: { telephonyOperation: ['rsvaPut'] },
-		}) as INodeProperties[]),
-
-		...(descriptionrsvaAllowedRateCodesListGet({
-			...displayOptions,
-			show: { telephonyOperation: ['rsvaAllowedRateCodesListGet'] },
-		}) as INodeProperties[]),
-
-		...(descriptionrsvaCancelScheduledRateCodePost({
-			...displayOptions,
-			show: { telephonyOperation: ['rsvaCancelScheduledRateCodePost'] },
-		}) as INodeProperties[]),
-
-		...(descriptionrsvaCurrentRateCodeListGet({
-			...displayOptions,
-			show: { telephonyOperation: ['rsvaCurrentRateCodeListGet'] },
-		}) as INodeProperties[]),
-
-		...(descriptionrsvaScheduledRateCodeListGet({
-			...displayOptions,
-			show: { telephonyOperation: ['rsvaScheduledRateCodeListGet'] },
-		}) as INodeProperties[]),
-
-		...(descriptionrsvaScheduleRateCodePost({
-			...displayOptions,
-			show: { telephonyOperation: ['rsvaScheduleRateCodePost'] },
-		}) as INodeProperties[]),
-
-		...(descriptionschedulerListGet({
-			...displayOptions,
-			show: { telephonyOperation: ['schedulerListGet'] },
-		}) as INodeProperties[]),
-
-		...(descriptionschedulerGet({
-			...displayOptions,
-			show: { telephonyOperation: ['schedulerGet'] },
-		}) as INodeProperties[]),
-
-		...(descriptionschedulerPut({
-			...displayOptions,
-			show: { telephonyOperation: ['schedulerPut'] },
-		}) as INodeProperties[]),
-
-		...(descriptionschedulerEventsListGet({
-			...displayOptions,
-			show: { telephonyOperation: ['schedulerEventsListGet'] },
-		}) as INodeProperties[]),
-
-		...(descriptionschedulerEventsPost({
-			...displayOptions,
-			show: { telephonyOperation: ['schedulerEventsPost'] },
-		}) as INodeProperties[]),
-
-		...(descriptionschedulerEventsDelete({
-			...displayOptions,
-			show: { telephonyOperation: ['schedulerEventsDelete'] },
-		}) as INodeProperties[]),
-
-		...(descriptionschedulerEventsGet({
-			...displayOptions,
-			show: { telephonyOperation: ['schedulerEventsGet'] },
-		}) as INodeProperties[]),
-
-		...(descriptionschedulerEventsPut({
-			...displayOptions,
-			show: { telephonyOperation: ['schedulerEventsPut'] },
-		}) as INodeProperties[]),
-
-		...(descriptionschedulerImportIcsCalendarPost({
-			...displayOptions,
-			show: { telephonyOperation: ['schedulerImportIcsCalendarPost'] },
-		}) as INodeProperties[]),
-
-		...(descriptionscreenListGet({
-			...displayOptions,
-			show: { telephonyOperation: ['screenListGet'] },
-		}) as INodeProperties[]),
-
-		...(descriptionscreenGet({
-			...displayOptions,
-			show: { telephonyOperation: ['screenGet'] },
-		}) as INodeProperties[]),
-
-		...(descriptionscreenPut({
-			...displayOptions,
-			show: { telephonyOperation: ['screenPut'] },
-		}) as INodeProperties[]),
-
-		...(descriptionscreenScreenListsListGet({
-			...displayOptions,
-			show: { telephonyOperation: ['screenScreenListsListGet'] },
-		}) as INodeProperties[]),
-
-		...(descriptionscreenScreenListsPost({
-			...displayOptions,
-			show: { telephonyOperation: ['screenScreenListsPost'] },
-		}) as INodeProperties[]),
-
-		...(descriptionscreenScreenListsDelete({
-			...displayOptions,
-			show: { telephonyOperation: ['screenScreenListsDelete'] },
-		}) as INodeProperties[]),
-
-		...(descriptionscreenScreenListsGet({
-			...displayOptions,
-			show: { telephonyOperation: ['screenScreenListsGet'] },
-		}) as INodeProperties[]),
-
-		...(descriptionserviceListGet({
-			...displayOptions,
-			show: { telephonyOperation: ['serviceListGet'] },
-		}) as INodeProperties[]),
-
-		...(descriptionserviceDelete({
-			...displayOptions,
-			show: { telephonyOperation: ['serviceDelete'] },
-		}) as INodeProperties[]),
-
-		...(descriptionserviceGet({
-			...displayOptions,
-			show: { telephonyOperation: ['serviceGet'] },
-		}) as INodeProperties[]),
-
-		...(descriptionservicePut({
-			...displayOptions,
-			show: { telephonyOperation: ['servicePut'] },
-		}) as INodeProperties[]),
-
-		...(descriptionserviceCancelTerminationPost({
-			...displayOptions,
-			show: { telephonyOperation: ['serviceCancelTerminationPost'] },
-		}) as INodeProperties[]),
-
-		...(descriptionserviceChangeOfBillingAccountPost({
-			...displayOptions,
-			show: { telephonyOperation: ['serviceChangeOfBillingAccountPost'] },
-		}) as INodeProperties[]),
-
-		...(descriptionserviceDiagnosticReportsListGet({
-			...displayOptions,
-			show: { telephonyOperation: ['serviceDiagnosticReportsListGet'] },
-		}) as INodeProperties[]),
-
-		...(descriptionserviceDirectoryListGet({
-			...displayOptions,
-			show: { telephonyOperation: ['serviceDirectoryListGet'] },
-		}) as INodeProperties[]),
-
-		...(descriptionserviceDirectoryPut({
-			...displayOptions,
-			show: { telephonyOperation: ['serviceDirectoryPut'] },
-		}) as INodeProperties[]),
-
-		...(descriptionserviceDirectoryFetchEntrepriseInformationsPost({
-			...displayOptions,
-			show: { telephonyOperation: ['serviceDirectoryFetchEntrepriseInformationsPost'] },
-		}) as INodeProperties[]),
-
-		...(descriptionserviceDirectoryGetDirectoryServiceCodeListGet({
-			...displayOptions,
-			show: { telephonyOperation: ['serviceDirectoryGetDirectoryServiceCodeListGet'] },
-		}) as INodeProperties[]),
-
-		...(descriptionserviceDirectoryGetWayTypesListGet({
-			...displayOptions,
-			show: { telephonyOperation: ['serviceDirectoryGetWayTypesListGet'] },
-		}) as INodeProperties[]),
-
-		...(descriptionserviceEventTokenDelete({
-			...displayOptions,
-			show: { telephonyOperation: ['serviceEventTokenDelete'] },
-		}) as INodeProperties[]),
-
-		...(descriptionserviceEventTokenListGet({
-			...displayOptions,
-			show: { telephonyOperation: ['serviceEventTokenListGet'] },
-		}) as INodeProperties[]),
-
-		...(descriptionserviceEventTokenPost({
-			...displayOptions,
-			show: { telephonyOperation: ['serviceEventTokenPost'] },
-		}) as INodeProperties[]),
-
-		...(descriptionserviceFaxConsumptionListGet({
-			...displayOptions,
-			show: { telephonyOperation: ['serviceFaxConsumptionListGet'] },
-		}) as INodeProperties[]),
-
-		...(descriptionserviceFaxConsumptionGet({
-			...displayOptions,
-			show: { telephonyOperation: ['serviceFaxConsumptionGet'] },
-		}) as INodeProperties[]),
-
-		...(descriptionserviceOfferChangeDelete({
-			...displayOptions,
-			show: { telephonyOperation: ['serviceOfferChangeDelete'] },
-		}) as INodeProperties[]),
-
-		...(descriptionserviceOfferChangeListGet({
-			...displayOptions,
-			show: { telephonyOperation: ['serviceOfferChangeListGet'] },
-		}) as INodeProperties[]),
-
-		...(descriptionserviceOfferChangePost({
-			...displayOptions,
-			show: { telephonyOperation: ['serviceOfferChangePost'] },
-		}) as INodeProperties[]),
-
-		...(descriptionserviceOfferChangesListGet({
-			...displayOptions,
-			show: { telephonyOperation: ['serviceOfferChangesListGet'] },
-		}) as INodeProperties[]),
-
-		...(descriptionserviceOfferTaskListGet({
-			...displayOptions,
-			show: { telephonyOperation: ['serviceOfferTaskListGet'] },
-		}) as INodeProperties[]),
-
-		...(descriptionserviceOfferTaskGet({
-			...displayOptions,
-			show: { telephonyOperation: ['serviceOfferTaskGet'] },
-		}) as INodeProperties[]),
-
-		...(descriptionserviceOfferTaskPut({
-			...displayOptions,
-			show: { telephonyOperation: ['serviceOfferTaskPut'] },
-		}) as INodeProperties[]),
-
-		...(descriptionservicePreviousVoiceConsumptionListGet({
-			...displayOptions,
-			show: { telephonyOperation: ['servicePreviousVoiceConsumptionListGet'] },
-		}) as INodeProperties[]),
-
-		...(descriptionservicePreviousVoiceConsumptionGet({
-			...displayOptions,
-			show: { telephonyOperation: ['servicePreviousVoiceConsumptionGet'] },
-		}) as INodeProperties[]),
-
-		...(descriptionserviceRepaymentConsumptionListGet({
-			...displayOptions,
-			show: { telephonyOperation: ['serviceRepaymentConsumptionListGet'] },
-		}) as INodeProperties[]),
-
-		...(descriptionserviceRepaymentConsumptionGet({
-			...displayOptions,
-			show: { telephonyOperation: ['serviceRepaymentConsumptionGet'] },
-		}) as INodeProperties[]),
-
-		...(descriptionserviceTaskListGet({
-			...displayOptions,
-			show: { telephonyOperation: ['serviceTaskListGet'] },
-		}) as INodeProperties[]),
-
-		...(descriptionserviceTaskGet({
-			...displayOptions,
-			show: { telephonyOperation: ['serviceTaskGet'] },
-		}) as INodeProperties[]),
-
-		...(descriptionserviceVoiceConsumptionListGet({
-			...displayOptions,
-			show: { telephonyOperation: ['serviceVoiceConsumptionListGet'] },
-		}) as INodeProperties[]),
-
-		...(descriptionserviceVoiceConsumptionGet({
-			...displayOptions,
-			show: { telephonyOperation: ['serviceVoiceConsumptionGet'] },
-		}) as INodeProperties[]),
-
-		...(descriptionsoftphoneLogoDelete({
-			...displayOptions,
-			show: { telephonyOperation: ['softphoneLogoDelete'] },
-		}) as INodeProperties[]),
-
-		...(descriptionsoftphoneLogoListGet({
-			...displayOptions,
-			show: { telephonyOperation: ['softphoneLogoListGet'] },
-		}) as INodeProperties[]),
-
-		...(descriptionsoftphoneLogoPut({
-			...displayOptions,
-			show: { telephonyOperation: ['softphoneLogoPut'] },
-		}) as INodeProperties[]),
-
-		...(descriptionsoftphoneThemeListGet({
-			...displayOptions,
-			show: { telephonyOperation: ['softphoneThemeListGet'] },
-		}) as INodeProperties[]),
-
-		...(descriptionsoftphoneThemePut({
-			...displayOptions,
-			show: { telephonyOperation: ['softphoneThemePut'] },
-		}) as INodeProperties[]),
-
-		...(descriptiontimeConditionListGet({
-			...displayOptions,
-			show: { telephonyOperation: ['timeConditionListGet'] },
-		}) as INodeProperties[]),
-
-		...(descriptiontimeConditionGet({
-			...displayOptions,
-			show: { telephonyOperation: ['timeConditionGet'] },
-		}) as INodeProperties[]),
-
-		...(descriptiontimeConditionConditionListGet({
-			...displayOptions,
-			show: { telephonyOperation: ['timeConditionConditionListGet'] },
-		}) as INodeProperties[]),
-
-		...(descriptiontimeConditionConditionPost({
-			...displayOptions,
-			show: { telephonyOperation: ['timeConditionConditionPost'] },
-		}) as INodeProperties[]),
-
-		...(descriptiontimeConditionConditionDelete({
-			...displayOptions,
-			show: { telephonyOperation: ['timeConditionConditionDelete'] },
-		}) as INodeProperties[]),
-
-		...(descriptiontimeConditionConditionGet({
-			...displayOptions,
-			show: { telephonyOperation: ['timeConditionConditionGet'] },
-		}) as INodeProperties[]),
-
-		...(descriptiontimeConditionConditionPut({
-			...displayOptions,
-			show: { telephonyOperation: ['timeConditionConditionPut'] },
-		}) as INodeProperties[]),
-
-		...(descriptiontimeConditionOptionsListGet({
-			...displayOptions,
-			show: { telephonyOperation: ['timeConditionOptionsListGet'] },
-		}) as INodeProperties[]),
-
-		...(descriptiontimeConditionOptionsPut({
-			...displayOptions,
-			show: { telephonyOperation: ['timeConditionOptionsPut'] },
-		}) as INodeProperties[]),
-
-		...(descriptiontrunkListGet({
-			...displayOptions,
-			show: { telephonyOperation: ['trunkListGet'] },
-		}) as INodeProperties[]),
-
-		...(descriptiontrunkGet({
-			...displayOptions,
-			show: { telephonyOperation: ['trunkGet'] },
-		}) as INodeProperties[]),
-
-		...(descriptiontrunkChannelsPacksRepartitionListGet({
-			...displayOptions,
-			show: { telephonyOperation: ['trunkChannelsPacksRepartitionListGet'] },
-		}) as INodeProperties[]),
-
-		...(descriptiontrunkExternalDisplayedNumberListGet({
-			...displayOptions,
-			show: { telephonyOperation: ['trunkExternalDisplayedNumberListGet'] },
-		}) as INodeProperties[]),
-
-		...(descriptiontrunkExternalDisplayedNumberPost({
-			...displayOptions,
-			show: { telephonyOperation: ['trunkExternalDisplayedNumberPost'] },
-		}) as INodeProperties[]),
-
-		...(descriptiontrunkExternalDisplayedNumberDelete({
-			...displayOptions,
-			show: { telephonyOperation: ['trunkExternalDisplayedNumberDelete'] },
-		}) as INodeProperties[]),
-
-		...(descriptiontrunkExternalDisplayedNumberGet({
-			...displayOptions,
-			show: { telephonyOperation: ['trunkExternalDisplayedNumberGet'] },
-		}) as INodeProperties[]),
-
-		...(descriptiontrunkExternalDisplayedNumberValidatePost({
-			...displayOptions,
-			show: { telephonyOperation: ['trunkExternalDisplayedNumberValidatePost'] },
-		}) as INodeProperties[]),
-
-		...(descriptionvoicemailListGet({
-			...displayOptions,
-			show: { telephonyOperation: ['voicemailListGet'] },
-		}) as INodeProperties[]),
-
-		...(descriptionvoicemailGet({
-			...displayOptions,
-			show: { telephonyOperation: ['voicemailGet'] },
-		}) as INodeProperties[]),
-
-		...(descriptionvoicemailPut({
-			...displayOptions,
-			show: { telephonyOperation: ['voicemailPut'] },
-		}) as INodeProperties[]),
-
-		...(descriptionvoicemailDirectoriesListGet({
-			...displayOptions,
-			show: { telephonyOperation: ['voicemailDirectoriesListGet'] },
-		}) as INodeProperties[]),
-
-		...(descriptionvoicemailDirectoriesDelete({
-			...displayOptions,
-			show: { telephonyOperation: ['voicemailDirectoriesDelete'] },
-		}) as INodeProperties[]),
-
-		...(descriptionvoicemailDirectoriesGet({
-			...displayOptions,
-			show: { telephonyOperation: ['voicemailDirectoriesGet'] },
-		}) as INodeProperties[]),
-
-		...(descriptionvoicemailDirectoriesDownloadListGet({
-			...displayOptions,
-			show: { telephonyOperation: ['voicemailDirectoriesDownloadListGet'] },
-		}) as INodeProperties[]),
-
-		...(descriptionvoicemailDirectoriesMovePost({
-			...displayOptions,
-			show: { telephonyOperation: ['voicemailDirectoriesMovePost'] },
-		}) as INodeProperties[]),
-
-		...(descriptionvoicemailDirectoriesTranscriptListGet({
-			...displayOptions,
-			show: { telephonyOperation: ['voicemailDirectoriesTranscriptListGet'] },
-		}) as INodeProperties[]),
-
-		...(descriptionvoicemailGreetingsListGet({
-			...displayOptions,
-			show: { telephonyOperation: ['voicemailGreetingsListGet'] },
-		}) as INodeProperties[]),
-
-		...(descriptionvoicemailGreetingsPost({
-			...displayOptions,
-			show: { telephonyOperation: ['voicemailGreetingsPost'] },
-		}) as INodeProperties[]),
-
-		...(descriptionvoicemailGreetingsDelete({
-			...displayOptions,
-			show: { telephonyOperation: ['voicemailGreetingsDelete'] },
-		}) as INodeProperties[]),
-
-		...(descriptionvoicemailGreetingsGet({
-			...displayOptions,
-			show: { telephonyOperation: ['voicemailGreetingsGet'] },
-		}) as INodeProperties[]),
-
-		...(descriptionvoicemailGreetingsDownloadListGet({
-			...displayOptions,
-			show: { telephonyOperation: ['voicemailGreetingsDownloadListGet'] },
-		}) as INodeProperties[]),
-
-		...(descriptionvoicemailGreetingsMovePost({
-			...displayOptions,
-			show: { telephonyOperation: ['voicemailGreetingsMovePost'] },
-		}) as INodeProperties[]),
-
-		...(descriptionvoicemailMigrateOnNewVersionPost({
-			...displayOptions,
-			show: { telephonyOperation: ['voicemailMigrateOnNewVersionPost'] },
-		}) as INodeProperties[]),
-
-		...(descriptionvoicemailSettingsListGet({
-			...displayOptions,
-			show: { telephonyOperation: ['voicemailSettingsListGet'] },
-		}) as INodeProperties[]),
-
-		...(descriptionvoicemailSettingsPut({
-			...displayOptions,
-			show: { telephonyOperation: ['voicemailSettingsPut'] },
-		}) as INodeProperties[]),
-
-		...(descriptionvoicemailSettingsChangePasswordPost({
-			...displayOptions,
-			show: { telephonyOperation: ['voicemailSettingsChangePasswordPost'] },
-		}) as INodeProperties[]),
-
-		...(descriptionvoicemailSettingsChangeRoutingPost({
-			...displayOptions,
-			show: { telephonyOperation: ['voicemailSettingsChangeRoutingPost'] },
-		}) as INodeProperties[]),
-
-		...(descriptionvoicemailSettingsRoutingListGet({
-			...displayOptions,
-			show: { telephonyOperation: ['voicemailSettingsRoutingListGet'] },
-		}) as INodeProperties[]),
-
-		...(descriptionvoicemailSettingsVoicemailNumbersListGet({
-			...displayOptions,
-			show: { telephonyOperation: ['voicemailSettingsVoicemailNumbersListGet'] },
-		}) as INodeProperties[]),
-		...(descriptionnumberDetailedZonesListGet({
-			...displayOptions,
-			show: { telephonyOperation: ['numberDetailedZonesListGet'] },
-		}) as INodeProperties[]),
-		...(descriptionnumberRangesListGet({
-			...displayOptions,
-			show: { telephonyOperation: ['numberRangesListGet'] },
-		}) as INodeProperties[]),
-		...(descriptionnumberSpecificNumbersListGet({
-			...displayOptions,
-			show: { telephonyOperation: ['numberSpecificNumbersListGet'] },
-		}) as INodeProperties[]),
-		...(descriptionnumberZonesListGet({
-			...displayOptions,
-			show: { telephonyOperation: ['numberZonesListGet'] },
-		}) as INodeProperties[]),
-		...(descriptionprocedureListGet({
-			...displayOptions,
-			show: { telephonyOperation: ['procedureListGet'] },
-		}) as INodeProperties[]),
-		...(descriptionprocedurePost({
-			...displayOptions,
-			show: { telephonyOperation: ['procedurePost'] },
-		}) as INodeProperties[]),
-		...(descriptionprocedureGet({
-			...displayOptions,
-			show: { telephonyOperation: ['procedureGet'] },
-		}) as INodeProperties[]),
-		...(descriptionprocedureCancelPost({
-			...displayOptions,
-			show: { telephonyOperation: ['procedureCancelPost'] },
-		}) as INodeProperties[]),
-		...(descriptionprocedureRequiredListGet({
-			...displayOptions,
-			show: { telephonyOperation: ['procedureRequiredListGet'] },
-		}) as INodeProperties[]),
-		...(descriptionresellerPanelGeneratePasswordPost({
-			...displayOptions,
-			show: { telephonyOperation: ['resellerPanelGeneratePasswordPost'] },
-		}) as INodeProperties[]),
-		...(descriptionresellerPanelStatusListGet({
-			...displayOptions,
-			show: { telephonyOperation: ['resellerPanelStatusListGet'] },
-		}) as INodeProperties[]),
-		...(descriptionsoftphoneStoreLinksListGet({
-			...displayOptions,
-			show: { telephonyOperation: ['softphoneStoreLinksListGet'] },
-		}) as INodeProperties[]),
-		...(descriptionsoftphoneThemesListGet({
-			...displayOptions,
-			show: { telephonyOperation: ['softphoneThemesListGet'] },
-		}) as INodeProperties[]),
-		...(descriptionsoftphoneThemesGet({
-			...displayOptions,
-			show: { telephonyOperation: ['softphoneThemesGet'] },
-		}) as INodeProperties[]),
-		...(descriptionsoundsListGet({
-			...displayOptions,
-			show: { telephonyOperation: ['soundsListGet'] },
-		}) as INodeProperties[]),
-		...(descriptionsoundsPost({
-			...displayOptions,
-			show: { telephonyOperation: ['soundsPost'] },
-		}) as INodeProperties[]),
-		...(descriptionsoundsDelete({
-			...displayOptions,
-			show: { telephonyOperation: ['soundsDelete'] },
-		}) as INodeProperties[]),
-		...(descriptionsoundsGet({
-			...displayOptions,
-			show: { telephonyOperation: ['soundsGet'] },
-		}) as INodeProperties[]),
-		...(descriptionsoundsPut({
-			...displayOptions,
-			show: { telephonyOperation: ['soundsPut'] },
-		}) as INodeProperties[]),
-		...(descriptionspareListGet({
-			...displayOptions,
-			show: { telephonyOperation: ['spareListGet'] },
-		}) as INodeProperties[]),
-		...(descriptionspareDelete({
-			...displayOptions,
-			show: { telephonyOperation: ['spareDelete'] },
-		}) as INodeProperties[]),
-		...(descriptionspareGet({
-			...displayOptions,
-			show: { telephonyOperation: ['spareGet'] },
-		}) as INodeProperties[]),
-		...(descriptionspareCompatibleReplacementListGet({
-			...displayOptions,
-			show: { telephonyOperation: ['spareCompatibleReplacementListGet'] },
-		}) as INodeProperties[]),
-		...(descriptionspareReplacePost({
-			...displayOptions,
-			show: { telephonyOperation: ['spareReplacePost'] },
-		}) as INodeProperties[]),
-		...(descriptionspareServiceInfosListGet({
-			...displayOptions,
-			show: { telephonyOperation: ['spareServiceInfosListGet'] },
-		}) as INodeProperties[]),
-		...(descriptionspareServiceInfosPut({
-			...displayOptions,
-			show: { telephonyOperation: ['spareServiceInfosPut'] },
-		}) as INodeProperties[]),
-		...(descriptionspareBrandsListGet({
-			...displayOptions,
-			show: { telephonyOperation: ['spareBrandsListGet'] },
-		}) as INodeProperties[]),
-	];
-
-	return properties;
-}
-
-export async function execute(
-	this: IExecuteFunctions,
-	itemIndex?: number,
-): Promise<INodeExecutionData[]> {
-	const operation = this.getNodeParameter('telephonyOperation', itemIndex ?? 0, {
-		extractValue: true,
-	});
-
-	switch (operation) {
-		case 'aliasListGet':
-			return executeAliasListGet.call(this, itemIndex ?? 0);
-		case 'aliasGet':
-			return executeAliasGet.call(this, itemIndex ?? 0);
-		case 'aliasChangeContactPost':
-			return executeAliasChangeContactPost.call(this, itemIndex ?? 0);
-		case 'aliasServiceInfosGet':
-			return executeAliasServiceInfosGet.call(this, itemIndex ?? 0);
-		case 'aliasServiceInfosPut':
-			return executeAliasServiceInfosPut.call(this, itemIndex ?? 0);
-		case 'linesListGet':
-			return executeLinesListGet.call(this, itemIndex ?? 0);
-		case 'linesGet':
-			return executeLinesGet.call(this, itemIndex ?? 0);
-		case 'linesChangeContactPost':
-			return executeLinesChangeContactPost.call(this, itemIndex ?? 0);
-		case 'linesServiceInfosGet':
-			return executeLinesServiceInfosGet.call(this, itemIndex ?? 0);
-		case 'linesServiceInfosPut':
-			return executeLinesServiceInfosPut.call(this, itemIndex ?? 0);
-		case 'linesHardwareListGet':
-			return executeLinesHardwareListGet.call(this, itemIndex ?? 0);
-		case 'linesHardwarePost':
-			return executeLinesHardwarePost.call(this, itemIndex ?? 0);
-		case 'linesNumberListGet':
-			return executeLinesNumberListGet.call(this, itemIndex ?? 0);
-		case 'linesNumberPost':
-			return executeLinesNumberPost.call(this, itemIndex ?? 0);
-		case 'linesNumberGet':
-			return executeLinesNumberGet.call(this, itemIndex ?? 0);
-		case 'linesNumberPut':
-			return executeLinesNumberPut.call(this, itemIndex ?? 0);
-		case 'linesNumberDelete':
-			return executeLinesNumberDelete.call(this, itemIndex ?? 0);
-		case 'linesPortabilityListGet':
-			return executeLinesPortabilityListGet.call(this, itemIndex ?? 0);
-		case 'linesPortabilityPost':
-			return executeLinesPortabilityPost.call(this, itemIndex ?? 0);
-		case 'linesPortabilityGet':
-			return executeLinesPortabilityGet.call(this, itemIndex ?? 0);
-		case 'linesPortabilityPut':
-			return executeLinesPortabilityPut.call(this, itemIndex ?? 0);
-		case 'linesPortabilityDelete':
-			return executeLinesPortabilityDelete.call(this, itemIndex ?? 0);
-		case 'linesSimListGet':
-			return executeLinesSimListGet.call(this, itemIndex ?? 0);
-		case 'linesSimPost':
-			return executeLinesSimPost.call(this, itemIndex ?? 0);
-		case 'linesSimGet':
-			return executeLinesSimGet.call(this, itemIndex ?? 0);
-		case 'linesSimPut':
-			return executeLinesSimPut.call(this, itemIndex ?? 0);
-		case 'linesSimDelete':
-			return executeLinesSimDelete.call(this, itemIndex ?? 0);
-		case 'trunksListGet':
-			return executeTrunksListGet.call(this, itemIndex ?? 0);
-		case 'trunksGet':
-			return executeTrunksGet.call(this, itemIndex ?? 0);
-		case 'trunksChangeContactPost':
-			return executeTrunksChangeContactPost.call(this, itemIndex ?? 0);
-		case 'trunksServiceInfosGet':
-			return executeTrunksServiceInfosGet.call(this, itemIndex ?? 0);
-		case 'trunksServiceInfosPut':
-			return executeTrunksServiceInfosPut.call(this, itemIndex ?? 0);
-		case 'trunksHardwareListGet':
-			return executeTrunksHardwareListGet.call(this, itemIndex ?? 0);
-		case 'trunksHardwarePost':
-			return executeTrunksHardwarePost.call(this, itemIndex ?? 0);
-		case 'trunksNumberListGet':
-			return executeTrunksNumberListGet.call(this, itemIndex ?? 0);
-		case 'trunksNumberPost':
-			return executeTrunksNumberPost.call(this, itemIndex ?? 0);
-		case 'trunksNumberGet':
-			return executeTrunksNumberGet.call(this, itemIndex ?? 0);
-		case 'trunksNumberPut':
-			return executeTrunksNumberPut.call(this, itemIndex ?? 0);
-		case 'trunksNumberDelete':
-			return executeTrunksNumberDelete.call(this, itemIndex ?? 0);
-		case 'numbersListGet':
-			return executeNumbersListGet.call(this, itemIndex ?? 0);
-		case 'numbersGet':
-			return executeNumbersGet.call(this, itemIndex ?? 0);
-		case 'numbersPost':
-			return executeNumbersPost.call(this, itemIndex ?? 0);
-		case 'numbersPut':
-			return executeNumbersPut.call(this, itemIndex ?? 0);
-		case 'numbersDelete':
-			return executeNumbersDelete.call(this, itemIndex ?? 0);
-		case 'numbersPortabilityListGet':
-			return executeNumbersPortabilityListGet.call(this, itemIndex ?? 0);
-		case 'numbersPortabilityPost':
-			return executeNumbersPortabilityPost.call(this, itemIndex ?? 0);
-		case 'numbersPortabilityGet':
-			return executeNumbersPortabilityGet.call(this, itemIndex ?? 0);
-		case 'numbersPortabilityPut':
-			return executeNumbersPortabilityPut.call(this, itemIndex ?? 0);
-		case 'numbersPortabilityDelete':
-			return executeNumbersPortabilityDelete.call(this, itemIndex ?? 0);
-		case 'accessoriesGet':
-			return executeAccessoriesGet.call(this, itemIndex ?? 0);
-		case 'lineOffersGet':
-			return executeLineOffersGet.call(this, itemIndex ?? 0);
-		case 'lineOfferPhonesGet':
-			return executeLineOfferPhonesGet.call(this, itemIndex ?? 0);
-		case 'faxOffersGet':
-			return executeFaxOffersGet.call(this, itemIndex ?? 0);
-		case 'lineOfferDetailsGet':
-			return executeLineOfferDetailsGet.call(this, itemIndex ?? 0);
-		case 'directoriesCitiesGet':
-			return executeDirectoriesCitiesGet.call(this, itemIndex ?? 0);
-		case 'directoriesAvailableZipCodesGet':
-			return executeDirectoriesAvailableZipCodesGet.call(this, itemIndex ?? 0);
-		case 'directoriesServicesGet':
-			return executeDirectoriesServicesGet.call(this, itemIndex ?? 0);
-		case 'directoriesCountriesGet':
-			return executeDirectoriesCountriesGet.call(this, itemIndex ?? 0);
-		case 'telephonyListGet':
-			return executeTelephonyListGet.call(this, itemIndex ?? 0);
-		case 'sipDomainsGet':
-			return executeSipDomainsGet.call(this, itemIndex ?? 0);
-		case 'currentOrderIdsGet':
-			return executeCurrentOrderIdsGet.call(this, itemIndex ?? 0);
-		case 'searchServicesGet':
-			return executeSearchServicesGet.call(this, itemIndex ?? 0);
-		case 'setDefaultSipDomainPost':
-			return executeSetDefaultSipDomainPost.call(this, itemIndex ?? 0);
-
-		case 'abbreviatedNumberDelete':
-			return executeabbreviatedNumberDelete.call(this, itemIndex ?? 0);
-		case 'abbreviatedNumberGet':
-			return executeabbreviatedNumberGet.call(this, itemIndex ?? 0);
-		case 'abbreviatedNumberListGet':
-			return executeabbreviatedNumberListGet.call(this, itemIndex ?? 0);
-		case 'abbreviatedNumberPost':
-			return executeabbreviatedNumberPost.call(this, itemIndex ?? 0);
-		case 'abbreviatedNumberPut':
-			return executeabbreviatedNumberPut.call(this, itemIndex ?? 0);
-		case 'allowedCreditThresholdGet':
-			return executeallowedCreditThresholdGet.call(this, itemIndex ?? 0);
-		case 'amountSecurityDepositGet':
-			return executeamountSecurityDepositGet.call(this, itemIndex ?? 0);
-		case 'billingAccountDelete':
-			return executebillingAccountDelete.call(this, itemIndex ?? 0);
-		case 'billingAccountGet':
-			return executebillingAccountGet.call(this, itemIndex ?? 0);
-		case 'billingAccountPut':
-			return executebillingAccountPut.call(this, itemIndex ?? 0);
-		case 'billingAccountSiteGet':
-			return executebillingAccountSiteGet.call(this, itemIndex ?? 0);
-		case 'billingAccountSitePost':
-			return executebillingAccountSitePost.call(this, itemIndex ?? 0);
-		case 'canTransferSecurityDepositPost':
-			return executecanTransferSecurityDepositPost.call(this, itemIndex ?? 0);
-		case 'cancelTerminationPost':
-			return executecancelTerminationPost.call(this, itemIndex ?? 0);
-		case 'carrierSipCdrsListGet':
-			return executecarrierSipCdrsListGet.call(this, itemIndex ?? 0);
-		case 'carrierSipClusterDetailsListGet':
-			return executecarrierSipClusterDetailsListGet.call(this, itemIndex ?? 0);
-		case 'carrierSipEndpointsGet':
-			return executecarrierSipEndpointsGet.call(this, itemIndex ?? 0);
-		case 'carrierSipEndpointsListGet':
-			return executecarrierSipEndpointsListGet.call(this, itemIndex ?? 0);
-		case 'carrierSipGet':
-			return executecarrierSipGet.call(this, itemIndex ?? 0);
-		case 'carrierSipListGet':
-			return executecarrierSipListGet.call(this, itemIndex ?? 0);
-		case 'carrierSipSettingsListGet':
-			return executecarrierSipSettingsListGet.call(this, itemIndex ?? 0);
-		case 'carrierSipSettingsPut':
-			return executecarrierSipSettingsPut.call(this, itemIndex ?? 0);
-		case 'carrierSipVnoGet':
-			return executecarrierSipVnoGet.call(this, itemIndex ?? 0);
-		case 'carrierSipVnoListGet':
-			return executecarrierSipVnoListGet.call(this, itemIndex ?? 0);
-		case 'carrierSipVnoRangesGet':
-			return executecarrierSipVnoRangesGet.call(this, itemIndex ?? 0);
-		case 'carrierSipVnoRangesListGet':
-			return executecarrierSipVnoRangesListGet.call(this, itemIndex ?? 0);
-		case 'carrierSipVnoRangesPut':
-			return executecarrierSipVnoRangesPut.call(this, itemIndex ?? 0);
-		case 'changeContactPost':
-			return executechangeContactPost.call(this, itemIndex ?? 0);
-		case 'faxCampaignsDelete':
-			return executefaxCampaignsDelete.call(this, itemIndex ?? 0);
-		case 'faxCampaignsDetailListGet':
-			return executefaxCampaignsDetailListGet.call(this, itemIndex ?? 0);
-		case 'faxCampaignsGet':
-			return executefaxCampaignsGet.call(this, itemIndex ?? 0);
-		case 'faxCampaignsListGet':
-			return executefaxCampaignsListGet.call(this, itemIndex ?? 0);
-		case 'faxCampaignsPost':
-			return executefaxCampaignsPost.call(this, itemIndex ?? 0);
-		case 'faxCampaignsStartPost':
-			return executefaxCampaignsStartPost.call(this, itemIndex ?? 0);
-		case 'faxCampaignsStopPost':
-			return executefaxCampaignsStopPost.call(this, itemIndex ?? 0);
-		case 'faxGet':
-			return executefaxGet.call(this, itemIndex ?? 0);
-		case 'faxListGet':
-			return executefaxListGet.call(this, itemIndex ?? 0);
-		case 'faxPut':
-			return executefaxPut.call(this, itemIndex ?? 0);
-		case 'faxScreenListsDelete':
-			return executefaxScreenListsDelete.call(this, itemIndex ?? 0);
-		case 'faxScreenListsListGet':
-			return executefaxScreenListsListGet.call(this, itemIndex ?? 0);
-		case 'faxScreenListsPost':
-			return executefaxScreenListsPost.call(this, itemIndex ?? 0);
-		case 'faxScreenListsPut':
-			return executefaxScreenListsPut.call(this, itemIndex ?? 0);
-		case 'faxScreenListsResetPost':
-			return executefaxScreenListsResetPost.call(this, itemIndex ?? 0);
-		case 'faxSettingsChangePasswordPost':
-			return executefaxSettingsChangePasswordPost.call(this, itemIndex ?? 0);
-		case 'faxSettingsListGet':
-			return executefaxSettingsListGet.call(this, itemIndex ?? 0);
-		case 'faxSettingsPut':
-			return executefaxSettingsPut.call(this, itemIndex ?? 0);
-		case 'faxSettingsSendFaxPost':
-			return executefaxSettingsSendFaxPost.call(this, itemIndex ?? 0);
-		case 'lineAbbreviatedNumberDelete':
-			return executelineAbbreviatedNumberDelete.call(this, itemIndex ?? 0);
-		case 'lineAbbreviatedNumberGet':
-			return executelineAbbreviatedNumberGet.call(this, itemIndex ?? 0);
-		case 'lineAbbreviatedNumberListGet':
-			return executelineAbbreviatedNumberListGet.call(this, itemIndex ?? 0);
-		case 'lineAbbreviatedNumberPost':
-			return executelineAbbreviatedNumberPost.call(this, itemIndex ?? 0);
-		case 'lineAbbreviatedNumberPut':
-			return executelineAbbreviatedNumberPut.call(this, itemIndex ?? 0);
-		case 'lineActivateNewPhoneListGet':
-			return executelineActivateNewPhoneListGet.call(this, itemIndex ?? 0);
-		case 'lineActivateNewPhonePost':
-			return executelineActivateNewPhonePost.call(this, itemIndex ?? 0);
-		case 'lineAntihackListGet':
-			return executelineAntihackListGet.call(this, itemIndex ?? 0);
-		case 'lineAntihackPost':
-			return executelineAntihackPost.call(this, itemIndex ?? 0);
-		case 'lineAssociateDevicePost':
-			return executelineAssociateDevicePost.call(this, itemIndex ?? 0);
-		case 'lineAutomaticCallGet':
-			return executelineAutomaticCallGet.call(this, itemIndex ?? 0);
-		case 'lineAutomaticCallListGet':
-			return executelineAutomaticCallListGet.call(this, itemIndex ?? 0);
-		case 'lineAutomaticCallPost':
-			return executelineAutomaticCallPost.call(this, itemIndex ?? 0);
-		case 'lineAvailableSipDomainsListGet':
-			return executelineAvailableSipDomainsListGet.call(this, itemIndex ?? 0);
-		case 'lineBlockPost':
-			return executelineBlockPost.call(this, itemIndex ?? 0);
-		case 'lineCallsEavesdropPost':
-			return executelineCallsEavesdropPost.call(this, itemIndex ?? 0);
-		case 'lineCallsGet':
-			return executelineCallsGet.call(this, itemIndex ?? 0);
-		case 'lineCallsHangupPost':
-			return executelineCallsHangupPost.call(this, itemIndex ?? 0);
-		case 'lineCallsHoldPost':
-			return executelineCallsHoldPost.call(this, itemIndex ?? 0);
-		case 'lineCallsInterceptPost':
-			return executelineCallsInterceptPost.call(this, itemIndex ?? 0);
-		case 'lineCallsListGet':
-			return executelineCallsListGet.call(this, itemIndex ?? 0);
-		case 'lineCallsTransferPost':
-			return executelineCallsTransferPost.call(this, itemIndex ?? 0);
-		case 'lineCallsWhisperPost':
-			return executelineCallsWhisperPost.call(this, itemIndex ?? 0);
-		case 'lineCanChangePasswordListGet':
-			return executelineCanChangePasswordListGet.call(this, itemIndex ?? 0);
-		case 'lineCancelConvertToNumberPost':
-			return executelineCancelConvertToNumberPost.call(this, itemIndex ?? 0);
-		case 'lineChangePasswordPost':
-			return executelineChangePasswordPost.call(this, itemIndex ?? 0);
-		case 'lineClick2CallPost':
-			return executelineClick2CallPost.call(this, itemIndex ?? 0);
-		case 'lineClick2CallUserChangePasswordPost':
-			return executelineClick2CallUserChangePasswordPost.call(this, itemIndex ?? 0);
-		case 'lineClick2CallUserClick2CallPost':
-			return executelineClick2CallUserClick2CallPost.call(this, itemIndex ?? 0);
-		case 'lineClick2CallUserDelete':
-			return executelineClick2CallUserDelete.call(this, itemIndex ?? 0);
-		case 'lineClick2CallUserGet':
-			return executelineClick2CallUserGet.call(this, itemIndex ?? 0);
-		case 'lineClick2CallUserListGet':
-			return executelineClick2CallUserListGet.call(this, itemIndex ?? 0);
-		case 'lineClick2CallUserPost':
-			return executelineClick2CallUserPost.call(this, itemIndex ?? 0);
-		case 'lineConvertToNumberPost':
-			return executelineConvertToNumberPost.call(this, itemIndex ?? 0);
-		case 'lineDissociateDevicePost':
-			return executelineDissociateDevicePost.call(this, itemIndex ?? 0);
-		case 'lineGet':
-			return executelineGet.call(this, itemIndex ?? 0);
-		case 'lineIpsListGet':
-			return executelineIpsListGet.call(this, itemIndex ?? 0);
-		case 'lineLastRegistrationsListGet':
-			return executelineLastRegistrationsListGet.call(this, itemIndex ?? 0);
-		case 'lineListAssociablePhonesListGet':
-			return executelineListAssociablePhonesListGet.call(this, itemIndex ?? 0);
-		case 'lineListGet':
-			return executelineListGet.call(this, itemIndex ?? 0);
-		case 'lineMaximumAvailableSimultaneousLinesListGet':
-			return executelineMaximumAvailableSimultaneousLinesListGet.call(this, itemIndex ?? 0);
-		case 'lineOfferListGet':
-			return executelineOfferListGet.call(this, itemIndex ?? 0);
-		case 'lineOptionsAvailableCodecsListGet':
-			return executelineOptionsAvailableCodecsListGet.call(this, itemIndex ?? 0);
-		case 'lineOptionsDefaultCodecsListGet':
-			return executelineOptionsDefaultCodecsListGet.call(this, itemIndex ?? 0);
-		case 'lineOptionsListGet':
-			return executelineOptionsListGet.call(this, itemIndex ?? 0);
-		case 'lineOptionsPut':
-			return executelineOptionsPut.call(this, itemIndex ?? 0);
-		case 'linePhoneAdminCredentialsListGet':
-			return executelinePhoneAdminCredentialsListGet.call(this, itemIndex ?? 0);
-		case 'linePhoneCanBeAssociableListGet':
-			return executelinePhoneCanBeAssociableListGet.call(this, itemIndex ?? 0);
-		case 'linePhoneChangePhoneConfigurationPost':
-			return executelinePhoneChangePhoneConfigurationPost.call(this, itemIndex ?? 0);
-		case 'linePhoneFunctionKeyAvailableFunctionListGet':
-			return executelinePhoneFunctionKeyAvailableFunctionListGet.call(this, itemIndex ?? 0);
-		case 'linePhoneFunctionKeyGet':
-			return executelinePhoneFunctionKeyGet.call(this, itemIndex ?? 0);
-		case 'linePhoneFunctionKeyListGet':
-			return executelinePhoneFunctionKeyListGet.call(this, itemIndex ?? 0);
-		case 'linePhoneFunctionKeyPut':
-			return executelinePhoneFunctionKeyPut.call(this, itemIndex ?? 0);
-		case 'linePhoneListGet':
-			return executelinePhoneListGet.call(this, itemIndex ?? 0);
-		case 'linePhoneMerchandiseAvailableListGet':
-			return executelinePhoneMerchandiseAvailableListGet.call(this, itemIndex ?? 0);
-		case 'linePhonePhonebookDelete':
-			return executelinePhonePhonebookDelete.call(this, itemIndex ?? 0);
-		case 'linePhonePhonebookExportListGet':
-			return executelinePhonePhonebookExportListGet.call(this, itemIndex ?? 0);
-		case 'linePhonePhonebookGet':
-			return executelinePhonePhonebookGet.call(this, itemIndex ?? 0);
-		case 'linePhonePhonebookImportPost':
-			return executelinePhonePhonebookImportPost.call(this, itemIndex ?? 0);
-		case 'linePhonePhonebookListGet':
-			return executelinePhonePhonebookListGet.call(this, itemIndex ?? 0);
-		case 'linePhonePhonebookPhonebookContactDelete':
-			return executelinePhonePhonebookPhonebookContactDelete.call(this, itemIndex ?? 0);
-		case 'linePhonePhonebookPhonebookContactGet':
-			return executelinePhonePhonebookPhonebookContactGet.call(this, itemIndex ?? 0);
-		case 'linePhonePhonebookPhonebookContactListGet':
-			return executelinePhonePhonebookPhonebookContactListGet.call(this, itemIndex ?? 0);
-		case 'linePhonePhonebookPhonebookContactPost':
-			return executelinePhonePhonebookPhonebookContactPost.call(this, itemIndex ?? 0);
-		case 'linePhonePhonebookPhonebookContactPut':
-			return executelinePhonePhonebookPhonebookContactPut.call(this, itemIndex ?? 0);
-		case 'linePhonePhonebookPost':
-			return executelinePhonePhonebookPost.call(this, itemIndex ?? 0);
-		case 'linePhonePhonebookPut':
-			return executelinePhonePhonebookPut.call(this, itemIndex ?? 0);
-		case 'linePhonePut':
-			return executelinePhonePut.call(this, itemIndex ?? 0);
-		case 'linePhoneRebootPost':
-			return executelinePhoneRebootPost.call(this, itemIndex ?? 0);
-		case 'linePhoneRefreshScreenPost':
-			return executelinePhoneRefreshScreenPost.call(this, itemIndex ?? 0);
-		case 'linePhoneResetConfigPost':
-			return executelinePhoneResetConfigPost.call(this, itemIndex ?? 0);
-		case 'linePhoneRmaChangeTypePost':
-			return executelinePhoneRmaChangeTypePost.call(this, itemIndex ?? 0);
-		case 'linePhoneRmaDelete':
-			return executelinePhoneRmaDelete.call(this, itemIndex ?? 0);
-		case 'linePhoneRmaGet':
-			return executelinePhoneRmaGet.call(this, itemIndex ?? 0);
-		case 'linePhoneRmaListGet':
-			return executelinePhoneRmaListGet.call(this, itemIndex ?? 0);
-		case 'linePhoneRmaPost':
-			return executelinePhoneRmaPost.call(this, itemIndex ?? 0);
-		case 'linePhoneRmaPut':
-			return executelinePhoneRmaPut.call(this, itemIndex ?? 0);
-		case 'linePhoneSupportsPhonebookListGet':
-			return executelinePhoneSupportsPhonebookListGet.call(this, itemIndex ?? 0);
-		case 'linePut':
-			return executelinePut.call(this, itemIndex ?? 0);
-		case 'lineRecordsDelete':
-			return executelineRecordsDelete.call(this, itemIndex ?? 0);
-		case 'lineRecordsGet':
-			return executelineRecordsGet.call(this, itemIndex ?? 0);
-		case 'lineRecordsListGet':
-			return executelineRecordsListGet.call(this, itemIndex ?? 0);
-		case 'lineRemoveSimultaneousLinesPost':
-			return executelineRemoveSimultaneousLinesPost.call(this, itemIndex ?? 0);
-		case 'lineSimultaneousChannelsDetailsListGet':
-			return executelineSimultaneousChannelsDetailsListGet.call(this, itemIndex ?? 0);
-		case 'lineSoftphoneBetaListGet':
-			return executelineSoftphoneBetaListGet.call(this, itemIndex ?? 0);
-		case 'lineSoftphoneBetaPut':
-			return executelineSoftphoneBetaPut.call(this, itemIndex ?? 0);
-		case 'lineSoftphoneDevicesDelete':
-			return executelineSoftphoneDevicesDelete.call(this, itemIndex ?? 0);
-		case 'lineSoftphoneDevicesDisconnectPost':
-			return executelineSoftphoneDevicesDisconnectPost.call(this, itemIndex ?? 0);
-		case 'lineSoftphoneDevicesListGet':
-			return executelineSoftphoneDevicesListGet.call(this, itemIndex ?? 0);
-		case 'lineSoftphoneLogoDelete':
-			return executelineSoftphoneLogoDelete.call(this, itemIndex ?? 0);
-		case 'lineSoftphoneLogoListGet':
-			return executelineSoftphoneLogoListGet.call(this, itemIndex ?? 0);
-		case 'lineSoftphoneLogoPut':
-			return executelineSoftphoneLogoPut.call(this, itemIndex ?? 0);
-		case 'lineSoftphoneStatusListGet':
-			return executelineSoftphoneStatusListGet.call(this, itemIndex ?? 0);
-		case 'lineSoftphoneThemeDelete':
-			return executelineSoftphoneThemeDelete.call(this, itemIndex ?? 0);
-		case 'lineSoftphoneThemeListGet':
-			return executelineSoftphoneThemeListGet.call(this, itemIndex ?? 0);
-		case 'lineSoftphoneThemePut':
-			return executelineSoftphoneThemePut.call(this, itemIndex ?? 0);
-		case 'lineSoftphoneTokenPost':
-			return executelineSoftphoneTokenPost.call(this, itemIndex ?? 0);
-		case 'lineStatisticsListGet':
-			return executelineStatisticsListGet.call(this, itemIndex ?? 0);
-		case 'lineTonesListGet':
-			return executelineTonesListGet.call(this, itemIndex ?? 0);
-		case 'lineTonesPut':
-			return executelineTonesPut.call(this, itemIndex ?? 0);
-		case 'lineTonesToneUploadPost':
-			return executelineTonesToneUploadPost.call(this, itemIndex ?? 0);
-		case 'lineTrafficExtractsDelete':
-			return executelineTrafficExtractsDelete.call(this, itemIndex ?? 0);
-		case 'lineTrafficExtractsGet':
-			return executelineTrafficExtractsGet.call(this, itemIndex ?? 0);
-		case 'lineTrafficExtractsListGet':
-			return executelineTrafficExtractsListGet.call(this, itemIndex ?? 0);
-		case 'lineTrafficExtractsPost':
-			return executelineTrafficExtractsPost.call(this, itemIndex ?? 0);
-		case 'lineUnblockPost':
-			return executelineUnblockPost.call(this, itemIndex ?? 0);
-		case 'numberCancelConvertToLinePost':
-			return executenumberCancelConvertToLinePost.call(this, itemIndex ?? 0);
-		case 'numberChangeFeatureTypePost':
-			return executenumberChangeFeatureTypePost.call(this, itemIndex ?? 0);
-		case 'numberConvertToLineAvailableOffersListGet':
-			return executenumberConvertToLineAvailableOffersListGet.call(this, itemIndex ?? 0);
-		case 'numberConvertToLinePost':
-			return executenumberConvertToLinePost.call(this, itemIndex ?? 0);
-		case 'numberGet':
-			return executenumberGet.call(this, itemIndex ?? 0);
-		case 'numberListGet':
-			return executenumberListGet.call(this, itemIndex ?? 0);
-		case 'numberPut':
-			return executenumberPut.call(this, itemIndex ?? 0);
-		case 'portabilityGet':
-			return executeportabilityGet.call(this, itemIndex ?? 0);
-		case 'serviceInfosListGet':
-			return executeserviceInfosListGet.call(this, itemIndex ?? 0);
-		case 'serviceInfosPut':
-			return executeserviceInfosPut.call(this, itemIndex ?? 0);
-		case 'taskGet':
-			return executetaskGet.call(this, itemIndex ?? 0);
-		case 'taskListGet':
-			return executetaskListGet.call(this, itemIndex ?? 0);
-		case 'transferSecurityDepositPost':
-			return executetransferSecurityDepositPost.call(this, itemIndex ?? 0);
-		case 'vxmlGet':
-			return executevxmlGet.call(this, itemIndex ?? 0);
-		case 'vxmlListGet':
-			return executevxmlListGet.call(this, itemIndex ?? 0);
-		case 'vxmlSettingsListGet':
-			return executevxmlSettingsListGet.call(this, itemIndex ?? 0);
-		case 'vxmlSettingsLogsPost':
-			return executevxmlSettingsLogsPost.call(this, itemIndex ?? 0);
-		case 'vxmlSettingsPut':
-			return executevxmlSettingsPut.call(this, itemIndex ?? 0);
-
-		case 'conferenceListGet':
-			return executeconferenceListGet.call(this, itemIndex ?? 0);
-
-		case 'conferenceGet':
-			return executeconferenceGet.call(this, itemIndex ?? 0);
-
-		case 'conferenceAnnounceUploadPost':
-			return executeconferenceAnnounceUploadPost.call(this, itemIndex ?? 0);
-
-		case 'conferenceHistoriesListGet':
-			return executeconferenceHistoriesListGet.call(this, itemIndex ?? 0);
-
-		case 'conferenceHistoriesGet':
-			return executeconferenceHistoriesGet.call(this, itemIndex ?? 0);
-
-		case 'conferenceInformationsListGet':
-			return executeconferenceInformationsListGet.call(this, itemIndex ?? 0);
-
-		case 'conferenceLockPost':
-			return executeconferenceLockPost.call(this, itemIndex ?? 0);
-
-		case 'conferenceParticipantsListGet':
-			return executeconferenceParticipantsListGet.call(this, itemIndex ?? 0);
-
-		case 'conferenceParticipantsGet':
-			return executeconferenceParticipantsGet.call(this, itemIndex ?? 0);
-
-		case 'conferenceParticipantsDeafPost':
-			return executeconferenceParticipantsDeafPost.call(this, itemIndex ?? 0);
-
-		case 'conferenceParticipantsEnergyPost':
-			return executeconferenceParticipantsEnergyPost.call(this, itemIndex ?? 0);
-
-		case 'conferenceParticipantsKickPost':
-			return executeconferenceParticipantsKickPost.call(this, itemIndex ?? 0);
-
-		case 'conferenceParticipantsMutePost':
-			return executeconferenceParticipantsMutePost.call(this, itemIndex ?? 0);
-
-		case 'conferenceParticipantsUndeafPost':
-			return executeconferenceParticipantsUndeafPost.call(this, itemIndex ?? 0);
-
-		case 'conferenceParticipantsUnmutePost':
-			return executeconferenceParticipantsUnmutePost.call(this, itemIndex ?? 0);
-
-		case 'conferenceRoomsListGet':
-			return executeconferenceRoomsListGet.call(this, itemIndex ?? 0);
-
-		case 'conferenceRoomsPost':
-			return executeconferenceRoomsPost.call(this, itemIndex ?? 0);
-
-		case 'conferenceRoomsGet':
-			return executeconferenceRoomsGet.call(this, itemIndex ?? 0);
-
-		case 'conferenceRoomsPut':
-			return executeconferenceRoomsPut.call(this, itemIndex ?? 0);
-
-		case 'conferenceRoomsHistoriesListGet':
-			return executeconferenceRoomsHistoriesListGet.call(this, itemIndex ?? 0);
-
-		case 'conferenceRoomsHistoriesGet':
-			return executeconferenceRoomsHistoriesGet.call(this, itemIndex ?? 0);
-
-		case 'conferenceRoomsLockPost':
-			return executeconferenceRoomsLockPost.call(this, itemIndex ?? 0);
-
-		case 'conferenceRoomsParticipantsListGet':
-			return executeconferenceRoomsParticipantsListGet.call(this, itemIndex ?? 0);
-
-		case 'conferenceRoomsParticipantsGet':
-			return executeconferenceRoomsParticipantsGet.call(this, itemIndex ?? 0);
-
-		case 'conferenceRoomsParticipantsDeafPost':
-			return executeconferenceRoomsParticipantsDeafPost.call(this, itemIndex ?? 0);
-
-		case 'conferenceRoomsParticipantsEnergyPost':
-			return executeconferenceRoomsParticipantsEnergyPost.call(this, itemIndex ?? 0);
-
-		case 'conferenceRoomsParticipantsKickPost':
-			return executeconferenceRoomsParticipantsKickPost.call(this, itemIndex ?? 0);
-
-		case 'conferenceRoomsParticipantsMutePost':
-			return executeconferenceRoomsParticipantsMutePost.call(this, itemIndex ?? 0);
-
-		case 'conferenceRoomsParticipantsUndeafPost':
-			return executeconferenceRoomsParticipantsUndeafPost.call(this, itemIndex ?? 0);
-
-		case 'conferenceRoomsParticipantsUnmutePost':
-			return executeconferenceRoomsParticipantsUnmutePost.call(this, itemIndex ?? 0);
-
-		case 'conferenceRoomsUnlockPost':
-			return executeconferenceRoomsUnlockPost.call(this, itemIndex ?? 0);
-
-		case 'conferenceRoomsWebAccessListGet':
-			return executeconferenceRoomsWebAccessListGet.call(this, itemIndex ?? 0);
-
-		case 'conferenceRoomsWebAccessPost':
-			return executeconferenceRoomsWebAccessPost.call(this, itemIndex ?? 0);
-
-		case 'conferenceRoomsWebAccessDelete':
-			return executeconferenceRoomsWebAccessDelete.call(this, itemIndex ?? 0);
-
-		case 'conferenceRoomsWebAccessGet':
-			return executeconferenceRoomsWebAccessGet.call(this, itemIndex ?? 0);
-
-		case 'conferenceRoomsStatsListGet':
-			return executeconferenceRoomsStatsListGet.call(this, itemIndex ?? 0);
-
-		case 'conferenceSettingsListGet':
-			return executeconferenceSettingsListGet.call(this, itemIndex ?? 0);
-
-		case 'conferenceSettingsPut':
-			return executeconferenceSettingsPut.call(this, itemIndex ?? 0);
-
-		case 'conferenceUnlockPost':
-			return executeconferenceUnlockPost.call(this, itemIndex ?? 0);
-
-		case 'conferenceWebAccessListGet':
-			return executeconferenceWebAccessListGet.call(this, itemIndex ?? 0);
-
-		case 'conferenceWebAccessPost':
-			return executeconferenceWebAccessPost.call(this, itemIndex ?? 0);
-
-		case 'conferenceWebAccessDelete':
-			return executeconferenceWebAccessDelete.call(this, itemIndex ?? 0);
-
-		case 'conferenceWebAccessGet':
-			return executeconferenceWebAccessGet.call(this, itemIndex ?? 0);
-
-		case 'ddiListGet':
-			return executeddiListGet.call(this, itemIndex ?? 0);
-
-		case 'ddiGet':
-			return executeddiGet.call(this, itemIndex ?? 0);
-
-		case 'ddiPut':
-			return executeddiPut.call(this, itemIndex ?? 0);
-
-		case 'ddiChangeDestinationPost':
-			return executeddiChangeDestinationPost.call(this, itemIndex ?? 0);
-
-		case 'easyHuntingListGet':
-			return executeeasyHuntingListGet.call(this, itemIndex ?? 0);
-
-		case 'easyHuntingGet':
-			return executeeasyHuntingGet.call(this, itemIndex ?? 0);
-
-		case 'easyHuntingPut':
-			return executeeasyHuntingPut.call(this, itemIndex ?? 0);
-
-		case 'easyHuntingHuntingListGet':
-			return executeeasyHuntingHuntingListGet.call(this, itemIndex ?? 0);
-
-		case 'easyHuntingHuntingPut':
-			return executeeasyHuntingHuntingPut.call(this, itemIndex ?? 0);
-
-		case 'easyHuntingHuntingAgentListGet':
-			return executeeasyHuntingHuntingAgentListGet.call(this, itemIndex ?? 0);
-
-		case 'easyHuntingHuntingAgentPost':
-			return executeeasyHuntingHuntingAgentPost.call(this, itemIndex ?? 0);
-
-		case 'easyHuntingHuntingAgentDelete':
-			return executeeasyHuntingHuntingAgentDelete.call(this, itemIndex ?? 0);
-
-		case 'easyHuntingHuntingAgentGet':
-			return executeeasyHuntingHuntingAgentGet.call(this, itemIndex ?? 0);
-
-		case 'easyHuntingHuntingAgentPut':
-			return executeeasyHuntingHuntingAgentPut.call(this, itemIndex ?? 0);
-
-		case 'easyHuntingHuntingAgentBannerAccessDelete':
-			return executeeasyHuntingHuntingAgentBannerAccessDelete.call(this, itemIndex ?? 0);
-
-		case 'easyHuntingHuntingAgentBannerAccessListGet':
-			return executeeasyHuntingHuntingAgentBannerAccessListGet.call(this, itemIndex ?? 0);
-
-		case 'easyHuntingHuntingAgentBannerAccessPost':
-			return executeeasyHuntingHuntingAgentBannerAccessPost.call(this, itemIndex ?? 0);
-
-		case 'easyHuntingHuntingAgentCallsListGet':
-			return executeeasyHuntingHuntingAgentCallsListGet.call(this, itemIndex ?? 0);
-
-		case 'easyHuntingHuntingAgentCallsGet':
-			return executeeasyHuntingHuntingAgentCallsGet.call(this, itemIndex ?? 0);
-
-		case 'easyHuntingHuntingAgentCallsEavesdropPost':
-			return executeeasyHuntingHuntingAgentCallsEavesdropPost.call(this, itemIndex ?? 0);
-
-		case 'easyHuntingHuntingAgentCallsHangupPost':
-			return executeeasyHuntingHuntingAgentCallsHangupPost.call(this, itemIndex ?? 0);
-
-		case 'easyHuntingHuntingAgentCallsHoldPost':
-			return executeeasyHuntingHuntingAgentCallsHoldPost.call(this, itemIndex ?? 0);
-
-		case 'easyHuntingHuntingAgentCallsInterceptPost':
-			return executeeasyHuntingHuntingAgentCallsInterceptPost.call(this, itemIndex ?? 0);
-
-		case 'easyHuntingHuntingAgentCallsTransferPost':
-			return executeeasyHuntingHuntingAgentCallsTransferPost.call(this, itemIndex ?? 0);
-
-		case 'easyHuntingHuntingAgentCallsWhisperPost':
-			return executeeasyHuntingHuntingAgentCallsWhisperPost.call(this, itemIndex ?? 0);
-
-		case 'easyHuntingHuntingAgentEventTokenDelete':
-			return executeeasyHuntingHuntingAgentEventTokenDelete.call(this, itemIndex ?? 0);
-
-		case 'easyHuntingHuntingAgentEventTokenListGet':
-			return executeeasyHuntingHuntingAgentEventTokenListGet.call(this, itemIndex ?? 0);
-
-		case 'easyHuntingHuntingAgentEventTokenPost':
-			return executeeasyHuntingHuntingAgentEventTokenPost.call(this, itemIndex ?? 0);
-
-		case 'easyHuntingHuntingAgentLiveStatusListGet':
-			return executeeasyHuntingHuntingAgentLiveStatusListGet.call(this, itemIndex ?? 0);
-
-		case 'easyHuntingHuntingAgentQueueListGet':
-			return executeeasyHuntingHuntingAgentQueueListGet.call(this, itemIndex ?? 0);
-
-		case 'easyHuntingHuntingAgentQueuePost':
-			return executeeasyHuntingHuntingAgentQueuePost.call(this, itemIndex ?? 0);
-
-		case 'easyHuntingHuntingAgentQueueDelete':
-			return executeeasyHuntingHuntingAgentQueueDelete.call(this, itemIndex ?? 0);
-
-		case 'easyHuntingHuntingAgentQueueGet':
-			return executeeasyHuntingHuntingAgentQueueGet.call(this, itemIndex ?? 0);
-
-		case 'easyHuntingHuntingAgentQueuePut':
-			return executeeasyHuntingHuntingAgentQueuePut.call(this, itemIndex ?? 0);
-
-		case 'easyHuntingHuntingAgentQueueLiveStatusListGet':
-			return executeeasyHuntingHuntingAgentQueueLiveStatusListGet.call(this, itemIndex ?? 0);
-
-		case 'easyHuntingHuntingCustomStatusListGet':
-			return executeeasyHuntingHuntingCustomStatusListGet.call(this, itemIndex ?? 0);
-
-		case 'easyHuntingHuntingCustomStatusPost':
-			return executeeasyHuntingHuntingCustomStatusPost.call(this, itemIndex ?? 0);
-
-		case 'easyHuntingHuntingCustomStatusDelete':
-			return executeeasyHuntingHuntingCustomStatusDelete.call(this, itemIndex ?? 0);
-
-		case 'easyHuntingHuntingCustomStatusGet':
-			return executeeasyHuntingHuntingCustomStatusGet.call(this, itemIndex ?? 0);
-
-		case 'easyHuntingHuntingEventTokenDelete':
-			return executeeasyHuntingHuntingEventTokenDelete.call(this, itemIndex ?? 0);
-
-		case 'easyHuntingHuntingEventTokenListGet':
-			return executeeasyHuntingHuntingEventTokenListGet.call(this, itemIndex ?? 0);
-
-		case 'easyHuntingHuntingEventTokenPost':
-			return executeeasyHuntingHuntingEventTokenPost.call(this, itemIndex ?? 0);
-
-		case 'easyHuntingHuntingQueueListGet':
-			return executeeasyHuntingHuntingQueueListGet.call(this, itemIndex ?? 0);
-
-		case 'easyHuntingHuntingQueuePost':
-			return executeeasyHuntingHuntingQueuePost.call(this, itemIndex ?? 0);
-
-		case 'easyHuntingHuntingQueueDelete':
-			return executeeasyHuntingHuntingQueueDelete.call(this, itemIndex ?? 0);
-
-		case 'easyHuntingHuntingQueueGet':
-			return executeeasyHuntingHuntingQueueGet.call(this, itemIndex ?? 0);
-
-		case 'easyHuntingHuntingQueuePut':
-			return executeeasyHuntingHuntingQueuePut.call(this, itemIndex ?? 0);
-
-		case 'easyHuntingHuntingQueueAgentListGet':
-			return executeeasyHuntingHuntingQueueAgentListGet.call(this, itemIndex ?? 0);
-
-		case 'easyHuntingHuntingQueueAgentPost':
-			return executeeasyHuntingHuntingQueueAgentPost.call(this, itemIndex ?? 0);
-
-		case 'easyHuntingHuntingQueueAgentDelete':
-			return executeeasyHuntingHuntingQueueAgentDelete.call(this, itemIndex ?? 0);
-
-		case 'easyHuntingHuntingQueueAgentGet':
-			return executeeasyHuntingHuntingQueueAgentGet.call(this, itemIndex ?? 0);
-
-		case 'easyHuntingHuntingQueueAgentPut':
-			return executeeasyHuntingHuntingQueueAgentPut.call(this, itemIndex ?? 0);
-
-		case 'easyHuntingHuntingQueueAgentLiveStatusListGet':
-			return executeeasyHuntingHuntingQueueAgentLiveStatusListGet.call(this, itemIndex ?? 0);
-
-		case 'easyHuntingHuntingQueueLiveCallsListGet':
-			return executeeasyHuntingHuntingQueueLiveCallsListGet.call(this, itemIndex ?? 0);
-
-		case 'easyHuntingHuntingQueueLiveCallsGet':
-			return executeeasyHuntingHuntingQueueLiveCallsGet.call(this, itemIndex ?? 0);
-
-		case 'easyHuntingHuntingQueueLiveCallsEavesdropPost':
-			return executeeasyHuntingHuntingQueueLiveCallsEavesdropPost.call(this, itemIndex ?? 0);
-
-		case 'easyHuntingHuntingQueueLiveCallsHangupPost':
-			return executeeasyHuntingHuntingQueueLiveCallsHangupPost.call(this, itemIndex ?? 0);
-
-		case 'easyHuntingHuntingQueueLiveCallsHoldPost':
-			return executeeasyHuntingHuntingQueueLiveCallsHoldPost.call(this, itemIndex ?? 0);
-
-		case 'easyHuntingHuntingQueueLiveCallsInterceptPost':
-			return executeeasyHuntingHuntingQueueLiveCallsInterceptPost.call(this, itemIndex ?? 0);
-
-		case 'easyHuntingHuntingQueueLiveCallsTransferPost':
-			return executeeasyHuntingHuntingQueueLiveCallsTransferPost.call(this, itemIndex ?? 0);
-
-		case 'easyHuntingHuntingQueueLiveCallsWhisperPost':
-			return executeeasyHuntingHuntingQueueLiveCallsWhisperPost.call(this, itemIndex ?? 0);
-
-		case 'easyHuntingHuntingQueueLiveStatisticsListGet':
-			return executeeasyHuntingHuntingQueueLiveStatisticsListGet.call(this, itemIndex ?? 0);
-
-		case 'easyHuntingRecordsListGet':
-			return executeeasyHuntingRecordsListGet.call(this, itemIndex ?? 0);
-
-		case 'easyHuntingRecordsDelete':
-			return executeeasyHuntingRecordsDelete.call(this, itemIndex ?? 0);
-
-		case 'easyHuntingRecordsGet':
-			return executeeasyHuntingRecordsGet.call(this, itemIndex ?? 0);
-
-		case 'easyHuntingScreenListConditionsListGet':
-			return executeeasyHuntingScreenListConditionsListGet.call(this, itemIndex ?? 0);
-
-		case 'easyHuntingScreenListConditionsPut':
-			return executeeasyHuntingScreenListConditionsPut.call(this, itemIndex ?? 0);
-
-		case 'easyHuntingScreenListConditionsConditionsListGet':
-			return executeeasyHuntingScreenListConditionsConditionsListGet.call(this, itemIndex ?? 0);
-
-		case 'easyHuntingScreenListConditionsConditionsPost':
-			return executeeasyHuntingScreenListConditionsConditionsPost.call(this, itemIndex ?? 0);
-
-		case 'easyHuntingScreenListConditionsConditionsDelete':
-			return executeeasyHuntingScreenListConditionsConditionsDelete.call(this, itemIndex ?? 0);
-
-		case 'easyHuntingScreenListConditionsConditionsGet':
-			return executeeasyHuntingScreenListConditionsConditionsGet.call(this, itemIndex ?? 0);
-
-		case 'easyHuntingScreenListConditionsConditionsPut':
-			return executeeasyHuntingScreenListConditionsConditionsPut.call(this, itemIndex ?? 0);
-
-		case 'easyHuntingSoundListGet':
-			return executeeasyHuntingSoundListGet.call(this, itemIndex ?? 0);
-
-		case 'easyHuntingSoundDelete':
-			return executeeasyHuntingSoundDelete.call(this, itemIndex ?? 0);
-
-		case 'easyHuntingSoundGet':
-			return executeeasyHuntingSoundGet.call(this, itemIndex ?? 0);
-
-		case 'easyHuntingSoundUploadPost':
-			return executeeasyHuntingSoundUploadPost.call(this, itemIndex ?? 0);
-
-		case 'easyHuntingTimeConditionsListGet':
-			return executeeasyHuntingTimeConditionsListGet.call(this, itemIndex ?? 0);
-
-		case 'easyHuntingTimeConditionsPut':
-			return executeeasyHuntingTimeConditionsPut.call(this, itemIndex ?? 0);
-
-		case 'easyHuntingTimeConditionsConditionsListGet':
-			return executeeasyHuntingTimeConditionsConditionsListGet.call(this, itemIndex ?? 0);
-
-		case 'easyHuntingTimeConditionsConditionsPost':
-			return executeeasyHuntingTimeConditionsConditionsPost.call(this, itemIndex ?? 0);
-
-		case 'easyHuntingTimeConditionsConditionsDelete':
-			return executeeasyHuntingTimeConditionsConditionsDelete.call(this, itemIndex ?? 0);
-
-		case 'easyHuntingTimeConditionsConditionsGet':
-			return executeeasyHuntingTimeConditionsConditionsGet.call(this, itemIndex ?? 0);
-
-		case 'easyHuntingTimeConditionsConditionsPut':
-			return executeeasyHuntingTimeConditionsConditionsPut.call(this, itemIndex ?? 0);
-
-		case 'eventTokenDelete':
-			return executeeventTokenDelete.call(this, itemIndex ?? 0);
-
-		case 'eventTokenListGet':
-			return executeeventTokenListGet.call(this, itemIndex ?? 0);
-
-		case 'eventTokenPost':
-			return executeeventTokenPost.call(this, itemIndex ?? 0);
-
-		case 'hasSpecialNumbersListGet':
-			return executehasSpecialNumbersListGet.call(this, itemIndex ?? 0);
-
-		case 'historyConsumptionListGet':
-			return executehistoryConsumptionListGet.call(this, itemIndex ?? 0);
-
-		case 'historyConsumptionGet':
-			return executehistoryConsumptionGet.call(this, itemIndex ?? 0);
-
-		case 'historyConsumptionFileListGet':
-			return executehistoryConsumptionFileListGet.call(this, itemIndex ?? 0);
-
-		case 'historyRepaymentConsumptionListGet':
-			return executehistoryRepaymentConsumptionListGet.call(this, itemIndex ?? 0);
-
-		case 'historyRepaymentConsumptionPost':
-			return executehistoryRepaymentConsumptionPost.call(this, itemIndex ?? 0);
-
-		case 'historyRepaymentConsumptionGet':
-			return executehistoryRepaymentConsumptionGet.call(this, itemIndex ?? 0);
-
-		case 'historyRepaymentConsumptionDocumentListGet':
-			return executehistoryRepaymentConsumptionDocumentListGet.call(this, itemIndex ?? 0);
-
-		case 'historyTollfreeConsumptionListGet':
-			return executehistoryTollfreeConsumptionListGet.call(this, itemIndex ?? 0);
-
-		case 'historyTollfreeConsumptionGet':
-			return executehistoryTollfreeConsumptionGet.call(this, itemIndex ?? 0);
-
-		case 'historyTollfreeConsumptionDocumentListGet':
-			return executehistoryTollfreeConsumptionDocumentListGet.call(this, itemIndex ?? 0);
-
-		case 'offerTaskListGet':
-			return executeofferTaskListGet.call(this, itemIndex ?? 0);
-
-		case 'offerTaskGet':
-			return executeofferTaskGet.call(this, itemIndex ?? 0);
-
-		case 'offerTaskPut':
-			return executeofferTaskPut.call(this, itemIndex ?? 0);
-
-		case 'oldPhoneListGet':
-			return executeoldPhoneListGet.call(this, itemIndex ?? 0);
-
-		case 'outplanNotificationListGet':
-			return executeoutplanNotificationListGet.call(this, itemIndex ?? 0);
-
-		case 'outplanNotificationPost':
-			return executeoutplanNotificationPost.call(this, itemIndex ?? 0);
-
-		case 'outplanNotificationDelete':
-			return executeoutplanNotificationDelete.call(this, itemIndex ?? 0);
-
-		case 'outplanNotificationGet':
-			return executeoutplanNotificationGet.call(this, itemIndex ?? 0);
-
-		case 'ovhPabxListGet':
-			return executeovhPabxListGet.call(this, itemIndex ?? 0);
-
-		case 'ovhPabxGet':
-			return executeovhPabxGet.call(this, itemIndex ?? 0);
-
-		case 'ovhPabxPut':
-			return executeovhPabxPut.call(this, itemIndex ?? 0);
-
-		case 'ovhPabxDialplanListGet':
-			return executeovhPabxDialplanListGet.call(this, itemIndex ?? 0);
-
-		case 'ovhPabxDialplanPost':
-			return executeovhPabxDialplanPost.call(this, itemIndex ?? 0);
-
-		case 'ovhPabxDialplanDelete':
-			return executeovhPabxDialplanDelete.call(this, itemIndex ?? 0);
-
-		case 'ovhPabxDialplanGet':
-			return executeovhPabxDialplanGet.call(this, itemIndex ?? 0);
-
-		case 'ovhPabxDialplanPut':
-			return executeovhPabxDialplanPut.call(this, itemIndex ?? 0);
-
-		case 'ovhPabxDialplanExtensionListGet':
-			return executeovhPabxDialplanExtensionListGet.call(this, itemIndex ?? 0);
-
-		case 'ovhPabxDialplanExtensionPost':
-			return executeovhPabxDialplanExtensionPost.call(this, itemIndex ?? 0);
-
-		case 'ovhPabxDialplanExtensionDelete':
-			return executeovhPabxDialplanExtensionDelete.call(this, itemIndex ?? 0);
-
-		case 'ovhPabxDialplanExtensionGet':
-			return executeovhPabxDialplanExtensionGet.call(this, itemIndex ?? 0);
-
-		case 'ovhPabxDialplanExtensionPut':
-			return executeovhPabxDialplanExtensionPut.call(this, itemIndex ?? 0);
-
-		case 'ovhPabxDialplanExtensionConditionScreenListListGet':
-			return executeovhPabxDialplanExtensionConditionScreenListListGet.call(this, itemIndex ?? 0);
-
-		case 'ovhPabxDialplanExtensionConditionScreenListPost':
-			return executeovhPabxDialplanExtensionConditionScreenListPost.call(this, itemIndex ?? 0);
-
-		case 'ovhPabxDialplanExtensionConditionScreenListDelete':
-			return executeovhPabxDialplanExtensionConditionScreenListDelete.call(this, itemIndex ?? 0);
-
-		case 'ovhPabxDialplanExtensionConditionScreenListGet':
-			return executeovhPabxDialplanExtensionConditionScreenListGet.call(this, itemIndex ?? 0);
-
-		case 'ovhPabxDialplanExtensionConditionTimeListGet':
-			return executeovhPabxDialplanExtensionConditionTimeListGet.call(this, itemIndex ?? 0);
-
-		case 'ovhPabxDialplanExtensionConditionTimePost':
-			return executeovhPabxDialplanExtensionConditionTimePost.call(this, itemIndex ?? 0);
-
-		case 'ovhPabxDialplanExtensionConditionTimeDelete':
-			return executeovhPabxDialplanExtensionConditionTimeDelete.call(this, itemIndex ?? 0);
-
-		case 'ovhPabxDialplanExtensionConditionTimeGet':
-			return executeovhPabxDialplanExtensionConditionTimeGet.call(this, itemIndex ?? 0);
-
-		case 'ovhPabxDialplanExtensionConditionTimePut':
-			return executeovhPabxDialplanExtensionConditionTimePut.call(this, itemIndex ?? 0);
-
-		case 'ovhPabxDialplanExtensionRuleListGet':
-			return executeovhPabxDialplanExtensionRuleListGet.call(this, itemIndex ?? 0);
-
-		case 'ovhPabxDialplanExtensionRulePost':
-			return executeovhPabxDialplanExtensionRulePost.call(this, itemIndex ?? 0);
-
-		case 'ovhPabxDialplanExtensionRuleDelete':
-			return executeovhPabxDialplanExtensionRuleDelete.call(this, itemIndex ?? 0);
-
-		case 'ovhPabxDialplanExtensionRuleGet':
-			return executeovhPabxDialplanExtensionRuleGet.call(this, itemIndex ?? 0);
-
-		case 'ovhPabxDialplanExtensionRulePut':
-			return executeovhPabxDialplanExtensionRulePut.call(this, itemIndex ?? 0);
-
-		case 'ovhPabxHuntingListGet':
-			return executeovhPabxHuntingListGet.call(this, itemIndex ?? 0);
-
-		case 'ovhPabxHuntingPut':
-			return executeovhPabxHuntingPut.call(this, itemIndex ?? 0);
-
-		case 'ovhPabxHuntingAgentListGet':
-			return executeovhPabxHuntingAgentListGet.call(this, itemIndex ?? 0);
-
-		case 'ovhPabxHuntingAgentPost':
-			return executeovhPabxHuntingAgentPost.call(this, itemIndex ?? 0);
-
-		case 'ovhPabxHuntingAgentDelete':
-			return executeovhPabxHuntingAgentDelete.call(this, itemIndex ?? 0);
-
-		case 'ovhPabxHuntingAgentGet':
-			return executeovhPabxHuntingAgentGet.call(this, itemIndex ?? 0);
-
-		case 'ovhPabxHuntingAgentPut':
-			return executeovhPabxHuntingAgentPut.call(this, itemIndex ?? 0);
-
-		case 'ovhPabxHuntingAgentBannerAccessDelete':
-			return executeovhPabxHuntingAgentBannerAccessDelete.call(this, itemIndex ?? 0);
-
-		case 'ovhPabxHuntingAgentBannerAccessListGet':
-			return executeovhPabxHuntingAgentBannerAccessListGet.call(this, itemIndex ?? 0);
-
-		case 'ovhPabxHuntingAgentBannerAccessPost':
-			return executeovhPabxHuntingAgentBannerAccessPost.call(this, itemIndex ?? 0);
-
-		case 'ovhPabxHuntingAgentCallsListGet':
-			return executeovhPabxHuntingAgentCallsListGet.call(this, itemIndex ?? 0);
-
-		case 'ovhPabxHuntingAgentCallsGet':
-			return executeovhPabxHuntingAgentCallsGet.call(this, itemIndex ?? 0);
-
-		case 'ovhPabxHuntingAgentCallsEavesdropPost':
-			return executeovhPabxHuntingAgentCallsEavesdropPost.call(this, itemIndex ?? 0);
-
-		case 'ovhPabxHuntingAgentCallsHangupPost':
-			return executeovhPabxHuntingAgentCallsHangupPost.call(this, itemIndex ?? 0);
-
-		case 'ovhPabxHuntingAgentCallsHoldPost':
-			return executeovhPabxHuntingAgentCallsHoldPost.call(this, itemIndex ?? 0);
-
-		case 'ovhPabxHuntingAgentCallsInterceptPost':
-			return executeovhPabxHuntingAgentCallsInterceptPost.call(this, itemIndex ?? 0);
-
-		case 'ovhPabxHuntingAgentCallsTransferPost':
-			return executeovhPabxHuntingAgentCallsTransferPost.call(this, itemIndex ?? 0);
-
-		case 'ovhPabxHuntingAgentCallsWhisperPost':
-			return executeovhPabxHuntingAgentCallsWhisperPost.call(this, itemIndex ?? 0);
-
-		case 'ovhPabxHuntingAgentEventTokenDelete':
-			return executeovhPabxHuntingAgentEventTokenDelete.call(this, itemIndex ?? 0);
-
-		case 'ovhPabxHuntingAgentEventTokenListGet':
-			return executeovhPabxHuntingAgentEventTokenListGet.call(this, itemIndex ?? 0);
-
-		case 'ovhPabxHuntingAgentEventTokenPost':
-			return executeovhPabxHuntingAgentEventTokenPost.call(this, itemIndex ?? 0);
-
-		case 'ovhPabxHuntingAgentLiveStatusListGet':
-			return executeovhPabxHuntingAgentLiveStatusListGet.call(this, itemIndex ?? 0);
-
-		case 'ovhPabxHuntingAgentQueueListGet':
-			return executeovhPabxHuntingAgentQueueListGet.call(this, itemIndex ?? 0);
-
-		case 'ovhPabxHuntingAgentQueuePost':
-			return executeovhPabxHuntingAgentQueuePost.call(this, itemIndex ?? 0);
-
-		case 'ovhPabxHuntingAgentQueueDelete':
-			return executeovhPabxHuntingAgentQueueDelete.call(this, itemIndex ?? 0);
-
-		case 'ovhPabxHuntingAgentQueueGet':
-			return executeovhPabxHuntingAgentQueueGet.call(this, itemIndex ?? 0);
-
-		case 'ovhPabxHuntingAgentQueuePut':
-			return executeovhPabxHuntingAgentQueuePut.call(this, itemIndex ?? 0);
-
-		case 'ovhPabxHuntingAgentQueueLiveStatusListGet':
-			return executeovhPabxHuntingAgentQueueLiveStatusListGet.call(this, itemIndex ?? 0);
-
-		case 'ovhPabxHuntingCustomStatusListGet':
-			return executeovhPabxHuntingCustomStatusListGet.call(this, itemIndex ?? 0);
-
-		case 'ovhPabxHuntingCustomStatusPost':
-			return executeovhPabxHuntingCustomStatusPost.call(this, itemIndex ?? 0);
-
-		case 'ovhPabxHuntingCustomStatusDelete':
-			return executeovhPabxHuntingCustomStatusDelete.call(this, itemIndex ?? 0);
-
-		case 'ovhPabxHuntingCustomStatusGet':
-			return executeovhPabxHuntingCustomStatusGet.call(this, itemIndex ?? 0);
-
-		case 'ovhPabxHuntingEventTokenDelete':
-			return executeovhPabxHuntingEventTokenDelete.call(this, itemIndex ?? 0);
-
-		case 'ovhPabxHuntingEventTokenListGet':
-			return executeovhPabxHuntingEventTokenListGet.call(this, itemIndex ?? 0);
-
-		case 'ovhPabxHuntingEventTokenPost':
-			return executeovhPabxHuntingEventTokenPost.call(this, itemIndex ?? 0);
-
-		case 'ovhPabxHuntingQueueListGet':
-			return executeovhPabxHuntingQueueListGet.call(this, itemIndex ?? 0);
-
-		case 'ovhPabxHuntingQueuePost':
-			return executeovhPabxHuntingQueuePost.call(this, itemIndex ?? 0);
-
-		case 'ovhPabxHuntingQueueDelete':
-			return executeovhPabxHuntingQueueDelete.call(this, itemIndex ?? 0);
-
-		case 'ovhPabxHuntingQueueGet':
-			return executeovhPabxHuntingQueueGet.call(this, itemIndex ?? 0);
-
-		case 'ovhPabxHuntingQueuePut':
-			return executeovhPabxHuntingQueuePut.call(this, itemIndex ?? 0);
-
-		case 'ovhPabxHuntingQueueAgentListGet':
-			return executeovhPabxHuntingQueueAgentListGet.call(this, itemIndex ?? 0);
-
-		case 'ovhPabxHuntingQueueAgentPost':
-			return executeovhPabxHuntingQueueAgentPost.call(this, itemIndex ?? 0);
-
-		case 'ovhPabxHuntingQueueAgentDelete':
-			return executeovhPabxHuntingQueueAgentDelete.call(this, itemIndex ?? 0);
-
-		case 'ovhPabxHuntingQueueAgentGet':
-			return executeovhPabxHuntingQueueAgentGet.call(this, itemIndex ?? 0);
-
-		case 'ovhPabxHuntingQueueAgentPut':
-			return executeovhPabxHuntingQueueAgentPut.call(this, itemIndex ?? 0);
-
-		case 'ovhPabxHuntingQueueAgentLiveStatusListGet':
-			return executeovhPabxHuntingQueueAgentLiveStatusListGet.call(this, itemIndex ?? 0);
-
-		case 'ovhPabxHuntingQueueLiveCallsListGet':
-			return executeovhPabxHuntingQueueLiveCallsListGet.call(this, itemIndex ?? 0);
-
-		case 'ovhPabxHuntingQueueLiveCallsGet':
-			return executeovhPabxHuntingQueueLiveCallsGet.call(this, itemIndex ?? 0);
-
-		case 'ovhPabxHuntingQueueLiveCallsEavesdropPost':
-			return executeovhPabxHuntingQueueLiveCallsEavesdropPost.call(this, itemIndex ?? 0);
-
-		case 'ovhPabxHuntingQueueLiveCallsHangupPost':
-			return executeovhPabxHuntingQueueLiveCallsHangupPost.call(this, itemIndex ?? 0);
-
-		case 'ovhPabxHuntingQueueLiveCallsHoldPost':
-			return executeovhPabxHuntingQueueLiveCallsHoldPost.call(this, itemIndex ?? 0);
-
-		case 'ovhPabxHuntingQueueLiveCallsInterceptPost':
-			return executeovhPabxHuntingQueueLiveCallsInterceptPost.call(this, itemIndex ?? 0);
-
-		case 'ovhPabxHuntingQueueLiveCallsTransferPost':
-			return executeovhPabxHuntingQueueLiveCallsTransferPost.call(this, itemIndex ?? 0);
-
-		case 'ovhPabxHuntingQueueLiveCallsWhisperPost':
-			return executeovhPabxHuntingQueueLiveCallsWhisperPost.call(this, itemIndex ?? 0);
-
-		case 'ovhPabxHuntingQueueLiveStatisticsListGet':
-			return executeovhPabxHuntingQueueLiveStatisticsListGet.call(this, itemIndex ?? 0);
-
-		case 'ovhPabxMenuListGet':
-			return executeovhPabxMenuListGet.call(this, itemIndex ?? 0);
-
-		case 'ovhPabxMenuPost':
-			return executeovhPabxMenuPost.call(this, itemIndex ?? 0);
-
-		case 'ovhPabxMenuDelete':
-			return executeovhPabxMenuDelete.call(this, itemIndex ?? 0);
-
-		case 'ovhPabxMenuGet':
-			return executeovhPabxMenuGet.call(this, itemIndex ?? 0);
-
-		case 'ovhPabxMenuPut':
-			return executeovhPabxMenuPut.call(this, itemIndex ?? 0);
-
-		case 'ovhPabxMenuEntryListGet':
-			return executeovhPabxMenuEntryListGet.call(this, itemIndex ?? 0);
-
-		case 'ovhPabxMenuEntryPost':
-			return executeovhPabxMenuEntryPost.call(this, itemIndex ?? 0);
-
-		case 'ovhPabxMenuEntryDelete':
-			return executeovhPabxMenuEntryDelete.call(this, itemIndex ?? 0);
-
-		case 'ovhPabxMenuEntryGet':
-			return executeovhPabxMenuEntryGet.call(this, itemIndex ?? 0);
-
-		case 'ovhPabxMenuEntryPut':
-			return executeovhPabxMenuEntryPut.call(this, itemIndex ?? 0);
-
-		case 'ovhPabxRecordsListGet':
-			return executeovhPabxRecordsListGet.call(this, itemIndex ?? 0);
-
-		case 'ovhPabxRecordsDelete':
-			return executeovhPabxRecordsDelete.call(this, itemIndex ?? 0);
-
-		case 'ovhPabxRecordsGet':
-			return executeovhPabxRecordsGet.call(this, itemIndex ?? 0);
-
-		case 'ovhPabxSoundListGet':
-			return executeovhPabxSoundListGet.call(this, itemIndex ?? 0);
-
-		case 'ovhPabxSoundDelete':
-			return executeovhPabxSoundDelete.call(this, itemIndex ?? 0);
-
-		case 'ovhPabxSoundGet':
-			return executeovhPabxSoundGet.call(this, itemIndex ?? 0);
-
-		case 'ovhPabxSoundUploadPost':
-			return executeovhPabxSoundUploadPost.call(this, itemIndex ?? 0);
-
-		case 'ovhPabxTtsListGet':
-			return executeovhPabxTtsListGet.call(this, itemIndex ?? 0);
-
-		case 'ovhPabxTtsPost':
-			return executeovhPabxTtsPost.call(this, itemIndex ?? 0);
-
-		case 'ovhPabxTtsDelete':
-			return executeovhPabxTtsDelete.call(this, itemIndex ?? 0);
-
-		case 'ovhPabxTtsGet':
-			return executeovhPabxTtsGet.call(this, itemIndex ?? 0);
-
-		case 'ovhPabxTtsPut':
-			return executeovhPabxTtsPut.call(this, itemIndex ?? 0);
-
-		case 'phonebookListGet':
-			return executephonebookListGet.call(this, itemIndex ?? 0);
-
-		case 'phonebookPost':
-			return executephonebookPost.call(this, itemIndex ?? 0);
-
-		case 'phonebookDelete':
-			return executephonebookDelete.call(this, itemIndex ?? 0);
-
-		case 'phonebookGet':
-			return executephonebookGet.call(this, itemIndex ?? 0);
-
-		case 'phonebookPut':
-			return executephonebookPut.call(this, itemIndex ?? 0);
-
-		case 'phonebookExportListGet':
-			return executephonebookExportListGet.call(this, itemIndex ?? 0);
-
-		case 'phonebookImportPost':
-			return executephonebookImportPost.call(this, itemIndex ?? 0);
-
-		case 'phonebookPhonebookContactListGet':
-			return executephonebookPhonebookContactListGet.call(this, itemIndex ?? 0);
-
-		case 'phonebookPhonebookContactPost':
-			return executephonebookPhonebookContactPost.call(this, itemIndex ?? 0);
-
-		case 'phonebookPhonebookContactDelete':
-			return executephonebookPhonebookContactDelete.call(this, itemIndex ?? 0);
-
-		case 'phonebookPhonebookContactGet':
-			return executephonebookPhonebookContactGet.call(this, itemIndex ?? 0);
-
-		case 'phonebookPhonebookContactPut':
-			return executephonebookPhonebookContactPut.call(this, itemIndex ?? 0);
-
-		case 'portabilityDetailGet':
-			return executeportabilityDetailGet.call(this, itemIndex ?? 0);
-
-		case 'portabilityCanBeCancelledListGet':
-			return executeportabilityCanBeCancelledListGet.call(this, itemIndex ?? 0);
-
-		case 'portabilityCanBeExecutedListGet':
-			return executeportabilityCanBeExecutedListGet.call(this, itemIndex ?? 0);
-
-		case 'portabilityCancelPost':
-			return executeportabilityCancelPost.call(this, itemIndex ?? 0);
-
-		case 'portabilityChangeDatePost':
-			return executeportabilityChangeDatePost.call(this, itemIndex ?? 0);
-
-		case 'portabilityDateCanBeChangedListGet':
-			return executeportabilityDateCanBeChangedListGet.call(this, itemIndex ?? 0);
-
-		case 'portabilityDocumentListGet':
-			return executeportabilityDocumentListGet.call(this, itemIndex ?? 0);
-
-		case 'portabilityDocumentPost':
-			return executeportabilityDocumentPost.call(this, itemIndex ?? 0);
-
-		case 'portabilityDocumentDelete':
-			return executeportabilityDocumentDelete.call(this, itemIndex ?? 0);
-
-		case 'portabilityDocumentGet':
-			return executeportabilityDocumentGet.call(this, itemIndex ?? 0);
-
-		case 'portabilityDocumentPut':
-			return executeportabilityDocumentPut.call(this, itemIndex ?? 0);
-
-		case 'portabilityExecutePost':
-			return executeportabilityExecutePost.call(this, itemIndex ?? 0);
-
-		case 'portabilityRelaunchListGet':
-			return executeportabilityRelaunchListGet.call(this, itemIndex ?? 0);
-
-		case 'portabilityRelaunchPost':
-			return executeportabilityRelaunchPost.call(this, itemIndex ?? 0);
-
-		case 'portabilityStatusListGet':
-			return executeportabilityStatusListGet.call(this, itemIndex ?? 0);
-
-		case 'redirectListGet':
-			return executeredirectListGet.call(this, itemIndex ?? 0);
-
-		case 'redirectGet':
-			return executeredirectGet.call(this, itemIndex ?? 0);
-
-		case 'redirectPut':
-			return executeredirectPut.call(this, itemIndex ?? 0);
-
-		case 'redirectChangeDestinationPost':
-			return executeredirectChangeDestinationPost.call(this, itemIndex ?? 0);
-
-		case 'rsvaListGet':
-			return executersvaListGet.call(this, itemIndex ?? 0);
-
-		case 'rsvaGet':
-			return executersvaGet.call(this, itemIndex ?? 0);
-
-		case 'rsvaPut':
-			return executersvaPut.call(this, itemIndex ?? 0);
-
-		case 'rsvaAllowedRateCodesListGet':
-			return executersvaAllowedRateCodesListGet.call(this, itemIndex ?? 0);
-
-		case 'rsvaCancelScheduledRateCodePost':
-			return executersvaCancelScheduledRateCodePost.call(this, itemIndex ?? 0);
-
-		case 'rsvaCurrentRateCodeListGet':
-			return executersvaCurrentRateCodeListGet.call(this, itemIndex ?? 0);
-
-		case 'rsvaScheduledRateCodeListGet':
-			return executersvaScheduledRateCodeListGet.call(this, itemIndex ?? 0);
-
-		case 'rsvaScheduleRateCodePost':
-			return executersvaScheduleRateCodePost.call(this, itemIndex ?? 0);
-
-		case 'schedulerListGet':
-			return executeschedulerListGet.call(this, itemIndex ?? 0);
-
-		case 'schedulerGet':
-			return executeschedulerGet.call(this, itemIndex ?? 0);
-
-		case 'schedulerPut':
-			return executeschedulerPut.call(this, itemIndex ?? 0);
-
-		case 'schedulerEventsListGet':
-			return executeschedulerEventsListGet.call(this, itemIndex ?? 0);
-
-		case 'schedulerEventsPost':
-			return executeschedulerEventsPost.call(this, itemIndex ?? 0);
-
-		case 'schedulerEventsDelete':
-			return executeschedulerEventsDelete.call(this, itemIndex ?? 0);
-
-		case 'schedulerEventsGet':
-			return executeschedulerEventsGet.call(this, itemIndex ?? 0);
-
-		case 'schedulerEventsPut':
-			return executeschedulerEventsPut.call(this, itemIndex ?? 0);
-
-		case 'schedulerImportIcsCalendarPost':
-			return executeschedulerImportIcsCalendarPost.call(this, itemIndex ?? 0);
-
-		case 'screenListGet':
-			return executescreenListGet.call(this, itemIndex ?? 0);
-
-		case 'screenGet':
-			return executescreenGet.call(this, itemIndex ?? 0);
-
-		case 'screenPut':
-			return executescreenPut.call(this, itemIndex ?? 0);
-
-		case 'screenScreenListsListGet':
-			return executescreenScreenListsListGet.call(this, itemIndex ?? 0);
-
-		case 'screenScreenListsPost':
-			return executescreenScreenListsPost.call(this, itemIndex ?? 0);
-
-		case 'screenScreenListsDelete':
-			return executescreenScreenListsDelete.call(this, itemIndex ?? 0);
-
-		case 'screenScreenListsGet':
-			return executescreenScreenListsGet.call(this, itemIndex ?? 0);
-
-		case 'serviceListGet':
-			return executeserviceListGet.call(this, itemIndex ?? 0);
-
-		case 'serviceDelete':
-			return executeserviceDelete.call(this, itemIndex ?? 0);
-
-		case 'serviceGet':
-			return executeserviceGet.call(this, itemIndex ?? 0);
-
-		case 'servicePut':
-			return executeservicePut.call(this, itemIndex ?? 0);
-
-		case 'serviceCancelTerminationPost':
-			return executeserviceCancelTerminationPost.call(this, itemIndex ?? 0);
-
-		case 'serviceChangeOfBillingAccountPost':
-			return executeserviceChangeOfBillingAccountPost.call(this, itemIndex ?? 0);
-
-		case 'serviceDiagnosticReportsListGet':
-			return executeserviceDiagnosticReportsListGet.call(this, itemIndex ?? 0);
-
-		case 'serviceDirectoryListGet':
-			return executeserviceDirectoryListGet.call(this, itemIndex ?? 0);
-
-		case 'serviceDirectoryPut':
-			return executeserviceDirectoryPut.call(this, itemIndex ?? 0);
-
-		case 'serviceDirectoryFetchEntrepriseInformationsPost':
-			return executeserviceDirectoryFetchEntrepriseInformationsPost.call(this, itemIndex ?? 0);
-
-		case 'serviceDirectoryGetDirectoryServiceCodeListGet':
-			return executeserviceDirectoryGetDirectoryServiceCodeListGet.call(this, itemIndex ?? 0);
-
-		case 'serviceDirectoryGetWayTypesListGet':
-			return executeserviceDirectoryGetWayTypesListGet.call(this, itemIndex ?? 0);
-
-		case 'serviceEventTokenDelete':
-			return executeserviceEventTokenDelete.call(this, itemIndex ?? 0);
-
-		case 'serviceEventTokenListGet':
-			return executeserviceEventTokenListGet.call(this, itemIndex ?? 0);
-
-		case 'serviceEventTokenPost':
-			return executeserviceEventTokenPost.call(this, itemIndex ?? 0);
-
-		case 'serviceFaxConsumptionListGet':
-			return executeserviceFaxConsumptionListGet.call(this, itemIndex ?? 0);
-
-		case 'serviceFaxConsumptionGet':
-			return executeserviceFaxConsumptionGet.call(this, itemIndex ?? 0);
-
-		case 'serviceOfferChangeDelete':
-			return executeserviceOfferChangeDelete.call(this, itemIndex ?? 0);
-
-		case 'serviceOfferChangeListGet':
-			return executeserviceOfferChangeListGet.call(this, itemIndex ?? 0);
-
-		case 'serviceOfferChangePost':
-			return executeserviceOfferChangePost.call(this, itemIndex ?? 0);
-
-		case 'serviceOfferChangesListGet':
-			return executeserviceOfferChangesListGet.call(this, itemIndex ?? 0);
-
-		case 'serviceOfferTaskListGet':
-			return executeserviceOfferTaskListGet.call(this, itemIndex ?? 0);
-
-		case 'serviceOfferTaskGet':
-			return executeserviceOfferTaskGet.call(this, itemIndex ?? 0);
-
-		case 'serviceOfferTaskPut':
-			return executeserviceOfferTaskPut.call(this, itemIndex ?? 0);
-
-		case 'servicePreviousVoiceConsumptionListGet':
-			return executeservicePreviousVoiceConsumptionListGet.call(this, itemIndex ?? 0);
-
-		case 'servicePreviousVoiceConsumptionGet':
-			return executeservicePreviousVoiceConsumptionGet.call(this, itemIndex ?? 0);
-
-		case 'serviceRepaymentConsumptionListGet':
-			return executeserviceRepaymentConsumptionListGet.call(this, itemIndex ?? 0);
-
-		case 'serviceRepaymentConsumptionGet':
-			return executeserviceRepaymentConsumptionGet.call(this, itemIndex ?? 0);
-
-		case 'serviceTaskListGet':
-			return executeserviceTaskListGet.call(this, itemIndex ?? 0);
-
-		case 'serviceTaskGet':
-			return executeserviceTaskGet.call(this, itemIndex ?? 0);
-
-		case 'serviceVoiceConsumptionListGet':
-			return executeserviceVoiceConsumptionListGet.call(this, itemIndex ?? 0);
-
-		case 'serviceVoiceConsumptionGet':
-			return executeserviceVoiceConsumptionGet.call(this, itemIndex ?? 0);
-
-		case 'softphoneLogoDelete':
-			return executesoftphoneLogoDelete.call(this, itemIndex ?? 0);
-
-		case 'softphoneLogoListGet':
-			return executesoftphoneLogoListGet.call(this, itemIndex ?? 0);
-
-		case 'softphoneLogoPut':
-			return executesoftphoneLogoPut.call(this, itemIndex ?? 0);
-
-		case 'softphoneThemeListGet':
-			return executesoftphoneThemeListGet.call(this, itemIndex ?? 0);
-
-		case 'softphoneThemePut':
-			return executesoftphoneThemePut.call(this, itemIndex ?? 0);
-
-		case 'timeConditionListGet':
-			return executetimeConditionListGet.call(this, itemIndex ?? 0);
-
-		case 'timeConditionGet':
-			return executetimeConditionGet.call(this, itemIndex ?? 0);
-
-		case 'timeConditionConditionListGet':
-			return executetimeConditionConditionListGet.call(this, itemIndex ?? 0);
-
-		case 'timeConditionConditionPost':
-			return executetimeConditionConditionPost.call(this, itemIndex ?? 0);
-
-		case 'timeConditionConditionDelete':
-			return executetimeConditionConditionDelete.call(this, itemIndex ?? 0);
-
-		case 'timeConditionConditionGet':
-			return executetimeConditionConditionGet.call(this, itemIndex ?? 0);
-
-		case 'timeConditionConditionPut':
-			return executetimeConditionConditionPut.call(this, itemIndex ?? 0);
-
-		case 'timeConditionOptionsListGet':
-			return executetimeConditionOptionsListGet.call(this, itemIndex ?? 0);
-
-		case 'timeConditionOptionsPut':
-			return executetimeConditionOptionsPut.call(this, itemIndex ?? 0);
-
-		case 'trunkListGet':
-			return executetrunkListGet.call(this, itemIndex ?? 0);
-
-		case 'trunkGet':
-			return executetrunkGet.call(this, itemIndex ?? 0);
-
-		case 'trunkChannelsPacksRepartitionListGet':
-			return executetrunkChannelsPacksRepartitionListGet.call(this, itemIndex ?? 0);
-
-		case 'trunkExternalDisplayedNumberListGet':
-			return executetrunkExternalDisplayedNumberListGet.call(this, itemIndex ?? 0);
-
-		case 'trunkExternalDisplayedNumberPost':
-			return executetrunkExternalDisplayedNumberPost.call(this, itemIndex ?? 0);
-
-		case 'trunkExternalDisplayedNumberDelete':
-			return executetrunkExternalDisplayedNumberDelete.call(this, itemIndex ?? 0);
-
-		case 'trunkExternalDisplayedNumberGet':
-			return executetrunkExternalDisplayedNumberGet.call(this, itemIndex ?? 0);
-
-		case 'trunkExternalDisplayedNumberValidatePost':
-			return executetrunkExternalDisplayedNumberValidatePost.call(this, itemIndex ?? 0);
-
-		case 'voicemailListGet':
-			return executevoicemailListGet.call(this, itemIndex ?? 0);
-
-		case 'voicemailGet':
-			return executevoicemailGet.call(this, itemIndex ?? 0);
-
-		case 'voicemailPut':
-			return executevoicemailPut.call(this, itemIndex ?? 0);
-
-		case 'voicemailDirectoriesListGet':
-			return executevoicemailDirectoriesListGet.call(this, itemIndex ?? 0);
-
-		case 'voicemailDirectoriesDelete':
-			return executevoicemailDirectoriesDelete.call(this, itemIndex ?? 0);
-
-		case 'voicemailDirectoriesGet':
-			return executevoicemailDirectoriesGet.call(this, itemIndex ?? 0);
-
-		case 'voicemailDirectoriesDownloadListGet':
-			return executevoicemailDirectoriesDownloadListGet.call(this, itemIndex ?? 0);
-
-		case 'voicemailDirectoriesMovePost':
-			return executevoicemailDirectoriesMovePost.call(this, itemIndex ?? 0);
-
-		case 'voicemailDirectoriesTranscriptListGet':
-			return executevoicemailDirectoriesTranscriptListGet.call(this, itemIndex ?? 0);
-
-		case 'voicemailGreetingsListGet':
-			return executevoicemailGreetingsListGet.call(this, itemIndex ?? 0);
-
-		case 'voicemailGreetingsPost':
-			return executevoicemailGreetingsPost.call(this, itemIndex ?? 0);
-
-		case 'voicemailGreetingsDelete':
-			return executevoicemailGreetingsDelete.call(this, itemIndex ?? 0);
-
-		case 'voicemailGreetingsGet':
-			return executevoicemailGreetingsGet.call(this, itemIndex ?? 0);
-
-		case 'voicemailGreetingsDownloadListGet':
-			return executevoicemailGreetingsDownloadListGet.call(this, itemIndex ?? 0);
-
-		case 'voicemailGreetingsMovePost':
-			return executevoicemailGreetingsMovePost.call(this, itemIndex ?? 0);
-
-		case 'voicemailMigrateOnNewVersionPost':
-			return executevoicemailMigrateOnNewVersionPost.call(this, itemIndex ?? 0);
-
-		case 'voicemailSettingsListGet':
-			return executevoicemailSettingsListGet.call(this, itemIndex ?? 0);
-
-		case 'voicemailSettingsPut':
-			return executevoicemailSettingsPut.call(this, itemIndex ?? 0);
-
-		case 'voicemailSettingsChangePasswordPost':
-			return executevoicemailSettingsChangePasswordPost.call(this, itemIndex ?? 0);
-
-		case 'voicemailSettingsChangeRoutingPost':
-			return executevoicemailSettingsChangeRoutingPost.call(this, itemIndex ?? 0);
-
-		case 'voicemailSettingsRoutingListGet':
-			return executevoicemailSettingsRoutingListGet.call(this, itemIndex ?? 0);
-
-		case 'voicemailSettingsVoicemailNumbersListGet':
-			return executevoicemailSettingsVoicemailNumbersListGet.call(this, itemIndex ?? 0);
-		case 'numberDetailedZonesListGet':
-			return executenumberDetailedZonesListGet.call(this, itemIndex ?? 0);
-		case 'numberRangesListGet':
-			return executenumberRangesListGet.call(this, itemIndex ?? 0);
-		case 'numberSpecificNumbersListGet':
-			return executenumberSpecificNumbersListGet.call(this, itemIndex ?? 0);
-		case 'numberZonesListGet':
-			return executenumberZonesListGet.call(this, itemIndex ?? 0);
-		case 'procedureListGet':
-			return executeprocedureListGet.call(this, itemIndex ?? 0);
-		case 'procedurePost':
-			return executeprocedurePost.call(this, itemIndex ?? 0);
-		case 'procedureGet':
-			return executeprocedureGet.call(this, itemIndex ?? 0);
-		case 'procedureCancelPost':
-			return executeprocedureCancelPost.call(this, itemIndex ?? 0);
-		case 'procedureRequiredListGet':
-			return executeprocedureRequiredListGet.call(this, itemIndex ?? 0);
-		case 'resellerPanelGeneratePasswordPost':
-			return executeresellerPanelGeneratePasswordPost.call(this, itemIndex ?? 0);
-		case 'resellerPanelStatusListGet':
-			return executeresellerPanelStatusListGet.call(this, itemIndex ?? 0);
-		case 'softphoneStoreLinksListGet':
-			return executesoftphoneStoreLinksListGet.call(this, itemIndex ?? 0);
-		case 'softphoneThemesListGet':
-			return executesoftphoneThemesListGet.call(this, itemIndex ?? 0);
-		case 'softphoneThemesGet':
-			return executesoftphoneThemesGet.call(this, itemIndex ?? 0);
-		case 'soundsListGet':
-			return executesoundsListGet.call(this, itemIndex ?? 0);
-		case 'soundsPost':
-			return executesoundsPost.call(this, itemIndex ?? 0);
-		case 'soundsDelete':
-			return executesoundsDelete.call(this, itemIndex ?? 0);
-		case 'soundsGet':
-			return executesoundsGet.call(this, itemIndex ?? 0);
-		case 'soundsPut':
-			return executesoundsPut.call(this, itemIndex ?? 0);
-		case 'spareListGet':
-			return executespareListGet.call(this, itemIndex ?? 0);
-		case 'spareDelete':
-			return executespareDelete.call(this, itemIndex ?? 0);
-		case 'spareGet':
-			return executespareGet.call(this, itemIndex ?? 0);
-		case 'spareCompatibleReplacementListGet':
-			return executespareCompatibleReplacementListGet.call(this, itemIndex ?? 0);
-		case 'spareReplacePost':
-			return executespareReplacePost.call(this, itemIndex ?? 0);
-		case 'spareServiceInfosListGet':
-			return executespareServiceInfosListGet.call(this, itemIndex ?? 0);
-		case 'spareServiceInfosPut':
-			return executespareServiceInfosPut.call(this, itemIndex ?? 0);
-		case 'spareBrandsListGet':
-			return executespareBrandsListGet.call(this, itemIndex ?? 0);
-	}
-
-	throw new Error(`Unsupported operation "${operation}" for resource "telephony"`);
-}
+	description as descriptiontaskGet,
+	execute as executetaskGet,
+} from './task/taskGet.operation';
+import {
+	description as descriptiontaskListGet,
+	execute as executetaskListGet,
+} from './task/taskListGet.operation';
+import {
+	description as descriptiontimeConditionConditionDelete,
+	execute as executetimeConditionConditionDelete,
+} from './timeCondition/timeConditionConditionDelete.operation';
+import {
+	description as descriptiontimeConditionConditionGet,
+	execute as executetimeConditionConditionGet,
+} from './timeCondition/timeConditionConditionGet.operation';
+import {
+	description as descriptiontimeConditionConditionListGet,
+	execute as executetimeConditionConditionListGet,
+} from './timeCondition/timeConditionConditionListGet.operation';
+import {
+	description as descriptiontimeConditionConditionPost,
+	execute as executetimeConditionConditionPost,
+} from './timeCondition/timeConditionConditionPost.operation';
+import {
+	description as descriptiontimeConditionConditionPut,
+	execute as executetimeConditionConditionPut,
+} from './timeCondition/timeConditionConditionPut.operation';
+import {
+	description as descriptiontimeConditionGet,
+	execute as executetimeConditionGet,
+} from './timeCondition/timeConditionGet.operation';
+import {
+	description as descriptiontimeConditionListGet,
+	execute as executetimeConditionListGet,
+} from './timeCondition/timeConditionListGet.operation';
+import {
+	description as descriptiontimeConditionOptionsListGet,
+	execute as executetimeConditionOptionsListGet,
+} from './timeCondition/timeConditionOptionsListGet.operation';
+import {
+	description as descriptiontimeConditionOptionsPut,
+	execute as executetimeConditionOptionsPut,
+} from './timeCondition/timeConditionOptionsPut.operation';
+import {
+	description as descriptiontrunkChannelsPacksRepartitionListGet,
+	execute as executetrunkChannelsPacksRepartitionListGet,
+} from './trunk/trunkChannelsPacksRepartitionListGet.operation';
+import {
+	description as descriptiontrunkExternalDisplayedNumberDelete,
+	execute as executetrunkExternalDisplayedNumberDelete,
+} from './trunk/trunkExternalDisplayedNumberDelete.operation';
+import {
+	description as descriptiontrunkExternalDisplayedNumberGet,
+	execute as executetrunkExternalDisplayedNumberGet,
+} from './trunk/trunkExternalDisplayedNumberGet.operation';
+import {
+	description as descriptiontrunkExternalDisplayedNumberListGet,
+	execute as executetrunkExternalDisplayedNumberListGet,
+} from './trunk/trunkExternalDisplayedNumberListGet.operation';
+import {
+	description as descriptiontrunkExternalDisplayedNumberPost,
+	execute as executetrunkExternalDisplayedNumberPost,
+} from './trunk/trunkExternalDisplayedNumberPost.operation';
+import {
+	description as descriptiontrunkExternalDisplayedNumberValidatePost,
+	execute as executetrunkExternalDisplayedNumberValidatePost,
+} from './trunk/trunkExternalDisplayedNumberValidatePost.operation';
+import {
+	description as descriptiontrunkGet,
+	execute as executetrunkGet,
+} from './trunk/trunkGet.operation';
+import {
+	description as descriptiontrunkListGet,
+	execute as executetrunkListGet,
+} from './trunk/trunkListGet.operation';
+import {
+	description as descriptionTrunksGet,
+	execute as executeTrunksGet,
+} from './trunks/trunksGet.operation';
+import {
+	description as descriptionTrunksListGet,
+	execute as executeTrunksListGet,
+} from './trunks/trunksListGet.operation';
+import {
+	description as descriptionTrunksServiceInfosGet,
+	execute as executeTrunksServiceInfosGet,
+} from './trunks/trunksServiceInfosGet.operation';
+import {
+	description as descriptionTrunksServiceInfosPut,
+	execute as executeTrunksServiceInfosPut,
+} from './trunks/trunksServiceInfosPut.operation';
+import {
+	description as descriptionvoicemailDirectoriesDelete,
+	execute as executevoicemailDirectoriesDelete,
+} from './voicemail/voicemailDirectoriesDelete.operation';
+import {
+	description as descriptionvoicemailDirectoriesDownloadListGet,
+	execute as executevoicemailDirectoriesDownloadListGet,
+} from './voicemail/voicemailDirectoriesDownloadListGet.operation';
+import {
+	description as descriptionvoicemailDirectoriesGet,
+	execute as executevoicemailDirectoriesGet,
+} from './voicemail/voicemailDirectoriesGet.operation';
+import {
+	description as descriptionvoicemailDirectoriesListGet,
+	execute as executevoicemailDirectoriesListGet,
+} from './voicemail/voicemailDirectoriesListGet.operation';
+import {
+	description as descriptionvoicemailDirectoriesMovePost,
+	execute as executevoicemailDirectoriesMovePost,
+} from './voicemail/voicemailDirectoriesMovePost.operation';
+import {
+	description as descriptionvoicemailDirectoriesTranscriptListGet,
+	execute as executevoicemailDirectoriesTranscriptListGet,
+} from './voicemail/voicemailDirectoriesTranscriptListGet.operation';
+import {
+	description as descriptionvoicemailGet,
+	execute as executevoicemailGet,
+} from './voicemail/voicemailGet.operation';
+import {
+	description as descriptionvoicemailGreetingsDelete,
+	execute as executevoicemailGreetingsDelete,
+} from './voicemail/voicemailGreetingsDelete.operation';
+import {
+	description as descriptionvoicemailGreetingsDownloadListGet,
+	execute as executevoicemailGreetingsDownloadListGet,
+} from './voicemail/voicemailGreetingsDownloadListGet.operation';
+import {
+	description as descriptionvoicemailGreetingsGet,
+	execute as executevoicemailGreetingsGet,
+} from './voicemail/voicemailGreetingsGet.operation';
+import {
+	description as descriptionvoicemailGreetingsListGet,
+	execute as executevoicemailGreetingsListGet,
+} from './voicemail/voicemailGreetingsListGet.operation';
+import {
+	description as descriptionvoicemailGreetingsMovePost,
+	execute as executevoicemailGreetingsMovePost,
+} from './voicemail/voicemailGreetingsMovePost.operation';
+import {
+	description as descriptionvoicemailGreetingsPost,
+	execute as executevoicemailGreetingsPost,
+} from './voicemail/voicemailGreetingsPost.operation';
+import {
+	description as descriptionvoicemailListGet,
+	execute as executevoicemailListGet,
+} from './voicemail/voicemailListGet.operation';
+import {
+	description as descriptionvoicemailMigrateOnNewVersionPost,
+	execute as executevoicemailMigrateOnNewVersionPost,
+} from './voicemail/voicemailMigrateOnNewVersionPost.operation';
+import {
+	description as descriptionvoicemailPut,
+	execute as executevoicemailPut,
+} from './voicemail/voicemailPut.operation';
+import {
+	description as descriptionvoicemailSettingsChangePasswordPost,
+	execute as executevoicemailSettingsChangePasswordPost,
+} from './voicemail/voicemailSettingsChangePasswordPost.operation';
+import {
+	description as descriptionvoicemailSettingsChangeRoutingPost,
+	execute as executevoicemailSettingsChangeRoutingPost,
+} from './voicemail/voicemailSettingsChangeRoutingPost.operation';
+import {
+	description as descriptionvoicemailSettingsListGet,
+	execute as executevoicemailSettingsListGet,
+} from './voicemail/voicemailSettingsListGet.operation';
+import {
+	description as descriptionvoicemailSettingsPut,
+	execute as executevoicemailSettingsPut,
+} from './voicemail/voicemailSettingsPut.operation';
+import {
+	description as descriptionvoicemailSettingsRoutingListGet,
+	execute as executevoicemailSettingsRoutingListGet,
+} from './voicemail/voicemailSettingsRoutingListGet.operation';
+import {
+	description as descriptionvoicemailSettingsVoicemailNumbersListGet,
+	execute as executevoicemailSettingsVoicemailNumbersListGet,
+} from './voicemail/voicemailSettingsVoicemailNumbersListGet.operation';
+import {
+	description as descriptionvxmlGet,
+	execute as executevxmlGet,
+} from './vxml/vxmlGet.operation';
+import {
+	description as descriptionvxmlListGet,
+	execute as executevxmlListGet,
+} from './vxml/vxmlListGet.operation';
+import {
+	description as descriptionvxmlSettingsListGet,
+	execute as executevxmlSettingsListGet,
+} from './vxml/vxmlSettingsListGet.operation';
+import {
+	description as descriptionvxmlSettingsLogsPost,
+	execute as executevxmlSettingsLogsPost,
+} from './vxml/vxmlSettingsLogsPost.operation';
+import {
+	description as descriptionvxmlSettingsPut,
+	execute as executevxmlSettingsPut,
+} from './vxml/vxmlSettingsPut.operation';
+
+const { description, execute } = createOperationDispatcher(
+	'telephonyOperation',
+	'telephony',
+	[
+	{
+		name: 'Abbreviated Number Create',
+		value: 'abbreviatedNumberPost',
+		action: 'Create a new abbreviated number for the billing account',
+		execute: executeabbreviatedNumberPost,
+		description: descriptionabbreviatedNumberPost,
+	},
+	{
+		name: 'Abbreviated Number Delete',
+		value: 'abbreviatedNumberDelete',
+		action: 'Delete the given abbreviated number',
+		execute: executeabbreviatedNumberDelete,
+		description: descriptionabbreviatedNumberDelete,
+	},
+	{
+		name: 'Abbreviated Number Get',
+		value: 'abbreviatedNumberGet',
+		action: 'Get this object properties',
+		execute: executeabbreviatedNumberGet,
+		description: descriptionabbreviatedNumberGet,
+	},
+	{
+		name: 'Abbreviated Number List',
+		value: 'abbreviatedNumberListGet',
+		action: 'Abbreviated numbers for the billing account',
+		execute: executeabbreviatedNumberListGet,
+		description: descriptionabbreviatedNumberListGet,
+	},
+	{
+		name: 'Abbreviated Number Update',
+		value: 'abbreviatedNumberPut',
+		action: 'Alter this object properties',
+		execute: executeabbreviatedNumberPut,
+		description: descriptionabbreviatedNumberPut,
+	},
+	{
+		name: 'Billing Account Site',
+		value: 'billingAccountSitePost',
+		action: 'Used to overwrite current billing account feature by the billing account site',
+		execute: executebillingAccountSitePost,
+		description: descriptionbillingAccountSitePost,
+	},
+	{
+		name: 'Can Transfer Security Deposit',
+		value: 'canTransferSecurityDepositPost',
+		action: 'Check if security deposit transfer is possible between two billing accounts',
+		execute: executecanTransferSecurityDepositPost,
+		description: descriptioncanTransferSecurityDepositPost,
+	},
+	{
+		name: 'Cancel Termination',
+		value: 'cancelTerminationPost',
+		action: 'Cancel the billing account termination',
+		execute: executecancelTerminationPost,
+		description: descriptioncancelTerminationPost,
+	},
+	{
+		name: 'Carrier Sip Cdrs List',
+		value: 'carrierSipCdrsListGet',
+		action: 'Get the Call Detail Records of your Carrier SIP service',
+		execute: executecarrierSipCdrsListGet,
+		description: descriptioncarrierSipCdrsListGet,
+	},
+	{
+		name: 'Carrier Sip Cluster Details List',
+		value: 'carrierSipClusterDetailsListGet',
+		action: 'Get details about the carrier sip cluster of your stack',
+		execute: executecarrierSipClusterDetailsListGet,
+		description: descriptioncarrierSipClusterDetailsListGet,
+	},
+	{
+		name: 'Carrier Sip Endpoints Get',
+		value: 'carrierSipEndpointsGet',
+		action: 'Get this object properties',
+		execute: executecarrierSipEndpointsGet,
+		description: descriptioncarrierSipEndpointsGet,
+	},
+	{
+		name: 'Carrier Sip Endpoints List',
+		value: 'carrierSipEndpointsListGet',
+		action: 'List of your remote sip endpoints (ips, ports, protocol) of your carrier sip trunk service',
+		execute: executecarrierSipEndpointsListGet,
+		description: descriptioncarrierSipEndpointsListGet,
+	},
+	{
+		name: 'Carrier Sip Get',
+		value: 'carrierSipGet',
+		action: 'Get this object properties',
+		execute: executecarrierSipGet,
+		description: descriptioncarrierSipGet,
+	},
+	{
+		name: 'Carrier Sip List',
+		value: 'carrierSipListGet',
+		action: 'Carrier SIP trunks associated with this billing account',
+		execute: executecarrierSipListGet,
+		description: descriptioncarrierSipListGet,
+	},
+	{
+		name: 'Carrier Sip Settings List',
+		value: 'carrierSipSettingsListGet',
+		action: 'Get this object properties',
+		execute: executecarrierSipSettingsListGet,
+		description: descriptioncarrierSipSettingsListGet,
+	},
+	{
+		name: 'Carrier Sip Settings Update',
+		value: 'carrierSipSettingsPut',
+		action: 'Alter this object properties',
+		execute: executecarrierSipSettingsPut,
+		description: descriptioncarrierSipSettingsPut,
+	},
+	{
+		name: 'Carrier Sip Vno Get',
+		value: 'carrierSipVnoGet',
+		action: 'Get this object properties',
+		execute: executecarrierSipVnoGet,
+		description: descriptioncarrierSipVnoGet,
+	},
+	{
+		name: 'Carrier Sip Vno List',
+		value: 'carrierSipVnoListGet',
+		action: 'List of your VNO mandates',
+		execute: executecarrierSipVnoListGet,
+		description: descriptioncarrierSipVnoListGet,
+	},
+	{
+		name: 'Carrier Sip Vno Ranges Get',
+		value: 'carrierSipVnoRangesGet',
+		action: 'Get this object properties',
+		execute: executecarrierSipVnoRangesGet,
+		description: descriptioncarrierSipVnoRangesGet,
+	},
+	{
+		name: 'Carrier Sip Vno Ranges List',
+		value: 'carrierSipVnoRangesListGet',
+		action: 'Number ranges associated with you mandate.',
+		execute: executecarrierSipVnoRangesListGet,
+		description: descriptioncarrierSipVnoRangesListGet,
+	},
+	{
+		name: 'Carrier Sip Vno Ranges Update',
+		value: 'carrierSipVnoRangesPut',
+		action: 'Alter this object properties',
+		execute: executecarrierSipVnoRangesPut,
+		description: descriptioncarrierSipVnoRangesPut,
+	},
+	{
+		name: 'Change Billing Contact',
+		value: 'changeContactPost',
+		action: 'Launch a contact change procedure',
+		execute: executechangeContactPost,
+		description: descriptionchangeContactPost,
+	},
+	{
+		name: 'Change Contact',
+		value: 'aliasChangeContactPost',
+		action: 'Launch a contact change procedure for an alias',
+		execute: executeAliasChangeContactPost,
+		description: descriptionAliasChangeContactPost,
+	},
+	{
+		name: 'Conference',
+		value: 'conferenceListGet',
+		action: 'Execute the GET on conference',
+		execute: executeconferenceListGet,
+		description: descriptionconferenceListGet,
+	},
+	{
+		name: 'Conference (2)',
+		value: 'conferenceGet',
+		action: 'Execute the GET on conference/{x}',
+		execute: executeconferenceGet,
+		description: descriptionconferenceGet,
+	},
+	{
+		name: 'Conference Announce Upload',
+		value: 'conferenceAnnounceUploadPost',
+		action: 'Execute the POST on conference/{x}/announceUpload',
+		execute: executeconferenceAnnounceUploadPost,
+		description: descriptionconferenceAnnounceUploadPost,
+	},
+	{
+		name: 'Conference Histories',
+		value: 'conferenceHistoriesListGet',
+		action: 'Execute the GET on conference/{x}/histories',
+		execute: executeconferenceHistoriesListGet,
+		description: descriptionconferenceHistoriesListGet,
+	},
+	{
+		name: 'Conference Histories (2)',
+		value: 'conferenceHistoriesGet',
+		action: 'Execute the GET on conference/{x}/histories/{x}',
+		execute: executeconferenceHistoriesGet,
+		description: descriptionconferenceHistoriesGet,
+	},
+	{
+		name: 'Conference Informations',
+		value: 'conferenceInformationsListGet',
+		action: 'Execute the GET on conference/{x}/informations',
+		execute: executeconferenceInformationsListGet,
+		description: descriptionconferenceInformationsListGet,
+	},
+	{
+		name: 'Conference Lock',
+		value: 'conferenceLockPost',
+		action: 'Execute the POST on conference/{x}/lock',
+		execute: executeconferenceLockPost,
+		description: descriptionconferenceLockPost,
+	},
+	{
+		name: 'Conference Participants',
+		value: 'conferenceParticipantsListGet',
+		action: 'Execute the GET on conference/{x}/participants',
+		execute: executeconferenceParticipantsListGet,
+		description: descriptionconferenceParticipantsListGet,
+	},
+	{
+		name: 'Conference Participants (2)',
+		value: 'conferenceParticipantsGet',
+		action: 'Execute the GET on conference/{x}/participants/{x}',
+		execute: executeconferenceParticipantsGet,
+		description: descriptionconferenceParticipantsGet,
+	},
+	{
+		name: 'Conference Participants Deaf',
+		value: 'conferenceParticipantsDeafPost',
+		action: 'Execute the POST on conference/{x}/participants/{x}/deaf',
+		execute: executeconferenceParticipantsDeafPost,
+		description: descriptionconferenceParticipantsDeafPost,
+	},
+	{
+		name: 'Conference Participants Energy',
+		value: 'conferenceParticipantsEnergyPost',
+		action: 'Execute the POST on conference/{x}/participants/{x}/energy',
+		execute: executeconferenceParticipantsEnergyPost,
+		description: descriptionconferenceParticipantsEnergyPost,
+	},
+	{
+		name: 'Conference Participants Kick',
+		value: 'conferenceParticipantsKickPost',
+		action: 'Execute the POST on conference/{x}/participants/{x}/kick',
+		execute: executeconferenceParticipantsKickPost,
+		description: descriptionconferenceParticipantsKickPost,
+	},
+	{
+		name: 'Conference Participants Mute',
+		value: 'conferenceParticipantsMutePost',
+		action: 'Execute the POST on conference/{x}/participants/{x}/mute',
+		execute: executeconferenceParticipantsMutePost,
+		description: descriptionconferenceParticipantsMutePost,
+	},
+	{
+		name: 'Conference Participants Undeaf',
+		value: 'conferenceParticipantsUndeafPost',
+		action: 'Execute the POST on conference/{x}/participants/{x}/undeaf',
+		execute: executeconferenceParticipantsUndeafPost,
+		description: descriptionconferenceParticipantsUndeafPost,
+	},
+	{
+		name: 'Conference Participants Unmute',
+		value: 'conferenceParticipantsUnmutePost',
+		action: 'Execute the POST on conference/{x}/participants/{x}/unmute',
+		execute: executeconferenceParticipantsUnmutePost,
+		description: descriptionconferenceParticipantsUnmutePost,
+	},
+	{
+		name: 'Conference Rooms',
+		value: 'conferenceRoomsListGet',
+		action: 'Execute the GET on conference/{x}/rooms',
+		execute: executeconferenceRoomsListGet,
+		description: descriptionconferenceRoomsListGet,
+	},
+	{
+		name: 'Conference Rooms (2)',
+		value: 'conferenceRoomsPost',
+		action: 'Execute the POST on conference/{x}/rooms',
+		execute: executeconferenceRoomsPost,
+		description: descriptionconferenceRoomsPost,
+	},
+	{
+		name: 'Conference Rooms (3)',
+		value: 'conferenceRoomsGet',
+		action: 'Execute the GET on conference/{x}/rooms/{x}',
+		execute: executeconferenceRoomsGet,
+		description: descriptionconferenceRoomsGet,
+	},
+	{
+		name: 'Conference Rooms (4)',
+		value: 'conferenceRoomsPut',
+		action: 'Execute the PUT on conference/{x}/rooms/{x}',
+		execute: executeconferenceRoomsPut,
+		description: descriptionconferenceRoomsPut,
+	},
+	{
+		name: 'Conference Rooms Histories',
+		value: 'conferenceRoomsHistoriesListGet',
+		action: 'Execute the GET on conference/{x}/rooms/{x}/histories',
+		execute: executeconferenceRoomsHistoriesListGet,
+		description: descriptionconferenceRoomsHistoriesListGet,
+	},
+	{
+		name: 'Conference Rooms Histories (2)',
+		value: 'conferenceRoomsHistoriesGet',
+		action: 'Execute the GET on conference/{x}/rooms/{x}/histories/{x}',
+		execute: executeconferenceRoomsHistoriesGet,
+		description: descriptionconferenceRoomsHistoriesGet,
+	},
+	{
+		name: 'Conference Rooms Lock',
+		value: 'conferenceRoomsLockPost',
+		action: 'Execute the POST on conference/{x}/rooms/{x}/lock',
+		execute: executeconferenceRoomsLockPost,
+		description: descriptionconferenceRoomsLockPost,
+	},
+	{
+		name: 'Conference Rooms Participants',
+		value: 'conferenceRoomsParticipantsListGet',
+		action: 'Execute the GET on conference/{x}/rooms/{x}/participants',
+		execute: executeconferenceRoomsParticipantsListGet,
+		description: descriptionconferenceRoomsParticipantsListGet,
+	},
+	{
+		name: 'Conference Rooms Participants (2)',
+		value: 'conferenceRoomsParticipantsGet',
+		action: 'Execute the GET on conference/{x}/rooms/{x}/participants/{x}',
+		execute: executeconferenceRoomsParticipantsGet,
+		description: descriptionconferenceRoomsParticipantsGet,
+	},
+	{
+		name: 'Conference Rooms Participants Deaf',
+		value: 'conferenceRoomsParticipantsDeafPost',
+		action: 'Execute the POST on conference/{x}/rooms/{x}/participants/{x}/deaf',
+		execute: executeconferenceRoomsParticipantsDeafPost,
+		description: descriptionconferenceRoomsParticipantsDeafPost,
+	},
+	{
+		name: 'Conference Rooms Participants Energy',
+		value: 'conferenceRoomsParticipantsEnergyPost',
+		action: 'Execute the POST on conference/{x}/rooms/{x}/participants/{x}/energy',
+		execute: executeconferenceRoomsParticipantsEnergyPost,
+		description: descriptionconferenceRoomsParticipantsEnergyPost,
+	},
+	{
+		name: 'Conference Rooms Participants Kick',
+		value: 'conferenceRoomsParticipantsKickPost',
+		action: 'Execute the POST on conference/{x}/rooms/{x}/participants/{x}/kick',
+		execute: executeconferenceRoomsParticipantsKickPost,
+		description: descriptionconferenceRoomsParticipantsKickPost,
+	},
+	{
+		name: 'Conference Rooms Participants Mute',
+		value: 'conferenceRoomsParticipantsMutePost',
+		action: 'Execute the POST on conference/{x}/rooms/{x}/participants/{x}/mute',
+		execute: executeconferenceRoomsParticipantsMutePost,
+		description: descriptionconferenceRoomsParticipantsMutePost,
+	},
+	{
+		name: 'Conference Rooms Participants Undeaf',
+		value: 'conferenceRoomsParticipantsUndeafPost',
+		action: 'Execute the POST on conference/{x}/rooms/{x}/participants/{x}/undeaf',
+		execute: executeconferenceRoomsParticipantsUndeafPost,
+		description: descriptionconferenceRoomsParticipantsUndeafPost,
+	},
+	{
+		name: 'Conference Rooms Participants Unmute',
+		value: 'conferenceRoomsParticipantsUnmutePost',
+		action: 'Execute the POST on conference/{x}/rooms/{x}/participants/{x}/unmute',
+		execute: executeconferenceRoomsParticipantsUnmutePost,
+		description: descriptionconferenceRoomsParticipantsUnmutePost,
+	},
+	{
+		name: 'Conference Rooms Stats',
+		value: 'conferenceRoomsStatsListGet',
+		action: 'Execute the GET on conference/{x}/roomsStats',
+		execute: executeconferenceRoomsStatsListGet,
+		description: descriptionconferenceRoomsStatsListGet,
+	},
+	{
+		name: 'Conference Rooms Unlock',
+		value: 'conferenceRoomsUnlockPost',
+		action: 'Execute the POST on conference/{x}/rooms/{x}/unlock',
+		execute: executeconferenceRoomsUnlockPost,
+		description: descriptionconferenceRoomsUnlockPost,
+	},
+	{
+		name: 'Conference Rooms Web Access',
+		value: 'conferenceRoomsWebAccessListGet',
+		action: 'Execute the GET on conference/{x}/rooms/{x}/webAccess',
+		execute: executeconferenceRoomsWebAccessListGet,
+		description: descriptionconferenceRoomsWebAccessListGet,
+	},
+	{
+		name: 'Conference Rooms Web Access (2)',
+		value: 'conferenceRoomsWebAccessPost',
+		action: 'Execute the POST on conference/{x}/rooms/{x}/webAccess',
+		execute: executeconferenceRoomsWebAccessPost,
+		description: descriptionconferenceRoomsWebAccessPost,
+	},
+	{
+		name: 'Conference Rooms Web Access (3)',
+		value: 'conferenceRoomsWebAccessDelete',
+		action: 'Execute the DELETE on conference/{x}/rooms/{x}/webAccess/{x}',
+		execute: executeconferenceRoomsWebAccessDelete,
+		description: descriptionconferenceRoomsWebAccessDelete,
+	},
+	{
+		name: 'Conference Rooms Web Access (4)',
+		value: 'conferenceRoomsWebAccessGet',
+		action: 'Execute the GET on conference/{x}/rooms/{x}/webAccess/{x}',
+		execute: executeconferenceRoomsWebAccessGet,
+		description: descriptionconferenceRoomsWebAccessGet,
+	},
+	{
+		name: 'Conference Settings',
+		value: 'conferenceSettingsListGet',
+		action: 'Execute the GET on conference/{x}/settings',
+		execute: executeconferenceSettingsListGet,
+		description: descriptionconferenceSettingsListGet,
+	},
+	{
+		name: 'Conference Settings (2)',
+		value: 'conferenceSettingsPut',
+		action: 'Execute the PUT on conference/{x}/settings',
+		execute: executeconferenceSettingsPut,
+		description: descriptionconferenceSettingsPut,
+	},
+	{
+		name: 'Conference Unlock',
+		value: 'conferenceUnlockPost',
+		action: 'Execute the POST on conference/{x}/unlock',
+		execute: executeconferenceUnlockPost,
+		description: descriptionconferenceUnlockPost,
+	},
+	{
+		name: 'Conference Web Access',
+		value: 'conferenceWebAccessListGet',
+		action: 'Execute the GET on conference/{x}/webAccess',
+		execute: executeconferenceWebAccessListGet,
+		description: descriptionconferenceWebAccessListGet,
+	},
+	{
+		name: 'Conference Web Access (2)',
+		value: 'conferenceWebAccessPost',
+		action: 'Execute the POST on conference/{x}/webAccess',
+		execute: executeconferenceWebAccessPost,
+		description: descriptionconferenceWebAccessPost,
+	},
+	{
+		name: 'Conference Web Access (3)',
+		value: 'conferenceWebAccessDelete',
+		action: 'Execute the DELETE on conference/{x}/webAccess/{x}',
+		execute: executeconferenceWebAccessDelete,
+		description: descriptionconferenceWebAccessDelete,
+	},
+	{
+		name: 'Conference Web Access (4)',
+		value: 'conferenceWebAccessGet',
+		action: 'Execute the GET on conference/{x}/webAccess/{x}',
+		execute: executeconferenceWebAccessGet,
+		description: descriptionconferenceWebAccessGet,
+	},
+	{
+		name: 'Create Hardware',
+		value: 'linesHardwarePost',
+		action: 'Add hardware to a line',
+		execute: executeLinesHardwarePost,
+		description: descriptionLinesHardwarePost,
+	},
+	{
+		name: 'Create Number',
+		value: 'linesNumberPost',
+		action: 'Add a number to a line',
+		execute: executeLinesNumberPost,
+		description: descriptionLinesNumberPost,
+	},
+	{
+		name: 'Create Portability',
+		value: 'linesPortabilityPost',
+		action: 'Create a portability request for a line',
+		execute: executeLinesPortabilityPost,
+		description: descriptionLinesPortabilityPost,
+	},
+	{
+		name: 'Create SIM',
+		value: 'linesSimPost',
+		action: 'Add a SIM to a line',
+		execute: executeLinesSimPost,
+		description: descriptionLinesSimPost,
+	},
+	{
+		name: 'Ddi',
+		value: 'ddiListGet',
+		action: 'Execute the GET on ddi',
+		execute: executeddiListGet,
+		description: descriptionddiListGet,
+	},
+	{
+		name: 'Ddi (2)',
+		value: 'ddiGet',
+		action: 'Execute the GET on ddi/{x}',
+		execute: executeddiGet,
+		description: descriptionddiGet,
+	},
+	{
+		name: 'Ddi (3)',
+		value: 'ddiPut',
+		action: 'Execute the PUT on ddi/{x}',
+		execute: executeddiPut,
+		description: descriptionddiPut,
+	},
+	{
+		name: 'Ddi Change Destination',
+		value: 'ddiChangeDestinationPost',
+		action: 'Execute the POST on ddi/{x}/changeDestination',
+		execute: executeddiChangeDestinationPost,
+		description: descriptionddiChangeDestinationPost,
+	},
+	{
+		name: 'Delete Number',
+		value: 'linesNumberDelete',
+		action: 'Delete a number from a line',
+		execute: executeLinesNumberDelete,
+		description: descriptionLinesNumberDelete,
+	},
+	{
+		name: 'Delete Portability',
+		value: 'linesPortabilityDelete',
+		action: 'Delete a portability request',
+		execute: executeLinesPortabilityDelete,
+		description: descriptionLinesPortabilityDelete,
+	},
+	{
+		name: 'Delete SIM',
+		value: 'linesSimDelete',
+		action: 'Delete a SIM from a line',
+		execute: executeLinesSimDelete,
+		description: descriptionLinesSimDelete,
+	},
+	{
+		name: 'Easy Hunting',
+		value: 'easyHuntingListGet',
+		action: 'Execute the GET on easyHunting',
+		execute: executeeasyHuntingListGet,
+		description: descriptioneasyHuntingListGet,
+	},
+	{
+		name: 'Easy Hunting (2)',
+		value: 'easyHuntingGet',
+		action: 'Execute the GET on easyHunting/{x}',
+		execute: executeeasyHuntingGet,
+		description: descriptioneasyHuntingGet,
+	},
+	{
+		name: 'Easy Hunting (3)',
+		value: 'easyHuntingPut',
+		action: 'Execute the PUT on easyHunting/{x}',
+		execute: executeeasyHuntingPut,
+		description: descriptioneasyHuntingPut,
+	},
+	{
+		name: 'Easy Hunting Hunting',
+		value: 'easyHuntingHuntingListGet',
+		action: 'Execute the GET on easyHunting/{x}/hunting',
+		execute: executeeasyHuntingHuntingListGet,
+		description: descriptioneasyHuntingHuntingListGet,
+	},
+	{
+		name: 'Easy Hunting Hunting (2)',
+		value: 'easyHuntingHuntingPut',
+		action: 'Execute the PUT on easyHunting/{x}/hunting',
+		execute: executeeasyHuntingHuntingPut,
+		description: descriptioneasyHuntingHuntingPut,
+	},
+	{
+		name: 'Easy Hunting Hunting Agent',
+		value: 'easyHuntingHuntingAgentListGet',
+		action: 'Execute the GET on easyHunting/{x}/hunting/agent',
+		execute: executeeasyHuntingHuntingAgentListGet,
+		description: descriptioneasyHuntingHuntingAgentListGet,
+	},
+	{
+		name: 'Easy Hunting Hunting Agent (2)',
+		value: 'easyHuntingHuntingAgentPost',
+		action: 'Execute the POST on easyHunting/{x}/hunting/agent',
+		execute: executeeasyHuntingHuntingAgentPost,
+		description: descriptioneasyHuntingHuntingAgentPost,
+	},
+	{
+		name: 'Easy Hunting Hunting Agent (3)',
+		value: 'easyHuntingHuntingAgentDelete',
+		action: 'Execute the DELETE on easyHunting/{x}/hunting/agent/{x}',
+		execute: executeeasyHuntingHuntingAgentDelete,
+		description: descriptioneasyHuntingHuntingAgentDelete,
+	},
+	{
+		name: 'Easy Hunting Hunting Agent (4)',
+		value: 'easyHuntingHuntingAgentGet',
+		action: 'Execute the GET on easyHunting/{x}/hunting/agent/{x}',
+		execute: executeeasyHuntingHuntingAgentGet,
+		description: descriptioneasyHuntingHuntingAgentGet,
+	},
+	{
+		name: 'Easy Hunting Hunting Agent (5)',
+		value: 'easyHuntingHuntingAgentPut',
+		action: 'Execute the PUT on easyHunting/{x}/hunting/agent/{x}',
+		execute: executeeasyHuntingHuntingAgentPut,
+		description: descriptioneasyHuntingHuntingAgentPut,
+	},
+	{
+		name: 'Easy Hunting Hunting Agent Banner Access',
+		value: 'easyHuntingHuntingAgentBannerAccessDelete',
+		action: 'Execute the DELETE on easyHunting/{x}/hunting/agent/{x}/bannerAccess',
+		execute: executeeasyHuntingHuntingAgentBannerAccessDelete,
+		description: descriptioneasyHuntingHuntingAgentBannerAccessDelete,
+	},
+	{
+		name: 'Easy Hunting Hunting Agent Banner Access (2)',
+		value: 'easyHuntingHuntingAgentBannerAccessListGet',
+		action: 'Execute the GET on easyHunting/{x}/hunting/agent/{x}/bannerAccess',
+		execute: executeeasyHuntingHuntingAgentBannerAccessListGet,
+		description: descriptioneasyHuntingHuntingAgentBannerAccessListGet,
+	},
+	{
+		name: 'Easy Hunting Hunting Agent Banner Access (3)',
+		value: 'easyHuntingHuntingAgentBannerAccessPost',
+		action: 'Execute the POST on easyHunting/{x}/hunting/agent/{x}/bannerAccess',
+		execute: executeeasyHuntingHuntingAgentBannerAccessPost,
+		description: descriptioneasyHuntingHuntingAgentBannerAccessPost,
+	},
+	{
+		name: 'Easy Hunting Hunting Agent Calls',
+		value: 'easyHuntingHuntingAgentCallsListGet',
+		action: 'Execute the GET on easyHunting/{x}/hunting/agent/{x}/calls',
+		execute: executeeasyHuntingHuntingAgentCallsListGet,
+		description: descriptioneasyHuntingHuntingAgentCallsListGet,
+	},
+	{
+		name: 'Easy Hunting Hunting Agent Calls (2)',
+		value: 'easyHuntingHuntingAgentCallsGet',
+		action: 'Execute the GET on easyHunting/{x}/hunting/agent/{x}/calls/{x}',
+		execute: executeeasyHuntingHuntingAgentCallsGet,
+		description: descriptioneasyHuntingHuntingAgentCallsGet,
+	},
+	{
+		name: 'Easy Hunting Hunting Agent Calls Eavesdrop',
+		value: 'easyHuntingHuntingAgentCallsEavesdropPost',
+		action: 'Execute the POST on easyHunting/{x}/hunting/agent/{x}/calls/{x}/eavesdrop',
+		execute: executeeasyHuntingHuntingAgentCallsEavesdropPost,
+		description: descriptioneasyHuntingHuntingAgentCallsEavesdropPost,
+	},
+	{
+		name: 'Easy Hunting Hunting Agent Calls Hangup',
+		value: 'easyHuntingHuntingAgentCallsHangupPost',
+		action: 'Execute the POST on easyHunting/{x}/hunting/agent/{x}/calls/{x}/hangup',
+		execute: executeeasyHuntingHuntingAgentCallsHangupPost,
+		description: descriptioneasyHuntingHuntingAgentCallsHangupPost,
+	},
+	{
+		name: 'Easy Hunting Hunting Agent Calls Hold',
+		value: 'easyHuntingHuntingAgentCallsHoldPost',
+		action: 'Execute the POST on easyHunting/{x}/hunting/agent/{x}/calls/{x}/hold',
+		execute: executeeasyHuntingHuntingAgentCallsHoldPost,
+		description: descriptioneasyHuntingHuntingAgentCallsHoldPost,
+	},
+	{
+		name: 'Easy Hunting Hunting Agent Calls Intercept',
+		value: 'easyHuntingHuntingAgentCallsInterceptPost',
+		action: 'Execute the POST on easyHunting/{x}/hunting/agent/{x}/calls/{x}/intercept',
+		execute: executeeasyHuntingHuntingAgentCallsInterceptPost,
+		description: descriptioneasyHuntingHuntingAgentCallsInterceptPost,
+	},
+	{
+		name: 'Easy Hunting Hunting Agent Calls Transfer',
+		value: 'easyHuntingHuntingAgentCallsTransferPost',
+		action: 'Execute the POST on easyHunting/{x}/hunting/agent/{x}/calls/{x}/transfer',
+		execute: executeeasyHuntingHuntingAgentCallsTransferPost,
+		description: descriptioneasyHuntingHuntingAgentCallsTransferPost,
+	},
+	{
+		name: 'Easy Hunting Hunting Agent Calls Whisper',
+		value: 'easyHuntingHuntingAgentCallsWhisperPost',
+		action: 'Execute the POST on easyHunting/{x}/hunting/agent/{x}/calls/{x}/whisper',
+		execute: executeeasyHuntingHuntingAgentCallsWhisperPost,
+		description: descriptioneasyHuntingHuntingAgentCallsWhisperPost,
+	},
+	{
+		name: 'Easy Hunting Hunting Agent Event Token',
+		value: 'easyHuntingHuntingAgentEventTokenDelete',
+		action: 'Execute the DELETE on easyHunting/{x}/hunting/agent/{x}/eventToken',
+		execute: executeeasyHuntingHuntingAgentEventTokenDelete,
+		description: descriptioneasyHuntingHuntingAgentEventTokenDelete,
+	},
+	{
+		name: 'Easy Hunting Hunting Agent Event Token (2)',
+		value: 'easyHuntingHuntingAgentEventTokenListGet',
+		action: 'Execute the GET on easyHunting/{x}/hunting/agent/{x}/eventToken',
+		execute: executeeasyHuntingHuntingAgentEventTokenListGet,
+		description: descriptioneasyHuntingHuntingAgentEventTokenListGet,
+	},
+	{
+		name: 'Easy Hunting Hunting Agent Event Token (3)',
+		value: 'easyHuntingHuntingAgentEventTokenPost',
+		action: 'Execute the POST on easyHunting/{x}/hunting/agent/{x}/eventToken',
+		execute: executeeasyHuntingHuntingAgentEventTokenPost,
+		description: descriptioneasyHuntingHuntingAgentEventTokenPost,
+	},
+	{
+		name: 'Easy Hunting Hunting Agent Live Status',
+		value: 'easyHuntingHuntingAgentLiveStatusListGet',
+		action: 'Execute the GET on easyHunting/{x}/hunting/agent/{x}/liveStatus',
+		execute: executeeasyHuntingHuntingAgentLiveStatusListGet,
+		description: descriptioneasyHuntingHuntingAgentLiveStatusListGet,
+	},
+	{
+		name: 'Easy Hunting Hunting Agent Queue',
+		value: 'easyHuntingHuntingAgentQueueListGet',
+		action: 'Execute the GET on easyHunting/{x}/hunting/agent/{x}/queue',
+		execute: executeeasyHuntingHuntingAgentQueueListGet,
+		description: descriptioneasyHuntingHuntingAgentQueueListGet,
+	},
+	{
+		name: 'Easy Hunting Hunting Agent Queue (2)',
+		value: 'easyHuntingHuntingAgentQueuePost',
+		action: 'Execute the POST on easyHunting/{x}/hunting/agent/{x}/queue',
+		execute: executeeasyHuntingHuntingAgentQueuePost,
+		description: descriptioneasyHuntingHuntingAgentQueuePost,
+	},
+	{
+		name: 'Easy Hunting Hunting Agent Queue (3)',
+		value: 'easyHuntingHuntingAgentQueueDelete',
+		action: 'Execute the DELETE on easyHunting/{x}/hunting/agent/{x}/queue/{x}',
+		execute: executeeasyHuntingHuntingAgentQueueDelete,
+		description: descriptioneasyHuntingHuntingAgentQueueDelete,
+	},
+	{
+		name: 'Easy Hunting Hunting Agent Queue (4)',
+		value: 'easyHuntingHuntingAgentQueueGet',
+		action: 'Execute the GET on easyHunting/{x}/hunting/agent/{x}/queue/{x}',
+		execute: executeeasyHuntingHuntingAgentQueueGet,
+		description: descriptioneasyHuntingHuntingAgentQueueGet,
+	},
+	{
+		name: 'Easy Hunting Hunting Agent Queue (5)',
+		value: 'easyHuntingHuntingAgentQueuePut',
+		action: 'Execute the PUT on easyHunting/{x}/hunting/agent/{x}/queue/{x}',
+		execute: executeeasyHuntingHuntingAgentQueuePut,
+		description: descriptioneasyHuntingHuntingAgentQueuePut,
+	},
+	{
+		name: 'Easy Hunting Hunting Agent Queue Live Status',
+		value: 'easyHuntingHuntingAgentQueueLiveStatusListGet',
+		action: 'Execute the GET on easyHunting/{x}/hunting/agent/{x}/queue/{x}/liveStatus',
+		execute: executeeasyHuntingHuntingAgentQueueLiveStatusListGet,
+		description: descriptioneasyHuntingHuntingAgentQueueLiveStatusListGet,
+	},
+	{
+		name: 'Easy Hunting Hunting Custom Status',
+		value: 'easyHuntingHuntingCustomStatusListGet',
+		action: 'Execute the GET on easyHunting/{x}/hunting/customStatus',
+		execute: executeeasyHuntingHuntingCustomStatusListGet,
+		description: descriptioneasyHuntingHuntingCustomStatusListGet,
+	},
+	{
+		name: 'Easy Hunting Hunting Custom Status (2)',
+		value: 'easyHuntingHuntingCustomStatusPost',
+		action: 'Execute the POST on easyHunting/{x}/hunting/customStatus',
+		execute: executeeasyHuntingHuntingCustomStatusPost,
+		description: descriptioneasyHuntingHuntingCustomStatusPost,
+	},
+	{
+		name: 'Easy Hunting Hunting Custom Status (3)',
+		value: 'easyHuntingHuntingCustomStatusDelete',
+		action: 'Execute the DELETE on easyHunting/{x}/hunting/customStatus/{x}',
+		execute: executeeasyHuntingHuntingCustomStatusDelete,
+		description: descriptioneasyHuntingHuntingCustomStatusDelete,
+	},
+	{
+		name: 'Easy Hunting Hunting Custom Status (4)',
+		value: 'easyHuntingHuntingCustomStatusGet',
+		action: 'Execute the GET on easyHunting/{x}/hunting/customStatus/{x}',
+		execute: executeeasyHuntingHuntingCustomStatusGet,
+		description: descriptioneasyHuntingHuntingCustomStatusGet,
+	},
+	{
+		name: 'Easy Hunting Hunting Event Token',
+		value: 'easyHuntingHuntingEventTokenDelete',
+		action: 'Execute the DELETE on easyHunting/{x}/hunting/eventToken',
+		execute: executeeasyHuntingHuntingEventTokenDelete,
+		description: descriptioneasyHuntingHuntingEventTokenDelete,
+	},
+	{
+		name: 'Easy Hunting Hunting Event Token (2)',
+		value: 'easyHuntingHuntingEventTokenListGet',
+		action: 'Execute the GET on easyHunting/{x}/hunting/eventToken',
+		execute: executeeasyHuntingHuntingEventTokenListGet,
+		description: descriptioneasyHuntingHuntingEventTokenListGet,
+	},
+	{
+		name: 'Easy Hunting Hunting Event Token (3)',
+		value: 'easyHuntingHuntingEventTokenPost',
+		action: 'Execute the POST on easyHunting/{x}/hunting/eventToken',
+		execute: executeeasyHuntingHuntingEventTokenPost,
+		description: descriptioneasyHuntingHuntingEventTokenPost,
+	},
+	{
+		name: 'Easy Hunting Hunting Queue',
+		value: 'easyHuntingHuntingQueueListGet',
+		action: 'Execute the GET on easyHunting/{x}/hunting/queue',
+		execute: executeeasyHuntingHuntingQueueListGet,
+		description: descriptioneasyHuntingHuntingQueueListGet,
+	},
+	{
+		name: 'Easy Hunting Hunting Queue (2)',
+		value: 'easyHuntingHuntingQueuePost',
+		action: 'Execute the POST on easyHunting/{x}/hunting/queue',
+		execute: executeeasyHuntingHuntingQueuePost,
+		description: descriptioneasyHuntingHuntingQueuePost,
+	},
+	{
+		name: 'Easy Hunting Hunting Queue (3)',
+		value: 'easyHuntingHuntingQueueDelete',
+		action: 'Execute the DELETE on easyHunting/{x}/hunting/queue/{x}',
+		execute: executeeasyHuntingHuntingQueueDelete,
+		description: descriptioneasyHuntingHuntingQueueDelete,
+	},
+	{
+		name: 'Easy Hunting Hunting Queue (4)',
+		value: 'easyHuntingHuntingQueueGet',
+		action: 'Execute the GET on easyHunting/{x}/hunting/queue/{x}',
+		execute: executeeasyHuntingHuntingQueueGet,
+		description: descriptioneasyHuntingHuntingQueueGet,
+	},
+	{
+		name: 'Easy Hunting Hunting Queue (5)',
+		value: 'easyHuntingHuntingQueuePut',
+		action: 'Execute the PUT on easyHunting/{x}/hunting/queue/{x}',
+		execute: executeeasyHuntingHuntingQueuePut,
+		description: descriptioneasyHuntingHuntingQueuePut,
+	},
+	{
+		name: 'Easy Hunting Hunting Queue Agent',
+		value: 'easyHuntingHuntingQueueAgentListGet',
+		action: 'Execute the GET on easyHunting/{x}/hunting/queue/{x}/agent',
+		execute: executeeasyHuntingHuntingQueueAgentListGet,
+		description: descriptioneasyHuntingHuntingQueueAgentListGet,
+	},
+	{
+		name: 'Easy Hunting Hunting Queue Agent (2)',
+		value: 'easyHuntingHuntingQueueAgentPost',
+		action: 'Execute the POST on easyHunting/{x}/hunting/queue/{x}/agent',
+		execute: executeeasyHuntingHuntingQueueAgentPost,
+		description: descriptioneasyHuntingHuntingQueueAgentPost,
+	},
+	{
+		name: 'Easy Hunting Hunting Queue Agent (3)',
+		value: 'easyHuntingHuntingQueueAgentDelete',
+		action: 'Execute the DELETE on easyHunting/{x}/hunting/queue/{x}/agent/{x}',
+		execute: executeeasyHuntingHuntingQueueAgentDelete,
+		description: descriptioneasyHuntingHuntingQueueAgentDelete,
+	},
+	{
+		name: 'Easy Hunting Hunting Queue Agent (4)',
+		value: 'easyHuntingHuntingQueueAgentGet',
+		action: 'Execute the GET on easyHunting/{x}/hunting/queue/{x}/agent/{x}',
+		execute: executeeasyHuntingHuntingQueueAgentGet,
+		description: descriptioneasyHuntingHuntingQueueAgentGet,
+	},
+	{
+		name: 'Easy Hunting Hunting Queue Agent (5)',
+		value: 'easyHuntingHuntingQueueAgentPut',
+		action: 'Execute the PUT on easyHunting/{x}/hunting/queue/{x}/agent/{x}',
+		execute: executeeasyHuntingHuntingQueueAgentPut,
+		description: descriptioneasyHuntingHuntingQueueAgentPut,
+	},
+	{
+		name: 'Easy Hunting Hunting Queue Agent Live Status',
+		value: 'easyHuntingHuntingQueueAgentLiveStatusListGet',
+		action: 'Execute the GET on easyHunting/{x}/hunting/queue/{x}/agent/{x}/liveStatus',
+		execute: executeeasyHuntingHuntingQueueAgentLiveStatusListGet,
+		description: descriptioneasyHuntingHuntingQueueAgentLiveStatusListGet,
+	},
+	{
+		name: 'Easy Hunting Hunting Queue Live Calls',
+		value: 'easyHuntingHuntingQueueLiveCallsListGet',
+		action: 'Execute the GET on easyHunting/{x}/hunting/queue/{x}/liveCalls',
+		execute: executeeasyHuntingHuntingQueueLiveCallsListGet,
+		description: descriptioneasyHuntingHuntingQueueLiveCallsListGet,
+	},
+	{
+		name: 'Easy Hunting Hunting Queue Live Calls (2)',
+		value: 'easyHuntingHuntingQueueLiveCallsGet',
+		action: 'Execute the GET on easyHunting/{x}/hunting/queue/{x}/liveCalls/{x}',
+		execute: executeeasyHuntingHuntingQueueLiveCallsGet,
+		description: descriptioneasyHuntingHuntingQueueLiveCallsGet,
+	},
+	{
+		name: 'Easy Hunting Hunting Queue Live Calls Eavesdrop',
+		value: 'easyHuntingHuntingQueueLiveCallsEavesdropPost',
+		action: 'Execute the POST on easyHunting/{x}/hunting/queue/{x}/liveCalls/{x}/eavesdrop',
+		execute: executeeasyHuntingHuntingQueueLiveCallsEavesdropPost,
+		description: descriptioneasyHuntingHuntingQueueLiveCallsEavesdropPost,
+	},
+	{
+		name: 'Easy Hunting Hunting Queue Live Calls Hangup',
+		value: 'easyHuntingHuntingQueueLiveCallsHangupPost',
+		action: 'Execute the POST on easyHunting/{x}/hunting/queue/{x}/liveCalls/{x}/hangup',
+		execute: executeeasyHuntingHuntingQueueLiveCallsHangupPost,
+		description: descriptioneasyHuntingHuntingQueueLiveCallsHangupPost,
+	},
+	{
+		name: 'Easy Hunting Hunting Queue Live Calls Hold',
+		value: 'easyHuntingHuntingQueueLiveCallsHoldPost',
+		action: 'Execute the POST on easyHunting/{x}/hunting/queue/{x}/liveCalls/{x}/hold',
+		execute: executeeasyHuntingHuntingQueueLiveCallsHoldPost,
+		description: descriptioneasyHuntingHuntingQueueLiveCallsHoldPost,
+	},
+	{
+		name: 'Easy Hunting Hunting Queue Live Calls Intercept',
+		value: 'easyHuntingHuntingQueueLiveCallsInterceptPost',
+		action: 'Execute the POST on easyHunting/{x}/hunting/queue/{x}/liveCalls/{x}/intercept',
+		execute: executeeasyHuntingHuntingQueueLiveCallsInterceptPost,
+		description: descriptioneasyHuntingHuntingQueueLiveCallsInterceptPost,
+	},
+	{
+		name: 'Easy Hunting Hunting Queue Live Calls Transfer',
+		value: 'easyHuntingHuntingQueueLiveCallsTransferPost',
+		action: 'Execute the POST on easyHunting/{x}/hunting/queue/{x}/liveCalls/{x}/transfer',
+		execute: executeeasyHuntingHuntingQueueLiveCallsTransferPost,
+		description: descriptioneasyHuntingHuntingQueueLiveCallsTransferPost,
+	},
+	{
+		name: 'Easy Hunting Hunting Queue Live Calls Whisper',
+		value: 'easyHuntingHuntingQueueLiveCallsWhisperPost',
+		action: 'Execute the POST on easyHunting/{x}/hunting/queue/{x}/liveCalls/{x}/whisper',
+		execute: executeeasyHuntingHuntingQueueLiveCallsWhisperPost,
+		description: descriptioneasyHuntingHuntingQueueLiveCallsWhisperPost,
+	},
+	{
+		name: 'Easy Hunting Hunting Queue Live Statistics',
+		value: 'easyHuntingHuntingQueueLiveStatisticsListGet',
+		action: 'Execute the GET on easyHunting/{x}/hunting/queue/{x}/liveStatistics',
+		execute: executeeasyHuntingHuntingQueueLiveStatisticsListGet,
+		description: descriptioneasyHuntingHuntingQueueLiveStatisticsListGet,
+	},
+	{
+		name: 'Easy Hunting Records',
+		value: 'easyHuntingRecordsListGet',
+		action: 'Execute the GET on easyHunting/{x}/records',
+		execute: executeeasyHuntingRecordsListGet,
+		description: descriptioneasyHuntingRecordsListGet,
+	},
+	{
+		name: 'Easy Hunting Records (2)',
+		value: 'easyHuntingRecordsDelete',
+		action: 'Execute the DELETE on easyHunting/{x}/records/{x}',
+		execute: executeeasyHuntingRecordsDelete,
+		description: descriptioneasyHuntingRecordsDelete,
+	},
+	{
+		name: 'Easy Hunting Records (3)',
+		value: 'easyHuntingRecordsGet',
+		action: 'Execute the GET on easyHunting/{x}/records/{x}',
+		execute: executeeasyHuntingRecordsGet,
+		description: descriptioneasyHuntingRecordsGet,
+	},
+	{
+		name: 'Easy Hunting Screen List Conditions',
+		value: 'easyHuntingScreenListConditionsListGet',
+		action: 'Execute the GET on easyHunting/{x}/screenListConditions',
+		execute: executeeasyHuntingScreenListConditionsListGet,
+		description: descriptioneasyHuntingScreenListConditionsListGet,
+	},
+	{
+		name: 'Easy Hunting Screen List Conditions (2)',
+		value: 'easyHuntingScreenListConditionsPut',
+		action: 'Execute the PUT on easyHunting/{x}/screenListConditions',
+		execute: executeeasyHuntingScreenListConditionsPut,
+		description: descriptioneasyHuntingScreenListConditionsPut,
+	},
+	{
+		name: 'Easy Hunting Screen List Conditions Conditions',
+		value: 'easyHuntingScreenListConditionsConditionsListGet',
+		action: 'Execute the GET on easyHunting/{x}/screenListConditions/conditions',
+		execute: executeeasyHuntingScreenListConditionsConditionsListGet,
+		description: descriptioneasyHuntingScreenListConditionsConditionsListGet,
+	},
+	{
+		name: 'Easy Hunting Screen List Conditions Conditions (2)',
+		value: 'easyHuntingScreenListConditionsConditionsPost',
+		action: 'Execute the POST on easyHunting/{x}/screenListConditions/conditions',
+		execute: executeeasyHuntingScreenListConditionsConditionsPost,
+		description: descriptioneasyHuntingScreenListConditionsConditionsPost,
+	},
+	{
+		name: 'Easy Hunting Screen List Conditions Conditions (3)',
+		value: 'easyHuntingScreenListConditionsConditionsDelete',
+		action: 'Execute the DELETE on easyHunting/{x}/screenListConditions/conditions/{x}',
+		execute: executeeasyHuntingScreenListConditionsConditionsDelete,
+		description: descriptioneasyHuntingScreenListConditionsConditionsDelete,
+	},
+	{
+		name: 'Easy Hunting Screen List Conditions Conditions (4)',
+		value: 'easyHuntingScreenListConditionsConditionsGet',
+		action: 'Execute the GET on easyHunting/{x}/screenListConditions/conditions/{x}',
+		execute: executeeasyHuntingScreenListConditionsConditionsGet,
+		description: descriptioneasyHuntingScreenListConditionsConditionsGet,
+	},
+	{
+		name: 'Easy Hunting Screen List Conditions Conditions (5)',
+		value: 'easyHuntingScreenListConditionsConditionsPut',
+		action: 'Execute the PUT on easyHunting/{x}/screenListConditions/conditions/{x}',
+		execute: executeeasyHuntingScreenListConditionsConditionsPut,
+		description: descriptioneasyHuntingScreenListConditionsConditionsPut,
+	},
+	{
+		name: 'Easy Hunting Sound',
+		value: 'easyHuntingSoundListGet',
+		action: 'Execute the GET on easyHunting/{x}/sound',
+		execute: executeeasyHuntingSoundListGet,
+		description: descriptioneasyHuntingSoundListGet,
+	},
+	{
+		name: 'Easy Hunting Sound (2)',
+		value: 'easyHuntingSoundDelete',
+		action: 'Execute the DELETE on easyHunting/{x}/sound/{x}',
+		execute: executeeasyHuntingSoundDelete,
+		description: descriptioneasyHuntingSoundDelete,
+	},
+	{
+		name: 'Easy Hunting Sound (3)',
+		value: 'easyHuntingSoundGet',
+		action: 'Execute the GET on easyHunting/{x}/sound/{x}',
+		execute: executeeasyHuntingSoundGet,
+		description: descriptioneasyHuntingSoundGet,
+	},
+	{
+		name: 'Easy Hunting Sound Upload',
+		value: 'easyHuntingSoundUploadPost',
+		action: 'Execute the POST on easyHunting/{x}/soundUpload',
+		execute: executeeasyHuntingSoundUploadPost,
+		description: descriptioneasyHuntingSoundUploadPost,
+	},
+	{
+		name: 'Easy Hunting Time Conditions',
+		value: 'easyHuntingTimeConditionsListGet',
+		action: 'Execute the GET on easyHunting/{x}/timeConditions',
+		execute: executeeasyHuntingTimeConditionsListGet,
+		description: descriptioneasyHuntingTimeConditionsListGet,
+	},
+	{
+		name: 'Easy Hunting Time Conditions (2)',
+		value: 'easyHuntingTimeConditionsPut',
+		action: 'Execute the PUT on easyHunting/{x}/timeConditions',
+		execute: executeeasyHuntingTimeConditionsPut,
+		description: descriptioneasyHuntingTimeConditionsPut,
+	},
+	{
+		name: 'Easy Hunting Time Conditions Conditions',
+		value: 'easyHuntingTimeConditionsConditionsListGet',
+		action: 'Execute the GET on easyHunting/{x}/timeConditions/conditions',
+		execute: executeeasyHuntingTimeConditionsConditionsListGet,
+		description: descriptioneasyHuntingTimeConditionsConditionsListGet,
+	},
+	{
+		name: 'Easy Hunting Time Conditions Conditions (2)',
+		value: 'easyHuntingTimeConditionsConditionsPost',
+		action: 'Execute the POST on easyHunting/{x}/timeConditions/conditions',
+		execute: executeeasyHuntingTimeConditionsConditionsPost,
+		description: descriptioneasyHuntingTimeConditionsConditionsPost,
+	},
+	{
+		name: 'Easy Hunting Time Conditions Conditions (3)',
+		value: 'easyHuntingTimeConditionsConditionsDelete',
+		action: 'Execute the DELETE on easyHunting/{x}/timeConditions/conditions/{x}',
+		execute: executeeasyHuntingTimeConditionsConditionsDelete,
+		description: descriptioneasyHuntingTimeConditionsConditionsDelete,
+	},
+	{
+		name: 'Easy Hunting Time Conditions Conditions (4)',
+		value: 'easyHuntingTimeConditionsConditionsGet',
+		action: 'Execute the GET on easyHunting/{x}/timeConditions/conditions/{x}',
+		execute: executeeasyHuntingTimeConditionsConditionsGet,
+		description: descriptioneasyHuntingTimeConditionsConditionsGet,
+	},
+	{
+		name: 'Easy Hunting Time Conditions Conditions (5)',
+		value: 'easyHuntingTimeConditionsConditionsPut',
+		action: 'Execute the PUT on easyHunting/{x}/timeConditions/conditions/{x}',
+		execute: executeeasyHuntingTimeConditionsConditionsPut,
+		description: descriptioneasyHuntingTimeConditionsConditionsPut,
+	},
+	{
+		name: 'Event Token',
+		value: 'eventTokenDelete',
+		action: 'Execute the DELETE on eventToken',
+		execute: executeeventTokenDelete,
+		description: descriptioneventTokenDelete,
+	},
+	{
+		name: 'Event Token (2)',
+		value: 'eventTokenListGet',
+		action: 'Execute the GET on eventToken',
+		execute: executeeventTokenListGet,
+		description: descriptioneventTokenListGet,
+	},
+	{
+		name: 'Event Token (3)',
+		value: 'eventTokenPost',
+		action: 'Execute the POST on eventToken',
+		execute: executeeventTokenPost,
+		description: descriptioneventTokenPost,
+	},
+	{
+		name: 'Fax Campaigns Create',
+		value: 'faxCampaignsPost',
+		action: 'Create a new fax campaign',
+		execute: executefaxCampaignsPost,
+		description: descriptionfaxCampaignsPost,
+	},
+	{
+		name: 'Fax Campaigns Delete',
+		value: 'faxCampaignsDelete',
+		action: 'Delete a fax campaign',
+		execute: executefaxCampaignsDelete,
+		description: descriptionfaxCampaignsDelete,
+	},
+	{
+		name: 'Fax Campaigns Detail List',
+		value: 'faxCampaignsDetailListGet',
+		action: 'Detail of the fax recipients by status',
+		execute: executefaxCampaignsDetailListGet,
+		description: descriptionfaxCampaignsDetailListGet,
+	},
+	{
+		name: 'Fax Campaigns Get',
+		value: 'faxCampaignsGet',
+		action: 'Get this object properties',
+		execute: executefaxCampaignsGet,
+		description: descriptionfaxCampaignsGet,
+	},
+	{
+		name: 'Fax Campaigns List',
+		value: 'faxCampaignsListGet',
+		action: 'Fax campaigns of the associate fax',
+		execute: executefaxCampaignsListGet,
+		description: descriptionfaxCampaignsListGet,
+	},
+	{
+		name: 'Fax Campaigns Start Create',
+		value: 'faxCampaignsStartPost',
+		action: 'Start a fax campaign',
+		execute: executefaxCampaignsStartPost,
+		description: descriptionfaxCampaignsStartPost,
+	},
+	{
+		name: 'Fax Campaigns Stop Create',
+		value: 'faxCampaignsStopPost',
+		action: 'Stop a fax campaign',
+		execute: executefaxCampaignsStopPost,
+		description: descriptionfaxCampaignsStopPost,
+	},
+	{
+		name: 'Fax Get',
+		value: 'faxGet',
+		action: 'Get this object properties',
+		execute: executefaxGet,
+		description: descriptionfaxGet,
+	},
+	{
+		name: 'Fax List',
+		value: 'faxListGet',
+		action: 'Faxes associated with this billing account',
+		execute: executefaxListGet,
+		description: descriptionfaxListGet,
+	},
+	{
+		name: 'Fax Screen Lists Create',
+		value: 'faxScreenListsPost',
+		action: 'Create a new fax ScreenLists',
+		execute: executefaxScreenListsPost,
+		description: descriptionfaxScreenListsPost,
+	},
+	{
+		name: 'Fax Screen Lists Delete',
+		value: 'faxScreenListsDelete',
+		action: 'Delete all fax screenLists',
+		execute: executefaxScreenListsDelete,
+		description: descriptionfaxScreenListsDelete,
+	},
+	{
+		name: 'Fax Screen Lists List',
+		value: 'faxScreenListsListGet',
+		action: 'Get this object properties',
+		execute: executefaxScreenListsListGet,
+		description: descriptionfaxScreenListsListGet,
+	},
+	{
+		name: 'Fax Screen Lists Reset Create',
+		value: 'faxScreenListsResetPost',
+		action: 'Reset a specifical fax screenList',
+		execute: executefaxScreenListsResetPost,
+		description: descriptionfaxScreenListsResetPost,
+	},
+	{
+		name: 'Fax Screen Lists Update',
+		value: 'faxScreenListsPut',
+		action: 'Alter this object properties',
+		execute: executefaxScreenListsPut,
+		description: descriptionfaxScreenListsPut,
+	},
+	{
+		name: 'Fax Settings Change Password Create',
+		value: 'faxSettingsChangePasswordPost',
+		action: 'Generates a new password for your fax account',
+		execute: executefaxSettingsChangePasswordPost,
+		description: descriptionfaxSettingsChangePasswordPost,
+	},
+	{
+		name: 'Fax Settings List',
+		value: 'faxSettingsListGet',
+		action: 'Get this object properties',
+		execute: executefaxSettingsListGet,
+		description: descriptionfaxSettingsListGet,
+	},
+	{
+		name: 'Fax Settings Send Fax Create',
+		value: 'faxSettingsSendFaxPost',
+		action: 'Send a fax',
+		execute: executefaxSettingsSendFaxPost,
+		description: descriptionfaxSettingsSendFaxPost,
+	},
+	{
+		name: 'Fax Settings Update',
+		value: 'faxSettingsPut',
+		action: 'Alter this object properties',
+		execute: executefaxSettingsPut,
+		description: descriptionfaxSettingsPut,
+	},
+	{
+		name: 'Fax Update',
+		value: 'faxPut',
+		action: 'Alter this object properties',
+		execute: executefaxPut,
+		description: descriptionfaxPut,
+	},
+	{
+		name: 'Get Alias',
+		value: 'aliasGet',
+		action: 'Get alias properties',
+		execute: executeAliasGet,
+		description: descriptionAliasGet,
+	},
+	{
+		name: 'Get Alias Service Info',
+		value: 'aliasServiceInfosGet',
+		action: 'Get service information for an alias',
+		execute: executeAliasServiceInfosGet,
+		description: descriptionAliasServiceInfosGet,
+	},
+	{
+		name: 'Get Allowed Credit Threshold',
+		value: 'allowedCreditThresholdGet',
+		action: 'Get the allowed creditThreshold for this billing account',
+		execute: executeallowedCreditThresholdGet,
+		description: descriptionallowedCreditThresholdGet,
+	},
+	{
+		name: 'Get Amount Security Deposit',
+		value: 'amountSecurityDepositGet',
+		action: 'Give all amounts availables for your billing account',
+		execute: executeamountSecurityDepositGet,
+		description: descriptionamountSecurityDepositGet,
+	},
+	{
+		name: 'Get Billing Account',
+		value: 'billingAccountGet',
+		action: 'Get this object properties',
+		execute: executebillingAccountGet,
+		description: descriptionbillingAccountGet,
+	},
+	{
+		name: 'Get Billing Account Site',
+		value: 'billingAccountSiteGet',
+		action: 'Current billing account site (billing account features are overwritten by the site)',
+		execute: executebillingAccountSiteGet,
+		description: descriptionbillingAccountSiteGet,
+	},
+	{
+		name: 'Get Line',
+		value: 'linesGet',
+		action: 'Get line properties',
+		execute: executeLinesGet,
+		description: descriptionLinesGet,
+	},
+	{
+		name: 'Get Line Offer Details',
+		value: 'lineOfferDetailsGet',
+		action: 'Get detailed information about a line offer',
+		execute: executeLineOfferDetailsGet,
+		description: descriptionLineOfferDetailsGet,
+	},
+	{
+		name: 'Get Line Service Info',
+		value: 'linesServiceInfosGet',
+		action: 'Get service information for a line',
+		execute: executeLinesServiceInfosGet,
+		description: descriptionLinesServiceInfosGet,
+	},
+	{
+		name: 'Get Number',
+		value: 'linesNumberGet',
+		action: 'Get number properties',
+		execute: executeLinesNumberGet,
+		description: descriptionLinesNumberGet,
+	},
+	{
+		name: 'Get Offer Phones',
+		value: 'lineOfferPhonesGet',
+		action: 'Get phones for a line offer',
+		execute: executeLineOfferPhonesGet,
+		description: descriptionLineOfferPhonesGet,
+	},
+	{
+		name: 'Get Portability',
+		value: 'linesPortabilityGet',
+		action: 'Get portability details',
+		execute: executeLinesPortabilityGet,
+		description: descriptionLinesPortabilityGet,
+	},
+	{
+		name: 'Get SIM',
+		value: 'linesSimGet',
+		action: 'Get SIM properties',
+		execute: executeLinesSimGet,
+		description: descriptionLinesSimGet,
+	},
+	{
+		name: 'Get Trunk',
+		value: 'trunksGet',
+		action: 'Get trunk properties',
+		execute: executeTrunksGet,
+		description: descriptionTrunksGet,
+	},
+	{
+		name: 'Get Trunk Service Info',
+		value: 'trunksServiceInfosGet',
+		action: 'Get service information for a trunk',
+		execute: executeTrunksServiceInfosGet,
+		description: descriptionTrunksServiceInfosGet,
+	},
+	{
+		name: 'Has Special Numbers',
+		value: 'hasSpecialNumbersListGet',
+		action: 'Execute the GET on hasSpecialNumbers',
+		execute: executehasSpecialNumbersListGet,
+		description: descriptionhasSpecialNumbersListGet,
+	},
+	{
+		name: 'History Consumption',
+		value: 'historyConsumptionListGet',
+		action: 'Execute the GET on historyConsumption',
+		execute: executehistoryConsumptionListGet,
+		description: descriptionhistoryConsumptionListGet,
+	},
+	{
+		name: 'History Consumption (2)',
+		value: 'historyConsumptionGet',
+		action: 'Execute the GET on historyConsumption/{x}',
+		execute: executehistoryConsumptionGet,
+		description: descriptionhistoryConsumptionGet,
+	},
+	{
+		name: 'History Consumption File',
+		value: 'historyConsumptionFileListGet',
+		action: 'Execute the GET on historyConsumption/{x}/file',
+		execute: executehistoryConsumptionFileListGet,
+		description: descriptionhistoryConsumptionFileListGet,
+	},
+	{
+		name: 'History Repayment Consumption',
+		value: 'historyRepaymentConsumptionListGet',
+		action: 'Execute the GET on historyRepaymentConsumption',
+		execute: executehistoryRepaymentConsumptionListGet,
+		description: descriptionhistoryRepaymentConsumptionListGet,
+	},
+	{
+		name: 'History Repayment Consumption (2)',
+		value: 'historyRepaymentConsumptionPost',
+		action: 'Execute the POST on historyRepaymentConsumption',
+		execute: executehistoryRepaymentConsumptionPost,
+		description: descriptionhistoryRepaymentConsumptionPost,
+	},
+	{
+		name: 'History Repayment Consumption (3)',
+		value: 'historyRepaymentConsumptionGet',
+		action: 'Execute the GET on historyRepaymentConsumption/{x}',
+		execute: executehistoryRepaymentConsumptionGet,
+		description: descriptionhistoryRepaymentConsumptionGet,
+	},
+	{
+		name: 'History Repayment Consumption Document',
+		value: 'historyRepaymentConsumptionDocumentListGet',
+		action: 'Execute the GET on historyRepaymentConsumption/{x}/document',
+		execute: executehistoryRepaymentConsumptionDocumentListGet,
+		description: descriptionhistoryRepaymentConsumptionDocumentListGet,
+	},
+	{
+		name: 'History Tollfree Consumption',
+		value: 'historyTollfreeConsumptionListGet',
+		action: 'Execute the GET on historyTollfreeConsumption',
+		execute: executehistoryTollfreeConsumptionListGet,
+		description: descriptionhistoryTollfreeConsumptionListGet,
+	},
+	{
+		name: 'History Tollfree Consumption (2)',
+		value: 'historyTollfreeConsumptionGet',
+		action: 'Execute the GET on historyTollfreeConsumption/{x}',
+		execute: executehistoryTollfreeConsumptionGet,
+		description: descriptionhistoryTollfreeConsumptionGet,
+	},
+	{
+		name: 'History Tollfree Consumption Document',
+		value: 'historyTollfreeConsumptionDocumentListGet',
+		action: 'Execute the GET on historyTollfreeConsumption/{x}/document',
+		execute: executehistoryTollfreeConsumptionDocumentListGet,
+		description: descriptionhistoryTollfreeConsumptionDocumentListGet,
+	},
+	{
+		name: 'Line Abbreviated Number Create',
+		value: 'lineAbbreviatedNumberPost',
+		action: 'Create a new abbreviated number for the line',
+		execute: executelineAbbreviatedNumberPost,
+		description: descriptionlineAbbreviatedNumberPost,
+	},
+	{
+		name: 'Line Abbreviated Number Delete',
+		value: 'lineAbbreviatedNumberDelete',
+		action: 'Delete the given abbreviated number',
+		execute: executelineAbbreviatedNumberDelete,
+		description: descriptionlineAbbreviatedNumberDelete,
+	},
+	{
+		name: 'Line Abbreviated Number Get',
+		value: 'lineAbbreviatedNumberGet',
+		action: 'Get this object properties',
+		execute: executelineAbbreviatedNumberGet,
+		description: descriptionlineAbbreviatedNumberGet,
+	},
+	{
+		name: 'Line Abbreviated Number List',
+		value: 'lineAbbreviatedNumberListGet',
+		action: 'Abbreviated numbers for the line',
+		execute: executelineAbbreviatedNumberListGet,
+		description: descriptionlineAbbreviatedNumberListGet,
+	},
+	{
+		name: 'Line Abbreviated Number Update',
+		value: 'lineAbbreviatedNumberPut',
+		action: 'Alter this object properties',
+		execute: executelineAbbreviatedNumberPut,
+		description: descriptionlineAbbreviatedNumberPut,
+	},
+	{
+		name: 'Line Activate New Phone Create',
+		value: 'lineActivateNewPhonePost',
+		action: 'Allow to activate new phone, in case of phone switch',
+		execute: executelineActivateNewPhonePost,
+		description: descriptionlineActivateNewPhonePost,
+	},
+	{
+		name: 'Line Activate New Phone List',
+		value: 'lineActivateNewPhoneListGet',
+		action: 'Allow to activate new phone, in case of phone switch',
+		execute: executelineActivateNewPhoneListGet,
+		description: descriptionlineActivateNewPhoneListGet,
+	},
+	{
+		name: 'Line Antihack Create',
+		value: 'lineAntihackPost',
+		action: 'Clean the antihack or add it on active filter screen list',
+		execute: executelineAntihackPost,
+		description: descriptionlineAntihackPost,
+	},
+	{
+		name: 'Line Antihack List',
+		value: 'lineAntihackListGet',
+		action: 'Current list of numbers or short code numbers restricted by an auto antihack',
+		execute: executelineAntihackListGet,
+		description: descriptionlineAntihackListGet,
+	},
+	{
+		name: 'Line Associate Device Create',
+		value: 'lineAssociateDevicePost',
+		action: 'Associate a device to the current line with the device mac address',
+		execute: executelineAssociateDevicePost,
+		description: descriptionlineAssociateDevicePost,
+	},
+	{
+		name: 'Line Automatic Call Create',
+		value: 'lineAutomaticCallPost',
+		action: 'Make an automatic phone call. Return generated call identifier',
+		execute: executelineAutomaticCallPost,
+		description: descriptionlineAutomaticCallPost,
+	},
+	{
+		name: 'Line Automatic Call Get',
+		value: 'lineAutomaticCallGet',
+		action: 'Get this object properties',
+		execute: executelineAutomaticCallGet,
+		description: descriptionlineAutomaticCallGet,
+	},
+	{
+		name: 'Line Automatic Call List',
+		value: 'lineAutomaticCallListGet',
+		action: 'Automatic Calls made by Calls Generator on this line',
+		execute: executelineAutomaticCallListGet,
+		description: descriptionlineAutomaticCallListGet,
+	},
+	{
+		name: 'Line Available Sip Domains List',
+		value: 'lineAvailableSipDomainsListGet',
+		action: 'Listing of domains Sip availables',
+		execute: executelineAvailableSipDomainsListGet,
+		description: descriptionlineAvailableSipDomainsListGet,
+	},
+	{
+		name: 'Line Block Create',
+		value: 'lineBlockPost',
+		action: 'Block the line. By default it will block incoming and outgoing calls (except for emergency numbers)',
+		execute: executelineBlockPost,
+		description: descriptionlineBlockPost,
+	},
+	{
+		name: 'Line Calls Eavesdrop Create',
+		value: 'lineCallsEavesdropPost',
+		action: 'Eavesdrop on a call',
+		execute: executelineCallsEavesdropPost,
+		description: descriptionlineCallsEavesdropPost,
+	},
+	{
+		name: 'Line Calls Get',
+		value: 'lineCallsGet',
+		action: 'Get this object properties',
+		execute: executelineCallsGet,
+		description: descriptionlineCallsGet,
+	},
+	{
+		name: 'Line Calls Hangup Create',
+		value: 'lineCallsHangupPost',
+		action: 'Hangup a call',
+		execute: executelineCallsHangupPost,
+		description: descriptionlineCallsHangupPost,
+	},
+	{
+		name: 'Line Calls Hold Create',
+		value: 'lineCallsHoldPost',
+		action: 'Toogle hold on call',
+		execute: executelineCallsHoldPost,
+		description: descriptionlineCallsHoldPost,
+	},
+	{
+		name: 'Line Calls Intercept Create',
+		value: 'lineCallsInterceptPost',
+		action: 'Intercept a non answered call',
+		execute: executelineCallsInterceptPost,
+		description: descriptionlineCallsInterceptPost,
+	},
+	{
+		name: 'Line Calls List',
+		value: 'lineCallsListGet',
+		action: 'The active calls of your line as a call center agent',
+		execute: executelineCallsListGet,
+		description: descriptionlineCallsListGet,
+	},
+	{
+		name: 'Line Calls Transfer Create',
+		value: 'lineCallsTransferPost',
+		action: 'Transfer an answered call',
+		execute: executelineCallsTransferPost,
+		description: descriptionlineCallsTransferPost,
+	},
+	{
+		name: 'Line Calls Whisper Create',
+		value: 'lineCallsWhisperPost',
+		action: 'Whisper on a call',
+		execute: executelineCallsWhisperPost,
+		description: descriptionlineCallsWhisperPost,
+	},
+	{
+		name: 'Line Can Change Password List',
+		value: 'lineCanChangePasswordListGet',
+		action: 'Ability to manage SIP password on this service',
+		execute: executelineCanChangePasswordListGet,
+		description: descriptionlineCanChangePasswordListGet,
+	},
+	{
+		name: 'Line Cancel Convert To Number Create',
+		value: 'lineCancelConvertToNumberPost',
+		action: 'Cancel a scheduled conversion to number',
+		execute: executelineCancelConvertToNumberPost,
+		description: descriptionlineCancelConvertToNumberPost,
+	},
+	{
+		name: 'Line Change Password Create',
+		value: 'lineChangePasswordPost',
+		action: 'Change the SIP account password',
+		execute: executelineChangePasswordPost,
+		description: descriptionlineChangePasswordPost,
+	},
+	{
+		name: 'Line Click2 Call Create',
+		value: 'lineClick2CallPost',
+		action: 'Make a phone call from the current line',
+		execute: executelineClick2CallPost,
+		description: descriptionlineClick2CallPost,
+	},
+	{
+		name: 'Line Click2 Call User Change Password Create',
+		value: 'lineClick2CallUserChangePasswordPost',
+		action: 'Change the password of the click2call user',
+		execute: executelineClick2CallUserChangePasswordPost,
+		description: descriptionlineClick2CallUserChangePasswordPost,
+	},
+	{
+		name: 'Line Click2 Call User Click2 Call Create',
+		value: 'lineClick2CallUserClick2CallPost',
+		action: 'Make a phone call from the current line',
+		execute: executelineClick2CallUserClick2CallPost,
+		description: descriptionlineClick2CallUserClick2CallPost,
+	},
+	{
+		name: 'Line Click2 Call User Create',
+		value: 'lineClick2CallUserPost',
+		action: 'Create a new user for click 2 call',
+		execute: executelineClick2CallUserPost,
+		description: descriptionlineClick2CallUserPost,
+	},
+	{
+		name: 'Line Click2 Call User Delete',
+		value: 'lineClick2CallUserDelete',
+		action: 'Delete a click 2 call user',
+		execute: executelineClick2CallUserDelete,
+		description: descriptionlineClick2CallUserDelete,
+	},
+	{
+		name: 'Line Click2 Call User Get',
+		value: 'lineClick2CallUserGet',
+		action: 'Get this object properties',
+		execute: executelineClick2CallUserGet,
+		description: descriptionlineClick2CallUserGet,
+	},
+	{
+		name: 'Line Click2 Call User List',
+		value: 'lineClick2CallUserListGet',
+		action: 'User which can use click 2 call on the line',
+		execute: executelineClick2CallUserListGet,
+		description: descriptionlineClick2CallUserListGet,
+	},
+	{
+		name: 'Line Convert To Number Create',
+		value: 'lineConvertToNumberPost',
+		action: 'Schedule a conversion to number',
+		execute: executelineConvertToNumberPost,
+		description: descriptionlineConvertToNumberPost,
+	},
+	{
+		name: 'Line Dissociate Device Create',
+		value: 'lineDissociateDevicePost',
+		action: 'Dissociate a device from the current line with the device mac address',
+		execute: executelineDissociateDevicePost,
+		description: descriptionlineDissociateDevicePost,
+	},
+	{
+		name: 'Line Get',
+		value: 'lineGet',
+		action: 'Get this object properties',
+		execute: executelineGet,
+		description: descriptionlineGet,
+	},
+	{
+		name: 'Line Ips List',
+		value: 'lineIpsListGet',
+		action: 'Listing of last ips registry',
+		execute: executelineIpsListGet,
+		description: descriptionlineIpsListGet,
+	},
+	{
+		name: 'Line Last Registrations List',
+		value: 'lineLastRegistrationsListGet',
+		action: 'List the informations about the last registrations (i.e. IP, port, User-Agent...)',
+		execute: executelineLastRegistrationsListGet,
+		description: descriptionlineLastRegistrationsListGet,
+	},
+	{
+		name: 'Line List',
+		value: 'lineListGet',
+		action: 'Lines associated with this billing account',
+		execute: executelineListGet,
+		description: descriptionlineListGet,
+	},
+	{
+		name: 'Line List Associable Phones List',
+		value: 'lineListAssociablePhonesListGet',
+		action: 'List phones with available slots where this line can be attached',
+		execute: executelineListAssociablePhonesListGet,
+		description: descriptionlineListAssociablePhonesListGet,
+	},
+	{
+		name: 'Line Maximum Available Simultaneous Lines List',
+		value: 'lineMaximumAvailableSimultaneousLinesListGet',
+		action: 'Get the maximum available simultaneous lines for this line',
+		execute: executelineMaximumAvailableSimultaneousLinesListGet,
+		description: descriptionlineMaximumAvailableSimultaneousLinesListGet,
+	},
+	{
+		name: 'Line Offer List',
+		value: 'lineOfferListGet',
+		action: 'Return public offer property',
+		execute: executelineOfferListGet,
+		description: descriptionlineOfferListGet,
+	},
+	{
+		name: 'Line Options Available Codecs List',
+		value: 'lineOptionsAvailableCodecsListGet',
+		action: 'List of codecs combinaisons available for this line',
+		execute: executelineOptionsAvailableCodecsListGet,
+		description: descriptionlineOptionsAvailableCodecsListGet,
+	},
+	{
+		name: 'Line Options Default Codecs List',
+		value: 'lineOptionsDefaultCodecsListGet',
+		action: 'Get the default codecs for this line if none are set',
+		execute: executelineOptionsDefaultCodecsListGet,
+		description: descriptionlineOptionsDefaultCodecsListGet,
+	},
+	{
+		name: 'Line Options List',
+		value: 'lineOptionsListGet',
+		action: 'Get this object properties',
+		execute: executelineOptionsListGet,
+		description: descriptionlineOptionsListGet,
+	},
+	{
+		name: 'Line Options Update',
+		value: 'lineOptionsPut',
+		action: 'Alter this object properties',
+		execute: executelineOptionsPut,
+		description: descriptionlineOptionsPut,
+	},
+	{
+		name: 'Line Phone Admin Credentials List',
+		value: 'linePhoneAdminCredentialsListGet',
+		action: 'Returns the administration user and password of the phone if you are a VIP',
+		execute: executelinePhoneAdminCredentialsListGet,
+		description: descriptionlinePhoneAdminCredentialsListGet,
+	},
+	{
+		name: 'Line Phone Can Be Associable List',
+		value: 'linePhoneCanBeAssociableListGet',
+		action: 'List the phones with Sip slot available',
+		execute: executelinePhoneCanBeAssociableListGet,
+		description: descriptionlinePhoneCanBeAssociableListGet,
+	},
+	{
+		name: 'Line Phone Change Phone Configuration Create',
+		value: 'linePhoneChangePhoneConfigurationPost',
+		action: 'Edit configuration of the phone remotely by provisioning',
+		execute: executelinePhoneChangePhoneConfigurationPost,
+		description: descriptionlinePhoneChangePhoneConfigurationPost,
+	},
+	{
+		name: 'Line Phone Function Key Available Function List',
+		value: 'linePhoneFunctionKeyAvailableFunctionListGet',
+		action: 'List the available functions for the key',
+		execute: executelinePhoneFunctionKeyAvailableFunctionListGet,
+		description: descriptionlinePhoneFunctionKeyAvailableFunctionListGet,
+	},
+	{
+		name: 'Line Phone Function Key Get',
+		value: 'linePhoneFunctionKeyGet',
+		action: 'Get this object properties',
+		execute: executelinePhoneFunctionKeyGet,
+		description: descriptionlinePhoneFunctionKeyGet,
+	},
+	{
+		name: 'Line Phone Function Key List',
+		value: 'linePhoneFunctionKeyListGet',
+		action: 'Plug & Phone function keys',
+		execute: executelinePhoneFunctionKeyListGet,
+		description: descriptionlinePhoneFunctionKeyListGet,
+	},
+	{
+		name: 'Line Phone Function Key Update',
+		value: 'linePhoneFunctionKeyPut',
+		action: 'Alter this object properties',
+		execute: executelinePhoneFunctionKeyPut,
+		description: descriptionlinePhoneFunctionKeyPut,
+	},
+	{
+		name: 'Line Phone List',
+		value: 'linePhoneListGet',
+		action: 'Get this object properties',
+		execute: executelinePhoneListGet,
+		description: descriptionlinePhoneListGet,
+	},
+	{
+		name: 'Line Phone Merchandise Available List',
+		value: 'linePhoneMerchandiseAvailableListGet',
+		action: 'List of available exchange merchandise brand',
+		execute: executelinePhoneMerchandiseAvailableListGet,
+		description: descriptionlinePhoneMerchandiseAvailableListGet,
+	},
+	{
+		name: 'Line Phone Phonebook Create',
+		value: 'linePhonePhonebookPost',
+		action: 'Add a phonebook. Return the bookKey.',
+		execute: executelinePhonePhonebookPost,
+		description: descriptionlinePhonePhonebookPost,
+	},
+	{
+		name: 'Line Phone Phonebook Delete',
+		value: 'linePhonePhonebookDelete',
+		action: 'Delete a phonebook',
+		execute: executelinePhonePhonebookDelete,
+		description: descriptionlinePhonePhonebookDelete,
+	},
+	{
+		name: 'Line Phone Phonebook Export List',
+		value: 'linePhonePhonebookExportListGet',
+		action: 'Export the phonebook',
+		execute: executelinePhonePhonebookExportListGet,
+		description: descriptionlinePhonePhonebookExportListGet,
+	},
+	{
+		name: 'Line Phone Phonebook Get',
+		value: 'linePhonePhonebookGet',
+		action: 'Get this object properties',
+		execute: executelinePhonePhonebookGet,
+		description: descriptionlinePhonePhonebookGet,
+	},
+	{
+		name: 'Line Phone Phonebook Import Create',
+		value: 'linePhonePhonebookImportPost',
+		action: 'Import a contacts file. Supported formats are Excel (.xls and .xlsx) and CSV',
+		execute: executelinePhonePhonebookImportPost,
+		description: descriptionlinePhonePhonebookImportPost,
+	},
+	{
+		name: 'Line Phone Phonebook List',
+		value: 'linePhonePhonebookListGet',
+		action: 'Return phonebooks associated',
+		execute: executelinePhonePhonebookListGet,
+		description: descriptionlinePhonePhonebookListGet,
+	},
+	{
+		name: 'Line Phone Phonebook Phonebook Contact Create',
+		value: 'linePhonePhonebookPhonebookContactPost',
+		action: 'Create a phonebook contact. Return identifier of the phonebook contact.',
+		execute: executelinePhonePhonebookPhonebookContactPost,
+		description: descriptionlinePhonePhonebookPhonebookContactPost,
+	},
+	{
+		name: 'Line Phone Phonebook Phonebook Contact Delete',
+		value: 'linePhonePhonebookPhonebookContactDelete',
+		action: 'Delete a phonebook contact',
+		execute: executelinePhonePhonebookPhonebookContactDelete,
+		description: descriptionlinePhonePhonebookPhonebookContactDelete,
+	},
+	{
+		name: 'Line Phone Phonebook Phonebook Contact Get',
+		value: 'linePhonePhonebookPhonebookContactGet',
+		action: 'Get this object properties',
+		execute: executelinePhonePhonebookPhonebookContactGet,
+		description: descriptionlinePhonePhonebookPhonebookContactGet,
+	},
+	{
+		name: 'Line Phone Phonebook Phonebook Contact List',
+		value: 'linePhonePhonebookPhonebookContactListGet',
+		action: 'Phonebook contacts',
+		execute: executelinePhonePhonebookPhonebookContactListGet,
+		description: descriptionlinePhonePhonebookPhonebookContactListGet,
+	},
+	{
+		name: 'Line Phone Phonebook Phonebook Contact Update',
+		value: 'linePhonePhonebookPhonebookContactPut',
+		action: 'Alter this object properties',
+		execute: executelinePhonePhonebookPhonebookContactPut,
+		description: descriptionlinePhonePhonebookPhonebookContactPut,
+	},
+	{
+		name: 'Line Phone Phonebook Update',
+		value: 'linePhonePhonebookPut',
+		action: 'Alter this object properties',
+		execute: executelinePhonePhonebookPut,
+		description: descriptionlinePhonePhonebookPut,
+	},
+	{
+		name: 'Line Phone Reboot Create',
+		value: 'linePhoneRebootPost',
+		action: 'Create a task to reboot the phone',
+		execute: executelinePhoneRebootPost,
+		description: descriptionlinePhoneRebootPost,
+	},
+	{
+		name: 'Line Phone Refresh Screen Create',
+		value: 'linePhoneRefreshScreenPost',
+		action: 'Create a task to refresh the screen of the MGCP phone',
+		execute: executelinePhoneRefreshScreenPost,
+		description: descriptionlinePhoneRefreshScreenPost,
+	},
+	{
+		name: 'Line Phone Reset Config Create',
+		value: 'linePhoneResetConfigPost',
+		action: 'Reinitialize the phone configuration',
+		execute: executelinePhoneResetConfigPost,
+		description: descriptionlinePhoneResetConfigPost,
+	},
+	{
+		name: 'Line Phone Rma Change Type Create',
+		value: 'linePhoneRmaChangeTypePost',
+		action: 'Change RMA type',
+		execute: executelinePhoneRmaChangeTypePost,
+		description: descriptionlinePhoneRmaChangeTypePost,
+	},
+	{
+		name: 'Line Phone Rma Create',
+		value: 'linePhoneRmaPost',
+		action: 'Create a specific rma',
+		execute: executelinePhoneRmaPost,
+		description: descriptionlinePhoneRmaPost,
+	},
+	{
+		name: 'Line Phone Rma Delete',
+		value: 'linePhoneRmaDelete',
+		action: 'Cancel the rma',
+		execute: executelinePhoneRmaDelete,
+		description: descriptionlinePhoneRmaDelete,
+	},
+	{
+		name: 'Line Phone Rma Get',
+		value: 'linePhoneRmaGet',
+		action: 'Get this object properties',
+		execute: executelinePhoneRmaGet,
+		description: descriptionlinePhoneRmaGet,
+	},
+	{
+		name: 'Line Phone Rma List',
+		value: 'linePhoneRmaListGet',
+		action: 'Return Merchandise Authorisation associated',
+		execute: executelinePhoneRmaListGet,
+		description: descriptionlinePhoneRmaListGet,
+	},
+	{
+		name: 'Line Phone Rma Update',
+		value: 'linePhoneRmaPut',
+		action: 'Alter this object properties',
+		execute: executelinePhoneRmaPut,
+		description: descriptionlinePhoneRmaPut,
+	},
+	{
+		name: 'Line Phone Supports Phonebook List',
+		value: 'linePhoneSupportsPhonebookListGet',
+		action: 'Does the phone manages phonebooks?',
+		execute: executelinePhoneSupportsPhonebookListGet,
+		description: descriptionlinePhoneSupportsPhonebookListGet,
+	},
+	{
+		name: 'Line Phone Update',
+		value: 'linePhonePut',
+		action: 'Alter this object properties',
+		execute: executelinePhonePut,
+		description: descriptionlinePhonePut,
+	},
+	{
+		name: 'Line Records Delete',
+		value: 'lineRecordsDelete',
+		action: 'Delete the given record',
+		execute: executelineRecordsDelete,
+		description: descriptionlineRecordsDelete,
+	},
+	{
+		name: 'Line Records Get',
+		value: 'lineRecordsGet',
+		action: 'Get this object properties',
+		execute: executelineRecordsGet,
+		description: descriptionlineRecordsGet,
+	},
+	{
+		name: 'Line Records List',
+		value: 'lineRecordsListGet',
+		action: 'The recordings of your line outgoing calls',
+		execute: executelineRecordsListGet,
+		description: descriptionlineRecordsListGet,
+	},
+	{
+		name: 'Line Remove Simultaneous Lines Create',
+		value: 'lineRemoveSimultaneousLinesPost',
+		action: 'Remove extra simultaneous lines',
+		execute: executelineRemoveSimultaneousLinesPost,
+		description: descriptionlineRemoveSimultaneousLinesPost,
+	},
+	{
+		name: 'Line Simultaneous Channels Details List',
+		value: 'lineSimultaneousChannelsDetailsListGet',
+		action: 'Details about simultaneous channels of this line.',
+		execute: executelineSimultaneousChannelsDetailsListGet,
+		description: descriptionlineSimultaneousChannelsDetailsListGet,
+	},
+	{
+		name: 'Line Softphone Beta List',
+		value: 'lineSoftphoneBetaListGet',
+		action: 'Get beta status for line softphone',
+		execute: executelineSoftphoneBetaListGet,
+		description: descriptionlineSoftphoneBetaListGet,
+	},
+	{
+		name: 'Line Softphone Beta Update',
+		value: 'lineSoftphoneBetaPut',
+		action: 'Enable or disable beta statuses for line softphone',
+		execute: executelineSoftphoneBetaPut,
+		description: descriptionlineSoftphoneBetaPut,
+	},
+	{
+		name: 'Line Softphone Devices Delete',
+		value: 'lineSoftphoneDevicesDelete',
+		action: 'Delete softphone device',
+		execute: executelineSoftphoneDevicesDelete,
+		description: descriptionlineSoftphoneDevicesDelete,
+	},
+	{
+		name: 'Line Softphone Devices Disconnect Create',
+		value: 'lineSoftphoneDevicesDisconnectPost',
+		action: 'Disconnect all devices',
+		execute: executelineSoftphoneDevicesDisconnectPost,
+		description: descriptionlineSoftphoneDevicesDisconnectPost,
+	},
+	{
+		name: 'Line Softphone Devices List',
+		value: 'lineSoftphoneDevicesListGet',
+		action: 'Get softphone devices list',
+		execute: executelineSoftphoneDevicesListGet,
+		description: descriptionlineSoftphoneDevicesListGet,
+	},
+	{
+		name: 'Line Softphone Logo Delete',
+		value: 'lineSoftphoneLogoDelete',
+		action: 'Delete line softphone logo',
+		execute: executelineSoftphoneLogoDelete,
+		description: descriptionlineSoftphoneLogoDelete,
+	},
+	{
+		name: 'Line Softphone Logo List',
+		value: 'lineSoftphoneLogoListGet',
+		action: 'Get line softphone logo',
+		execute: executelineSoftphoneLogoListGet,
+		description: descriptionlineSoftphoneLogoListGet,
+	},
+	{
+		name: 'Line Softphone Logo Update',
+		value: 'lineSoftphoneLogoPut',
+		action: 'Set line softphone logo',
+		execute: executelineSoftphoneLogoPut,
+		description: descriptionlineSoftphoneLogoPut,
+	},
+	{
+		name: 'Line Softphone Status List',
+		value: 'lineSoftphoneStatusListGet',
+		action: 'Get softphone line status',
+		execute: executelineSoftphoneStatusListGet,
+		description: descriptionlineSoftphoneStatusListGet,
+	},
+	{
+		name: 'Line Softphone Theme Delete',
+		value: 'lineSoftphoneThemeDelete',
+		action: 'Delete line softphone theme',
+		execute: executelineSoftphoneThemeDelete,
+		description: descriptionlineSoftphoneThemeDelete,
+	},
+	{
+		name: 'Line Softphone Theme List',
+		value: 'lineSoftphoneThemeListGet',
+		action: 'Get line softphone theme',
+		execute: executelineSoftphoneThemeListGet,
+		description: descriptionlineSoftphoneThemeListGet,
+	},
+	{
+		name: 'Line Softphone Theme Update',
+		value: 'lineSoftphoneThemePut',
+		action: 'Set line softphone theme',
+		execute: executelineSoftphoneThemePut,
+		description: descriptionlineSoftphoneThemePut,
+	},
+	{
+		name: 'Line Softphone Token Create',
+		value: 'lineSoftphoneTokenPost',
+		action: 'Generate provisioning token',
+		execute: executelineSoftphoneTokenPost,
+		description: descriptionlineSoftphoneTokenPost,
+	},
+	{
+		name: 'Line Statistics List',
+		value: 'lineStatisticsListGet',
+		action: 'Get statistics of the current line',
+		execute: executelineStatisticsListGet,
+		description: descriptionlineStatisticsListGet,
+	},
+	{
+		name: 'Line Tones List',
+		value: 'lineTonesListGet',
+		action: 'Get this object properties',
+		execute: executelineTonesListGet,
+		description: descriptionlineTonesListGet,
+	},
+	{
+		name: 'Line Tones Tone Upload Create',
+		value: 'lineTonesToneUploadPost',
+		action: 'Upload new tone file',
+		execute: executelineTonesToneUploadPost,
+		description: descriptionlineTonesToneUploadPost,
+	},
+	{
+		name: 'Line Tones Update',
+		value: 'lineTonesPut',
+		action: 'Alter this object properties',
+		execute: executelineTonesPut,
+		description: descriptionlineTonesPut,
+	},
+	{
+		name: 'Line Traffic Extracts Create',
+		value: 'lineTrafficExtractsPost',
+		action: 'Launch a traffic extract on your line',
+		execute: executelineTrafficExtractsPost,
+		description: descriptionlineTrafficExtractsPost,
+	},
+	{
+		name: 'Line Traffic Extracts Delete',
+		value: 'lineTrafficExtractsDelete',
+		action: 'Delete a traffic extract',
+		execute: executelineTrafficExtractsDelete,
+		description: descriptionlineTrafficExtractsDelete,
+	},
+	{
+		name: 'Line Traffic Extracts Get',
+		value: 'lineTrafficExtractsGet',
+		action: 'Get this object properties',
+		execute: executelineTrafficExtractsGet,
+		description: descriptionlineTrafficExtractsGet,
+	},
+	{
+		name: 'Line Traffic Extracts List',
+		value: 'lineTrafficExtractsListGet',
+		action: 'The traffic extracts (SIP only) of your line',
+		execute: executelineTrafficExtractsListGet,
+		description: descriptionlineTrafficExtractsListGet,
+	},
+	{
+		name: 'Line Unblock Create',
+		value: 'lineUnblockPost',
+		action: 'Unblock the line. It will remove any incoming and outboing block made earlier',
+		execute: executelineUnblockPost,
+		description: descriptionlineUnblockPost,
+	},
+	{
+		name: 'Line Update',
+		value: 'linePut',
+		action: 'Alter this object properties',
+		execute: executelinePut,
+		description: descriptionlinePut,
+	},
+	{
+		name: 'List Accessories',
+		value: 'accessoriesGet',
+		action: 'Get available telephony accessories',
+		execute: executeAccessoriesGet,
+		description: descriptionAccessoriesGet,
+	},
+	{
+		name: 'List Account Portabilities',
+		value: 'portabilityGet',
+		action: 'Current number portabilities for this billing account',
+		execute: executeportabilityGet,
+		description: descriptionportabilityGet,
+	},
+	{
+		name: 'List Aliases',
+		value: 'aliasListGet',
+		action: 'List your telephony aliases',
+		execute: executeAliasListGet,
+		description: descriptionAliasListGet,
+	},
+	{
+		name: 'List Billing Accounts',
+		value: 'telephonyListGet',
+		action: 'List your telephony billing accounts',
+		execute: executeTelephonyListGet,
+		description: descriptionTelephonyListGet,
+		default: true,
+	},
+	{
+		name: 'List Cities',
+		value: 'directoriesCitiesGet',
+		action: 'Get cities by country and zip code',
+		execute: executeDirectoriesCitiesGet,
+		description: descriptionDirectoriesCitiesGet,
+	},
+	{
+		name: 'List Countries',
+		value: 'directoriesCountriesGet',
+		action: 'Get available countries for telephony',
+		execute: executeDirectoriesCountriesGet,
+		description: descriptionDirectoriesCountriesGet,
+	},
+	{
+		name: 'List Current Orders',
+		value: 'currentOrderIdsGet',
+		action: 'Get current telephony order IDs',
+		execute: executeCurrentOrderIdsGet,
+		description: descriptionCurrentOrderIdsGet,
+	},
+	{
+		name: 'List Fax Offers',
+		value: 'faxOffersGet',
+		action: 'Get available fax offers by country',
+		execute: executeFaxOffersGet,
+		description: descriptionFaxOffersGet,
+	},
+	{
+		name: 'List Hardware',
+		value: 'linesHardwareListGet',
+		action: 'List hardware associated with a line',
+		execute: executeLinesHardwareListGet,
+		description: descriptionLinesHardwareListGet,
+	},
+	{
+		name: 'List Line Offers',
+		value: 'lineOffersGet',
+		action: 'Get available line offers by country',
+		execute: executeLineOffersGet,
+		description: descriptionLineOffersGet,
+	},
+	{
+		name: 'List Lines',
+		value: 'linesListGet',
+		action: 'List your telephony lines',
+		execute: executeLinesListGet,
+		description: descriptionLinesListGet,
+	},
+	{
+		name: 'List Numbers',
+		value: 'linesNumberListGet',
+		action: 'List numbers associated with a line',
+		execute: executeLinesNumberListGet,
+		description: descriptionLinesNumberListGet,
+	},
+	{
+		name: 'List Portabilities',
+		value: 'linesPortabilityListGet',
+		action: 'List portabilities for a line',
+		execute: executeLinesPortabilityListGet,
+		description: descriptionLinesPortabilityListGet,
+	},
+	{
+		name: 'List Services',
+		value: 'directoriesServicesGet',
+		action: 'Get available telephony services by country',
+		execute: executeDirectoriesServicesGet,
+		description: descriptionDirectoriesServicesGet,
+	},
+	{
+		name: 'List SIMs',
+		value: 'linesSimListGet',
+		action: 'List SIMs associated with a line',
+		execute: executeLinesSimListGet,
+		description: descriptionLinesSimListGet,
+	},
+	{
+		name: 'List SIP Domains',
+		value: 'sipDomainsGet',
+		action: 'Get available default SIP domains',
+		execute: executeSipDomainsGet,
+		description: descriptionSipDomainsGet,
+	},
+	{
+		name: 'List Trunks',
+		value: 'trunksListGet',
+		action: 'List your telephony trunks',
+		execute: executeTrunksListGet,
+		description: descriptionTrunksListGet,
+	},
+	{
+		name: 'List Zip Codes',
+		value: 'directoriesAvailableZipCodesGet',
+		action: 'Get available zip codes by country and number',
+		execute: executeDirectoriesAvailableZipCodesGet,
+		description: descriptionDirectoriesAvailableZipCodesGet,
+	},
+	{
+		name: 'Number Cancel Convert To Line Create',
+		value: 'numberCancelConvertToLinePost',
+		action: 'Cancel a scheduled conversion to line',
+		execute: executenumberCancelConvertToLinePost,
+		description: descriptionnumberCancelConvertToLinePost,
+	},
+	{
+		name: 'Number Change Feature Type Create',
+		value: 'numberChangeFeatureTypePost',
+		action: 'Change the feature type of the phone number',
+		execute: executenumberChangeFeatureTypePost,
+		description: descriptionnumberChangeFeatureTypePost,
+	},
+	{
+		name: 'Number Convert To Line Available Offers List',
+		value: 'numberConvertToLineAvailableOffersListGet',
+		action: 'Get the available line offers to schedule a conversion to line',
+		execute: executenumberConvertToLineAvailableOffersListGet,
+		description: descriptionnumberConvertToLineAvailableOffersListGet,
+	},
+	{
+		name: 'Number Convert To Line Create',
+		value: 'numberConvertToLinePost',
+		action: 'Schedule a conversion to line',
+		execute: executenumberConvertToLinePost,
+		description: descriptionnumberConvertToLinePost,
+	},
+	{
+		name: 'Number Detailed Zones List',
+		value: 'numberDetailedZonesListGet',
+		action: 'Get all available geographic zone with some details, from a country',
+		execute: executenumberDetailedZonesListGet,
+		description: descriptionnumberDetailedZonesListGet,
+	},
+	{
+		name: 'Number Get',
+		value: 'numberGet',
+		action: 'Get this object properties',
+		execute: executenumberGet,
+		description: descriptionnumberGet,
+	},
+	{
+		name: 'Number List',
+		value: 'numberListGet',
+		action: 'Additional numbers associated with this billing account',
+		execute: executenumberListGet,
+		description: descriptionnumberListGet,
+	},
+	{
+		name: 'Number Ranges List',
+		value: 'numberRangesListGet',
+		action: 'Get all available special range from a country',
+		execute: executenumberRangesListGet,
+		description: descriptionnumberRangesListGet,
+	},
+	{
+		name: 'Number Specific Numbers List',
+		value: 'numberSpecificNumbersListGet',
+		action: 'Get all available specific number from a country',
+		execute: executenumberSpecificNumbersListGet,
+		description: descriptionnumberSpecificNumbersListGet,
+	},
+	{
+		name: 'Number Update',
+		value: 'numberPut',
+		action: 'Alter this object properties',
+		execute: executenumberPut,
+		description: descriptionnumberPut,
+	},
+	{
+		name: 'Number Zones List',
+		value: 'numberZonesListGet',
+		action: 'Get all available geographic zone from a country',
+		execute: executenumberZonesListGet,
+		description: descriptionnumberZonesListGet,
+	},
+	{
+		name: 'Offer Task',
+		value: 'offerTaskListGet',
+		action: 'Execute the GET on offerTask',
+		execute: executeofferTaskListGet,
+		description: descriptionofferTaskListGet,
+	},
+	{
+		name: 'Offer Task (2)',
+		value: 'offerTaskGet',
+		action: 'Execute the GET on offerTask/{x}',
+		execute: executeofferTaskGet,
+		description: descriptionofferTaskGet,
+	},
+	{
+		name: 'Offer Task (3)',
+		value: 'offerTaskPut',
+		action: 'Execute the PUT on offerTask/{x}',
+		execute: executeofferTaskPut,
+		description: descriptionofferTaskPut,
+	},
+	{
+		name: 'Old Phone',
+		value: 'oldPhoneListGet',
+		action: 'Execute the GET on oldPhone',
+		execute: executeoldPhoneListGet,
+		description: descriptionoldPhoneListGet,
+	},
+	{
+		name: 'Outplan Notification',
+		value: 'outplanNotificationListGet',
+		action: 'Execute the GET on outplanNotification',
+		execute: executeoutplanNotificationListGet,
+		description: descriptionoutplanNotificationListGet,
+	},
+	{
+		name: 'Outplan Notification (2)',
+		value: 'outplanNotificationPost',
+		action: 'Execute the POST on outplanNotification',
+		execute: executeoutplanNotificationPost,
+		description: descriptionoutplanNotificationPost,
+	},
+	{
+		name: 'Outplan Notification (3)',
+		value: 'outplanNotificationDelete',
+		action: 'Execute the DELETE on outplanNotification/{x}',
+		execute: executeoutplanNotificationDelete,
+		description: descriptionoutplanNotificationDelete,
+	},
+	{
+		name: 'Outplan Notification (4)',
+		value: 'outplanNotificationGet',
+		action: 'Execute the GET on outplanNotification/{x}',
+		execute: executeoutplanNotificationGet,
+		description: descriptionoutplanNotificationGet,
+	},
+	{
+		name: 'Ovh Pabx',
+		value: 'ovhPabxListGet',
+		action: 'Execute the GET on ovhPabx',
+		execute: executeovhPabxListGet,
+		description: descriptionovhPabxListGet,
+	},
+	{
+		name: 'Ovh Pabx (2)',
+		value: 'ovhPabxGet',
+		action: 'Execute the GET on ovhPabx/{x}',
+		execute: executeovhPabxGet,
+		description: descriptionovhPabxGet,
+	},
+	{
+		name: 'Ovh Pabx (3)',
+		value: 'ovhPabxPut',
+		action: 'Execute the PUT on ovhPabx/{x}',
+		execute: executeovhPabxPut,
+		description: descriptionovhPabxPut,
+	},
+	{
+		name: 'Ovh Pabx Dialplan',
+		value: 'ovhPabxDialplanListGet',
+		action: 'Execute the GET on ovhPabx/{x}/dialplan',
+		execute: executeovhPabxDialplanListGet,
+		description: descriptionovhPabxDialplanListGet,
+	},
+	{
+		name: 'Ovh Pabx Dialplan (2)',
+		value: 'ovhPabxDialplanPost',
+		action: 'Execute the POST on ovhPabx/{x}/dialplan',
+		execute: executeovhPabxDialplanPost,
+		description: descriptionovhPabxDialplanPost,
+	},
+	{
+		name: 'Ovh Pabx Dialplan (3)',
+		value: 'ovhPabxDialplanDelete',
+		action: 'Execute the DELETE on ovhPabx/{x}/dialplan/{x}',
+		execute: executeovhPabxDialplanDelete,
+		description: descriptionovhPabxDialplanDelete,
+	},
+	{
+		name: 'Ovh Pabx Dialplan (4)',
+		value: 'ovhPabxDialplanGet',
+		action: 'Execute the GET on ovhPabx/{x}/dialplan/{x}',
+		execute: executeovhPabxDialplanGet,
+		description: descriptionovhPabxDialplanGet,
+	},
+	{
+		name: 'Ovh Pabx Dialplan (5)',
+		value: 'ovhPabxDialplanPut',
+		action: 'Execute the PUT on ovhPabx/{x}/dialplan/{x}',
+		execute: executeovhPabxDialplanPut,
+		description: descriptionovhPabxDialplanPut,
+	},
+	{
+		name: 'Ovh Pabx Dialplan Extension',
+		value: 'ovhPabxDialplanExtensionListGet',
+		action: 'Execute the GET on ovhPabx/{x}/dialplan/{x}/extension',
+		execute: executeovhPabxDialplanExtensionListGet,
+		description: descriptionovhPabxDialplanExtensionListGet,
+	},
+	{
+		name: 'Ovh Pabx Dialplan Extension (2)',
+		value: 'ovhPabxDialplanExtensionPost',
+		action: 'Execute the POST on ovhPabx/{x}/dialplan/{x}/extension',
+		execute: executeovhPabxDialplanExtensionPost,
+		description: descriptionovhPabxDialplanExtensionPost,
+	},
+	{
+		name: 'Ovh Pabx Dialplan Extension (3)',
+		value: 'ovhPabxDialplanExtensionDelete',
+		action: 'Execute the DELETE on ovhPabx/{x}/dialplan/{x}/extension/{x}',
+		execute: executeovhPabxDialplanExtensionDelete,
+		description: descriptionovhPabxDialplanExtensionDelete,
+	},
+	{
+		name: 'Ovh Pabx Dialplan Extension (4)',
+		value: 'ovhPabxDialplanExtensionGet',
+		action: 'Execute the GET on ovhPabx/{x}/dialplan/{x}/extension/{x}',
+		execute: executeovhPabxDialplanExtensionGet,
+		description: descriptionovhPabxDialplanExtensionGet,
+	},
+	{
+		name: 'Ovh Pabx Dialplan Extension (5)',
+		value: 'ovhPabxDialplanExtensionPut',
+		action: 'Execute the PUT on ovhPabx/{x}/dialplan/{x}/extension/{x}',
+		execute: executeovhPabxDialplanExtensionPut,
+		description: descriptionovhPabxDialplanExtensionPut,
+	},
+	{
+		name: 'Ovh Pabx Dialplan Extension Condition Screen List',
+		value: 'ovhPabxDialplanExtensionConditionScreenListListGet',
+		action: 'Execute the GET on ovhPabx/{x}/dialplan/{x}/extension/{x}/conditionScreenList',
+		execute: executeovhPabxDialplanExtensionConditionScreenListListGet,
+		description: descriptionovhPabxDialplanExtensionConditionScreenListListGet,
+	},
+	{
+		name: 'Ovh Pabx Dialplan Extension Condition Screen List (2)',
+		value: 'ovhPabxDialplanExtensionConditionScreenListPost',
+		action: 'Execute the POST on ovhPabx/{x}/dialplan/{x}/extension/{x}/conditionScreenList',
+		execute: executeovhPabxDialplanExtensionConditionScreenListPost,
+		description: descriptionovhPabxDialplanExtensionConditionScreenListPost,
+	},
+	{
+		name: 'Ovh Pabx Dialplan Extension Condition Screen List (3)',
+		value: 'ovhPabxDialplanExtensionConditionScreenListDelete',
+		action: 'Execute the DELETE on ovhPabx/{x}/dialplan/{x}/extension/{x}/conditionScreenList/{x}',
+		execute: executeovhPabxDialplanExtensionConditionScreenListDelete,
+		description: descriptionovhPabxDialplanExtensionConditionScreenListDelete,
+	},
+	{
+		name: 'Ovh Pabx Dialplan Extension Condition Screen List (4)',
+		value: 'ovhPabxDialplanExtensionConditionScreenListGet',
+		action: 'Execute the GET on ovhPabx/{x}/dialplan/{x}/extension/{x}/conditionScreenList/{x}',
+		execute: executeovhPabxDialplanExtensionConditionScreenListGet,
+		description: descriptionovhPabxDialplanExtensionConditionScreenListGet,
+	},
+	{
+		name: 'Ovh Pabx Dialplan Extension Condition Time',
+		value: 'ovhPabxDialplanExtensionConditionTimeListGet',
+		action: 'Execute the GET on ovhPabx/{x}/dialplan/{x}/extension/{x}/conditionTime',
+		execute: executeovhPabxDialplanExtensionConditionTimeListGet,
+		description: descriptionovhPabxDialplanExtensionConditionTimeListGet,
+	},
+	{
+		name: 'Ovh Pabx Dialplan Extension Condition Time (2)',
+		value: 'ovhPabxDialplanExtensionConditionTimePost',
+		action: 'Execute the POST on ovhPabx/{x}/dialplan/{x}/extension/{x}/conditionTime',
+		execute: executeovhPabxDialplanExtensionConditionTimePost,
+		description: descriptionovhPabxDialplanExtensionConditionTimePost,
+	},
+	{
+		name: 'Ovh Pabx Dialplan Extension Condition Time (3)',
+		value: 'ovhPabxDialplanExtensionConditionTimeDelete',
+		action: 'Execute the DELETE on ovhPabx/{x}/dialplan/{x}/extension/{x}/conditionTime/{x}',
+		execute: executeovhPabxDialplanExtensionConditionTimeDelete,
+		description: descriptionovhPabxDialplanExtensionConditionTimeDelete,
+	},
+	{
+		name: 'Ovh Pabx Dialplan Extension Condition Time (4)',
+		value: 'ovhPabxDialplanExtensionConditionTimeGet',
+		action: 'Execute the GET on ovhPabx/{x}/dialplan/{x}/extension/{x}/conditionTime/{x}',
+		execute: executeovhPabxDialplanExtensionConditionTimeGet,
+		description: descriptionovhPabxDialplanExtensionConditionTimeGet,
+	},
+	{
+		name: 'Ovh Pabx Dialplan Extension Condition Time (5)',
+		value: 'ovhPabxDialplanExtensionConditionTimePut',
+		action: 'Execute the PUT on ovhPabx/{x}/dialplan/{x}/extension/{x}/conditionTime/{x}',
+		execute: executeovhPabxDialplanExtensionConditionTimePut,
+		description: descriptionovhPabxDialplanExtensionConditionTimePut,
+	},
+	{
+		name: 'Ovh Pabx Dialplan Extension Rule',
+		value: 'ovhPabxDialplanExtensionRuleListGet',
+		action: 'Execute the GET on ovhPabx/{x}/dialplan/{x}/extension/{x}/rule',
+		execute: executeovhPabxDialplanExtensionRuleListGet,
+		description: descriptionovhPabxDialplanExtensionRuleListGet,
+	},
+	{
+		name: 'Ovh Pabx Dialplan Extension Rule (2)',
+		value: 'ovhPabxDialplanExtensionRulePost',
+		action: 'Execute the POST on ovhPabx/{x}/dialplan/{x}/extension/{x}/rule',
+		execute: executeovhPabxDialplanExtensionRulePost,
+		description: descriptionovhPabxDialplanExtensionRulePost,
+	},
+	{
+		name: 'Ovh Pabx Dialplan Extension Rule (3)',
+		value: 'ovhPabxDialplanExtensionRuleDelete',
+		action: 'Execute the DELETE on ovhPabx/{x}/dialplan/{x}/extension/{x}/rule/{x}',
+		execute: executeovhPabxDialplanExtensionRuleDelete,
+		description: descriptionovhPabxDialplanExtensionRuleDelete,
+	},
+	{
+		name: 'Ovh Pabx Dialplan Extension Rule (4)',
+		value: 'ovhPabxDialplanExtensionRuleGet',
+		action: 'Execute the GET on ovhPabx/{x}/dialplan/{x}/extension/{x}/rule/{x}',
+		execute: executeovhPabxDialplanExtensionRuleGet,
+		description: descriptionovhPabxDialplanExtensionRuleGet,
+	},
+	{
+		name: 'Ovh Pabx Dialplan Extension Rule (5)',
+		value: 'ovhPabxDialplanExtensionRulePut',
+		action: 'Execute the PUT on ovhPabx/{x}/dialplan/{x}/extension/{x}/rule/{x}',
+		execute: executeovhPabxDialplanExtensionRulePut,
+		description: descriptionovhPabxDialplanExtensionRulePut,
+	},
+	{
+		name: 'Ovh Pabx Hunting',
+		value: 'ovhPabxHuntingListGet',
+		action: 'Execute the GET on ovhPabx/{x}/hunting',
+		execute: executeovhPabxHuntingListGet,
+		description: descriptionovhPabxHuntingListGet,
+	},
+	{
+		name: 'Ovh Pabx Hunting (2)',
+		value: 'ovhPabxHuntingPut',
+		action: 'Execute the PUT on ovhPabx/{x}/hunting',
+		execute: executeovhPabxHuntingPut,
+		description: descriptionovhPabxHuntingPut,
+	},
+	{
+		name: 'Ovh Pabx Hunting Agent',
+		value: 'ovhPabxHuntingAgentListGet',
+		action: 'Execute the GET on ovhPabx/{x}/hunting/agent',
+		execute: executeovhPabxHuntingAgentListGet,
+		description: descriptionovhPabxHuntingAgentListGet,
+	},
+	{
+		name: 'Ovh Pabx Hunting Agent (2)',
+		value: 'ovhPabxHuntingAgentPost',
+		action: 'Execute the POST on ovhPabx/{x}/hunting/agent',
+		execute: executeovhPabxHuntingAgentPost,
+		description: descriptionovhPabxHuntingAgentPost,
+	},
+	{
+		name: 'Ovh Pabx Hunting Agent (3)',
+		value: 'ovhPabxHuntingAgentDelete',
+		action: 'Execute the DELETE on ovhPabx/{x}/hunting/agent/{x}',
+		execute: executeovhPabxHuntingAgentDelete,
+		description: descriptionovhPabxHuntingAgentDelete,
+	},
+	{
+		name: 'Ovh Pabx Hunting Agent (4)',
+		value: 'ovhPabxHuntingAgentGet',
+		action: 'Execute the GET on ovhPabx/{x}/hunting/agent/{x}',
+		execute: executeovhPabxHuntingAgentGet,
+		description: descriptionovhPabxHuntingAgentGet,
+	},
+	{
+		name: 'Ovh Pabx Hunting Agent (5)',
+		value: 'ovhPabxHuntingAgentPut',
+		action: 'Execute the PUT on ovhPabx/{x}/hunting/agent/{x}',
+		execute: executeovhPabxHuntingAgentPut,
+		description: descriptionovhPabxHuntingAgentPut,
+	},
+	{
+		name: 'Ovh Pabx Hunting Agent Banner Access',
+		value: 'ovhPabxHuntingAgentBannerAccessDelete',
+		action: 'Execute the DELETE on ovhPabx/{x}/hunting/agent/{x}/bannerAccess',
+		execute: executeovhPabxHuntingAgentBannerAccessDelete,
+		description: descriptionovhPabxHuntingAgentBannerAccessDelete,
+	},
+	{
+		name: 'Ovh Pabx Hunting Agent Banner Access (2)',
+		value: 'ovhPabxHuntingAgentBannerAccessListGet',
+		action: 'Execute the GET on ovhPabx/{x}/hunting/agent/{x}/bannerAccess',
+		execute: executeovhPabxHuntingAgentBannerAccessListGet,
+		description: descriptionovhPabxHuntingAgentBannerAccessListGet,
+	},
+	{
+		name: 'Ovh Pabx Hunting Agent Banner Access (3)',
+		value: 'ovhPabxHuntingAgentBannerAccessPost',
+		action: 'Execute the POST on ovhPabx/{x}/hunting/agent/{x}/bannerAccess',
+		execute: executeovhPabxHuntingAgentBannerAccessPost,
+		description: descriptionovhPabxHuntingAgentBannerAccessPost,
+	},
+	{
+		name: 'Ovh Pabx Hunting Agent Calls',
+		value: 'ovhPabxHuntingAgentCallsListGet',
+		action: 'Execute the GET on ovhPabx/{x}/hunting/agent/{x}/calls',
+		execute: executeovhPabxHuntingAgentCallsListGet,
+		description: descriptionovhPabxHuntingAgentCallsListGet,
+	},
+	{
+		name: 'Ovh Pabx Hunting Agent Calls (2)',
+		value: 'ovhPabxHuntingAgentCallsGet',
+		action: 'Execute the GET on ovhPabx/{x}/hunting/agent/{x}/calls/{x}',
+		execute: executeovhPabxHuntingAgentCallsGet,
+		description: descriptionovhPabxHuntingAgentCallsGet,
+	},
+	{
+		name: 'Ovh Pabx Hunting Agent Calls Eavesdrop',
+		value: 'ovhPabxHuntingAgentCallsEavesdropPost',
+		action: 'Execute the POST on ovhPabx/{x}/hunting/agent/{x}/calls/{x}/eavesdrop',
+		execute: executeovhPabxHuntingAgentCallsEavesdropPost,
+		description: descriptionovhPabxHuntingAgentCallsEavesdropPost,
+	},
+	{
+		name: 'Ovh Pabx Hunting Agent Calls Hangup',
+		value: 'ovhPabxHuntingAgentCallsHangupPost',
+		action: 'Execute the POST on ovhPabx/{x}/hunting/agent/{x}/calls/{x}/hangup',
+		execute: executeovhPabxHuntingAgentCallsHangupPost,
+		description: descriptionovhPabxHuntingAgentCallsHangupPost,
+	},
+	{
+		name: 'Ovh Pabx Hunting Agent Calls Hold',
+		value: 'ovhPabxHuntingAgentCallsHoldPost',
+		action: 'Execute the POST on ovhPabx/{x}/hunting/agent/{x}/calls/{x}/hold',
+		execute: executeovhPabxHuntingAgentCallsHoldPost,
+		description: descriptionovhPabxHuntingAgentCallsHoldPost,
+	},
+	{
+		name: 'Ovh Pabx Hunting Agent Calls Intercept',
+		value: 'ovhPabxHuntingAgentCallsInterceptPost',
+		action: 'Execute the POST on ovhPabx/{x}/hunting/agent/{x}/calls/{x}/intercept',
+		execute: executeovhPabxHuntingAgentCallsInterceptPost,
+		description: descriptionovhPabxHuntingAgentCallsInterceptPost,
+	},
+	{
+		name: 'Ovh Pabx Hunting Agent Calls Transfer',
+		value: 'ovhPabxHuntingAgentCallsTransferPost',
+		action: 'Execute the POST on ovhPabx/{x}/hunting/agent/{x}/calls/{x}/transfer',
+		execute: executeovhPabxHuntingAgentCallsTransferPost,
+		description: descriptionovhPabxHuntingAgentCallsTransferPost,
+	},
+	{
+		name: 'Ovh Pabx Hunting Agent Calls Whisper',
+		value: 'ovhPabxHuntingAgentCallsWhisperPost',
+		action: 'Execute the POST on ovhPabx/{x}/hunting/agent/{x}/calls/{x}/whisper',
+		execute: executeovhPabxHuntingAgentCallsWhisperPost,
+		description: descriptionovhPabxHuntingAgentCallsWhisperPost,
+	},
+	{
+		name: 'Ovh Pabx Hunting Agent Event Token',
+		value: 'ovhPabxHuntingAgentEventTokenDelete',
+		action: 'Execute the DELETE on ovhPabx/{x}/hunting/agent/{x}/eventToken',
+		execute: executeovhPabxHuntingAgentEventTokenDelete,
+		description: descriptionovhPabxHuntingAgentEventTokenDelete,
+	},
+	{
+		name: 'Ovh Pabx Hunting Agent Event Token (2)',
+		value: 'ovhPabxHuntingAgentEventTokenListGet',
+		action: 'Execute the GET on ovhPabx/{x}/hunting/agent/{x}/eventToken',
+		execute: executeovhPabxHuntingAgentEventTokenListGet,
+		description: descriptionovhPabxHuntingAgentEventTokenListGet,
+	},
+	{
+		name: 'Ovh Pabx Hunting Agent Event Token (3)',
+		value: 'ovhPabxHuntingAgentEventTokenPost',
+		action: 'Execute the POST on ovhPabx/{x}/hunting/agent/{x}/eventToken',
+		execute: executeovhPabxHuntingAgentEventTokenPost,
+		description: descriptionovhPabxHuntingAgentEventTokenPost,
+	},
+	{
+		name: 'Ovh Pabx Hunting Agent Live Status',
+		value: 'ovhPabxHuntingAgentLiveStatusListGet',
+		action: 'Execute the GET on ovhPabx/{x}/hunting/agent/{x}/liveStatus',
+		execute: executeovhPabxHuntingAgentLiveStatusListGet,
+		description: descriptionovhPabxHuntingAgentLiveStatusListGet,
+	},
+	{
+		name: 'Ovh Pabx Hunting Agent Queue',
+		value: 'ovhPabxHuntingAgentQueueListGet',
+		action: 'Execute the GET on ovhPabx/{x}/hunting/agent/{x}/queue',
+		execute: executeovhPabxHuntingAgentQueueListGet,
+		description: descriptionovhPabxHuntingAgentQueueListGet,
+	},
+	{
+		name: 'Ovh Pabx Hunting Agent Queue (2)',
+		value: 'ovhPabxHuntingAgentQueuePost',
+		action: 'Execute the POST on ovhPabx/{x}/hunting/agent/{x}/queue',
+		execute: executeovhPabxHuntingAgentQueuePost,
+		description: descriptionovhPabxHuntingAgentQueuePost,
+	},
+	{
+		name: 'Ovh Pabx Hunting Agent Queue (3)',
+		value: 'ovhPabxHuntingAgentQueueDelete',
+		action: 'Execute the DELETE on ovhPabx/{x}/hunting/agent/{x}/queue/{x}',
+		execute: executeovhPabxHuntingAgentQueueDelete,
+		description: descriptionovhPabxHuntingAgentQueueDelete,
+	},
+	{
+		name: 'Ovh Pabx Hunting Agent Queue (4)',
+		value: 'ovhPabxHuntingAgentQueueGet',
+		action: 'Execute the GET on ovhPabx/{x}/hunting/agent/{x}/queue/{x}',
+		execute: executeovhPabxHuntingAgentQueueGet,
+		description: descriptionovhPabxHuntingAgentQueueGet,
+	},
+	{
+		name: 'Ovh Pabx Hunting Agent Queue (5)',
+		value: 'ovhPabxHuntingAgentQueuePut',
+		action: 'Execute the PUT on ovhPabx/{x}/hunting/agent/{x}/queue/{x}',
+		execute: executeovhPabxHuntingAgentQueuePut,
+		description: descriptionovhPabxHuntingAgentQueuePut,
+	},
+	{
+		name: 'Ovh Pabx Hunting Agent Queue Live Status',
+		value: 'ovhPabxHuntingAgentQueueLiveStatusListGet',
+		action: 'Execute the GET on ovhPabx/{x}/hunting/agent/{x}/queue/{x}/liveStatus',
+		execute: executeovhPabxHuntingAgentQueueLiveStatusListGet,
+		description: descriptionovhPabxHuntingAgentQueueLiveStatusListGet,
+	},
+	{
+		name: 'Ovh Pabx Hunting Custom Status',
+		value: 'ovhPabxHuntingCustomStatusListGet',
+		action: 'Execute the GET on ovhPabx/{x}/hunting/customStatus',
+		execute: executeovhPabxHuntingCustomStatusListGet,
+		description: descriptionovhPabxHuntingCustomStatusListGet,
+	},
+	{
+		name: 'Ovh Pabx Hunting Custom Status (2)',
+		value: 'ovhPabxHuntingCustomStatusPost',
+		action: 'Execute the POST on ovhPabx/{x}/hunting/customStatus',
+		execute: executeovhPabxHuntingCustomStatusPost,
+		description: descriptionovhPabxHuntingCustomStatusPost,
+	},
+	{
+		name: 'Ovh Pabx Hunting Custom Status (3)',
+		value: 'ovhPabxHuntingCustomStatusDelete',
+		action: 'Execute the DELETE on ovhPabx/{x}/hunting/customStatus/{x}',
+		execute: executeovhPabxHuntingCustomStatusDelete,
+		description: descriptionovhPabxHuntingCustomStatusDelete,
+	},
+	{
+		name: 'Ovh Pabx Hunting Custom Status (4)',
+		value: 'ovhPabxHuntingCustomStatusGet',
+		action: 'Execute the GET on ovhPabx/{x}/hunting/customStatus/{x}',
+		execute: executeovhPabxHuntingCustomStatusGet,
+		description: descriptionovhPabxHuntingCustomStatusGet,
+	},
+	{
+		name: 'Ovh Pabx Hunting Event Token',
+		value: 'ovhPabxHuntingEventTokenDelete',
+		action: 'Execute the DELETE on ovhPabx/{x}/hunting/eventToken',
+		execute: executeovhPabxHuntingEventTokenDelete,
+		description: descriptionovhPabxHuntingEventTokenDelete,
+	},
+	{
+		name: 'Ovh Pabx Hunting Event Token (2)',
+		value: 'ovhPabxHuntingEventTokenListGet',
+		action: 'Execute the GET on ovhPabx/{x}/hunting/eventToken',
+		execute: executeovhPabxHuntingEventTokenListGet,
+		description: descriptionovhPabxHuntingEventTokenListGet,
+	},
+	{
+		name: 'Ovh Pabx Hunting Event Token (3)',
+		value: 'ovhPabxHuntingEventTokenPost',
+		action: 'Execute the POST on ovhPabx/{x}/hunting/eventToken',
+		execute: executeovhPabxHuntingEventTokenPost,
+		description: descriptionovhPabxHuntingEventTokenPost,
+	},
+	{
+		name: 'Ovh Pabx Hunting Queue',
+		value: 'ovhPabxHuntingQueueListGet',
+		action: 'Execute the GET on ovhPabx/{x}/hunting/queue',
+		execute: executeovhPabxHuntingQueueListGet,
+		description: descriptionovhPabxHuntingQueueListGet,
+	},
+	{
+		name: 'Ovh Pabx Hunting Queue (2)',
+		value: 'ovhPabxHuntingQueuePost',
+		action: 'Execute the POST on ovhPabx/{x}/hunting/queue',
+		execute: executeovhPabxHuntingQueuePost,
+		description: descriptionovhPabxHuntingQueuePost,
+	},
+	{
+		name: 'Ovh Pabx Hunting Queue (3)',
+		value: 'ovhPabxHuntingQueueDelete',
+		action: 'Execute the DELETE on ovhPabx/{x}/hunting/queue/{x}',
+		execute: executeovhPabxHuntingQueueDelete,
+		description: descriptionovhPabxHuntingQueueDelete,
+	},
+	{
+		name: 'Ovh Pabx Hunting Queue (4)',
+		value: 'ovhPabxHuntingQueueGet',
+		action: 'Execute the GET on ovhPabx/{x}/hunting/queue/{x}',
+		execute: executeovhPabxHuntingQueueGet,
+		description: descriptionovhPabxHuntingQueueGet,
+	},
+	{
+		name: 'Ovh Pabx Hunting Queue (5)',
+		value: 'ovhPabxHuntingQueuePut',
+		action: 'Execute the PUT on ovhPabx/{x}/hunting/queue/{x}',
+		execute: executeovhPabxHuntingQueuePut,
+		description: descriptionovhPabxHuntingQueuePut,
+	},
+	{
+		name: 'Ovh Pabx Hunting Queue Agent',
+		value: 'ovhPabxHuntingQueueAgentListGet',
+		action: 'Execute the GET on ovhPabx/{x}/hunting/queue/{x}/agent',
+		execute: executeovhPabxHuntingQueueAgentListGet,
+		description: descriptionovhPabxHuntingQueueAgentListGet,
+	},
+	{
+		name: 'Ovh Pabx Hunting Queue Agent (2)',
+		value: 'ovhPabxHuntingQueueAgentPost',
+		action: 'Execute the POST on ovhPabx/{x}/hunting/queue/{x}/agent',
+		execute: executeovhPabxHuntingQueueAgentPost,
+		description: descriptionovhPabxHuntingQueueAgentPost,
+	},
+	{
+		name: 'Ovh Pabx Hunting Queue Agent (3)',
+		value: 'ovhPabxHuntingQueueAgentDelete',
+		action: 'Execute the DELETE on ovhPabx/{x}/hunting/queue/{x}/agent/{x}',
+		execute: executeovhPabxHuntingQueueAgentDelete,
+		description: descriptionovhPabxHuntingQueueAgentDelete,
+	},
+	{
+		name: 'Ovh Pabx Hunting Queue Agent (4)',
+		value: 'ovhPabxHuntingQueueAgentGet',
+		action: 'Execute the GET on ovhPabx/{x}/hunting/queue/{x}/agent/{x}',
+		execute: executeovhPabxHuntingQueueAgentGet,
+		description: descriptionovhPabxHuntingQueueAgentGet,
+	},
+	{
+		name: 'Ovh Pabx Hunting Queue Agent (5)',
+		value: 'ovhPabxHuntingQueueAgentPut',
+		action: 'Execute the PUT on ovhPabx/{x}/hunting/queue/{x}/agent/{x}',
+		execute: executeovhPabxHuntingQueueAgentPut,
+		description: descriptionovhPabxHuntingQueueAgentPut,
+	},
+	{
+		name: 'Ovh Pabx Hunting Queue Agent Live Status',
+		value: 'ovhPabxHuntingQueueAgentLiveStatusListGet',
+		action: 'Execute the GET on ovhPabx/{x}/hunting/queue/{x}/agent/{x}/liveStatus',
+		execute: executeovhPabxHuntingQueueAgentLiveStatusListGet,
+		description: descriptionovhPabxHuntingQueueAgentLiveStatusListGet,
+	},
+	{
+		name: 'Ovh Pabx Hunting Queue Live Calls',
+		value: 'ovhPabxHuntingQueueLiveCallsListGet',
+		action: 'Execute the GET on ovhPabx/{x}/hunting/queue/{x}/liveCalls',
+		execute: executeovhPabxHuntingQueueLiveCallsListGet,
+		description: descriptionovhPabxHuntingQueueLiveCallsListGet,
+	},
+	{
+		name: 'Ovh Pabx Hunting Queue Live Calls (2)',
+		value: 'ovhPabxHuntingQueueLiveCallsGet',
+		action: 'Execute the GET on ovhPabx/{x}/hunting/queue/{x}/liveCalls/{x}',
+		execute: executeovhPabxHuntingQueueLiveCallsGet,
+		description: descriptionovhPabxHuntingQueueLiveCallsGet,
+	},
+	{
+		name: 'Ovh Pabx Hunting Queue Live Calls Eavesdrop',
+		value: 'ovhPabxHuntingQueueLiveCallsEavesdropPost',
+		action: 'Execute the POST on ovhPabx/{x}/hunting/queue/{x}/liveCalls/{x}/eavesdrop',
+		execute: executeovhPabxHuntingQueueLiveCallsEavesdropPost,
+		description: descriptionovhPabxHuntingQueueLiveCallsEavesdropPost,
+	},
+	{
+		name: 'Ovh Pabx Hunting Queue Live Calls Hangup',
+		value: 'ovhPabxHuntingQueueLiveCallsHangupPost',
+		action: 'Execute the POST on ovhPabx/{x}/hunting/queue/{x}/liveCalls/{x}/hangup',
+		execute: executeovhPabxHuntingQueueLiveCallsHangupPost,
+		description: descriptionovhPabxHuntingQueueLiveCallsHangupPost,
+	},
+	{
+		name: 'Ovh Pabx Hunting Queue Live Calls Hold',
+		value: 'ovhPabxHuntingQueueLiveCallsHoldPost',
+		action: 'Execute the POST on ovhPabx/{x}/hunting/queue/{x}/liveCalls/{x}/hold',
+		execute: executeovhPabxHuntingQueueLiveCallsHoldPost,
+		description: descriptionovhPabxHuntingQueueLiveCallsHoldPost,
+	},
+	{
+		name: 'Ovh Pabx Hunting Queue Live Calls Intercept',
+		value: 'ovhPabxHuntingQueueLiveCallsInterceptPost',
+		action: 'Execute the POST on ovhPabx/{x}/hunting/queue/{x}/liveCalls/{x}/intercept',
+		execute: executeovhPabxHuntingQueueLiveCallsInterceptPost,
+		description: descriptionovhPabxHuntingQueueLiveCallsInterceptPost,
+	},
+	{
+		name: 'Ovh Pabx Hunting Queue Live Calls Transfer',
+		value: 'ovhPabxHuntingQueueLiveCallsTransferPost',
+		action: 'Execute the POST on ovhPabx/{x}/hunting/queue/{x}/liveCalls/{x}/transfer',
+		execute: executeovhPabxHuntingQueueLiveCallsTransferPost,
+		description: descriptionovhPabxHuntingQueueLiveCallsTransferPost,
+	},
+	{
+		name: 'Ovh Pabx Hunting Queue Live Calls Whisper',
+		value: 'ovhPabxHuntingQueueLiveCallsWhisperPost',
+		action: 'Execute the POST on ovhPabx/{x}/hunting/queue/{x}/liveCalls/{x}/whisper',
+		execute: executeovhPabxHuntingQueueLiveCallsWhisperPost,
+		description: descriptionovhPabxHuntingQueueLiveCallsWhisperPost,
+	},
+	{
+		name: 'Ovh Pabx Hunting Queue Live Statistics',
+		value: 'ovhPabxHuntingQueueLiveStatisticsListGet',
+		action: 'Execute the GET on ovhPabx/{x}/hunting/queue/{x}/liveStatistics',
+		execute: executeovhPabxHuntingQueueLiveStatisticsListGet,
+		description: descriptionovhPabxHuntingQueueLiveStatisticsListGet,
+	},
+	{
+		name: 'Ovh Pabx Menu',
+		value: 'ovhPabxMenuListGet',
+		action: 'Execute the GET on ovhPabx/{x}/menu',
+		execute: executeovhPabxMenuListGet,
+		description: descriptionovhPabxMenuListGet,
+	},
+	{
+		name: 'Ovh Pabx Menu (2)',
+		value: 'ovhPabxMenuPost',
+		action: 'Execute the POST on ovhPabx/{x}/menu',
+		execute: executeovhPabxMenuPost,
+		description: descriptionovhPabxMenuPost,
+	},
+	{
+		name: 'Ovh Pabx Menu (3)',
+		value: 'ovhPabxMenuDelete',
+		action: 'Execute the DELETE on ovhPabx/{x}/menu/{x}',
+		execute: executeovhPabxMenuDelete,
+		description: descriptionovhPabxMenuDelete,
+	},
+	{
+		name: 'Ovh Pabx Menu (4)',
+		value: 'ovhPabxMenuGet',
+		action: 'Execute the GET on ovhPabx/{x}/menu/{x}',
+		execute: executeovhPabxMenuGet,
+		description: descriptionovhPabxMenuGet,
+	},
+	{
+		name: 'Ovh Pabx Menu (5)',
+		value: 'ovhPabxMenuPut',
+		action: 'Execute the PUT on ovhPabx/{x}/menu/{x}',
+		execute: executeovhPabxMenuPut,
+		description: descriptionovhPabxMenuPut,
+	},
+	{
+		name: 'Ovh Pabx Menu Entry',
+		value: 'ovhPabxMenuEntryListGet',
+		action: 'Execute the GET on ovhPabx/{x}/menu/{x}/entry',
+		execute: executeovhPabxMenuEntryListGet,
+		description: descriptionovhPabxMenuEntryListGet,
+	},
+	{
+		name: 'Ovh Pabx Menu Entry (2)',
+		value: 'ovhPabxMenuEntryPost',
+		action: 'Execute the POST on ovhPabx/{x}/menu/{x}/entry',
+		execute: executeovhPabxMenuEntryPost,
+		description: descriptionovhPabxMenuEntryPost,
+	},
+	{
+		name: 'Ovh Pabx Menu Entry (3)',
+		value: 'ovhPabxMenuEntryDelete',
+		action: 'Execute the DELETE on ovhPabx/{x}/menu/{x}/entry/{x}',
+		execute: executeovhPabxMenuEntryDelete,
+		description: descriptionovhPabxMenuEntryDelete,
+	},
+	{
+		name: 'Ovh Pabx Menu Entry (4)',
+		value: 'ovhPabxMenuEntryGet',
+		action: 'Execute the GET on ovhPabx/{x}/menu/{x}/entry/{x}',
+		execute: executeovhPabxMenuEntryGet,
+		description: descriptionovhPabxMenuEntryGet,
+	},
+	{
+		name: 'Ovh Pabx Menu Entry (5)',
+		value: 'ovhPabxMenuEntryPut',
+		action: 'Execute the PUT on ovhPabx/{x}/menu/{x}/entry/{x}',
+		execute: executeovhPabxMenuEntryPut,
+		description: descriptionovhPabxMenuEntryPut,
+	},
+	{
+		name: 'Ovh Pabx Records',
+		value: 'ovhPabxRecordsListGet',
+		action: 'Execute the GET on ovhPabx/{x}/records',
+		execute: executeovhPabxRecordsListGet,
+		description: descriptionovhPabxRecordsListGet,
+	},
+	{
+		name: 'Ovh Pabx Records (2)',
+		value: 'ovhPabxRecordsDelete',
+		action: 'Execute the DELETE on ovhPabx/{x}/records/{x}',
+		execute: executeovhPabxRecordsDelete,
+		description: descriptionovhPabxRecordsDelete,
+	},
+	{
+		name: 'Ovh Pabx Records (3)',
+		value: 'ovhPabxRecordsGet',
+		action: 'Execute the GET on ovhPabx/{x}/records/{x}',
+		execute: executeovhPabxRecordsGet,
+		description: descriptionovhPabxRecordsGet,
+	},
+	{
+		name: 'Ovh Pabx Sound',
+		value: 'ovhPabxSoundListGet',
+		action: 'Execute the GET on ovhPabx/{x}/sound',
+		execute: executeovhPabxSoundListGet,
+		description: descriptionovhPabxSoundListGet,
+	},
+	{
+		name: 'Ovh Pabx Sound (2)',
+		value: 'ovhPabxSoundDelete',
+		action: 'Execute the DELETE on ovhPabx/{x}/sound/{x}',
+		execute: executeovhPabxSoundDelete,
+		description: descriptionovhPabxSoundDelete,
+	},
+	{
+		name: 'Ovh Pabx Sound (3)',
+		value: 'ovhPabxSoundGet',
+		action: 'Execute the GET on ovhPabx/{x}/sound/{x}',
+		execute: executeovhPabxSoundGet,
+		description: descriptionovhPabxSoundGet,
+	},
+	{
+		name: 'Ovh Pabx Sound Upload',
+		value: 'ovhPabxSoundUploadPost',
+		action: 'Execute the POST on ovhPabx/{x}/soundUpload',
+		execute: executeovhPabxSoundUploadPost,
+		description: descriptionovhPabxSoundUploadPost,
+	},
+	{
+		name: 'Ovh Pabx Tts',
+		value: 'ovhPabxTtsListGet',
+		action: 'Execute the GET on ovhPabx/{x}/tts',
+		execute: executeovhPabxTtsListGet,
+		description: descriptionovhPabxTtsListGet,
+	},
+	{
+		name: 'Ovh Pabx Tts (2)',
+		value: 'ovhPabxTtsPost',
+		action: 'Execute the POST on ovhPabx/{x}/tts',
+		execute: executeovhPabxTtsPost,
+		description: descriptionovhPabxTtsPost,
+	},
+	{
+		name: 'Ovh Pabx Tts (3)',
+		value: 'ovhPabxTtsDelete',
+		action: 'Execute the DELETE on ovhPabx/{x}/tts/{x}',
+		execute: executeovhPabxTtsDelete,
+		description: descriptionovhPabxTtsDelete,
+	},
+	{
+		name: 'Ovh Pabx Tts (4)',
+		value: 'ovhPabxTtsGet',
+		action: 'Execute the GET on ovhPabx/{x}/tts/{x}',
+		execute: executeovhPabxTtsGet,
+		description: descriptionovhPabxTtsGet,
+	},
+	{
+		name: 'Ovh Pabx Tts (5)',
+		value: 'ovhPabxTtsPut',
+		action: 'Execute the PUT on ovhPabx/{x}/tts/{x}',
+		execute: executeovhPabxTtsPut,
+		description: descriptionovhPabxTtsPut,
+	},
+	{
+		name: 'Phonebook',
+		value: 'phonebookListGet',
+		action: 'Execute the GET on phonebook',
+		execute: executephonebookListGet,
+		description: descriptionphonebookListGet,
+	},
+	{
+		name: 'Phonebook (2)',
+		value: 'phonebookPost',
+		action: 'Execute the POST on phonebook',
+		execute: executephonebookPost,
+		description: descriptionphonebookPost,
+	},
+	{
+		name: 'Phonebook (3)',
+		value: 'phonebookDelete',
+		action: 'Execute the DELETE on phonebook/{x}',
+		execute: executephonebookDelete,
+		description: descriptionphonebookDelete,
+	},
+	{
+		name: 'Phonebook (4)',
+		value: 'phonebookGet',
+		action: 'Execute the GET on phonebook/{x}',
+		execute: executephonebookGet,
+		description: descriptionphonebookGet,
+	},
+	{
+		name: 'Phonebook (5)',
+		value: 'phonebookPut',
+		action: 'Execute the PUT on phonebook/{x}',
+		execute: executephonebookPut,
+		description: descriptionphonebookPut,
+	},
+	{
+		name: 'Phonebook Export',
+		value: 'phonebookExportListGet',
+		action: 'Execute the GET on phonebook/{x}/export',
+		execute: executephonebookExportListGet,
+		description: descriptionphonebookExportListGet,
+	},
+	{
+		name: 'Phonebook Import',
+		value: 'phonebookImportPost',
+		action: 'Execute the POST on phonebook/{x}/import',
+		execute: executephonebookImportPost,
+		description: descriptionphonebookImportPost,
+	},
+	{
+		name: 'Phonebook Phonebook Contact',
+		value: 'phonebookPhonebookContactListGet',
+		action: 'Execute the GET on phonebook/{x}/phonebookContact',
+		execute: executephonebookPhonebookContactListGet,
+		description: descriptionphonebookPhonebookContactListGet,
+	},
+	{
+		name: 'Phonebook Phonebook Contact (2)',
+		value: 'phonebookPhonebookContactPost',
+		action: 'Execute the POST on phonebook/{x}/phonebookContact',
+		execute: executephonebookPhonebookContactPost,
+		description: descriptionphonebookPhonebookContactPost,
+	},
+	{
+		name: 'Phonebook Phonebook Contact (3)',
+		value: 'phonebookPhonebookContactDelete',
+		action: 'Execute the DELETE on phonebook/{x}/phonebookContact/{x}',
+		execute: executephonebookPhonebookContactDelete,
+		description: descriptionphonebookPhonebookContactDelete,
+	},
+	{
+		name: 'Phonebook Phonebook Contact (4)',
+		value: 'phonebookPhonebookContactGet',
+		action: 'Execute the GET on phonebook/{x}/phonebookContact/{x}',
+		execute: executephonebookPhonebookContactGet,
+		description: descriptionphonebookPhonebookContactGet,
+	},
+	{
+		name: 'Phonebook Phonebook Contact (5)',
+		value: 'phonebookPhonebookContactPut',
+		action: 'Execute the PUT on phonebook/{x}/phonebookContact/{x}',
+		execute: executephonebookPhonebookContactPut,
+		description: descriptionphonebookPhonebookContactPut,
+	},
+	{
+		name: 'Portability',
+		value: 'portabilityDetailGet',
+		action: 'Execute the GET on portability/{x}',
+		execute: executeportabilityDetailGet,
+		description: descriptionportabilityDetailGet,
+	},
+	{
+		name: 'Portability Can Be Cancelled',
+		value: 'portabilityCanBeCancelledListGet',
+		action: 'Execute the GET on portability/{x}/canBeCancelled',
+		execute: executeportabilityCanBeCancelledListGet,
+		description: descriptionportabilityCanBeCancelledListGet,
+	},
+	{
+		name: 'Portability Can Be Executed',
+		value: 'portabilityCanBeExecutedListGet',
+		action: 'Execute the GET on portability/{x}/canBeExecuted',
+		execute: executeportabilityCanBeExecutedListGet,
+		description: descriptionportabilityCanBeExecutedListGet,
+	},
+	{
+		name: 'Portability Cancel',
+		value: 'portabilityCancelPost',
+		action: 'Execute the POST on portability/{x}/cancel',
+		execute: executeportabilityCancelPost,
+		description: descriptionportabilityCancelPost,
+	},
+	{
+		name: 'Portability Change Date',
+		value: 'portabilityChangeDatePost',
+		action: 'Execute the POST on portability/{x}/changeDate',
+		execute: executeportabilityChangeDatePost,
+		description: descriptionportabilityChangeDatePost,
+	},
+	{
+		name: 'Portability Date Can Be Changed',
+		value: 'portabilityDateCanBeChangedListGet',
+		action: 'Execute the GET on portability/{x}/dateCanBeChanged',
+		execute: executeportabilityDateCanBeChangedListGet,
+		description: descriptionportabilityDateCanBeChangedListGet,
+	},
+	{
+		name: 'Portability Document',
+		value: 'portabilityDocumentListGet',
+		action: 'Execute the GET on portability/{x}/document',
+		execute: executeportabilityDocumentListGet,
+		description: descriptionportabilityDocumentListGet,
+	},
+	{
+		name: 'Portability Document (2)',
+		value: 'portabilityDocumentPost',
+		action: 'Execute the POST on portability/{x}/document',
+		execute: executeportabilityDocumentPost,
+		description: descriptionportabilityDocumentPost,
+	},
+	{
+		name: 'Portability Document (3)',
+		value: 'portabilityDocumentDelete',
+		action: 'Execute the DELETE on portability/{x}/document/{x}',
+		execute: executeportabilityDocumentDelete,
+		description: descriptionportabilityDocumentDelete,
+	},
+	{
+		name: 'Portability Document (4)',
+		value: 'portabilityDocumentGet',
+		action: 'Execute the GET on portability/{x}/document/{x}',
+		execute: executeportabilityDocumentGet,
+		description: descriptionportabilityDocumentGet,
+	},
+	{
+		name: 'Portability Document (5)',
+		value: 'portabilityDocumentPut',
+		action: 'Execute the PUT on portability/{x}/document/{x}',
+		execute: executeportabilityDocumentPut,
+		description: descriptionportabilityDocumentPut,
+	},
+	{
+		name: 'Portability Execute',
+		value: 'portabilityExecutePost',
+		action: 'Execute the POST on portability/{x}/execute',
+		execute: executeportabilityExecutePost,
+		description: descriptionportabilityExecutePost,
+	},
+	{
+		name: 'Portability Relaunch',
+		value: 'portabilityRelaunchListGet',
+		action: 'Execute the GET on portability/{x}/relaunch',
+		execute: executeportabilityRelaunchListGet,
+		description: descriptionportabilityRelaunchListGet,
+	},
+	{
+		name: 'Portability Relaunch (2)',
+		value: 'portabilityRelaunchPost',
+		action: 'Execute the POST on portability/{x}/relaunch',
+		execute: executeportabilityRelaunchPost,
+		description: descriptionportabilityRelaunchPost,
+	},
+	{
+		name: 'Portability Status',
+		value: 'portabilityStatusListGet',
+		action: 'Execute the GET on portability/{x}/status',
+		execute: executeportabilityStatusListGet,
+		description: descriptionportabilityStatusListGet,
+	},
+	{
+		name: 'Procedure Cancel',
+		value: 'procedureCancelPost',
+		action: 'Execute the POST on procedure/{id}/cancel',
+		execute: executeprocedureCancelPost,
+		description: descriptionprocedureCancelPost,
+	},
+	{
+		name: 'Procedure Create',
+		value: 'procedurePost',
+		action: 'Create a telephony procedure',
+		execute: executeprocedurePost,
+		description: descriptionprocedurePost,
+	},
+	{
+		name: 'Procedure Get',
+		value: 'procedureGet',
+		action: 'Get this object properties',
+		execute: executeprocedureGet,
+		description: descriptionprocedureGet,
+	},
+	{
+		name: 'Procedure List',
+		value: 'procedureListGet',
+		action: 'Procedures linked to your nichandle',
+		execute: executeprocedureListGet,
+		description: descriptionprocedureListGet,
+	},
+	{
+		name: 'Procedure Required List',
+		value: 'procedureRequiredListGet',
+		action: 'Tells whether the procedure is necessary to order telephony products or not',
+		execute: executeprocedureRequiredListGet,
+		description: descriptionprocedureRequiredListGet,
+	},
+	{
+		name: 'Redirect',
+		value: 'redirectListGet',
+		action: 'Execute the GET on redirect',
+		execute: executeredirectListGet,
+		description: descriptionredirectListGet,
+	},
+	{
+		name: 'Redirect (2)',
+		value: 'redirectGet',
+		action: 'Execute the GET on redirect/{x}',
+		execute: executeredirectGet,
+		description: descriptionredirectGet,
+	},
+	{
+		name: 'Redirect (3)',
+		value: 'redirectPut',
+		action: 'Execute the PUT on redirect/{x}',
+		execute: executeredirectPut,
+		description: descriptionredirectPut,
+	},
+	{
+		name: 'Redirect Change Destination',
+		value: 'redirectChangeDestinationPost',
+		action: 'Execute the POST on redirect/{x}/changeDestination',
+		execute: executeredirectChangeDestinationPost,
+		description: descriptionredirectChangeDestinationPost,
+	},
+	{
+		name: 'Reseller Panel Generate Password',
+		value: 'resellerPanelGeneratePasswordPost',
+		action: 'Generate a new password for the reseller panel',
+		execute: executeresellerPanelGeneratePasswordPost,
+		description: descriptionresellerPanelGeneratePasswordPost,
+	},
+	{
+		name: 'Reseller Panel Status List',
+		value: 'resellerPanelStatusListGet',
+		action: 'Status of customer reseller panel',
+		execute: executeresellerPanelStatusListGet,
+		description: descriptionresellerPanelStatusListGet,
+	},
+	{
+		name: 'Rsva',
+		value: 'rsvaListGet',
+		action: 'Execute the GET on rsva',
+		execute: executersvaListGet,
+		description: descriptionrsvaListGet,
+	},
+	{
+		name: 'Rsva (2)',
+		value: 'rsvaGet',
+		action: 'Execute the GET on rsva/{x}',
+		execute: executersvaGet,
+		description: descriptionrsvaGet,
+	},
+	{
+		name: 'Rsva (3)',
+		value: 'rsvaPut',
+		action: 'Execute the PUT on rsva/{x}',
+		execute: executersvaPut,
+		description: descriptionrsvaPut,
+	},
+	{
+		name: 'Rsva Allowed Rate Codes',
+		value: 'rsvaAllowedRateCodesListGet',
+		action: 'Execute the GET on rsva/{x}/allowedRateCodes',
+		execute: executersvaAllowedRateCodesListGet,
+		description: descriptionrsvaAllowedRateCodesListGet,
+	},
+	{
+		name: 'Rsva Cancel Scheduled Rate Code',
+		value: 'rsvaCancelScheduledRateCodePost',
+		action: 'Execute the POST on rsva/{x}/cancelScheduledRateCode',
+		execute: executersvaCancelScheduledRateCodePost,
+		description: descriptionrsvaCancelScheduledRateCodePost,
+	},
+	{
+		name: 'Rsva Current Rate Code',
+		value: 'rsvaCurrentRateCodeListGet',
+		action: 'Execute the GET on rsva/{x}/currentRateCode',
+		execute: executersvaCurrentRateCodeListGet,
+		description: descriptionrsvaCurrentRateCodeListGet,
+	},
+	{
+		name: 'Rsva Schedule Rate Code',
+		value: 'rsvaScheduleRateCodePost',
+		action: 'Execute the POST on rsva/{x}/scheduleRateCode',
+		execute: executersvaScheduleRateCodePost,
+		description: descriptionrsvaScheduleRateCodePost,
+	},
+	{
+		name: 'Rsva Scheduled Rate Code',
+		value: 'rsvaScheduledRateCodeListGet',
+		action: 'Execute the GET on rsva/{x}/scheduledRateCode',
+		execute: executersvaScheduledRateCodeListGet,
+		description: descriptionrsvaScheduledRateCodeListGet,
+	},
+	{
+		name: 'Scheduler',
+		value: 'schedulerListGet',
+		action: 'Execute the GET on scheduler',
+		execute: executeschedulerListGet,
+		description: descriptionschedulerListGet,
+	},
+	{
+		name: 'Scheduler (2)',
+		value: 'schedulerGet',
+		action: 'Execute the GET on scheduler/{x}',
+		execute: executeschedulerGet,
+		description: descriptionschedulerGet,
+	},
+	{
+		name: 'Scheduler (3)',
+		value: 'schedulerPut',
+		action: 'Execute the PUT on scheduler/{x}',
+		execute: executeschedulerPut,
+		description: descriptionschedulerPut,
+	},
+	{
+		name: 'Scheduler Events',
+		value: 'schedulerEventsListGet',
+		action: 'Execute the GET on scheduler/{x}/events',
+		execute: executeschedulerEventsListGet,
+		description: descriptionschedulerEventsListGet,
+	},
+	{
+		name: 'Scheduler Events (2)',
+		value: 'schedulerEventsPost',
+		action: 'Execute the POST on scheduler/{x}/events',
+		execute: executeschedulerEventsPost,
+		description: descriptionschedulerEventsPost,
+	},
+	{
+		name: 'Scheduler Events (3)',
+		value: 'schedulerEventsDelete',
+		action: 'Execute the DELETE on scheduler/{x}/events/{x}',
+		execute: executeschedulerEventsDelete,
+		description: descriptionschedulerEventsDelete,
+	},
+	{
+		name: 'Scheduler Events (4)',
+		value: 'schedulerEventsGet',
+		action: 'Execute the GET on scheduler/{x}/events/{x}',
+		execute: executeschedulerEventsGet,
+		description: descriptionschedulerEventsGet,
+	},
+	{
+		name: 'Scheduler Events (5)',
+		value: 'schedulerEventsPut',
+		action: 'Execute the PUT on scheduler/{x}/events/{x}',
+		execute: executeschedulerEventsPut,
+		description: descriptionschedulerEventsPut,
+	},
+	{
+		name: 'Scheduler Import Ics Calendar',
+		value: 'schedulerImportIcsCalendarPost',
+		action: 'Execute the POST on scheduler/{x}/importIcsCalendar',
+		execute: executeschedulerImportIcsCalendarPost,
+		description: descriptionschedulerImportIcsCalendarPost,
+	},
+	{
+		name: 'Screen',
+		value: 'screenListGet',
+		action: 'Execute the GET on screen',
+		execute: executescreenListGet,
+		description: descriptionscreenListGet,
+	},
+	{
+		name: 'Screen (2)',
+		value: 'screenGet',
+		action: 'Execute the GET on screen/{x}',
+		execute: executescreenGet,
+		description: descriptionscreenGet,
+	},
+	{
+		name: 'Screen (3)',
+		value: 'screenPut',
+		action: 'Execute the PUT on screen/{x}',
+		execute: executescreenPut,
+		description: descriptionscreenPut,
+	},
+	{
+		name: 'Screen Screen Lists',
+		value: 'screenScreenListsListGet',
+		action: 'Execute the GET on screen/{x}/screenLists',
+		execute: executescreenScreenListsListGet,
+		description: descriptionscreenScreenListsListGet,
+	},
+	{
+		name: 'Screen Screen Lists (2)',
+		value: 'screenScreenListsPost',
+		action: 'Execute the POST on screen/{x}/screenLists',
+		execute: executescreenScreenListsPost,
+		description: descriptionscreenScreenListsPost,
+	},
+	{
+		name: 'Screen Screen Lists (3)',
+		value: 'screenScreenListsDelete',
+		action: 'Execute the DELETE on screen/{x}/screenLists/{x}',
+		execute: executescreenScreenListsDelete,
+		description: descriptionscreenScreenListsDelete,
+	},
+	{
+		name: 'Screen Screen Lists (4)',
+		value: 'screenScreenListsGet',
+		action: 'Execute the GET on screen/{x}/screenLists/{x}',
+		execute: executescreenScreenListsGet,
+		description: descriptionscreenScreenListsGet,
+	},
+	{
+		name: 'Search Services',
+		value: 'searchServicesGet',
+		action: 'Search a service with its domain to get its billing account and type',
+		execute: executeSearchServicesGet,
+		description: descriptionSearchServicesGet,
+	},
+	{
+		name: 'Service',
+		value: 'serviceListGet',
+		action: 'Execute the GET on service',
+		execute: executeserviceListGet,
+		description: descriptionserviceListGet,
+	},
+	{
+		name: 'Service (2)',
+		value: 'serviceDelete',
+		action: 'Execute the DELETE on service/{x}',
+		execute: executeserviceDelete,
+		description: descriptionserviceDelete,
+	},
+	{
+		name: 'Service (3)',
+		value: 'serviceGet',
+		action: 'Execute the GET on service/{x}',
+		execute: executeserviceGet,
+		description: descriptionserviceGet,
+	},
+	{
+		name: 'Service (4)',
+		value: 'servicePut',
+		action: 'Execute the PUT on service/{x}',
+		execute: executeservicePut,
+		description: descriptionservicePut,
+	},
+	{
+		name: 'Service Cancel Termination',
+		value: 'serviceCancelTerminationPost',
+		action: 'Execute the POST on service/{x}/cancelTermination',
+		execute: executeserviceCancelTerminationPost,
+		description: descriptionserviceCancelTerminationPost,
+	},
+	{
+		name: 'Service Change Of Billing Account',
+		value: 'serviceChangeOfBillingAccountPost',
+		action: 'Execute the POST on service/{x}/changeOfBillingAccount',
+		execute: executeserviceChangeOfBillingAccountPost,
+		description: descriptionserviceChangeOfBillingAccountPost,
+	},
+	{
+		name: 'Service Diagnostic Reports',
+		value: 'serviceDiagnosticReportsListGet',
+		action: 'Execute the GET on service/{x}/diagnosticReports',
+		execute: executeserviceDiagnosticReportsListGet,
+		description: descriptionserviceDiagnosticReportsListGet,
+	},
+	{
+		name: 'Service Directory',
+		value: 'serviceDirectoryListGet',
+		action: 'Execute the GET on service/{x}/directory',
+		execute: executeserviceDirectoryListGet,
+		description: descriptionserviceDirectoryListGet,
+	},
+	{
+		name: 'Service Directory (2)',
+		value: 'serviceDirectoryPut',
+		action: 'Execute the PUT on service/{x}/directory',
+		execute: executeserviceDirectoryPut,
+		description: descriptionserviceDirectoryPut,
+	},
+	{
+		name: 'Service Directory Fetch Entreprise Informations',
+		value: 'serviceDirectoryFetchEntrepriseInformationsPost',
+		action: 'Execute the POST on service/{x}/directory/fetchEntrepriseInformations',
+		execute: executeserviceDirectoryFetchEntrepriseInformationsPost,
+		description: descriptionserviceDirectoryFetchEntrepriseInformationsPost,
+	},
+	{
+		name: 'Service Directory Get Directory Service Code',
+		value: 'serviceDirectoryGetDirectoryServiceCodeListGet',
+		action: 'Execute the GET on service/{x}/directory/getDirectoryServiceCode',
+		execute: executeserviceDirectoryGetDirectoryServiceCodeListGet,
+		description: descriptionserviceDirectoryGetDirectoryServiceCodeListGet,
+	},
+	{
+		name: 'Service Directory Get Way Types',
+		value: 'serviceDirectoryGetWayTypesListGet',
+		action: 'Execute the GET on service/{x}/directory/getWayTypes',
+		execute: executeserviceDirectoryGetWayTypesListGet,
+		description: descriptionserviceDirectoryGetWayTypesListGet,
+	},
+	{
+		name: 'Service Event Token',
+		value: 'serviceEventTokenDelete',
+		action: 'Execute the DELETE on service/{x}/eventToken',
+		execute: executeserviceEventTokenDelete,
+		description: descriptionserviceEventTokenDelete,
+	},
+	{
+		name: 'Service Event Token (2)',
+		value: 'serviceEventTokenListGet',
+		action: 'Execute the GET on service/{x}/eventToken',
+		execute: executeserviceEventTokenListGet,
+		description: descriptionserviceEventTokenListGet,
+	},
+	{
+		name: 'Service Event Token (3)',
+		value: 'serviceEventTokenPost',
+		action: 'Execute the POST on service/{x}/eventToken',
+		execute: executeserviceEventTokenPost,
+		description: descriptionserviceEventTokenPost,
+	},
+	{
+		name: 'Service Fax Consumption',
+		value: 'serviceFaxConsumptionListGet',
+		action: 'Execute the GET on service/{x}/faxConsumption',
+		execute: executeserviceFaxConsumptionListGet,
+		description: descriptionserviceFaxConsumptionListGet,
+	},
+	{
+		name: 'Service Fax Consumption (2)',
+		value: 'serviceFaxConsumptionGet',
+		action: 'Execute the GET on service/{x}/faxConsumption/{x}',
+		execute: executeserviceFaxConsumptionGet,
+		description: descriptionserviceFaxConsumptionGet,
+	},
+	{
+		name: 'Service Infos List',
+		value: 'serviceInfosListGet',
+		action: 'Get service information',
+		execute: executeserviceInfosListGet,
+		description: descriptionserviceInfosListGet,
+	},
+	{
+		name: 'Service Infos Update',
+		value: 'serviceInfosPut',
+		action: 'Update service information',
+		execute: executeserviceInfosPut,
+		description: descriptionserviceInfosPut,
+	},
+	{
+		name: 'Service Offer Change',
+		value: 'serviceOfferChangeDelete',
+		action: 'Execute the DELETE on service/{x}/offerChange',
+		execute: executeserviceOfferChangeDelete,
+		description: descriptionserviceOfferChangeDelete,
+	},
+	{
+		name: 'Service Offer Change (2)',
+		value: 'serviceOfferChangeListGet',
+		action: 'Execute the GET on service/{x}/offerChange',
+		execute: executeserviceOfferChangeListGet,
+		description: descriptionserviceOfferChangeListGet,
+	},
+	{
+		name: 'Service Offer Change (3)',
+		value: 'serviceOfferChangePost',
+		action: 'Execute the POST on service/{x}/offerChange',
+		execute: executeserviceOfferChangePost,
+		description: descriptionserviceOfferChangePost,
+	},
+	{
+		name: 'Service Offer Changes',
+		value: 'serviceOfferChangesListGet',
+		action: 'Execute the GET on service/{x}/offerChanges',
+		execute: executeserviceOfferChangesListGet,
+		description: descriptionserviceOfferChangesListGet,
+	},
+	{
+		name: 'Service Offer Task',
+		value: 'serviceOfferTaskListGet',
+		action: 'Execute the GET on service/{x}/offerTask',
+		execute: executeserviceOfferTaskListGet,
+		description: descriptionserviceOfferTaskListGet,
+	},
+	{
+		name: 'Service Offer Task (2)',
+		value: 'serviceOfferTaskGet',
+		action: 'Execute the GET on service/{x}/offerTask/{x}',
+		execute: executeserviceOfferTaskGet,
+		description: descriptionserviceOfferTaskGet,
+	},
+	{
+		name: 'Service Offer Task (3)',
+		value: 'serviceOfferTaskPut',
+		action: 'Execute the PUT on service/{x}/offerTask/{x}',
+		execute: executeserviceOfferTaskPut,
+		description: descriptionserviceOfferTaskPut,
+	},
+	{
+		name: 'Service Previous Voice Consumption',
+		value: 'servicePreviousVoiceConsumptionListGet',
+		action: 'Execute the GET on service/{x}/previousVoiceConsumption',
+		execute: executeservicePreviousVoiceConsumptionListGet,
+		description: descriptionservicePreviousVoiceConsumptionListGet,
+	},
+	{
+		name: 'Service Previous Voice Consumption (2)',
+		value: 'servicePreviousVoiceConsumptionGet',
+		action: 'Execute the GET on service/{x}/previousVoiceConsumption/{x}',
+		execute: executeservicePreviousVoiceConsumptionGet,
+		description: descriptionservicePreviousVoiceConsumptionGet,
+	},
+	{
+		name: 'Service Repayment Consumption',
+		value: 'serviceRepaymentConsumptionListGet',
+		action: 'Execute the GET on service/{x}/repaymentConsumption',
+		execute: executeserviceRepaymentConsumptionListGet,
+		description: descriptionserviceRepaymentConsumptionListGet,
+	},
+	{
+		name: 'Service Repayment Consumption (2)',
+		value: 'serviceRepaymentConsumptionGet',
+		action: 'Execute the GET on service/{x}/repaymentConsumption/{x}',
+		execute: executeserviceRepaymentConsumptionGet,
+		description: descriptionserviceRepaymentConsumptionGet,
+	},
+	{
+		name: 'Service Task',
+		value: 'serviceTaskListGet',
+		action: 'Execute the GET on service/{x}/task',
+		execute: executeserviceTaskListGet,
+		description: descriptionserviceTaskListGet,
+	},
+	{
+		name: 'Service Task (2)',
+		value: 'serviceTaskGet',
+		action: 'Execute the GET on service/{x}/task/{x}',
+		execute: executeserviceTaskGet,
+		description: descriptionserviceTaskGet,
+	},
+	{
+		name: 'Service Voice Consumption',
+		value: 'serviceVoiceConsumptionListGet',
+		action: 'Execute the GET on service/{x}/voiceConsumption',
+		execute: executeserviceVoiceConsumptionListGet,
+		description: descriptionserviceVoiceConsumptionListGet,
+	},
+	{
+		name: 'Service Voice Consumption (2)',
+		value: 'serviceVoiceConsumptionGet',
+		action: 'Execute the GET on service/{x}/voiceConsumption/{x}',
+		execute: executeserviceVoiceConsumptionGet,
+		description: descriptionserviceVoiceConsumptionGet,
+	},
+	{
+		name: 'Set Default SIP Domain',
+		value: 'setDefaultSipDomainPost',
+		action: 'Set the default SIP domain for a country and type',
+		execute: executeSetDefaultSipDomainPost,
+		description: descriptionSetDefaultSipDomainPost,
+	},
+	{
+		name: 'Softphone Logo',
+		value: 'softphoneLogoDelete',
+		action: 'Execute the DELETE on softphone/logo',
+		execute: executesoftphoneLogoDelete,
+		description: descriptionsoftphoneLogoDelete,
+	},
+	{
+		name: 'Softphone Logo (2)',
+		value: 'softphoneLogoListGet',
+		action: 'Execute the GET on softphone/logo',
+		execute: executesoftphoneLogoListGet,
+		description: descriptionsoftphoneLogoListGet,
+	},
+	{
+		name: 'Softphone Logo (3)',
+		value: 'softphoneLogoPut',
+		action: 'Execute the PUT on softphone/logo',
+		execute: executesoftphoneLogoPut,
+		description: descriptionsoftphoneLogoPut,
+	},
+	{
+		name: 'Softphone Store Links List',
+		value: 'softphoneStoreLinksListGet',
+		action: 'Get softphone application stores links',
+		execute: executesoftphoneStoreLinksListGet,
+		description: descriptionsoftphoneStoreLinksListGet,
+	},
+	{
+		name: 'Softphone Theme',
+		value: 'softphoneThemeListGet',
+		action: 'Execute the GET on softphone/theme',
+		execute: executesoftphoneThemeListGet,
+		description: descriptionsoftphoneThemeListGet,
+	},
+	{
+		name: 'Softphone Theme (2)',
+		value: 'softphoneThemePut',
+		action: 'Execute the PUT on softphone/theme',
+		execute: executesoftphoneThemePut,
+		description: descriptionsoftphoneThemePut,
+	},
+	{
+		name: 'Softphone Theme (3)',
+		value: 'softphoneThemesGet',
+		action: 'Get softphone theme information',
+		execute: executesoftphoneThemesGet,
+		description: descriptionsoftphoneThemesGet,
+	},
+	{
+		name: 'Softphone Themes List',
+		value: 'softphoneThemesListGet',
+		action: 'Get IDs of available softphone themes',
+		execute: executesoftphoneThemesListGet,
+		description: descriptionsoftphoneThemesListGet,
+	},
+	{
+		name: 'Sound Create',
+		value: 'soundsPost',
+		action: 'Create a new sound',
+		execute: executesoundsPost,
+		description: descriptionsoundsPost,
+	},
+	{
+		name: 'Sound Delete',
+		value: 'soundsDelete',
+		action: 'Delete the sound',
+		execute: executesoundsDelete,
+		description: descriptionsoundsDelete,
+	},
+	{
+		name: 'Sound Get',
+		value: 'soundsGet',
+		action: 'Get this object properties',
+		execute: executesoundsGet,
+		description: descriptionsoundsGet,
+	},
+	{
+		name: 'Sound Update',
+		value: 'soundsPut',
+		action: 'Alter this object properties',
+		execute: executesoundsPut,
+		description: descriptionsoundsPut,
+	},
+	{
+		name: 'Sounds List',
+		value: 'soundsListGet',
+		action: 'Sounds attached to this telephony account',
+		execute: executesoundsListGet,
+		description: descriptionsoundsListGet,
+	},
+	{
+		name: 'Spare Brands List',
+		value: 'spareBrandsListGet',
+		action: 'Get all available spare brands',
+		execute: executespareBrandsListGet,
+		description: descriptionspareBrandsListGet,
+	},
+	{
+		name: 'Spare Compatible Replacement List',
+		value: 'spareCompatibleReplacementListGet',
+		action: 'Return the list of phone domains compatible to be replaced',
+		execute: executespareCompatibleReplacementListGet,
+		description: descriptionspareCompatibleReplacementListGet,
+	},
+	{
+		name: 'Spare Delete',
+		value: 'spareDelete',
+		action: 'Delete the spare as if it was not belonging to OVH anymore',
+		execute: executespareDelete,
+		description: descriptionspareDelete,
+	},
+	{
+		name: 'Spare Get',
+		value: 'spareGet',
+		action: 'Get this object properties',
+		execute: executespareGet,
+		description: descriptionspareGet,
+	},
+	{
+		name: 'Spare List',
+		value: 'spareListGet',
+		action: 'List available services',
+		execute: executespareListGet,
+		description: descriptionspareListGet,
+	},
+	{
+		name: 'Spare Replace',
+		value: 'spareReplacePost',
+		action: 'Replace the phone by its spare',
+		execute: executespareReplacePost,
+		description: descriptionspareReplacePost,
+	},
+	{
+		name: 'Spare Service Infos List',
+		value: 'spareServiceInfosListGet',
+		action: 'Get service information',
+		execute: executespareServiceInfosListGet,
+		description: descriptionspareServiceInfosListGet,
+	},
+	{
+		name: 'Spare Service Infos Update',
+		value: 'spareServiceInfosPut',
+		action: 'Update service information',
+		execute: executespareServiceInfosPut,
+		description: descriptionspareServiceInfosPut,
+	},
+	{
+		name: 'Task Get',
+		value: 'taskGet',
+		action: 'Get this object properties',
+		execute: executetaskGet,
+		description: descriptiontaskGet,
+	},
+	{
+		name: 'Task List',
+		value: 'taskListGet',
+		action: 'Operations on a telephony billing account',
+		execute: executetaskListGet,
+		description: descriptiontaskListGet,
+	},
+	{
+		name: 'Terminate Billing Account',
+		value: 'billingAccountDelete',
+		action: 'Ask for a billing account termination.',
+		execute: executebillingAccountDelete,
+		description: descriptionbillingAccountDelete,
+	},
+	{
+		name: 'Time Condition',
+		value: 'timeConditionListGet',
+		action: 'Execute the GET on timeCondition',
+		execute: executetimeConditionListGet,
+		description: descriptiontimeConditionListGet,
+	},
+	{
+		name: 'Time Condition (2)',
+		value: 'timeConditionGet',
+		action: 'Execute the GET on timeCondition/{x}',
+		execute: executetimeConditionGet,
+		description: descriptiontimeConditionGet,
+	},
+	{
+		name: 'Time Condition Condition',
+		value: 'timeConditionConditionListGet',
+		action: 'Execute the GET on timeCondition/{x}/condition',
+		execute: executetimeConditionConditionListGet,
+		description: descriptiontimeConditionConditionListGet,
+	},
+	{
+		name: 'Time Condition Condition (2)',
+		value: 'timeConditionConditionPost',
+		action: 'Execute the POST on timeCondition/{x}/condition',
+		execute: executetimeConditionConditionPost,
+		description: descriptiontimeConditionConditionPost,
+	},
+	{
+		name: 'Time Condition Condition (3)',
+		value: 'timeConditionConditionDelete',
+		action: 'Execute the DELETE on timeCondition/{x}/condition/{x}',
+		execute: executetimeConditionConditionDelete,
+		description: descriptiontimeConditionConditionDelete,
+	},
+	{
+		name: 'Time Condition Condition (4)',
+		value: 'timeConditionConditionGet',
+		action: 'Execute the GET on timeCondition/{x}/condition/{x}',
+		execute: executetimeConditionConditionGet,
+		description: descriptiontimeConditionConditionGet,
+	},
+	{
+		name: 'Time Condition Condition (5)',
+		value: 'timeConditionConditionPut',
+		action: 'Execute the PUT on timeCondition/{x}/condition/{x}',
+		execute: executetimeConditionConditionPut,
+		description: descriptiontimeConditionConditionPut,
+	},
+	{
+		name: 'Time Condition Options',
+		value: 'timeConditionOptionsListGet',
+		action: 'Execute the GET on timeCondition/{x}/options',
+		execute: executetimeConditionOptionsListGet,
+		description: descriptiontimeConditionOptionsListGet,
+	},
+	{
+		name: 'Time Condition Options (2)',
+		value: 'timeConditionOptionsPut',
+		action: 'Execute the PUT on timeCondition/{x}/options',
+		execute: executetimeConditionOptionsPut,
+		description: descriptiontimeConditionOptionsPut,
+	},
+	{
+		name: 'Transfer Security Deposit',
+		value: 'transferSecurityDepositPost',
+		action: 'Transfer security deposit between two billing accounts',
+		execute: executetransferSecurityDepositPost,
+		description: descriptiontransferSecurityDepositPost,
+	},
+	{
+		name: 'Trunk',
+		value: 'trunkListGet',
+		action: 'Execute the GET on trunk',
+		execute: executetrunkListGet,
+		description: descriptiontrunkListGet,
+	},
+	{
+		name: 'Trunk (2)',
+		value: 'trunkGet',
+		action: 'Execute the GET on trunk/{x}',
+		execute: executetrunkGet,
+		description: descriptiontrunkGet,
+	},
+	{
+		name: 'Trunk Channels Packs Repartition',
+		value: 'trunkChannelsPacksRepartitionListGet',
+		action: 'Execute the GET on trunk/{x}/channelsPacksRepartition',
+		execute: executetrunkChannelsPacksRepartitionListGet,
+		description: descriptiontrunkChannelsPacksRepartitionListGet,
+	},
+	{
+		name: 'Trunk External Displayed Number',
+		value: 'trunkExternalDisplayedNumberListGet',
+		action: 'Execute the GET on trunk/{x}/externalDisplayedNumber',
+		execute: executetrunkExternalDisplayedNumberListGet,
+		description: descriptiontrunkExternalDisplayedNumberListGet,
+	},
+	{
+		name: 'Trunk External Displayed Number (2)',
+		value: 'trunkExternalDisplayedNumberPost',
+		action: 'Execute the POST on trunk/{x}/externalDisplayedNumber',
+		execute: executetrunkExternalDisplayedNumberPost,
+		description: descriptiontrunkExternalDisplayedNumberPost,
+	},
+	{
+		name: 'Trunk External Displayed Number (3)',
+		value: 'trunkExternalDisplayedNumberDelete',
+		action: 'Execute the DELETE on trunk/{x}/externalDisplayedNumber/{x}',
+		execute: executetrunkExternalDisplayedNumberDelete,
+		description: descriptiontrunkExternalDisplayedNumberDelete,
+	},
+	{
+		name: 'Trunk External Displayed Number (4)',
+		value: 'trunkExternalDisplayedNumberGet',
+		action: 'Execute the GET on trunk/{x}/externalDisplayedNumber/{x}',
+		execute: executetrunkExternalDisplayedNumberGet,
+		description: descriptiontrunkExternalDisplayedNumberGet,
+	},
+	{
+		name: 'Trunk External Displayed Number Validate',
+		value: 'trunkExternalDisplayedNumberValidatePost',
+		action: 'Execute the POST on trunk/{x}/externalDisplayedNumber/{x}/validate',
+		execute: executetrunkExternalDisplayedNumberValidatePost,
+		description: descriptiontrunkExternalDisplayedNumberValidatePost,
+	},
+	{
+		name: 'Update Alias Service Info',
+		value: 'aliasServiceInfosPut',
+		action: 'Update service information for an alias',
+		execute: executeAliasServiceInfosPut,
+		description: descriptionAliasServiceInfosPut,
+	},
+	{
+		name: 'Update Billing Account',
+		value: 'billingAccountPut',
+		action: 'Alter this object properties',
+		execute: executebillingAccountPut,
+		description: descriptionbillingAccountPut,
+	},
+	{
+		name: 'Update Line Service Info',
+		value: 'linesServiceInfosPut',
+		action: 'Update service information for a line',
+		execute: executeLinesServiceInfosPut,
+		description: descriptionLinesServiceInfosPut,
+	},
+	{
+		name: 'Update Number',
+		value: 'linesNumberPut',
+		action: 'Update number properties',
+		execute: executeLinesNumberPut,
+		description: descriptionLinesNumberPut,
+	},
+	{
+		name: 'Update Portability',
+		value: 'linesPortabilityPut',
+		action: 'Update portability properties',
+		execute: executeLinesPortabilityPut,
+		description: descriptionLinesPortabilityPut,
+	},
+	{
+		name: 'Update SIM',
+		value: 'linesSimPut',
+		action: 'Update SIM properties',
+		execute: executeLinesSimPut,
+		description: descriptionLinesSimPut,
+	},
+	{
+		name: 'Update Trunk Service Info',
+		value: 'trunksServiceInfosPut',
+		action: 'Update service information for a trunk',
+		execute: executeTrunksServiceInfosPut,
+		description: descriptionTrunksServiceInfosPut,
+	},
+	{
+		name: 'Voicemail',
+		value: 'voicemailListGet',
+		action: 'Execute the GET on voicemail',
+		execute: executevoicemailListGet,
+		description: descriptionvoicemailListGet,
+	},
+	{
+		name: 'Voicemail (2)',
+		value: 'voicemailGet',
+		action: 'Execute the GET on voicemail/{x}',
+		execute: executevoicemailGet,
+		description: descriptionvoicemailGet,
+	},
+	{
+		name: 'Voicemail (3)',
+		value: 'voicemailPut',
+		action: 'Execute the PUT on voicemail/{x}',
+		execute: executevoicemailPut,
+		description: descriptionvoicemailPut,
+	},
+	{
+		name: 'Voicemail Directories',
+		value: 'voicemailDirectoriesListGet',
+		action: 'Execute the GET on voicemail/{x}/directories',
+		execute: executevoicemailDirectoriesListGet,
+		description: descriptionvoicemailDirectoriesListGet,
+	},
+	{
+		name: 'Voicemail Directories (2)',
+		value: 'voicemailDirectoriesDelete',
+		action: 'Execute the DELETE on voicemail/{x}/directories/{x}',
+		execute: executevoicemailDirectoriesDelete,
+		description: descriptionvoicemailDirectoriesDelete,
+	},
+	{
+		name: 'Voicemail Directories (3)',
+		value: 'voicemailDirectoriesGet',
+		action: 'Execute the GET on voicemail/{x}/directories/{x}',
+		execute: executevoicemailDirectoriesGet,
+		description: descriptionvoicemailDirectoriesGet,
+	},
+	{
+		name: 'Voicemail Directories Download',
+		value: 'voicemailDirectoriesDownloadListGet',
+		action: 'Execute the GET on voicemail/{x}/directories/{x}/download',
+		execute: executevoicemailDirectoriesDownloadListGet,
+		description: descriptionvoicemailDirectoriesDownloadListGet,
+	},
+	{
+		name: 'Voicemail Directories Move',
+		value: 'voicemailDirectoriesMovePost',
+		action: 'Execute the POST on voicemail/{x}/directories/{x}/move',
+		execute: executevoicemailDirectoriesMovePost,
+		description: descriptionvoicemailDirectoriesMovePost,
+	},
+	{
+		name: 'Voicemail Directories Transcript',
+		value: 'voicemailDirectoriesTranscriptListGet',
+		action: 'Execute the GET on voicemail/{x}/directories/{x}/transcript',
+		execute: executevoicemailDirectoriesTranscriptListGet,
+		description: descriptionvoicemailDirectoriesTranscriptListGet,
+	},
+	{
+		name: 'Voicemail Greetings',
+		value: 'voicemailGreetingsListGet',
+		action: 'Execute the GET on voicemail/{x}/greetings',
+		execute: executevoicemailGreetingsListGet,
+		description: descriptionvoicemailGreetingsListGet,
+	},
+	{
+		name: 'Voicemail Greetings (2)',
+		value: 'voicemailGreetingsPost',
+		action: 'Execute the POST on voicemail/{x}/greetings',
+		execute: executevoicemailGreetingsPost,
+		description: descriptionvoicemailGreetingsPost,
+	},
+	{
+		name: 'Voicemail Greetings (3)',
+		value: 'voicemailGreetingsDelete',
+		action: 'Execute the DELETE on voicemail/{x}/greetings/{x}',
+		execute: executevoicemailGreetingsDelete,
+		description: descriptionvoicemailGreetingsDelete,
+	},
+	{
+		name: 'Voicemail Greetings (4)',
+		value: 'voicemailGreetingsGet',
+		action: 'Execute the GET on voicemail/{x}/greetings/{x}',
+		execute: executevoicemailGreetingsGet,
+		description: descriptionvoicemailGreetingsGet,
+	},
+	{
+		name: 'Voicemail Greetings Download',
+		value: 'voicemailGreetingsDownloadListGet',
+		action: 'Execute the GET on voicemail/{x}/greetings/{x}/download',
+		execute: executevoicemailGreetingsDownloadListGet,
+		description: descriptionvoicemailGreetingsDownloadListGet,
+	},
+	{
+		name: 'Voicemail Greetings Move',
+		value: 'voicemailGreetingsMovePost',
+		action: 'Execute the POST on voicemail/{x}/greetings/{x}/move',
+		execute: executevoicemailGreetingsMovePost,
+		description: descriptionvoicemailGreetingsMovePost,
+	},
+	{
+		name: 'Voicemail Migrate On New Version',
+		value: 'voicemailMigrateOnNewVersionPost',
+		action: 'Execute the POST on voicemail/{x}/migrateOnNewVersion',
+		execute: executevoicemailMigrateOnNewVersionPost,
+		description: descriptionvoicemailMigrateOnNewVersionPost,
+	},
+	{
+		name: 'Voicemail Settings',
+		value: 'voicemailSettingsListGet',
+		action: 'Execute the GET on voicemail/{x}/settings',
+		execute: executevoicemailSettingsListGet,
+		description: descriptionvoicemailSettingsListGet,
+	},
+	{
+		name: 'Voicemail Settings (2)',
+		value: 'voicemailSettingsPut',
+		action: 'Execute the PUT on voicemail/{x}/settings',
+		execute: executevoicemailSettingsPut,
+		description: descriptionvoicemailSettingsPut,
+	},
+	{
+		name: 'Voicemail Settings Change Password',
+		value: 'voicemailSettingsChangePasswordPost',
+		action: 'Execute the POST on voicemail/{x}/settings/changePassword',
+		execute: executevoicemailSettingsChangePasswordPost,
+		description: descriptionvoicemailSettingsChangePasswordPost,
+	},
+	{
+		name: 'Voicemail Settings Change Routing',
+		value: 'voicemailSettingsChangeRoutingPost',
+		action: 'Execute the POST on voicemail/{x}/settings/changeRouting',
+		execute: executevoicemailSettingsChangeRoutingPost,
+		description: descriptionvoicemailSettingsChangeRoutingPost,
+	},
+	{
+		name: 'Voicemail Settings Routing',
+		value: 'voicemailSettingsRoutingListGet',
+		action: 'Execute the GET on voicemail/{x}/settings/routing',
+		execute: executevoicemailSettingsRoutingListGet,
+		description: descriptionvoicemailSettingsRoutingListGet,
+	},
+	{
+		name: 'Voicemail Settings Voicemail Numbers',
+		value: 'voicemailSettingsVoicemailNumbersListGet',
+		action: 'Execute the GET on voicemail/{x}/settings/voicemailNumbers',
+		execute: executevoicemailSettingsVoicemailNumbersListGet,
+		description: descriptionvoicemailSettingsVoicemailNumbersListGet,
+	},
+	{
+		name: 'Vxml Get',
+		value: 'vxmlGet',
+		action: 'Get this object properties',
+		execute: executevxmlGet,
+		description: descriptionvxmlGet,
+	},
+	{
+		name: 'Vxml List',
+		value: 'vxmlListGet',
+		action: 'Vxml numbers associated with this billing account',
+		execute: executevxmlListGet,
+		description: descriptionvxmlListGet,
+	},
+	{
+		name: 'Vxml Settings List',
+		value: 'vxmlSettingsListGet',
+		action: 'Get this object properties',
+		execute: executevxmlSettingsListGet,
+		description: descriptionvxmlSettingsListGet,
+	},
+	{
+		name: 'Vxml Settings Logs Create',
+		value: 'vxmlSettingsLogsPost',
+		action: 'Generate a temporary url to retrieve device logs',
+		execute: executevxmlSettingsLogsPost,
+		description: descriptionvxmlSettingsLogsPost,
+	},
+	{
+		name: 'Vxml Settings Update',
+		value: 'vxmlSettingsPut',
+		action: 'Alter this object properties',
+		execute: executevxmlSettingsPut,
+		description: descriptionvxmlSettingsPut,
+	},
+	],
+);
+
+export { description, execute };
