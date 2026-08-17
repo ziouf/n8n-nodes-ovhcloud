@@ -1,133 +1,119 @@
-import type { IExecuteFunctions, INodeExecutionData, INodeProperties } from 'n8n-workflow';
+import { createOperationDispatcher } from '../../shared/nodes/createNodeDispatcher';
 
-// Metrics operations
-import * as list from './resources/list.operation';
-import * as get from './resources/get.operation';
-import * as updatePut from './resources/updatePut.operation';
-import * as consumptionGet from './resources/consumptionGet.operation';
-import * as tokenGet from './resources/tokenGet.operation';
-import * as tokenCreatePost from './resources/tokenCreatePost.operation';
-import * as tokenDetailGet from './resources/tokenDetailGet.operation';
-import * as tokenUpdatePut from './resources/tokenUpdatePut.operation';
-import * as tokenDelete from './resources/tokenDelete.operation';
-import * as quotaSetPut from './resources/quotaSetPut.operation';
-import * as quotaGet from './resources/quotaGet.operation';
-import * as confirmTerminationPost from './resources/confirmTerminationPost.operation';
-import * as changeContactPost from './resources/changeContactPost.operation';
+import { execute as changeContactPostExecute } from './resources/changeContactPost.operation';
+import { execute as confirmTerminationPostExecute } from './resources/confirmTerminationPost.operation';
+import { execute as tokenCreatePostExecute } from './resources/tokenCreatePost.operation';
+import { execute as tokenDeleteExecute } from './resources/tokenDelete.operation';
+import { execute as updatePutExecute } from './resources/updatePut.operation';
+import { execute as tokenUpdatePutExecute } from './resources/tokenUpdatePut.operation';
+import { execute as getExecute } from './resources/get.operation';
+import { execute as consumptionGetExecute } from './resources/consumptionGet.operation';
+import { execute as quotaGetExecute } from './resources/quotaGet.operation';
+import { execute as tokenDetailGetExecute } from './resources/tokenDetailGet.operation';
+import { execute as listExecute } from './resources/list.operation';
+import { execute as tokenGetExecute } from './resources/tokenGet.operation';
+import { execute as quotaSetPutExecute } from './resources/quotaSetPut.operation';
 
-export function description() {
-	const props: INodeProperties[] = [];
+const noProps = (): never[] => [];
 
-	// Operation picker (alphabetical by name)
-	props.push({
-		displayName: 'Operation',
-		name: 'metricsOperation',
-		type: 'options',
-		noDataExpression: true,
-		default: 'list',
-		options: [
-			{
-				name: 'Change Metrics Contact',
-				value: 'changeContactPost',
-				action: 'Launch a contact change procedure for a Metrics service',
-			},
-			{
-				name: 'Confirm Metrics Service Termination',
-				value: 'confirmTerminationPost',
-				action: 'Confirm termination of a Metrics service',
-			},
-			{
-				name: 'Create Metrics Token',
-				value: 'tokenCreatePost',
-				action: 'Create a new token for a Metrics service',
-			},
-			{
-				name: 'Delete Metrics Token',
-				value: 'tokenDelete',
-				action: 'Revoke a Metrics token',
-			},
-			{
-				name: 'Edit Metrics Service',
-				value: 'updatePut',
-				action: 'Modify the description of a Metrics service',
-			},
-			{
-				name: 'Edit Metrics Token',
-				value: 'tokenUpdatePut',
-				action: 'Modify a Metrics token',
-			},
-			{
-				name: 'Get Metrics Service',
-				value: 'get',
-				action: 'Get properties of a Metrics service',
-			},
-			{
-				name: 'Get Metrics Service Consumption',
-				value: 'consumptionGet',
-				action: 'Get consumption for a Metrics service',
-			},
-			{
-				name: 'Get Metrics Service Quota',
-				value: 'quotaGet',
-				action: 'Get the quota of a Metrics service',
-			},
-			{
-				name: 'Get Metrics Token',
-				value: 'tokenDetailGet',
-				action: 'Get details of a specific Metrics token',
-			},
-			{
-				name: 'List Metrics Services',
-				value: 'list',
-				action: 'List all available Metrics services',
-			},
-			{
-				name: 'List Metrics Tokens',
-				value: 'tokenGet',
-				action: 'List all tokens of a Metrics service',
-			},
-			{
-				name: 'Set Metrics Service Quota',
-				value: 'quotaSetPut',
-				action: 'Set the overquota of a Metrics service',
-			},
-		],
-	});
+const { description, execute } = createOperationDispatcher(
+	'metricsOperation',
+	'metrics',
+	[
+	{
+		name: 'Change Metrics Contact',
+		value: 'changeContactPost',
+		action: 'Launch a contact change procedure for a Metrics service',
+		execute: changeContactPostExecute,
+		description: noProps,
+	},
+	{
+		name: 'Confirm Metrics Service Termination',
+		value: 'confirmTerminationPost',
+		action: 'Confirm termination of a Metrics service',
+		execute: confirmTerminationPostExecute,
+		description: noProps,
+	},
+	{
+		name: 'Create Metrics Token',
+		value: 'tokenCreatePost',
+		action: 'Create a new token for a Metrics service',
+		execute: tokenCreatePostExecute,
+		description: noProps,
+	},
+	{
+		name: 'Delete Metrics Token',
+		value: 'tokenDelete',
+		action: 'Revoke a Metrics token',
+		execute: tokenDeleteExecute,
+		description: noProps,
+	},
+	{
+		name: 'Edit Metrics Service',
+		value: 'updatePut',
+		action: 'Modify the description of a Metrics service',
+		execute: updatePutExecute,
+		description: noProps,
+	},
+	{
+		name: 'Edit Metrics Token',
+		value: 'tokenUpdatePut',
+		action: 'Modify a Metrics token',
+		execute: tokenUpdatePutExecute,
+		description: noProps,
+	},
+	{
+		name: 'Get Metrics Service',
+		value: 'get',
+		action: 'Get properties of a Metrics service',
+		execute: getExecute,
+		description: noProps,
+	},
+	{
+		name: 'Get Metrics Service Consumption',
+		value: 'consumptionGet',
+		action: 'Get consumption for a Metrics service',
+		execute: consumptionGetExecute,
+		description: noProps,
+	},
+	{
+		name: 'Get Metrics Service Quota',
+		value: 'quotaGet',
+		action: 'Get the quota of a Metrics service',
+		execute: quotaGetExecute,
+		description: noProps,
+	},
+	{
+		name: 'Get Metrics Token',
+		value: 'tokenDetailGet',
+		action: 'Get details of a specific Metrics token',
+		execute: tokenDetailGetExecute,
+		description: noProps,
+	},
+	{
+		name: 'List Metrics Services',
+		value: 'list',
+		action: 'List all available Metrics services',
+		execute: listExecute,
+		description: noProps,
+		default: true,
+	},
+	{
+		name: 'List Metrics Tokens',
+		value: 'tokenGet',
+		action: 'List all tokens of a Metrics service',
+		execute: tokenGetExecute,
+		description: noProps,
+	},
+	{
+		name: 'Set Metrics Service Quota',
+		value: 'quotaSetPut',
+		action: 'Set the overquota of a Metrics service',
+		execute: quotaSetPutExecute,
+		description: noProps,
+	},
+	],
 
-	return props;
-}
+);
 
-export async function execute(this: IExecuteFunctions, itemIndex?: number): Promise<INodeExecutionData[]> {
-	const operation = this.getNodeParameter('metricsOperation', 0) as string;
-
-	switch (operation) {
-		case 'changeContactPost':
-			return changeContactPost.execute.call(this, itemIndex ?? 0);
-		case 'confirmTerminationPost':
-			return confirmTerminationPost.execute.call(this, itemIndex ?? 0);
-		case 'tokenCreatePost':
-			return tokenCreatePost.execute.call(this, itemIndex ?? 0);
-		case 'tokenDelete':
-			return tokenDelete.execute.call(this, itemIndex ?? 0);
-		case 'updatePut':
-			return updatePut.execute.call(this, itemIndex ?? 0);
-		case 'tokenUpdatePut':
-			return tokenUpdatePut.execute.call(this, itemIndex ?? 0);
-		case 'get':
-			return get.execute.call(this, itemIndex ?? 0);
-		case 'consumptionGet':
-			return consumptionGet.execute.call(this, itemIndex ?? 0);
-		case 'quotaGet':
-			return quotaGet.execute.call(this, itemIndex ?? 0);
-		case 'tokenDetailGet':
-			return tokenDetailGet.execute.call(this, itemIndex ?? 0);
-		case 'list':
-			return list.execute.call(this, itemIndex ?? 0);
-		case 'tokenGet':
-			return tokenGet.execute.call(this, itemIndex ?? 0);
-		case 'quotaSetPut':
-			return quotaSetPut.execute.call(this, itemIndex ?? 0);
-		default:
-			throw new Error(`No handler for operation '${operation}'`);
-	}
-}
+export { description, execute };

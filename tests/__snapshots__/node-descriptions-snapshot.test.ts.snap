@@ -159,28 +159,28 @@ exports[`OvhCloud node descriptions (snapshot reference) OvhCloudEmailPro descri
     "noDataExpression": true,
     "options": [
       {
-        "displayName": "Get Email Pro Task",
-        "name": "emailProGetTask",
+        "action": "Get Email Pro Task",
+        "name": "Get Email Pro Task",
         "value": "emailProGetTask",
       },
       {
-        "displayName": "List Email Pro Tasks",
-        "name": "emailProListTasks",
+        "action": "List Email Pro Tasks",
+        "name": "List Email Pro Tasks",
         "value": "emailProListTasks",
       },
       {
-        "displayName": "Get Service By Name",
-        "name": "getServiceByName",
+        "action": "Get Service By Name",
+        "name": "Get Service By Name",
         "value": "getServiceByName",
       },
       {
-        "displayName": "List Services",
-        "name": "listServices",
+        "action": "List Services",
+        "name": "List Services",
         "value": "listServices",
       },
       {
-        "displayName": "Update Suspend Status By Service Name",
-        "name": "updateSuspendStatusByServiceName",
+        "action": "Update Suspend Status By Service Name",
+        "name": "Update Suspend Status By Service Name",
         "value": "updateSuspendStatusByServiceName",
       },
     ],

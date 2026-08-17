@@ -1,164 +1,151 @@
-import type { IExecuteFunctions, INodeExecutionData, INodeProperties } from 'n8n-workflow';
+import { createOperationDispatcher } from '../../shared/nodes/createNodeDispatcher';
 
-import * as list from './resources/list.operation';
-import * as availabilitiesGet from './resources/availabilitiesGet.operation';
-import * as availabilitiesRawGet from './resources/availabilitiesRawGet.operation';
-import * as availableVersionsGet from './resources/availableVersionsGet.operation';
-import * as requirementsGet from './resources/requirementsGet.operation';
-import * as get from './resources/get.operation';
-import * as updatePut from './resources/updatePut.operation';
-import * as changeContactPost from './resources/changeContactPost.operation';
-import * as confirmTerminationPost from './resources/confirmTerminationPost.operation';
-import * as nodesGet from './resources/nodesGet.operation';
-import * as nodeGet from './resources/nodeGet.operation';
-import * as nodeUpdatePut from './resources/nodeUpdatePut.operation';
-import * as nodeDeployPut from './resources/nodeDeployPut.operation';
-import * as nodeTerminatePost from './resources/nodeTerminatePost.operation';
-import * as serviceInfosGet from './resources/serviceInfosGet.operation';
-import * as serviceInfosUpdatePut from './resources/serviceInfosUpdatePut.operation';
-import * as terminatePost from './resources/terminatePost.operation';
+import { execute as changeContactPostExecute } from './resources/changeContactPost.operation';
+import { execute as confirmTerminationPostExecute } from './resources/confirmTerminationPost.operation';
+import { execute as nodeDeployPutExecute } from './resources/nodeDeployPut.operation';
+import { execute as availabilitiesGetExecute } from './resources/availabilitiesGet.operation';
+import { execute as requirementsGetExecute } from './resources/requirementsGet.operation';
+import { execute as availableVersionsGetExecute } from './resources/availableVersionsGet.operation';
+import { execute as nodesGetExecute } from './resources/nodesGet.operation';
+import { execute as nodeGetExecute } from './resources/nodeGet.operation';
+import { execute as getExecute } from './resources/get.operation';
+import { execute as serviceInfosGetExecute } from './resources/serviceInfosGet.operation';
+import { execute as listExecute } from './resources/list.operation';
+import { execute as availabilitiesRawGetExecute } from './resources/availabilitiesRawGet.operation';
+import { execute as nodeUpdatePutExecute } from './resources/nodeUpdatePut.operation';
+import { execute as terminatePostExecute } from './resources/terminatePost.operation';
+import { execute as nodeTerminatePostExecute } from './resources/nodeTerminatePost.operation';
+import { execute as updatePutExecute } from './resources/updatePut.operation';
+import { execute as serviceInfosUpdatePutExecute } from './resources/serviceInfosUpdatePut.operation';
 
-export function description() {
-	const props: INodeProperties[] = [];
+const noProps = (): never[] => [];
 
-	// Operation picker (alphabetical by name)
-	props.push({
-		displayName: 'Operation',
-		name: 'nutanixOperation',
-		type: 'options',
-		noDataExpression: true,
-		default: 'list',
-		options: [
-			{
-				name: 'Change Contact',
-				value: 'changeContactPost',
-				action: 'Launch a contact change procedure for a Nutanix cluster',
-			},
-			{
-				name: 'Confirm Termination',
-				value: 'confirmTerminationPost',
-				action: 'Confirm the termination of a Nutanix cluster',
-			},
-			{
-				name: 'Deploy Node',
-				value: 'nodeDeployPut',
-				action: 'Deploy a node in a Nutanix cluster',
-			},
-			{
-				name: 'Fetch Availabilities',
-				value: 'availabilitiesGet',
-				action: 'Fetch availabilities for a given Nutanix cluster configuration',
-			},
-			{
-				name: 'Fetch Requirements',
-				value: 'requirementsGet',
-				action: 'Fetch the requirements for a given Nutanix cluster configuration',
-			},
-			{
-				name: 'Get Available Versions',
-				value: 'availableVersionsGet',
-				action: 'Fetch the available Nutanix versions to install',
-			},
-			{
-				name: 'Get Cluster Nodes',
-				value: 'nodesGet',
-				action: 'Retrieve a list of all nodes in a specified Nutanix cluster',
-			},
-			{
-				name: 'Get Node Details',
-				value: 'nodeGet',
-				action: 'Retrieve detailed information about a specific node in a Nutanix cluster',
-			},
-			{
-				name: 'Get Nutanix Cluster',
-				value: 'get',
-				action: 'Get detailed information about a Nutanix cluster',
-			},
-			{
-				name: 'Get Service Information',
-				value: 'serviceInfosGet',
-				action: 'Retrieve service information for a Nutanix cluster',
-			},
-			{
-				name: 'List Nutanix Clusters',
-				value: 'list',
-				action: 'List all owned Nutanix clusters',
-			},
-			{
-				name: 'List Raw Availabilities',
-				value: 'availabilitiesRawGet',
-				action: 'List raw availability for Nutanix clusters',
-			},
-			{
-				name: 'Reinstall Node',
-				value: 'nodeUpdatePut',
-				action: 'Reinstall a node in a Nutanix cluster',
-			},
-			{
-				name: 'Terminate Cluster',
-				value: 'terminatePost',
-				action: 'Initiate the termination of a Nutanix cluster',
-			},
-			{
-				name: 'Terminate Node',
-				value: 'nodeTerminatePost',
-				action: 'Terminate a node in a Nutanix cluster',
-			},
-			{
-				name: 'Update Nutanix Cluster',
-				value: 'updatePut',
-				action: 'Update the configuration of a Nutanix cluster',
-			},
-			{
-				name: 'Update Service Information',
-				value: 'serviceInfosUpdatePut',
-				action: 'Update the service information for a Nutanix cluster',
-			},
-		],
-	});
+const { description, execute } = createOperationDispatcher(
+	'nutanixOperation',
+	'nutanix',
+	[
+	{
+		name: 'Change Contact',
+		value: 'changeContactPost',
+		action: 'Launch a contact change procedure for a Nutanix cluster',
+		execute: changeContactPostExecute,
+		description: noProps,
+	},
+	{
+		name: 'Confirm Termination',
+		value: 'confirmTerminationPost',
+		action: 'Confirm the termination of a Nutanix cluster',
+		execute: confirmTerminationPostExecute,
+		description: noProps,
+	},
+	{
+		name: 'Deploy Node',
+		value: 'nodeDeployPut',
+		action: 'Deploy a node in a Nutanix cluster',
+		execute: nodeDeployPutExecute,
+		description: noProps,
+	},
+	{
+		name: 'Fetch Availabilities',
+		value: 'availabilitiesGet',
+		action: 'Fetch availabilities for a given Nutanix cluster configuration',
+		execute: availabilitiesGetExecute,
+		description: noProps,
+	},
+	{
+		name: 'Fetch Requirements',
+		value: 'requirementsGet',
+		action: 'Fetch the requirements for a given Nutanix cluster configuration',
+		execute: requirementsGetExecute,
+		description: noProps,
+	},
+	{
+		name: 'Get Available Versions',
+		value: 'availableVersionsGet',
+		action: 'Fetch the available Nutanix versions to install',
+		execute: availableVersionsGetExecute,
+		description: noProps,
+	},
+	{
+		name: 'Get Cluster Nodes',
+		value: 'nodesGet',
+		action: 'Retrieve a list of all nodes in a specified Nutanix cluster',
+		execute: nodesGetExecute,
+		description: noProps,
+	},
+	{
+		name: 'Get Node Details',
+		value: 'nodeGet',
+		action: 'Retrieve detailed information about a specific node in a Nutanix cluster',
+		execute: nodeGetExecute,
+		description: noProps,
+	},
+	{
+		name: 'Get Nutanix Cluster',
+		value: 'get',
+		action: 'Get detailed information about a Nutanix cluster',
+		execute: getExecute,
+		description: noProps,
+	},
+	{
+		name: 'Get Service Information',
+		value: 'serviceInfosGet',
+		action: 'Retrieve service information for a Nutanix cluster',
+		execute: serviceInfosGetExecute,
+		description: noProps,
+	},
+	{
+		name: 'List Nutanix Clusters',
+		value: 'list',
+		action: 'List all owned Nutanix clusters',
+		execute: listExecute,
+		description: noProps,
+		default: true,
+	},
+	{
+		name: 'List Raw Availabilities',
+		value: 'availabilitiesRawGet',
+		action: 'List raw availability for Nutanix clusters',
+		execute: availabilitiesRawGetExecute,
+		description: noProps,
+	},
+	{
+		name: 'Reinstall Node',
+		value: 'nodeUpdatePut',
+		action: 'Reinstall a node in a Nutanix cluster',
+		execute: nodeUpdatePutExecute,
+		description: noProps,
+	},
+	{
+		name: 'Terminate Cluster',
+		value: 'terminatePost',
+		action: 'Initiate the termination of a Nutanix cluster',
+		execute: terminatePostExecute,
+		description: noProps,
+	},
+	{
+		name: 'Terminate Node',
+		value: 'nodeTerminatePost',
+		action: 'Terminate a node in a Nutanix cluster',
+		execute: nodeTerminatePostExecute,
+		description: noProps,
+	},
+	{
+		name: 'Update Nutanix Cluster',
+		value: 'updatePut',
+		action: 'Update the configuration of a Nutanix cluster',
+		execute: updatePutExecute,
+		description: noProps,
+	},
+	{
+		name: 'Update Service Information',
+		value: 'serviceInfosUpdatePut',
+		action: 'Update the service information for a Nutanix cluster',
+		execute: serviceInfosUpdatePutExecute,
+		description: noProps,
+	},
+	],
 
-	return props;
-}
+);
 
-export async function execute(this: IExecuteFunctions, itemIndex?: number): Promise<INodeExecutionData[]> {
-	const operation = this.getNodeParameter('nutanixOperation', 0) as string;
-
-	switch (operation) {
-		case 'changeContactPost':
-			return changeContactPost.execute.call(this, itemIndex ?? 0);
-		case 'confirmTerminationPost':
-			return confirmTerminationPost.execute.call(this, itemIndex ?? 0);
-		case 'nodeDeployPut':
-			return nodeDeployPut.execute.call(this, itemIndex ?? 0);
-		case 'availabilitiesGet':
-			return availabilitiesGet.execute.call(this, itemIndex ?? 0);
-		case 'requirementsGet':
-			return requirementsGet.execute.call(this, itemIndex ?? 0);
-		case 'availableVersionsGet':
-			return availableVersionsGet.execute.call(this, itemIndex ?? 0);
-		case 'nodesGet':
-			return nodesGet.execute.call(this, itemIndex ?? 0);
-		case 'nodeGet':
-			return nodeGet.execute.call(this, itemIndex ?? 0);
-		case 'get':
-			return get.execute.call(this, itemIndex ?? 0);
-		case 'serviceInfosGet':
-			return serviceInfosGet.execute.call(this, itemIndex ?? 0);
-		case 'list':
-			return list.execute.call(this, itemIndex ?? 0);
-		case 'availabilitiesRawGet':
-			return availabilitiesRawGet.execute.call(this, itemIndex ?? 0);
-		case 'nodeUpdatePut':
-			return nodeUpdatePut.execute.call(this, itemIndex ?? 0);
-		case 'terminatePost':
-			return terminatePost.execute.call(this, itemIndex ?? 0);
-		case 'nodeTerminatePost':
-			return nodeTerminatePost.execute.call(this, itemIndex ?? 0);
-		case 'updatePut':
-			return updatePut.execute.call(this, itemIndex ?? 0);
-		case 'serviceInfosUpdatePut':
-			return serviceInfosUpdatePut.execute.call(this, itemIndex ?? 0);
-		default:
-			throw new Error(`No handler for operation '${operation}'`);
-	}
-}
+export { description, execute };

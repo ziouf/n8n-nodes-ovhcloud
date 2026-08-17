@@ -1,428 +1,415 @@
-import type { IExecuteFunctions, INodeExecutionData, INodeProperties } from 'n8n-workflow';
+import { createOperationDispatcher } from '../../shared/nodes/createNodeDispatcher';
 
-import * as list from './resources/main/list.operation';
-import * as availableOffersGet from './resources/main/availableOffersGet.operation';
-import * as devicesPost from './resources/main/devicesPost.operation';
-import * as hardwareGet from './resources/main/hardwareGet.operation';
-import * as hardwareAvailableGet from './resources/main/hardwareAvailableGet.operation';
-import * as hardwareDetailGet from './resources/main/hardwareDetailGet.operation';
-import * as get from './resources/main/get.operation';
-import * as deleteDelete from './resources/main/deleteDelete.operation';
-import * as updatePut from './resources/main/updatePut.operation';
-import * as autoMTUPut from './resources/main/autoMTUPut.operation';
-import * as availableReleaseChannelsGet from './resources/main/availableReleaseChannelsGet.operation';
-import * as backupsGet from './resources/main/backupsGet.operation';
-import * as backupDelete from './resources/main/backupDelete.operation';
-import * as backupGet from './resources/main/backupGet.operation';
-import * as cancelResiliationPost from './resources/main/cancelResiliationPost.operation';
-import * as changeContactPost from './resources/main/changeContactPost.operation';
-import * as ipsGet from './resources/main/ipsGet.operation';
-import * as ipGet from './resources/main/ipGet.operation';
-import * as ipv6Put from './resources/main/ipv6Put.operation';
-import * as linkDevicePost from './resources/main/linkDevicePost.operation';
-import * as linkHardwarePost from './resources/main/linkHardwarePost.operation';
-import * as migrationOffersGet from './resources/main/migrationOffersGet.operation';
-import * as migrationChangeOffersPost from './resources/main/migrationChangeOffersPost.operation';
-import * as serviceInfosGet from './resources/main/serviceInfosGet.operation';
-import * as statisticsGet from './resources/main/statisticsGet.operation';
-import * as tasksGet from './resources/main/tasksGet.operation';
-import * as taskGet from './resources/main/taskGet.operation';
-import * as serviceInfosUpdatePut from './resources/main/serviceInfosUpdatePut.operation';
-import * as deviceGet from './resources/device/deviceGet.operation';
-import * as deviceDelete from './resources/device/deviceDelete.operation';
-import * as deviceActionsGet from './resources/device/deviceActionsGet.operation';
-import * as deviceActionsPost from './resources/device/deviceActionsPost.operation';
-import * as deviceActionGet from './resources/device/deviceActionGet.operation';
-import * as deviceAvailableActionsGet from './resources/device/deviceAvailableActionsGet.operation';
-import * as deviceBackupPost from './resources/device/deviceBackupPost.operation';
-import * as deviceHardwareGet from './resources/device/deviceHardwareGet.operation';
-import * as deviceLogsPost from './resources/device/deviceLogsPost.operation';
-import * as deviceRestoreBackupPost from './resources/device/deviceRestoreBackupPost.operation';
-import * as logKindGet from './resources/log/logKindGet.operation';
-import * as logKindNameGet from './resources/log/logKindNameGet.operation';
-import * as logSubscriptionGet from './resources/log/logSubscriptionGet.operation';
-import * as logSubscriptionPost from './resources/log/logSubscriptionPost.operation';
-import * as logSubscriptionDelete from './resources/log/logSubscriptionDelete.operation';
-import * as logSubscriptionDetailGet from './resources/log/logSubscriptionDetailGet.operation';
-import * as logUrlPost from './resources/log/logUrlPost.operation';
-import * as remoteAccessesGet from './resources/remoteAccesses/remoteAccessesGet.operation';
-import * as remoteAccessesPost from './resources/remoteAccesses/remoteAccessesPost.operation';
-import * as remoteAccessDelete from './resources/remoteAccesses/remoteAccessDelete.operation';
-import * as remoteAccessGet from './resources/remoteAccesses/remoteAccessGet.operation';
-import * as remoteAccessAuthorizePost from './resources/remoteAccesses/remoteAccessAuthorizePost.operation';
+import { execute as remoteAccessAuthorizePostExecute } from './resources/remoteAccesses/remoteAccessAuthorizePost.operation';
+import { execute as cancelResiliationPostExecute } from './resources/main/cancelResiliationPost.operation';
+import { execute as changeContactPostExecute } from './resources/main/changeContactPost.operation';
+import { execute as deviceBackupPostExecute } from './resources/device/deviceBackupPost.operation';
+import { execute as deviceActionsPostExecute } from './resources/device/deviceActionsPost.operation';
+import { execute as logSubscriptionPostExecute } from './resources/log/logSubscriptionPost.operation';
+import { execute as logUrlPostExecute } from './resources/log/logUrlPost.operation';
+import { execute as remoteAccessesPostExecute } from './resources/remoteAccesses/remoteAccessesPost.operation';
+import { execute as backupDeleteExecute } from './resources/main/backupDelete.operation';
+import { execute as logSubscriptionDeleteExecute } from './resources/log/logSubscriptionDelete.operation';
+import { execute as deleteDeleteExecute } from './resources/main/deleteDelete.operation';
+import { execute as remoteAccessDeleteExecute } from './resources/remoteAccesses/remoteAccessDelete.operation';
+import { execute as backupGetExecute } from './resources/main/backupGet.operation';
+import { execute as deviceGetExecute } from './resources/device/deviceGet.operation';
+import { execute as deviceActionGetExecute } from './resources/device/deviceActionGet.operation';
+import { execute as deviceHardwareGetExecute } from './resources/device/deviceHardwareGet.operation';
+import { execute as deviceLogsPostExecute } from './resources/device/deviceLogsPost.operation';
+import { execute as hardwareDetailGetExecute } from './resources/main/hardwareDetailGet.operation';
+import { execute as ipGetExecute } from './resources/main/ipGet.operation';
+import { execute as logKindNameGetExecute } from './resources/log/logKindNameGet.operation';
+import { execute as logSubscriptionDetailGetExecute } from './resources/log/logSubscriptionDetailGet.operation';
+import { execute as getExecute } from './resources/main/get.operation';
+import { execute as remoteAccessGetExecute } from './resources/remoteAccesses/remoteAccessGet.operation';
+import { execute as serviceInfosGetExecute } from './resources/main/serviceInfosGet.operation';
+import { execute as statisticsGetExecute } from './resources/main/statisticsGet.operation';
+import { execute as taskGetExecute } from './resources/main/taskGet.operation';
+import { execute as linkDevicePostExecute } from './resources/main/linkDevicePost.operation';
+import { execute as linkHardwarePostExecute } from './resources/main/linkHardwarePost.operation';
+import { execute as deviceAvailableActionsGetExecute } from './resources/device/deviceAvailableActionsGet.operation';
+import { execute as hardwareAvailableGetExecute } from './resources/main/hardwareAvailableGet.operation';
+import { execute as availableOffersGetExecute } from './resources/main/availableOffersGet.operation';
+import { execute as availableReleaseChannelsGetExecute } from './resources/main/availableReleaseChannelsGet.operation';
+import { execute as backupsGetExecute } from './resources/main/backupsGet.operation';
+import { execute as deviceActionsGetExecute } from './resources/device/deviceActionsGet.operation';
+import { execute as devicesPostExecute } from './resources/main/devicesPost.operation';
+import { execute as hardwareGetExecute } from './resources/main/hardwareGet.operation';
+import { execute as ipsGetExecute } from './resources/main/ipsGet.operation';
+import { execute as logKindGetExecute } from './resources/log/logKindGet.operation';
+import { execute as logSubscriptionGetExecute } from './resources/log/logSubscriptionGet.operation';
+import { execute as migrationOffersGetExecute } from './resources/main/migrationOffersGet.operation';
+import { execute as listExecute } from './resources/main/list.operation';
+import { execute as remoteAccessesGetExecute } from './resources/remoteAccesses/remoteAccessesGet.operation';
+import { execute as tasksGetExecute } from './resources/main/tasksGet.operation';
+import { execute as migrationChangeOffersPostExecute } from './resources/main/migrationChangeOffersPost.operation';
+import { execute as deviceRestoreBackupPostExecute } from './resources/device/deviceRestoreBackupPost.operation';
+import { execute as deviceDeleteExecute } from './resources/device/deviceDelete.operation';
+import { execute as autoMTUPutExecute } from './resources/main/autoMTUPut.operation';
+import { execute as ipv6PutExecute } from './resources/main/ipv6Put.operation';
+import { execute as updatePutExecute } from './resources/main/updatePut.operation';
+import { execute as serviceInfosUpdatePutExecute } from './resources/main/serviceInfosUpdatePut.operation';
 
-export function description() {
-	const props: INodeProperties[] = [];
+const noProps = (): never[] => [];
 
-	// Operation picker (alphabetical by name)
-	props.push({
-		displayName: 'Operation',
-		name: 'overTheBoxOperation',
-		type: 'options',
-		noDataExpression: true,
-		default: 'list',
-		options: [
-			{
-				name: 'Authorize Remote Access',
-				value: 'remoteAccessAuthorizePost',
-				action: 'Authorize the remote access',
-			},
-			{
-				name: 'Cancel Resiliation',
-				value: 'cancelResiliationPost',
-				action: 'Cancel the resiliation of the service',
-			},
-			{
-				name: 'Change Contact',
-				value: 'changeContactPost',
-				action: 'Change the contacts of this service',
-			},
-			{
-				name: 'Create Backup',
-				value: 'deviceBackupPost',
-				action: 'Create a backup',
-			},
-			{
-				name: 'Create Device Action',
-				value: 'deviceActionsPost',
-				action: 'Create a device action on the device',
-			},
-			{
-				name: 'Create Log Subscription',
-				value: 'logSubscriptionPost',
-				action: 'Create a subscription from logs to a pre-existing LDP stream',
-			},
-			{
-				name: 'Create Log URL',
-				value: 'logUrlPost',
-				action: 'Generate a temporary URL to retrieve logs',
-			},
-			{
-				name: 'Create Remote Access',
-				value: 'remoteAccessesPost',
-				action: 'Create a new remote access for the service',
-			},
-			{
-				name: 'Delete Backup',
-				value: 'backupDelete',
-				action: 'Delete a backup',
-			},
-			{
-				name: 'Delete Log Subscription',
-				value: 'logSubscriptionDelete',
-				action: 'Delete a subscription',
-			},
-			{
-				name: 'Delete OverTheBox Service',
-				value: 'deleteDelete',
-				action: 'Resiliate an OverTheBox service',
-			},
-			{
-				name: 'Delete Remote Access',
-				value: 'remoteAccessDelete',
-				action: 'Delete a remote access',
-			},
-			{
-				name: 'Get Backup',
-				value: 'backupGet',
-				action: 'Get the properties of a backup',
-			},
-			{
-				name: 'Get Device',
-				value: 'deviceGet',
-				action: 'Get the device properties',
-			},
-			{
-				name: 'Get Device Action',
-				value: 'deviceActionGet',
-				action: 'Get the properties of a device action',
-			},
-			{
-				name: 'Get Device Hardware',
-				value: 'deviceHardwareGet',
-				action: 'Get the hardware properties of the device',
-			},
-			{
-				name: 'Get Device Logs',
-				value: 'deviceLogsPost',
-				action: 'Generate a temporary URL to retrieve device logs',
-			},
-			{
-				name: 'Get Hardware Details',
-				value: 'hardwareDetailGet',
-				action: 'Get hardware properties',
-			},
-			{
-				name: 'Get IP Details',
-				value: 'ipGet',
-				action: 'Get details IP assigned to an OverTheBox service',
-			},
-			{
-				name: 'Get Log Kind',
-				value: 'logKindNameGet',
-				action: 'Access to a specific available log kind',
-			},
-			{
-				name: 'Get Log Subscription',
-				value: 'logSubscriptionDetailGet',
-				action: 'Get subscription details',
-			},
-			{
-				name: 'Get OverTheBox Service',
-				value: 'get',
-				action: 'Get this object properties',
-			},
-			{
-				name: 'Get Remote Access',
-				value: 'remoteAccessGet',
-				action: 'Get the properties of a remote access',
-			},
-			{
-				name: 'Get Service Information',
-				value: 'serviceInfosGet',
-				action: 'Get service information',
-			},
-			{
-				name: 'Get Statistics',
-				value: 'statisticsGet',
-				action: 'Get statistics for an OTB device',
-			},
-			{
-				name: 'Get Task',
-				value: 'taskGet',
-				action: 'Get the properties of a specific task',
-			},
-			{
-				name: 'Link Device',
-				value: 'linkDevicePost',
-				action: 'Link a device to this service',
-			},
-			{
-				name: 'Link Hardware',
-				value: 'linkHardwarePost',
-				action: 'Link an available hardware to this service',
-			},
-			{
-				name: 'List Available Device Actions',
-				value: 'deviceAvailableActionsGet',
-				action: 'List the available device actions',
-			},
-			{
-				name: 'List Available Hardware',
-				value: 'hardwareAvailableGet',
-				action: 'List hardware that can be linked to a service',
-			},
-			{
-				name: 'List Available Offers',
-				value: 'availableOffersGet',
-				action: 'List the available offers for the new call',
-			},
-			{
-				name: 'List Available Release Channels',
-				value: 'availableReleaseChannelsGet',
-				action: 'List available release channels for this service',
-			},
-			{
-				name: 'List Backups',
-				value: 'backupsGet',
-				action: 'List the backups of an OverTheBox service',
-			},
-			{
-				name: 'List Device Actions',
-				value: 'deviceActionsGet',
-				action: 'List of actions scheduled for this device',
-			},
-			{
-				name: 'List Devices',
-				value: 'devicesPost',
-				action: 'Get the list of devices connected from the same IP address',
-			},
-			{
-				name: 'List Hardware',
-				value: 'hardwareGet',
-				action: 'List available OverTheBox hardware',
-			},
-			{
-				name: 'List IPs',
-				value: 'ipsGet',
-				action: 'List IP assigned to an OverTheBox service',
-			},
-			{
-				name: 'List Log Kinds',
-				value: 'logKindGet',
-				action: 'Access to available log kind',
-			},
-			{
-				name: 'List Log Subscriptions',
-				value: 'logSubscriptionGet',
-				action: 'List subscription IDs for a cluster',
-			},
-			{
-				name: 'List Migration Offers',
-				value: 'migrationOffersGet',
-				action: 'List all available offers one can migrate to',
-			},
-			{
-				name: 'List OverTheBox Services',
-				value: 'list',
-				action: 'List available OverTheBox services',
-			},
-			{
-				name: 'List Remote Accesses',
-				value: 'remoteAccessesGet',
-				action: 'List of remote accesses for the service',
-			},
-			{
-				name: 'List Tasks',
-				value: 'tasksGet',
-				action: 'List of tasks scheduled for this service',
-			},
-			{
-				name: 'Migrate Offers',
-				value: 'migrationChangeOffersPost',
-				action: 'Migrate to the selected OverTheBox offer',
-			},
-			{
-				name: 'Restore Backup',
-				value: 'deviceRestoreBackupPost',
-				action: 'Create a group of actions to restore a given backup',
-			},
-			{
-				name: 'Unlink Device',
-				value: 'deviceDelete',
-				action: 'Unlink a device from a service',
-			},
-			{
-				name: 'Update Auto MTU',
-				value: 'autoMTUPut',
-				action: 'Change the value of autoMTU',
-			},
-			{
-				name: 'Update IPv6',
-				value: 'ipv6Put',
-				action: 'Change the status of IPv6 on this service',
-			},
-			{
-				name: 'Update OverTheBox Service',
-				value: 'updatePut',
-				action: 'Alter the properties of an OverTheBox service',
-			},
-			{
-				name: 'Update Service Information',
-				value: 'serviceInfosUpdatePut',
-				action: 'Update service information',
-			},
-		],
-	});
+const { description, execute } = createOperationDispatcher(
+	'overTheBoxOperation',
+	'overthebox',
+	[
+	{
+		name: 'Authorize Remote Access',
+		value: 'remoteAccessAuthorizePost',
+		action: 'Authorize the remote access',
+		execute: remoteAccessAuthorizePostExecute,
+		description: noProps,
+	},
+	{
+		name: 'Cancel Resiliation',
+		value: 'cancelResiliationPost',
+		action: 'Cancel the resiliation of the service',
+		execute: cancelResiliationPostExecute,
+		description: noProps,
+	},
+	{
+		name: 'Change Contact',
+		value: 'changeContactPost',
+		action: 'Change the contacts of this service',
+		execute: changeContactPostExecute,
+		description: noProps,
+	},
+	{
+		name: 'Create Backup',
+		value: 'deviceBackupPost',
+		action: 'Create a backup',
+		execute: deviceBackupPostExecute,
+		description: noProps,
+	},
+	{
+		name: 'Create Device Action',
+		value: 'deviceActionsPost',
+		action: 'Create a device action on the device',
+		execute: deviceActionsPostExecute,
+		description: noProps,
+	},
+	{
+		name: 'Create Log Subscription',
+		value: 'logSubscriptionPost',
+		action: 'Create a subscription from logs to a pre-existing LDP stream',
+		execute: logSubscriptionPostExecute,
+		description: noProps,
+	},
+	{
+		name: 'Create Log URL',
+		value: 'logUrlPost',
+		action: 'Generate a temporary URL to retrieve logs',
+		execute: logUrlPostExecute,
+		description: noProps,
+	},
+	{
+		name: 'Create Remote Access',
+		value: 'remoteAccessesPost',
+		action: 'Create a new remote access for the service',
+		execute: remoteAccessesPostExecute,
+		description: noProps,
+	},
+	{
+		name: 'Delete Backup',
+		value: 'backupDelete',
+		action: 'Delete a backup',
+		execute: backupDeleteExecute,
+		description: noProps,
+	},
+	{
+		name: 'Delete Log Subscription',
+		value: 'logSubscriptionDelete',
+		action: 'Delete a subscription',
+		execute: logSubscriptionDeleteExecute,
+		description: noProps,
+	},
+	{
+		name: 'Delete OverTheBox Service',
+		value: 'deleteDelete',
+		action: 'Resiliate an OverTheBox service',
+		execute: deleteDeleteExecute,
+		description: noProps,
+	},
+	{
+		name: 'Delete Remote Access',
+		value: 'remoteAccessDelete',
+		action: 'Delete a remote access',
+		execute: remoteAccessDeleteExecute,
+		description: noProps,
+	},
+	{
+		name: 'Get Backup',
+		value: 'backupGet',
+		action: 'Get the properties of a backup',
+		execute: backupGetExecute,
+		description: noProps,
+	},
+	{
+		name: 'Get Device',
+		value: 'deviceGet',
+		action: 'Get the device properties',
+		execute: deviceGetExecute,
+		description: noProps,
+	},
+	{
+		name: 'Get Device Action',
+		value: 'deviceActionGet',
+		action: 'Get the properties of a device action',
+		execute: deviceActionGetExecute,
+		description: noProps,
+	},
+	{
+		name: 'Get Device Hardware',
+		value: 'deviceHardwareGet',
+		action: 'Get the hardware properties of the device',
+		execute: deviceHardwareGetExecute,
+		description: noProps,
+	},
+	{
+		name: 'Get Device Logs',
+		value: 'deviceLogsPost',
+		action: 'Generate a temporary URL to retrieve device logs',
+		execute: deviceLogsPostExecute,
+		description: noProps,
+	},
+	{
+		name: 'Get Hardware Details',
+		value: 'hardwareDetailGet',
+		action: 'Get hardware properties',
+		execute: hardwareDetailGetExecute,
+		description: noProps,
+	},
+	{
+		name: 'Get IP Details',
+		value: 'ipGet',
+		action: 'Get details IP assigned to an OverTheBox service',
+		execute: ipGetExecute,
+		description: noProps,
+	},
+	{
+		name: 'Get Log Kind',
+		value: 'logKindNameGet',
+		action: 'Access to a specific available log kind',
+		execute: logKindNameGetExecute,
+		description: noProps,
+	},
+	{
+		name: 'Get Log Subscription',
+		value: 'logSubscriptionDetailGet',
+		action: 'Get subscription details',
+		execute: logSubscriptionDetailGetExecute,
+		description: noProps,
+	},
+	{
+		name: 'Get OverTheBox Service',
+		value: 'get',
+		action: 'Get this object properties',
+		execute: getExecute,
+		description: noProps,
+	},
+	{
+		name: 'Get Remote Access',
+		value: 'remoteAccessGet',
+		action: 'Get the properties of a remote access',
+		execute: remoteAccessGetExecute,
+		description: noProps,
+	},
+	{
+		name: 'Get Service Information',
+		value: 'serviceInfosGet',
+		action: 'Get service information',
+		execute: serviceInfosGetExecute,
+		description: noProps,
+	},
+	{
+		name: 'Get Statistics',
+		value: 'statisticsGet',
+		action: 'Get statistics for an OTB device',
+		execute: statisticsGetExecute,
+		description: noProps,
+	},
+	{
+		name: 'Get Task',
+		value: 'taskGet',
+		action: 'Get the properties of a specific task',
+		execute: taskGetExecute,
+		description: noProps,
+	},
+	{
+		name: 'Link Device',
+		value: 'linkDevicePost',
+		action: 'Link a device to this service',
+		execute: linkDevicePostExecute,
+		description: noProps,
+	},
+	{
+		name: 'Link Hardware',
+		value: 'linkHardwarePost',
+		action: 'Link an available hardware to this service',
+		execute: linkHardwarePostExecute,
+		description: noProps,
+	},
+	{
+		name: 'List Available Device Actions',
+		value: 'deviceAvailableActionsGet',
+		action: 'List the available device actions',
+		execute: deviceAvailableActionsGetExecute,
+		description: noProps,
+	},
+	{
+		name: 'List Available Hardware',
+		value: 'hardwareAvailableGet',
+		action: 'List hardware that can be linked to a service',
+		execute: hardwareAvailableGetExecute,
+		description: noProps,
+	},
+	{
+		name: 'List Available Offers',
+		value: 'availableOffersGet',
+		action: 'List the available offers for the new call',
+		execute: availableOffersGetExecute,
+		description: noProps,
+	},
+	{
+		name: 'List Available Release Channels',
+		value: 'availableReleaseChannelsGet',
+		action: 'List available release channels for this service',
+		execute: availableReleaseChannelsGetExecute,
+		description: noProps,
+	},
+	{
+		name: 'List Backups',
+		value: 'backupsGet',
+		action: 'List the backups of an OverTheBox service',
+		execute: backupsGetExecute,
+		description: noProps,
+	},
+	{
+		name: 'List Device Actions',
+		value: 'deviceActionsGet',
+		action: 'List of actions scheduled for this device',
+		execute: deviceActionsGetExecute,
+		description: noProps,
+	},
+	{
+		name: 'List Devices',
+		value: 'devicesPost',
+		action: 'Get the list of devices connected from the same IP address',
+		execute: devicesPostExecute,
+		description: noProps,
+	},
+	{
+		name: 'List Hardware',
+		value: 'hardwareGet',
+		action: 'List available OverTheBox hardware',
+		execute: hardwareGetExecute,
+		description: noProps,
+	},
+	{
+		name: 'List IPs',
+		value: 'ipsGet',
+		action: 'List IP assigned to an OverTheBox service',
+		execute: ipsGetExecute,
+		description: noProps,
+	},
+	{
+		name: 'List Log Kinds',
+		value: 'logKindGet',
+		action: 'Access to available log kind',
+		execute: logKindGetExecute,
+		description: noProps,
+	},
+	{
+		name: 'List Log Subscriptions',
+		value: 'logSubscriptionGet',
+		action: 'List subscription IDs for a cluster',
+		execute: logSubscriptionGetExecute,
+		description: noProps,
+	},
+	{
+		name: 'List Migration Offers',
+		value: 'migrationOffersGet',
+		action: 'List all available offers one can migrate to',
+		execute: migrationOffersGetExecute,
+		description: noProps,
+	},
+	{
+		name: 'List OverTheBox Services',
+		value: 'list',
+		action: 'List available OverTheBox services',
+		execute: listExecute,
+		description: noProps,
+		default: true,
+	},
+	{
+		name: 'List Remote Accesses',
+		value: 'remoteAccessesGet',
+		action: 'List of remote accesses for the service',
+		execute: remoteAccessesGetExecute,
+		description: noProps,
+	},
+	{
+		name: 'List Tasks',
+		value: 'tasksGet',
+		action: 'List of tasks scheduled for this service',
+		execute: tasksGetExecute,
+		description: noProps,
+	},
+	{
+		name: 'Migrate Offers',
+		value: 'migrationChangeOffersPost',
+		action: 'Migrate to the selected OverTheBox offer',
+		execute: migrationChangeOffersPostExecute,
+		description: noProps,
+	},
+	{
+		name: 'Restore Backup',
+		value: 'deviceRestoreBackupPost',
+		action: 'Create a group of actions to restore a given backup',
+		execute: deviceRestoreBackupPostExecute,
+		description: noProps,
+	},
+	{
+		name: 'Unlink Device',
+		value: 'deviceDelete',
+		action: 'Unlink a device from a service',
+		execute: deviceDeleteExecute,
+		description: noProps,
+	},
+	{
+		name: 'Update Auto MTU',
+		value: 'autoMTUPut',
+		action: 'Change the value of autoMTU',
+		execute: autoMTUPutExecute,
+		description: noProps,
+	},
+	{
+		name: 'Update IPv6',
+		value: 'ipv6Put',
+		action: 'Change the status of IPv6 on this service',
+		execute: ipv6PutExecute,
+		description: noProps,
+	},
+	{
+		name: 'Update OverTheBox Service',
+		value: 'updatePut',
+		action: 'Alter the properties of an OverTheBox service',
+		execute: updatePutExecute,
+		description: noProps,
+	},
+	{
+		name: 'Update Service Information',
+		value: 'serviceInfosUpdatePut',
+		action: 'Update service information',
+		execute: serviceInfosUpdatePutExecute,
+		description: noProps,
+	},
+	],
 
-	return props;
-}
+);
 
-export async function execute(this: IExecuteFunctions, itemIndex?: number): Promise<INodeExecutionData[]> {
-	const operation = this.getNodeParameter('overTheBoxOperation', 0) as string;
-
-	switch (operation) {
-		case 'remoteAccessAuthorizePost':
-			return remoteAccessAuthorizePost.execute.call(this, itemIndex ?? 0);
-		case 'cancelResiliationPost':
-			return cancelResiliationPost.execute.call(this, itemIndex ?? 0);
-		case 'changeContactPost':
-			return changeContactPost.execute.call(this, itemIndex ?? 0);
-		case 'deviceBackupPost':
-			return deviceBackupPost.execute.call(this, itemIndex ?? 0);
-		case 'deviceActionsPost':
-			return deviceActionsPost.execute.call(this, itemIndex ?? 0);
-		case 'logSubscriptionPost':
-			return logSubscriptionPost.execute.call(this, itemIndex ?? 0);
-		case 'logUrlPost':
-			return logUrlPost.execute.call(this, itemIndex ?? 0);
-		case 'remoteAccessesPost':
-			return remoteAccessesPost.execute.call(this, itemIndex ?? 0);
-		case 'backupDelete':
-			return backupDelete.execute.call(this, itemIndex ?? 0);
-		case 'logSubscriptionDelete':
-			return logSubscriptionDelete.execute.call(this, itemIndex ?? 0);
-		case 'deleteDelete':
-			return deleteDelete.execute.call(this, itemIndex ?? 0);
-		case 'remoteAccessDelete':
-			return remoteAccessDelete.execute.call(this, itemIndex ?? 0);
-		case 'backupGet':
-			return backupGet.execute.call(this, itemIndex ?? 0);
-		case 'deviceGet':
-			return deviceGet.execute.call(this, itemIndex ?? 0);
-		case 'deviceActionGet':
-			return deviceActionGet.execute.call(this, itemIndex ?? 0);
-		case 'deviceHardwareGet':
-			return deviceHardwareGet.execute.call(this, itemIndex ?? 0);
-		case 'deviceLogsPost':
-			return deviceLogsPost.execute.call(this, itemIndex ?? 0);
-		case 'hardwareDetailGet':
-			return hardwareDetailGet.execute.call(this, itemIndex ?? 0);
-		case 'ipGet':
-			return ipGet.execute.call(this, itemIndex ?? 0);
-		case 'logKindNameGet':
-			return logKindNameGet.execute.call(this, itemIndex ?? 0);
-		case 'logSubscriptionDetailGet':
-			return logSubscriptionDetailGet.execute.call(this, itemIndex ?? 0);
-		case 'get':
-			return get.execute.call(this, itemIndex ?? 0);
-		case 'remoteAccessGet':
-			return remoteAccessGet.execute.call(this, itemIndex ?? 0);
-		case 'serviceInfosGet':
-			return serviceInfosGet.execute.call(this, itemIndex ?? 0);
-		case 'statisticsGet':
-			return statisticsGet.execute.call(this, itemIndex ?? 0);
-		case 'taskGet':
-			return taskGet.execute.call(this, itemIndex ?? 0);
-		case 'linkDevicePost':
-			return linkDevicePost.execute.call(this, itemIndex ?? 0);
-		case 'linkHardwarePost':
-			return linkHardwarePost.execute.call(this, itemIndex ?? 0);
-		case 'deviceAvailableActionsGet':
-			return deviceAvailableActionsGet.execute.call(this, itemIndex ?? 0);
-		case 'hardwareAvailableGet':
-			return hardwareAvailableGet.execute.call(this, itemIndex ?? 0);
-		case 'availableOffersGet':
-			return availableOffersGet.execute.call(this, itemIndex ?? 0);
-		case 'availableReleaseChannelsGet':
-			return availableReleaseChannelsGet.execute.call(this, itemIndex ?? 0);
-		case 'backupsGet':
-			return backupsGet.execute.call(this, itemIndex ?? 0);
-		case 'deviceActionsGet':
-			return deviceActionsGet.execute.call(this, itemIndex ?? 0);
-		case 'devicesPost':
-			return devicesPost.execute.call(this, itemIndex ?? 0);
-		case 'hardwareGet':
-			return hardwareGet.execute.call(this, itemIndex ?? 0);
-		case 'ipsGet':
-			return ipsGet.execute.call(this, itemIndex ?? 0);
-		case 'logKindGet':
-			return logKindGet.execute.call(this, itemIndex ?? 0);
-		case 'logSubscriptionGet':
-			return logSubscriptionGet.execute.call(this, itemIndex ?? 0);
-		case 'migrationOffersGet':
-			return migrationOffersGet.execute.call(this, itemIndex ?? 0);
-		case 'list':
-			return list.execute.call(this, itemIndex ?? 0);
-		case 'remoteAccessesGet':
-			return remoteAccessesGet.execute.call(this, itemIndex ?? 0);
-		case 'tasksGet':
-			return tasksGet.execute.call(this, itemIndex ?? 0);
-		case 'migrationChangeOffersPost':
-			return migrationChangeOffersPost.execute.call(this, itemIndex ?? 0);
-		case 'deviceRestoreBackupPost':
-			return deviceRestoreBackupPost.execute.call(this, itemIndex ?? 0);
-		case 'deviceDelete':
-			return deviceDelete.execute.call(this, itemIndex ?? 0);
-		case 'autoMTUPut':
-			return autoMTUPut.execute.call(this, itemIndex ?? 0);
-		case 'ipv6Put':
-			return ipv6Put.execute.call(this, itemIndex ?? 0);
-		case 'updatePut':
-			return updatePut.execute.call(this, itemIndex ?? 0);
-		case 'serviceInfosUpdatePut':
-			return serviceInfosUpdatePut.execute.call(this, itemIndex ?? 0);
-		default:
-			throw new Error(`No handler for operation '${operation}'`);
-	}
-}
+export { description, execute };

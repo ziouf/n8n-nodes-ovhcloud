@@ -1,373 +1,351 @@
-import type { IExecuteFunctions, INodeExecutionData, INodeProperties } from 'n8n-workflow';
+import { createOperationDispatcher } from '../../shared/nodes/createNodeDispatcher';
 
-// Main operations
-import * as confirmTerminationPost from './resources/main/confirmTerminationPost.operation';
-import * as get from './resources/main/get.operation';
-import * as list from './resources/main/list.operation';
-import * as serviceInfosGet from './resources/main/serviceInfosGet.operation';
-import * as terminatePost from './resources/main/terminatePost.operation';
+import { execute as accessPointPostExecute } from './resources/accessPoint/accessPointPost.operation';
+import { execute as addChildDomainPostExecute } from './resources/domainTrust/addChildDomainPost.operation';
+import { execute as customerNetworkPostExecute } from './resources/customerNetwork/customerNetworkPost.operation';
+import { execute as accessPointCustomerNetworkPostExecute } from './resources/accessPoint/accessPointCustomerNetworkPost.operation';
+import { execute as customerUserPostExecute } from './resources/dedicatedHorizon/customerUserPost.operation';
+import { execute as addDomainControllerPostExecute } from './resources/domainTrust/addDomainControllerPost.operation';
+import { execute as domainTrustPostExecute } from './resources/domainTrust/domainTrustPost.operation';
+import { execute as addDomainUserOnComposerPostExecute } from './resources/domainTrust/addDomainUserOnComposerPost.operation';
+import { execute as changeSessionTimeoutPostExecute } from './resources/accessPoint/changeSessionTimeoutPost.operation';
+import { execute as customerUserChangePasswordPostExecute } from './resources/dedicatedHorizon/customerUserChangePasswordPost.operation';
+import { execute as changePropertiesPostExecute } from './resources/dedicatedHorizon/changePropertiesPost.operation';
+import { execute as changePasswordPostExecute } from './resources/dedicatedHorizon/changePasswordPost.operation';
+import { execute as confirmTerminationPostExecute } from './resources/main/confirmTerminationPost.operation';
+import { execute as createTrustPostExecute } from './resources/domainTrust/createTrustPost.operation';
+import { execute as accessPointDeleteExecute } from './resources/accessPoint/accessPointDelete.operation';
+import { execute as customerNetworkDeleteExecute } from './resources/customerNetwork/customerNetworkDelete.operation';
+import { execute as accessPointCustomerNetworkDeleteExecute } from './resources/accessPoint/accessPointCustomerNetworkDelete.operation';
+import { execute as customerUserDeleteExecute } from './resources/dedicatedHorizon/customerUserDelete.operation';
+import { execute as disableStorageAcceleratorPostExecute } from './resources/dedicatedHorizon/disableStorageAcceleratorPost.operation';
+import { execute as disableTwoFAPostExecute } from './resources/accessPoint/disableTwoFAPost.operation';
+import { execute as disableWindowsUsernameOptionPostExecute } from './resources/accessPoint/disableWindowsUsernameOptionPost.operation';
+import { execute as enableStorageAcceleratorPostExecute } from './resources/dedicatedHorizon/enableStorageAcceleratorPost.operation';
+import { execute as enableTwoFAPostExecute } from './resources/accessPoint/enableTwoFAPost.operation';
+import { execute as enableWindowsUsernameOptionPostExecute } from './resources/accessPoint/enableWindowsUsernameOptionPost.operation';
+import { execute as accessPointDetailGetExecute } from './resources/accessPoint/accessPointDetailGet.operation';
+import { execute as customerNetworkDetailGetExecute } from './resources/customerNetwork/customerNetworkDetailGet.operation';
+import { execute as accessPointCustomerNetworkDetailGetExecute } from './resources/accessPoint/accessPointCustomerNetworkDetailGet.operation';
+import { execute as customerUserDetailGetExecute } from './resources/dedicatedHorizon/customerUserDetailGet.operation';
+import { execute as dedicatedHorizonGetExecute } from './resources/dedicatedHorizon/dedicatedHorizonGet.operation';
+import { execute as taskDetailGetExecute } from './resources/dedicatedHorizon/taskDetailGet.operation';
+import { execute as userGetExecute } from './resources/dedicatedHorizon/userGet.operation';
+import { execute as domainTrustDetailGetExecute } from './resources/domainTrust/domainTrustDetailGet.operation';
+import { execute as getExecute } from './resources/main/get.operation';
+import { execute as serviceInfosGetExecute } from './resources/main/serviceInfosGet.operation';
+import { execute as accessPointGetExecute } from './resources/accessPoint/accessPointGet.operation';
+import { execute as customerNetworkGetExecute } from './resources/customerNetwork/customerNetworkGet.operation';
+import { execute as accessPointCustomerNetworkGetExecute } from './resources/accessPoint/accessPointCustomerNetworkGet.operation';
+import { execute as customerUserGetExecute } from './resources/dedicatedHorizon/customerUserGet.operation';
+import { execute as taskGetExecute } from './resources/dedicatedHorizon/taskGet.operation';
+import { execute as domainTrustGetExecute } from './resources/domainTrust/domainTrustGet.operation';
+import { execute as listExecute } from './resources/main/list.operation';
+import { execute as terminatePostExecute } from './resources/main/terminatePost.operation';
 
-// Access Point operations
-import * as accessPointCustomerNetworkDelete from './resources/accessPoint/accessPointCustomerNetworkDelete.operation';
-import * as accessPointCustomerNetworkDetailGet from './resources/accessPoint/accessPointCustomerNetworkDetailGet.operation';
-import * as accessPointCustomerNetworkGet from './resources/accessPoint/accessPointCustomerNetworkGet.operation';
-import * as accessPointCustomerNetworkPost from './resources/accessPoint/accessPointCustomerNetworkPost.operation';
-import * as accessPointDelete from './resources/accessPoint/accessPointDelete.operation';
-import * as accessPointDetailGet from './resources/accessPoint/accessPointDetailGet.operation';
-import * as accessPointGet from './resources/accessPoint/accessPointGet.operation';
-import * as accessPointPost from './resources/accessPoint/accessPointPost.operation';
-import * as changeSessionTimeoutPost from './resources/accessPoint/changeSessionTimeoutPost.operation';
-import * as disableTwoFAPost from './resources/accessPoint/disableTwoFAPost.operation';
-import * as disableWindowsUsernameOptionPost from './resources/accessPoint/disableWindowsUsernameOptionPost.operation';
-import * as enableTwoFAPost from './resources/accessPoint/enableTwoFAPost.operation';
-import * as enableWindowsUsernameOptionPost from './resources/accessPoint/enableWindowsUsernameOptionPost.operation';
+const noProps = (): never[] => [];
 
-// Customer Network operations
-import * as customerNetworkDelete from './resources/customerNetwork/customerNetworkDelete.operation';
-import * as customerNetworkDetailGet from './resources/customerNetwork/customerNetworkDetailGet.operation';
-import * as customerNetworkGet from './resources/customerNetwork/customerNetworkGet.operation';
-import * as customerNetworkPost from './resources/customerNetwork/customerNetworkPost.operation';
+const { description, execute } = createOperationDispatcher(
+	'horizonViewOperation',
+	'horizonview',
+	[
+	{
+		name: 'Add Access Point',
+		value: 'accessPointPost',
+		action: 'Add an access point to a Horizon View service',
+		execute: accessPointPostExecute,
+		description: noProps,
+	},
+	{
+		name: 'Add Child Domain',
+		value: 'addChildDomainPost',
+		action: 'Add a child domain to a domain trust',
+		execute: addChildDomainPostExecute,
+		description: noProps,
+	},
+	{
+		name: 'Add Customer Network',
+		value: 'customerNetworkPost',
+		action: 'Add a customer network to a Horizon View service',
+		execute: customerNetworkPostExecute,
+		description: noProps,
+	},
+	{
+		name: 'Add Customer Network to Access Point',
+		value: 'accessPointCustomerNetworkPost',
+		action: 'Add a customer network to an access point',
+		execute: accessPointCustomerNetworkPostExecute,
+		description: noProps,
+	},
+	{
+		name: 'Add Customer User',
+		value: 'customerUserPost',
+		action: 'Add a customer user to the dedicated Horizon component',
+		execute: customerUserPostExecute,
+		description: noProps,
+	},
+	{
+		name: 'Add Domain Controller',
+		value: 'addDomainControllerPost',
+		action: 'Add a domain controller to a domain trust',
+		execute: addDomainControllerPostExecute,
+		description: noProps,
+	},
+	{
+		name: 'Add Domain Trust',
+		value: 'domainTrustPost',
+		action: 'Add a domain trust to a Horizon View service',
+		execute: domainTrustPostExecute,
+		description: noProps,
+	},
+	{
+		name: 'Add Domain User on Composer',
+		value: 'addDomainUserOnComposerPost',
+		action: 'Add a domain user on the composer for a domain trust',
+		execute: addDomainUserOnComposerPostExecute,
+		description: noProps,
+	},
+	{
+		name: 'Change Access Point Session Timeout',
+		value: 'changeSessionTimeoutPost',
+		action: 'Change the session timeout of an access point',
+		execute: changeSessionTimeoutPostExecute,
+		description: noProps,
+	},
+	{
+		name: 'Change Customer User Password',
+		value: 'customerUserChangePasswordPost',
+		action: 'Change the password of a customer user',
+		execute: customerUserChangePasswordPostExecute,
+		description: noProps,
+	},
+	{
+		name: 'Change Dedicated Horizon User Properties',
+		value: 'changePropertiesPost',
+		action: 'Change the properties of the dedicated Horizon user',
+		execute: changePropertiesPostExecute,
+		description: noProps,
+	},
+	{
+		name: 'Change User Password',
+		value: 'changePasswordPost',
+		action: 'Change the password of the dedicated Horizon user',
+		execute: changePasswordPostExecute,
+		description: noProps,
+	},
+	{
+		name: 'Confirm Horizon View Service Termination',
+		value: 'confirmTerminationPost',
+		action: 'Confirm the termination of a Horizon View service',
+		execute: confirmTerminationPostExecute,
+		description: noProps,
+	},
+	{
+		name: 'Create Trust',
+		value: 'createTrustPost',
+		action: 'Create a trust for a domain trust',
+		execute: createTrustPostExecute,
+		description: noProps,
+	},
+	{
+		name: 'Delete Access Point',
+		value: 'accessPointDelete',
+		action: 'Delete an access point',
+		execute: accessPointDeleteExecute,
+		description: noProps,
+	},
+	{
+		name: 'Delete Customer Network',
+		value: 'customerNetworkDelete',
+		action: 'Delete a customer network of a Horizon View service',
+		execute: customerNetworkDeleteExecute,
+		description: noProps,
+	},
+	{
+		name: 'Delete Customer Network From Access Point',
+		value: 'accessPointCustomerNetworkDelete',
+		action: 'Delete a customer network from an access point',
+		execute: accessPointCustomerNetworkDeleteExecute,
+		description: noProps,
+	},
+	{
+		name: 'Delete Customer User',
+		value: 'customerUserDelete',
+		action: 'Delete a customer user of the dedicated Horizon component',
+		execute: customerUserDeleteExecute,
+		description: noProps,
+	},
+	{
+		name: 'Disable Storage Accelerator',
+		value: 'disableStorageAcceleratorPost',
+		action: 'Disable the storage accelerator on the dedicated Horizon component',
+		execute: disableStorageAcceleratorPostExecute,
+		description: noProps,
+	},
+	{
+		name: 'Disable Two-Factor Authentication',
+		value: 'disableTwoFAPost',
+		action: 'Disable two-factor authentication on an access point',
+		execute: disableTwoFAPostExecute,
+		description: noProps,
+	},
+	{
+		name: 'Disable Windows Username Option',
+		value: 'disableWindowsUsernameOptionPost',
+		action: 'Disable the Windows username option on an access point',
+		execute: disableWindowsUsernameOptionPostExecute,
+		description: noProps,
+	},
+	{
+		name: 'Enable Storage Accelerator',
+		value: 'enableStorageAcceleratorPost',
+		action: 'Enable the storage accelerator on the dedicated Horizon component',
+		execute: enableStorageAcceleratorPostExecute,
+		description: noProps,
+	},
+	{
+		name: 'Enable Two-Factor Authentication',
+		value: 'enableTwoFAPost',
+		action: 'Enable two-factor authentication on an access point',
+		execute: enableTwoFAPostExecute,
+		description: noProps,
+	},
+	{
+		name: 'Enable Windows Username Option',
+		value: 'enableWindowsUsernameOptionPost',
+		action: 'Enable the Windows username option on an access point',
+		execute: enableWindowsUsernameOptionPostExecute,
+		description: noProps,
+	},
+	{
+		name: 'Get Access Point Properties',
+		value: 'accessPointDetailGet',
+		action: 'Get the properties of an access point',
+		execute: accessPointDetailGetExecute,
+		description: noProps,
+	},
+	{
+		name: 'Get Customer Network Properties',
+		value: 'customerNetworkDetailGet',
+		action: 'Get the properties of a customer network',
+		execute: customerNetworkDetailGetExecute,
+		description: noProps,
+	},
+	{
+		name: 'Get Customer Network Properties From Access Point',
+		value: 'accessPointCustomerNetworkDetailGet',
+		action: 'Get the properties of a customer network of an access point',
+		execute: accessPointCustomerNetworkDetailGetExecute,
+		description: noProps,
+	},
+	{
+		name: 'Get Customer User Properties',
+		value: 'customerUserDetailGet',
+		action: 'Get the properties of a customer user',
+		execute: customerUserDetailGetExecute,
+		description: noProps,
+	},
+	{
+		name: 'Get Dedicated Horizon Properties',
+		value: 'dedicatedHorizonGet',
+		action: 'Get the properties of the dedicated Horizon component',
+		execute: dedicatedHorizonGetExecute,
+		description: noProps,
+	},
+	{
+		name: 'Get Dedicated Horizon Task Properties',
+		value: 'taskDetailGet',
+		action: 'Get the properties of a task of the dedicated Horizon component',
+		execute: taskDetailGetExecute,
+		description: noProps,
+	},
+	{
+		name: 'Get Dedicated Horizon User',
+		value: 'userGet',
+		action: 'Get the customer user of the dedicated Horizon component',
+		execute: userGetExecute,
+		description: noProps,
+	},
+	{
+		name: 'Get Domain Trust Properties',
+		value: 'domainTrustDetailGet',
+		action: 'Get the properties of a domain trust',
+		execute: domainTrustDetailGetExecute,
+		description: noProps,
+	},
+	{
+		name: 'Get Horizon View Service Properties',
+		value: 'get',
+		action: 'Get the properties of a Horizon View service',
+		execute: getExecute,
+		description: noProps,
+	},
+	{
+		name: 'Get Service Information',
+		value: 'serviceInfosGet',
+		action: 'Get the service information of a Horizon View service',
+		execute: serviceInfosGetExecute,
+		description: noProps,
+	},
+	{
+		name: 'List Access Points',
+		value: 'accessPointGet',
+		action: 'List access points of a Horizon View service',
+		execute: accessPointGetExecute,
+		description: noProps,
+	},
+	{
+		name: 'List Customer Networks',
+		value: 'customerNetworkGet',
+		action: 'List customer networks of a Horizon View service',
+		execute: customerNetworkGetExecute,
+		description: noProps,
+	},
+	{
+		name: 'List Customer Networks of Access Point',
+		value: 'accessPointCustomerNetworkGet',
+		action: 'List customer networks of an access point',
+		execute: accessPointCustomerNetworkGetExecute,
+		description: noProps,
+	},
+	{
+		name: 'List Customer Users',
+		value: 'customerUserGet',
+		action: 'List customer users of the dedicated Horizon component',
+		execute: customerUserGetExecute,
+		description: noProps,
+	},
+	{
+		name: 'List Dedicated Horizon Tasks',
+		value: 'taskGet',
+		action: 'List tasks of the dedicated Horizon component',
+		execute: taskGetExecute,
+		description: noProps,
+	},
+	{
+		name: 'List Domain Trusts',
+		value: 'domainTrustGet',
+		action: 'List domain trusts of a Horizon View service',
+		execute: domainTrustGetExecute,
+		description: noProps,
+	},
+	{
+		name: 'List Horizon View Services',
+		value: 'list',
+		action: 'List all available Horizon View services',
+		execute: listExecute,
+		description: noProps,
+		default: true,
+	},
+	{
+		name: 'Terminate Horizon View Service',
+		value: 'terminatePost',
+		action: 'Ask for the termination of a Horizon View service',
+		execute: terminatePostExecute,
+		description: noProps,
+	},
+	],
 
-// Dedicated Horizon operations
-import * as changePasswordPost from './resources/dedicatedHorizon/changePasswordPost.operation';
-import * as changePropertiesPost from './resources/dedicatedHorizon/changePropertiesPost.operation';
-import * as customerUserChangePasswordPost from './resources/dedicatedHorizon/customerUserChangePasswordPost.operation';
-import * as customerUserDelete from './resources/dedicatedHorizon/customerUserDelete.operation';
-import * as customerUserDetailGet from './resources/dedicatedHorizon/customerUserDetailGet.operation';
-import * as customerUserGet from './resources/dedicatedHorizon/customerUserGet.operation';
-import * as customerUserPost from './resources/dedicatedHorizon/customerUserPost.operation';
-import * as dedicatedHorizonGet from './resources/dedicatedHorizon/dedicatedHorizonGet.operation';
-import * as disableStorageAcceleratorPost from './resources/dedicatedHorizon/disableStorageAcceleratorPost.operation';
-import * as enableStorageAcceleratorPost from './resources/dedicatedHorizon/enableStorageAcceleratorPost.operation';
-import * as taskDetailGet from './resources/dedicatedHorizon/taskDetailGet.operation';
-import * as taskGet from './resources/dedicatedHorizon/taskGet.operation';
-import * as userGet from './resources/dedicatedHorizon/userGet.operation';
+);
 
-// Domain Trust operations
-import * as addChildDomainPost from './resources/domainTrust/addChildDomainPost.operation';
-import * as addDomainControllerPost from './resources/domainTrust/addDomainControllerPost.operation';
-import * as addDomainUserOnComposerPost from './resources/domainTrust/addDomainUserOnComposerPost.operation';
-import * as createTrustPost from './resources/domainTrust/createTrustPost.operation';
-import * as domainTrustDetailGet from './resources/domainTrust/domainTrustDetailGet.operation';
-import * as domainTrustGet from './resources/domainTrust/domainTrustGet.operation';
-import * as domainTrustPost from './resources/domainTrust/domainTrustPost.operation';
-
-export function description() {
-	const props: INodeProperties[] = [];
-
-	// Operation picker (alphabetical by name)
-	props.push({
-		displayName: 'Operation',
-		name: 'horizonViewOperation',
-		type: 'options',
-		noDataExpression: true,
-		default: 'list',
-		options: [
-			{
-				name: 'Add Access Point',
-				value: 'accessPointPost',
-				action: 'Add an access point to a Horizon View service',
-			},
-			{
-				name: 'Add Child Domain',
-				value: 'addChildDomainPost',
-				action: 'Add a child domain to a domain trust',
-			},
-			{
-				name: 'Add Customer Network',
-				value: 'customerNetworkPost',
-				action: 'Add a customer network to a Horizon View service',
-			},
-			{
-				name: 'Add Customer Network to Access Point',
-				value: 'accessPointCustomerNetworkPost',
-				action: 'Add a customer network to an access point',
-			},
-			{
-				name: 'Add Customer User',
-				value: 'customerUserPost',
-				action: 'Add a customer user to the dedicated Horizon component',
-			},
-			{
-				name: 'Add Domain Controller',
-				value: 'addDomainControllerPost',
-				action: 'Add a domain controller to a domain trust',
-			},
-			{
-				name: 'Add Domain Trust',
-				value: 'domainTrustPost',
-				action: 'Add a domain trust to a Horizon View service',
-			},
-			{
-				name: 'Add Domain User on Composer',
-				value: 'addDomainUserOnComposerPost',
-				action: 'Add a domain user on the composer for a domain trust',
-			},
-			{
-				name: 'Change Access Point Session Timeout',
-				value: 'changeSessionTimeoutPost',
-				action: 'Change the session timeout of an access point',
-			},
-			{
-				name: 'Change Customer User Password',
-				value: 'customerUserChangePasswordPost',
-				action: 'Change the password of a customer user',
-			},
-			{
-				name: 'Change Dedicated Horizon User Properties',
-				value: 'changePropertiesPost',
-				action: 'Change the properties of the dedicated Horizon user',
-			},
-			{
-				name: 'Change User Password',
-				value: 'changePasswordPost',
-				action: 'Change the password of the dedicated Horizon user',
-			},
-			{
-				name: 'Confirm Horizon View Service Termination',
-				value: 'confirmTerminationPost',
-				action: 'Confirm the termination of a Horizon View service',
-			},
-			{
-				name: 'Create Trust',
-				value: 'createTrustPost',
-				action: 'Create a trust for a domain trust',
-			},
-			{
-				name: 'Delete Access Point',
-				value: 'accessPointDelete',
-				action: 'Delete an access point',
-			},
-			{
-				name: 'Delete Customer Network',
-				value: 'customerNetworkDelete',
-				action: 'Delete a customer network of a Horizon View service',
-			},
-			{
-				name: 'Delete Customer Network From Access Point',
-				value: 'accessPointCustomerNetworkDelete',
-				action: 'Delete a customer network from an access point',
-			},
-			{
-				name: 'Delete Customer User',
-				value: 'customerUserDelete',
-				action: 'Delete a customer user of the dedicated Horizon component',
-			},
-			{
-				name: 'Disable Storage Accelerator',
-				value: 'disableStorageAcceleratorPost',
-				action: 'Disable the storage accelerator on the dedicated Horizon component',
-			},
-			{
-				name: 'Disable Two-Factor Authentication',
-				value: 'disableTwoFAPost',
-				action: 'Disable two-factor authentication on an access point',
-			},
-			{
-				name: 'Disable Windows Username Option',
-				value: 'disableWindowsUsernameOptionPost',
-				action: 'Disable the Windows username option on an access point',
-			},
-			{
-				name: 'Enable Storage Accelerator',
-				value: 'enableStorageAcceleratorPost',
-				action: 'Enable the storage accelerator on the dedicated Horizon component',
-			},
-			{
-				name: 'Enable Two-Factor Authentication',
-				value: 'enableTwoFAPost',
-				action: 'Enable two-factor authentication on an access point',
-			},
-			{
-				name: 'Enable Windows Username Option',
-				value: 'enableWindowsUsernameOptionPost',
-				action: 'Enable the Windows username option on an access point',
-			},
-			{
-				name: 'Get Access Point Properties',
-				value: 'accessPointDetailGet',
-				action: 'Get the properties of an access point',
-			},
-			{
-				name: 'Get Customer Network Properties',
-				value: 'customerNetworkDetailGet',
-				action: 'Get the properties of a customer network',
-			},
-			{
-				name: 'Get Customer Network Properties From Access Point',
-				value: 'accessPointCustomerNetworkDetailGet',
-				action: 'Get the properties of a customer network of an access point',
-			},
-			{
-				name: 'Get Customer User Properties',
-				value: 'customerUserDetailGet',
-				action: 'Get the properties of a customer user',
-			},
-			{
-				name: 'Get Dedicated Horizon Properties',
-				value: 'dedicatedHorizonGet',
-				action: 'Get the properties of the dedicated Horizon component',
-			},
-			{
-				name: 'Get Dedicated Horizon Task Properties',
-				value: 'taskDetailGet',
-				action: 'Get the properties of a task of the dedicated Horizon component',
-			},
-			{
-				name: 'Get Dedicated Horizon User',
-				value: 'userGet',
-				action: 'Get the customer user of the dedicated Horizon component',
-			},
-			{
-				name: 'Get Domain Trust Properties',
-				value: 'domainTrustDetailGet',
-				action: 'Get the properties of a domain trust',
-			},
-			{
-				name: 'Get Horizon View Service Properties',
-				value: 'get',
-				action: 'Get the properties of a Horizon View service',
-			},
-			{
-				name: 'Get Service Information',
-				value: 'serviceInfosGet',
-				action: 'Get the service information of a Horizon View service',
-			},
-			{
-				name: 'List Access Points',
-				value: 'accessPointGet',
-				action: 'List access points of a Horizon View service',
-			},
-			{
-				name: 'List Customer Networks',
-				value: 'customerNetworkGet',
-				action: 'List customer networks of a Horizon View service',
-			},
-			{
-				name: 'List Customer Networks of Access Point',
-				value: 'accessPointCustomerNetworkGet',
-				action: 'List customer networks of an access point',
-			},
-			{
-				name: 'List Customer Users',
-				value: 'customerUserGet',
-				action: 'List customer users of the dedicated Horizon component',
-			},
-			{
-				name: 'List Dedicated Horizon Tasks',
-				value: 'taskGet',
-				action: 'List tasks of the dedicated Horizon component',
-			},
-			{
-				name: 'List Domain Trusts',
-				value: 'domainTrustGet',
-				action: 'List domain trusts of a Horizon View service',
-			},
-			{
-				name: 'List Horizon View Services',
-				value: 'list',
-				action: 'List all available Horizon View services',
-			},
-			{
-				name: 'Terminate Horizon View Service',
-				value: 'terminatePost',
-				action: 'Ask for the termination of a Horizon View service',
-			},
-		],
-	});
-
-	return props;
-}
-
-export async function execute(this: IExecuteFunctions, itemIndex?: number): Promise<INodeExecutionData[]> {
-	const operation = this.getNodeParameter('horizonViewOperation', 0) as string;
-
-	switch (operation) {
-		case 'accessPointCustomerNetworkDelete':
-			return accessPointCustomerNetworkDelete.execute.call(this, itemIndex ?? 0);
-		case 'accessPointCustomerNetworkDetailGet':
-			return accessPointCustomerNetworkDetailGet.execute.call(this, itemIndex ?? 0);
-		case 'accessPointCustomerNetworkGet':
-			return accessPointCustomerNetworkGet.execute.call(this, itemIndex ?? 0);
-		case 'accessPointCustomerNetworkPost':
-			return accessPointCustomerNetworkPost.execute.call(this, itemIndex ?? 0);
-		case 'accessPointDelete':
-			return accessPointDelete.execute.call(this, itemIndex ?? 0);
-		case 'accessPointDetailGet':
-			return accessPointDetailGet.execute.call(this, itemIndex ?? 0);
-		case 'accessPointGet':
-			return accessPointGet.execute.call(this, itemIndex ?? 0);
-		case 'accessPointPost':
-			return accessPointPost.execute.call(this, itemIndex ?? 0);
-		case 'addChildDomainPost':
-			return addChildDomainPost.execute.call(this, itemIndex ?? 0);
-		case 'addDomainControllerPost':
-			return addDomainControllerPost.execute.call(this, itemIndex ?? 0);
-		case 'addDomainUserOnComposerPost':
-			return addDomainUserOnComposerPost.execute.call(this, itemIndex ?? 0);
-		case 'changePasswordPost':
-			return changePasswordPost.execute.call(this, itemIndex ?? 0);
-		case 'changePropertiesPost':
-			return changePropertiesPost.execute.call(this, itemIndex ?? 0);
-		case 'changeSessionTimeoutPost':
-			return changeSessionTimeoutPost.execute.call(this, itemIndex ?? 0);
-		case 'confirmTerminationPost':
-			return confirmTerminationPost.execute.call(this, itemIndex ?? 0);
-		case 'createTrustPost':
-			return createTrustPost.execute.call(this, itemIndex ?? 0);
-		case 'customerNetworkDelete':
-			return customerNetworkDelete.execute.call(this, itemIndex ?? 0);
-		case 'customerNetworkDetailGet':
-			return customerNetworkDetailGet.execute.call(this, itemIndex ?? 0);
-		case 'customerNetworkGet':
-			return customerNetworkGet.execute.call(this, itemIndex ?? 0);
-		case 'customerNetworkPost':
-			return customerNetworkPost.execute.call(this, itemIndex ?? 0);
-		case 'customerUserChangePasswordPost':
-			return customerUserChangePasswordPost.execute.call(this, itemIndex ?? 0);
-		case 'customerUserDelete':
-			return customerUserDelete.execute.call(this, itemIndex ?? 0);
-		case 'customerUserDetailGet':
-			return customerUserDetailGet.execute.call(this, itemIndex ?? 0);
-		case 'customerUserGet':
-			return customerUserGet.execute.call(this, itemIndex ?? 0);
-		case 'customerUserPost':
-			return customerUserPost.execute.call(this, itemIndex ?? 0);
-		case 'dedicatedHorizonGet':
-			return dedicatedHorizonGet.execute.call(this, itemIndex ?? 0);
-		case 'disableStorageAcceleratorPost':
-			return disableStorageAcceleratorPost.execute.call(this, itemIndex ?? 0);
-		case 'disableTwoFAPost':
-			return disableTwoFAPost.execute.call(this, itemIndex ?? 0);
-		case 'disableWindowsUsernameOptionPost':
-			return disableWindowsUsernameOptionPost.execute.call(this, itemIndex ?? 0);
-		case 'domainTrustDetailGet':
-			return domainTrustDetailGet.execute.call(this, itemIndex ?? 0);
-		case 'domainTrustGet':
-			return domainTrustGet.execute.call(this, itemIndex ?? 0);
-		case 'domainTrustPost':
-			return domainTrustPost.execute.call(this, itemIndex ?? 0);
-		case 'enableStorageAcceleratorPost':
-			return enableStorageAcceleratorPost.execute.call(this, itemIndex ?? 0);
-		case 'enableTwoFAPost':
-			return enableTwoFAPost.execute.call(this, itemIndex ?? 0);
-		case 'enableWindowsUsernameOptionPost':
-			return enableWindowsUsernameOptionPost.execute.call(this, itemIndex ?? 0);
-		case 'get':
-			return get.execute.call(this, itemIndex ?? 0);
-		case 'list':
-			return list.execute.call(this, itemIndex ?? 0);
-		case 'serviceInfosGet':
-			return serviceInfosGet.execute.call(this, itemIndex ?? 0);
-		case 'taskDetailGet':
-			return taskDetailGet.execute.call(this, itemIndex ?? 0);
-		case 'taskGet':
-			return taskGet.execute.call(this, itemIndex ?? 0);
-		case 'terminatePost':
-			return terminatePost.execute.call(this, itemIndex ?? 0);
-		case 'userGet':
-			return userGet.execute.call(this, itemIndex ?? 0);
-		default:
-			throw new Error(`No handler for operation '${operation}'`);
-	}
-}
+export { description, execute };

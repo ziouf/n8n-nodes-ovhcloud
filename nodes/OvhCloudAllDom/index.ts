@@ -1,77 +1,63 @@
-import type { IExecuteFunctions, INodeExecutionData, INodeProperties } from 'n8n-workflow';
+import { createOperationDispatcher } from '../../shared/nodes/createNodeDispatcher';
 
-// AllDom operations
-import * as list from './resources/allDomListGet.operation';
-import * as get from './resources/allDomGetGet.operation';
-import * as domainList from './resources/allDomDomainListGet.operation';
-import * as domainGet from './resources/allDomDomainGetGet.operation';
-import * as serviceInfosGet from './resources/allDomServiceInfosGet.operation';
-import * as serviceInfosUpdatePut from './resources/allDomServiceInfosUpdatePut.operation';
+import { execute as domainGetExecute } from './resources/allDomDomainGetGet.operation';
+import { execute as serviceInfosGetExecute } from './resources/allDomServiceInfosGet.operation';
+import { execute as getExecute } from './resources/allDomGetGet.operation';
+import { execute as domainListExecute } from './resources/allDomDomainListGet.operation';
+import { execute as listExecute } from './resources/allDomListGet.operation';
+import { execute as serviceInfosUpdatePutExecute } from './resources/allDomServiceInfosUpdatePut.operation';
 
-export function description() {
-	const props: INodeProperties[] = [];
+const noProps = (): never[] => [];
 
-	// Operation picker (alphabetical by name)
-	props.push({
-		displayName: 'Operation',
-		name: 'allDomOperation',
-		type: 'options',
-		noDataExpression: true,
-		default: 'list',
-		options: [
-			{
-				name: 'Get AllDom Domain Properties',
-				value: 'domainGet',
-				action: 'Get properties of an AllDom domain',
-			},
-			{
-				name: 'Get AllDom Service Information',
-				value: 'serviceInfosGet',
-				action: 'Get service information of an AllDom service',
-			},
-			{
-				name: 'Get AllDom Service Properties',
-				value: 'get',
-				action: 'Get properties of an AllDom service',
-			},
-			{
-				name: 'List AllDom Domains',
-				value: 'domainList',
-				action: 'List all domains attached to an AllDom service',
-			},
-			{
-				name: 'List AllDom Services',
-				value: 'list',
-				action: 'List all available AllDom services',
-			},
-			{
-				name: 'Update AllDom Service Information',
-				value: 'serviceInfosUpdatePut',
-				action: 'Update the service information of an AllDom service',
-			},
-		],
-	});
+const { description, execute } = createOperationDispatcher(
+	'allDomOperation',
+	'alldom',
+	[
+	{
+		name: 'Get AllDom Domain Properties',
+		value: 'domainGet',
+		action: 'Get properties of an AllDom domain',
+		execute: domainGetExecute,
+		description: noProps,
+	},
+	{
+		name: 'Get AllDom Service Information',
+		value: 'serviceInfosGet',
+		action: 'Get service information of an AllDom service',
+		execute: serviceInfosGetExecute,
+		description: noProps,
+	},
+	{
+		name: 'Get AllDom Service Properties',
+		value: 'get',
+		action: 'Get properties of an AllDom service',
+		execute: getExecute,
+		description: noProps,
+	},
+	{
+		name: 'List AllDom Domains',
+		value: 'domainList',
+		action: 'List all domains attached to an AllDom service',
+		execute: domainListExecute,
+		description: noProps,
+	},
+	{
+		name: 'List AllDom Services',
+		value: 'list',
+		action: 'List all available AllDom services',
+		execute: listExecute,
+		description: noProps,
+		default: true,
+	},
+	{
+		name: 'Update AllDom Service Information',
+		value: 'serviceInfosUpdatePut',
+		action: 'Update the service information of an AllDom service',
+		execute: serviceInfosUpdatePutExecute,
+		description: noProps,
+	},
+	],
 
-	return props;
-}
+);
 
-export async function execute(this: IExecuteFunctions, itemIndex?: number): Promise<INodeExecutionData[]> {
-	const operation = this.getNodeParameter('allDomOperation', 0) as string;
-
-	switch (operation) {
-		case 'domainGet':
-			return domainGet.execute.call(this, itemIndex ?? 0);
-		case 'serviceInfosGet':
-			return serviceInfosGet.execute.call(this, itemIndex ?? 0);
-		case 'get':
-			return get.execute.call(this, itemIndex ?? 0);
-		case 'domainList':
-			return domainList.execute.call(this, itemIndex ?? 0);
-		case 'list':
-			return list.execute.call(this, itemIndex ?? 0);
-		case 'serviceInfosUpdatePut':
-			return serviceInfosUpdatePut.execute.call(this, itemIndex ?? 0);
-		default:
-			throw new Error(`No handler for operation '${operation}'`);
-	}
-}
+export { description, execute };

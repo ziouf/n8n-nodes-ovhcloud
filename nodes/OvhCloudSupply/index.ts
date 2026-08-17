@@ -1,37 +1,23 @@
-import type { IExecuteFunctions, INodeExecutionData, INodeProperties } from 'n8n-workflow';
+import { createOperationDispatcher } from '../../shared/nodes/createNodeDispatcher';
 
-// Supply operations
-import * as mondialRelayPost from './resources/mondialRelayPost.operation';
+import { execute as mondialRelayPostExecute } from './resources/mondialRelayPost.operation';
 
-export function description() {
-	const props: INodeProperties[] = [];
+const noProps = (): never[] => [];
 
-	// Operation picker (alphabetical by name)
-	props.push({
-		displayName: 'Operation',
-		name: 'supplyOperation',
-		type: 'options',
-		noDataExpression: true,
-		default: 'mondialRelayPost',
-		options: [
-			{
-				name: 'Find Nearest MondialRelay Points',
-				value: 'mondialRelayPost',
-				action: 'Find the 10 nearest MondialRelay points from an address or city',
-			},
-		],
-	});
+const { description, execute } = createOperationDispatcher(
+	'supplyOperation',
+	'supply',
+	[
+	{
+		name: 'Find Nearest MondialRelay Points',
+		value: 'mondialRelayPost',
+		action: 'Find the 10 nearest MondialRelay points from an address or city',
+		execute: mondialRelayPostExecute,
+		description: noProps,
+		default: true,
+	},
+	],
 
-	return props;
-}
+);
 
-export async function execute(this: IExecuteFunctions, itemIndex?: number): Promise<INodeExecutionData[]> {
-	const operation = this.getNodeParameter('supplyOperation', 0) as string;
-
-	switch (operation) {
-		case 'mondialRelayPost':
-			return mondialRelayPost.execute.call(this, itemIndex ?? 0);
-		default:
-			throw new Error(`No handler for operation '${operation}'`);
-	}
-}
+export { description, execute };

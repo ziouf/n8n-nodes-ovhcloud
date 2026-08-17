@@ -1,45 +1,31 @@
-import type { IExecuteFunctions, INodeExecutionData, INodeProperties } from 'n8n-workflow';
+import { createOperationDispatcher } from '../../shared/nodes/createNodeDispatcher';
 
-// Contact operations
-import * as formGet from './resources/formGet.operation';
-import * as formSendPost from './resources/formSendPost.operation';
+import { execute as formGetExecute } from './resources/formGet.operation';
+import { execute as formSendPostExecute } from './resources/formSendPost.operation';
 
-export function description() {
-	const props: INodeProperties[] = [];
+const noProps = (): never[] => [];
 
-	// Operation picker (alphabetical by name)
-	props.push({
-		displayName: 'Operation',
-		name: 'contactOperation',
-		type: 'options',
-		noDataExpression: true,
-		default: undefined,
-		options: [
-			{
-				name: 'Get Form Characteristics',
-				value: 'formGet',
-				action: 'Retrieve form characteristics',
-			},
-			{
-				name: 'Send Form',
-				value: 'formSendPost',
-				action: 'Send a form according to the characteristics in /contact/form',
-			},
-		],
-	});
+const { description, execute } = createOperationDispatcher(
+	'contactOperation',
+	'contact',
+	[
+	{
+		name: 'Get Form Characteristics',
+		value: 'formGet',
+		action: 'Retrieve form characteristics',
+		execute: formGetExecute,
+		description: noProps,
+	},
+	{
+		name: 'Send Form',
+		value: 'formSendPost',
+		action: 'Send a form according to the characteristics in /contact/form',
+		execute: formSendPostExecute,
+		description: noProps,
+	},
+	],
+	{ noDefault: true },
 
-	return props;
-}
+);
 
-export async function execute(this: IExecuteFunctions, itemIndex?: number): Promise<INodeExecutionData[]> {
-	const operation = this.getNodeParameter('contactOperation', 0) as string;
-
-	switch (operation) {
-		case 'formGet':
-			return formGet.execute.call(this, itemIndex ?? 0);
-		case 'formSendPost':
-			return formSendPost.execute.call(this, itemIndex ?? 0);
-		default:
-			throw new Error(`No handler for operation '${operation}'`);
-	}
-}
+export { description, execute };

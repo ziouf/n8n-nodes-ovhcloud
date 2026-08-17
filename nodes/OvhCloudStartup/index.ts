@@ -1,45 +1,31 @@
-import type { IExecuteFunctions, INodeExecutionData, INodeProperties } from 'n8n-workflow';
+import { createOperationDispatcher } from '../../shared/nodes/createNodeDispatcher';
 
-// Startup operations
-import * as get from './resources/get.operation';
-import * as registerPost from './resources/registerPost.operation';
+import { execute as getExecute } from './resources/get.operation';
+import { execute as registerPostExecute } from './resources/registerPost.operation';
 
-export function description() {
-	const props: INodeProperties[] = [];
+const noProps = (): never[] => [];
 
-	// Operation picker (alphabetical by name)
-	props.push({
-		displayName: 'Operation',
-		name: 'startupOperation',
-		type: 'options',
-		noDataExpression: true,
-		default: 'get',
-		options: [
-			{
-				name: 'Get Startup Status',
-				value: 'get',
-				action: 'Get the status of the registered startup',
-			},
-			{
-				name: 'Register Startup',
-				value: 'registerPost',
-				action: 'Register a startup',
-			},
-		],
-	});
+const { description, execute } = createOperationDispatcher(
+	'startupOperation',
+	'startup',
+	[
+	{
+		name: 'Get Startup Status',
+		value: 'get',
+		action: 'Get the status of the registered startup',
+		execute: getExecute,
+		description: noProps,
+		default: true,
+	},
+	{
+		name: 'Register Startup',
+		value: 'registerPost',
+		action: 'Register a startup',
+		execute: registerPostExecute,
+		description: noProps,
+	},
+	],
 
-	return props;
-}
+);
 
-export async function execute(this: IExecuteFunctions, itemIndex?: number): Promise<INodeExecutionData[]> {
-	const operation = this.getNodeParameter('startupOperation', 0) as string;
-
-	switch (operation) {
-		case 'get':
-			return get.execute.call(this, itemIndex ?? 0);
-		case 'registerPost':
-			return registerPost.execute.call(this, itemIndex ?? 0);
-		default:
-			throw new Error(`No handler for operation '${operation}'`);
-	}
-}
+export { description, execute };
