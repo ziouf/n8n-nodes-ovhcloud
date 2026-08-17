@@ -11,6 +11,31 @@ jest.mock('../../../shared/transport/ApiClient', () => {
 		paginate: jest.fn(),
 		paginateResources: jest.fn(),
 	};
+	// Faithful to ApiClient.fetchEachResources: one list GET (no paging), then
+	// one GET per id via the `{id}` placeholder, delegating to the mock httpGet.
+	mockHttpClient.fetchEachResources = jest.fn(
+		async (listUrl: string, itemTemplateUrl: string, options?: any) => {
+			const ids = (
+				options?.qs !== undefined
+					? await mockHttpClient.httpGet(listUrl, options.qs)
+					: await mockHttpClient.httpGet(listUrl)
+			) as string[];
+			const capped =
+				typeof options?.maxItems === 'number' ? ids.slice(0, options.maxItems) : ids;
+			const results: unknown[] = [];
+			for (const id of capped) {
+				try {
+					results.push(
+						await mockHttpClient.httpGet(itemTemplateUrl.replace('{id}', String(id))),
+					);
+				} catch (error) {
+					if (!options?.onSkipped) throw error;
+					options.onSkipped(String(id), error);
+				}
+			}
+			return results;
+		},
+	);
 	return {
 		ApiClient: jest.fn().mockImplementation(() => mockHttpClient),
 		getClient: jest.fn(() => mockHttpClient),
@@ -136,7 +161,7 @@ describe('billing.operation — listBills with filters', () => {
 
 			const result = await executeListBills.call(mockExecuteFunctions, 0);
 
-			expect(client.httpGet).toHaveBeenCalledWith('/me/bill', undefined);
+			expect(client.httpGet).toHaveBeenCalledWith('/me/bill');
 			expect(client.httpGet).toHaveBeenCalledWith('/me/bill/bill-1');
 			expect(client.httpGet).toHaveBeenCalledWith('/me/bill/bill-2');
 			expect(result).toEqual(fullObjects);
@@ -210,7 +235,7 @@ describe('billing.operation — listBills with filters', () => {
 
 			await executeListBills.call(mockExecuteFunctions, 0);
 
-			expect(client.httpGet).toHaveBeenCalledWith('/me/bill', undefined);
+			expect(client.httpGet).toHaveBeenCalledWith('/me/bill');
 		});
 
 		it('should return empty array when no bills exist', async () => {
@@ -223,7 +248,7 @@ describe('billing.operation — listBills with filters', () => {
 
 			const result = await executeListBills.call(mockExecuteFunctions, 0);
 
-			expect(client.httpGet).toHaveBeenCalledWith('/me/bill', undefined);
+			expect(client.httpGet).toHaveBeenCalledWith('/me/bill');
 			expect(result).toEqual([]);
 		});
 
@@ -267,7 +292,7 @@ describe('billing.operation — listBills with filters', () => {
 
 			await executeListBills.call(mockExecuteFunctions, 0);
 
-			expect(client.httpGet).toHaveBeenCalledWith('/me/bill', undefined);
+			expect(client.httpGet).toHaveBeenCalledWith('/me/bill');
 		});
 	});
 });

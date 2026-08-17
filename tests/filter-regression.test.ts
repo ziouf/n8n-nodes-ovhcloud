@@ -608,7 +608,16 @@ describe('filter-regression', () => {
 				mockClient.httpGet.mockResolvedValue([]);
 				await entry.execute.call(ctx, 0);
 
-				expect(mockClient.httpGet).toHaveBeenCalledWith(entry.listEndpoint, undefined);
+				// The list endpoint must have been requested without any query
+				// params — robust whether the execute passes an explicit
+				// `undefined` qs arg (direct httpGet) or omits it (fetchEachResources).
+				const listCalls = mockClient.httpGet.mock.calls.filter(
+					([url]) => url === entry.listEndpoint,
+				);
+				expect(listCalls.length).toBeGreaterThan(0);
+				for (const call of listCalls) {
+					expect(call[1]).toBeUndefined();
+				}
 			});
 
 			// ── Series B: Each filter active → exact query param ──────
@@ -660,7 +669,17 @@ describe('filter-regression', () => {
 					mockClient.httpGet.mockResolvedValue([]);
 					await entry.execute.call(ctx, 0);
 
-					expect(mockClient.httpGet).toHaveBeenCalledWith(entry.listEndpoint, undefined);
+					// The list endpoint must have been called without any query
+					// params — robust whether the execute passes an explicit
+					// `undefined` qs arg (direct httpGet) or omits it
+					// (fetchEachResources).
+					const listCallsSkipped = mockClient.httpGet.mock.calls.filter(
+						([url]) => url === entry.listEndpoint,
+					);
+					expect(listCallsSkipped.length).toBeGreaterThan(0);
+					for (const call of listCallsSkipped) {
+						expect(call[1]).toBeUndefined();
+					}
 				});
 			}
 

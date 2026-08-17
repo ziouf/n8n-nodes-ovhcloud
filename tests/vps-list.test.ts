@@ -92,7 +92,7 @@ describe('VPS List operation', () => {
 
 		const result = await execute.call(mockExecuteFunctions);
 
-		expect(mockClient.httpGet).toHaveBeenCalledWith('/vps', undefined);
+		expect(mockClient.httpGet).toHaveBeenCalledWith('/vps');
 		expect(mockClient.httpGet).toHaveBeenCalledWith('/vps/vps-1');
 		expect(mockClient.httpGet).toHaveBeenCalledWith('/vps/vps-2');
 		expect(result).toEqual(fullObjects);

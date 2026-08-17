@@ -104,7 +104,7 @@ describe('listDeposits', () => {
 			const result = await executeListDeposits.call(mockExecuteFunctions);
 
 			// First call should be /me/deposit with undefined qs
-			expect(mockClient.httpGet).toHaveBeenNthCalledWith(1, '/me/deposit', undefined);
+			expect(mockClient.httpGet).toHaveBeenNthCalledWith(1, '/me/deposit');
 			// Second call should be /me/deposit/dep1
 			expect(mockClient.httpGet).toHaveBeenNthCalledWith(2, '/me/deposit/dep1');
 			expect(result).toEqual([{ id: 'dep1' }]);
@@ -116,7 +116,7 @@ describe('listDeposits', () => {
 
 			const result = await executeListDeposits.call(mockExecuteFunctions);
 
-			expect(mockClient.httpGet).toHaveBeenCalledWith('/me/deposit', undefined);
+			expect(mockClient.httpGet).toHaveBeenCalledWith('/me/deposit');
 			expect(result).toEqual([]);
 		});
 	});
@@ -186,7 +186,7 @@ describe('listDeposits', () => {
 			await executeListDeposits.call(mockExecuteFunctions);
 
 			// The qs should be undefined because all filters are default/empty
-			expect(mockClient.httpGet).toHaveBeenCalledWith('/me/deposit', undefined);
+			expect(mockClient.httpGet).toHaveBeenCalledWith('/me/deposit');
 		});
 
 		it('should include orderId when it is non-zero', async () => {
@@ -269,7 +269,7 @@ describe('listWithdrawals', () => {
 
 			const result = await executeListWithdrawals.call(mockExecuteFunctions);
 
-			expect(mockClient.httpGet).toHaveBeenNthCalledWith(1, '/me/withdrawal', undefined);
+			expect(mockClient.httpGet).toHaveBeenNthCalledWith(1, '/me/withdrawal');
 			expect(mockClient.httpGet).toHaveBeenNthCalledWith(2, '/me/withdrawal/w1');
 			expect(result).toEqual([{ id: 'w1' }]);
 		});
@@ -367,7 +367,7 @@ describe('listRefunds', () => {
 
 			const result = await executeListRefunds.call(mockExecuteFunctions);
 
-			expect(mockClient.httpGet).toHaveBeenNthCalledWith(1, '/me/refund', undefined);
+			expect(mockClient.httpGet).toHaveBeenNthCalledWith(1, '/me/refund');
 			expect(result).toEqual([{ id: 'r1' }]);
 		});
 	});
@@ -464,7 +464,7 @@ describe('listReverseBills', () => {
 
 			const result = await executeListReverseBills.call(mockExecuteFunctions);
 
-			expect(mockClient.httpGet).toHaveBeenNthCalledWith(1, '/me/reverseBill', undefined);
+			expect(mockClient.httpGet).toHaveBeenNthCalledWith(1, '/me/reverseBill');
 			expect(result).toEqual([{ id: 'rb1' }]);
 		});
 	});
@@ -578,7 +578,7 @@ describe('listCorrectiveInvoices', () => {
 
 			const result = await executeListCorrectiveInvoices.call(mockExecuteFunctions);
 
-			expect(mockClient.httpGet).toHaveBeenNthCalledWith(1, '/me/correctiveInvoice', undefined);
+			expect(mockClient.httpGet).toHaveBeenNthCalledWith(1, '/me/correctiveInvoice');
 			expect(result).toEqual([{ id: 'ci1' }]);
 		});
 	});
@@ -617,7 +617,7 @@ describe('listCorrectiveInvoices', () => {
 
 			await executeListCorrectiveInvoices.call(mockExecuteFunctions);
 
-			expect(mockClient.httpGet).toHaveBeenCalledWith('/me/correctiveInvoice', undefined);
+			expect(mockClient.httpGet).toHaveBeenCalledWith('/me/correctiveInvoice');
 		});
 	});
 

@@ -14,12 +14,7 @@ import { getClient } from '../../../shared/transport/ApiClient';
 // listDnsTasks
 export async function executeListDnsTasks(this: IExecuteFunctions, _itemIndex?: number): Promise<INodeExecutionData[]> {
 	const client = getClient(this);
-	const ids = (await client.httpGet('/me/task/dns')) as string[];
-	const results: IDataObject[] = [];
-	for (const id of ids) {
-		const details = (await client.httpGet(`/me/task/dns/${id}`)) as IDataObject;
-		results.push(details);
-	}
+	const results = await client.fetchEachResources(`/me/task/dns`, `/me/task/dns/{id}`);
 	return this.helpers.returnJsonArray(results);
 }
 
@@ -58,12 +53,7 @@ export async function executeListDomainTasks(
 _itemIndex?: number,
 ): Promise<INodeExecutionData[]> {
 	const client = getClient(this);
-	const ids = (await client.httpGet('/me/task/domain')) as string[];
-	const results: IDataObject[] = [];
-	for (const id of ids) {
-		const details = (await client.httpGet(`/me/task/domain/${id}`)) as IDataObject;
-		results.push(details);
-	}
+	const results = await client.fetchEachResources(`/me/task/domain`, `/me/task/domain/{id}`);
 	return this.helpers.returnJsonArray(results);
 }
 
@@ -193,12 +183,7 @@ export async function executeListContactChangeTasks(
 _itemIndex?: number,
 ): Promise<INodeExecutionData[]> {
 	const client = getClient(this);
-	const ids = (await client.httpGet('/me/task/contactChange')) as string[];
-	const results: IDataObject[] = [];
-	for (const id of ids) {
-		const details = (await client.httpGet(`/me/task/contactChange/${id}`)) as IDataObject;
-		results.push(details);
-	}
+	const results = await client.fetchEachResources(`/me/task/contactChange`, `/me/task/contactChange/{id}`);
 	return this.helpers.returnJsonArray(results);
 }
 
@@ -235,12 +220,7 @@ export async function executeListEmailChangeTasks(
 _itemIndex?: number,
 ): Promise<INodeExecutionData[]> {
 	const client = getClient(this);
-	const ids = (await client.httpGet('/me/task/emailChange')) as string[];
-	const results: IDataObject[] = [];
-	for (const id of ids) {
-		const details = (await client.httpGet(`/me/task/emailChange/${id}`)) as IDataObject;
-		results.push(details);
-	}
+	const results = await client.fetchEachResources(`/me/task/emailChange`, `/me/task/emailChange/{id}`);
 	return this.helpers.returnJsonArray(results);
 }
 

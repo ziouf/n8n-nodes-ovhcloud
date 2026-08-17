@@ -131,7 +131,7 @@ describe('Billing list operations', () => {
 
 			const result = await executeListBills.call(mockExecuteFunctions);
 
-			expect(mockClient.httpGet).toHaveBeenCalledWith('/me/bill', undefined);
+			expect(mockClient.httpGet).toHaveBeenCalledWith('/me/bill');
 			expect(mockClient.httpGet).toHaveBeenCalledWith('/me/bill/bill-1');
 			expect(mockClient.httpGet).toHaveBeenCalledWith('/me/bill/bill-2');
 			expect(mockClient.httpGet).toHaveBeenCalledWith('/me/bill/bill-3');
@@ -143,7 +143,7 @@ describe('Billing list operations', () => {
 
 			const result = await executeListBills.call(mockExecuteFunctions);
 
-			expect(mockClient.httpGet).toHaveBeenCalledWith('/me/bill', undefined);
+			expect(mockClient.httpGet).toHaveBeenCalledWith('/me/bill');
 			expect(result).toEqual([]);
 		});
 	});

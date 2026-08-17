@@ -139,7 +139,7 @@ describe('VPS list filters', () => {
 			});
 
 			await execute.call(mockExecuteFunctions, 0);
-			expect(mockClient.httpGet).toHaveBeenCalledWith('/vps', undefined);
+			expect(mockClient.httpGet).toHaveBeenCalledWith('/vps');
 			expect(mockClient.httpGet).toHaveBeenCalledWith('/vps/vps-1');
 		});
 

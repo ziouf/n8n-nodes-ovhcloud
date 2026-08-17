@@ -17,12 +17,7 @@ export async function executeListFaxCustomDomains(
 _itemIndex?: number,
 ): Promise<INodeExecutionData[]> {
 	const client = getClient(this);
-	const ids = (await client.httpGet('/me/fax/customDomains')) as string[];
-	const results: IDataObject[] = [];
-	for (const id of ids) {
-		const details = (await client.httpGet(`/me/fax/customDomains/${id}`)) as IDataObject;
-		results.push(details);
-	}
+	const results = await client.fetchEachResources(`/me/fax/customDomains`, `/me/fax/customDomains/{id}`);
 	return this.helpers.returnJsonArray(results);
 }
 
@@ -61,14 +56,7 @@ export async function executeListTelephonyDefaultIpRestrictions(
 _itemIndex?: number,
 ): Promise<INodeExecutionData[]> {
 	const client = getClient(this);
-	const ids = (await client.httpGet('/me/telephony/defaultIpRestriction')) as string[];
-	const results: IDataObject[] = [];
-	for (const id of ids) {
-		const details = (await client.httpGet(
-			`/me/telephony/defaultIpRestriction/${id}`,
-		)) as IDataObject;
-		results.push(details);
-	}
+	const results = await client.fetchEachResources(`/me/telephony/defaultIpRestriction`, `/me/telephony/defaultIpRestriction/{id}`);
 	return this.helpers.returnJsonArray(results);
 }
 

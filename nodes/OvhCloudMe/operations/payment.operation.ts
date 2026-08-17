@@ -30,12 +30,7 @@ export async function executeListPaymentMethods(
 	_itemIndex?: number,
 ): Promise<INodeExecutionData[]> {
 	const client = getClient(this);
-	const ids = (await client.httpGet('/me/payment/method')) as string[];
-	const results: IDataObject[] = [];
-	for (const id of ids) {
-		const details = (await client.httpGet(`/me/payment/method/${id}`)) as IDataObject;
-		results.push(details);
-	}
+	const results = await client.fetchEachResources(`/me/payment/method`, `/me/payment/method/{id}`);
 	return this.helpers.returnJsonArray(results);
 }
 
@@ -69,12 +64,7 @@ export async function executeListPaymentTransactions(
 	_itemIndex?: number,
 ): Promise<INodeExecutionData[]> {
 	const client = getClient(this);
-	const ids = (await client.httpGet('/me/payment/transaction')) as string[];
-	const results: IDataObject[] = [];
-	for (const id of ids) {
-		const details = (await client.httpGet(`/me/payment/transaction/${id}`)) as IDataObject;
-		results.push(details);
-	}
+	const results = await client.fetchEachResources(`/me/payment/transaction`, `/me/payment/transaction/{id}`);
 	return this.helpers.returnJsonArray(results);
 }
 
@@ -133,12 +123,7 @@ export async function executeListBankAccounts(
 ): Promise<INodeExecutionData[]> {
 	const client = getClient(this);
 	const query = buildFilterQuery(this, itemIndex ?? 0, BANK_ACCOUNT_FILTERS);
-	const ids = (await client.httpGet('/me/paymentMean/bankAccount', query)) as string[];
-	const results: IDataObject[] = [];
-	for (const id of ids) {
-		const details = (await client.httpGet(`/me/paymentMean/bankAccount/${id}`)) as IDataObject;
-		results.push(details);
-	}
+	const results = await client.fetchEachResources(`/me/paymentMean/bankAccount`, `/me/paymentMean/bankAccount/{id}`, { qs: query });
 	return this.helpers.returnJsonArray(results);
 }
 
@@ -172,12 +157,7 @@ export async function executeListCreditCards(
 	_itemIndex?: number,
 ): Promise<INodeExecutionData[]> {
 	const client = getClient(this);
-	const ids = (await client.httpGet('/me/paymentMean/creditCard')) as string[];
-	const results: IDataObject[] = [];
-	for (const id of ids) {
-		const details = (await client.httpGet(`/me/paymentMean/creditCard/${id}`)) as IDataObject;
-		results.push(details);
-	}
+	const results = await client.fetchEachResources(`/me/paymentMean/creditCard`, `/me/paymentMean/creditCard/{id}`);
 	return this.helpers.returnJsonArray(results);
 }
 
@@ -211,14 +191,7 @@ export async function executeListDeferredPaymentAccounts(
 	_itemIndex?: number,
 ): Promise<INodeExecutionData[]> {
 	const client = getClient(this);
-	const ids = (await client.httpGet('/me/paymentMean/deferredPaymentAccount')) as string[];
-	const results: IDataObject[] = [];
-	for (const id of ids) {
-		const details = (await client.httpGet(
-			`/me/paymentMean/deferredPaymentAccount/${id}`,
-		)) as IDataObject;
-		results.push(details);
-	}
+	const results = await client.fetchEachResources(`/me/paymentMean/deferredPaymentAccount`, `/me/paymentMean/deferredPaymentAccount/{id}`);
 	return this.helpers.returnJsonArray(results);
 }
 
@@ -256,12 +229,7 @@ export async function executeListPaypalAccounts(
 	_itemIndex?: number,
 ): Promise<INodeExecutionData[]> {
 	const client = getClient(this);
-	const ids = (await client.httpGet('/me/paymentMean/paypal')) as string[];
-	const results: IDataObject[] = [];
-	for (const id of ids) {
-		const details = (await client.httpGet(`/me/paymentMean/paypal/${id}`)) as IDataObject;
-		results.push(details);
-	}
+	const results = await client.fetchEachResources(`/me/paymentMean/paypal`, `/me/paymentMean/paypal/{id}`);
 	return this.helpers.returnJsonArray(results);
 }
 
@@ -328,12 +296,7 @@ export async function executeListOrders(
 ): Promise<INodeExecutionData[]> {
 	const client = getClient(this);
 	const qs = buildFilterQuery(this, itemIndex ?? 0, ORDER_FILTERS);
-	const ids = (await client.httpGet('/me/order', qs)) as string[];
-	const results: IDataObject[] = [];
-	for (const id of ids) {
-		const details = (await client.httpGet(`/me/order/${id}`)) as IDataObject;
-		results.push(details);
-	}
+	const results = await client.fetchEachResources(`/me/order`, `/me/order/{id}`, { qs: qs });
 	return this.helpers.returnJsonArray(results);
 }
 
@@ -435,12 +398,7 @@ export async function executeListOrderBalances(
 ): Promise<INodeExecutionData[]> {
 	const client = getClient(this);
 	const orderId = this.getNodeParameter('orderId', _itemIndex) as string;
-	const ids = (await client.httpGet(`/me/order/${orderId}/balance`)) as string[];
-	const results: IDataObject[] = [];
-	for (const id of ids) {
-		const details = (await client.httpGet(`/me/order/${orderId}/balance/${id}`)) as IDataObject;
-		results.push(details);
-	}
+	const results = await client.fetchEachResources(`/me/order/${orderId}/balance`, `/me/order/${orderId}/balance/{id}`);
 	return this.helpers.returnJsonArray(results);
 }
 
@@ -552,14 +510,7 @@ export async function executeListOrderDebtOperations(
 ): Promise<INodeExecutionData[]> {
 	const client = getClient(this);
 	const orderId = this.getNodeParameter('orderId', _itemIndex) as string;
-	const ids = (await client.httpGet(`/me/order/${orderId}/debt/operation`)) as string[];
-	const results: IDataObject[] = [];
-	for (const id of ids) {
-		const details = (await client.httpGet(
-			`/me/order/${orderId}/debt/operation/${id}`,
-		)) as IDataObject;
-		results.push(details);
-	}
+	const results = await client.fetchEachResources(`/me/order/${orderId}/debt/operation`, `/me/order/${orderId}/debt/operation/{id}`);
 	return this.helpers.returnJsonArray(results);
 }
 
@@ -659,12 +610,7 @@ export async function executeListOrderDetails(
 ): Promise<INodeExecutionData[]> {
 	const client = getClient(this);
 	const orderId = this.getNodeParameter('orderId', _itemIndex) as string;
-	const ids = (await client.httpGet(`/me/order/${orderId}/details`)) as string[];
-	const results: IDataObject[] = [];
-	for (const id of ids) {
-		const details = (await client.httpGet(`/me/order/${orderId}/details/${id}`)) as IDataObject;
-		results.push(details);
-	}
+	const results = await client.fetchEachResources(`/me/order/${orderId}/details`, `/me/order/${orderId}/details/{id}`);
 	return this.helpers.returnJsonArray(results);
 }
 

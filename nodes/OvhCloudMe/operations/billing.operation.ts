@@ -75,16 +75,7 @@ export async function executeListBills(
 	const filterQuery = buildFilterQuery(this, itemIndex ?? 0, BILL_FILTERS);
 	// Sequential detail fetching to avoid sending offset/limit on endpoints
 	// that do not declare them in the OVH API spec (400 error).
-	const ids = (await client.httpGet('/me/bill', filterQuery)) as string[];
-	const results: IDataObject[] = [];
-	for (const id of ids) {
-		try {
-			const details = (await client.httpGet(`/me/bill/${id}`)) as IDataObject;
-			results.push(details);
-		} catch {
-			// Failed item fetches are silently skipped.
-		}
-	}
+	const results = await client.fetchEachResources(`/me/bill`, `/me/bill/{id}`, { qs: filterQuery, onSkipped: () => undefined });
 	return this.helpers.returnJsonArray(results);
 }
 
@@ -160,18 +151,7 @@ export async function executeListBillDebtOperations(
 	const billId = this.getNodeParameter('billId', itemIndex ?? 0) as string;
 	// Sequential detail fetching to avoid sending offset/limit on endpoints
 	// that do not declare them in the OVH API spec (400 error).
-	const ids = (await client.httpGet(`/me/bill/${billId}/debt/operation`)) as string[];
-	const results: IDataObject[] = [];
-	for (const id of ids) {
-		try {
-			const details = (await client.httpGet(
-				`/me/bill/${billId}/debt/operation/${id}`,
-			)) as IDataObject;
-			results.push(details);
-		} catch {
-			// Failed item fetches are silently skipped.
-		}
-	}
+	const results = await client.fetchEachResources(`/me/bill/${billId}/debt/operation`, `/me/bill/${billId}/debt/operation/{id}`, { onSkipped: () => undefined });
 	return this.helpers.returnJsonArray(results);
 }
 
@@ -273,16 +253,7 @@ export async function executeListBillDetails(
 	const billId = this.getNodeParameter('billId', itemIndex ?? 0) as string;
 	// Sequential detail fetching to avoid sending offset/limit on endpoints
 	// that do not declare them in the OVH API spec (400 error).
-	const ids = (await client.httpGet(`/me/bill/${billId}/details`)) as string[];
-	const results: IDataObject[] = [];
-	for (const id of ids) {
-		try {
-			const details = (await client.httpGet(`/me/bill/${billId}/details/${id}`)) as IDataObject;
-			results.push(details);
-		} catch {
-			// Failed item fetches are silently skipped.
-		}
-	}
+	const results = await client.fetchEachResources(`/me/bill/${billId}/details`, `/me/bill/${billId}/details/{id}`, { onSkipped: () => undefined });
 	return this.helpers.returnJsonArray(results);
 }
 
@@ -355,16 +326,7 @@ export async function executeListBillingGroups(
 	const client = getClient(this);
 	// Sequential detail fetching to avoid sending offset/limit on endpoints
 	// that do not declare them in the OVH API spec (400 error).
-	const ids = (await client.httpGet('/me/billing/group')) as string[];
-	const results: IDataObject[] = [];
-	for (const id of ids) {
-		try {
-			const details = (await client.httpGet(`/me/billing/group/${id}`)) as IDataObject;
-			results.push(details);
-		} catch {
-			// Failed item fetches are silently skipped.
-		}
-	}
+	const results = await client.fetchEachResources(`/me/billing/group`, `/me/billing/group/{id}`, { onSkipped: () => undefined });
 	return this.helpers.returnJsonArray(results);
 }
 
@@ -418,18 +380,7 @@ export async function executeListBillingGroupServices(
 	const groupId = this.getNodeParameter('groupId', itemIndex ?? 0) as string;
 	// Sequential detail fetching to avoid sending offset/limit on endpoints
 	// that do not declare them in the OVH API spec (400 error).
-	const ids = (await client.httpGet(`/me/billing/group/${groupId}/service`)) as string[];
-	const results: IDataObject[] = [];
-	for (const id of ids) {
-		try {
-			const details = (await client.httpGet(
-				`/me/billing/group/${groupId}/service/${id}`,
-			)) as IDataObject;
-			results.push(details);
-		} catch {
-			// Failed item fetches are silently skipped.
-		}
-	}
+	const results = await client.fetchEachResources(`/me/billing/group/${groupId}/service`, `/me/billing/group/${groupId}/service/{id}`, { onSkipped: () => undefined });
 	return this.helpers.returnJsonArray(results);
 }
 
@@ -483,16 +434,7 @@ export async function executeListPurchaseOrders(
 	const client = getClient(this);
 	// Sequential detail fetching to avoid sending offset/limit on endpoints
 	// that do not declare them in the OVH API spec (400 error).
-	const ids = (await client.httpGet('/me/billing/purchaseOrder')) as string[];
-	const results: IDataObject[] = [];
-	for (const id of ids) {
-		try {
-			const details = (await client.httpGet(`/me/billing/purchaseOrder/${id}`)) as IDataObject;
-			results.push(details);
-		} catch {
-			// Failed item fetches are silently skipped.
-		}
-	}
+	const results = await client.fetchEachResources(`/me/billing/purchaseOrder`, `/me/billing/purchaseOrder/{id}`, { onSkipped: () => undefined });
 	return this.helpers.returnJsonArray(results);
 }
 
@@ -528,16 +470,7 @@ export async function executeListConsumptionReports(
 	const client = getClient(this);
 	// Sequential detail fetching to avoid sending offset/limit on endpoints
 	// that do not declare them in the OVH API spec (400 error).
-	const ids = (await client.httpGet('/me/billing/report/consumption')) as string[];
-	const results: IDataObject[] = [];
-	for (const id of ids) {
-		try {
-			const details = (await client.httpGet(`/me/billing/report/consumption/${id}`)) as IDataObject;
-			results.push(details);
-		} catch {
-			// Failed item fetches are silently skipped.
-		}
-	}
+	const results = await client.fetchEachResources(`/me/billing/report/consumption`, `/me/billing/report/consumption/{id}`, { onSkipped: () => undefined });
 	return this.helpers.returnJsonArray(results);
 }
 

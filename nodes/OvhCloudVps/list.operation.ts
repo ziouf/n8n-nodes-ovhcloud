@@ -53,16 +53,13 @@ export async function execute(
 
 	if (returnFullObjects) {
 		const skippedIds: string[] = [];
-		const ids = (await client.httpGet('/vps', qs)) as string[];
-		const cappedIds = ids.slice(0, maxItems);
-		const data: IDataObject[] = [];
-		for (const id of cappedIds) {
-			try {
-				data.push((await client.httpGet(`/vps/${id}`)) as IDataObject);
-			} catch {
+		const data = await client.fetchEachResources<IDataObject>('/vps', '/vps/{id}', {
+			qs,
+			maxItems,
+			onSkipped: (id) => {
 				skippedIds.push(id);
-			}
-		}
+			},
+		});
 		if (skippedIds.length > 0) {
 			const items = this.helpers.returnJsonArray(data);
 			items.push({

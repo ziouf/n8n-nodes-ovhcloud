@@ -111,12 +111,8 @@ describe('listBankAccounts', () => {
 
 			const result = await executeListBankAccounts.call(mockExecuteFunctions);
 
-			// First call should be /me/paymentMean/bankAccount with undefined qs
-			expect(mockClient.httpGet).toHaveBeenNthCalledWith(
-				1,
-				'/me/paymentMean/bankAccount',
-				undefined,
-			);
+			// First call should be /me/paymentMean/bankAccount
+			expect(mockClient.httpGet).toHaveBeenNthCalledWith(1, '/me/paymentMean/bankAccount');
 			// Second call should be /me/paymentMean/bankAccount/42
 			expect(mockClient.httpGet).toHaveBeenNthCalledWith(2, '/me/paymentMean/bankAccount/42');
 			expect(result).toEqual([{ id: '42', state: 'valid' }]);
@@ -128,7 +124,7 @@ describe('listBankAccounts', () => {
 
 			const result = await executeListBankAccounts.call(mockExecuteFunctions);
 
-			expect(mockClient.httpGet).toHaveBeenCalledWith('/me/paymentMean/bankAccount', undefined);
+			expect(mockClient.httpGet).toHaveBeenCalledWith('/me/paymentMean/bankAccount');
 			expect(result).toEqual([]);
 		});
 	});
@@ -214,7 +210,7 @@ describe('listBankAccounts', () => {
 			await executeListBankAccounts.call(mockExecuteFunctions);
 
 			// The qs should be undefined because the filter value is empty
-			expect(mockClient.httpGet).toHaveBeenCalledWith('/me/paymentMean/bankAccount', undefined);
+			expect(mockClient.httpGet).toHaveBeenCalledWith('/me/paymentMean/bankAccount');
 		});
 
 		it('should not include state when filters object is empty', async () => {
@@ -223,7 +219,7 @@ describe('listBankAccounts', () => {
 
 			await executeListBankAccounts.call(mockExecuteFunctions);
 
-			expect(mockClient.httpGet).toHaveBeenCalledWith('/me/paymentMean/bankAccount', undefined);
+			expect(mockClient.httpGet).toHaveBeenCalledWith('/me/paymentMean/bankAccount');
 		});
 	});
 });
@@ -290,7 +286,7 @@ describe('listOrders', () => {
 
 			const result = await executeListOrders.call(mockExecuteFunctions);
 
-			expect(mockClient.httpGet).toHaveBeenNthCalledWith(1, '/me/order', undefined);
+			expect(mockClient.httpGet).toHaveBeenNthCalledWith(1, '/me/order');
 			expect(result).toEqual([{ id: 'ord1' }]);
 		});
 	});

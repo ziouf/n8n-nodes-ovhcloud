@@ -14,12 +14,7 @@ import { getClient } from '../../../shared/transport/ApiClient';
 // listContacts
 export async function executeListContacts(this: IExecuteFunctions, _itemIndex?: number): Promise<INodeExecutionData[]> {
 	const client = getClient(this);
-	const ids = (await client.httpGet('/me/contact')) as string[];
-	const results: IDataObject[] = [];
-	for (const id of ids) {
-		const details = (await client.httpGet(`/me/contact/${id}`)) as IDataObject;
-		results.push(details);
-	}
+	const results = await client.fetchEachResources(`/me/contact`, `/me/contact/{id}`);
 	return this.helpers.returnJsonArray(results);
 }
 
@@ -78,12 +73,7 @@ export async function executeGetContactFields(
 // listDocuments
 export async function executeListDocuments(this: IExecuteFunctions, _itemIndex?: number): Promise<INodeExecutionData[]> {
 	const client = getClient(this);
-	const ids = (await client.httpGet('/me/document')) as string[];
-	const results: IDataObject[] = [];
-	for (const id of ids) {
-		const details = (await client.httpGet(`/me/document/${id}`)) as IDataObject;
-		results.push(details);
-	}
+	const results = await client.fetchEachResources(`/me/document`, `/me/document/{id}`);
 	return this.helpers.returnJsonArray(results);
 }
 

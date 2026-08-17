@@ -31,16 +31,16 @@ export async function execute(
 
 	if (returnFullObjects) {
 		const skippedIds: string[] = [];
-		const ids = (await client.httpGet('/dedicated/server')) as string[];
-		const cappedIds = ids.slice(0, maxItems);
-		const data: IDataObject[] = [];
-		for (const id of cappedIds) {
-			try {
-				data.push((await client.httpGet(`/dedicated/server/${id}`)) as IDataObject);
-			} catch {
-				skippedIds.push(id);
-			}
-		}
+		const data = await client.fetchEachResources<IDataObject>(
+			'/dedicated/server',
+			'/dedicated/server/{id}',
+			{
+				maxItems,
+				onSkipped: (id) => {
+					skippedIds.push(id);
+				},
+			},
+		);
 		if (skippedIds.length > 0) {
 			const items = this.helpers.returnJsonArray(data);
 			items.push({

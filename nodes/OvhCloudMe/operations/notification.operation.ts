@@ -17,12 +17,7 @@ export async function executeListEmailHistory(
 _itemIndex?: number,
 ): Promise<INodeExecutionData[]> {
 	const client = getClient(this);
-	const ids = (await client.httpGet('/me/notification/email/history')) as string[];
-	const results: IDataObject[] = [];
-	for (const id of ids) {
-		const details = (await client.httpGet(`/me/notification/email/history/${id}`)) as IDataObject;
-		results.push(details);
-	}
+	const results = await client.fetchEachResources(`/me/notification/email/history`, `/me/notification/email/history/{id}`);
 	return this.helpers.returnJsonArray(results);
 }
 
@@ -116,12 +111,7 @@ export async function executeListMigrations(
 _itemIndex?: number,
 ): Promise<INodeExecutionData[]> {
 	const client = getClient(this);
-	const ids = (await client.httpGet('/me/migration')) as string[];
-	const results: IDataObject[] = [];
-	for (const id of ids) {
-		const details = (await client.httpGet(`/me/migration/${id}`)) as IDataObject;
-		results.push(details);
-	}
+	const results = await client.fetchEachResources(`/me/migration`, `/me/migration/{id}`);
 	return this.helpers.returnJsonArray(results);
 }
 
@@ -171,14 +161,7 @@ export async function executeListMigrationContracts(
 ): Promise<INodeExecutionData[]> {
 	const client = getClient(this);
 	const migrationId = this.getNodeParameter('migrationId', _itemIndex) as string;
-	const ids = (await client.httpGet(`/me/migration/${migrationId}/contract`)) as string[];
-	const results: IDataObject[] = [];
-	for (const id of ids) {
-		const details = (await client.httpGet(
-			`/me/migration/${migrationId}/contract/${id}`,
-		)) as IDataObject;
-		results.push(details);
-	}
+	const results = await client.fetchEachResources(`/me/migration/${migrationId}/contract`, `/me/migration/${migrationId}/contract/{id}`);
 	return this.helpers.returnJsonArray(results);
 }
 
@@ -276,12 +259,7 @@ export async function executeListFidelityMovements(
 _itemIndex?: number,
 ): Promise<INodeExecutionData[]> {
 	const client = getClient(this);
-	const ids = (await client.httpGet('/me/fidelityAccount/movements')) as string[];
-	const results: IDataObject[] = [];
-	for (const id of ids) {
-		const details = (await client.httpGet(`/me/fidelityAccount/movements/${id}`)) as IDataObject;
-		results.push(details);
-	}
+	const results = await client.fetchEachResources(`/me/fidelityAccount/movements`, `/me/fidelityAccount/movements/{id}`);
 	return this.helpers.returnJsonArray(results);
 }
 

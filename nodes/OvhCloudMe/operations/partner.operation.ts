@@ -38,12 +38,7 @@ _itemIndex?: number,
 // listSlas
 export async function executeListSlas(this: IExecuteFunctions, _itemIndex?: number): Promise<INodeExecutionData[]> {
 	const client = getClient(this);
-	const ids = (await client.httpGet('/me/sla')) as string[];
-	const results: IDataObject[] = [];
-	for (const id of ids) {
-		const details = (await client.httpGet(`/me/sla/${id}`)) as IDataObject;
-		results.push(details);
-	}
+	const results = await client.fetchEachResources(`/me/sla`, `/me/sla/{id}`);
 	return this.helpers.returnJsonArray(results);
 }
 
@@ -157,12 +152,7 @@ export async function executeListAgreements(
 _itemIndex?: number,
 ): Promise<INodeExecutionData[]> {
 	const client = getClient(this);
-	const ids = (await client.httpGet('/me/agreements')) as string[];
-	const results: IDataObject[] = [];
-	for (const id of ids) {
-		const details = (await client.httpGet(`/me/agreements/${id}`)) as IDataObject;
-		results.push(details);
-	}
+	const results = await client.fetchEachResources(`/me/agreements`, `/me/agreements/{id}`);
 	return this.helpers.returnJsonArray(results);
 }
 
@@ -267,12 +257,7 @@ _itemIndex?: number,
 // listAbuse
 export async function executeListAbuse(this: IExecuteFunctions, _itemIndex?: number): Promise<INodeExecutionData[]> {
 	const client = getClient(this);
-	const ids = (await client.httpGet('/me/abuse')) as string[];
-	const results: IDataObject[] = [];
-	for (const id of ids) {
-		const details = (await client.httpGet(`/me/abuse/${id}`)) as IDataObject;
-		results.push(details);
-	}
+	const results = await client.fetchEachResources(`/me/abuse`, `/me/abuse/{id}`);
 	return this.helpers.returnJsonArray(results);
 }
 
@@ -317,12 +302,7 @@ export async function executeListCarbonCalculatorTasks(
 _itemIndex?: number,
 ): Promise<INodeExecutionData[]> {
 	const client = getClient(this);
-	const ids = (await client.httpGet('/me/carbonCalculator/task')) as string[];
-	const results: IDataObject[] = [];
-	for (const id of ids) {
-		const details = (await client.httpGet(`/me/carbonCalculator/task/${id}`)) as IDataObject;
-		results.push(details);
-	}
+	const results = await client.fetchEachResources(`/me/carbonCalculator/task`, `/me/carbonCalculator/task/{id}`);
 	return this.helpers.returnJsonArray(results);
 }
 
@@ -383,12 +363,7 @@ export async function executeListAccessRestrictionIps(
 _itemIndex?: number,
 ): Promise<INodeExecutionData[]> {
 	const client = getClient(this);
-	const ids = (await client.httpGet('/me/accessRestriction/ip')) as string[];
-	const results: IDataObject[] = [];
-	for (const id of ids) {
-		const details = (await client.httpGet(`/me/accessRestriction/ip/${id}`)) as IDataObject;
-		results.push(details);
-	}
+	const results = await client.fetchEachResources(`/me/accessRestriction/ip`, `/me/accessRestriction/ip/{id}`);
 	return this.helpers.returnJsonArray(results);
 }
 
@@ -434,12 +409,7 @@ export async function executeListAccessRestrictionSms(
 _itemIndex?: number,
 ): Promise<INodeExecutionData[]> {
 	const client = getClient(this);
-	const ids = (await client.httpGet('/me/accessRestriction/sms')) as string[];
-	const results: IDataObject[] = [];
-	for (const id of ids) {
-		const details = (await client.httpGet(`/me/accessRestriction/sms/${id}`)) as IDataObject;
-		results.push(details);
-	}
+	const results = await client.fetchEachResources(`/me/accessRestriction/sms`, `/me/accessRestriction/sms/{id}`);
 	return this.helpers.returnJsonArray(results);
 }
 
@@ -475,12 +445,7 @@ export async function executeListAccessRestrictionTotp(
 _itemIndex?: number,
 ): Promise<INodeExecutionData[]> {
 	const client = getClient(this);
-	const ids = (await client.httpGet('/me/accessRestriction/totp')) as string[];
-	const results: IDataObject[] = [];
-	for (const id of ids) {
-		const details = (await client.httpGet(`/me/accessRestriction/totp/${id}`)) as IDataObject;
-		results.push(details);
-	}
+	const results = await client.fetchEachResources(`/me/accessRestriction/totp`, `/me/accessRestriction/totp/{id}`);
 	return this.helpers.returnJsonArray(results);
 }
 
@@ -516,12 +481,7 @@ export async function executeListAccessRestrictionU2f(
 _itemIndex?: number,
 ): Promise<INodeExecutionData[]> {
 	const client = getClient(this);
-	const ids = (await client.httpGet('/me/accessRestriction/u2f')) as string[];
-	const results: IDataObject[] = [];
-	for (const id of ids) {
-		const details = (await client.httpGet(`/me/accessRestriction/u2f/${id}`)) as IDataObject;
-		results.push(details);
-	}
+	const results = await client.fetchEachResources(`/me/accessRestriction/u2f`, `/me/accessRestriction/u2f/{id}`);
 	return this.helpers.returnJsonArray(results);
 }
 

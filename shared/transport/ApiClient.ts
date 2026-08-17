@@ -28,6 +28,22 @@ export interface PaginateResourcesOptions extends PaginationOptions {
 }
 
 /**
+ * Configuration options for {@link ApiClient.fetchEachResources}.
+ */
+export interface FetchEachResourcesOptions {
+	/** Query parameters to send on the list request. */
+	qs?: IDataObject;
+	/** Maximum number of items to fetch (default: all ids returned by the list call). */
+	maxItems?: number;
+	/**
+	 * Called for each item whose detail fetch fails instead of throwing,
+	 * letting the caller keep a list of skipped ids. When omitted, a failed
+	 * detail fetch aborts the whole call (matching a hard-failure policy).
+	 */
+	onSkipped?: (id: string, error: unknown) => void;
+}
+
+/**
  * Configuration options for pagination.
  */
 export interface PaginationOptions {
@@ -489,6 +505,56 @@ export class ApiClient {
 		}
 
 		return resources;
+	}
+
+	/**
+	 * Fetches a list of ids in a single call, then fetches the full resource
+	 * for each id via the `{id}` placeholder in `itemTemplateUrl`.
+	 *
+	 * Unlike {@link paginate} / {@link paginateResources}, this performs **one**
+	 * list request (no offset/limit pagination) — suited to endpoints such as
+	 * `/me/*` that ignore pagination parameters and return the whole array.
+	 *
+	 * Detail-fetch failures either throw immediately (default) or are routed to
+	 * the `onSkipped` callback when provided (in which case the skipped items
+	 * are simply omitted from the result).
+	 *
+	 * @param listUrl - The list endpoint returning an array of ids.
+	 * @param itemTemplateUrl - Item endpoint with a `{id}` placeholder.
+	 * @param options - Optional query params, item cap, and skip handling.
+	 * @returns Array of full resource objects.
+	 *
+	 * @example
+	 * ```typescript
+	 * const balances = await client.fetchEachResources(
+	 *   '/me/credit/balance',
+	 *   '/me/credit/balance/{id}',
+	 *   { onSkipped: (id) => console.warn(`skipped ${id}`) },
+	 * );
+	 * ```
+	 */
+	public async fetchEachResources<T = IDataObject>(
+		listUrl: string,
+		itemTemplateUrl: string,
+		options?: FetchEachResourcesOptions,
+	): Promise<T[]> {
+		const ids = (
+			options?.qs !== undefined
+				? await this.httpGet(listUrl, options.qs)
+				: await this.httpGet(listUrl)
+		) as string[];
+		const capped = typeof options?.maxItems === 'number' ? ids.slice(0, options.maxItems) : ids;
+
+		const results: T[] = [];
+		for (const id of capped) {
+			try {
+				results.push((await this.httpGet(itemTemplateUrl.replace('{id}', id))) as T);
+			} catch (error) {
+				if (!options?.onSkipped) throw error;
+				options.onSkipped(id, error);
+			}
+		}
+		return results;
 	}
 }
 
