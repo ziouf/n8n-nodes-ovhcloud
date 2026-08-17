@@ -1,28 +1,16 @@
 import type { IDisplayOptions, IExecuteFunctions, INodeExecutionData } from 'n8n-workflow';
 import { getClient } from '../../../../shared/transport/ApiClient';
+import { serviceNameLocator } from '../../../../shared/nodes/locators';
 
 export function description(displayOptions: IDisplayOptions) {
 	return [
-		{
+				{
+			...serviceNameLocator({
+			searchListMethod: 'clusterListGet',
 			displayName: 'Cluster Service Name',
-			name: 'serviceName',
-			type: 'resourceLocator',
-			default: { mode: 'list', value: '' },
-			required: true,
-			modes: [
-				{
-					displayName: 'From List',
-					name: 'list',
-					type: 'list',
-					typeOptions: { searchListMethod: 'clusterListGet' },
-				},
-				{
-					displayName: 'By Name',
-					name: 'name',
-					type: 'string',
-					placeholder: 'my-cluster',
-				},
-			],
+			description: '',
+			placeholder: 'my-cluster',
+			}),
 			displayOptions,
 		},
 		{

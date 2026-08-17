@@ -5,31 +5,18 @@ import type {
 	INodeProperties,
 } from 'n8n-workflow';
 import { getClient } from '../../../shared/transport/ApiClient';
+import { serviceNameLocator } from '../../../shared/nodes/locators';
 
 /** Deletes an IP ACL rule from backup FTP access control on a dedicated server. */
 export function description(displayOptions: IDisplayOptions): INodeProperties[] {
 	return [
-		{
+				{
+			...serviceNameLocator({
+			searchListMethod: 'getDedicatedServerServices',
 			displayName: 'Dedicated Server Service Name',
-			name: 'serviceName',
-			type: 'resourceLocator',
-			default: { mode: 'list', value: '' },
-			required: true,
 			description: 'The dedicated server service name (e.g. ns123456.ip-123-45-678.eu)',
-			modes: [
-				{
-					displayName: 'From List',
-					name: 'list',
-					type: 'list',
-					typeOptions: { searchListMethod: 'getDedicatedServerServices', searchable: true },
-				},
-				{
-					displayName: 'By Name',
-					name: 'name',
-					type: 'string',
-					placeholder: 'ns123456.ip-123-45-678.eu',
-				},
-			],
+			placeholder: 'ns123456.ip-123-45-678.eu',
+			}),
 			displayOptions,
 		},
 		{

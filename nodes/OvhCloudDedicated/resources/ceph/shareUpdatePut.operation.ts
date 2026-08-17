@@ -5,30 +5,17 @@ import type {
 	INodeExecutionData,
 } from 'n8n-workflow';
 import { getClient } from '../../../../shared/transport/ApiClient';
+import { serviceNameLocator } from '../../../../shared/nodes/locators';
 
 export function description(displayOptions: IDisplayOptions) {
 	return [
-		{
+				{
+			...serviceNameLocator({
+			searchListMethod: 'nashaListGet',
 			displayName: 'Nasha Service Name',
-			name: 'serviceName',
-			type: 'resourceLocator',
-			default: { mode: 'list', value: '' },
-			required: true,
 			description: 'The Nasha (NAS) service name (e.g. ns12345678.ovh.net)',
-			modes: [
-				{
-					displayName: 'From List',
-					name: 'list',
-					type: 'list',
-					typeOptions: { searchListMethod: 'nashaListGet' },
-				},
-				{
-					displayName: 'By Name',
-					name: 'name',
-					type: 'string',
-					placeholder: 'ns12345678.ovh.net',
-				},
-			],
+			placeholder: 'ns12345678.ovh.net',
+			}),
 			displayOptions,
 		},
 		{

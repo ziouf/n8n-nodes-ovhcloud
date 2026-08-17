@@ -5,29 +5,17 @@ import type {
 	INodeExecutionData,
 } from 'n8n-workflow';
 import { getClient } from '../../../../shared/transport/ApiClient';
+import { serviceNameLocator } from '../../../../shared/nodes/locators';
 
 export function description(displayOptions: IDisplayOptions) {
 	return [
-		{
+				{
+			...serviceNameLocator({
+			searchListMethod: 'housingListGet',
 			displayName: 'Housing Service Name',
-			name: 'serviceName',
-			type: 'resourceLocator',
-			default: { mode: 'list', value: '' },
-			required: true,
-			modes: [
-				{
-					displayName: 'From List',
-					name: 'list',
-					type: 'list',
-					typeOptions: { searchListMethod: 'housingListGet' },
-				},
-				{
-					displayName: 'By Name',
-					name: 'name',
-					type: 'string',
-					placeholder: 'h12345678.ovh.net',
-				},
-			],
+			description: '',
+			placeholder: 'h12345678.ovh.net',
+			}),
 			displayOptions,
 		},
 		{
